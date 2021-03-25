@@ -1,3 +1,5 @@
 export * from "./types";
 
-export * as config from "./config";
+import config from "./config";
+
+export default config;

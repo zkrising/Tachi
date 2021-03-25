@@ -1,0 +1,25 @@
+{
+  "name": "kamaitachi-common",
+  "version": "0.1.0",
+  "description": "Common Types & Stuff for Kamaitachi",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "tap",
+    "build": "tsc"
+  },
+  "author": "zkldi",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1",
+    "tap": "^14.11.0",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "monk": "^7.3.3"
+  }
+}

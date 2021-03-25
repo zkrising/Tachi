@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "lib": ["ES2019"],
+        "declaration": true,
+        "outDir": "./js",
+        "strict": true,
+        "allowJs": false,
+        "esModuleInterop": true,
+        "typeRoots": [ "@types" ],
+        "sourceMap": true
+    },
+    "include": ["src"],
+    "exclude": ["node_modules"]
+}

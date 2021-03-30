@@ -23,11 +23,6 @@ export type Databases =
     | "milestones"
     | "users";
 
-/**
- * ValidNBQDatabases: Indicates the databases expected by FQ config overrides.
- */
-export type ValidNBQDatabases = Databases | "songs" | "charts";
-
 export type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 
 /**
@@ -236,7 +231,7 @@ interface MRGFolderTarget {
     target: number;
 }
 
-interface MRGFolderInformation {
+export interface MRGFolderInformation {
     folderID: string;
     difficulty: Difficulties[Game][] | null;
     datapoints: MRGFolderTarget[];

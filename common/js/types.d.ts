@@ -6,10 +6,6 @@ export interface MongoDBDocument {
     _id?: IObjectID;
 }
 export declare type Databases = "sessions" | "folders" | "scores" | "queries" | "rivals" | "notifications" | "imports" | "tierlistdata" | "tierlist" | "goals" | "user-goals" | "user-milestones" | "milestones" | "users";
-/**
- * ValidNBQDatabases: Indicates the databases expected by FQ config overrides.
- */
-export declare type ValidNBQDatabases = Databases | "songs" | "charts";
 export declare type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 /**
  * Supported games by Kamaitachi.
@@ -179,7 +175,7 @@ interface MRGFolderTarget {
     field: MRGFolderTargetFieldNames;
     target: number;
 }
-interface MRGFolderInformation {
+export interface MRGFolderInformation {
     folderID: string;
     difficulty: Difficulties[Game][] | null;
     datapoints: MRGFolderTarget[];

@@ -159,7 +159,7 @@ export interface RivalGroupDocument extends MongoDBDocument {
     };
     rivalGroupID: string;
 }
-declare type MRGChallengeModes = "goal" | "lamp" | "score";
+export declare type MRGChallengeModes = "goal" | "lamp" | "score";
 export interface MutualRivalGroupChallenge extends MongoDBDocument {
     challengeID: string;
     derivedScoreID: string | null;
@@ -170,8 +170,8 @@ export interface MutualRivalGroupChallenge extends MongoDBDocument {
     mrgID: string;
     postedAt: integer;
 }
-declare type MRGFolderTargetFieldNames = "scoreData.percent" | "scoreData.gradeIndex" | "scoreData.lampIndex" | "calculatedData.gameSpecific.BPI";
-interface MRGFolderTarget {
+export declare type MRGFolderTargetFieldNames = "scoreData.percent" | "scoreData.gradeIndex" | "scoreData.lampIndex" | "calculatedData.gameSpecific.BPI";
+export interface MRGFolderTarget {
     field: MRGFolderTargetFieldNames;
     target: number;
 }

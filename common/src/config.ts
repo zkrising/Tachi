@@ -712,6 +712,18 @@ const defaultDifficulty: Record<Game, string> = {
     usc: "EXH",
 };
 
+function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]) {
+    if (!pt) {
+        return gameHuman[game];
+    }
+
+    if (validPlaytypes[game].length === 1) {
+        return gameHuman[game];
+    }
+
+    return `${gameHuman[game]} (${pt})`;
+}
+
 // todo, maybe
 // const difficultyColours = {
 //     iidx: {
@@ -2722,4 +2734,5 @@ export default {
     defaultTable,
     folderTables,
     supportsESD,
+    humaniseGame,
 };

@@ -333,7 +333,7 @@ const gameColours = {
     popn: "#F39CA4",
     bms: "#B5DCCD",
     chunithm: "#AE8094",
-    usc: "#D6B7B1",
+    usc: "#D6B7B1", // TODO
 };
 const gameRelevantScoreBucket = {
     iidx: "lamp",
@@ -690,6 +690,15 @@ const defaultDifficulty = {
     gitadora: "MASTER",
     usc: "EXH",
 };
+function humaniseGame(game, pt) {
+    if (!pt) {
+        return gameHuman[game];
+    }
+    if (validPlaytypes[game].length === 1) {
+        return gameHuman[game];
+    }
+    return `${gameHuman[game]} (${pt})`;
+}
 // todo, maybe
 // const difficultyColours = {
 //     iidx: {
@@ -1902,12 +1911,12 @@ const ratingParameters = {
     museca: {
         failHarshnessMultiplier: 1,
         pivotPercent: 0.8,
-        clearExpMultiplier: 1,
+        clearExpMultiplier: 1, // no real reason
     },
     popn: {
         failHarshnessMultiplier: 1,
         pivotPercent: 0.8,
-        clearExpMultiplier: 0.4,
+        clearExpMultiplier: 0.4, // no real reason
     },
     maimai: {
         failHarshnessMultiplier: 1,
@@ -1922,12 +1931,12 @@ const ratingParameters = {
     sdvx: {
         failHarshnessMultiplier: 1,
         pivotPercent: 0.92,
-        clearExpMultiplier: 1.45,
+        clearExpMultiplier: 1.45, // testing
     },
     usc: {
         failHarshnessMultiplier: 1,
         pivotPercent: 0.92,
-        clearExpMultiplier: 1.45,
+        clearExpMultiplier: 1.45, // testing
     },
     ddr: {
         failHarshnessMultiplier: 0.9,
@@ -2614,5 +2623,6 @@ exports.default = {
     defaultTable,
     folderTables,
     supportsESD,
+    humaniseGame,
 };
 //# sourceMappingURL=config.js.map

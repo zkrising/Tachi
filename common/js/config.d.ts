@@ -1,4 +1,5 @@
-import { Game, ChartDocument } from "./types";
+import { Game, Playtypes, ChartDocument } from "./types";
+declare function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]): string;
 interface ColourStuff {
     [index: string]: {
         outline: Record<string, string>;
@@ -1135,5 +1136,6 @@ declare const _default: {
     defaultTable: Record<Game, string>;
     folderTables: Record<Game, string[]>;
     supportsESD: Record<Game, boolean>;
+    humaniseGame: typeof humaniseGame;
 };
 export default _default;

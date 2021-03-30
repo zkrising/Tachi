@@ -322,6 +322,10 @@ export interface FunFactDocument extends MongoDBDocument {
  */
 export interface PublicUserDocument extends MongoDBDocument {
     username: string;
+    usernameLowercase: string;
+    /**
+     * @deprecated Use username
+     */
     displayname: string;
     id: integer;
     settings: {
@@ -333,12 +337,12 @@ export interface PublicUserDocument extends MongoDBDocument {
     };
     friends: integer[];
     socialmedia: {
-        discord: string;
-        twitter: string;
-        github: string;
-        steam: string;
-        youtube: string;
-        twitch: string;
+        discord?: string;
+        twitter?: string;
+        github?: string;
+        steam?: string;
+        youtube?: string;
+        twitch?: string;
     };
     lastSeen: integer;
     about: string;

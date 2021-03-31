@@ -427,6 +427,14 @@ export interface PublicUserDocument extends MongoDBDocument {
     clan: string | null;
 }
 
+export interface UserGameStats<T extends Game> extends MongoDBDocument {
+    game: T;
+    playtype: Playtypes[T];
+    rating: number;
+    lampRating: number;
+    customRatings: Record<string, number>;
+}
+
 // the bottom set of types are horrifically confusing.
 // to ease this a bit, an example of what they're representing is below.
 

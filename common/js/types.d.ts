@@ -371,6 +371,12 @@ export interface PublicAPIKeyDocument extends MongoDBDocument {
     apiKey: string;
     permissions: PublicAPIPermissions;
 }
+export interface BetaKeyDocument extends MongoDBDocument {
+    createdBy: integer;
+    betakey: string;
+    createdOn: integer;
+    consumed: boolean;
+}
 export interface PublicAPIRequestDocument extends MongoDBDocument {
     key: PublicAPIKeyDocument;
     location: string;

@@ -450,13 +450,13 @@ export interface UserGameStats<T extends Game> extends MongoDBDocument {
         }
     */
 
-type UserClasses = Partial<Record<Game, PlaytypeClasses>>;
+// type UserClasses = Partial<Record<Game, PlaytypeClasses>>;
 
-type PlaytypeClasses = Partial<Record<Playtypes[Game], ClassInfo>>;
+// type PlaytypeClasses = Partial<Record<Playtypes[Game], ClassInfo>>;
 
 // this one is just flat out wrong btw, there are very strict requirements
 // on what strings can go in here.
-type ClassInfo = Partial<Record<string, string>>;
+// type ClassInfo = Partial<Record<string, string>>;
 
 /**
  * PrivateUserDocument is the document indicating that we've returned everything about the user
@@ -477,6 +477,13 @@ export interface PublicAPIKeyDocument extends MongoDBDocument {
     expireTime: integer;
     apiKey: string;
     permissions: PublicAPIPermissions;
+}
+
+export interface BetaKeyDocument extends MongoDBDocument {
+    createdBy: integer;
+    betakey: string;
+    createdOn: integer;
+    consumed: boolean;
 }
 
 export interface PublicAPIRequestDocument extends MongoDBDocument {

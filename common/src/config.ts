@@ -712,7 +712,7 @@ const defaultDifficulty: Record<Game, string> = {
     usc: "EXH",
 };
 
-function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]) {
+function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]): string {
     if (!pt) {
         return gameHuman[game];
     }

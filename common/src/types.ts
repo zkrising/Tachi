@@ -401,7 +401,6 @@ export interface PublicUserDocument extends MongoDBDocument {
     settings: {
         nsfwsplashes: boolean;
         invisible: boolean;
-        noTracking: boolean;
         useSimpleLadderColours: boolean;
         trustEamIIDXTimestamps: boolean;
     };

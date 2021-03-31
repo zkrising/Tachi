@@ -360,7 +360,6 @@ export interface UserGameStats<T extends Game> extends MongoDBDocument {
 export interface PrivateUserDocument extends PublicUserDocument {
     password: string;
     email: string;
-    integrations: Record<string, Record<string, unknown>>;
 }
 export interface PublicAPIPermissions {
     selfkey: boolean;

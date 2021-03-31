@@ -465,7 +465,6 @@ type ClassInfo = Partial<Record<string, string>>;
 export interface PrivateUserDocument extends PublicUserDocument {
     password: string;
     email: string;
-    integrations: Record<string, Record<string, unknown>>;
 }
 
 export interface PublicAPIPermissions {

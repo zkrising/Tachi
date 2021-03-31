@@ -417,10 +417,10 @@ export interface PublicUserDocument extends MongoDBDocument {
     about: string;
     custompfp: boolean;
     custombanner: boolean;
-    ratings: Ratings;
-    lampRatings: Ratings;
-    customRatings: CustomRatings;
-    classes?: UserClasses;
+    // ratings: Ratings;
+    // lampRatings: Ratings;
+    // customRatings: CustomRatings;
+    // classes?: UserClasses;
     permissions: {
         admin?: boolean;
     };

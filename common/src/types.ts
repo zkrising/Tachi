@@ -428,6 +428,7 @@ export interface PublicUserDocument extends MongoDBDocument {
 }
 
 export interface UserGameStats<T extends Game> extends MongoDBDocument {
+    userID: integer;
     game: T;
     playtype: Playtypes[T];
     rating: number;

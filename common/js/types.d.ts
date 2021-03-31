@@ -345,11 +345,13 @@ export interface PublicUserDocument extends MongoDBDocument {
     clan: string | null;
 }
 export interface UserGameStats<T extends Game> extends MongoDBDocument {
+    userID: integer;
     game: T;
     playtype: Playtypes[T];
     rating: number;
     lampRating: number;
     customRatings: Record<string, number>;
+    classes: Record<string, string>;
 }
 /**
  * PrivateUserDocument is the document indicating that we've returned everything about the user

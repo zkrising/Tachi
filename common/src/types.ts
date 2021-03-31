@@ -433,6 +433,7 @@ export interface UserGameStats<T extends Game> extends MongoDBDocument {
     rating: number;
     lampRating: number;
     customRatings: Record<string, number>;
+    classes: Record<string, string>;
 }
 
 // the bottom set of types are horrifically confusing.

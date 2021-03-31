@@ -397,10 +397,6 @@ export interface FunFactDocument extends MongoDBDocument {
 export interface PublicUserDocument extends MongoDBDocument {
     username: string;
     usernameLowercase: string;
-    /**
-     * @deprecated Use username
-     */
-    displayname: string;
     id: integer;
     settings: {
         nsfwsplashes: boolean;

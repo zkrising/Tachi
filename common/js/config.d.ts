@@ -6,8 +6,6 @@ interface ColourStuff {
         fill?: Record<string, string>;
     };
 }
-declare function GetLevel(xp: number): number;
-declare function GetXPForLevel(level: number): number;
 declare function GetGrade(game: Game, percent: number): string | null;
 declare function ChangeAlpha(string: string, alpha: string): string;
 declare function DirectScoreGradeDelta(game: Game, score: number, percent: number, chart: ChartDocument, delta: number): SGDReturn | null;
@@ -41,73 +39,12 @@ declare const _default: {
         gitadora: string[];
         usc: string[];
     };
-    folders: {
-        iidx: {
-            type: string;
-            levels: string[];
-            versions: string[];
-        };
-        museca: {
-            type: string;
-            levels: string[];
-            versions: string[];
-        };
-        maimai: {
-            type: string;
-            levels: string[];
-            versions: string[];
-        };
-        jubeat: {
-            type: string;
-            levels: string[];
-            versions: string[];
-        };
-        popn: {
-            type: string;
-            levels: string[];
-            versions: string[];
-        };
-        ddr: {
-            type: string;
-            levels: string[];
-            versions: string[];
-        };
-        sdvx: {
-            type: string;
-            levels: string[];
-            versions: string[];
-        };
-        bms: {
-            type: string;
-            reasonableLevelMax: number;
-            levels: never[];
-            versions: never[];
-        };
-        chunithm: {
-            type: string;
-            levels: string[];
-            versions: string[];
-        };
-        gitadora: {
-            type: string;
-            levels: never[];
-            versions: string[];
-            reasonableLevelMax: number;
-        };
-        usc: {
-            type: string;
-            levels: never[];
-            versions: string[];
-        };
-    };
     internalServiceGames: Record<string, Game[]>;
     versionHuman: Record<Game, Record<string, string>>;
     grades: Record<Game, string[]>;
     lamps: Record<Game, string[]>;
     lampColours: ColourStuff;
     gradeColours: ColourStuff;
-    GetLevel: typeof GetLevel;
-    GetXPForLevel: typeof GetXPForLevel;
     serviceSupportedGames: Record<string, Game[]>;
     defaultPlaytype: Record<Game, "SP" | "DP" | "9B" | "Single" | "7K" | "14K" | "5K" | "Gita" | "Dora">;
     gameChartIndicators: {
@@ -350,45 +287,6 @@ declare const _default: {
     gameColours: Record<Game, string>;
     validTierlistTiers: Record<Game, string[]>;
     clearLamp: Record<Game, string>;
-    validModifiers: {
-        iidx: {
-            note: string[];
-            gauge: string[];
-        };
-        bms: {
-            note: string[];
-            gauge: string[];
-        };
-        ddr: {
-            speed: string[];
-        };
-    };
-    adviceChartTags: {
-        iidx: string[];
-        bms: string[];
-        ddr: string[];
-        museca: string[];
-        sdvx: string[];
-        popn: string[];
-        jubeat: string[];
-        maimai: string[];
-        chunithm: string[];
-        gitadora: string[];
-        usc: string[];
-    };
-    adviceNoteTags: {
-        iidx: string[];
-        bms: string[];
-        ddr: string[];
-        museca: string[];
-        sdvx: string[];
-        usc: string[];
-        popn: never[];
-        jubeat: never[];
-        maimai: never[];
-        chunithm: never[];
-        gitadora: never[];
-    };
     gameRelevantScoreBucket: Record<Game, "grade" | "lamp">;
     judgementWindows: {
         iidx: {
@@ -440,20 +338,6 @@ declare const _default: {
     validDifficulties: Record<Game, string[]>;
     validHitData: Record<Game, string[]>;
     validHitMeta: Record<Game, string[]>;
-    validAltScores: Record<Game, string[]>;
-    levels: {
-        iidx: string[];
-        museca: string[];
-        popn: string[];
-        ddr: string[];
-        sdvx: string[];
-        jubeat: string[];
-        maimai: string[];
-        bms: never[];
-        chunithm: string[];
-        gitadora: never[];
-        usc: string[];
-    };
     boundaryHCF: Record<Game, number>;
     gameSpecificCalc: Partial<Record<Game, Partial<Record<"SP" | "DP" | "9B" | "Single" | "7K" | "14K" | "5K" | "Gita" | "Dora", string[]>>>>;
     expChartScale: Record<Game, number>;

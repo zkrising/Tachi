@@ -339,18 +339,18 @@ export interface PublicUserDocument extends MongoDBDocument {
     about: string;
     custompfp: boolean;
     custombanner: boolean;
-    ratings: Ratings;
-    lampRatings: Ratings;
-    customRatings: CustomRatings;
-    classes?: UserClasses;
     permissions: {
         admin?: boolean;
     };
     clan: string | null;
 }
-declare type UserClasses = Partial<Record<Game, PlaytypeClasses>>;
-declare type PlaytypeClasses = Partial<Record<Playtypes[Game], ClassInfo>>;
-declare type ClassInfo = Partial<Record<string, string>>;
+export interface UserGameStats<T extends Game> extends MongoDBDocument {
+    game: T;
+    playtype: Playtypes[T];
+    rating: number;
+    lampRating: number;
+    customRatings: Record<string, number>;
+}
 /**
  * PrivateUserDocument is the document indicating that we've returned everything about the user
  * from the DB - including their private information.

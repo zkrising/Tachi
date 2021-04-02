@@ -1,0 +1,7 @@
+node_modules
+js
+.vscode
+logs
+src/secrets.ts
+.nyc_output
+coverage

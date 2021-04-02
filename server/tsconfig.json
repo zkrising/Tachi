@@ -2,15 +2,24 @@
     "compilerOptions": {
         "target": "ES6",
         "module": "CommonJS",
-        "lib": ["ES2019"],
+        "lib": [
+            "ES2019"
+        ],
         "declaration": true,
-        "outDir": "./js",
         "strict": true,
         "allowJs": false,
         "esModuleInterop": true,
-        "typeRoots": [ "@types" ],
         "sourceMap": true,
+        "outDir": "./js",
+        "typeRoots": [ "@types" ],
+
     },
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules","test-utils","src/**/*.test.ts"]
+    "include": [
+        "src/**/*.ts",
+    ],
+    "exclude": [
+        "node_modules",
+        "src/test-utils",
+        // "src/**/*.test.ts"
+    ]
 }

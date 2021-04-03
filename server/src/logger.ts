@@ -1,6 +1,11 @@
 import winston, { format, transports } from "winston";
+import fs from "fs";
+import path from "path";
 
 const level = process.env.LOG_LEVEL ?? "info";
+
+const IN_PROD = process.env.NODE_ENV === "production";
+const IN_TESTING = process.env.NODE_ENV === "test";
 
 const ktblackPrintf = format.printf(
     ({ level, message, context, timestamp, ...meta }) =>
@@ -17,6 +22,36 @@ const defaultFormatRoute = format.combine(
     ktblackPrintf
 );
 
+let tports = [];
+
+if (IN_TESTING) {
+    // empty the logs!
+    fs.rmSync(path.join(__dirname, "../logs/ktblack-tests-error.log"));
+    fs.rmSync(path.join(__dirname, "../logs/ktblack-tests.log"));
+
+    tports = [
+        new transports.File({
+            filename: "logs/ktblack-tests-error.log",
+            level: "error",
+        }),
+        new transports.File({ filename: "logs/ktblack-tests.log" }),
+        new transports.Console({
+            format: format.combine(format.colorize({ level: true }), defaultFormatRoute),
+        }),
+    ];
+} else {
+    tports = [
+        new transports.File({
+            filename: "logs/ktblack-error.log",
+            level: "error",
+        }),
+        new transports.File({ filename: "logs/ktblack.log" }),
+        new transports.Console({
+            format: format.combine(format.colorize({ level: true }), defaultFormatRoute),
+        }),
+    ];
+}
+
 const logger = winston.createLogger({
     levels: {
         crit: 0, // entire process termination is necessary
@@ -28,16 +63,7 @@ const logger = winston.createLogger({
     },
     level,
     format: defaultFormatRoute,
-    transports: [
-        new transports.File({
-            filename: "logs/ktblack-error.log",
-            level: "error",
-        }),
-        new transports.File({ filename: "logs/ktblack.log" }),
-        new transports.Console({
-            format: format.combine(format.colorize({ level: true }), defaultFormatRoute),
-        }),
-    ],
+    transports: tports,
 });
 
 export { logger };

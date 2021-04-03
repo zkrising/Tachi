@@ -1,1 +1,3 @@
 files: "src/**/*.test.ts"
+test-env: NODE_ENV=test
+jobs: 1 # disable parallel to avoid db clashes

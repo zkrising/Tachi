@@ -32,6 +32,7 @@
             "endOfLine": "auto"
         }],
         "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
         "no-unused-labels": "error",
         "prefer-const": "off",
         "no-console": "error",

@@ -29,6 +29,7 @@ process.on("unhandledRejection", (reason, promise) => {
 app.use(express.json({ limit: "1mb" }));
 
 import internalApiRouter from "./internal-api/internal-api";
+import { integer } from "./types";
 
 app.use("/internal-api", internalApiRouter);
 

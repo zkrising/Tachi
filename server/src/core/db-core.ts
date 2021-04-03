@@ -1,6 +1,7 @@
 import db from "../db";
 import createLogCtx from "../logger";
 const logger = createLogCtx("db-core.ts");
+import { integer } from "../types";
 
 export async function GetNextCounterValue(counterName: string): Promise<integer> {
     const sequenceDoc = await db.get("counters").findOneAndUpdate(

@@ -1,5 +1,1 @@
-export {};
-
-declare global {
-    export type integer = number;
-}
+export type integer = number;

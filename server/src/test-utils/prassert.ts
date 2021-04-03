@@ -2,7 +2,7 @@ import Prudence, { PrudenceSchema } from "prudence";
 import t from "tap";
 
 export default function prAssert(
-    obj: Record<string, unknown>,
+    obj: Record<string, unknown> | unknown,
     schema: PrudenceSchema,
     message = "Unnamed Prudence Assertion"
 ) {

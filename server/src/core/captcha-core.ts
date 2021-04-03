@@ -1,5 +1,4 @@
-import { Request } from "express";
-import fetch from "node-fetch";
+import nodeFetch from "node-fetch";
 import createLogCtx from "../logger";
 import { CAPTCHA_SECRET_KEY } from "../secrets";
 
@@ -7,9 +6,13 @@ const logger = createLogCtx("captcha-core.ts");
 
 // shrug
 
-export async function ValidateCaptcha(req: Request) {
+export async function ValidateCaptcha(
+    recaptcha: string,
+    remoteAddr: string | undefined,
+    fetch = nodeFetch
+) {
     let r = await fetch(
-        `https://www.google.com/recaptcha/api/siteverify?secret=${CAPTCHA_SECRET_KEY}&response=${req.body.recaptcha}&remoteip=${req.socket.remoteAddress}`
+        `https://www.google.com/recaptcha/api/siteverify?secret=${CAPTCHA_SECRET_KEY}&response=${recaptcha}&remoteip=${remoteAddr}`
     );
 
     if (r.status !== 200) {

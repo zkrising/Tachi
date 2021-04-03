@@ -43,7 +43,7 @@ router.post(
 
         if (process.env.NODE_ENV === "production") {
             logger.verbose("Validating captcha...");
-            let validCaptcha = await ValidateCaptcha(req);
+            let validCaptcha = await ValidateCaptcha(req.body.recaptcha, req.socket.remoteAddress);
 
             if (!validCaptcha) {
                 logger.verbose("Captcha failed.");

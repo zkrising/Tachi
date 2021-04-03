@@ -1,4 +1,4 @@
-import nodeFetch from "node-fetch";
+import nodeFetch from "../fetch";
 import createLogCtx from "../logger";
 import { CAPTCHA_SECRET_KEY } from "../secrets";
 

@@ -1,13 +1,13 @@
 import { IObjectID } from "monk";
 
-/**
- * All MongoDB Documents require this field, or atleast they all have them in ktchi's DB.
- */
-
 export interface CounterDocument {
     counterName: string;
     value: integer;
 }
+
+/**
+ * All MongoDB Documents require this field, or atleast they all have them in ktchi's DB.
+ */
 export interface MongoDBDocument {
     _id?: IObjectID;
 }

@@ -12,6 +12,9 @@ export async function GetNextCounterValue(counterName: string): Promise<integer>
             $inc: {
                 value: 1,
             },
+        },
+        {
+            returnOriginal: true,
         }
     );
 

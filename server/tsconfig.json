@@ -1,3 +1,8 @@
+// NOT A REAL TSCONFIG FILE
+// THIS IS USED FOR VSCODE SO IT INTEGRATES NICELY
+// IF YOU USE THIS TO BUILD, IT WILL ALSO BUILD THE TEST FILES!!
+// SO, DONT DO THAT, USE TSCONFIG.BUILD.JSON FOR THE BUILD.
+
 {
     "compilerOptions": {
         "target": "ES6",
@@ -19,7 +24,7 @@
     ],
     "exclude": [
         "node_modules",
-        "src/test-utils",
-        "src/**/*.test.ts"
+        // "src/test-utils",
+        // "src/**/*.test.ts"
     ]
 }

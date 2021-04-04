@@ -25,6 +25,23 @@ t.test("#PrudenceMiddleware", (t) => {
         t.end();
     });
 
+    t.test("Should return 'nothing' instead of undefined for missing fields", async (t) => {
+        let { res } = await expMiddlewareMock(mw, {
+            query: {},
+        });
+
+        t.is(res.statusCode, 400, "Status code should be 400");
+
+        const json = res._getJSONData();
+        t.is(
+            json.description,
+            "example error message (Received nothing)",
+            "Should return error message with recieved nothing"
+        );
+
+        t.end();
+    });
+
     t.test("Should allow valid prudence data.", async (t) => {
         let { res } = await expMiddlewareMock(mw, {
             query: {

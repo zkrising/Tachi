@@ -1,9 +1,9 @@
-// Joy Division - Unknown Pleasures
+// The Downward Spiral
 const VERSION_INFO = {
     major: 2,
     minor: 0,
     patch: 0,
-    name: "Disorder",
+    name: "Mr. Self Destruct",
 };
 
 function FormatVersion() {

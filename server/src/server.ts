@@ -1,12 +1,40 @@
 import express from "express";
 import "express-async-errors";
 import createLogCtx from "./logger";
+import expressSession from "express-session";
+import connectRedis from "connect-redis";
+import redis from "redis";
+import { SESSION_SECRET } from "./secrets";
 
 const logger = createLogCtx("server.ts");
 
-// import internalApi from "./internal-api/internal-api";
+const RedisStore = connectRedis(expressSession);
+logger.info("Created Redis Store");
+
+const RedisClient = redis.createClient();
+logger.info("Created Redis Client");
+
+const userSessionMiddleware = expressSession({
+    // append node_env onto the end of the session name
+    // so we can separate tokens under the same URL.
+    // say, for staging.kamaitachi.xyz
+    name: `ktblack_session_${process.env.NODE_ENV}`,
+    secret: SESSION_SECRET,
+    store: new RedisStore({
+        host: "localhost",
+        port: 6379,
+        client: RedisClient,
+    }),
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+        secure: process.env.NODE_ENV === "production",
+    },
+});
 
 const app = express();
+
+app.use(userSessionMiddleware);
 
 // Most of these options are leveraged from KTAPI
 
@@ -37,7 +65,7 @@ app.use("/internal-api", internalApiRouter);
  * If any user gets to this point, we send them index.html and let react router do the routing (and 404ing)
  * @name *
  */
-app.get("*", async (req, res) => res.status(200).send("todo"));
+app.get("*", (req, res) => res.status(200).send("todo"));
 
 // completely stolen from ktapi error handler
 interface ExpressJSONErr extends SyntaxError {
@@ -53,7 +81,7 @@ const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, _next) => 
             return res.status(400).send({ success: false, description: err.message });
         }
 
-        // else, wtf??, just fall through i guess
+        // else, this isn't a JSON parsing error
     }
 
     logger.error(err, req.route);

@@ -1,17 +1,44 @@
 import crypto from "crypto";
 import bcrypt from "bcrypt";
-import { BetaKeyDocument, PrivateUserDocument, PublicAPIKeyDocument } from "kamaitachi-common";
+import {
+    BetaKeyDocument,
+    PrivateUserDocument,
+    PublicAPIKeyDocument,
+    PublicUserDocument,
+} from "kamaitachi-common";
 import db from "../db";
 import { GetNextCounterValue } from "./db-core";
 import { InsertResult } from "monk";
 import createLogCtx from "../logger";
+import { FormatUserDoc } from "./user-core";
 
 const logger = createLogCtx("auth-core.ts");
 
 const BCRYPT_SALT_ROUNDS = 12;
 
+export const ValidatePassword = (self: unknown) =>
+    (typeof self === "string" && self.length >= 8) || "Passwords must be 8 characters or more.";
+
 export function CreateAPIKey(): string {
     return crypto.randomBytes(20).toString("hex");
+}
+
+/**
+ * Despite these functions doing ultimately the same thing, they're separate incase they ever need to,
+ * you know, not do that.
+ * @returns A string
+ */
+export function CreateBetaKey(): string {
+    return crypto.randomBytes(20).toString("hex");
+}
+
+/**
+ * Compares a plaintext string of a users password to a hash.
+ * @param plaintext The provided user input.
+ * @param password The hash to compare against.
+ */
+export function PasswordCompare(plaintext: string, password: string) {
+    return bcrypt.compare(plaintext, password);
 }
 
 export function AddNewUserAPIKey(
@@ -44,6 +71,35 @@ export function ReinstateBetakey(bkDoc: BetaKeyDocument) {
             },
         }
     );
+}
+
+export async function AddNewBetakey(user: PublicUserDocument) {
+    // beta keys are shorter strings, and it's possible for them to be collided
+    let betakey = CreateBetaKey();
+
+    let result = await db.get<BetaKeyDocument>("betakeys").insert({
+        betakey,
+        consumed: false,
+        createdBy: user.id,
+        createdOn: Date.now(),
+    });
+
+    logger.info(`User ${FormatUserDoc(user)} created a beta key.`);
+
+    if (!result) {
+        logger.error(
+            `Fatal error in creating ${FormatUserDoc(
+                user
+            )}'s beta key. Database refused key ${betakey}.`
+        );
+        throw new Error(
+            `Fatal error in creating ${FormatUserDoc(
+                user
+            )}'s beta key. Database refused key ${betakey}.`
+        );
+    }
+
+    return result;
 }
 
 export async function AddNewUser(

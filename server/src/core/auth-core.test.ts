@@ -1,6 +1,12 @@
-import { AddNewUser, AddNewUserAPIKey, CreateAPIKey, ReinstateBetakey } from "./auth-core";
+import {
+    AddNewUserAPIKey,
+    CreateAPIKey,
+    CreateBetaKey,
+    AddNewBetakey,
+    ReinstateBetakey,
+} from "./auth-core";
 import t from "tap";
-import db, { CloseConnection, ReOpenConnection } from "../db";
+import db, { CloseConnection } from "../db";
 import { BetaKeyDocument, PrivateUserDocument } from "kamaitachi-common";
 import prAssert from "../test-utils/prassert";
 import Prudence from "prudence";
@@ -75,6 +81,39 @@ t.test("#ReinstateBetaKey", (t) => {
         t.is(betakey2!.consumed, false, "Should no longer be consumed");
 
         t.end();
+    });
+
+    t.end();
+});
+
+t.test("#CreateBetaKey", (t) => {
+    t.match(CreateBetaKey(), /^[0-9a-f]{40}$/, "Betakey should be a 40 character hex string.");
+
+    t.end();
+});
+
+t.test("#AddNewBetakey", (t) => {
+    t.beforeEach(ResetDBState);
+
+    t.test("Should create a new beta key for a given user", async (t) => {
+        let userDoc = await db.get("users").findOne({ id: 1 });
+
+        let result = await AddNewBetakey(userDoc);
+
+        t.is(result.createdBy, userDoc.id, "Betakey should be created by the requesting user.");
+        t.is(result.consumed, false, "Betakey should not be consumed.");
+
+        // was created +/- 6 seconds from now. This is perhaps too lenient, but we're only really testing its just around now ish.
+        t.assert(
+            Math.abs(result.createdOn - Date.now()) <= 6000,
+            "Betakey was created roughly now."
+        );
+
+        t.match(
+            result.betakey,
+            /^[0-9a-f]{40}$/,
+            "Betakey should have contents of a 40 character hex string."
+        );
     });
 
     t.end();

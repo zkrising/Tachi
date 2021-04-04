@@ -33,6 +33,8 @@
         }],
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
+        "require-await": "error",
+        "no-await-in-loop": "warn",
         "no-unused-labels": "error",
         "prefer-const": "off",
         "no-console": "error",

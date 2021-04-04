@@ -4,18 +4,23 @@ import createLogCtx from "./logger";
 const logger = createLogCtx("db.ts");
 
 const url =
-    process.env.NODE_ENV === "test" ? "localhost:27017/testingdb" : "localhost:27017/kamaitachidb";
+    process.env.NODE_ENV === "test" ? "localhost:27017/testingdb" : "localhost:27017/ktblackdb";
 
-logger.info(`Connecting to database ${url}...`);
+let dbtime: [number, number] = [0, 0];
+if (process.env.NODE_ENV !== "test") {
+    logger.info(`Connecting to database ${url}...`);
+    dbtime = process.hrtime();
+}
 
-let dbtime = process.hrtime();
 let db = monk(url);
 
-db.then(() => {
-    let time = process.hrtime(dbtime);
-    let elapsed = time[0] + time[1] / 1000000;
-    logger.info(`Database connection successful: took ${elapsed}ms`);
-});
+if (process.env.NODE_ENV !== "test") {
+    db.then(() => {
+        let time = process.hrtime(dbtime);
+        let elapsed = time[0] + time[1] / 1000000;
+        logger.info(`Database connection successful: took ${elapsed}ms`);
+    });
+}
 
 export async function ReOpenConnection() {
     db = monk(url);

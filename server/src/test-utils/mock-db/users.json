@@ -1,0 +1,25 @@
+[
+    {
+        "username": "zkldi",
+        "usernameLowercase": "zkldi",
+        "password": "$2y$12$u2FK6QJAv/WDF/ExGUWI9OoIks8Q0ExT1qjPMBu6zCZ5z72swQ01K",
+        "email": "thepasswordis@password.com",
+        "id": 1,
+        "settings": {
+            "nsfwsplashes": true,
+            "invisible": false,
+            "useSimpleLadderColours": true,
+            "trustEamIIDXTimestamps": false
+        },
+        "friends": [],
+        "socialmedia": {},
+        "lastSeen": null,
+        "about": "test_user_not_real",
+        "custompfp": true,
+        "custombanner": true,
+        "permissions": {
+            "admin": true
+        },
+        "clan": null
+    }
+]

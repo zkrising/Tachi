@@ -578,9 +578,9 @@ export interface UserMilestoneDocument extends MongoDBDocument {
 export interface ScoreDocument extends MongoDBDocument {
     service: string;
     game: Game;
+    playtype: Playtypes[Game];
     userID: integer;
     scoreData: {
-        playtype: Playtypes[Game];
         difficulty: Difficulties[Game];
         score: number;
         lamp: string;
@@ -590,7 +590,7 @@ export interface ScoreDocument extends MongoDBDocument {
         grade: string;
         lampIndex: integer;
         gradeIndex: integer;
-        esd?: number;
+        esd: number | null;
     };
     scoreMeta: Record<string, unknown>;
     calculatedData: {
@@ -601,14 +601,9 @@ export interface ScoreDocument extends MongoDBDocument {
         outOf: integer | null;
     };
     timeAchieved: integer | null;
-    importType: string;
-    validity: "valid" | "partial";
-    manualImport: boolean; // probably isn't necessary
     songID: integer;
-    isNewImport: boolean; // also might not be necessary anymore?
     chartID: string;
     highlight: boolean;
-    xp: integer;
     comment: string | null;
     timeAdded: integer;
     isScorePB: boolean;

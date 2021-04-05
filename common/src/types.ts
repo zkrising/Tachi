@@ -581,7 +581,6 @@ export interface ScoreDocument extends MongoDBDocument {
     playtype: Playtypes[Game];
     userID: integer;
     scoreData: {
-        difficulty: Difficulties[Game];
         score: number;
         lamp: string;
         hitData: Record<string, integer>;

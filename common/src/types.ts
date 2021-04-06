@@ -583,13 +583,13 @@ export interface ScoreDocument extends MongoDBDocument {
     scoreData: {
         score: number;
         lamp: string;
-        hitData: Record<string, integer>;
-        hitMeta: Record<string, unknown>;
         percent: number;
         grade: string;
         lampIndex: integer;
         gradeIndex: integer;
         esd: number | null;
+        hitData: Record<string, integer>;
+        hitMeta: Record<string, unknown>;
     };
     scoreMeta: Record<string, unknown>;
     calculatedData: {

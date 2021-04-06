@@ -460,19 +460,18 @@ export interface UserMilestoneDocument extends MongoDBDocument {
 export interface ScoreDocument extends MongoDBDocument {
     service: string;
     game: Game;
+    playtype: Playtypes[Game];
     userID: integer;
     scoreData: {
-        playtype: Playtypes[Game];
-        difficulty: Difficulties[Game];
         score: number;
         lamp: string;
-        hitData: Record<string, integer>;
-        hitMeta: Record<string, unknown>;
         percent: number;
         grade: string;
         lampIndex: integer;
         gradeIndex: integer;
-        esd?: number;
+        esd: number | null;
+        hitData: Record<string, integer>;
+        hitMeta: Record<string, unknown>;
     };
     scoreMeta: Record<string, unknown>;
     calculatedData: {
@@ -483,14 +482,9 @@ export interface ScoreDocument extends MongoDBDocument {
         outOf: integer | null;
     };
     timeAchieved: integer | null;
-    importType: string;
-    validity: "valid" | "partial";
-    manualImport: boolean;
     songID: integer;
-    isNewImport: boolean;
     chartID: string;
     highlight: boolean;
-    xp: integer;
     comment: string | null;
     timeAdded: integer;
     isScorePB: boolean;

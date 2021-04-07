@@ -114,16 +114,21 @@ export interface Playtypes {
 }
 
 export interface Difficulties {
-    iidx: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
-    museca: "Green" | "Yellow" | "Red";
-    maimai: "Easy" | "Basic" | "Advanced" | "Expert" | "Master" | "Re:Master";
-    jubeat: "BSC" | "ADV" | "EXT";
-    popn: "Easy" | "Normal" | "Hyper" | "EX";
-    sdvx: "NOV" | "ADV" | "EXH" | "MXM" | "INF" | "GRV" | "HVN" | "VVD";
-    ddr: "BEGINNER" | "BASIC" | "DIFFICULT" | "EXPERT" | "CHALLENGE";
-    bms: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
-    chunithm: "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
-    gitadora:
+    "iidx:SP": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
+    "iidx:DP": "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
+    "popn:9B": "Easy" | "Normal" | "Hyper" | "EX";
+    "sdvx:Single": "NOV" | "ADV" | "EXH" | "MXM" | "INF" | "GRV" | "HVN" | "VVD";
+    "usc:Single": "NOV" | "ADV" | "EXH" | "INF";
+    "ddr:SP": "BEGINNER" | "BASIC" | "DIFFICULT" | "EXPERT" | "CHALLENGE";
+    "ddr:DP": "BASIC" | "DIFFICULT" | "EXPERT" | "CHALLENGE";
+    "maimai:Single": "Easy" | "Basic" | "Advanced" | "Expert" | "Master" | "Re:Master";
+    "jubeat:Single": "BSC" | "ADV" | "EXT";
+    "museca:Single": "Green" | "Yellow" | "Red";
+    "bms:7K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
+    "bms:14K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
+    "bms:5K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
+    "chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
+    "gitadora:Gita":
         | "BASIC"
         | "ADVANCED"
         | "EXTREME"
@@ -132,7 +137,7 @@ export interface Difficulties {
         | "BASS ADVANCED"
         | "BASS EXTREME"
         | "BASS MASTER";
-    usc: "NOV" | "ADV" | "EXH" | "INF";
+    "gitadora:Dora": "BASIC" | "ADVANCED" | "EXTREME" | "MASTER";
 }
 
 export interface CustomRatings {
@@ -266,9 +271,14 @@ export interface MRGFolderTarget {
     target: number;
 }
 
-export interface MRGFolderInformation {
+export interface MRGFolderInformation<
+    G extends Game = Game,
+    P extends Playtypes[G] = Playtypes[G],
+    // @ts-expect-error known bug with IDString or TS.
+    I extends IDStrings = IDString<G, P>
+> {
     folderID: string;
-    difficulty: Difficulties[Game][] | null;
+    difficulty: Difficulties[I][] | null;
     datapoints: MRGFolderTarget[];
 }
 
@@ -528,13 +538,18 @@ export interface PublicAPIRequestDocument extends MongoDBDocument {
     ip: string;
 }
 
-export interface ChartDocument extends MongoDBDocument {
+export interface ChartDocument<
+    G extends Game = Game,
+    P extends Playtypes[G] = Playtypes[G],
+    // @ts-expect-error known bug with IDString or TS.
+    I extends IDStrings = IDString<G, P>
+> extends MongoDBDocument {
     chartID: string;
     id: integer;
     level: string;
     levelNum: number;
-    difficulty: Difficulties[Game];
-    playtype: string;
+    difficulty: Difficulties[I];
+    playtype: P;
     length: string | number | null;
     bpmMin: number;
     bpmMax: number;
@@ -559,10 +574,15 @@ export interface TierlistDocument extends MongoDBDocument {
     };
 }
 
-export interface TierlistDataDocument extends MongoDBDocument {
-    playtype: Playtypes[Game]; // doesn't need to exist.
+export interface TierlistDataDocument<
+    G extends Game = Game,
+    P extends Playtypes[G] = Playtypes[G],
+    // @ts-expect-error known bug with IDString or TS.
+    I extends IDStrings = IDString<G, P>
+> extends MongoDBDocument {
+    playtype: P; // doesn't need to exist.
     songID: integer;
-    difficulty: Difficulties[Game];
+    difficulty: Difficulties[I];
     tierlistID: string;
     tiers: Record<string, number>; // temp
     chartID: string;
@@ -765,8 +785,8 @@ export interface GameSpecificCalcLookup {
 }
 
 export interface ScoreDocument<
-    G extends Game,
-    P extends Playtypes[G],
+    G extends Game = Game,
+    P extends Playtypes[G] = Playtypes[G],
     // @ts-expect-error Typescript thinks this is illegal.
     // It *ABSOLUTELY* isn't.
     I extends IDStrings = IDString<G, P>
@@ -774,11 +794,7 @@ export interface ScoreDocument<
     service: string;
     game: G;
     playtype: P;
-    // @todo - allow different game+pt combinations to specify different difficulties?
-    // this happens in kamaitachi with gitadora, so I don't see why it shouldn't
-    // be constrained here.
-    // other than the fact that TS can't do it :(
-    difficulty: Difficulties[G];
+    difficulty: Difficulties[I];
     userID: integer;
     scoreData: {
         score: number;

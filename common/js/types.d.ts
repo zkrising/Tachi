@@ -63,17 +63,22 @@ export interface Playtypes {
     gitadora: "Gita" | "Dora";
 }
 export interface Difficulties {
-    iidx: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
-    museca: "Green" | "Yellow" | "Red";
-    maimai: "Easy" | "Basic" | "Advanced" | "Expert" | "Master" | "Re:Master";
-    jubeat: "BSC" | "ADV" | "EXT";
-    popn: "Easy" | "Normal" | "Hyper" | "EX";
-    sdvx: "NOV" | "ADV" | "EXH" | "MXM" | "INF" | "GRV" | "HVN" | "VVD";
-    ddr: "BEGINNER" | "BASIC" | "DIFFICULT" | "EXPERT" | "CHALLENGE";
-    bms: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
-    chunithm: "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
-    gitadora: "BASIC" | "ADVANCED" | "EXTREME" | "MASTER" | "BASS BASIC" | "BASS ADVANCED" | "BASS EXTREME" | "BASS MASTER";
-    usc: "NOV" | "ADV" | "EXH" | "INF";
+    "iidx:SP": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
+    "iidx:DP": "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
+    "popn:9B": "Easy" | "Normal" | "Hyper" | "EX";
+    "sdvx:Single": "NOV" | "ADV" | "EXH" | "MXM" | "INF" | "GRV" | "HVN" | "VVD";
+    "usc:Single": "NOV" | "ADV" | "EXH" | "INF";
+    "ddr:SP": "BEGINNER" | "BASIC" | "DIFFICULT" | "EXPERT" | "CHALLENGE";
+    "ddr:DP": "BASIC" | "DIFFICULT" | "EXPERT" | "CHALLENGE";
+    "maimai:Single": "Easy" | "Basic" | "Advanced" | "Expert" | "Master" | "Re:Master";
+    "jubeat:Single": "BSC" | "ADV" | "EXT";
+    "museca:Single": "Green" | "Yellow" | "Red";
+    "bms:7K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
+    "bms:14K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
+    "bms:5K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
+    "chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
+    "gitadora:Gita": "BASIC" | "ADVANCED" | "EXTREME" | "MASTER" | "BASS BASIC" | "BASS ADVANCED" | "BASS EXTREME" | "BASS MASTER";
+    "gitadora:Dora": "BASIC" | "ADVANCED" | "EXTREME" | "MASTER";
 }
 export interface CustomRatings {
     iidx: {
@@ -193,9 +198,9 @@ export interface MRGFolderTarget {
     field: MRGFolderTargetFieldNames;
     target: number;
 }
-export interface MRGFolderInformation {
+export interface MRGFolderInformation<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDString<G, P>> {
     folderID: string;
-    difficulty: Difficulties[Game][] | null;
+    difficulty: Difficulties[I][] | null;
     datapoints: MRGFolderTarget[];
 }
 export interface MutualRivalGroupDocument extends MongoDBDocument {
@@ -401,13 +406,13 @@ export interface PublicAPIRequestDocument extends MongoDBDocument {
     timestamp: integer;
     ip: string;
 }
-export interface ChartDocument extends MongoDBDocument {
+export interface ChartDocument<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDString<G, P>> extends MongoDBDocument {
     chartID: string;
     id: integer;
     level: string;
     levelNum: number;
-    difficulty: Difficulties[Game];
-    playtype: string;
+    difficulty: Difficulties[I];
+    playtype: P;
     length: string | number | null;
     bpmMin: number;
     bpmMax: number;
@@ -429,10 +434,10 @@ export interface TierlistDocument extends MongoDBDocument {
         grades?: [string, number][];
     };
 }
-export interface TierlistDataDocument extends MongoDBDocument {
-    playtype: Playtypes[Game];
+export interface TierlistDataDocument<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDString<G, P>> extends MongoDBDocument {
+    playtype: P;
     songID: integer;
-    difficulty: Difficulties[Game];
+    difficulty: Difficulties[I];
     tierlistID: string;
     tiers: Record<string, number>;
     chartID: string;
@@ -592,11 +597,11 @@ export interface GameSpecificCalcLookup {
     "gitadora:Gita": never;
     "gitadora:Dora": never;
 }
-export interface ScoreDocument<G extends Game, P extends Playtypes[G], I extends IDStrings = IDString<G, P>> extends MongoDBDocument {
+export interface ScoreDocument<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDString<G, P>> extends MongoDBDocument {
     service: string;
     game: G;
     playtype: P;
-    difficulty: Difficulties[G];
+    difficulty: Difficulties[I];
     userID: integer;
     scoreData: {
         score: number;

@@ -113,6 +113,92 @@ export interface Playtypes {
     gitadora: "Gita" | "Dora";
 }
 
+type IIDXGrades = "F" | "E" | "D" | "C" | "B" | "A" | "AA" | "AAA" | "MAX-" | "MAX";
+type SDVXGrades = "D" | "C" | "B" | "A" | "A+" | "AA" | "AA+" | "AAA" | "AAA+" | "S";
+type DDRGrades =
+    | "D"
+    | "D+"
+    | "C-"
+    | "C"
+    | "C+"
+    | "B-"
+    | "B"
+    | "B+"
+    | "A-"
+    | "A"
+    | "A+"
+    | "AA-"
+    | "AA"
+    | "AA+"
+    | "AAA"
+    | "MAX";
+
+type GitadoraGrades = "C" | "B" | "A" | "S" | "SS" | "MAX";
+
+export interface Grades {
+    "iidx:SP": IIDXGrades;
+    "iidx:DP": IIDXGrades;
+    "popn:9B": "E" | "D" | "C" | "B" | "A" | "AA" | "AAA" | "S";
+    "sdvx:Single": SDVXGrades;
+    "usc:Single": SDVXGrades;
+    "ddr:SP": DDRGrades;
+    "ddr:DP": DDRGrades;
+    "maimai:Single":
+        | "E"
+        | "D"
+        | "C"
+        | "B"
+        | "A"
+        | "AA"
+        | "AAA"
+        | "S"
+        | "S+"
+        | "SS"
+        | "SS+"
+        | "SSS"
+        | "SSS+";
+    "jubeat:Single": "E" | "D" | "C" | "B" | "A" | "S" | "SS" | "SSS" | "EXC";
+    "museca:Single": "没" | "拙" | "凡" | "佳" | "良" | "優" | "秀" | "傑" | "傑G";
+    "bms:7K": IIDXGrades;
+    "bms:14K": IIDXGrades;
+    "bms:5K": IIDXGrades;
+    "chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
+    "gitadora:Gita": GitadoraGrades;
+    "gitadora:Dora": GitadoraGrades;
+}
+
+type IIDXLamps =
+    | "NO PLAY"
+    | "FAILED"
+    | "ASSIST CLEAR"
+    | "EASY CLEAR"
+    | "CLEAR"
+    | "HARD CLEAR"
+    | "EX HARD CLEAR"
+    | "FULL COMBO";
+
+type GitadoraLamps = "FAILED" | "CLEAR" | "FULL COMBO" | "EXCELLENT";
+
+export interface Lamps {
+    "iidx:SP": IIDXLamps;
+    "iidx:DP": IIDXLamps;
+    // THIS ONE IS WRONG!
+    "popn:9B": "FAILED" | "CLEAR" | "FULL COMBO" | "PERFECT";
+    "sdvx:Single": SDVXGrades;
+    "usc:Single": SDVXGrades;
+    "ddr:SP": DDRGrades;
+    "ddr:DP": DDRGrades;
+    "maimai:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "ALL PERFECT" | "ALL PERFECT+";
+    "jubeat:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "EXCELLENT";
+    "museca:Single": "FAILED" | "CLEAR" | "CONNECT ALL" | "PERFECT CONNECT ALL";
+    "bms:7K": IIDXLamps;
+    "bms:14K": IIDXLamps;
+    "bms:5K": IIDXLamps;
+    "chunithm:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "ALL JUSTICE" | "ALL JUSTICE CRITICAL";
+    "gitadora:Gita": GitadoraLamps;
+    "gitadora:Dora": GitadoraLamps;
+}
+
 export interface Difficulties {
     "iidx:SP": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
     "iidx:DP": "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
@@ -798,9 +884,9 @@ export interface ScoreDocument<
     userID: integer;
     scoreData: {
         score: number;
-        lamp: string;
+        lamp: Lamps[I];
         percent: number;
-        grade: string;
+        grade: Grades[I];
         lampIndex: integer;
         gradeIndex: integer;
         esd: number | null;

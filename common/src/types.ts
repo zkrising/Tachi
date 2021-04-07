@@ -6,6 +6,36 @@ export interface CounterDocument {
 }
 
 /**
+ * IDStrings are an internal (ish) identifier used to identify
+ * Game + Playtype combos. These are used because TypeScript cannot accurately
+ * apply two levels of indexing to types, which makes writing generic interfaces
+ * like the ScoreDocument (Especially the ScoreDocument) *very* hard!
+ */
+export type IDStrings =
+    | "iidx:SP"
+    | "iidx:DP"
+    | "popn:9B"
+    | "sdvx:Single"
+    | "usc:Single"
+    | "ddr:SP"
+    | "maimai:Single"
+    | "jubeat:Single"
+    | "bms:7K"
+    | "bms:14K"
+    | "bms:5K"
+    | "chunithm:Single"
+    | "gitadora:Gita"
+    | "gitadora:Dora";
+
+/**
+ * A utility type for creating an ID string given a game and playtype.
+ * It should be noted that typescript refuses to assert that
+ * IDString<G, P> is a member of IDStrings. You're free to attempt to
+ * rewrite IDStrings to try and get this to work, I promise you it doesn't.
+ */
+export type IDString<G extends Game, P extends Playtypes[G]> = `${G}:${P}`;
+
+/**
  * All MongoDB Documents require this field, or atleast they all have them in ktchi's DB.
  */
 export interface MongoDBDocument {
@@ -575,6 +605,77 @@ export interface UserMilestoneDocument extends MongoDBDocument {
     progress: integer;
 }
 
+type RanOptions = "NONRAN" | "RANDOM" | "R-RANDOM" | "S-RANDOM" | "MIRROR";
+
+interface IIDXSPScoreMeta {
+    optionsRandom: RanOptions;
+    optionsAssist:
+        | "AUTO SCRATCH"
+        | "5KEYS"
+        | "LEGACY NOTE"
+        | "ASCR + 5KEY"
+        | "ASCR + LEGACY"
+        | "5KEYS + LEGACY"
+        | "FULL ASSIST";
+    optionsRange: "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+";
+    optionsGauge: "ASSISTED EASY" | "EASY" | "HARD" | "EX-HARD";
+    // oh my
+    pacemaker:
+        | "NO GRAPH"
+        | "MY BEST"
+        | "RIVAL 1"
+        | "RIVAL 2"
+        | "RIVAL 3"
+        | "RIVAL 4"
+        | "RIVAL 5"
+        | "RIVAL NEXT"
+        | "RIVAL BEST"
+        | "RIVAL AVERAGE"
+        | "NATIONAL BEST"
+        | "NATIONAL AVERAGE"
+        | "PREFECTURE BEST"
+        | "PREFECTURE AVERAGE"
+        | "CLASS BEST"
+        | "CLASS AVERAGE"
+        | "VENUE BEST"
+        | "VENUE NEXT"
+        | "PREVIOUS GHOST"
+        | "PACEMAKER AAA"
+        | "PACEMAKER AA"
+        | "PACEMAKER A"
+        | "PACEMAKER"
+        | /* ??? */ "PACEMAKER NEXT"
+        | "PACEMAKER NEXT+"
+        | "PLAYER 1"
+        | "PLAYER 2";
+    pacemakerName: string; // contains DJ Name
+    pacemakerTarget: integer; // the EXScore the pacemaker was aimed at
+}
+
+interface BMS7KScoreMeta {
+    optionsRandom: RanOptions;
+    inputDevice: string;
+}
+
+interface ScoreMetaLookup {
+    "iidx:SP": IIDXSPScoreMeta;
+    "iidx:DP": IIDXSPScoreMeta & { optionsRandom: [RanOptions, RanOptions] };
+    "popn:9B": Record<string, never>;
+    "sdvx:Single": Record<string, never>;
+    "usc:Single": BASE_VALID_HIT_META & { gauge: number };
+    "ddr:SP": Record<string, never>;
+    "ddr:DP": Record<string, never>;
+    "maimai:Single": Record<string, never>;
+    "jubeat:Single": Record<string, never>;
+    "museca:Single": Record<string, never>;
+    "bms:7K": BMS7KScoreMeta;
+    "bms:14K": BMS7KScoreMeta & { optionsRandom: [RanOptions, RanOptions] };
+    "bms:5K": Record<string, never>;
+    "chunithm:Single": Record<string, never>;
+    "gitadora:Gita": Record<string, never>;
+    "gitadora:Dora": Record<string, never>;
+}
+
 interface BASE_VALID_HIT_META {
     fast: integer;
     slow: integer;
@@ -596,51 +697,26 @@ type BMSHitMeta = BASE_VALID_HIT_META &
     } & {
         bp: integer;
         gauge: number;
-        random: "NONRAN" | "MIRROR" | "RANDOM" | "R-RANDOM" | "S-RANDOM";
         diedAt: integer | null;
-        inputDevice: string;
     };
 
 export interface HitMetaLookup {
-    iidx: {
-        SP: IIDXHitMeta;
-        DP: IIDXHitMeta;
-    };
-    museca: {
-        Single: BASE_VALID_HIT_META;
-    };
-    ddr: {
-        SP: BASE_VALID_HIT_META;
-        DP: BASE_VALID_HIT_META;
-    };
-    maimai: {
-        SP: BASE_VALID_HIT_META;
-        DP: BASE_VALID_HIT_META;
-    };
-    jubeat: {
-        Single: BASE_VALID_HIT_META;
-    };
-    popn: {
-        "9B": BASE_VALID_HIT_META & { gauge: number };
-    };
-    sdvx: {
-        Single: BASE_VALID_HIT_META & { gauge: number };
-    };
-    chunithm: {
-        Single: BASE_VALID_HIT_META;
-    };
-    gitadora: {
-        Gita: BASE_VALID_HIT_META;
-        Dora: BASE_VALID_HIT_META;
-    };
-    usc: {
-        Single: BASE_VALID_HIT_META & { gauge: number };
-    };
-    bms: {
-        "7K": BMSHitMeta;
-        "14K": BMSHitMeta;
-        "5K": BMSHitMeta;
-    };
+    "iidx:SP": IIDXHitMeta;
+    "iidx:DP": IIDXHitMeta;
+    "popn:9B": BASE_VALID_HIT_META & { gauge: number };
+    "sdvx:Single": BASE_VALID_HIT_META & { gauge: number };
+    "usc:Single": BASE_VALID_HIT_META & { gauge: number };
+    "ddr:SP": BASE_VALID_HIT_META;
+    "ddr:DP": BASE_VALID_HIT_META;
+    "maimai:Single": BASE_VALID_HIT_META;
+    "jubeat:Single": BASE_VALID_HIT_META;
+    "museca:Single": BASE_VALID_HIT_META;
+    "bms:7K": BMSHitMeta;
+    "bms:14K": BMSHitMeta;
+    "bms:5K": BMSHitMeta;
+    "chunithm:Single": BASE_VALID_HIT_META;
+    "gitadora:Gita": BASE_VALID_HIT_META;
+    "gitadora:Dora": BASE_VALID_HIT_META;
 }
 
 type IIDXJudges = "pgreat" | "great" | "good" | "bad" | "poor";
@@ -651,55 +727,58 @@ type GitadoraJudges = "perfect" | "great" | "good" | "ok" | "miss";
 type SDVXJudges = "critical" | "near" | "miss";
 
 export interface JudgementLookup {
-    iidx: {
-        SP: IIDXJudges;
-        DP: IIDXJudges & { foo: string };
-    };
-    bms: {
-        "7K": IIDXJudges;
-        "14K": IIDXJudges;
-        "5K": IIDXJudges;
-    };
-    museca: {
-        Single: "critical" | "near" | "miss";
-    };
-    ddr: {
-        SP: DDRJudges;
-        DP: DDRJudges;
-    };
-    sdvx: {
-        Single: SDVXJudges;
-    };
-    maimai: {
-        Single: "perfect" | "great" | "good" | "miss";
-    };
-    jubeat: {
-        Single: "perfect" | "great" | "good" | "bad" | "miss";
-    };
-    popn: {
-        "9B": "cool" | "great" | "good" | "miss";
-    };
-    chunithm: {
-        Single: "jcrit" | "justice" | "attack" | "miss";
-    };
-    gitadora: {
-        Gita: GitadoraJudges;
-        Dora: GitadoraJudges;
-    };
-    usc: {
-        Single: SDVXJudges;
-    };
+    "iidx:SP": IIDXJudges;
+    "iidx:DP": IIDXJudges;
+    "popn:9B": "cool" | "great" | "good" | "miss";
+    "sdvx:Single": SDVXJudges;
+    "usc:Single": SDVXJudges;
+    "ddr:SP": DDRJudges;
+    "ddr:DP": DDRJudges;
+    "maimai:Single": "perfect" | "great" | "good" | "miss";
+    "jubeat:Single": "perfect" | "great" | "good" | "bad" | "miss";
+    "museca:Single": "critical" | "near" | "miss";
+    "bms:7K": IIDXJudges;
+    "bms:14K": IIDXJudges;
+    "bms:5K": IIDXJudges;
+    "chunithm:Single": "jcrit" | "justice" | "attack" | "miss";
+    "gitadora:Gita": GitadoraJudges;
+    "gitadora:Dora": GitadoraJudges;
 }
 
-export interface ScoreDocument<T extends Game, P extends Playtypes[T]> extends MongoDBDocument {
+export interface GameSpecificCalcLookup {
+    "iidx:SP": "BPI" | "K%";
+    "iidx:DP": "BPI";
+    "popn:9B": never;
+    "sdvx:Single": "VF4" | "VF5";
+    "usc:Single": "VF4" | "VF5";
+    "ddr:SP": "MFCP";
+    "ddr:DP": "MFCP";
+    "maimai:Single": never;
+    "jubeat:Single": never;
+    "museca:Single": never;
+    "bms:7K": never;
+    "bms:14K": never;
+    "bms:5K": never;
+    "chunithm:Single": never;
+    "gitadora:Gita": never;
+    "gitadora:Dora": never;
+}
+
+export interface ScoreDocument<
+    G extends Game,
+    P extends Playtypes[G],
+    // @ts-expect-error Typescript thinks this is illegal.
+    // It *ABSOLUTELY* isn't.
+    I extends IDStrings = IDString<G, P>
+> extends MongoDBDocument {
     service: string;
-    game: T;
+    game: G;
     playtype: P;
     // @todo - allow different game+pt combinations to specify different difficulties?
     // this happens in kamaitachi with gitadora, so I don't see why it shouldn't
     // be constrained here.
     // other than the fact that TS can't do it :(
-    difficulty: Difficulties[T];
+    difficulty: Difficulties[G];
     userID: integer;
     scoreData: {
         score: number;
@@ -709,23 +788,14 @@ export interface ScoreDocument<T extends Game, P extends Playtypes[T]> extends M
         lampIndex: integer;
         gradeIndex: integer;
         esd: number | null;
-        // @ts-expect-error Typescript does not currently support
-        // two levels of indexing (which is what we want). Instead
-        // of indexing all P where matches T, it indexes all permutations
-        // of P + T.
-        //
-        // If we expectErr this, it kinda works (but loses the ability to
-        // perform the second lookup). At the time, we don't have any
-        // scenario where one playtype has different hitMeta/hitData to another.
-        hitData: Record<JudgementLookup[T][P], integer>;
-        // @ts-expect-error see above
-        hitMeta: Partial<HitMetaLookup[T][P]>;
+        hitData: Record<JudgementLookup[I], integer>;
+        hitMeta: Partial<HitMetaLookup[I]>;
     };
-    scoreMeta: Record<string, unknown>;
+    scoreMeta: ScoreMetaLookup[I];
     calculatedData: {
         rating: number;
         lampRating: number;
-        gameSpecific: Record<string, number>;
+        gameSpecific: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
         ranking: integer | null;
         outOf: integer | null;
     };

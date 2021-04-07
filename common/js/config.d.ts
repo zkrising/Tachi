@@ -46,7 +46,7 @@ declare const _default: {
     lampColours: ColourStuff;
     gradeColours: ColourStuff;
     serviceSupportedGames: Record<string, Game[]>;
-    defaultPlaytype: Record<Game, "SP" | "DP" | "9B" | "Single" | "7K" | "14K" | "5K" | "Gita" | "Dora">;
+    defaultPlaytype: Record<Game, "SP" | "DP" | "Single" | "9B" | "7K" | "14K" | "5K" | "Gita" | "Dora">;
     gameChartIndicators: {
         iidx: string[];
         popn: string[];
@@ -120,7 +120,7 @@ declare const _default: {
             clearExpMultiplier: number;
         };
     };
-    validPlaytypes: Record<Game, ("SP" | "DP" | "9B" | "Single" | "7K" | "14K" | "5K" | "Gita" | "Dora")[]>;
+    validPlaytypes: Record<Game, ("SP" | "DP" | "Single" | "9B" | "7K" | "14K" | "5K" | "Gita" | "Dora")[]>;
     ScoreGradeDelta: typeof ScoreGradeDelta;
     judgeColours: {
         iidx: {
@@ -339,7 +339,7 @@ declare const _default: {
     validHitData: Record<Game, string[]>;
     validHitMeta: Record<Game, string[]>;
     boundaryHCF: Record<Game, number>;
-    gameSpecificCalc: Partial<Record<Game, Partial<Record<"SP" | "DP" | "9B" | "Single" | "7K" | "14K" | "5K" | "Gita" | "Dora", string[]>>>>;
+    gameSpecificCalc: Partial<Record<Game, Partial<Record<"SP" | "DP" | "Single" | "9B" | "7K" | "14K" | "5K" | "Gita" | "Dora", string[]>>>>;
     expChartScale: Record<Game, number>;
     FormatDifficulty: typeof FormatDifficulty;
     DirectScoreGradeDelta: typeof DirectScoreGradeDelta;

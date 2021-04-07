@@ -4,6 +4,20 @@ export interface CounterDocument {
     value: integer;
 }
 /**
+ * IDStrings are an internal (ish) identifier used to identify
+ * Game + Playtype combos. These are used because TypeScript cannot accurately
+ * apply two levels of indexing to types, which makes writing generic interfaces
+ * like the ScoreDocument (Especially the ScoreDocument) *very* hard!
+ */
+export declare type IDStrings = "iidx:SP" | "iidx:DP" | "popn:9B" | "sdvx:Single" | "usc:Single" | "ddr:SP" | "maimai:Single" | "jubeat:Single" | "bms:7K" | "bms:14K" | "bms:5K" | "chunithm:Single" | "gitadora:Gita" | "gitadora:Dora";
+/**
+ * A utility type for creating an ID string given a game and playtype.
+ * It should be noted that typescript refuses to assert that
+ * IDString<G, P> is a member of IDStrings. You're free to attempt to
+ * rewrite IDStrings to try and get this to work, I promise you it doesn't.
+ */
+export declare type IDString<G extends Game, P extends Playtypes[G]> = `${G}:${P}`;
+/**
  * All MongoDB Documents require this field, or atleast they all have them in ktchi's DB.
  */
 export interface MongoDBDocument {
@@ -457,6 +471,44 @@ export interface UserMilestoneDocument extends MongoDBDocument {
     timeAchieved: integer | null;
     progress: integer;
 }
+declare type RanOptions = "NONRAN" | "RANDOM" | "R-RANDOM" | "S-RANDOM" | "MIRROR";
+interface IIDXSPScoreMeta {
+    optionsRandom: RanOptions;
+    optionsAssist: "AUTO SCRATCH" | "5KEYS" | "LEGACY NOTE" | "ASCR + 5KEY" | "ASCR + LEGACY" | "5KEYS + LEGACY" | "FULL ASSIST";
+    optionsRange: "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+";
+    optionsGauge: "ASSISTED EASY" | "EASY" | "HARD" | "EX-HARD";
+    pacemaker: "NO GRAPH" | "MY BEST" | "RIVAL 1" | "RIVAL 2" | "RIVAL 3" | "RIVAL 4" | "RIVAL 5" | "RIVAL NEXT" | "RIVAL BEST" | "RIVAL AVERAGE" | "NATIONAL BEST" | "NATIONAL AVERAGE" | "PREFECTURE BEST" | "PREFECTURE AVERAGE" | "CLASS BEST" | "CLASS AVERAGE" | "VENUE BEST" | "VENUE NEXT" | "PREVIOUS GHOST" | "PACEMAKER AAA" | "PACEMAKER AA" | "PACEMAKER A" | "PACEMAKER" | /* ??? */ "PACEMAKER NEXT" | "PACEMAKER NEXT+" | "PLAYER 1" | "PLAYER 2";
+    pacemakerName: string;
+    pacemakerTarget: integer;
+}
+interface BMS7KScoreMeta {
+    optionsRandom: RanOptions;
+    inputDevice: string;
+}
+interface ScoreMetaLookup {
+    "iidx:SP": IIDXSPScoreMeta;
+    "iidx:DP": IIDXSPScoreMeta & {
+        optionsRandom: [RanOptions, RanOptions];
+    };
+    "popn:9B": Record<string, never>;
+    "sdvx:Single": Record<string, never>;
+    "usc:Single": BASE_VALID_HIT_META & {
+        gauge: number;
+    };
+    "ddr:SP": Record<string, never>;
+    "ddr:DP": Record<string, never>;
+    "maimai:Single": Record<string, never>;
+    "jubeat:Single": Record<string, never>;
+    "museca:Single": Record<string, never>;
+    "bms:7K": BMS7KScoreMeta;
+    "bms:14K": BMS7KScoreMeta & {
+        optionsRandom: [RanOptions, RanOptions];
+    };
+    "bms:5K": Record<string, never>;
+    "chunithm:Single": Record<string, never>;
+    "gitadora:Gita": Record<string, never>;
+    "gitadora:Dora": Record<string, never>;
+}
 interface BASE_VALID_HIT_META {
     fast: integer;
     slow: integer;
@@ -474,108 +526,77 @@ declare type BMSHitMeta = BASE_VALID_HIT_META & {
 } & {
     bp: integer;
     gauge: number;
-    random: "NONRAN" | "MIRROR" | "RANDOM" | "R-RANDOM" | "S-RANDOM";
     diedAt: integer | null;
-    inputDevice: string;
 };
 export interface HitMetaLookup {
-    iidx: {
-        SP: IIDXHitMeta;
-        DP: IIDXHitMeta;
+    "iidx:SP": IIDXHitMeta;
+    "iidx:DP": IIDXHitMeta;
+    "popn:9B": BASE_VALID_HIT_META & {
+        gauge: number;
     };
-    museca: {
-        Single: BASE_VALID_HIT_META;
+    "sdvx:Single": BASE_VALID_HIT_META & {
+        gauge: number;
     };
-    ddr: {
-        SP: BASE_VALID_HIT_META;
-        DP: BASE_VALID_HIT_META;
+    "usc:Single": BASE_VALID_HIT_META & {
+        gauge: number;
     };
-    maimai: {
-        SP: BASE_VALID_HIT_META;
-        DP: BASE_VALID_HIT_META;
-    };
-    jubeat: {
-        Single: BASE_VALID_HIT_META;
-    };
-    popn: {
-        "9B": BASE_VALID_HIT_META & {
-            gauge: number;
-        };
-    };
-    sdvx: {
-        Single: BASE_VALID_HIT_META & {
-            gauge: number;
-        };
-    };
-    chunithm: {
-        Single: BASE_VALID_HIT_META;
-    };
-    gitadora: {
-        Gita: BASE_VALID_HIT_META;
-        Dora: BASE_VALID_HIT_META;
-    };
-    usc: {
-        Single: BASE_VALID_HIT_META & {
-            gauge: number;
-        };
-    };
-    bms: {
-        "7K": BMSHitMeta;
-        "14K": BMSHitMeta;
-        "5K": BMSHitMeta;
-    };
+    "ddr:SP": BASE_VALID_HIT_META;
+    "ddr:DP": BASE_VALID_HIT_META;
+    "maimai:Single": BASE_VALID_HIT_META;
+    "jubeat:Single": BASE_VALID_HIT_META;
+    "museca:Single": BASE_VALID_HIT_META;
+    "bms:7K": BMSHitMeta;
+    "bms:14K": BMSHitMeta;
+    "bms:5K": BMSHitMeta;
+    "chunithm:Single": BASE_VALID_HIT_META;
+    "gitadora:Gita": BASE_VALID_HIT_META;
+    "gitadora:Dora": BASE_VALID_HIT_META;
 }
 declare type IIDXJudges = "pgreat" | "great" | "good" | "bad" | "poor";
 declare type DDRJudges = "marvelous" | "perfect" | "great" | "good" | "boo" | "miss" | "ok" | "ng";
 declare type GitadoraJudges = "perfect" | "great" | "good" | "ok" | "miss";
 declare type SDVXJudges = "critical" | "near" | "miss";
 export interface JudgementLookup {
-    iidx: {
-        SP: IIDXJudges;
-        DP: IIDXJudges & {
-            foo: string;
-        };
-    };
-    bms: {
-        "7K": IIDXJudges;
-        "14K": IIDXJudges;
-        "5K": IIDXJudges;
-    };
-    museca: {
-        Single: "critical" | "near" | "miss";
-    };
-    ddr: {
-        SP: DDRJudges;
-        DP: DDRJudges;
-    };
-    sdvx: {
-        Single: SDVXJudges;
-    };
-    maimai: {
-        Single: "perfect" | "great" | "good" | "miss";
-    };
-    jubeat: {
-        Single: "perfect" | "great" | "good" | "bad" | "miss";
-    };
-    popn: {
-        "9B": "cool" | "great" | "good" | "miss";
-    };
-    chunithm: {
-        Single: "jcrit" | "justice" | "attack" | "miss";
-    };
-    gitadora: {
-        Gita: GitadoraJudges;
-        Dora: GitadoraJudges;
-    };
-    usc: {
-        Single: SDVXJudges;
-    };
+    "iidx:SP": IIDXJudges;
+    "iidx:DP": IIDXJudges;
+    "popn:9B": "cool" | "great" | "good" | "miss";
+    "sdvx:Single": SDVXJudges;
+    "usc:Single": SDVXJudges;
+    "ddr:SP": DDRJudges;
+    "ddr:DP": DDRJudges;
+    "maimai:Single": "perfect" | "great" | "good" | "miss";
+    "jubeat:Single": "perfect" | "great" | "good" | "bad" | "miss";
+    "museca:Single": "critical" | "near" | "miss";
+    "bms:7K": IIDXJudges;
+    "bms:14K": IIDXJudges;
+    "bms:5K": IIDXJudges;
+    "chunithm:Single": "jcrit" | "justice" | "attack" | "miss";
+    "gitadora:Gita": GitadoraJudges;
+    "gitadora:Dora": GitadoraJudges;
 }
-export interface ScoreDocument<T extends Game, P extends Playtypes[T]> extends MongoDBDocument {
+export interface GameSpecificCalcLookup {
+    "iidx:SP": "BPI" | "K%";
+    "iidx:DP": "BPI";
+    "popn:9B": never;
+    "sdvx:Single": "VF4" | "VF5";
+    "usc:Single": "VF4" | "VF5";
+    "ddr:SP": "MFCP";
+    "ddr:DP": "MFCP";
+    "maimai:Single": never;
+    "jubeat:Single": never;
+    "museca:Single": never;
+    "bms:7K": never;
+    "bms:14K": never;
+    "bms:5K": never;
+    "chunithm:Single": never;
+    "gitadora:Gita": never;
+    "gitadora:Dora": never;
+}
+export interface ScoreDocument<G extends Game, P extends Playtypes[G], I extends IDStrings = IDString<G, P>> extends MongoDBDocument {
     service: string;
-    game: T;
+    game: G;
     playtype: P;
-    difficulty: Difficulties[T];
+    difficulty: Difficulties[G];
     userID: integer;
     scoreData: {
         score: number;
@@ -585,14 +606,14 @@ export interface ScoreDocument<T extends Game, P extends Playtypes[T]> extends M
         lampIndex: integer;
         gradeIndex: integer;
         esd: number | null;
-        hitData: Record<JudgementLookup[T][P], integer>;
-        hitMeta: Partial<HitMetaLookup[T][P]>;
+        hitData: Record<JudgementLookup[I], integer>;
+        hitMeta: Partial<HitMetaLookup[I]>;
     };
-    scoreMeta: Record<string, unknown>;
+    scoreMeta: ScoreMetaLookup[I];
     calculatedData: {
         rating: number;
         lampRating: number;
-        gameSpecific: Record<string, number>;
+        gameSpecific: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
         ranking: integer | null;
         outOf: integer | null;
     };

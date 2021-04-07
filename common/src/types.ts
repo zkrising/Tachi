@@ -804,10 +804,10 @@ export interface ScoreDocument<
         lampIndex: integer;
         gradeIndex: integer;
         esd: number | null;
-        hitData: Record<JudgementLookup[I], integer>;
+        hitData: Partial<Record<JudgementLookup[I], integer>>;
         hitMeta: Partial<HitMetaLookup[I]>;
     };
-    scoreMeta: ScoreMetaLookup[I];
+    scoreMeta: Partial<ScoreMetaLookup[I]>;
     calculatedData: {
         rating: number;
         lampRating: number;

@@ -1,4 +1,3 @@
-import { GridFSBucketReadStream } from "mongodb";
 import { IObjectID } from "monk";
 
 export interface CounterDocument {

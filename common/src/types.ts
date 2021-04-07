@@ -1,3 +1,4 @@
+import { GridFSBucketReadStream } from "mongodb";
 import { IObjectID } from "monk";
 
 export interface CounterDocument {
@@ -575,10 +576,131 @@ export interface UserMilestoneDocument extends MongoDBDocument {
     progress: integer;
 }
 
-export interface ScoreDocument extends MongoDBDocument {
+interface BASE_VALID_HIT_META {
+    fast: integer;
+    slow: integer;
+    maxCombo: integer;
+}
+
+type IIDXHitMeta = BASE_VALID_HIT_META & {
+    bp: integer;
+    gauge: number;
+    gaugeHistory: number[];
+    comboBreak: integer;
+};
+
+type BMSJudgePermutations = `${"e" | "l"}${"bd" | "pr" | "gd" | "gr" | "pg"}`;
+
+type BMSHitMeta = BASE_VALID_HIT_META &
+    {
+        [K in BMSJudgePermutations]: integer;
+    } & {
+        bp: integer;
+        gauge: number;
+        random: "NONRAN" | "MIRROR" | "RANDOM" | "R-RANDOM" | "S-RANDOM";
+        diedAt: integer | null;
+        inputDevice: string;
+    };
+
+export interface HitMetaLookup {
+    iidx: {
+        SP: IIDXHitMeta;
+        DP: IIDXHitMeta;
+    };
+    museca: {
+        Single: BASE_VALID_HIT_META;
+    };
+    ddr: {
+        SP: BASE_VALID_HIT_META;
+        DP: BASE_VALID_HIT_META;
+    };
+    maimai: {
+        SP: BASE_VALID_HIT_META;
+        DP: BASE_VALID_HIT_META;
+    };
+    jubeat: {
+        Single: BASE_VALID_HIT_META;
+    };
+    popn: {
+        "9B": BASE_VALID_HIT_META & { gauge: number };
+    };
+    sdvx: {
+        Single: BASE_VALID_HIT_META & { gauge: number };
+    };
+    chunithm: {
+        Single: BASE_VALID_HIT_META;
+    };
+    gitadora: {
+        Gita: BASE_VALID_HIT_META;
+        Dora: BASE_VALID_HIT_META;
+    };
+    usc: {
+        Single: BASE_VALID_HIT_META & { gauge: number };
+    };
+    bms: {
+        "7K": BMSHitMeta;
+        "14K": BMSHitMeta;
+        "5K": BMSHitMeta;
+    };
+}
+
+type IIDXJudges = "pgreat" | "great" | "good" | "bad" | "poor";
+type DDRJudges = "marvelous" | "perfect" | "great" | "good" | "boo" | "miss" | "ok" | "ng";
+type GitadoraJudges = "perfect" | "great" | "good" | "ok" | "miss";
+
+// judges might need to be changed here...
+type SDVXJudges = "critical" | "near" | "miss";
+
+export interface JudgementLookup {
+    iidx: {
+        SP: IIDXJudges;
+        DP: IIDXJudges & { foo: string };
+    };
+    bms: {
+        "7K": IIDXJudges;
+        "14K": IIDXJudges;
+        "5K": IIDXJudges;
+    };
+    museca: {
+        Single: "critical" | "near" | "miss";
+    };
+    ddr: {
+        SP: DDRJudges;
+        DP: DDRJudges;
+    };
+    sdvx: {
+        Single: SDVXJudges;
+    };
+    maimai: {
+        Single: "perfect" | "great" | "good" | "miss";
+    };
+    jubeat: {
+        Single: "perfect" | "great" | "good" | "bad" | "miss";
+    };
+    popn: {
+        "9B": "cool" | "great" | "good" | "miss";
+    };
+    chunithm: {
+        Single: "jcrit" | "justice" | "attack" | "miss";
+    };
+    gitadora: {
+        Gita: GitadoraJudges;
+        Dora: GitadoraJudges;
+    };
+    usc: {
+        Single: SDVXJudges;
+    };
+}
+
+export interface ScoreDocument<T extends Game, P extends Playtypes[T]> extends MongoDBDocument {
     service: string;
-    game: Game;
-    playtype: Playtypes[Game];
+    game: T;
+    playtype: P;
+    // @todo - allow different game+pt combinations to specify different difficulties?
+    // this happens in kamaitachi with gitadora, so I don't see why it shouldn't
+    // be constrained here.
+    // other than the fact that TS can't do it :(
+    difficulty: Difficulties[T];
     userID: integer;
     scoreData: {
         score: number;
@@ -588,8 +710,17 @@ export interface ScoreDocument extends MongoDBDocument {
         lampIndex: integer;
         gradeIndex: integer;
         esd: number | null;
-        hitData: Record<string, integer>;
-        hitMeta: Record<string, unknown>;
+        // @ts-expect-error Typescript does not currently support
+        // two levels of indexing (which is what we want). Instead
+        // of indexing all P where matches T, it indexes all permutations
+        // of P + T.
+        //
+        // If we expectErr this, it kinda works (but loses the ability to
+        // perform the second lookup). At the time, we don't have any
+        // scenario where one playtype has different hitMeta/hitData to another.
+        hitData: Record<JudgementLookup[T][P], integer>;
+        // @ts-expect-error see above
+        hitMeta: Partial<HitMetaLookup[T][P]>;
     };
     scoreMeta: Record<string, unknown>;
     calculatedData: {
@@ -608,4 +739,11 @@ export interface ScoreDocument extends MongoDBDocument {
     isScorePB: boolean;
     isLampPB: boolean;
     scoreID: string;
+    importType: ImportTypes;
 }
+
+export type FileUploadImportTypes = "iidx:eamusement-csv";
+// | "iidx:plife-csv"
+// | "any:batchmanual-json";
+
+export type ImportTypes = FileUploadImportTypes;

@@ -457,10 +457,125 @@ export interface UserMilestoneDocument extends MongoDBDocument {
     timeAchieved: integer | null;
     progress: integer;
 }
-export interface ScoreDocument extends MongoDBDocument {
+interface BASE_VALID_HIT_META {
+    fast: integer;
+    slow: integer;
+    maxCombo: integer;
+}
+declare type IIDXHitMeta = BASE_VALID_HIT_META & {
+    bp: integer;
+    gauge: number;
+    gaugeHistory: number[];
+    comboBreak: integer;
+};
+declare type BMSJudgePermutations = `${"e" | "l"}${"bd" | "pr" | "gd" | "gr" | "pg"}`;
+declare type BMSHitMeta = BASE_VALID_HIT_META & {
+    [K in BMSJudgePermutations]: integer;
+} & {
+    bp: integer;
+    gauge: number;
+    random: "NONRAN" | "MIRROR" | "RANDOM" | "R-RANDOM" | "S-RANDOM";
+    diedAt: integer | null;
+    inputDevice: string;
+};
+export interface HitMetaLookup {
+    iidx: {
+        SP: IIDXHitMeta;
+        DP: IIDXHitMeta;
+    };
+    museca: {
+        Single: BASE_VALID_HIT_META;
+    };
+    ddr: {
+        SP: BASE_VALID_HIT_META;
+        DP: BASE_VALID_HIT_META;
+    };
+    maimai: {
+        SP: BASE_VALID_HIT_META;
+        DP: BASE_VALID_HIT_META;
+    };
+    jubeat: {
+        Single: BASE_VALID_HIT_META;
+    };
+    popn: {
+        "9B": BASE_VALID_HIT_META & {
+            gauge: number;
+        };
+    };
+    sdvx: {
+        Single: BASE_VALID_HIT_META & {
+            gauge: number;
+        };
+    };
+    chunithm: {
+        Single: BASE_VALID_HIT_META;
+    };
+    gitadora: {
+        Gita: BASE_VALID_HIT_META;
+        Dora: BASE_VALID_HIT_META;
+    };
+    usc: {
+        Single: BASE_VALID_HIT_META & {
+            gauge: number;
+        };
+    };
+    bms: {
+        "7K": BMSHitMeta;
+        "14K": BMSHitMeta;
+        "5K": BMSHitMeta;
+    };
+}
+declare type IIDXJudges = "pgreat" | "great" | "good" | "bad" | "poor";
+declare type DDRJudges = "marvelous" | "perfect" | "great" | "good" | "boo" | "miss" | "ok" | "ng";
+declare type GitadoraJudges = "perfect" | "great" | "good" | "ok" | "miss";
+declare type SDVXJudges = "critical" | "near" | "miss";
+export interface JudgementLookup {
+    iidx: {
+        SP: IIDXJudges;
+        DP: IIDXJudges & {
+            foo: string;
+        };
+    };
+    bms: {
+        "7K": IIDXJudges;
+        "14K": IIDXJudges;
+        "5K": IIDXJudges;
+    };
+    museca: {
+        Single: "critical" | "near" | "miss";
+    };
+    ddr: {
+        SP: DDRJudges;
+        DP: DDRJudges;
+    };
+    sdvx: {
+        Single: SDVXJudges;
+    };
+    maimai: {
+        Single: "perfect" | "great" | "good" | "miss";
+    };
+    jubeat: {
+        Single: "perfect" | "great" | "good" | "bad" | "miss";
+    };
+    popn: {
+        "9B": "cool" | "great" | "good" | "miss";
+    };
+    chunithm: {
+        Single: "jcrit" | "justice" | "attack" | "miss";
+    };
+    gitadora: {
+        Gita: GitadoraJudges;
+        Dora: GitadoraJudges;
+    };
+    usc: {
+        Single: SDVXJudges;
+    };
+}
+export interface ScoreDocument<T extends Game, P extends Playtypes[T]> extends MongoDBDocument {
     service: string;
-    game: Game;
-    playtype: Playtypes[Game];
+    game: T;
+    playtype: P;
+    difficulty: Difficulties[T];
     userID: integer;
     scoreData: {
         score: number;
@@ -470,8 +585,8 @@ export interface ScoreDocument extends MongoDBDocument {
         lampIndex: integer;
         gradeIndex: integer;
         esd: number | null;
-        hitData: Record<string, integer>;
-        hitMeta: Record<string, unknown>;
+        hitData: Record<JudgementLookup[T][P], integer>;
+        hitMeta: Partial<HitMetaLookup[T][P]>;
     };
     scoreMeta: Record<string, unknown>;
     calculatedData: {
@@ -490,5 +605,8 @@ export interface ScoreDocument extends MongoDBDocument {
     isScorePB: boolean;
     isLampPB: boolean;
     scoreID: string;
+    importType: ImportTypes;
 }
+export declare type FileUploadImportTypes = "iidx:eamusement-csv";
+export declare type ImportTypes = FileUploadImportTypes;
 export {};

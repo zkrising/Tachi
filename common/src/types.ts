@@ -970,4 +970,5 @@ export type ImportProcessingInfo<G extends Game = Game, P extends Playtypes[G] =
     | ImportProcessInfoKTDataNotFound
     | ImportProcessInfoScoreExists
     | ImportProcessInfoScoreImported<G, P>
-    | ImportProcessInfoInvalidDatapoint;
+    | ImportProcessInfoInvalidDatapoint
+    | ImportProcessInfoInternalError;

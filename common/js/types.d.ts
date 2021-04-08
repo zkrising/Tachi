@@ -716,5 +716,5 @@ export interface ImportProcessInfoInternalError {
     message: string | null;
     content: Record<string, never>;
 }
-export declare type ImportProcessingInfo<G extends Game = Game, P extends Playtypes[G] = Playtypes[G]> = ImportProcessInfoKTDataNotFound | ImportProcessInfoScoreExists | ImportProcessInfoScoreImported<G, P> | ImportProcessInfoInvalidDatapoint;
+export declare type ImportProcessingInfo<G extends Game = Game, P extends Playtypes[G] = Playtypes[G]> = ImportProcessInfoKTDataNotFound | ImportProcessInfoScoreExists | ImportProcessInfoScoreImported<G, P> | ImportProcessInfoInvalidDatapoint | ImportProcessInfoInternalError;
 export {};

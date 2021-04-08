@@ -710,5 +710,11 @@ export interface ImportProcessInfoScoreImported<G extends Game = Game, P extends
         score: ScoreDocument<G, P>;
     };
 }
+export interface ImportProcessInfoInternalError {
+    success: false;
+    type: "InternalError";
+    message: string | null;
+    content: Record<string, never>;
+}
 export declare type ImportProcessingInfo<G extends Game = Game, P extends Playtypes[G] = Playtypes[G]> = ImportProcessInfoKTDataNotFound | ImportProcessInfoScoreExists | ImportProcessInfoScoreImported<G, P> | ImportProcessInfoInvalidDatapoint;
 export {};

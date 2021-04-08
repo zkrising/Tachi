@@ -959,6 +959,13 @@ export interface ImportProcessInfoScoreImported<
     };
 }
 
+export interface ImportProcessInfoInternalError {
+    success: false;
+    type: "InternalError";
+    message: string | null;
+    content: Record<string, never>;
+}
+
 export type ImportProcessingInfo<G extends Game = Game, P extends Playtypes[G] = Playtypes[G]> =
     | ImportProcessInfoKTDataNotFound
     | ImportProcessInfoScoreExists

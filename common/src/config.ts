@@ -1652,7 +1652,7 @@ const gamePercentMax = {
     usc: 100,
 };
 
-export default {
+export {
     supportedGames,
     gameOrders,
     internalServiceGames,

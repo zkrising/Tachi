@@ -4,6 +4,7 @@
 // of some of my first javascript code.
 // It's,, alright, but I like the versatility it brings.
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.humaniseGame = exports.supportsESD = exports.folderTables = exports.defaultTable = exports.clearGrade = exports.validScoreMeta = exports.AbsoluteScoreGradeDelta = exports.gamePercentMax = exports.defaultDifficulty = exports.gameSpecificCalcDescriptions = exports.DirectScoreGradeDelta = exports.FormatDifficulty = exports.expChartScale = exports.gameSpecificCalc = exports.boundaryHCF = exports.validHitMeta = exports.validHitData = exports.validDifficulties = exports.ChangeAlpha = exports.PercentToScore = exports.judgementWindows = exports.gameRelevantScoreBucket = exports.clearLamp = exports.validTierlistTiers = exports.gameColours = exports.judgeColours = exports.ScoreGradeDelta = exports.validPlaytypes = exports.ratingParameters = exports.gameHuman = exports.gradeBoundaries = exports.GetGrade = exports.gameChartIndicators = exports.defaultPlaytype = exports.serviceSupportedGames = exports.gradeColours = exports.lampColours = exports.lamps = exports.grades = exports.versionHuman = exports.internalServiceGames = exports.gameOrders = exports.supportedGames = void 0;
 const supportedGames = [
     "iidx",
     "museca",
@@ -17,6 +18,7 @@ const supportedGames = [
     "gitadora",
     "usc",
 ];
+exports.supportedGames = supportedGames;
 const serviceSupportedGames = {
     PLI: ["iidx"],
     ARC: ["iidx", "jubeat", "sdvx", "ddr"],
@@ -32,6 +34,7 @@ const serviceSupportedGames = {
     "DIRECT-MANUAL": supportedGames,
     MANUAL: supportedGames,
 };
+exports.serviceSupportedGames = serviceSupportedGames;
 // internal services are services that aren't exposed to the public
 // but still leverage ImportMain.
 const internalServiceGames = {
@@ -39,6 +42,7 @@ const internalServiceGames = {
     FER: ["iidx"],
     "ktchi-usc-IR": ["usc"],
 };
+exports.internalServiceGames = internalServiceGames;
 const gameSpecificCalc = {
     iidx: {
         SP: ["BPI", "K%"],
@@ -55,6 +59,7 @@ const gameSpecificCalc = {
         Single: ["VF4", "VF5"],
     },
 };
+exports.gameSpecificCalc = gameSpecificCalc;
 const gameSpecificCalcDescriptions = {
     iidx: {
         SP: {
@@ -86,6 +91,7 @@ const gameSpecificCalcDescriptions = {
         },
     },
 };
+exports.gameSpecificCalcDescriptions = gameSpecificCalcDescriptions;
 const validDifficulties = {
     iidx: ["BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
     museca: ["Green", "Yellow", "Red"],
@@ -108,6 +114,7 @@ const validDifficulties = {
     ],
     usc: ["NOV", "ADV", "EXH", "INF"],
 };
+exports.validDifficulties = validDifficulties;
 const defaultTable = {
     iidx: "Levels (N-1)",
     bms: "Insane",
@@ -121,6 +128,7 @@ const defaultTable = {
     usc: "Levels",
     maimai: "Levels",
 };
+exports.defaultTable = defaultTable;
 const folderTables = {
     iidx: ["Levels", "Levels (Omnimix)", "Levels (N-1)", "Levels (N-1 Omnimix)", "Versions"],
     bms: ["Normal", "Insane", "Overjoy", "Satellite", "Stella", "Insane 2", "Joverjoy"],
@@ -134,6 +142,7 @@ const folderTables = {
     usc: ["Levels", "Versions"],
     maimai: ["Levels", "Versions"],
 };
+exports.folderTables = folderTables;
 const validHitData = {
     iidx: ["pgreat", "great", "good", "bad", "poor"],
     bms: ["pgreat", "great", "good", "bad", "poor"],
@@ -147,6 +156,7 @@ const validHitData = {
     gitadora: ["perfect", "great", "good", "ok", "miss"],
     usc: ["critical", "near", "miss"],
 };
+exports.validHitData = validHitData;
 const BASE_VALID_HIT_META = ["fast", "slow", "maxCombo"];
 const validHitMeta = {
     iidx: ["bp", "gauge", "gaugeHistory", "comboBreak", ...BASE_VALID_HIT_META],
@@ -178,6 +188,7 @@ const validHitMeta = {
     gitadora: [...BASE_VALID_HIT_META],
     usc: ["gauge", ...BASE_VALID_HIT_META],
 };
+exports.validHitMeta = validHitMeta;
 const validScoreMeta = {
     iidx: {
         optionsRandom: ["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"],
@@ -240,6 +251,7 @@ const validScoreMeta = {
         gaugeMod: ["NORMAL", "HARD"],
     },
 };
+exports.validScoreMeta = validScoreMeta;
 const gameColours = {
     iidx: "#E7BDB3",
     museca: "#C9A4A0",
@@ -254,6 +266,7 @@ const gameColours = {
     chunithm: "#AE8094",
     usc: "#D6B7B1", // TODO
 };
+exports.gameColours = gameColours;
 const gameRelevantScoreBucket = {
     iidx: "lamp",
     museca: "grade",
@@ -268,6 +281,7 @@ const gameRelevantScoreBucket = {
     chunithm: "grade",
     usc: "grade",
 };
+exports.gameRelevantScoreBucket = gameRelevantScoreBucket;
 // human readable stuff for games
 const gameHuman = {
     iidx: "beatmania IIDX",
@@ -282,6 +296,7 @@ const gameHuman = {
     chunithm: "CHUNITHM",
     usc: "unnamed sdvx clone",
 };
+exports.gameHuman = gameHuman;
 // human readable stuff for versions
 const versionHuman = {
     iidx: {
@@ -429,6 +444,7 @@ const versionHuman = {
         0: "USC",
     },
 };
+exports.versionHuman = versionHuman;
 // release orders of the games.
 const gameOrders = {
     iidx: [
@@ -583,6 +599,7 @@ const gameOrders = {
     ],
     usc: ["0"],
 };
+exports.gameOrders = gameOrders;
 const defaultPlaytype = {
     iidx: "SP",
     museca: "Single",
@@ -596,6 +613,7 @@ const defaultPlaytype = {
     gitadora: "Dora",
     usc: "Single",
 };
+exports.defaultPlaytype = defaultPlaytype;
 const defaultDifficulty = {
     iidx: "ANOTHER",
     museca: "Red",
@@ -609,6 +627,7 @@ const defaultDifficulty = {
     gitadora: "MASTER",
     usc: "EXH",
 };
+exports.defaultDifficulty = defaultDifficulty;
 function humaniseGame(game, pt) {
     if (!pt) {
         return gameHuman[game];
@@ -618,6 +637,7 @@ function humaniseGame(game, pt) {
     }
     return `${gameHuman[game]} (${pt})`;
 }
+exports.humaniseGame = humaniseGame;
 // todo, maybe
 // const difficultyColours = {
 //     iidx: {
@@ -641,6 +661,7 @@ const validPlaytypes = {
     gitadora: ["Gita", "Dora"],
     usc: ["Single"],
 };
+exports.validPlaytypes = validPlaytypes;
 const validTierlistTiers = {
     iidx: ["clear", "hardclear", "exhardclear"],
     museca: ["clear"],
@@ -654,6 +675,7 @@ const validTierlistTiers = {
     gitadora: [],
     usc: ["clear", "excessiveclear"],
 };
+exports.validTierlistTiers = validTierlistTiers;
 // correct order for grades
 const grades = {
     iidx: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
@@ -685,6 +707,7 @@ const grades = {
     gitadora: ["C", "B", "A", "S", "SS", "MAX"],
     usc: ["D", "C", "B", "A", "A+", "AA", "AA+", "AAA", "AAA+", "S"],
 };
+exports.grades = grades;
 const gradeBoundaries = {
     iidx: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
     bms: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
@@ -700,6 +723,7 @@ const gradeBoundaries = {
     gitadora: [0, 63, 73, 80, 95, 100],
     usc: [0, 70, 80, 87, 90, 93, 95, 97, 98, 99],
 };
+exports.gradeBoundaries = gradeBoundaries;
 // these are to resolve some GARBAGE in chart.js
 const boundaryHCF = {
     iidx: 5.555,
@@ -714,6 +738,7 @@ const boundaryHCF = {
     gitadora: 1,
     usc: 1,
 };
+exports.boundaryHCF = boundaryHCF;
 const expChartScale = {
     iidx: 1,
     bms: 1,
@@ -727,6 +752,7 @@ const expChartScale = {
     chunithm: 4,
     gitadora: 3,
 };
+exports.expChartScale = expChartScale;
 // valid lamps for a game, and also in order.
 const lamps = {
     iidx: [
@@ -767,6 +793,7 @@ const lamps = {
     gitadora: ["FAILED", "CLEAR", "FULL COMBO", "EXCELLENT"],
     usc: ["FAILED", "CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"],
 };
+exports.lamps = lamps;
 // first lamp that is considered a "true clear" by the game.
 // laugh now, but who'll be laughing when some nerds at sega come up with a brand new
 // minimal clear grade called "SOFTER EASIER ASSIST CLEAR EPIC X3"
@@ -783,6 +810,7 @@ const clearLamp = {
     gitadora: "CLEAR",
     usc: "CLEAR",
 };
+exports.clearLamp = clearLamp;
 // minimum grade considered by the game (or kamaitachi) to be a clearing grade.
 const clearGrade = {
     iidx: "A",
@@ -797,6 +825,7 @@ const clearGrade = {
     gitadora: "A",
     usc: "A",
 };
+exports.clearGrade = clearGrade;
 const judgementWindows = {
     iidx: {
         SP: [
@@ -847,6 +876,7 @@ const judgementWindows = {
         ],
     },
 };
+exports.judgementWindows = judgementWindows;
 const COLOUR_SET = {
     gray: "rgba(105, 105, 105, 1)",
     maroon: "rgba(85, 17, 17, 1)",
@@ -1026,6 +1056,7 @@ const gradeColours = {
         },
     },
 };
+exports.gradeColours = gradeColours;
 const lampColours = {
     gitadora: {
         outline: {
@@ -1131,6 +1162,7 @@ const lampColours = {
         },
     },
 };
+exports.lampColours = lampColours;
 // ok
 // shoutouts to stack overflow
 // https://stackoverflow.com/questions/41993515/access-object-key-using-variable-in-typescript
@@ -1317,6 +1349,7 @@ const judgeColours = {
         },
     },
 };
+exports.judgeColours = judgeColours;
 const gameChartIndicators = {
     iidx: ["cn", "bss", "hcn", "hbss"],
     popn: ["holds"],
@@ -1330,6 +1363,7 @@ const gameChartIndicators = {
     chunithm: [],
     gitadora: [],
 };
+exports.gameChartIndicators = gameChartIndicators;
 function GetGrade(game, percent) {
     // THIS FOR LOOP IS ITERATING DOWNWARDS
     // JUST INCASE YOU DON'T ACTUALLY READ IT PROPERLY
@@ -1344,6 +1378,7 @@ function GetGrade(game, percent) {
     // idk what to write in this case so ur gonna get null and throw an error in my logs
     return null;
 }
+exports.GetGrade = GetGrade;
 const ratingParameters = {
     iidx: {
         failHarshnessMultiplier: 0.3,
@@ -1402,11 +1437,13 @@ const ratingParameters = {
         clearExpMultiplier: 1.1,
     },
 };
+exports.ratingParameters = ratingParameters;
 function ChangeAlpha(string, alpha) {
     let spl = string.split(",");
     spl[spl.length - 1] = `${alpha})`;
     return spl.join(",");
 }
+exports.ChangeAlpha = ChangeAlpha;
 function DirectScoreGradeDelta(game, score, percent, chart, delta) {
     let grade = GetGrade(game, percent);
     if (!grade) {
@@ -1420,6 +1457,7 @@ function DirectScoreGradeDelta(game, score, percent, chart, delta) {
     };
     return ScoreGradeDelta(game, scoreObj, chart, delta);
 }
+exports.DirectScoreGradeDelta = DirectScoreGradeDelta;
 const supportsESD = {
     iidx: true,
     museca: false,
@@ -1433,6 +1471,7 @@ const supportsESD = {
     sdvx: false,
     usc: false,
 };
+exports.supportsESD = supportsESD;
 function ScoreGradeDelta(game, score, chart, delta) {
     let nextGrade = grades[game][grades[game].indexOf(score.scoreData.grade) + delta];
     if (nextGrade) {
@@ -1461,6 +1500,7 @@ function ScoreGradeDelta(game, score, chart, delta) {
         return null;
     }
 }
+exports.ScoreGradeDelta = ScoreGradeDelta;
 function AbsoluteScoreGradeDelta(game, score, percent, absDelta) {
     let grade = grades[game][absDelta];
     if (grade) {
@@ -1492,6 +1532,7 @@ function AbsoluteScoreGradeDelta(game, score, percent, absDelta) {
         return null;
     }
 }
+exports.AbsoluteScoreGradeDelta = AbsoluteScoreGradeDelta;
 function CalculateScore(game, percent, chart) {
     let score = percent;
     if (game === "iidx" || game === "bms") {
@@ -1542,12 +1583,14 @@ function PercentToScore(percent, game, chartData) {
     }
     return eScore;
 }
+exports.PercentToScore = PercentToScore;
 function FormatDifficulty(chart, game) {
     if (validPlaytypes[game].length > 1) {
         return `${chart.playtype} ${chart.difficulty} ${chart.level}`;
     }
     return `${chart.difficulty}`;
 }
+exports.FormatDifficulty = FormatDifficulty;
 const gamePercentMax = {
     iidx: 100,
     ddr: 100,
@@ -1562,49 +1605,5 @@ const gamePercentMax = {
     maimaidx: 150,
     usc: 100,
 };
-exports.default = {
-    supportedGames,
-    gameOrders,
-    internalServiceGames,
-    versionHuman,
-    grades,
-    lamps,
-    lampColours,
-    gradeColours,
-    serviceSupportedGames,
-    defaultPlaytype,
-    gameChartIndicators,
-    GetGrade,
-    gradeBoundaries,
-    gameHuman,
-    ratingParameters,
-    validPlaytypes,
-    ScoreGradeDelta,
-    judgeColours,
-    gameColours,
-    validTierlistTiers,
-    clearLamp,
-    gameRelevantScoreBucket,
-    judgementWindows,
-    PercentToScore,
-    ChangeAlpha,
-    validDifficulties,
-    validHitData,
-    validHitMeta,
-    boundaryHCF,
-    gameSpecificCalc,
-    expChartScale,
-    FormatDifficulty,
-    DirectScoreGradeDelta,
-    gameSpecificCalcDescriptions,
-    defaultDifficulty,
-    gamePercentMax,
-    AbsoluteScoreGradeDelta,
-    validScoreMeta,
-    clearGrade,
-    defaultTable,
-    folderTables,
-    supportsESD,
-    humaniseGame,
-};
+exports.gamePercentMax = gamePercentMax;
 //# sourceMappingURL=config.js.map

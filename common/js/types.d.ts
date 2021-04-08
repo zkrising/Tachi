@@ -677,4 +677,38 @@ export interface ScoreDocument<G extends Game = Game, P extends Playtypes[G] = P
 }
 export declare type FileUploadImportTypes = "iidx:eamusement-csv";
 export declare type ImportTypes = FileUploadImportTypes;
+export interface ProcessResKTDataNotFound<D, C> {
+    success: false;
+    type: "KTDataNotFound";
+    message: string | null;
+    content: {
+        data: D;
+        context: C;
+    };
+}
+export interface ProcessResScoreExists {
+    success: false;
+    type: "ScoreExists";
+    message: string | null;
+    content: {
+        scoreID: string;
+    };
+}
+export interface ProcessResInvalidDatapoint {
+    success: false;
+    type: "InvalidDatapoint";
+    message: string | null;
+    content: {
+        field?: string;
+    };
+}
+export interface ProcessResSuccessful<G extends Game, P extends Playtypes[G]> {
+    success: true;
+    type: "ScoreImported";
+    message: string | null;
+    content: {
+        score: ScoreDocument<G, P>;
+    };
+}
+export declare type ProcessorResponse<G extends Game, P extends Playtypes[G]> = ProcessResKTDataNotFound<G, P> | ProcessResScoreExists | ProcessResSuccessful<G, P> | ProcessResInvalidDatapoint;
 export {};

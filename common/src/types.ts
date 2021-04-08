@@ -918,3 +918,46 @@ export type FileUploadImportTypes = "iidx:eamusement-csv";
 // | "any:batchmanual-json";
 
 export type ImportTypes = FileUploadImportTypes;
+
+export interface ProcessResKTDataNotFound<D, C> {
+    success: false;
+    type: "KTDataNotFound";
+    message: string | null;
+    content: {
+        data: D;
+        context: C;
+    };
+}
+
+export interface ProcessResScoreExists {
+    success: false;
+    type: "ScoreExists";
+    message: string | null;
+    content: {
+        scoreID: string;
+    };
+}
+
+export interface ProcessResInvalidDatapoint {
+    success: false;
+    type: "InvalidDatapoint";
+    message: string | null;
+    content: {
+        field?: string; // optional, and probably temp
+    };
+}
+
+export interface ProcessResSuccessful<G extends Game, P extends Playtypes[G]> {
+    success: true;
+    type: "ScoreImported";
+    message: string | null;
+    content: {
+        score: ScoreDocument<G, P>;
+    };
+}
+
+export type ProcessorResponse<G extends Game, P extends Playtypes[G]> =
+    | ProcessResKTDataNotFound<G, P>
+    | ProcessResScoreExists
+    | ProcessResSuccessful<G, P>
+    | ProcessResInvalidDatapoint;

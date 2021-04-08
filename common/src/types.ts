@@ -919,7 +919,7 @@ export type FileUploadImportTypes = "iidx:eamusement-csv";
 
 export type ImportTypes = FileUploadImportTypes;
 
-export interface ProcessResKTDataNotFound<D, C> {
+export interface ImportProcessInfoKTDataNotFound<D, C> {
     success: false;
     type: "KTDataNotFound";
     message: string | null;
@@ -929,7 +929,7 @@ export interface ProcessResKTDataNotFound<D, C> {
     };
 }
 
-export interface ProcessResScoreExists {
+export interface ImportProcessInfoScoreExists {
     success: false;
     type: "ScoreExists";
     message: string | null;
@@ -938,7 +938,7 @@ export interface ProcessResScoreExists {
     };
 }
 
-export interface ProcessResInvalidDatapoint {
+export interface ImportProcessInfoInvalidDatapoint {
     success: false;
     type: "InvalidDatapoint";
     message: string | null;
@@ -947,7 +947,7 @@ export interface ProcessResInvalidDatapoint {
     };
 }
 
-export interface ProcessResSuccessful<G extends Game, P extends Playtypes[G]> {
+export interface ImportProcessInfoScoreImported<G extends Game, P extends Playtypes[G]> {
     success: true;
     type: "ScoreImported";
     message: string | null;
@@ -956,8 +956,8 @@ export interface ProcessResSuccessful<G extends Game, P extends Playtypes[G]> {
     };
 }
 
-export type ProcessorResponse<G extends Game, P extends Playtypes[G]> =
-    | ProcessResKTDataNotFound<G, P>
-    | ProcessResScoreExists
-    | ProcessResSuccessful<G, P>
-    | ProcessResInvalidDatapoint;
+export type ImportProcessingInfo<G extends Game, P extends Playtypes[G]> =
+    | ImportProcessInfoKTDataNotFound<G, P>
+    | ImportProcessInfoScoreExists
+    | ImportProcessInfoScoreImported<G, P>
+    | ImportProcessInfoInvalidDatapoint;

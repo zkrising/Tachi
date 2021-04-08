@@ -4,7 +4,7 @@
 // of some of my first javascript code.
 // It's,, alright, but I like the versatility it brings.
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.humaniseGame = exports.supportsESD = exports.folderTables = exports.defaultTable = exports.clearGrade = exports.validScoreMeta = exports.AbsoluteScoreGradeDelta = exports.gamePercentMax = exports.defaultDifficulty = exports.gameSpecificCalcDescriptions = exports.DirectScoreGradeDelta = exports.FormatDifficulty = exports.expChartScale = exports.gameSpecificCalc = exports.boundaryHCF = exports.validHitMeta = exports.validHitData = exports.validDifficulties = exports.ChangeAlpha = exports.PercentToScore = exports.judgementWindows = exports.gameRelevantScoreBucket = exports.clearLamp = exports.validTierlistTiers = exports.gameColours = exports.judgeColours = exports.ScoreGradeDelta = exports.validPlaytypes = exports.ratingParameters = exports.gameHuman = exports.gradeBoundaries = exports.GetGrade = exports.gameChartIndicators = exports.defaultPlaytype = exports.serviceSupportedGames = exports.gradeColours = exports.lampColours = exports.lamps = exports.grades = exports.versionHuman = exports.internalServiceGames = exports.gameOrders = exports.supportedGames = void 0;
+exports.humaniseGame = exports.supportsESD = exports.folderTables = exports.defaultTable = exports.clearGrade = exports.validScoreMeta = exports.AbsoluteScoreGradeDelta = exports.gamePercentMax = exports.defaultDifficulty = exports.gameSpecificCalcDescriptions = exports.DirectScoreGradeDelta = exports.FormatDifficulty = exports.expChartScale = exports.gameSpecificCalc = exports.boundaryHCF = exports.validHitMeta = exports.validHitData = exports.validDifficulties = exports.ChangeAlpha = exports.PercentToScore = exports.judgementWindows = exports.gameRelevantScoreBucket = exports.clearLamp = exports.gameColours = exports.judgeColours = exports.ScoreGradeDelta = exports.validPlaytypes = exports.ratingParameters = exports.gameHuman = exports.gradeBoundaries = exports.GetGrade = exports.gameChartIndicators = exports.defaultPlaytype = exports.gradeColours = exports.lampColours = exports.lamps = exports.grades = exports.versionHuman = exports.gameOrders = exports.supportedGames = void 0;
 const supportedGames = [
     "iidx",
     "museca",
@@ -19,30 +19,6 @@ const supportedGames = [
     "usc",
 ];
 exports.supportedGames = supportedGames;
-const serviceSupportedGames = {
-    PLI: ["iidx"],
-    ARC: ["iidx", "jubeat", "sdvx", "ddr"],
-    FLO: ["iidx"],
-    EAG: ["iidx"],
-    "e-amusement": ["iidx"],
-    LR2: ["bms"],
-    beatoraja: ["bms"],
-    MER: ["iidx"],
-    SSS: ["iidx"],
-    MaimaiNet: ["maimai"],
-    "BATCH-MANUAL": supportedGames,
-    "DIRECT-MANUAL": supportedGames,
-    MANUAL: supportedGames,
-};
-exports.serviceSupportedGames = serviceSupportedGames;
-// internal services are services that aren't exposed to the public
-// but still leverage ImportMain.
-const internalServiceGames = {
-    "ktchi-beatoraja-IR": ["bms"],
-    FER: ["iidx"],
-    "ktchi-usc-IR": ["usc"],
-};
-exports.internalServiceGames = internalServiceGames;
 const gameSpecificCalc = {
     iidx: {
         SP: ["BPI", "K%"],
@@ -662,20 +638,6 @@ const validPlaytypes = {
     usc: ["Single"],
 };
 exports.validPlaytypes = validPlaytypes;
-const validTierlistTiers = {
-    iidx: ["clear", "hardclear", "exhardclear"],
-    museca: ["clear"],
-    maimai: [],
-    jubeat: [],
-    popn: [],
-    sdvx: ["clear", "excessiveclear"],
-    ddr: ["clear", "perfectfullcombo"],
-    bms: ["easyclear", "clear", "hardclear", "fullcombo"],
-    chunithm: [],
-    gitadora: [],
-    usc: ["clear", "excessiveclear"],
-};
-exports.validTierlistTiers = validTierlistTiers;
 // correct order for grades
 const grades = {
     iidx: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],

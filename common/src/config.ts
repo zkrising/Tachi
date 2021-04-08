@@ -19,30 +19,6 @@ const supportedGames: Game[] = [
     "usc",
 ];
 
-const serviceSupportedGames: Record<string, Game[]> = {
-    PLI: ["iidx"],
-    ARC: ["iidx", "jubeat", "sdvx", "ddr"], // PERFECT!
-    FLO: ["iidx"],
-    EAG: ["iidx"],
-    "e-amusement": ["iidx"],
-    LR2: ["bms"],
-    beatoraja: ["bms"],
-    MER: ["iidx"],
-    SSS: ["iidx"],
-    MaimaiNet: ["maimai"],
-    "BATCH-MANUAL": supportedGames,
-    "DIRECT-MANUAL": supportedGames,
-    MANUAL: supportedGames,
-};
-
-// internal services are services that aren't exposed to the public
-// but still leverage ImportMain.
-const internalServiceGames: Record<string, Game[]> = {
-    "ktchi-beatoraja-IR": ["bms"],
-    FER: ["iidx"],
-    "ktchi-usc-IR": ["usc"],
-};
-
 const gameSpecificCalc: Partial<Record<Game, Partial<Record<Playtypes[Game], string[]>>>> = {
     iidx: {
         SP: ["BPI", "K%"],
@@ -665,20 +641,6 @@ const validPlaytypes: Record<Game, Playtypes[Game][]> = {
     chunithm: ["Single"],
     gitadora: ["Gita", "Dora"],
     usc: ["Single"],
-};
-
-const validTierlistTiers: Record<Game, string[]> = {
-    iidx: ["clear", "hardclear", "exhardclear"],
-    museca: ["clear"],
-    maimai: [],
-    jubeat: [],
-    popn: [],
-    sdvx: ["clear", "excessiveclear"],
-    ddr: ["clear", "perfectfullcombo"],
-    bms: ["easyclear", "clear", "hardclear", "fullcombo"],
-    chunithm: [],
-    gitadora: [],
-    usc: ["clear", "excessiveclear"],
 };
 
 // correct order for grades
@@ -1655,13 +1617,11 @@ const gamePercentMax = {
 export {
     supportedGames,
     gameOrders,
-    internalServiceGames,
     versionHuman,
     grades,
     lamps,
     lampColours,
     gradeColours,
-    serviceSupportedGames,
     defaultPlaytype,
     gameChartIndicators,
     GetGrade,
@@ -1672,7 +1632,6 @@ export {
     ScoreGradeDelta,
     judgeColours,
     gameColours,
-    validTierlistTiers,
     clearLamp,
     gameRelevantScoreBucket,
     judgementWindows,

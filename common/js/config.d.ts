@@ -1,7 +1,5 @@
 import { Game, Playtypes, ChartDocument } from "./types";
 declare const supportedGames: Game[];
-declare const serviceSupportedGames: Record<string, Game[]>;
-declare const internalServiceGames: Record<string, Game[]>;
 declare const gameSpecificCalc: Partial<Record<Game, Partial<Record<Playtypes[Game], string[]>>>>;
 declare const gameSpecificCalcDescriptions: {
     iidx: {
@@ -61,7 +59,6 @@ declare const defaultPlaytype: Record<Game, Playtypes[Game]>;
 declare const defaultDifficulty: Record<Game, string>;
 declare function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]): string;
 declare const validPlaytypes: Record<Game, Playtypes[Game][]>;
-declare const validTierlistTiers: Record<Game, string[]>;
 declare const grades: Record<Game, string[]>;
 declare const gradeBoundaries: Record<Game, number[]>;
 declare const boundaryHCF: Record<Game, number>;
@@ -399,4 +396,4 @@ declare const gamePercentMax: {
     maimaidx: number;
     usc: number;
 };
-export { supportedGames, gameOrders, internalServiceGames, versionHuman, grades, lamps, lampColours, gradeColours, serviceSupportedGames, defaultPlaytype, gameChartIndicators, GetGrade, gradeBoundaries, gameHuman, ratingParameters, validPlaytypes, ScoreGradeDelta, judgeColours, gameColours, validTierlistTiers, clearLamp, gameRelevantScoreBucket, judgementWindows, PercentToScore, ChangeAlpha, validDifficulties, validHitData, validHitMeta, boundaryHCF, gameSpecificCalc, expChartScale, FormatDifficulty, DirectScoreGradeDelta, gameSpecificCalcDescriptions, defaultDifficulty, gamePercentMax, AbsoluteScoreGradeDelta, validScoreMeta, clearGrade, defaultTable, folderTables, supportsESD, humaniseGame, };
+export { supportedGames, gameOrders, versionHuman, grades, lamps, lampColours, gradeColours, defaultPlaytype, gameChartIndicators, GetGrade, gradeBoundaries, gameHuman, ratingParameters, validPlaytypes, ScoreGradeDelta, judgeColours, gameColours, clearLamp, gameRelevantScoreBucket, judgementWindows, PercentToScore, ChangeAlpha, validDifficulties, validHitData, validHitMeta, boundaryHCF, gameSpecificCalc, expChartScale, FormatDifficulty, DirectScoreGradeDelta, gameSpecificCalcDescriptions, defaultDifficulty, gamePercentMax, AbsoluteScoreGradeDelta, validScoreMeta, clearGrade, defaultTable, folderTables, supportsESD, humaniseGame, };

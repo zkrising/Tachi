@@ -677,13 +677,13 @@ export interface ScoreDocument<G extends Game = Game, P extends Playtypes[G] = P
 }
 export declare type FileUploadImportTypes = "iidx:eamusement-csv";
 export declare type ImportTypes = FileUploadImportTypes;
-export interface ImportProcessInfoKTDataNotFound<D, C> {
+export interface ImportProcessInfoKTDataNotFound {
     success: false;
     type: "KTDataNotFound";
     message: string | null;
     content: {
-        data: D;
-        context: C;
+        data: unknown;
+        context: unknown;
     };
 }
 export interface ImportProcessInfoScoreExists {
@@ -702,7 +702,7 @@ export interface ImportProcessInfoInvalidDatapoint {
         field?: string;
     };
 }
-export interface ImportProcessInfoScoreImported<G extends Game, P extends Playtypes[G]> {
+export interface ImportProcessInfoScoreImported<G extends Game = Game, P extends Playtypes[G] = Playtypes[G]> {
     success: true;
     type: "ScoreImported";
     message: string | null;
@@ -710,5 +710,5 @@ export interface ImportProcessInfoScoreImported<G extends Game, P extends Playty
         score: ScoreDocument<G, P>;
     };
 }
-export declare type ImportProcessingInfo<G extends Game, P extends Playtypes[G]> = ImportProcessInfoKTDataNotFound<G, P> | ImportProcessInfoScoreExists | ImportProcessInfoScoreImported<G, P> | ImportProcessInfoInvalidDatapoint;
+export declare type ImportProcessingInfo<G extends Game = Game, P extends Playtypes[G] = Playtypes[G]> = ImportProcessInfoKTDataNotFound | ImportProcessInfoScoreExists | ImportProcessInfoScoreImported<G, P> | ImportProcessInfoInvalidDatapoint;
 export {};

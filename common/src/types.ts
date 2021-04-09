@@ -690,6 +690,44 @@ export interface TierlistDataDocument<
     chartID: string;
 }
 
+interface TierlistPermissions {
+    edit: boolean;
+    submit: boolean;
+    vote: boolean;
+}
+
+export interface TierlistV2Parent<F extends string, G extends Game = Game> extends MongoDBDocument {
+    game: G;
+    playtype: Playtypes[G];
+    name: string;
+    isDefault: boolean;
+    tierlistID: string;
+    createdBy: integer;
+    createdAt: number;
+    permissions: Record<integer, TierlistPermissions> & { anyPlayer: TierlistPermissions };
+    description: string;
+    lastUpdated: number;
+    config: {
+        autoHumanise: boolean;
+        flags: F[];
+    };
+}
+
+export interface TierlistV2DataDocument<F extends string> extends MongoDBDocument {
+    chartID: string;
+    tierlistID: string;
+    type: "grade" | "lamp" | "score";
+    data: {
+        key: string;
+        value: number;
+        humanised: string;
+        flags: {
+            [flag in F]: boolean;
+        };
+    };
+    tierlistDataID: string; // used to xref changelog data
+}
+
 export interface SongDocument extends MongoDBDocument {
     id: integer;
     title: string;

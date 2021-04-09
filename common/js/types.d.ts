@@ -438,9 +438,9 @@ export interface PublicAPIKeyDocument extends MongoDBDocument {
     apiKey: string;
     permissions: PublicAPIPermissions;
 }
-export interface BetaKeyDocument extends MongoDBDocument {
+export interface InviteCodeDocument extends MongoDBDocument {
     createdBy: integer;
-    betakey: string;
+    code: string;
     createdOn: integer;
     consumed: boolean;
 }

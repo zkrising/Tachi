@@ -1,7 +1,7 @@
 import ParseEamusementCSV from "../../import-types/iidx-eamusement-csv/parser";
-import createLogCtx from "../../logger";
-import { SupportedFileUploads } from "../../types";
+import createLogCtx from "../../../logger";
 import ScoreImportFatalError from "../core/score-import-error";
+import { FileUploadImportTypes } from "kamaitachi-common";
 
 const logger = createLogCtx("file-upload.ts");
 
@@ -16,7 +16,7 @@ const logger = createLogCtx("file-upload.ts");
  * @param body - Other data passed by the user in the request body.
  */
 export async function ResolveFileUploadData(
-    importType: SupportedFileUploads,
+    importType: FileUploadImportTypes,
     fileData: Express.Multer.File,
     body: Record<string, unknown>
 ) {

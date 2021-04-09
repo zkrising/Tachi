@@ -1,14 +1,12 @@
-import { config, Game, Grades, IDString, IDStrings, Playtypes } from "kamaitachi-common";
+import { config, Game, Grades, IDStrings } from "kamaitachi-common";
 
 /**
  * Util for getting a games' grade for a given percent.
  */
-export function GetGradeFromPercent<
-    G extends Game,
-    P extends Playtypes[G],
-    // @ts-expect-error General IDStr error
-    I extends IDStrings = IDString<G, P>
->(game: G, playtype: Playtypes[G], percent: number): Grades[I] | null {
+export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
+    game: Game,
+    percent: number
+): Grades[I] | null {
     // @todo update config to use game->pt
     const boundaries = config.gradeBoundaries[game];
     const grades = config.grades[game];

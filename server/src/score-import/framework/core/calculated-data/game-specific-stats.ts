@@ -101,7 +101,7 @@ export function CalculateBPI(
  * @returns Null, if this chart has no kaidens, a percent between 0 and 100, if there are.
  */
 export async function KaidenPercentile(scoreObj: DryScore, chartData: ChartDocument) {
-    let scoreCount = await db.get("iidx-eam-scores").count({
+    let scoreCount = await db["iidx-eam-scores"].count({
         chartID: chartData.chartID,
     });
 
@@ -109,7 +109,7 @@ export async function KaidenPercentile(scoreObj: DryScore, chartData: ChartDocum
         return null;
     }
 
-    let worseScores = await db.get("iidx-eam-scores").count({
+    let worseScores = await db["iidx-eam-scores"].count({
         chartID: chartData.chartID,
         score: { $lt: scoreObj.scoreData.score },
     });
@@ -199,8 +199,8 @@ const VF5LampCoefficients = {
 };
 
 export function CalculateVF4(
-    dryScore: DryScore<"sdvx", "Single">,
-    chartData: ChartDocument<"sdvx">
+    dryScore: DryScore<"sdvx", "Single", "sdvx:Single">,
+    chartData: ChartDocument
 ) {
     const multiplier = 25;
     let level = chartData.levelNum;
@@ -226,8 +226,8 @@ export function CalculateVF4(
 // this formula is allegedly tentative according to bemaniwiki.
 // idk if it's right, but it must be close enough.
 export function CalculateVF5(
-    dryScore: DryScore<"sdvx", "Single">,
-    chartData: ChartDocument<"sdvx">
+    dryScore: DryScore<"sdvx", "Single", "sdvx:Single">,
+    chartData: ChartDocument
 ) {
     let level = chartData.levelNum;
 

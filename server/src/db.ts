@@ -6,6 +6,7 @@ import {
     Game,
     GoalDocument,
     IIDXBPIData,
+    IIDXEamusementScoreDocument,
     ImportDocument,
     InviteCodeDocument,
     MilestoneDocument,
@@ -17,9 +18,8 @@ import {
     SongDocument,
     UserGoalDocument,
     UserMilestoneDocument,
-    ValidDatabases,
 } from "kamaitachi-common";
-import monk, { ICollection, IMonkManager } from "monk";
+import monk, { ICollection } from "monk";
 import createLogCtx from "./logger";
 
 const logger = createLogCtx("db.ts");
@@ -67,6 +67,7 @@ const StaticCollections = {
     "public-api-keys": monkDB.get<PublicAPIKeyDocument>("public-api-keys"),
     invites: monkDB.get<InviteCodeDocument>("invites"),
     counters: monkDB.get<CounterDocument>("counters"),
+    "iidx-eam-scores": monkDB.get<IIDXEamusementScoreDocument>("iidx-eam-scores"),
 };
 
 type GameCollections = Record<Game, ICollection>;

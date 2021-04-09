@@ -1,4 +1,4 @@
-import { Game, SongDocument } from "kamaitachi-common";
+import { Game } from "kamaitachi-common";
 import db from "../../db";
 
 /**

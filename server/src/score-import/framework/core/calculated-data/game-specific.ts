@@ -47,12 +47,12 @@ export async function CreateGameSpecific<G extends Game>(
         }
     } else if (game === "sdvx") {
         gameSpecific.VF4 = CalculateVF4(
-            dryScore as DryScore<"sdvx">,
-            chart as ChartDocument<"sdvx">
+            dryScore as DryScore<"sdvx", "Single", "sdvx:Single">,
+            chart as ChartDocument
         );
         gameSpecific.VF5 = CalculateVF5(
-            dryScore as DryScore<"sdvx">,
-            chart as ChartDocument<"sdvx">
+            dryScore as DryScore<"sdvx", "Single", "sdvx:Single">,
+            chart as ChartDocument
         );
     } else if (game === "ddr") {
         // either playtype

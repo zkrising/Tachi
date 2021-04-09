@@ -1,6 +1,7 @@
 import {
     ChartDocument,
     Game,
+    IDStrings,
     ImportTypes,
     Playtypes,
     ScoreDocument,
@@ -68,11 +69,15 @@ export interface ParserFunctionReturnsAsync<D, C> {
  * An intermediate score format that will be filled out by
  * HydrateScore.
  */
-export type DryScore<G extends Game = Game, P extends Playtypes[G] = Playtypes[G]> = Pick<
-    ScoreDocument<G, P>,
+export type DryScore<
+    G extends Game = Game,
+    P extends Playtypes[G] = Playtypes[G],
+    I extends IDStrings = IDStrings
+> = Pick<
+    ScoreDocument<G, P, I>,
     "service" | "game" | "scoreMeta" | "timeAchieved" | "comment" | "importType"
 > & {
-    scoreData: Omit<ScoreDocument<G, P>["scoreData"], "gradeIndex" | "lampIndex">;
+    scoreData: Omit<ScoreDocument<G, P, I>["scoreData"], "gradeIndex" | "lampIndex">;
 };
 
 export interface ScoreConverterInformation<D, C> {

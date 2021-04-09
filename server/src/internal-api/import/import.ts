@@ -1,4 +1,5 @@
 import { Router, NextFunction, Request, Response } from "express";
+import { FileUploadImportTypes } from "kamaitachi-common";
 import multer, { MulterError } from "multer";
 import Prudence from "prudence";
 import createLogCtx from "../../logger";
@@ -7,7 +8,6 @@ import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/core/score-import-error";
 import { ResolveFileUploadData } from "../../score-import/framework/parsing/file-upload";
 import serverConfig from "../../server-config";
-import { SupportedFileUploads } from "../../types";
 
 const logger = createLogCtx("import.ts");
 
@@ -18,7 +18,7 @@ const upload = multer({ limits: { fileSize: 1024 * 1024 * 16 } }); // basically 
 const uploadMW = upload.single("scoreData");
 
 const parseMultipartScoredata = (req: Request, res: Response, next: NextFunction) => {
-    uploadMW(req, res, (err) => {
+    uploadMW(req, res, (err: unknown) => {
         if (err instanceof MulterError) {
             logger.error(`Multer Error.`, { err });
             return res.status(400).json({
@@ -58,7 +58,7 @@ router.post(
 
         try {
             let converterInfo = await ResolveFileUploadData(
-                req.body.importType as SupportedFileUploads,
+                req.body.importType as FileUploadImportTypes,
                 req.file,
                 req.body
             );

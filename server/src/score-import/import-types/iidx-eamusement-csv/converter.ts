@@ -91,7 +91,7 @@ async function EamScoreConverter(
     }
 
     const percent = eamScore.exscore / ktchiChart.notedata.notecount;
-    const grade = GetGradeFromPercent("iidx", context.playtype, percent);
+    const grade = GetGradeFromPercent<"iidx:SP" | "iidx:DP">("iidx", percent);
 
     if (!grade) {
         throw new InternalFailure(
@@ -128,7 +128,7 @@ async function EamScoreConverter(
         timestamp = Date.parse(data.timestamp);
     }
 
-    let dryScore: DryScore<"iidx", typeof context.playtype> = {
+    let dryScore: DryScore<"iidx", typeof context.playtype, "iidx:SP" | "iidx:DP"> = {
         service: context.serviceOrigin,
         comment: null,
         game: "iidx",

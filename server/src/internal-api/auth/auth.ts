@@ -1,10 +1,8 @@
-import { request, Router } from "express";
-import { BetaKeyDocument, PublicAPIKeyDocument } from "kamaitachi-common";
+import { Router } from "express";
 import Prudence from "prudence";
 import {
     AddNewUser,
     AddNewUserAPIKey,
-    CreateAPIKey,
     PasswordCompare,
     ReinstateInvite,
     ValidatePassword,

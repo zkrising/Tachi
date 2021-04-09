@@ -640,6 +640,13 @@ export interface PublicAPIRequestDocument extends MongoDBDocument {
     ip: string;
 }
 
+export interface IIDXEamusementScoreDocument extends MongoDBDocument {
+    chartID: string;
+    lamp: Lamps["iidx:SP" | "iidx:DP"];
+    score: integer;
+    ranking: integer;
+}
+
 export interface ChartDocument<
     G extends Game = Game,
     P extends Playtypes[G] = Playtypes[G],

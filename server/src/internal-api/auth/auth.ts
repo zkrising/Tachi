@@ -18,6 +18,7 @@ import {
 import db from "../../db";
 import createLogCtx from "../../logger";
 import prValidate from "../../middleware/prudence-validate";
+import { RequireLoggedIn } from "../../middleware/require-logged-in";
 
 const logger = createLogCtx("auth.ts");
 
@@ -261,14 +262,7 @@ router.post(
  * Logs out the requesting user.
  * @name /internal-api/auth/logout
  */
-router.post("/logout", (req, res) => {
-    if (!req.session.ktchi?.userID) {
-        return res.status(400).json({
-            success: false,
-            description: `Unable to log out - you are not logged in as anyone!`,
-        });
-    }
-
+router.post("/logout", RequireLoggedIn, (req, res) => {
     req.session.destroy(() => 0);
     res.clearCookie("apikey");
 

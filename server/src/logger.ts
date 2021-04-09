@@ -66,8 +66,6 @@ const logger = winston.createLogger({
     transports: tports,
 });
 
-export { logger };
-
 function createLogCtx(context: string) {
     return logger.child({ context });
 }

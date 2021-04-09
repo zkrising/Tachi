@@ -1,17 +1,28 @@
-import { ImportDocument, PublicUserDocument } from "kamaitachi-common";
-import createLogCtx from "../../logger";
+import {
+    IDStrings,
+    ImportDocument,
+    ImportTypes,
+    KTBlackImportDocument,
+    PublicUserDocument,
+} from "kamaitachi-common";
+import createLogCtx, { createScoreLogger } from "../../logger";
 import { ConverterFunction } from "../../types";
 import { InsertQueue } from "./core/insert-score";
 import { ProcessIterableData } from "./processing/score-processor";
-
-const logger = createLogCtx("score-import-main.ts");
+import crypto from "crypto";
 
 export default async function ScoreImportMain<D, C>(
     user: PublicUserDocument,
+    importType: ImportTypes,
+    idStrings: IDStrings[],
     iterableData: Iterable<D> | AsyncIterable<D>,
     ConverterFunction: ConverterFunction<D, C>,
     context: C
 ) {
+    const importID = crypto.randomBytes(20).toString("hex");
+
+    const logger = createScoreLogger(user, importID);
+
     // @todo: scope logger properly
     logger.verbose("Received import request.");
 
@@ -27,7 +38,8 @@ export default async function ScoreImportMain<D, C>(
     // @todo
 
     // Create import document
-    const ImportDocument:  = {
-
-    }
+    const ImportDocument: KTBlackImportDocument = {
+        importType,
+        idStrings: idStrings,
+    };
 }

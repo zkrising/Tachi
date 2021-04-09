@@ -56,7 +56,7 @@ const logger = winston.createLogger({
     levels: {
         crit: 0, // entire process termination is necessary
         error: 1, // function call (or related process) has failed unexpectedly
-        warn: 2, // function call has hit something it didn't expect, but can recover
+        warn: 2, // function call has hit something it didn't want, but can recover
         info: 3, // something has happened that is expected, but worth logging
         verbose: 4, // something has happened
         debug: 5, // glorified console.log debugging

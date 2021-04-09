@@ -27,7 +27,7 @@ export default async function ScoreImportMain<D, C>(
     // @todo
 
     // Create import document
-    const ImportDocument: ImportDocument = {
-        
+    const ImportDocument:  = {
+
     }
 }

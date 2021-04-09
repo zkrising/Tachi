@@ -308,6 +308,14 @@ export interface ImportDocument extends MongoDBDocument {
     timeTaken: number;
     msPerScore: number;
 }
+export interface KTBlackImportDocument extends MongoDBDocument {
+    userID: integer;
+    timeStarted: number;
+    timeFinished: number;
+    idStrings: IDStrings[];
+    importID: string;
+    importInfo: ImportProcessingInfo[];
+}
 export interface UserGoalDocument extends MongoDBDocument {
     goalID: string;
     userID: integer;

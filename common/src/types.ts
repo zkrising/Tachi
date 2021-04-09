@@ -445,6 +445,17 @@ export interface ImportDocument extends MongoDBDocument {
     msPerScore: number;
 }
 
+export interface KTBlackImportDocument extends MongoDBDocument {
+    userID: integer;
+    timeStarted: number;
+    timeFinished: number;
+    // Contains an array of IDStrings, which dictates what (game:playtype)s were involved in this import.
+    idStrings: IDStrings[];
+    importID: string;
+    importInfo: ImportProcessingInfo[];
+    importType: ImportTypes;
+}
+
 export interface UserGoalDocument extends MongoDBDocument {
     goalID: string;
     userID: integer;

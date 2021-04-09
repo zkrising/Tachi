@@ -315,6 +315,7 @@ export interface KTBlackImportDocument extends MongoDBDocument {
     idStrings: IDStrings[];
     importID: string;
     importInfo: ImportProcessingInfo[];
+    importType: ImportTypes;
 }
 export interface UserGoalDocument extends MongoDBDocument {
     goalID: string;

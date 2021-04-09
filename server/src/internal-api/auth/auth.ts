@@ -6,7 +6,7 @@ import {
     AddNewUserAPIKey,
     CreateAPIKey,
     PasswordCompare,
-    ReinstateBetakey,
+    ReinstateInvite,
     ValidatePassword,
 } from "../../core/auth-core";
 import { ValidateCaptcha } from "../../core/captcha-core";
@@ -98,7 +98,7 @@ router.post(
 
         // username and password match up, we're good to check onwards
 
-        let apiKeyDoc = await db.get<PublicAPIKeyDocument>("public-api-keys").findOne({
+        let apiKeyDoc = await db["public-api-keys"].findOne({
             assignedTo: requestedUser.id,
             "permissions.selfkey": true,
         });
@@ -159,14 +159,14 @@ router.post(
             username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/),
             password: ValidatePassword,
             email: Prudence.regex(LAZY_EMAIL_REGEX),
-            betakey: "string",
+            inviteCode: "string",
             captcha: "string",
         },
         {
             username:
                 "Usernames must be between 3 and 20 characters long, and can only contain alphanumeric characters!",
             email: "Invalid email.",
-            betakey: "Invalid beta key.",
+            inviteCode: "Invalid invite code.",
             captcha: "Please fill out the captcha.",
         }
     ),
@@ -200,9 +200,9 @@ router.post(
             });
         }
 
-        let bkeyDoc = await db.get<BetaKeyDocument>("betakeys").findOneAndUpdate(
+        let inviteCodeDoc = await db.invites.findOneAndUpdate(
             {
-                betakey: req.body.betakey,
+                code: req.body.inviteCode,
                 consumed: false,
             },
             {
@@ -212,15 +212,15 @@ router.post(
             }
         );
 
-        if (!bkeyDoc) {
-            logger.info(`Invalid betakey given: ${req.body.betakey}.`);
+        if (!inviteCodeDoc) {
+            logger.info(`Invalid invite code given: ${req.body.inviteCode}.`);
             return res.status(401).json({
                 success: false,
-                description: `This beta key is not valid.`,
+                description: `This invite code is not valid.`,
             });
         }
 
-        logger.info(`Consumed betakey ${bkeyDoc.betakey}.`);
+        logger.info(`Consumed invite ${inviteCodeDoc.code}.`);
 
         // if we get to this point, We're good to create the user.
 
@@ -231,7 +231,7 @@ router.post(
                 `Bailed on user creation ${req.body.username} with betakey ${req.body.betakey}.`
             );
 
-            await ReinstateBetakey(bkeyDoc);
+            await ReinstateInvite(inviteCodeDoc);
 
             throw new Error("FATAL in /register - User was created, but refused?");
         }
@@ -243,7 +243,7 @@ router.post(
                 `Bailed on user creation ${req.body.username} with betakey ${req.body.betakey}`
             );
 
-            await ReinstateBetakey(bkeyDoc);
+            await ReinstateInvite(inviteCodeDoc);
             throw new Error("FATAL in /register - apikey was created, but refused?");
         }
 

@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import bcrypt from "bcrypt";
 import {
-    BetaKeyDocument,
+    InviteCodeDocument,
     PrivateUserDocument,
     PublicAPIKeyDocument,
     PublicUserDocument,
@@ -28,7 +28,7 @@ export function CreateAPIKey(): string {
  * you know, not do that.
  * @returns A string
  */
-export function CreateBetaKey(): string {
+export function CreateInviteCode(): string {
     return crypto.randomBytes(20).toString("hex");
 }
 
@@ -56,14 +56,14 @@ export function AddNewUserAPIKey(
         },
     };
 
-    return db.get<PublicAPIKeyDocument>("public-api-keys").insert(publicApiKeyDoc);
+    return db["public-api-keys"].insert(publicApiKeyDoc);
 }
 
-export function ReinstateBetakey(bkDoc: BetaKeyDocument) {
-    logger.info(`Reinstated beta key ${bkDoc.betakey}`);
-    return db.get<BetaKeyDocument>("betakeys").update(
+export function ReinstateInvite(inviteDoc: InviteCodeDocument) {
+    logger.info(`Reinstated Invite ${inviteDoc.code}`);
+    return db.invites.update(
         {
-            _id: bkDoc._id,
+            _id: inviteDoc._id,
         },
         {
             $set: {
@@ -73,29 +73,29 @@ export function ReinstateBetakey(bkDoc: BetaKeyDocument) {
     );
 }
 
-export async function AddNewBetakey(user: PublicUserDocument) {
+export async function AddNewInvite(user: PublicUserDocument) {
     // beta keys are shorter strings, and it's possible for them to be collided
-    let betakey = CreateBetaKey();
+    let code = CreateInviteCode();
 
-    let result = await db.get<BetaKeyDocument>("betakeys").insert({
-        betakey,
+    let result = await db.invites.insert({
+        code,
         consumed: false,
         createdBy: user.id,
         createdOn: Date.now(),
     });
 
-    logger.info(`User ${FormatUserDoc(user)} created a beta key.`);
+    logger.info(`User ${FormatUserDoc(user)} created an invite.`);
 
     if (!result) {
         logger.error(
             `Fatal error in creating ${FormatUserDoc(
                 user
-            )}'s beta key. Database refused key ${betakey}.`
+            )}'s invite code. Database refused key ${code}.`
         );
         throw new Error(
             `Fatal error in creating ${FormatUserDoc(
                 user
-            )}'s beta key. Database refused key ${betakey}.`
+            )}'s invite code. Database refused key ${code}.`
         );
     }
 
@@ -137,5 +137,5 @@ export async function AddNewUser(
         },
     };
 
-    return db.get<PrivateUserDocument>("users").insert(userDoc);
+    return db.users.insert(userDoc);
 }

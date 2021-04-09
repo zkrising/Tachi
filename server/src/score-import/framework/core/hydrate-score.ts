@@ -1,5 +1,6 @@
 import { ChartDocument, config, integer, ScoreDocument, SongDocument } from "kamaitachi-common";
 import { DryScore } from "../../../types";
+import { CreateCalculatedData } from "./calculated-data/calculated-data";
 
 /**
  * Takes an "intermediate" score and appends the rest of the data it needs.
@@ -13,7 +14,7 @@ export default async function HydrateScore(
     song: SongDocument,
     scoreID: string
 ): Promise<ScoreDocument> {
-    const calculatedData = {} as any; // await CreateCalculatedData(); // @todo
+    const calculatedData = await CreateCalculatedData(dryScore, chart, song); // @todo
 
     const { scoreData: dryScoreData, ...rest } = dryScore;
 

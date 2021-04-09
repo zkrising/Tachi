@@ -1,13 +1,13 @@
 import {
     AddNewUserAPIKey,
     CreateAPIKey,
-    CreateBetaKey,
-    AddNewBetakey,
-    ReinstateBetakey,
+    CreateInviteCode,
+    AddNewInvite,
+    ReinstateInvite,
 } from "./auth-core";
 import t from "tap";
 import db, { CloseConnection } from "../db";
-import { BetaKeyDocument, PrivateUserDocument } from "kamaitachi-common";
+import { PrivateUserDocument } from "kamaitachi-common";
 import prAssert from "../test-utils/prassert";
 import Prudence from "prudence";
 import ResetDBState from "../test-utils/reset-db-state";
@@ -45,7 +45,7 @@ t.test("#AddNewUserAPIKey", (t) => {
             "Data should match a public API key object"
         );
 
-        let inDatabase = await db.get("public-api-keys").findOne({
+        let inDatabase = await db["public-api-keys"].findOne({
             _id: data._id,
         });
 
@@ -57,28 +57,28 @@ t.test("#AddNewUserAPIKey", (t) => {
     t.end();
 });
 
-t.test("#ReinstateBetaKey", (t) => {
+t.test("#ReinstateInvite", (t) => {
     t.beforeEach(ResetDBState);
 
-    t.test("Should change the 'consumed' property of a betakey to true.", async (t) => {
+    t.test("Should change the 'consumed' property of an invite to true.", async (t) => {
         // mock insert
-        let betakey = await db.get<BetaKeyDocument>("betakeys").insert({
-            betakey: "foobar",
+        let inviteDoc = await db.invites.insert({
+            code: "foobar",
             consumed: true,
             createdBy: 1,
             createdOn: 1,
         });
 
-        let response = await ReinstateBetakey(betakey);
+        let response = await ReinstateInvite(inviteDoc);
 
         // @ts-expect-error Monks' types are WRONG. this is nModified, not modifiedCount
         t.is(response.nModified, 1, "Should modify one document");
 
-        let betakey2 = await db.get<BetaKeyDocument>("betakeys").findOne({
-            betakey: betakey.betakey, // lol
+        let invite2 = await db.invites.findOne({
+            code: inviteDoc.code, // lol
         });
 
-        t.is(betakey2!.consumed, false, "Should no longer be consumed");
+        t.is(invite2!.consumed, false, "Should no longer be consumed");
 
         t.end();
     });
@@ -86,34 +86,30 @@ t.test("#ReinstateBetaKey", (t) => {
     t.end();
 });
 
-t.test("#CreateBetaKey", (t) => {
-    t.match(CreateBetaKey(), /^[0-9a-f]{40}$/, "Betakey should be a 40 character hex string.");
+t.test("#CreateInviteCode", (t) => {
+    t.match(CreateInviteCode(), /^[0-9a-f]{40}$/, "Invite should be a 40 character hex string.");
 
     t.end();
 });
 
-t.test("#AddNewBetakey", (t) => {
+t.test("#AddNewInvite", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should create a new beta key for a given user", async (t) => {
-        let userDoc = await db.get("users").findOne({ id: 1 });
+        let userDoc = await db.users.findOne({ id: 1 });
 
-        let result = await AddNewBetakey(userDoc);
+        let result = await AddNewInvite(userDoc!);
 
-        t.is(result.createdBy, userDoc.id, "Betakey should be created by the requesting user.");
-        t.is(result.consumed, false, "Betakey should not be consumed.");
+        t.is(result.createdBy, userDoc!.id, "Invite should be created by the requesting user.");
+        t.is(result.consumed, false, "Invite should not be consumed.");
 
         // was created +/- 6 seconds from now. This is perhaps too lenient, but we're only really testing its just around now ish.
         t.assert(
             Math.abs(result.createdOn - Date.now()) <= 6000,
-            "Betakey was created roughly now."
+            "Invite was created roughly now."
         );
 
-        t.match(
-            result.betakey,
-            /^[0-9a-f]{40}$/,
-            "Betakey should have contents of a 40 character hex string."
-        );
+        t.match(result.code, /^[0-9a-f]{40}$/, "Invite code should be a 40 character hex string.");
     });
 
     t.end();

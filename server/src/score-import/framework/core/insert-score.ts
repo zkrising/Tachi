@@ -23,6 +23,6 @@ export async function QueueScoreInsert(score: ScoreDocument) {
 export async function InsertQueue() {
     const temp = ScoreQueue.splice(0);
     if (temp.length !== 0) {
-        await db.get<ScoreDocument>("scores").insert(temp);
+        await db.scores.insert(temp);
     }
 }

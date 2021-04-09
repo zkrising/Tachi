@@ -120,7 +120,7 @@ async function HydrateAndInsertScore(
 ): Promise<ScoreDocument | null> {
     const scoreID = CreateScoreID(userID, dryScore, chart.chartID);
 
-    const existingScore = await db.get<ScoreDocument>("scores").findOne(
+    const existingScore = await db.scores.findOne(
         {
             scoreID,
         },

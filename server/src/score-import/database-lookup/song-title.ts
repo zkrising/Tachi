@@ -11,7 +11,7 @@ import db from "../../db";
  * @returns SongDocument
  */
 export function FindSongOnTitleVersion(game: Game, title: string, version: string | number) {
-    return db.get<SongDocument>(`songs-${game}`).findOne({
+    return db.songs[game].findOne({
         "data.version": version,
         $or: [
             {
@@ -33,7 +33,7 @@ export function FindSongOnTitleVersion(game: Game, title: string, version: strin
  * @returns SongDocument
  */
 export function FindSongOnTitle(game: Game, title: string) {
-    return db.get<SongDocument>(`songs-${game}`).findOne({
+    return db.songs[game].findOne({
         $or: [
             {
                 title: title,

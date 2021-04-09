@@ -103,7 +103,7 @@ async function EamScoreConverter(
 
     // esd cannot estimate things below this level of accuracy, so only actually calculate it here
     if (percent > 0.1) {
-        esd = ESDCore.ExpectedSD(config.judgementWindows.iidx[context.playtype], percent);
+        esd = ESDCore.CalculateESD(config.judgementWindows.iidx[context.playtype], percent);
     }
 
     // Now we need to figure out the timestamp for this score.

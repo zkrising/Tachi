@@ -4,7 +4,7 @@ const logger = createLogCtx("db-core.ts");
 import { integer } from "../types";
 
 export async function GetNextCounterValue(counterName: string): Promise<integer> {
-    const sequenceDoc = await db.get("counters").findOneAndUpdate(
+    const sequenceDoc = await db.counters.findOneAndUpdate(
         {
             counterName,
         },

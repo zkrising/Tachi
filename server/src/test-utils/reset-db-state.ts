@@ -10,7 +10,8 @@ const DATA_DIR = path.join(__dirname, "./mock-db");
 async function ResetState(file: string) {
     let filename = path.basename(file, ".json");
 
-    await db.get(filename).remove({});
+    // @ts-expect-error it's right, but we know what we're doing!
+    await db[filename].remove({});
 
     let fileLoc = path.join(DATA_DIR, file);
     let data = JSON.parse(fs.readFileSync(fileLoc, "utf-8"));
@@ -19,7 +20,8 @@ async function ResetState(file: string) {
         throw new Error(`Panic, ${filename} not JSONArray?`);
     }
 
-    await db.get(filename).insert(data);
+    // @ts-expect-error see above.
+    await db[filename].insert(data);
 }
 
 export default async function ResetDBState() {

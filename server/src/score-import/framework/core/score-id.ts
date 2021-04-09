@@ -1,7 +1,6 @@
 import { integer, DryScore } from "../../../types";
 import crypto from "crypto";
 import db from "../../../db";
-import { ScoreDocument } from "kamaitachi-common";
 
 function CreateScoreIDString(userID: integer, partialScore: DryScore, chartID: string) {
     const { lamp, grade } = partialScore.scoreData;
@@ -30,7 +29,7 @@ export function CreateScoreID(userID: integer, dryScore: DryScore, chartID: stri
 }
 
 export function GetWithScoreID(scoreID: string) {
-    return db.get<ScoreDocument>("scores").findOne({
+    return db.scores.findOne({
         scoreID,
     });
 }

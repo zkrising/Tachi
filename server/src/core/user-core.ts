@@ -14,7 +14,7 @@ const PRIVATE_USER_RETURNS = {
  * @returns PublicUserDocument
  */
 export function GetUserCaseInsensitive(username: string) {
-    return db.get<PrivateUserDocument>("users").findOne(
+    return db.users.findOne(
         {
             usernameLowercase: username.toLowerCase(),
         },
@@ -31,7 +31,7 @@ export function GetUserCaseInsensitive(username: string) {
  * @returns PrivateUserDocument
  */
 export function PRIVATEINFO_GetUserCaseInsensitive(username: string) {
-    return db.get<PrivateUserDocument>("users").findOne({
+    return db.users.findOne({
         usernameLowercase: username.toLowerCase(),
     });
 }
@@ -54,7 +54,7 @@ export function ResolveUser(usernameOrID: string) {
     if (usernameOrID.match(/^[0-9]$/)) {
         let intID = parseInt(usernameOrID, 10);
 
-        return db.get<PrivateUserDocument>("users").findOne(
+        return db.users.findOne(
             {
                 id: intID,
             },
@@ -64,7 +64,7 @@ export function ResolveUser(usernameOrID: string) {
         );
     }
 
-    return db.get<PrivateUserDocument>("users").findOne(
+    return db.users.findOne(
         {
             usernameLowercase: usernameOrID,
         },

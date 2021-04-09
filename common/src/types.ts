@@ -988,3 +988,11 @@ export type ImportProcessingInfo<G extends Game = Game, P extends Playtypes[G] =
     | ImportProcessInfoScoreImported<G, P>
     | ImportProcessInfoInvalidDatapoint
     | ImportProcessInfoInternalError;
+
+export interface IIDXBPIData {
+    chartID: string;
+    kavg: integer;
+    wr: integer;
+    kesd: number;
+    coef: number | null;
+}

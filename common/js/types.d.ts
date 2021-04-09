@@ -719,4 +719,11 @@ export interface ImportProcessInfoInternalError {
     content: Record<string, never>;
 }
 export declare type ImportProcessingInfo<G extends Game = Game, P extends Playtypes[G] = Playtypes[G]> = ImportProcessInfoKTDataNotFound | ImportProcessInfoScoreExists | ImportProcessInfoScoreImported<G, P> | ImportProcessInfoInvalidDatapoint | ImportProcessInfoInternalError;
+export interface IIDXBPIData {
+    chartID: string;
+    kavg: integer;
+    wr: integer;
+    kesd: number;
+    coef: number | null;
+}
 export {};

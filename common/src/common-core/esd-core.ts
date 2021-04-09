@@ -82,7 +82,7 @@ export interface ESDJudgementFormat {
  * @param errOnInaccuracy - Whether or whether not to throw if the estimate is not accurate enough.
  * @returns
  */
-export function ExpectedSD(
+export function CalculateESD(
     judgements: ESDJudgementFormat[],
     percent: number,
     errOnInaccuracy = false
@@ -180,7 +180,7 @@ export function PercentCompare(
     compareP: number,
     cdeg = 1
 ): number {
-    let e1 = ExpectedSD(judgements, baseP);
-    let e2 = ExpectedSD(judgements, compareP);
+    let e1 = CalculateESD(judgements, baseP);
+    let e2 = CalculateESD(judgements, compareP);
     return ESDCompare(e1, e2, cdeg);
 }

@@ -11,7 +11,7 @@ export interface ESDJudgementFormat {
  * @param errOnInaccuracy - Whether or whether not to throw if the estimate is not accurate enough.
  * @returns
  */
-export declare function ExpectedSD(judgements: ESDJudgementFormat[], percent: number, errOnInaccuracy?: boolean): number;
+export declare function CalculateESD(judgements: ESDJudgementFormat[], percent: number, errOnInaccuracy?: boolean): number;
 /**
  * Compares two ESD values such that 1->2 produces a larger value than 101->102.
  * @param baseESD - The first ESD to compare.

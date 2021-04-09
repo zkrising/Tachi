@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PercentCompare = exports.ESDCompare = exports.ExpectedSD = void 0;
+exports.PercentCompare = exports.ESDCompare = exports.CalculateESD = void 0;
 const MEAN = 0;
 /**
  * Cumulative Distribution Function
@@ -63,7 +63,7 @@ const MAX_ITERATIONS = 50;
  * @param errOnInaccuracy - Whether or whether not to throw if the estimate is not accurate enough.
  * @returns
  */
-function ExpectedSD(judgements, percent, errOnInaccuracy = false) {
+function CalculateESD(judgements, percent, errOnInaccuracy = false) {
     if (percent > 1 || percent < 0 || Number.isNaN(percent)) {
         throw new Error("(ESD) Invalid percent. Percent must be between 0 and 1, and also a number.");
     }
@@ -104,7 +104,7 @@ function ExpectedSD(judgements, percent, errOnInaccuracy = false) {
         return estSD;
     }
 }
-exports.ExpectedSD = ExpectedSD;
+exports.CalculateESD = CalculateESD;
 /**
  * Compares two ESD values such that 1->2 produces a larger value than 101->102.
  * @param baseESD - The first ESD to compare.
@@ -139,8 +139,8 @@ exports.ESDCompare = ESDCompare;
  * Converts two percents to ESD, then runs ESDCompare.
  */
 function PercentCompare(judgements, baseP, compareP, cdeg = 1) {
-    let e1 = ExpectedSD(judgements, baseP);
-    let e2 = ExpectedSD(judgements, compareP);
+    let e1 = CalculateESD(judgements, baseP);
+    let e2 = CalculateESD(judgements, compareP);
     return ESDCompare(e1, e2, cdeg);
 }
 exports.PercentCompare = PercentCompare;

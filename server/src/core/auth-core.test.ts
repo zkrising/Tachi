@@ -95,7 +95,7 @@ t.test("#CreateInviteCode", (t) => {
 t.test("#AddNewInvite", (t) => {
     t.beforeEach(ResetDBState);
 
-    t.test("Should create a new beta key for a given user", async (t) => {
+    t.test("Should create a new invite from a given user", async (t) => {
         let userDoc = await db.users.findOne({ id: 1 });
 
         let result = await AddNewInvite(userDoc!);

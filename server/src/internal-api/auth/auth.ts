@@ -226,7 +226,7 @@ router.post(
 
         if (!newUser) {
             logger.error(
-                `Bailed on user creation ${req.body.username} with betakey ${req.body.betakey}.`
+                `Bailed on user creation ${req.body.username} with invite code ${req.body.inviteCode}.`
             );
 
             await ReinstateInvite(inviteCodeDoc);
@@ -238,7 +238,7 @@ router.post(
 
         if (!apiKeyDoc) {
             logger.error(
-                `Bailed on user creation ${req.body.username} with betakey ${req.body.betakey}`
+                `Bailed on user creation ${req.body.username} with invite code ${req.body.inviteCode}`
             );
 
             await ReinstateInvite(inviteCodeDoc);

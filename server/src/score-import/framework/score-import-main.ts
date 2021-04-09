@@ -1,15 +1,33 @@
-import { ConverterFunction, integer } from "../../types";
+import { ImportDocument, PublicUserDocument } from "kamaitachi-common";
+import createLogCtx from "../../logger";
+import { ConverterFunction } from "../../types";
 import { InsertQueue } from "./core/insert-score";
 import { ProcessIterableData } from "./processing/score-processor";
 
-async function ScoreImportMain<D, C>(
-    userID: integer,
+const logger = createLogCtx("score-import-main.ts");
+
+export default async function ScoreImportMain<D, C>(
+    user: PublicUserDocument,
     iterableData: Iterable<D> | AsyncIterable<D>,
     ConverterFunction: ConverterFunction<D, C>,
     context: C
 ) {
-    let importInfo = await ProcessIterableData(userID, iterableData, ConverterFunction, context);
+    // @todo: scope logger properly
+    logger.verbose("Received import request.");
+
+    let importInfo = await ProcessIterableData(user.id, iterableData, ConverterFunction, context);
 
     // Empty anything in the score queue
     await InsertQueue();
+
+    // Update user's rating information
+    // @todo
+
+    // Construct sessions from successful scores
+    // @todo
+
+    // Create import document
+    const ImportDocument: ImportDocument = {
+        
+    }
 }

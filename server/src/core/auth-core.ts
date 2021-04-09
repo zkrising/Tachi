@@ -74,7 +74,6 @@ export function ReinstateInvite(inviteDoc: InviteCodeDocument) {
 }
 
 export async function AddNewInvite(user: PublicUserDocument) {
-    // beta keys are shorter strings, and it's possible for them to be collided
     let code = CreateInviteCode();
 
     let result = await db.invites.insert({

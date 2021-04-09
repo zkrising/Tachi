@@ -15,7 +15,7 @@ const logger = createLogCtx("file-upload.ts");
  * @param fileData - The data sent by the user.
  * @param body - Other data passed by the user in the request body.
  */
-export async function ResolveFileUploadData(
+export function ResolveFileUploadData(
     importType: FileUploadImportTypes,
     fileData: Express.Multer.File,
     body: Record<string, unknown>

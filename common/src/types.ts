@@ -33,7 +33,7 @@ export type IDStrings =
  * IDString<G, P> is a member of IDStrings. You're free to attempt to
  * rewrite IDStrings to try and get this to work, I promise you it doesn't.
  */
-export type IDString<G extends Game, P extends Playtypes[G]> = `${G}:${P}`;
+// export type IDString<G extends Game, P extends Playtypes[G]> = `${G}:${P}`;
 
 /**
  * All MongoDB Documents require this field, or atleast they all have them in ktchi's DB.
@@ -373,12 +373,7 @@ export interface MRGFolderTarget {
     target: number;
 }
 
-export interface MRGFolderInformation<
-    G extends Game = Game,
-    P extends Playtypes[G] = Playtypes[G],
-    // @ts-expect-error known bug with IDString or TS.
-    I extends IDStrings = IDString<G, P>
-> {
+export interface MRGFolderInformation<I extends IDStrings = IDStrings> {
     folderID: string;
     difficulty: Difficulties[I][] | null;
     datapoints: MRGFolderTarget[];
@@ -650,8 +645,7 @@ export interface IIDXEamusementScoreDocument extends MongoDBDocument {
 export interface ChartDocument<
     G extends Game = Game,
     P extends Playtypes[G] = Playtypes[G],
-    // @ts-expect-error known bug with IDString or TS.
-    I extends IDStrings = IDString<G, P>
+    I extends IDStrings = IDStrings
 > extends MongoDBDocument {
     chartID: string;
     id: integer;
@@ -686,8 +680,7 @@ export interface TierlistDocument extends MongoDBDocument {
 export interface TierlistDataDocument<
     G extends Game = Game,
     P extends Playtypes[G] = Playtypes[G],
-    // @ts-expect-error known bug with IDString or TS.
-    I extends IDStrings = IDString<G, P>
+    I extends IDStrings = IDStrings
 > extends MongoDBDocument {
     playtype: P; // doesn't need to exist.
     songID: integer;
@@ -934,9 +927,7 @@ export interface GameSpecificCalcLookup {
 export interface ScoreDocument<
     G extends Game = Game,
     P extends Playtypes[G] = Playtypes[G],
-    // @ts-expect-error Typescript thinks this is illegal.
-    // It *ABSOLUTELY* isn't.
-    I extends IDStrings = IDString<G, P>
+    I extends IDStrings = IDStrings
 > extends MongoDBDocument {
     service: string;
     game: G;

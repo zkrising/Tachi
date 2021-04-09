@@ -16,7 +16,6 @@ export declare type IDStrings = "iidx:SP" | "iidx:DP" | "popn:9B" | "sdvx:Single
  * IDString<G, P> is a member of IDStrings. You're free to attempt to
  * rewrite IDStrings to try and get this to work, I promise you it doesn't.
  */
-export declare type IDString<G extends Game, P extends Playtypes[G]> = `${G}:${P}`;
 /**
  * All MongoDB Documents require this field, or atleast they all have them in ktchi's DB.
  */
@@ -242,7 +241,7 @@ export interface MRGFolderTarget {
     field: MRGFolderTargetFieldNames;
     target: number;
 }
-export interface MRGFolderInformation<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDString<G, P>> {
+export interface MRGFolderInformation<I extends IDStrings = IDStrings> {
     folderID: string;
     difficulty: Difficulties[I][] | null;
     datapoints: MRGFolderTarget[];
@@ -456,7 +455,7 @@ export interface IIDXEamusementScoreDocument extends MongoDBDocument {
     score: integer;
     ranking: integer;
 }
-export interface ChartDocument<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDString<G, P>> extends MongoDBDocument {
+export interface ChartDocument<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDStrings> extends MongoDBDocument {
     chartID: string;
     id: integer;
     level: string;
@@ -484,7 +483,7 @@ export interface TierlistDocument extends MongoDBDocument {
         grades?: [string, number][];
     };
 }
-export interface TierlistDataDocument<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDString<G, P>> extends MongoDBDocument {
+export interface TierlistDataDocument<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDStrings> extends MongoDBDocument {
     playtype: P;
     songID: integer;
     difficulty: Difficulties[I];
@@ -684,7 +683,7 @@ export interface GameSpecificCalcLookup {
     "gitadora:Gita": never;
     "gitadora:Dora": never;
 }
-export interface ScoreDocument<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDString<G, P>> extends MongoDBDocument {
+export interface ScoreDocument<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDStrings> extends MongoDBDocument {
     service: string;
     game: G;
     playtype: P;

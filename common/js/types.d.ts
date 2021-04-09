@@ -86,14 +86,16 @@ export interface Grades {
 }
 declare type IIDXLamps = "NO PLAY" | "FAILED" | "ASSIST CLEAR" | "EASY CLEAR" | "CLEAR" | "HARD CLEAR" | "EX HARD CLEAR" | "FULL COMBO";
 declare type GitadoraLamps = "FAILED" | "CLEAR" | "FULL COMBO" | "EXCELLENT";
+declare type SDVXLamps = "FAILED" | "CLEAR" | "EXCESSIVE CLEAR" | "ULTIMATE CHAIN" | "PERFECT ULTIMATE CHAIN";
+declare type DDRLamps = "FAILED" | "CLEAR" | "LIFE4" | "FULL COMBO" | "GREAT FULL COMBO" | "PERFECT FULL COMBO" | "MARVELOUS FULL COMBO";
 export interface Lamps {
     "iidx:SP": IIDXLamps;
     "iidx:DP": IIDXLamps;
     "popn:9B": "FAILED" | "CLEAR" | "FULL COMBO" | "PERFECT";
-    "sdvx:Single": SDVXGrades;
-    "usc:Single": SDVXGrades;
-    "ddr:SP": DDRGrades;
-    "ddr:DP": DDRGrades;
+    "sdvx:Single": SDVXLamps;
+    "usc:Single": SDVXLamps;
+    "ddr:SP": DDRLamps;
+    "ddr:DP": DDRLamps;
     "maimai:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "ALL PERFECT" | "ALL PERFECT+";
     "jubeat:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "EXCELLENT";
     "museca:Single": "FAILED" | "CLEAR" | "CONNECT ALL" | "PERFECT CONNECT ALL";

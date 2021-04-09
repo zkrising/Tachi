@@ -179,15 +179,31 @@ type IIDXLamps =
 
 type GitadoraLamps = "FAILED" | "CLEAR" | "FULL COMBO" | "EXCELLENT";
 
+type SDVXLamps =
+    | "FAILED"
+    | "CLEAR"
+    | "EXCESSIVE CLEAR"
+    | "ULTIMATE CHAIN"
+    | "PERFECT ULTIMATE CHAIN";
+
+type DDRLamps =
+    | "FAILED"
+    | "CLEAR"
+    | "LIFE4"
+    | "FULL COMBO"
+    | "GREAT FULL COMBO"
+    | "PERFECT FULL COMBO"
+    | "MARVELOUS FULL COMBO";
+
 export interface Lamps {
     "iidx:SP": IIDXLamps;
     "iidx:DP": IIDXLamps;
     // THIS ONE IS WRONG!
     "popn:9B": "FAILED" | "CLEAR" | "FULL COMBO" | "PERFECT";
-    "sdvx:Single": SDVXGrades;
-    "usc:Single": SDVXGrades;
-    "ddr:SP": DDRGrades;
-    "ddr:DP": DDRGrades;
+    "sdvx:Single": SDVXLamps;
+    "usc:Single": SDVXLamps;
+    "ddr:SP": DDRLamps;
+    "ddr:DP": DDRLamps;
     "maimai:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "ALL PERFECT" | "ALL PERFECT+";
     "jubeat:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "EXCELLENT";
     "museca:Single": "FAILED" | "CLEAR" | "CONNECT ALL" | "PERFECT CONNECT ALL";

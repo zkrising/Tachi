@@ -1,6 +1,6 @@
 import db from "../db";
-import createLogCtx from "../logger";
-const logger = createLogCtx("db-core.ts");
+import CreateLogCtx from "../logger";
+const logger = CreateLogCtx("db-core.ts");
 import { integer } from "../types";
 
 export async function GetNextCounterValue(counterName: string): Promise<integer> {

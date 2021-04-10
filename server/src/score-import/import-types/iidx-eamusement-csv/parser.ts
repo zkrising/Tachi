@@ -1,10 +1,9 @@
 import csvParse from "csv-parse/lib/sync";
-import createLogCtx from "../../../logger";
-import { integer, ParserFunctionReturnsSync } from "../../../types";
+import { Logger } from "winston";
+import { ParserFunctionReturnsSync } from "../../../types";
 import ScoreImportFatalError from "../../framework/core/score-import-error";
+import ConverterFn from "./converter";
 import { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
-
-const logger = createLogCtx("iidx-eamusement-csv/parser.ts");
 
 const PRE_HV_HEADER_COUNT = 27;
 const HV_HEADER_COUNT = 41;
@@ -47,7 +46,8 @@ enum EAM_VERSION_NAMES {
  */
 function ParseEamusementCSV(
     fileData: Express.Multer.File,
-    body: Record<string, unknown>
+    body: Record<string, unknown>,
+    logger: Logger
 ): ParserFunctionReturnsSync<IIDXEamusementCSVData, IIDXEamusementCSVContext> {
     let playtype: "SP" | "DP";
 
@@ -221,7 +221,12 @@ function ParseEamusementCSV(
 
     logger.verbose(`Successfully Parsed with ${data.length} results.`);
 
-    return { iterable: data, context };
+    return {
+        iterable: data,
+        context,
+        converter: ConverterFn,
+        idStrings: [`iidx:${context.playtype}`],
+    };
 }
 
 export default ParseEamusementCSV;

@@ -1,7 +1,7 @@
-import { PrivateUserDocument, PublicUserDocument } from "kamaitachi-common";
+import { integer, PrivateUserDocument, PublicUserDocument } from "kamaitachi-common";
 import db from "../db";
 
-const PRIVATE_USER_RETURNS = {
+const OMIT_PRIVATE_USER_RETURNS = {
     password: 0,
     email: 0,
     // legacy protection - this field does not exist on user documents anymore, but it did, and it *did* hold personal information.
@@ -13,15 +13,15 @@ const PRIVATE_USER_RETURNS = {
  * @param username The username of the user.
  * @returns PublicUserDocument
  */
-export function GetUserCaseInsensitive(username: string) {
+export function GetUserCaseInsensitive(username: string): Promise<PublicUserDocument> {
     return db.users.findOne(
         {
             usernameLowercase: username.toLowerCase(),
         },
         {
-            projection: PRIVATE_USER_RETURNS,
+            projection: OMIT_PRIVATE_USER_RETURNS,
         }
-    );
+    ) as Promise<PublicUserDocument>;
 }
 
 /**
@@ -45,6 +45,34 @@ export function FormatUserDoc(userdoc: PublicUserDocument) {
 }
 
 /**
+ * Gets a user from their userID.
+ * @param userID The userID to retrieve the user document of.
+ * @returns PublicUserDocument
+ */
+export function GetUserWithID(userID: integer): Promise<PublicUserDocument> {
+    return db.users.findOne(
+        {
+            id: userID,
+        },
+        {
+            projection: OMIT_PRIVATE_USER_RETURNS,
+        }
+    ) as Promise<PublicUserDocument>;
+}
+
+/**
+ * GetUserWithID, but return personal information, too.
+ * @see GetUserWithID
+ * @param userID
+ * @returns PrivateUserDocument
+ */
+export function PRIVATEINFO_GetUserWithID(userID: integer) {
+    return db.users.findOne({
+        id: userID,
+    });
+}
+
+/**
  * Gets a user based on either their username case-insensitively, or a direct lookup of their ID.
  * This is used in URLs to resolve the passed user.
  * @param usernameOrID
@@ -59,7 +87,7 @@ export function ResolveUser(usernameOrID: string) {
                 id: intID,
             },
             {
-                projection: PRIVATE_USER_RETURNS,
+                projection: OMIT_PRIVATE_USER_RETURNS,
             }
         );
     }
@@ -69,7 +97,7 @@ export function ResolveUser(usernameOrID: string) {
             usernameLowercase: usernameOrID,
         },
         {
-            projection: PRIVATE_USER_RETURNS,
+            projection: OMIT_PRIVATE_USER_RETURNS,
         }
     );
 }

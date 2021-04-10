@@ -9,10 +9,10 @@ import {
 import db from "../db";
 import { GetNextCounterValue } from "./db-core";
 import { InsertResult } from "monk";
-import createLogCtx from "../logger";
+import CreateLogCtx from "../logger";
 import { FormatUserDoc } from "./user-core";
 
-const logger = createLogCtx("auth-core.ts");
+const logger = CreateLogCtx("auth-core.ts");
 
 const BCRYPT_SALT_ROUNDS = 12;
 

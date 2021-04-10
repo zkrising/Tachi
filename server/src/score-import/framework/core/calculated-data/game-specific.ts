@@ -1,4 +1,5 @@
-import { ChartDocument, Game, IIDXBPIData, Playtypes } from "kamaitachi-common";
+import { ChartDocument, Game, Playtypes } from "kamaitachi-common";
+import { Logger } from "winston";
 import db from "../../../../db";
 import { DryScore } from "../../../../types";
 import {
@@ -15,7 +16,8 @@ export async function CreateGameSpecific<G extends Game>(
     game: G,
     playtype: Playtypes[G],
     chart: ChartDocument,
-    dryScore: DryScore
+    dryScore: DryScore,
+    logger: Logger
 ): Promise<Record<string, number | null>> {
     let gameSpecific: Record<string, number | null> = {};
 
@@ -30,33 +32,36 @@ export async function CreateGameSpecific<G extends Game>(
                 BPIData.wr,
                 dryScore.scoreData.score,
                 chart.notedata.notecount * 2,
-                BPIData.coef
+                BPIData.coef,
+                logger
             );
 
             gameSpecific.KESDC =
                 dryScore.scoreData.esd === null
                     ? null
-                    : CalculateKESDC(BPIData.kesd, dryScore.scoreData.esd);
+                    : CalculateKESDC(BPIData.kesd, dryScore.scoreData.esd, logger);
         } else {
             gameSpecific.BPI = null;
             gameSpecific.KESDC = null;
         }
 
         if (playtype === "SP") {
-            gameSpecific["K%"] = await KaidenPercentile(dryScore, chart);
+            gameSpecific["K%"] = await KaidenPercentile(dryScore, chart, logger);
         }
     } else if (game === "sdvx") {
         gameSpecific.VF4 = CalculateVF4(
             dryScore as DryScore<"sdvx", "Single", "sdvx:Single">,
-            chart as ChartDocument
+            chart as ChartDocument,
+            logger
         );
         gameSpecific.VF5 = CalculateVF5(
             dryScore as DryScore<"sdvx", "Single", "sdvx:Single">,
-            chart as ChartDocument
+            chart as ChartDocument,
+            logger
         );
     } else if (game === "ddr") {
         // either playtype
-        gameSpecific.MFCP = CalculateMFCP(dryScore, chart);
+        gameSpecific.MFCP = CalculateMFCP(dryScore, chart, logger);
     }
 
     return gameSpecific;

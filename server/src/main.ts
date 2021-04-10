@@ -11,11 +11,11 @@ function FormatVersion() {
     return `v${[major, minor, patch].join(".")} (${name})`;
 }
 
-import createLogCtx from "./logger";
+import CreateLogCtx from "./logger";
 import server from "./server";
 import serverConfig from "./server-config";
 
-const logger = createLogCtx("main.ts");
+const logger = CreateLogCtx("main.ts");
 
 logger.info(`Booting Kamaitachi BLACK - ${FormatVersion()}`);
 

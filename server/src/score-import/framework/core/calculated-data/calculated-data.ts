@@ -6,21 +6,23 @@ import {
     SongDocument,
     TierlistDataDocument,
 } from "kamaitachi-common";
-import { DryScore, integer } from "../../../../types";
+import { Logger } from "winston";
+import { DryScore } from "../../../../types";
 import { CreateGameSpecific } from "./game-specific";
 import { CalculateCHUNITHMRating, CalculateGITADORARating } from "./game-specific-stats";
 
 export async function CreateCalculatedData(
     dryScore: DryScore,
     chart: ChartDocument,
-    song: SongDocument
+    song: SongDocument,
+    logger: Logger
 ): Promise<ScoreDocument["calculatedData"]> {
     const game = dryScore.game;
     const playtype = chart.playtype;
 
     const [rating, gameSpecific] = await Promise.all([
         CalculateRating(dryScore, game, playtype, chart),
-        CreateGameSpecific(game, playtype, chart, dryScore),
+        CreateGameSpecific(game, playtype, chart, dryScore, logger),
     ]);
 
     return {

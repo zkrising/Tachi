@@ -25,4 +25,6 @@ export async function InsertQueue() {
     if (temp.length !== 0) {
         await db.scores.insert(temp);
     }
+
+    return temp.length;
 }

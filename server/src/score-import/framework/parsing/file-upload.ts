@@ -1,9 +1,8 @@
 import ParseEamusementCSV from "../../import-types/iidx-eamusement-csv/parser";
-import createLogCtx from "../../../logger";
+import CreateLogCtx from "../../../logger";
 import ScoreImportFatalError from "../core/score-import-error";
 import { FileUploadImportTypes } from "kamaitachi-common";
-
-const logger = createLogCtx("file-upload.ts");
+import { Logger } from "winston";
 
 /**
  * Resolves the data from a file upload into an iterable,
@@ -18,11 +17,12 @@ const logger = createLogCtx("file-upload.ts");
 export function ResolveFileUploadData(
     importType: FileUploadImportTypes,
     fileData: Express.Multer.File,
-    body: Record<string, unknown>
+    body: Record<string, unknown>,
+    logger: Logger
 ) {
     switch (importType) {
         case "iidx:eamusement-csv":
-            return ParseEamusementCSV(fileData, body);
+            return ParseEamusementCSV(fileData, body, logger);
         default:
             logger.error(
                 `importType ${importType} made it into ResolveFileUploadData, but should have been rejected by Prudence.`

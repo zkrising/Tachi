@@ -1,13 +1,17 @@
 import { ChartDocument, ESDCore, integer } from "kamaitachi-common";
+import { Logger } from "winston";
 import db from "../../../../db";
-import createLogCtx from "../../../../logger";
+import CreateLogCtx from "../../../../logger";
 import { DryScore } from "../../../../types";
-const logger = createLogCtx("game-specific-stats.ts");
 
 /**
  * Calculates the in-game CHUNITHM rating for a score.
  */
-export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: ChartDocument) {
+export function CalculateCHUNITHMRating(
+    dryScore: DryScore,
+    chartData: ChartDocument,
+    logger: Logger
+) {
     let score = dryScore.scoreData.score;
     let levelBase = chartData.levelNum * 100;
 
@@ -35,7 +39,11 @@ export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: ChartDocu
 /**
  * Calculates the in-game GITADORA rating for a score.
  */
-export function CalculateGITADORARating(dryScore: DryScore, chartData: ChartDocument) {
+export function CalculateGITADORARating(
+    dryScore: DryScore,
+    chartData: ChartDocument,
+    logger: Logger
+) {
     let trueRating = (dryScore.scoreData.percent / 100) * chartData.levelNum * 20;
     let flooredRating = Math.floor(trueRating * 100) / 100;
     return flooredRating;
@@ -69,7 +77,8 @@ export function CalculateBPI(
     wrEx: integer,
     yourEx: integer,
     max: integer,
-    powCoef: number | null
+    powCoef: number | null,
+    logger: Logger
 ) {
     powCoef ??= 1.175;
     const yourPGF = BPIPikaGreatFn(yourEx, max);
@@ -100,7 +109,11 @@ export function CalculateBPI(
  * Calculates the percent of Kaidens you are ahead of with this score.
  * @returns Null, if this chart has no kaidens, a percent between 0 and 100, if there are.
  */
-export async function KaidenPercentile(scoreObj: DryScore, chartData: ChartDocument) {
+export async function KaidenPercentile(
+    scoreObj: DryScore,
+    chartData: ChartDocument,
+    logger: Logger
+) {
     let scoreCount = await db["iidx-eam-scores"].count({
         chartID: chartData.chartID,
     });
@@ -121,7 +134,7 @@ export async function KaidenPercentile(scoreObj: DryScore, chartData: ChartDocum
  * An experimental statistic for determining how good a score is versus the Kaiden Average
  * For those who know what ESDC is (me), this is just ESDC(kesd, your esd).
  */
-export function CalculateKESDC(kaidenESD: number | null, yourESD: number) {
+export function CalculateKESDC(kaidenESD: number | null, yourESD: number, logger: Logger) {
     if (!kaidenESD) {
         return null;
     }
@@ -134,7 +147,7 @@ export function CalculateKESDC(kaidenESD: number | null, yourESD: number) {
  * https://life4ddr.com/requirements/#mfcpoints
  * @returns Null if this score was not eligible, a number otherwise.
  */
-export function CalculateMFCP(dryScore: DryScore, chartData: ChartDocument) {
+export function CalculateMFCP(dryScore: DryScore, chartData: ChartDocument, logger: Logger) {
     if (dryScore.scoreData.lamp !== "MARVELOUS FULL COMBO") {
         return null;
     }
@@ -200,7 +213,8 @@ const VF5LampCoefficients = {
 
 export function CalculateVF4(
     dryScore: DryScore<"sdvx", "Single", "sdvx:Single">,
-    chartData: ChartDocument
+    chartData: ChartDocument,
+    logger: Logger
 ) {
     const multiplier = 25;
     let level = chartData.levelNum;
@@ -227,7 +241,8 @@ export function CalculateVF4(
 // idk if it's right, but it must be close enough.
 export function CalculateVF5(
     dryScore: DryScore<"sdvx", "Single", "sdvx:Single">,
-    chartData: ChartDocument
+    chartData: ChartDocument,
+    logger: Logger
 ) {
     let level = chartData.levelNum;
 

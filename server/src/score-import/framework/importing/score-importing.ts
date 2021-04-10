@@ -4,7 +4,6 @@ import {
     ScoreDocument,
     SongDocument,
 } from "kamaitachi-common";
-import createLogCtx from "../../../logger";
 import { integer, DryScore, ConverterFunction, ConverterFnReturn } from "../../../types";
 import HydrateScore from "../core/hydrate-score";
 import { QueueScoreInsert } from "../core/insert-score";
@@ -16,8 +15,7 @@ import {
 } from "../core/converter-errors";
 import { CreateScoreID } from "../core/score-id";
 import db from "../../../db";
-
-const logger = createLogCtx("score-processor.ts");
+import { Logger } from "winston";
 
 /**
  * Processes the iterable data into the Kamaitachi database.
@@ -31,7 +29,8 @@ export async function ImportAllIterableData<D, C>(
     userID: integer,
     iterableData: Iterable<D> | AsyncIterable<D>,
     ConverterFunction: ConverterFunction<D, C>,
-    context: C
+    context: C,
+    logger: Logger
 ): Promise<ImportProcessingInfo[]> {
     logger.verbose(`Starting Data Processing...`);
 
@@ -42,7 +41,7 @@ export async function ImportAllIterableData<D, C>(
     // An example would be making an api request after exhausting
     // the first set of data.
     for await (const data of iterableData) {
-        promises.push(ImportIterableDatapoint(userID, data, ConverterFunction, context));
+        promises.push(ImportIterableDatapoint(userID, data, ConverterFunction, context, logger));
     }
 
     // Due to the fact that ProcessIterableDatapoint may return an array instead of a single result
@@ -93,15 +92,18 @@ export async function ImportIterableDatapoint<D, C>(
     userID: integer,
     data: D,
     ConverterFunction: ConverterFunction<D, C>,
-    context: C
+    context: C,
+    logger: Logger
 ) {
-    const converterReturns = await ConverterFunction(data, context);
+    const converterReturns = await ConverterFunction(data, context, logger);
 
     if (Array.isArray(converterReturns)) {
-        return Promise.all(converterReturns.map((e) => ImportFromConverterReturn(userID, e)));
+        return Promise.all(
+            converterReturns.map((e) => ImportFromConverterReturn(userID, e, logger))
+        );
     }
 
-    return ImportFromConverterReturn(userID, converterReturns);
+    return ImportFromConverterReturn(userID, converterReturns, logger);
 }
 
 /**
@@ -116,7 +118,8 @@ async function HydrateAndInsertScore(
     userID: integer,
     dryScore: DryScore,
     chart: ChartDocument,
-    song: SongDocument
+    song: SongDocument,
+    logger: Logger
 ): Promise<ScoreDocument | null> {
     const scoreID = CreateScoreID(userID, dryScore, chart.chartID);
 
@@ -150,7 +153,8 @@ async function HydrateAndInsertScore(
 
 async function ImportFromConverterReturn(
     userID: integer,
-    cfnReturn: ConverterFnReturn // a single return, not an array!
+    cfnReturn: ConverterFnReturn, // a single return, not an array!
+    logger: Logger
 ): Promise<ImportProcessingInfo | null> {
     // null => processing didnt result in a score document, but not an error, no processing needed!
     if (cfnReturn === null) {
@@ -195,7 +199,8 @@ async function ImportFromConverterReturn(
         userID,
         cfnReturn.dryScore,
         cfnReturn.chart,
-        cfnReturn.song
+        cfnReturn.song,
+        logger
     );
 
     // This used to be a ScoreExists error. However, we never actually care about

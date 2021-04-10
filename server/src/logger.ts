@@ -1,7 +1,7 @@
 import winston, { format, Logger, transports } from "winston";
 import fs from "fs";
 import path from "path";
-import { PublicUserDocument } from "kamaitachi-common";
+import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
 import { FormatUserDoc } from "./core/user-core";
 
 const level = process.env.LOG_LEVEL ?? "info";
@@ -68,12 +68,16 @@ const logger = winston.createLogger({
     transports: tports,
 });
 
-function createLogCtx(context: string) {
-    return logger.child({ context });
+function CreateLogCtx(context: string, lg = logger) {
+    return lg.child({ context });
 }
 
-export function createScoreLogger(user: PublicUserDocument, importID: string) {
-    return logger.child({ context: ["Score Import", FormatUserDoc(user)], importID });
+export function CreateScoreLogger(
+    user: PublicUserDocument,
+    importID: string,
+    importType: ImportTypes
+) {
+    return logger.child({ context: ["Score Import", importType, FormatUserDoc(user)], importID });
 }
 
-export default createLogCtx;
+export default CreateLogCtx;

@@ -14,11 +14,11 @@ import {
     PRIVATEINFO_GetUserCaseInsensitive,
 } from "../../core/user-core";
 import db from "../../db";
-import createLogCtx from "../../logger";
+import CreateLogCtx from "../../logger";
 import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
 
-const logger = createLogCtx("auth.ts");
+const logger = CreateLogCtx("auth.ts");
 
 const router = Router({ mergeParams: true });
 

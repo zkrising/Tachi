@@ -7,10 +7,10 @@ import { config, Difficulties, ESDCore, IIDXBPIData } from "kamaitachi-common";
 import { FindSongOnTitleVersion } from "../score-import/database-lookup/song-title";
 import { FindChartWithPTDF } from "../score-import/database-lookup/chart-ptdf";
 import db from "../db";
-import createLogCtx from "../logger";
+import CreateLogCtx from "../logger";
 const program = new Command();
 
-const logger = createLogCtx("update-bpi-poyashi.ts");
+const logger = CreateLogCtx("update-bpi-poyashi.ts");
 
 program.option("-f, --fetch", "Fetch the latest data from the poyashi repo.");
 

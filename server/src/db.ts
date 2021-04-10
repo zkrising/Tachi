@@ -20,9 +20,9 @@ import {
     UserMilestoneDocument,
 } from "kamaitachi-common";
 import monk, { ICollection } from "monk";
-import createLogCtx from "./logger";
+import CreateLogCtx from "./logger";
 
-const logger = createLogCtx("db.ts");
+const logger = CreateLogCtx("db.ts");
 
 const url =
     process.env.NODE_ENV === "test" ? "localhost:27017/testingdb" : "localhost:27017/ktblackdb";

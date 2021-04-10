@@ -1,5 +1,6 @@
 import { config, ESDCore, Lamps, SongDocument } from "kamaitachi-common";
-import createLogCtx from "../../../logger";
+import { Logger } from "winston";
+import CreateLogCtx from "../../../logger";
 import { DryScore, ConverterFunction, ConverterFnReturn } from "../../../types";
 import { FindChartWithPTDF } from "../../database-lookup/chart-ptdf";
 import { FindSongOnTitleVersion } from "../../database-lookup/song-title";
@@ -15,8 +16,6 @@ import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } 
 export interface DataTest {
     foo: string;
 }
-
-const logger = createLogCtx("iidx:eamusement-csv/converter");
 
 const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new Map([
     ["NO PLAY", "NO PLAY"],
@@ -34,7 +33,8 @@ async function EamScoreConverter(
     eamScore: EamusementScoreData,
     ktchiSong: SongDocument,
     context: IIDXEamusementCSVContext,
-    data: IIDXEamusementCSVData
+    data: IIDXEamusementCSVData,
+    logger: Logger
 ) {
     const HUMANISED_SONG_TITLE = `${ktchiSong.title} (${context.playtype} ${eamScore.difficulty})`;
     if (!eamScore.level) {
@@ -177,10 +177,11 @@ async function EamScoreConverterWrapper(
     eamScore: EamusementScoreData,
     song: SongDocument,
     context: IIDXEamusementCSVContext,
-    data: IIDXEamusementCSVData
+    data: IIDXEamusementCSVData,
+    logger: Logger
 ) {
     try {
-        let results = await EamScoreConverter(eamScore, song!, context, data);
+        let results = await EamScoreConverter(eamScore, song!, context, data, logger);
 
         if (!results) {
             return null;
@@ -209,7 +210,8 @@ async function EamScoreConverterWrapper(
 
 const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVContext> = async (
     data,
-    context
+    context,
+    logger: Logger
 ): Promise<ConverterFnReturn[]> => {
     let ktchiSong = await FindSongOnTitleVersion("iidx", data.title, context.importVersion);
 
@@ -220,7 +222,7 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
 
     // ts thinks ktchiSong might be null. It's not, though!
     let results = await Promise.all(
-        data.scores.map((e) => EamScoreConverterWrapper(e, ktchiSong!, context, data))
+        data.scores.map((e) => EamScoreConverterWrapper(e, ktchiSong!, context, data, logger))
     );
 
     return results;

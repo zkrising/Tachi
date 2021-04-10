@@ -1,8 +1,8 @@
 import nodeFetch from "../fetch";
-import createLogCtx from "../logger";
+import CreateLogCtx from "../logger";
 import { CAPTCHA_SECRET_KEY } from "../secrets";
 
-const logger = createLogCtx("captcha-core.ts");
+const logger = CreateLogCtx("captcha-core.ts");
 
 // shrug
 

@@ -7,6 +7,7 @@ import {
     ScoreDocument,
     SongDocument,
 } from "kamaitachi-common";
+import { Logger } from "winston";
 import { ConverterFailure } from "./score-import/framework/core/converter-errors";
 import { Converters } from "./score-import/import-types/import-types";
 
@@ -48,12 +49,14 @@ export type ConverterFnReturn = ConverterFailure | ConverterFnSuccessReturn | nu
 export type ConverterFunctionReturns = ConverterFnReturn | ConverterFnReturn[];
 
 export interface ConverterFunction<D, C> {
-    (data: D, processContext: C): Promise<ConverterFunctionReturns>;
+    (data: D, processContext: C, logger: Logger): Promise<ConverterFunctionReturns>;
 }
 
 export interface ParserFunctionReturnsSync<D, C> {
     iterable: Iterable<D>;
+    idStrings: [IDStrings] & IDStrings[];
     context: C;
+    converter: ConverterFunction<D, C>;
 }
 
 export type ParserFunctionReturns<D, C> =
@@ -62,7 +65,9 @@ export type ParserFunctionReturns<D, C> =
 
 export interface ParserFunctionReturnsAsync<D, C> {
     iterable: AsyncIterable<D>;
+    idStrings: [IDStrings] & IDStrings[];
     context: C;
+    converter: ConverterFunction<D, C>;
 }
 
 /**

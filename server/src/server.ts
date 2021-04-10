@@ -1,12 +1,12 @@
 import express from "express";
 import "express-async-errors";
-import createLogCtx from "./logger";
+import CreateLogCtx from "./logger";
 import expressSession from "express-session";
 import connectRedis from "connect-redis";
 import redis from "redis";
 import { SESSION_SECRET } from "./secrets";
 
-const logger = createLogCtx("server.ts");
+const logger = CreateLogCtx("server.ts");
 
 const RedisStore = connectRedis(expressSession);
 logger.info("Created Redis Store");

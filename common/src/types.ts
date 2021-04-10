@@ -453,6 +453,8 @@ export interface KTBlackImportDocument extends MongoDBDocument {
     idStrings: IDStrings[];
     importID: string;
     importInfo: ImportProcessingInfo[];
+    // For performance reasons, imports only show what sessions they created, rather than what sessions they didn't.
+    createdSessions: string[];
     importType: ImportTypes;
 }
 

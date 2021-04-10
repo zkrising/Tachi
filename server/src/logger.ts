@@ -72,6 +72,12 @@ function CreateLogCtx(context: string, lg = logger) {
     return lg.child({ context });
 }
 
+export function AppendLogCtx(context: string, lg: Logger) {
+    let newContext = [...lg.defaultMeta.context, context];
+
+    return lg.child({ context: newContext });
+}
+
 export function CreateScoreLogger(
     user: PublicUserDocument,
     importID: string,

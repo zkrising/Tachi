@@ -16,6 +16,7 @@ import {
 import { CreateScoreID } from "../core/score-id";
 import db from "../../../db";
 import { Logger } from "winston";
+import { AppendLogCtx } from "../../../logger";
 
 /**
  * Processes the iterable data into the Kamaitachi database.
@@ -119,9 +120,12 @@ async function HydrateAndInsertScore(
     dryScore: DryScore,
     chart: ChartDocument,
     song: SongDocument,
-    logger: Logger
+    importLogger: Logger
 ): Promise<ScoreDocument | null> {
     const scoreID = CreateScoreID(userID, dryScore, chart.chartID);
+
+    // sub-context the logger so the below logs are more accurate
+    const logger = AppendLogCtx(scoreID, importLogger);
 
     const existingScore = await db.scores.findOne(
         {
@@ -144,7 +148,7 @@ async function HydrateAndInsertScore(
         return null;
     }
 
-    const score = await HydrateScore(userID, dryScore, chart, song, scoreID);
+    const score = await HydrateScore(userID, dryScore, chart, song, scoreID, logger);
 
     await QueueScoreInsert(score);
 

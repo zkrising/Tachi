@@ -27,7 +27,7 @@ const logger = createLogCtx("score-processor.ts");
  * @param context - Any context the Converter may need in order to make decisions.
  * @returns An array of ImportProcessInfo objects.
  */
-export async function ProcessIterableData<D, C>(
+export async function ImportAllIterableData<D, C>(
     userID: integer,
     iterableData: Iterable<D> | AsyncIterable<D>,
     ConverterFunction: ConverterFunction<D, C>,
@@ -42,7 +42,7 @@ export async function ProcessIterableData<D, C>(
     // An example would be making an api request after exhausting
     // the first set of data.
     for await (const data of iterableData) {
-        promises.push(ProcessIterableDatapoint(userID, data, ConverterFunction, context));
+        promises.push(ImportIterableDatapoint(userID, data, ConverterFunction, context));
     }
 
     // Due to the fact that ProcessIterableDatapoint may return an array instead of a single result
@@ -51,7 +51,7 @@ export async function ProcessIterableData<D, C>(
     // to filter out nulls, which we don't care for (these are neither successes or failures)
     let nonFlatDatapoints = await Promise.all(promises);
 
-    logger.verbose(`Finished Processing Data (${promises.length} datapoints).`);
+    logger.verbose(`Finished Importing Data (${promises.length} datapoints).`);
     logger.verbose(`Flattening returns...`);
 
     let flatDatapoints = [];
@@ -89,7 +89,7 @@ export async function ProcessIterableData<D, C>(
  * @param context - Any context the processor might need that it can not infer from the data object.
  * @returns An array of ImportProcessingInfo objects, or a single ImportProcessingInfo object
  */
-export async function ProcessIterableDatapoint<D, C>(
+export async function ImportIterableDatapoint<D, C>(
     userID: integer,
     data: D,
     ConverterFunction: ConverterFunction<D, C>,
@@ -98,10 +98,10 @@ export async function ProcessIterableDatapoint<D, C>(
     const converterReturns = await ConverterFunction(data, context);
 
     if (Array.isArray(converterReturns)) {
-        return Promise.all(converterReturns.map((e) => ProcessConverterReturns(userID, e)));
+        return Promise.all(converterReturns.map((e) => ImportFromConverterReturn(userID, e)));
     }
 
-    return ProcessConverterReturns(userID, converterReturns);
+    return ImportFromConverterReturn(userID, converterReturns);
 }
 
 /**
@@ -148,7 +148,7 @@ async function HydrateAndInsertScore(
     return score;
 }
 
-async function ProcessConverterReturns(
+async function ImportFromConverterReturn(
     userID: integer,
     cfnReturn: ConverterFnReturn // a single return, not an array!
 ): Promise<ImportProcessingInfo | null> {

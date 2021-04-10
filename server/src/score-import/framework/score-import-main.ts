@@ -5,10 +5,10 @@ import {
     KTBlackImportDocument,
     PublicUserDocument,
 } from "kamaitachi-common";
-import createLogCtx, { createScoreLogger } from "../../logger";
+import { createScoreLogger } from "../../logger";
 import { ConverterFunction } from "../../types";
 import { InsertQueue } from "./core/insert-score";
-import { ProcessIterableData } from "./processing/score-processor";
+import { ImportAllIterableData } from "./importing/score-importing";
 import crypto from "crypto";
 
 export default async function ScoreImportMain<D, C>(
@@ -26,7 +26,7 @@ export default async function ScoreImportMain<D, C>(
     // @todo: scope logger properly
     logger.verbose("Received import request.");
 
-    let importInfo = await ProcessIterableData(user.id, iterableData, ConverterFunction, context);
+    let importInfo = await ImportAllIterableData(user.id, iterableData, ConverterFunction, context);
 
     // Empty anything in the score queue
     await InsertQueue();

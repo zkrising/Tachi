@@ -121,15 +121,13 @@ export async function AddNewUser(
         email: email,
         clan: null,
         friends: [],
-        socialmedia: {},
+        socialMedia: {},
         settings: {
             invisible: false,
-            nsfwsplashes: false,
-            trustEamIIDXTimestamps: false,
-            useSimpleLadderColours: true,
+            nsfwSplashes: false,
         },
-        custombanner: false,
-        custompfp: false,
+        customBanner: false,
+        customPfp: false,
         lastSeen: Date.now(), // lol
         permissions: {
             admin: false, // lol (2)

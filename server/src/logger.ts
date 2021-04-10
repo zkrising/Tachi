@@ -57,11 +57,12 @@ if (IN_TESTING) {
 const logger = winston.createLogger({
     levels: {
         crit: 0, // entire process termination is necessary
-        error: 1, // function call (or related process) has failed unexpectedly
-        warn: 2, // function call has hit something it didn't want, but can recover
-        info: 3, // something has happened that is expected, but worth logging
-        verbose: 4, // something has happened
-        debug: 5, // glorified console.log debugging
+        severe: 1, // something is wrong, and more than one function is affected (such as a failed assertion that is definitely expected to be true).
+        error: 2, // function call (or related process) has failed unexpectedly
+        warn: 3, // function call has hit something it didn't want, but can recover
+        info: 4, // something has happened that is expected, but worth logging
+        verbose: 5, // something has happened
+        debug: 6, // glorified console.log debugging
     },
     level,
     format: defaultFormatRoute,

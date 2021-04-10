@@ -67,6 +67,14 @@ router.post(
 
             const userDoc = await GetUserWithID(req.session.ktchi!.userID);
 
+            if (!userDoc) {
+                logger.error(`User ${req.session.ktchi!.userID} does NOT have a user document?`);
+                return res.status(500).json({
+                    success: false,
+                    description: "An internal error has occured.",
+                });
+            }
+
             let importDocument = await ScoreImportMain(userDoc, importType, inputParser);
 
             return res.status(200).json({

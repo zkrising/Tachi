@@ -6,15 +6,15 @@
         "email": "thepasswordis@password.com",
         "id": 1,
         "settings": {
-            "nsfwsplashes": true,
+            "nsfwSplashes": true,
             "invisible": false
         },
         "friends": [],
-        "socialmedia": {},
+        "socialMedia": {},
         "lastSeen": null,
         "about": "test_user_not_real",
-        "custompfp": true,
-        "custombanner": true,
+        "customPfp": true,
+        "customBanner": true,
         "permissions": {
             "admin": true
         },

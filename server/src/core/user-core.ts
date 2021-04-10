@@ -1,4 +1,5 @@
 import { integer, PublicUserDocument } from "kamaitachi-common";
+import { FindOneResult } from "monk";
 import db from "../db/db";
 
 const OMIT_PRIVATE_USER_RETURNS = {
@@ -13,7 +14,9 @@ const OMIT_PRIVATE_USER_RETURNS = {
  * @param username The username of the user.
  * @returns PublicUserDocument
  */
-export function GetUserCaseInsensitive(username: string): Promise<PublicUserDocument> {
+export function GetUserCaseInsensitive(
+    username: string
+): Promise<FindOneResult<PublicUserDocument>> {
     return db.users.findOne(
         {
             usernameLowercase: username.toLowerCase(),
@@ -21,7 +24,7 @@ export function GetUserCaseInsensitive(username: string): Promise<PublicUserDocu
         {
             projection: OMIT_PRIVATE_USER_RETURNS,
         }
-    ) as Promise<PublicUserDocument>;
+    ) as Promise<FindOneResult<PublicUserDocument>>;
 }
 
 /**
@@ -41,7 +44,7 @@ export function PRIVATEINFO_GetUserCaseInsensitive(username: string) {
  * @param userID The userID to retrieve the user document of.
  * @returns PublicUserDocument
  */
-export function GetUserWithID(userID: integer): Promise<PublicUserDocument> {
+export function GetUserWithID(userID: integer): Promise<FindOneResult<PublicUserDocument>> {
     return db.users.findOne(
         {
             id: userID,
@@ -49,7 +52,7 @@ export function GetUserWithID(userID: integer): Promise<PublicUserDocument> {
         {
             projection: OMIT_PRIVATE_USER_RETURNS,
         }
-    ) as Promise<PublicUserDocument>;
+    ) as Promise<FindOneResult<PublicUserDocument>>;
 }
 
 /**

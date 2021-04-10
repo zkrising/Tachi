@@ -9,10 +9,10 @@ import { SESSION_SECRET } from "./secrets";
 const logger = CreateLogCtx("server.ts");
 
 const RedisStore = connectRedis(expressSession);
-logger.info("Created Redis Store");
+logger.info("Instantiated Redis Store");
 
 const RedisClient = redis.createClient();
-logger.info("Created Redis Client");
+logger.info("Instantiated Redis Client");
 
 const userSessionMiddleware = expressSession({
     // append node_env onto the end of the session name

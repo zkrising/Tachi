@@ -52,5 +52,8 @@ export default async function ScoreImportMain<D, C>(
         userID: user.id,
     };
 
+    // Add this to the imports database
+    // @todo
+
     return ImportDocument;
 }

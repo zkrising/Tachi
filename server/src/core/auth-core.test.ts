@@ -6,7 +6,7 @@ import {
     ReinstateInvite,
 } from "./auth-core";
 import t from "tap";
-import db, { CloseConnection } from "../db";
+import db, { CloseConnection } from "../db/db";
 import { PrivateUserDocument } from "kamaitachi-common";
 import prAssert from "../test-utils/prassert";
 import Prudence from "prudence";

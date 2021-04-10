@@ -1,5 +1,5 @@
 import { ScoreDocument } from "kamaitachi-common";
-import db from "../../../db";
+import db from "../../../db/db";
 
 let ScoreQueue: ScoreDocument[] = [];
 const MAX_PIPELINE_LENGTH = 500;

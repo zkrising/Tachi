@@ -7,9 +7,7 @@
         "id": 1,
         "settings": {
             "nsfwsplashes": true,
-            "invisible": false,
-            "useSimpleLadderColours": true,
-            "trustEamIIDXTimestamps": false
+            "invisible": false
         },
         "friends": [],
         "socialmedia": {},

@@ -1,7 +1,7 @@
 // Chart "Playtype+Difficulty" lookup. This is a common way of resolving Kamaitachi charts.
 
 import { Difficulties, Game, integer, Playtypes, IDStrings } from "kamaitachi-common";
-import db from "../../db";
+import db from "../../db/db";
 
 export function FindChartWithPTDF<
     G extends Game = Game,

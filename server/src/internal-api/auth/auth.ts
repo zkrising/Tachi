@@ -10,7 +10,7 @@ import {
 import { ValidateCaptcha } from "../../core/captcha-core";
 import { FormatUserDoc } from "../../core/format-user";
 import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive } from "../../core/user-core";
-import db from "../../db";
+import db from "../../db/db";
 import CreateLogCtx from "../../logger";
 import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";

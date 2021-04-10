@@ -1,5 +1,5 @@
 import { Game } from "kamaitachi-common";
-import db from "../../db";
+import db from "../../db/db";
 
 /**
  * Finds a song document for the given game with the given title (or alt-title)

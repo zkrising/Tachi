@@ -1,5 +1,5 @@
 import { integer, PublicUserDocument } from "kamaitachi-common";
-import db from "../db";
+import db from "../db/db";
 
 const OMIT_PRIVATE_USER_RETURNS = {
     password: 0,

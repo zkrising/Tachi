@@ -1,7 +1,7 @@
 /**
  * Resets the state of the database.
  */
-import db from "../db";
+import db from "../db/db";
 import fs from "fs";
 import path from "path";
 

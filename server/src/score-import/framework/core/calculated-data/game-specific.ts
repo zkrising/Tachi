@@ -1,6 +1,6 @@
 import { ChartDocument, Game, Playtypes } from "kamaitachi-common";
 import { Logger } from "winston";
-import db from "../../../../db";
+import db from "../../../../db/db";
 import { DryScore } from "../../../../types";
 import {
     CalculateBPI,

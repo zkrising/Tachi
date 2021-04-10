@@ -14,7 +14,7 @@ import {
     KTDataNotFoundFailure,
 } from "../core/converter-errors";
 import { CreateScoreID } from "../core/score-id";
-import db from "../../../db";
+import db from "../../../db/db";
 import { Logger } from "winston";
 import { AppendLogCtx } from "../../../logger";
 

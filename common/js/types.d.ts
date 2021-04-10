@@ -399,8 +399,6 @@ export interface PublicUserDocument extends MongoDBDocument {
     settings: {
         nsfwsplashes: boolean;
         invisible: boolean;
-        useSimpleLadderColours: boolean;
-        trustEamIIDXTimestamps: boolean;
     };
     friends: integer[];
     socialmedia: {

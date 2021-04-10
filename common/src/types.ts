@@ -454,6 +454,7 @@ export interface KTBlackImportDocument extends MongoDBDocument {
     importID: string;
     importInfo: ImportProcessingInfo[];
     // For performance reasons, imports only show what sessions they created, rather than what sessions they didn't.
+    // This is just an array of sessionIDs, to keep things normalised. May be empty.
     createdSessions: string[];
     importType: ImportTypes;
 }
@@ -556,8 +557,6 @@ export interface PublicUserDocument extends MongoDBDocument {
     settings: {
         nsfwsplashes: boolean;
         invisible: boolean;
-        useSimpleLadderColours: boolean;
-        trustEamIIDXTimestamps: boolean;
     };
     friends: integer[];
     socialmedia: {

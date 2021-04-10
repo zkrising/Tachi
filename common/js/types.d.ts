@@ -397,11 +397,11 @@ export interface PublicUserDocument extends MongoDBDocument {
     usernameLowercase: string;
     id: integer;
     settings: {
-        nsfwsplashes: boolean;
+        nsfwSplashes: boolean;
         invisible: boolean;
     };
     friends: integer[];
-    socialmedia: {
+    socialMedia: {
         discord?: string;
         twitter?: string;
         github?: string;
@@ -411,8 +411,8 @@ export interface PublicUserDocument extends MongoDBDocument {
     };
     lastSeen: integer;
     about: string;
-    custompfp: boolean;
-    custombanner: boolean;
+    customPfp: boolean;
+    customBanner: boolean;
     permissions: {
         admin?: boolean;
     };

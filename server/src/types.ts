@@ -52,11 +52,15 @@ export interface ConverterFunction<D, C> {
     (data: D, processContext: C, logger: Logger): Promise<ConverterFunctionReturns>;
 }
 
+export interface ImportInputParser<D, C> {
+    (logger: Logger): ParserFunctionReturns<D, C> | Promise<ParserFunctionReturns<D, C>>;
+}
+
 export interface ParserFunctionReturnsSync<D, C> {
     iterable: Iterable<D>;
     idStrings: [IDStrings] & IDStrings[];
     context: C;
-    converter: ConverterFunction<D, C>;
+    ConverterFunction: ConverterFunction<D, C>;
 }
 
 export type ParserFunctionReturns<D, C> =
@@ -67,7 +71,7 @@ export interface ParserFunctionReturnsAsync<D, C> {
     iterable: AsyncIterable<D>;
     idStrings: [IDStrings] & IDStrings[];
     context: C;
-    converter: ConverterFunction<D, C>;
+    ConverterFunction: ConverterFunction<D, C>;
 }
 
 /**
@@ -87,7 +91,7 @@ export type DryScore<
 
 export interface ScoreConverterInformation<D, C> {
     data: D[];
-    converter: ConverterFunction<D, C>;
+    ConverterFunction: ConverterFunction<D, C>;
 }
 
 export interface OrphanedScore<T extends ImportTypes> {

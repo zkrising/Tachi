@@ -2,13 +2,13 @@ import { Router, NextFunction, Request, Response } from "express";
 import { FileUploadImportTypes } from "kamaitachi-common";
 import multer, { MulterError } from "multer";
 import Prudence from "prudence";
+import { Logger } from "winston";
 import { GetUserWithID } from "../../core/user-core";
-import db from "../../db";
 import CreateLogCtx from "../../logger";
 import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/core/score-import-error";
-import { ResolveFileUploadData } from "../../score-import/framework/parsing/file-upload";
+import { ResolveFileUploadData } from "../../score-import/framework/input-parsing/file-upload";
 import ScoreImportMain from "../../score-import/framework/score-import-main";
 import serverConfig from "../../server-config";
 
@@ -61,23 +61,13 @@ router.post(
 
         try {
             let importType = req.body.importType as FileUploadImportTypes;
-            let { iterable, idStrings, context, converter } = await ResolveFileUploadData(
-                importType,
-                req.file,
-                req.body,
-                logger
-            );
+
+            const inputParser = async (logger: Logger) =>
+                await ResolveFileUploadData(importType, req.file, req.body, logger);
 
             const userDoc = await GetUserWithID(req.session.ktchi!.userID);
 
-            let importDocument = await ScoreImportMain(
-                userDoc,
-                importType,
-                idStrings,
-                iterable,
-                converter,
-                context
-            );
+            let importDocument = await ScoreImportMain(userDoc, importType, inputParser);
         } catch (err) {
             if (err instanceof ScoreImportFatalError) {
                 return res.status(err.statusCode).json(err.data);

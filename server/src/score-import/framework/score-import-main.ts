@@ -4,7 +4,7 @@ import {
     KTBlackImportDocument,
     PublicUserDocument,
 } from "kamaitachi-common";
-import { ConverterFunction } from "../../types";
+import { ImportInputParser } from "../../types";
 import { InsertQueue } from "./core/insert-score";
 import { ImportAllIterableData } from "./importing/score-importing";
 import { CreateImportLoggerAndID } from "./core/import-logger";
@@ -12,20 +12,19 @@ import { CreateImportLoggerAndID } from "./core/import-logger";
 export default async function ScoreImportMain<D, C>(
     user: PublicUserDocument,
     importType: ImportTypes,
-    idStrings: [IDStrings] & IDStrings[],
-    iterableData: Iterable<D> | AsyncIterable<D>,
-    ConverterFunction: ConverterFunction<D, C>,
-    context: C
+    InputParser: ImportInputParser<D, C>
 ) {
     const timeStarted = Date.now();
     const { importID, logger } = CreateImportLoggerAndID(user, importType);
+
+    const { iterable, ConverterFunction, context, idStrings } = await InputParser(logger);
 
     // @todo: scope logger properly
     logger.verbose("Received import request.");
 
     let importInfo = await ImportAllIterableData(
         user.id,
-        iterableData,
+        iterable,
         ConverterFunction,
         context,
         logger
@@ -49,6 +48,7 @@ export default async function ScoreImportMain<D, C>(
         importID,
         timeFinished: Date.now(),
         timeStarted,
+        createdSessions: [], // @todo, see session ctor
         userID: user.id,
     };
 

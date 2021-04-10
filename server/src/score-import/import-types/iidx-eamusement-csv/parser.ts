@@ -224,7 +224,7 @@ function ParseEamusementCSV(
     return {
         iterable: data,
         context,
-        converter: ConverterFn,
+        ConverterFunction: ConverterFn,
         idStrings: [`iidx:${context.playtype}` as "iidx:SP" | "iidx:DP"],
     };
 }

@@ -20,7 +20,7 @@ declare module "express-session" {
     }
 }
 
-interface KtchiSessionData {
+export interface KtchiSessionData {
     userID: integer;
     apiKey: string;
 }

@@ -93,5 +93,51 @@ t.test("#PrudenceMiddleware", (t) => {
         t.end();
     });
 
+    const mwWithPassword = prValidate({ password: "string" }, { password: "invalid password" });
+
+    t.test(
+        "Should not return the contents of the error message if the field matches /password/",
+        async (t) => {
+            let { res } = await expMiddlewareMock(mwWithPassword, {
+                query: {
+                    password: 123,
+                },
+            });
+
+            t.is(res.statusCode, 400, "Status code should be 400");
+
+            const json = res._getJSONData();
+            t.is(
+                json.description,
+                "invalid password (Received ****)",
+                "Should return obscured error message"
+            );
+
+            t.end();
+        }
+    );
+
+    t.test(
+        "Should not return the contents of the error message if the field matches /password/",
+        async (t) => {
+            let { res } = await expMiddlewareMock(mwWithPassword, {
+                query: {
+                    password: undefined,
+                },
+            });
+
+            t.is(res.statusCode, 400, "Status code should be 400");
+
+            const json = res._getJSONData();
+            t.is(
+                json.description,
+                "invalid password (Received nothing)",
+                "Should indicate if no data was sent in obscured error message"
+            );
+
+            t.end();
+        }
+    );
+
     t.end();
 });

@@ -1,4 +1,4 @@
-import { integer, PrivateUserDocument, PublicUserDocument } from "kamaitachi-common";
+import { integer, PublicUserDocument } from "kamaitachi-common";
 import db from "../db";
 
 const OMIT_PRIVATE_USER_RETURNS = {
@@ -34,14 +34,6 @@ export function PRIVATEINFO_GetUserCaseInsensitive(username: string) {
     return db.users.findOne({
         usernameLowercase: username.toLowerCase(),
     });
-}
-
-/**
- * Returns a formatted string indicating the user. This is used for logging.
- * @param userdoc The user document to format.
- */
-export function FormatUserDoc(userdoc: PublicUserDocument) {
-    return `${userdoc.username} (~${userdoc.id})`;
 }
 
 /**

@@ -10,7 +10,7 @@ import db from "../db";
 import { GetNextCounterValue } from "./db-core";
 import { InsertResult } from "monk";
 import CreateLogCtx from "../logger";
-import { FormatUserDoc } from "./user-core";
+import { FormatUserDoc } from "./format-user";
 
 const logger = CreateLogCtx("auth-core.ts");
 

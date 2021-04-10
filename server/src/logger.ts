@@ -2,7 +2,7 @@ import winston, { format, Logger, transports } from "winston";
 import fs from "fs";
 import path from "path";
 import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
-import { FormatUserDoc } from "./core/user-core";
+import { FormatUserDoc } from "./core/format-user";
 
 const level = process.env.LOG_LEVEL ?? "info";
 

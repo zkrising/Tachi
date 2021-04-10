@@ -45,7 +45,7 @@ export async function ProcessIterableData<D, C>(
         promises.push(ProcessIterableDatapoint(userID, data, ConverterFunction, context));
     }
 
-    // Due to the face that ProcessIterableDatapoint may return an array instead of a single result
+    // Due to the fact that ProcessIterableDatapoint may return an array instead of a single result
     // (e-amusement is the only real example of this);
     // we need to flatten out the datapoints into a single array. We also use this time
     // to filter out nulls, which we don't care for (these are neither successes or failures)

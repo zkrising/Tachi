@@ -69,11 +69,14 @@ async function CalculateRating<G extends Game>(
     return await OverrideFunction(dryScore, chart);
 }
 
-async function CalculateLampRating(
-    dryScore: DryScore,
-    chart: ChartDocument,
-    tierlist: TierlistDataDocument
-) {}
+// stub
+// async function CalculateLampRating(
+//     dryScore: DryScore,
+//     chart: ChartDocument,
+//     tierlist: TierlistDataDocument
+// ) {
+//     return 0;
+// }
 
 interface OverrideRatingFunction {
     (dryScore: DryScore, chartData: ChartDocument): number | Promise<number>;

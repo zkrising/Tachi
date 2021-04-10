@@ -8,8 +8,8 @@ import CreateLogCtx from "../../logger";
 import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/core/score-import-error";
-import { ResolveFileUploadData } from "../../score-import/framework/input-parsing/file-upload";
 import ScoreImportMain from "../../score-import/framework/score-import-main";
+import ParseEamusementCSV from "../../score-import/import-types/iidx-eamusement-csv/parser";
 import serverConfig from "../../server-config";
 
 const logger = CreateLogCtx("import.ts");
@@ -68,12 +68,56 @@ router.post(
             const userDoc = await GetUserWithID(req.session.ktchi!.userID);
 
             let importDocument = await ScoreImportMain(userDoc, importType, inputParser);
+
+            return res.status(200).json({
+                success: true,
+                description: "Import successful.",
+                body: {
+                    import: importDocument,
+                },
+            });
         } catch (err) {
             if (err instanceof ScoreImportFatalError) {
                 return res.status(err.statusCode).json(err.data);
+            } else {
+                logger.error(err);
+                return res.status(500).json({
+                    success: false,
+                    description: `An internal service error has occured.`,
+                });
             }
         }
     }
 );
+
+/**
+ * Resolves the data from a file upload into an iterable,
+ * The appropriate processing function to map that iterable over,
+ * and and any context the processing may need (such as playtype)
+ *
+ * This also performs validation on the type of file uploaded.
+ * @param importType - The type of import request this was.
+ * @param fileData - The data sent by the user.
+ * @param body - Other data passed by the user in the request body.
+ */
+export function ResolveFileUploadData(
+    importType: FileUploadImportTypes,
+    fileData: Express.Multer.File,
+    body: Record<string, unknown>,
+    logger: Logger
+) {
+    switch (importType) {
+        case "iidx:eamusement-csv":
+            return ParseEamusementCSV(fileData, body, logger);
+        default:
+            logger.error(
+                `importType ${importType} made it into ResolveFileUploadData, but should have been rejected by Prudence.`
+            );
+            throw new ScoreImportFatalError(400, {
+                success: false,
+                description: `Invalid importType of ${importType}.`,
+            });
+    }
+}
 
 export default router;

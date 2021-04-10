@@ -6,7 +6,7 @@ import { FormatUserDoc } from "./core/format-user";
 
 const level = process.env.LOG_LEVEL ?? "info";
 
-const IN_PROD = process.env.NODE_ENV === "production";
+// const IN_PROD = process.env.NODE_ENV === "production";
 const IN_TESTING = process.env.NODE_ENV === "test";
 
 const ktblackPrintf = format.printf(

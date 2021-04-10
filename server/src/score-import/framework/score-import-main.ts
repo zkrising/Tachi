@@ -1,9 +1,4 @@
-import {
-    IDStrings,
-    ImportTypes,
-    KTBlackImportDocument,
-    PublicUserDocument,
-} from "kamaitachi-common";
+import { ImportTypes, KTBlackImportDocument, PublicUserDocument } from "kamaitachi-common";
 import { ImportInputParser } from "../../types";
 import { InsertQueue } from "./core/insert-score";
 import { ImportAllIterableData } from "./importing/score-importing";

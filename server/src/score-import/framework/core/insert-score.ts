@@ -12,8 +12,10 @@ export async function QueueScoreInsert(score: ScoreDocument) {
     ScoreQueue.push(score);
 
     if (ScoreQueue.length >= MAX_PIPELINE_LENGTH) {
-        await InsertQueue();
+        return await InsertQueue();
     }
+
+    return null;
 }
 
 /**

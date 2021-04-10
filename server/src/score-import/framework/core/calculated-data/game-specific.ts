@@ -32,21 +32,20 @@ export async function CreateGameSpecific<G extends Game>(
                 BPIData.wr,
                 dryScore.scoreData.score,
                 chart.notedata.notecount * 2,
-                BPIData.coef,
-                logger
+                BPIData.coef
             );
 
             gameSpecific.KESDC =
                 dryScore.scoreData.esd === null
                     ? null
-                    : CalculateKESDC(BPIData.kesd, dryScore.scoreData.esd, logger);
+                    : CalculateKESDC(BPIData.kesd, dryScore.scoreData.esd);
         } else {
             gameSpecific.BPI = null;
             gameSpecific.KESDC = null;
         }
 
         if (playtype === "SP") {
-            gameSpecific["K%"] = await KaidenPercentile(dryScore, chart, logger);
+            gameSpecific["K%"] = await KaidenPercentile(dryScore, chart);
         }
     } else if (game === "sdvx") {
         gameSpecific.VF4 = CalculateVF4(
@@ -61,7 +60,7 @@ export async function CreateGameSpecific<G extends Game>(
         );
     } else if (game === "ddr") {
         // either playtype
-        gameSpecific.MFCP = CalculateMFCP(dryScore, chart, logger);
+        gameSpecific.MFCP = CalculateMFCP(dryScore, chart);
     }
 
     return gameSpecific;

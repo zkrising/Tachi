@@ -23,6 +23,15 @@ export type IIDXEamusementCSVData = {
     scores: EamusementScoreData[];
 } & BaseProps;
 
+type Props = "exscore" | "lamp" | "pgreat" | "great" | "bp" | "level";
+
+type RawPropKeys = `${"beginner" | "normal" | "hyper" | "another" | "leggendaria"}-${Props}`;
+
+export type RawIIDXEamusementCSVData = {
+    [K in RawPropKeys]: unknown;
+} &
+    BaseProps & { [index: string]: unknown };
+
 export interface IIDXEamusementCSVContext {
     playtype: "SP" | "DP";
     importVersion: integer;

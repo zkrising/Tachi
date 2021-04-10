@@ -1,9 +1,15 @@
 import csvParse from "csv-parse/lib/sync";
+import { Difficulties, integer } from "kamaitachi-common";
 import { Logger } from "winston";
 import { ParserFunctionReturnsSync } from "../../../types";
 import ScoreImportFatalError from "../../framework/core/score-import-error";
 import ConverterFn from "./converter";
-import { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
+import {
+    EamusementScoreData,
+    IIDXEamusementCSVContext,
+    IIDXEamusementCSVData,
+    RawIIDXEamusementCSVData,
+} from "./types";
 
 const PRE_HV_HEADER_COUNT = 27;
 const HV_HEADER_COUNT = 41;
@@ -63,11 +69,32 @@ function ParseEamusementCSV(
         });
     }
 
-    let data: IIDXEamusementCSVData[];
+    let lowercaseFilename = fileData.filename.toLowerCase();
+
+    // prettier pls
+    if (
+        !body.assertPlaytypeCorrect &&
+        ((lowercaseFilename.includes("sp") && playtype === "DP") ||
+            (lowercaseFilename.toLowerCase().includes("dp") && playtype === "SP"))
+    ) {
+        logger.info(
+            `File was uploaded with filename ${fileData.filename}, but this was set as a ${playtype} import. Sanity check refusing.`
+        );
+
+        throw new ScoreImportFatalError(400, {
+            success: false,
+            description: `Safety: Filename contained '${
+                playtype === "SP" ? "DP" : "SP"
+            }', but was marked as a ${playtype} import. Are you *absolutely* sure this is right?`,
+        });
+    }
+
+    let data: IIDXEamusementCSVData[] = [];
+    let csvData: RawIIDXEamusementCSVData[];
     let hasBeginnerAndLegg: boolean | null = null;
 
     try {
-        data = csvParse(fileData.buffer, {
+        csvData = csvParse(fileData.buffer, {
             bom: true,
             // @ts-expect-error csvParse's types are wrong, see https://github.com/adaltas/node-csv-parse/pull/314
             escape: null, // KONMAI do not escape their CSV, disable escaping entirely.
@@ -174,7 +201,7 @@ function ParseEamusementCSV(
 
     logger.verbose("Successfully parsed CSV.");
 
-    let firstEl = data[0];
+    let firstEl = csvData[0];
 
     if (!firstEl) {
         throw new ScoreImportFatalError(400, {
@@ -185,8 +212,12 @@ function ParseEamusementCSV(
 
     let version = 0;
 
+    const diffs = hasBeginnerAndLegg
+        ? ["beginner", "normal", "hyper", "another", "leggendaria"]
+        : ["normal", "hyper", "another"];
+
     // @optimisable - Can hook into the CSV parser perhaps and read this value immediately?
-    for (const d of data) {
+    for (const d of csvData) {
         // wtf typescript?? what's the point of enums?
         const versionNum = EAM_VERSION_NAMES[d.version as keyof typeof EAM_VERSION_NAMES];
 
@@ -202,6 +233,30 @@ function ParseEamusementCSV(
             logger.verbose(`Replaced ${version} with ${d.version} (${versionNum}).`);
             version = versionNum;
         }
+
+        let scores: EamusementScoreData[] = [];
+
+        for (const diff of diffs) {
+            scores.push({
+                difficulty: (diff.toUpperCase as unknown) as Difficulties["iidx:SP" | "iidx:DP"],
+                bp: d[`${diff}-bp`] as integer | "---",
+                exscore: d[`${diff}-exscore`] as integer,
+                pgreat: d[`${diff}-pgreat`] as integer,
+                great: d[`${diff}-great`] as integer,
+                lamp: d[`${diff}-lamp`] as string,
+                level: d[`${diff}-level`] as integer,
+            });
+        }
+
+        data.push({
+            scores,
+            artist: d.artist,
+            genre: d.genre,
+            playcount: d.playcount,
+            timestamp: d.timestamp,
+            title: d.title,
+            version: d.version,
+        });
     }
 
     if (hasBeginnerAndLegg === null) {

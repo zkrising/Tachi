@@ -27,8 +27,6 @@ const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new 
     ["ASSIST CLEAR", "ASSIST CLEAR"],
 ]);
 
-const EAM_IIDX_EPOCHS = ["2019-10-19 11:06", "2020-11-12 00:47"];
-
 async function EamScoreConverter(
     eamScore: EamusementScoreData,
     ktchiSong: SongDocument,
@@ -44,6 +42,7 @@ async function EamScoreConverter(
 
     if (eamScore.exscore === 0) {
         // skip scores with an exscore of 0
+        // This also skips things like score resets.
         return null;
     }
 
@@ -99,7 +98,7 @@ async function EamScoreConverter(
         );
     }
 
-    let esd = 100;
+    let esd = 200;
 
     // esd cannot estimate things below this level of accuracy, so only actually calculate it here
     if (percent > 0.1) {
@@ -110,23 +109,12 @@ async function EamScoreConverter(
     // Under, well, normal circumstances, we could figure this out quite trivially
     // But e-amusement provides us the timestamp for the *song*, not the score
     //
-    // The first thing we're going to do is "ignore epochs"
-    // The main issue we have is that the game resets, and ALSO resets the timestamps for scores
-    // We define that point to be an "epoch" in the score database.
-    // The issue then, obviously, being that this would import one really large session at that time!
-    // And we don't want that, so to avoid that, we ignore all epochs.
-    //
-    // The second thing we're going to do is... nothing.
-    // People very rarely play the same chart on multiple difficulties in the same session
-    // But the logic that the timestamp applies to the song is easier to reason about with other people
-    // than any amount of custom logic i write here that tries to infer something else.
+    // We're going to actually ignore this. Initial drafts of this assumed we could skip the
+    // "epochs" (when a score reset on eamusement happened), but it turns out those are
+    // generated when the user triggers a score migration, NOT (as initially thought) when
+    // KONAMI decides.
 
-    let timestamp;
-    if (EAM_IIDX_EPOCHS.includes(data.timestamp)) {
-        timestamp = null;
-    } else {
-        timestamp = Date.parse(data.timestamp);
-    }
+    let timestamp = Date.parse(data.timestamp);
 
     let dryScore: DryScore<"iidx", typeof context.playtype, "iidx:SP" | "iidx:DP"> = {
         service: context.serviceOrigin,

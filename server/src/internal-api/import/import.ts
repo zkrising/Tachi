@@ -86,7 +86,10 @@ router.post(
             });
         } catch (err) {
             if (err instanceof ScoreImportFatalError) {
-                return res.status(err.statusCode).json(err.data);
+                return res.status(err.statusCode).json({
+                    success: false,
+                    description: err.message,
+                });
             } else {
                 logger.error(err);
                 return res.status(500).json({
@@ -121,10 +124,7 @@ export function ResolveFileUploadData(
             logger.error(
                 `importType ${importType} made it into ResolveFileUploadData, but should have been rejected by Prudence.`
             );
-            throw new ScoreImportFatalError(400, {
-                success: false,
-                description: `Invalid importType of ${importType}.`,
-            });
+            throw new ScoreImportFatalError(400, `Invalid importType of ${importType}.`);
     }
 }
 

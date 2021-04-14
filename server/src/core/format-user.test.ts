@@ -5,8 +5,8 @@ import { FormatUserDoc } from "./format-user";
 t.test("#FormatUserDoc", (t) => {
     t.equal(
         FormatUserDoc({ username: "zkldi", id: 123 } as PublicUserDocument),
-        "zkldi (~123)",
-        "Should format a user document into username ~id format."
+        "zkldi (#123)",
+        "Should format a user document into username #id format."
     );
 
     t.end();

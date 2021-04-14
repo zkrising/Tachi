@@ -1,37 +1,39 @@
-[{
-    "service": "e-amusement",
-    "game": "iidx",
-    "playtype": "SP",
-    "difficulty": "ANOTHER",
-    "userID": 1,
-    "scoreData": {
-        "score": 786,
-        "lamp": "HARD CLEAR",
-        "percent": 50,
-        "grade": "C",
-        "esd": 30,
-        "hitData": {
-            "pgreat": 50,
-            "great": 10
+[
+    {
+        "service": "e-amusement",
+        "game": "iidx",
+        "playtype": "SP",
+        "difficulty": "ANOTHER",
+        "userID": 1,
+        "scoreData": {
+            "score": 786,
+            "lamp": "HARD CLEAR",
+            "percent": 50,
+            "grade": "C",
+            "esd": 30,
+            "hitData": {
+                "pgreat": 50,
+                "great": 10
+            },
+            "hitMeta": {}
         },
-        "hitMeta": {}
-    },
-    "scoreMeta": {},
-    "calculatedData": {
-        "rating": 0.1,
-        "lampRating": 5,
-        "gameSpecific": {},
-        "ranking": null,
-        "outOf": null
-    },
-    "timeAchieved": null,
-    "songID": 1,
-    "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
-    "highlight": false,
-    "comment": null,
-    "timeAdded": 1,
-    "isScorePB": true,
-    "isLampPB": true,
-    "scoreID": "todo",
-    "importType": "iidx:eamusement-csv"
-}]
+        "scoreMeta": {},
+        "calculatedData": {
+            "rating": 0.1,
+            "lampRating": 5,
+            "gameSpecific": {},
+            "ranking": null,
+            "outOf": null
+        },
+        "timeAchieved": null,
+        "songID": 1,
+        "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
+        "highlight": false,
+        "comment": null,
+        "timeAdded": 1,
+        "isScorePB": true,
+        "isLampPB": true,
+        "scoreID": "TESTING_SCORE_ID",
+        "importType": "iidx:eamusement-csv"
+    }
+]

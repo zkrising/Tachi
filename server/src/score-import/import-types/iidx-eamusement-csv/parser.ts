@@ -63,10 +63,10 @@ function ParseEamusementCSV(
         playtype = "DP";
     } else {
         logger.error(`Invalid playtype of ${body.playtype} passed to ParseEamusementCSV.`);
-        throw new ScoreImportFatalError(400, {
-            success: false,
-            description: `Invalid playtype of ${body.playtype ?? "Nothing"} given.`,
-        });
+        throw new ScoreImportFatalError(
+            400,
+            `Invalid playtype of ${body.playtype ?? "Nothing"} given.`
+        );
     }
 
     let lowercaseFilename = fileData.filename.toLowerCase();
@@ -81,12 +81,12 @@ function ParseEamusementCSV(
             `File was uploaded with filename ${fileData.filename}, but this was set as a ${playtype} import. Sanity check refusing.`
         );
 
-        throw new ScoreImportFatalError(400, {
-            success: false,
-            description: `Safety: Filename contained '${
+        throw new ScoreImportFatalError(
+            400,
+            `Safety: Filename contained '${
                 playtype === "SP" ? "DP" : "SP"
-            }', but was marked as a ${playtype} import. Are you *absolutely* sure this is right?`,
-        });
+            }', but was marked as a ${playtype} import. Are you *absolutely* sure this is right?`
+        );
     }
 
     let data: IIDXEamusementCSVData[] = [];
@@ -182,21 +182,17 @@ function ParseEamusementCSV(
                     ];
                 } else {
                     logger.warn(`Invalid CSV header count of ${header.length} received.`);
-                    throw new ScoreImportFatalError(400, {
-                        success: false,
-                        description:
-                            "Invalid CSV provided. CSV does not have the correct amount of headers.",
-                    });
+                    throw new ScoreImportFatalError(
+                        400,
+                        "Invalid CSV provided. CSV does not have the correct amount of headers."
+                    );
                 }
             },
             skipEmptyLines: true,
         });
     } catch (err) {
         logger.error(`CSV Parser Error: ${err}`);
-        throw new ScoreImportFatalError(400, {
-            success: false,
-            description: "CSV Could not be parsed.",
-        });
+        throw new ScoreImportFatalError(400, "CSV Could not be parsed.");
     }
 
     logger.verbose("Successfully parsed CSV.");
@@ -204,10 +200,7 @@ function ParseEamusementCSV(
     let firstEl = csvData[0];
 
     if (!firstEl) {
-        throw new ScoreImportFatalError(400, {
-            success: false,
-            description: "This CSV has no scores.",
-        });
+        throw new ScoreImportFatalError(400, "This CSV has no scores.");
     }
 
     let version = 0;
@@ -223,10 +216,7 @@ function ParseEamusementCSV(
 
         if (!versionNum) {
             logger.error(`Invalid/Unknown EAM_VERSION_NAME ${d.version}.`);
-            throw new ScoreImportFatalError(400, {
-                success: false,
-                description: `Invalid/Unknown EAM_VERSION_NAME ${d.version}.`,
-            });
+            throw new ScoreImportFatalError(400, `Invalid/Unknown EAM_VERSION_NAME ${d.version}.`);
         }
 
         if (versionNum > version) {
@@ -261,10 +251,7 @@ function ParseEamusementCSV(
 
     if (hasBeginnerAndLegg === null) {
         logger.error(`hasBeginnerAndLegg was not set, but the end of parsings was reached?`);
-        throw new ScoreImportFatalError(500, {
-            success: false,
-            description: "An internal service error has occured.",
-        });
+        throw new ScoreImportFatalError(500, "An internal service error has occured.");
     }
 
     let context: IIDXEamusementCSVContext = {

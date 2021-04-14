@@ -6,5 +6,5 @@ import { PublicUserDocument } from "kamaitachi-common";
  * @param userdoc The user document to format.
  */
 export function FormatUserDoc(userdoc: PublicUserDocument) {
-    return `${userdoc.username} (~${userdoc.id})`;
+    return `${userdoc.username} (#${userdoc.id})`;
 }

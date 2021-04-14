@@ -39,7 +39,7 @@ t.test("#CreateCalculatedData", async (t) => {
         mockLogger
     );
 
-    t.strictSame(
+    prAssert(
         gitadoraRes,
         {
             rating: Pr.isPositiveNonZero,

@@ -49,8 +49,8 @@ t.test("#CreateGameSpecific", (t) => {
         prAssert(
             res,
             {
-                BPI: "?null",
-                KESDC: "?null",
+                BPI: "?number",
+                KESDC: "?number",
             },
             "Response should contain keys for IIDX:DP GameSpecifics"
         );

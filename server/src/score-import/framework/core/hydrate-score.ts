@@ -16,7 +16,7 @@ export default async function HydrateScore(
     scoreID: string,
     logger: Logger
 ): Promise<ScoreDocument> {
-    const calculatedData = await CreateCalculatedData(dryScore, chart, song, logger); // @todo
+    const calculatedData = await CreateCalculatedData(dryScore, chart, logger); // @todo
 
     const { scoreData: dryScoreData, ...rest } = dryScore;
 

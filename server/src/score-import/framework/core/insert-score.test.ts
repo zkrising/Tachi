@@ -17,7 +17,11 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
         // fake score doc
         let res = await QueueScoreInsert(({ testDocument: "foo" } as unknown) as ScoreDocument);
 
-        t.equal(res, null, "QueueScoreInsert should not insert a score when the queue is not full.");
+        t.equal(
+            res,
+            null,
+            "QueueScoreInsert should not insert a score when the queue is not full."
+        );
 
         // this is the best way to get the size of the queue
         let flushSize = await InsertQueue();
@@ -44,7 +48,7 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
     t.test("Queue Overflow Test", async (t) => {
         for (let i = 0; i < 499; i++) {
             // eslint-disable-next-line no-await-in-loop
-            let res = await QueueScoreInsert(({ testDocument: "foo" } as unknown) as ScoreDocument);
+            await QueueScoreInsert(({ testDocument: "foo" } as unknown) as ScoreDocument);
         }
 
         let overflowRes = await QueueScoreInsert(({

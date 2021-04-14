@@ -14,7 +14,6 @@ import { CalculateCHUNITHMRating, CalculateGITADORARating } from "./game-specifi
 export async function CreateCalculatedData(
     dryScore: DryScore,
     chart: ChartDocument,
-    song: SongDocument,
     logger: Logger
 ): Promise<ScoreDocument["calculatedData"]> {
     const game = dryScore.game;

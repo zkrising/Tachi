@@ -1,6 +1,6 @@
 import Pr from "prudence";
 import t from "tap";
-import { CloseConnection, ReOpenConnection } from "../../../../db/db";
+import { CloseConnection } from "../../../../db/db";
 import CreateLogCtx from "../../../../logger";
 import prAssert from "../../../../test-utils/prassert";
 import {
@@ -27,11 +27,11 @@ t.test("#CreateGameSpecific", (t) => {
         prAssert(
             res,
             {
-                BPI: "null",
-                "K%": "null",
-                KESDC: "null",
+                BPI: "?number",
+                "K%": "?number",
+                KESDC: "?number",
             },
-            "Response should contain nulled keys for IIDX:SP GameSpecifics"
+            "Response should contain keys for IIDX:SP GameSpecifics"
         );
 
         t.end();
@@ -49,10 +49,10 @@ t.test("#CreateGameSpecific", (t) => {
         prAssert(
             res,
             {
-                BPI: "null",
-                KESDC: "null",
+                BPI: "?null",
+                KESDC: "?null",
             },
-            "Response should contain nulled keys for IIDX:DP GameSpecifics"
+            "Response should contain keys for IIDX:DP GameSpecifics"
         );
 
         t.end();
@@ -73,7 +73,7 @@ t.test("#CreateGameSpecific", (t) => {
                 VF4: Pr.nullable(Pr.isPositiveInteger),
                 VF5: Pr.nullable(Pr.isPositive),
             },
-            "Response should contain nulled keys for SDVX:Single GameSpecifics"
+            "Response should contain keys for SDVX:Single GameSpecifics"
         );
 
         t.end();
@@ -91,9 +91,9 @@ t.test("#CreateGameSpecific", (t) => {
         prAssert(
             res,
             {
-                MFCP: "null",
+                MFCP: Pr.nullable(Pr.isPositiveInteger),
             },
-            "Response should contain nulled keys for DDR:SP GameSpecifics"
+            "Response should contain keys for DDR:SP GameSpecifics"
         );
 
         t.end();

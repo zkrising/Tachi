@@ -133,7 +133,7 @@ export function CalculateKESDC(kaidenESD: number | null, yourESD: number) {
  * https://life4ddr.com/requirements/#mfcpoints
  * @returns Null if this score was not eligible, a number otherwise.
  */
-export function CalculateMFCP(dryScore: DryScore, chartData: ChartDocument) {
+export function CalculateMFCP(dryScore: DryScore, chartData: ChartDocument, logger: Logger) {
     if (dryScore.scoreData.lamp !== "MARVELOUS FULL COMBO") {
         return null;
     }
@@ -145,9 +145,9 @@ export function CalculateMFCP(dryScore: DryScore, chartData: ChartDocument) {
 
     if (chartData.levelNum < 8) {
         return null;
-    } else if (chartData.levelNum < 10) {
+    } else if (chartData.levelNum <= 10) {
         return 1;
-    } else if (chartData.levelNum < 12) {
+    } else if (chartData.levelNum <= 12) {
         return 2;
     } else if (chartData.levelNum === 13) {
         return 4;
@@ -159,7 +159,11 @@ export function CalculateMFCP(dryScore: DryScore, chartData: ChartDocument) {
         return 25;
     }
 
-    // cannot be hit?
+    logger.warn(
+        `Invalid levelNum passed to MFCP ${chartData.levelNum}. ChartID ${chartData.chartID}.`
+    );
+
+    // failsafe
     return null;
 }
 

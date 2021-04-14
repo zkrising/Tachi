@@ -1,0 +1,34 @@
+{
+    "id": 0,
+    "chartID": "29f0bfab357ba54e3fd0176fb3cbc578c9ec8df5",
+    "difficulty": "BASIC",
+    "playtype": "Dora",
+    "levelNum": 1.6,
+    "level": "1.60",
+    "notedata": {
+        "notecount": 169,
+        "objects": {
+            "LEFT CYMBAL": 54,
+            "HI HAT": 78,
+            "LEFT PEDAL": 24,
+            "SNARE": 1,
+            "HI TOM": 1,
+            "RIGHT PEDAL": 2,
+            "LOW TOM": 4,
+            "FLOOR TOM": 5,
+            "RIGHT CYMBAL": 0
+        }
+    },
+    "length": null,
+    "bpmMin": 117,
+    "bpmMax": 117,
+    "monoBPM": true,
+    "indicators": {},
+    "flags": {
+        "IN BASE GAME": true
+    },
+    "internals": {
+        "inGameID": "0",
+        "inGameINTID": 0
+    }
+}

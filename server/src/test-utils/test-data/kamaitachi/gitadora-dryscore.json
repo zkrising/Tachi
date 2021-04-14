@@ -1,0 +1,17 @@
+{
+    "service": "fake-service",
+    "game": "gitadora",
+    "scoreData": {
+        "score": 70.76,
+        "lamp": "CLEAR",
+        "percent": 70.76,
+        "grade": "B",
+        "esd": 30,
+        "hitData": {},
+        "hitMeta": {}
+    },
+    "scoreMeta": {},
+    "timeAchieved": null,
+    "comment": null,
+    "importType": "any:batch-manual"
+}

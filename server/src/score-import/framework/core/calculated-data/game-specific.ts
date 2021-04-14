@@ -60,7 +60,7 @@ export async function CreateGameSpecific<G extends Game>(
         );
     } else if (game === "ddr") {
         // either playtype
-        gameSpecific.MFCP = CalculateMFCP(dryScore, chart);
+        gameSpecific.MFCP = CalculateMFCP(dryScore, chart, logger);
     }
 
     return gameSpecific;

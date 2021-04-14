@@ -28,7 +28,7 @@ t.test("#AddNewUserAPIKey", (t) => {
     t.test("Should insert a new API key into the database", async (t) => {
         let data = await AddNewUserAPIKey({ id: 1 } as PrivateUserDocument);
 
-        t.isNot(data, null, "Return is not null");
+        t.not(data, null, "Return is not null");
 
         prAssert(
             data,
@@ -72,13 +72,13 @@ t.test("#ReinstateInvite", (t) => {
         let response = await ReinstateInvite(inviteDoc);
 
         // @ts-expect-error Monks' types are WRONG. this is nModified, not modifiedCount
-        t.is(response.nModified, 1, "Should modify one document");
+        t.equal(response.nModified, 1, "Should modify one document");
 
         let invite2 = await db.invites.findOne({
             code: inviteDoc.code, // lol
         });
 
-        t.is(invite2!.consumed, false, "Should no longer be consumed");
+        t.equal(invite2!.consumed, false, "Should no longer be consumed");
 
         t.end();
     });
@@ -100,14 +100,11 @@ t.test("#AddNewInvite", (t) => {
 
         let result = await AddNewInvite(userDoc!);
 
-        t.is(result.createdBy, userDoc!.id, "Invite should be created by the requesting user.");
-        t.is(result.consumed, false, "Invite should not be consumed.");
+        t.equal(result.createdBy, userDoc!.id, "Invite should be created by the requesting user.");
+        t.equal(result.consumed, false, "Invite should not be consumed.");
 
         // was created +/- 6 seconds from now. This is perhaps too lenient, but we're only really testing its just around now ish.
-        t.assert(
-            Math.abs(result.createdOn - Date.now()) <= 6000,
-            "Invite was created roughly now."
-        );
+        t.ok(Math.abs(result.createdOn - Date.now()) <= 6000, "Invite was created roughly now.");
 
         t.match(result.code, /^[0-9a-f]{40}$/, "Invite code should be a 40 character hex string.");
     });

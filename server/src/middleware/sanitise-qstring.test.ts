@@ -11,7 +11,7 @@ t.test("#SanitiseQString", (t) => {
             },
         });
 
-        t.isNot(res.statusCode, 400, "Status code should NOT be 400");
+        t.not(res.statusCode, 400, "Status code should NOT be 400");
 
         t.end();
     });
@@ -26,7 +26,7 @@ t.test("#SanitiseQString", (t) => {
             },
         });
 
-        t.is(res.statusCode, 400, "Status code should be 400");
+        t.equal(res.statusCode, 400, "Status code should be 400");
 
         t.end();
     });

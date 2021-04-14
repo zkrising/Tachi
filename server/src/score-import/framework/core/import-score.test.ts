@@ -17,18 +17,18 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
         // fake score doc
         let res = await QueueScoreInsert(({ testDocument: "foo" } as unknown) as ScoreDocument);
 
-        t.is(res, null, "QueueScoreInsert should not insert a score when the queue is not full.");
+        t.equal(res, null, "QueueScoreInsert should not insert a score when the queue is not full.");
 
         // this is the best way to get the size of the queue
         let flushSize = await InsertQueue();
 
-        t.is(flushSize, 1, "QueueScoreInsert should append the score to the queue.");
+        t.equal(flushSize, 1, "QueueScoreInsert should append the score to the queue.");
 
         let dbRes = await db.scores.find({
             testDocument: "foo",
         });
 
-        t.is(
+        t.equal(
             dbRes.length,
             1,
             "InsertQueue should insert all 1 members of the queue into the database."
@@ -39,7 +39,7 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 
     let r = await InsertQueue(); // flush queue just incase former test fails.
 
-    t.is(r, 0, "Queue should be empty after test.");
+    t.equal(r, 0, "Queue should be empty after test.");
 
     t.test("Queue Overflow Test", async (t) => {
         for (let i = 0; i < 499; i++) {
@@ -51,7 +51,7 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
             testDocument: "foo",
         } as unknown) as ScoreDocument);
 
-        t.is(
+        t.equal(
             overflowRes,
             500,
             "Appending 500 items to the queue should result in them being inserted."
@@ -59,13 +59,13 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 
         let flushRes = await InsertQueue();
 
-        t.is(flushRes, 0, "The queue should now be empty.");
+        t.equal(flushRes, 0, "The queue should now be empty.");
 
         let dbRes = await db.scores.find({
             testDocument: "foo",
         });
 
-        t.is(
+        t.equal(
             dbRes.length,
             500,
             "InsertQueue should insert all 500 members of the queue into the database."

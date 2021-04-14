@@ -10,13 +10,13 @@ t.test("#GetNextCounterValue", (t) => {
         let response = await GetNextCounterValue("real-counter");
 
         // database starts with this at one
-        t.is(response, 2, "Counter should return the current number stored");
+        t.equal(response, 2, "Counter should return the current number stored");
 
         let dbData = await db.counters.findOne({
             counterName: "real-counter",
         });
 
-        t.is(dbData!.value, 3, "Counter should increment after being hit");
+        t.equal(dbData!.value, 3, "Counter should increment after being hit");
     });
 
     t.rejects(

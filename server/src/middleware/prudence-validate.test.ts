@@ -13,10 +13,10 @@ t.test("#PrudenceMiddleware", (t) => {
             },
         });
 
-        t.is(res.statusCode, 400, "Status code should be 400");
+        t.equal(res.statusCode, 400, "Status code should be 400");
 
         const json = res._getJSONData();
-        t.is(
+        t.equal(
             json.description,
             "example error message (Received bar)",
             "Should return error message"
@@ -30,10 +30,10 @@ t.test("#PrudenceMiddleware", (t) => {
             query: {},
         });
 
-        t.is(res.statusCode, 400, "Status code should be 400");
+        t.equal(res.statusCode, 400, "Status code should be 400");
 
         const json = res._getJSONData();
-        t.is(
+        t.equal(
             json.description,
             "example error message (Received nothing)",
             "Should return error message with recieved nothing"
@@ -49,10 +49,10 @@ t.test("#PrudenceMiddleware", (t) => {
             },
         });
 
-        t.is(res.statusCode, 200, "Should stay as 200");
+        t.equal(res.statusCode, 200, "Should stay as 200");
 
         // no body -- not returned.
-        t.is(res._isJSON(), false, "Should not have any data set");
+        t.equal(res._isJSON(), false, "Should not have any data set");
 
         t.end();
     });
@@ -65,10 +65,10 @@ t.test("#PrudenceMiddleware", (t) => {
             },
         });
 
-        t.is(res.statusCode, 200, "Should stay as 200");
+        t.equal(res.statusCode, 200, "Should stay as 200");
 
         // no body -- not returned.
-        t.is(res._isJSON(), false, "Should not have any data set");
+        t.equal(res._isJSON(), false, "Should not have any data set");
 
         t.end();
     });
@@ -81,10 +81,10 @@ t.test("#PrudenceMiddleware", (t) => {
             },
         });
 
-        t.is(res.statusCode, 400, "Status code should be 400");
+        t.equal(res.statusCode, 400, "Status code should be 400");
 
         const json = res._getJSONData();
-        t.is(
+        t.equal(
             json.description,
             "example error message (Received bar)",
             "Should return error message"
@@ -104,10 +104,10 @@ t.test("#PrudenceMiddleware", (t) => {
                 },
             });
 
-            t.is(res.statusCode, 400, "Status code should be 400");
+            t.equal(res.statusCode, 400, "Status code should be 400");
 
             const json = res._getJSONData();
-            t.is(
+            t.equal(
                 json.description,
                 "invalid password (Received ****)",
                 "Should return obscured error message"
@@ -126,10 +126,10 @@ t.test("#PrudenceMiddleware", (t) => {
                 },
             });
 
-            t.is(res.statusCode, 400, "Status code should be 400");
+            t.equal(res.statusCode, 400, "Status code should be 400");
 
             const json = res._getJSONData();
-            t.is(
+            t.equal(
                 json.description,
                 "invalid password (Received nothing)",
                 "Should indicate if no data was sent in obscured error message"

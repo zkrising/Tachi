@@ -20,7 +20,7 @@ export async function QueueScoreInsert(score: ScoreDocument) {
 
 /**
  * Bulk inserts the entire Queue.
- * @warn Race condition?
+ * @warn Be cautious of inducing race conditions when using this function.
  */
 export async function InsertQueue() {
     const temp = ScoreQueue.splice(0);

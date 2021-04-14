@@ -1,4 +1,5 @@
 import t from "tap";
+import { CloseConnection } from "../db/db";
 import { PRUDENCE_PRIVATE_USER, PRUDENCE_PUBLIC_USER } from "../db/schemas";
 import prAssert from "../test-utils/prassert";
 import {
@@ -78,3 +79,5 @@ t.test("#GetUserCaseInsensitive", (t) => {
 
     t.end();
 });
+
+t.teardown(CloseConnection);

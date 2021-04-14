@@ -27,10 +27,6 @@ const defaultFormatRoute = format.combine(
 let tports = [];
 
 if (IN_TESTING) {
-    // empty the logs!
-    fs.rmSync(path.join(__dirname, "../logs/ktblack-tests-error.log"));
-    fs.rmSync(path.join(__dirname, "../logs/ktblack-tests.log"));
-
     tports = [
         new transports.File({
             filename: "logs/ktblack-tests-error.log",

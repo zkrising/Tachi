@@ -1,6 +1,5 @@
 import { config, ESDCore, Lamps, SongDocument } from "kamaitachi-common";
 import { Logger } from "winston";
-import CreateLogCtx from "../../../logger";
 import { DryScore, ConverterFunction, ConverterFnReturn } from "../../../types";
 import { FindChartWithPTDF } from "../../database-lookup/chart-ptdf";
 import { FindSongOnTitleVersion } from "../../database-lookup/song-title";
@@ -89,7 +88,7 @@ async function EamScoreConverter(
         );
     }
 
-    const percent = eamScore.exscore / ktchiChart.notedata.notecount;
+    const percent = (100 * eamScore.exscore) / ktchiChart.notedata.notecount;
     const grade = GetGradeFromPercent<"iidx:SP" | "iidx:DP">("iidx", percent);
 
     if (!grade) {

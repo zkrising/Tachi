@@ -1,0 +1,17 @@
+{
+    "service": "e-amusement",
+    "game": "sdvx",
+    "scoreData": {
+        "score": 95000000,
+        "lamp": "EXCESSIVE CLEAR",
+        "percent": 95,
+        "grade": "AA+",
+        "esd": null,
+        "hitData": {},
+        "hitMeta": {}
+    },
+    "scoreMeta": {},
+    "timeAchieved": null,
+    "comment": null,
+    "importType": "iidx:sdvx-csv"
+}

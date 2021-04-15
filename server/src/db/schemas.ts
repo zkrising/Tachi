@@ -1,3 +1,4 @@
+import { importTypes } from "kamaitachi-common/js/config";
 import Pr, { PrudenceOptions, PrudenceSchema } from "prudence";
 import { RevaluedObject } from "../types";
 import db from "./db";
@@ -90,8 +91,8 @@ export const PRUDENCE_GENERIC_SCORE = {
     timeAdded: Pr.isPositive,
     isScorePB: "boolean",
     isLampPB: "boolean",
-    scoreID: "string" // temp
-    importType: Pr.isIn()
+    scoreID: "string", // temp
+    importType: Pr.isIn(importTypes),
 };
 
 export const SCHEMAS: RevaluedObject<typeof db, PrudenceSchema> = {

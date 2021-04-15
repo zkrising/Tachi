@@ -977,9 +977,9 @@ export interface ScoreDocument<
     importType: ImportTypes;
 }
 
-export type FileUploadImportTypes = "iidx:eamusement-csv";
-// | "iidx:plife-csv"
-// | "any:batchmanual-json";
+export type FileUploadImportTypes = "csv:eamusement-iidx";
+// | "csv:plife-iidx"
+// | "json:batchmanual";
 
 export type ImportTypes = FileUploadImportTypes;
 

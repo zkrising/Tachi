@@ -3,9 +3,12 @@
 // of some of my first javascript code.
 // It's,, alright, but I like the versatility it brings.
 
-import { Game, Playtypes, ChartDocument } from "./types";
+import { Game, Playtypes, ChartDocument, ImportTypes, FileUploadImportTypes } from "./types";
 
-const supportedGames: Game[] = [
+export const importTypes: ImportTypes[] = ["csv:eamusement-iidx"];
+export const fileImportTypes: FileUploadImportTypes[] = ["csv:eamusement-iidx"];
+
+export const supportedGames: Game[] = [
     "iidx",
     "museca",
     "maimai",
@@ -19,7 +22,7 @@ const supportedGames: Game[] = [
     "usc",
 ];
 
-const gameSpecificCalc: Partial<Record<Game, Partial<Record<Playtypes[Game], string[]>>>> = {
+export const gameSpecificCalc: Partial<Record<Game, Partial<Record<Playtypes[Game], string[]>>>> = {
     iidx: {
         SP: ["BPI", "K%"],
         DP: ["BPI"],
@@ -36,7 +39,7 @@ const gameSpecificCalc: Partial<Record<Game, Partial<Record<Playtypes[Game], str
     },
 };
 
-const gameSpecificCalcDescriptions = {
+export const gameSpecificCalcDescriptions = {
     iidx: {
         SP: {
             BPI:
@@ -70,7 +73,7 @@ const gameSpecificCalcDescriptions = {
     },
 };
 
-const validDifficulties: Record<Game, string[]> = {
+export const validDifficulties: Record<Game, string[]> = {
     iidx: ["BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
     museca: ["Green", "Yellow", "Red"],
     maimai: ["Easy", "Basic", "Advanced", "Expert", "Master", "Re:Master"],
@@ -93,7 +96,7 @@ const validDifficulties: Record<Game, string[]> = {
     usc: ["NOV", "ADV", "EXH", "INF"],
 };
 
-const defaultTable: Record<Game, string> = {
+export const defaultTable: Record<Game, string> = {
     iidx: "Levels (N-1)",
     bms: "Insane",
     museca: "Levels",
@@ -107,7 +110,7 @@ const defaultTable: Record<Game, string> = {
     maimai: "Levels",
 };
 
-const folderTables: Record<Game, string[]> = {
+export const folderTables: Record<Game, string[]> = {
     iidx: ["Levels", "Levels (Omnimix)", "Levels (N-1)", "Levels (N-1 Omnimix)", "Versions"],
     bms: ["Normal", "Insane", "Overjoy", "Satellite", "Stella", "Insane 2", "Joverjoy"],
     museca: ["Levels", "Versions"],
@@ -121,7 +124,7 @@ const folderTables: Record<Game, string[]> = {
     maimai: ["Levels", "Versions"],
 };
 
-const validHitData: Record<Game, string[]> = {
+export const validHitData: Record<Game, string[]> = {
     iidx: ["pgreat", "great", "good", "bad", "poor"],
     bms: ["pgreat", "great", "good", "bad", "poor"],
     museca: ["critical", "near", "miss"],
@@ -135,8 +138,8 @@ const validHitData: Record<Game, string[]> = {
     usc: ["critical", "near", "miss"],
 };
 
-const BASE_VALID_HIT_META = ["fast", "slow", "maxCombo"];
-const validHitMeta: Record<Game, string[]> = {
+export const BASE_VALID_HIT_META = ["fast", "slow", "maxCombo"];
+export const validHitMeta: Record<Game, string[]> = {
     iidx: ["bp", "gauge", "gaugeHistory", "comboBreak", ...BASE_VALID_HIT_META],
     museca: BASE_VALID_HIT_META,
     ddr: BASE_VALID_HIT_META,
@@ -167,7 +170,7 @@ const validHitMeta: Record<Game, string[]> = {
     usc: ["gauge", ...BASE_VALID_HIT_META],
 };
 
-const validScoreMeta: Record<Game, Record<string, unknown>> = {
+export const validScoreMeta: Record<Game, Record<string, unknown>> = {
     iidx: {
         optionsRandom: ["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"],
         optionsAssist: [
@@ -230,7 +233,7 @@ const validScoreMeta: Record<Game, Record<string, unknown>> = {
     },
 };
 
-const gameColours: Record<Game, string> = {
+export const gameColours: Record<Game, string> = {
     iidx: "#E7BDB3",
     museca: "#C9A4A0",
     maimai: "#AE8094",
@@ -245,7 +248,7 @@ const gameColours: Record<Game, string> = {
     usc: "#D6B7B1", // TODO
 };
 
-const gameRelevantScoreBucket: Record<Game, "grade" | "lamp"> = {
+export const gameRelevantScoreBucket: Record<Game, "grade" | "lamp"> = {
     iidx: "lamp",
     museca: "grade",
     maimai: "grade",
@@ -261,7 +264,7 @@ const gameRelevantScoreBucket: Record<Game, "grade" | "lamp"> = {
 };
 
 // human readable stuff for games
-const gameHuman: Record<Game, string> = {
+export const gameHuman: Record<Game, string> = {
     iidx: "beatmania IIDX",
     museca: "MÚSECA",
     maimai: "maimai",
@@ -276,7 +279,7 @@ const gameHuman: Record<Game, string> = {
 };
 
 // human readable stuff for versions
-const versionHuman: Record<Game, Record<string, string>> = {
+export const versionHuman: Record<Game, Record<string, string>> = {
     iidx: {
         0: "1st Style",
         1: "substream",
@@ -424,7 +427,7 @@ const versionHuman: Record<Game, Record<string, string>> = {
 };
 
 // release orders of the games.
-const gameOrders = {
+export const gameOrders = {
     iidx: [
         "0",
         "1",
@@ -578,7 +581,7 @@ const gameOrders = {
     usc: ["0"],
 };
 
-const defaultPlaytype: Record<Game, Playtypes[Game]> = {
+export const defaultPlaytype: Record<Game, Playtypes[Game]> = {
     iidx: "SP",
     museca: "Single",
     maimai: "Single",
@@ -592,7 +595,7 @@ const defaultPlaytype: Record<Game, Playtypes[Game]> = {
     usc: "Single",
 };
 
-const defaultDifficulty: Record<Game, string> = {
+export const defaultDifficulty: Record<Game, string> = {
     iidx: "ANOTHER",
     museca: "Red",
     maimai: "Master",
@@ -606,7 +609,7 @@ const defaultDifficulty: Record<Game, string> = {
     usc: "EXH",
 };
 
-function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]): string {
+export function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]): string {
     if (!pt) {
         return gameHuman[game];
     }
@@ -619,7 +622,7 @@ function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]): string {
 }
 
 // todo, maybe
-// const difficultyColours = {
+// export const difficultyColours = {
 //     iidx: {
 //         "BEGINNER": ,
 //         "NORMAL": ,
@@ -629,7 +632,7 @@ function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]): string {
 //     }
 // }
 
-const validPlaytypes: Record<Game, Playtypes[Game][]> = {
+export const validPlaytypes: Record<Game, Playtypes[Game][]> = {
     iidx: ["SP", "DP"],
     popn: ["9B"],
     sdvx: ["Single"],
@@ -644,7 +647,7 @@ const validPlaytypes: Record<Game, Playtypes[Game][]> = {
 };
 
 // correct order for grades
-const grades: Record<Game, string[]> = {
+export const grades: Record<Game, string[]> = {
     iidx: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
     bms: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
     museca: ["没", "拙", "凡", "佳", "良", "優", "秀", "傑", "傑G"],
@@ -675,7 +678,7 @@ const grades: Record<Game, string[]> = {
     usc: ["D", "C", "B", "A", "A+", "AA", "AA+", "AAA", "AAA+", "S"],
 };
 
-const gradeBoundaries: Record<Game, number[]> = {
+export const gradeBoundaries: Record<Game, number[]> = {
     iidx: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
     bms: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
     museca: [0, 60, 70, 80, 85, 90, 95, 97.5, 100],
@@ -692,7 +695,7 @@ const gradeBoundaries: Record<Game, number[]> = {
 };
 
 // these are to resolve some GARBAGE in chart.js
-const boundaryHCF: Record<Game, number> = {
+export const boundaryHCF: Record<Game, number> = {
     iidx: 5.555,
     bms: 5.555,
     museca: 2.5,
@@ -706,7 +709,7 @@ const boundaryHCF: Record<Game, number> = {
     usc: 1,
 };
 
-const expChartScale: Record<Game, number> = {
+export const expChartScale: Record<Game, number> = {
     iidx: 1,
     bms: 1,
     museca: 5,
@@ -721,7 +724,7 @@ const expChartScale: Record<Game, number> = {
 };
 
 // valid lamps for a game, and also in order.
-const lamps: Record<Game, string[]> = {
+export const lamps: Record<Game, string[]> = {
     iidx: [
         "NO PLAY",
         "FAILED",
@@ -764,7 +767,7 @@ const lamps: Record<Game, string[]> = {
 // first lamp that is considered a "true clear" by the game.
 // laugh now, but who'll be laughing when some nerds at sega come up with a brand new
 // minimal clear grade called "SOFTER EASIER ASSIST CLEAR EPIC X3"
-const clearLamp: Record<Game, string> = {
+export const clearLamp: Record<Game, string> = {
     iidx: "CLEAR",
     bms: "EASY CLEAR",
     museca: "CLEAR",
@@ -779,7 +782,7 @@ const clearLamp: Record<Game, string> = {
 };
 
 // minimum grade considered by the game (or kamaitachi) to be a clearing grade.
-const clearGrade = {
+export const clearGrade = {
     iidx: "A",
     bms: "A",
     museca: "良",
@@ -793,7 +796,7 @@ const clearGrade = {
     usc: "A",
 };
 
-const judgementWindows = {
+export const judgementWindows = {
     iidx: {
         SP: [
             { name: "PGREAT", msBorder: 16.667, value: 2 },
@@ -844,7 +847,7 @@ const judgementWindows = {
     },
 };
 
-const COLOUR_SET = {
+export const COLOUR_SET = {
     gray: "rgba(105, 105, 105, 1)",
     maroon: "rgba(85, 17, 17, 1)",
     red: "rgba(170, 85, 85, 1)",
@@ -872,7 +875,7 @@ interface ColourStuff {
     };
 }
 
-const gradeColours: ColourStuff = {
+export const gradeColours: ColourStuff = {
     museca: {
         outline: {
             没: COLOUR_SET.gray,
@@ -1032,7 +1035,7 @@ const gradeColours: ColourStuff = {
     },
 };
 
-const lampColours: ColourStuff = {
+export const lampColours: ColourStuff = {
     gitadora: {
         outline: {
             FAILED: COLOUR_SET.red,
@@ -1166,7 +1169,7 @@ for (const colourConfig of [lampColours, gradeColours]) {
     }
 }
 
-const judgeColours = {
+export const judgeColours = {
     iidx: {
         fill: {
             MISS: "rgba(211, 38, 38, 0.2)",
@@ -1329,7 +1332,7 @@ const judgeColours = {
     },
 };
 
-const gameChartIndicators = {
+export const gameChartIndicators = {
     iidx: ["cn", "bss", "hcn", "hbss"],
     popn: ["holds"],
     ddr: ["shocks", "freezes"],
@@ -1360,7 +1363,7 @@ function GetGrade(game: Game, percent: number): string | null {
     return null;
 }
 
-const ratingParameters = {
+export const ratingParameters = {
     iidx: {
         failHarshnessMultiplier: 0.3,
         pivotPercent: 0.7777, // Grade: AA
@@ -1425,7 +1428,7 @@ function ChangeAlpha(string: string, alpha: string): string {
     return spl.join(",");
 }
 
-function DirectScoreGradeDelta(
+export function DirectScoreGradeDelta(
     game: Game,
     score: number,
     percent: number,
@@ -1448,7 +1451,7 @@ function DirectScoreGradeDelta(
     return ScoreGradeDelta(game, scoreObj, chart, delta);
 }
 
-const supportsESD: Record<Game, boolean> = {
+export const supportsESD: Record<Game, boolean> = {
     iidx: true,
     museca: false,
     bms: false,
@@ -1475,7 +1478,7 @@ interface PartialScore {
     };
 }
 
-function ScoreGradeDelta(
+export function ScoreGradeDelta(
     game: Game,
     score: PartialScore,
     chart: ChartDocument,
@@ -1511,7 +1514,7 @@ function ScoreGradeDelta(
     }
 }
 
-function AbsoluteScoreGradeDelta(
+export function AbsoluteScoreGradeDelta(
     game: Game,
     score: number,
     percent: number,
@@ -1547,7 +1550,7 @@ function AbsoluteScoreGradeDelta(
     }
 }
 
-function CalculateScore(game: Game, percent: number, chart: ChartDocument): number | null {
+export function CalculateScore(game: Game, percent: number, chart: ChartDocument): number | null {
     let score = percent;
 
     if (game === "iidx" || game === "bms") {
@@ -1570,7 +1573,7 @@ function CalculateScore(game: Game, percent: number, chart: ChartDocument): numb
     return null;
 }
 
-function PercentToScore(percent: number, game: Game, chartData: ChartDocument): number {
+export function PercentToScore(percent: number, game: Game, chartData: ChartDocument): number {
     let eScore = 0;
 
     if (game === "iidx" || game === "bms") {
@@ -1592,14 +1595,14 @@ function PercentToScore(percent: number, game: Game, chartData: ChartDocument): 
     return eScore;
 }
 
-function FormatDifficulty(chart: ChartDocument, game: Game): string {
+export function FormatDifficulty(chart: ChartDocument, game: Game): string {
     if (validPlaytypes[game].length > 1) {
         return `${chart.playtype} ${chart.difficulty} ${chart.level}`;
     }
     return `${chart.difficulty}`;
 }
 
-const gamePercentMax = {
+export const gamePercentMax = {
     iidx: 100,
     ddr: 100,
     gitadora: 100,
@@ -1612,47 +1615,4 @@ const gamePercentMax = {
     maimai: 150, // just an edge case maxim, since i'm too lazy to actually calc it.
     maimaidx: 150,
     usc: 100,
-};
-
-export {
-    supportedGames,
-    gameOrders,
-    versionHuman,
-    grades,
-    lamps,
-    lampColours,
-    gradeColours,
-    defaultPlaytype,
-    gameChartIndicators,
-    GetGrade,
-    gradeBoundaries,
-    gameHuman,
-    ratingParameters,
-    validPlaytypes,
-    ScoreGradeDelta,
-    judgeColours,
-    gameColours,
-    clearLamp,
-    gameRelevantScoreBucket,
-    judgementWindows,
-    PercentToScore,
-    ChangeAlpha,
-    validDifficulties,
-    validHitData,
-    validHitMeta,
-    boundaryHCF,
-    gameSpecificCalc,
-    expChartScale,
-    FormatDifficulty,
-    DirectScoreGradeDelta,
-    gameSpecificCalcDescriptions,
-    defaultDifficulty,
-    gamePercentMax,
-    AbsoluteScoreGradeDelta,
-    validScoreMeta,
-    clearGrade,
-    defaultTable,
-    folderTables,
-    supportsESD,
-    humaniseGame,
 };

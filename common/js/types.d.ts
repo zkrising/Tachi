@@ -727,7 +727,7 @@ export interface ScoreDocument<G extends Game = Game, P extends Playtypes[G] = P
     scoreID: string;
     importType: ImportTypes;
 }
-export declare type FileUploadImportTypes = "iidx:eamusement-csv";
+export declare type FileUploadImportTypes = "csv:eamusement-iidx";
 export declare type ImportTypes = FileUploadImportTypes;
 export interface ImportProcessInfoKTDataNotFound {
     success: false;

@@ -4,8 +4,10 @@
 // of some of my first javascript code.
 // It's,, alright, but I like the versatility it brings.
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.humaniseGame = exports.supportsESD = exports.folderTables = exports.defaultTable = exports.clearGrade = exports.validScoreMeta = exports.AbsoluteScoreGradeDelta = exports.gamePercentMax = exports.defaultDifficulty = exports.gameSpecificCalcDescriptions = exports.DirectScoreGradeDelta = exports.FormatDifficulty = exports.expChartScale = exports.gameSpecificCalc = exports.boundaryHCF = exports.validHitMeta = exports.validHitData = exports.validDifficulties = exports.ChangeAlpha = exports.PercentToScore = exports.judgementWindows = exports.gameRelevantScoreBucket = exports.clearLamp = exports.gameColours = exports.judgeColours = exports.ScoreGradeDelta = exports.validPlaytypes = exports.ratingParameters = exports.gameHuman = exports.gradeBoundaries = exports.GetGrade = exports.gameChartIndicators = exports.defaultPlaytype = exports.gradeColours = exports.lampColours = exports.lamps = exports.grades = exports.versionHuman = exports.gameOrders = exports.supportedGames = void 0;
-const supportedGames = [
+exports.gamePercentMax = exports.FormatDifficulty = exports.PercentToScore = exports.CalculateScore = exports.AbsoluteScoreGradeDelta = exports.ScoreGradeDelta = exports.supportsESD = exports.DirectScoreGradeDelta = exports.ratingParameters = exports.gameChartIndicators = exports.judgeColours = exports.lampColours = exports.gradeColours = exports.COLOUR_SET = exports.judgementWindows = exports.clearGrade = exports.clearLamp = exports.lamps = exports.expChartScale = exports.boundaryHCF = exports.gradeBoundaries = exports.grades = exports.validPlaytypes = exports.humaniseGame = exports.defaultDifficulty = exports.defaultPlaytype = exports.gameOrders = exports.versionHuman = exports.gameHuman = exports.gameRelevantScoreBucket = exports.gameColours = exports.validScoreMeta = exports.validHitMeta = exports.BASE_VALID_HIT_META = exports.validHitData = exports.folderTables = exports.defaultTable = exports.validDifficulties = exports.gameSpecificCalcDescriptions = exports.gameSpecificCalc = exports.supportedGames = exports.fileImportTypes = exports.importTypes = void 0;
+exports.importTypes = ["csv:eamusement-iidx"];
+exports.fileImportTypes = ["csv:eamusement-iidx"];
+exports.supportedGames = [
     "iidx",
     "museca",
     "maimai",
@@ -18,8 +20,7 @@ const supportedGames = [
     "gitadora",
     "usc",
 ];
-exports.supportedGames = supportedGames;
-const gameSpecificCalc = {
+exports.gameSpecificCalc = {
     iidx: {
         SP: ["BPI", "K%"],
         DP: ["BPI"],
@@ -35,8 +36,7 @@ const gameSpecificCalc = {
         Single: ["VF4", "VF5"],
     },
 };
-exports.gameSpecificCalc = gameSpecificCalc;
-const gameSpecificCalcDescriptions = {
+exports.gameSpecificCalcDescriptions = {
     iidx: {
         SP: {
             BPI: "Beat Power Index: How good a score is relative to Kaiden Average (BPI 0) and the World Record (BPI 100).",
@@ -67,8 +67,7 @@ const gameSpecificCalcDescriptions = {
         },
     },
 };
-exports.gameSpecificCalcDescriptions = gameSpecificCalcDescriptions;
-const validDifficulties = {
+exports.validDifficulties = {
     iidx: ["BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
     museca: ["Green", "Yellow", "Red"],
     maimai: ["Easy", "Basic", "Advanced", "Expert", "Master", "Re:Master"],
@@ -90,8 +89,7 @@ const validDifficulties = {
     ],
     usc: ["NOV", "ADV", "EXH", "INF"],
 };
-exports.validDifficulties = validDifficulties;
-const defaultTable = {
+exports.defaultTable = {
     iidx: "Levels (N-1)",
     bms: "Insane",
     museca: "Levels",
@@ -104,8 +102,7 @@ const defaultTable = {
     usc: "Levels",
     maimai: "Levels",
 };
-exports.defaultTable = defaultTable;
-const folderTables = {
+exports.folderTables = {
     iidx: ["Levels", "Levels (Omnimix)", "Levels (N-1)", "Levels (N-1 Omnimix)", "Versions"],
     bms: ["Normal", "Insane", "Overjoy", "Satellite", "Stella", "Insane 2", "Joverjoy"],
     museca: ["Levels", "Versions"],
@@ -118,8 +115,7 @@ const folderTables = {
     usc: ["Levels", "Versions"],
     maimai: ["Levels", "Versions"],
 };
-exports.folderTables = folderTables;
-const validHitData = {
+exports.validHitData = {
     iidx: ["pgreat", "great", "good", "bad", "poor"],
     bms: ["pgreat", "great", "good", "bad", "poor"],
     museca: ["critical", "near", "miss"],
@@ -132,16 +128,15 @@ const validHitData = {
     gitadora: ["perfect", "great", "good", "ok", "miss"],
     usc: ["critical", "near", "miss"],
 };
-exports.validHitData = validHitData;
-const BASE_VALID_HIT_META = ["fast", "slow", "maxCombo"];
-const validHitMeta = {
-    iidx: ["bp", "gauge", "gaugeHistory", "comboBreak", ...BASE_VALID_HIT_META],
-    museca: BASE_VALID_HIT_META,
-    ddr: BASE_VALID_HIT_META,
-    maimai: BASE_VALID_HIT_META,
-    jubeat: BASE_VALID_HIT_META,
-    popn: ["gauge", ...BASE_VALID_HIT_META],
-    sdvx: ["gauge", ...BASE_VALID_HIT_META],
+exports.BASE_VALID_HIT_META = ["fast", "slow", "maxCombo"];
+exports.validHitMeta = {
+    iidx: ["bp", "gauge", "gaugeHistory", "comboBreak", ...exports.BASE_VALID_HIT_META],
+    museca: exports.BASE_VALID_HIT_META,
+    ddr: exports.BASE_VALID_HIT_META,
+    maimai: exports.BASE_VALID_HIT_META,
+    jubeat: exports.BASE_VALID_HIT_META,
+    popn: ["gauge", ...exports.BASE_VALID_HIT_META],
+    sdvx: ["gauge", ...exports.BASE_VALID_HIT_META],
     bms: [
         "bp",
         "gauge",
@@ -158,14 +153,13 @@ const validHitMeta = {
         "diedAt",
         "random",
         "inputDevice",
-        ...BASE_VALID_HIT_META,
+        ...exports.BASE_VALID_HIT_META,
     ],
-    chunithm: [...BASE_VALID_HIT_META],
-    gitadora: [...BASE_VALID_HIT_META],
-    usc: ["gauge", ...BASE_VALID_HIT_META],
+    chunithm: [...exports.BASE_VALID_HIT_META],
+    gitadora: [...exports.BASE_VALID_HIT_META],
+    usc: ["gauge", ...exports.BASE_VALID_HIT_META],
 };
-exports.validHitMeta = validHitMeta;
-const validScoreMeta = {
+exports.validScoreMeta = {
     iidx: {
         optionsRandom: ["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"],
         optionsAssist: [
@@ -227,8 +221,7 @@ const validScoreMeta = {
         gaugeMod: ["NORMAL", "HARD"],
     },
 };
-exports.validScoreMeta = validScoreMeta;
-const gameColours = {
+exports.gameColours = {
     iidx: "#E7BDB3",
     museca: "#C9A4A0",
     maimai: "#AE8094",
@@ -242,8 +235,7 @@ const gameColours = {
     chunithm: "#AE8094",
     usc: "#D6B7B1", // TODO
 };
-exports.gameColours = gameColours;
-const gameRelevantScoreBucket = {
+exports.gameRelevantScoreBucket = {
     iidx: "lamp",
     museca: "grade",
     maimai: "grade",
@@ -257,9 +249,8 @@ const gameRelevantScoreBucket = {
     chunithm: "grade",
     usc: "grade",
 };
-exports.gameRelevantScoreBucket = gameRelevantScoreBucket;
 // human readable stuff for games
-const gameHuman = {
+exports.gameHuman = {
     iidx: "beatmania IIDX",
     museca: "MÚSECA",
     maimai: "maimai",
@@ -272,9 +263,8 @@ const gameHuman = {
     chunithm: "CHUNITHM",
     usc: "unnamed sdvx clone",
 };
-exports.gameHuman = gameHuman;
 // human readable stuff for versions
-const versionHuman = {
+exports.versionHuman = {
     iidx: {
         0: "1st Style",
         1: "substream",
@@ -420,9 +410,8 @@ const versionHuman = {
         0: "USC",
     },
 };
-exports.versionHuman = versionHuman;
 // release orders of the games.
-const gameOrders = {
+exports.gameOrders = {
     iidx: [
         "0",
         "1",
@@ -575,8 +564,7 @@ const gameOrders = {
     ],
     usc: ["0"],
 };
-exports.gameOrders = gameOrders;
-const defaultPlaytype = {
+exports.defaultPlaytype = {
     iidx: "SP",
     museca: "Single",
     maimai: "Single",
@@ -589,8 +577,7 @@ const defaultPlaytype = {
     gitadora: "Dora",
     usc: "Single",
 };
-exports.defaultPlaytype = defaultPlaytype;
-const defaultDifficulty = {
+exports.defaultDifficulty = {
     iidx: "ANOTHER",
     museca: "Red",
     maimai: "Master",
@@ -603,19 +590,18 @@ const defaultDifficulty = {
     gitadora: "MASTER",
     usc: "EXH",
 };
-exports.defaultDifficulty = defaultDifficulty;
 function humaniseGame(game, pt) {
     if (!pt) {
-        return gameHuman[game];
+        return exports.gameHuman[game];
     }
-    if (validPlaytypes[game].length === 1) {
-        return gameHuman[game];
+    if (exports.validPlaytypes[game].length === 1) {
+        return exports.gameHuman[game];
     }
-    return `${gameHuman[game]} (${pt})`;
+    return `${exports.gameHuman[game]} (${pt})`;
 }
 exports.humaniseGame = humaniseGame;
 // todo, maybe
-// const difficultyColours = {
+// export const difficultyColours = {
 //     iidx: {
 //         "BEGINNER": ,
 //         "NORMAL": ,
@@ -624,7 +610,7 @@ exports.humaniseGame = humaniseGame;
 //         "LEGGENDARIA": ,
 //     }
 // }
-const validPlaytypes = {
+exports.validPlaytypes = {
     iidx: ["SP", "DP"],
     popn: ["9B"],
     sdvx: ["Single"],
@@ -637,9 +623,8 @@ const validPlaytypes = {
     gitadora: ["Gita", "Dora"],
     usc: ["Single"],
 };
-exports.validPlaytypes = validPlaytypes;
 // correct order for grades
-const grades = {
+exports.grades = {
     iidx: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
     bms: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
     museca: ["没", "拙", "凡", "佳", "良", "優", "秀", "傑", "傑G"],
@@ -669,8 +654,7 @@ const grades = {
     gitadora: ["C", "B", "A", "S", "SS", "MAX"],
     usc: ["D", "C", "B", "A", "A+", "AA", "AA+", "AAA", "AAA+", "S"],
 };
-exports.grades = grades;
-const gradeBoundaries = {
+exports.gradeBoundaries = {
     iidx: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
     bms: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
     museca: [0, 60, 70, 80, 85, 90, 95, 97.5, 100],
@@ -685,9 +669,8 @@ const gradeBoundaries = {
     gitadora: [0, 63, 73, 80, 95, 100],
     usc: [0, 70, 80, 87, 90, 93, 95, 97, 98, 99],
 };
-exports.gradeBoundaries = gradeBoundaries;
 // these are to resolve some GARBAGE in chart.js
-const boundaryHCF = {
+exports.boundaryHCF = {
     iidx: 5.555,
     bms: 5.555,
     museca: 2.5,
@@ -700,8 +683,7 @@ const boundaryHCF = {
     gitadora: 1,
     usc: 1,
 };
-exports.boundaryHCF = boundaryHCF;
-const expChartScale = {
+exports.expChartScale = {
     iidx: 1,
     bms: 1,
     museca: 5,
@@ -714,9 +696,8 @@ const expChartScale = {
     chunithm: 4,
     gitadora: 3,
 };
-exports.expChartScale = expChartScale;
 // valid lamps for a game, and also in order.
-const lamps = {
+exports.lamps = {
     iidx: [
         "NO PLAY",
         "FAILED",
@@ -755,11 +736,10 @@ const lamps = {
     gitadora: ["FAILED", "CLEAR", "FULL COMBO", "EXCELLENT"],
     usc: ["FAILED", "CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"],
 };
-exports.lamps = lamps;
 // first lamp that is considered a "true clear" by the game.
 // laugh now, but who'll be laughing when some nerds at sega come up with a brand new
 // minimal clear grade called "SOFTER EASIER ASSIST CLEAR EPIC X3"
-const clearLamp = {
+exports.clearLamp = {
     iidx: "CLEAR",
     bms: "EASY CLEAR",
     museca: "CLEAR",
@@ -772,9 +752,8 @@ const clearLamp = {
     gitadora: "CLEAR",
     usc: "CLEAR",
 };
-exports.clearLamp = clearLamp;
 // minimum grade considered by the game (or kamaitachi) to be a clearing grade.
-const clearGrade = {
+exports.clearGrade = {
     iidx: "A",
     bms: "A",
     museca: "良",
@@ -787,8 +766,7 @@ const clearGrade = {
     gitadora: "A",
     usc: "A",
 };
-exports.clearGrade = clearGrade;
-const judgementWindows = {
+exports.judgementWindows = {
     iidx: {
         SP: [
             { name: "PGREAT", msBorder: 16.667, value: 2 },
@@ -838,8 +816,7 @@ const judgementWindows = {
         ],
     },
 };
-exports.judgementWindows = judgementWindows;
-const COLOUR_SET = {
+exports.COLOUR_SET = {
     gray: "rgba(105, 105, 105, 1)",
     maroon: "rgba(85, 17, 17, 1)",
     red: "rgba(170, 85, 85, 1)",
@@ -859,279 +836,277 @@ const COLOUR_SET = {
     vibrantBlue: "rgba(43, 149, 237, 1)",
     vibrantGreen: "rgba(26, 232, 26, 1)",
 };
-const gradeColours = {
+exports.gradeColours = {
     museca: {
         outline: {
-            没: COLOUR_SET.gray,
-            拙: COLOUR_SET.maroon,
-            凡: COLOUR_SET.red,
-            佳: COLOUR_SET.paleGreen,
-            良: COLOUR_SET.paleBlue,
-            優: COLOUR_SET.green,
-            秀: COLOUR_SET.blue,
-            傑: COLOUR_SET.teal,
-            傑G: COLOUR_SET.gold,
+            没: exports.COLOUR_SET.gray,
+            拙: exports.COLOUR_SET.maroon,
+            凡: exports.COLOUR_SET.red,
+            佳: exports.COLOUR_SET.paleGreen,
+            良: exports.COLOUR_SET.paleBlue,
+            優: exports.COLOUR_SET.green,
+            秀: exports.COLOUR_SET.blue,
+            傑: exports.COLOUR_SET.teal,
+            傑G: exports.COLOUR_SET.gold,
         },
     },
     gitadora: {
         outline: {
-            MAX: COLOUR_SET.white,
-            SS: COLOUR_SET.gold,
-            S: COLOUR_SET.orange,
-            A: COLOUR_SET.green,
-            B: COLOUR_SET.blue,
-            C: COLOUR_SET.purple,
+            MAX: exports.COLOUR_SET.white,
+            SS: exports.COLOUR_SET.gold,
+            S: exports.COLOUR_SET.orange,
+            A: exports.COLOUR_SET.green,
+            B: exports.COLOUR_SET.blue,
+            C: exports.COLOUR_SET.purple,
         },
     },
     ddr: {
         outline: {
-            D: COLOUR_SET.gray,
-            "D+": COLOUR_SET.maroon,
-            "C-": COLOUR_SET.red,
-            C: COLOUR_SET.purple,
-            "C+": COLOUR_SET.vibrantPurple,
-            "B-": COLOUR_SET.paleBlue,
-            B: COLOUR_SET.blue,
-            "B+": COLOUR_SET.vibrantBlue,
-            "A-": COLOUR_SET.paleGreen,
-            A: COLOUR_SET.green,
-            "A+": COLOUR_SET.vibrantGreen,
-            "AA-": COLOUR_SET.paleOrange,
-            AA: COLOUR_SET.orange,
-            "AA+": COLOUR_SET.vibrantOrange,
-            AAA: COLOUR_SET.gold,
+            D: exports.COLOUR_SET.gray,
+            "D+": exports.COLOUR_SET.maroon,
+            "C-": exports.COLOUR_SET.red,
+            C: exports.COLOUR_SET.purple,
+            "C+": exports.COLOUR_SET.vibrantPurple,
+            "B-": exports.COLOUR_SET.paleBlue,
+            B: exports.COLOUR_SET.blue,
+            "B+": exports.COLOUR_SET.vibrantBlue,
+            "A-": exports.COLOUR_SET.paleGreen,
+            A: exports.COLOUR_SET.green,
+            "A+": exports.COLOUR_SET.vibrantGreen,
+            "AA-": exports.COLOUR_SET.paleOrange,
+            AA: exports.COLOUR_SET.orange,
+            "AA+": exports.COLOUR_SET.vibrantOrange,
+            AAA: exports.COLOUR_SET.gold,
         },
     },
     jubeat: {
         outline: {
-            E: COLOUR_SET.gray,
-            D: COLOUR_SET.maroon,
-            C: COLOUR_SET.purple,
-            B: COLOUR_SET.paleBlue,
-            A: COLOUR_SET.paleGreen,
-            S: COLOUR_SET.blue,
-            SS: COLOUR_SET.gold,
-            SSS: COLOUR_SET.teal,
-            EXC: COLOUR_SET.white,
+            E: exports.COLOUR_SET.gray,
+            D: exports.COLOUR_SET.maroon,
+            C: exports.COLOUR_SET.purple,
+            B: exports.COLOUR_SET.paleBlue,
+            A: exports.COLOUR_SET.paleGreen,
+            S: exports.COLOUR_SET.blue,
+            SS: exports.COLOUR_SET.gold,
+            SSS: exports.COLOUR_SET.teal,
+            EXC: exports.COLOUR_SET.white,
         },
     },
     maimai: {
         outline: {
-            F: COLOUR_SET.gray,
-            E: COLOUR_SET.red,
-            D: COLOUR_SET.maroon,
-            C: COLOUR_SET.purple,
-            B: COLOUR_SET.paleGreen,
-            A: COLOUR_SET.green,
-            AA: COLOUR_SET.paleBlue,
-            AAA: COLOUR_SET.blue,
-            S: COLOUR_SET.gold,
-            "S+": COLOUR_SET.vibrantYellow,
-            SS: COLOUR_SET.paleOrange,
-            "SS+": COLOUR_SET.orange,
-            SSS: COLOUR_SET.teal,
-            "SSS+": COLOUR_SET.white,
+            F: exports.COLOUR_SET.gray,
+            E: exports.COLOUR_SET.red,
+            D: exports.COLOUR_SET.maroon,
+            C: exports.COLOUR_SET.purple,
+            B: exports.COLOUR_SET.paleGreen,
+            A: exports.COLOUR_SET.green,
+            AA: exports.COLOUR_SET.paleBlue,
+            AAA: exports.COLOUR_SET.blue,
+            S: exports.COLOUR_SET.gold,
+            "S+": exports.COLOUR_SET.vibrantYellow,
+            SS: exports.COLOUR_SET.paleOrange,
+            "SS+": exports.COLOUR_SET.orange,
+            SSS: exports.COLOUR_SET.teal,
+            "SSS+": exports.COLOUR_SET.white,
         },
     },
     popn: {
         outline: {
-            F: COLOUR_SET.gray,
-            E: COLOUR_SET.red,
-            D: COLOUR_SET.maroon,
-            C: COLOUR_SET.purple,
-            B: COLOUR_SET.paleBlue,
-            A: COLOUR_SET.green,
-            AA: COLOUR_SET.paleOrange,
-            AAA: COLOUR_SET.gold,
-            S: COLOUR_SET.teal,
+            F: exports.COLOUR_SET.gray,
+            E: exports.COLOUR_SET.red,
+            D: exports.COLOUR_SET.maroon,
+            C: exports.COLOUR_SET.purple,
+            B: exports.COLOUR_SET.paleBlue,
+            A: exports.COLOUR_SET.green,
+            AA: exports.COLOUR_SET.paleOrange,
+            AAA: exports.COLOUR_SET.gold,
+            S: exports.COLOUR_SET.teal,
         },
     },
     iidx: {
         outline: {
-            F: COLOUR_SET.gray,
-            E: COLOUR_SET.red,
-            D: COLOUR_SET.maroon,
-            C: COLOUR_SET.purple,
-            B: COLOUR_SET.paleBlue,
-            A: COLOUR_SET.green,
-            AA: COLOUR_SET.blue,
-            AAA: COLOUR_SET.gold,
-            "MAX-": COLOUR_SET.teal,
-            MAX: COLOUR_SET.white,
+            F: exports.COLOUR_SET.gray,
+            E: exports.COLOUR_SET.red,
+            D: exports.COLOUR_SET.maroon,
+            C: exports.COLOUR_SET.purple,
+            B: exports.COLOUR_SET.paleBlue,
+            A: exports.COLOUR_SET.green,
+            AA: exports.COLOUR_SET.blue,
+            AAA: exports.COLOUR_SET.gold,
+            "MAX-": exports.COLOUR_SET.teal,
+            MAX: exports.COLOUR_SET.white,
         },
     },
     bms: {
         outline: {
-            F: COLOUR_SET.gray,
-            E: COLOUR_SET.red,
-            D: COLOUR_SET.maroon,
-            C: COLOUR_SET.purple,
-            B: COLOUR_SET.paleBlue,
-            A: COLOUR_SET.green,
-            AA: COLOUR_SET.blue,
-            AAA: COLOUR_SET.gold,
-            "MAX-": COLOUR_SET.teal,
-            MAX: COLOUR_SET.white,
+            F: exports.COLOUR_SET.gray,
+            E: exports.COLOUR_SET.red,
+            D: exports.COLOUR_SET.maroon,
+            C: exports.COLOUR_SET.purple,
+            B: exports.COLOUR_SET.paleBlue,
+            A: exports.COLOUR_SET.green,
+            AA: exports.COLOUR_SET.blue,
+            AAA: exports.COLOUR_SET.gold,
+            "MAX-": exports.COLOUR_SET.teal,
+            MAX: exports.COLOUR_SET.white,
         },
     },
     sdvx: {
         outline: {
-            D: COLOUR_SET.gray,
-            C: COLOUR_SET.red,
-            B: COLOUR_SET.maroon,
-            A: COLOUR_SET.paleBlue,
-            "A+": COLOUR_SET.blue,
-            AA: COLOUR_SET.paleGreen,
-            "AA+": COLOUR_SET.green,
-            AAA: COLOUR_SET.gold,
-            "AAA+": COLOUR_SET.vibrantYellow,
-            S: COLOUR_SET.teal,
+            D: exports.COLOUR_SET.gray,
+            C: exports.COLOUR_SET.red,
+            B: exports.COLOUR_SET.maroon,
+            A: exports.COLOUR_SET.paleBlue,
+            "A+": exports.COLOUR_SET.blue,
+            AA: exports.COLOUR_SET.paleGreen,
+            "AA+": exports.COLOUR_SET.green,
+            AAA: exports.COLOUR_SET.gold,
+            "AAA+": exports.COLOUR_SET.vibrantYellow,
+            S: exports.COLOUR_SET.teal,
         },
     },
     usc: {
         outline: {
-            D: COLOUR_SET.gray,
-            C: COLOUR_SET.red,
-            B: COLOUR_SET.maroon,
-            A: COLOUR_SET.paleBlue,
-            "A+": COLOUR_SET.blue,
-            AA: COLOUR_SET.paleGreen,
-            "AA+": COLOUR_SET.green,
-            AAA: COLOUR_SET.gold,
-            "AAA+": COLOUR_SET.vibrantYellow,
-            S: COLOUR_SET.teal,
+            D: exports.COLOUR_SET.gray,
+            C: exports.COLOUR_SET.red,
+            B: exports.COLOUR_SET.maroon,
+            A: exports.COLOUR_SET.paleBlue,
+            "A+": exports.COLOUR_SET.blue,
+            AA: exports.COLOUR_SET.paleGreen,
+            "AA+": exports.COLOUR_SET.green,
+            AAA: exports.COLOUR_SET.gold,
+            "AAA+": exports.COLOUR_SET.vibrantYellow,
+            S: exports.COLOUR_SET.teal,
         },
     },
     chunithm: {
         outline: {
-            D: COLOUR_SET.red,
-            C: COLOUR_SET.purple,
-            B: COLOUR_SET.paleBlue,
-            BB: COLOUR_SET.blue,
-            BBB: COLOUR_SET.vibrantBlue,
-            A: COLOUR_SET.paleGreen,
-            AA: COLOUR_SET.green,
-            AAA: COLOUR_SET.vibrantGreen,
-            S: COLOUR_SET.vibrantOrange,
-            SS: COLOUR_SET.vibrantYellow,
-            SSS: COLOUR_SET.teal,
+            D: exports.COLOUR_SET.red,
+            C: exports.COLOUR_SET.purple,
+            B: exports.COLOUR_SET.paleBlue,
+            BB: exports.COLOUR_SET.blue,
+            BBB: exports.COLOUR_SET.vibrantBlue,
+            A: exports.COLOUR_SET.paleGreen,
+            AA: exports.COLOUR_SET.green,
+            AAA: exports.COLOUR_SET.vibrantGreen,
+            S: exports.COLOUR_SET.vibrantOrange,
+            SS: exports.COLOUR_SET.vibrantYellow,
+            SSS: exports.COLOUR_SET.teal,
         },
     },
 };
-exports.gradeColours = gradeColours;
-const lampColours = {
+exports.lampColours = {
     gitadora: {
         outline: {
-            FAILED: COLOUR_SET.red,
-            CLEAR: COLOUR_SET.blue,
-            "FULL COMBO": COLOUR_SET.teal,
-            EXCELLENT: COLOUR_SET.gold,
+            FAILED: exports.COLOUR_SET.red,
+            CLEAR: exports.COLOUR_SET.blue,
+            "FULL COMBO": exports.COLOUR_SET.teal,
+            EXCELLENT: exports.COLOUR_SET.gold,
         },
     },
     ddr: {
         outline: {
-            FAILED: COLOUR_SET.red,
-            CLEAR: COLOUR_SET.paleGreen,
-            LIFE4: COLOUR_SET.orange,
-            "FULL COMBO": COLOUR_SET.paleBlue,
-            "GREAT FULL COMBO": COLOUR_SET.green,
-            "PERFECT FULL COMBO": COLOUR_SET.gold,
-            "MARVELOUS FULL COMBO": COLOUR_SET.teal,
+            FAILED: exports.COLOUR_SET.red,
+            CLEAR: exports.COLOUR_SET.paleGreen,
+            LIFE4: exports.COLOUR_SET.orange,
+            "FULL COMBO": exports.COLOUR_SET.paleBlue,
+            "GREAT FULL COMBO": exports.COLOUR_SET.green,
+            "PERFECT FULL COMBO": exports.COLOUR_SET.gold,
+            "MARVELOUS FULL COMBO": exports.COLOUR_SET.teal,
         },
     },
     iidx: {
         outline: {
-            "NO PLAY": COLOUR_SET.gray,
-            FAILED: COLOUR_SET.red,
-            "ASSIST CLEAR": COLOUR_SET.purple,
-            "EASY CLEAR": COLOUR_SET.green,
-            CLEAR: COLOUR_SET.blue,
-            "HARD CLEAR": COLOUR_SET.orange,
-            "EX HARD CLEAR": COLOUR_SET.gold,
-            "FULL COMBO": COLOUR_SET.teal,
+            "NO PLAY": exports.COLOUR_SET.gray,
+            FAILED: exports.COLOUR_SET.red,
+            "ASSIST CLEAR": exports.COLOUR_SET.purple,
+            "EASY CLEAR": exports.COLOUR_SET.green,
+            CLEAR: exports.COLOUR_SET.blue,
+            "HARD CLEAR": exports.COLOUR_SET.orange,
+            "EX HARD CLEAR": exports.COLOUR_SET.gold,
+            "FULL COMBO": exports.COLOUR_SET.teal,
         },
     },
     bms: {
         outline: {
-            "NO PLAY": COLOUR_SET.gray,
-            FAILED: COLOUR_SET.red,
-            "ASSIST CLEAR": COLOUR_SET.purple,
-            "EASY CLEAR": COLOUR_SET.green,
-            CLEAR: COLOUR_SET.blue,
-            "HARD CLEAR": COLOUR_SET.orange,
-            "EX HARD CLEAR": COLOUR_SET.gold,
-            "FULL COMBO": COLOUR_SET.teal,
+            "NO PLAY": exports.COLOUR_SET.gray,
+            FAILED: exports.COLOUR_SET.red,
+            "ASSIST CLEAR": exports.COLOUR_SET.purple,
+            "EASY CLEAR": exports.COLOUR_SET.green,
+            CLEAR: exports.COLOUR_SET.blue,
+            "HARD CLEAR": exports.COLOUR_SET.orange,
+            "EX HARD CLEAR": exports.COLOUR_SET.gold,
+            "FULL COMBO": exports.COLOUR_SET.teal,
         },
     },
     museca: {
         outline: {
-            FAILED: COLOUR_SET.red,
-            CLEAR: COLOUR_SET.green,
-            "CONNECT ALL": COLOUR_SET.teal,
-            "PERFECT CONNECT ALL": COLOUR_SET.gold,
+            FAILED: exports.COLOUR_SET.red,
+            CLEAR: exports.COLOUR_SET.green,
+            "CONNECT ALL": exports.COLOUR_SET.teal,
+            "PERFECT CONNECT ALL": exports.COLOUR_SET.gold,
         },
     },
     sdvx: {
         outline: {
-            FAILED: COLOUR_SET.red,
-            CLEAR: COLOUR_SET.green,
-            "EXCESSIVE CLEAR": COLOUR_SET.orange,
-            "ULTIMATE CHAIN": COLOUR_SET.teal,
-            "PERFECT ULTIMATE CHAIN": COLOUR_SET.gold,
+            FAILED: exports.COLOUR_SET.red,
+            CLEAR: exports.COLOUR_SET.green,
+            "EXCESSIVE CLEAR": exports.COLOUR_SET.orange,
+            "ULTIMATE CHAIN": exports.COLOUR_SET.teal,
+            "PERFECT ULTIMATE CHAIN": exports.COLOUR_SET.gold,
         },
     },
     usc: {
         outline: {
-            FAILED: COLOUR_SET.red,
-            CLEAR: COLOUR_SET.green,
-            "EXCESSIVE CLEAR": COLOUR_SET.orange,
-            "ULTIMATE CHAIN": COLOUR_SET.teal,
-            "PERFECT ULTIMATE CHAIN": COLOUR_SET.gold,
+            FAILED: exports.COLOUR_SET.red,
+            CLEAR: exports.COLOUR_SET.green,
+            "EXCESSIVE CLEAR": exports.COLOUR_SET.orange,
+            "ULTIMATE CHAIN": exports.COLOUR_SET.teal,
+            "PERFECT ULTIMATE CHAIN": exports.COLOUR_SET.gold,
         },
     },
     popn: {
         outline: {
-            FAILED: COLOUR_SET.red,
-            CLEAR: COLOUR_SET.green,
-            "FULL COMBO": COLOUR_SET.teal,
-            PERFECT: COLOUR_SET.gold,
+            FAILED: exports.COLOUR_SET.red,
+            CLEAR: exports.COLOUR_SET.green,
+            "FULL COMBO": exports.COLOUR_SET.teal,
+            PERFECT: exports.COLOUR_SET.gold,
         },
     },
     maimai: {
         outline: {
-            FAILED: COLOUR_SET.red,
-            CLEAR: COLOUR_SET.green,
-            "FULL COMBO": COLOUR_SET.blue,
-            "ALL PERFECT": COLOUR_SET.gold,
-            "ALL PERFECT+": COLOUR_SET.teal,
+            FAILED: exports.COLOUR_SET.red,
+            CLEAR: exports.COLOUR_SET.green,
+            "FULL COMBO": exports.COLOUR_SET.blue,
+            "ALL PERFECT": exports.COLOUR_SET.gold,
+            "ALL PERFECT+": exports.COLOUR_SET.teal,
         },
     },
     jubeat: {
         outline: {
-            FAILED: COLOUR_SET.red,
-            CLEAR: COLOUR_SET.paleBlue,
-            "FULL COMBO": COLOUR_SET.teal,
-            EXCELLENT: COLOUR_SET.gold,
+            FAILED: exports.COLOUR_SET.red,
+            CLEAR: exports.COLOUR_SET.paleBlue,
+            "FULL COMBO": exports.COLOUR_SET.teal,
+            EXCELLENT: exports.COLOUR_SET.gold,
         },
     },
     chunithm: {
         outline: {
-            FAILED: COLOUR_SET.red,
-            CLEAR: COLOUR_SET.paleGreen,
-            "FULL COMBO": COLOUR_SET.paleBlue,
-            "ALL JUSTICE": COLOUR_SET.gold,
-            "ALL JUSTICE CRITICAL": COLOUR_SET.white,
+            FAILED: exports.COLOUR_SET.red,
+            CLEAR: exports.COLOUR_SET.paleGreen,
+            "FULL COMBO": exports.COLOUR_SET.paleBlue,
+            "ALL JUSTICE": exports.COLOUR_SET.gold,
+            "ALL JUSTICE CRITICAL": exports.COLOUR_SET.white,
         },
     },
 };
-exports.lampColours = lampColours;
 // ok
 // shoutouts to stack overflow
 // https://stackoverflow.com/questions/41993515/access-object-key-using-variable-in-typescript
 function typedKeys(o) {
     return Object.keys(o);
 }
-for (const colourConfig of [lampColours, gradeColours]) {
+for (const colourConfig of [exports.lampColours, exports.gradeColours]) {
     for (const game of typedKeys(colourConfig)) {
         if (colourConfig.hasOwnProperty(game)) {
             colourConfig[game].fill = {};
@@ -1149,7 +1124,7 @@ for (const colourConfig of [lampColours, gradeColours]) {
         }
     }
 }
-const judgeColours = {
+exports.judgeColours = {
     iidx: {
         fill: {
             MISS: "rgba(211, 38, 38, 0.2)",
@@ -1187,7 +1162,7 @@ const judgeColours = {
             MISS: "rgba(211, 38, 38, 0.2)",
             BOO: "rgba(165, 38, 211, 0.2)",
             GOOD: "rgba(38, 211, 78, 0.2)",
-            GREAT: COLOUR_SET.green,
+            GREAT: exports.COLOUR_SET.green,
             PERFECT: "rgba(158, 248, 255, 0.2)",
             MARVELOUS: "rgba(241, 245, 24, 0.2)",
         },
@@ -1195,7 +1170,7 @@ const judgeColours = {
             MISS: "rgba(211, 38, 38, 1)",
             BOO: "rgba(165, 38, 211, 1)",
             GOOD: "rgba(38, 211, 78, 1)",
-            GREAT: ChangeAlpha(COLOUR_SET.green, "1"),
+            GREAT: ChangeAlpha(exports.COLOUR_SET.green, "1"),
             PERFECT: "rgba(158, 248, 255, 1)",
             MARVELOUS: "rgba(241, 245, 24, 1)",
         },
@@ -1282,37 +1257,36 @@ const judgeColours = {
     },
     chunithm: {
         outline: {
-            MISS: COLOUR_SET.gray,
-            ATTACK: COLOUR_SET.green,
-            JUSTICE: COLOUR_SET.orange,
-            JCRIT: COLOUR_SET.gold,
+            MISS: exports.COLOUR_SET.gray,
+            ATTACK: exports.COLOUR_SET.green,
+            JUSTICE: exports.COLOUR_SET.orange,
+            JCRIT: exports.COLOUR_SET.gold,
         },
         fill: {
-            MISS: ChangeAlpha(COLOUR_SET.gray, "1"),
-            ATTACK: ChangeAlpha(COLOUR_SET.green, "1"),
-            JUSTICE: ChangeAlpha(COLOUR_SET.orange, "1"),
-            JCRIT: ChangeAlpha(COLOUR_SET.gold, "1"),
+            MISS: ChangeAlpha(exports.COLOUR_SET.gray, "1"),
+            ATTACK: ChangeAlpha(exports.COLOUR_SET.green, "1"),
+            JUSTICE: ChangeAlpha(exports.COLOUR_SET.orange, "1"),
+            JCRIT: ChangeAlpha(exports.COLOUR_SET.gold, "1"),
         },
     },
     gitadora: {
         outline: {
-            MISS: COLOUR_SET.red,
-            OK: COLOUR_SET.purple,
-            GOOD: COLOUR_SET.blue,
-            GREAT: COLOUR_SET.green,
-            PERFECT: COLOUR_SET.gold,
+            MISS: exports.COLOUR_SET.red,
+            OK: exports.COLOUR_SET.purple,
+            GOOD: exports.COLOUR_SET.blue,
+            GREAT: exports.COLOUR_SET.green,
+            PERFECT: exports.COLOUR_SET.gold,
         },
         fill: {
-            MISS: ChangeAlpha(COLOUR_SET.red, "1"),
-            OK: ChangeAlpha(COLOUR_SET.purple, "1"),
-            GOOD: ChangeAlpha(COLOUR_SET.blue, "1"),
-            GREAT: ChangeAlpha(COLOUR_SET.green, "1"),
-            PERFECT: ChangeAlpha(COLOUR_SET.gold, "1"),
+            MISS: ChangeAlpha(exports.COLOUR_SET.red, "1"),
+            OK: ChangeAlpha(exports.COLOUR_SET.purple, "1"),
+            GOOD: ChangeAlpha(exports.COLOUR_SET.blue, "1"),
+            GREAT: ChangeAlpha(exports.COLOUR_SET.green, "1"),
+            PERFECT: ChangeAlpha(exports.COLOUR_SET.gold, "1"),
         },
     },
 };
-exports.judgeColours = judgeColours;
-const gameChartIndicators = {
+exports.gameChartIndicators = {
     iidx: ["cn", "bss", "hcn", "hbss"],
     popn: ["holds"],
     ddr: ["shocks", "freezes"],
@@ -1325,13 +1299,12 @@ const gameChartIndicators = {
     chunithm: [],
     gitadora: [],
 };
-exports.gameChartIndicators = gameChartIndicators;
 function GetGrade(game, percent) {
     // THIS FOR LOOP IS ITERATING DOWNWARDS
     // JUST INCASE YOU DON'T ACTUALLY READ IT PROPERLY
-    for (let i = grades[game].length; i >= 0; i--) {
-        let gradeName = grades[game][i];
-        let gradeBound = gradeBoundaries[game][i];
+    for (let i = exports.grades[game].length; i >= 0; i--) {
+        let gradeName = exports.grades[game][i];
+        let gradeBound = exports.gradeBoundaries[game][i];
         if (percent >= gradeBound) {
             return gradeName;
         }
@@ -1340,8 +1313,7 @@ function GetGrade(game, percent) {
     // idk what to write in this case so ur gonna get null and throw an error in my logs
     return null;
 }
-exports.GetGrade = GetGrade;
-const ratingParameters = {
+exports.ratingParameters = {
     iidx: {
         failHarshnessMultiplier: 0.3,
         pivotPercent: 0.7777,
@@ -1399,13 +1371,11 @@ const ratingParameters = {
         clearExpMultiplier: 1.1,
     },
 };
-exports.ratingParameters = ratingParameters;
 function ChangeAlpha(string, alpha) {
     let spl = string.split(",");
     spl[spl.length - 1] = `${alpha})`;
     return spl.join(",");
 }
-exports.ChangeAlpha = ChangeAlpha;
 function DirectScoreGradeDelta(game, score, percent, chart, delta) {
     let grade = GetGrade(game, percent);
     if (!grade) {
@@ -1420,7 +1390,7 @@ function DirectScoreGradeDelta(game, score, percent, chart, delta) {
     return ScoreGradeDelta(game, scoreObj, chart, delta);
 }
 exports.DirectScoreGradeDelta = DirectScoreGradeDelta;
-const supportsESD = {
+exports.supportsESD = {
     iidx: true,
     museca: false,
     bms: false,
@@ -1433,11 +1403,10 @@ const supportsESD = {
     sdvx: false,
     usc: false,
 };
-exports.supportsESD = supportsESD;
 function ScoreGradeDelta(game, score, chart, delta) {
-    let nextGrade = grades[game][grades[game].indexOf(score.scoreData.grade) + delta];
+    let nextGrade = exports.grades[game][exports.grades[game].indexOf(score.scoreData.grade) + delta];
     if (nextGrade) {
-        let nextGradePercent = gradeBoundaries[game][grades[game].indexOf(nextGrade)];
+        let nextGradePercent = exports.gradeBoundaries[game][exports.grades[game].indexOf(nextGrade)];
         let nGScore = CalculateScore(game, nextGradePercent, chart);
         if (nGScore) {
             let delta = score.scoreData.score - nGScore;
@@ -1464,7 +1433,7 @@ function ScoreGradeDelta(game, score, chart, delta) {
 }
 exports.ScoreGradeDelta = ScoreGradeDelta;
 function AbsoluteScoreGradeDelta(game, score, percent, absDelta) {
-    let grade = grades[game][absDelta];
+    let grade = exports.grades[game][absDelta];
     if (grade) {
         let chart = null;
         if (game === "iidx" || game === "bms") {
@@ -1475,7 +1444,7 @@ function AbsoluteScoreGradeDelta(game, score, percent, absDelta) {
                 },
             };
         }
-        let sc = CalculateScore(game, gradeBoundaries[game][absDelta], chart);
+        let sc = CalculateScore(game, exports.gradeBoundaries[game][absDelta], chart);
         if (sc) {
             let delta = score - sc;
             let formattedString = `(${grade})`;
@@ -1520,6 +1489,7 @@ function CalculateScore(game, percent, chart) {
     }
     return null;
 }
+exports.CalculateScore = CalculateScore;
 function PercentToScore(percent, game, chartData) {
     let eScore = 0;
     if (game === "iidx" || game === "bms") {
@@ -1547,13 +1517,13 @@ function PercentToScore(percent, game, chartData) {
 }
 exports.PercentToScore = PercentToScore;
 function FormatDifficulty(chart, game) {
-    if (validPlaytypes[game].length > 1) {
+    if (exports.validPlaytypes[game].length > 1) {
         return `${chart.playtype} ${chart.difficulty} ${chart.level}`;
     }
     return `${chart.difficulty}`;
 }
 exports.FormatDifficulty = FormatDifficulty;
-const gamePercentMax = {
+exports.gamePercentMax = {
     iidx: 100,
     ddr: 100,
     gitadora: 100,
@@ -1567,5 +1537,4 @@ const gamePercentMax = {
     maimaidx: 150,
     usc: 100,
 };
-exports.gamePercentMax = gamePercentMax;
 //# sourceMappingURL=config.js.map

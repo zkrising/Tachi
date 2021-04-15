@@ -1,7 +1,9 @@
-import { Game, Playtypes, ChartDocument } from "./types";
-declare const supportedGames: Game[];
-declare const gameSpecificCalc: Partial<Record<Game, Partial<Record<Playtypes[Game], string[]>>>>;
-declare const gameSpecificCalcDescriptions: {
+import { Game, Playtypes, ChartDocument, ImportTypes, FileUploadImportTypes } from "./types";
+export declare const importTypes: ImportTypes[];
+export declare const fileImportTypes: FileUploadImportTypes[];
+export declare const supportedGames: Game[];
+export declare const gameSpecificCalc: Partial<Record<Game, Partial<Record<Playtypes[Game], string[]>>>>;
+export declare const gameSpecificCalcDescriptions: {
     iidx: {
         SP: {
             BPI: string;
@@ -32,17 +34,18 @@ declare const gameSpecificCalcDescriptions: {
         };
     };
 };
-declare const validDifficulties: Record<Game, string[]>;
-declare const defaultTable: Record<Game, string>;
-declare const folderTables: Record<Game, string[]>;
-declare const validHitData: Record<Game, string[]>;
-declare const validHitMeta: Record<Game, string[]>;
-declare const validScoreMeta: Record<Game, Record<string, unknown>>;
-declare const gameColours: Record<Game, string>;
-declare const gameRelevantScoreBucket: Record<Game, "grade" | "lamp">;
-declare const gameHuman: Record<Game, string>;
-declare const versionHuman: Record<Game, Record<string, string>>;
-declare const gameOrders: {
+export declare const validDifficulties: Record<Game, string[]>;
+export declare const defaultTable: Record<Game, string>;
+export declare const folderTables: Record<Game, string[]>;
+export declare const validHitData: Record<Game, string[]>;
+export declare const BASE_VALID_HIT_META: string[];
+export declare const validHitMeta: Record<Game, string[]>;
+export declare const validScoreMeta: Record<Game, Record<string, unknown>>;
+export declare const gameColours: Record<Game, string>;
+export declare const gameRelevantScoreBucket: Record<Game, "grade" | "lamp">;
+export declare const gameHuman: Record<Game, string>;
+export declare const versionHuman: Record<Game, Record<string, string>>;
+export declare const gameOrders: {
     iidx: string[];
     museca: string[];
     maimai: string[];
@@ -55,17 +58,17 @@ declare const gameOrders: {
     gitadora: string[];
     usc: string[];
 };
-declare const defaultPlaytype: Record<Game, Playtypes[Game]>;
-declare const defaultDifficulty: Record<Game, string>;
-declare function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]): string;
-declare const validPlaytypes: Record<Game, Playtypes[Game][]>;
-declare const grades: Record<Game, string[]>;
-declare const gradeBoundaries: Record<Game, number[]>;
-declare const boundaryHCF: Record<Game, number>;
-declare const expChartScale: Record<Game, number>;
-declare const lamps: Record<Game, string[]>;
-declare const clearLamp: Record<Game, string>;
-declare const clearGrade: {
+export declare const defaultPlaytype: Record<Game, Playtypes[Game]>;
+export declare const defaultDifficulty: Record<Game, string>;
+export declare function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]): string;
+export declare const validPlaytypes: Record<Game, Playtypes[Game][]>;
+export declare const grades: Record<Game, string[]>;
+export declare const gradeBoundaries: Record<Game, number[]>;
+export declare const boundaryHCF: Record<Game, number>;
+export declare const expChartScale: Record<Game, number>;
+export declare const lamps: Record<Game, string[]>;
+export declare const clearLamp: Record<Game, string>;
+export declare const clearGrade: {
     iidx: string;
     bms: string;
     museca: string;
@@ -78,7 +81,7 @@ declare const clearGrade: {
     gitadora: string;
     usc: string;
 };
-declare const judgementWindows: {
+export declare const judgementWindows: {
     iidx: {
         SP: {
             name: string;
@@ -123,15 +126,35 @@ declare const judgementWindows: {
         }[];
     };
 };
+export declare const COLOUR_SET: {
+    gray: string;
+    maroon: string;
+    red: string;
+    paleGreen: string;
+    paleBlue: string;
+    green: string;
+    blue: string;
+    gold: string;
+    vibrantYellow: string;
+    teal: string;
+    white: string;
+    purple: string;
+    vibrantPurple: string;
+    paleOrange: string;
+    orange: string;
+    vibrantOrange: string;
+    vibrantBlue: string;
+    vibrantGreen: string;
+};
 interface ColourStuff {
     [index: string]: {
         outline: Record<string, string>;
         fill?: Record<string, string>;
     };
 }
-declare const gradeColours: ColourStuff;
-declare const lampColours: ColourStuff;
-declare const judgeColours: {
+export declare const gradeColours: ColourStuff;
+export declare const lampColours: ColourStuff;
+export declare const judgeColours: {
     iidx: {
         fill: {
             MISS: string;
@@ -293,7 +316,7 @@ declare const judgeColours: {
         };
     };
 };
-declare const gameChartIndicators: {
+export declare const gameChartIndicators: {
     iidx: string[];
     popn: string[];
     ddr: string[];
@@ -306,8 +329,7 @@ declare const gameChartIndicators: {
     chunithm: never[];
     gitadora: never[];
 };
-declare function GetGrade(game: Game, percent: number): string | null;
-declare const ratingParameters: {
+export declare const ratingParameters: {
     iidx: {
         failHarshnessMultiplier: number;
         pivotPercent: number;
@@ -364,9 +386,8 @@ declare const ratingParameters: {
         clearExpMultiplier: number;
     };
 };
-declare function ChangeAlpha(string: string, alpha: string): string;
-declare function DirectScoreGradeDelta(game: Game, score: number, percent: number, chart: ChartDocument, delta: number): SGDReturn | null;
-declare const supportsESD: Record<Game, boolean>;
+export declare function DirectScoreGradeDelta(game: Game, score: number, percent: number, chart: ChartDocument, delta: number): SGDReturn | null;
+export declare const supportsESD: Record<Game, boolean>;
 interface SGDReturn {
     grade: string;
     delta: number;
@@ -378,11 +399,12 @@ interface PartialScore {
         grade: string;
     };
 }
-declare function ScoreGradeDelta(game: Game, score: PartialScore, chart: ChartDocument, delta: number): SGDReturn | null;
-declare function AbsoluteScoreGradeDelta(game: Game, score: number, percent: number, absDelta: number): SGDReturn | null;
-declare function PercentToScore(percent: number, game: Game, chartData: ChartDocument): number;
-declare function FormatDifficulty(chart: ChartDocument, game: Game): string;
-declare const gamePercentMax: {
+export declare function ScoreGradeDelta(game: Game, score: PartialScore, chart: ChartDocument, delta: number): SGDReturn | null;
+export declare function AbsoluteScoreGradeDelta(game: Game, score: number, percent: number, absDelta: number): SGDReturn | null;
+export declare function CalculateScore(game: Game, percent: number, chart: ChartDocument): number | null;
+export declare function PercentToScore(percent: number, game: Game, chartData: ChartDocument): number;
+export declare function FormatDifficulty(chart: ChartDocument, game: Game): string;
+export declare const gamePercentMax: {
     iidx: number;
     ddr: number;
     gitadora: number;
@@ -396,4 +418,4 @@ declare const gamePercentMax: {
     maimaidx: number;
     usc: number;
 };
-export { supportedGames, gameOrders, versionHuman, grades, lamps, lampColours, gradeColours, defaultPlaytype, gameChartIndicators, GetGrade, gradeBoundaries, gameHuman, ratingParameters, validPlaytypes, ScoreGradeDelta, judgeColours, gameColours, clearLamp, gameRelevantScoreBucket, judgementWindows, PercentToScore, ChangeAlpha, validDifficulties, validHitData, validHitMeta, boundaryHCF, gameSpecificCalc, expChartScale, FormatDifficulty, DirectScoreGradeDelta, gameSpecificCalcDescriptions, defaultDifficulty, gamePercentMax, AbsoluteScoreGradeDelta, validScoreMeta, clearGrade, defaultTable, folderTables, supportsESD, humaniseGame, };
+export {};

@@ -1,5 +1,13 @@
-import { importTypes } from "kamaitachi-common/js/config";
-import Pr, { PrudenceOptions, PrudenceSchema } from "prudence";
+import deepmerge from "deepmerge";
+import { Game, Playtypes } from "kamaitachi-common";
+import {
+    grades,
+    importTypes,
+    lamps,
+    validHitData,
+    validHitMeta,
+} from "kamaitachi-common/js/config";
+import p, { PrudenceOptions, PrudenceSchema, ValidationFunction, ValidSchemaValue } from "prudence";
 import { RevaluedObject } from "../types";
 import db from "./db";
 
@@ -7,15 +15,15 @@ import db from "./db";
 const LAZY_EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export const PRUDENCE_PUBLIC_USER: PrudenceSchema = {
-    _id: Pr.any,
-    username: Pr.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/),
+    _id: p.any,
+    username: p.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/),
     usernameLowercase: (self, parent) => self === (parent!.username as string).toLowerCase(),
-    id: Pr.isPositiveInteger,
+    id: p.isPositiveInteger,
     settings: {
         nsfwSplashes: "boolean",
         invisible: "boolean",
     },
-    friends: [Pr.isPositiveInteger],
+    friends: [p.isPositiveInteger],
     socialMedia: {
         discord: "*string",
         twitter: "*string",
@@ -24,80 +32,241 @@ export const PRUDENCE_PUBLIC_USER: PrudenceSchema = {
         youtube: "*string",
         twitch: "*string",
     },
-    about: Pr.isBoundedString(0, 4000),
+    about: p.isBoundedString(0, 4000),
     customPfp: "boolean",
     customBanner: "boolean",
     permissions: {
         admin: "*boolean",
     },
-    clan: Pr.nullable(Pr.isBoundedString(1, 4)),
-    lastSeen: Pr.nullable(Pr.isPositiveInteger),
+    clan: p.nullable(p.isBoundedString(1, 4)),
+    lastSeen: p.nullable(p.isPositiveInteger),
 };
 
 export const PRUDENCE_PRIVATE_USER = Object.assign(
     {
         password: "string", // could be a tighter fit related to bcrypt?
-        email: Pr.regex(LAZY_EMAIL_REGEX),
+        email: p.regex(LAZY_EMAIL_REGEX),
     },
     PRUDENCE_PUBLIC_USER
 );
 
 export const PRUDENCE_IIDX_BPI_DATA = {
-    coef: Pr.nullable(Pr.isPositiveNonZero),
-    kavg: Pr.isPositiveNonZeroInteger,
-    wr: Pr.isPositiveNonZeroInteger,
+    coef: p.nullable(p.isPositiveNonZero),
+    kavg: p.isPositiveNonZeroInteger,
+    wr: p.isPositiveNonZeroInteger,
     chartID: "string",
-    kesd: Pr.isPositiveNonZero,
+    kesd: p.isPositiveNonZero,
 };
 
 export const PRUDENCE_COUNTER = {
     counterName: "string",
-    value: Pr.isPositiveNonZeroInteger, // is nonzero?
+    value: p.isPositiveNonZeroInteger, // is nonzero?
 };
 
-export const PRUDENCE_GENERIC_SCORE = {
-    service: Pr.isBoundedString(3, 64),
+export const PR_SCORE_GENERIC = {
+    service: p.isBoundedString(3, 64),
     game: "string",
     playtype: "string",
     difficulty: "string",
-    userID: Pr.isPositiveNonZeroInteger,
+    userID: p.isPositiveNonZeroInteger,
     scoreData: {
-        score: Pr.isPositive,
-        percent: Pr.isBetween(0, 100), // should be overrode!
+        score: p.isPositive,
+        percent: p.isBetween(0, 100), // could be overrode!
         lamp: "string",
         grade: "string",
-        lampIndex: Pr.isPositiveInteger,
-        gradeIndex: Pr.isPositiveInteger,
+        lampIndex: p.isPositiveInteger,
+        gradeIndex: p.isPositiveInteger,
         hitData: {},
         hitMeta: {},
     },
     scoreMeta: {},
     calculatedData: {
-        rating: Pr.isPositive,
-        lampRating: Pr.isPositive,
+        rating: p.isPositive,
+        lampRating: p.isPositive,
         gameSpecific: {},
-        ranking: Pr.nullable(Pr.isPositiveNonZeroInteger),
-        outOf: Pr.and(
-            Pr.isPositiveNonZeroInteger,
+        ranking: p.nullable(p.isPositiveNonZeroInteger),
+        outOf: p.and(
+            p.isPositiveNonZeroInteger,
             (self, parent: Record<string, unknown>) =>
                 (parent.ranking as number) <= (self as number)
         ),
     },
-    timeAchieved: Pr.nullable(Pr.isPositive),
-    songID: Pr.isInteger,
+    timeAchieved: p.nullable(p.isPositive),
+    songID: p.isInteger,
     chartID: (self: unknown) => typeof self === "string" && self.length === 40,
     highlight: "boolean",
-    comment: Pr.nullable(Pr.isBoundedString(1, 240)),
-    timeAdded: Pr.isPositive,
+    comment: p.nullable(p.isBoundedString(1, 240)),
+    timeAdded: p.isPositive,
     isScorePB: "boolean",
     isLampPB: "boolean",
     scoreID: "string", // temp
-    importType: Pr.isIn(importTypes),
+    importType: p.isIn(importTypes),
 };
 
-export const SCHEMAS: RevaluedObject<typeof db, PrudenceSchema> = {
+type ScoreSchemas = {
+    [G in Game]: {
+        [P in Playtypes[G]]: PrudenceSchema;
+    };
+};
+
+const optionalPositiveInt = p.optional(p.isPositiveInteger);
+
+const nullableAndOptional = (fn: ValidSchemaValue) => p.optional(p.nullable(fn));
+
+const CreateGameScoreData = (game: Game, hitMetaMerge: PrudenceSchema) => ({
+    lamp: p.isIn(lamps[game]),
+    lampIndex: p.and(
+        p.isPositiveInteger,
+        (self, parent) => lamps[game][self as number] === parent.lamp
+    ),
+    grade: p.isIn(grades.iidx),
+    gradeIndex: p.and(
+        p.isPositiveInteger,
+        (self, parent) => grades[game][self as number] === parent.grade
+    ),
+    hitData: Object.fromEntries(validHitData[game].map((e) => [e, optionalPositiveInt])),
+    hitMeta: deepmerge(
+        {
+            fast: optionalPositiveInt,
+            slow: optionalPositiveInt,
+            maxCombo: optionalPositiveInt,
+        },
+        hitMetaMerge
+    ),
+});
+
+const PR_SCORE_IIDX_SP: PrudenceSchema = CreatePRScore(
+    "iidx",
+    "SP",
+    {
+        bp: optionalPositiveInt,
+        gauge: p.optional(p.isBetween(0, 100)),
+        gaugeHistory: p.optional([p.isBetween(0, 100)]),
+        comboBreak: optionalPositiveInt,
+        deadMeasure: nullableAndOptional(p.isPositiveInteger),
+        deadNote: nullableAndOptional(p.isPositiveInteger),
+    },
+    {
+        random: p.optional(p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])),
+        assist: p.optional(p.isIn(["NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "ASCR + LEGACY"])),
+        range: p.optional(p.isIn(["NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+"])),
+        pacemakerName: "*?string",
+        pacemakerTarget: nullableAndOptional(p.isPositiveInteger),
+    }
+);
+
+const PR_SCORE_BMS_7K: PrudenceSchema = CreatePRScore(
+    "bms",
+    "7K",
+    {
+        gauge: p.optional(p.isBetween(0, 100)),
+        bp: optionalPositiveInt,
+        diedAt: optionalPositiveInt,
+    },
+    {
+        random: p.optional(p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])),
+        inputDevice: p.optional(p.isIn(["KB", "BM", "MIDI"])),
+    }
+);
+
+function CreatePRScore<G extends Game>(
+    game: G,
+    playtype: Playtypes[G],
+    mergeHitMeta: PrudenceSchema = {},
+    mergeScoreMeta: PrudenceSchema = {},
+    mergeGameSpecific: PrudenceSchema = {}
+) {
+    return deepmerge(PR_SCORE_GENERIC, {
+        game,
+        playtype,
+        scoreData: CreateGameScoreData(game, mergeHitMeta),
+        scoreMeta: mergeScoreMeta,
+        calculatedData: {
+            gameSpecific: mergeGameSpecific,
+        },
+    });
+}
+
+function DoublePlayTwinRandomTuple(self: unknown) {
+    if (!Array.isArray(self)) {
+        return "Expected an array.";
+    }
+
+    if (self.length !== 2) {
+        return "Expected exactly 2 elements.";
+    }
+
+    let ls = p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])(self[0]);
+
+    if (ls !== true) {
+        return ls;
+    }
+
+    let rs = p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])(self[1]);
+
+    return rs;
+}
+
+export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
+    iidx: {
+        SP: PR_SCORE_IIDX_SP,
+        DP: deepmerge(PR_SCORE_IIDX_SP, {
+            playtype: "DP",
+            scoreMeta: {
+                random: p.optional(DoublePlayTwinRandomTuple),
+            },
+        }),
+    },
+    sdvx: {
+        Single: CreatePRScore("sdvx", "Single", { gauge: p.optional(p.isBetween(0, 100)) }),
+    },
+    bms: {
+        "7K": PR_SCORE_BMS_7K,
+        "14K": deepmerge(PR_SCORE_BMS_7K, {
+            playtype: "14K",
+            scoreMeta: {
+                random: p.optional(DoublePlayTwinRandomTuple),
+            },
+        }),
+        "5K": deepmerge(PR_SCORE_BMS_7K, {
+            playtype: "5K",
+            scoreMeta: {},
+        }),
+    },
+    chunithm: {
+        Single: CreatePRScore("chunithm", "Single"),
+    },
+    ddr: {
+        SP: CreatePRScore("ddr", "SP"),
+        DP: CreatePRScore("ddr", "DP"),
+    },
+    gitadora: {
+        Gita: CreatePRScore("gitadora", "Gita"),
+        Dora: CreatePRScore("gitadora", "Dora"),
+    },
+    jubeat: {
+        Single: CreatePRScore("jubeat", "Single"),
+    },
+    maimai: {
+        Single: CreatePRScore("maimai", "Single"),
+    },
+    museca: {
+        Single: CreatePRScore("museca", "Single"),
+    },
+    popn: {
+        "9B": CreatePRScore("popn", "9B", { gauge: p.optional(p.isBetween(0, 100)) }),
+    },
+    usc: {
+        Single: CreatePRScore("usc", "Single", { gauge: p.optional(p.isBetween(0, 100)) }),
+    },
+};
+
+// temporarily partial.
+export const SCHEMAS: Partial<RevaluedObject<typeof db, PrudenceSchema>> = {
     users: PRUDENCE_PRIVATE_USER,
     "iidx-bpi-data": PRUDENCE_IIDX_BPI_DATA,
     counters: PRUDENCE_COUNTER,
-    scores: {},
+    scores: {
+        foo: () => "DO NOT USE THIS VALIDATION FUNCTION. USE PRUDENCE_SCORE FORMATS INSTEAD.",
+    },
 };

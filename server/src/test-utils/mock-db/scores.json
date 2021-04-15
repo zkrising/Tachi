@@ -11,6 +11,8 @@
             "percent": 50,
             "grade": "C",
             "esd": 30,
+            "gradeIndex": 3,
+            "lampIndex": 4,
             "hitData": {
                 "pgreat": 50,
                 "great": 10

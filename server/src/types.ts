@@ -100,3 +100,7 @@ export interface OrphanedScore<T extends ImportTypes> {
     converterContext: Parameters<typeof Converters[T]>[1];
     humanisedIdentifier: string;
 }
+
+export type RevaluedObject<T, U> = {
+    [K in keyof T]: RevaluedObject<T[K], U> | U;
+};

@@ -23,7 +23,7 @@ export default async function HydrateScore(
     // Fill out the rest of the fields we want for scoreData
     const scoreData = Object.assign(
         {
-            // @todo lamps may need to be separate upon game someday. Maybe. We need to check this out
+            // @todo lamps may need to be separate upon game:playtype someday. Maybe. We need to check this out
             lampIndex: config.lamps[dryScore.game].indexOf(dryScore.scoreData.lamp as string),
             gradeIndex: config.grades[dryScore.game].indexOf(dryScore.scoreData.lamp as string),
         },

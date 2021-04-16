@@ -709,6 +709,7 @@ export interface ChartDocument<
     I extends IDStrings = IDStrings
 > extends MongoDBDocument {
     chartID: string;
+    rgcID: string | null; // ID to perform backbeat lookup in future.
     songID: integer;
     level: string;
     levelNum: number;

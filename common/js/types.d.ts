@@ -526,6 +526,7 @@ interface ChartDocumentData {
 }
 export interface ChartDocument<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDStrings> extends MongoDBDocument {
     chartID: string;
+    rgcID: string | null;
     songID: integer;
     level: string;
     levelNum: number;

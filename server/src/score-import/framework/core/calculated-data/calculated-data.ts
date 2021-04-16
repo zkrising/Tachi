@@ -1,6 +1,8 @@
 import {
+    AnyChartDocument,
     ChartDocument,
     Game,
+    IDStrings,
     Playtypes,
     ScoreDocument,
     SongDocument,
@@ -13,7 +15,7 @@ import { CalculateCHUNITHMRating, CalculateGITADORARating } from "./game-specifi
 
 export async function CreateCalculatedData(
     dryScore: DryScore,
-    chart: ChartDocument,
+    chart: AnyChartDocument,
     logger: Logger
 ): Promise<ScoreDocument["calculatedData"]> {
     const game = dryScore.game;
@@ -54,7 +56,7 @@ async function CalculateRating<G extends Game>(
     dryScore: DryScore,
     game: G,
     playtype: Playtypes[G],
-    chart: ChartDocument
+    chart: AnyChartDocument
 ) {
     // @todo
     let OverrideFunction: OverrideRatingFunction | undefined =
@@ -78,5 +80,5 @@ async function CalculateRating<G extends Game>(
 // }
 
 interface OverrideRatingFunction {
-    (dryScore: DryScore, chartData: ChartDocument): number | Promise<number>;
+    (dryScore: DryScore, chartData: AnyChartDocument): number | Promise<number>;
 }

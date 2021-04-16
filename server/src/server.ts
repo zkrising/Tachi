@@ -2,17 +2,11 @@ import express from "express";
 import "express-async-errors";
 import CreateLogCtx from "./logger";
 import expressSession from "express-session";
-import connectRedis from "connect-redis";
-import redis from "redis";
 import { SESSION_SECRET } from "./secrets";
+import { integer } from "kamaitachi-common";
+import { RedisClient, RedisStore } from "./redis/redis-store";
 
 const logger = CreateLogCtx("server.ts");
-
-const RedisStore = connectRedis(expressSession);
-logger.info("Instantiated Redis Store");
-
-const RedisClient = redis.createClient();
-logger.info("Instantiated Redis Client");
 
 const userSessionMiddleware = expressSession({
     // append node_env onto the end of the session name
@@ -57,7 +51,6 @@ process.on("unhandledRejection", (reason, promise) => {
 app.use(express.json({ limit: "1mb" }));
 
 import internalApiRouter from "./internal-api/internal-api";
-import { integer } from "./types";
 
 app.use("/internal-api", internalApiRouter);
 

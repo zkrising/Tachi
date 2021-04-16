@@ -1,6 +1,6 @@
 import Pr from "prudence";
 import t from "tap";
-import { CloseConnection } from "../../../../db/db";
+import { CloseMongoConnection } from "../../../../db/db";
 import CreateLogCtx from "../../../../logger";
 import prAssert from "../../../../test-utils/prassert";
 import {
@@ -122,4 +122,4 @@ t.test("#CreateGameSpecific", (t) => {
     t.end();
 });
 
-t.teardown(CloseConnection);
+t.teardown(CloseMongoConnection);

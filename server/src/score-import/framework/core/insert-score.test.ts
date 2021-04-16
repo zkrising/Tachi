@@ -1,6 +1,6 @@
 import { ScoreDocument } from "kamaitachi-common";
 import t from "tap";
-import db, { CloseConnection } from "../../../db/db";
+import db, { CloseMongoConnection } from "../../../db/db";
 import ResetDBState from "../../../test-utils/reset-db-state";
 import { InsertQueue, QueueScoreInsert } from "./insert-score";
 
@@ -81,4 +81,4 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
     t.end();
 });
 
-t.teardown(CloseConnection);
+t.teardown(CloseMongoConnection);

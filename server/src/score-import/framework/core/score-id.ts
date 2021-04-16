@@ -1,6 +1,7 @@
-import { integer, DryScore } from "../../../types";
+import { DryScore } from "../../../types";
 import crypto from "crypto";
 import db from "../../../db/db";
+import { integer } from "kamaitachi-common";
 
 function CreateScoreIDString(userID: integer, partialScore: DryScore, chartID: string) {
     const { lamp, grade } = partialScore.scoreData;

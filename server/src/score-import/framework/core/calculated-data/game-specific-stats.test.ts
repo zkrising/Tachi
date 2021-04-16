@@ -1,5 +1,5 @@
 import t from "tap";
-import { CloseConnection } from "../../../../db/db";
+import { CloseMongoConnection } from "../../../../db/db";
 import { DryScore } from "../../../../types";
 import { AnyChartDocument, Difficulties, Lamps, ScoreDocument } from "kamaitachi-common";
 import {
@@ -249,4 +249,4 @@ t.test("#CalculateMFCP", (t) => {
     t.end();
 });
 
-t.teardown(CloseConnection);
+t.teardown(CloseMongoConnection);

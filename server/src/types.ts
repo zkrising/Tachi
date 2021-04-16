@@ -2,14 +2,13 @@ import {
     AnyChartDocument,
     IDStrings,
     ImportTypes,
+    integer,
     ScoreDocument,
     SongDocument,
 } from "kamaitachi-common";
 import { Logger } from "winston";
 import { ConverterFailure } from "./score-import/framework/core/converter-errors";
 import { Converters } from "./score-import/import-types/import-types";
-
-export type integer = number;
 
 declare module "express-session" {
     // Inject additional properties on express-session

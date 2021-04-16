@@ -1,7 +1,7 @@
 import db from "../db/db";
 import CreateLogCtx from "../logger";
 const logger = CreateLogCtx("db-core.ts");
-import { integer } from "../types";
+import { integer } from "kamaitachi-common";
 
 export async function GetNextCounterValue(counterName: string): Promise<integer> {
     const sequenceDoc = await db.counters.findOneAndUpdate(

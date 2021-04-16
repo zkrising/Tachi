@@ -2,10 +2,11 @@ import {
     AnyChartDocument,
     ChartDocument,
     ImportProcessingInfo,
+    integer,
     ScoreDocument,
     SongDocument,
 } from "kamaitachi-common";
-import { integer, DryScore, ConverterFunction, ConverterFnReturn } from "../../../types";
+import { DryScore, ConverterFunction, ConverterFnReturn } from "../../../types";
 import HydrateScore from "../core/hydrate-score";
 import { QueueScoreInsert } from "../core/insert-score";
 import {

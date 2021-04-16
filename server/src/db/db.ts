@@ -44,12 +44,12 @@ if (process.env.NODE_ENV !== "test") {
     });
 }
 
-export async function ReOpenConnection() {
+export async function ReopenMongoConnection() {
     monkDB = monk(url);
     await monkDB.then();
 }
 
-export async function CloseConnection() {
+export async function CloseMongoConnection() {
     await monkDB.close();
 }
 

@@ -1,6 +1,6 @@
 import { GetNextCounterValue } from "./db-core";
 import t from "tap";
-import db, { CloseConnection } from "../db/db";
+import db, { CloseMongoConnection } from "../db/db";
 import ResetDBState from "../test-utils/reset-db-state";
 
 t.test("#GetNextCounterValue", (t) => {
@@ -27,4 +27,4 @@ t.test("#GetNextCounterValue", (t) => {
     t.end();
 });
 
-t.teardown(CloseConnection);
+t.teardown(CloseMongoConnection);

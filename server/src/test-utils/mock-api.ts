@@ -1,7 +1,13 @@
 import supertest from "supertest";
 
-import api from "../internal-api/internal-api";
+import server from "../server";
 
-const mockApi = supertest(api);
+const connection = server.listen(8079);
+
+const mockApi = supertest(connection);
+
+export function CloseServerConnection() {
+    connection.close();
+}
 
 export default mockApi;

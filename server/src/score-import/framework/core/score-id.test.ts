@@ -1,6 +1,6 @@
 import { ScoreDocument } from "kamaitachi-common";
 import t from "tap";
-import db, { CloseConnection } from "../../../db/db";
+import db, { CloseMongoConnection } from "../../../db/db";
 import ResetDBState from "../../../test-utils/reset-db-state";
 import { Testing511SPA, TestingIIDXSPDryScore } from "../../../test-utils/test-data";
 import { CreateScoreID, GetWithScoreID } from "./score-id";
@@ -57,4 +57,4 @@ t.test("#CreateScoreID", (t) => {
     t.end();
 });
 
-t.teardown(CloseConnection);
+t.teardown(CloseMongoConnection);

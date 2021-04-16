@@ -751,7 +751,7 @@ export interface AnyChartDocument extends MongoDBDocument {
     levelNum: number;
     length: string | null;
     bpmString: string | null;
-    difficulty: string;
+    difficulty: Difficulties[IDStrings];
     playtype: Playtypes[Game];
 }
 

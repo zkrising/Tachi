@@ -19,6 +19,7 @@ export type IDStrings =
     | "usc:Single"
     | "ddr:SP"
     | "maimai:Single"
+    | "museca:Single"
     | "jubeat:Single"
     | "bms:7K"
     | "bms:14K"

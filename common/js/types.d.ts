@@ -463,22 +463,78 @@ export interface IIDXEamusementScoreDocument extends MongoDBDocument {
     score: integer;
     ranking: integer;
 }
+interface ChartDocumentFlags {
+    "iidx:SP": "IN BASE GAME" | "OMNIMIX" | "N-1";
+    "iidx:DP": "IN BASE GAME" | "OMNIMIX" | "N-1";
+    "popn:9B": "IN BASE GAME";
+    "sdvx:Single": "IN BASE GAME" | "OMNIMIX" | "N-1";
+    "usc:Single": "CUSTOM";
+    "ddr:SP": "IN BASE GAME" | "N-1";
+    "ddr:DP": "IN BASE GAME" | "N-1";
+    "maimai:Single": "IN BASE GAME";
+    "jubeat:Single": "IN BASE GAME";
+    "museca:Single": "OMNIMIX";
+    "bms:7K": never;
+    "bms:14K": never;
+    "bms:5K": never;
+    "chunithm:Single": "IN BASE GAME" | "OMNIMIX";
+    "gitadora:Gita": "IN BASE GAME" | "OMNIMIX";
+    "gitadora:Dora": "IN BASE GAME" | "OMNIMIX";
+}
+interface CDDataIIDXSP {
+    notecount: integer;
+    inGameID: string;
+    inGameINTID: integer;
+}
+interface CDDataDDRSP {
+    songHash: string;
+    inGameID: string;
+}
+interface ChartDocumentData {
+    "iidx:SP": CDDataIIDXSP;
+    "iidx:DP": CDDataIIDXSP;
+    "popn:9B": Record<string, never>;
+    "sdvx:Single": {
+        inGameID: string;
+        inGameINTID: integer;
+    };
+    "usc:Single": {
+        hashSHA256: string;
+    };
+    "ddr:SP": CDDataDDRSP;
+    "ddr:DP": CDDataDDRSP;
+    "maimai:Single": {
+        maxPercent: number;
+        inGameID: string;
+    };
+    "jubeat:Single": Record<string, never>;
+    "museca:Single": "OMNIMIX";
+    "bms:7K": Record<string, never>;
+    "bms:14K": Record<string, never>;
+    "bms:5K": Record<string, never>;
+    "chunithm:Single": {
+        inGameINTID: integer;
+    };
+    "gitadora:Gita": {
+        inGameID: string;
+        inGameINTID: integer;
+    };
+    "gitadora:Dora": {
+        inGameID: string;
+        inGameINTID: integer;
+    };
+}
 export interface ChartDocument<G extends Game = Game, P extends Playtypes[G] = Playtypes[G], I extends IDStrings = IDStrings> extends MongoDBDocument {
     chartID: string;
-    id: integer;
+    songID: integer;
     level: string;
     levelNum: number;
     difficulty: Difficulties[I];
     playtype: P;
-    length: string | number | null;
-    bpmMin: number;
-    bpmMax: number;
-    flags: Record<string, boolean>;
-    internals: Record<string, unknown>;
-    notedata: {
-        notecount: integer;
-        objects: Record<string, integer>;
-    };
+    length: string | null;
+    bpmString: string | null;
+    flags: Record<ChartDocumentFlags[I], boolean>;
+    data: ChartDocumentData[I];
 }
 export interface TierlistDocument extends MongoDBDocument {
     game: Game;
@@ -572,16 +628,16 @@ export interface UserMilestoneDocument extends MongoDBDocument {
 }
 declare type RanOptions = "NONRAN" | "RANDOM" | "R-RANDOM" | "S-RANDOM" | "MIRROR";
 interface IIDXSPScoreMeta {
-    optionsRandom: RanOptions;
-    optionsAssist: "AUTO SCRATCH" | "5KEYS" | "LEGACY NOTE" | "ASCR + 5KEY" | "ASCR + LEGACY" | "5KEYS + LEGACY" | "FULL ASSIST";
-    optionsRange: "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+";
-    optionsGauge: "ASSISTED EASY" | "EASY" | "HARD" | "EX-HARD";
+    random: RanOptions;
+    assist: "AUTO SCRATCH" | "5KEYS" | "LEGACY NOTE" | "ASCR + 5KEY" | "ASCR + LEGACY" | "5KEYS + LEGACY" | "FULL ASSIST";
+    range: "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+";
+    gauge: "ASSISTED EASY" | "EASY" | "HARD" | "EX-HARD";
     pacemaker: "NO GRAPH" | "MY BEST" | "RIVAL 1" | "RIVAL 2" | "RIVAL 3" | "RIVAL 4" | "RIVAL 5" | "RIVAL NEXT" | "RIVAL BEST" | "RIVAL AVERAGE" | "NATIONAL BEST" | "NATIONAL AVERAGE" | "PREFECTURE BEST" | "PREFECTURE AVERAGE" | "CLASS BEST" | "CLASS AVERAGE" | "VENUE BEST" | "VENUE NEXT" | "PREVIOUS GHOST" | "PACEMAKER AAA" | "PACEMAKER AA" | "PACEMAKER A" | "PACEMAKER" | /* ??? */ "PACEMAKER NEXT" | "PACEMAKER NEXT+" | "PLAYER 1" | "PLAYER 2";
     pacemakerName: string;
     pacemakerTarget: integer;
 }
 interface BMS7KScoreMeta {
-    optionsRandom: RanOptions;
+    random: RanOptions;
     inputDevice: string;
 }
 interface ScoreMetaLookup {
@@ -591,9 +647,7 @@ interface ScoreMetaLookup {
     };
     "popn:9B": Record<string, never>;
     "sdvx:Single": Record<string, never>;
-    "usc:Single": BASE_VALID_HIT_META & {
-        gauge: number;
-    };
+    "usc:Single": Record<string, never>;
     "ddr:SP": Record<string, never>;
     "ddr:DP": Record<string, never>;
     "maimai:Single": Record<string, never>;

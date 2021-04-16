@@ -172,18 +172,10 @@ export const validHitMeta: Record<Game, string[]> = {
 
 export const validScoreMeta: Record<Game, Record<string, unknown>> = {
     iidx: {
-        optionsRandom: ["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"],
-        optionsAssist: [
-            "AUTO SCRATCH",
-            "5KEYS",
-            "LEGACY NOTE",
-            "ASCR + 5KEY",
-            "ASCR + LEGACY",
-            "5KEYS + LEGACY",
-            "FULL ASSIST",
-        ],
-        optionsRange: ["SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+"],
-        optionsGauge: ["ASSISTED EASY", "EASY", "HARD", "EX-HARD"],
+        random: ["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"],
+        assist: ["NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "ASCR + LEGACY"],
+        range: ["NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+"],
+        gauge: ["ASSISTED EASY", "EASY", "HARD", "EX HARD"],
         pacemaker: [
             "NO GRAPH",
             "MY BEST",
@@ -1526,7 +1518,7 @@ export function AbsoluteScoreGradeDelta(
         if (game === "iidx" || game === "bms") {
             let reversedNC = Math.floor((score / percent) * 100) / 2;
             chart = {
-                notedata: {
+                data: {
                     notecount: reversedNC,
                 },
             };
@@ -1554,17 +1546,14 @@ export function CalculateScore(game: Game, percent: number, chart: ChartDocument
     let score = percent;
 
     if (game === "iidx" || game === "bms") {
-        score = chart.notedata.notecount * 2 * (percent / 100);
-    } else if (game === "ddr") {
-        score = 1000000 * (percent / 100);
-    } else if (game === "museca" || game === "jubeat") {
-        score = 1000000 * (percent / 100);
+        score =
+            (chart as ChartDocument<"iidx", "SP", "iidx:SP">).data.notecount * 2 * (percent / 100);
+    } else if (game === "ddr" || game === "museca" || game === "jubeat" || game === "chunithm") {
+        score = 1_000_000 * (percent / 100);
     } else if (game === "popn") {
-        score = 100000 * (percent / 100);
+        score = 100_000 * (percent / 100);
     } else if (game === "sdvx" || game === "usc") {
-        score = 10000000 * (percent / 100);
-    } else if (game === "chunithm") {
-        score = 1000000 * (percent / 100);
+        score = 10_000_000 * (percent / 100);
     }
 
     if (score) {
@@ -1577,7 +1566,7 @@ export function PercentToScore(percent: number, game: Game, chartData: ChartDocu
     let eScore = 0;
 
     if (game === "iidx" || game === "bms") {
-        eScore = percent * chartData.notedata.notecount * 2;
+        eScore = percent * (chartData as ChartDocument<"iidx", "SP", "iidx:SP">).data.notecount * 2;
     } else if (game === "museca" || game === "jubeat") {
         eScore = percent * 1000000;
     } else if (game === "popn") {

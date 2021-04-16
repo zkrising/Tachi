@@ -161,18 +161,10 @@ exports.validHitMeta = {
 };
 exports.validScoreMeta = {
     iidx: {
-        optionsRandom: ["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"],
-        optionsAssist: [
-            "AUTO SCRATCH",
-            "5KEYS",
-            "LEGACY NOTE",
-            "ASCR + 5KEY",
-            "ASCR + LEGACY",
-            "5KEYS + LEGACY",
-            "FULL ASSIST",
-        ],
-        optionsRange: ["SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+"],
-        optionsGauge: ["ASSISTED EASY", "EASY", "HARD", "EX-HARD"],
+        random: ["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"],
+        assist: ["NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "ASCR + LEGACY"],
+        range: ["NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+"],
+        gauge: ["ASSISTED EASY", "EASY", "HARD", "EX HARD"],
         pacemaker: [
             "NO GRAPH",
             "MY BEST",
@@ -1439,7 +1431,7 @@ function AbsoluteScoreGradeDelta(game, score, percent, absDelta) {
         if (game === "iidx" || game === "bms") {
             let reversedNC = Math.floor((score / percent) * 100) / 2;
             chart = {
-                notedata: {
+                data: {
                     notecount: reversedNC,
                 },
             };
@@ -1467,12 +1459,10 @@ exports.AbsoluteScoreGradeDelta = AbsoluteScoreGradeDelta;
 function CalculateScore(game, percent, chart) {
     let score = percent;
     if (game === "iidx" || game === "bms") {
-        score = chart.notedata.notecount * 2 * (percent / 100);
+        score =
+            chart.data.notecount * 2 * (percent / 100);
     }
-    else if (game === "ddr") {
-        score = 1000000 * (percent / 100);
-    }
-    else if (game === "museca" || game === "jubeat") {
+    else if (game === "ddr" || game === "museca" || game === "jubeat" || game === "chunithm") {
         score = 1000000 * (percent / 100);
     }
     else if (game === "popn") {
@@ -1480,9 +1470,6 @@ function CalculateScore(game, percent, chart) {
     }
     else if (game === "sdvx" || game === "usc") {
         score = 10000000 * (percent / 100);
-    }
-    else if (game === "chunithm") {
-        score = 1000000 * (percent / 100);
     }
     if (score) {
         return score;
@@ -1493,7 +1480,7 @@ exports.CalculateScore = CalculateScore;
 function PercentToScore(percent, game, chartData) {
     let eScore = 0;
     if (game === "iidx" || game === "bms") {
-        eScore = percent * chartData.notedata.notecount * 2;
+        eScore = percent * chartData.data.notecount * 2;
     }
     else if (game === "museca" || game === "jubeat") {
         eScore = percent * 1000000;

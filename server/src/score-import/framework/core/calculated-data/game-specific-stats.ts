@@ -1,4 +1,4 @@
-import { ChartDocument, ESDCore, integer } from "kamaitachi-common";
+import { AnyChartDocument, ESDCore, integer } from "kamaitachi-common";
 import { Logger } from "winston";
 import db from "../../../../db/db";
 import { DryScore } from "../../../../types";
@@ -6,7 +6,7 @@ import { DryScore } from "../../../../types";
 /**
  * Calculates the in-game CHUNITHM rating for a score.
  */
-export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: ChartDocument) {
+export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: AnyChartDocument) {
     let score = dryScore.scoreData.score;
     let levelBase = chartData.levelNum * 100;
 
@@ -34,7 +34,7 @@ export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: ChartDocu
 /**
  * Calculates the in-game GITADORA rating for a score.
  */
-export function CalculateGITADORARating(dryScore: DryScore, chartData: ChartDocument) {
+export function CalculateGITADORARating(dryScore: DryScore, chartData: AnyChartDocument) {
     let trueRating = (dryScore.scoreData.percent / 100) * chartData.levelNum * 20;
     let flooredRating = Math.floor(trueRating * 100) / 100;
     return flooredRating;
@@ -99,7 +99,7 @@ export function CalculateBPI(
  * Calculates the percent of Kaidens you are ahead of with this score.
  * @returns Null, if this chart has no kaidens, a percent between 0 and 100, if there are.
  */
-export async function KaidenPercentile(scoreObj: DryScore, chartData: ChartDocument) {
+export async function KaidenPercentile(scoreObj: DryScore, chartData: AnyChartDocument) {
     let scoreCount = await db["iidx-eam-scores"].count({
         chartID: chartData.chartID,
     });
@@ -133,7 +133,7 @@ export function CalculateKESDC(kaidenESD: number | null, yourESD: number) {
  * https://life4ddr.com/requirements/#mfcpoints
  * @returns Null if this score was not eligible, a number otherwise.
  */
-export function CalculateMFCP(dryScore: DryScore, chartData: ChartDocument, logger: Logger) {
+export function CalculateMFCP(dryScore: DryScore, chartData: AnyChartDocument, logger: Logger) {
     if (dryScore.scoreData.lamp !== "MARVELOUS FULL COMBO") {
         return null;
     }
@@ -202,8 +202,8 @@ const VF5LampCoefficients = {
 };
 
 export function CalculateVF4(
-    dryScore: DryScore<"sdvx", "Single", "sdvx:Single">,
-    chartData: ChartDocument,
+    dryScore: DryScore<"sdvx:Single">,
+    chartData: AnyChartDocument,
     logger: Logger
 ) {
     const multiplier = 25;
@@ -230,8 +230,8 @@ export function CalculateVF4(
 // this formula is allegedly tentative according to bemaniwiki.
 // idk if it's right, but it must be close enough.
 export function CalculateVF5(
-    dryScore: DryScore<"sdvx", "Single", "sdvx:Single">,
-    chartData: ChartDocument,
+    dryScore: DryScore<"sdvx:Single">,
+    chartData: AnyChartDocument,
     logger: Logger
 ) {
     let level = chartData.levelNum;

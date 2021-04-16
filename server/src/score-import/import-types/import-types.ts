@@ -1,3 +1,4 @@
+import { ImportTypes } from "kamaitachi-common";
 import iidxEamusementCsv from "./iidx-eamusement-csv/converter";
 
 /**
@@ -8,7 +9,7 @@ import iidxEamusementCsv from "./iidx-eamusement-csv/converter";
  * score records, so these functions MAY return an array of their traditional values.
  */
 export const Converters = {
-    "iidx:eamusement-csv": iidxEamusementCsv,
+    "csv:eamusement-iidx": iidxEamusementCsv,
 };
 
 /**

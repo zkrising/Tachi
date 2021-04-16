@@ -1,7 +1,7 @@
 import t from "tap";
 import { CloseConnection } from "../../../../db/db";
 import { DryScore } from "../../../../types";
-import { ChartDocument, Difficulties, Lamps, ScoreDocument } from "kamaitachi-common";
+import { AnyChartDocument, Difficulties, Lamps, ScoreDocument } from "kamaitachi-common";
 import {
     CalculateBPI,
     CalculateCHUNITHMRating,
@@ -109,7 +109,7 @@ t.test("#CalculateGITADORARating", (t) => {
     function TestGitadoraRating(percent: number, levelNum: number) {
         return CalculateGITADORARating(
             { scoreData: { percent } } as DryScore,
-            { levelNum } as ChartDocument
+            { levelNum } as AnyChartDocument
         );
     }
 
@@ -153,7 +153,7 @@ t.test("#CalculateMFCP", (t) => {
             {
                 difficulty,
                 levelNum,
-            } as ChartDocument,
+            } as AnyChartDocument,
             mockLogger
         );
     }

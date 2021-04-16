@@ -87,39 +87,17 @@ let GameCollectionPartial: GCPartial = {
     songs: {},
     // i have to handwrite this out for TS... :(
     charts: {
-        bms: monkDB.get<ChartDocument<"bms", Playtypes["bms"], `bms:${Playtypes["bms"]}`>>(
-            `charts-bms`
-        ),
-        chunithm: monkDB.get<
-            ChartDocument<"chunithm", Playtypes["chunithm"], `chunithm:${Playtypes["chunithm"]}`>
-        >(`charts-chunithm`),
-        ddr: monkDB.get<ChartDocument<"ddr", Playtypes["ddr"], `ddr:${Playtypes["ddr"]}`>>(
-            `charts-ddr`
-        ),
-        gitadora: monkDB.get<
-            ChartDocument<"gitadora", Playtypes["gitadora"], `gitadora:${Playtypes["gitadora"]}`>
-        >(`charts-gitadora`),
-        iidx: monkDB.get<ChartDocument<"iidx", Playtypes["iidx"], `iidx:${Playtypes["iidx"]}`>>(
-            `charts-iidx`
-        ),
-        jubeat: monkDB.get<
-            ChartDocument<"jubeat", Playtypes["jubeat"], `jubeat:${Playtypes["jubeat"]}`>
-        >(`charts-jubeat`),
-        maimai: monkDB.get<
-            ChartDocument<"maimai", Playtypes["maimai"], `maimai:${Playtypes["maimai"]}`>
-        >(`charts-maimai`),
-        museca: monkDB.get<
-            ChartDocument<"museca", Playtypes["museca"], `museca:${Playtypes["museca"]}`>
-        >(`charts-museca`),
-        popn: monkDB.get<ChartDocument<"popn", Playtypes["popn"], `popn:${Playtypes["popn"]}`>>(
-            `charts-popn`
-        ),
-        sdvx: monkDB.get<ChartDocument<"sdvx", Playtypes["sdvx"], `sdvx:${Playtypes["sdvx"]}`>>(
-            `charts-sdvx`
-        ),
-        usc: monkDB.get<ChartDocument<"usc", Playtypes["usc"], `usc:${Playtypes["usc"]}`>>(
-            `charts-usc`
-        ),
+        bms: monkDB.get<`bms:${Playtypes["bms"]}`>(`charts-bms`),
+        chunithm: monkDB.get<`chunithm:${Playtypes["chunithm"]}`>(`charts-chunithm`),
+        ddr: monkDB.get<`ddr:${Playtypes["ddr"]}`>(`charts-ddr`),
+        gitadora: monkDB.get<`gitadora:${Playtypes["gitadora"]}`>(`charts-gitadora`),
+        iidx: monkDB.get<`iidx:${Playtypes["iidx"]}`>(`charts-iidx`),
+        jubeat: monkDB.get<`jubeat:${Playtypes["jubeat"]}`>(`charts-jubeat`),
+        maimai: monkDB.get<`maimai:${Playtypes["maimai"]}`>(`charts-maimai`),
+        museca: monkDB.get<`museca:${Playtypes["museca"]}`>(`charts-museca`),
+        popn: monkDB.get<`popn:${Playtypes["popn"]}`>(`charts-popn`),
+        sdvx: monkDB.get<`sdvx:${Playtypes["sdvx"]}`>(`charts-sdvx`),
+        usc: monkDB.get<`usc:${Playtypes["usc"]}`>(`charts-usc`),
     },
 };
 

@@ -1,9 +1,7 @@
 import {
-    ChartDocument,
-    Game,
+    AnyChartDocument,
     IDStrings,
     ImportTypes,
-    Playtypes,
     ScoreDocument,
     SongDocument,
 } from "kamaitachi-common";
@@ -40,7 +38,7 @@ export type KTReponse = KTFailResponse | KTSuccessResponse;
 
 export interface ConverterFnSuccessReturn {
     dryScore: DryScore;
-    chart: ChartDocument;
+    chart: AnyChartDocument;
     song: SongDocument;
 }
 
@@ -78,15 +76,11 @@ export interface ParserFunctionReturnsAsync<D, C> {
  * An intermediate score format that will be filled out by
  * HydrateScore.
  */
-export type DryScore<
-    G extends Game = Game,
-    P extends Playtypes[G] = Playtypes[G],
-    I extends IDStrings = IDStrings
-> = Pick<
-    ScoreDocument<G, P, I>,
+export type DryScore<I extends IDStrings = IDStrings> = Pick<
+    ScoreDocument<I>,
     "service" | "game" | "scoreMeta" | "timeAchieved" | "comment" | "importType"
 > & {
-    scoreData: Omit<ScoreDocument<G, P, I>["scoreData"], "gradeIndex" | "lampIndex">;
+    scoreData: Omit<ScoreDocument<I>["scoreData"], "gradeIndex" | "lampIndex">;
 };
 
 export interface ScoreConverterInformation<D, C> {

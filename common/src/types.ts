@@ -18,6 +18,7 @@ export type IDStrings =
     | "sdvx:Single"
     | "usc:Single"
     | "ddr:SP"
+    | "ddr:DP"
     | "maimai:Single"
     | "museca:Single"
     | "jubeat:Single"

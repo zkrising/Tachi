@@ -1,5 +1,5 @@
 import { ImportTypes } from "kamaitachi-common";
-import iidxEamusementCsv from "./iidx-eamusement-csv/converter";
+import iidxEamusementCsv from "./csv-eamusement-iidx/converter";
 
 /**
  * Converters are a set of functions designed to convert an element

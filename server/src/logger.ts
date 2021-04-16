@@ -1,6 +1,4 @@
-import winston, { format, Logger, transports } from "winston";
-import fs from "fs";
-import path from "path";
+import winston, { format, LeveledLogMethod, Logger, transports } from "winston";
 import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
 import { FormatUserDoc } from "./core/format-user";
 
@@ -65,8 +63,8 @@ const logger = winston.createLogger({
     transports: tports,
 });
 
-function CreateLogCtx(context: string, lg = logger) {
-    return lg.child({ context });
+function CreateLogCtx(context: string, lg = logger): Logger & { severe: LeveledLogMethod } {
+    return lg.child({ context }) as Logger & { severe: LeveledLogMethod };
 }
 
 export function AppendLogCtx(context: string, lg: Logger) {

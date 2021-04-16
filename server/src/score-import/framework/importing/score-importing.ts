@@ -1,4 +1,5 @@
 import {
+    AnyChartDocument,
     ChartDocument,
     ImportProcessingInfo,
     ScoreDocument,
@@ -118,7 +119,7 @@ export async function ImportIterableDatapoint<D, C>(
 async function HydrateAndInsertScore(
     userID: integer,
     dryScore: DryScore,
-    chart: ChartDocument,
+    chart: AnyChartDocument,
     song: SongDocument,
     importLogger: Logger
 ): Promise<ScoreDocument | null> {

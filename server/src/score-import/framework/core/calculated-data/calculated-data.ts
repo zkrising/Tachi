@@ -39,7 +39,7 @@ export async function CreateCalculatedData(
  * Override the default rating function for a game with
  * something else.
  */
-const OVERRIDE_RATING_FUNCTIONS = {
+const OVERRIDE_RATING_FUNCTIONS: Partial<Record<Game, any>> = {
     gitadora: {
         Gita: CalculateGITADORARating,
         Dora: CalculateGITADORARating,
@@ -60,7 +60,6 @@ async function CalculateRating<G extends Game>(
 ) {
     // @todo
     let OverrideFunction: OverrideRatingFunction | undefined =
-        // @ts-expect-error I'm too lazy to explain this to TS
         OVERRIDE_RATING_FUNCTIONS[game]?.[playtype];
 
     if (!OverrideFunction) {

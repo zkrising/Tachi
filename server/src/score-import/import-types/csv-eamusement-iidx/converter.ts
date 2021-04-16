@@ -55,7 +55,7 @@ async function EamScoreConverter(
     if (!ktchiChart) {
         throw new KTDataNotFoundFailure(
             `${HUMANISED_SONG_TITLE}`,
-            "iidx:eamusement-csv",
+            "csv:eamusement-iidx",
             data,
             context
         );
@@ -115,11 +115,11 @@ async function EamScoreConverter(
 
     let timestamp = Date.parse(data.timestamp);
 
-    let dryScore: DryScore<"iidx", typeof context.playtype, "iidx:SP" | "iidx:DP"> = {
+    let dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
         service: context.serviceOrigin,
         comment: null,
         game: "iidx",
-        importType: "iidx:eamusement-csv",
+        importType: "csv:eamusement-iidx",
         scoreData: {
             score: eamScore.exscore,
             lamp,
@@ -204,7 +204,7 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
 
     if (!ktchiSong) {
         logger.warn(`Could not find song for ${data.title}.`);
-        throw new KTDataNotFoundFailure(data.title, "iidx:eamusement-csv", data, context);
+        throw new KTDataNotFoundFailure(data.title, "csv:eamusement-iidx", data, context);
     }
 
     // ts thinks ktchiSong might be null. It's not, though!

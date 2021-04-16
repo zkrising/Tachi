@@ -1,4 +1,11 @@
-import { ChartDocument, config, integer, ScoreDocument, SongDocument } from "kamaitachi-common";
+import {
+    AnyChartDocument,
+    ChartDocument,
+    config,
+    integer,
+    ScoreDocument,
+    SongDocument,
+} from "kamaitachi-common";
 import { Logger } from "winston";
 import { DryScore } from "../../../types";
 import { CreateCalculatedData } from "./calculated-data/calculated-data";
@@ -11,7 +18,7 @@ import { CreateCalculatedData } from "./calculated-data/calculated-data";
 export default async function HydrateScore(
     userID: integer,
     dryScore: DryScore,
-    chart: ChartDocument,
+    chart: AnyChartDocument,
     song: SongDocument,
     scoreID: string,
     logger: Logger

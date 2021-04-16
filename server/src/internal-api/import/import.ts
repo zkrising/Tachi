@@ -9,7 +9,7 @@ import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/core/score-import-error";
 import ScoreImportMain from "../../score-import/framework/score-import-main";
-import ParseEamusementCSV from "../../score-import/import-types/iidx-eamusement-csv/parser";
+import ParseEamusementCSV from "../../score-import/import-types/csv-eamusement-iidx/parser";
 import serverConfig from "../../server-config";
 
 const logger = CreateLogCtx("import.ts");
@@ -68,7 +68,9 @@ router.post(
             const userDoc = await GetUserWithID(req.session.ktchi!.userID);
 
             if (!userDoc) {
-                logger.error(`User ${req.session.ktchi!.userID} does NOT have a user document?`);
+                logger.severe(
+                    `User ${req.session.ktchi!.userID} does not have an associated user document.`
+                );
                 return res.status(500).json({
                     success: false,
                     description: "An internal error has occured.",
@@ -118,7 +120,7 @@ export function ResolveFileUploadData(
     logger: Logger
 ) {
     switch (importType) {
-        case "iidx:eamusement-csv":
+        case "csv:eamusement-iidx":
             return ParseEamusementCSV(fileData, body, logger);
         default:
             logger.error(

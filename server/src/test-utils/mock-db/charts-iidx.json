@@ -1,20 +1,13 @@
 [
     {
         "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
+        "rgcID": null,
         "levelNum": 10,
         "level": "10",
         "difficulty": "ANOTHER",
         "playtype": "SP",
-        "length": 86095.46804246228,
+        "length": "1:26.095",
         "bpmString": "101",
-        "notedata": {
-            "objects": {
-                "BPM": 1,
-                "NOTE": 625,
-                "SCRATCH": 161
-            },
-            "notecount": 786
-        },
         "id": 1,
         "flags": {
             "IN BASE GAME": true,
@@ -22,6 +15,7 @@
             "N-1": true
         },
         "data": {
+            "notecount": 786,
             "inGameID": "1000",
             "inGameINTID": 1000
         }

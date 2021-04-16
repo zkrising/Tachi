@@ -569,7 +569,7 @@ export interface AnyChartDocument extends MongoDBDocument {
     length: string | null;
     bpmString: string | null;
     difficulty: string;
-    playtype: string;
+    playtype: Playtypes[Game];
 }
 export interface ChartDocument<I extends IDStrings> extends AnyChartDocument {
     difficulty: Difficulties[I];

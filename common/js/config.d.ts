@@ -1,4 +1,4 @@
-import { Game, Playtypes, ChartDocument, ImportTypes, FileUploadImportTypes } from "./types";
+import { Game, Playtypes, ImportTypes, FileUploadImportTypes, AnyChartDocument } from "./types";
 export declare const importTypes: ImportTypes[];
 export declare const fileImportTypes: FileUploadImportTypes[];
 export declare const supportedGames: Game[];
@@ -386,7 +386,7 @@ export declare const ratingParameters: {
         clearExpMultiplier: number;
     };
 };
-export declare function DirectScoreGradeDelta(game: Game, score: number, percent: number, chart: ChartDocument, delta: number): SGDReturn | null;
+export declare function DirectScoreGradeDelta(game: Game, score: number, percent: number, chart: AnyChartDocument, delta: number): SGDReturn | null;
 export declare const supportsESD: Record<Game, boolean>;
 interface SGDReturn {
     grade: string;
@@ -399,11 +399,11 @@ interface PartialScore {
         grade: string;
     };
 }
-export declare function ScoreGradeDelta(game: Game, score: PartialScore, chart: ChartDocument, delta: number): SGDReturn | null;
+export declare function ScoreGradeDelta(game: Game, score: PartialScore, chart: AnyChartDocument, delta: number): SGDReturn | null;
 export declare function AbsoluteScoreGradeDelta(game: Game, score: number, percent: number, absDelta: number): SGDReturn | null;
-export declare function CalculateScore(game: Game, percent: number, chart: ChartDocument): number | null;
-export declare function PercentToScore(percent: number, game: Game, chartData: ChartDocument): number;
-export declare function FormatDifficulty(chart: ChartDocument, game: Game): string;
+export declare function CalculateScore(game: Game, percent: number, chart: AnyChartDocument): number | null;
+export declare function PercentToScore(percent: number, game: Game, chartData: AnyChartDocument): number;
+export declare function FormatDifficulty(chart: AnyChartDocument, game: Game): string;
 export declare const gamePercentMax: {
     iidx: number;
     ddr: number;

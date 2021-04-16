@@ -29,6 +29,44 @@ export type IDStrings =
     | "gitadora:Gita"
     | "gitadora:Dora";
 
+export interface IDStringToPlaytype {
+    "iidx:SP": "SP";
+    "iidx:DP": "DP";
+    "popn:9B": "9B";
+    "sdvx:Single": "Single";
+    "usc:Single": "Single";
+    "ddr:SP": "SP";
+    "ddr:DP": "DP";
+    "maimai:Single": "Single";
+    "jubeat:Single": "Single";
+    "museca:Single": "Single";
+    "bms:7K": "7K";
+    "bms:14K": "14K";
+    "bms:5K": "5K";
+    "chunithm:Single": "Single";
+    "gitadora:Gita": "Gita";
+    "gitadora:Dora": "Dora";
+}
+
+export interface IDStringToGame {
+    "iidx:SP": "iidx";
+    "iidx:DP": "iidx";
+    "popn:9B": "popn";
+    "sdvx:Single": "sdvx";
+    "usc:Single": "usc";
+    "ddr:SP": "ddr";
+    "ddr:DP": "ddr";
+    "maimai:Single": "maimai";
+    "jubeat:Single": "jubeat";
+    "museca:Single": "museca";
+    "bms:7K": "bms";
+    "bms:14K": "bms";
+    "bms:5K": "bms";
+    "chunithm:Single": "chunithm";
+    "gitadora:Gita": "gitadora";
+    "gitadora:Dora": "gitadora";
+}
+
 /**
  * A utility type for creating an ID string given a game and playtype.
  * It should be noted that typescript refuses to assert that
@@ -705,20 +743,21 @@ interface ChartDocumentData {
     "gitadora:Dora": { inGameID: string; inGameINTID: integer };
 }
 
-export interface ChartDocument<
-    G extends Game = Game,
-    P extends Playtypes[G] = Playtypes[G],
-    I extends IDStrings = IDStrings
-> extends MongoDBDocument {
+export interface AnyChartDocument extends MongoDBDocument {
     chartID: string;
     rgcID: string | null; // ID to perform backbeat lookup in future.
     songID: integer;
     level: string;
     levelNum: number;
-    difficulty: Difficulties[I];
-    playtype: P;
     length: string | null;
     bpmString: string | null;
+    difficulty: string;
+    playtype: string;
+}
+
+export interface ChartDocument<I extends IDStrings> extends AnyChartDocument {
+    difficulty: Difficulties[I];
+    playtype: IDStringToPlaytype[I];
     flags: Record<ChartDocumentFlags[I], boolean>;
     data: ChartDocumentData[I];
 }
@@ -736,12 +775,8 @@ export interface TierlistDocument extends MongoDBDocument {
     };
 }
 
-export interface TierlistDataDocument<
-    G extends Game = Game,
-    P extends Playtypes[G] = Playtypes[G],
-    I extends IDStrings = IDStrings
-> extends MongoDBDocument {
-    playtype: P; // doesn't need to exist.
+export interface TierlistDataDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
+    playtype: IDStringToPlaytype[I]; // doesn't need to exist.
     songID: integer;
     difficulty: Difficulties[I];
     tierlistID: string;
@@ -983,14 +1018,10 @@ export interface GameSpecificCalcLookup {
     "gitadora:Dora": never;
 }
 
-export interface ScoreDocument<
-    G extends Game = Game,
-    P extends Playtypes[G] = Playtypes[G],
-    I extends IDStrings = IDStrings
-> extends MongoDBDocument {
+export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
     service: string;
-    game: G;
-    playtype: P;
+    game: IDStringToGame[I];
+    playtype: IDStringToPlaytype[I];
     difficulty: Difficulties[I];
     userID: integer;
     scoreData: {
@@ -1058,15 +1089,12 @@ export interface ImportProcessInfoInvalidDatapoint {
     };
 }
 
-export interface ImportProcessInfoScoreImported<
-    G extends Game = Game,
-    P extends Playtypes[G] = Playtypes[G]
-> {
+export interface ImportProcessInfoScoreImported<I extends IDStrings = IDStrings> {
     success: true;
     type: "ScoreImported";
     message: string | null;
     content: {
-        score: ScoreDocument<G, P>;
+        score: ScoreDocument<I>;
     };
 }
 
@@ -1077,10 +1105,10 @@ export interface ImportProcessInfoInternalError {
     content: Record<string, never>;
 }
 
-export type ImportProcessingInfo<G extends Game = Game, P extends Playtypes[G] = Playtypes[G]> =
+export type ImportProcessingInfo<I extends IDStrings = IDStrings> =
     | ImportProcessInfoKTDataNotFound
     | ImportProcessInfoScoreExists
-    | ImportProcessInfoScoreImported<G, P>
+    | ImportProcessInfoScoreImported<I>
     | ImportProcessInfoInvalidDatapoint
     | ImportProcessInfoInternalError;
 

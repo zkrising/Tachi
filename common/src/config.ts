@@ -3,7 +3,14 @@
 // of some of my first javascript code.
 // It's,, alright, but I like the versatility it brings.
 
-import { Game, Playtypes, ChartDocument, ImportTypes, FileUploadImportTypes } from "./types";
+import {
+    Game,
+    Playtypes,
+    ChartDocument,
+    ImportTypes,
+    FileUploadImportTypes,
+    AnyChartDocument,
+} from "./types";
 
 export const importTypes: ImportTypes[] = ["csv:eamusement-iidx"];
 export const fileImportTypes: FileUploadImportTypes[] = ["csv:eamusement-iidx"];
@@ -1424,7 +1431,7 @@ export function DirectScoreGradeDelta(
     game: Game,
     score: number,
     percent: number,
-    chart: ChartDocument,
+    chart: AnyChartDocument,
     delta: number
 ): SGDReturn | null {
     let grade = GetGrade(game, percent);
@@ -1473,7 +1480,7 @@ interface PartialScore {
 export function ScoreGradeDelta(
     game: Game,
     score: PartialScore,
-    chart: ChartDocument,
+    chart: AnyChartDocument,
     delta: number
 ): SGDReturn | null {
     let nextGrade = grades[game][grades[game].indexOf(score.scoreData.grade) + delta];
@@ -1521,10 +1528,10 @@ export function AbsoluteScoreGradeDelta(
                 data: {
                     notecount: reversedNC,
                 },
-            };
+            } as unknown; // heheh
         }
 
-        let sc = CalculateScore(game, gradeBoundaries[game][absDelta], chart as ChartDocument);
+        let sc = CalculateScore(game, gradeBoundaries[game][absDelta], chart as AnyChartDocument);
         if (sc) {
             let delta = score - sc;
             let formattedString = `(${grade})`;
@@ -1542,12 +1549,15 @@ export function AbsoluteScoreGradeDelta(
     }
 }
 
-export function CalculateScore(game: Game, percent: number, chart: ChartDocument): number | null {
+export function CalculateScore(
+    game: Game,
+    percent: number,
+    chart: AnyChartDocument
+): number | null {
     let score = percent;
 
     if (game === "iidx" || game === "bms") {
-        score =
-            (chart as ChartDocument<"iidx", "SP", "iidx:SP">).data.notecount * 2 * (percent / 100);
+        score = (chart as ChartDocument<"iidx:SP">).data.notecount * 2 * (percent / 100);
     } else if (game === "ddr" || game === "museca" || game === "jubeat" || game === "chunithm") {
         score = 1_000_000 * (percent / 100);
     } else if (game === "popn") {
@@ -1562,11 +1572,11 @@ export function CalculateScore(game: Game, percent: number, chart: ChartDocument
     return null;
 }
 
-export function PercentToScore(percent: number, game: Game, chartData: ChartDocument): number {
+export function PercentToScore(percent: number, game: Game, chartData: AnyChartDocument): number {
     let eScore = 0;
 
     if (game === "iidx" || game === "bms") {
-        eScore = percent * (chartData as ChartDocument<"iidx", "SP", "iidx:SP">).data.notecount * 2;
+        eScore = percent * (chartData as ChartDocument<"iidx:SP">).data.notecount * 2;
     } else if (game === "museca" || game === "jubeat") {
         eScore = percent * 1000000;
     } else if (game === "popn") {
@@ -1584,7 +1594,7 @@ export function PercentToScore(percent: number, game: Game, chartData: ChartDocu
     return eScore;
 }
 
-export function FormatDifficulty(chart: ChartDocument, game: Game): string {
+export function FormatDifficulty(chart: AnyChartDocument, game: Game): string {
     if (validPlaytypes[game].length > 1) {
         return `${chart.playtype} ${chart.difficulty} ${chart.level}`;
     }

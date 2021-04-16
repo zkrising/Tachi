@@ -1434,7 +1434,7 @@ function AbsoluteScoreGradeDelta(game, score, percent, absDelta) {
                 data: {
                     notecount: reversedNC,
                 },
-            };
+            }; // heheh
         }
         let sc = CalculateScore(game, exports.gradeBoundaries[game][absDelta], chart);
         if (sc) {
@@ -1459,8 +1459,7 @@ exports.AbsoluteScoreGradeDelta = AbsoluteScoreGradeDelta;
 function CalculateScore(game, percent, chart) {
     let score = percent;
     if (game === "iidx" || game === "bms") {
-        score =
-            chart.data.notecount * 2 * (percent / 100);
+        score = chart.data.notecount * 2 * (percent / 100);
     }
     else if (game === "ddr" || game === "museca" || game === "jubeat" || game === "chunithm") {
         score = 1000000 * (percent / 100);

@@ -9,7 +9,7 @@ export interface CounterDocument {
  * apply two levels of indexing to types, which makes writing generic interfaces
  * like the ScoreDocument (Especially the ScoreDocument) *very* hard!
  */
-export declare type IDStrings = "iidx:SP" | "iidx:DP" | "popn:9B" | "sdvx:Single" | "usc:Single" | "ddr:SP" | "maimai:Single" | "museca:Single" | "jubeat:Single" | "bms:7K" | "bms:14K" | "bms:5K" | "chunithm:Single" | "gitadora:Gita" | "gitadora:Dora";
+export declare type IDStrings = "iidx:SP" | "iidx:DP" | "popn:9B" | "sdvx:Single" | "usc:Single" | "ddr:SP" | "ddr:DP" | "maimai:Single" | "museca:Single" | "jubeat:Single" | "bms:7K" | "bms:14K" | "bms:5K" | "chunithm:Single" | "gitadora:Gita" | "gitadora:Dora";
 /**
  * A utility type for creating an ID string given a game and playtype.
  * It should be noted that typescript refuses to assert that

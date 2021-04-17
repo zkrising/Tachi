@@ -1,10 +1,6 @@
 import winston, { format, LeveledLogMethod, Logger, transports } from "winston";
 import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
 import { FormatUserDoc } from "./core/format-user";
-import { serializeError as serialiseError } from "serialize-error";
-
-// @ts-expect-error I don't normally monkey patch, but when I do...
-Error.prototype.toJSON = serialiseError;
 
 const level = process.env.LOG_LEVEL ?? "info";
 

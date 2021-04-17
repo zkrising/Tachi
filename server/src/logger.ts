@@ -40,14 +40,6 @@ const defaultFormatRoute = format.combine(
     ktblackPrintf
 );
 
-const jsonFormatRoute = format.combine(
-    format.timestamp({
-        format: "YYYY-MM-DD HH:mm:ss",
-    }),
-    format.errors({ stack: true }),
-    format.json()
-);
-
 let tports = [];
 
 if (IN_TESTING) {
@@ -55,9 +47,9 @@ if (IN_TESTING) {
         new transports.File({
             filename: "logs/ktblack-tests-error.log",
             level: "error",
-            format: jsonFormatRoute,
+            format: defaultFormatRoute,
         }),
-        new transports.File({ filename: "logs/ktblack-tests.log", format: jsonFormatRoute }),
+        new transports.File({ filename: "logs/ktblack-tests.log", format: defaultFormatRoute }),
         new transports.Console({
             format: format.combine(format.colorize({ level: true }), defaultFormatRoute),
         }),
@@ -67,9 +59,9 @@ if (IN_TESTING) {
         new transports.File({
             filename: "logs/ktblack-error.log",
             level: "error",
-            format: jsonFormatRoute,
+            format: defaultFormatRoute,
         }),
-        new transports.File({ filename: "logs/ktblack.log", format: jsonFormatRoute }),
+        new transports.File({ filename: "logs/ktblack.log", format: defaultFormatRoute }),
         new transports.Console({
             format: format.combine(format.colorize({ level: true }), defaultFormatRoute),
         }),

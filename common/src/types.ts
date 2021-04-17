@@ -676,7 +676,7 @@ export interface PublicAPIKeyDocument extends MongoDBDocument {
 export interface InviteCodeDocument extends MongoDBDocument {
     createdBy: integer;
     code: string;
-    createdOn: integer;
+    createdOn: number;
     consumed: boolean;
 }
 

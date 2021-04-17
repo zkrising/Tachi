@@ -16,7 +16,7 @@
         "esModuleInterop": true,
         "sourceMap": true,
         "outDir": "./js",
-        "typeRoots": [ "@types" ],
+        "typeRoots": [ "@types", "node_modules/@types" ],
 
     },
     "include": [

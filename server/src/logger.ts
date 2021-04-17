@@ -1,17 +1,39 @@
 import winston, { format, LeveledLogMethod, Logger, transports } from "winston";
 import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
 import { FormatUserDoc } from "./core/format-user";
+import { serializeError as serialiseError } from "serialize-error";
+
+// @ts-expect-error I don't normally monkey patch, but when I do...
+Error.prototype.toJSON = serialiseError;
 
 const level = process.env.LOG_LEVEL ?? "info";
 
 // const IN_PROD = process.env.NODE_ENV === "production";
 const IN_TESTING = process.env.NODE_ENV === "test";
 
+const formatExcessProperties = (meta: Record<string, unknown>) => {
+    let i = 0;
+    for (const key in meta) {
+        const val = meta[key];
+
+        if (val instanceof Error) {
+            meta[key] = { message: val.message, stack: val.stack };
+        }
+        i++;
+    }
+
+    if (!i) {
+        return "";
+    }
+
+    return ` ${JSON.stringify(meta)}`;
+};
+
 const ktblackPrintf = format.printf(
     ({ level, message, context = "ktblack-root", timestamp, ...meta }) =>
         `${timestamp} [${
             Array.isArray(context) ? context.join(" | ") : context
-        }] ${level}: ${message}${meta.length ? `, ${JSON.stringify(meta)}` : ""}`
+        }] ${level}: ${message}${formatExcessProperties(meta)}`
 );
 
 const defaultFormatRoute = format.combine(
@@ -22,6 +44,14 @@ const defaultFormatRoute = format.combine(
     ktblackPrintf
 );
 
+const jsonFormatRoute = format.combine(
+    format.timestamp({
+        format: "YYYY-MM-DD HH:mm:ss",
+    }),
+    format.errors({ stack: true }),
+    format.json()
+);
+
 let tports = [];
 
 if (IN_TESTING) {
@@ -29,8 +59,9 @@ if (IN_TESTING) {
         new transports.File({
             filename: "logs/ktblack-tests-error.log",
             level: "error",
+            format: jsonFormatRoute,
         }),
-        new transports.File({ filename: "logs/ktblack-tests.log" }),
+        new transports.File({ filename: "logs/ktblack-tests.log", format: jsonFormatRoute }),
         new transports.Console({
             format: format.combine(format.colorize({ level: true }), defaultFormatRoute),
         }),
@@ -40,8 +71,9 @@ if (IN_TESTING) {
         new transports.File({
             filename: "logs/ktblack-error.log",
             level: "error",
+            format: jsonFormatRoute,
         }),
-        new transports.File({ filename: "logs/ktblack.log" }),
+        new transports.File({ filename: "logs/ktblack.log", format: jsonFormatRoute }),
         new transports.Console({
             format: format.combine(format.colorize({ level: true }), defaultFormatRoute),
         }),

@@ -219,37 +219,40 @@ router.post(
 
         // if we get to this point, We're good to create the user.
 
-        let newUser = await AddNewUser(req.body.username, req.body.password, req.body.email);
+        try {
+            let newUser = await AddNewUser(req.body.username, req.body.password, req.body.email);
 
-        if (!newUser) {
+            if (!newUser) {
+                throw new Error("AddNewUser failed to create a user.");
+            }
+
+            let apiKeyDoc = await AddNewUserAPIKey(newUser);
+
+            if (!apiKeyDoc) {
+                throw new Error("AddNewUserAPIKey failed to create an api key.");
+            }
+
+            return res.status(200).json({
+                success: true,
+                description: `Successfully created account ${req.body.username}!`,
+                body: {
+                    id: newUser.id,
+                    username: newUser.username,
+                },
+            });
+        } catch (err) {
             logger.error(
-                `Bailed on user creation ${req.body.username} with invite code ${req.body.inviteCode}.`
+                `Bailed on user creation ${req.body.username} with invite code ${req.body.inviteCode}.`,
+                { err }
             );
 
             await ReinstateInvite(inviteCodeDoc);
 
-            throw new Error("FATAL in /register - User was created, but refused?");
+            return res.status(500).json({
+                success: false,
+                description: "An internal server error has occured.",
+            });
         }
-
-        let apiKeyDoc = await AddNewUserAPIKey(newUser);
-
-        if (!apiKeyDoc) {
-            logger.error(
-                `Bailed on user creation ${req.body.username} with invite code ${req.body.inviteCode}`
-            );
-
-            await ReinstateInvite(inviteCodeDoc);
-            throw new Error("FATAL in /register - apikey was created, but refused?");
-        }
-
-        return res.status(200).json({
-            success: true,
-            description: `Successfully created account ${req.body.username}!`,
-            body: {
-                id: newUser.id,
-                username: newUser.username,
-            },
-        });
     }
 );
 

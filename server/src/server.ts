@@ -11,7 +11,7 @@ const logger = CreateLogCtx("server.ts");
 const userSessionMiddleware = expressSession({
     // append node_env onto the end of the session name
     // so we can separate tokens under the same URL.
-    // say, for staging.kamaitachi.xyz
+    // say for staging.kamaitachi.xyz
     name: `ktblack_session_${process.env.NODE_ENV}`,
     secret: SESSION_SECRET,
     store: new RedisStore({

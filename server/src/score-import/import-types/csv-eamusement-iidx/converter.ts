@@ -82,7 +82,7 @@ async function EamScoreConverter(
     const lamp = EAMUSEMENT_LAMP_RESOLVER.get(eamScore.lamp);
 
     if (!lamp) {
-        logger.error(`Invalid lamp of ${eamScore.lamp} provided.`);
+        logger.info(`Invalid lamp of ${eamScore.lamp} provided.`);
         throw new InvalidScoreFailure(
             `${HUMANISED_SONG_TITLE} - Invalid Lamp of ${eamScore.lamp}.`
         );

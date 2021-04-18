@@ -62,14 +62,14 @@ function ParseEamusementCSV(
     } else if (body.playtype === "DP") {
         playtype = "DP";
     } else {
-        logger.error(`Invalid playtype of ${body.playtype} passed to ParseEamusementCSV.`);
+        logger.info(`Invalid playtype of ${body.playtype} passed to ParseEamusementCSV.`);
         throw new ScoreImportFatalError(
             400,
             `Invalid playtype of ${body.playtype ?? "Nothing"} given.`
         );
     }
 
-    let lowercaseFilename = fileData.filename.toLowerCase();
+    let lowercaseFilename = fileData.originalname.toLowerCase();
 
     // prettier pls
     if (
@@ -191,7 +191,7 @@ function ParseEamusementCSV(
             skipEmptyLines: true,
         });
     } catch (err) {
-        logger.error(`CSV Parser Error: ${err}`);
+        logger.warn(`CSV Parser Error`, { err });
         throw new ScoreImportFatalError(400, "CSV Could not be parsed.");
     }
 
@@ -215,7 +215,7 @@ function ParseEamusementCSV(
         const versionNum = EAM_VERSION_NAMES[d.version as keyof typeof EAM_VERSION_NAMES];
 
         if (!versionNum) {
-            logger.error(`Invalid/Unknown EAM_VERSION_NAME ${d.version}.`);
+            logger.info(`Invalid/Unknown EAM_VERSION_NAME ${d.version}.`);
             throw new ScoreImportFatalError(400, `Invalid/Unknown EAM_VERSION_NAME ${d.version}.`);
         }
 

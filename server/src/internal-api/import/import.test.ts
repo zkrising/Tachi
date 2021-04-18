@@ -17,19 +17,18 @@ t.test("POST /internal-api/import/file", async (t) => {
 
     t.test("csv:eamusement-iidx", (t) => {
         t.test("Successful File Upload", async (t) => {
-            let res = await PostImportFile().attach(
-                "file",
-                TestingIIDXEamusementCSV26,
-                "my_csv.csv"
-            );
+            let res = await PostImportFile()
+                .attach("scoreData", TestingIIDXEamusementCSV26, "my_csv.csv")
+                .field("importType", "csv:eamusement-iidx")
+                .field("playtype", "SP");
 
             t.strictSame(
                 res.body,
                 {
-                    status: 200,
+                    success: true,
                     description: "foo",
                 },
-                "Should return a status code of 200."
+                "Should return information of a success."
             );
 
             t.end();

@@ -1,6 +1,7 @@
 import winston, { format, LeveledLogMethod, Logger, transports } from "winston";
 import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
 import { FormatUserDoc } from "./core/format-user";
+import colours from "colors";
 
 const level = process.env.LOG_LEVEL ?? "info";
 
@@ -25,6 +26,24 @@ const formatExcessProperties = (meta: Record<string, unknown>) => {
     return ` ${JSON.stringify(meta)}`;
 };
 
+const formatExcessPropertiesNoStack = (meta: Record<string, unknown>) => {
+    let i = 0;
+    for (const key in meta) {
+        const val = meta[key];
+
+        if (val instanceof Error) {
+            meta[key] = { message: val.message };
+        }
+        i++;
+    }
+
+    if (!i) {
+        return "";
+    }
+
+    return ` ${JSON.stringify(meta)}`;
+};
+
 const ktblackPrintf = format.printf(
     ({ level, message, context = "ktblack-root", timestamp, ...meta }) =>
         `${timestamp} [${
@@ -32,12 +51,42 @@ const ktblackPrintf = format.printf(
         }] ${level}: ${message}${formatExcessProperties(meta)}`
 );
 
-const defaultFormatRoute = format.combine(
+const ktblackConsolePrintf = format.printf(
+    ({ level, message, context = "ktblack-root", timestamp, ...meta }) =>
+        `${timestamp} [${
+            Array.isArray(context) ? context.join(" | ") : context
+        }] ${level}: ${message}${formatExcessPropertiesNoStack(meta)}`
+);
+
+winston.addColors({
+    crit: ["bgRed", "black"],
+    severe: ["bgWhite", "red"],
+    error: ["red"],
+    warn: ["yellow"],
+    info: ["blue"],
+    verbose: ["cyan"],
+    debug: ["white"],
+});
+
+const baseFormatRoute = format.combine(
     format.timestamp({
         format: "YYYY-MM-DD HH:mm:ss",
-    }),
-    format.errors({ stack: true }),
+    })
+);
+
+const defaultFormatRoute = format.combine(
+    baseFormatRoute,
+    format.errors({ stack: false }),
     ktblackPrintf
+);
+
+const consoleFormatRoute = format.combine(
+    defaultFormatRoute,
+    format.errors({ stack: false }),
+    ktblackConsolePrintf,
+    format.colorize({
+        all: true,
+    })
 );
 
 let tports = [];
@@ -51,7 +100,7 @@ if (IN_TESTING) {
         }),
         new transports.File({ filename: "logs/ktblack-tests.log", format: defaultFormatRoute }),
         new transports.Console({
-            format: format.combine(format.colorize({ level: true }), defaultFormatRoute),
+            format: consoleFormatRoute,
         }),
     ];
 } else {
@@ -63,12 +112,12 @@ if (IN_TESTING) {
         }),
         new transports.File({ filename: "logs/ktblack.log", format: defaultFormatRoute }),
         new transports.Console({
-            format: format.combine(format.colorize({ level: true }), defaultFormatRoute),
+            format: consoleFormatRoute,
         }),
     ];
 }
 
-const logger = winston.createLogger({
+export const rootLogger = winston.createLogger({
     levels: {
         crit: 0, // entire process termination is necessary
         severe: 1, // something is wrong, and more than one function is affected (such as a failed assertion that is definitely expected to be true).
@@ -83,7 +132,7 @@ const logger = winston.createLogger({
     transports: tports,
 });
 
-function CreateLogCtx(context: string, lg = logger): Logger & { severe: LeveledLogMethod } {
+function CreateLogCtx(context: string, lg = rootLogger): Logger & { severe: LeveledLogMethod } {
     return lg.child({ context }) as Logger & { severe: LeveledLogMethod };
 }
 
@@ -98,7 +147,12 @@ export function CreateScoreLogger(
     importID: string,
     importType: ImportTypes
 ) {
-    return logger.child({ context: ["Score Import", importType, FormatUserDoc(user)], importID });
+    return rootLogger.child({
+        context: ["Score Import", importType, FormatUserDoc(user)],
+        importID,
+    });
 }
+
+export const Transports = tports;
 
 export default CreateLogCtx;

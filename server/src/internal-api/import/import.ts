@@ -1,5 +1,6 @@
 import { Router, NextFunction, Request, Response } from "express";
 import { FileUploadImportTypes } from "kamaitachi-common";
+import { fileImportTypes } from "kamaitachi-common/js/config";
 import multer, { MulterError } from "multer";
 import Prudence from "prudence";
 import { Logger } from "winston";
@@ -10,7 +11,6 @@ import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/core/score-import-error";
 import ScoreImportMain from "../../score-import/framework/score-import-main";
 import ParseEamusementCSV from "../../score-import/import-types/csv-eamusement-iidx/parser";
-import serverConfig from "../../server-config";
 
 const logger = CreateLogCtx("import.ts");
 
@@ -23,10 +23,11 @@ const uploadMW = upload.single("scoreData");
 const parseMultipartScoredata = (req: Request, res: Response, next: NextFunction) => {
     uploadMW(req, res, (err: unknown) => {
         if (err instanceof MulterError) {
-            logger.error(`Multer Error.`, { err });
+            logger.info(`Multer Error.`, { err });
             return res.status(400).json({
                 success: false,
-                description: "File provided was too large, corrupt, or simply broken.",
+                description:
+                    "File provided was too large, corrupt, or provided in the wrong field.",
             });
         } else if (err) {
             logger.error(`Unknown file import error: ${err}`, { err });
@@ -48,9 +49,13 @@ router.post(
     "/file",
     RequireLoggedIn,
     parseMultipartScoredata,
-    prValidate({
-        importType: Prudence.isIn(serverConfig.supportedFileUploads),
-    }),
+    prValidate(
+        {
+            importType: Prudence.isIn(fileImportTypes),
+        },
+        {},
+        { allowExcessKeys: true }
+    ),
     async (req, res) => {
         if (!req.file) {
             return res.status(400).json({
@@ -88,6 +93,7 @@ router.post(
             });
         } catch (err) {
             if (err instanceof ScoreImportFatalError) {
+                logger.info(err.message);
                 return res.status(err.statusCode).json({
                     success: false,
                     description: err.message,

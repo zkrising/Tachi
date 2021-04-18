@@ -14,7 +14,7 @@ const logger = CreateLogCtx("scripts/initialise-counters.ts");
 
     await db.counters.insert({
         counterName: "users",
-        value: 0,
+        value: 1,
     });
 
     logger.info("Successfully initialised counter documents. Exiting.");

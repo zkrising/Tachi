@@ -1,8 +1,8 @@
 [
     {
-        "username": "zkldi",
-        "usernameLowercase": "zkldi",
-        "password": "$2y$12$u2FK6QJAv/WDF/ExGUWI9OoIks8Q0ExT1qjPMBu6zCZ5z72swQ01K",
+        "username": "test_zkldi",
+        "usernameLowercase": "test_zkldi",
+        "password": "$2b$12$QRFCAxvFoNI2spszFPgt/e.qLy55GvYWlSHioa0AujRbFpChLwHmu",
         "email": "thepasswordis@password.com",
         "id": 1,
         "settings": {

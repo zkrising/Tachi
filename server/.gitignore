@@ -1,6 +1,6 @@
 node_modules
 js
-.vscode
+# .vscode
 logs
 src/secrets.ts
 .nyc_output

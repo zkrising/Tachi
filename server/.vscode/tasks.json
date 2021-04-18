@@ -1,0 +1,42 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "type": "npm",
+            "script": "devrun",
+            "problemMatcher": [],
+            "label": "npm: devrun",
+            "detail": "tsc && export NODE_ENV=\"dev\" && node js/main.js",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "npm",
+            "script": "fulltest",
+            "problemMatcher": [],
+            "label": "npm: fulltest",
+            "detail": "tap",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "runWithTsnode",
+            "type": "shell",
+            "command": "ts-node",
+            "args": [
+                    "${relativeFile}"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated"
+            }
+        }
+    ]
+}

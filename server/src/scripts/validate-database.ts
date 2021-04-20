@@ -1,6 +1,6 @@
-import p from "prudence";
-import db, { monkDB } from "../db/db";
-import { SCHEMAS } from "../db/schemas";
+import Prudence, { PrudenceSchema } from "prudence";
+import db from "../db/db";
+import { STATIC_SCHEMAS } from "../db/schemas";
 import CreateLogCtx from "../logger";
 import fs from "fs";
 import path from "path";
@@ -11,9 +11,9 @@ const BASE_DIR = path.join(__dirname, "./validate-database-errs");
 const logger = CreateLogCtx("validate-database.ts");
 
 async function ValidateStaticSchemas(): Promise<void> {
-    for (const c in SCHEMAS) {
-        // @ts-expect-error shut up
-        const schema = SCHEMAS[c];
+    for (const x in STATIC_SCHEMAS) {
+        const c = x as keyof typeof db;
+        const schema = STATIC_SCHEMAS[c] as PrudenceSchema;
 
         logger.info(`=== Validating Collection ${c}... ===`);
 
@@ -21,24 +21,24 @@ async function ValidateStaticSchemas(): Promise<void> {
         let total = 0;
         let fails: { err: PrudenceError; doc: unknown }[] = [];
 
+        let start = process.hrtime.bigint();
+
+        // @ts-expect-error shut UP
         // eslint-disable-next-line no-await-in-loop
-        await monkDB
-            .get(c)
-            .find({}, { projection: { _id: 0 } })
-            // @ts-expect-error monk's types are just so broken, wtf?
-            .each((c: unknown) => {
-                total++;
-                let res = p(c, schema);
+        await db[c].find({}, { projection: { _id: 0 } }).each((c: unknown) => {
+            total++;
+            let res = Prudence(c, schema);
 
-                if (res === null) {
-                    successCount++;
-                } else {
-                    logger.error(res);
-                    fails.push({ err: res, doc: c });
-                }
-            });
+            if (res === null) {
+                successCount++;
+            } else {
+                logger.error(res);
+                fails.push({ err: res, doc: c });
+            }
+        });
 
-        logger.info(`Validated ${total} objects.`);
+        let end = process.hrtime.bigint();
+        logger.info(`Validated ${total} objects. Took ${Number(end - start) / 1e9} seconds.`);
         logger.info(`Success: ${successCount} (${((successCount * 100) / total).toFixed(2)}%)`);
         logger.info(`Fail: ${fails.length} (${((fails.length * 100) / total).toFixed(2)}%)`);
 

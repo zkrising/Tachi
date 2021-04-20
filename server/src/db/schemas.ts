@@ -25,12 +25,12 @@ export const PRUDENCE_PUBLIC_USER: PrudenceSchema = {
     },
     friends: [p.isPositiveInteger],
     socialMedia: {
-        discord: "*string",
-        twitter: "*string",
-        github: "*string",
-        steam: "*string",
-        youtube: "*string",
-        twitch: "*string",
+        discord: "?string",
+        twitter: "?string",
+        github: "?string",
+        steam: "?string",
+        youtube: "?string",
+        twitch: "?string",
     },
     about: p.isBoundedString(0, 4000),
     customPfp: "boolean",
@@ -85,10 +85,12 @@ export const PR_SCORE_GENERIC = {
         lampRating: p.isPositive,
         gameSpecific: {},
         ranking: p.nullable(p.isPositiveNonZeroInteger),
-        outOf: p.and(
-            p.isPositiveNonZeroInteger,
-            (self, parent: Record<string, unknown>) =>
-                (parent.ranking as number) <= (self as number)
+        outOf: p.nullable(
+            p.and(
+                p.isPositiveNonZeroInteger,
+                (self, parent: Record<string, unknown>) =>
+                    (parent.ranking as number) <= (self as number)
+            )
         ),
     },
     timeAchieved: p.nullable(p.isPositive),
@@ -100,7 +102,7 @@ export const PR_SCORE_GENERIC = {
     isScorePB: "boolean",
     isLampPB: "boolean",
     scoreID: "string", // temp
-    importType: p.isIn(importTypes),
+    importType: p.nullable(p.isIn(importTypes)),
 };
 
 type ScoreSchemas = {
@@ -261,8 +263,12 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
     },
 };
 
-// temporarily partial.
-export const SCHEMAS: Partial<RevaluedObject<typeof db, PrudenceSchema>> = {
+/**
+ * Schemas that are "static", i.e. the content of the document
+ * does not depend on fields in the document (such as score docs)
+ * being different depending on the score.game field.
+ */
+export const STATIC_SCHEMAS: Partial<RevaluedObject<typeof db, PrudenceSchema>> = {
     users: PRUDENCE_PRIVATE_USER,
     "iidx-bpi-data": PRUDENCE_IIDX_BPI_DATA,
     counters: PRUDENCE_COUNTER,

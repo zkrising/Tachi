@@ -76,7 +76,7 @@ async function UpdatePoyashiData() {
             );
         }
 
-        let kavg = parseInt(d.avg);
+        let kavg = Number(d.avg);
 
         let kesd = ESDCore.CalculateESD(
             config.judgementWindows.iidx.SP,
@@ -85,8 +85,8 @@ async function UpdatePoyashiData() {
 
         realData.push({
             coef: d.coef === -1 ? null : d.coef,
-            kavg: parseInt(d.avg),
-            wr: parseInt(d.wr),
+            kavg: Number(d.avg),
+            wr: Number(d.wr),
             chartID: ktchiChart.chartID,
             kesd,
         });

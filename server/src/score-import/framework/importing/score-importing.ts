@@ -100,8 +100,6 @@ export async function ImportIterableDatapoint<D, C>(
 ) {
     const converterReturns = await ConverterFunction(data, context, logger);
 
-    logger.debug("Converter Function Finished");
-
     if (Array.isArray(converterReturns)) {
         return Promise.all(
             converterReturns.map((e) => ImportFromConverterReturn(userID, e, logger))
@@ -147,7 +145,6 @@ async function HydrateAndInsertScore(
     );
 
     if (existingScore) {
-        logger.debug(`Skipped existing score ${scoreID}.`);
         return null;
     }
 

@@ -266,7 +266,4 @@ export const SCHEMAS: Partial<RevaluedObject<typeof db, PrudenceSchema>> = {
     users: PRUDENCE_PRIVATE_USER,
     "iidx-bpi-data": PRUDENCE_IIDX_BPI_DATA,
     counters: PRUDENCE_COUNTER,
-    scores: {
-        foo: () => "DO NOT USE THIS VALIDATION FUNCTION. USE PRUDENCE_SCORE FORMATS INSTEAD.",
-    },
 };

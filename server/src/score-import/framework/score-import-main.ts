@@ -47,6 +47,12 @@ export default async function ScoreImportMain<D, C>(
         userID: user.id,
     };
 
+    logger.info(
+        `Import took: ${ImportDocument.timeFinished - timeStarted}ms, with ${
+            importInfo.length
+        } documents. Aprx ${(ImportDocument.timeFinished - timeStarted) / importInfo.length}ms/doc`
+    );
+
     // Add this to the imports database
     // @todo
 

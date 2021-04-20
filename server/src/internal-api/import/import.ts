@@ -87,9 +87,7 @@ router.post(
             return res.status(200).json({
                 success: true,
                 description: "Import successful.",
-                body: {
-                    import: importDocument,
-                },
+                body: importDocument,
             });
         } catch (err) {
             if (err instanceof ScoreImportFatalError) {

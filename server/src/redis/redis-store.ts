@@ -12,5 +12,5 @@ export const RedisClient = redis.createClient();
 logger.info("Instantiated Redis Client");
 
 export function CloseRedisConnection() {
-    RedisClient.quit();
+    return RedisClient.quit();
 }

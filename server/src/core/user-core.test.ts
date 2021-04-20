@@ -12,11 +12,11 @@ import {
 
 t.test("#GetUserCaseInsensitive", (t) => {
     t.test("Should return the user for an exact username", async (t) => {
-        let result = await GetUserCaseInsensitive("zkldi");
+        let result = await GetUserCaseInsensitive("test_zkldi");
 
         t.not(result, null, "Should not return null");
 
-        t.equal(result!.username, "zkldi", "Should return zkldi");
+        t.equal(result!.username, "test_zkldi", "Should return test_zkldi");
 
         prAssert(result, PRUDENCE_PUBLIC_USER, "Should return a conforming PublicUserDocument");
 
@@ -27,11 +27,11 @@ t.test("#GetUserCaseInsensitive", (t) => {
     });
 
     t.test("Should return the user for an incorrectly cased username", async (t) => {
-        let result = await GetUserCaseInsensitive("ZkLdi");
+        let result = await GetUserCaseInsensitive("tesT_ZkLdi");
 
         t.not(result, null, "Should not return null");
 
-        t.equal(result!.username, "zkldi", "Should return zkldi");
+        t.equal(result!.username, "test_zkldi", "Should return test_zkldi");
 
         prAssert(result, PRUDENCE_PUBLIC_USER, "Should return a conforming PublicUserDocument");
 
@@ -50,23 +50,23 @@ t.test("#GetUserCaseInsensitive", (t) => {
     t.end();
 });
 
-t.test("#GetUserCaseInsensitive", (t) => {
+t.test("#PRIVATEINFO_GetUserCaseInsensitive", (t) => {
     t.test("Should return the user for an exact username", async (t) => {
-        let result = await PRIVATEINFO_GetUserCaseInsensitive("zkldi");
+        let result = await PRIVATEINFO_GetUserCaseInsensitive("test_zkldi");
 
         t.not(result, null, "Should not return null");
 
-        t.equal(result!.username, "zkldi", "Should return zkldi");
+        t.equal(result!.username, "test_zkldi", "Should return test_rzkldi");
 
         prAssert(result, PRUDENCE_PRIVATE_USER, "Should return a conforming PrivateUserDocument");
     });
 
     t.test("Should return the user for an incorrectly cased username", async (t) => {
-        let result = await PRIVATEINFO_GetUserCaseInsensitive("ZkLdi");
+        let result = await PRIVATEINFO_GetUserCaseInsensitive("tesT_ZkLdi");
 
         t.not(result, null, "Should not return null");
 
-        t.equal(result!.username, "zkldi", "Should return zkldi");
+        t.equal(result!.username, "test_zkldi", "Should return test_zkldi");
 
         prAssert(result, PRUDENCE_PRIVATE_USER, "Should return a conforming PrivateUserDocument");
     });

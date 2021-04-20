@@ -9,6 +9,9 @@
             "request": "launch",
             "name": "Launch Program",
             "preLaunchTask": "npm: build",
+            "env": {
+                "NODE_ENV": "dev"
+            },
             "program": "${workspaceFolder}/src/main.ts",
             "outFiles": ["${workspaceFolder}/js/**/*.js"],
             "skipFiles": [

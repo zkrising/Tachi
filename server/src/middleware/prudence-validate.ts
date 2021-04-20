@@ -15,6 +15,8 @@ const API_ERR_HANDLER: MiddlewareErrorHandler = (req, res, next, error) => {
     if (typeof stringVal === "object" && stringVal !== null && !stringVal.toString) {
         // this is probably null-prototype
         stringVal = null;
+    } else if (stringVal === undefined) {
+        stringVal = "nothing";
     } else {
         stringVal = String(stringVal);
     }

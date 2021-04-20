@@ -3,19 +3,15 @@ import { integer } from "kamaitachi-common";
 export interface EamusementScoreData {
     difficulty: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
     lamp: string;
-    exscore: integer;
-    pgreat: integer;
-    great: integer;
-    bp: integer | "---"; // lol
-    level: integer;
+    exscore: string;
+    pgreat: string;
+    great: string;
+    bp: string;
+    level: string;
 }
 
 type BaseProps = {
-    version: string;
     title: string;
-    genre: string;
-    artist: string;
-    playcount: number;
     timestamp: string;
 };
 

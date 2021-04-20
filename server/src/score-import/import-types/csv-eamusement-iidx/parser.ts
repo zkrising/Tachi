@@ -1,18 +1,9 @@
-import csvParse from "csv-parse/lib/sync";
-import { Difficulties, integer } from "kamaitachi-common";
+import { Difficulties } from "kamaitachi-common";
 import { Logger } from "winston";
 import { ParserFunctionReturnsSync } from "../../../types";
 import ScoreImportFatalError from "../../framework/core/score-import-error";
 import ConverterFn from "./converter";
-import {
-    EamusementScoreData,
-    IIDXEamusementCSVContext,
-    IIDXEamusementCSVData,
-    RawIIDXEamusementCSVData,
-} from "./types";
-
-const PRE_HV_HEADER_COUNT = 27;
-const HV_HEADER_COUNT = 41;
+import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 
 enum EAM_VERSION_NAMES {
     "1st&substream" = 1,
@@ -43,6 +34,172 @@ enum EAM_VERSION_NAMES {
     "Rootage",
     "HEROIC VERSE",
     "BISTROVER",
+}
+
+const PRE_HV_HEADER_COUNT = 27;
+const HV_HEADER_COUNT = 41;
+
+// commented out for reference
+// [
+//     "version",
+//     "title",
+//     "genre",
+//     "artist",
+//     "playcount",
+//     (?beginnerdata)
+//     "normal-level",
+//     "normal-exscore",
+//     "normal-pgreat",
+//     "normal-great",
+//     "normal-bp",
+//     "normal-lamp",
+//     "normal-grade",
+//     "hyper-level",
+//     "hyper-exscore",
+//     "hyper-pgreat",
+//     "hyper-great",
+//     "hyper-bp",
+//     "hyper-lamp",
+//     "hyper-grade",
+//     "another-level",
+//     "another-exscore",
+//     "another-pgreat",
+//     "another-great",
+//     "another-bp",
+//     "another-lamp",
+//     "another-grade",
+//     (?leggdata)
+//     "timestamp",
+// ];
+
+function ResolveHeaders(headers: string[], logger: Logger) {
+    if (headers.length === PRE_HV_HEADER_COUNT) {
+        logger.verbose("PRE_HV csv recieved.");
+        return {
+            hasBeginnerAndLegg: false,
+        };
+    } else if (headers.length === HV_HEADER_COUNT) {
+        logger.verbose("HV+ csv recieved.");
+        return {
+            hasBeginnerAndLegg: true,
+        };
+    } else {
+        logger.info(`Invalid CSV header count of ${headers.length} received.`);
+        throw new ScoreImportFatalError(
+            400,
+            "Invalid CSV provided. CSV does not have the correct amount of headers."
+        );
+    }
+}
+
+function NaiveCSVParse(csvBuffer: Buffer, logger: Logger) {
+    const csvString = csvBuffer.toString("utf-8");
+
+    let csvData = csvString.split("\n");
+
+    let rawHeaders = [];
+    let headerLen = 0;
+    let curStr = "";
+
+    // looks like we're doing it like this.
+    for (const char of csvData[0]) {
+        headerLen++;
+
+        // safety checks to avoid getting DOS'd
+        if (headerLen > 1000) {
+            throw new ScoreImportFatalError(400, "Headers were longer than 1000 characters long.");
+        } else if (rawHeaders.length > 50) {
+            throw new ScoreImportFatalError(400, "Invalid CSV Headers.");
+        }
+
+        if (char === ",") {
+            rawHeaders.push(curStr);
+            curStr = "";
+        } else {
+            curStr += char;
+        }
+    }
+
+    rawHeaders.push(curStr);
+
+    const { hasBeginnerAndLegg } = ResolveHeaders(rawHeaders, logger);
+
+    const diffs = hasBeginnerAndLegg
+        ? ["beginner", "normal", "hyper", "another", "leggendaria"]
+        : ["normal", "hyper", "another"];
+
+    let iterableData = [];
+
+    let gameVersion = 0;
+
+    for (let i = 1; i < csvData.length; i++) {
+        let data = csvData[i];
+
+        let cells = data.split(",");
+
+        // weirdly enough, an empty string split on "," is an array with
+        // one empty value.
+        // regardless, this line skips empty rows
+        if (cells.length === 1) {
+            logger.verbose(`Skipped empty row ${i}.`);
+            continue;
+        }
+
+        if (cells.length !== rawHeaders.length) {
+            logger.info(
+                `eamusement-iidx csv has row (${i}) with invalid cell count of ${cells.length}, rejecting.`,
+                {
+                    data,
+                }
+            );
+            throw new ScoreImportFatalError(
+                400,
+                `Row ${i} has an invalid amount of cells (${cells.length}).`
+            );
+        }
+
+        let version = cells[0];
+        let title = cells[1];
+        let timestamp = cells[rawHeaders.length - 1].replace(/\r/g, "");
+
+        // wtf typescript?? what's the point of enums?
+        const versionNum = EAM_VERSION_NAMES[version as keyof typeof EAM_VERSION_NAMES];
+
+        if (!versionNum) {
+            logger.info(`Invalid/Unknown EAM_VERSION_NAME ${version}.`);
+            throw new ScoreImportFatalError(400, `Invalid/Unknown EAM_VERSION_NAME ${version}.`);
+        }
+
+        if (versionNum > gameVersion) {
+            logger.verbose(`Replaced ${version} with ${version} (${versionNum}).`);
+            gameVersion = versionNum;
+        }
+
+        let scores: EamusementScoreData[] = [];
+
+        for (let d = 0; d < diffs.length; d++) {
+            const diff = diffs[d];
+            let di = 5 + d * 7;
+
+            scores.push({
+                difficulty: (diff.toUpperCase as unknown) as Difficulties["iidx:SP" | "iidx:DP"],
+                bp: cells[di + 4],
+                exscore: cells[di + 1],
+                pgreat: cells[di + 2],
+                great: cells[di + 3],
+                lamp: cells[di + 5],
+                level: cells[di],
+            });
+        }
+
+        iterableData.push({
+            scores,
+            timestamp,
+            title,
+        });
+    }
+
+    return { iterableData, version: gameVersion, hasBeginnerAndLegg };
 }
 
 /**
@@ -89,170 +246,9 @@ function ParseEamusementCSV(
         );
     }
 
-    let data: IIDXEamusementCSVData[] = [];
-    let csvData: RawIIDXEamusementCSVData[];
-    let hasBeginnerAndLegg: boolean | null = null;
-
-    try {
-        csvData = csvParse(fileData.buffer, {
-            bom: true,
-            // @ts-expect-error csvParse's types are wrong, see https://github.com/adaltas/node-csv-parse/pull/314
-            escape: null, // KONMAI do not escape their CSV, disable escaping entirely.
-            columns: (header) => {
-                // does not have leggendaria/beginner built in
-                if (header.length === PRE_HV_HEADER_COUNT) {
-                    logger.verbose("PRE_HV csv recieved.");
-                    hasBeginnerAndLegg = false;
-                    return [
-                        "version",
-                        "title",
-                        "genre",
-                        "artist",
-                        "playcount",
-                        "normal-level",
-                        "normal-exscore",
-                        "normal-pgreat",
-                        "normal-great",
-                        "normal-bp",
-                        "normal-lamp",
-                        "normal-grade",
-                        "hyper-level",
-                        "hyper-exscore",
-                        "hyper-pgreat",
-                        "hyper-great",
-                        "hyper-bp",
-                        "hyper-lamp",
-                        "hyper-grade",
-                        "another-level",
-                        "another-exscore",
-                        "another-pgreat",
-                        "another-great",
-                        "another-bp",
-                        "another-lamp",
-                        "another-grade",
-                        "timestamp",
-                    ];
-                }
-                // does
-                else if (header.length === HV_HEADER_COUNT) {
-                    logger.verbose("HV+ csv recieved.");
-                    hasBeginnerAndLegg = true;
-                    return [
-                        "version",
-                        "title",
-                        "genre",
-                        "artist",
-                        "playcount",
-                        "beginner-level",
-                        "beginner-exscore",
-                        "beginner-pgreat",
-                        "beginner-great",
-                        "beginner-bp",
-                        "beginner-lamp",
-                        "beginner-grade",
-                        "normal-level",
-                        "normal-exscore",
-                        "normal-pgreat",
-                        "normal-great",
-                        "normal-bp",
-                        "normal-lamp",
-                        "normal-grade",
-                        "hyper-level",
-                        "hyper-exscore",
-                        "hyper-pgreat",
-                        "hyper-great",
-                        "hyper-bp",
-                        "hyper-lamp",
-                        "hyper-grade",
-                        "another-level",
-                        "another-exscore",
-                        "another-pgreat",
-                        "another-great",
-                        "another-bp",
-                        "another-lamp",
-                        "another-grade",
-                        "leggendaria-level",
-                        "leggendaria-exscore",
-                        "leggendaria-pgreat",
-                        "leggendaria-great",
-                        "leggendaria-bp",
-                        "leggendaria-lamp",
-                        "leggendaria-grade",
-                        "timestamp",
-                    ];
-                } else {
-                    logger.warn(`Invalid CSV header count of ${header.length} received.`);
-                    throw new ScoreImportFatalError(
-                        400,
-                        "Invalid CSV provided. CSV does not have the correct amount of headers."
-                    );
-                }
-            },
-            skipEmptyLines: true,
-        });
-    } catch (err) {
-        logger.warn(`CSV Parser Error`, { err });
-        throw new ScoreImportFatalError(400, "CSV Could not be parsed.");
-    }
+    let { hasBeginnerAndLegg, version, iterableData } = NaiveCSVParse(fileData.buffer, logger);
 
     logger.verbose("Successfully parsed CSV.");
-
-    let firstEl = csvData[0];
-
-    if (!firstEl) {
-        throw new ScoreImportFatalError(400, "This CSV has no scores.");
-    }
-
-    let version = 0;
-
-    const diffs = hasBeginnerAndLegg
-        ? ["beginner", "normal", "hyper", "another", "leggendaria"]
-        : ["normal", "hyper", "another"];
-
-    // @optimisable - Can hook into the CSV parser perhaps and read this value immediately?
-    for (const d of csvData) {
-        // wtf typescript?? what's the point of enums?
-        const versionNum = EAM_VERSION_NAMES[d.version as keyof typeof EAM_VERSION_NAMES];
-
-        if (!versionNum) {
-            logger.info(`Invalid/Unknown EAM_VERSION_NAME ${d.version}.`);
-            throw new ScoreImportFatalError(400, `Invalid/Unknown EAM_VERSION_NAME ${d.version}.`);
-        }
-
-        if (versionNum > version) {
-            logger.verbose(`Replaced ${version} with ${d.version} (${versionNum}).`);
-            version = versionNum;
-        }
-
-        let scores: EamusementScoreData[] = [];
-
-        for (const diff of diffs) {
-            scores.push({
-                difficulty: (diff.toUpperCase as unknown) as Difficulties["iidx:SP" | "iidx:DP"],
-                bp: d[`${diff}-bp`] as integer | "---",
-                exscore: d[`${diff}-exscore`] as integer,
-                pgreat: d[`${diff}-pgreat`] as integer,
-                great: d[`${diff}-great`] as integer,
-                lamp: d[`${diff}-lamp`] as string,
-                level: d[`${diff}-level`] as integer,
-            });
-        }
-
-        data.push({
-            scores,
-            artist: d.artist,
-            genre: d.genre,
-            playcount: d.playcount,
-            timestamp: d.timestamp,
-            title: d.title,
-            version: d.version,
-        });
-    }
-
-    if (hasBeginnerAndLegg === null) {
-        logger.error(`hasBeginnerAndLegg was not set, but the end of parsings was reached?`);
-        throw new ScoreImportFatalError(500, "An internal service error has occured.");
-    }
 
     let context: IIDXEamusementCSVContext = {
         playtype,
@@ -261,10 +257,10 @@ function ParseEamusementCSV(
         serviceOrigin: "e-amusement",
     };
 
-    logger.verbose(`Successfully Parsed with ${data.length} results.`);
+    logger.verbose(`Successfully Parsed with ${iterableData.length} results.`);
 
     return {
-        iterable: data,
+        iterable: iterableData,
         context,
         ConverterFunction: ConverterFn,
         idStrings: [`iidx:${context.playtype}` as "iidx:SP" | "iidx:DP"],

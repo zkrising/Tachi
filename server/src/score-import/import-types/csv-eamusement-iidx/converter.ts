@@ -10,6 +10,7 @@ import {
 } from "../../framework/core/converter-errors";
 import ScoreImportFatalError from "../../framework/core/score-import-error";
 import { GetGradeFromPercent } from "../../framework/core/score-utils";
+import { AssertStrAsPositiveInt } from "../../framework/core/string-asserts";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 
 export interface DataTest {
@@ -39,7 +40,7 @@ async function EamScoreConverter(
         return null;
     }
 
-    if (eamScore.exscore === 0) {
+    if (eamScore.exscore === "0") {
         // skip scores with an exscore of 0
         // This also skips things like score resets.
         return null;
@@ -61,23 +62,26 @@ async function EamScoreConverter(
         );
     }
 
-    if (typeof eamScore.exscore !== "number") {
-        throw new InvalidScoreFailure(
-            `${HUMANISED_SONG_TITLE} - Invalid EX Score of ${eamScore.exscore} (Was not a number?).`
-        );
-    } else if (!Number.isSafeInteger(eamScore.exscore)) {
-        throw new InvalidScoreFailure(
-            `${HUMANISED_SONG_TITLE} - Invalid EX Score of ${eamScore.exscore} (Not an integer?).`
-        );
-    } else if (eamScore.exscore < 0) {
-        throw new InvalidScoreFailure(
-            `${HUMANISED_SONG_TITLE} - Invalid EX Score of ${eamScore.exscore} (Not an integer?).`
-        );
-    } else if (eamScore.exscore > ktchiChart.notedata.notecount) {
+    let exscore = AssertStrAsPositiveInt(
+        eamScore.exscore,
+        `${HUMANISED_SONG_TITLE} - Invalid EX score of ${eamScore.exscore}`
+    );
+
+    if (exscore > ktchiChart.notedata.notecount) {
         throw new InvalidScoreFailure(
             `${HUMANISED_SONG_TITLE} - Invalid EX Score of ${eamScore.exscore} (Was greater than chart notecount of ${ktchiChart.notedata.notecount}).`
         );
     }
+
+    let pgreat = AssertStrAsPositiveInt(
+        eamScore.pgreat,
+        `${HUMANISED_SONG_TITLE} - Invalid PGreats of ${eamScore.pgreat}`
+    );
+
+    let great = AssertStrAsPositiveInt(
+        eamScore.great,
+        `${HUMANISED_SONG_TITLE} - Invalid Greats of ${eamScore.pgreat}`
+    );
 
     const lamp = EAMUSEMENT_LAMP_RESOLVER.get(eamScore.lamp);
 
@@ -88,7 +92,7 @@ async function EamScoreConverter(
         );
     }
 
-    const percent = (100 * eamScore.exscore) / ktchiChart.notedata.notecount;
+    const percent = (100 * exscore) / ktchiChart.notedata.notecount;
     const grade = GetGradeFromPercent<"iidx:SP" | "iidx:DP">("iidx", percent);
 
     if (!grade) {
@@ -121,11 +125,11 @@ async function EamScoreConverter(
         game: "iidx",
         importType: "csv:eamusement-iidx",
         scoreData: {
-            score: eamScore.exscore,
+            score: exscore,
             lamp,
             hitData: {
-                pgreat: eamScore.pgreat,
-                great: eamScore.great,
+                pgreat,
+                great,
             },
             hitMeta: {},
             percent,
@@ -199,12 +203,12 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
     data,
     context,
     logger: Logger
-): Promise<ConverterFnReturn[]> => {
+): Promise<ConverterFnReturn[] | ConverterFnReturn> => {
     let ktchiSong = await FindSongOnTitleVersion("iidx", data.title, context.importVersion);
 
     if (!ktchiSong) {
-        logger.warn(`Could not find song for ${data.title}.`);
-        throw new KTDataNotFoundFailure(data.title, "csv:eamusement-iidx", data, context);
+        // logger.warn(`Could not find song for ${data.title}.`);
+        return new KTDataNotFoundFailure(data.title, "csv:eamusement-iidx", data, context);
     }
 
     // ts thinks ktchiSong might be null. It's not, though!

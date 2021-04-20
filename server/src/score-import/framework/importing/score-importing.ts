@@ -100,6 +100,8 @@ export async function ImportIterableDatapoint<D, C>(
 ) {
     const converterReturns = await ConverterFunction(data, context, logger);
 
+    logger.debug("Converter Function Finished");
+
     if (Array.isArray(converterReturns)) {
         return Promise.all(
             converterReturns.map((e) => ImportFromConverterReturn(userID, e, logger))
@@ -115,7 +117,6 @@ export async function ImportIterableDatapoint<D, C>(
  * @param dryScore - The score that is to be hydrated and inserted.
  * @param chart - The chart this score is on.
  * @param song - The song this score is on.
- * @returns no idea yet
  */
 async function HydrateAndInsertScore(
     userID: integer,

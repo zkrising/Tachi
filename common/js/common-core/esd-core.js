@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PercentCompare = exports.ESDCompare = exports.CalculateESD = void 0;
-const MEAN = 0;
 /**
  * Cumulative Distribution Function
  * https://en.wikipedia.org/wiki/Cumulative_distribution_function
@@ -34,6 +33,7 @@ function CDFBetween(lowBound, highBound, mean, variance) {
     return 2 * (cdf(highBound, mean, variance) - cdf(lowBound, mean, variance));
 }
 // This is a direct port of ESD-JS to typescript. Maybe this should be released as its own module some day.
+const MEAN = 0;
 /**
  * Gets the percent this score would roughly be, given a standard deviation.
  * @param judgements - The judgements this game uses.

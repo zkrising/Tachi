@@ -1,5 +1,3 @@
-const MEAN = 0;
-
 /**
  * Cumulative Distribution Function
  * https://en.wikipedia.org/wiki/Cumulative_distribution_function
@@ -37,6 +35,8 @@ function CDFBetween(lowBound: number, highBound: number, mean: number, variance:
 }
 
 // This is a direct port of ESD-JS to typescript. Maybe this should be released as its own module some day.
+
+const MEAN = 0;
 
 /**
  * Gets the percent this score would roughly be, given a standard deviation.

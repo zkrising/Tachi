@@ -1,7 +1,6 @@
 import winston, { format, LeveledLogMethod, Logger, transports } from "winston";
 import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
 import { FormatUserDoc } from "./core/format-user";
-import colours from "colors";
 
 const level = process.env.LOG_LEVEL ?? "info";
 

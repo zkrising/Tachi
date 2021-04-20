@@ -9,7 +9,7 @@ export function AssertStrAsPositiveInt(strVal: string, errorMessage: string) {
         throw new InvalidScoreFailure(`${errorMessage} (Not an integer.)`);
     }
 
-    let val = parseInt(strVal, 10);
+    let val = Number(strVal);
 
     if (Number.isNaN(val)) {
         throw new InvalidScoreFailure(`${errorMessage} (Not a number.)`);
@@ -29,7 +29,7 @@ export function AssertStrAsPositiveNonZeroInt(strVal: string, errorMessage: stri
         throw new InvalidScoreFailure(`${errorMessage} (Not an integer.)`);
     }
 
-    let val = parseInt(strVal, 10);
+    let val = Number(strVal);
 
     if (Number.isNaN(val)) {
         throw new InvalidScoreFailure(`${errorMessage} (Not a number.)`);

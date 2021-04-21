@@ -115,13 +115,15 @@ const optionalPositiveInt = p.optional(p.isPositiveInteger);
 
 const nullableAndOptional = (fn: ValidSchemaValue) => p.optional(p.nullable(fn));
 
+const nullableAndOptionalPosInt = nullableAndOptional(p.isPositiveInteger);
+
 const CreateGameScoreData = (game: Game, hitMetaMerge: PrudenceSchema) => ({
     lamp: p.isIn(lamps[game]),
     lampIndex: p.and(
         p.isPositiveInteger,
         (self, parent) => lamps[game][self as number] === parent.lamp
     ),
-    grade: p.isIn(grades.iidx),
+    grade: p.isIn(grades[game]),
     gradeIndex: p.and(
         p.isPositiveInteger,
         (self, parent) => grades[game][self as number] === parent.grade
@@ -129,9 +131,9 @@ const CreateGameScoreData = (game: Game, hitMetaMerge: PrudenceSchema) => ({
     hitData: Object.fromEntries(validHitData[game].map((e) => [e, optionalPositiveInt])),
     hitMeta: deepmerge(
         {
-            fast: optionalPositiveInt,
-            slow: optionalPositiveInt,
-            maxCombo: optionalPositiveInt,
+            fast: nullableAndOptionalPosInt,
+            slow: nullableAndOptionalPosInt,
+            maxCombo: nullableAndOptionalPosInt,
         },
         hitMetaMerge
     ),
@@ -142,7 +144,7 @@ const PR_SCORE_IIDX_SP: PrudenceSchema = CreatePRScore(
     "iidx",
     "SP",
     {
-        bp: optionalPositiveInt,
+        bp: nullableAndOptional(p.isPositiveInteger),
         gauge: p.optional(p.isBetween(0, 100)),
         gaugeHistory: p.optional([p.isBetween(0, 100)]),
         comboBreak: optionalPositiveInt,
@@ -166,13 +168,23 @@ const PR_SCORE_BMS_7K: PrudenceSchema = CreatePRScore(
     "bms",
     "7K",
     {
-        gauge: p.optional(p.isBetween(0, 100)),
-        bp: optionalPositiveInt,
-        diedAt: optionalPositiveInt,
+        gauge: nullableAndOptional(p.isBetween(0, 100)),
+        bp: nullableAndOptionalPosInt,
+        diedAt: nullableAndOptionalPosInt,
+        lpr: nullableAndOptionalPosInt,
+        lbd: nullableAndOptionalPosInt,
+        lgd: nullableAndOptionalPosInt,
+        lgr: nullableAndOptionalPosInt,
+        lpg: nullableAndOptionalPosInt,
+        epr: nullableAndOptionalPosInt,
+        ebd: nullableAndOptionalPosInt,
+        egd: nullableAndOptionalPosInt,
+        egr: nullableAndOptionalPosInt,
+        epg: nullableAndOptionalPosInt,
     },
     {
-        random: p.optional(p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])),
-        inputDevice: p.optional(p.isIn(["KB", "BM", "MIDI"])),
+        random: nullableAndOptional(p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])),
+        inputDevice: nullableAndOptional(p.isIn(["KB", "BM_CONTROLLER", "MIDI"])),
     }
 );
 
@@ -224,13 +236,22 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
             },
             calculatedData: {
                 gameSpecific: {
-                    BPI: "?number",
+                    "K%": "undefined", // remove with override
                 },
             },
         }),
     },
     sdvx: {
-        Single: CreatePRScore("sdvx", "Single", { gauge: p.optional(p.isBetween(0, 100)) }),
+        Single: CreatePRScore(
+            "sdvx",
+            "Single",
+            { gauge: p.optional(p.isBetween(0, 100)) },
+            {},
+            {
+                VF4: p.nullable(p.isPositiveInteger),
+                VF5: p.nullable(p.isBetween(0, 0.5)), // hack
+            }
+        ),
     },
     bms: {
         "7K": PR_SCORE_BMS_7K,
@@ -246,11 +267,29 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
         }),
     },
     chunithm: {
-        Single: CreatePRScore("chunithm", "Single"),
+        Single: deepmerge(CreatePRScore("chunithm", "Single"), {
+            scoreData: { percent: p.isBetween(0, 101) },
+        }),
     },
     ddr: {
-        SP: CreatePRScore("ddr", "SP"),
-        DP: CreatePRScore("ddr", "DP"),
+        SP: CreatePRScore(
+            "ddr",
+            "SP",
+            {},
+            {},
+            {
+                MFCP: p.nullable(p.isBoundedInteger(1, 25)),
+            }
+        ),
+        DP: CreatePRScore(
+            "ddr",
+            "DP",
+            {},
+            {},
+            {
+                MFCP: p.nullable(p.isBoundedInteger(1, 25)),
+            }
+        ),
     },
     gitadora: {
         Gita: CreatePRScore("gitadora", "Gita"),
@@ -260,7 +299,9 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
         Single: CreatePRScore("jubeat", "Single"),
     },
     maimai: {
-        Single: CreatePRScore("maimai", "Single"),
+        Single: deepmerge(CreatePRScore("maimai", "Single"), {
+            scoreData: { percent: p.isBetween(0, 150) },
+        }),
     },
     museca: {
         Single: CreatePRScore("museca", "Single"),

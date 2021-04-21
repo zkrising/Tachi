@@ -81,7 +81,9 @@ async function ValidateScores(): Promise<void> {
                     if (res === null) {
                         successCount++;
                     } else {
-                        logger.error(`[${res.keychain}] ${res.message}: ${res.userVal}`);
+                        logger.error(
+                            `[${game} ${playtype}] [${res.keychain}] ${res.message}: ${res.userVal}`
+                        );
                         fails.push({ err: res, doc: c });
                     }
                 });
@@ -119,6 +121,8 @@ async function ValidateScores(): Promise<void> {
     );
     logger.info(`Success: ${globalSuccess} (${((globalSuccess * 100) / globalTotal).toFixed(2)}%)`);
     logger.info(`Fail: ${globalFail} (${((globalFail * 100) / globalTotal).toFixed(2)}%)`);
+
+    // process.exit(1);
 }
 
 // ValidateStaticSchemas();

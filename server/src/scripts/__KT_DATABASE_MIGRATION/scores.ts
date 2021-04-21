@@ -55,17 +55,23 @@ function ConvertFn(c: any): ScoreDocument {
             ConditionalAssign(base.scoreMeta, "pacemakerName", c.scoreMeta, "pacemakerName");
             ConditionalAssign(base.scoreMeta, "pacemakerTarget", c.scoreMeta, "pacemakerTarget");
         } else if (base.game === "bms") {
-            if (base.playtype !== "5K") {
-                if (base.playtype === "7K") {
-                    ConditionalAssign(base.scoreMeta, "random", c.scoreMeta, "optionsRandom");
-                    ConditionalAssign(
-                        base.scoreMeta,
-                        "inputDevice",
-                        c.scoreData.hitMeta,
-                        "inputDevice"
-                    );
-                }
+            // @ts-expect-error shut
+            if (base.scoreData.hitMeta.gauge === -1) {
+                // @ts-expect-error shut
+                base.scoreData.hitMeta.gauge = null;
             }
+
+            // @ts-expect-error shut
+            if (base.scoreData.hitMeta.bp === -1 || Number.isNaN(base.scoreData.hitMeta.bp)) {
+                // @ts-expect-error shut
+                base.scoreData.hitMeta.bp = null;
+            }
+
+            ConditionalAssign(base.scoreMeta, "random", c.scoreMeta, "optionsRandom");
+            ConditionalAssign(base.scoreMeta, "inputDevice", c.scoreData.hitMeta, "inputDevice");
+
+            // @ts-expect-error shut
+            delete base.scoreData.hitMeta.inputDevice;
         }
     }
 

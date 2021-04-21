@@ -862,7 +862,7 @@ export interface UserMilestoneDocument extends MongoDBDocument {
 type RanOptions = "NONRAN" | "RANDOM" | "R-RANDOM" | "S-RANDOM" | "MIRROR";
 
 interface IIDXSPScoreMeta {
-    random: RanOptions;
+    random: RanOptions | null;
     assist:
         | "NO ASSIST"
         | "AUTO SCRATCH"
@@ -908,13 +908,13 @@ interface IIDXSPScoreMeta {
 }
 
 interface BMS7KScoreMeta {
-    random: RanOptions;
+    random: RanOptions | null;
     inputDevice: "KEYBOARD" | "BM_CONTROLLER" | "MIDI" | null;
 }
 
 interface ScoreMetaLookup {
     "iidx:SP": IIDXSPScoreMeta;
-    "iidx:DP": IIDXSPScoreMeta & { random: [RanOptions, RanOptions] };
+    "iidx:DP": IIDXSPScoreMeta & { random: [RanOptions, RanOptions] | null };
     "popn:9B": Record<string, never>;
     "sdvx:Single": Record<string, never>;
     "usc:Single": Record<string, never>;
@@ -924,7 +924,7 @@ interface ScoreMetaLookup {
     "jubeat:Single": Record<string, never>;
     "museca:Single": Record<string, never>;
     "bms:7K": BMS7KScoreMeta;
-    "bms:14K": BMS7KScoreMeta & { random: [RanOptions, RanOptions] };
+    "bms:14K": BMS7KScoreMeta & { random: [RanOptions, RanOptions] | null };
     "bms:5K": Record<string, never>;
     "chunithm:Single": Record<string, never>;
     "gitadora:Gita": Record<string, never>;

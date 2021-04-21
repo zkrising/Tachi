@@ -135,6 +135,7 @@ const CreateGameScoreData = (game: Game, hitMetaMerge: PrudenceSchema) => ({
         },
         hitMetaMerge
     ),
+    esd: p.nullable(p.isPositive),
 });
 
 const PR_SCORE_IIDX_SP: PrudenceSchema = CreatePRScore(
@@ -154,6 +155,10 @@ const PR_SCORE_IIDX_SP: PrudenceSchema = CreatePRScore(
         range: p.optional(p.isIn(["NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+"])),
         pacemakerName: "*?string",
         pacemakerTarget: nullableAndOptional(p.isPositiveInteger),
+    },
+    {
+        BPI: "?number",
+        "K%": p.nullable(p.isBetween(0, 100)),
     }
 );
 
@@ -179,8 +184,8 @@ function CreatePRScore<G extends Game>(
     mergeGameSpecific: PrudenceSchema = {}
 ) {
     return deepmerge(PR_SCORE_GENERIC, {
-        game,
-        playtype,
+        game: p.equalTo(game),
+        playtype: p.equalTo(playtype),
         scoreData: CreateGameScoreData(game, mergeHitMeta),
         scoreMeta: mergeScoreMeta,
         calculatedData: {
@@ -213,9 +218,14 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
     iidx: {
         SP: PR_SCORE_IIDX_SP,
         DP: deepmerge(PR_SCORE_IIDX_SP, {
-            playtype: "DP",
+            playtype: p.equalTo("DP"),
             scoreMeta: {
                 random: p.optional(DoublePlayTwinRandomTuple),
+            },
+            calculatedData: {
+                gameSpecific: {
+                    BPI: "?number",
+                },
             },
         }),
     },
@@ -225,13 +235,13 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
     bms: {
         "7K": PR_SCORE_BMS_7K,
         "14K": deepmerge(PR_SCORE_BMS_7K, {
-            playtype: "14K",
+            playtype: p.equalTo("14K"),
             scoreMeta: {
                 random: p.optional(DoublePlayTwinRandomTuple),
             },
         }),
         "5K": deepmerge(PR_SCORE_BMS_7K, {
-            playtype: "5K",
+            playtype: p.equalTo("5K"),
             scoreMeta: {},
         }),
     },

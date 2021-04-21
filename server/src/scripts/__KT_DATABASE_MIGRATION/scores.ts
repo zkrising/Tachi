@@ -1,12 +1,19 @@
 import { PrivateUserDocument, ScoreDocument } from "kamaitachi-common";
-import { grades } from "kamaitachi-common/js/config";
+import { grades, lamps } from "kamaitachi-common/js/config";
 import db from "../../db/db";
+import { CreateScoreID } from "../../score-import/framework/core/score-id";
 import MigrateRecords from "./migrate";
 
 // HERE. WE. GO!
 
+function ConditionalAssign(base: any, baseProp: string, other: any, otherProp: string) {
+    if (Object.prototype.hasOwnProperty.call(other, otherProp)) {
+        base[baseProp] = other[otherProp];
+    }
+}
+
 function ConvertFn(c: any): ScoreDocument {
-    let base: Partial<ScoreDocument> = {
+    let base: Omit<ScoreDocument, "scoreID"> = {
         userID: c.userID,
         songID: c.songID,
         playtype: c.scoreData.playtype,
@@ -14,7 +21,7 @@ function ConvertFn(c: any): ScoreDocument {
         chartID: c.chartID,
         game: c.game,
         timeAdded: c.timeAdded,
-        timeAchieved: c.timeAchieved,
+        timeAchieved: Number.isNaN(c.timeAchieved) ? null : c.timeAchieved,
         isScorePB: c.isScorePB,
         isLampPB: c.isLampPB,
         comment: c.comment ?? null,
@@ -38,19 +45,42 @@ function ConvertFn(c: any): ScoreDocument {
         scoreMeta: {},
     };
 
-    switch (base.game) {
-        case "bms":
-            break;
-
-        default:
-            break;
+    if (c.scoreMeta) {
+        if (base.game === "iidx") {
+            ConditionalAssign(base.scoreMeta, "random", c.scoreMeta, "optionsRandom");
+            ConditionalAssign(base.scoreMeta, "gauge", c.scoreMeta, "optionsGauge");
+            ConditionalAssign(base.scoreMeta, "assist", c.scoreMeta, "optionsAssist");
+            ConditionalAssign(base.scoreMeta, "range", c.scoreMeta, "optionsRange");
+            ConditionalAssign(base.scoreMeta, "pacemaker", c.scoreMeta, "pacemaker");
+            ConditionalAssign(base.scoreMeta, "pacemakerName", c.scoreMeta, "pacemakerName");
+            ConditionalAssign(base.scoreMeta, "pacemakerTarget", c.scoreMeta, "pacemakerTarget");
+        } else if (base.game === "bms") {
+            if (base.playtype !== "5K") {
+                if (base.playtype === "7K") {
+                    ConditionalAssign(base.scoreMeta, "random", c.scoreMeta, "optionsRandom");
+                    ConditionalAssign(
+                        base.scoreMeta,
+                        "inputDevice",
+                        c.scoreData.hitMeta,
+                        "inputDevice"
+                    );
+                }
+            }
+        }
     }
 
-    return base;
+    let scoreID = CreateScoreID(base.userID, base, base.chartID);
+
+    let score: ScoreDocument = {
+        ...base,
+        scoreID,
+    };
+
+    return score;
 }
 
 (async () => {
-    await MigrateRecords(db.users, "users", ConvertFn);
+    await MigrateRecords(db.scores, "scores", ConvertFn);
 
     process.exit(0);
 })();

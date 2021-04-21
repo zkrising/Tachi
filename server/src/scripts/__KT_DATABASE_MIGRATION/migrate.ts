@@ -2,7 +2,7 @@ import { ICollection } from "monk";
 import CreateLogCtx from "../../logger";
 import { oldKTDB } from "./old-db";
 
-const logger = CreateLogCtx("MIGRATE-users.ts");
+const logger = CreateLogCtx("MIGRATE.ts");
 
 let newDocuments: unknown[] = [];
 
@@ -18,11 +18,18 @@ export default async function MigrateRecords(
         process.exit(1);
     }
 
+    let i = 0;
+
     await oldKTDB
         .get(collectionName)
         .find({})
         // @ts-expect-error it exists.
         .each((c) => {
+            i++;
+
+            if (i % 10000 === 0) {
+                logger.info(`Processed ${i} documents.`);
+            }
             const newDoc = HandlerFN(c);
 
             newDocuments.push(newDoc);

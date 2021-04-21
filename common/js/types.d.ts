@@ -669,7 +669,7 @@ export interface UserMilestoneDocument extends MongoDBDocument {
 }
 declare type RanOptions = "NONRAN" | "RANDOM" | "R-RANDOM" | "S-RANDOM" | "MIRROR";
 interface IIDXSPScoreMeta {
-    random: RanOptions;
+    random: RanOptions | null;
     assist: "NO ASSIST" | "AUTO SCRATCH" | "5KEYS" | "LEGACY NOTE" | "ASCR + 5KEY" | "ASCR + LEGACY" | "5KEYS + LEGACY" | "FULL ASSIST";
     range: "NONE" | "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+";
     gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX-HARD";
@@ -678,13 +678,13 @@ interface IIDXSPScoreMeta {
     pacemakerTarget: integer | null;
 }
 interface BMS7KScoreMeta {
-    random: RanOptions;
+    random: RanOptions | null;
     inputDevice: "KEYBOARD" | "BM_CONTROLLER" | "MIDI" | null;
 }
 interface ScoreMetaLookup {
     "iidx:SP": IIDXSPScoreMeta;
     "iidx:DP": IIDXSPScoreMeta & {
-        random: [RanOptions, RanOptions];
+        random: [RanOptions, RanOptions] | null;
     };
     "popn:9B": Record<string, never>;
     "sdvx:Single": Record<string, never>;
@@ -696,7 +696,7 @@ interface ScoreMetaLookup {
     "museca:Single": Record<string, never>;
     "bms:7K": BMS7KScoreMeta;
     "bms:14K": BMS7KScoreMeta & {
-        random: [RanOptions, RanOptions];
+        random: [RanOptions, RanOptions] | null;
     };
     "bms:5K": Record<string, never>;
     "chunithm:Single": Record<string, never>;

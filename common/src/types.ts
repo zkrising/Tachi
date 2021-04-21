@@ -864,6 +864,7 @@ type RanOptions = "NONRAN" | "RANDOM" | "R-RANDOM" | "S-RANDOM" | "MIRROR";
 interface IIDXSPScoreMeta {
     random: RanOptions;
     assist:
+        | "NO ASSIST"
         | "AUTO SCRATCH"
         | "5KEYS"
         | "LEGACY NOTE"
@@ -871,8 +872,8 @@ interface IIDXSPScoreMeta {
         | "ASCR + LEGACY"
         | "5KEYS + LEGACY"
         | "FULL ASSIST";
-    range: "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+";
-    gauge: "ASSISTED EASY" | "EASY" | "HARD" | "EX-HARD";
+    range: "NONE" | "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+";
+    gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX-HARD";
     // oh my
     pacemaker:
         | "NO GRAPH"

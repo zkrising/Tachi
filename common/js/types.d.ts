@@ -670,9 +670,9 @@ export interface UserMilestoneDocument extends MongoDBDocument {
 declare type RanOptions = "NONRAN" | "RANDOM" | "R-RANDOM" | "S-RANDOM" | "MIRROR";
 interface IIDXSPScoreMeta {
     random: RanOptions;
-    assist: "AUTO SCRATCH" | "5KEYS" | "LEGACY NOTE" | "ASCR + 5KEY" | "ASCR + LEGACY" | "5KEYS + LEGACY" | "FULL ASSIST";
-    range: "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+";
-    gauge: "ASSISTED EASY" | "EASY" | "HARD" | "EX-HARD";
+    assist: "NO ASSIST" | "AUTO SCRATCH" | "5KEYS" | "LEGACY NOTE" | "ASCR + 5KEY" | "ASCR + LEGACY" | "5KEYS + LEGACY" | "FULL ASSIST";
+    range: "NONE" | "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+";
+    gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX-HARD";
     pacemaker: "NO GRAPH" | "MY BEST" | "RIVAL 1" | "RIVAL 2" | "RIVAL 3" | "RIVAL 4" | "RIVAL 5" | "RIVAL NEXT" | "RIVAL BEST" | "RIVAL AVERAGE" | "NATIONAL BEST" | "NATIONAL AVERAGE" | "PREFECTURE BEST" | "PREFECTURE AVERAGE" | "CLASS BEST" | "CLASS AVERAGE" | "VENUE BEST" | "VENUE NEXT" | "PREVIOUS GHOST" | "PACEMAKER AAA" | "PACEMAKER AA" | "PACEMAKER A" | "PACEMAKER" | /* ??? */ "PACEMAKER NEXT" | "PACEMAKER NEXT+" | "PLAYER 1" | "PLAYER 2";
     pacemakerName: string;
     pacemakerTarget: integer;

@@ -903,13 +903,13 @@ interface IIDXSPScoreMeta {
         | "PACEMAKER NEXT+"
         | "PLAYER 1"
         | "PLAYER 2";
-    pacemakerName: string; // contains DJ Name
-    pacemakerTarget: integer; // the EXScore the pacemaker was aimed at
+    pacemakerName: string | null; // contains DJ Name
+    pacemakerTarget: integer | null; // the EXScore the pacemaker was aimed at
 }
 
 interface BMS7KScoreMeta {
     random: RanOptions;
-    inputDevice: string;
+    inputDevice: string | null;
 }
 
 interface ScoreMetaLookup {

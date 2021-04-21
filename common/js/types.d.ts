@@ -674,12 +674,12 @@ interface IIDXSPScoreMeta {
     range: "NONE" | "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+";
     gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX-HARD";
     pacemaker: "NO GRAPH" | "MY BEST" | "RIVAL 1" | "RIVAL 2" | "RIVAL 3" | "RIVAL 4" | "RIVAL 5" | "RIVAL NEXT" | "RIVAL BEST" | "RIVAL AVERAGE" | "NATIONAL BEST" | "NATIONAL AVERAGE" | "PREFECTURE BEST" | "PREFECTURE AVERAGE" | "CLASS BEST" | "CLASS AVERAGE" | "VENUE BEST" | "VENUE NEXT" | "PREVIOUS GHOST" | "PACEMAKER AAA" | "PACEMAKER AA" | "PACEMAKER A" | "PACEMAKER" | /* ??? */ "PACEMAKER NEXT" | "PACEMAKER NEXT+" | "PLAYER 1" | "PLAYER 2";
-    pacemakerName: string;
-    pacemakerTarget: integer;
+    pacemakerName: string | null;
+    pacemakerTarget: integer | null;
 }
 interface BMS7KScoreMeta {
     random: RanOptions;
-    inputDevice: string;
+    inputDevice: string | null;
 }
 interface ScoreMetaLookup {
     "iidx:SP": IIDXSPScoreMeta;

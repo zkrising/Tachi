@@ -684,7 +684,7 @@ interface BMS7KScoreMeta {
 interface ScoreMetaLookup {
     "iidx:SP": IIDXSPScoreMeta;
     "iidx:DP": IIDXSPScoreMeta & {
-        optionsRandom: [RanOptions, RanOptions];
+        random: [RanOptions, RanOptions];
     };
     "popn:9B": Record<string, never>;
     "sdvx:Single": Record<string, never>;
@@ -696,7 +696,7 @@ interface ScoreMetaLookup {
     "museca:Single": Record<string, never>;
     "bms:7K": BMS7KScoreMeta;
     "bms:14K": BMS7KScoreMeta & {
-        optionsRandom: [RanOptions, RanOptions];
+        random: [RanOptions, RanOptions];
     };
     "bms:5K": Record<string, never>;
     "chunithm:Single": Record<string, never>;

@@ -909,7 +909,7 @@ interface IIDXSPScoreMeta {
 
 interface BMS7KScoreMeta {
     random: RanOptions;
-    inputDevice: string | null;
+    inputDevice: "KEYBOARD" | "BM_CONTROLLER" | "MIDI" | null;
 }
 
 interface ScoreMetaLookup {
@@ -938,10 +938,10 @@ interface BASE_VALID_HIT_META {
 }
 
 type IIDXHitMeta = BASE_VALID_HIT_META & {
-    bp: integer;
-    gauge: number;
-    gaugeHistory: number[];
-    comboBreak: integer;
+    bp: integer | null;
+    gauge: number | null;
+    gaugeHistory: number[] | null;
+    comboBreak: integer | null;
 };
 
 type BMSJudgePermutations = `${"e" | "l"}${"bd" | "pr" | "gd" | "gr" | "pg"}`;
@@ -950,17 +950,24 @@ type BMSHitMeta = BASE_VALID_HIT_META &
     {
         [K in BMSJudgePermutations]: integer;
     } & {
-        bp: integer;
-        gauge: number;
+        bp: integer | null;
+        gauge: number | null;
         diedAt: integer | null;
     };
+
+type SDVXHitMeta = BASE_VALID_HIT_META & {
+    gauge: number | null;
+    btnRate: number | null;
+    holdRate: number | null;
+    laserRate: number | null;
+};
 
 export interface HitMetaLookup {
     "iidx:SP": IIDXHitMeta;
     "iidx:DP": IIDXHitMeta;
     "popn:9B": BASE_VALID_HIT_META & { gauge: number };
-    "sdvx:Single": BASE_VALID_HIT_META & { gauge: number };
-    "usc:Single": BASE_VALID_HIT_META & { gauge: number };
+    "sdvx:Single": SDVXHitMeta;
+    "usc:Single": SDVXHitMeta;
     "ddr:SP": BASE_VALID_HIT_META;
     "ddr:DP": BASE_VALID_HIT_META;
     "maimai:Single": BASE_VALID_HIT_META;

@@ -871,9 +871,10 @@ interface IIDXSPScoreMeta {
         | "ASCR + 5KEY"
         | "ASCR + LEGACY"
         | "5KEYS + LEGACY"
-        | "FULL ASSIST";
-    range: "NONE" | "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+";
-    gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX-HARD";
+        | "FULL ASSIST"
+        | null;
+    range: "NONE" | "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+" | null;
+    gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX-HARD" | null;
     // oh my
     pacemaker:
         | "NO GRAPH"
@@ -902,7 +903,8 @@ interface IIDXSPScoreMeta {
         | /* ??? */ "PACEMAKER NEXT"
         | "PACEMAKER NEXT+"
         | "PLAYER 1"
-        | "PLAYER 2";
+        | "PLAYER 2"
+        | null;
     pacemakerName: string | null; // contains DJ Name
     pacemakerTarget: integer | null; // the EXScore the pacemaker was aimed at
 }

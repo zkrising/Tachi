@@ -148,6 +148,7 @@ export interface Playtypes {
     jubeat: "Single";
     museca: "Single";
     chunithm: "Single";
+    bms: "7K" | "14K";
     gitadora: "Gita" | "Dora";
 }
 

@@ -600,12 +600,12 @@ export interface PublicUserDocument extends MongoDBDocument {
     };
     friends: integer[];
     socialMedia: {
-        discord?: string;
-        twitter?: string;
-        github?: string;
-        steam?: string;
-        youtube?: string;
-        twitch?: string;
+        discord?: string | null;
+        twitter?: string | null;
+        github?: string | null;
+        steam?: string | null;
+        youtube?: string | null;
+        twitch?: string | null;
     };
     lastSeen: integer;
     about: string;

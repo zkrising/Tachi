@@ -819,7 +819,7 @@ interface SongDocumentData {
     sdvx: { uscEquiv: integer | null };
     usc: { sdvxEquiv: integer | null };
     ddr: Record<string, never>;
-    maimai: { titleJP: string; artistJP: string; genre: string; releasedAt: number };
+    maimai: { titleJP: string; artistJP: string; genre: string };
     jubeat: Record<string, never>;
     museca: { titleJP: string; artistJP: string };
     bms: { genre: string };

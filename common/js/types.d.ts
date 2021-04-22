@@ -646,7 +646,6 @@ interface SongDocumentData {
         titleJP: string;
         artistJP: string;
         genre: string;
-        releasedAt: number;
     };
     jubeat: Record<string, never>;
     museca: {

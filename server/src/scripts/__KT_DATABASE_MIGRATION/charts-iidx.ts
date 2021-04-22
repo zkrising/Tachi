@@ -16,9 +16,9 @@ function ConvertFn(c: any): ChartDocument<"iidx:SP" | "iidx:DP"> {
         length: c.length,
         bpmString: "", // sentinel
         flags: {
-            "IN BASE GAME": c.flags["IN BASE GAME"],
-            OMNIMIX: c.flags.OMNIMIX,
-            "N-1": c.flags["N-1"],
+            "IN BASE GAME": !!c.flags["IN BASE GAME"],
+            OMNIMIX: !!c.flags.OMNIMIX,
+            "N-1": !!c.flags["N-1"],
         },
         data: {
             inGameID: c.internals.inGameINTID,

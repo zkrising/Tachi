@@ -524,8 +524,7 @@ interface ChartDocumentData {
     "iidx:DP": CDDataIIDXSP;
     "popn:9B": Record<string, never>;
     "sdvx:Single": {
-        inGameID: string;
-        inGameINTID: integer;
+        inGameID: integer;
     };
     "usc:Single": {
         hashSHA256: string;
@@ -547,15 +546,13 @@ interface ChartDocumentData {
         hashSHA256: string;
     };
     "chunithm:Single": {
-        inGameINTID: integer;
+        inGameID: integer;
     };
     "gitadora:Gita": {
-        inGameID: string;
-        inGameINTID: integer;
+        inGameID: integer;
     };
     "gitadora:Dora": {
-        inGameID: string;
-        inGameINTID: integer;
+        inGameID: integer;
     };
 }
 export interface AnyChartDocument extends MongoDBDocument {

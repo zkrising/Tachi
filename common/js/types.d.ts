@@ -23,7 +23,6 @@ export interface IDStringToPlaytype {
     "museca:Single": "Single";
     "bms:7K": "7K";
     "bms:14K": "14K";
-    "bms:5K": "5K";
     "chunithm:Single": "Single";
     "gitadora:Gita": "Gita";
     "gitadora:Dora": "Dora";
@@ -93,7 +92,6 @@ export interface Playtypes {
     maimai: "Single";
     jubeat: "Single";
     museca: "Single";
-    bms: "7K" | "14K" | "5K";
     chunithm: "Single";
     gitadora: "Gita" | "Dora";
 }
@@ -205,7 +203,6 @@ export interface CustomRatings {
     };
     bms: {
         "7K": Record<string, never>;
-        "5K": Record<string, never>;
         "14K": Record<string, never>;
     };
     chunithm: {
@@ -545,9 +542,14 @@ interface ChartDocumentData {
     };
     "jubeat:Single": Record<string, never>;
     "museca:Single": "OMNIMIX";
-    "bms:7K": Record<string, never>;
-    "bms:14K": Record<string, never>;
-    "bms:5K": Record<string, never>;
+    "bms:7K": {
+        hashMD5: string;
+        hashSHA256: string;
+    };
+    "bms:14K": {
+        hashMD5: string;
+        hashSHA256: string;
+    };
     "chunithm:Single": {
         inGameINTID: integer;
     };

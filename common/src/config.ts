@@ -641,7 +641,7 @@ export const validPlaytypes: Record<Game, Playtypes[Game][]> = {
     maimai: ["Single"],
     jubeat: ["Single"],
     museca: ["Single"],
-    bms: ["7K", "14K", "5K"],
+    bms: ["7K", "14K"],
     chunithm: ["Single"],
     gitadora: ["Gita", "Dora"],
     usc: ["Single"],

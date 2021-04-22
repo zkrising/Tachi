@@ -934,9 +934,9 @@ interface ScoreMetaLookup {
 }
 
 interface BASE_VALID_HIT_META {
-    fast: integer;
-    slow: integer;
-    maxCombo: integer;
+    fast: integer | null;
+    slow: integer | null;
+    maxCombo: integer | null;
 }
 
 type IIDXHitMeta = BASE_VALID_HIT_META & {

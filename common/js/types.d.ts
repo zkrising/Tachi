@@ -438,12 +438,12 @@ export interface PublicUserDocument extends MongoDBDocument {
     };
     friends: integer[];
     socialMedia: {
-        discord?: string;
-        twitter?: string;
-        github?: string;
-        steam?: string;
-        youtube?: string;
-        twitch?: string;
+        discord?: string | null;
+        twitter?: string | null;
+        github?: string | null;
+        steam?: string | null;
+        youtube?: string | null;
+        twitch?: string | null;
     };
     lastSeen: integer;
     about: string;
@@ -704,9 +704,9 @@ interface ScoreMetaLookup {
     "gitadora:Dora": Record<string, never>;
 }
 interface BASE_VALID_HIT_META {
-    fast: integer;
-    slow: integer;
-    maxCombo: integer;
+    fast: integer | null;
+    slow: integer | null;
+    maxCombo: integer | null;
 }
 declare type IIDXHitMeta = BASE_VALID_HIT_META & {
     bp: integer | null;

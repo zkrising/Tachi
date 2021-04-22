@@ -24,7 +24,6 @@ export type IDStrings =
     | "jubeat:Single"
     | "bms:7K"
     | "bms:14K"
-    | "bms:5K"
     | "chunithm:Single"
     | "gitadora:Gita"
     | "gitadora:Dora";
@@ -60,7 +59,6 @@ export interface IDStringToGame {
     "museca:Single": "museca";
     "bms:7K": "bms";
     "bms:14K": "bms";
-    "bms:5K": "bms";
     "chunithm:Single": "chunithm";
     "gitadora:Gita": "gitadora";
     "gitadora:Dora": "gitadora";
@@ -200,7 +198,6 @@ export interface Grades {
     "museca:Single": "没" | "拙" | "凡" | "佳" | "良" | "優" | "秀" | "傑" | "傑G";
     "bms:7K": IIDXGrades;
     "bms:14K": IIDXGrades;
-    "bms:5K": IIDXGrades;
     "chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
     "gitadora:Gita": GitadoraGrades;
     "gitadora:Dora": GitadoraGrades;
@@ -248,7 +245,6 @@ export interface Lamps {
     "museca:Single": "FAILED" | "CLEAR" | "CONNECT ALL" | "PERFECT CONNECT ALL";
     "bms:7K": IIDXLamps;
     "bms:14K": IIDXLamps;
-    "bms:5K": IIDXLamps;
     "chunithm:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "ALL JUSTICE" | "ALL JUSTICE CRITICAL";
     "gitadora:Gita": GitadoraLamps;
     "gitadora:Dora": GitadoraLamps;
@@ -267,7 +263,6 @@ export interface Difficulties {
     "museca:Single": "Green" | "Yellow" | "Red";
     "bms:7K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
     "bms:14K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
-    "bms:5K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
     "chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
     "gitadora:Gita":
         | "BASIC"
@@ -705,7 +700,6 @@ interface ChartDocumentFlags {
     "museca:Single": "OMNIMIX";
     "bms:7K": never;
     "bms:14K": never;
-    "bms:5K": never;
     "chunithm:Single": "IN BASE GAME" | "OMNIMIX";
     "gitadora:Gita": "IN BASE GAME" | "OMNIMIX";
     "gitadora:Dora": "IN BASE GAME" | "OMNIMIX";
@@ -953,7 +947,6 @@ interface ScoreMetaLookup {
     "museca:Single": Record<string, never>;
     "bms:7K": BMS7KScoreMeta;
     "bms:14K": BMS7KScoreMeta & { random: [RanOptions, RanOptions] | null };
-    "bms:5K": Record<string, never>;
     "chunithm:Single": Record<string, never>;
     "gitadora:Gita": Record<string, never>;
     "gitadora:Dora": Record<string, never>;
@@ -1003,7 +996,6 @@ export interface HitMetaLookup {
     "museca:Single": BASE_VALID_HIT_META;
     "bms:7K": BMSHitMeta;
     "bms:14K": BMSHitMeta;
-    "bms:5K": BMSHitMeta;
     "chunithm:Single": BASE_VALID_HIT_META;
     "gitadora:Gita": BASE_VALID_HIT_META;
     "gitadora:Dora": BASE_VALID_HIT_META;
@@ -1029,7 +1021,6 @@ export interface JudgementLookup {
     "museca:Single": "critical" | "near" | "miss";
     "bms:7K": IIDXJudges;
     "bms:14K": IIDXJudges;
-    "bms:5K": IIDXJudges;
     "chunithm:Single": "jcrit" | "justice" | "attack" | "miss";
     "gitadora:Gita": GitadoraJudges;
     "gitadora:Dora": GitadoraJudges;
@@ -1048,7 +1039,6 @@ export interface GameSpecificCalcLookup {
     "museca:Single": never;
     "bms:7K": never;
     "bms:14K": never;
-    "bms:5K": never;
     "chunithm:Single": never;
     "gitadora:Gita": never;
     "gitadora:Dora": never;

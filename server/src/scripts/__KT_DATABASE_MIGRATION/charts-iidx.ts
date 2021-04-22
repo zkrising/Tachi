@@ -21,8 +21,7 @@ function ConvertFn(c: any): ChartDocument<"iidx:SP" | "iidx:DP"> {
             "N-1": c.flags["N-1"],
         },
         data: {
-            inGameID: c.internals.inGameID,
-            inGameINTID: c.internals.inGameINTID,
+            inGameID: c.internals.inGameINTID,
             notecount: c.notedata.notecount,
         },
     };
@@ -34,12 +33,10 @@ function ConvertFn(c: any): ChartDocument<"iidx:SP" | "iidx:DP"> {
         newChartDoc.length = `${m}:${s}`;
     }
 
-    if (c.bpmMin && c.bpmMax) {
-        if (c.monoBPM) {
-            newChartDoc.bpmString = c.bpmMin;
-        } else {
-            newChartDoc.bpmString = `${c.bpmMin}-${c.bpmMax}`;
-        }
+    if (c.monoBPM) {
+        newChartDoc.bpmString = c.bpmMin.toString();
+    } else {
+        newChartDoc.bpmString = `${c.bpmMin}-${c.bpmMax}`;
     }
 
     if (newChartDoc.length === null) {

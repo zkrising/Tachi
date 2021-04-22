@@ -840,6 +840,7 @@ export interface AnySongDocument extends MongoDBDocument {
     id: integer;
     title: string;
     artist: string;
+    isRemoved: boolean;
     /**
      * Alternative names for this song, to be used while searching.
      */

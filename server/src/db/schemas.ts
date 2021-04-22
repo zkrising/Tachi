@@ -346,11 +346,32 @@ function CreatePrChart(game: Game, flags: string[], data: PrudenceSchema) {
 export const PRUDENCE_CHART_SCHEMAS: Record<Game, PrudenceSchema> = {
     iidx: CreatePrChart("iidx", ["IN BASE GAME", "OMNIMIX", "N-1"], {
         notecount: p.isPositiveInteger,
-        inGameID: "string",
-        inGameINTID: p.and(p.isPositiveInteger, (self, parent) => self === Number(parent.inGameID)),
+        inGameID: p.and(p.isPositiveInteger),
     }),
-    bms: CreatePrChart("bms", [], {}),
-    chunithm: CreatePrChart("chunithm"),
+    bms: CreatePrChart("bms", [], { hashMD5: "string", hashSHA256: "string" }),
+    chunithm: CreatePrChart("chunithm", ["IN BASE GAME", "OMNIMIX"], {
+        inGameID: p.isPositiveInteger,
+    }),
+    ddr: CreatePrChart("ddr", ["IN BASE GAME", "N-1"], {
+        songHash: "string",
+        inGameID: "string",
+    }),
+    gitadora: CreatePrChart("gitadora", ["IN BASE GAME", "OMNIMIX"], {
+        inGameID: p.isPositiveInteger,
+    }),
+    jubeat: CreatePrChart("jubeat", ["IN BASE GAME"], {}),
+    maimai: CreatePrChart("maimai", ["IN BASE GAME"], {
+        maxPercent: p.gte(100),
+        inGameID: "string",
+    }),
+    museca: CreatePrChart("museca", ["IN BASE GAME", "OMNIMIX"], {}),
+    popn: CreatePrChart("popn", ["IN BASE GAME", "OMNIMIX"], {}),
+    sdvx: CreatePrChart("sdvx", ["IN BASE GAME", "OMNIMIX", "N-1"], {
+        inGameID: p.isPositiveInteger,
+    }),
+    usc: CreatePrChart("usc", ["CUSTOM"], {
+        hashSHA256: "string",
+    }),
 };
 
 /**

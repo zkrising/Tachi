@@ -1,4 +1,4 @@
-import { config, ESDCore, Lamps, SongDocument } from "kamaitachi-common";
+import { config, ESDCore, Lamps, AnySongDocument } from "kamaitachi-common";
 import { Logger } from "winston";
 import { DryScore, ConverterFunction, ConverterFnReturn } from "../../../types";
 import { FindChartWithPTDF } from "../../database-lookup/chart-ptdf";
@@ -29,7 +29,7 @@ const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new 
 
 async function EamScoreConverter(
     eamScore: EamusementScoreData,
-    ktchiSong: SongDocument,
+    ktchiSong: AnySongDocument,
     context: IIDXEamusementCSVContext,
     data: IIDXEamusementCSVData,
     logger: Logger
@@ -166,7 +166,7 @@ async function EamScoreConverter(
  */
 async function EamScoreConverterWrapper(
     eamScore: EamusementScoreData,
-    song: SongDocument,
+    song: AnySongDocument,
     context: IIDXEamusementCSVContext,
     data: IIDXEamusementCSVData,
     logger: Logger

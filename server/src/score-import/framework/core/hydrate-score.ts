@@ -1,10 +1,9 @@
 import {
     AnyChartDocument,
-    ChartDocument,
     config,
     integer,
     ScoreDocument,
-    SongDocument,
+    AnySongDocument,
 } from "kamaitachi-common";
 import { Logger } from "winston";
 import { DryScore } from "../../../types";
@@ -19,7 +18,7 @@ export default async function HydrateScore(
     userID: integer,
     dryScore: DryScore,
     chart: AnyChartDocument,
-    song: SongDocument,
+    song: AnySongDocument,
     scoreID: string,
     logger: Logger
 ): Promise<ScoreDocument> {
@@ -50,7 +49,6 @@ export default async function HydrateScore(
         songID: song.id,
         chartID: chart.chartID,
         scoreID,
-        difficulty: chart.difficulty,
         playtype: chart.playtype,
         // these will be sorted out in post-processing
         isLampPB: false,

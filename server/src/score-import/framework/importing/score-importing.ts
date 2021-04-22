@@ -1,10 +1,9 @@
 import {
     AnyChartDocument,
-    ChartDocument,
     ImportProcessingInfo,
     integer,
     ScoreDocument,
-    SongDocument,
+    AnySongDocument,
 } from "kamaitachi-common";
 import { DryScore, ConverterFunction, ConverterFnReturn } from "../../../types";
 import HydrateScore from "../core/hydrate-score";
@@ -120,7 +119,7 @@ async function HydrateAndInsertScore(
     userID: integer,
     dryScore: DryScore,
     chart: AnyChartDocument,
-    song: SongDocument,
+    song: AnySongDocument,
     importLogger: Logger
 ): Promise<ScoreDocument | null> {
     const scoreID = CreateScoreID(userID, dryScore, chart.chartID);

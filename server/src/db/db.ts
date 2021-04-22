@@ -8,6 +8,7 @@ import {
     IIDXBPIData,
     IIDXEamusementScoreDocument,
     ImportDocument,
+    SongDocument,
     InviteCodeDocument,
     MilestoneDocument,
     NotificationDocument,
@@ -16,7 +17,8 @@ import {
     PublicAPIKeyDocument,
     ScoreDocument,
     SessionDocument,
-    SongDocument,
+    AnySongDocument,
+    AnyChartDocument,
     UserGoalDocument,
     UserMilestoneDocument,
 } from "kamaitachi-common";
@@ -53,7 +55,39 @@ export async function CloseMongoConnection() {
     await monkDB.close();
 }
 
-const StaticCollections = {
+const songs = {
+    bms: monkDB.get<AnySongDocument>(`songs-bms`),
+    chunithm: monkDB.get<AnySongDocument>(`songs-chunithm`),
+    ddr: monkDB.get<AnySongDocument>(`songs-ddr`),
+    gitadora: monkDB.get<AnySongDocument>(`songs-gitadora`),
+    iidx: monkDB.get<AnySongDocument>(`songs-iidx`),
+    jubeat: monkDB.get<AnySongDocument>(`songs-jubeat`),
+    maimai: monkDB.get<AnySongDocument>(`songs-maimai`),
+    museca: monkDB.get<AnySongDocument>(`songs-museca`),
+    popn: monkDB.get<AnySongDocument>(`songs-popn`),
+    sdvx: monkDB.get<AnySongDocument>(`songs-sdvx`),
+    usc: monkDB.get<AnySongDocument>(`songs-usc`),
+};
+
+const charts = {
+    bms: monkDB.get<AnyChartDocument>(`charts-bms`),
+    chunithm: monkDB.get<AnyChartDocument>(`charts-chunithm`),
+    ddr: monkDB.get<AnyChartDocument>(`charts-ddr`),
+    gitadora: monkDB.get<AnyChartDocument>(`charts-gitadora`),
+    iidx: monkDB.get<AnyChartDocument>(`charts-iidx`),
+    jubeat: monkDB.get<AnyChartDocument>(`charts-jubeat`),
+    maimai: monkDB.get<AnyChartDocument>(`charts-maimai`),
+    museca: monkDB.get<AnyChartDocument>(`charts-museca`),
+    popn: monkDB.get<AnyChartDocument>(`charts-popn`),
+    sdvx: monkDB.get<AnyChartDocument>(`charts-sdvx`),
+    usc: monkDB.get<AnyChartDocument>(`charts-usc`),
+};
+
+const db = {
+    // i have to handwrite this out for TS... :(
+    // dont worry, it was all macro'd
+    songs,
+    charts,
     scores: monkDB.get<ScoreDocument>("scores"),
     folders: monkDB.get<FolderDocument>("folders"),
     goals: monkDB.get<GoalDocument>("goals"),
@@ -71,41 +105,8 @@ const StaticCollections = {
     "iidx-eam-scores": monkDB.get<IIDXEamusementScoreDocument>("iidx-eam-scores"),
 };
 
-type GameCollections = Record<Game, ICollection>;
-
-interface GCPartial {
-    songs: Partial<GameCollections>;
-    charts: Partial<GameCollections>;
+export function GetGameChartCollection(game: Game) {
+    return db.charts[game];
 }
-
-interface GameCollectionFull {
-    songs: GameCollections;
-    charts: GameCollections;
-}
-
-let GameCollectionPartial: GCPartial = {
-    songs: {},
-    // i have to handwrite this out for TS... :(
-    charts: {
-        bms: monkDB.get<`bms:${Playtypes["bms"]}`>(`charts-bms`),
-        chunithm: monkDB.get<`chunithm:${Playtypes["chunithm"]}`>(`charts-chunithm`),
-        ddr: monkDB.get<`ddr:${Playtypes["ddr"]}`>(`charts-ddr`),
-        gitadora: monkDB.get<`gitadora:${Playtypes["gitadora"]}`>(`charts-gitadora`),
-        iidx: monkDB.get<`iidx:${Playtypes["iidx"]}`>(`charts-iidx`),
-        jubeat: monkDB.get<`jubeat:${Playtypes["jubeat"]}`>(`charts-jubeat`),
-        maimai: monkDB.get<`maimai:${Playtypes["maimai"]}`>(`charts-maimai`),
-        museca: monkDB.get<`museca:${Playtypes["museca"]}`>(`charts-museca`),
-        popn: monkDB.get<`popn:${Playtypes["popn"]}`>(`charts-popn`),
-        sdvx: monkDB.get<`sdvx:${Playtypes["sdvx"]}`>(`charts-sdvx`),
-        usc: monkDB.get<`usc:${Playtypes["usc"]}`>(`charts-usc`),
-    },
-};
-
-for (const game of config.supportedGames) {
-    GameCollectionPartial.songs[game] = monkDB.get<SongDocument>(`songs-${game}`);
-}
-
-// a typescript-friendly interface for the database.
-const db = Object.assign(StaticCollections, GameCollectionPartial as GameCollectionFull);
 
 export default db;

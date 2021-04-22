@@ -4,7 +4,7 @@ import {
     ImportTypes,
     integer,
     ScoreDocument,
-    SongDocument,
+    AnySongDocument,
 } from "kamaitachi-common";
 import { Logger } from "winston";
 import { ConverterFailure } from "./score-import/framework/core/converter-errors";
@@ -38,7 +38,7 @@ export type KTReponse = KTFailResponse | KTSuccessResponse;
 export interface ConverterFnSuccessReturn {
     dryScore: DryScore;
     chart: AnyChartDocument;
-    song: SongDocument;
+    song: AnySongDocument;
 }
 
 export type ConverterFnReturn = ConverterFailure | ConverterFnSuccessReturn | null;

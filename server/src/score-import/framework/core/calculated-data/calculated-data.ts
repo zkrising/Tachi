@@ -5,7 +5,6 @@ import {
     IDStrings,
     Playtypes,
     ScoreDocument,
-    SongDocument,
     TierlistDataDocument,
 } from "kamaitachi-common";
 import { Logger } from "winston";

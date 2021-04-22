@@ -1,4 +1,5 @@
-import { Game } from "kamaitachi-common";
+import { Game, AnySongDocument } from "kamaitachi-common";
+import { FindOneResult } from "monk";
 import db from "../../db/db";
 
 /**
@@ -8,9 +9,13 @@ import db from "../../db/db";
  * @param game - The game to search upon.
  * @param title - The song title to match.
  * @param version - The version a song should be in to be counted.
- * @returns SongDocument
+ * @returns AnySongDocument
  */
-export function FindSongOnTitleVersion(game: Game, title: string, version: string | number) {
+export function FindSongOnTitleVersion<G extends Game>(
+    game: G,
+    title: string,
+    version: string
+): Promise<FindOneResult<AnySongDocument>> {
     return db.songs[game].findOne({
         "data.version": version,
         $or: [
@@ -30,9 +35,13 @@ export function FindSongOnTitleVersion(game: Game, title: string, version: strin
  * rather difficult. Prefer other functions!
  * @param game - The game to search upon.
  * @param title - The song title to match.
- * @returns SongDocument
+ * @returns AnySongDocument
  */
-export function FindSongOnTitle(game: Game, title: string) {
+export function FindSongOnTitle(
+    game: Game,
+    title: string
+): Promise<FindOneResult<AnySongDocument>> {
+    db.songs[game];
     return db.songs[game].findOne({
         $or: [
             {

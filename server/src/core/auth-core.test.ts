@@ -71,7 +71,6 @@ t.test("#ReinstateInvite", (t) => {
 
         let response = await ReinstateInvite(inviteDoc);
 
-        // @ts-expect-error Monks' types are WRONG. this is nModified, not modifiedCount
         t.equal(response.nModified, 1, "Should modify one document");
 
         let invite2 = await db.invites.findOne({

@@ -145,16 +145,22 @@ const PR_SCORE_IIDX_SP: PrudenceSchema = CreatePRScore(
     "SP",
     {
         bp: nullableAndOptional(p.isPositiveInteger),
-        gauge: p.optional(p.isBetween(0, 100)),
-        gaugeHistory: p.optional([p.isBetween(0, 100)]),
+        gauge: nullableAndOptional(p.isBetween(0, 100)),
+        gaugeHistory: p.optional([nullableAndOptional(p.isBetween(0, 100))]),
         comboBreak: optionalPositiveInt,
         deadMeasure: nullableAndOptional(p.isPositiveInteger),
         deadNote: nullableAndOptional(p.isPositiveInteger),
     },
     {
-        random: p.optional(p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])),
-        assist: p.optional(p.isIn(["NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "ASCR + LEGACY"])),
-        range: p.optional(p.isIn(["NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+"])),
+        random: nullableAndOptional(p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])),
+        gauge: nullableAndOptional(p.isIn(["ASSISTED EASY", "EASY", "NORMAL", "HARD", "EX-HARD"])),
+        assist: nullableAndOptional(
+            p.isIn(["NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "ASCR + LEGACY"])
+        ),
+        range: nullableAndOptional(
+            p.isIn(["NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+"])
+        ),
+        pacemaker: "*?string", // lazy
         pacemakerName: "*?string",
         pacemakerTarget: nullableAndOptional(p.isPositiveInteger),
     },
@@ -184,7 +190,7 @@ const PR_SCORE_BMS_7K: PrudenceSchema = CreatePRScore(
     },
     {
         random: nullableAndOptional(p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])),
-        inputDevice: nullableAndOptional(p.isIn(["KB", "BM_CONTROLLER", "MIDI"])),
+        inputDevice: nullableAndOptional(p.isIn(["KEYBOARD", "BM_CONTROLLER", "MIDI"])),
     }
 );
 
@@ -232,7 +238,7 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
         DP: deepmerge(PR_SCORE_IIDX_SP, {
             playtype: p.equalTo("DP"),
             scoreMeta: {
-                random: p.optional(DoublePlayTwinRandomTuple),
+                random: nullableAndOptional(DoublePlayTwinRandomTuple),
             },
             calculatedData: {
                 gameSpecific: {
@@ -245,7 +251,12 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
         Single: CreatePRScore(
             "sdvx",
             "Single",
-            { gauge: p.optional(p.isBetween(0, 100)) },
+            {
+                gauge: p.optional(p.isBetween(0, 100)),
+                btnRate: p.optional(p.isBetween(0, 100)),
+                holdRate: p.optional(p.isBetween(0, 100)),
+                laserRate: p.optional(p.isBetween(0, 100)),
+            },
             {},
             {
                 VF4: p.nullable(p.isPositiveInteger),

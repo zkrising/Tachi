@@ -105,7 +105,7 @@ async function ValidateScores(): Promise<void> {
                         Number(end - start) / 1e9
                     } seconds.\nSuccess: ${successCount} (${((successCount * 100) / total).toFixed(
                         2
-                    )}%\nFail: ${fails.length} (${((fails.length * 100) / total).toFixed(2)}%))`
+                    )}%)\nFail: ${fails.length} (${((fails.length * 100) / total).toFixed(2)}%)`
                 );
             }
 

@@ -32,7 +32,9 @@ export default async function MigrateRecords(
             }
             const newDoc = HandlerFN(c);
 
-            newDocuments.push(newDoc);
+            if (newDoc !== null) {
+                newDocuments.push(newDoc);
+            }
         });
 
     logger.info(`Inserting ${newDocuments.length} documents.`);

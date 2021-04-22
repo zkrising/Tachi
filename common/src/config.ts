@@ -308,6 +308,7 @@ export const versionHuman: Record<Game, Record<string, string>> = {
         25: "CANNON BALLERS",
         26: "ROOTAGE",
         27: "HEROIC VERSE",
+        28: "BISTROVER",
     },
     museca: {
         1: "",
@@ -456,6 +457,7 @@ export const gameOrders = {
         "25",
         "26",
         "27",
+        "28",
     ],
     museca: ["1", "1.5"],
     maimai: [

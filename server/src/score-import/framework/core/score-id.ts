@@ -6,7 +6,7 @@ import { integer } from "kamaitachi-common";
 function CreateScoreIDString(userID: integer, partialScore: DryScore, chartID: string) {
     const { lamp, grade } = partialScore.scoreData;
 
-    return `${userID}|${chartID}|${lamp}|${grade}|${partialScore.scoreData.percent}`;
+    return `${userID}|${chartID}|${lamp}|${grade}|${partialScore.scoreData.score}|${partialScore.scoreData.percent}`;
 }
 
 /**

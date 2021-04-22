@@ -685,7 +685,7 @@ export interface AnySongDocument extends MongoDBDocument {
      */
     version: string[];
 }
-export interface SongDocument<G extends Game> extends MongoDBDocument {
+export interface SongDocument<G extends Game> extends AnySongDocument {
     data: SongDocumentData[G];
 }
 export interface FolderDocument extends MongoDBDocument {

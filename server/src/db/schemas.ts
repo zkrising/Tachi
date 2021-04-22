@@ -6,6 +6,8 @@ import {
     lamps,
     validHitData,
     validHitMeta,
+    validDifficulties,
+    validPlaytypes,
 } from "kamaitachi-common/js/config";
 import p, { PrudenceOptions, PrudenceSchema, ValidationFunction, ValidSchemaValue } from "prudence";
 import { RevaluedObject } from "../types";
@@ -272,10 +274,6 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
                 random: p.optional(DoublePlayTwinRandomTuple),
             },
         }),
-        "5K": deepmerge(PR_SCORE_BMS_7K, {
-            playtype: p.equalTo("5K"),
-            scoreMeta: {},
-        }),
     },
     chunithm: {
         Single: deepmerge(CreatePRScore("chunithm", "Single"), {
@@ -325,13 +323,44 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
     },
 };
 
+const PRUDENCE_CHART_BASE: PrudenceSchema = {
+    chartID: "string",
+    rgcID: "?string",
+    songID: p.isPositiveInteger,
+    level: "string",
+    levelNum: p.isPositive,
+    length: "?string",
+    bpmString: "?string",
+    isRemoved: "boolean",
+};
+
+function CreatePrChart(game: Game, flags: string[], data: PrudenceSchema) {
+    return deepmerge(PRUDENCE_CHART_BASE, {
+        difficulty: p.isIn(validDifficulties[game]),
+        playtype: p.isIn(validPlaytypes[game]),
+        flags: Object.fromEntries(flags.map((e) => [e, "boolean"])),
+        data,
+    });
+}
+
+export const PRUDENCE_CHART_SCHEMAS: Record<Game, PrudenceSchema> = {
+    iidx: CreatePrChart("iidx", ["IN BASE GAME", "OMNIMIX", "N-1"], {
+        notecount: p.isPositiveInteger,
+        inGameID: "string",
+        inGameINTID: p.and(p.isPositiveInteger, (self, parent) => self === Number(parent.inGameID)),
+    }),
+    bms: CreatePrChart("bms", [], {}),
+    chunithm: CreatePrChart("chunithm"),
+};
+
 /**
  * Schemas that are "static", i.e. the content of the document
  * does not depend on fields in the document (such as score docs)
  * being different depending on the score.game field.
  */
-export const STATIC_SCHEMAS: Partial<RevaluedObject<typeof db, PrudenceSchema>> = {
+export const STATIC_SCHEMAS: Partial<RevaluedObject<Omit<typeof db, "scores">, PrudenceSchema>> = {
     users: PRUDENCE_PRIVATE_USER,
     "iidx-bpi-data": PRUDENCE_IIDX_BPI_DATA,
     counters: PRUDENCE_COUNTER,
+    charts: PRUDENCE_CHART_SCHEMAS,
 };

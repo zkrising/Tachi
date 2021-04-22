@@ -125,5 +125,12 @@ async function ValidateScores(): Promise<void> {
     // process.exit(1);
 }
 
+async function ValidateCharts(): Promise<void> {
+    for (const game of supportedGames) {
+        let col = db.charts[game];
+        let schema = STATIC_SCHEMAS.charts[game];
+    }
+}
+
 // ValidateStaticSchemas();
 ValidateScores();

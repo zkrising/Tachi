@@ -792,7 +792,6 @@ export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBD
     service: string;
     game: IDStringToGame[I];
     playtype: IDStringToPlaytype[I];
-    difficulty: Difficulties[I];
     userID: integer;
     scoreData: {
         score: number;

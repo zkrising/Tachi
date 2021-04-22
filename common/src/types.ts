@@ -690,7 +690,7 @@ export interface IIDXEamusementScoreDocument extends MongoDBDocument {
 interface ChartDocumentFlags {
     "iidx:SP": "IN BASE GAME" | "OMNIMIX" | "N-1";
     "iidx:DP": "IN BASE GAME" | "OMNIMIX" | "N-1";
-    "popn:9B": "IN BASE GAME";
+    "popn:9B": "IN BASE GAME" | "OMNIMIX";
     "sdvx:Single": "IN BASE GAME" | "OMNIMIX" | "N-1";
     "usc:Single": "CUSTOM";
     "ddr:SP": "IN BASE GAME" | "N-1";
@@ -720,7 +720,7 @@ interface ChartDocumentData {
     "iidx:SP": CDDataIIDXSP;
     "iidx:DP": CDDataIIDXSP;
     "popn:9B": Record<string, never>;
-    "sdvx:Single": { inGameID: string; inGameINTID: integer };
+    "sdvx:Single": { inGameID: integer };
     "usc:Single": { hashSHA256: string };
     "ddr:SP": CDDataDDRSP;
     "ddr:DP": CDDataDDRSP;
@@ -729,9 +729,9 @@ interface ChartDocumentData {
     "museca:Single": Record<string, never>;
     "bms:7K": { hashMD5: string; hashSHA256: string };
     "bms:14K": { hashMD5: string; hashSHA256: string };
-    "chunithm:Single": { inGameINTID: integer };
-    "gitadora:Gita": { inGameID: string; inGameINTID: integer };
-    "gitadora:Dora": { inGameID: string; inGameINTID: integer };
+    "chunithm:Single": { inGameID: integer };
+    "gitadora:Gita": { inGameID: integer };
+    "gitadora:Dora": { inGameID: integer };
 }
 
 export interface AnyChartDocument extends MongoDBDocument {

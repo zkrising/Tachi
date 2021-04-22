@@ -496,7 +496,7 @@ export interface IIDXEamusementScoreDocument extends MongoDBDocument {
 interface ChartDocumentFlags {
     "iidx:SP": "IN BASE GAME" | "OMNIMIX" | "N-1";
     "iidx:DP": "IN BASE GAME" | "OMNIMIX" | "N-1";
-    "popn:9B": "IN BASE GAME";
+    "popn:9B": "IN BASE GAME" | "OMNIMIX";
     "sdvx:Single": "IN BASE GAME" | "OMNIMIX" | "N-1";
     "usc:Single": "CUSTOM";
     "ddr:SP": "IN BASE GAME" | "N-1";

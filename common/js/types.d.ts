@@ -503,7 +503,7 @@ interface ChartDocumentFlags {
     "ddr:DP": "IN BASE GAME" | "N-1";
     "maimai:Single": "IN BASE GAME";
     "jubeat:Single": "IN BASE GAME";
-    "museca:Single": "OMNIMIX";
+    "museca:Single": "IN BASE GAME" | "OMNIMIX";
     "bms:7K": never;
     "bms:14K": never;
     "chunithm:Single": "IN BASE GAME" | "OMNIMIX";
@@ -537,7 +537,7 @@ interface ChartDocumentData {
         inGameID: string;
     };
     "jubeat:Single": Record<string, never>;
-    "museca:Single": "OMNIMIX";
+    "museca:Single": Record<string, never>;
     "bms:7K": {
         hashMD5: string;
         hashSHA256: string;

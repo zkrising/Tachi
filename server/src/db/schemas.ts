@@ -379,7 +379,7 @@ export const PRUDENCE_CHART_SCHEMAS: Record<Game, PrudenceSchema> = {
  * does not depend on fields in the document (such as score docs)
  * being different depending on the score.game field.
  */
-export const STATIC_SCHEMAS: Partial<RevaluedObject<Omit<typeof db, "scores">, PrudenceSchema>> = {
+export const STATIC_SCHEMAS = {
     users: PRUDENCE_PRIVATE_USER,
     "iidx-bpi-data": PRUDENCE_IIDX_BPI_DATA,
     counters: PRUDENCE_COUNTER,

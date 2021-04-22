@@ -129,25 +129,25 @@ async function ValidateScores(): Promise<void> {
     // process.exit(1);
 }
 
-async function ValidateCharts(): Promise<void> {
+async function ValidateChartsOrSongs(type: "songs" | "charts"): Promise<void> {
     let globalStart = process.hrtime.bigint();
     let globalTotal = 0;
     let globalSuccess = 0;
     let globalFail = 0;
     for (const game of supportedGames) {
-        let schema = PRUDENCE_CHART_SCHEMAS[game];
+        let schema = STATIC_SCHEMAS[type]![game];
 
         let successCount = 0;
         let total = 0;
         let fails: { err: PrudenceError; doc: unknown }[] = [];
 
-        logger.info(`=== Validating Collection charts (${game}) ... ===`);
+        logger.info(`=== Validating Collection ${type} (${game}) ... ===`);
         let start = process.hrtime.bigint();
 
         // eslint-disable-next-line no-await-in-loop
-        await db.charts[game]
+        await db[type][game]
+            // @ts-expect-error whatever bro
             .find({}, { projection: { _id: 0 } })
-            // @ts-expect-error shut UP
             .each((c: unknown) => {
                 total++;
                 let res = Prudence(c, schema);
@@ -167,9 +167,9 @@ async function ValidateCharts(): Promise<void> {
 
         if (fails.length !== 0) {
             logger.severe(`Invalid documents found! Please resolve them.`);
-            fs.writeFileSync(path.join(BASE_DIR, `charts-${game}.json`), JSON.stringify(fails));
+            fs.writeFileSync(path.join(BASE_DIR, `${type}-${game}.json`), JSON.stringify(fails));
             fs.writeFileSync(
-                path.join(BASE_DIR, `charts-${game}.log`),
+                path.join(BASE_DIR, `${type}-${game}.log`),
                 `Validated ${total} objects. Took ${
                     Number(end - start) / 1e9
                 } seconds.\nSuccess: ${successCount} (${((successCount * 100) / total).toFixed(
@@ -193,4 +193,4 @@ async function ValidateCharts(): Promise<void> {
 
 // ValidateStaticSchemas();
 // ValidateScores();
-ValidateCharts();
+ValidateChartsOrSongs("songs");

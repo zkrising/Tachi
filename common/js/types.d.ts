@@ -633,15 +633,60 @@ export interface TierlistV2DataDocument<F extends string> extends MongoDBDocumen
     };
     tierlistDataID: string;
 }
-export interface SongDocument extends MongoDBDocument {
+interface SongDocumentData {
+    iidx: {
+        genre: string;
+    };
+    popn: {
+        genre: string;
+    };
+    sdvx: {
+        uscEquiv: integer | null;
+    };
+    usc: {
+        sdvxEquiv: integer | null;
+    };
+    ddr: Record<string, never>;
+    maimai: {
+        titleJP: string;
+        artistJP: string;
+        genre: string;
+        releasedAt: number;
+    };
+    jubeat: Record<string, never>;
+    museca: {
+        titleJP: string;
+        artistJP: string;
+    };
+    bms: {
+        genre: string;
+    };
+    chunithm: {
+        genre: string;
+    };
+    gitadora: Record<string, never>;
+}
+export interface AnySongDocument extends MongoDBDocument {
     id: integer;
     title: string;
     artist: string;
-    genre: string;
+    /**
+     * Alternative names for this song, to be used while searching.
+     */
     "search-titles": string[];
+    /**
+     * Alternative titles for this song, to be used whenever the song is
+     * requested.
+     */
     "alt-titles": string[];
-    firstAppearance: string;
-    internals: Record<string, unknown>;
+    /**
+     * Contains the versions this song appeared in. This is used for
+     * disambiguation in some games.
+     */
+    version: string[];
+}
+export interface SongDocument<G extends Game> extends MongoDBDocument {
+    data: SongDocumentData[G];
 }
 export interface FolderDocument extends MongoDBDocument {
     title: string;

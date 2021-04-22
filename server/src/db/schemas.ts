@@ -374,6 +374,38 @@ export const PRUDENCE_CHART_SCHEMAS: Record<Game, PrudenceSchema> = {
     }),
 };
 
+const PRUDENCE_SONG_BASE: PrudenceSchema = {
+    id: p.isPositiveInteger,
+    title: "string",
+    artist: "string",
+    isRemoved: "boolean",
+    "search-titles": [p.and("string", (self, parent) => self !== parent.title)],
+    "alt-titles": [p.and("string", (self, parent) => self !== parent.title)],
+    version: ["string"],
+};
+
+function CreatePrSong(data: PrudenceSchema) {
+    return deepmerge(PRUDENCE_SONG_BASE, {
+        data,
+    });
+}
+
+const PRUDENCE_SONG_WITH_GENRE = CreatePrSong({ genre: "string" });
+
+export const PRUDENCE_SONG_SCHEMAS: Record<Game, PrudenceSchema> = {
+    iidx: PRUDENCE_SONG_WITH_GENRE,
+    bms: PRUDENCE_SONG_WITH_GENRE,
+    chunithm: PRUDENCE_SONG_WITH_GENRE,
+    ddr: CreatePrSong({}),
+    gitadora: CreatePrSong({}),
+    jubeat: CreatePrSong({}),
+    maimai: CreatePrSong({ titleJP: "string", artistJP: "string", genre: "string" }),
+    museca: CreatePrSong({ titleJP: "string", artistJP: "string" }),
+    popn: PRUDENCE_SONG_WITH_GENRE,
+    sdvx: CreatePrSong({ uscEquiv: p.isPositiveInteger }),
+    usc: CreatePrSong({ sdvxEquiv: p.isPositiveInteger }),
+};
+
 /**
  * Schemas that are "static", i.e. the content of the document
  * does not depend on fields in the document (such as score docs)
@@ -384,4 +416,5 @@ export const STATIC_SCHEMAS = {
     "iidx-bpi-data": PRUDENCE_IIDX_BPI_DATA,
     counters: PRUDENCE_COUNTER,
     charts: PRUDENCE_CHART_SCHEMAS,
+    songs: PRUDENCE_SONG_SCHEMAS,
 };

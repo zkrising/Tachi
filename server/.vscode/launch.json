@@ -6,18 +6,25 @@
     "configurations": [
         {
             "type": "node",
+            "request": "attach",
+            "name": "Attach to tap",
+        },
+        {
+            "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Run Server",
             "preLaunchTask": "npm: build",
             "env": {
                 "NODE_ENV": "dev"
             },
             "program": "${workspaceFolder}/src/main.ts",
-            "outFiles": ["${workspaceFolder}/js/**/*.js"],
+            "outFiles": [
+                "${workspaceFolder}/js/**/*.js"
+            ],
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "outputCapture": "std"
-        }
+        },
     ]
 }

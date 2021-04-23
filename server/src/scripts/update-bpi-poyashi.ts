@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import { Command } from "commander";
 import fs from "fs";
 import path from "path";
-import { config, Difficulties, ESDCore, IIDXBPIData } from "kamaitachi-common";
+import { config, Difficulties, ESDCore, IIDXBPIData, ChartDocument } from "kamaitachi-common";
 import { FindSongOnTitleVersion } from "../score-import/database-lookup/song-title";
 import { FindChartWithPTDF } from "../score-import/database-lookup/chart-ptdf";
 import db from "../db/db";
@@ -57,18 +57,18 @@ async function UpdatePoyashiData() {
 
         const [playtype, diff] = res;
 
-        let ktchiSong = await FindSongOnTitleVersion("iidx", d.title, 28);
+        let ktchiSong = await FindSongOnTitleVersion("iidx", d.title, "28");
 
         if (!ktchiSong) {
             throw new Error(`Cannot find song ${d.title}?`);
         }
 
-        let ktchiChart = await FindChartWithPTDF(
+        let ktchiChart = (await FindChartWithPTDF(
             "iidx",
             ktchiSong.id,
             playtype as "SP" | "DP",
             diff as Difficulties["iidx:DP" | "iidx:SP"]
-        );
+        )) as ChartDocument<"iidx:SP" | "iidx:DP">;
 
         if (!ktchiChart) {
             throw new Error(
@@ -80,7 +80,7 @@ async function UpdatePoyashiData() {
 
         let kesd = ESDCore.CalculateESD(
             config.judgementWindows.iidx.SP,
-            kavg / (ktchiChart.notedata.notecount * 2)
+            kavg / (ktchiChart.data.notecount * 2)
         );
 
         realData.push({

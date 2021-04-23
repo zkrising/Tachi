@@ -32,7 +32,6 @@ function ConvertFn(c: any): ScoreDocument | null {
         userID: c.userID,
         songID: c.songID,
         playtype: c.scoreData.playtype,
-        difficulty: c.scoreData.difficulty,
         chartID: c.chartID,
         game: c.game,
         timeAdded: c.timeAdded,

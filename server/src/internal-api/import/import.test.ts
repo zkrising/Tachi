@@ -11,6 +11,7 @@ import { GetUnsuccessfulScores } from "../../test-utils/score-import-utils";
 
 t.test("POST /internal-api/import/file", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
+
     t.beforeEach(ResetDBState);
 
     RequireNeutralAuthentication("/internal-api/import/file", "POST");
@@ -24,9 +25,15 @@ t.test("POST /internal-api/import/file", async (t) => {
                 .field("importType", "csv:eamusement-iidx")
                 .field("playtype", "SP");
 
+            rootLogger.info("foo");
+
             t.equal(res.body.success, true, "Should be successful.");
 
+            rootLogger.info("bar");
+
             t.equal(GetUnsuccessfulScores(res.body.body), 0, "Should have 0 failed scores.");
+
+            rootLogger.info("baz");
 
             t.end();
         });

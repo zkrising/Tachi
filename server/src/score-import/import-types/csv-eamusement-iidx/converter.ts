@@ -1,4 +1,4 @@
-import { config, ESDCore, Lamps, AnySongDocument } from "kamaitachi-common";
+import { config, ESDCore, Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
 import { Logger } from "winston";
 import { DryScore, ConverterFunction, ConverterFnReturn } from "../../../types";
 import { FindChartWithPTDF } from "../../database-lookup/chart-ptdf";
@@ -46,12 +46,12 @@ async function EamScoreConverter(
         return null;
     }
 
-    let ktchiChart = await FindChartWithPTDF(
+    let ktchiChart = (await FindChartWithPTDF(
         "iidx",
         ktchiSong.id,
         context.playtype,
         eamScore.difficulty
-    );
+    )) as ChartDocument<"iidx:SP" | "iidx:DP">;
 
     if (!ktchiChart) {
         throw new KTDataNotFoundFailure(
@@ -67,9 +67,9 @@ async function EamScoreConverter(
         `${HUMANISED_SONG_TITLE} - Invalid EX score of ${eamScore.exscore}`
     );
 
-    if (exscore > ktchiChart.notedata.notecount) {
+    if (exscore > ktchiChart.data.notecount) {
         throw new InvalidScoreFailure(
-            `${HUMANISED_SONG_TITLE} - Invalid EX Score of ${eamScore.exscore} (Was greater than chart notecount of ${ktchiChart.notedata.notecount}).`
+            `${HUMANISED_SONG_TITLE} - Invalid EX Score of ${eamScore.exscore} (Was greater than chart notecount of ${ktchiChart.data.notecount}).`
         );
     }
 
@@ -92,7 +92,7 @@ async function EamScoreConverter(
         );
     }
 
-    const percent = (100 * exscore) / ktchiChart.notedata.notecount;
+    const percent = (100 * exscore) / ktchiChart.data.notecount;
     const grade = GetGradeFromPercent<"iidx:SP" | "iidx:DP">("iidx", percent);
 
     if (!grade) {

@@ -252,7 +252,7 @@ function ParseEamusementCSV(
 
     let context: IIDXEamusementCSVContext = {
         playtype,
-        importVersion: version,
+        importVersion: version.toString(), // converts 4 -> "4", as thats what we happen to use for vernames
         hasBeginnerAndLegg,
         serviceOrigin: "e-amusement",
     };

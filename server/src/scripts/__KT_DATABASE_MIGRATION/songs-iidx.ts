@@ -10,8 +10,10 @@ function ConvertFn(c: any): SongDocument<"iidx"> {
         artist: c.artist,
         id: c.id,
         isRemoved: false, // NOT REALLY
-        "alt-titles": c["alt-titles"],
-        "search-titles": c["search-titles"],
+        "alt-titles": c["alt-titles"].filter((e: string) => e !== c.title),
+        "search-titles": c["search-titles"]
+            .map((e: string) => e.toString())
+            .filter((e: string) => e !== c.title),
         version: [], // sentinel
         data: {
             genre: c.genre,

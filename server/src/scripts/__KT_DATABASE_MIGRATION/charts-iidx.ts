@@ -12,7 +12,7 @@ function ConvertFn(c: any): ChartDocument<"iidx:SP" | "iidx:DP"> {
         playtype: c.playtype,
         levelNum: c.levelNum,
         isRemoved: false,
-        level: c.level,
+        level: c.level.toString(),
         length: c.length,
         bpmString: "", // sentinel
         flags: {

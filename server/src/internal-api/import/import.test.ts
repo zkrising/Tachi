@@ -6,6 +6,7 @@ import { RequireNeutralAuthentication } from "../../test-utils/api-common";
 import { CreateFakeAuthCookie } from "../../test-utils/fake-session";
 import ResetDBState from "../../test-utils/reset-db-state";
 import { rootLogger } from "../../logger";
+import dump from "why-is-node-running";
 import { GetUnsuccessfulScores } from "../../test-utils/score-import-utils";
 
 t.test("POST /internal-api/import/file", async (t) => {
@@ -52,3 +53,7 @@ t.test("POST /internal-api/import/file", async (t) => {
 });
 
 t.teardown(CloseAllConnections);
+
+setTimeout(() => {
+    dump();
+}, 10000);

@@ -38,13 +38,18 @@ if (process.env.NODE_ENV !== "test") {
 
 export let monkDB = monk(url);
 
-if (process.env.NODE_ENV !== "test") {
-    monkDB.then(() => {
-        let time = process.hrtime(dbtime);
-        let elapsed = time[0] + time[1] / 1000000;
-        logger.info(`Database connection successful: took ${elapsed}ms`);
+monkDB
+    .then(() => {
+        if (process.env.NODE_ENV !== "test") {
+            let time = process.hrtime(dbtime);
+            let elapsed = time[0] + time[1] / 1000000;
+            logger.info(`Database connection successful: took ${elapsed}ms`);
+        }
+    })
+    .catch((err) => {
+        logger.crit(err);
+        process.exit(1);
     });
-}
 
 export async function ReopenMongoConnection() {
     monkDB = monk(url);

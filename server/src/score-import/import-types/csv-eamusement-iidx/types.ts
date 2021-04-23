@@ -30,7 +30,7 @@ export type RawIIDXEamusementCSVData = {
 
 export interface IIDXEamusementCSVContext {
     playtype: "SP" | "DP";
-    importVersion: integer;
+    importVersion: string;
     hasBeginnerAndLegg: boolean;
     serviceOrigin: string;
 }

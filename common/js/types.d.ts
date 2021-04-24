@@ -663,6 +663,7 @@ export interface AnySongDocument extends MongoDBDocument {
     title: string;
     artist: string;
     isAvailable: boolean;
+    firstVersion: string | null;
     /**
      * Alternative names for this song, to be used while searching.
      */
@@ -676,7 +677,7 @@ export interface AnySongDocument extends MongoDBDocument {
      * Contains the versions this song appeared in. This is used for
      * disambiguation in some games.
      */
-    version: string[];
+    versions: string[];
 }
 export interface SongDocument<G extends Game> extends AnySongDocument {
     data: SongDocumentData[G];

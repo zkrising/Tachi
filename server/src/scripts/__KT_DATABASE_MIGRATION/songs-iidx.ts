@@ -9,12 +9,13 @@ function ConvertFn(c: any): SongDocument<"iidx"> {
         title: c.title,
         artist: c.artist,
         id: c.id,
-        isRemoved: false, // NOT REALLY
+        isAvailable: true, // NOT NECESSARILY
+        firstVersion: c.firstAppearance,
         "alt-titles": c["alt-titles"].filter((e: string) => e !== c.title),
         "search-titles": c["search-titles"]
             .map((e: string) => e.toString())
             .filter((e: string) => e !== c.title),
-        version: [], // sentinel
+        versions: [], // sentinel
         data: {
             genre: c.genre,
         },
@@ -24,9 +25,9 @@ function ConvertFn(c: any): SongDocument<"iidx"> {
 
     if (idx === -1) {
         rootLogger.warn(`Invalid firstAppearance of ${c.firstAppearance}, running anyway.`);
-        newSongDoc.version = [c.firstAppearance];
+        newSongDoc.versions = [c.firstAppearance];
     } else {
-        newSongDoc.version = gameOrders.iidx.slice(idx);
+        newSongDoc.versions = gameOrders.iidx.slice(idx);
     }
 
     return newSongDoc;

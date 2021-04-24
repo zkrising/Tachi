@@ -1080,7 +1080,7 @@ export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBD
     importType: ImportTypes | null;
 }
 
-export type FileUploadImportTypes = "file:csv:eamusement-iidx";
+export type FileUploadImportTypes = "file/csv:eamusement-iidx";
 
 export type ImportTypes = FileUploadImportTypes;
 

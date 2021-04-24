@@ -632,6 +632,17 @@ interface SongDocumentData {
     iidx: {
         genre: string;
     };
+    museca: {
+        titleJP: string;
+        artistJP: string;
+    };
+    maimai: {
+        titleJP: string;
+        artistJP: string;
+        genre: string;
+    };
+    jubeat: Record<string, never>;
+    popn: Record<string, never>;
     sdvx: {
         uscEquiv: integer | null;
     };
@@ -639,16 +650,6 @@ interface SongDocumentData {
         sdvxEquiv: integer | null;
     };
     ddr: Record<string, never>;
-    maimai: {
-        titleJP: string;
-        artistJP: string;
-        genre: string;
-    };
-    jubeat: Record<string, never>;
-    museca: {
-        titleJP: string;
-        artistJP: string;
-    };
     bms: {
         genre: string;
     };

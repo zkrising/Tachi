@@ -30,6 +30,7 @@ t.test("POST /internal-api/import/file", async (t) => {
 
     t.test("csv:eamusement-iidx", (t) => {
         t.beforeEach(LoadKTBlackSongsIIDX);
+
         t.test("Valid Rootage CSV import", async (t) => {
             let res = await mockApi
                 .post("/internal-api/import/file")
@@ -38,15 +39,9 @@ t.test("POST /internal-api/import/file", async (t) => {
                 .field("importType", "csv:eamusement-iidx")
                 .field("playtype", "SP");
 
-            rootLogger.info("foo");
-
             t.equal(res.body.success, true, "Should be successful.");
 
-            rootLogger.info("bar");
-
             t.equal(GetUnsuccessfulScores(res.body.body), 0, "Should have 0 failed scores.");
-
-            rootLogger.info("baz");
 
             t.end();
         });

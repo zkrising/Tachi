@@ -632,9 +632,6 @@ interface SongDocumentData {
     iidx: {
         genre: string;
     };
-    popn: {
-        genre: string;
-    };
     sdvx: {
         uscEquiv: integer | null;
     };
@@ -664,7 +661,7 @@ export interface AnySongDocument extends MongoDBDocument {
     id: integer;
     title: string;
     artist: string;
-    isRemoved: boolean;
+    isAvailable: boolean;
     /**
      * Alternative names for this song, to be used while searching.
      */

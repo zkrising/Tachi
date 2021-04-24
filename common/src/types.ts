@@ -815,13 +815,13 @@ export interface TierlistV2DataDocument<F extends string> extends MongoDBDocumen
 
 interface SongDocumentData {
     iidx: { genre: string };
-    popn: { genre: string };
+    museca: { titleJP: string; artistJP: string };
+    maimai: { titleJP: string; artistJP: string; genre: string };
+    jubeat: Record<string, never>;
+    popn: Record<string, never>;
     sdvx: { uscEquiv: integer | null };
     usc: { sdvxEquiv: integer | null };
     ddr: Record<string, never>;
-    maimai: { titleJP: string; artistJP: string; genre: string };
-    jubeat: Record<string, never>;
-    museca: { titleJP: string; artistJP: string };
     bms: { genre: string };
     chunithm: { genre: string };
     gitadora: Record<string, never>;
@@ -831,7 +831,7 @@ export interface AnySongDocument extends MongoDBDocument {
     id: integer;
     title: string;
     artist: string;
-    isRemoved: boolean;
+    isAvailable: boolean;
     /**
      * Alternative names for this song, to be used while searching.
      */

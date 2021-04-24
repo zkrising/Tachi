@@ -16,8 +16,9 @@ export function FindSongOnTitleVersion<G extends Game>(
     title: string,
     version: string
 ): Promise<FindOneResult<AnySongDocument>> {
+    // @PERF: Performance should be tested here by having a utility field for all-titles.
     return db.songs[game].findOne({
-        "data.version": version,
+        versions: version,
         $or: [
             {
                 title: title,

@@ -1,5 +1,5 @@
 import { ImportTypes } from "kamaitachi-common";
-import iidxEamusementCsv from "./csv-eamusement-iidx/converter";
+import iidxEamusementCsv from "./file/csv-eamusement-iidx/converter";
 
 /**
  * Converters are a set of functions designed to convert an element
@@ -9,7 +9,7 @@ import iidxEamusementCsv from "./csv-eamusement-iidx/converter";
  * score records, so these functions MAY return an array of their traditional values.
  */
 export const Converters = {
-    "csv:eamusement-iidx": iidxEamusementCsv,
+    "file/csv:eamusement-iidx": iidxEamusementCsv,
 };
 
 /**

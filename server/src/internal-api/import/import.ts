@@ -10,7 +10,7 @@ import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/core/score-import-error";
 import ScoreImportMain from "../../score-import/framework/score-import-main";
-import ParseEamusementCSV from "../../score-import/import-types/csv-eamusement-iidx/parser";
+import ParseEamusementCSV from "../../score-import/import-types/file/csv-eamusement-iidx/parser";
 
 const logger = CreateLogCtx("import.ts");
 
@@ -124,7 +124,7 @@ export function ResolveFileUploadData(
     logger: Logger
 ) {
     switch (importType) {
-        case "csv:eamusement-iidx":
+        case "file/csv:eamusement-iidx":
             return ParseEamusementCSV(fileData, body, logger);
         default:
             logger.error(

@@ -7,8 +7,6 @@ const logger = CreateLogCtx("fake-session.ts");
 export async function CreateFakeAuthCookie(mockApi: supertest.SuperTest<supertest.Test>) {
     await ResetDBState();
 
-    rootLogger.info("?");
-
     // possible security issue, ask hazel
     let res = await mockApi.post("/internal-api/auth/login").send({
         username: "test_zkldi",

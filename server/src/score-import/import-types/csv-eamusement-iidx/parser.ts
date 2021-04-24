@@ -232,7 +232,7 @@ function ParseEamusementCSV(
     if (
         !body.assertPlaytypeCorrect &&
         ((lowercaseFilename.includes("sp") && playtype === "DP") ||
-            (lowercaseFilename.toLowerCase().includes("dp") && playtype === "SP"))
+            (lowercaseFilename.includes("dp") && playtype === "SP"))
     ) {
         logger.info(
             `File was uploaded with filename ${fileData.filename}, but this was set as a ${playtype} import. Sanity check refusing.`
@@ -240,7 +240,7 @@ function ParseEamusementCSV(
 
         throw new ScoreImportFatalError(
             400,
-            `Safety: Filename contained '${
+            `Safety Triggered: Filename contained '${
                 playtype === "SP" ? "DP" : "SP"
             }', but was marked as a ${playtype} import. Are you *absolutely* sure this is right?`
         );

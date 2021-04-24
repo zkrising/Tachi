@@ -60,7 +60,3 @@ t.test("POST /internal-api/import/file", async (t) => {
 });
 
 t.teardown(CloseAllConnections);
-
-setTimeout(() => {
-    dump();
-}, 10000);

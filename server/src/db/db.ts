@@ -27,14 +27,15 @@ import CreateLogCtx from "../logger";
 
 const logger = CreateLogCtx("db.ts");
 
-const url =
-    process.env.NODE_ENV === "test" ? "localhost:27017/testingdb" : "localhost:27017/ktblackdb";
+const base = process.env.MONGO_URL_BASE ?? "127.0.0.1";
+
+const url = process.env.NODE_ENV === "test" ? `${base}:27017/testingdb` : `${base}:27017/ktblackdb`;
 
 let dbtime: [number, number] = [0, 0];
-if (process.env.NODE_ENV !== "test") {
-    logger.info(`Connecting to database ${url}...`);
-    dbtime = process.hrtime();
-}
+// if (process.env.NODE_ENV !== "test") {
+logger.info(`Connecting to database ${url}...`);
+dbtime = process.hrtime();
+// }
 
 export let monkDB = monk(url);
 

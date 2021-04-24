@@ -9,9 +9,7 @@
             "request": "launch",
             "name": "Run Server",
             "preLaunchTask": "npm: build",
-            "env": {
-                "NODE_ENV": "dev"
-            },
+            "envFile": "${workspaceFolder}/.env",
             "program": "${workspaceFolder}/src/main.ts",
             "outFiles": [
                 "${workspaceFolder}/js/**/*.js"

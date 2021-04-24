@@ -25,13 +25,8 @@
         },
         {
             "label": "runWithTsnode",
-            "options": {
-                "env": {
-                    "MONGO_BASE_URL": "192.168.0.13"
-                }
-            },
             "type": "shell",
-            "command": "ts-node",
+            "command": "export $(xargs < .env) && ts-node",
             "args": [
                 "${relativeFile}"
             ],

@@ -4,11 +4,11 @@
     "description": "The server for Kamaitachi Black",
     "main": "js/index.js",
     "scripts": {
-        "fulltest": "tap",
-        "watchtest": "tap --watch",
+        "fulltest": "export $(xargs < .env) && tap",
+        "watchtest": "export $(xargs < .env) && tap --watch",
         "build": "tsc --project tsconfig.build.json",
         "lint": "eslint ./src --ext .ts --fix",
-        "devrun": "tsc --project tsconfig.build.json && export NODE_ENV=\"dev\" && node js/main.js"
+        "devrun": "tsc --project tsconfig.build.json && node -r dotenv/config js/main.js"
     },
     "author": "zkldi",
     "license": "ISC",

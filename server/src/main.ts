@@ -17,7 +17,7 @@ import serverConfig from "./server-config";
 
 const logger = CreateLogCtx("main.ts");
 
-logger.info(`Booting Kamaitachi BLACK - ${FormatVersion()}`);
+logger.info(`Booting Kamaitachi BLACK - ${FormatVersion()} [ENV: ${process.env.NODE_ENV}]`);
 
 server.listen(serverConfig.PORT);
 logger.info(`Listening on ${serverConfig.PORT}`);

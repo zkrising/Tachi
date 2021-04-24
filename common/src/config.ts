@@ -12,8 +12,9 @@ import {
     AnyChartDocument,
 } from "./types";
 
-export const importTypes: ImportTypes[] = ["csv:eamusement-iidx"];
-export const fileImportTypes: FileUploadImportTypes[] = ["csv:eamusement-iidx"];
+export const fileImportTypes: FileUploadImportTypes[] = ["file:csv:eamusement-iidx"];
+
+export const importTypes: ImportTypes[] = [...fileImportTypes];
 
 export const supportedGames: Game[] = [
     "iidx",

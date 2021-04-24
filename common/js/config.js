@@ -5,7 +5,7 @@
 // It's,, alright, but I like the versatility it brings.
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.gamePercentMax = exports.FormatDifficulty = exports.PercentToScore = exports.CalculateScore = exports.AbsoluteScoreGradeDelta = exports.ScoreGradeDelta = exports.supportsESD = exports.DirectScoreGradeDelta = exports.ratingParameters = exports.gameChartIndicators = exports.judgeColours = exports.lampColours = exports.gradeColours = exports.COLOUR_SET = exports.judgementWindows = exports.clearGrade = exports.clearLamp = exports.lamps = exports.expChartScale = exports.boundaryHCF = exports.gradeBoundaries = exports.grades = exports.validPlaytypes = exports.humaniseGame = exports.defaultDifficulty = exports.defaultPlaytype = exports.gameOrders = exports.versionHuman = exports.gameHuman = exports.gameRelevantScoreBucket = exports.gameColours = exports.validScoreMeta = exports.validHitMeta = exports.BASE_VALID_HIT_META = exports.validHitData = exports.folderTables = exports.defaultTable = exports.validDifficulties = exports.gameSpecificCalcDescriptions = exports.gameSpecificCalc = exports.supportedGames = exports.importTypes = exports.fileImportTypes = void 0;
-exports.fileImportTypes = ["file:csv:eamusement-iidx"];
+exports.fileImportTypes = ["file/csv:eamusement-iidx"];
 exports.importTypes = [...exports.fileImportTypes];
 exports.supportedGames = [
     "iidx",

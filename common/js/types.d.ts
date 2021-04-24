@@ -858,7 +858,7 @@ export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBD
     scoreID: string;
     importType: ImportTypes | null;
 }
-export declare type FileUploadImportTypes = "file:csv:eamusement-iidx";
+export declare type FileUploadImportTypes = "file/csv:eamusement-iidx";
 export declare type ImportTypes = FileUploadImportTypes;
 export interface ImportProcessInfoKTDataNotFound {
     success: false;

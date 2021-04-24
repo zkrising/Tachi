@@ -12,6 +12,7 @@ export default async function MigrateRecords(
     HandlerFN: (c: unknown) => unknown
 ) {
     let existingRecords = await existingCollection.count({});
+    logger.info(`Starting migration for ${collectionName}...`);
 
     if (existingRecords > 0) {
         logger.error(`${existingRecords} documents already exist in db, terminating.`);

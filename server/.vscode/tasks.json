@@ -1,6 +1,6 @@
 {
-	"version": "2.0.0",
-	"tasks": [
+    "version": "2.0.0",
+    "tasks": [
         {
             "type": "npm",
             "script": "devrun",
@@ -25,10 +25,15 @@
         },
         {
             "label": "runWithTsnode",
+            "options": {
+                "env": {
+                    "MONGO_BASE_URL": "192.168.0.13"
+                }
+            },
             "type": "shell",
             "command": "ts-node",
             "args": [
-                    "${relativeFile}"
+                "${relativeFile}"
             ],
             "group": "test",
             "presentation": {

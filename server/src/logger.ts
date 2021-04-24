@@ -25,13 +25,21 @@ const formatExcessProperties = (meta: Record<string, unknown>) => {
     return ` ${JSON.stringify(meta)}`;
 };
 
-const formatExcessPropertiesNoStack = (meta: Record<string, unknown>) => {
+const formatExcessPropertiesNoStack = (meta: Record<string, unknown>, omitKeys: string[] = []) => {
     let i = 0;
+    let realMeta: Record<string, unknown> = {};
+
     for (const key in meta) {
+        if (omitKeys.includes(key)) {
+            continue;
+        }
+
         const val = meta[key];
 
         if (val instanceof Error) {
-            meta[key] = { message: val.message };
+            realMeta[key] = { message: val.message };
+        } else {
+            realMeta[key] = val;
         }
         i++;
     }
@@ -40,7 +48,7 @@ const formatExcessPropertiesNoStack = (meta: Record<string, unknown>) => {
         return "";
     }
 
-    return ` ${JSON.stringify(meta)}`;
+    return ` ${JSON.stringify(realMeta)}`;
 };
 
 const ktblackPrintf = format.printf(
@@ -51,10 +59,10 @@ const ktblackPrintf = format.printf(
 );
 
 const ktblackConsolePrintf = format.printf(
-    ({ level, message, context = "ktblack-root", timestamp, ...meta }) =>
+    ({ level, message, context = "ktblack-root", timestamp, hideFromConsole, ...meta }) =>
         `${timestamp} [${
             Array.isArray(context) ? context.join(" | ") : context
-        }] ${level}: ${message}${formatExcessPropertiesNoStack(meta)}`
+        }] ${level}: ${message}${formatExcessPropertiesNoStack(meta, hideFromConsole)}`
 );
 
 winston.addColors({
@@ -80,7 +88,7 @@ const defaultFormatRoute = format.combine(
 );
 
 const consoleFormatRoute = format.combine(
-    defaultFormatRoute,
+    baseFormatRoute,
     format.errors({ stack: false }),
     ktblackConsolePrintf,
     format.colorize({

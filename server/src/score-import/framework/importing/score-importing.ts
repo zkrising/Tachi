@@ -166,6 +166,10 @@ async function ImportFromConverterReturn(
 
     // if this conversion failed, return it in the proper format
     if (cfnReturn instanceof ConverterFailure) {
+        logger.warn(`ConverterFailure: ${cfnReturn.message ?? "No message?"}`, {
+            cfnReturn,
+            hideFromConsole: ["cfnReturn"],
+        });
         if (cfnReturn instanceof KTDataNotFoundFailure) {
             return {
                 success: false,
@@ -212,6 +216,8 @@ async function ImportFromConverterReturn(
     if (result === null) {
         return null;
     }
+
+    logger.verbose(`Successfully imported score: ${result.scoreID}`);
 
     return {
         success: true,

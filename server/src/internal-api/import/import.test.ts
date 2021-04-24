@@ -28,7 +28,7 @@ t.test("POST /internal-api/import/file", async (t) => {
 
     RequireNeutralAuthentication("/internal-api/import/file", "POST");
 
-    t.test("csv:eamusement-iidx", (t) => {
+    t.test("file/csv:eamusement-iidx", (t) => {
         t.beforeEach(LoadKTBlackSongsIIDX);
 
         t.test("Valid Rootage CSV import", async (t) => {
@@ -36,7 +36,7 @@ t.test("POST /internal-api/import/file", async (t) => {
                 .post("/internal-api/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV26, "my_csv.csv")
-                .field("importType", "csv:eamusement-iidx")
+                .field("importType", "file/csv:eamusement-iidx")
                 .field("playtype", "SP");
 
             t.equal(res.body.success, true, "Should be successful.");
@@ -51,7 +51,7 @@ t.test("POST /internal-api/import/file", async (t) => {
                 .post("/internal-api/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV27, "my_csv.csv")
-                .field("importType", "csv:eamusement-iidx")
+                .field("importType", "file/csv:eamusement-iidx")
                 .field("playtype", "SP");
 
             t.equal(res.body.success, true, "Should be successful.");

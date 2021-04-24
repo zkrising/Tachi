@@ -27,7 +27,7 @@ import CreateLogCtx from "../logger";
 
 const logger = CreateLogCtx("db.ts");
 
-const base = process.env.MONGO_URL_BASE ?? "127.0.0.1";
+const base = process.env.MONGO_BASE_URL ?? "127.0.0.1";
 
 const url = process.env.NODE_ENV === "test" ? `${base}:27017/testingdb` : `${base}:27017/ktblackdb`;
 

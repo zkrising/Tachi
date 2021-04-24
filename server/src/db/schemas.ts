@@ -331,7 +331,7 @@ const PRUDENCE_CHART_BASE: PrudenceSchema = {
     levelNum: p.isPositive,
     length: "?string",
     bpmString: "?string",
-    isRemoved: "boolean",
+    isAvailable: "boolean",
 };
 
 function CreatePrChart(game: Game, flags: string[], data: PrudenceSchema) {

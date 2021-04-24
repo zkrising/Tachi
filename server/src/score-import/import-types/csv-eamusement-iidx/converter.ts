@@ -207,7 +207,7 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
     let ktchiSong = await FindSongOnTitleVersion("iidx", data.title, context.importVersion);
 
     if (!ktchiSong) {
-        // logger.warn(`Could not find song for ${data.title}.`);
+        logger.warn(`Could not find song for ${data.title}.`);
         return new KTDataNotFoundFailure(data.title, "csv:eamusement-iidx", data, context);
     }
 

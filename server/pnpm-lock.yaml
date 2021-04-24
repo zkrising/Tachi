@@ -21,6 +21,7 @@ specifiers:
   connect-redis: ^5.1.0
   csv-parse: ^4.15.3
   deepmerge: ^4.2.2
+  dotenv: ^8.2.0
   escape-string-regexp: ^1.0.5
   eslint: ^7.23.0
   eslint-config-prettier: ^8.1.0
@@ -56,12 +57,13 @@ dependencies:
   connect-redis: 5.1.0
   csv-parse: 4.15.4
   deepmerge: 4.2.2
+  dotenv: 8.2.0
   escape-string-regexp: 1.0.5
   express: 4.17.1
   express-async-errors: 3.1.1_express@4.17.1
   express-session: 1.17.1
   fast-json-stable-hash: 1.0.1
-  kamaitachi-common: github.com/zkldi/Kamaitachi-common/cc4d90ae418e552459ac8c501f8fc75222639148
+  kamaitachi-common: github.com/zkldi/Kamaitachi-common/b67531f6936bb38411b2ce0f027f7d042e61d3b3
   mongodb: 3.6.6
   monk: 7.3.4
   multer: 1.4.2
@@ -1498,6 +1500,11 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dotenv/8.2.0:
+    resolution: {integrity: sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==}
+    engines: {node: '>=8'}
+    dev: false
 
   /double-ended-queue/2.1.0-0:
     resolution: {integrity: sha1-ED01J/0xUo9AGIEwyEHv3XgmTlw=}
@@ -4601,8 +4608,8 @@ packages:
       '@types/yoga-layout': 1.9.2
     dev: true
 
-  github.com/zkldi/Kamaitachi-common/cc4d90ae418e552459ac8c501f8fc75222639148:
-    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/cc4d90ae418e552459ac8c501f8fc75222639148}
+  github.com/zkldi/Kamaitachi-common/b67531f6936bb38411b2ce0f027f7d042e61d3b3:
+    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/b67531f6936bb38411b2ce0f027f7d042e61d3b3}
     name: kamaitachi-common
     version: 0.1.0
     dependencies:

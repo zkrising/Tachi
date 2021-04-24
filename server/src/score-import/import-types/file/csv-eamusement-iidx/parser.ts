@@ -1,7 +1,7 @@
 import { Difficulties } from "kamaitachi-common";
 import { Logger } from "winston";
-import { ParserFunctionReturnsSync } from "../../../types";
-import ScoreImportFatalError from "../../framework/core/score-import-error";
+import { ParserFunctionReturnsSync } from "../../../../types";
+import ScoreImportFatalError from "../../../framework/core/score-import-error";
 import ConverterFn from "./converter";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 
@@ -182,7 +182,7 @@ function NaiveCSVParse(csvBuffer: Buffer, logger: Logger) {
             let di = 5 + d * 7;
 
             scores.push({
-                difficulty: (diff.toUpperCase as unknown) as Difficulties["iidx:SP" | "iidx:DP"],
+                difficulty: diff.toUpperCase() as Difficulties["iidx:SP" | "iidx:DP"],
                 bp: cells[di + 4],
                 exscore: cells[di + 1],
                 pgreat: cells[di + 2],

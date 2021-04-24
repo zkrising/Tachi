@@ -6,3 +6,5 @@ src/secrets.ts
 src/scripts/validate-database-errs/*
 .nyc_output
 coverage
+.env
+setenv.sh

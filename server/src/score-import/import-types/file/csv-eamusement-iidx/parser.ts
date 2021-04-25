@@ -159,7 +159,7 @@ function NaiveCSVParse(csvBuffer: Buffer, logger: Logger) {
         }
 
         let version = cells[0];
-        let title = cells[1];
+        let title = cells[1].trim(); // konmai quality
         let timestamp = cells[rawHeaders.length - 1].replace(/\r/g, "");
 
         // wtf typescript?? what's the point of enums?
@@ -171,7 +171,6 @@ function NaiveCSVParse(csvBuffer: Buffer, logger: Logger) {
         }
 
         if (versionNum > gameVersion) {
-            logger.verbose(`Replaced ${version} with ${version} (${versionNum}).`);
             gameVersion = versionNum;
         }
 

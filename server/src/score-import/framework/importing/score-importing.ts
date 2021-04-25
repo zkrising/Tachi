@@ -7,7 +7,7 @@ import {
 } from "kamaitachi-common";
 import { DryScore, ConverterFunction, ConverterFnReturn } from "../../../types";
 import HydrateScore from "../core/hydrate-score";
-import { QueueScoreInsert } from "../core/insert-score";
+import { QueueScoreInsert, ScoreIDs } from "../core/insert-score";
 import {
     ConverterFailure,
     InternalFailure,
@@ -108,6 +108,91 @@ export async function ImportIterableDatapoint<D, C>(
     return ImportFromConverterReturn(userID, converterReturns, logger);
 }
 
+async function ImportFromConverterReturn(
+    userID: integer,
+    cfnReturn: ConverterFnReturn, // a single return, not an array!
+    logger: Logger
+): Promise<ImportProcessingInfo | null> {
+    // null => processing didnt result in a score document, but not an error, no processing needed!
+    if (cfnReturn === null) {
+        return null;
+    }
+
+    // if this conversion failed, return it in the proper format
+    if (cfnReturn instanceof ConverterFailure) {
+        if (cfnReturn instanceof KTDataNotFoundFailure) {
+            logger.warn(`ConverterFailure: ${cfnReturn.message ?? "No message?"}`, {
+                cfnReturn,
+                hideFromConsole: ["cfnReturn"],
+            });
+            return {
+                success: false,
+                type: "KTDataNotFound",
+                message: cfnReturn.message,
+                content: {
+                    context: cfnReturn.converterContext,
+                    data: cfnReturn.data,
+                },
+            };
+        } else if (cfnReturn instanceof InvalidScoreFailure) {
+            logger.warn(`ConverterFailure: ${cfnReturn.message ?? "No message?"}`, {
+                cfnReturn,
+                hideFromConsole: ["cfnReturn"],
+            });
+            return {
+                success: false,
+                type: "InvalidDatapoint",
+                message: cfnReturn.message,
+                content: {},
+            };
+        } else if (cfnReturn instanceof InternalFailure) {
+            logger.warn(`Internal error occured.`, { cfnReturn });
+            return {
+                success: false,
+                type: "InternalError",
+                message: cfnReturn.message,
+                content: {},
+            };
+        } else {
+            logger.warn(`Unknown error returned as ConverterFailure, Ignoring.`, {
+                err: cfnReturn,
+            });
+            return {
+                success: false,
+                type: "InternalError",
+                message: "An internal service error has occured.",
+                content: {},
+            };
+        }
+    }
+
+    let result = await HydrateAndInsertScore(
+        userID,
+        cfnReturn.dryScore,
+        cfnReturn.chart,
+        cfnReturn.song,
+        logger
+    );
+
+    // This used to be a ScoreExists error. However, we never actually care about
+    // handling ScoreExists errors (they're nobodies issue)
+    // so instead, the function will just return null, and we pass that on here.
+    if (result === null) {
+        return null;
+    }
+
+    logger.verbose(`Successfully imported score: ${result.scoreID}`);
+
+    return {
+        success: true,
+        type: "ScoreImported",
+        message: null,
+        content: {
+            score: result,
+        },
+    };
+}
+
 /**
  * Hydrates and inserts a score to the Kamaitachi database.
  * @param userID - The user this score is from.
@@ -144,87 +229,24 @@ async function HydrateAndInsertScore(
     );
 
     if (existingScore) {
+        logger.verbose(`Skipped score with ID ${scoreID}.`);
+        return null;
+    }
+
+    if (ScoreIDs.has(scoreID)) {
+        logger.verbose(`Skipped score with ID ${scoreID}.`);
         return null;
     }
 
     const score = await HydrateScore(userID, dryScore, chart, song, scoreID, logger);
 
-    await QueueScoreInsert(score);
+    let res = await QueueScoreInsert(score);
+
+    // emergency state - this is a last resort for avoiding double-d imports
+    if (res === null) {
+        logger.verbose(`Skipped score with ID ${scoreID} - Race Condition protection triggered.`);
+        return null;
+    }
 
     return score;
-}
-
-async function ImportFromConverterReturn(
-    userID: integer,
-    cfnReturn: ConverterFnReturn, // a single return, not an array!
-    logger: Logger
-): Promise<ImportProcessingInfo | null> {
-    // null => processing didnt result in a score document, but not an error, no processing needed!
-    if (cfnReturn === null) {
-        return null;
-    }
-
-    // if this conversion failed, return it in the proper format
-    if (cfnReturn instanceof ConverterFailure) {
-        logger.warn(`ConverterFailure: ${cfnReturn.message ?? "No message?"}`, {
-            cfnReturn,
-            hideFromConsole: ["cfnReturn"],
-        });
-        if (cfnReturn instanceof KTDataNotFoundFailure) {
-            return {
-                success: false,
-                type: "KTDataNotFound",
-                message: cfnReturn.message,
-                content: {
-                    context: cfnReturn.converterContext,
-                    data: cfnReturn.data,
-                },
-            };
-        } else if (cfnReturn instanceof InvalidScoreFailure) {
-            return {
-                success: false,
-                type: "InvalidDatapoint",
-                message: cfnReturn.message,
-                content: {},
-            };
-        } else if (cfnReturn instanceof InternalFailure) {
-            return {
-                success: false,
-                type: "InternalError",
-                message: cfnReturn.message,
-                content: {},
-            };
-        } else {
-            logger.warn(`Unknown error returned as ConverterFailure, Ignoring.`, {
-                err: cfnReturn,
-            });
-            return null; // lets not crash the entire import, but, this is weird.
-        }
-    }
-
-    let result = await HydrateAndInsertScore(
-        userID,
-        cfnReturn.dryScore,
-        cfnReturn.chart,
-        cfnReturn.song,
-        logger
-    );
-
-    // This used to be a ScoreExists error. However, we never actually care about
-    // handling ScoreExists errors (they're nobodies issue)
-    // so instead, the function will just return null, and we pass that on here.
-    if (result === null) {
-        return null;
-    }
-
-    logger.verbose(`Successfully imported score: ${result.scoreID}`);
-
-    return {
-        success: true,
-        type: "ScoreImported",
-        message: null,
-        content: {
-            score: result,
-        },
-    };
 }

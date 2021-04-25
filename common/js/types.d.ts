@@ -344,7 +344,8 @@ export interface KTBlackImportDocument extends MongoDBDocument {
     timeFinished: number;
     idStrings: IDStrings[];
     importID: string;
-    importInfo: ImportProcessingInfo[];
+    scoreIDs: string[];
+    errors: string[];
     createdSessions: string[];
     importType: ImportTypes;
 }

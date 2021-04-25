@@ -485,7 +485,8 @@ export interface KTBlackImportDocument extends MongoDBDocument {
     // Contains an array of IDStrings, which dictates what (game:playtype)s were involved in this import.
     idStrings: IDStrings[];
     importID: string;
-    importInfo: ImportProcessingInfo[];
+    scoreIDs: string[];
+    errors: string[];
     // For performance reasons, imports only show what sessions they created, rather than what sessions they didn't.
     // This is just an array of sessionIDs, to keep things normalised. May be empty.
     createdSessions: string[];

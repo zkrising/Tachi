@@ -132,6 +132,8 @@ router.post(
             secure: SHOULD_COOKIES_SECURE,
         });
 
+        logger.verbose(`${FormatUserDoc(requestedUser)} Logged in.`);
+
         return res.status(200).json({
             success: true,
             description: `Successfully logged in as ${FormatUserDoc(requestedUser)}`,

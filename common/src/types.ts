@@ -478,6 +478,11 @@ export interface ImportDocument extends MongoDBDocument {
     msPerScore: number;
 }
 
+interface ImportErrContent {
+    type: string;
+    message: string;
+}
+
 export interface KTBlackImportDocument extends MongoDBDocument {
     userID: integer;
     timeStarted: number;
@@ -486,7 +491,7 @@ export interface KTBlackImportDocument extends MongoDBDocument {
     idStrings: IDStrings[];
     importID: string;
     scoreIDs: string[];
-    errors: string[];
+    errors: ImportErrContent[];
     // For performance reasons, imports only show what sessions they created, rather than what sessions they didn't.
     // This is just an array of sessionIDs, to keep things normalised. May be empty.
     createdSessions: string[];

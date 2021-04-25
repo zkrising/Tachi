@@ -338,6 +338,10 @@ export interface ImportDocument extends MongoDBDocument {
     timeTaken: number;
     msPerScore: number;
 }
+interface ImportErrContent {
+    type: string;
+    message: string;
+}
 export interface KTBlackImportDocument extends MongoDBDocument {
     userID: integer;
     timeStarted: number;
@@ -345,7 +349,7 @@ export interface KTBlackImportDocument extends MongoDBDocument {
     idStrings: IDStrings[];
     importID: string;
     scoreIDs: string[];
-    errors: string[];
+    errors: ImportErrContent[];
     createdSessions: string[];
     importType: ImportTypes;
 }

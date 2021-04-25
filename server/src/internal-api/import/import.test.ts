@@ -11,7 +11,6 @@ import { RequireNeutralAuthentication } from "../../test-utils/api-common";
 import { CreateFakeAuthCookie } from "../../test-utils/fake-session";
 import ResetDBState from "../../test-utils/reset-db-state";
 import { rootLogger } from "../../logger";
-import { GetUnsuccessfulScores } from "../../test-utils/score-import-utils";
 import db from "../../db/db";
 
 async function LoadKTBlackIIDXData() {
@@ -49,13 +48,9 @@ t.test("POST /internal-api/import/file", async (t) => {
 
             t.equal(res.body.success, true, "Should be successful.");
 
-            t.equal(
-                GetUnsuccessfulScores(res.body.body),
-                0,
-                "Mini HV Import Should have 0 failed scores."
-            );
+            t.equal(res.body.body.errors.length, 0, "Mini HV Import Should have 0 failed scores.");
 
-            t.equal(res.body.body.importInfo.length, 2, "Should have 2 successful scores.");
+            t.equal(res.body.body.scoreIDs.length, 2, "Should have 2 successful scores.");
 
             t.end();
         });
@@ -70,12 +65,12 @@ t.test("POST /internal-api/import/file", async (t) => {
 
             t.equal(res.body.success, true, "Should be successful.");
 
-            t.equal(GetUnsuccessfulScores(res.body.body), 0, "Should have 0 failed scores.");
+            t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
             t.end();
         });
 
-        t.skip("Valid Heroic Verse CSV import", async (t) => {
+        t.test("Valid Heroic Verse CSV import", async (t) => {
             let res = await mockApi
                 .post("/internal-api/import/file")
                 .set("Cookie", cookie)
@@ -85,7 +80,7 @@ t.test("POST /internal-api/import/file", async (t) => {
 
             t.equal(res.body.success, true, "Should be successful.");
 
-            t.equal(GetUnsuccessfulScores(res.body.body), 0, "Should have 0 failed scores.");
+            t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
             t.end();
         });

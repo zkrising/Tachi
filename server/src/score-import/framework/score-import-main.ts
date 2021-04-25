@@ -35,11 +35,23 @@ export default async function ScoreImportMain<D, C>(
     // Construct sessions from successful scores
     // @todo
 
+    let scoreIDs = [];
+    let errors = [];
+
+    for (const info of importInfo) {
+        if (info.success) {
+            scoreIDs.push(info.content.score.scoreID);
+        } else {
+            errors.push({ type: info.type, message: info.message });
+        }
+    }
+
     // Create import document
     const ImportDocument: KTBlackImportDocument = {
         importType,
         idStrings: idStrings,
-        importInfo,
+        scoreIDs,
+        errors,
         importID,
         timeFinished: Date.now(),
         timeStarted,
@@ -50,7 +62,9 @@ export default async function ScoreImportMain<D, C>(
     logger.info(
         `Import took: ${ImportDocument.timeFinished - timeStarted}ms, with ${
             importInfo.length
-        } documents. Aprx ${(ImportDocument.timeFinished - timeStarted) / importInfo.length}ms/doc`
+        } documents (Fails: ${errors.length}, Successes: ${scoreIDs.length}). Aprx ${
+            (ImportDocument.timeFinished - timeStarted) / importInfo.length
+        }ms/doc`
     );
 
     // Add this to the imports database

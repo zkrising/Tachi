@@ -5,7 +5,7 @@ import CreateLogCtx from "../../../logger";
 const logger = CreateLogCtx("insert-score.ts");
 let ScoreQueue: ScoreDocument[] = [];
 export let ScoreIDs: Set<string> = new Set();
-const MAX_PIPELINE_LENGTH = 10;
+const MAX_PIPELINE_LENGTH = 500;
 
 /**
  * Adds a score to a queue to be inserted in batch to the database.

@@ -27,7 +27,10 @@ export default async function ScoreImportMain<D, C>(
 
     // Empty anything in the score queue
     let emptied = await InsertQueue();
-    logger.verbose(`Emptied ${emptied} documents from score queue`);
+
+    if (emptied) {
+        logger.verbose(`Emptied ${emptied} documents from score queue.`);
+    }
 
     // Update user's rating information
     // @todo

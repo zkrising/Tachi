@@ -19,6 +19,7 @@ export interface DataTest {
 
 const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new Map([
     ["NO PLAY", "NO PLAY"],
+    ["FAILED", "FAILED"],
     ["FULLCOMBO CLEAR", "FULL COMBO"],
     ["EX HARD CLEAR", "EX HARD CLEAR"],
     ["HARD CLEAR", "HARD CLEAR"],
@@ -67,9 +68,11 @@ async function EamScoreConverter(
         `${HUMANISED_CHART_TITLE} - Invalid EX score of ${eamScore.exscore}`
     );
 
-    if (exscore > ktchiChart.data.notecount) {
+    const MAX_EX = ktchiChart.data.notecount * 2;
+
+    if (exscore > MAX_EX) {
         throw new InvalidScoreFailure(
-            `${HUMANISED_CHART_TITLE} - Invalid EX Score of ${eamScore.exscore} (Was greater than chart notecount of ${ktchiChart.data.notecount}).`
+            `${HUMANISED_CHART_TITLE} - Invalid EX Score of ${eamScore.exscore} (Was greater than max chart ex of ${MAX_EX}).`
         );
     }
 
@@ -92,7 +95,7 @@ async function EamScoreConverter(
         );
     }
 
-    const percent = (100 * exscore) / ktchiChart.data.notecount;
+    const percent = (100 * exscore) / MAX_EX;
     const grade = GetGradeFromPercent<"iidx:SP" | "iidx:DP">("iidx", percent);
 
     if (!grade) {
@@ -105,7 +108,7 @@ async function EamScoreConverter(
 
     // esd cannot estimate things below this level of accuracy, so only actually calculate it here
     if (percent > 0.1) {
-        esd = ESDCore.CalculateESD(config.judgementWindows.iidx[context.playtype], percent);
+        esd = ESDCore.CalculateESD(config.judgementWindows.iidx[context.playtype], percent / 100);
     }
 
     // Now we need to figure out the timestamp for this score.
@@ -140,19 +143,21 @@ async function EamScoreConverter(
         timeAchieved: timestamp,
     };
 
-    if (typeof eamScore.bp === "number") {
-        if (!Number.isInteger(eamScore.bp)) {
+    let numBP = Number(eamScore.bp);
+
+    if (!Number.isNaN(numBP)) {
+        if (!Number.isInteger(numBP) || numBP < 0 || numBP > 9999) {
             throw new InvalidScoreFailure(
                 `${HUMANISED_CHART_TITLE} - Invalid BP of ${eamScore.bp}`
             );
         }
-        dryScore.scoreData.hitMeta.bp = eamScore.bp;
+        dryScore.scoreData.hitMeta.bp = numBP;
     } else if (eamScore.bp === "---") {
         logger.verbose(
             `Skipped assigning BP for score as it had expected null value of ${eamScore.bp}.`
         );
     } else {
-        logger.warn(`Skipped assigning BP for score. Had unexpected value of ${eamScore.bp}.`);
+        logger.info(`Skipped assigning BP for score. Had unexpected value of ${eamScore.bp}.`);
     }
 
     return { ktchiChart, dryScore };

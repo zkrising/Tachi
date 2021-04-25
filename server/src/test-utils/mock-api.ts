@@ -1,5 +1,5 @@
 import supertest from "supertest";
-import { rootLogger } from "../logger";
+import CreateLogCtx, { rootLogger } from "../logger";
 
 import server from "../server";
 
@@ -12,7 +12,5 @@ const mockApi = supertest(connection);
 export function CloseServerConnection() {
     connection.close();
 }
-
-rootLogger.info("Done?");
 
 export default mockApi;

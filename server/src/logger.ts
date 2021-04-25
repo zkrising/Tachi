@@ -154,10 +154,17 @@ export function CreateScoreLogger(
     importID: string,
     importType: ImportTypes
 ) {
-    return rootLogger.child({
+    const meta = {
         context: ["Score Import", importType, FormatUserDoc(user)],
         importID,
-    });
+    };
+
+    // used so appendLogCtx works
+    const childLogger = rootLogger.child(meta);
+
+    childLogger.defaultMeta = meta;
+
+    return childLogger;
 }
 
 export const Transports = tports;

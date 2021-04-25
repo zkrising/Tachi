@@ -1,4 +1,12 @@
-import { config, ESDCore, Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
+import {
+    config,
+    ESDCore,
+    Lamps,
+    AnySongDocument,
+    ChartDocument,
+    SongDocument,
+} from "kamaitachi-common";
+import { FindOneResult } from "monk";
 import { Logger } from "winston";
 import { DryScore, ConverterFunction, ConverterFnReturn } from "../../../../types";
 import { FindChartWithPTDF } from "../../../database-lookup/chart-ptdf";
@@ -33,12 +41,17 @@ async function EamScoreConverter(
     ktchiSong: AnySongDocument,
     context: IIDXEamusementCSVContext,
     data: IIDXEamusementCSVData,
+    isLegacyLeggendaria: boolean,
     logger: Logger
 ) {
     const HUMANISED_CHART_TITLE = `${ktchiSong.title} (${context.playtype} ${eamScore.difficulty})`;
     if (!eamScore.level) {
         // charts that dont exist in the format have a level of 0
         return null;
+    }
+
+    if (isLegacyLeggendaria) {
+        eamScore.difficulty = "LEGGENDARIA";
     }
 
     if (eamScore.exscore === "0") {
@@ -176,10 +189,18 @@ async function EamScoreConverterWrapper(
     song: AnySongDocument,
     context: IIDXEamusementCSVContext,
     data: IIDXEamusementCSVData,
+    isLegacyLeggendaria: boolean,
     logger: Logger
 ) {
     try {
-        let results = await EamScoreConverter(eamScore, song!, context, data, logger);
+        let results = await EamScoreConverter(
+            eamScore,
+            song!,
+            context,
+            data,
+            isLegacyLeggendaria,
+            logger
+        );
 
         if (!results) {
             return null;
@@ -211,6 +232,15 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
     context,
     logger: Logger
 ): Promise<ConverterFnReturn[] | ConverterFnReturn> => {
+    let isLegacyLeggendaria = false;
+    if (!context.hasBeginnerAndLegg) {
+        // hack fix for legacy LEGGENDARIA titles
+        if (data.title.match(/(†|†LEGGENDARIA)$/)) {
+            data.title = data.title.replace(/(†|†LEGGENDARIA)$/, "").trimEnd();
+            isLegacyLeggendaria = true;
+        }
+    }
+
     let ktchiSong = await FindSongOnTitleVersion("iidx", data.title, context.importVersion);
 
     if (!ktchiSong) {
@@ -224,7 +254,9 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
 
     // ts thinks ktchiSong might be null. It's not, though!
     let results = await Promise.all(
-        data.scores.map((e) => EamScoreConverterWrapper(e, ktchiSong!, context, data, logger))
+        data.scores.map((e) =>
+            EamScoreConverterWrapper(e, ktchiSong!, context, data, isLegacyLeggendaria, logger)
+        )
     );
 
     return results;

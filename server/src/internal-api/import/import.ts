@@ -14,7 +14,7 @@ import ParseEamusementCSV from "../../score-import/import-types/file/csv-eamusem
 
 const logger = CreateLogCtx("import.ts");
 
-const router = Router({ mergeParams: true });
+const router: Router = Router({ mergeParams: true });
 
 // multer config
 const upload = multer({ limits: { fileSize: 1024 * 1024 * 16 } }); // basically 16mb

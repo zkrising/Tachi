@@ -12,8 +12,7 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
     const grades = config.grades[game];
 
     // eslint doesn't like backwards for loops (hey, this for loop is backwards!)
-    // eslint-disable-next-line for-direction
-    for (let i = boundaries.length; i >= 0; i++) {
+    for (let i = boundaries.length; i >= 0; i--) {
         if (percent > boundaries[i]) {
             return grades[i] as Grades[I];
         }

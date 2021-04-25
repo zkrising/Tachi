@@ -1,21 +1,34 @@
 import { ScoreDocument } from "kamaitachi-common";
 import db from "../../../db/db";
+import CreateLogCtx from "../../../logger";
 
+const logger = CreateLogCtx("insert-score.ts");
 let ScoreQueue: ScoreDocument[] = [];
-const MAX_PIPELINE_LENGTH = 500;
+export let ScoreIDs: Set<string> = new Set();
+const MAX_PIPELINE_LENGTH = 10;
 
 /**
  * Adds a score to a queue to be inserted in batch to the database.
  * @param score - The score document to queue.
+ * @returns True on success, The amount of scores inserted on auto-pipeline-flush, and null if
+ * the score provided is already loaded.
  */
 export async function QueueScoreInsert(score: ScoreDocument) {
+    if (ScoreIDs.has(score.scoreID)) {
+        // skip
+        logger.verbose(`Triggered skip for ID ${score.scoreID}`);
+        return null;
+    }
+
     ScoreQueue.push(score);
+    ScoreIDs.add(score.scoreID);
 
     if (ScoreQueue.length >= MAX_PIPELINE_LENGTH) {
+        logger.verbose(`Triggered pipeline flush with len ${ScoreQueue.length}.`);
         return await InsertQueue();
     }
 
-    return null;
+    return true;
 }
 
 /**
@@ -25,7 +38,15 @@ export async function QueueScoreInsert(score: ScoreDocument) {
 export async function InsertQueue() {
     const temp = ScoreQueue.splice(0);
     if (temp.length !== 0) {
-        await db.scores.insert(temp);
+        ScoreIDs = new Set();
+        try {
+            await db.scores.insert(temp);
+        } catch (err) {
+            logger.warn(
+                `Triggered duplicate key protection. Race condition protected against, but this is not good.`
+            );
+            return null;
+        }
     }
 
     return temp.length;

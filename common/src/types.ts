@@ -480,7 +480,7 @@ export interface ImportDocument extends MongoDBDocument {
 
 interface ImportErrContent {
     type: string;
-    message: string;
+    message: string | null;
 }
 
 export interface KTBlackImportDocument extends MongoDBDocument {

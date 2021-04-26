@@ -105,10 +105,9 @@ async function CreateSession(
     groupInfo: SessionScoreInfo[],
     groupScores: ScoreDocument[],
     game: Game,
-    playtype: Playtypes[Game],
-    logger: KtLogger
+    playtype: Playtypes[Game]
 ): Promise<SessionDocument> {
-    let name = await GenerateRandomSessionName(logger);
+    let name = GenerateRandomSessionName();
 
     let calculatedData = CreateSessionCalcData(groupScores);
 
@@ -174,6 +173,7 @@ export async function LoadScoresIntoSessions(
             sessionScoreGroups.push(curGroup);
             curGroup = [score];
         }
+        lastTimestamp = score.timeAchieved!;
     }
 
     // I think this check is redundant?
@@ -259,8 +259,7 @@ export async function LoadScoresIntoSessions(
                 groupInfo,
                 groupScores,
                 game,
-                playtype,
-                logger
+                playtype
             );
 
             infoReturn = { sessionID: session.sessionID, type: "Created" };

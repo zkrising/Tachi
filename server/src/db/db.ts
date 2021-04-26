@@ -110,8 +110,6 @@ const db = {
     invites: monkDB.get<InviteCodeDocument>("invites"),
     counters: monkDB.get<CounterDocument>("counters"),
     "iidx-eam-scores": monkDB.get<IIDXEamusementScoreDocument>("iidx-eam-scores"),
-    adjectives: monkDB.get<TextDocument>("adjectives"),
-    nouns: monkDB.get<TextDocument>("nouns"),
 };
 
 export function GetGameChartCollection(game: Game) {

@@ -56,14 +56,6 @@ export interface ImportInputParser<D, C> {
     (logger: Logger): ParserFunctionReturns<D, C> | Promise<ParserFunctionReturns<D, C>>;
 }
 
-export interface ParserFunctionReturnsSync<D, C> {
-    iterable: Iterable<D>;
-    idStrings: [IDStrings] & IDStrings[];
-    context: C;
-    game: Game;
-    ConverterFunction: ConverterFunction<D, C>;
-}
-
 export type ParserFunctionReturns<D, C> =
     | ParserFunctionReturnsAsync<D, C>
     | ParserFunctionReturnsSync<D, C>;
@@ -72,9 +64,14 @@ export interface ParserFunctionReturnsAsync<D, C> {
     iterable: AsyncIterable<D>;
     idStrings: [IDStrings] & IDStrings[];
     context: C;
-    /**
-     * The game this import is for.
-     */
+    game: Game;
+    ConverterFunction: ConverterFunction<D, C>;
+}
+
+export interface ParserFunctionReturnsSync<D, C> {
+    iterable: Iterable<D>;
+    idStrings: [IDStrings] & IDStrings[];
+    context: C;
     game: Game;
     ConverterFunction: ConverterFunction<D, C>;
 }

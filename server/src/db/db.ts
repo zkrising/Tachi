@@ -24,6 +24,7 @@ import {
 } from "kamaitachi-common";
 import monk, { ICollection } from "monk";
 import CreateLogCtx from "../logger";
+import { TextDocument } from "../types";
 
 const logger = CreateLogCtx("db.ts");
 
@@ -32,10 +33,10 @@ const base = process.env.MONGO_BASE_URL ?? "127.0.0.1";
 const url = process.env.NODE_ENV === "test" ? `${base}:27017/testingdb` : `${base}:27017/ktblackdb`;
 
 let dbtime: [number, number] = [0, 0];
-// if (process.env.NODE_ENV !== "test") {
-logger.info(`Connecting to database ${url}...`);
-dbtime = process.hrtime();
-// }
+if (process.env.NODE_ENV !== "test") {
+    logger.info(`Connecting to database ${url}...`);
+    dbtime = process.hrtime();
+}
 
 export let monkDB = monk(url);
 
@@ -109,6 +110,8 @@ const db = {
     invites: monkDB.get<InviteCodeDocument>("invites"),
     counters: monkDB.get<CounterDocument>("counters"),
     "iidx-eam-scores": monkDB.get<IIDXEamusementScoreDocument>("iidx-eam-scores"),
+    adjectives: monkDB.get<TextDocument>("adjectives"),
+    nouns: monkDB.get<TextDocument>("nouns"),
 };
 
 export function GetGameChartCollection(game: Game) {

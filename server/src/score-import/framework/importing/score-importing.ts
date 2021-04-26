@@ -5,7 +5,7 @@ import {
     ScoreDocument,
     AnySongDocument,
 } from "kamaitachi-common";
-import { DryScore, ConverterFunction, ConverterFnReturn } from "../../../types";
+import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../types";
 import HydrateScore from "../core/hydrate-score";
 import { QueueScoreInsert, ScoreIDs } from "../core/insert-score";
 import {
@@ -16,7 +16,6 @@ import {
 } from "../core/converter-errors";
 import { CreateScoreID } from "../core/score-id";
 import db from "../../../db/db";
-import { Logger } from "winston";
 import { AppendLogCtx } from "../../../logger";
 
 /**
@@ -32,7 +31,7 @@ export async function ImportAllIterableData<D, C>(
     iterableData: Iterable<D> | AsyncIterable<D>,
     ConverterFunction: ConverterFunction<D, C>,
     context: C,
-    logger: Logger
+    logger: KtLogger
 ): Promise<ImportProcessingInfo[]> {
     logger.verbose(`Starting Data Processing...`);
 
@@ -95,7 +94,7 @@ export async function ImportIterableDatapoint<D, C>(
     data: D,
     ConverterFunction: ConverterFunction<D, C>,
     context: C,
-    logger: Logger
+    logger: KtLogger
 ) {
     const converterReturns = await ConverterFunction(data, context, logger);
 
@@ -111,7 +110,7 @@ export async function ImportIterableDatapoint<D, C>(
 async function ImportFromConverterReturn(
     userID: integer,
     cfnReturn: ConverterFnReturn, // a single return, not an array!
-    logger: Logger
+    logger: KtLogger
 ): Promise<ImportProcessingInfo | null> {
     // null => processing didnt result in a score document, but not an error, no processing needed!
     if (cfnReturn === null) {
@@ -205,7 +204,7 @@ async function HydrateAndInsertScore(
     dryScore: DryScore,
     chart: AnyChartDocument,
     song: AnySongDocument,
-    importLogger: Logger
+    importLogger: KtLogger
 ): Promise<ScoreDocument | null> {
     const scoreID = CreateScoreID(userID, dryScore, chart.chartID);
 

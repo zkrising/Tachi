@@ -5,8 +5,11 @@ import {
     integer,
     ScoreDocument,
     AnySongDocument,
+    MongoDBDocument,
+    Game,
+    Playtypes,
 } from "kamaitachi-common";
-import { Logger } from "winston";
+import { Logger, LeveledLogMethod } from "winston";
 import { ConverterFailure } from "./score-import/framework/core/converter-errors";
 import { Converters } from "./score-import/import-types/import-types";
 
@@ -57,6 +60,7 @@ export interface ParserFunctionReturnsSync<D, C> {
     iterable: Iterable<D>;
     idStrings: [IDStrings] & IDStrings[];
     context: C;
+    game: Game;
     ConverterFunction: ConverterFunction<D, C>;
 }
 
@@ -68,8 +72,16 @@ export interface ParserFunctionReturnsAsync<D, C> {
     iterable: AsyncIterable<D>;
     idStrings: [IDStrings] & IDStrings[];
     context: C;
+    /**
+     * The game this import is for.
+     */
+    game: Game;
     ConverterFunction: ConverterFunction<D, C>;
 }
+
+export type ScorePlaytypeMap = Partial<Record<Playtypes[Game], ScoreDocument[]>>;
+
+export type KtLogger = Logger & { severe: LeveledLogMethod };
 
 /**
  * An intermediate score format that will be filled out by
@@ -97,3 +109,7 @@ export interface OrphanedScore<T extends ImportTypes> {
 export type RevaluedObject<T, U> = {
     [K in keyof T]: RevaluedObject<T[K], U> | U;
 };
+
+export interface TextDocument extends MongoDBDocument {
+    text: string;
+}

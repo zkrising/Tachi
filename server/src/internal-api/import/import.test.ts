@@ -52,6 +52,16 @@ t.test("POST /internal-api/import/file", async (t) => {
 
             t.equal(res.body.body.scoreIDs.length, 2, "Should have 2 successful scores.");
 
+            let scoreCount = await db.scores.find({
+                scoreID: { $in: res.body.body.scoreIDs },
+            });
+
+            t.equal(
+                scoreCount.length,
+                res.body.body.scoreIDs.length,
+                "All returned scoreIDs should be inserted to the DB."
+            );
+
             t.end();
         });
 
@@ -67,6 +77,16 @@ t.test("POST /internal-api/import/file", async (t) => {
 
             t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
+            let scoreCount = await db.scores.find({
+                scoreID: { $in: res.body.body.scoreIDs },
+            });
+
+            t.equal(
+                scoreCount.length,
+                res.body.body.scoreIDs.length,
+                "All returned scoreIDs should be inserted to the DB."
+            );
+
             t.end();
         });
 
@@ -81,6 +101,16 @@ t.test("POST /internal-api/import/file", async (t) => {
             t.equal(res.body.success, true, "Should be successful.");
 
             t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
+
+            let scoreCount = await db.scores.find({
+                scoreID: { $in: res.body.body.scoreIDs },
+            });
+
+            t.equal(
+                scoreCount.length,
+                res.body.body.scoreIDs.length,
+                "All returned scoreIDs should be inserted to the DB."
+            );
 
             t.end();
         });

@@ -1,6 +1,7 @@
 import winston, { format, LeveledLogMethod, Logger, transports } from "winston";
 import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
 import { FormatUserDoc } from "./core/format-user";
+import { KtLogger } from "./types";
 
 const level = process.env.LOG_LEVEL ?? "info";
 
@@ -139,21 +140,21 @@ export const rootLogger = winston.createLogger({
     transports: tports,
 });
 
-function CreateLogCtx(context: string, lg = rootLogger): Logger & { severe: LeveledLogMethod } {
-    return lg.child({ context }) as Logger & { severe: LeveledLogMethod };
+function CreateLogCtx(context: string, lg = rootLogger): KtLogger {
+    return lg.child({ context }) as KtLogger;
 }
 
-export function AppendLogCtx(context: string, lg: Logger) {
+export function AppendLogCtx(context: string, lg: KtLogger): KtLogger {
     let newContext = [...lg.defaultMeta.context, context];
 
-    return lg.child({ context: newContext });
+    return lg.child({ context: newContext }) as KtLogger;
 }
 
 export function CreateScoreLogger(
     user: PublicUserDocument,
     importID: string,
     importType: ImportTypes
-) {
+): KtLogger {
     const meta = {
         context: ["Score Import", importType, FormatUserDoc(user)],
         importID,
@@ -164,7 +165,7 @@ export function CreateScoreLogger(
 
     childLogger.defaultMeta = meta;
 
-    return childLogger;
+    return childLogger as KtLogger;
 }
 
 export const Transports = tports;

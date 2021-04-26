@@ -503,7 +503,7 @@ export interface KTBlackImportDocument extends MongoDBDocument {
     errors: ImportErrContent[];
     // For performance reasons, imports only show what sessions they created, rather than what sessions they didn't.
     // This is just an array of sessionIDs, to keep things normalised. May be empty.
-    createdSessions: string[];
+    createdSessions: SessionInfoReturn[];
     importType: ImportTypes;
 }
 

@@ -355,7 +355,7 @@ export interface KTBlackImportDocument extends MongoDBDocument {
     importID: string;
     scoreIDs: string[];
     errors: ImportErrContent[];
-    createdSessions: string[];
+    createdSessions: SessionInfoReturn[];
     importType: ImportTypes;
 }
 export interface UserGoalDocument extends MongoDBDocument {

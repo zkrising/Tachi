@@ -14,10 +14,14 @@ function FormatVersion() {
 import CreateLogCtx from "./logger";
 import server from "./server";
 import serverConfig from "./server-config";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const logger = CreateLogCtx("main.ts");
 
 logger.info(`Booting Kamaitachi BLACK - ${FormatVersion()} [ENV: ${process.env.NODE_ENV}]`);
+logger.info(`Log level on ${process.env.LOG_LEVEL ?? "info"}.`);
 
 server.listen(serverConfig.PORT);
 logger.info(`Listening on ${serverConfig.PORT}`);

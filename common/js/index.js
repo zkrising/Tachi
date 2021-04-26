@@ -22,9 +22,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ESDCore = exports.gameClasses = exports.config = void 0;
+exports.ScoreCore = exports.ESDCore = exports.gameClasses = exports.config = void 0;
 __exportStar(require("./types"), exports);
 exports.config = __importStar(require("./config"));
 exports.gameClasses = __importStar(require("./game-classes"));
 exports.ESDCore = __importStar(require("./common-core/esd-core"));
+exports.ScoreCore = __importStar(require("./common-core/score-core"));
 //# sourceMappingURL=index.js.map

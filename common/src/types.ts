@@ -425,7 +425,7 @@ export interface MutualRivalGroupDocument extends MongoDBDocument {
     mrgID: string;
 }
 
-interface SessionInfoReturn {
+export interface SessionInfoReturn {
     sessionID: string;
     type: "Created" | "Appended";
 }
@@ -444,7 +444,7 @@ interface SessionScoreNewInfo {
     isNewScore: true;
 }
 
-type SessionScoreInfo = SessionScorePBInfo | SessionScoreNewInfo;
+export type SessionScoreInfo = SessionScorePBInfo | SessionScoreNewInfo;
 
 export interface SessionDocument extends MongoDBDocument {
     userID: integer;

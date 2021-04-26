@@ -288,35 +288,36 @@ export interface MutualRivalGroupDocument extends MongoDBDocument {
     settings: Record<string, never>;
     mrgID: string;
 }
-interface SessionScoreInfo {
-    pbInfo: {
-        isGeneralPB: boolean;
-        isGradePB: boolean;
-        isScorePB: boolean;
-        isLampPB: boolean;
-        isNewScore: boolean;
-        lampDelta: integer;
-        percentDelta: number;
-        gradeDelta: integer;
-        scoreDelta: number;
-    };
+interface SessionScorePBInfo {
     scoreID: string;
+    isNewScore: false;
+    scoreDelta: number;
+    gradeDelta: integer;
+    lampDelta: integer;
+    percentDelta: integer;
 }
+interface SessionScoreNewInfo {
+    scoreID: string;
+    isNewScore: true;
+}
+declare type SessionScoreInfo = SessionScorePBInfo | SessionScoreNewInfo;
 export interface SessionDocument extends MongoDBDocument {
-    performance: number;
     userID: integer;
     sessionID: string;
+    scoreInfo: SessionScoreInfo[];
     name: string;
-    desc: string;
-    service: string;
+    desc: string | null;
     game: Game;
     playtype: Playtypes[Game];
-    timestamp: integer;
+    importType: ImportTypes;
+    timeInserted: integer;
     timeEnded: integer;
     timeStarted: integer;
-    lampPerformance: number;
-    scorePerformance: number;
-    scores: SessionScoreInfo[];
+    calculatedData: {
+        lampPerf: number | null;
+        scorePerf: number | null;
+        perf: number | null;
+    };
     highlight: boolean;
 }
 export interface ImportSessionInfo {

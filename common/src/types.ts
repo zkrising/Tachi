@@ -1157,3 +1157,12 @@ export interface IIDXBPIData {
     kesd: number;
     coef: number | null;
 }
+
+export interface ImportStatistics {
+    scoreCount: integer;
+    msPerScore: number;
+    sessionCount: integer;
+    msPerSession: number;
+    ratingTime: number;
+    importID: string;
+}

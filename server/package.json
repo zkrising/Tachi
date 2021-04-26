@@ -55,7 +55,7 @@
         "fast-json-stable-hash": "^1.0.1",
         "kamaitachi-common": "github:zkldi/Kamaitachi-common",
         "mongodb": "3.6.3",
-        "monk": "^7.3.3",
+        "monk": "^7.3.4",
         "multer": "^1.4.2",
         "node-fetch": "^2.6.1",
         "prudence": "^0.8.9",

@@ -33,7 +33,7 @@ specifiers:
   fast-json-stable-hash: ^1.0.1
   kamaitachi-common: github:zkldi/Kamaitachi-common
   mongodb: 3.6.3
-  monk: ^7.3.3
+  monk: ^7.3.4
   multer: ^1.4.2
   node-fetch: ^2.6.1
   node-mocks-http: ^1.10.1
@@ -464,7 +464,7 @@ packages:
   /@types/bson/4.0.3:
     resolution: {integrity: sha512-mVRvYnTOZJz3ccpxhr3wgxVmSeiYinW+zlzQz3SXWaJmD1DuL05Jeq7nKw3SnbKmbleW5qrLG5vdyWe/A9sXhw==}
     dependencies:
-      '@types/node': 14.14.41
+      '@types/node': 14.14.42
     dev: false
 
   /@types/connect-redis/0.0.16:
@@ -531,7 +531,7 @@ packages:
     resolution: {integrity: sha512-49aEzQD5VdHPxyd5dRyQdqEveAg9LanwrH8RQipnMuulwzKmODXIZRp0umtxi1eBUfEusRkoy8AVOMr+kVuFog==}
     dependencies:
       '@types/bson': 4.0.3
-      '@types/node': 14.14.41
+      '@types/node': 14.14.42
     dev: false
 
   /@types/multer/1.4.5:
@@ -549,6 +549,11 @@ packages:
 
   /@types/node/14.14.41:
     resolution: {integrity: sha512-dueRKfaJL4RTtSa7bWeTK1M+VH+Gns73oCgzvYfHZywRCoPSd8EkXBL0mZ9unPTveBn+D9phZBaxuzpwjWkW0g==}
+    dev: true
+
+  /@types/node/14.14.42:
+    resolution: {integrity: sha512-88QoObqn9WYIUMRzOx92GmSHmU3JCyukC2ulEv8tFjUG9VeV2FQ/cA7VQ1gi+rB/+gBMVvzVFcTnz8RdMDVIWw==}
+    dev: false
 
   /@types/proxyquire/1.3.28:
     resolution: {integrity: sha512-SQaNzWQ2YZSr7FqAyPPiA3FYpux2Lqh3HWMZQk47x3xbMCqgC/w0dY3dw9rGqlweDDkrySQBcaScXWeR+Yb11Q==}
@@ -2887,39 +2892,6 @@ packages:
       saslprep: 1.0.3
     dev: false
 
-  /mongodb/3.6.6:
-    resolution: {integrity: sha512-WlirMiuV1UPbej5JeCMqE93JRfZ/ZzqE7nJTwP85XzjAF4rRSeq2bGCb1cjfoHLOF06+HxADaPGqT0g3SbVT1w==}
-    engines: {node: '>=4'}
-    peerDependencies:
-      aws4: '*'
-      bson-ext: '*'
-      kerberos: '*'
-      mongodb-client-encryption: '*'
-      mongodb-extjson: '*'
-      snappy: '*'
-    peerDependenciesMeta:
-      aws4:
-        optional: true
-      bson-ext:
-        optional: true
-      kerberos:
-        optional: true
-      mongodb-client-encryption:
-        optional: true
-      mongodb-extjson:
-        optional: true
-      snappy:
-        optional: true
-    dependencies:
-      bl: 2.2.1
-      bson: 1.1.6
-      denque: 1.5.0
-      optional-require: 1.0.3
-      safe-buffer: 5.2.1
-    optionalDependencies:
-      saslprep: 1.0.3
-    dev: false
-
   /monk-middleware-cast-ids/0.2.1:
     resolution: {integrity: sha1-QMQOWmyzPM7cKJIglDJ17ohhxSk=}
     dev: false
@@ -2949,7 +2921,7 @@ packages:
     dependencies:
       '@types/mongodb': 3.6.12
       debug: 4.3.1
-      mongodb: 3.6.6
+      mongodb: 3.6.3
       monk-middleware-cast-ids: 0.2.1
       monk-middleware-fields: 0.2.0
       monk-middleware-handle-callback: 0.2.2
@@ -3191,11 +3163,6 @@ packages:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
     hasBin: true
     dev: true
-
-  /optional-require/1.0.3:
-    resolution: {integrity: sha512-RV2Zp2MY2aeYK5G+B/Sps8lW5NHAzE5QClbFP15j+PWmP+T9PxlJXBOOLoSAdgwFvS4t0aMR4vpedMkbHfh0nA==}
-    engines: {node: '>=4'}
-    dev: false
 
   /optionator/0.9.1:
     resolution: {integrity: sha512-74RlY5FCnhq4jRxVUPKDaRwrVNXMqsGsiW6AJw4XK8hmtm10wC0ypZBLw5IIp85NZMr91+qd1RvvENwg7jjRFw==}

@@ -357,6 +357,11 @@ export interface KTBlackImportDocument extends MongoDBDocument {
     errors: ImportErrContent[];
     createdSessions: SessionInfoReturn[];
     importType: ImportTypes;
+    /**
+     * Whether the user deliberately imported this through an action (i.e. uploaded a file personally) [true]
+     * or was imported on their behalf through a service (i.e. fervidex)
+     */
+    userIntent: boolean;
 }
 export interface UserGoalDocument extends MongoDBDocument {
     goalID: string;

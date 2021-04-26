@@ -505,6 +505,11 @@ export interface KTBlackImportDocument extends MongoDBDocument {
     // This is just an array of sessionIDs, to keep things normalised. May be empty.
     createdSessions: SessionInfoReturn[];
     importType: ImportTypes;
+    /**
+     * Whether the user deliberately imported this through an action (i.e. uploaded a file personally) [true]
+     * or was imported on their behalf through a service (i.e. fervidex)
+     */
+    userIntent: boolean;
 }
 
 export interface UserGoalDocument extends MongoDBDocument {

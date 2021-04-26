@@ -82,7 +82,7 @@ router.post(
                 });
             }
 
-            let importDocument = await ScoreImportMain(userDoc, importType, inputParser);
+            let importDocument = await ScoreImportMain(userDoc, true, importType, inputParser);
 
             return res.status(200).json({
                 success: true,

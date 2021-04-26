@@ -166,7 +166,7 @@ async function EamScoreConverter(
         }
         dryScore.scoreData.hitMeta.bp = numBP;
     } else if (eamScore.bp === "---") {
-        logger.verbose(
+        logger.debug(
             `Skipped assigning BP for score as it had expected null value of ${eamScore.bp}.`
         );
     } else {

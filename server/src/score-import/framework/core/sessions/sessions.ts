@@ -249,7 +249,7 @@ export async function LoadScoresIntoSessions(
                 }
             );
         } else {
-            logger.verbose(
+            logger.debug(
                 `Creating new session for ${userID} (${game} ${playtype}) around ${startOfGroup} ${endOfGroup}.`
             );
 

@@ -1,6 +1,4 @@
 import {
-    ChartDocument,
-    config,
     CounterDocument,
     FolderDocument,
     Game,
@@ -8,11 +6,9 @@ import {
     IIDXBPIData,
     IIDXEamusementScoreDocument,
     ImportDocument,
-    SongDocument,
     InviteCodeDocument,
     MilestoneDocument,
     NotificationDocument,
-    Playtypes,
     PrivateUserDocument,
     PublicAPIKeyDocument,
     ScoreDocument,
@@ -22,9 +18,8 @@ import {
     UserGoalDocument,
     UserMilestoneDocument,
 } from "kamaitachi-common";
-import monk, { ICollection } from "monk";
+import monk from "monk";
 import CreateLogCtx from "../logger";
-import { TextDocument } from "../types";
 
 const logger = CreateLogCtx("db.ts");
 
@@ -44,7 +39,7 @@ monkDB
     .then(() => {
         if (process.env.NODE_ENV !== "test") {
             let time = process.hrtime(dbtime);
-            let elapsed = time[0] + time[1] / 1000000;
+            let elapsed = time[0] + time[1] / 1e6;
             logger.info(`Database connection successful: took ${elapsed}ms`);
         }
     })

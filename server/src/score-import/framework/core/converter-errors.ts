@@ -35,21 +35,6 @@ export class KTDataNotFoundFailure<T extends keyof typeof Converters> extends Co
 }
 
 /**
- * ScoreExistsError - A score with this ID already exists.
- * Since this error is mostly useless to the end user (people re-import scores all the time!)
- * This is not returned from score processing, however, it exists so the reason for the error can be
- * sussed out.
- */
-export class ScoreExistsFailure extends ConverterFailure {
-    scoreID: string;
-
-    constructor(message: string | null, scoreID: string) {
-        super(message);
-        this.scoreID = scoreID;
-    }
-}
-
-/**
  * InvalidScoreError - This score provided invalid data that Kamaitachi can not accept.
  */
 export class InvalidScoreFailure extends ConverterFailure {}

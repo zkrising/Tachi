@@ -52,7 +52,7 @@ export async function ImportAllIterableData<D, C>(
     let nonFlatDatapoints = await Promise.all(promises);
 
     logger.verbose(`Finished Importing Data (${promises.length} datapoints).`);
-    logger.verbose(`Flattening returns...`);
+    logger.debug(`Flattening returns...`);
 
     let flatDatapoints = [];
 
@@ -74,7 +74,7 @@ export async function ImportAllIterableData<D, C>(
         }
     }
 
-    logger.verbose(`Flattened returns.`);
+    logger.debug(`Flattened returns.`);
 
     logger.verbose(`Recieved ${flatDatapoints.length} returns, from ${promises.length} data.`);
 
@@ -180,7 +180,7 @@ async function ImportFromConverterReturn(
         return null;
     }
 
-    logger.verbose(`Successfully imported score: ${result.scoreID}`);
+    logger.debug(`Successfully imported score: ${result.scoreID}`);
 
     return {
         success: true,

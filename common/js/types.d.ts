@@ -570,6 +570,7 @@ interface ChartDocumentData {
     };
 }
 export interface AnyChartDocument extends MongoDBDocument {
+    isRemoved: boolean;
     chartID: string;
     rgcID: string | null;
     songID: integer;
@@ -579,7 +580,8 @@ export interface AnyChartDocument extends MongoDBDocument {
     bpmString: string | null;
     difficulty: Difficulties[IDStrings];
     playtype: Playtypes[Game];
-    isRemoved: boolean;
+    isPrimary: boolean;
+    versions: string[];
 }
 export interface ChartDocument<I extends IDStrings> extends AnyChartDocument {
     difficulty: Difficulties[I];
@@ -677,7 +679,6 @@ export interface AnySongDocument extends MongoDBDocument {
     id: integer;
     title: string;
     artist: string;
-    isAvailable: boolean;
     firstVersion: string | null;
     /**
      * Alternative names for this song, to be used while searching.
@@ -688,11 +689,6 @@ export interface AnySongDocument extends MongoDBDocument {
      * requested.
      */
     "alt-titles": string[];
-    /**
-     * Contains the versions this song appeared in. This is used for
-     * disambiguation in some games.
-     */
-    versions: string[];
 }
 export interface SongDocument<G extends Game> extends AnySongDocument {
     data: SongDocumentData[G];

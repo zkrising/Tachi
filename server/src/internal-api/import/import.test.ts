@@ -21,6 +21,7 @@ async function LoadKTBlackIIDXData() {
     await db.charts.iidx.remove({});
     await db.charts.iidx.insert(charts);
 }
+
 // reset DB handles the post-stuff
 
 t.test("POST /internal-api/import/file", async (t) => {

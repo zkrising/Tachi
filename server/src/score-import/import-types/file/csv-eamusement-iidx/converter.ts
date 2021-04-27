@@ -1,7 +1,8 @@
 import { config, ESDCore, Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
 import { Logger } from "winston";
 import { DryScore, ConverterFunction, ConverterFnReturn } from "../../../../types";
-import { FindChartWithPTDF } from "../../../database-lookup/chart-ptdf";
+import { FindChartWithPTDFVersion } from "../../../database-lookup/chart-ptdf";
+import { FindSongOnTitle } from "../../../database-lookup/song-title";
 import {
     KTDataNotFoundFailure,
     InternalFailure,
@@ -35,7 +36,7 @@ async function EamScoreConverter(
     isLegacyLeggendaria: boolean,
     logger: Logger
 ) {
-    const HUMANISED_CHART_TITLE = `${ktchiSong.title} (${context.playtype} ${eamScore.difficulty})`;
+    const HUMANISED_CHART_TITLE = `${ktchiSong.title} (${context.playtype} ${eamScore.difficulty} [v${context.importVersion}])`;
     if (!eamScore.level) {
         // charts that dont exist in the format have a level of 0
         return null;
@@ -51,11 +52,12 @@ async function EamScoreConverter(
         return null;
     }
 
-    let ktchiChart = (await FindChartWithPTDF(
+    let ktchiChart = (await FindChartWithPTDFVersion(
         "iidx",
         ktchiSong.id,
         context.playtype,
-        eamScore.difficulty
+        eamScore.difficulty,
+        context.importVersion
     )) as ChartDocument<"iidx:SP" | "iidx:DP">;
 
     if (!ktchiChart) {
@@ -234,7 +236,7 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
         }
     }
 
-    let ktchiSong = await FindSongOnTitleVersion("iidx", data.title, context.importVersion);
+    let ktchiSong = await FindSongOnTitle("iidx", data.title);
 
     if (!ktchiSong) {
         return new KTDataNotFoundFailure(

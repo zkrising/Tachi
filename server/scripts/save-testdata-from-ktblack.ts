@@ -2,7 +2,7 @@ import monk from "monk";
 import fs from "fs";
 import path from "path";
 import { Command } from "commander";
-import CreateLogCtx from "../logger";
+import CreateLogCtx from "../src/logger";
 
 const program = new Command();
 
@@ -24,7 +24,7 @@ const ktBlackDB = monk(`${process.env.MONGO_BASE_URL}/ktblackdb`);
     logger.info(`Fetched ${data.length} documents, Writing...`);
 
     fs.writeFileSync(
-        path.join(__dirname, `../test-utils/test-data/kamaitachi/ktblack-${collection}.json`),
+        path.join(__dirname, `../src/test-utils/test-data/kamaitachi/ktblack-${collection}.json`),
         JSON.stringify(data)
     );
 

@@ -570,7 +570,6 @@ interface ChartDocumentData {
     };
 }
 export interface AnyChartDocument extends MongoDBDocument {
-    isRemoved: boolean;
     chartID: string;
     rgcID: string | null;
     songID: integer;

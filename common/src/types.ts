@@ -754,7 +754,6 @@ interface ChartDocumentData {
 }
 
 export interface AnyChartDocument extends MongoDBDocument {
-    isRemoved: boolean;
     chartID: string;
     rgcID: string | null; // ID to perform backbeat lookup in future.
     songID: integer;

@@ -10,7 +10,6 @@ import { CloseAllConnections } from "../../test-utils/close-connections";
 import { RequireNeutralAuthentication } from "../../test-utils/api-common";
 import { CreateFakeAuthCookie } from "../../test-utils/fake-session";
 import ResetDBState from "../../test-utils/reset-db-state";
-import { rootLogger } from "../../logger";
 import db from "../../db/db";
 
 async function LoadKTBlackIIDXData() {

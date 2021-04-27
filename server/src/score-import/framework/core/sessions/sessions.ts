@@ -99,14 +99,14 @@ function UpdateExistingSession(
     return existingSession;
 }
 
-async function CreateSession(
+function CreateSession(
     userID: integer,
     importType: ImportTypes,
     groupInfo: SessionScoreInfo[],
     groupScores: ScoreDocument[],
     game: Game,
     playtype: Playtypes[Game]
-): Promise<SessionDocument> {
+): SessionDocument {
     let name = GenerateRandomSessionName();
 
     let calculatedData = CreateSessionCalcData(groupScores);
@@ -253,14 +253,7 @@ export async function LoadScoresIntoSessions(
                 `Creating new session for ${userID} (${game} ${playtype}) around ${startOfGroup} ${endOfGroup}.`
             );
 
-            let session = await CreateSession(
-                userID,
-                importType,
-                groupInfo,
-                groupScores,
-                game,
-                playtype
-            );
+            let session = CreateSession(userID, importType, groupInfo, groupScores, game, playtype);
 
             infoReturn = { sessionID: session.sessionID, type: "Created" };
             await db.sessions.insert(session);

@@ -1,5 +1,5 @@
 import ResetDBState from "./reset-db-state";
-import CreateLogCtx, { rootLogger } from "../logger";
+import CreateLogCtx from "../logger";
 import supertest from "supertest";
 
 const logger = CreateLogCtx("fake-session.ts");
@@ -20,8 +20,4 @@ export async function CreateFakeAuthCookie(mockApi: supertest.SuperTest<supertes
     }
 
     return res.headers["set-cookie"] as string[];
-}
-
-export async function DestroyFakeAuthToken(cookie: string) {
-    // stub
 }

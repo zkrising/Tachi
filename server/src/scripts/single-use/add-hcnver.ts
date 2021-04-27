@@ -15,7 +15,7 @@ for (const d of data) {
     }
 }
 
-db.charts.iidx.insert(data).then((r) => {
+db.charts.iidx.insert(data).then(() => {
     console.log("Done.");
     process.exit(0);
 });

@@ -72,7 +72,7 @@ const HV_HEADER_COUNT = 41;
 //     "timestamp",
 // ];
 
-function ResolveHeaders(headers: string[], logger: Logger) {
+export function ResolveHeaders(headers: string[], logger: Logger) {
     if (headers.length === PRE_HV_HEADER_COUNT) {
         logger.verbose("PRE_HV csv recieved.");
         return {
@@ -83,16 +83,16 @@ function ResolveHeaders(headers: string[], logger: Logger) {
         return {
             hasBeginnerAndLegg: true,
         };
-    } else {
-        logger.info(`Invalid CSV header count of ${headers.length} received.`);
-        throw new ScoreImportFatalError(
-            400,
-            "Invalid CSV provided. CSV does not have the correct amount of headers."
-        );
     }
+
+    logger.info(`Invalid CSV header count of ${headers.length} received.`);
+    throw new ScoreImportFatalError(
+        400,
+        "Invalid CSV provided. CSV does not have the correct amount of headers."
+    );
 }
 
-function NaiveCSVParse(csvBuffer: Buffer, logger: Logger) {
+export function NaiveCSVParse(csvBuffer: Buffer, logger: Logger) {
     const csvString = csvBuffer.toString("utf-8");
 
     let csvData = csvString.split("\n");
@@ -108,8 +108,12 @@ function NaiveCSVParse(csvBuffer: Buffer, logger: Logger) {
         // safety checks to avoid getting DOS'd
         if (headerLen > 1000) {
             throw new ScoreImportFatalError(400, "Headers were longer than 1000 characters long.");
-        } else if (rawHeaders.length > 50) {
-            throw new ScoreImportFatalError(400, "Invalid CSV Headers.");
+        } else if (rawHeaders.length >= 50) {
+            // this does not *really* do what it seems.
+            // because there's inevitably something left in curStr in this fn
+            // this means that the above check is actually > 50 headers. Not
+            // >= 50.
+            throw new ScoreImportFatalError(400, "Too many CSV headers.");
         }
 
         if (char === ",") {
@@ -135,6 +139,7 @@ function NaiveCSVParse(csvBuffer: Buffer, logger: Logger) {
     for (let i = 1; i < csvData.length; i++) {
         let data = csvData[i];
 
+        // @security: This should probably be safetied from DOSing
         let cells = data.split(",");
 
         // weirdly enough, an empty string split on "," is an array with
@@ -154,20 +159,23 @@ function NaiveCSVParse(csvBuffer: Buffer, logger: Logger) {
             );
             throw new ScoreImportFatalError(
                 400,
-                `Row ${i} has an invalid amount of cells (${cells.length}).`
+                `Row ${i} has an invalid amount of cells (${cells.length}, expected ${rawHeaders.length}).`
             );
         }
 
         let version = cells[0];
         let title = cells[1].trim(); // konmai quality
-        let timestamp = cells[rawHeaders.length - 1].replace(/\r/g, "");
+        let timestamp = cells[rawHeaders.length - 1].trim();
 
         // wtf typescript?? what's the point of enums?
         const versionNum = EAM_VERSION_NAMES[version as keyof typeof EAM_VERSION_NAMES];
 
         if (!versionNum) {
-            logger.info(`Invalid/Unknown EAM_VERSION_NAME ${version}.`);
-            throw new ScoreImportFatalError(400, `Invalid/Unknown EAM_VERSION_NAME ${version}.`);
+            logger.info(`Invalid/Unsupported EAM_VERSION_NAME ${version}.`);
+            throw new ScoreImportFatalError(
+                400,
+                `Invalid/Unsupported Eamusement Version Name ${version}.`
+            );
         }
 
         if (versionNum > gameVersion) {
@@ -198,7 +206,7 @@ function NaiveCSVParse(csvBuffer: Buffer, logger: Logger) {
         });
     }
 
-    return { iterableData, version: gameVersion, hasBeginnerAndLegg };
+    return { iterableData, version: gameVersion.toString(), hasBeginnerAndLegg };
 }
 
 /**
@@ -251,7 +259,7 @@ function ParseEamusementCSV(
 
     let context: IIDXEamusementCSVContext = {
         playtype,
-        importVersion: version.toString(), // converts 4 -> "4", as thats what we happen to use for vernames
+        importVersion: version,
         hasBeginnerAndLegg,
         serviceOrigin: "e-amusement",
     };

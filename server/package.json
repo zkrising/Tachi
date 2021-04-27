@@ -68,13 +68,11 @@
             "html",
             "lcov"
         ],
+        "all": true,
         "include": [
             "src/**/*.ts"
         ],
         "exclude": [
-            "**/*.test.ts",
-            "src/test-utils/**/*.ts",
-            "src/scripts/**/*.ts"
         ]
     }
 }

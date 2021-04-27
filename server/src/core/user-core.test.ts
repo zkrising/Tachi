@@ -2,13 +2,7 @@ import t from "tap";
 import { CloseMongoConnection } from "../db/db";
 import { PRUDENCE_PRIVATE_USER, PRUDENCE_PUBLIC_USER } from "../db/schemas";
 import prAssert from "../test-utils/prassert";
-import {
-    GetUserCaseInsensitive,
-    GetUserWithID,
-    PRIVATEINFO_GetUserCaseInsensitive,
-    PRIVATEINFO_GetUserWithID,
-    ResolveUser,
-} from "./user-core";
+import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive } from "./user-core";
 
 t.test("#GetUserCaseInsensitive", (t) => {
     t.test("Should return the user for an exact username", async (t) => {

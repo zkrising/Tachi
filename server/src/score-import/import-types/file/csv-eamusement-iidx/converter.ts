@@ -1,16 +1,7 @@
-import {
-    config,
-    ESDCore,
-    Lamps,
-    AnySongDocument,
-    ChartDocument,
-    SongDocument,
-} from "kamaitachi-common";
-import { FindOneResult } from "monk";
+import { config, ESDCore, Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
 import { Logger } from "winston";
 import { DryScore, ConverterFunction, ConverterFnReturn } from "../../../../types";
 import { FindChartWithPTDF } from "../../../database-lookup/chart-ptdf";
-import { FindSongOnTitleVersion } from "../../../database-lookup/song-title";
 import {
     KTDataNotFoundFailure,
     InternalFailure,
@@ -233,6 +224,8 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
     logger: Logger
 ): Promise<ConverterFnReturn[] | ConverterFnReturn> => {
     let isLegacyLeggendaria = false;
+
+    // if pre-HV, leggendarias were stored in a wacky form.
     if (!context.hasBeginnerAndLegg) {
         // hack fix for legacy LEGGENDARIA titles
         if (data.title.match(/(†|†LEGGENDARIA)$/)) {

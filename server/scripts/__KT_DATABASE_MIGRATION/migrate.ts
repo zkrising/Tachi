@@ -25,17 +25,20 @@ export default async function MigrateRecords(
         .get(collectionName)
         .find({})
         // @ts-expect-error it exists.
-        .each((c) => {
+        .each(async (c, { pause, resume }) => {
             i++;
+            pause();
 
             if (i % 10000 === 0) {
                 logger.info(`Processed ${i} documents.`);
             }
-            const newDoc = HandlerFN(c);
+            const newDoc = await HandlerFN(c);
 
             if (newDoc !== null) {
                 newDocuments.push(newDoc);
             }
+
+            resume();
         });
 
     logger.info(`Inserting ${newDocuments.length} documents.`);

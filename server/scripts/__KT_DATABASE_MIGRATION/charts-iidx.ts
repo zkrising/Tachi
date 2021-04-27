@@ -1,9 +1,21 @@
 import { ChartDocument } from "kamaitachi-common";
 import db from "../../src/db/db";
-import { rootLogger } from "../../src/logger";
+import CreateLogCtx from "../../src/logger";
 import MigrateRecords from "./migrate";
+import { gameOrders } from "kamaitachi-common/js/config";
 
-function ConvertFn(c: any): ChartDocument<"iidx:SP" | "iidx:DP"> {
+const logger = CreateLogCtx("charts-iidx.ts");
+
+async function ConvertFn(c: any): Promise<ChartDocument<"iidx:SP" | "iidx:DP">> {
+    let song = await db.songs.iidx.findOne({
+        id: c.id,
+    });
+
+    if (!song) {
+        logger.severe(`Cannot find song with ID ${c.id}?`);
+        throw new Error(`Cannot find song with ID ${c.id}?`);
+    }
+
     const newChartDoc: ChartDocument<"iidx:SP" | "iidx:DP"> = {
         rgcID: null,
         chartID: c.chartID,
@@ -11,7 +23,6 @@ function ConvertFn(c: any): ChartDocument<"iidx:SP" | "iidx:DP"> {
         songID: c.id,
         playtype: c.playtype,
         levelNum: c.levelNum,
-        isRemoved: false,
         level: c.level.toString(),
         length: c.length,
         bpmString: "", // sentinel
@@ -24,13 +35,24 @@ function ConvertFn(c: any): ChartDocument<"iidx:SP" | "iidx:DP"> {
             inGameID: c.internals.inGameINTID,
             notecount: c.notedata.notecount,
         },
+        isPrimary: true,
+        versions: [], // sentinel
     };
 
     if (typeof c.length === "number") {
         let m = Math.floor(c.length / 60_000);
-        let s = c.length - m * 60_000;
+        let s = ((c.length - m * 60_000) / 1_000).toFixed(2);
 
         newChartDoc.length = `${m}:${s}`;
+    }
+
+    let idx = gameOrders.iidx.indexOf(song.firstVersion!);
+
+    if (idx === -1) {
+        logger.warn(`Invalid firstAppearance of ${song.firstVersion!}, running anyway.`);
+        newChartDoc.versions = [song.firstVersion!];
+    } else {
+        newChartDoc.versions = gameOrders.iidx.slice(idx);
     }
 
     if (c.monoBPM) {
@@ -40,7 +62,7 @@ function ConvertFn(c: any): ChartDocument<"iidx:SP" | "iidx:DP"> {
     }
 
     if (newChartDoc.length === null) {
-        rootLogger.warn(`Length of chart ${newChartDoc.chartID} is null, continuing anyway?`);
+        logger.warn(`Length of chart ${newChartDoc.chartID} is null, continuing anyway?`);
     }
 
     return newChartDoc;

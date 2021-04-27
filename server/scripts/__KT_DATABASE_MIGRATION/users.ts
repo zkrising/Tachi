@@ -1,5 +1,5 @@
 import { PrivateUserDocument } from "kamaitachi-common";
-import db from "../../db/db";
+import db from "../../src/db/db";
 import MigrateRecords from "./migrate";
 
 function ConvertFn(c: any): PrivateUserDocument {

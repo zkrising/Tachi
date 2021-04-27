@@ -125,7 +125,7 @@ if (IN_TESTING) {
     ];
 }
 
-export const rootLogger = winston.createLogger({
+export const logger = winston.createLogger({
     levels: {
         crit: 0, // entire process termination is necessary
         severe: 1, // something is wrong, and more than one function is affected (such as a failed assertion that is definitely expected to be true).
@@ -140,7 +140,7 @@ export const rootLogger = winston.createLogger({
     transports: tports,
 });
 
-function CreateLogCtx(context: string, lg = rootLogger): KtLogger {
+function CreateLogCtx(context: string, lg = logger): KtLogger {
     return lg.child({ context }) as KtLogger;
 }
 
@@ -161,7 +161,7 @@ export function CreateScoreLogger(
     };
 
     // used so appendLogCtx works
-    const childLogger = rootLogger.child(meta);
+    const childLogger = logger.child(meta);
 
     childLogger.defaultMeta = meta;
 

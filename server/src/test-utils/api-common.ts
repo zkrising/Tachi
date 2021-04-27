@@ -1,11 +1,5 @@
 import t from "tap";
-import { rootLogger } from "../logger";
-import { CloseAllConnections } from "./close-connections";
 import mockApi from "./mock-api";
-
-type TestCB = Exclude<Parameters<typeof t.test>[1], undefined>;
-
-type Test = Parameters<TestCB>[0];
 
 export function RequireNeutralAuthentication(url: string, method: "GET" | "POST" = "GET") {
     t.test(`Testing authentication for ${method} ${url}.`, async (t) => {

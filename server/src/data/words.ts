@@ -1,6 +1,3 @@
-import fs from "fs";
-import path from "path";
-
 // https://raw.githubusercontent.com/hugsy/stuff/master/random-word/english-nouns.txt
 // and https://gist.github.com/hugsy/8910dc78d208e40de42deb29e62df913
 

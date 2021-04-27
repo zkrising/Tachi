@@ -1,7 +1,7 @@
 /**
  * Resets the state of the database.
  */
-import db, { CloseMongoConnection, ReopenMongoConnection } from "../db/db";
+import db from "../db/db";
 import fs from "fs";
 import path from "path";
 import CreateLogCtx from "../logger";

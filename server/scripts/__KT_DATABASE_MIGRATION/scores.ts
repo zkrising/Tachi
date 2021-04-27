@@ -1,9 +1,11 @@
 import { PrivateUserDocument, ScoreDocument } from "kamaitachi-common";
 import { grades, lamps, supportedGames, validPlaytypes } from "kamaitachi-common/js/config";
-import db from "../../db/db";
-import { rootLogger } from "../../logger";
-import { CreateScoreID } from "../../score-import/framework/core/score-id";
+import db from "../../src/db/db";
 import MigrateRecords from "./migrate";
+import CreateLogCtx from "../../src/logger";
+import { CreateScoreID } from "../../src/score-import/framework/core/score-id";
+
+const logger = CreateLogCtx("scores.ts");
 
 // HERE. WE. GO!
 
@@ -15,7 +17,7 @@ function ConditionalAssign(base: any, baseProp: string, other: any, otherProp: s
 
 function ConvertFn(c: any): ScoreDocument | null {
     if (!supportedGames.includes(c.game)) {
-        rootLogger.warn(`Ignored game ${c.game}`);
+        logger.warn(`Ignored game ${c.game}`);
         return null;
     }
 
@@ -23,9 +25,8 @@ function ConvertFn(c: any): ScoreDocument | null {
         return null;
     }
 
-    // @ts-expect-error yea
     if (validPlaytypes[c.game].includes(c.playtype)) {
-        rootLogger.warn(`Ignored game pt ${c.game}, ${c.playtype}`);
+        logger.warn(`Ignored game pt ${c.game}, ${c.playtype}`);
     }
 
     let base: Omit<ScoreDocument, "scoreID"> = {
@@ -46,10 +47,8 @@ function ConvertFn(c: any): ScoreDocument | null {
         scoreData: {
             esd: c.scoreData.esd ?? null,
             grade: c.scoreData.grade,
-            // @ts-expect-error shut
             gradeIndex: grades[c.game].indexOf(c.scoreData.grade),
             lamp: c.scoreData.lamp,
-            // @ts-expect-error shut
             lampIndex: lamps[c.game].indexOf(c.scoreData.lamp),
             percent: c.scoreData.percent,
             score: c.scoreData.score,

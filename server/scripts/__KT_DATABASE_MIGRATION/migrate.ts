@@ -1,5 +1,5 @@
 import { ICollection } from "monk";
-import CreateLogCtx from "../../logger";
+import CreateLogCtx from "../../src/logger";
 import { oldKTDB } from "./old-db";
 
 const logger = CreateLogCtx("MIGRATE.ts");

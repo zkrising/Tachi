@@ -4,10 +4,10 @@ import { Command } from "commander";
 import fs from "fs";
 import path from "path";
 import { config, Difficulties, ESDCore, IIDXBPIData, ChartDocument } from "kamaitachi-common";
-import { FindSongOnTitleVersion } from "../score-import/database-lookup/song-title";
-import { FindChartWithPTDF } from "../score-import/database-lookup/chart-ptdf";
-import db from "../db/db";
-import CreateLogCtx from "../logger";
+import { FindSongOnTitleVersion } from "../src/score-import/database-lookup/song-title";
+import { FindChartWithPTDF } from "../src/score-import/database-lookup/chart-ptdf";
+import db from "../src/db/db";
+import CreateLogCtx from "../src/logger";
 const program = new Command();
 
 const logger = CreateLogCtx("update-bpi-poyashi.ts");

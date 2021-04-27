@@ -1,6 +1,6 @@
 import { ChartDocument } from "kamaitachi-common";
-import db from "../../db/db";
-import { rootLogger } from "../../logger";
+import db from "../../src/db/db";
+import { rootLogger } from "../../src/logger";
 import MigrateRecords from "./migrate";
 
 function ConvertFn(c: any): ChartDocument<"iidx:SP" | "iidx:DP"> {

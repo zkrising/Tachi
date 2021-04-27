@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import fs from "fs";
 import path from "path";
-import { PRUDENCE_CHART_SCHEMAS } from "../../db/schemas";
+import { PRUDENCE_CHART_SCHEMAS } from "../../src/db/schemas";
 import p from "prudence";
-import db from "../../db/db";
+import db from "../../src/db/db";
 
 let data = JSON.parse(fs.readFileSync(path.join(__dirname, "./hcnverdata.json"), "utf-8"));
 

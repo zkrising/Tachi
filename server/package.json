@@ -70,10 +70,10 @@
         ],
         "all": true,
         "include": [
-            "src/*/!(test-utils)/**/*.js"
+            "src/*/!(test-utils)/**/*.ts"
         ],
         "exclude": [
-            "src/**/*.test.ts",
+            "src/**/*.test.ts"
         ]
     }
 }

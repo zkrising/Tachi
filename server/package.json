@@ -73,7 +73,9 @@
             "src/**/*.ts"
         ],
         "exclude": [
-            "**/*.test.ts"
+            "**/*.test.ts",
+            "src/test-utils/**/*",
+            "src/scripts/**/*"
         ]
     }
 }

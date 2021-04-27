@@ -27,7 +27,7 @@ function ConvertFn(c: any): ChartDocument<"iidx:SP" | "iidx:DP"> {
     };
 
     if (typeof c.length === "number") {
-        let m = c.length % 60_000;
+        let m = Math.floor(c.length / 60_000);
         let s = c.length - m * 60_000;
 
         newChartDoc.length = `${m}:${s}`;

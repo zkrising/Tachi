@@ -68,7 +68,6 @@
             "html",
             "lcov"
         ],
-        "all": true,
         "include": [
             "src/**/*.ts"
         ],

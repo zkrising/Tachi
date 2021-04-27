@@ -345,7 +345,7 @@ function CreatePrChart(game: Game, flags: string[], data: PrudenceSchema) {
 export const PRUDENCE_CHART_SCHEMAS: Record<Game, PrudenceSchema> = {
     iidx: CreatePrChart("iidx", ["IN BASE GAME", "OMNIMIX", "N-1"], {
         notecount: p.isPositiveInteger,
-        inGameID: p.and(p.isPositiveInteger),
+        inGameID: p.isPositiveInteger,
     }),
     bms: CreatePrChart("bms", [], { hashMD5: "string", hashSHA256: "string" }),
     chunithm: CreatePrChart("chunithm", ["IN BASE GAME", "OMNIMIX"], {

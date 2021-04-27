@@ -74,8 +74,8 @@
         ],
         "exclude": [
             "**/*.test.ts",
-            "src/test-utils/**/*",
-            "src/scripts/**/*"
+            "src/test-utils/**/*.ts",
+            "src/scripts/**/*.ts"
         ]
     }
 }

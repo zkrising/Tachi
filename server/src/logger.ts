@@ -1,4 +1,4 @@
-import winston, { format, LeveledLogMethod, Logger, transports } from "winston";
+import winston, { format, transports } from "winston";
 import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
 import { FormatUserDoc } from "./core/format-user";
 import { KtLogger } from "./types";

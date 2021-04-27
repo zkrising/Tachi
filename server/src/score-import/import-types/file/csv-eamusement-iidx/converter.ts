@@ -213,10 +213,10 @@ async function EamScoreConverterWrapper(
             return err;
         } else if (err instanceof ScoreImportFatalError) {
             throw err; // throw it all the way up.
-        } else {
-            logger.error(`Unknown error: `, { err });
-            return new InternalFailure("An unknown internal failure has occured.");
         }
+
+        logger.error(`Unknown error: `, { err });
+        return new InternalFailure("An unknown internal failure has occured.");
     }
 }
 

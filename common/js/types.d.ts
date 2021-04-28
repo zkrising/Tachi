@@ -854,8 +854,6 @@ export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBD
         rating: number;
         lampRating: number;
         gameSpecific: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
-        ranking: integer | null;
-        outOf: integer | null;
     };
     timeAchieved: integer | null;
     songID: integer;
@@ -867,6 +865,39 @@ export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBD
     isLampPB: boolean;
     scoreID: string;
     importType: ImportTypes | null;
+}
+export interface PBScoreComposedReference {
+    name: string;
+    scoreID: string;
+}
+export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
+    composedFrom: {
+        scorePB: string;
+        lampPB: string;
+        other?: PBScoreComposedReference[];
+    };
+    userID: integer;
+    chartID: string;
+    songID: string;
+    ranking: integer;
+    outOf: integer;
+    comments: string[];
+    scoreData: {
+        score: number;
+        lamp: Lamps[I];
+        percent: number;
+        grade: Grades[I];
+        lampIndex: integer;
+        gradeIndex: integer;
+        esd: number | null;
+        hitData: Partial<Record<JudgementLookup[I], integer>>;
+        hitMeta: Partial<HitMetaLookup[I]>;
+    };
+    calculatedData: {
+        rating: number;
+        lampRating: number;
+        gameSpecific: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
+    };
 }
 export declare type FileUploadImportTypes = "file/csv:eamusement-iidx";
 export declare type ImportTypes = FileUploadImportTypes;

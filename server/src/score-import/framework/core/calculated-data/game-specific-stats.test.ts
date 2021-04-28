@@ -13,16 +13,7 @@ import {
     KaidenPercentile,
 } from "./game-specific-stats";
 import CreateLogCtx from "../../../../logger";
-
-function isApproximately(number: number, target: number, message: string, lenience = 0.01) {
-    let result = t.ok(Math.abs(number - target) < lenience, message);
-
-    if (!result) {
-        throw new Error(`${number} was not close enough to ${target}`);
-    }
-
-    return true;
-}
+import { isApproximately } from "../../../../test-utils/asserts";
 
 t.test("#CalculateBPI", (t) => {
     t.test("AA BPI tests", (t) => {

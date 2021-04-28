@@ -1106,7 +1106,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
     };
     userID: integer;
     chartID: string;
-    songID: string;
+    songID: integer;
     ranking: integer;
     outOf: integer;
     comments: string[];

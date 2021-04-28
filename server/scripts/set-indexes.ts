@@ -1,6 +1,6 @@
 import monk from "monk";
 import { Command } from "commander";
-import CreateLogCtx from "../logger";
+import CreateLogCtx from "../src/logger";
 import { IndexOptions } from "mongodb";
 import { ValidDatabases } from "kamaitachi-common";
 
@@ -34,7 +34,7 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
     scores: [index({ scoreID: 1 }, UNIQUE)],
     "charts-iidx": [
         index({ chartID: 1 }, UNIQUE),
-        index({ songID: 1, difficulty: 1, playtype: 1 }, UNIQUE),
+        index({ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 }, UNIQUE),
     ],
     "songs-iidx": [index({ id: 1 }, UNIQUE), index({ title: 1 })],
     sessions: [

@@ -1110,6 +1110,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
     ranking: integer;
     outOf: integer;
     comments: string[];
+    highlight: boolean;
     scoreData: {
         score: number;
         lamp: Lamps[I];

@@ -9,7 +9,6 @@ import {
     SessionInfoReturn,
     Game,
 } from "kamaitachi-common";
-import { Logger } from "winston";
 import db from "../../../../db/db";
 import { AppendLogCtx } from "../../../../logger";
 import { GenerateRandomSessionName } from "./name-generation";

@@ -68,6 +68,15 @@ export default async function ScoreImportMain<D, C>(
         }ms/doc).`
     );
 
+    // Update user's PBs and set flags
+    // @todo
+
+    // Update user's classes
+    // @todo
+
+    // Update user's goals
+    // @todo
+
     // Create import document
     const ImportDocument: KTBlackImportDocument = {
         importType,

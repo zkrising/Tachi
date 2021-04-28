@@ -1,4 +1,4 @@
-import { InvalidScoreFailure } from "./converter-errors";
+import { InvalidScoreFailure } from "./converter-failures";
 
 const isIntegerRegex = /^-?\d+$/;
 

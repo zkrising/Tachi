@@ -13,7 +13,7 @@ import {
     InternalFailure,
     InvalidScoreFailure,
     KTDataNotFoundFailure,
-} from "../core/converter-errors";
+} from "../core/converter-failures";
 import { CreateScoreID } from "../core/score-id";
 import db from "../../../db/db";
 import { AppendLogCtx } from "../../../logger";

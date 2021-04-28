@@ -7,7 +7,7 @@ import {
     KTDataNotFoundFailure,
     InternalFailure,
     InvalidScoreFailure,
-} from "../../../framework/core/converter-errors";
+} from "../../../framework/core/converter-failures";
 import ScoreImportFatalError from "../../../framework/core/score-import-error";
 import { GetGradeFromPercent } from "../../../framework/core/score-utils";
 import { AssertStrAsPositiveInt } from "../../../framework/core/string-asserts";

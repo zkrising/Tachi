@@ -10,7 +10,7 @@ import {
     Playtypes,
 } from "kamaitachi-common";
 import { Logger, LeveledLogMethod } from "winston";
-import { ConverterFailure } from "./score-import/framework/core/converter-errors";
+import { ConverterFailure } from "./score-import/framework/core/converter-failures";
 import { Converters } from "./score-import/import-types/import-types";
 
 declare module "express-session" {

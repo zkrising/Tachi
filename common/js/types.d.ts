@@ -861,8 +861,6 @@ export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBD
     highlight: boolean;
     comment: string | null;
     timeAdded: integer;
-    isScorePB: boolean;
-    isLampPB: boolean;
     scoreID: string;
     importType: ImportTypes | null;
 }

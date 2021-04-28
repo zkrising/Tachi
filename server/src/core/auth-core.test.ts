@@ -8,7 +8,7 @@ import {
 import t from "tap";
 import db, { CloseMongoConnection } from "../db/db";
 import { PrivateUserDocument } from "kamaitachi-common";
-import prAssert from "../test-utils/prassert";
+import { prAssert } from "../test-utils/asserts";
 import Prudence from "prudence";
 import ResetDBState from "../test-utils/reset-db-state";
 

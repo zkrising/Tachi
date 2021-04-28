@@ -1,7 +1,7 @@
 import t from "tap";
 import { CloseMongoConnection } from "../db/db";
 import { PRUDENCE_PRIVATE_USER, PRUDENCE_PUBLIC_USER } from "../db/schemas";
-import prAssert from "../test-utils/prassert";
+import { prAssert } from "../test-utils/asserts";
 import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive } from "./user-core";
 
 t.test("#GetUserCaseInsensitive", (t) => {

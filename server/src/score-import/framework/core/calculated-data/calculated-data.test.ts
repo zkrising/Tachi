@@ -2,7 +2,7 @@ import Pr from "prudence";
 import t from "tap";
 import { CloseMongoConnection } from "../../../../db/db";
 import CreateLogCtx from "../../../../logger";
-import prAssert from "../../../../test-utils/prassert";
+import { prAssert } from "../../../../test-utils/asserts";
 import {
     Testing511SPA,
     TestingDoraChart,

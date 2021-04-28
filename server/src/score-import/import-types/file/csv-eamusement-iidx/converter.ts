@@ -13,10 +13,6 @@ import { GetGradeFromPercent } from "../../../framework/core/score-utils";
 import { AssertStrAsPositiveInt } from "../../../framework/core/string-asserts";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 
-export interface DataTest {
-    foo: string;
-}
-
 const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new Map([
     ["NO PLAY", "NO PLAY"],
     ["FAILED", "FAILED"],
@@ -28,7 +24,7 @@ const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new 
     ["ASSIST CLEAR", "ASSIST CLEAR"],
 ]);
 
-async function EamScoreConverter(
+export async function EamScoreConverter(
     eamScore: EamusementScoreData,
     ktchiSong: AnySongDocument,
     context: IIDXEamusementCSVContext,
@@ -37,7 +33,7 @@ async function EamScoreConverter(
     logger: Logger
 ) {
     const HUMANISED_CHART_TITLE = `${ktchiSong.title} (${context.playtype} ${eamScore.difficulty} [v${context.importVersion}])`;
-    if (!eamScore.level) {
+    if (!eamScore.level || eamScore.level === "0") {
         // charts that dont exist in the format have a level of 0
         return null;
     }
@@ -91,6 +87,12 @@ async function EamScoreConverter(
         eamScore.great,
         `${HUMANISED_CHART_TITLE} - Invalid Greats of ${eamScore.pgreat}`
     );
+
+    if (pgreat * 2 + great !== exscore) {
+        throw new InvalidScoreFailure(
+            `${HUMANISED_CHART_TITLE} - PGreats * 2 + Greats did not equal EXScore (${pgreat} * 2 + ${great} != ${exscore}).`
+        );
+    }
 
     const lamp = EAMUSEMENT_LAMP_RESOLVER.get(eamScore.lamp);
 
@@ -154,7 +156,7 @@ async function EamScoreConverter(
     if (!Number.isNaN(numBP)) {
         if (!Number.isInteger(numBP) || numBP < 0 || numBP > 9999) {
             throw new InvalidScoreFailure(
-                `${HUMANISED_CHART_TITLE} - Invalid BP of ${eamScore.bp}`
+                `${HUMANISED_CHART_TITLE} - Invalid BP of ${eamScore.bp}.`
             );
         }
         dryScore.scoreData.hitMeta.bp = numBP;
@@ -177,7 +179,7 @@ async function EamScoreConverter(
  * @param data - The parent data the eamScore derives from.
  * @returns ConverterFnReturn
  */
-async function EamScoreConverterWrapper(
+export async function EamScoreConverterWrapper(
     eamScore: EamusementScoreData,
     song: AnySongDocument,
     context: IIDXEamusementCSVContext,

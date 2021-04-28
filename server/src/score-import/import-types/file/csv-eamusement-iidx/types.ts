@@ -1,5 +1,3 @@
-import { integer } from "kamaitachi-common";
-
 export interface EamusementScoreData {
     difficulty: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
     lamp: string;

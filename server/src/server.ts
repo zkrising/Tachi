@@ -59,6 +59,9 @@ app.use("/internal-api", internalApiRouter);
  * @name *
  */
 app.get("*", (req, res) => res.status(200).send("todo"));
+app.all("*", (req, res) =>
+    res.status(404).json({ success: false, description: "404: This URL does not exist." })
+);
 
 // completely stolen from ktapi error handler
 interface ExpressJSONErr extends SyntaxError {

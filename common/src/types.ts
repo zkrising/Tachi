@@ -83,6 +83,7 @@ export type Databases =
     | "sessions"
     | "folders"
     | "scores"
+    | "score-pbs"
     | "queries"
     | "rivals"
     | "notifications"

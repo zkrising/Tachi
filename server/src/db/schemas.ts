@@ -331,6 +331,8 @@ const PRUDENCE_CHART_BASE: PrudenceSchema = {
     levelNum: p.isPositive,
     length: "?string",
     bpmString: "?string",
+    isPrimary: "boolean",
+    versions: ["string"],
 };
 
 function CreatePrChart(game: Game, flags: string[], data: PrudenceSchema) {
@@ -377,10 +379,8 @@ const PRUDENCE_SONG_BASE: PrudenceSchema = {
     id: p.isPositiveInteger,
     title: "string",
     artist: "string",
-    isAvailable: "boolean",
     "search-titles": [p.and("string", (self, parent) => self !== parent.title)],
     "alt-titles": [p.and("string", (self, parent) => self !== parent.title)],
-    versions: ["string"],
     firstVersion: "string",
 };
 

@@ -32,7 +32,7 @@ specifiers:
   express-session: ^1.17.1
   fast-json-stable-hash: ^1.0.1
   kamaitachi-common: github:zkldi/Kamaitachi-common
-  mongodb: 3.6.3
+  mongodb: ^3.6.6
   monk: ^7.3.4
   multer: ^1.4.2
   node-fetch: ^2.6.1
@@ -62,8 +62,8 @@ dependencies:
   express-async-errors: 3.1.1_express@4.17.1
   express-session: 1.17.1
   fast-json-stable-hash: 1.0.1
-  kamaitachi-common: github.com/zkldi/Kamaitachi-common/2809c38df01607f5178e438b2cffefe21849dee9
-  mongodb: 3.6.3
+  kamaitachi-common: github.com/zkldi/Kamaitachi-common/6fa12357c7e4442e7452a1edff71fcc5c0840953
+  mongodb: 3.6.6
   monk: 7.3.4
   multer: 1.4.2
   node-fetch: 2.6.1
@@ -2887,6 +2887,39 @@ packages:
       saslprep: 1.0.3
     dev: false
 
+  /mongodb/3.6.6:
+    resolution: {integrity: sha512-WlirMiuV1UPbej5JeCMqE93JRfZ/ZzqE7nJTwP85XzjAF4rRSeq2bGCb1cjfoHLOF06+HxADaPGqT0g3SbVT1w==}
+    engines: {node: '>=4'}
+    peerDependencies:
+      aws4: '*'
+      bson-ext: '*'
+      kerberos: '*'
+      mongodb-client-encryption: '*'
+      mongodb-extjson: '*'
+      snappy: '*'
+    peerDependenciesMeta:
+      aws4:
+        optional: true
+      bson-ext:
+        optional: true
+      kerberos:
+        optional: true
+      mongodb-client-encryption:
+        optional: true
+      mongodb-extjson:
+        optional: true
+      snappy:
+        optional: true
+    dependencies:
+      bl: 2.2.1
+      bson: 1.1.6
+      denque: 1.5.0
+      optional-require: 1.0.3
+      safe-buffer: 5.2.1
+    optionalDependencies:
+      saslprep: 1.0.3
+    dev: false
+
   /monk-middleware-cast-ids/0.2.1:
     resolution: {integrity: sha1-QMQOWmyzPM7cKJIglDJ17ohhxSk=}
     dev: false
@@ -3158,6 +3191,11 @@ packages:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
     hasBin: true
     dev: true
+
+  /optional-require/1.0.3:
+    resolution: {integrity: sha512-RV2Zp2MY2aeYK5G+B/Sps8lW5NHAzE5QClbFP15j+PWmP+T9PxlJXBOOLoSAdgwFvS4t0aMR4vpedMkbHfh0nA==}
+    engines: {node: '>=4'}
+    dev: false
 
   /optionator/0.9.1:
     resolution: {integrity: sha512-74RlY5FCnhq4jRxVUPKDaRwrVNXMqsGsiW6AJw4XK8hmtm10wC0ypZBLw5IIp85NZMr91+qd1RvvENwg7jjRFw==}
@@ -4600,8 +4638,8 @@ packages:
       '@types/yoga-layout': 1.9.2
     dev: true
 
-  github.com/zkldi/Kamaitachi-common/2809c38df01607f5178e438b2cffefe21849dee9:
-    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/2809c38df01607f5178e438b2cffefe21849dee9}
+  github.com/zkldi/Kamaitachi-common/6fa12357c7e4442e7452a1edff71fcc5c0840953:
+    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/6fa12357c7e4442e7452a1edff71fcc5c0840953}
     name: kamaitachi-common
     version: 0.1.0
     dependencies:

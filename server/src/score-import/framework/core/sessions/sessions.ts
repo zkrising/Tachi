@@ -214,7 +214,6 @@ export async function LoadScoresIntoSessions(
         // As of now, we dont currently do it. @TODO.
         let nearbySession = await db.sessions.findOne({
             userID,
-            // importType, not necessary?
             game,
             playtype,
             $or: [

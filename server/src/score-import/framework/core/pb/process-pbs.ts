@@ -3,7 +3,11 @@ import db from "../../../../db/db";
 import { KtLogger } from "../../../../types";
 import { CreatePBDoc } from "./create-pb-doc";
 
-export async function ProcessPBs(userID: integer, chartIDs: Set<string>, logger: KtLogger) {
+export async function ProcessPBs(
+    userID: integer,
+    chartIDs: Set<string>,
+    logger: KtLogger
+): Promise<void> {
     let promises = [];
 
     for (const chartID of chartIDs) {
@@ -22,10 +26,10 @@ export async function ProcessPBs(userID: integer, chartIDs: Set<string>, logger:
             `Skipping PB processing as pbDocs is an empty array. This was probably caused by a previous severe-level warning.`,
             { userID, chartIDs: toStr }
         );
-        return 0;
+        return;
     }
 
-    let r = await db["score-pbs"].bulkWrite(
+    await db["score-pbs"].bulkWrite(
         pbDocs.map((e) => ({
             updateOne: {
                 filter: { chartID: e.chartID, userID: e.userID },
@@ -35,6 +39,7 @@ export async function ProcessPBs(userID: integer, chartIDs: Set<string>, logger:
         }))
     );
 
-    // @ts-expect-error monk machine broken
-    return r.nUpserted;
+    // originally we returned nUpserted from this function, but it's not
+    // very useful to anyone, tbh.
+    return;
 }

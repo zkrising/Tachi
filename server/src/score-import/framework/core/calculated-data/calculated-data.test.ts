@@ -22,8 +22,6 @@ t.test("#CreateCalculatedData", async (t) => {
         {
             rating: Pr.equalTo(0),
             lampRating: Pr.equalTo(0),
-            ranking: "null",
-            outOf: "null",
             gameSpecific: {
                 BPI: "?number",
                 KESDC: "?number",
@@ -44,8 +42,6 @@ t.test("#CreateCalculatedData", async (t) => {
         {
             rating: Pr.isPositiveNonZero,
             lampRating: Pr.equalTo(0),
-            ranking: "null",
-            outOf: "null",
             gameSpecific: {},
         },
         "Should correctly call rating function overrides for different games"

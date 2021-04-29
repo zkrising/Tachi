@@ -50,9 +50,6 @@ export default async function HydrateScore(
         chartID: chart.chartID,
         scoreID,
         playtype: chart.playtype,
-        // these will be sorted out in post-processing
-        isLampPB: false,
-        isScorePB: false,
     };
 
     return score;

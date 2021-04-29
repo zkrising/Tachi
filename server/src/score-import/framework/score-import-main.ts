@@ -10,6 +10,7 @@ import { ImportAllIterableData } from "./importing/score-importing";
 import { CreateImportLoggerAndID } from "./core/import-logger";
 import { CreateSessions } from "./core/sessions/sessions";
 import { GetMilisecondsSince } from "../../core/hrtime-core";
+import { ProcessPBs } from "./core/pb/process-pbs";
 
 export default async function ScoreImportMain<D, C>(
     user: PublicUserDocument,
@@ -51,7 +52,7 @@ export default async function ScoreImportMain<D, C>(
         `Importing took ${importTime} miliseconds. (${importTime / importInfo.length}ms/doc)`
     );
 
-    let { scorePlaytypeMap, errors, scoreIDs } = ParseImportInfo(importInfo);
+    let { scorePlaytypeMap, errors, scoreIDs, chartIDs } = ParseImportInfo(importInfo);
 
     // Update user's rating information
     // @todo
@@ -69,7 +70,7 @@ export default async function ScoreImportMain<D, C>(
     );
 
     // Update user's PBs and set flags
-    // @todo
+    await ProcessPBs(user.id, chartIDs, logger);
 
     // Update user's classes
     // @todo
@@ -110,10 +111,12 @@ function ParseImportInfo(importInfo: ImportProcessingInfo[]) {
 
     let scoreIDs = [];
     let errors = [];
+    let chartIDs: Set<string> = new Set();
 
     for (const info of importInfo) {
         if (info.success) {
             scoreIDs.push(info.content.score.scoreID);
+            chartIDs.add(info.content.score.chartID);
 
             if (scorePlaytypeMap[info.content.score.playtype]) {
                 scorePlaytypeMap[info.content.score.playtype]!.push(info.content.score);
@@ -125,5 +128,5 @@ function ParseImportInfo(importInfo: ImportProcessingInfo[]) {
         }
     }
 
-    return { scoreIDs, errors, scorePlaytypeMap };
+    return { scoreIDs, errors, scorePlaytypeMap, chartIDs };
 }

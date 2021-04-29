@@ -2,9 +2,9 @@ import {
     integer,
     ImportTypes,
     ScoreDocument,
-    ScoreCore,
     SessionDocument,
     Playtypes,
+    PBScoreDocument,
     SessionScoreInfo,
     SessionInfoReturn,
     Game,
@@ -51,7 +51,7 @@ export async function CreateSessions(
 
 function ProcessScoreIntoSessionScoreInfo(
     score: ScoreDocument,
-    previousPB: ScoreDocument | undefined
+    previousPB: PBScoreDocument | undefined
 ): SessionScoreInfo {
     if (!previousPB) {
         return {
@@ -195,16 +195,13 @@ export async function LoadScoresIntoSessions(
         let startOfGroup = groupScores[0].timeAchieved!;
         let endOfGroup = groupScores[groupScores.length - 1].timeAchieved!;
 
-        let pbs = await db.scores.find({
+        let pbs = await db["score-pbs"].find({
             chartID: { $in: groupScores.map((e) => e.chartID) },
             userID,
-            isScorePB: true,
         });
 
-        let coercedPBs = await ScoreCore.AutoCoerce(db.scores, pbs);
-
-        let pbMap: Map<string, ScoreDocument> = new Map();
-        for (const pb of coercedPBs) {
+        let pbMap: Map<string, PBScoreDocument> = new Map();
+        for (const pb of pbs) {
             pbMap.set(pb.chartID, pb);
         }
 

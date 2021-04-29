@@ -1,5 +1,5 @@
 import fs from "fs";
-import { ChartDocument, PBScoreDocument } from "kamaitachi-common";
+import { ChartDocument, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
 import path from "path";
 import { DryScore } from "../types";
 
@@ -15,6 +15,9 @@ export const TestingIIDXSPDryScore = GetKTDataJSON(
 export const TestingIIDXSPScorePB = GetKTDataJSON(
     "./kamaitachi/iidx-scorepb.json"
 ) as PBScoreDocument<"iidx:SP">;
+export const TestingIIDXSPScore = GetKTDataJSON(
+    "./kamaitachi/iidx-score.json"
+) as ScoreDocument<"iidx:SP">;
 
 export const Testing511SPA = GetKTDataJSON(
     "./kamaitachi/iidx-511spa.json"

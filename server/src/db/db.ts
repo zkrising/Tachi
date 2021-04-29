@@ -16,6 +16,7 @@ import {
     AnySongDocument,
     AnyChartDocument,
     UserGoalDocument,
+    PBScoreDocument,
     UserMilestoneDocument,
 } from "kamaitachi-common";
 import monk from "monk";
@@ -91,6 +92,7 @@ const db = {
     songs,
     charts,
     scores: monkDB.get<ScoreDocument>("scores"),
+    "score-pbs": monkDB.get<PBScoreDocument>("score-pbs"),
     folders: monkDB.get<FolderDocument>("folders"),
     goals: monkDB.get<GoalDocument>("goals"),
     "user-goals": monkDB.get<UserGoalDocument>("user-goals"),

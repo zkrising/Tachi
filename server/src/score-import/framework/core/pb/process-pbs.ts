@@ -12,6 +12,19 @@ export async function ProcessPBs(userID: integer, chartIDs: Set<string>, logger:
 
     let pbDocs = (await Promise.all(promises)).filter((e) => !!e) as PBScoreDocument[];
 
+    if (pbDocs.length === 0) {
+        let toStr = "";
+        for (const c of chartIDs) {
+            toStr += `${c},`;
+        }
+
+        logger.warn(
+            `Skipping PB processing as pbDocs is an empty array. This was probably caused by a previous severe-level warning.`,
+            { userID, chartIDs: toStr }
+        );
+        return 0;
+    }
+
     let r = await db["score-pbs"].bulkWrite(
         pbDocs.map((e) => ({
             updateOne: {

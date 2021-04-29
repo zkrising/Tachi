@@ -86,14 +86,14 @@ export const PR_SCORE_GENERIC = {
         rating: p.isPositive,
         lampRating: p.isPositive,
         gameSpecific: {},
-        ranking: p.nullable(p.isPositiveNonZeroInteger),
-        outOf: p.nullable(
-            p.and(
-                p.isPositiveNonZeroInteger,
-                (self, parent: Record<string, unknown>) =>
-                    (parent.ranking as number) <= (self as number)
-            )
-        ),
+        // ranking: p.nullable(p.isPositiveNonZeroInteger),
+        // outOf: p.nullable(
+        //     p.and(
+        //         p.isPositiveNonZeroInteger,
+        //         (self, parent: Record<string, unknown>) =>
+        //             (parent.ranking as number) <= (self as number)
+        //     )
+        // ),
     },
     timeAchieved: p.nullable(p.isPositive),
     songID: p.isInteger,
@@ -101,8 +101,6 @@ export const PR_SCORE_GENERIC = {
     highlight: "boolean",
     comment: p.nullable(p.isBoundedString(1, 240)),
     timeAdded: p.isPositive,
-    isScorePB: "boolean",
-    isLampPB: "boolean",
     scoreID: "string", // temp
     importType: p.nullable(p.isIn(importTypes)),
 };

@@ -32,6 +32,10 @@ const UNIQUE = { unique: true };
 
 const indexes: Partial<Record<ValidDatabases, Index[]>> = {
     scores: [index({ scoreID: 1 }, UNIQUE)],
+    "score-pbs": [
+        index({ chartID: 1, userID: 1 }, UNIQUE),
+        index({ chartID: 1, "scoreData.percent": 1 }),
+    ],
     "charts-iidx": [
         index({ chartID: 1 }, UNIQUE),
         index({ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 }, UNIQUE),
@@ -52,7 +56,7 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
             await db.get(collection).dropIndexes();
         }
 
-        // @ts-expect-error yeah blah blah
+        // @ts-expect-error ???
         for (const index of indexes[collection]) {
             // eslint-disable-next-line no-await-in-loop
             let r = await db.get(collection).createIndex(index.fields, index.options);

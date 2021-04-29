@@ -1,0 +1,35 @@
+{
+    "service": "e-amusement",
+    "game": "iidx",
+    "playtype": "SP",
+    "difficulty": "ANOTHER",
+    "userID": 1,
+    "scoreData": {
+        "score": 786,
+        "lamp": "HARD CLEAR",
+        "percent": 50,
+        "grade": "C",
+        "esd": 30,
+        "gradeIndex": 3,
+        "lampIndex": 4,
+        "hitData": {
+            "pgreat": 50,
+            "great": 10
+        },
+        "hitMeta": {}
+    },
+    "scoreMeta": {},
+    "calculatedData": {
+        "rating": 0.1,
+        "lampRating": 5,
+        "gameSpecific": {}
+    },
+    "timeAchieved": null,
+    "songID": 1,
+    "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
+    "highlight": false,
+    "comment": null,
+    "timeAdded": 1,
+    "scoreID": "TESTING_SCORE_ID",
+    "importType": "iidx:eamusement-csv"
+}

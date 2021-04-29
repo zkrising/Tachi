@@ -1,0 +1,40 @@
+{
+    "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
+    "userID": 1,
+    "calculatedData": {
+        "rating": 0,
+        "lampRating": 0,
+        "gameSpecific": {
+            "BPI": 10.10,
+            "KESDC": 9.558413110870934,
+            "K%": null
+        }
+    },
+    "comments": [],
+    "composedFrom": {
+        "scorePB": "R9a8d45b332a5ab18ef6f11f052defe2fa497596e69991a8b13ead3ecc3dd17d1",
+        "lampPB": "R9a8d45b332a5ab18ef6f11f052defe2fa497596e69991a8b13ead3ecc3dd17d1"
+    },
+    "highlight": false,
+    "outOf": 1,
+    "ranking": 1,
+    "scoreData": {
+        "score": 1479,
+        "percent": 94.08396946564885,
+        "esd": 10.64453125,
+        "grade": "AAA",
+        "gradeIndex": -1,
+        "lamp": "EX HARD CLEAR",
+        "lampIndex": 6,
+        "hitData": {
+            "pgreat": 697,
+            "great": 85
+        },
+        "hitMeta": {
+            "bp": 2
+        }
+    },
+    "songID": 1,
+    "game": "iidx",
+    "playtype": "SP"
+}

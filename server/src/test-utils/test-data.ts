@@ -1,5 +1,5 @@
 import fs from "fs";
-import { ChartDocument } from "kamaitachi-common";
+import { ChartDocument, PBScoreDocument } from "kamaitachi-common";
 import path from "path";
 import { DryScore } from "../types";
 
@@ -11,6 +11,10 @@ export const GetKTDataBuffer = (name: string) => fs.readFileSync(file(name));
 export const TestingIIDXSPDryScore = GetKTDataJSON(
     "./kamaitachi/iidx-dryscore.json"
 ) as DryScore<"iidx:SP">;
+
+export const TestingIIDXSPScorePB = GetKTDataJSON(
+    "./kamaitachi/iidx-scorepb.json"
+) as PBScoreDocument<"iidx:SP">;
 
 export const Testing511SPA = GetKTDataJSON(
     "./kamaitachi/iidx-511spa.json"

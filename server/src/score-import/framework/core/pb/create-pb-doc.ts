@@ -37,7 +37,7 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
         }
     )) as ScoreDocument; // guaranteed to not be null, but...
 
-    const pbDoc = await MergeScoreLampIntoPB(userID, scorePB, lampPB);
+    const pbDoc = await MergeScoreLampIntoPB(userID, scorePB, lampPB, logger);
 
     return pbDoc;
 }
@@ -47,7 +47,7 @@ export async function GetRankingInfo(
     userID: integer,
     percent: number
 ): Promise<{ outOf: number; ranking: number }> {
-    let { outOf, ranking } = await db["score-pbs"].aggregate([
+    let res = await db["score-pbs"].aggregate([
         // exclude the requesting user because we cannot know whether they already have a pb on this chart
         // or not - this means we can exec the same logic regardless of whether they already have a pb or not.
         { $match: { chartID, userID: { $ne: userID } } },
@@ -55,16 +55,22 @@ export async function GetRankingInfo(
             $group: {
                 _id: null,
                 outOf: { $sum: 1 },
-                ranking: { $sum: { $gte: ["$scoreData.percent", percent] } },
+                ranking: { $sum: { $cond: [{ $gte: ["$scoreData.percent", percent] }, 1, 0] } },
             },
         },
-        { $project: { outOf: 1, ranking: 1 } },
+        // { $project: { outOf: 1, ranking: 1 } },
     ]);
+
+    if (!res[0]) {
+        return { outOf: 1, ranking: 1 };
+    }
+
+    let { outOf, ranking } = res[0];
 
     // add one to both stats to account for not including the requesting user
     // if the field is undefined, there's no other scores to compare to.
-    outOf = outOf ? outOf++ : 1;
-    ranking = ranking ? ranking++ : 1;
+    outOf++;
+    ranking++;
 
     return { outOf, ranking };
 }
@@ -79,7 +85,8 @@ const GAME_SPECIFIC_MERGE_FNS: Record<string, any> = {
 async function MergeScoreLampIntoPB(
     userID: integer,
     scorePB: ScoreDocument,
-    lampPB: ScoreDocument
+    lampPB: ScoreDocument,
+    logger: KtLogger
 ): Promise<PBScoreDocument> {
     let { outOf, ranking } = await GetRankingInfo(
         scorePB.chartID,
@@ -99,6 +106,8 @@ async function MergeScoreLampIntoPB(
         outOf,
         ranking,
         highlight: scorePB.highlight || lampPB.highlight,
+        game: scorePB.game,
+        playtype: scorePB.playtype,
         scoreData: {
             score: scorePB.scoreData.score,
             percent: scorePB.scoreData.percent,
@@ -119,7 +128,7 @@ async function MergeScoreLampIntoPB(
 
     let GameSpecificMergeFn = GAME_SPECIFIC_MERGE_FNS[scorePB.game];
     if (GameSpecificMergeFn) {
-        await GameSpecificMergeFn(pbDoc, scorePB, lampPB);
+        await GameSpecificMergeFn(pbDoc, scorePB, lampPB, logger);
     }
 
     return pbDoc;

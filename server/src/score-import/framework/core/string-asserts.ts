@@ -11,12 +11,10 @@ export function AssertStrAsPositiveInt(strVal: string, errorMessage: string) {
 
     let val = Number(strVal);
 
-    if (Number.isNaN(val)) {
-        throw new InvalidScoreFailure(`${errorMessage} (Not a number.)`);
-    } else if (!Number.isSafeInteger(val)) {
+    if (!Number.isSafeInteger(val)) {
         throw new InvalidScoreFailure(`${errorMessage} (Not an integer.)`);
     } else if (val < 0) {
-        throw new InvalidScoreFailure(`${errorMessage} (Was Negative).`);
+        throw new InvalidScoreFailure(`${errorMessage} (Was negative.)`);
     }
 
     return val;
@@ -31,12 +29,10 @@ export function AssertStrAsPositiveNonZeroInt(strVal: string, errorMessage: stri
 
     let val = Number(strVal);
 
-    if (Number.isNaN(val)) {
-        throw new InvalidScoreFailure(`${errorMessage} (Not a number.)`);
-    } else if (!Number.isSafeInteger(val)) {
+    if (!Number.isSafeInteger(val)) {
         throw new InvalidScoreFailure(`${errorMessage} (Not an integer.)`);
     } else if (val <= 0) {
-        throw new InvalidScoreFailure(`${errorMessage} (Was Negative).`);
+        throw new InvalidScoreFailure(`${errorMessage} (Was negative or zero.)`);
     }
 
     return val;

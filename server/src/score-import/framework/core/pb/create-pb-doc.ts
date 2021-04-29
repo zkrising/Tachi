@@ -18,7 +18,7 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
     );
 
     if (!scorePB) {
-        logger.warn(`User has no scores on chart, but a PB was attempted to be created?`, {
+        logger.severe(`User has no scores on chart, but a PB was attempted to be created?`, {
             chartID,
             userID,
         });
@@ -35,9 +35,15 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
                 "scoreData.lampIndex": -1,
             },
         }
-    )) as ScoreDocument; // guaranteed to not be null, but...
+    )) as ScoreDocument; // guaranteed to not be null, as this always resolves
+    // to atleast one score (and we got ScorePB above, so we know there's
+    // atleast one).
 
     const pbDoc = await MergeScoreLampIntoPB(userID, scorePB, lampPB, logger);
+
+    if (!pbDoc) {
+        return;
+    }
 
     return pbDoc;
 }
@@ -87,7 +93,7 @@ async function MergeScoreLampIntoPB(
     scorePB: ScoreDocument,
     lampPB: ScoreDocument,
     logger: KtLogger
-): Promise<PBScoreDocument> {
+): Promise<PBScoreDocument | void> {
     let { outOf, ranking } = await GetRankingInfo(
         scorePB.chartID,
         userID,
@@ -128,7 +134,15 @@ async function MergeScoreLampIntoPB(
 
     let GameSpecificMergeFn = GAME_SPECIFIC_MERGE_FNS[scorePB.game];
     if (GameSpecificMergeFn) {
-        await GameSpecificMergeFn(pbDoc, scorePB, lampPB, logger);
+        let success = await GameSpecificMergeFn(pbDoc, scorePB, lampPB, logger);
+
+        // If the mergeFn returns false, this means something has gone
+        // rather wrong. We just return undefined here, which in turn
+        // tells our calling code to skip this PB. This typically results in a
+        // severe-level warning
+        if (success === false) {
+            return;
+        }
     }
 
     return pbDoc;

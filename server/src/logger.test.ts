@@ -14,7 +14,7 @@ t.test("Logger Tests", (t) => {
     logger.severe("Severe Message Test");
     logger.crit("Critical Message Test");
 
-    Transports[2].level = "info"; // lol
+    Transports[2].level = process.env.LOG_LEVEL ?? "info";
 
     logger.debug("This message shouldn't appear.");
 

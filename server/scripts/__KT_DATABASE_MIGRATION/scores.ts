@@ -37,8 +37,6 @@ function ConvertFn(c: any): ScoreDocument | null {
         game: c.game,
         timeAdded: c.timeAdded,
         timeAchieved: Number.isNaN(c.timeAchieved) ? null : c.timeAchieved,
-        isScorePB: !!c.isScorePB,
-        isLampPB: !!c.isLampPB,
         comment: c.comment ?? null,
         highlight: c.highlight ?? false,
         service: c.service,

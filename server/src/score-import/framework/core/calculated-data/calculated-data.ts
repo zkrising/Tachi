@@ -28,8 +28,6 @@ export async function CreateCalculatedData(
     return {
         rating,
         lampRating: 0,
-        ranking: null,
-        outOf: null,
         gameSpecific,
     };
 }

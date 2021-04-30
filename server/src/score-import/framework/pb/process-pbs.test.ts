@@ -20,7 +20,7 @@ t.test("#ProcessPBs", (t) => {
 
         let pbs = await db["score-pbs"].find({});
 
-        t.equal(pbs.length, 4, "Should match the amount of PBs inserted into the DB.");
+        t.equal(pbs.length, 1, "Should match the amount of PBs inserted into the DB.");
 
         t.end();
     });

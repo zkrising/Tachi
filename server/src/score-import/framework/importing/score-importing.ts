@@ -7,14 +7,14 @@ import {
 } from "kamaitachi-common";
 import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../types";
 import HydrateScore from "./hydrate-score";
-import { QueueScoreInsert, ScoreIDs } from "../common/insert-score";
+import { QueueScoreInsert, ScoreIDs } from "./insert-score";
 import {
     ConverterFailure,
     InternalFailure,
     InvalidScoreFailure,
     KTDataNotFoundFailure,
 } from "./converter-failures";
-import { CreateScoreID } from "../common/score-id";
+import { CreateScoreID } from "./score-id";
 import db from "../../../db/db";
 import { AppendLogCtx } from "../../../logger";
 

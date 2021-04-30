@@ -37,8 +37,7 @@ export async function IIDXMergeFn(
         return true;
     } else if (bpPB.scoreID === lampPB.scoreID) {
         pbDoc.scoreData.hitMeta.bp = lampPB.scoreData.hitMeta.bp;
-        // dfgmdfgfgdgf
-        logger.verbose(`Skipped adding BP PB as composedFrom because lampPB was also BP PB.`);
+        logger.debug(`Skipped adding BP PB as composedFrom because lampPB was also BP PB.`);
         return true;
     }
 

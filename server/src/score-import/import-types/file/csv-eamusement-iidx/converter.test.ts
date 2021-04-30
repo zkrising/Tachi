@@ -344,7 +344,7 @@ t.test("#EamScoreConverterWrapper", async (t) => {
         t.strictSame(
             res,
             new InvalidScoreFailure(
-                "5.1.1. (SP ANOTHER [v27]) - Invalid EX score of -1 (Was Negative)."
+                "5.1.1. (SP ANOTHER [v27]) - Invalid EX score of -1 (Was negative.)"
             )
         );
 

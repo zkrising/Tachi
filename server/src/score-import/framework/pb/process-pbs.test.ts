@@ -16,13 +16,11 @@ t.test("#ProcessPBs", (t) => {
         await db["score-pbs"].remove({});
 
         // scores on 511 SPA are pre-loaded into the database
-        let res = await ProcessPBs(1, new Set([Testing511SPA.chartID]), logger);
-
-        t.equal(res, 1, "Should return the amount of PBs inserted");
+        await ProcessPBs(1, new Set([Testing511SPA.chartID]), logger);
 
         let pbs = await db["score-pbs"].find({});
 
-        t.equal(res, pbs.length, "Should match the amount of PBs inserted into the DB.");
+        t.equal(pbs.length, 4, "Should match the amount of PBs inserted into the DB.");
 
         t.end();
     });
@@ -48,17 +46,11 @@ t.test("#ProcessPBs", (t) => {
             }),
         ]);
 
-        let res = await ProcessPBs(
-            1,
-            new Set([Testing511SPA.chartID, "test1", "test2", "test3"]),
-            logger
-        );
-
-        t.equal(res, 4, "Should return the amount of PBs inserted");
+        await ProcessPBs(1, new Set([Testing511SPA.chartID, "test1", "test2", "test3"]), logger);
 
         let pbs = await db["score-pbs"].find({});
 
-        t.equal(res, pbs.length, "Should match the amount of PBs inserted into the DB.");
+        t.equal(pbs.length, 4, "Should match the amount of PBs inserted into the DB.");
 
         t.end();
     });

@@ -7,8 +7,8 @@ import {
     KTDataNotFoundFailure,
     InternalFailure,
     InvalidScoreFailure,
-} from "../../../framework/importing/converter-failures";
-import ScoreImportFatalError from "../../../framework/importing/score-import-error";
+} from "../../../framework/score-importing/converter-failures";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { GetGradeFromPercent } from "../../../framework/common/score-utils";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";

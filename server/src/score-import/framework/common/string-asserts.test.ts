@@ -1,5 +1,5 @@
 import t from "tap";
-import { InvalidScoreFailure } from "../importing/converter-failures";
+import { InvalidScoreFailure } from "../score-importing/converter-failures";
 import { AssertStrAsPositiveInt, AssertStrAsPositiveNonZeroInt } from "./string-asserts";
 
 function astr(v: string) {

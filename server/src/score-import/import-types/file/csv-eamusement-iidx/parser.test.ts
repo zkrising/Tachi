@@ -1,6 +1,6 @@
 import t from "tap";
 import CreateLogCtx from "../../../../logger";
-import ScoreImportFatalError from "../../../framework/importing/score-import-error";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import ParseEamusementCSV, { NaiveCSVParse, ResolveHeaders } from "./parser";
 import { CloseMongoConnection } from "../../../../db/db";
 import {

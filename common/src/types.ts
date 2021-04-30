@@ -636,14 +636,14 @@ export interface PublicUserDocument extends MongoDBDocument {
     clan: string | null;
 }
 
-export interface UserGameStats<T extends Game = Game> extends MongoDBDocument {
+export interface UserGameStats<I extends IDStrings> extends MongoDBDocument {
     userID: integer;
-    game: T;
-    playtype: Playtypes[T];
+    game: IDStringToGame[I];
+    playtype: IDStringToPlaytype[I];
     rating: number;
     lampRating: number;
-    customRatings: Record<string, number>;
-    classes: Record<string, string>;
+    customRatings: GameSpecificCalcLookup[I];
+    classes: Record<string, string>; // bad
 }
 
 // the bottom set of types are horrifically confusing.

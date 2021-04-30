@@ -5,7 +5,7 @@ import {
     PublicUserDocument,
 } from "kamaitachi-common";
 import { ImportInputParser, ScorePlaytypeMap } from "../../types";
-import { InsertQueue } from "./common/insert-score";
+import { InsertQueue } from "./importing/insert-score";
 import { ImportAllIterableData } from "./importing/score-importing";
 import { CreateImportLoggerAndID } from "./common/import-logger";
 import { CreateSessions } from "./sessions/sessions";

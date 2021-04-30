@@ -9,7 +9,7 @@ import {
     InvalidScoreFailure,
 } from "../../../framework/importing/converter-failures";
 import ScoreImportFatalError from "../../../framework/importing/score-import-error";
-import { GetGradeFromPercent } from "../../../framework/importing/score-utils";
+import { GetGradeFromPercent } from "../../../framework/common/score-utils";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 
@@ -107,6 +107,7 @@ export async function EamScoreConverter(
     const grade = GetGradeFromPercent<"iidx:SP" | "iidx:DP">("iidx", percent);
 
     if (!grade) {
+        logger.warn(`${HUMANISED_CHART_TITLE} - Could not resolve ${percent} into a grade?`);
         throw new InternalFailure(
             `${HUMANISED_CHART_TITLE} - Could not resolve ${percent} into a grade?`
         );

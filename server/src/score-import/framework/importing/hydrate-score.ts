@@ -31,7 +31,7 @@ export default async function HydrateScore(
         {
             // @todo lamps may need to be separate upon game:playtype someday. Maybe. We need to check this out
             lampIndex: config.lamps[dryScore.game].indexOf(dryScore.scoreData.lamp as string),
-            gradeIndex: config.grades[dryScore.game].indexOf(dryScore.scoreData.lamp as string),
+            gradeIndex: config.grades[dryScore.game].indexOf(dryScore.scoreData.grade as string),
         },
         dryScoreData
     );

@@ -1,4 +1,5 @@
 import { config, Game, Grades, IDStrings } from "kamaitachi-common";
+import { logger } from "../../../logger";
 
 /**
  * Util for getting a games' grade for a given percent.
@@ -18,5 +19,6 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
         }
     }
 
+    // failsafe
     return null;
 }

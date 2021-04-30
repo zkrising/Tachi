@@ -1,7 +1,7 @@
-import db from "../../../../db/db";
+import db from "../../../db/db";
 import { integer, ScoreDocument, PBScoreDocument } from "kamaitachi-common";
 
-import { KtLogger } from "../../../../types";
+import { KtLogger } from "../../../types";
 import { IIDXMergeFn } from "./game-specific-merge";
 
 export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLogger) {

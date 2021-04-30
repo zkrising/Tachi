@@ -1,6 +1,6 @@
 import { PBScoreDocument, ScoreDocument } from "kamaitachi-common";
-import db from "../../../../db/db";
-import { KtLogger } from "../../../../types";
+import db from "../../../db/db";
+import { KtLogger } from "../../../types";
 
 export async function IIDXMergeFn(
     pbDoc: PBScoreDocument<"iidx:SP" | "iidx:DP">,

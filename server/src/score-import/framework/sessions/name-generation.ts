@@ -1,4 +1,4 @@
-import { GetRandomAdjective, GetRandomNoun } from "../../../../data/words";
+import { GetRandomAdjective, GetRandomNoun } from "../../../data/words";
 
 export function GenerateRandomSessionName() {
     let adj1 = GetRandomAdjective();

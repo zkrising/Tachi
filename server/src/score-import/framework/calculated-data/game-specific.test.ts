@@ -1,13 +1,13 @@
 import Pr from "prudence";
 import t from "tap";
-import { CloseMongoConnection } from "../../../../db/db";
-import CreateLogCtx from "../../../../logger";
-import { prAssert } from "../../../../test-utils/asserts";
+import { CloseMongoConnection } from "../../../db/db";
+import CreateLogCtx from "../../../logger";
+import { prAssert } from "../../../test-utils/asserts";
 import {
     Testing511SPA,
     TestingIIDXSPDryScore,
     TestingSDVXSingleDryScore,
-} from "../../../../test-utils/test-data";
+} from "../../../test-utils/test-data";
 import { CreateGameSpecific } from "./game-specific";
 const logger = CreateLogCtx("fake-testing-context");
 

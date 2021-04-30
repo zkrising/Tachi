@@ -5,12 +5,12 @@ import {
     PublicUserDocument,
 } from "kamaitachi-common";
 import { ImportInputParser, ScorePlaytypeMap } from "../../types";
-import { InsertQueue } from "./core/insert-score";
+import { InsertQueue } from "./common/insert-score";
 import { ImportAllIterableData } from "./importing/score-importing";
-import { CreateImportLoggerAndID } from "./core/import-logger";
-import { CreateSessions } from "./core/sessions/sessions";
+import { CreateImportLoggerAndID } from "./common/import-logger";
+import { CreateSessions } from "./sessions/sessions";
 import { GetMilisecondsSince } from "../../core/hrtime-core";
-import { ProcessPBs } from "./core/pb/process-pbs";
+import { ProcessPBs } from "./pb/process-pbs";
 
 export default async function ScoreImportMain<D, C>(
     user: PublicUserDocument,

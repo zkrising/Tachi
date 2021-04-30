@@ -1,6 +1,6 @@
 import t from "tap";
-import { CloseMongoConnection } from "../../../../db/db";
-import { DryScore } from "../../../../types";
+import { CloseMongoConnection } from "../../../db/db";
+import { DryScore } from "../../../types";
 import { AnyChartDocument, Difficulties, Lamps, ScoreDocument } from "kamaitachi-common";
 import {
     CalculateBPI,
@@ -12,8 +12,8 @@ import {
     CalculateVF5,
     KaidenPercentile,
 } from "./game-specific-stats";
-import CreateLogCtx from "../../../../logger";
-import { isApproximately } from "../../../../test-utils/asserts";
+import CreateLogCtx from "../../../logger";
+import { isApproximately } from "../../../test-utils/asserts";
 
 t.test("#CalculateBPI", (t) => {
     t.test("AA BPI tests", (t) => {

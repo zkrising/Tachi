@@ -2,7 +2,7 @@ import { ScoreDocument } from "kamaitachi-common";
 import t from "tap";
 import db, { CloseMongoConnection } from "../../../db/db";
 import ResetDBState from "../../../test-utils/reset-db-state";
-import { InsertQueue, QueueScoreInsert } from "./insert-score";
+import { InsertQueue, QueueScoreInsert } from "../common/insert-score";
 
 // these two get the same tests, because they're too closely linked
 t.test("#QueueScoreInsert, #InsertQueue", async (t) => {

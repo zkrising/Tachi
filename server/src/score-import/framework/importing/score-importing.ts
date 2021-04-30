@@ -6,15 +6,15 @@ import {
     AnySongDocument,
 } from "kamaitachi-common";
 import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../types";
-import HydrateScore from "../core/hydrate-score";
-import { QueueScoreInsert, ScoreIDs } from "../core/insert-score";
+import HydrateScore from "./hydrate-score";
+import { QueueScoreInsert, ScoreIDs } from "../common/insert-score";
 import {
     ConverterFailure,
     InternalFailure,
     InvalidScoreFailure,
     KTDataNotFoundFailure,
-} from "../core/converter-failures";
-import { CreateScoreID } from "../core/score-id";
+} from "./converter-failures";
+import { CreateScoreID } from "../common/score-id";
 import db from "../../../db/db";
 import { AppendLogCtx } from "../../../logger";
 

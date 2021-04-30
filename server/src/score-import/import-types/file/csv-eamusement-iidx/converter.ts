@@ -7,10 +7,10 @@ import {
     KTDataNotFoundFailure,
     InternalFailure,
     InvalidScoreFailure,
-} from "../../../framework/core/converter-failures";
-import ScoreImportFatalError from "../../../framework/core/score-import-error";
-import { GetGradeFromPercent } from "../../../framework/core/score-utils";
-import { AssertStrAsPositiveInt } from "../../../framework/core/string-asserts";
+} from "../../../framework/importing/converter-failures";
+import ScoreImportFatalError from "../../../framework/common/score-import-error";
+import { GetGradeFromPercent } from "../../../framework/common/score-utils";
+import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 
 const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new Map([

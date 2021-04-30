@@ -1,8 +1,8 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../db/db";
-import CreateLogCtx from "../../../../logger";
-import ResetDBState from "../../../../test-utils/reset-db-state";
-import { Testing511SPA, TestingIIDXSPScore } from "../../../../test-utils/test-data";
+import db, { CloseMongoConnection } from "../../../db/db";
+import CreateLogCtx from "../../../logger";
+import ResetDBState from "../../../test-utils/reset-db-state";
+import { Testing511SPA, TestingIIDXSPScore } from "../../../test-utils/test-data";
 import { ProcessPBs } from "./process-pbs";
 import deepmerge from "deepmerge";
 import crypto from "crypto";

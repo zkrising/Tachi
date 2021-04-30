@@ -1,7 +1,7 @@
 import { Difficulties } from "kamaitachi-common";
 import { Logger } from "winston";
 import { ParserFunctionReturnsSync } from "../../../../types";
-import ScoreImportFatalError from "../../../framework/core/score-import-error";
+import ScoreImportFatalError from "../../../framework/common/score-import-error";
 import ConverterFn from "./converter";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 

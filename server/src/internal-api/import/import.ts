@@ -8,7 +8,7 @@ import { GetUserWithID } from "../../core/user-core";
 import CreateLogCtx from "../../logger";
 import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
-import ScoreImportFatalError from "../../score-import/framework/core/score-import-error";
+import ScoreImportFatalError from "../../score-import/framework/common/score-import-error";
 import ScoreImportMain from "../../score-import/framework/score-import-main";
 import ParseEamusementCSV from "../../score-import/import-types/file/csv-eamusement-iidx/parser";
 

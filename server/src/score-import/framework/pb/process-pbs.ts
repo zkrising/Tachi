@@ -1,6 +1,6 @@
 import { integer, PBScoreDocument } from "kamaitachi-common";
-import db from "../../../../db/db";
-import { KtLogger } from "../../../../types";
+import db from "../../../db/db";
+import { KtLogger } from "../../../types";
 import { CreatePBDoc } from "./create-pb-doc";
 
 export async function ProcessPBs(

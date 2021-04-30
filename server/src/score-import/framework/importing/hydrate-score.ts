@@ -7,7 +7,7 @@ import {
 } from "kamaitachi-common";
 import { Logger } from "winston";
 import { DryScore } from "../../../types";
-import { CreateCalculatedData } from "./calculated-data/calculated-data";
+import { CreateCalculatedData } from "../calculated-data/calculated-data";
 
 /**
  * Takes an "intermediate" score and appends the rest of the data it needs.

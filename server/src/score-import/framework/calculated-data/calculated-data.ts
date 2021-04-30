@@ -8,7 +8,7 @@ import {
     TierlistDataDocument,
 } from "kamaitachi-common";
 import { Logger } from "winston";
-import { DryScore } from "../../../../types";
+import { DryScore } from "../../../types";
 import { CreateGameSpecific } from "./game-specific";
 import { CalculateCHUNITHMRating, CalculateGITADORARating } from "./game-specific-stats";
 

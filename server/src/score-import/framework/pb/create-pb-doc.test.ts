@@ -1,16 +1,16 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../db/db";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import db, { CloseMongoConnection } from "../../../db/db";
+import ResetDBState from "../../../test-utils/reset-db-state";
 import {
     GetKTDataJSON,
     Testing511SPA,
     TestingIIDXSPScore,
     TestingIIDXSPScorePB,
-} from "../../../../test-utils/test-data";
+} from "../../../test-utils/test-data";
 import { CreatePBDoc, GetRankingInfo } from "./create-pb-doc";
 import deepmerge from "deepmerge";
-import CreateLogCtx from "../../../../logger";
-import { KtLogger } from "../../../../types";
+import CreateLogCtx from "../../../logger";
+import { KtLogger } from "../../../types";
 import { lamps } from "kamaitachi-common/js/config";
 
 let IIDXScore = TestingIIDXSPScore;

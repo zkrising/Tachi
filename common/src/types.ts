@@ -94,6 +94,7 @@ export type Databases =
     | "user-goals"
     | "user-milestones"
     | "milestones"
+    | "game-stats"
     | "users";
 
 export type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;

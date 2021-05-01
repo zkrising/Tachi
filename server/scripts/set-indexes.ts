@@ -45,6 +45,7 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
         // lol
         index({ timeStarted: 1, timeEnded: 1, userID: 1, game: 1, playtype: 1 }),
     ],
+    "game-stats": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
 };
 
 (async () => {
@@ -56,7 +57,7 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
             await db.get(collection).dropIndexes();
         }
 
-        // @ts-expect-error ???
+        // @ts-expect-error drunkts
         for (const index of indexes[collection]) {
             // eslint-disable-next-line no-await-in-loop
             let r = await db.get(collection).createIndex(index.fields, index.options);

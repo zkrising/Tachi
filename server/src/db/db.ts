@@ -15,6 +15,7 @@ import {
     SessionDocument,
     AnySongDocument,
     AnyChartDocument,
+    UserGameStats,
     UserGoalDocument,
     PBScoreDocument,
     UserMilestoneDocument,
@@ -107,6 +108,7 @@ const db = {
     invites: monkDB.get<InviteCodeDocument>("invites"),
     counters: monkDB.get<CounterDocument>("counters"),
     "iidx-eam-scores": monkDB.get<IIDXEamusementScoreDocument>("iidx-eam-scores"),
+    "game-stats": monkDB.get<UserGameStats>("game-stats"),
 };
 
 export function GetGameChartCollection(game: Game) {

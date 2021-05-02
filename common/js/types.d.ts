@@ -348,6 +348,8 @@ interface ImportErrContent {
     message: string | null;
 }
 export interface ClassDelta {
+    game: Game;
+    playtype: Playtypes[Game];
     old: string | null;
     new: string;
 }

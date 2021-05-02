@@ -15,6 +15,7 @@ export async function CalculateRatings(
                 game,
                 playtype,
                 userID,
+                isPrimary: true,
             },
             {
                 sort: {
@@ -28,6 +29,7 @@ export async function CalculateRatings(
                 game,
                 playtype,
                 userID,
+                isPrimary: true,
             },
             {
                 sort: {
@@ -52,6 +54,7 @@ function LazySumAll(key: CustomCalcNames) {
             game: game,
             playtype: playtype,
             userID: userID,
+            isPrimary: true,
             [`calculatedData.gameSpecific.${key}`]: { $gt: 0 },
         });
 
@@ -68,6 +71,7 @@ function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
                 game: game,
                 playtype: playtype,
                 userID: userID,
+                isPrimary: true,
                 [`calculatedData.gameSpecific.${key}`]: { $gt: 0 },
             },
             {

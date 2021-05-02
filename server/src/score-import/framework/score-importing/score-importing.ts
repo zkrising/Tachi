@@ -7,7 +7,7 @@ import {
 } from "kamaitachi-common";
 import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../types";
 import HydrateScore from "./hydrate-score";
-import { QueueScoreInsert, ScoreIDs } from "./insert-score";
+import { InsertQueue, QueueScoreInsert, ScoreIDs } from "./insert-score";
 import {
     ConverterFailure,
     InternalFailure,
@@ -77,6 +77,14 @@ export async function ImportAllIterableData<D, C>(
     logger.debug(`Flattened returns.`);
 
     logger.verbose(`Recieved ${flatDatapoints.length} returns, from ${promises.length} data.`);
+
+    // Flush the score queue out after finishing most of the import. This ensures no scores get left in the
+    // queue.
+    let emptied = await InsertQueue();
+
+    if (emptied) {
+        logger.verbose(`Emptied ${emptied} documents from score queue.`);
+    }
 
     return flatDatapoints;
 }

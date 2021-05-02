@@ -60,4 +60,4 @@ export function CalculateJubeatColour(
     throw new Error("Not implemented.");
 }
 
-function JubilityToColour(jb: number) {}
+// function JubilityToColour(jb: number) {}

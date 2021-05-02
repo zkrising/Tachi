@@ -114,6 +114,7 @@ async function MergeScoreLampIntoPB(
         highlight: scorePB.highlight || lampPB.highlight,
         game: scorePB.game,
         playtype: scorePB.playtype,
+        isPrimary: scorePB.isPrimary,
         scoreData: {
             score: scorePB.scoreData.score,
             percent: scorePB.scoreData.percent,

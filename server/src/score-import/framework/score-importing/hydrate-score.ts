@@ -50,6 +50,7 @@ export default async function HydrateScore(
         chartID: chart.chartID,
         scoreID,
         playtype: chart.playtype,
+        isPrimary: chart.isPrimary,
     };
 
     return score;

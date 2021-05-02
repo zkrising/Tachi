@@ -3,6 +3,7 @@ import { gameClassValues, ClassData } from "kamaitachi-common/js/game-classes";
 import deepmerge from "deepmerge";
 import db from "../../../db/db";
 import { KtLogger } from "../../../types";
+import { CalculateGitadoraColour, CalculateJubeatColour } from "./builtin-class-handlers";
 
 export interface ClassHandler {
     (
@@ -10,7 +11,7 @@ export interface ClassHandler {
         playtype: Playtypes[Game],
         userID: integer,
         customRatings: Record<string, number>
-    ): Promise<Record<string, string>>;
+    ): Promise<Record<string, string>> | Record<string, string>;
 }
 
 type ClassHandlerMap = {
@@ -20,28 +21,6 @@ type ClassHandlerMap = {
           }
         | null;
 };
-
-// stub functions, see githubissues
-
-// eslint-disable-next-line require-await
-async function CalculateGitadoraColour(
-    game: Game,
-    playtype: Playtypes[Game],
-    userID: integer,
-    customRatings: Record<string, number>
-): Promise<Record<string, string>> {
-    throw new Error("Not implemented.");
-}
-
-// eslint-disable-next-line require-await
-async function CalculateJubeatColour(
-    game: Game,
-    playtype: Playtypes[Game],
-    userID: integer,
-    customRatings: Record<string, number>
-): Promise<Record<string, string>> {
-    throw new Error("Not implemented.");
-}
 
 /**
  * Describes the "Default" class handlers for a game, I.E. ones that are

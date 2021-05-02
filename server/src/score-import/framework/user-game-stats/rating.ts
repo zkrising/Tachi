@@ -119,7 +119,22 @@ const CUSTOM_RATING_FUNCTIONS = {
             MFCP: LazySumAll("MFCP"),
         },
     },
+    gitadora: {
+        Gita: CalculateGitadoraSkill,
+    },
 };
+
+async function CalculateGitadoraSkill(
+    game: Game,
+    playtype: Playtypes[Game],
+    userID: integer,
+    logger: KtLogger
+) {
+    // let hotCharts = fetchfolder("gitadora_hot");
+    // select best 25 scores on hotcharts
+    // select best 25 scores not on hot charts ("gitadora_nothot?")
+    // sum.
+}
 
 export async function CalculateCustomRatings(
     game: Game,

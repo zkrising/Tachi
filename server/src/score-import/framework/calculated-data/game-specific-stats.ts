@@ -259,3 +259,11 @@ export function CalculateVF5(
 
     return Math.floor(level * 2 * percent * gradeCoefficient * lampCoefficient) / 100;
 }
+
+// function CalculateJubility(
+//     dryScore: DryScore<"jubeat:Single">,
+//     chartData: AnyChartDocument,
+//     logger: Logger
+// ) {
+//     let rate = dryScore.calculatedData.gameSpecific.musicRate; eurgh, this is hard.
+// }

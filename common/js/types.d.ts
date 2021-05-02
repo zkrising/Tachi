@@ -890,6 +890,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
     outOf: integer;
     comments: string[];
     highlight: boolean;
+    isPrimary: boolean;
     scoreData: {
         score: number;
         lamp: Lamps[I];

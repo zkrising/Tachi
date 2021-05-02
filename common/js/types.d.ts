@@ -865,6 +865,7 @@ export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBD
     timeAchieved: integer | null;
     songID: integer;
     chartID: string;
+    isPrimary: boolean;
     highlight: boolean;
     comment: string | null;
     timeAdded: integer;

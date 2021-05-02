@@ -4,8 +4,11 @@ import { Command } from "commander";
 import fs from "fs";
 import path from "path";
 import { config, Difficulties, ESDCore, IIDXBPIData, ChartDocument } from "kamaitachi-common";
-import { FindSongOnTitleVersion } from "../src/score-import/database-lookup/song-title";
-import { FindChartWithPTDF } from "../src/score-import/database-lookup/chart-ptdf";
+import { FindSongOnTitle } from "../src/score-import/database-lookup/song-title";
+import {
+    FindChartWithPTDF,
+    FindChartWithPTDFVersion,
+} from "../src/score-import/database-lookup/chart-ptdf";
 import db from "../src/db/db";
 import CreateLogCtx from "../src/logger";
 const program = new Command();
@@ -17,7 +20,7 @@ program.option("-f, --fetch", "Fetch the latest data from the poyashi repo.");
 program.parse(process.argv);
 const options = program.opts();
 
-const dataLoc = path.join(__dirname, "../bpi-poyashi-data/output.json");
+const dataLoc = path.join(__dirname, "./bpi-poyashi-data/output.json");
 
 const difficultyResolve: Record<string, [string, string]> = {
     3: ["SP", "HYPER"],
@@ -48,7 +51,7 @@ async function UpdatePoyashiData() {
     }
 
     let realData: IIDXBPIData[] = [];
-    for (const d of data) {
+    for (const d of data.body) {
         const res = difficultyResolve[d.difficulty];
 
         if (!res) {
@@ -57,26 +60,36 @@ async function UpdatePoyashiData() {
 
         const [playtype, diff] = res;
 
-        let ktchiSong = await FindSongOnTitleVersion("iidx", d.title, "28");
+        let ktchiSong = await FindSongOnTitle("iidx", d.title);
 
         if (!ktchiSong) {
-            throw new Error(`Cannot find song ${d.title}?`);
+            logger.warn(`Cannot find song ${d.title}?`);
+            continue;
         }
 
-        let ktchiChart = (await FindChartWithPTDF(
+        let ktchiChart = (await FindChartWithPTDFVersion(
             "iidx",
             ktchiSong.id,
             playtype as "SP" | "DP",
-            diff as Difficulties["iidx:DP" | "iidx:SP"]
+            diff as Difficulties["iidx:DP" | "iidx:SP"],
+            "28"
         )) as ChartDocument<"iidx:SP" | "iidx:DP">;
 
         if (!ktchiChart) {
-            throw new Error(
+            logger.warn(
                 `Cannot find chart ${ktchiSong.title} (${ktchiSong.id}) ${playtype}, ${diff}?`
             );
+            continue;
         }
 
         let kavg = Number(d.avg);
+
+        if (kavg < 0) {
+            logger.warn(
+                `${ktchiSong.title} (${playtype} ${diff}). Invalid kavg ${d.avg}, Skipping.`
+            );
+            continue;
+        }
 
         let kesd = ESDCore.CalculateESD(
             config.judgementWindows.iidx.SP,
@@ -95,7 +108,7 @@ async function UpdatePoyashiData() {
     await db["iidx-bpi-data"].remove({});
     await db["iidx-bpi-data"].insert(realData);
 
-    logger.info(`Inserted ${realData.length} documents.`);
+    logger.info(`Removed all, and inserted ${realData.length} documents.`);
 }
 
 UpdatePoyashiData();

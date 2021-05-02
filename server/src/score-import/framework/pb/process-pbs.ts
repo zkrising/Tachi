@@ -8,6 +8,10 @@ export async function ProcessPBs(
     chartIDs: Set<string>,
     logger: KtLogger
 ): Promise<void> {
+    if (chartIDs.size === 0) {
+        return; // ez
+    }
+
     let promises = [];
 
     for (const chartID of chartIDs) {

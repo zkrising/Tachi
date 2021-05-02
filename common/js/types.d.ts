@@ -469,7 +469,7 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
     playtype: IDStringToPlaytype[I];
     rating: number;
     lampRating: number;
-    customRatings: Record<GameSpecificCalcLookup[I], number>;
+    customRatings: Partial<Record<GameSpecificCalcLookup[I], number>>;
     classes: Record<string, string>;
 }
 /**

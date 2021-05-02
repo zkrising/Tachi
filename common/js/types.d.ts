@@ -347,6 +347,10 @@ interface ImportErrContent {
     type: string;
     message: string | null;
 }
+export interface ClassDelta {
+    old: string | null;
+    new: string;
+}
 export interface KTBlackImportDocument extends MongoDBDocument {
     userID: integer;
     timeStarted: number;
@@ -357,6 +361,7 @@ export interface KTBlackImportDocument extends MongoDBDocument {
     errors: ImportErrContent[];
     createdSessions: SessionInfoReturn[];
     importType: ImportTypes;
+    classDeltas: ClassDelta[];
     /**
      * Whether the user deliberately imported this through an action (i.e. uploaded a file personally) [true]
      * or was imported on their behalf through a service (i.e. fervidex)

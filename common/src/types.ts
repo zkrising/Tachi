@@ -636,7 +636,7 @@ export interface PublicUserDocument extends MongoDBDocument {
     clan: string | null;
 }
 
-export interface UserGameStats<I extends IDStrings> extends MongoDBDocument {
+export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBDocument {
     userID: integer;
     game: IDStringToGame[I];
     playtype: IDStringToPlaytype[I];

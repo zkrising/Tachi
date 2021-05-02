@@ -164,6 +164,8 @@ export function CalculateClassDeltas(
         if (!userGameStats) {
             // @todo REDISIPC-New Class Achieved
             deltas.push({
+                game,
+                playtype,
                 old: null,
                 new: gameClass,
             });
@@ -186,6 +188,8 @@ export function CalculateClassDeltas(
             if (thisIndex > pastIndex) {
                 // @todo REDISIPC-Class Improved!
                 deltas.push({
+                    game,
+                    playtype,
                     old: userGameStats.classes[pastClass],
                     new: gameClass,
                 });

@@ -126,7 +126,7 @@ function UpdateUsersGameStats(
         promises.push(UpdateUsersGamePlaytypeStats(game, pt, userID, null, logger));
     }
 
-    return Promise.all(promises);
+    return Promise.all(promises).then((r) => r.flat(1));
 }
 
 function ParseImportInfo(importInfo: ImportProcessingInfo[]) {

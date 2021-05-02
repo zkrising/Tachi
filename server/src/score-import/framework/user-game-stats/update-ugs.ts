@@ -2,7 +2,7 @@
 // Some games have dedicated methods to calculate statistics like these, other games do not.
 // That's about all there is to it!
 
-import { Game, Playtypes, integer, UserGameStats } from "kamaitachi-common";
+import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "kamaitachi-common";
 import db from "../../../db/db";
 import { KtLogger } from "../../../types";
 import { CalculateClassDeltas, CalculateUGSClasses, ClassHandler } from "./classes";
@@ -14,7 +14,7 @@ export async function UpdateUsersGamePlaytypeStats(
     userID: integer,
     customClassFn: ClassHandler | null,
     logger: KtLogger
-) {
+): Promise<ClassDelta[]> {
     let { rating, lampRating } = await CalculateRatings(game, playtype, userID, logger);
     let customRatings = await CalculateCustomRatings(game, playtype, userID, logger);
 

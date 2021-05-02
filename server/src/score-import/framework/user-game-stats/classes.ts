@@ -1,5 +1,5 @@
-import { Game, Playtypes, integer, UserGameStats } from "kamaitachi-common";
-import { gameClassValues, ClassData, ClassInfo } from "kamaitachi-common/js/game-classes";
+import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "kamaitachi-common";
+import { gameClassValues, ClassData } from "kamaitachi-common/js/game-classes";
 import deepmerge from "deepmerge";
 import db from "../../../db/db";
 import { KtLogger } from "../../../types";

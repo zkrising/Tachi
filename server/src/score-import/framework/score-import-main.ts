@@ -3,14 +3,18 @@ import {
     ImportTypes,
     KTBlackImportDocument,
     PublicUserDocument,
+    Playtypes,
+    Game,
+    integer,
 } from "kamaitachi-common";
-import { ImportInputParser, ScorePlaytypeMap } from "../../types";
+import { ImportInputParser, KtLogger, ScorePlaytypeMap } from "../../types";
 import { InsertQueue } from "./score-importing/insert-score";
 import { ImportAllIterableData } from "./score-importing/score-importing";
 import { CreateImportLoggerAndID } from "./common/import-logger";
 import { CreateSessions } from "./sessions/sessions";
 import { GetMilisecondsSince } from "../../core/hrtime-core";
 import { ProcessPBs } from "./pb/process-pbs";
+import { UpdateUsersGamePlaytypeStats } from "./user-game-stats/update-ugs";
 
 export default async function ScoreImportMain<D, C>(
     user: PublicUserDocument,
@@ -72,8 +76,10 @@ export default async function ScoreImportMain<D, C>(
     // Update user's PBs and set flags
     await ProcessPBs(user.id, chartIDs, logger);
 
-    // Update user's classes
-    // @todo
+    let playtypes = Object.keys(scorePlaytypeMap) as Playtypes[Game][];
+
+    // i have honestly no idea what to do with this information.
+    let classDeltas = await UpdateUsersGameStats(game, playtypes, user.id, logger);
 
     // Update user's goals
     // @todo
@@ -89,6 +95,7 @@ export default async function ScoreImportMain<D, C>(
         timeStarted,
         createdSessions: sessionInfo,
         userID: user.id,
+        classDeltas,
         userIntent,
     };
 
@@ -104,6 +111,22 @@ export default async function ScoreImportMain<D, C>(
     // @todo
 
     return ImportDocument;
+}
+
+function UpdateUsersGameStats(
+    game: Game,
+    playtypes: Playtypes[Game][],
+    userID: integer,
+    logger: KtLogger
+) {
+    let promises = [];
+
+    // Update user's classes
+    for (const pt of playtypes) {
+        promises.push(UpdateUsersGamePlaytypeStats(game, pt, userID, null, logger));
+    }
+
+    return Promise.all(promises);
 }
 
 function ParseImportInfo(importInfo: ImportProcessingInfo[]) {

@@ -126,7 +126,7 @@ export async function CalculateCustomRatings(
     playtype: Playtypes[Game],
     userID: integer,
     logger: KtLogger
-) {
+): Promise<Partial<Record<CustomCalcNames, number>>> {
     // @ts-expect-error too lazy to type this properly
     let customRatingFns = CUSTOM_RATING_FUNCTIONS?.[game]?.[playtype];
 
@@ -140,5 +140,5 @@ export async function CalculateCustomRatings(
         ratings[key] = await customRatingFns[key](game, playtype, userID, logger);
     }
 
-    return ratings;
+    return ratings as Record<CustomCalcNames, number>;
 }

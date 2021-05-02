@@ -164,7 +164,7 @@ const __internalSDVXDans: ClassData = {
     },
 };
 
-type ClassData = Record<string, ClassInfo>;
+export type ClassData = Record<string, ClassInfo>;
 
 // unimplemented
 const __internalDDRDans = {};
@@ -498,7 +498,7 @@ const __internalStellaDans: ClassData = {
     },
 };
 
-interface ClassInfo {
+export interface ClassInfo {
     display: string;
     mouseover: string;
     index: integer;

@@ -1,6 +1,6 @@
 import { Game, integer, Playtypes } from "./types";
-declare type ClassData = Record<string, ClassInfo>;
-interface ClassInfo {
+export declare type ClassData = Record<string, ClassInfo>;
+export interface ClassInfo {
     display: string;
     mouseover: string;
     index: integer;

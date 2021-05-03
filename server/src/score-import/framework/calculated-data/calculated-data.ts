@@ -1,12 +1,4 @@
-import {
-    AnyChartDocument,
-    ChartDocument,
-    Game,
-    IDStrings,
-    Playtypes,
-    ScoreDocument,
-    TierlistDataDocument,
-} from "kamaitachi-common";
+import { AnyChartDocument, Game, Playtypes, ScoreDocument } from "kamaitachi-common";
 import { Logger } from "winston";
 import { DryScore } from "../../../types";
 import { CreateGameSpecific } from "./game-specific";
@@ -36,6 +28,7 @@ export async function CreateCalculatedData(
  * Override the default rating function for a game with
  * something else.
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const OVERRIDE_RATING_FUNCTIONS: Partial<Record<Game, any>> = {
     gitadora: {
         Gita: CalculateGITADORARating,

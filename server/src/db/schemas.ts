@@ -5,13 +5,10 @@ import {
     importTypes,
     lamps,
     validHitData,
-    validHitMeta,
     validDifficulties,
     validPlaytypes,
 } from "kamaitachi-common/js/config";
-import p, { PrudenceOptions, PrudenceSchema, ValidationFunction, ValidSchemaValue } from "prudence";
-import { RevaluedObject } from "../types";
-import db from "./db";
+import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 
 // eslint-disable-next-line no-useless-escape
 const LAZY_EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

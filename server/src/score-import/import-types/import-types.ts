@@ -1,4 +1,3 @@
-import { ImportTypes } from "kamaitachi-common";
 import iidxEamusementCsv from "./file/csv-eamusement-iidx/converter";
 
 /**

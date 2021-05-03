@@ -28,6 +28,7 @@
     "songID": 1,
     "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
     "highlight": false,
+    "isPrimary": true,
     "comment": null,
     "timeAdded": 1,
     "scoreID": "TESTING_SCORE_ID",

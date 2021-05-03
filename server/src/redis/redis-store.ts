@@ -6,10 +6,10 @@ import redis from "redis";
 const logger = CreateLogCtx("redis-store.ts");
 
 export const RedisStore = connectRedis(expressSession);
-logger.info("Instantiated Redis Store");
+logger.verbose("Instantiated Redis Store");
 
 export const RedisClient = redis.createClient();
-logger.info("Instantiated Redis Client");
+logger.verbose("Instantiated Redis Client");
 
 function EmitCritical() {
     if (!RedisClient.connected) {
@@ -20,7 +20,7 @@ function EmitCritical() {
 let ref = setTimeout(EmitCritical, 10000);
 
 RedisClient.on("connect", () => {
-    logger.info(`Connected to Redis.`);
+    logger.verbose(`Connected to Redis.`);
 
     clearTimeout(ref);
 });

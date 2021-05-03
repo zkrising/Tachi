@@ -83,6 +83,7 @@ export interface MongoDBDocument {
 export type Databases =
     | "sessions"
     | "folders"
+    | "folder-chart-lookup"
     | "scores"
     | "score-pbs"
     | "queries"

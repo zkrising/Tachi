@@ -883,6 +883,7 @@ export interface FolderDocument extends MongoDBDocument {
     game: Game;
     custom: boolean;
     byUser: integer | null;
+    playtype: Playtypes[Game];
     type: "query" | "static";
     query: {
         collection: "songs" | "charts";

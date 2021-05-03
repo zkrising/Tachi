@@ -1,4 +1,5 @@
 import { IObjectID } from "monk";
+import { FilterQuery } from "mongodb";
 export interface CounterDocument {
     counterName: string;
     value: integer;
@@ -699,19 +700,27 @@ export interface AnySongDocument extends MongoDBDocument {
 export interface SongDocument<G extends Game> extends AnySongDocument {
     data: SongDocumentData[G];
 }
-export interface FolderDocument extends MongoDBDocument {
+export interface BaseFolderDocument extends MongoDBDocument {
     title: string;
     game: Game;
     playtype: Playtypes[Game];
-    type: "query" | "static";
-    query: {
-        collection: "songs" | "charts";
-        body: Record<string, unknown>;
-    };
     folderID: string;
     table: string;
     tableIndex: number;
 }
+export interface FolderSongsDocument extends BaseFolderDocument {
+    type: "songs";
+    data: FilterQuery<AnySongDocument>;
+}
+export interface FolderChartsDocument extends BaseFolderDocument {
+    type: "charts";
+    data: FilterQuery<AnyChartDocument>;
+}
+export interface FolderStaticDocument extends BaseFolderDocument {
+    type: "static";
+    data: string[];
+}
+export declare type FolderDocument = FolderStaticDocument | FolderChartsDocument | FolderSongsDocument;
 export interface FolderChartLookup extends MongoDBDocument {
     chartID: string;
     folderID: string;

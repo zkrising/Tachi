@@ -710,7 +710,7 @@ export interface FolderDocument extends MongoDBDocument {
     };
     folderID: string;
     table: string;
-    tableIndex: integer;
+    tableIndex: number;
 }
 export interface UserMilestoneDocument extends MongoDBDocument {
     milestoneID: string;

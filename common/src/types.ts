@@ -882,12 +882,11 @@ export interface FolderDocument extends MongoDBDocument {
     title: string;
     game: Game;
     custom: boolean;
-    byUser: integer;
-    views: integer;
-    type: "query";
+    byUser: integer | null;
+    type: "query" | "static";
     query: {
-        collection: string;
-        query: Record<string, unknown>;
+        collection: "songs" | "charts";
+        body: Record<string, unknown>;
     };
     folderID: string;
     table: string;

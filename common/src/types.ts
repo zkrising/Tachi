@@ -892,6 +892,11 @@ export interface FolderDocument extends MongoDBDocument {
     tableIndex: number;
 }
 
+export interface FolderChartLookup extends MongoDBDocument {
+    chartID: string;
+    folderID: string;
+}
+
 export interface UserMilestoneDocument extends MongoDBDocument {
     milestoneID: string;
     userID: integer;

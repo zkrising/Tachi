@@ -96,6 +96,7 @@ export const PR_SCORE_GENERIC = {
     songID: p.isInteger,
     chartID: (self: unknown) => typeof self === "string" && self.length === 40,
     highlight: "boolean",
+    isPrimary: "boolean",
     comment: p.nullable(p.isBoundedString(1, 240)),
     timeAdded: p.isPositive,
     scoreID: "string", // temp

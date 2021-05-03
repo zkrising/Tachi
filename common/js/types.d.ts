@@ -702,8 +702,6 @@ export interface SongDocument<G extends Game> extends AnySongDocument {
 export interface FolderDocument extends MongoDBDocument {
     title: string;
     game: Game;
-    custom: boolean;
-    byUser: integer | null;
     playtype: Playtypes[Game];
     type: "query" | "static";
     query: {
@@ -711,8 +709,8 @@ export interface FolderDocument extends MongoDBDocument {
         body: Record<string, unknown>;
     };
     folderID: string;
-    table: string | null;
-    tableIndex: integer | null;
+    table: string;
+    tableIndex: integer;
 }
 export interface UserMilestoneDocument extends MongoDBDocument {
     milestoneID: string;

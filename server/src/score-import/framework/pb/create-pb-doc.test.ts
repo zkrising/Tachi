@@ -108,6 +108,7 @@ t.test("#CreatePBDoc", (t) => {
         outOf: 1,
         ranking: 1,
         highlight: false,
+        isPrimary: true,
         game: "iidx",
         playtype: "SP",
         comments: [],

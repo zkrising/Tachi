@@ -57,7 +57,7 @@ export interface IDStringToGame {
 export interface MongoDBDocument {
     _id?: IObjectID;
 }
-export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "queries" | "rivals" | "notifications" | "imports" | "tierlistdata" | "tierlist" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users";
+export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "queries" | "rivals" | "notifications" | "imports" | "tierlist-data" | "tierlist" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users";
 export declare type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 /**
  * Supported games by Kamaitachi.

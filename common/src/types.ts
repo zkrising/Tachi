@@ -91,7 +91,7 @@ export type Databases =
     | "rivals"
     | "notifications"
     | "imports"
-    | "tierlistdata"
+    | "tierlist-data"
     | "tierlist"
     | "goals"
     | "user-goals"

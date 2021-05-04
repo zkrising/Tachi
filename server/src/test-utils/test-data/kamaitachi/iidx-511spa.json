@@ -1,27 +1,53 @@
 {
+    "_id": "6088306a65303f57143cab68",
+    "rgcID": null,
     "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
+    "difficulty": "ANOTHER",
+    "songID": 1,
+    "playtype": "SP",
     "levelNum": 10,
     "level": "10",
-    "difficulty": "ANOTHER",
-    "playtype": "SP",
-    "length": 86095.46804246228,
+    "length": "1:26.10",
     "bpmString": "101",
-    "notedata": {
-        "objects": {
-            "BPM": 1,
-            "NOTE": 625,
-            "SCRATCH": 161
-        },
-        "notecount": 786
-    },
-    "id": 1,
     "flags": {
         "IN BASE GAME": true,
         "OMNIMIX": true,
         "N-1": true
     },
     "data": {
-        "inGameID": "1000",
-        "inGameINTID": 1000
-    }
+        "inGameID": 1000,
+        "notecount": 786
+    },
+    "isPrimary": true,
+    "versions": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28"
+    ]
 }

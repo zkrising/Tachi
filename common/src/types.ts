@@ -82,6 +82,7 @@ export interface MongoDBDocument {
 
 export type Databases =
     | "sessions"
+    | "session-views"
     | "folders"
     | "folder-chart-lookup"
     | "scores"
@@ -470,14 +471,20 @@ export interface SessionDocument extends MongoDBDocument {
     highlight: boolean;
 }
 
-export interface ImportSessionInfo {
+export interface SessionViewDocument extends MongoDBDocument {
+    sessionID: string;
+    ip: string;
+    timestamp: number;
+}
+
+export interface LEGACY_ImportSessionInfo {
     sessionID: string;
     name: string; // NONSENSE
     scoreCount: integer;
     performance: number;
 }
 
-export interface ImportDocument extends MongoDBDocument {
+export interface LEGACY_ImportDocument extends MongoDBDocument {
     userID: integer;
     timeStarted: integer;
     timeFinished: integer;
@@ -485,7 +492,7 @@ export interface ImportDocument extends MongoDBDocument {
     skippedScores: integer;
     successfulScores: string[];
     service: string;
-    sessionInfo: ImportSessionInfo[];
+    sessionInfo: LEGACY_ImportSessionInfo[];
     importID: string;
     timeTaken: number;
     msPerScore: number;
@@ -503,7 +510,7 @@ export interface ClassDelta {
     new: string;
 }
 
-export interface KTBlackImportDocument extends MongoDBDocument {
+export interface ImportDocument extends MongoDBDocument {
     userID: integer;
     timeStarted: number;
     timeFinished: number;
@@ -826,15 +833,19 @@ export interface TierlistV2Parent<F extends string, G extends Game = Game> exten
     description: string;
     lastUpdated: number;
     config: {
+        // Automatically update TierlistDataDocuments with humanised strings. idk how this will work yet.
         autoHumanise: boolean;
+        // No matter what, users have a permission of 000 if they have not cleared/played the chart
+        requireState: null | "clear" | "play";
+        // the list of flags that can appear in TierlistDataDocuments
         flags: F[];
     };
 }
 
 export interface TierlistV2DataDocument<F extends string> extends MongoDBDocument {
-    chartID: string;
-    tierlistID: string;
-    type: "grade" | "lamp" | "score";
+    chartID: string; // -- compositekey
+    tierlistID: string; // -- compositekey
+    type: "grade" | "lamp" | "score"; // -- compositekey
     data: {
         key: string;
         value: number;
@@ -843,7 +854,6 @@ export interface TierlistV2DataDocument<F extends string> extends MongoDBDocumen
             [flag in F]: boolean;
         };
     };
-    tierlistDataID: string; // used to xref changelog data
 }
 
 interface SongDocumentData {

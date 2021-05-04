@@ -57,7 +57,7 @@ export interface IDStringToGame {
 export interface MongoDBDocument {
     _id?: IObjectID;
 }
-export declare type Databases = "sessions" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "queries" | "rivals" | "notifications" | "imports" | "tierlistdata" | "tierlist" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users";
+export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "queries" | "rivals" | "notifications" | "imports" | "tierlistdata" | "tierlist" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users";
 export declare type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 /**
  * Supported games by Kamaitachi.
@@ -325,13 +325,18 @@ export interface SessionDocument extends MongoDBDocument {
     };
     highlight: boolean;
 }
-export interface ImportSessionInfo {
+export interface SessionViewDocument extends MongoDBDocument {
+    sessionID: string;
+    ip: string;
+    timestamp: number;
+}
+export interface LEGACY_ImportSessionInfo {
     sessionID: string;
     name: string;
     scoreCount: integer;
     performance: number;
 }
-export interface ImportDocument extends MongoDBDocument {
+export interface LEGACY_ImportDocument extends MongoDBDocument {
     userID: integer;
     timeStarted: integer;
     timeFinished: integer;
@@ -339,7 +344,7 @@ export interface ImportDocument extends MongoDBDocument {
     skippedScores: integer;
     successfulScores: string[];
     service: string;
-    sessionInfo: ImportSessionInfo[];
+    sessionInfo: LEGACY_ImportSessionInfo[];
     importID: string;
     timeTaken: number;
     msPerScore: number;
@@ -354,7 +359,7 @@ export interface ClassDelta {
     old: string | null;
     new: string;
 }
-export interface KTBlackImportDocument extends MongoDBDocument {
+export interface ImportDocument extends MongoDBDocument {
     userID: integer;
     timeStarted: number;
     timeFinished: number;
@@ -635,6 +640,7 @@ export interface TierlistV2Parent<F extends string, G extends Game = Game> exten
     lastUpdated: number;
     config: {
         autoHumanise: boolean;
+        requireState: null | "clear" | "play";
         flags: F[];
     };
 }
@@ -650,7 +656,6 @@ export interface TierlistV2DataDocument<F extends string> extends MongoDBDocumen
             [flag in F]: boolean;
         };
     };
-    tierlistDataID: string;
 }
 interface SongDocumentData {
     iidx: {

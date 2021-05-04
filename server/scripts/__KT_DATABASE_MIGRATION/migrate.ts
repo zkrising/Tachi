@@ -42,7 +42,7 @@ export default async function MigrateRecords(
         });
 
     logger.info(`Inserting ${newDocuments.length} documents.`);
-    await existingCollection.insert(newDocuments);
+    await existingCollection.insert(newDocuments.flat());
     logger.info(`Done!`);
 
     process.exit(0);

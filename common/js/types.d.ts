@@ -625,7 +625,7 @@ interface TierlistPermissions {
     submit: integer;
     vote: integer;
 }
-export interface TierlistParent<F extends string, G extends Game = Game> extends MongoDBDocument {
+export interface TierlistParent<G extends Game = Game> extends MongoDBDocument {
     game: G;
     playtype: Playtypes[G];
     name: string;
@@ -641,7 +641,7 @@ export interface TierlistParent<F extends string, G extends Game = Game> extends
     config: {
         autoHumanise: boolean;
         requireState: null | "clear" | "play";
-        flags: F[];
+        flags: string[];
     };
 }
 export interface TierlistDataDocument<F extends string> extends MongoDBDocument {

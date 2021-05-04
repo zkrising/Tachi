@@ -826,7 +826,7 @@ interface TierlistPermissions {
     vote: integer;
 }
 
-export interface TierlistParent<F extends string, G extends Game = Game> extends MongoDBDocument {
+export interface TierlistParent<G extends Game = Game> extends MongoDBDocument {
     game: G;
     playtype: Playtypes[G];
     name: string;
@@ -843,7 +843,7 @@ export interface TierlistParent<F extends string, G extends Game = Game> extends
         // No matter what, users have a permission of 000 if they have not cleared/played the chart
         requireState: null | "clear" | "play";
         // the list of flags that can appear in TierlistDataDocuments
-        flags: F[];
+        flags: string[];
     };
 }
 

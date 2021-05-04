@@ -17,7 +17,7 @@ program.option(
 program.parse(process.argv);
 const options = program.opts();
 
-const db = monk(`${process.env.MONGO_BASE_URL ?? "127.0.0.1"}/${options.db}`);
+const db = monk(`${process.env.MONGO_BASE_URL ?? "127.0.0.1"}/${options.db ?? "ktblackdb"}`);
 
 interface Index {
     fields: Record<string, unknown>;
@@ -46,6 +46,7 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
         index({ timeStarted: 1, timeEnded: 1, userID: 1, game: 1, playtype: 1 }),
     ],
     "game-stats": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
+    "folder-chart-lookup": [index({ chartID: 1, folderID: 1 }, UNIQUE)],
 };
 
 (async () => {

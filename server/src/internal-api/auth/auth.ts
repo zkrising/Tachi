@@ -17,7 +17,7 @@ import { RequireLoggedIn } from "../../middleware/require-logged-in";
 
 const logger = CreateLogCtx("auth.ts");
 
-const router = Router({ mergeParams: true });
+const router: Router = Router({ mergeParams: true });
 
 const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
 

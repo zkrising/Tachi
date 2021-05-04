@@ -47,6 +47,12 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
     ],
     "game-stats": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
     "folder-chart-lookup": [index({ chartID: 1, folderID: 1 }, UNIQUE)],
+    "tierlist-data": [
+        index({ tierlistDataID: 1 }, UNIQUE),
+        index({ chartID: 1, tierlistID: 1 }),
+        index({ chartID: 1, tierlistID: 1, type: 1 }),
+        index({ chartID: 1, tierlistID: 1, type: 1, key: 1 }, UNIQUE),
+    ],
 };
 
 (async () => {

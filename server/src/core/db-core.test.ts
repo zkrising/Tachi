@@ -20,7 +20,7 @@ t.test("#GetNextCounterValue", (t) => {
     });
 
     t.rejects(
-        async () => await GetNextCounterValue("fake-counter"),
+        () => GetNextCounterValue("fake-counter"),
         "Could not find sequence document for fake-counter."
     );
 

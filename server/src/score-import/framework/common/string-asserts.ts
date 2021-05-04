@@ -1,6 +1,6 @@
 import { InvalidScoreFailure } from "../score-importing/converter-failures";
 
-const isIntegerRegex = /^-?\d+$/;
+const isIntegerRegex = /^-?\d+$/u;
 
 export function AssertStrAsPositiveInt(strVal: string, errorMessage: string) {
     let isInt = isIntegerRegex.test(strVal);

@@ -7,15 +7,15 @@ import {
     validHitData,
     validDifficulties,
     validPlaytypes,
+    supportedGames,
 } from "kamaitachi-common/js/config";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 
-// eslint-disable-next-line no-useless-escape
-const LAZY_EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
 
 export const PRUDENCE_PUBLIC_USER: PrudenceSchema = {
     _id: p.any,
-    username: p.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/),
+    username: p.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
     usernameLowercase: (self, parent) => self === (parent!.username as string).toLowerCase(),
     id: p.isPositiveInteger,
     settings: {
@@ -402,6 +402,32 @@ export const PRUDENCE_SONG_SCHEMAS: Record<Game, PrudenceSchema> = {
     usc: CreatePrSong({ sdvxEquiv: p.isPositiveInteger }),
 };
 
+const PRUDENCE_FOLDER_CHART_LOOKUP: PrudenceSchema = {
+    chartID: "string",
+    folderID: "string",
+};
+
+const PRUDENCE_FOLDER: PrudenceSchema = {
+    title: "string",
+    game: p.isIn(supportedGames),
+    playtype: (self, parent) => p.isIn(validPlaytypes[parent.game as Game])(self),
+    folderID: "string",
+    table: "string",
+    tableIndex: "number",
+    type: p.isIn("songs", "charts", "static"),
+    data: (self, parent) => {
+        if (parent.type === "static") {
+            return Array.isArray(self) && self.every((e) => typeof e === "string");
+        }
+
+        // this is a temp hackjob, it should technically
+        // check whether this document matches a
+        // partialised chart/song doc
+        // but.. can be done later.
+        return typeof self === "object" && !!self; // whatever
+    },
+};
+
 /**
  * Schemas that are "static", i.e. the content of the document
  * does not depend on fields in the document (such as score docs)
@@ -413,4 +439,6 @@ export const STATIC_SCHEMAS = {
     counters: PRUDENCE_COUNTER,
     charts: PRUDENCE_CHART_SCHEMAS,
     songs: PRUDENCE_SONG_SCHEMAS,
+    "folder-chart-lookup": PRUDENCE_FOLDER_CHART_LOOKUP,
+    folders: PRUDENCE_FOLDER,
 };

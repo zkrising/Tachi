@@ -45,5 +45,4 @@ export async function ProcessPBs(
 
     // originally we returned nUpserted from this function, but it's not
     // very useful to anyone, tbh.
-    return;
 }

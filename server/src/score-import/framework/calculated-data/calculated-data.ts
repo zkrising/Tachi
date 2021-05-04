@@ -42,7 +42,7 @@ const OVERRIDE_RATING_FUNCTIONS: Partial<Record<Game, any>> = {
 /**
  * Calculates the rating for a score. Listens to the override functions declared above.
  */
-async function CalculateRating<G extends Game>(
+function CalculateRating<G extends Game>(
     dryScore: DryScore,
     game: G,
     playtype: Playtypes[G],
@@ -56,7 +56,7 @@ async function CalculateRating<G extends Game>(
         return 0; // go to default kamaitachi rating fn ?
     }
 
-    return await OverrideFunction(dryScore, chart);
+    return OverrideFunction(dryScore, chart);
 }
 
 // stub

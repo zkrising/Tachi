@@ -15,7 +15,7 @@ import ResetDBState from "../test-utils/reset-db-state";
 t.test("#CreateAPIKey", (t) => {
     t.match(
         CreateAPIKey(),
-        /[0-9a-f]{20}/,
+        /[0-9a-f]{20}/u,
         "Should return a 20 character long lowercase hex string."
     );
 
@@ -34,7 +34,7 @@ t.test("#AddNewUserAPIKey", (t) => {
             data,
             {
                 _id: Prudence.any, // lazy, should be isObjID? @todo
-                apiKey: Prudence.regex(/[0-9a-f]{20}/),
+                apiKey: Prudence.regex(/[0-9a-f]{20}/u),
                 assignedTo: Prudence.is(1),
                 expireTime: Prudence.is(3176708633264),
                 permissions: {
@@ -86,7 +86,7 @@ t.test("#ReinstateInvite", (t) => {
 });
 
 t.test("#CreateInviteCode", (t) => {
-    t.match(CreateInviteCode(), /^[0-9a-f]{40}$/, "Invite should be a 40 character hex string.");
+    t.match(CreateInviteCode(), /^[0-9a-f]{40}$/u, "Invite should be a 40 character hex string.");
 
     t.end();
 });
@@ -105,7 +105,7 @@ t.test("#AddNewInvite", (t) => {
         // was created +/- 6 seconds from now. This is perhaps too lenient, but we're only really testing its just around now ish.
         t.ok(Math.abs(result.createdOn - Date.now()) <= 6000, "Invite was created roughly now.");
 
-        t.match(result.code, /^[0-9a-f]{40}$/, "Invite code should be a 40 character hex string.");
+        t.match(result.code, /^[0-9a-f]{40}$/u, "Invite code should be a 40 character hex string.");
     });
 
     t.end();

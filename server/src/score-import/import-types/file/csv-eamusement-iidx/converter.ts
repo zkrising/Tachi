@@ -233,8 +233,8 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
     // if pre-HV, leggendarias were stored in a wacky form.
     if (!context.hasBeginnerAndLegg) {
         // hack fix for legacy LEGGENDARIA titles
-        if (data.title.match(/(†|†LEGGENDARIA)$/)) {
-            data.title = data.title.replace(/(†|†LEGGENDARIA)$/, "").trimEnd();
+        if (data.title.match(/(†|†LEGGENDARIA)$/u)) {
+            data.title = data.title.replace(/(†|†LEGGENDARIA)$/u, "").trimEnd();
             isLegacyLeggendaria = true;
         }
     }

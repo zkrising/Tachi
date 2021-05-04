@@ -19,9 +19,7 @@ const logger = CreateLogCtx("auth.ts");
 
 const router = Router({ mergeParams: true });
 
-// ??? eslint cant parse this regex.
-// eslint-disable-next-line no-useless-escape
-const LAZY_EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
 
 const BASE_DOMAIN = process.env.NODE_ENV === "production" ? ".kamaitachi.xyz" : "127.0.0.1";
 const SHOULD_COOKIES_SECURE = process.env.NODE_ENV === "production";
@@ -34,7 +32,7 @@ router.post(
     "/login",
     prValidate(
         {
-            username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/),
+            username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
             password: ValidatePassword,
             captcha: "string",
         },
@@ -153,7 +151,7 @@ router.post(
     "/register",
     prValidate(
         {
-            username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/),
+            username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
             password: ValidatePassword,
             email: Prudence.regex(LAZY_EMAIL_REGEX),
             inviteCode: "string",

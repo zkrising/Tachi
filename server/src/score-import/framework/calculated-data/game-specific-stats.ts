@@ -68,9 +68,9 @@ export function CalculateBPI(
     wrEx: integer,
     yourEx: integer,
     max: integer,
-    powCoef: number | null
+    pc: number | null
 ) {
-    powCoef ??= 1.175;
+    let powCoef = pc ?? 1.175;
     const yourPGF = BPIPikaGreatFn(yourEx, max);
     const kaidenPGF = BPIPikaGreatFn(kaidenEx, max);
     const wrPGF = BPIPikaGreatFn(wrEx, max);

@@ -74,7 +74,7 @@ export function PRIVATEINFO_GetUserWithID(userID: integer) {
  */
 export function ResolveUser(usernameOrID: string) {
     // user ID passed
-    if (usernameOrID.match(/^[0-9]$/)) {
+    if (usernameOrID.match(/^[0-9]$/u)) {
         let intID = Number(usernameOrID);
 
         return db.users.findOne(

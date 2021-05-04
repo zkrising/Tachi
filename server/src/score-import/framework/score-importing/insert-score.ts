@@ -13,7 +13,7 @@ const MAX_PIPELINE_LENGTH = 500;
  * @returns True on success, The amount of scores inserted on auto-pipeline-flush, and null if
  * the score provided is already loaded.
  */
-export async function QueueScoreInsert(score: ScoreDocument) {
+export function QueueScoreInsert(score: ScoreDocument) {
     if (ScoreIDs.has(score.scoreID)) {
         // skip
         logger.verbose(`Triggered skip for ID ${score.scoreID}`);
@@ -25,7 +25,7 @@ export async function QueueScoreInsert(score: ScoreDocument) {
 
     if (ScoreQueue.length >= MAX_PIPELINE_LENGTH) {
         logger.verbose(`Triggered pipeline flush with len ${ScoreQueue.length}.`);
-        return await InsertQueue();
+        return InsertQueue();
     }
 
     return true;

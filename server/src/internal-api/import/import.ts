@@ -67,8 +67,8 @@ router.post(
         try {
             let importType = req.body.importType as FileUploadImportTypes;
 
-            const inputParser = async (logger: Logger) =>
-                await ResolveFileUploadData(importType, req.file, req.body, logger);
+            const inputParser = (logger: Logger) =>
+                ResolveFileUploadData(importType, req.file, req.body, logger);
 
             const userDoc = await GetUserWithID(req.session.ktchi!.userID);
 

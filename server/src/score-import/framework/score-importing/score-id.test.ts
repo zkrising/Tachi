@@ -23,7 +23,7 @@ t.test("#CreateScoreID", (t) => {
 
     t.match(
         scoreID,
-        /^R[0-9a-f]{40}/,
+        /^R[0-9a-f]{40}/u,
         "Should return an R followed by 40 characters of lowercase hex as scoreID."
     );
 

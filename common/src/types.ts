@@ -793,7 +793,7 @@ export interface ChartDocument<I extends IDStrings> extends AnyChartDocument {
     data: ChartDocumentData[I];
 }
 
-export interface TierlistDocument extends MongoDBDocument {
+export interface LEGACY_TierlistDocument extends MongoDBDocument {
     game: Game;
     title: string;
     isDefault: boolean;
@@ -806,7 +806,8 @@ export interface TierlistDocument extends MongoDBDocument {
     };
 }
 
-export interface TierlistDataDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
+export interface LEGACY_TierlistDataDocument<I extends IDStrings = IDStrings>
+    extends MongoDBDocument {
     playtype: IDStringToPlaytype[I]; // doesn't need to exist.
     songID: integer;
     difficulty: Difficulties[I];
@@ -816,12 +817,16 @@ export interface TierlistDataDocument<I extends IDStrings = IDStrings> extends M
 }
 
 interface TierlistPermissions {
-    edit: boolean;
-    submit: boolean;
-    vote: boolean;
+    // all permission values are as follows:
+    // 0 -> cannot do this
+    // 1 -> can do this, but can be overrode by requireState
+    // 2 -> can do this, and cannot be overrode.
+    edit: integer;
+    submit: integer;
+    vote: integer;
 }
 
-export interface TierlistV2Parent<F extends string, G extends Game = Game> extends MongoDBDocument {
+export interface TierlistParent<F extends string, G extends Game = Game> extends MongoDBDocument {
     game: G;
     playtype: Playtypes[G];
     name: string;
@@ -842,12 +847,17 @@ export interface TierlistV2Parent<F extends string, G extends Game = Game> exten
     };
 }
 
-export interface TierlistV2DataDocument<F extends string> extends MongoDBDocument {
-    chartID: string; // -- compositekey
-    tierlistID: string; // -- compositekey
-    type: "grade" | "lamp" | "score"; // -- compositekey
+export interface TierlistDataDocument<F extends string> extends MongoDBDocument {
+    chartID: string;
+    tierlistID: string;
+    // grade -> the approximate "difficulty" to achieve this grade on this song.
+    // lamp -> same, but for the lamp
+    // score -> A generic, single value that determines how hard it is to "score" on this song. This is not
+    // useful, to be honest, but is still used in generic rating calculations.
+    type: "grade" | "lamp" | "score";
+    key: string | null; // null if type is "score", else, the grade or lamp this corresponds to.
+    tierlistDataID: string; // used as primary key - is a hash of this data.
     data: {
-        key: string;
         value: number;
         humanised: string;
         flags: {

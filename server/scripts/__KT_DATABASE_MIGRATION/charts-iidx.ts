@@ -9,7 +9,6 @@ const logger = CreateLogCtx("charts-iidx.ts");
 async function ConvertFn(c: any): Promise<ChartDocument<"iidx:SP" | "iidx:DP">> {
     let song = await db.songs.iidx.findOne({
         id: c.id,
-    });
 
     if (!song) {
         logger.severe(`Cannot find song with ID ${c.id}?`);

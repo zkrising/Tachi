@@ -1,19 +1,18 @@
 import { AnyChartDocument, Game, Playtypes, ScoreDocument } from "kamaitachi-common";
 import { ratingParameters, lamps, clearLamp } from "kamaitachi-common/js/config";
-import { Logger } from "winston";
 import {
     GetAllTierlistDataOfType,
     GetDefaultTierlist,
     GetOneTierlistData,
 } from "../../../core/tierlist-core";
-import { DryScore } from "../../../types";
+import { DryScore, KtLogger } from "../../../types";
 import { CreateGameSpecific } from "./game-specific";
 import { CalculateCHUNITHMRating, CalculateGITADORARating } from "./game-specific-stats";
 
 export async function CreateCalculatedData(
     dryScore: DryScore,
     chart: AnyChartDocument,
-    logger: Logger
+    logger: KtLogger
 ): Promise<ScoreDocument["calculatedData"]> {
     const game = dryScore.game;
     const playtype = chart.playtype;
@@ -22,7 +21,7 @@ export async function CreateCalculatedData(
     let defaultTierlistID = defaultTierlist?.tierlistID; // tierlistID | undefined
 
     const [rating, lampRating, gameSpecific] = await Promise.all([
-        CalculateRating(dryScore, game, playtype, chart, defaultTierlistID),
+        CalculateRating(dryScore, game, playtype, chart, logger, defaultTierlistID),
         CalculateLampRating(dryScore, game, playtype, chart, defaultTierlistID),
         CreateGameSpecific(game, playtype, chart, dryScore, logger),
     ]);
@@ -58,11 +57,12 @@ interface RatingParameters {
 /**
  * Calculates the rating for a score. Listens to the override functions declared above.
  */
-async function CalculateRating(
+export async function CalculateRating(
     dryScore: DryScore,
     game: Game,
     playtype: Playtypes[Game],
     chart: AnyChartDocument,
+    logger: KtLogger,
     defaultTierlistID?: string
 ) {
     // @todo
@@ -91,24 +91,34 @@ async function CalculateRating(
             }
         }
 
-        return RatingCalcV1(dryScore.scoreData.percent, levelNum, parameters);
+        return RatingCalcV1(dryScore.scoreData.percent, levelNum, parameters, logger);
     }
 
     return OverrideFunction(dryScore, chart);
 }
 
 // Generic Rating Calc that is guaranteed to work for everything. This is unspecialised, and not great.
-function RatingCalcV1(percent: number, levelNum: number, parameters: RatingParameters) {
+function RatingCalcV1(
+    percent: number,
+    levelNum: number,
+    parameters: RatingParameters,
+    logger: KtLogger
+) {
     let percentDiv100 = percent / 100;
 
-    if (percent > parameters.pivotPercent) {
+    if (percentDiv100 < parameters.pivotPercent) {
         return RatingCalcV0Fail(percentDiv100, levelNum, parameters);
     }
 
-    return RatingCalcV1Clear(percentDiv100, levelNum, parameters);
+    return RatingCalcV1Clear(percentDiv100, levelNum, parameters, logger);
 }
 
-function RatingCalcV1Clear(percentDiv100: number, levelNum: number, parameters: RatingParameters) {
+function RatingCalcV1Clear(
+    percentDiv100: number,
+    levelNum: number,
+    parameters: RatingParameters,
+    logger: KtLogger
+) {
     // https://www.desmos.com/calculator/hn7uxjmjkc
 
     let rating =
@@ -116,15 +126,21 @@ function RatingCalcV1Clear(percentDiv100: number, levelNum: number, parameters: 
             parameters.clearExpMultiplier * levelNum * (percentDiv100 - parameters.pivotPercent)
         ) +
         (levelNum - 1);
-    if (!isFinite(rating)) {
+
+    // checks for Infinity or NaN. I'm not sure how this would happen, but it's a failsafe.
+    if (!Number.isFinite(rating)) {
+        logger.warn(
+            `Percent: ${percentDiv100}, Level: ${levelNum} resulted in rating of ${rating}, which is invalid. Defaulting to 0.`
+        );
         return 0;
-    } else if (Number.isNaN(rating)) {
-        return 0; // safety checks
     } else if (rating > 1000) {
-        return 0; // AAAAA JUST STOP THE WEIRD STUFF
-    } else {
-        return rating;
+        logger.warn(
+            `Percent: ${percentDiv100}, Level: ${levelNum} resulted in rating of ${rating}, which is invalid (> 1000). Defaulting to 0.`
+        );
+        return 0;
     }
+
+    return rating;
 }
 
 function RatingCalcV0Fail(percentDiv100: number, levelNum: number, parameters: RatingParameters) {
@@ -135,7 +151,7 @@ function RatingCalcV0Fail(percentDiv100: number, levelNum: number, parameters: R
     );
 }
 
-async function CalculateLampRating(
+export async function CalculateLampRating(
     dryScore: DryScore,
     game: Game,
     playtype: Playtypes[Game],

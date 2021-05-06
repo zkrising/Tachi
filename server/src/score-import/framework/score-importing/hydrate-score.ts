@@ -6,7 +6,7 @@ import {
     AnySongDocument,
 } from "kamaitachi-common";
 import { Logger } from "winston";
-import { DryScore } from "../../../types";
+import { DryScore, KtLogger } from "../../../types";
 import { CreateCalculatedData } from "../calculated-data/calculated-data";
 
 /**
@@ -20,7 +20,7 @@ export default async function HydrateScore(
     chart: AnyChartDocument,
     song: AnySongDocument,
     scoreID: string,
-    logger: Logger
+    logger: KtLogger
 ): Promise<ScoreDocument> {
     const calculatedData = await CreateCalculatedData(dryScore, chart, logger); // @todo
 

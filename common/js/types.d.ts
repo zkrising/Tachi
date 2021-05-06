@@ -262,6 +262,9 @@ export interface GoalCountCriteria extends GoalCriteria {
     mode: "abs" | "proportion";
     countNum: number;
 }
+/**
+ * Goal Document - Single. A goal document that is only for one specific chart.
+ */
 export interface GoalDocumentSingle extends BaseGoalDocument {
     charts: {
         type: "single";
@@ -288,6 +291,7 @@ export interface GoalDocumentFolder extends BaseGoalDocument {
         data: string;
     };
 }
+export declare type GoalDocument = GoalDocumentFolder | GoalDocumentMulti | GoalDocumentSingle;
 export interface RivalGroupDocument extends MongoDBDocument {
     name: string;
     desc: string;

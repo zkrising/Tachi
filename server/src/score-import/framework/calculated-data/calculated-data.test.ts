@@ -1,6 +1,6 @@
 import Pr from "prudence";
 import t from "tap";
-import { CloseMongoConnection } from "../../../db/db";
+import db, { CloseMongoConnection } from "../../../db/db";
 import CreateLogCtx from "../../../logger";
 import { prAssert } from "../../../test-utils/asserts";
 import {
@@ -11,6 +11,8 @@ import {
 } from "../../../test-utils/test-data";
 import { CreateCalculatedData, CalculateLampRating, CalculateRating } from "./calculated-data";
 import deepmerge from "deepmerge";
+import ResetDBState from "../../../test-utils/reset-db-state";
+import { GetDefaultTierlist } from "../../../core/tierlist-core";
 
 const mockLogger = CreateLogCtx("calculated-data.test.ts");
 
@@ -125,6 +127,148 @@ t.test("#CalculateRating", (t) => {
             t.end();
         }
     );
+
+    t.end();
+});
+
+t.test("#CalculateLampRating", async (t) => {
+    t.beforeEach(ResetDBState);
+
+    let defaultTierlist = await GetDefaultTierlist("iidx", "SP");
+
+    if (!defaultTierlist) {
+        throw new Error("Could not retrieve IIDX:SP default tierlist?");
+    }
+
+    t.test("TierlistData", async (t) => {
+        let lampRating = await CalculateLampRating(
+            TestingIIDXSPDryScore,
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(lampRating, 10, "Should equal the levelNum of the chart.");
+
+        let lampRatingFail = await CalculateLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "FAILED" } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(lampRatingFail, 0, "Should equal 0, if the score is not a clear.");
+
+        let lampRatingHC = await CalculateLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "HARD CLEAR" } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(lampRatingHC, 10.6, "Should equal the tierlist value for HC on this chart.");
+
+        let lampRatingEXHC = await CalculateLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "EX HARD CLEAR" } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        // deliberate - there is no EXHC data here
+        t.equal(lampRatingEXHC, 10.6, "Should equal the tierlist value for HC on this chart.");
+
+        t.end();
+    });
+
+    t.test("TierlistData edge cases", async (t) => {
+        // mock document that implies 5.1.1. SPA is worth 11.9 to NC and 10.6 to HC.
+        await db["tierlist-data"].insert({
+            chartID: Testing511SPA.chartID,
+            type: "lamp",
+            key: "CLEAR",
+            tierlistDataID: "asdf",
+            tierlistID: defaultTierlist!.tierlistID,
+            data: {
+                flags: {},
+                humanised: "a",
+                value: 11.9,
+            },
+        });
+
+        let lampRating = await CalculateLampRating(
+            TestingIIDXSPDryScore,
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(lampRating, 11.9, "Should equal the NC value of the chart.");
+
+        let lampRatingFail = await CalculateLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "FAILED" } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(lampRatingFail, 0, "Should equal 0, if the score is not a clear.");
+
+        let lampRatingHC = await CalculateLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "HARD CLEAR" } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(
+            lampRatingHC,
+            11.9,
+            "Should equal the tierlist value for NC, as it is higher than HC on this chart."
+        );
+
+        let lampRatingEXHC = await CalculateLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "EX HARD CLEAR" } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(lampRatingEXHC, 11.9, "Should equal the tierlist value for NC on this chart.");
+
+        t.end();
+    });
+
+    t.test("No TierlistData", async (t) => {
+        await db["tierlist-data"].remove({});
+        let lampRating = await CalculateLampRating(
+            TestingIIDXSPDryScore,
+            "iidx",
+            "SP",
+            Testing511SPA
+        );
+
+        t.equal(lampRating, 10, "Should equal the levelNum of the chart.");
+
+        let lampRatingFail = await CalculateLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "FAILED" } }),
+            "iidx",
+            "SP",
+            Testing511SPA
+        );
+
+        t.equal(lampRatingFail, 0, "Should equal 0, if the score is not a clear.");
+
+        t.end();
+    });
 
     t.end();
 });

@@ -217,14 +217,14 @@ export interface CustomRatings {
  */
 export declare type integer = number;
 export declare type Ratings = Record<Game, Record<Playtypes[Game], number>>;
-export interface GoalChartQuery {
+export interface LEGACY_GoalChartQuery {
     collection: ValidDatabases;
     query: Record<string, unknown>;
 }
-export interface GoalDocument extends MongoDBDocument {
+export interface LEGACY_GoalDocument extends MongoDBDocument {
     directChartID: string | null;
     directChartIDs?: string[] | null;
-    chartQuery: GoalChartQuery | null;
+    chartQuery: LEGACY_GoalChartQuery | null;
     scoreQuery: Record<string, unknown>;
     criteria: {
         type: "gte" | "lte" | "lt" | "gt" | "anyMatch" | "all";
@@ -237,6 +237,56 @@ export interface GoalDocument extends MongoDBDocument {
     createdBy: integer;
     game: Game;
     playtype: Playtypes[Game];
+}
+export interface BaseGoalDocument extends MongoDBDocument {
+    game: Game;
+    playtype: Playtypes[Game];
+    timeAdded: integer;
+    createdBy: integer;
+    title: string;
+    goalID: string;
+    criteria: GoalSingleCriteria | GoalCountCriteria;
+}
+interface GoalCriteria {
+    key: "scoreData.percent" | "scoreData.lamp" | "scoreData.grade" | "scoreData.score";
+    value: number;
+}
+export interface GoalSingleCriteria extends GoalCriteria {
+    mode: "single";
+}
+/**
+ * Criteria for a score to match this criteria - this is a "count" mode, which means that
+ * atleast N scores have to match this criteria. This is for things like folders.
+ */
+export interface GoalCountCriteria extends GoalCriteria {
+    mode: "abs" | "proportion";
+    countNum: number;
+}
+export interface GoalDocumentSingle extends BaseGoalDocument {
+    charts: {
+        type: "single";
+        data: string;
+    };
+}
+/**
+ * Goal Document - Multi. A goal document whos set of charts is the array of
+ * chartIDs inside "charts".
+ */
+export interface GoalDocumentMulti extends BaseGoalDocument {
+    charts: {
+        type: "multi";
+        data: string[];
+    };
+}
+/**
+ * Goal Document - Folder. A goal document who's set of charts is derived from
+ * the folderID inside "charts".
+ */
+export interface GoalDocumentFolder extends BaseGoalDocument {
+    charts: {
+        type: "folder";
+        data: string;
+    };
 }
 export interface RivalGroupDocument extends MongoDBDocument {
     name: string;

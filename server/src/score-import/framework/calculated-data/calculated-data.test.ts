@@ -18,10 +18,9 @@ t.test("#CreateCalculatedData", async (t) => {
 
     prAssert(
         res,
-        // mock return, we're just checking it returns the right structure, really.
         {
-            rating: Pr.equalTo(0),
-            lampRating: Pr.equalTo(0),
+            rating: Pr.aprx(2.65),
+            lampRating: Pr.equalTo(10),
             gameSpecific: {
                 BPI: "?number",
                 KESDC: "?number",
@@ -41,7 +40,7 @@ t.test("#CreateCalculatedData", async (t) => {
         gitadoraRes,
         {
             rating: Pr.isPositiveNonZero,
-            lampRating: Pr.equalTo(0),
+            lampRating: Pr.equalTo(1.6),
             gameSpecific: {},
         },
         "Should correctly call rating function overrides for different games"

@@ -99,18 +99,22 @@ async function CalculateRating(
 
 // Generic Rating Calc that is guaranteed to work for everything. This is unspecialised, and not great.
 function RatingCalcV1(percent: number, levelNum: number, parameters: RatingParameters) {
+    let percentDiv100 = percent / 100;
+
     if (percent > parameters.pivotPercent) {
-        return RatingCalcV0Fail(percent, levelNum, parameters);
+        return RatingCalcV0Fail(percentDiv100, levelNum, parameters);
     }
 
-    return RatingCalcV1Clear(percent, levelNum, parameters);
+    return RatingCalcV1Clear(percentDiv100, levelNum, parameters);
 }
 
-function RatingCalcV1Clear(percent: number, levelNum: number, parameters: RatingParameters) {
+function RatingCalcV1Clear(percentDiv100: number, levelNum: number, parameters: RatingParameters) {
     // https://www.desmos.com/calculator/hn7uxjmjkc
 
     let rating =
-        Math.cosh(parameters.clearExpMultiplier * levelNum * (percent - parameters.pivotPercent)) +
+        Math.cosh(
+            parameters.clearExpMultiplier * levelNum * (percentDiv100 - parameters.pivotPercent)
+        ) +
         (levelNum - 1);
     if (!isFinite(rating)) {
         return 0;
@@ -123,10 +127,10 @@ function RatingCalcV1Clear(percent: number, levelNum: number, parameters: Rating
     }
 }
 
-function RatingCalcV0Fail(percent: number, levelNum: number, parameters: RatingParameters) {
+function RatingCalcV0Fail(percentDiv100: number, levelNum: number, parameters: RatingParameters) {
     // https://www.desmos.com/calculator/ngjie5elto
     return (
-        percent ** (parameters.failHarshnessMultiplier * levelNum) *
+        percentDiv100 ** (parameters.failHarshnessMultiplier * levelNum) *
         (levelNum / parameters.pivotPercent ** (parameters.failHarshnessMultiplier * levelNum))
     );
 }

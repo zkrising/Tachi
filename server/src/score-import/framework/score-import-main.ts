@@ -1,7 +1,7 @@
 import {
     ImportProcessingInfo,
     ImportTypes,
-    KTBlackImportDocument,
+    ImportDocument,
     PublicUserDocument,
     Playtypes,
     Game,
@@ -91,7 +91,7 @@ export default async function ScoreImportMain<D, C>(
 
     // --- 8. Finalise Import Document ---
     // Create and Save an import document to the database, and finish everything up!
-    const ImportDocument: KTBlackImportDocument = {
+    const ImportDocument: ImportDocument = {
         importType,
         idStrings: idStrings,
         scoreIDs,

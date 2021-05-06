@@ -847,7 +847,7 @@ export interface TierlistParent<G extends Game = Game> extends MongoDBDocument {
     };
 }
 
-export interface TierlistDataDocument<F extends string> extends MongoDBDocument {
+export interface TierlistDataDocument<F extends string = never> extends MongoDBDocument {
     chartID: string;
     tierlistID: string;
     // grade -> the approximate "difficulty" to achieve this grade on this song.
@@ -855,8 +855,10 @@ export interface TierlistDataDocument<F extends string> extends MongoDBDocument 
     // score -> A generic, single value that determines how hard it is to "score" on this song. This is not
     // useful, to be honest, but is still used in generic rating calculations.
     type: "grade" | "lamp" | "score";
-    key: string | null; // null if type is "score", else, the grade or lamp this corresponds to.
-    tierlistDataID: string; // used as primary key - is a hash of this data.
+    // null if type is "score", else, the grade or lamp this corresponds to.
+    key: string | null;
+    // used as primary key - is a hash of this data.
+    tierlistDataID: string;
     data: {
         value: number;
         humanised: string;

@@ -291,7 +291,16 @@ export interface GoalDocumentFolder extends BaseGoalDocument {
         data: string;
     };
 }
-export declare type GoalDocument = GoalDocumentFolder | GoalDocumentMulti | GoalDocumentSingle;
+/**
+ * Goal Document - Any. A goal document who's set of charts is not bound.
+ */
+export interface GoalDocumentAny extends BaseGoalDocument {
+    charts: {
+        type: "any";
+        data: never;
+    };
+}
+export declare type GoalDocument = GoalDocumentFolder | GoalDocumentMulti | GoalDocumentSingle | GoalDocumentAny;
 export interface RivalGroupDocument extends MongoDBDocument {
     name: string;
     desc: string;

@@ -435,7 +435,6 @@ export interface GoalDocumentFolder extends BaseGoalDocument {
 export interface GoalDocumentAny extends BaseGoalDocument {
     charts: {
         type: "any";
-        data: never;
     };
 }
 

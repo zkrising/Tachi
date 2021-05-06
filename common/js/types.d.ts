@@ -297,7 +297,6 @@ export interface GoalDocumentFolder extends BaseGoalDocument {
 export interface GoalDocumentAny extends BaseGoalDocument {
     charts: {
         type: "any";
-        data: never;
     };
 }
 export declare type GoalDocument = GoalDocumentFolder | GoalDocumentMulti | GoalDocumentSingle | GoalDocumentAny;

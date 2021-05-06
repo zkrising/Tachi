@@ -380,7 +380,7 @@ export interface BaseGoalDocument extends MongoDBDocument {
 }
 
 interface GoalCriteria {
-    key: "scoreData.percent" | "scoreData.lamp" | "scoreData.grade" | "scoreData.score";
+    key: "scoreData.percent" | "scoreData.lampIndex" | "scoreData.gradeIndex" | "scoreData.score";
     value: number;
 }
 

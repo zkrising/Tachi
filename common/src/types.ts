@@ -1240,7 +1240,6 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
     highlight: boolean;
     isPrimary: boolean;
     timeAchieved: number | null;
-    timeUpdated: number;
     scoreData: {
         score: number;
         lamp: Lamps[I];

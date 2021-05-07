@@ -962,13 +962,15 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
         lampPB: string;
         other?: PBScoreComposedReference[];
     };
+    rankingData: {
+        rank: integer;
+        outOf: integer;
+    };
     userID: integer;
     chartID: string;
     game: Game;
     playtype: Playtypes[Game];
     songID: integer;
-    ranking: integer;
-    outOf: integer;
     checksum: string;
     comments: string[];
     highlight: boolean;

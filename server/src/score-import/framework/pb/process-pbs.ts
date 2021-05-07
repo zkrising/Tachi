@@ -1,7 +1,9 @@
 import { integer, PBScoreDocument } from "kamaitachi-common";
 import db from "../../../db/db";
 import { KtLogger } from "../../../types";
-import { CreatePBDoc } from "./create-pb-doc";
+import { CreatePBDoc, UpdateChartRanking } from "./create-pb-doc";
+
+export type PBScoreDocumentNoRank = Omit<PBScoreDocument, "rankingData">;
 
 export async function ProcessPBs(
     userID: integer,
@@ -9,7 +11,7 @@ export async function ProcessPBs(
     logger: KtLogger
 ): Promise<void> {
     if (chartIDs.size === 0) {
-        return; // ez
+        return;
     }
 
     let promises = [];
@@ -18,21 +20,27 @@ export async function ProcessPBs(
         promises.push(CreatePBDoc(userID, chartID, logger));
     }
 
-    let pbDocs = (await Promise.all(promises)).filter((e) => !!e) as PBScoreDocument[];
+    let pbDocsReturn = await Promise.all(promises);
 
-    if (pbDocs.length === 0) {
-        let toStr = "";
-        for (const c of chartIDs) {
-            toStr += `${c},`;
+    let pbDocs: PBScoreDocumentNoRank[] = [];
+
+    for (const doc of pbDocsReturn) {
+        if (!doc) {
+            continue;
         }
 
-        logger.warn(
-            `Skipping PB processing as pbDocs is an empty array. This was probably caused by a previous severe-level warning.`,
-            { userID, chartIDs: toStr }
-        );
+        pbDocs.push(doc);
+    }
+
+    if (pbDocsReturn.length === 0) {
         return;
     }
 
+    // so here's the kinda awkward part - for the time between this operation
+    // and the next one - THE SCORE PBS ARE IN THE DATABASE WITHOUT RANKINGINFO.
+    // this *is* bad behaviour, but I don't have a nice way to fix it.
+    // This should be fixed in the future to avoid crashes between these two
+    // calls - but that is unlikely.
     await db["score-pbs"].bulkWrite(
         pbDocs.map((e) => ({
             updateOne: {
@@ -40,9 +48,15 @@ export async function ProcessPBs(
                 update: { $set: e },
                 upsert: true,
             },
-        }))
+        })),
+        {
+            ordered: false,
+        }
     );
 
-    // originally we returned nUpserted from this function, but it's not
-    // very useful to anyone, tbh.
+    // now that everything has been updated or inserted, we can refresh
+    // the chart rankings.
+    await Promise.all(pbDocs.map((e) => UpdateChartRanking(e.chartID)));
+
+    // and we're done!
 }

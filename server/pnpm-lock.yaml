@@ -30,7 +30,7 @@ specifiers:
   express-async-errors: ^3.1.1
   express-request-mock: ^3.1.0
   express-session: ^1.17.1
-  fast-json-stable-hash: ^1.0.1
+  fast-json-stable-hash: ^1.0.2
   kamaitachi-common: github:zkldi/Kamaitachi-common
   mongodb: ^3.6.6
   monk: ^7.3.4
@@ -61,8 +61,8 @@ dependencies:
   express: 4.17.1
   express-async-errors: 3.1.1_express@4.17.1
   express-session: 1.17.1
-  fast-json-stable-hash: 1.0.1
-  kamaitachi-common: github.com/zkldi/Kamaitachi-common/b63c3213ba997b06d87f72e8dc18dde061502e6c
+  fast-json-stable-hash: 1.0.2
+  kamaitachi-common: github.com/zkldi/Kamaitachi-common/a3a77f6c5e8c870a01652c92515dfe7f8030863d
   mongodb: 3.6.6
   monk: 7.3.4
   multer: 1.4.2
@@ -1875,8 +1875,8 @@ packages:
       picomatch: 2.2.3
     dev: true
 
-  /fast-json-stable-hash/1.0.1:
-    resolution: {integrity: sha512-WaR/iEiaii1b9sWC9yYauW/QXDCRIcWbVhS2a+rXFxyeYBLTVQxG6QXe2EDFduSosl4tL319Q50Qyq87l+ZX1A==}
+  /fast-json-stable-hash/1.0.2:
+    resolution: {integrity: sha512-p7Sr7IjiqJkFuRx1P6tYVTDwBf+ZfXyU2l3bv5XkBhiey5G3fHzBUJiEnpIlAZjGedXpEJM/V2SV+hD0pOnmmg==}
     dev: false
 
   /fast-json-stable-stringify/2.1.0:
@@ -4638,8 +4638,8 @@ packages:
       '@types/yoga-layout': 1.9.2
     dev: true
 
-  github.com/zkldi/Kamaitachi-common/b63c3213ba997b06d87f72e8dc18dde061502e6c:
-    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/b63c3213ba997b06d87f72e8dc18dde061502e6c}
+  github.com/zkldi/Kamaitachi-common/a3a77f6c5e8c870a01652c92515dfe7f8030863d:
+    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/a3a77f6c5e8c870a01652c92515dfe7f8030863d}
     name: kamaitachi-common
     version: 0.1.0
     dependencies:

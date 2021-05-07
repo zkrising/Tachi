@@ -35,6 +35,7 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
     "score-pbs": [
         index({ chartID: 1, userID: 1 }, UNIQUE),
         index({ chartID: 1, "scoreData.percent": 1 }),
+        index({ checksum: 1 }, UNIQUE),
     ],
     "charts-iidx": [
         index({ chartID: 1 }, UNIQUE),

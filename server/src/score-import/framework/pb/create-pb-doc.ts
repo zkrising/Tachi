@@ -1,8 +1,10 @@
 import db from "../../../db/db";
-import { integer, ScoreDocument, PBScoreDocument } from "kamaitachi-common";
+import { integer, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
 
 import { KtLogger } from "../../../types";
 import { IIDXMergeFn } from "./game-specific-merge";
+import { PBScoreDocumentNoRank } from "./process-pbs";
+import { BulkWriteUpdateOneOperation } from ".pnpm/@types+mongodb@3.6.12/node_modules/@types/mongodb";
 
 export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLogger) {
     let scorePB = await db.scores.findOne(
@@ -45,44 +47,60 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
         return;
     }
 
+    // finally, return our full pbDoc, that does NOT have the ranking props.
+    // (We will add those later)
     return pbDoc;
 }
 
-export async function GetRankingInfo(
-    chartID: string,
-    userID: integer,
-    percent: number
-): Promise<{ outOf: number; ranking: number }> {
-    let res = await db["score-pbs"].aggregate([
-        // exclude the requesting user because we cannot know whether they already have a pb on this chart
-        // or not - this means we can exec the same logic regardless of whether they already have a pb or not.
-        { $match: { chartID, userID: { $ne: userID } } },
+/**
+ * Updates users' rankings on a given chart.
+ */
+export async function UpdateChartRanking(chartID: string) {
+    let scores = await db["score-pbs"].find(
+        { chartID },
         {
-            $group: {
-                _id: null,
-                outOf: { $sum: 1 },
-                ranking: { $sum: { $cond: [{ $gte: ["$scoreData.percent", percent] }, 1, 0] } },
+            sort: {
+                "scoreData.percent": -1,
             },
-        },
-        // { $project: { outOf: 1, ranking: 1 } },
-    ]);
+        }
+    );
 
-    if (!res[0]) {
-        return { outOf: 1, ranking: 1 };
+    let bwrite: BulkWriteUpdateOneOperation<PBScoreDocument>[] = [];
+
+    let rank = 0;
+    // lazy sentinel value
+    let lastScorePercent = -Infinity;
+
+    for (let i = 0; i < scores.length; i++) {
+        let score = scores[i];
+
+        if (lastScorePercent !== score.scoreData.percent) {
+            rank++;
+            // doesn't matter whether this is inside or outside the loop
+            lastScorePercent = score.scoreData.percent;
+        }
+
+        bwrite.push({
+            updateOne: {
+                filter: { chartID: score.chartID, userID: score.userID },
+                update: {
+                    $set: {
+                        rankingInfo: {
+                            rank,
+                            outOf: scores.length,
+                        },
+                    },
+                },
+            },
+        });
     }
 
-    let { outOf, ranking } = res[0];
-
-    // add one to both stats to account for not including the requesting user
-    // if the field is undefined, there's no other scores to compare to.
-    outOf++;
-    ranking++;
-
-    return { outOf, ranking };
+    await db["score-pbs"].bulkWrite(bwrite, { ordered: false });
 }
 
 // Explicit acknowledgement that typing this properly simply takes too much time
 // This is a function that is aptly described below when you see how its called.
+// They return true on success, false on failure, and mutate their arguments.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GAME_SPECIFIC_MERGE_FNS: Record<string, any> = {
     iidx: IIDXMergeFn,
@@ -93,25 +111,29 @@ async function MergeScoreLampIntoPB(
     scorePB: ScoreDocument,
     lampPB: ScoreDocument,
     logger: KtLogger
-): Promise<PBScoreDocument | void> {
-    let { outOf, ranking } = await GetRankingInfo(
-        scorePB.chartID,
-        userID,
-        scorePB.scoreData.percent
+): Promise<PBScoreDocumentNoRank | void> {
+    // since time cannot be negative, this is a rough hack
+    // to resolve nullable timeAchieveds without hitting NaN.
+    let timeAchieved: number | null = Math.max(
+        scorePB.timeAchieved ?? -1,
+        lampPB.timeAchieved ?? -1
     );
 
-    const pbDoc: PBScoreDocument = {
+    if (timeAchieved === -1) {
+        timeAchieved = null;
+    }
+
+    const pbDoc: PBScoreDocumentNoRank = {
         composedFrom: {
             scorePB: scorePB.scoreID,
             lampPB: lampPB.scoreID,
         },
         chartID: scorePB.chartID,
         comments: [scorePB.comment, lampPB.comment].filter((e) => e !== null) as string[],
-        userID: scorePB.userID,
+        userID,
         songID: scorePB.songID,
-        outOf,
-        ranking,
         highlight: scorePB.highlight || lampPB.highlight,
+        timeAchieved,
         game: scorePB.game,
         playtype: scorePB.playtype,
         isPrimary: scorePB.isPrimary,
@@ -139,8 +161,7 @@ async function MergeScoreLampIntoPB(
 
         // If the mergeFn returns false, this means something has gone
         // rather wrong. We just return undefined here, which in turn
-        // tells our calling code to skip this PB. This typically results in a
-        // severe-level warning
+        // tells our calling code to skip this PB entirely.
         if (success === false) {
             return;
         }

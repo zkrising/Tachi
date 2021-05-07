@@ -1237,7 +1237,6 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
     game: Game;
     playtype: Playtypes[Game];
     songID: integer;
-    checksum: string;
     comments: string[];
     highlight: boolean;
     isPrimary: boolean;

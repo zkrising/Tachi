@@ -1239,7 +1239,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
     comments: string[];
     highlight: boolean;
     isPrimary: boolean;
-    timeAchieved: number;
+    timeAchieved: number | null;
     timeUpdated: number;
     scoreData: {
         score: number;

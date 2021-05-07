@@ -969,9 +969,12 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
     songID: integer;
     ranking: integer;
     outOf: integer;
+    checksum: string;
     comments: string[];
     highlight: boolean;
     isPrimary: boolean;
+    timeAchieved: number;
+    timeUpdated: number;
     scoreData: {
         score: number;
         lamp: Lamps[I];

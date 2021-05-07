@@ -53,6 +53,8 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
         index({ chartID: 1, tierlistID: 1, type: 1 }),
         index({ chartID: 1, tierlistID: 1, type: 1, key: 1 }, UNIQUE),
     ],
+    goals: [index({ goalID: 1 }, UNIQUE)],
+    "user-goals": [index({ goalID: 1, userID: 1 }, UNIQUE), index({ goalID: 1 })],
 };
 
 (async () => {

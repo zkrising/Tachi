@@ -15,6 +15,7 @@ import { GetMilisecondsSince } from "../../core/hrtime-core";
 import { ProcessPBs } from "./pb/process-pbs";
 import { UpdateUsersGamePlaytypeStats } from "./user-game-stats/update-ugs";
 import db from "../../db/db";
+import { UpdateUsersGoals } from "./goals/goals";
 
 export default async function ScoreImportMain<D, C>(
     user: PublicUserDocument,
@@ -87,7 +88,7 @@ export default async function ScoreImportMain<D, C>(
     let classDeltas = await UpdateUsersGameStats(game, playtypes, user.id, logger);
 
     // --- 7. Goals ---
-    // @todo
+    let unknown = await UpdateUsersGoals(game, user.id, chartIDs, logger);
 
     // --- 8. Finalise Import Document ---
     // Create and Save an import document to the database, and finish everything up!

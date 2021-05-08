@@ -172,7 +172,9 @@ export async function CalculateLampRating(
 
     let userLampIndex = lamps[game].indexOf(dryScore.scoreData.lamp);
 
-    let lampRating = 0;
+    // if this score is a clear, the lowest we should go is the levelNum of the chart.
+    // Else, the lowest we can go is 0.
+    let lampRating = userLampIndex >= lamps[game].indexOf(clearLamp[game]) ? chart.levelNum : 0;
 
     // why is this like this and not a lookup table?
     // Some charts have higher values for *lower* lamps, such as

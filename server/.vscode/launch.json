@@ -15,9 +15,10 @@
                 "${workspaceFolder}/js/**/*.js"
             ],
             "skipFiles": [
-                "<node_internals>/**"
+                "<node_internals>/**",
+                "${workspaceFolder}/node_modules/**/*.js",
             ],
-            "outputCapture": "std"
+            "outputCapture": "std",
         },
     ]
 }

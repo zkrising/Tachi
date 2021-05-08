@@ -615,7 +615,7 @@ export interface UserGoalDocument extends MongoDBDocument {
     timeSet: integer;
     timeAchieved: integer | null;
     lastInteraction: integer | null;
-    progress: number;
+    progress: number | null;
     progressHuman: string;
     outOf: number;
     outOfHuman: string;

@@ -493,6 +493,7 @@ export interface MilestoneDocument extends MongoDBDocument {
     milestoneData: MilestoneSection[];
     milestoneID: string;
     group: string | null;
+    groupIndex: number | null;
 }
 export interface MilestoneGroupDocument extends MongoDBDocument {
     game: Game;

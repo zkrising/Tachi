@@ -1,5 +1,12 @@
 import fs from "fs";
-import { ChartDocument, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
+import {
+    ChartDocument,
+    PBScoreDocument,
+    ScoreDocument,
+    GoalDocument,
+    UserGoalDocument,
+    FolderDocument,
+} from "kamaitachi-common";
 import path from "path";
 import { DryScore } from "../types";
 
@@ -41,3 +48,50 @@ export const TestingIIDXEamusementCSV26 = GetKTDataBuffer(
 export const TestingIIDXEamusementCSV27 = GetKTDataBuffer(
     "./csv-eamusement-iidx/post-leggendaria.csv"
 );
+
+export const HC511Goal: GoalDocument = {
+    charts: {
+        type: "single",
+        data: Testing511SPA.chartID,
+    },
+    createdBy: 1,
+    game: "iidx",
+    goalID: "mock_goalID",
+    playtype: "SP",
+    timeAdded: 0,
+    title: "HC 5.1.1. SPA",
+    criteria: {
+        mode: "single",
+        value: 5,
+        key: "scoreData.lampIndex",
+    },
+};
+
+export const HC511UserGoal: UserGoalDocument = {
+    achieved: false,
+    timeAchieved: null,
+    game: "iidx",
+    playtype: "SP",
+    goalID: "mock_goalID",
+    lastInteraction: null,
+    outOf: 5,
+    outOfHuman: "HARD CLEAR",
+    progress: null,
+    progressHuman: "NO DATA",
+    timeSet: 0,
+    userID: 1,
+};
+
+export const TestingIIDXFolderSP10: FolderDocument = {
+    title: "Level 10",
+    game: "iidx",
+    playtype: "SP",
+    type: "charts",
+    folderID: "ed9d8c734447ce67d7135c0067441a98cc81aeaf",
+    table: "Levels",
+    tableIndex: 10,
+    data: {
+        level: "10",
+        "flags¬IN BASE GAME": true,
+    },
+};

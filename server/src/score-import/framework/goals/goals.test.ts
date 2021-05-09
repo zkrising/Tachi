@@ -8,65 +8,24 @@ import {
     UpdateUsersGoals,
     ProcessGoal,
 } from "./goals";
-import { GoalDocument, FolderDocument, UserGoalDocument } from "kamaitachi-common";
+import { GoalDocument, FolderDocument } from "kamaitachi-common";
 import { CreateFolderChartLookup } from "../../../core/folder-core";
-import { GetKTDataJSON, Testing511SPA, TestingIIDXSPScorePB } from "../../../test-utils/test-data";
+import {
+    GetKTDataJSON,
+    Testing511SPA,
+    TestingIIDXSPScorePB,
+    HC511Goal,
+    HC511UserGoal,
+    TestingIIDXFolderSP10,
+} from "../../../test-utils/test-data";
 import deepmerge from "deepmerge";
 import CreateLogCtx from "../../../logger";
 import crypto from "crypto";
-import { lamps } from "kamaitachi-common/js/config";
 
 const logger = CreateLogCtx("goals.test.ts");
 
-const HC511Goal: GoalDocument = {
-    charts: {
-        type: "single",
-        data: Testing511SPA.chartID,
-    },
-    createdBy: 1,
-    game: "iidx",
-    goalID: "mock_goalID",
-    playtype: "SP",
-    timeAdded: 0,
-    title: "HC 5.1.1. SPA",
-    criteria: {
-        mode: "single",
-        value: lamps.iidx.indexOf("HARD CLEAR"),
-        key: "scoreData.lampIndex",
-    },
-};
-
-const HC511UserGoal: UserGoalDocument = {
-    achieved: false,
-    timeAchieved: null,
-    game: "iidx",
-    playtype: "SP",
-    goalID: "mock_goalID",
-    lastInteraction: null,
-    outOf: 5,
-    outOfHuman: "HARD CLEAR",
-    progress: null,
-    progressHuman: "NO DATA",
-    timeSet: Date.now(),
-    userID: 1,
-};
-
 t.test("#GetRelevantFolderGoals", (t) => {
     t.beforeEach(ResetDBState);
-
-    const sp10folder: FolderDocument = {
-        title: "Level 10",
-        game: "iidx",
-        playtype: "SP",
-        type: "charts",
-        folderID: "ed9d8c734447ce67d7135c0067441a98cc81aeaf",
-        table: "Levels",
-        tableIndex: 10,
-        data: {
-            level: "10",
-            "flags¬IN BASE GAME": true,
-        },
-    };
 
     const fakeFolderGoalDocument: GoalDocument = {
         charts: {
@@ -105,12 +64,13 @@ t.test("#GetRelevantFolderGoals", (t) => {
     };
 
     t.beforeEach(async () => {
-        const sp11folder = deepmerge(sp10folder, { data: { level: "11" } });
-        await db.folders.insert(sp10folder);
+        // @ts-expect-error garbage types
+        const sp11folder = deepmerge(TestingIIDXFolderSP10, { data: { level: "11" } });
+        await db.folders.insert(TestingIIDXFolderSP10);
         await db.folders.insert(sp11folder);
         await db.goals.insert(fakeFolderGoalDocument);
         await db.goals.insert(notFolderGoalDocument);
-        await CreateFolderChartLookup(sp10folder);
+        await CreateFolderChartLookup(TestingIIDXFolderSP10);
         await CreateFolderChartLookup(sp11folder);
     });
 

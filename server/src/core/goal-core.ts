@@ -1,4 +1,3 @@
-// idk what needs to go here just yet - need to write the goal support in score import - zkldi
 import { GoalDocument, integer, PBScoreDocument, Game } from "kamaitachi-common";
 import { grades, lamps } from "kamaitachi-common/js/config";
 import db from "../db/db";
@@ -108,7 +107,7 @@ export async function EvaluateGoalForUser(
 
         // abs -> Absolute mode, such as clear 10 charts.
         if (goal.criteria.mode === "abs") {
-            count = goal.criteria.value;
+            count = goal.criteria.countNum;
         } else {
             // proportion -> Proportional mode, the value
             // is a multiplier for the amount of charts
@@ -125,7 +124,7 @@ export async function EvaluateGoalForUser(
                 totalChartCount = chartIDs.length;
             }
 
-            count = Math.floor(goal.criteria.value * totalChartCount);
+            count = Math.floor(goal.criteria.countNum * totalChartCount);
         }
 
         let userCount = await db["score-pbs"].count(scoreQuery);

@@ -656,11 +656,21 @@ export interface MilestoneDocument extends MongoDBDocument {
         value: number | null;
     };
     createdBy: integer;
-    title: string;
+    name: string;
     desc: string;
     milestoneData: MilestoneSection[];
     milestoneID: string;
     group: string | null;
+}
+
+export interface MilestoneGroupDocument extends MongoDBDocument {
+    game: Game;
+    playtype: Playtypes[Game];
+    isDefault: boolean;
+    createdBy: integer;
+    groupName: string;
+    name: string;
+    desc: string;
 }
 
 export interface QueryDocument extends MongoDBDocument {

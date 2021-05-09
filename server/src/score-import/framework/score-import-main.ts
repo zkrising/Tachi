@@ -16,6 +16,7 @@ import { ProcessPBs } from "./pb/process-pbs";
 import { UpdateUsersGamePlaytypeStats } from "./user-game-stats/update-ugs";
 import db from "../../db/db";
 import { UpdateUsersGoals } from "./goals/goals";
+import { UpdateUsersMilestones } from "./milestones/milestones";
 
 export default async function ScoreImportMain<D, C>(
     user: PublicUserDocument,
@@ -91,7 +92,11 @@ export default async function ScoreImportMain<D, C>(
     // Evaluate and update the users goals. This returns information about goals that have changed.
     let goalInfo = await UpdateUsersGoals(game, user.id, chartIDs, logger);
 
-    // --- 8. Finalise Import Document ---
+    // --- 8. Milestones ---
+    // Evaluate and update the users milestones. This returns...
+    let milestoneInfo = await UpdateUsersMilestones(goalInfo, game, playtypes, user.id, logger);
+
+    // --- 9. Finalise Import Document ---
     // Create and Save an import document to the database, and finish everything up!
     const ImportDocument: ImportDocument = {
         importType,
@@ -105,6 +110,7 @@ export default async function ScoreImportMain<D, C>(
         userID: user.id,
         classDeltas,
         goalInfo,
+        milestoneInfo,
         userIntent,
     };
 

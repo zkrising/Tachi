@@ -644,7 +644,7 @@ export interface UserGoalDocument extends MongoDBDocument {
 
 interface MilestoneGoalReference {
     goalID: string;
-    note: string | null;
+    note?: string;
 }
 
 interface MilestoneSection {

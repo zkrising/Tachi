@@ -656,15 +656,12 @@ interface MilestoneSection {
 export interface MilestoneDocument extends MongoDBDocument {
     game: Game;
     playtype: Playtypes[Game];
-    criteria: {
-        /**
-         * all: All goals must be achieved in order for the milestone to be complete
-         * abs: Goals achieved must be greater than or equal to criteria.value.
-         * proportion: Goals achieved must be greater than or equal to criteria.value * total_goals.
-         */
-        type: "all" | "abs" | "proportion";
-        value: number | null;
-    };
+    /**
+     * all: All goals must be achieved in order for the milestone to be complete
+     * abs: Goals achieved must be greater than or equal to criteria.value.
+     * proportion: Goals achieved must be greater than or equal to criteria.value * total_goals.
+     */
+    criteria: MilestoneAllCriteria | MilestoneAbsPropCriteria;
     createdBy: integer;
     name: string;
     desc: string;
@@ -672,6 +669,15 @@ export interface MilestoneDocument extends MongoDBDocument {
     milestoneID: string;
     group: string | null;
     groupIndex: number | null;
+}
+
+interface MilestoneAllCriteria {
+    type: "all";
+}
+
+interface MilestoneAbsPropCriteria {
+    type: "abs" | "proportion";
+    value: number;
 }
 
 export interface MilestoneGroupDocument extends MongoDBDocument {

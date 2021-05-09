@@ -6,6 +6,8 @@ import {
     GoalDocument,
     UserGoalDocument,
     FolderDocument,
+    MilestoneDocument,
+    UserMilestoneDocument,
 } from "kamaitachi-common";
 import path from "path";
 import { DryScore } from "../types";
@@ -94,4 +96,44 @@ export const TestingIIDXFolderSP10: FolderDocument = {
         level: "10",
         "flags¬IN BASE GAME": true,
     },
+};
+
+export const TestingIIDXSPMilestone: MilestoneDocument = {
+    createdBy: 1,
+    criteria: {
+        type: "all",
+    },
+    desc: "testing milestone",
+    game: "iidx",
+    playtype: "SP",
+    group: "ExampleGroup",
+    groupIndex: 1,
+    milestoneID: "example_milestone_id",
+    name: "Example Milestone",
+    milestoneData: [
+        {
+            title: "Group1",
+            desc: "Foo",
+            goals: [
+                {
+                    goalID: "eg_goal_1",
+                },
+                {
+                    goalID: "eg_goal_2",
+                },
+            ],
+        },
+        {
+            title: "Group2",
+            desc: "Bar",
+            goals: [
+                {
+                    goalID: "eg_goal_3",
+                },
+                {
+                    goalID: "eg_goal_4",
+                },
+            ],
+        },
+    ],
 };

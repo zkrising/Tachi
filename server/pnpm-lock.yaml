@@ -62,7 +62,7 @@ dependencies:
   express-async-errors: 3.1.1_express@4.17.1
   express-session: 1.17.1
   fast-json-stable-hash: 1.0.2
-  kamaitachi-common: github.com/zkldi/Kamaitachi-common/f10a13f67d186ca9caa474092270f0995ff6c24d
+  kamaitachi-common: github.com/zkldi/Kamaitachi-common/305f707b427867e9e00f5b122e61231b1d1493de
   mongodb: 3.6.6
   monk: 7.3.4
   multer: 1.4.2
@@ -4638,8 +4638,8 @@ packages:
       '@types/yoga-layout': 1.9.2
     dev: true
 
-  github.com/zkldi/Kamaitachi-common/f10a13f67d186ca9caa474092270f0995ff6c24d:
-    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/f10a13f67d186ca9caa474092270f0995ff6c24d}
+  github.com/zkldi/Kamaitachi-common/305f707b427867e9e00f5b122e61231b1d1493de:
+    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/305f707b427867e9e00f5b122e61231b1d1493de}
     name: kamaitachi-common
     version: 0.1.0
     dependencies:

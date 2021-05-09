@@ -632,6 +632,7 @@ interface ChartDocumentFlags {
 interface CDDataIIDXSP {
     notecount: integer;
     inGameID: integer;
+    arcChartID: string;
 }
 interface CDDataDDRSP {
     songHash: string;

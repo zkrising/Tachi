@@ -63,7 +63,7 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
 };
 
 (async () => {
-    logger.info(`Starting indexing for ${options.db}...`);
+    logger.info(`Starting indexing for ${options.db ?? "ktblackdb"}...`);
 
     for (const collection in indexes) {
         if (options.reset) {

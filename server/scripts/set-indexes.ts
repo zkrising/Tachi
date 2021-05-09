@@ -35,7 +35,6 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
     "score-pbs": [
         index({ chartID: 1, userID: 1 }, UNIQUE),
         index({ chartID: 1, "scoreData.percent": 1 }),
-        index({ checksum: 1 }, UNIQUE),
     ],
     "charts-iidx": [
         index({ chartID: 1 }, UNIQUE),
@@ -56,6 +55,11 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
     ],
     goals: [index({ goalID: 1 }, UNIQUE)],
     "user-goals": [index({ goalID: 1, userID: 1 }, UNIQUE), index({ goalID: 1 })],
+    milestones: [index({ milestoneID: 1 }, UNIQUE), index({ group: 1, game: 1, playtype: 1 })],
+    "user-milestones": [
+        index({ milestoneID: 1, userID: 1 }, UNIQUE),
+        index({ userID: 1, game: 1, playtype: 1 }),
+    ],
 };
 
 (async () => {
@@ -67,7 +71,7 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
             await db.get(collection).dropIndexes();
         }
 
-        // @ts-expect-error drunkts
+        // @ts-expect-error dru(n)kts
         for (const index of indexes[collection]) {
             // eslint-disable-next-line no-await-in-loop
             let r = await db.get(collection).createIndex(index.fields, index.options);

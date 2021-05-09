@@ -58,7 +58,7 @@ t.test("#EvaluateGoalForUser", (t) => {
             t.strictSame(
                 res,
                 {
-                    achieved: true,
+                    achieved: false,
                     outOf: 5,
                     progress: 4,
                     outOfHuman: "HARD CLEAR",

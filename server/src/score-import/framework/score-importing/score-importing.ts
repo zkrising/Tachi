@@ -6,7 +6,7 @@ import {
     AnySongDocument,
 } from "kamaitachi-common";
 import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../types";
-import HydrateScore from "./hydrate-score";
+import { HydrateScore } from "./hydrate-score";
 import { InsertQueue, QueueScoreInsert, ScoreIDs } from "./insert-score";
 import {
     ConverterFailure,

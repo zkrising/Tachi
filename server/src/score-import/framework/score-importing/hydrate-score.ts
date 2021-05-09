@@ -5,7 +5,6 @@ import {
     ScoreDocument,
     AnySongDocument,
 } from "kamaitachi-common";
-import { Logger } from "winston";
 import { DryScore, KtLogger } from "../../../types";
 import { CreateCalculatedData } from "../calculated-data/calculated-data";
 
@@ -14,7 +13,7 @@ import { CreateCalculatedData } from "../calculated-data/calculated-data";
  * @param dryScore The intermediate score to make into a real score.
  * @param userID The userID this score is for.
  */
-export default async function HydrateScore(
+export async function HydrateScore(
     userID: integer,
     dryScore: DryScore,
     chart: AnyChartDocument,

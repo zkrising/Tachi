@@ -449,8 +449,8 @@ export interface GoalImportInfo {
 export declare type MilestoneImportStat = Pick<UserMilestoneDocument, "progress" | "achieved">;
 export interface MilestoneImportInfo {
     milestoneID: string;
-    old: GoalImportStat;
-    new: GoalImportStat;
+    old: MilestoneImportStat;
+    new: MilestoneImportStat;
 }
 export interface UserGoalDocument extends MongoDBDocument {
     goalID: string;

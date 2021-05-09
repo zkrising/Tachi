@@ -623,8 +623,8 @@ export type MilestoneImportStat = Pick<UserMilestoneDocument, "progress" | "achi
 
 export interface MilestoneImportInfo {
     milestoneID: string;
-    old: GoalImportStat;
-    new: GoalImportStat;
+    old: MilestoneImportStat;
+    new: MilestoneImportStat;
 }
 
 export interface UserGoalDocument extends MongoDBDocument {

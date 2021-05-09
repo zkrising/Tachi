@@ -432,11 +432,18 @@ export interface ImportDocument extends MongoDBDocument {
     createdSessions: SessionInfoReturn[];
     importType: ImportTypes;
     classDeltas: ClassDelta[];
+    goalInfo: GoalImportInfo[];
     /**
      * Whether the user deliberately imported this through an action (i.e. uploaded a file personally) [true]
      * or was imported on their behalf through a service (i.e. fervidex)
      */
     userIntent: boolean;
+}
+export declare type GoalImportStat = Pick<UserGoalDocument, "progress" | "progressHuman" | "outOf" | "outOfHuman" | "achieved">;
+export interface GoalImportInfo {
+    goalID: string;
+    old: GoalImportStat;
+    new: GoalImportStat;
 }
 export interface UserGoalDocument extends MongoDBDocument {
     goalID: string;

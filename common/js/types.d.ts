@@ -476,7 +476,7 @@ export interface MilestoneDocument extends MongoDBDocument {
          * All: All goals must be achieved in order for the milestone to be complete
          * Count: Goals achieved must be greater than or equal to criteria.value.
          */
-        type: "all" | "count" | "percent";
+        type: "all" | "abs" | "proportion";
         value: number | null;
     };
     createdBy: integer;

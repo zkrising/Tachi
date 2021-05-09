@@ -600,6 +600,7 @@ export interface ImportDocument extends MongoDBDocument {
     importType: ImportTypes;
     classDeltas: ClassDelta[];
     goalInfo: GoalImportInfo[];
+    milestoneInfo: MilestoneImportInfo[];
     /**
      * Whether the user deliberately imported this through an action (i.e. uploaded a file personally) [true]
      * or was imported on their behalf through a service (i.e. fervidex)
@@ -614,6 +615,14 @@ export type GoalImportStat = Pick<
 
 export interface GoalImportInfo {
     goalID: string;
+    old: GoalImportStat;
+    new: GoalImportStat;
+}
+
+export type MilestoneImportStat = Pick<UserMilestoneDocument, "progress" | "achieved">;
+
+export interface MilestoneImportInfo {
+    milestoneID: string;
     old: GoalImportStat;
     new: GoalImportStat;
 }
@@ -649,8 +658,9 @@ export interface MilestoneDocument extends MongoDBDocument {
     playtype: Playtypes[Game];
     criteria: {
         /**
-         * All: All goals must be achieved in order for the milestone to be complete
-         * Count: Goals achieved must be greater than or equal to criteria.value.
+         * all: All goals must be achieved in order for the milestone to be complete
+         * abs: Goals achieved must be greater than or equal to criteria.value.
+         * proportion: Goals achieved must be greater than or equal to criteria.value * total_goals.
          */
         type: "all" | "abs" | "proportion";
         value: number | null;

@@ -43,7 +43,14 @@ export async function ResolveFolderToCharts(
             })
         );
     } else if (folder.type === "charts") {
-        let fx = deepmerge.all([filter, { playtype: folder.playtype }, folder.data]);
+        let folderDataTransposed: Record<string, unknown> = {};
+
+        for (const key in folder.data) {
+            folderDataTransposed[key.replace(/¬/gu, ".")] = folder.data[key];
+        }
+
+        let fx = deepmerge.all([filter, { playtype: folder.playtype }, folderDataTransposed]);
+
         charts = await db.charts[folder.game].find(fx);
     } else {
         // @ts-expect-error This is already a weird scenario. Shouldn't fail, though.
@@ -114,7 +121,6 @@ export async function GetFolderChartIDs(folderID: string) {
 
     return chartIDs.map((e) => e.chartID);
 }
-
 export async function CreateFolderChartLookup(folder: FolderDocument) {
     let { charts } = await ResolveFolderToCharts(folder, {}, false);
 
@@ -124,4 +130,21 @@ export async function CreateFolderChartLookup(folder: FolderDocument) {
             chartID: c.chartID,
         }))
     );
+}
+
+/**
+ * Creates the "folder-chart-lookup" cache. This is used to optimise
+ * common use cases, such as retrieving chartIDs from a folder.
+ */
+export async function InitaliseFolderChartLookup() {
+    logger.info(`Started InitialiseFolderChartLookup`);
+    await db["folder-chart-lookup"].remove({});
+    logger.info(`Flushed Cache.`);
+
+    let folders = await db.folders.find({});
+    logger.info(`Reloading ${folders.length} folders.`);
+
+    await Promise.all(folders.map(CreateFolderChartLookup));
+
+    logger.info(`Completed InitialiseFolderChartLookup.`);
 }

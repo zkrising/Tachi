@@ -1,5 +1,6 @@
 // idk what needs to go here just yet - need to write the goal support in score import - zkldi
-import { GoalDocument, integer, PBScoreDocument } from "kamaitachi-common";
+import { GoalDocument, integer, PBScoreDocument, Game } from "kamaitachi-common";
+import { grades, lamps } from "kamaitachi-common/js/config";
 import db from "../db/db";
 import { KtLogger } from "../types";
 import { GetFolderChartIDs } from "./folder-core";
@@ -7,7 +8,7 @@ import { FilterQuery } from "mongodb";
 
 export interface EvaluatedGoalReturn {
     achieved: boolean;
-    progress: number;
+    progress: number | null;
     outOf: number;
     progressHuman: string;
     outOfHuman: string;
@@ -38,34 +39,70 @@ export async function EvaluateGoalForUser(
     };
 
     if (chartIDs) {
-        scoreQuery.chartIDs = { $in: chartIDs };
+        scoreQuery.chartID = { $in: chartIDs };
     }
 
     // Next, we need to figure out our criteria.
     if (goal.criteria.mode === "single") {
         let res = await db["score-pbs"].findOne(scoreQuery);
+        // hack, but guaranteed to work.
+        let scoreDataKey = goal.criteria.key.split(".")[1] as
+            | "lampIndex"
+            | "gradeIndex"
+            | "score"
+            | "percent";
+
+        const outOfHuman = HumaniseGoalSingle(goal.game, goal.criteria.key, goal.criteria.value);
 
         if (res) {
-            // hack, but guaranteed to work.
-            let scoreDataKey = goal.criteria.key.split(".")[1] as
-                | "lampIndex"
-                | "gradeIndex"
-                | "score"
-                | "percent";
-
             return {
                 achieved: true,
                 outOf: goal.criteria.value,
                 progress: res.scoreData[scoreDataKey],
-                outOfHuman: "", // @todo
-                progressHuman: "",
+                outOfHuman,
+                progressHuman: HumaniseGoalSingle(
+                    goal.game,
+                    goal.criteria.key,
+                    res.scoreData[scoreDataKey]
+                ),
             };
         }
 
         // if we weren't successful, we have to get the users next best score and put it up here
         // this is made infinitely easier by the existance of score-pbs.
+        let nextBestQuery: FilterQuery<PBScoreDocument> = {
+            userID,
+        };
 
-        // @todo
+        if (chartIDs) {
+            nextBestQuery.chartID = { $in: chartIDs };
+        }
+
+        let nextBestScore = await db["score-pbs"].findOne(nextBestQuery, {
+            sort: { [goal.criteria.key]: -1 },
+        });
+
+        if (!nextBestScore) {
+            return {
+                achieved: false,
+                outOf: goal.criteria.value,
+                progress: null,
+                outOfHuman,
+                progressHuman: "NO DATA",
+            };
+        }
+
+        return {
+            achieved: false,
+            outOf: goal.criteria.value,
+            outOfHuman,
+            progress: nextBestScore.scoreData[scoreDataKey],
+            progressHuman: HumaniseGoalSingle(
+                goal.game,
+                goal.criteria.key,
+                nextBestScore.scoreData[scoreDataKey]
+            ),
+        };
     } else if (goal.criteria.mode === "abs" || goal.criteria.mode === "proportion") {
         let count;
 
@@ -123,5 +160,23 @@ function ResolveGoalCharts(goal: GoalDocument): Promise<string[]> | string[] | n
         return GetFolderChartIDs(goal.charts.data);
     } else if (goal.charts.type === "any") {
         return null; // special case.
+    }
+}
+
+type GoalKeys = GoalDocument["criteria"]["key"];
+
+// @todo, improve this (add things like BP for iidx, maybe, percents for scores?)
+function HumaniseGoalSingle(game: Game, key: GoalKeys, value: number): string {
+    switch (key) {
+        case "scoreData.gradeIndex":
+            return grades[game][value];
+        case "scoreData.lampIndex":
+            return lamps[game][value];
+        case "scoreData.percent":
+            return `${value.toFixed(2)}%`;
+        case "scoreData.score":
+            return value.toString();
+        default:
+            throw new Error(`Broken goal - invalid key ${key}.`);
     }
 }

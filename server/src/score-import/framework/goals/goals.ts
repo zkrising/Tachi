@@ -21,10 +21,10 @@ export async function UpdateUsersGoals(
 
     logger.verbose(`Found ${goals.length} relevant goals.`);
 
-    return ProcessGoals(goals, userGoalsMap, userID, logger);
+    return ProcessGoalsForUser(goals, userGoalsMap, userID, logger);
 }
 
-export async function ProcessGoals(
+export async function ProcessGoalsForUser(
     goals: GoalDocument[],
     userGoalsMap: Map<string, UserGoalDocument>,
     userID: integer,
@@ -74,7 +74,7 @@ export async function ProcessGoals(
  * @returns undefined on error (i.e. EvaluateGoalForUser) OR if there's nothing
  * to say (i.e. user didnt raise the goal).
  */
-async function ProcessGoal(
+export async function ProcessGoal(
     goal: GoalDocument,
     userGoal: UserGoalDocument,
     userID: integer,
@@ -87,9 +87,16 @@ async function ProcessGoal(
         return;
     }
 
-    // if the user has improved their progress on the goal
-    if (userGoal.progress < res.progress) {
-        // @todo emit something
+    // if the user has changed their progress on the goal
+    if (userGoal.progress !== res.progress) {
+        // if the user has improved their progress on the goal
+        // if userGoal.progress is null, then res.progress must be non-null, and therefore an improvement.
+        if (
+            userGoal.progress === null ||
+            (res.progress !== null && userGoal.progress < res.progress)
+        ) {
+            // @todo emit something
+        }
     } else if (userGoal.outOf === res.outOf) {
         // if the users progress hasn't changed AND the outOf hasn't
         // then nothing has changed.
@@ -152,7 +159,7 @@ async function ProcessGoal(
  * evaluate the ones we need to.
  * @returns An array of Goals, and an array of userGoals.
  */
-async function GetRelevantGoals(
+export async function GetRelevantGoals(
     game: Game,
     userID: integer,
     chartIDs: Set<string>,
@@ -173,33 +180,35 @@ async function GetRelevantGoals(
         chartIDsArr.push(c);
     }
 
+    const goals = await Promise.all([
+        // this gets the relevantGoals for direct and multi
+        db.goals.find({
+            "charts.type": { $in: ["single", "multi"] },
+            "charts.data": { $in: chartIDsArr },
+            goalID: { $in: goalIDs },
+        }),
+        db.goals.find({
+            "charts.type": "any",
+            goalID: { $in: goalIDs },
+        }),
+        GetRelevantFolderGoals(goalIDs, chartIDsArr),
+    ]).then((r) => r.flat(1));
+
+    let goalSet = new Set(goals.map((e) => e.goalID));
+
     const userGoalsMap: Map<string, UserGoalDocument> = new Map();
 
     for (const userGoal of userGoals) {
+        if (!goalSet.has(userGoal.goalID)) {
+            continue;
+        }
         // since these are guaranteed to be unique, lets make a hot map of goalID -> userGoalDocument, so we can
         // pull them in for post-processing and filter out the userGoalDocuments that aren't relevant.
         userGoalsMap.set(userGoal.goalID, userGoal);
     }
 
     return {
-        goals: await Promise.all([
-            // this gets the relevantGoals for direct and multi
-            db.goals.find({
-                charts: {
-                    // @ts-expect-error monk tries her hardest
-                    type: { $in: ["direct", "multi"] },
-                    data: { $in: chartIDsArr },
-                },
-                goalID: { $in: goalIDs },
-            }),
-            db.goals.find({
-                charts: {
-                    type: "any",
-                },
-                goalID: { $in: goalIDs },
-            }),
-            GetRelevantFolderGoals(goalIDs, chartIDsArr),
-        ]).then((r) => r.flat(1)),
+        goals,
         userGoalsMap,
     };
 }
@@ -208,7 +217,7 @@ async function GetRelevantGoals(
  * Returns the set of goals where its folder contains any member
  * of chartIDsArr.
  */
-function GetRelevantFolderGoals(goalIDs: string[], chartIDsArr: string[]) {
+export function GetRelevantFolderGoals(goalIDs: string[], chartIDsArr: string[]) {
     // Slightly black magic - this is kind of like doing an SQL join.
     // it's weird to do this in mongodb, but this seems like the right
     // way to actually handle this.
@@ -217,9 +226,7 @@ function GetRelevantFolderGoals(goalIDs: string[], chartIDsArr: string[]) {
     return db.goals.aggregate([
         {
             $match: {
-                charts: {
-                    type: "folder",
-                },
+                "charts.type": "folder",
                 goalID: { $in: goalIDs },
             },
         },

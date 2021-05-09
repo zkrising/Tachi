@@ -14,6 +14,9 @@ import deepmerge from "deepmerge";
 
 const logger = CreateLogCtx("folder-core.test.ts");
 
+t.todo("#CreateFolderChartLookup");
+t.todo("#GetFolderCharts");
+
 t.test("#ResolveFolderToCharts", (t) => {
     t.beforeEach(ResetDBState);
 

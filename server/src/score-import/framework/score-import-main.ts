@@ -84,11 +84,12 @@ export default async function ScoreImportMain<D, C>(
     let playtypes = Object.keys(scorePlaytypeMap) as Playtypes[Game][];
 
     // --- 6. Game Stats ---
-    // This function updates the users "stats" for this game - such as their profile rating, or their classes.
+    // This function updates the users "stats" for this game - such as their profile rating or their classes.
     let classDeltas = await UpdateUsersGameStats(game, playtypes, user.id, logger);
 
     // --- 7. Goals ---
-    let unknown = await UpdateUsersGoals(game, user.id, chartIDs, logger);
+    // Evaluate and update the users goals. This returns information about goals that have changed.
+    let goalInfo = await UpdateUsersGoals(game, user.id, chartIDs, logger);
 
     // --- 8. Finalise Import Document ---
     // Create and Save an import document to the database, and finish everything up!
@@ -103,6 +104,7 @@ export default async function ScoreImportMain<D, C>(
         createdSessions: sessionInfo,
         userID: user.id,
         classDeltas,
+        goalInfo,
         userIntent,
     };
 

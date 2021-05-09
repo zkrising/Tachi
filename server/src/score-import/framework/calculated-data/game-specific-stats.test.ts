@@ -240,4 +240,9 @@ t.test("#CalculateMFCP", (t) => {
     t.end();
 });
 
+t.todo("#CalculateCHUNITHMRating");
+t.todo("#CalculateVF5");
+t.todo("#CalculateVF4");
+t.todo("#KaidenPercentile");
+
 t.teardown(CloseMongoConnection);

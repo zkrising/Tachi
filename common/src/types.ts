@@ -671,17 +671,6 @@ export interface MilestoneGroupDocument extends MongoDBDocument {
     desc: string;
 }
 
-export interface QueryDocument extends MongoDBDocument {
-    query: Record<string, string>;
-    queryID: string;
-    name: string;
-    desc: string;
-    byUser: integer;
-    timeAdded: integer;
-    timesUsed: integer;
-    forDatabase: "scores";
-}
-
 export type NotificationType =
     | "clandisband"
     | "claninvite"
@@ -757,27 +746,6 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
     customRatings: Partial<Record<GameSpecificCalcLookup[I], number>>;
     classes: Record<string, string>; // bad
 }
-
-// the bottom set of types are horrifically confusing.
-// to ease this a bit, an example of what they're representing is below.
-
-/* 
-        "classes" : {
-            "iidx" : {
-                "SP" : {
-                    "dan" : "kaiden"
-                }
-            }
-        }
-    */
-
-// type UserClasses = Partial<Record<Game, PlaytypeClasses>>;
-
-// type PlaytypeClasses = Partial<Record<Playtypes[Game], ClassInfo>>;
-
-// this one is just flat out wrong btw, there are very strict requirements
-// on what strings can go in here.
-// type ClassInfo = Partial<Record<string, string>>;
 
 /**
  * PrivateUserDocument is the document indicating that we've returned everything about the user

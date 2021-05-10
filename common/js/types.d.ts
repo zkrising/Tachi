@@ -492,16 +492,6 @@ export interface MilestoneGroupDocument extends MongoDBDocument {
     name: string;
     desc: string;
 }
-export interface QueryDocument extends MongoDBDocument {
-    query: Record<string, string>;
-    queryID: string;
-    name: string;
-    desc: string;
-    byUser: integer;
-    timeAdded: integer;
-    timesUsed: integer;
-    forDatabase: "scores";
-}
 export declare type NotificationType = "clandisband" | "claninvite" | "goals" | "import" | "milestone" | "mrginvite" | "mrgkicked" | "mrgdisband" | "mrginviterejected";
 export interface NotificationDocument extends MongoDBDocument {
     notifID: string;

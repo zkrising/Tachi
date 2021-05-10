@@ -1,7 +1,6 @@
 import t from "tap";
 import { CreateImportLoggerAndID } from "./import-logger";
 import { PublicUserDocument } from "kamaitachi-common";
-import { Logger } from "winston";
 
 t.test("#CreateImportLoggerAndID", (t) => {
     let { importID, logger } = CreateImportLoggerAndID(

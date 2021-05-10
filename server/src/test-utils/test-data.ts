@@ -7,7 +7,6 @@ import {
     UserGoalDocument,
     FolderDocument,
     MilestoneDocument,
-    UserMilestoneDocument,
 } from "kamaitachi-common";
 import path from "path";
 import { DryScore } from "../types";

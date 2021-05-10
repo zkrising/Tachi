@@ -40,6 +40,10 @@ export async function CalculateRatings(
         ),
     ]);
 
+    logger.debug(
+        `Found ${bestRating.length} best rating scores and ${bestLampRating.length} bestLampRating scores.`
+    );
+
     let rating = bestRating.reduce((a, r) => a + r.calculatedData.rating, 0) / SCORE_COUNT;
     let lampRating = bestLampRating.reduce((a, r) => a + r.calculatedData.rating, 0) / SCORE_COUNT;
 

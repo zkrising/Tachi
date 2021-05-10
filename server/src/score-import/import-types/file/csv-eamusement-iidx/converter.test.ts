@@ -369,4 +369,10 @@ t.test("#EamScoreConverterWrapper", async (t) => {
     t.end();
 });
 
+t.todo("#ConverterFn", async (t) => {
+    t.beforeEach(ResetDBState);
+
+    t.end();
+});
+
 t.teardown(CloseMongoConnection);

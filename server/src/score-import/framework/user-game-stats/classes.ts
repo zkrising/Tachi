@@ -86,6 +86,7 @@ export async function CalculateUGSClasses(
     }
 
     if (ImportTypeClassResolveFn) {
+        logger.debug(`Applying ClassResolveFn for ${game} ${playtype}.`);
         classes = deepmerge(
             classes,
             await ImportTypeClassResolveFn(game, playtype, userID, customRatings)

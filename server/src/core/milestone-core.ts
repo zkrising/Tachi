@@ -1,9 +1,4 @@
-import {
-    MilestoneDocument,
-    UserMilestoneDocument,
-    integer,
-    GoalImportInfo,
-} from "kamaitachi-common";
+import { MilestoneDocument, integer, GoalImportInfo } from "kamaitachi-common";
 
 /**
  * Processes and updates a user's milestones from their Goal Import Info (i.e. what is returned

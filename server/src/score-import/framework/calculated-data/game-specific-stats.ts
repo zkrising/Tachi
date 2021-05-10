@@ -1,4 +1,4 @@
-import { AnyChartDocument, ChartDocument, ESDCore, integer } from "kamaitachi-common";
+import { AnyChartDocument, ESDCore, integer } from "kamaitachi-common";
 import { Logger } from "winston";
 import db from "../../../db/db";
 import { DryScore } from "../../../types";

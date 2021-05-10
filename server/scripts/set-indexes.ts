@@ -2,7 +2,8 @@ import monk from "monk";
 import { Command } from "commander";
 import CreateLogCtx from "../src/logger";
 import { IndexOptions } from "mongodb";
-import { ValidDatabases } from "kamaitachi-common";
+import { ValidDatabases, Game } from "kamaitachi-common";
+import { supportedGames } from "kamaitachi-common/js/config";
 
 const logger = CreateLogCtx("set-indexes.ts");
 
@@ -36,11 +37,6 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
         index({ chartID: 1, userID: 1 }, UNIQUE),
         index({ chartID: 1, "scoreData.percent": 1 }),
     ],
-    "charts-iidx": [
-        index({ chartID: 1 }, UNIQUE),
-        index({ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 }, UNIQUE),
-    ],
-    "songs-iidx": [index({ id: 1 }, UNIQUE), index({ title: 1 })],
     sessions: [
         // lol
         index({ timeStarted: 1, timeEnded: 1, userID: 1, game: 1, playtype: 1 }),
@@ -61,6 +57,15 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
         index({ userID: 1, game: 1, playtype: 1 }),
     ],
 };
+
+for (const game of supportedGames) {
+    indexes[`charts-${game}` as "charts-iidx"] = [
+        index({ chartID: 1 }, UNIQUE),
+        index({ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 }, UNIQUE),
+    ];
+
+    indexes[`songs-${game}` as "songs-iidx"] = [index({ id: 1 }, UNIQUE), index({ title: 1 })];
+}
 
 (async () => {
     logger.info(`Starting indexing for ${options.db ?? "ktblackdb"}...`);

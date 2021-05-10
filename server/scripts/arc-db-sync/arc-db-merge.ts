@@ -27,8 +27,11 @@ async function MergeIDs() {
             let difficulty = chart.difficulty === "BLACK" ? "LEGGENDARIA" : chart.difficulty;
             let version = "27";
 
+            // yeah this fails for wacky playtype mismatches -- i don't care.
             if (
-                ["ミッドナイト堕天使", "Y&Co. is dead or alive"].includes(songTitle) &&
+                ["ミッドナイト堕天使", "Y&Co. is dead or alive", "State Of The Art"].includes(
+                    songTitle
+                ) &&
                 difficulty === "LEGGENDARIA"
             ) {
                 difficulty = "ANOTHER";

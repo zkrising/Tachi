@@ -6,14 +6,14 @@ import MigrateRecords from "./migrate";
 import { gameOrders } from "kamaitachi-common/js/config";
 import { oldKTDB } from "./old-db";
 
-const logger = CreateLogCtx("charts-ddr.ts");
+const logger = CreateLogCtx("charts-gitadora.ts");
 
-async function ConvertFn(c: any): Promise<ChartDocument<"ddr:SP" | "ddr:DP">> {
-    let song = (await db.songs.ddr.findOne({
+async function ConvertFn(c: any): Promise<ChartDocument<"gitadora:Gita" | "gitadora:Dora">> {
+    let song = (await db.songs.gitadora.findOne({
         id: c.id,
-    })) as SongDocument<"ddr">;
+    })) as SongDocument<"gitadora">;
 
-    let oldSong = await oldKTDB.get("songs-ddr").findOne({
+    let oldSong = await oldKTDB.get("songs-gitadora").findOne({
         id: c.id,
     });
 
@@ -22,7 +22,7 @@ async function ConvertFn(c: any): Promise<ChartDocument<"ddr:SP" | "ddr:DP">> {
         throw new Error(`Cannot find song with ID ${c.id}?`);
     }
 
-    const newChartDoc: ChartDocument<"ddr:SP" | "ddr:DP"> = {
+    const newChartDoc: ChartDocument<"gitadora:Gita" | "gitadora:Dora"> = {
         rgcID: null,
         chartID: c.chartID,
         difficulty: c.difficulty,
@@ -32,30 +32,29 @@ async function ConvertFn(c: any): Promise<ChartDocument<"ddr:SP" | "ddr:DP">> {
         level: c.level.toString(),
         flags: {
             "IN BASE GAME": true,
-            "N-1": true,
+            OMNIMIX: true,
         },
         data: {
-            inGameID: c.internals.inGameID,
-            songHash: oldSong.internals.songHash,
+            inGameID: c.internals.inGameINTID,
         },
         isPrimary: true,
         versions: [], // sentinel
     };
 
-    let idx = gameOrders.ddr.indexOf(song.firstVersion!);
+    let idx = gameOrders.gitadora.indexOf(song.firstVersion!);
 
     if (idx === -1) {
         logger.warn(`Invalid firstAppearance of ${song.firstVersion!}, running anyway.`);
         newChartDoc.versions = [song.firstVersion!];
     } else {
-        newChartDoc.versions = gameOrders.ddr.slice(idx);
+        newChartDoc.versions = gameOrders.gitadora.slice(idx);
     }
 
     return newChartDoc;
 }
 
 (async () => {
-    await MigrateRecords(db.charts.ddr, "charts-ddr", ConvertFn);
+    await MigrateRecords(db.charts.gitadora, "charts-gitadora", ConvertFn);
 
     process.exit(0);
 })();

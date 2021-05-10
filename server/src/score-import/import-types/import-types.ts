@@ -1,4 +1,4 @@
-import iidxEamusementCsv from "./file/csv-eamusement-iidx/converter";
+import iidxEamusementCsv from "./file/csv_eamusement-iidx/converter";
 
 /**
  * Converters are a set of functions designed to convert an element

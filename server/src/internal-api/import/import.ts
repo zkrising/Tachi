@@ -9,7 +9,7 @@ import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/score-importing/score-import-error";
 import ScoreImportMain from "../../score-import/framework/score-import-main";
-import ParseEamusementCSV from "../../score-import/import-types/file/csv-eamusement-iidx/parser";
+import ParseEamusementCSV from "../../score-import/import-types/file/csv_eamusement-iidx/parser";
 import { KtLogger } from "../../types";
 
 const logger = CreateLogCtx("import.ts");

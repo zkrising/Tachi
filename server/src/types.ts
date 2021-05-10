@@ -49,11 +49,11 @@ export type ConverterFnReturn = ConverterFailure | ConverterFnSuccessReturn | nu
 export type ConverterFunctionReturns = ConverterFnReturn | ConverterFnReturn[];
 
 export interface ConverterFunction<D, C> {
-    (data: D, processContext: C, logger: Logger): Promise<ConverterFunctionReturns>;
+    (data: D, processContext: C, logger: KtLogger): Promise<ConverterFunctionReturns>;
 }
 
 export interface ImportInputParser<D, C> {
-    (logger: Logger): ParserFunctionReturns<D, C> | Promise<ParserFunctionReturns<D, C>>;
+    (logger: KtLogger): ParserFunctionReturns<D, C> | Promise<ParserFunctionReturns<D, C>>;
 }
 
 export type ParserFunctionReturns<D, C> =

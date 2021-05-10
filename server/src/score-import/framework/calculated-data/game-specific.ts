@@ -1,7 +1,6 @@
 import { AnyChartDocument, ChartDocument, Game, Playtypes } from "kamaitachi-common";
-import { Logger } from "winston";
 import db from "../../../db/db";
-import { DryScore } from "../../../types";
+import { DryScore, KtLogger } from "../../../types";
 import {
     CalculateBPI,
     CalculateKESDC,
@@ -17,7 +16,7 @@ export async function CreateGameSpecific<G extends Game>(
     playtype: Playtypes[G],
     chart: AnyChartDocument,
     dryScore: DryScore,
-    logger: Logger
+    logger: KtLogger
 ): Promise<Record<string, number | null>> {
     let gameSpecific: Record<string, number | null> = {};
 

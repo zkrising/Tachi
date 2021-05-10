@@ -1,6 +1,5 @@
 import { Difficulties } from "kamaitachi-common";
-import { Logger } from "winston";
-import { ParserFunctionReturnsSync } from "../../../../types";
+import { KtLogger, ParserFunctionReturnsSync } from "../../../../types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import ConverterFn from "./converter";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
@@ -72,7 +71,7 @@ const HV_HEADER_COUNT = 41;
 //     "timestamp",
 // ];
 
-export function ResolveHeaders(headers: string[], logger: Logger) {
+export function ResolveHeaders(headers: string[], logger: KtLogger) {
     if (headers.length === PRE_HV_HEADER_COUNT) {
         logger.verbose("PRE_HV csv recieved.");
         return {
@@ -92,7 +91,7 @@ export function ResolveHeaders(headers: string[], logger: Logger) {
     );
 }
 
-export function NaiveCSVParse(csvBuffer: Buffer, logger: Logger) {
+export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
     const csvString = csvBuffer.toString("utf-8");
 
     let csvData = csvString.split("\n");
@@ -217,7 +216,7 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: Logger) {
 function ParseEamusementCSV(
     fileData: Express.Multer.File,
     body: Record<string, unknown>,
-    logger: Logger
+    logger: KtLogger
 ): ParserFunctionReturnsSync<IIDXEamusementCSVData, IIDXEamusementCSVContext> {
     let playtype: "SP" | "DP";
 

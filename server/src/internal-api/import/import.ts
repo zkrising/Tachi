@@ -3,7 +3,6 @@ import { FileUploadImportTypes } from "kamaitachi-common";
 import { fileImportTypes } from "kamaitachi-common/js/config";
 import multer, { MulterError } from "multer";
 import Prudence from "prudence";
-import { Logger } from "winston";
 import { GetUserWithID } from "../../core/user-core";
 import CreateLogCtx from "../../logger";
 import prValidate from "../../middleware/prudence-validate";
@@ -11,6 +10,7 @@ import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/score-importing/score-import-error";
 import ScoreImportMain from "../../score-import/framework/score-import-main";
 import ParseEamusementCSV from "../../score-import/import-types/file/csv-eamusement-iidx/parser";
+import { KtLogger } from "../../types";
 
 const logger = CreateLogCtx("import.ts");
 
@@ -67,7 +67,7 @@ router.post(
         try {
             let importType = req.body.importType as FileUploadImportTypes;
 
-            const inputParser = (logger: Logger) =>
+            const inputParser = (logger: KtLogger) =>
                 ResolveFileUploadData(importType, req.file, req.body, logger);
 
             const userDoc = await GetUserWithID(req.session.ktchi!.userID);
@@ -121,7 +121,7 @@ export function ResolveFileUploadData(
     importType: FileUploadImportTypes,
     fileData: Express.Multer.File,
     body: Record<string, unknown>,
-    logger: Logger
+    logger: KtLogger
 ) {
     switch (importType) {
         case "file/csv:eamusement-iidx":

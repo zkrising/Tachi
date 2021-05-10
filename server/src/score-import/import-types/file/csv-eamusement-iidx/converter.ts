@@ -1,6 +1,5 @@
 import { config, ESDCore, Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
-import { Logger } from "winston";
-import { DryScore, ConverterFunction, ConverterFnReturn } from "../../../../types";
+import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../../types";
 import { FindChartWithPTDFVersion } from "../../../database-lookup/chart-ptdf";
 import { FindSongOnTitle } from "../../../database-lookup/song-title";
 import {
@@ -30,7 +29,7 @@ export async function EamScoreConverter(
     context: IIDXEamusementCSVContext,
     data: IIDXEamusementCSVData,
     isLegacyLeggendaria: boolean,
-    logger: Logger
+    logger: KtLogger
 ) {
     const HUMANISED_CHART_TITLE = `${ktchiSong.title} (${context.playtype} ${eamScore.difficulty} [v${context.importVersion}])`;
     if (!eamScore.level || eamScore.level === "0") {
@@ -186,7 +185,7 @@ export async function EamScoreConverterWrapper(
     context: IIDXEamusementCSVContext,
     data: IIDXEamusementCSVData,
     isLegacyLeggendaria: boolean,
-    logger: Logger
+    logger: KtLogger
 ) {
     try {
         let results = await EamScoreConverter(
@@ -226,7 +225,7 @@ export async function EamScoreConverterWrapper(
 const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVContext> = async (
     data,
     context,
-    logger: Logger
+    logger: KtLogger
 ): Promise<ConverterFnReturn[] | ConverterFnReturn> => {
     let isLegacyLeggendaria = false;
 

@@ -1,7 +1,6 @@
 import { AnyChartDocument, ESDCore, integer } from "kamaitachi-common";
-import { Logger } from "winston";
 import db from "../../../db/db";
-import { DryScore } from "../../../types";
+import { DryScore, KtLogger } from "../../../types";
 
 /**
  * Calculates the in-game CHUNITHM rating for a score.
@@ -133,7 +132,7 @@ export function CalculateKESDC(kaidenESD: number | null, yourESD: number) {
  * https://life4ddr.com/requirements/#mfcpoints
  * @returns Null if this score was not eligible, a number otherwise.
  */
-export function CalculateMFCP(dryScore: DryScore, chartData: AnyChartDocument, logger: Logger) {
+export function CalculateMFCP(dryScore: DryScore, chartData: AnyChartDocument, logger: KtLogger) {
     if (dryScore.scoreData.lamp !== "MARVELOUS FULL COMBO") {
         return null;
     }
@@ -204,7 +203,7 @@ const VF5LampCoefficients = {
 export function CalculateVF4(
     dryScore: DryScore<"sdvx:Single">,
     chartData: AnyChartDocument,
-    logger: Logger
+    logger: KtLogger
 ) {
     const multiplier = 25;
     let level = chartData.levelNum;
@@ -232,7 +231,7 @@ export function CalculateVF4(
 export function CalculateVF5(
     dryScore: DryScore<"sdvx:Single">,
     chartData: AnyChartDocument,
-    logger: Logger
+    logger: KtLogger
 ) {
     let level = chartData.levelNum;
 
@@ -263,7 +262,7 @@ export function CalculateVF5(
 // function CalculateJubility(
 //     dryScore: DryScore<"jubeat:Single">,
 //     chartData: AnyChartDocument,
-//     logger: Logger
+//     logger: KtLogger
 // ) {
 //     let rate = dryScore.calculatedData.gameSpecific.musicRate; eurgh, this is hard.
 // }

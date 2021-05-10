@@ -2,7 +2,7 @@ import monk from "monk";
 import { Command } from "commander";
 import CreateLogCtx from "../src/logger";
 import { IndexOptions } from "mongodb";
-import { ValidDatabases, Game } from "kamaitachi-common";
+import { Databases, ValidDatabases } from "kamaitachi-common";
 import { supportedGames } from "kamaitachi-common/js/config";
 
 const logger = CreateLogCtx("set-indexes.ts");
@@ -31,7 +31,7 @@ function index(fields: Record<string, unknown>, options?: IndexOptions) {
 
 const UNIQUE = { unique: true };
 
-const indexes: Partial<Record<ValidDatabases, Index[]>> = {
+const staticIndexes: Partial<Record<Databases, Index[]>> = {
     scores: [index({ scoreID: 1 }, UNIQUE)],
     "score-pbs": [
         index({ chartID: 1, userID: 1 }, UNIQUE),
@@ -56,7 +56,27 @@ const indexes: Partial<Record<ValidDatabases, Index[]>> = {
         index({ milestoneID: 1, userID: 1 }, UNIQUE),
         index({ userID: 1, game: 1, playtype: 1 }),
     ],
+    imports: [index({ importID: 1 }, UNIQUE)],
+    "import-timings": [
+        index({ importID: 1 }, UNIQUE),
+        index({ timestamp: 1 }),
+        index({ total: 1 }),
+    ],
+    // @todo probably going to want some other ones.
+    users: [index({ id: 1 }, UNIQUE)],
+    tierlist: [
+        index({ tierlistID: 1 }, UNIQUE),
+        index({ game: 1, playtype: 1, isDefault: 1 }, UNIQUE),
+    ],
+    folders: [
+        index({ folderID: 1 }, UNIQUE),
+        index({ game: 1, playtype: 1 }),
+        index({ game: 1, playtype: 1, table: 1 }),
+        index({ game: 1, playtype: 1, table: 1, tableIndex: 1 }),
+    ],
 };
+
+const indexes: Partial<Record<ValidDatabases, Index[]>> = staticIndexes;
 
 for (const game of supportedGames) {
     indexes[`charts-${game}` as "charts-iidx"] = [

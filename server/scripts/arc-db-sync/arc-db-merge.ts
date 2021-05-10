@@ -15,6 +15,7 @@ async function MergeIDs() {
     for (const chartData of charts) {
         let songTitle = chartData._related.music[0].title;
 
+        // eslint-disable-next-line no-await-in-loop
         let song = await FindSongOnTitle("iidx", songTitle);
 
         if (!song) {

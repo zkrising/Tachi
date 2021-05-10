@@ -406,7 +406,7 @@ export interface ImportTimingsDocument {
      * Relative times - these are the times for each section
      * divided by how much data they had to process.
      */
-    rel: ImportTimingSections;
+    rel: Omit<ImportTimingSections, "parse" | "ugs" | "goal" | "milestone">;
     /**
      * Absolute times - these are the times for each section.
      */

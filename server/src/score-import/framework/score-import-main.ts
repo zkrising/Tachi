@@ -161,6 +161,7 @@ export default async function ScoreImportMain<D, C>(
     db["import-timings"].insert({
         importID,
         timestamp: Date.now(),
+        total: ImportDocument.timeFinished - timeStarted,
         rel: {
             import: importTimeRel,
             importParse: importParseTimeRel,

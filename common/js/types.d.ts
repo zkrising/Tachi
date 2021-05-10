@@ -57,7 +57,7 @@ export interface IDStringToGame {
 export interface MongoDBDocument {
     _id?: IObjectID;
 }
-export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "queries" | "rivals" | "notifications" | "imports" | "tierlist-data" | "tierlist" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users";
+export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "queries" | "rivals" | "notifications" | "imports" | "import-timings" | "tierlist-data" | "tierlist" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users";
 export declare type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 /**
  * Supported games by Kamaitachi.
@@ -217,27 +217,6 @@ export interface CustomRatings {
  */
 export declare type integer = number;
 export declare type Ratings = Record<Game, Record<Playtypes[Game], number>>;
-export interface LEGACY_GoalChartQuery {
-    collection: ValidDatabases;
-    query: Record<string, unknown>;
-}
-export interface LEGACY_GoalDocument extends MongoDBDocument {
-    directChartID: string | null;
-    directChartIDs?: string[] | null;
-    chartQuery: LEGACY_GoalChartQuery | null;
-    scoreQuery: Record<string, unknown>;
-    criteria: {
-        type: "gte" | "lte" | "lt" | "gt" | "anyMatch" | "all";
-        value: number | null;
-        mode?: "proportion" | null;
-    };
-    title: string;
-    goalID: string;
-    timeAdded: integer;
-    createdBy: integer;
-    game: Game;
-    playtype: Playtypes[Game];
-}
 export interface BaseGoalDocument extends MongoDBDocument {
     game: Game;
     playtype: Playtypes[Game];
@@ -392,25 +371,6 @@ export interface SessionViewDocument extends MongoDBDocument {
     ip: string;
     timestamp: number;
 }
-export interface LEGACY_ImportSessionInfo {
-    sessionID: string;
-    name: string;
-    scoreCount: integer;
-    performance: number;
-}
-export interface LEGACY_ImportDocument extends MongoDBDocument {
-    userID: integer;
-    timeStarted: integer;
-    timeFinished: integer;
-    game: Game;
-    skippedScores: integer;
-    successfulScores: string[];
-    service: string;
-    sessionInfo: LEGACY_ImportSessionInfo[];
-    importID: string;
-    timeTaken: number;
-    msPerScore: number;
-}
 interface ImportErrContent {
     type: string;
     message: string | null;
@@ -439,6 +399,28 @@ export interface ImportDocument extends MongoDBDocument {
      * or was imported on their behalf through a service (i.e. fervidex)
      */
     userIntent: boolean;
+}
+export interface ImportTimings {
+    importID: string;
+    /**
+     * Relative times - these are the times for each section
+     * divided by how much data they had to process.
+     */
+    rel: ImportTimingSections;
+    /**
+     * Absolute times - these are the times for each section.
+     */
+    abs: ImportTimingSections;
+}
+interface ImportTimingSections {
+    parse: number;
+    import: number;
+    importParse: number;
+    session: number;
+    pb: number;
+    ugs: number;
+    goal: number;
+    milestone: number;
 }
 export declare type GoalImportStat = Pick<UserGoalDocument, "progress" | "progressHuman" | "outOf" | "outOfHuman" | "achieved">;
 export interface GoalImportInfo {
@@ -690,25 +672,6 @@ export interface ChartDocument<I extends IDStrings> extends AnyChartDocument {
     playtype: IDStringToPlaytype[I];
     flags: Record<ChartDocumentFlags[I], boolean>;
     data: ChartDocumentData[I];
-}
-export interface LEGACY_TierlistDocument extends MongoDBDocument {
-    game: Game;
-    title: string;
-    isDefault: boolean;
-    tierlistID: string;
-    playtype: Playtypes[Game];
-    config: {
-        usePrefix?: boolean;
-        grades?: [string, number][];
-    };
-}
-export interface LEGACY_TierlistDataDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
-    playtype: IDStringToPlaytype[I];
-    songID: integer;
-    difficulty: Difficulties[I];
-    tierlistID: string;
-    tiers: Record<string, number>;
-    chartID: string;
 }
 interface TierlistPermissions {
     edit: integer;

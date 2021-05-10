@@ -53,8 +53,8 @@ const DEFAULT_CLASS_HANDLERS: ClassHandlerMap = {
  *
  * As an example, we are always able to calculate things like Gitadora's colours. We know the users' skill statistic,
  * and a colour is just between X-Y skill. However, we cannot always calculate something like IIDX's dans. Infact,
- * there's no calculation involved. We need to instead request this information from a service. For things like arcana
- * they exposes this on a dedicated endpoint.
+ * there's no calculation involved. We need to instead request this information from a service. For things like ARC
+ * they expose this on a dedicated endpoint.
  * The custom function allows us to request that data from a custom endpoint, and merge it with things we can always
  * calculate.
  *

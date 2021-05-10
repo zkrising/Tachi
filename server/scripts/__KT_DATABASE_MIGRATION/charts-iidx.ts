@@ -9,6 +9,7 @@ const logger = CreateLogCtx("charts-iidx.ts");
 async function ConvertFn(c: any): Promise<ChartDocument<"iidx:SP" | "iidx:DP">> {
     let song = await db.songs.iidx.findOne({
         id: c.id,
+    });
 
     if (!song) {
         logger.severe(`Cannot find song with ID ${c.id}?`);
@@ -23,8 +24,6 @@ async function ConvertFn(c: any): Promise<ChartDocument<"iidx:SP" | "iidx:DP">> 
         playtype: c.playtype,
         levelNum: c.levelNum,
         level: c.level.toString(),
-        length: c.length,
-        bpmString: "", // sentinel
         flags: {
             "IN BASE GAME": !!c.flags["IN BASE GAME"],
             OMNIMIX: !!c.flags.OMNIMIX,
@@ -33,17 +32,11 @@ async function ConvertFn(c: any): Promise<ChartDocument<"iidx:SP" | "iidx:DP">> 
         data: {
             inGameID: c.internals.inGameINTID,
             notecount: c.notedata.notecount,
+            arcChartID: null,
         },
         isPrimary: true,
         versions: [], // sentinel
     };
-
-    if (typeof c.length === "number") {
-        let m = Math.floor(c.length / 60_000);
-        let s = ((c.length - m * 60_000) / 1_000).toFixed(2);
-
-        newChartDoc.length = `${m}:${s}`;
-    }
 
     let idx = gameOrders.iidx.indexOf(song.firstVersion!);
 
@@ -52,16 +45,6 @@ async function ConvertFn(c: any): Promise<ChartDocument<"iidx:SP" | "iidx:DP">> 
         newChartDoc.versions = [song.firstVersion!];
     } else {
         newChartDoc.versions = gameOrders.iidx.slice(idx);
-    }
-
-    if (c.monoBPM) {
-        newChartDoc.bpmString = c.bpmMin.toString();
-    } else {
-        newChartDoc.bpmString = `${c.bpmMin}-${c.bpmMax}`;
-    }
-
-    if (newChartDoc.length === null) {
-        logger.warn(`Length of chart ${newChartDoc.chartID} is null, continuing anyway?`);
     }
 
     return newChartDoc;

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { FolderDocument, Game } from "kamaitachi-common";
 import { validPlaytypes, gameHuman } from "kamaitachi-common/js/config";
 import db from "../../src/db/db";
@@ -8,6 +10,8 @@ import crypto from "crypto";
 const logger = CreateLogCtx("folders.ts");
 
 function ConvertFn(c: any): FolderDocument[] {
+    throw new Error("This doesn't work, It was migrated elsewhere.");
+
     let docs = [];
 
     for (const playtype of validPlaytypes[c.game as Game]) {
@@ -27,7 +31,7 @@ function ConvertFn(c: any): FolderDocument[] {
 
         let gh = gameHuman[c.game as Game];
 
-        fd.title = fd.title.replace(new RegExp(`${gh} +`, "gi"), "");
+        fd.title = fd.title.replace(new RegExp(`${gh} +`, "giu"), "");
 
         logger.info(`Porting folder ${fd.title} (${playtype})`);
 

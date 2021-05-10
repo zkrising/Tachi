@@ -1,29 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { SongDocument } from "kamaitachi-common";
 import db from "../../src/db/db";
 import MigrateRecords from "./migrate";
 
-function ConvertFn(c: any): SongDocument<"chunithm"> {
-    const newSongDoc: SongDocument<"chunithm"> = {
+function ConvertFn(c: any): SongDocument<"gitadora"> {
+    const newSongDoc: SongDocument<"gitadora"> = {
         title: c.title,
         artist: c.artist,
         id: c.id,
         firstVersion: c.firstAppearance,
-        "alt-titles": c["alt-titles"].filter((e: string) => e !== c.title),
-        "search-titles": c["search-titles"]
+        "alt-titles": c["alt-titles"] ? c["alt-titles"].filter((e: string) => e !== c.title) : [],
+        "search-titles": c["search-title"]
+            .filter((e: string) => !!e)
             .map((e: string) => e.toString())
             .filter((e: string) => e !== c.title),
-        data: {
-            genre: c.genre,
-        },
+        data: {},
     };
 
     return newSongDoc;
 }
 
 (async () => {
-    await MigrateRecords(db.songs.chunithm, "songs-chunithm", ConvertFn);
+    await MigrateRecords(db.songs.gitadora, "songs-gitadora", ConvertFn);
 
     process.exit(0);
 })();

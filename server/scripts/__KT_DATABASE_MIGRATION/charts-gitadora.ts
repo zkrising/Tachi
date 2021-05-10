@@ -1,15 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { ChartDocument } from "kamaitachi-common";
+import { ChartDocument, SongDocument } from "kamaitachi-common";
 import db from "../../src/db/db";
 import CreateLogCtx from "../../src/logger";
 import MigrateRecords from "./migrate";
 import { gameOrders } from "kamaitachi-common/js/config";
+import { oldKTDB } from "./old-db";
 
-const logger = CreateLogCtx("charts-chunithm.ts");
+const logger = CreateLogCtx("charts-ddr.ts");
 
-async function ConvertFn(c: any): Promise<ChartDocument<"chunithm:Single">> {
-    let song = await db.songs.chunithm.findOne({
+async function ConvertFn(c: any): Promise<ChartDocument<"ddr:SP" | "ddr:DP">> {
+    let song = (await db.songs.ddr.findOne({
+        id: c.id,
+    })) as SongDocument<"ddr">;
+
+    let oldSong = await oldKTDB.get("songs-ddr").findOne({
         id: c.id,
     });
 
@@ -18,7 +22,7 @@ async function ConvertFn(c: any): Promise<ChartDocument<"chunithm:Single">> {
         throw new Error(`Cannot find song with ID ${c.id}?`);
     }
 
-    const newChartDoc: ChartDocument<"chunithm:Single"> = {
+    const newChartDoc: ChartDocument<"ddr:SP" | "ddr:DP"> = {
         rgcID: null,
         chartID: c.chartID,
         difficulty: c.difficulty,
@@ -27,30 +31,31 @@ async function ConvertFn(c: any): Promise<ChartDocument<"chunithm:Single">> {
         levelNum: c.levelNum,
         level: c.level.toString(),
         flags: {
-            "IN BASE GAME": !!c.flags["IN BASE GAME"],
-            OMNIMIX: !!c.flags.OMNIMIX,
+            "IN BASE GAME": true,
+            "N-1": true,
         },
         data: {
-            inGameID: c.internals.inGameINTID,
+            inGameID: c.internals.inGameID,
+            songHash: oldSong.internals.songHash,
         },
         isPrimary: true,
         versions: [], // sentinel
     };
 
-    let idx = gameOrders.chunithm.indexOf(song.firstVersion!);
+    let idx = gameOrders.ddr.indexOf(song.firstVersion!);
 
     if (idx === -1) {
         logger.warn(`Invalid firstAppearance of ${song.firstVersion!}, running anyway.`);
         newChartDoc.versions = [song.firstVersion!];
     } else {
-        newChartDoc.versions = gameOrders.chunithm.slice(idx);
+        newChartDoc.versions = gameOrders.ddr.slice(idx);
     }
 
     return newChartDoc;
 }
 
 (async () => {
-    await MigrateRecords(db.charts.chunithm, "charts-chunithm", ConvertFn);
+    await MigrateRecords(db.charts.ddr, "charts-ddr", ConvertFn);
 
     process.exit(0);
 })();

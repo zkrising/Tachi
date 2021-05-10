@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChartDocument } from "kamaitachi-common";
 import db from "../../src/db/db";
 import CreateLogCtx from "../../src/logger";

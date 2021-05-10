@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TierlistParent, Game } from "kamaitachi-common";
 import { gameHuman, validPlaytypes } from "kamaitachi-common/js/config";
 import db from "../../src/db/db";

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { PrivateUserDocument, ScoreDocument } from "kamaitachi-common";
 import { grades, lamps, supportedGames, validPlaytypes } from "kamaitachi-common/js/config";
 import db from "../../src/db/db";

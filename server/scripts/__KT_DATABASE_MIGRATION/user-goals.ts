@@ -1,4 +1,4 @@
-// oh boy
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { UserGoalDocument } from "kamaitachi-common";
 import db from "../../src/db/db";

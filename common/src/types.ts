@@ -87,8 +87,6 @@ export type Databases =
     | "folder-chart-lookup"
     | "scores"
     | "score-pbs"
-    | "queries"
-    | "rivals"
     | "notifications"
     | "imports"
     | "import-timings"

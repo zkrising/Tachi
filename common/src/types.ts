@@ -567,6 +567,7 @@ export interface ImportDocument extends MongoDBDocument {
 
 export interface ImportTimingsDocument {
     importID: string;
+    timestamp: number;
     /**
      * Relative times - these are the times for each section
      * divided by how much data they had to process.

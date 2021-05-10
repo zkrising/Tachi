@@ -400,7 +400,7 @@ export interface ImportDocument extends MongoDBDocument {
      */
     userIntent: boolean;
 }
-export interface ImportTimings {
+export interface ImportTimingsDocument {
     importID: string;
     /**
      * Relative times - these are the times for each section

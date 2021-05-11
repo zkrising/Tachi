@@ -6,6 +6,7 @@ import {
     AnyChartDocument,
     ChartDocument,
     ESDCore,
+    Playtypes,
 } from "kamaitachi-common";
 import { judgementWindows } from "kamaitachi-common/js/config";
 import CreateLogCtx from "../../../logger";
@@ -82,11 +83,15 @@ export function GenericCalculatePercent(
  * Calculates the ESD for a given game + percent combo. This function returns
  * null if the game does not support support ESD.
  */
-export function CalculateESDForGame(game: Game, percent: number): number | null {
+export function CalculateESDForGame(
+    game: Game,
+    playtype: Playtypes[Game],
+    percent: number
+): number | null {
     if (Object.prototype.hasOwnProperty.call(judgementWindows, game)) {
         if (percent > 0.1) {
             // @ts-expect-error i know better
-            return ESDCore.CalculateESD(judgementWindows[game], percent);
+            return ESDCore.CalculateESD(judgementWindows[game][playtype], percent);
         } else {
             return 200;
         }

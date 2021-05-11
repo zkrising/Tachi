@@ -22,7 +22,11 @@ export async function HydrateScore(
     scoreID: string,
     logger: KtLogger
 ): Promise<ScoreDocument> {
-    const esd = CalculateESDForGame(dryScore.game, dryScore.scoreData.percent / 100);
+    const esd = CalculateESDForGame(
+        dryScore.game,
+        chart.playtype,
+        dryScore.scoreData.percent / 100
+    );
 
     const calculatedData = await CreateCalculatedData(dryScore, chart, esd, logger); // @todo
 

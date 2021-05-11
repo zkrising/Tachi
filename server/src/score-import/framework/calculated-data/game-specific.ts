@@ -16,6 +16,9 @@ export async function CreateGameSpecific<G extends Game>(
     playtype: Playtypes[G],
     chart: AnyChartDocument,
     dryScore: DryScore,
+    // ESD gets specially passed through because it's not part of the DryScore, but
+    // can be used for statistics anyway.
+    esd: number | null,
     logger: KtLogger
 ): Promise<Record<string, number | null>> {
     let gameSpecific: Record<string, number | null> = {};
@@ -34,10 +37,7 @@ export async function CreateGameSpecific<G extends Game>(
                 BPIData.coef
             );
 
-            gameSpecific.KESDC =
-                dryScore.scoreData.esd === null
-                    ? null
-                    : CalculateKESDC(BPIData.kesd, dryScore.scoreData.esd);
+            gameSpecific.KESDC = esd === null ? null : CalculateKESDC(BPIData.kesd, esd);
         } else {
             gameSpecific.BPI = null;
             gameSpecific.KESDC = null;

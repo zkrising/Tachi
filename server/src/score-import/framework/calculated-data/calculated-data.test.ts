@@ -17,7 +17,7 @@ import { GetDefaultTierlist } from "../../../core/tierlist-core";
 const mockLogger = CreateLogCtx("calculated-data.test.ts");
 
 t.test("#CreateCalculatedData", async (t) => {
-    let res = await CreateCalculatedData(TestingIIDXSPDryScore, Testing511SPA, mockLogger);
+    let res = await CreateCalculatedData(TestingIIDXSPDryScore, Testing511SPA, 30, mockLogger);
 
     prAssert(
         res,
@@ -36,6 +36,7 @@ t.test("#CreateCalculatedData", async (t) => {
     let gitadoraRes = await CreateCalculatedData(
         TestingGITADORADoraDryScore,
         TestingDoraChart,
+        30,
         mockLogger
     );
 

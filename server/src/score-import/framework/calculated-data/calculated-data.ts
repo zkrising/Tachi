@@ -12,6 +12,7 @@ import { CalculateCHUNITHMRating, CalculateGITADORARating } from "./game-specifi
 export async function CreateCalculatedData(
     dryScore: DryScore,
     chart: AnyChartDocument,
+    esd: number | null,
     logger: KtLogger
 ): Promise<ScoreDocument["calculatedData"]> {
     const game = dryScore.game;
@@ -23,7 +24,7 @@ export async function CreateCalculatedData(
     const [rating, lampRating, gameSpecific] = await Promise.all([
         CalculateRating(dryScore, game, playtype, chart, logger, defaultTierlistID),
         CalculateLampRating(dryScore, game, playtype, chart, defaultTierlistID),
-        CreateGameSpecific(game, playtype, chart, dryScore, logger),
+        CreateGameSpecific(game, playtype, chart, dryScore, esd, logger),
     ]);
 
     return {

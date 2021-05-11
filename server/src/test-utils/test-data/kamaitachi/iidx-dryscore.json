@@ -6,7 +6,6 @@
         "lamp": "CLEAR",
         "percent": 50,
         "grade": "C",
-        "esd": 30,
         "hitData": {
             "pgreat": 50,
             "great": 10

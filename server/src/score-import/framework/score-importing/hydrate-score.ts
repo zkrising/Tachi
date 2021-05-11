@@ -22,7 +22,9 @@ export async function HydrateScore(
     scoreID: string,
     logger: KtLogger
 ): Promise<ScoreDocument> {
-    const calculatedData = await CreateCalculatedData(dryScore, chart, logger); // @todo
+    const esd = CalculateESDForGame(dryScore.game, dryScore.scoreData.percent / 100);
+
+    const calculatedData = await CreateCalculatedData(dryScore, chart, esd, logger); // @todo
 
     const { scoreData: dryScoreData, ...rest } = dryScore;
 
@@ -32,7 +34,7 @@ export async function HydrateScore(
             // @todo lamps may need to be separate upon game:playtype someday. Maybe. We need to check this out
             lampIndex: config.lamps[dryScore.game].indexOf(dryScore.scoreData.lamp as string),
             gradeIndex: config.grades[dryScore.game].indexOf(dryScore.scoreData.grade as string),
-            esd: CalculateESDForGame(dryScore.game, dryScore.scoreData.percent),
+            esd,
         },
         dryScoreData
     );

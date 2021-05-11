@@ -21,6 +21,7 @@ t.test("#CreateGameSpecific", (t) => {
             "SP",
             Testing511SPA,
             TestingIIDXSPDryScore,
+            30,
             logger
         );
 
@@ -43,6 +44,7 @@ t.test("#CreateGameSpecific", (t) => {
             "DP",
             Testing511SPA,
             TestingIIDXSPDryScore, // fake! this is an SP score. but we're testing
+            30,
             logger
         );
 
@@ -64,6 +66,7 @@ t.test("#CreateGameSpecific", (t) => {
             "Single",
             Testing511SPA,
             TestingSDVXSingleDryScore,
+            null,
             logger
         );
 
@@ -85,6 +88,7 @@ t.test("#CreateGameSpecific", (t) => {
             "SP",
             Testing511SPA,
             TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
             logger
         );
 
@@ -105,6 +109,7 @@ t.test("#CreateGameSpecific", (t) => {
             "DP",
             Testing511SPA,
             TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
             logger
         );
 

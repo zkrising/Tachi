@@ -28,7 +28,6 @@ const DryScorePrudence = {
         grade: p.equalTo("F"),
         lamp: p.equalTo("HARD CLEAR"),
         score: p.equalTo(192),
-        esd: p.equalTo(162.5),
         percent: p.aprx(12.21),
         hitData: {
             pgreat: p.equalTo(75),
@@ -167,7 +166,6 @@ t.test("#EamScoreConverter", async (t) => {
                     scoreData: {
                         score: p.equalTo(1),
                         percent: p.aprx(0.063),
-                        esd: p.equalTo(200),
                         hitData: {
                             pgreat: p.equalTo(0),
                             great: p.equalTo(1),

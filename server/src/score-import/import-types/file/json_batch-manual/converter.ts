@@ -39,7 +39,7 @@ const ConverterFn: ConverterFunction<BatchManualScore, BatchManualContext> = asy
     let dryScore: DryScore = {
         game: game,
         service: context.service,
-        comment: null, // @todo
+        comment: data.comment ?? null,
         importType: "file/json:batch-manual",
         timeAchieved: data.timeAchieved ?? null,
         scoreData: {

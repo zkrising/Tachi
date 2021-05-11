@@ -4,6 +4,7 @@ export type BatchManualScore = {
     score: number;
     lamp: Lamps[IDStrings];
     timeAchieved?: number | null;
+    comment?: string | null;
     hitData?: Record<string, unknown> | null;
     hitMeta?: Record<string, unknown> | null;
     identifier: string;

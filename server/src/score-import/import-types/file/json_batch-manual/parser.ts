@@ -68,6 +68,7 @@ const PR_BatchManualScore = (game: Game): PrudenceSchema => ({
         "hash"
     ),
     identifier: "string",
+    comment: optNull(p.isBoundedString(3, 240)),
     playtype: optNull(p.isIn(validPlaytypes[game])),
     difficulty: "*?string", // this is checked in converting instead
     // september 9th 2001 - this saves people not

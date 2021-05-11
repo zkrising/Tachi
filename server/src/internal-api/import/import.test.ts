@@ -40,7 +40,7 @@ t.test("POST /internal-api/import/file", async (t) => {
                 .set("Cookie", cookie)
                 .attach(
                     "scoreData",
-                    GetKTDataBuffer("./csv-eamusement-iidx/small-hv-file.csv"),
+                    GetKTDataBuffer("./csv_eamusement-iidx/small-hv-file.csv"),
                     "my_csv.csv"
                 )
                 .field("importType", "file/csv:eamusement-iidx")
@@ -101,6 +101,70 @@ t.test("POST /internal-api/import/file", async (t) => {
             t.equal(res.body.success, true, "Should be successful.");
 
             t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
+
+            let scoreCount = await db.scores.find({
+                scoreID: { $in: res.body.body.scoreIDs },
+            });
+
+            t.equal(
+                scoreCount.length,
+                res.body.body.scoreIDs.length,
+                "All returned scoreIDs should be inserted to the DB."
+            );
+
+            t.end();
+        });
+
+        t.end();
+    });
+
+    t.test("file/json:batch-manual", (t) => {
+        t.test("Empty import", async (t) => {
+            let res = await mockApi
+                .post("/internal-api/import/file")
+                .set("Cookie", cookie)
+                .attach(
+                    "scoreData",
+                    GetKTDataBuffer("./json_batch-manual/empty-file.json"),
+                    "empty-file.json"
+                )
+                .field("importType", "file/json:batch-manual");
+
+            t.equal(res.body.success, true, "Should be successful.");
+
+            t.equal(res.body.body.errors.length, 0, "Import Should have 0 failed scores.");
+
+            t.equal(res.body.body.scoreIDs.length, 0, "Should have 0 successful scores.");
+
+            let scoreCount = await db.scores.find({
+                scoreID: { $in: res.body.body.scoreIDs },
+            });
+
+            t.equal(
+                scoreCount.length,
+                res.body.body.scoreIDs.length,
+                "All returned scoreIDs should be inserted to the DB."
+            );
+
+            t.end();
+        });
+
+        t.test("Single import", async (t) => {
+            let res = await mockApi
+                .post("/internal-api/import/file")
+                .set("Cookie", cookie)
+                .attach(
+                    "scoreData",
+                    GetKTDataBuffer("./json_batch-manual/small-file.json"),
+                    "small-file.json"
+                )
+                .field("importType", "file/json:batch-manual");
+
+            t.equal(res.body.success, true, "Should be successful.");
+
+            t.equal(res.body.body.errors.length, 0, "Import Should have 0 failed scores.");
+
+            t.equal(res.body.body.scoreIDs.length, 1, "Should have 1 successful score.");
 
             let scoreCount = await db.scores.find({
                 scoreID: { $in: res.body.body.scoreIDs },

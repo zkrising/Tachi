@@ -2,16 +2,74 @@ import { KtLogger, ParserFunctionReturnsSync } from "../../../../types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { BatchManual, BatchManualContext, BatchManualScore } from "./types";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
-import { lamps, supportedGames, validHitData, validHitMeta } from "kamaitachi-common/js/config";
+import {
+    lamps,
+    supportedGames,
+    validHitData,
+    validHitMeta,
+    validPlaytypes,
+} from "kamaitachi-common/js/config";
 import { Game } from "kamaitachi-common";
 import ConverterFn from "./converter";
+import deepmerge from "deepmerge";
 
 const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));
+
+const BaseValidHitMeta = {
+    fast: p.isPositiveInteger,
+    slow: p.isPositiveInteger,
+    maxCombo: p.isPositiveInteger,
+};
+
+const PR_HitMeta = (game: Game): PrudenceSchema => {
+    if (game === "iidx") {
+        return {
+            bp: optNull(p.isPositiveInteger),
+            gauge: optNull(p.isBoundedInteger(0, 100)),
+            gaugeHistory: optNull([p.isBoundedInteger(0, 100)]),
+            comboBreak: optNull(p.isPositiveInteger),
+        };
+    } else if (game === "popn" || game === "sdvx" || game === "usc") {
+        return {
+            gauge: optNull(p.isBoundedInteger(0, 100)),
+        };
+    } else if (game === "bms") {
+        return {
+            bp: optNull(p.isPositiveInteger),
+            gauge: optNull(p.isBoundedInteger(0, 100)),
+            lbd: optNull(p.isPositiveInteger),
+            ebd: optNull(p.isPositiveInteger),
+            lpr: optNull(p.isPositiveInteger),
+            epr: optNull(p.isPositiveInteger),
+            lgd: optNull(p.isPositiveInteger),
+            egd: optNull(p.isPositiveInteger),
+            lgr: optNull(p.isPositiveInteger),
+            egr: optNull(p.isPositiveInteger),
+            lpg: optNull(p.isPositiveInteger),
+            epg: optNull(p.isPositiveInteger),
+            diedAt: optNull(p.isPositiveInteger),
+        };
+    }
+
+    return {};
+};
 
 const PR_BatchManualScore = (game: Game): PrudenceSchema => ({
     score: "number",
     lamp: p.isIn(lamps[game]),
+    matchType: p.isIn(
+        "songTitle",
+        "ddrSongHash",
+        "kamaitachiSongID",
+        "bmsChartHash",
+        "title",
+        "songHash",
+        "songID",
+        "hash"
+    ),
     identifier: "string",
+    playtype: optNull(p.isIn(validPlaytypes[game])),
+    difficulty: "*?string", // this is checked in converting instead
     // september 9th 2001 - this saves people not
     // reading the documentation.
     timeAchieved: optNull(p.gt(1_000_000_000_000)),
@@ -34,19 +92,11 @@ const PR_BatchManualScore = (game: Game): PrudenceSchema => ({
 
         return true;
     }),
-    hitMeta: optNull((self) => {
-        if (typeof self !== "object" || self === null) {
-            return "Not a valid object.";
-        }
-
-        for (const key in self) {
-            if (!validHitMeta[game].includes(key)) {
-                return `Invalid Key ${key}. Expected any of ${validHitMeta[game].toString()}`;
-            }
-        }
-
-        return true;
-    }),
+    hitMeta: optNull(
+        (deepmerge(BaseValidHitMeta, PR_HitMeta(game)) as unknown) as ValidSchemaValue
+    ),
+    // scoreMeta: @todo
+    // more game specific props, maybe?
 });
 
 const PR_BatchManual = (game: Game): PrudenceSchema => ({

@@ -109,17 +109,15 @@ t.test("#ParserFn", (t) => {
         );
 
         t.hasStrict(res, {
-            // @ts-expect-error asdf
             game: "iidx",
             context: {
-                // @ts-expect-error asdf
                 service: "foo",
                 game: "iidx",
                 version: null,
             },
-            // @ts-expect-error asdf
             iterable: [],
-        });
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any);
 
         t.end();
     });

@@ -1,4 +1,22 @@
 import { InvalidScoreFailure } from "../score-importing/converter-failures";
+import { Difficulties, Game, IDStrings, Playtypes } from "kamaitachi-common";
+import { validDifficulties } from "kamaitachi-common/js/config";
+
+export function AssertStrAsDifficulty(
+    strVal: string,
+    game: Game,
+    playtype: Playtypes[Game]
+): Difficulties[IDStrings] {
+    if (!validDifficulties[game].includes(strVal)) {
+        throw new InvalidScoreFailure(
+            `Invalid Difficulty for ${game} ${playtype} - Expected any of ${validDifficulties[
+                game
+            ].join(", ")}`
+        );
+    }
+
+    return strVal as Difficulties[IDStrings];
+}
 
 const isIntegerRegex = /^-?\d+$/u;
 

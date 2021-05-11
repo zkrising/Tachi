@@ -1,4 +1,5 @@
 import iidxEamusementCsv from "./file/csv_eamusement-iidx/converter";
+import fileBatchManual from "./file/json_batch-manual/converter";
 
 /**
  * Converters are a set of functions designed to convert an element
@@ -9,6 +10,7 @@ import iidxEamusementCsv from "./file/csv_eamusement-iidx/converter";
  */
 export const Converters = {
     "file/csv:eamusement-iidx": iidxEamusementCsv,
+    "file/json:batch-manual": fileBatchManual,
 };
 
 /**

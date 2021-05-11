@@ -1,7 +1,7 @@
 import { config, ESDCore, Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
 import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../../types";
-import { FindChartWithPTDFVersion } from "../../../database-lookup/chart-ptdf";
-import { FindSongOnTitle } from "../../../database-lookup/song-title";
+import { FindChartWithPTDFVersion } from "../../../database-lookup/chart";
+import { FindSongOnTitle } from "../../../database-lookup/song";
 import {
     KTDataNotFoundFailure,
     InternalFailure,
@@ -112,13 +112,6 @@ export async function EamScoreConverter(
         );
     }
 
-    let esd = 200;
-
-    // esd cannot estimate things below this level of accuracy, so only actually calculate it here
-    if (percent > 0.1) {
-        esd = ESDCore.CalculateESD(config.judgementWindows.iidx[context.playtype], percent / 100);
-    }
-
     // Now we need to figure out the timestamp for this score.
     // Under, well, normal circumstances, we could figure this out quite trivially
     // But e-amusement provides us the timestamp for the *song*, not the score
@@ -145,7 +138,6 @@ export async function EamScoreConverter(
             hitMeta: {},
             percent,
             grade,
-            esd,
         },
         scoreMeta: {},
         timeAchieved: timestamp,

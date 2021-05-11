@@ -1,4 +1,4 @@
-import { Game, AnySongDocument } from "kamaitachi-common";
+import { Game, AnySongDocument, integer } from "kamaitachi-common";
 import { FindOneResult } from "monk";
 import db from "../../db/db";
 
@@ -24,5 +24,18 @@ export function FindSongOnTitle(
                 "alt-titles": title,
             },
         ],
+    });
+}
+
+/**
+ * Finds a song document based on the Kamaitachi songID. Depending on the database this might
+ * also be the in-game-ID.
+ * @param game - The game to search upon.
+ * @param songID - The song ID to match.
+ * @returns AnySongDocument
+ */
+export function FindSongOnID(game: Game, songID: integer): Promise<FindOneResult<AnySongDocument>> {
+    return db.songs[game].findOne({
+        id: songID,
     });
 }

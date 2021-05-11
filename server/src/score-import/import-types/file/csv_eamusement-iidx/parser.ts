@@ -270,7 +270,6 @@ function ParseEamusementCSV(
         context,
         ConverterFunction: ConverterFn,
         game: "iidx",
-        idStrings: [`iidx:${context.playtype}` as "iidx:SP" | "iidx:DP"],
     };
 }
 

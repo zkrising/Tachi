@@ -6,6 +6,7 @@ import {
     Playtypes,
     Game,
     integer,
+    IDStrings,
 } from "kamaitachi-common";
 import { ImportInputParser, KtLogger, ScorePlaytypeMap } from "../../types";
 import { ImportAllIterableData } from "./score-importing/score-importing";
@@ -34,7 +35,7 @@ export default async function ScoreImportMain<D, C>(
     // We get an iterable from the provided parser function, alongside some context and a converter function.
     // This iterable does not have to be an array - it's anything that's iterable, like a generator.
     const parseTimeStart = process.hrtime.bigint();
-    const { iterable, ConverterFunction, context, idStrings, game } = await InputParser(logger);
+    const { iterable, ConverterFunction, context, game } = await InputParser(logger);
 
     const parseTime = GetMilisecondsSince(parseTimeStart);
 
@@ -125,7 +126,7 @@ export default async function ScoreImportMain<D, C>(
     // Create and Save an import document to the database, and finish everything up!
     const ImportDocument: ImportDocument = {
         importType,
-        idStrings: idStrings,
+        idStrings: playtypes.map((e) => `${game}:${e}`) as IDStrings[],
         scoreIDs,
         errors,
         importID,

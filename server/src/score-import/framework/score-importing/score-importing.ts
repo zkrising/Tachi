@@ -5,7 +5,13 @@ import {
     ScoreDocument,
     AnySongDocument,
 } from "kamaitachi-common";
-import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../types";
+import {
+    DryScore,
+    ConverterFunction,
+    ConverterFnReturn,
+    KtLogger,
+    ConverterFunctionReturns,
+} from "../../../types";
 import { HydrateScore } from "./hydrate-score";
 import { InsertQueue, QueueScoreInsert, ScoreIDs } from "./insert-score";
 import {
@@ -37,8 +43,7 @@ export async function ImportAllIterableData<D, C>(
 
     const promises = [];
 
-    // for await is used here as iterableData
-    // may be an async iterable
+    // for await is used here as iterableData may be an async iterable
     // An example would be making an api request after exhausting
     // the first set of data.
     for await (const data of iterableData) {
@@ -104,7 +109,13 @@ export async function ImportIterableDatapoint<D, C>(
     context: C,
     logger: KtLogger
 ) {
-    const converterReturns = await ConverterFunction(data, context, logger);
+    let converterReturns: ConverterFunctionReturns;
+
+    try {
+        converterReturns = await ConverterFunction(data, context, logger);
+    } catch (err) {
+        converterReturns = err;
+    }
 
     if (Array.isArray(converterReturns)) {
         return Promise.all(
@@ -153,11 +164,12 @@ async function ImportFromConverterReturn(
                 content: {},
             };
         } else if (cfnReturn instanceof InternalFailure) {
-            logger.warn(`Internal error occured.`, { cfnReturn });
+            logger.error(`Internal error occured.`, { cfnReturn });
             return {
                 success: false,
                 type: "InternalError",
-                message: cfnReturn.message,
+                // could return cfnReturn.message here, but we might want to hide the details of the crash.
+                message: "An internal error has occured.",
                 content: {},
             };
         } else {

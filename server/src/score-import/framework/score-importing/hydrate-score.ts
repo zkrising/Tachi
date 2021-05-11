@@ -7,6 +7,7 @@ import {
 } from "kamaitachi-common";
 import { DryScore, KtLogger } from "../../../types";
 import { CreateCalculatedData } from "../calculated-data/calculated-data";
+import { CalculateESDForGame } from "../common/score-utils";
 
 /**
  * Takes an "intermediate" score and appends the rest of the data it needs.
@@ -31,6 +32,7 @@ export async function HydrateScore(
             // @todo lamps may need to be separate upon game:playtype someday. Maybe. We need to check this out
             lampIndex: config.lamps[dryScore.game].indexOf(dryScore.scoreData.lamp as string),
             gradeIndex: config.grades[dryScore.game].indexOf(dryScore.scoreData.grade as string),
+            esd: CalculateESDForGame(dryScore.game, dryScore.scoreData.percent),
         },
         dryScoreData
     );

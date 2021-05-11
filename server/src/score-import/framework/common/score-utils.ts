@@ -1,4 +1,17 @@
-import { config, Game, Grades, IDStrings } from "kamaitachi-common";
+import {
+    config,
+    Game,
+    Grades,
+    IDStrings,
+    AnyChartDocument,
+    ChartDocument,
+    ESDCore,
+} from "kamaitachi-common";
+import { judgementWindows } from "kamaitachi-common/js/config";
+import CreateLogCtx from "../../../logger";
+import { InternalFailure } from "../score-importing/converter-failures";
+
+const logger = CreateLogCtx("score-utils.ts");
 
 /**
  * Util for getting a games' grade for a given percent.
@@ -6,7 +19,7 @@ import { config, Game, Grades, IDStrings } from "kamaitachi-common";
 export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
     game: Game,
     percent: number
-): Grades[I] | null {
+): Grades[I] {
     // @todo update config to use game->pt
     const boundaries = config.gradeBoundaries[game];
     const grades = config.grades[game];
@@ -18,6 +31,66 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
         }
     }
 
-    // failsafe
+    logger.error(`Could not resolve grade for percent ${percent} on game ${game}`);
+    throw new InternalFailure(`Could not resolve grade for percent ${percent} on game ${game}`);
+}
+
+/**
+ * A Generic function for calculating a percent from a given score on
+ * a given game.
+ */
+export function GenericCalculatePercent(
+    game: Game,
+    score: number,
+    chart?: AnyChartDocument
+): number {
+    switch (game) {
+        case "ddr":
+        case "museca":
+        case "jubeat":
+        case "chunithm":
+            return score / 1_000_000;
+        case "sdvx":
+        case "usc":
+            return score / 10_000_000;
+        case "popn":
+            return score / 100_000;
+        case "gitadora":
+        case "maimai":
+            return score;
+        case "bms":
+        case "iidx":
+            if (!chart) {
+                logger.severe("No Chart passed to GenericCalcPercent but game was iidx/bms.");
+                throw new InternalFailure(
+                    "No Chart passed to GenericCalcPercent but game was iidx/bms."
+                );
+            }
+
+            return (
+                score /
+                (chart as ChartDocument<"iidx:SP" | "bms:7K" | "bms:14K" | "iidx:DP">).data
+                    .notecount
+            );
+        default:
+            logger.severe(`Invalid game passed of ${game} to GenericCalcPercent.`);
+            throw new InternalFailure(`Invalid game passed of ${game} to GenericCalcPercent.`);
+    }
+}
+
+/**
+ * Calculates the ESD for a given game + percent combo. This function returns
+ * null if the game does not support support ESD.
+ */
+export function CalculateESDForGame(game: Game, percent: number): number | null {
+    if (Object.prototype.hasOwnProperty.call(judgementWindows, game)) {
+        if (percent > 0.1) {
+            // @ts-expect-error i know better
+            return ESDCore.CalculateESD(judgementWindows[game], percent);
+        } else {
+            return 200;
+        }
+    }
+
     return null;
 }

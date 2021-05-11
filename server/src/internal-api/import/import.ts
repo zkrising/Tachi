@@ -9,8 +9,7 @@ import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/score-importing/score-import-error";
 import ScoreImportMain from "../../score-import/framework/score-import-main";
-import ParseEamusementCSV from "../../score-import/import-types/file/csv_eamusement-iidx/parser";
-import { KtLogger } from "../../types";
+import { KtLogger, ParserFunctionReturns } from "../../types";
 
 const logger = CreateLogCtx("import.ts");
 
@@ -82,7 +81,19 @@ router.post(
                 });
             }
 
-            let importDocument = await ScoreImportMain(userDoc, true, importType, inputParser);
+            // This is deliberate - TS picks the IIDX-CSV generic values
+            // for this function call because it sees them first
+            // but that is ABSOLUTELY not what is actually occuring.
+            // We use this as an override because we know better.
+            // see: https://www.typescriptlang.org/play?ts=4.3.0-beta#code/GYVwdgxgLglg9mABAQQDwBUB8AKYc4BciAYvhpgJSIDeiAsAFCKID0LiAJnAKYDOivKCGDBGAX0aMYYKNwBOwAIYRuJMlhqNmzAEaK5RdOMkNQkWAkQAlbkLlgAynAC23UnGxVqW7W0QAHOVtuMA5EKAALGH5o8IjVIN4QABsoRDhgARdVaX8QNOlBbkUwjMQ5RVCXH2YYTOwAWUVIgDoKqudPRFREAAYWgFYvGu1mILskWj0DRAAiQTlpAHNZxAkmbXXRkfGQexpEaaIARgAmAGY14wZGZNt0vfdEAF5rWz3HbPdPAG4TZGwcEe+AoPyAA
+
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            let importDocument = await ScoreImportMain<any, any>(
+                userDoc,
+                true,
+                importType,
+                inputParser
+            );
 
             return res.status(200).json({
                 success: true,
@@ -107,6 +118,17 @@ router.post(
     }
 );
 
+import ParseEamusementCSV from "../../score-import/import-types/file/csv_eamusement-iidx/parser";
+import ParseBatchManual from "../../score-import/import-types/file/json_batch-manual/parser";
+import {
+    IIDXEamusementCSVContext,
+    IIDXEamusementCSVData,
+} from "../../score-import/import-types/file/csv_eamusement-iidx/types";
+import {
+    BatchManualContext,
+    BatchManualScore,
+} from "../../score-import/import-types/file/json_batch-manual/types";
+
 /**
  * Resolves the data from a file upload into an iterable,
  * The appropriate processing function to map that iterable over,
@@ -126,6 +148,8 @@ export function ResolveFileUploadData(
     switch (importType) {
         case "file/csv:eamusement-iidx":
             return ParseEamusementCSV(fileData, body, logger);
+        case "file/json:batch-manual":
+            return ParseBatchManual(fileData, body, logger);
         default:
             logger.error(
                 `importType ${importType} made it into ResolveFileUploadData, but should have been rejected by Prudence.`

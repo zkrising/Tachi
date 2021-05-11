@@ -1,31 +1,37 @@
-import { Difficulties, Game, Playtypes } from "kamaitachi-common";
+import { Game, Playtypes, Lamps, IDStrings } from "kamaitachi-common";
 
-export type BatchManualScore = MatchType & {
+export type BatchManualScore = {
     score: number;
-    lamp: string;
-    timeAchieved?: number;
-    hitData?: Record<string, unknown>;
-    hitMeta?: Record<string, unknown>;
+    lamp: Lamps[IDStrings];
+    timeAchieved?: number | null;
+    hitData?: Record<string, unknown> | null;
+    hitMeta?: Record<string, unknown> | null;
+    identifier: string;
+    matchType:
+        | "songTitle"
+        | "ddrSongHash"
+        | "kamaitachiSongID"
+        | "bmsChartHash"
+        | "title" // title is legacy - use songTitle
+        | "songHash" // songHash is legacy - use ddrSongHash
+        | "songID" // songID is legacy - use kamaitachiSongID
+        | "hash"; // hash is legacy - use bmsChartHash
+
+    playtype?: Playtypes[Game] | null;
+    difficulty?: string | null; // lazy...
 };
-
-interface TitleMatchType {
-    matchType: "title";
-    identifier: string;
-    playtype: Playtypes[Game];
-    difficulty: string; // lazy...
-}
-
-interface OtherMatchTypes {
-    matchType: "hash" | "songID" | "songHash";
-    identifier: string;
-}
-
-type MatchType = TitleMatchType | OtherMatchTypes;
 
 export interface BatchManual {
     head: {
         service: string;
         game: Game;
+        version?: string | null;
     };
     body: BatchManualScore[];
+}
+
+export interface BatchManualContext {
+    game: Game;
+    service: string;
+    version: string | null;
 }

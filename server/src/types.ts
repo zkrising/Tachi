@@ -62,7 +62,6 @@ export type ParserFunctionReturns<D, C> =
 
 export interface ParserFunctionReturnsAsync<D, C> {
     iterable: AsyncIterable<D>;
-    idStrings: [IDStrings] & IDStrings[];
     context: C;
     game: Game;
     ConverterFunction: ConverterFunction<D, C>;
@@ -70,7 +69,6 @@ export interface ParserFunctionReturnsAsync<D, C> {
 
 export interface ParserFunctionReturnsSync<D, C> {
     iterable: Iterable<D>;
-    idStrings: [IDStrings] & IDStrings[];
     context: C;
     game: Game;
     ConverterFunction: ConverterFunction<D, C>;
@@ -88,7 +86,7 @@ export type DryScore<I extends IDStrings = IDStrings> = Pick<
     ScoreDocument<I>,
     "service" | "game" | "scoreMeta" | "timeAchieved" | "comment" | "importType"
 > & {
-    scoreData: Omit<ScoreDocument<I>["scoreData"], "gradeIndex" | "lampIndex">;
+    scoreData: Omit<ScoreDocument<I>["scoreData"], "gradeIndex" | "lampIndex" | "esd">;
 };
 
 export interface ScoreConverterInformation<D, C> {

@@ -12,7 +12,10 @@ import {
     AnyChartDocument,
 } from "./types";
 
-export const fileImportTypes: FileUploadImportTypes[] = ["file/csv:eamusement-iidx"];
+export const fileImportTypes: FileUploadImportTypes[] = [
+    "file/csv:eamusement-iidx",
+    "file/json:batch-manual",
+];
 
 export const importTypes: ImportTypes[] = [...fileImportTypes];
 

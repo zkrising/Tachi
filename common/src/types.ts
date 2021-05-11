@@ -818,6 +818,12 @@ interface CDDataDDRSP {
     inGameID: string;
 }
 
+interface CDDataBMS {
+    notecount: integer;
+    hashMD5: string;
+    hashSHA256: string;
+}
+
 interface ChartDocumentData {
     "iidx:SP": CDDataIIDXSP;
     "iidx:DP": CDDataIIDXSP;
@@ -829,8 +835,8 @@ interface ChartDocumentData {
     "maimai:Single": { maxPercent: number; inGameID: string };
     "jubeat:Single": Record<string, never>;
     "museca:Single": Record<string, never>;
-    "bms:7K": { hashMD5: string; hashSHA256: string };
-    "bms:14K": { hashMD5: string; hashSHA256: string };
+    "bms:7K": CDDataBMS;
+    "bms:14K": CDDataBMS;
     "chunithm:Single": { inGameID: integer };
     "gitadora:Gita": { inGameID: integer };
     "gitadora:Dora": { inGameID: integer };

@@ -30,7 +30,7 @@ const ConverterFn: ConverterFunction<BatchManualScore, BatchManualContext> = asy
     // we're gonna need this a lot.
     let game = context.game;
 
-    let { song, chart } = await ResolveMatchType(data, context, logger);
+    let { song, chart } = await ResolveMatchTypeToKTData(data, context, logger);
 
     let percent = GenericCalculatePercent(game, data.score, chart);
 
@@ -60,7 +60,7 @@ const ConverterFn: ConverterFunction<BatchManualScore, BatchManualContext> = asy
     };
 };
 
-async function ResolveMatchType(
+export async function ResolveMatchTypeToKTData(
     data: BatchManualScore,
     context: BatchManualContext,
     logger: KtLogger
@@ -173,7 +173,7 @@ async function ResolveMatchType(
     throw new InvalidScoreFailure(`Invalid matchType ${data.matchType}.`);
 }
 
-async function ResolveChartFromSong(
+export async function ResolveChartFromSong(
     song: AnySongDocument,
     data: BatchManualScore,
     context: BatchManualContext,

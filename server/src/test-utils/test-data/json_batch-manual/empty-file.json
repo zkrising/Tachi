@@ -1,0 +1,7 @@
+{
+    "head": {
+        "game": "iidx",
+        "service": "foobar"
+    },
+    "body": []
+}

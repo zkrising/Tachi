@@ -132,7 +132,12 @@ export interface UnsuccessfulAPIResponse {
 export interface SuccessfulAPIResponse {
     success: true;
     description: string;
-    body: Record<string, unknown>;
+    // This isn't ideal, but we need to restrict
+    // this to only objects - Record<string, unknown>
+    // mandates indexability of the type, which makes
+    // it unusable for known objects.
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    body: unknown;
 }
 
 export interface ChartFolderLookupDocument extends MongoDBDocument {
@@ -803,8 +808,8 @@ interface ChartDocumentFlags {
     "bms:7K": never;
     "bms:14K": never;
     "chunithm:Single": "IN BASE GAME" | "OMNIMIX";
-    "gitadora:Gita": "IN BASE GAME" | "OMNIMIX";
-    "gitadora:Dora": "IN BASE GAME" | "OMNIMIX";
+    "gitadora:Gita": "IN BASE GAME" | "OMNIMIX" | "HOT" | "HOT N-1";
+    "gitadora:Dora": "IN BASE GAME" | "OMNIMIX" | "HOT" | "HOT N-1";
 }
 
 interface CDDataIIDXSP {

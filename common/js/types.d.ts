@@ -77,7 +77,7 @@ export interface UnsuccessfulAPIResponse {
 export interface SuccessfulAPIResponse {
     success: true;
     description: string;
-    body: Record<string, unknown>;
+    body: unknown;
 }
 export interface ChartFolderLookupDocument extends MongoDBDocument {
     chartID: string;
@@ -600,8 +600,8 @@ interface ChartDocumentFlags {
     "bms:7K": never;
     "bms:14K": never;
     "chunithm:Single": "IN BASE GAME" | "OMNIMIX";
-    "gitadora:Gita": "IN BASE GAME" | "OMNIMIX";
-    "gitadora:Dora": "IN BASE GAME" | "OMNIMIX";
+    "gitadora:Gita": "IN BASE GAME" | "OMNIMIX" | "HOT" | "HOT N-1";
+    "gitadora:Dora": "IN BASE GAME" | "OMNIMIX" | "HOT" | "HOT N-1";
 }
 interface CDDataIIDXSP {
     notecount: integer;

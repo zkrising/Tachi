@@ -19,6 +19,9 @@ import db from "../../db/db";
 import { UpdateUsersGoals } from "./goals/goals";
 import { UpdateUsersMilestones } from "./milestones/milestones";
 
+/**
+ * Performs a Kamaitachi Score Import.
+ */
 export default async function ScoreImportMain<D, C>(
     user: PublicUserDocument,
     userIntent: boolean,
@@ -31,7 +34,10 @@ export default async function ScoreImportMain<D, C>(
     let logger;
 
     if (!providedImportObjects) {
-        // We create an "import logger" - this holds a reference to the user's name for any future debugging.
+        // If they weren't given to us -
+        // we create an "import logger".
+        // this holds a reference to the user's name, ID, and type
+        // of score import for any future debugging.
         ({ importID, logger } = CreateImportLoggerAndID(user, importType));
         logger.debug("Received import request.");
     } else {

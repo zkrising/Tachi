@@ -50,12 +50,12 @@ export function GenericCalculatePercent(
         case "museca":
         case "jubeat":
         case "chunithm":
-            return score / 1_000_000;
+            return (score / 1_000_000) * 100;
         case "sdvx":
         case "usc":
-            return score / 10_000_000;
+            return (score / 10_000_000) * 100;
         case "popn":
-            return score / 100_000;
+            return (score / 100_000) * 100;
         case "gitadora":
         case "maimai":
             return score;
@@ -69,7 +69,7 @@ export function GenericCalculatePercent(
             }
 
             return (
-                score /
+                (100 * score) /
                 (chart as ChartDocument<"iidx:SP" | "bms:7K" | "bms:14K" | "iidx:DP">).data
                     .notecount
             );

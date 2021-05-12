@@ -7,6 +7,7 @@ import {
     UserGoalDocument,
     FolderDocument,
     MilestoneDocument,
+    SongDocument,
 } from "kamaitachi-common";
 import path from "path";
 import { DryScore } from "../types";
@@ -30,6 +31,10 @@ export const TestingIIDXSPScore = GetKTDataJSON(
 export const Testing511SPA = GetKTDataJSON(
     "./kamaitachi/iidx-511spa.json"
 ) as ChartDocument<"iidx:SP">;
+
+export const Testing511Song = GetKTDataJSON(
+    "./kamaitachi/iidx-511-song.json"
+) as SongDocument<"iidx">;
 
 export const TestingDoraChart = GetKTDataJSON(
     "./kamaitachi/gitadora-ithinkabtyou.json"

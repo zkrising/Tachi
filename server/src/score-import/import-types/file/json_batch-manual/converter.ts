@@ -21,18 +21,24 @@ import {
     GenericCalculatePercent,
     GetGradeFromPercent,
 } from "../../../framework/common/score-utils";
+import { gamePercentMax } from "kamaitachi-common/js/config";
 
 const ConverterFn: ConverterFunction<BatchManualScore, BatchManualContext> = async (
     data,
     context,
     logger: KtLogger
 ): Promise<ConverterFnReturn> => {
-    // we're gonna need this a lot.
     let game = context.game;
 
     let { song, chart } = await ResolveMatchTypeToKTData(data, context, logger);
 
     let percent = GenericCalculatePercent(game, data.score, chart);
+
+    if (percent > gamePercentMax[game]) {
+        throw new InvalidScoreFailure(
+            `Invalid score of ${data.score}, produced percent of ${percent}`
+        );
+    }
 
     let grade = GetGradeFromPercent(game, percent);
 
@@ -146,7 +152,7 @@ export async function ResolveMatchTypeToKTData(
             );
         }
 
-        let chart = await ResolveChartFromSong(song, data, context, logger);
+        let chart = await ResolveChartFromSong(song, data, context);
 
         return { song, chart };
     } else if (data.matchType === "songTitle" || data.matchType === "title") {
@@ -161,7 +167,7 @@ export async function ResolveMatchTypeToKTData(
             );
         }
 
-        let chart = await ResolveChartFromSong(song, data, context, logger);
+        let chart = await ResolveChartFromSong(song, data, context);
 
         return { song, chart };
     }
@@ -176,8 +182,7 @@ export async function ResolveMatchTypeToKTData(
 export async function ResolveChartFromSong(
     song: AnySongDocument,
     data: BatchManualScore,
-    context: BatchManualContext,
-    logger: KtLogger
+    context: BatchManualContext
 ) {
     let game = context.game;
 

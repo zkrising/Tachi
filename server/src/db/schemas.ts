@@ -398,8 +398,8 @@ export const PRUDENCE_SONG_SCHEMAS: Record<Game, PrudenceSchema> = {
     maimai: CreatePrSong({ titleJP: "string", artistJP: "string", genre: "string" }),
     museca: CreatePrSong({ titleJP: "string", artistJP: "string" }),
     popn: PRUDENCE_SONG_WITH_GENRE,
-    sdvx: CreatePrSong({ uscEquiv: p.isPositiveInteger }),
-    usc: CreatePrSong({ sdvxEquiv: p.isPositiveInteger }),
+    sdvx: CreatePrSong({ uscEquiv: p.nullable(p.isPositiveInteger) }),
+    usc: CreatePrSong({ sdvxEquiv: p.nullable(p.isPositiveInteger) }),
 };
 
 const PRUDENCE_FOLDER_CHART_LOOKUP: PrudenceSchema = {

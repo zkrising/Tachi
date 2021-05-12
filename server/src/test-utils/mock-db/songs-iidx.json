@@ -1,23 +1,13 @@
 [
     {
-        "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
-        "rgcID": null,
-        "levelNum": 10,
-        "level": "10",
-        "difficulty": "ANOTHER",
-        "playtype": "SP",
-        "songID": 1,
-        "flags": {
-            "IN BASE GAME": true,
-            "OMNIMIX": true,
-            "N-1": true
-        },
-        "data": {
-            "notecount": 786,
-            "inGameID": 1000
-        },
-        "isPrimary": true,
-        "versions": ["0",
+        "title": "5.1.1.",
+        "artist": "dj nagureo",
+        "id": 1,
+        "firstVersion": "0",
+        "alt-titles": [],
+        "search-titles": [],
+        "versions": [
+            "0",
             "1",
             "2",
             "3",
@@ -46,6 +36,9 @@
             "26",
             "27",
             "28"
-        ]
+        ],
+        "data": {
+            "genre": "PIANO AMBIENT"
+        }
     }
 ]

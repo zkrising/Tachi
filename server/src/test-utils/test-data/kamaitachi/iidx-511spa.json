@@ -1,5 +1,4 @@
 {
-    "_id": "6088306a65303f57143cab68",
     "rgcID": null,
     "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
     "difficulty": "ANOTHER",
@@ -7,8 +6,6 @@
     "playtype": "SP",
     "levelNum": 10,
     "level": "10",
-    "length": "1:26.10",
-    "bpmString": "101",
     "flags": {
         "IN BASE GAME": true,
         "OMNIMIX": true,

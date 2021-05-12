@@ -1,7 +1,7 @@
 import Prudence, { PrudenceSchema } from "prudence";
-import db from "../db/db";
-import { PRUDENCE_CHART_SCHEMAS, PRUDENCE_SCORE_SCHEMAS, STATIC_SCHEMAS } from "../db/schemas";
-import CreateLogCtx from "../logger";
+import db from "../src/db/db";
+import { PRUDENCE_CHART_SCHEMAS, PRUDENCE_SCORE_SCHEMAS, STATIC_SCHEMAS } from "../src/db/schemas";
+import CreateLogCtx from "../src/logger";
 import fs from "fs";
 import path from "path";
 import { PrudenceError } from "prudence/js/error";

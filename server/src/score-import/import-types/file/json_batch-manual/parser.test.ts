@@ -155,9 +155,53 @@ t.test("#ParserFn", (t) => {
     });
 
     t.test("Valid BATCH-MANUAL", (t) => {
-        let res = ParserFn(
-            fileify({
-                body: [
+        t.test("Basic BATCH-MANUAL", (t) => {
+            let res = ParserFn(
+                fileify({
+                    body: [
+                        {
+                            score: 1000,
+                            lamp: "HARD CLEAR",
+                            matchType: "songID",
+                            identifier: "123",
+                            playtype: "SP",
+                            difficulty: "ANOTHER",
+                        },
+                        {
+                            score: 1000,
+                            lamp: "HARD CLEAR",
+                            matchType: "kamaitachiSongID",
+                            identifier: "123",
+                            playtype: "DP",
+                            difficulty: "HYPER",
+                        },
+                        {
+                            score: 1000,
+                            lamp: "HARD CLEAR",
+                            matchType: "songTitle",
+                            identifier: "5.1.1.",
+                        },
+                        {
+                            score: 1000,
+                            lamp: "HARD CLEAR",
+                            matchType: "title",
+                            identifier: "5.1.1.",
+                        },
+                    ],
+                    head: { service: "foo", game: "iidx" },
+                } as BatchManual),
+                {},
+                logger
+            );
+
+            t.hasStrict(res, {
+                game: "iidx",
+                context: {
+                    service: "foo",
+                    game: "iidx",
+                    version: null,
+                },
+                iterable: [
                     {
                         score: 1000,
                         lamp: "HARD CLEAR",
@@ -187,22 +231,47 @@ t.test("#ParserFn", (t) => {
                         identifier: "5.1.1.",
                     },
                 ],
-                head: { service: "foo", game: "iidx" },
-            } as BatchManual),
-            {},
-            logger
-        );
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } as any);
 
-        t.hasStrict(res, {
-            game: "iidx",
-            context: {
-                service: "foo",
+            t.end();
+        });
+
+        t.test("Valid HitMeta", (t) => {
+            let res = ParserFn(
+                fileify(dm({ hitMeta: { bp: 10, gauge: 100, gaugeHistory: null, comboBreak: 7 } })),
+                {},
+                logger
+            );
+
+            t.hasStrict(res, {
                 game: "iidx",
-                version: null,
-            },
-            iterable: [],
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } as any);
+                context: {
+                    service: "foo",
+                    game: "iidx",
+                    version: null,
+                },
+                iterable: [
+                    {
+                        score: 1000,
+                        lamp: "HARD CLEAR",
+                        matchType: "songID",
+                        identifier: "123",
+                        playtype: "SP",
+                        difficulty: "ANOTHER",
+                        hitMeta: {
+                            bp: 10,
+                            gauge: 100,
+                            gaugeHistory: null,
+                            comboBreak: 7,
+                        },
+                    },
+                ],
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } as any);
+
+            t.end();
+        });
 
         t.end();
     });

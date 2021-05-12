@@ -4,7 +4,7 @@
         "service": "foobar"
     },
     "body": [{
-        "score": 1000,
+        "score": 500,
         "lamp": "HARD CLEAR",
         "matchType": "songTitle",
         "identifier": "5.1.1.",

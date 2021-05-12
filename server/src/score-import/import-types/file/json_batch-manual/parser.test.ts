@@ -3,7 +3,7 @@ import { CloseMongoConnection } from "../../../../db/db";
 import CreateLogCtx from "../../../../logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import ParserFn from "./parser";
-import { BatchManual, BatchManualScore } from "./types";
+import { BatchManual } from "./types";
 import escapeRegex from "../../../../core/escape-string-regexp";
 import deepmerge from "deepmerge";
 
@@ -264,6 +264,41 @@ t.test("#ParserFn", (t) => {
                             gauge: 100,
                             gaugeHistory: null,
                             comboBreak: 7,
+                        },
+                    },
+                ],
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } as any);
+
+            t.end();
+        });
+
+        t.test("Valid HitData", (t) => {
+            let res = ParserFn(
+                fileify(dm({ hitData: { pgreat: 1, great: null, bad: 0 } })),
+                {},
+                logger
+            );
+
+            t.hasStrict(res, {
+                game: "iidx",
+                context: {
+                    service: "foo",
+                    game: "iidx",
+                    version: null,
+                },
+                iterable: [
+                    {
+                        score: 1000,
+                        lamp: "HARD CLEAR",
+                        matchType: "songID",
+                        identifier: "123",
+                        playtype: "SP",
+                        difficulty: "ANOTHER",
+                        hitData: {
+                            pgreat: 1,
+                            great: null,
+                            bad: 0,
                         },
                     },
                 ],

@@ -90,10 +90,8 @@ const PR_BatchManualScore = (game: Game): PrudenceSchema => ({
 
             // @ts-expect-error shush
             let v = self[key];
-            if (!Number.isSafeInteger(v) || v < 0) {
-                return `Key ${key} had an invalid value of ${v} [${
-                    v === null ? "null" : typeof v
-                }]`;
+            if ((!Number.isSafeInteger(v) || v < 0) && v !== null) {
+                return `Key ${key} had an invalid value of ${v} [${typeof v}]`;
             }
         }
 

@@ -16,9 +16,9 @@ import deepmerge from "deepmerge";
 const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));
 
 const BaseValidHitMeta = {
-    fast: p.isPositiveInteger,
-    slow: p.isPositiveInteger,
-    maxCombo: p.isPositiveInteger,
+    fast: optNull(p.isPositiveInteger),
+    slow: optNull(p.isPositiveInteger),
+    maxCombo: optNull(p.isPositiveInteger),
 };
 
 const PR_HitMeta = (game: Game): PrudenceSchema => {
@@ -73,7 +73,11 @@ const PR_BatchManualScore = (game: Game): PrudenceSchema => ({
     difficulty: "*?string", // this is checked in converting instead
     // september 9th 2001 - this saves people not
     // reading the documentation.
-    timeAchieved: optNull(p.gt(1_000_000_000_000)),
+    timeAchieved: optNull(
+        (self) =>
+            (typeof self === "number" && self > 1_000_000_000_000) ||
+            "Expected a number greater than 1 Trillion - did you pass unix seconds instead of miliseconds?"
+    ),
     hitData: optNull((self) => {
         if (typeof self !== "object" || self === null) {
             return "Not a valid object.";
@@ -81,13 +85,15 @@ const PR_BatchManualScore = (game: Game): PrudenceSchema => ({
 
         for (const key in self) {
             if (!validHitData[game].includes(key)) {
-                return `Invalid Key ${key}. Expected any of ${validHitData[game].toString()}`;
+                return `Invalid Key ${key}. Expected any of ${validHitData[game].join(", ")}`;
             }
 
             // @ts-expect-error shush
             let v = self[key];
-            if (!Number.isSafeInteger(v)) {
-                return `Key ${key} had an invalid value of ${v}.`;
+            if (!Number.isSafeInteger(v) || v < 0) {
+                return `Key ${key} had an invalid value of ${v} [${
+                    v === null ? "null" : typeof v
+                }]`;
             }
         }
 
@@ -172,7 +178,14 @@ function ParseBatchManual(
     if (err) {
         throw new ScoreImportFatalError(
             400,
-            `Invalid BATCH-MANUAL (${err.keychain} | ${err.message} | Received ${err.userVal})`
+            // ouch prettier
+            `Invalid BATCH-MANUAL: ${err.keychain} | ${err.message}${
+                typeof err.userVal === "object" && err.userVal !== null
+                    ? ""
+                    : ` | Received ${err.userVal} [${
+                          err.userVal === null ? "null" : typeof err.userVal
+                      }]`
+            }.`
         );
     }
 

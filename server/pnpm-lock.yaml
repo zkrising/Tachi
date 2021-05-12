@@ -21,7 +21,6 @@ specifiers:
   csv-parse: ^4.15.4
   deepmerge: ^4.2.2
   dotenv: ^8.2.0
-  escape-string-regexp: ^1.0.5
   eslint: ^7.25.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-import: ^2.22.1
@@ -57,7 +56,6 @@ dependencies:
   csv-parse: 4.15.4
   deepmerge: 4.2.2
   dotenv: 8.2.0
-  escape-string-regexp: 1.0.5
   express: 4.17.1
   express-async-errors: 3.1.1_express@4.17.1
   express-session: 1.17.1
@@ -1588,6 +1586,7 @@ packages:
   /escape-string-regexp/1.0.5:
     resolution: {integrity: sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=}
     engines: {node: '>=0.8.0'}
+    dev: true
 
   /escape-string-regexp/2.0.0:
     resolution: {integrity: sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==}

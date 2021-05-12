@@ -90,15 +90,15 @@ function ConvertFn(c: any): ScoreDocument | null {
     }
 
     if (base.game === "iidx") {
-        // @ts-expect-error fuck you
+        // @ts-expect-error nope
         if (base.scoreData.hitMeta.gauge > 200) {
-            // @ts-expect-error fuck you
+            // @ts-expect-error nope
             base.scoreData.hitMeta.gauge = null;
         }
 
-        // @ts-expect-error fuck you
+        // @ts-expect-error nope
         if (base.scoreData.hitMeta.gaugeHistory) {
-            // @ts-expect-error fuck you
+            // @ts-expect-error nope
             base.scoreData.hitMeta.gaugeHistory = base.scoreData.hitMeta.gaugeHistory.map((e) =>
                 e > 200 ? null : e
             );

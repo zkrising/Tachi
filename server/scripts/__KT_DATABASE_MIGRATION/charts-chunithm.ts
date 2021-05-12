@@ -31,7 +31,7 @@ async function ConvertFn(c: any): Promise<ChartDocument<"chunithm:Single">> {
             OMNIMIX: !!c.flags.OMNIMIX,
         },
         data: {
-            inGameID: c.internals.inGameINTID,
+            inGameID: c.internals.inGameID,
         },
         isPrimary: true,
         versions: [], // sentinel

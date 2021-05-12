@@ -325,8 +325,6 @@ const PRUDENCE_CHART_BASE: PrudenceSchema = {
     songID: p.isPositiveInteger,
     level: "string",
     levelNum: p.isPositive,
-    length: "?string",
-    bpmString: "?string",
     isPrimary: "boolean",
     versions: ["string"],
 };
@@ -344,6 +342,7 @@ export const PRUDENCE_CHART_SCHEMAS: Record<Game, PrudenceSchema> = {
     iidx: CreatePrChart("iidx", ["IN BASE GAME", "OMNIMIX", "N-1"], {
         notecount: p.isPositiveInteger,
         inGameID: p.isPositiveInteger,
+        arcChartID: "?string",
     }),
     bms: CreatePrChart("bms", [], { hashMD5: "string", hashSHA256: "string" }),
     chunithm: CreatePrChart("chunithm", ["IN BASE GAME", "OMNIMIX"], {
@@ -353,7 +352,7 @@ export const PRUDENCE_CHART_SCHEMAS: Record<Game, PrudenceSchema> = {
         songHash: "string",
         inGameID: "string",
     }),
-    gitadora: CreatePrChart("gitadora", ["IN BASE GAME", "OMNIMIX"], {
+    gitadora: CreatePrChart("gitadora", ["IN BASE GAME", "OMNIMIX", "HOT N-1", "HOT"], {
         inGameID: p.isPositiveInteger,
     }),
     jubeat: CreatePrChart("jubeat", ["IN BASE GAME"], {}),

@@ -193,4 +193,4 @@ async function ValidateChartsOrSongs(type: "songs" | "charts"): Promise<void> {
 
 // ValidateStaticSchemas();
 // ValidateScores();
-ValidateChartsOrSongs("songs");
+ValidateChartsOrSongs("charts");

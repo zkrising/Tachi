@@ -4,7 +4,7 @@ import { integer, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
 import { KtLogger } from "../../../types";
 import { IIDXMergeFn } from "./game-specific-merge";
 import { PBScoreDocumentNoRank } from "./process-pbs";
-import { BulkWriteUpdateOneOperation } from ".pnpm/@types+mongodb@3.6.12/node_modules/@types/mongodb";
+import { BulkWriteUpdateOneOperation } from "mongodb";
 
 export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLogger) {
     let scorePB = await db.scores.findOne(

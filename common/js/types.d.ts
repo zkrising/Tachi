@@ -915,7 +915,7 @@ export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBD
         lampIndex: integer;
         gradeIndex: integer;
         esd: number | null;
-        hitData: Partial<Record<JudgementLookup[I], integer>>;
+        hitData: Partial<Record<JudgementLookup[I], integer | null>>;
         hitMeta: Partial<HitMetaLookup[I]>;
     };
     scoreMeta: Partial<ScoreMetaLookup[I]>;

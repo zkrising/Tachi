@@ -172,8 +172,6 @@ export const validHitMeta: Record<Game, string[]> = {
         "lpg",
         "epg",
         "diedAt",
-        "random",
-        "inputDevice",
         ...BASE_VALID_HIT_META,
     ],
     chunithm: [...BASE_VALID_HIT_META],

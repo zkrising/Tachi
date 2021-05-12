@@ -154,8 +154,6 @@ exports.validHitMeta = {
         "lpg",
         "epg",
         "diedAt",
-        "random",
-        "inputDevice",
         ...exports.BASE_VALID_HIT_META,
     ],
     chunithm: [...exports.BASE_VALID_HIT_META],

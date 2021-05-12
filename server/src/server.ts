@@ -50,9 +50,9 @@ process.on("unhandledRejection", (reason, promise) => {
 // limit them so as not to choke the api
 app.use(express.json({ limit: "1mb" }));
 
-import internalApiRouter from "./internal-api/internal-api";
+import internalApiRouter from "./api/api";
 
-app.use("/internal-api", internalApiRouter);
+app.use("/api", internalApiRouter);
 
 /**
  * If any user gets to this point, we send them index.html and let react router do the routing (and 404ing)

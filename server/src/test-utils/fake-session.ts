@@ -8,7 +8,7 @@ export async function CreateFakeAuthCookie(mockApi: supertest.SuperTest<supertes
     await ResetDBState();
 
     // possible security issue, ask hazel
-    let res = await mockApi.post("/internal-api/auth/login").send({
+    let res = await mockApi.post("/api/auth/login").send({
         username: "test_zkldi",
         password: "password",
         captcha: "asdf",

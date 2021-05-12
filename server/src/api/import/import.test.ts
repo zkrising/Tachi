@@ -24,19 +24,19 @@ async function LoadKTBlackIIDXData() {
 
 // reset DB handles the post-stuff
 
-t.test("POST /internal-api/import/file", async (t) => {
+t.test("POST /api/import/file", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
 
-    RequireNeutralAuthentication("/internal-api/import/file", "POST");
+    RequireNeutralAuthentication("/api/import/file", "POST");
 
     t.test("file/csv:eamusement-iidx", (t) => {
         t.beforeEach(LoadKTBlackIIDXData);
 
         t.test("Mini HV import", async (t) => {
             let res = await mockApi
-                .post("/internal-api/import/file")
+                .post("/api/import/file")
                 .set("Cookie", cookie)
                 .attach(
                     "scoreData",
@@ -67,7 +67,7 @@ t.test("POST /internal-api/import/file", async (t) => {
 
         t.test("Valid Rootage CSV import", async (t) => {
             let res = await mockApi
-                .post("/internal-api/import/file")
+                .post("/api/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV26, "my_csv.csv")
                 .field("importType", "file/csv:eamusement-iidx")
@@ -92,7 +92,7 @@ t.test("POST /internal-api/import/file", async (t) => {
 
         t.test("Valid Heroic Verse CSV import", async (t) => {
             let res = await mockApi
-                .post("/internal-api/import/file")
+                .post("/api/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV27, "my_csv.csv")
                 .field("importType", "file/csv:eamusement-iidx")
@@ -121,7 +121,7 @@ t.test("POST /internal-api/import/file", async (t) => {
     t.test("file/json:batch-manual", (t) => {
         t.test("Empty import", async (t) => {
             let res = await mockApi
-                .post("/internal-api/import/file")
+                .post("/api/import/file")
                 .set("Cookie", cookie)
                 .attach(
                     "scoreData",
@@ -151,7 +151,7 @@ t.test("POST /internal-api/import/file", async (t) => {
 
         t.test("Single import", async (t) => {
             let res = await mockApi
-                .post("/internal-api/import/file")
+                .post("/api/import/file")
                 .set("Cookie", cookie)
                 .attach(
                     "scoreData",

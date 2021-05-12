@@ -1,5 +1,6 @@
-import { Game, Playtypes, ImportTypes, FileUploadImportTypes, AnyChartDocument } from "./types";
+import { Game, Playtypes, ImportTypes, FileUploadImportTypes, AnyChartDocument, IRImportTypes } from "./types";
 export declare const fileImportTypes: FileUploadImportTypes[];
+export declare const irImportTypes: IRImportTypes[];
 export declare const importTypes: ImportTypes[];
 export declare const supportedGames: Game[];
 export declare const gameSpecificCalc: Partial<Record<Game, Partial<Record<Playtypes[Game], string[]>>>>;

@@ -975,7 +975,8 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
     };
 }
 export declare type FileUploadImportTypes = "file/csv:eamusement-iidx" | "file/json:batch-manual";
-export declare type ImportTypes = FileUploadImportTypes;
+export declare type IRImportTypes = "ir/json:direct-manual";
+export declare type ImportTypes = FileUploadImportTypes | IRImportTypes;
 export interface ImportProcessInfoKTDataNotFound {
     success: false;
     type: "KTDataNotFound";

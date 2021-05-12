@@ -10,6 +10,7 @@ import {
     ImportTypes,
     FileUploadImportTypes,
     AnyChartDocument,
+    IRImportTypes,
 } from "./types";
 
 export const fileImportTypes: FileUploadImportTypes[] = [
@@ -17,7 +18,9 @@ export const fileImportTypes: FileUploadImportTypes[] = [
     "file/json:batch-manual",
 ];
 
-export const importTypes: ImportTypes[] = [...fileImportTypes];
+export const irImportTypes: IRImportTypes[] = ["ir/json:direct-manual"];
+
+export const importTypes: ImportTypes[] = [...fileImportTypes, ...irImportTypes];
 
 export const supportedGames: Game[] = [
     "iidx",

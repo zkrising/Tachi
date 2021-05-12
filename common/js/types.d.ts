@@ -965,7 +965,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
         lampIndex: integer;
         gradeIndex: integer;
         esd: number | null;
-        hitData: Partial<Record<JudgementLookup[I], integer>>;
+        hitData: Partial<Record<JudgementLookup[I], integer | null>>;
         hitMeta: Partial<HitMetaLookup[I]>;
     };
     calculatedData: {

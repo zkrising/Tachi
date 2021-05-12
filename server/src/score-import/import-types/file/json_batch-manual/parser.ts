@@ -2,13 +2,7 @@ import { KtLogger, ParserFunctionReturnsSync } from "../../../../types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { BatchManual, BatchManualContext, BatchManualScore } from "./types";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
-import {
-    lamps,
-    supportedGames,
-    validHitData,
-    validHitMeta,
-    validPlaytypes,
-} from "kamaitachi-common/js/config";
+import { lamps, supportedGames, validHitData, validPlaytypes } from "kamaitachi-common/js/config";
 import { Game } from "kamaitachi-common";
 import ConverterFn from "./converter";
 import deepmerge from "deepmerge";

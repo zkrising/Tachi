@@ -35,11 +35,13 @@ export class KTDataNotFoundFailure<T extends keyof typeof Converters> extends Co
 }
 
 /**
- * InvalidScoreError - This score provided invalid data that Kamaitachi can not accept.
+ * InvalidScoreError - This score provided invalid data that Kamaitachi
+ * can not accept.
  */
 export class InvalidScoreFailure extends ConverterFailure {}
 
 /**
- * KTInternalFailure - The score was valid, but Kamaitachi could not process it.
+ * KTInternalFailure - An unexpected, internal error has occured,
+ * and the score could not be processed.
  */
 export class InternalFailure extends ConverterFailure {}

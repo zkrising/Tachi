@@ -8,15 +8,15 @@ import CreateLogCtx from "../../logger";
 import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/score-importing/score-import-error";
-import ScoreImportMain from "../../score-import/framework/score-import-main";
-import { KtLogger, ParserFunctionReturns } from "../../types";
+import { KtLogger } from "../../types";
+import { ExpressWrappedScoreImportMain } from "../../score-import/framework/express-wrapper";
 
 const logger = CreateLogCtx("import.ts");
 
 const router: Router = Router({ mergeParams: true });
 
 // multer config
-const upload = multer({ limits: { fileSize: 1024 * 1024 * 16 } }); // basically 16mb
+const upload = multer({ limits: { fileSize: 1024 * 1024 * 16 } }); // 16MB
 const uploadMW = upload.single("scoreData");
 
 const parseMultipartScoredata = (req: Request, res: Response, next: NextFunction) => {
@@ -63,71 +63,42 @@ router.post(
             });
         }
 
-        try {
-            let importType = req.body.importType as FileUploadImportTypes;
+        let importType = req.body.importType as FileUploadImportTypes;
 
-            const inputParser = (logger: KtLogger) =>
-                ResolveFileUploadData(importType, req.file, req.body, logger);
+        const inputParser = (logger: KtLogger) =>
+            ResolveFileUploadData(importType, req.file, req.body, logger);
 
-            const userDoc = await GetUserWithID(req.session.ktchi!.userID);
+        const userDoc = await GetUserWithID(req.session.ktchi!.userID);
 
-            if (!userDoc) {
-                logger.severe(
-                    `User ${req.session.ktchi!.userID} does not have an associated user document.`
-                );
-                return res.status(500).json({
-                    success: false,
-                    description: "An internal error has occured.",
-                });
-            }
-
-            // This is deliberate - TS picks the IIDX-CSV generic values
-            // for this function call because it sees them first
-            // but that is ABSOLUTELY not what is actually occuring.
-            // We use this as an override because we know better.
-            // see: https://www.typescriptlang.org/play?ts=4.3.0-beta#code/GYVwdgxgLglg9mABAQQDwBUB8AKYc4BciAYvhpgJSIDeiAsAFCKID0LiAJnAKYDOivKCGDBGAX0aMYYKNwBOwAIYRuJMlhqNmzAEaK5RdOMkNQkWAkQAlbkLlgAynAC23UnGxVqW7W0QAHOVtuMA5EKAALGH5o8IjVIN4QABsoRDhgARdVaX8QNOlBbkUwjMQ5RVCXH2YYTOwAWUVIgDoKqudPRFREAAYWgFYvGu1mILskWj0DRAAiQTlpAHNZxAkmbXXRkfGQexpEaaIARgAmAGY14wZGZNt0vfdEAF5rWz3HbPdPAG4TZGwcEe+AoPyAA
-
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            let importDocument = await ScoreImportMain<any, any>(
-                userDoc,
-                true,
-                importType,
-                inputParser
+        if (!userDoc) {
+            logger.severe(
+                `User ${req.session.ktchi!.userID} does not have an associated user document.`
             );
-
-            return res.status(200).json({
-                success: true,
-                description: "Import successful.",
-                body: importDocument,
+            return res.status(500).json({
+                success: false,
+                description: "An internal error has occured.",
             });
-        } catch (err) {
-            if (err instanceof ScoreImportFatalError) {
-                logger.info(err.message);
-                return res.status(err.statusCode).json({
-                    success: false,
-                    description: err.message,
-                });
-            } else {
-                logger.error(err);
-                return res.status(500).json({
-                    success: false,
-                    description: `An internal service error has occured.`,
-                });
-            }
         }
+
+        // The <any, any> here is deliberate - TS picks the IIDX-CSV generic values
+        // for this function call because it sees them first
+        // but that is ABSOLUTELY not what is actually occuring.
+        // We use this as an override because we know better.
+        // see: https://www.typescriptlang.org/play?ts=4.3.0-beta#code/GYVwdgxgLglg9mABAQQDwBUB8AKYc4BciAYvhpgJSIDeiAsAFCKID0LiAJnAKYDOivKCGDBGAX0aMYYKNwBOwAIYRuJMlhqNmzAEaK5RdOMkNQkWAkQAlbkLlgAynAC23UnGxVqW7W0QAHOVtuMA5EKAALGH5o8IjVIN4QABsoRDhgARdVaX8QNOlBbkUwjMQ5RVCXH2YYTOwAWUVIgDoKqudPRFREAAYWgFYvGu1mILskWj0DRAAiQTlpAHNZxAkmbXXRkfGQexpEaaIARgAmAGY14wZGZNt0vfdEAF5rWz3HbPdPAG4TZGwcEe+AoPyAA
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let responseData = await ExpressWrappedScoreImportMain<any, any>(
+            userDoc,
+            true,
+            importType,
+            inputParser
+        );
+
+        return res.status(responseData.statusCode).json(responseData.body);
     }
 );
 
 import ParseEamusementCSV from "../../score-import/import-types/file/csv_eamusement-iidx/parser";
 import ParseBatchManual from "../../score-import/import-types/file/json_batch-manual/parser";
-import {
-    IIDXEamusementCSVContext,
-    IIDXEamusementCSVData,
-} from "../../score-import/import-types/file/csv_eamusement-iidx/types";
-import {
-    BatchManualContext,
-    BatchManualScore,
-} from "../../score-import/import-types/file/json_batch-manual/types";
 
 /**
  * Resolves the data from a file upload into an iterable,

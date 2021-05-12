@@ -23,13 +23,20 @@ export default async function ScoreImportMain<D, C>(
     user: PublicUserDocument,
     userIntent: boolean,
     importType: ImportTypes,
-    InputParser: ImportInputParser<D, C>
+    InputParser: ImportInputParser<D, C>,
+    providedImportObjects?: { logger: KtLogger; importID: string }
 ) {
     const timeStarted = Date.now();
+    let importID;
+    let logger;
 
-    // We create an "import logger" - this holds a reference to the user's name for any future debugging.
-    const { importID, logger } = CreateImportLoggerAndID(user, importType);
-    logger.debug("Received import request.");
+    if (!providedImportObjects) {
+        // We create an "import logger" - this holds a reference to the user's name for any future debugging.
+        ({ importID, logger } = CreateImportLoggerAndID(user, importType));
+        logger.debug("Received import request.");
+    } else {
+        ({ importID, logger } = providedImportObjects);
+    }
 
     // --- 1. Parsing ---
     // We get an iterable from the provided parser function, alongside some context and a converter function.

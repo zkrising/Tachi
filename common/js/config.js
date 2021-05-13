@@ -4,7 +4,7 @@
 // of some of my first javascript code.
 // It's,, alright, but I like the versatility it brings.
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gamePercentMax = exports.FormatDifficulty = exports.PercentToScore = exports.CalculateScore = exports.AbsoluteScoreGradeDelta = exports.ScoreGradeDelta = exports.supportsESD = exports.DirectScoreGradeDelta = exports.ratingParameters = exports.gameChartIndicators = exports.judgeColours = exports.lampColours = exports.gradeColours = exports.COLOUR_SET = exports.judgementWindows = exports.clearGrade = exports.clearLamp = exports.lamps = exports.expChartScale = exports.boundaryHCF = exports.gradeBoundaries = exports.grades = exports.validPlaytypes = exports.humaniseGame = exports.defaultDifficulty = exports.defaultPlaytype = exports.gameOrders = exports.versionHuman = exports.gameHuman = exports.gameRelevantScoreBucket = exports.gameColours = exports.validScoreMeta = exports.validHitMeta = exports.BASE_VALID_HIT_META = exports.validHitData = exports.folderTables = exports.defaultTable = exports.validDifficulties = exports.gameSpecificCalcDescriptions = exports.gameSpecificCalc = exports.supportedGames = exports.importTypes = exports.irImportTypes = exports.fileImportTypes = void 0;
+exports.gamePercentMax = exports.FormatDifficulty = exports.PercentToScore = exports.CalculateScore = exports.AbsoluteScoreGradeDelta = exports.ScoreGradeDelta = exports.supportsESD = exports.DirectScoreGradeDelta = exports.ratingParameters = exports.gameChartIndicators = exports.judgeColours = exports.lampColours = exports.gradeColours = exports.COLOUR_SET = exports.judgementWindows = exports.clearGrade = exports.clearLamp = exports.lamps = exports.expChartScale = exports.boundaryHCF = exports.gradeBoundaries = exports.grades = exports.validPlaytypes = exports.humaniseGame = exports.defaultDifficulty = exports.defaultPlaytype = exports.gameOrders = exports.versionHuman = exports.gameHuman = exports.gameRelevantScoreBucket = exports.gameColours = exports.validHitData = exports.folderTables = exports.defaultTable = exports.validDifficulties = exports.gameSpecificCalcDescriptions = exports.gameSpecificCalc = exports.supportedGames = exports.importTypes = exports.irImportTypes = exports.fileImportTypes = void 0;
 exports.fileImportTypes = [
     "file/eamusement-iidx-csv",
     "file/batch-manual",
@@ -136,89 +136,6 @@ exports.validHitData = {
     chunithm: ["jcrit", "justice", "attack", "miss"],
     gitadora: ["perfect", "great", "good", "ok", "miss"],
     usc: ["critical", "near", "miss"],
-};
-exports.BASE_VALID_HIT_META = ["fast", "slow", "maxCombo"];
-exports.validHitMeta = {
-    iidx: ["bp", "gauge", "gaugeHistory", "comboBreak", ...exports.BASE_VALID_HIT_META],
-    museca: exports.BASE_VALID_HIT_META,
-    ddr: exports.BASE_VALID_HIT_META,
-    maimai: exports.BASE_VALID_HIT_META,
-    jubeat: exports.BASE_VALID_HIT_META,
-    popn: ["gauge", ...exports.BASE_VALID_HIT_META],
-    sdvx: ["gauge", ...exports.BASE_VALID_HIT_META],
-    bms: [
-        "bp",
-        "gauge",
-        "lbd",
-        "ebd",
-        "lpr",
-        "epr",
-        "lgd",
-        "egd",
-        "lgr",
-        "egr",
-        "lpg",
-        "epg",
-        "diedAt",
-        ...exports.BASE_VALID_HIT_META,
-    ],
-    chunithm: [...exports.BASE_VALID_HIT_META],
-    gitadora: [...exports.BASE_VALID_HIT_META],
-    usc: ["gauge", ...exports.BASE_VALID_HIT_META],
-};
-exports.validScoreMeta = {
-    iidx: {
-        random: ["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"],
-        assist: ["NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "ASCR + LEGACY"],
-        range: ["NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+"],
-        gauge: ["ASSISTED EASY", "EASY", "HARD", "EX HARD"],
-        pacemaker: [
-            "NO GRAPH",
-            "MY BEST",
-            "RIVAL 1",
-            "RIVAL 2",
-            "RIVAL 3",
-            "RIVAL 4",
-            "RIVAL 5",
-            "RIVAL NEXT",
-            "RIVAL BEST",
-            "RIVAL AVERAGE",
-            "NATIONAL BEST",
-            "NATIONAL AVERAGE",
-            "PREFECTURE BEST",
-            "PREFECTURE AVERAGE",
-            "CLASS BEST",
-            "CLASS AVERAGE",
-            "VENUE BEST",
-            "VENUE NEXT",
-            "PREVIOUS GHOST",
-            "PACEMAKER AAA",
-            "PACEMAKER AA",
-            "PACEMAKER A",
-            "PACEMAKER" /* ??? */,
-            "PACEMAKER NEXT",
-            "PACEMAKER NEXT+",
-            "PLAYER 1",
-            "PLAYER 2",
-        ],
-        pacemakerName: "string",
-        pacemakerTarget: "integer",
-        deadMeasure: "integer",
-        deadNote: "integer",
-    },
-    museca: {},
-    ddr: {},
-    maimai: {},
-    jubeat: {},
-    popn: {},
-    sdvx: {},
-    bms: {},
-    chunithm: {},
-    gitadora: {},
-    usc: {
-        noteMod: ["NORMAL", "MIRROR", "RANDOM", "MIR-RAN"],
-        gaugeMod: ["NORMAL", "HARD"],
-    },
 };
 exports.gameColours = {
     iidx: "#E7BDB3",

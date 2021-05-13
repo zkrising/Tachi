@@ -1010,38 +1010,6 @@ interface IIDXSPScoreMeta {
         | null;
     range: "NONE" | "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+" | null;
     gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX-HARD" | null;
-    // oh my
-    pacemaker:
-        | "NO GRAPH"
-        | "MY BEST"
-        | "RIVAL 1"
-        | "RIVAL 2"
-        | "RIVAL 3"
-        | "RIVAL 4"
-        | "RIVAL 5"
-        | "RIVAL NEXT"
-        | "RIVAL BEST"
-        | "RIVAL AVERAGE"
-        | "NATIONAL BEST"
-        | "NATIONAL AVERAGE"
-        | "PREFECTURE BEST"
-        | "PREFECTURE AVERAGE"
-        | "CLASS BEST"
-        | "CLASS AVERAGE"
-        | "VENUE BEST"
-        | "VENUE NEXT"
-        | "PREVIOUS GHOST"
-        | "PACEMAKER AAA"
-        | "PACEMAKER AA"
-        | "PACEMAKER A"
-        | "PACEMAKER"
-        | /* ??? */ "PACEMAKER NEXT"
-        | "PACEMAKER NEXT+"
-        | "PLAYER 1"
-        | "PLAYER 2"
-        | null;
-    pacemakerName: string | null; // contains DJ Name
-    pacemakerTarget: integer | null; // the EXScore the pacemaker was aimed at
 }
 
 interface BMS7KScoreMeta {

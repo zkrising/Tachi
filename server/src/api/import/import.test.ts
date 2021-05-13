@@ -31,7 +31,7 @@ t.test("POST /api/import/file", async (t) => {
 
     RequireNeutralAuthentication("/api/import/file", "POST");
 
-    t.test("file/csv:eamusement-iidx", (t) => {
+    t.test("file/eamusement-iidx-csv", (t) => {
         t.beforeEach(LoadKTBlackIIDXData);
 
         t.test("Mini HV import", async (t) => {
@@ -43,7 +43,7 @@ t.test("POST /api/import/file", async (t) => {
                     GetKTDataBuffer("./csv_eamusement-iidx/small-hv-file.csv"),
                     "my_csv.csv"
                 )
-                .field("importType", "file/csv:eamusement-iidx")
+                .field("importType", "file/eamusement-iidx-csv")
                 .field("playtype", "SP");
 
             t.equal(res.body.success, true, "Should be successful.");
@@ -70,7 +70,7 @@ t.test("POST /api/import/file", async (t) => {
                 .post("/api/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV26, "my_csv.csv")
-                .field("importType", "file/csv:eamusement-iidx")
+                .field("importType", "file/eamusement-iidx-csv")
                 .field("playtype", "SP");
 
             t.equal(res.body.success, true, "Should be successful.");
@@ -95,7 +95,7 @@ t.test("POST /api/import/file", async (t) => {
                 .post("/api/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV27, "my_csv.csv")
-                .field("importType", "file/csv:eamusement-iidx")
+                .field("importType", "file/eamusement-iidx-csv")
                 .field("playtype", "SP");
 
             t.equal(res.body.success, true, "Should be successful.");
@@ -118,7 +118,7 @@ t.test("POST /api/import/file", async (t) => {
         t.end();
     });
 
-    t.test("file/json:batch-manual", (t) => {
+    t.test("file/batch-manual", (t) => {
         t.test("Empty import", async (t) => {
             let res = await mockApi
                 .post("/api/import/file")
@@ -128,7 +128,7 @@ t.test("POST /api/import/file", async (t) => {
                     GetKTDataBuffer("./json_batch-manual/empty-file.json"),
                     "empty-file.json"
                 )
-                .field("importType", "file/json:batch-manual");
+                .field("importType", "file/batch-manual");
 
             t.equal(res.body.success, true, "Should be successful.");
 
@@ -158,7 +158,7 @@ t.test("POST /api/import/file", async (t) => {
                     GetKTDataBuffer("./json_batch-manual/small-file.json"),
                     "small-file.json"
                 )
-                .field("importType", "file/json:batch-manual");
+                .field("importType", "file/batch-manual");
 
             t.equal(res.body.success, true, "Should be successful.");
 

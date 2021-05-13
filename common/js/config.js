@@ -9,7 +9,7 @@ exports.fileImportTypes = [
     "file/eamusement-iidx-csv",
     "file/batch-manual",
 ];
-exports.irImportTypes = ["ir/direct-manual"];
+exports.irImportTypes = ["ir/direct-manual", "ir/barbatos"];
 exports.importTypes = [...exports.fileImportTypes, ...exports.irImportTypes];
 exports.supportedGames = [
     "iidx",

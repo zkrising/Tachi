@@ -4,7 +4,7 @@ import { BatchManual, BatchManualContext, BatchManualScore } from "./types";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 import { lamps, supportedGames, validHitData, validPlaytypes } from "kamaitachi-common/js/config";
 import { Game, ImportTypes } from "kamaitachi-common";
-import { ConverterFn } from "./converter";
+import { ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
 import { FormatPrError } from "../../../../common/prudence";
 
@@ -171,6 +171,6 @@ export function ParseBatchManualFromObject(
             version: batchManual.head.version ?? null,
         },
         iterable: batchManual.body,
-        ConverterFunction: ConverterFn,
+        ConverterFunction: ConverterBatchManual,
     };
 }

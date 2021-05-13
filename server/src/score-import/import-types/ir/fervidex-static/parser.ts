@@ -57,13 +57,14 @@ export function ParseFervidexStatic(
                 );
             }
 
-            if (["spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"].includes(chart)) {
+            if (!["spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"].includes(chart)) {
                 throw new ScoreImportFatalError(400, `Invalid chart ${chart}.`);
             }
 
             scores.push({
                 song_id,
-                chart,
+                // is asserted with the above check
+                chart: chart as FervidexStaticScore["chart"],
                 clear_type: score.clear_type,
                 ex_score: score.ex_score,
                 miss_count: score.miss_count,

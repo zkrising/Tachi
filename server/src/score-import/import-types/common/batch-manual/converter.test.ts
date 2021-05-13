@@ -344,7 +344,7 @@ t.test("#ConverterFn", (t) => {
         t.end();
     });
 
-    t.test("Should reject a score with > 100%", async (t) => {
+    t.test("Should reject a score with > 100%", (t) => {
         t.rejects(
             () =>
                 ConverterFn(

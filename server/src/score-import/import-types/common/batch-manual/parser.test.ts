@@ -30,6 +30,7 @@ const baseBatchManualScore = {
     difficulty: "ANOTHER",
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function dm(sc: any) {
     return deepmerge(
         baseBatchManual,

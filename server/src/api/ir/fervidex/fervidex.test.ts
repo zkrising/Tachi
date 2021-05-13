@@ -6,7 +6,7 @@ import mockApi from "../../../test-utils/mock-api";
 import ResetDBState from "../../../test-utils/reset-db-state";
 import { GetKTDataJSON } from "../../../test-utils/test-data";
 
-async function TestSoftwareModels(cookie: string[]) {
+function TestSoftwareModels(cookie: string[]) {
     t.test("Should reject invalid X-Software-Models", async (t) => {
         let res = await mockApi
             .post("/api/ir/fervidex/score/submit")
@@ -68,7 +68,7 @@ async function TestSoftwareModels(cookie: string[]) {
 t.test("POST /api/ir/fervidex/class/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
-    await TestSoftwareModels(cookie);
+    TestSoftwareModels(cookie);
 
     t.beforeEach(ResetDBState);
 
@@ -79,7 +79,7 @@ t.test("POST /api/ir/fervidex/score/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
-    await TestSoftwareModels(cookie);
+    TestSoftwareModels(cookie);
 
     t.test("Should import a valid score", async (t) => {
         let res = await mockApi
@@ -119,7 +119,7 @@ t.test("POST /api/ir/fervidex/profile/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
-    await TestSoftwareModels(cookie);
+    TestSoftwareModels(cookie);
 
     t.end();
 });

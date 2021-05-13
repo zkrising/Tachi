@@ -10,6 +10,7 @@ import {
     SongDocument,
 } from "kamaitachi-common";
 import path from "path";
+import { BarbatosScore } from "../score-import/import-types/ir/barbatos/types";
 import { DryScore } from "../types";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
@@ -54,6 +55,8 @@ export const TestingIIDXEamusementCSV26 = GetKTDataBuffer(
 export const TestingIIDXEamusementCSV27 = GetKTDataBuffer(
     "./eamusement-iidx-csv/post-leggendaria.csv"
 );
+
+export const TestingBarbatosScore: BarbatosScore = GetKTDataJSON("./barbatos/base.json");
 
 export const HC511Goal: GoalDocument = {
     charts: {

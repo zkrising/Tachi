@@ -1,0 +1,27 @@
+[
+    {
+        "rgcID": null,
+        "chartID": "5088a4d0e1ee9d0cc2f625934306e45b1a60699b",
+        "difficulty": "ADV",
+        "songID": 1,
+        "playtype": "Single",
+        "levelNum": 10,
+        "level": "10",
+        "flags": {
+            "IN BASE GAME": true,
+            "OMNIMIX": false,
+            "N-1": false
+        },
+        "data": {
+            "inGameID": 1
+        },
+        "isPrimary": true,
+        "versions": [
+            "booth",
+            "inf",
+            "gw",
+            "heaven",
+            "vivid"
+        ]
+    }
+]

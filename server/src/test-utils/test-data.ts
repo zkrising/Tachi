@@ -49,10 +49,10 @@ export const TestingGITADORADoraDryScore = GetKTDataJSON(
 ) as DryScore<"gitadora:Dora">;
 
 export const TestingIIDXEamusementCSV26 = GetKTDataBuffer(
-    "./csv_eamusement-iidx/pre-leggendaria.csv"
+    "./eamusement-iidx-csv/pre-leggendaria.csv"
 );
 export const TestingIIDXEamusementCSV27 = GetKTDataBuffer(
-    "./csv_eamusement-iidx/post-leggendaria.csv"
+    "./eamusement-iidx-csv/post-leggendaria.csv"
 );
 
 export const HC511Goal: GoalDocument = {

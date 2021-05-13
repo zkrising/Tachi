@@ -40,7 +40,7 @@ t.test("POST /api/import/file", async (t) => {
                 .set("Cookie", cookie)
                 .attach(
                     "scoreData",
-                    GetKTDataBuffer("./csv_eamusement-iidx/small-hv-file.csv"),
+                    GetKTDataBuffer("./eamusement-iidx-csv/small-hv-file.csv"),
                     "my_csv.csv"
                 )
                 .field("importType", "file/eamusement-iidx-csv")
@@ -125,7 +125,7 @@ t.test("POST /api/import/file", async (t) => {
                 .set("Cookie", cookie)
                 .attach(
                     "scoreData",
-                    GetKTDataBuffer("./json_batch-manual/empty-file.json"),
+                    GetKTDataBuffer("./batch-manual/empty-file.json"),
                     "empty-file.json"
                 )
                 .field("importType", "file/batch-manual");
@@ -155,7 +155,7 @@ t.test("POST /api/import/file", async (t) => {
                 .set("Cookie", cookie)
                 .attach(
                     "scoreData",
-                    GetKTDataBuffer("./json_batch-manual/small-file.json"),
+                    GetKTDataBuffer("./batch-manual/small-file.json"),
                     "small-file.json"
                 )
                 .field("importType", "file/batch-manual");

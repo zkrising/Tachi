@@ -1,5 +1,5 @@
 import { FindSongOnID } from "../../../../common/database-lookup/song";
-import { ConverterFunction, DryScore, EmptyObject } from "../../../../types";
+import { ConverterFunction, DryScore } from "../../../../types";
 import {
     GenericCalculatePercent,
     GetGradeFromPercent,
@@ -11,10 +11,7 @@ import {
 } from "../../../framework/score-importing/converter-failures";
 import { FervidexContext, FervidexScore } from "./types";
 import { Lamps, Grades, Difficulties, Playtypes } from "kamaitachi-common";
-import {
-    FindChartOnInGameID,
-    FindChartOnInGameIDVersion,
-} from "../../../../common/database-lookup/chart";
+import { FindChartOnInGameIDVersion } from "../../../../common/database-lookup/chart";
 
 const LAMP_LOOKUP = {
     0: "NO PLAY",

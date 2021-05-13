@@ -325,7 +325,7 @@ t.test("#ConverterFn", (t) => {
             song: { id: 1 },
             dryScore: {
                 game: "iidx",
-                service: "foo",
+                service: "foo (BATCH-MANUAL)",
                 comment: null,
                 importType: "file/batch-manual",
                 timeAchieved: null,

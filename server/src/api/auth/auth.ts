@@ -6,10 +6,10 @@ import {
     PasswordCompare,
     ReinstateInvite,
     ValidatePassword,
-} from "../../core/auth-core";
-import { ValidateCaptcha } from "../../core/captcha-core";
-import { FormatUserDoc } from "../../core/format-user";
-import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive } from "../../core/user-core";
+} from "../../common/auth";
+import { ValidateCaptcha } from "../../common/captcha";
+import { FormatUserDoc } from "../../common/format-user";
+import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive } from "../../common/user";
 import db from "../../db/db";
 import CreateLogCtx from "../../logger";
 import prValidate from "../../middleware/prudence-validate";

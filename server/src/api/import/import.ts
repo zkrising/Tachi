@@ -3,7 +3,7 @@ import { FileUploadImportTypes } from "kamaitachi-common";
 import { fileImportTypes } from "kamaitachi-common/js/config";
 import multer, { MulterError } from "multer";
 import Prudence from "prudence";
-import { GetUserWithID } from "../../core/user-core";
+import { GetUserWithID, GetUserWithIDGuaranteed } from "../../common/user";
 import CreateLogCtx from "../../logger";
 import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
@@ -68,17 +68,7 @@ router.post(
         const inputParser = (logger: KtLogger) =>
             ResolveFileUploadData(importType, req.file, req.body, logger);
 
-        const userDoc = await GetUserWithID(req.session.ktchi!.userID);
-
-        if (!userDoc) {
-            logger.severe(
-                `User ${req.session.ktchi!.userID} does not have an associated user document.`
-            );
-            return res.status(500).json({
-                success: false,
-                description: "An internal error has occured.",
-            });
-        }
+        const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
 
         // The <any, any> here is deliberate - TS picks the IIDX-CSV generic values
         // for this function call because it sees them first

@@ -19,6 +19,7 @@ import {
     IIDXEamusementCSVContext,
     IIDXEamusementCSVData,
 } from "./score-import/import-types/file/eamusement-iidx-csv/types";
+import { BarbatosScore } from "./score-import/import-types/ir/barbatos/types";
 
 declare module "express-session" {
     // Inject additional properties on express-session
@@ -125,10 +126,17 @@ export interface ImportTypeDataMap {
     "file/eamusement-iidx-csv": IIDXEamusementCSVData;
     "file/batch-manual": BatchManualScore;
     "ir/direct-manual": BatchManualScore;
+    "ir/barbatos": BarbatosScore;
 }
 
 export interface ImportTypeContextMap {
     "file/eamusement-iidx-csv": IIDXEamusementCSVContext;
     "file/batch-manual": BatchManualContext;
     "ir/direct-manual": BatchManualContext;
+    "ir/barbatos": EmptyObject;
 }
+
+/**
+ * Clarity type for empty objects - such as in context.
+ */
+export type EmptyObject = Record<string, never>;

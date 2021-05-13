@@ -1,6 +1,6 @@
 import winston, { format, transports } from "winston";
 import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
-import { FormatUserDoc } from "./core/format-user";
+import { FormatUserDoc } from "./common/format-user";
 import { KtLogger } from "./types";
 
 const level = process.env.LOG_LEVEL ?? "info";

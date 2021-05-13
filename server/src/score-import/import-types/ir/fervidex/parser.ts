@@ -54,7 +54,7 @@ const PR_Fervidex: PrudenceSchema = {
  * Converts a string of the form LDJ:X:X:X:2020092900 into a game version.
  * I don't really understand the software model format, so this is lazy.
  */
-function ParseSoftwareModel(model: string) {
+export function ParseSoftwareModel(model: string) {
     if (model.startsWith("LDJ")) {
         // heroic verse
         if (model.endsWith("2020092900")) {
@@ -71,7 +71,7 @@ function ParseSoftwareModel(model: string) {
     throw new ScoreImportFatalError(400, `Unsupported Software Model ${model}.`);
 }
 
-interface FerHeaders {
+export interface FerHeaders {
     model: string;
 }
 

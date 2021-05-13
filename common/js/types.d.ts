@@ -827,7 +827,7 @@ interface BASE_VALID_HIT_META {
 declare type IIDXHitMeta = BASE_VALID_HIT_META & {
     bp: integer | null;
     gauge: number | null;
-    gaugeHistory: number[] | null;
+    gaugeHistory: (number | null)[] | null;
     comboBreak: integer | null;
 };
 declare type BMSJudgePermutations = `${"e" | "l"}${"bd" | "pr" | "gd" | "gr" | "pg"}`;

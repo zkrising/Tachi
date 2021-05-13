@@ -1,4 +1,5 @@
 import { PrudenceError } from "prudence/js/error";
+import p from "prudence";
 
 export function FormatPrError(err: PrudenceError, foreword = "Error") {
     return `${foreword}: ${err.keychain} | ${err.message}${

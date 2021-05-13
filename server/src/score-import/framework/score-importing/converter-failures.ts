@@ -1,6 +1,6 @@
 // Various Errors that can occur during processing.
-
-import { Converters } from "../../import-types/import-types";
+import { ImportTypes } from "kamaitachi-common";
+import { ImportTypeContextMap, ImportTypeDataMap } from "../../../types";
 
 export class ConverterFailure {
     message: string | null;
@@ -15,16 +15,16 @@ export class ConverterFailure {
  * belongs to. The identifier used to try and match this chart is stored here.
  * Alongside any other fields used in the query.
  */
-export class KTDataNotFoundFailure<T extends keyof typeof Converters> extends ConverterFailure {
-    data: Parameters<typeof Converters[T]>[0];
-    converterContext: Parameters<typeof Converters[T]>[1];
+export class KTDataNotFoundFailure<T extends ImportTypes> extends ConverterFailure {
+    data: ImportTypeDataMap[T];
+    converterContext: ImportTypeContextMap[T];
     importType: T;
 
     constructor(
         message: string | null,
         importType: T,
-        data: Parameters<typeof Converters[T]>[0],
-        context: Parameters<typeof Converters[T]>[1]
+        data: ImportTypeDataMap[T],
+        context: ImportTypeContextMap[T]
     ) {
         super(message);
 

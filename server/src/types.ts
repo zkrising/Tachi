@@ -11,7 +11,14 @@ import {
 } from "kamaitachi-common";
 import { Logger, LeveledLogMethod } from "winston";
 import { ConverterFailure } from "./score-import/framework/score-importing/converter-failures";
-import { Converters } from "./score-import/import-types/import-types";
+import {
+    BatchManualContext,
+    BatchManualScore,
+} from "./score-import/import-types/common/batch-manual/types";
+import {
+    IIDXEamusementCSVContext,
+    IIDXEamusementCSVData,
+} from "./score-import/import-types/file/csv/eamusement-iidx/types";
 
 declare module "express-session" {
     // Inject additional properties on express-session
@@ -49,7 +56,12 @@ export type ConverterFnReturn = ConverterFailure | ConverterFnSuccessReturn | nu
 export type ConverterFunctionReturns = ConverterFnReturn | ConverterFnReturn[];
 
 export interface ConverterFunction<D, C> {
-    (data: D, processContext: C, logger: KtLogger): Promise<ConverterFunctionReturns>;
+    (
+        data: D,
+        processContext: C,
+        importType: ImportTypes,
+        logger: KtLogger
+    ): Promise<ConverterFunctionReturns>;
 }
 
 export interface ImportInputParser<D, C> {
@@ -96,8 +108,8 @@ export interface ScoreConverterInformation<D, C> {
 
 export interface OrphanedScore<T extends ImportTypes> {
     importType: T;
-    data: Parameters<typeof Converters[T]>[0];
-    converterContext: Parameters<typeof Converters[T]>[1];
+    data: ImportTypeDataMap[T];
+    converterContext: ImportTypeContextMap[T];
     humanisedIdentifier: string;
 }
 
@@ -107,4 +119,16 @@ export type RevaluedObject<T, U> = {
 
 export interface TextDocument extends MongoDBDocument {
     text: string;
+}
+
+export interface ImportTypeDataMap {
+    "file/csv:eamusement-iidx": IIDXEamusementCSVData;
+    "file/json:batch-manual": BatchManualScore;
+    "ir/json:direct-manual": BatchManualScore;
+}
+
+export interface ImportTypeContextMap {
+    "file/csv:eamusement-iidx": IIDXEamusementCSVContext;
+    "file/json:batch-manual": BatchManualContext;
+    "ir/json:direct-manual": BatchManualContext;
 }

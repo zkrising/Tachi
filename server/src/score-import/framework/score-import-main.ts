@@ -59,6 +59,7 @@ export default async function ScoreImportMain<D, C>(
     const importTimeStart = process.hrtime.bigint();
     let importInfo = await ImportAllIterableData(
         user.id,
+        importType,
         iterable,
         ConverterFunction,
         context,

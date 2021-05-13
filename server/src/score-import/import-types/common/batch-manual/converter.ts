@@ -1,6 +1,6 @@
 import { ConverterFnReturn, ConverterFunction, DryScore, KtLogger } from "../../../../types";
-import { BatchManualContext, BatchManualScore } from "./types";
-import { AnyChartDocument, AnySongDocument } from "kamaitachi-common";
+import { BatchManualContext, BatchManualScore } from "../../common/batch-manual/types";
+import { AnyChartDocument, AnySongDocument, ImportTypes } from "kamaitachi-common";
 import {
     InternalFailure,
     InvalidScoreFailure,
@@ -23,14 +23,21 @@ import {
 } from "../../../framework/common/score-utils";
 import { gamePercentMax } from "kamaitachi-common/js/config";
 
-const ConverterFn: ConverterFunction<BatchManualScore, BatchManualContext> = async (
+/**
+ * Creates a ConverterFn for the BatchManualScore format. This curries
+ * the importType into the function, so the right failures can be
+ * returned.
+ * @returns A BatchManualScore Converter.
+ */
+export const ConverterFn: ConverterFunction<BatchManualScore, BatchManualContext> = async (
     data,
     context,
-    logger: KtLogger
+    importType,
+    logger
 ): Promise<ConverterFnReturn> => {
     let game = context.game;
 
-    let { song, chart } = await ResolveMatchTypeToKTData(data, context, logger);
+    let { song, chart } = await ResolveMatchTypeToKTData(data, context, importType, logger);
 
     let percent = GenericCalculatePercent(game, data.score, chart);
 
@@ -46,7 +53,7 @@ const ConverterFn: ConverterFunction<BatchManualScore, BatchManualContext> = asy
         game: game,
         service: context.service,
         comment: data.comment ?? null,
-        importType: "file/json:batch-manual",
+        importType,
         timeAchieved: data.timeAchieved ?? null,
         scoreData: {
             lamp: data.lamp,
@@ -69,6 +76,7 @@ const ConverterFn: ConverterFunction<BatchManualScore, BatchManualContext> = asy
 export async function ResolveMatchTypeToKTData(
     data: BatchManualScore,
     context: BatchManualContext,
+    importType: ImportTypes,
     logger: KtLogger
 ): Promise<{ song: AnySongDocument; chart: AnyChartDocument }> {
     const game = context.game;
@@ -83,7 +91,7 @@ export async function ResolveMatchTypeToKTData(
         if (!chart) {
             throw new KTDataNotFoundFailure(
                 `Cannot find chart for hash ${data.identifier}.`,
-                "file/json:batch-manual",
+                importType,
                 data,
                 context
             );
@@ -121,7 +129,7 @@ export async function ResolveMatchTypeToKTData(
         if (!chart) {
             throw new KTDataNotFoundFailure(
                 `Cannot find chart for songHash ${data.identifier} (${data.playtype} ${difficulty}).`,
-                "file/json:batch-manual",
+                importType,
                 data,
                 context
             );
@@ -146,13 +154,13 @@ export async function ResolveMatchTypeToKTData(
         if (!song) {
             throw new KTDataNotFoundFailure(
                 `Cannot find song with songID ${data.identifier}.`,
-                "file/json:batch-manual",
+                importType,
                 data,
                 context
             );
         }
 
-        let chart = await ResolveChartFromSong(song, data, context);
+        let chart = await ResolveChartFromSong(song, data, context, importType);
 
         return { song, chart };
     } else if (data.matchType === "songTitle" || data.matchType === "title") {
@@ -161,13 +169,13 @@ export async function ResolveMatchTypeToKTData(
         if (!song) {
             throw new KTDataNotFoundFailure(
                 `Cannot find song with title ${data.identifier}.`,
-                "file/json:batch-manual",
+                importType,
                 data,
                 context
             );
         }
 
-        let chart = await ResolveChartFromSong(song, data, context);
+        let chart = await ResolveChartFromSong(song, data, context, importType);
 
         return { song, chart };
     }
@@ -182,7 +190,8 @@ export async function ResolveMatchTypeToKTData(
 export async function ResolveChartFromSong(
     song: AnySongDocument,
     data: BatchManualScore,
-    context: BatchManualContext
+    context: BatchManualContext,
+    importType: ImportTypes
 ) {
     let game = context.game;
 
@@ -217,7 +226,7 @@ export async function ResolveChartFromSong(
     if (!chart) {
         throw new KTDataNotFoundFailure(
             `Cannot find chart for ${song.title} (${data.playtype} ${difficulty})`,
-            "file/json:batch-manual",
+            importType,
             data,
             context
         );
@@ -225,5 +234,3 @@ export async function ResolveChartFromSong(
 
     return chart;
 }
-
-export default ConverterFn;

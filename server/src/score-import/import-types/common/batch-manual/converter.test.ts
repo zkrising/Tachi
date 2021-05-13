@@ -2,7 +2,7 @@
 import t from "tap";
 import CreateLogCtx from "../../../../logger";
 import { Testing511Song, Testing511SPA } from "../../../../test-utils/test-data";
-import ConverterFn, { ResolveChartFromSong, ResolveMatchTypeToKTData } from "./converter";
+import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterFn } from "./converter";
 import deepmerge from "deepmerge";
 import escapeStringRegexp from "../../../../core/escape-string-regexp";
 import { CloseMongoConnection } from "../../../../db/db";
@@ -34,11 +34,13 @@ const ktdWrap = (msg: string, game: Game = "iidx", version = null): any => ({
 
 const logger = CreateLogCtx("converter.test.ts");
 
+const importType = "file/json:batch-manual" as const;
+
 t.test("#ResolveMatchTypeToKTData", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should resolve for the songID if the matchType is songID", async (t) => {
-        let res = await ResolveMatchTypeToKTData(baseBatchManualScore, context, logger);
+        let res = await ResolveMatchTypeToKTData(baseBatchManualScore, context, importType, logger);
 
         t.hasStrict(
             res,
@@ -52,6 +54,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
                     // @ts-expect-error bad
                     deepmerge(baseBatchManualScore, { identifier: "90000" }),
                     context,
+                    importType,
                     logger
                 ),
             ktdWrap("Cannot find song with songID 90000")
@@ -64,6 +67,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
         let res = await ResolveMatchTypeToKTData(
             deepmerge(baseBatchManualScore, { matchType: "songTitle", identifier: "5.1.1." }),
             context,
+            importType,
             logger
         );
 
@@ -81,6 +85,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
                         identifier: "INVALID_TITLE",
                     }),
                     context,
+                    importType,
                     logger
                 ),
             ktdWrap("Cannot find song with title INVALID_TITLE")
@@ -96,6 +101,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
         let resMD5 = await ResolveMatchTypeToKTData(
             deepmerge(baseBatchManualScore, { matchType: "bmsChartHash", identifier: GAZER17MD5 }),
             context,
+            importType,
             logger
         );
 
@@ -112,6 +118,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
                 identifier: GAZER17SHA256,
             }),
             context,
+            importType,
             logger
         );
 
@@ -130,6 +137,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
                         identifier: "bad_hash",
                     }),
                     context,
+                    importType,
                     logger
                 ),
             ktdWrap("Cannot find chart with hash ", "bms")
@@ -149,6 +157,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
                 difficulty: "EXPERT",
             }),
             context,
+            importType,
             logger
         );
 
@@ -169,6 +178,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
                         difficulty: "EXPERT",
                     }),
                     context,
+                    importType,
                     logger
                 ),
             ktdWrap("Cannot find chart with hash", "ddr")
@@ -185,6 +195,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
                         matchType: "BAD_MATCHTYPE",
                     }),
                     context,
+                    importType,
                     logger
                 ),
             new InvalidScoreFailure(`Invalid matchType BAD_MATCHTYPE`) as any
@@ -203,7 +214,8 @@ t.test("#ResolveChartFromSong", (t) => {
         let res = await ResolveChartFromSong(
             Testing511Song,
             baseBatchManualScore, // has playtype + diff
-            { game: "iidx", service: "foo", version: null }
+            { game: "iidx", service: "foo", version: null },
+            importType
         );
 
         t.hasStrict(res, Testing511SPA as any);
@@ -217,7 +229,8 @@ t.test("#ResolveChartFromSong", (t) => {
                 ResolveChartFromSong(
                     Testing511Song,
                     deepmerge(baseBatchManualScore, { playtype: null }),
-                    { game: "iidx", service: "foo", version: null }
+                    { game: "iidx", service: "foo", version: null },
+                    importType
                 ),
             new InvalidScoreFailure(
                 `Missing 'playtype' field, but was necessary for this lookup.`
@@ -233,7 +246,8 @@ t.test("#ResolveChartFromSong", (t) => {
                 ResolveChartFromSong(
                     Testing511Song,
                     deepmerge(baseBatchManualScore, { difficulty: null }),
-                    { game: "iidx", service: "foo", version: null }
+                    { game: "iidx", service: "foo", version: null },
+                    importType
                 ),
             new InvalidScoreFailure(
                 `Missing 'difficulty' field, but was necessary for this lookup.`
@@ -250,7 +264,8 @@ t.test("#ResolveChartFromSong", (t) => {
                     Testing511Song,
                     // @ts-expect-error faulty deepmerge types
                     deepmerge(baseBatchManualScore, { difficulty: "NOT_VALID_DIFFICULTY" }),
-                    { game: "iidx", service: "foo", version: null }
+                    { game: "iidx", service: "foo", version: null },
+                    importType
                 ),
             new InvalidScoreFailure(
                 `Invalid Difficulty for iidx SP - Expected any of BEGINNER, NORMAL, HYPER, ANOTHER, LEGGENDARIA`
@@ -267,7 +282,8 @@ t.test("#ResolveChartFromSong", (t) => {
                     Testing511Song,
                     // @ts-expect-error faulty deepmerge types
                     deepmerge(baseBatchManualScore, { difficulty: "LEGGENDARIA" }), // 511 has no legg (yet, lol)
-                    { game: "iidx", service: "foo", version: null }
+                    { game: "iidx", service: "foo", version: null },
+                    importType
                 ),
             ktdWrap("Cannot find chart for 5.1.1. (SP LEGGENDARIA)")
         );
@@ -276,11 +292,16 @@ t.test("#ResolveChartFromSong", (t) => {
     });
 
     t.test("Should successfully lookup if version is provided.", async (t) => {
-        let res = await ResolveChartFromSong(Testing511Song, baseBatchManualScore, {
-            game: "iidx",
-            service: "foo",
-            version: "27",
-        });
+        let res = await ResolveChartFromSong(
+            Testing511Song,
+            baseBatchManualScore,
+            {
+                game: "iidx",
+                service: "foo",
+                version: "27",
+            },
+            importType
+        );
 
         t.hasStrict(res, Testing511SPA as any);
 
@@ -295,6 +316,7 @@ t.test("#ConverterFn", (t) => {
         let res = await ConverterFn(
             baseBatchManualScore,
             { game: "iidx", service: "foo", version: null },
+            importType,
             logger
         );
 
@@ -329,6 +351,7 @@ t.test("#ConverterFn", (t) => {
                     // @ts-expect-error broken deepmerge
                     deepmerge(baseBatchManualScore, { score: 1000 }),
                     { game: "iidx", service: "foo", version: null },
+                    importType,
                     logger
                 ),
             { message: /Invalid score of 1000, produced percent of 127/u } as any

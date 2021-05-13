@@ -4,6 +4,7 @@ import {
     integer,
     ScoreDocument,
     AnySongDocument,
+    ImportTypes,
 } from "kamaitachi-common";
 import {
     DryScore,
@@ -34,6 +35,7 @@ import { AppendLogCtx } from "../../../logger";
  */
 export async function ImportAllIterableData<D, C>(
     userID: integer,
+    importType: ImportTypes,
     iterableData: Iterable<D> | AsyncIterable<D>,
     ConverterFunction: ConverterFunction<D, C>,
     context: C,
@@ -47,7 +49,9 @@ export async function ImportAllIterableData<D, C>(
     // An example would be making an api request after exhausting
     // the first set of data.
     for await (const data of iterableData) {
-        promises.push(ImportIterableDatapoint(userID, data, ConverterFunction, context, logger));
+        promises.push(
+            ImportIterableDatapoint(userID, importType, data, ConverterFunction, context, logger)
+        );
     }
 
     // Due to the fact that ProcessIterableDatapoint may return an array instead of a single result
@@ -104,6 +108,7 @@ export async function ImportAllIterableData<D, C>(
  */
 export async function ImportIterableDatapoint<D, C>(
     userID: integer,
+    importType: ImportTypes,
     data: D,
     ConverterFunction: ConverterFunction<D, C>,
     context: C,
@@ -112,7 +117,7 @@ export async function ImportIterableDatapoint<D, C>(
     let converterReturns: ConverterFunctionReturns;
 
     try {
-        converterReturns = await ConverterFunction(data, context, logger);
+        converterReturns = await ConverterFunction(data, context, importType, logger);
     } catch (err) {
         converterReturns = err;
     }

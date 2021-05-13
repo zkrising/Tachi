@@ -1,17 +1,17 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../db/db";
-import CreateLogCtx from "../../../../logger";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import db, { CloseMongoConnection } from "../../../../../db/db";
+import CreateLogCtx from "../../../../../logger";
+import ResetDBState from "../../../../../test-utils/reset-db-state";
 import ConverterFn, { EamScoreConverter, EamScoreConverterWrapper } from "./converter";
 import p from "prudence";
-import { prAssert } from "../../../../test-utils/asserts";
+import { prAssert } from "../../../../../test-utils/asserts";
 import deepmerge from "deepmerge";
 import { EamusementScoreData } from "./types";
 import {
     ConverterFailure,
     InvalidScoreFailure,
     KTDataNotFoundFailure,
-} from "../../../framework/score-importing/converter-failures";
+} from "../../../../framework/score-importing/converter-failures";
 
 const logger = CreateLogCtx("converter.test.ts");
 

@@ -3,8 +3,8 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import { BatchManual, BatchManualContext, BatchManualScore } from "./types";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 import { lamps, supportedGames, validHitData, validPlaytypes } from "kamaitachi-common/js/config";
-import { Game } from "kamaitachi-common";
-import ConverterFn from "./converter";
+import { Game, ImportTypes } from "kamaitachi-common";
+import { ConverterFn } from "./converter";
 import deepmerge from "deepmerge";
 
 const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));
@@ -108,41 +108,30 @@ const PR_BatchManual = (game: Game): PrudenceSchema => ({
 });
 
 /**
- * Parses a buffer of BATCH-MANUAL data.
- * @param fileData - The buffer to parse.
+ * Parses an object of BATCH-MANUAL data.
+ * @param object - The object to parse.
  * @param body - The request body that made this file import request.
  */
-function ParseBatchManual(
-    fileData: Express.Multer.File,
-    body: Record<string, unknown>,
+export function ParseBatchManualFromObject(
+    object: unknown,
+    importType: ImportTypes,
     logger: KtLogger
 ): ParserFunctionReturnsSync<BatchManualScore, BatchManualContext> {
-    let jsonData: unknown;
-
-    try {
-        jsonData = JSON.parse(fileData.buffer.toString("utf-8"));
-    } catch (err) {
-        throw new ScoreImportFatalError(
-            400,
-            `Invalid JSON. (${err?.message ?? "No Error Message Available."})`
-        );
-    }
-
     // now to perform some basic validation so we can return
     // the iterable
 
-    if (typeof jsonData !== "object" || jsonData === null) {
+    if (typeof object !== "object" || object === null) {
         throw new ScoreImportFatalError(
             400,
             `Invalid BATCH-MANUAL (Not an object, recieved ${
-                jsonData === null ? "null" : typeof jsonData
+                object === null ? "null" : typeof object
             }.)`
         );
     }
 
     // attempt to retrieve game
     // @ts-expect-error man.
-    let possiblyGame = jsonData?.head?.game;
+    let possiblyGame = object?.head?.game;
 
     if (!possiblyGame) {
         throw new ScoreImportFatalError(
@@ -165,7 +154,7 @@ function ParseBatchManual(
     // This mostly works as a sanity check, and doesn't
     // check things like whether a score is > 100%
     // or something.
-    let err = p(jsonData, PR_BatchManual(game));
+    let err = p(object, PR_BatchManual(game));
 
     if (err) {
         throw new ScoreImportFatalError(
@@ -181,7 +170,7 @@ function ParseBatchManual(
         );
     }
 
-    let batchManual = jsonData as BatchManual;
+    let batchManual = object as BatchManual;
 
     return {
         game,
@@ -194,5 +183,3 @@ function ParseBatchManual(
         ConverterFunction: ConverterFn,
     };
 }
-
-export default ParseBatchManual;

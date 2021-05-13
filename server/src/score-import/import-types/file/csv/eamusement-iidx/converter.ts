@@ -1,15 +1,15 @@
 import { config, ESDCore, Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
-import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../../types";
-import { FindChartWithPTDFVersion } from "../../../database-lookup/chart";
-import { FindSongOnTitle } from "../../../database-lookup/song";
+import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../../../types";
+import { FindChartWithPTDFVersion } from "../../../../database-lookup/chart";
+import { FindSongOnTitle } from "../../../../database-lookup/song";
 import {
     KTDataNotFoundFailure,
     InternalFailure,
     InvalidScoreFailure,
-} from "../../../framework/score-importing/converter-failures";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { GetGradeFromPercent } from "../../../framework/common/score-utils";
-import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
+} from "../../../../framework/score-importing/converter-failures";
+import ScoreImportFatalError from "../../../../framework/score-importing/score-import-error";
+import { GetGradeFromPercent } from "../../../../framework/common/score-utils";
+import { AssertStrAsPositiveInt } from "../../../../framework/common/string-asserts";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 
 const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new Map([
@@ -217,7 +217,8 @@ export async function EamScoreConverterWrapper(
 const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVContext> = async (
     data,
     context,
-    logger: KtLogger
+    importType,
+    logger
 ): Promise<ConverterFnReturn[] | ConverterFnReturn> => {
     let isLegacyLeggendaria = false;
 

@@ -1,7 +1,7 @@
 import { EmptyObject, KtLogger, ParserFunctionReturnsSync } from "../../../../types";
 import p from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { FormatPrError } from "../../../../core/prudence";
+import { FormatPrError } from "../../../../common/prudence";
 import { BarbatosScore } from "./types";
 import { ConverterIRBarbatos } from "./converter";
 

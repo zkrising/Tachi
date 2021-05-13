@@ -6,7 +6,7 @@ import { lamps, supportedGames, validHitData, validPlaytypes } from "kamaitachi-
 import { Game, ImportTypes } from "kamaitachi-common";
 import { ConverterFn } from "./converter";
 import deepmerge from "deepmerge";
-import { FormatPrError } from "../../../../core/prudence";
+import { FormatPrError } from "../../../../common/prudence";
 
 const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));
 

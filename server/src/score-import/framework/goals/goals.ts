@@ -1,5 +1,5 @@
 import { integer, Game, GoalDocument, UserGoalDocument } from "kamaitachi-common";
-import { EvaluateGoalForUser } from "../../../core/goal";
+import { EvaluateGoalForUser } from "../../../common/goal";
 import db from "../../../db/db";
 import { KtLogger } from "../../../types";
 

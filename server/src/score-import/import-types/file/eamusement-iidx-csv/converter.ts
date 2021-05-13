@@ -1,7 +1,7 @@
 import { Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
 import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../../types";
-import { FindChartWithPTDFVersion } from "../../../../core/database-lookup/chart";
-import { FindSongOnTitle } from "../../../../core/database-lookup/song";
+import { FindChartWithPTDFVersion } from "../../../../common/database-lookup/chart";
+import { FindSongOnTitle } from "../../../../common/database-lookup/song";
 import {
     KTDataNotFoundFailure,
     InternalFailure,

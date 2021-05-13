@@ -12,7 +12,7 @@ import {
 import { CreateCalculatedData, CalculateLampRating, CalculateRating } from "./calculated-data";
 import deepmerge from "deepmerge";
 import ResetDBState from "../../../test-utils/reset-db-state";
-import { GetDefaultTierlist } from "../../../core/tierlist";
+import { GetDefaultTierlist } from "../../../common/tierlist";
 
 const mockLogger = CreateLogCtx("calculated-data.test.ts");
 

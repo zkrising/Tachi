@@ -1,5 +1,5 @@
-import { FindSDVXChartOnInGameID } from "../../../../core/database-lookup/chart";
-import { FindSongOnID } from "../../../../core/database-lookup/song";
+import { FindSDVXChartOnInGameID } from "../../../../common/database-lookup/chart";
+import { FindSongOnID } from "../../../../common/database-lookup/song";
 import { ConverterFunction, DryScore, EmptyObject } from "../../../../types";
 import {
     GenericCalculatePercent,

@@ -4,7 +4,7 @@ import CreateLogCtx from "../../../../logger";
 import { Testing511Song, Testing511SPA } from "../../../../test-utils/test-data";
 import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
-import escapeStringRegexp from "../../../../core/escape-string-regexp";
+import escapeStringRegexp from "../../../../common/escape-string-regexp";
 import { CloseMongoConnection } from "../../../../db/db";
 import { Game } from "kamaitachi-common";
 import ResetDBState from "../../../../test-utils/reset-db-state";

@@ -14,7 +14,7 @@ import { AppendLogCtx } from "../../../logger";
 import { GenerateRandomSessionName } from "./name-generation";
 import crypto from "crypto";
 import { CreateSessionCalcData } from "./performance-calc";
-import { GetScoresFromSession } from "../../../core/session";
+import { GetScoresFromSession } from "../../../common/session";
 import { KtLogger, ScorePlaytypeMap } from "../../../types";
 
 const TWO_HOURS = 1000 * 60 * 60 * 2;

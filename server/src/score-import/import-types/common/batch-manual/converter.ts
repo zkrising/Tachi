@@ -6,13 +6,13 @@ import {
     InvalidScoreFailure,
     KTDataNotFoundFailure,
 } from "../../../framework/score-importing/converter-failures";
-import { FindSongOnID, FindSongOnTitle } from "../../../../core/database-lookup/song";
+import { FindSongOnID, FindSongOnTitle } from "../../../../common/database-lookup/song";
 import {
     FindBMSChartOnHash,
     FindChartWithPTDF,
     FindChartWithPTDFVersion,
     FindDDRChartOnSongHash,
-} from "../../../../core/database-lookup/chart";
+} from "../../../../common/database-lookup/chart";
 import {
     AssertStrAsDifficulty,
     AssertStrAsPositiveInt,

@@ -12,7 +12,7 @@ import { ImportInputParser, KtLogger, ScorePlaytypeMap } from "../../types";
 import { ImportAllIterableData } from "./score-importing/score-importing";
 import { CreateImportLoggerAndID } from "./common/import-logger";
 import { CreateSessions } from "./sessions/sessions";
-import { GetMilisecondsSince } from "../../core/hrtime";
+import { GetMilisecondsSince } from "../../common/hrtime";
 import { ProcessPBs } from "./pb/process-pbs";
 import { UpdateUsersGamePlaytypeStats } from "./user-game-stats/update-ugs";
 import db from "../../db/db";

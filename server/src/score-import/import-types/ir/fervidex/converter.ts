@@ -13,7 +13,7 @@ import { FervidexContext, FervidexScore } from "./types";
 import { Lamps, Grades, Difficulties, Playtypes } from "kamaitachi-common";
 import { FindChartOnInGameIDVersion } from "../../../../common/database-lookup/chart";
 
-const LAMP_LOOKUP = {
+export const FERVIDEX_LAMP_LOOKUP = {
     0: "NO PLAY",
     1: "FAILED",
     2: "ASSIST CLEAR",
@@ -98,7 +98,7 @@ function KtchifyRandom(
     }
 }
 
-function SplitFervidexChartRef(ferDif: FervidexScore["chart"]) {
+export function SplitFervidexChartRef(ferDif: FervidexScore["chart"]) {
     let playtype: Playtypes["iidx"];
     if (ferDif.startsWith("sp")) {
         playtype = "SP";
@@ -189,7 +189,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
             score: data.ex_score,
             percent,
             grade: GetGradeFromPercent("iidx", percent) as Grades["iidx:SP" | "iidx:DP"],
-            lamp: LAMP_LOOKUP[data.clear_type] as Lamps["iidx:SP" | "iidx:DP"],
+            lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:SP" | "iidx:DP"],
             hitData: {
                 pgreat: data.pgreat,
                 great: data.great,

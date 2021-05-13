@@ -20,6 +20,10 @@ import {
     IIDXEamusementCSVData,
 } from "./score-import/import-types/file/eamusement-iidx-csv/types";
 import { BarbatosScore } from "./score-import/import-types/ir/barbatos/types";
+import {
+    FervidexStaticContext,
+    FervidexStaticScore,
+} from "./score-import/import-types/ir/fervidex-static/types";
 import { FervidexContext, FervidexScore } from "./score-import/import-types/ir/fervidex/types";
 
 declare module "express-session" {
@@ -129,7 +133,7 @@ export interface ImportTypeDataMap {
     "ir/direct-manual": BatchManualScore;
     "ir/barbatos": BarbatosScore;
     "ir/fervidex": FervidexScore;
-    "ir/fervidex-static": EmptyObject; // temp
+    "ir/fervidex-static": FervidexStaticScore;
 }
 
 export interface ImportTypeContextMap {
@@ -138,7 +142,7 @@ export interface ImportTypeContextMap {
     "ir/direct-manual": BatchManualContext;
     "ir/barbatos": EmptyObject;
     "ir/fervidex": FervidexContext;
-    "ir/fervidex-static": EmptyObject;
+    "ir/fervidex-static": FervidexStaticContext;
 }
 
 /**

@@ -1,8 +1,8 @@
 import { KtLogger, ParserFunctionReturnsSync } from "../../../../types";
 import p, { PrudenceSchema } from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { FormatPrError, optNull } from "../../../../common/prudence";
-import { ConverterIRFervidex } from "./converter";
+import { FormatPrError } from "../../../../common/prudence";
+import { ConverterIRFervidexStatic } from "./converter";
 import { FervidexStaticContext, FervidexStaticScore } from "./types";
 import { FerHeaders, ParseSoftwareModel } from "../fervidex/parser";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
@@ -57,6 +57,10 @@ export function ParseFervidexStatic(
                 );
             }
 
+            if (["spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"].includes(chart)) {
+                throw new ScoreImportFatalError(400, `Invalid chart ${chart}.`);
+            }
+
             scores.push({
                 song_id,
                 chart,
@@ -72,6 +76,6 @@ export function ParseFervidexStatic(
         context: { version },
         game: "iidx",
         iterable: scores,
-        ConverterFunction: ConverterIRFervidex,
+        ConverterFunction: ConverterIRFervidexStatic,
     };
 }

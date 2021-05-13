@@ -11,7 +11,20 @@ const RequireInf2ModelHeader: RequestHandler = async (req, res, next) => {
     let swModel = req.header("X-Software-Model");
 
     if (!swModel || !swModel.startsWith("P2D:J:B:A")) {
-        return res.status(400).send();
+        return res.status(400).send({
+            success: false,
+            description: "This endpoint is only available for INF2 clients.",
+        });
+    }
+
+    return next();
+};
+
+const ValidateModelHeader: RequestHandler = async (req, res, next) => {
+    let swModel = req.header("X-Software-Model");
+
+    if (!swModel || swModel.startsWith("LDJ:J:B:X") || swModel.startsWith("LDJ:J:B:Z")) {
+        return res.status(400).send({ success: false, description: "Invalid X-Software-Model." });
     }
 
     return next();
@@ -50,7 +63,7 @@ router.post("/profile/submit", RequireLoggedIn, RequireInf2ModelHeader, async (r
  *
  * @name /api/ir/fervidex/score/submit
  */
-router.post("/score/submit", RequireLoggedIn, async (req, res) => {
+router.post("/score/submit", RequireLoggedIn, ValidateModelHeader, async (req, res) => {
     const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
 
     let model = req.header("X-Software-Model");
@@ -79,7 +92,7 @@ router.post("/score/submit", RequireLoggedIn, async (req, res) => {
  *
  * @name /api/ir/fervidex/class/submit
  */
-router.post("/class/submit", RequireLoggedIn, async (req, res) => {
+router.post("/class/submit", RequireLoggedIn, ValidateModelHeader, async (req, res) => {
     throw new Error("Unimplemented.");
 });
 

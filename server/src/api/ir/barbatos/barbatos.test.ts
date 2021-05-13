@@ -35,9 +35,13 @@ t.test("POST /api/ir/barbatos/score/submit", async (t) => {
     });
 
     t.test("Should reject an invalid body", async (t) => {
-        let res = await mockApi.post("/api/ir/barbatos/import").set("Cookie", cookie).send({});
+        let res = await mockApi
+            .post("/api/ir/barbatos/score/submit")
+            .set("Cookie", cookie)
+            .send({});
 
-        t.equal(res.body.success, false, "Should not be successful");
+        t.equal(res.body.success, false, "Should not be successful.");
+        t.equal(res.status, 400, "Should return 400.");
 
         t.end();
     });

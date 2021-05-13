@@ -44,7 +44,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
         throw new InternalFailure(`Song ${chart.songID} (iidx) has no parent song?`);
     }
 
-    const percent = GenericCalculatePercent("iidx", data.ex_score);
+    const percent = GenericCalculatePercent("iidx", data.ex_score, chart);
 
     if (percent > 100) {
         throw new InvalidScoreFailure(

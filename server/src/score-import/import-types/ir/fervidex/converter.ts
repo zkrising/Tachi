@@ -171,7 +171,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
         throw new InvalidScoreFailure(`Invalid value of gauge ${gauge}.`);
     }
 
-    const percent = GenericCalculatePercent("iidx", data.ex_score);
+    const percent = GenericCalculatePercent("iidx", data.ex_score, chart);
 
     if (percent > 100) {
         throw new InvalidScoreFailure(
@@ -181,7 +181,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 
     let dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
         game: "iidx",
-        service: "fervidex",
+        service: "Fervidex",
         comment: null,
         importType: "ir/fervidex",
         timeAchieved: Date.now(),

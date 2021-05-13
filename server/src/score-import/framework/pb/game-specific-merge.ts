@@ -1,6 +1,9 @@
 import { PBScoreDocument, ScoreDocument } from "kamaitachi-common";
+import { FindChartWithChartID } from "../../../common/database-lookup/chart";
 import db from "../../../db/db";
 import { KtLogger } from "../../../types";
+import { CalculateVF4, CalculateVF5 } from "../calculated-data/game-specific-stats";
+import { InternalFailure } from "../score-importing/converter-failures";
 
 export async function IIDXMergeFn(
     pbDoc: PBScoreDocument<"iidx:SP" | "iidx:DP">,
@@ -44,6 +47,46 @@ export async function IIDXMergeFn(
     pbDoc.scoreData.hitMeta.bp = bpPB.scoreData.hitMeta.bp;
 
     pbDoc.composedFrom.other = [{ name: "Best BP", scoreID: bpPB.scoreID }];
+
+    return true;
+}
+
+/**
+ * This function recalculates and applies VF4 and VF5 to the PB document.
+ *
+ * SDVX cannot just select the larger volforce - instead, volforce has to be
+ * re-calculated for any different permutation of scorePB + lampPB.
+ */
+export async function SDVXMergeFn(
+    pbDoc: PBScoreDocument<"sdvx:Single">,
+    scorePB: ScoreDocument<"sdvx:Single">,
+    lampPB: ScoreDocument<"sdvx:Single">,
+    logger: KtLogger
+): Promise<boolean> {
+    // @optimisable
+    // This is a re-fetch, but it's too much effort to pass the chart all
+    // the way back up here :(
+    let chart = await FindChartWithChartID("sdvx", pbDoc.chartID);
+
+    if (!chart) {
+        logger.severe(`Chart ${pbDoc.chartID} disappeared underfoot?`);
+        throw new InternalFailure(`Chart ${pbDoc.chartID} disappeared underfoot?`);
+    }
+
+    pbDoc.calculatedData.gameSpecific.VF4 = CalculateVF4(
+        pbDoc.scoreData.grade,
+        pbDoc.scoreData.percent,
+        chart,
+        logger
+    );
+
+    pbDoc.calculatedData.gameSpecific.VF4 = CalculateVF5(
+        pbDoc.scoreData.grade,
+        pbDoc.scoreData.lamp,
+        pbDoc.scoreData.percent,
+        chart,
+        logger
+    );
 
     return true;
 }

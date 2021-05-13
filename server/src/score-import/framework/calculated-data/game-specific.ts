@@ -1,4 +1,4 @@
-import { AnyChartDocument, ChartDocument, Game, Playtypes } from "kamaitachi-common";
+import { AnyChartDocument, ChartDocument, Game, Playtypes, Grades, Lamps } from "kamaitachi-common";
 import db from "../../../db/db";
 import { DryScore, KtLogger } from "../../../types";
 import {
@@ -47,8 +47,19 @@ export async function CreateGameSpecific<G extends Game>(
             gameSpecific["K%"] = await KaidenPercentile(dryScore, chart);
         }
     } else if (game === "sdvx") {
-        gameSpecific.VF4 = CalculateVF4(dryScore as DryScore<"sdvx:Single">, chart, logger);
-        gameSpecific.VF5 = CalculateVF5(dryScore as DryScore<"sdvx:Single">, chart, logger);
+        gameSpecific.VF4 = CalculateVF4(
+            dryScore.scoreData.grade as Grades["sdvx:Single"],
+            dryScore.scoreData.percent,
+            chart,
+            logger
+        );
+        gameSpecific.VF5 = CalculateVF5(
+            dryScore.scoreData.grade as Grades["sdvx:Single"],
+            dryScore.scoreData.lamp as Lamps["sdvx:Single"],
+            dryScore.scoreData.percent,
+            chart,
+            logger
+        );
     } else if (game === "ddr") {
         // either playtype
         gameSpecific.MFCP = CalculateMFCP(dryScore, chart, logger);

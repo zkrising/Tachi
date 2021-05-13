@@ -2,7 +2,7 @@ import db from "../../../db/db";
 import { integer, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
 
 import { KtLogger } from "../../../types";
-import { IIDXMergeFn } from "./game-specific-merge";
+import { IIDXMergeFn, SDVXMergeFn } from "./game-specific-merge";
 import { PBScoreDocumentNoRank } from "./process-pbs";
 import { BulkWriteUpdateOneOperation } from "mongodb";
 
@@ -68,17 +68,10 @@ export async function UpdateChartRanking(chartID: string) {
     let bwrite: BulkWriteUpdateOneOperation<PBScoreDocument>[] = [];
 
     let rank = 0;
-    // lazy sentinel value
-    let lastScorePercent = -Infinity;
 
     for (let i = 0; i < scores.length; i++) {
         let score = scores[i];
-
-        if (lastScorePercent !== score.scoreData.percent) {
-            rank++;
-            // doesn't matter whether this is inside or outside the loop
-            lastScorePercent = score.scoreData.percent;
-        }
+        rank++;
 
         bwrite.push({
             updateOne: {
@@ -104,6 +97,7 @@ export async function UpdateChartRanking(chartID: string) {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GAME_SPECIFIC_MERGE_FNS: Record<string, any> = {
     iidx: IIDXMergeFn,
+    sdvx: SDVXMergeFn,
 };
 
 async function MergeScoreLampIntoPB(

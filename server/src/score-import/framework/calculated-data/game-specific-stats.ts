@@ -1,4 +1,4 @@
-import { AnyChartDocument, ESDCore, integer } from "kamaitachi-common";
+import { AnyChartDocument, ESDCore, integer, Grades, Lamps } from "kamaitachi-common";
 import db from "../../../db/db";
 import { DryScore, KtLogger } from "../../../types";
 
@@ -201,23 +201,22 @@ const VF5LampCoefficients = {
 };
 
 export function CalculateVF4(
-    dryScore: DryScore<"sdvx:Single">,
+    grade: Grades["sdvx:Single"],
+    per: number,
     chartData: AnyChartDocument,
     logger: KtLogger
 ) {
     const multiplier = 25;
     let level = chartData.levelNum;
 
-    let gradeCoefficient = VF4GradeCoefficients[dryScore.scoreData.grade];
+    let gradeCoefficient = VF4GradeCoefficients[grade];
 
     if (!gradeCoefficient) {
-        logger.warn(
-            `Invalid grade of ${dryScore.scoreData.grade} passed to CalculateVF4. Returning null.`
-        );
+        logger.warn(`Invalid grade of ${grade} passed to CalculateVF4. Returning null.`);
         return null;
     }
 
-    let percent = dryScore.scoreData.percent / 100;
+    let percent = per / 100;
     if (!level || !percent) {
         return 0;
     }
@@ -229,29 +228,27 @@ export function CalculateVF4(
 // this formula is allegedly tentative according to bemaniwiki.
 // idk if it's right, but it must be close enough.
 export function CalculateVF5(
-    dryScore: DryScore<"sdvx:Single">,
+    grade: Grades["sdvx:Single"],
+    lamp: Lamps["sdvx:Single"],
+    per: number,
     chartData: AnyChartDocument,
     logger: KtLogger
 ) {
     let level = chartData.levelNum;
 
-    let gradeCoefficient = VF5GradeCoefficients[dryScore.scoreData.grade];
-    let lampCoefficient = VF5LampCoefficients[dryScore.scoreData.lamp];
+    let gradeCoefficient = VF5GradeCoefficients[grade];
+    let lampCoefficient = VF5LampCoefficients[lamp];
 
     if (!lampCoefficient) {
-        logger.warn(
-            `Invalid lamp of ${dryScore.scoreData.lamp} passed to CalculateVF5. Returning null.`
-        );
+        logger.warn(`Invalid lamp of ${lamp} passed to CalculateVF5. Returning null.`);
         return null;
     }
     if (!gradeCoefficient) {
-        logger.warn(
-            `Invalid grade of ${dryScore.scoreData.grade} passed to CalculateVF5. Returning null.`
-        );
+        logger.warn(`Invalid grade of ${grade} passed to CalculateVF5. Returning null.`);
         return null;
     }
 
-    let percent = dryScore.scoreData.percent / 100;
+    let percent = per / 100;
     if (!level || !percent) {
         return 0;
     }

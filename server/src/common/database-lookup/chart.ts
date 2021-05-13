@@ -2,6 +2,10 @@ import { version } from "commander";
 import { Difficulties, Game, integer, Playtypes, IDStrings } from "kamaitachi-common";
 import db from "../../db/db";
 
+export function FindChartWithChartID(game: Game, chartID: string) {
+    return db.charts[game].findOne({ chartID });
+}
+
 /**
  * Find chart with PlaytypeDifficulty. This only finds charts that have `isPrimary` set to true.
  * If you want to find charts that are not primary, you need to use PTDFVersion.

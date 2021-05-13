@@ -24,7 +24,7 @@ function ParseBatchManual(
         );
     }
 
-    return ParseBatchManualFromObject(jsonData, "file/json:batch-manual", logger);
+    return ParseBatchManualFromObject(jsonData, "file/batch-manual", logger);
 }
 
 export default ParseBatchManual;

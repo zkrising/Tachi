@@ -122,13 +122,13 @@ export interface TextDocument extends MongoDBDocument {
 }
 
 export interface ImportTypeDataMap {
-    "file/csv:eamusement-iidx": IIDXEamusementCSVData;
-    "file/json:batch-manual": BatchManualScore;
-    "ir/json:direct-manual": BatchManualScore;
+    "file/eamusement-iidx-csv": IIDXEamusementCSVData;
+    "file/batch-manual": BatchManualScore;
+    "ir/direct-manual": BatchManualScore;
 }
 
 export interface ImportTypeContextMap {
-    "file/csv:eamusement-iidx": IIDXEamusementCSVContext;
-    "file/json:batch-manual": BatchManualContext;
-    "ir/json:direct-manual": BatchManualContext;
+    "file/eamusement-iidx-csv": IIDXEamusementCSVContext;
+    "file/batch-manual": BatchManualContext;
+    "ir/direct-manual": BatchManualContext;
 }

@@ -29,7 +29,7 @@ router.post("/import", RequireLoggedIn, async (req, res) => {
     let responseData = await ExpressWrappedScoreImportMain(
         userDoc,
         true,
-        "ir/json:direct-manual",
+        "ir/direct-manual",
         (logger) => ParseDirectManual(req.body, logger)
     );
 

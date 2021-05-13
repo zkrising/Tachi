@@ -58,7 +58,7 @@ export async function EamScoreConverter(
     if (!ktchiChart) {
         throw new KTDataNotFoundFailure(
             `Could not find chart for ${HUMANISED_CHART_TITLE}`,
-            "file/csv:eamusement-iidx",
+            "file/eamusement-iidx-csv",
             data,
             context
         );
@@ -127,7 +127,7 @@ export async function EamScoreConverter(
         service: context.serviceOrigin,
         comment: null,
         game: "iidx",
-        importType: "file/csv:eamusement-iidx",
+        importType: "file/eamusement-iidx-csv",
         scoreData: {
             score: exscore,
             lamp,
@@ -236,7 +236,7 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
     if (!ktchiSong) {
         return new KTDataNotFoundFailure(
             `Could not find song for ${data.title}.`,
-            "file/csv:eamusement-iidx",
+            importType,
             data,
             context
         );

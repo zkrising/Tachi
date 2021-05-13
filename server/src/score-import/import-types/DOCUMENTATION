@@ -1,0 +1,52 @@
+This is temporary documentation for the import mechanisms in this folder.
+
+# ImportType
+
+An import type is a string in the following form:
+
+(mode)/(name).
+
+## ImportType Modes
+
+- `file`: A file is uploaded to the server, and data is drew from a buffer.
+- `ir`: The data is sent to us in a HTTP Request Body.
+- `api`: We request the data on the users behalf from another service.
+
+## ImportType Names
+
+- `file/eamusement-iidx-csv`: An IIDX e-amusement CSV file.
+- `file/batch-manual`: A JSON file that follows our BATCH-MANUAL specification.
+
+- `ir/direct-manual`: A request body containing JSON in BATCH-MANUAL form. 
+
+# Parsers
+
+Parser functions convert the input data into an Iterable. This iterable may
+take any form, such as an Array or a Generator which yields paginated API returns.
+
+They also return some information about the import, such as the game and
+playtypes involved. It will also return a Converter Function.
+
+The iterable itself can contain any style of data. In general, one element
+of the iterable will likely correlate with one score. However, in some
+scenarios, one element of the iterable may contain multiple scores, such as
+iterating over the rows of an IIDX E-amusement CSV, where one row contains
+up to 5 separate scores.
+
+# Converters
+
+Converter functions are applied upon every member of the iterable. These
+convert a member of the iterable into a Dry Score, which is a partial
+Kamaitachi Score.
+
+Converter functions may return the Dry Score, or any of the 'Score Failures' -
+A specific set of fail states for a score import, such as the score being 
+invalid or the appropriate song/chart data for it not existing.
+
+Converter functions may also return an array of the previous results, in the 
+case that a single element of the iterable corresponded to multiple scores. 
+
+# Common
+
+This is for common code - `ir/direct-manual` and `file/batch-manual` use very
+similar code paths, so code here is pulled out into a common folder.

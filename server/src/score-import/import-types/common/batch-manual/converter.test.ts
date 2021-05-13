@@ -34,7 +34,7 @@ const ktdWrap = (msg: string, game: Game = "iidx", version = null): any => ({
 
 const logger = CreateLogCtx("converter.test.ts");
 
-const importType = "file/json:batch-manual" as const;
+const importType = "file/batch-manual" as const;
 
 t.test("#ResolveMatchTypeToKTData", (t) => {
     t.beforeEach(ResetDBState);

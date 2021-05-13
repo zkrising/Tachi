@@ -11,7 +11,7 @@ function ParseDirectManual(
     body: Record<string, unknown>,
     logger: KtLogger
 ): ParserFunctionReturnsSync<BatchManualScore, BatchManualContext> {
-    return ParseBatchManualFromObject(body, "ir/json:direct-manual", logger);
+    return ParseBatchManualFromObject(body, "ir/direct-manual", logger);
 }
 
 export default ParseDirectManual;

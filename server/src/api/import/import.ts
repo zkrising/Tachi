@@ -117,9 +117,9 @@ export function ResolveFileUploadData(
     logger: KtLogger
 ) {
     switch (importType) {
-        case "file/csv:eamusement-iidx":
+        case "file/eamusement-iidx-csv":
             return ParseEamusementCSV(fileData, body, logger);
-        case "file/json:batch-manual":
+        case "file/batch-manual":
             return ParseBatchManual(fileData, body, logger);
         default:
             logger.error(

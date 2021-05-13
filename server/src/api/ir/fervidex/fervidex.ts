@@ -1,9 +1,13 @@
 import { Router, RequestHandler } from "express";
+import { GetUserWithIDGuaranteed } from "../../../common/user";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
+import { ExpressWrappedScoreImportMain } from "../../../score-import/framework/express-wrapper";
+import { ParseFervidexStatic } from "../../../score-import/import-types/ir/fervidex-static/parser";
+import { ParseFervidexSingle } from "../../../score-import/import-types/ir/fervidex/parser";
 
 const router: Router = Router({ mergeParams: true });
 
-const RequireInf2Header: RequestHandler = async (req, res, next) => {
+const RequireInf2ModelHeader: RequestHandler = async (req, res, next) => {
     let swModel = req.header("X-Software-Model");
 
     if (!swModel || !swModel.startsWith("P2D:J:B:A")) {
@@ -21,8 +25,22 @@ const RequireInf2Header: RequestHandler = async (req, res, next) => {
  *
  * @name /api/ir/fervidex/profile/submit
  */
-router.post("/profile/submit", RequireLoggedIn, RequireInf2Header, async (req, res) => {
-    throw new Error("Unimplemented.");
+router.post("/profile/submit", RequireLoggedIn, RequireInf2ModelHeader, async (req, res) => {
+    const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
+
+    let headers = {
+        // guaranteed to exist because of RequireInf2ModelHeader
+        model: req.header("X-Software-Model")!,
+    };
+
+    let responseData = await ExpressWrappedScoreImportMain(
+        userDoc,
+        true,
+        "ir/fervidex-static",
+        (logger) => ParseFervidexStatic(req.body, headers, logger)
+    );
+
+    return res.status(responseData.statusCode).json(responseData.body);
 });
 
 /**
@@ -33,7 +51,26 @@ router.post("/profile/submit", RequireLoggedIn, RequireInf2Header, async (req, r
  * @name /api/ir/fervidex/score/submit
  */
 router.post("/score/submit", RequireLoggedIn, async (req, res) => {
-    throw new Error("Unimplemented.");
+    const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
+
+    let model = req.header("X-Software-Model");
+
+    if (!model) {
+        return res.status(400).json({
+            success: false,
+            description: "No X-Software-Model header provided?",
+        });
+    }
+
+    let headers = {
+        model,
+    };
+
+    let responseData = await ExpressWrappedScoreImportMain(userDoc, true, "ir/fervidex", (logger) =>
+        ParseFervidexSingle(req.body, headers, logger)
+    );
+
+    return res.status(responseData.statusCode).json(responseData.body);
 });
 
 /**

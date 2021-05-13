@@ -1,12 +1,12 @@
 import t from "tap";
-import CreateLogCtx from "../../../../../logger";
-import ScoreImportFatalError from "../../../../framework/score-importing/score-import-error";
+import CreateLogCtx from "../../../../logger";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import ParseEamusementCSV, { NaiveCSVParse, ResolveHeaders } from "./parser";
-import { CloseMongoConnection } from "../../../../../db/db";
+import { CloseMongoConnection } from "../../../../db/db";
 import {
     TestingIIDXEamusementCSV26,
     TestingIIDXEamusementCSV27,
-} from "../../../../../test-utils/test-data";
+} from "../../../../test-utils/test-data";
 
 const logger = CreateLogCtx("parser.test.ts");
 

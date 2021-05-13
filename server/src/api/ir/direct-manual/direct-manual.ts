@@ -3,7 +3,7 @@ import { GetUserWithID } from "../../../core/user-core";
 import CreateLogCtx from "../../../logger";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../score-import/framework/express-wrapper";
-import ParseDirectManual from "../../../score-import/import-types/ir/json/direct-manual/parser";
+import ParseDirectManual from "../../../score-import/import-types/ir/direct-manual/parser";
 
 const router: Router = Router({ mergeParams: true });
 

@@ -97,8 +97,8 @@ router.post(
     }
 );
 
-import ParseEamusementCSV from "../../score-import/import-types/file/csv/eamusement-iidx/parser";
-import ParseBatchManual from "../../score-import/import-types/file/json/batch-manual/parser";
+import ParseEamusementCSV from "../../score-import/import-types/file/eamusement-iidx-csv/parser";
+import ParseBatchManual from "../../score-import/import-types/file/batch-manual/parser";
 
 /**
  * Resolves the data from a file upload into an iterable,

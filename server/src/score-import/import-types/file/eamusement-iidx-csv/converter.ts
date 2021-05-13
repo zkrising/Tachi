@@ -1,15 +1,15 @@
-import { config, ESDCore, Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
-import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../../../types";
-import { FindChartWithPTDFVersion } from "../../../../../core/database-lookup/chart";
-import { FindSongOnTitle } from "../../../../../core/database-lookup/song";
+import { Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
+import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../../types";
+import { FindChartWithPTDFVersion } from "../../../../core/database-lookup/chart";
+import { FindSongOnTitle } from "../../../../core/database-lookup/song";
 import {
     KTDataNotFoundFailure,
     InternalFailure,
     InvalidScoreFailure,
-} from "../../../../framework/score-importing/converter-failures";
-import ScoreImportFatalError from "../../../../framework/score-importing/score-import-error";
-import { GetGradeFromPercent } from "../../../../framework/common/score-utils";
-import { AssertStrAsPositiveInt } from "../../../../framework/common/string-asserts";
+} from "../../../framework/score-importing/converter-failures";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
+import { GetGradeFromPercent } from "../../../framework/common/score-utils";
+import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 
 const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new Map([

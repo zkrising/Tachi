@@ -18,7 +18,7 @@ import {
 import {
     IIDXEamusementCSVContext,
     IIDXEamusementCSVData,
-} from "./score-import/import-types/file/csv/eamusement-iidx/types";
+} from "./score-import/import-types/file/eamusement-iidx-csv/types";
 
 declare module "express-session" {
     // Inject additional properties on express-session

@@ -1,7 +1,7 @@
-import { KtLogger, ParserFunctionReturnsSync } from "../../../../../types";
-import ScoreImportFatalError from "../../../../framework/score-importing/score-import-error";
-import { ParseBatchManualFromObject } from "../../../common/batch-manual/parser";
-import { BatchManualContext, BatchManualScore } from "../../../common/batch-manual/types";
+import { KtLogger, ParserFunctionReturnsSync } from "../../../../types";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
+import { ParseBatchManualFromObject } from "../../common/batch-manual/parser";
+import { BatchManualContext, BatchManualScore } from "../../common/batch-manual/types";
 
 /**
  * Parses a buffer of BATCH-MANUAL data.

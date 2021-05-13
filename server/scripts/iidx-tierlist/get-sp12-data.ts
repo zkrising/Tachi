@@ -2,11 +2,11 @@
 /* eslint-disable no-param-reassign */
 import db from "../../src/db/db";
 import fetch from "node-fetch";
-import { FindSongOnTitle } from "../../src/score-import/database-lookup/song-title";
-import { FindChartWithPTDF } from "../../src/score-import/database-lookup/chart-ptdf";
+import { FindSongOnTitle } from "../../src/common/database-lookup/song";
+import { FindChartWithPTDF } from "../../src/common/database-lookup/chart";
 import { Difficulties, TierlistDataDocument } from "kamaitachi-common";
 
-import { CalculateTierlistDataID } from "../../src/core/tierlist-core";
+import { CalculateTierlistDataID } from "../../src/common/tierlist";
 import CreateLogCtx from "../../src/logger";
 
 const logger = CreateLogCtx("get-sp12-data.ts");

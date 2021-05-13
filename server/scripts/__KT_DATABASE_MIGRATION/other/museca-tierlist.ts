@@ -1,6 +1,6 @@
 import db from "../../../src/db/db";
 import { TierlistDataDocument } from "kamaitachi-common";
-import { CalculateTierlistDataID } from "../../../src/core/tierlist-core";
+import { CalculateTierlistDataID } from "../../../src/common/tierlist";
 import { oldKTDB } from "../old-db";
 import CreateLogCtx from "../../../src/logger";
 const logger = CreateLogCtx("museca-tierlist.ts");

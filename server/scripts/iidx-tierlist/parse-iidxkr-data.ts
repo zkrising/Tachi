@@ -1,10 +1,10 @@
 import db from "../../src/db/db";
 import fs from "fs";
 import path from "path";
-import { CalculateTierlistDataID } from "../../src/core/tierlist-core";
-import { FindSongOnTitle } from "../../src/score-import/database-lookup/song-title";
+import { CalculateTierlistDataID } from "../../src/common/tierlist";
+import { FindSongOnTitle } from "../../src/common/database-lookup/song";
 import CreateLogCtx from "../../src/logger";
-import { FindChartWithPTDF } from "../../src/score-import/database-lookup/chart-ptdf";
+import { FindChartWithPTDF } from "../../src/common/database-lookup/chart";
 import { Difficulties } from "kamaitachi-common";
 
 const logger = CreateLogCtx("parse-iidxkr-data.ts");

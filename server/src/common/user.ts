@@ -3,7 +3,7 @@ import { FindOneResult } from "monk";
 import db from "../db/db";
 import CreateLogCtx from "../logger";
 
-const logger = CreateLogCtx("user-core.ts");
+const logger = CreateLogCtx("user.ts");
 
 const OMIT_PRIVATE_USER_RETURNS = {
     password: 0,

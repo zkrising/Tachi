@@ -12,7 +12,7 @@ import { InsertResult } from "monk";
 import CreateLogCtx from "../logger";
 import { FormatUserDoc } from "./format-user";
 
-const logger = CreateLogCtx("auth-core.ts");
+const logger = CreateLogCtx("auth.ts");
 
 const BCRYPT_SALT_ROUNDS = 12;
 

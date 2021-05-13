@@ -12,7 +12,7 @@ import db, { CloseMongoConnection } from "../db/db";
 import ResetDBState from "../test-utils/reset-db-state";
 import deepmerge from "deepmerge";
 
-const logger = CreateLogCtx("folder-core.test.ts");
+const logger = CreateLogCtx("folder.test.ts");
 
 t.todo("#CreateFolderChartLookup");
 t.todo("#GetFolderCharts");

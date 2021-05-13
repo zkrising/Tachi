@@ -2,7 +2,7 @@ import nodeFetch from "../fetch";
 import CreateLogCtx from "../logger";
 import { CAPTCHA_SECRET_KEY } from "../secrets";
 
-const logger = CreateLogCtx("captcha-core.ts");
+const logger = CreateLogCtx("captcha.ts");
 
 // shrug
 

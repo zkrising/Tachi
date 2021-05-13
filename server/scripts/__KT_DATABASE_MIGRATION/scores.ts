@@ -5,7 +5,7 @@ import { grades, lamps, supportedGames, validPlaytypes } from "kamaitachi-common
 import db from "../../src/db/db";
 import MigrateRecords from "./migrate";
 import CreateLogCtx from "../../src/logger";
-import { CreateScoreID } from "../../src/score-import/framework/core/score-id";
+import { CreateScoreID } from "../../src/score-import/framework/common/score-utils";
 
 const logger = CreateLogCtx("scores.ts");
 

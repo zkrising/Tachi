@@ -1,3 +1,3 @@
-import { InitaliseFolderChartLookup } from "../../src/core/folder-core";
+import { InitaliseFolderChartLookup } from "../../src/common/folder";
 
 InitaliseFolderChartLookup();

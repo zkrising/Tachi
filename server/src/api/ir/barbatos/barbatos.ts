@@ -1,18 +1,11 @@
 import { Router } from "express";
-import { GetUserWithID, GetUserWithIDGuaranteed } from "../../../common/user";
-import CreateLogCtx from "../../../logger";
+import { GetUserWithIDGuaranteed } from "../../../common/user";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../score-import/framework/express-wrapper";
 import ParseDirectManual from "../../../score-import/import-types/ir/direct-manual/parser";
 
 const router: Router = Router({ mergeParams: true });
 
-const logger = CreateLogCtx("direct-manual.ts");
-
-/**
- * Imports scores in ir/json:direct-manual form.
- * @name /api/ir/direct-manual/import
- */
 router.post("/import", RequireLoggedIn, async (req, res) => {
     const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
 

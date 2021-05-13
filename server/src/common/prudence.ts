@@ -7,3 +7,5 @@ export function FormatPrError(err: PrudenceError, foreword = "Error") {
             : ` | Received ${err.userVal} [${err.userVal === null ? "null" : typeof err.userVal}]`
     }.`;
 }
+
+export const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));

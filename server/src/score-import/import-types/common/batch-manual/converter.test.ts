@@ -2,7 +2,7 @@
 import t from "tap";
 import CreateLogCtx from "../../../../logger";
 import { Testing511Song, Testing511SPA } from "../../../../test-utils/test-data";
-import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterFn } from "./converter";
+import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
 import escapeStringRegexp from "../../../../core/escape-string-regexp";
 import { CloseMongoConnection } from "../../../../db/db";
@@ -313,7 +313,7 @@ t.test("#ResolveChartFromSong", (t) => {
 
 t.test("#ConverterFn", (t) => {
     t.test("Should produce a DryScore", async (t) => {
-        let res = await ConverterFn(
+        let res = await ConverterBatchManual(
             baseBatchManualScore,
             { game: "iidx", service: "foo", version: null },
             importType,
@@ -347,7 +347,7 @@ t.test("#ConverterFn", (t) => {
     t.test("Should reject a score with > 100%", (t) => {
         t.rejects(
             () =>
-                ConverterFn(
+                ConverterBatchManual(
                     // @ts-expect-error broken deepmerge
                     deepmerge(baseBatchManualScore, { score: 1000 }),
                     { game: "iidx", service: "foo", version: null },

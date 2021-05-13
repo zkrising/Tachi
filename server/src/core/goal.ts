@@ -2,7 +2,7 @@ import { GoalDocument, integer, PBScoreDocument, Game } from "kamaitachi-common"
 import { grades, lamps } from "kamaitachi-common/js/config";
 import db from "../db/db";
 import { KtLogger } from "../types";
-import { GetFolderChartIDs } from "./folder-core";
+import { GetFolderChartIDs } from "./folder";
 import { FilterQuery } from "mongodb";
 
 export interface EvaluatedGoalReturn {

@@ -1,6 +1,9 @@
 import { integer, PublicUserDocument } from "kamaitachi-common";
 import { FindOneResult } from "monk";
 import db from "../db/db";
+import CreateLogCtx from "../logger";
+
+const logger = CreateLogCtx("user-core.ts");
 
 const OMIT_PRIVATE_USER_RETURNS = {
     password: 0,
@@ -12,7 +15,7 @@ const OMIT_PRIVATE_USER_RETURNS = {
 /**
  * Gets a user based on their username case-insensitively.
  * @param username The username of the user.
- * @returns PublicUserDocument
+ * @returns PublicUserDocument | null
  */
 export function GetUserCaseInsensitive(
     username: string
@@ -31,7 +34,7 @@ export function GetUserCaseInsensitive(
  * Returns GetUserCaseInsensitive, but without the private field omission.
  * @see GetUserCaseInsensitive
  * @param username The username of the user.
- * @returns PrivateUserDocument
+ * @returns PrivateUserDocument | null
  */
 export function PRIVATEINFO_GetUserCaseInsensitive(username: string) {
     return db.users.findOne({
@@ -42,7 +45,7 @@ export function PRIVATEINFO_GetUserCaseInsensitive(username: string) {
 /**
  * Gets a user from their userID.
  * @param userID The userID to retrieve the user document of.
- * @returns PublicUserDocument
+ * @returns PublicUserDocument | null
  */
 export function GetUserWithID(userID: integer): Promise<FindOneResult<PublicUserDocument>> {
     return db.users.findOne(
@@ -56,10 +59,33 @@ export function GetUserWithID(userID: integer): Promise<FindOneResult<PublicUser
 }
 
 /**
+ * Retrieve a user document that is expected to exist.
+ * If the user document is not found, a severe error is logged, and this
+ * function throws.
+ *
+ * @param userID The userID to retrieve the user document of.
+ * @returns PublicUserDocument
+ */
+export async function GetUserWithIDGuaranteed(userID: integer): Promise<PublicUserDocument> {
+    const userDoc = await GetUserWithID(userID);
+
+    if (!userDoc) {
+        logger.severe(
+            `User ${userID} does not have an associated user document, but one was expected.`
+        );
+        throw new Error(
+            `User ${userID} does not have an associated user document, but one was expected.`
+        );
+    }
+
+    return userDoc;
+}
+
+/**
  * GetUserWithID, but return personal information, too.
  * @see GetUserWithID
  * @param userID
- * @returns PrivateUserDocument
+ * @returns PrivateUserDocument | null
  */
 export function PRIVATEINFO_GetUserWithID(userID: integer) {
     return db.users.findOne({

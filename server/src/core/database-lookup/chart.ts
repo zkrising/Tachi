@@ -68,3 +68,35 @@ export function FindBMSChartOnHash(hash: string) {
         $or: [{ "data.hashMD5": hash }, { "data.hashSHA256": hash }],
     });
 }
+
+export function FindChartOnInGameID(
+    game: Game,
+    inGameID: number,
+    playtype: Playtypes[Game],
+    difficulty: Difficulties[IDStrings]
+) {
+    // @todo throw an error if this is called with a game that doesn't
+    // support InGameID.
+    return db.charts[game].findOne({
+        "data.inGameID": inGameID,
+        playtype,
+        difficulty,
+    });
+}
+
+export function FindSDVXChartOnInGameID(
+    inGameID: number,
+    playtype: Playtypes[Game],
+    difficulty: "NOV" | "ADV" | "EXH" | "MXM" | "ANY_INF"
+) {
+    let diffQuery =
+        difficulty === "ANY_INF"
+            ? { $in: ["INF", "GRV", "HVN", "VVD"] as Difficulties["sdvx:Single"][] }
+            : difficulty;
+
+    return db.charts.sdvx.findOne({
+        "data.inGameID": inGameID,
+        playtype,
+        difficulty: diffQuery,
+    });
+}

@@ -4,7 +4,7 @@ import {
     GetAllTierlistDataOfType,
     GetDefaultTierlist,
     GetOneTierlistData,
-} from "../../../core/tierlist-core";
+} from "../../../core/tierlist";
 import { DryScore, KtLogger } from "../../../types";
 import { CreateGameSpecific } from "./game-specific";
 import { CalculateCHUNITHMRating, CalculateGITADORARating } from "./game-specific-stats";

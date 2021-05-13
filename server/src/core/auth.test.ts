@@ -4,7 +4,7 @@ import {
     CreateInviteCode,
     AddNewInvite,
     ReinstateInvite,
-} from "./auth-core";
+} from "./auth";
 import t from "tap";
 import db, { CloseMongoConnection } from "../db/db";
 import { PrivateUserDocument } from "kamaitachi-common";

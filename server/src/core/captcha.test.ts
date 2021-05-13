@@ -1,6 +1,6 @@
 import t from "tap";
 import { MockFetch } from "../test-utils/mock-fetch";
-import { ValidateCaptcha } from "./captcha-core";
+import { ValidateCaptcha } from "./captcha";
 
 t.test("#ValidateCaptcha", async (t) => {
     t.equal(

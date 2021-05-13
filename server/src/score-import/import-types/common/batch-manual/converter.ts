@@ -29,7 +29,7 @@ import { gamePercentMax } from "kamaitachi-common/js/config";
  * returned.
  * @returns A BatchManualScore Converter.
  */
-export const ConverterFn: ConverterFunction<BatchManualScore, BatchManualContext> = async (
+export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManualContext> = async (
     data,
     context,
     importType,

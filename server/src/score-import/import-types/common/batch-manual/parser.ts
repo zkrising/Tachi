@@ -6,6 +6,7 @@ import { lamps, supportedGames, validHitData, validPlaytypes } from "kamaitachi-
 import { Game, ImportTypes } from "kamaitachi-common";
 import { ConverterFn } from "./converter";
 import deepmerge from "deepmerge";
+import { FormatPrError } from "../../../../core/prudence";
 
 const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));
 
@@ -157,17 +158,7 @@ export function ParseBatchManualFromObject(
     let err = p(object, PR_BatchManual(game));
 
     if (err) {
-        throw new ScoreImportFatalError(
-            400,
-            // ouch prettier
-            `Invalid BATCH-MANUAL: ${err.keychain} | ${err.message}${
-                typeof err.userVal === "object" && err.userVal !== null
-                    ? ""
-                    : ` | Received ${err.userVal} [${
-                          err.userVal === null ? "null" : typeof err.userVal
-                      }]`
-            }.`
-        );
+        throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid BATCH-MANUAL"));
     }
 
     let batchManual = object as BatchManual;

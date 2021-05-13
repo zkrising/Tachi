@@ -7,7 +7,7 @@ import {
     PublicUserDocument,
 } from "kamaitachi-common";
 import db from "../db/db";
-import { GetNextCounterValue } from "./db-core";
+import { GetNextCounterValue } from "./db";
 import { InsertResult } from "monk";
 import CreateLogCtx from "../logger";
 import { FormatUserDoc } from "./format-user";

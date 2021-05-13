@@ -2,7 +2,7 @@ import t from "tap";
 import db, { CloseMongoConnection } from "../db/db";
 import CreateLogCtx from "../logger";
 import ResetDBState from "../test-utils/reset-db-state";
-import { EvaluateGoalForUser } from "./goal-core";
+import { EvaluateGoalForUser } from "./goal";
 import { GoalDocument } from "kamaitachi-common";
 import deepmerge from "deepmerge";
 import {
@@ -11,7 +11,7 @@ import {
     TestingIIDXFolderSP10,
     TestingIIDXSPScorePB,
 } from "../test-utils/test-data";
-import { CreateFolderChartLookup } from "./folder-core";
+import { CreateFolderChartLookup } from "./folder";
 
 const logger = CreateLogCtx("goal-core.test.ts");
 

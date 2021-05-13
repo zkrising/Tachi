@@ -8,7 +8,7 @@ import {
     MilestoneImportInfo,
 } from "kamaitachi-common";
 import db from "../../../db/db";
-import { ProcessMilestoneFromGII } from "../../../core/milestone-core";
+import { ProcessMilestoneFromGII } from "../../../core/milestone";
 import { BulkWriteUpdateOneOperation } from "mongodb";
 
 export async function UpdateUsersMilestones(

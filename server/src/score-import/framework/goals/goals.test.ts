@@ -9,7 +9,7 @@ import {
     ProcessGoal,
 } from "./goals";
 import { GoalDocument, FolderDocument } from "kamaitachi-common";
-import { CreateFolderChartLookup } from "../../../core/folder-core";
+import { CreateFolderChartLookup } from "../../../core/folder";
 import {
     GetKTDataJSON,
     Testing511SPA,

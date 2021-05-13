@@ -7,12 +7,6 @@ import { BatchManual } from "./types";
 import escapeRegex from "../../../../core/escape-string-regexp";
 import deepmerge from "deepmerge";
 
-const fileify = (obj: any) =>
-    ({
-        buffer: Buffer.from(JSON.stringify(obj)),
-        filename: "fileify.json",
-    } as Express.Multer.File);
-
 const mockErr = (...msg: string[]) =>
     (({
         statusCode: 400,
@@ -172,7 +166,7 @@ t.test("#ParserFn", (t) => {
     t.test("Valid BATCH-MANUAL", (t) => {
         t.test("Basic BATCH-MANUAL", (t) => {
             let res = ParserFn(
-                fileify({
+                {
                     body: [
                         {
                             score: 1000,
@@ -204,7 +198,7 @@ t.test("#ParserFn", (t) => {
                         },
                     ],
                     head: { service: "foo", game: "iidx" },
-                } as BatchManual),
+                } as BatchManual,
                 "file/batch-manual",
                 logger
             );
@@ -330,7 +324,7 @@ t.test("#ParserFn", (t) => {
         t.test("Invalid Lamp For Game", (t) => {
             let fn = () =>
                 ParserFn(
-                    fileify({
+                    {
                         body: [
                             {
                                 score: 1000,
@@ -342,7 +336,7 @@ t.test("#ParserFn", (t) => {
                             },
                         ],
                         head: { service: "foo", game: "iidx" },
-                    }),
+                    },
                     "file/batch-manual",
                     logger
                 );

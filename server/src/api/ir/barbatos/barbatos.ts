@@ -6,7 +6,11 @@ import { ParseBarbatosSingle } from "../../../score-import/import-types/ir/barba
 
 const router: Router = Router({ mergeParams: true });
 
-router.post("/import", RequireLoggedIn, async (req, res) => {
+/**
+ * Submits a single score document from Barbatos clients.
+ * @name /api/ir/barbatos/score/submit
+ */
+router.post("/score/submit", RequireLoggedIn, async (req, res) => {
     const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
 
     let responseData = await ExpressWrappedScoreImportMain(userDoc, true, "ir/barbatos", (logger) =>

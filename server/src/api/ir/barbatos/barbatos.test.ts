@@ -7,17 +7,17 @@ import mockApi from "../../../test-utils/mock-api";
 import { TestingBarbatosScore } from "../../../test-utils/test-data";
 import db from "../../../db/db";
 
-t.test("POST /api/ir/barbatos/import", async (t) => {
+t.test("POST /api/ir/barbatos/score/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
 
     // @TODO NEEDS TO USE PROPER AUTHENTICATION!!!
-    RequireNeutralAuthentication("/api/ir/barbatos/import", "POST");
+    RequireNeutralAuthentication("/api/ir/barbatos/score/submit", "POST");
 
     t.test("Should import a valid score", async (t) => {
         let res = await mockApi
-            .post("/api/ir/barbatos/import")
+            .post("/api/ir/barbatos/score/submit")
             .set("Cookie", cookie)
             .send(TestingBarbatosScore);
 

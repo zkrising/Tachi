@@ -1037,6 +1037,12 @@ type IIDXHitMeta = BASE_VALID_HIT_META & {
     gauge: number | null;
     gaugeHistory: (number | null)[] | null;
     comboBreak: integer | null;
+    gsm: {
+        EASY: (number | null)[];
+        NORMAL: (number | null)[];
+        HARD: (number | null)[];
+        EX_HARD: (number | null)[];
+    } | null;
 };
 
 type BMSJudgePermutations = `${"e" | "l"}${"bd" | "pr" | "gd" | "gr" | "pg"}`;

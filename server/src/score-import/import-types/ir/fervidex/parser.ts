@@ -1,5 +1,5 @@
 import { EmptyObject, KtLogger, ParserFunctionReturnsSync } from "../../../../types";
-import p, { ValidSchemaValue, PrudenceSchema } from "prudence";
+import p, { PrudenceSchema } from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { FormatPrError, optNull } from "../../../../common/prudence";
 import { FervidexScore } from "./types";

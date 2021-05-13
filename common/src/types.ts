@@ -1234,9 +1234,9 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
     };
 }
 
-export type FileUploadImportTypes = "file/csv:eamusement-iidx" | "file/json:batch-manual";
+export type FileUploadImportTypes = "file/eamusement-iidx-csv" | "file/batch-manual";
 
-export type IRImportTypes = "ir/json:direct-manual";
+export type IRImportTypes = "ir/direct-manual";
 
 export type ImportTypes = FileUploadImportTypes | IRImportTypes;
 

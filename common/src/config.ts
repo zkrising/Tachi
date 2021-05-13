@@ -14,11 +14,11 @@ import {
 } from "./types";
 
 export const fileImportTypes: FileUploadImportTypes[] = [
-    "file/csv:eamusement-iidx",
-    "file/json:batch-manual",
+    "file/eamusement-iidx-csv",
+    "file/batch-manual",
 ];
 
-export const irImportTypes: IRImportTypes[] = ["ir/json:direct-manual"];
+export const irImportTypes: IRImportTypes[] = ["ir/direct-manual"];
 
 export const importTypes: ImportTypes[] = [...fileImportTypes, ...irImportTypes];
 

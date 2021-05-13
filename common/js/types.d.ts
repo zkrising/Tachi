@@ -974,8 +974,8 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
         gameSpecific: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
     };
 }
-export declare type FileUploadImportTypes = "file/csv:eamusement-iidx" | "file/json:batch-manual";
-export declare type IRImportTypes = "ir/json:direct-manual";
+export declare type FileUploadImportTypes = "file/eamusement-iidx-csv" | "file/batch-manual";
+export declare type IRImportTypes = "ir/direct-manual";
 export declare type ImportTypes = FileUploadImportTypes | IRImportTypes;
 export interface ImportProcessInfoKTDataNotFound {
     success: false;

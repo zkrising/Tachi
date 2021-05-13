@@ -26,7 +26,7 @@ const context = {
 };
 
 const ktdWrap = (msg: string, game: Game = "iidx", version = null): any => ({
-    importType: "file/json:batch-manual",
+    importType: "file/batch-manual",
     message: new RegExp(escapeStringRegexp(msg), "u"),
     converterContext: { game, service: "foo", version },
     data: {}, // any under t.match rules.
@@ -327,7 +327,7 @@ t.test("#ConverterFn", (t) => {
                 game: "iidx",
                 service: "foo",
                 comment: null,
-                importType: "file/json:batch-manual",
+                importType: "file/batch-manual",
                 timeAchieved: null,
                 scoreData: {
                     lamp: "HARD CLEAR",

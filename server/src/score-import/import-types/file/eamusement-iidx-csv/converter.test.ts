@@ -21,7 +21,7 @@ const DryScorePrudence = {
     service: p.equalTo("e-amusement"),
     game: p.equalTo("iidx"),
     comment: "null",
-    importType: p.equalTo("file/csv:eamusement-iidx"),
+    importType: p.equalTo("file/eamusement-iidx-csv"),
     timeAchieved: p.equalTo(Date.parse("Tue, 27 Apr 2021 21:35:35 GMT")),
     scoreMeta: {},
     scoreData: {
@@ -198,7 +198,7 @@ t.test("#EamScoreConverter", async (t) => {
                         err,
                         new KTDataNotFoundFailure(
                             `Could not find chart for 5.1.1. (SP LEGGENDARIA [v27])`,
-                            "file/csv:eamusement-iidx",
+                            "file/eamusement-iidx-csv",
                             data,
                             converterContext
                         ),

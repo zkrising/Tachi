@@ -1,7 +1,7 @@
 [
     {
         "userID": 1,
-        "importType": "file/csv:eamusement-iidx",
+        "importType": "file/eamusement-iidx-csv",
         "name": "adjective1 adjective2 noun1",
         "sessionID": "Qe7b00261b1d3ba8e5c9ee4e76e77ea9f07d9493b",
         "desc": null,

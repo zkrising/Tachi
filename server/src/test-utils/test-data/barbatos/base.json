@@ -1,0 +1,17 @@
+{
+    "difficulty": 1,
+    "level": 10,
+    "song_id": 1,
+    "max_chain": 50,
+    "critical": 50,
+    "near_total": 30,
+    "near_fast": 20,
+    "near_slow": 10,
+    "score": 9500000,
+    "error": 5,
+    "percent": 81,
+    "did_fail": false,
+    "clear_type": 2,
+    "gauge_type": 0,
+    "is_skill_analyser": false
+}

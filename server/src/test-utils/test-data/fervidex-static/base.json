@@ -1,0 +1,25 @@
+{
+    "name": "AIXXE",
+    "qpro": {
+        "body": 189,
+        "face": 138,
+        "hair": 76,
+        "hand": 145,
+        "head": 0
+    },
+    "scores": {
+        "1000": {
+            "spa": {
+                "clear_type": 4,
+                "ex_score": 1180,
+                "miss_count": 40
+            },
+            "spn": {
+                "clear_type": 7,
+                "ex_score": 158,
+                "miss_count": 0
+            }
+        }
+    },
+    "sp_dan": 15
+}

@@ -1,0 +1,37 @@
+<s3data version="0.1" xmlns="http://iidx.solidstatesquad.com/xml/ns#">
+    <userdata>
+        <id>3</id>
+        <login><![CDATA[zkldi]]></login>
+        <djname><![CDATA[ZKLDI]]></djname>
+    </userdata>
+    <scoredata>
+        <song>
+            <id>187</id>
+            <diff>7</diff>
+            <songname><![CDATA[GAMBOL]]></songname>
+            <artist><![CDATA[SLAKE]]></artist>
+            <genre><![CDATA[BIG BEAT]]></genre>
+            <bpm>174</bpm>
+            <styles>3rd</styles>
+            <rating>1</rating>
+            <notes>137</notes>
+            <exscore>100</exscore>
+            <grade>AA</grade>
+            <djpoints>9</djpoints>
+            <scorebreakdown>
+                <justgreats>50</justgreats>
+                <greats>50</greats>
+                <good>0</good>
+                <bad>0</bad>
+                <poor>4</poor>
+            </scorebreakdown>
+            <mods>
+                <highspeed>2</highspeed>
+                <hidsud>T</hidsud>
+                <ranmir>B</ranmir>
+            </mods>
+            <cleartype>perfect</cleartype>
+            <date>2010-10-19 04:54:22</date>
+        </song>
+    </scoredata>
+</s3data>

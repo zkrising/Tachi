@@ -1,0 +1,17 @@
+[
+    {
+        "music_id": "1",
+        "version_name": "1st style",
+        "music_name": "GAMBOL",
+        "play_type": "SINGLE",
+        "diff_type": "HYPER",
+        "score": "100",
+        "score_percent": "67.5774",
+        "miss_count": "-1",
+        "grade": "A",
+        "clear_type": "FAILED",
+        "clear_type_id": "1",
+        "level": "2",
+        "update_time": "2020-07-06 01:14:54"
+    }
+]

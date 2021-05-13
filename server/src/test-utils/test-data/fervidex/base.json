@@ -1,0 +1,33 @@
+{
+    "bad": 0,
+    "chart": "spn",
+    "clear_type": 1,
+    "combo_break": 6,
+    "dead": {
+        "measure": 18,
+        "note": 40
+    },
+    "entry_id": 1000,
+    "ex_score": 68,
+    "fast": 0,
+    "gauge": [
+        100,
+        50
+    ],
+    "good": 0,
+    "great": 0,
+    "max_combo": 34,
+    "option": {
+        "gauge": "HARD",
+        "range": "SUDDEN_PLUS",
+        "style": "RANDOM"
+    },
+    "pacemaker": {
+        "name": "",
+        "score": 363,
+        "type": "PACEMAKER_A"
+    },
+    "pgreat": 34,
+    "poor": 6,
+    "slow": 0
+}

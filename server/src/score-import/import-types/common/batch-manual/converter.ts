@@ -51,7 +51,9 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 
     let dryScore: DryScore = {
         game: game,
-        service: context.service,
+        service: `${context.service} (${
+            importType === "ir/direct-manual" ? "DIRECT-MANUAL" : "BATCH-MANUAL"
+        })`,
         comment: data.comment ?? null,
         importType,
         timeAchieved: data.timeAchieved ?? null,

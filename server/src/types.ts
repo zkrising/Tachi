@@ -20,7 +20,7 @@ import {
     IIDXEamusementCSVData,
 } from "./score-import/import-types/file/eamusement-iidx-csv/types";
 import { BarbatosScore } from "./score-import/import-types/ir/barbatos/types";
-import { FervidexScore } from "./score-import/import-types/ir/fervidex/types";
+import { FervidexContext, FervidexScore } from "./score-import/import-types/ir/fervidex/types";
 
 declare module "express-session" {
     // Inject additional properties on express-session
@@ -137,7 +137,7 @@ export interface ImportTypeContextMap {
     "file/batch-manual": BatchManualContext;
     "ir/direct-manual": BatchManualContext;
     "ir/barbatos": EmptyObject;
-    "ir/fervidex": EmptyObject;
+    "ir/fervidex": FervidexContext;
     "ir/fervidex-static": EmptyObject;
 }
 

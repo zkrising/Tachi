@@ -1,3 +1,4 @@
+import { version } from "commander";
 import { Difficulties, Game, integer, Playtypes, IDStrings } from "kamaitachi-common";
 import db from "../../db/db";
 
@@ -63,12 +64,19 @@ export function FindDDRChartOnSongHash(
     });
 }
 
+/**
+ * Find a BMS chart on either its md5sum or its sha256sum.
+ * @param hash The md5 or sha256 hash to look for.
+ */
 export function FindBMSChartOnHash(hash: string) {
     return db.charts.bms.findOne({
         $or: [{ "data.hashMD5": hash }, { "data.hashSHA256": hash }],
     });
 }
 
+/**
+ * Find a chart on its in-game-ID, playtype and difficulty.
+ */
 export function FindChartOnInGameID(
     game: Game,
     inGameID: number,
@@ -84,6 +92,30 @@ export function FindChartOnInGameID(
     });
 }
 
+/**
+ * Find a chart on its in-game-ID, playtype, difficulty and version.
+ */
+export function FindChartOnInGameIDVersion(
+    game: Game,
+    inGameID: number,
+    playtype: Playtypes[Game],
+    difficulty: Difficulties[IDStrings],
+    version: string
+) {
+    return db.charts[game].findOne({
+        "data.inGameID": inGameID,
+        versions: version,
+        playtype,
+        difficulty,
+    });
+}
+
+/**
+ * Find an SDVX Chart on its in game ID. This exists to handle
+ * oddities with SDVX difficulties - If "ANY_INF" is sent, it actually
+ * refers to any of INF, GRV, HVN or VVD. This is because some services treat
+ * all of those as the same difficulty, but we do not.
+ */
 export function FindSDVXChartOnInGameID(
     inGameID: number,
     playtype: Playtypes[Game],

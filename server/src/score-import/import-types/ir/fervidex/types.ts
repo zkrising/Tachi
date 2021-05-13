@@ -43,4 +43,15 @@ export interface FervidexScore {
         score?: integer | null;
         type?: string | null; // too lazy to type this and we dont use it.
     };
+
+    "2dx-gsm"?: {
+        EASY: (number | null)[];
+        NORMAL: (number | null)[];
+        HARD: (number | null)[];
+        EX_HARD: (number | null)[];
+    } | null;
+}
+
+export interface FervidexContext {
+    version: string;
 }

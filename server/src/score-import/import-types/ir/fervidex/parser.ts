@@ -2,7 +2,7 @@ import { EmptyObject, KtLogger, ParserFunctionReturnsSync } from "../../../../ty
 import p, { PrudenceSchema } from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { FormatPrError, optNull } from "../../../../common/prudence";
-import { FervidexScore } from "./types";
+import { FervidexContext, FervidexScore } from "./types";
 import { ConverterIRFervidex } from "./converter";
 
 const PR_Fervidex: PrudenceSchema = {
@@ -40,13 +40,50 @@ const PR_Fervidex: PrudenceSchema = {
 
     // we dont use it and we dont care.
     pacemaker: p.optional(p.any),
+
+    "2dx-gsm": p.optional({
+        // @ts-expect-error recursive types error
+        EASY: [p.isBoundedInteger(0, 255)],
+        NORMAL: [p.isBoundedInteger(0, 255)],
+        HARD: [p.isBoundedInteger(0, 255)],
+        EX_HARD: [p.isBoundedInteger(0, 255)],
+    }),
 };
+
+/**
+ * Converts a string of the form LDJ:X:X:X:2020092900 into a game version.
+ * I don't really understand the software model format, so this is lazy.
+ */
+function ParseSoftwareModel(model: string) {
+    if (model.startsWith("LDJ")) {
+        // heroic verse
+        if (model.endsWith("2020092900")) {
+            return "27";
+        }
+
+        // i *really* don't care enough to support rootage or cannonballers.
+        throw new ScoreImportFatalError(400, `Unsupported Software Model ${model}.`);
+    } else if (model.startsWith("P2D")) {
+        // accept anything since this will probably change underfoot a lot.
+        return "inf2020";
+    }
+
+    throw new ScoreImportFatalError(400, `Unsupported Software Model ${model}.`);
+}
+
+interface FerHeaders {
+    model: string;
+}
 
 export function ParseFervidexSingle(
     body: Record<string, unknown>,
+    headers: FerHeaders,
     logger: KtLogger
-): ParserFunctionReturnsSync<FervidexScore, EmptyObject> {
-    let err = p(body, PR_Fervidex);
+): ParserFunctionReturnsSync<FervidexScore, FervidexContext> {
+    let version = ParseSoftwareModel(headers.model);
+
+    // more mods may be added in the future, so lets ignore excess keys.
+    let err = p(body, PR_Fervidex, undefined, { allowExcessKeys: true });
 
     if (err) {
         throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid Fervidex Request?"));
@@ -54,7 +91,7 @@ export function ParseFervidexSingle(
 
     // asserted using prudence.
     return {
-        context: {},
+        context: { version },
         game: "iidx",
         iterable: ([body] as unknown) as FervidexScore[],
         ConverterFunction: ConverterIRFervidex,

@@ -9,9 +9,12 @@ import {
     InvalidScoreFailure,
     KTDataNotFoundFailure,
 } from "../../../framework/score-importing/converter-failures";
-import { FervidexScore } from "./types";
+import { FervidexContext, FervidexScore } from "./types";
 import { Lamps, Grades, Difficulties, Playtypes } from "kamaitachi-common";
-import { FindChartOnInGameID } from "../../../../common/database-lookup/chart";
+import {
+    FindChartOnInGameID,
+    FindChartOnInGameIDVersion,
+} from "../../../../common/database-lookup/chart";
 
 const LAMP_LOOKUP = {
     0: "NO PLAY",
@@ -131,7 +134,7 @@ function SplitFervidexChartRef(ferDif: FervidexScore["chart"]) {
     return { playtype, difficulty };
 }
 
-export const ConverterIRFervidex: ConverterFunction<FervidexScore, EmptyObject> = async (
+export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexContext> = async (
     data,
     context,
     importType,
@@ -139,7 +142,13 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, EmptyObject> 
 ) => {
     let { difficulty, playtype } = SplitFervidexChartRef(data.chart);
 
-    let chart = await FindChartOnInGameID("iidx", data.entry_id, playtype, difficulty);
+    let chart = await FindChartOnInGameIDVersion(
+        "iidx",
+        data.entry_id,
+        playtype,
+        difficulty,
+        context.version
+    );
 
     if (!chart) {
         throw new KTDataNotFoundFailure(
@@ -197,6 +206,9 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, EmptyObject> 
                 maxCombo: data.max_combo,
                 gaugeHistory,
                 gauge,
+                bp: data.bad + data.poor,
+                comboBreak: null,
+                gsm: data["2dx-gsm"],
             },
         },
         scoreMeta: {

@@ -1053,7 +1053,7 @@ interface ScoreMetaLookup {
     "iidx:SP": IIDXSPScoreMeta;
     "iidx:DP": IIDXSPScoreMeta & { random: [RanOptions, RanOptions] | null };
     "popn:9B": Record<string, never>;
-    "sdvx:Single": Record<string, never>;
+    "sdvx:Single": { inSkillAnalyser: boolean | null };
     "usc:Single": Record<string, never>;
     "ddr:SP": Record<string, never>;
     "ddr:DP": Record<string, never>;

@@ -18,7 +18,12 @@ export const fileImportTypes: FileUploadImportTypes[] = [
     "file/batch-manual",
 ];
 
-export const irImportTypes: IRImportTypes[] = ["ir/direct-manual", "ir/barbatos"];
+export const irImportTypes: IRImportTypes[] = [
+    "ir/direct-manual",
+    "ir/barbatos",
+    "ir/fervidex",
+    "ir/fervidex-static",
+];
 
 export const importTypes: ImportTypes[] = [...fileImportTypes, ...irImportTypes];
 

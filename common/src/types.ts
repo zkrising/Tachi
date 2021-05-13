@@ -998,16 +998,7 @@ type RanOptions = "NONRAN" | "RANDOM" | "R-RANDOM" | "S-RANDOM" | "MIRROR";
 
 interface IIDXSPScoreMeta {
     random: RanOptions | null;
-    assist:
-        | "NO ASSIST"
-        | "AUTO SCRATCH"
-        | "5KEYS"
-        | "LEGACY NOTE"
-        | "ASCR + 5KEY"
-        | "ASCR + LEGACY"
-        | "5KEYS + LEGACY"
-        | "FULL ASSIST"
-        | null;
+    assist: "NO ASSIST" | "AUTO SCRATCH" | "LEGACY NOTE" | "FULL ASSIST" | null;
     range: "NONE" | "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+" | null;
     gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX-HARD" | null;
 }

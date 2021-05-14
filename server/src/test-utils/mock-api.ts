@@ -5,10 +5,10 @@ const logger = CreateLogCtx("mock-api.ts");
 
 import server from "../server";
 
-logger.info("Creating Mock Server Connection...");
+logger.verbose("Creating Mock Server Connection...");
 const connection = server.listen(8079);
 
-logger.info("Connecting to Supertest...");
+logger.verbose("Connecting to Supertest...");
 const mockApi = supertest(connection);
 
 export function CloseServerConnection() {

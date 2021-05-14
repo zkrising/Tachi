@@ -68,11 +68,13 @@ export function GenericCalculatePercent(
                 );
             }
 
-            return (
-                (100 * score) /
+            // Yeah, we declare it like this so the below return is actually clear.
+            // eslint-disable-next-line no-case-declarations
+            const MAX =
                 (chart as ChartDocument<"iidx:SP" | "bms:7K" | "bms:14K" | "iidx:DP">).data
-                    .notecount
-            );
+                    .notecount * 2;
+
+            return (100 * score) / MAX;
         default:
             logger.severe(`Invalid game passed of ${game} to GenericCalcPercent.`);
             throw new InternalFailure(`Invalid game passed of ${game} to GenericCalcPercent.`);
@@ -88,7 +90,11 @@ export function CalculateESDForGame(
     playtype: Playtypes[Game],
     percent: number
 ): number | null {
-    if (Object.prototype.hasOwnProperty.call(judgementWindows, game)) {
+    if (
+        Object.prototype.hasOwnProperty.call(judgementWindows, game) &&
+        // @ts-expect-error i know better
+        Object.prototype.hasOwnProperty.call(judgementWindows[game], playtype)
+    ) {
         if (percent > 0.1) {
             // @ts-expect-error i know better
             return ESDCore.CalculateESD(judgementWindows[game][playtype], percent);

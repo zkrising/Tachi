@@ -54,7 +54,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 
     let dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
         game: "iidx",
-        service: "fervidex-static",
+        service: "Fervidex Static",
         comment: null,
         importType: "ir/fervidex-static",
         timeAchieved: null,

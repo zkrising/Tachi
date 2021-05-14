@@ -121,6 +121,33 @@ t.test("POST /api/ir/fervidex/profile/submit", async (t) => {
     t.beforeEach(ResetDBState);
     TestSoftwareModels(cookie);
 
+    let ferStaticBody = GetKTDataJSON("./fervidex-static/base.json");
+
+    t.test("Should accept a fervidex-static body", async (t) => {
+        await db.songs.iidx.remove({});
+        await db.songs.iidx.insert(GetKTDataJSON("./kamaitachi/ktblack-songs-iidx.json"));
+        await db.charts.iidx.remove({});
+        await db.charts.iidx.insert(GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json"));
+
+        let res = await mockApi
+            .post("/api/ir/fervidex/profile/submit")
+            .set("Cookie", cookie)
+            .set("X-Software-Model", "P2D:J:B:A:2020092900")
+            .send(ferStaticBody);
+
+        t.equal(res.body.success, true, "Should be successful");
+
+        t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
+
+        let scores = await db.scores.count({
+            service: "Fervidex Static",
+        });
+
+        t.equal(scores, 3, "Should import 3 scores.");
+
+        t.end();
+    });
+
     t.end();
 });
 

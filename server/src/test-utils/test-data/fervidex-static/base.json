@@ -19,6 +19,13 @@
                 "ex_score": 158,
                 "miss_count": 0
             }
+        },
+        "1001": {
+            "dph": {
+                "clear_type": 3,
+                "ex_score": 15,
+                "miss_count": 1
+            }
         }
     },
     "sp_dan": 15

@@ -130,19 +130,45 @@ export interface TextDocument extends MongoDBDocument {
 export interface ImportTypeDataMap {
     "file/eamusement-iidx-csv": IIDXEamusementCSVData;
     "file/batch-manual": BatchManualScore;
+    "file/solid-state-squad": EmptyObject;
+
     "ir/direct-manual": BatchManualScore;
     "ir/barbatos": BarbatosScore;
     "ir/fervidex": FervidexScore;
     "ir/fervidex-static": FervidexStaticScore;
+    "ir/chunitachi": BatchManualScore;
+    "ir/beatoraja": EmptyObject;
+    "ir/usc": EmptyObject;
+
+    "api/arc-iidx": EmptyObject;
+    "api/arc-sdvx": EmptyObject;
+    "api/arc-jubeat": EmptyObject;
+    "api/flo-iidx": EmptyObject;
+    "api/flo-sdvx": EmptyObject;
+    "api/eag-iidx": EmptyObject;
+    "api/eag-sdvx": EmptyObject;
 }
 
 export interface ImportTypeContextMap {
     "file/eamusement-iidx-csv": IIDXEamusementCSVContext;
     "file/batch-manual": BatchManualContext;
+    "file/solid-state-squad": EmptyObject;
+
     "ir/direct-manual": BatchManualContext;
     "ir/barbatos": EmptyObject;
     "ir/fervidex": FervidexContext;
     "ir/fervidex-static": FervidexStaticContext;
+    "ir/chunitachi": BatchManualContext;
+    "ir/beatoraja": EmptyObject;
+    "ir/usc": EmptyObject;
+
+    "api/arc-iidx": EmptyObject;
+    "api/arc-sdvx": EmptyObject;
+    "api/arc-jubeat": EmptyObject;
+    "api/flo-iidx": EmptyObject;
+    "api/flo-sdvx": EmptyObject;
+    "api/eag-iidx": EmptyObject;
+    "api/eag-sdvx": EmptyObject;
 }
 
 /**

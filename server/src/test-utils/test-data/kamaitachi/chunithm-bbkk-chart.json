@@ -1,0 +1,29 @@
+{
+    "rgcID": null,
+    "chartID": "192b96bdb6150f80ba6412ce02df1249e16c0cb0",
+    "difficulty": "BASIC",
+    "songID": 3,
+    "playtype": "Single",
+    "levelNum": 3,
+    "level": "3",
+    "flags": {
+        "IN BASE GAME": true,
+        "OMNIMIX": true
+    },
+    "data": {
+        "inGameID": 3
+    },
+    "isPrimary": true,
+    "versions": [
+        "chuni",
+        "chuniplus",
+        "air",
+        "airplus",
+        "star",
+        "starplus",
+        "amazon",
+        "amazonplus",
+        "crystal",
+        "crystalplus"
+    ]
+}

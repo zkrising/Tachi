@@ -1,0 +1,14 @@
+{
+    "head": {
+        "game": "chunithm",
+        "service": "Chunitachi"
+    },
+    "body": [{
+        "score": 900000,
+        "lamp": "CLEAR",
+        "matchType": "songTitle",
+        "identifier": "B.B.K.K.B.K.K.",
+        "playtype": "Single",
+        "difficulty": "BASIC"
+    }]
+}

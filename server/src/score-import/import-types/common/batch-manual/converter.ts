@@ -49,15 +49,17 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 
     let grade = GetGradeFromPercent(game, percent);
 
+    let service = context.service;
+
+    if (importType === "ir/direct-manual") {
+        service += " (DIRECT-MANUAL)";
+    } else if (importType === "file/batch-manual") {
+        service += " (BATCH-MANUAL)";
+    }
+
     let dryScore: DryScore = {
         game: game,
-        service: `${context.service} (${
-            importType === "ir/direct-manual"
-                ? "DIRECT-MANUAL"
-                : importType === "file/batch-manual"
-                ? "BATCH-MANUAL"
-                : context.service
-        })`,
+        service,
         comment: data.comment ?? null,
         importType,
         timeAchieved: data.timeAchieved ?? null,

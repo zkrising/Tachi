@@ -11,11 +11,13 @@ import {
     FileUploadImportTypes,
     AnyChartDocument,
     IRImportTypes,
+    APIImportTypes,
 } from "./types";
 
 export const fileImportTypes: FileUploadImportTypes[] = [
     "file/eamusement-iidx-csv",
     "file/batch-manual",
+    "file/solid-state-squad",
 ];
 
 export const irImportTypes: IRImportTypes[] = [
@@ -23,6 +25,19 @@ export const irImportTypes: IRImportTypes[] = [
     "ir/barbatos",
     "ir/fervidex",
     "ir/fervidex-static",
+    "ir/beatoraja",
+    "ir/chunitachi",
+    "ir/usc",
+];
+
+export const apiImportTypes: APIImportTypes[] = [
+    "api/arc-iidx",
+    "api/arc-jubeat",
+    "api/arc-sdvx",
+    "api/eag-iidx",
+    "api/eag-sdvx",
+    "api/flo-iidx",
+    "api/flo-sdvx",
 ];
 
 export const importTypes: ImportTypes[] = [...fileImportTypes, ...irImportTypes];

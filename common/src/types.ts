@@ -1199,12 +1199,27 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
     };
 }
 
-export type FileUploadImportTypes = "file/eamusement-iidx-csv" | "file/batch-manual";
+export type FileUploadImportTypes =
+    | "file/eamusement-iidx-csv"
+    | "file/batch-manual"
+    | "file/solid-state-squad";
+
+export type APIImportTypes =
+    | "api/flo-iidx"
+    | "api/flo-sdvx"
+    | "api/eag-iidx"
+    | "api/eag-sdvx"
+    | "api/arc-iidx"
+    | "api/arc-sdvx"
+    | "api/arc-jubeat";
 
 export type IRImportTypes =
     | "ir/direct-manual"
     | "ir/barbatos"
     | "ir/fervidex"
+    | "ir/usc"
+    | "ir/chunitachi"
+    | "ir/beatoraja"
     | "ir/fervidex-static";
 
 export type ImportTypes = FileUploadImportTypes | IRImportTypes;

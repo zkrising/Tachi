@@ -13,7 +13,7 @@ export function CalculateGitadoraColour(
     };
 }
 
-function GitadoraSkillToColour(sk: number) {
+export function GitadoraSkillToColour(sk: number) {
     if (sk >= 8500) {
         return "rainbow";
     } else if (sk >= 8000) {
@@ -40,11 +40,11 @@ function GitadoraSkillToColour(sk: number) {
         return "green";
     } else if (sk >= 2500) {
         return "yellowgradient";
-    } else if (sk > 2000) {
+    } else if (sk >= 2000) {
         return "yellow";
-    } else if (sk > 1500) {
+    } else if (sk >= 1500) {
         return "orangegradient";
-    } else if (sk > 1000) {
+    } else if (sk >= 1000) {
         return "orange";
     }
 

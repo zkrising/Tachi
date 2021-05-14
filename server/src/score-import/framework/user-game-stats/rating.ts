@@ -45,7 +45,8 @@ export async function CalculateRatings(
     );
 
     let rating = bestRating.reduce((a, r) => a + r.calculatedData.rating, 0) / SCORE_COUNT;
-    let lampRating = bestLampRating.reduce((a, r) => a + r.calculatedData.rating, 0) / SCORE_COUNT;
+    let lampRating =
+        bestLampRating.reduce((a, r) => a + r.calculatedData.lampRating, 0) / SCORE_COUNT;
 
     return { rating, lampRating };
 }
@@ -147,7 +148,7 @@ async function CalculateGitadoraSkill(
     let hotChartIDs = hotCharts.map((e) => e.chartID);
 
     let [bestHotScores, bestScores] = await Promise.all([
-        db.scores.find(
+        db["score-pbs"].find(
             { userID, chartID: { $in: hotChartIDs } },
             {
                 sort: { "calculatedData.rating": -1 },
@@ -157,7 +158,7 @@ async function CalculateGitadoraSkill(
         ),
         // @optimisable
         // $nin is VERY expensive, there might be a better way to do this.
-        db.scores.find(
+        db["score-pbs"].find(
             { userID, chartID: { $nin: hotChartIDs } },
             {
                 sort: { "calculatedData.rating": -1 },

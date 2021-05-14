@@ -146,7 +146,23 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
         t.end();
     });
 
-    t.skip("Should resolve for the ddr songHash if the matchType is ddrSongHash", async (t) => {
+    t.test("Should reject if ddrSongHash is called without game = ddr", async (t) => {
+        t.rejects(
+            ResolveMatchTypeToKTData(
+                deepmerge(baseBatchManualScore, {
+                    matchType: "ddrSongHash",
+                    playtype: "SP",
+                    difficulty: "DIFFICULT",
+                }),
+                context,
+                importType,
+                logger
+            ),
+            new InvalidScoreFailure("Cannot use ddrSongHash lookup on iidx.") as any
+        );
+    });
+
+    t.test("Should resolve for the ddr songHash if the matchType is ddrSongHash", async (t) => {
         const PUTY_ID = "DQlQ1DlPbq900oqdOo8l0d6I1lIOl99l";
 
         let res = await ResolveMatchTypeToKTData(
@@ -154,9 +170,9 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
                 matchType: "ddrSongHash",
                 identifier: PUTY_ID,
                 playtype: "SP",
-                difficulty: "EXPERT",
+                difficulty: "DIFFICULT",
             }),
-            context,
+            deepmerge(context, { game: "ddr" }),
             importType,
             logger
         );
@@ -164,7 +180,10 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
         t.hasStrict(
             res,
             // @todo add puty's details here
-            { song: { id: 1 }, chart: {} } as any,
+            {
+                song: { id: 10 },
+                chart: { chartID: "48024d36bbe76c9fed09c3ffdc19412925d1efd3" },
+            } as any,
             "Should return the right song and chart."
         );
 
@@ -177,11 +196,11 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
                         playtype: "SP",
                         difficulty: "EXPERT",
                     }),
-                    context,
+                    deepmerge(context, { game: "ddr" }),
                     importType,
                     logger
                 ),
-            ktdWrap("Cannot find chart with hash", "ddr")
+            ktdWrap("Cannot find chart for songHash", "ddr")
         );
 
         t.end();

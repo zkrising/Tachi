@@ -1,0 +1,38 @@
+[
+    {
+        "rgcID": null,
+        "chartID": "48024d36bbe76c9fed09c3ffdc19412925d1efd3",
+        "difficulty": "DIFFICULT",
+        "songID": 10,
+        "playtype": "SP",
+        "levelNum": 6,
+        "level": "6",
+        "flags": {
+            "IN BASE GAME": true,
+            "N-1": true
+        },
+        "data": {
+            "inGameID": "puty",
+            "songHash": "DQlQ1DlPbq900oqdOo8l0d6I1lIOl99l"
+        },
+        "isPrimary": true,
+        "versions": [
+            "2",
+            "3",
+            "4",
+            "5",
+            "max",
+            "max2",
+            "extreme",
+            "snova",
+            "snova2",
+            "x",
+            "x2",
+            "x3",
+            "2013",
+            "2014",
+            "a",
+            "a20"
+        ]
+    }
+]

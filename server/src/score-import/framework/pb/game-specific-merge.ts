@@ -48,6 +48,11 @@ export async function IIDXMergeFn(
 
     pbDoc.composedFrom.other = [{ name: "Best BP", scoreID: bpPB.scoreID }];
 
+    // Update lamp related iidx-specific info from the lampPB.
+    pbDoc.scoreData.hitMeta.gsm = lampPB.scoreData.hitMeta.gsm;
+    pbDoc.scoreData.hitMeta.gauge = lampPB.scoreData.hitMeta.gauge;
+    pbDoc.scoreData.hitMeta.gaugeHistory = lampPB.scoreData.hitMeta.gaugeHistory;
+
     return true;
 }
 

@@ -539,7 +539,7 @@ interface ImportErrContent {
 }
 
 export interface ClassDelta {
-    game: Game;
+    set: string;
     playtype: Playtypes[Game];
     old: string | null;
     new: string;

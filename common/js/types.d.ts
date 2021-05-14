@@ -376,7 +376,7 @@ interface ImportErrContent {
     message: string | null;
 }
 export interface ClassDelta {
-    game: Game;
+    set: string;
     playtype: Playtypes[Game];
     old: string | null;
     new: string;

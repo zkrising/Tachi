@@ -790,7 +790,7 @@ interface IIDXSPScoreMeta {
     random: RanOptions | null;
     assist: "NO ASSIST" | "AUTO SCRATCH" | "LEGACY NOTE" | "FULL ASSIST" | null;
     range: "NONE" | "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+" | null;
-    gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX-HARD" | null;
+    gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX HARD" | null;
 }
 interface BMS7KScoreMeta {
     random: RanOptions | null;

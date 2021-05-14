@@ -1,5 +1,5 @@
 import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "kamaitachi-common";
-import { gameClassValues, ClassData } from "kamaitachi-common/js/game-classes";
+import { gameClassValues } from "kamaitachi-common/js/game-classes";
 import deepmerge from "deepmerge";
 import { KtLogger } from "../../../types";
 import { CalculateGitadoraColour, CalculateJubeatColour } from "./builtin-class-handlers";

@@ -128,7 +128,8 @@ const CUSTOM_RATING_FUNCTIONS = {
         },
     },
     gitadora: {
-        Gita: CalculateGitadoraSkill,
+        Gita: { skill: CalculateGitadoraSkill },
+        Dora: { skill: CalculateGitadoraSkill },
     },
 };
 
@@ -138,10 +139,39 @@ async function CalculateGitadoraSkill(
     userID: integer,
     logger: KtLogger
 ) {
-    // let hotCharts = fetchfolder("gitadora_hot");
-    // select best 25 scores on hotcharts
-    // select best 25 scores not on hot charts ("gitadora_nothot?")
-    // sum.
+    let hotCharts = await db.charts.gitadora.find(
+        { "flags.HOT N-1": true },
+        { projection: { chartID: 1 } }
+    );
+
+    let hotChartIDs = hotCharts.map((e) => e.chartID);
+
+    let [bestHotScores, bestScores] = await Promise.all([
+        db.scores.find(
+            { userID, chartID: { $in: hotChartIDs } },
+            {
+                sort: { "calculatedData.rating": -1 },
+                limit: 25,
+                projection: { "calculatedData.rating": 1 },
+            }
+        ),
+        // @optimisable
+        // $nin is VERY expensive, there might be a better way to do this.
+        db.scores.find(
+            { userID, chartID: { $nin: hotChartIDs } },
+            {
+                sort: { "calculatedData.rating": -1 },
+                limit: 25,
+                projection: { "calculatedData.rating": 1 },
+            }
+        ),
+    ]);
+
+    let skill = 0;
+    skill += bestHotScores.reduce((a, r) => a + r.calculatedData.rating, 0);
+    skill += bestScores.reduce((a, r) => a + r.calculatedData.rating, 0);
+
+    return skill;
 }
 
 export async function CalculateCustomRatings(

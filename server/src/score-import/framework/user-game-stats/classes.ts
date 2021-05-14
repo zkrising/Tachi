@@ -147,20 +147,20 @@ export function CalculateClassDeltas(
             } else if (isGreater === null) {
                 // @todo REDISIPC-New Class Achieved
                 deltas.push({
-                    game,
+                    set: setName,
                     playtype,
                     old: null,
                     new: classes[setName],
                 });
+            } else {
+                // @todo REDISIPC-Class Improved!
+                deltas.push({
+                    set: setName,
+                    playtype,
+                    old: userGameStats!.classes[setName],
+                    new: classes[setName],
+                });
             }
-
-            // @todo REDISIPC-Class Improved!
-            deltas.push({
-                game,
-                playtype,
-                old: userGameStats!.classes[setName],
-                new: classes[setName],
-            });
         } catch (err) {
             logger.error(err);
         }

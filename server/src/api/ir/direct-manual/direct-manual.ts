@@ -16,9 +16,11 @@ const logger = CreateLogCtx("direct-manual.ts");
 router.post("/import", RequireLoggedIn, async (req, res) => {
     const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
 
+    let intent = req.header("X-User-Intent");
+
     let responseData = await ExpressWrappedScoreImportMain(
         userDoc,
-        true,
+        !!intent,
         "ir/direct-manual",
         (logger) => ParseDirectManual(req.body, logger)
     );

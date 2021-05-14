@@ -3,7 +3,7 @@ import { FileUploadImportTypes } from "kamaitachi-common";
 import { fileImportTypes } from "kamaitachi-common/js/config";
 import multer, { MulterError } from "multer";
 import Prudence from "prudence";
-import { GetUserWithID, GetUserWithIDGuaranteed } from "../../common/user";
+import { GetUserWithIDGuaranteed } from "../../common/user";
 import CreateLogCtx from "../../logger";
 import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";

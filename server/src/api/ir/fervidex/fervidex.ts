@@ -48,7 +48,7 @@ router.post("/profile/submit", RequireLoggedIn, RequireInf2ModelHeader, async (r
 
     let responseData = await ExpressWrappedScoreImportMain(
         userDoc,
-        true,
+        false,
         "ir/fervidex-static",
         (logger) => ParseFervidexStatic(req.body, headers, logger)
     );

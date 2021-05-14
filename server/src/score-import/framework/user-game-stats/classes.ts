@@ -22,10 +22,15 @@ type ClassHandlerMap = {
 };
 
 /**
- * Describes the "Default" class handlers for a game, I.E. ones that are
+ * Describes the static class handlers for a game, I.E. ones that are
  * always meant to be called when new scores are found.
+ *
+ * These can be calculated without any external (i.e. user/api-provided) data.
+ *
+ * A good example of this would be, say, jubeat's colours - the boundaries depend entirely
+ * on your profile skill level, which is known at the time this function is called.
  */
-const DEFAULT_CLASS_HANDLERS: ClassHandlerMap = {
+const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
     iidx: null,
     bms: null,
     chunithm: null,
@@ -65,19 +70,20 @@ const DEFAULT_CLASS_HANDLERS: ClassHandlerMap = {
  * for retrieving information about a class. This returns the same thing as this function, and it is merged with the
  * defaults.
  */
-export async function CalculateUGSClasses(
+export async function UpdateUGSClasses(
     game: Game,
     playtype: Playtypes[Game],
     userID: integer,
     customRatings: Record<string, number>,
-    ImportTypeClassResolveFn: ClassHandler | null,
+    ClassHandler: ClassHandler | null,
     logger: KtLogger
 ): Promise<Record<string, string>> {
     let classes: Record<string, string> = {};
 
-    if (DEFAULT_CLASS_HANDLERS[game]) {
-        // @ts-expect-error This one sucks - I need to look into a better way of representing these types
-        classes = await DEFAULT_CLASS_HANDLERS[game][playtype](
+    // @ts-expect-error This one sucks - I need to look into a better way of representing these types
+    if (STATIC_CLASS_HANDLERS[game] && STATIC_CLASS_HANDLERS[game][playtype]) {
+        // @ts-expect-error see above
+        classes = await STATIC_CLASS_HANDLERS[game][playtype](
             game,
             playtype,
             userID,
@@ -85,12 +91,11 @@ export async function CalculateUGSClasses(
         );
     }
 
-    if (ImportTypeClassResolveFn) {
-        logger.debug(`Applying ClassResolveFn for ${game} ${playtype}.`);
-        classes = deepmerge(
-            classes,
-            await ImportTypeClassResolveFn(game, playtype, userID, customRatings)
-        );
+    if (ClassHandler) {
+        logger.debug(`Calling custom class handler.`);
+        let customClasses = await ClassHandler(game, playtype, userID, customRatings);
+
+        classes = deepmerge(customClasses, classes);
     }
 
     return classes;

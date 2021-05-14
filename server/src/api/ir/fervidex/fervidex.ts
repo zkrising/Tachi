@@ -93,6 +93,10 @@ router.post("/score/submit", RequireLoggedIn, ValidateModelHeader, async (req, r
  * @name /api/ir/fervidex/class/submit
  */
 router.post("/class/submit", RequireLoggedIn, ValidateModelHeader, async (req, res) => {
+    if (!req.body.cleared) {
+        return res.status(200).json({ success: true, description: "No Update Made", body: {} });
+    }
+
     throw new Error("Unimplemented.");
 });
 

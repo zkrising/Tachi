@@ -18,6 +18,7 @@ import { UpdateUsersGamePlaytypeStats } from "./user-game-stats/update-ugs";
 import db from "../../db/db";
 import { UpdateUsersGoals } from "./goals/goals";
 import { UpdateUsersMilestones } from "./milestones/milestones";
+import { ClassHandler } from "./user-game-stats/classes";
 
 /**
  * Performs a Kamaitachi Score Import.
@@ -48,7 +49,7 @@ export default async function ScoreImportMain<D, C>(
     // We get an iterable from the provided parser function, alongside some context and a converter function.
     // This iterable does not have to be an array - it's anything that's iterable, like a generator.
     const parseTimeStart = process.hrtime.bigint();
-    const { iterable, ConverterFunction, context, game } = await InputParser(logger);
+    const { iterable, ConverterFunction, context, game, classHandler } = await InputParser(logger);
 
     const parseTime = GetMilisecondsSince(parseTimeStart);
 
@@ -112,7 +113,7 @@ export default async function ScoreImportMain<D, C>(
     // --- 6. Game Stats ---
     // This function updates the users "stats" for this game - such as their profile rating or their classes.
     const ugsTimeStart = process.hrtime.bigint();
-    let classDeltas = await UpdateUsersGameStats(game, playtypes, user.id, logger);
+    let classDeltas = await UpdateUsersGameStats(game, playtypes, user.id, classHandler, logger);
 
     const ugsTime = GetMilisecondsSince(ugsTimeStart);
 
@@ -202,12 +203,13 @@ async function UpdateUsersGameStats(
     game: Game,
     playtypes: Playtypes[Game][],
     userID: integer,
+    classHandler: ClassHandler | null,
     logger: KtLogger
 ) {
     let promises = [];
 
     for (const pt of playtypes) {
-        promises.push(UpdateUsersGamePlaytypeStats(game, pt, userID, null, logger));
+        promises.push(UpdateUsersGamePlaytypeStats(game, pt, userID, classHandler, logger));
     }
 
     const r = await Promise.all(promises);

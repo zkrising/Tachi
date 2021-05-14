@@ -11,6 +11,7 @@ import {
 } from "kamaitachi-common";
 import { Logger, LeveledLogMethod } from "winston";
 import { ConverterFailure } from "./score-import/framework/score-importing/converter-failures";
+import { ClassHandler } from "./score-import/framework/user-game-stats/classes";
 import {
     BatchManualContext,
     BatchManualScore,
@@ -83,6 +84,7 @@ export interface ParserFunctionReturnsAsync<D, C> {
     context: C;
     game: Game;
     ConverterFunction: ConverterFunction<D, C>;
+    classHandler: ClassHandler | null;
 }
 
 export interface ParserFunctionReturnsSync<D, C> {
@@ -90,6 +92,7 @@ export interface ParserFunctionReturnsSync<D, C> {
     context: C;
     game: Game;
     ConverterFunction: ConverterFunction<D, C>;
+    classHandler: ClassHandler | null;
 }
 
 export type ScorePlaytypeMap = Partial<Record<Playtypes[Game], ScoreDocument[]>>;

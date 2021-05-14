@@ -5,14 +5,14 @@
 import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "kamaitachi-common";
 import db from "../../../db/db";
 import { KtLogger } from "../../../types";
-import { CalculateClassDeltas, CalculateUGSClasses, ClassHandler } from "./classes";
+import { CalculateClassDeltas, UpdateUGSClasses, ClassHandler } from "./classes";
 import { CalculateRatings, CalculateCustomRatings } from "./rating";
 
 export async function UpdateUsersGamePlaytypeStats(
     game: Game,
     playtype: Playtypes[Game],
     userID: integer,
-    customClassFn: ClassHandler | null,
+    classHandler: ClassHandler | null,
     logger: KtLogger
 ): Promise<ClassDelta[]> {
     let { rating, lampRating } = await CalculateRatings(game, playtype, userID, logger);
@@ -28,12 +28,12 @@ export async function UpdateUsersGamePlaytypeStats(
 
     logger.debug(`Calculating UGSClasses...`);
 
-    let classes = await CalculateUGSClasses(
+    let classes = await UpdateUGSClasses(
         game,
         playtype,
         userID,
         customRatings,
-        customClassFn,
+        classHandler,
         logger
     );
 

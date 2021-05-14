@@ -5,6 +5,11 @@ import CreateLogCtx from "../logger";
 
 const logger = CreateLogCtx("class.ts");
 
+export function GetClassSetsForGamePT(game: Game, playtype: Playtypes[Game]) {
+    // @ts-expect-error its confused about game+pt permutations
+    return gameClassValues[game]?.[playtype] as Record<string, ClassData> | undefined;
+}
+
 /**
  * Returns the provided class if it is greater than the one in userGameStats
  * @returns The provided class if it is greater, NULL if there is nothing
@@ -17,8 +22,14 @@ export function ReturnClassIfGreater(
     newClass: string,
     userGameStats?: UserGameStats | null
 ) {
-    // @ts-expect-error It's complaining about Game+PT permutations instead of Game->PT permutations.
-    let gcv: ClassData = gameClassValues[game][playtype][setName];
+    let classSets = GetClassSetsForGamePT(game, playtype);
+
+    if (!classSets) {
+        logger.error(`${game} ${playtype} Does not have any classes.`);
+        throw new Error(`${game} ${playtype} Does not have any classes.`);
+    }
+
+    let gcv: ClassData = classSets[setName];
 
     if (gcv === undefined) {
         logger.error(`Invalid classKey ${setName}. Cannot process class.`);

@@ -64,8 +64,8 @@ export async function SDVXMergeFn(
     logger: KtLogger
 ): Promise<boolean> {
     // @optimisable
-    // This is a re-fetch, but it's too much effort to pass the chart all
-    // the way back up here :(
+    // This is a re-fetch, but it's difficult to pass the chart all
+    // the way down here due to how chartIDs (set) works. :(
     let chart = await FindChartWithChartID("sdvx", pbDoc.chartID);
 
     if (!chart) {

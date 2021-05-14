@@ -95,5 +95,6 @@ export function ParseFervidexSingle(
         game: "iidx",
         iterable: ([body] as unknown) as FervidexScore[],
         ConverterFunction: ConverterIRFervidex,
+        classHandler: null,
     };
 }

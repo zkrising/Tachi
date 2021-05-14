@@ -78,5 +78,6 @@ export function ParseFervidexStatic(
         game: "iidx",
         iterable: scores,
         ConverterFunction: ConverterIRFervidexStatic,
+        classHandler: null, //@todo
     };
 }

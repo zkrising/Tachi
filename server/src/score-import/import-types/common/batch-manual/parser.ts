@@ -172,5 +172,6 @@ export function ParseBatchManualFromObject(
         },
         iterable: batchManual.body,
         ConverterFunction: ConverterBatchManual,
+        classHandler: null,
     };
 }

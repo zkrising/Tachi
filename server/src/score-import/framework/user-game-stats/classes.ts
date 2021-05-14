@@ -3,6 +3,7 @@ import { gameClassValues, ClassData } from "kamaitachi-common/js/game-classes";
 import deepmerge from "deepmerge";
 import { KtLogger } from "../../../types";
 import { CalculateGitadoraColour, CalculateJubeatColour } from "./builtin-class-handlers";
+import { ReturnClassIfGreater } from "../../../common/class";
 
 export interface ClassHandler {
     (
@@ -111,13 +112,12 @@ export async function UpdateUGSClasses(
 export function CalculateClassDeltas(
     game: Game,
     playtype: Playtypes[Game],
-    userID: integer,
     classes: Record<string, string>,
     userGameStats: UserGameStats | null,
     logger: KtLogger
 ): ClassDelta[] {
     // @ts-expect-error It's complaining about Game+PT permutations instead of Game->PT permutations.
-    let gcv = gameClassValues[game][playtype] as ClassData;
+    let gcv = gameClassValues[game]?.[playtype];
 
     if (Object.keys(classes).length !== 0 && !gcv) {
         logger.severe(
@@ -132,52 +132,37 @@ export function CalculateClassDeltas(
 
     let deltas = [];
 
-    for (const type in classes) {
-        const gameClass = classes[type];
-        let classInfo = gcv[gameClass];
-
-        if (!classInfo) {
-            logger.severe(
-                `Class ${type}:${gameClass} was assigned, but this does not exist for ${game} ${playtype}? Unassigning this and continuing.`
-            );
-
-            delete classes[type];
-            continue;
-        }
-
-        if (!userGameStats) {
-            // @todo REDISIPC-New Class Achieved
-            deltas.push({
+    for (const setName in classes) {
+        try {
+            let isGreater = ReturnClassIfGreater(
                 game,
                 playtype,
-                old: null,
-                new: gameClass,
-            });
-        } else {
-            let pastClass = userGameStats.classes[type];
-            let pastVal = gcv[pastClass];
+                setName,
+                classes[setName],
+                userGameStats
+            );
 
-            let thisIndex = classInfo.index;
-
-            let pastIndex;
-            if (!pastVal) {
-                logger.severe(
-                    `UserID ${userID} has an invalid class of ${type} - This does not exist in GCV. Ignoring??`
-                );
-                pastIndex = -1;
-            } else {
-                pastIndex = pastVal.index;
-            }
-
-            if (thisIndex > pastIndex) {
-                // @todo REDISIPC-Class Improved!
+            if (isGreater === false) {
+                continue;
+            } else if (isGreater === null) {
+                // @todo REDISIPC-New Class Achieved
                 deltas.push({
                     game,
                     playtype,
-                    old: userGameStats.classes[pastClass],
-                    new: gameClass,
+                    old: null,
+                    new: classes[setName],
                 });
             }
+
+            // @todo REDISIPC-Class Improved!
+            deltas.push({
+                game,
+                playtype,
+                old: userGameStats!.classes[setName],
+                new: classes[setName],
+            });
+        } catch (err) {
+            logger.error(err);
         }
     }
 

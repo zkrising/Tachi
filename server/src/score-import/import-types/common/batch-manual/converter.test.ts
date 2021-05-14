@@ -332,8 +332,8 @@ t.test("#ConverterFn", (t) => {
                 scoreData: {
                     lamp: "HARD CLEAR",
                     score: 500,
-                    grade: "B",
-                    // percent: 63, -- ish, FPA is hard.
+                    grade: "E",
+                    // percent: 31.5, -- ish, FPA is hard.
                     hitData: {},
                     hitMeta: {},
                 },
@@ -349,12 +349,12 @@ t.test("#ConverterFn", (t) => {
             () =>
                 ConverterBatchManual(
                     // @ts-expect-error broken deepmerge
-                    deepmerge(baseBatchManualScore, { score: 1000 }),
+                    deepmerge(baseBatchManualScore, { score: 2000 }),
                     { game: "iidx", service: "foo", version: null },
                     importType,
                     logger
                 ),
-            { message: /Invalid score of 1000, produced percent of 127/u } as any
+            { message: /Invalid score of 2000, produced percent of 127/u } as any
         );
 
         t.end();

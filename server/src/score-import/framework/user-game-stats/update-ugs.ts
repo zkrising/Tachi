@@ -41,19 +41,9 @@ export async function UpdateUsersGamePlaytypeStats(
 
     logger.debug(`Calculating Class Deltas...`);
 
-    let deltas = CalculateClassDeltas(game, playtype, userID, classes, userGameStats, logger);
+    let deltas = CalculateClassDeltas(game, playtype, classes, userGameStats, logger);
 
     logger.debug(`Had ${deltas.length} deltas.`);
-
-    let newStats: UserGameStats = {
-        game,
-        playtype,
-        userID,
-        rating,
-        lampRating,
-        customRatings,
-        classes,
-    };
 
     if (userGameStats) {
         logger.debug(`Updated player gamestats for ${game} (${playtype})`);
@@ -73,6 +63,16 @@ export async function UpdateUsersGamePlaytypeStats(
             }
         );
     } else {
+        let newStats: UserGameStats = {
+            game,
+            playtype,
+            userID,
+            rating,
+            lampRating,
+            customRatings,
+            classes,
+        };
+
         logger.info(`Created new player gamestats for ${game} (${playtype})`);
         await db["game-stats"].insert(newStats);
     }

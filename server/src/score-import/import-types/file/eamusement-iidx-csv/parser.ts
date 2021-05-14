@@ -270,6 +270,7 @@ function ParseEamusementCSV(
         context,
         ConverterFunction: ConverterFn,
         game: "iidx",
+        classHandler: null,
     };
 }
 

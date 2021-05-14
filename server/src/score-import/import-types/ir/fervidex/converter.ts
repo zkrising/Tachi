@@ -24,7 +24,7 @@ export const FERVIDEX_LAMP_LOOKUP = {
     7: "FULL COMBO",
 };
 
-function KtchifyAssist(
+export function KtchifyAssist(
     assist: FervidexScore["option"]["assist"]
 ): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["assist"] {
     switch (assist) {
@@ -42,7 +42,7 @@ function KtchifyAssist(
     }
 }
 
-function KtchifyGauge(
+export function KtchifyGauge(
     gauge: FervidexScore["option"]["gauge"]
 ): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["gauge"] {
     switch (gauge) {
@@ -51,7 +51,7 @@ function KtchifyGauge(
         case "EASY":
             return "EASY";
         case "EX_HARD":
-            return "EX-HARD";
+            return "EX HARD";
         case "HARD":
             return "HARD";
         case null:
@@ -60,7 +60,7 @@ function KtchifyGauge(
     }
 }
 
-function KtchifyRange(
+export function KtchifyRange(
     gauge: FervidexScore["option"]["range"]
 ): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["range"] {
     switch (gauge) {
@@ -80,7 +80,7 @@ function KtchifyRange(
     }
 }
 
-function KtchifyRandom(
+export function KtchifyRandom(
     gauge: FervidexScore["option"]["style"]
 ): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["random"] {
     switch (gauge) {

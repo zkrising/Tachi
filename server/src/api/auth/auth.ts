@@ -66,7 +66,7 @@ router.post(
 
             logger.verbose("Captcha validated!");
         } else {
-            logger.info("Skipped captcha check because not in production.");
+            logger.verbose("Skipped captcha check because not in production.");
         }
 
         let requestedUser = await PRIVATEINFO_GetUserCaseInsensitive(req.body.username);

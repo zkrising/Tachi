@@ -6,7 +6,7 @@ import { KtLogger } from "../../../types";
 /**
  * Update a user's progress on all of their set goals.
  */
-export async function UpdateUsersGoals(
+export async function GetAndUpdateUsersGoals(
     game: Game,
     userID: integer,
     chartIDs: Set<string>,
@@ -21,10 +21,10 @@ export async function UpdateUsersGoals(
 
     logger.verbose(`Found ${goals.length} relevant goals.`);
 
-    return ProcessGoalsForUser(goals, userGoalsMap, userID, logger);
+    return UpdateGoalsForUser(goals, userGoalsMap, userID, logger);
 }
 
-export async function ProcessGoalsForUser(
+export async function UpdateGoalsForUser(
     goals: GoalDocument[],
     userGoalsMap: Map<string, UserGoalDocument>,
     userID: integer,
@@ -101,8 +101,8 @@ export async function ProcessGoal(
         // if the users progress hasn't changed AND the outOf hasn't
         // then nothing has changed.
 
-        // the outOf check is to account for things such as folder sizes changing underfoot.
-        // ... which would always require an update.
+        // the outOf check is to account for things such as folder sizes changing underfoot
+        // which would always require an update.
         return;
     }
 

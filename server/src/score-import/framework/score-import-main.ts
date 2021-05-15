@@ -16,7 +16,7 @@ import { GetMilisecondsSince } from "../../common/hrtime";
 import { ProcessPBs } from "./pb/process-pbs";
 import { UpdateUsersGamePlaytypeStats } from "./user-game-stats/update-ugs";
 import db from "../../db/db";
-import { UpdateUsersGoals } from "./goals/goals";
+import { GetAndUpdateUsersGoals } from "./goals/goals";
 import { UpdateUsersMilestones } from "./milestones/milestones";
 import { ClassHandler } from "./user-game-stats/classes";
 
@@ -122,7 +122,7 @@ export default async function ScoreImportMain<D, C>(
     // --- 7. Goals ---
     // Evaluate and update the users goals. This returns information about goals that have changed.
     const goalTimeStart = process.hrtime.bigint();
-    let goalInfo = await UpdateUsersGoals(game, user.id, chartIDs, logger);
+    let goalInfo = await GetAndUpdateUsersGoals(game, user.id, chartIDs, logger);
 
     const goalTime = GetMilisecondsSince(goalTimeStart);
 

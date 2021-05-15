@@ -4,11 +4,11 @@ import ResetDBState from "../../../test-utils/reset-db-state";
 import {
     GetRelevantFolderGoals,
     GetRelevantGoals,
-    ProcessGoalsForUser,
-    UpdateUsersGoals,
+    UpdateGoalsForUser,
+    GetAndUpdateUsersGoals,
     ProcessGoal,
 } from "./goals";
-import { GoalDocument, FolderDocument } from "kamaitachi-common";
+import { GoalDocument, UserGoalDocument } from "kamaitachi-common";
 import { CreateFolderChartLookup } from "../../../common/folder";
 import {
     GetKTDataJSON,
@@ -164,13 +164,182 @@ t.test("#GetRelevantGoals", (t) => {
     t.end();
 });
 
-t.todo("#ProcessGoalsForUser", (t) => {
+t.test("#UpdateGoalsForUser", (t) => {
     t.beforeEach(ResetDBState);
+
+    const baseGoalDocument: GoalDocument = {
+        charts: {
+            type: "single" as const,
+            data: Testing511SPA.chartID,
+        },
+        createdBy: 1,
+        game: "iidx",
+        goalID: "FAKE_GOAL_ID",
+        playtype: "SP",
+        timeAdded: 0,
+        title: "get > 1 ex score on some other folder.",
+        criteria: {
+            mode: "single",
+            value: 1,
+            key: "scoreData.score",
+        },
+    };
+
+    const baseUserGoalDocument: UserGoalDocument = {
+        achieved: false,
+        game: "iidx",
+        playtype: "SP",
+        goalID: "FAKE_GOAL_ID",
+        lastInteraction: null,
+        outOf: 1,
+        outOfHuman: "1",
+        progress: 0,
+        progressHuman: "0",
+        timeAchieved: null,
+        timeSet: 0,
+        userID: 1,
+    };
+
+    t.test("Should correctly update goals when user achieves goal.", async (t) => {
+        await db.goals.insert(baseGoalDocument);
+        delete baseGoalDocument._id;
+
+        await db["user-goals"].insert(baseUserGoalDocument);
+        // we dont delete _id here because updategoalsforuser
+        // depends on usergoal _id
+
+        await db["score-pbs"].insert(TestingIIDXSPScorePB);
+        delete TestingIIDXSPScorePB._id;
+
+        let ugMap = new Map([["FAKE_GOAL_ID", baseUserGoalDocument]]);
+
+        let res = await UpdateGoalsForUser([baseGoalDocument], ugMap, 1, logger);
+
+        t.strictSame(res, [
+            {
+                goalID: "FAKE_GOAL_ID",
+                old: {
+                    progress: 0,
+                    progressHuman: "0",
+                    outOf: 1,
+                    outOfHuman: "1",
+                    achieved: false,
+                },
+                new: {
+                    progress: 1479,
+                    progressHuman: "1479",
+                    outOf: 1,
+                    outOfHuman: "1",
+                    achieved: true,
+                },
+            },
+        ]);
+
+        let r = await db["user-goals"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
+
+        t.hasStrict(
+            r,
+            {
+                progress: 1479,
+                progressHuman: "1479",
+                outOf: 1,
+                outOfHuman: "1",
+                achieved: true,
+            } as any,
+            "Should update goals in the database."
+        );
+
+        delete baseUserGoalDocument._id;
+
+        t.end();
+    });
+
+    t.test("Should correctly update goals when user does not achieve goal.", async (t) => {
+        await db.goals.insert(baseGoalDocument);
+        delete baseGoalDocument._id;
+
+        await db["user-goals"].insert(baseUserGoalDocument);
+        // we dont delete _id here because updategoalsforuser
+        // depends on usergoal _id
+
+        await db["score-pbs"].insert(deepmerge(TestingIIDXSPScorePB, { scoreData: { score: 0 } }));
+
+        let ugMap = new Map([["FAKE_GOAL_ID", baseUserGoalDocument]]);
+
+        let res = await UpdateGoalsForUser([baseGoalDocument], ugMap, 1, logger);
+
+        t.strictSame(res, [
+            {
+                goalID: "FAKE_GOAL_ID",
+                old: {
+                    progress: 0,
+                    progressHuman: "0",
+                    outOf: 1,
+                    outOfHuman: "1",
+                    achieved: false,
+                },
+                new: {
+                    progress: 0,
+                    progressHuman: "0",
+                    outOf: 1,
+                    outOfHuman: "1",
+                    achieved: false,
+                },
+            },
+        ]);
+
+        let r = await db["user-goals"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
+
+        t.hasStrict(
+            r,
+            {
+                progress: 0,
+                progressHuman: "0",
+                outOf: 1,
+                outOfHuman: "1",
+                achieved: false,
+            } as any,
+            "Should update goals in the database."
+        );
+
+        delete baseUserGoalDocument._id;
+
+        t.end();
+    });
+
+    t.test("Should return [] if no data is to be changed.", async (t) => {
+        let res = await UpdateGoalsForUser([], new Map(), 1, logger);
+
+        t.strictSame(res, []);
+
+        t.end();
+    });
+
+    t.test("Should handle (skip) goals if no usergoal is set.", async (t) => {
+        let res = await UpdateGoalsForUser([baseGoalDocument], new Map(), 1, logger);
+
+        t.strictSame(res, []);
+
+        t.end();
+    });
+
+    t.test("Should handle (skip) invalid goals.", async (t) => {
+        let res = await UpdateGoalsForUser(
+            [deepmerge(baseGoalDocument, { charts: { type: "INVALID" } })],
+            new Map([["FAKE_GOAL_ID", baseUserGoalDocument]]),
+            1,
+            logger
+        );
+
+        t.strictSame(res, []);
+
+        t.end();
+    });
 
     t.end();
 });
 
-t.todo("#UpdateUsersGoals", (t) => {
+t.todo("#GetAndUpdateUsersGoals", (t) => {
     t.beforeEach(ResetDBState);
 
     t.end();

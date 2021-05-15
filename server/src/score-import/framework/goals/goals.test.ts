@@ -255,18 +255,23 @@ t.test("#UpdateGoalsForUser", (t) => {
     });
 
     t.test("Should correctly update goals when user does not achieve goal.", async (t) => {
-        await db.goals.insert(baseGoalDocument);
-        delete baseGoalDocument._id;
+        const goal = deepmerge(baseGoalDocument, { criteria: { value: 2 } });
+        await db.goals.insert(goal);
 
-        await db["user-goals"].insert(baseUserGoalDocument);
+        let userGoal = (deepmerge(baseUserGoalDocument, {
+            outOf: 2,
+            outOfHuman: "2",
+        }) as unknown) as UserGoalDocument;
+
+        await db["user-goals"].insert(userGoal);
         // we dont delete _id here because updategoalsforuser
         // depends on usergoal _id
 
-        await db["score-pbs"].insert(deepmerge(TestingIIDXSPScorePB, { scoreData: { score: 0 } }));
+        await db["score-pbs"].insert(deepmerge(TestingIIDXSPScorePB, { scoreData: { score: 1 } }));
 
-        let ugMap = new Map([["FAKE_GOAL_ID", baseUserGoalDocument]]);
+        let ugMap = new Map([["FAKE_GOAL_ID", userGoal]]);
 
-        let res = await UpdateGoalsForUser([baseGoalDocument], ugMap, 1, logger);
+        let res = await UpdateGoalsForUser([goal], ugMap, 1, logger);
 
         t.strictSame(res, [
             {
@@ -274,15 +279,15 @@ t.test("#UpdateGoalsForUser", (t) => {
                 old: {
                     progress: 0,
                     progressHuman: "0",
-                    outOf: 1,
-                    outOfHuman: "1",
+                    outOf: 2,
+                    outOfHuman: "2",
                     achieved: false,
                 },
                 new: {
-                    progress: 0,
-                    progressHuman: "0",
-                    outOf: 1,
-                    outOfHuman: "1",
+                    progress: 1,
+                    progressHuman: "1",
+                    outOf: 2,
+                    outOfHuman: "2",
                     achieved: false,
                 },
             },
@@ -293,10 +298,10 @@ t.test("#UpdateGoalsForUser", (t) => {
         t.hasStrict(
             r,
             {
-                progress: 0,
-                progressHuman: "0",
-                outOf: 1,
-                outOfHuman: "1",
+                progress: 1,
+                progressHuman: "1",
+                outOf: 2,
+                outOfHuman: "2",
                 achieved: false,
             } as any,
             "Should update goals in the database."

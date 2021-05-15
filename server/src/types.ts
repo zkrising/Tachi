@@ -134,6 +134,8 @@ export interface ImportTypeDataMap {
     "file/eamusement-iidx-csv": IIDXEamusementCSVData;
     "file/batch-manual": BatchManualScore;
     "file/solid-state-squad": EmptyObject;
+    "file/mer-iidx": EmptyObject;
+    "file/pli-iidx-csv": EmptyObject;
 
     "ir/direct-manual": BatchManualScore;
     "ir/barbatos": BarbatosScore;
@@ -156,6 +158,8 @@ export interface ImportTypeContextMap {
     "file/eamusement-iidx-csv": IIDXEamusementCSVContext;
     "file/batch-manual": BatchManualContext;
     "file/solid-state-squad": EmptyObject;
+    "file/mer-iidx": EmptyObject;
+    "file/pli-iidx-csv": EmptyObject;
 
     "ir/direct-manual": BatchManualContext;
     "ir/barbatos": EmptyObject;

@@ -9,6 +9,8 @@ exports.fileImportTypes = [
     "file/eamusement-iidx-csv",
     "file/batch-manual",
     "file/solid-state-squad",
+    "file/mer-iidx",
+    "file/pli-iidx-csv",
 ];
 exports.irImportTypes = [
     "ir/direct-manual",

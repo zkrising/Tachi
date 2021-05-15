@@ -1202,7 +1202,9 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
 export type FileUploadImportTypes =
     | "file/eamusement-iidx-csv"
     | "file/batch-manual"
-    | "file/solid-state-squad";
+    | "file/solid-state-squad"
+    | "file/mer-iidx"
+    | "file/pli-iidx-csv";
 
 export type APIImportTypes =
     | "api/flo-iidx"

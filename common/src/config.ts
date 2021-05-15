@@ -18,6 +18,8 @@ export const fileImportTypes: FileUploadImportTypes[] = [
     "file/eamusement-iidx-csv",
     "file/batch-manual",
     "file/solid-state-squad",
+    "file/mer-iidx",
+    "file/pli-iidx-csv",
 ];
 
 export const irImportTypes: IRImportTypes[] = [

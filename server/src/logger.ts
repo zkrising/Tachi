@@ -1,6 +1,4 @@
 import winston, { format, transports } from "winston";
-import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
-import { FormatUserDoc } from "./common/user";
 import { KtLogger } from "./types";
 
 const level = process.env.LOG_LEVEL ?? "info";
@@ -148,24 +146,6 @@ export function AppendLogCtx(context: string, lg: KtLogger): KtLogger {
     let newContext = [...lg.defaultMeta.context, context];
 
     return lg.child({ context: newContext }) as KtLogger;
-}
-
-export function CreateScoreLogger(
-    user: PublicUserDocument,
-    importID: string,
-    importType: ImportTypes
-): KtLogger {
-    const meta = {
-        context: ["Score Import", importType, FormatUserDoc(user)],
-        importID,
-    };
-
-    // used so appendLogCtx works
-    const childLogger = rootLogger.child(meta);
-
-    childLogger.defaultMeta = meta;
-
-    return childLogger as KtLogger;
 }
 
 export const Transports = tports;

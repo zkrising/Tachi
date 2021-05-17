@@ -4,7 +4,7 @@ import CreateLogCtx from "../../../../logger";
 import { Testing511Song, Testing511SPA } from "../../../../test-utils/test-data";
 import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
-import escapeStringRegexp from "../../../../common/escape-string-regexp";
+import EscapeStringRegexp from "../../../../common/escape-string-regexp";
 import { CloseMongoConnection } from "../../../../db/db";
 import { Game } from "kamaitachi-common";
 import ResetDBState from "../../../../test-utils/reset-db-state";
@@ -27,7 +27,7 @@ const context = {
 
 const ktdWrap = (msg: string, game: Game = "iidx", version = null): any => ({
     importType: "file/batch-manual",
-    message: new RegExp(escapeStringRegexp(msg), "u"),
+    message: new RegExp(EscapeStringRegexp(msg), "u"),
     converterContext: { game, service: "foo", version },
     data: {}, // any under t.match rules.
 });

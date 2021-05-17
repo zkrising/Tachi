@@ -4,6 +4,7 @@ import {
     CreateInviteCode,
     AddNewInvite,
     ReinstateInvite,
+    ValidateCaptcha,
 } from "./auth";
 import t from "tap";
 import db, { CloseMongoConnection } from "../db/db";
@@ -11,6 +12,7 @@ import { PrivateUserDocument } from "kamaitachi-common";
 import { prAssert } from "../test-utils/asserts";
 import Prudence from "prudence";
 import ResetDBState from "../test-utils/reset-db-state";
+import { MockFetch } from "../test-utils/mock-fetch";
 
 t.test("#CreateAPIKey", (t) => {
     t.match(
@@ -107,6 +109,22 @@ t.test("#AddNewInvite", (t) => {
 
         t.match(result.code, /^[0-9a-f]{40}$/u, "Invite code should be a 40 character hex string.");
     });
+
+    t.end();
+});
+
+t.test("#ValidateCaptcha", async (t) => {
+    t.equal(
+        await ValidateCaptcha("200", "bar", MockFetch({ status: 200 })),
+        true,
+        "Validates captcha when status return is 200"
+    );
+
+    t.equal(
+        await ValidateCaptcha("400", "bar", MockFetch({ status: 400 })),
+        false,
+        "Invalidates captcha when status return is not 200"
+    );
 
     t.end();
 });

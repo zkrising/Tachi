@@ -3,7 +3,7 @@
 // which really really messes with a lot of the ecosystem.
 // shim.
 
-export default function escapeStringRegexp(string: string) {
+export default function EscapeStringRegexp(string: string) {
     if (typeof string !== "string") {
         throw new TypeError("Expected a string");
     }

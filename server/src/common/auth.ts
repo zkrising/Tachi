@@ -11,6 +11,8 @@ import { GetNextCounterValue } from "./db";
 import { InsertResult } from "monk";
 import CreateLogCtx from "../logger";
 import { FormatUserDoc } from "./user";
+import nodeFetch from "../fetch";
+import { CAPTCHA_SECRET_KEY } from "../secrets";
 
 const logger = CreateLogCtx("auth.ts");
 
@@ -135,4 +137,20 @@ export async function AddNewUser(
     };
 
     return db.users.insert(userDoc);
+}
+
+export async function ValidateCaptcha(
+    recaptcha: string,
+    remoteAddr: string | undefined,
+    fetch = nodeFetch
+) {
+    let r = await fetch(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${CAPTCHA_SECRET_KEY}&response=${recaptcha}&remoteip=${remoteAddr}`
+    );
+
+    if (r.status !== 200) {
+        logger.verbose(`GCaptcha response ${r.status}, ${r.body}`);
+    }
+
+    return r.status === 200;
 }

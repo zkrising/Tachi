@@ -6,8 +6,8 @@ import {
     PasswordCompare,
     ReinstateInvite,
     ValidatePassword,
+    ValidateCaptcha,
 } from "../../common/auth";
-import { ValidateCaptcha } from "../../common/captcha";
 import {
     FormatUserDoc,
     GetUserCaseInsensitive,

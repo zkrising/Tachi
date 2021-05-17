@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Express } from "express";
 import "express-async-errors";
 import CreateLogCtx from "./logger";
 import expressSession from "express-session";
@@ -26,7 +26,7 @@ const userSessionMiddleware = expressSession({
     },
 });
 
-const app = express();
+const app: Express = express();
 
 app.use(userSessionMiddleware);
 

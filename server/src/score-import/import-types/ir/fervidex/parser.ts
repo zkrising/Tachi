@@ -4,6 +4,8 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import { FormatPrError, optNull } from "../../../../common/prudence";
 import { FervidexContext, FervidexScore } from "./types";
 import { ConverterIRFervidex } from "./converter";
+import { ParseEA3SoftID } from "../../../../common/util";
+import { EXT_HEROIC_VERSE, MODEL_IIDX, MODEL_INFINITAS_2 } from "../../../../constants/ea3id";
 
 const PR_Fervidex: PrudenceSchema = {
     chart: p.isIn("spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"),
@@ -58,21 +60,23 @@ const PR_Fervidex: PrudenceSchema = {
  * Converts a string of the form LDJ:X:X:X:2020092900 into a game version.
  * I don't really understand the software model format, so this is lazy.
  */
-export function ParseSoftwareModel(model: string) {
-    if (model.startsWith("LDJ")) {
-        // heroic verse
-        if (model.endsWith("2020092900")) {
-            return "27";
+export function SoftwareIDToVersion(model: string) {
+    try {
+        let data = ParseEA3SoftID(model);
+
+        if (data.model === MODEL_INFINITAS_2) {
+            return "inf2020";
+        } else if (data.model === MODEL_IIDX) {
+            // only HV. everything else is disabled deliberately.
+            if (data.ext === EXT_HEROIC_VERSE) {
+                return "27";
+            }
         }
 
-        // i *really* don't care enough to support rootage or cannonballers.
         throw new ScoreImportFatalError(400, `Unsupported Software Model ${model}.`);
-    } else if (model.startsWith("P2D")) {
-        // accept anything since this will probably change underfoot a lot.
-        return "inf2020";
+    } catch (err) {
+        throw new ScoreImportFatalError(400, `Unsupported Software Model ${model}`);
     }
-
-    throw new ScoreImportFatalError(400, `Unsupported Software Model ${model}.`);
 }
 
 export interface FerHeaders {
@@ -84,7 +88,7 @@ export function ParseFervidexSingle(
     headers: FerHeaders,
     logger: KtLogger
 ): ParserFunctionReturnsSync<FervidexScore, FervidexContext> {
-    let version = ParseSoftwareModel(headers.model);
+    let version = SoftwareIDToVersion(headers.model);
 
     // more mods may be added in the future, so lets ignore excess keys.
     let err = p(body, PR_Fervidex, undefined, { allowExcessKeys: true });

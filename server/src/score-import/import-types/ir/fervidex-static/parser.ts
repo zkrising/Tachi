@@ -4,7 +4,7 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import { FormatPrError } from "../../../../common/prudence";
 import { ConverterIRFervidexStatic } from "./converter";
 import { FervidexStaticContext, FervidexStaticScore } from "./types";
-import { FerHeaders, ParseSoftwareModel } from "../fervidex/parser";
+import { FerHeaders, SoftwareIDToVersion } from "../fervidex/parser";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 
 const PR_FervidexStatic: PrudenceSchema = {
@@ -18,7 +18,7 @@ export function ParseFervidexStatic(
     headers: FerHeaders,
     logger: KtLogger
 ): ParserFunctionReturnsSync<FervidexStaticScore, FervidexStaticContext> {
-    let version = ParseSoftwareModel(headers.model);
+    let version = SoftwareIDToVersion(headers.model);
 
     let staticScores = body?.scores;
 

@@ -2,7 +2,7 @@ import { Router, RequestHandler } from "express";
 import { UpdateClassIfGreater } from "../../../common/class";
 import { GetUserWithIDGuaranteed } from "../../../common/user";
 import { ParseEA3SoftID } from "../../../common/util";
-import { INF2_MODEL, REV_2DXBMS } from "../../../constants/ea3id";
+import { MODEL_INFINITAS_2, REV_2DXBMS } from "../../../constants/ea3id";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../score-import/framework/express-wrapper";
 import { ParseFervidexStatic } from "../../../score-import/import-types/ir/fervidex-static/parser";
@@ -24,7 +24,7 @@ const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
     try {
         let softID = ParseEA3SoftID(swModel);
 
-        if (softID.model !== INF2_MODEL) {
+        if (softID.model !== MODEL_INFINITAS_2) {
             return res.status(400).send({
                 success: false,
                 description: "This endpoint is only available for INF2 clients.",

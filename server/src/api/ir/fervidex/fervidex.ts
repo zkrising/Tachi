@@ -1,7 +1,7 @@
 import { Router, RequestHandler } from "express";
 import { GetUserWithIDGuaranteed } from "../../../common/user";
 import { ParseEA3SoftID } from "../../../common/util";
-import { IIDX_AC_MODEL, INF2_MODEL, REV_2DXBMS } from "../../../constants/ea3id";
+import { INF2_MODEL, REV_2DXBMS } from "../../../constants/ea3id";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../score-import/framework/express-wrapper";
 import { ParseFervidexStatic } from "../../../score-import/import-types/ir/fervidex-static/parser";
@@ -9,7 +9,7 @@ import { ParseFervidexSingle } from "../../../score-import/import-types/ir/fervi
 
 const router: Router = Router({ mergeParams: true });
 
-const RequireInf2ModelHeader: RequestHandler = async (req, res, next) => {
+const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
     let swModel = req.header("X-Software-Model");
 
     if (!swModel) {
@@ -38,7 +38,7 @@ const RequireInf2ModelHeader: RequestHandler = async (req, res, next) => {
     return next();
 };
 
-const ValidateModelHeader: RequestHandler = async (req, res, next) => {
+const ValidateModelHeader: RequestHandler = (req, res, next) => {
     let swModel = req.header("X-Software-Model");
 
     if (!swModel) {

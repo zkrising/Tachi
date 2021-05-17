@@ -1,4 +1,5 @@
 import { Router, RequestHandler } from "express";
+import { UpdateClassIfGreater } from "../../../common/class";
 import { GetUserWithIDGuaranteed } from "../../../common/user";
 import { ParseEA3SoftID } from "../../../common/util";
 import { INF2_MODEL, REV_2DXBMS } from "../../../constants/ea3id";
@@ -6,6 +7,7 @@ import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../score-import/framework/express-wrapper";
 import { ParseFervidexStatic } from "../../../score-import/import-types/ir/fervidex-static/parser";
 import { ParseFervidexSingle } from "../../../score-import/import-types/ir/fervidex/parser";
+import { Playtypes } from "kamaitachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -90,6 +92,32 @@ router.post("/profile/submit", RequireLoggedIn, RequireInf2ModelHeader, async (r
         (logger) => ParseFervidexStatic(req.body, headers, logger)
     );
 
+    if (req.body.sp_dan || req.body.sp_dan === 0) {
+        let classVal = FERVIDEX_COURSE_LOOKUP[req.body.sp_dan];
+
+        if (!classVal) {
+            return res.status(400).json({
+                success: false,
+                description: `Invalid courseID of ${req.body.sp_dan}.`,
+            });
+        }
+
+        await UpdateClassIfGreater(req.session.ktchi!.userID, "iidx", "SP", "dan", classVal);
+    }
+
+    if (req.body.dp_dan || req.body.dp_dan === 0) {
+        let classVal = FERVIDEX_COURSE_LOOKUP[req.body.dp_dan];
+
+        if (!classVal) {
+            return res.status(400).json({
+                success: false,
+                description: `Invalid courseID of ${req.body.dp_dan}.`,
+            });
+        }
+
+        await UpdateClassIfGreater(req.session.ktchi!.userID, "iidx", "DP", "dan", classVal);
+    }
+
     return res.status(responseData.statusCode).json(responseData.body);
 });
 
@@ -123,6 +151,28 @@ router.post("/score/submit", RequireLoggedIn, ValidateModelHeader, async (req, r
     return res.status(responseData.statusCode).json(responseData.body);
 });
 
+const FERVIDEX_COURSE_LOOKUP = [
+    "7kyu",
+    "6kyu",
+    "5kyu",
+    "4kyu",
+    "3kyu",
+    "2kyu",
+    "1kyu",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "chuuden",
+    "kaiden",
+];
+
 /**
  * Submits the result of a class to Kamaitachi. This contains the dan played
  * and whether it was achieved.
@@ -134,7 +184,30 @@ router.post("/class/submit", RequireLoggedIn, ValidateModelHeader, async (req, r
         return res.status(200).json({ success: true, description: "No Update Made.", body: {} });
     }
 
-    throw new Error("Unimplemented.");
+    let classVal = FERVIDEX_COURSE_LOOKUP[req.body.course_id];
+
+    if (!classVal) {
+        return res.status(400).json({
+            success: false,
+            description: `Invalid courseID of ${req.body.course_id}.`,
+        });
+    }
+
+    // is 0 or 1.
+    let playtype: Playtypes["iidx"] = req.body.playstyle ? "SP" : "DP";
+
+    let r = await UpdateClassIfGreater(
+        req.session.ktchi!.userID,
+        "iidx",
+        playtype,
+        "dan",
+        classVal
+    );
+
+    return res.status(200).json({
+        success: true,
+        description: r === false ? "Dan unchanged." : "Dan changed!",
+    });
 });
 
 export default router;

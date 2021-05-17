@@ -71,9 +71,9 @@ export async function UpdateClassIfGreater(
     game: Game,
     playtype: Playtypes[Game],
     classKey: string,
-    newClass: string,
-    userGameStats?: UserGameStats
+    newClass: string
 ) {
+    let userGameStats = await db["game-stats"].findOne({ userID, game, playtype });
     let isGreater = ReturnClassIfGreater(game, playtype, classKey, newClass, userGameStats);
 
     if (isGreater === false) {

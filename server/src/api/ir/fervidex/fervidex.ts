@@ -53,7 +53,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
     try {
         let softID = ParseEA3SoftID(swModel);
 
-        if (softID.rev !== REV_2DXBMS) {
+        if (softID.rev === REV_2DXBMS) {
             return res.status(400).send({
                 success: false,
                 description: "2DX_BMS is not supported.",

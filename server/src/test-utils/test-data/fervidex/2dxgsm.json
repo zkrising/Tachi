@@ -8,6 +8,8 @@
         "note": 40
     },
     "entry_id": 1000,
+    "custom": false,
+    "chart_sha256": "asdfasdf",
     "ex_score": 68,
     "fast": 0,
     "gauge": [

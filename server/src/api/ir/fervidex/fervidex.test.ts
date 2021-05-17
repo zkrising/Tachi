@@ -46,15 +46,6 @@ function TestSoftwareModels(cookie: string[]) {
         res = await mockApi
             .post("/api/ir/fervidex/score/submit")
             .set("Cookie", cookie)
-            // 2DXtra
-            .set("X-Software-Model", "LDJ:J:B:X:2020092900")
-            .send(GetKTDataJSON("./fervidex/base.json"));
-
-        t.equal(res.body.success, false, "Should reject 2DXTra clients");
-
-        res = await mockApi
-            .post("/api/ir/fervidex/score/submit")
-            .set("Cookie", cookie)
             // BMS-iidx
             .set("X-Software-Model", "LDJ:J:B:Z:2020092900")
             .send(GetKTDataJSON("./fervidex/base.json"));

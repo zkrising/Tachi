@@ -1,5 +1,7 @@
 import { Router, RequestHandler } from "express";
 import { GetUserWithIDGuaranteed } from "../../../common/user";
+import { ParseEA3SoftID } from "../../../common/util";
+import { IIDX_AC_MODEL, INF2_MODEL, REV_2DXBMS } from "../../../constants/ea3id";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../score-import/framework/express-wrapper";
 import { ParseFervidexStatic } from "../../../score-import/import-types/ir/fervidex-static/parser";
@@ -10,10 +12,26 @@ const router: Router = Router({ mergeParams: true });
 const RequireInf2ModelHeader: RequestHandler = async (req, res, next) => {
     let swModel = req.header("X-Software-Model");
 
-    if (!swModel || !swModel.startsWith("P2D:J:B:A")) {
-        return res.status(400).send({
+    if (!swModel) {
+        return res.status(400).json({
             success: false,
-            description: "This endpoint is only available for INF2 clients.",
+            description: `Invalid X-Software-Model.`,
+        });
+    }
+
+    try {
+        let softID = ParseEA3SoftID(swModel);
+
+        if (softID.model !== INF2_MODEL) {
+            return res.status(400).send({
+                success: false,
+                description: "This endpoint is only available for INF2 clients.",
+            });
+        }
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            description: `Invalid X-Software-Model.`,
         });
     }
 
@@ -23,8 +41,27 @@ const RequireInf2ModelHeader: RequestHandler = async (req, res, next) => {
 const ValidateModelHeader: RequestHandler = async (req, res, next) => {
     let swModel = req.header("X-Software-Model");
 
-    if (!swModel || swModel.startsWith("LDJ:J:B:X") || swModel.startsWith("LDJ:J:B:Z")) {
-        return res.status(400).send({ success: false, description: "Invalid X-Software-Model." });
+    if (!swModel) {
+        return res.status(400).json({
+            success: false,
+            description: `Invalid X-Software-Model.`,
+        });
+    }
+
+    try {
+        let softID = ParseEA3SoftID(swModel);
+
+        if (softID.rev !== REV_2DXBMS) {
+            return res.status(400).send({
+                success: false,
+                description: "2DX_BMS is not supported.",
+            });
+        }
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            description: `Invalid X-Software-Model.`,
+        });
     }
 
     return next();

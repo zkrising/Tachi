@@ -25,7 +25,7 @@ export interface FervidexScore {
     gauge: [integer];
     ghost: [integer];
 
-    dead: {
+    dead?: {
         measure?: integer | null;
         note?: integer | null;
     };

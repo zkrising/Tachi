@@ -1,4 +1,5 @@
 import t from "tap";
+import { CloseMongoConnection } from "./db/db";
 import CreateLogCtx, { Transports } from "./logger";
 
 t.test("Logger Tests", (t) => {
@@ -20,3 +21,5 @@ t.test("Logger Tests", (t) => {
 
     t.end();
 });
+
+t.teardown(CloseMongoConnection);

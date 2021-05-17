@@ -7,8 +7,6 @@
         "measure": 18,
         "note": 40
     },
-    "custom": false,
-    "chart_sha256": "asdfasdf",
     "entry_id": 1000,
     "ex_score": 68,
     "fast": 0,
@@ -35,5 +33,11 @@
     },
     "pgreat": 34,
     "poor": 6,
-    "slow": 0
+    "slow": 0,
+    "2dx-gsm": {
+        "EASY": [0, 10],
+        "NORMAL": [0, 20],
+        "HARD": [20, 0],
+        "EX_HARD": [10, 0]
+    }
 }

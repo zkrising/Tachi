@@ -1,4 +1,3 @@
-import { version } from "commander";
 import { Difficulties, Game, integer, Playtypes, IDStrings } from "kamaitachi-common";
 import db from "../../db/db";
 
@@ -97,6 +96,46 @@ export function FindChartOnInGameID(
 }
 
 /**
+ * Finds a non-custom chart on its in-game-ID, playtype and difficulty.
+ * This explicitly ignores 2dxtra charts, and is necessary to use for iidx to disambiguate.
+ */
+export function FindIIDXChartOnInGameID(
+    inGameID: number,
+    playtype: Playtypes[Game],
+    difficulty: Difficulties[IDStrings]
+) {
+    // @todo throw an error if this is called with a game that doesn't
+    // support InGameID.
+    return db.charts.iidx.findOne({
+        "data.inGameID": inGameID,
+        "flags.2dxtra": false,
+        playtype,
+        difficulty,
+    });
+}
+
+/**
+ * Finds a non-custom chart on its in-game-ID, playtype and difficulty.
+ * This explicitly ignores 2dxtra charts, and is necessary to use for iidx to disambiguate.
+ */
+export function FindIIDXChartOnInGameIDVersion(
+    inGameID: number,
+    playtype: Playtypes[Game],
+    difficulty: Difficulties[IDStrings],
+    version: string
+) {
+    // @todo throw an error if this is called with a game that doesn't
+    // support InGameID.
+    return db.charts.iidx.findOne({
+        "data.inGameID": inGameID,
+        "flags.2dxtra": false,
+        playtype,
+        difficulty,
+        versions: version,
+    });
+}
+
+/**
  * Find a chart on its in-game-ID, playtype, difficulty and version.
  */
 export function FindChartOnInGameIDVersion(
@@ -111,6 +150,15 @@ export function FindChartOnInGameIDVersion(
         versions: version,
         playtype,
         difficulty,
+    });
+}
+
+/**
+ * Finds an IIDX chart on its 2dxtra hash, which is the sha256 of the .1 buffer.
+ */
+export function FindIIDXChartWith2DXtraHash(hash: string) {
+    return db.charts.iidx.findOne({
+        "data.hashSHA256": hash,
     });
 }
 

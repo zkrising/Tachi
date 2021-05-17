@@ -1,5 +1,5 @@
 import { KtLogger, ParserFunctionReturnsSync } from "../../../../types";
-import p, { PrudenceSchema } from "prudence";
+import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { FormatPrError, optNull } from "../../../../common/prudence";
 import { FervidexContext, FervidexScore } from "./types";
@@ -8,6 +8,8 @@ import { ConverterIRFervidex } from "./converter";
 const PR_Fervidex: PrudenceSchema = {
     chart: p.isIn("spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"),
     entry_id: p.isPositiveInteger,
+    chart_sha256: "string",
+    custom: "boolean",
 
     pgreat: p.isPositiveInteger,
     great: p.isPositiveInteger,
@@ -18,16 +20,18 @@ const PR_Fervidex: PrudenceSchema = {
     slow: p.isPositiveInteger,
     fast: p.isPositiveInteger,
     max_combo: p.isPositiveInteger,
+    combo_break: p.isPositiveInteger,
 
     ex_score: p.isPositiveInteger,
     clear_type: p.isBoundedInteger(0, 7),
 
     gauge: [p.isBoundedInteger(0, 255)],
+    ghost: [p.isBoundedInteger(0, 100)],
 
-    dead: {
+    dead: p.optional(({
         measure: optNull(p.isPositiveInteger),
         note: optNull(p.isPositiveInteger),
-    },
+    } as unknown) as ValidSchemaValue),
 
     option: {
         gauge: optNull(p.isIn("ASSISTED_EASY", "EASY", "HARD", "EX_HARD")),
@@ -39,7 +43,7 @@ const PR_Fervidex: PrudenceSchema = {
     },
 
     // we dont use it and we dont care.
-    pacemaker: p.optional(p.any),
+    pacemaker: p.any,
 
     "2dx-gsm": p.optional({
         // @ts-expect-error recursive types error

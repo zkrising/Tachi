@@ -1,6 +1,7 @@
 import t from "tap";
 import { CreateImportLoggerAndID } from "./import-logger";
 import { PublicUserDocument } from "kamaitachi-common";
+import { CloseMongoConnection } from "../../../db/db";
 
 t.test("#CreateImportLoggerAndID", (t) => {
     let { importID, logger } = CreateImportLoggerAndID(
@@ -17,3 +18,5 @@ t.test("#CreateImportLoggerAndID", (t) => {
 
     t.end();
 });
+
+t.teardown(CloseMongoConnection);

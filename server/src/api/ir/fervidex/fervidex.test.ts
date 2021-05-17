@@ -101,6 +101,26 @@ t.test("POST /api/ir/fervidex/score/submit", async (t) => {
         t.end();
     });
 
+    t.test("Should import a valid score with 2dx-gsm", async (t) => {
+        let res = await mockApi
+            .post("/api/ir/fervidex/score/submit")
+            .set("Cookie", cookie)
+            .set("X-Software-Model", "LDJ:J:B:A:2020092900")
+            .send(GetKTDataJSON("./fervidex/2dxgsm.json"));
+
+        t.equal(res.body.success, true, "Should be successful");
+
+        t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
+
+        let scores = await db.scores.count({
+            service: "Fervidex",
+        });
+
+        t.equal(scores, 1, "Should import 1 score.");
+
+        t.end();
+    });
+
     t.test("Should reject an invalid body", async (t) => {
         let res = await mockApi
             .post("/api/ir/fervidex/score/submit")

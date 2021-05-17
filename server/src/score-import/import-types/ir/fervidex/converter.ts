@@ -11,7 +11,10 @@ import {
 } from "../../../framework/score-importing/converter-failures";
 import { FervidexContext, FervidexScore } from "./types";
 import { Lamps, Grades, Difficulties, Playtypes } from "kamaitachi-common";
-import { FindChartOnInGameIDVersion } from "../../../../common/database-lookup/chart";
+import {
+    FindIIDXChartOnInGameIDVersion,
+    FindIIDXChartWith2DXtraHash,
+} from "../../../../common/database-lookup/chart";
 
 export const FERVIDEX_LAMP_LOOKUP = {
     0: "NO PLAY",
@@ -139,13 +142,17 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 ) => {
     let { difficulty, playtype } = SplitFervidexChartRef(data.chart);
 
-    let chart = await FindChartOnInGameIDVersion(
-        "iidx",
-        data.entry_id,
-        playtype,
-        difficulty,
-        context.version
-    );
+    let chart;
+    if (data.custom) {
+        chart = await FindIIDXChartWith2DXtraHash(data.chart_sha256);
+    } else {
+        chart = await FindIIDXChartOnInGameIDVersion(
+            data.entry_id,
+            playtype,
+            difficulty,
+            context.version
+        );
+    }
 
     if (!chart) {
         throw new KTDataNotFoundFailure(
@@ -204,7 +211,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
                 gaugeHistory,
                 gauge,
                 bp: data.bad + data.poor,
-                comboBreak: null,
+                comboBreak: data.combo_break,
                 gsm: data["2dx-gsm"],
             },
         },

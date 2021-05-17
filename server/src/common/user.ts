@@ -122,3 +122,12 @@ export function ResolveUser(usernameOrID: string) {
         }
     );
 }
+
+/**
+ * Returns a formatted string indicating the user. This is used for logging.
+ * (This is not in user.ts to avoid a circular reference issue with logger.ts<->db.ts)
+ * @param userdoc The user document to format.
+ */
+export function FormatUserDoc(userdoc: PublicUserDocument) {
+    return `${userdoc.username} (#${userdoc.id})`;
+}

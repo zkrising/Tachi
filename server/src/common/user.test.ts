@@ -2,7 +2,8 @@ import t from "tap";
 import { CloseMongoConnection } from "../db/db";
 import { PRUDENCE_PRIVATE_USER, PRUDENCE_PUBLIC_USER } from "../db/schemas";
 import { prAssert } from "../test-utils/asserts";
-import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive } from "./user";
+import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive, FormatUserDoc } from "./user";
+import { PublicUserDocument } from "kamaitachi-common";
 
 t.test("#GetUserCaseInsensitive", (t) => {
     t.test("Should return the user for an exact username", async (t) => {
@@ -70,6 +71,16 @@ t.test("#PRIVATEINFO_GetUserCaseInsensitive", (t) => {
 
         t.equal(result, null, "Should return null");
     });
+
+    t.end();
+});
+
+t.test("#FormatUserDoc", (t) => {
+    t.equal(
+        FormatUserDoc({ username: "zkldi", id: 123 } as PublicUserDocument),
+        "zkldi (#123)",
+        "Should format a user document into username #id format."
+    );
 
     t.end();
 });

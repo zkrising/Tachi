@@ -8,8 +8,12 @@ import {
     ValidatePassword,
 } from "../../common/auth";
 import { ValidateCaptcha } from "../../common/captcha";
-import { FormatUserDoc } from "../../common/format-user";
-import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive } from "../../common/user";
+import {
+    FormatUserDoc,
+    GetUserCaseInsensitive,
+    PRIVATEINFO_GetUserCaseInsensitive,
+} from "../../common/user";
+
 import db from "../../db/db";
 import CreateLogCtx from "../../logger";
 import prValidate from "../../middleware/prudence-validate";

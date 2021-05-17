@@ -3,7 +3,7 @@ import { FindChartWithChartID } from "../../../common/database-lookup/chart";
 import db from "../../../db/db";
 import { KtLogger } from "../../../types";
 import { CalculateVF4, CalculateVF5 } from "../calculated-data/game-specific-stats";
-import { InternalFailure } from "../score-importing/converter-failures";
+import { InternalFailure } from "../common/converter-failures";
 
 export async function IIDXMergeFn(
     pbDoc: PBScoreDocument<"iidx:SP" | "iidx:DP">,

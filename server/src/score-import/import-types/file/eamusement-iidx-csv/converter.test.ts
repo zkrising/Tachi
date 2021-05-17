@@ -11,7 +11,7 @@ import {
     ConverterFailure,
     InvalidScoreFailure,
     KTDataNotFoundFailure,
-} from "../../../framework/score-importing/converter-failures";
+} from "../../../framework/common/converter-failures";
 
 const logger = CreateLogCtx("converter.test.ts");
 

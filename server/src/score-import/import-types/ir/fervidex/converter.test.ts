@@ -4,7 +4,7 @@ import db, { CloseMongoConnection } from "../../../../db/db";
 import CreateLogCtx from "../../../../logger";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../test-utils/test-data";
-import { InternalFailure } from "../../../framework/score-importing/converter-failures";
+import { InternalFailure } from "../../../framework/common/converter-failures";
 import {
     ConverterIRFervidex,
     SplitFervidexChartRef,

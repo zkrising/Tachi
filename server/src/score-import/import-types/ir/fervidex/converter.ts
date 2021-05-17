@@ -8,7 +8,7 @@ import {
     InternalFailure,
     InvalidScoreFailure,
     KTDataNotFoundFailure,
-} from "../../../framework/score-importing/converter-failures";
+} from "../../../framework/common/converter-failures";
 import { FervidexContext, FervidexScore } from "./types";
 import { Lamps, Grades, Difficulties, Playtypes } from "kamaitachi-common";
 import {

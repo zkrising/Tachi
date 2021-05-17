@@ -30,6 +30,7 @@ specifiers:
   express-request-mock: ^3.1.0
   express-session: ^1.17.1
   fast-json-stable-hash: ^1.0.2
+  fast-xml-parser: ^3.19.0
   kamaitachi-common: github:zkldi/Kamaitachi-common
   mongodb: ^3.6.6
   monk: ^7.3.4
@@ -60,6 +61,7 @@ dependencies:
   express-async-errors: 3.1.1_express@4.17.1
   express-session: 1.17.1
   fast-json-stable-hash: 1.0.2
+  fast-xml-parser: 3.19.0
   kamaitachi-common: github.com/zkldi/Kamaitachi-common/945bbea5c20656b1428461207b430b2a130b2c28
   mongodb: 3.6.6
   monk: 7.3.4
@@ -1888,6 +1890,11 @@ packages:
 
   /fast-safe-stringify/2.0.7:
     resolution: {integrity: sha512-Utm6CdzT+6xsDk2m8S6uL8VHxNwI6Jub+e9NYTcAms28T84pTa25GJQV9j0CY0N1rM8hK4x6grpF2BQf+2qwVA==}
+
+  /fast-xml-parser/3.19.0:
+    resolution: {integrity: sha512-4pXwmBplsCPv8FOY1WRakF970TjNGnGnfbOnLqjlYvMiF1SR3yOHyxMR/YCXpPTOspNF5gwudqktIP4VsWkvBg==}
+    hasBin: true
+    dev: false
 
   /fastq/1.11.0:
     resolution: {integrity: sha512-7Eczs8gIPDrVzT+EksYBcupqMyxSHXXrHOLRRxU2/DicV8789MRBRR8+Hc2uWzUupOs4YS4JzBmBxjjCVBxD/g==}

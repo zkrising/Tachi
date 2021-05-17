@@ -8,7 +8,7 @@ import {
     InternalFailure,
     InvalidScoreFailure,
     KTDataNotFoundFailure,
-} from "../../../framework/score-importing/converter-failures";
+} from "../../../framework/common/converter-failures";
 import { Lamps, Grades } from "kamaitachi-common";
 import { FindChartOnInGameIDVersion } from "../../../../common/database-lookup/chart";
 import { FervidexStaticContext, FervidexStaticScore } from "./types";

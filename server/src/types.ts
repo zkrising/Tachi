@@ -10,7 +10,7 @@ import {
     Playtypes,
 } from "kamaitachi-common";
 import { Logger, LeveledLogMethod } from "winston";
-import { ConverterFailure } from "./score-import/framework/score-importing/converter-failures";
+import { ConverterFailure } from "./score-import/framework/common/converter-failures";
 import { ClassHandler } from "./score-import/framework/user-game-stats/classes";
 import {
     BatchManualContext,

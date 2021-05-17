@@ -10,7 +10,7 @@ import {
 } from "kamaitachi-common";
 import { judgementWindows } from "kamaitachi-common/js/config";
 import CreateLogCtx from "../../../logger";
-import { InternalFailure } from "../score-importing/converter-failures";
+import { InternalFailure } from "./converter-failures";
 
 const logger = CreateLogCtx("score-utils.ts");
 

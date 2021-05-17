@@ -52,6 +52,7 @@
         "express-async-errors": "^3.1.1",
         "express-session": "^1.17.1",
         "fast-json-stable-hash": "^1.0.2",
+        "fast-xml-parser": "^3.19.0",
         "kamaitachi-common": "github:zkldi/Kamaitachi-common",
         "mongodb": "^3.6.6",
         "monk": "^7.3.4",

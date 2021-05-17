@@ -8,7 +8,7 @@ import {
 import {
     InternalFailure,
     KTDataNotFoundFailure,
-} from "../../../framework/score-importing/converter-failures";
+} from "../../../framework/common/converter-failures";
 import { BarbatosScore } from "./types";
 import { Lamps, Grades } from "kamaitachi-common";
 

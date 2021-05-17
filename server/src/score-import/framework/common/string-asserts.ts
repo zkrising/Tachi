@@ -1,4 +1,4 @@
-import { InvalidScoreFailure } from "../score-importing/converter-failures";
+import { InvalidScoreFailure } from "./converter-failures";
 import { Difficulties, Game, IDStrings, Playtypes } from "kamaitachi-common";
 import { validDifficulties } from "kamaitachi-common/js/config";
 

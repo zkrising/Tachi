@@ -5,7 +5,7 @@ import {
     InternalFailure,
     InvalidScoreFailure,
     KTDataNotFoundFailure,
-} from "../../../framework/score-importing/converter-failures";
+} from "../../../framework/common/converter-failures";
 import { FindSongOnID, FindSongOnTitle } from "../../../../common/database-lookup/song";
 import {
     FindBMSChartOnHash,

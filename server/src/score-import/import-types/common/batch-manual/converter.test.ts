@@ -8,7 +8,7 @@ import { EscapeStringRegexp } from "../../../../common/util";
 import { CloseMongoConnection } from "../../../../db/db";
 import { Game } from "kamaitachi-common";
 import ResetDBState from "../../../../test-utils/reset-db-state";
-import { InvalidScoreFailure } from "../../../framework/score-importing/converter-failures";
+import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
 
 const baseBatchManualScore = {
     score: 500,

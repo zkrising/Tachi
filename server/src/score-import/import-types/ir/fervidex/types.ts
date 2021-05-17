@@ -4,6 +4,9 @@ export interface FervidexScore {
     chart: `${"sp" | "dp"}${"b" | "n" | "h" | "a" | "l"}`;
 
     entry_id: integer;
+    chart_sha256: string;
+    // whether or whether not this chart is from 2dxtra
+    custom: boolean;
 
     pgreat: integer;
     great: integer;
@@ -14,11 +17,13 @@ export interface FervidexScore {
     slow: integer;
     fast: integer;
     max_combo: integer;
+    combo_break: integer;
 
     ex_score: integer;
     clear_type: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
     gauge: [integer];
+    ghost: [integer];
 
     dead: {
         measure?: integer | null;

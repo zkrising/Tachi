@@ -795,8 +795,8 @@ export interface IIDXEamusementScoreDocument extends MongoDBDocument {
 }
 
 interface ChartDocumentFlags {
-    "iidx:SP": "IN BASE GAME" | "OMNIMIX" | "N-1";
-    "iidx:DP": "IN BASE GAME" | "OMNIMIX" | "N-1";
+    "iidx:SP": "IN BASE GAME" | "OMNIMIX" | "N-1" | "2dxtra" | "All Scratch" | "Kichiku" | "Kiraku";
+    "iidx:DP": "IN BASE GAME" | "OMNIMIX" | "N-1" | "2dxtra" | "All Scratch" | "Kichiku" | "Kiraku";
     "popn:9B": "IN BASE GAME" | "OMNIMIX";
     "sdvx:Single": "IN BASE GAME" | "OMNIMIX" | "N-1";
     "usc:Single": "CUSTOM";
@@ -1036,6 +1036,7 @@ type IIDXHitMeta = BASE_VALID_HIT_META & {
     bp: integer | null;
     gauge: number | null;
     gaugeHistory: (number | null)[] | null;
+    scoreHistory: number[] | null;
     comboBreak: integer | null;
     gsm: {
         EASY: (number | null)[];

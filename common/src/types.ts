@@ -816,6 +816,7 @@ interface CDDataIIDXSP {
     notecount: integer;
     inGameID: integer;
     arcChartID: string | null;
+    hashSHA256: string | null;
 }
 
 interface CDDataDDRSP {

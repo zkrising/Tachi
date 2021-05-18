@@ -34,7 +34,7 @@ export function ParseMerIIDX(
     try {
         jsonData = JSON.parse(fileData.buffer.toString("utf-8"));
     } catch (err) {
-        logger.info(err);
+        logger.info(err.message);
         throw new ScoreImportFatalError(400, "Invalid JSON.");
     }
 
@@ -47,7 +47,7 @@ export function ParseMerIIDX(
         const err = p(jsonData[i], PR_MerIIDX, {}, { allowExcessKeys: true });
 
         if (err) {
-            throw new ScoreImportFatalError(400, FormatPrError(err));
+            throw new ScoreImportFatalError(400, `${FormatPrError(err)} [Index ${i}]`);
         }
     }
 

@@ -2,7 +2,7 @@ import Prudence, { PrudenceSchema } from "prudence";
 import t from "tap";
 
 export function isApproximately(number: number, target: number, message: string, lenience = 0.01) {
-    let result = t.ok(Math.abs(number - target) < lenience, message);
+    const result = t.ok(Math.abs(number - target) < lenience, message);
 
     if (!result) {
         throw new Error(`${number} was not close enough to ${target}`);
@@ -16,7 +16,7 @@ export function prAssert(
     schema: PrudenceSchema,
     message = "Unnamed Prudence Assertion"
 ) {
-    let err = Prudence(obj, schema);
+    const err = Prudence(obj, schema);
 
     if (err) {
         return t.fail(message, err);

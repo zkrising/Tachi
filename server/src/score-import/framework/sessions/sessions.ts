@@ -26,14 +26,14 @@ export async function CreateSessions(
     scorePtMap: ScorePlaytypeMap,
     logger: KtLogger
 ) {
-    let allSessionInfo = [];
+    const allSessionInfo = [];
 
     /* eslint-disable no-await-in-loop */
     for (const playtype in scorePtMap) {
         // @ts-expect-error This is my least favourite thing about ts.
-        let scores = scorePtMap[playtype] as ScoreDocument[];
+        const scores = scorePtMap[playtype] as ScoreDocument[];
 
-        let sessionInfo = await LoadScoresIntoSessions(
+        const sessionInfo = await LoadScoresIntoSessions(
             userID,
             importType,
             scores,
@@ -80,9 +80,9 @@ function UpdateExistingSession(
     oldScores: ScoreDocument[],
     newScores: ScoreDocument[]
 ) {
-    let allScores = [...oldScores, ...newScores];
+    const allScores = [...oldScores, ...newScores];
 
-    let calculatedData = CreateSessionCalcData(allScores);
+    const calculatedData = CreateSessionCalcData(allScores);
 
     existingSession.calculatedData = calculatedData;
     existingSession.scoreInfo = [...existingSession.scoreInfo, ...newInfo];
@@ -106,9 +106,9 @@ function CreateSession(
     game: Game,
     playtype: Playtypes[Game]
 ): SessionDocument {
-    let name = GenerateRandomSessionName();
+    const name = GenerateRandomSessionName();
 
-    let calculatedData = CreateSessionCalcData(groupScores);
+    const calculatedData = CreateSessionCalcData(groupScores);
 
     return {
         userID,
@@ -137,7 +137,7 @@ export async function LoadScoresIntoSessions(
 ): Promise<SessionInfoReturn[]> {
     const logger = AppendLogCtx("Session Generation", baseLogger);
 
-    let timestampedScores = [];
+    const timestampedScores = [];
 
     for (const score of importScores) {
         if (!score.timeAchieved) {
@@ -161,7 +161,7 @@ export async function LoadScoresIntoSessions(
     // The "Score Groups" for the array of scores provided.
     // This contains scores split on 2hr margins, which allows for more optimised
     // session db requests.
-    let sessionScoreGroups: ScoreDocument[][] = [];
+    const sessionScoreGroups: ScoreDocument[][] = [];
     let curGroup: ScoreDocument[] = [];
     let lastTimestamp = 0;
 
@@ -182,7 +182,7 @@ export async function LoadScoresIntoSessions(
 
     logger.verbose(`Created ${sessionScoreGroups.length} groups from timestamped scores.`);
 
-    let sessionInfoReturns: SessionInfoReturn[] = [];
+    const sessionInfoReturns: SessionInfoReturn[] = [];
 
     // All async operations inside here *need* to be done in lockstep to avoid colliding sessions.
     // realistically, that shouldn't be possible, but hey.
@@ -192,27 +192,27 @@ export async function LoadScoresIntoSessions(
             continue;
         }
 
-        let startOfGroup = groupScores[0].timeAchieved!;
-        let endOfGroup = groupScores[groupScores.length - 1].timeAchieved!;
+        const startOfGroup = groupScores[0].timeAchieved!;
+        const endOfGroup = groupScores[groupScores.length - 1].timeAchieved!;
 
-        let pbs = await db["score-pbs"].find({
+        const pbs = await db["score-pbs"].find({
             chartID: { $in: groupScores.map((e) => e.chartID) },
             userID,
         });
 
-        let pbMap: Map<string, PBScoreDocument> = new Map();
+        const pbMap: Map<string, PBScoreDocument> = new Map();
         for (const pb of pbs) {
             pbMap.set(pb.chartID, pb);
         }
 
-        let groupInfo = groupScores.map((e) =>
+        const groupInfo = groupScores.map((e) =>
             ProcessScoreIntoSessionScoreInfo(e, pbMap.get(e.chartID))
         );
 
         // Find any sessions with +/-2hrs of this group. This is rather exhaustive, and could result in some issues
         // if this query returns more than one session. We should account for that by smushing sessions together.
         // As of now, we dont currently do it. @TODO.
-        let nearbySession = await db.sessions.findOne({
+        const nearbySession = await db.sessions.findOne({
             userID,
             game,
             playtype,
@@ -229,9 +229,9 @@ export async function LoadScoresIntoSessions(
                 `Found nearby session for ${userID} (${game} ${playtype}) around ${startOfGroup} ${endOfGroup}.`
             );
 
-            let oldScores = await GetScoresFromSession(nearbySession);
+            const oldScores = await GetScoresFromSession(nearbySession);
 
-            let session = UpdateExistingSession(nearbySession, groupInfo, oldScores, groupScores);
+            const session = UpdateExistingSession(nearbySession, groupInfo, oldScores, groupScores);
 
             infoReturn = { sessionID: session.sessionID, type: "Appended" };
 
@@ -248,7 +248,14 @@ export async function LoadScoresIntoSessions(
                 `Creating new session for ${userID} (${game} ${playtype}) around ${startOfGroup} ${endOfGroup}.`
             );
 
-            let session = CreateSession(userID, importType, groupInfo, groupScores, game, playtype);
+            const session = CreateSession(
+                userID,
+                importType,
+                groupInfo,
+                groupScores,
+                game,
+                playtype
+            );
 
             infoReturn = { sessionID: session.sessionID, type: "Created" };
             await db.sessions.insert(session);

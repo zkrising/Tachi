@@ -12,7 +12,7 @@ import { Playtypes } from "kamaitachi-common";
 const router: Router = Router({ mergeParams: true });
 
 const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
-    let swModel = req.header("X-Software-Model");
+    const swModel = req.header("X-Software-Model");
 
     if (!swModel) {
         return res.status(400).json({
@@ -22,7 +22,7 @@ const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
     }
 
     try {
-        let softID = ParseEA3SoftID(swModel);
+        const softID = ParseEA3SoftID(swModel);
 
         if (softID.model !== MODEL_INFINITAS_2) {
             return res.status(400).send({
@@ -41,7 +41,7 @@ const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
 };
 
 const ValidateModelHeader: RequestHandler = (req, res, next) => {
-    let swModel = req.header("X-Software-Model");
+    const swModel = req.header("X-Software-Model");
 
     if (!swModel) {
         return res.status(400).json({
@@ -51,7 +51,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
     }
 
     try {
-        let softID = ParseEA3SoftID(swModel);
+        const softID = ParseEA3SoftID(swModel);
 
         if (softID.rev === REV_2DXBMS) {
             return res.status(400).send({
@@ -80,12 +80,12 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 router.post("/profile/submit", RequireLoggedIn, RequireInf2ModelHeader, async (req, res) => {
     const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
 
-    let headers = {
+    const headers = {
         // guaranteed to exist because of RequireInf2ModelHeader
         model: req.header("X-Software-Model")!,
     };
 
-    let responseData = await ExpressWrappedScoreImportMain(
+    const responseData = await ExpressWrappedScoreImportMain(
         userDoc,
         false,
         "ir/fervidex-static",
@@ -93,7 +93,7 @@ router.post("/profile/submit", RequireLoggedIn, RequireInf2ModelHeader, async (r
     );
 
     if (req.body.sp_dan || req.body.sp_dan === 0) {
-        let classVal = FERVIDEX_COURSE_LOOKUP[req.body.sp_dan];
+        const classVal = FERVIDEX_COURSE_LOOKUP[req.body.sp_dan];
 
         if (!classVal) {
             return res.status(400).json({
@@ -106,7 +106,7 @@ router.post("/profile/submit", RequireLoggedIn, RequireInf2ModelHeader, async (r
     }
 
     if (req.body.dp_dan || req.body.dp_dan === 0) {
-        let classVal = FERVIDEX_COURSE_LOOKUP[req.body.dp_dan];
+        const classVal = FERVIDEX_COURSE_LOOKUP[req.body.dp_dan];
 
         if (!classVal) {
             return res.status(400).json({
@@ -131,7 +131,7 @@ router.post("/profile/submit", RequireLoggedIn, RequireInf2ModelHeader, async (r
 router.post("/score/submit", RequireLoggedIn, ValidateModelHeader, async (req, res) => {
     const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
 
-    let model = req.header("X-Software-Model");
+    const model = req.header("X-Software-Model");
 
     if (!model) {
         return res.status(400).json({
@@ -140,12 +140,15 @@ router.post("/score/submit", RequireLoggedIn, ValidateModelHeader, async (req, r
         });
     }
 
-    let headers = {
+    const headers = {
         model,
     };
 
-    let responseData = await ExpressWrappedScoreImportMain(userDoc, true, "ir/fervidex", (logger) =>
-        ParseFervidexSingle(req.body, headers, logger)
+    const responseData = await ExpressWrappedScoreImportMain(
+        userDoc,
+        true,
+        "ir/fervidex",
+        (logger) => ParseFervidexSingle(req.body, headers, logger)
     );
 
     return res.status(responseData.statusCode).json(responseData.body);
@@ -184,7 +187,7 @@ router.post("/class/submit", RequireLoggedIn, ValidateModelHeader, async (req, r
         return res.status(200).json({ success: true, description: "No Update Made.", body: {} });
     }
 
-    let classVal = FERVIDEX_COURSE_LOOKUP[req.body.course_id];
+    const classVal = FERVIDEX_COURSE_LOOKUP[req.body.course_id];
 
     if (!classVal) {
         return res.status(400).json({
@@ -194,9 +197,9 @@ router.post("/class/submit", RequireLoggedIn, ValidateModelHeader, async (req, r
     }
 
     // is 0 or 1.
-    let playtype: Playtypes["iidx"] = req.body.playstyle ? "SP" : "DP";
+    const playtype: Playtypes["iidx"] = req.body.playstyle ? "SP" : "DP";
 
-    let r = await UpdateClassIfGreater(
+    const r = await UpdateClassIfGreater(
         req.session.ktchi!.userID,
         "iidx",
         playtype,

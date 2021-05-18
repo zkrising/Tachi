@@ -21,13 +21,13 @@ export function AssertStrAsDifficulty(
 const isIntegerRegex = /^-?\d+$/u;
 
 export function AssertStrAsPositiveInt(strVal: string, errorMessage: string) {
-    let isInt = isIntegerRegex.test(strVal);
+    const isInt = isIntegerRegex.test(strVal);
 
     if (!isInt) {
         throw new InvalidScoreFailure(`${errorMessage} (Not an integer.)`);
     }
 
-    let val = Number(strVal);
+    const val = Number(strVal);
 
     if (!Number.isSafeInteger(val)) {
         throw new InvalidScoreFailure(`${errorMessage} (Not an integer.)`);
@@ -39,13 +39,13 @@ export function AssertStrAsPositiveInt(strVal: string, errorMessage: string) {
 }
 
 export function AssertStrAsPositiveNonZeroInt(strVal: string, errorMessage: string) {
-    let isInt = isIntegerRegex.test(strVal);
+    const isInt = isIntegerRegex.test(strVal);
 
     if (!isInt) {
         throw new InvalidScoreFailure(`${errorMessage} (Not an integer.)`);
     }
 
-    let val = Number(strVal);
+    const val = Number(strVal);
 
     if (!Number.isSafeInteger(val)) {
         throw new InvalidScoreFailure(`${errorMessage} (Not an integer.)`);

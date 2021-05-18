@@ -26,7 +26,7 @@ export function GetDefaultTierlist(game: Game, playtype: Playtypes[Game]) {
 }
 
 async function GetDefaultTierlistID(game: Game, playtype: Playtypes[Game]) {
-    let tierlistData = await GetDefaultTierlist(game, playtype);
+    const tierlistData = await GetDefaultTierlist(game, playtype);
 
     if (!tierlistData) {
         logger.warn(
@@ -45,9 +45,9 @@ export async function GetOneTierlistData(
     key: string | null,
     tierlistID?: string
 ) {
-    let tlID = tierlistID ?? (await GetDefaultTierlistID(game, chart.playtype));
+    const tlID = tierlistID ?? (await GetDefaultTierlistID(game, chart.playtype));
 
-    let query: Record<string, unknown> = {
+    const query: Record<string, unknown> = {
         tierlistID: tlID,
         chartID: chart.chartID,
         type,
@@ -63,9 +63,9 @@ export async function GetAllTierlistDataOfType(
     type: "score" | "lamp" | "grade",
     tierlistID?: string
 ) {
-    let tlID = tierlistID ?? (await GetDefaultTierlistID(game, chart.playtype));
+    const tlID = tierlistID ?? (await GetDefaultTierlistID(game, chart.playtype));
 
-    let query: Record<string, unknown> = {
+    const query: Record<string, unknown> = {
         tierlistID: tlID,
         chartID: chart.chartID,
         type,

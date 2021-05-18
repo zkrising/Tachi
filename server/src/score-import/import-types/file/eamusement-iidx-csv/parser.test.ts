@@ -12,7 +12,7 @@ const logger = CreateLogCtx("parser.test.ts");
 
 t.test("#ParseEamusementCSV", (t) => {
     t.test("Valid Rootage-Type CSV", (t) => {
-        let { iterableData, hasBeginnerAndLegg, version } = NaiveCSVParse(
+        const { iterableData, hasBeginnerAndLegg, version } = NaiveCSVParse(
             TestingIIDXEamusementCSV26,
             logger
         );
@@ -25,7 +25,7 @@ t.test("#ParseEamusementCSV", (t) => {
     });
 
     t.test("Valid HV CSV", (t) => {
-        let { iterableData, hasBeginnerAndLegg, version } = NaiveCSVParse(
+        const { iterableData, hasBeginnerAndLegg, version } = NaiveCSVParse(
             TestingIIDXEamusementCSV27,
             logger
         );
@@ -44,16 +44,16 @@ t.test("#ParseEamusementCSV", (t) => {
     t.test("Malicious Headers", (t) => {
         // these headers are valid, because we don't check the contents
         // only that it has the right amt of headers
-        let headerStr = `${"a,".repeat(26)}a`;
+        const headerStr = `${"a,".repeat(26)}a`;
 
-        let TooShort = Buffer.from(`${headerStr}\n${"a,".repeat(3)}a`);
+        const TooShort = Buffer.from(`${headerStr}\n${"a,".repeat(3)}a`);
 
         t.throws(
             () => NaiveCSVParse(TooShort, logger),
             new ScoreImportFatalError(400, "Row 1 has an invalid amount of cells (4, expected 27)")
         );
 
-        let TooLong = Buffer.from(`${headerStr}\n${"a,".repeat(50)}a`);
+        const TooLong = Buffer.from(`${headerStr}\n${"a,".repeat(50)}a`);
 
         t.throws(
             () => NaiveCSVParse(TooLong, logger),
@@ -64,14 +64,14 @@ t.test("#ParseEamusementCSV", (t) => {
     });
 
     t.test("Misshaped Rows", (t) => {
-        let LongHeaders = Buffer.from(`${"a".repeat(1000)},a`);
+        const LongHeaders = Buffer.from(`${"a".repeat(1000)},a`);
 
         t.throws(
             () => NaiveCSVParse(LongHeaders, logger),
             new ScoreImportFatalError(400, "Headers were longer than 1000 characters long.")
         );
 
-        let TooManyHeaders = Buffer.from(`${"a,".repeat(50)}a`);
+        const TooManyHeaders = Buffer.from(`${"a,".repeat(50)}a`);
 
         t.throws(
             () => NaiveCSVParse(TooManyHeaders, logger),
@@ -82,11 +82,11 @@ t.test("#ParseEamusementCSV", (t) => {
     });
 
     t.test("Version Inference", (t) => {
-        let headerStr = `${"a,".repeat(26)}a`;
+        const headerStr = `${"a,".repeat(26)}a`;
 
-        let row = `GARBAGE VERSION,foo bar,${"a,".repeat(24)}a`;
+        const row = `GARBAGE VERSION,foo bar,${"a,".repeat(24)}a`;
 
-        let InvalidVersions = Buffer.from(`${headerStr}\n${row}`);
+        const InvalidVersions = Buffer.from(`${headerStr}\n${row}`);
 
         t.throws(
             () => NaiveCSVParse(InvalidVersions, logger),
@@ -96,8 +96,8 @@ t.test("#ParseEamusementCSV", (t) => {
             )
         );
 
-        let row27th = `HEROIC VERSE,foo bar,${"a,".repeat(24)}a`;
-        let row17th = `SIRIUS,foo bar,${"a,".repeat(24)}a`;
+        const row27th = `HEROIC VERSE,foo bar,${"a,".repeat(24)}a`;
+        const row17th = `SIRIUS,foo bar,${"a,".repeat(24)}a`;
 
         let { version } = NaiveCSVParse(
             Buffer.from([headerStr, row27th, row17th].join("\n")),
@@ -126,7 +126,7 @@ t.test("#ParseEamusementCSV", (t) => {
 
 t.test("#ResolveHeader", (t) => {
     t.test("Rootage-type Headers", (t) => {
-        let { hasBeginnerAndLegg } = ResolveHeaders(
+        const { hasBeginnerAndLegg } = ResolveHeaders(
             [
                 "バージョン",
                 "タイトル",
@@ -165,7 +165,7 @@ t.test("#ResolveHeader", (t) => {
     });
 
     t.test("HV-type Headers", (t) => {
-        let { hasBeginnerAndLegg } = ResolveHeaders(
+        const { hasBeginnerAndLegg } = ResolveHeaders(
             [
                 "バージョン",
                 "タイトル",
@@ -255,7 +255,7 @@ t.test("#ParseEamusementCSV", (t) => {
     }
 
     t.test("Playtype Tests", (t) => {
-        let validSPFile = MockMulterFile(TestingIIDXEamusementCSV27, "iidx_27_sp.csv");
+        const validSPFile = MockMulterFile(TestingIIDXEamusementCSV27, "iidx_27_sp.csv");
 
         t.throws(
             () => ParseEamusementCSV(validSPFile, {}, logger),
@@ -266,7 +266,7 @@ t.test("#ParseEamusementCSV", (t) => {
 
         t.equal(context.playtype, "SP", "Should correctly assert SP for a body of SP.");
 
-        let mockDPFile = MockMulterFile(TestingIIDXEamusementCSV27, "iidx_27_dp.csv");
+        const mockDPFile = MockMulterFile(TestingIIDXEamusementCSV27, "iidx_27_dp.csv");
 
         ({ context } = ParseEamusementCSV(mockDPFile, { playtype: "DP" }, logger));
 

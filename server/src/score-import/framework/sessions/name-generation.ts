@@ -1,9 +1,9 @@
 import { GetRandomAdjective, GetRandomNoun } from "../../../data/words";
 
 export function GenerateRandomSessionName() {
-    let adj1 = GetRandomAdjective();
-    let adj2 = GetRandomAdjective();
-    let noun = GetRandomNoun();
+    const adj1 = GetRandomAdjective();
+    const adj2 = GetRandomAdjective();
+    const noun = GetRandomNoun();
 
     return `${adj1} ${adj2} ${noun}`;
 }

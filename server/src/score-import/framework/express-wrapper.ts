@@ -29,7 +29,7 @@ export async function ExpressWrappedScoreImportMain<D, C>(
     logger.debug("Received import request.");
 
     try {
-        let res = await ScoreImportMain(user, userIntent, importType, InputParser, {
+        const res = await ScoreImportMain(user, userIntent, importType, InputParser, {
             importID,
             logger,
         });

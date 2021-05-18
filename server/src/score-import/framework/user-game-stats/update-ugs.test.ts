@@ -16,11 +16,11 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
     t.test("Should create new UserGameStats if the user has none", async (t) => {
         await db["game-stats"].remove({});
 
-        let res = await UpdateUsersGamePlaytypeStats("iidx", "SP", 1, null, logger);
+        const res = await UpdateUsersGamePlaytypeStats("iidx", "SP", 1, null, logger);
 
         t.strictSame(res, [], "Should return an empty object");
 
-        let gs = await db["game-stats"].findOne();
+        const gs = await db["game-stats"].findOne();
 
         t.hasStrict(
             gs,
@@ -53,7 +53,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
         });
 
         // insert some mock scores
-        let ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         await db["score-pbs"].insert(
             ratings.map((e) =>
@@ -67,11 +67,11 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
             )
         );
 
-        let res = await UpdateUsersGamePlaytypeStats("iidx", "SP", 1, null, logger);
+        const res = await UpdateUsersGamePlaytypeStats("iidx", "SP", 1, null, logger);
 
         t.strictSame(res, [], "Should return an empty object");
 
-        let gs = await db["game-stats"].findOne();
+        const gs = await db["game-stats"].findOne();
 
         t.hasStrict(
             gs,
@@ -105,7 +105,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
             classes: {},
         });
 
-        let res = await UpdateUsersGamePlaytypeStats(
+        const res = await UpdateUsersGamePlaytypeStats(
             "iidx",
             "SP",
             1,
@@ -126,7 +126,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
             "Should return the class delta"
         );
 
-        let gs = await db["game-stats"].findOne();
+        const gs = await db["game-stats"].findOne();
 
         t.hasStrict(
             gs,
@@ -164,7 +164,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
             },
         });
 
-        let res = await UpdateUsersGamePlaytypeStats(
+        const res = await UpdateUsersGamePlaytypeStats(
             "iidx",
             "SP",
             1,
@@ -185,7 +185,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
             "Should return the updated class delta"
         );
 
-        let gs = await db["game-stats"].findOne();
+        const gs = await db["game-stats"].findOne();
 
         t.hasStrict(
             gs,

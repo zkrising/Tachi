@@ -14,7 +14,7 @@ export function EscapeStringRegexp(string: string) {
 }
 
 export function ParseEA3SoftID(ver: string) {
-    let a = ver.split(":");
+    const a = ver.split(":");
 
     if (a.length !== 5) {
         throw new Error(`Invalid Version Code. Had ${a.length} components.`);

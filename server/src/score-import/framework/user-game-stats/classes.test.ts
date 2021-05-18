@@ -9,7 +9,7 @@ const logger = CreateLogCtx("classes.test.ts");
 
 t.test("#UpdateUGSClasses", (t) => {
     t.test("Should produce an empty object by default", async (t) => {
-        let res = await UpdateUGSClasses("iidx", "SP", 1, {}, null, logger);
+        const res = await UpdateUGSClasses("iidx", "SP", 1, {}, null, logger);
 
         t.strictSame(res, {});
 
@@ -17,7 +17,7 @@ t.test("#UpdateUGSClasses", (t) => {
     });
 
     t.test("Should call and merge the ClassHandler", async (t) => {
-        let res = await UpdateUGSClasses("iidx", "SP", 1, {}, () => ({ foo: "bar" }), logger);
+        const res = await UpdateUGSClasses("iidx", "SP", 1, {}, () => ({ foo: "bar" }), logger);
 
         t.strictSame(res, { foo: "bar" });
 
@@ -25,7 +25,7 @@ t.test("#UpdateUGSClasses", (t) => {
     });
 
     t.test("Should call static handlers if there is one", async (t) => {
-        let res = await UpdateUGSClasses(
+        const res = await UpdateUGSClasses(
             "gitadora",
             "Dora",
             1,
@@ -48,7 +48,7 @@ t.test("#CalculateClassDeltas", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should return improved classes from null", (t) => {
-        let res = CalculateClassDeltas("iidx", "SP", { dan: "kaiden" }, null, logger);
+        const res = CalculateClassDeltas("iidx", "SP", { dan: "kaiden" }, null, logger);
 
         t.strictSame(res, [
             {
@@ -63,7 +63,7 @@ t.test("#CalculateClassDeltas", (t) => {
     });
 
     t.test("Should return improved classes from null class", (t) => {
-        let res = CalculateClassDeltas(
+        const res = CalculateClassDeltas(
             "iidx",
             "SP",
             { dan: "kaiden" },
@@ -84,7 +84,7 @@ t.test("#CalculateClassDeltas", (t) => {
     });
 
     t.test("Should return improved classes", (t) => {
-        let res = CalculateClassDeltas(
+        const res = CalculateClassDeltas(
             "iidx",
             "SP",
             { dan: "kaiden" },
@@ -105,7 +105,7 @@ t.test("#CalculateClassDeltas", (t) => {
     });
 
     t.test("Should not return identical classes", (t) => {
-        let res = CalculateClassDeltas(
+        const res = CalculateClassDeltas(
             "iidx",
             "SP",
             { dan: "kaiden" },
@@ -119,7 +119,7 @@ t.test("#CalculateClassDeltas", (t) => {
     });
 
     t.test("Should not return worse classes", (t) => {
-        let res = CalculateClassDeltas(
+        const res = CalculateClassDeltas(
             "iidx",
             "SP",
             { dan: "10" },

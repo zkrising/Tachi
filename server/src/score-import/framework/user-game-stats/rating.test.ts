@@ -13,7 +13,7 @@ t.test("#CalculateRatings", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should return the average of your best 20.", async (t) => {
-        let ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         await db["score-pbs"].insert(
             ratings.map((e) =>
@@ -27,7 +27,7 @@ t.test("#CalculateRatings", (t) => {
             )
         );
 
-        let { rating } = await CalculateRatings("iidx", "SP", 1, logger);
+        const { rating } = await CalculateRatings("iidx", "SP", 1, logger);
 
         t.equal(
             rating,
@@ -37,7 +37,7 @@ t.test("#CalculateRatings", (t) => {
 
         await db["score-pbs"].remove({});
 
-        let lampRatings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 4, 1, 5, 2];
+        const lampRatings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 4, 1, 5, 2];
 
         await db["score-pbs"].insert(
             lampRatings.map((e) =>
@@ -51,7 +51,7 @@ t.test("#CalculateRatings", (t) => {
             )
         );
 
-        let { lampRating } = await CalculateRatings("iidx", "SP", 1, logger);
+        const { lampRating } = await CalculateRatings("iidx", "SP", 1, logger);
 
         t.equal(
             lampRating,
@@ -65,7 +65,7 @@ t.test("#CalculateRatings", (t) => {
     t.test("Should return the average of your best 20.", async (t) => {
         await db["score-pbs"].remove({});
 
-        let { rating, lampRating } = await CalculateRatings("iidx", "SP", 1, logger);
+        const { rating, lampRating } = await CalculateRatings("iidx", "SP", 1, logger);
 
         t.equal(rating, 0, "Should default to 0 for no scores.");
         t.equal(lampRating, 0, "Should default to 0 for no scores.");
@@ -80,7 +80,7 @@ t.test("#CalculateCustomRatings", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should work for games with no custom ratings", async (t) => {
-        let res = await CalculateCustomRatings("popn", "9B", 1, logger);
+        const res = await CalculateCustomRatings("popn", "9B", 1, logger);
 
         t.strictSame(res, {}, "Should return an empty object.");
 
@@ -88,11 +88,11 @@ t.test("#CalculateCustomRatings", (t) => {
     });
 
     t.test("Should return BPI for IIDX", async (t) => {
-        let res = await CalculateCustomRatings("iidx", "SP", 1, logger);
+        const res = await CalculateCustomRatings("iidx", "SP", 1, logger);
 
         t.strictSame(res, { BPI: 0 }, "Should return BPI as a custom key.");
 
-        let resDP = await CalculateCustomRatings("iidx", "DP", 1, logger);
+        const resDP = await CalculateCustomRatings("iidx", "DP", 1, logger);
 
         t.strictSame(resDP, { BPI: 0 }, "Should return BPI as a custom key.");
 
@@ -100,7 +100,7 @@ t.test("#CalculateCustomRatings", (t) => {
     });
 
     t.test("Should return VF4 and VF5 for SDVX", async (t) => {
-        let res = await CalculateCustomRatings("sdvx", "Single", 1, logger);
+        const res = await CalculateCustomRatings("sdvx", "Single", 1, logger);
 
         t.strictSame(res, { VF4: 0, VF5: 0 }, "Should return VF4 and VF5 keys.");
 
@@ -108,7 +108,7 @@ t.test("#CalculateCustomRatings", (t) => {
     });
 
     t.test("Should return VF4 and VF5 for USC", async (t) => {
-        let res = await CalculateCustomRatings("usc", "Single", 1, logger);
+        const res = await CalculateCustomRatings("usc", "Single", 1, logger);
 
         t.strictSame(res, { VF4: 0, VF5: 0 }, "Should return VF4 and VF5 keys.");
 
@@ -116,11 +116,11 @@ t.test("#CalculateCustomRatings", (t) => {
     });
 
     t.test("Should return MFCP for DDR", async (t) => {
-        let res = await CalculateCustomRatings("ddr", "SP", 1, logger);
+        const res = await CalculateCustomRatings("ddr", "SP", 1, logger);
 
         t.strictSame(res, { MFCP: 0 }, "Should return MFCP keys.");
 
-        let resDP = await CalculateCustomRatings("ddr", "DP", 1, logger);
+        const resDP = await CalculateCustomRatings("ddr", "DP", 1, logger);
 
         t.strictSame(resDP, { MFCP: 0 }, "Should return MFCP keys.");
 
@@ -128,11 +128,11 @@ t.test("#CalculateCustomRatings", (t) => {
     });
 
     t.test("Should return skill for Gitadora", async (t) => {
-        let res = await CalculateCustomRatings("gitadora", "Dora", 1, logger);
+        const res = await CalculateCustomRatings("gitadora", "Dora", 1, logger);
 
         t.strictSame(res, { skill: 0 }, "Should return skill keys.");
 
-        let resDP = await CalculateCustomRatings("gitadora", "Gita", 1, logger);
+        const resDP = await CalculateCustomRatings("gitadora", "Gita", 1, logger);
 
         t.strictSame(resDP, { skill: 0 }, "Should return skill keys.");
 

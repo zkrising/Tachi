@@ -12,7 +12,7 @@ t.test("#RequireLoggedIn", (t) => {
 
         t.equal(res.statusCode, 401, "Should return 401.");
 
-        let json = res._getJSONData();
+        const json = res._getJSONData();
 
         t.strictSame(json, {
             success: false,

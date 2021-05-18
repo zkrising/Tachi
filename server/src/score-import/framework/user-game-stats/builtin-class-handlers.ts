@@ -6,7 +6,7 @@ export function CalculateGitadoraColour(
     userID: integer,
     customRatings: Record<string, number>
 ): Record<string, string> {
-    let skillColour = GitadoraSkillToColour(customRatings.skill);
+    const skillColour = GitadoraSkillToColour(customRatings.skill);
 
     return {
         skillColour,

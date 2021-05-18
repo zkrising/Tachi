@@ -18,15 +18,15 @@ export async function UpdateUsersMilestones(
     userID: integer,
     logger: KtLogger
 ) {
-    let userGoalInfoMap: Map<string, GoalImportInfo["new"]> = new Map();
+    const userGoalInfoMap: Map<string, GoalImportInfo["new"]> = new Map();
 
-    let goalIDs = [];
+    const goalIDs = [];
     for (const e of importGoalInfo) {
         userGoalInfoMap.set(e.goalID, e.new);
         goalIDs.push(e.goalID);
     }
 
-    let { milestones, userMilestones } = await GetRelevantMilestones(
+    const { milestones, userMilestones } = await GetRelevantMilestones(
         goalIDs,
         game,
         playtypes,
@@ -36,25 +36,25 @@ export async function UpdateUsersMilestones(
 
     // create a map here to avoid linear searching when
     // co-iterating
-    let userMilestoneMap = new Map();
+    const userMilestoneMap = new Map();
     for (const um of userMilestones) {
         userMilestoneMap.set(um.milestoneID, um);
     }
 
-    let importGoalMap = new Map();
+    const importGoalMap = new Map();
 
     for (const ig of importGoalInfo) {
         importGoalMap.set(ig.goalID, ig.new);
     }
 
-    let bwrite: BulkWriteUpdateOneOperation<UserMilestoneDocument>[] = [];
+    const bwrite: BulkWriteUpdateOneOperation<UserMilestoneDocument>[] = [];
 
-    let importMilestoneInfo: MilestoneImportInfo[] = [];
+    const importMilestoneInfo: MilestoneImportInfo[] = [];
 
     for (const milestone of milestones) {
-        let { achieved, progress } = ProcessMilestoneFromGII(milestone, importGoalMap);
+        const { achieved, progress } = ProcessMilestoneFromGII(milestone, importGoalMap);
 
-        let userMilestone = userMilestoneMap.get(milestone.milestoneID);
+        const userMilestone = userMilestoneMap.get(milestone.milestoneID);
 
         if (!userMilestone) {
             logger.severe(
@@ -109,7 +109,7 @@ async function GetRelevantMilestones(
     userID: integer,
     logger: KtLogger
 ) {
-    let userMilestones = await db["user-milestones"].find({
+    const userMilestones = await db["user-milestones"].find({
         game,
         playtype: { $in: playtypes },
         userID,
@@ -117,7 +117,7 @@ async function GetRelevantMilestones(
 
     logger.debug(`Found ${userMilestones.length} user-milestones.`);
 
-    let milestones = await db.milestones.find({
+    const milestones = await db.milestones.find({
         milestoneID: { $in: userMilestones.map((e) => e.milestoneID) },
         "milestoneData.goals.goalID": { $in: goalIDs },
     });

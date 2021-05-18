@@ -4,7 +4,7 @@ import expMiddlewareMock from "express-request-mock";
 
 t.test("#SanitiseQString", (t) => {
     t.test("Should allow GET requests with valid data.", async (t) => {
-        let { res } = await expMiddlewareMock(SanitiseQString, {
+        const { res } = await expMiddlewareMock(SanitiseQString, {
             method: "GET",
             query: {
                 foo: "bar",
@@ -17,7 +17,7 @@ t.test("#SanitiseQString", (t) => {
     });
 
     t.test("Should disallow GET requests with nested data.", async (t) => {
-        let { res } = await expMiddlewareMock(SanitiseQString, {
+        const { res } = await expMiddlewareMock(SanitiseQString, {
             method: "GET",
             query: {
                 foo: {

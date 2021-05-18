@@ -18,28 +18,28 @@ export function ParseFervidexStatic(
     headers: FerHeaders,
     logger: KtLogger
 ): ParserFunctionReturnsSync<FervidexStaticScore, FervidexStaticContext> {
-    let version = SoftwareIDToVersion(headers.model);
+    const version = SoftwareIDToVersion(headers.model);
 
-    let staticScores = body?.scores;
+    const staticScores = body?.scores;
 
     if (!staticScores || typeof staticScores !== "object") {
         throw new ScoreImportFatalError(400, `Invalid body.scores.`);
     }
 
-    let scores: FervidexStaticScore[] = [];
+    const scores: FervidexStaticScore[] = [];
 
     for (const songID in staticScores) {
         // @ts-expect-error pls.
-        let subScores = staticScores[songID];
+        const subScores = staticScores[songID];
 
-        let song_id = AssertStrAsPositiveInt(songID, `Invalid songID ${songID}.`);
+        const song_id = AssertStrAsPositiveInt(songID, `Invalid songID ${songID}.`);
 
         if (!subScores || typeof subScores !== "object") {
             throw new ScoreImportFatalError(400, `Invalid score with songID ${songID}.`);
         }
 
         for (const chart in subScores) {
-            let score = subScores[chart];
+            const score = subScores[chart];
 
             if (!score || typeof subScores !== "object") {
                 throw new ScoreImportFatalError(
@@ -48,7 +48,7 @@ export function ParseFervidexStatic(
                 );
             }
 
-            let err = p(score, PR_FervidexStatic);
+            const err = p(score, PR_FervidexStatic);
 
             if (err) {
                 throw new ScoreImportFatalError(

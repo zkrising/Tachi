@@ -22,14 +22,14 @@ t.test("#ResolveFolderToCharts", (t) => {
 
     t.test("Static Folder Tests", (t) => {
         t.test("Basic Static", async (t) => {
-            let mockFolder = {
+            const mockFolder = {
                 game: "iidx",
                 playtype: "SP",
                 type: "static",
                 data: [Testing511SPA.chartID],
             };
 
-            let { charts } = await ResolveFolderToCharts(mockFolder as FolderDocument);
+            const { charts } = await ResolveFolderToCharts(mockFolder as FolderDocument);
 
             t.equal(charts.length, 1, "Should return exactly 1 chart.");
             t.equal(charts[0].chartID, Testing511SPA.chartID, "Should return 511 [SPA]");
@@ -38,14 +38,16 @@ t.test("#ResolveFolderToCharts", (t) => {
         });
 
         t.test("Empty Static", async (t) => {
-            let mockFolder = {
+            const mockFolder = {
                 game: "iidx",
                 playtype: "SP",
                 type: "static",
                 data: [],
             };
 
-            let { charts } = await ResolveFolderToCharts((mockFolder as unknown) as FolderDocument);
+            const { charts } = await ResolveFolderToCharts(
+                (mockFolder as unknown) as FolderDocument
+            );
 
             t.equal(charts.length, 0, "Should return exactly 0 charts.");
 
@@ -57,7 +59,7 @@ t.test("#ResolveFolderToCharts", (t) => {
 
     t.test("Songs Folder Tests", (t) => {
         t.test("Basic Song Query", async (t) => {
-            let mockFolder = {
+            const mockFolder = {
                 game: "iidx",
                 playtype: "SP",
                 type: "songs",
@@ -66,7 +68,7 @@ t.test("#ResolveFolderToCharts", (t) => {
                 },
             };
 
-            let { charts } = await ResolveFolderToCharts(mockFolder as FolderDocument);
+            const { charts } = await ResolveFolderToCharts(mockFolder as FolderDocument);
 
             t.equal(charts.length, 1, "Should return exactly 1 chart.");
             t.equal(charts[0].chartID, Testing511SPA.chartID, "Should return 511 [SPA]");
@@ -74,7 +76,7 @@ t.test("#ResolveFolderToCharts", (t) => {
         });
 
         t.test("Invalid Song Query", async (t) => {
-            let mockFolder = {
+            const mockFolder = {
                 game: "iidx",
                 playtype: "SP",
                 type: "songs",
@@ -83,7 +85,9 @@ t.test("#ResolveFolderToCharts", (t) => {
                 },
             };
 
-            let { charts } = await ResolveFolderToCharts((mockFolder as unknown) as FolderDocument);
+            const { charts } = await ResolveFolderToCharts(
+                (mockFolder as unknown) as FolderDocument
+            );
 
             t.equal(charts.length, 0, "Should return exactly 0 charts.");
             t.end();
@@ -94,7 +98,7 @@ t.test("#ResolveFolderToCharts", (t) => {
 
     t.test("Charts Folder Tests", (t) => {
         t.test("Basic Song Query", async (t) => {
-            let mockFolder = {
+            const mockFolder = {
                 game: "iidx",
                 playtype: "SP",
                 type: "charts",
@@ -103,7 +107,7 @@ t.test("#ResolveFolderToCharts", (t) => {
                 },
             };
 
-            let { charts } = await ResolveFolderToCharts(mockFolder as FolderDocument);
+            const { charts } = await ResolveFolderToCharts(mockFolder as FolderDocument);
 
             t.equal(charts.length, 1, "Should return exactly 1 chart.");
             t.equal(charts[0].chartID, Testing511SPA.chartID, "Should return 511 [SPA]");
@@ -122,7 +126,7 @@ t.test("#ResolveFolderToCharts", (t) => {
             }) as ChartDocument<"iidx:SP">
         );
 
-        let mockFolder = {
+        const mockFolder = {
             game: "iidx",
             playtype: "SP",
             type: "charts",
@@ -131,7 +135,7 @@ t.test("#ResolveFolderToCharts", (t) => {
             },
         };
 
-        let { charts } = await ResolveFolderToCharts(mockFolder as FolderDocument);
+        const { charts } = await ResolveFolderToCharts(mockFolder as FolderDocument);
 
         t.equal(charts.length, 2, "Should return exactly 2 charts.");
         t.strictSame(
@@ -140,7 +144,7 @@ t.test("#ResolveFolderToCharts", (t) => {
             "Should return all 511 charts."
         );
 
-        let { charts: charts2 } = await ResolveFolderToCharts(mockFolder as FolderDocument, {
+        const { charts: charts2 } = await ResolveFolderToCharts(mockFolder as FolderDocument, {
             difficulty: "NORMAL",
         });
 
@@ -151,7 +155,7 @@ t.test("#ResolveFolderToCharts", (t) => {
     });
 
     t.test("Songs", async (t) => {
-        let mockFolder = {
+        const mockFolder = {
             game: "iidx",
             playtype: "SP",
             type: "charts",
@@ -160,7 +164,11 @@ t.test("#ResolveFolderToCharts", (t) => {
             },
         };
 
-        let { charts, songs } = await ResolveFolderToCharts(mockFolder as FolderDocument, {}, true);
+        const { charts, songs } = await ResolveFolderToCharts(
+            mockFolder as FolderDocument,
+            {},
+            true
+        );
 
         t.equal(charts.length, 1, "Should return exactly 1 chart.");
         t.equal(charts[0].chartID, Testing511SPA.chartID, "Should return 511 [SPA]");

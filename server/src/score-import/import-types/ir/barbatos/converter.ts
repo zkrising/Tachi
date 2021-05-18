@@ -34,14 +34,14 @@ export const ConverterIRBarbatos: ConverterFunction<BarbatosScore, EmptyObject> 
     importType,
     logger
 ) => {
-    let difficulty = DIFFICULTY_LOOKUP[data.difficulty] as
+    const difficulty = DIFFICULTY_LOOKUP[data.difficulty] as
         | "NOV"
         | "ADV"
         | "EXH"
         | "ANY_INF"
         | "MXM";
 
-    let chart = await FindSDVXChartOnInGameID(data.song_id, "Single", difficulty);
+    const chart = await FindSDVXChartOnInGameID(data.song_id, "Single", difficulty);
 
     if (!chart) {
         throw new KTDataNotFoundFailure(
@@ -52,7 +52,7 @@ export const ConverterIRBarbatos: ConverterFunction<BarbatosScore, EmptyObject> 
         );
     }
 
-    let song = await FindSongOnID("sdvx", chart.songID);
+    const song = await FindSongOnID("sdvx", chart.songID);
 
     if (!song) {
         logger.severe(`Song ${chart.songID} (sdvx) has no parent song?`);
@@ -61,7 +61,7 @@ export const ConverterIRBarbatos: ConverterFunction<BarbatosScore, EmptyObject> 
 
     const percent = GenericCalculatePercent("sdvx", data.score);
 
-    let dryScore: DryScore<"sdvx:Single"> = {
+    const dryScore: DryScore<"sdvx:Single"> = {
         game: "sdvx",
         service: "Barbatos",
         comment: null,

@@ -9,7 +9,7 @@ export async function CalculateRatings(
     logger: KtLogger
 ): Promise<{ rating: number; lampRating: number }> {
     const SCORE_COUNT = 20;
-    let [bestRating, bestLampRating] = await Promise.all([
+    const [bestRating, bestLampRating] = await Promise.all([
         db["score-pbs"].find(
             {
                 game,
@@ -44,8 +44,8 @@ export async function CalculateRatings(
         `Found ${bestRating.length} best rating scores and ${bestLampRating.length} bestLampRating scores.`
     );
 
-    let rating = bestRating.reduce((a, r) => a + r.calculatedData.rating, 0) / SCORE_COUNT;
-    let lampRating =
+    const rating = bestRating.reduce((a, r) => a + r.calculatedData.rating, 0) / SCORE_COUNT;
+    const lampRating =
         bestLampRating.reduce((a, r) => a + r.calculatedData.lampRating, 0) / SCORE_COUNT;
 
     return { rating, lampRating };
@@ -55,7 +55,7 @@ type CustomCalcNames = GameSpecificCalcLookup[IDStrings];
 
 function LazySumAll(key: CustomCalcNames) {
     return async (game: Game, playtype: Playtypes[Game], userID: integer) => {
-        let sc = await db["score-pbs"].find({
+        const sc = await db["score-pbs"].find({
             game: game,
             playtype: playtype,
             userID: userID,
@@ -63,7 +63,7 @@ function LazySumAll(key: CustomCalcNames) {
             [`calculatedData.gameSpecific.${key}`]: { $gt: 0 },
         });
 
-        let result = sc.reduce((a, b) => a + b.calculatedData.gameSpecific[key]!, 0);
+        const result = sc.reduce((a, b) => a + b.calculatedData.gameSpecific[key]!, 0);
 
         return result;
     };
@@ -71,7 +71,7 @@ function LazySumAll(key: CustomCalcNames) {
 
 function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
     return async (game: Game, playtype: Playtypes[Game], userID: integer) => {
-        let sc = await db["score-pbs"].find(
+        const sc = await db["score-pbs"].find(
             {
                 game: game,
                 playtype: playtype,
@@ -140,14 +140,14 @@ async function CalculateGitadoraSkill(
     userID: integer,
     logger: KtLogger
 ) {
-    let hotCharts = await db.charts.gitadora.find(
+    const hotCharts = await db.charts.gitadora.find(
         { "flags.HOT N-1": true },
         { projection: { chartID: 1 } }
     );
 
-    let hotChartIDs = hotCharts.map((e) => e.chartID);
+    const hotChartIDs = hotCharts.map((e) => e.chartID);
 
-    let [bestHotScores, bestScores] = await Promise.all([
+    const [bestHotScores, bestScores] = await Promise.all([
         db["score-pbs"].find(
             { userID, chartID: { $in: hotChartIDs } },
             {
@@ -182,13 +182,13 @@ export async function CalculateCustomRatings(
     logger: KtLogger
 ): Promise<Partial<Record<CustomCalcNames, number>>> {
     // @ts-expect-error too lazy to type this properly
-    let customRatingFns = CUSTOM_RATING_FUNCTIONS?.[game]?.[playtype];
+    const customRatingFns = CUSTOM_RATING_FUNCTIONS?.[game]?.[playtype];
 
     if (!customRatingFns) {
         return {};
     }
 
-    let ratings: Record<string, number> = {};
+    const ratings: Record<string, number> = {};
     for (const key in customRatingFns) {
         // eslint-disable-next-line no-await-in-loop
         ratings[key] = await customRatingFns[key](game, playtype, userID, logger);

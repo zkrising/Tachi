@@ -18,8 +18,8 @@ export async function CreateCalculatedData(
     const game = dryScore.game;
     const playtype = chart.playtype;
 
-    let defaultTierlist = await GetDefaultTierlist(game, playtype);
-    let defaultTierlistID = defaultTierlist?.tierlistID; // tierlistID | undefined
+    const defaultTierlist = await GetDefaultTierlist(game, playtype);
+    const defaultTierlistID = defaultTierlist?.tierlistID; // tierlistID | undefined
 
     const [rating, lampRating, gameSpecific] = await Promise.all([
         CalculateRating(dryScore, game, playtype, chart, logger, defaultTierlistID),
@@ -67,19 +67,19 @@ export async function CalculateRating(
     defaultTierlistID?: string
 ) {
     // @todo
-    let OverrideFunction: OverrideRatingFunction | undefined =
+    const OverrideFunction: OverrideRatingFunction | undefined =
         OVERRIDE_RATING_FUNCTIONS[game]?.[playtype];
 
     // If this game doesn't have a specific rating function declared, fall back to the default "generic" rating function.
     // This is just a function that is guaranteed to work for all input - and therefore not result in lower-skilled users
     // always seeing 0.
     if (!OverrideFunction) {
-        let parameters = ratingParameters[dryScore.game];
+        const parameters = ratingParameters[dryScore.game];
 
         let levelNum = chart.levelNum;
 
         if (defaultTierlistID) {
-            let tierlistData = await GetOneTierlistData(
+            const tierlistData = await GetOneTierlistData(
                 game,
                 chart,
                 "score",
@@ -105,7 +105,7 @@ function RatingCalcV1(
     parameters: RatingParameters,
     logger: KtLogger
 ) {
-    let percentDiv100 = percent / 100;
+    const percentDiv100 = percent / 100;
 
     if (percentDiv100 < parameters.pivotPercent) {
         return RatingCalcV0Fail(percentDiv100, levelNum, parameters);
@@ -122,7 +122,7 @@ function RatingCalcV1Clear(
 ) {
     // https://www.desmos.com/calculator/hn7uxjmjkc
 
-    let rating =
+    const rating =
         Math.cosh(
             parameters.clearExpMultiplier * levelNum * (percentDiv100 - parameters.pivotPercent)
         ) +
@@ -164,14 +164,14 @@ export async function CalculateLampRating(
         return LampRatingNoTierlistInfo(dryScore, game, chart);
     }
 
-    let lampTierlistInfo = await GetAllTierlistDataOfType(game, chart, "lamp", defaultTierlistID);
+    const lampTierlistInfo = await GetAllTierlistDataOfType(game, chart, "lamp", defaultTierlistID);
 
     // if no tierlist info
     if (lampTierlistInfo.length === 0) {
         return LampRatingNoTierlistInfo(dryScore, game, chart);
     }
 
-    let userLampIndex = lamps[game].indexOf(dryScore.scoreData.lamp);
+    const userLampIndex = lamps[game].indexOf(dryScore.scoreData.lamp);
 
     // if this score is a clear, the lowest we should go is the levelNum of the chart.
     // Else, the lowest we can go is 0.

@@ -58,7 +58,7 @@ export default async function ScoreImportMain<D, C>(
     // --- 2. Importing ---
     // ImportAllIterableData iterates over the iterable, applying the converter function to each bit of data.
     const importTimeStart = process.hrtime.bigint();
-    let importInfo = await ImportAllIterableData(
+    const importInfo = await ImportAllIterableData(
         user.id,
         importType,
         iterable,
@@ -76,7 +76,7 @@ export default async function ScoreImportMain<D, C>(
     // ImportInfo is a relatively complex structure. We need some information from it for subsequent steps
     // such as the list of chartIDs involved in this import.
     const importParseTimeStart = process.hrtime.bigint();
-    let { scorePlaytypeMap, errors, scoreIDs, chartIDs } = ParseImportInfo(importInfo);
+    const { scorePlaytypeMap, errors, scoreIDs, chartIDs } = ParseImportInfo(importInfo);
 
     const importParseTime = GetMilisecondsSince(importParseTimeStart);
     const importParseTimeRel = importParseTime / importInfo.length;
@@ -89,7 +89,7 @@ export default async function ScoreImportMain<D, C>(
     // We create (or update existing) sessions here. This uses the aforementioned parsed import info
     // to determine what goes where.
     const sessionTimeStart = process.hrtime.bigint();
-    let sessionInfo = await CreateSessions(user.id, importType, game, scorePlaytypeMap, logger);
+    const sessionInfo = await CreateSessions(user.id, importType, game, scorePlaytypeMap, logger);
 
     const sessionTime = GetMilisecondsSince(sessionTimeStart);
     const sessionTimeRel = sessionTime / sessionInfo.length;
@@ -108,12 +108,12 @@ export default async function ScoreImportMain<D, C>(
 
     logger.debug(`PB Processing took ${pbTime} miliseconds (${pbTimeRel}ms/doc)`);
 
-    let playtypes = Object.keys(scorePlaytypeMap) as Playtypes[Game][];
+    const playtypes = Object.keys(scorePlaytypeMap) as Playtypes[Game][];
 
     // --- 6. Game Stats ---
     // This function updates the users "stats" for this game - such as their profile rating or their classes.
     const ugsTimeStart = process.hrtime.bigint();
-    let classDeltas = await UpdateUsersGameStats(game, playtypes, user.id, classHandler, logger);
+    const classDeltas = await UpdateUsersGameStats(game, playtypes, user.id, classHandler, logger);
 
     const ugsTime = GetMilisecondsSince(ugsTimeStart);
 
@@ -122,7 +122,7 @@ export default async function ScoreImportMain<D, C>(
     // --- 7. Goals ---
     // Evaluate and update the users goals. This returns information about goals that have changed.
     const goalTimeStart = process.hrtime.bigint();
-    let goalInfo = await GetAndUpdateUsersGoals(game, user.id, chartIDs, logger);
+    const goalInfo = await GetAndUpdateUsersGoals(game, user.id, chartIDs, logger);
 
     const goalTime = GetMilisecondsSince(goalTimeStart);
 
@@ -131,7 +131,7 @@ export default async function ScoreImportMain<D, C>(
     // --- 8. Milestones ---
     // Evaluate and update the users milestones. This returns...
     const milestoneTimeStart = process.hrtime.bigint();
-    let milestoneInfo = await UpdateUsersMilestones(goalInfo, game, playtypes, user.id, logger);
+    const milestoneInfo = await UpdateUsersMilestones(goalInfo, game, playtypes, user.id, logger);
 
     const milestoneTime = GetMilisecondsSince(milestoneTimeStart);
 
@@ -206,7 +206,7 @@ async function UpdateUsersGameStats(
     classHandler: ClassHandler | null,
     logger: KtLogger
 ) {
-    let promises = [];
+    const promises = [];
 
     for (const pt of playtypes) {
         promises.push(UpdateUsersGamePlaytypeStats(game, pt, userID, classHandler, logger));
@@ -217,11 +217,11 @@ async function UpdateUsersGameStats(
 }
 
 function ParseImportInfo(importInfo: ImportProcessingInfo[]) {
-    let scorePlaytypeMap: ScorePlaytypeMap = Object.create(null);
+    const scorePlaytypeMap: ScorePlaytypeMap = Object.create(null);
 
-    let scoreIDs = [];
-    let errors = [];
-    let chartIDs: Set<string> = new Set();
+    const scoreIDs = [];
+    const errors = [];
+    const chartIDs: Set<string> = new Set();
 
     for (const info of importInfo) {
         if (info.success) {

@@ -7,7 +7,7 @@ import { PBScoreDocumentNoRank } from "./process-pbs";
 import { BulkWriteUpdateOneOperation } from "mongodb";
 
 export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLogger) {
-    let scorePB = await db.scores.findOne(
+    const scorePB = await db.scores.findOne(
         {
             userID,
             chartID,
@@ -27,7 +27,7 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
         return; // ??
     }
 
-    let lampPB = (await db.scores.findOne(
+    const lampPB = (await db.scores.findOne(
         {
             userID,
             chartID,
@@ -56,7 +56,7 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
  * Updates users' rankings on a given chart.
  */
 export async function UpdateChartRanking(chartID: string) {
-    let scores = await db["score-pbs"].find(
+    const scores = await db["score-pbs"].find(
         { chartID },
         {
             sort: {
@@ -65,12 +65,12 @@ export async function UpdateChartRanking(chartID: string) {
         }
     );
 
-    let bwrite: BulkWriteUpdateOneOperation<PBScoreDocument>[] = [];
+    const bwrite: BulkWriteUpdateOneOperation<PBScoreDocument>[] = [];
 
     let rank = 0;
 
     for (let i = 0; i < scores.length; i++) {
-        let score = scores[i];
+        const score = scores[i];
         rank++;
 
         bwrite.push({
@@ -149,9 +149,9 @@ async function MergeScoreLampIntoPB(
         },
     };
 
-    let GameSpecificMergeFn = GAME_SPECIFIC_MERGE_FNS[scorePB.game];
+    const GameSpecificMergeFn = GAME_SPECIFIC_MERGE_FNS[scorePB.game];
     if (GameSpecificMergeFn) {
-        let success = await GameSpecificMergeFn(pbDoc, scorePB, lampPB, logger);
+        const success = await GameSpecificMergeFn(pbDoc, scorePB, lampPB, logger);
 
         // If the mergeFn returns false, this means something has gone
         // rather wrong. We just return undefined here, which in turn

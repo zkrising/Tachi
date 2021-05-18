@@ -12,7 +12,7 @@ export async function IIDXMergeFn(
     logger: KtLogger
 ): Promise<boolean> {
     // bad+poor PB document. This is a weird, third indepdenent metric that IIDX players sometimes care about.
-    let bpPB = (await db.scores.findOne(
+    const bpPB = (await db.scores.findOne(
         {
             userID: scorePB.userID,
             chartID: scorePB.chartID,
@@ -71,7 +71,7 @@ export async function SDVXMergeFn(
     // @optimisable
     // This is a re-fetch, but it's difficult to pass the chart all
     // the way down here due to how chartIDs (set) works. :(
-    let chart = await FindChartWithChartID("sdvx", pbDoc.chartID);
+    const chart = await FindChartWithChartID("sdvx", pbDoc.chartID);
 
     if (!chart) {
         logger.severe(`Chart ${pbDoc.chartID} disappeared underfoot?`);

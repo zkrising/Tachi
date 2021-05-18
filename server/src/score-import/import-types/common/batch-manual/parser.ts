@@ -84,7 +84,7 @@ const PR_BatchManualScore = (game: Game): PrudenceSchema => ({
             }
 
             // @ts-expect-error shush
-            let v = self[key];
+            const v = self[key];
             if ((!Number.isSafeInteger(v) || v < 0) && v !== null) {
                 return `Key ${key} had an invalid value of ${v} [${typeof v}]`;
             }
@@ -132,7 +132,7 @@ export function ParseBatchManualFromObject(
 
     // attempt to retrieve game
     // @ts-expect-error man.
-    let possiblyGame = object?.head?.game;
+    const possiblyGame = object?.head?.game;
 
     if (!possiblyGame) {
         throw new ScoreImportFatalError(
@@ -148,20 +148,20 @@ export function ParseBatchManualFromObject(
         );
     }
 
-    let game: Game = possiblyGame;
+    const game: Game = possiblyGame;
 
     // now that we have the game, we can validate this against
     // the prudence schema for batch-manual.
     // This mostly works as a sanity check, and doesn't
     // check things like whether a score is > 100%
     // or something.
-    let err = p(object, PR_BatchManual(game));
+    const err = p(object, PR_BatchManual(game));
 
     if (err) {
         throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid BATCH-MANUAL"));
     }
 
-    let batchManual = object as BatchManual;
+    const batchManual = object as BatchManual;
 
     return {
         game,

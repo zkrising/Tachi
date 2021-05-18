@@ -22,7 +22,7 @@ function avgbest10(arr: number[]) {
 
 t.test("#CreateSessionCalcData", (t) => {
     t.test("Should return null if less than 10 scores", (t) => {
-        let res = CreateSessionCalcData(ratingwrap([[1, 2]]));
+        const res = CreateSessionCalcData(ratingwrap([[1, 2]]));
 
         t.strictSame(res, { scorePerf: null, lampPerf: null, perf: null });
 
@@ -30,7 +30,7 @@ t.test("#CreateSessionCalcData", (t) => {
     });
 
     t.test("Should calculate session performance", (t) => {
-        let { lampPerf, perf, scorePerf } = CreateSessionCalcData(
+        const { lampPerf, perf, scorePerf } = CreateSessionCalcData(
             ratingwrap([
                 [1, 1],
                 [2, 2],

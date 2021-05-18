@@ -20,7 +20,7 @@ export async function EvaluateGoalForUser(
 ): Promise<EvaluatedGoalReturn | null> {
     // First, we need to resolve the set of charts this
     // goal involves.
-    let chartIDs = await ResolveGoalCharts(goal);
+    const chartIDs = await ResolveGoalCharts(goal);
 
     if (chartIDs === undefined) {
         logger.error(
@@ -30,7 +30,7 @@ export async function EvaluateGoalForUser(
     }
 
     // lets configure a "base" query for our requests.
-    let scoreQuery: FilterQuery<PBScoreDocument> = {
+    const scoreQuery: FilterQuery<PBScoreDocument> = {
         userID,
         // normally, this would be a VERY WORRYING line of code, but goal.criteria.key is guaranteed to be
         // within a specific set of fields.
@@ -43,9 +43,9 @@ export async function EvaluateGoalForUser(
 
     // Next, we need to figure out our criteria.
     if (goal.criteria.mode === "single") {
-        let res = await db["score-pbs"].findOne(scoreQuery);
+        const res = await db["score-pbs"].findOne(scoreQuery);
         // hack, but guaranteed to work.
-        let scoreDataKey = goal.criteria.key.split(".")[1] as
+        const scoreDataKey = goal.criteria.key.split(".")[1] as
             | "lampIndex"
             | "gradeIndex"
             | "score"
@@ -69,7 +69,7 @@ export async function EvaluateGoalForUser(
 
         // if we weren't successful, we have to get the users next best score and put it up here
         // this is made infinitely easier by the existance of score-pbs.
-        let nextBestQuery: FilterQuery<PBScoreDocument> = {
+        const nextBestQuery: FilterQuery<PBScoreDocument> = {
             userID,
         };
 
@@ -77,7 +77,7 @@ export async function EvaluateGoalForUser(
             nextBestQuery.chartID = { $in: chartIDs };
         }
 
-        let nextBestScore = await db["score-pbs"].findOne(nextBestQuery, {
+        const nextBestScore = await db["score-pbs"].findOne(nextBestQuery, {
             sort: { [goal.criteria.key]: -1 },
         });
 
@@ -127,7 +127,7 @@ export async function EvaluateGoalForUser(
             count = Math.floor(goal.criteria.countNum * totalChartCount);
         }
 
-        let userCount = await db["score-pbs"].count(scoreQuery);
+        const userCount = await db["score-pbs"].count(scoreQuery);
 
         return {
             achieved: userCount >= count,

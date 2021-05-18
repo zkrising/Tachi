@@ -94,7 +94,7 @@ export async function UpdateUGSClasses(
 
     if (ClassHandler) {
         logger.debug(`Calling custom class handler.`);
-        let customClasses = await ClassHandler(game, playtype, userID, customRatings);
+        const customClasses = await ClassHandler(game, playtype, userID, customRatings);
 
         classes = deepmerge(customClasses, classes);
     }
@@ -117,7 +117,7 @@ export function CalculateClassDeltas(
     logger: KtLogger
 ): ClassDelta[] {
     // @ts-expect-error It's complaining about Game+PT permutations instead of Game->PT permutations.
-    let gcv = gameClassValues[game]?.[playtype];
+    const gcv = gameClassValues[game]?.[playtype];
 
     if (Object.keys(classes).length !== 0 && !gcv) {
         logger.severe(
@@ -130,11 +130,11 @@ export function CalculateClassDeltas(
         return [];
     }
 
-    let deltas = [];
+    const deltas = [];
 
     for (const setName in classes) {
         try {
-            let isGreater = ReturnClassIfGreater(
+            const isGreater = ReturnClassIfGreater(
                 game,
                 playtype,
                 setName,

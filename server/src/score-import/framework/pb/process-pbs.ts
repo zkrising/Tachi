@@ -14,15 +14,15 @@ export async function ProcessPBs(
         return;
     }
 
-    let promises = [];
+    const promises = [];
 
     for (const chartID of chartIDs) {
         promises.push(CreatePBDoc(userID, chartID, logger));
     }
 
-    let pbDocsReturn = await Promise.all(promises);
+    const pbDocsReturn = await Promise.all(promises);
 
-    let pbDocs: PBScoreDocumentNoRank[] = [];
+    const pbDocs: PBScoreDocumentNoRank[] = [];
 
     for (const doc of pbDocsReturn) {
         if (!doc) {

@@ -34,7 +34,7 @@ t.test("#UpdateUsersMilestones", (t) => {
     );
 
     t.test("Test with clean achieved milestone.", async (t) => {
-        let res = await UpdateUsersMilestones(
+        const res = await UpdateUsersMilestones(
             CreateMockGII(
                 ["eg_goal_1", true],
                 ["eg_goal_2", true],
@@ -69,7 +69,7 @@ t.test("#UpdateUsersMilestones", (t) => {
     });
 
     t.test("Test with unclean achieved milestone.", async (t) => {
-        let res = await UpdateUsersMilestones(
+        const res = await UpdateUsersMilestones(
             CreateMockGII(
                 ["eg_goal_1", true],
                 ["eg_goal_2", true],
@@ -107,7 +107,7 @@ t.test("#UpdateUsersMilestones", (t) => {
     });
 
     t.test("Test with increased progress on milestone.", async (t) => {
-        let res = await UpdateUsersMilestones(
+        const res = await UpdateUsersMilestones(
             CreateMockGII(["eg_goal_1", true], ["eg_goal_2", true]),
             "iidx",
             ["SP"],
@@ -137,7 +137,7 @@ t.test("#UpdateUsersMilestones", (t) => {
     });
 
     t.test("Test with no new goals on milestone.", async (t) => {
-        let res = await UpdateUsersMilestones([], "iidx", ["SP"], 1, logger);
+        const res = await UpdateUsersMilestones([], "iidx", ["SP"], 1, logger);
 
         t.strictSame(res, [], "Should correctly return no changes.");
 
@@ -163,7 +163,7 @@ t.test("#UpdateUsersMilestones", (t) => {
             userID: 1,
         });
 
-        let res = await UpdateUsersMilestones(
+        const res = await UpdateUsersMilestones(
             CreateMockGII(
                 ["eg_goal_1", true],
                 ["eg_goal_2", true],
@@ -303,7 +303,7 @@ t.test("#UpdateUsersMilestones", (t) => {
             },
         ]);
 
-        let res = await UpdateUsersMilestones(
+        const res = await UpdateUsersMilestones(
             CreateMockGII(
                 ["eg_goal_1", true],
                 ["eg_goal_2", true],

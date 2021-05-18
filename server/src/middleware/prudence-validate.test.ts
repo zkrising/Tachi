@@ -7,7 +7,7 @@ t.test("#PrudenceMiddleware", (t) => {
     const mw = prValidate({ foo: Prudence.regex(/^baz$/u) }, { foo: "example error message" });
 
     t.test("Should return 400 on invalid prudence validation", async (t) => {
-        let { res } = await expMiddlewareMock(mw, {
+        const { res } = await expMiddlewareMock(mw, {
             query: {
                 foo: "bar",
             },
@@ -26,7 +26,7 @@ t.test("#PrudenceMiddleware", (t) => {
     });
 
     t.test("Should return 'nothing' instead of undefined for missing fields", async (t) => {
-        let { res } = await expMiddlewareMock(mw, {
+        const { res } = await expMiddlewareMock(mw, {
             query: {},
         });
 
@@ -43,7 +43,7 @@ t.test("#PrudenceMiddleware", (t) => {
     });
 
     t.test("Should allow valid prudence data.", async (t) => {
-        let { res } = await expMiddlewareMock(mw, {
+        const { res } = await expMiddlewareMock(mw, {
             query: {
                 foo: "baz",
             },
@@ -58,7 +58,7 @@ t.test("#PrudenceMiddleware", (t) => {
     });
 
     t.test("Should allow valid bodies on non-GET requests", async (t) => {
-        let { res } = await expMiddlewareMock(mw, {
+        const { res } = await expMiddlewareMock(mw, {
             method: "POST",
             body: {
                 foo: "baz",
@@ -74,7 +74,7 @@ t.test("#PrudenceMiddleware", (t) => {
     });
 
     t.test("Should return 400 on invalid prudence validation for non-GET requests", async (t) => {
-        let { res } = await expMiddlewareMock(mw, {
+        const { res } = await expMiddlewareMock(mw, {
             method: "POST",
             body: {
                 foo: "bar",
@@ -98,7 +98,7 @@ t.test("#PrudenceMiddleware", (t) => {
     t.test(
         "Should not return the contents of the error message if the field matches /password/",
         async (t) => {
-            let { res } = await expMiddlewareMock(mwWithPassword, {
+            const { res } = await expMiddlewareMock(mwWithPassword, {
                 query: {
                     password: 123,
                 },
@@ -120,7 +120,7 @@ t.test("#PrudenceMiddleware", (t) => {
     t.test(
         "Should not return the contents of the error message if the field matches /password/",
         async (t) => {
-            let { res } = await expMiddlewareMock(mwWithPassword, {
+            const { res } = await expMiddlewareMock(mwWithPassword, {
                 query: {
                     password: undefined,
                 },

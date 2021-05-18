@@ -94,9 +94,9 @@ export function ResolveHeaders(headers: string[], logger: KtLogger) {
 export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
     const csvString = csvBuffer.toString("utf-8");
 
-    let csvData = csvString.split("\n");
+    const csvData = csvString.split("\n");
 
-    let rawHeaders = [];
+    const rawHeaders = [];
     let headerLen = 0;
     let curStr = "";
 
@@ -131,15 +131,15 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
         ? ["beginner", "normal", "hyper", "another", "leggendaria"]
         : ["normal", "hyper", "another"];
 
-    let iterableData = [];
+    const iterableData = [];
 
     let gameVersion = 0;
 
     for (let i = 1; i < csvData.length; i++) {
-        let data = csvData[i];
+        const data = csvData[i];
 
         // @security: This should probably be safetied from DOSing
-        let cells = data.split(",");
+        const cells = data.split(",");
 
         // weirdly enough, an empty string split on "," is an array with
         // one empty value.
@@ -162,9 +162,9 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
             );
         }
 
-        let version = cells[0];
-        let title = cells[1].trim(); // konmai quality
-        let timestamp = cells[rawHeaders.length - 1].trim();
+        const version = cells[0];
+        const title = cells[1].trim(); // konmai quality
+        const timestamp = cells[rawHeaders.length - 1].trim();
 
         // wtf typescript?? what's the point of enums?
         const versionNum = EAM_VERSION_NAMES[version as keyof typeof EAM_VERSION_NAMES];
@@ -181,11 +181,11 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
             gameVersion = versionNum;
         }
 
-        let scores: EamusementScoreData[] = [];
+        const scores: EamusementScoreData[] = [];
 
         for (let d = 0; d < diffs.length; d++) {
             const diff = diffs[d];
-            let di = 5 + d * 7;
+            const di = 5 + d * 7;
 
             scores.push({
                 difficulty: diff.toUpperCase() as Difficulties["iidx:SP" | "iidx:DP"],
@@ -232,7 +232,7 @@ function ParseEamusementCSV(
         );
     }
 
-    let lowercaseFilename = fileData.originalname.toLowerCase();
+    const lowercaseFilename = fileData.originalname.toLowerCase();
 
     // prettier pls
     if (
@@ -252,11 +252,11 @@ function ParseEamusementCSV(
         );
     }
 
-    let { hasBeginnerAndLegg, version, iterableData } = NaiveCSVParse(fileData.buffer, logger);
+    const { hasBeginnerAndLegg, version, iterableData } = NaiveCSVParse(fileData.buffer, logger);
 
     logger.verbose("Successfully parsed CSV.");
 
-    let context: IIDXEamusementCSVContext = {
+    const context: IIDXEamusementCSVContext = {
         playtype,
         importVersion: version,
         hasBeginnerAndLegg,

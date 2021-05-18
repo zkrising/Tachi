@@ -12,7 +12,7 @@ export async function GetAndUpdateUsersGoals(
     chartIDs: Set<string>,
     logger: KtLogger
 ) {
-    let { goals, userGoalsMap } = await GetRelevantGoals(game, userID, chartIDs, logger);
+    const { goals, userGoalsMap } = await GetRelevantGoals(game, userID, chartIDs, logger);
 
     if (!goals.length) {
         // if we hit the below code with an empty array mongodb will flip out on the bulkwrite op
@@ -30,9 +30,9 @@ export async function UpdateGoalsForUser(
     userID: integer,
     logger: KtLogger
 ) {
-    let returns = await Promise.all(
+    const returns = await Promise.all(
         goals.map((goal: GoalDocument) => {
-            let userGoal = userGoalsMap.get(goal.goalID);
+            const userGoal = userGoalsMap.get(goal.goalID);
 
             if (!userGoal) {
                 logger.error(
@@ -45,8 +45,8 @@ export async function UpdateGoalsForUser(
         })
     );
 
-    let importInfo = [];
-    let bulkWrite = [];
+    const importInfo = [];
+    const bulkWrite = [];
 
     for (const ret of returns) {
         if (!ret) {
@@ -80,7 +80,7 @@ export async function ProcessGoal(
     userID: integer,
     logger: KtLogger
 ) {
-    let res = await EvaluateGoalForUser(goal, userID, logger);
+    const res = await EvaluateGoalForUser(goal, userID, logger);
 
     if (!res) {
         // some sort of error occured - its logged by the function.
@@ -119,7 +119,7 @@ export async function ProcessGoal(
         achieved: res.achieved,
     };
 
-    let bulkWrite = {
+    const bulkWrite = {
         updateOne: {
             filter: { _id: userGoal._id! },
             update: {
@@ -165,7 +165,7 @@ export async function GetRelevantGoals(
     chartIDs: Set<string>,
     logger: KtLogger
 ): Promise<{ goals: GoalDocument[]; userGoalsMap: Map<string, UserGoalDocument> }> {
-    let userGoals = await db["user-goals"].find({ game, userID });
+    const userGoals = await db["user-goals"].find({ game, userID });
 
     logger.verbose(`Found user has ${userGoals.length} goals.`);
 
@@ -173,9 +173,9 @@ export async function GetRelevantGoals(
         return { goals: [], userGoalsMap: new Map() };
     }
 
-    let goalIDs = userGoals.map((e) => e.goalID);
+    const goalIDs = userGoals.map((e) => e.goalID);
 
-    let chartIDsArr: string[] = [];
+    const chartIDsArr: string[] = [];
     for (const c of chartIDs) {
         chartIDsArr.push(c);
     }
@@ -194,7 +194,7 @@ export async function GetRelevantGoals(
         GetRelevantFolderGoals(goalIDs, chartIDsArr),
     ]).then((r) => r.flat(1));
 
-    let goalSet = new Set(goals.map((e) => e.goalID));
+    const goalSet = new Set(goals.map((e) => e.goalID));
 
     const userGoalsMap: Map<string, UserGoalDocument> = new Map();
 

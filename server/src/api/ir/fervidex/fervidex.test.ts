@@ -73,7 +73,7 @@ t.test("POST /api/ir/fervidex/score/submit", async (t) => {
     TestSoftwareModels(cookie);
 
     t.test("Should import a valid score", async (t) => {
-        let res = await mockApi
+        const res = await mockApi
             .post("/api/ir/fervidex/score/submit")
             .set("Cookie", cookie)
             .set("X-Software-Model", "LDJ:J:B:A:2020092900")
@@ -83,7 +83,7 @@ t.test("POST /api/ir/fervidex/score/submit", async (t) => {
 
         t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
-        let scores = await db.scores.count({
+        const scores = await db.scores.count({
             service: "Fervidex",
         });
 
@@ -93,7 +93,7 @@ t.test("POST /api/ir/fervidex/score/submit", async (t) => {
     });
 
     t.test("Should import a valid score with 2dx-gsm", async (t) => {
-        let res = await mockApi
+        const res = await mockApi
             .post("/api/ir/fervidex/score/submit")
             .set("Cookie", cookie)
             .set("X-Software-Model", "LDJ:J:B:A:2020092900")
@@ -103,7 +103,7 @@ t.test("POST /api/ir/fervidex/score/submit", async (t) => {
 
         t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
-        let scores = await db.scores.count({
+        const scores = await db.scores.count({
             service: "Fervidex",
         });
 
@@ -113,7 +113,7 @@ t.test("POST /api/ir/fervidex/score/submit", async (t) => {
     });
 
     t.test("Should reject an invalid body", async (t) => {
-        let res = await mockApi
+        const res = await mockApi
             .post("/api/ir/fervidex/score/submit")
             .set("Cookie", cookie)
             .send({});
@@ -132,7 +132,7 @@ t.test("POST /api/ir/fervidex/profile/submit", async (t) => {
     t.beforeEach(ResetDBState);
     TestSoftwareModels(cookie);
 
-    let ferStaticBody = GetKTDataJSON("./fervidex-static/base.json");
+    const ferStaticBody = GetKTDataJSON("./fervidex-static/base.json");
 
     t.test("Should accept a fervidex-static body", async (t) => {
         await db.songs.iidx.remove({});
@@ -140,7 +140,7 @@ t.test("POST /api/ir/fervidex/profile/submit", async (t) => {
         await db.charts.iidx.remove({});
         await db.charts.iidx.insert(GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json"));
 
-        let res = await mockApi
+        const res = await mockApi
             .post("/api/ir/fervidex/profile/submit")
             .set("Cookie", cookie)
             .set("X-Software-Model", "P2D:J:B:A:2020092900")
@@ -150,7 +150,7 @@ t.test("POST /api/ir/fervidex/profile/submit", async (t) => {
 
         t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
-        let scores = await db.scores.count({
+        const scores = await db.scores.count({
             service: "Fervidex Static",
         });
 

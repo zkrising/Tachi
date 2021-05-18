@@ -16,7 +16,7 @@ const logger = CreateLogCtx("fake-testing-context");
  */
 t.test("#CreateGameSpecific", (t) => {
     t.test("IIDX:SP", async (t) => {
-        let res = await CreateGameSpecific(
+        const res = await CreateGameSpecific(
             "iidx",
             "SP",
             Testing511SPA,
@@ -39,7 +39,7 @@ t.test("#CreateGameSpecific", (t) => {
     });
 
     t.test("IIDX:DP", async (t) => {
-        let res = await CreateGameSpecific(
+        const res = await CreateGameSpecific(
             "iidx",
             "DP",
             Testing511SPA,
@@ -61,7 +61,7 @@ t.test("#CreateGameSpecific", (t) => {
     });
 
     t.test("SDVX:Single", async (t) => {
-        let res = await CreateGameSpecific(
+        const res = await CreateGameSpecific(
             "sdvx",
             "Single",
             Testing511SPA,
@@ -83,7 +83,7 @@ t.test("#CreateGameSpecific", (t) => {
     });
 
     t.test("DDR:SP", async (t) => {
-        let res = await CreateGameSpecific(
+        const res = await CreateGameSpecific(
             "ddr",
             "SP",
             Testing511SPA,
@@ -104,7 +104,7 @@ t.test("#CreateGameSpecific", (t) => {
     });
 
     t.test("DDR:DP", async (t) => {
-        let res = await CreateGameSpecific(
+        const res = await CreateGameSpecific(
             "ddr",
             "DP",
             Testing511SPA,

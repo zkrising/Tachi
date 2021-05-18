@@ -15,7 +15,7 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 
     t.test("Single Queue Test", async (t) => {
         // fake score doc
-        let res = await QueueScoreInsert(({ scoreID: "foo" } as unknown) as ScoreDocument);
+        const res = await QueueScoreInsert(({ scoreID: "foo" } as unknown) as ScoreDocument);
 
         t.equal(
             res,
@@ -24,11 +24,11 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
         );
 
         // this is the best way to get the size of the queue
-        let flushSize = await InsertQueue();
+        const flushSize = await InsertQueue();
 
         t.equal(flushSize, 1, "QueueScoreInsert should append the score to the queue.");
 
-        let dbRes = await db.scores.find({
+        const dbRes = await db.scores.find({
             scoreID: "foo",
         });
 
@@ -51,7 +51,7 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
             await QueueScoreInsert(({ scoreID: i, chartID: "test" } as unknown) as ScoreDocument);
         }
 
-        let overflowRes = await QueueScoreInsert(({
+        const overflowRes = await QueueScoreInsert(({
             scoreID: "foo",
             chartID: "test",
         } as unknown) as ScoreDocument);
@@ -62,11 +62,11 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
             "Appending 500 items to the queue should result in them being inserted."
         );
 
-        let flushRes = await InsertQueue();
+        const flushRes = await InsertQueue();
 
         t.equal(flushRes, 0, "The queue should now be empty.");
 
-        let dbRes = await db.scores.find({
+        const dbRes = await db.scores.find({
             scoreID: { $exists: true },
             chartID: "test",
         });
@@ -86,18 +86,18 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 
     t.test("Queue Dedupe Test", async (t) => {
         await QueueScoreInsert(({ scoreID: 1, chartID: "foo" } as unknown) as ScoreDocument);
-        let r2 = await QueueScoreInsert(({
+        const r2 = await QueueScoreInsert(({
             scoreID: 1,
             chartID: "foo",
         } as unknown) as ScoreDocument);
 
         t.equal(r2, null, "Should return null when a duplicate scoreID is submitted");
 
-        let flushRes = await InsertQueue();
+        const flushRes = await InsertQueue();
 
         t.equal(flushRes, 1, "Should flush 1 score document");
 
-        let dbRes = await db.scores.find({
+        const dbRes = await db.scores.find({
             chartID: "foo",
         });
 

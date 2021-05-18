@@ -82,9 +82,9 @@ t.test("#KtchifyRandom", (t) => {
     t.end();
 });
 
-let baseFervidexScore: FervidexScore = GetKTDataJSON("./fervidex/base.json");
+const baseFervidexScore: FervidexScore = GetKTDataJSON("./fervidex/base.json");
 
-let baseDryScore = {
+const baseDryScore = {
     game: "iidx",
     service: "Fervidex",
     comment: null,
@@ -124,7 +124,7 @@ t.test("#ConverterIRFervidex", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should convert a valid fervidex score into a dry score.", async (t) => {
-        let res = await ConverterIRFervidex(
+        const res = await ConverterIRFervidex(
             baseFervidexScore,
             { version: "27" },
             "ir/fervidex",
@@ -200,7 +200,7 @@ t.test("#ConverterIRFervidex", (t) => {
     });
 
     t.test("Should convert undeflow gauge to null.", async (t) => {
-        let res = await ConverterIRFervidex(
+        const res = await ConverterIRFervidex(
             deepmerge(baseFervidexScore, { gauge: [10, 5, 249, 248] }),
             { version: "27" },
             "ir/fervidex",

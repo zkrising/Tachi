@@ -75,7 +75,7 @@ t.test("#GetRelevantFolderGoals", (t) => {
     });
 
     t.test("Should correctly find the goals on this folder.", async (t) => {
-        let res = await GetRelevantFolderGoals(
+        const res = await GetRelevantFolderGoals(
             ["fake_goal_id", "fake_bad_goal_id"],
             [Testing511SPA.chartID]
         );
@@ -101,8 +101,8 @@ t.test("#GetRelevantGoals", (t) => {
         await db.charts.iidx.insert(GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json"));
         await db.songs.iidx.insert(GetKTDataJSON("./kamaitachi/ktblack-songs-iidx.json"));
 
-        let lotsOfCharts = await db.charts.iidx.find({}, { limit: 20 });
-        let goals: GoalDocument[] = lotsOfCharts.map((e) => ({
+        const lotsOfCharts = await db.charts.iidx.find({}, { limit: 20 });
+        const goals: GoalDocument[] = lotsOfCharts.map((e) => ({
             charts: {
                 type: "single",
                 data: e.chartID,
@@ -145,14 +145,14 @@ t.test("#GetRelevantGoals", (t) => {
         async (t) => {
             // lets pretend our session had scores on charts 0->4 and 20->25. We also only have goals on
             // charts 1->20, so only 5 of these should resolve.
-            let ourCharts = [
+            const ourCharts = [
                 ...(await db.charts.iidx.find({}, { limit: 5 })),
                 ...(await db.charts.iidx.find({}, { skip: 20, limit: 5 })),
             ];
 
-            let chartIDs = new Set(ourCharts.map((e) => e.chartID));
+            const chartIDs = new Set(ourCharts.map((e) => e.chartID));
 
-            let res = await GetRelevantGoals("iidx", 1, chartIDs, logger);
+            const res = await GetRelevantGoals("iidx", 1, chartIDs, logger);
 
             t.equal(res.goals.length, 5, "Should correctly resolve to 5 goals.");
             t.equal(res.userGoalsMap.size, 5, "Should also return 5 userGoals.");
@@ -211,9 +211,9 @@ t.test("#UpdateGoalsForUser", (t) => {
         await db["score-pbs"].insert(TestingIIDXSPScorePB);
         delete TestingIIDXSPScorePB._id;
 
-        let ugMap = new Map([["FAKE_GOAL_ID", baseUserGoalDocument]]);
+        const ugMap = new Map([["FAKE_GOAL_ID", baseUserGoalDocument]]);
 
-        let res = await UpdateGoalsForUser([baseGoalDocument], ugMap, 1, logger);
+        const res = await UpdateGoalsForUser([baseGoalDocument], ugMap, 1, logger);
 
         t.strictSame(res, [
             {
@@ -235,7 +235,7 @@ t.test("#UpdateGoalsForUser", (t) => {
             },
         ]);
 
-        let r = await db["user-goals"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
+        const r = await db["user-goals"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
 
         t.hasStrict(
             r,
@@ -258,7 +258,7 @@ t.test("#UpdateGoalsForUser", (t) => {
         const goal = deepmerge(baseGoalDocument, { criteria: { value: 2 } });
         await db.goals.insert(goal);
 
-        let userGoal = (deepmerge(baseUserGoalDocument, {
+        const userGoal = (deepmerge(baseUserGoalDocument, {
             outOf: 2,
             outOfHuman: "2",
         }) as unknown) as UserGoalDocument;
@@ -269,9 +269,9 @@ t.test("#UpdateGoalsForUser", (t) => {
 
         await db["score-pbs"].insert(deepmerge(TestingIIDXSPScorePB, { scoreData: { score: 1 } }));
 
-        let ugMap = new Map([["FAKE_GOAL_ID", userGoal]]);
+        const ugMap = new Map([["FAKE_GOAL_ID", userGoal]]);
 
-        let res = await UpdateGoalsForUser([goal], ugMap, 1, logger);
+        const res = await UpdateGoalsForUser([goal], ugMap, 1, logger);
 
         t.strictSame(res, [
             {
@@ -293,7 +293,7 @@ t.test("#UpdateGoalsForUser", (t) => {
             },
         ]);
 
-        let r = await db["user-goals"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
+        const r = await db["user-goals"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
 
         t.hasStrict(
             r,
@@ -313,7 +313,7 @@ t.test("#UpdateGoalsForUser", (t) => {
     });
 
     t.test("Should return [] if no data is to be changed.", async (t) => {
-        let res = await UpdateGoalsForUser([], new Map(), 1, logger);
+        const res = await UpdateGoalsForUser([], new Map(), 1, logger);
 
         t.strictSame(res, []);
 
@@ -321,7 +321,7 @@ t.test("#UpdateGoalsForUser", (t) => {
     });
 
     t.test("Should handle (skip) goals if no usergoal is set.", async (t) => {
-        let res = await UpdateGoalsForUser([baseGoalDocument], new Map(), 1, logger);
+        const res = await UpdateGoalsForUser([baseGoalDocument], new Map(), 1, logger);
 
         t.strictSame(res, []);
 
@@ -329,7 +329,7 @@ t.test("#UpdateGoalsForUser", (t) => {
     });
 
     t.test("Should handle (skip) invalid goals.", async (t) => {
-        let res = await UpdateGoalsForUser(
+        const res = await UpdateGoalsForUser(
             [deepmerge(baseGoalDocument, { charts: { type: "INVALID" } })],
             new Map([["FAKE_GOAL_ID", baseUserGoalDocument]]),
             1,
@@ -360,7 +360,7 @@ t.test("#ProcessGoal", (t) => {
         await db["user-goals"].insert(HC511UserGoal);
         await db["score-pbs"].insert(TestingIIDXSPScorePB); // score is EX HARD CLEAR by default.
 
-        let res = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
+        const res = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
 
         t.not(res, undefined, "Should NOT return undefined.");
 
@@ -392,7 +392,7 @@ t.test("#ProcessGoal", (t) => {
     t.test("Should return undefined if there's no score.", async (t) => {
         await db["user-goals"].insert(HC511UserGoal);
 
-        let res = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
+        const res = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
 
         t.equal(res, undefined, "Should return undefined.");
 
@@ -403,16 +403,16 @@ t.test("#ProcessGoal", (t) => {
         await db["user-goals"].insert(HC511UserGoal);
         await db["score-pbs"].insert(TestingIIDXSPScorePB);
 
-        let firstUpdate = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
+        const firstUpdate = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
 
         // ignore this one
         t.not(firstUpdate, undefined, "Should NOT return undefined.");
 
         await db["user-goals"].bulkWrite([firstUpdate!.bwrite]);
 
-        let userGoal = await db["user-goals"].findOne({ userID: 1, goalID: HC511Goal.goalID });
+        const userGoal = await db["user-goals"].findOne({ userID: 1, goalID: HC511Goal.goalID });
 
-        let secondUpdate = await ProcessGoal(HC511Goal, userGoal!, 1, logger);
+        const secondUpdate = await ProcessGoal(HC511Goal, userGoal!, 1, logger);
 
         t.equal(secondUpdate, undefined, "Should return undefined.");
 

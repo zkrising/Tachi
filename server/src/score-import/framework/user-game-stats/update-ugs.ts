@@ -15,12 +15,12 @@ export async function UpdateUsersGamePlaytypeStats(
     classHandler: ClassHandler | null,
     logger: KtLogger
 ): Promise<ClassDelta[]> {
-    let { rating, lampRating } = await CalculateRatings(game, playtype, userID, logger);
-    let customRatings = await CalculateCustomRatings(game, playtype, userID, logger);
+    const { rating, lampRating } = await CalculateRatings(game, playtype, userID, logger);
+    const customRatings = await CalculateCustomRatings(game, playtype, userID, logger);
 
     // Attempt to find a users game stats if one already exists. If one doesn't exist,
     // this is this players first import for this game!
-    let userGameStats = await db["game-stats"].findOne({
+    const userGameStats = await db["game-stats"].findOne({
         game,
         playtype,
         userID,
@@ -28,7 +28,7 @@ export async function UpdateUsersGamePlaytypeStats(
 
     logger.debug(`Calculating UGSClasses...`);
 
-    let classes = await UpdateUGSClasses(
+    const classes = await UpdateUGSClasses(
         game,
         playtype,
         userID,
@@ -41,7 +41,7 @@ export async function UpdateUsersGamePlaytypeStats(
 
     logger.debug(`Calculating Class Deltas...`);
 
-    let deltas = CalculateClassDeltas(game, playtype, classes, userGameStats, logger);
+    const deltas = CalculateClassDeltas(game, playtype, classes, userGameStats, logger);
 
     logger.debug(`Had ${deltas.length} deltas.`);
 
@@ -63,7 +63,7 @@ export async function UpdateUsersGamePlaytypeStats(
             }
         );
     } else {
-        let newStats: UserGameStats = {
+        const newStats: UserGameStats = {
             game,
             playtype,
             userID,

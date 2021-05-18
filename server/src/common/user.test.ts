@@ -7,7 +7,7 @@ import { PublicUserDocument } from "kamaitachi-common";
 
 t.test("#GetUserCaseInsensitive", (t) => {
     t.test("Should return the user for an exact username", async (t) => {
-        let result = await GetUserCaseInsensitive("test_zkldi");
+        const result = await GetUserCaseInsensitive("test_zkldi");
 
         t.not(result, null, "Should not return null");
 
@@ -22,7 +22,7 @@ t.test("#GetUserCaseInsensitive", (t) => {
     });
 
     t.test("Should return the user for an incorrectly cased username", async (t) => {
-        let result = await GetUserCaseInsensitive("tesT_ZkLdi");
+        const result = await GetUserCaseInsensitive("tesT_ZkLdi");
 
         t.not(result, null, "Should not return null");
 
@@ -37,7 +37,7 @@ t.test("#GetUserCaseInsensitive", (t) => {
     });
 
     t.test("Should not return the user for a username that does not exist", async (t) => {
-        let result = await GetUserCaseInsensitive("foobar");
+        const result = await GetUserCaseInsensitive("foobar");
 
         t.equal(result, null, "Should return null");
     });
@@ -47,7 +47,7 @@ t.test("#GetUserCaseInsensitive", (t) => {
 
 t.test("#PRIVATEINFO_GetUserCaseInsensitive", (t) => {
     t.test("Should return the user for an exact username", async (t) => {
-        let result = await PRIVATEINFO_GetUserCaseInsensitive("test_zkldi");
+        const result = await PRIVATEINFO_GetUserCaseInsensitive("test_zkldi");
 
         t.not(result, null, "Should not return null");
 
@@ -57,7 +57,7 @@ t.test("#PRIVATEINFO_GetUserCaseInsensitive", (t) => {
     });
 
     t.test("Should return the user for an incorrectly cased username", async (t) => {
-        let result = await PRIVATEINFO_GetUserCaseInsensitive("tesT_ZkLdi");
+        const result = await PRIVATEINFO_GetUserCaseInsensitive("tesT_ZkLdi");
 
         t.not(result, null, "Should not return null");
 
@@ -67,7 +67,7 @@ t.test("#PRIVATEINFO_GetUserCaseInsensitive", (t) => {
     });
 
     t.test("Should not return the user for a username that does not exist", async (t) => {
-        let result = await PRIVATEINFO_GetUserCaseInsensitive("foobar");
+        const result = await PRIVATEINFO_GetUserCaseInsensitive("foobar");
 
         t.equal(result, null, "Should return null");
     });

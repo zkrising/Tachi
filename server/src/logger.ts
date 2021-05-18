@@ -26,7 +26,7 @@ const formatExcessProperties = (meta: Record<string, unknown>) => {
 
 const formatExcessPropertiesNoStack = (meta: Record<string, unknown>, omitKeys: string[] = []) => {
     let i = 0;
-    let realMeta: Record<string, unknown> = {};
+    const realMeta: Record<string, unknown> = {};
 
     for (const key in meta) {
         if (omitKeys.includes(key)) {
@@ -143,7 +143,7 @@ function CreateLogCtx(context: string, lg = rootLogger): KtLogger {
 }
 
 export function AppendLogCtx(context: string, lg: KtLogger): KtLogger {
-    let newContext = [...lg.defaultMeta.context, context];
+    const newContext = [...lg.defaultMeta.context, context];
 
     return lg.child({ context: newContext }) as KtLogger;
 }

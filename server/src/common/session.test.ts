@@ -6,9 +6,9 @@ import { GetScoresFromSession } from "./session";
 t.test("#GetScoresFromSession", async (t) => {
     t.beforeEach(ResetDBState);
 
-    let exampleSession = await db.sessions.findOne();
+    const exampleSession = await db.sessions.findOne();
 
-    let scores = await GetScoresFromSession(exampleSession!);
+    const scores = await GetScoresFromSession(exampleSession!);
 
     t.equal(
         scores.length,

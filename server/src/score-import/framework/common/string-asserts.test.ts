@@ -4,7 +4,7 @@ import { AssertStrAsPositiveInt, AssertStrAsPositiveNonZeroInt } from "./string-
 
 function astr(v: string) {
     try {
-        let r = AssertStrAsPositiveInt(v, "err");
+        const r = AssertStrAsPositiveInt(v, "err");
 
         return r;
     } catch (e) {
@@ -14,7 +14,7 @@ function astr(v: string) {
 
 function astrp(v: string) {
     try {
-        let r = AssertStrAsPositiveNonZeroInt(v, "err");
+        const r = AssertStrAsPositiveNonZeroInt(v, "err");
 
         return r;
     } catch (e) {

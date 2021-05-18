@@ -18,7 +18,7 @@ t.test("#ProcessPBs", (t) => {
         // scores on 511 SPA are pre-loaded into the database
         await ProcessPBs(1, new Set([Testing511SPA.chartID]), logger);
 
-        let pbs = await db["score-pbs"].find({});
+        const pbs = await db["score-pbs"].find({});
 
         t.equal(pbs.length, 1, "Should match the amount of PBs inserted into the DB.");
 
@@ -48,7 +48,7 @@ t.test("#ProcessPBs", (t) => {
 
         await ProcessPBs(1, new Set([Testing511SPA.chartID, "test1", "test2", "test3"]), logger);
 
-        let pbs = await db["score-pbs"].find({});
+        const pbs = await db["score-pbs"].find({});
 
         t.equal(pbs.length, 4, "Should match the amount of PBs inserted into the DB.");
 

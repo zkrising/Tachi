@@ -25,7 +25,7 @@ t.test("#EvaluateGoalForUser", (t) => {
         });
 
         t.test("Should correctly evaluate goals if user succeeds.", async (t) => {
-            let res = await EvaluateGoalForUser(HC511Goal, 1, logger);
+            const res = await EvaluateGoalForUser(HC511Goal, 1, logger);
 
             t.strictSame(
                 res,
@@ -53,7 +53,7 @@ t.test("#EvaluateGoalForUser", (t) => {
                 }
             );
 
-            let res = await EvaluateGoalForUser(HC511Goal, 1, logger);
+            const res = await EvaluateGoalForUser(HC511Goal, 1, logger);
 
             t.strictSame(
                 res,
@@ -73,7 +73,7 @@ t.test("#EvaluateGoalForUser", (t) => {
         t.test("Should correctly evaluate goals when user has no score.", async (t) => {
             await db["score-pbs"].remove({});
 
-            let res = await EvaluateGoalForUser(HC511Goal, 1, logger);
+            const res = await EvaluateGoalForUser(HC511Goal, 1, logger);
 
             t.strictSame(
                 res,
@@ -96,7 +96,7 @@ t.test("#EvaluateGoalForUser", (t) => {
     t.test("Should correctly evaluate against multi goals.", (t) => {
         // @ts-expect-error ???
         // this goal is effectively "HC any of the charts"
-        let multiGoal: GoalDocument = deepmerge(HC511Goal, {
+        const multiGoal: GoalDocument = deepmerge(HC511Goal, {
             charts: {
                 type: "multi",
                 data: [Testing511SPA.chartID, "fake_other_chart_id"],
@@ -116,7 +116,7 @@ t.test("#EvaluateGoalForUser", (t) => {
         });
 
         t.test("Should work if 511 is >= HARD CLEAR", async (t) => {
-            let res = await EvaluateGoalForUser(multiGoal, 1, logger);
+            const res = await EvaluateGoalForUser(multiGoal, 1, logger);
 
             t.strictSame(
                 res,
@@ -143,7 +143,7 @@ t.test("#EvaluateGoalForUser", (t) => {
                 { $set: { "scoreData.lamp": "HARD CLEAR", "scoreData.lampIndex": 5 } }
             );
 
-            let res = await EvaluateGoalForUser(multiGoal, 1, logger);
+            const res = await EvaluateGoalForUser(multiGoal, 1, logger);
 
             t.strictSame(
                 res,
@@ -163,7 +163,7 @@ t.test("#EvaluateGoalForUser", (t) => {
         t.test("Should work if user has no scores", async (t) => {
             await db["score-pbs"].remove({});
 
-            let res = await EvaluateGoalForUser(multiGoal, 1, logger);
+            const res = await EvaluateGoalForUser(multiGoal, 1, logger);
 
             t.strictSame(
                 res,
@@ -186,7 +186,7 @@ t.test("#EvaluateGoalForUser", (t) => {
     t.test("Should correctly evaluate against folder goals.", (t) => {
         // @ts-expect-error ???
         // this goal is effectively "HC any of the sp10s"
-        let folderGoal: GoalDocument = deepmerge(HC511Goal, {
+        const folderGoal: GoalDocument = deepmerge(HC511Goal, {
             charts: {
                 type: "folder",
                 data: "ed9d8c734447ce67d7135c0067441a98cc81aeaf",
@@ -225,7 +225,7 @@ t.test("#EvaluateGoalForUser", (t) => {
         });
 
         t.test("Should work if 511 is >= HARD CLEAR", async (t) => {
-            let res = await EvaluateGoalForUser(folderGoal, 1, logger);
+            const res = await EvaluateGoalForUser(folderGoal, 1, logger);
 
             t.strictSame(
                 res,
@@ -253,7 +253,7 @@ t.test("#EvaluateGoalForUser", (t) => {
                 { $set: { "scoreData.lamp": "HARD CLEAR", "scoreData.lampIndex": 5 } }
             );
 
-            let res = await EvaluateGoalForUser(folderGoal, 1, logger);
+            const res = await EvaluateGoalForUser(folderGoal, 1, logger);
 
             t.strictSame(
                 res,
@@ -273,7 +273,7 @@ t.test("#EvaluateGoalForUser", (t) => {
         t.test("Should work if user has no scores", async (t) => {
             await db["score-pbs"].remove({});
 
-            let res = await EvaluateGoalForUser(folderGoal, 1, logger);
+            const res = await EvaluateGoalForUser(folderGoal, 1, logger);
 
             t.strictSame(
                 res,

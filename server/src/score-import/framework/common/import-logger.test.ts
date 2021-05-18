@@ -4,7 +4,7 @@ import { PublicUserDocument } from "kamaitachi-common";
 import { CloseMongoConnection } from "../../../db/db";
 
 t.test("#CreateImportLoggerAndID", (t) => {
-    let { importID, logger } = CreateImportLoggerAndID(
+    const { importID, logger } = CreateImportLoggerAndID(
         { username: "foo", id: 1 } as PublicUserDocument,
         "file/eamusement-iidx-csv"
     );

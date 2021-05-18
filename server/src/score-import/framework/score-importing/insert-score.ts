@@ -3,7 +3,7 @@ import db from "../../../db/db";
 import CreateLogCtx from "../../../logger";
 
 const logger = CreateLogCtx("insert-score.ts");
-let ScoreQueue: ScoreDocument[] = [];
+const ScoreQueue: ScoreDocument[] = [];
 export let ScoreIDs: Set<string> = new Set();
 const MAX_PIPELINE_LENGTH = 500;
 

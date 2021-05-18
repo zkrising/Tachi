@@ -40,7 +40,12 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should resolve for the songID if the matchType is songID", async (t) => {
-        let res = await ResolveMatchTypeToKTData(baseBatchManualScore, context, importType, logger);
+        const res = await ResolveMatchTypeToKTData(
+            baseBatchManualScore,
+            context,
+            importType,
+            logger
+        );
 
         t.hasStrict(
             res,
@@ -64,7 +69,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
     });
 
     t.test("Should resolve for the song title if the matchType is songTitle", async (t) => {
-        let res = await ResolveMatchTypeToKTData(
+        const res = await ResolveMatchTypeToKTData(
             deepmerge(baseBatchManualScore, { matchType: "songTitle", identifier: "5.1.1." }),
             context,
             importType,
@@ -98,7 +103,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
         const GAZER17MD5 = "38616b85332037cc12924f2ae2840262";
         const GAZER17SHA256 = "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d";
 
-        let resMD5 = await ResolveMatchTypeToKTData(
+        const resMD5 = await ResolveMatchTypeToKTData(
             deepmerge(baseBatchManualScore, { matchType: "bmsChartHash", identifier: GAZER17MD5 }),
             context,
             importType,
@@ -112,7 +117,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
             "Should return the right song and chart."
         );
 
-        let resSHA256 = await ResolveMatchTypeToKTData(
+        const resSHA256 = await ResolveMatchTypeToKTData(
             deepmerge(baseBatchManualScore, {
                 matchType: "bmsChartHash",
                 identifier: GAZER17SHA256,
@@ -165,7 +170,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
     t.test("Should resolve for the ddr songHash if the matchType is ddrSongHash", async (t) => {
         const PUTY_ID = "DQlQ1DlPbq900oqdOo8l0d6I1lIOl99l";
 
-        let res = await ResolveMatchTypeToKTData(
+        const res = await ResolveMatchTypeToKTData(
             deepmerge(baseBatchManualScore, {
                 matchType: "ddrSongHash",
                 identifier: PUTY_ID,
@@ -230,7 +235,7 @@ t.test("#ResolveChartFromSong", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should return the chart for the song + ptdf", async (t) => {
-        let res = await ResolveChartFromSong(
+        const res = await ResolveChartFromSong(
             Testing511Song,
             baseBatchManualScore, // has playtype + diff
             { game: "iidx", service: "foo", version: null },
@@ -311,7 +316,7 @@ t.test("#ResolveChartFromSong", (t) => {
     });
 
     t.test("Should successfully lookup if version is provided.", async (t) => {
-        let res = await ResolveChartFromSong(
+        const res = await ResolveChartFromSong(
             Testing511Song,
             baseBatchManualScore,
             {
@@ -332,7 +337,7 @@ t.test("#ResolveChartFromSong", (t) => {
 
 t.test("#ConverterFn", (t) => {
     t.test("Should produce a DryScore", async (t) => {
-        let res = await ConverterBatchManual(
+        const res = await ConverterBatchManual(
             baseBatchManualScore,
             { game: "iidx", service: "foo", version: null },
             importType,

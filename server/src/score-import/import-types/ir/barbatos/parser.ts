@@ -27,7 +27,7 @@ export function ParseBarbatosSingle(
     body: Record<string, unknown>,
     logger: KtLogger
 ): ParserFunctionReturnsSync<BarbatosScore, EmptyObject> {
-    let err = p(body, PR_Barbatos);
+    const err = p(body, PR_Barbatos);
 
     if (err) {
         throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid Barbatos Request"));

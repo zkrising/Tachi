@@ -27,7 +27,7 @@ router.post("/import", RequireLoggedIn, async (req, res) => {
         });
     }
 
-    let responseData = await ExpressWrappedScoreImportMain(
+    const responseData = await ExpressWrappedScoreImportMain(
         userDoc,
         false,
         "ir/chunitachi",

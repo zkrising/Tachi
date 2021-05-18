@@ -44,8 +44,8 @@ export let monkDB = monk(url);
 monkDB
     .then(() => {
         if (process.env.NODE_ENV !== "test") {
-            let time = process.hrtime(dbtime);
-            let elapsed = time[0] + time[1] / 1e6;
+            const time = process.hrtime(dbtime);
+            const elapsed = time[0] + time[1] / 1e6;
             logger.info(`Database connection successful: took ${elapsed}ms`);
         }
     })

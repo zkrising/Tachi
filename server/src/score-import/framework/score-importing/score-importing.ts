@@ -59,12 +59,12 @@ export async function ImportAllIterableData<D, C>(
     // (e-amusement is the only real example of this);
     // we need to flatten out the datapoints into a single array. We also use this time
     // to filter out nulls, which we don't care for (these are neither successes or failures)
-    let nonFlatDatapoints = await Promise.all(promises);
+    const nonFlatDatapoints = await Promise.all(promises);
 
     logger.verbose(`Finished Importing Data (${promises.length} datapoints).`);
     logger.debug(`Flattening returns...`);
 
-    let flatDatapoints = [];
+    const flatDatapoints = [];
 
     for (const dp of nonFlatDatapoints) {
         if (dp === null) {
@@ -90,7 +90,7 @@ export async function ImportAllIterableData<D, C>(
 
     // Flush the score queue out after finishing most of the import. This ensures no scores get left in the
     // queue.
-    let emptied = await InsertQueue();
+    const emptied = await InsertQueue();
 
     if (emptied) {
         logger.verbose(`Emptied ${emptied} documents from score queue.`);
@@ -193,7 +193,7 @@ async function ImportFromConverterReturn(
         }
     }
 
-    let result = await HydrateAndInsertScore(
+    const result = await HydrateAndInsertScore(
         userID,
         cfnReturn.dryScore,
         cfnReturn.chart,
@@ -267,7 +267,7 @@ async function HydrateAndInsertScore(
 
     const score = await HydrateScore(userID, dryScore, chart, song, scoreID, logger);
 
-    let res = await QueueScoreInsert(score);
+    const res = await QueueScoreInsert(score);
 
     // emergency state - this is a last resort for avoiding double-d imports
     if (res === null) {

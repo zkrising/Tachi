@@ -63,7 +63,7 @@ router.post(
             });
         }
 
-        let importType = req.body.importType as FileUploadImportTypes;
+        const importType = req.body.importType as FileUploadImportTypes;
 
         const inputParser = (logger: KtLogger) =>
             ResolveFileUploadData(importType, req.file, req.body, logger);
@@ -76,7 +76,7 @@ router.post(
         // We use this as an override because we know better.
         // see: https://www.typescriptlang.org/play?ts=4.3.0-beta#code/GYVwdgxgLglg9mABAQQDwBUB8AKYc4BciAYvhpgJSIDeiAsAFCKID0LiAJnAKYDOivKCGDBGAX0aMYYKNwBOwAIYRuJMlhqNmzAEaK5RdOMkNQkWAkQAlbkLlgAynAC23UnGxVqW7W0QAHOVtuMA5EKAALGH5o8IjVIN4QABsoRDhgARdVaX8QNOlBbkUwjMQ5RVCXH2YYTOwAWUVIgDoKqudPRFREAAYWgFYvGu1mILskWj0DRAAiQTlpAHNZxAkmbXXRkfGQexpEaaIARgAmAGY14wZGZNt0vfdEAF5rWz3HbPdPAG4TZGwcEe+AoPyAA
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let responseData = await ExpressWrappedScoreImportMain<any, any>(
+        const responseData = await ExpressWrappedScoreImportMain<any, any>(
             userDoc,
             true,
             importType,

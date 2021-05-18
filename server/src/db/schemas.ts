@@ -219,13 +219,13 @@ function DoublePlayTwinRandomTuple(self: unknown) {
         return "Expected exactly 2 elements.";
     }
 
-    let ls = p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])(self[0]);
+    const ls = p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])(self[0]);
 
     if (ls !== true) {
         return ls;
     }
 
-    let rs = p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])(self[1]);
+    const rs = p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])(self[1]);
 
     return rs;
 }

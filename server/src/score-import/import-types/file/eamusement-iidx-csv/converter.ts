@@ -47,7 +47,7 @@ export async function EamScoreConverter(
         return null;
     }
 
-    let ktchiChart = (await FindChartWithPTDFVersion(
+    const ktchiChart = (await FindChartWithPTDFVersion(
         "iidx",
         ktchiSong.id,
         context.playtype,
@@ -64,7 +64,7 @@ export async function EamScoreConverter(
         );
     }
 
-    let exscore = AssertStrAsPositiveInt(
+    const exscore = AssertStrAsPositiveInt(
         eamScore.exscore,
         `${HUMANISED_CHART_TITLE} - Invalid EX score of ${eamScore.exscore}`
     );
@@ -77,12 +77,12 @@ export async function EamScoreConverter(
         );
     }
 
-    let pgreat = AssertStrAsPositiveInt(
+    const pgreat = AssertStrAsPositiveInt(
         eamScore.pgreat,
         `${HUMANISED_CHART_TITLE} - Invalid PGreats of ${eamScore.pgreat}`
     );
 
-    let great = AssertStrAsPositiveInt(
+    const great = AssertStrAsPositiveInt(
         eamScore.great,
         `${HUMANISED_CHART_TITLE} - Invalid Greats of ${eamScore.pgreat}`
     );
@@ -121,9 +121,9 @@ export async function EamScoreConverter(
     // generated when the user triggers a score migration, NOT (as initially thought) when
     // KONAMI decides.
 
-    let timestamp = Date.parse(data.timestamp);
+    const timestamp = Date.parse(data.timestamp);
 
-    let dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
+    const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
         service: context.serviceOrigin,
         comment: null,
         game: "iidx",
@@ -143,7 +143,7 @@ export async function EamScoreConverter(
         timeAchieved: timestamp,
     };
 
-    let numBP = Number(eamScore.bp);
+    const numBP = Number(eamScore.bp);
 
     if (!Number.isNaN(numBP)) {
         if (!Number.isInteger(numBP) || numBP < 0 || numBP > 9999) {
@@ -180,7 +180,7 @@ export async function EamScoreConverterWrapper(
     logger: KtLogger
 ) {
     try {
-        let results = await EamScoreConverter(
+        const results = await EamScoreConverter(
             eamScore,
             song!,
             context,
@@ -231,7 +231,7 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
         }
     }
 
-    let ktchiSong = await FindSongOnTitleInsensitive("iidx", data.title);
+    const ktchiSong = await FindSongOnTitleInsensitive("iidx", data.title);
 
     if (!ktchiSong) {
         return new KTDataNotFoundFailure(
@@ -243,7 +243,7 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
     }
 
     // ts thinks ktchiSong might be null. It's not, though!
-    let results = await Promise.all(
+    const results = await Promise.all(
         data.scores.map((e) =>
             EamScoreConverterWrapper(e, ktchiSong!, context, data, isLegacyLeggendaria, logger)
         )

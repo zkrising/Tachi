@@ -7,11 +7,11 @@ import { CreateScoreID, GetWithScoreID } from "./score-id";
 
 t.beforeEach(ResetDBState);
 t.test("#GetWithScoreID", async (t) => {
-    let sc = await GetWithScoreID("TESTING_SCORE_ID");
+    const sc = await GetWithScoreID("TESTING_SCORE_ID");
 
     t.not(sc, null, "Return a score for a valid score id");
 
-    let nl = await GetWithScoreID("INVALID SCORE ID");
+    const nl = await GetWithScoreID("INVALID SCORE ID");
 
     t.equal(nl, null, "Should return null for score IDs it cannot resolve");
 
@@ -19,7 +19,7 @@ t.test("#GetWithScoreID", async (t) => {
 });
 
 t.test("#CreateScoreID", (t) => {
-    let scoreID = CreateScoreID(1, TestingIIDXSPDryScore, Testing511SPA.chartID);
+    const scoreID = CreateScoreID(1, TestingIIDXSPDryScore, Testing511SPA.chartID);
 
     t.match(
         scoreID,
@@ -40,7 +40,7 @@ t.test("#CreateScoreID", (t) => {
     );
 
     // duplicate score
-    let minimalScore = {
+    const minimalScore = {
         scoreData: {
             percent: TestingIIDXSPDryScore.scoreData.percent,
             score: TestingIIDXSPDryScore.scoreData.score,

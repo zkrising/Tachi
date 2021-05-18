@@ -35,11 +35,11 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
     importType,
     logger
 ): Promise<ConverterFnReturn> => {
-    let game = context.game;
+    const game = context.game;
 
-    let { song, chart } = await ResolveMatchTypeToKTData(data, context, importType, logger);
+    const { song, chart } = await ResolveMatchTypeToKTData(data, context, importType, logger);
 
-    let percent = GenericCalculatePercent(game, data.score, chart);
+    const percent = GenericCalculatePercent(game, data.score, chart);
 
     if (percent > gamePercentMax[game]) {
         throw new InvalidScoreFailure(
@@ -47,7 +47,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
         );
     }
 
-    let grade = GetGradeFromPercent(game, percent);
+    const grade = GetGradeFromPercent(game, percent);
 
     let service = context.service;
 
@@ -57,7 +57,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
         service += " (BATCH-MANUAL)";
     }
 
-    let dryScore: DryScore = {
+    const dryScore: DryScore = {
         game: game,
         service,
         comment: data.comment ?? null,
@@ -94,7 +94,7 @@ export async function ResolveMatchTypeToKTData(
             throw new InvalidScoreFailure(`Cannot use bmsChartHash lookup on ${game}.`);
         }
 
-        let chart = await FindBMSChartOnHash(data.identifier);
+        const chart = await FindBMSChartOnHash(data.identifier);
 
         if (!chart) {
             throw new KTDataNotFoundFailure(
@@ -105,7 +105,7 @@ export async function ResolveMatchTypeToKTData(
             );
         }
 
-        let song = await FindSongOnID(game, chart.songID);
+        const song = await FindSongOnID(game, chart.songID);
 
         if (!song) {
             logger.severe(`BMS songID ${chart.songID} has charts but no parent song.`);
@@ -130,9 +130,9 @@ export async function ResolveMatchTypeToKTData(
             );
         }
 
-        let difficulty = AssertStrAsDifficulty(data.difficulty, game, data.playtype);
+        const difficulty = AssertStrAsDifficulty(data.difficulty, game, data.playtype);
 
-        let chart = await FindDDRChartOnSongHash(data.identifier, data.playtype, difficulty);
+        const chart = await FindDDRChartOnSongHash(data.identifier, data.playtype, difficulty);
 
         if (!chart) {
             throw new KTDataNotFoundFailure(
@@ -143,7 +143,7 @@ export async function ResolveMatchTypeToKTData(
             );
         }
 
-        let song = await FindSongOnID(game, chart.songID);
+        const song = await FindSongOnID(game, chart.songID);
 
         if (!song) {
             logger.severe(`DDR songID ${chart.songID} has charts but no parent song.`);
@@ -152,12 +152,12 @@ export async function ResolveMatchTypeToKTData(
 
         return { song, chart };
     } else if (data.matchType === "kamaitachiSongID" || data.matchType === "songID") {
-        let songID = AssertStrAsPositiveInt(
+        const songID = AssertStrAsPositiveInt(
             data.identifier,
             "Invalid songID - must be a stringified positive integer."
         );
 
-        let song = await FindSongOnID(game, songID);
+        const song = await FindSongOnID(game, songID);
 
         if (!song) {
             throw new KTDataNotFoundFailure(
@@ -168,11 +168,11 @@ export async function ResolveMatchTypeToKTData(
             );
         }
 
-        let chart = await ResolveChartFromSong(song, data, context, importType);
+        const chart = await ResolveChartFromSong(song, data, context, importType);
 
         return { song, chart };
     } else if (data.matchType === "songTitle" || data.matchType === "title") {
-        let song = await FindSongOnTitleInsensitive(game, data.identifier);
+        const song = await FindSongOnTitleInsensitive(game, data.identifier);
 
         if (!song) {
             throw new KTDataNotFoundFailure(
@@ -183,7 +183,7 @@ export async function ResolveMatchTypeToKTData(
             );
         }
 
-        let chart = await ResolveChartFromSong(song, data, context, importType);
+        const chart = await ResolveChartFromSong(song, data, context, importType);
 
         return { song, chart };
     }
@@ -201,7 +201,7 @@ export async function ResolveChartFromSong(
     context: BatchManualContext,
     importType: ImportTypes
 ) {
-    let game = context.game;
+    const game = context.game;
 
     if (!data.difficulty) {
         throw new InvalidScoreFailure(
@@ -215,7 +215,7 @@ export async function ResolveChartFromSong(
         );
     }
 
-    let difficulty = AssertStrAsDifficulty(data.difficulty, game, data.playtype);
+    const difficulty = AssertStrAsDifficulty(data.difficulty, game, data.playtype);
 
     let chart;
 

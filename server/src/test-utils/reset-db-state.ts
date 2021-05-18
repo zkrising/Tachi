@@ -11,7 +11,7 @@ const logger = CreateLogCtx("reset-db-state.ts");
 const DATA_DIR = path.join(__dirname, "./mock-db");
 
 async function ResetState(file: string) {
-    let filename = path.basename(file, ".json");
+    const filename = path.basename(file, ".json");
 
     let collection;
 
@@ -29,8 +29,8 @@ async function ResetState(file: string) {
 
         await collection.remove({});
 
-        let fileLoc = path.join(DATA_DIR, file);
-        let data = JSON.parse(fs.readFileSync(fileLoc, "utf-8"));
+        const fileLoc = path.join(DATA_DIR, file);
+        const data = JSON.parse(fs.readFileSync(fileLoc, "utf-8"));
 
         if (!Array.isArray(data)) {
             throw new Error(`Panic, ${filename} not JSONArray?`);

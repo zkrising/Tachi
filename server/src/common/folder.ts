@@ -43,13 +43,13 @@ export async function ResolveFolderToCharts(
             })
         );
     } else if (folder.type === "charts") {
-        let folderDataTransposed: Record<string, unknown> = {};
+        const folderDataTransposed: Record<string, unknown> = {};
 
         for (const key in folder.data) {
             folderDataTransposed[key.replace(/¬/gu, ".")] = folder.data[key];
         }
 
-        let fx = deepmerge.all([filter, { playtype: folder.playtype }, folderDataTransposed]);
+        const fx = deepmerge.all([filter, { playtype: folder.playtype }, folderDataTransposed]);
 
         charts = await db.charts[folder.game].find(fx);
     } else {
@@ -90,14 +90,14 @@ export async function GetFolderCharts(
     filter: FilterQuery<AnyChartDocument> = {},
     getSongs = false
 ): Promise<{ songs?: AnySongDocument[]; charts: AnyChartDocument[] }> {
-    let chartIDs = await GetFolderChartIDs(folder.folderID);
+    const chartIDs = await GetFolderChartIDs(folder.folderID);
 
-    let charts = await db.charts[folder.game].find(
+    const charts = await db.charts[folder.game].find(
         deepmerge.all([{ playtype: folder.playtype }, { chartID: { $in: chartIDs } }, filter])
     );
 
     if (getSongs) {
-        let songs = await db.songs[folder.game].find({
+        const songs = await db.songs[folder.game].find({
             id: { $in: charts.map((e) => e.songID) },
         });
 
@@ -108,7 +108,7 @@ export async function GetFolderCharts(
 }
 
 export async function GetFolderChartIDs(folderID: string) {
-    let chartIDs = await db["folder-chart-lookup"].find(
+    const chartIDs = await db["folder-chart-lookup"].find(
         {
             folderID,
         },
@@ -122,7 +122,7 @@ export async function GetFolderChartIDs(folderID: string) {
     return chartIDs.map((e) => e.chartID);
 }
 export async function CreateFolderChartLookup(folder: FolderDocument) {
-    let { charts } = await ResolveFolderToCharts(folder, {}, false);
+    const { charts } = await ResolveFolderToCharts(folder, {}, false);
 
     await db["folder-chart-lookup"].insert(
         charts.map((c) => ({
@@ -141,7 +141,7 @@ export async function InitaliseFolderChartLookup() {
     await db["folder-chart-lookup"].remove({});
     logger.info(`Flushed Cache.`);
 
-    let folders = await db.folders.find({});
+    const folders = await db.folders.find({});
     logger.info(`Reloading ${folders.length} folders.`);
 
     await Promise.all(folders.map(CreateFolderChartLookup));

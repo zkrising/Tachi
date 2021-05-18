@@ -173,7 +173,7 @@ export function FindSDVXChartOnInGameID(
     playtype: Playtypes[Game],
     difficulty: "NOV" | "ADV" | "EXH" | "MXM" | "ANY_INF"
 ) {
-    let diffQuery =
+    const diffQuery =
         difficulty === "ANY_INF"
             ? { $in: ["INF", "GRV", "HVN", "VVD"] as Difficulties["sdvx:Single"][] }
             : difficulty;

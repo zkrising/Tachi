@@ -8,12 +8,12 @@ export function ProcessMilestoneFromGII(
     milestone: MilestoneDocument,
     gii: Map<string, GoalImportInfo["new"]>
 ) {
-    let goalIDs = GetGoalIDsFromMilestone(milestone);
+    const goalIDs = GetGoalIDsFromMilestone(milestone);
 
     let progress = 0;
 
     for (const goalID of goalIDs) {
-        let userInfo = gii.get(goalID);
+        const userInfo = gii.get(goalID);
 
         if (!userInfo) {
             continue;
@@ -26,7 +26,7 @@ export function ProcessMilestoneFromGII(
         progress++;
     }
 
-    let outOf = CalculateMilestoneOutOf(milestone, goalIDs);
+    const outOf = CalculateMilestoneOutOf(milestone, goalIDs);
 
     // milestone achieved!
     if (progress >= outOf) {

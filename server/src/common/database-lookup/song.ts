@@ -38,7 +38,7 @@ export function FindSongOnTitleInsensitive(
 ): Promise<FindOneResult<AnySongDocument>> {
     // @PERF: Performance should be tested here by having a utility field for all-titles.
 
-    let regex = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
+    const regex = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
     return db.songs[game].findOne({
         $or: [
             {

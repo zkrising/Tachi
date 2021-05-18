@@ -62,7 +62,7 @@ const PR_Fervidex: PrudenceSchema = {
  */
 export function SoftwareIDToVersion(model: string) {
     try {
-        let data = ParseEA3SoftID(model);
+        const data = ParseEA3SoftID(model);
 
         if (data.model === MODEL_INFINITAS_2) {
             return "inf2020";
@@ -88,10 +88,10 @@ export function ParseFervidexSingle(
     headers: FerHeaders,
     logger: KtLogger
 ): ParserFunctionReturnsSync<FervidexScore, FervidexContext> {
-    let version = SoftwareIDToVersion(headers.model);
+    const version = SoftwareIDToVersion(headers.model);
 
     // more mods may be added in the future, so lets ignore excess keys.
-    let err = p(body, PR_Fervidex, undefined, { allowExcessKeys: true });
+    const err = p(body, PR_Fervidex, undefined, { allowExcessKeys: true });
 
     if (err) {
         throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid Fervidex Request?"));

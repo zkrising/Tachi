@@ -15,7 +15,7 @@ t.test("POST /api/ir/direct-manual/import", async (t) => {
     RequireNeutralAuthentication("/api/ir/direct-manual/import", "POST");
 
     t.test("Should upload BATCH-MANUAL data from the request body.", async (t) => {
-        let res = await mockApi
+        const res = await mockApi
             .post("/api/ir/direct-manual/import")
             .set("Cookie", cookie)
             .send(GetKTDataJSON("./batch-manual/small-file.json"));
@@ -24,7 +24,7 @@ t.test("POST /api/ir/direct-manual/import", async (t) => {
 
         t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
-        let scoreCount = await db.scores.count({ service: "foobar (DIRECT-MANUAL)" });
+        const scoreCount = await db.scores.count({ service: "foobar (DIRECT-MANUAL)" });
 
         t.equal(scoreCount, 1, "Should import one score.");
 
@@ -32,7 +32,10 @@ t.test("POST /api/ir/direct-manual/import", async (t) => {
     });
 
     t.test("Should reject invalid BATCH-MANUAL data from the request body.", async (t) => {
-        let res = await mockApi.post("/api/ir/direct-manual/import").set("Cookie", cookie).send({});
+        const res = await mockApi
+            .post("/api/ir/direct-manual/import")
+            .set("Cookie", cookie)
+            .send({});
 
         t.equal(res.body.success, false, "Should not be successful");
 

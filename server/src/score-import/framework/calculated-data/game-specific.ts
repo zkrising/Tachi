@@ -21,10 +21,10 @@ export async function CreateGameSpecific<G extends Game>(
     esd: number | null,
     logger: KtLogger
 ): Promise<Record<string, number | null>> {
-    let gameSpecific: Record<string, number | null> = {};
+    const gameSpecific: Record<string, number | null> = {};
 
     if (game === "iidx") {
-        let BPIData = await db["iidx-bpi-data"].findOne({
+        const BPIData = await db["iidx-bpi-data"].findOne({
             chartID: chart.chartID,
         });
 

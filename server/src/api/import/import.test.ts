@@ -13,8 +13,8 @@ import ResetDBState from "../../test-utils/reset-db-state";
 import db from "../../db/db";
 
 async function LoadKTBlackIIDXData() {
-    let songs = GetKTDataJSON("./kamaitachi/ktblack-songs-iidx.json");
-    let charts = GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json");
+    const songs = GetKTDataJSON("./kamaitachi/ktblack-songs-iidx.json");
+    const charts = GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json");
 
     await db.songs.iidx.remove({});
     await db.songs.iidx.insert(songs);
@@ -35,7 +35,7 @@ t.test("POST /api/import/file", async (t) => {
         t.beforeEach(LoadKTBlackIIDXData);
 
         t.test("Mini HV import", async (t) => {
-            let res = await mockApi
+            const res = await mockApi
                 .post("/api/import/file")
                 .set("Cookie", cookie)
                 .attach(
@@ -52,7 +52,7 @@ t.test("POST /api/import/file", async (t) => {
 
             t.equal(res.body.body.scoreIDs.length, 2, "Should have 2 successful scores.");
 
-            let scoreCount = await db.scores.find({
+            const scoreCount = await db.scores.find({
                 scoreID: { $in: res.body.body.scoreIDs },
             });
 
@@ -66,7 +66,7 @@ t.test("POST /api/import/file", async (t) => {
         });
 
         t.test("Valid Rootage CSV import", async (t) => {
-            let res = await mockApi
+            const res = await mockApi
                 .post("/api/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV26, "my_csv.csv")
@@ -77,7 +77,7 @@ t.test("POST /api/import/file", async (t) => {
 
             t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
-            let scoreCount = await db.scores.find({
+            const scoreCount = await db.scores.find({
                 scoreID: { $in: res.body.body.scoreIDs },
             });
 
@@ -91,7 +91,7 @@ t.test("POST /api/import/file", async (t) => {
         });
 
         t.test("Valid Heroic Verse CSV import", async (t) => {
-            let res = await mockApi
+            const res = await mockApi
                 .post("/api/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV27, "my_csv.csv")
@@ -102,7 +102,7 @@ t.test("POST /api/import/file", async (t) => {
 
             t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
-            let scoreCount = await db.scores.find({
+            const scoreCount = await db.scores.find({
                 scoreID: { $in: res.body.body.scoreIDs },
             });
 
@@ -120,7 +120,7 @@ t.test("POST /api/import/file", async (t) => {
 
     t.test("file/batch-manual", (t) => {
         t.test("Empty import", async (t) => {
-            let res = await mockApi
+            const res = await mockApi
                 .post("/api/import/file")
                 .set("Cookie", cookie)
                 .attach(
@@ -136,7 +136,7 @@ t.test("POST /api/import/file", async (t) => {
 
             t.equal(res.body.body.scoreIDs.length, 0, "Should have 0 successful scores.");
 
-            let scoreCount = await db.scores.find({
+            const scoreCount = await db.scores.find({
                 scoreID: { $in: res.body.body.scoreIDs },
             });
 
@@ -150,7 +150,7 @@ t.test("POST /api/import/file", async (t) => {
         });
 
         t.test("Single import", async (t) => {
-            let res = await mockApi
+            const res = await mockApi
                 .post("/api/import/file")
                 .set("Cookie", cookie)
                 .attach(
@@ -166,7 +166,7 @@ t.test("POST /api/import/file", async (t) => {
 
             t.equal(res.body.body.scoreIDs.length, 1, "Should have 1 successful score.");
 
-            let scoreCount = await db.scores.find({
+            const scoreCount = await db.scores.find({
                 scoreID: { $in: res.body.body.scoreIDs },
             });
 

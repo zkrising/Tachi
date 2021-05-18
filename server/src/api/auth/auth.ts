@@ -58,7 +58,10 @@ router.post(
 
         if (process.env.NODE_ENV === "production") {
             logger.verbose("Validating captcha...");
-            let validCaptcha = await ValidateCaptcha(req.body.recaptcha, req.socket.remoteAddress);
+            const validCaptcha = await ValidateCaptcha(
+                req.body.recaptcha,
+                req.socket.remoteAddress
+            );
 
             if (!validCaptcha) {
                 logger.verbose("Captcha failed.");
@@ -73,7 +76,7 @@ router.post(
             logger.verbose("Skipped captcha check because not in production.");
         }
 
-        let requestedUser = await PRIVATEINFO_GetUserCaseInsensitive(req.body.username);
+        const requestedUser = await PRIVATEINFO_GetUserCaseInsensitive(req.body.username);
 
         if (!requestedUser) {
             logger.verbose(`Invalid username for login ${req.body.username}.`);
@@ -83,7 +86,7 @@ router.post(
             });
         }
 
-        let passwordMatch = await PasswordCompare(req.body.password, requestedUser.password);
+        const passwordMatch = await PasswordCompare(req.body.password, requestedUser.password);
 
         if (!passwordMatch) {
             logger.verbose("Invalid password provided.");
@@ -105,7 +108,7 @@ router.post(
                 `User ${FormatUserDoc(requestedUser)} did not have an apikey. Creating a new one.`
             );
 
-            let newApiKey = await AddNewUserAPIKey(requestedUser);
+            const newApiKey = await AddNewUserAPIKey(requestedUser);
 
             if (!newApiKey) {
                 logger.error(
@@ -174,7 +177,10 @@ router.post(
 
         if (process.env.NODE_ENV === "production") {
             logger.verbose("Validating captcha...");
-            let validCaptcha = await ValidateCaptcha(req.body.recaptcha, req.socket.remoteAddress);
+            const validCaptcha = await ValidateCaptcha(
+                req.body.recaptcha,
+                req.socket.remoteAddress
+            );
 
             if (!validCaptcha) {
                 logger.verbose("Captcha failed.");
@@ -189,7 +195,7 @@ router.post(
             logger.info("Skipped captcha check because not in production.");
         }
 
-        let existingUser = await GetUserCaseInsensitive(req.body.username);
+        const existingUser = await GetUserCaseInsensitive(req.body.username);
 
         if (existingUser) {
             logger.verbose(`Invalid username ${req.body.username}, already in use.`);
@@ -199,7 +205,7 @@ router.post(
             });
         }
 
-        let inviteCodeDoc = await db.invites.findOneAndUpdate(
+        const inviteCodeDoc = await db.invites.findOneAndUpdate(
             {
                 code: req.body.inviteCode,
                 consumed: false,
@@ -224,13 +230,13 @@ router.post(
         // if we get to this point, We're good to create the user.
 
         try {
-            let newUser = await AddNewUser(req.body.username, req.body.password, req.body.email);
+            const newUser = await AddNewUser(req.body.username, req.body.password, req.body.email);
 
             if (!newUser) {
                 throw new Error("AddNewUser failed to create a user.");
             }
 
-            let apiKeyDoc = await AddNewUserAPIKey(newUser);
+            const apiKeyDoc = await AddNewUserAPIKey(newUser);
 
             if (!apiKeyDoc) {
                 throw new Error("AddNewUserAPIKey failed to create an api key.");

@@ -28,7 +28,7 @@ t.test("#AddNewUserAPIKey", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should insert a new API key into the database", async (t) => {
-        let data = await AddNewUserAPIKey({ id: 1 } as PrivateUserDocument);
+        const data = await AddNewUserAPIKey({ id: 1 } as PrivateUserDocument);
 
         t.not(data, null, "Return is not null");
 
@@ -47,7 +47,7 @@ t.test("#AddNewUserAPIKey", (t) => {
             "Data should match a public API key object"
         );
 
-        let inDatabase = await db["public-api-keys"].findOne({
+        const inDatabase = await db["public-api-keys"].findOne({
             _id: data._id,
         });
 
@@ -64,18 +64,18 @@ t.test("#ReinstateInvite", (t) => {
 
     t.test("Should change the 'consumed' property of an invite to true.", async (t) => {
         // mock insert
-        let inviteDoc = await db.invites.insert({
+        const inviteDoc = await db.invites.insert({
             code: "foobar",
             consumed: true,
             createdBy: 1,
             createdOn: 1,
         });
 
-        let response = await ReinstateInvite(inviteDoc);
+        const response = await ReinstateInvite(inviteDoc);
 
         t.equal(response.nModified, 1, "Should modify one document");
 
-        let invite2 = await db.invites.findOne({
+        const invite2 = await db.invites.findOne({
             code: inviteDoc.code, // lol
         });
 
@@ -97,9 +97,9 @@ t.test("#AddNewInvite", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should create a new invite from a given user", async (t) => {
-        let userDoc = await db.users.findOne({ id: 1 });
+        const userDoc = await db.users.findOne({ id: 1 });
 
-        let result = await AddNewInvite(userDoc!);
+        const result = await AddNewInvite(userDoc!);
 
         t.equal(result.createdBy, userDoc!.id, "Invite should be created by the requesting user.");
         t.equal(result.consumed, false, "Invite should not be consumed.");

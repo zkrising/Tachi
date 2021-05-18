@@ -7,12 +7,12 @@ t.test("#GetNextCounterValue", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Increments on valid counter hit", async (t) => {
-        let response = await GetNextCounterValue("real-counter");
+        const response = await GetNextCounterValue("real-counter");
 
         // database starts with this at one
         t.equal(response, 2, "Counter should return the current number stored");
 
-        let dbData = await db.counters.findOne({
+        const dbData = await db.counters.findOne({
             counterName: "real-counter",
         });
 

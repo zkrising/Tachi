@@ -6,8 +6,8 @@ import { DryScore, KtLogger } from "../../../types";
  * Calculates the in-game CHUNITHM rating for a score.
  */
 export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: AnyChartDocument) {
-    let score = dryScore.scoreData.score;
-    let levelBase = chartData.levelNum * 100;
+    const score = dryScore.scoreData.score;
+    const levelBase = chartData.levelNum * 100;
 
     let val = 0;
 
@@ -34,8 +34,8 @@ export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: AnyChartD
  * Calculates the in-game GITADORA rating for a score.
  */
 export function CalculateGITADORARating(dryScore: DryScore, chartData: AnyChartDocument) {
-    let trueRating = (dryScore.scoreData.percent / 100) * chartData.levelNum * 20;
-    let flooredRating = Math.floor(trueRating * 100) / 100;
+    const trueRating = (dryScore.scoreData.percent / 100) * chartData.levelNum * 20;
+    const flooredRating = Math.floor(trueRating * 100) / 100;
     return flooredRating;
 }
 
@@ -69,7 +69,7 @@ export function CalculateBPI(
     max: integer,
     pc: number | null
 ) {
-    let powCoef = pc ?? 1.175;
+    const powCoef = pc ?? 1.175;
     const yourPGF = BPIPikaGreatFn(yourEx, max);
     const kaidenPGF = BPIPikaGreatFn(kaidenEx, max);
     const wrPGF = BPIPikaGreatFn(wrEx, max);
@@ -99,7 +99,7 @@ export function CalculateBPI(
  * @returns Null, if this chart has no kaidens, a percent between 0 and 100, if there are.
  */
 export async function KaidenPercentile(scoreObj: DryScore, chartData: AnyChartDocument) {
-    let scoreCount = await db["iidx-eam-scores"].count({
+    const scoreCount = await db["iidx-eam-scores"].count({
         chartID: chartData.chartID,
     });
 
@@ -107,7 +107,7 @@ export async function KaidenPercentile(scoreObj: DryScore, chartData: AnyChartDo
         return null;
     }
 
-    let worseScores = await db["iidx-eam-scores"].count({
+    const worseScores = await db["iidx-eam-scores"].count({
         chartID: chartData.chartID,
         score: { $lt: scoreObj.scoreData.score },
     });
@@ -207,16 +207,16 @@ export function CalculateVF4(
     logger: KtLogger
 ) {
     const multiplier = 25;
-    let level = chartData.levelNum;
+    const level = chartData.levelNum;
 
-    let gradeCoefficient = VF4GradeCoefficients[grade];
+    const gradeCoefficient = VF4GradeCoefficients[grade];
 
     if (!gradeCoefficient) {
         logger.warn(`Invalid grade of ${grade} passed to CalculateVF4. Returning null.`);
         return null;
     }
 
-    let percent = per / 100;
+    const percent = per / 100;
     if (!level || !percent) {
         return 0;
     }
@@ -234,10 +234,10 @@ export function CalculateVF5(
     chartData: AnyChartDocument,
     logger: KtLogger
 ) {
-    let level = chartData.levelNum;
+    const level = chartData.levelNum;
 
-    let gradeCoefficient = VF5GradeCoefficients[grade];
-    let lampCoefficient = VF5LampCoefficients[lamp];
+    const gradeCoefficient = VF5GradeCoefficients[grade];
+    const lampCoefficient = VF5LampCoefficients[lamp];
 
     if (!lampCoefficient) {
         logger.warn(`Invalid lamp of ${lamp} passed to CalculateVF5. Returning null.`);
@@ -248,7 +248,7 @@ export function CalculateVF5(
         return null;
     }
 
-    let percent = per / 100;
+    const percent = per / 100;
     if (!level || !percent) {
         return 0;
     }

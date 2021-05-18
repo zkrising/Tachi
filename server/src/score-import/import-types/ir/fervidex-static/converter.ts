@@ -18,9 +18,9 @@ export const ConverterIRFervidexStatic: ConverterFunction<
     FervidexStaticScore,
     FervidexStaticContext
 > = async (data, context, importType, logger) => {
-    let { difficulty, playtype } = SplitFervidexChartRef(data.chart);
+    const { difficulty, playtype } = SplitFervidexChartRef(data.chart);
 
-    let chart = await FindChartOnInGameIDVersion(
+    const chart = await FindChartOnInGameIDVersion(
         "iidx",
         data.song_id,
         playtype,
@@ -37,7 +37,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
         );
     }
 
-    let song = await FindSongOnID("iidx", chart.songID);
+    const song = await FindSongOnID("iidx", chart.songID);
 
     if (!song) {
         logger.severe(`Song ${chart.songID} (iidx) has no parent song?`);
@@ -52,7 +52,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
         );
     }
 
-    let dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
+    const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
         game: "iidx",
         service: "Fervidex Static",
         comment: null,

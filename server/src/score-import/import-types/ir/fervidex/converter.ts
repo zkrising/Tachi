@@ -140,7 +140,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
     importType,
     logger
 ) => {
-    let { difficulty, playtype } = SplitFervidexChartRef(data.chart);
+    const { difficulty, playtype } = SplitFervidexChartRef(data.chart);
 
     let chart;
     if (data.custom) {
@@ -163,16 +163,16 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
         );
     }
 
-    let song = await FindSongOnID("iidx", chart.songID);
+    const song = await FindSongOnID("iidx", chart.songID);
 
     if (!song) {
         logger.severe(`Song ${chart.songID} (iidx) has no parent song?`);
         throw new InternalFailure(`Song ${chart.songID} (iidx) has no parent song?`);
     }
 
-    let gaugeHistory = data.gauge.map((e) => (e > 200 ? null : e));
+    const gaugeHistory = data.gauge.map((e) => (e > 200 ? null : e));
 
-    let gauge = gaugeHistory[gaugeHistory.length - 1];
+    const gauge = gaugeHistory[gaugeHistory.length - 1];
 
     if (gauge && gauge > 100) {
         throw new InvalidScoreFailure(`Invalid value of gauge ${gauge}.`);
@@ -186,7 +186,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
         );
     }
 
-    let dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
+    const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
         game: "iidx",
         service: "Fervidex",
         comment: null,

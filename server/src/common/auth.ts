@@ -76,9 +76,9 @@ export function ReinstateInvite(inviteDoc: InviteCodeDocument) {
 }
 
 export async function AddNewInvite(user: PublicUserDocument) {
-    let code = CreateInviteCode();
+    const code = CreateInviteCode();
 
-    let result = await db.invites.insert({
+    const result = await db.invites.insert({
         code,
         consumed: false,
         createdBy: user.id,
@@ -144,7 +144,7 @@ export async function ValidateCaptcha(
     remoteAddr: string | undefined,
     fetch = nodeFetch
 ) {
-    let r = await fetch(
+    const r = await fetch(
         `https://www.google.com/recaptcha/api/siteverify?secret=${CAPTCHA_SECRET_KEY}&response=${recaptcha}&remoteip=${remoteAddr}`
     );
 

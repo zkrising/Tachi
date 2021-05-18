@@ -25,11 +25,11 @@ export function CreateSessionCalcData(
     }
 
     // @optimisable -- could be done in one loop.
-    let scorePerf = AverageBest10(scoreCalcData.map((e) => e.calculatedData.rating));
+    const scorePerf = AverageBest10(scoreCalcData.map((e) => e.calculatedData.rating));
 
-    let lampPerf = AverageBest10(scoreCalcData.map((e) => e.calculatedData.lampRating));
+    const lampPerf = AverageBest10(scoreCalcData.map((e) => e.calculatedData.lampRating));
 
-    let perf =
+    const perf =
         scoreCalcData
             .map((e) => Math.max(e.calculatedData.rating, e.calculatedData.lampRating))
             .sort((a, b) => b - a)

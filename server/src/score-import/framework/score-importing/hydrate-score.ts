@@ -43,7 +43,7 @@ export async function HydrateScore(
         dryScoreData
     );
 
-    let score: ScoreDocument = {
+    const score: ScoreDocument = {
         // extract all of the non-scoreData props from a dry score and push them here
         ...rest,
         // then push our score data.

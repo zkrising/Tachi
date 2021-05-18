@@ -71,7 +71,7 @@ t.test("#EamScoreConverter", async (t) => {
     t.beforeEach(ResetDBState);
 
     // this returns 511
-    let song = await db.songs.iidx.findOne();
+    const song = await db.songs.iidx.findOne();
 
     function EamScoreConverterAuto(score: Partial<EamusementScoreData> = {}) {
         return EamScoreConverter(
@@ -86,7 +86,7 @@ t.test("#EamScoreConverter", async (t) => {
 
     t.test("Valid Scores", (t) => {
         t.test("Normal 511 SPA Score", async (t) => {
-            let res = await EamScoreConverterAuto();
+            const res = await EamScoreConverterAuto();
 
             t.not(res, null, "Should not be null.");
 
@@ -102,7 +102,7 @@ t.test("#EamScoreConverter", async (t) => {
         });
 
         t.test("--- BP Score", async (t) => {
-            let res = await EamScoreConverterAuto({ bp: "---" });
+            const res = await EamScoreConverterAuto({ bp: "---" });
 
             t.not(res, null, "Should not be null.");
 
@@ -122,7 +122,7 @@ t.test("#EamScoreConverter", async (t) => {
         });
 
         t.test("Nonsense String BP Score", async (t) => {
-            let res = await EamScoreConverterAuto({ bp: "ASDF" });
+            const res = await EamScoreConverterAuto({ bp: "ASDF" });
 
             t.not(res, null, "Should not be null.");
 
@@ -142,7 +142,7 @@ t.test("#EamScoreConverter", async (t) => {
         });
 
         t.test("0 EX Score", async (t) => {
-            let res = await EamScoreConverterAuto({ exscore: "0", pgreat: "0", great: "0" });
+            const res = await EamScoreConverterAuto({ exscore: "0", pgreat: "0", great: "0" });
 
             t.equal(res, null, "Should be null.");
 
@@ -150,7 +150,7 @@ t.test("#EamScoreConverter", async (t) => {
         });
 
         t.test("1 EX Score", async (t) => {
-            let res = await EamScoreConverterAuto({ exscore: "1", pgreat: "0", great: "1" });
+            const res = await EamScoreConverterAuto({ exscore: "1", pgreat: "0", great: "1" });
 
             t.not(res, null, "Should not be null.");
 
@@ -179,7 +179,7 @@ t.test("#EamScoreConverter", async (t) => {
         });
 
         t.test("Level 0 chart", async (t) => {
-            let res = await EamScoreConverterAuto({ level: "0" });
+            const res = await EamScoreConverterAuto({ level: "0" });
 
             t.equal(res, null, "Should be null.");
 
@@ -337,7 +337,7 @@ t.test("#EamScoreConverterWrapper", async (t) => {
     }
 
     t.test("Should convert thrown errors into returns", async (t) => {
-        let res = await EamScoreConverterWrapperAuto({ exscore: "-1" });
+        const res = await EamScoreConverterWrapperAuto({ exscore: "-1" });
 
         t.strictSame(
             res,
@@ -350,7 +350,7 @@ t.test("#EamScoreConverterWrapper", async (t) => {
     });
 
     t.test("Should return EamScoreConverter on success", async (t) => {
-        let res = await EamScoreConverterWrapperAuto();
+        const res = await EamScoreConverterWrapperAuto();
 
         if (res instanceof ConverterFailure || !res) {
             return t.fail("Unexpected ConverterFailure");

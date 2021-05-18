@@ -16,7 +16,7 @@ t.test("POST /api/ir/barbatos/score/submit", async (t) => {
     RequireNeutralAuthentication("/api/ir/barbatos/score/submit", "POST");
 
     t.test("Should import a valid score", async (t) => {
-        let res = await mockApi
+        const res = await mockApi
             .post("/api/ir/barbatos/score/submit")
             .set("Cookie", cookie)
             .send(TestingBarbatosScore);
@@ -25,7 +25,7 @@ t.test("POST /api/ir/barbatos/score/submit", async (t) => {
 
         t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
-        let scores = await db.scores.count({
+        const scores = await db.scores.count({
             service: "Barbatos",
         });
 
@@ -35,7 +35,7 @@ t.test("POST /api/ir/barbatos/score/submit", async (t) => {
     });
 
     t.test("Should reject an invalid body", async (t) => {
-        let res = await mockApi
+        const res = await mockApi
             .post("/api/ir/barbatos/score/submit")
             .set("Cookie", cookie)
             .send({});

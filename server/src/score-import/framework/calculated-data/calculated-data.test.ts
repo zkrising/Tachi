@@ -17,7 +17,7 @@ import { GetDefaultTierlist } from "../../../common/tierlist";
 const mockLogger = CreateLogCtx("calculated-data.test.ts");
 
 t.test("#CreateCalculatedData", async (t) => {
-    let res = await CreateCalculatedData(TestingIIDXSPDryScore, Testing511SPA, 30, mockLogger);
+    const res = await CreateCalculatedData(TestingIIDXSPDryScore, Testing511SPA, 30, mockLogger);
 
     prAssert(
         res,
@@ -33,7 +33,7 @@ t.test("#CreateCalculatedData", async (t) => {
         "Should correctly produce calculatedData"
     );
 
-    let gitadoraRes = await CreateCalculatedData(
+    const gitadoraRes = await CreateCalculatedData(
         TestingGITADORADoraDryScore,
         TestingDoraChart,
         30,
@@ -55,7 +55,7 @@ t.test("#CreateCalculatedData", async (t) => {
 
 t.test("#CalculateRating", (t) => {
     t.test("Should call the success calculator if percent > pivotPercent", async (t) => {
-        let r = await CalculateRating(
+        const r = await CalculateRating(
             deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 80 } }),
             "iidx",
             "SP",
@@ -69,7 +69,7 @@ t.test("#CalculateRating", (t) => {
     });
 
     t.test("Should call the fail calculator if percent > pivotPercent", async (t) => {
-        let r = await CalculateRating(
+        const r = await CalculateRating(
             TestingIIDXSPDryScore,
             "iidx",
             "SP",
@@ -83,7 +83,7 @@ t.test("#CalculateRating", (t) => {
     });
 
     t.test("Should call levelNum if percent === pivotPercent", async (t) => {
-        let r = await CalculateRating(
+        const r = await CalculateRating(
             deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 77.7777 } }),
             "iidx",
             "SP",
@@ -135,14 +135,14 @@ t.test("#CalculateRating", (t) => {
 t.test("#CalculateLampRating", async (t) => {
     t.beforeEach(ResetDBState);
 
-    let defaultTierlist = await GetDefaultTierlist("iidx", "SP");
+    const defaultTierlist = await GetDefaultTierlist("iidx", "SP");
 
     if (!defaultTierlist) {
         throw new Error("Could not retrieve IIDX:SP default tierlist?");
     }
 
     t.test("TierlistData", async (t) => {
-        let lampRating = await CalculateLampRating(
+        const lampRating = await CalculateLampRating(
             TestingIIDXSPDryScore,
             "iidx",
             "SP",
@@ -152,7 +152,7 @@ t.test("#CalculateLampRating", async (t) => {
 
         t.equal(lampRating, 10, "Should equal the levelNum of the chart.");
 
-        let lampRatingFail = await CalculateLampRating(
+        const lampRatingFail = await CalculateLampRating(
             deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "FAILED" } }),
             "iidx",
             "SP",
@@ -162,7 +162,7 @@ t.test("#CalculateLampRating", async (t) => {
 
         t.equal(lampRatingFail, 0, "Should equal 0, if the score is not a clear.");
 
-        let lampRatingHC = await CalculateLampRating(
+        const lampRatingHC = await CalculateLampRating(
             deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "HARD CLEAR" } }),
             "iidx",
             "SP",
@@ -172,7 +172,7 @@ t.test("#CalculateLampRating", async (t) => {
 
         t.equal(lampRatingHC, 10.6, "Should equal the tierlist value for HC on this chart.");
 
-        let lampRatingEXHC = await CalculateLampRating(
+        const lampRatingEXHC = await CalculateLampRating(
             deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "EX HARD CLEAR" } }),
             "iidx",
             "SP",
@@ -201,7 +201,7 @@ t.test("#CalculateLampRating", async (t) => {
             },
         });
 
-        let lampRating = await CalculateLampRating(
+        const lampRating = await CalculateLampRating(
             TestingIIDXSPDryScore,
             "iidx",
             "SP",
@@ -211,7 +211,7 @@ t.test("#CalculateLampRating", async (t) => {
 
         t.equal(lampRating, 11.9, "Should equal the NC value of the chart.");
 
-        let lampRatingFail = await CalculateLampRating(
+        const lampRatingFail = await CalculateLampRating(
             deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "FAILED" } }),
             "iidx",
             "SP",
@@ -221,7 +221,7 @@ t.test("#CalculateLampRating", async (t) => {
 
         t.equal(lampRatingFail, 0, "Should equal 0, if the score is not a clear.");
 
-        let lampRatingHC = await CalculateLampRating(
+        const lampRatingHC = await CalculateLampRating(
             deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "HARD CLEAR" } }),
             "iidx",
             "SP",
@@ -235,7 +235,7 @@ t.test("#CalculateLampRating", async (t) => {
             "Should equal the tierlist value for NC, as it is higher than HC on this chart."
         );
 
-        let lampRatingEXHC = await CalculateLampRating(
+        const lampRatingEXHC = await CalculateLampRating(
             deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "EX HARD CLEAR" } }),
             "iidx",
             "SP",
@@ -250,7 +250,7 @@ t.test("#CalculateLampRating", async (t) => {
 
     t.test("No TierlistData", async (t) => {
         await db["tierlist-data"].remove({});
-        let lampRating = await CalculateLampRating(
+        const lampRating = await CalculateLampRating(
             TestingIIDXSPDryScore,
             "iidx",
             "SP",
@@ -259,7 +259,7 @@ t.test("#CalculateLampRating", async (t) => {
 
         t.equal(lampRating, 10, "Should equal the levelNum of the chart.");
 
-        let lampRatingFail = await CalculateLampRating(
+        const lampRatingFail = await CalculateLampRating(
             deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "FAILED" } }),
             "iidx",
             "SP",

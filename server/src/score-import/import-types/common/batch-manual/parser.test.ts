@@ -4,13 +4,13 @@ import CreateLogCtx from "../../../../logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParseBatchManualFromObject as ParserFn } from "./parser";
 import { BatchManual } from "./types";
-import escapeRegex from "../../../../common/escape-string-regexp";
+import { EscapeStringRegexp } from "../../../../common/util";
 import deepmerge from "deepmerge";
 
 const mockErr = (...msg: string[]) =>
     (({
         statusCode: 400,
-        message: new RegExp(msg.map((e) => `${escapeRegex(e)}.*`).join(""), "u"),
+        message: new RegExp(msg.map((e) => `${EscapeStringRegexp(e)}.*`).join(""), "u"),
         name: "Error",
     } as unknown) as ScoreImportFatalError);
 
@@ -144,7 +144,7 @@ t.test("#ParserFn", (t) => {
     });
 
     t.test("Valid Empty BATCH-MANUAL", (t) => {
-        let res = ParserFn(
+        const res = ParserFn(
             { body: [], head: { service: "foo", game: "iidx" } },
             "file/batch-manual",
             logger
@@ -166,7 +166,7 @@ t.test("#ParserFn", (t) => {
 
     t.test("Valid BATCH-MANUAL", (t) => {
         t.test("Basic BATCH-MANUAL", (t) => {
-            let res = ParserFn(
+            const res = ParserFn(
                 {
                     body: [
                         {
@@ -248,7 +248,7 @@ t.test("#ParserFn", (t) => {
         });
 
         t.test("Valid HitMeta", (t) => {
-            let res = ParserFn(
+            const res = ParserFn(
                 dm({ hitMeta: { bp: 10, gauge: 100, gaugeHistory: null, comboBreak: 7 } }),
                 "file/batch-manual",
                 logger
@@ -284,7 +284,7 @@ t.test("#ParserFn", (t) => {
         });
 
         t.test("Valid HitData", (t) => {
-            let res = ParserFn(
+            const res = ParserFn(
                 dm({ hitData: { pgreat: 1, great: null, bad: 0 } }),
                 "file/batch-manual",
                 logger
@@ -323,7 +323,7 @@ t.test("#ParserFn", (t) => {
 
     t.test("Invalid BATCH-MANUAL", (t) => {
         t.test("Invalid Lamp For Game", (t) => {
-            let fn = () =>
+            const fn = () =>
                 ParserFn(
                     {
                         body: [
@@ -354,7 +354,7 @@ t.test("#ParserFn", (t) => {
         });
 
         t.test("Non-numeric score", (t) => {
-            let fn = () => ParserFn(dm({ score: "123" }), "file/batch-manual", logger);
+            const fn = () => ParserFn(dm({ score: "123" }), "file/batch-manual", logger);
 
             t.throws(
                 fn,
@@ -368,7 +368,7 @@ t.test("#ParserFn", (t) => {
         });
 
         t.test("Invalid timeAchieved", (t) => {
-            let fn = () => ParserFn(dm({ timeAchieved: "string" }), "file/batch-manual", logger);
+            const fn = () => ParserFn(dm({ timeAchieved: "string" }), "file/batch-manual", logger);
 
             t.throws(
                 fn,
@@ -378,7 +378,7 @@ t.test("#ParserFn", (t) => {
                 )
             );
 
-            let fn2 = () =>
+            const fn2 = () =>
                 ParserFn(
                     dm({ timeAchieved: 1_620_768_609_637 / 1000 }),
                     "file/batch-manual",
@@ -399,7 +399,7 @@ t.test("#ParserFn", (t) => {
 
         t.test("Invalid Playtype", (t) => {
             // this is not a valid playtype for IIDX
-            let fn = () => ParserFn(dm({ playtype: "Single" }), "file/batch-manual", logger);
+            const fn = () => ParserFn(dm({ playtype: "Single" }), "file/batch-manual", logger);
 
             t.throws(
                 fn,
@@ -414,7 +414,7 @@ t.test("#ParserFn", (t) => {
 
         t.test("Invalid Identifier", (t) => {
             // this is not a valid playtype for IIDX
-            let fn = () => ParserFn(dm({ identifier: null }), "file/batch-manual", logger);
+            const fn = () => ParserFn(dm({ identifier: null }), "file/batch-manual", logger);
 
             t.throws(fn, mockErr("body[0].identifier | Expected string", "Received null [null]"));
 
@@ -422,7 +422,7 @@ t.test("#ParserFn", (t) => {
         });
 
         t.test("Invalid MatchType", (t) => {
-            let fn = () =>
+            const fn = () =>
                 ParserFn(dm({ matchType: "Invalid_MatchType" }), "file/batch-manual", logger);
 
             t.throws(
@@ -437,11 +437,12 @@ t.test("#ParserFn", (t) => {
         });
 
         t.test("Invalid HitData", (t) => {
-            let fn = () => ParserFn(dm({ hitData: { not_key: 123 } }), "file/batch-manual", logger);
+            const fn = () =>
+                ParserFn(dm({ hitData: { not_key: 123 } }), "file/batch-manual", logger);
 
             t.throws(fn, mockErr("body[0].hitData | Invalid Key not_key"));
 
-            let fn2 = () =>
+            const fn2 = () =>
                 ParserFn(dm({ hitData: { pgreat: "123" } }), "file/batch-manual", logger);
 
             t.throws(
@@ -453,11 +454,12 @@ t.test("#ParserFn", (t) => {
         });
 
         t.test("Invalid HitMeta", (t) => {
-            let fn = () => ParserFn(dm({ hitMeta: { not_key: 123 } }), "file/batch-manual", logger);
+            const fn = () =>
+                ParserFn(dm({ hitMeta: { not_key: 123 } }), "file/batch-manual", logger);
 
             t.throws(fn, mockErr("body[0].hitMeta | Unexpected"));
 
-            let fn2 = () => ParserFn(dm({ hitMeta: { bp: -1 } }), "file/batch-manual", logger);
+            const fn2 = () => ParserFn(dm({ hitMeta: { bp: -1 } }), "file/batch-manual", logger);
 
             t.throws(fn2, mockErr("body[0].hitMeta.bp | Expected a positive integer"));
 

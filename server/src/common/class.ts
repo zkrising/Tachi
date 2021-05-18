@@ -22,34 +22,34 @@ export function ReturnClassIfGreater(
     newClass: string,
     userGameStats?: UserGameStats | null
 ) {
-    let classSets = GetClassSetsForGamePT(game, playtype);
+    const classSets = GetClassSetsForGamePT(game, playtype);
 
     if (!classSets) {
         logger.error(`${game} ${playtype} Does not have any classes.`);
         throw new Error(`${game} ${playtype} Does not have any classes.`);
     }
 
-    let gcv: ClassData = classSets[setName];
+    const gcv: ClassData = classSets[setName];
 
     if (gcv === undefined) {
         logger.error(`Invalid classKey ${setName}. Cannot process class.`);
         throw new Error(`Invalid classKey ${setName}. Cannot process class.`);
     }
 
-    let newClassInfo = gcv[newClass];
+    const newClassInfo = gcv[newClass];
 
     if (!userGameStats) {
         return null;
     }
 
-    let val = newClassInfo.index;
-    let pastClass = userGameStats.classes[setName];
+    const val = newClassInfo.index;
+    const pastClass = userGameStats.classes[setName];
 
     if (!pastClass) {
         return null;
     }
 
-    let pastVal = gcv[pastClass].index;
+    const pastVal = gcv[pastClass].index;
 
     if (val > pastVal) {
         return newClass;
@@ -73,8 +73,8 @@ export async function UpdateClassIfGreater(
     classKey: string,
     newClass: string
 ) {
-    let userGameStats = await db["game-stats"].findOne({ userID, game, playtype });
-    let isGreater = ReturnClassIfGreater(game, playtype, classKey, newClass, userGameStats);
+    const userGameStats = await db["game-stats"].findOne({ userID, game, playtype });
+    const isGreater = ReturnClassIfGreater(game, playtype, classKey, newClass, userGameStats);
 
     if (isGreater === false) {
         return false;

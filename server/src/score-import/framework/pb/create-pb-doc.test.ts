@@ -19,7 +19,7 @@ t.test("#CreatePBDoc", (t) => {
         IIDXScore = GetKTDataJSON("./kamaitachi/iidx-score.json");
     });
 
-    let chartID = Testing511SPA.chartID;
+    const chartID = Testing511SPA.chartID;
 
     const ExamplePBDoc = {
         chartID,
@@ -92,7 +92,7 @@ t.test("#CreatePBDoc", (t) => {
                 }),
             ]);
 
-            let res = await CreatePBDoc(1, chartID, logger);
+            const res = await CreatePBDoc(1, chartID, logger);
 
             t.not(res, undefined, "Should actually return something.");
 
@@ -119,7 +119,7 @@ t.test("#CreatePBDoc", (t) => {
     );
 
     t.test("Should merge a score and lamp PB into one document.", async (t) => {
-        let d = deepmerge(IIDXScore, {
+        const d = deepmerge(IIDXScore, {
             scoreData: {
                 lamp: "FULL COMBO",
                 lampIndex: lamps.iidx.indexOf("FULL COMBO"),
@@ -138,7 +138,7 @@ t.test("#CreatePBDoc", (t) => {
         await db.scores.remove({});
         await db.scores.insert([IIDXScore, d]);
 
-        let res = await CreatePBDoc(1, chartID, logger);
+        const res = await CreatePBDoc(1, chartID, logger);
 
         t.not(res, undefined, "Should actually return something.");
 
@@ -157,7 +157,7 @@ t.test("#CreatePBDoc", (t) => {
 
         await db.scores.remove({});
 
-        let res = await CreatePBDoc(1, chartID, fakeLogger);
+        const res = await CreatePBDoc(1, chartID, fakeLogger);
 
         t.equal(res, undefined, "Should return nothing (and emit a warning)");
 

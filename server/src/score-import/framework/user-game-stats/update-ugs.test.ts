@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import db, { CloseMongoConnection } from "../../../db/db";
 import CreateLogCtx from "../../../logger";

@@ -151,7 +151,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
         t.end();
     });
 
-    t.test("Should reject if ddrSongHash is called without game = ddr", async (t) => {
+    t.test("Should reject if ddrSongHash is called without game = ddr", (t) => {
         t.rejects(
             ResolveMatchTypeToKTData(
                 deepmerge(baseBatchManualScore, {

@@ -2,7 +2,7 @@ import { integer } from "kamaitachi-common";
 
 export interface S3Score {
     id: integer;
-    diff: "5" | "L7" | 7 | "A" | "B" | "L14" | 14 | "A14" | "B14";
+    diff: 5 | "L7" | 7 | "A" | "B" | "L14" | 14 | "A14" | "B14";
     songname: string;
     exscore: integer;
     styles: string;

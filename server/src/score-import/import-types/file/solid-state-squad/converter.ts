@@ -13,15 +13,15 @@ import {
     GetGradeFromPercent,
 } from "../../../framework/common/score-utils";
 
-function ParseDifficulty(
-    diff: string | number
+export function ParseDifficulty(
+    diff: S3Score["diff"]
 ): { playtype: Playtypes["iidx"]; difficulty: Difficulties["iidx:SP" | "iidx:DP"] } {
     switch (diff) {
         case "L7":
             return { playtype: "SP", difficulty: "NORMAL" };
         case 7:
             return { playtype: "SP", difficulty: "HYPER" };
-        case "A7":
+        case "A":
             return { playtype: "SP", difficulty: "ANOTHER" };
         case "B":
             return { playtype: "SP", difficulty: "LEGGENDARIA" };
@@ -40,7 +40,7 @@ function ParseDifficulty(
     }
 }
 
-function ResolveS3Lamp(data: S3Score, logger: KtLogger): Lamps["iidx:SP" | "iidx:DP"] {
+export function ResolveS3Lamp(data: S3Score, logger: KtLogger): Lamps["iidx:SP" | "iidx:DP"] {
     if (data.cleartype === "played") {
         return "FAILED";
     } else if (data.cleartype === "cleared") {
@@ -94,7 +94,7 @@ function ConvertVersion(joinedStyles: string) {
     const convertedStyle = S3_VERSION_CONV[style];
 
     if (!convertedStyle) {
-        throw new InvalidScoreFailure(`Song has invalid style ${style}`);
+        throw new InvalidScoreFailure(`Song has invalid style ${style}.`);
     }
 
     return convertedStyle;

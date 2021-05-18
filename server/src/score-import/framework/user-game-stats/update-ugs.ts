@@ -73,7 +73,7 @@ export async function UpdateUsersGamePlaytypeStats(
             classes,
         };
 
-        logger.info(`Created new player gamestats for ${game} (${playtype})`);
+        logger.info(`Created new gamestats for ${game} (${playtype})`);
         await db["game-stats"].insert(newStats);
     }
 

@@ -193,7 +193,7 @@ t.test("#ParseSolidStateXML", (t) => {
             () =>
                 ParseSolidStateXML(
                     MockMulterFile(
-                        GetKTDataBuffer("./s3/billion-laughs.xml"),
+                        GetKTDataBuffer("./s3/danger/billion-laughs.xml"),
                         "billion-laughs.xml"
                     ),
                     {},
@@ -213,7 +213,10 @@ t.test("#ParseSolidStateXML", (t) => {
         const time = process.hrtime.bigint();
 
         const res = ParseSolidStateXML(
-            MockMulterFile(GetKTDataBuffer("./s3/specific-blaugh.xml"), "specific-blaugh.xml"),
+            MockMulterFile(
+                GetKTDataBuffer("./s3/danger/specific-blaugh.xml"),
+                "specific-blaugh.xml"
+            ),
             {},
             logger
         );

@@ -17,7 +17,7 @@ const PR_SolidState: PrudenceSchema = {
             song: [
                 {
                     id: p.isPositiveInteger,
-                    diff: p.isIn("L7", 7, "A", "B", "5", "L14", 14, "A14", "B14"),
+                    diff: p.isIn("L7", 7, "A", "B", 5, "L14", 14, "A14", "B14"),
                     songname: "string",
                     styles: "string",
 

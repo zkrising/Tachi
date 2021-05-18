@@ -165,6 +165,8 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
             ),
             new InvalidScoreFailure("Cannot use ddrSongHash lookup on iidx.") as any
         );
+
+        t.end();
     });
 
     t.test("Should resolve for the ddr songHash if the matchType is ddrSongHash", async (t) => {

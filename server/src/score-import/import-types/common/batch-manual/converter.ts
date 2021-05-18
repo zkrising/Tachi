@@ -43,7 +43,9 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 
     if (percent > gamePercentMax[game]) {
         throw new InvalidScoreFailure(
-            `Invalid score of ${data.score}, produced percent of ${percent}`
+            `${song.title} (${chart.playtype} ${
+                chart.difficulty
+            }): Percent was greater than 100% (${percent.toFixed(2)}%)`
         );
     }
 

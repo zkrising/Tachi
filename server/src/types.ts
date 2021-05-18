@@ -20,6 +20,7 @@ import {
     IIDXEamusementCSVContext,
     IIDXEamusementCSVData,
 } from "./score-import/import-types/file/eamusement-iidx-csv/types";
+import { MerScore } from "./score-import/import-types/file/mer-iidx/types";
 import { S3Score } from "./score-import/import-types/file/solid-state-squad/types";
 import { BarbatosScore } from "./score-import/import-types/ir/barbatos/types";
 import {
@@ -135,7 +136,7 @@ export interface ImportTypeDataMap {
     "file/eamusement-iidx-csv": IIDXEamusementCSVData;
     "file/batch-manual": BatchManualScore;
     "file/solid-state-squad": S3Score;
-    "file/mer-iidx": EmptyObject;
+    "file/mer-iidx": MerScore;
     "file/pli-iidx-csv": EmptyObject;
 
     "ir/direct-manual": BatchManualScore;

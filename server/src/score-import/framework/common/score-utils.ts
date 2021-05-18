@@ -27,7 +27,7 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 
     // eslint doesn't like backwards for loops (hey, this for loop is backwards!)
     for (let i = boundaries.length; i >= 0; i--) {
-        if (percent > boundaries[i]) {
+        if (percent >= boundaries[i]) {
             return grades[i] as Grades[I];
         }
     }

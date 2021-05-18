@@ -48,7 +48,6 @@ const PR_Fervidex: PrudenceSchema = {
     pacemaker: p.any,
 
     "2dx-gsm": p.optional({
-        // @ts-expect-error recursive types error
         EASY: [p.isBoundedInteger(0, 255)],
         NORMAL: [p.isBoundedInteger(0, 255)],
         HARD: [p.isBoundedInteger(0, 255)],

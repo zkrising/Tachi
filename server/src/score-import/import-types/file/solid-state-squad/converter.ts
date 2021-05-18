@@ -135,7 +135,11 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
     const percent = GenericCalculatePercent("iidx", data.exscore, chart);
 
     if (percent > 100) {
-        throw new InvalidScoreFailure(`Percent was greater than 100% (${percent.toFixed(2)}%)`);
+        throw new InvalidScoreFailure(
+            `${song.title} (${playtype} ${
+                chart.difficulty
+            }): Percent was greater than 100% (${percent.toFixed(2)}%)`
+        );
     }
 
     const grade = GetGradeFromPercent("iidx", percent);

@@ -182,7 +182,45 @@ t.test("POST /api/import/file", async (t) => {
         t.end();
     });
 
-    t.test("file/solid-state-squad", (t) => {
+    t.test("file/mer-iidx", (t) => {
+        t.beforeEach(LoadKTBlackIIDXData);
+
+        t.test("Example Import", async (t) => {
+            const res = await mockApi
+                .post("/api/import/file")
+                .set("Cookie", cookie)
+                .attach("scoreData", GetKTDataBuffer("./mer/base.json"), "base.json")
+                .field("importType", "file/mer-iidx");
+
+            t.equal(res.body.success, true, "Should be successful");
+
+            t.equal(res.body.body.errors.length, 0, "Import Should have 0 failed scores.");
+
+            t.equal(res.body.body.scoreIDs.length, 3, "Should have 3 successful scores.");
+
+            t.end();
+        });
+
+        t.test("Example Import", async (t) => {
+            const res = await mockApi
+                .post("/api/import/file")
+                .set("Cookie", cookie)
+                .attach("scoreData", GetKTDataBuffer("./mer/large.json"), "base.json")
+                .field("importType", "file/mer-iidx");
+
+            t.equal(res.body.success, true, "Should be successful");
+
+            t.equal(res.body.body.errors.length, 0, "Import Should have 0 failed scores.");
+
+            t.equal(res.body.body.scoreIDs.length, 627, "Should have 627 successful scores.");
+
+            t.end();
+        });
+
+        t.end();
+    });
+
+    t.skip("file/solid-state-squad", (t) => {
         t.beforeEach(LoadKTBlackIIDXData);
 
         t.test("Large Import", async (t) => {

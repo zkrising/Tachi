@@ -182,6 +182,25 @@ t.test("POST /api/import/file", async (t) => {
         t.end();
     });
 
+    t.test("file/solid-state-squad", (t) => {
+        t.beforeEach(LoadKTBlackIIDXData);
+
+        t.test("Large Import", async (t) => {
+            const res = await mockApi
+                .post("/api/import/file")
+                .set("Cookie", cookie)
+                .attach("scoreData", GetKTDataBuffer("./s3/large-example.xml"), "large.xml")
+                .field("importType", "file/solid-state-squad");
+
+            t.equal(res.body.success, true, "Should be successful");
+            t.equal(res.body.body.scoreIDs.length, null, "Should parse N scores.");
+
+            t.end();
+        });
+
+        t.end();
+    });
+
     t.end();
 });
 

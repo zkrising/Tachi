@@ -22,13 +22,13 @@ const PR_SolidState: PrudenceSchema = {
                     styles: "string",
 
                     exscore: p.isPositiveInteger,
-                    scorebreakdown: {
+                    scorebreakdown: p.optional({
                         justgreats: p.isPositiveInteger,
                         greats: p.isPositiveInteger,
                         good: p.isPositiveInteger,
                         bad: p.isPositiveInteger,
                         poor: p.isPositiveInteger,
-                    },
+                    } as any),
                     mods: {
                         hardeasy: p.optional(p.isIn("H", "E")),
                     },

@@ -69,21 +69,22 @@ export function ResolveS3Lamp(data: S3Score, logger: KtLogger): Lamps["iidx:SP" 
 }
 
 const S3_VERSION_CONV: Record<string, string> = {
-    "3rd": "3",
-    "4th": "4",
-    "5th": "5",
-    "6th": "6",
-    "7th": "7",
-    "8th": "8",
-    "9th": "9",
-    "10th": "10",
-    red: "11",
-    sky: "12",
-    dd: "13",
-    gold: "14",
-    djt: "15",
-    emp: "16",
-    pb: "16",
+    "3rd": "3cs",
+    "4th": "4cs",
+    "5th": "5cs",
+    "6th": "6cs",
+    "7th": "7cs",
+    "8th": "8cs",
+    "9th": "9cs",
+    "10th": "10cs",
+    red: "11cs",
+    hs: "12cs",
+    dd: "13cs",
+    gold: "14cs",
+    djt: "15cs",
+    emp: "16cs",
+    pb: "16cs",
+    us: "bmus",
 };
 
 function ConvertVersion(joinedStyles: string) {
@@ -147,6 +148,17 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
         throw new InvalidScoreFailure(`Invalid timestamp of ${data.date} - could not parse.`);
     }
 
+    let hitData = {};
+    if (data.scorebreakdown) {
+        hitData = {
+            pgreat: data.scorebreakdown.justgreats,
+            great: data.scorebreakdown.greats,
+            good: data.scorebreakdown.good,
+            bad: data.scorebreakdown.bad,
+            poor: data.scorebreakdown.poor,
+        };
+    }
+
     const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
         game: "iidx",
         comment: data.comment ?? null,
@@ -157,13 +169,7 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
             grade: grade as Grades["iidx:SP" | "iidx:DP"],
             score: data.exscore,
             lamp,
-            hitData: {
-                pgreat: data.scorebreakdown.justgreats,
-                great: data.scorebreakdown.greats,
-                good: data.scorebreakdown.good,
-                bad: data.scorebreakdown.bad,
-                poor: data.scorebreakdown.poor,
-            },
+            hitData,
             hitMeta: {},
         },
         scoreMeta: {},

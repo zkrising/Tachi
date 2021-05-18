@@ -6,7 +6,7 @@ export interface S3Score {
     songname: string;
     exscore: integer;
     styles: string;
-    scorebreakdown: {
+    scorebreakdown?: {
         justgreats: integer;
         greats: integer;
         good: integer;

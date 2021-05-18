@@ -89,6 +89,7 @@ router.post(
 
 import ParseEamusementCSV from "../../score-import/import-types/file/eamusement-iidx-csv/parser";
 import ParseBatchManual from "../../score-import/import-types/file/batch-manual/parser";
+import { ParseSolidStateXML } from "../../score-import/import-types/file/solid-state-squad/parser";
 
 /**
  * Resolves the data from a file upload into an iterable,
@@ -111,6 +112,8 @@ export function ResolveFileUploadData(
             return ParseEamusementCSV(fileData, body, logger);
         case "file/batch-manual":
             return ParseBatchManual(fileData, body, logger);
+        case "file/solid-state-squad":
+            return ParseSolidStateXML(fileData, body, logger);
         default:
             logger.error(
                 `importType ${importType} made it into ResolveFileUploadData, but should have been rejected by Prudence.`

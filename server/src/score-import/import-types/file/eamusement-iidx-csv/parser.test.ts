@@ -7,6 +7,7 @@ import {
     TestingIIDXEamusementCSV26,
     TestingIIDXEamusementCSV27,
 } from "../../../../test-utils/test-data";
+import { MockMulterFile } from "../../../../test-utils/mock-multer";
 
 const logger = CreateLogCtx("parser.test.ts");
 
@@ -247,13 +248,6 @@ t.test("#ResolveHeader", (t) => {
 });
 
 t.test("#ParseEamusementCSV", (t) => {
-    function MockMulterFile(buffer: Buffer, originalname: string) {
-        return {
-            originalname,
-            buffer,
-        } as Express.Multer.File;
-    }
-
     t.test("Playtype Tests", (t) => {
         const validSPFile = MockMulterFile(TestingIIDXEamusementCSV27, "iidx_27_sp.csv");
 

@@ -57,7 +57,7 @@ export function ParseSolidStateXML(
     let parsedXML;
 
     try {
-        parsedXML = FastParseXML(fileData.buffer.toString("utf-8"), { arrayMode: "strict" });
+        parsedXML = FastParseXML(fileData.buffer.toString("utf-8"));
     } catch (err) {
         logger.info(err);
 

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE s3data [
+    <!ENTITY lol "lol">
+    <!ELEMENT lolz (#PCDATA)>
+    <!ENTITY lol1 "&lol;&lol;&lol;&lol;&lol;&lol;&lol;&lol;&lol;&lol;">
+    <!ENTITY lol2 "&lol1;&lol1;&lol1;&lol1;&lol1;&lol1;&lol1;&lol1;&lol1;&lol1;">
+    <!ENTITY lol3 "&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;">
+    <!ENTITY lol4 "&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;">
+    <!ENTITY lol5 "&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;">
+    <!ENTITY lol6 "&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;">
+    <!ENTITY lol7 "&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;">
+    <!ENTITY lol8 "&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;">
+    <!ENTITY lol9 "&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;">
+]>
+<s3data version="0.1" xmlns="http://iidx.solidstatesquad.com/xml/ns#">
+    <userdata>
+        <id>3</id>
+        <login><![CDATA[zkldi]]></login>
+        <djname><![CDATA[ZKLDI]]></djname>
+    </userdata>
+    <scoredata>
+        <song>
+            <id>187</id>
+            <diff>7</diff>
+            <songname>&lol9;</songname>
+            <artist><![CDATA[SLAKE]]></artist>
+            <genre><![CDATA[BIG BEAT]]></genre>
+            <bpm>174</bpm>
+            <styles>3rd</styles>
+            <rating>1</rating>
+            <notes>137</notes>
+            <exscore>100</exscore>
+            <grade>AA</grade>
+            <djpoints>9</djpoints>
+            <scorebreakdown>
+                <justgreats>50</justgreats>
+                <greats>50</greats>
+                <good>0</good>
+                <bad>0</bad>
+                <poor>4</poor>
+            </scorebreakdown>
+            <mods>
+                <highspeed>2</highspeed>
+                <hidsud>T</hidsud>
+                <ranmir>B</ranmir>
+            </mods>
+            <cleartype>perfect</cleartype>
+            <date>2010-10-19 04:54:22</date>
+        </song>
+    </scoredata>
+</s3data>

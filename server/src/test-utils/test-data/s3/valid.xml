@@ -19,7 +19,7 @@
             <grade>AA</grade>
             <djpoints>9</djpoints>
             <scorebreakdown>
-                <justgreats>50</justgreats>
+                <justgreats>25</justgreats>
                 <greats>50</greats>
                 <good>0</good>
                 <bad>0</bad>
@@ -28,9 +28,10 @@
             <mods>
                 <highspeed>2</highspeed>
                 <hidsud>T</hidsud>
+                <hardeasy>H</hardeasy>
                 <ranmir>B</ranmir>
             </mods>
-            <cleartype>perfect</cleartype>
+            <cleartype>cleared</cleartype>
             <date>2010-10-19 04:54:22</date>
         </song>
         <song>
@@ -47,7 +48,7 @@
             <grade>AA</grade>
             <djpoints>9</djpoints>
             <scorebreakdown>
-                <justgreats>50</justgreats>
+                <justgreats>25</justgreats>
                 <greats>50</greats>
                 <good>0</good>
                 <bad>0</bad>

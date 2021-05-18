@@ -11,6 +11,12 @@ export class ConverterFailure {
 }
 
 /**
+ * SkipScoreFailure - This score could not be processed because Kamaitachi does not
+ * support it. This is not an error, but is not a success either.
+ */
+export class SkipScoreFailure extends ConverterFailure {}
+
+/**
  * KTDataNotFoundError - We could not find the song or chart this score
  * belongs to. The identifier used to try and match this chart is stored here.
  * Alongside any other fields used in the query.

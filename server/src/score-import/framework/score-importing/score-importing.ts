@@ -20,6 +20,7 @@ import {
     InternalFailure,
     InvalidScoreFailure,
     KTDataNotFoundFailure,
+    SkipScoreFailure,
 } from "../common/converter-failures";
 import { CreateScoreID } from "./score-id";
 import db from "../../../db/db";
@@ -177,6 +178,8 @@ async function ImportFromConverterReturn(
                 message: "An internal error has occured.",
                 content: {},
             };
+        } else if (cfnReturn instanceof SkipScoreFailure) {
+            return null;
         } else {
             logger.warn(`Unknown error returned as ConverterFailure, Ignoring.`, {
                 err: cfnReturn,

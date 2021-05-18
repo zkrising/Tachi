@@ -20,6 +20,7 @@ import {
     IIDXEamusementCSVContext,
     IIDXEamusementCSVData,
 } from "./score-import/import-types/file/eamusement-iidx-csv/types";
+import { S3Score } from "./score-import/import-types/file/solid-state-squad/types";
 import { BarbatosScore } from "./score-import/import-types/ir/barbatos/types";
 import {
     FervidexStaticContext,
@@ -133,7 +134,7 @@ export interface TextDocument extends MongoDBDocument {
 export interface ImportTypeDataMap {
     "file/eamusement-iidx-csv": IIDXEamusementCSVData;
     "file/batch-manual": BatchManualScore;
-    "file/solid-state-squad": EmptyObject;
+    "file/solid-state-squad": S3Score;
     "file/mer-iidx": EmptyObject;
     "file/pli-iidx-csv": EmptyObject;
 

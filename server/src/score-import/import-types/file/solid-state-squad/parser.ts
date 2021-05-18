@@ -19,7 +19,7 @@ const PR_SolidState: PrudenceSchema = {
                     id: p.isPositiveInteger,
                     diff: p.isIn("L7", 7, "A", "B", "5", "L14", 14, "A14", "B14"),
                     songname: "string",
-                    styles: p.or("string", ["string"]),
+                    styles: "string",
 
                     exscore: p.isPositiveInteger,
                     scorebreakdown: {
@@ -74,7 +74,7 @@ export function ParseSolidStateXML(
         parsedXML.s3data.scoredata.song = [parsedXML.s3data.scoredata.song];
     }
 
-    let err = p(parsedXML, PR_SolidState, {}, { allowExcessKeys: true });
+    const err = p(parsedXML, PR_SolidState, {}, { allowExcessKeys: true });
 
     if (err) {
         throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid S3 XML."));

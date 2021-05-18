@@ -6,7 +6,7 @@ import {
     InvalidScoreFailure,
     KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { FindSongOnID, FindSongOnTitle } from "../../../../common/database-lookup/song";
+import { FindSongOnID, FindSongOnTitleInsensitive } from "../../../../common/database-lookup/song";
 import {
     FindBMSChartOnHash,
     FindChartWithPTDF,
@@ -172,7 +172,7 @@ export async function ResolveMatchTypeToKTData(
 
         return { song, chart };
     } else if (data.matchType === "songTitle" || data.matchType === "title") {
-        let song = await FindSongOnTitle(game, data.identifier);
+        let song = await FindSongOnTitleInsensitive(game, data.identifier);
 
         if (!song) {
             throw new KTDataNotFoundFailure(

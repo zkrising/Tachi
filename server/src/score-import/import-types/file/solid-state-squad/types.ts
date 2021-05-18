@@ -5,6 +5,7 @@ export interface S3Score {
     diff: "5" | "L7" | 7 | "A" | "B" | "L14" | 14 | "A14" | "B14";
     songname: string;
     exscore: integer;
+    styles: string;
     scorebreakdown: {
         justgreats: integer;
         greats: integer;
@@ -13,8 +14,6 @@ export interface S3Score {
         poor: integer;
     };
     mods: {
-        hidsud?: "?";
-        ranmir?: "?";
         hardeasy?: "H" | "E";
     };
     cleartype: "cleared" | "played" | "combo" | "comboed" | "perfect" | "perfected";

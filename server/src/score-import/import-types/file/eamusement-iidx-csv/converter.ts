@@ -1,7 +1,7 @@
 import { Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
 import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../../types";
 import { FindChartWithPTDFVersion } from "../../../../common/database-lookup/chart";
-import { FindSongOnTitle } from "../../../../common/database-lookup/song";
+import { FindSongOnTitleInsensitive } from "../../../../common/database-lookup/song";
 import {
     KTDataNotFoundFailure,
     InternalFailure,
@@ -231,7 +231,7 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
         }
     }
 
-    let ktchiSong = await FindSongOnTitle("iidx", data.title);
+    let ktchiSong = await FindSongOnTitleInsensitive("iidx", data.title);
 
     if (!ktchiSong) {
         return new KTDataNotFoundFailure(

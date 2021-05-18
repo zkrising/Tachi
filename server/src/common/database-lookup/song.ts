@@ -1,6 +1,7 @@
 import { Game, AnySongDocument, integer } from "kamaitachi-common";
 import { FindOneResult } from "monk";
 import db from "../../db/db";
+import { EscapeStringRegexp } from "../util";
 
 /**
  * Finds a song document for the given game with the given title (or alt-title).
@@ -22,6 +23,29 @@ export function FindSongOnTitle(
             },
             {
                 "alt-titles": title,
+            },
+        ],
+    });
+}
+
+/**
+ * Finds a song on a song title case-insensitively.
+ * This is needed for services that provide horrifically mutated string titles.
+ */
+export function FindSongOnTitleInsensitive(
+    game: Game,
+    title: string
+): Promise<FindOneResult<AnySongDocument>> {
+    // @PERF: Performance should be tested here by having a utility field for all-titles.
+
+    let regex = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
+    return db.songs[game].findOne({
+        $or: [
+            {
+                title: { $regex: regex },
+            },
+            {
+                "alt-titles": { $regex: regex },
             },
         ],
     });

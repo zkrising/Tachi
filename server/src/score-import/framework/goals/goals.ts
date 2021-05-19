@@ -95,7 +95,7 @@ export async function ProcessGoal(
             userGoal.progress === null ||
             (res.progress !== null && userGoal.progress < res.progress)
         ) {
-            // @todo emit something
+            // @todo #99 emit something
         }
     } else if (userGoal.outOf === res.outOf) {
         // if the users progress hasn't changed AND the outOf hasn't
@@ -108,7 +108,7 @@ export async function ProcessGoal(
 
     // if this is a newly-achieved goal
     if (res.achieved && !userGoal.achieved) {
-        // @todo emit something
+        // @todo #99 emit something
     }
 
     const newData = {
@@ -222,7 +222,6 @@ export function GetRelevantFolderGoals(goalIDs: string[], chartIDsArr: string[])
     // it's weird to do this in mongodb, but this seems like the right
     // way to actually handle this.
 
-    // @todo - document this?? maybe.
     return db.goals.aggregate([
         {
             $match: {

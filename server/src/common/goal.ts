@@ -164,7 +164,7 @@ function ResolveGoalCharts(goal: GoalDocument): Promise<string[]> | string[] | n
 
 type GoalKeys = GoalDocument["criteria"]["key"];
 
-// @todo, improve this (add things like BP for iidx, maybe, percents for scores?)
+// @todo, #100 improve this (add things like BP for iidx, maybe, percents for scores?)
 function HumaniseGoalSingle(game: Game, key: GoalKeys, value: number): string {
     switch (key) {
         case "scoreData.gradeIndex":

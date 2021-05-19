@@ -103,11 +103,11 @@ export async function UpdateClassIfGreater(
     }
 
     if (isGreater === null) {
-        // @todo REDIS-IPC new class achieved
+        // @todo #99 REDIS-IPC new class achieved
 
         return null;
     } else {
-        // @todo REDIS-IPC class improved
+        // @todo #99 REDIS-IPC class improved
 
         return true;
     }

@@ -91,7 +91,7 @@ export async function UpdateUsersMilestones(
         }
 
         if (achieved && !userMilestone.achieved) {
-            // @todo emit some sort of event
+            // @todo #99 emit some sort of event
         }
     }
 

@@ -21,7 +21,7 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
     game: Game,
     percent: number
 ): Grades[I] {
-    // @todo update config to use game->pt
+    // @todo #102 update config to use game->pt
     const boundaries = config.gradeBoundaries[game];
     const grades = config.grades[game];
 

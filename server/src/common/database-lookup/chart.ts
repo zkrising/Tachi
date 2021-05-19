@@ -86,7 +86,7 @@ export function FindChartOnInGameID(
     playtype: Playtypes[Game],
     difficulty: Difficulties[IDStrings]
 ) {
-    // @todo throw an error if this is called with a game that doesn't
+    // @todo #101 throw an error if this is called with a game that doesn't
     // support InGameID.
     return db.charts[game].findOne({
         "data.inGameID": inGameID,
@@ -104,7 +104,7 @@ export function FindIIDXChartOnInGameID(
     playtype: Playtypes[Game],
     difficulty: Difficulties[IDStrings]
 ) {
-    // @todo throw an error if this is called with a game that doesn't
+    // @todo #101 throw an error if this is called with a game that doesn't
     // support InGameID.
     return db.charts.iidx.findOne({
         "data.inGameID": inGameID,
@@ -124,7 +124,7 @@ export function FindIIDXChartOnInGameIDVersion(
     difficulty: Difficulties[IDStrings],
     version: string
 ) {
-    // @todo throw an error if this is called with a game that doesn't
+    // @todo #101 throw an error if this is called with a game that doesn't
     // support InGameID.
     return db.charts.iidx.findOne({
         "data.inGameID": inGameID,

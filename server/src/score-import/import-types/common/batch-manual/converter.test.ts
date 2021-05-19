@@ -112,7 +112,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
         t.hasStrict(
             resMD5,
-            // @todo add gazer's details here
+            // @todo #104 add gazer's details here
             { song: { id: 1 }, chart: {} } as any,
             "Should return the right song and chart."
         );
@@ -129,7 +129,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
         t.hasStrict(
             resSHA256,
-            // @todo Add Gazer sp17 data here.
+            // @todo #104 Add Gazer sp17 data here.
             { song: { id: 1 }, chart: {} } as any,
             "Should return the right song and chart."
         );
@@ -186,7 +186,6 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
         t.hasStrict(
             res,
-            // @todo add puty's details here
             {
                 song: { id: 10 },
                 chart: { chartID: "48024d36bbe76c9fed09c3ffdc19412925d1efd3" },

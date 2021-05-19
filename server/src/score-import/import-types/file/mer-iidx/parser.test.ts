@@ -29,8 +29,6 @@ t.test("#ParseMerIIDX", (t) => {
         return ParseMerIIDX(MockMulterFile(GetKTDataBuffer(filename), filename), {}, logger);
     }
 
-    // @todo Better tests for invalidating bad input?
-
     t.test("Basic Parsing", (t) => {
         const res = mrff("./mer/base.json");
 

@@ -145,7 +145,7 @@ export function CalculateClassDeltas(
             if (isGreater === false) {
                 continue;
             } else if (isGreater === null) {
-                // @todo REDISIPC-New Class Achieved
+                // @todo #99 REDISIPC-New Class Achieved
                 deltas.push({
                     set: setName,
                     playtype,
@@ -153,7 +153,7 @@ export function CalculateClassDeltas(
                     new: classes[setName],
                 });
             } else {
-                // @todo REDISIPC-Class Improved!
+                // @todo #99 REDISIPC-Class Improved!
                 deltas.push({
                     set: setName,
                     playtype,

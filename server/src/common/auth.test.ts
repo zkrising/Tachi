@@ -35,7 +35,7 @@ t.test("#AddNewUserAPIKey", (t) => {
         prAssert(
             data,
             {
-                _id: Prudence.any, // lazy, should be isObjID? @todo
+                _id: Prudence.any, // lazy
                 apiKey: Prudence.regex(/[0-9a-f]{20}/u),
                 assignedTo: Prudence.is(1),
                 expireTime: Prudence.is(3176708633264),

@@ -73,7 +73,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
             hitData: data.hitData ?? {},
             hitMeta: data.hitMeta ?? {},
         },
-        scoreMeta: {}, // @todo
+        scoreMeta: {}, // @todo #74
     };
 
     return {

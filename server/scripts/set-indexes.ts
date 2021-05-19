@@ -62,7 +62,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
         index({ timestamp: 1 }),
         index({ total: 1 }),
     ],
-    // @todo probably going to want some other ones.
+    // @todo #96 Add more indexes to the users collection.
     users: [index({ id: 1 }, UNIQUE)],
     tierlist: [
         index({ tierlistID: 1 }, UNIQUE),
@@ -99,7 +99,7 @@ for (const game of supportedGames) {
         // @ts-expect-error dru(n)kts
         for (const index of indexes[collection]) {
             // eslint-disable-next-line no-await-in-loop
-            let r = await db.get(collection).createIndex(index.fields, index.options);
+            const r = await db.get(collection).createIndex(index.fields, index.options);
 
             logger.info(r);
         }

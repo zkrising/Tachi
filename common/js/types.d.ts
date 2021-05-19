@@ -587,8 +587,8 @@ export interface IIDXEamusementScoreDocument extends MongoDBDocument {
     ranking: integer;
 }
 interface ChartDocumentFlags {
-    "iidx:SP": "IN BASE GAME" | "OMNIMIX" | "N-1" | "2dxtra" | "All Scratch" | "Kichiku" | "Kiraku";
-    "iidx:DP": "IN BASE GAME" | "OMNIMIX" | "N-1" | "2dxtra" | "All Scratch" | "Kichiku" | "Kiraku";
+    "iidx:SP": "IN BASE GAME" | "OMNIMIX" | "N-1" | "2dxtra";
+    "iidx:DP": "IN BASE GAME" | "OMNIMIX" | "N-1" | "2dxtra";
     "popn:9B": "IN BASE GAME" | "OMNIMIX";
     "sdvx:Single": "IN BASE GAME" | "OMNIMIX" | "N-1";
     "usc:Single": "CUSTOM";
@@ -608,6 +608,7 @@ interface CDDataIIDXSP {
     inGameID: integer;
     arcChartID: string | null;
     hashSHA256: string | null;
+    "2dxtraSet": string | null;
 }
 interface CDDataDDRSP {
     songHash: string;

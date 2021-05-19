@@ -10,6 +10,7 @@ import {
     SongDocument,
 } from "kamaitachi-common";
 import path from "path";
+import db from "../db/db";
 import { BarbatosScore } from "../score-import/import-types/ir/barbatos/types";
 import { DryScore } from "../types";
 
@@ -144,3 +145,13 @@ export const TestingIIDXSPMilestone: MilestoneDocument = {
         },
     ],
 };
+
+export async function LoadKTBlackIIDXData() {
+    const songs = GetKTDataJSON("./kamaitachi/ktblack-songs-iidx.json");
+    const charts = GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json");
+
+    await db.songs.iidx.remove({});
+    await db.songs.iidx.insert(songs);
+    await db.charts.iidx.remove({});
+    await db.charts.iidx.insert(charts);
+}

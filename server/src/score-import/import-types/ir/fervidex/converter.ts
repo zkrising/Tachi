@@ -156,7 +156,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 
     if (!chart) {
         throw new KTDataNotFoundFailure(
-            `Could not find chart with songID ${data.entry_id} (${playtype} ${difficulty})`,
+            `Could not find chart with songID ${data.entry_id} (${playtype} ${difficulty} [${context.version}])`,
             importType,
             data,
             context

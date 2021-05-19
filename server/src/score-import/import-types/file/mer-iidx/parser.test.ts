@@ -4,8 +4,9 @@ import { CloseMongoConnection } from "../../../../db/db";
 import CreateLogCtx from "../../../../logger";
 import { MockMulterFile } from "../../../../test-utils/mock-multer";
 import ResetDBState from "../../../../test-utils/reset-db-state";
-import { GetKTDataBuffer } from "../../../../test-utils/test-data";
+import { GetKTDataBuffer, GetKTDataJSON } from "../../../../test-utils/test-data";
 import { ParseMerIIDX } from "./parser";
+import deepmerge from "deepmerge";
 
 const logger = CreateLogCtx("parser.test.ts");
 
@@ -14,6 +15,14 @@ t.test("#ParseMerIIDX", (t) => {
 
     function mrfb(buffer: Buffer) {
         return ParseMerIIDX(MockMulterFile(buffer, "buffer.json"), {}, logger);
+    }
+
+    function mrfj(obj: any) {
+        return ParseMerIIDX(
+            MockMulterFile(Buffer.from(JSON.stringify(obj)), "buffer.json"),
+            {},
+            logger
+        );
     }
 
     function mrff(filename: string) {
@@ -66,6 +75,51 @@ t.test("#ParseMerIIDX", (t) => {
             } as any,
             "Should correctly parse data."
         );
+
+        t.end();
+    });
+
+    const baseScore = GetKTDataJSON("./mer/base.json");
+
+    t.test("Should throw on invalid play_type", (t) => {
+        t.throws(() => mrfj(deepmerge(baseScore, { play_type: "INVALID" })));
+        t.throws(() => mrfj(deepmerge(baseScore, { play_type: null })));
+        t.throws(() => mrfj(deepmerge(baseScore, { play_type: undefined })));
+        t.throws(() => mrfj(deepmerge(baseScore, { play_type: 1 })));
+
+        t.end();
+    });
+
+    t.test("Should throw on invalid score", (t) => {
+        t.throws(() => mrfj(deepmerge(baseScore, { score: -1 })));
+        t.throws(() => mrfj(deepmerge(baseScore, { score: 1.5 })));
+        t.throws(() => mrfj(deepmerge(baseScore, { score: "1" })));
+        t.throws(() => mrfj(deepmerge(baseScore, { score: null })));
+        t.throws(() => mrfj(deepmerge(baseScore, { score: undefined })));
+
+        t.end();
+    });
+
+    t.test("Should throw on invalid diff_type", (t) => {
+        t.throws(() => mrfj(deepmerge(baseScore, { diff_type: "INVALID" })));
+        t.throws(() => mrfj(deepmerge(baseScore, { diff_type: null })));
+        t.throws(() => mrfj(deepmerge(baseScore, { diff_type: undefined })));
+
+        t.end();
+    });
+
+    t.test("Should throw on invalid clear_type", (t) => {
+        t.throws(() => mrfj(deepmerge(baseScore, { clear_type: "INVALID" })));
+        t.throws(() => mrfj(deepmerge(baseScore, { clear_type: null })));
+        t.throws(() => mrfj(deepmerge(baseScore, { clear_type: undefined })));
+
+        t.end();
+    });
+
+    t.test("Should throw on invalid miss_count", (t) => {
+        t.throws(() => mrfj(deepmerge(baseScore, { miss_count: "INVALID" })));
+        t.throws(() => mrfj(deepmerge(baseScore, { miss_count: null })));
+        t.throws(() => mrfj(deepmerge(baseScore, { miss_count: undefined })));
 
         t.end();
     });

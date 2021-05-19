@@ -8,13 +8,17 @@
         "playtype": "SP",
         "songID": 1,
         "flags": {
+            "2dxtra": false,
             "IN BASE GAME": true,
             "OMNIMIX": true,
             "N-1": true
         },
         "data": {
             "notecount": 786,
-            "inGameID": 1000
+            "inGameID": 1000,
+            "hashSHA256": null,
+            "arcChartID": null,
+            "2dxtraSet": null
         },
         "isPrimary": true,
         "versions": ["0",

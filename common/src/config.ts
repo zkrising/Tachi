@@ -42,7 +42,7 @@ export const apiImportTypes: APIImportTypes[] = [
     "api/flo-sdvx",
 ];
 
-export const importTypes: ImportTypes[] = [...fileImportTypes, ...irImportTypes];
+export const importTypes: ImportTypes[] = [...fileImportTypes, ...irImportTypes, ...apiImportTypes];
 
 export const supportedGames: Game[] = [
     "iidx",

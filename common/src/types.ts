@@ -1228,7 +1228,7 @@ export type IRImportTypes =
     | "ir/beatoraja"
     | "ir/fervidex-static";
 
-export type ImportTypes = FileUploadImportTypes | IRImportTypes;
+export type ImportTypes = FileUploadImportTypes | IRImportTypes | APIImportTypes;
 
 export interface ImportProcessInfoKTDataNotFound {
     success: false;

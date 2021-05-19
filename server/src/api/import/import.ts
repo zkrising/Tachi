@@ -87,7 +87,7 @@ router.post(
     }
 );
 
-import ParseEamusementCSV from "../../score-import/import-types/file/eamusement-iidx-csv/parser";
+import ParseEamusementIIDXCSV from "../../score-import/import-types/file/eamusement-iidx-csv/parser";
 import ParseBatchManual from "../../score-import/import-types/file/batch-manual/parser";
 import { ParseSolidStateXML } from "../../score-import/import-types/file/solid-state-squad/parser";
 import { ParseMerIIDX } from "../../score-import/import-types/file/mer-iidx/parser";
@@ -110,7 +110,7 @@ export function ResolveFileUploadData(
 ) {
     switch (importType) {
         case "file/eamusement-iidx-csv":
-            return ParseEamusementCSV(fileData, body, logger);
+            return ParseEamusementIIDXCSV(fileData, body, logger);
         case "file/batch-manual":
             return ParseBatchManual(fileData, body, logger);
         case "file/solid-state-squad":

@@ -30,5 +30,5 @@ export interface IIDXEamusementCSVContext {
     playtype: "SP" | "DP";
     importVersion: string;
     hasBeginnerAndLegg: boolean;
-    serviceOrigin: string;
+    service: string;
 }

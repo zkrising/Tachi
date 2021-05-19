@@ -1,7 +1,7 @@
 import t from "tap";
 import CreateLogCtx from "../../../../logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import ParseEamusementCSV, { NaiveCSVParse, ResolveHeaders } from "./parser";
+import GenericParseEamIIDXCSV, { NaiveCSVParse, ResolveHeaders } from "./parser";
 import { CloseMongoConnection } from "../../../../db/db";
 import {
     TestingIIDXEamusementCSV26,
@@ -252,22 +252,32 @@ t.test("#ParseEamusementCSV", (t) => {
         const validSPFile = MockMulterFile(TestingIIDXEamusementCSV27, "iidx_27_sp.csv");
 
         t.throws(
-            () => ParseEamusementCSV(validSPFile, {}, logger),
+            () => GenericParseEamIIDXCSV(validSPFile, {}, "e-amusement", logger),
             new ScoreImportFatalError(400, "Invalid playtype of Nothing given.")
         );
 
-        let { context } = ParseEamusementCSV(validSPFile, { playtype: "SP" }, logger);
+        let { context } = GenericParseEamIIDXCSV(
+            validSPFile,
+            { playtype: "SP" },
+            "e-amusement",
+            logger
+        );
 
         t.equal(context.playtype, "SP", "Should correctly assert SP for a body of SP.");
 
         const mockDPFile = MockMulterFile(TestingIIDXEamusementCSV27, "iidx_27_dp.csv");
 
-        ({ context } = ParseEamusementCSV(mockDPFile, { playtype: "DP" }, logger));
+        ({ context } = GenericParseEamIIDXCSV(
+            mockDPFile,
+            { playtype: "DP" },
+            "e-amusement",
+            logger
+        ));
 
         t.equal(context.playtype, "DP", "Should correctly assert DP for a body of DP.");
 
         t.throws(
-            () => ParseEamusementCSV(validSPFile, { playtype: "DP" }, logger),
+            () => GenericParseEamIIDXCSV(validSPFile, { playtype: "DP" }, "e-amusement", logger),
             new ScoreImportFatalError(
                 400,
                 "Safety Triggered: Filename contained 'SP', but was marked as a DP import. Are you *absolutely* sure this is right?"
@@ -275,9 +285,10 @@ t.test("#ParseEamusementCSV", (t) => {
             "Should trigger safety if playtype asserted goes against filename."
         );
 
-        ({ context } = ParseEamusementCSV(
+        ({ context } = GenericParseEamIIDXCSV(
             mockDPFile,
             { playtype: "DP", assertPlaytypeCorrect: true },
+            "e-amusement",
             logger
         ));
 

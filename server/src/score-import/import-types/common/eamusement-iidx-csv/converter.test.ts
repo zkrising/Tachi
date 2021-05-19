@@ -53,7 +53,7 @@ const converterContext = {
     playtype: "SP" as const,
     hasBeginnerAndLegg: false,
     importVersion: "27",
-    serviceOrigin: "e-amusement",
+    service: "e-amusement",
 };
 
 const data = {

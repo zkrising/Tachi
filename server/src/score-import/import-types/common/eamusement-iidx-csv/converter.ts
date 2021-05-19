@@ -124,7 +124,7 @@ export async function EamScoreConverter(
     const timestamp = Date.parse(data.timestamp);
 
     const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
-        service: context.serviceOrigin,
+        service: context.service,
         comment: null,
         game: "iidx",
         importType: "file/eamusement-iidx-csv",

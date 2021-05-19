@@ -3,6 +3,7 @@ import mockApi from "../../test-utils/mock-api";
 import {
     GetKTDataBuffer,
     GetKTDataJSON,
+    LoadKTBlackIIDXData,
     TestingIIDXEamusementCSV26,
     TestingIIDXEamusementCSV27,
 } from "../../test-utils/test-data";
@@ -11,16 +12,6 @@ import { RequireNeutralAuthentication } from "../../test-utils/api-common";
 import { CreateFakeAuthCookie } from "../../test-utils/fake-session";
 import ResetDBState from "../../test-utils/reset-db-state";
 import db from "../../db/db";
-
-async function LoadKTBlackIIDXData() {
-    const songs = GetKTDataJSON("./kamaitachi/ktblack-songs-iidx.json");
-    const charts = GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json");
-
-    await db.songs.iidx.remove({});
-    await db.songs.iidx.insert(songs);
-    await db.charts.iidx.remove({});
-    await db.charts.iidx.insert(charts);
-}
 
 // reset DB handles the post-stuff
 

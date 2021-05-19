@@ -64,7 +64,7 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
     const timeAchieved = Date.parse(data.update_time);
 
     if (Number.isNaN(timeAchieved)) {
-        throw new InvalidScoreFailure(`Invalid score timestamp of ${timeAchieved}`);
+        throw new InvalidScoreFailure(`Invalid score timestamp of ${data.update_time}`);
     }
 
     const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {

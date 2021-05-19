@@ -2,7 +2,6 @@ import t from "tap";
 import mockApi from "../../test-utils/mock-api";
 import {
     GetKTDataBuffer,
-    GetKTDataJSON,
     LoadKTBlackIIDXData,
     TestingIIDXEamusementCSV26,
     TestingIIDXEamusementCSV27,
@@ -87,6 +86,94 @@ t.test("POST /api/import/file", async (t) => {
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV27, "my_csv.csv")
                 .field("importType", "file/eamusement-iidx-csv")
+                .field("playtype", "SP");
+
+            t.equal(res.body.success, true, "Should be successful.");
+
+            t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
+
+            const scoreCount = await db.scores.find({
+                scoreID: { $in: res.body.body.scoreIDs },
+            });
+
+            t.equal(
+                scoreCount.length,
+                res.body.body.scoreIDs.length,
+                "All returned scoreIDs should be inserted to the DB."
+            );
+
+            t.end();
+        });
+
+        t.end();
+    });
+
+    // thats right i literally just copied it
+    t.test("file/pli-iidx-csv", (t) => {
+        t.beforeEach(LoadKTBlackIIDXData);
+
+        t.test("Mini HV import", async (t) => {
+            const res = await mockApi
+                .post("/api/import/file")
+                .set("Cookie", cookie)
+                .attach(
+                    "scoreData",
+                    GetKTDataBuffer("./eamusement-iidx-csv/small-hv-file.csv"),
+                    "my_csv.csv"
+                )
+                .field("importType", "file/pli-iidx-csv")
+                .field("playtype", "SP");
+
+            t.equal(res.body.success, true, "Should be successful.");
+
+            t.equal(res.body.body.errors.length, 0, "Mini HV Import Should have 0 failed scores.");
+
+            t.equal(res.body.body.scoreIDs.length, 2, "Should have 2 successful scores.");
+
+            const scoreCount = await db.scores.find({
+                scoreID: { $in: res.body.body.scoreIDs },
+            });
+
+            t.equal(
+                scoreCount.length,
+                res.body.body.scoreIDs.length,
+                "All returned scoreIDs should be inserted to the DB."
+            );
+
+            t.end();
+        });
+
+        t.test("Valid Rootage CSV import", async (t) => {
+            const res = await mockApi
+                .post("/api/import/file")
+                .set("Cookie", cookie)
+                .attach("scoreData", TestingIIDXEamusementCSV26, "my_csv.csv")
+                .field("importType", "file/pli-iidx-csv")
+                .field("playtype", "SP");
+
+            t.equal(res.body.success, true, "Should be successful.");
+
+            t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
+
+            const scoreCount = await db.scores.find({
+                scoreID: { $in: res.body.body.scoreIDs },
+            });
+
+            t.equal(
+                scoreCount.length,
+                res.body.body.scoreIDs.length,
+                "All returned scoreIDs should be inserted to the DB."
+            );
+
+            t.end();
+        });
+
+        t.test("Valid Heroic Verse CSV import", async (t) => {
+            const res = await mockApi
+                .post("/api/import/file")
+                .set("Cookie", cookie)
+                .attach("scoreData", TestingIIDXEamusementCSV27, "my_csv.csv")
+                .field("importType", "file/pli-iidx-csv")
                 .field("playtype", "SP");
 
             t.equal(res.body.success, true, "Should be successful.");

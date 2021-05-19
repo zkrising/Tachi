@@ -5,12 +5,12 @@ import {
     IIDXEamusementCSVData,
 } from "../../common/eamusement-iidx-csv/types";
 
-function ParseEamusementIIDXCSV(
+function ParsePLIIIDXCSV(
     fileData: Express.Multer.File,
     body: Record<string, unknown>,
     logger: KtLogger
 ): ParserFunctionReturnsSync<IIDXEamusementCSVData, IIDXEamusementCSVContext> {
-    return GenericParseEamIIDXCSV(fileData, body, "e-amusement", logger);
+    return GenericParseEamIIDXCSV(fileData, body, "PLI", logger);
 }
 
-export default ParseEamusementIIDXCSV;
+export default ParsePLIIIDXCSV;

@@ -91,6 +91,7 @@ import ParseEamusementIIDXCSV from "../../score-import/import-types/file/eamusem
 import ParseBatchManual from "../../score-import/import-types/file/batch-manual/parser";
 import { ParseSolidStateXML } from "../../score-import/import-types/file/solid-state-squad/parser";
 import { ParseMerIIDX } from "../../score-import/import-types/file/mer-iidx/parser";
+import ParsePLIIIDXCSV from "../../score-import/import-types/file/pli-iidx-csv/parser";
 
 /**
  * Resolves the data from a file upload into an iterable,
@@ -111,6 +112,8 @@ export function ResolveFileUploadData(
     switch (importType) {
         case "file/eamusement-iidx-csv":
             return ParseEamusementIIDXCSV(fileData, body, logger);
+        case "file/pli-iidx-csv":
+            return ParsePLIIIDXCSV(fileData, body, logger);
         case "file/batch-manual":
             return ParseBatchManual(fileData, body, logger);
         case "file/solid-state-squad":

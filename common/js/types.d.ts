@@ -57,7 +57,7 @@ export interface IDStringToGame {
 export interface MongoDBDocument {
     _id?: IObjectID;
 }
-export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "notifications" | "imports" | "import-timings" | "tierlist-data" | "tierlist" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users";
+export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "notifications" | "imports" | "import-timings" | "tierlist-data" | "tierlist" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users" | "kai-auth-tokens";
 export declare type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 /**
  * Supported games by Kamaitachi.
@@ -1040,5 +1040,11 @@ export interface ImportStatistics {
     msPerSession: number;
     ratingTime: number;
     importID: string;
+}
+export interface KaiAuthDocument {
+    userID: integer;
+    token: string;
+    refreshToken: string;
+    service: "FLO" | "EAG";
 }
 export {};

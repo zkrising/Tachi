@@ -97,7 +97,8 @@ export type Databases =
     | "user-milestones"
     | "milestones"
     | "game-stats"
-    | "users";
+    | "users"
+    | "kai-auth-tokens";
 
 export type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 
@@ -1301,4 +1302,5 @@ export interface KaiAuthDocument {
     userID: integer;
     token: string;
     refreshToken: string;
+    service: "FLO" | "EAG"; // MIN might exist at some point.
 }

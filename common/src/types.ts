@@ -1296,3 +1296,9 @@ export interface ImportStatistics {
     ratingTime: number;
     importID: string;
 }
+
+export interface KaiAuthDocument {
+    userID: integer;
+    token: string;
+    refreshToken: string;
+}

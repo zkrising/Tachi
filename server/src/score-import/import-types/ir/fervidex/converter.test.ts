@@ -108,7 +108,7 @@ const baseDryScore = {
             gaugeHistory: [100, 50],
             gauge: 50,
             bp: 6,
-            comboBreak: null,
+            comboBreak: 6,
             gsm: undefined,
         },
     },

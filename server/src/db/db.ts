@@ -1,7 +1,6 @@
 import {
     CounterDocument,
     FolderDocument,
-    Game,
     GoalDocument,
     IIDXBPIData,
     IIDXEamusementScoreDocument,
@@ -16,6 +15,7 @@ import {
     PrivateUserDocument,
     PublicAPIKeyDocument,
     ScoreDocument,
+    KaiAuthDocument,
     SessionDocument,
     AnySongDocument,
     AnyChartDocument,
@@ -117,10 +117,7 @@ const db = {
     counters: monkDB.get<CounterDocument>("counters"),
     "iidx-eam-scores": monkDB.get<IIDXEamusementScoreDocument>("iidx-eam-scores"),
     "game-stats": monkDB.get<UserGameStats>("game-stats"),
+    "kai-auth-tokens": monkDB.get<KaiAuthDocument>("kai-auth-tokens"),
 };
-
-export function GetGameChartCollection(game: Game) {
-    return db.charts[game];
-}
 
 export default db;

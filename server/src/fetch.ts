@@ -7,4 +7,6 @@ const fetch =
           }
         : nodeFetch;
 
-export default (fetch as unknown) as typeof nodeFetch;
+export type NodeFetch = (url: RequestInfo, init?: RequestInit | undefined) => Promise<Response>;
+
+export default (fetch as unknown) as NodeFetch;

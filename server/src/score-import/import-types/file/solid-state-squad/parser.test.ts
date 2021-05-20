@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import { GetMilisecondsSince } from "../../../../common/hrtime";
+import { GetMilisecondsSince } from "../../../../common/util";
 import { CloseMongoConnection } from "../../../../db/db";
 import CreateLogCtx from "../../../../common/logger";
 import { MockMulterFile } from "../../../../test-utils/mock-multer";

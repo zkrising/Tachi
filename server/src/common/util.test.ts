@@ -1,5 +1,5 @@
 import t from "tap";
-import { GetMilisecondsSince } from "./hrtime";
+import { GetMilisecondsSince } from "./util";
 
 t.test("#GetMilisecondsSince", (t) => {
     const time = GetMilisecondsSince(10n);

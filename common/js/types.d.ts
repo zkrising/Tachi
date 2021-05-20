@@ -45,6 +45,19 @@ export interface IDStringToGame {
     "gitadora:Gita": "gitadora";
     "gitadora:Dora": "gitadora";
 }
+export interface GameToIDString {
+    iidx: "iidx:SP" | "iidx:DP";
+    sdvx: "sdvx:Single";
+    usc: "usc:Single";
+    ddr: "ddr:SP" | "ddr:DP";
+    maimai: "maimai:Single";
+    jubeat: "jubeat:Single";
+    museca: "museca:Single";
+    bms: "bms:7K" | "bms:14K";
+    chunithm: "chunithm:Single";
+    gitadora: "gitadora:Gita" | "gitadora:Dora";
+    popn: "popn:9B";
+}
 /**
  * A utility type for creating an ID string given a game and playtype.
  * It should be noted that typescript refuses to assert that

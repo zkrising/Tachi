@@ -74,6 +74,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
         index({ game: 1, playtype: 1, table: 1 }),
         index({ game: 1, playtype: 1, table: 1, tableIndex: 1 }),
     ],
+    "kai-auth-tokens": [index({ userID: 1, service: 1 }, UNIQUE)],
 };
 
 const indexes: Partial<Record<ValidDatabases, Index[]>> = staticIndexes;

@@ -5,11 +5,11 @@ export interface KaiIIDXScore {
     play_style: "SINGLE" | "DOUBLE";
     difficulty: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
     version_played: integer;
-    lamp: string;
+    lamp: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
     ex_score: integer;
     miss_count: integer; // -1 => null
-    fast_count: integer;
-    slow_count: integer;
+    fast_count: integer | null;
+    slow_count: integer | null;
     timestamp: string;
 }
 

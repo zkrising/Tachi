@@ -20,7 +20,7 @@ const PR_KaiIIDXScore = {
     play_style: p.isIn("SINGLE", "DOUBLE"),
     difficulty: p.isIn("BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"),
     version_played: p.isBoundedInteger(9, 28),
-    lamp: "string",
+    lamp: p.isBoundedInteger(0, 7),
     ex_score: p.isPositiveInteger,
     miss_count: p.or(p.isPositiveInteger, p.is(-1)),
     fast_count: p.isPositiveInteger,
@@ -28,25 +28,25 @@ const PR_KaiIIDXScore = {
     timestamp: "string",
 };
 
-function ResolveKaiLamp(lamp: string): Lamps["iidx:SP" | "iidx:DP"] {
+function ResolveKaiLamp(lamp: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7): Lamps["iidx:SP" | "iidx:DP"] {
     switch (lamp) {
-        case "FAILED":
+        case 0:
+            return "NO PLAY";
+        case 1:
             return "FAILED";
-        case "EASY_CLEAR":
+        case 3:
             return "EASY CLEAR";
-        case "ASSIST_CLEAR":
+        case 2:
             return "ASSIST CLEAR";
-        case "CLEARED":
+        case 4:
             return "CLEAR";
-        case "HARD_CLEAR":
+        case 5:
             return "HARD CLEAR";
-        case "EX_HARD_CLEAR":
+        case 6:
             return "EX HARD CLEAR";
-        case "FULL_COMBO":
+        case 7:
             return "FULL COMBO";
     }
-
-    throw new InvalidScoreFailure(`Invalid lamp of ${lamp}.`);
 }
 
 export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (

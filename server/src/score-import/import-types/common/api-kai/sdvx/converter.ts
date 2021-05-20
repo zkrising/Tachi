@@ -10,10 +10,10 @@ import {
 import { FormatPrError } from "../../../../../common/prudence";
 import { FindSongOnID } from "../../../../../common/database-lookup/song";
 import {
-    GenericCalculatePercent,
-    GetGradeFromPercent,
+    GenericGetGradeAndPercent,
+    ParseDateFromString,
 } from "../../../../framework/common/score-utils";
-import { Grades, Lamps } from "kamaitachi-common";
+import { Lamps } from "kamaitachi-common";
 
 const PR_KaiSDVXScore = {
     music_id: p.isPositiveInteger,
@@ -70,23 +70,11 @@ export const ConvertAPIKaiSDVX: ConverterFunction<unknown, KaiContext> = async (
         throw new InternalFailure(`Song-Chart desync with song ID ${chart.songID} (sdvx).`);
     }
 
-    const percent = GenericCalculatePercent("sdvx", score.score, chart);
-
-    if (percent > 100) {
-        throw new InvalidScoreFailure(`Percent for score was greater than 100%.`);
-    }
-
-    const grade = GetGradeFromPercent("sdvx", percent) as Grades["sdvx:Single"];
-
     const lamp = ResolveKaiLamp(score.clear_type);
 
-    const timeAchieved = Date.parse(score.timestamp);
+    const { percent, grade } = GenericGetGradeAndPercent("sdvx", score.score, chart);
 
-    if (Number.isNaN(timeAchieved)) {
-        throw new InvalidScoreFailure(
-            `Invalid score date of ${score.timestamp}. Could not convert to timestamp.`
-        );
-    }
+    const timeAchieved = ParseDateFromString(score.timestamp);
 
     const dryScore: DryScore<"sdvx:Single"> = {
         comment: null,

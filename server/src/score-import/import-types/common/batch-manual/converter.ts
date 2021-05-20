@@ -17,11 +17,7 @@ import {
     AssertStrAsDifficulty,
     AssertStrAsPositiveInt,
 } from "../../../framework/common/string-asserts";
-import {
-    GenericCalculatePercent,
-    GetGradeFromPercent,
-} from "../../../framework/common/score-utils";
-import { gamePercentMax } from "kamaitachi-common/js/config";
+import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 
 /**
  * Creates a ConverterFn for the BatchManualScore format. This curries
@@ -39,17 +35,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 
     const { song, chart } = await ResolveMatchTypeToKTData(data, context, importType, logger);
 
-    const percent = GenericCalculatePercent(game, data.score, chart);
-
-    if (percent > gamePercentMax[game]) {
-        throw new InvalidScoreFailure(
-            `${song.title} (${chart.playtype} ${
-                chart.difficulty
-            }): Percent was greater than 100% (${percent.toFixed(2)}%)`
-        );
-    }
-
-    const grade = GetGradeFromPercent(game, percent);
+    const { percent, grade } = GenericGetGradeAndPercent(context.game, data.score, chart);
 
     let service = context.service;
 

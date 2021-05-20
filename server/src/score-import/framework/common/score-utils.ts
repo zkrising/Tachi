@@ -5,12 +5,13 @@ import {
     IDStrings,
     AnyChartDocument,
     ChartDocument,
+    GameToIDStrings,
     ESDCore,
     Playtypes,
 } from "kamaitachi-common";
-import { judgementWindows } from "kamaitachi-common/js/config";
+import { judgementWindows, gamePercentMax } from "kamaitachi-common/js/config";
 import CreateLogCtx from "../../../logger";
-import { InternalFailure } from "./converter-failures";
+import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 
 const logger = CreateLogCtx("score-utils.ts");
 
@@ -82,6 +83,49 @@ export function GenericCalculatePercent(
 }
 
 /**
+ * Helper utility for validating percents on a game. This throws an InvalidScoreFailure if the percent is
+ * invalid, and returns void on success.
+ *
+ * This exists to support maimai, as it has a dynamic "max percent".
+ */
+export function ValidatePercent(game: Game, percent: number, chart: AnyChartDocument) {
+    // i love needing a helper function for *ONE* game.
+    if (game === "maimai") {
+        const mmChart = chart as ChartDocument<"maimai:Single">;
+        if (percent > mmChart.data.maxPercent) {
+            throw new InvalidScoreFailure(
+                `Invalid percent - expected less than ${mmChart.data.maxPercent}.`
+            );
+        }
+    }
+
+    if (percent > gamePercentMax[game]) {
+        throw new InvalidScoreFailure(
+            `Invalid percent - expected less than ${gamePercentMax[game]}.`
+        );
+    }
+}
+
+/**
+ * Generically gets the grade and percent for a given score on a given game. This only works for games where
+ * grades are just percent boundaries. This will throw an InvalidScoreFailure if the percent is invalid,
+ * or if the grade is invalid.
+ */
+export function GenericGetGradeAndPercent<G extends Game>(
+    game: G,
+    score: number,
+    chart: AnyChartDocument
+) {
+    const percent = GenericCalculatePercent(game, score, chart);
+
+    ValidatePercent(game, percent, chart);
+
+    const grade = GetGradeFromPercent(game, percent) as Grades[GameToIDStrings[G]];
+
+    return { percent, grade };
+}
+
+/**
  * Calculates the ESD for a given game + percent combo. This function returns
  * null if the game does not support support ESD.
  */
@@ -104,4 +148,22 @@ export function CalculateESDForGame(
     }
 
     return null;
+}
+
+/**
+ * Parses and validates a date from a string.
+ * @returns Miliseconds from the unix epoch, or null if the initial argument was null or undefined.
+ */
+export function ParseDateFromString(str: string | undefined | null): number | null {
+    if (!str) {
+        return null;
+    }
+
+    const date = Date.parse(str);
+
+    if (Number.isNaN(date)) {
+        throw new InvalidScoreFailure(`Could not convert date ${str} to number.`);
+    }
+
+    return date;
 }

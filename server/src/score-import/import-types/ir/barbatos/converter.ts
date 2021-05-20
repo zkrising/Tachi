@@ -1,16 +1,13 @@
 import { FindSDVXChartOnInGameID } from "../../../../common/database-lookup/chart";
 import { FindSongOnID } from "../../../../common/database-lookup/song";
 import { ConverterFunction, DryScore, EmptyObject } from "../../../../types";
-import {
-    GenericCalculatePercent,
-    GetGradeFromPercent,
-} from "../../../framework/common/score-utils";
+import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
     InternalFailure,
     KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { BarbatosScore } from "./types";
-import { Lamps, Grades } from "kamaitachi-common";
+import { Lamps } from "kamaitachi-common";
 
 const LAMP_LOOKUP = {
     1: "FAILED",
@@ -41,7 +38,7 @@ export const ConverterIRBarbatos: ConverterFunction<BarbatosScore, EmptyObject> 
         | "ANY_INF"
         | "MXM";
 
-    const chart = await FindSDVXChartOnInGameID(data.song_id, "Single", difficulty);
+    const chart = await FindSDVXChartOnInGameID(data.song_id, difficulty);
 
     if (!chart) {
         throw new KTDataNotFoundFailure(
@@ -59,7 +56,7 @@ export const ConverterIRBarbatos: ConverterFunction<BarbatosScore, EmptyObject> 
         throw new InternalFailure(`Song ${chart.songID} (sdvx) has no parent song?`);
     }
 
-    const percent = GenericCalculatePercent("sdvx", data.score);
+    const { percent, grade } = GenericGetGradeAndPercent("sdvx", data.score, chart);
 
     const dryScore: DryScore<"sdvx:Single"> = {
         game: "sdvx",
@@ -70,7 +67,7 @@ export const ConverterIRBarbatos: ConverterFunction<BarbatosScore, EmptyObject> 
         scoreData: {
             score: data.score,
             percent,
-            grade: GetGradeFromPercent("sdvx", percent) as Grades["sdvx:Single"],
+            grade,
             lamp: LAMP_LOOKUP[data.clear_type] as Lamps["sdvx:Single"],
             hitData: {
                 critical: data.critical,

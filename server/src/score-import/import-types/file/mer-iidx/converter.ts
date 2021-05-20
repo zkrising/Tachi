@@ -3,15 +3,14 @@ import { FindSongOnID } from "../../../../common/database-lookup/song";
 import { ConverterFunction, DryScore, EmptyObject } from "../../../../types";
 import {
     InternalFailure,
-    InvalidScoreFailure,
     KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import {
-    GenericCalculatePercent,
-    GetGradeFromPercent,
+    GenericGetGradeAndPercent,
+    ParseDateFromString,
 } from "../../../framework/common/score-utils";
 import { MerScore } from "./types";
-import { Grades, Lamps } from "kamaitachi-common";
+import { Lamps } from "kamaitachi-common";
 
 function ConvertMERLamp(lamp: MerScore["clear_type"]): Lamps["iidx:DP" | "iidx:SP"] {
     if (lamp === "FULLCOMBO CLEAR") {
@@ -47,25 +46,11 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
         throw new InternalFailure(`Song-Chart Desync on songID ${chart.songID}`);
     }
 
-    const percent = GenericCalculatePercent("iidx", data.score, chart);
-
-    if (percent > 100) {
-        throw new InvalidScoreFailure(
-            `${song.title} (${playtype} ${
-                chart.difficulty
-            }): Percent was greater than 100% (${percent.toFixed(2)}%)`
-        );
-    }
-
-    const grade = GetGradeFromPercent("iidx", percent) as Grades["iidx:SP" | "iidx:DP"];
+    const { percent, grade } = GenericGetGradeAndPercent("iidx", data.score, chart);
 
     const lamp = ConvertMERLamp(data.clear_type);
 
-    const timeAchieved = Date.parse(data.update_time);
-
-    if (Number.isNaN(timeAchieved)) {
-        throw new InvalidScoreFailure(`Invalid score timestamp of ${data.update_time}`);
-    }
+    const timeAchieved = ParseDateFromString(data.update_time);
 
     const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
         game: "iidx",

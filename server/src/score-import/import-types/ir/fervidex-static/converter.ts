@@ -1,15 +1,11 @@
 import { FindSongOnID } from "../../../../common/database-lookup/song";
 import { ConverterFunction, DryScore } from "../../../../types";
-import {
-    GenericCalculatePercent,
-    GetGradeFromPercent,
-} from "../../../framework/common/score-utils";
+import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
     InternalFailure,
-    InvalidScoreFailure,
     KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { Lamps, Grades } from "kamaitachi-common";
+import { Lamps } from "kamaitachi-common";
 import { FindChartOnInGameIDVersion } from "../../../../common/database-lookup/chart";
 import { FervidexStaticContext, FervidexStaticScore } from "./types";
 import { FERVIDEX_LAMP_LOOKUP, SplitFervidexChartRef } from "../fervidex/converter";
@@ -44,13 +40,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
         throw new InternalFailure(`Song ${chart.songID} (iidx) has no parent song?`);
     }
 
-    const percent = GenericCalculatePercent("iidx", data.ex_score, chart);
-
-    if (percent > 100) {
-        throw new InvalidScoreFailure(
-            `Invalid score of ${data.ex_score} for chart ${song.title} (${playtype} ${difficulty}). Resulted in percent ${percent}.`
-        );
-    }
+    const { percent, grade } = GenericGetGradeAndPercent("iidx", data.ex_score, chart);
 
     const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
         game: "iidx",
@@ -61,7 +51,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
         scoreData: {
             score: data.ex_score,
             percent,
-            grade: GetGradeFromPercent("iidx", percent) as Grades["iidx:SP" | "iidx:DP"],
+            grade,
             lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:SP" | "iidx:DP"],
             hitData: {},
             hitMeta: {

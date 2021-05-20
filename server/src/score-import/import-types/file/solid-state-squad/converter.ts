@@ -9,8 +9,8 @@ import { Playtypes, Difficulties, Grades, Lamps } from "kamaitachi-common";
 import { FindSongOnTitleInsensitive } from "../../../../common/database-lookup/song";
 import { FindChartWithPTDFVersion } from "../../../../common/database-lookup/chart";
 import {
-    GenericCalculatePercent,
-    GetGradeFromPercent,
+    GenericGetGradeAndPercent,
+    ParseDateFromString,
 } from "../../../framework/common/score-utils";
 
 export function ParseDifficulty(
@@ -132,25 +132,11 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
         );
     }
 
-    const percent = GenericCalculatePercent("iidx", data.exscore, chart);
-
-    if (percent > 100) {
-        throw new InvalidScoreFailure(
-            `${song.title} (${playtype} ${
-                chart.difficulty
-            }): Percent was greater than 100% (${percent.toFixed(2)}%)`
-        );
-    }
-
-    const grade = GetGradeFromPercent("iidx", percent);
+    const { percent, grade } = GenericGetGradeAndPercent("iidx", data.exscore, chart);
 
     const lamp = ResolveS3Lamp(data, logger);
 
-    const timeAchieved = Date.parse(data.date);
-
-    if (Number.isNaN(timeAchieved)) {
-        throw new InvalidScoreFailure(`Invalid timestamp of ${data.date} - could not parse.`);
-    }
+    const timeAchieved = ParseDateFromString(data.date);
 
     let hitData = {};
     if (data.scorebreakdown) {

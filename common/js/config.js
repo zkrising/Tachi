@@ -30,7 +30,7 @@ exports.apiImportTypes = [
     "api/flo-iidx",
     "api/flo-sdvx",
 ];
-exports.importTypes = [...exports.fileImportTypes, ...exports.irImportTypes];
+exports.importTypes = [...exports.fileImportTypes, ...exports.irImportTypes, ...exports.apiImportTypes];
 exports.supportedGames = [
     "iidx",
     "museca",

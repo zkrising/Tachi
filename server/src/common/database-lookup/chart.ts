@@ -170,7 +170,6 @@ export function FindIIDXChartWith2DXtraHash(hash: string) {
  */
 export function FindSDVXChartOnInGameID(
     inGameID: number,
-    playtype: Playtypes[Game],
     difficulty: "NOV" | "ADV" | "EXH" | "MXM" | "ANY_INF"
 ) {
     const diffQuery =
@@ -180,7 +179,23 @@ export function FindSDVXChartOnInGameID(
 
     return db.charts.sdvx.findOne({
         "data.inGameID": inGameID,
-        playtype,
         difficulty: diffQuery,
+    });
+}
+
+export function FindSDVXChartOnInGameIDVersion(
+    inGameID: number,
+    difficulty: "NOV" | "ADV" | "EXH" | "MXM" | "ANY_INF",
+    version: string
+) {
+    const diffQuery =
+        difficulty === "ANY_INF"
+            ? { $in: ["INF", "GRV", "HVN", "VVD"] as Difficulties["sdvx:Single"][] }
+            : difficulty;
+
+    return db.charts.sdvx.findOne({
+        "data.inGameID": inGameID,
+        difficulty: diffQuery,
+        versions: version,
     });
 }

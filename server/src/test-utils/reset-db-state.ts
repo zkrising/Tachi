@@ -4,7 +4,7 @@
 import db from "../db/db";
 import fs from "fs";
 import path from "path";
-import CreateLogCtx from "../logger";
+import CreateLogCtx from "../common/logger";
 
 const logger = CreateLogCtx("reset-db-state.ts");
 

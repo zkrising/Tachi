@@ -1,5 +1,5 @@
 import db from "../db/db";
-import CreateLogCtx from "../logger";
+import CreateLogCtx from "./logger";
 const logger = CreateLogCtx("db.ts");
 import { integer } from "kamaitachi-common";
 

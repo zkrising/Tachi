@@ -1,6 +1,6 @@
 import connectRedis from "connect-redis";
 import expressSession from "express-session";
-import CreateLogCtx from "../logger";
+import CreateLogCtx from "../common/logger";
 import redis from "redis";
 
 const logger = CreateLogCtx("redis-store.ts");

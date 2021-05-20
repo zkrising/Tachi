@@ -1,5 +1,5 @@
 import db from "../db/db";
-import CreateLogCtx from "../logger";
+import CreateLogCtx from "../common/logger";
 
 const logger = CreateLogCtx("scripts/initialise-counters.ts");
 

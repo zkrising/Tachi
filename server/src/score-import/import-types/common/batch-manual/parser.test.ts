@@ -1,6 +1,6 @@
 import t from "tap";
 import { CloseMongoConnection } from "../../../../db/db";
-import CreateLogCtx from "../../../../logger";
+import CreateLogCtx from "../../../../common/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParseBatchManualFromObject as ParserFn } from "./parser";
 import { BatchManual } from "./types";

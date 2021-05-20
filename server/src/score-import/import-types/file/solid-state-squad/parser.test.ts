@@ -2,7 +2,7 @@
 import t from "tap";
 import { GetMilisecondsSince } from "../../../../common/hrtime";
 import { CloseMongoConnection } from "../../../../db/db";
-import CreateLogCtx from "../../../../logger";
+import CreateLogCtx from "../../../../common/logger";
 import { MockMulterFile } from "../../../../test-utils/mock-multer";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { GetKTDataBuffer } from "../../../../test-utils/test-data";

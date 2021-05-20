@@ -1,5 +1,5 @@
 import supertest from "supertest";
-import CreateLogCtx from "../logger";
+import CreateLogCtx from "../common/logger";
 
 const logger = CreateLogCtx("mock-api.ts");
 

@@ -1,7 +1,7 @@
 import { UserGameStats } from "kamaitachi-common";
 import t from "tap";
 import { CloseMongoConnection } from "../../../db/db";
-import CreateLogCtx from "../../../logger";
+import CreateLogCtx from "../../../common/logger";
 import ResetDBState from "../../../test-utils/reset-db-state";
 import { CalculateClassDeltas, UpdateUGSClasses } from "./classes";
 

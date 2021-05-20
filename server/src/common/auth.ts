@@ -9,9 +9,9 @@ import {
 import db from "../db/db";
 import { GetNextCounterValue } from "./db";
 import { InsertResult } from "monk";
-import CreateLogCtx from "../logger";
+import CreateLogCtx from "./logger";
 import { FormatUserDoc } from "./user";
-import nodeFetch from "../fetch";
+import nodeFetch from "./fetch";
 import { CAPTCHA_SECRET_KEY } from "../secrets";
 
 const logger = CreateLogCtx("auth.ts");

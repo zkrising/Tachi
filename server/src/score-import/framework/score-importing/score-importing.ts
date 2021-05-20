@@ -24,7 +24,7 @@ import {
 } from "../common/converter-failures";
 import { CreateScoreID } from "./score-id";
 import db from "../../../db/db";
-import { AppendLogCtx } from "../../../logger";
+import { AppendLogCtx } from "../../../common/logger";
 
 /**
  * Processes the iterable data into the Kamaitachi database.

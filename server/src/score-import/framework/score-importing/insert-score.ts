@@ -1,6 +1,6 @@
 import { ScoreDocument } from "kamaitachi-common";
 import db from "../../../db/db";
-import CreateLogCtx from "../../../logger";
+import CreateLogCtx from "../../../common/logger";
 
 const logger = CreateLogCtx("insert-score.ts");
 const ScoreQueue: ScoreDocument[] = [];

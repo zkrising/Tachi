@@ -4,7 +4,7 @@ import ResetDBState from "../../../test-utils/reset-db-state";
 import { GetKTDataJSON, Testing511SPA, TestingIIDXSPScore } from "../../../test-utils/test-data";
 import { CreatePBDoc } from "./create-pb-doc";
 import deepmerge from "deepmerge";
-import CreateLogCtx from "../../../logger";
+import CreateLogCtx from "../../../common/logger";
 import { KtLogger } from "../../../types";
 import { lamps } from "kamaitachi-common/js/config";
 

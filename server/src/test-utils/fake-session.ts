@@ -1,5 +1,5 @@
 import ResetDBState from "./reset-db-state";
-import CreateLogCtx from "../logger";
+import CreateLogCtx from "../common/logger";
 import supertest from "supertest";
 
 const logger = CreateLogCtx("fake-session.ts");

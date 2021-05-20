@@ -12,7 +12,7 @@ import {
     CalculateVF5,
     KaidenPercentile,
 } from "./game-specific-stats";
-import CreateLogCtx from "../../../logger";
+import CreateLogCtx from "../../../common/logger";
 import { isApproximately } from "../../../test-utils/asserts";
 
 t.test("#CalculateBPI", (t) => {

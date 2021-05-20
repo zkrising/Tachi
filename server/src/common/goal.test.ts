@@ -1,6 +1,6 @@
 import t from "tap";
 import db, { CloseMongoConnection } from "../db/db";
-import CreateLogCtx from "../logger";
+import CreateLogCtx from "./logger";
 import ResetDBState from "../test-utils/reset-db-state";
 import { EvaluateGoalForUser } from "./goal";
 import { GoalDocument } from "kamaitachi-common";

@@ -4,7 +4,7 @@ import { fileImportTypes } from "kamaitachi-common/js/config";
 import multer, { MulterError } from "multer";
 import Prudence from "prudence";
 import { GetUserWithIDGuaranteed } from "../../common/user";
-import CreateLogCtx from "../../logger";
+import CreateLogCtx from "../../common/logger";
 import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/score-importing/score-import-error";

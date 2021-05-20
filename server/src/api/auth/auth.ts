@@ -15,7 +15,7 @@ import {
 } from "../../common/user";
 
 import db from "../../db/db";
-import CreateLogCtx from "../../logger";
+import CreateLogCtx from "../../common/logger";
 import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
 

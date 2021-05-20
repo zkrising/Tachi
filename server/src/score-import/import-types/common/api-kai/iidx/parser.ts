@@ -1,5 +1,5 @@
 import { KtLogger, ParserFunctionReturnsAsync } from "../../../../../types";
-import nodeFetch from "../../../../../fetch";
+import nodeFetch from "../../../../../common/fetch";
 import { KaiAuthDocument } from "kamaitachi-common";
 import { KaiContext } from "../types";
 import { EAG_API_URL, FLO_API_URL } from "../../../../../secrets";

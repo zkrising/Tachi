@@ -10,7 +10,7 @@ import {
     Game,
 } from "kamaitachi-common";
 import db from "../../../db/db";
-import { AppendLogCtx } from "../../../logger";
+import { AppendLogCtx } from "../../../common/logger";
 import { GenerateRandomSessionName } from "./name-generation";
 import crypto from "crypto";
 import { CreateSessionCalcData } from "./performance-calc";

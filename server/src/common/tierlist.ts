@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { AnyChartDocument, Game, Playtypes } from "kamaitachi-common";
 import db from "../db/db";
-import CreateLogCtx from "../logger";
+import CreateLogCtx from "./logger";
 
 const logger = CreateLogCtx("tierlist.ts");
 

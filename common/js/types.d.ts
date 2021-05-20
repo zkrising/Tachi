@@ -45,7 +45,7 @@ export interface IDStringToGame {
     "gitadora:Gita": "gitadora";
     "gitadora:Dora": "gitadora";
 }
-export interface GameToIDString {
+export interface GameToIDStrings {
     iidx: "iidx:SP" | "iidx:DP";
     sdvx: "sdvx:Single";
     usc: "usc:Single";

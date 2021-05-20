@@ -162,7 +162,7 @@ export function ParseDateFromString(str: string | undefined | null): number | nu
     const date = Date.parse(str);
 
     if (Number.isNaN(date)) {
-        throw new InvalidScoreFailure(`Could not convert date ${str} to number.`);
+        throw new InvalidScoreFailure(`Invalid/Unparsable score timestamp of ${str}.`);
     }
 
     return date;

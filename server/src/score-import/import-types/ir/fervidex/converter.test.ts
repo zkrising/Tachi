@@ -178,7 +178,7 @@ t.test("#ConverterIRFervidex", (t) => {
                 "ir/fervidex",
                 logger
             ),
-            { message: /Invalid score of 9999 for chart.*Resulted in percent/giu } as any
+            { message: /Invalid percent/giu } as any
         );
 
         t.end();

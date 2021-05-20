@@ -127,7 +127,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 
     t.test("Invalid Date", (t) => {
         t.rejects(() => merc({ update_time: "INVALID" }), {
-            message: /Invalid score timestamp of INVALID/u,
+            message: /Invalid percent/u,
         } as any);
 
         t.end();

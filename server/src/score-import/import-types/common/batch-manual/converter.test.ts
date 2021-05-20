@@ -379,7 +379,7 @@ t.test("#ConverterFn", (t) => {
                     importType,
                     logger
                 ),
-            { message: /Invalid score of 2000, produced percent of 127/u } as any
+            { message: /Invalid percent/u } as any
         );
 
         t.end();

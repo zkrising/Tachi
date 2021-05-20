@@ -149,7 +149,7 @@ export async function ValidateCaptcha(
     );
 
     if (r.status !== 200) {
-        logger.verbose(`GCaptcha response ${r.status}, ${r.body}`);
+        logger.verbose(`Failed GCaptcha response ${r.status}, ${r.body}`);
     }
 
     return r.status === 200;

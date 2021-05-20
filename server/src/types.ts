@@ -12,6 +12,7 @@ import {
 import { Logger, LeveledLogMethod } from "winston";
 import { ConverterFailure } from "./score-import/framework/common/converter-failures";
 import { ClassHandler } from "./score-import/framework/user-game-stats/classes";
+import { KaiContext } from "./score-import/import-types/common/api-kai/types";
 import {
     BatchManualContext,
     BatchManualScore,
@@ -147,13 +148,13 @@ export interface ImportTypeDataMap {
     "ir/beatoraja": EmptyObject;
     "ir/usc": EmptyObject;
 
-    "api/arc-iidx": EmptyObject;
-    "api/arc-sdvx": EmptyObject;
-    "api/arc-jubeat": EmptyObject;
-    "api/flo-iidx": EmptyObject;
-    "api/flo-sdvx": EmptyObject;
-    "api/eag-iidx": EmptyObject;
-    "api/eag-sdvx": EmptyObject;
+    "api/arc-iidx": unknown;
+    "api/arc-sdvx": unknown;
+    "api/arc-jubeat": unknown;
+    "api/flo-iidx": unknown;
+    "api/flo-sdvx": unknown;
+    "api/eag-iidx": unknown;
+    "api/eag-sdvx": unknown;
 }
 
 export interface ImportTypeContextMap {
@@ -174,10 +175,10 @@ export interface ImportTypeContextMap {
     "api/arc-iidx": EmptyObject;
     "api/arc-sdvx": EmptyObject;
     "api/arc-jubeat": EmptyObject;
-    "api/flo-iidx": EmptyObject;
-    "api/flo-sdvx": EmptyObject;
-    "api/eag-iidx": EmptyObject;
-    "api/eag-sdvx": EmptyObject;
+    "api/flo-iidx": KaiContext;
+    "api/flo-sdvx": KaiContext;
+    "api/eag-iidx": KaiContext;
+    "api/eag-sdvx": KaiContext;
 }
 
 /**

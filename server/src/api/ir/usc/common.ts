@@ -28,7 +28,6 @@ export interface USCServerScore {
 
 export interface USCClientScore {
     score: integer;
-    gameflags: integer;
     gauge: number;
     timestamp: integer;
     crit: integer;

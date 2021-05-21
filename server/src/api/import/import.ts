@@ -14,7 +14,7 @@ const logger = CreateLogCtx("import.ts");
 
 const router: Router = Router({ mergeParams: true });
 
-const parseMultipartScoredata = CreateMulterSingleUploadMiddleware("scoreData", logger);
+const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware("scoreData", logger);
 
 /**
  * Import scores from a file. Expects the post request to be multipart, and to provide a scoreData file.
@@ -23,7 +23,7 @@ const parseMultipartScoredata = CreateMulterSingleUploadMiddleware("scoreData", 
 router.post(
     "/file",
     RequireLoggedIn,
-    parseMultipartScoredata,
+    ParseMultipartScoredata,
     prValidate(
         {
             importType: Prudence.isIn(fileImportTypes),

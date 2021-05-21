@@ -1,5 +1,5 @@
-import { PrudenceError } from "prudence/js/error";
-import p, { ValidSchemaValue } from "prudence";
+// @todo #118 Investigate why this import triggers a circular dependency according to madge.
+import p, { PrudenceError, ValidSchemaValue } from "prudence";
 
 export function FormatPrError(err: PrudenceError, foreword = "Error") {
     return `${foreword}: ${err.keychain} | ${err.message}${

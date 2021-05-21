@@ -152,10 +152,9 @@ router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
     })) as PBScoreDocument<"usc:Single"> | null;
 
     if (!serverRecord) {
-        // @todo See uscir-spec #1
         return res.status(200).json({
-            success: STATUS_CODES.SERVER_ERROR,
-            description: "TODO",
+            success: STATUS_CODES.NOT_FOUND,
+            description: "No server record found.",
         });
     }
 

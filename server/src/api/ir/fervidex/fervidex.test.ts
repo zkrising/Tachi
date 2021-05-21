@@ -6,51 +6,97 @@ import mockApi from "../../../test-utils/mock-api";
 import ResetDBState from "../../../test-utils/reset-db-state";
 import { GetKTDataJSON } from "../../../test-utils/test-data";
 
-function TestSoftwareModels(cookie: string[]) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function TestHeaders(url: string, cookie: string[], data: any) {
     t.test("Should reject invalid X-Software-Models", async (t) => {
         let res = await mockApi
-            .post("/api/ir/fervidex/score/submit")
+            .post(url)
             .set("Cookie", cookie)
             // rootage
             .set("X-Software-Model", "LDJ:J:B:A:2019090200")
-            .send(GetKTDataJSON("./fervidex/base.json"));
+            .set("User-Agent", "fervidex/1.3.0")
+            .send(data);
 
         t.equal(res.body.success, false, "Should reject rootage clients");
 
         res = await mockApi
-            .post("/api/ir/fervidex/score/submit")
+            .post(url)
             .set("Cookie", cookie)
             // rootage old
             .set("X-Software-Model", "LDJ:J:B:A:2019100700")
-            .send(GetKTDataJSON("./fervidex/base.json"));
+            .set("User-Agent", "fervidex/1.3.0")
+            .send(data);
 
         t.equal(res.body.success, false, "Should reject rootage clients");
 
         res = await mockApi
-            .post("/api/ir/fervidex/score/submit")
+            .post(url)
             .set("Cookie", cookie)
             // cannonballers
+            .set("User-Agent", "fervidex/1.3.0")
             .set("X-Software-Model", "LDJ:J:B:A:2018091900")
-            .send(GetKTDataJSON("./fervidex/base.json"));
+            .send(data);
 
         t.equal(res.body.success, false, "Should reject cannonballers clients");
 
         res = await mockApi
-            .post("/api/ir/fervidex/score/submit")
+            .post(url)
             .set("Cookie", cookie)
+            .set("User-Agent", "fervidex/1.3.0")
             .set("X-Software-Model", "LDJ:J:B:A:NONSENSE")
-            .send(GetKTDataJSON("./fervidex/base.json"));
+            .send(data);
 
         t.equal(res.body.success, false, "Should reject nonsense versions");
 
         res = await mockApi
-            .post("/api/ir/fervidex/score/submit")
+            .post(url)
             .set("Cookie", cookie)
             // BMS-iidx
+            .set("User-Agent", "fervidex/1.3.0")
             .set("X-Software-Model", "LDJ:J:B:Z:2020092900")
-            .send(GetKTDataJSON("./fervidex/base.json"));
+            .send(data);
 
         t.equal(res.body.success, false, "Should reject BMS-iidx clients");
+
+        res = await mockApi
+            .post(url)
+            .set("Cookie", cookie)
+            // BMS-iidx
+            .set("User-Agent", "fervidex/1.2.0")
+            .set("X-Software-Model", "LDJ:J:B:A:2020092900")
+            .send(data);
+
+        t.equal(res.body.success, false, "Should reject outdated fervidex clients");
+
+        res = await mockApi
+            .post(url)
+            .set("Cookie", cookie)
+            // BMS-iidx
+            .set("User-Agent", "fervidex/.0")
+            .set("X-Software-Model", "LDJ:J:B:A:2020092900")
+            .send(data);
+
+        t.equal(res.body.success, false, "Should reject invalid fervidex clients");
+
+        res = await mockApi
+            .post(url)
+            .set("Cookie", cookie)
+            // BMS-iidx
+            .set("User-Agent", "")
+            .set("X-Software-Model", "LDJ:J:B:A:2020092900")
+            .send(data);
+
+        t.equal(res.body.success, false, "Should reject invalid fervidex clients");
+
+        res = await mockApi
+            .post(url)
+            .set("Cookie", cookie)
+            // BMS-iidx
+            .set("User-Agent", "invalid")
+            .set("X-Software-Model", "LDJ:J:B:A:2020092900")
+            .send(data);
+
+        t.equal(res.body.success, false, "Should reject invalid fervidex clients");
 
         t.end();
     });
@@ -59,7 +105,8 @@ function TestSoftwareModels(cookie: string[]) {
 t.test("POST /api/ir/fervidex/class/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
-    TestSoftwareModels(cookie);
+    // @todo
+    TestHeaders("/api/ir/fervidex/class/submit", cookie, {});
 
     t.beforeEach(ResetDBState);
 
@@ -70,12 +117,13 @@ t.test("POST /api/ir/fervidex/score/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
-    TestSoftwareModels(cookie);
+    TestHeaders("/api/ir/fervidex/score/submit", cookie, GetKTDataJSON("./fervidex/base.json"));
 
     t.test("Should import a valid score", async (t) => {
         const res = await mockApi
             .post("/api/ir/fervidex/score/submit")
             .set("Cookie", cookie)
+            .set("User-Agent", "fervidex/1.3.0")
             .set("X-Software-Model", "LDJ:J:B:A:2020092900")
             .send(GetKTDataJSON("./fervidex/base.json"));
 
@@ -96,6 +144,7 @@ t.test("POST /api/ir/fervidex/score/submit", async (t) => {
         const res = await mockApi
             .post("/api/ir/fervidex/score/submit")
             .set("Cookie", cookie)
+            .set("User-Agent", "fervidex/1.3.0")
             .set("X-Software-Model", "LDJ:J:B:A:2020092900")
             .send(GetKTDataJSON("./fervidex/2dxgsm.json"));
 
@@ -115,6 +164,7 @@ t.test("POST /api/ir/fervidex/score/submit", async (t) => {
     t.test("Should reject an invalid body", async (t) => {
         const res = await mockApi
             .post("/api/ir/fervidex/score/submit")
+            .set("User-Agent", "fervidex/1.3.0")
             .set("Cookie", cookie)
             .send({});
 
@@ -130,7 +180,11 @@ t.test("POST /api/ir/fervidex/profile/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
-    TestSoftwareModels(cookie);
+    TestHeaders(
+        "/api/ir/fervidex/class/submit",
+        cookie,
+        GetKTDataJSON("./fervidex-static/base.json")
+    );
 
     const ferStaticBody = GetKTDataJSON("./fervidex-static/base.json");
 
@@ -143,6 +197,7 @@ t.test("POST /api/ir/fervidex/profile/submit", async (t) => {
         const res = await mockApi
             .post("/api/ir/fervidex/profile/submit")
             .set("Cookie", cookie)
+            .set("User-Agent", "fervidex/1.3.0")
             .set("X-Software-Model", "P2D:J:B:A:2020092900")
             .send(ferStaticBody);
 

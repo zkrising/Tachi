@@ -2,19 +2,74 @@ import { Router, RequestHandler } from "express";
 import { UpdateClassIfGreater } from "../../../common/class";
 import { GetUserWithIDGuaranteed } from "../../../common/user";
 import { ParseEA3SoftID } from "../../../common/util";
-import { MODEL_INFINITAS_2, REV_2DXBMS } from "../../../constants/ea3id";
+import { EXT_HEROIC_VERSE, MODEL_INFINITAS_2, REV_2DXBMS } from "../../../constants/ea3id";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../score-import/framework/express-wrapper";
 import { ParseFervidexStatic } from "../../../score-import/import-types/ir/fervidex-static/parser";
 import { ParseFervidexSingle } from "../../../score-import/import-types/ir/fervidex/parser";
 import { Playtypes } from "kamaitachi-common";
+import CreateLogCtx from "../../../common/logger";
+
+const logger = CreateLogCtx("fervidex.ts");
 
 const router: Router = Router({ mergeParams: true });
+
+const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
+    const agent = req.header("User-Agent");
+
+    if (!agent) {
+        logger.debug(
+            `Rejected fervidex client with no agent from user ${req.session.ktchi!.userID}.`
+        );
+        return res.status(400).json({
+            success: false,
+            description: `Invalid User-Agent.`,
+        });
+    }
+
+    if (!agent.startsWith("fervidex/")) {
+        logger.info(
+            `Rejected fervidex client with invalid agent ${agent} from user ${
+                req.session.ktchi!.userID
+            }.`
+        );
+        return res.status(400).json({
+            success: false,
+            description: `Invalid User-Agent ${agent} - expected fervidex client.`,
+        });
+    }
+
+    const versions = agent.split("fervidex/")[1].split(".").map(Number);
+
+    if (!versions.every((e) => !Number.isNaN(e))) {
+        logger.info(
+            `Rejected fervidex client with agent ${agent} for NaN-like versions from user ${
+                req.session.ktchi!.userID
+            }.`
+        );
+        return res.status(400).json({
+            success: false,
+            description: `Invalid version ${versions.join(".")}.`,
+        });
+    }
+
+    // version.minor
+    if (versions[1] < 3) {
+        logger.debug(`Rejected outdated fervidex client from user ${req.session.ktchi!.userID}.`);
+        return res.status(400).json({
+            success: false,
+            description: `Versions of fervidex < 1.3.0 are not supported.`,
+        });
+    }
+
+    return next();
+};
 
 const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
     const swModel = req.header("X-Software-Model");
 
     if (!swModel) {
+        logger.debug(`Rejected empty X-Software-Model from user ${req.session.ktchi!.userID}.`);
         return res.status(400).json({
             success: false,
             description: `Invalid X-Software-Model.`,
@@ -25,12 +80,14 @@ const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
         const softID = ParseEA3SoftID(swModel);
 
         if (softID.model !== MODEL_INFINITAS_2) {
+            logger.debug(`Rejected non-inf2 model from user ${req.session.ktchi!.userID}.`);
             return res.status(400).send({
                 success: false,
                 description: "This endpoint is only available for INF2 clients.",
             });
         }
     } catch (err) {
+        logger.debug(err);
         return res.status(400).json({
             success: false,
             description: `Invalid X-Software-Model.`,
@@ -44,6 +101,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
     const swModel = req.header("X-Software-Model");
 
     if (!swModel) {
+        logger.debug(`Rejected empty X-Software Model from user ${req.session.ktchi!.userID}.`);
         return res.status(400).json({
             success: false,
             description: `Invalid X-Software-Model.`,
@@ -59,7 +117,20 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
                 description: "2DX_BMS is not supported.",
             });
         }
+
+        if (softID.ext !== EXT_HEROIC_VERSE) {
+            logger.info(
+                `Rejected invalid Software Model ${softID.ext} from user ${
+                    req.session.ktchi!.userID
+                }.`
+            );
+            return res.status(400).json({
+                success: false,
+                description: `Invalid extension ${softID.ext}`,
+            });
+        }
     } catch (err) {
+        logger.debug(err);
         return res.status(400).json({
             success: false,
             description: `Invalid X-Software-Model.`,
@@ -77,49 +148,55 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
  *
  * @name /api/ir/fervidex/profile/submit
  */
-router.post("/profile/submit", RequireLoggedIn, RequireInf2ModelHeader, async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
+router.post(
+    "/profile/submit",
+    RequireLoggedIn,
+    ValidateFervidexHeader,
+    RequireInf2ModelHeader,
+    async (req, res) => {
+        const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
 
-    const headers = {
-        // guaranteed to exist because of RequireInf2ModelHeader
-        model: req.header("X-Software-Model")!,
-    };
+        const headers = {
+            // guaranteed to exist because of RequireInf2ModelHeader
+            model: req.header("X-Software-Model")!,
+        };
 
-    const responseData = await ExpressWrappedScoreImportMain(
-        userDoc,
-        false,
-        "ir/fervidex-static",
-        (logger) => ParseFervidexStatic(req.body, headers, logger)
-    );
+        const responseData = await ExpressWrappedScoreImportMain(
+            userDoc,
+            false,
+            "ir/fervidex-static",
+            (logger) => ParseFervidexStatic(req.body, headers, logger)
+        );
 
-    if (req.body.sp_dan || req.body.sp_dan === 0) {
-        const classVal = FERVIDEX_COURSE_LOOKUP[req.body.sp_dan];
+        if (req.body.sp_dan || req.body.sp_dan === 0) {
+            const classVal = FERVIDEX_COURSE_LOOKUP[req.body.sp_dan];
 
-        if (!classVal) {
-            return res.status(400).json({
-                success: false,
-                description: `Invalid courseID of ${req.body.sp_dan}.`,
-            });
+            if (!classVal) {
+                return res.status(400).json({
+                    success: false,
+                    description: `Invalid courseID of ${req.body.sp_dan}.`,
+                });
+            }
+
+            await UpdateClassIfGreater(req.session.ktchi!.userID, "iidx", "SP", "dan", classVal);
         }
 
-        await UpdateClassIfGreater(req.session.ktchi!.userID, "iidx", "SP", "dan", classVal);
-    }
+        if (req.body.dp_dan || req.body.dp_dan === 0) {
+            const classVal = FERVIDEX_COURSE_LOOKUP[req.body.dp_dan];
 
-    if (req.body.dp_dan || req.body.dp_dan === 0) {
-        const classVal = FERVIDEX_COURSE_LOOKUP[req.body.dp_dan];
+            if (!classVal) {
+                return res.status(400).json({
+                    success: false,
+                    description: `Invalid courseID of ${req.body.dp_dan}.`,
+                });
+            }
 
-        if (!classVal) {
-            return res.status(400).json({
-                success: false,
-                description: `Invalid courseID of ${req.body.dp_dan}.`,
-            });
+            await UpdateClassIfGreater(req.session.ktchi!.userID, "iidx", "DP", "dan", classVal);
         }
 
-        await UpdateClassIfGreater(req.session.ktchi!.userID, "iidx", "DP", "dan", classVal);
+        return res.status(responseData.statusCode).json(responseData.body);
     }
-
-    return res.status(responseData.statusCode).json(responseData.body);
-});
+);
 
 /**
  * Submits a single score to Kamaitachi. In contrast to profile/submit, this
@@ -128,31 +205,37 @@ router.post("/profile/submit", RequireLoggedIn, RequireInf2ModelHeader, async (r
  *
  * @name /api/ir/fervidex/score/submit
  */
-router.post("/score/submit", RequireLoggedIn, ValidateModelHeader, async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
+router.post(
+    "/score/submit",
+    RequireLoggedIn,
+    ValidateFervidexHeader,
+    ValidateModelHeader,
+    async (req, res) => {
+        const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
 
-    const model = req.header("X-Software-Model");
+        const model = req.header("X-Software-Model");
 
-    if (!model) {
-        return res.status(400).json({
-            success: false,
-            description: "No X-Software-Model header provided?",
-        });
+        if (!model) {
+            return res.status(400).json({
+                success: false,
+                description: "No X-Software-Model header provided?",
+            });
+        }
+
+        const headers = {
+            model,
+        };
+
+        const responseData = await ExpressWrappedScoreImportMain(
+            userDoc,
+            true,
+            "ir/fervidex",
+            (logger) => ParseFervidexSingle(req.body, headers, logger)
+        );
+
+        return res.status(responseData.statusCode).json(responseData.body);
     }
-
-    const headers = {
-        model,
-    };
-
-    const responseData = await ExpressWrappedScoreImportMain(
-        userDoc,
-        true,
-        "ir/fervidex",
-        (logger) => ParseFervidexSingle(req.body, headers, logger)
-    );
-
-    return res.status(responseData.statusCode).json(responseData.body);
-});
+);
 
 const FERVIDEX_COURSE_LOOKUP = [
     "7kyu",
@@ -182,35 +265,43 @@ const FERVIDEX_COURSE_LOOKUP = [
  *
  * @name /api/ir/fervidex/class/submit
  */
-router.post("/class/submit", RequireLoggedIn, ValidateModelHeader, async (req, res) => {
-    if (!req.body.cleared) {
-        return res.status(200).json({ success: true, description: "No Update Made.", body: {} });
-    }
+router.post(
+    "/class/submit",
+    RequireLoggedIn,
+    ValidateFervidexHeader,
+    ValidateModelHeader,
+    async (req, res) => {
+        if (!req.body.cleared) {
+            return res
+                .status(200)
+                .json({ success: true, description: "No Update Made.", body: {} });
+        }
 
-    const classVal = FERVIDEX_COURSE_LOOKUP[req.body.course_id];
+        const classVal = FERVIDEX_COURSE_LOOKUP[req.body.course_id];
 
-    if (!classVal) {
-        return res.status(400).json({
-            success: false,
-            description: `Invalid courseID of ${req.body.course_id}.`,
+        if (!classVal) {
+            return res.status(400).json({
+                success: false,
+                description: `Invalid courseID of ${req.body.course_id}.`,
+            });
+        }
+
+        // is 0 or 1.
+        const playtype: Playtypes["iidx"] = req.body.playstyle ? "SP" : "DP";
+
+        const r = await UpdateClassIfGreater(
+            req.session.ktchi!.userID,
+            "iidx",
+            playtype,
+            "dan",
+            classVal
+        );
+
+        return res.status(200).json({
+            success: true,
+            description: r === false ? "Dan unchanged." : "Dan changed!",
         });
     }
-
-    // is 0 or 1.
-    const playtype: Playtypes["iidx"] = req.body.playstyle ? "SP" : "DP";
-
-    const r = await UpdateClassIfGreater(
-        req.session.ktchi!.userID,
-        "iidx",
-        playtype,
-        "dan",
-        classVal
-    );
-
-    return res.status(200).json({
-        success: true,
-        description: r === false ? "Dan unchanged." : "Dan changed!",
-    });
-});
+);
 
 export default router;

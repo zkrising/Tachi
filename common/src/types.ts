@@ -1031,7 +1031,10 @@ interface ScoreMetaLookup {
     "iidx:DP": IIDXSPScoreMeta & { random: [RanOptions, RanOptions] | null };
     "popn:9B": Record<string, never>;
     "sdvx:Single": { inSkillAnalyser: boolean | null };
-    "usc:Single": Record<string, never>;
+    "usc:Single": {
+        noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN";
+        gaugeMod: "NORMAL" | "HARD";
+    };
     "ddr:SP": Record<string, never>;
     "ddr:DP": Record<string, never>;
     "maimai:Single": Record<string, never>;

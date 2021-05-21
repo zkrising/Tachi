@@ -6,6 +6,7 @@ import { ConverterIRFervidexStatic } from "./converter";
 import { FervidexStaticContext, FervidexStaticScore } from "./types";
 import { FerHeaders, SoftwareIDToVersion } from "../fervidex/parser";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
+import { FerStaticClassHandler } from "./class-handler";
 
 const PR_FervidexStatic: PrudenceSchema = {
     ex_score: p.isPositiveInteger,
@@ -78,6 +79,6 @@ export function ParseFervidexStatic(
         game: "iidx",
         iterable: scores,
         ConverterFunction: ConverterIRFervidexStatic,
-        classHandler: null, //@todo #105
+        classHandler: FerStaticClassHandler(body),
     };
 }

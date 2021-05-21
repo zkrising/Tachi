@@ -119,7 +119,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 
     t.test("Invalid Percent", (t) => {
         t.rejects(() => merc({ score: 9999 }), {
-            message: /Percent was greater than 100%/u,
+            message: /Invalid percent/u,
         } as any);
 
         t.end();
@@ -127,7 +127,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 
     t.test("Invalid Date", (t) => {
         t.rejects(() => merc({ update_time: "INVALID" }), {
-            message: /Invalid percent/u,
+            message: /Invalid\/Unparsable score timestamp of INVALID/u,
         } as any);
 
         t.end();

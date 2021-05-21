@@ -11,8 +11,8 @@ import {
 } from "kamaitachi-common";
 import path from "path";
 import db from "../db/db";
+import { DryScore } from "../score-import/framework/common/types";
 import { BarbatosScore } from "../score-import/import-types/ir/barbatos/types";
-import { DryScore } from "../types";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
 

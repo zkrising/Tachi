@@ -23,6 +23,7 @@ import { GetPBOnChart, GetServerRecordOnChart } from "../../../common/scores";
 import crypto from "crypto";
 import { Random20Hex } from "../../../common/util";
 import { USCIR_ADJACENT_SCORE_N, USCIR_MAX_LEADERBOARD_N } from "../../../constants/usc-ir";
+import { CreateMulterSingleUploadMiddleware } from "../../../common/multer";
 
 const logger = CreateLogCtx("usc.ts");
 
@@ -311,6 +312,41 @@ router.post("/scores", async (req, res) => {
             description: "An internal server error has occured.",
         });
     }
+});
+
+/**
+ * Used to submit the replay for a given score when requested by the server.
+ * https://uscir.readthedocs.io/en/latest/endpoints/replay-submit.html
+ * @name POST /api/ir/usc/replays
+ */
+router.post("/replays", CreateMulterSingleUploadMiddleware("replay"), async (req, res) => {
+    if (typeof req.body.identifier !== "string") {
+        return res.status(200).json({
+            statusCode: STATUS_CODES.BAD_REQ,
+            description: "No Identifier Provided.",
+        });
+    }
+
+    const correspondingScore = await db.scores.findOne({
+        userID: req[SYMBOL_KtchiData]!.uscAuthDoc!.userID,
+        game: "usc",
+        "scoreMeta.replayID": req.body.identifier,
+    });
+
+    if (!correspondingScore) {
+        return res.status(200).json({
+            statusCode: STATUS_CODES.NOT_FOUND,
+            description: "No score corresponds to this identifier.",
+        });
+    }
+
+    // @todo #113 Properly store replays sent with POST /replays.
+
+    return res.status(200).json({
+        statusCode: STATUS_CODES.SUCCESS,
+        description: "Saved replay.",
+        body: null,
+    });
 });
 
 export default router;

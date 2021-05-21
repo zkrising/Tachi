@@ -1,13 +1,20 @@
 import { USCClientScore } from "../../../../api/ir/usc/common";
 import { FindSongOnID } from "../../../../common/database-lookup/song";
 import { KtLogger } from "../../../../types";
-import { InternalFailure } from "../../../framework/common/converter-failures";
+import { InternalFailure, InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { IRUSCContext } from "./types";
 import { Lamps } from "kamaitachi-common";
 import uuid from "uuid";
 import { ConverterFunction } from "../../common/types";
 import { DryScore } from "../../../framework/common/types";
+import {
+    USC_DEFAULT_HOLD,
+    USC_DEFAULT_MISS,
+    USC_DEFAULT_NEAR,
+    USC_DEFAULT_PERFECT,
+    USC_DEFAULT_SLAM,
+} from "../../../../constants/usc-ir";
 
 function DeriveNoteMod(data: USCClientScore): "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" {
     if (data.options.mirror && data.options.random) {
@@ -42,6 +49,23 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
     importType,
     logger
 ) => {
+    if (
+        data.windows.perfect !== USC_DEFAULT_PERFECT ||
+        data.windows.good !== USC_DEFAULT_NEAR ||
+        data.windows.hold !== USC_DEFAULT_HOLD ||
+        data.windows.miss !== USC_DEFAULT_MISS ||
+        data.windows.slam !== USC_DEFAULT_SLAM
+    ) {
+        logger.verbose(`Ignored score because hitWindows were modified.`);
+        throw new InvalidScoreFailure(`HitWindows have been modified - Score is invalid.`);
+    }
+
+    // if any auto-like option is enabled, reject score.
+    if (data.options.autoFlags !== 0) {
+        logger.verbose(`Ignored score because autoplay was enabled.`);
+        throw new InvalidScoreFailure(`Autoplay was enabled - Score is invalid.`);
+    }
+
     const song = await FindSongOnID("usc", context.chart.songID);
 
     if (!song) {

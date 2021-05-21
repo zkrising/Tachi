@@ -6,6 +6,10 @@ import { ChartDocument, PBScoreDocument } from "kamaitachi-common";
 import { AssertStrAsPositiveNonZeroInt } from "../../../score-import/framework/common/string-asserts";
 import CreateLogCtx from "../../../common/logger";
 import { KtchiScoreToServerScore } from "./common";
+import { ExpressWrappedScoreImportMain } from "../../../score-import/framework/express-wrapper";
+import { GetUserWithID } from "../../../common/user";
+import { KtLogger } from "../../../types";
+import { ParseIRUSC } from "../../../score-import/import-types/ir/usc/parser";
 
 const logger = CreateLogCtx("usc.ts");
 
@@ -57,6 +61,8 @@ const ValidateUSCRequest: RequestHandler = async (req, res, next) => {
     }
 
     req[SYMBOL_KtchiData] = { uscAuthDoc };
+
+    return next();
 };
 
 router.use(ValidateUSCRequest);
@@ -225,6 +231,46 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
  * https://uscir.readthedocs.io/en/latest/endpoints/score-submit.html
  * @name POST /api/ir/usc/scores
  */
-router.post("/scores", async (req, res) => {});
+router.post("/scores", async (req, res) => {
+    if (typeof req.body.chart !== "object" || req.body.chart === null) {
+        return res.status(200).json({
+            statusCode: STATUS_CODES.BAD_REQ,
+            description: "Invalid chart provided.",
+        });
+    }
+
+    if (typeof req.body.chart.chartHash !== "string") {
+        return res.status(200).json({
+            statusCode: STATUS_CODES.BAD_REQ,
+            description: "Invalid chart provided.",
+        });
+    }
+
+    const chartDoc = (await FindChartOnSHA256(
+        "usc",
+        req.body.chart.chartHash
+    )) as ChartDocument<"usc:Single"> | null;
+
+    if (!chartDoc) {
+        return res.status(200).json({
+            statusCode: STATUS_CODES.CHART_REFUSE,
+            description: "This chart is not supported.",
+        });
+    }
+
+    const userDoc = await GetUserWithID(req[SYMBOL_KtchiData]!.uscAuthDoc!.userID);
+
+    if (!userDoc) {
+        logger.severe(`User ${req[SYMBOL_KtchiData]!.uscAuthDoc!.userID} as no parent userDoc?`);
+        return res.status(200).json({
+            statusCode: STATUS_CODES.SERVER_ERROR,
+            description: "An internal server error has occured.",
+        });
+    }
+
+    const importParser = (logger: KtLogger) => ParseIRUSC(req.body, chartDoc, logger);
+
+    const importRes = await ExpressWrappedScoreImportMain(userDoc, false, "ir/usc", importParser);
+});
 
 export default router;

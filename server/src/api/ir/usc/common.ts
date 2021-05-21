@@ -26,7 +26,7 @@ export interface USCClientScore {
     near: integer;
     error: integer;
     options: {
-        gaugeType: integer;
+        gaugeType: 0 | 1;
         gaugeOpt: integer;
         mirror: boolean;
         random: boolean;

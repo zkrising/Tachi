@@ -1,5 +1,14 @@
-import { integer, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
+import {
+    integer,
+    PBScoreDocument,
+    ScoreDocument,
+    ChartDocument,
+    ImportDocument,
+    PublicUserDocument,
+} from "kamaitachi-common";
 import CreateLogCtx from "../../../common/logger";
+import { GetPBOnChart, GetServerRecordOnChart } from "../../../common/scores";
+import { USCIR_ADJACENT_SCORE_N } from "../../../constants/usc-ir";
 import db from "../../../db/db";
 
 const logger = CreateLogCtx("ir/usc/common.ts");
@@ -119,4 +128,124 @@ export async function KtchiScoreToServerScore(
         noteMod: scorePB.scoreMeta.noteMod ?? "NORMAL",
         gaugeMod: scorePB.scoreMeta.gaugeMod ?? "NORMAL",
     };
+}
+
+export async function CreatePOSTScoresResponseBody(
+    userDoc: PublicUserDocument,
+    chartDoc: ChartDocument<"usc:Single">,
+    importDoc: ImportDocument
+): Promise<POSTScoresResponseBody> {
+    const scorePB = (await GetPBOnChart(
+        userDoc.id,
+        chartDoc.chartID
+    )) as PBScoreDocument<"usc:Single"> | null;
+
+    if (!scorePB) {
+        logger.severe(`Score was imported for chart, but no ScorePB was available on this chart?`, {
+            chartDoc,
+            importDoc,
+        });
+        throw new Error(
+            `Score was imported for chart, but no ScorePB was available on this chart?`
+        );
+    }
+
+    const ktServerRecord = (await GetServerRecordOnChart(
+        chartDoc.chartID
+    )) as PBScoreDocument<"usc:Single"> | null;
+
+    if (!ktServerRecord) {
+        logger.severe(
+            `Score was imported for chart, but no Server Record was available on this chart?`,
+            {
+                chartDoc,
+                importDoc,
+            }
+        );
+        throw new Error(
+            `Score was imported for chart, but no Server Record was available on this chart?`
+        );
+    }
+
+    const usersRanking = scorePB.rankingData.rank;
+
+    // This returns N scores immediately ranked higher
+    // than the current user.
+
+    const adjAbove = (await db["score-pbs"].find(
+        {
+            chartID: chartDoc.chartID,
+            "rankingData.rank": { $lt: usersRanking },
+        },
+        {
+            limit: USCIR_ADJACENT_SCORE_N,
+            sort: { "rankingData.rank": -1 },
+        }
+    )) as PBScoreDocument<"usc:Single">[];
+
+    // The specification enforces that we return them in
+    // ascending order, though, so we reverse this after
+    // the query.
+    adjAbove.reverse();
+
+    // if the users ranking implies that the above query
+    // returned the server record (i.e. they are ranked
+    // between #1 and #1 + N)
+    // delete the server record from adjAbove.
+    if (usersRanking - USCIR_ADJACENT_SCORE_N <= 1) {
+        delete adjAbove[0];
+    }
+
+    // Similar to above, this returns the N most immediate
+    // scores below the given user.
+    const adjBelow = (await db["score-pbs"].find(
+        {
+            chartID: chartDoc.chartID,
+            "rankingData.rank": { $gt: usersRanking },
+        },
+        {
+            limit: USCIR_ADJACENT_SCORE_N,
+            sort: { "rankingData.rank": 1 },
+        }
+    )) as PBScoreDocument<"usc:Single">[];
+
+    const [score, serverRecord, adjacentAbove, adjacentBelow] = await Promise.all([
+        KtchiScoreToServerScore(scorePB),
+        KtchiScoreToServerScore(ktServerRecord),
+        Promise.all(adjAbove.map(KtchiScoreToServerScore)),
+        Promise.all(adjBelow.map(KtchiScoreToServerScore)),
+    ]);
+
+    const originalScore = (await db.scores.findOne({
+        scoreID: importDoc.scoreIDs[0],
+    })) as ScoreDocument<"usc:Single">;
+
+    if (!originalScore) {
+        logger.severe(
+            `Score with ID ${importDoc.scoreIDs[0]} is not in the database, but was claimed to be inserted?`
+        );
+        throw new Error(
+            `Score with ID ${importDoc.scoreIDs[0]} is not in the database, but was claimed to be inserted?`
+        );
+    }
+
+    return {
+        score,
+        serverRecord,
+        isServerRecord: scorePB.userID === ktServerRecord?.userID,
+        isPB: scorePB.composedFrom.scorePB === importDoc.scoreIDs[0],
+        sendReplay: originalScore.scoreMeta.replayID!,
+        adjacentAbove,
+        adjacentBelow,
+    };
+}
+
+export interface POSTScoresResponseBody {
+    score: USCServerScore;
+    serverRecord: USCServerScore;
+    adjacentAbove: USCServerScore[];
+    adjacentBelow: USCServerScore[];
+    isPB: boolean;
+    isServerRecord: boolean;
+    sendReplay: string;
 }

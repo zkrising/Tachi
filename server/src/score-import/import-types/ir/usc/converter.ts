@@ -5,6 +5,7 @@ import { InternalFailure } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { IRUSCContext } from "./types";
 import { Lamps } from "kamaitachi-common";
+import uuid from "uuid";
 
 function DeriveNoteMod(data: USCClientScore): "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" {
     if (data.options.mirror && data.options.random) {
@@ -71,6 +72,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
         scoreMeta: {
             gaugeMod: data.options.gaugeOpt === 0 ? "NORMAL" : "HARD",
             noteMod: DeriveNoteMod(data),
+            replayID: uuid.v4(),
         },
     };
 

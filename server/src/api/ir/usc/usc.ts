@@ -2,14 +2,27 @@ import { Router, RequestHandler } from "express";
 import { FindChartOnSHA256 } from "../../../common/database-lookup/chart";
 import { SYMBOL_KtchiData } from "../../../constants/ktchi";
 import db from "../../../db/db";
-import { ChartDocument, PBScoreDocument } from "kamaitachi-common";
+import {
+    ChartDocument,
+    PBScoreDocument,
+    SuccessfulAPIResponse,
+    ImportDocument,
+} from "kamaitachi-common";
 import { AssertStrAsPositiveNonZeroInt } from "../../../score-import/framework/common/string-asserts";
 import CreateLogCtx from "../../../common/logger";
-import { KtchiScoreToServerScore } from "./common";
+import {
+    CreatePOSTScoresResponseBody,
+    KtchiScoreToServerScore,
+    POSTScoresResponseBody,
+} from "./common";
 import { ExpressWrappedScoreImportMain } from "../../../score-import/framework/express-wrapper";
 import { GetUserWithID } from "../../../common/user";
 import { KtLogger } from "../../../types";
 import { ParseIRUSC } from "../../../score-import/import-types/ir/usc/parser";
+import { GetPBOnChart, GetServerRecordOnChart } from "../../../common/scores";
+import crypto from "crypto";
+import { Random20Hex } from "../../../common/util";
+import { USCIR_ADJACENT_SCORE_N, USCIR_MAX_LEADERBOARD_N } from "../../../constants/usc-ir";
 
 const logger = CreateLogCtx("usc.ts");
 
@@ -94,8 +107,6 @@ const RetrieveChart: RequestHandler = async (req, res, next) => {
     return next();
 };
 
-const MAX_N = 10;
-
 /**
  * Used to check if the server will accept a score for a given chart in advance of submitting it.
  * https://uscir.readthedocs.io/en/latest/endpoints/chart-charthash.html
@@ -174,7 +185,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
     if (typeof req.query.n !== "string") {
         return res.status(200).json({
             statusCode: STATUS_CODES.BAD_REQ,
-            description: `Invalid 'n' param - expected a positive non-zero integer less than or equal to ${MAX_N}.`,
+            description: `Invalid 'n' param - expected a positive non-zero integer less than or equal to ${USCIR_MAX_LEADERBOARD_N}.`,
         });
     }
 
@@ -185,14 +196,14 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
     } catch (err) {
         return res.status(200).json({
             statusCode: STATUS_CODES.BAD_REQ,
-            description: `Invalid 'n' param - expected a positive non-zero integer less than or equal to ${MAX_N}.`,
+            description: `Invalid 'n' param - expected a positive non-zero integer less than or equal to ${USCIR_MAX_LEADERBOARD_N}.`,
         });
     }
 
-    if (n >= MAX_N) {
+    if (n >= USCIR_MAX_LEADERBOARD_N) {
         return res.status(200).json({
             statusCode: STATUS_CODES.BAD_REQ,
-            description: `Invalid 'n' param - expected a positive non-zero integer less than or equal to ${MAX_N}.`,
+            description: `Invalid 'n' param - expected a positive non-zero integer less than or equal to ${USCIR_MAX_LEADERBOARD_N}.`,
         });
     }
 
@@ -271,6 +282,35 @@ router.post("/scores", async (req, res) => {
     const importParser = (logger: KtLogger) => ParseIRUSC(req.body, chartDoc, logger);
 
     const importRes = await ExpressWrappedScoreImportMain(userDoc, false, "ir/usc", importParser);
+
+    if (importRes.statusCode === 500) {
+        return res.status(200).json({
+            statusCode: STATUS_CODES.SERVER_ERROR,
+            description: importRes.body.description,
+        });
+    } else if (importRes.statusCode !== 200) {
+        return res.status(200).json({
+            statusCode: STATUS_CODES.BAD_REQ,
+            description: importRes.body.description,
+        });
+    }
+
+    const importDoc = (importRes.body as SuccessfulAPIResponse).body as ImportDocument;
+
+    try {
+        const body = await CreatePOSTScoresResponseBody(userDoc, chartDoc, importDoc);
+
+        return res.status(200).json({
+            statusCode: STATUS_CODES.SUCCESS,
+            description: "Successfully imported score.",
+            body,
+        });
+    } catch (err) {
+        return res.status(200).json({
+            statusCode: STATUS_CODES.SERVER_ERROR,
+            description: "An internal server error has occured.",
+        });
+    }
 });
 
 export default router;

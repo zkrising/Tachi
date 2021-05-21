@@ -1,3 +1,5 @@
+import crypto from "crypto";
+
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
 // the developer of this has migrated everything to Force ES6 style modules,
 // which really really messes with a lot of the ecosystem.
@@ -39,4 +41,8 @@ export function ParseEA3SoftID(ver: string) {
  */
 export function GetMilisecondsSince(ref: bigint) {
     return Number(process.hrtime.bigint() - ref) / 1e6;
+}
+
+export function Random20Hex() {
+    return crypto.randomBytes(20).toString("hex");
 }

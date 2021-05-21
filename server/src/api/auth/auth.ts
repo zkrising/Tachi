@@ -25,12 +25,13 @@ const router: Router = Router({ mergeParams: true });
 
 const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
 
+/* istanbul ignore next */
 const BASE_DOMAIN = process.env.NODE_ENV === "production" ? ".kamaitachi.xyz" : "127.0.0.1";
 const SHOULD_COOKIES_SECURE = process.env.NODE_ENV === "production";
 
 /**
  * Logs in a user.
- * @name /api/auth/login
+ * @name POST /api/auth/login
  */
 router.post(
     "/login",
@@ -56,6 +57,7 @@ router.post(
 
         logger.verbose(`Recieved login request with username ${req.body.username} (${req.ip})`);
 
+        /* istanbul ignore next */
         if (process.env.NODE_ENV === "production") {
             logger.verbose("Validating captcha...");
             const validCaptcha = await ValidateCaptcha(
@@ -152,7 +154,7 @@ router.post(
 
 /**
  * Registers a new user.
- * @name /api/auth/register
+ * @name POST /api/auth/register
  */
 router.post(
     "/register",
@@ -268,7 +270,7 @@ router.post(
 
 /**
  * Logs out the requesting user.
- * @name /api/auth/logout
+ * @name POST /api/auth/logout
  */
 router.post("/logout", RequireLoggedIn, (req, res) => {
     req.session.destroy(() => 0);

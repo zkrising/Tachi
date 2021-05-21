@@ -1,5 +1,6 @@
 import { Session, SessionData } from "express-session";
-import { KtchiSessionData } from "../../src/types";
+import { SYMBOL_KtchiData } from "../../src/constants/ktchi";
+import { KtchiRequestData, KtchiSessionData } from "../../src/types";
 
 export {};
 
@@ -15,6 +16,8 @@ declare global {
     namespace Express {
         interface Request {
             session: Session & Partial<SessionData>;
+
+            [SYMBOL_KtchiData]?: Partial<KtchiRequestData>;
         }
     }
 }

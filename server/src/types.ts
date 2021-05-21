@@ -5,7 +5,9 @@ import {
     integer,
     ScoreDocument,
     AnySongDocument,
+    USCAuthDocument,
     MongoDBDocument,
+    ChartDocument,
     Game,
     Playtypes,
 } from "kamaitachi-common";
@@ -185,3 +187,11 @@ export interface ImportTypeContextMap {
  * Clarity type for empty objects - such as in context.
  */
 export type EmptyObject = Record<string, never>;
+
+/**
+ * Data that may be monkey-patched onto req.ktchi. This holds things such as middleware results.
+ */
+export interface KtchiRequestData {
+    uscAuthDoc?: USCAuthDocument;
+    uscChartDoc?: ChartDocument<"usc:Single">;
+}

@@ -42,7 +42,7 @@ const parseMultipartScoredata = (req: Request, res: Response, next: NextFunction
 
 /**
  * Import scores from a file. Expects the post request to be multipart, and to provide a scoreData file.
- * @name /api/import/file
+ * @name POST /api/import/file
  */
 router.post(
     "/file",

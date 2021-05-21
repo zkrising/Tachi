@@ -8,6 +8,7 @@ import {
     TierlistParent,
     InviteCodeDocument,
     TierlistDataDocument,
+    USCAuthDocument,
     MilestoneDocument,
     NotificationDocument,
     FolderChartLookup,
@@ -118,6 +119,7 @@ const db = {
     "iidx-eam-scores": monkDB.get<IIDXEamusementScoreDocument>("iidx-eam-scores"),
     "game-stats": monkDB.get<UserGameStats>("game-stats"),
     "kai-auth-tokens": monkDB.get<KaiAuthDocument>("kai-auth-tokens"),
+    "usc-auth-tokens": monkDB.get<USCAuthDocument>("usc-auth-tokens"),
 };
 
 export default db;

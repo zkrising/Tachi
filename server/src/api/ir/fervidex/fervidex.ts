@@ -9,6 +9,7 @@ import { ParseFervidexStatic } from "../../../score-import/import-types/ir/fervi
 import { ParseFervidexSingle } from "../../../score-import/import-types/ir/fervidex/parser";
 import { Playtypes } from "kamaitachi-common";
 import CreateLogCtx from "../../../common/logger";
+import { FERVIDEX_COURSE_LOOKUP } from "../../../score-import/import-types/ir/fervidex-static/class-handler";
 
 const logger = CreateLogCtx("fervidex.ts");
 
@@ -168,32 +169,6 @@ router.post(
             (logger) => ParseFervidexStatic(req.body, headers, logger)
         );
 
-        if (req.body.sp_dan || req.body.sp_dan === 0) {
-            const classVal = FERVIDEX_COURSE_LOOKUP[req.body.sp_dan];
-
-            if (!classVal) {
-                return res.status(400).json({
-                    success: false,
-                    description: `Invalid courseID of ${req.body.sp_dan}.`,
-                });
-            }
-
-            await UpdateClassIfGreater(req.session.ktchi!.userID, "iidx", "SP", "dan", classVal);
-        }
-
-        if (req.body.dp_dan || req.body.dp_dan === 0) {
-            const classVal = FERVIDEX_COURSE_LOOKUP[req.body.dp_dan];
-
-            if (!classVal) {
-                return res.status(400).json({
-                    success: false,
-                    description: `Invalid courseID of ${req.body.dp_dan}.`,
-                });
-            }
-
-            await UpdateClassIfGreater(req.session.ktchi!.userID, "iidx", "DP", "dan", classVal);
-        }
-
         return res.status(responseData.statusCode).json(responseData.body);
     }
 );
@@ -236,28 +211,6 @@ router.post(
         return res.status(responseData.statusCode).json(responseData.body);
     }
 );
-
-const FERVIDEX_COURSE_LOOKUP = [
-    "7kyu",
-    "6kyu",
-    "5kyu",
-    "4kyu",
-    "3kyu",
-    "2kyu",
-    "1kyu",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "chuuden",
-    "kaiden",
-];
 
 /**
  * Submits the result of a class to Kamaitachi. This contains the dan played

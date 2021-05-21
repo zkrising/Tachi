@@ -105,7 +105,7 @@ function TestHeaders(url: string, cookie: string[], data: any) {
 t.test("POST /api/ir/fervidex/class/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
-    // @todo
+    // @todo #108
     TestHeaders("/api/ir/fervidex/class/submit", cookie, {});
 
     t.beforeEach(ResetDBState);
@@ -205,11 +205,32 @@ t.test("POST /api/ir/fervidex/profile/submit", async (t) => {
 
         t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
+        t.strictSame(
+            res.body.body.classDeltas,
+            [
+                {
+                    set: "dan",
+                    playtype: "SP",
+                    old: null,
+                    new: "9",
+                },
+            ],
+            "Should return updated dan deltas."
+        );
+
         const scores = await db.scores.count({
             service: "Fervidex Static",
         });
 
         t.equal(scores, 3, "Should import 3 scores.");
+
+        const ugs = await db["game-stats"].findOne({
+            userID: 1,
+            game: "iidx",
+            playtype: "SP",
+        });
+
+        t.equal(ugs!.classes.dan, "9", "Should successfully update dan to 9th.");
 
         t.end();
     });

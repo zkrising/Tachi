@@ -10,8 +10,9 @@ export interface ClassHandler {
         game: Game,
         playtype: Playtypes[Game],
         userID: integer,
-        customRatings: Record<string, number>
-    ): Promise<Record<string, string>> | Record<string, string>;
+        customRatings: Record<string, number>,
+        logger: KtLogger
+    ): Promise<Record<string, string>> | Record<string, string> | undefined;
 }
 
 type ClassHandlerMap = {
@@ -94,7 +95,8 @@ export async function UpdateUGSClasses(
 
     if (ClassHandler) {
         logger.debug(`Calling custom class handler.`);
-        const customClasses = await ClassHandler(game, playtype, userID, customRatings);
+        const customClasses =
+            (await ClassHandler(game, playtype, userID, customRatings, logger)) ?? {};
 
         classes = deepmerge(customClasses, classes);
     }

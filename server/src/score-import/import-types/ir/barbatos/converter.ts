@@ -1,6 +1,6 @@
 import { FindSDVXChartOnInGameID } from "../../../../common/database-lookup/chart";
 import { FindSongOnID } from "../../../../common/database-lookup/song";
-import { ConverterFunction, DryScore, EmptyObject } from "../../../../types";
+import { EmptyObject } from "../../../../types";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
     InternalFailure,
@@ -8,6 +8,8 @@ import {
 } from "../../../framework/common/converter-failures";
 import { BarbatosScore } from "./types";
 import { Lamps } from "kamaitachi-common";
+import { DryScore } from "../../../framework/common/types";
+import { ConverterFunction } from "../../common/types";
 
 const LAMP_LOOKUP = {
     1: "FAILED",

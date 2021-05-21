@@ -3,8 +3,8 @@ import { integer, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
 
 import { KtLogger } from "../../../types";
 import { IIDXMergeFn, SDVXMergeFn } from "./game-specific-merge";
-import { PBScoreDocumentNoRank } from "./process-pbs";
 import { BulkWriteUpdateOneOperation } from "mongodb";
+export type PBScoreDocumentNoRank = Omit<PBScoreDocument, "rankingData">;
 
 export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLogger) {
     const scorePB = await db.scores.findOne(

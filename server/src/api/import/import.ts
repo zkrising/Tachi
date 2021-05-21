@@ -9,6 +9,7 @@ import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/score-importing/score-import-error";
 import { KtLogger } from "../../types";
 import { ExpressWrappedScoreImportMain } from "../../score-import/framework/express-wrapper";
+import { CreateMulterSingleUploadMiddleware } from "../../common/multer";
 
 const logger = CreateLogCtx("import.ts");
 
@@ -68,7 +69,6 @@ import ParseBatchManual from "../../score-import/import-types/file/batch-manual/
 import { ParseSolidStateXML } from "../../score-import/import-types/file/solid-state-squad/parser";
 import { ParseMerIIDX } from "../../score-import/import-types/file/mer-iidx/parser";
 import ParsePLIIIDXCSV from "../../score-import/import-types/file/pli-iidx-csv/parser";
-import { CreateMulterSingleUploadMiddleware } from "../../common/multer";
 
 /**
  * Resolves the data from a file upload into an iterable,

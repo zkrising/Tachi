@@ -1,6 +1,6 @@
 import { FindIIDXChartOnInGameID } from "../../../../common/database-lookup/chart";
 import { FindSongOnID } from "../../../../common/database-lookup/song";
-import { ConverterFunction, DryScore, EmptyObject } from "../../../../types";
+import { EmptyObject } from "../../../../types";
 import {
     InternalFailure,
     KTDataNotFoundFailure,
@@ -11,6 +11,8 @@ import {
 } from "../../../framework/common/score-utils";
 import { MerScore } from "./types";
 import { Lamps } from "kamaitachi-common";
+import { DryScore } from "../../../framework/common/types";
+import { ConverterFunction } from "../../common/types";
 
 function ConvertMERLamp(lamp: MerScore["clear_type"]): Lamps["iidx:DP" | "iidx:SP"] {
     if (lamp === "FULLCOMBO CLEAR") {

@@ -1,11 +1,13 @@
 import { USCClientScore } from "../../../../api/ir/usc/common";
 import { FindSongOnID } from "../../../../common/database-lookup/song";
-import { ConverterFunction, DryScore, KtLogger } from "../../../../types";
+import { KtLogger } from "../../../../types";
 import { InternalFailure } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { IRUSCContext } from "./types";
 import { Lamps } from "kamaitachi-common";
 import uuid from "uuid";
+import { ConverterFunction } from "../../common/types";
+import { DryScore } from "../../../framework/common/types";
 
 function DeriveNoteMod(data: USCClientScore): "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" {
     if (data.options.mirror && data.options.random) {

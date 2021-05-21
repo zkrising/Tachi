@@ -1,4 +1,3 @@
-import { ConverterFnReturn, ConverterFunction, DryScore, KtLogger } from "../../../../types";
 import { BatchManualContext, BatchManualScore } from "../../common/batch-manual/types";
 import { AnyChartDocument, AnySongDocument, ImportTypes } from "kamaitachi-common";
 import {
@@ -18,6 +17,9 @@ import {
     AssertStrAsPositiveInt,
 } from "../../../framework/common/string-asserts";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
+import { KtLogger } from "../../../../types";
+import { DryScore } from "../../../framework/common/types";
+import { ConverterFunction, ConverterFnReturn } from "../types";
 
 /**
  * Creates a ConverterFn for the BatchManualScore format. This curries

@@ -1,4 +1,4 @@
-import { ConverterFunction, DryScore, EmptyObject, KtLogger } from "../../../../types";
+import { EmptyObject, KtLogger } from "../../../../types";
 import {
     InvalidScoreFailure,
     KTDataNotFoundFailure,
@@ -12,6 +12,8 @@ import {
     GenericGetGradeAndPercent,
     ParseDateFromString,
 } from "../../../framework/common/score-utils";
+import { DryScore } from "../../../framework/common/types";
+import { ConverterFunction } from "../../common/types";
 
 export function ParseDifficulty(
     diff: S3Score["diff"]

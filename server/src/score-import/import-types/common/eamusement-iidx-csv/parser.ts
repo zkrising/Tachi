@@ -1,6 +1,7 @@
 import { Difficulties } from "kamaitachi-common";
-import { KtLogger, ParserFunctionReturnsSync } from "../../../../types";
+import { KtLogger } from "../../../../types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
+import { ParserFunctionReturnsSync } from "../types";
 import ConverterFn from "./converter";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 

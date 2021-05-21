@@ -1,10 +1,11 @@
-import { KtLogger, ParserFunctionReturnsAsync } from "../../../../../types";
+import { KtLogger } from "../../../../../types";
 import nodeFetch from "../../../../../common/fetch";
 import { KaiAuthDocument } from "kamaitachi-common";
 import { KaiContext } from "../types";
 import { EAG_API_URL, FLO_API_URL } from "../../../../../secrets";
 import { ConvertAPIKaiSDVX } from "./converter";
 import { TraverseKaiAPI } from "../traverse-api";
+import { ParserFunctionReturnsAsync } from "../../types";
 
 export function ParseKaiSDVX(
     service: "FLO" | "EAG",

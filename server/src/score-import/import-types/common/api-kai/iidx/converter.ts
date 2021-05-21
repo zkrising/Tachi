@@ -1,5 +1,4 @@
 import { FindIIDXChartOnInGameIDVersion } from "../../../../../common/database-lookup/chart";
-import { ConverterFunction, DryScore } from "../../../../../types";
 import { KaiContext, KaiIIDXScore } from "../types";
 import p from "prudence";
 import {
@@ -14,6 +13,8 @@ import {
     ParseDateFromString,
 } from "../../../../framework/common/score-utils";
 import { Lamps } from "kamaitachi-common";
+import { ConverterFunction } from "../../types";
+import { DryScore } from "../../../../framework/common/types";
 
 const PR_KaiIIDXScore = {
     music_id: p.isPositiveInteger,

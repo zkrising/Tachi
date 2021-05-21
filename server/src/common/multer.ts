@@ -13,7 +13,7 @@ export const CreateMulterSingleUploadMiddleware = (
     const UploadMW = DefaultMulterUpload.single(fieldName);
 
     return (req, res, next) => {
-        UploadMW(req, res, (err) => {
+        UploadMW(req, res, (err: unknown) => {
             if (err instanceof MulterError) {
                 logger.info(`Multer Error.`, { err });
 

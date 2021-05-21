@@ -1,6 +1,7 @@
 import { AnyChartDocument, ChartDocument, Game, Playtypes, Grades, Lamps } from "kamaitachi-common";
 import db from "../../../db/db";
-import { DryScore, KtLogger } from "../../../types";
+import { KtLogger } from "../../../types";
+import { DryScore } from "../common/types";
 import {
     CalculateBPI,
     CalculateKESDC,

@@ -6,13 +6,6 @@ import {
     AnySongDocument,
     ImportTypes,
 } from "kamaitachi-common";
-import {
-    DryScore,
-    ConverterFunction,
-    ConverterFnReturn,
-    KtLogger,
-    ConverterFunctionReturns,
-} from "../../../types";
 import { HydrateScore } from "./hydrate-score";
 import { InsertQueue, QueueScoreInsert, ScoreIDs } from "./insert-score";
 import {
@@ -25,6 +18,13 @@ import {
 import { CreateScoreID } from "./score-id";
 import db from "../../../db/db";
 import { AppendLogCtx } from "../../../common/logger";
+import { KtLogger } from "../../../types";
+import {
+    ConverterFunctionReturns,
+    ConverterFnReturn,
+    ConverterFunction,
+} from "../../import-types/common/types";
+import { DryScore } from "../common/types";
 
 /**
  * Processes the iterable data into the Kamaitachi database.

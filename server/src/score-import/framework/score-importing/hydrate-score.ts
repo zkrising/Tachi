@@ -5,9 +5,10 @@ import {
     ScoreDocument,
     AnySongDocument,
 } from "kamaitachi-common";
-import { DryScore, KtLogger } from "../../../types";
+import { KtLogger } from "../../../types";
 import { CreateCalculatedData } from "../calculated-data/calculated-data";
 import { CalculateESDForGame } from "../common/score-utils";
+import { DryScore } from "../common/types";
 
 /**
  * Takes an "intermediate" score and appends the rest of the data it needs.

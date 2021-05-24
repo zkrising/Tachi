@@ -5,7 +5,13 @@ import { FormatPrError, optNull } from "../../../../common/prudence";
 import { FervidexContext, FervidexScore } from "./types";
 import { ConverterIRFervidex } from "./converter";
 import { ParseEA3SoftID } from "../../../../common/util";
-import { EXT_HEROIC_VERSE, MODEL_IIDX, MODEL_INFINITAS_2 } from "../../../../constants/ea3id";
+import {
+    EXT_HEROIC_VERSE,
+    MODEL_IIDX,
+    MODEL_INFINITAS_2,
+    REV_2DXTRA,
+    REV_OMNIMIX,
+} from "../../../../constants/ea3id";
 import { ParserFunctionReturnsSync } from "../../common/types";
 
 const PR_Fervidex: PrudenceSchema = {
@@ -65,10 +71,17 @@ export function SoftwareIDToVersion(model: string) {
         const data = ParseEA3SoftID(model);
 
         if (data.model === MODEL_INFINITAS_2) {
-            return "inf2020";
+            return "inf";
         } else if (data.model === MODEL_IIDX) {
             // only HV. everything else is disabled deliberately.
             if (data.ext === EXT_HEROIC_VERSE) {
+                // @hack This is a hack workaround. For custom charts such as kichiku and kiraku
+                // they use a sha256 lookup which skips version lookups so we do not need a version
+                // for 2dxtra specifically.
+                if (data.rev === REV_OMNIMIX || data.rev === REV_2DXTRA) {
+                    return "27-omni";
+                }
+
                 return "27";
             }
         }

@@ -17,8 +17,6 @@ db.charts.iidx
             versions = ["28", "28-omni"];
         } else if (song.firstVersion === "inf") {
             versions = ["inf"];
-        } else if (song.firstVersion === "inf2020") {
-            versions = ["inf2020"];
         } else {
             versions = ["26", "27", "28", "26-omni", "27-omni", "28-omni"];
         }

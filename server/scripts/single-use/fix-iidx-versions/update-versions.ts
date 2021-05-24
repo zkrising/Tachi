@@ -73,7 +73,7 @@ function ConvertVersion(c: string) {
             .filter((e) => data[e] === "1")
             .map(ConvertVersion);
 
-        if (!relevantVersions.includes("27-omni") && !relevantVersions.includes("inf2020")) {
+        if (!relevantVersions.includes("27-omni") && !relevantVersions.includes("inf")) {
             logger.warn(`Song ${song.title} (${playtype} ${difficulty}) has no relevant versions.`);
             continue;
         }

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import CreateLogCtx from "../../../../common/logger";
-import { Testing511Song, Testing511SPA } from "../../../../test-utils/test-data";
+import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../test-utils/test-data";
 import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
 import { EscapeStringRegexp } from "../../../../common/util";
-import { CloseMongoConnection } from "../../../../db/db";
+import db, { CloseMongoConnection } from "../../../../db/db";
 import { Game } from "kamaitachi-common";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
@@ -99,21 +99,28 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
         t.end();
     });
 
-    t.skip("Should resolve for the bms chartHash if the matchType is bmsChartHash", async (t) => {
+    t.test("Should resolve for the bms chartHash if the matchType is bmsChartHash", async (t) => {
         const GAZER17MD5 = "38616b85332037cc12924f2ae2840262";
         const GAZER17SHA256 = "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d";
 
+        const gazerSong = GetKTDataJSON("./kamaitachi/bms-gazer-song.json");
+        const gazerChart = GetKTDataJSON("./kamaitachi/bms-gazer-chart.json");
+
+        const bmsContext = deepmerge(context, { game: "bms" }) as any;
+
         const resMD5 = await ResolveMatchTypeToKTData(
-            deepmerge(baseBatchManualScore, { matchType: "bmsChartHash", identifier: GAZER17MD5 }),
-            context,
+            deepmerge(baseBatchManualScore, {
+                matchType: "bmsChartHash",
+                identifier: GAZER17MD5,
+            }),
+            bmsContext,
             importType,
             logger
         );
 
         t.hasStrict(
             resMD5,
-            // @todo #104 add gazer's details here
-            { song: { id: 1 }, chart: {} } as any,
+            { song: gazerSong, chart: gazerChart } as any,
             "Should return the right song and chart."
         );
 
@@ -122,15 +129,14 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
                 matchType: "bmsChartHash",
                 identifier: GAZER17SHA256,
             }),
-            context,
+            bmsContext,
             importType,
             logger
         );
 
         t.hasStrict(
             resSHA256,
-            // @todo #104 Add Gazer sp17 data here.
-            { song: { id: 1 }, chart: {} } as any,
+            { song: gazerSong, chart: gazerChart } as any,
             "Should return the right song and chart."
         );
 
@@ -141,11 +147,11 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
                         matchType: "bmsChartHash",
                         identifier: "bad_hash",
                     }),
-                    context,
+                    bmsContext,
                     importType,
                     logger
                 ),
-            ktdWrap("Cannot find chart with hash ", "bms")
+            ktdWrap("Cannot find chart for hash ", "bms")
         );
 
         t.end();

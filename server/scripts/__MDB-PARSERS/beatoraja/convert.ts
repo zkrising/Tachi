@@ -66,9 +66,9 @@ for (const song of stmt.iterate()) {
         artist: song.artist,
         firstVersion: null,
         data: {
-            subtitle: song.subtitle ?? null,
-            subartist: song.subartist ?? null,
-            genre: song.genre ?? null,
+            subtitle: song.subtitle || null,
+            subartist: song.subartist || null,
+            genre: song.genre || null,
         },
         "search-titles": [],
         "alt-titles": [],

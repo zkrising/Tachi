@@ -9,9 +9,11 @@ const songs = JSON.parse(fs.readFileSync(path.join(__dirname, "./songs.json"), "
 
 (async () => {
     logger.info("starting chart import.");
+    await db.charts.bms.remove({});
     await db.charts.bms.insert(charts);
     logger.info("imported charts.");
 
+    await db.songs.bms.remove({});
     await db.songs.bms.insert(songs);
 
     logger.info("done.");

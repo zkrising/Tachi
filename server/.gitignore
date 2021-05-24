@@ -13,3 +13,6 @@ coverage
 scripts/arc-db-sync/charts.json
 scripts/arc-db-sync/songs.json
 scripts/validate-database-errs/*
+
+scripts/parse-beatoraja-mdb/*
+!scripts/parse-beatoraja-mdb/main.ts

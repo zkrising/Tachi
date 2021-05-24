@@ -4,7 +4,8 @@
 
 // @ts-nocheck
 // yeah, this script is old and wrote in JS. what of it.
-const sqlDB = require("better-sqlite3")("songdata.db");
+const path = require("path");
+const sqlDB = require("better-sqlite3")(path.join(__dirname, "songdata.db"));
 const fs = require("fs");
 
 console.log("Connecting to database...");
@@ -79,7 +80,7 @@ for (const song of stmt.iterate()) {
 
 console.log("done");
 
-fs.writeFileSync("songs.json", JSON.stringify(ktchiSongs));
-fs.writeFileSync("charts.json", JSON.stringify(ktchiCharts));
+fs.writeFileSync(path.join(__dirname, "songs.json"), JSON.stringify(ktchiSongs));
+fs.writeFileSync(path.join(__dirname, "charts.json"), JSON.stringify(ktchiCharts));
 
 console.log("postwrite");

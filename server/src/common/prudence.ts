@@ -2,11 +2,12 @@
 import p, { PrudenceError, ValidSchemaValue } from "prudence";
 
 export function FormatPrError(err: PrudenceError, foreword = "Error") {
-    return `${foreword}: ${err.keychain} | ${err.message}${
+    const receivedText =
         typeof err.userVal === "object" && err.userVal !== null
             ? ""
-            : ` | Received ${err.userVal} [${err.userVal === null ? "null" : typeof err.userVal}]`
-    }.`;
+            : ` | Received ${err.userVal} [${err.userVal === null ? "null" : typeof err.userVal}]`;
+
+    return `${foreword}: ${err.keychain} | ${err.message}${receivedText}.`;
 }
 
 export const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));

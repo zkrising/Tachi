@@ -1,4 +1,7 @@
 {
+    "_id": {
+        "$oid": "6088306a65303f57143cab68"
+    },
     "rgcID": null,
     "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
     "difficulty": "ANOTHER",
@@ -9,42 +12,26 @@
     "flags": {
         "IN BASE GAME": true,
         "OMNIMIX": true,
-        "N-1": true
+        "N-1": true,
+        "2dxtra": false
     },
     "data": {
         "inGameID": 1000,
-        "notecount": 786
+        "notecount": 786,
+        "arcChartID": "CYjwAuz7Yq9"
     },
     "isPrimary": true,
     "versions": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
-        "19",
-        "20",
-        "21",
-        "22",
-        "23",
-        "24",
-        "25",
-        "26",
+        "27-omni",
+        "26-omni",
         "27",
-        "28"
+        "26",
+        "inf",
+        "16-cs",
+        "12-cs",
+        "10-cs",
+        "8-cs",
+        "7-cs",
+        "bmus"
     ]
 }

@@ -27,7 +27,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 
     if (!chart) {
         throw new KTDataNotFoundFailure(
-            `Could not find chart with songID ${data.song_id} (${playtype} ${difficulty})`,
+            `Could not find chart with songID ${data.song_id} (${playtype} ${difficulty} Version ${context.version})`,
             importType,
             data,
             context

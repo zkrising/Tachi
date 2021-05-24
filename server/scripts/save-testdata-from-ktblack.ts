@@ -2,7 +2,7 @@ import monk from "monk";
 import fs from "fs";
 import path from "path";
 import { Command } from "commander";
-import CreateLogCtx from "../src/logger";
+import CreateLogCtx from "../src/common/logger";
 
 const program = new Command();
 
@@ -19,7 +19,7 @@ const ktBlackDB = monk(`${process.env.MONGO_BASE_URL}/ktblackdb`);
 
 (async () => {
     logger.info(`Fetching data for ${collection}...`);
-    let data = await ktBlackDB.get(collection).find({}, { projection: { _id: 0 } });
+    const data = await ktBlackDB.get(collection).find({}, { projection: { _id: 0 } });
 
     logger.info(`Fetched ${data.length} documents, Writing...`);
 

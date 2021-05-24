@@ -199,3 +199,12 @@ export function FindSDVXChartOnInGameIDVersion(
         versions: version,
     });
 }
+
+export function FindChartOnSHA256(game: Game, hash: string) {
+    // @todo #112 Reject requests to this for things that
+    // dont have sha256 props.
+
+    return db.charts[game].findOne({
+        "data.hashSHA256": hash,
+    });
+}

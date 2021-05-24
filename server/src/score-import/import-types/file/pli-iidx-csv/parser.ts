@@ -1,9 +1,10 @@
-import { KtLogger, ParserFunctionReturnsSync } from "../../../../types";
+import { KtLogger } from "../../../../types";
 import GenericParseEamIIDXCSV from "../../common/eamusement-iidx-csv/parser";
 import {
     IIDXEamusementCSVContext,
     IIDXEamusementCSVData,
 } from "../../common/eamusement-iidx-csv/types";
+import { ParserFunctionReturnsSync } from "../../common/types";
 
 function ParsePLIIIDXCSV(
     fileData: Express.Multer.File,

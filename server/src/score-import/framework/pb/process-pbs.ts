@@ -1,9 +1,7 @@
 import { integer, PBScoreDocument } from "kamaitachi-common";
 import db from "../../../db/db";
 import { KtLogger } from "../../../types";
-import { CreatePBDoc, UpdateChartRanking } from "./create-pb-doc";
-
-export type PBScoreDocumentNoRank = Omit<PBScoreDocument, "rankingData">;
+import { CreatePBDoc, UpdateChartRanking, PBScoreDocumentNoRank } from "./create-pb-doc";
 
 export async function ProcessPBs(
     userID: integer,

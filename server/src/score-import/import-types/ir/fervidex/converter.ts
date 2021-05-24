@@ -1,5 +1,4 @@
 import { FindSongOnID } from "../../../../common/database-lookup/song";
-import { ConverterFunction, DryScore } from "../../../../types";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
     InternalFailure,
@@ -12,6 +11,8 @@ import {
     FindIIDXChartOnInGameIDVersion,
     FindIIDXChartWith2DXtraHash,
 } from "../../../../common/database-lookup/chart";
+import { ConverterFunction } from "../../common/types";
+import { DryScore } from "../../../framework/common/types";
 
 export const FERVIDEX_LAMP_LOOKUP = {
     0: "NO PLAY",

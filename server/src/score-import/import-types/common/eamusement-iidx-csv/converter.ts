@@ -1,5 +1,4 @@
 import { Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
-import { DryScore, ConverterFunction, ConverterFnReturn, KtLogger } from "../../../../types";
 import { FindChartWithPTDFVersion } from "../../../../common/database-lookup/chart";
 import { FindSongOnTitleInsensitive } from "../../../../common/database-lookup/song";
 import {
@@ -11,6 +10,9 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import { GetGradeFromPercent } from "../../../framework/common/score-utils";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
+import { KtLogger } from "../../../../types";
+import { DryScore } from "../../../framework/common/types";
+import { ConverterFunction, ConverterFnReturn } from "../types";
 
 const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new Map([
     ["NO PLAY", "NO PLAY"],

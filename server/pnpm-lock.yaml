@@ -12,6 +12,7 @@ specifiers:
   '@types/range-parser': ^1.2.3
   '@types/supertest': ^2.0.11
   '@types/tap': ^15.0.0
+  '@types/uuid': ^8.3.0
   '@typescript-eslint/eslint-plugin': ^4.22.0
   '@typescript-eslint/parser': ^4.22.0
   bcrypt: ^5.0.1
@@ -39,13 +40,14 @@ specifiers:
   node-mocks-http: ^1.10.1
   prettier: ^2.2.1
   proxyquire: ^2.1.3
-  prudence: ^0.9.5
+  prudence: ^0.9.6
   redis: ^3.1.2
   supertest: ^6.1.3
   tap: ^15.0.5
   treport: ^2.0.1
   ts-node: ^9.1.1
   typescript: ^4.2.4
+  uuid: ^8.3.2
   why-is-node-running: ^2.2.0
   winston: ^3.3.3
 
@@ -62,14 +64,15 @@ dependencies:
   express-session: 1.17.1
   fast-json-stable-hash: 1.0.2
   fast-xml-parser: 3.19.0
-  kamaitachi-common: github.com/zkldi/Kamaitachi-common/d93f07f61f44116f709365af61606566765e297e
+  kamaitachi-common: github.com/zkldi/Kamaitachi-common/cc29bbe30257c8fc009c20197b5bc37f17170a22
   mongodb: 3.6.6
   monk: 7.3.4
   multer: 1.4.2
   node-fetch: 2.6.1
-  prudence: 0.9.5
+  prudence: 0.9.6
   redis: 3.1.2
   typescript: 4.2.4
+  uuid: 8.3.2
   winston: 3.3.3
 
 devDependencies:
@@ -84,6 +87,7 @@ devDependencies:
   '@types/range-parser': 1.2.3
   '@types/supertest': 2.0.11
   '@types/tap': 15.0.0
+  '@types/uuid': 8.3.0
   '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
   '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
   eslint: 7.25.0
@@ -592,6 +596,10 @@ packages:
     resolution: {integrity: sha512-AAsxWamgPOFWAQoSVOkQgGpi/wdk28Bmof7/KWI8T97mnDsjwHFrwclLBNGhaeXYhQABQZ1e2ovPIS7OAuM4vQ==}
     dependencies:
       '@types/node': 15.0.1
+    dev: true
+
+  /@types/uuid/8.3.0:
+    resolution: {integrity: sha512-eQ9qFW/fhfGJF8WKHGEHZEyVWfZxrT+6CLIJGBcZPfxUh/+BnEj+UCGYMlr9qZuX/2AltsvwrGqp0LhEW8D0zQ==}
     dev: true
 
   /@types/yoga-layout/1.9.2:
@@ -3436,8 +3444,8 @@ packages:
       resolve: 1.20.0
     dev: true
 
-  /prudence/0.9.5:
-    resolution: {integrity: sha512-3yGJ+aimCw2yF5GiCMuvEqwnMYuZXf4DjBFl5y1E3IPbBoPaYPT0hZUreDAyos0sewqewKSW6IMjFoI6PNGYFA==}
+  /prudence/0.9.6:
+    resolution: {integrity: sha512-kCPaLDVfVovahwd+SXlszt4y+av3VJL5HXD4II2+m8+zm6J6wt8vFU+kDFeZvaycaGJemB8VUv39hFplHbxTIw==}
     dev: false
 
   /psl/1.8.0:
@@ -4452,6 +4460,11 @@ packages:
     hasBin: true
     dev: true
 
+  /uuid/8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+    dev: false
+
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
     dev: true
@@ -4644,8 +4657,8 @@ packages:
       '@types/yoga-layout': 1.9.2
     dev: true
 
-  github.com/zkldi/Kamaitachi-common/d93f07f61f44116f709365af61606566765e297e:
-    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/d93f07f61f44116f709365af61606566765e297e}
+  github.com/zkldi/Kamaitachi-common/cc29bbe30257c8fc009c20197b5bc37f17170a22:
+    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/cc29bbe30257c8fc009c20197b5bc37f17170a22}
     name: kamaitachi-common
     version: 0.1.0
     dependencies:

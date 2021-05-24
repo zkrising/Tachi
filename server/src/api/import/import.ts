@@ -1,7 +1,6 @@
-import { Router, NextFunction, Request, Response } from "express";
+import { Router } from "express";
 import { FileUploadImportTypes } from "kamaitachi-common";
 import { fileImportTypes } from "kamaitachi-common/js/config";
-import multer, { MulterError } from "multer";
 import Prudence from "prudence";
 import { GetUserWithIDGuaranteed } from "../../common/user";
 import CreateLogCtx from "../../common/logger";
@@ -10,44 +9,22 @@ import { RequireLoggedIn } from "../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../score-import/framework/score-importing/score-import-error";
 import { KtLogger } from "../../types";
 import { ExpressWrappedScoreImportMain } from "../../score-import/framework/express-wrapper";
+import { CreateMulterSingleUploadMiddleware } from "../../common/multer";
 
 const logger = CreateLogCtx("import.ts");
 
 const router: Router = Router({ mergeParams: true });
 
-// multer config
-const upload = multer({ limits: { fileSize: 1024 * 1024 * 16 } }); // 16MB
-const uploadMW = upload.single("scoreData");
-
-const parseMultipartScoredata = (req: Request, res: Response, next: NextFunction) => {
-    uploadMW(req, res, (err: unknown) => {
-        if (err instanceof MulterError) {
-            logger.info(`Multer Error.`, { err });
-            return res.status(400).json({
-                success: false,
-                description:
-                    "File provided was too large, corrupt, or provided in the wrong field.",
-            });
-        } else if (err) {
-            logger.error(`Unknown file import error: ${err}`, { err });
-            return res.status(500).json({
-                success: false,
-                description: `An internal server error has occured.`,
-            });
-        }
-
-        next();
-    });
-};
+const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware("scoreData", logger);
 
 /**
  * Import scores from a file. Expects the post request to be multipart, and to provide a scoreData file.
- * @name /api/import/file
+ * @name POST /api/import/file
  */
 router.post(
     "/file",
     RequireLoggedIn,
-    parseMultipartScoredata,
+    ParseMultipartScoredata,
     prValidate(
         {
             importType: Prudence.isIn(fileImportTypes),

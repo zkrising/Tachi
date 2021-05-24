@@ -1,5 +1,4 @@
 import { FindSongOnID } from "../../../../common/database-lookup/song";
-import { ConverterFunction, DryScore } from "../../../../types";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
     InternalFailure,
@@ -9,6 +8,8 @@ import { Lamps } from "kamaitachi-common";
 import { FindChartOnInGameIDVersion } from "../../../../common/database-lookup/chart";
 import { FervidexStaticContext, FervidexStaticScore } from "./types";
 import { FERVIDEX_LAMP_LOOKUP, SplitFervidexChartRef } from "../fervidex/converter";
+import { DryScore } from "../../../framework/common/types";
+import { ConverterFunction } from "../../common/types";
 
 export const ConverterIRFervidexStatic: ConverterFunction<
     FervidexStaticScore,

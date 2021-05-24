@@ -1,6 +1,7 @@
-import { KtLogger, ParserFunctionReturnsSync } from "../../../../types";
+import { KtLogger } from "../../../../types";
 import { ParseBatchManualFromObject } from "../../common/batch-manual/parser";
 import { BatchManualContext, BatchManualScore } from "../../common/batch-manual/types";
+import { ParserFunctionReturnsSync } from "../../common/types";
 
 /**
  * Parses an object of BATCH-MANUAL data.

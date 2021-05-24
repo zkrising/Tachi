@@ -5,7 +5,8 @@ import {
     GetDefaultTierlist,
     GetOneTierlistData,
 } from "../../../common/tierlist";
-import { DryScore, KtLogger } from "../../../types";
+import { KtLogger } from "../../../types";
+import { DryScore } from "../common/types";
 import { CreateGameSpecific } from "./game-specific";
 import { CalculateCHUNITHMRating, CalculateGITADORARating } from "./game-specific-stats";
 

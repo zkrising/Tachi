@@ -1,9 +1,10 @@
-import { EmptyObject, KtLogger, ParserFunctionReturnsSync } from "../../../../types";
+import { EmptyObject, KtLogger } from "../../../../types";
 import p from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { FormatPrError } from "../../../../common/prudence";
 import { BarbatosScore } from "./types";
 import { ConverterIRBarbatos } from "./converter";
+import { ParserFunctionReturnsSync } from "../../common/types";
 
 const PR_Barbatos = {
     difficulty: p.isIn(1, 2, 3, 4),

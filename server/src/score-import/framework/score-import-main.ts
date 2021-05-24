@@ -8,7 +8,7 @@ import {
     integer,
     IDStrings,
 } from "kamaitachi-common";
-import { ImportInputParser, KtLogger, ScorePlaytypeMap } from "../../types";
+import { KtLogger } from "../../types";
 import { ImportAllIterableData } from "./score-importing/score-importing";
 import { CreateImportLoggerAndID } from "./common/import-logger";
 import { CreateSessions } from "./sessions/sessions";
@@ -19,6 +19,8 @@ import db from "../../db/db";
 import { GetAndUpdateUsersGoals } from "./goals/goals";
 import { UpdateUsersMilestones } from "./milestones/milestones";
 import { ClassHandler } from "./user-game-stats/classes";
+import { ImportInputParser } from "../import-types/common/types";
+import { ScorePlaytypeMap } from "./common/types";
 
 /**
  * Performs a Kamaitachi Score Import.

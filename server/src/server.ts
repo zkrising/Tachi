@@ -56,7 +56,7 @@ app.use("/api", apiRouter);
 
 /**
  * If any user gets to this point, we send them index.html and let react router do the routing (and 404ing)
- * @name *
+ * @name ALL *
  */
 app.get("*", (req, res) => res.status(200).send("todo"));
 app.all("*", (req, res) =>

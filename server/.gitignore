@@ -14,5 +14,9 @@ scripts/arc-db-sync/charts.json
 scripts/arc-db-sync/songs.json
 scripts/validate-database-errs/*
 
-scripts/parse-beatoraja-mdb/*
-!scripts/parse-beatoraja-mdb/main.ts
+# various nonsense - __MDB-PARSERS is a special folder where we only expect
+# main and import.ts files. The rest of the files are presumably music data/db files that
+# we don't need to commit
+scripts/__MDB-PARSERS/*/*
+!scripts/__MDB-PARSERS/*/main.ts
+!scripts/__MDB-PARSERS/*/import.ts

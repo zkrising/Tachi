@@ -4,7 +4,6 @@ import db from "../../../db/db";
 import { CloseAllConnections } from "../../../test-utils/close-connections";
 import mockApi from "../../../test-utils/mock-api";
 import ResetDBState from "../../../test-utils/reset-db-state";
-import { GetKTDataJSON } from "../../../test-utils/test-data";
 import deepmerge from "deepmerge";
 import { PBScoreDocument } from "kamaitachi-common";
 

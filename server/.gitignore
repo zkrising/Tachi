@@ -20,3 +20,4 @@ scripts/validate-database-errs/*
 scripts/__MDB-PARSERS/*/*
 !scripts/__MDB-PARSERS/*/main.ts
 !scripts/__MDB-PARSERS/*/convert.ts
+scripts/single-use/fix-iidx-versions/versions.json

@@ -1,0 +1,19 @@
+[
+    {
+        "rgcID": null,
+        "chartID": "USC_CHART_ID",
+        "difficulty": "NOV",
+        "songID": 1,
+        "playtype": "Single",
+        "levelNum": 1,
+        "level": "1",
+        "flags": {
+            "CUSTOM": true
+        },
+        "data": {
+            "hashSHA256": "USC_CHART_HASH"
+        },
+        "isPrimary": true,
+        "versions": []
+    }
+]

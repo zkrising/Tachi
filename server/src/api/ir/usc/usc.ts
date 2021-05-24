@@ -42,7 +42,7 @@ const ValidateUSCRequest: RequestHandler = async (req, res, next) => {
 
     if (!token) {
         return res.status(200).json({
-            statusCode: STATUS_CODES.UNAUTH,
+            statusCode: STATUS_CODES.BAD_REQ,
             description: "No auth token provided.",
         });
     }
@@ -86,7 +86,7 @@ router.get("/", (req, res) =>
         body: {
             serverTime: Math.floor(Date.now() / 1000),
             serverName: "Kamaitachi BLACK",
-            irVersion: "0.3.0-a",
+            irVersion: "0.3.1-a",
         },
     })
 );
@@ -146,7 +146,7 @@ router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
 
     if (!serverRecord) {
         return res.status(200).json({
-            success: STATUS_CODES.NOT_FOUND,
+            statusCode: STATUS_CODES.NOT_FOUND,
             description: "No server record found.",
         });
     }
@@ -154,7 +154,7 @@ router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
     const serverScore = await KtchiScoreToServerScore(serverRecord);
 
     return res.status(200).json({
-        success: STATUS_CODES.SUCCESS,
+        statusCode: STATUS_CODES.SUCCESS,
         description: "Retrieved score.",
         body: serverScore,
     });
@@ -194,10 +194,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
     }
 
     if (n >= USCIR_MAX_LEADERBOARD_N) {
-        return res.status(200).json({
-            statusCode: STATUS_CODES.BAD_REQ,
-            description: `Invalid 'n' param - expected a positive non-zero integer less than or equal to ${USCIR_MAX_LEADERBOARD_N}.`,
-        });
+        n = USCIR_MAX_LEADERBOARD_N;
     }
 
     const mode = req.query.mode as "best" | "rivals";
@@ -333,6 +330,7 @@ router.post("/replays", CreateMulterSingleUploadMiddleware("replay"), async (req
     }
 
     // @todo #113 Properly store replays sent with POST /replays.
+    // related to #114
 
     return res.status(200).json({
         statusCode: STATUS_CODES.SUCCESS,

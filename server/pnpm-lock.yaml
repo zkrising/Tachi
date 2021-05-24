@@ -9,7 +9,9 @@ specifiers:
   '@types/node': ^15.0.1
   '@types/node-fetch': ^2.5.10
   '@types/proxyquire': ^1.3.28
+  '@types/python-struct': ^1.0.0
   '@types/range-parser': ^1.2.3
+  '@types/struct': ^0.0.3
   '@types/supertest': ^2.0.11
   '@types/tap': ^15.0.0
   '@types/uuid': ^8.3.0
@@ -33,6 +35,7 @@ specifiers:
   express-session: ^1.17.1
   fast-json-stable-hash: ^1.0.2
   fast-xml-parser: ^3.19.0
+  iconv-lite: ^0.6.3
   kamaitachi-common: github:zkldi/Kamaitachi-common
   mongodb: ^3.6.6
   monk: ^7.3.4
@@ -85,7 +88,9 @@ devDependencies:
   '@types/node': 15.0.1
   '@types/node-fetch': 2.5.10
   '@types/proxyquire': 1.3.28
+  '@types/python-struct': 1.0.0
   '@types/range-parser': 1.2.3
+  '@types/struct': 0.0.3
   '@types/supertest': 2.0.11
   '@types/tap': 15.0.0
   '@types/uuid': 8.3.0
@@ -97,6 +102,7 @@ devDependencies:
   eslint-plugin-import: 2.22.1_eslint@7.25.0
   eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
   express-request-mock: 3.1.0
+  iconv-lite: 0.6.3
   node-mocks-http: 1.10.1
   prettier: 2.2.1
   proxyquire: 2.1.3
@@ -529,6 +535,10 @@ packages:
     resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
     dev: true
 
+  /@types/long/4.0.1:
+    resolution: {integrity: sha512-5tXH6Bx/kNGd3MgffdmP4dy2Z+G4eaXw0SE81Tq3BNadtnMR5/ySMzX4SLEzHJzSmPNn4HIdpQsBvXMUykr58w==}
+    dev: true
+
   /@types/mime/1.3.2:
     resolution: {integrity: sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==}
     dev: true
@@ -556,8 +566,19 @@ packages:
   /@types/node/15.0.1:
     resolution: {integrity: sha512-TMkXt0Ck1y0KKsGr9gJtWGjttxlZnnvDtphxUOSd0bfaR6Q1jle+sPvrzNR1urqYTWMinoKvjKfXUGsumaO1PA==}
 
+  /@types/node/15.6.0:
+    resolution: {integrity: sha512-gCYSfQpy+LYhOFTKAeE8BkyGqaxmlFxe+n4DKM6DR0wzw/HISUE/hAmkC/KT8Sw5PCJblqg062b3z9gucv3k0A==}
+    dev: true
+
   /@types/proxyquire/1.3.28:
     resolution: {integrity: sha512-SQaNzWQ2YZSr7FqAyPPiA3FYpux2Lqh3HWMZQk47x3xbMCqgC/w0dY3dw9rGqlweDDkrySQBcaScXWeR+Yb11Q==}
+    dev: true
+
+  /@types/python-struct/1.0.0:
+    resolution: {integrity: sha512-gQQlCX9/EgnG16mS81L37+3wg8FPPgamHF3kL5Vd3udqGTa20uX4dbzync3iehYdpquE60TT07YspxudnySXxw==}
+    dependencies:
+      '@types/long': 4.0.1
+      '@types/node': 15.6.0
     dev: true
 
   /@types/qs/6.9.6:
@@ -579,6 +600,12 @@ packages:
     dependencies:
       '@types/mime': 1.3.2
       '@types/node': 15.0.1
+    dev: true
+
+  /@types/struct/0.0.3:
+    resolution: {integrity: sha512-Sqs3Dv95exdr8R/DrcszIdR/BazkPHCyhYvZpQgiWv3l477kV5ghiubNpXysAIOBEmK41bMOjj7cStMQ+YGfyQ==}
+    dependencies:
+      '@types/node': 15.6.0
     dev: true
 
   /@types/superagent/4.1.10:
@@ -2335,6 +2362,13 @@ packages:
     dependencies:
       safer-buffer: 2.1.2
     dev: false
+
+  /iconv-lite/0.6.3:
+    resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      safer-buffer: 2.1.2
+    dev: true
 
   /ieee754/1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}

@@ -19,4 +19,4 @@ scripts/validate-database-errs/*
 # we don't need to commit
 scripts/__MDB-PARSERS/*/*
 !scripts/__MDB-PARSERS/*/main.ts
-!scripts/__MDB-PARSERS/*/import.ts
+!scripts/__MDB-PARSERS/*/convert.ts

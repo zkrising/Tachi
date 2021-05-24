@@ -46,3 +46,7 @@ export function GetMilisecondsSince(ref: bigint) {
 export function Random20Hex() {
     return crypto.randomBytes(20).toString("hex");
 }
+
+export function MStoS(ms: number) {
+    return Math.floor(ms / 1000);
+}

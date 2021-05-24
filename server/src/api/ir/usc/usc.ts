@@ -288,7 +288,11 @@ router.post("/scores", async (req, res) => {
     const importDoc = (importRes.body as SuccessfulAPIResponse).body as ImportDocument;
 
     try {
-        const body = await CreatePOSTScoresResponseBody(userDoc, chartDoc, importDoc);
+        const body = await CreatePOSTScoresResponseBody(
+            userDoc.id,
+            chartDoc,
+            importDoc.scoreIDs[0]
+        );
 
         return res.status(200).json({
             statusCode: STATUS_CODES.SUCCESS,

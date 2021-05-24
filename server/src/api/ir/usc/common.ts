@@ -8,6 +8,7 @@ import {
 } from "kamaitachi-common";
 import CreateLogCtx from "../../../common/logger";
 import { GetPBOnChart, GetServerRecordOnChart } from "../../../common/scores";
+import { MStoS } from "../../../common/util";
 import { USCIR_ADJACENT_SCORE_N } from "../../../constants/usc-ir";
 import db from "../../../db/db";
 
@@ -81,6 +82,9 @@ export const KT_LAMP_TO_USC: Record<
 export async function KtchiScoreToServerScore(
     ktchiScore: PBScoreDocument<"usc:Single">
 ): Promise<USCServerScore> {
+    // @optimisable
+    // Repeated calls to this may pre-emptively provide usernames
+    // and score PBs.
     const userDoc = await db.users.findOne(
         {
             id: ktchiScore.userID,
@@ -111,13 +115,13 @@ export async function KtchiScoreToServerScore(
         );
 
         throw new Error(
-            `User ${ktchiScore.userID} from PB on chart ${ktchiScore.chartID} has no user document?`
+            `Score ${ktchiScore.composedFrom.scorePB} does not exist, but is referenced in ${ktchiScore.userID}'s PBDoc on ${ktchiScore.chartID}?`
         );
     }
 
     return {
         score: ktchiScore.scoreData.score,
-        timestamp: Math.floor((ktchiScore.timeAchieved ?? 0) / 1000),
+        timestamp: MStoS(ktchiScore.timeAchieved ?? 0),
         crit: ktchiScore.scoreData.hitData.critical ?? 0,
         near: ktchiScore.scoreData.hitData.near ?? 0,
         error: ktchiScore.scoreData.hitData.miss ?? 0,
@@ -130,19 +134,19 @@ export async function KtchiScoreToServerScore(
 }
 
 export async function CreatePOSTScoresResponseBody(
-    userDoc: PublicUserDocument,
+    userID: integer,
     chartDoc: ChartDocument<"usc:Single">,
-    importDoc: ImportDocument
+    scoreID: string
 ): Promise<POSTScoresResponseBody> {
     const scorePB = (await GetPBOnChart(
-        userDoc.id,
+        userID,
         chartDoc.chartID
     )) as PBScoreDocument<"usc:Single"> | null;
 
     if (!scorePB) {
         logger.severe(`Score was imported for chart, but no ScorePB was available on this chart?`, {
             chartDoc,
-            importDoc,
+            scoreID,
         });
         throw new Error(
             `Score was imported for chart, but no ScorePB was available on this chart?`
@@ -153,12 +157,14 @@ export async function CreatePOSTScoresResponseBody(
         chartDoc.chartID
     )) as PBScoreDocument<"usc:Single"> | null;
 
+    // this is impossible to trigger without making a race-condition.
+    /* istanbul ignore next */
     if (!ktServerRecord) {
         logger.severe(
             `Score was imported for chart, but no Server Record was available on this chart?`,
             {
                 chartDoc,
-                importDoc,
+                scoreID,
             }
         );
         throw new Error(
@@ -192,7 +198,7 @@ export async function CreatePOSTScoresResponseBody(
     // between #1 and #1 + N)
     // delete the server record from adjAbove.
     if (usersRanking - USCIR_ADJACENT_SCORE_N <= 1) {
-        delete adjAbove[0];
+        adjAbove.shift();
     }
 
     // Similar to above, this returns the N most immediate
@@ -216,15 +222,15 @@ export async function CreatePOSTScoresResponseBody(
     ]);
 
     const originalScore = (await db.scores.findOne({
-        scoreID: importDoc.scoreIDs[0],
+        scoreID,
     })) as ScoreDocument<"usc:Single">;
 
     if (!originalScore) {
         logger.severe(
-            `Score with ID ${importDoc.scoreIDs[0]} is not in the database, but was claimed to be inserted?`
+            `Score with ID ${scoreID} is not in the database, but was claimed to be inserted?`
         );
         throw new Error(
-            `Score with ID ${importDoc.scoreIDs[0]} is not in the database, but was claimed to be inserted?`
+            `Score with ID ${scoreID} is not in the database, but was claimed to be inserted?`
         );
     }
 
@@ -232,7 +238,7 @@ export async function CreatePOSTScoresResponseBody(
         score,
         serverRecord,
         isServerRecord: scorePB.userID === ktServerRecord?.userID,
-        isPB: scorePB.composedFrom.scorePB === importDoc.scoreIDs[0],
+        isPB: scorePB.composedFrom.scorePB === scoreID,
         sendReplay: originalScore.scoreMeta.replayID!,
         adjacentAbove,
         adjacentBelow,

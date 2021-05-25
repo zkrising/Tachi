@@ -2,7 +2,7 @@ import { integer, PBScoreDocument, ScoreDocument, ChartDocument } from "kamaitac
 import CreateLogCtx from "../../../../lib/logger/logger";
 import { GetPBOnChart, GetServerRecordOnChart } from "../../../../utils/scores";
 import { MStoS } from "../../../../utils/util";
-import { USCIR_ADJACENT_SCORE_N } from "../../../../constants/usc-ir";
+import { USCIR_ADJACENT_SCORE_N } from "../../../../lib/constants/usc-ir";
 import db from "../../../../external/mongo/db";
 
 const logger = CreateLogCtx(__filename);

@@ -14,7 +14,7 @@ import {
     USC_DEFAULT_NEAR,
     USC_DEFAULT_PERFECT,
     USC_DEFAULT_SLAM,
-} from "../../../../../constants/usc-ir";
+} from "../../../../constants/usc-ir";
 
 function DeriveNoteMod(data: USCClientScore): "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" {
     if (data.options.mirror && data.options.random) {

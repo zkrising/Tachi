@@ -2,7 +2,7 @@ import { Router, RequestHandler } from "express";
 import { UpdateClassIfGreater } from "../../../../utils/class";
 import { GetUserWithIDGuaranteed } from "../../../../utils/user";
 import { ParseEA3SoftID } from "../../../../utils/ea3id";
-import { EXT_HEROIC_VERSE, MODEL_INFINITAS_2, REV_2DXBMS } from "../../../../constants/ea3id";
+import { EXT_HEROIC_VERSE, MODEL_INFINITAS_2, REV_2DXBMS } from "../../../../lib/constants/ea3id";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { ParseFervidexStatic } from "../../../../lib/score-import/import-types/ir/fervidex-static/parser";

@@ -1,6 +1,6 @@
 import { Router, RequestHandler } from "express";
 import { FindChartOnSHA256 } from "../../../../utils/queries/charts";
-import { SYMBOL_KtchiData } from "../../../../constants/ktchi";
+import { SYMBOL_KtchiData } from "../../../../lib/constants/ktchi";
 import db from "../../../../external/mongo/db";
 import {
     ChartDocument,
@@ -15,7 +15,7 @@ import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/fram
 import { GetUserWithID } from "../../../../utils/user";
 import { KtLogger } from "../../../../utils/types";
 import { ParseIRUSC } from "../../../../lib/score-import/import-types/ir/usc/parser";
-import { USCIR_MAX_LEADERBOARD_N } from "../../../../constants/usc-ir";
+import { USCIR_MAX_LEADERBOARD_N } from "../../../../lib/constants/usc-ir";
 import { CreateMulterSingleUploadMiddleware } from "../../../middleware/multer-upload";
 
 const logger = CreateLogCtx(__filename);

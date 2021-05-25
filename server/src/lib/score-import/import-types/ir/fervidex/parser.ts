@@ -11,7 +11,7 @@ import {
     MODEL_INFINITAS_2,
     REV_2DXTRA,
     REV_OMNIMIX,
-} from "../../../../../constants/ea3id";
+} from "../../../../constants/ea3id";
 import { ParserFunctionReturnsSync } from "../../common/types";
 
 const PR_Fervidex: PrudenceSchema = {

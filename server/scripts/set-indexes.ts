@@ -1,8 +1,8 @@
 import monk from "monk";
 import { Command } from "commander";
-import CreateLogCtx from "../src/logger";
+import CreateLogCtx from "../src/common/logger";
 import { IndexOptions } from "mongodb";
-import { Databases, ValidDatabases } from "kamaitachi-common";
+import { ValidDatabases } from "kamaitachi-common";
 import { supportedGames } from "kamaitachi-common/js/config";
 
 const logger = CreateLogCtx("set-indexes.ts");
@@ -31,7 +31,7 @@ function index(fields: Record<string, unknown>, options?: IndexOptions) {
 
 const UNIQUE = { unique: true };
 
-const staticIndexes: Partial<Record<Databases, Index[]>> = {
+const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
     scores: [index({ scoreID: 1 }, UNIQUE)],
     "score-pbs": [
         index({ chartID: 1, userID: 1 }, UNIQUE),
@@ -64,7 +64,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
     ],
     // @todo #96 Add more indexes to the users collection.
     users: [index({ id: 1 }, UNIQUE)],
-    tierlist: [
+    tierlists: [
         index({ tierlistID: 1 }, UNIQUE),
         index({ game: 1, playtype: 1, isDefault: 1 }, UNIQUE),
     ],
@@ -75,17 +75,41 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
         index({ game: 1, playtype: 1, table: 1, tableIndex: 1 }),
     ],
     "kai-auth-tokens": [index({ userID: 1, service: 1 }, UNIQUE)],
+    "charts-iidx": [
+        index(
+            { "data.arcChartID": 1 },
+            { unique: true, partialFilterExpression: { "data.arcChartID": { $type: "string" } } }
+        ),
+        index({ "data.hashSHA256": 1 }),
+    ],
 };
 
 const indexes: Partial<Record<ValidDatabases, Index[]>> = staticIndexes;
 
 for (const game of supportedGames) {
-    indexes[`charts-${game}` as "charts-iidx"] = [
-        index({ chartID: 1 }, UNIQUE),
-        index({ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 }, UNIQUE),
-    ];
+    if (indexes[`charts-${game}` as "charts-iidx"]) {
+        indexes[`charts-${game}` as "charts-iidx"]!.push(
+            index({ chartID: 1 }, UNIQUE),
+            index(
+                { songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 },
+                { unique: true, partialFilterExpression: { isPrimary: { $eq: true } } }
+            )
+        );
+    } else {
+        indexes[`charts-${game}` as "charts-iidx"] = [
+            index({ chartID: 1 }, UNIQUE),
+            index({ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 }, UNIQUE),
+        ];
+    }
 
-    indexes[`songs-${game}` as "songs-iidx"] = [index({ id: 1 }, UNIQUE), index({ title: 1 })];
+    if (indexes[`songs-${game}` as "songs-iidx"]) {
+        indexes[`songs-${game}` as "songs-iidx"]!.push(
+            index({ id: 1 }, UNIQUE),
+            index({ title: 1 })
+        );
+    } else {
+        indexes[`songs-${game}` as "songs-iidx"] = [index({ id: 1 }, UNIQUE), index({ title: 1 })];
+    }
 }
 
 (async () => {

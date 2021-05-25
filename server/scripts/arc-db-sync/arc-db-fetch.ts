@@ -1,6 +1,6 @@
 import { Command } from "commander";
-import CreateLogCtx from "../../src/logger";
-import fetch from "../../src/fetch";
+import CreateLogCtx from "../../src/common/logger";
+import fetch from "../../src/common/fetch";
 import fs from "fs";
 import path from "path";
 
@@ -18,14 +18,14 @@ program.parse(process.argv);
 const options = program.opts();
 
 async function GetIIDXSongs() {
-    let allSongs = [];
+    const allSongs = [];
 
     let url = `https://${options.url}/api/v1/iidx/27/music/`;
 
     let moreData = true;
     while (moreData) {
         // eslint-disable-next-line no-await-in-loop
-        let songs = await fetch(url, {
+        const songs = await fetch(url, {
             headers: {
                 Authorization: `Bearer ${options.bearer}`,
             },
@@ -44,12 +44,12 @@ async function GetIIDXSongs() {
 }
 
 async function GetCharts() {
-    let songs = JSON.parse(fs.readFileSync(path.join(__dirname, "./songs.json"), "utf-8"));
+    const songs = JSON.parse(fs.readFileSync(path.join(__dirname, "./songs.json"), "utf-8"));
 
     logger.info("Parsed songs.json");
 
-    let allCharts: any[] = [];
-    let failed: any[] = [];
+    const allCharts: any[] = [];
+    const failed: any[] = [];
 
     async function DoStuff(song: any) {
         try {
@@ -58,7 +58,7 @@ async function GetCharts() {
             );
 
             // eslint-disable-next-line no-await-in-loop
-            let charts = await fetch(
+            const charts = await fetch(
                 `https://${options.url}/api/v1/iidx/27/charts/?music_id=${song._id}&omnimix=true`,
                 {
                     headers: {
@@ -77,7 +77,7 @@ async function GetCharts() {
         }
     }
 
-    let promises = songs.map((s: any) => DoStuff(s));
+    const promises = songs.map((s: any) => DoStuff(s));
 
     await Promise.all(promises);
 

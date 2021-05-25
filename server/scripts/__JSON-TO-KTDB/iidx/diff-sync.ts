@@ -38,6 +38,7 @@ const logger = CreateLogCtx("diff.ts");
                 "data.inGameID": data.songID,
                 playtype: spl[0] as Playtypes["iidx"],
                 difficulty: spl[1] as Difficulties["iidx:SP" | "iidx:DP"],
+                isPrimary: true,
             })) as ChartDocument<"iidx:SP" | "iidx:DP">;
 
             if (!chart) {

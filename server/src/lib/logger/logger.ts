@@ -66,7 +66,7 @@ const ktblackConsolePrintf = format.printf(
 
 winston.addColors({
     crit: ["bgRed", "black"],
-    severe: ["bgWhite", "red"],
+    severe: ["bgWhite", "black"],
     error: ["red"],
     warn: ["yellow"],
     info: ["blue"],

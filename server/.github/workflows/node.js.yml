@@ -4,7 +4,7 @@
 name: Node.js CI
 
 env:
-  KTBKS_MONGO_BASE_URL: "192.168.0.1"
+  KTBKS_MONGO_BASE_URL: "127.0.0.1"
   NODE_ENV: "test"
   KTBKS_LOG_LEVEL: "info"
   KTBKS_CAPTCHA_SECRET_KEY: "unused"

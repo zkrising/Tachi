@@ -14,4 +14,4 @@ scripts/arc-db-sync/charts.json
 scripts/arc-db-sync/songs.json
 scripts/validate-database-errs/*
 
-scripts/__MDB-PARSERS/*/*
+scripts/__JSON-TO-KTDB/**/*.json

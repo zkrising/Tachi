@@ -8,7 +8,7 @@ const router: Router = Router({ mergeParams: true });
 
 /**
  * Submits a single score document from Barbatos clients.
- * @name /api/ir/barbatos/score/submit
+ * @name POST /ir/barbatos/score/submit
  */
 router.post("/score/submit", RequireLoggedIn, async (req, res) => {
     const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);

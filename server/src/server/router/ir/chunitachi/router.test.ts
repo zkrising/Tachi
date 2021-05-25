@@ -8,18 +8,18 @@ import ResetDBState from "../../../../test-utils/reset-db-state";
 import { GetKTDataJSON } from "../../../../test-utils/test-data";
 import deepmerge from "deepmerge";
 
-t.test("POST /api/ir/chunitachi/import", async (t) => {
+t.test("POST /api/v1/ir/chunitachi/import", async (t) => {
     t.beforeEach(ResetDBState);
 
     const cookie = await CreateFakeAuthCookie(mockApi);
 
-    RequireNeutralAuthentication("/api/ir/chunitachi/import", "POST");
+    RequireNeutralAuthentication("/api/v1/ir/chunitachi/import", "POST");
 
     const chunitachiBody = GetKTDataJSON("./batch-manual/chunitachi.json");
 
     t.test("Should work for CHUNITACHI requests", async (t) => {
         const res = await mockApi
-            .post("/api/ir/chunitachi/import")
+            .post("/api/v1/ir/chunitachi/import")
             .set("Cookie", cookie)
             .send(chunitachiBody);
 
@@ -35,7 +35,10 @@ t.test("POST /api/ir/chunitachi/import", async (t) => {
     });
 
     t.test("Should reject invalid batch-manual", async (t) => {
-        const res = await mockApi.post("/api/ir/chunitachi/import").set("Cookie", cookie).send({});
+        const res = await mockApi
+            .post("/api/v1/ir/chunitachi/import")
+            .set("Cookie", cookie)
+            .send({});
 
         t.equal(res.body.success, false, "Should not be successful");
 
@@ -44,7 +47,7 @@ t.test("POST /api/ir/chunitachi/import", async (t) => {
 
     t.test("Should reject batch-manual requests if game is not chunithm", async (t) => {
         const res = await mockApi
-            .post("/api/ir/chunitachi/import")
+            .post("/api/v1/ir/chunitachi/import")
             .set("Cookie", cookie)
             .send(deepmerge(chunitachiBody, { head: { game: "iidx" } }));
 
@@ -55,7 +58,7 @@ t.test("POST /api/ir/chunitachi/import", async (t) => {
 
     t.test("Should reject batch-manual requests if service is not Chunitachi", async (t) => {
         const res = await mockApi
-            .post("/api/ir/chunitachi/import")
+            .post("/api/v1/ir/chunitachi/import")
             .set("Cookie", cookie)
             .send(deepmerge(chunitachiBody, { head: { service: "foo bar" } }));
 

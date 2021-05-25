@@ -14,19 +14,19 @@ import db from "../../../../../external/mongo/db";
 
 // reset DB handles the post-stuff
 
-t.test("POST /api/import/file", async (t) => {
+t.test("POST /api/v1/import/file", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
 
-    RequireNeutralAuthentication("/api/import/file", "POST");
+    RequireNeutralAuthentication("/api/v1/import/file", "POST");
 
     t.test("file/eamusement-iidx-csv", (t) => {
         t.beforeEach(LoadKTBlackIIDXData);
 
         t.test("Mini HV import", async (t) => {
             const res = await mockApi
-                .post("/api/import/file")
+                .post("/api/v1/import/file")
                 .set("Cookie", cookie)
                 .attach(
                     "scoreData",
@@ -57,7 +57,7 @@ t.test("POST /api/import/file", async (t) => {
 
         t.test("Valid Rootage CSV import", async (t) => {
             const res = await mockApi
-                .post("/api/import/file")
+                .post("/api/v1/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV26, "my_csv.csv")
                 .field("importType", "file/eamusement-iidx-csv")
@@ -82,7 +82,7 @@ t.test("POST /api/import/file", async (t) => {
 
         t.test("Valid Heroic Verse CSV import", async (t) => {
             const res = await mockApi
-                .post("/api/import/file")
+                .post("/api/v1/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV27, "my_csv.csv")
                 .field("importType", "file/eamusement-iidx-csv")
@@ -114,7 +114,7 @@ t.test("POST /api/import/file", async (t) => {
 
         t.test("Mini HV import", async (t) => {
             const res = await mockApi
-                .post("/api/import/file")
+                .post("/api/v1/import/file")
                 .set("Cookie", cookie)
                 .attach(
                     "scoreData",
@@ -145,7 +145,7 @@ t.test("POST /api/import/file", async (t) => {
 
         t.test("Valid Rootage CSV import", async (t) => {
             const res = await mockApi
-                .post("/api/import/file")
+                .post("/api/v1/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV26, "my_csv.csv")
                 .field("importType", "file/pli-iidx-csv")
@@ -170,7 +170,7 @@ t.test("POST /api/import/file", async (t) => {
 
         t.test("Valid Heroic Verse CSV import", async (t) => {
             const res = await mockApi
-                .post("/api/import/file")
+                .post("/api/v1/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", TestingIIDXEamusementCSV27, "my_csv.csv")
                 .field("importType", "file/pli-iidx-csv")
@@ -199,7 +199,7 @@ t.test("POST /api/import/file", async (t) => {
     t.test("file/batch-manual", (t) => {
         t.test("Empty import", async (t) => {
             const res = await mockApi
-                .post("/api/import/file")
+                .post("/api/v1/import/file")
                 .set("Cookie", cookie)
                 .attach(
                     "scoreData",
@@ -229,7 +229,7 @@ t.test("POST /api/import/file", async (t) => {
 
         t.test("Single import", async (t) => {
             const res = await mockApi
-                .post("/api/import/file")
+                .post("/api/v1/import/file")
                 .set("Cookie", cookie)
                 .attach(
                     "scoreData",
@@ -265,7 +265,7 @@ t.test("POST /api/import/file", async (t) => {
 
         t.test("Example Import", async (t) => {
             const res = await mockApi
-                .post("/api/import/file")
+                .post("/api/v1/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", GetKTDataBuffer("./mer/base.json"), "base.json")
                 .field("importType", "file/mer-iidx");
@@ -281,7 +281,7 @@ t.test("POST /api/import/file", async (t) => {
 
         t.test("Example Import", async (t) => {
             const res = await mockApi
-                .post("/api/import/file")
+                .post("/api/v1/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", GetKTDataBuffer("./mer/large.json"), "base.json")
                 .field("importType", "file/mer-iidx");
@@ -303,7 +303,7 @@ t.test("POST /api/import/file", async (t) => {
 
         t.test("Large Import", async (t) => {
             const res = await mockApi
-                .post("/api/import/file")
+                .post("/api/v1/import/file")
                 .set("Cookie", cookie)
                 .attach("scoreData", GetKTDataBuffer("./s3/large-example.xml"), "large.xml")
                 .field("importType", "file/solid-state-squad");

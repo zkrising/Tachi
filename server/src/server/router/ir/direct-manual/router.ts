@@ -11,7 +11,7 @@ const logger = CreateLogCtx(__filename);
 
 /**
  * Imports scores in ir/json:direct-manual form.
- * @name /api/ir/direct-manual/import
+ * @name POST /ir/direct-manual/import
  */
 router.post("/import", RequireLoggedIn, async (req, res) => {
     const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);

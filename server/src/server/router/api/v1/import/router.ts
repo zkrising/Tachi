@@ -19,7 +19,7 @@ const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware("scoreData", 
 
 /**
  * Import scores from a file. Expects the post request to be multipart, and to provide a scoreData file.
- * @name POST /api/import/file
+ * @name POST /api/v1/import/file
  */
 router.post(
     "/file",

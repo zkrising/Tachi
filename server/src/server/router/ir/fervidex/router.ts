@@ -153,7 +153,7 @@ router.use(RequireLoggedIn, ValidateFervidexHeader, ValidateModelHeader);
  * way of syncing scores outside of INF2, where there is no other way to
  * retrieve scores.
  *
- * @name /api/ir/fervidex/profile/submit
+ * @name POST /ir/fervidex/profile/submit
  */
 router.post("/profile/submit", RequireInf2ModelHeader, async (req, res) => {
     const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
@@ -178,7 +178,7 @@ router.post("/profile/submit", RequireInf2ModelHeader, async (req, res) => {
  * sends the most data (and most accurate data) of any score hook.
  * As such, this is the preferred way of submitting IIDX scores to Kamaitachi.
  *
- * @name /api/ir/fervidex/score/submit
+ * @name POST /ir/fervidex/score/submit
  */
 router.post("/score/submit", ValidateModelHeader, async (req, res) => {
     const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
@@ -210,7 +210,7 @@ router.post("/score/submit", ValidateModelHeader, async (req, res) => {
  * Submits the result of a class to Kamaitachi. This contains the dan played
  * and whether it was achieved.
  *
- * @name /api/ir/fervidex/class/submit
+ * @name POST /ir/fervidex/class/submit
  */
 router.post("/class/submit", ValidateModelHeader, async (req, res) => {
     if (!req.body.cleared) {

@@ -31,7 +31,7 @@ const SHOULD_COOKIES_SECURE = process.env.NODE_ENV === "production";
 
 /**
  * Logs in a user.
- * @name POST /api/auth/login
+ * @name POST /api/v1/auth/login
  */
 router.post(
     "/login",
@@ -154,7 +154,7 @@ router.post(
 
 /**
  * Registers a new user.
- * @name POST /api/auth/register
+ * @name POST /api/v1/auth/register
  */
 router.post(
     "/register",
@@ -270,7 +270,7 @@ router.post(
 
 /**
  * Logs out the requesting user.
- * @name POST /api/auth/logout
+ * @name POST /api/v1/auth/logout
  */
 router.post("/logout", RequireLoggedIn, (req, res) => {
     req.session.destroy(() => 0);

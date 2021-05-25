@@ -77,7 +77,7 @@ router.use(ValidateUSCRequest);
 /**
  * Used to check your connection to the server, and receive some basic information.
  * https://uscir.readthedocs.io/en/latest/endpoints/heartbeat.html
- * @name GET /api/ir/usc
+ * @name GET /ir/usc
  */
 router.get("/", (req, res) =>
     res.status(200).json({
@@ -104,7 +104,7 @@ const RetrieveChart: RequestHandler = async (req, res, next) => {
 /**
  * Used to check if the server will accept a score for a given chart in advance of submitting it.
  * https://uscir.readthedocs.io/en/latest/endpoints/chart-charthash.html
- * @name GET /api/ir/usc/charts/:chartHash
+ * @name GET /ir/usc/charts/:chartHash
  */
 router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
     const chart = req[SYMBOL_KtchiData]!.uscChartDoc;
@@ -125,7 +125,7 @@ router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
 /**
  * Used to retrieve the current server record for the chart with the specified hash.
  * https://uscir.readthedocs.io/en/latest/endpoints/record.html
- * @name GET /api/ir/usc/charts/:chartHash/record
+ * @name GET /ir/usc/charts/:chartHash/record
  */
 router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
     const chart = req[SYMBOL_KtchiData]!.uscChartDoc;
@@ -163,7 +163,7 @@ router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
 /**
  * Used to retrieve some particular useful subset of the scores from the server.
  * https://uscir.readthedocs.io/en/latest/endpoints/leaderboard.html
- * @name GET /api/ir/usc/charts/:chartHash/leaderboard
+ * @name GET /ir/usc/charts/:chartHash/leaderboard
  */
 router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => {
     const chart = req[SYMBOL_KtchiData]!.uscChartDoc!;
@@ -230,7 +230,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
 /**
  * Sends a score to the server.
  * https://uscir.readthedocs.io/en/latest/endpoints/score-submit.html
- * @name POST /api/ir/usc/scores
+ * @name POST /ir/usc/scores
  */
 router.post("/scores", async (req, res) => {
     if (typeof req.body.chart !== "object" || req.body.chart === null) {
@@ -310,7 +310,7 @@ router.post("/scores", async (req, res) => {
 /**
  * Used to submit the replay for a given score when requested by the server.
  * https://uscir.readthedocs.io/en/latest/endpoints/replay-submit.html
- * @name POST /api/ir/usc/replays
+ * @name POST /ir/usc/replays
  */
 router.post("/replays", CreateMulterSingleUploadMiddleware("replay"), async (req, res) => {
     if (typeof req.body.identifier !== "string") {

@@ -8,7 +8,7 @@ const router: Router = Router({ mergeParams: true });
 
 /**
  * Submits a single score document from Chunitachi clients.
- * @name /api/ir/chunitachi/score/submit
+ * @name POST /ir/chunitachi/score/submit
  */
 router.post("/import", RequireLoggedIn, async (req, res) => {
     const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);

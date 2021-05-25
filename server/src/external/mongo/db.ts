@@ -26,11 +26,12 @@ import {
     UserMilestoneDocument,
 } from "kamaitachi-common";
 import monk from "monk";
+import { MONGO_BASE_URL } from "../../lib/env/env";
 import CreateLogCtx from "../../lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 
-const base = process.env.MONGO_BASE_URL ?? "127.0.0.1";
+const base = MONGO_BASE_URL ?? "127.0.0.1";
 
 const url = process.env.NODE_ENV === "test" ? `${base}:27017/testingdb` : `${base}:27017/ktblackdb`;
 

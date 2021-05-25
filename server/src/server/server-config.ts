@@ -1,3 +1,3 @@
 export default {
-    PORT: process.env.PORT ?? 8080,
+    PORT: process.env.KTBKS_PORT ?? 8080,
 };

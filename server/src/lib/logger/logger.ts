@@ -4,7 +4,6 @@ export type KtLogger = Logger & { severe: LeveledLogMethod };
 
 const level = process.env.LOG_LEVEL ?? "info";
 
-// const IN_PROD = process.env.NODE_ENV === "production";
 const IN_TESTING = process.env.NODE_ENV === "test";
 
 const formatExcessProperties = (meta: Record<string, unknown>) => {

@@ -2,9 +2,9 @@ import express, { Express } from "express";
 import "express-async-errors";
 import CreateLogCtx from "../lib/logger/logger";
 import expressSession from "express-session";
-import { SESSION_SECRET } from "../secrets";
 import { integer } from "kamaitachi-common";
 import { RedisClient, RedisStore } from "../external/redis/redis-store";
+import { SESSION_SECRET } from "../lib/env/env";
 
 const logger = CreateLogCtx(__filename);
 

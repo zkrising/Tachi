@@ -9,7 +9,7 @@ import {
     SessionInfoReturn,
     Game,
 } from "kamaitachi-common";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 import { AppendLogCtx } from "../../../common/logger";
 import { GenerateRandomSessionName } from "./name-generation";
 import crypto from "crypto";

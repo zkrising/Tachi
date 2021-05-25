@@ -10,7 +10,7 @@ import { CloseAllConnections } from "../../test-utils/close-connections";
 import { RequireNeutralAuthentication } from "../../test-utils/api-common";
 import { CreateFakeAuthCookie } from "../../test-utils/fake-session";
 import ResetDBState from "../../test-utils/reset-db-state";
-import db from "../../db/db";
+import db from "../../external/mongo/db";
 
 // reset DB handles the post-stuff
 

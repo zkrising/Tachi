@@ -1,4 +1,4 @@
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 import { integer, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
 
 import { KtLogger } from "../../../types";

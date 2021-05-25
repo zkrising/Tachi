@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../db/db";
+import db, { CloseMongoConnection } from "../../../../external/mongo/db";
 import CreateLogCtx from "../../../../common/logger";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../test-utils/test-data";

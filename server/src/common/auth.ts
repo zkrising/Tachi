@@ -6,7 +6,7 @@ import {
     PublicAPIKeyDocument,
     PublicUserDocument,
 } from "kamaitachi-common";
-import db from "../db/db";
+import db from "../external/mongo/db";
 import { GetNextCounterValue } from "./db";
 import { InsertResult } from "monk";
 import CreateLogCtx from "./logger";

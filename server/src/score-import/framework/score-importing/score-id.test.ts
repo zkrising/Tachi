@@ -1,6 +1,6 @@
 import { ScoreDocument } from "kamaitachi-common";
 import t from "tap";
-import { CloseMongoConnection } from "../../../db/db";
+import { CloseMongoConnection } from "../../../external/mongo/db";
 import ResetDBState from "../../../test-utils/reset-db-state";
 import { Testing511SPA, TestingIIDXSPDryScore } from "../../../test-utils/test-data";
 import { CreateScoreID, GetWithScoreID } from "./score-id";

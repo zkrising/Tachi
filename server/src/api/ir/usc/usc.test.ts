@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 import { CloseAllConnections } from "../../../test-utils/close-connections";
 import mockApi from "../../../test-utils/mock-api";
 import ResetDBState from "../../../test-utils/reset-db-state";

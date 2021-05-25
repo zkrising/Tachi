@@ -1,5 +1,5 @@
 import { integer, PBScoreDocument } from "kamaitachi-common";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 import { KtLogger } from "../../../types";
 import { CreatePBDoc, UpdateChartRanking, PBScoreDocumentNoRank } from "./create-pb-doc";
 

@@ -1,6 +1,6 @@
 import { integer, Game, GoalDocument, UserGoalDocument } from "kamaitachi-common";
 import { EvaluateGoalForUser } from "../../../common/goal";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 import { KtLogger } from "../../../types";
 
 /**

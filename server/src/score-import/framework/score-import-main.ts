@@ -15,7 +15,7 @@ import { CreateSessions } from "./sessions/sessions";
 import { GetMilisecondsSince } from "../../common/util";
 import { ProcessPBs } from "./pb/process-pbs";
 import { UpdateUsersGamePlaytypeStats } from "./user-game-stats/update-ugs";
-import db from "../../db/db";
+import db from "../../external/mongo/db";
 import { GetAndUpdateUsersGoals } from "./goals/goals";
 import { UpdateUsersMilestones } from "./milestones/milestones";
 import { ClassHandler } from "./user-game-stats/classes";

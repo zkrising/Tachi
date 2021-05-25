@@ -1,5 +1,5 @@
 import t from "tap";
-import { CloseMongoConnection } from "../../../db/db";
+import { CloseMongoConnection } from "../../../external/mongo/db";
 import { AnyChartDocument, Difficulties, Lamps, ScoreDocument } from "kamaitachi-common";
 import {
     CalculateBPI,

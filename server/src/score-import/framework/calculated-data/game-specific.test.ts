@@ -1,6 +1,6 @@
 import Pr from "prudence";
 import t from "tap";
-import { CloseMongoConnection } from "../../../db/db";
+import { CloseMongoConnection } from "../../../external/mongo/db";
 import CreateLogCtx from "../../../common/logger";
 import { prAssert } from "../../../test-utils/asserts";
 import {

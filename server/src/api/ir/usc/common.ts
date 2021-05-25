@@ -3,7 +3,7 @@ import CreateLogCtx from "../../../common/logger";
 import { GetPBOnChart, GetServerRecordOnChart } from "../../../common/scores";
 import { MStoS } from "../../../common/util";
 import { USCIR_ADJACENT_SCORE_N } from "../../../constants/usc-ir";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 
 const logger = CreateLogCtx(__filename);
 

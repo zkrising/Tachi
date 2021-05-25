@@ -3,7 +3,7 @@
 // That's about all there is to it!
 
 import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "kamaitachi-common";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 import { KtLogger } from "../../../types";
 import { CalculateClassDeltas, UpdateUGSClasses, ClassHandler } from "./classes";
 import { CalculateRatings, CalculateCustomRatings } from "./rating";

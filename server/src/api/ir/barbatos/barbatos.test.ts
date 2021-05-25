@@ -5,7 +5,7 @@ import { CreateFakeAuthCookie } from "../../../test-utils/fake-session";
 import ResetDBState from "../../../test-utils/reset-db-state";
 import mockApi from "../../../test-utils/mock-api";
 import { TestingBarbatosScore } from "../../../test-utils/test-data";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 
 t.test("POST /api/ir/barbatos/score/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);

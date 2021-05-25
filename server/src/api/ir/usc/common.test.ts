@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../db/db";
+import db, { CloseMongoConnection } from "../../../external/mongo/db";
 import ResetDBState from "../../../test-utils/reset-db-state";
 import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./common";
 import { ChartDocument, PBScoreDocument, ScoreDocument } from "kamaitachi-common";

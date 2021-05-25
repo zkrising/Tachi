@@ -10,7 +10,7 @@ import {
     SongDocument,
 } from "kamaitachi-common";
 import path from "path";
-import db from "../db/db";
+import db from "../external/mongo/db";
 import { DryScore } from "../score-import/framework/common/types";
 import { BarbatosScore } from "../score-import/import-types/ir/barbatos/types";
 

@@ -1,6 +1,6 @@
 import { Game, integer, Playtypes, UserGameStats } from "kamaitachi-common";
 import { ClassData, gameClassValues } from "kamaitachi-common/js/game-classes";
-import db from "../db/db";
+import db from "../external/mongo/db";
 import CreateLogCtx from "./logger";
 
 const logger = CreateLogCtx(__filename);

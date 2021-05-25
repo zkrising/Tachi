@@ -8,7 +8,7 @@ import {
     GetFolderCharts,
     ResolveFolderToCharts,
 } from "./folder";
-import db, { CloseMongoConnection } from "../db/db";
+import db, { CloseMongoConnection } from "../external/mongo/db";
 import ResetDBState from "../test-utils/reset-db-state";
 import deepmerge from "deepmerge";
 

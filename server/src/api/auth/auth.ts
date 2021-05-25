@@ -14,7 +14,7 @@ import {
     PRIVATEINFO_GetUserCaseInsensitive,
 } from "../../common/user";
 
-import db from "../../db/db";
+import db from "../../external/mongo/db";
 import CreateLogCtx from "../../common/logger";
 import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";

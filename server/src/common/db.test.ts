@@ -1,6 +1,6 @@
 import { GetNextCounterValue } from "./db";
 import t from "tap";
-import db, { CloseMongoConnection } from "../db/db";
+import db, { CloseMongoConnection } from "../external/mongo/db";
 import ResetDBState from "../test-utils/reset-db-state";
 
 t.test("#GetNextCounterValue", (t) => {

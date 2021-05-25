@@ -1,6 +1,6 @@
 import { integer, PublicUserDocument } from "kamaitachi-common";
 import { FindOneResult } from "monk";
-import db from "../db/db";
+import db from "../external/mongo/db";
 import CreateLogCtx from "./logger";
 
 const logger = CreateLogCtx(__filename);

@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 import { integer } from "kamaitachi-common";
 import { DryScore } from "../common/types";
 

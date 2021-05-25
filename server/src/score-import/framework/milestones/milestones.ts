@@ -7,7 +7,7 @@ import {
     UserMilestoneDocument,
     MilestoneImportInfo,
 } from "kamaitachi-common";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 import { ProcessMilestoneFromGII } from "../../../common/milestone";
 import { BulkWriteUpdateOneOperation } from "mongodb";
 

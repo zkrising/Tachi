@@ -1,5 +1,5 @@
 import t from "tap";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 import { CloseAllConnections } from "../../../test-utils/close-connections";
 import { CreateFakeAuthCookie } from "../../../test-utils/fake-session";
 import mockApi from "../../../test-utils/mock-api";

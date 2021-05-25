@@ -7,7 +7,7 @@ import {
     ValidateCaptcha,
 } from "./auth";
 import t from "tap";
-import db, { CloseMongoConnection } from "../db/db";
+import db, { CloseMongoConnection } from "../external/mongo/db";
 import { PrivateUserDocument } from "kamaitachi-common";
 import { prAssert } from "../test-utils/asserts";
 import Prudence from "prudence";

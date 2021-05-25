@@ -5,7 +5,7 @@ import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../test-u
 import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
 import { EscapeStringRegexp } from "../../../../common/util";
-import db, { CloseMongoConnection } from "../../../../db/db";
+import db, { CloseMongoConnection } from "../../../../external/mongo/db";
 import { Game } from "kamaitachi-common";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { InvalidScoreFailure } from "../../../framework/common/converter-failures";

@@ -1,7 +1,7 @@
 import { Router, RequestHandler } from "express";
 import { FindChartOnSHA256 } from "../../../common/database-lookup/chart";
 import { SYMBOL_KtchiData } from "../../../constants/ktchi";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 import {
     ChartDocument,
     PBScoreDocument,

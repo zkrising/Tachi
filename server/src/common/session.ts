@@ -1,6 +1,6 @@
 import { SessionDocument, ScoreDocument, SessionScoreInfo } from "kamaitachi-common";
 import { Condition } from "mongodb";
-import db from "../db/db";
+import db from "../external/mongo/db";
 
 /**
  * Returns all the score documents inside a session.

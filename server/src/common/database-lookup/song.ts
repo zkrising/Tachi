@@ -1,6 +1,6 @@
 import { Game, AnySongDocument, integer } from "kamaitachi-common";
 import { FindOneResult } from "monk";
-import db from "../../db/db";
+import db from "../../external/mongo/db";
 import { EscapeStringRegexp } from "../util";
 
 /**

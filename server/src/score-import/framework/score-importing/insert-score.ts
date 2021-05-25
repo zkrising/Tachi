@@ -1,5 +1,5 @@
 import { ScoreDocument } from "kamaitachi-common";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 import CreateLogCtx from "../../../common/logger";
 
 const logger = CreateLogCtx(__filename);

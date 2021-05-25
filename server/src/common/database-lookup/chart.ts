@@ -1,5 +1,5 @@
 import { Difficulties, Game, integer, Playtypes, IDStrings } from "kamaitachi-common";
-import db from "../../db/db";
+import db from "../../external/mongo/db";
 
 export function FindChartWithChartID(game: Game, chartID: string) {
     return db.charts[game].findOne({ chartID });

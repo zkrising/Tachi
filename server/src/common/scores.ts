@@ -1,4 +1,4 @@
-import db from "../db/db";
+import db from "../external/mongo/db";
 import { integer } from "kamaitachi-common";
 
 export function GetPBOnChart(userID: integer, chartID: string) {

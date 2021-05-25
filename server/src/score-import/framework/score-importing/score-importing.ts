@@ -16,7 +16,7 @@ import {
     SkipScoreFailure,
 } from "../common/converter-failures";
 import { CreateScoreID } from "./score-id";
-import db from "../../../db/db";
+import db from "../../../external/mongo/db";
 import { AppendLogCtx } from "../../../common/logger";
 import { KtLogger } from "../../../types";
 import {

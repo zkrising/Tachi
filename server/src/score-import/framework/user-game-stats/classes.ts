@@ -1,9 +1,9 @@
 import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "kamaitachi-common";
 import { gameClassValues } from "kamaitachi-common/js/game-classes";
 import deepmerge from "deepmerge";
-import { KtLogger } from "../../../common/types";
+import { KtLogger } from "../../../utils/types";
 import { CalculateGitadoraColour, CalculateJubeatColour } from "./builtin-class-handlers";
-import { ReturnClassIfGreater } from "../../../common/class";
+import { ReturnClassIfGreater } from "../../../utils/class";
 
 export interface ClassHandler {
     (

@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../../common/types";
+import { KtLogger } from "../../../../utils/types";
 import { ParseBatchManualFromObject } from "../../common/batch-manual/parser";
 import { BatchManualContext, BatchManualScore } from "../../common/batch-manual/types";
 import { ParserFunctionReturnsSync } from "../../common/types";

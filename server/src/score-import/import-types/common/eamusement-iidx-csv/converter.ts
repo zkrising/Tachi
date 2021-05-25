@@ -1,6 +1,6 @@
 import { Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
-import { FindChartWithPTDFVersion } from "../../../../common/database-lookup/chart";
-import { FindSongOnTitleInsensitive } from "../../../../common/database-lookup/song";
+import { FindChartWithPTDFVersion } from "../../../../utils/database-lookup/chart";
+import { FindSongOnTitleInsensitive } from "../../../../utils/database-lookup/song";
 import {
     KTDataNotFoundFailure,
     InternalFailure,
@@ -10,7 +10,7 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import { GetGradeFromPercent } from "../../../framework/common/score-utils";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
-import { KtLogger } from "../../../../common/types";
+import { KtLogger } from "../../../../utils/types";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction, ConverterFnReturn } from "../types";
 

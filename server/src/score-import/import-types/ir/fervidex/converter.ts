@@ -1,4 +1,4 @@
-import { FindSongOnID } from "../../../../common/database-lookup/song";
+import { FindSongOnID } from "../../../../utils/database-lookup/song";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
     InternalFailure,
@@ -10,7 +10,7 @@ import { Lamps, Difficulties, Playtypes } from "kamaitachi-common";
 import {
     FindIIDXChartOnInGameIDVersion,
     FindIIDXChartWith2DXtraHash,
-} from "../../../../common/database-lookup/chart";
+} from "../../../../utils/database-lookup/chart";
 import { ConverterFunction } from "../../common/types";
 import { DryScore } from "../../../framework/common/types";
 

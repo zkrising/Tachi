@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../../common/types";
+import { KtLogger } from "../../../../utils/types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { BatchManual, BatchManualContext, BatchManualScore } from "./types";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
@@ -6,7 +6,7 @@ import { lamps, supportedGames, validHitData, validPlaytypes } from "kamaitachi-
 import { Game, ImportTypes } from "kamaitachi-common";
 import { ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
-import { FormatPrError } from "../../../../common/prudence";
+import { FormatPrError } from "../../../../utils/prudence";
 import { ParserFunctionReturnsSync } from "../types";
 
 const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));

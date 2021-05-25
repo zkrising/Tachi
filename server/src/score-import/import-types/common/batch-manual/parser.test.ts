@@ -1,10 +1,10 @@
 import t from "tap";
 import { CloseMongoConnection } from "../../../../external/mongo/db";
-import CreateLogCtx from "../../../../common/logger";
+import CreateLogCtx from "../../../../utils/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParseBatchManualFromObject as ParserFn } from "./parser";
 import { BatchManual } from "./types";
-import { EscapeStringRegexp } from "../../../../common/util";
+import { EscapeStringRegexp } from "../../../../utils/util";
 import deepmerge from "deepmerge";
 
 const mockErr = (...msg: string[]) =>

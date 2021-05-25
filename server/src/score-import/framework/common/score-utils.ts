@@ -10,7 +10,7 @@ import {
     Playtypes,
 } from "kamaitachi-common";
 import { judgementWindows, gamePercentMax } from "kamaitachi-common/js/config";
-import CreateLogCtx from "../../../common/logger";
+import CreateLogCtx from "../../../utils/logger";
 import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 
 const logger = CreateLogCtx(__filename);

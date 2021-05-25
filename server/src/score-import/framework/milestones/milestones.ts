@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../common/types";
+import { KtLogger } from "../../../utils/types";
 import {
     integer,
     Game,
@@ -8,7 +8,7 @@ import {
     MilestoneImportInfo,
 } from "kamaitachi-common";
 import db from "../../../external/mongo/db";
-import { ProcessMilestoneFromGII } from "../../../common/milestone";
+import { ProcessMilestoneFromGII } from "../../../utils/milestone";
 import { BulkWriteUpdateOneOperation } from "mongodb";
 
 export async function UpdateUsersMilestones(

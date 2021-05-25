@@ -1,6 +1,6 @@
-import { FindSDVXChartOnInGameID } from "../../../../common/database-lookup/chart";
-import { FindSongOnID } from "../../../../common/database-lookup/song";
-import { EmptyObject } from "../../../../common/types";
+import { FindSDVXChartOnInGameID } from "../../../../utils/database-lookup/chart";
+import { FindSongOnID } from "../../../../utils/database-lookup/song";
+import { EmptyObject } from "../../../../utils/types";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
     InternalFailure,

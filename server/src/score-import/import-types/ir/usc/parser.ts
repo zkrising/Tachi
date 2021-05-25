@@ -1,8 +1,8 @@
-import { KtLogger } from "../../../../common/types";
+import { KtLogger } from "../../../../utils/types";
 import { ChartDocument } from "kamaitachi-common";
 import p, { PrudenceSchema } from "prudence";
 import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
-import { FormatPrError } from "../../../../common/prudence";
+import { FormatPrError } from "../../../../utils/prudence";
 import { USCClientScore } from "../../../../server/router/ir/usc/common";
 import { IRUSCContext } from "./types";
 import { ConverterIRUSC } from "./converter";

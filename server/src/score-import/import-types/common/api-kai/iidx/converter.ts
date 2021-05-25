@@ -1,4 +1,4 @@
-import { FindIIDXChartOnInGameIDVersion } from "../../../../../common/database-lookup/chart";
+import { FindIIDXChartOnInGameIDVersion } from "../../../../../utils/database-lookup/chart";
 import { KaiContext, KaiIIDXScore } from "../types";
 import p from "prudence";
 import {
@@ -6,8 +6,8 @@ import {
     InvalidScoreFailure,
     KTDataNotFoundFailure,
 } from "../../../../framework/common/converter-failures";
-import { FormatPrError } from "../../../../../common/prudence";
-import { FindSongOnID } from "../../../../../common/database-lookup/song";
+import { FormatPrError } from "../../../../../utils/prudence";
+import { FindSongOnID } from "../../../../../utils/database-lookup/song";
 import {
     GenericGetGradeAndPercent,
     ParseDateFromString,

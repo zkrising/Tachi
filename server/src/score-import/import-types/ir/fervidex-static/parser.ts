@@ -1,7 +1,7 @@
-import { KtLogger } from "../../../../common/types";
+import { KtLogger } from "../../../../utils/types";
 import p, { PrudenceSchema } from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { FormatPrError } from "../../../../common/prudence";
+import { FormatPrError } from "../../../../utils/prudence";
 import { ConverterIRFervidexStatic } from "./converter";
 import { FervidexStaticContext, FervidexStaticScore } from "./types";
 import { FerHeaders, SoftwareIDToVersion } from "../fervidex/parser";

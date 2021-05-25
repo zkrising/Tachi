@@ -1,6 +1,6 @@
 import { Session, SessionData } from "express-session";
 import { SYMBOL_KtchiData } from "../../src/constants/ktchi";
-import { KtchiRequestData, KtchiSessionData } from "../../src/common/types";
+import { KtchiRequestData, KtchiSessionData } from "../../src/utils/types";
 
 export {};
 

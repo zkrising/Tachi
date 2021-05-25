@@ -4,7 +4,7 @@
 import db from "../external/mongo/db";
 import fs from "fs";
 import path from "path";
-import CreateLogCtx from "../common/logger";
+import CreateLogCtx from "../utils/logger";
 
 const logger = CreateLogCtx(__filename);
 

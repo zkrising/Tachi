@@ -1,11 +1,11 @@
-import { FindSongOnID } from "../../../../common/database-lookup/song";
+import { FindSongOnID } from "../../../../utils/database-lookup/song";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
     InternalFailure,
     KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { Lamps } from "kamaitachi-common";
-import { FindChartOnInGameIDVersion } from "../../../../common/database-lookup/chart";
+import { FindChartOnInGameIDVersion } from "../../../../utils/database-lookup/chart";
 import { FervidexStaticContext, FervidexStaticScore } from "./types";
 import { FERVIDEX_LAMP_LOOKUP, SplitFervidexChartRef } from "../fervidex/converter";
 import { DryScore } from "../../../framework/common/types";

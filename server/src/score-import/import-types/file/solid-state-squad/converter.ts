@@ -1,4 +1,4 @@
-import { EmptyObject, KtLogger } from "../../../../common/types";
+import { EmptyObject, KtLogger } from "../../../../utils/types";
 import {
     InvalidScoreFailure,
     KTDataNotFoundFailure,
@@ -6,8 +6,8 @@ import {
 } from "../../../framework/common/converter-failures";
 import { S3Score } from "./types";
 import { Playtypes, Difficulties, Grades, Lamps } from "kamaitachi-common";
-import { FindSongOnTitleInsensitive } from "../../../../common/database-lookup/song";
-import { FindChartWithPTDFVersion } from "../../../../common/database-lookup/chart";
+import { FindSongOnTitleInsensitive } from "../../../../utils/database-lookup/song";
+import { FindChartWithPTDFVersion } from "../../../../utils/database-lookup/chart";
 import {
     GenericGetGradeAndPercent,
     ParseDateFromString,

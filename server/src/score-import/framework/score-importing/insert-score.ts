@@ -1,6 +1,6 @@
 import { ScoreDocument } from "kamaitachi-common";
 import db from "../../../external/mongo/db";
-import CreateLogCtx from "../../../common/logger";
+import CreateLogCtx from "../../../utils/logger";
 
 const logger = CreateLogCtx(__filename);
 const ScoreQueue: ScoreDocument[] = [];

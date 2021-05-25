@@ -1,5 +1,5 @@
-import { KtLogger } from "../../../../../common/types";
-import nodeFetch from "../../../../../common/fetch";
+import { KtLogger } from "../../../../../utils/types";
+import nodeFetch from "../../../../../utils/fetch";
 import { KaiAuthDocument } from "kamaitachi-common";
 import { KaiContext } from "../types";
 import { EAG_API_URL, FLO_API_URL } from "../../../../../secrets";

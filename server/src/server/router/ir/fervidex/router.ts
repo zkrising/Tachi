@@ -1,14 +1,14 @@
 import { Router, RequestHandler } from "express";
-import { UpdateClassIfGreater } from "../../../../common/class";
-import { GetUserWithIDGuaranteed } from "../../../../common/user";
-import { ParseEA3SoftID } from "../../../../common/util";
+import { UpdateClassIfGreater } from "../../../../utils/class";
+import { GetUserWithIDGuaranteed } from "../../../../utils/user";
+import { ParseEA3SoftID } from "../../../../utils/util";
 import { EXT_HEROIC_VERSE, MODEL_INFINITAS_2, REV_2DXBMS } from "../../../../constants/ea3id";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
 import { ParseFervidexStatic } from "../../../../score-import/import-types/ir/fervidex-static/parser";
 import { ParseFervidexSingle } from "../../../../score-import/import-types/ir/fervidex/parser";
 import { Playtypes } from "kamaitachi-common";
-import CreateLogCtx from "../../../../common/logger";
+import CreateLogCtx from "../../../../utils/logger";
 import { FERVIDEX_COURSE_LOOKUP } from "../../../../score-import/import-types/ir/fervidex-static/class-handler";
 
 const logger = CreateLogCtx(__filename);

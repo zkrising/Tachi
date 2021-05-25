@@ -1,6 +1,6 @@
 import { integer, PBScoreDocument } from "kamaitachi-common";
 import db from "../../../external/mongo/db";
-import { KtLogger } from "../../../common/types";
+import { KtLogger } from "../../../utils/types";
 import { CreatePBDoc, UpdateChartRanking, PBScoreDocumentNoRank } from "./create-pb-doc";
 
 export async function ProcessPBs(

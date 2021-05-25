@@ -1,5 +1,5 @@
 import supertest from "supertest";
-import CreateLogCtx from "../common/logger";
+import CreateLogCtx from "../utils/logger";
 
 const logger = CreateLogCtx(__filename);
 

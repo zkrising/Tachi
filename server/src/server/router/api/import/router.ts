@@ -2,14 +2,14 @@ import { Router } from "express";
 import { FileUploadImportTypes } from "kamaitachi-common";
 import { fileImportTypes } from "kamaitachi-common/js/config";
 import Prudence from "prudence";
-import { GetUserWithIDGuaranteed } from "../../../../common/user";
-import CreateLogCtx from "../../../../common/logger";
+import { GetUserWithIDGuaranteed } from "../../../../utils/user";
+import CreateLogCtx from "../../../../utils/logger";
 import prValidate from "../../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../../../score-import/framework/score-importing/score-import-error";
-import { KtLogger } from "../../../../common/types";
+import { KtLogger } from "../../../../utils/types";
 import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
-import { CreateMulterSingleUploadMiddleware } from "../../../../common/multer";
+import { CreateMulterSingleUploadMiddleware } from "../../../../utils/multer";
 
 const logger = CreateLogCtx(__filename);
 

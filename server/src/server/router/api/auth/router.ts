@@ -7,15 +7,15 @@ import {
     ReinstateInvite,
     ValidatePassword,
     ValidateCaptcha,
-} from "../../../../common/auth";
+} from "../../../../utils/auth";
 import {
     FormatUserDoc,
     GetUserCaseInsensitive,
     PRIVATEINFO_GetUserCaseInsensitive,
-} from "../../../../common/user";
+} from "../../../../utils/user";
 
 import db from "../../../../external/mongo/db";
-import CreateLogCtx from "../../../../common/logger";
+import CreateLogCtx from "../../../../utils/logger";
 import prValidate from "../../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 

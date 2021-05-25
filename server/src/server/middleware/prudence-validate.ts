@@ -1,5 +1,5 @@
 import Prudence, { MiddlewareErrorHandler } from "prudence";
-import CreateLogCtx from "../../common/logger";
+import CreateLogCtx from "../../utils/logger";
 
 const logger = CreateLogCtx(__filename);
 

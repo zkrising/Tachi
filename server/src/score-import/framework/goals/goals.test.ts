@@ -9,7 +9,7 @@ import {
     ProcessGoal,
 } from "./goals";
 import { GoalDocument, UserGoalDocument } from "kamaitachi-common";
-import { CreateFolderChartLookup } from "../../../common/folder";
+import { CreateFolderChartLookup } from "../../../utils/folder";
 import {
     GetKTDataJSON,
     Testing511SPA,
@@ -19,7 +19,7 @@ import {
     TestingIIDXFolderSP10,
 } from "../../../test-utils/test-data";
 import deepmerge from "deepmerge";
-import CreateLogCtx from "../../../common/logger";
+import CreateLogCtx from "../../../utils/logger";
 import crypto from "crypto";
 
 const logger = CreateLogCtx(__filename);

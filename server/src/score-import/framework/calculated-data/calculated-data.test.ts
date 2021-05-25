@@ -1,7 +1,7 @@
 import Pr from "prudence";
 import t from "tap";
 import db, { CloseMongoConnection } from "../../../external/mongo/db";
-import CreateLogCtx from "../../../common/logger";
+import CreateLogCtx from "../../../utils/logger";
 import { prAssert } from "../../../test-utils/asserts";
 import {
     Testing511SPA,
@@ -12,7 +12,7 @@ import {
 import { CreateCalculatedData, CalculateLampRating, CalculateRating } from "./calculated-data";
 import deepmerge from "deepmerge";
 import ResetDBState from "../../../test-utils/reset-db-state";
-import { GetDefaultTierlist } from "../../../common/tierlist";
+import { GetDefaultTierlist } from "../../../utils/tierlist";
 
 const mockLogger = CreateLogCtx(__filename);
 

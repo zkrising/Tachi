@@ -5,19 +5,19 @@ import {
     InvalidScoreFailure,
     KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { FindSongOnID, FindSongOnTitleInsensitive } from "../../../../common/database-lookup/song";
+import { FindSongOnID, FindSongOnTitleInsensitive } from "../../../../utils/database-lookup/song";
 import {
     FindBMSChartOnHash,
     FindChartWithPTDF,
     FindChartWithPTDFVersion,
     FindDDRChartOnSongHash,
-} from "../../../../common/database-lookup/chart";
+} from "../../../../utils/database-lookup/chart";
 import {
     AssertStrAsDifficulty,
     AssertStrAsPositiveInt,
 } from "../../../framework/common/string-asserts";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
-import { KtLogger } from "../../../../common/types";
+import { KtLogger } from "../../../../utils/types";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction, ConverterFnReturn } from "../types";
 

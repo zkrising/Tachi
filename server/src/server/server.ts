@@ -1,6 +1,6 @@
 import express, { Express } from "express";
 import "express-async-errors";
-import CreateLogCtx from "../common/logger";
+import CreateLogCtx from "../utils/logger";
 import expressSession from "express-session";
 import { SESSION_SECRET } from "../secrets";
 import { integer } from "kamaitachi-common";

@@ -11,7 +11,7 @@ import {
     CalculateVF5,
     KaidenPercentile,
 } from "./game-specific-stats";
-import CreateLogCtx from "../../../common/logger";
+import CreateLogCtx from "../../../utils/logger";
 import { isApproximately } from "../../../test-utils/asserts";
 import { DryScore } from "../common/types";
 

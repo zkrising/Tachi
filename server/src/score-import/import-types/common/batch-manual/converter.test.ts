@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import CreateLogCtx from "../../../../common/logger";
+import CreateLogCtx from "../../../../utils/logger";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../test-utils/test-data";
 import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
-import { EscapeStringRegexp } from "../../../../common/util";
+import { EscapeStringRegexp } from "../../../../utils/util";
 import db, { CloseMongoConnection } from "../../../../external/mongo/db";
 import { Game } from "kamaitachi-common";
 import ResetDBState from "../../../../test-utils/reset-db-state";

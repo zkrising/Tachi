@@ -1,4 +1,4 @@
-import { EmptyObject, KtLogger } from "../../../common/types";
+import { EmptyObject, KtLogger } from "../../../utils/types";
 import { MerScore } from "../file/mer-iidx/types";
 import { S3Score } from "../file/solid-state-squad/types";
 import { BarbatosScore } from "../ir/barbatos/types";

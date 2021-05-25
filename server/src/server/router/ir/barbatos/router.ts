@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { GetUserWithIDGuaranteed } from "../../../../common/user";
+import { GetUserWithIDGuaranteed } from "../../../../utils/user";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
 import { ParseBarbatosSingle } from "../../../../score-import/import-types/ir/barbatos/parser";

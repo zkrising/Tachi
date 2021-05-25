@@ -5,6 +5,7 @@
     "main": "js/index.js",
     "scripts": {
         "fulltest": "export $(xargs < .env) && tap",
+        "test": "export $(xargs < .env) && tap",
         "watchtest": "export $(xargs < .env) && tap --watch",
         "build": "tsc --project tsconfig.build.json",
         "lint": "eslint ./src --ext .ts --fix",

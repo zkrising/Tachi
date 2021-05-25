@@ -7,12 +7,12 @@ import {
     ValidateCaptcha,
 } from "./auth";
 import t from "tap";
-import db, { CloseMongoConnection } from "../external/mongo/db";
+import db, { CloseMongoConnection } from "../../../../external/mongo/db";
 import { PrivateUserDocument } from "kamaitachi-common";
-import { prAssert } from "../test-utils/asserts";
+import { prAssert } from "../../../../test-utils/asserts";
 import Prudence from "prudence";
-import ResetDBState from "../test-utils/reset-db-state";
-import { MockFetch } from "../test-utils/mock-fetch";
+import ResetDBState from "../../../../test-utils/reset-db-state";
+import { MockFetch } from "../../../../test-utils/mock-fetch";
 
 t.test("#CreateAPIKey", (t) => {
     t.match(

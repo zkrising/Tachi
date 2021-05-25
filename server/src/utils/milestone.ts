@@ -1,46 +1,10 @@
 import { MilestoneDocument, integer, GoalImportInfo } from "kamaitachi-common";
 
 /**
- * Processes and updates a user's milestones from their Goal Import Info (i.e. what is returned
- * about goals from imports)
- */
-export function ProcessMilestoneFromGII(
-    milestone: MilestoneDocument,
-    gii: Map<string, GoalImportInfo["new"]>
-) {
-    const goalIDs = GetGoalIDsFromMilestone(milestone);
-
-    let progress = 0;
-
-    for (const goalID of goalIDs) {
-        const userInfo = gii.get(goalID);
-
-        if (!userInfo) {
-            continue;
-        }
-
-        if (!userInfo.achieved) {
-            continue;
-        }
-
-        progress++;
-    }
-
-    const outOf = CalculateMilestoneOutOf(milestone, goalIDs);
-
-    // milestone achieved!
-    if (progress >= outOf) {
-        return { achieved: true, progress };
-    }
-
-    return { achieved: false, progress };
-}
-
-/**
  * Retrieves the goalID documents in a single array from the
  * nested structure of milestones.
  */
-function GetGoalIDsFromMilestone(milestone: MilestoneDocument) {
+export function GetGoalIDsFromMilestone(milestone: MilestoneDocument) {
     // this sucks - maybe a nicer way to do this, because nested
     // maps are just ugly
     return milestone.milestoneData.map((e) => e.goals.map((e) => e.goalID)).flat(1);
@@ -50,7 +14,7 @@ function GetGoalIDsFromMilestone(milestone: MilestoneDocument) {
  * Work out how many goals need to be achieved for this
  * milestone to be considered completed.
  */
-function CalculateMilestoneOutOf(milestone: MilestoneDocument, goalIDs: string[]): integer {
+export function CalculateMilestoneOutOf(milestone: MilestoneDocument, goalIDs: string[]): integer {
     if (milestone.criteria.type === "all") {
         return goalIDs.length;
     } else if (milestone.criteria.type === "abs") {

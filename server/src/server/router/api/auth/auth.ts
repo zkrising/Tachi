@@ -6,13 +6,13 @@ import {
     PublicAPIKeyDocument,
     PublicUserDocument,
 } from "kamaitachi-common";
-import db from "../external/mongo/db";
-import { GetNextCounterValue } from "./db";
 import { InsertResult } from "monk";
-import CreateLogCtx from "./logger";
-import { FormatUserDoc } from "./user";
-import nodeFetch from "./fetch";
-import { CAPTCHA_SECRET_KEY } from "../secrets";
+import { CAPTCHA_SECRET_KEY } from "../../../../example-secrets";
+import db from "../../../../external/mongo/db";
+import { GetNextCounterValue } from "../../../../utils/db";
+import CreateLogCtx from "../../../../utils/logger";
+import { FormatUserDoc } from "../../../../utils/user";
+import nodeFetch from "../../../../utils/fetch";
 
 const logger = CreateLogCtx(__filename);
 

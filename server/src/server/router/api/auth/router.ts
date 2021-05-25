@@ -7,7 +7,7 @@ import {
     ReinstateInvite,
     ValidatePassword,
     ValidateCaptcha,
-} from "../../../../utils/auth";
+} from "./auth";
 import {
     FormatUserDoc,
     GetUserCaseInsensitive,

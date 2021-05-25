@@ -3,7 +3,7 @@ import { ChartDocument } from "kamaitachi-common";
 import p, { PrudenceSchema } from "prudence";
 import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import { FormatPrError } from "../../../../utils/prudence";
-import { USCClientScore } from "../../../../server/router/ir/usc/common";
+import { USCClientScore } from "../../../../server/router/ir/usc/usc";
 import { IRUSCContext } from "./types";
 import { ConverterIRUSC } from "./converter";
 import { ParserFunctionReturnsSync } from "../../common/types";

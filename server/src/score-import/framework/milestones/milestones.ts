@@ -6,10 +6,47 @@ import {
     GoalImportInfo,
     UserMilestoneDocument,
     MilestoneImportInfo,
+    MilestoneDocument,
 } from "kamaitachi-common";
 import db from "../../../external/mongo/db";
-import { ProcessMilestoneFromGII } from "../../../utils/milestone";
 import { BulkWriteUpdateOneOperation } from "mongodb";
+import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "../../../utils/milestone";
+
+/**
+ * Processes and updates a user's milestones from their Goal Import Info (i.e. what is returned
+ * about goals from imports)
+ */
+export function ProcessMilestoneFromGII(
+    milestone: MilestoneDocument,
+    gii: Map<string, GoalImportInfo["new"]>
+) {
+    const goalIDs = GetGoalIDsFromMilestone(milestone);
+
+    let progress = 0;
+
+    for (const goalID of goalIDs) {
+        const userInfo = gii.get(goalID);
+
+        if (!userInfo) {
+            continue;
+        }
+
+        if (!userInfo.achieved) {
+            continue;
+        }
+
+        progress++;
+    }
+
+    const outOf = CalculateMilestoneOutOf(milestone, goalIDs);
+
+    // milestone achieved!
+    if (progress >= outOf) {
+        return { achieved: true, progress };
+    }
+
+    return { achieved: false, progress };
+}
 
 export async function UpdateUsersMilestones(
     importGoalInfo: GoalImportInfo[],

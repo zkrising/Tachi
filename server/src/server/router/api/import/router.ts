@@ -9,7 +9,7 @@ import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../../../score-import/framework/score-importing/score-import-error";
 import { KtLogger } from "../../../../utils/types";
 import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
-import { CreateMulterSingleUploadMiddleware } from "../../../../utils/multer";
+import { CreateMulterSingleUploadMiddleware } from "../../../middleware/multer-upload";
 
 const logger = CreateLogCtx(__filename);
 

@@ -10,13 +10,13 @@ import {
 } from "kamaitachi-common";
 import { AssertStrAsPositiveNonZeroInt } from "../../../../score-import/framework/common/string-asserts";
 import CreateLogCtx from "../../../../utils/logger";
-import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./common";
+import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./usc";
 import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
 import { GetUserWithID } from "../../../../utils/user";
 import { KtLogger } from "../../../../utils/types";
 import { ParseIRUSC } from "../../../../score-import/import-types/ir/usc/parser";
 import { USCIR_MAX_LEADERBOARD_N } from "../../../../constants/usc-ir";
-import { CreateMulterSingleUploadMiddleware } from "../../../../utils/multer";
+import { CreateMulterSingleUploadMiddleware } from "../../../middleware/multer-upload";
 
 const logger = CreateLogCtx(__filename);
 

@@ -52,7 +52,7 @@ app.use(express.json({ limit: "1mb" }));
 
 import mainRouter from "./router/router";
 
-app.use("/", apiRouter);
+app.use("/", mainRouter);
 
 /**
  * If any user gets to this point, we send them index.html and let react router do the routing (and 404ing)

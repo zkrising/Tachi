@@ -70,7 +70,7 @@ export interface GameToIDStrings {
 export interface MongoDBDocument {
     _id?: IObjectID;
 }
-export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "notifications" | "imports" | "import-timings" | "tierlist-data" | "tierlist" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users" | "kai-auth-tokens" | "usc-auth-tokens";
+export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "notifications" | "imports" | "import-timings" | "tierlist-data" | "tierlists" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users" | "kai-auth-tokens" | "usc-auth-tokens";
 export declare type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 /**
  * Supported games by Kamaitachi.
@@ -740,7 +740,9 @@ interface SongDocumentData {
     };
     ddr: Record<string, never>;
     bms: {
-        genre: string;
+        genre: string | null;
+        subtitle: string | null;
+        subartist: string | null;
     };
     chunithm: {
         genre: string;

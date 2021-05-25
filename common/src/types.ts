@@ -105,7 +105,7 @@ export type Databases =
     | "imports"
     | "import-timings"
     | "tierlist-data"
-    | "tierlist"
+    | "tierlists"
     | "goals"
     | "user-goals"
     | "user-milestones"
@@ -945,7 +945,7 @@ interface SongDocumentData {
     sdvx: { uscEquiv: integer | null };
     usc: { sdvxEquiv: integer | null };
     ddr: Record<string, never>;
-    bms: { genre: string };
+    bms: { genre: string | null; subtitle: string | null; subartist: string | null };
     chunithm: { genre: string };
     gitadora: Record<string, never>;
 }

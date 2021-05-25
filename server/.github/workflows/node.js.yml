@@ -3,6 +3,16 @@
 
 name: Node.js CI
 
+env:
+  KTBKS_MONGO_BASE_URL: "192.168.0.1"
+  NODE_ENV: "test"
+  KTBKS_LOG_LEVEL: "info"
+  KTBKS_CAPTCHA_SECRET_KEY: "unused"
+  KTBKS_SESSION_SECRET: "unused"
+  KTBKS_FLO_API_URL: "unused"
+  KTBKS_EAG_API_URL: "unused"
+  KTBKS_ARC_API_URL: "unused"
+
 on:
   push:
     branches: [ master ]
@@ -19,20 +29,13 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 15.x
-        
-    - name: Cache pnpm modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-pnpm-modules
-      with:
-        path: ~/.pnpm-store
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-15.x-${{ hashFiles('**/package.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-15.x-
     
     - uses: pnpm/action-setup@v2.0.1
       with:
         version: 6.0.2
+        
+    - uses: supercharge/mongodb-github-action@1.4.1
+    - uses: supercharge/redis-github-action@1.1.0
   
     - run: pnpm i
     - run: pnpm lint

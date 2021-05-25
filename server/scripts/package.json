@@ -1,0 +1,12 @@
+{
+    "name": "ktblack-server-scripts",
+    "version": "0.0.0",
+    "description": "Scripts and their dependencies for KTBlack. This lets us separate dependencies to avoid unecessary overhead in the CI/CD pipeline.",
+    "main": "",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}

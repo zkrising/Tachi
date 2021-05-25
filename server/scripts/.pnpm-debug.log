@@ -1,0 +1,14 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_CANNOT_REMOVE_MISSING_DEPS",
+    "err": {
+      "name": "Error",
+      "message": "Cannot remove 'better-sqlite3': project has no dependencies of any kind",
+      "code": "ERR_PNPM_CANNOT_REMOVE_MISSING_DEPS",
+      "stack": "Error: Cannot remove 'better-sqlite3': project has no dependencies of any kind\n    at Object.handler (/home/zkldi/pnpm-global/5/node_modules/.pnpm/pnpm@6.4.0/node_modules/pnpm/dist/pnpm.cjs:116381:15)\n    at async Timeout._onTimeout (/home/zkldi/pnpm-global/5/node_modules/.pnpm/pnpm@6.4.0/node_modules/pnpm/dist/pnpm.cjs:124690:24)"
+    }
+  }
+}

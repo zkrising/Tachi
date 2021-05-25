@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import db, { CloseMongoConnection } from "../../../../external/mongo/db";
-import CreateLogCtx from "../../../../utils/logger";
+import CreateLogCtx from "../../../../logger/logger";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../test-utils/test-data";
 import { InternalFailure } from "../../../framework/common/converter-failures";

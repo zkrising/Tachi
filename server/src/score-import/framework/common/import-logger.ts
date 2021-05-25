@@ -1,7 +1,7 @@
 import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
 import crypto from "crypto";
 import { FormatUserDoc } from "../../../utils/user";
-import { rootLogger } from "../../../utils/logger";
+import { rootLogger } from "../../../logger/logger";
 import { KtLogger } from "../../../utils/types";
 
 export function CreateImportLoggerAndID(userDoc: PublicUserDocument, importType: ImportTypes) {

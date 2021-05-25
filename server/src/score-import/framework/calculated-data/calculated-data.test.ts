@@ -1,7 +1,7 @@
 import Pr from "prudence";
 import t from "tap";
 import db, { CloseMongoConnection } from "../../../external/mongo/db";
-import CreateLogCtx from "../../../utils/logger";
+import CreateLogCtx from "../../../logger/logger";
 import { prAssert } from "../../../test-utils/asserts";
 import {
     Testing511SPA,

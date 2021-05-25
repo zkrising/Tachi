@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import { CloseMongoConnection } from "../../../../external/mongo/db";
-import CreateLogCtx from "../../../../utils/logger";
+import CreateLogCtx from "../../../../logger/logger";
 import { MockMulterFile } from "../../../../test-utils/mock-multer";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { GetKTDataBuffer, GetKTDataJSON } from "../../../../test-utils/test-data";

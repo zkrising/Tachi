@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { GetUserWithID, GetUserWithIDGuaranteed } from "../../../../utils/user";
-import CreateLogCtx from "../../../../utils/logger";
+import CreateLogCtx from "../../../../logger/logger";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
 import ParseDirectManual from "../../../../score-import/import-types/ir/direct-manual/parser";

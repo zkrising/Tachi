@@ -19,7 +19,7 @@ import {
     TestingIIDXFolderSP10,
 } from "../../../test-utils/test-data";
 import deepmerge from "deepmerge";
-import CreateLogCtx from "../../../utils/logger";
+import CreateLogCtx from "../../../logger/logger";
 import crypto from "crypto";
 
 const logger = CreateLogCtx(__filename);

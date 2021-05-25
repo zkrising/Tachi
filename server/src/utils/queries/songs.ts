@@ -1,7 +1,7 @@
 import { Game, AnySongDocument, integer } from "kamaitachi-common";
 import { FindOneResult } from "monk";
 import db from "../../external/mongo/db";
-import { EscapeStringRegexp } from "../util";
+import { EscapeStringRegexp } from "../misc";
 
 /**
  * Finds a song document for the given game with the given title (or alt-title).

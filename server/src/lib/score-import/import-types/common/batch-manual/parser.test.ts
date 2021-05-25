@@ -4,7 +4,7 @@ import CreateLogCtx from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParseBatchManualFromObject as ParserFn } from "./parser";
 import { BatchManual } from "./types";
-import { EscapeStringRegexp } from "../../../../../utils/util";
+import { EscapeStringRegexp } from "../../../../../utils/misc";
 import deepmerge from "deepmerge";
 
 const mockErr = (...msg: string[]) =>

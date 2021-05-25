@@ -30,3 +30,10 @@ export function Random20Hex() {
 export function MStoS(ms: number) {
     return Math.floor(ms / 1000);
 }
+
+/**
+ * Random From Array - Selects a random value from an array.
+ */
+export function RFA(arr: unknown[]) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}

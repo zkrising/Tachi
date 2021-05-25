@@ -101,7 +101,7 @@ export function ValidatePercent(game: Game, percent: number, chart: AnyChartDocu
 
     if (percent > gamePercentMax[game]) {
         throw new InvalidScoreFailure(
-            `Invalid percent of ${percent} - expected a value less than ${gamePercentMax[game]}%.`
+            `Invalid percent of ${percent} - expected a value less than ${gamePercentMax[game]}% (${chart.songID} ${chart.playtype} ${chart.difficulty}).`
         );
     }
 }

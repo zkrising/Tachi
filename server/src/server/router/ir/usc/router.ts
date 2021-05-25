@@ -8,13 +8,13 @@ import {
     SuccessfulAPIResponse,
     ImportDocument,
 } from "kamaitachi-common";
-import { AssertStrAsPositiveNonZeroInt } from "../../../../score-import/framework/common/string-asserts";
+import { AssertStrAsPositiveNonZeroInt } from "../../../../lib/score-import/framework/common/string-asserts";
 import CreateLogCtx from "../../../../logger/logger";
 import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./usc";
-import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
+import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { GetUserWithID } from "../../../../utils/user";
 import { KtLogger } from "../../../../utils/types";
-import { ParseIRUSC } from "../../../../score-import/import-types/ir/usc/parser";
+import { ParseIRUSC } from "../../../../lib/score-import/import-types/ir/usc/parser";
 import { USCIR_MAX_LEADERBOARD_N } from "../../../../constants/usc-ir";
 import { CreateMulterSingleUploadMiddleware } from "../../../middleware/multer-upload";
 

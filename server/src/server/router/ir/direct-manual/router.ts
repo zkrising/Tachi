@@ -2,8 +2,8 @@ import { Router } from "express";
 import { GetUserWithID, GetUserWithIDGuaranteed } from "../../../../utils/user";
 import CreateLogCtx from "../../../../logger/logger";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
-import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
-import ParseDirectManual from "../../../../score-import/import-types/ir/direct-manual/parser";
+import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
+import ParseDirectManual from "../../../../lib/score-import/import-types/ir/direct-manual/parser";
 
 const router: Router = Router({ mergeParams: true });
 

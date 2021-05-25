@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { GetUserWithIDGuaranteed } from "../../../../utils/user";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
-import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
-import { ParseBarbatosSingle } from "../../../../score-import/import-types/ir/barbatos/parser";
+import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
+import { ParseBarbatosSingle } from "../../../../lib/score-import/import-types/ir/barbatos/parser";
 
 const router: Router = Router({ mergeParams: true });
 

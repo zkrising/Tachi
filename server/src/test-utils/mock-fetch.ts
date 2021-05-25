@@ -1,5 +1,5 @@
 import { Response } from "node-fetch";
-import { NodeFetch } from "../common/fetch";
+import { NodeFetch } from "../utils/fetch";
 
 export function MockFetch(data: Partial<Response>) {
     // We know! this is a mock function.

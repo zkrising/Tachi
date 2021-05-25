@@ -1,0 +1,30 @@
+import { GetNextCounterValue } from "./db";
+import t from "tap";
+import db, { CloseMongoConnection } from "../external/mongo/db";
+import ResetDBState from "../test-utils/reset-db-state";
+
+t.test("#GetNextCounterValue", (t) => {
+    t.beforeEach(ResetDBState);
+
+    t.test("Increments on valid counter hit", async (t) => {
+        const response = await GetNextCounterValue("real-counter");
+
+        // database starts with this at one
+        t.equal(response, 2, "Counter should return the current number stored");
+
+        const dbData = await db.counters.findOne({
+            counterName: "real-counter",
+        });
+
+        t.equal(dbData!.value, 3, "Counter should increment after being hit");
+    });
+
+    t.rejects(
+        () => GetNextCounterValue("fake-counter"),
+        "Could not find sequence document for fake-counter."
+    );
+
+    t.end();
+});
+
+t.teardown(CloseMongoConnection);

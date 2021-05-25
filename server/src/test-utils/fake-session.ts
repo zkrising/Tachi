@@ -1,5 +1,5 @@
 import ResetDBState from "./reset-db-state";
-import CreateLogCtx from "../common/logger";
+import CreateLogCtx from "../lib/logger/logger";
 import supertest from "supertest";
 
 const logger = CreateLogCtx(__filename);

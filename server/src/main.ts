@@ -11,9 +11,9 @@ function FormatVersion() {
     return `v${[major, minor, patch].join(".")} (${name})`;
 }
 
-import CreateLogCtx from "./common/logger";
-import server from "./server";
-import serverConfig from "./server-config";
+import CreateLogCtx from "./lib/logger/logger";
+import server from "./server/server";
+import serverConfig from "./server/server-config";
 import dotenv from "dotenv";
 
 dotenv.config();

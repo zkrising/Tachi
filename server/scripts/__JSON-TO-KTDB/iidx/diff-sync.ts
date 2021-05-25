@@ -67,20 +67,32 @@ const logger = CreateLogCtx("diff.ts");
             }
 
             if (chart.data.notecount !== data.notecounts[diff]) {
+                if (
+                    data.notecounts[diff] === undefined ||
+                    Math.abs(chart.data.notecount - data.notecounts[diff]!) > 2
+                ) {
+                    logger.error(
+                        `Significant Notecount Mismatch with ${data.title} (${diff}) [${chart.data.notecount} -> ${data.notecounts[diff]}] - skipping.`
+                    );
+                    // continue;
+                }
+
                 logger.warn(
                     `Notecount Mismatch with ${data.title} (${diff}) [${chart.data.notecount} -> ${data.notecounts[diff]}]`
                 );
 
-                await db.charts.iidx.update(
-                    {
-                        _id: chart._id,
-                    },
-                    {
-                        $set: {
-                            "data.notecount": data.notecounts[diff],
+                if (options.sync) {
+                    await db.charts.iidx.update(
+                        {
+                            _id: chart._id,
                         },
-                    }
-                );
+                        {
+                            $set: {
+                                "data.notecount": data.notecounts[diff],
+                            },
+                        }
+                    );
+                }
             }
         }
     }

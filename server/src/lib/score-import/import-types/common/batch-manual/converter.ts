@@ -17,7 +17,7 @@ import {
     AssertStrAsPositiveInt,
 } from "../../../framework/common/string-asserts";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
-import { KtLogger } from "../../../../../utils/types";
+import { KtLogger } from "../../../../../lib/logger/logger";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction, ConverterFnReturn } from "../types";
 

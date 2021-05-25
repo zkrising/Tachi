@@ -10,12 +10,12 @@ import {
     Game,
 } from "kamaitachi-common";
 import db from "../../../../external/mongo/db";
-import { AppendLogCtx } from "../../../logger/logger";
+import { AppendLogCtx, KtLogger } from "../../../logger/logger";
 import { GenerateRandomSessionName } from "./name-generation";
 import crypto from "crypto";
 import { CreateSessionCalcData } from "./performance-calc";
 import { GetScoresFromSession } from "../../../../utils/session";
-import { KtLogger } from "../../../../utils/types";
+
 import { ScorePlaytypeMap } from "../common/types";
 
 const TWO_HOURS = 1000 * 60 * 60 * 2;

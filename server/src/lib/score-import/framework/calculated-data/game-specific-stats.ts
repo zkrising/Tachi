@@ -1,6 +1,6 @@
 import { AnyChartDocument, ESDCore, integer, Grades, Lamps } from "kamaitachi-common";
 import db from "../../../../external/mongo/db";
-import { KtLogger } from "../../../../utils/types";
+import { KtLogger } from "../../../../lib/logger/logger";
 import { DryScore } from "../common/types";
 
 /**

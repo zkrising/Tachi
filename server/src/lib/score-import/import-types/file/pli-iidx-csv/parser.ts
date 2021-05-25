@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../../../utils/types";
+import { KtLogger } from "../../../../../lib/logger/logger";
 import GenericParseEamIIDXCSV from "../../common/eamusement-iidx-csv/parser";
 import {
     IIDXEamusementCSVContext,

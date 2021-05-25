@@ -5,7 +5,7 @@ import {
     GetDefaultTierlist,
     GetOneTierlistData,
 } from "../../../../utils/tierlist";
-import { KtLogger } from "../../../../utils/types";
+import { KtLogger } from "../../../../lib/logger/logger";
 import { DryScore } from "../common/types";
 import { CreateGameSpecific } from "./game-specific";
 import { CalculateCHUNITHMRating, CalculateGITADORARating } from "./game-specific-stats";

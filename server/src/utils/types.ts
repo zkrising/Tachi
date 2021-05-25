@@ -26,8 +26,6 @@ export interface KTSuccessResponse {
 
 export type KTReponse = KTFailResponse | KTSuccessResponse;
 
-export type KtLogger = Logger & { severe: LeveledLogMethod };
-
 /**
  * Clarity type for empty objects - such as in context.
  */

@@ -1,5 +1,6 @@
-import winston, { format, transports } from "winston";
-import { KtLogger } from "../../utils/types";
+import winston, { format, transports, Logger, LeveledLogMethod } from "winston";
+
+export type KtLogger = Logger & { severe: LeveledLogMethod };
 
 const level = process.env.LOG_LEVEL ?? "info";
 

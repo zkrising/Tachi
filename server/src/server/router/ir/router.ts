@@ -1,9 +1,9 @@
 import { Router } from "express";
-import barbatosIR from "./barbatos/barbatos";
-import chunitachiIR from "./chunitachi/chunitachi";
-import directManualIR from "./direct-manual/direct-manual";
-import fervidexIR from "./fervidex/fervidex";
-import uscIR from "./usc/usc";
+import barbatosIR from "./barbatos/router";
+import chunitachiIR from "./chunitachi/router";
+import directManualIR from "./direct-manual/router";
+import fervidexIR from "./fervidex/router";
+import uscIR from "./usc/router";
 
 const router: Router = Router({ mergeParams: true });
 

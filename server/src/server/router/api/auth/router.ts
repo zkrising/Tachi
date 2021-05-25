@@ -7,17 +7,17 @@ import {
     ReinstateInvite,
     ValidatePassword,
     ValidateCaptcha,
-} from "../../common/auth";
+} from "../../../../common/auth";
 import {
     FormatUserDoc,
     GetUserCaseInsensitive,
     PRIVATEINFO_GetUserCaseInsensitive,
-} from "../../common/user";
+} from "../../../../common/user";
 
-import db from "../../external/mongo/db";
-import CreateLogCtx from "../../common/logger";
-import prValidate from "../../middleware/prudence-validate";
-import { RequireLoggedIn } from "../../middleware/require-logged-in";
+import db from "../../../../external/mongo/db";
+import CreateLogCtx from "../../../../common/logger";
+import prValidate from "../../../middleware/prudence-validate";
+import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 
 const logger = CreateLogCtx(__filename);
 

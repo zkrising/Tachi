@@ -1,11 +1,11 @@
 import t from "tap";
-import db from "../../../external/mongo/db";
-import { RequireNeutralAuthentication } from "../../../test-utils/api-common";
-import { CloseAllConnections } from "../../../test-utils/close-connections";
-import { CreateFakeAuthCookie } from "../../../test-utils/fake-session";
-import mockApi from "../../../test-utils/mock-api";
-import ResetDBState from "../../../test-utils/reset-db-state";
-import { GetKTDataJSON } from "../../../test-utils/test-data";
+import db from "../../../../external/mongo/db";
+import { RequireNeutralAuthentication } from "../../../../test-utils/api-common";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
+import { CreateFakeAuthCookie } from "../../../../test-utils/fake-session";
+import mockApi from "../../../../test-utils/mock-api";
+import ResetDBState from "../../../../test-utils/reset-db-state";
+import { GetKTDataJSON } from "../../../../test-utils/test-data";
 import deepmerge from "deepmerge";
 
 t.test("POST /api/ir/chunitachi/import", async (t) => {

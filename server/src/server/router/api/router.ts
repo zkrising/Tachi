@@ -1,7 +1,7 @@
 import { Router } from "express";
-import authRouter from "./auth/auth";
-import importRouter from "./import/import";
-import irRouter from "./ir/ir";
+import authRouter from "./auth/router";
+import importRouter from "./import/router";
+import irRouter from "../ir/router";
 
 const router: Router = Router({ mergeParams: true });
 

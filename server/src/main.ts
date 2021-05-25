@@ -12,7 +12,7 @@ function FormatVersion() {
 }
 
 import CreateLogCtx from "./common/logger";
-import server from "./server";
+import server from "./server/server";
 import serverConfig from "./server-config";
 import dotenv from "dotenv";
 

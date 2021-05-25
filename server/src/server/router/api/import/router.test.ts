@@ -1,16 +1,16 @@
 import t from "tap";
-import mockApi from "../../test-utils/mock-api";
+import mockApi from "../../../../test-utils/mock-api";
 import {
     GetKTDataBuffer,
     LoadKTBlackIIDXData,
     TestingIIDXEamusementCSV26,
     TestingIIDXEamusementCSV27,
-} from "../../test-utils/test-data";
-import { CloseAllConnections } from "../../test-utils/close-connections";
-import { RequireNeutralAuthentication } from "../../test-utils/api-common";
-import { CreateFakeAuthCookie } from "../../test-utils/fake-session";
-import ResetDBState from "../../test-utils/reset-db-state";
-import db from "../../external/mongo/db";
+} from "../../../../test-utils/test-data";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
+import { RequireNeutralAuthentication } from "../../../../test-utils/api-common";
+import { CreateFakeAuthCookie } from "../../../../test-utils/fake-session";
+import ResetDBState from "../../../../test-utils/reset-db-state";
+import db from "../../../../external/mongo/db";
 
 // reset DB handles the post-stuff
 

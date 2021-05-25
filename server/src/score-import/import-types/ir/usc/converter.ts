@@ -1,4 +1,4 @@
-import { USCClientScore } from "../../../../api/ir/usc/common";
+import { USCClientScore } from "../../../../server/router/ir/usc/common";
 import { FindSongOnID } from "../../../../common/database-lookup/song";
 import { KtLogger } from "../../../../types";
 import { InternalFailure, InvalidScoreFailure } from "../../../framework/common/converter-failures";

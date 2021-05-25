@@ -3,7 +3,7 @@ import CreateLogCtx from "../common/logger";
 
 const logger = CreateLogCtx(__filename);
 
-import server from "../server";
+import server from "../server/server";
 
 logger.verbose("Creating Mock Server Connection...");
 const connection = server.listen(8079);

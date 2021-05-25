@@ -1,10 +1,10 @@
 import express, { Express } from "express";
 import "express-async-errors";
-import CreateLogCtx from "./common/logger";
+import CreateLogCtx from "../common/logger";
 import expressSession from "express-session";
-import { SESSION_SECRET } from "./secrets";
+import { SESSION_SECRET } from "../secrets";
 import { integer } from "kamaitachi-common";
-import { RedisClient, RedisStore } from "./external/redis/redis-store";
+import { RedisClient, RedisStore } from "../external/redis/redis-store";
 
 const logger = CreateLogCtx(__filename);
 
@@ -50,9 +50,9 @@ process.on("unhandledRejection", (reason, promise) => {
 // limit them so as not to choke the api
 app.use(express.json({ limit: "1mb" }));
 
-import apiRouter from "./api/api";
+import mainRouter from "./router/router";
 
-app.use("/api", apiRouter);
+app.use("/", apiRouter);
 
 /**
  * If any user gets to this point, we send them index.html and let react router do the routing (and 404ing)

@@ -1,22 +1,22 @@
 import { Router, RequestHandler } from "express";
-import { FindChartOnSHA256 } from "../../../common/database-lookup/chart";
-import { SYMBOL_KtchiData } from "../../../constants/ktchi";
-import db from "../../../external/mongo/db";
+import { FindChartOnSHA256 } from "../../../../common/database-lookup/chart";
+import { SYMBOL_KtchiData } from "../../../../constants/ktchi";
+import db from "../../../../external/mongo/db";
 import {
     ChartDocument,
     PBScoreDocument,
     SuccessfulAPIResponse,
     ImportDocument,
 } from "kamaitachi-common";
-import { AssertStrAsPositiveNonZeroInt } from "../../../score-import/framework/common/string-asserts";
-import CreateLogCtx from "../../../common/logger";
+import { AssertStrAsPositiveNonZeroInt } from "../../../../score-import/framework/common/string-asserts";
+import CreateLogCtx from "../../../../common/logger";
 import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./common";
-import { ExpressWrappedScoreImportMain } from "../../../score-import/framework/express-wrapper";
-import { GetUserWithID } from "../../../common/user";
-import { KtLogger } from "../../../types";
-import { ParseIRUSC } from "../../../score-import/import-types/ir/usc/parser";
-import { USCIR_MAX_LEADERBOARD_N } from "../../../constants/usc-ir";
-import { CreateMulterSingleUploadMiddleware } from "../../../common/multer";
+import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
+import { GetUserWithID } from "../../../../common/user";
+import { KtLogger } from "../../../../types";
+import { ParseIRUSC } from "../../../../score-import/import-types/ir/usc/parser";
+import { USCIR_MAX_LEADERBOARD_N } from "../../../../constants/usc-ir";
+import { CreateMulterSingleUploadMiddleware } from "../../../../common/multer";
 
 const logger = CreateLogCtx(__filename);
 

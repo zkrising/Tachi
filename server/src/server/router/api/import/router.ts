@@ -2,14 +2,14 @@ import { Router } from "express";
 import { FileUploadImportTypes } from "kamaitachi-common";
 import { fileImportTypes } from "kamaitachi-common/js/config";
 import Prudence from "prudence";
-import { GetUserWithIDGuaranteed } from "../../common/user";
-import CreateLogCtx from "../../common/logger";
-import prValidate from "../../middleware/prudence-validate";
-import { RequireLoggedIn } from "../../middleware/require-logged-in";
-import ScoreImportFatalError from "../../score-import/framework/score-importing/score-import-error";
-import { KtLogger } from "../../types";
-import { ExpressWrappedScoreImportMain } from "../../score-import/framework/express-wrapper";
-import { CreateMulterSingleUploadMiddleware } from "../../common/multer";
+import { GetUserWithIDGuaranteed } from "../../../../common/user";
+import CreateLogCtx from "../../../../common/logger";
+import prValidate from "../../../middleware/prudence-validate";
+import { RequireLoggedIn } from "../../../middleware/require-logged-in";
+import ScoreImportFatalError from "../../../../score-import/framework/score-importing/score-import-error";
+import { KtLogger } from "../../../../types";
+import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
+import { CreateMulterSingleUploadMiddleware } from "../../../../common/multer";
 
 const logger = CreateLogCtx(__filename);
 
@@ -64,11 +64,11 @@ router.post(
     }
 );
 
-import ParseEamusementIIDXCSV from "../../score-import/import-types/file/eamusement-iidx-csv/parser";
-import ParseBatchManual from "../../score-import/import-types/file/batch-manual/parser";
-import { ParseSolidStateXML } from "../../score-import/import-types/file/solid-state-squad/parser";
-import { ParseMerIIDX } from "../../score-import/import-types/file/mer-iidx/parser";
-import ParsePLIIIDXCSV from "../../score-import/import-types/file/pli-iidx-csv/parser";
+import ParseEamusementIIDXCSV from "../../../../score-import/import-types/file/eamusement-iidx-csv/parser";
+import ParseBatchManual from "../../../../score-import/import-types/file/batch-manual/parser";
+import { ParseSolidStateXML } from "../../../../score-import/import-types/file/solid-state-squad/parser";
+import { ParseMerIIDX } from "../../../../score-import/import-types/file/mer-iidx/parser";
+import ParsePLIIIDXCSV from "../../../../score-import/import-types/file/pli-iidx-csv/parser";
 
 /**
  * Resolves the data from a file upload into an iterable,

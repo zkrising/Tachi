@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { GetUserWithIDGuaranteed } from "../../../common/user";
+import { GetUserWithIDGuaranteed } from "../../../../common/user";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
-import { ExpressWrappedScoreImportMain } from "../../../score-import/framework/express-wrapper";
-import ParseDirectManual from "../../../score-import/import-types/ir/direct-manual/parser";
+import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
+import ParseDirectManual from "../../../../score-import/import-types/ir/direct-manual/parser";
 
 const router: Router = Router({ mergeParams: true });
 

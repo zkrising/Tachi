@@ -10,7 +10,7 @@ import { InsertResult } from "monk";
 import { CAPTCHA_SECRET_KEY } from "../../../../example-secrets";
 import db from "../../../../external/mongo/db";
 import { GetNextCounterValue } from "../../../../utils/db";
-import CreateLogCtx from "../../../../logger/logger";
+import CreateLogCtx from "../../../../lib/logger/logger";
 import { FormatUserDoc } from "../../../../utils/user";
 import nodeFetch from "../../../../utils/fetch";
 

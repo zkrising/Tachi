@@ -1,5 +1,5 @@
 import { integer, PBScoreDocument, ScoreDocument, ChartDocument } from "kamaitachi-common";
-import CreateLogCtx from "../../../../logger/logger";
+import CreateLogCtx from "../../../../lib/logger/logger";
 import { GetPBOnChart, GetServerRecordOnChart } from "../../../../utils/scores";
 import { MStoS } from "../../../../utils/util";
 import { USCIR_ADJACENT_SCORE_N } from "../../../../constants/usc-ir";

@@ -4,7 +4,7 @@ import ResetDBState from "../../../../test-utils/reset-db-state";
 import { TestingIIDXSPScorePB } from "../../../../test-utils/test-data";
 import { CalculateCustomRatings, CalculateRatings } from "./rating";
 import deepmerge from "deepmerge";
-import CreateLogCtx from "../../../../logger/logger";
+import CreateLogCtx from "../../../logger/logger";
 import crypto from "crypto";
 
 const logger = CreateLogCtx(__filename);

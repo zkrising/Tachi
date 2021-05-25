@@ -15,7 +15,7 @@ import {
 } from "../../../../utils/user";
 
 import db from "../../../../external/mongo/db";
-import CreateLogCtx from "../../../../logger/logger";
+import CreateLogCtx from "../../../../lib/logger/logger";
 import prValidate from "../../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 

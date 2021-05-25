@@ -1,5 +1,5 @@
 import winston, { format, transports } from "winston";
-import { KtLogger } from "../utils/types";
+import { KtLogger } from "../../utils/types";
 
 const level = process.env.LOG_LEVEL ?? "info";
 

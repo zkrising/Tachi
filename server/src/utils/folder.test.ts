@@ -1,5 +1,5 @@
 import t from "tap";
-import CreateLogCtx from "../logger/logger";
+import CreateLogCtx from "../lib/logger/logger";
 import { Testing511SPA } from "../test-utils/test-data";
 import { ChartDocument, FolderDocument } from "kamaitachi-common";
 import {

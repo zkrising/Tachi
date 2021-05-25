@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import CreateLogCtx from "../../../../../logger/logger";
+import CreateLogCtx from "../../../../logger/logger";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../../test-utils/test-data";
 import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";

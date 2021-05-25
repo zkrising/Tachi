@@ -9,7 +9,7 @@ import {
     ImportDocument,
 } from "kamaitachi-common";
 import { AssertStrAsPositiveNonZeroInt } from "../../../../lib/score-import/framework/common/string-asserts";
-import CreateLogCtx from "../../../../logger/logger";
+import CreateLogCtx from "../../../../lib/logger/logger";
 import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./usc";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { GetUserWithID } from "../../../../utils/user";

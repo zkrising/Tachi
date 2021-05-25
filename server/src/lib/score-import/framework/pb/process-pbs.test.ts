@@ -1,6 +1,6 @@
 import t from "tap";
 import db, { CloseMongoConnection } from "../../../../external/mongo/db";
-import CreateLogCtx from "../../../../logger/logger";
+import CreateLogCtx from "../../../logger/logger";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { Testing511SPA, TestingIIDXSPScore } from "../../../../test-utils/test-data";
 import { ProcessPBs } from "./process-pbs";

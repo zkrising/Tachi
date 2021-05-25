@@ -1,6 +1,6 @@
 import t from "tap";
-import { CloseMongoConnection } from "../external/mongo/db";
-import CreateLogCtx, { Transports } from "../logger/logger";
+import { CloseMongoConnection } from "../../external/mongo/db";
+import CreateLogCtx, { Transports } from "./logger";
 
 t.test("Logger Tests", (t) => {
     const logger = CreateLogCtx(__filename);

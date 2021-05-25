@@ -8,7 +8,7 @@ import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/fram
 import { ParseFervidexStatic } from "../../../../lib/score-import/import-types/ir/fervidex-static/parser";
 import { ParseFervidexSingle } from "../../../../lib/score-import/import-types/ir/fervidex/parser";
 import { Playtypes } from "kamaitachi-common";
-import CreateLogCtx from "../../../../logger/logger";
+import CreateLogCtx from "../../../../lib/logger/logger";
 import { FERVIDEX_COURSE_LOOKUP } from "../../../../lib/score-import/import-types/ir/fervidex-static/class-handler";
 
 const logger = CreateLogCtx(__filename);

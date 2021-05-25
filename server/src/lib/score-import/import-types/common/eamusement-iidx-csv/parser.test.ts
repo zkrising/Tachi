@@ -1,5 +1,5 @@
 import t from "tap";
-import CreateLogCtx from "../../../../../logger/logger";
+import CreateLogCtx from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import GenericParseEamIIDXCSV, { NaiveCSVParse, ResolveHeaders } from "./parser";
 import { CloseMongoConnection } from "../../../../../external/mongo/db";

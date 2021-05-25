@@ -26,7 +26,7 @@ import {
     UserMilestoneDocument,
 } from "kamaitachi-common";
 import monk from "monk";
-import CreateLogCtx from "../../logger/logger";
+import CreateLogCtx from "../../lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import CreateLogCtx from "../../logger/logger";
+import CreateLogCtx from "../../lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 

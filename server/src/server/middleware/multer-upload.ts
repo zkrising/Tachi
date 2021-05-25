@@ -2,7 +2,7 @@
 
 import { RequestHandler } from "express";
 import multer, { MulterError } from "multer";
-import CreateLogCtx from "../../logger/logger";
+import CreateLogCtx from "../../lib/logger/logger";
 
 const defaultLogger = CreateLogCtx(__filename);
 

@@ -17,7 +17,7 @@ import {
 } from "../common/converter-failures";
 import { CreateScoreID } from "./score-id";
 import db from "../../../../external/mongo/db";
-import { AppendLogCtx } from "../../../../logger/logger";
+import { AppendLogCtx } from "../../../logger/logger";
 import { KtLogger } from "../../../../utils/types";
 import {
     ConverterFunctionReturns,

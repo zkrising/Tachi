@@ -1,5 +1,5 @@
 import { USCClientScore } from "../../../../server/router/ir/usc/usc";
-import { FindSongOnID } from "../../../../utils/database-lookup/song";
+import { FindSongOnID } from "../../../../utils/queries/songs";
 import { KtLogger } from "../../../../utils/types";
 import { InternalFailure, InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";

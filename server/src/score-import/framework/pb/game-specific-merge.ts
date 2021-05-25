@@ -1,5 +1,5 @@
 import { PBScoreDocument, ScoreDocument } from "kamaitachi-common";
-import { FindChartWithChartID } from "../../../utils/database-lookup/chart";
+import { FindChartWithChartID } from "../../../utils/queries/charts";
 import db from "../../../external/mongo/db";
 import { KtLogger } from "../../../utils/types";
 import { CalculateVF4, CalculateVF5 } from "../calculated-data/game-specific-stats";

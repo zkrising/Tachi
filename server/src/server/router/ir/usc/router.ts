@@ -1,5 +1,5 @@
 import { Router, RequestHandler } from "express";
-import { FindChartOnSHA256 } from "../../../../utils/database-lookup/chart";
+import { FindChartOnSHA256 } from "../../../../utils/queries/charts";
 import { SYMBOL_KtchiData } from "../../../../constants/ktchi";
 import db from "../../../../external/mongo/db";
 import {

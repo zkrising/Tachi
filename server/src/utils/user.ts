@@ -103,29 +103,14 @@ export function ResolveUser(usernameOrID: string) {
     if (usernameOrID.match(/^[0-9]$/u)) {
         const intID = Number(usernameOrID);
 
-        return db.users.findOne(
-            {
-                id: intID,
-            },
-            {
-                projection: OMIT_PRIVATE_USER_RETURNS,
-            }
-        );
+        return GetUserWithID(intID);
     }
 
-    return db.users.findOne(
-        {
-            usernameLowercase: usernameOrID,
-        },
-        {
-            projection: OMIT_PRIVATE_USER_RETURNS,
-        }
-    );
+    return GetUserCaseInsensitive(usernameOrID);
 }
 
 /**
  * Returns a formatted string indicating the user. This is used for logging.
- * (This is not in user.ts to avoid a circular reference issue with logger.ts<->db.ts)
  * @param userdoc The user document to format.
  */
 export function FormatUserDoc(userdoc: PublicUserDocument) {

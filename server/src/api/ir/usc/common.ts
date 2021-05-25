@@ -5,7 +5,7 @@ import { MStoS } from "../../../common/util";
 import { USCIR_ADJACENT_SCORE_N } from "../../../constants/usc-ir";
 import db from "../../../db/db";
 
-const logger = CreateLogCtx("ir/usc/common.ts");
+const logger = CreateLogCtx(__filename);
 
 export interface USCServerScore {
     score: integer;

@@ -1,7 +1,7 @@
 import db from "../db/db";
 import CreateLogCtx from "../common/logger";
 
-const logger = CreateLogCtx("scripts/initialise-counters.ts");
+const logger = CreateLogCtx(__filename);
 
 (async () => {
     let users = await db.counters.findOne({

@@ -7,7 +7,7 @@ import { UpdateUsersMilestones } from "./milestones";
 import { GoalImportInfo } from "kamaitachi-common";
 import deepmerge from "deepmerge";
 
-const logger = CreateLogCtx("milestones.test.ts");
+const logger = CreateLogCtx(__filename);
 
 function CreateMockGII(...garr: [string, boolean][]) {
     return (garr.map((e) => ({

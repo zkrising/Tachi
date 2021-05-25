@@ -6,7 +6,7 @@ import { SESSION_SECRET } from "./secrets";
 import { integer } from "kamaitachi-common";
 import { RedisClient, RedisStore } from "./redis/redis-store";
 
-const logger = CreateLogCtx("server.ts");
+const logger = CreateLogCtx(__filename);
 
 const userSessionMiddleware = expressSession({
     // append node_env onto the end of the session name

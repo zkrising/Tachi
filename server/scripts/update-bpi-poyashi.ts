@@ -10,10 +10,10 @@ import {
     FindChartWithPTDFVersion,
 } from "../src/score-import/database-lookup/chart-ptdf";
 import db from "../src/db/db";
-import CreateLogCtx from "../src/logger";
+import CreateLogCtx from "../src/common/logger";
 const program = new Command();
 
-const logger = CreateLogCtx("update-bpi-poyashi.ts");
+const logger = CreateLogCtx(__filename);
 
 program.option("-f, --fetch", "Fetch the latest data from the poyashi repo.");
 
@@ -36,7 +36,7 @@ async function UpdatePoyashiData() {
     if (options.fetch) {
         // lol!
         logger.info("Fetching data from github...");
-        let rj = await fetch(
+        const rj = await fetch(
             "https://raw.githubusercontent.com/potakusan/bpim-score-repo/master/output/release.json"
         ).then((r) => r.json());
 
@@ -50,7 +50,7 @@ async function UpdatePoyashiData() {
         data = JSON.parse(fs.readFileSync(dataLoc, "utf-8"));
     }
 
-    let realData: IIDXBPIData[] = [];
+    const realData: IIDXBPIData[] = [];
     for (const d of data.body) {
         const res = difficultyResolve[d.difficulty];
 
@@ -60,14 +60,14 @@ async function UpdatePoyashiData() {
 
         const [playtype, diff] = res;
 
-        let ktchiSong = await FindSongOnTitle("iidx", d.title);
+        const ktchiSong = await FindSongOnTitle("iidx", d.title);
 
         if (!ktchiSong) {
             logger.warn(`Cannot find song ${d.title}?`);
             continue;
         }
 
-        let ktchiChart = (await FindChartWithPTDFVersion(
+        const ktchiChart = (await FindChartWithPTDFVersion(
             "iidx",
             ktchiSong.id,
             playtype as "SP" | "DP",
@@ -82,7 +82,7 @@ async function UpdatePoyashiData() {
             continue;
         }
 
-        let kavg = Number(d.avg);
+        const kavg = Number(d.avg);
 
         if (kavg < 0) {
             logger.warn(
@@ -91,7 +91,7 @@ async function UpdatePoyashiData() {
             continue;
         }
 
-        let kesd = ESDCore.CalculateESD(
+        const kesd = ESDCore.CalculateESD(
             config.judgementWindows.iidx.SP,
             kavg / (ktchiChart.data.notecount * 2)
         );

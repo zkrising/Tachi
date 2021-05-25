@@ -7,7 +7,7 @@ import ParseDirectManual from "../../../score-import/import-types/ir/direct-manu
 
 const router: Router = Router({ mergeParams: true });
 
-const logger = CreateLogCtx("direct-manual.ts");
+const logger = CreateLogCtx(__filename);
 
 /**
  * Imports scores in ir/json:direct-manual form.

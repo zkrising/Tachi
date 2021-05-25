@@ -2,14 +2,14 @@
 
 import { ChartDocument } from "kamaitachi-common";
 import db from "../../src/db/db";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";
 import { gameOrders } from "kamaitachi-common/js/config";
 
-const logger = CreateLogCtx("charts-chunithm.ts");
+const logger = CreateLogCtx(__filename);
 
 async function ConvertFn(c: any): Promise<ChartDocument<"chunithm:Single">> {
-    let song = await db.songs.chunithm.findOne({
+    const song = await db.songs.chunithm.findOne({
         id: c.id,
     });
 
@@ -37,7 +37,7 @@ async function ConvertFn(c: any): Promise<ChartDocument<"chunithm:Single">> {
         versions: [], // sentinel
     };
 
-    let idx = gameOrders.chunithm.indexOf(song.firstVersion!);
+    const idx = gameOrders.chunithm.indexOf(song.firstVersion!);
 
     if (idx === -1) {
         logger.warn(`Invalid firstAppearance of ${song.firstVersion!}, running anyway.`);

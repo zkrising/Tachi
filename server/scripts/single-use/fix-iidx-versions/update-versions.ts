@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 import CreateLogCtx from "../../../src/common/logger";
 import { FindSongOnTitleInsensitive } from "../../../src/common/database-lookup/song";
-const logger = CreateLogCtx("scripts/single-use/fix-iidx-versions/update-versions.ts");
+const logger = CreateLogCtx(__filename);
 
 const comicallyLargeJSONData = JSON.parse(
     fs.readFileSync(path.join(__dirname, "./versions.json"), "utf-8")

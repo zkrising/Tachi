@@ -8,7 +8,7 @@ import ResetDBState from "../../../../test-utils/reset-db-state";
 import { GetKTDataBuffer } from "../../../../test-utils/test-data";
 import { ParseSolidStateXML } from "./parser";
 
-const logger = CreateLogCtx("parser.test.ts");
+const logger = CreateLogCtx(__filename);
 
 t.test("#ParseSolidStateXML", (t) => {
     t.beforeEach(ResetDBState);

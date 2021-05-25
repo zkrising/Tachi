@@ -18,7 +18,7 @@ import { ParseIRUSC } from "../../../score-import/import-types/ir/usc/parser";
 import { USCIR_MAX_LEADERBOARD_N } from "../../../constants/usc-ir";
 import { CreateMulterSingleUploadMiddleware } from "../../../common/multer";
 
-const logger = CreateLogCtx("usc.ts");
+const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 

@@ -6,7 +6,7 @@ import CreateLogCtx from "../src/common/logger";
 
 const program = new Command();
 
-const logger = CreateLogCtx("save-testdata-from-ktblack.ts");
+const logger = CreateLogCtx(__filename);
 
 program.option("-c, --collection <collection>", "The collection to fetch ktblack data from.");
 

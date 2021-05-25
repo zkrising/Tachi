@@ -2,10 +2,10 @@
 
 import { UserGoalDocument } from "kamaitachi-common";
 import db from "../../src/db/db";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";
 
-const logger = CreateLogCtx("user-goals.ts");
+const logger = CreateLogCtx(__filename);
 
 async function ConvertFn(c: any): Promise<UserGoalDocument | null> {
     // const newUG: UserGoalDocument = {};

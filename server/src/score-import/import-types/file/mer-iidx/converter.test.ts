@@ -13,7 +13,7 @@ import { ConvertFileMerIIDX } from "./converter";
 import deepmerge from "deepmerge";
 import { MerScore } from "./types";
 
-const logger = CreateLogCtx("converter.test.ts");
+const logger = CreateLogCtx(__filename);
 
 t.test("#ConvertFileMerIIDX", (t) => {
     t.beforeEach(ResetDBState);

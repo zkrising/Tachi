@@ -32,7 +32,7 @@ const ktdWrap = (msg: string, game: Game = "iidx", version = null): any => ({
     data: {}, // any under t.match rules.
 });
 
-const logger = CreateLogCtx("converter.test.ts");
+const logger = CreateLogCtx(__filename);
 
 const importType = "file/batch-manual" as const;
 

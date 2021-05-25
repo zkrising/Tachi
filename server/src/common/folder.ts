@@ -4,7 +4,7 @@ import { FolderDocument, AnyChartDocument, AnySongDocument } from "kamaitachi-co
 import { FilterQuery } from "mongodb";
 import deepmerge from "deepmerge";
 
-const logger = CreateLogCtx("folder.ts");
+const logger = CreateLogCtx(__filename);
 
 // overloads!
 

@@ -14,7 +14,7 @@ import deepmerge from "deepmerge";
 import ResetDBState from "../../../test-utils/reset-db-state";
 import { GetDefaultTierlist } from "../../../common/tierlist";
 
-const mockLogger = CreateLogCtx("calculated-data.test.ts");
+const mockLogger = CreateLogCtx(__filename);
 
 t.test("#CreateCalculatedData", async (t) => {
     const res = await CreateCalculatedData(TestingIIDXSPDryScore, Testing511SPA, 30, mockLogger);

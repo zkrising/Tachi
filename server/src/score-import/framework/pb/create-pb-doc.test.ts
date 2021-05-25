@@ -10,7 +10,7 @@ import { lamps } from "kamaitachi-common/js/config";
 
 let IIDXScore = TestingIIDXSPScore;
 
-const logger = CreateLogCtx("create-pb-doc.test.ts");
+const logger = CreateLogCtx(__filename);
 
 t.test("#CreatePBDoc", (t) => {
     t.beforeEach(ResetDBState);

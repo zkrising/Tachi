@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import CreateLogCtx from "../common/logger";
 
-const logger = CreateLogCtx("require-logged-in.ts");
+const logger = CreateLogCtx(__filename);
 
 export function RequireLoggedIn(req: Request, res: Response, next: NextFunction) {
     if (!req.session.ktchi?.userID) {

@@ -2,7 +2,7 @@ import { ScoreDocument } from "kamaitachi-common";
 import db from "../../../db/db";
 import CreateLogCtx from "../../../common/logger";
 
-const logger = CreateLogCtx("insert-score.ts");
+const logger = CreateLogCtx(__filename);
 const ScoreQueue: ScoreDocument[] = [];
 export let ScoreIDs: Set<string> = new Set();
 const MAX_PIPELINE_LENGTH = 500;

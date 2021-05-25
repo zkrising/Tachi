@@ -7,7 +7,7 @@ import { ChartDocument } from "kamaitachi-common";
 import { FindSongOnTitle } from "../../src/common/database-lookup/song";
 import { FindChartWithPTDFVersion } from "../../src/common/database-lookup/chart";
 
-const logger = CreateLogCtx("arc-db-merge.ts");
+const logger = CreateLogCtx(__filename);
 
 async function MergeIDs() {
     const charts = JSON.parse(fs.readFileSync(path.join(__dirname, "./charts.json"), "utf-8"));

@@ -3,7 +3,7 @@ import { CloseMongoConnection } from "../db/db";
 import CreateLogCtx, { Transports } from "./logger";
 
 t.test("Logger Tests", (t) => {
-    const logger = CreateLogCtx("logger.test.ts");
+    const logger = CreateLogCtx(__filename);
 
     Transports[2].level = "debug"; // lol
 

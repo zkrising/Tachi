@@ -127,7 +127,7 @@ t.test("#CalculateKESDC", (t) => {
     t.end();
 });
 
-const mockLogger = CreateLogCtx("game-specific-stats.test.ts");
+const mockLogger = CreateLogCtx(__filename);
 
 t.test("#CalculateMFCP", (t) => {
     function TestMFCP(

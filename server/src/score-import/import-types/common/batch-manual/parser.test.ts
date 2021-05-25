@@ -14,7 +14,7 @@ const mockErr = (...msg: string[]) =>
         name: "Error",
     } as unknown) as ScoreImportFatalError);
 
-const logger = CreateLogCtx("parser.test.ts");
+const logger = CreateLogCtx(__filename);
 
 const baseBatchManual = {
     body: [],

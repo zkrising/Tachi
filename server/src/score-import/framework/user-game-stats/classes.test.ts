@@ -5,7 +5,7 @@ import CreateLogCtx from "../../../common/logger";
 import ResetDBState from "../../../test-utils/reset-db-state";
 import { CalculateClassDeltas, UpdateUGSClasses } from "./classes";
 
-const logger = CreateLogCtx("classes.test.ts");
+const logger = CreateLogCtx(__filename);
 
 t.test("#UpdateUGSClasses", (t) => {
     t.test("Should produce an empty object by default", async (t) => {

@@ -3,9 +3,9 @@ import path from "path";
 import { PRUDENCE_CHART_SCHEMAS } from "../../src/db/schemas";
 import p from "prudence";
 import db from "../../src/db/db";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 
-const logger = CreateLogCtx("add-hcnver.ts");
+const logger = CreateLogCtx(__filename);
 
 let data = JSON.parse(fs.readFileSync(path.join(__dirname, "./hcnverdata.json"), "utf-8"));
 

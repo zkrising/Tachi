@@ -5,7 +5,7 @@ import { IndexOptions } from "mongodb";
 import { ValidDatabases } from "kamaitachi-common";
 import { supportedGames } from "kamaitachi-common/js/config";
 
-const logger = CreateLogCtx("set-indexes.ts");
+const logger = CreateLogCtx(__filename);
 
 const program = new Command();
 

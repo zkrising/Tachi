@@ -1,6 +1,6 @@
 import db from "../db/db";
 import CreateLogCtx from "./logger";
-const logger = CreateLogCtx("db.ts");
+const logger = CreateLogCtx(__filename);
 import { integer } from "kamaitachi-common";
 
 export async function GetNextCounterValue(counterName: string): Promise<integer> {

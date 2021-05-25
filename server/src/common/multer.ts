@@ -4,7 +4,7 @@ import { RequestHandler } from "express";
 import multer, { MulterError } from "multer";
 import CreateLogCtx from "./logger";
 
-const defaultLogger = CreateLogCtx("multer.ts");
+const defaultLogger = CreateLogCtx(__filename);
 
 export const DefaultMulterUpload = multer({ limits: { fileSize: 1024 * 1024 * 16 } }); // 16MB
 

@@ -1,13 +1,13 @@
 import parser from "fast-xml-parser";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 import fs from "fs";
 import path from "path";
 
-const logger = CreateLogCtx("s3check.ts");
+const logger = CreateLogCtx(__filename);
 
 let parsedXML;
 
-let fileData = fs.readFileSync(
+const fileData = fs.readFileSync(
     path.join(__dirname, "../../src/test-utils/test-data/s3/valid.xml"),
     "utf-8"
 );

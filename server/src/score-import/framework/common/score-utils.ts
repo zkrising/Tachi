@@ -13,7 +13,7 @@ import { judgementWindows, gamePercentMax } from "kamaitachi-common/js/config";
 import CreateLogCtx from "../../../common/logger";
 import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 
-const logger = CreateLogCtx("score-utils.ts");
+const logger = CreateLogCtx(__filename);
 
 /**
  * Util for getting a games' grade for a given percent.

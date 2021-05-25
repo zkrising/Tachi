@@ -3,11 +3,11 @@ import fs from "fs";
 import path from "path";
 import { CalculateTierlistDataID } from "../../src/common/tierlist";
 import { FindSongOnTitle } from "../../src/common/database-lookup/song";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 import { FindChartWithPTDF } from "../../src/common/database-lookup/chart";
 import { Difficulties } from "kamaitachi-common";
 
-const logger = CreateLogCtx("parse-iidxkr-data.ts");
+const logger = CreateLogCtx(__filename);
 
 const TIERLIST_ID = "ee9b756e50cff8282091102257b01f423ef855f2";
 
@@ -16,31 +16,31 @@ async function parseKr(
     key: "NORMAL CLEAR" | "HARD CLEAR",
     catVals: { h: string; v: number }[]
 ) {
-    let krdata = JSON.parse(fs.readFileSync(path.join(__dirname, "./iidx-pe-kr", dir), "utf-8"));
+    const krdata = JSON.parse(fs.readFileSync(path.join(__dirname, "./iidx-pe-kr", dir), "utf-8"));
 
-    let tdd = [];
+    const tdd = [];
 
     for (let i = 0; i < krdata.categories.length; i++) {
-        let data = krdata.categories[i];
+        const data = krdata.categories[i];
         if (data.sortindex < 0) {
             continue;
         }
 
-        let cv = catVals[i];
+        const cv = catVals[i];
 
         if (!cv) {
             throw new Error(`cv krdata mismatch ${krdata.categories.length} ${catVals.length}?`);
         }
 
         for (const item of data.items) {
-            let song = await FindSongOnTitle("iidx", item.data.title.replace(/†$/u, "").trim());
+            const song = await FindSongOnTitle("iidx", item.data.title.replace(/†$/u, "").trim());
 
             if (!song) {
                 logger.warn(`Could not find song with title ${item.data.title}`);
                 continue;
             }
 
-            let t = item.data.type;
+            const t = item.data.type;
 
             let diff: Difficulties["iidx:SP"];
             if (t === "A") {
@@ -56,7 +56,7 @@ async function parseKr(
                 continue;
             }
 
-            let chart = await FindChartWithPTDF("iidx", song.id, "SP", diff);
+            const chart = await FindChartWithPTDF("iidx", song.id, "SP", diff);
 
             if (!chart) {
                 logger.warn(`${song.title} ${diff} - Couldn't find chart?`);
@@ -82,7 +82,7 @@ async function parseKr(
 
     logger.info(`Inserting ${tdd.length} documents...`);
 
-    let x = await db["tierlist-data"].bulkWrite(
+    const x = await db["tierlist-data"].bulkWrite(
         tdd.map((e) => ({
             updateOne: {
                 filter: {

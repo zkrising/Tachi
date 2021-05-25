@@ -14,7 +14,7 @@ import { FormatUserDoc } from "./user";
 import nodeFetch from "./fetch";
 import { CAPTCHA_SECRET_KEY } from "../secrets";
 
-const logger = CreateLogCtx("auth.ts");
+const logger = CreateLogCtx(__filename);
 
 const BCRYPT_SALT_ROUNDS = 12;
 

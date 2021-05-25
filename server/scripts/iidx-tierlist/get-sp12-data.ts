@@ -7,20 +7,20 @@ import { FindChartWithPTDF } from "../../src/common/database-lookup/chart";
 import { Difficulties, TierlistDataDocument } from "kamaitachi-common";
 
 import { CalculateTierlistDataID } from "../../src/common/tierlist";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 
-const logger = CreateLogCtx("get-sp12-data.ts");
+const logger = CreateLogCtx(__filename);
 
 const TIERLIST_ID = "ee9b756e50cff8282091102257b01f423ef855f2";
 
 async function FetchSP12Data() {
-    let rj = await fetch("https://sp12.iidx.app/api/v1/sheets").then((r) => r.json()); // will throw if somethings wrong, anyway
+    const rj = await fetch("https://sp12.iidx.app/api/v1/sheets").then((r) => r.json()); // will throw if somethings wrong, anyway
 
     if (!rj.sheets) {
         throw new Error(`No sheets in return from sp12?`);
     }
 
-    let tdd: TierlistDataDocument<"Individual Difference">[] = [];
+    const tdd: TierlistDataDocument<"Individual Difference">[] = [];
 
     for (const sh of rj.sheets) {
         let chart;
@@ -38,7 +38,7 @@ async function FetchSP12Data() {
             switch (key) {
                 case "NORMAL CLEAR":
                     fakeKey = "n_clear";
-                    let v = Math.floor(sh[fakeKey] / 2);
+                    const v = Math.floor(sh[fakeKey] / 2);
 
                     if (v === 9) {
                         val = 11.8;
@@ -59,7 +59,7 @@ async function FetchSP12Data() {
                     break;
                 case "HARD CLEAR":
                     fakeKey = "hard";
-                    let v2 = Math.floor(sh[fakeKey] / 2);
+                    const v2 = Math.floor(sh[fakeKey] / 2);
 
                     if (v2 === 9) {
                         val = 11.9;
@@ -81,7 +81,7 @@ async function FetchSP12Data() {
                 case "EX HARD CLEAR":
                     fakeKey = "exh";
 
-                    let v3 = sh[fakeKey];
+                    const v3 = sh[fakeKey];
                     if (v3 < 0) {
                         continue;
                     }
@@ -93,7 +93,7 @@ async function FetchSP12Data() {
                     throw new Error("??");
             }
 
-            let humanised = sh[`${fakeKey}_string`];
+            const humanised = sh[`${fakeKey}_string`];
 
             if (humanised === "難易度未定") {
                 continue;
@@ -152,7 +152,7 @@ async function HumanisedTitleLookup(originalTitle: string) {
         title = title.split("[")[0];
     }
 
-    let song = await FindSongOnTitle("iidx", title);
+    const song = await FindSongOnTitle("iidx", title);
 
     if (!song) {
         throw new Error(
@@ -160,7 +160,7 @@ async function HumanisedTitleLookup(originalTitle: string) {
         );
     }
 
-    let chart = await FindChartWithPTDF("iidx", song.id, "SP", difficulty);
+    const chart = await FindChartWithPTDF("iidx", song.id, "SP", difficulty);
 
     if (!chart) {
         throw new Error(

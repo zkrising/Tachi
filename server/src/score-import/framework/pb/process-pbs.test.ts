@@ -7,7 +7,7 @@ import { ProcessPBs } from "./process-pbs";
 import deepmerge from "deepmerge";
 import crypto from "crypto";
 
-const logger = CreateLogCtx("process-pbs.test.ts");
+const logger = CreateLogCtx(__filename);
 
 t.test("#ProcessPBs", (t) => {
     t.beforeEach(ResetDBState);

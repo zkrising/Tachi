@@ -3,7 +3,7 @@ import { ClassData, gameClassValues } from "kamaitachi-common/js/game-classes";
 import db from "../db/db";
 import CreateLogCtx from "./logger";
 
-const logger = CreateLogCtx("class.ts");
+const logger = CreateLogCtx(__filename);
 
 export function GetClassSetsForGamePT(game: Game, playtype: Playtypes[Game]) {
     // @ts-expect-error its confused about game+pt permutations

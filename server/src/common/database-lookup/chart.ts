@@ -64,6 +64,7 @@ export function FindDDRChartOnSongHash(
         "data.songHash": songHash,
         playtype,
         difficulty,
+        isPrimary: true,
     });
 }
 
@@ -104,11 +105,10 @@ export function FindIIDXChartOnInGameID(
     playtype: Playtypes[Game],
     difficulty: Difficulties[IDStrings]
 ) {
-    // @todo #101 throw an error if this is called with a game that doesn't
-    // support InGameID.
     return db.charts.iidx.findOne({
         "data.inGameID": inGameID,
         "flags.2dxtra": false,
+        isPrimary: true,
         playtype,
         difficulty,
     });
@@ -180,6 +180,7 @@ export function FindSDVXChartOnInGameID(
     return db.charts.sdvx.findOne({
         "data.inGameID": inGameID,
         difficulty: diffQuery,
+        isPrimary: true,
     });
 }
 

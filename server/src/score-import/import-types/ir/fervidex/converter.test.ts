@@ -16,7 +16,7 @@ import {
 import { FervidexScore } from "./types";
 import deepmerge from "deepmerge";
 
-const logger = CreateLogCtx("converter.test.ts");
+const logger = CreateLogCtx(__filename);
 
 t.test("#SplitFervidexChartRef", (t) => {
     t.strictSame(SplitFervidexChartRef("spb"), { playtype: "SP", difficulty: "BEGINNER" });

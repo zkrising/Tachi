@@ -1,7 +1,7 @@
 import Prudence, { PrudenceSchema } from "prudence";
 import db from "../src/db/db";
 import { PRUDENCE_CHART_SCHEMAS, PRUDENCE_SCORE_SCHEMAS, STATIC_SCHEMAS } from "../src/db/schemas";
-import CreateLogCtx from "../src/logger";
+import CreateLogCtx from "../src/common/logger";
 import fs from "fs";
 import path from "path";
 import { PrudenceError } from "prudence/js/error";
@@ -12,7 +12,7 @@ const BASE_DIR = path.join(__dirname, "./validate-database-errs");
 // note: a hell of a lot of this code is copy pasted
 // this is just a script, so, feel free to refactor it.
 
-const logger = CreateLogCtx("validate-database.ts");
+const logger = CreateLogCtx(__filename);
 
 async function ValidateStaticSchemas(): Promise<void> {
     for (const x in STATIC_SCHEMAS) {
@@ -24,15 +24,15 @@ async function ValidateStaticSchemas(): Promise<void> {
 
         let successCount = 0;
         let total = 0;
-        let fails: { err: PrudenceError; doc: unknown }[] = [];
+        const fails: { err: PrudenceError; doc: unknown }[] = [];
 
-        let start = process.hrtime.bigint();
+        const start = process.hrtime.bigint();
 
         // @ts-expect-error shut UP
         // eslint-disable-next-line no-await-in-loop
         await db[c].find({}, { projection: { _id: 0 } }).each((c: unknown) => {
             total++;
-            let res = Prudence(c, schema);
+            const res = Prudence(c, schema);
 
             if (res === null) {
                 successCount++;
@@ -42,7 +42,7 @@ async function ValidateStaticSchemas(): Promise<void> {
             }
         });
 
-        let end = process.hrtime.bigint();
+        const end = process.hrtime.bigint();
         logger.info(`Validated ${total} objects. Took ${Number(end - start) / 1e9} seconds.`);
         logger.info(`Success: ${successCount} (${((successCount * 100) / total).toFixed(2)}%)`);
         logger.info(`Fail: ${fails.length} (${((fails.length * 100) / total).toFixed(2)}%)`);
@@ -58,21 +58,21 @@ async function ValidateStaticSchemas(): Promise<void> {
 }
 
 async function ValidateScores(): Promise<void> {
-    let globalStart = process.hrtime.bigint();
+    const globalStart = process.hrtime.bigint();
     let globalTotal = 0;
     let globalSuccess = 0;
     let globalFail = 0;
     for (const game of supportedGames) {
         for (const playtype of validPlaytypes[game]) {
             // @ts-expect-error shut up
-            let schema = PRUDENCE_SCORE_SCHEMAS[game][playtype];
+            const schema = PRUDENCE_SCORE_SCHEMAS[game][playtype];
 
             let successCount = 0;
             let total = 0;
-            let fails: { err: PrudenceError; doc: unknown }[] = [];
+            const fails: { err: PrudenceError; doc: unknown }[] = [];
 
             logger.info(`=== Validating Collection scores (${game} ${playtype}) ... ===`);
-            let start = process.hrtime.bigint();
+            const start = process.hrtime.bigint();
 
             // eslint-disable-next-line no-await-in-loop
             await db.scores
@@ -80,7 +80,7 @@ async function ValidateScores(): Promise<void> {
                 // @ts-expect-error shut UP
                 .each((c: unknown) => {
                     total++;
-                    let res = Prudence(c, schema);
+                    const res = Prudence(c, schema);
 
                     if (res === null) {
                         successCount++;
@@ -92,7 +92,7 @@ async function ValidateScores(): Promise<void> {
                     }
                 });
 
-            let end = process.hrtime.bigint();
+            const end = process.hrtime.bigint();
             logger.info(`Validated ${total} objects. Took ${Number(end - start) / 1e9} seconds.`);
             logger.info(`Success: ${successCount} (${((successCount * 100) / total).toFixed(2)}%)`);
             logger.info(`Fail: ${fails.length} (${((fails.length * 100) / total).toFixed(2)}%)`);
@@ -119,7 +119,7 @@ async function ValidateScores(): Promise<void> {
         }
     }
 
-    let globalEnd = process.hrtime.bigint();
+    const globalEnd = process.hrtime.bigint();
     logger.info(
         `Validated ${globalTotal} objects. Took ${Number(globalEnd - globalStart) / 1e9} seconds.`
     );
@@ -130,19 +130,19 @@ async function ValidateScores(): Promise<void> {
 }
 
 async function ValidateChartsOrSongs(type: "songs" | "charts"): Promise<void> {
-    let globalStart = process.hrtime.bigint();
+    const globalStart = process.hrtime.bigint();
     let globalTotal = 0;
     let globalSuccess = 0;
     let globalFail = 0;
     for (const game of supportedGames) {
-        let schema = STATIC_SCHEMAS[type]![game];
+        const schema = STATIC_SCHEMAS[type]![game];
 
         let successCount = 0;
         let total = 0;
-        let fails: { err: PrudenceError; doc: unknown }[] = [];
+        const fails: { err: PrudenceError; doc: unknown }[] = [];
 
         logger.info(`=== Validating Collection ${type} (${game}) ... ===`);
-        let start = process.hrtime.bigint();
+        const start = process.hrtime.bigint();
 
         // eslint-disable-next-line no-await-in-loop
         await db[type][game]
@@ -150,7 +150,7 @@ async function ValidateChartsOrSongs(type: "songs" | "charts"): Promise<void> {
             .find({}, { projection: { _id: 0 } })
             .each((c: unknown) => {
                 total++;
-                let res = Prudence(c, schema);
+                const res = Prudence(c, schema);
 
                 if (res === null) {
                     successCount++;
@@ -160,7 +160,7 @@ async function ValidateChartsOrSongs(type: "songs" | "charts"): Promise<void> {
                 }
             });
 
-        let end = process.hrtime.bigint();
+        const end = process.hrtime.bigint();
         logger.info(`Validated ${total} objects. Took ${Number(end - start) / 1e9} seconds.`);
         logger.info(`Success: ${successCount} (${((successCount * 100) / total).toFixed(2)}%)`);
         logger.info(`Fail: ${fails.length} (${((fails.length * 100) / total).toFixed(2)}%)`);
@@ -183,7 +183,7 @@ async function ValidateChartsOrSongs(type: "songs" | "charts"): Promise<void> {
         globalSuccess += successCount;
     }
 
-    let globalEnd = process.hrtime.bigint();
+    const globalEnd = process.hrtime.bigint();
     logger.info(
         `Validated ${globalTotal} objects. Took ${Number(globalEnd - globalStart) / 1e9} seconds.`
     );

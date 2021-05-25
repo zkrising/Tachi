@@ -7,7 +7,7 @@ import deepmerge from "deepmerge";
 import CreateLogCtx from "../../../common/logger";
 import crypto from "crypto";
 
-const logger = CreateLogCtx("rating.test.ts");
+const logger = CreateLogCtx(__filename);
 
 t.test("#CalculateRatings", (t) => {
     t.beforeEach(ResetDBState);

@@ -11,7 +11,7 @@ import { Playtypes } from "kamaitachi-common";
 import CreateLogCtx from "../../../common/logger";
 import { FERVIDEX_COURSE_LOOKUP } from "../../../score-import/import-types/ir/fervidex-static/class-handler";
 
-const logger = CreateLogCtx("fervidex.ts");
+const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 

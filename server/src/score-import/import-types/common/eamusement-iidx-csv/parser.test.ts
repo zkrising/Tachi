@@ -9,7 +9,7 @@ import {
 } from "../../../../test-utils/test-data";
 import { MockMulterFile } from "../../../../test-utils/mock-multer";
 
-const logger = CreateLogCtx("parser.test.ts");
+const logger = CreateLogCtx(__filename);
 
 t.test("#ParseEamusementCSV", (t) => {
     t.test("Valid Rootage-Type CSV", (t) => {
@@ -18,9 +18,9 @@ t.test("#ParseEamusementCSV", (t) => {
             logger
         );
 
-        t.equal(iterableData.length, 839, "Should return exactly 839 datapoints.");
+        t.equal(iterableData.length, 152, "Should return exactly 152 datapoints.");
         t.equal(hasBeginnerAndLegg, false, "Should not mark as a HV csv.");
-        t.equal(version, "23", "Should correctly assert that the version of this CSV is copula.");
+        t.equal(version, "26", "Should correctly assert that the version of this CSV is ROOTAGE.");
 
         t.end();
     });

@@ -13,7 +13,7 @@ import {
     KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 
-const logger = CreateLogCtx("converter.test.ts");
+const logger = CreateLogCtx(__filename);
 
 const chartID511 = "c2311194e3897ddb5745b1760d2c0141f933e683";
 

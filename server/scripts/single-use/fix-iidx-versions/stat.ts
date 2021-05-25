@@ -1,7 +1,7 @@
 import CreateLogCtx from "../../../src/common/logger";
 import db from "../../../src/db/db";
 
-const logger = CreateLogCtx("scripts/single-use/fix-iidx-versions/stat.ts");
+const logger = CreateLogCtx(__filename);
 
 (async () => {
     const charts = await db.charts.iidx.find({ versions: { $size: 0 } });

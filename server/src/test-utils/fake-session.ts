@@ -2,7 +2,7 @@ import ResetDBState from "./reset-db-state";
 import CreateLogCtx from "../common/logger";
 import supertest from "supertest";
 
-const logger = CreateLogCtx("fake-session.ts");
+const logger = CreateLogCtx(__filename);
 
 export async function CreateFakeAuthCookie(mockApi: supertest.SuperTest<supertest.Test>) {
     await ResetDBState();

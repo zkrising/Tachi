@@ -3,10 +3,10 @@
 
 import { GoalDocument } from "kamaitachi-common";
 import db from "../../src/db/db";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";
 
-const logger = CreateLogCtx("goals.ts");
+const logger = CreateLogCtx(__filename);
 
 function ConvertFn(c: any): GoalDocument | null {
     let charts: GoalDocument["charts"];
@@ -29,7 +29,7 @@ function ConvertFn(c: any): GoalDocument | null {
         return null;
     }
 
-    let partialCriteria: Partial<GoalDocument["criteria"]> = {
+    const partialCriteria: Partial<GoalDocument["criteria"]> = {
         mode: "single",
     };
 

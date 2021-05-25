@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChartDocument } from "kamaitachi-common";
 import db from "../../src/db/db";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";
 import { gameOrders } from "kamaitachi-common/js/config";
 
-const logger = CreateLogCtx("charts-museca.ts");
+const logger = CreateLogCtx(__filename);
 
 async function ConvertFn(c: any): Promise<ChartDocument<"museca:Single">> {
-    let song = await db.songs.museca.findOne({
+    const song = await db.songs.museca.findOne({
         id: c.id,
     });
 
@@ -34,7 +34,7 @@ async function ConvertFn(c: any): Promise<ChartDocument<"museca:Single">> {
         versions: [], // sentinel
     };
 
-    let idx = gameOrders.museca.indexOf(song.firstVersion!);
+    const idx = gameOrders.museca.indexOf(song.firstVersion!);
 
     if (idx === -1) {
         logger.warn(`Invalid firstAppearance of ${song.firstVersion!}, running anyway.`);

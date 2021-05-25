@@ -4,10 +4,10 @@ import { PrivateUserDocument, ScoreDocument } from "kamaitachi-common";
 import { grades, lamps, supportedGames, validPlaytypes } from "kamaitachi-common/js/config";
 import db from "../../src/db/db";
 import MigrateRecords from "./migrate";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 import { CreateScoreID } from "../../src/score-import/framework/common/score-utils";
 
-const logger = CreateLogCtx("scores.ts");
+const logger = CreateLogCtx(__filename);
 
 // HERE. WE. GO!
 
@@ -31,7 +31,7 @@ function ConvertFn(c: any): ScoreDocument | null {
         logger.warn(`Ignored game pt ${c.game}, ${c.playtype}`);
     }
 
-    let base: Omit<ScoreDocument, "scoreID"> = {
+    const base: Omit<ScoreDocument, "scoreID"> = {
         userID: c.userID,
         songID: c.songID,
         playtype: c.scoreData.playtype,
@@ -127,9 +127,9 @@ function ConvertFn(c: any): ScoreDocument | null {
         base.service = "maimagic";
     }
 
-    let scoreID = CreateScoreID(base.userID, base, base.chartID);
+    const scoreID = CreateScoreID(base.userID, base, base.chartID);
 
-    let score: ScoreDocument = {
+    const score: ScoreDocument = {
         ...base,
         scoreID,
     };

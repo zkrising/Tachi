@@ -8,7 +8,7 @@ import deepmerge from "deepmerge";
 import crypto from "crypto";
 import { TestingIIDXSPScorePB } from "../../../test-utils/test-data";
 
-const logger = CreateLogCtx("update-ugs.test.ts");
+const logger = CreateLogCtx(__filename);
 
 // more of an integration test
 t.test("#UpdateUsersGamePlaytypeStats", (t) => {

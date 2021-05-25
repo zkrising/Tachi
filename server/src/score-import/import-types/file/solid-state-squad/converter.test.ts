@@ -3,12 +3,17 @@ import t from "tap";
 import db, { CloseMongoConnection } from "../../../../db/db";
 import CreateLogCtx from "../../../../common/logger";
 import ResetDBState from "../../../../test-utils/reset-db-state";
-import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../test-utils/test-data";
+import {
+    GetKTDataJSON,
+    LoadKTBlackIIDXData,
+    Testing511Song,
+    Testing511SPA,
+} from "../../../../test-utils/test-data";
 import { ConvertFileS3, ParseDifficulty, ResolveS3Lamp } from "./converter";
 import { S3Score } from "./types";
 import deepmerge from "deepmerge";
 
-const logger = CreateLogCtx("converter.test.ts");
+const logger = CreateLogCtx(__filename);
 
 function cfile(data: S3Score) {
     return ConvertFileS3(data, {}, "file/solid-state-squad", logger);
@@ -82,19 +87,15 @@ t.test("#ConvertFileS3", (t) => {
     });
 
     t.test("Should find song case-insensitively", async (t) => {
-        await db.charts.iidx.remove({});
-        await db.charts.iidx.insert(GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json"));
+        await LoadKTBlackIIDXData();
 
-        await db.songs.iidx.remove({});
-        await db.songs.iidx.insert(GetKTDataJSON("./kamaitachi/ktblack-songs-iidx.json"));
-
-        const res = await mfile({ songname: "gamBOL", diff: 7 });
+        const res = await mfile({ songname: "aBSolUte", diff: 7 });
 
         t.hasStrict(
             res,
             {
-                chart: { songID: 7, difficulty: "HYPER", playtype: "SP" },
-                song: { title: "GAMBOL" },
+                chart: { songID: 97, difficulty: "HYPER", playtype: "SP" },
+                song: { title: "ABSOLUTE" },
                 // dryScore, dont care
             } as any,
             "Should correctly return the song, chart and DryScore."
@@ -161,7 +162,7 @@ t.test("#ConvertFileS3", (t) => {
 
     t.test("Should throw an invalidscore if the exscore is greater than MAX", (t) => {
         t.rejects(mfile({ exscore: 10000 }), {
-            message: /Percent was greater than 100%/u,
+            message: /Invalid percent of 636/u,
         } as any);
 
         t.end();
@@ -169,7 +170,7 @@ t.test("#ConvertFileS3", (t) => {
 
     t.test("Should throw an invalidscore if the date is invalid.", (t) => {
         t.rejects(mfile({ date: "INVALID" }), {
-            message: /Invalid timestamp of INVALID - could not parse/u,
+            message: /Invalid\/Unparsable score timestamp of INVALID/u,
         } as any);
 
         t.end();

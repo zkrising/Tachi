@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChartDocument, SongDocument } from "kamaitachi-common";
 import db from "../../src/db/db";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";
 import { gameOrders } from "kamaitachi-common/js/config";
 import { oldKTDB } from "./old-db";
 
-const logger = CreateLogCtx("charts-gitadora.ts");
+const logger = CreateLogCtx(__filename);
 
 async function ConvertFn(c: any): Promise<ChartDocument<"gitadora:Gita" | "gitadora:Dora">> {
-    let song = (await db.songs.gitadora.findOne({
+    const song = (await db.songs.gitadora.findOne({
         id: c.id,
     })) as SongDocument<"gitadora">;
 
-    let oldSong = await oldKTDB.get("songs-gitadora").findOne({
+    const oldSong = await oldKTDB.get("songs-gitadora").findOne({
         id: c.id,
     });
 
@@ -41,7 +41,7 @@ async function ConvertFn(c: any): Promise<ChartDocument<"gitadora:Gita" | "gitad
         versions: [], // sentinel
     };
 
-    let idx = gameOrders.gitadora.indexOf(song.firstVersion!);
+    const idx = gameOrders.gitadora.indexOf(song.firstVersion!);
 
     if (idx === -1) {
         logger.warn(`Invalid firstAppearance of ${song.firstVersion!}, running anyway.`);

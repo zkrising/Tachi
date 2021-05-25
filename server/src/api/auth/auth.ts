@@ -19,7 +19,7 @@ import CreateLogCtx from "../../common/logger";
 import prValidate from "../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../middleware/require-logged-in";
 
-const logger = CreateLogCtx("auth.ts");
+const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 

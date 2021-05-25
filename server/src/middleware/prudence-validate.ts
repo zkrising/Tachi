@@ -1,7 +1,7 @@
 import Prudence, { MiddlewareErrorHandler } from "prudence";
 import CreateLogCtx from "../common/logger";
 
-const logger = CreateLogCtx("prudence-validate.ts");
+const logger = CreateLogCtx(__filename);
 
 const printf = (message: string, stringVal: string | null, keychain: string | null) =>
     `${message}${stringVal ? ` (Received ${stringVal})` : ""} [K:${keychain}]`;

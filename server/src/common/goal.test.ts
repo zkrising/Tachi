@@ -13,7 +13,7 @@ import {
 } from "../test-utils/test-data";
 import { CreateFolderChartLookup } from "./folder";
 
-const logger = CreateLogCtx("goal.test.ts");
+const logger = CreateLogCtx(__filename);
 
 t.test("#EvaluateGoalForUser", (t) => {
     t.beforeEach(ResetDBState);

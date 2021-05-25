@@ -3,11 +3,11 @@
 import { FolderDocument, Game } from "kamaitachi-common";
 import { validPlaytypes, gameHuman } from "kamaitachi-common/js/config";
 import db from "../../src/db/db";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";
 import crypto from "crypto";
 
-const logger = CreateLogCtx("folders.ts");
+const logger = CreateLogCtx(__filename);
 
 function ConvertFn(c: any): FolderDocument[] {
     throw new Error("This doesn't work, It was migrated elsewhere.");

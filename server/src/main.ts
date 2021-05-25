@@ -18,7 +18,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const logger = CreateLogCtx("main.ts");
+const logger = CreateLogCtx(__filename);
 
 logger.info(`Booting Kamaitachi BLACK - ${FormatVersion()} [ENV: ${process.env.NODE_ENV}]`);
 logger.info(`Log level on ${process.env.LOG_LEVEL ?? "info"}.`);

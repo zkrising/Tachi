@@ -11,7 +11,7 @@ import { KtLogger } from "../../types";
 import { ExpressWrappedScoreImportMain } from "../../score-import/framework/express-wrapper";
 import { CreateMulterSingleUploadMiddleware } from "../../common/multer";
 
-const logger = CreateLogCtx("import.ts");
+const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 

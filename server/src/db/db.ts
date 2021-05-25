@@ -28,7 +28,7 @@ import {
 import monk from "monk";
 import CreateLogCtx from "../common/logger";
 
-const logger = CreateLogCtx("db.ts");
+const logger = CreateLogCtx(__filename);
 
 const base = process.env.MONGO_BASE_URL ?? "127.0.0.1";
 

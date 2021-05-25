@@ -7,7 +7,7 @@ import path from "path";
 // note - this program was never run due to WSL2 errors
 // causing network requests to screech to a halt.
 
-const logger = CreateLogCtx("set-indexes.ts");
+const logger = CreateLogCtx(__filename);
 
 const program = new Command();
 

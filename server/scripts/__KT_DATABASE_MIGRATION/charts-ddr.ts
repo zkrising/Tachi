@@ -2,19 +2,19 @@
 
 import { ChartDocument, SongDocument } from "kamaitachi-common";
 import db from "../../src/db/db";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";
 import { gameOrders } from "kamaitachi-common/js/config";
 import { oldKTDB } from "./old-db";
 
-const logger = CreateLogCtx("charts-ddr.ts");
+const logger = CreateLogCtx(__filename);
 
 async function ConvertFn(c: any): Promise<ChartDocument<"ddr:SP" | "ddr:DP">> {
-    let song = (await db.songs.ddr.findOne({
+    const song = (await db.songs.ddr.findOne({
         id: c.id,
     })) as SongDocument<"ddr">;
 
-    let oldSong = await oldKTDB.get("songs-ddr").findOne({
+    const oldSong = await oldKTDB.get("songs-ddr").findOne({
         id: c.id,
     });
 
@@ -43,7 +43,7 @@ async function ConvertFn(c: any): Promise<ChartDocument<"ddr:SP" | "ddr:DP">> {
         versions: [], // sentinel
     };
 
-    let idx = gameOrders.ddr.indexOf(song.firstVersion!);
+    const idx = gameOrders.ddr.indexOf(song.firstVersion!);
 
     if (idx === -1) {
         logger.warn(`Invalid firstAppearance of ${song.firstVersion!}, running anyway.`);

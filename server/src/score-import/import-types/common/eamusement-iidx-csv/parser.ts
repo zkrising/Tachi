@@ -243,7 +243,7 @@ function GenericParseEamIIDXCSV(
             (lowercaseFilename.includes("dp") && playtype === "SP"))
     ) {
         logger.info(
-            `File was uploaded with filename ${fileData.filename}, but this was set as a ${playtype} import. Sanity check refusing.`
+            `File was uploaded with filename ${fileData.originalname}, but this was set as a ${playtype} import. Sanity check refusing.`
         );
 
         throw new ScoreImportFatalError(

@@ -21,7 +21,7 @@ const dataset = JSON.parse(
     fs.readFileSync(path.join(__dirname, "./out.json"), "utf-8")
 ) as MDBJson[];
 
-const logger = CreateLogCtx("diff.ts");
+const logger = CreateLogCtx(__filename);
 
 (async () => {
     for (const data of dataset) {

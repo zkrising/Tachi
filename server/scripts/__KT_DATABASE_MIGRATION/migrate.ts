@@ -1,17 +1,17 @@
 import { ICollection } from "monk";
-import CreateLogCtx from "../../src/logger";
+import CreateLogCtx from "../../src/common/logger";
 import { oldKTDB } from "./old-db";
 
-const logger = CreateLogCtx("MIGRATE.ts");
+const logger = CreateLogCtx(__filename);
 
-let newDocuments: unknown[] = [];
+const newDocuments: unknown[] = [];
 
 export default async function MigrateRecords(
     existingCollection: ICollection,
     collectionName: string,
     HandlerFN: (c: unknown) => unknown
 ) {
-    let existingRecords = await existingCollection.count({});
+    const existingRecords = await existingCollection.count({});
     logger.info(`Starting migration for ${collectionName}...`);
 
     if (existingRecords > 0) {

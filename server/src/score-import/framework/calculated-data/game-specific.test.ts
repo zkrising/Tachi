@@ -9,7 +9,7 @@ import {
     TestingSDVXSingleDryScore,
 } from "../../../test-utils/test-data";
 import { CreateGameSpecific } from "./game-specific";
-const logger = CreateLogCtx("fake-testing-context");
+const logger = CreateLogCtx(__filename);
 
 /**
  * These tests only check that the right properties are assigned.

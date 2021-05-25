@@ -1,7 +1,7 @@
 import supertest from "supertest";
 import CreateLogCtx from "../common/logger";
 
-const logger = CreateLogCtx("mock-api.ts");
+const logger = CreateLogCtx(__filename);
 
 import server from "../server";
 

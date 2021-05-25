@@ -6,7 +6,7 @@ import fs from "fs";
 import path from "path";
 import CreateLogCtx from "../common/logger";
 
-const logger = CreateLogCtx("reset-db-state.ts");
+const logger = CreateLogCtx(__filename);
 
 const DATA_DIR = path.join(__dirname, "./mock-db");
 

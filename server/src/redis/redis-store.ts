@@ -3,7 +3,7 @@ import expressSession from "express-session";
 import CreateLogCtx from "../common/logger";
 import redis from "redis";
 
-const logger = CreateLogCtx("redis-store.ts");
+const logger = CreateLogCtx(__filename);
 
 export const RedisStore = connectRedis(expressSession);
 logger.verbose("Instantiated Redis Store");

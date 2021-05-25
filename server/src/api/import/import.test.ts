@@ -298,7 +298,7 @@ t.test("POST /api/import/file", async (t) => {
         t.end();
     });
 
-    t.skip("file/solid-state-squad", (t) => {
+    t.test("file/solid-state-squad", (t) => {
         t.beforeEach(LoadKTBlackIIDXData);
 
         t.test("Large Import", async (t) => {

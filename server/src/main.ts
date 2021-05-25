@@ -14,10 +14,8 @@ function FormatVersion() {
 import CreateLogCtx from "./lib/logger/logger";
 import server from "./server/server";
 import serverConfig from "./server/server-config";
-import dotenv from "dotenv";
 import { LOG_LEVEL } from "./lib/env/env";
 
-dotenv.config();
 
 const logger = CreateLogCtx(__filename);
 

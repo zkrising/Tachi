@@ -1,4 +1,6 @@
 // barrel file for re-exporting env variables.
+import dotenv from "dotenv";
+dotenv.config();
 
 const envVars = [
     "KTBKS_MONGO_BASE_URL",

@@ -3,6 +3,16 @@
 
 name: Node.js CI
 
+env:
+  KTBKS_MONGO_BASE_URL: "192.168.0.1"
+  NODE_ENV: "test"
+  KTBKS_LOG_LEVEL: "info"
+  KTBKS_CAPTCHA_SECRET_KEY: "unused"
+  KTBKS_SESSION_SECRET: "unused"
+  KTBKS_FLO_API_URL: "unused"
+  KTBKS_EAG_API_URL: "unused"
+  KTBKS_ARC_API_URL: "unused"
+
 on:
   push:
     branches: [ master ]

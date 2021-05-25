@@ -256,12 +256,12 @@ async function HydrateAndInsertScore(
     );
 
     if (existingScore) {
-        logger.verbose(`Skipped score with ID ${scoreID}.`);
+        logger.verbose(`Skipped score.`);
         return null;
     }
 
     if (ScoreIDs.has(scoreID)) {
-        logger.verbose(`Skipped score with ID ${scoreID}.`);
+        logger.verbose(`Skipped score.`);
         return null;
     }
 
@@ -269,9 +269,9 @@ async function HydrateAndInsertScore(
 
     const res = await QueueScoreInsert(score);
 
-    // emergency state - this is a last resort for avoiding double-d imports
+    // emergency state - this is a last resort for avoiding doubled imports
     if (res === null) {
-        logger.verbose(`Skipped score with ID ${scoreID} - Race Condition protection triggered.`);
+        logger.verbose(`Skipped score - Race Condition protection triggered.`);
         return null;
     }
 

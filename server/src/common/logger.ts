@@ -138,7 +138,7 @@ export const rootLogger = winston.createLogger({
     transports: tports,
 });
 
-function CreateLogCtx(__filename): KtLogger {
+function CreateLogCtx(filename: string, lg = rootLogger): KtLogger {
     return lg.child({
         context: filename.replace(new RegExp(`^${process.cwd()}/`, "u"), ""),
     }) as KtLogger;

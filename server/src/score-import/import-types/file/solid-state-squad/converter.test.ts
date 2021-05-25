@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../db/db";
+import { CloseMongoConnection } from "../../../../db/db";
 import CreateLogCtx from "../../../../common/logger";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import {
@@ -197,8 +197,6 @@ t.test("#ParseDifficulty", (t) => {
 
 t.test("#ResolveS3Lamp", (t) => {
     t.beforeEach(ResetDBState);
-
-    const BaseS3Score = GetKTDataJSON("./s3/s3score.json");
 
     t.equal(ResolveS3Lamp({ cleartype: "played" } as S3Score, logger), "FAILED");
     t.equal(ResolveS3Lamp({ cleartype: "cleared", mods: {} } as S3Score, logger), "CLEAR");

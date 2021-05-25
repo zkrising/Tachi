@@ -3,8 +3,6 @@ js
 # .vscode
 logs
 
-src/secrets.ts
-
 .nyc_output
 coverage
 .env
@@ -15,3 +13,5 @@ scripts/arc-db-sync/songs.json
 scripts/validate-database-errs/*
 
 scripts/__JSON-TO-KTDB/**/*.json
+
+/src/lib/env/config.json

@@ -1,7 +1,7 @@
 import { integer, Game, GoalDocument, UserGoalDocument } from "kamaitachi-common";
 import { EvaluateGoalForUser } from "../../../../utils/goal";
 import db from "../../../../external/mongo/db";
-import { KtLogger } from "../../../../lib/logger/logger";
+import { KtLogger } from "../../../logger/logger";
 
 /**
  * Update a user's progress on all of their set goals.

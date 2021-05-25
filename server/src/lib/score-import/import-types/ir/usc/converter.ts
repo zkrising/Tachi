@@ -1,6 +1,6 @@
 import { USCClientScore } from "../../../../../server/router/ir/usc/usc";
 import { FindSongOnID } from "../../../../../utils/queries/songs";
-import { KtLogger } from "../../../../../lib/logger/logger";
+import { KtLogger } from "../../../../logger/logger";
 import { InternalFailure, InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { IRUSCContext } from "./types";

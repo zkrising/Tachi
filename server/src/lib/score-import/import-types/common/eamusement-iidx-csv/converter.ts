@@ -10,7 +10,7 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import { GetGradeFromPercent } from "../../../framework/common/score-utils";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
-import { KtLogger } from "../../../../../lib/logger/logger";
+import { KtLogger } from "../../../../logger/logger";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction, ConverterFnReturn } from "../types";
 

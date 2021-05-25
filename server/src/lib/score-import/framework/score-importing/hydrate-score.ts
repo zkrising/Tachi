@@ -5,7 +5,7 @@ import {
     ScoreDocument,
     AnySongDocument,
 } from "kamaitachi-common";
-import { KtLogger } from "../../../../lib/logger/logger";
+import { KtLogger } from "../../../logger/logger";
 import { CreateCalculatedData } from "../calculated-data/calculated-data";
 import { CalculateESDForGame } from "../common/score-utils";
 import { DryScore } from "../common/types";

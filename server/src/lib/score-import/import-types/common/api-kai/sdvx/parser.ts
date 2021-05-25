@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../../../../utils/types";
+import { KtLogger } from "../../../../../logger/logger";
 import nodeFetch from "../../../../../../utils/fetch";
 import { KaiAuthDocument } from "kamaitachi-common";
 import { KaiContext } from "../types";

@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../../lib/logger/logger";
+import { KtLogger } from "../../../logger/logger";
 import {
     integer,
     Game,

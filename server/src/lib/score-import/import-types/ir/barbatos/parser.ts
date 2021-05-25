@@ -1,4 +1,5 @@
-import { EmptyObject, KtLogger } from "../../../../../utils/types";
+import { EmptyObject } from "../../../../../utils/types";
+import { KtLogger } from "../../../../logger/logger";
 import p from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { FormatPrError } from "../../../../../utils/prudence";

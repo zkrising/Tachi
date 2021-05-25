@@ -1,6 +1,7 @@
 import p from "prudence";
 import { FormatPrError } from "../../../../../utils/prudence";
-import { EmptyObject, KtLogger } from "../../../../../utils/types";
+import { EmptyObject } from "../../../../../utils/types";
+import { KtLogger } from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturnsSync } from "../../common/types";
 import { ConvertFileMerIIDX } from "./converter";

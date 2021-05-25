@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../../../lib/logger/logger";
+import { KtLogger } from "../../../../logger/logger";
 import { ChartDocument } from "kamaitachi-common";
 import p, { PrudenceSchema } from "prudence";
 import { InvalidScoreFailure } from "../../../framework/common/converter-failures";

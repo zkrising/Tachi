@@ -1,7 +1,7 @@
 import db from "../../../../external/mongo/db";
 import { integer, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
 
-import { KtLogger } from "../../../../lib/logger/logger";
+import { KtLogger } from "../../../logger/logger";
 import { IIDXMergeFn, SDVXMergeFn } from "./game-specific-merge";
 import { BulkWriteUpdateOneOperation } from "mongodb";
 export type PBScoreDocumentNoRank = Omit<PBScoreDocument, "rankingData">;

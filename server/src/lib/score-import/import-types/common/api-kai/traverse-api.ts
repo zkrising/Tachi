@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../../../lib/logger/logger";
+import { KtLogger } from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import nodeFetch from "../../../../../utils/fetch";
 import { KaiAuthDocument } from "kamaitachi-common";

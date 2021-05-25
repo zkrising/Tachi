@@ -3,11 +3,11 @@ import { FileUploadImportTypes } from "kamaitachi-common";
 import { fileImportTypes } from "kamaitachi-common/js/config";
 import Prudence from "prudence";
 import { GetUserWithIDGuaranteed } from "../../../../utils/user";
-import CreateLogCtx from "../../../../lib/logger/logger";
+import CreateLogCtx, { KtLogger } from "../../../../lib/logger/logger";
 import prValidate from "../../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../../../lib/score-import/framework/score-importing/score-import-error";
-import { KtLogger } from "../../../../lib/logger/logger";
+
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { CreateMulterSingleUploadMiddleware } from "../../../middleware/multer-upload";
 

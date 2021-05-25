@@ -1,5 +1,5 @@
 import db from "../external/mongo/db";
-import CreateLogCtx from "./logger";
+import CreateLogCtx from "../logger/logger";
 import { FolderDocument, AnyChartDocument, AnySongDocument } from "kamaitachi-common";
 import { FilterQuery } from "mongodb";
 import deepmerge from "deepmerge";

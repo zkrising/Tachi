@@ -1,5 +1,5 @@
 import db from "../external/mongo/db";
-import CreateLogCtx from "./logger";
+import CreateLogCtx from "../logger/logger";
 const logger = CreateLogCtx(__filename);
 import { integer } from "kamaitachi-common";
 

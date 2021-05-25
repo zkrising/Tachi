@@ -34,6 +34,6 @@ jobs:
       with:
         version: 6.0.2
   
-    - run: pnpm ci
+    - run: pnpm i
     - run: pnpm lint
     - run: pnpm test

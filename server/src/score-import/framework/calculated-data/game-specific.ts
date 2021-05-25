@@ -1,6 +1,6 @@
 import { AnyChartDocument, ChartDocument, Game, Playtypes, Grades, Lamps } from "kamaitachi-common";
 import db from "../../../external/mongo/db";
-import { KtLogger } from "../../../types";
+import { KtLogger } from "../../../common/types";
 import { DryScore } from "../common/types";
 import {
     CalculateBPI,

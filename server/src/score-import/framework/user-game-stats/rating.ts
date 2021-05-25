@@ -1,6 +1,6 @@
 import { Game, Playtypes, integer, GameSpecificCalcLookup, IDStrings } from "kamaitachi-common";
 import db from "../../../external/mongo/db";
-import { KtLogger } from "../../../types";
+import { KtLogger } from "../../../common/types";
 
 export async function CalculateRatings(
     game: Game,

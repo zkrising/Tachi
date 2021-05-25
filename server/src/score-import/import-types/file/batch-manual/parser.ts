@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../../types";
+import { KtLogger } from "../../../../common/types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParseBatchManualFromObject } from "../../common/batch-manual/parser";
 import { BatchManualContext, BatchManualScore } from "../../common/batch-manual/types";

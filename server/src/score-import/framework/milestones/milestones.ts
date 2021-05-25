@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../types";
+import { KtLogger } from "../../../common/types";
 import {
     integer,
     Game,

@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../../types";
+import { KtLogger } from "../../../../common/types";
 import { ParseKaiIIDX } from "../../common/api-kai/iidx/parser";
 import { KaiAuthDocument } from "kamaitachi-common";
 

@@ -1,5 +1,5 @@
 import { parse as FastParseXML } from "fast-xml-parser";
-import { EmptyObject, KtLogger } from "../../../../types";
+import { EmptyObject, KtLogger } from "../../../../common/types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import p, { PrudenceSchema } from "prudence";
 import { FormatPrError } from "../../../../common/prudence";

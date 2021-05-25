@@ -1,4 +1,4 @@
-import { EmptyObject, KtLogger } from "../../../../types";
+import { EmptyObject, KtLogger } from "../../../../common/types";
 import {
     InvalidScoreFailure,
     KTDataNotFoundFailure,

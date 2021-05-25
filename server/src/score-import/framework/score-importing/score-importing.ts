@@ -18,7 +18,7 @@ import {
 import { CreateScoreID } from "./score-id";
 import db from "../../../external/mongo/db";
 import { AppendLogCtx } from "../../../common/logger";
-import { KtLogger } from "../../../types";
+import { KtLogger } from "../../../common/types";
 import {
     ConverterFunctionReturns,
     ConverterFnReturn,

@@ -1,6 +1,6 @@
 import { FindIIDXChartOnInGameID } from "../../../../common/database-lookup/chart";
 import { FindSongOnID } from "../../../../common/database-lookup/song";
-import { EmptyObject } from "../../../../types";
+import { EmptyObject } from "../../../../common/types";
 import {
     InternalFailure,
     KTDataNotFoundFailure,

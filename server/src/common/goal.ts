@@ -1,7 +1,7 @@
 import { GoalDocument, integer, PBScoreDocument, Game } from "kamaitachi-common";
 import { grades, lamps } from "kamaitachi-common/js/config";
 import db from "../external/mongo/db";
-import { KtLogger } from "../types";
+import { KtLogger } from "./types";
 import { GetFolderChartIDs } from "./folder";
 import { FilterQuery } from "mongodb";
 

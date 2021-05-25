@@ -4,7 +4,7 @@
 
 import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "kamaitachi-common";
 import db from "../../../external/mongo/db";
-import { KtLogger } from "../../../types";
+import { KtLogger } from "../../../common/types";
 import { CalculateClassDeltas, UpdateUGSClasses, ClassHandler } from "./classes";
 import { CalculateRatings, CalculateCustomRatings } from "./rating";
 

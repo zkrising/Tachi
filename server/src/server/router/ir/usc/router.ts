@@ -13,7 +13,7 @@ import CreateLogCtx from "../../../../common/logger";
 import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./common";
 import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
 import { GetUserWithID } from "../../../../common/user";
-import { KtLogger } from "../../../../types";
+import { KtLogger } from "../../../../common/types";
 import { ParseIRUSC } from "../../../../score-import/import-types/ir/usc/parser";
 import { USCIR_MAX_LEADERBOARD_N } from "../../../../constants/usc-ir";
 import { CreateMulterSingleUploadMiddleware } from "../../../../common/multer";

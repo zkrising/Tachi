@@ -7,7 +7,7 @@ import CreateLogCtx from "../../../../common/logger";
 import prValidate from "../../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../../../score-import/framework/score-importing/score-import-error";
-import { KtLogger } from "../../../../types";
+import { KtLogger } from "../../../../common/types";
 import { ExpressWrappedScoreImportMain } from "../../../../score-import/framework/express-wrapper";
 import { CreateMulterSingleUploadMiddleware } from "../../../../common/multer";
 

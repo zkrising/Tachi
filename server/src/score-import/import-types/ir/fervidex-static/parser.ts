@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../../types";
+import { KtLogger } from "../../../../common/types";
 import p, { PrudenceSchema } from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { FormatPrError } from "../../../../common/prudence";

@@ -8,7 +8,7 @@ import {
     integer,
     IDStrings,
 } from "kamaitachi-common";
-import { KtLogger } from "../../types";
+import { KtLogger } from "../../common/types";
 import { ImportAllIterableData } from "./score-importing/score-importing";
 import { CreateImportLoggerAndID } from "./common/import-logger";
 import { CreateSessions } from "./sessions/sessions";

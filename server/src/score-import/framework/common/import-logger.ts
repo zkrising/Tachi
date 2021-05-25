@@ -2,7 +2,7 @@ import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
 import crypto from "crypto";
 import { FormatUserDoc } from "../../../common/user";
 import { rootLogger } from "../../../common/logger";
-import { KtLogger } from "../../../types";
+import { KtLogger } from "../../../common/types";
 
 export function CreateImportLoggerAndID(userDoc: PublicUserDocument, importType: ImportTypes) {
     const importID = crypto.randomBytes(20).toString("hex");

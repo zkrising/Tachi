@@ -5,7 +5,7 @@ import { GetKTDataJSON, Testing511SPA, TestingIIDXSPScore } from "../../../test-
 import { CreatePBDoc } from "./create-pb-doc";
 import deepmerge from "deepmerge";
 import CreateLogCtx from "../../../common/logger";
-import { KtLogger } from "../../../types";
+import { KtLogger } from "../../../common/types";
 import { lamps } from "kamaitachi-common/js/config";
 
 let IIDXScore = TestingIIDXSPScore;

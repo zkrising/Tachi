@@ -1,5 +1,5 @@
 import { Difficulties } from "kamaitachi-common";
-import { KtLogger } from "../../../../types";
+import { KtLogger } from "../../../../common/types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturnsSync } from "../types";
 import ConverterFn from "./converter";

@@ -21,7 +21,7 @@ router.get("/scores", async (req, res) => {
     // @optimisable - This should be solved with a couple queries and a hashmap.
     const beatorajaScores = await Promise.all(
         scores.map((e) =>
-            KtchiPBScoreToBeatorajaFormat(e, chart, req[SYMBOL_KtchiData]!.beatorajaAuthDoc.userID)
+            KtchiPBScoreToBeatorajaFormat(e, chart, req[SYMBOL_KtchiData]!.beatorajaAuthDoc!.userID)
         )
     );
 

@@ -37,6 +37,6 @@ export interface KtchiRequestData {
     uscAuthDoc?: GenericAuthDocument;
     uscChartDoc?: ChartDocument<"usc:Single">;
 
-    beatorajaAuthDocument?: GenericAuthDocument;
+    beatorajaAuthDoc?: GenericAuthDocument;
     beatorajaChartDoc?: ChartDocument<"bms:7K" | "bms:14K">;
 }

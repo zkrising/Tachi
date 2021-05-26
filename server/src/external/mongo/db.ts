@@ -116,6 +116,7 @@ const db = {
     "game-stats": monkDB.get<UserGameStats>("game-stats"),
     "kai-auth-tokens": monkDB.get<KaiAuthDocument>("kai-auth-tokens"),
     "usc-auth-tokens": monkDB.get<GenericAuthDocument>("usc-auth-tokens"),
+    "beatoraja-auth-tokens": monkDB.get<GenericAuthDocument>("beatoraja-auth-tokens"),
 };
 
 export default db;

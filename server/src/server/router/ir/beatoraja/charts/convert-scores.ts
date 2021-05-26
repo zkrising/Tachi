@@ -34,7 +34,7 @@ type BeatorajaPartialScoreFormat = {
     maxcombo: integer | null;
 };
 
-export type BeatorajaScoreFormat = BeatorajaPartialScoreFormat & BeatorajaScoreJudgements;
+export type BeatorajaIRScoreFormat = BeatorajaPartialScoreFormat & BeatorajaScoreJudgements;
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,7 +1,14 @@
 import { Router } from "express";
 import db from "../../../../external/mongo/db";
+import { SYMBOL_KtchiData } from "../../../../lib/constants/ktchi";
+import { KtLogger } from "../../../../lib/logger/logger";
+import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
+import { ParseBeatorajaSingle } from "../../../../lib/score-import/import-types/ir/beatoraja/parser";
 import { Random20Hex } from "../../../../utils/misc";
-import { PRIVATEINFO_GetUserCaseInsensitive } from "../../../../utils/user";
+import {
+    GetUserWithIDGuaranteed,
+    PRIVATEINFO_GetUserCaseInsensitive,
+} from "../../../../utils/user";
 import prValidate from "../../../middleware/prudence-validate";
 import { PasswordCompare } from "../../api/v1/auth/auth";
 import { ValidateAuthToken, ValidateIRClientVersion } from "./auth";
@@ -66,7 +73,18 @@ router.use(ValidateAuthToken);
  * store it as a new chart alongside the new score.
  * @name POST /ir/beatoraja/submit-score
  */
-router.post("/submit-score", async (req, res) => {});
+router.post("/submit-score", async (req, res) => {
+    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_KtchiData]!.beatorajaAuthDoc!.userID);
+
+    const ParserFunction = (logger: KtLogger) => ParseBeatorajaSingle(req.body, logger);
+
+    const importRes = await ExpressWrappedScoreImportMain(
+        userDoc,
+        false,
+        "ir/beatoraja",
+        ParserFunction
+    );
+});
 
 /**
  * Submits a course result to Kamaitachi. This only accepts a limited set of

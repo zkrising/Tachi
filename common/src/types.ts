@@ -1324,7 +1324,7 @@ export interface KaiAuthDocument {
     service: "FLO" | "EAG"; // MIN might exist at some point.
 }
 
-export interface USCAuthDocument {
+export interface GenericAuthDocument {
     userID: integer;
     token: string;
 }

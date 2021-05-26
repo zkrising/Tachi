@@ -1,14 +1,14 @@
 name: KTBlack-Server CI
 
 env:
-  KTBKS_MONGO_BASE_URL: "127.0.0.1"
+  KTBSV_MONGO_BASE_URL: "127.0.0.1"
   NODE_ENV: "test"
-  KTBKS_LOG_LEVEL: "info"
-  KTBKS_CAPTCHA_SECRET_KEY: "unused"
-  KTBKS_SESSION_SECRET: "unused"
-  KTBKS_FLO_API_URL: "unused"
-  KTBKS_EAG_API_URL: "unused"
-  KTBKS_ARC_API_URL: "unused"
+  KTBSV_LOG_LEVEL: "info"
+  KTBSV_CAPTCHA_SECRET_KEY: "unused"
+  KTBSV_SESSION_SECRET: "unused"
+  KTBSV_FLO_API_URL: "unused"
+  KTBSV_EAG_API_URL: "unused"
+  KTBSV_ARC_API_URL: "unused"
   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 on:

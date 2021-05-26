@@ -131,4 +131,5 @@ for (const game of supportedGames) {
     }
 
     logger.info("Done.");
+    process.exit(0);
 })();

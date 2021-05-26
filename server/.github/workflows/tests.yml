@@ -55,7 +55,9 @@ jobs:
 
       - name: Upload Coverage
         if: always()
-        run: cat coverage/lcov.info | pnpx codecov
+        run: |
+          pnpm install -g codecov
+          cat coverage/lcov.info | codecov
   # deploy:
   #   if: ${{ github.ref == 'master' }}
   #   needs: test

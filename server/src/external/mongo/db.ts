@@ -41,7 +41,7 @@ if (process.env.NODE_ENV !== "test") {
     dbtime = process.hrtime();
 }
 
-export let monkDB = monk(url);
+export const monkDB = monk(url);
 
 monkDB
     .then(() => {
@@ -55,11 +55,6 @@ monkDB
         logger.crit(err);
         process.exit(1);
     });
-
-export async function ReopenMongoConnection() {
-    monkDB = monk(url);
-    await monkDB.then();
-}
 
 export async function CloseMongoConnection() {
     await monkDB.close();

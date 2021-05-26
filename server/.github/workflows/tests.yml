@@ -48,7 +48,7 @@ jobs:
 
       # enable indexing for our testingdb, this results in faster action time.
       - name: Set Mongo Indexes
-        run: ts-node scripts/set-indexes.ts
+        run: pnpx ts-node scripts/set-indexes.ts
 
       - name: Run Tests
         run: pnpm test

@@ -113,7 +113,8 @@ export type Databases =
     | "game-stats"
     | "users"
     | "kai-auth-tokens"
-    | "usc-auth-tokens";
+    | "usc-auth-tokens"
+    | "beatoraja-auth-tokens";
 
 export type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 

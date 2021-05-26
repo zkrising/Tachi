@@ -170,7 +170,7 @@ export function FindIIDXChartWith2DXtraHash(hash: string) {
  */
 export function FindSDVXChartOnInGameID(
     inGameID: number,
-    difficulty: "NOV" | "ADV" | "EXH" | "MXM" | "ANY_INF"
+    difficulty: Difficulties["sdvx:Single"] | "ANY_INF"
 ) {
     const diffQuery =
         difficulty === "ANY_INF"

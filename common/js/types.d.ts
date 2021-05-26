@@ -1066,7 +1066,7 @@ export interface KaiAuthDocument {
     refreshToken: string;
     service: "FLO" | "EAG";
 }
-export interface USCAuthDocument {
+export interface GenericAuthDocument {
     userID: integer;
     token: string;
 }

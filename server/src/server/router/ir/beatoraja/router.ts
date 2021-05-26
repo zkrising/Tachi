@@ -4,9 +4,12 @@ import { Random20Hex } from "../../../../utils/misc";
 import { PRIVATEINFO_GetUserCaseInsensitive } from "../../../../utils/user";
 import prValidate from "../../../middleware/prudence-validate";
 import { PasswordCompare } from "../../api/v1/auth/auth";
+import { ValidateAuthToken, ValidateIRClientVersion } from "./auth";
 import chartsRouter from "./charts/router";
 
 const router: Router = Router({ mergeParams: true });
+
+router.use(ValidateIRClientVersion);
 
 /**
  * Takes a username and password and returns a unique auth token for the user
@@ -56,7 +59,21 @@ router.post(
     }
 );
 
+router.use(ValidateAuthToken);
 
+/**
+ * Submits a beatoraja score to Kamaitachi. If the chart is unavailable,
+ * store it as a new chart alongside the new score.
+ * @name POST /ir/beatoraja/submit-score
+ */
+router.post("/submit-score", async (req, res) => {});
+
+/**
+ * Submits a course result to Kamaitachi. This only accepts a limited set of
+ * courses - all of which are dans.
+ * @name POST /ir/beatoraja/submit-course
+ */
+router.post("/submit-course", async (req, res) => {});
 
 router.use("/charts/:chartSHA256", chartsRouter);
 

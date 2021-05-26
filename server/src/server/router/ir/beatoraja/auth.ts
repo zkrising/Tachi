@@ -1,11 +1,10 @@
 import { GenericAuthDocument } from "kamaitachi-common";
 import { RequestHandler } from "express";
 import db from "../../../../external/mongo/db";
-import { SYMBOL_KtchiData } from "../../../../lib/constants/ktchi";
 import { SplitAuthorizationHeader } from "../../../../utils/misc";
 import { AssignToReqKtchiData } from "../../../../utils/req-ktchi-data";
 
-const ValidateAuthToken: RequestHandler = async (req, res, next) => {
+export const ValidateAuthToken: RequestHandler = async (req, res, next) => {
     const header = req.header("Authorization");
 
     if (!header) {
@@ -36,6 +35,19 @@ const ValidateAuthToken: RequestHandler = async (req, res, next) => {
     }
 
     AssignToReqKtchiData(req, { beatorajaAuthDoc });
+
+    return next();
+};
+
+export const ValidateIRClientVersion: RequestHandler = async (req, res, next) => {
+    const header = req.header("X-KtchiIR-Version");
+
+    if (header !== "2.0.0") {
+        return res.status(400).json({
+            success: false,
+            description: "Invalid KtchiIR client version.",
+        });
+    }
 
     return next();
 };

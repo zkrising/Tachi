@@ -1,0 +1,86 @@
+name: KTBlack-Server CI
+
+env:
+  KTBKS_MONGO_BASE_URL: "127.0.0.1"
+  NODE_ENV: "test"
+  KTBKS_LOG_LEVEL: "info"
+  KTBKS_CAPTCHA_SECRET_KEY: "unused"
+  KTBKS_SESSION_SECRET: "unused"
+  KTBKS_FLO_API_URL: "unused"
+  KTBKS_EAG_API_URL: "unused"
+  KTBKS_ARC_API_URL: "unused"
+  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js 15
+        uses: actions/setup-node@v2
+        with:
+          node-version: 15.x
+
+      - name: Install PNPM
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.0.2
+
+      # configure external dbs
+      - uses: supercharge/mongodb-github-action@1.4.1
+      - uses: supercharge/redis-github-action@1.1.0
+
+      - name: Install Dependencies
+        run: pnpm i
+
+      # for the time being, disable lint checking.
+      # - name: Lint Code
+      #   run: pnpm lint
+
+      # enable indexing for our testingdb, this results in faster action time.
+      - name: Set Mongo Indexes
+        run: ts-node scripts/set-indexes.ts
+
+      - name: Run Tests
+        run: pnpm test
+
+      - name: Upload Coverage
+        run: cat coverage/lcov.info | pnpx codecov
+  # deploy:
+  #   if: ${{ github.ref == 'master' }}
+  #   needs: test
+  #   name: Deploy
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v2
+
+  #     - name: Install Node.js 15
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 15.x
+
+  #     - name: Install PNPM
+  #       uses: pnpm/action-setup@v2.0.1
+  #       with:
+  #         version: 6.0.2
+
+  #     # configure external dbs
+  #     - uses: supercharge/mongodb-github-action@1.4.1
+  #     - uses: supercharge/redis-github-action@1.1.0
+
+  #     - name: Install Dependencies
+  #       run: pnpm i
+
+  #     # for the time being, disable lint checking.
+  #     # - name: Lint Code
+  #     #   run: pnpm lint

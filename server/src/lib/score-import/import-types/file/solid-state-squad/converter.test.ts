@@ -49,7 +49,8 @@ t.test("#ConvertFileS3", (t) => {
             hitMeta: {},
         },
         scoreMeta: {},
-        timeAchieved: 1287460462000,
+        // can't be tested because the timestamp format doesnt specify a timezone.
+        // timeAchieved: 1287460462000,
     };
 
     const BaseS3Score = GetKTDataJSON("./s3/s3score.json");

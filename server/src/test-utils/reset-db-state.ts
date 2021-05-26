@@ -10,46 +10,62 @@ const logger = CreateLogCtx(__filename);
 
 const DATA_DIR = path.join(__dirname, "./mock-db");
 
-async function ResetState(file: string) {
-    const filename = path.basename(file, ".json");
+const CACHE: Record<string, any[]> = {};
 
-    let collection;
+async function ResetState(data: any[], collection: any) {
+    await collection.remove({});
 
-    try {
-        if (filename.startsWith("songs-")) {
-            // @ts-expect-error it's right, but we know what we're doing!
-            collection = db.songs[filename.split("-")[1]];
-        } else if (filename.startsWith("charts-")) {
-            // @ts-expect-error see above
-            collection = db.charts[filename.split("-")[1]];
-        } else {
-            // @ts-expect-error see above
-            collection = db[filename];
-        }
-
-        await collection.remove({});
-
-        const fileLoc = path.join(DATA_DIR, file);
-        const data = JSON.parse(fs.readFileSync(fileLoc, "utf-8"));
-
-        if (!Array.isArray(data)) {
-            throw new Error(`Panic, ${filename} not JSONArray?`);
-        }
-
-        await collection.insert(data);
-    } catch (err) {
-        logger.crit(`Fatal in ResetState: ${filename} ${err}`);
-        throw err;
-    }
+    await collection.insert(data);
 }
 
+function GetAndCache(filename: string, fileLoc: string) {
+    let collection;
+    if (filename.startsWith("songs-")) {
+        // @ts-expect-error it's right, but we know what we're doing!
+        collection = db.songs[filename.split("-")[1]];
+    } else if (filename.startsWith("charts-")) {
+        // @ts-expect-error see above
+        collection = db.charts[filename.split("-")[1]];
+    } else {
+        // @ts-expect-error see above
+        collection = db[filename];
+    }
+
+    if (CACHE[filename]) {
+        return { data: CACHE[filename], collection };
+    }
+
+    const data = JSON.parse(fs.readFileSync(fileLoc, "utf-8"));
+
+    if (!Array.isArray(data)) {
+        throw new Error(`Panic, ${filename} not JSONArray?`);
+    }
+
+    CACHE[filename] = data;
+
+    return { data, collection };
+}
+
+let CACHE_FILENAMES: string[];
+
 export default async function ResetDBState() {
-    const files = fs.readdirSync(DATA_DIR);
+    let files;
+    if (CACHE_FILENAMES) {
+        files = CACHE_FILENAMES;
+    } else {
+        files = fs.readdirSync(DATA_DIR);
+        CACHE_FILENAMES = files;
+    }
 
     const promises = [];
 
     for (const file of files) {
-        promises.push(ResetState(file));
+        const filename = path.basename(file, ".json");
+        const fileLoc = path.join(DATA_DIR, file);
+
+        const { data, collection } = GetAndCache(filename, fileLoc);
+
+        promises.push(ResetState(data, collection));
     }
 
     await Promise.all(promises);

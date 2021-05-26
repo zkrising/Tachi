@@ -1,10 +1,30 @@
-import { PBScoreDocument } from "kamaitachi-common";
-import { Router } from "express";
+import { ChartDocument, PBScoreDocument } from "kamaitachi-common";
+import { Router, RequestHandler } from "express";
 import db from "../../../../../external/mongo/db";
 import { SYMBOL_KtchiData } from "../../../../../lib/constants/ktchi";
 import { KtchiPBScoreToBeatorajaFormat } from "./convert-scores";
+import { AssignToReqKtchiData } from "../../../../../utils/req-ktchi-data";
 
 const router: Router = Router({ mergeParams: true });
+
+const GetChartDocument: RequestHandler = async (req, res, next) => {
+    const chart = (await db.charts.bms.findOne({
+        "data.chartSHA256": req.params.chartSHA256,
+    })) as ChartDocument<"bms:7K" | "bms:14K"> | null;
+
+    if (!chart) {
+        return res.status(404).json({
+            success: false,
+            description: `Chart does not exist on IR yet.`,
+        });
+    }
+
+    AssignToReqKtchiData(req, { beatorajaChartDoc: chart });
+
+    return next();
+};
+
+router.use(GetChartDocument);
 
 /**
  * Retrieves scores for the given chart.

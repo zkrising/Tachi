@@ -13,9 +13,9 @@ env:
 
 on:
   push:
-    branches: [master, staging]
+    branches: [master, develop]
   pull_request:
-    branches: [master, staging]
+    branches: [master, develop]
 
 jobs:
   test:

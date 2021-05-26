@@ -1,5 +1,4 @@
-import { integer, USCAuthDocument, ChartDocument } from "kamaitachi-common";
-import { Logger, LeveledLogMethod } from "winston";
+import { integer, GenericAuthDocument, ChartDocument } from "kamaitachi-common";
 
 declare module "express-session" {
     // Inject additional properties on express-session
@@ -35,6 +34,9 @@ export type EmptyObject = Record<string, never>;
  * Data that may be monkey-patched onto req.ktchi. This holds things such as middleware results.
  */
 export interface KtchiRequestData {
-    uscAuthDoc?: USCAuthDocument;
+    uscAuthDoc?: GenericAuthDocument;
     uscChartDoc?: ChartDocument<"usc:Single">;
+
+    beatorajaAuthDocument?: GenericAuthDocument;
+    beatorajaChartDoc?: ChartDocument<"bms:7K" | "bms:14K">;
 }

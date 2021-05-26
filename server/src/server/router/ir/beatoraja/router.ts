@@ -1,7 +1,7 @@
 import { Router } from "express";
 import db from "../../../../external/mongo/db";
 import { SYMBOL_KtchiData } from "../../../../lib/constants/ktchi";
-import { KtLogger } from "../../../../lib/logger/logger";
+import CreateLogCtx, { KtLogger } from "../../../../lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { ParseBeatorajaSingle } from "../../../../lib/score-import/import-types/ir/beatoraja/parser";
 import { Random20Hex } from "../../../../utils/misc";
@@ -13,6 +13,8 @@ import prValidate from "../../../middleware/prudence-validate";
 import { PasswordCompare } from "../../api/v1/auth/auth";
 import { ValidateAuthToken, ValidateIRClientVersion } from "./auth";
 import chartsRouter from "./charts/router";
+
+const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 
@@ -84,6 +86,50 @@ router.post("/submit-score", async (req, res) => {
         "ir/beatoraja",
         ParserFunction
     );
+
+    if (!importRes.body.success) {
+        return res.status(400).json(importRes.body);
+    } else if (importRes.body.body.errors.length !== 0) {
+        // since we're only ever importing one score, we can guarantee
+        // that this means the score we tried to import was skipped.
+        return res.status(400).json({
+            success: false,
+            description: `[${importRes.body.body.errors[0].type}] - ${importRes.body.body.errors[0].message}`,
+        });
+    }
+
+    const scoreDoc = await db.scores.findOne({
+        scoreID: importRes.body.body.scoreIDs[0],
+    });
+
+    if (!scoreDoc) {
+        logger.severe(
+            `ScoreDocument ${importRes.body.body.scoreIDs[0]} was claimed to be inserted, but wasn't.`
+        );
+        return res.status(500).json({
+            success: false,
+            description: "Internal Service Error.",
+        });
+    }
+
+    const chart = await db.charts.bms.findOne({
+        chartID: scoreDoc.chartID,
+    });
+
+    const song = await db.songs.bms.findOne({
+        id: chart!.songID,
+    });
+
+    return res.status(importRes.statusCode).json({
+        success: true,
+        description: "Imported score.",
+        body: {
+            score: scoreDoc,
+            song,
+            chart,
+            import: importRes.body.body,
+        },
+    });
 });
 
 /**

@@ -146,7 +146,7 @@ export interface UnsuccessfulAPIResponse {
  * In the event of a successful API request, body is attached onto the request, which contains
  * endpoint-defined information about the response, such as database data.
  */
-export interface SuccessfulAPIResponse {
+export interface SuccessfulAPIResponse<T = unknown> {
     success: true;
     description: string;
     // This isn't ideal, but we need to restrict
@@ -154,7 +154,7 @@ export interface SuccessfulAPIResponse {
     // mandates indexability of the type, which makes
     // it unusable for known objects.
     // eslint-disable-next-line @typescript-eslint/ban-types
-    body: unknown;
+    body: T;
 }
 
 export interface ChartFolderLookupDocument extends MongoDBDocument {

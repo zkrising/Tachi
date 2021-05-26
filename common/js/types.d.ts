@@ -87,10 +87,10 @@ export interface UnsuccessfulAPIResponse {
  * In the event of a successful API request, body is attached onto the request, which contains
  * endpoint-defined information about the response, such as database data.
  */
-export interface SuccessfulAPIResponse {
+export interface SuccessfulAPIResponse<T = unknown> {
     success: true;
     description: string;
-    body: unknown;
+    body: T;
 }
 export interface ChartFolderLookupDocument extends MongoDBDocument {
     chartID: string;

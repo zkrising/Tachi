@@ -135,11 +135,29 @@ t.test("#CalculateRating", (t) => {
 t.test("#CalculateLampRating", async (t) => {
     t.beforeEach(ResetDBState);
 
-    const defaultTierlist = await GetDefaultTierlist("iidx", "SP");
-
-    if (!defaultTierlist) {
-        throw new Error("Could not retrieve IIDX:SP default tierlist?");
-    }
+    const defaultTierlist = {
+        createdAt: 1620150338858,
+        tierlistID: "ee9b756e50cff8282091102257b01f423ef855f2",
+        createdBy: 1,
+        description: "The official Kamaitachi Tierlist for beatmania IIDX (SP).",
+        game: "iidx",
+        playtype: "SP",
+        isDefault: true,
+        name: "Kamaitachi IIDX SP Official",
+        lastUpdated: 1620150338858,
+        permissions: {
+            anyPlayer: {
+                edit: 0,
+                submit: 1,
+                vote: 1,
+            },
+        },
+        config: {
+            autoHumanise: false,
+            flags: ["Individual Difference"],
+            requireState: "clear",
+        },
+    };
 
     t.test("TierlistData", async (t) => {
         const lampRating = await CalculateLampRating(

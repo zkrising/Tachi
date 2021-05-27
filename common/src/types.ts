@@ -1,5 +1,6 @@
 import { IObjectID } from "monk";
 import { FilterQuery } from "mongodb";
+import { GameClasses } from "./game-classes";
 
 export interface CounterDocument {
     counterName: string;
@@ -750,10 +751,6 @@ export interface PublicUserDocument extends MongoDBDocument {
     about: string;
     customPfp: boolean;
     customBanner: boolean;
-    // ratings: Ratings;
-    // lampRatings: Ratings;
-    // customRatings: CustomRatings;
-    // classes?: UserClasses;
     permissions: {
         admin?: boolean;
     };
@@ -767,7 +764,7 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
     rating: number;
     lampRating: number;
     customRatings: Partial<Record<GameSpecificCalcLookup[I], number>>;
-    classes: Record<string, string>; // bad
+    classes: GameClasses<I>;
 }
 
 /**

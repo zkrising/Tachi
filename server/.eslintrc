@@ -36,6 +36,12 @@
         ],
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+                "argsIgnorePattern": "logger"
+            }
+        ],
         "require-await": "warn",
         "no-await-in-loop": "warn",
         "no-unused-labels": "error",
@@ -79,12 +85,12 @@
         "no-throw-literal": "error",
         "no-unmodified-loop-condition": "error",
         "no-unused-expressions": "error",
-        // "no-unused-vars": [
-        //     "warn",
-        //     {
-        //         "match": "logger"
-        //     }
-        // ],
+        "no-unused-vars": [
+            "warn",
+            {
+                "argsIgnorePattern": "logger"
+            }
+        ],
         "no-useless-call": "error",
         "no-useless-return": "error",
         "require-unicode-regexp": "error"

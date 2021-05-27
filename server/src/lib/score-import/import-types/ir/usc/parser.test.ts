@@ -25,6 +25,15 @@ t.test("#ParseIRUSC", (t) => {
         t.end();
     });
 
+    t.test("Should reject empty bodies", (t) => {
+        t.throws(() => ParseIRUSC({}, uscChart, logger), {
+            statusCode: 400,
+            message: /invalid usc score/iu,
+        } as any);
+
+        t.end();
+    });
+
     t.end();
 });
 

@@ -1,12 +1,12 @@
 import { KtLogger } from "../../../../logger/logger";
 import { ChartDocument } from "kamaitachi-common";
 import p, { PrudenceSchema } from "prudence";
-import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import { FormatPrError } from "../../../../../utils/prudence";
 import { USCClientScore } from "../../../../../server/router/ir/usc/usc";
 import { IRUSCContext } from "./types";
 import { ConverterIRUSC } from "./converter";
 import { ParserFunctionReturnsSync } from "../../common/types";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 
 const PR_USCIRScore: PrudenceSchema = {
     score: p.isBoundedInteger(0, 10_000_000),
@@ -36,7 +36,7 @@ export function ParseIRUSC(
     );
 
     if (err) {
-        throw new InvalidScoreFailure(FormatPrError(err, "Invalid USC Score."));
+        throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid USC Score."));
     }
 
     return {

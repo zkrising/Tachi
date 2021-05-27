@@ -4,11 +4,49 @@ import { CloseAllConnections } from "../../../../../test-utils/close-connections
 import mockApi from "../../../../../test-utils/mock-api";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 
-t.test("POST /api/v1/login", (t) => {
+t.test("POST /api/v1/auth/status", (t) => {
+    t.beforeEach(ResetDBState);
+
+    t.test("Should return 401 if no cookie provided", async (t) => {
+        const res = await mockApi.post("/api/v1/auth/status");
+
+        t.equal(res.status, 401);
+
+        t.end();
+    });
+
+    t.test("Should return 401 if invalid cookie provided", async (t) => {
+        const res = await mockApi.post("/api/v1/auth/status").set("Cookie", "invalid");
+
+        t.equal(res.status, 401);
+
+        t.end();
+    });
+
+    t.test("Should return 200 if valid cookie provided", async (t) => {
+        const authRes = await mockApi.post("/api/v1/auth/login").send({
+            username: "test_zkldi",
+            password: "password",
+            captcha: "foo",
+        });
+
+        const res = await mockApi
+            .post("/api/v1/auth/status")
+            .set("Cookie", authRes.headers["set-cookie"]);
+
+        t.equal(res.status, 200);
+
+        t.end();
+    });
+
+    t.end();
+});
+
+t.test("POST /api/v1/auth/login", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should log a user in with right credentials", async (t) => {
-        const res = await mockApi.post("/api/v1/login").send({
+        const res = await mockApi.post("/api/v1/auth/login").send({
             username: "test_zkldi",
             password: "password",
             captcha: "foo",
@@ -19,6 +57,12 @@ t.test("POST /api/v1/login", (t) => {
         t.strictSame(res.body.body, {
             userID: 1,
         });
+
+        const cookie = res.headers["set-cookie"];
+
+        const stat = await mockApi.post("/api/v1/auth/stat").set("Cookie", cookie);
+
+        t.equal(stat.status, 200);
 
         t.end();
     });

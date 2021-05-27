@@ -1,5 +1,6 @@
 import { IObjectID } from "monk";
 import { FilterQuery } from "mongodb";
+import { GameClasses } from "./game-classes";
 export interface CounterDocument {
     counterName: string;
     value: integer;
@@ -561,7 +562,7 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
     rating: number;
     lampRating: number;
     customRatings: Partial<Record<GameSpecificCalcLookup[I], number>>;
-    classes: Record<string, string>;
+    classes: GameClasses<I>;
 }
 /**
  * PrivateUserDocument is the document indicating that we've returned everything about the user

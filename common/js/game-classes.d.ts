@@ -1,42 +1,30 @@
-import { Game, integer, Playtypes } from "./types";
-export declare type ClassData = Record<string, ClassInfo>;
+import { IDStrings, integer } from "./types";
 export interface ClassInfo {
     display: string;
     mouseover: string;
-    index: integer;
 }
-declare type GameClasses = {
-    [G in Game]: {
-        [P in Playtypes[G]]: Record<string, ClassData>;
-    };
+export declare const IIDXDans: ClassInfo[];
+export declare const GitadoraColours: ClassInfo[];
+export declare const BMSGenocideDans: ClassInfo[];
+export declare const BMSStSlDans: ClassInfo[];
+export declare const SDVXDans: ClassInfo[];
+export interface GameClassSets {
+    "iidx:SP": "dan";
+    "iidx:DP": "dan";
+    "popn:9B": never;
+    "sdvx:Single": "dan" | "badge";
+    "usc:Single": never;
+    "ddr:SP": "dan";
+    "ddr:DP": "dan";
+    "maimai:Single": never;
+    "jubeat:Single": "colour";
+    "museca:Single": never;
+    "bms:7K": "genocideDan" | "stslDan";
+    "bms:14K": "genocideDan";
+    "chunithm:Single": never;
+    "gitadora:Gita": "colour";
+    "gitadora:Dora": "colour";
+}
+export declare type GameClasses<I extends IDStrings> = {
+    [K in GameClassSets[I]]: integer;
 };
-export declare const gameClassValues: GameClasses;
-export declare const defaultGameClasses: {
-    iidx: {
-        SP: string;
-        DP: string;
-    };
-    ddr: {
-        SP: string;
-        DP: string;
-    };
-    gitadora: {
-        Gita: string;
-        Dora: string;
-    };
-    popn: {};
-    sdvx: {
-        Single: string;
-    };
-    museca: {};
-    jubeat: {
-        Single: string;
-    };
-    bms: {
-        "7K": string;
-    };
-    chunithm: {};
-    maimai: {};
-    usc: {};
-};
-export {};

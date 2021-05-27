@@ -24,9 +24,19 @@ const router: Router = Router({ mergeParams: true });
 
 const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
 
-/* istanbul ignore next */
-const BASE_DOMAIN = process.env.NODE_ENV === "production" ? ".kamaitachi.xyz" : "127.0.0.1";
-const SHOULD_COOKIES_SECURE = process.env.NODE_ENV === "production";
+/**
+ * Utility for checking whether you are logged in or not.
+ * @name POST /api/v1/auth/status
+ */
+router.post("/status", RequireLoggedIn, (req, res) =>
+    res.status(200).json({
+        success: true,
+        description: "Logged In.",
+        body: {
+            userID: req.session.ktchi!.userID,
+        },
+    })
+);
 
 /**
  * Logs in a user.

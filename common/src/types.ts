@@ -114,7 +114,8 @@ export type Databases =
     | "users"
     | "kai-auth-tokens"
     | "usc-auth-tokens"
-    | "beatoraja-auth-tokens";
+    | "beatoraja-auth-tokens"
+    | "bms-course-lookup";
 
 export type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 
@@ -1330,4 +1331,15 @@ export interface KaiAuthDocument {
 export interface GenericAuthDocument {
     userID: integer;
     token: string;
+}
+
+/**
+ * Used to resolve beatoraja IR courses.
+ */
+export interface BMSCourseDocument {
+    title: string;
+    md5sums: string;
+    set: "genocideDan" | "stslDan";
+    playtype: "7K" | "14K";
+    value: integer;
 }

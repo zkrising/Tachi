@@ -16,7 +16,6 @@ import server from "./server/server";
 import serverConfig from "./server/server-config";
 import { LOG_LEVEL } from "./lib/env/env";
 
-
 const logger = CreateLogCtx(__filename);
 
 logger.info(`Booting Kamaitachi BLACK - ${FormatVersion()} [ENV: ${process.env.NODE_ENV}]`);

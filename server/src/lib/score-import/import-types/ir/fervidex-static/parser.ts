@@ -50,6 +50,10 @@ export function ParseFervidexStatic(
                 );
             }
 
+            if (!["spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"].includes(chart)) {
+                throw new ScoreImportFatalError(400, `Invalid chart ${chart}.`);
+            }
+
             const err = p(score, PR_FervidexStatic);
 
             if (err) {
@@ -57,10 +61,6 @@ export function ParseFervidexStatic(
                     400,
                     FormatPrError(err, `Invalid Score with songID ${songID} at chart ${chart}`)
                 );
-            }
-
-            if (!["spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"].includes(chart)) {
-                throw new ScoreImportFatalError(400, `Invalid chart ${chart}.`);
             }
 
             scores.push({

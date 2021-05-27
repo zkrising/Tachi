@@ -35,10 +35,7 @@ t.test("POST /ir/chunitachi/import", async (t) => {
     });
 
     t.test("Should reject invalid batch-manual", async (t) => {
-        const res = await mockApi
-            .post("/ir/chunitachi/import")
-            .set("Cookie", cookie)
-            .send({});
+        const res = await mockApi.post("/ir/chunitachi/import").set("Cookie", cookie).send({});
 
         t.equal(res.body.success, false, "Should not be successful");
 

@@ -24,7 +24,7 @@ export function FerStaticClassHandler(body: Record<string, unknown>): ClassHandl
         const intIndex = index as integer;
 
         if (intIndex < 0 || intIndex > 18) {
-            logger.error(`Invalid fer-static class of ${index}.`);
+            logger.warn(`Invalid fer-static class of ${index}. Skipping.`);
             return;
         }
 

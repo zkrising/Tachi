@@ -180,11 +180,7 @@ t.test("POST /ir/fervidex/profile/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
-    TestHeaders(
-        "/ir/fervidex/class/submit",
-        cookie,
-        GetKTDataJSON("./fervidex-static/base.json")
-    );
+    TestHeaders("/ir/fervidex/class/submit", cookie, GetKTDataJSON("./fervidex-static/base.json"));
 
     const ferStaticBody = GetKTDataJSON("./fervidex-static/base.json");
 

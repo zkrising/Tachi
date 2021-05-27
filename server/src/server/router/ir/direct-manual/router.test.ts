@@ -32,10 +32,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
     });
 
     t.test("Should reject invalid BATCH-MANUAL data from the request body.", async (t) => {
-        const res = await mockApi
-            .post("/ir/direct-manual/import")
-            .set("Cookie", cookie)
-            .send({});
+        const res = await mockApi.post("/ir/direct-manual/import").set("Cookie", cookie).send({});
 
         t.equal(res.body.success, false, "Should not be successful");
 

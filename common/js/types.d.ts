@@ -392,8 +392,8 @@ interface ImportErrContent {
 export interface ClassDelta {
     set: string;
     playtype: Playtypes[Game];
-    old: string | null;
-    new: string;
+    old: integer | null;
+    new: integer;
 }
 export interface ImportDocument extends MongoDBDocument {
     userID: integer;

@@ -155,3 +155,21 @@ export async function LoadKTBlackIIDXData() {
     await db.charts.iidx.remove({});
     await db.charts.iidx.insert(charts);
 }
+
+export const barbScore: BarbatosScore = {
+    clear_type: 2,
+    did_fail: false,
+    difficulty: 1,
+    critical: 100,
+    error: 5,
+    near_total: 50,
+    near_fast: 40,
+    near_slow: 10,
+    gauge_type: 1,
+    is_skill_analyser: false,
+    level: 10,
+    max_chain: 100,
+    percent: 90,
+    score: 9_000_000,
+    song_id: 1,
+};

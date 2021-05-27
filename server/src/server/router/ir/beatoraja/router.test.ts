@@ -144,7 +144,9 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
             { projection: { _id: 0 } }
         );
 
-        t.hasStrict(score, res.body.body.score);
+        t.not(score, null);
+
+        t.hasStrict(res.body.body.score, score as any);
 
         t.end();
     });

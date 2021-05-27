@@ -24,6 +24,7 @@ import {
     UserGoalDocument,
     PBScoreDocument,
     UserMilestoneDocument,
+    BMSCourseDocument,
 } from "kamaitachi-common";
 import monk from "monk";
 import { MONGO_BASE_URL } from "../../lib/env/env";
@@ -117,6 +118,7 @@ const db = {
     "kai-auth-tokens": monkDB.get<KaiAuthDocument>("kai-auth-tokens"),
     "usc-auth-tokens": monkDB.get<GenericAuthDocument>("usc-auth-tokens"),
     "beatoraja-auth-tokens": monkDB.get<GenericAuthDocument>("beatoraja-auth-tokens"),
+    "bms-course-lookup": monkDB.get<BMSCourseDocument>("bms-course-lookup"),
 };
 
 export default db;

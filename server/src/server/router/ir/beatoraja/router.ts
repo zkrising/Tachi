@@ -4,6 +4,7 @@ import { SYMBOL_KtchiData } from "../../../../lib/constants/ktchi";
 import CreateLogCtx, { KtLogger } from "../../../../lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { ParseBeatorajaSingle } from "../../../../lib/score-import/import-types/ir/beatoraja/parser";
+import { UpdateClassIfGreater } from "../../../../utils/class";
 import { Random20Hex } from "../../../../utils/misc";
 import {
     GetUserWithIDGuaranteed,
@@ -137,7 +138,113 @@ router.post("/submit-score", async (req, res) => {
  * courses - all of which are dans.
  * @name POST /ir/beatoraja/submit-course
  */
-router.post("/submit-course", async (req, res) => {});
+router.post("/submit-course", async (req, res) => {
+    const charts = req.body.course?.charts;
+
+    if (!charts || !Array.isArray(charts) || charts.length !== 4) {
+        return res.status(400).json({
+            success: false,
+            description: `Invalid Course Submission.`,
+        });
+    }
+
+    const clear = req.body.score?.clear;
+
+    if (!clear || clear === "Failed") {
+        return res.status(200).json({
+            success: true,
+            description: "Class not updated.",
+        });
+    }
+
+    if (req.body.score?.lntype !== 0) {
+        return res.status(400).json({
+            success: false,
+            description: "LN mode is the only supported mode for dans.",
+        });
+    }
+
+    // Constraints are a bit complicated.
+    // We only want to accept dans with the following
+    // beatoraja constraints - ["MIRROR","LR2_GAUGE"] or
+    // ["MIRROR", "LR2_GAUGE", "LN"].
+    const constraint = req.body.course.constraint;
+
+    if (
+        !constraint ||
+        !Array.isArray(constraint) ||
+        (constraint.length !== 2 && constraint.length !== 3)
+    ) {
+        return res.status(400).json({
+            success: false,
+            description: `Invalid constraints.`,
+        });
+    }
+
+    // If there are two constraints, check that they are
+    // MIRROR and LR2_GAUGE.
+    if (!constraint.includes("MIRROR") || !constraint.includes("LR2_GAUGE")) {
+        return res.status(400).json({
+            success: false,
+            description: `Invalid constraints.`,
+        });
+    }
+
+    // If there are three constraints, check that the third
+    // is LN
+    if (constraint.length === 3) {
+        if (!constraint.includes("LN")) {
+            return res.status(400).json({
+                success: false,
+                description: `Invalid Constraints.`,
+            });
+        }
+    }
+
+    // Combine the md5s into one string in their order.
+    const combinedMD5s = charts.map((e) => e.md5).join();
+
+    const course = await db["bms-course-lookup"].findOne({
+        md5sums: combinedMD5s,
+    });
+
+    if (!course) {
+        return res.status(404).json({
+            success: false,
+            description: `Unsupported course.`,
+        });
+    }
+
+    const userID = req[SYMBOL_KtchiData]!.beatorajaAuthDoc!.userID;
+
+    const result = await UpdateClassIfGreater(
+        userID,
+        "bms",
+        course.playtype,
+        course.set,
+        course.value
+    );
+
+    if (result) {
+        return res.status(200).json({
+            success: true,
+            description: "Successfully updated class.",
+            body: {
+                set: course.set,
+                value: course.value,
+            },
+        });
+    }
+
+    return res.status(200).json({
+        success: true,
+        description: "Class not updated.",
+        body: {
+            set: course.set,
+            value: course.value,
+        },
+    });
+});
 
 router.use("/charts/:chartSHA256", chartsRouter);
 

@@ -562,7 +562,7 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
     rating: number;
     lampRating: number;
     customRatings: Partial<Record<GameSpecificCalcLookup[I], number>>;
-    classes: GameClasses<I>;
+    classes: Partial<GameClasses<I>>;
 }
 /**
  * PrivateUserDocument is the document indicating that we've returned everything about the user

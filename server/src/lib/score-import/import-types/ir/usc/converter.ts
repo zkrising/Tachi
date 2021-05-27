@@ -5,7 +5,7 @@ import { InternalFailure, InvalidScoreFailure } from "../../../framework/common/
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { IRUSCContext } from "./types";
 import { Lamps } from "kamaitachi-common";
-import uuid from "uuid";
+import { v4 as UUIDv4 } from "uuid";
 import { ConverterFunction } from "../../common/types";
 import { DryScore } from "../../../framework/common/types";
 import {
@@ -16,7 +16,10 @@ import {
     USC_DEFAULT_SLAM,
 } from "../../../../constants/usc-ir";
 
-function DeriveNoteMod(data: USCClientScore): "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" {
+/**
+ * Interprets the "note mod" used based on the USC score.
+ */
+export function DeriveNoteMod(data: USCClientScore): "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" {
     if (data.options.mirror && data.options.random) {
         return "MIR-RAN";
     } else if (data.options.mirror) {
@@ -28,7 +31,10 @@ function DeriveNoteMod(data: USCClientScore): "NORMAL" | "MIRROR" | "RANDOM" | "
     return "NORMAL";
 }
 
-function DeriveLamp(scoreDoc: USCClientScore, logger: KtLogger): Lamps["usc:Single"] {
+/**
+ * Determines the lamp of a USC score.
+ */
+export function DeriveLamp(scoreDoc: USCClientScore, logger: KtLogger): Lamps["usc:Single"] {
     if (scoreDoc.score === 10_000_000) {
         return "PERFECT ULTIMATE CHAIN";
     } else if (scoreDoc.error === 0) {
@@ -98,7 +104,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
         scoreMeta: {
             gaugeMod: data.options.gaugeOpt === 0 ? "NORMAL" : "HARD",
             noteMod: DeriveNoteMod(data),
-            replayID: uuid.v4(),
+            replayID: UUIDv4(),
         },
     };
 

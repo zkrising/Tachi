@@ -22,15 +22,18 @@
         "plugin:import/errors"
     ],
     "rules": {
-        "prettier/prettier": ["error", {
-            "printWidth": 100,
-            "tabWidth": 4,
-            "semi": true,
-            "singleQuote": false,
-            "trailingComma": "es5",
-            "bracketSpacing": true,
-            "endOfLine": "auto"
-        }],
+        "prettier/prettier": [
+            "error",
+            {
+                "printWidth": 100,
+                "tabWidth": 4,
+                "semi": true,
+                "singleQuote": false,
+                "trailingComma": "es5",
+                "bracketSpacing": true,
+                "endOfLine": "auto"
+            }
+        ],
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
         "require-await": "warn",
@@ -42,7 +45,10 @@
         "no-eval": "error",
         "no-var": "error",
         "no-new-object": "error",
-        "quote-props": ["error", "as-needed"],
+        "quote-props": [
+            "error",
+            "as-needed"
+        ],
         "no-array-constructor": "error",
         "prefer-template": "error",
         "prefer-promise-reject-errors": "error",
@@ -73,9 +79,14 @@
         "no-throw-literal": "error",
         "no-unmodified-loop-condition": "error",
         "no-unused-expressions": "error",
+        // "no-unused-vars": [
+        //     "warn",
+        //     {
+        //         "match": "logger"
+        //     }
+        // ],
         "no-useless-call": "error",
         "no-useless-return": "error",
-        "require-unicode-regexp": "error",
-        
+        "require-unicode-regexp": "error"
     }
 }

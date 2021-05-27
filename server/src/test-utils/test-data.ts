@@ -11,8 +11,16 @@ import {
 } from "kamaitachi-common";
 import path from "path";
 import db from "../external/mongo/db";
+import {
+    USC_DEFAULT_HOLD,
+    USC_DEFAULT_MISS,
+    USC_DEFAULT_NEAR,
+    USC_DEFAULT_PERFECT,
+    USC_DEFAULT_SLAM,
+} from "../lib/constants/usc-ir";
 import { DryScore } from "../lib/score-import/framework/common/types";
 import { BarbatosScore } from "../lib/score-import/import-types/ir/barbatos/types";
+import { USCClientScore } from "../server/router/ir/usc/usc";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
 
@@ -183,4 +191,45 @@ export const barbScore: BarbatosScore = {
     percent: 90,
     score: 9_000_000,
     song_id: 1,
+};
+
+export const uscChart: ChartDocument<"usc:Single"> = {
+    rgcID: null,
+    chartID: "USC_CHART_ID",
+    difficulty: "NOV",
+    songID: 1,
+    playtype: "Single",
+    levelNum: 1,
+    level: "1",
+    flags: {
+        CUSTOM: true,
+    },
+    data: {
+        hashSHA256: "USC_CHART_HASH",
+    },
+    isPrimary: true,
+    versions: [],
+};
+
+export const uscScore: USCClientScore = {
+    crit: 100,
+    error: 5,
+    near: 50,
+    gauge: 80,
+    options: {
+        autoFlags: 0,
+        gaugeOpt: 0,
+        gaugeType: 1,
+        mirror: true,
+        random: false,
+    },
+    score: 9_000_000,
+    timestamp: 0,
+    windows: {
+        good: USC_DEFAULT_NEAR,
+        perfect: USC_DEFAULT_PERFECT,
+        hold: USC_DEFAULT_HOLD,
+        miss: USC_DEFAULT_MISS,
+        slam: USC_DEFAULT_SLAM,
+    },
 };

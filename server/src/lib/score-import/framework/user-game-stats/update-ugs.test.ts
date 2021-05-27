@@ -110,7 +110,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
             "iidx",
             "SP",
             1,
-            () => ({ dan: "kaiden" }), // lmao
+            () => ({ dan: 18 }), // lmao
             logger
         );
 
@@ -121,7 +121,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                     set: "dan",
                     playtype: "SP",
                     old: null,
-                    new: "kaiden",
+                    new: 18,
                 },
             ],
             "Should return the class delta"
@@ -141,7 +141,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                     BPI: 0,
                 },
                 classes: {
-                    dan: "kaiden",
+                    dan: 18,
                 },
             } as any,
             "Should update the game-stats object"
@@ -161,7 +161,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                 BPI: 0,
             },
             classes: {
-                dan: "chuuden",
+                dan: 17,
             },
         });
 
@@ -169,7 +169,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
             "iidx",
             "SP",
             1,
-            () => ({ dan: "kaiden" }), // lmao
+            () => ({ dan: 18 }), // lmao
             logger
         );
 
@@ -179,8 +179,8 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                 {
                     set: "dan",
                     playtype: "SP",
-                    old: "chuuden",
-                    new: "kaiden",
+                    old: 17,
+                    new: 18,
                 },
             ],
             "Should return the updated class delta"
@@ -200,7 +200,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                     BPI: 0,
                 },
                 classes: {
-                    dan: "kaiden",
+                    dan: 18,
                 },
             } as any,
             "Should update the game-stats object"

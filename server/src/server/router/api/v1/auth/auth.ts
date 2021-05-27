@@ -26,8 +26,7 @@ export function CreateAPIKey(): string {
 }
 
 /**
- * Despite these functions doing ultimately the same thing, they're separate incase they ever need to,
- * you know, not do that.
+ * Despite these functions doing ultimately the same thing, they're separate incase they ever need to return something different.
  * @returns A string
  */
 export function CreateInviteCode(): string {

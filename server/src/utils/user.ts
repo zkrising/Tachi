@@ -13,6 +13,28 @@ const OMIT_PRIVATE_USER_RETURNS = {
 };
 
 /**
+ * Returns a user's username from their ID. Throws if no user with that ID exists.
+ */
+export async function GetUsernameFromUserID(userID: integer): Promise<string> {
+    const partialDoc = await db.users.findOne(
+        {
+            id: userID,
+        },
+        {
+            projection: {
+                username: 1,
+            },
+        }
+    );
+
+    if (!partialDoc) {
+        throw new Error(`Could not find username for userID ${userID}.`);
+    }
+
+    return partialDoc.username;
+}
+
+/**
  * Gets a user based on their username case-insensitively.
  * @param username The username of the user.
  * @returns PublicUserDocument | null

@@ -17,6 +17,7 @@ import { GetUserWithID } from "../../../../utils/user";
 import { ParseIRUSC } from "../../../../lib/score-import/import-types/ir/usc/parser";
 import { USCIR_MAX_LEADERBOARD_N } from "../../../../lib/constants/usc-ir";
 import { CreateMulterSingleUploadMiddleware } from "../../../middleware/multer-upload";
+import { AssignToReqKtchiData } from "../../../../utils/req-ktchi-data";
 
 const logger = CreateLogCtx(__filename);
 
@@ -67,7 +68,7 @@ const ValidateUSCRequest: RequestHandler = async (req, res, next) => {
         });
     }
 
-    req[SYMBOL_KtchiData] = { uscAuthDoc };
+    AssignToReqKtchiData(req, { uscAuthDoc });
 
     return next();
 };
@@ -94,9 +95,9 @@ router.get("/", (req, res) =>
 const RetrieveChart: RequestHandler = async (req, res, next) => {
     const chart = await FindChartOnSHA256("usc", req.params.chartHash);
 
-    req[SYMBOL_KtchiData]!.uscChartDoc = (chart ?? undefined) as
-        | ChartDocument<"usc:Single">
-        | undefined;
+    AssignToReqKtchiData(req, {
+        uscChartDoc: (chart ?? undefined) as ChartDocument<"usc:Single"> | undefined,
+    });
 
     return next();
 };

@@ -3,6 +3,7 @@ import {
     PublicUserDocument,
     SuccessfulAPIResponse,
     UnsuccessfulAPIResponse,
+    ImportDocument,
 } from "kamaitachi-common";
 import { ImportInputParser } from "../import-types/common/types";
 import { CreateImportLoggerAndID } from "./common/import-logger";
@@ -11,7 +12,7 @@ import ScoreImportFatalError from "./score-importing/score-import-error";
 
 export interface WrappedAPIResponse {
     statusCode: number;
-    body: SuccessfulAPIResponse | UnsuccessfulAPIResponse;
+    body: SuccessfulAPIResponse<ImportDocument> | UnsuccessfulAPIResponse;
 }
 
 /**

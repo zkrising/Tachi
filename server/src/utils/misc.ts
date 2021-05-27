@@ -37,3 +37,12 @@ export function MStoS(ms: number) {
 export function RFA(arr: unknown[]) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
+
+/**
+ * Splits an Authorization header into the token and the type.
+ */
+export function SplitAuthorizationHeader(authHeader: string) {
+    const parts = authHeader.split(" ");
+
+    return { type: parts[0], token: parts.slice(1).join(" ") };
+}

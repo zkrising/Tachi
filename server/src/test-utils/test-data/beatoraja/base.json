@@ -1,5 +1,5 @@
 {
-    "song": {
+    "chart": {
         "md5": "f8dcdfe070630bbb365323c662561a1a",
         "sha256": "a6ed343ac9db07af0dd6eb8af3c80d79032aa777fd7ff2c28feb885717f47b89",
         "title": "星の器〜STAR OF ANDROMEDA(ANOTHER)",
@@ -55,5 +55,6 @@
         "judgeAlgorithm": "Combo",
         "rule": "LR2",
         "exscore": 1004
-    }
-  }
+    },
+    "client": "beatoraja"
+}

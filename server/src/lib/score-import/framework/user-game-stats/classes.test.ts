@@ -17,9 +17,9 @@ t.test("#UpdateUGSClasses", (t) => {
     });
 
     t.test("Should call and merge the ClassHandler", async (t) => {
-        const res = await UpdateUGSClasses("iidx", "SP", 1, {}, () => ({ foo: "bar" }), logger);
+        const res = await UpdateUGSClasses("iidx", "SP", 1, {}, () => ({ dan: 2 }), logger);
 
-        t.strictSame(res, { foo: "bar" });
+        t.strictSame(res, { dan: 2 });
 
         t.end();
     });
@@ -48,14 +48,14 @@ t.test("#CalculateClassDeltas", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should return improved classes from null", (t) => {
-        const res = CalculateClassDeltas("iidx", "SP", { dan: "kaiden" }, null, logger);
+        const res = CalculateClassDeltas("SP", { dan: 18 }, null, logger);
 
         t.strictSame(res, [
             {
                 set: "dan",
                 playtype: "SP",
                 old: null,
-                new: "kaiden",
+                new: 18,
             },
         ]);
 
@@ -64,9 +64,8 @@ t.test("#CalculateClassDeltas", (t) => {
 
     t.test("Should return improved classes from null class", (t) => {
         const res = CalculateClassDeltas(
-            "iidx",
             "SP",
-            { dan: "kaiden" },
+            { dan: 18 },
             { classes: {} } as UserGameStats,
             logger
         );
@@ -76,7 +75,7 @@ t.test("#CalculateClassDeltas", (t) => {
                 set: "dan",
                 playtype: "SP",
                 old: null,
-                new: "kaiden",
+                new: 18,
             },
         ]);
 
@@ -85,10 +84,9 @@ t.test("#CalculateClassDeltas", (t) => {
 
     t.test("Should return improved classes", (t) => {
         const res = CalculateClassDeltas(
-            "iidx",
             "SP",
-            { dan: "kaiden" },
-            ({ classes: { dan: "chuuden" } } as unknown) as UserGameStats,
+            { dan: 18 },
+            ({ classes: { dan: 17 } } as unknown) as UserGameStats,
             logger
         );
 
@@ -96,8 +94,8 @@ t.test("#CalculateClassDeltas", (t) => {
             {
                 set: "dan",
                 playtype: "SP",
-                old: "chuuden",
-                new: "kaiden",
+                old: 17,
+                new: 18,
             },
         ]);
 
@@ -106,10 +104,9 @@ t.test("#CalculateClassDeltas", (t) => {
 
     t.test("Should not return identical classes", (t) => {
         const res = CalculateClassDeltas(
-            "iidx",
             "SP",
-            { dan: "kaiden" },
-            ({ classes: { dan: "kaiden" } } as unknown) as UserGameStats,
+            { dan: 18 },
+            ({ classes: { dan: 18 } } as unknown) as UserGameStats,
             logger
         );
 
@@ -120,10 +117,9 @@ t.test("#CalculateClassDeltas", (t) => {
 
     t.test("Should not return worse classes", (t) => {
         const res = CalculateClassDeltas(
-            "iidx",
             "SP",
-            { dan: "10" },
-            ({ classes: { dan: "kaiden" } } as unknown) as UserGameStats,
+            { dan: 16 },
+            ({ classes: { dan: 18 } } as unknown) as UserGameStats,
             logger
         );
 

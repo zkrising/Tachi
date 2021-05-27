@@ -1,14 +1,9 @@
-import { Game, integer, Playtypes, UserGameStats } from "kamaitachi-common";
-import { ClassData, gameClassValues } from "kamaitachi-common/js/game-classes";
+import { Game, integer, IDStrings, Playtypes, UserGameStats } from "kamaitachi-common";
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
+import { GameClassSets } from "kamaitachi-common/js/game-classes";
 
 const logger = CreateLogCtx(__filename);
-
-export function GetClassSetsForGamePT(game: Game, playtype: Playtypes[Game]) {
-    // @ts-expect-error its confused about game+pt permutations
-    return gameClassValues[game]?.[playtype] as Record<string, ClassData> | undefined;
-}
 
 /**
  * Returns the provided class if it is greater than the one in userGameStats
@@ -16,46 +11,15 @@ export function GetClassSetsForGamePT(game: Game, playtype: Playtypes[Game]) {
  * to compare to, and FALSE if it is worse or equal.
  */
 export function ReturnClassIfGreater(
-    game: Game,
-    playtype: Playtypes[Game],
-    setName: string,
-    newClass: string,
+    classSet: GameClassSets[IDStrings],
+    classVal: integer,
     userGameStats?: UserGameStats | null
 ) {
-    const classSets = GetClassSetsForGamePT(game, playtype);
-
-    if (!classSets) {
-        logger.error(`${game} ${playtype} Does not have any classes.`);
-        throw new Error(`${game} ${playtype} Does not have any classes.`);
-    }
-
-    const gcv: ClassData = classSets[setName];
-
-    if (gcv === undefined) {
-        logger.error(`Invalid classKey ${setName}. Cannot process class.`);
-        throw new Error(`Invalid classKey ${setName}. Cannot process class.`);
-    }
-
-    const newClassInfo = gcv[newClass];
-
-    if (!userGameStats) {
+    if (!userGameStats || userGameStats.classes[classSet] === undefined) {
         return null;
     }
 
-    const val = newClassInfo.index;
-    const pastClass = userGameStats.classes[setName];
-
-    if (!pastClass) {
-        return null;
-    }
-
-    const pastVal = gcv[pastClass].index;
-
-    if (val > pastVal) {
-        return newClass;
-    }
-
-    return false;
+    return classVal > userGameStats.classes[classSet]!;
 }
 
 /**
@@ -70,11 +34,11 @@ export async function UpdateClassIfGreater(
     userID: integer,
     game: Game,
     playtype: Playtypes[Game],
-    classKey: string,
-    newClass: string
+    classSet: GameClassSets[IDStrings],
+    classVal: integer
 ) {
     const userGameStats = await db["game-stats"].findOne({ userID, game, playtype });
-    const isGreater = ReturnClassIfGreater(game, playtype, classKey, newClass, userGameStats);
+    const isGreater = ReturnClassIfGreater(classSet, classVal, userGameStats);
 
     if (isGreater === false) {
         return false;
@@ -83,7 +47,7 @@ export async function UpdateClassIfGreater(
     if (userGameStats) {
         await db["game-stats"].update(
             { userID, game, playtype },
-            { $set: { [`classes.${classKey}`]: newClass } }
+            { $set: { [`classes.${classSet}`]: classVal } }
         );
     } else {
         // insert new game stats for this user - this is an awkward place
@@ -96,7 +60,7 @@ export async function UpdateClassIfGreater(
             lampRating: 0,
             rating: 0,
             classes: {
-                classKey: newClass,
+                [classSet]: classVal,
             },
         });
         logger.info(`Created new player gamestats for ${userID} ${game} (${playtype})`);

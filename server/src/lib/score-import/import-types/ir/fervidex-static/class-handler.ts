@@ -1,28 +1,6 @@
 import { ClassHandler } from "../../../framework/user-game-stats/classes";
 import { integer } from "kamaitachi-common";
 
-export const FERVIDEX_COURSE_LOOKUP = [
-    "7kyu",
-    "6kyu",
-    "5kyu",
-    "4kyu",
-    "3kyu",
-    "2kyu",
-    "1kyu",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "chuuden",
-    "kaiden",
-];
-
 export function FerStaticClassHandler(body: Record<string, unknown>): ClassHandler {
     return (game, playtype, userID, customRatings, logger) => {
         let index;
@@ -43,15 +21,15 @@ export function FerStaticClassHandler(body: Record<string, unknown>): ClassHandl
             return;
         }
 
-        const classVal = FERVIDEX_COURSE_LOOKUP[index as integer];
+        const intIndex = index as integer;
 
-        if (!classVal) {
-            logger.info(`Recieved invalid fer-static class of ${index}.`);
+        if (intIndex < 0 || intIndex > 18) {
+            logger.error(`Invalid fer-static class of ${index}.`);
             return;
         }
 
         return {
-            dan: classVal,
+            dan: intIndex,
         };
     };
 }

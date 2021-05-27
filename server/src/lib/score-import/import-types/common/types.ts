@@ -12,6 +12,8 @@ import { ImportTypes, Game, AnyChartDocument, AnySongDocument } from "kamaitachi
 import { ConverterFailure } from "../../framework/common/converter-failures";
 import { ClassHandler } from "../../framework/user-game-stats/classes";
 import { DryScore } from "../../framework/common/types";
+import { BeatorajaIRScoreFormat } from "../../../../server/router/ir/beatoraja/charts/convert-scores";
+import { BeatorajaContext } from "../ir/beatoraja/types";
 
 export interface ImportTypeDataMap {
     "file/eamusement-iidx-csv": IIDXEamusementCSVData;
@@ -25,7 +27,7 @@ export interface ImportTypeDataMap {
     "ir/fervidex": FervidexScore;
     "ir/fervidex-static": FervidexStaticScore;
     "ir/chunitachi": BatchManualScore;
-    "ir/beatoraja": EmptyObject;
+    "ir/beatoraja": BeatorajaIRScoreFormat;
     "ir/usc": EmptyObject;
 
     "api/arc-iidx": unknown;
@@ -49,7 +51,7 @@ export interface ImportTypeContextMap {
     "ir/fervidex": FervidexContext;
     "ir/fervidex-static": FervidexStaticContext;
     "ir/chunitachi": BatchManualContext;
-    "ir/beatoraja": EmptyObject;
+    "ir/beatoraja": BeatorajaContext;
     "ir/usc": EmptyObject;
 
     "api/arc-iidx": EmptyObject;

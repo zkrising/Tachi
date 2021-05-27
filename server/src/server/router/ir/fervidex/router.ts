@@ -7,9 +7,8 @@ import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { ParseFervidexStatic } from "../../../../lib/score-import/import-types/ir/fervidex-static/parser";
 import { ParseFervidexSingle } from "../../../../lib/score-import/import-types/ir/fervidex/parser";
-import { Playtypes } from "kamaitachi-common";
+import { Playtypes, integer } from "kamaitachi-common";
 import CreateLogCtx from "../../../../lib/logger/logger";
-import { FERVIDEX_COURSE_LOOKUP } from "../../../../lib/score-import/import-types/ir/fervidex-static/class-handler";
 
 const logger = CreateLogCtx(__filename);
 
@@ -217,12 +216,19 @@ router.post("/class/submit", ValidateModelHeader, async (req, res) => {
         return res.status(200).json({ success: true, description: "No Update Made.", body: {} });
     }
 
-    const classVal = FERVIDEX_COURSE_LOOKUP[req.body.course_id];
-
-    if (!classVal) {
+    if (!Number.isInteger(req.body.course_id)) {
         return res.status(400).json({
             success: false,
-            description: `Invalid courseID of ${req.body.course_id}.`,
+            description: `Invalid course_id ${req.body.course_id}.`,
+        });
+    }
+
+    const courseID = req.body.course_id as integer;
+
+    if (courseID < 0 || courseID > 18) {
+        return res.status(400).json({
+            success: false,
+            description: `Invalid course_id ${req.body.course_id}.`,
         });
     }
 
@@ -234,7 +240,7 @@ router.post("/class/submit", ValidateModelHeader, async (req, res) => {
         "iidx",
         playtype,
         "dan",
-        classVal
+        courseID
     );
 
     return res.status(200).json({

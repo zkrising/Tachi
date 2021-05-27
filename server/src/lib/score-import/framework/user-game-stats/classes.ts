@@ -1,9 +1,11 @@
-import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "kamaitachi-common";
-import { gameClassValues } from "kamaitachi-common/js/game-classes";
+import { Game, Playtypes, integer, UserGameStats, ClassDelta, IDStrings } from "kamaitachi-common";
 import deepmerge from "deepmerge";
 import { KtLogger } from "../../../logger/logger";
 import { CalculateGitadoraColour, CalculateJubeatColour } from "./builtin-class-handlers";
 import { ReturnClassIfGreater } from "../../../../utils/class";
+import { GameClasses } from "kamaitachi-common/js/game-classes";
+
+type ScoreClasses = Partial<GameClasses<IDStrings>>;
 
 export interface ClassHandler {
     (
@@ -12,7 +14,7 @@ export interface ClassHandler {
         userID: integer,
         customRatings: Record<string, number>,
         logger: KtLogger
-    ): Promise<Record<string, string>> | Record<string, string> | undefined;
+    ): Promise<ScoreClasses> | ScoreClasses | undefined;
 }
 
 type ClassHandlerMap = {
@@ -79,8 +81,8 @@ export async function UpdateUGSClasses(
     customRatings: Record<string, number>,
     ClassHandler: ClassHandler | null,
     logger: KtLogger
-): Promise<Record<string, string>> {
-    let classes: Record<string, string> = {};
+): Promise<ScoreClasses> {
+    let classes: ScoreClasses = {};
 
     // @ts-expect-error This one sucks - I need to look into a better way of representing these types
     if (STATIC_CLASS_HANDLERS[game] && STATIC_CLASS_HANDLERS[game][playtype]) {
@@ -112,55 +114,42 @@ export async function UpdateUGSClasses(
  * so that other services can listen for it. In the future we might allow webhooks, too.
  */
 export function CalculateClassDeltas(
-    game: Game,
     playtype: Playtypes[Game],
-    classes: Record<string, string>,
+    classes: ScoreClasses,
     userGameStats: UserGameStats | null,
     logger: KtLogger
 ): ClassDelta[] {
-    // @ts-expect-error It's complaining about Game+PT permutations instead of Game->PT permutations.
-    const gcv = gameClassValues[game]?.[playtype];
-
-    if (Object.keys(classes).length !== 0 && !gcv) {
-        logger.severe(
-            `Classes were attempted to be processed for ${game} ${playtype}, but no class values exist for this.`,
-            {
-                classes,
-            }
-        );
-
-        return [];
-    }
-
     const deltas = [];
 
-    for (const setName in classes) {
+    for (const s in classes) {
+        const classSet = s as keyof GameClasses<IDStrings>;
+        const classVal = classes[classSet];
+
+        if (classVal === undefined) {
+            logger.debug(`Skipped deltaing-class ${classSet}.`);
+            continue;
+        }
+
         try {
-            const isGreater = ReturnClassIfGreater(
-                game,
-                playtype,
-                setName,
-                classes[setName],
-                userGameStats
-            );
+            const isGreater = ReturnClassIfGreater(classSet, classVal, userGameStats);
 
             if (isGreater === false) {
                 continue;
             } else if (isGreater === null) {
                 // @todo #99 REDISIPC-New Class Achieved
                 deltas.push({
-                    set: setName,
+                    set: classSet,
                     playtype,
                     old: null,
-                    new: classes[setName],
+                    new: classVal,
                 });
             } else {
                 // @todo #99 REDISIPC-Class Improved!
                 deltas.push({
-                    set: setName,
+                    set: classSet,
                     playtype,
-                    old: userGameStats!.classes[setName],
-                    new: classes[setName],
+                    old: userGameStats!.classes[classSet]!,
+                    new: classVal,
                 });
             }
         } catch (err) {

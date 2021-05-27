@@ -34,14 +34,14 @@ function TestAuth(url: string) {
     });
 }
 
-t.test("GET /api/v1/ir/usc", async (t) => {
+t.test("GET /ir/usc", async (t) => {
     await InsertFakeUSCAuth();
 
     t.beforeEach(ResetDBState);
 
-    TestAuth("/api/v1/ir/usc");
+    TestAuth("/ir/usc");
 
-    const res = await mockApi.get("/api/v1/ir/usc").set("Authorization", "Bearer foo");
+    const res = await mockApi.get("/ir/usc").set("Authorization", "Bearer foo");
 
     t.equal(res.body.statusCode, 20, "Should return 20");
     t.hasStrict(
@@ -56,13 +56,13 @@ t.test("GET /api/v1/ir/usc", async (t) => {
     t.end();
 });
 
-t.test("GET /api/v1/ir/usc/charts/:chartHash", (t) => {
+t.test("GET /ir/usc/charts/:chartHash", (t) => {
     t.beforeEach(ResetDBState);
     t.beforeEach(InsertFakeUSCAuth);
 
     t.test("Should return 20 if the chartHash matches a chart.", async (t) => {
         const res = await mockApi
-            .get("/api/v1/ir/usc/charts/USC_CHART_HASH")
+            .get("/ir/usc/charts/USC_CHART_HASH")
             .set("Authorization", "Bearer foo");
 
         t.equal(res.body.statusCode, 20, "Should return 20");
@@ -72,7 +72,7 @@ t.test("GET /api/v1/ir/usc/charts/:chartHash", (t) => {
 
     t.test("Should return 42 if the chartHash doesn't match a chart.", async (t) => {
         const res = await mockApi
-            .get("/api/v1/ir/usc/charts/INVALID_HASH")
+            .get("/ir/usc/charts/INVALID_HASH")
             .set("Authorization", "Bearer foo");
 
         t.equal(res.body.statusCode, 42, "Should return 42");
@@ -125,14 +125,14 @@ const USC_SCORE_PB: PBScoreDocument = {
     },
 };
 
-t.test("GET /api/v1/ir/usc/:chartHash/record", (t) => {
+t.test("GET /ir/usc/:chartHash/record", (t) => {
     t.beforeEach(ResetDBState);
     t.beforeEach(InsertFakeUSCAuth);
-    TestAuth("/api/v1/ir/usc/:chartHash/record");
+    TestAuth("/ir/usc/:chartHash/record");
 
     t.test("Should return 42 if the chartHash doesn't match a chart.", async (t) => {
         const res = await mockApi
-            .get("/api/v1/ir/usc/charts/INVALID_HASH/record")
+            .get("/ir/usc/charts/INVALID_HASH/record")
             .set("Authorization", "Bearer foo");
 
         t.equal(res.body.statusCode, 42, "Should return 42");
@@ -142,7 +142,7 @@ t.test("GET /api/v1/ir/usc/:chartHash/record", (t) => {
 
     t.test("Should return 44 if there are no scores on the chart.", async (t) => {
         const res = await mockApi
-            .get("/api/v1/ir/usc/charts/USC_CHART_HASH/record")
+            .get("/ir/usc/charts/USC_CHART_HASH/record")
             .set("Authorization", "Bearer foo");
 
         t.equal(res.body.statusCode, 44, "Should return 42");
@@ -165,7 +165,7 @@ t.test("GET /api/v1/ir/usc/:chartHash/record", (t) => {
         } as any);
 
         const res = await mockApi
-            .get("/api/v1/ir/usc/charts/USC_CHART_HASH/record")
+            .get("/ir/usc/charts/USC_CHART_HASH/record")
             .set("Authorization", "Bearer foo");
 
         t.equal(res.body.statusCode, 20, "Should return 20");
@@ -196,17 +196,17 @@ t.test("GET /api/v1/ir/usc/:chartHash/record", (t) => {
 t.test("GET /charts/:chartHash/leaderboard", (t) => {
     t.beforeEach(ResetDBState);
     t.beforeEach(InsertFakeUSCAuth);
-    TestAuth("/api/v1/ir/usc/:chartHash/leaderboard");
+    TestAuth("/ir/usc/:chartHash/leaderboard");
 
     t.test("Should return 40 if mode is invalid", async (t) => {
         const res = await mockApi
-            .get("/api/v1/ir/usc/charts/USC_CHART_HASH/leaderboard")
+            .get("/ir/usc/charts/USC_CHART_HASH/leaderboard")
             .set("Authorization", "Bearer foo");
 
         t.equal(res.body.statusCode, 40);
 
         const res2 = await mockApi
-            .get("/api/v1/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=invalid")
+            .get("/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=invalid")
             .set("Authorization", "Bearer foo");
 
         t.equal(res2.body.statusCode, 40);
@@ -216,13 +216,13 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
 
     t.test("Should return 40 if N is invalid", async (t) => {
         const res = await mockApi
-            .get("/api/v1/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=best")
+            .get("/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=best")
             .set("Authorization", "Bearer foo");
 
         t.equal(res.body.statusCode, 40);
 
         const res2 = await mockApi
-            .get("/api/v1/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=best&n=foo")
+            .get("/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=best&n=foo")
             .set("Authorization", "Bearer foo");
 
         t.equal(res2.body.statusCode, 40);
@@ -232,7 +232,7 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
 
     t.test("Should return empty arr for mode = best if no scores", async (t) => {
         const res = await mockApi
-            .get("/api/v1/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=best&n=5")
+            .get("/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=best&n=5")
             .set("Authorization", "Bearer foo");
 
         t.equal(res.body.statusCode, 20);
@@ -271,7 +271,7 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
         ] as any);
 
         const res = await mockApi
-            .get("/api/v1/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=best&n=2")
+            .get("/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=best&n=2")
             .set("Authorization", "Bearer foo");
 
         t.equal(res.body.statusCode, 20);
@@ -307,7 +307,7 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
         );
 
         const res2 = await mockApi
-            .get("/api/v1/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=best&n=1")
+            .get("/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=best&n=1")
             .set("Authorization", "Bearer foo");
 
         t.equal(res2.body.statusCode, 20);

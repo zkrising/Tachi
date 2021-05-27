@@ -7,17 +7,17 @@ import mockApi from "../../../../test-utils/mock-api";
 import { TestingBarbatosScore } from "../../../../test-utils/test-data";
 import db from "../../../../external/mongo/db";
 
-t.test("POST /api/v1/ir/barbatos/score/submit", async (t) => {
+t.test("POST /ir/barbatos/score/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
 
     // @TODO NEEDS TO USE PROPER AUTHENTICATION!!!
-    RequireNeutralAuthentication("/api/v1/ir/barbatos/score/submit", "POST");
+    RequireNeutralAuthentication("/ir/barbatos/score/submit", "POST");
 
     t.test("Should import a valid score", async (t) => {
         const res = await mockApi
-            .post("/api/v1/ir/barbatos/score/submit")
+            .post("/ir/barbatos/score/submit")
             .set("Cookie", cookie)
             .send(TestingBarbatosScore);
 
@@ -35,10 +35,7 @@ t.test("POST /api/v1/ir/barbatos/score/submit", async (t) => {
     });
 
     t.test("Should reject an invalid body", async (t) => {
-        const res = await mockApi
-            .post("/api/v1/ir/barbatos/score/submit")
-            .set("Cookie", cookie)
-            .send({});
+        const res = await mockApi.post("/ir/barbatos/score/submit").set("Cookie", cookie).send({});
 
         t.equal(res.body.success, false, "Should not be successful.");
         t.equal(res.status, 400, "Should return 400.");

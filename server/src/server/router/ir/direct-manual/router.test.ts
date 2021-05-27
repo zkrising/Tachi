@@ -7,16 +7,16 @@ import mockApi from "../../../../test-utils/mock-api";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { GetKTDataJSON } from "../../../../test-utils/test-data";
 
-t.test("POST /api/v1/ir/direct-manual/import", async (t) => {
+t.test("POST /ir/direct-manual/import", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
 
-    RequireNeutralAuthentication("/api/v1/ir/direct-manual/import", "POST");
+    RequireNeutralAuthentication("/ir/direct-manual/import", "POST");
 
     t.test("Should upload BATCH-MANUAL data from the request body.", async (t) => {
         const res = await mockApi
-            .post("/api/v1/ir/direct-manual/import")
+            .post("/ir/direct-manual/import")
             .set("Cookie", cookie)
             .send(GetKTDataJSON("./batch-manual/small-file.json"));
 
@@ -33,7 +33,7 @@ t.test("POST /api/v1/ir/direct-manual/import", async (t) => {
 
     t.test("Should reject invalid BATCH-MANUAL data from the request body.", async (t) => {
         const res = await mockApi
-            .post("/api/v1/ir/direct-manual/import")
+            .post("/ir/direct-manual/import")
             .set("Cookie", cookie)
             .send({});
 

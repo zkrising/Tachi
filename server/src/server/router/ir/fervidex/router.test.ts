@@ -102,26 +102,26 @@ function TestHeaders(url: string, cookie: string[], data: any) {
     });
 }
 
-t.test("POST /api/v1/ir/fervidex/class/submit", async (t) => {
+t.test("POST /ir/fervidex/class/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     // @todo #108
-    TestHeaders("/api/v1/ir/fervidex/class/submit", cookie, {});
+    TestHeaders("/ir/fervidex/class/submit", cookie, {});
 
     t.beforeEach(ResetDBState);
 
     t.end();
 });
 
-t.test("POST /api/v1/ir/fervidex/score/submit", async (t) => {
+t.test("POST /ir/fervidex/score/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
-    TestHeaders("/api/v1/ir/fervidex/score/submit", cookie, GetKTDataJSON("./fervidex/base.json"));
+    TestHeaders("/ir/fervidex/score/submit", cookie, GetKTDataJSON("./fervidex/base.json"));
 
     t.test("Should import a valid score", async (t) => {
         const res = await mockApi
-            .post("/api/v1/ir/fervidex/score/submit")
+            .post("/ir/fervidex/score/submit")
             .set("Cookie", cookie)
             .set("User-Agent", "fervidex/1.3.0")
             .set("X-Software-Model", "LDJ:J:B:A:2020092900")
@@ -142,7 +142,7 @@ t.test("POST /api/v1/ir/fervidex/score/submit", async (t) => {
 
     t.test("Should import a valid score with 2dx-gsm", async (t) => {
         const res = await mockApi
-            .post("/api/v1/ir/fervidex/score/submit")
+            .post("/ir/fervidex/score/submit")
             .set("Cookie", cookie)
             .set("User-Agent", "fervidex/1.3.0")
             .set("X-Software-Model", "LDJ:J:B:A:2020092900")
@@ -163,7 +163,7 @@ t.test("POST /api/v1/ir/fervidex/score/submit", async (t) => {
 
     t.test("Should reject an invalid body", async (t) => {
         const res = await mockApi
-            .post("/api/v1/ir/fervidex/score/submit")
+            .post("/ir/fervidex/score/submit")
             .set("User-Agent", "fervidex/1.3.0")
             .set("Cookie", cookie)
             .send({});
@@ -176,12 +176,12 @@ t.test("POST /api/v1/ir/fervidex/score/submit", async (t) => {
     t.end();
 });
 
-t.test("POST /api/v1/ir/fervidex/profile/submit", async (t) => {
+t.test("POST /ir/fervidex/profile/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
     TestHeaders(
-        "/api/v1/ir/fervidex/class/submit",
+        "/ir/fervidex/class/submit",
         cookie,
         GetKTDataJSON("./fervidex-static/base.json")
     );
@@ -195,7 +195,7 @@ t.test("POST /api/v1/ir/fervidex/profile/submit", async (t) => {
         await db.charts.iidx.insert(GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json"));
 
         const res = await mockApi
-            .post("/api/v1/ir/fervidex/profile/submit")
+            .post("/ir/fervidex/profile/submit")
             .set("Cookie", cookie)
             .set("User-Agent", "fervidex/1.3.0")
             .set("X-Software-Model", "P2D:J:B:A:2020092900")

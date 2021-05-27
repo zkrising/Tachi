@@ -9,7 +9,7 @@ const router: Router = Router({ mergeParams: true });
 
 const GetChartDocument: RequestHandler = async (req, res, next) => {
     const chart = (await db.charts.bms.findOne({
-        "data.chartSHA256": req.params.chartSHA256,
+        "data.hashSHA256": req.params.chartSHA256,
     })) as ChartDocument<"bms:7K" | "bms:14K"> | null;
 
     if (!chart) {

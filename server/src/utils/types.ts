@@ -9,7 +9,6 @@ declare module "express-session" {
 
 export interface KtchiSessionData {
     userID: integer;
-    apiKey: string;
 }
 
 export interface KTFailResponse {

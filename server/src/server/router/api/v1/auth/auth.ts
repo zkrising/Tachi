@@ -21,14 +21,6 @@ const BCRYPT_SALT_ROUNDS = 12;
 export const ValidatePassword = (self: unknown) =>
     (typeof self === "string" && self.length >= 8) || "Passwords must be 8 characters or more.";
 
-export function CreateAPIKey(): string {
-    return crypto.randomBytes(20).toString("hex");
-}
-
-/**
- * Despite these functions doing ultimately the same thing, they're separate incase they ever need to return something different.
- * @returns A string
- */
 export function CreateInviteCode(): string {
     return crypto.randomBytes(20).toString("hex");
 }
@@ -40,24 +32,6 @@ export function CreateInviteCode(): string {
  */
 export function PasswordCompare(plaintext: string, password: string) {
     return bcrypt.compare(plaintext, password);
-}
-
-export function AddNewUserAPIKey(
-    privateUserDoc: PrivateUserDocument
-): Promise<InsertResult<PublicAPIKeyDocument>> {
-    const apikey = CreateAPIKey();
-
-    const publicApiKeyDoc: PublicAPIKeyDocument = {
-        apiKey: apikey,
-        assignedTo: privateUserDoc.id,
-        expireTime: 3176708633264,
-        permissions: {
-            selfkey: true, // not sure what this was for but i'll keep it deliberately
-            admin: false,
-        },
-    };
-
-    return db["public-api-keys"].insert(publicApiKeyDoc);
 }
 
 export function ReinstateInvite(inviteDoc: InviteCodeDocument) {

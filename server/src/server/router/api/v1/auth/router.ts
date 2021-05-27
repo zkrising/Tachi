@@ -98,46 +98,11 @@ router.post(
             });
         }
 
-        // username and password match up, we're good to check onwards
-
-        let apiKeyDoc = await db["public-api-keys"].findOne({
-            assignedTo: requestedUser.id,
-            "permissions.selfkey": true,
-        });
-
-        if (!apiKeyDoc) {
-            logger.warn(
-                `User ${FormatUserDoc(requestedUser)} did not have an apikey. Creating a new one.`
-            );
-
-            const newApiKey = await AddNewUserAPIKey(requestedUser);
-
-            if (!newApiKey) {
-                logger.error(
-                    `Bailed on user login ${FormatUserDoc(
-                        requestedUser
-                    )}. Could not create new apikey.`
-                );
-
-                throw new Error("FATAL in /register - apikey was unable to be created?");
-            }
-
-            apiKeyDoc = newApiKey;
-        }
-
         req.session.ktchi = {
             userID: requestedUser.id,
-            apiKey: apiKeyDoc.apiKey,
         };
 
         req.session.cookie.maxAge = 3.154e10; // 1 year
-
-        // API wants a cookie called "apikey" in order to make authorised requests. This might change.
-        res.cookie("apikey", apiKeyDoc.apiKey, {
-            maxAge: 3.154e10,
-            domain: BASE_DOMAIN,
-            secure: SHOULD_COOKIES_SECURE,
-        });
 
         logger.verbose(`${FormatUserDoc(requestedUser)} Logged in.`);
 
@@ -146,7 +111,7 @@ router.post(
             description: `Successfully logged in as ${FormatUserDoc(requestedUser)}`,
             body: {
                 userID: requestedUser.id,
-                apiKey: apiKeyDoc.apiKey,
+                // apiKey: apiKeyDoc.apiKey,
             },
         });
     }

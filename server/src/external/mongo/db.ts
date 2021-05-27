@@ -114,7 +114,6 @@ const db = {
     notifications: monkDB.get<NotificationDocument>("notifications"),
     sessions: monkDB.get<SessionDocument>("sessions"),
     "iidx-bpi-data": monkDB.get<IIDXBPIData>("iidx-bpi-data"),
-    "public-api-keys": monkDB.get<PublicAPIKeyDocument>("public-api-keys"),
     invites: monkDB.get<InviteCodeDocument>("invites"),
     counters: monkDB.get<CounterDocument>("counters"),
     "iidx-eam-scores": monkDB.get<IIDXEamusementScoreDocument>("iidx-eam-scores"),

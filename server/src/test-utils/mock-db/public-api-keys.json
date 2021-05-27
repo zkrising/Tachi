@@ -1,0 +1,9 @@
+[
+    {
+        "assignedTo": 1,
+        "apikey": "foobar",
+        "permissions": {
+            "selfkey": true
+        }
+    }
+]

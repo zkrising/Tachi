@@ -1,63 +1,8 @@
-import {
-    AddNewUserAPIKey,
-    CreateAPIKey,
-    CreateInviteCode,
-    AddNewInvite,
-    ReinstateInvite,
-    ValidateCaptcha,
-} from "./auth";
+import { CreateInviteCode, AddNewInvite, ReinstateInvite, ValidateCaptcha } from "./auth";
 import t from "tap";
 import db, { CloseMongoConnection } from "../../../../../external/mongo/db";
-import { PrivateUserDocument } from "kamaitachi-common";
-import { prAssert } from "../../../../../test-utils/asserts";
-import Prudence from "prudence";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import { MockFetch } from "../../../../../test-utils/mock-fetch";
-
-t.test("#CreateAPIKey", (t) => {
-    t.match(
-        CreateAPIKey(),
-        /[0-9a-f]{20}/u,
-        "Should return a 20 character long lowercase hex string."
-    );
-
-    t.end();
-});
-
-t.test("#AddNewUserAPIKey", (t) => {
-    t.beforeEach(ResetDBState);
-
-    t.test("Should insert a new API key into the database", async (t) => {
-        const data = await AddNewUserAPIKey({ id: 1 } as PrivateUserDocument);
-
-        t.not(data, null, "Return is not null");
-
-        prAssert(
-            data,
-            {
-                _id: Prudence.any, // lazy
-                apiKey: Prudence.regex(/[0-9a-f]{20}/u),
-                assignedTo: Prudence.is(1),
-                expireTime: Prudence.is(3176708633264),
-                permissions: {
-                    selfkey: Prudence.is(true),
-                    admin: Prudence.is(false),
-                },
-            },
-            "Data should match a public API key object"
-        );
-
-        const inDatabase = await db["public-api-keys"].findOne({
-            _id: data._id,
-        });
-
-        t.strictSame(data, inDatabase, "Data from database is identical to data returned");
-
-        t.end();
-    });
-
-    t.end();
-});
 
 t.test("#ReinstateInvite", (t) => {
     t.beforeEach(ResetDBState);

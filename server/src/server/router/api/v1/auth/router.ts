@@ -2,7 +2,6 @@ import { Router } from "express";
 import Prudence from "prudence";
 import {
     AddNewUser,
-    AddNewUserAPIKey,
     PasswordCompare,
     ReinstateInvite,
     ValidatePassword,

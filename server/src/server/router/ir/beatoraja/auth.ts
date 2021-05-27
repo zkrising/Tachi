@@ -23,7 +23,7 @@ export const ValidateAuthToken: RequestHandler = async (req, res, next) => {
         });
     }
 
-    const beatorajaAuthDoc = (await db["beatoraja-auth-tokens"].find({
+    const beatorajaAuthDoc = (await db["beatoraja-auth-tokens"].findOne({
         token,
     })) as GenericAuthDocument | null;
 
@@ -39,7 +39,7 @@ export const ValidateAuthToken: RequestHandler = async (req, res, next) => {
     return next();
 };
 
-export const ValidateIRClientVersion: RequestHandler = async (req, res, next) => {
+export const ValidateIRClientVersion: RequestHandler = (req, res, next) => {
     const header = req.header("X-KtchiIR-Version");
 
     if (header !== "2.0.0") {

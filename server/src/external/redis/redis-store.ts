@@ -12,6 +12,7 @@ export const RedisClient = redis.createClient();
 logger.verbose("Instantiated Redis Client");
 
 function EmitCritical() {
+    /* istanbul ignore next */
     if (!RedisClient.connected) {
         logger.crit(`Could not connect to redis in time. No more information is available.`);
     }

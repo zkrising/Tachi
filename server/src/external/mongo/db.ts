@@ -32,11 +32,14 @@ import CreateLogCtx from "../../lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 
+/* istanbul ignore next */
 const base = MONGO_BASE_URL ?? "127.0.0.1";
 
+/* istanbul ignore next */
 const url = process.env.NODE_ENV === "test" ? `${base}:27017/testingdb` : `${base}:27017/ktblackdb`;
 
 let dbtime: [number, number] = [0, 0];
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "test") {
     logger.info(`Connecting to database ${url}...`);
     dbtime = process.hrtime();
@@ -46,6 +49,7 @@ export const monkDB = monk(url);
 
 monkDB
     .then(() => {
+        /* istanbul ignore next */
         if (process.env.NODE_ENV !== "test") {
             const time = process.hrtime(dbtime);
             const elapsed = time[0] + time[1] / 1e6;

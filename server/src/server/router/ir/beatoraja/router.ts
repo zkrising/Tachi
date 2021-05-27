@@ -42,7 +42,7 @@ router.post(
             });
         }
 
-        const validPassword = PasswordCompare(req.body.password, userDoc.password);
+        const validPassword = await PasswordCompare(req.body.password, userDoc.password);
 
         if (!validPassword) {
             return res.status(401).json({

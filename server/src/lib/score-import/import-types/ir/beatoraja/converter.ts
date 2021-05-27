@@ -1,6 +1,9 @@
 import { FindChartOnSHA256 } from "../../../../../utils/queries/charts";
 import { FindSongOnID } from "../../../../../utils/queries/songs";
-import { InternalFailure } from "../../../framework/common/converter-failures";
+import {
+    InternalFailure,
+    KTDataNotFoundFailure,
+} from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../../common/types";
@@ -35,12 +38,17 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 ) => {
     const chart = (await FindChartOnSHA256("bms", data.sha256)) as ChartDocument<
         "bms:7K" | "bms:14K"
-    >;
+    > | null;
 
     if (!chart) {
         // @todo #141 Import charts into the Kamaitachi Database if the chart
         // doesn't exist.
-        throw new Error("unimplemented");
+        throw new KTDataNotFoundFailure(
+            `Could not find chart ${context.chart.title}.`,
+            importType,
+            data,
+            context
+        );
     }
 
     const song = await FindSongOnID("bms", chart.songID);

@@ -1,14 +1,14 @@
 {
     "chart": {
-        "md5": "f8dcdfe070630bbb365323c662561a1a",
-        "sha256": "a6ed343ac9db07af0dd6eb8af3c80d79032aa777fd7ff2c28feb885717f47b89",
-        "title": "星の器〜STAR OF ANDROMEDA(ANOTHER)",
+        "md5": "38616b85332037cc12924f2ae2840262",
+        "sha256": "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d",
+        "title": "GAZER [MANIAQ]",
         "subtitle": "",
-        "genre": "GOA TRANCE",
-        "artist": "ZUN (Arr.sun3)",
+        "genre": "TRANCE",
+        "artist": "the dude who made gazer",
         "subartist": "",
-        "url": "http://web.archive.org/web/20100410220449/http://uploader.bms.ms/data/bof2008/stbr-blurryimagesHQ.rar",
-        "appendurl": "http://absolute.pv.land.to/longnote/src/up0183.zip",
+        "url": "",
+        "appendurl": "",
         "level": 8,
         "total": 220,
         "mode": "BEAT_7K",
@@ -27,7 +27,7 @@
         "values": {}
     },
     "score": {
-        "sha256": "a6ed343ac9db07af0dd6eb8af3c80d79032aa777fd7ff2c28feb885717f47b89",
+        "sha256": "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d",
         "lntype": 0,
         "player": "unknown",
         "clear": "Easy",

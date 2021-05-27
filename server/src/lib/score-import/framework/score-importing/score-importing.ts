@@ -193,6 +193,18 @@ async function ImportFromConverterReturn(
         }
     }
 
+    if (cfnReturn instanceof Error) {
+        logger.error(`Unknown error thrown from converter, Ignoring.`, {
+            err: cfnReturn,
+        });
+        return {
+            success: false,
+            type: "InternalError",
+            message: "An internal service error has occured.",
+            content: {},
+        };
+    }
+
     const result = await HydrateAndInsertScore(
         userID,
         cfnReturn.dryScore,

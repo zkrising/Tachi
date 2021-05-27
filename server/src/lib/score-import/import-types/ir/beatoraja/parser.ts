@@ -90,7 +90,7 @@ export function ParseBeatorajaSingle(
     if (chartErr) {
         throw new ScoreImportFatalError(
             400,
-            FormatPrError(chartErr, "Invalid Beatoraja Score - Chart")
+            FormatPrError(chartErr, "Invalid Beatoraja Import - Chart")
         );
     }
 
@@ -107,7 +107,7 @@ export function ParseBeatorajaSingle(
             chart: body.chart as BeatorajaChart,
         },
         game: "bms",
-        iterable: ([body] as unknown) as BeatorajaScore[],
+        iterable: ([body.score] as unknown) as BeatorajaScore[],
         ConverterFunction: ConverterIRBeatoraja,
         classHandler: null,
     };

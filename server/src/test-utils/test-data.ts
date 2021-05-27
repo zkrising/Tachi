@@ -146,9 +146,20 @@ export const TestingIIDXSPMilestone: MilestoneDocument = {
     ],
 };
 
+let KTDATA_CACHE: { songs: unknown[]; charts: unknown[] } | undefined;
+
 export async function LoadKTBlackIIDXData() {
-    const songs = GetKTDataJSON("./kamaitachi/ktblack-songs-iidx.json");
-    const charts = GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json");
+    let songs;
+    let charts;
+
+    if (KTDATA_CACHE) {
+        songs = KTDATA_CACHE.songs;
+        charts = KTDATA_CACHE.charts;
+    } else {
+        songs = GetKTDataJSON("./kamaitachi/ktblack-songs-iidx.json");
+        charts = GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json");
+        KTDATA_CACHE = { songs, charts };
+    }
 
     await db.songs.iidx.remove({});
     await db.songs.iidx.insert(songs);

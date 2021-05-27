@@ -3,7 +3,6 @@ import db, { CloseMongoConnection } from "../../../../../external/mongo/db";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import CreateLogCtx from "../../../../logger/logger";
 import { ConverterIRBarbatos } from "./converter";
-import { BarbatosScore } from "./types";
 import deepmerge from "deepmerge";
 import { barbScore } from "../../../../../test-utils/test-data";
 

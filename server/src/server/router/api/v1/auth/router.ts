@@ -110,7 +110,6 @@ router.post(
             description: `Successfully logged in as ${FormatUserDoc(requestedUser)}`,
             body: {
                 userID: requestedUser.id,
-                // apiKey: apiKeyDoc.apiKey,
             },
         });
     }
@@ -202,12 +201,6 @@ router.post(
                 throw new Error("AddNewUser failed to create a user.");
             }
 
-            const apiKeyDoc = await AddNewUserAPIKey(newUser);
-
-            if (!apiKeyDoc) {
-                throw new Error("AddNewUserAPIKey failed to create an api key.");
-            }
-
             return res.status(200).json({
                 success: true,
                 description: `Successfully created account ${req.body.username}!`,
@@ -238,7 +231,6 @@ router.post(
  */
 router.post("/logout", RequireLoggedIn, (req, res) => {
     req.session.destroy(() => 0);
-    res.clearCookie("apikey");
 
     return res.status(200).json({
         success: true,

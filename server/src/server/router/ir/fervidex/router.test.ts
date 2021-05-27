@@ -212,7 +212,7 @@ t.test("POST /api/v1/ir/fervidex/profile/submit", async (t) => {
                     set: "dan",
                     playtype: "SP",
                     old: null,
-                    new: "9",
+                    new: 15,
                 },
             ],
             "Should return updated dan deltas."
@@ -230,7 +230,7 @@ t.test("POST /api/v1/ir/fervidex/profile/submit", async (t) => {
             playtype: "SP",
         });
 
-        t.equal(ugs!.classes.dan, "9", "Should successfully update dan to 9th.");
+        t.equal(ugs!.classes.dan, 15, "Should successfully update dan to 9th.");
 
         t.end();
     });

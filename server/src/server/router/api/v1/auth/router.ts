@@ -91,7 +91,7 @@ router.post(
 
         if (!requestedUser) {
             logger.verbose(`Invalid username for login ${req.body.username}.`);
-            return res.status(400).json({
+            return res.status(404).json({
                 success: false,
                 description: `This user does not exist.`,
             });
@@ -101,7 +101,7 @@ router.post(
 
         if (!passwordMatch) {
             logger.verbose("Invalid password provided.");
-            return res.status(400).json({
+            return res.status(401).json({
                 success: false,
                 description: `Invalid password.`,
             });

@@ -81,7 +81,7 @@ export async function SDVXMergeFn(
     pbDoc.calculatedData.gameSpecific.VF4 = CalculateVF4(
         pbDoc.scoreData.grade,
         pbDoc.scoreData.percent,
-        chart,
+        chart.levelNum,
         logger
     );
 
@@ -89,7 +89,7 @@ export async function SDVXMergeFn(
         pbDoc.scoreData.grade,
         pbDoc.scoreData.lamp,
         pbDoc.scoreData.percent,
-        chart,
+        chart.levelNum,
         logger
     );
 

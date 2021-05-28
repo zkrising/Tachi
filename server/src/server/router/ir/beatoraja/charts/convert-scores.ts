@@ -62,7 +62,9 @@ export async function KtchiPBScoreToBeatorajaFormat(
         logger.severe(
             `User ${pbScore.userID}'s PB on ${chart.chartID} has no lampPB, but references ${pbScore.composedFrom.lampPB}.`
         );
-        throw new Error();
+        throw new Error(
+            `User ${pbScore.userID}'s PB on ${chart.chartID} has no lampPB, but references ${pbScore.composedFrom.lampPB}.`
+        );
     }
 
     return KtchiScoreDataToBeatorajaFormat(
@@ -98,7 +100,7 @@ function KtchiScoreDataToBeatorajaFormat(
 ) {
     const scoreData = pbScore.scoreData;
 
-    let rajaRandom = null;
+    let rajaRandom = 0 as const;
 
     // @todo #138 Investigate how beatoraja handles DP randoms - for now, we just skip them.
     if (pbScore.playtype === "7K") {

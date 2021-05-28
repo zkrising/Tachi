@@ -1,6 +1,6 @@
 import { IObjectID } from "monk";
 import { FilterQuery } from "mongodb";
-import { GameClasses } from "./game-classes";
+import { GameClasses, GameClassSets } from "./game-classes";
 
 export interface CounterDocument {
     counterName: string;
@@ -1341,4 +1341,25 @@ export interface BMSCourseDocument {
     value: integer;
 }
 
-export type RedisIPCChannels = "class-update" | "goal-achieved" | "milestone-achieved";
+export type RedisIPCChannels = "class-update" | "goal-update" | "milestone-update";
+
+export type RedisIPCData = {
+    "class-update": {
+        userID: integer;
+        set: GameClassSets[IDStrings];
+        old: integer | null;
+        new: integer | null;
+    };
+    "goal-update": {
+        userID: integer;
+        goalID: string;
+        old: GoalImportStat;
+        new: GoalImportStat;
+    };
+    "milestone-update": {
+        userID: integer;
+        milestoneID: string;
+        old: MilestoneImportStat;
+        new: MilestoneImportStat;
+    };
+};

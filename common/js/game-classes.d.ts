@@ -25,6 +25,7 @@ export interface GameClassSets {
     "gitadora:Gita": "colour";
     "gitadora:Dora": "colour";
 }
+export declare type AllClassSets = GameClassSets[IDStrings];
 export declare type GameClasses<I extends IDStrings> = {
     [K in GameClassSets[I]]: integer;
 };

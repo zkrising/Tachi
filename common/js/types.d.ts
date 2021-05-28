@@ -1,6 +1,6 @@
 import { IObjectID } from "monk";
 import { FilterQuery } from "mongodb";
-import { GameClasses, GameClassSets } from "./game-classes";
+import { AllClassSets, GameClasses, GameClassSets } from "./game-classes";
 export interface CounterDocument {
     counterName: string;
     value: integer;
@@ -390,7 +390,7 @@ interface ImportErrContent {
     message: string | null;
 }
 export interface ClassDelta {
-    set: string;
+    set: AllClassSets;
     playtype: Playtypes[Game];
     old: integer | null;
     new: integer;

@@ -140,6 +140,8 @@ export interface GameClassSets {
     "gitadora:Dora": "colour";
 }
 
+export type AllClassSets = GameClassSets[IDStrings];
+
 export type GameClasses<I extends IDStrings> = {
     [K in GameClassSets[I]]: integer;
 };

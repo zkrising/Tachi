@@ -1340,3 +1340,5 @@ export interface BMSCourseDocument {
     playtype: "7K" | "14K";
     value: integer;
 }
+
+export type RedisIPCChannels = "class-update" | "goal-achieved" | "milestone-achieved";

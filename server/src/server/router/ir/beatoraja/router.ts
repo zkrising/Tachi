@@ -141,7 +141,12 @@ router.post("/submit-score", async (req, res) => {
 router.post("/submit-course", async (req, res) => {
     const charts = req.body.course?.charts;
 
-    if (!charts || !Array.isArray(charts) || charts.length !== 4) {
+    if (
+        !charts ||
+        !Array.isArray(charts) ||
+        charts.length !== 4 ||
+        !charts.every((e) => e && typeof e === "object" && typeof e.md5 === "string")
+    ) {
         return res.status(400).json({
             success: false,
             description: `Invalid Course Submission.`,
@@ -166,8 +171,8 @@ router.post("/submit-course", async (req, res) => {
 
     // Constraints are a bit complicated.
     // We only want to accept dans with the following
-    // beatoraja constraints - ["MIRROR","LR2_GAUGE"] or
-    // ["MIRROR", "LR2_GAUGE", "LN"].
+    // beatoraja constraints - ["MIRROR","GAUGE_LR2"] or
+    // ["MIRROR", "GAUGE_LR2", "LN"].
     const constraint = req.body.course.constraint;
 
     if (
@@ -177,16 +182,16 @@ router.post("/submit-course", async (req, res) => {
     ) {
         return res.status(400).json({
             success: false,
-            description: `Invalid constraints.`,
+            description: `Invalid Constraints.`,
         });
     }
 
     // If there are two constraints, check that they are
-    // MIRROR and LR2_GAUGE.
-    if (!constraint.includes("MIRROR") || !constraint.includes("LR2_GAUGE")) {
+    // MIRROR and GAUGE_LR2.
+    if (!constraint.includes("MIRROR") || !constraint.includes("GAUGE_LR2")) {
         return res.status(400).json({
             success: false,
-            description: `Invalid constraints.`,
+            description: `Invalid Constraints.`,
         });
     }
 
@@ -202,7 +207,7 @@ router.post("/submit-course", async (req, res) => {
     }
 
     // Combine the md5s into one string in their order.
-    const combinedMD5s = charts.map((e) => e.md5).join();
+    const combinedMD5s = charts.map((e) => e.md5).join("");
 
     const course = await db["bms-course-lookup"].findOne({
         md5sums: combinedMD5s,
@@ -225,10 +230,10 @@ router.post("/submit-course", async (req, res) => {
         course.value
     );
 
-    if (result) {
+    if (result === false) {
         return res.status(200).json({
             success: true,
-            description: "Successfully updated class.",
+            description: "Class not updated.",
             body: {
                 set: course.set,
                 value: course.value,
@@ -238,7 +243,7 @@ router.post("/submit-course", async (req, res) => {
 
     return res.status(200).json({
         success: true,
-        description: "Class not updated.",
+        description: "Successfully updated class.",
         body: {
             set: course.set,
             value: course.value,

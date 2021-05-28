@@ -178,7 +178,7 @@ t.test("#KtchiPBScoreToBeatorajaFormat", (t) => {
         await db.scores.remove({ scoreID: "mock_lampPB" });
 
         t.rejects(() => KtchiPBScoreToBeatorajaFormat(pbScore, gazerChart, 2), {
-            message: /User's PB on.*has no lampPB/u,
+            message: /User 1's PB on.*has no lampPB/u,
         } as any);
 
         t.end();

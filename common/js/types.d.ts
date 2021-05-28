@@ -1083,7 +1083,7 @@ export interface BMSCourseDocument {
     playtype: "7K" | "14K";
     value: integer;
 }
-export declare type RedisIPCChannels = "class-update" | "goal-update" | "milestone-update";
+export declare type RedisIPCChannels = "class-update" | "goal-achieved" | "milestone-achieved";
 export declare type RedisIPCData = {
     "class-update": {
         userID: integer;
@@ -1091,13 +1091,13 @@ export declare type RedisIPCData = {
         old: integer | null;
         new: integer | null;
     };
-    "goal-update": {
+    "goal-achieved": {
         userID: integer;
         goalID: string;
         old: GoalImportStat;
         new: GoalImportStat;
     };
-    "milestone-update": {
+    "milestone-achieved": {
         userID: integer;
         milestoneID: string;
         old: MilestoneImportStat;

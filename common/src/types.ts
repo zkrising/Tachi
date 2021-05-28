@@ -1341,7 +1341,7 @@ export interface BMSCourseDocument {
     value: integer;
 }
 
-export type RedisIPCChannels = "class-update" | "goal-update" | "milestone-update";
+export type RedisIPCChannels = "class-update" | "goal-achieved" | "milestone-achieved";
 
 export type RedisIPCData = {
     "class-update": {
@@ -1350,13 +1350,13 @@ export type RedisIPCData = {
         old: integer | null;
         new: integer | null;
     };
-    "goal-update": {
+    "goal-achieved": {
         userID: integer;
         goalID: string;
         old: GoalImportStat;
         new: GoalImportStat;
     };
-    "milestone-update": {
+    "milestone-achieved": {
         userID: integer;
         milestoneID: string;
         old: MilestoneImportStat;

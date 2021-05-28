@@ -266,6 +266,10 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
         t.equal(res.body.success, true);
         t.equal(res.body.description, "Successfully updated class.");
 
+        const ugs = await db["game-stats"].findOne({ userID: 1, game: "bms", playtype: "7K" });
+
+        t.equal(ugs?.classes.genocideDan, 22, "Should set their dan to insane kaiden.");
+
         t.end();
     });
 

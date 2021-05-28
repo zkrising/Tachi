@@ -232,8 +232,15 @@ router.post("/class/submit", ValidateModelHeader, async (req, res) => {
         });
     }
 
+    if (req.body.play_style !== 0 && req.body.play_style !== 1) {
+        return res.status(400).json({
+            success: false,
+            description: `Invalid play_style ${req.body.playstyle}`,
+        });
+    }
+
     // is 0 or 1.
-    const playtype: Playtypes["iidx"] = req.body.playstyle ? "SP" : "DP";
+    const playtype: Playtypes["iidx"] = req.body.play_style === 0 ? "SP" : "DP";
 
     const r = await UpdateClassIfGreater(
         req.session.ktchi!.userID,

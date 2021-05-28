@@ -108,6 +108,114 @@ t.test("POST /ir/fervidex/class/submit", async (t) => {
     // @todo #108
     TestHeaders("/ir/fervidex/class/submit", cookie, {});
 
+    t.test("Should update a users class.", async (t) => {
+        const res = await mockApi
+            .post("/ir/fervidex/class/submit")
+            .set("Cookie", cookie)
+            .set("User-Agent", "fervidex/1.3.0")
+            .set("X-Software-Model", "LDJ:J:B:A:2020092900")
+            .send({ cleared: true, course_id: 18, play_style: 0 });
+
+        t.equal(res.status, 200);
+        t.equal(res.body.success, true);
+        t.equal(res.body.description, "Dan changed!");
+
+        const ugs = await db["game-stats"].findOne({ userID: 1, game: "iidx", playtype: "SP" });
+
+        t.equal(ugs?.classes.dan, 18);
+
+        t.end();
+    });
+
+    t.test("Should update a users class for DP.", async (t) => {
+        const res = await mockApi
+            .post("/ir/fervidex/class/submit")
+            .set("Cookie", cookie)
+            .set("User-Agent", "fervidex/1.3.0")
+            .set("X-Software-Model", "LDJ:J:B:A:2020092900")
+            .send({ cleared: true, course_id: 17, play_style: 1 });
+
+        t.equal(res.status, 200);
+        t.equal(res.body.success, true);
+        t.equal(res.body.description, "Dan changed!");
+
+        const ugs = await db["game-stats"].findOne({ userID: 1, game: "iidx", playtype: "DP" });
+
+        t.equal(ugs?.classes.dan, 17);
+
+        t.end();
+    });
+
+    t.test("Should ignore dans that weren't cleared.", async (t) => {
+        const res = await mockApi
+            .post("/ir/fervidex/class/submit")
+            .set("Cookie", cookie)
+            .set("User-Agent", "fervidex/1.3.0")
+            .set("X-Software-Model", "LDJ:J:B:A:2020092900")
+            .send({ cleared: false, course_id: 17, play_style: 1 });
+
+        t.equal(res.status, 200);
+        t.equal(res.body.description, "No Update Made.");
+
+        t.end();
+    });
+
+    t.test("Should reject invalid dans.", async (t) => {
+        const res = await mockApi
+            .post("/ir/fervidex/class/submit")
+            .set("Cookie", cookie)
+            .set("User-Agent", "fervidex/1.3.0")
+            .set("X-Software-Model", "LDJ:J:B:A:2020092900")
+            .send({ cleared: true, course_id: null, play_style: 1 });
+
+        t.equal(res.status, 400);
+        t.match(res.body.description, /Invalid course_id/u);
+
+        t.end();
+    });
+
+    t.test("Should reject invalid numerical dans.", async (t) => {
+        const res = await mockApi
+            .post("/ir/fervidex/class/submit")
+            .set("Cookie", cookie)
+            .set("User-Agent", "fervidex/1.3.0")
+            .set("X-Software-Model", "LDJ:J:B:A:2020092900")
+            .send({ cleared: true, course_id: 20, play_style: 1 });
+
+        t.equal(res.status, 400);
+        t.match(res.body.description, /Invalid course_id 20/u);
+
+        t.end();
+    });
+
+    t.test("Should reject invalid negative dans.", async (t) => {
+        const res = await mockApi
+            .post("/ir/fervidex/class/submit")
+            .set("Cookie", cookie)
+            .set("User-Agent", "fervidex/1.3.0")
+            .set("X-Software-Model", "LDJ:J:B:A:2020092900")
+            .send({ cleared: true, course_id: -1, play_style: 1 });
+
+        t.equal(res.status, 400);
+        t.match(res.body.description, /Invalid course_id -1/u);
+
+        t.end();
+    });
+
+    t.test("Should reject invalid play_styles.", async (t) => {
+        const res = await mockApi
+            .post("/ir/fervidex/class/submit")
+            .set("Cookie", cookie)
+            .set("User-Agent", "fervidex/1.3.0")
+            .set("X-Software-Model", "LDJ:J:B:A:2020092900")
+            .send({ cleared: true, course_id: 16, play_style: null });
+
+        t.equal(res.status, 400);
+        t.match(res.body.description, /Invalid play_style/u);
+
+        t.end();
+    });
+
     t.beforeEach(ResetDBState);
 
     t.end();

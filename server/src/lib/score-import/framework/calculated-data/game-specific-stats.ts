@@ -12,20 +12,20 @@ export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: AnyChartD
 
     let val = 0;
 
-    if (score >= 1007500) {
+    if (score >= 1_007_500) {
         val = levelBase + 200;
-    } else if (score >= 1005000) {
-        val = levelBase + 150 + ((score - 1005000) * 10) / 500;
-    } else if (score >= 1000000) {
-        val = levelBase + 100 + ((score - 1000000) * 5) / 500;
-    } else if (score >= 975000) {
-        val = levelBase + ((score - 975000) * 2) / 500;
-    } else if (score >= 925000) {
-        val = levelBase - 300 + ((score - 925000) * 3) / 500;
-    } else if (score >= 900000) {
-        val = levelBase - 500 + ((score - 900000) * 4) / 500;
-    } else if (score >= 800000) {
-        val = (levelBase - 500) / 2 + ((score - 800000) * ((levelBase - 500) / 2)) / 100000;
+    } else if (score >= 1_005_000) {
+        val = levelBase + 150 + ((score - 1_005_000) * 10) / 500;
+    } else if (score >= 1_000_000) {
+        val = levelBase + 100 + ((score - 1_000_000) * 5) / 100;
+    } else if (score >= 975_000) {
+        val = levelBase + ((score - 975_000) * 2) / 500;
+    } else if (score >= 925_000) {
+        val = levelBase - 300 + ((score - 925_000) * 3) / 500;
+    } else if (score >= 900_000) {
+        val = levelBase - 500 + ((score - 900_000) * 4) / 500;
+    } else if (score >= 800_000) {
+        val = (levelBase - 500) / 2 + ((score - 800_000) * ((levelBase - 500) / 2)) / 100_000;
     }
 
     return Math.max(Math.floor(val) / 100, 0);
@@ -204,11 +204,10 @@ const VF5LampCoefficients = {
 export function CalculateVF4(
     grade: Grades["sdvx:Single"],
     per: number,
-    chartData: AnyChartDocument,
+    levelNum: number,
     logger: KtLogger
 ) {
     const multiplier = 25;
-    const level = chartData.levelNum;
 
     const gradeCoefficient = VF4GradeCoefficients[grade];
 
@@ -218,11 +217,11 @@ export function CalculateVF4(
     }
 
     const percent = per / 100;
-    if (!level || !percent) {
+    if (!levelNum || !percent) {
         return 0;
     }
 
-    return Math.floor(multiplier * (level + 1) * percent * gradeCoefficient);
+    return Math.floor(multiplier * (levelNum + 1) * percent * gradeCoefficient);
 }
 
 // WARNING:
@@ -232,11 +231,9 @@ export function CalculateVF5(
     grade: Grades["sdvx:Single"],
     lamp: Lamps["sdvx:Single"],
     per: number,
-    chartData: AnyChartDocument,
+    levelNum: number,
     logger: KtLogger
 ) {
-    const level = chartData.levelNum;
-
     const gradeCoefficient = VF5GradeCoefficients[grade];
     const lampCoefficient = VF5LampCoefficients[lamp];
 
@@ -250,11 +247,11 @@ export function CalculateVF5(
     }
 
     const percent = per / 100;
-    if (!level || !percent) {
+    if (!levelNum || !percent) {
         return 0;
     }
 
-    return Math.floor(level * 2 * percent * gradeCoefficient * lampCoefficient) / 100;
+    return Math.floor(levelNum * 2 * percent * gradeCoefficient * lampCoefficient) / 100;
 }
 
 // function CalculateJubility(

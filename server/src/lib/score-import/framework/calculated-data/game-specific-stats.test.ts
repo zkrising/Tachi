@@ -1,5 +1,5 @@
 import t from "tap";
-import { CloseMongoConnection } from "../../../../external/mongo/db";
+import db, { CloseMongoConnection } from "../../../../external/mongo/db";
 import { AnyChartDocument, Difficulties, Lamps, ScoreDocument } from "kamaitachi-common";
 import {
     CalculateBPI,
@@ -14,6 +14,11 @@ import {
 import CreateLogCtx from "../../../logger/logger";
 import { isApproximately } from "../../../../test-utils/asserts";
 import { DryScore } from "../common/types";
+import {
+    GetKTDataJSON,
+    Testing511SPA,
+    TestingIIDXSPDryScore,
+} from "../../../../test-utils/test-data";
 
 t.test("#CalculateBPI", (t) => {
     t.test("AA BPI tests", (t) => {
@@ -127,7 +132,7 @@ t.test("#CalculateKESDC", (t) => {
     t.end();
 });
 
-const mockLogger = CreateLogCtx(__filename);
+const logger = CreateLogCtx(__filename);
 
 t.test("#CalculateMFCP", (t) => {
     function TestMFCP(
@@ -145,7 +150,7 @@ t.test("#CalculateMFCP", (t) => {
                 difficulty,
                 levelNum,
             } as AnyChartDocument,
-            mockLogger
+            logger
         );
     }
 
@@ -240,9 +245,71 @@ t.test("#CalculateMFCP", (t) => {
     t.end();
 });
 
-t.todo("#CalculateCHUNITHMRating");
-t.todo("#CalculateVF5");
-t.todo("#CalculateVF4");
-t.todo("#KaidenPercentile");
+const bbkk = GetKTDataJSON("./kamaitachi/chunithm-bbkk-chart.json");
+
+// unit testing a mathematical function is a square-round-hole problem.
+t.test("#CalculateCHUNITHMRating", (t) => {
+    // cutoffs
+    t.equal(CalculateCHUNITHMRating({ scoreData: { score: 1_010_000 } } as DryScore, bbkk), 5.0);
+    t.equal(CalculateCHUNITHMRating({ scoreData: { score: 1_005_000 } } as DryScore, bbkk), 4.5);
+    t.equal(CalculateCHUNITHMRating({ scoreData: { score: 1_000_000 } } as DryScore, bbkk), 4);
+    t.equal(CalculateCHUNITHMRating({ scoreData: { score: 975_000 } } as DryScore, bbkk), 3);
+    t.equal(CalculateCHUNITHMRating({ scoreData: { score: 925_000 } } as DryScore, bbkk), 0);
+    t.equal(CalculateCHUNITHMRating({ scoreData: { score: 900_000 } } as DryScore, bbkk), 0);
+    t.equal(CalculateCHUNITHMRating({ scoreData: { score: 800_000 } } as DryScore, bbkk), 0);
+    t.equal(CalculateCHUNITHMRating({ scoreData: { score: 0 } } as DryScore, bbkk), 0);
+
+    // inbetweens
+    t.equal(CalculateCHUNITHMRating({ scoreData: { score: 987_000 } } as DryScore, bbkk), 3.48);
+
+    t.end();
+});
+
+// i plucked random assertions from bemaniwiki
+// see https://bemaniwiki.com/index.php?SOUND%20VOLTEX%20VIVID%20WAVE/VOLFORCE
+t.test("#CalculateVF5", (t) => {
+    t.equal(CalculateVF5("AAA", "CLEAR", 97, 10, logger), 0.19);
+    t.equal(CalculateVF5("A", "CLEAR", 90, 15, logger), 0.23);
+    t.equal(CalculateVF5("AAA+", "CLEAR", 98, 19, logger), 0.37);
+    t.equal(CalculateVF5("S", "PERFECT ULTIMATE CHAIN", 100, 20, logger), 0.46);
+    t.equal(CalculateVF5("B", "FAILED", 85, 20, logger), 0.14);
+    t.equal(CalculateVF5("D", "FAILED", 0, 20, logger), 0);
+    t.equal(CalculateVF5("S", "PERFECT ULTIMATE CHAIN", 100, 0, logger), 0);
+    t.equal(CalculateVF5("INVALID GRADE" as any, "PERFECT ULTIMATE CHAIN", 100, 0, logger), null);
+    t.equal(CalculateVF5("S", "INVALID LAMP" as any, 100, 0, logger), null);
+
+    t.end();
+});
+
+t.test("#CalculateVF4", (t) => {
+    t.equal(CalculateVF4("INVALID GRADE" as any, 100, 0, logger), null);
+    t.equal(CalculateVF4("D", 0, 20, logger), 0);
+    t.equal(CalculateVF4("S", 100, 0, logger), 0);
+    t.equal(CalculateVF4("S", 100, 20, logger), 525);
+    t.equal(CalculateVF4("AA", 93, 16, logger), 379);
+
+    t.end();
+});
+
+t.test("#KaidenPercentile", async (t) => {
+    await db["iidx-eam-scores"].insert(
+        [100, 200, 300, 400, 1000, 2000, 3000, 4000].map((e) => ({
+            chartID: Testing511SPA.chartID,
+            score: e,
+            lamp: "EASY CLEAR",
+            ranking: 0, // ignore
+        }))
+    );
+
+    const res = await KaidenPercentile(TestingIIDXSPDryScore, Testing511SPA);
+    t.equal(res, 50);
+
+    await db["iidx-eam-scores"].remove({});
+    const res2 = await KaidenPercentile(TestingIIDXSPDryScore, Testing511SPA);
+
+    t.equal(res2, null);
+
+    t.end();
+});
 
 t.teardown(CloseMongoConnection);

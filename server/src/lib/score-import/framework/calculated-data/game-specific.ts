@@ -51,14 +51,14 @@ export async function CreateGameSpecific<G extends Game>(
         gameSpecific.VF4 = CalculateVF4(
             dryScore.scoreData.grade as Grades["sdvx:Single"],
             dryScore.scoreData.percent,
-            chart,
+            chart.levelNum,
             logger
         );
         gameSpecific.VF5 = CalculateVF5(
             dryScore.scoreData.grade as Grades["sdvx:Single"],
             dryScore.scoreData.lamp as Lamps["sdvx:Single"],
             dryScore.scoreData.percent,
-            chart,
+            chart.levelNum,
             logger
         );
     } else if (game === "ddr") {

@@ -156,6 +156,8 @@ export function CalculateClassDeltas(
                 }
 
                 RedisPub("class-update", { userID, ...delta });
+
+                deltas.push(delta);
             }
         } catch (err) {
             logger.error(err);

@@ -50,6 +50,10 @@ export async function CreateSessions(
     return allSessionInfo;
 }
 
+/**
+ * Compares a score and the previous PB the user had and returns the difference
+ * as a SessionScoreInfo object.
+ */
 function ProcessScoreIntoSessionScoreInfo(
     score: ScoreDocument,
     previousPB: PBScoreDocument | undefined
@@ -176,10 +180,9 @@ export async function LoadScoresIntoSessions(
         lastTimestamp = score.timeAchieved!;
     }
 
-    // I think this check is redundant?
-    if (curGroup.length !== 0) {
-        sessionScoreGroups.push(curGroup);
-    }
+    // There's no state here where curGroup is empty,
+    // so push the group (which is guaranteed to have atleast one score)
+    sessionScoreGroups.push(curGroup);
 
     logger.verbose(`Created ${sessionScoreGroups.length} groups from timestamped scores.`);
 
@@ -212,11 +215,12 @@ export async function LoadScoresIntoSessions(
 
         // Find any sessions with +/-2hrs of this group. This is rather exhaustive, and could result in some issues
         // if this query returns more than one session. We should account for that by smushing sessions together.
-        // As of now, we dont currently do it. @TODO.
+        // As of now, we dont currently do it. @TODO #148.
         const nearbySession = await db.sessions.findOne({
             userID,
             game,
             playtype,
+            importType,
             $or: [
                 { timeStarted: { $gte: startOfGroup - TWO_HOURS, $lt: endOfGroup + TWO_HOURS } },
                 { timeEnded: { $gte: startOfGroup - TWO_HOURS, $lt: endOfGroup + TWO_HOURS } },

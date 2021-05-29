@@ -1,11 +1,12 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../../external/mongo/db";
+import db from "../../../../../external/mongo/db";
 import { ConverterIRUSC, DeriveLamp, DeriveNoteMod } from "./converter";
 import d from "deepmerge";
 import { uscChart, uscScore } from "../../../../../test-utils/test-data";
 import CreateLogCtx from "../../../../logger/logger";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import { USCClientScore } from "../../../../../server/router/ir/usc/usc";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -122,4 +123,4 @@ t.test("#ConverterIRUSC", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

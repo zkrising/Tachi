@@ -1,9 +1,9 @@
 import { UserGameStats } from "kamaitachi-common";
 import t from "tap";
-import { CloseMongoConnection } from "../../../../external/mongo/db";
 import CreateLogCtx from "../../../logger/logger";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { CalculateClassDeltas, UpdateUGSClasses } from "./classes";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -135,4 +135,4 @@ t.test("#CalculateClassDeltas", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

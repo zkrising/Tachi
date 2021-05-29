@@ -1,11 +1,12 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../external/mongo/db";
+import db from "../../../../external/mongo/db";
 import CreateLogCtx from "../../../logger/logger";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { Testing511SPA, TestingIIDXSPScore } from "../../../../test-utils/test-data";
 import { ProcessPBs } from "./process-pbs";
 import deepmerge from "deepmerge";
 import crypto from "crypto";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -58,4 +59,4 @@ t.test("#ProcessPBs", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

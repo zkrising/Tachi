@@ -1,13 +1,7 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../external/mongo/db";
+import db from "../../../../external/mongo/db";
 import ResetDBState from "../../../../test-utils/reset-db-state";
-import {
-    GetRelevantFolderGoals,
-    GetRelevantGoals,
-    UpdateGoalsForUser,
-    GetAndUpdateUsersGoals,
-    ProcessGoal,
-} from "./goals";
+import { GetRelevantFolderGoals, GetRelevantGoals, UpdateGoalsForUser, ProcessGoal } from "./goals";
 import { GoalDocument, UserGoalDocument } from "kamaitachi-common";
 import { CreateFolderChartLookup } from "../../../../utils/folder";
 import {
@@ -21,6 +15,7 @@ import {
 import deepmerge from "deepmerge";
 import CreateLogCtx from "../../../logger/logger";
 import crypto from "crypto";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -422,4 +417,4 @@ t.test("#ProcessGoal", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import { CloseMongoConnection } from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../logger/logger";
 import { MockMulterFile } from "../../../../../test-utils/mock-multer";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import { GetKTDataBuffer, GetKTDataJSON } from "../../../../../test-utils/test-data";
 import { ParseMerIIDX } from "./parser";
 import deepmerge from "deepmerge";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -143,4 +143,4 @@ t.test("#ParseMerIIDX", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

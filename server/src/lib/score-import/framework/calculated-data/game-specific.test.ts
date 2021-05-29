@@ -1,6 +1,5 @@
 import Pr from "prudence";
 import t from "tap";
-import { CloseMongoConnection } from "../../../../external/mongo/db";
 import CreateLogCtx from "../../../logger/logger";
 import { prAssert } from "../../../../test-utils/asserts";
 import {
@@ -9,6 +8,7 @@ import {
     TestingSDVXSingleDryScore,
 } from "../../../../test-utils/test-data";
 import { CreateGameSpecific } from "./game-specific";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
 const logger = CreateLogCtx(__filename);
 
 /**
@@ -127,4 +127,4 @@ t.test("#CreateGameSpecific", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

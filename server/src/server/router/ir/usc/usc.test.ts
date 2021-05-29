@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../external/mongo/db";
+import db from "../../../../external/mongo/db";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./usc";
 import { ChartDocument, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
 import deepmerge from "deepmerge";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 const mockScorePB: PBScoreDocument<"usc:Single"> = {
     chartID: "USC_CHART_ID",
@@ -419,4 +420,4 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

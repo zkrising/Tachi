@@ -2,12 +2,12 @@ import t from "tap";
 import CreateLogCtx from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import GenericParseEamIIDXCSV, { NaiveCSVParse, ResolveHeaders } from "./parser";
-import { CloseMongoConnection } from "../../../../../external/mongo/db";
 import {
     TestingIIDXEamusementCSV26,
     TestingIIDXEamusementCSV27,
 } from "../../../../../test-utils/test-data";
 import { MockMulterFile } from "../../../../../test-utils/mock-multer";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -304,4 +304,4 @@ t.test("#ParseEamusementCSV", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

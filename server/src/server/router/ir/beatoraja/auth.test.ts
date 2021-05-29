@@ -1,9 +1,9 @@
 import t from "tap";
 import { ValidateAuthToken, ValidateIRClientVersion } from "./auth";
 import expMiddlewareMock from "express-request-mock";
-import { CloseMongoConnection } from "../../../../external/mongo/db";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { SYMBOL_KtchiData } from "../../../../lib/constants/ktchi";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 t.test("#ValidateIRClientVersion", (t) => {
     t.test("Should reject clients that are not supported", async (t) => {
@@ -117,4 +117,4 @@ t.test("#ValidateAuthToken", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

@@ -1,5 +1,5 @@
 import t from "tap";
-import { CloseMongoConnection } from "../../external/mongo/db";
+import { CloseAllConnections } from "../../test-utils/close-connections";
 import CreateLogCtx, { Transports } from "./logger";
 
 t.test("Logger Tests", (t) => {
@@ -22,4 +22,4 @@ t.test("Logger Tests", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

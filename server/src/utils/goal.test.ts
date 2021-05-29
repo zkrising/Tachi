@@ -1,5 +1,5 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../external/mongo/db";
+import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
 import ResetDBState from "../test-utils/reset-db-state";
 import { EvaluateGoalForUser } from "./goal";
@@ -12,6 +12,7 @@ import {
     TestingIIDXSPScorePB,
 } from "../test-utils/test-data";
 import { CreateFolderChartLookup } from "./folder";
+import { CloseAllConnections } from "../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -296,4 +297,4 @@ t.test("#EvaluateGoalForUser", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../../external/mongo/db";
+import db from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../logger/logger";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../../test-utils/test-data";
@@ -15,6 +15,7 @@ import {
 } from "./converter";
 import { FervidexScore } from "./types";
 import deepmerge from "deepmerge";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -225,4 +226,4 @@ t.test("#ConverterIRFervidex", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

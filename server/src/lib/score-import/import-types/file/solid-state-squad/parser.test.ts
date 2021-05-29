@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import { GetMilisecondsSince } from "../../../../../utils/misc";
-import { CloseMongoConnection } from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../logger/logger";
 import { MockMulterFile } from "../../../../../test-utils/mock-multer";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import { GetKTDataBuffer } from "../../../../../test-utils/test-data";
 import { ParseSolidStateXML } from "./parser";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -226,4 +225,4 @@ t.test("#ParseSolidStateXML", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

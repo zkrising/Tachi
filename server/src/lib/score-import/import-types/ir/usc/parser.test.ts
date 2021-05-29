@@ -1,5 +1,5 @@
 import t from "tap";
-import { CloseMongoConnection } from "../../../../../external/mongo/db";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 import { uscChart, uscScore } from "../../../../../test-utils/test-data";
 import CreateLogCtx from "../../../../logger/logger";
 import { ParseIRUSC } from "./parser";
@@ -37,4 +37,4 @@ t.test("#ParseIRUSC", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

@@ -1,5 +1,5 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../external/mongo/db";
+import db from "../../../../external/mongo/db";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { GetKTDataJSON, Testing511SPA, TestingIIDXSPScore } from "../../../../test-utils/test-data";
 import { CreatePBDoc } from "./create-pb-doc";
@@ -7,6 +7,7 @@ import deepmerge from "deepmerge";
 import CreateLogCtx, { KtLogger } from "../../../logger/logger";
 
 import { lamps } from "kamaitachi-common/js/config";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 let IIDXScore = TestingIIDXSPScore;
 
@@ -169,4 +170,4 @@ t.test("#CreatePBDoc", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

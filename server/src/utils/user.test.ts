@@ -1,9 +1,9 @@
 import t from "tap";
-import { CloseMongoConnection } from "../external/mongo/db";
 import { PRUDENCE_PRIVATE_USER, PRUDENCE_PUBLIC_USER } from "../external/mongo/schemas";
 import { prAssert } from "../test-utils/asserts";
 import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive, FormatUserDoc } from "./user";
 import { PublicUserDocument } from "kamaitachi-common";
+import { CloseAllConnections } from "../test-utils/close-connections";
 
 t.test("#GetUserCaseInsensitive", (t) => {
     t.test("Should return the user for an exact username", async (t) => {
@@ -85,4 +85,4 @@ t.test("#FormatUserDoc", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

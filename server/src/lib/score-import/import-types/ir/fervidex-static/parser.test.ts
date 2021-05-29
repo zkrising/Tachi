@@ -1,5 +1,5 @@
 import t from "tap";
-import { CloseMongoConnection } from "../../../../../external/mongo/db";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import { GetKTDataJSON } from "../../../../../test-utils/test-data";
 import CreateLogCtx from "../../../../logger/logger";
@@ -181,4 +181,4 @@ t.test("#ParseFervidexStatic", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

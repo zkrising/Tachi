@@ -8,9 +8,10 @@ import {
     GetFolderCharts,
     ResolveFolderToCharts,
 } from "./folder";
-import db, { CloseMongoConnection } from "../external/mongo/db";
+import db from "../external/mongo/db";
 import ResetDBState from "../test-utils/reset-db-state";
 import deepmerge from "deepmerge";
+import { CloseAllConnections } from "../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -208,4 +209,4 @@ t.test("#GetFolderChartIDs", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

@@ -1,11 +1,12 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../external/mongo/db";
+import db from "../../../../external/mongo/db";
 import CreateLogCtx from "../../../logger/logger";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { TestingIIDXSPMilestone } from "../../../../test-utils/test-data";
 import { UpdateUsersMilestones } from "./milestones";
 import { GoalImportInfo } from "kamaitachi-common";
 import deepmerge from "deepmerge";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -353,4 +354,4 @@ t.test("#UpdateUsersMilestones", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

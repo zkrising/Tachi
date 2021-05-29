@@ -1,11 +1,12 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../../external/mongo/db";
+import db from "../../../../../external/mongo/db";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import { GetKTDataJSON } from "../../../../../test-utils/test-data";
 import { KtchiPBScoreToBeatorajaFormat } from "./convert-scores";
 import { ScoreDocument, PBScoreDocument } from "kamaitachi-common";
 import { Random20Hex } from "../../../../../utils/misc";
 import deepmerge from "deepmerge";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 const gazerChart = GetKTDataJSON("./kamaitachi/bms-gazer-chart.json");
 
@@ -187,4 +188,4 @@ t.test("#KtchiPBScoreToBeatorajaFormat", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

@@ -1,11 +1,11 @@
 import t from "tap";
-import { CloseMongoConnection } from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParseBatchManualFromObject as ParserFn } from "./parser";
 import { BatchManual } from "./types";
 import { EscapeStringRegexp } from "../../../../../utils/misc";
 import deepmerge from "deepmerge";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 const mockErr = (...msg: string[]) =>
     (({
@@ -472,4 +472,4 @@ t.test("#ParserFn", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

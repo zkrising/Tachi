@@ -1,5 +1,5 @@
 import t from "tap";
-import { CloseMongoConnection } from "../../../../../external/mongo/db";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import CreateLogCtx from "../../../../logger/logger";
 import { FerStaticClassHandler } from "./class-handler";
@@ -63,4 +63,4 @@ t.test("#FerStaticClassHandler", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

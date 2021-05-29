@@ -2,6 +2,7 @@ import { integer, Game, GoalDocument, UserGoalDocument } from "kamaitachi-common
 import { EvaluateGoalForUser } from "../../../../utils/goal";
 import db from "../../../../external/mongo/db";
 import { KtLogger } from "../../../logger/logger";
+import { RedisPub } from "../../../../external/redis/redis-IPC";
 
 /**
  * Update a user's progress on all of their set goals.
@@ -87,28 +88,9 @@ export async function ProcessGoal(
         return;
     }
 
-    // if the user has changed their progress on the goal
-    if (userGoal.progress !== res.progress) {
-        // if the user has improved their progress on the goal
-        // if userGoal.progress is null, then res.progress must be non-null, and therefore an improvement.
-        if (
-            userGoal.progress === null ||
-            (res.progress !== null && userGoal.progress < res.progress)
-        ) {
-            // @todo #99 emit something
-        }
-    } else if (userGoal.outOf === res.outOf) {
-        // if the users progress hasn't changed AND the outOf hasn't
-        // then nothing has changed.
-
-        // the outOf check is to account for things such as folder sizes changing underfoot
-        // which would always require an update.
+    // nothing has changed
+    if (userGoal.progress === res.progress && userGoal.outOf === res.outOf) {
         return;
-    }
-
-    // if this is a newly-achieved goal
-    if (res.achieved && !userGoal.achieved) {
-        // @todo #99 emit something
     }
 
     const newData = {
@@ -118,6 +100,24 @@ export async function ProcessGoal(
         outOfHuman: res.outOfHuman,
         achieved: res.achieved,
     };
+
+    const oldData = {
+        progress: userGoal.progress,
+        progressHuman: userGoal.progressHuman,
+        outOf: userGoal.outOf,
+        outOfHuman: userGoal.outOfHuman,
+        achieved: userGoal.achieved,
+    };
+
+    // if this is a newly-achieved goal
+    if (res.achieved && !userGoal.achieved) {
+        RedisPub("goal-achieved", {
+            userID,
+            goalID: goal.goalID,
+            old: oldData,
+            new: newData,
+        });
+    }
 
     const bulkWrite = {
         updateOne: {
@@ -139,13 +139,7 @@ export async function ProcessGoal(
         bwrite: bulkWrite,
         import: {
             goalID: goal.goalID,
-            old: {
-                progress: userGoal.progress,
-                progressHuman: userGoal.progressHuman,
-                outOf: userGoal.outOf,
-                outOfHuman: userGoal.outOfHuman,
-                achieved: userGoal.achieved,
-            },
+            old: oldData,
             new: newData,
         },
     };

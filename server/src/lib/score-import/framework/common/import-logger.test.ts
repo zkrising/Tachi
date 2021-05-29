@@ -1,7 +1,7 @@
 import t from "tap";
 import { CreateImportLoggerAndID } from "./import-logger";
 import { PublicUserDocument } from "kamaitachi-common";
-import { CloseMongoConnection } from "../../../../external/mongo/db";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 t.test("#CreateImportLoggerAndID", (t) => {
     const { importID, logger } = CreateImportLoggerAndID(
@@ -19,4 +19,4 @@ t.test("#CreateImportLoggerAndID", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

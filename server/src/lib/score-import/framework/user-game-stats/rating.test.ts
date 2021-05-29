@@ -1,11 +1,12 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../external/mongo/db";
+import db from "../../../../external/mongo/db";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { TestingIIDXSPScorePB } from "../../../../test-utils/test-data";
 import { CalculateCustomRatings, CalculateRatings } from "./rating";
 import deepmerge from "deepmerge";
 import CreateLogCtx from "../../../logger/logger";
 import crypto from "crypto";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -142,4 +143,4 @@ t.test("#CalculateCustomRatings", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

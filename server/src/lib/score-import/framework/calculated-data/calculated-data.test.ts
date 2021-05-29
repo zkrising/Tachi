@@ -1,6 +1,6 @@
 import Pr from "prudence";
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../external/mongo/db";
+import db from "../../../../external/mongo/db";
 import CreateLogCtx from "../../../logger/logger";
 import { prAssert } from "../../../../test-utils/asserts";
 import {
@@ -13,6 +13,7 @@ import { CreateCalculatedData, CalculateLampRating, CalculateRating } from "./ca
 import deepmerge from "deepmerge";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { GetDefaultTierlist } from "../../../../utils/tierlist";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 const mockLogger = CreateLogCtx(__filename);
 
@@ -292,4 +293,4 @@ t.test("#CalculateLampRating", async (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

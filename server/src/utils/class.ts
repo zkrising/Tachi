@@ -2,6 +2,7 @@ import { Game, integer, IDStrings, Playtypes, UserGameStats } from "kamaitachi-c
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
 import { GameClassSets } from "kamaitachi-common/js/game-classes";
+import { RedisPub } from "../external/redis/redis-IPC";
 
 const logger = CreateLogCtx(__filename);
 
@@ -67,11 +68,16 @@ export async function UpdateClassIfGreater(
     }
 
     if (isGreater === null) {
-        // @todo #99 REDIS-IPC new class achieved
+        RedisPub("class-update", { userID, new: classVal, old: null, set: classSet });
 
         return null;
     } else {
-        // @todo #99 REDIS-IPC class improved
+        RedisPub("class-update", {
+            userID,
+            new: classVal,
+            old: userGameStats!.classes[classSet]!,
+            set: classSet,
+        });
 
         return true;
     }

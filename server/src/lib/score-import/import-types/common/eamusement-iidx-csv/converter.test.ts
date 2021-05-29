@@ -1,5 +1,5 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../../external/mongo/db";
+import db from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../logger/logger";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import ConverterFn, { EamScoreConverter, EamScoreConverterWrapper } from "./converter";
@@ -12,6 +12,7 @@ import {
     InvalidScoreFailure,
     KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -373,4 +374,4 @@ t.todo("#ConverterFn", async (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

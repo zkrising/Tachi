@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../../external/mongo/db";
+import db from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../logger/logger";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import {
@@ -12,6 +12,7 @@ import {
 import { ConvertFileMerIIDX } from "./converter";
 import deepmerge from "deepmerge";
 import { MerScore } from "./types";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -136,4 +137,4 @@ t.test("#ConvertFileMerIIDX", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

@@ -41,7 +41,7 @@ export async function UpdateUsersGamePlaytypeStats(
 
     logger.debug(`Calculating Class Deltas...`);
 
-    const deltas = CalculateClassDeltas(playtype, classes, userGameStats, logger);
+    const deltas = CalculateClassDeltas(playtype, classes, userGameStats, userID, logger);
 
     logger.debug(`Had ${deltas.length} deltas.`);
 

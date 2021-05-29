@@ -1,10 +1,11 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../../external/mongo/db";
+import db from "../../../../../external/mongo/db";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import CreateLogCtx from "../../../../logger/logger";
 import { ConverterIRBarbatos } from "./converter";
 import deepmerge from "deepmerge";
 import { barbScore } from "../../../../../test-utils/test-data";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 
@@ -111,4 +112,4 @@ t.test("#ConverterIRBarbatos", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

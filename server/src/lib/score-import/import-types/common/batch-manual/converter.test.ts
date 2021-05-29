@@ -5,10 +5,10 @@ import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../../tes
 import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
 import { EscapeStringRegexp } from "../../../../../utils/misc";
-import db, { CloseMongoConnection } from "../../../../../external/mongo/db";
 import { Game } from "kamaitachi-common";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
+import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 const baseBatchManualScore = {
     score: 500,
@@ -394,4 +394,4 @@ t.test("#ConverterFn", (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

@@ -1,5 +1,5 @@
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../external/mongo/db";
+import db from "../../../../external/mongo/db";
 import { AnyChartDocument, Difficulties, Lamps, ScoreDocument } from "kamaitachi-common";
 import {
     CalculateBPI,
@@ -19,6 +19,7 @@ import {
     Testing511SPA,
     TestingIIDXSPDryScore,
 } from "../../../../test-utils/test-data";
+import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 t.test("#CalculateBPI", (t) => {
     t.test("AA BPI tests", (t) => {
@@ -312,4 +313,4 @@ t.test("#KaidenPercentile", async (t) => {
     t.end();
 });
 
-t.teardown(CloseMongoConnection);
+t.teardown(CloseAllConnections);

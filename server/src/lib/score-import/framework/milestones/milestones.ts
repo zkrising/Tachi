@@ -11,6 +11,7 @@ import {
 import db from "../../../../external/mongo/db";
 import { BulkWriteUpdateOneOperation } from "mongodb";
 import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "../../../../utils/milestone";
+import { RedisPub, RedisSub } from "../../../../external/redis/redis-IPC";
 
 /**
  * Processes and updates a user's milestones from their Goal Import Info (i.e. what is returned
@@ -113,22 +114,27 @@ export async function UpdateUsersMilestones(
             },
         });
 
+        const milestoneInfo = {
+            milestoneID: userMilestone.milestoneID,
+            old: {
+                progress: userMilestone.progress,
+                achieved: userMilestone.achieved,
+            },
+            new: {
+                progress,
+                achieved,
+            },
+        };
+
         if (progress !== userMilestone.progress) {
-            importMilestoneInfo.push({
-                milestoneID: userMilestone.milestoneID,
-                old: {
-                    progress: userMilestone.progress,
-                    achieved: userMilestone.achieved,
-                },
-                new: {
-                    progress,
-                    achieved,
-                },
-            });
+            importMilestoneInfo.push(milestoneInfo);
         }
 
         if (achieved && !userMilestone.achieved) {
-            // @todo #99 emit some sort of event
+            RedisPub("milestone-achieved", {
+                userID,
+                ...milestoneInfo,
+            });
         }
     }
 

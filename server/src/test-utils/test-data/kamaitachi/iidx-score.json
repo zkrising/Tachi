@@ -1,5 +1,5 @@
 {
-    "service": "e-amusement",
+    "service": "foo (DIRECT-MANUAL)",
     "game": "iidx",
     "playtype": "SP",
     "difficulty": "ANOTHER",
@@ -24,7 +24,7 @@
         "lampRating": 5,
         "gameSpecific": {}
     },
-    "timeAchieved": null,
+    "timeAchieved": 1619454485988,
     "songID": 1,
     "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
     "highlight": false,
@@ -32,5 +32,5 @@
     "comment": null,
     "timeAdded": 1,
     "scoreID": "TESTING_SCORE_ID",
-    "importType": "iidx:eamusement-csv"
+    "importType": "ir/direct-manual"
 }

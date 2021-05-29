@@ -187,7 +187,7 @@ t.test("#ParseSolidStateXML", (t) => {
     });
 
     t.test("Should reject billion laughs", (t) => {
-        const time = process.hrtime.bigint();
+        t.setTimeout(5000);
 
         t.throws(
             () =>
@@ -202,15 +202,11 @@ t.test("#ParseSolidStateXML", (t) => {
             { message: /Invalid S3 XML/u } as any
         );
 
-        const end = GetMilisecondsSince(time);
-
-        t.ok(end < 10_000, "Should take less than 10 seconds");
-
         t.end();
     });
 
     t.test("Should not expand specifically crafted billion laughs", (t) => {
-        const time = process.hrtime.bigint();
+        t.setTimeout(5000);
 
         const res = ParseSolidStateXML(
             MockMulterFile(
@@ -223,10 +219,6 @@ t.test("#ParseSolidStateXML", (t) => {
 
         // @ts-expect-error shush
         t.equal(res.iterable[0].songname, "&lol9;", "Should not expand billion laughs.");
-
-        const end = GetMilisecondsSince(time);
-
-        t.ok(end < 10_000, "Should take less than 10 seconds");
 
         t.end();
     });

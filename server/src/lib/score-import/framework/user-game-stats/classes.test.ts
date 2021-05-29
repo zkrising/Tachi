@@ -48,7 +48,7 @@ t.test("#CalculateClassDeltas", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should return improved classes from null", (t) => {
-        const res = CalculateClassDeltas("SP", { dan: 18 }, null, logger);
+        const res = CalculateClassDeltas("SP", { dan: 18 }, null, 1, logger);
 
         t.strictSame(res, [
             {
@@ -67,6 +67,7 @@ t.test("#CalculateClassDeltas", (t) => {
             "SP",
             { dan: 18 },
             { classes: {} } as UserGameStats,
+            1,
             logger
         );
 
@@ -87,6 +88,7 @@ t.test("#CalculateClassDeltas", (t) => {
             "SP",
             { dan: 18 },
             ({ classes: { dan: 17 } } as unknown) as UserGameStats,
+            1,
             logger
         );
 
@@ -107,6 +109,7 @@ t.test("#CalculateClassDeltas", (t) => {
             "SP",
             { dan: 18 },
             ({ classes: { dan: 18 } } as unknown) as UserGameStats,
+            1,
             logger
         );
 
@@ -120,6 +123,7 @@ t.test("#CalculateClassDeltas", (t) => {
             "SP",
             { dan: 16 },
             ({ classes: { dan: 18 } } as unknown) as UserGameStats,
+            1,
             logger
         );
 

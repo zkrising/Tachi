@@ -4,6 +4,7 @@ import { KtLogger } from "../../../logger/logger";
 import { CalculateGitadoraColour, CalculateJubeatColour } from "./builtin-class-handlers";
 import { ReturnClassIfGreater } from "../../../../utils/class";
 import { GameClasses } from "kamaitachi-common/js/game-classes";
+import { RedisPub } from "../../../../external/redis/redis-IPC";
 
 type ScoreClasses = Partial<GameClasses<IDStrings>>;
 
@@ -117,9 +118,10 @@ export function CalculateClassDeltas(
     playtype: Playtypes[Game],
     classes: ScoreClasses,
     userGameStats: UserGameStats | null,
+    userID: integer,
     logger: KtLogger
 ): ClassDelta[] {
-    const deltas = [];
+    const deltas: ClassDelta[] = [];
 
     for (const s in classes) {
         const classSet = s as keyof GameClasses<IDStrings>;
@@ -135,22 +137,25 @@ export function CalculateClassDeltas(
 
             if (isGreater === false) {
                 continue;
-            } else if (isGreater === null) {
-                // @todo #99 REDISIPC-New Class Achieved
-                deltas.push({
-                    set: classSet,
-                    playtype,
-                    old: null,
-                    new: classVal,
-                });
             } else {
-                // @todo #99 REDISIPC-Class Improved!
-                deltas.push({
-                    set: classSet,
-                    playtype,
-                    old: userGameStats!.classes[classSet]!,
-                    new: classVal,
-                });
+                let delta: ClassDelta;
+                if (isGreater === null) {
+                    delta = {
+                        set: classSet,
+                        playtype,
+                        old: null,
+                        new: classVal,
+                    };
+                } else {
+                    delta = {
+                        set: classSet,
+                        playtype,
+                        old: userGameStats!.classes[classSet]!,
+                        new: classVal,
+                    };
+                }
+
+                RedisPub("class-update", { userID, ...delta });
             }
         } catch (err) {
             logger.error(err);

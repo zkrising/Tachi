@@ -29,7 +29,7 @@ t.test("#CreatePBDoc", (t) => {
         // rankingInfo -- is not present because it is not added until post-processing.
         highlight: false,
         isPrimary: true,
-        timeAchieved: null,
+        timeAchieved: 1619454485988,
         game: "iidx",
         playtype: "SP",
         comments: [],

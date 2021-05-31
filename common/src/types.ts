@@ -1253,7 +1253,7 @@ export interface ImportProcessInfoKTDataNotFound {
     content: {
         data: unknown;
         context: unknown; // TEMP
-        orphaned: boolean;
+        orphanID: string;
     };
 }
 

@@ -1015,7 +1015,7 @@ export interface ImportProcessInfoKTDataNotFound {
     content: {
         data: unknown;
         context: unknown;
-        orphaned: boolean;
+        orphanID: string;
     };
 }
 export interface ImportProcessInfoOrphanExists {

@@ -5,11 +5,11 @@
     "main": "js/index.js",
     "scripts": {
         "fulltest": "tap",
-        "test": "tap",
+        "paralleltest": "export KTBSV_PARALLEL_TESTS=true && tap -J",
         "watchtest": "tap --watch",
         "build": "tsc --project tsconfig.build.json",
         "lint": "eslint ./src --ext .ts --fix",
-        "devrun": "tsc --project tsconfig.build.json && node -r dotenv/config js/main.js"
+        "buildrun": "tsc --project tsconfig.build.json && node js/main.js"
     },
     "author": "zkldi",
     "license": "ISC",

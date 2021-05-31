@@ -3,9 +3,9 @@
     "tasks": [
         {
             "type": "npm",
-            "script": "devrun",
+            "script": "buildrun",
             "problemMatcher": [],
-            "label": "npm: devrun",
+            "label": "npm: buildrun",
             "detail": "tsc && export NODE_ENV=\"dev\" && node js/main.js",
             "group": {
                 "kind": "build",

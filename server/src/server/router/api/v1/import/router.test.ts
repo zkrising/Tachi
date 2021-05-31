@@ -11,11 +11,14 @@ import { RequireNeutralAuthentication } from "../../../../../test-utils/api-comm
 import { CreateFakeAuthCookie } from "../../../../../test-utils/fake-session";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import db from "../../../../../external/mongo/db";
+import { SetIndexes } from "../../../../../../scripts/set-indexes";
 
 // reset DB handles the post-stuff
 
 t.test("POST /api/v1/import/file", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
+
+    await SetIndexes(`test-ephemeral-${process.pid.toString()}`);
 
     t.beforeEach(ResetDBState);
 
@@ -321,3 +324,9 @@ t.test("POST /api/v1/import/file", async (t) => {
 });
 
 t.teardown(CloseAllConnections);
+
+import winr from "why-is-node-running";
+
+setTimeout(() => {
+    winr();
+}, 80_000);

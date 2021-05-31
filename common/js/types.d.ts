@@ -1015,14 +1015,15 @@ export interface ImportProcessInfoKTDataNotFound {
     content: {
         data: unknown;
         context: unknown;
+        orphaned: boolean;
     };
 }
-export interface ImportProcessInfoScoreExists {
+export interface ImportProcessInfoOrphanExists {
     success: false;
-    type: "ScoreExists";
+    type: "OrphanExists";
     message: string | null;
     content: {
-        scoreID: string;
+        orphanID: string;
     };
 }
 export interface ImportProcessInfoInvalidDatapoint {
@@ -1047,7 +1048,7 @@ export interface ImportProcessInfoInternalError {
     message: string | null;
     content: Record<string, never>;
 }
-export declare type ImportProcessingInfo<I extends IDStrings = IDStrings> = ImportProcessInfoKTDataNotFound | ImportProcessInfoScoreExists | ImportProcessInfoScoreImported<I> | ImportProcessInfoInvalidDatapoint | ImportProcessInfoInternalError;
+export declare type ImportProcessingInfo<I extends IDStrings = IDStrings> = ImportProcessInfoKTDataNotFound | ImportProcessInfoOrphanExists | ImportProcessInfoScoreImported<I> | ImportProcessInfoInvalidDatapoint | ImportProcessInfoInternalError;
 export interface IIDXBPIData {
     chartID: string;
     kavg: integer;

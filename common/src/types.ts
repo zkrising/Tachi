@@ -1253,15 +1253,16 @@ export interface ImportProcessInfoKTDataNotFound {
     content: {
         data: unknown;
         context: unknown; // TEMP
+        orphaned: boolean;
     };
 }
 
-export interface ImportProcessInfoScoreExists {
+export interface ImportProcessInfoOrphanExists {
     success: false;
-    type: "ScoreExists";
+    type: "OrphanExists";
     message: string | null;
     content: {
-        scoreID: string;
+        orphanID: string;
     };
 }
 
@@ -1292,7 +1293,7 @@ export interface ImportProcessInfoInternalError {
 
 export type ImportProcessingInfo<I extends IDStrings = IDStrings> =
     | ImportProcessInfoKTDataNotFound
-    | ImportProcessInfoScoreExists
+    | ImportProcessInfoOrphanExists
     | ImportProcessInfoScoreImported<I>
     | ImportProcessInfoInvalidDatapoint
     | ImportProcessInfoInternalError;

@@ -33,9 +33,9 @@ export const irImportTypes: IRImportTypes[] = [
 ];
 
 export const apiImportTypes: APIImportTypes[] = [
-    "api/arc-iidx",
-    "api/arc-jubeat",
-    "api/arc-sdvx",
+    // "api/arc-iidx",
+    // "api/arc-jubeat",
+    // "api/arc-sdvx",
     "api/eag-iidx",
     "api/eag-sdvx",
     "api/flo-iidx",

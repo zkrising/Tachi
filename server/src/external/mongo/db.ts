@@ -25,7 +25,7 @@ import {
     UserMilestoneDocument,
     BMSCourseDocument,
 } from "kamaitachi-common";
-import monk, { IMonkManager } from "monk";
+import monk from "monk";
 import { MONGO_BASE_URL } from "../../lib/env/env";
 import CreateLogCtx from "../../lib/logger/logger";
 
@@ -34,9 +34,9 @@ const logger = CreateLogCtx(__filename);
 /* istanbul ignore next */
 const base = MONGO_BASE_URL ?? "127.0.0.1";
 
-/* istanbul ignore next */
 let url = `${base}:27017/ktblackdb`;
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV === "test") {
     if (process.env.KTBSV_PARALLEL_TESTS) {
         url = `${base}:27017/test-ephemeral-${process.pid}`;
@@ -55,9 +55,10 @@ if (process.env.NODE_ENV !== "test") {
 }
 
 export const monkDB = monk(url);
+
+/* istanbul ignore next */
 monkDB
     .then(() => {
-        /* istanbul ignore next */
         if (process.env.NODE_ENV !== "test") {
             const time = process.hrtime(dbtime);
             const elapsed = time[0] + time[1] / 1e6;

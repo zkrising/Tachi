@@ -79,7 +79,6 @@ export function ParseFervidexStatic(
         context: { version },
         game: "iidx",
         iterable: scores,
-        ConverterFunction: ConverterIRFervidexStatic,
         classHandler: FerStaticClassHandler(body),
     };
 }

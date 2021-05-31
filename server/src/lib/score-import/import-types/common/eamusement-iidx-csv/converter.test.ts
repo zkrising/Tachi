@@ -2,7 +2,7 @@ import t from "tap";
 import db from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../logger/logger";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
-import ConverterFn, { EamScoreConverter, EamScoreConverterWrapper } from "./converter";
+import ConvertEamIIDXCSV, { EamScoreConverter, EamScoreConverterWrapper } from "./converter";
 import p from "prudence";
 import { prAssert } from "../../../../../test-utils/asserts";
 import deepmerge from "deepmerge";

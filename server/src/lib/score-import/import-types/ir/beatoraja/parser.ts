@@ -108,7 +108,6 @@ export function ParseBeatorajaSingle(
         },
         game: "bms",
         iterable: ([body.score] as unknown) as BeatorajaScore[],
-        ConverterFunction: ConverterIRBeatoraja,
         classHandler: null,
     };
 }

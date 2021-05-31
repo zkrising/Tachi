@@ -39,6 +39,7 @@ export class KTDataNotFoundFailure<T extends ImportTypes> extends ConverterFailu
         this.importType = importType;
         this.data = data;
         this.converterContext = context;
+        this.humanisedIdentifier = humanisedIdentifier ?? null;
     }
 }
 

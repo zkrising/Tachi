@@ -8,13 +8,13 @@ import { FervidexContext, FervidexScore } from "../ir/fervidex/types";
 import { KaiContext } from "./api-kai/types";
 import { BatchManualContext, BatchManualScore } from "./batch-manual/types";
 import { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./eamusement-iidx-csv/types";
-import { ImportTypes, Game, AnyChartDocument, AnySongDocument } from "kamaitachi-common";
+import { ImportTypes, Game, AnyChartDocument, AnySongDocument, integer } from "kamaitachi-common";
 import { ConverterFailure } from "../../framework/common/converter-failures";
 import { ClassHandler } from "../../framework/user-game-stats/classes";
 import { DryScore } from "../../framework/common/types";
-import { BeatorajaIRScoreFormat } from "../../../../server/router/ir/beatoraja/charts/convert-scores";
-import { BeatorajaContext } from "../ir/beatoraja/types";
-
+import { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
+import { USCClientScore } from "../../../../server/router/ir/usc/usc";
+import { IRUSCContext } from "../ir/usc/types";
 export interface ImportTypeDataMap {
     "file/eamusement-iidx-csv": IIDXEamusementCSVData;
     "file/batch-manual": BatchManualScore;
@@ -27,9 +27,11 @@ export interface ImportTypeDataMap {
     "ir/fervidex": FervidexScore;
     "ir/fervidex-static": FervidexStaticScore;
     "ir/chunitachi": BatchManualScore;
-    "ir/beatoraja": BeatorajaIRScoreFormat;
-    "ir/usc": EmptyObject;
+    "ir/beatoraja": BeatorajaScore;
+    "ir/usc": USCClientScore;
 
+    // These aren't placeholder values - the data is yielded in a way that
+    // the value of these is legitimately unknown at convert time.
     "api/arc-iidx": unknown;
     "api/arc-sdvx": unknown;
     "api/arc-jubeat": unknown;
@@ -44,7 +46,7 @@ export interface ImportTypeContextMap {
     "file/batch-manual": BatchManualContext;
     "file/solid-state-squad": EmptyObject;
     "file/mer-iidx": EmptyObject;
-    "file/pli-iidx-csv": EmptyObject;
+    "file/pli-iidx-csv": IIDXEamusementCSVContext;
 
     "ir/direct-manual": BatchManualContext;
     "ir/barbatos": EmptyObject;
@@ -52,7 +54,7 @@ export interface ImportTypeContextMap {
     "ir/fervidex-static": FervidexStaticContext;
     "ir/chunitachi": BatchManualContext;
     "ir/beatoraja": BeatorajaContext;
-    "ir/usc": EmptyObject;
+    "ir/usc": IRUSCContext;
 
     "api/arc-iidx": EmptyObject;
     "api/arc-sdvx": EmptyObject;
@@ -62,11 +64,15 @@ export interface ImportTypeContextMap {
     "api/eag-iidx": KaiContext;
     "api/eag-sdvx": KaiContext;
 }
-export interface OrphanedScore<T extends ImportTypes> {
+
+export interface OrphanScoreDocument<T extends ImportTypes = ImportTypes> {
     importType: T;
     data: ImportTypeDataMap[T];
     converterContext: ImportTypeContextMap[T];
-    humanisedIdentifier: string;
+    errMsg: string | null;
+    orphanID: string;
+    userID: integer;
+    timeInserted: number;
 }
 
 export interface ConverterFnSuccessReturn {
@@ -100,7 +106,6 @@ export interface ParserFunctionReturnsAsync<D, C> {
     iterable: AsyncIterable<D>;
     context: C;
     game: Game;
-    ConverterFunction: ConverterFunction<D, C>;
     classHandler: ClassHandler | null;
 }
 
@@ -108,6 +113,5 @@ export interface ParserFunctionReturnsSync<D, C> {
     iterable: Iterable<D>;
     context: C;
     game: Game;
-    ConverterFunction: ConverterFunction<D, C>;
     classHandler: ClassHandler | null;
 }

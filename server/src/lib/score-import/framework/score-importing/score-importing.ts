@@ -25,6 +25,7 @@ import {
     ConverterFunction,
 } from "../../import-types/common/types";
 import { DryScore } from "../common/types";
+import { OrphanScore } from "../orphans/orphans";
 
 /**
  * Processes the iterable data into the Kamaitachi database.
@@ -145,10 +146,20 @@ async function ImportFromConverterReturn(
     // if this conversion failed, return it in the proper format
     if (cfnReturn instanceof ConverterFailure) {
         if (cfnReturn instanceof KTDataNotFoundFailure) {
-            logger.warn(`ConverterFailure: ${cfnReturn.message ?? "No message?"}`, {
+            logger.warn(`KTDataNotFoundFailure: ${cfnReturn.message ?? "No message?"}`, {
                 cfnReturn,
                 hideFromConsole: ["cfnReturn"],
             });
+
+            OrphanScore(
+                cfnReturn.importType,
+                userID,
+                cfnReturn.data,
+                cfnReturn.converterContext,
+                cfnReturn.message,
+                logger
+            );
+
             return {
                 success: false,
                 type: "KTDataNotFound",
@@ -159,7 +170,7 @@ async function ImportFromConverterReturn(
                 },
             };
         } else if (cfnReturn instanceof InvalidScoreFailure) {
-            logger.warn(`ConverterFailure: ${cfnReturn.message ?? "No message?"}`, {
+            logger.info(`InvalidScoreFailure: ${cfnReturn.message ?? "No message?"}`, {
                 cfnReturn,
                 hideFromConsole: ["cfnReturn"],
             });

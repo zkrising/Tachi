@@ -61,7 +61,7 @@ dependencies:
   express-session: 1.17.1
   fast-json-stable-hash: 1.0.2
   fast-xml-parser: 3.19.0
-  kamaitachi-common: github.com/zkldi/Kamaitachi-common/309bc3610aca940ceeb5244ff7d337770cf27201
+  kamaitachi-common: github.com/zkldi/Kamaitachi-common/e3a9f8d1f019d2e0d3e26755b0d6c73c28848f2d
   mongodb: 3.6.6
   monk: 7.3.4
   multer: 1.4.2
@@ -4344,8 +4344,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  github.com/zkldi/Kamaitachi-common/309bc3610aca940ceeb5244ff7d337770cf27201:
-    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/309bc3610aca940ceeb5244ff7d337770cf27201}
+  github.com/zkldi/Kamaitachi-common/e3a9f8d1f019d2e0d3e26755b0d6c73c28848f2d:
+    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/e3a9f8d1f019d2e0d3e26755b0d6c73c28848f2d}
     name: kamaitachi-common
     version: 0.1.0
     dependencies:

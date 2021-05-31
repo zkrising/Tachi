@@ -181,47 +181,30 @@ export async function EamScoreConverterWrapper(
     isLegacyLeggendaria: boolean,
     logger: KtLogger
 ) {
-    try {
-        const results = await EamScoreConverter(
-            eamScore,
-            song!,
-            context,
-            data,
-            isLegacyLeggendaria,
-            logger
-        );
+    const results = await EamScoreConverter(
+        eamScore,
+        song!,
+        context,
+        data,
+        isLegacyLeggendaria,
+        logger
+    );
 
-        if (!results) {
-            return null;
-        }
-
-        return {
-            song,
-            chart: results.ktchiChart,
-            dryScore: results.dryScore,
-        };
-    } catch (err) {
-        if (
-            err instanceof KTDataNotFoundFailure ||
-            err instanceof InternalFailure ||
-            err instanceof InvalidScoreFailure
-        ) {
-            return err;
-        } else if (err instanceof ScoreImportFatalError) {
-            throw err; // throw it all the way up.
-        }
-
-        logger.error(`Unknown error: `, { err });
-        return new InternalFailure("An unknown internal failure has occured.");
+    if (!results) {
+        return null;
     }
+
+    return {
+        song,
+        chart: results.ktchiChart,
+        dryScore: results.dryScore,
+    };
 }
 
-const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVContext> = async (
-    data,
-    context,
-    importType,
-    logger
-): Promise<ConverterFnReturn[] | ConverterFnReturn> => {
+const ConvertEamIIDXCSV: ConverterFunction<
+    IIDXEamusementCSVData,
+    IIDXEamusementCSVContext
+> = async (data, context, importType, logger): Promise<ConverterFnReturn[] | ConverterFnReturn> => {
     let isLegacyLeggendaria = false;
 
     // if pre-HV, leggendarias were stored in a wacky form.
@@ -254,4 +237,4 @@ const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVCon
     return results;
 };
 
-export default ConverterFn;
+export default ConvertEamIIDXCSV;

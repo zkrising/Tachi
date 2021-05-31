@@ -54,7 +54,7 @@ if (process.env.NODE_ENV !== "test") {
     dbtime = process.hrtime();
 }
 
-export const monkDB = monk(url, { directConnection: true });
+export const monkDB = monk(url);
 
 /* istanbul ignore next */
 monkDB

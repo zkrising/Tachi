@@ -4,6 +4,7 @@ import CreateLogCtx from "../../../logger/logger";
 import ResetDBState from "../../../../test-utils/reset-db-state";
 import { CalculateClassDeltas, UpdateUGSClasses } from "./classes";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
+import { GitadoraColours } from "../../../constants/classes";
 
 const logger = CreateLogCtx(__filename);
 
@@ -36,7 +37,7 @@ t.test("#UpdateUGSClasses", (t) => {
             logger
         );
 
-        t.strictSame(res, { skillColour: "rainbow" });
+        t.strictSame(res, { colour: GitadoraColours.RAINBOW });
 
         t.end();
     });

@@ -34,18 +34,18 @@ const logger = CreateLogCtx(__filename);
 /* istanbul ignore next */
 const base = MONGO_BASE_URL ?? "127.0.0.1";
 
-let url = `${base}:27017/ktblackdb`;
+let dbName = "ktblackdb";
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV === "test") {
     if (process.env.KTBSV_PARALLEL_TESTS) {
-        url = `${base}:27017/test-ephemeral-${process.pid}`;
+        dbName = `test-ephemeral-${process.pid}`;
     } else {
-        url = `${base}:27017/testingdb`;
+        dbName = `testingdb`;
     }
 }
 
-logger.info(`Connecting to ${url}`);
+const url = `mongodb://${base}:27017/${dbName}`;
 
 let dbtime: [number, number] = [0, 0];
 /* istanbul ignore next */
@@ -54,7 +54,7 @@ if (process.env.NODE_ENV !== "test") {
     dbtime = process.hrtime();
 }
 
-export const monkDB = monk(url);
+export const monkDB = monk(url, { directConnection: true });
 
 /* istanbul ignore next */
 monkDB

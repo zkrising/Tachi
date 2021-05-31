@@ -75,7 +75,7 @@ export interface ImportTypeContextMap {
 export interface OrphanScoreDocument<T extends ImportTypes = ImportTypes> extends MongoDBDocument {
     importType: T;
     data: ImportTypeDataMap[T];
-    converterContext: ImportTypeContextMap[T];
+    context: ImportTypeContextMap[T];
     errMsg: string | null;
     orphanID: string;
     userID: integer;

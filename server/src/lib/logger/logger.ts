@@ -139,9 +139,12 @@ export const rootLogger = winston.createLogger({
 });
 
 function CreateLogCtx(filename: string, lg = rootLogger): KtLogger {
-    return lg.child({
+    const logger = lg.child({
         context: filename.replace(new RegExp(`^${process.cwd()}/`, "u"), ""),
     }) as KtLogger;
+
+    logger.defaultMeta = { context: [filename] };
+    return logger;
 }
 
 export function AppendLogCtx(context: string, lg: KtLogger): KtLogger {

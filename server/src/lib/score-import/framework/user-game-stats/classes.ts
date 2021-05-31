@@ -1,7 +1,11 @@
 import { Game, Playtypes, integer, UserGameStats, ClassDelta, IDStrings } from "kamaitachi-common";
 import deepmerge from "deepmerge";
 import { KtLogger } from "../../../logger/logger";
-import { CalculateGitadoraColour, CalculateJubeatColour } from "./builtin-class-handlers";
+import {
+    CalculateGitadoraColour,
+    CalculateJubeatColour,
+    CalculateSDVXClass,
+} from "./builtin-class-handlers";
 import { ReturnClassIfGreater } from "../../../../utils/class";
 import { GameClasses } from "kamaitachi-common/js/game-classes";
 import { RedisPub } from "../../../../external/redis/redis-IPC";
@@ -50,7 +54,9 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
     maimai: null,
     museca: null,
     popn: null,
-    sdvx: null,
+    sdvx: {
+        Single: CalculateSDVXClass,
+    },
     usc: null,
 };
 
@@ -92,7 +98,8 @@ export async function UpdateUGSClasses(
             game,
             playtype,
             userID,
-            customRatings
+            customRatings,
+            logger
         );
     }
 

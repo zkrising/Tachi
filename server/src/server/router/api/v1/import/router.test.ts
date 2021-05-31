@@ -324,9 +324,3 @@ t.test("POST /api/v1/import/file", async (t) => {
 });
 
 t.teardown(CloseAllConnections);
-
-import winr from "why-is-node-running";
-
-setTimeout(() => {
-    winr();
-}, 80_000);

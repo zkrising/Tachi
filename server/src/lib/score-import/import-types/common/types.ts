@@ -88,7 +88,7 @@ export interface ConverterFnSuccessReturn {
     song: AnySongDocument;
 }
 
-export type ConverterFunctionReturns = ConverterFailure | ConverterFnSuccessReturn | null;
+export type ConverterFnReturnOrFailure = ConverterFailure | ConverterFnSuccessReturn;
 
 export interface ConverterFunction<D, C> {
     (
@@ -96,7 +96,7 @@ export interface ConverterFunction<D, C> {
         processContext: C,
         importType: ImportTypes,
         logger: KtLogger
-    ): Promise<ConverterFunctionReturns>;
+    ): Promise<ConverterFnSuccessReturn>;
 }
 
 export interface ImportInputParser<D, C> {

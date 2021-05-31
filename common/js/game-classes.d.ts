@@ -1,18 +1,19 @@
 import { IDStrings, integer } from "./types";
 export interface ClassInfo {
     display: string;
-    mouseover: string;
+    mouseover: string | null;
 }
 export declare const IIDXDans: ClassInfo[];
 export declare const GitadoraColours: ClassInfo[];
 export declare const BMSGenocideDans: ClassInfo[];
 export declare const BMSStSlDans: ClassInfo[];
 export declare const SDVXDans: ClassInfo[];
+export declare const SDVXVFClasses: ClassInfo[];
 export interface GameClassSets {
     "iidx:SP": "dan";
     "iidx:DP": "dan";
     "popn:9B": never;
-    "sdvx:Single": "dan" | "badge";
+    "sdvx:Single": "dan" | "vfClass";
     "usc:Single": never;
     "ddr:SP": "dan";
     "ddr:DP": "dan";

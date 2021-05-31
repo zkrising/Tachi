@@ -2,9 +2,12 @@
 // Classes refer to things like dans.
 // Not the JS construct.
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SDVXDans = exports.BMSStSlDans = exports.BMSGenocideDans = exports.GitadoraColours = exports.IIDXDans = void 0;
+exports.SDVXVFClasses = exports.SDVXDans = exports.BMSStSlDans = exports.BMSGenocideDans = exports.GitadoraColours = exports.IIDXDans = void 0;
 function c(d, m) {
     return { display: d, mouseover: m };
+}
+function n(d) {
+    return { display: d, mouseover: null };
 }
 exports.IIDXDans = [
     c("七級", "7th Kyu"),
@@ -110,5 +113,47 @@ exports.SDVXDans = [
     c("LV.10", "10th Dan"),
     c("LV.11", "11th Dan"),
     c("LV.INF", "Inf. Dan"),
+];
+exports.SDVXVFClasses = [
+    n("Sienna I"),
+    n("Sienna II"),
+    n("Sienna III"),
+    n("Sienna IV"),
+    n("Cobalt I"),
+    n("Cobalt II"),
+    n("Cobalt III"),
+    n("Cobalt IV"),
+    n("Dandelion I"),
+    n("Dandelion II"),
+    n("Dandelion III"),
+    n("Dandelion IV"),
+    n("Cyan I"),
+    n("Cyan II"),
+    n("Cyan III"),
+    n("Cyan IV"),
+    n("Scarlet I"),
+    n("Scarlet II"),
+    n("Scarlet III"),
+    n("Scarlet IV"),
+    n("Coral I"),
+    n("Coral II"),
+    n("Coral III"),
+    n("Coral IV"),
+    n("Argento I"),
+    n("Argento II"),
+    n("Argento III"),
+    n("Argento IV"),
+    n("Eldora I"),
+    n("Eldora II"),
+    n("Eldora III"),
+    n("Eldora IV"),
+    n("Crimson I"),
+    n("Crimson II"),
+    n("Crimson III"),
+    n("Crimson IV"),
+    n("Imperial I"),
+    n("Imperial II"),
+    n("Imperial III"),
+    n("Imperial IV"),
 ];
 //# sourceMappingURL=game-classes.js.map

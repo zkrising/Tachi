@@ -5,11 +5,15 @@ import { IDStrings, integer } from "./types";
 
 export interface ClassInfo {
     display: string;
-    mouseover: string;
+    mouseover: string | null;
 }
 
 function c(d: string, m: string) {
     return { display: d, mouseover: m };
+}
+
+function n(d: string) {
+    return { display: d, mouseover: null };
 }
 
 export const IIDXDans: ClassInfo[] = [
@@ -122,11 +126,54 @@ export const SDVXDans: ClassInfo[] = [
     c("LV.INF", "Inf. Dan"),
 ];
 
+export const SDVXVFClasses: ClassInfo[] = [
+    n("Sienna I"),
+    n("Sienna II"),
+    n("Sienna III"),
+    n("Sienna IV"),
+    n("Cobalt I"),
+    n("Cobalt II"),
+    n("Cobalt III"),
+    n("Cobalt IV"),
+    n("Dandelion I"),
+    n("Dandelion II"),
+    n("Dandelion III"),
+    n("Dandelion IV"),
+    n("Cyan I"),
+    n("Cyan II"),
+    n("Cyan III"),
+    n("Cyan IV"),
+    n("Scarlet I"),
+    n("Scarlet II"),
+    n("Scarlet III"),
+    n("Scarlet IV"),
+    n("Coral I"),
+    n("Coral II"),
+    n("Coral III"),
+    n("Coral IV"),
+    n("Argento I"),
+    n("Argento II"),
+    n("Argento III"),
+    n("Argento IV"),
+    n("Eldora I"),
+    n("Eldora II"),
+    n("Eldora III"),
+    n("Eldora IV"),
+    n("Crimson I"),
+    n("Crimson II"),
+    n("Crimson III"),
+    n("Crimson IV"),
+    n("Imperial I"),
+    n("Imperial II"),
+    n("Imperial III"),
+    n("Imperial IV"),
+];
+
 export interface GameClassSets {
     "iidx:SP": "dan";
     "iidx:DP": "dan";
     "popn:9B": never;
-    "sdvx:Single": "dan" | "badge";
+    "sdvx:Single": "dan" | "vfClass";
     "usc:Single": never;
     "ddr:SP": "dan";
     "ddr:DP": "dan";

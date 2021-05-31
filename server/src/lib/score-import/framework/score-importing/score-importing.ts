@@ -115,7 +115,7 @@ export async function ImportIterableDatapoint<D, C>(
                 hideFromConsole: ["cfnReturn"],
             });
 
-            OrphanScore(
+            const insertOrphan = await OrphanScore(
                 cfnReturn.importType,
                 userID,
                 cfnReturn.data,
@@ -124,13 +124,25 @@ export async function ImportIterableDatapoint<D, C>(
                 logger
             );
 
+            if (insertOrphan.success) {
+                return {
+                    success: false,
+                    type: "KTDataNotFound",
+                    message: cfnReturn.message,
+                    content: {
+                        context: cfnReturn.converterContext,
+                        data: cfnReturn.data,
+                        orphanID: insertOrphan.orphanID,
+                    },
+                };
+            }
+
             return {
                 success: false,
-                type: "KTDataNotFound",
+                type: "OrphanExists",
                 message: cfnReturn.message,
                 content: {
-                    context: cfnReturn.converterContext,
-                    data: cfnReturn.data,
+                    orphanID: insertOrphan.orphanID,
                 },
             };
         } else if (cfnReturn instanceof InvalidScoreFailure) {

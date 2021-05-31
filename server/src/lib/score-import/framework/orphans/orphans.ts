@@ -21,7 +21,7 @@ import { ProcessSuccessfulConverterReturn } from "../score-importing/score-impor
  * Creates an OrphanedScore document from the data and context,
  * and inserts it into the DB if it is not already in there.
  *
- * @returns True if the score was inserted, False if it wasn't.
+ * @returns Returns { success: true | false, orphanID }
  */
 export async function OrphanScore<T extends ImportTypes = ImportTypes>(
     importType: T,
@@ -47,7 +47,7 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
 
     if (exists) {
         logger.debug(`Skipped orphaning score ${orphanID} because it already exists.`);
-        return false;
+        return { success: false, orphanID };
     }
 
     const orphanScoreDoc: OrphanScoreDocument = {
@@ -59,7 +59,7 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
 
     await db["orphan-scores"].insert(orphanScoreDoc);
 
-    return true;
+    return { success: true, orphanID };
 }
 
 /**

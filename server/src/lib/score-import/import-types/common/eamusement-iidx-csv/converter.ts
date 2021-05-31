@@ -32,6 +32,19 @@ const ConvertEamIIDXCSV: ConverterFunction<
     IIDXEamusementCSVData,
     IIDXEamusementCSVContext
 > = async (data, context, importType, logger) => {
+    const eamScore = data.score;
+
+    if (eamScore.exscore === "0") {
+        // skip scores with an exscore of 0
+        // This also skips things like score resets.
+        throw new SkipScoreFailure("Score has an exscore of 0.");
+    }
+
+    if (!eamScore.level || eamScore.level === "0") {
+        // charts that dont exist in the format have a level of 0
+        throw new SkipScoreFailure("Chart has a level of 0.");
+    }
+
     let isLegacyLeggendaria = false;
 
     // if pre-HV, leggendarias were stored in a wacky form.
@@ -43,6 +56,9 @@ const ConvertEamIIDXCSV: ConverterFunction<
         }
     }
 
+    // @optimisable - This is actually a multi-fetch. Since eam-csv scores
+    // are batched up into (song, chart1, chart2, chart3 ...) rows
+    // we actually already have fetched this song a second ago.
     const ktchiSong = await FindSongOnTitle("iidx", data.title);
 
     if (!ktchiSong) {
@@ -54,23 +70,10 @@ const ConvertEamIIDXCSV: ConverterFunction<
         );
     }
 
-    const eamScore = data.score;
-
     const HUMANISED_CHART_TITLE = `${ktchiSong.title} (${context.playtype} ${eamScore.difficulty} [v${context.importVersion}])`;
-
-    if (!eamScore.level || eamScore.level === "0") {
-        // charts that dont exist in the format have a level of 0
-        throw new SkipScoreFailure("Chart has a level of 0.");
-    }
 
     if (isLegacyLeggendaria) {
         eamScore.difficulty = "LEGGENDARIA";
-    }
-
-    if (eamScore.exscore === "0") {
-        // skip scores with an exscore of 0
-        // This also skips things like score resets.
-        throw new SkipScoreFailure("Score has an exscore of 0.");
     }
 
     const ktchiChart = (await FindChartWithPTDFVersion(

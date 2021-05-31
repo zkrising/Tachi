@@ -5,6 +5,7 @@ import {
     ScoreDocument,
     AnySongDocument,
     ImportTypes,
+    IDStrings,
 } from "kamaitachi-common";
 import { HydrateScore } from "./hydrate-score";
 import { InsertQueue, QueueScoreInsert, ScoreIDs } from "./insert-score";
@@ -19,11 +20,7 @@ import { CreateScoreID } from "./score-id";
 import db from "../../../../external/mongo/db";
 import { AppendLogCtx, KtLogger } from "../../../logger/logger";
 
-import {
-    ConverterFunctionReturns,
-    ConverterFnReturn,
-    ConverterFunction,
-} from "../../import-types/common/types";
+import { ConverterFunctionReturns, ConverterFunction } from "../../import-types/common/types";
 import { DryScore } from "../common/types";
 import { OrphanScore } from "../orphans/orphans";
 
@@ -56,38 +53,19 @@ export async function ImportAllIterableData<D, C>(
         );
     }
 
-    // Due to the fact that ProcessIterableDatapoint may return an array instead of a single result
-    // (e-amusement is the only real example of this);
-    // we need to flatten out the datapoints into a single array. We also use this time
-    // to filter out nulls, which we don't care for (these are neither successes or failures)
-    const nonFlatDatapoints = await Promise.all(promises);
+    // We need to filter out nulls, which we don't care for (these are neither successes or failures)
+    const processedResults = await Promise.all(promises);
 
     logger.verbose(`Finished Importing Data (${promises.length} datapoints).`);
-    logger.debug(`Flattening returns...`);
+    logger.debug(`Removing null returns...`);
 
-    const flatDatapoints = [];
+    const datapoints = processedResults.filter(
+        (e) => e !== null
+    ) as ImportProcessingInfo<IDStrings>[];
 
-    for (const dp of nonFlatDatapoints) {
-        if (dp === null) {
-            continue;
-        }
+    logger.debug(`Removed null from results.`);
 
-        if (Array.isArray(dp)) {
-            for (const dpx of dp) {
-                if (dpx === null) {
-                    continue;
-                }
-
-                flatDatapoints.push(dpx);
-            }
-        } else {
-            flatDatapoints.push(dp);
-        }
-    }
-
-    logger.debug(`Flattened returns.`);
-
-    logger.verbose(`Recieved ${flatDatapoints.length} returns, from ${promises.length} data.`);
+    logger.verbose(`Recieved ${datapoints.length} returns, from ${promises.length} data.`);
 
     // Flush the score queue out after finishing most of the import. This ensures no scores get left in the
     // queue.
@@ -97,7 +75,7 @@ export async function ImportAllIterableData<D, C>(
         logger.verbose(`Emptied ${emptied} documents from score queue.`);
     }
 
-    return flatDatapoints;
+    return datapoints;
 }
 
 /**
@@ -115,29 +93,16 @@ export async function ImportIterableDatapoint<D, C>(
     ConverterFunction: ConverterFunction<D, C>,
     context: C,
     logger: KtLogger
-) {
-    let converterReturns: ConverterFunctionReturns;
+): Promise<ImportProcessingInfo | null> {
+    // Converter Function Return
+    let cfnReturn: ConverterFunctionReturns;
 
     try {
-        converterReturns = await ConverterFunction(data, context, importType, logger);
+        cfnReturn = await ConverterFunction(data, context, importType, logger);
     } catch (err) {
-        converterReturns = err;
+        cfnReturn = err;
     }
 
-    if (Array.isArray(converterReturns)) {
-        return Promise.all(
-            converterReturns.map((e) => ImportFromConverterReturn(userID, e, logger))
-        );
-    }
-
-    return ImportFromConverterReturn(userID, converterReturns, logger);
-}
-
-async function ImportFromConverterReturn(
-    userID: integer,
-    cfnReturn: ConverterFnReturn, // a single return, not an array!
-    logger: KtLogger
-): Promise<ImportProcessingInfo | null> {
     // null => processing didnt result in a score document, but not an error, no processing needed!
     if (cfnReturn === null) {
         return null;

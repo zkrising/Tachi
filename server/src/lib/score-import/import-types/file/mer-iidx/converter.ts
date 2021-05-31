@@ -70,7 +70,8 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
             },
         },
         scoreMeta: {},
-        timeAchieved,
+        // japan is GMT+9
+        timeAchieved: timeAchieved ? timeAchieved - NINE_HOURS : null,
     };
 
     return {
@@ -79,3 +80,5 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
         dryScore,
     };
 };
+
+const NINE_HOURS = 1000 * 60 * 60 * 9;

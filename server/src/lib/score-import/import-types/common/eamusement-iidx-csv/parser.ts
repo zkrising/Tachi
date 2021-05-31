@@ -199,11 +199,13 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
             });
         }
 
-        iterableData.push({
-            scores,
-            timestamp,
-            title,
-        });
+        iterableData.push(
+            ...scores.map((e) => ({
+                score: e,
+                timestamp,
+                title,
+            }))
+        );
     }
 
     return { iterableData, version: gameVersion.toString(), hasBeginnerAndLegg };

@@ -1,3 +1,5 @@
+import { SongDocument } from "kamaitachi-common";
+
 export interface EamusementScoreData {
     difficulty: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
     lamp: string;
@@ -14,7 +16,7 @@ type BaseProps = {
 };
 
 export type IIDXEamusementCSVData = {
-    scores: EamusementScoreData[];
+    score: EamusementScoreData;
 } & BaseProps;
 
 type Props = "exscore" | "lamp" | "pgreat" | "great" | "bp" | "level";

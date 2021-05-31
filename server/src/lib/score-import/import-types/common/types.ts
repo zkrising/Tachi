@@ -8,7 +8,14 @@ import { FervidexContext, FervidexScore } from "../ir/fervidex/types";
 import { KaiContext } from "./api-kai/types";
 import { BatchManualContext, BatchManualScore } from "./batch-manual/types";
 import { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./eamusement-iidx-csv/types";
-import { ImportTypes, Game, AnyChartDocument, AnySongDocument, integer } from "kamaitachi-common";
+import {
+    ImportTypes,
+    Game,
+    AnyChartDocument,
+    AnySongDocument,
+    integer,
+    MongoDBDocument,
+} from "kamaitachi-common";
 import { ConverterFailure } from "../../framework/common/converter-failures";
 import { ClassHandler } from "../../framework/user-game-stats/classes";
 import { DryScore } from "../../framework/common/types";
@@ -65,7 +72,7 @@ export interface ImportTypeContextMap {
     "api/eag-sdvx": KaiContext;
 }
 
-export interface OrphanScoreDocument<T extends ImportTypes = ImportTypes> {
+export interface OrphanScoreDocument<T extends ImportTypes = ImportTypes> extends MongoDBDocument {
     importType: T;
     data: ImportTypeDataMap[T];
     converterContext: ImportTypeContextMap[T];
@@ -81,9 +88,7 @@ export interface ConverterFnSuccessReturn {
     song: AnySongDocument;
 }
 
-export type ConverterFnReturn = ConverterFailure | ConverterFnSuccessReturn | null;
-
-export type ConverterFunctionReturns = ConverterFnReturn | ConverterFnReturn[];
+export type ConverterFunctionReturns = ConverterFailure | ConverterFnSuccessReturn | null;
 
 export interface ConverterFunction<D, C> {
     (

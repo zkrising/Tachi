@@ -18,8 +18,6 @@ program.option(
 program.parse(process.argv);
 const options = program.opts();
 
-const db = monk(`${process.env.MONGO_BASE_URL ?? "127.0.0.1"}/${options.db ?? "ktblackdb"}`);
-
 interface Index {
     fields: Record<string, unknown>;
     options?: IndexOptions;
@@ -115,7 +113,9 @@ for (const game of supportedGames) {
     }
 }
 
-(async () => {
+export async function SetIndexes(dbst: string) {
+    const db = monk(`${process.env.MONGO_BASE_URL ?? "127.0.0.1"}/${dbst}`);
+
     logger.info(`Starting indexing for ${options.db ?? "ktblackdb"}...`);
 
     for (const collection in indexes) {
@@ -133,6 +133,12 @@ for (const game of supportedGames) {
         }
     }
 
+    db.close();
+
     logger.info("Done.");
-    process.exit(0);
-})();
+}
+
+// if calling this as a script
+if (require.main === module) {
+    SetIndexes(options.db ?? "ktblackdb").then(process.exit(0));
+}

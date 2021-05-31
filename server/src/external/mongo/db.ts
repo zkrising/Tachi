@@ -14,7 +14,6 @@ import {
     FolderChartLookup,
     ImportTimingsDocument,
     PrivateUserDocument,
-    PublicAPIKeyDocument,
     ScoreDocument,
     KaiAuthDocument,
     SessionDocument,
@@ -35,8 +34,18 @@ const logger = CreateLogCtx(__filename);
 /* istanbul ignore next */
 const base = MONGO_BASE_URL ?? "127.0.0.1";
 
+let url = `${base}:27017/ktblackdb`;
+
 /* istanbul ignore next */
-const url = process.env.NODE_ENV === "test" ? `${base}:27017/testingdb` : `${base}:27017/ktblackdb`;
+if (process.env.NODE_ENV === "test") {
+    if (process.env.KTBSV_PARALLEL_TESTS) {
+        url = `${base}:27017/test-ephemeral-${process.pid}`;
+    } else {
+        url = `${base}:27017/testingdb`;
+    }
+}
+
+logger.info(`Connecting to ${url}`);
 
 let dbtime: [number, number] = [0, 0];
 /* istanbul ignore next */
@@ -47,9 +56,9 @@ if (process.env.NODE_ENV !== "test") {
 
 export const monkDB = monk(url);
 
+/* istanbul ignore next */
 monkDB
     .then(() => {
-        /* istanbul ignore next */
         if (process.env.NODE_ENV !== "test") {
             const time = process.hrtime(dbtime);
             const elapsed = time[0] + time[1] / 1e6;

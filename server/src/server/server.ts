@@ -3,10 +3,22 @@ import "express-async-errors";
 import CreateLogCtx from "../lib/logger/logger";
 import expressSession from "express-session";
 import { integer } from "kamaitachi-common";
-import { RedisClient, RedisStore } from "../external/redis/redis-store";
+import { RedisClient } from "../external/redis/redis";
 import { SESSION_SECRET } from "../lib/env/env";
+import connectRedis from "connect-redis";
 
 const logger = CreateLogCtx(__filename);
+
+let store;
+
+if (process.env.NODE_ENV !== "test") {
+    const RedisStore = connectRedis(expressSession);
+    store = new RedisStore({
+        host: "localhost",
+        port: 6379,
+        client: RedisClient,
+    });
+}
 
 const userSessionMiddleware = expressSession({
     // append node_env onto the end of the session name
@@ -14,11 +26,7 @@ const userSessionMiddleware = expressSession({
     // say for staging.kamaitachi.xyz
     name: `ktblack_session_${process.env.NODE_ENV}`,
     secret: SESSION_SECRET,
-    store: new RedisStore({
-        host: "localhost",
-        port: 6379,
-        client: RedisClient,
-    }),
+    store,
     resave: true,
     saveUninitialized: false,
     cookie: {

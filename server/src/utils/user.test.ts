@@ -4,8 +4,11 @@ import { prAssert } from "../test-utils/asserts";
 import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive, FormatUserDoc } from "./user";
 import { PublicUserDocument } from "kamaitachi-common";
 import { CloseAllConnections } from "../test-utils/close-connections";
+import ResetDBState from "../test-utils/reset-db-state";
 
 t.test("#GetUserCaseInsensitive", (t) => {
+    t.beforeEach(ResetDBState);
+
     t.test("Should return the user for an exact username", async (t) => {
         const result = await GetUserCaseInsensitive("test_zkldi");
 
@@ -46,6 +49,8 @@ t.test("#GetUserCaseInsensitive", (t) => {
 });
 
 t.test("#PRIVATEINFO_GetUserCaseInsensitive", (t) => {
+    t.beforeEach(ResetDBState);
+
     t.test("Should return the user for an exact username", async (t) => {
         const result = await PRIVATEINFO_GetUserCaseInsensitive("test_zkldi");
 

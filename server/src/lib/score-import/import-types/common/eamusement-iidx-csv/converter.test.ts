@@ -71,13 +71,22 @@ const data = {
 t.test("#EamScoreConverter", async (t) => {
     t.beforeEach(ResetDBState);
 
-    // this returns 511
-    const song = await db.songs.iidx.findOne();
+    const song = {
+        title: "5.1.1.",
+        artist: "dj nagureo",
+        id: 1,
+        firstVersion: "0",
+        "alt-titles": [],
+        "search-titles": [],
+        data: {
+            genre: "PIANO AMBIENT",
+        },
+    };
 
     function EamScoreConverterAuto(score: Partial<EamusementScoreData> = {}) {
         return EamScoreConverter(
             deepmerge(valid511Score, score) as EamusementScoreData,
-            song!,
+            song,
             converterContext,
             data,
             false,
@@ -323,13 +332,23 @@ t.test("#EamScoreConverter", async (t) => {
 t.test("#EamScoreConverterWrapper", async (t) => {
     t.beforeEach(ResetDBState);
 
-    const song = await db.songs.iidx.findOne();
+    const song = {
+        title: "5.1.1.",
+        artist: "dj nagureo",
+        id: 1,
+        firstVersion: "0",
+        "alt-titles": [],
+        "search-titles": [],
+        data: {
+            genre: "PIANO AMBIENT",
+        },
+    };
 
     // wrapper wrapper, lol
     function EamScoreConverterWrapperAuto(score: Partial<EamusementScoreData> = {}) {
         return EamScoreConverterWrapper(
             deepmerge(valid511Score, score) as EamusementScoreData,
-            song!,
+            song,
             converterContext,
             data,
             false,

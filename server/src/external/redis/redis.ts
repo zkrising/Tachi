@@ -1,11 +1,8 @@
-import connectRedis from "connect-redis";
-import expressSession from "express-session";
 import CreateLogCtx from "../../lib/logger/logger";
 import redis from "redis";
 
 const logger = CreateLogCtx(__filename);
 
-export const RedisStore = connectRedis(expressSession);
 logger.verbose("Instantiated Redis Store");
 
 export const RedisClient = redis.createClient();

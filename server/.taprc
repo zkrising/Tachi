@@ -1,7 +1,7 @@
 files: "src/**/*.test.ts"
 test-env: NODE_ENV=test
 jobs: 1 # disable parallel to avoid db clashes
-timeout: 60 # might need to be increased
+timeout: 120 # might need to be increased
 ts: true
 before: "./src/test-utils/setup.ts"
 check-coverage: true

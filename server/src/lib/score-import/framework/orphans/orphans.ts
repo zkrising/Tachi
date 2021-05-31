@@ -107,7 +107,7 @@ export async function ReprocessOrphan(orphan: OrphanScoreDocument, logger: KtLog
             `Recieved ConverterFailure ${res.message} on orphan ${orphan.orphanID}. Removing orphan.`
         );
 
-        // @timebomb - This could go terribly, if there's a mistake in the converterFN we might accidentally
+        // @danger - This could go terribly, if there's a mistake in the converterFN we might accidentally
         // remove a users score.
         await db["orphan-scores"].remove({ orphanID: orphan.orphanID });
 

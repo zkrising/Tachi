@@ -20,7 +20,11 @@ import { CreateScoreID } from "./score-id";
 import db from "../../../../external/mongo/db";
 import { AppendLogCtx, KtLogger } from "../../../logger/logger";
 
-import { ConverterFunctionReturns, ConverterFunction } from "../../import-types/common/types";
+import {
+    ConverterFnReturnOrFailure,
+    ConverterFunction,
+    ConverterFnSuccessReturn,
+} from "../../import-types/common/types";
 import { DryScore } from "../common/types";
 import { OrphanScore } from "../orphans/orphans";
 
@@ -95,17 +99,12 @@ export async function ImportIterableDatapoint<D, C>(
     logger: KtLogger
 ): Promise<ImportProcessingInfo | null> {
     // Converter Function Return
-    let cfnReturn: ConverterFunctionReturns;
+    let cfnReturn: ConverterFnReturnOrFailure;
 
     try {
         cfnReturn = await ConverterFunction(data, context, importType, logger);
     } catch (err) {
         cfnReturn = err;
-    }
-
-    // null => processing didnt result in a score document, but not an error, no processing needed!
-    if (cfnReturn === null) {
-        return null;
     }
 
     // if this conversion failed, return it in the proper format
@@ -181,6 +180,14 @@ export async function ImportIterableDatapoint<D, C>(
         };
     }
 
+    return ProcessSuccessfulConverterReturn(userID, cfnReturn as ConverterFnSuccessReturn, logger);
+}
+
+export async function ProcessSuccessfulConverterReturn(
+    userID: integer,
+    cfnReturn: ConverterFnSuccessReturn,
+    logger: KtLogger
+): Promise<ImportProcessingInfo | null> {
     const result = await HydrateAndInsertScore(
         userID,
         cfnReturn.dryScore,

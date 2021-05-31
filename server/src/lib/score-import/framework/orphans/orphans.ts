@@ -63,11 +63,13 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
 }
 
 /**
- * Attempts to de-orphan scores by re-running a import with their data.
- * @param userID - The userID to attempt to de-orphan scores from.
+ * Takes an orphan document and re-runs the converter->scoreimport pipeline on its data.
+ *
+ * @returns False if no parent documents could be found for the score again,
+ * Null if the orphan document was removed, but no score was inserted (i.e. score was orphaned AND invalid, so nothing
+ * could be imported when parents were found).
+ * ImportProcessingInfo on success.
  */
-export async function ReprocessOrphans(userID: integer) {}
-
 export async function ReprocessOrphan(orphan: OrphanScoreDocument, logger: KtLogger) {
     const ConverterFunction = Converters[orphan.importType] as ConverterFunction<
         ImportTypeDataMap[ImportTypes],
@@ -111,8 +113,10 @@ export async function ReprocessOrphan(orphan: OrphanScoreDocument, logger: KtLog
         // remove a users score.
         await db["orphan-scores"].remove({ orphanID: orphan.orphanID });
 
-        return false;
+        return null;
     }
+
+    await db["orphan-scores"].remove({ orphanID: orphan.orphanID });
 
     // else, import the orphan.
     return ProcessSuccessfulConverterReturn(orphan.userID, res, logger);

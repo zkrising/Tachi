@@ -18,7 +18,7 @@ t.test("#ParseEamusementCSV", (t) => {
             logger
         );
 
-        t.equal(iterableData.length, 152, "Should return exactly 152 datapoints.");
+        t.equal(iterableData.length, 456, "Should return exactly 456 datapoints.");
         t.equal(hasBeginnerAndLegg, false, "Should not mark as a HV csv.");
         t.equal(version, "26", "Should correctly assert that the version of this CSV is ROOTAGE.");
 
@@ -31,7 +31,7 @@ t.test("#ParseEamusementCSV", (t) => {
             logger
         );
 
-        t.equal(iterableData.length, 1257, "Should return exactly 1257 datapoints.");
+        t.equal(iterableData.length, 6285, "Should return exactly 6285 datapoints.");
         t.equal(hasBeginnerAndLegg, true, "Should mark as a HV csv.");
         t.equal(
             version,

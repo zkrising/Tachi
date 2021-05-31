@@ -49,7 +49,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
                         },
                     },
                     scoreMeta: {},
-                    timeAchieved: 1616570122000,
+                    timeAchieved: 1616537722000,
                 },
             } as any,
             "Should return the converted dry score."
@@ -83,7 +83,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
                         },
                     },
                     scoreMeta: {},
-                    timeAchieved: 1616570122000,
+                    timeAchieved: 1616537722000,
                 },
             } as any,
             "Should return the converted dry score."

@@ -1,54 +1,97 @@
-import { Game, Playtypes, integer } from "kamaitachi-common";
+import { Game, Playtypes, integer, GameSpecificCalcLookup } from "kamaitachi-common";
+import { GameClasses } from "kamaitachi-common/js/game-classes";
+import { GitadoraColours, SDVXVFClasses } from "../../../constants/classes";
+import { KtLogger } from "../../../logger/logger";
+
+export function CalculateSDVXClass(
+    game: Game,
+    playtype: Playtypes[Game],
+    userID: integer,
+    customRatings: Partial<Record<GameSpecificCalcLookup["sdvx:Single"], number>>,
+    logger: KtLogger
+): Partial<GameClasses<"sdvx:Single">> {
+    if (!customRatings.VF5) {
+        return {};
+    }
+
+    return { vfClass: SDVXVF5ToClass(customRatings.VF5, logger) };
+}
+
+/**
+ * Converts a user's profile VF5 to a class. There are almost 40 classes, and writing
+ * if statements for all of them is a painful endeavour. This function returns an index
+ * derived from the gaps between classes, to avoid writing out all those statements.
+ * @see https://bemaniwiki.com/index.php?SOUND%20VOLTEX%20VIVID%20WAVE/VOLFORCE
+ */
+export function SDVXVF5ToClass(vf: number, logger: KtLogger) {
+    // This is impossible, but a failsafe regardless
+    if (vf >= 24) {
+        logger.warn(`User has excessive VF5 of ${vf}. Defaulting to Imperial IV.`);
+        return SDVXVFClasses.IMPERIAL_IV;
+    } else if (vf >= 20) {
+        // imperial i -> iv has gaps of 1
+        return SDVXVFClasses.IMPERIAL_I + Math.floor(vf - 20);
+    } else if (vf >= 14) {
+        // cyan i -> crimson iv has gaps of 0.25
+        return SDVXVFClasses.CYAN_I + Math.floor(4 * (vf - 14));
+    } else if (vf >= 10) {
+        // cobalt i -> dandelion iv have gaps of 0.5
+        return SDVXVFClasses.COBALT_I + Math.floor(2 * (vf - 10));
+    }
+
+    return Math.floor(vf / 2.5);
+}
 
 export function CalculateGitadoraColour(
     game: Game,
     playtype: Playtypes[Game],
     userID: integer,
-    customRatings: Record<string, number>
-): Record<string, string> {
-    const skillColour = GitadoraSkillToColour(customRatings.skill);
+    customRatings: Record<string, number>,
+    logger: KtLogger
+): Partial<GameClasses<"gitadora:Dora" | "gitadora:Gita">> {
+    const colour = GitadoraSkillToColour(customRatings.skill);
 
     return {
-        skillColour,
+        colour,
     };
 }
 
 export function GitadoraSkillToColour(sk: number) {
     if (sk >= 8500) {
-        return "rainbow";
+        return GitadoraColours.RAINBOW;
     } else if (sk >= 8000) {
-        return "gold";
+        return GitadoraColours.GOLD;
     } else if (sk >= 7500) {
-        return "silver";
+        return GitadoraColours.SILVER;
     } else if (sk >= 7000) {
-        return "bronze";
+        return GitadoraColours.BRONZE;
     } else if (sk >= 6500) {
-        return "redgradient";
+        return GitadoraColours.RED_GRADIENT;
     } else if (sk >= 6000) {
-        return "red";
+        return GitadoraColours.RED;
     } else if (sk >= 5500) {
-        return "purplegradient";
+        return GitadoraColours.PURPLE_GRADIENT;
     } else if (sk >= 5000) {
-        return "purple";
+        return GitadoraColours.PURPLE;
     } else if (sk >= 4500) {
-        return "bluegradient";
+        return GitadoraColours.BLUE_GRADIENT;
     } else if (sk >= 4000) {
-        return "blue";
+        return GitadoraColours.BLUE;
     } else if (sk >= 3500) {
-        return "greengradient";
+        return GitadoraColours.GREEN_GRADIENT;
     } else if (sk >= 3000) {
-        return "green";
+        return GitadoraColours.GREEN;
     } else if (sk >= 2500) {
-        return "yellowgradient";
+        return GitadoraColours.YELLOW_GRADIENT;
     } else if (sk >= 2000) {
-        return "yellow";
+        return GitadoraColours.YELLOW;
     } else if (sk >= 1500) {
-        return "orangegradient";
+        return GitadoraColours.ORANGE_GRADIENT;
     } else if (sk >= 1000) {
-        return "orange";
+        return GitadoraColours.ORANGE;
     }
 
-    return "white";
+    return GitadoraColours.WHITE;
 }
 
 export function CalculateJubeatColour(
@@ -56,7 +99,7 @@ export function CalculateJubeatColour(
     playtype: Playtypes[Game],
     userID: integer,
     customRatings: Record<string, number>
-): Promise<Record<string, string>> {
+): GameClasses<"jubeat:Single"> {
     throw new Error("Not implemented.");
 }
 

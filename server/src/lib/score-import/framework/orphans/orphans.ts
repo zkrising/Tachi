@@ -1,5 +1,7 @@
 import db from "../../../../external/mongo/db";
 import {
+    ConverterFunction,
+    ConverterFnReturnOrFailure,
     ImportTypeContextMap,
     ImportTypeDataMap,
     OrphanScoreDocument,
@@ -7,6 +9,13 @@ import {
 import { ImportTypes, integer } from "kamaitachi-common";
 import fjsh from "fast-json-stable-hash";
 import { KtLogger } from "../../../logger/logger";
+import { Converters } from "../../import-types/converters";
+import {
+    ConverterFailure,
+    InternalFailure,
+    KTDataNotFoundFailure,
+} from "../common/converter-failures";
+import { ProcessSuccessfulConverterReturn } from "../score-importing/score-importing";
 
 /**
  * Creates an OrphanedScore document from the data and context,
@@ -57,6 +66,54 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
  * Attempts to de-orphan scores by re-running a import with their data.
  * @param userID - The userID to attempt to de-orphan scores from.
  */
-export async function ReprocessOrphans(userID: integer) {
-    
-};
+export async function ReprocessOrphans(userID: integer) {}
+
+export async function ReprocessOrphan(orphan: OrphanScoreDocument, logger: KtLogger) {
+    const ConverterFunction = Converters[orphan.importType] as ConverterFunction<
+        ImportTypeDataMap[ImportTypes],
+        ImportTypeContextMap[ImportTypes]
+    >;
+
+    let res: ConverterFnReturnOrFailure;
+
+    try {
+        res = await ConverterFunction(
+            orphan.data,
+            orphan.converterContext,
+            orphan.importType,
+            logger
+        );
+    } catch (err) {
+        if (!(err instanceof ConverterFailure)) {
+            logger.error(`Converter function ${orphan.importType} returned unexpected error.`, {
+                err,
+            });
+            throw err; // throw this higher up, i guess.
+        }
+
+        res = err;
+    }
+
+    // If the data still can't be found, we do nothing about it.
+    if (res instanceof KTDataNotFoundFailure) {
+        logger.debug(`Unorphaning ${orphan.orphanID} failed. (${res.message})`);
+        return false;
+    } else if (res instanceof InternalFailure) {
+        logger.error(`Orphan Internal Failure - ${res.message}, OrphanID ${orphan.orphanID}`);
+
+        return false;
+    } else if (res instanceof ConverterFailure) {
+        logger.warn(
+            `Recieved ConverterFailure ${res.message} on orphan ${orphan.orphanID}. Removing orphan.`
+        );
+
+        // @timebomb - This could go terribly, if there's a mistake in the converterFN we might accidentally
+        // remove a users score.
+        await db["orphan-scores"].remove({ orphanID: orphan.orphanID });
+
+        return false;
+    }
+
+    // else, import the orphan.
+    return ProcessSuccessfulConverterReturn(orphan.userID, res, logger);
+}

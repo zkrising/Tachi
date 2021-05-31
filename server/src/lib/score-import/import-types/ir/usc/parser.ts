@@ -46,6 +46,5 @@ export function ParseIRUSC(
         game: "usc",
         iterable: [body.score] as USCClientScore[],
         classHandler: null,
-        ConverterFunction: ConverterIRUSC,
     };
 }

@@ -28,6 +28,7 @@ import {
 import monk from "monk";
 import { MONGO_BASE_URL } from "../../lib/env/env";
 import CreateLogCtx from "../../lib/logger/logger";
+import { OrphanScoreDocument } from "../../lib/score-import/import-types/common/types";
 
 const logger = CreateLogCtx(__filename);
 
@@ -131,6 +132,8 @@ const db = {
     "usc-auth-tokens": monkDB.get<GenericAuthDocument>("usc-auth-tokens"),
     "beatoraja-auth-tokens": monkDB.get<GenericAuthDocument>("beatoraja-auth-tokens"),
     "bms-course-lookup": monkDB.get<BMSCourseDocument>("bms-course-lookup"),
+
+    "orphan-scores": monkDB.get<OrphanScoreDocument>("orphan-scores"),
 };
 
 export default db;

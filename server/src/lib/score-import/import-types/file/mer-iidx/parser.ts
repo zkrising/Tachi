@@ -58,6 +58,5 @@ export function ParseMerIIDX(
         context: {},
         iterable: jsonData as MerScore[],
         game: "iidx",
-        ConverterFunction: ConvertFileMerIIDX,
     };
 }

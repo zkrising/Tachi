@@ -22,6 +22,5 @@ export function ParseKaiIIDX(
         },
         classHandler: null,
         game: "iidx",
-        ConverterFunction: ConvertAPIKaiIIDX,
     };
 }

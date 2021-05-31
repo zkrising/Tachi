@@ -15,9 +15,17 @@
                 "${workspaceFolder}/js/**/*.js"
             ],
             "skipFiles": [
-                "<node_internals>/**",
-                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>",
+                "node_modules",
+                "loader.js",
+                "async_hooks.js",
+                "**/async_hooks.js",
+                "**/internal/**/*",
+                "**/domain.js",
+                "**/events.js",
+                "*"
             ],
+            "smartStep": true,
             "outputCapture": "std",
         },
     ]

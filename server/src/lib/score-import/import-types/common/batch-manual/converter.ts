@@ -19,7 +19,7 @@ import {
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { KtLogger } from "../../../../logger/logger";
 import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction, ConverterFnReturn } from "../types";
+import { ConverterFunction } from "../types";
 
 /**
  * Creates a ConverterFn for the BatchManualScore format. This curries
@@ -32,7 +32,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
     context,
     importType,
     logger
-): Promise<ConverterFnReturn> => {
+) => {
     const game = context.game;
 
     const { song, chart } = await ResolveMatchTypeToKTData(data, context, importType, logger);

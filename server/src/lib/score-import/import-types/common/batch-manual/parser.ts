@@ -172,7 +172,6 @@ export function ParseBatchManualFromObject(
             version: batchManual.head.version ?? null,
         },
         iterable: batchManual.body,
-        ConverterFunction: ConverterBatchManual,
         classHandler: null,
     };
 }

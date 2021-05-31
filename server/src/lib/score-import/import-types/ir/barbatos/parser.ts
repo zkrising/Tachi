@@ -40,7 +40,6 @@ export function ParseBarbatosSingle(
         context: {},
         game: "sdvx",
         iterable: ([body] as unknown) as BarbatosScore[],
-        ConverterFunction: ConverterIRBarbatos,
         classHandler: null,
     };
 }

@@ -87,6 +87,5 @@ export function ParseSolidStateXML(
         context: {},
         iterable: parsedXML.s3data.scoredata.song as S3Score[],
         game: "iidx",
-        ConverterFunction: ConvertFileS3, // todo
     };
 }

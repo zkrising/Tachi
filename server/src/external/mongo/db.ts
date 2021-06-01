@@ -32,12 +32,12 @@ import { OrphanScoreDocument } from "../../lib/score-import/import-types/common/
 
 const logger = CreateLogCtx(__filename);
 
-/* istanbul ignore next */
+/* c8 ignore next */
 const base = MONGO_BASE_URL ?? "127.0.0.1";
 
 let dbName = "ktblackdb";
 
-/* istanbul ignore next */
+/* c8 ignore next */
 if (process.env.NODE_ENV === "test") {
     if (process.env.KTBSV_PARALLEL_TESTS) {
         dbName = `test-ephemeral-${process.pid}`;
@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === "test") {
 const url = `mongodb://${base}:27017/${dbName}`;
 
 let dbtime: [number, number] = [0, 0];
-/* istanbul ignore next */
+/* c8 ignore next */
 if (process.env.NODE_ENV !== "test") {
     logger.info(`Connecting to database ${url}...`);
     dbtime = process.hrtime();
@@ -57,7 +57,7 @@ if (process.env.NODE_ENV !== "test") {
 
 export const monkDB = monk(url);
 
-/* istanbul ignore next */
+/* c8 ignore next */
 monkDB
     .then(() => {
         if (process.env.NODE_ENV !== "test") {

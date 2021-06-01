@@ -79,7 +79,7 @@ export async function ReprocessOrphan(orphan: OrphanScoreDocument, logger: KtLog
         res = await ConverterFunction(orphan.data, orphan.context, orphan.importType, logger);
     } catch (err) {
         // this is impossible to test, so we're going to ignore it
-        /* istanbul ignore next */
+        /* c8 ignore next */
         if (!(err instanceof ConverterFailure)) {
             logger.error(`Converter function ${orphan.importType} returned unexpected error.`, {
                 err,

@@ -6,9 +6,9 @@ env:
   KTBSV_LOG_LEVEL: "info"
   KTBSV_CAPTCHA_SECRET_KEY: "unused"
   KTBSV_SESSION_SECRET: "unused"
-  KTBSV_FLO_API_URL: "http://flo.example.com"
-  KTBSV_EAG_API_URL: "http://eag.example.com"
-  KTBSV_ARC_API_URL: "http://arc.example.com"
+  KTBSV_FLO_API_URL: "https://flo.example.com"
+  KTBSV_EAG_API_URL: "https://eag.example.com"
+  KTBSV_ARC_API_URL: "https://arc.example.com"
   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 on:

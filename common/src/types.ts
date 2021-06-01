@@ -838,6 +838,7 @@ interface CDDataIIDXSP {
 interface CDDataDDRSP {
     songHash: string;
     inGameID: string;
+    arcChartID: string | null;
 }
 
 interface CDDataBMS {
@@ -850,12 +851,12 @@ interface ChartDocumentData {
     "iidx:SP": CDDataIIDXSP;
     "iidx:DP": CDDataIIDXSP;
     "popn:9B": Record<string, never>;
-    "sdvx:Single": { inGameID: integer };
+    "sdvx:Single": { inGameID: integer; arcChartID: string | null };
     "usc:Single": { hashSHA256: string };
     "ddr:SP": CDDataDDRSP;
     "ddr:DP": CDDataDDRSP;
     "maimai:Single": { maxPercent: number; inGameID: string };
-    "jubeat:Single": Record<string, never>;
+    "jubeat:Single": { arcChartID: string | null };
     "museca:Single": Record<string, never>;
     "bms:7K": CDDataBMS;
     "bms:14K": CDDataBMS;

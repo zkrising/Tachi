@@ -15,7 +15,13 @@ export function ParseKaiIIDX(
     const baseUrl = service === "FLO" ? FLO_API_URL : EAG_API_URL;
 
     return {
-        iterable: TraverseKaiAPI(baseUrl, "/api/iidx/v2/play_history", authDoc, logger, fetch),
+        iterable: TraverseKaiAPI(
+            baseUrl,
+            "/api/iidx/v2/play_history",
+            authDoc.token,
+            logger,
+            fetch
+        ),
         context: {
             service,
         },

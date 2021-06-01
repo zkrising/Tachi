@@ -211,8 +211,8 @@ export function FindChartOnSHA256(game: Game, hash: string) {
     });
 }
 
-export function FindIIDXChartOnARCID(arcID: string) {
-    return db.charts.iidx.findOne({
+export function FindChartOnARCID(game: "iidx" | "ddr" | "jubeat" | "sdvx", arcID: string) {
+    return db.charts[game].findOne({
         "data.arcChartID": arcID,
     });
 }

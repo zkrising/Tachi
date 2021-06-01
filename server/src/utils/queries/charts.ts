@@ -202,8 +202,9 @@ export function FindSDVXChartOnInGameIDVersion(
 }
 
 export function FindChartOnSHA256(game: Game, hash: string) {
-    // @todo #112 Reject requests to this for things that
-    // dont have sha256 props.
+    if (game !== "bms" && game !== "usc" && game !== "iidx") {
+        throw new Error(`Cannot call FindChartOnSHA256 for game ${game}.`);
+    }
 
     return db.charts[game].findOne({
         "data.hashSHA256": hash,

@@ -42,13 +42,11 @@ jobs:
       - name: Install Dependencies
         run: pnpm i
 
-      # for the time being, disable lint checking.
-      # - name: Lint Code
-      #   run: pnpm lint
+      - name: Install C8
+        run: pnpm install -g c8
 
-      # enable indexing for our testingdb, this results in faster action time.
-      - name: Set Mongo Indexes
-        run: pnpx ts-node scripts/set-indexes.ts
+      - name: Lint Code
+        run: pnpm lint
 
       - name: Run Tests In Parallel
         run: pnpm paralleltest

@@ -151,7 +151,7 @@ export async function CreatePOSTScoresResponseBody(
     )) as PBScoreDocument<"usc:Single"> | null;
 
     // this is impossible to trigger without making a race-condition.
-    /* istanbul ignore next */
+    /* c8 ignore next */
     if (!ktServerRecord) {
         logger.severe(
             `Score was imported for chart, but no Server Record was available on this chart?`,

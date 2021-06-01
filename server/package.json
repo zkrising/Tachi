@@ -4,8 +4,8 @@
     "description": "The server for Kamaitachi Black",
     "main": "js/index.js",
     "scripts": {
-        "fulltest": "tap",
-        "paralleltest": "export KTBSV_PARALLEL_TESTS=true && tap -J",
+        "fulltest": "c8 --check-coverage --lines 80 --functions 80 --branches 80 tap",
+        "paralleltest": "export KTBSV_PARALLEL_TESTS=true && c8 --check-coverage --lines 80 --functions 80 --branches 80 tap -J",
         "watchtest": "tap --watch",
         "build": "tsc --project tsconfig.build.json",
         "lint": "eslint ./src --ext .ts --fix",

@@ -1,4 +1,5 @@
 import winston, { format, transports, Logger, LeveledLogMethod } from "winston";
+import fs from "fs";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };
 
@@ -97,14 +98,9 @@ const consoleFormatRoute = format.combine(
 
 let tports = [];
 
+/* c8 ignore next */
 if (IN_TESTING) {
     tports = [
-        new transports.File({
-            filename: "logs/ktblack-tests-error.log",
-            level: "error",
-            format: defaultFormatRoute,
-        }),
-        new transports.File({ filename: "logs/ktblack-tests.log", format: defaultFormatRoute }),
         new transports.Console({
             format: consoleFormatRoute,
         }),

@@ -24,8 +24,8 @@ const PR_KaiIIDXScore = {
     lamp: p.isBoundedInteger(0, 7),
     ex_score: p.isPositiveInteger,
     miss_count: p.or(p.isPositiveInteger, p.is(-1)),
-    fast_count: p.isPositiveInteger,
-    slow_count: p.isPositiveInteger,
+    fast_count: p.nullable(p.isPositiveInteger),
+    slow_count: p.nullable(p.isPositiveInteger),
     timestamp: "string",
 };
 

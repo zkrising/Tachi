@@ -46,6 +46,14 @@ export const Testing511Song = GetKTDataJSON(
     "./kamaitachi/iidx-511-song.json"
 ) as SongDocument<"iidx">;
 
+export const TestingAlbidaADV = GetKTDataJSON(
+    "./kamaitachi/sdvx-albida-chart.json"
+) as ChartDocument<"sdvx:Single">;
+
+export const TestingSDVXAlbidaSong = GetKTDataJSON(
+    "./kamaitachi/sdvx-albida-song.json"
+) as SongDocument<"sdvx">;
+
 export const TestingDoraChart = GetKTDataJSON(
     "./kamaitachi/gitadora-ithinkabtyou.json"
 ) as ChartDocument<"gitadora:Dora">;

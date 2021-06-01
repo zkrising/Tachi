@@ -48,16 +48,13 @@ export const ConvertAPIKaiSDVX: ConverterFunction<unknown, KaiContext> = async (
     const score = data as KaiSDVXScore;
 
     const difficulty = ConvertDifficulty(score.music_difficulty);
+    const version = ConvertVersion(score.played_version);
 
-    const chart = await FindSDVXChartOnInGameIDVersion(
-        score.music_id,
-        difficulty,
-        score.played_version.toString()
-    );
+    const chart = await FindSDVXChartOnInGameIDVersion(score.music_id, difficulty, version);
 
     if (!chart) {
         throw new KTDataNotFoundFailure(
-            `Could not find chart with songID ${score.music_id} (${difficulty} - Version ${score.played_version})`,
+            `Could not find chart with songID ${score.music_id} (${difficulty} - Version ${version})`,
             importType,
             data,
             context
@@ -102,7 +99,7 @@ export const ConvertAPIKaiSDVX: ConverterFunction<unknown, KaiContext> = async (
     return { song, chart, dryScore };
 };
 
-function ConvertDifficulty(diff: number) {
+export function ConvertDifficulty(diff: number) {
     switch (diff) {
         case 0:
             return "NOV";
@@ -119,7 +116,24 @@ function ConvertDifficulty(diff: number) {
     throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);
 }
 
-function ResolveKaiLamp(clear: number): Lamps["sdvx:Single"] {
+export function ConvertVersion(ver: number) {
+    switch (ver) {
+        case 0:
+            return "booth";
+        case 1:
+            return "inf";
+        case 2:
+            return "gw";
+        case 3:
+            return "heaven";
+        case 4:
+            return "vivid";
+    }
+
+    throw new InvalidScoreFailure(`Unknown Game Version ${ver}.`);
+}
+
+export function ResolveKaiLamp(clear: number): Lamps["sdvx:Single"] {
     switch (clear) {
         case 0:
             return "FAILED";

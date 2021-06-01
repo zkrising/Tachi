@@ -1,5 +1,6 @@
 import t from "tap";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
+import { agta } from "../../../../../test-utils/misc";
 import { MockJSONFetch } from "../../../../../test-utils/mock-fetch";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import CreateLogCtx from "../../../../logger/logger";
@@ -9,18 +10,6 @@ import { TraverseKaiAPI } from "./traverse-api";
 const logger = CreateLogCtx(__filename);
 
 const fakeAuth = "bar";
-
-/**
- * Async Generator To Array
- */
-async function agta(ag: AsyncGenerator<unknown>) {
-    const a = [];
-    for await (const el of ag) {
-        a.push(el);
-    }
-
-    return a;
-}
 
 t.test("#TraverseKaiAPI", (t) => {
     t.beforeEach(ResetDBState);

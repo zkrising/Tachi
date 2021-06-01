@@ -42,6 +42,7 @@ export interface ImportTypeDataMap {
     "api/arc-iidx": unknown;
     "api/arc-sdvx": unknown;
     "api/arc-jubeat": unknown;
+    "api/arc-ddr": unknown;
     "api/flo-iidx": unknown;
     "api/flo-sdvx": unknown;
     "api/eag-iidx": unknown;
@@ -66,6 +67,7 @@ export interface ImportTypeContextMap {
     "api/arc-iidx": EmptyObject;
     "api/arc-sdvx": EmptyObject;
     "api/arc-jubeat": EmptyObject;
+    "api/arc-ddr": EmptyObject;
     "api/flo-iidx": KaiContext;
     "api/flo-sdvx": KaiContext;
     "api/eag-iidx": KaiContext;

@@ -1,4 +1,8 @@
 import { ImportTypes } from "kamaitachi-common";
+import { ConvertAPIArcDDR } from "./api/arc-ddr/converter";
+import { ConvertAPIArcIIDX } from "./api/arc-iidx/converter";
+import { ConvertAPIArcJubeat } from "./api/arc-jubeat/converter";
+import { ConvertAPIArcSDVX } from "./api/arc-sdvx/converter";
 import { ConvertAPIKaiIIDX } from "./common/api-kai/iidx/converter";
 import { ConvertAPIKaiSDVX } from "./common/api-kai/sdvx/converter";
 import { ConverterBatchManual } from "./common/batch-manual/converter";
@@ -27,6 +31,10 @@ export const Converters: ConverterMap = {
     "api/eag-sdvx": ConvertAPIKaiSDVX,
     "api/flo-iidx": ConvertAPIKaiIIDX,
     "api/flo-sdvx": ConvertAPIKaiSDVX,
+    "api/arc-iidx": ConvertAPIArcIIDX,
+    "api/arc-jubeat": ConvertAPIArcJubeat,
+    "api/arc-ddr": ConvertAPIArcDDR,
+    "api/arc-sdvx": ConvertAPIArcSDVX,
 
     "ir/barbatos": ConverterIRBarbatos,
     "ir/beatoraja": ConverterIRBeatoraja,

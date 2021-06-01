@@ -90,7 +90,7 @@ export const ConvertAPIArcIIDX: ConverterFunction<unknown, EmptyObject> = async 
     return { song, chart, dryScore };
 };
 
-function ResolveARCIIDXLamp(lamp: ARCIIDXScore["lamp"]): Lamps["iidx:SP" | "iidx:DP"] {
+export function ResolveARCIIDXLamp(lamp: ARCIIDXScore["lamp"]): Lamps["iidx:SP" | "iidx:DP"] {
     switch (lamp) {
         case "NO_PLAY":
             return "NO PLAY";

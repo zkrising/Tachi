@@ -8,12 +8,7 @@ import { TraverseKaiAPI } from "./traverse-api";
 
 const logger = CreateLogCtx(__filename);
 
-const fakeAuth = {
-    userID: 1,
-    refreshToken: "foo",
-    service: "FLO" as const,
-    token: "bar",
-};
+const fakeAuth = "bar";
 
 /**
  * Async Generator To Array

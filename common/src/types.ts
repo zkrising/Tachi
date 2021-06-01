@@ -1230,10 +1230,14 @@ export type FileUploadImportTypes =
     | "file/mer-iidx"
     | "file/pli-iidx-csv";
 
-export type APIImportTypes = "api/flo-iidx" | "api/flo-sdvx" | "api/eag-iidx" | "api/eag-sdvx";
-// | "api/arc-iidx"
-// | "api/arc-sdvx"
-// | "api/arc-jubeat";
+export type APIImportTypes =
+    | "api/flo-iidx"
+    | "api/flo-sdvx"
+    | "api/eag-iidx"
+    | "api/eag-sdvx"
+    | "api/arc-iidx"
+    | "api/arc-sdvx"
+    | "api/arc-jubeat";
 
 export type IRImportTypes =
     | "ir/direct-manual"

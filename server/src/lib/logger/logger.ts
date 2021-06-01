@@ -98,7 +98,7 @@ const consoleFormatRoute = format.combine(
 
 let tports = [];
 
-/* c8 ignore next */
+/* istanbul ignore next */
 if (IN_TESTING) {
     tports = [
         new transports.Console({

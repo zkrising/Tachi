@@ -66,7 +66,7 @@ router.post(
 
         logger.verbose(`Recieved login request with username ${req.body.username} (${req.ip})`);
 
-        /* c8 ignore next */
+        /* istanbul ignore next */
         if (process.env.NODE_ENV === "production") {
             logger.verbose("Validating captcha...");
             const validCaptcha = await ValidateCaptcha(
@@ -150,7 +150,7 @@ router.post(
     async (req, res) => {
         logger.verbose(`Recieved register request with username ${req.body.username} (${req.ip})`);
 
-        /* c8 ignore next */
+        /* istanbul ignore next */
         if (process.env.NODE_ENV === "production") {
             logger.verbose("Validating captcha...");
             const validCaptcha = await ValidateCaptcha(

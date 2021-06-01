@@ -2,7 +2,7 @@ import { CreateInviteCode, AddNewInvite, ReinstateInvite, ValidateCaptcha } from
 import t from "tap";
 import db from "../../../../../external/mongo/db";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
-import { MockFetch } from "../../../../../test-utils/mock-fetch";
+import { MockBasicFetch } from "../../../../../test-utils/mock-fetch";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 t.test("#ReinstateInvite", (t) => {
@@ -61,13 +61,13 @@ t.test("#AddNewInvite", (t) => {
 
 t.test("#ValidateCaptcha", async (t) => {
     t.equal(
-        await ValidateCaptcha("200", "bar", MockFetch({ status: 200 })),
+        await ValidateCaptcha("200", "bar", MockBasicFetch({ status: 200 })),
         true,
         "Validates captcha when status return is 200"
     );
 
     t.equal(
-        await ValidateCaptcha("400", "bar", MockFetch({ status: 400 })),
+        await ValidateCaptcha("400", "bar", MockBasicFetch({ status: 400 })),
         false,
         "Invalidates captcha when status return is not 200"
     );

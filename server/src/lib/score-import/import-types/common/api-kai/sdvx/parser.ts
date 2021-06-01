@@ -2,7 +2,6 @@ import { KtLogger } from "../../../../../logger/logger";
 import nodeFetch from "../../../../../../utils/fetch";
 import { KaiAuthDocument } from "kamaitachi-common";
 import { KaiContext } from "../types";
-import { ConvertAPIKaiSDVX } from "./converter";
 import { TraverseKaiAPI } from "../traverse-api";
 import { ParserFunctionReturnsAsync } from "../../types";
 import { EAG_API_URL, FLO_API_URL } from "../../../../../env/env";
@@ -21,6 +20,6 @@ export function ParseKaiSDVX(
             service,
         },
         classHandler: null,
-        game: "iidx",
+        game: "sdvx",
     };
 }

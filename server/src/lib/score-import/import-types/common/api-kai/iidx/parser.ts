@@ -2,7 +2,6 @@ import { KtLogger } from "../../../../../logger/logger";
 import nodeFetch from "../../../../../../utils/fetch";
 import { KaiAuthDocument } from "kamaitachi-common";
 import { KaiContext } from "../types";
-import { ConvertAPIKaiIIDX } from "./converter";
 import { TraverseKaiAPI } from "../traverse-api";
 import { ParserFunctionReturnsAsync } from "../../types";
 import { FLO_API_URL, EAG_API_URL } from "../../../../../env/env";

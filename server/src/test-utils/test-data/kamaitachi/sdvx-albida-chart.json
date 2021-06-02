@@ -12,7 +12,9 @@
         "N-1": false
     },
     "data": {
-        "inGameID": 1
+        "inGameID": 1,
+        "uscEquiv": null,
+        "arcChartID": "EOZ7FixCDpv"
     },
     "isPrimary": true,
     "versions": [

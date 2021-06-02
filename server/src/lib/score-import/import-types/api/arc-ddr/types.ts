@@ -6,7 +6,7 @@ export interface ARCDDRScore {
     score: integer;
     ex_score: integer;
     max_combo: integer;
-    judgements: {
+    judgments: {
         marvelous: integer;
         perfect: integer;
         great: integer;

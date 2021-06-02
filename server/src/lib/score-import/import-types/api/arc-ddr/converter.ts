@@ -31,7 +31,7 @@ const PR_ArcDDRScore: PrudenceSchema = {
     score: p.isBoundedInteger(0, 1_000_000),
     ex_score: p.isPositiveInteger,
     max_combo: p.isPositiveInteger,
-    judgements: {
+    judgments: {
         marvelous: p.isPositiveInteger,
         perfect: p.isPositiveInteger,
         great: p.isPositiveInteger,
@@ -74,7 +74,7 @@ export const ConvertAPIArcDDR: ConverterFunction<unknown, EmptyObject> = async (
 
     const song = await FindSongOnIDGuaranteed("ddr", chart.songID, logger);
 
-    const { grade, percent } = GenericGetGradeAndPercent("ddr", score.ex_score, chart);
+    const { grade, percent } = GenericGetGradeAndPercent("ddr", score.score, chart);
 
     const timeAchieved = ParseDateFromString(score.timestamp);
 
@@ -91,19 +91,20 @@ export const ConvertAPIArcDDR: ConverterFunction<unknown, EmptyObject> = async (
             percent,
             score: score.ex_score,
             hitData: {
-                marvelous: score.judgements.marvelous,
-                perfect: score.judgements.perfect,
-                great: score.judgements.great,
-                good: score.judgements.good,
-                boo: score.judgements.boo,
-                miss: score.judgements.miss,
-                ok: score.judgements.ok,
-                ng: score.judgements.ng,
+                marvelous: score.judgments.marvelous,
+                perfect: score.judgments.perfect,
+                great: score.judgments.great,
+                good: score.judgments.good,
+                boo: score.judgments.boo,
+                miss: score.judgments.miss,
+                ok: score.judgments.ok,
+                ng: score.judgments.ng,
             },
             hitMeta: {
                 fast: score.fast,
                 slow: score.slow,
                 maxCombo: score.max_combo,
+                exScore: score.ex_score,
             },
             lamp,
         },
@@ -113,7 +114,7 @@ export const ConvertAPIArcDDR: ConverterFunction<unknown, EmptyObject> = async (
     return { song, chart, dryScore };
 };
 
-function ResolveARCDDRLamp(lamp: ARCDDRScore["lamp"]): Lamps["ddr:SP" | "ddr:DP"] {
+export function ResolveARCDDRLamp(lamp: ARCDDRScore["lamp"]): Lamps["ddr:SP" | "ddr:DP"] {
     switch (lamp) {
         case "FAIL":
             return "FAILED";
@@ -121,11 +122,17 @@ function ResolveARCDDRLamp(lamp: ARCDDRScore["lamp"]): Lamps["ddr:SP" | "ddr:DP"
             return "CLEAR";
         case "CLEAR_3LIFE":
             return "LIFE4";
+        case "GOOD_FC":
+            return "FULL COMBO";
         case "GREAT_FC":
             return "GREAT FULL COMBO";
         case "PERFECT_FC":
             return "PERFECT FULL COMBO";
+        case "MARVELOUS_FC":
+            return "MARVELOUS FULL COMBO";
     }
 
+    // failsafe
+    /* istanbul ignore next */
     throw new InvalidScoreFailure(`Invalid lamp ${lamp} - Could not resolve.`);
 }

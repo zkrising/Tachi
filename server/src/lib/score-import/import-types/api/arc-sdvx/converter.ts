@@ -97,7 +97,7 @@ export const ConvertAPIArcSDVX: ConverterFunction<unknown, EmptyObject> = async 
  * ARC has a bug where all sdvx scores are clears no matter what.
  * This function takes the score and lamp and rederives the lamp.
  */
-function ResolveARCSDVXLamp(lamp: ARCSDVXScore["lamp"]): Lamps["sdvx:Single"] {
+export function ResolveARCSDVXLamp(lamp: ARCSDVXScore["lamp"]): Lamps["sdvx:Single"] {
     switch (lamp) {
         case "PLAY":
             return "FAILED";

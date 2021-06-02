@@ -137,7 +137,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
             song: {
                 id: 27339,
             },
-        } as any);
+        });
 
         const score = await db.scores.findOne(
             { scoreID: res.body.body.score.scoreID },
@@ -146,7 +146,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 
         t.not(score, null);
 
-        t.hasStrict(res.body.body.score, score as any);
+        t.hasStrict(res.body.body.score, score);
 
         t.end();
     });

@@ -32,7 +32,7 @@ t.test("#CreateSessions", (t) => {
                 sessionID: /^Q[a-f0-9]{40}$/u,
                 type: "Created",
             },
-        ] as any);
+        ]);
 
         t.equal(res.length, 1);
 
@@ -65,7 +65,7 @@ t.test("#CreateSessions", (t) => {
                 lampPerf: null,
                 perf: null,
             },
-        } as any);
+        });
 
         t.end();
     });
@@ -136,7 +136,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
                 sessionID: /^Q[a-f0-9]{40}$/u,
                 type: "Created",
             },
-        ] as any);
+        ]);
 
         const sessions = await db.sessions.find({ game: "iidx", playtype: "SP", userID: 1 });
 
@@ -189,7 +189,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
                 sessionID: /^Q[a-f0-9]{40}$/u,
                 type: "Created",
             },
-        ] as any);
+        ]);
 
         const sessions = await db.sessions.find({ game: "iidx", playtype: "SP", userID: 1 });
 
@@ -252,7 +252,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
                 sessionID: /^Q[a-f0-9]{40}$/u,
                 type: "Created",
             },
-        ] as any);
+        ]);
 
         const sessions = await db.sessions.find({ game: "iidx", playtype: "SP", userID: 1 });
 
@@ -323,7 +323,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
                 sessionID: "EXAMPLE_SESSION_ID",
                 type: "Appended",
             },
-        ] as any);
+        ]);
 
         const sessions = await db.sessions.find({ game: "iidx", playtype: "SP", userID: 1 });
 
@@ -386,7 +386,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
                 sessionID: "EXAMPLE_SESSION_ID",
                 type: "Appended",
             },
-        ] as any);
+        ]);
 
         const sessions = await db.sessions.find({ game: "iidx", playtype: "SP", userID: 1 });
 
@@ -433,7 +433,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
                 sessionID: /^Q[a-f0-9]{40}$/u,
                 type: "Created",
             },
-        ] as any);
+        ]);
 
         const sessions = await db.sessions.find({ game: "iidx", playtype: "SP", userID: 1 });
 

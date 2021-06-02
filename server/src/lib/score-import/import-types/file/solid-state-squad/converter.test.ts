@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import CreateLogCtx from "../../../../logger/logger";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
@@ -64,7 +63,7 @@ t.test("#ConvertFileS3", (t) => {
                 chart: Testing511SPA,
                 song: Testing511Song,
                 dryScore,
-            } as any,
+            },
             "Should correctly return the song, chart and DryScore."
         );
 
@@ -98,7 +97,7 @@ t.test("#ConvertFileS3", (t) => {
                 chart: { songID: 97, difficulty: "HYPER", playtype: "SP" },
                 song: { title: "ABSOLUTE" },
                 // dryScore, dont care
-            } as any,
+            },
             "Should correctly return the song, chart and DryScore."
         );
 

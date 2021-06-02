@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import db from "../../../../external/mongo/db";
 import ResetDBState from "../../../../test-utils/reset-db-state";
@@ -288,7 +287,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
                 { score: 8_800_000, username: "7", ranking: 7 },
                 { score: 8_700_000, username: "8", ranking: 8 },
             ],
-        } as any);
+        });
 
         t.end();
     });
@@ -320,7 +319,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
             isServerRecord: false,
             isPB: false,
             sendReplay: "foo_bar",
-        } as any);
+        });
 
         t.strictSame(
             res.adjacentAbove.map((e) => e.ranking),
@@ -362,7 +361,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
             isServerRecord: false,
             isPB: false,
             sendReplay: "foo_bar",
-        } as any);
+        });
 
         t.strictSame(
             res.adjacentAbove.map((e) => e.ranking),

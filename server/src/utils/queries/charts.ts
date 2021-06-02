@@ -210,3 +210,9 @@ export function FindChartOnSHA256(game: Game, hash: string) {
         "data.hashSHA256": hash,
     });
 }
+
+export function FindChartOnARCID(game: "iidx" | "ddr" | "jubeat" | "sdvx", arcID: string) {
+    return db.charts[game].findOne({
+        "data.arcChartID": arcID,
+    });
+}

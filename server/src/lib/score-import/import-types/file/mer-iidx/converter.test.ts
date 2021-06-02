@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import db from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../logger/logger";
@@ -51,7 +50,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
                     scoreMeta: {},
                     timeAchieved: 1616537722000,
                 },
-            } as any,
+            },
             "Should return the converted dry score."
         );
 
@@ -85,7 +84,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
                     scoreMeta: {},
                     timeAchieved: 1616537722000,
                 },
-            } as any,
+            },
             "Should return the converted dry score."
         );
 

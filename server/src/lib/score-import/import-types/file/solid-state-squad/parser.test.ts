@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import CreateLogCtx from "../../../../logger/logger";
 import { MockMulterFile } from "../../../../../test-utils/mock-multer";
@@ -58,7 +57,7 @@ t.test("#ParseSolidStateXML", (t) => {
                     cleartype: "perfect",
                     date: "2010-10-19 04:54:22",
                 },
-            ] as any,
+            ],
             "Should return the right scores in the iterable."
         );
         t.equal(res.game, "iidx", "Should return IIDX as the game.");
@@ -95,7 +94,7 @@ t.test("#ParseSolidStateXML", (t) => {
                     cleartype: "perfect",
                     date: "2010-10-19 04:54:22",
                 },
-            ] as any,
+            ],
             "Should return the right score in the iterable."
         );
         t.equal(res.game, "iidx", "Should return IIDX as the game.");

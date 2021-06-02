@@ -240,7 +240,7 @@ t.test("#UpdateGoalsForUser", (t) => {
                 outOf: 1,
                 outOfHuman: "1",
                 achieved: true,
-            } as any,
+            },
             "Should update goals in the database."
         );
 
@@ -298,7 +298,7 @@ t.test("#UpdateGoalsForUser", (t) => {
                 outOf: 2,
                 outOfHuman: "2",
                 achieved: false,
-            } as any,
+            },
             "Should update goals in the database."
         );
 

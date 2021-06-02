@@ -1,7 +1,7 @@
 import { KtLogger } from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import nodeFetch from "../../../../../utils/fetch";
-import { KaiAuthDocument } from "kamaitachi-common";
+import { VERSION_STR } from "../../../../constants/version";
 
 /**
  * Traverses a Kai-like personal_bests api.
@@ -14,7 +14,7 @@ import { KaiAuthDocument } from "kamaitachi-common";
 export async function* TraverseKaiAPI(
     baseUrl: string,
     subUrl: string,
-    authDoc: KaiAuthDocument,
+    token: string,
     logger: KtLogger,
     fetch = nodeFetch
 ) {
@@ -22,13 +22,12 @@ export async function* TraverseKaiAPI(
     let url = `${baseUrl}${subUrl}`;
 
     while (fetchMoreData) {
-        // Rough SSRF check - KAI apis could potentially get us to perform
+        // Rough SSRF check - KAI-like apis could potentially get us to perform
         // SSRF. We check if the origin of the next request is exactly the
         // original, expected, base URL.
         const origin = new URL(url).origin;
 
         if (origin !== baseUrl) {
-            // this might be critical, to be honest.
             logger.severe(`${baseUrl} attempted SSRF with url ${url}?`);
             throw new ScoreImportFatalError(500, `${baseUrl} returned invalid data.`);
         }
@@ -40,7 +39,8 @@ export async function* TraverseKaiAPI(
             // eslint-disable-next-line no-await-in-loop
             const res = await fetch(url, {
                 headers: {
-                    Authorization: `Bearer ${authDoc.token}`,
+                    Authorization: `Bearer ${token}`,
+                    "User-Agent": `Kamaitachi/${VERSION_STR}`,
                 },
             });
 

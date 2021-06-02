@@ -1,6 +1,8 @@
 import { Game, AnySongDocument, integer } from "kamaitachi-common";
 import { FindOneResult } from "monk";
 import db from "../../external/mongo/db";
+import { KtLogger } from "../../lib/logger/logger";
+import { InternalFailure } from "../../lib/score-import/framework/common/converter-failures";
 import { EscapeStringRegexp } from "../misc";
 
 /**
@@ -62,4 +64,15 @@ export function FindSongOnID(game: Game, songID: integer): Promise<FindOneResult
     return db.songs[game].findOne({
         id: songID,
     });
+}
+
+export async function FindSongOnIDGuaranteed(game: Game, songID: integer, logger: KtLogger) {
+    const song = await FindSongOnID(game, songID);
+
+    if (!song) {
+        logger.severe(`Song-Chart desync for ${songID}. Has charts, but no song.`);
+        throw new InternalFailure(`Song-Chart desync for ${songID}. Has charts, but no song.`);
+    }
+
+    return song;
 }

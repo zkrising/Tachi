@@ -42,7 +42,7 @@ t.test("#ParseFervidexStatic", (t) => {
         t.hasStrict(res, {
             context: { version: "27" },
             game: "iidx",
-        } as any);
+        });
 
         t.end();
     });

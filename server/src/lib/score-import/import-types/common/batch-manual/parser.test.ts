@@ -158,8 +158,7 @@ t.test("#ParserFn", (t) => {
                 version: null,
             },
             iterable: [],
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } as any);
+        });
 
         t.end();
     });
@@ -241,8 +240,7 @@ t.test("#ParserFn", (t) => {
                         identifier: "5.1.1.",
                     },
                 ],
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            } as any);
+            });
 
             t.end();
         });
@@ -277,8 +275,7 @@ t.test("#ParserFn", (t) => {
                         },
                     },
                 ],
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            } as any);
+            });
 
             t.end();
         });
@@ -312,8 +309,7 @@ t.test("#ParserFn", (t) => {
                         },
                     },
                 ],
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            } as any);
+            });
 
             t.end();
         });

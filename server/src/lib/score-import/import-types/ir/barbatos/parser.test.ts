@@ -17,7 +17,7 @@ t.test("#ParseBarbatosSingle", (t) => {
             game: "sdvx",
             context: {},
             iterable: [barbScore],
-        } as any);
+        });
 
         t.end();
     });

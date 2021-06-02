@@ -1,20 +1,8 @@
-// The Downward Spiral
-const VERSION_INFO = {
-    major: 2,
-    minor: 0,
-    patch: 0,
-    name: "Mr. Self Destruct",
-};
-
-function FormatVersion() {
-    const { major, minor, patch, name } = VERSION_INFO;
-    return `v${[major, minor, patch].join(".")} (${name})`;
-}
-
 import CreateLogCtx from "./lib/logger/logger";
 import server from "./server/server";
 import serverConfig from "./server/server-config";
 import { LOG_LEVEL } from "./lib/env/env";
+import { FormatVersion } from "./lib/constants/version";
 
 const logger = CreateLogCtx(__filename);
 

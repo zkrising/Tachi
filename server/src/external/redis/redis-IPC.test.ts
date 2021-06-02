@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import { CloseRedisPubSub, RedisPub, RedisSub } from "./redis-IPC";
 

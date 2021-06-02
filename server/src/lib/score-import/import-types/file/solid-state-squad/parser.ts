@@ -4,7 +4,6 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import p, { PrudenceSchema } from "prudence";
 import { FormatPrError } from "../../../../../utils/prudence";
 import { S3Score } from "./types";
-import { ConvertFileS3 } from "./converter";
 import { ParserFunctionReturnsSync } from "../../common/types";
 import { KtLogger } from "../../../../logger/logger";
 
@@ -30,7 +29,7 @@ const PR_SolidState: PrudenceSchema = {
                         good: p.isPositiveInteger,
                         bad: p.isPositiveInteger,
                         poor: p.isPositiveInteger,
-                    } as any),
+                    }),
                     mods: {
                         hardeasy: p.optional(p.isIn("H", "E")),
                     },

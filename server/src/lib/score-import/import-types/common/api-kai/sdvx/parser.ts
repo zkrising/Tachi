@@ -15,7 +15,13 @@ export function ParseKaiSDVX(
     const baseUrl = service === "FLO" ? FLO_API_URL : EAG_API_URL;
 
     return {
-        iterable: TraverseKaiAPI(baseUrl, "/api/sdvx/v1/play_history", authDoc, logger, fetch),
+        iterable: TraverseKaiAPI(
+            baseUrl,
+            "/api/sdvx/v1/play_history",
+            authDoc.token,
+            logger,
+            fetch
+        ),
         context: {
             service,
         },

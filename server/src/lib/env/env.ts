@@ -10,6 +10,7 @@ const envVars = [
     "KTBSV_FLO_API_URL",
     "KTBSV_EAG_API_URL",
     "KTBSV_ARC_API_URL",
+    "KTBSV_ARC_AUTH_TOKEN",
 ];
 
 for (const eVar of envVars) {
@@ -25,3 +26,4 @@ export const CAPTCHA_SECRET_KEY = process.env.KTBSV_CAPTCHA_SECRET_KEY!;
 export const FLO_API_URL = process.env.KTBSV_FLO_API_URL!;
 export const EAG_API_URL = process.env.KTBSV_EAG_API_URL!;
 export const ARC_API_URL = process.env.KTBSV_ARC_API_URL!;
+export const ARC_AUTH_TOKEN = process.env.KTBSV_ARC_AUTH_TOKEN!;

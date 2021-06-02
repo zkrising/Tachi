@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import CreateLogCtx from "../../../../logger/logger";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../../test-utils/test-data";
@@ -49,7 +48,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
         t.hasStrict(
             res,
-            { song: { id: 1 }, chart: Testing511SPA } as any,
+            { song: { id: 1 }, chart: Testing511SPA },
             "Should return the right song and chart."
         );
 
@@ -78,7 +77,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
         t.hasStrict(
             res,
-            { song: { id: 1 }, chart: Testing511SPA } as any,
+            { song: { id: 1 }, chart: Testing511SPA },
             "Should return the right song and chart."
         );
 
@@ -106,7 +105,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
         const gazerSong = GetKTDataJSON("./kamaitachi/bms-gazer-song.json");
         const gazerChart = GetKTDataJSON("./kamaitachi/bms-gazer-chart.json");
 
-        const bmsContext = deepmerge(context, { game: "bms" }) as any;
+        const bmsContext: any = deepmerge(context, { game: "bms" });
 
         const resMD5 = await ResolveMatchTypeToKTData(
             deepmerge(baseBatchManualScore, {
@@ -120,7 +119,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
         t.hasStrict(
             resMD5,
-            { song: gazerSong, chart: gazerChart } as any,
+            { song: gazerSong, chart: gazerChart },
             "Should return the right song and chart."
         );
 
@@ -136,7 +135,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
         t.hasStrict(
             resSHA256,
-            { song: gazerSong, chart: gazerChart } as any,
+            { song: gazerSong, chart: gazerChart },
             "Should return the right song and chart."
         );
 
@@ -195,7 +194,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
             {
                 song: { id: 10 },
                 chart: { chartID: "48024d36bbe76c9fed09c3ffdc19412925d1efd3" },
-            } as any,
+            },
             "Should return the right song and chart."
         );
 
@@ -249,7 +248,7 @@ t.test("#ResolveChartFromSong", (t) => {
             importType
         );
 
-        t.hasStrict(res, Testing511SPA as any);
+        t.hasStrict(res, Testing511SPA);
 
         t.end();
     });
@@ -334,7 +333,7 @@ t.test("#ResolveChartFromSong", (t) => {
             importType
         );
 
-        t.hasStrict(res, Testing511SPA as any);
+        t.hasStrict(res, Testing511SPA);
 
         t.end();
     });
@@ -370,7 +369,7 @@ t.test("#ConverterFn", (t) => {
                 },
                 scoreMeta: {},
             },
-        } as any);
+        });
 
         t.end();
     });

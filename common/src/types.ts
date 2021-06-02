@@ -1238,7 +1238,6 @@ export type APIImportTypes =
     | "api/eag-sdvx"
     | "api/arc-iidx"
     | "api/arc-sdvx"
-    | "api/arc-jubeat"
     | "api/arc-ddr";
 
 export type IRImportTypes =

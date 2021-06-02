@@ -1009,7 +1009,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
     };
 }
 export declare type FileUploadImportTypes = "file/eamusement-iidx-csv" | "file/batch-manual" | "file/solid-state-squad" | "file/mer-iidx" | "file/pli-iidx-csv";
-export declare type APIImportTypes = "api/flo-iidx" | "api/flo-sdvx" | "api/eag-iidx" | "api/eag-sdvx" | "api/arc-iidx" | "api/arc-sdvx" | "api/arc-jubeat" | "api/arc-ddr";
+export declare type APIImportTypes = "api/flo-iidx" | "api/flo-sdvx" | "api/eag-iidx" | "api/eag-sdvx" | "api/arc-iidx" | "api/arc-sdvx" | "api/arc-ddr";
 export declare type IRImportTypes = "ir/direct-manual" | "ir/barbatos" | "ir/fervidex" | "ir/usc" | "ir/chunitachi" | "ir/beatoraja" | "ir/fervidex-static";
 export declare type ImportTypes = FileUploadImportTypes | IRImportTypes | APIImportTypes;
 export interface ImportProcessInfoKTDataNotFound {

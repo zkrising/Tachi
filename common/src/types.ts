@@ -1094,8 +1094,8 @@ export interface HitMetaLookup {
     "popn:9B": BASE_VALID_HIT_META & { gauge: number };
     "sdvx:Single": SDVXHitMeta;
     "usc:Single": SDVXHitMeta;
-    "ddr:SP": BASE_VALID_HIT_META;
-    "ddr:DP": BASE_VALID_HIT_META;
+    "ddr:SP": BASE_VALID_HIT_META & { exScore: integer };
+    "ddr:DP": BASE_VALID_HIT_META & { exScore: integer };
     "maimai:Single": BASE_VALID_HIT_META;
     "jubeat:Single": BASE_VALID_HIT_META;
     "museca:Single": BASE_VALID_HIT_META;

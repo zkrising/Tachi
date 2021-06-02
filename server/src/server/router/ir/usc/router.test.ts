@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import db from "../../../../external/mongo/db";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
@@ -49,7 +48,7 @@ t.test("GET /ir/usc", async (t) => {
         {
             serverName: "Kamaitachi BLACK",
             irVersion: "0.3.1-a",
-        } as any,
+        },
         "Should return the right body."
     );
 

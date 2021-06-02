@@ -5,6 +5,7 @@ import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../../tes
 import CreateLogCtx from "../../../../logger/logger";
 import { ConvertAPIArcIIDX, ResolveARCIIDXLamp } from "./converter";
 import { ARCIIDXScore } from "./types";
+import deepmerge from "deepmerge";
 
 const logger = CreateLogCtx(__filename);
 
@@ -36,7 +37,41 @@ t.test("#ConvertAPIArcIIDX", (t) => {
                 },
                 scoreMeta: {},
             },
-        } as any);
+        });
+
+        t.end();
+    });
+
+    t.test("Should throw on an invalid score", (t) => {
+        t.rejects(
+            () =>
+                ConvertAPIArcIIDX(
+                    deepmerge(arcScore, { ex_score: "foo" }),
+                    {},
+                    "api/arc-iidx",
+                    logger
+                ),
+            {
+                message: /Invalid ARC Score:/iu,
+            } as any
+        );
+
+        t.end();
+    });
+
+    t.test("Should throw on no chart", (t) => {
+        t.rejects(
+            () =>
+                ConvertAPIArcIIDX(
+                    deepmerge(arcScore, { chart_id: "foo" }),
+                    {},
+                    "api/arc-iidx",
+                    logger
+                ),
+            {
+                message: /Could not find chart/iu,
+            } as any
+        );
 
         t.end();
     });

@@ -107,7 +107,7 @@ t.test("#ValidateAuthToken", (t) => {
 
         t.hasStrict(
             req[SYMBOL_KtchiData]?.beatorajaAuthDoc,
-            { token: "token", userID: 1 } as any,
+            { token: "token", userID: 1 },
             "Should attach the authDoc to the request KtchiData"
         );
 

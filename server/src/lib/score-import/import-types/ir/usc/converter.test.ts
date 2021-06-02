@@ -92,7 +92,7 @@ t.test("#ConverterIRUSC", (t) => {
                 chartID: uscChart.chartID,
             },
             dryScore: {},
-        } as any);
+        });
 
         t.end();
     });

@@ -45,7 +45,7 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
                 },
                 scoreMeta: {},
             },
-        } as any);
+        });
 
         t.end();
     });

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import db from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../logger/logger";
@@ -138,7 +137,7 @@ t.test("#ConverterIRFervidex", (t) => {
                 song: Testing511Song,
                 chart: Testing511SPA,
                 dryScore: baseDryScore,
-            } as any, // broken
+            }, // broken
             "Should return a dry score."
         );
 

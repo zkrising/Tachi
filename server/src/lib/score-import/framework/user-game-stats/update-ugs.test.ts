@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import db from "../../../../external/mongo/db";
 import CreateLogCtx from "../../../logger/logger";
@@ -34,7 +33,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                 lampRating: 0,
                 customRatings: { BPI: 0 },
                 classes: {},
-            } as any,
+            },
             "Should insert an appropriate game-stats object"
         );
 
@@ -87,7 +86,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                     // BPI: 5 -- 5.04999 but floating point testing lmao
                 },
                 classes: {},
-            } as any,
+            },
             "Should update the game-stats object"
         );
 
@@ -144,7 +143,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                 classes: {
                     dan: 18,
                 },
-            } as any,
+            },
             "Should update the game-stats object"
         );
 
@@ -203,7 +202,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                 classes: {
                     dan: 18,
                 },
-            } as any,
+            },
             "Should update the game-stats object"
         );
 

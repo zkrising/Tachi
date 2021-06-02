@@ -44,7 +44,7 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
                 },
                 scoreMeta: {},
             },
-        } as any);
+        });
 
         t.end();
     });

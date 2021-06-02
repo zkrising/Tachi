@@ -61,7 +61,7 @@ t.test("#OrphanScore", (t) => {
             context: batchManualContext,
             importType: "ir/direct-manual",
             errMsg: "Example Error Message",
-        } as any);
+        });
 
         t.ok(
             Math.abs(dbCheck!.timeInserted - Date.now()) < 10_000,
@@ -163,7 +163,7 @@ t.test("#ReprocessOrphan", (t) => {
                         isPrimary: true,
                     },
                 },
-            } as any,
+            },
             "Should successfully import the score."
         );
 

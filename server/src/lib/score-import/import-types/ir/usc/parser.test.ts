@@ -20,7 +20,7 @@ t.test("#ParseIRUSC", (t) => {
                 chart: uscChart,
             },
             iterable: [uscScore],
-        } as any);
+        });
 
         t.end();
     });

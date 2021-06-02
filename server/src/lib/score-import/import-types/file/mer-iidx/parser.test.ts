@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
 import CreateLogCtx from "../../../../logger/logger";
 import { MockMulterFile } from "../../../../../test-utils/mock-multer";
@@ -70,7 +69,7 @@ t.test("#ParseMerIIDX", (t) => {
                         update_time: "2019-05-03 02:10:58",
                     },
                 ],
-            } as any,
+            },
             "Should correctly parse data."
         );
 

@@ -23,7 +23,7 @@
         "@types/node-fetch": "^2.5.10",
         "@types/range-parser": "^1.2.3",
         "@types/supertest": "^2.0.11",
-        "@types/tap": "^15.0.0",
+        "@types/tap": "^15.0.2",
         "@types/uuid": "^8.3.0",
         "@typescript-eslint/eslint-plugin": "^4.22.0",
         "@typescript-eslint/parser": "^4.22.0",

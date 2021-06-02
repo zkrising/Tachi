@@ -2,7 +2,6 @@ import { Difficulties } from "kamaitachi-common";
 import { KtLogger } from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturnsSync } from "../types";
-import ConvertEamIIDXCSV from "./converter";
 import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 
 enum EAM_VERSION_NAMES {

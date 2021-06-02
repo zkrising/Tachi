@@ -110,5 +110,7 @@ export function ResolveARCIIDXLamp(lamp: ARCIIDXScore["lamp"]): Lamps["iidx:SP" 
             return "FULL COMBO";
     }
 
+    // theoretically impossible, but a failsafe regardless.
+    /* istanbul ignore next */
     throw new InvalidScoreFailure(`Invalid lamp ${lamp} - Could not resolve.`);
 }

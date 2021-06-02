@@ -10,7 +10,7 @@ specifiers:
   '@types/node-fetch': ^2.5.10
   '@types/range-parser': ^1.2.3
   '@types/supertest': ^2.0.11
-  '@types/tap': ^15.0.0
+  '@types/tap': ^15.0.2
   '@types/uuid': ^8.3.0
   '@typescript-eslint/eslint-plugin': ^4.22.0
   '@typescript-eslint/parser': ^4.22.0
@@ -61,7 +61,7 @@ dependencies:
   express-session: 1.17.1
   fast-json-stable-hash: 1.0.2
   fast-xml-parser: 3.19.0
-  kamaitachi-common: github.com/zkldi/Kamaitachi-common/e9df595971d4e4facd99275ca3fc58df9af7e4fc
+  kamaitachi-common: github.com/zkldi/Kamaitachi-common/d214ecbaf3b371c2074bc8e34347c5011e85ea37
   mongodb: 3.6.6
   monk: 7.3.4
   multer: 1.4.2
@@ -82,7 +82,7 @@ devDependencies:
   '@types/node-fetch': 2.5.10
   '@types/range-parser': 1.2.3
   '@types/supertest': 2.0.11
-  '@types/tap': 15.0.0
+  '@types/tap': 15.0.2
   '@types/uuid': 8.3.0
   '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
   '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
@@ -582,8 +582,8 @@ packages:
       '@types/superagent': 4.1.10
     dev: true
 
-  /@types/tap/15.0.0:
-    resolution: {integrity: sha512-AAsxWamgPOFWAQoSVOkQgGpi/wdk28Bmof7/KWI8T97mnDsjwHFrwclLBNGhaeXYhQABQZ1e2ovPIS7OAuM4vQ==}
+  /@types/tap/15.0.2:
+    resolution: {integrity: sha512-dF4ITq+B0vY26iSW27ga0xbuzqPRdKd1rJZD9zFKJSHam74CgyEStkVKeHHQThBC0SsmrXQnOvElH3xKKYu33g==}
     dependencies:
       '@types/node': 15.0.1
     dev: true
@@ -4344,8 +4344,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  github.com/zkldi/Kamaitachi-common/e9df595971d4e4facd99275ca3fc58df9af7e4fc:
-    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/e9df595971d4e4facd99275ca3fc58df9af7e4fc}
+  github.com/zkldi/Kamaitachi-common/d214ecbaf3b371c2074bc8e34347c5011e85ea37:
+    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/d214ecbaf3b371c2074bc8e34347c5011e85ea37}
     name: kamaitachi-common
     version: 0.1.0
     dependencies:

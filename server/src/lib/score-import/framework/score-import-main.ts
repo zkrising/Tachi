@@ -205,6 +205,10 @@ export default async function ScoreImportMain<D, C>(
     return ImportDocument;
 }
 
+/**
+ * Calls UpdateUsersGamePlaytypeStats for every playtype in the import.
+ * @returns A flattened array of ClassDeltas
+ */
 async function UpdateUsersGameStats(
     game: Game,
     playtypes: Playtypes[Game][],
@@ -222,6 +226,13 @@ async function UpdateUsersGameStats(
     return r.flat(1);
 }
 
+/**
+ * Parses the return of ImportProcessingInfo into relevant information
+ * for the rest the import.
+ * @returns The list of scoreIDs used in the import, the list of errors
+ * A set of unique chartIDs involved in the import and the scores mapped
+ * on their playtype.
+ */
 function ParseImportInfo(importInfo: ImportProcessingInfo[]) {
     const scorePlaytypeMap: ScorePlaytypeMap = Object.create(null);
 

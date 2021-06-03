@@ -4,12 +4,13 @@ import { TraverseKaiAPI } from "../../common/api-kai/traverse-api";
 import { ParserFunctionReturnsAsync } from "../../common/types";
 import { EmptyObject } from "../../../../../utils/types";
 import { ARC_API_URL, ARC_AUTH_TOKEN } from "../../../../env/env";
+import { CreateArcIIDXClassHandler } from "./class-handler";
 
-export function ParseArcIIDX(
+export async function ParseArcIIDX(
     arcProfileID: string,
     logger: KtLogger,
     fetch = nodeFetch
-): ParserFunctionReturnsAsync<unknown, EmptyObject> {
+): Promise<ParserFunctionReturnsAsync<unknown, EmptyObject>> {
     return {
         iterable: TraverseKaiAPI(
             ARC_API_URL,
@@ -20,7 +21,7 @@ export function ParseArcIIDX(
             fetch
         ),
         context: {},
-        classHandler: null,
+        classHandler: await CreateArcIIDXClassHandler(arcProfileID, ARC_AUTH_TOKEN),
         game: "iidx",
     };
 }

@@ -924,21 +924,21 @@ export interface JudgementLookup {
     "gitadora:Dora": GitadoraJudges;
 }
 export interface GameSpecificCalcLookup {
-    "iidx:SP": "BPI" | "K%";
-    "iidx:DP": "BPI";
+    "iidx:SP": "BPI" | "K%" | "ktRating";
+    "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
     "popn:9B": never;
     "sdvx:Single": "VF4" | "VF5";
     "usc:Single": "VF4" | "VF5";
-    "ddr:SP": "MFCP";
-    "ddr:DP": "MFCP";
-    "maimai:Single": never;
-    "jubeat:Single": never;
-    "museca:Single": never;
-    "bms:7K": never;
-    "bms:14K": never;
-    "chunithm:Single": never;
-    "gitadora:Gita": never;
-    "gitadora:Dora": never;
+    "ddr:SP": "MFCP" | "ktRating";
+    "ddr:DP": "MFCP" | "ktRating";
+    "maimai:Single": "ktRating";
+    "jubeat:Single": "jubility";
+    "museca:Single": "ktRating";
+    "bms:7K": "ktLampRating";
+    "bms:14K": "ktLampRating";
+    "chunithm:Single": "rating";
+    "gitadora:Gita": "skill";
+    "gitadora:Dora": "skill";
 }
 export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
     service: string;
@@ -957,11 +957,7 @@ export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBD
         hitMeta: Partial<HitMetaLookup[I]>;
     };
     scoreMeta: Partial<ScoreMetaLookup[I]>;
-    calculatedData: {
-        rating: number;
-        lampRating: number;
-        gameSpecific: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
-    };
+    calculatedData: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
     timeAchieved: integer | null;
     songID: integer;
     chartID: string;

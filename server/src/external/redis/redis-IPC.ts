@@ -61,15 +61,19 @@ SubClient.on("message", (channel, strData) => {
 });
 
 // Awful...
+// Function is near-impossible to test.
+/* istanbul ignore next */
 export function CloseRedisPubSub() {
     return new Promise<void>((resolve, reject) => {
         PubClient.quit((err) => {
             if (err) {
+                logger.crit(`PubClient QUIT error: ${err}`, { err });
                 reject(err);
             }
 
             SubClient.quit((err) => {
                 if (err) {
+                    logger.crit(`SubClient QUIT error: ${err}`, { err });
                     reject(err);
                 }
 

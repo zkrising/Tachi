@@ -2,7 +2,7 @@ import t from "tap";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 import ResetDBState from "../../../../../test-utils/reset-db-state";
 import CreateLogCtx from "../../../../logger/logger";
-import { FerStaticClassHandler } from "./class-handler";
+import { CreateFerStaticClassHandler } from "./class-handler";
 
 const logger = CreateLogCtx(__filename);
 
@@ -10,7 +10,7 @@ t.test("#FerStaticClassHandler", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should curry a function", (t) => {
-        const res = FerStaticClassHandler({ sp_dan: 1 });
+        const res = CreateFerStaticClassHandler({ sp_dan: 1 });
 
         t.equal(typeof res, "function");
 
@@ -18,7 +18,7 @@ t.test("#FerStaticClassHandler", (t) => {
     });
 
     t.test("Should work with no dans", (t) => {
-        const res = FerStaticClassHandler({})("iidx", "SP", 1, {}, logger);
+        const res = CreateFerStaticClassHandler({})("iidx", "SP", 1, {}, logger);
 
         t.equal(res, undefined, "Should return nothing.");
 
@@ -26,7 +26,7 @@ t.test("#FerStaticClassHandler", (t) => {
     });
 
     t.test("Should update the same dan as the playtype.", (t) => {
-        const fn = FerStaticClassHandler({ sp_dan: 5, dp_dan: 7 });
+        const fn = CreateFerStaticClassHandler({ sp_dan: 5, dp_dan: 7 });
         const res = fn("iidx", "SP", 1, {}, logger);
 
         t.strictSame(res, { dan: 5 }, "Should return SP dan's value.");
@@ -39,7 +39,7 @@ t.test("#FerStaticClassHandler", (t) => {
     });
 
     t.test("Should skip if dan is invalid.", (t) => {
-        const fn = FerStaticClassHandler({ sp_dan: -1, dp_dan: 100 });
+        const fn = CreateFerStaticClassHandler({ sp_dan: -1, dp_dan: 100 });
         const res = fn("iidx", "SP", 1, {}, logger);
 
         t.equal(res, undefined, "Should skip SP dan's value.");
@@ -52,7 +52,7 @@ t.test("#FerStaticClassHandler", (t) => {
     });
 
     t.test("Should skip if playtype is invalid", (t) => {
-        const fn = FerStaticClassHandler({ sp_dan: 5, dp_dan: 7 });
+        const fn = CreateFerStaticClassHandler({ sp_dan: 5, dp_dan: 7 });
         const res = fn("iidx", "INVALID" as any, 1, {}, logger);
 
         t.equal(res, undefined, "Should skip over as a failsafe.");

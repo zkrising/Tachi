@@ -46,3 +46,15 @@ export function SplitAuthorizationHeader(authHeader: string) {
 
     return { type: parts[0], token: parts.slice(1).join(" ") };
 }
+
+/**
+ * Utility Type Predicate.
+ * Determines whether a key is an ownProperty on an object.
+ *
+ * @returns True if the object contains that key, and changes the type of
+ * key to keyof T.
+ * False if the object doesn't.
+ */
+export function HasOwnProperty<T>(obj: T, key: string | number | symbol): key is keyof T {
+    return Object.prototype.hasOwnProperty.call(obj, key);
+}

@@ -15,7 +15,11 @@ const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 
-const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware("scoreData", logger);
+const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware(
+    "scoreData",
+    SIXTEEN_MEGABTYES,
+    logger
+);
 
 /**
  * Import scores from a file. Expects the post request to be multipart, and to provide a scoreData file.
@@ -69,6 +73,7 @@ import ParseBatchManual from "../../../../../lib/score-import/import-types/file/
 import { ParseSolidStateXML } from "../../../../../lib/score-import/import-types/file/solid-state-squad/parser";
 import { ParseMerIIDX } from "../../../../../lib/score-import/import-types/file/mer-iidx/parser";
 import ParsePLIIIDXCSV from "../../../../../lib/score-import/import-types/file/pli-iidx-csv/parser";
+import { SIXTEEN_MEGABTYES } from "../../../../../lib/constants/filesize";
 
 /**
  * Resolves the data from a file upload into an iterable,

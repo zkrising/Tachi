@@ -4,55 +4,9 @@ import { GetPBOnChart, GetServerRecordOnChart } from "../../../../utils/scores";
 import { MStoS } from "../../../../utils/misc";
 import { USCIR_ADJACENT_SCORE_N } from "../../../../lib/constants/usc-ir";
 import db from "../../../../external/mongo/db";
+import { USCServerScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
-
-export interface USCServerScore {
-    score: integer;
-    lamp: 0 | 1 | 2 | 3 | 4 | 5;
-    timestamp: integer;
-    crit: integer;
-    near: integer;
-    error: integer;
-    ranking: integer;
-    gaugeMod: "NORMAL" | "HARD";
-    noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN";
-    username: string;
-}
-
-export interface USCClientScore {
-    score: integer;
-    gauge: number;
-    timestamp: integer;
-    crit: integer;
-    near: integer;
-    error: integer;
-    options: {
-        gaugeType: 0 | 1;
-        gaugeOpt: integer;
-        mirror: boolean;
-        random: boolean;
-        autoFlags: integer; //???
-    };
-    windows: {
-        perfect: number;
-        good: number;
-        hold: number;
-        miss: number;
-        slam: number;
-    };
-}
-
-export interface USCClientChart {
-    chartHash: string;
-    artist: string;
-    title: string;
-    level: integer;
-    difficulty: 0 | 1 | 2 | 3;
-    effector: string;
-    illustrator: string;
-    bpm: string;
-}
 
 export const KT_LAMP_TO_USC: Record<
     PBScoreDocument<"usc:Single">["scoreData"]["lamp"],
@@ -232,7 +186,7 @@ export async function CreatePOSTScoresResponseBody(
         serverRecord,
         isServerRecord: scorePB.userID === ktServerRecord?.userID,
         isPB: scorePB.composedFrom.scorePB === scoreID,
-        sendReplay: originalScore.scoreMeta.replayID!,
+        sendReplay: originalScore.scoreID,
         adjacentAbove,
         adjacentBelow,
     };

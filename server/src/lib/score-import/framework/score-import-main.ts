@@ -18,10 +18,10 @@ import { UpdateUsersGamePlaytypeStats } from "./user-game-stats/update-ugs";
 import db from "../../../external/mongo/db";
 import { GetAndUpdateUsersGoals } from "./goals/goals";
 import { UpdateUsersMilestones } from "./milestones/milestones";
-import { ClassHandler } from "./user-game-stats/classes";
 import { ConverterFunction, ImportInputParser } from "../import-types/common/types";
 import { ScorePlaytypeMap } from "./common/types";
 import { Converters } from "../import-types/converters";
+import { ClassHandler } from "./user-game-stats/types";
 
 /**
  * Performs a Kamaitachi Score Import.

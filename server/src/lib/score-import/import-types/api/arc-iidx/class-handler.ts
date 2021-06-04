@@ -2,7 +2,7 @@ import nodeFetch from "../../../../../utils/fetch";
 import { HasOwnProperty } from "../../../../../utils/misc";
 import { IIDXClasses } from "../../../../constants/classes";
 import { ARC_API_URL } from "../../../../env/env";
-import { ClassHandler } from "../../../framework/user-game-stats/classes";
+import { ClassHandler } from "../../../framework/user-game-stats/types";
 
 export async function CreateArcIIDXClassHandler(
     profileID: string,

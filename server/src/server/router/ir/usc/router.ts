@@ -329,7 +329,7 @@ router.post(
         const correspondingScore = await db.scores.findOne({
             userID: req[SYMBOL_KtchiData]!.uscAuthDoc!.userID,
             game: "usc",
-            "scoreMeta.replayID": req.body.identifier,
+            scoreID: req.body.identifier,
         });
 
         if (!correspondingScore) {
@@ -340,7 +340,7 @@ router.post(
         }
 
         try {
-            await StoreCDN(`/uscir/replays/${req.body.identifier}`, req.file.buffer);
+            await StoreCDN(`/uscir/replays/${correspondingScore.scoreID}`, req.file.buffer);
 
             return res.status(200).json({
                 statusCode: STATUS_CODES.SUCCESS,

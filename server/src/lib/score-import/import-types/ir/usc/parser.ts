@@ -2,7 +2,7 @@ import { KtLogger } from "../../../../logger/logger";
 import { ChartDocument } from "kamaitachi-common";
 import p, { PrudenceSchema } from "prudence";
 import { FormatPrError } from "../../../../../utils/prudence";
-import { USCClientScore } from "../../../../../server/router/ir/usc/usc";
+import { USCClientScore } from "../../../../../server/router/ir/usc/types";
 import { IRUSCContext } from "./types";
 import { ConverterIRUSC } from "./converter";
 import { ParserFunctionReturnsSync } from "../../common/types";

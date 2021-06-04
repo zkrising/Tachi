@@ -5,8 +5,9 @@
 import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "kamaitachi-common";
 import db from "../../../../external/mongo/db";
 import { KtLogger } from "../../../logger/logger";
-import { CalculateClassDeltas, UpdateUGSClasses, ClassHandler } from "./classes";
+import { CalculateClassDeltas, UpdateUGSClasses } from "./classes";
 import { CalculateRatings } from "./rating";
+import { ClassHandler } from "./types";
 
 export async function UpdateUsersGamePlaytypeStats(
     game: Game,

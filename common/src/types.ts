@@ -1134,7 +1134,7 @@ export interface JudgementLookup {
 export interface GameSpecificCalcLookup {
     "iidx:SP": "BPI" | "K%" | "ktRating" | "ktLampRating";
     "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
-    "popn:9B": never;
+    "popn:9B": never; // @todo
     "sdvx:Single": "VF6";
     "usc:Single": "VF6";
     "ddr:SP": "MFCP" | "ktRating";
@@ -1213,11 +1213,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
         hitData: Partial<Record<JudgementLookup[I], integer | null>>;
         hitMeta: Partial<HitMetaLookup[I]>;
     };
-    calculatedData: {
-        rating: number;
-        lampRating: number;
-        gameSpecific: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
-    };
+    calculatedData: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
 }
 
 export type FileUploadImportTypes =

@@ -1002,11 +1002,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
         hitData: Partial<Record<JudgementLookup[I], integer | null>>;
         hitMeta: Partial<HitMetaLookup[I]>;
     };
-    calculatedData: {
-        rating: number;
-        lampRating: number;
-        gameSpecific: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
-    };
+    calculatedData: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
 }
 export declare type FileUploadImportTypes = "file/eamusement-iidx-csv" | "file/batch-manual" | "file/solid-state-squad" | "file/mer-iidx" | "file/pli-iidx-csv";
 export declare type APIImportTypes = "api/flo-iidx" | "api/flo-sdvx" | "api/eag-iidx" | "api/eag-sdvx" | "api/arc-iidx" | "api/arc-sdvx" | "api/arc-ddr";

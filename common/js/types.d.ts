@@ -361,7 +361,24 @@ interface SessionScoreNewInfo {
     isNewScore: true;
 }
 export declare type SessionScoreInfo = SessionScorePBInfo | SessionScoreNewInfo;
-export interface SessionDocument extends MongoDBDocument {
+interface SessionCalculatedDataLookup {
+    "iidx:SP": "BPI" | "ktRating" | "ktLampRating";
+    "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
+    "popn:9B": never;
+    "sdvx:Single": "VF6" | "ProfileVF6";
+    "usc:Single": "VF6" | "ProfileVF6";
+    "ddr:SP": "MFCP" | "ktRating";
+    "ddr:DP": "MFCP" | "ktRating";
+    "maimai:Single": "ktRating";
+    "jubeat:Single": "jubility";
+    "museca:Single": "ktRating";
+    "bms:7K": "ktLampRating";
+    "bms:14K": "ktLampRating";
+    "chunithm:Single": "rating";
+    "gitadora:Gita": "skill";
+    "gitadora:Dora": "skill";
+}
+export interface SessionDocument<I extends IDStrings> extends MongoDBDocument {
     userID: integer;
     sessionID: string;
     scoreInfo: SessionScoreInfo[];
@@ -373,11 +390,7 @@ export interface SessionDocument extends MongoDBDocument {
     timeInserted: integer;
     timeEnded: integer;
     timeStarted: integer;
-    calculatedData: {
-        lampPerf: number | null;
-        scorePerf: number | null;
-        perf: number | null;
-    };
+    calculatedData: Partial<Record<SessionCalculatedDataLookup[I], number | null>>;
     highlight: boolean;
 }
 export interface SessionViewDocument extends MongoDBDocument {
@@ -561,7 +574,7 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
     playtype: IDStringToPlaytype[I];
     rating: number;
     lampRating: number;
-    customRatings: Partial<Record<GameSpecificCalcLookup[I], number>>;
+    customRatings: Partial<Record<ScoreCalculatedDataLookup[I], number>>;
     classes: Partial<GameClasses<I>>;
 }
 /**
@@ -923,7 +936,7 @@ export interface JudgementLookup {
     "gitadora:Gita": GitadoraJudges;
     "gitadora:Dora": GitadoraJudges;
 }
-export interface GameSpecificCalcLookup {
+export interface ScoreCalculatedDataLookup {
     "iidx:SP": "BPI" | "K%" | "ktRating" | "ktLampRating";
     "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
     "popn:9B": never;
@@ -957,7 +970,7 @@ export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBD
         hitMeta: Partial<HitMetaLookup[I]>;
     };
     scoreMeta: Partial<ScoreMetaLookup[I]>;
-    calculatedData: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
+    calculatedData: Partial<Record<ScoreCalculatedDataLookup[I], number | null>>;
     timeAchieved: integer | null;
     songID: integer;
     chartID: string;
@@ -1002,7 +1015,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
         hitData: Partial<Record<JudgementLookup[I], integer | null>>;
         hitMeta: Partial<HitMetaLookup[I]>;
     };
-    calculatedData: Partial<Record<GameSpecificCalcLookup[I], number | null>>;
+    calculatedData: Partial<Record<ScoreCalculatedDataLookup[I], number | null>>;
 }
 export declare type FileUploadImportTypes = "file/eamusement-iidx-csv" | "file/batch-manual" | "file/solid-state-squad" | "file/mer-iidx" | "file/pli-iidx-csv";
 export declare type APIImportTypes = "api/flo-iidx" | "api/flo-sdvx" | "api/eag-iidx" | "api/eag-sdvx" | "api/arc-iidx" | "api/arc-sdvx" | "api/arc-ddr";

@@ -860,7 +860,6 @@ interface ScoreMetaLookup {
     "usc:Single": {
         noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN";
         gaugeMod: "NORMAL" | "HARD";
-        replayID: string;
     };
     "ddr:SP": Record<string, never>;
     "ddr:DP": Record<string, never>;

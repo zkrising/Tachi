@@ -924,7 +924,7 @@ export interface JudgementLookup {
     "gitadora:Dora": GitadoraJudges;
 }
 export interface GameSpecificCalcLookup {
-    "iidx:SP": "BPI" | "K%" | "ktRating";
+    "iidx:SP": "BPI" | "K%" | "ktRating" | "ktLampRating";
     "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
     "popn:9B": never;
     "sdvx:Single": "VF4" | "VF5";

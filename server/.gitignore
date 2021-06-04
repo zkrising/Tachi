@@ -7,6 +7,7 @@ logs
 coverage
 .env
 .setup_env
+failed-tests.txt
 
 scripts/arc-db-sync/charts.json
 scripts/arc-db-sync/songs.json

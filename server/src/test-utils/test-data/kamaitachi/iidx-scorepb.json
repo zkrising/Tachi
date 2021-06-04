@@ -2,13 +2,10 @@
     "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
     "userID": 1,
     "calculatedData": {
-        "rating": 0,
-        "lampRating": 0,
-        "gameSpecific": {
-            "BPI": 10.10,
-            "KESDC": 9.558413110870934,
-            "K%": null
-        }
+        "ktRating": 0,
+        "ktLampRating": 0,
+        "BPI": 10.10,
+        "K%": null
     },
     "comments": [],
     "composedFrom": {

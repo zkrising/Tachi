@@ -1,4 +1,4 @@
-import Pr from "prudence";
+import p from "prudence";
 import t from "tap";
 import db from "../../../../external/mongo/db";
 import CreateLogCtx from "../../../logger/logger";
@@ -8,28 +8,25 @@ import {
     TestingDoraChart,
     TestingGITADORADoraDryScore,
     TestingIIDXSPDryScore,
+    TestingSDVXSingleDryScore,
 } from "../../../../test-utils/test-data";
-import { CreateCalculatedData, CalculateLampRating, CalculateRating } from "./calculated-data";
+import { CreateCalculatedData, CalculateDataForGamePT } from "./calculated-data";
 import deepmerge from "deepmerge";
 import ResetDBState from "../../../../test-utils/reset-db-state";
-import { GetDefaultTierlist } from "../../../../utils/tierlist";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
-const mockLogger = CreateLogCtx(__filename);
+const logger = CreateLogCtx(__filename);
 
 t.test("#CreateCalculatedData", async (t) => {
-    const res = await CreateCalculatedData(TestingIIDXSPDryScore, Testing511SPA, 30, mockLogger);
+    const res = await CreateCalculatedData(TestingIIDXSPDryScore, Testing511SPA, 30, logger);
 
     prAssert(
         res,
         {
-            rating: Pr.aprx(2.65),
-            lampRating: Pr.equalTo(10),
-            gameSpecific: {
-                BPI: "?number",
-                KESDC: "?number",
-                "K%": "?number",
-            },
+            ktRating: p.aprx(2.65),
+            ktLampRating: p.equalTo(10),
+            BPI: "?number",
+            "K%": "?number",
         },
         "Should correctly produce calculatedData"
     );
@@ -38,15 +35,13 @@ t.test("#CreateCalculatedData", async (t) => {
         TestingGITADORADoraDryScore,
         TestingDoraChart,
         30,
-        mockLogger
+        logger
     );
 
     prAssert(
         gitadoraRes,
         {
-            rating: Pr.isPositiveNonZero,
-            lampRating: Pr.equalTo(1.6),
-            gameSpecific: {},
+            skill: p.isPositiveNonZero,
         },
         "Should correctly call rating function overrides for different games"
     );
@@ -54,238 +49,338 @@ t.test("#CreateCalculatedData", async (t) => {
     t.end();
 });
 
-t.test("#CalculateRating", (t) => {
-    t.test("Should call the success calculator if percent > pivotPercent", async (t) => {
-        const r = await CalculateRating(
-            deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 80 } }),
+/**
+ * These tests only check that the right properties are assigned.
+ */
+t.test("#CalculateDataForGamePT", (t) => {
+    const defaultTierlistID = undefined;
+    t.test("IIDX:SP", async (t) => {
+        const res = await CalculateDataForGamePT(
             "iidx",
             "SP",
             Testing511SPA,
-            mockLogger
-        );
-
-        t.ok(r > 10, "Should return rating greater than the levelNum of the chart.");
-
-        t.end();
-    });
-
-    t.test("Should call the fail calculator if percent > pivotPercent", async (t) => {
-        const r = await CalculateRating(
             TestingIIDXSPDryScore,
-            "iidx",
-            "SP",
-            Testing511SPA,
-            mockLogger
+            30,
+            defaultTierlistID,
+            logger
         );
 
-        t.ok(r < 10, "Should return rating less than the levelNum of the chart.");
-
-        t.end();
-    });
-
-    t.test("Should call levelNum if percent === pivotPercent", async (t) => {
-        const r = await CalculateRating(
-            deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 77.7777 } }),
-            "iidx",
-            "SP",
-            Testing511SPA,
-            mockLogger
-        );
-
-        t.equal(
-            // hack for approximate tests
-            parseFloat(r.toFixed(2)),
-            10,
-            "Should return rating exactly that of the levelNum of the chart."
-        );
-
-        t.end();
-    });
-
-    t.test(
-        "Should trigger safety if completely invalid percent somehow gets through",
-        async (t) => {
-            let r = await CalculateRating(
-                deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 1000000000 } }),
-                "iidx",
-                "SP",
-                Testing511SPA,
-                mockLogger
-            );
-
-            t.equal(r, 0, "Should safely return 0 and log a warning.");
-
-            r = await CalculateRating(
-                // not high enough to be non-finite but high enough to be > 1000
-                deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 200 } }),
-                "iidx",
-                "SP",
-                Testing511SPA,
-                mockLogger
-            );
-
-            t.equal(r, 0, "Should safely return 0 and log a warning.");
-
-            t.end();
-        }
-    );
-
-    t.end();
-});
-
-t.test("#CalculateLampRating", async (t) => {
-    t.beforeEach(ResetDBState);
-
-    const defaultTierlist = {
-        createdAt: 1620150338858,
-        tierlistID: "ee9b756e50cff8282091102257b01f423ef855f2",
-        createdBy: 1,
-        description: "The official Kamaitachi Tierlist for beatmania IIDX (SP).",
-        game: "iidx",
-        playtype: "SP",
-        isDefault: true,
-        name: "Kamaitachi IIDX SP Official",
-        lastUpdated: 1620150338858,
-        permissions: {
-            anyPlayer: {
-                edit: 0,
-                submit: 1,
-                vote: 1,
+        prAssert(
+            res,
+            {
+                ktRating: "?number",
+                ktLampRating: "?number",
+                BPI: "?number",
+                "K%": "?number",
             },
-        },
-        config: {
-            autoHumanise: false,
-            flags: ["Individual Difference"],
-            requireState: "clear",
-        },
-    };
-
-    t.test("TierlistData", async (t) => {
-        const lampRating = await CalculateLampRating(
-            TestingIIDXSPDryScore,
-            "iidx",
-            "SP",
-            Testing511SPA,
-            defaultTierlist!.tierlistID
+            "Response should contain keys for IIDX:SP"
         );
-
-        t.equal(lampRating, 10, "Should equal the levelNum of the chart.");
-
-        const lampRatingFail = await CalculateLampRating(
-            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "FAILED" } }),
-            "iidx",
-            "SP",
-            Testing511SPA,
-            defaultTierlist!.tierlistID
-        );
-
-        t.equal(lampRatingFail, 0, "Should equal 0, if the score is not a clear.");
-
-        const lampRatingHC = await CalculateLampRating(
-            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "HARD CLEAR" } }),
-            "iidx",
-            "SP",
-            Testing511SPA,
-            defaultTierlist!.tierlistID
-        );
-
-        t.equal(lampRatingHC, 10.6, "Should equal the tierlist value for HC on this chart.");
-
-        const lampRatingEXHC = await CalculateLampRating(
-            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "EX HARD CLEAR" } }),
-            "iidx",
-            "SP",
-            Testing511SPA,
-            defaultTierlist!.tierlistID
-        );
-
-        // deliberate - there is no EXHC data here
-        t.equal(lampRatingEXHC, 10.6, "Should equal the tierlist value for HC on this chart.");
 
         t.end();
     });
 
-    t.test("TierlistData edge cases", async (t) => {
-        // mock document that implies 5.1.1. SPA is worth 11.9 to NC and 10.6 to HC.
-        await db["tierlist-data"].insert({
-            chartID: Testing511SPA.chartID,
-            type: "lamp",
-            key: "CLEAR",
-            tierlistDataID: "asdf",
-            tierlistID: defaultTierlist!.tierlistID,
-            data: {
-                flags: {},
-                humanised: "a",
-                value: 11.9,
+    t.test("IIDX:DP", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "iidx",
+            "DP",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an SP score. but we're testing
+            30,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(
+            res,
+            {
+                ktRating: "?number",
+                ktLampRating: "?number",
+                BPI: "?number",
             },
-        });
-
-        const lampRating = await CalculateLampRating(
-            TestingIIDXSPDryScore,
-            "iidx",
-            "SP",
-            Testing511SPA,
-            defaultTierlist!.tierlistID
+            "Response should contain keys for IIDX:DP"
         );
-
-        t.equal(lampRating, 11.9, "Should equal the NC value of the chart.");
-
-        const lampRatingFail = await CalculateLampRating(
-            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "FAILED" } }),
-            "iidx",
-            "SP",
-            Testing511SPA,
-            defaultTierlist!.tierlistID
-        );
-
-        t.equal(lampRatingFail, 0, "Should equal 0, if the score is not a clear.");
-
-        const lampRatingHC = await CalculateLampRating(
-            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "HARD CLEAR" } }),
-            "iidx",
-            "SP",
-            Testing511SPA,
-            defaultTierlist!.tierlistID
-        );
-
-        t.equal(
-            lampRatingHC,
-            11.9,
-            "Should equal the tierlist value for NC, as it is higher than HC on this chart."
-        );
-
-        const lampRatingEXHC = await CalculateLampRating(
-            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "EX HARD CLEAR" } }),
-            "iidx",
-            "SP",
-            Testing511SPA,
-            defaultTierlist!.tierlistID
-        );
-
-        t.equal(lampRatingEXHC, 11.9, "Should equal the tierlist value for NC on this chart.");
 
         t.end();
     });
 
-    t.test("No TierlistData", async (t) => {
-        await db["tierlist-data"].remove({});
-        const lampRating = await CalculateLampRating(
-            TestingIIDXSPDryScore,
-            "iidx",
-            "SP",
-            Testing511SPA
+    t.test("SDVX:Single", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "sdvx",
+            "Single",
+            Testing511SPA,
+            TestingSDVXSingleDryScore,
+            null,
+            defaultTierlistID,
+            logger
         );
 
-        t.equal(lampRating, 10, "Should equal the levelNum of the chart.");
-
-        const lampRatingFail = await CalculateLampRating(
-            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "FAILED" } }),
-            "iidx",
-            "SP",
-            Testing511SPA
+        prAssert(
+            res,
+            {
+                VF6: p.nullable(p.isPositive),
+            },
+            "Response should contain keys for SDVX:Single"
         );
 
-        t.equal(lampRatingFail, 0, "Should equal 0, if the score is not a clear.");
+        t.end();
+    });
+
+    t.test("DDR:SP", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "ddr",
+            "SP",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(
+            res,
+            {
+                MFCP: p.nullable(p.isPositiveInteger),
+                ktRating: "?number",
+            },
+            "Response should contain keys for DDR:SP"
+        );
+
+        t.end();
+    });
+
+    t.test("DDR:DP", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "ddr",
+            "DP",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(
+            res,
+            {
+                MFCP: "null",
+                ktRating: "?number",
+            },
+            "Response should contain nulled keys for DDR:DP"
+        );
+
+        t.end();
+    });
+
+    t.test("chunithm:Single", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "chunithm",
+            "Single",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(
+            res,
+            {
+                rating: "?number",
+            },
+            "Response should contain nulled keys for chunithm:Single"
+        );
+
+        t.end();
+    });
+
+    t.test("maimai:Single", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "maimai",
+            "Single",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(
+            res,
+            {
+                ktRating: "?number",
+            },
+            "Response should contain nulled keys for maimai:Single"
+        );
+
+        t.end();
+    });
+
+    t.test("museca:Single", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "museca",
+            "Single",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(
+            res,
+            {
+                ktRating: "?number",
+            },
+            "Response should contain nulled keys for museca:Single"
+        );
+
+        t.end();
+    });
+
+    t.test("bms:7K", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "bms",
+            "7K",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(
+            res,
+            {
+                ktLampRating: "?number",
+            },
+            "Response should contain nulled keys for bms:7K"
+        );
+
+        t.end();
+    });
+
+    t.test("bms:14K", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "bms",
+            "14K",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(
+            res,
+            {
+                ktLampRating: "?number",
+            },
+            "Response should contain nulled keys for bms:14K"
+        );
+
+        t.end();
+    });
+
+    t.test("gitadora:Gita", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "gitadora",
+            "Gita",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(
+            res,
+            {
+                skill: "?number",
+            },
+            "Response should contain nulled keys for gitadora:Gita"
+        );
+
+        t.end();
+    });
+
+    t.test("gitadora:Dora", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "gitadora",
+            "Dora",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(
+            res,
+            {
+                skill: "?number",
+            },
+            "Response should contain nulled keys for gitadora:Dora"
+        );
+
+        t.end();
+    });
+
+    t.test("usc:Single", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "usc",
+            "Single",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(
+            res,
+            {
+                VF6: "?number",
+            },
+            "Response should contain nulled keys for usc:Single"
+        );
+
+        t.end();
+    });
+
+    t.test("jubeat:Single", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "jubeat",
+            "Single",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(
+            res,
+            {
+                jubility: "?number",
+            },
+            "Response should contain nulled keys for jubeat:Single"
+        );
+
+        t.end();
+    });
+
+    t.test("popn:9B", async (t) => {
+        const res = await CalculateDataForGamePT(
+            "popn",
+            "9B",
+            Testing511SPA,
+            TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+            null,
+            defaultTierlistID,
+            logger
+        );
+
+        prAssert(res, {}, "Response should contain nulled keys for popn:9B");
 
         t.end();
     });

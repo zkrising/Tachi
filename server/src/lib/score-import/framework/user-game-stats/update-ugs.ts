@@ -6,7 +6,7 @@ import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "kamaitachi-
 import db from "../../../../external/mongo/db";
 import { KtLogger } from "../../../logger/logger";
 import { CalculateClassDeltas, UpdateUGSClasses, ClassHandler } from "./classes";
-import { CalculateRatings, CalculateCustomRatings } from "./rating";
+import { CalculateRatings } from "./rating";
 
 export async function UpdateUsersGamePlaytypeStats(
     game: Game,
@@ -15,8 +15,7 @@ export async function UpdateUsersGamePlaytypeStats(
     classHandler: ClassHandler | null,
     logger: KtLogger
 ): Promise<ClassDelta[]> {
-    const { rating, lampRating } = await CalculateRatings(game, playtype, userID, logger);
-    const customRatings = await CalculateCustomRatings(game, playtype, userID, logger);
+    const ratings = await CalculateRatings(game, playtype, userID, logger);
 
     // Attempt to find a users game stats if one already exists. If one doesn't exist,
     // this is this players first import for this game!
@@ -28,14 +27,7 @@ export async function UpdateUsersGamePlaytypeStats(
 
     logger.debug(`Calculating UGSClasses...`);
 
-    const classes = await UpdateUGSClasses(
-        game,
-        playtype,
-        userID,
-        customRatings,
-        classHandler,
-        logger
-    );
+    const classes = await UpdateUGSClasses(game, playtype, userID, ratings, classHandler, logger);
 
     logger.debug(`Finished Calculating UGSClasses`);
 
@@ -55,9 +47,7 @@ export async function UpdateUsersGamePlaytypeStats(
             },
             {
                 $set: {
-                    rating,
-                    lampRating,
-                    customRatings,
+                    ratings,
                     classes,
                 },
             }
@@ -67,9 +57,7 @@ export async function UpdateUsersGamePlaytypeStats(
             game,
             playtype,
             userID,
-            rating,
-            lampRating,
-            customRatings,
+            ratings,
             classes,
         };
 

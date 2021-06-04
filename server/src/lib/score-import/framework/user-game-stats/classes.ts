@@ -17,7 +17,7 @@ export interface ClassHandler {
         game: Game,
         playtype: Playtypes[Game],
         userID: integer,
-        customRatings: Record<string, number>,
+        ratings: Record<string, number>,
         logger: KtLogger
     ): Promise<ScoreClasses> | ScoreClasses | undefined;
 }
@@ -74,7 +74,7 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
  * The custom function allows us to request that data from a custom endpoint, and merge it with things we can always
  * calculate.
  *
- * @param customRatings - A users customRatings. This is calculated in rating.ts, and passed via update-ugs.ts.
+ * @param ratings - A users ratings. This is calculated in rating.ts, and passed via update-ugs.ts.
  * We request this because we need it for things like gitadora's skill divisions - We don't need to calculate our skill
  * statistic twice if we just request it be passed to us!
  * @param ImportTypeClassResolveFn - The Custom Resolve Function that certain import types may pass to us as a means
@@ -85,7 +85,7 @@ export async function UpdateUGSClasses(
     game: Game,
     playtype: Playtypes[Game],
     userID: integer,
-    customRatings: Record<string, number>,
+    ratings: Record<string, number>,
     ClassHandler: ClassHandler | null,
     logger: KtLogger
 ): Promise<ScoreClasses> {
@@ -98,15 +98,14 @@ export async function UpdateUGSClasses(
             game,
             playtype,
             userID,
-            customRatings,
+            ratings,
             logger
         );
     }
 
     if (ClassHandler) {
         logger.debug(`Calling custom class handler.`);
-        const customClasses =
-            (await ClassHandler(game, playtype, userID, customRatings, logger)) ?? {};
+        const customClasses = (await ClassHandler(game, playtype, userID, ratings, logger)) ?? {};
 
         classes = deepmerge(customClasses, classes);
     }

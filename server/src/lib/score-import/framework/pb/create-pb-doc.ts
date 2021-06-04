@@ -107,6 +107,7 @@ async function MergeScoreLampIntoPB(
     lampPB: ScoreDocument,
     logger: KtLogger
 ): Promise<PBScoreDocumentNoRank | void> {
+    // @hack
     // since time cannot be negative, this is a rough hack
     // to resolve nullable timeAchieveds without hitting NaN.
     let timeAchieved: number | null = Math.max(
@@ -143,11 +144,7 @@ async function MergeScoreLampIntoPB(
             hitData: scorePB.scoreData.hitData,
             hitMeta: scorePB.scoreData.hitMeta, // this will probably be overrode by game-specific fns
         },
-        calculatedData: {
-            rating: scorePB.calculatedData.rating,
-            lampRating: lampPB.calculatedData.lampRating,
-            gameSpecific: scorePB.calculatedData.gameSpecific,
-        },
+        calculatedData: scorePB.calculatedData,
     };
 
     const GameSpecificMergeFn = GAME_SPECIFIC_MERGE_FNS[scorePB.game];

@@ -2,7 +2,7 @@ import { PBScoreDocument, ScoreDocument } from "kamaitachi-common";
 import { FindChartWithChartID } from "../../../../utils/queries/charts";
 import db from "../../../../external/mongo/db";
 import { KtLogger } from "../../../logger/logger";
-import { CalculateVF4, CalculateVF5 } from "../calculated-data/game-specific-stats";
+import { CalculateVF6 } from "../calculated-data/stats";
 import { InternalFailure } from "../common/converter-failures";
 
 export async function IIDXMergeFn(
@@ -11,6 +11,9 @@ export async function IIDXMergeFn(
     lampPB: ScoreDocument<"iidx:SP" | "iidx:DP">,
     logger: KtLogger
 ): Promise<boolean> {
+    // lampRating needs to be updated.
+    pbDoc.calculatedData.ktLampRating = lampPB.calculatedData.ktLampRating;
+
     // bad+poor PB document. This is a weird, third indepdenent metric that IIDX players sometimes care about.
     const bpPB = (await db.scores.findOne(
         {
@@ -44,7 +47,7 @@ export async function IIDXMergeFn(
         return true;
     }
 
-    pbDoc.scoreData.hitMeta.bp = bpPB.scoreData.hitMeta.bp;
+    pbDoc.scoreData.hitMeta.bp = bpPB.scoreData.hitMeta.bp!;
 
     pbDoc.composedFrom.other = [{ name: "Best BP", scoreID: bpPB.scoreID }];
 
@@ -78,14 +81,7 @@ export async function SDVXMergeFn(
         throw new InternalFailure(`Chart ${pbDoc.chartID} disappeared underfoot?`);
     }
 
-    pbDoc.calculatedData.gameSpecific.VF4 = CalculateVF4(
-        pbDoc.scoreData.grade,
-        pbDoc.scoreData.percent,
-        chart.levelNum,
-        logger
-    );
-
-    pbDoc.calculatedData.gameSpecific.VF4 = CalculateVF5(
+    pbDoc.calculatedData.VF6 = CalculateVF6(
         pbDoc.scoreData.grade,
         pbDoc.scoreData.lamp,
         pbDoc.scoreData.percent,

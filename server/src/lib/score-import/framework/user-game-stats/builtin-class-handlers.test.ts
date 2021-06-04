@@ -5,7 +5,7 @@ import {
     CalculateGitadoraColour,
     GitadoraSkillToColour,
     CalculateSDVXClass,
-    SDVXVF5ToClass,
+    SDVXVF6ToClass,
 } from "./builtin-class-handlers";
 
 const logger = CreateLogCtx(__filename);
@@ -46,16 +46,16 @@ t.test("#GitadoraSkillToColour", (t) => {
 });
 
 t.test("#CalculateSDVXClass", (t) => {
-    t.strictSame(CalculateSDVXClass("sdvx", "Single", 1, { VF5: 10 }, logger), {
+    t.strictSame(CalculateSDVXClass("sdvx", "Single", 1, { VF6: 10 }, logger), {
         vfClass: SDVXVFClasses.COBALT_I,
     });
 
     t.end();
 });
 
-t.test("#SDVXVF5ToClass", (t) => {
+t.test("#SDVXVF6ToClass", (t) => {
     function f(vf: number) {
-        return SDVXVF5ToClass(vf, logger);
+        return SDVXVF6ToClass(vf, logger);
     }
 
     t.equal(f(0), SDVXVFClasses.SIENNA_I);

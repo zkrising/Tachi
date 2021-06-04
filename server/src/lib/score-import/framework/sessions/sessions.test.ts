@@ -60,11 +60,7 @@ t.test("#CreateSessions", (t) => {
             // timeInserted: 1622289329729,
             timeStarted: 1619454485988,
             timeEnded: 1619454485988,
-            calculatedData: {
-                scorePerf: null,
-                lampPerf: null,
-                perf: null,
-            },
+            calculatedData: {},
         });
 
         t.end();

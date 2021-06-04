@@ -29,9 +29,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                 game: "iidx",
                 playtype: "SP",
                 userID: 1,
-                rating: 0,
-                lampRating: 0,
-                customRatings: { BPI: 0 },
+                ratings: { ktRating: 0, ktLampRating: 0 },
                 classes: {},
             },
             "Should insert an appropriate game-stats object"
@@ -45,11 +43,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
             game: "iidx",
             playtype: "SP",
             userID: 1,
-            rating: 0,
-            lampRating: 0,
-            customRatings: {
-                BPI: 0,
-            },
+            ratings: { ktRating: 0, ktLampRating: 0 },
             classes: {},
         });
 
@@ -61,8 +55,8 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                 deepmerge(TestingIIDXSPScorePB, {
                     chartID: crypto.randomBytes(20).toString("hex"),
                     calculatedData: {
-                        rating: e,
-                        lampRating: 0,
+                        ktRating: e,
+                        ktLampRating: 0,
                     },
                 })
             )
@@ -80,11 +74,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                 game: "iidx",
                 playtype: "SP",
                 userID: 1,
-                rating: ratings.reduce((a, r) => a + r, 0) / 20,
-                lampRating: 0,
-                customRatings: {
-                    // BPI: 5 -- 5.04999 but floating point testing lmao
-                },
+                ratings: { ktRating: ratings.reduce((a, r) => a + r, 0) / 20, ktLampRating: 0 },
                 classes: {},
             },
             "Should update the game-stats object"
@@ -98,11 +88,8 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
             game: "iidx",
             playtype: "SP",
             userID: 1,
-            rating: 0,
-            lampRating: 0,
-            customRatings: {
-                BPI: 0,
-            },
+            ratings: { ktRating: 0, ktLampRating: 0 },
+
             classes: {},
         });
 
@@ -135,11 +122,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                 game: "iidx",
                 playtype: "SP",
                 userID: 1,
-                rating: 0,
-                lampRating: 0,
-                customRatings: {
-                    BPI: 0,
-                },
+                ratings: { ktRating: 0, ktLampRating: 0 },
                 classes: {
                     dan: 18,
                 },
@@ -155,11 +138,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
             game: "iidx",
             playtype: "SP",
             userID: 1,
-            rating: 0,
-            lampRating: 0,
-            customRatings: {
-                BPI: 0,
-            },
+            ratings: { ktRating: 0, ktLampRating: 0 },
             classes: {
                 dan: 17,
             },
@@ -194,11 +173,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
                 game: "iidx",
                 playtype: "SP",
                 userID: 1,
-                rating: 0,
-                lampRating: 0,
-                customRatings: {
-                    BPI: 0,
-                },
+                ratings: { ktRating: 0, ktLampRating: 0 },
                 classes: {
                     dan: 18,
                 },

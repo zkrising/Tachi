@@ -49,9 +49,8 @@ t.test("#CreatePBDoc", (t) => {
             hitMeta: { bp: 1 },
         },
         calculatedData: {
-            rating: IIDXScore.calculatedData.rating,
-            lampRating: 12,
-            gameSpecific: {},
+            ktRating: IIDXScore.calculatedData.ktRating,
+            ktLampRating: 12,
         },
     };
 
@@ -72,7 +71,7 @@ t.test("#CreatePBDoc", (t) => {
                         },
                     },
                     calculatedData: {
-                        lampRating: 12,
+                        ktLampRating: 12,
                     },
                     scoreID: "LAMP_PB_ID",
                 }),
@@ -87,7 +86,7 @@ t.test("#CreatePBDoc", (t) => {
                         },
                     },
                     calculatedData: {
-                        lampRating: 10,
+                        ktLampRating: 10,
                     },
                     scoreID: "BP_PB_ID",
                 }),
@@ -131,7 +130,7 @@ t.test("#CreatePBDoc", (t) => {
                 },
             },
             calculatedData: {
-                lampRating: 12,
+                ktLampRating: 12,
             },
             scoreID: "LAMP_PB_ID",
         });

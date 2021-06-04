@@ -15,6 +15,7 @@ const envVars = [
 ];
 
 for (const eVar of envVars) {
+    /* istanbul ignore next */
     if (!process.env[eVar]) {
         throw new Error(`${eVar} was not defined.`);
     }

@@ -13,11 +13,13 @@ import CreateLogCtx, { KtLogger } from "../../../../lib/logger/logger";
 import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./usc";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { GetUserWithID } from "../../../../utils/user";
-
 import { ParseIRUSC } from "../../../../lib/score-import/import-types/ir/usc/parser";
 import { USCIR_MAX_LEADERBOARD_N } from "../../../../lib/constants/usc-ir";
 import { CreateMulterSingleUploadMiddleware } from "../../../middleware/multer-upload";
 import { AssignToReqKtchiData } from "../../../../utils/req-ktchi-data";
+import { StoreCDN } from "../../../../lib/cdn/cdn";
+import { ONE_MEGABYTE } from "../../../../lib/constants/filesize";
+import crypto from "crypto";
 
 const logger = CreateLogCtx(__filename);
 
@@ -313,35 +315,46 @@ router.post("/scores", async (req, res) => {
  * https://uscir.readthedocs.io/en/latest/endpoints/replay-submit.html
  * @name POST /ir/usc/replays
  */
-router.post("/replays", CreateMulterSingleUploadMiddleware("replay"), async (req, res) => {
-    if (typeof req.body.identifier !== "string") {
-        return res.status(200).json({
-            statusCode: STATUS_CODES.BAD_REQ,
-            description: "No Identifier Provided.",
+router.post(
+    "/replays",
+    CreateMulterSingleUploadMiddleware("replay", ONE_MEGABYTE, logger),
+    async (req, res) => {
+        if (typeof req.body.identifier !== "string") {
+            return res.status(200).json({
+                statusCode: STATUS_CODES.BAD_REQ,
+                description: "No Identifier Provided.",
+            });
+        }
+
+        const correspondingScore = await db.scores.findOne({
+            userID: req[SYMBOL_KtchiData]!.uscAuthDoc!.userID,
+            game: "usc",
+            "scoreMeta.replayID": req.body.identifier,
         });
+
+        if (!correspondingScore) {
+            return res.status(200).json({
+                statusCode: STATUS_CODES.NOT_FOUND,
+                description: "No score corresponds to this identifier.",
+            });
+        }
+
+        try {
+            await StoreCDN(`/uscir/replays/${req.body.identifier}`, req.file.buffer);
+
+            return res.status(200).json({
+                statusCode: STATUS_CODES.SUCCESS,
+                description: "Saved replay.",
+                body: null,
+            });
+        } catch (err) {
+            logger.error(`USCIR Replay Store error.`, { err });
+            return res.status(500).json({
+                statusCode: STATUS_CODES.SERVER_ERROR,
+                description: "An error has occured in storing the replay.",
+            });
+        }
     }
-
-    const correspondingScore = await db.scores.findOne({
-        userID: req[SYMBOL_KtchiData]!.uscAuthDoc!.userID,
-        game: "usc",
-        "scoreMeta.replayID": req.body.identifier,
-    });
-
-    if (!correspondingScore) {
-        return res.status(200).json({
-            statusCode: STATUS_CODES.NOT_FOUND,
-            description: "No score corresponds to this identifier.",
-        });
-    }
-
-    // @todo #113 Properly store replays sent with POST /replays.
-    // related to #114
-
-    return res.status(200).json({
-        statusCode: STATUS_CODES.SUCCESS,
-        description: "Saved replay.",
-        body: null,
-    });
-});
+);
 
 export default router;

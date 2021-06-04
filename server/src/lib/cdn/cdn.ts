@@ -19,7 +19,7 @@ function CDNRoot(fileLoc: string) {
 /**
  * Retrieves the data of the file at the given CDN location.
  */
-export function Retrieve(fileLoc: string) {
+export function RetrieveCDN(fileLoc: string) {
     logger.debug(`Retrieving path ${fileLoc}.`);
 
     return readFilePromise(CDNRoot(fileLoc));
@@ -32,8 +32,9 @@ const WRITE_NO_OVERWRITE = "wx";
 
 /**
  * Stores the provided buffer or string as a file at the given location.
+ * @returns Nothing on success. Throws on error.
  */
-export function Store(fileLoc: string, data: Buffer | string) {
+export function StoreCDN(fileLoc: string, data: Buffer | string) {
     logger.debug(`Storing path ${fileLoc}.`);
 
     return writeFilePromise(CDNRoot(fileLoc), data, { flag: WRITE_NO_OVERWRITE });

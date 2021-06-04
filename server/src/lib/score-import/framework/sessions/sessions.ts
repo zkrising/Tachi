@@ -13,7 +13,7 @@ import db from "../../../../external/mongo/db";
 import { AppendLogCtx, KtLogger } from "../../../logger/logger";
 import { GenerateRandomSessionName } from "./name-generation";
 import crypto from "crypto";
-import { CreateSessionCalcData } from "./performance-calc";
+import { CreateSessionCalcData } from "./calculated-data";
 import { GetScoresFromSession } from "../../../../utils/session";
 
 import { ScorePlaytypeMap } from "../common/types";
@@ -87,7 +87,11 @@ function UpdateExistingSession(
 ) {
     const allScores = [...oldScores, ...newScores];
 
-    const calculatedData = CreateSessionCalcData(allScores);
+    const calculatedData = CreateSessionCalcData(
+        existingSession.game,
+        existingSession.playtype,
+        allScores
+    );
 
     existingSession.calculatedData = calculatedData;
     existingSession.scoreInfo = [...existingSession.scoreInfo, ...newInfo];
@@ -113,7 +117,7 @@ function CreateSession(
 ): SessionDocument {
     const name = GenerateRandomSessionName();
 
-    const calculatedData = CreateSessionCalcData(groupScores);
+    const calculatedData = CreateSessionCalcData(game, playtype, groupScores);
 
     return {
         userID,
@@ -242,7 +246,7 @@ export async function LoadScoresIntoSessions(
 
             await db.sessions.update(
                 {
-                    _id: session._id,
+                    sessionID: session.sessionID,
                 },
                 {
                     $set: session,

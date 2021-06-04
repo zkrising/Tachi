@@ -1,5 +1,6 @@
 import winston, { format, transports, Logger, LeveledLogMethod } from "winston";
 import fs from "fs";
+import { EscapeStringRegexp } from "../../utils/misc";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };
 
@@ -135,11 +136,16 @@ export const rootLogger = winston.createLogger({
 });
 
 function CreateLogCtx(filename: string, lg = rootLogger): KtLogger {
+    const replacedFilename = filename.replace(
+        new RegExp(`^${EscapeStringRegexp(process.cwd())}/((js|src)/)?`, "u"),
+        ""
+    );
+
     const logger = lg.child({
-        context: filename.replace(new RegExp(`^${process.cwd()}/`, "u"), ""),
+        context: [replacedFilename],
     }) as KtLogger;
 
-    logger.defaultMeta = { context: [filename] };
+    logger.defaultMeta = { context: [replacedFilename] };
     return logger;
 }
 

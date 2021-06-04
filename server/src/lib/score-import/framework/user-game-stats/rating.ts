@@ -1,57 +1,15 @@
-import { Game, Playtypes, integer, GameSpecificCalcLookup, IDStrings } from "kamaitachi-common";
+import {
+    Game,
+    Playtypes,
+    integer,
+    ScoreCalculatedDataLookup,
+    IDStrings,
+    UserGameStats,
+} from "kamaitachi-common";
 import db from "../../../../external/mongo/db";
 import { KtLogger } from "../../../logger/logger";
 
-export async function CalculateRatings(
-    game: Game,
-    playtype: Playtypes[Game],
-    userID: integer,
-    logger: KtLogger
-): Promise<{ rating: number; lampRating: number }> {
-    const SCORE_COUNT = 20;
-    const [bestRating, bestLampRating] = await Promise.all([
-        db["score-pbs"].find(
-            {
-                game,
-                playtype,
-                userID,
-                isPrimary: true,
-            },
-            {
-                sort: {
-                    "calculatedData.rating": -1,
-                },
-                limit: SCORE_COUNT,
-            }
-        ),
-        db["score-pbs"].find(
-            {
-                game,
-                playtype,
-                userID,
-                isPrimary: true,
-            },
-            {
-                sort: {
-                    "calculatedData.lampRating": -1,
-                },
-                limit: SCORE_COUNT,
-            }
-        ),
-    ]);
-
-    logger.debug(
-        `Found ${bestRating.length} best rating scores and ${bestLampRating.length} bestLampRating scores.`
-    );
-
-    const rating = bestRating.reduce((a, r) => a + r.calculatedData.rating, 0) / SCORE_COUNT;
-    const lampRating =
-        bestLampRating.reduce((a, r) => a + r.calculatedData.lampRating, 0) / SCORE_COUNT;
-
-    return { rating, lampRating };
-}
-
-type CustomCalcNames = GameSpecificCalcLookup[IDStrings];
+type CustomCalcNames = ScoreCalculatedDataLookup[IDStrings];
 
 function LazySumAll(key: CustomCalcNames) {
     return async (game: Game, playtype: Playtypes[Game], userID: integer) => {
@@ -60,10 +18,10 @@ function LazySumAll(key: CustomCalcNames) {
             playtype: playtype,
             userID: userID,
             isPrimary: true,
-            [`calculatedData.gameSpecific.${key}`]: { $gt: 0 },
+            [`calculatedData.${key}`]: { $gt: 0 },
         });
 
-        const result = sc.reduce((a, b) => a + b.calculatedData.gameSpecific[key]!, 0);
+        const result = sc.reduce((a, b) => a + b.calculatedData[key]!, 0);
 
         return result;
     };
@@ -77,15 +35,15 @@ function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
                 playtype: playtype,
                 userID: userID,
                 isPrimary: true,
-                [`calculatedData.gameSpecific.${key}`]: { $gt: 0 },
+                [`calculatedData.${key}`]: { $gt: 0 },
             },
             {
                 limit: n,
-                sort: { [`calculatedData.gameSpecific.${key}`]: -1 },
+                sort: { [`calculatedData.${key}`]: -1 },
             }
         );
 
-        let result = sc.reduce((a, b) => a + b.calculatedData.gameSpecific[key]!, 0);
+        let result = sc.reduce((a, b) => a + b.calculatedData[key]!, 0);
 
         if (returnMean) {
             result = result / n;
@@ -98,41 +56,96 @@ function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
 const LazySumN = (key: CustomCalcNames, n: integer) => LazyCalcN(key, n, false);
 const LazyMeanN = (key: CustomCalcNames, n: integer) => LazyCalcN(key, n, true);
 
-const CUSTOM_RATING_FUNCTIONS = {
+type RatingFunctions = {
+    [G in Game]: {
+        [P in Playtypes[G]]: (
+            game: Game,
+            playtype: Playtypes[Game],
+            userID: integer,
+            logger: KtLogger
+        ) => Promise<UserGameStats["ratings"]>;
+    };
+};
+
+const RatingFunctions: RatingFunctions = {
     iidx: {
-        SP: {
-            BPI: LazyMeanN("BPI", 20),
-            // "K%": LazyMeanN("K%", 100), useless
-        },
-        DP: {
-            BPI: LazyMeanN("BPI", 20),
-        },
+        SP: async (g, p, u) => ({
+            BPI: await LazyMeanN("BPI", 20)(g, p, u),
+            ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
+            ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
+        }),
+        DP: async (g, p, u) => ({
+            BPI: await LazyMeanN("BPI", 20)(g, p, u),
+            ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
+            ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
+        }),
     },
     sdvx: {
-        Single: {
-            VF4: LazySumN("VF4", 20),
-            VF5: LazySumN("VF5", 50),
-        },
+        Single: async (g, p, u) => ({
+            VF6: await LazySumN("VF6", 50)(g, p, u),
+        }),
     },
     usc: {
-        Single: {
-            VF4: LazySumN("VF4", 20),
-            VF5: LazySumN("VF5", 50),
-        },
+        Single: async (g, p, u) => ({
+            VF6: await LazySumN("VF6", 50)(g, p, u),
+        }),
     },
     ddr: {
-        SP: {
-            MFCP: LazySumAll("MFCP"),
-        },
-        DP: {
-            MFCP: LazySumAll("MFCP"),
-        },
+        SP: async (g, p, u) => ({
+            MFCP: await LazySumAll("MFCP")(g, p, u),
+            ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
+        }),
+        DP: async (g, p, u) => ({
+            MFCP: await LazySumAll("MFCP")(g, p, u),
+            ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
+        }),
     },
     gitadora: {
-        Gita: { skill: CalculateGitadoraSkill },
-        Dora: { skill: CalculateGitadoraSkill },
+        Gita: async (g, p, u, l) => ({ skill: await CalculateGitadoraSkill(g, p, u, l) }),
+        Dora: async (g, p, u, l) => ({ skill: await CalculateGitadoraSkill(g, p, u, l) }),
+    },
+    bms: {
+        "7K": async (g, p, u) => ({
+            ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
+        }),
+        "14K": async (g, p, u) => ({
+            ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
+        }),
+    },
+    chunithm: {
+        Single: async (g, p, u) => ({
+            naiveRating: await LazyMeanN("rating", 20)(g, p, u),
+        }),
+    },
+    popn: {
+        "9B": async () => ({}),
+    },
+    museca: {
+        Single: async (g, p, u) => ({
+            ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
+        }),
+    },
+    maimai: {
+        Single: async (g, p, u) => ({
+            ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
+        }),
+    },
+    jubeat: {
+        Single: async (g, p, u, l) => ({
+            jubility: await CalculateJubility(g, p, u, l),
+        }),
     },
 };
+
+export function CalculateRatings(
+    game: Game,
+    playtype: Playtypes[Game],
+    userID: integer,
+    logger: KtLogger
+): Promise<Partial<Record<CustomCalcNames, number>>> {
+    // @ts-expect-error too lazy to type this properly
+    return RatingFunctions[game][playtype](game, playtype, userID, logger);
+}
 
 async function CalculateGitadoraSkill(
     game: Game,
@@ -151,48 +164,67 @@ async function CalculateGitadoraSkill(
         db["score-pbs"].find(
             { userID, chartID: { $in: hotChartIDs } },
             {
-                sort: { "calculatedData.rating": -1 },
+                sort: { "calculatedData.skill": -1 },
                 limit: 25,
-                projection: { "calculatedData.rating": 1 },
+                projection: { "calculatedData.skill": 1 },
             }
         ),
-        // @optimisable
+        // @inefficient
         // $nin is VERY expensive, there might be a better way to do this.
         db["score-pbs"].find(
             { userID, chartID: { $nin: hotChartIDs } },
             {
-                sort: { "calculatedData.rating": -1 },
+                sort: { "calculatedData.skill": -1 },
                 limit: 25,
-                projection: { "calculatedData.rating": 1 },
+                projection: { "calculatedData.skill": 1 },
             }
         ),
     ]);
 
     let skill = 0;
-    skill += bestHotScores.reduce((a, r) => a + r.calculatedData.rating, 0);
-    skill += bestScores.reduce((a, r) => a + r.calculatedData.rating, 0);
+    skill += bestHotScores.reduce((a, r) => a + r.calculatedData.skill!, 0);
+    skill += bestScores.reduce((a, r) => a + r.calculatedData.skill!, 0);
 
     return skill;
 }
 
-export async function CalculateCustomRatings(
+async function CalculateJubility(
     game: Game,
     playtype: Playtypes[Game],
     userID: integer,
     logger: KtLogger
-): Promise<Partial<Record<CustomCalcNames, number>>> {
-    // @ts-expect-error too lazy to type this properly
-    const customRatingFns = CUSTOM_RATING_FUNCTIONS?.[game]?.[playtype];
+): Promise<number> {
+    const hotCharts = await db.charts.jubeat.find(
+        { "flags.HOT N-1": true },
+        { projection: { chartID: 1 } }
+    );
 
-    if (!customRatingFns) {
-        return {};
-    }
+    const hotChartIDs = hotCharts.map((e) => e.chartID);
 
-    const ratings: Record<string, number> = {};
-    for (const key in customRatingFns) {
-        // eslint-disable-next-line no-await-in-loop
-        ratings[key] = await customRatingFns[key](game, playtype, userID, logger);
-    }
+    const [bestHotScores, bestScores] = await Promise.all([
+        db["score-pbs"].find(
+            { userID, chartID: { $in: hotChartIDs } },
+            {
+                sort: { "calculatedData.jubility": -1 },
+                limit: 25,
+                projection: { "calculatedData.jubility": 1 },
+            }
+        ),
+        // @inefficient
+        // see gitadoraskillcalc
+        db["score-pbs"].find(
+            { userID, chartID: { $nin: hotChartIDs } },
+            {
+                sort: { "calculatedData.jubility": -1 },
+                limit: 25,
+                projection: { "calculatedData.jubility": 1 },
+            }
+        ),
+    ]);
 
-    return ratings as Record<CustomCalcNames, number>;
+    let skill = 0;
+    skill += bestHotScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
+    skill += bestScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
+
+    return skill;
 }

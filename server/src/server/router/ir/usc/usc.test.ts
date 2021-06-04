@@ -10,12 +10,7 @@ const mockScorePB: PBScoreDocument<"usc:Single"> = {
     chartID: "USC_CHART_ID",
     comments: [],
     calculatedData: {
-        gameSpecific: {
-            VF4: null,
-            VF5: null,
-        },
-        lampRating: 0,
-        rating: 0,
+        VF6: 0,
     },
     composedFrom: {
         scorePB: "USC_EXAMPLE_SCORE_PB_ID",

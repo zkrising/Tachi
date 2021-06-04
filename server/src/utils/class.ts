@@ -57,9 +57,7 @@ export async function UpdateClassIfGreater(
             userID,
             game,
             playtype,
-            customRatings: {},
-            lampRating: 0,
-            rating: 0,
+            ratings: {},
             classes: {
                 [classSet]: classVal,
             },

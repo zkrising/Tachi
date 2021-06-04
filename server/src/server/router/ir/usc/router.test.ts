@@ -100,9 +100,7 @@ const USC_SCORE_PB: PBScoreDocument = {
         lampPB: "bar",
     },
     calculatedData: {
-        rating: 0,
-        lampRating: 0,
-        gameSpecific: {},
+        VF6: null,
     },
     isPrimary: true,
     scoreData: {

@@ -21,9 +21,8 @@
         },
         "scoreMeta": {},
         "calculatedData": {
-            "rating": 0.1,
-            "lampRating": 5,
-            "gameSpecific": {}
+            "ktRating": 0.1,
+            "ktLampRating": 5
         },
         "timeAchieved": null,
         "songID": 1,

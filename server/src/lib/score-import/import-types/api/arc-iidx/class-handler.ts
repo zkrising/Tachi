@@ -27,7 +27,7 @@ export async function CreateArcIIDXClassHandler(
         err = e;
     }
 
-    return (game, playtype, userID, customRatings, logger) => {
+    return (game, playtype, userID, ratings, logger) => {
         /* istanbul ignore next */
         if (err) {
             logger.error(`An error occured while updating classes for ${ARC_API_URL}.`, { err });

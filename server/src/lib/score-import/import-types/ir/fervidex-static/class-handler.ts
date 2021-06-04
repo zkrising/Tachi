@@ -2,7 +2,7 @@ import { ClassHandler } from "../../../framework/user-game-stats/classes";
 import { integer } from "kamaitachi-common";
 
 export function CreateFerStaticClassHandler(body: Record<string, unknown>): ClassHandler {
-    return (game, playtype, userID, customRatings, logger) => {
+    return (game, playtype, userID, ratings, logger) => {
         let index;
 
         if (playtype === "SP") {

@@ -1,4 +1,4 @@
-import { Game, Playtypes, integer, GameSpecificCalcLookup } from "kamaitachi-common";
+import { Game, Playtypes, integer, ScoreCalculatedDataLookup } from "kamaitachi-common";
 import { GameClasses } from "kamaitachi-common/js/game-classes";
 import { GitadoraColours, SDVXVFClasses } from "../../../constants/classes";
 import { KtLogger } from "../../../logger/logger";
@@ -7,23 +7,23 @@ export function CalculateSDVXClass(
     game: Game,
     playtype: Playtypes[Game],
     userID: integer,
-    customRatings: Partial<Record<GameSpecificCalcLookup["sdvx:Single"], number>>,
+    ratings: Partial<Record<ScoreCalculatedDataLookup["sdvx:Single"], number>>,
     logger: KtLogger
 ): Partial<GameClasses<"sdvx:Single">> {
-    if (!customRatings.VF5) {
+    if (!ratings.VF6) {
         return {};
     }
 
-    return { vfClass: SDVXVF5ToClass(customRatings.VF5, logger) };
+    return { vfClass: SDVXVF6ToClass(ratings.VF6, logger) };
 }
 
 /**
- * Converts a user's profile VF5 to a class. There are almost 40 classes, and writing
+ * Converts a user's profile VF6 to a class. There are almost 40 classes, and writing
  * if statements for all of them is a painful endeavour. This function returns an index
  * derived from the gaps between classes, to avoid writing out all those statements.
  * @see https://bemaniwiki.com/index.php?SOUND%20VOLTEX%20VIVID%20WAVE/VOLFORCE
  */
-export function SDVXVF5ToClass(vf: number, logger: KtLogger) {
+export function SDVXVF6ToClass(vf: number, logger: KtLogger) {
     // This is impossible, but a failsafe regardless
     if (vf >= 24) {
         logger.warn(`User has excessive VF5 of ${vf}. Defaulting to Imperial IV.`);
@@ -46,10 +46,10 @@ export function CalculateGitadoraColour(
     game: Game,
     playtype: Playtypes[Game],
     userID: integer,
-    customRatings: Record<string, number>,
+    ratings: Record<string, number>,
     logger: KtLogger
 ): Partial<GameClasses<"gitadora:Dora" | "gitadora:Gita">> {
-    const colour = GitadoraSkillToColour(customRatings.skill);
+    const colour = GitadoraSkillToColour(ratings.skill);
 
     return {
         colour,
@@ -98,7 +98,7 @@ export function CalculateJubeatColour(
     game: Game,
     playtype: Playtypes[Game],
     userID: integer,
-    customRatings: Record<string, number>
+    ratings: Record<string, number>
 ): GameClasses<"jubeat:Single"> {
     throw new Error("Not implemented.");
 }

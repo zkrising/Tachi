@@ -147,13 +147,10 @@ t.test("#ReprocessOrphan", (t) => {
                         highlight: false,
                         userID: 1,
                         calculatedData: {
-                            rating: 0.6840944877852578,
-                            lampRating: 10.6,
-                            gameSpecific: {
-                                BPI: -15,
-                                KESDC: -51.26832199690281,
-                                "K%": null,
-                            },
+                            ktRating: 0.6840944877852578,
+                            ktLampRating: 10.6,
+                            BPI: -15,
+                            "K%": null,
                         },
                         songID: 1,
                         chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",

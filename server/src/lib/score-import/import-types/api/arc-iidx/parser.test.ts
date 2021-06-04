@@ -28,11 +28,10 @@ t.test("#ParseArcIIDX", (t) => {
             },
         });
 
-        const res = ParseArcIIDX("profile", logger, mockArcAPI);
+        const res = await ParseArcIIDX("profile", logger, mockArcAPI);
 
         t.equal(res.game, "iidx");
         t.strictSame(res.context, {});
-        t.equal(res.classHandler, null);
 
         const iter = await agta(res.iterable);
 

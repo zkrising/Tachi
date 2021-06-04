@@ -4,13 +4,14 @@ import { AnyChartDocument, Difficulties, Lamps, ScoreDocument } from "kamaitachi
 import {
     CalculateBPI,
     CalculateCHUNITHMRating,
-    CalculateGITADORARating,
+    CalculateGITADORASkill,
     CalculateKESDC,
     CalculateMFCP,
-    CalculateVF4,
-    CalculateVF5,
     KaidenPercentile,
-} from "./game-specific-stats";
+    CalculateKTLampRating,
+    CalculateKTRating,
+    CalculateVF6,
+} from "./stats";
 import CreateLogCtx from "../../../logger/logger";
 import { isApproximately } from "../../../../test-utils/asserts";
 import { DryScore } from "../common/types";
@@ -20,6 +21,8 @@ import {
     TestingIIDXSPDryScore,
 } from "../../../../test-utils/test-data";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
+import deepmerge from "deepmerge";
+import ResetDBState from "../../../../test-utils/reset-db-state";
 
 t.test("#CalculateBPI", (t) => {
     t.test("AA BPI tests", (t) => {
@@ -104,7 +107,7 @@ t.test("#CalculateBPI", (t) => {
 
 t.test("#CalculateGITADORARating", (t) => {
     function TestGitadoraRating(percent: number, levelNum: number) {
-        return CalculateGITADORARating(
+        return CalculateGITADORASkill(
             { scoreData: { percent } } as DryScore,
             { levelNum } as AnyChartDocument
         );
@@ -266,28 +269,17 @@ t.test("#CalculateCHUNITHMRating", (t) => {
     t.end();
 });
 
-// i plucked random assertions from bemaniwiki
-// see https://bemaniwiki.com/index.php?SOUND%20VOLTEX%20VIVID%20WAVE/VOLFORCE
-t.test("#CalculateVF5", (t) => {
-    t.equal(CalculateVF5("AAA", "CLEAR", 97, 10, logger), 0.19);
-    t.equal(CalculateVF5("A", "CLEAR", 90, 15, logger), 0.23);
-    t.equal(CalculateVF5("AAA+", "CLEAR", 98, 19, logger), 0.37);
-    t.equal(CalculateVF5("S", "PERFECT ULTIMATE CHAIN", 100, 20, logger), 0.46);
-    t.equal(CalculateVF5("B", "FAILED", 85, 20, logger), 0.14);
-    t.equal(CalculateVF5("D", "FAILED", 0, 20, logger), 0);
-    t.equal(CalculateVF5("S", "PERFECT ULTIMATE CHAIN", 100, 0, logger), 0);
-    t.equal(CalculateVF5("INVALID GRADE" as any, "PERFECT ULTIMATE CHAIN", 100, 0, logger), null);
-    t.equal(CalculateVF5("S", "INVALID LAMP" as any, 100, 0, logger), null);
+// Random assertions plucked from bemaniwiki.
+t.test("#CalculateVF6", (t) => {
+    t.equal(CalculateVF6("S", "CLEAR", 99, 16, logger), 0.332);
 
-    t.end();
-});
+    t.equal(CalculateVF6("AAA+", "ULTIMATE CHAIN", 98, 17, logger), 0.356);
 
-t.test("#CalculateVF4", (t) => {
-    t.equal(CalculateVF4("INVALID GRADE" as any, 100, 0, logger), null);
-    t.equal(CalculateVF4("D", 0, 20, logger), 0);
-    t.equal(CalculateVF4("S", 100, 0, logger), 0);
-    t.equal(CalculateVF4("S", 100, 20, logger), 525);
-    t.equal(CalculateVF4("AA", 93, 16, logger), 379);
+    t.equal(CalculateVF6("S", "PERFECT ULTIMATE CHAIN", 100, 16, logger), 0.369);
+    t.equal(CalculateVF6("S", "PERFECT ULTIMATE CHAIN", 100, 17, logger), 0.392);
+    t.equal(CalculateVF6("S", "PERFECT ULTIMATE CHAIN", 100, 18, logger), 0.415);
+    t.equal(CalculateVF6("S", "PERFECT ULTIMATE CHAIN", 100, 19, logger), 0.438);
+    t.equal(CalculateVF6("S", "PERFECT ULTIMATE CHAIN", 100, 20, logger), 0.462);
 
     t.end();
 });
@@ -309,6 +301,245 @@ t.test("#KaidenPercentile", async (t) => {
     const res2 = await KaidenPercentile(TestingIIDXSPDryScore, Testing511SPA);
 
     t.equal(res2, null);
+
+    t.end();
+});
+
+t.test("#CalculateRating", (t) => {
+    t.test("Should call the success calculator if percent > pivotPercent", async (t) => {
+        const r = await CalculateKTRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 80 } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            logger
+        );
+
+        t.ok(r > 10, "Should return rating greater than the levelNum of the chart.");
+
+        t.end();
+    });
+
+    t.test("Should call the fail calculator if percent > pivotPercent", async (t) => {
+        const r = await CalculateKTRating(
+            TestingIIDXSPDryScore,
+            "iidx",
+            "SP",
+            Testing511SPA,
+            logger
+        );
+
+        t.ok(r < 10, "Should return rating less than the levelNum of the chart.");
+
+        t.end();
+    });
+
+    t.test("Should call levelNum if percent === pivotPercent", async (t) => {
+        const r = await CalculateKTRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 77.7777 } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            logger
+        );
+
+        t.equal(
+            // hack for approximate tests
+            parseFloat(r.toFixed(2)),
+            10,
+            "Should return rating exactly that of the levelNum of the chart."
+        );
+
+        t.end();
+    });
+
+    t.test(
+        "Should trigger safety if completely invalid percent somehow gets through",
+        async (t) => {
+            let r = await CalculateKTRating(
+                deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 1000000000 } }),
+                "iidx",
+                "SP",
+                Testing511SPA,
+                logger
+            );
+
+            t.equal(r, 0, "Should safely return 0 and log a warning.");
+
+            r = await CalculateKTRating(
+                // not high enough to be non-finite but high enough to be > 1000
+                deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 200 } }),
+                "iidx",
+                "SP",
+                Testing511SPA,
+                logger
+            );
+
+            t.equal(r, 0, "Should safely return 0 and log a warning.");
+
+            t.end();
+        }
+    );
+
+    t.end();
+});
+
+t.test("#CalculateLampRating", (t) => {
+    t.beforeEach(ResetDBState);
+
+    const defaultTierlist = {
+        createdAt: 1620150338858,
+        tierlistID: "ee9b756e50cff8282091102257b01f423ef855f2",
+        createdBy: 1,
+        description: "The official Kamaitachi Tierlist for beatmania IIDX (SP).",
+        game: "iidx",
+        playtype: "SP",
+        isDefault: true,
+        name: "Kamaitachi IIDX SP Official",
+        lastUpdated: 1620150338858,
+        permissions: {
+            anyPlayer: {
+                edit: 0,
+                submit: 1,
+                vote: 1,
+            },
+        },
+        config: {
+            autoHumanise: false,
+            flags: ["Individual Difference"],
+            requireState: "clear",
+        },
+    };
+
+    t.test("TierlistData", async (t) => {
+        const lampRating = await CalculateKTLampRating(
+            TestingIIDXSPDryScore,
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(lampRating, 10, "Should equal the levelNum of the chart.");
+
+        const lampRatingFail = await CalculateKTLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "FAILED" } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(lampRatingFail, 0, "Should equal 0, if the score is not a clear.");
+
+        const lampRatingHC = await CalculateKTLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "HARD CLEAR" } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(lampRatingHC, 10.6, "Should equal the tierlist value for HC on this chart.");
+
+        const lampRatingEXHC = await CalculateKTLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "EX HARD CLEAR" } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        // deliberate - there is no EXHC data here
+        t.equal(lampRatingEXHC, 10.6, "Should equal the tierlist value for HC on this chart.");
+
+        t.end();
+    });
+
+    t.test("TierlistData edge cases", async (t) => {
+        // mock document that implies 5.1.1. SPA is worth 11.9 to NC and 10.6 to HC.
+        await db["tierlist-data"].insert({
+            chartID: Testing511SPA.chartID,
+            type: "lamp",
+            key: "CLEAR",
+            tierlistDataID: "asdf",
+            tierlistID: defaultTierlist!.tierlistID,
+            data: {
+                flags: {},
+                humanised: "a",
+                value: 11.9,
+            },
+        });
+
+        const lampRating = await CalculateKTLampRating(
+            TestingIIDXSPDryScore,
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(lampRating, 11.9, "Should equal the NC value of the chart.");
+
+        const lampRatingFail = await CalculateKTLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "FAILED" } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(lampRatingFail, 0, "Should equal 0, if the score is not a clear.");
+
+        const lampRatingHC = await CalculateKTLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "HARD CLEAR" } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(
+            lampRatingHC,
+            11.9,
+            "Should equal the tierlist value for NC, as it is higher than HC on this chart."
+        );
+
+        const lampRatingEXHC = await CalculateKTLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "EX HARD CLEAR" } }),
+            "iidx",
+            "SP",
+            Testing511SPA,
+            defaultTierlist!.tierlistID
+        );
+
+        t.equal(lampRatingEXHC, 11.9, "Should equal the tierlist value for NC on this chart.");
+
+        t.end();
+    });
+
+    t.test("No TierlistData", async (t) => {
+        await db["tierlist-data"].remove({});
+        const lampRating = await CalculateKTLampRating(
+            TestingIIDXSPDryScore,
+            "iidx",
+            "SP",
+            Testing511SPA
+        );
+
+        t.equal(lampRating, 10, "Should equal the levelNum of the chart.");
+
+        const lampRatingFail = await CalculateKTLampRating(
+            deepmerge(TestingIIDXSPDryScore, { scoreData: { lamp: "FAILED" } }),
+            "iidx",
+            "SP",
+            Testing511SPA
+        );
+
+        t.equal(lampRatingFail, 0, "Should equal 0, if the score is not a clear.");
+
+        t.end();
+    });
 
     t.end();
 });

@@ -568,11 +568,28 @@ export interface PublicUserDocument extends MongoDBDocument {
     };
     clan: string | null;
 }
+export interface UGSRatingsLookup {
+    "iidx:SP": "BPI" | "K%" | "ktRating" | "ktLampRating";
+    "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
+    "popn:9B": never;
+    "sdvx:Single": "VF6";
+    "usc:Single": "VF6";
+    "ddr:SP": "MFCP" | "ktRating";
+    "ddr:DP": "MFCP" | "ktRating";
+    "maimai:Single": "ktRating";
+    "jubeat:Single": "jubility";
+    "museca:Single": "ktRating";
+    "bms:7K": "ktLampRating";
+    "bms:14K": "ktLampRating";
+    "chunithm:Single": "naiveRating";
+    "gitadora:Gita": "skill";
+    "gitadora:Dora": "skill";
+}
 export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBDocument {
     userID: integer;
     game: IDStringToGame[I];
     playtype: IDStringToPlaytype[I];
-    ratings: Partial<Record<ScoreCalculatedDataLookup[I], number>>;
+    ratings: Partial<Record<UGSRatingsLookup[I], number>>;
     classes: Partial<GameClasses<I>>;
 }
 /**

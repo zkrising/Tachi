@@ -927,8 +927,8 @@ export interface GameSpecificCalcLookup {
     "iidx:SP": "BPI" | "K%" | "ktRating" | "ktLampRating";
     "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
     "popn:9B": never;
-    "sdvx:Single": "VF4" | "VF5";
-    "usc:Single": "VF4" | "VF5";
+    "sdvx:Single": "VF6";
+    "usc:Single": "VF6";
     "ddr:SP": "MFCP" | "ktRating";
     "ddr:DP": "MFCP" | "ktRating";
     "maimai:Single": "ktRating";

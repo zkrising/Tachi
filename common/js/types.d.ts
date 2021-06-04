@@ -378,7 +378,7 @@ interface SessionCalculatedDataLookup {
     "gitadora:Gita": "skill";
     "gitadora:Dora": "skill";
 }
-export interface SessionDocument<I extends IDStrings> extends MongoDBDocument {
+export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
     userID: integer;
     sessionID: string;
     scoreInfo: SessionScoreInfo[];

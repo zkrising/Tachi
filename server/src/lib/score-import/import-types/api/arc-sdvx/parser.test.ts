@@ -2,7 +2,7 @@ import t from "tap";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 import { agta } from "../../../../../test-utils/misc";
 import { MockJSONFetch } from "../../../../../test-utils/mock-fetch";
-import ResetDBState from "../../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../../test-utils/resets";
 import CreateLogCtx from "../../../../logger/logger";
 import { ParseArcSDVX } from "./parser";
 
@@ -15,8 +15,7 @@ t.test("#ParseArcSDVX", (t) => {
         const mockArcAPI = MockJSONFetch({
             "https://arc.example.com/api/v1/sdvx/5/player_bests?profile_id=profile": {
                 _links: {
-                    _next:
-                        "https://arc.example.com/api/v1/sdvx/5/player_bests?profile_id=profile&page=2",
+                    _next: "https://arc.example.com/api/v1/sdvx/5/player_bests?profile_id=profile&page=2",
                 },
                 _items: [1, 2, 3],
             },

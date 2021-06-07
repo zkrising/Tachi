@@ -1,6 +1,6 @@
 import t from "tap";
 import db from "../../../../../external/mongo/db";
-import ResetDBState from "../../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../../test-utils/resets";
 import CreateLogCtx from "../../../../logger/logger";
 import { ConverterIRBarbatos } from "./converter";
 import deepmerge from "deepmerge";

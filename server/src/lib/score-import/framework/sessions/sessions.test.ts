@@ -1,7 +1,7 @@
 import t from "tap";
 import db from "../../../../external/mongo/db";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 import { TestingIIDXSPScore, TestingIIDXSPScorePB } from "../../../../test-utils/test-data";
 import { CreateScoreLogger } from "../common/import-logger";
 import { CreateSessions, LoadScoresIntoSessions } from "./sessions";
@@ -164,16 +164,9 @@ t.test("#LoadScoresIntoSessions", (t) => {
         const res = await LoadScoresIntoSessions(
             1,
             "ir/direct-manual",
-            [
-                null,
-                start,
-                start - 4000,
-                start + 2000,
-                start - 3000,
-                null,
-                start + 1000,
-            ].map((e, i) =>
-                deepmerge(TestingIIDXSPScore, { timeAchieved: e, scoreID: `SCORE_ID_${i}` })
+            [null, start, start - 4000, start + 2000, start - 3000, null, start + 1000].map(
+                (e, i) =>
+                    deepmerge(TestingIIDXSPScore, { timeAchieved: e, scoreID: `SCORE_ID_${i}` })
             ) as ScoreDocument[],
             "iidx",
             "SP",

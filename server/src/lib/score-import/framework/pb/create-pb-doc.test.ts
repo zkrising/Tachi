@@ -1,6 +1,6 @@
 import t from "tap";
 import db from "../../../../external/mongo/db";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 import { GetKTDataJSON, Testing511SPA, TestingIIDXSPScore } from "../../../../test-utils/test-data";
 import { CreatePBDoc } from "./create-pb-doc";
 import deepmerge from "deepmerge";
@@ -149,9 +149,9 @@ t.test("#CreatePBDoc", (t) => {
 
     t.test("Should bail safely if no score exists when one should", async (t) => {
         // a work of genius
-        const fakeLogger = ({
+        const fakeLogger = {
             severe: () => (severeCalled = true),
-        } as unknown) as KtLogger;
+        } as unknown as KtLogger;
 
         let severeCalled = false;
 

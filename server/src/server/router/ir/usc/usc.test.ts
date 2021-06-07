@@ -1,6 +1,6 @@
 import t from "tap";
 import db from "../../../../external/mongo/db";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./usc";
 import { ChartDocument, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
 import deepmerge from "deepmerge";
@@ -116,7 +116,8 @@ t.test("#KtchiScoreToServerScore", (t) => {
 
     t.test("Should throw if scorePB document does not exist.", (t) => {
         t.rejects(() => KtchiScoreToServerScore(mockScorePB), {
-            message: /Score USC_EXAMPLE_SCORE_PB_ID does not exist, but is referenced in 1's PBDoc on/u,
+            message:
+                /Score USC_EXAMPLE_SCORE_PB_ID does not exist, but is referenced in 1's PBDoc on/u,
         } as any);
 
         t.end();

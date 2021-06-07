@@ -2,7 +2,7 @@ import t from "tap";
 import db from "../../../../external/mongo/db";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 import mockApi from "../../../../test-utils/mock-api";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 import deepmerge from "deepmerge";
 import { PBScoreDocument, ScoreDocument } from "kamaitachi-common";
 import { GetKTDataBuffer } from "../../../../test-utils/test-data";
@@ -345,10 +345,12 @@ t.test("POST /replays", (t) => {
             scoreID: "MOCK_IDENTIFIER",
         } as ScoreDocument);
 
+        const replayFile = GetKTDataBuffer("./usc/replayfile.urf");
+
         const res = await mockApi
             .post("/ir/usc/replays")
             .field("identifier", "MOCK_IDENTIFIER")
-            .field("replay", GetKTDataBuffer("./usc/replayfile.urf"))
+            .attach("replay", replayFile, "replay.urf")
             .set("Authorization", "Bearer foo");
 
         t.equal(res.status, 200);
@@ -360,6 +362,8 @@ t.test("POST /replays", (t) => {
         });
 
         const stored = await RetrieveCDN("/uscir/replays/MOCK_IDENTIFIER");
+
+        t.strictSame(stored, replayFile, "Should store the same file exactly.");
 
         t.end();
     });

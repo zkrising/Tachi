@@ -1,7 +1,7 @@
 import t from "tap";
 import db from "../../../../external/mongo/db";
 import CreateLogCtx from "../../../logger/logger";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 import { UpdateUsersGamePlaytypeStats } from "./update-ugs";
 import deepmerge from "deepmerge";
 import crypto from "crypto";

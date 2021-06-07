@@ -1,6 +1,6 @@
 import t from "tap";
 import db from "../../../../../external/mongo/db";
-import ResetDBState from "../../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../../test-utils/resets";
 import { GetKTDataJSON } from "../../../../../test-utils/test-data";
 import { KtchiPBScoreToBeatorajaFormat } from "./convert-scores";
 import { ScoreDocument, PBScoreDocument } from "kamaitachi-common";
@@ -10,7 +10,7 @@ import { CloseAllConnections } from "../../../../../test-utils/close-connections
 
 const gazerChart = GetKTDataJSON("./kamaitachi/bms-gazer-chart.json");
 
-const pbScore = ({
+const pbScore = {
     composedFrom: {
         lampPB: "mock_lampPB",
     },
@@ -23,7 +23,7 @@ const pbScore = ({
     scoreMeta: {},
     chartID: gazerChart.chartID,
     userID: 1,
-} as unknown) as PBScoreDocument<"bms:7K" | "bms:14K">;
+} as unknown as PBScoreDocument<"bms:7K" | "bms:14K">;
 
 t.test("#KtchiPBScoreToBeatorajaFormat", (t) => {
     t.beforeEach(ResetDBState);

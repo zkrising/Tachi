@@ -1,7 +1,7 @@
 import t from "tap";
 import CreateLogCtx from "../../../../logger/logger";
 import { MockMulterFile } from "../../../../../test-utils/mock-multer";
-import ResetDBState from "../../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../../test-utils/resets";
 import { GetKTDataBuffer } from "../../../../../test-utils/test-data";
 import { ParseSolidStateXML } from "./parser";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";

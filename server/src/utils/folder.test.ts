@@ -9,7 +9,7 @@ import {
     ResolveFolderToCharts,
 } from "./folder";
 import db from "../external/mongo/db";
-import ResetDBState from "../test-utils/reset-db-state";
+import ResetDBState from "../test-utils/resets";
 import deepmerge from "deepmerge";
 import { CloseAllConnections } from "../test-utils/close-connections";
 
@@ -46,9 +46,7 @@ t.test("#ResolveFolderToCharts", (t) => {
                 data: [],
             };
 
-            const { charts } = await ResolveFolderToCharts(
-                (mockFolder as unknown) as FolderDocument
-            );
+            const { charts } = await ResolveFolderToCharts(mockFolder as unknown as FolderDocument);
 
             t.equal(charts.length, 0, "Should return exactly 0 charts.");
 
@@ -86,9 +84,7 @@ t.test("#ResolveFolderToCharts", (t) => {
                 },
             };
 
-            const { charts } = await ResolveFolderToCharts(
-                (mockFolder as unknown) as FolderDocument
-            );
+            const { charts } = await ResolveFolderToCharts(mockFolder as unknown as FolderDocument);
 
             t.equal(charts.length, 0, "Should return exactly 0 charts.");
             t.end();

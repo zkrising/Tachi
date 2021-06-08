@@ -7,9 +7,9 @@ import {
     validHitData,
     validDifficulties,
     validPlaytypes,
-    supportedGames,
 } from "tachi-common/js/config";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
+import { CONF_INFO } from "../../lib/setup/config";
 
 const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
 
@@ -408,7 +408,7 @@ const PRUDENCE_FOLDER_CHART_LOOKUP: PrudenceSchema = {
 
 const PRUDENCE_FOLDER: PrudenceSchema = {
     title: "string",
-    game: p.isIn(supportedGames),
+    game: p.isIn(CONF_INFO.SUPPORTED_GAMES),
     playtype: (self, parent) => p.isIn(validPlaytypes[parent.game as Game])(self),
     folderID: "string",
     table: "string",

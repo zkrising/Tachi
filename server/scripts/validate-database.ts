@@ -1,11 +1,12 @@
 import Prudence, { PrudenceSchema } from "prudence";
 import db from "../src/db/db";
-import { PRUDENCE_CHART_SCHEMAS, PRUDENCE_SCORE_SCHEMAS, STATIC_SCHEMAS } from "../src/db/schemas";
+import { PRUDENCE_SCORE_SCHEMAS, STATIC_SCHEMAS } from "../src/db/schemas";
 import CreateLogCtx from "../src/common/logger";
 import fs from "fs";
 import path from "path";
 import { PrudenceError } from "prudence/js/error";
-import { supportedGames, validPlaytypes } from "tachi-common/js/config";
+import { validPlaytypes } from "tachi-common/js/config";
+import { CONF_INFO } from "../src/lib/setup/config";
 
 const BASE_DIR = path.join(__dirname, "./validate-database-errs");
 
@@ -62,7 +63,7 @@ async function ValidateScores(): Promise<void> {
     let globalTotal = 0;
     let globalSuccess = 0;
     let globalFail = 0;
-    for (const game of supportedGames) {
+    for (const game of CONF_INFO.SUPPORTED_GAMES) {
         for (const playtype of validPlaytypes[game]) {
             // @ts-expect-error shut up
             const schema = PRUDENCE_SCORE_SCHEMAS[game][playtype];
@@ -134,7 +135,7 @@ async function ValidateChartsOrSongs(type: "songs" | "charts"): Promise<void> {
     let globalTotal = 0;
     let globalSuccess = 0;
     let globalFail = 0;
-    for (const game of supportedGames) {
+    for (const game of CONF_INFO.SUPPORTED_GAMES) {
         const schema = STATIC_SCHEMAS[type]![game];
 
         let successCount = 0;

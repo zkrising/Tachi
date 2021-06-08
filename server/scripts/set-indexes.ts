@@ -3,7 +3,7 @@ import { Command } from "commander";
 import CreateLogCtx from "../src/lib/logger/logger";
 import { IndexOptions } from "mongodb";
 import { ValidDatabases } from "tachi-common";
-import { supportedGames } from "tachi-common/js/config";
+import { CONF_INFO } from "../src/lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -87,7 +87,7 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
 
 const indexes: Partial<Record<ValidDatabases, Index[]>> = staticIndexes;
 
-for (const game of supportedGames) {
+for (const game of CONF_INFO.SUPPORTED_GAMES) {
     if (indexes[`charts-${game}` as "charts-iidx"]) {
         indexes[`charts-${game}` as "charts-iidx"]!.push(
             index({ chartID: 1 }, UNIQUE),
@@ -138,7 +138,7 @@ export async function SetIndexes(dbst: string) {
     logger.info("Done.");
 }
 
-// if calling this as a script
+// if calling this as a script -- similar to pythons if __name__ == "__main__"
 if (require.main === module) {
     SetIndexes(options.db ?? "ktblackdb").then(process.exit(0));
 }

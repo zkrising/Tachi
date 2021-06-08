@@ -2,12 +2,13 @@ import { KtLogger } from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { BatchManual, BatchManualContext, BatchManualScore } from "./types";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
-import { lamps, supportedGames, validHitData, validPlaytypes } from "tachi-common/js/config";
+import { lamps, validHitData, validPlaytypes } from "tachi-common/js/config";
 import { Game, ImportTypes } from "tachi-common";
 import { ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
 import { FormatPrError } from "../../../../../utils/prudence";
 import { ParserFunctionReturnsSync } from "../types";
+import { CONF_INFO } from "../../../../setup/config";
 
 const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));
 
@@ -101,7 +102,7 @@ const PR_BatchManualScore = (game: Game): PrudenceSchema => ({
 const PR_BatchManual = (game: Game): PrudenceSchema => ({
     head: {
         service: p.isBoundedString(3, 15),
-        game: p.isIn(supportedGames),
+        game: p.isIn(CONF_INFO.SUPPORTED_GAMES),
         version: "*?string",
     },
     body: [PR_BatchManualScore(game)],
@@ -140,10 +141,10 @@ export function ParseBatchManualFromObject(
         );
     }
 
-    if (!supportedGames.includes(possiblyGame)) {
+    if (!CONF_INFO.SUPPORTED_GAMES.includes(possiblyGame)) {
         throw new ScoreImportFatalError(
             400,
-            `Invalid game ${possiblyGame} - expected any of ${supportedGames.join(", ")}`
+            `Invalid game ${possiblyGame} - expected any of ${CONF_INFO.SUPPORTED_GAMES.join(", ")}`
         );
     }
 

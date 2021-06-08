@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import { Command } from "commander";
 import fs from "fs";
 import path from "path";
-import { config, Difficulties, ESDCore, IIDXBPIData, ChartDocument } from "kamaitachi-common";
+import { config, Difficulties, ESDCore, IIDXBPIData, ChartDocument } from "tachi-common";
 import { FindSongOnTitle } from "../src/score-import/database-lookup/song-title";
 import {
     FindChartWithPTDF,

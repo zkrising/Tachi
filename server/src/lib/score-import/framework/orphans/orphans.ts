@@ -6,7 +6,7 @@ import {
     ImportTypeDataMap,
     OrphanScoreDocument,
 } from "../../import-types/common/types";
-import { ImportTypes, integer } from "kamaitachi-common";
+import { ImportTypes, integer } from "tachi-common";
 import fjsh from "fast-json-stable-hash";
 import { KtLogger } from "../../../logger/logger";
 import { Converters } from "../../import-types/converters";

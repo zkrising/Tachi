@@ -5,7 +5,7 @@ import {
     PrivateUserDocument,
     PublicAPIKeyDocument,
     PublicUserDocument,
-} from "kamaitachi-common";
+} from "tachi-common";
 import { InsertResult } from "monk";
 import db from "../../../../../external/mongo/db";
 import { GetNextCounterValue } from "../../../../../utils/db";

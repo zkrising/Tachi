@@ -6,12 +6,12 @@ import {
     Lamps,
     Game,
     Playtypes,
-} from "kamaitachi-common";
+} from "tachi-common";
 import db from "../../../../external/mongo/db";
 import { GetAllTierlistDataOfType, GetOneTierlistData } from "../../../../utils/tierlist";
 import { KtLogger } from "../../../logger/logger";
 import { DryScore } from "../common/types";
-import { lamps, clearLamp, ratingParameters } from "kamaitachi-common/js/config";
+import { lamps, clearLamp, ratingParameters } from "tachi-common/js/config";
 
 /**
  * Calculates the in-game CHUNITHM rating for a score.

@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import db from "../../../../external/mongo/db";
-import { integer } from "kamaitachi-common";
+import { integer } from "tachi-common";
 import { DryScore } from "../common/types";
 
 function CreateScoreIDString(userID: integer, partialScore: DryScore, chartID: string) {

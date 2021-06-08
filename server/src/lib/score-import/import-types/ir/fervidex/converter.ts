@@ -6,7 +6,7 @@ import {
     KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { FervidexContext, FervidexScore } from "./types";
-import { Lamps, Difficulties, Playtypes } from "kamaitachi-common";
+import { Lamps, Difficulties, Playtypes } from "tachi-common";
 import {
     FindIIDXChartOnInGameIDVersion,
     FindIIDXChartWith2DXtraHash,

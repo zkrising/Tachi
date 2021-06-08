@@ -6,7 +6,7 @@ import {
     AnySongDocument,
     ImportTypes,
     IDStrings,
-} from "kamaitachi-common";
+} from "tachi-common";
 import { HydrateScore } from "./hydrate-score";
 import { InsertQueue, QueueScoreInsert, ScoreIDs } from "./insert-score";
 import {

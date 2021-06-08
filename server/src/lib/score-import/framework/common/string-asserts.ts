@@ -1,6 +1,6 @@
 import { InvalidScoreFailure } from "./converter-failures";
-import { Difficulties, Game, IDStrings, Playtypes } from "kamaitachi-common";
-import { validDifficulties } from "kamaitachi-common/js/config";
+import { Difficulties, Game, IDStrings, Playtypes } from "tachi-common";
+import { validDifficulties } from "tachi-common/js/config";
 
 export function AssertStrAsDifficulty(
     strVal: string,

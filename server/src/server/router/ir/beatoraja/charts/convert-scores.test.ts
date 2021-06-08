@@ -3,7 +3,7 @@ import db from "../../../../../external/mongo/db";
 import ResetDBState from "../../../../../test-utils/resets";
 import { GetKTDataJSON } from "../../../../../test-utils/test-data";
 import { KtchiPBScoreToBeatorajaFormat } from "./convert-scores";
-import { ScoreDocument, PBScoreDocument } from "kamaitachi-common";
+import { ScoreDocument, PBScoreDocument } from "tachi-common";
 import { Random20Hex } from "../../../../../utils/misc";
 import deepmerge from "deepmerge";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";

@@ -1,4 +1,4 @@
-import { Difficulties, Game, integer, Playtypes, IDStrings } from "kamaitachi-common";
+import { Difficulties, Game, integer, Playtypes, IDStrings } from "tachi-common";
 import db from "../../external/mongo/db";
 
 export function FindChartWithChartID(game: Game, chartID: string) {

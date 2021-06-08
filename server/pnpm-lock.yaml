@@ -33,7 +33,6 @@ specifiers:
   express-session: ^1.17.2
   fast-json-stable-hash: ^1.0.2
   fast-xml-parser: ^3.19.0
-  kamaitachi-common: github:zkldi/Kamaitachi-common
   mkdirp: ^1.0.4
   mongodb: 3.6.3
   monk: ^7.3.4
@@ -45,6 +44,7 @@ specifiers:
   redis: ^3.1.2
   rimraf: ^3.0.2
   supertest: ^6.1.3
+  tachi-common: github:zkldi/tachi-common
   tap: ^15.0.9
   ts-node: ^10.0.0
   typescript: ^4.3.2
@@ -64,7 +64,6 @@ dependencies:
   express-session: 1.17.2
   fast-json-stable-hash: 1.0.2
   fast-xml-parser: 3.19.0
-  kamaitachi-common: github.com/zkldi/Kamaitachi-common/ceaccaf38a718a78257d48a36a0c524faa1c5132
   mkdirp: 1.0.4
   mongodb: 3.6.3
   monk: 7.3.4
@@ -73,6 +72,7 @@ dependencies:
   prudence: 0.9.6
   redis: 3.1.2
   rimraf: 3.0.2
+  tachi-common: github.com/zkldi/tachi-common/ceaccaf38a718a78257d48a36a0c524faa1c5132
   typescript: 4.3.2
   winston: 3.3.3
 
@@ -4397,8 +4397,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  github.com/zkldi/Kamaitachi-common/ceaccaf38a718a78257d48a36a0c524faa1c5132:
-    resolution: {tarball: https://codeload.github.com/zkldi/Kamaitachi-common/tar.gz/ceaccaf38a718a78257d48a36a0c524faa1c5132}
+  github.com/zkldi/tachi-common/ceaccaf38a718a78257d48a36a0c524faa1c5132:
+    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/ceaccaf38a718a78257d48a36a0c524faa1c5132}
     name: kamaitachi-common
     version: 0.1.0
     dependencies:

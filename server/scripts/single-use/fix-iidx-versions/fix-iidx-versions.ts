@@ -1,5 +1,5 @@
 import db from "../../../src/db/db";
-import { ChartDocument } from "kamaitachi-common";
+import { ChartDocument } from "tachi-common";
 
 db.charts.iidx
     .find({})

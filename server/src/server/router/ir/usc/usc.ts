@@ -1,4 +1,4 @@
-import { integer, PBScoreDocument, ScoreDocument, ChartDocument } from "kamaitachi-common";
+import { integer, PBScoreDocument, ScoreDocument, ChartDocument } from "tachi-common";
 import CreateLogCtx from "../../../../lib/logger/logger";
 import { GetPBOnChart, GetServerRecordOnChart } from "../../../../utils/scores";
 import { MStoS } from "../../../../utils/misc";

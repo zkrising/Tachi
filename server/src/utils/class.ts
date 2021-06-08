@@ -1,7 +1,7 @@
-import { Game, integer, IDStrings, Playtypes, UserGameStats } from "kamaitachi-common";
+import { Game, integer, IDStrings, Playtypes, UserGameStats } from "tachi-common";
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
-import { GameClassSets } from "kamaitachi-common/js/game-classes";
+import { GameClassSets } from "tachi-common/js/game-classes";
 import { RedisPub } from "../external/redis/redis-IPC";
 
 const logger = CreateLogCtx(__filename);

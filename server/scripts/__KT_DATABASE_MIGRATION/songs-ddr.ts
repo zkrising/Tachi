@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { SongDocument } from "kamaitachi-common";
-import { gameOrders } from "kamaitachi-common/js/config";
+import { SongDocument } from "tachi-common";
+import { gameOrders } from "tachi-common/js/config";
 import db from "../../src/db/db";
 import MigrateRecords from "./migrate";
 

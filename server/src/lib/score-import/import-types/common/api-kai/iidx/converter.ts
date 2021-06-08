@@ -12,7 +12,7 @@ import {
     GenericGetGradeAndPercent,
     ParseDateFromString,
 } from "../../../../framework/common/score-utils";
-import { Lamps } from "kamaitachi-common";
+import { Lamps } from "tachi-common";
 import { ConverterFunction } from "../../types";
 import { DryScore } from "../../../../framework/common/types";
 

@@ -1,5 +1,5 @@
 import deepmerge from "deepmerge";
-import { Game, Playtypes } from "kamaitachi-common";
+import { Game, Playtypes } from "tachi-common";
 import {
     grades,
     importTypes,
@@ -8,7 +8,7 @@ import {
     validDifficulties,
     validPlaytypes,
     supportedGames,
-} from "kamaitachi-common/js/config";
+} from "tachi-common/js/config";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 
 const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;

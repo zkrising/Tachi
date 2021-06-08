@@ -4,7 +4,7 @@ import CreateLogCtx from "../../../logger/logger";
 import ResetDBState from "../../../../test-utils/resets";
 import { TestingIIDXSPMilestone } from "../../../../test-utils/test-data";
 import { UpdateUsersMilestones } from "./milestones";
-import { GoalImportInfo } from "kamaitachi-common";
+import { GoalImportInfo } from "tachi-common";
 import deepmerge from "deepmerge";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 

@@ -1,4 +1,4 @@
-import { integer, GenericAuthDocument, ChartDocument } from "kamaitachi-common";
+import { integer, GenericAuthDocument, ChartDocument } from "tachi-common";
 
 declare module "express-session" {
     // Inject additional properties on express-session

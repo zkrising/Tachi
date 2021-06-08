@@ -7,7 +7,7 @@ import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { ParseFervidexStatic } from "../../../../lib/score-import/import-types/ir/fervidex-static/parser";
 import { ParseFervidexSingle } from "../../../../lib/score-import/import-types/ir/fervidex/parser";
-import { Playtypes, integer } from "kamaitachi-common";
+import { Playtypes, integer } from "tachi-common";
 import CreateLogCtx from "../../../../lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);

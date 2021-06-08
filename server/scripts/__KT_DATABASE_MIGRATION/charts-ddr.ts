@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ChartDocument, SongDocument } from "kamaitachi-common";
+import { ChartDocument, SongDocument } from "tachi-common";
 import db from "../../src/db/db";
 import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";
-import { gameOrders } from "kamaitachi-common/js/config";
+import { gameOrders } from "tachi-common/js/config";
 import { oldKTDB } from "./old-db";
 
 const logger = CreateLogCtx(__filename);

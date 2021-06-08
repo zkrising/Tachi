@@ -1,11 +1,11 @@
 import db from "../../src/db/db";
-import { FolderDocument } from "kamaitachi-common";
+import { FolderDocument } from "tachi-common";
 
 (async () => {
-    let folders = (await db.folders.find({})) as any[];
+    const folders = (await db.folders.find({})) as any[];
 
     for (const fl of folders) {
-        let f: FolderDocument = {
+        const f: FolderDocument = {
             folderID: fl.folderID,
             game: fl.game,
             playtype: fl.playtype,

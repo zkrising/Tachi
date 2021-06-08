@@ -1,4 +1,4 @@
-import { integer } from "kamaitachi-common";
+import { integer } from "tachi-common";
 import db from "../../../../external/mongo/db";
 import { KtLogger } from "../../../logger/logger";
 import { CreatePBDoc, UpdateChartRanking, PBScoreDocumentNoRank } from "./create-pb-doc";

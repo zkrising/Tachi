@@ -6,7 +6,7 @@ import { CreatePBDoc } from "./create-pb-doc";
 import deepmerge from "deepmerge";
 import CreateLogCtx, { KtLogger } from "../../../logger/logger";
 
-import { lamps } from "kamaitachi-common/js/config";
+import { lamps } from "tachi-common/js/config";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 let IIDXScore = TestingIIDXSPScore;

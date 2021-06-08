@@ -5,7 +5,7 @@ import {
     ScoreCalculatedDataLookup,
     IDStrings,
     UserGameStats,
-} from "kamaitachi-common";
+} from "tachi-common";
 import db from "../../../../external/mongo/db";
 import { KtLogger } from "../../../logger/logger";
 

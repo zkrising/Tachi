@@ -1,4 +1,4 @@
-import { UserGameStats } from "kamaitachi-common";
+import { UserGameStats } from "tachi-common";
 import t from "tap";
 import CreateLogCtx from "../../../logger/logger";
 import ResetDBState from "../../../../test-utils/resets";

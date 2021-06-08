@@ -1,4 +1,4 @@
-import { ScoreDocument } from "kamaitachi-common";
+import { ScoreDocument } from "tachi-common";
 import db from "../../../../external/mongo/db";
 import CreateLogCtx from "../../../logger/logger";
 

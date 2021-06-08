@@ -7,7 +7,7 @@ import {
     Game,
     integer,
     IDStrings,
-} from "kamaitachi-common";
+} from "tachi-common";
 import { KtLogger } from "../../logger/logger";
 import { ImportAllIterableData } from "./score-importing/score-importing";
 import { CreateImportLoggerAndID } from "./common/import-logger";

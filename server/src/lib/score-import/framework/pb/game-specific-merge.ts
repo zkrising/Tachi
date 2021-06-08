@@ -1,4 +1,4 @@
-import { PBScoreDocument, ScoreDocument } from "kamaitachi-common";
+import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import { FindChartWithChartID } from "../../../../utils/queries/charts";
 import db from "../../../../external/mongo/db";
 import { KtLogger } from "../../../logger/logger";

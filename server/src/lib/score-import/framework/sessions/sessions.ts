@@ -8,7 +8,7 @@ import {
     SessionScoreInfo,
     SessionInfoReturn,
     Game,
-} from "kamaitachi-common";
+} from "tachi-common";
 import db from "../../../../external/mongo/db";
 import { AppendLogCtx, KtLogger } from "../../../logger/logger";
 import { GenerateRandomSessionName } from "./name-generation";

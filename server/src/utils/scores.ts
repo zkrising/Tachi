@@ -1,5 +1,5 @@
 import db from "../external/mongo/db";
-import { integer } from "kamaitachi-common";
+import { integer } from "tachi-common";
 
 export function GetPBOnChart(userID: integer, chartID: string) {
     return db["score-pbs"].findOne({

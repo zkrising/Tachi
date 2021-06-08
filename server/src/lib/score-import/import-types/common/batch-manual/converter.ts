@@ -1,5 +1,5 @@
 import { BatchManualContext, BatchManualScore } from "./types";
-import { AnyChartDocument, AnySongDocument, ImportTypes } from "kamaitachi-common";
+import { AnyChartDocument, AnySongDocument, ImportTypes } from "tachi-common";
 import {
     InternalFailure,
     InvalidScoreFailure,

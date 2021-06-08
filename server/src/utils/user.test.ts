@@ -2,7 +2,7 @@ import t from "tap";
 import { PRUDENCE_PRIVATE_USER, PRUDENCE_PUBLIC_USER } from "../external/mongo/schemas";
 import { prAssert } from "../test-utils/asserts";
 import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive, FormatUserDoc } from "./user";
-import { PublicUserDocument } from "kamaitachi-common";
+import { PublicUserDocument } from "tachi-common";
 import { CloseAllConnections } from "../test-utils/close-connections";
 import ResetDBState from "../test-utils/resets";
 

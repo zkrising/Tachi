@@ -1,4 +1,4 @@
-import { integer, PublicUserDocument } from "kamaitachi-common";
+import { integer, PublicUserDocument } from "tachi-common";
 import { FindOneResult } from "monk";
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";

@@ -8,7 +8,7 @@ import {
     FolderDocument,
     MilestoneDocument,
     SongDocument,
-} from "kamaitachi-common";
+} from "tachi-common";
 import path from "path";
 import db from "../external/mongo/db";
 import {

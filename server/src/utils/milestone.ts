@@ -1,4 +1,4 @@
-import { MilestoneDocument, integer } from "kamaitachi-common";
+import { MilestoneDocument, integer } from "tachi-common";
 
 /**
  * Retrieves the goalID documents in a single array from the

@@ -2,7 +2,7 @@
 // Some games have dedicated methods to calculate statistics like these, other games do not.
 // That's about all there is to it!
 
-import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "kamaitachi-common";
+import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "tachi-common";
 import db from "../../../../external/mongo/db";
 import { KtLogger } from "../../../logger/logger";
 import { CalculateClassDeltas, UpdateUGSClasses } from "./classes";

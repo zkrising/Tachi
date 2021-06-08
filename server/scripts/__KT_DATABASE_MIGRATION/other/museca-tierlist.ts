@@ -1,5 +1,5 @@
 import db from "../../../src/db/db";
-import { TierlistDataDocument } from "kamaitachi-common";
+import { TierlistDataDocument } from "tachi-common";
 import { CalculateTierlistDataID } from "../../../src/common/tierlist";
 import { oldKTDB } from "../old-db";
 import CreateLogCtx from "../../../src/common/logger";

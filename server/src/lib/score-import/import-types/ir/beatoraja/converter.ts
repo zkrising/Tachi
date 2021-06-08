@@ -8,7 +8,7 @@ import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../../common/types";
 import { BeatorajaContext, BeatorajaScore } from "./types";
-import { ChartDocument } from "kamaitachi-common";
+import { ChartDocument } from "tachi-common";
 
 const LAMP_LOOKUP = {
     NoPlay: "NO PLAY",

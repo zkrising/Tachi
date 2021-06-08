@@ -14,7 +14,7 @@ import {
     GenericGetGradeAndPercent,
     ParseDateFromString,
 } from "../../../framework/common/score-utils";
-import { Lamps } from "kamaitachi-common";
+import { Lamps } from "tachi-common";
 
 // There's a bunch of other useless fields but we don't care
 const PR_ArcDDRScore: PrudenceSchema = {

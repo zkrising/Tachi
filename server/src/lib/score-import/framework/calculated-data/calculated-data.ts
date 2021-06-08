@@ -7,7 +7,7 @@ import {
     Grades,
     Lamps,
     IDStrings,
-} from "kamaitachi-common";
+} from "tachi-common";
 import db from "../../../../external/mongo/db";
 import { HasOwnProperty } from "../../../../utils/misc";
 

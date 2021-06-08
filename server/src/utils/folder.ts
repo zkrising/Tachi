@@ -1,6 +1,6 @@
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
-import { FolderDocument, AnyChartDocument, AnySongDocument } from "kamaitachi-common";
+import { FolderDocument, AnyChartDocument, AnySongDocument } from "tachi-common";
 import { FilterQuery } from "mongodb";
 import deepmerge from "deepmerge";
 

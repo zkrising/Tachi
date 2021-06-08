@@ -1,6 +1,6 @@
 import { KtLogger } from "../../../../../logger/logger";
 import nodeFetch from "../../../../../../utils/fetch";
-import { KaiAuthDocument } from "kamaitachi-common";
+import { KaiAuthDocument } from "tachi-common";
 import { KaiContext } from "../types";
 import { TraverseKaiAPI } from "../traverse-api";
 import { ParserFunctionReturnsAsync } from "../../types";

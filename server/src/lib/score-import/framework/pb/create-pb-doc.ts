@@ -1,5 +1,5 @@
 import db from "../../../../external/mongo/db";
-import { integer, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
+import { integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 
 import { KtLogger } from "../../../logger/logger";
 import { IIDXMergeFn, SDVXMergeFn } from "./game-specific-merge";

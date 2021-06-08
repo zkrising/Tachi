@@ -1,4 +1,4 @@
-import { PBScoreDocument, integer, ScoreDocument, ChartDocument } from "kamaitachi-common";
+import { PBScoreDocument, integer, ScoreDocument, ChartDocument } from "tachi-common";
 import db from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../../lib/logger/logger";
 import { GetUsernameFromUserID } from "../../../../../utils/user";

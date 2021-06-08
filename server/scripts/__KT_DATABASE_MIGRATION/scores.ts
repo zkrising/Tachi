@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { PrivateUserDocument, ScoreDocument } from "kamaitachi-common";
-import { grades, lamps, supportedGames, validPlaytypes } from "kamaitachi-common/js/config";
+import { PrivateUserDocument, ScoreDocument } from "tachi-common";
+import { grades, lamps, supportedGames, validPlaytypes } from "tachi-common/js/config";
 import db from "../../src/db/db";
 import MigrateRecords from "./migrate";
 import CreateLogCtx from "../../src/common/logger";

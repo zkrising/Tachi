@@ -5,7 +5,7 @@ import CreateLogCtx from "../src/common/logger";
 import fs from "fs";
 import path from "path";
 import { PrudenceError } from "prudence/js/error";
-import { supportedGames, validPlaytypes } from "kamaitachi-common/js/config";
+import { supportedGames, validPlaytypes } from "tachi-common/js/config";
 
 const BASE_DIR = path.join(__dirname, "./validate-database-errs");
 

@@ -1,4 +1,4 @@
-import { Game, Playtypes, Lamps, IDStrings } from "kamaitachi-common";
+import { Game, Playtypes, Lamps, IDStrings } from "tachi-common";
 
 export type BatchManualScore = {
     score: number;

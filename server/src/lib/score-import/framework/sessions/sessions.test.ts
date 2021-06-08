@@ -5,7 +5,7 @@ import ResetDBState from "../../../../test-utils/resets";
 import { TestingIIDXSPScore, TestingIIDXSPScorePB } from "../../../../test-utils/test-data";
 import { CreateScoreLogger } from "../common/import-logger";
 import { CreateSessions, LoadScoresIntoSessions } from "./sessions";
-import { PublicUserDocument, ScoreDocument, SessionDocument } from "kamaitachi-common";
+import { PublicUserDocument, ScoreDocument, SessionDocument } from "tachi-common";
 import deepmerge from "deepmerge";
 
 const logger = CreateScoreLogger(

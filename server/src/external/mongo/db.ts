@@ -24,7 +24,7 @@ import {
     PBScoreDocument,
     UserMilestoneDocument,
     BMSCourseDocument,
-} from "kamaitachi-common";
+} from "tachi-common";
 import monk from "monk";
 import { MONGO_BASE_URL } from "../../lib/env/env";
 import CreateLogCtx from "../../lib/logger/logger";

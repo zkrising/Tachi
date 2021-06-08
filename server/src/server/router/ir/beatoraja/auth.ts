@@ -1,4 +1,4 @@
-import { GenericAuthDocument } from "kamaitachi-common";
+import { GenericAuthDocument } from "tachi-common";
 import { RequestHandler } from "express";
 import db from "../../../../external/mongo/db";
 import { SplitAuthorizationHeader } from "../../../../utils/misc";

@@ -1,4 +1,4 @@
-import { PrivateUserDocument } from "kamaitachi-common";
+import { PrivateUserDocument } from "tachi-common";
 import db from "../../src/db/db";
 import MigrateRecords from "./migrate";
 

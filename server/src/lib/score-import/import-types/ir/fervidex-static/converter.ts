@@ -4,7 +4,7 @@ import {
     InternalFailure,
     KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { Lamps } from "kamaitachi-common";
+import { Lamps } from "tachi-common";
 import { FindChartOnInGameIDVersion } from "../../../../../utils/queries/charts";
 import { FervidexStaticContext, FervidexStaticScore } from "./types";
 import { FERVIDEX_LAMP_LOOKUP, SplitFervidexChartRef } from "../fervidex/converter";

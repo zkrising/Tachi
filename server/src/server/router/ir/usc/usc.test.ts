@@ -2,7 +2,7 @@ import t from "tap";
 import db from "../../../../external/mongo/db";
 import ResetDBState from "../../../../test-utils/resets";
 import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./usc";
-import { ChartDocument, PBScoreDocument, ScoreDocument } from "kamaitachi-common";
+import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
 import deepmerge from "deepmerge";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 

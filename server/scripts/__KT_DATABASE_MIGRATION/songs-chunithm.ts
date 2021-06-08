@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { SongDocument } from "kamaitachi-common";
+import { SongDocument } from "tachi-common";
 import db from "../../src/db/db";
 import MigrateRecords from "./migrate";
 

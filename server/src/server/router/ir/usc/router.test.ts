@@ -4,7 +4,7 @@ import { CloseAllConnections } from "../../../../test-utils/close-connections";
 import mockApi from "../../../../test-utils/mock-api";
 import ResetDBState, { ResetCDN } from "../../../../test-utils/resets";
 import deepmerge from "deepmerge";
-import { PBScoreDocument, ScoreDocument } from "kamaitachi-common";
+import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import { GetKTDataBuffer } from "../../../../test-utils/test-data";
 import { RetrieveCDN } from "../../../../lib/cdn/cdn";
 

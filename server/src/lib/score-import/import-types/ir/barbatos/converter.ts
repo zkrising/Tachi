@@ -7,7 +7,7 @@ import {
     KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { BarbatosScore } from "./types";
-import { Lamps } from "kamaitachi-common";
+import { Lamps } from "tachi-common";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../../common/types";
 

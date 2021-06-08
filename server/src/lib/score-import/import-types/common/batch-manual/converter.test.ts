@@ -4,7 +4,7 @@ import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../../tes
 import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
 import { EscapeStringRegexp } from "../../../../../utils/misc";
-import { Game } from "kamaitachi-common";
+import { Game } from "tachi-common";
 import ResetDBState from "../../../../../test-utils/resets";
 import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";

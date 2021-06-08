@@ -1,4 +1,4 @@
-import { IDStrings, ScoreDocument, Playtypes, Game } from "kamaitachi-common";
+import { IDStrings, ScoreDocument, Playtypes, Game } from "tachi-common";
 
 /**
  * An intermediate score format that will be filled out by

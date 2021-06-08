@@ -1,4 +1,4 @@
-import { integer } from "kamaitachi-common";
+import { integer } from "tachi-common";
 
 export interface USCServerScore {
     score: integer;

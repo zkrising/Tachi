@@ -1,6 +1,6 @@
 import t from "tap";
 import db from "../../../../external/mongo/db";
-import { AnyChartDocument, Difficulties, Lamps, ScoreDocument } from "kamaitachi-common";
+import { AnyChartDocument, Difficulties, Lamps, ScoreDocument } from "tachi-common";
 import {
     CalculateBPI,
     CalculateCHUNITHMRating,

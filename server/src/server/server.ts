@@ -2,7 +2,7 @@ import express, { Express } from "express";
 import "express-async-errors";
 import CreateLogCtx from "../lib/logger/logger";
 import expressSession from "express-session";
-import { integer } from "kamaitachi-common";
+import { integer } from "tachi-common";
 import { RedisClient } from "../external/redis/redis";
 import { SESSION_SECRET } from "../lib/env/env";
 import connectRedis from "connect-redis";

@@ -1,5 +1,5 @@
 import redis from "redis";
-import { RedisIPCChannels, RedisIPCData } from "kamaitachi-common";
+import { RedisIPCChannels, RedisIPCData } from "tachi-common";
 import CreateLogCtx from "../../lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);

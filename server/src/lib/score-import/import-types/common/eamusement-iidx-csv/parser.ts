@@ -1,4 +1,4 @@
-import { Difficulties } from "kamaitachi-common";
+import { Difficulties } from "tachi-common";
 import { KtLogger } from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturnsSync } from "../types";

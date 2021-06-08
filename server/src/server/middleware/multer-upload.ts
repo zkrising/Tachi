@@ -3,7 +3,7 @@
 import { RequestHandler } from "express";
 import multer, { MulterError } from "multer";
 import CreateLogCtx from "../../lib/logger/logger";
-import { integer } from "kamaitachi-common";
+import { integer } from "tachi-common";
 import { SIXTEEN_MEGABTYES } from "../../lib/constants/filesize";
 
 const defaultLogger = CreateLogCtx(__filename);

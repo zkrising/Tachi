@@ -1,4 +1,4 @@
-import { SessionDocument, ScoreDocument, SessionScoreInfo } from "kamaitachi-common";
+import { SessionDocument, ScoreDocument, SessionScoreInfo } from "tachi-common";
 import { Condition } from "mongodb";
 import db from "../external/mongo/db";
 

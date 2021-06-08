@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { FileUploadImportTypes } from "kamaitachi-common";
-import { fileImportTypes } from "kamaitachi-common/js/config";
+import { FileUploadImportTypes } from "tachi-common";
+import { fileImportTypes } from "tachi-common/js/config";
 import Prudence from "prudence";
 import { GetUserWithIDGuaranteed } from "../../../../../utils/user";
 import CreateLogCtx, { KtLogger } from "../../../../../lib/logger/logger";

@@ -5,7 +5,7 @@ import { CalculateTierlistDataID } from "../../src/common/tierlist";
 import { FindSongOnTitle } from "../../src/common/database-lookup/song";
 import CreateLogCtx from "../../src/common/logger";
 import { FindChartWithPTDF } from "../../src/common/database-lookup/chart";
-import { Difficulties } from "kamaitachi-common";
+import { Difficulties } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

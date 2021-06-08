@@ -10,7 +10,7 @@ import {
     ParseDateFromString,
 } from "../../../framework/common/score-utils";
 import { MerScore } from "./types";
-import { Lamps } from "kamaitachi-common";
+import { Lamps } from "tachi-common";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../../common/types";
 

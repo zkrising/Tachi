@@ -1,5 +1,5 @@
 import { KtLogger } from "../../../../logger/logger";
-import { KaiAuthDocument } from "kamaitachi-common";
+import { KaiAuthDocument } from "tachi-common";
 import { ParseKaiSDVX } from "../../common/api-kai/sdvx/parser";
 
 export function ParseFloSDVX(authDoc: KaiAuthDocument, logger: KtLogger) {

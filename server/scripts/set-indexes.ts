@@ -2,8 +2,8 @@ import monk from "monk";
 import { Command } from "commander";
 import CreateLogCtx from "../src/lib/logger/logger";
 import { IndexOptions } from "mongodb";
-import { ValidDatabases } from "kamaitachi-common";
-import { supportedGames } from "kamaitachi-common/js/config";
+import { ValidDatabases } from "tachi-common";
+import { supportedGames } from "tachi-common/js/config";
 
 const logger = CreateLogCtx(__filename);
 

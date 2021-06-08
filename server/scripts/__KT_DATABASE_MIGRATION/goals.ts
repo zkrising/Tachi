@@ -1,7 +1,7 @@
 // oh boy
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { GoalDocument } from "kamaitachi-common";
+import { GoalDocument } from "tachi-common";
 import db from "../../src/db/db";
 import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";

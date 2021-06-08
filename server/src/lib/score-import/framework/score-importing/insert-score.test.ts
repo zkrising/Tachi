@@ -1,4 +1,4 @@
-import { ScoreDocument } from "kamaitachi-common";
+import { ScoreDocument } from "tachi-common";
 import t from "tap";
 import db from "../../../../external/mongo/db";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";

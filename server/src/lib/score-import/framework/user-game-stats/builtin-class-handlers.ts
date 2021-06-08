@@ -1,5 +1,5 @@
-import { Game, Playtypes, integer, ScoreCalculatedDataLookup } from "kamaitachi-common";
-import { GameClasses } from "kamaitachi-common/js/game-classes";
+import { Game, Playtypes, integer, ScoreCalculatedDataLookup } from "tachi-common";
+import { GameClasses } from "tachi-common/js/game-classes";
 import { GitadoraColours, SDVXVFClasses } from "../../../constants/classes";
 import { KtLogger } from "../../../logger/logger";
 

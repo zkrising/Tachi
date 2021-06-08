@@ -4,7 +4,7 @@ import {
     SuccessfulAPIResponse,
     UnsuccessfulAPIResponse,
     ImportDocument,
-} from "kamaitachi-common";
+} from "tachi-common";
 import { ImportInputParser } from "../import-types/common/types";
 import { CreateImportLoggerAndID } from "./common/import-logger";
 import ScoreImportMain from "./score-import-main";

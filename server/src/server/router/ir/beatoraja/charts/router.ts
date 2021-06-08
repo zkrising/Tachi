@@ -1,4 +1,4 @@
-import { ChartDocument, PBScoreDocument } from "kamaitachi-common";
+import { ChartDocument, PBScoreDocument } from "tachi-common";
 import { Router, RequestHandler } from "express";
 import db from "../../../../../external/mongo/db";
 import { SYMBOL_KtchiData } from "../../../../../lib/constants/ktchi";

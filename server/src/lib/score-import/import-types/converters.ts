@@ -1,4 +1,4 @@
-import { ImportTypes } from "kamaitachi-common";
+import { ImportTypes } from "tachi-common";
 import { ConvertAPIArcDDR } from "./api/arc-ddr/converter";
 import { ConvertAPIArcIIDX } from "./api/arc-iidx/converter";
 import { ConvertAPIArcSDVX } from "./api/arc-sdvx/converter";

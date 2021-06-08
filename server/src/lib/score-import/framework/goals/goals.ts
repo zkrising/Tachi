@@ -1,4 +1,4 @@
-import { integer, Game, GoalDocument, UserGoalDocument } from "kamaitachi-common";
+import { integer, Game, GoalDocument, UserGoalDocument } from "tachi-common";
 import { EvaluateGoalForUser } from "../../../../utils/goal";
 import db from "../../../../external/mongo/db";
 import { KtLogger } from "../../../logger/logger";

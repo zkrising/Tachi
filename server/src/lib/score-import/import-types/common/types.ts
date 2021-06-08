@@ -15,7 +15,7 @@ import {
     AnySongDocument,
     integer,
     MongoDBDocument,
-} from "kamaitachi-common";
+} from "tachi-common";
 import { ConverterFailure } from "../../framework/common/converter-failures";
 import { DryScore } from "../../framework/common/types";
 import { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";

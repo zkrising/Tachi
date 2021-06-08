@@ -6,7 +6,7 @@ import {
     SkipScoreFailure,
 } from "../../../framework/common/converter-failures";
 import { S3Score } from "./types";
-import { Playtypes, Difficulties, Grades, Lamps } from "kamaitachi-common";
+import { Playtypes, Difficulties, Grades, Lamps } from "tachi-common";
 import { FindSongOnTitleInsensitive } from "../../../../../utils/queries/songs";
 import { FindChartWithPTDFVersion } from "../../../../../utils/queries/charts";
 import {

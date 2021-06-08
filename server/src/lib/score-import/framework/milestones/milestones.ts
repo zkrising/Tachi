@@ -7,7 +7,7 @@ import {
     UserMilestoneDocument,
     MilestoneImportInfo,
     MilestoneDocument,
-} from "kamaitachi-common";
+} from "tachi-common";
 import db from "../../../../external/mongo/db";
 import { BulkWriteUpdateOneOperation } from "mongodb";
 import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "../../../../utils/milestone";

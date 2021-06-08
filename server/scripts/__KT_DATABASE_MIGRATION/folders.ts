@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { FolderDocument, Game } from "kamaitachi-common";
-import { validPlaytypes, gameHuman } from "kamaitachi-common/js/config";
+import { FolderDocument, Game } from "tachi-common";
+import { validPlaytypes, gameHuman } from "tachi-common/js/config";
 import db from "../../src/db/db";
 import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";

@@ -1,7 +1,7 @@
 // Various Errors that can occur during processing.
 
 // @todo #116 Resolve circular dependency between converter-failures.ts and import-types/common/types.
-import { ImportTypes } from "kamaitachi-common";
+import { ImportTypes } from "tachi-common";
 import { ImportTypeDataMap, ImportTypeContextMap } from "../../import-types/common/types";
 
 export class ConverterFailure {

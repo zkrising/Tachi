@@ -1,4 +1,4 @@
-import { ImportTypes, PublicUserDocument } from "kamaitachi-common";
+import { ImportTypes, PublicUserDocument } from "tachi-common";
 import crypto from "crypto";
 import { FormatUserDoc } from "../../../../utils/user";
 import { rootLogger, KtLogger } from "../../../logger/logger";

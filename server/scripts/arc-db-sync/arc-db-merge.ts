@@ -3,7 +3,7 @@ import { ICollection } from "monk";
 import path from "path";
 import db from "../../src/db/db";
 import CreateLogCtx from "../../src/common/logger";
-import { ChartDocument } from "kamaitachi-common";
+import { ChartDocument } from "tachi-common";
 import { FindSongOnTitle } from "../../src/common/database-lookup/song";
 import { FindChartWithPTDFVersion } from "../../src/common/database-lookup/chart";
 
@@ -55,9 +55,9 @@ async function MergeIDs() {
             }
 
             // eslint-disable-next-line no-await-in-loop
-            await ((db.charts.iidx as unknown) as ICollection<
-                ChartDocument<"iidx:SP" | "iidx:DP">
-            >).update(
+            await (
+                db.charts.iidx as unknown as ICollection<ChartDocument<"iidx:SP" | "iidx:DP">>
+            ).update(
                 {
                     _id: ktchiChart._id,
                 },

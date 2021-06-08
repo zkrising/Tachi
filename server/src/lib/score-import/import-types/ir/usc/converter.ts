@@ -4,7 +4,7 @@ import { KtLogger } from "../../../../logger/logger";
 import { InternalFailure, InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { IRUSCContext } from "./types";
-import { Lamps } from "kamaitachi-common";
+import { Lamps } from "tachi-common";
 import { ConverterFunction } from "../../common/types";
 import { DryScore } from "../../../framework/common/types";
 import {

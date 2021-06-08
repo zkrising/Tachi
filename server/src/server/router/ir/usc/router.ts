@@ -7,7 +7,7 @@ import {
     PBScoreDocument,
     SuccessfulAPIResponse,
     ImportDocument,
-} from "kamaitachi-common";
+} from "tachi-common";
 import { AssertStrAsPositiveNonZeroInt } from "../../../../lib/score-import/framework/common/string-asserts";
 import CreateLogCtx, { KtLogger } from "../../../../lib/logger/logger";
 import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./usc";

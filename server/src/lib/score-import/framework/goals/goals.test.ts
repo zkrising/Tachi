@@ -2,7 +2,7 @@ import t from "tap";
 import db from "../../../../external/mongo/db";
 import ResetDBState from "../../../../test-utils/resets";
 import { GetRelevantFolderGoals, GetRelevantGoals, UpdateGoalsForUser, ProcessGoal } from "./goals";
-import { GoalDocument, UserGoalDocument } from "kamaitachi-common";
+import { GoalDocument, UserGoalDocument } from "tachi-common";
 import { CreateFolderChartLookup } from "../../../../utils/folder";
 import {
     GetKTDataJSON,

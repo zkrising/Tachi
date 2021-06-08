@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TierlistParent, Game } from "kamaitachi-common";
-import { gameHuman, validPlaytypes } from "kamaitachi-common/js/config";
+import { TierlistParent, Game } from "tachi-common";
+import { gameHuman, validPlaytypes } from "tachi-common/js/config";
 import db from "../../src/db/db";
 import MigrateRecords from "./migrate";
 

@@ -8,8 +8,8 @@ import {
     GameToIDStrings,
     ESDCore,
     Playtypes,
-} from "kamaitachi-common";
-import { judgementWindows, gamePercentMax } from "kamaitachi-common/js/config";
+} from "tachi-common";
+import { judgementWindows, gamePercentMax } from "tachi-common/js/config";
 import CreateLogCtx from "../../../logger/logger";
 import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 

@@ -10,6 +10,7 @@ env:
   KTBSV_EAG_API_URL: "https://eag.example.com"
   KTBSV_ARC_API_URL: "https://arc.example.com"
   KTBSV_ARC_AUTH_TOKEN: "unused"
+  KTCDN_ROOT: "./local-cdn"
   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 on:

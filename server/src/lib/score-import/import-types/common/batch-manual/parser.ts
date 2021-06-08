@@ -93,9 +93,7 @@ const PR_BatchManualScore = (game: Game): PrudenceSchema => ({
 
         return true;
     }),
-    hitMeta: optNull(
-        (deepmerge(BaseValidHitMeta, PR_HitMeta(game)) as unknown) as ValidSchemaValue
-    ),
+    hitMeta: optNull(deepmerge(BaseValidHitMeta, PR_HitMeta(game)) as unknown as ValidSchemaValue),
     // scoreMeta: @todo #74
     // more game specific props, maybe?
 });

@@ -20,7 +20,7 @@ import {
 } from "../lib/constants/usc-ir";
 import { DryScore } from "../lib/score-import/framework/common/types";
 import { BarbatosScore } from "../lib/score-import/import-types/ir/barbatos/types";
-import { USCClientScore } from "../server/router/ir/usc/usc";
+import { USCClientScore } from "../server/router/ir/usc/types";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
 

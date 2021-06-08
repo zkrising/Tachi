@@ -1,4 +1,4 @@
-import ResetDBState from "./reset-db-state";
+import ResetDBState from "./resets";
 import CreateLogCtx from "../lib/logger/logger";
 import supertest from "supertest";
 

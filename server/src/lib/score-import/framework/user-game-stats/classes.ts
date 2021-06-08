@@ -1,4 +1,5 @@
 import { Game, Playtypes, integer, UserGameStats, ClassDelta, IDStrings } from "kamaitachi-common";
+import { GameClasses } from "kamaitachi-common/js/game-classes";
 import deepmerge from "deepmerge";
 import { KtLogger } from "../../../logger/logger";
 import {
@@ -7,20 +8,8 @@ import {
     CalculateSDVXClass,
 } from "./builtin-class-handlers";
 import { ReturnClassIfGreater } from "../../../../utils/class";
-import { GameClasses } from "kamaitachi-common/js/game-classes";
 import { RedisPub } from "../../../../external/redis/redis-IPC";
-
-type ScoreClasses = Partial<GameClasses<IDStrings>>;
-
-export interface ClassHandler {
-    (
-        game: Game,
-        playtype: Playtypes[Game],
-        userID: integer,
-        ratings: Record<string, number>,
-        logger: KtLogger
-    ): Promise<ScoreClasses> | ScoreClasses | undefined;
-}
+import { ClassHandler, ScoreClasses } from "./types";
 
 type ClassHandlerMap = {
     [G in Game]:

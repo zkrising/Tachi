@@ -12,7 +12,7 @@ import {
 } from "../../../../test-utils/test-data";
 import { CreateCalculatedData, CalculateDataForGamePT } from "./calculated-data";
 import deepmerge from "deepmerge";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);

@@ -22,7 +22,7 @@ import {
 } from "../../../../test-utils/test-data";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 import deepmerge from "deepmerge";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 
 t.test("#CalculateBPI", (t) => {
     t.test("AA BPI tests", (t) => {

@@ -37,10 +37,10 @@ const PR_Fervidex: PrudenceSchema = {
     gauge: [p.isBoundedInteger(0, 255)],
     ghost: [p.isBoundedInteger(0, 100)],
 
-    dead: p.optional(({
+    dead: p.optional({
         measure: optNull(p.isPositiveInteger),
         note: optNull(p.isPositiveInteger),
-    } as unknown) as ValidSchemaValue),
+    } as unknown as ValidSchemaValue),
 
     option: {
         gauge: optNull(p.isIn("ASSISTED_EASY", "EASY", "HARD", "EX_HARD")),
@@ -114,7 +114,7 @@ export function ParseFervidexSingle(
     return {
         context: { version },
         game: "iidx",
-        iterable: ([body] as unknown) as FervidexScore[],
+        iterable: [body] as unknown as FervidexScore[],
         classHandler: null,
     };
 }

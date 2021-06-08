@@ -1,6 +1,6 @@
 import t from "tap";
 import CreateLogCtx from "../../../../logger/logger";
-import ResetDBState from "../../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../../test-utils/resets";
 import {
     GetKTDataJSON,
     LoadKTBlackIIDXData,

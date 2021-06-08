@@ -2,7 +2,7 @@ import { ScoreDocument } from "kamaitachi-common";
 import t from "tap";
 import db from "../../../../external/mongo/db";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 import { InsertQueue, QueueScoreInsert } from "./insert-score";
 
 // these two get the same tests, because they're too closely linked
@@ -16,7 +16,7 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 
     t.test("Single Queue Test", async (t) => {
         // fake score doc
-        const res = await QueueScoreInsert(({ scoreID: "foo" } as unknown) as ScoreDocument);
+        const res = await QueueScoreInsert({ scoreID: "foo" } as unknown as ScoreDocument);
 
         t.equal(
             res,
@@ -49,13 +49,13 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
     t.test("Queue Overflow Test", async (t) => {
         for (let i = 0; i < 499; i++) {
             // eslint-disable-next-line no-await-in-loop
-            await QueueScoreInsert(({ scoreID: i, chartID: "test" } as unknown) as ScoreDocument);
+            await QueueScoreInsert({ scoreID: i, chartID: "test" } as unknown as ScoreDocument);
         }
 
-        const overflowRes = await QueueScoreInsert(({
+        const overflowRes = await QueueScoreInsert({
             scoreID: "foo",
             chartID: "test",
-        } as unknown) as ScoreDocument);
+        } as unknown as ScoreDocument);
 
         t.equal(
             overflowRes,
@@ -86,11 +86,11 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
     t.equal(r, 0, "Queue should be empty after test.");
 
     t.test("Queue Dedupe Test", async (t) => {
-        await QueueScoreInsert(({ scoreID: 1, chartID: "foo" } as unknown) as ScoreDocument);
-        const r2 = await QueueScoreInsert(({
+        await QueueScoreInsert({ scoreID: 1, chartID: "foo" } as unknown as ScoreDocument);
+        const r2 = await QueueScoreInsert({
             scoreID: 1,
             chartID: "foo",
-        } as unknown) as ScoreDocument);
+        } as unknown as ScoreDocument);
 
         t.equal(r2, null, "Should return null when a duplicate scoreID is submitted");
 

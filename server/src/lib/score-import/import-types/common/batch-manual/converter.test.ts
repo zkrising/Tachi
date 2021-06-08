@@ -5,7 +5,7 @@ import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } 
 import deepmerge from "deepmerge";
 import { EscapeStringRegexp } from "../../../../../utils/misc";
 import { Game } from "kamaitachi-common";
-import ResetDBState from "../../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../../test-utils/resets";
 import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 

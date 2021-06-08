@@ -1,6 +1,6 @@
 import t from "tap";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import ResetDBState from "../../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../../test-utils/resets";
 import { barbScore } from "../../../../../test-utils/test-data";
 import CreateLogCtx from "../../../../logger/logger";
 import { ParseBarbatosSingle } from "./parser";
@@ -11,7 +11,7 @@ t.test("#ParseBarbatosSingle", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should return the score as a payload", (t) => {
-        const res = ParseBarbatosSingle((barbScore as unknown) as Record<string, unknown>, logger);
+        const res = ParseBarbatosSingle(barbScore as unknown as Record<string, unknown>, logger);
 
         t.hasStrict(res, {
             game: "sdvx",

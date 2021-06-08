@@ -1,5 +1,5 @@
-import { ClassHandler } from "../../../framework/user-game-stats/classes";
 import { integer } from "kamaitachi-common";
+import { ClassHandler } from "../../../framework/user-game-stats/types";
 
 export function CreateFerStaticClassHandler(body: Record<string, unknown>): ClassHandler {
     return (game, playtype, userID, ratings, logger) => {

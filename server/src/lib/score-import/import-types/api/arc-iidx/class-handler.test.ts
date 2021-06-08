@@ -1,7 +1,7 @@
 import t from "tap";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 import { MockJSONFetch } from "../../../../../test-utils/mock-fetch";
-import ResetDBState from "../../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../../test-utils/resets";
 import { IIDXClasses } from "../../../../constants/classes";
 import CreateLogCtx from "../../../../logger/logger";
 import { CreateArcIIDXClassHandler } from "./class-handler";

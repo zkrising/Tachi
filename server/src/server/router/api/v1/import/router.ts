@@ -7,15 +7,25 @@ import CreateLogCtx, { KtLogger } from "../../../../../lib/logger/logger";
 import prValidate from "../../../../middleware/prudence-validate";
 import { RequireLoggedIn } from "../../../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../../../../lib/score-import/framework/score-importing/score-import-error";
-
+import { SIXTEEN_MEGABTYES } from "../../../../../lib/constants/filesize";
 import { ExpressWrappedScoreImportMain } from "../../../../../lib/score-import/framework/express-wrapper";
 import { CreateMulterSingleUploadMiddleware } from "../../../../middleware/multer-upload";
+
+import ParseEamusementIIDXCSV from "../../../../../lib/score-import/import-types/file/eamusement-iidx-csv/parser";
+import ParseBatchManual from "../../../../../lib/score-import/import-types/file/batch-manual/parser";
+import { ParseSolidStateXML } from "../../../../../lib/score-import/import-types/file/solid-state-squad/parser";
+import { ParseMerIIDX } from "../../../../../lib/score-import/import-types/file/mer-iidx/parser";
+import ParsePLIIIDXCSV from "../../../../../lib/score-import/import-types/file/pli-iidx-csv/parser";
 
 const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 
-const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware("scoreData", logger);
+const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware(
+    "scoreData",
+    SIXTEEN_MEGABTYES,
+    logger
+);
 
 /**
  * Import scores from a file. Expects the post request to be multipart, and to provide a scoreData file.
@@ -63,12 +73,6 @@ router.post(
         return res.status(responseData.statusCode).json(responseData.body);
     }
 );
-
-import ParseEamusementIIDXCSV from "../../../../../lib/score-import/import-types/file/eamusement-iidx-csv/parser";
-import ParseBatchManual from "../../../../../lib/score-import/import-types/file/batch-manual/parser";
-import { ParseSolidStateXML } from "../../../../../lib/score-import/import-types/file/solid-state-squad/parser";
-import { ParseMerIIDX } from "../../../../../lib/score-import/import-types/file/mer-iidx/parser";
-import ParsePLIIIDXCSV from "../../../../../lib/score-import/import-types/file/pli-iidx-csv/parser";
 
 /**
  * Resolves the data from a file upload into an iterable,

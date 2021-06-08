@@ -107,7 +107,7 @@ export function ParseBeatorajaSingle(
             chart: body.chart as BeatorajaChart,
         },
         game: "bms",
-        iterable: ([body.score] as unknown) as BeatorajaScore[],
+        iterable: [body.score] as unknown as BeatorajaScore[],
         classHandler: null,
     };
 }

@@ -16,3 +16,5 @@ scripts/validate-database-errs/*
 scripts/__JSON-TO-KTDB/**/*.json
 
 /src/lib/env/config.json
+
+/local-cdn

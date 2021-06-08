@@ -1,6 +1,6 @@
 import t from "tap";
 import db from "../../../../external/mongo/db";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 import { GetRelevantFolderGoals, GetRelevantGoals, UpdateGoalsForUser, ProcessGoal } from "./goals";
 import { GoalDocument, UserGoalDocument } from "kamaitachi-common";
 import { CreateFolderChartLookup } from "../../../../utils/folder";
@@ -253,10 +253,10 @@ t.test("#UpdateGoalsForUser", (t) => {
         const goal = deepmerge(baseGoalDocument, { criteria: { value: 2 } });
         await db.goals.insert(goal);
 
-        const userGoal = (deepmerge(baseUserGoalDocument, {
+        const userGoal = deepmerge(baseUserGoalDocument, {
             outOf: 2,
             outOfHuman: "2",
-        }) as unknown) as UserGoalDocument;
+        }) as unknown as UserGoalDocument;
 
         await db["user-goals"].insert(userGoal);
         // we dont delete _id here because updategoalsforuser

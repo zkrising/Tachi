@@ -5,6 +5,9 @@ import db from "../external/mongo/db";
 import fs from "fs";
 import path from "path";
 import CreateLogCtx from "../lib/logger/logger";
+// im installing an entire library for rm rf...
+import rimraf from "rimraf";
+import { KTCDN_ROOT } from "../lib/env/env";
 
 const logger = CreateLogCtx(__filename);
 
@@ -69,4 +72,15 @@ export default async function ResetDBState() {
     }
 
     await Promise.all(promises);
+}
+
+export function ResetCDN() {
+    return new Promise<void>((resolve, reject) =>
+        rimraf(KTCDN_ROOT, (err) => {
+            if (err) {
+                reject(err);
+            }
+            resolve();
+        })
+    );
 }

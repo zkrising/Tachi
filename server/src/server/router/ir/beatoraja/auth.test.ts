@@ -1,7 +1,7 @@
 import t from "tap";
 import { ValidateAuthToken, ValidateIRClientVersion } from "./auth";
 import expMiddlewareMock from "express-request-mock";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 import { SYMBOL_KtchiData } from "../../../../lib/constants/ktchi";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 

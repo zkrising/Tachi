@@ -1,7 +1,7 @@
 import { UserGameStats } from "kamaitachi-common";
 import t from "tap";
 import CreateLogCtx from "../../../logger/logger";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 import { CalculateClassDeltas, UpdateUGSClasses } from "./classes";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 import { GitadoraColours } from "../../../constants/classes";
@@ -88,7 +88,7 @@ t.test("#CalculateClassDeltas", (t) => {
         const res = CalculateClassDeltas(
             "SP",
             { dan: 18 },
-            ({ classes: { dan: 17 } } as unknown) as UserGameStats,
+            { classes: { dan: 17 } } as unknown as UserGameStats,
             1,
             logger
         );
@@ -109,7 +109,7 @@ t.test("#CalculateClassDeltas", (t) => {
         const res = CalculateClassDeltas(
             "SP",
             { dan: 18 },
-            ({ classes: { dan: 18 } } as unknown) as UserGameStats,
+            { classes: { dan: 18 } } as unknown as UserGameStats,
             1,
             logger
         );
@@ -123,7 +123,7 @@ t.test("#CalculateClassDeltas", (t) => {
         const res = CalculateClassDeltas(
             "SP",
             { dan: 16 },
-            ({ classes: { dan: 18 } } as unknown) as UserGameStats,
+            { classes: { dan: 18 } } as unknown as UserGameStats,
             1,
             logger
         );

@@ -1,7 +1,7 @@
 import t from "tap";
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
-import ResetDBState from "../test-utils/reset-db-state";
+import ResetDBState from "../test-utils/resets";
 import { EvaluateGoalForUser } from "./goal";
 import { GoalDocument } from "kamaitachi-common";
 import deepmerge from "deepmerge";

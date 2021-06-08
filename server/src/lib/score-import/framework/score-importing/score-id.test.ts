@@ -1,7 +1,7 @@
 import { ScoreDocument } from "kamaitachi-common";
 import t from "tap";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 import { Testing511SPA, TestingIIDXSPDryScore } from "../../../../test-utils/test-data";
 import { CreateScoreID, GetWithScoreID } from "./score-id";
 

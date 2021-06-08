@@ -4,7 +4,7 @@ import { prAssert } from "../test-utils/asserts";
 import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive, FormatUserDoc } from "./user";
 import { PublicUserDocument } from "kamaitachi-common";
 import { CloseAllConnections } from "../test-utils/close-connections";
-import ResetDBState from "../test-utils/reset-db-state";
+import ResetDBState from "../test-utils/resets";
 
 t.test("#GetUserCaseInsensitive", (t) => {
     t.beforeEach(ResetDBState);

@@ -1,7 +1,7 @@
 import t from "tap";
 import db from "../../../../external/mongo/db";
 import CreateLogCtx from "../../../logger/logger";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../test-utils/resets";
 import { TestingIIDXSPMilestone } from "../../../../test-utils/test-data";
 import { UpdateUsersMilestones } from "./milestones";
 import { GoalImportInfo } from "kamaitachi-common";
@@ -11,11 +11,11 @@ import { CloseAllConnections } from "../../../../test-utils/close-connections";
 const logger = CreateLogCtx(__filename);
 
 function CreateMockGII(...garr: [string, boolean][]) {
-    return (garr.map((e) => ({
+    return garr.map((e) => ({
         goalID: e[0],
         old: {},
         new: { achieved: e[1] },
-    })) as unknown) as GoalImportInfo[];
+    })) as unknown as GoalImportInfo[];
 }
 
 t.test("#UpdateUsersMilestones", (t) => {

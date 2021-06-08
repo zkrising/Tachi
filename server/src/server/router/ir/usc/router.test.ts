@@ -2,9 +2,11 @@ import t from "tap";
 import db from "../../../../external/mongo/db";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 import mockApi from "../../../../test-utils/mock-api";
-import ResetDBState from "../../../../test-utils/reset-db-state";
+import ResetDBState, { ResetCDN } from "../../../../test-utils/resets";
 import deepmerge from "deepmerge";
-import { PBScoreDocument } from "kamaitachi-common";
+import { PBScoreDocument, ScoreDocument } from "kamaitachi-common";
+import { GetKTDataBuffer } from "../../../../test-utils/test-data";
+import { RetrieveCDN } from "../../../../lib/cdn/cdn";
 
 function InsertFakeUSCAuth() {
     return db["usc-auth-tokens"].insert({
@@ -326,6 +328,117 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
             ],
             "Should return the scores dependent on N."
         );
+
+        t.end();
+    });
+
+    t.end();
+});
+
+t.test("POST /replays", (t) => {
+    t.beforeEach(ResetDBState);
+    t.beforeEach(ResetCDN);
+
+    t.test("Should successfully upload a file where an identifier matches", async (t) => {
+        await db.scores.insert({
+            game: "usc",
+            userID: 1,
+            scoreID: "MOCK_IDENTIFIER",
+        } as ScoreDocument);
+
+        const replayFile = GetKTDataBuffer("./usc/replayfile.urf");
+
+        const res = await mockApi
+            .post("/ir/usc/replays")
+            .field("identifier", "MOCK_IDENTIFIER")
+            .attach("replay", replayFile, "replay.urf")
+            .set("Authorization", "Bearer foo");
+
+        t.equal(res.status, 200);
+
+        t.strictSame(res.body, {
+            statusCode: 20,
+            description: "Saved replay.",
+            body: null,
+        });
+
+        const stored = await RetrieveCDN("/uscir/replays/MOCK_IDENTIFIER");
+
+        t.strictSame(stored, replayFile, "Should store the same file exactly.");
+
+        t.end();
+    });
+
+    t.test("Should reject a request with no identifier", async (t) => {
+        await db.scores.insert({
+            game: "usc",
+            userID: 1,
+            scoreID: "MOCK_IDENTIFIER",
+        } as ScoreDocument);
+
+        const replayFile = GetKTDataBuffer("./usc/replayfile.urf");
+
+        const res = await mockApi
+            .post("/ir/usc/replays")
+            .attach("replay", replayFile, "replay.urf")
+            .set("Authorization", "Bearer foo");
+
+        t.equal(res.status, 200);
+
+        t.strictSame(res.body, {
+            statusCode: 40,
+            description: "No Identifier Provided.",
+        });
+
+        t.end();
+    });
+
+    t.test("Should reject a request with no file", async (t) => {
+        await db.scores.insert({
+            game: "usc",
+            userID: 1,
+            scoreID: "MOCK_IDENTIFIER",
+        } as ScoreDocument);
+
+        // const replayFile = GetKTDataBuffer("./usc/replayfile.urf");
+
+        const res = await mockApi
+            .post("/ir/usc/replays")
+            .field("identifier", "MOCK_IDENTIFIER")
+            // .attach("replay", replayFile, "replay.urf")
+            .set("Authorization", "Bearer foo");
+
+        t.equal(res.status, 200);
+
+        t.strictSame(res.body, {
+            statusCode: 40,
+            description: "No File Provided.",
+        });
+
+        t.end();
+    });
+
+    t.test("Should reject a request with an invalid identifier", async (t) => {
+        await db.scores.insert({
+            game: "usc",
+            userID: 1,
+            scoreID: "MOCK_IDENTIFIER",
+        } as ScoreDocument);
+
+        const replayFile = GetKTDataBuffer("./usc/replayfile.urf");
+
+        const res = await mockApi
+            .post("/ir/usc/replays")
+            .field("identifier", "INVALID_IDENTIFIER")
+            .attach("replay", replayFile, "replay.urf")
+            .set("Authorization", "Bearer foo");
+
+        t.equal(res.status, 200);
+
+        t.strictSame(res.body, {
+            statusCode: 44,
+            description: "No score corresponds to this identifier.",
+        });
 
         t.end();
     });

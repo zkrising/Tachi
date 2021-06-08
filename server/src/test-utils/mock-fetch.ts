@@ -7,7 +7,7 @@ import { NodeFetch } from "../utils/fetch";
  * Creates a basic Fetch function used for statusCode checks.
  */
 export function MockBasicFetch(data: Partial<Response>) {
-    return ((async () => data) as unknown) as NodeFetch;
+    return (async () => data) as unknown as NodeFetch;
 }
 
 /**

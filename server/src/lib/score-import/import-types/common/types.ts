@@ -17,11 +17,11 @@ import {
     MongoDBDocument,
 } from "kamaitachi-common";
 import { ConverterFailure } from "../../framework/common/converter-failures";
-import { ClassHandler } from "../../framework/user-game-stats/classes";
 import { DryScore } from "../../framework/common/types";
 import { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
-import { USCClientScore } from "../../../../server/router/ir/usc/usc";
+import { USCClientScore } from "../../../../server/router/ir/usc/types";
 import { IRUSCContext } from "../ir/usc/types";
+import { ClassHandler } from "../../framework/user-game-stats/types";
 export interface ImportTypeDataMap {
     "file/eamusement-iidx-csv": IIDXEamusementCSVData;
     "file/batch-manual": BatchManualScore;

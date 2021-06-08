@@ -1,6 +1,6 @@
 import t from "tap";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import ResetDBState from "../../../../../test-utils/reset-db-state";
+import ResetDBState from "../../../../../test-utils/resets";
 import CreateLogCtx from "../../../../logger/logger";
 import { CreateFerStaticClassHandler } from "./class-handler";
 

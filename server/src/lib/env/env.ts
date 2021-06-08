@@ -11,9 +11,11 @@ const envVars = [
     "KTBSV_EAG_API_URL",
     "KTBSV_ARC_API_URL",
     "KTBSV_ARC_AUTH_TOKEN",
+    "KTCDN_ROOT",
 ];
 
 for (const eVar of envVars) {
+    /* istanbul ignore next */
     if (!process.env[eVar]) {
         throw new Error(`${eVar} was not defined.`);
     }
@@ -27,3 +29,4 @@ export const FLO_API_URL = process.env.KTBSV_FLO_API_URL!;
 export const EAG_API_URL = process.env.KTBSV_EAG_API_URL!;
 export const ARC_API_URL = process.env.KTBSV_ARC_API_URL!;
 export const ARC_AUTH_TOKEN = process.env.KTBSV_ARC_AUTH_TOKEN!;
+export const KTCDN_ROOT = process.env.KTCDN_ROOT!;

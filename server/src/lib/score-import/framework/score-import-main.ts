@@ -18,10 +18,10 @@ import { UpdateUsersGamePlaytypeStats } from "./user-game-stats/update-ugs";
 import db from "../../../external/mongo/db";
 import { GetAndUpdateUsersGoals } from "./goals/goals";
 import { UpdateUsersMilestones } from "./milestones/milestones";
-import { ClassHandler } from "./user-game-stats/classes";
 import { ConverterFunction, ImportInputParser } from "../import-types/common/types";
 import { ScorePlaytypeMap } from "./common/types";
 import { Converters } from "../import-types/converters";
+import { ClassHandler } from "./user-game-stats/types";
 
 /**
  * Performs a Kamaitachi Score Import.
@@ -59,7 +59,7 @@ export default async function ScoreImportMain<D, C>(
     logger.debug(`Parsing took ${parseTime} miliseconds.`);
 
     // We have to cast here due to typescript generic confusions. This is guaranteed to be correct.
-    const ConverterFunction = (Converters[importType] as unknown) as ConverterFunction<D, C>;
+    const ConverterFunction = Converters[importType] as unknown as ConverterFunction<D, C>;
 
     // --- 2. Importing ---
     // ImportAllIterableData iterates over the iterable, applying the converter function to each bit of data.

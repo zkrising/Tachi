@@ -1,11 +1,10 @@
-import { USCClientScore } from "../../../../../server/router/ir/usc/usc";
+import { USCClientScore } from "../../../../../server/router/ir/usc/types";
 import { FindSongOnID } from "../../../../../utils/queries/songs";
 import { KtLogger } from "../../../../logger/logger";
 import { InternalFailure, InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { IRUSCContext } from "./types";
 import { Lamps } from "kamaitachi-common";
-import { v4 as UUIDv4 } from "uuid";
 import { ConverterFunction } from "../../common/types";
 import { DryScore } from "../../../framework/common/types";
 import {
@@ -104,7 +103,6 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
         scoreMeta: {
             gaugeMod: data.options.gaugeOpt === 0 ? "NORMAL" : "HARD",
             noteMod: DeriveNoteMod(data),
-            replayID: UUIDv4(),
         },
     };
 

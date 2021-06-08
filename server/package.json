@@ -1,7 +1,7 @@
 {
-    "name": "ktblack-server",
+    "name": "tachi-server",
     "version": "0.1.0",
-    "description": "The server for Kamaitachi Black",
+    "description": "A score tracking server.",
     "main": "js/index.js",
     "scripts": {
         "fulltest": "tap",

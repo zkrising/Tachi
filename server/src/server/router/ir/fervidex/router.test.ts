@@ -294,9 +294,9 @@ t.test("POST /ir/fervidex/profile/submit", async (t) => {
 
     t.test("Should accept a fervidex-static body", async (t) => {
         await db.songs.iidx.remove({});
-        await db.songs.iidx.insert(GetKTDataJSON("./kamaitachi/ktblack-songs-iidx.json"));
+        await db.songs.iidx.insert(GetKTDataJSON("./tachi/ktblack-songs-iidx.json"));
         await db.charts.iidx.remove({});
-        await db.charts.iidx.insert(GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json"));
+        await db.charts.iidx.insert(GetKTDataJSON("./tachi/ktblack-charts-iidx.json"));
 
         const res = await mockApi
             .post("/ir/fervidex/profile/submit")

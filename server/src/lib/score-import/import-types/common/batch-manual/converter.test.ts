@@ -102,8 +102,8 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
         const GAZER17MD5 = "38616b85332037cc12924f2ae2840262";
         const GAZER17SHA256 = "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d";
 
-        const gazerSong = GetKTDataJSON("./kamaitachi/bms-gazer-song.json");
-        const gazerChart = GetKTDataJSON("./kamaitachi/bms-gazer-chart.json");
+        const gazerSong = GetKTDataJSON("./tachi/bms-gazer-song.json");
+        const gazerChart = GetKTDataJSON("./tachi/bms-gazer-chart.json");
 
         const bmsContext: any = deepmerge(context, { game: "bms" });
 

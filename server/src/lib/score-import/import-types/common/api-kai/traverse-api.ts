@@ -2,6 +2,7 @@ import { KtLogger } from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import nodeFetch from "../../../../../utils/fetch";
 import { VERSION_STR } from "../../../../constants/version";
+import { CONF_INFO } from "../../../../setup/config";
 
 /**
  * Traverses a Kai-like personal_bests api.
@@ -40,7 +41,7 @@ export async function* TraverseKaiAPI(
             const res = await fetch(url, {
                 headers: {
                     Authorization: `Bearer ${token}`,
-                    "User-Agent": `Kamaitachi/${VERSION_STR}`,
+                    "User-Agent": `${CONF_INFO.NAME}/${VERSION_STR}`,
                 },
             });
 

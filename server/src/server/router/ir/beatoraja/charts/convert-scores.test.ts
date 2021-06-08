@@ -8,7 +8,7 @@ import { Random20Hex } from "../../../../../utils/misc";
 import deepmerge from "deepmerge";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
-const gazerChart = GetKTDataJSON("./kamaitachi/bms-gazer-chart.json");
+const gazerChart = GetKTDataJSON("./tachi/bms-gazer-chart.json");
 
 const pbScore = {
     composedFrom: {

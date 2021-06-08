@@ -10,8 +10,8 @@ import deepmerge from "deepmerge";
 const logger = CreateLogCtx(__filename);
 
 const arcScore = GetKTDataJSON("./api-arc/ddr-score.json") as ARCDDRScore;
-const putySong = GetKTDataJSON("./kamaitachi/ddr-puty-song.json") as ARCDDRScore;
-const putyChart = GetKTDataJSON("./kamaitachi/ddr-puty-chart.json") as ARCDDRScore;
+const putySong = GetKTDataJSON("./tachi/ddr-puty-song.json") as ARCDDRScore;
+const putyChart = GetKTDataJSON("./tachi/ddr-puty-chart.json") as ARCDDRScore;
 
 t.test("#ConvertAPIArcDDR", (t) => {
     t.beforeEach(ResetDBState);

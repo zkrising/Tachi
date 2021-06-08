@@ -24,7 +24,7 @@ import { Converters } from "../import-types/converters";
 import { ClassHandler } from "./user-game-stats/types";
 
 /**
- * Performs a Kamaitachi Score Import.
+ * Performs a Score Import.
  */
 export default async function ScoreImportMain<D, C>(
     user: PublicUserDocument,

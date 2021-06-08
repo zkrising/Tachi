@@ -17,7 +17,7 @@ t.test("#CreatePBDoc", (t) => {
     t.beforeEach(ResetDBState);
     t.beforeEach(() => {
         // monk adds _id onto the file when you import it, so lets try and avoid that
-        IIDXScore = GetKTDataJSON("./kamaitachi/iidx-score.json");
+        IIDXScore = GetKTDataJSON("./tachi/iidx-score.json");
     });
 
     const chartID = Testing511SPA.chartID;

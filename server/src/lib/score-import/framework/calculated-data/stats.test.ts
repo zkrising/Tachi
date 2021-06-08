@@ -249,7 +249,7 @@ t.test("#CalculateMFCP", (t) => {
     t.end();
 });
 
-const bbkk = GetKTDataJSON("./kamaitachi/chunithm-bbkk-chart.json");
+const bbkk = GetKTDataJSON("./tachi/chunithm-bbkk-chart.json");
 
 // unit testing a mathematical function is a square-round-hole problem.
 t.test("#CalculateCHUNITHMRating", (t) => {

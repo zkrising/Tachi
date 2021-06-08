@@ -88,8 +88,8 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
 const indexes: Partial<Record<ValidDatabases, Index[]>> = staticIndexes;
 
 for (const game of CONF_INFO.SUPPORTED_GAMES) {
-    if (indexes[`charts-${game}` as "charts-iidx"]) {
-        indexes[`charts-${game}` as "charts-iidx"]!.push(
+    if (indexes[`charts-${game}` as ValidDatabases]) {
+        indexes[`charts-${game}` as ValidDatabases]!.push(
             index({ chartID: 1 }, UNIQUE),
             index(
                 { songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 },
@@ -97,19 +97,22 @@ for (const game of CONF_INFO.SUPPORTED_GAMES) {
             )
         );
     } else {
-        indexes[`charts-${game}` as "charts-iidx"] = [
+        indexes[`charts-${game}` as ValidDatabases] = [
             index({ chartID: 1 }, UNIQUE),
             index({ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 }, UNIQUE),
         ];
     }
 
-    if (indexes[`songs-${game}` as "songs-iidx"]) {
-        indexes[`songs-${game}` as "songs-iidx"]!.push(
+    if (indexes[`songs-${game}` as ValidDatabases]) {
+        indexes[`songs-${game}` as ValidDatabases]!.push(
             index({ id: 1 }, UNIQUE),
             index({ title: 1 })
         );
     } else {
-        indexes[`songs-${game}` as "songs-iidx"] = [index({ id: 1 }, UNIQUE), index({ title: 1 })];
+        indexes[`songs-${game}` as ValidDatabases] = [
+            index({ id: 1 }, UNIQUE),
+            index({ title: 1 }),
+        ];
     }
 }
 

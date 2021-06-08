@@ -16,6 +16,7 @@ import ParseBatchManual from "../../../../../lib/score-import/import-types/file/
 import { ParseSolidStateXML } from "../../../../../lib/score-import/import-types/file/solid-state-squad/parser";
 import { ParseMerIIDX } from "../../../../../lib/score-import/import-types/file/mer-iidx/parser";
 import ParsePLIIIDXCSV from "../../../../../lib/score-import/import-types/file/pli-iidx-csv/parser";
+import { RequireKamaitachi } from "../../../../middleware/type-require";
 
 const logger = CreateLogCtx(__filename);
 
@@ -34,6 +35,7 @@ const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware(
 router.post(
     "/file",
     RequireLoggedIn,
+    RequireKamaitachi, // This is only useful for Kamaitachi, so.
     ParseMultipartScoredata,
     prValidate(
         {

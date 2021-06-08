@@ -87,10 +87,10 @@ t.test("#ParserFn", (t) => {
                     "file/batch-manual",
                     logger
                 ),
-            new ScoreImportFatalError(
-                400,
-                "Invalid game invalid_game - expected any of iidx, museca, maimai, jubeat, popn, sdvx, ddr, bms, chunithm, gitadora, usc"
-            ),
+            {
+                statusCode: 400,
+                message: /Invalid game invalid_game - expected any of/u,
+            } as any,
             "Should throw an error."
         );
 
@@ -101,10 +101,10 @@ t.test("#ParserFn", (t) => {
                     "file/batch-manual",
                     logger
                 ),
-            new ScoreImportFatalError(
-                400,
-                "Invalid game 123 - expected any of iidx, museca, maimai, jubeat, popn, sdvx, ddr, bms, chunithm, gitadora, usc"
-            ),
+            {
+                statusCode: 400,
+                message: /Invalid game invalid_game - expected any of/u,
+            } as any,
             "Should throw an error."
         );
 

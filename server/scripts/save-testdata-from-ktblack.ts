@@ -24,7 +24,7 @@ const ktBlackDB = monk(`${process.env.MONGO_BASE_URL}/ktblackdb`);
     logger.info(`Fetched ${data.length} documents, Writing...`);
 
     fs.writeFileSync(
-        path.join(__dirname, `../src/test-utils/test-data/kamaitachi/ktblack-${collection}.json`),
+        path.join(__dirname, `../src/test-utils/test-data/tachi/ktblack-${collection}.json`),
         JSON.stringify(data)
     );
 

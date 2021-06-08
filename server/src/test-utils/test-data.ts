@@ -28,42 +28,38 @@ export const GetKTDataJSON = (name: string) => JSON.parse(fs.readFileSync(file(n
 export const GetKTDataBuffer = (name: string) => fs.readFileSync(file(name));
 
 export const TestingIIDXSPDryScore = GetKTDataJSON(
-    "./kamaitachi/iidx-dryscore.json"
+    "./tachi/iidx-dryscore.json"
 ) as DryScore<"iidx:SP">;
 
 export const TestingIIDXSPScorePB = GetKTDataJSON(
-    "./kamaitachi/iidx-scorepb.json"
+    "./tachi/iidx-scorepb.json"
 ) as PBScoreDocument<"iidx:SP">;
 export const TestingIIDXSPScore = GetKTDataJSON(
-    "./kamaitachi/iidx-score.json"
+    "./tachi/iidx-score.json"
 ) as ScoreDocument<"iidx:SP">;
 
-export const Testing511SPA = GetKTDataJSON(
-    "./kamaitachi/iidx-511spa.json"
-) as ChartDocument<"iidx:SP">;
+export const Testing511SPA = GetKTDataJSON("./tachi/iidx-511spa.json") as ChartDocument<"iidx:SP">;
 
-export const Testing511Song = GetKTDataJSON(
-    "./kamaitachi/iidx-511-song.json"
-) as SongDocument<"iidx">;
+export const Testing511Song = GetKTDataJSON("./tachi/iidx-511-song.json") as SongDocument<"iidx">;
 
 export const TestingAlbidaADV = GetKTDataJSON(
-    "./kamaitachi/sdvx-albida-chart.json"
+    "./tachi/sdvx-albida-chart.json"
 ) as ChartDocument<"sdvx:Single">;
 
 export const TestingSDVXAlbidaSong = GetKTDataJSON(
-    "./kamaitachi/sdvx-albida-song.json"
+    "./tachi/sdvx-albida-song.json"
 ) as SongDocument<"sdvx">;
 
 export const TestingDoraChart = GetKTDataJSON(
-    "./kamaitachi/gitadora-ithinkabtyou.json"
+    "./tachi/gitadora-ithinkabtyou.json"
 ) as ChartDocument<"gitadora:Dora">;
 
 export const TestingSDVXSingleDryScore = GetKTDataJSON(
-    "./kamaitachi/sdvx-dryscore.json"
+    "./tachi/sdvx-dryscore.json"
 ) as DryScore<"sdvx:Single">;
 
 export const TestingGITADORADoraDryScore = GetKTDataJSON(
-    "./kamaitachi/gitadora-dryscore.json"
+    "./tachi/gitadora-dryscore.json"
 ) as DryScore<"gitadora:Dora">;
 
 export const TestingIIDXEamusementCSV26 = GetKTDataBuffer(
@@ -172,8 +168,8 @@ export async function LoadKTBlackIIDXData() {
         songs = KTDATA_CACHE.songs;
         charts = KTDATA_CACHE.charts;
     } else {
-        songs = GetKTDataJSON("./kamaitachi/ktblack-songs-iidx.json");
-        charts = GetKTDataJSON("./kamaitachi/ktblack-charts-iidx.json");
+        songs = GetKTDataJSON("./tachi/ktblack-songs-iidx.json");
+        charts = GetKTDataJSON("./tachi/ktblack-charts-iidx.json");
         KTDATA_CACHE = { songs, charts };
     }
 

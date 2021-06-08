@@ -1,4 +1,5 @@
 // The Downward Spiral
+// Version Info is intentionally identical between all variants of tachi
 
 export const VERSION_INFO = {
     major: 2,

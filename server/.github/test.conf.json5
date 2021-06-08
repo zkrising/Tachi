@@ -1,0 +1,13 @@
+{
+  MONGO_BASE_URL: "127.0.0.1",
+  LOG_LEVEL: "info",
+  CAPTCHA_SECRET_KEY: "unused",
+  SESSION_SECRET: "unused",
+  FLO_API_URL: "https://flo.example.com",
+  EAG_API_URL: "https://eag.example.com",
+  ARC_API_URL: "https://arc.example.com",
+  ARC_AUTH_TOKEN: "unused",
+  CDN_ROOT: "./local-cdn",
+  PORT: 8080,
+  TYPE: "ktchi", // It really doesn't matter whether we're in bokutachi or kamaitachi mode. If we had the performance we could run these in parallel?
+}

@@ -1,16 +1,7 @@
-name: KTBlack-Server CI
+name: Tachi-Server CI
 
 env:
-  KTBSV_MONGO_BASE_URL: "127.0.0.1"
   NODE_ENV: "test"
-  KTBSV_LOG_LEVEL: "info"
-  KTBSV_CAPTCHA_SECRET_KEY: "unused"
-  KTBSV_SESSION_SECRET: "unused"
-  KTBSV_FLO_API_URL: "https://flo.example.com"
-  KTBSV_EAG_API_URL: "https://eag.example.com"
-  KTBSV_ARC_API_URL: "https://arc.example.com"
-  KTBSV_ARC_AUTH_TOKEN: "unused"
-  KTCDN_ROOT: "./local-cdn"
   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 on:
@@ -27,7 +18,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Install Node.js 15
+      - name: Install Node.js 16
         uses: actions/setup-node@v2
         with:
           node-version: 16.x

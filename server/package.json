@@ -5,7 +5,7 @@
     "main": "js/index.js",
     "scripts": {
         "fulltest": "tap",
-        "paralleltest": "export KTBSV_PARALLEL_TESTS=true && tap -J",
+        "paralleltest": "export TACHI_PARALLEL_TESTS=true && tap -J",
         "watchtest": "tap --watch",
         "build": "tsc --project tsconfig.build.json",
         "lint": "eslint ./src --ext .ts --fix",

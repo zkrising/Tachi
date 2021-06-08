@@ -1,6 +1,7 @@
 import redis from "redis";
 import { RedisIPCChannels, RedisIPCData } from "tachi-common";
 import CreateLogCtx from "../../lib/logger/logger";
+import { CONFIG } from "../../lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -18,7 +19,7 @@ const SubCallbacks: Partial<SubCallbacks> = {};
 const SubClient = redis.createClient();
 const PubClient = redis.createClient();
 
-const PREFIX = "KTBSV";
+const PREFIX = CONFIG.TYPE.toUpperCase(); // KTCHI or BTCHI
 
 export function RedisPub<T extends RedisIPCChannels>(channel: T, data: RedisIPCData[T]) {
     PubClient.publish(`${PREFIX}-${channel}`, JSON.stringify(data));
@@ -39,11 +40,11 @@ export function RedisSub<T extends RedisIPCChannels>(channel: T, callback: Redis
 }
 
 SubClient.on("message", (channel, strData) => {
-    if (!channel.startsWith("KTBSV-")) {
+    if (!channel.startsWith(`${PREFIX}-`)) {
         return; // not our business
     }
 
-    const ktChannel = channel.slice("KTBSV-".length) as RedisIPCChannels;
+    const ktChannel = channel.slice(`${PREFIX}-`.length) as RedisIPCChannels;
 
     if (!Object.prototype.hasOwnProperty.call(SubCallbacks, ktChannel)) {
         return; // no callbacks to call

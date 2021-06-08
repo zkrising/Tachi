@@ -87,3 +87,5 @@ export const ARC_API_URL = tachiConfig.ARC_API_URL;
 export const ARC_AUTH_TOKEN = tachiConfig.ARC_AUTH_TOKEN;
 export const KTCDN_ROOT = tachiConfig.CDN_ROOT;
 export const CONF_INFO = tachiConfig.INFO;
+export const PORT = tachiConfig.PORT;
+export const CONFIG = tachiConfig;

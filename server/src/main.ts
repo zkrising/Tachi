@@ -1,13 +1,13 @@
 import CreateLogCtx from "./lib/logger/logger";
 import server from "./server/server";
-import serverConfig from "./server/server-config";
-import { LOG_LEVEL } from "./lib/setup/config";
+import { CONF_INFO, LOG_LEVEL, PORT } from "./lib/setup/config";
+
 import { FormatVersion } from "./lib/constants/version";
 
 const logger = CreateLogCtx(__filename);
 
-logger.info(`Booting Kamaitachi BLACK - ${FormatVersion()} [ENV: ${process.env.NODE_ENV}]`);
-logger.info(`Log level on ${LOG_LEVEL ?? "info"}.`);
+logger.info(`Booting ${CONF_INFO.NAME} - ${FormatVersion()} [ENV: ${process.env.NODE_ENV}]`);
+logger.info(`Log level is set to ${LOG_LEVEL}.`);
 
-server.listen(serverConfig.PORT);
-logger.info(`Listening on ${serverConfig.PORT}`);
+server.listen(PORT);
+logger.info(`Listening on port ${PORT}`);

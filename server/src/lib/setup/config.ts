@@ -92,7 +92,7 @@ if (config.TYPE === "ktchi") {
     config.TYPE_INFO = KTCHI_INFO;
 } else if (config.TYPE === "btchi") {
     config.TYPE_INFO = BTCHI_INFO;
-} else if (config.type === "omni") {
+} else if (config.TYPE === "omni") {
     config.TYPE_INFO = OMNI_INFO;
 }
 

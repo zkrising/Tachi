@@ -121,7 +121,7 @@ export async function CreatePOSTScoresResponseBody(
 
     const usersRanking = scorePB.rankingData.rank;
 
-    // This returns      immediately ranked higher
+    // This returns immediately ranked higher
     // than the current user.
 
     const adjAbove = (await db["score-pbs"].find(

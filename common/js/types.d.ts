@@ -671,7 +671,7 @@ interface ChartDocumentData {
         arcChartID: string | null;
     };
     "usc:Single": {
-        hashSHA1: string;
+        hashSHA1: string | string[];
     };
     "ddr:SP": CDDataDDRSP;
     "ddr:DP": CDDataDDRSP;

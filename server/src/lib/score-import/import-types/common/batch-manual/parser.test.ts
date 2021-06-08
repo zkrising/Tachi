@@ -87,10 +87,6 @@ t.test("#ParserFn", (t) => {
                     "file/batch-manual",
                     logger
                 ),
-            {
-                statusCode: 400,
-                message: /Invalid game invalid_game - expected any of/u,
-            } as any,
             "Should throw an error."
         );
 
@@ -101,10 +97,6 @@ t.test("#ParserFn", (t) => {
                     "file/batch-manual",
                     logger
                 ),
-            {
-                statusCode: 400,
-                message: /Invalid game invalid_game - expected any of/u,
-            } as any,
             "Should throw an error."
         );
 

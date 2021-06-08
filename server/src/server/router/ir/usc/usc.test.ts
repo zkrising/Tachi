@@ -272,7 +272,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
             },
             isServerRecord: false,
             isPB: false,
-            sendReplay: "foo_bar",
+            sendReplay: "USER_1_SCORE_PB",
             adjacentAbove: [
                 { score: 9_300_000, username: "4", ranking: 2 },
                 { score: 9_200_000, username: "3", ranking: 3 },
@@ -296,9 +296,6 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 
         await db.scores.insert({
             scoreID: "USER_4_SCORE_PB",
-            scoreMeta: {
-                replayID: "foo_bar",
-            },
         } as any);
 
         const res = await CreatePOSTScoresResponseBody(4, chartDoc, "USER_4_SCORE_PB");
@@ -314,7 +311,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
             },
             isServerRecord: false,
             isPB: false,
-            sendReplay: "foo_bar",
+            sendReplay: "USER_4_SCORE_PB",
         });
 
         t.strictSame(
@@ -338,9 +335,6 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 
         await db.scores.insert({
             scoreID: "USER_3_SCORE_PB",
-            scoreMeta: {
-                replayID: "foo_bar",
-            },
         } as any);
 
         const res = await CreatePOSTScoresResponseBody(3, chartDoc, "USER_3_SCORE_PB");
@@ -356,7 +350,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
             },
             isServerRecord: false,
             isPB: false,
-            sendReplay: "foo_bar",
+            sendReplay: "USER_3_SCORE_PB",
         });
 
         t.strictSame(

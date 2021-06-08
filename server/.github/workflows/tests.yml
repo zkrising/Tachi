@@ -36,7 +36,7 @@ jobs:
         run: pnpm i
 
       - name: Move Config File
-        run: mv ./.github/test.conf.json5 ./
+        run: mv ./.github/test.conf.json5 ./conf.json5
 
       - name: Lint Code
         run: pnpm lint

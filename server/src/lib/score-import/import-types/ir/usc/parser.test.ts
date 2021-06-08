@@ -9,7 +9,7 @@ const logger = CreateLogCtx(__filename);
 t.test("#ParseIRUSC", (t) => {
     t.test("Should validate and convert a score into an iterable", (t) => {
         const res = ParseIRUSC(
-            ({ score: uscScore } as unknown) as Record<string, unknown>,
+            { score: uscScore } as unknown as Record<string, unknown>,
             uscChart,
             logger
         );

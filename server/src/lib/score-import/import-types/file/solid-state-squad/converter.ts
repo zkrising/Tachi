@@ -16,9 +16,10 @@ import {
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../../common/types";
 
-export function ParseDifficulty(
-    diff: S3Score["diff"]
-): { playtype: Playtypes["iidx"]; difficulty: Difficulties["iidx:SP" | "iidx:DP"] } {
+export function ParseDifficulty(diff: S3Score["diff"]): {
+    playtype: Playtypes["iidx"];
+    difficulty: Difficulties["iidx:SP" | "iidx:DP"];
+} {
     switch (diff) {
         case "L7":
             return { playtype: "SP", difficulty: "NORMAL" };

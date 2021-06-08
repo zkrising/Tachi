@@ -8,11 +8,11 @@ import deepmerge from "deepmerge";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 
 const mockErr = (...msg: string[]) =>
-    (({
+    ({
         statusCode: 400,
         message: new RegExp(msg.map((e) => `${EscapeStringRegexp(e)}.*`).join(""), "u"),
         name: "Error",
-    } as unknown) as ScoreImportFatalError);
+    } as unknown as ScoreImportFatalError);
 
 const logger = CreateLogCtx(__filename);
 

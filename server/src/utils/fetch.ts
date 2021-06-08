@@ -9,4 +9,4 @@ const fetch =
 
 export type NodeFetch = (url: RequestInfo, init?: RequestInit | undefined) => Promise<Response>;
 
-export default (fetch as unknown) as NodeFetch;
+export default fetch as unknown as NodeFetch;

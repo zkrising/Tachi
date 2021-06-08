@@ -39,7 +39,7 @@ export function ParseBarbatosSingle(
     return {
         context: {},
         game: "sdvx",
-        iterable: ([body] as unknown) as BarbatosScore[],
+        iterable: [body] as unknown as BarbatosScore[],
         classHandler: null,
     };
 }

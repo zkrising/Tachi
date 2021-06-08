@@ -882,7 +882,7 @@ interface ChartDocumentData {
     "iidx:DP": CDDataIIDXSP;
     "popn:9B": Record<string, never>;
     "sdvx:Single": { inGameID: integer; arcChartID: string | null };
-    "usc:Single": { hashSHA256: string };
+    "usc:Single": { hashSHA1: string };
     "ddr:SP": CDDataDDRSP;
     "ddr:DP": CDDataDDRSP;
     "maimai:Single": { maxPercent: number; inGameID: string };

@@ -770,8 +770,6 @@ interface SongDocumentData {
     };
     usc: {
         sdvxEquiv: integer | null;
-        titleJP: string;
-        artistJP: string;
     };
     ddr: Record<string, never>;
     bms: {

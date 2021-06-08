@@ -973,7 +973,7 @@ interface SongDocumentData {
     jubeat: Record<string, never>;
     popn: Record<string, never>;
     sdvx: { uscEquiv: integer | null };
-    usc: { sdvxEquiv: integer | null; titleJP: string; artistJP: string };
+    usc: { sdvxEquiv: integer | null };
     ddr: Record<string, never>;
     bms: { genre: string | null; subtitle: string | null; subartist: string | null };
     chunithm: { genre: string };

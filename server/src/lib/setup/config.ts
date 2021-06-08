@@ -36,7 +36,7 @@ export interface TachiConfig {
     ARC_API_URL: string;
     ARC_AUTH_TOKEN: string;
     CDN_ROOT: string;
-    TYPE: "ktchi" | "btchi";
+    TYPE: "ktchi" | "btchi" | "omni";
     PORT: integer;
     INFO: {
         NAME: string;
@@ -54,25 +54,43 @@ const err = p(config, {
     ARC_AUTH_TOKEN: "string",
     CDN_ROOT: "string",
     PORT: p.isPositiveInteger,
-    TYPE: p.isIn("ktchi", "btchi"),
+    TYPE: p.isIn("ktchi", "btchi", "omni"),
 });
 
 if (err) {
     throw FormatPrError(err, "Invalid conf.json5 file.");
 }
 
+/**
+ * KTCHI | Kamaitachi is the arcade build of Tachi.
+ */
 const KTCHI_INFO: TachiConfig["INFO"] = {
     NAME: "Kamaitachi",
 };
 
+/**
+ * BTCHI | Bokutachi is the home-simulator build of Tachi.
+ */
 const BTCHI_INFO: TachiConfig["INFO"] = {
     NAME: "Bokutachi",
 };
 
+/**
+ * OMNI | Omnitachi is a local development/testing build of Tachi, which enables all endpoints.
+ *
+ * If you're one of those nerds who is reading this to figure out how to steal and rerun
+ * this codebase this is what you're looking for.
+ */
+const OMNI_INFO: TachiConfig["INFO"] = {
+    NAME: "Omnitachi",
+};
+
 if (config.TYPE === "ktchi") {
     config.INFO = KTCHI_INFO;
-} else {
+} else if (config.TYPE === "btchi") {
     config.INFO = BTCHI_INFO;
+} else if (config.type === "omni") {
+    config.INFO = OMNI_INFO;
 }
 
 const tachiConfig = config as TachiConfig;

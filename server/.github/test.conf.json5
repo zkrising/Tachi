@@ -11,5 +11,5 @@
   ARC_AUTH_TOKEN: "unused",
   CDN_ROOT: "./local-cdn",
   PORT: 8080,
-  TYPE: "ktchi", // It really doesn't matter whether we're in bokutachi or kamaitachi mode. If we had the performance we could run these in parallel?
+  TYPE: "omni", // It really doesn't matter whether we're in bokutachi or kamaitachi mode. If we had the performance we could run these in parallel?
 }

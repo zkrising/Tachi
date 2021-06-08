@@ -3,7 +3,7 @@ import nodeFetch from "../../../../../utils/fetch";
 import { TraverseKaiAPI } from "../../common/api-kai/traverse-api";
 import { ParserFunctionReturnsAsync } from "../../common/types";
 import { EmptyObject } from "../../../../../utils/types";
-import { ARC_API_URL, ARC_AUTH_TOKEN } from "../../../../env/env";
+import { ARC_API_URL, ARC_AUTH_TOKEN } from "../../../../setup/config";
 
 export function ParseArcSDVX(
     arcProfileID: string,

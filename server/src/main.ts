@@ -1,7 +1,7 @@
 import CreateLogCtx from "./lib/logger/logger";
 import server from "./server/server";
 import serverConfig from "./server/server-config";
-import { LOG_LEVEL } from "./lib/env/env";
+import { LOG_LEVEL } from "./lib/setup/config";
 import { FormatVersion } from "./lib/constants/version";
 
 const logger = CreateLogCtx(__filename);

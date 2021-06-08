@@ -2,14 +2,14 @@ import t from "tap";
 import { ValidateAuthToken, ValidateIRClientVersion } from "./auth";
 import expMiddlewareMock from "express-request-mock";
 import ResetDBState from "../../../../test-utils/resets";
-import { SYMBOL_KtchiData } from "../../../../lib/constants/ktchi";
+import { SYMBOL_TachiData } from "../../../../lib/constants/tachi";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 t.test("#ValidateIRClientVersion", (t) => {
     t.test("Should reject clients that are not supported", async (t) => {
         const { res } = await expMiddlewareMock(ValidateIRClientVersion, {
             headers: {
-                "X-KtchiIR-Version": "1.2.0",
+                "X-TachiIR-Version": "1.2.0",
             },
         });
 
@@ -17,7 +17,7 @@ t.test("#ValidateIRClientVersion", (t) => {
 
         t.equal(res.statusCode, 400);
         t.equal(json.success, false);
-        t.match(json.description, /Invalid KtchiIR client version/u);
+        t.match(json.description, /Invalid TachiIR client version/u);
 
         t.end();
     });
@@ -29,7 +29,7 @@ t.test("#ValidateIRClientVersion", (t) => {
 
         t.equal(res.statusCode, 400);
         t.equal(json.success, false);
-        t.match(json.description, /Invalid KtchiIR client version/u);
+        t.match(json.description, /Invalid TachiIR client version/u);
 
         t.end();
     });
@@ -37,7 +37,7 @@ t.test("#ValidateIRClientVersion", (t) => {
     t.test("Should accept 2.0.0", async (t) => {
         const { res } = await expMiddlewareMock(ValidateIRClientVersion, {
             headers: {
-                "X-KtchiIR-Version": "2.0.0",
+                "X-TachiIR-Version": "2.0.0",
             },
         });
 
@@ -106,9 +106,9 @@ t.test("#ValidateAuthToken", (t) => {
         t.equal(res.statusCode, 200);
 
         t.hasStrict(
-            req[SYMBOL_KtchiData]?.beatorajaAuthDoc,
+            req[SYMBOL_TachiData]?.beatorajaAuthDoc,
             { token: "token", userID: 1 },
-            "Should attach the authDoc to the request KtchiData"
+            "Should attach the authDoc to the request TachiData"
         );
 
         t.end();

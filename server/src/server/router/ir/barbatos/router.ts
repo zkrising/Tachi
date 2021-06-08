@@ -11,7 +11,7 @@ const router: Router = Router({ mergeParams: true });
  * @name POST /ir/barbatos/score/submit
  */
 router.post("/score/submit", RequireLoggedIn, async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
+    const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.userID);
 
     const responseData = await ExpressWrappedScoreImportMain(
         userDoc,

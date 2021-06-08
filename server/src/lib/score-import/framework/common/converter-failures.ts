@@ -13,8 +13,9 @@ export class ConverterFailure {
 }
 
 /**
- * SkipScoreFailure - This score could not be processed because Kamaitachi does not
+ * SkipScoreFailure - This score could not be processed because we do not
  * support it. This is not an error, but is not a success either.
+ * An example scenario would be something like a 5KEY score being imported from SSS.
  */
 export class SkipScoreFailure extends ConverterFailure {}
 
@@ -43,7 +44,7 @@ export class KTDataNotFoundFailure<T extends ImportTypes> extends ConverterFailu
 }
 
 /**
- * InvalidScoreError - This score provided invalid data that Kamaitachi
+ * InvalidScoreError - This score provided invalid data that we
  * can not accept.
  */
 export class InvalidScoreFailure extends ConverterFailure {}

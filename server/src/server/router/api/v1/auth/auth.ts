@@ -12,7 +12,7 @@ import { GetNextCounterValue } from "../../../../../utils/db";
 import CreateLogCtx from "../../../../../lib/logger/logger";
 import { FormatUserDoc } from "../../../../../utils/user";
 import nodeFetch from "../../../../../utils/fetch";
-import { CAPTCHA_SECRET_KEY } from "../../../../../lib/env/env";
+import { CAPTCHA_SECRET_KEY } from "../../../../../lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 

@@ -57,9 +57,9 @@ const ConvertEamIIDXCSV: ConverterFunction<IIDXEamusementCSVData, IIDXEamusement
         // @optimisable - This is actually a multi-fetch. Since eam-csv scores
         // are batched up into (song, chart1, chart2, chart3 ...) rows
         // we actually already have fetched this song a second ago.
-        const ktchiSong = await FindSongOnTitle("iidx", data.title);
+        const tachiSong = await FindSongOnTitle("iidx", data.title);
 
-        if (!ktchiSong) {
+        if (!tachiSong) {
             throw new KTDataNotFoundFailure(
                 `Could not find song for ${data.title}.`,
                 importType,
@@ -68,21 +68,21 @@ const ConvertEamIIDXCSV: ConverterFunction<IIDXEamusementCSVData, IIDXEamusement
             );
         }
 
-        const HUMANISED_CHART_TITLE = `${ktchiSong.title} (${context.playtype} ${eamScore.difficulty} [v${context.importVersion}])`;
+        const HUMANISED_CHART_TITLE = `${tachiSong.title} (${context.playtype} ${eamScore.difficulty} [v${context.importVersion}])`;
 
         if (isLegacyLeggendaria) {
             eamScore.difficulty = "LEGGENDARIA";
         }
 
-        const ktchiChart = (await FindChartWithPTDFVersion(
+        const tachiChart = (await FindChartWithPTDFVersion(
             "iidx",
-            ktchiSong.id,
+            tachiSong.id,
             context.playtype,
             eamScore.difficulty,
             context.importVersion
         )) as ChartDocument<"iidx:SP" | "iidx:DP">;
 
-        if (!ktchiChart) {
+        if (!tachiChart) {
             throw new KTDataNotFoundFailure(
                 `Could not find chart for ${HUMANISED_CHART_TITLE}`,
                 "file/eamusement-iidx-csv",
@@ -96,7 +96,7 @@ const ConvertEamIIDXCSV: ConverterFunction<IIDXEamusementCSVData, IIDXEamusement
             `${HUMANISED_CHART_TITLE} - Invalid EX score of ${eamScore.exscore}`
         );
 
-        const MAX_EX = ktchiChart.data.notecount * 2;
+        const MAX_EX = tachiChart.data.notecount * 2;
 
         if (exscore > MAX_EX) {
             throw new InvalidScoreFailure(
@@ -129,7 +129,7 @@ const ConvertEamIIDXCSV: ConverterFunction<IIDXEamusementCSVData, IIDXEamusement
             );
         }
 
-        const { percent, grade } = GenericGetGradeAndPercent("iidx", exscore, ktchiChart);
+        const { percent, grade } = GenericGetGradeAndPercent("iidx", exscore, tachiChart);
 
         const timestamp = ParseDateFromString(data.timestamp);
 
@@ -171,8 +171,8 @@ const ConvertEamIIDXCSV: ConverterFunction<IIDXEamusementCSVData, IIDXEamusement
             logger.info(`Skipped assigning BP for score. Had unexpected value of ${eamScore.bp}.`);
         }
 
-        // ts thinks ktchiSong might be null. It's not, though!
-        return { chart: ktchiChart, dryScore, song: ktchiSong };
+        // ts thinks tachiSong might be null. It's not, though!
+        return { chart: tachiChart, dryScore, song: tachiSong };
     };
 
 export default ConvertEamIIDXCSV;

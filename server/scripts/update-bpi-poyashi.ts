@@ -60,24 +60,24 @@ async function UpdatePoyashiData() {
 
         const [playtype, diff] = res;
 
-        const ktchiSong = await FindSongOnTitle("iidx", d.title);
+        const tachiSong = await FindSongOnTitle("iidx", d.title);
 
-        if (!ktchiSong) {
+        if (!tachiSong) {
             logger.warn(`Cannot find song ${d.title}?`);
             continue;
         }
 
-        const ktchiChart = (await FindChartWithPTDFVersion(
+        const tachiChart = (await FindChartWithPTDFVersion(
             "iidx",
-            ktchiSong.id,
+            tachiSong.id,
             playtype as "SP" | "DP",
             diff as Difficulties["iidx:DP" | "iidx:SP"],
             "28"
         )) as ChartDocument<"iidx:SP" | "iidx:DP">;
 
-        if (!ktchiChart) {
+        if (!tachiChart) {
             logger.warn(
-                `Cannot find chart ${ktchiSong.title} (${ktchiSong.id}) ${playtype}, ${diff}?`
+                `Cannot find chart ${tachiSong.title} (${tachiSong.id}) ${playtype}, ${diff}?`
             );
             continue;
         }
@@ -86,21 +86,21 @@ async function UpdatePoyashiData() {
 
         if (kavg < 0) {
             logger.warn(
-                `${ktchiSong.title} (${playtype} ${diff}). Invalid kavg ${d.avg}, Skipping.`
+                `${tachiSong.title} (${playtype} ${diff}). Invalid kavg ${d.avg}, Skipping.`
             );
             continue;
         }
 
         const kesd = ESDCore.CalculateESD(
             config.judgementWindows.iidx.SP,
-            kavg / (ktchiChart.data.notecount * 2)
+            kavg / (tachiChart.data.notecount * 2)
         );
 
         realData.push({
             coef: d.coef === -1 ? null : d.coef,
             kavg: Number(d.avg),
             wr: Number(d.wr),
-            chartID: ktchiChart.chartID,
+            chartID: tachiChart.chartID,
             kesd,
         });
     }

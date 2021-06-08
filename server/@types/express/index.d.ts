@@ -1,6 +1,6 @@
 import { Session, SessionData } from "express-session";
-import { SYMBOL_KtchiData } from "../../src/lib/constants/ktchi";
-import { KtchiRequestData, KtchiSessionData } from "../../src/utils/types";
+import { SYMBOL_TachiData } from "../../src/lib/constants/tachi";
+import { TachiRequestData, TachiSessionData } from "../../src/utils/types";
 
 export {};
 
@@ -8,7 +8,7 @@ export {};
 declare module "express-session" {
     // Inject additional properties on express-session
     interface SessionData {
-        ktchi: KtchiSessionData;
+        tachi: TachiSessionData;
     }
 }
 
@@ -17,7 +17,7 @@ declare global {
         interface Request {
             session: Session & Partial<SessionData>;
 
-            [SYMBOL_KtchiData]?: Partial<KtchiRequestData>;
+            [SYMBOL_TachiData]?: Partial<TachiRequestData>;
         }
     }
 }

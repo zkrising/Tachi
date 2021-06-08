@@ -2,7 +2,7 @@ import t from "tap";
 import db from "../../../../../external/mongo/db";
 import ResetDBState from "../../../../../test-utils/resets";
 import { GetKTDataJSON } from "../../../../../test-utils/test-data";
-import { KtchiPBScoreToBeatorajaFormat } from "./convert-scores";
+import { TachiPBScoreToBeatorajaFormat } from "./convert-scores";
 import { ScoreDocument, PBScoreDocument } from "tachi-common";
 import { Random20Hex } from "../../../../../utils/misc";
 import deepmerge from "deepmerge";
@@ -25,7 +25,7 @@ const pbScore = {
     userID: 1,
 } as unknown as PBScoreDocument<"bms:7K" | "bms:14K">;
 
-t.test("#KtchiPBScoreToBeatorajaFormat", (t) => {
+t.test("#TachiPBScoreToBeatorajaFormat", (t) => {
     t.beforeEach(ResetDBState);
     t.beforeEach(async () => {
         await db.scores.insert(
@@ -48,7 +48,7 @@ t.test("#KtchiPBScoreToBeatorajaFormat", (t) => {
     });
 
     t.test("Should convert score.", async (t) => {
-        const res = await KtchiPBScoreToBeatorajaFormat(pbScore, gazerChart, 1);
+        const res = await TachiPBScoreToBeatorajaFormat(pbScore, gazerChart, 1);
 
         t.strictSame(
             res,
@@ -73,7 +73,7 @@ t.test("#KtchiPBScoreToBeatorajaFormat", (t) => {
     });
 
     t.test("Should emplace username if requestingUserID is not the pbscore owner", async (t) => {
-        const res = await KtchiPBScoreToBeatorajaFormat(pbScore, gazerChart, 2);
+        const res = await TachiPBScoreToBeatorajaFormat(pbScore, gazerChart, 2);
 
         t.strictSame(
             res,
@@ -110,7 +110,7 @@ t.test("#KtchiPBScoreToBeatorajaFormat", (t) => {
             },
         } as ScoreDocument);
 
-        const res = await KtchiPBScoreToBeatorajaFormat(pbScore, gazerChart, 2);
+        const res = await TachiPBScoreToBeatorajaFormat(pbScore, gazerChart, 2);
 
         t.strictSame(
             res,
@@ -147,7 +147,7 @@ t.test("#KtchiPBScoreToBeatorajaFormat", (t) => {
             },
         } as ScoreDocument);
 
-        const res = await KtchiPBScoreToBeatorajaFormat(
+        const res = await TachiPBScoreToBeatorajaFormat(
             deepmerge(pbScore, { playtype: "14K" }),
             gazerChart,
             2
@@ -178,7 +178,7 @@ t.test("#KtchiPBScoreToBeatorajaFormat", (t) => {
     t.test("Should throw severe if no lampPB exists.", async (t) => {
         await db.scores.remove({ scoreID: "mock_lampPB" });
 
-        t.rejects(() => KtchiPBScoreToBeatorajaFormat(pbScore, gazerChart, 2), {
+        t.rejects(() => TachiPBScoreToBeatorajaFormat(pbScore, gazerChart, 2), {
             message: /User 1's PB on.*has no lampPB/u,
         } as any);
 

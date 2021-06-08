@@ -19,7 +19,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 
     if (!agent) {
         logger.debug(
-            `Rejected fervidex client with no agent from user ${req.session.ktchi!.userID}.`
+            `Rejected fervidex client with no agent from user ${req.session.tachi!.userID}.`
         );
         return res.status(400).json({
             success: false,
@@ -30,7 +30,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
     if (!agent.startsWith("fervidex/")) {
         logger.info(
             `Rejected fervidex client with invalid agent ${agent} from user ${
-                req.session.ktchi!.userID
+                req.session.tachi!.userID
             }.`
         );
         return res.status(400).json({
@@ -44,7 +44,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
     if (!versions.every((e) => !Number.isNaN(e))) {
         logger.info(
             `Rejected fervidex client with agent ${agent} for NaN-like versions from user ${
-                req.session.ktchi!.userID
+                req.session.tachi!.userID
             }.`
         );
         return res.status(400).json({
@@ -55,7 +55,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 
     // version.minor
     if (versions[1] < 3) {
-        logger.debug(`Rejected outdated fervidex client from user ${req.session.ktchi!.userID}.`);
+        logger.debug(`Rejected outdated fervidex client from user ${req.session.tachi!.userID}.`);
         return res.status(400).json({
             success: false,
             description: `Versions of fervidex < 1.3.0 are not supported.`,
@@ -69,7 +69,7 @@ const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
     const swModel = req.header("X-Software-Model");
 
     if (!swModel) {
-        logger.debug(`Rejected empty X-Software-Model from user ${req.session.ktchi!.userID}.`);
+        logger.debug(`Rejected empty X-Software-Model from user ${req.session.tachi!.userID}.`);
         return res.status(400).json({
             success: false,
             description: `Invalid X-Software-Model.`,
@@ -80,7 +80,7 @@ const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
         const softID = ParseEA3SoftID(swModel);
 
         if (softID.model !== MODEL_INFINITAS_2) {
-            logger.debug(`Rejected non-inf2 model from user ${req.session.ktchi!.userID}.`);
+            logger.debug(`Rejected non-inf2 model from user ${req.session.tachi!.userID}.`);
             return res.status(400).send({
                 success: false,
                 description: "This endpoint is only available for INF2 clients.",
@@ -101,7 +101,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
     const swModel = req.header("X-Software-Model");
 
     if (!swModel) {
-        logger.debug(`Rejected empty X-Software Model from user ${req.session.ktchi!.userID}.`);
+        logger.debug(`Rejected empty X-Software Model from user ${req.session.tachi!.userID}.`);
         return res.status(400).json({
             success: false,
             description: `Invalid X-Software-Model.`,
@@ -125,7 +125,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
         if (softID.ext !== EXT_HEROIC_VERSE) {
             logger.info(
                 `Rejected invalid Software Model ${softID.ext} from user ${
-                    req.session.ktchi!.userID
+                    req.session.tachi!.userID
                 }.`
             );
             return res.status(400).json({
@@ -155,7 +155,7 @@ router.use(RequireLoggedIn, ValidateFervidexHeader, ValidateModelHeader);
  * @name POST /ir/fervidex/profile/submit
  */
 router.post("/profile/submit", RequireInf2ModelHeader, async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
+    const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.userID);
 
     const headers = {
         // guaranteed to exist because of RequireInf2ModelHeader
@@ -180,7 +180,7 @@ router.post("/profile/submit", RequireInf2ModelHeader, async (req, res) => {
  * @name POST /ir/fervidex/score/submit
  */
 router.post("/score/submit", ValidateModelHeader, async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
+    const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.userID);
 
     const model = req.header("X-Software-Model");
 
@@ -243,7 +243,7 @@ router.post("/class/submit", ValidateModelHeader, async (req, res) => {
     const playtype: Playtypes["iidx"] = req.body.play_style === 0 ? "SP" : "DP";
 
     const r = await UpdateClassIfGreater(
-        req.session.ktchi!.userID,
+        req.session.tachi!.userID,
         "iidx",
         playtype,
         "dan",

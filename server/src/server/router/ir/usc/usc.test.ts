@@ -1,7 +1,7 @@
 import t from "tap";
 import db from "../../../../external/mongo/db";
 import ResetDBState from "../../../../test-utils/resets";
-import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./usc";
+import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
 import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
 import deepmerge from "deepmerge";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
@@ -51,13 +51,13 @@ const mockScoreDocument = {
     },
 } as ScoreDocument;
 
-t.test("#KtchiScoreToServerScore", (t) => {
+t.test("#TachiScoreToServerScore", (t) => {
     t.beforeEach(ResetDBState);
 
-    t.test("Should correctly convert a ktchiScore to a serverScore", async (t) => {
+    t.test("Should correctly convert a tachiScore to a serverScore", async (t) => {
         await db.scores.insert(mockScoreDocument as ScoreDocument);
 
-        const res = await KtchiScoreToServerScore(mockScorePB);
+        const res = await TachiScoreToServerScore(mockScorePB);
 
         t.strictSame(
             res,
@@ -82,7 +82,7 @@ t.test("#KtchiScoreToServerScore", (t) => {
     t.test("Should work for timestamped scores", async (t) => {
         await db.scores.insert(mockScoreDocument);
 
-        const res = await KtchiScoreToServerScore(
+        const res = await TachiScoreToServerScore(
             deepmerge(mockScorePB, { timeAchieved: 1_621_844_762_995 })
         );
 
@@ -107,7 +107,7 @@ t.test("#KtchiScoreToServerScore", (t) => {
     });
 
     t.test("Should throw if user document does not exist.", (t) => {
-        t.rejects(() => KtchiScoreToServerScore(deepmerge(mockScorePB, { userID: 2 } as any)), {
+        t.rejects(() => TachiScoreToServerScore(deepmerge(mockScorePB, { userID: 2 } as any)), {
             message: /User 2 from PB on chart.*has no user document\?/u,
         } as any);
 
@@ -115,7 +115,7 @@ t.test("#KtchiScoreToServerScore", (t) => {
     });
 
     t.test("Should throw if scorePB document does not exist.", (t) => {
-        t.rejects(() => KtchiScoreToServerScore(mockScorePB), {
+        t.rejects(() => TachiScoreToServerScore(mockScorePB), {
             message:
                 /Score USC_EXAMPLE_SCORE_PB_ID does not exist, but is referenced in 1's PBDoc on/u,
         } as any);

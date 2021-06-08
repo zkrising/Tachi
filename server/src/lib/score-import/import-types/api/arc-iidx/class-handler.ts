@@ -1,7 +1,7 @@
 import nodeFetch from "../../../../../utils/fetch";
 import { HasOwnProperty } from "../../../../../utils/misc";
 import { IIDXClasses } from "../../../../constants/classes";
-import { ARC_API_URL } from "../../../../env/env";
+import { ARC_API_URL } from "../../../../setup/config";
 import { ClassHandler } from "../../../framework/user-game-stats/types";
 
 export async function CreateArcIIDXClassHandler(

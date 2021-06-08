@@ -1,6 +1,6 @@
 import { Router } from "express";
 import db from "../../../../external/mongo/db";
-import { SYMBOL_KtchiData } from "../../../../lib/constants/ktchi";
+import { SYMBOL_TachiData } from "../../../../lib/constants/tachi";
 import CreateLogCtx, { KtLogger } from "../../../../lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { ParseBeatorajaSingle } from "../../../../lib/score-import/import-types/ir/beatoraja/parser";
@@ -77,7 +77,7 @@ router.use(ValidateAuthToken);
  * @name POST /ir/beatoraja/submit-score
  */
 router.post("/submit-score", async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_KtchiData]!.beatorajaAuthDoc!.userID);
+    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiData]!.beatorajaAuthDoc!.userID);
 
     const ParserFunction = (logger: KtLogger) => ParseBeatorajaSingle(req.body, logger);
 
@@ -220,7 +220,7 @@ router.post("/submit-course", async (req, res) => {
         });
     }
 
-    const userID = req[SYMBOL_KtchiData]!.beatorajaAuthDoc!.userID;
+    const userID = req[SYMBOL_TachiData]!.beatorajaAuthDoc!.userID;
 
     const result = await UpdateClassIfGreater(
         userID,

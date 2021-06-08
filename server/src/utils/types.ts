@@ -3,26 +3,26 @@ import { integer, GenericAuthDocument, ChartDocument } from "tachi-common";
 declare module "express-session" {
     // Inject additional properties on express-session
     interface SessionData {
-        ktchi: KtchiSessionData;
+        tachi: TachiSessionData;
     }
 }
 
-export interface KtchiSessionData {
+export interface TachiSessionData {
     userID: integer;
 }
 
-export interface KTFailResponse {
+export interface TachiAPIFailResponse {
     success: false;
     description: string;
 }
 
-export interface KTSuccessResponse {
+export interface TachiAPISuccessResponse {
     success: true;
     description: string;
     body: Record<string, unknown>;
 }
 
-export type KTReponse = KTFailResponse | KTSuccessResponse;
+export type TachiAPIReponse = TachiAPIFailResponse | TachiAPISuccessResponse;
 
 /**
  * Clarity type for empty objects - such as in context.
@@ -30,9 +30,9 @@ export type KTReponse = KTFailResponse | KTSuccessResponse;
 export type EmptyObject = Record<string, never>;
 
 /**
- * Data that may be monkey-patched onto req.ktchi. This holds things such as middleware results.
+ * Data that may be monkey-patched onto req.tachi. This holds things such as middleware results.
  */
-export interface KtchiRequestData {
+export interface TachiRequestData {
     uscAuthDoc?: GenericAuthDocument;
     uscChartDoc?: ChartDocument<"usc:Single">;
 

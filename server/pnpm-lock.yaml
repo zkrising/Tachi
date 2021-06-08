@@ -33,6 +33,7 @@ specifiers:
   express-session: ^1.17.2
   fast-json-stable-hash: ^1.0.2
   fast-xml-parser: ^3.19.0
+  json5: ^2.2.0
   mkdirp: ^1.0.4
   mongodb: 3.6.3
   monk: ^7.3.4
@@ -64,6 +65,7 @@ dependencies:
   express-session: 1.17.2
   fast-json-stable-hash: 1.0.2
   fast-xml-parser: 3.19.0
+  json5: 2.2.0
   mkdirp: 1.0.4
   mongodb: 3.6.3
   monk: 7.3.4
@@ -2561,7 +2563,6 @@ packages:
     hasBin: true
     dependencies:
       minimist: 1.2.5
-    dev: true
 
   /jsprim/1.4.1:
     resolution: {integrity: sha1-MT5mvB5cwG5Di8G3SZwuXFastqI=}

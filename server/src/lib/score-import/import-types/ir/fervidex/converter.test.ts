@@ -7,10 +7,10 @@ import { InternalFailure } from "../../../framework/common/converter-failures";
 import {
     ConverterIRFervidex,
     SplitFervidexChartRef,
-    KtchifyAssist,
-    KtchifyGauge,
-    KtchifyRandom,
-    KtchifyRange,
+    TachifyAssist,
+    TachifyGauge,
+    TachifyRandom,
+    TachifyRange,
 } from "./converter";
 import { FervidexScore } from "./types";
 import deepmerge from "deepmerge";
@@ -37,47 +37,47 @@ t.test("#SplitFervidexChartRef", (t) => {
     t.end();
 });
 
-t.test("#KtchifyAssist", (t) => {
-    t.equal(KtchifyAssist("ASCR_LEGACY"), "FULL ASSIST");
-    t.equal(KtchifyAssist("AUTO_SCRATCH"), "AUTO SCRATCH");
-    t.equal(KtchifyAssist("FULL_ASSIST"), "FULL ASSIST");
-    t.equal(KtchifyAssist("LEGACY_NOTE"), "LEGACY NOTE");
-    t.equal(KtchifyAssist(null), "NO ASSIST");
-    t.equal(KtchifyAssist(undefined), "NO ASSIST");
+t.test("#TachifyAssist", (t) => {
+    t.equal(TachifyAssist("ASCR_LEGACY"), "FULL ASSIST");
+    t.equal(TachifyAssist("AUTO_SCRATCH"), "AUTO SCRATCH");
+    t.equal(TachifyAssist("FULL_ASSIST"), "FULL ASSIST");
+    t.equal(TachifyAssist("LEGACY_NOTE"), "LEGACY NOTE");
+    t.equal(TachifyAssist(null), "NO ASSIST");
+    t.equal(TachifyAssist(undefined), "NO ASSIST");
 
     t.end();
 });
 
-t.test("#KtchifyGauge", (t) => {
-    t.equal(KtchifyGauge("ASSISTED_EASY"), "ASSISTED EASY");
-    t.equal(KtchifyGauge("EASY"), "EASY");
-    t.equal(KtchifyGauge("HARD"), "HARD");
-    t.equal(KtchifyGauge("EX_HARD"), "EX HARD");
-    t.equal(KtchifyGauge(null), "NORMAL");
-    t.equal(KtchifyGauge(undefined), "NORMAL");
+t.test("#TachifyGauge", (t) => {
+    t.equal(TachifyGauge("ASSISTED_EASY"), "ASSISTED EASY");
+    t.equal(TachifyGauge("EASY"), "EASY");
+    t.equal(TachifyGauge("HARD"), "HARD");
+    t.equal(TachifyGauge("EX_HARD"), "EX HARD");
+    t.equal(TachifyGauge(null), "NORMAL");
+    t.equal(TachifyGauge(undefined), "NORMAL");
 
     t.end();
 });
 
-t.test("#KtchifyRange", (t) => {
-    t.equal(KtchifyRange("HIDDEN_PLUS"), "HIDDEN+");
-    t.equal(KtchifyRange("LIFT"), "LIFT");
-    t.equal(KtchifyRange("LIFT_SUD_PLUS"), "LIFT SUD+");
-    t.equal(KtchifyRange("SUDDEN_PLUS"), "SUDDEN+");
-    t.equal(KtchifyRange("SUD_PLUS_HID_PLUS"), "SUD+ HID+");
-    t.equal(KtchifyRange(null), "NONE");
-    t.equal(KtchifyRange(undefined), "NONE");
+t.test("#TachifyRange", (t) => {
+    t.equal(TachifyRange("HIDDEN_PLUS"), "HIDDEN+");
+    t.equal(TachifyRange("LIFT"), "LIFT");
+    t.equal(TachifyRange("LIFT_SUD_PLUS"), "LIFT SUD+");
+    t.equal(TachifyRange("SUDDEN_PLUS"), "SUDDEN+");
+    t.equal(TachifyRange("SUD_PLUS_HID_PLUS"), "SUD+ HID+");
+    t.equal(TachifyRange(null), "NONE");
+    t.equal(TachifyRange(undefined), "NONE");
 
     t.end();
 });
 
-t.test("#KtchifyRandom", (t) => {
-    t.equal(KtchifyRandom("MIRROR"), "MIRROR");
-    t.equal(KtchifyRandom("R_RANDOM"), "R-RANDOM");
-    t.equal(KtchifyRandom("S_RANDOM"), "S-RANDOM");
-    t.equal(KtchifyRandom("RANDOM"), "RANDOM");
-    t.equal(KtchifyRandom(null), "NONRAN");
-    t.equal(KtchifyRandom(undefined), "NONRAN");
+t.test("#TachifyRandom", (t) => {
+    t.equal(TachifyRandom("MIRROR"), "MIRROR");
+    t.equal(TachifyRandom("R_RANDOM"), "R-RANDOM");
+    t.equal(TachifyRandom("S_RANDOM"), "S-RANDOM");
+    t.equal(TachifyRandom("RANDOM"), "RANDOM");
+    t.equal(TachifyRandom(null), "NONRAN");
+    t.equal(TachifyRandom(undefined), "NONRAN");
 
     t.end();
 });

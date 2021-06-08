@@ -11,7 +11,7 @@ const router: Router = Router({ mergeParams: true });
  * @name POST /ir/chunitachi/score/submit
  */
 router.post("/import", RequireLoggedIn, async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
+    const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.userID);
 
     if (req.body?.head?.game !== "chunithm") {
         return res.status(400).json({

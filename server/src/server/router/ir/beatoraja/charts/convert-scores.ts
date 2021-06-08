@@ -39,14 +39,14 @@ export type BeatorajaIRScoreFormat = BeatorajaPartialScoreFormat & BeatorajaScor
 const logger = CreateLogCtx(__filename);
 
 /**
- * Converts a Kamaitachi Score PB into the beatoraja IR format.
+ * Converts a Tachi Score PB into the beatoraja IR format.
  * @param pbScore - The PB score to convert.
  * @param chart - The chart document the PB score belongs to.
  * @param requestingUserID - The user who requested this conversion. This is
  * because beatoraja uses the empty string to dictate that the score was from
  * the requesting user.
  */
-export async function KtchiPBScoreToBeatorajaFormat(
+export async function TachiPBScoreToBeatorajaFormat(
     pbScore: PBScoreDocument<"bms:7K" | "bms:14K">,
     chart: ChartDocument<"bms:7K" | "bms:14K">,
     requestingUserID: integer
@@ -67,7 +67,7 @@ export async function KtchiPBScoreToBeatorajaFormat(
         );
     }
 
-    return KtchiScoreDataToBeatorajaFormat(
+    return TachiScoreDataToBeatorajaFormat(
         pbScore,
         chart.data.hashSHA256,
         username,
@@ -79,7 +79,7 @@ export async function KtchiPBScoreToBeatorajaFormat(
 }
 
 /**
- * Converts various data from Kamaitachi to the beatoraja format.
+ * Converts various data from Tachi to the beatoraja format.
  * @param pbScore - The users PB Score document for this chart.
  * @param sha256 - The SHA256 for this chart.
  * @param username - The users name. Beatoraja uses the special value "" to indicate the user is the current player.
@@ -89,7 +89,7 @@ export async function KtchiPBScoreToBeatorajaFormat(
  * @param random - What random modifier was used.
  * @returns A Beatoraja Score Document.
  */
-function KtchiScoreDataToBeatorajaFormat(
+function TachiScoreDataToBeatorajaFormat(
     pbScore: PBScoreDocument<"bms:7K" | "bms:14K">,
     sha256: string,
     username: string,

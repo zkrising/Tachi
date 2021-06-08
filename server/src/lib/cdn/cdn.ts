@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { KTCDN_ROOT } from "../env/env";
+import { KTCDN_ROOT } from "../setup/config";
 import CreateLogCtx from "../logger/logger";
 import { promisify } from "util";
 import mkdirp from "mkdirp";

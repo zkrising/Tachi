@@ -26,15 +26,15 @@ export const KT_LAMP_TO_USC: Record<
  * returns sentinel values in the case that certain
  * fields are null.
  */
-export async function KtchiScoreToServerScore(
-    ktchiScore: PBScoreDocument<"usc:Single">
+export async function TachiScoreToServerScore(
+    tachiScore: PBScoreDocument<"usc:Single">
 ): Promise<USCServerScore> {
     // @optimisable
     // Repeated calls to this may pre-emptively provide usernames
     // and score PBs.
     const userDoc = await db.users.findOne(
         {
-            id: ktchiScore.userID,
+            id: tachiScore.userID,
         },
         {
             projection: {
@@ -45,35 +45,35 @@ export async function KtchiScoreToServerScore(
 
     if (!userDoc) {
         logger.severe(
-            `User ${ktchiScore.userID} from PB on chart ${ktchiScore.chartID} has no user document?`
+            `User ${tachiScore.userID} from PB on chart ${tachiScore.chartID} has no user document?`
         );
         throw new Error(
-            `User ${ktchiScore.userID} from PB on chart ${ktchiScore.chartID} has no user document?`
+            `User ${tachiScore.userID} from PB on chart ${tachiScore.chartID} has no user document?`
         );
     }
 
     const scorePB = (await db.scores.findOne({
-        scoreID: ktchiScore.composedFrom.scorePB,
+        scoreID: tachiScore.composedFrom.scorePB,
     })) as ScoreDocument<"usc:Single"> | null;
 
     if (!scorePB) {
         logger.severe(
-            `Score ${ktchiScore.composedFrom.scorePB} does not exist, but is referenced in ${ktchiScore.userID}'s PBDoc on ${ktchiScore.chartID}?`
+            `Score ${tachiScore.composedFrom.scorePB} does not exist, but is referenced in ${tachiScore.userID}'s PBDoc on ${tachiScore.chartID}?`
         );
 
         throw new Error(
-            `Score ${ktchiScore.composedFrom.scorePB} does not exist, but is referenced in ${ktchiScore.userID}'s PBDoc on ${ktchiScore.chartID}?`
+            `Score ${tachiScore.composedFrom.scorePB} does not exist, but is referenced in ${tachiScore.userID}'s PBDoc on ${tachiScore.chartID}?`
         );
     }
 
     return {
-        score: ktchiScore.scoreData.score,
-        timestamp: MStoS(ktchiScore.timeAchieved ?? 0),
-        crit: ktchiScore.scoreData.hitData.critical ?? 0,
-        near: ktchiScore.scoreData.hitData.near ?? 0,
-        error: ktchiScore.scoreData.hitData.miss ?? 0,
-        ranking: ktchiScore.rankingData.rank,
-        lamp: KT_LAMP_TO_USC[ktchiScore.scoreData.lamp],
+        score: tachiScore.scoreData.score,
+        timestamp: MStoS(tachiScore.timeAchieved ?? 0),
+        crit: tachiScore.scoreData.hitData.critical ?? 0,
+        near: tachiScore.scoreData.hitData.near ?? 0,
+        error: tachiScore.scoreData.hitData.miss ?? 0,
+        ranking: tachiScore.rankingData.rank,
+        lamp: KT_LAMP_TO_USC[tachiScore.scoreData.lamp],
         username: userDoc.username,
         noteMod: scorePB.scoreMeta.noteMod ?? "NORMAL",
         gaugeMod: scorePB.scoreMeta.gaugeMod ?? "NORMAL",
@@ -162,10 +162,10 @@ export async function CreatePOSTScoresResponseBody(
     )) as PBScoreDocument<"usc:Single">[];
 
     const [score, serverRecord, adjacentAbove, adjacentBelow] = await Promise.all([
-        KtchiScoreToServerScore(scorePB),
-        KtchiScoreToServerScore(ktServerRecord),
-        Promise.all(adjAbove.map(KtchiScoreToServerScore)),
-        Promise.all(adjBelow.map(KtchiScoreToServerScore)),
+        TachiScoreToServerScore(scorePB),
+        TachiScoreToServerScore(ktServerRecord),
+        Promise.all(adjAbove.map(TachiScoreToServerScore)),
+        Promise.all(adjBelow.map(TachiScoreToServerScore)),
     ]);
 
     const originalScore = (await db.scores.findOne({

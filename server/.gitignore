@@ -9,6 +9,9 @@ coverage
 .setup_env
 failed-tests.txt
 
+# config files
+conf.json5
+
 scripts/arc-db-sync/charts.json
 scripts/arc-db-sync/songs.json
 scripts/validate-database-errs/*

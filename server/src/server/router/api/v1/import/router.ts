@@ -55,7 +55,7 @@ router.post(
         const inputParser = (logger: KtLogger) =>
             ResolveFileUploadData(importType, req.file, req.body, logger);
 
-        const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
+        const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.userID);
 
         // The <any, any> here is deliberate - TS picks the IIDX-CSV generic values
         // for this function call because it sees them first

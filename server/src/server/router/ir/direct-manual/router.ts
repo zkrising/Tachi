@@ -11,7 +11,7 @@ const router: Router = Router({ mergeParams: true });
  * @name POST /ir/direct-manual/import
  */
 router.post("/import", RequireLoggedIn, async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req.session.ktchi!.userID);
+    const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.userID);
 
     const intent = req.header("X-User-Intent");
 

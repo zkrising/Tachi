@@ -7,7 +7,7 @@ import path from "path";
 import CreateLogCtx from "../lib/logger/logger";
 // im installing an entire library for rm rf...
 import rimraf from "rimraf";
-import { KTCDN_ROOT } from "../lib/env/env";
+import { KTCDN_ROOT } from "../lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 

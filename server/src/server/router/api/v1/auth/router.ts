@@ -33,7 +33,7 @@ router.post("/status", RequireLoggedIn, (req, res) =>
         success: true,
         description: "Logged In.",
         body: {
-            userID: req.session.ktchi!.userID,
+            userID: req.session.tachi!.userID,
         },
     })
 );
@@ -56,8 +56,8 @@ router.post(
         }
     ),
     async (req, res) => {
-        if (req.session.ktchi?.userID) {
-            logger.info(`Dual log-in attempted from ${req.session.ktchi.userID}`);
+        if (req.session.tachi?.userID) {
+            logger.info(`Dual log-in attempted from ${req.session.tachi.userID}`);
             return res.status(409).json({
                 success: false,
                 description: `You are already logged in as someone.`,
@@ -107,7 +107,7 @@ router.post(
             });
         }
 
-        req.session.ktchi = {
+        req.session.tachi = {
             userID: requestedUser.id,
         };
 

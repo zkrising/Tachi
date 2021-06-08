@@ -4,7 +4,7 @@ import CreateLogCtx from "../../lib/logger/logger";
 const logger = CreateLogCtx(__filename);
 
 export function RequireLoggedIn(req: Request, res: Response, next: NextFunction) {
-    if (!req.session.ktchi?.userID) {
+    if (!req.session.tachi?.userID) {
         logger.info(`Received unauthorised request from ${req.ip} from ${req.originalUrl}`);
 
         return res.status(401).json({

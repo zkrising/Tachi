@@ -25,7 +25,7 @@ export const FERVIDEX_LAMP_LOOKUP = {
     7: "FULL COMBO",
 };
 
-export function KtchifyAssist(
+export function TachifyAssist(
     assist: FervidexScore["option"]["assist"]
 ): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["assist"] {
     switch (assist) {
@@ -43,7 +43,7 @@ export function KtchifyAssist(
     }
 }
 
-export function KtchifyGauge(
+export function TachifyGauge(
     gauge: FervidexScore["option"]["gauge"]
 ): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["gauge"] {
     switch (gauge) {
@@ -61,7 +61,7 @@ export function KtchifyGauge(
     }
 }
 
-export function KtchifyRange(
+export function TachifyRange(
     gauge: FervidexScore["option"]["range"]
 ): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["range"] {
     switch (gauge) {
@@ -81,7 +81,7 @@ export function KtchifyRange(
     }
 }
 
-export function KtchifyRandom(
+export function TachifyRandom(
     gauge: FervidexScore["option"]["style"]
 ): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["random"] {
     switch (gauge) {
@@ -209,10 +209,10 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
             },
         },
         scoreMeta: {
-            assist: KtchifyAssist(data.option.assist),
-            gauge: KtchifyGauge(data.option.gauge),
-            random: KtchifyRandom(data.option.style),
-            range: KtchifyRange(data.option.range),
+            assist: TachifyAssist(data.option.assist),
+            gauge: TachifyGauge(data.option.gauge),
+            random: TachifyRandom(data.option.style),
+            range: TachifyRange(data.option.range),
         },
     };
 

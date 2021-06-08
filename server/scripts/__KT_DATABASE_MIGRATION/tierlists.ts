@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TierlistParent, Game } from "tachi-common";
 import { gameHuman, validPlaytypes } from "tachi-common/js/config";
-import db from "../../src/db/db";
+import db from "../../src/external/mongo/db";
 import MigrateRecords from "./migrate";
 
 function ConvertFn(c: any): TierlistParent {

@@ -39,7 +39,7 @@ async function MergeIDs() {
             }
 
             // eslint-disable-next-line no-await-in-loop
-            const ktchiChart = await FindChartWithPTDFVersion(
+            const tachiChart = await FindChartWithPTDFVersion(
                 "iidx",
                 song.id,
                 playtype,
@@ -47,7 +47,7 @@ async function MergeIDs() {
                 version
             );
 
-            if (!ktchiChart) {
+            if (!tachiChart) {
                 logger.error(
                     `Could not find chart ${songTitle} ${playtype} ${difficulty} ${version}.`
                 );
@@ -59,7 +59,7 @@ async function MergeIDs() {
                 db.charts.iidx as unknown as ICollection<ChartDocument<"iidx:SP" | "iidx:DP">>
             ).update(
                 {
-                    _id: ktchiChart._id,
+                    _id: tachiChart._id,
                 },
                 {
                     $set: {

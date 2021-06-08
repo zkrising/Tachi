@@ -4,7 +4,7 @@ import CreateLogCtx from "../lib/logger/logger";
 import expressSession from "express-session";
 import { integer } from "tachi-common";
 import { RedisClient } from "../external/redis/redis";
-import { SESSION_SECRET } from "../lib/env/env";
+import { SESSION_SECRET } from "../lib/setup/config";
 import connectRedis from "connect-redis";
 
 const logger = CreateLogCtx(__filename);

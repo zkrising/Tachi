@@ -4,7 +4,7 @@ import { KaiAuthDocument } from "tachi-common";
 import { KaiContext } from "../types";
 import { TraverseKaiAPI } from "../traverse-api";
 import { ParserFunctionReturnsAsync } from "../../types";
-import { FLO_API_URL, EAG_API_URL } from "../../../../../env/env";
+import { FLO_API_URL, EAG_API_URL } from "../../../../../setup/config";
 
 export function ParseKaiIIDX(
     service: "FLO" | "EAG",

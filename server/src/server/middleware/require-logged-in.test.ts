@@ -6,7 +6,7 @@ t.test("#RequireLoggedIn", (t) => {
     t.test("Should reject users that are not logged in.", async (t) => {
         const { res } = await expMiddlewareMock(RequireLoggedIn, {
             session: {
-                ktchi: null,
+                tachi: null,
             },
         });
 
@@ -23,7 +23,7 @@ t.test("#RequireLoggedIn", (t) => {
     t.test("Should allow users that are logged in.", async (t) => {
         const { res } = await expMiddlewareMock(RequireLoggedIn, {
             session: {
-                ktchi: {
+                tachi: {
                     userID: 1,
                 },
             },

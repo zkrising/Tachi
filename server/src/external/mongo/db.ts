@@ -26,7 +26,7 @@ import {
     BMSCourseDocument,
 } from "tachi-common";
 import monk from "monk";
-import { MONGO_BASE_URL } from "../../lib/env/env";
+import { MONGO_BASE_URL } from "../../lib/setup/config";
 import CreateLogCtx from "../../lib/logger/logger";
 import { OrphanScoreDocument } from "../../lib/score-import/import-types/common/types";
 
@@ -39,7 +39,7 @@ let dbName = "ktblackdb";
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV === "test") {
-    if (process.env.KTBSV_PARALLEL_TESTS) {
+    if (process.env.TACHI_PARALLEL_TESTS) {
         dbName = `test-ephemeral-${process.pid}`;
     } else {
         dbName = `testingdb`;

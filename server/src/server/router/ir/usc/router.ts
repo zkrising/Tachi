@@ -1,6 +1,6 @@
 import { Router, RequestHandler } from "express";
 import { FindChartOnSHA256 } from "../../../../utils/queries/charts";
-import { SYMBOL_KtchiData } from "../../../../lib/constants/ktchi";
+import { SYMBOL_TachiData } from "../../../../lib/constants/tachi";
 import db from "../../../../external/mongo/db";
 import {
     ChartDocument,
@@ -10,13 +10,13 @@ import {
 } from "tachi-common";
 import { AssertStrAsPositiveNonZeroInt } from "../../../../lib/score-import/framework/common/string-asserts";
 import CreateLogCtx, { KtLogger } from "../../../../lib/logger/logger";
-import { CreatePOSTScoresResponseBody, KtchiScoreToServerScore } from "./usc";
+import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { GetUserWithID } from "../../../../utils/user";
 import { ParseIRUSC } from "../../../../lib/score-import/import-types/ir/usc/parser";
 import { USCIR_MAX_LEADERBOARD_N } from "../../../../lib/constants/usc-ir";
 import { CreateMulterSingleUploadMiddleware } from "../../../middleware/multer-upload";
-import { AssignToReqKtchiData } from "../../../../utils/req-ktchi-data";
+import { AssignToReqTachiData } from "../../../../utils/req-tachi-data";
 import { StoreCDN } from "../../../../lib/cdn/cdn";
 import { ONE_MEGABYTE } from "../../../../lib/constants/filesize";
 import crypto from "crypto";
@@ -70,7 +70,7 @@ const ValidateUSCRequest: RequestHandler = async (req, res, next) => {
         });
     }
 
-    AssignToReqKtchiData(req, { uscAuthDoc });
+    AssignToReqTachiData(req, { uscAuthDoc });
 
     return next();
 };
@@ -97,7 +97,7 @@ router.get("/", (req, res) =>
 const RetrieveChart: RequestHandler = async (req, res, next) => {
     const chart = await FindChartOnSHA256("usc", req.params.chartHash);
 
-    AssignToReqKtchiData(req, {
+    AssignToReqTachiData(req, {
         uscChartDoc: (chart ?? undefined) as ChartDocument<"usc:Single"> | undefined,
     });
 
@@ -110,7 +110,7 @@ const RetrieveChart: RequestHandler = async (req, res, next) => {
  * @name GET /ir/usc/charts/:chartHash
  */
 router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
-    const chart = req[SYMBOL_KtchiData]!.uscChartDoc;
+    const chart = req[SYMBOL_TachiData]!.uscChartDoc;
 
     if (!chart) {
         return res.status(200).json({
@@ -131,7 +131,7 @@ router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
  * @name GET /ir/usc/charts/:chartHash/record
  */
 router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
-    const chart = req[SYMBOL_KtchiData]!.uscChartDoc;
+    const chart = req[SYMBOL_TachiData]!.uscChartDoc;
 
     // spec ambigious here
 
@@ -154,7 +154,7 @@ router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
         });
     }
 
-    const serverScore = await KtchiScoreToServerScore(serverRecord);
+    const serverScore = await TachiScoreToServerScore(serverRecord);
 
     return res.status(200).json({
         statusCode: STATUS_CODES.SUCCESS,
@@ -169,7 +169,7 @@ router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
  * @name GET /ir/usc/charts/:chartHash/leaderboard
  */
 router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => {
-    const chart = req[SYMBOL_KtchiData]!.uscChartDoc!;
+    const chart = req[SYMBOL_TachiData]!.uscChartDoc!;
 
     if (!(typeof req.query.mode === "string" && ["best", "rivals"].includes(req.query.mode))) {
         return res.status(200).json({
@@ -221,7 +221,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
         }
     )) as PBScoreDocument<"usc:Single">[];
 
-    const serverScores = await Promise.all(bestScores.map(KtchiScoreToServerScore));
+    const serverScores = await Promise.all(bestScores.map(TachiScoreToServerScore));
 
     return res.status(200).json({
         statusCode: STATUS_CODES.SUCCESS,
@@ -262,10 +262,10 @@ router.post("/scores", async (req, res) => {
         });
     }
 
-    const userDoc = await GetUserWithID(req[SYMBOL_KtchiData]!.uscAuthDoc!.userID);
+    const userDoc = await GetUserWithID(req[SYMBOL_TachiData]!.uscAuthDoc!.userID);
 
     if (!userDoc) {
-        logger.severe(`User ${req[SYMBOL_KtchiData]!.uscAuthDoc!.userID} as no parent userDoc?`);
+        logger.severe(`User ${req[SYMBOL_TachiData]!.uscAuthDoc!.userID} as no parent userDoc?`);
         return res.status(200).json({
             statusCode: STATUS_CODES.SERVER_ERROR,
             description: "An internal server error has occured.",
@@ -334,7 +334,7 @@ router.post(
         }
 
         const correspondingScore = await db.scores.findOne({
-            userID: req[SYMBOL_KtchiData]!.uscAuthDoc!.userID,
+            userID: req[SYMBOL_TachiData]!.uscAuthDoc!.userID,
             game: "usc",
             scoreID: req.body.identifier,
         });

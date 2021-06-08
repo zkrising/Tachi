@@ -1,9 +1,9 @@
 import { ChartDocument, PBScoreDocument } from "tachi-common";
 import { Router, RequestHandler } from "express";
 import db from "../../../../../external/mongo/db";
-import { SYMBOL_KtchiData } from "../../../../../lib/constants/ktchi";
-import { KtchiPBScoreToBeatorajaFormat } from "./convert-scores";
-import { AssignToReqKtchiData } from "../../../../../utils/req-ktchi-data";
+import { SYMBOL_TachiData } from "../../../../../lib/constants/tachi";
+import { TachiPBScoreToBeatorajaFormat } from "./convert-scores";
+import { AssignToReqTachiData } from "../../../../../utils/req-tachi-data";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -19,7 +19,7 @@ const GetChartDocument: RequestHandler = async (req, res, next) => {
         });
     }
 
-    AssignToReqKtchiData(req, { beatorajaChartDoc: chart });
+    AssignToReqTachiData(req, { beatorajaChartDoc: chart });
 
     return next();
 };
@@ -31,7 +31,7 @@ router.use(GetChartDocument);
  * @name GET /ir/beatoraja/chart/:chartSHA256/scores
  */
 router.get("/scores", async (req, res) => {
-    const chart = req[SYMBOL_KtchiData]!.beatorajaChartDoc!;
+    const chart = req[SYMBOL_TachiData]!.beatorajaChartDoc!;
 
     const scores = (await db["score-pbs"].find({
         chartID: chart.chartID,
@@ -41,7 +41,7 @@ router.get("/scores", async (req, res) => {
     // @optimisable - This should be solved with a couple queries and a hashmap.
     const beatorajaScores = await Promise.all(
         scores.map((e) =>
-            KtchiPBScoreToBeatorajaFormat(e, chart, req[SYMBOL_KtchiData]!.beatorajaAuthDoc!.userID)
+            TachiPBScoreToBeatorajaFormat(e, chart, req[SYMBOL_TachiData]!.beatorajaAuthDoc!.userID)
         )
     );
 

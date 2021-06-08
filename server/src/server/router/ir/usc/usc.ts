@@ -8,7 +8,7 @@ import { USCServerScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
 
-export const KT_LAMP_TO_USC: Record<
+export const TACHI_LAMP_TO_USC: Record<
     PBScoreDocument<"usc:Single">["scoreData"]["lamp"],
     USCServerScore["lamp"]
 > = {
@@ -73,7 +73,7 @@ export async function TachiScoreToServerScore(
         near: tachiScore.scoreData.hitData.near ?? 0,
         error: tachiScore.scoreData.hitData.miss ?? 0,
         ranking: tachiScore.rankingData.rank,
-        lamp: KT_LAMP_TO_USC[tachiScore.scoreData.lamp],
+        lamp: TACHI_LAMP_TO_USC[tachiScore.scoreData.lamp],
         username: userDoc.username,
         noteMod: scorePB.scoreMeta.noteMod ?? "NORMAL",
         gaugeMod: scorePB.scoreMeta.gaugeMod ?? "NORMAL",

@@ -4,6 +4,7 @@ import db from "../../external/mongo/db";
 import { KtLogger } from "../logger/logger";
 import { GetFolderChartIDs } from "../../utils/folder";
 import { FilterQuery } from "mongodb";
+import fjsh from "fast-json-stable-hash";
 
 export interface EvaluatedGoalReturn {
     achieved: boolean;
@@ -11,6 +12,21 @@ export interface EvaluatedGoalReturn {
     outOf: number;
     progressHuman: string;
     outOfHuman: string;
+}
+
+/**
+ * Creates a goalID from a goals charts and criteria.
+ *
+ * This uses FJSH to stable-stringify the charts and criteria,
+ * then hashes that string under sha256.
+ *
+ * @note We could do better here, by converting criteria
+ * to 'similar' criteria - like 100% resolving to 1million score
+ * but that proves very complex to implement when it comes
+ * to multiple games.
+ */
+export function CreateGoalID(charts: GoalDocument["charts"], criteria: GoalDocument["criteria"]) {
+    return fjsh.hash({ charts, criteria }, "sha256");
 }
 
 export async function EvaluateGoalForUser(

@@ -29,6 +29,7 @@ specifiers:
   eslint-plugin-prettier: ^3.4.0
   express: ^4.17.1
   express-async-errors: ^3.1.1
+  express-rate-limit: ^5.2.6
   express-request-mock: ^3.1.0
   express-session: ^1.17.2
   fast-json-stable-hash: ^1.0.2
@@ -62,6 +63,7 @@ dependencies:
   dotenv: 10.0.0
   express: 4.17.1
   express-async-errors: 3.1.1_express@4.17.1
+  express-rate-limit: 5.2.6
   express-session: 1.17.2
   fast-json-stable-hash: 1.0.2
   fast-xml-parser: 3.19.0
@@ -74,7 +76,7 @@ dependencies:
   prudence: 0.9.6
   redis: 3.1.2
   rimraf: 3.0.2
-  tachi-common: github.com/zkldi/tachi-common/ceaccaf38a718a78257d48a36a0c524faa1c5132
+  tachi-common: github.com/zkldi/tachi-common/cd7dd96729fd8d70b55165c90fb2bc62521ee293
   typescript: 4.3.2
   winston: 3.3.3
 
@@ -1778,6 +1780,10 @@ packages:
       express: ^4.16.2
     dependencies:
       express: 4.17.1
+    dev: false
+
+  /express-rate-limit/5.2.6:
+    resolution: {integrity: sha512-nE96xaxGfxiS5jP3tD3kIW1Jg9yQgX0rXCs3rCkZtmbWHEGyotwaezkLj7bnB41Z0uaOLM8W4AX6qHao4IZ2YA==}
     dev: false
 
   /express-request-mock/3.1.0:
@@ -4398,8 +4404,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  github.com/zkldi/tachi-common/ceaccaf38a718a78257d48a36a0c524faa1c5132:
-    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/ceaccaf38a718a78257d48a36a0c524faa1c5132}
+  github.com/zkldi/tachi-common/cd7dd96729fd8d70b55165c90fb2bc62521ee293:
+    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/cd7dd96729fd8d70b55165c90fb2bc62521ee293}
     name: kamaitachi-common
     version: 0.1.0
     dependencies:

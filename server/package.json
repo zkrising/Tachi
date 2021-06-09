@@ -51,6 +51,7 @@
         "dotenv": "^10.0.0",
         "express": "^4.17.1",
         "express-async-errors": "^3.1.1",
+        "express-rate-limit": "^5.2.6",
         "express-session": "^1.17.2",
         "fast-json-stable-hash": "^1.0.2",
         "fast-xml-parser": "^3.19.0",

@@ -372,7 +372,7 @@ t.test("#ProcessGoal", (t) => {
                 },
                 new: {
                     progress: 6,
-                    progressHuman: "EX HARD CLEAR",
+                    progressHuman: "EX HARD CLEAR (BP: 2)",
                     outOf: 5,
                     outOfHuman: "HARD CLEAR",
                     achieved: true,

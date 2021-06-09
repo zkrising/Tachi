@@ -209,7 +209,7 @@ export const uscChart: ChartDocument<"usc:Single"> = {
         CUSTOM: true,
     },
     data: {
-        hashSHA256: "USC_CHART_HASH",
+        hashSHA1: "USC_CHART_HASH",
     },
     isPrimary: true,
     versions: [],

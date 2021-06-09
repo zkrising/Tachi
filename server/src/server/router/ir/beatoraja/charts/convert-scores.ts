@@ -102,7 +102,8 @@ function TachiScoreDataToBeatorajaFormat(
 
     let rajaRandom = 0 as const;
 
-    // @todo #138 Investigate how beatoraja handles DP randoms - for now, we just skip them.
+    // Beatoraja does not support DP randoms - it only stores them in replay files,
+    // and only sends the left hand random here.
     if (pbScore.playtype === "7K") {
         if (random) {
             // @ts-expect-error Invalid indexing because playtype removes the random tuple.

@@ -104,6 +104,12 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
         };
     }
 
+    let random = null;
+
+    if (chart.playtype === "7K") {
+        random = RANDOM_LOOKUP[data.option];
+    }
+
     const lamp = LAMP_LOOKUP[data.clear];
 
     const dryScore: DryScore<"bms:7K" | "bms:14K"> = {
@@ -121,7 +127,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
         scoreMeta: {
             client: context.client,
             inputDevice: data.deviceType,
-            random: RANDOM_LOOKUP[data.option] ?? null,
+            random,
         },
         timeAchieved: Date.now(),
         service: "Beatoraja IR",

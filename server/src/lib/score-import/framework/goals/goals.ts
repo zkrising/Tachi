@@ -1,5 +1,5 @@
 import { integer, Game, GoalDocument, UserGoalDocument } from "tachi-common";
-import { EvaluateGoalForUser } from "../../../../utils/goal";
+import { EvaluateGoalForUser } from "../../../achievables/goals";
 import db from "../../../../external/mongo/db";
 import { KtLogger } from "../../../logger/logger";
 import { RedisPub } from "../../../../external/redis/redis-IPC";
@@ -84,7 +84,7 @@ export async function ProcessGoal(
     const res = await EvaluateGoalForUser(goal, userID, logger);
 
     if (!res) {
-        // some sort of error occured - its logged by the function.
+        // some sort of error occured - its logged by the previous function.
         return;
     }
 

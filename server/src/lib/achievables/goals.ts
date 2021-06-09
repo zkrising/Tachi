@@ -67,7 +67,12 @@ export async function EvaluateGoalForUser(
             | "score"
             | "percent";
 
-        const outOfHuman = HumaniseGoalSingle(goal.game, goal.criteria.key, goal.criteria.value);
+        const outOfHuman = HumaniseGoalProgress(
+            goal.game,
+            goal.criteria.key,
+            goal.criteria.value,
+            null
+        );
 
         if (res) {
             return {
@@ -75,10 +80,11 @@ export async function EvaluateGoalForUser(
                 outOf: goal.criteria.value,
                 progress: res.scoreData[scoreDataKey],
                 outOfHuman,
-                progressHuman: HumaniseGoalSingle(
+                progressHuman: HumaniseGoalProgress(
                     goal.game,
                     goal.criteria.key,
-                    res.scoreData[scoreDataKey]
+                    res.scoreData[scoreDataKey],
+                    res
                 ),
             };
         }
@@ -112,10 +118,11 @@ export async function EvaluateGoalForUser(
             outOf: goal.criteria.value,
             outOfHuman,
             progress: nextBestScore.scoreData[scoreDataKey],
-            progressHuman: HumaniseGoalSingle(
+            progressHuman: HumaniseGoalProgress(
                 goal.game,
                 goal.criteria.key,
-                nextBestScore.scoreData[scoreDataKey]
+                nextBestScore.scoreData[scoreDataKey],
+                nextBestScore
             ),
         };
     } else if (goal.criteria.mode === "abs" || goal.criteria.mode === "proportion") {
@@ -180,12 +187,24 @@ function ResolveGoalCharts(goal: GoalDocument): Promise<string[]> | string[] | n
 
 type GoalKeys = GoalDocument["criteria"]["key"];
 
+type IIDXOrBMSPB = PBScoreDocument<"iidx:SP" | "iidx:DP" | "bms:7K" | "bms:14K">;
+
 // @todo, #100 improve this (add things like BP for iidx, maybe, percents for scores?)
-function HumaniseGoalSingle(game: Game, key: GoalKeys, value: number): string {
+export function HumaniseGoalProgress(
+    game: Game,
+    key: GoalKeys,
+    value: number,
+    userPB: PBScoreDocument | null
+): string {
     switch (key) {
         case "scoreData.gradeIndex":
             return grades[game][value];
         case "scoreData.lampIndex":
+            if (userPB && (game === "iidx" || game === "bms")) {
+                return `${lamps[game][value]} (BP: ${
+                    (userPB as IIDXOrBMSPB).scoreData.hitMeta.bp ?? "N/A"
+                })`;
+            }
             return lamps[game][value];
         case "scoreData.percent":
             return `${value.toFixed(2)}%`;

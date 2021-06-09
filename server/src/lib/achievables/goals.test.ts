@@ -2,7 +2,7 @@ import t from "tap";
 import db from "../../external/mongo/db";
 import CreateLogCtx from "../logger/logger";
 import ResetDBState from "../../test-utils/resets";
-import { EvaluateGoalForUser } from "./goals";
+import { EvaluateGoalForUser, HumaniseGoalProgress } from "./goals";
 import { GoalDocument } from "tachi-common";
 import deepmerge from "deepmerge";
 import {
@@ -35,7 +35,7 @@ t.test("#EvaluateGoalForUser", (t) => {
                     outOf: 5,
                     progress: 6,
                     outOfHuman: "HARD CLEAR",
-                    progressHuman: "EX HARD CLEAR",
+                    progressHuman: "EX HARD CLEAR (BP: 2)",
                 },
                 "Should correctly evaluate the goal if the user succeeds."
             );
@@ -63,7 +63,7 @@ t.test("#EvaluateGoalForUser", (t) => {
                     outOf: 5,
                     progress: 4,
                     outOfHuman: "HARD CLEAR",
-                    progressHuman: "CLEAR",
+                    progressHuman: "CLEAR (BP: 2)",
                 },
                 "Should correctly evaluate the goal if the user fails."
             );
@@ -126,7 +126,7 @@ t.test("#EvaluateGoalForUser", (t) => {
                     outOf: 5,
                     progress: 6,
                     outOfHuman: "HARD CLEAR",
-                    progressHuman: "EX HARD CLEAR",
+                    progressHuman: "EX HARD CLEAR (BP: 2)",
                 },
                 "Should correctly evaluate the goal if the user succeeds."
             );
@@ -153,7 +153,7 @@ t.test("#EvaluateGoalForUser", (t) => {
                     outOf: 5,
                     progress: 5,
                     outOfHuman: "HARD CLEAR",
-                    progressHuman: "HARD CLEAR",
+                    progressHuman: "HARD CLEAR (BP: 2)",
                 },
                 "Should correctly evaluate the goal if the user succeeds."
             );
@@ -235,7 +235,7 @@ t.test("#EvaluateGoalForUser", (t) => {
                     outOf: 5,
                     progress: 6,
                     outOfHuman: "HARD CLEAR",
-                    progressHuman: "EX HARD CLEAR",
+                    progressHuman: "EX HARD CLEAR (BP: 2)",
                 },
                 "Should correctly evaluate the goal if the user succeeds."
             );
@@ -263,7 +263,7 @@ t.test("#EvaluateGoalForUser", (t) => {
                     outOf: 5,
                     progress: 5,
                     outOfHuman: "HARD CLEAR",
-                    progressHuman: "HARD CLEAR",
+                    progressHuman: "HARD CLEAR (BP: 2)",
                 },
                 "Should correctly evaluate the goal if the user succeeds."
             );
@@ -297,4 +297,12 @@ t.test("#EvaluateGoalForUser", (t) => {
     t.end();
 });
 
+t.test("#HumaniseGoalProgress", (t) => {
+    t.equal(HumaniseGoalProgress("iidx", "scoreData.gradeIndex", 4, null), "B");
+    t.equal(HumaniseGoalProgress("iidx", "scoreData.lampIndex", 4, null), "CLEAR");
+    t.equal(HumaniseGoalProgress("iidx", "scoreData.percent", 90.1142, null), "90.11%");
+    t.equal(HumaniseGoalProgress("iidx", "scoreData.score", 2240, null), "2240");
+
+    t.end();
+});
 t.teardown(CloseAllConnections);

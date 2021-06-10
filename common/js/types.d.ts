@@ -71,7 +71,7 @@ export interface GameToIDStrings {
 export interface MongoDBDocument {
     _id?: IObjectID;
 }
-export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "notifications" | "imports" | "import-timings" | "tierlist-data" | "tierlists" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users" | "kai-auth-tokens" | "usc-auth-tokens" | "beatoraja-auth-tokens" | "bms-course-lookup";
+export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "notifications" | "imports" | "import-timings" | "tierlist-data" | "tierlists" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users" | "kai-auth-tokens" | "usc-auth-tokens" | "beatoraja-auth-tokens" | "bms-course-lookup" | "api-tokens";
 export declare type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 /**
  * Supported games by Kamaitachi.
@@ -599,28 +599,6 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
 export interface PrivateUserDocument extends PublicUserDocument {
     password: string;
     email: string;
-}
-export interface PublicAPIPermissions {
-    selfkey: boolean;
-    admin: boolean;
-}
-export interface PublicAPIKeyDocument extends MongoDBDocument {
-    assignedTo: integer;
-    expireTime: integer;
-    apiKey: string;
-    permissions: PublicAPIPermissions;
-}
-export interface InviteCodeDocument extends MongoDBDocument {
-    createdBy: integer;
-    code: string;
-    createdOn: number;
-    consumed: boolean;
-}
-export interface PublicAPIRequestDocument extends MongoDBDocument {
-    key: PublicAPIKeyDocument;
-    location: string;
-    timestamp: integer;
-    ip: string;
 }
 export interface IIDXEamusementScoreDocument extends MongoDBDocument {
     chartID: string;

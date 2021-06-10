@@ -116,7 +116,8 @@ export type Databases =
     | "kai-auth-tokens"
     | "usc-auth-tokens"
     | "beatoraja-auth-tokens"
-    | "bms-course-lookup";
+    | "bms-course-lookup"
+    | "api-tokens";
 
 export type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 
@@ -804,32 +805,6 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
 export interface PrivateUserDocument extends PublicUserDocument {
     password: string;
     email: string;
-}
-
-export interface PublicAPIPermissions {
-    selfkey: boolean;
-    admin: boolean;
-}
-
-export interface PublicAPIKeyDocument extends MongoDBDocument {
-    assignedTo: integer;
-    expireTime: integer;
-    apiKey: string;
-    permissions: PublicAPIPermissions;
-}
-
-export interface InviteCodeDocument extends MongoDBDocument {
-    createdBy: integer;
-    code: string;
-    createdOn: number;
-    consumed: boolean;
-}
-
-export interface PublicAPIRequestDocument extends MongoDBDocument {
-    key: PublicAPIKeyDocument;
-    location: string;
-    timestamp: integer;
-    ip: string;
 }
 
 export interface IIDXEamusementScoreDocument extends MongoDBDocument {

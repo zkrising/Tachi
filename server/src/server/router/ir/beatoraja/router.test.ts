@@ -6,119 +6,26 @@ import ResetDBState from "../../../../test-utils/resets";
 import { GetKTDataJSON } from "../../../../test-utils/test-data";
 import deepmerge from "deepmerge";
 
-t.test("POST /ir/beatoraja/login", (t) => {
-    t.beforeEach(ResetDBState);
-
-    t.test("Should correctly return a token for correct credentials", async (t) => {
-        const res = await mockApi
-            .post("/ir/beatoraja/login")
-            .send({
-                username: "test_zkldi",
-                password: "password",
-            })
-            .set("X-TachiIR-Version", "2.0.0");
-
-        t.equal(res.status, 200);
-        t.match(res.body.body.token, /^[0-9a-f]{40}$/u, "Should return a 20 byte long token.");
-
-        t.end();
-    });
-
-    t.test("Should reject invalid passwords", async (t) => {
-        const res = await mockApi
-            .post("/ir/beatoraja/login")
-            .send({
-                username: "test_zkldi",
-                password: "invalid",
-            })
-            .set("X-TachiIR-Version", "2.0.0");
-
-        t.equal(res.status, 401);
-        t.equal(res.body.success, false);
-        t.equal(res.body.body, undefined);
-
-        t.end();
-    });
-
-    t.test("Should reject X-TachiIR-Versions", async (t) => {
-        const res = await mockApi
-            .post("/ir/beatoraja/login")
-            .send({
-                username: "test_zkldi",
-                password: "password",
-            })
-            .set("X-TachiIR-Version", "1.2.0");
-
-        t.equal(res.status, 400);
-        t.equal(res.body.success, false);
-        t.equal(res.body.body, undefined);
-
-        const res2 = await mockApi.post("/ir/beatoraja/login").send({
-            username: "test_zkldi",
-            password: "password",
-        });
-
-        t.equal(res2.status, 400);
-        t.equal(res2.body.success, false);
-        t.equal(res2.body.body, undefined);
-
-        t.end();
-    });
-
-    t.test("Should reject users it cannot find.", async (t) => {
-        const res = await mockApi
-            .post("/ir/beatoraja/login")
-            .send({
-                username: "invalid",
-                password: "password",
-            })
-            .set("X-TachiIR-Version", "2.0.0");
-
-        t.equal(res.status, 404);
-        t.equal(res.body.success, false);
-        t.equal(res.body.body, undefined);
-
-        t.end();
-    });
-
-    t.test("Should reject invalid request bodies.", async (t) => {
-        const res = await mockApi
-            .post("/ir/beatoraja/login")
-            .send({})
-            .set("X-TachiIR-Version", "2.0.0");
-
-        t.equal(res.status, 400);
-        t.equal(res.body.success, false);
-        t.equal(res.body.body, undefined);
-
-        const res2 = await mockApi
-            .post("/ir/beatoraja/login")
-            .send({
-                username: { $where: "for(;;){}" },
-                password: 123,
-            })
-            .set("X-TachiIR-Version", "2.0.0");
-
-        t.equal(res2.status, 400);
-        t.equal(res2.body.success, false);
-        t.equal(res2.body.body, undefined);
-
-        t.end();
-    });
-
-    t.end();
-});
-
 t.test("POST /ir/beatoraja/submit-score", (t) => {
     t.beforeEach(ResetDBState);
+    t.beforeEach(() =>
+        db["api-tokens"].insert({
+            userID: 1,
+            identifier: "Mock API Beatoraja Token",
+            permissions: {
+                "submit:score": true,
+            },
+            token: "mock_token",
+        })
+    );
 
     const scoreReq = GetKTDataJSON("./beatoraja/base.json");
 
     t.test("Should import a valid score.", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-score")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(scoreReq);
 
         t.equal(res.status, 200);
@@ -154,8 +61,8 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
     t.test("Should return an error if invalid client.", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-score")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(deepmerge(scoreReq, { client: "INVALID" }));
 
         t.equal(res.status, 400);
@@ -169,8 +76,8 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
     t.test("Should return an error if invalid score.", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-score")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(deepmerge(scoreReq, { score: { exscore: -1 } }));
 
         t.equal(res.status, 400);
@@ -184,8 +91,8 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
     t.test("Should return an error if invalid chart.", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-score")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(deepmerge(scoreReq, { chart: { title: null } }));
 
         t.equal(res.status, 400);
@@ -254,12 +161,22 @@ const courseScore = {
 
 t.test("POST /ir/beatoraja/submit-course", (t) => {
     t.beforeEach(ResetDBState);
+    t.beforeEach(() =>
+        db["api-tokens"].insert({
+            userID: 1,
+            identifier: "Mock API Beatoraja Token",
+            permissions: {
+                "submit:score": true,
+            },
+            token: "mock_token",
+        })
+    );
 
     t.test("Should accept a valid clear", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-course")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(courseScore);
 
         t.equal(res.status, 200);
@@ -276,8 +193,8 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
     t.test("Should silently reject a fail", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-course")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(deepmerge(courseScore, { score: { clear: "Failed" } }));
 
         t.equal(res.status, 200);
@@ -290,8 +207,8 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
     t.test("Should reject scores with no charts", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-course")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(deepmerge(courseScore, { course: { charts: [] } }, { arrayMerge: (d, s) => s }));
 
         t.equal(res.status, 400);
@@ -304,8 +221,8 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
     t.test("Should reject scores with invalid chart documents", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-course")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(deepmerge(courseScore, { course: { charts: [1, 2, 3, 4] } }));
 
         t.equal(res.status, 400);
@@ -318,8 +235,8 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
     t.test("Should reject scores with too many chart documents", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-course")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(
                 deepmerge(courseScore, {
                     course: { charts: [{ md5: "a" }, { md5: "a" }, { md5: "a" }, { md5: "a" }] },
@@ -336,8 +253,8 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
     t.test("Should reject scores not on LN mode", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-course")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(
                 deepmerge(courseScore, {
                     score: {
@@ -356,8 +273,8 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
     t.test("Should reject too few constraints", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-course")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(
                 deepmerge(
                     courseScore,
@@ -380,8 +297,8 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
     t.test("Should reject non-array constraints", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-course")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(
                 deepmerge(
                     courseScore,
@@ -404,8 +321,8 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
     t.test("Should reject too many constraints", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-course")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(
                 deepmerge(
                     courseScore,
@@ -428,8 +345,8 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
     t.test("Should reject invalid constraints", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-course")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(
                 deepmerge(
                     courseScore,
@@ -452,8 +369,8 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
     t.test("Should reject invalid constraints for 3", async (t) => {
         const res = await mockApi
             .post("/ir/beatoraja/submit-course")
-            .set("X-TachiIR-Version", "2.0.0")
-            .set("Authorization", "Bearer token")
+            .set("X-BokutachiIR-Version", "2.0.0")
+            .set("Authorization", "Bearer mock_token")
             .send(
                 deepmerge(
                     courseScore,

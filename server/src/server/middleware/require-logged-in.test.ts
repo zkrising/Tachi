@@ -1,10 +1,10 @@
-import { RequireLoggedIn } from "./require-logged-in";
+import { RequireLoggedInSession } from "./require-logged-in";
 import expMiddlewareMock from "express-request-mock";
 import t from "tap";
 
 t.test("#RequireLoggedIn", (t) => {
     t.test("Should reject users that are not logged in.", async (t) => {
-        const { res } = await expMiddlewareMock(RequireLoggedIn, {
+        const { res } = await expMiddlewareMock(RequireLoggedInSession, {
             session: {
                 tachi: null,
             },
@@ -21,7 +21,7 @@ t.test("#RequireLoggedIn", (t) => {
     });
 
     t.test("Should allow users that are logged in.", async (t) => {
-        const { res } = await expMiddlewareMock(RequireLoggedIn, {
+        const { res } = await expMiddlewareMock(RequireLoggedInSession, {
             session: {
                 tachi: {
                     userID: 1,

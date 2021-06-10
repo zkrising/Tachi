@@ -1,26 +1,22 @@
 import t from "tap";
 import db from "../../../../external/mongo/db";
-import { RequireNeutralAuthentication } from "../../../../test-utils/api-common";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
-import { CreateFakeAuthCookie } from "../../../../test-utils/fake-session";
+import { InsertFakeTokenWithAllPerms } from "../../../../test-utils/fake-auth";
 import mockApi from "../../../../test-utils/mock-api";
 import ResetDBState from "../../../../test-utils/resets";
 import { GetKTDataJSON } from "../../../../test-utils/test-data";
 import deepmerge from "deepmerge";
 
-t.test("POST /ir/chunitachi/import", async (t) => {
+t.test("POST /ir/chunitachi/import", (t) => {
     t.beforeEach(ResetDBState);
-
-    const cookie = await CreateFakeAuthCookie(mockApi);
-
-    RequireNeutralAuthentication("/ir/chunitachi/import", "POST");
+    t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
 
     const chunitachiBody = GetKTDataJSON("./batch-manual/chunitachi.json");
 
     t.test("Should work for CHUNITACHI requests", async (t) => {
         const res = await mockApi
             .post("/ir/chunitachi/import")
-            .set("Cookie", cookie)
+            .set("Authorization", `Bearer mock_token`)
             .send(chunitachiBody);
 
         t.equal(res.body.success, true, "Should be successful");
@@ -35,7 +31,10 @@ t.test("POST /ir/chunitachi/import", async (t) => {
     });
 
     t.test("Should reject invalid batch-manual", async (t) => {
-        const res = await mockApi.post("/ir/chunitachi/import").set("Cookie", cookie).send({});
+        const res = await mockApi
+            .post("/ir/chunitachi/import")
+            .set("Authorization", `Bearer mock_token`)
+            .send({});
 
         t.equal(res.body.success, false, "Should not be successful");
 
@@ -45,7 +44,7 @@ t.test("POST /ir/chunitachi/import", async (t) => {
     t.test("Should reject batch-manual requests if game is not chunithm", async (t) => {
         const res = await mockApi
             .post("/ir/chunitachi/import")
-            .set("Cookie", cookie)
+            .set("Authorization", `Bearer mock_token`)
             .send(deepmerge(chunitachiBody, { head: { game: "iidx" } }));
 
         t.equal(res.body.success, false, "Should not be successful");
@@ -56,7 +55,7 @@ t.test("POST /ir/chunitachi/import", async (t) => {
     t.test("Should reject batch-manual requests if service is not Chunitachi", async (t) => {
         const res = await mockApi
             .post("/ir/chunitachi/import")
-            .set("Cookie", cookie)
+            .set("Authorization", `Bearer mock_token`)
             .send(deepmerge(chunitachiBody, { head: { service: "foo bar" } }));
 
         t.equal(res.body.success, false, "Should not be successful");

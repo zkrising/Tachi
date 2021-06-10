@@ -1,11 +1,6 @@
 import crypto from "crypto";
 import bcrypt from "bcrypt";
-import {
-    InviteCodeDocument,
-    PrivateUserDocument,
-    PublicAPIKeyDocument,
-    PublicUserDocument,
-} from "tachi-common";
+import { InviteCodeDocument, PrivateUserDocument, PublicUserDocument } from "tachi-common";
 import { InsertResult } from "monk";
 import db from "../../../../../external/mongo/db";
 import { GetNextCounterValue } from "../../../../../utils/db";
@@ -13,6 +8,7 @@ import CreateLogCtx from "../../../../../lib/logger/logger";
 import { FormatUserDoc } from "../../../../../utils/user";
 import nodeFetch from "../../../../../utils/fetch";
 import { CAPTCHA_SECRET_KEY } from "../../../../../lib/setup/config";
+import { Random20Hex } from "../../../../../utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -20,10 +16,6 @@ const BCRYPT_SALT_ROUNDS = 12;
 
 export const ValidatePassword = (self: unknown) =>
     (typeof self === "string" && self.length >= 8) || "Passwords must be 8 characters or more.";
-
-export function CreateInviteCode(): string {
-    return crypto.randomBytes(20).toString("hex");
-}
 
 /**
  * Compares a plaintext string of a users password to a hash.
@@ -49,7 +41,7 @@ export function ReinstateInvite(inviteDoc: InviteCodeDocument) {
 }
 
 export async function AddNewInvite(user: PublicUserDocument) {
-    const code = CreateInviteCode();
+    const code = Random20Hex();
 
     const result = await db.invites.insert({
         code,
@@ -104,9 +96,6 @@ export async function AddNewUser(
         customBanner: false,
         customPfp: false,
         lastSeen: Date.now(), // lol
-        permissions: {
-            admin: false, // lol (2)
-        },
     };
 
     return db.users.insert(userDoc);
@@ -123,7 +112,8 @@ export async function ValidateCaptcha(
 
     if (r.status !== 200) {
         logger.verbose(`Failed GCaptcha response ${r.status}, ${r.body}`);
+        return false;
     }
 
-    return r.status === 200;
+    return true;
 }

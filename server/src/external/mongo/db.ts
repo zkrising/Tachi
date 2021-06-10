@@ -7,8 +7,8 @@ import {
     ImportDocument,
     TierlistParent,
     InviteCodeDocument,
+    APITokenDocument,
     TierlistDataDocument,
-    GenericAuthDocument,
     MilestoneDocument,
     NotificationDocument,
     FolderChartLookup,
@@ -129,10 +129,8 @@ const db = {
     "iidx-eam-scores": monkDB.get<IIDXEamusementScoreDocument>("iidx-eam-scores"),
     "game-stats": monkDB.get<UserGameStats>("game-stats"),
     "kai-auth-tokens": monkDB.get<KaiAuthDocument>("kai-auth-tokens"),
-    "usc-auth-tokens": monkDB.get<GenericAuthDocument>("usc-auth-tokens"),
-    "beatoraja-auth-tokens": monkDB.get<GenericAuthDocument>("beatoraja-auth-tokens"),
     "bms-course-lookup": monkDB.get<BMSCourseDocument>("bms-course-lookup"),
-
+    "api-tokens": monkDB.get<APITokenDocument>("api-tokens"),
     "orphan-scores": monkDB.get<OrphanScoreDocument>("orphan-scores"),
 };
 

@@ -16,27 +16,13 @@ import {
 import db from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../../lib/logger/logger";
 import prValidate from "../../../../middleware/prudence-validate";
-import { RequireLoggedIn } from "../../../../middleware/require-logged-in";
+import { RequireLoggedInSession } from "../../../../middleware/require-logged-in";
 
 const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 
 const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
-
-/**
- * Utility for checking whether you are logged in or not.
- * @name POST /api/v1/auth/status
- */
-router.post("/status", RequireLoggedIn, (req, res) =>
-    res.status(200).json({
-        success: true,
-        description: "Logged In.",
-        body: {
-            userID: req.session.tachi!.userID,
-        },
-    })
-);
 
 /**
  * Logs in a user.
@@ -240,7 +226,7 @@ router.post(
  * Logs out the requesting user.
  * @name POST /api/v1/auth/logout
  */
-router.post("/logout", RequireLoggedIn, (req, res) => {
+router.post("/logout", RequireLoggedInSession, (req, res) => {
     req.session.destroy(() => 0);
 
     return res.status(200).json({

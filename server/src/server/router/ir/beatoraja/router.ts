@@ -1,18 +1,12 @@
 import { Router } from "express";
 import db from "../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../lib/constants/tachi";
+import { SYMBOL_TachiAPIData } from "../../../../lib/constants/tachi";
 import CreateLogCtx, { KtLogger } from "../../../../lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { ParseBeatorajaSingle } from "../../../../lib/score-import/import-types/ir/beatoraja/parser";
 import { UpdateClassIfGreater } from "../../../../utils/class";
-import { Random20Hex } from "../../../../utils/misc";
-import {
-    GetUserWithIDGuaranteed,
-    PRIVATEINFO_GetUserCaseInsensitive,
-} from "../../../../utils/user";
-import prValidate from "../../../middleware/prudence-validate";
-import { PasswordCompare } from "../../api/v1/auth/auth";
-import { ValidateAuthToken, ValidateIRClientVersion } from "./auth";
+import { GetUserWithIDGuaranteed } from "../../../../utils/user";
+import { ValidateIRClientVersion } from "./auth";
 import chartsRouter from "./charts/router";
 
 const logger = CreateLogCtx(__filename);
@@ -22,62 +16,12 @@ const router: Router = Router({ mergeParams: true });
 router.use(ValidateIRClientVersion);
 
 /**
- * Takes a username and password and returns a unique auth token for the user
- * to make ir requests with.
- * @name POST /ir/beatoraja/login
- */
-router.post(
-    "/login",
-    prValidate({
-        username: "string",
-        password: "string",
-    }),
-    async (req, res) => {
-        const userDoc = await PRIVATEINFO_GetUserCaseInsensitive(req.body.username);
-
-        if (!userDoc) {
-            return res.status(404).json({
-                success: false,
-                description: `The user ${req.body.username} does not exist.`,
-            });
-        }
-
-        const validPassword = await PasswordCompare(req.body.password, userDoc.password);
-
-        if (!validPassword) {
-            return res.status(401).json({
-                success: false,
-                description: `Invalid password.`,
-            });
-        }
-
-        // User is who they claim to be.
-        const token = Random20Hex();
-
-        await db["beatoraja-auth-tokens"].insert({
-            userID: userDoc.id,
-            token,
-        });
-
-        return res.status(200).json({
-            success: true,
-            description: `Successfully created auth token.`,
-            body: {
-                token,
-            },
-        });
-    }
-);
-
-router.use(ValidateAuthToken);
-
-/**
  * Submits a beatoraja score to Kamaitachi. If the chart is unavailable,
  * store it as a new chart alongside the new score.
  * @name POST /ir/beatoraja/submit-score
  */
 router.post("/submit-score", async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiData]!.beatorajaAuthDoc!.userID);
+    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIData]!.userID!);
 
     const ParserFunction = (logger: KtLogger) => ParseBeatorajaSingle(req.body, logger);
 
@@ -220,7 +164,7 @@ router.post("/submit-course", async (req, res) => {
         });
     }
 
-    const userID = req[SYMBOL_TachiData]!.beatorajaAuthDoc!.userID;
+    const userID = req[SYMBOL_TachiAPIData]!.userID!;
 
     const result = await UpdateClassIfGreater(
         userID,

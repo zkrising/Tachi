@@ -1,8 +1,9 @@
 import { Router } from "express";
 import { GetUserWithIDGuaranteed } from "../../../../utils/user";
-import { RequireLoggedIn } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import ParseDirectManual from "../../../../lib/score-import/import-types/ir/direct-manual/parser";
+import { RequirePermissions } from "../../../middleware/auth";
+import { SYMBOL_TachiAPIData } from "../../../../lib/constants/tachi";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -10,8 +11,8 @@ const router: Router = Router({ mergeParams: true });
  * Submits a single score document from Chunitachi clients.
  * @name POST /ir/chunitachi/score/submit
  */
-router.post("/import", RequireLoggedIn, async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.userID);
+router.post("/import", RequirePermissions("submit:score"), async (req, res) => {
+    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIData].userID!);
 
     if (req.body?.head?.game !== "chunithm") {
         return res.status(400).json({

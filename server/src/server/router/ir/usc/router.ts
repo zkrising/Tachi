@@ -1,6 +1,6 @@
 import { Router, RequestHandler } from "express";
 import { FindChartOnSHA256 } from "../../../../utils/queries/charts";
-import { SYMBOL_TachiData } from "../../../../lib/constants/tachi";
+import { SYMBOL_TachiAPIData, SYMBOL_TachiData } from "../../../../lib/constants/tachi";
 import db from "../../../../external/mongo/db";
 import {
     ChartDocument,
@@ -19,7 +19,7 @@ import { CreateMulterSingleUploadMiddleware } from "../../../middleware/multer-u
 import { AssignToReqTachiData } from "../../../../utils/req-tachi-data";
 import { StoreCDN } from "../../../../lib/cdn/cdn";
 import { ONE_MEGABYTE } from "../../../../lib/constants/filesize";
-import crypto from "crypto";
+import { RequirePermissions } from "../../../middleware/auth";
 
 const logger = CreateLogCtx(__filename);
 
@@ -40,43 +40,6 @@ const STATUS_CODES = {
 // as the HTTP code is used to determine whether the server received the request properly,
 // rather than the result of the request.
 
-const ValidateUSCRequest: RequestHandler = async (req, res, next) => {
-    const token = req.header("Authorization");
-
-    if (!token) {
-        return res.status(200).json({
-            statusCode: STATUS_CODES.BAD_REQ,
-            description: "No auth token provided.",
-        });
-    }
-
-    const splitToken = token.split(" ");
-
-    if (splitToken.length !== 2 || splitToken[0] !== "Bearer") {
-        return res.status(200).json({
-            statusCode: STATUS_CODES.BAD_REQ,
-            description: "Invalid Authorization Header. Expected Bearer <token>",
-        });
-    }
-
-    const uscAuthDoc = await db["usc-auth-tokens"].findOne({
-        token: splitToken[1],
-    });
-
-    if (!uscAuthDoc) {
-        return res.status(200).json({
-            statusCode: STATUS_CODES.UNAUTH,
-            description: "Unauthorized.",
-        });
-    }
-
-    AssignToReqTachiData(req, { uscAuthDoc });
-
-    return next();
-};
-
-router.use(ValidateUSCRequest);
-
 /**
  * Used to check your connection to the server, and receive some basic information.
  * https://uscir.readthedocs.io/en/latest/endpoints/heartbeat.html
@@ -88,7 +51,7 @@ router.get("/", (req, res) =>
         description: "IR Request Successful.",
         body: {
             serverTime: Math.floor(Date.now() / 1000),
-            serverName: "Kamaitachi BLACK",
+            serverName: "Bokutachi",
             irVersion: "0.3.1-a",
         },
     })
@@ -235,7 +198,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
  * https://uscir.readthedocs.io/en/latest/endpoints/score-submit.html
  * @name POST /ir/usc/scores
  */
-router.post("/scores", async (req, res) => {
+router.post("/scores", RequirePermissions("submit:score"), async (req, res) => {
     if (typeof req.body.chart !== "object" || req.body.chart === null) {
         return res.status(200).json({
             statusCode: STATUS_CODES.BAD_REQ,
@@ -262,10 +225,10 @@ router.post("/scores", async (req, res) => {
         });
     }
 
-    const userDoc = await GetUserWithID(req[SYMBOL_TachiData]!.uscAuthDoc!.userID);
+    const userDoc = await GetUserWithID(req[SYMBOL_TachiAPIData]!.userID!);
 
     if (!userDoc) {
-        logger.severe(`User ${req[SYMBOL_TachiData]!.uscAuthDoc!.userID} as no parent userDoc?`);
+        logger.severe(`User ${req[SYMBOL_TachiAPIData]!.userID!} as no parent userDoc?`);
         return res.status(200).json({
             statusCode: STATUS_CODES.SERVER_ERROR,
             description: "An internal server error has occured.",
@@ -317,6 +280,7 @@ router.post("/scores", async (req, res) => {
  */
 router.post(
     "/replays",
+    RequirePermissions("submit:score"),
     CreateMulterSingleUploadMiddleware("replay", ONE_MEGABYTE, logger),
     async (req, res) => {
         if (typeof req.body.identifier !== "string") {
@@ -334,7 +298,7 @@ router.post(
         }
 
         const correspondingScore = await db.scores.findOne({
-            userID: req[SYMBOL_TachiData]!.uscAuthDoc!.userID,
+            userID: req[SYMBOL_TachiAPIData]!.userID!,
             game: "usc",
             scoreID: req.body.identifier,
         });

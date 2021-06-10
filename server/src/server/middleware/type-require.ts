@@ -13,7 +13,7 @@ export const RequireBokutachi: RequestHandler = (req, res, next) => {
 
     return res.status(404).send({
         success: false,
-        description: `The route ${req.route} is only available on Bokutachi.`,
+        description: `The route ${req.url} is only available on Bokutachi.`,
     });
 };
 
@@ -29,6 +29,6 @@ export const RequireKamaitachi: RequestHandler = (req, res, next) => {
 
     return res.status(404).send({
         success: false,
-        description: `The route ${req.route} is only available on Kamaitachi.`,
+        description: `The route ${req.url} is only available on Kamaitachi.`,
     });
 };

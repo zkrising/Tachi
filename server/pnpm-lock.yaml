@@ -80,7 +80,7 @@ dependencies:
   rate-limit-redis: 2.1.0
   redis: 3.1.2
   rimraf: 3.0.2
-  tachi-common: github.com/zkldi/tachi-common/cd7dd96729fd8d70b55165c90fb2bc62521ee293
+  tachi-common: github.com/zkldi/tachi-common/137fb72499a2ee6a98791ffea3961d0c69bf24b7
   typescript: 4.3.2
   winston: 3.3.3
 
@@ -4445,8 +4445,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  github.com/zkldi/tachi-common/cd7dd96729fd8d70b55165c90fb2bc62521ee293:
-    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/cd7dd96729fd8d70b55165c90fb2bc62521ee293}
+  github.com/zkldi/tachi-common/137fb72499a2ee6a98791ffea3961d0c69bf24b7:
+    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/137fb72499a2ee6a98791ffea3961d0c69bf24b7}
     name: kamaitachi-common
     version: 0.1.0
     dependencies:

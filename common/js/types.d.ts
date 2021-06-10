@@ -344,6 +344,12 @@ export interface MutualRivalGroupDocument extends MongoDBDocument {
     settings: Record<string, never>;
     mrgID: string;
 }
+export interface InviteCodeDocument extends MongoDBDocument {
+    createdBy: integer;
+    code: string;
+    createdOn: number;
+    consumed: boolean;
+}
 export interface SessionInfoReturn {
     sessionID: string;
     type: "Created" | "Appended";

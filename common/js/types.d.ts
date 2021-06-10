@@ -1132,4 +1132,16 @@ export declare type RedisIPCData = {
         new: MilestoneImportStat;
     };
 };
+/**
+ * All the permissions a token may have.
+ */
+export declare type APIPermissions = "create:goal" | "manage:goal";
+/**
+ * Information about the API Token used to make this request.
+ */
+export interface TachiAPIAuthData {
+    userID: integer | null;
+    token: string | null;
+    permissions: Partial<Record<APIPermissions, boolean>>;
+}
 export {};

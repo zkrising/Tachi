@@ -1120,6 +1120,7 @@ export declare type APIPermissions = "create:goal" | "manage:goal";
 export interface TachiAPIAuthData {
     userID: integer | null;
     token: string | null;
+    identifier: string | null;
     permissions: Partial<Record<APIPermissions, boolean>>;
 }
 export {};

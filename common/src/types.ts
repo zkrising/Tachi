@@ -1367,16 +1367,7 @@ export type RedisIPCData = {
 /**
  * All the permissions a token may have.
  */
-export type APIPermissions =
-    | "create:goal"
-    | "manage:goal"
-    | "submit:ir-beatoraja"
-    | "retrieve:ir-beatoraja"
-    | "submit:ir-usc"
-    | "retrieve:ir-usc"
-    | "submit:ir-fervidex"
-    | "submit:ir-barbatos"
-    | "submit:ir-chunitachi";
+export type APIPermissions = "create:goal" | "manage:goal" | "submit:score";
 
 /**
  * Information about the API Token used to make this request.

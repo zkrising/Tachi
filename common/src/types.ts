@@ -1330,11 +1330,6 @@ export interface KaiAuthDocument {
     service: "FLO" | "EAG"; // MIN might exist at some point.
 }
 
-export interface GenericAuthDocument {
-    userID: integer;
-    token: string;
-}
-
 /**
  * Used to resolve beatoraja IR courses.
  */

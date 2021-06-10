@@ -1373,7 +1373,9 @@ export type APIPermissions =
     | "submit:ir-beatoraja"
     | "retrieve:ir-beatoraja"
     | "submit:ir-usc"
-    | "submit:ir-fervidex";
+    | "submit:ir-fervidex"
+    | "submit:ir-barbatos"
+    | "submit:ir-chunithm";
 
 /**
  * Information about the API Token used to make this request.

@@ -1117,7 +1117,7 @@ export declare type APIPermissions = "create:goal" | "manage:goal";
 /**
  * Information about the API Token used to make this request.
  */
-export interface TachiAPIAuthData {
+export interface APITokenDocument extends MongoDBDocument {
     userID: integer | null;
     token: string | null;
     identifier: string;

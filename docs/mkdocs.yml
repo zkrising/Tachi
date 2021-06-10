@@ -1,0 +1,16 @@
+site_name: Project Name
+site_description: Project Description
+site_author: Author
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+
+nav:
+  - Introduction: "index.md"
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences

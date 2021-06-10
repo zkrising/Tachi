@@ -1376,7 +1376,7 @@ export type APIPermissions =
     | "retrieve:ir-usc"
     | "submit:ir-fervidex"
     | "submit:ir-barbatos"
-    | "submit:ir-chunithm";
+    | "submit:ir-chunitachi";
 
 /**
  * Information about the API Token used to make this request.

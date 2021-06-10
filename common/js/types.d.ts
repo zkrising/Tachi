@@ -569,9 +569,6 @@ export interface PublicUserDocument extends MongoDBDocument {
     about: string;
     customPfp: boolean;
     customBanner: boolean;
-    permissions: {
-        admin?: boolean;
-    };
     clan: string | null;
 }
 export interface UGSRatingsLookup {

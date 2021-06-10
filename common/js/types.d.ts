@@ -1081,10 +1081,6 @@ export interface KaiAuthDocument {
     refreshToken: string;
     service: "FLO" | "EAG";
 }
-export interface GenericAuthDocument {
-    userID: integer;
-    token: string;
-}
 /**
  * Used to resolve beatoraja IR courses.
  */
@@ -1119,7 +1115,7 @@ export declare type RedisIPCData = {
 /**
  * All the permissions a token may have.
  */
-export declare type APIPermissions = "create:goal" | "manage:goal";
+export declare type APIPermissions = "create:goal" | "manage:goal" | "submit:ir-beatoraja" | "retrieve:ir-beatoraja" | "submit:ir-usc" | "submit:ir-fervidex";
 /**
  * Information about the API Token used to make this request.
  */

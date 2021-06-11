@@ -1,4 +1,4 @@
-import { CreateInviteCode, AddNewInvite, ReinstateInvite, ValidateCaptcha } from "./auth";
+import { AddNewInvite, ReinstateInvite, ValidateCaptcha } from "./auth";
 import t from "tap";
 import db from "../../../../../external/mongo/db";
 import ResetDBState from "../../../../../test-utils/resets";
@@ -29,12 +29,6 @@ t.test("#ReinstateInvite", (t) => {
 
         t.end();
     });
-
-    t.end();
-});
-
-t.test("#CreateInviteCode", (t) => {
-    t.match(CreateInviteCode(), /^[0-9a-f]{40}$/u, "Invite should be a 40 character hex string.");
 
     t.end();
 });

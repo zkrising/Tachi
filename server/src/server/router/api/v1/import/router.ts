@@ -5,7 +5,7 @@ import Prudence from "prudence";
 import { GetUserWithIDGuaranteed } from "../../../../../utils/user";
 import CreateLogCtx, { KtLogger } from "../../../../../lib/logger/logger";
 import prValidate from "../../../../middleware/prudence-validate";
-import { RequireLoggedIn } from "../../../../middleware/require-logged-in";
+import { RequireLoggedInSession } from "../../../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../../../../lib/score-import/framework/score-importing/score-import-error";
 import { SIXTEEN_MEGABTYES } from "../../../../../lib/constants/filesize";
 import { ExpressWrappedScoreImportMain } from "../../../../../lib/score-import/framework/express-wrapper";
@@ -34,7 +34,7 @@ const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware(
  */
 router.post(
     "/file",
-    RequireLoggedIn,
+    RequireLoggedInSession,
     RequireKamaitachi, // This is only useful for Kamaitachi, so.
     ParseMultipartScoredata,
     prValidate(

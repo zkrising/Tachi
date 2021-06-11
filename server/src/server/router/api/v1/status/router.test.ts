@@ -1,5 +1,5 @@
 import { FormatVersion } from "../../../../../lib/constants/version";
-import { CreateFakeAuthCookie } from "../../../../../test-utils/fake-session";
+import { CreateFakeAuthCookie } from "../../../../../test-utils/fake-auth";
 import mockApi from "../../../../../test-utils/mock-api";
 import t from "tap";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";

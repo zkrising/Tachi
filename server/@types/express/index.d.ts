@@ -1,6 +1,7 @@
 import { Session, SessionData } from "express-session";
-import { SYMBOL_TachiData } from "../../src/lib/constants/tachi";
+import { SYMBOL_TachiAPIData, SYMBOL_TachiData } from "../../src/lib/constants/tachi";
 import { TachiRequestData, TachiSessionData } from "../../src/utils/types";
+import { APITokenDocument } from "tachi-common";
 
 export {};
 
@@ -18,6 +19,9 @@ declare global {
             session: Session & Partial<SessionData>;
 
             [SYMBOL_TachiData]?: Partial<TachiRequestData>;
+            // even though this is technically *not* present on every request
+            // it's always assigned in the main router, so its functionally equivalent.
+            [SYMBOL_TachiAPIData]: APITokenDocument;
         }
     }
 }

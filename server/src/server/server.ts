@@ -4,7 +4,7 @@ import CreateLogCtx from "../lib/logger/logger";
 import expressSession from "express-session";
 import { integer } from "tachi-common";
 import { RedisClient } from "../external/redis/redis";
-import { SESSION_SECRET } from "../lib/setup/config";
+import { CONFIG, SESSION_SECRET } from "../lib/setup/config";
 import connectRedis from "connect-redis";
 
 const logger = CreateLogCtx(__filename);
@@ -24,7 +24,7 @@ const userSessionMiddleware = expressSession({
     // append node_env onto the end of the session name
     // so we can separate tokens under the same URL.
     // say for staging.kamaitachi.xyz
-    name: `ktblack_session_${process.env.NODE_ENV}`,
+    name: `${CONFIG.TYPE}_${process.env.NODE_ENV}_session`,
     secret: SESSION_SECRET,
     store,
     resave: true,

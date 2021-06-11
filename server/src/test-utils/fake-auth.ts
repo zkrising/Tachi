@@ -1,6 +1,8 @@
 import ResetDBState from "./resets";
 import CreateLogCtx from "../lib/logger/logger";
 import supertest from "supertest";
+import { AllPermissions } from "../server/middleware/auth";
+import db from "../external/mongo/db";
 
 const logger = CreateLogCtx(__filename);
 
@@ -20,4 +22,17 @@ export async function CreateFakeAuthCookie(mockApi: supertest.SuperTest<supertes
     }
 
     return res.headers["set-cookie"] as string[];
+}
+
+// my local dev env hates this part because of pnpm
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function InsertFakeTokenWithAllPerms(token: string): () => any {
+    return () => {
+        db["api-tokens"].insert({
+            userID: 1,
+            identifier: "Mock API Token",
+            permissions: AllPermissions,
+            token,
+        });
+    };
 }

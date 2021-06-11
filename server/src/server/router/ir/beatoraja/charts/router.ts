@@ -1,7 +1,7 @@
 import { ChartDocument, PBScoreDocument } from "tachi-common";
 import { Router, RequestHandler } from "express";
 import db from "../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../lib/constants/tachi";
+import { SYMBOL_TachiAPIData, SYMBOL_TachiData } from "../../../../../lib/constants/tachi";
 import { TachiPBScoreToBeatorajaFormat } from "./convert-scores";
 import { AssignToReqTachiData } from "../../../../../utils/req-tachi-data";
 
@@ -41,7 +41,7 @@ router.get("/scores", async (req, res) => {
     // @optimisable - This should be solved with a couple queries and a hashmap.
     const beatorajaScores = await Promise.all(
         scores.map((e) =>
-            TachiPBScoreToBeatorajaFormat(e, chart, req[SYMBOL_TachiData]!.beatorajaAuthDoc!.userID)
+            TachiPBScoreToBeatorajaFormat(e, chart, req[SYMBOL_TachiAPIData]!.userID!)
         )
     );
 

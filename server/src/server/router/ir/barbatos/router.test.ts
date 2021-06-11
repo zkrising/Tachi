@@ -1,7 +1,6 @@
 import t from "tap";
-import { RequireNeutralAuthentication } from "../../../../test-utils/api-common";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
-import { CreateFakeAuthCookie } from "../../../../test-utils/fake-session";
+import { CreateFakeAuthCookie } from "../../../../test-utils/fake-auth";
 import ResetDBState from "../../../../test-utils/resets";
 import mockApi from "../../../../test-utils/mock-api";
 import { TestingBarbatosScore } from "../../../../test-utils/test-data";
@@ -11,9 +10,6 @@ t.test("POST /ir/barbatos/score/submit", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
     t.beforeEach(ResetDBState);
-
-    // @TODO NEEDS TO USE PROPER AUTHENTICATION!!!
-    RequireNeutralAuthentication("/ir/barbatos/score/submit", "POST");
 
     t.test("Should import a valid score", async (t) => {
         const res = await mockApi

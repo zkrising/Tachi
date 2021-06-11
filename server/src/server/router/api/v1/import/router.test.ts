@@ -8,7 +8,7 @@ import {
 } from "../../../../../test-utils/test-data";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 import { RequireNeutralAuthentication } from "../../../../../test-utils/api-common";
-import { CreateFakeAuthCookie } from "../../../../../test-utils/fake-session";
+import { CreateFakeAuthCookie } from "../../../../../test-utils/fake-auth";
 import ResetDBState from "../../../../../test-utils/resets";
 import db from "../../../../../external/mongo/db";
 import { SetIndexes } from "../../../../../../scripts/set-indexes";

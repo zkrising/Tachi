@@ -91,14 +91,15 @@ export const SetRequestPermissions: RequestHandler = async (req, res, next) => {
 };
 
 /**
-   
-
-
-
-
-
-
-
+ * Returns a middleware that enforces the request has the necessary permissions.
+ * @param perms - Rest Parameter. The set of permissions necessary to use this endpoint.
+ * @returns A middleware function.
+ */
+export const RequirePermissions =
+    (...perms: APIPermissions[]): RequestHandler =>
+    (req, res, next) => {
+        if (!req[SYMBOL_TachiAPIData]) {
+            logger.error(`RequirePermissions middleware was hit without any TachiAPIData?`);
 
             return res.status(500).json({
                 success: false,

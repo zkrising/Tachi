@@ -7,9 +7,13 @@ import irRouter from "./ir/router";
 const router: Router = Router({ mergeParams: true });
 
 // Add APIAuth and RateLimiting
-router.use(SetRequestPermissions, RateLimitMiddleware);
+router.use(RateLimitMiddleware);
 
-router.use("/api/v1", apiRouterV1);
 router.use("/ir", irRouter);
+
+// request perms only apply to the api, IR may reuse this
+// but also may require custom authentication.
+router.use(SetRequestPermissions);
+router.use("/api/v1", apiRouterV1);
 
 export default router;

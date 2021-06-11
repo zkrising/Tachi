@@ -81,8 +81,6 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
         index({ "data.hashSHA256": 1 }),
     ],
     "bms-course-lookup": [index({ md5sums: 1 }, UNIQUE)],
-    "beatoraja-auth-tokens": [index({ token: 1 }, UNIQUE)],
-    "usc-auth-tokens": [index({ token: 1 }, UNIQUE)],
     "api-tokens": [index({ token: 1 }, UNIQUE)],
 };
 

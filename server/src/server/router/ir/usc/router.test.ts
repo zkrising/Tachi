@@ -8,9 +8,13 @@ import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import { GetKTDataBuffer } from "../../../../test-utils/test-data";
 import { RetrieveCDN } from "../../../../lib/cdn/cdn";
 
-function InsertFakeUSCAuth() {
-    return db["usc-auth-tokens"].insert({
+async function InsertFakeUSCAuth() {
+    await db["api-tokens"].insert({
         userID: 1,
+        identifier: "USC Token",
+        permissions: {
+            "submit:score": true,
+        },
         token: "foo",
     });
 }
@@ -36,7 +40,14 @@ function TestAuth(url: string) {
 }
 
 t.test("GET /ir/usc", async (t) => {
-    await InsertFakeUSCAuth();
+    await db["api-tokens"].insert({
+        userID: 1,
+        identifier: "USC Token",
+        permissions: {
+            "submit:score": true,
+        },
+        token: "foo",
+    });
 
     t.beforeEach(ResetDBState);
 
@@ -45,11 +56,11 @@ t.test("GET /ir/usc", async (t) => {
     const res = await mockApi.get("/ir/usc").set("Authorization", "Bearer foo");
 
     t.equal(res.body.statusCode, 20, "Should return 20");
-    t.hasStrict(
+    t.match(
         res.body.body,
         {
-            serverName: "Kamaitachi BLACK",
-            irVersion: "0.3.1-a",
+            serverName: /tachi/iu,
+            irVersion: /^[0-9]\.[0-9]\.[0-9](-a)?$/iu,
         },
         "Should return the right body."
     );
@@ -338,6 +349,7 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
 t.test("POST /replays", (t) => {
     t.beforeEach(ResetDBState);
     t.beforeEach(ResetCDN);
+    t.beforeEach(InsertFakeUSCAuth);
 
     t.test("Should successfully upload a file where an identifier matches", async (t) => {
         await db.scores.insert({

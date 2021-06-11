@@ -35,6 +35,42 @@ const STATUS_CODES = {
     BAD_REQ: 40,
 };
 
+const ValidateUSCRequest: RequestHandler = async (req, res, next) => {
+    const token = req.header("Authorization");
+
+    if (!token) {
+        return res.status(200).json({
+            statusCode: STATUS_CODES.BAD_REQ,
+            description: "No auth token provided.",
+        });
+    }
+
+    const splitToken = token.split(" ");
+
+    if (splitToken.length !== 2 || splitToken[0] !== "Bearer") {
+        return res.status(200).json({
+            statusCode: STATUS_CODES.BAD_REQ,
+            description: "Invalid Authorization Header. Expected Bearer <token>",
+        });
+    }
+
+    const uscAuthDoc = await db["api-tokens"].findOne({
+        token: splitToken[1],
+    });
+
+    if (!uscAuthDoc) {
+        return res.status(200).json({
+            statusCode: STATUS_CODES.UNAUTH,
+            description: "Unauthorized.",
+        });
+    }
+
+    req[SYMBOL_TachiAPIData] = uscAuthDoc;
+
+    return next();
+};
+
+router.use(ValidateUSCRequest);
 // This is an implementation of the USCIR spec as per https://uscir.readthedocs.io.
 // This specification always returns 200 OK, regardless of whether the result was okay
 // as the HTTP code is used to determine whether the server received the request properly,

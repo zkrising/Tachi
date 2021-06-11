@@ -12,7 +12,26 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 
     t.beforeEach(ResetDBState);
 
-    RequireNeutralAuthentication("/ir/direct-manual/import", "POST");
+    t.test("Should require submit:score permissions", async (t) => {
+        await db["api-tokens"].insert({
+            token: "foo",
+            identifier: "bar",
+            permissions: {
+                "submit:score": false,
+            },
+            userID: 1,
+        });
+
+        const res = await mockApi
+            .post("/ir/direct-manual/import")
+            .set("Authorization", "Bearer foo");
+
+        t.equal(res.body.success, false);
+
+        t.match(res.body.description, /submit:score/u);
+
+        t.end();
+    });
 
     t.test("Should upload BATCH-MANUAL data from the request body.", async (t) => {
         const res = await mockApi

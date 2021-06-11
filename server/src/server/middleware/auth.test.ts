@@ -7,7 +7,7 @@ import { CloseAllConnections } from "../../test-utils/close-connections";
 
 t.test("#SetRequestPermissions", (t) => {
     t.test("Should assign valid APIKey information to req[SYMBOL_TachiAPIData]", async (t) => {
-        db["api-tokens"].insert({
+        await db["api-tokens"].insert({
             userID: 1,
             identifier: "Mock API Token",
             permissions: {

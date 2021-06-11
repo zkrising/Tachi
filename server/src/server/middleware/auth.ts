@@ -35,13 +35,14 @@ export const AllPermissions: Record<APIPermissions, true> = {
  * This is set on req[SYMBOL_TachiAPIData].
  */
 export const SetRequestPermissions: RequestHandler = async (req, res, next) => {
-    if (req.session.tachi?.userID) {
+    if (req.session?.tachi?.userID) {
         req[SYMBOL_TachiAPIData] = {
             userID: req.session.tachi.userID,
             identifier: `Session-Key ${req.session.tachi.userID}`,
             token: null,
             permissions: AllPermissions,
         };
+        return next();
     }
 
     const header = req.header("Authorization");
@@ -90,15 +91,15 @@ export const SetRequestPermissions: RequestHandler = async (req, res, next) => {
 };
 
 /**
- * Returns a middleware that enforces the request has the necessary permissions.
- * @param perms - Rest Parameter. The set of permissions necessary to use this endpoint.
- * @returns A middleware function.
- */
-export const RequirePermissions =
-    (...perms: APIPermissions[]): RequestHandler =>
-    (req, res, next) => {
-        if (!req[SYMBOL_TachiAPIData]) {
-            logger.error(`RequirePermissions middleware was hit without any TachiAPIData?`);
+   
+
+
+
+
+
+
+
+
             return res.status(500).json({
                 success: false,
                 description: "An internal error has occured.",

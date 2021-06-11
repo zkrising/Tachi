@@ -21,9 +21,9 @@ t.test("POST /api/v1/auth/login", (t) => {
 
         const cookie = res.headers["set-cookie"];
 
-        const stat = await mockApi.post("/api/v1/auth/status").set("Cookie", cookie);
+        const stat = await mockApi.get("/api/v1/status").set("Cookie", cookie);
 
-        t.equal(stat.status, 200);
+        t.ok(stat.body.body.permissions.length > 0);
 
         t.end();
     });

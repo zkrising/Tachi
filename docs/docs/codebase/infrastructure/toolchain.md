@@ -97,3 +97,10 @@ and automatically uploads to CodeCov with our CI setup.
 
 Handles our deployment and test running. We also integrate
 with CodeCov for the coverage reports.
+
+## Documentation: MKDocs + MKDocs Material
+
+Our documentation is wrote with MKDocs with Material
+as a theme. MKDocs Material is a beautiful theme, and
+writing documentation in markdown is incredibly intuitive
+(Unlike sphinx's RST, which is almost impossible to follow.)

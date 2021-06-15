@@ -24,6 +24,12 @@ theme:
 
 nav:
   - Introduction: "index.md"
+
+  - User Reference:
+    - "user/overview.md"
+    - "user/rules.md"
+    - "user/games.md"
+
   - API Reference:
     - "api/overview.md"
     - "api/auth.md"
@@ -66,9 +72,6 @@ nav:
       - "codebase/import/goals.md"
       - "codebase/import/milestones.md"
       - "codebase/import/import-doc-time.md"
-
-
-
 
 markdown_extensions:
   - admonition

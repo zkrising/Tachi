@@ -1,0 +1,1 @@
+*[Monorepo]: When code for many different projects is stored in the same repository.

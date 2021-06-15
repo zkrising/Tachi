@@ -1,16 +1,79 @@
-site_name: Project Name
-site_description: Project Description
-site_author: Author
+site_name: Tachi Documentation
+site_description: Mono-documentation for Kamaitachi, Bokutachi and related things.
+site_author: zkldi
+site_url: https://docs.bokutachi.xyz
 
 theme:
   name: material
+  features:
+    - navigation.instant
+    - navigation.tabs
   palette:
-    scheme: slate
+    - scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
 
 nav:
   - Introduction: "index.md"
+  - API Reference:
+    - "api/overview.md"
+    - "api/auth.md"
+
+    - Endpoints:
+      - "api/routes/example.md"
+      - "api/routes/status.md"
+      - "api/routes/import.md"
+      - "api/routes/auth.md"
+  - Codebase Reference:
+    - "codebase/overview.md"
+    - "codebase/contributing.md"
+
+    - Setup:
+      - "codebase/setup/setup.md"
+      - "codebase/setup/config.md"
+
+    - Infrastructure:
+      - "codebase/infrastructure/toolchain.md"
+      - "codebase/infrastructure/logging.md"
+      - "codebase/infrastructure/branches.md"
+      - "codebase/infrastructure/testing.md"
+
+    - Structure:
+      - "codebase/structure/style.md"
+      - "codebase/structure/filesystem.md"
+
+    - Score Importing:
+      - "codebase/import/overview.md"
+      - "codebase/import/main.md"
+      - "codebase/import/import-types.md"
+      - "codebase/import/parse-conv.md"
+      - "codebase/import/conv-failures.md"
+      - "codebase/import/importing.md"
+      - "codebase/import/orphans.md"
+      - "codebase/import/parse-ipi.md"
+      - "codebase/import/sessions.md"
+      - "codebase/import/pbs.md"
+      - "codebase/import/ugs.md"
+      - "codebase/import/goals.md"
+      - "codebase/import/milestones.md"
+      - "codebase/import/import-doc-time.md"
+
+
+
 
 markdown_extensions:
   - admonition
   - pymdownx.highlight
   - pymdownx.superfences
+  - abbr
+  - pymdownx.snippets
+  - footnotes

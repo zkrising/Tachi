@@ -2,6 +2,7 @@ import { Router } from "express";
 import db from "../../../../../../external/mongo/db";
 import { SYMBOL_TachiData } from "../../../../../../lib/constants/tachi";
 import { GetUserFromParam } from "./middleware";
+import gamePTRouter from "./games/_game/_playtype/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -39,5 +40,7 @@ router.get("/stats", async (req, res) => {
         body: stats,
     });
 });
+
+router.use("/games/:game/:playtype", gamePTRouter);
 
 export default router;

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import db from "../../../../../external/mongo/db";
-import userIDRouter from "./!userID/router";
+import userIDRouter from "./_userID/router";
 
 const router: Router = Router({ mergeParams: true });
 

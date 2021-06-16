@@ -27,16 +27,13 @@ import {
     ImportLockDocument,
 } from "tachi-common";
 import monk from "monk";
-import { MONGO_BASE_URL } from "../../lib/setup/config";
+import { MONGO_CONNECTION_URL, MONGO_DATABASE_NAME } from "../../lib/setup/config";
 import CreateLogCtx from "../../lib/logger/logger";
 import { OrphanScoreDocument } from "../../lib/score-import/import-types/common/types";
 
 const logger = CreateLogCtx(__filename);
 
-/* istanbul ignore next */
-const base = MONGO_BASE_URL ?? "127.0.0.1";
-
-let dbName = "ktblackdb";
+let dbName = MONGO_DATABASE_NAME;
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV === "test") {
@@ -47,16 +44,14 @@ if (process.env.NODE_ENV === "test") {
     }
 }
 
-const url = `mongodb://${base}:27017/${dbName}`;
-
 let dbtime: [number, number] = [0, 0];
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== "test") {
-    logger.info(`Connecting to database ${url}...`);
+    logger.info(`Connecting to database ${MONGO_CONNECTION_URL}/${dbName}...`);
     dbtime = process.hrtime();
 }
 
-export const monkDB = monk(url);
+export const monkDB = monk(`${MONGO_CONNECTION_URL}/${dbName}`);
 
 /* istanbul ignore next */
 monkDB

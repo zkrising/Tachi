@@ -26,7 +26,8 @@ function isValidURL(self: unknown) {
 }
 
 export interface TachiConfig {
-    MONGO_BASE_URL: string;
+    MONGO_CONNECTION_URL: string;
+    MONGO_DATABASE_NAME: string;
     LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
     CAPTCHA_SECRET_KEY: string;
     SESSION_SECRET: string;
@@ -44,7 +45,8 @@ export interface TachiConfig {
 }
 
 const err = p(config, {
-    MONGO_BASE_URL: "string",
+    MONGO_CONNECTION_URL: "string",
+    MONGO_DATABASE_NAME: "string",
     LOG_LEVEL: p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit"),
     CAPTCHA_SECRET_KEY: "string",
     SESSION_SECRET: "string",
@@ -98,7 +100,8 @@ if (config.TYPE === "ktchi") {
 
 const tachiConfig = config as TachiConfig;
 
-export const MONGO_BASE_URL = tachiConfig.MONGO_BASE_URL;
+export const MONGO_CONNECTION_URL = tachiConfig.MONGO_CONNECTION_URL;
+export const MONGO_DATABASE_NAME = tachiConfig.MONGO_DATABASE_NAME;
 export const LOG_LEVEL = tachiConfig.LOG_LEVEL;
 export const SESSION_SECRET = tachiConfig.SESSION_SECRET;
 export const CAPTCHA_SECRET_KEY = tachiConfig.CAPTCHA_SECRET_KEY;

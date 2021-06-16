@@ -1,6 +1,6 @@
-# MKDocs-Template
+# Tachi-Docs
 
-My preferred defaults and a template for MKDocs, which is also my preferred engine for writing documentation.
+This is the documentation for Tachi.
 
 # Setup
 
@@ -10,3 +10,7 @@ If you're in a horribly hellish python environment like me (Sorry Sera, you know
 - `git clone <this repo>`
 - `pip install mkdocs-material`
 - `mkdocs serve`
+
+# Contributing
+
+Fork the repository and PR your changes to `develop`.

@@ -13,12 +13,12 @@ import ResetDBState from "../../../../../test-utils/resets";
 import db from "../../../../../external/mongo/db";
 import { SetIndexes } from "../../../../../../scripts/set-indexes";
 
-// reset DB handles the post-stuff
-
 t.test("POST /api/v1/import/file", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
-    await SetIndexes(`test-ephemeral-${process.pid.toString()}`);
+    await SetIndexes(
+        process.env.TACHI_PARALLEL_TESTS ? `test-ephemeral-${process.pid.toString()}` : "testingdb"
+    );
 
     t.beforeEach(ResetDBState);
 

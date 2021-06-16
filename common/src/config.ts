@@ -1559,3 +1559,43 @@ export const gamePercentMax = {
     maimaidx: 150,
     usc: 100,
 };
+
+export const defaultRatingAlgorithm = {
+    iidx: {
+        SP: "ktRating",
+        DP: "ktRating",
+    },
+    popn: {
+        "9B": "todo",
+    },
+    sdvx: {
+        Single: "VF6",
+    },
+    usc: {
+        Single: "VF6",
+    },
+    ddr: {
+        SP: "ktRating",
+        DP: "ktRating",
+    },
+    maimai: {
+        Single: "ktRating",
+    },
+    jubeat: {
+        Single: "jubility",
+    },
+    museca: {
+        Single: "ktRating",
+    },
+    bms: {
+        "7K": "ktLampRating",
+        "14K": "ktLampRating",
+    },
+    chunithm: {
+        Single: "naiveRating",
+    },
+    gitadora: {
+        Gita: "skill",
+        Dora: "skill",
+    },
+};

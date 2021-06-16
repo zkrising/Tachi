@@ -4,7 +4,7 @@
 // of some of my first javascript code.
 // It's,, alright, but I like the versatility it brings.
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gamePercentMax = exports.FormatDifficulty = exports.PercentToScore = exports.CalculateScore = exports.AbsoluteScoreGradeDelta = exports.ScoreGradeDelta = exports.supportsESD = exports.DirectScoreGradeDelta = exports.ratingParameters = exports.gameChartIndicators = exports.judgeColours = exports.lampColours = exports.gradeColours = exports.COLOUR_SET = exports.judgementWindows = exports.clearGrade = exports.clearLamp = exports.lamps = exports.expChartScale = exports.boundaryHCF = exports.gradeBoundaries = exports.grades = exports.validPlaytypes = exports.humaniseGame = exports.defaultDifficulty = exports.defaultPlaytype = exports.gameOrders = exports.versionHuman = exports.gameHuman = exports.gameRelevantScoreBucket = exports.gameColours = exports.validHitData = exports.folderTables = exports.defaultTable = exports.validDifficulties = exports.gameSpecificCalcDescriptions = exports.gameSpecificCalc = exports.supportedGames = exports.importTypes = exports.apiImportTypes = exports.irImportTypes = exports.fileImportTypes = void 0;
+exports.defaultRatingAlgorithm = exports.gamePercentMax = exports.FormatDifficulty = exports.PercentToScore = exports.CalculateScore = exports.AbsoluteScoreGradeDelta = exports.ScoreGradeDelta = exports.supportsESD = exports.DirectScoreGradeDelta = exports.ratingParameters = exports.gameChartIndicators = exports.judgeColours = exports.lampColours = exports.gradeColours = exports.COLOUR_SET = exports.judgementWindows = exports.clearGrade = exports.clearLamp = exports.lamps = exports.expChartScale = exports.boundaryHCF = exports.gradeBoundaries = exports.grades = exports.validPlaytypes = exports.humaniseGame = exports.defaultDifficulty = exports.defaultPlaytype = exports.gameOrders = exports.versionHuman = exports.gameHuman = exports.gameRelevantScoreBucket = exports.gameColours = exports.validHitData = exports.folderTables = exports.defaultTable = exports.validDifficulties = exports.gameSpecificCalcDescriptions = exports.gameSpecificCalc = exports.supportedGames = exports.importTypes = exports.apiImportTypes = exports.irImportTypes = exports.fileImportTypes = void 0;
 exports.fileImportTypes = [
     "file/eamusement-iidx-csv",
     "file/batch-manual",
@@ -1463,5 +1463,44 @@ exports.gamePercentMax = {
     maimai: 150,
     maimaidx: 150,
     usc: 100,
+};
+exports.defaultRatingAlgorithm = {
+    iidx: {
+        SP: "ktRating",
+        DP: "ktRating",
+    },
+    popn: {
+        "9B": "todo",
+    },
+    sdvx: {
+        Single: "VF6",
+    },
+    usc: {
+        Single: "VF6",
+    },
+    ddr: {
+        SP: "ktRating",
+        DP: "ktRating",
+    },
+    maimai: {
+        Single: "ktRating",
+    },
+    jubeat: {
+        Single: "jubility",
+    },
+    museca: {
+        Single: "ktRating",
+    },
+    bms: {
+        "7K": "ktLampRating",
+        "14K": "ktLampRating",
+    },
+    chunithm: {
+        Single: "naiveRating",
+    },
+    gitadora: {
+        Gita: "skill",
+        Dora: "skill",
+    },
 };
 //# sourceMappingURL=config.js.map

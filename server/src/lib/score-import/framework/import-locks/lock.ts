@@ -13,11 +13,13 @@ export function GetOrSetUserLock(userID: integer) {
             userID,
         },
         {
-            userID,
+            $set: { userID },
         },
         {
             upsert: true,
-            returnDocument: "before",
+            // this is marked as deprecated, but it shouldn't be, as returnDocument: "before"
+            // does nothing.
+            returnOriginal: true,
         }
     );
 }

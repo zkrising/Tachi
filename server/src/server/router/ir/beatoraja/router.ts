@@ -1,6 +1,6 @@
 import { Router } from "express";
 import db from "../../../../external/mongo/db";
-import { SYMBOL_TachiAPIData } from "../../../../lib/constants/tachi";
+import { SYMBOL_TachiAPIAuth } from "../../../../lib/constants/tachi";
 import CreateLogCtx, { KtLogger } from "../../../../lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { ParseBeatorajaSingle } from "../../../../lib/score-import/import-types/ir/beatoraja/parser";
@@ -21,7 +21,7 @@ router.use(ValidateIRClientVersion);
  * @name POST /ir/beatoraja/submit-score
  */
 router.post("/submit-score", async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIData]!.userID!);
+    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth]!.userID!);
 
     const ParserFunction = (logger: KtLogger) => ParseBeatorajaSingle(req.body, logger);
 
@@ -164,7 +164,7 @@ router.post("/submit-course", async (req, res) => {
         });
     }
 
-    const userID = req[SYMBOL_TachiAPIData]!.userID!;
+    const userID = req[SYMBOL_TachiAPIAuth]!.userID!;
 
     const result = await UpdateClassIfGreater(
         userID,

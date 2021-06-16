@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { SYMBOL_TachiAPIData } from "../../../../../lib/constants/tachi";
+import { SYMBOL_TachiAPIAuth } from "../../../../../lib/constants/tachi";
 import { FormatVersion } from "../../../../../lib/constants/version";
 
 const router: Router = Router({ mergeParams: true });
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
             serverTime: Date.now(),
             version: FormatVersion(),
             // converts {foo: true, bar: false, baz: true} into [foo, baz]
-            permissions: Object.entries(req[SYMBOL_TachiAPIData].permissions)
+            permissions: Object.entries(req[SYMBOL_TachiAPIAuth].permissions)
                 .filter((e) => e[1])
                 .map((e) => e[0]),
             echo,
@@ -38,7 +38,7 @@ router.post("/", (req, res) => {
             serverTime: Date.now(),
             version: FormatVersion(),
             // converts {foo: true, bar: false, baz: true} into [foo, baz]
-            permissions: Object.entries(req[SYMBOL_TachiAPIData].permissions)
+            permissions: Object.entries(req[SYMBOL_TachiAPIAuth].permissions)
                 .filter((e) => e[1])
                 .map((e) => e[0]),
             echo,

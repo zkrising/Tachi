@@ -9,7 +9,7 @@ import { ParseFervidexStatic } from "../../../../lib/score-import/import-types/i
 import { ParseFervidexSingle } from "../../../../lib/score-import/import-types/ir/fervidex/parser";
 import { Playtypes, integer } from "tachi-common";
 import CreateLogCtx from "../../../../lib/logger/logger";
-import { SYMBOL_TachiAPIData } from "../../../../lib/constants/tachi";
+import { SYMBOL_TachiAPIAuth } from "../../../../lib/constants/tachi";
 import { RequirePermissions } from "../../../middleware/auth";
 
 const logger = CreateLogCtx(__filename);
@@ -21,7 +21,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 
     if (!agent) {
         logger.debug(
-            `Rejected fervidex client with no agent from user ${req[SYMBOL_TachiAPIData].userID!}.`
+            `Rejected fervidex client with no agent from user ${req[SYMBOL_TachiAPIAuth].userID!}.`
         );
         return res.status(400).json({
             success: false,
@@ -32,7 +32,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
     if (!agent.startsWith("fervidex/")) {
         logger.info(
             `Rejected fervidex client with invalid agent ${agent} from user ${req[
-                SYMBOL_TachiAPIData
+                SYMBOL_TachiAPIAuth
             ].userID!}.`
         );
         return res.status(400).json({
@@ -46,7 +46,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
     if (!versions.every((e) => !Number.isNaN(e))) {
         logger.info(
             `Rejected fervidex client with agent ${agent} for NaN-like versions from user ${req[
-                SYMBOL_TachiAPIData
+                SYMBOL_TachiAPIAuth
             ].userID!}.`
         );
         return res.status(400).json({
@@ -58,7 +58,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
     // version.minor
     if (versions[1] < 3) {
         logger.debug(
-            `Rejected outdated fervidex client from user ${req[SYMBOL_TachiAPIData].userID!}.`
+            `Rejected outdated fervidex client from user ${req[SYMBOL_TachiAPIAuth].userID!}.`
         );
         return res.status(400).json({
             success: false,
@@ -74,7 +74,7 @@ const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
 
     if (!swModel) {
         logger.debug(
-            `Rejected empty X-Software-Model from user ${req[SYMBOL_TachiAPIData].userID!}.`
+            `Rejected empty X-Software-Model from user ${req[SYMBOL_TachiAPIAuth].userID!}.`
         );
         return res.status(400).json({
             success: false,
@@ -86,7 +86,7 @@ const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
         const softID = ParseEA3SoftID(swModel);
 
         if (softID.model !== MODEL_INFINITAS_2) {
-            logger.debug(`Rejected non-inf2 model from user ${req[SYMBOL_TachiAPIData].userID!}.`);
+            logger.debug(`Rejected non-inf2 model from user ${req[SYMBOL_TachiAPIAuth].userID!}.`);
             return res.status(400).send({
                 success: false,
                 description: "This endpoint is only available for INF2 clients.",
@@ -108,7 +108,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 
     if (!swModel) {
         logger.debug(
-            `Rejected empty X-Software Model from user ${req[SYMBOL_TachiAPIData].userID!}.`
+            `Rejected empty X-Software Model from user ${req[SYMBOL_TachiAPIAuth].userID!}.`
         );
         return res.status(400).json({
             success: false,
@@ -132,7 +132,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 
         if (softID.ext !== EXT_HEROIC_VERSE) {
             logger.info(
-                `Rejected invalid Software Model ${softID.ext} from user ${req[SYMBOL_TachiAPIData]
+                `Rejected invalid Software Model ${softID.ext} from user ${req[SYMBOL_TachiAPIAuth]
                     .userID!}.`
             );
             return res.status(400).json({
@@ -162,7 +162,7 @@ router.use(RequirePermissions("submit:score"), ValidateFervidexHeader, ValidateM
  * @name POST /ir/fervidex/profile/submit
  */
 router.post("/profile/submit", RequireInf2ModelHeader, async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIData].userID!);
+    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
 
     const headers = {
         // guaranteed to exist because of RequireInf2ModelHeader
@@ -187,7 +187,7 @@ router.post("/profile/submit", RequireInf2ModelHeader, async (req, res) => {
  * @name POST /ir/fervidex/score/submit
  */
 router.post("/score/submit", ValidateModelHeader, async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIData].userID!);
+    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
 
     const model = req.header("X-Software-Model");
 
@@ -250,7 +250,7 @@ router.post("/class/submit", ValidateModelHeader, async (req, res) => {
     const playtype: Playtypes["iidx"] = req.body.play_style === 0 ? "SP" : "DP";
 
     const r = await UpdateClassIfGreater(
-        req[SYMBOL_TachiAPIData].userID!,
+        req[SYMBOL_TachiAPIAuth].userID!,
         "iidx",
         playtype,
         "dan",

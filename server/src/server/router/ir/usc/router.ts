@@ -1,6 +1,6 @@
 import { Router, RequestHandler } from "express";
 import { FindChartOnSHA256 } from "../../../../utils/queries/charts";
-import { SYMBOL_TachiAPIData, SYMBOL_TachiData } from "../../../../lib/constants/tachi";
+import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "../../../../lib/constants/tachi";
 import db from "../../../../external/mongo/db";
 import {
     ChartDocument,
@@ -65,7 +65,7 @@ const ValidateUSCRequest: RequestHandler = async (req, res, next) => {
         });
     }
 
-    req[SYMBOL_TachiAPIData] = uscAuthDoc;
+    req[SYMBOL_TachiAPIAuth] = uscAuthDoc;
 
     return next();
 };
@@ -261,10 +261,10 @@ router.post("/scores", RequirePermissions("submit:score"), async (req, res) => {
         });
     }
 
-    const userDoc = await GetUserWithID(req[SYMBOL_TachiAPIData]!.userID!);
+    const userDoc = await GetUserWithID(req[SYMBOL_TachiAPIAuth]!.userID!);
 
     if (!userDoc) {
-        logger.severe(`User ${req[SYMBOL_TachiAPIData]!.userID!} as no parent userDoc?`);
+        logger.severe(`User ${req[SYMBOL_TachiAPIAuth]!.userID!} as no parent userDoc?`);
         return res.status(200).json({
             statusCode: STATUS_CODES.SERVER_ERROR,
             description: "An internal server error has occured.",
@@ -334,7 +334,7 @@ router.post(
         }
 
         const correspondingScore = await db.scores.findOne({
-            userID: req[SYMBOL_TachiAPIData]!.userID!,
+            userID: req[SYMBOL_TachiAPIAuth]!.userID!,
             game: "usc",
             scoreID: req.body.identifier,
         });

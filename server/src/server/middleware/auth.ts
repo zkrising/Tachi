@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import db from "../../external/mongo/db";
-import { SYMBOL_TachiAPIData } from "../../lib/constants/tachi";
+import { SYMBOL_TachiAPIAuth } from "../../lib/constants/tachi";
 import { SplitAuthorizationHeader } from "../../utils/misc";
 import { APITokenDocument, APIPermissions } from "tachi-common";
 import CreateLogCtx from "../../lib/logger/logger";
@@ -36,7 +36,7 @@ export const AllPermissions: Record<APIPermissions, true> = {
  */
 export const SetRequestPermissions: RequestHandler = async (req, res, next) => {
     if (req.session?.tachi?.userID) {
-        req[SYMBOL_TachiAPIData] = {
+        req[SYMBOL_TachiAPIAuth] = {
             userID: req.session.tachi.userID,
             identifier: `Session-Key ${req.session.tachi.userID}`,
             token: null,
@@ -49,7 +49,7 @@ export const SetRequestPermissions: RequestHandler = async (req, res, next) => {
 
     // if no auth was attempted, default to the guest token.
     if (!header) {
-        req[SYMBOL_TachiAPIData] = GuestToken;
+        req[SYMBOL_TachiAPIAuth] = GuestToken;
         return next();
     }
 
@@ -80,7 +80,7 @@ export const SetRequestPermissions: RequestHandler = async (req, res, next) => {
         });
     }
 
-    req[SYMBOL_TachiAPIData] = {
+    req[SYMBOL_TachiAPIAuth] = {
         userID: apiTokenData.userID,
         token,
         permissions: apiTokenData.permissions,
@@ -98,7 +98,7 @@ export const SetRequestPermissions: RequestHandler = async (req, res, next) => {
 export const RequirePermissions =
     (...perms: APIPermissions[]): RequestHandler =>
     (req, res, next) => {
-        if (!req[SYMBOL_TachiAPIData]) {
+        if (!req[SYMBOL_TachiAPIAuth]) {
             logger.error(`RequirePermissions middleware was hit without any TachiAPIData?`);
 
             return res.status(500).json({
@@ -109,7 +109,7 @@ export const RequirePermissions =
 
         const missingPerms = [];
         for (const perm of perms) {
-            if (!req[SYMBOL_TachiAPIData]!.permissions[perm]) {
+            if (!req[SYMBOL_TachiAPIAuth]!.permissions[perm]) {
                 missingPerms.push(perm);
             }
         }
@@ -117,7 +117,7 @@ export const RequirePermissions =
         if (missingPerms.length > 0) {
             logger.info(
                 `IP ${req.ip} - userID ${
-                    req[SYMBOL_TachiAPIData].userID
+                    req[SYMBOL_TachiAPIAuth].userID
                 } had insufficient permissions for request ${req.method} ${
                     req.url
                 }. ${missingPerms.join(", ")}`
@@ -134,7 +134,7 @@ export const RequirePermissions =
     };
 
 export const RequireNotGuest: RequestHandler = (req, res, next) => {
-    if (!req[SYMBOL_TachiAPIData]) {
+    if (!req[SYMBOL_TachiAPIAuth]) {
         logger.error(`RequirePermissions middleware was hit without any TachiAPIData?`);
         return res.status(500).json({
             success: false,
@@ -142,7 +142,7 @@ export const RequireNotGuest: RequestHandler = (req, res, next) => {
         });
     }
 
-    if (!req[SYMBOL_TachiAPIData].userID) {
+    if (!req[SYMBOL_TachiAPIAuth].userID) {
         logger.info(`Request to ${req.method} ${req.url} was attempted by guest.`);
         return res.status(401).json({
             success: false,

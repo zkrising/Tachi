@@ -24,6 +24,7 @@ import {
     PBScoreDocument,
     UserMilestoneDocument,
     BMSCourseDocument,
+    ImportLockDocument,
 } from "tachi-common";
 import monk from "monk";
 import { MONGO_BASE_URL } from "../../lib/setup/config";
@@ -132,6 +133,7 @@ const db = {
     "bms-course-lookup": monkDB.get<BMSCourseDocument>("bms-course-lookup"),
     "api-tokens": monkDB.get<APITokenDocument>("api-tokens"),
     "orphan-scores": monkDB.get<OrphanScoreDocument>("orphan-scores"),
+    "import-locks": monkDB.get<ImportLockDocument>("import-locks"),
 };
 
 export default db;

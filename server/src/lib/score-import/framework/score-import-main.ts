@@ -22,6 +22,8 @@ import { ConverterFunction, ImportInputParser } from "../import-types/common/typ
 import { ScorePlaytypeMap } from "./common/types";
 import { Converters } from "../import-types/converters";
 import { ClassHandler } from "./user-game-stats/types";
+import { GetOrSetUserLock, RemoveUserLock } from "./import-locks/lock";
+import ScoreImportFatalError from "./score-importing/score-import-error";
 
 /**
  * Performs a Score Import.
@@ -33,6 +35,21 @@ export default async function ScoreImportMain<D, C>(
     InputParser: ImportInputParser<D, C>,
     providedImportObjects?: { logger: KtLogger; importID: string }
 ) {
+    const lock = await GetOrSetUserLock(user.id);
+
+    if (lock) {
+        // @danger
+        // Throwing away an import if the user already has one outgoing is *bad*, as in the case
+        // of degraded performance we might just start throwing scores away. This is obviously
+        // not great, but any other solution involves making a queue, which can't be done because
+        // InputParser is a very dynamic function that cannot be stored in redis or something.
+        //
+        // Under normal circumstances, there is no scenario where a user would have two ongoing
+        // imports at the same time - even if they were using single-score imports on a 5 second
+        // chart, as each score import takes only around ~10-15miliseconds.
+        throw new ScoreImportFatalError(409, "This user already has an ongoing import.");
+    }
+
     const timeStarted = Date.now();
     let importID;
     let logger;
@@ -201,6 +218,8 @@ export default async function ScoreImportMain<D, C>(
             milestone: milestoneTime,
         },
     });
+
+    await RemoveUserLock(user.id);
 
     return ImportDocument;
 }

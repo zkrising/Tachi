@@ -14,6 +14,8 @@ export async function GetNextCounterValue(counterName: string): Promise<integer>
             },
         },
         {
+            // this is marked as deprecated, but it shouldn't be, as returnDocument: "before"
+            // does nothing.
             returnOriginal: true,
         }
     );

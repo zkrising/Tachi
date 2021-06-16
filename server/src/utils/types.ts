@@ -1,4 +1,11 @@
-import { integer, ChartDocument, PublicUserDocument, UserGameStats } from "tachi-common";
+import {
+    integer,
+    ChartDocument,
+    PublicUserDocument,
+    UserGameStats,
+    Game,
+    Playtypes,
+} from "tachi-common";
 
 declare module "express-session" {
     // Inject additional properties on express-session
@@ -39,4 +46,6 @@ export interface TachiRequestData {
 
     requestedUser?: PublicUserDocument;
     requestedUserGameStats?: UserGameStats;
+    game?: Game;
+    playtype?: Playtypes[Game];
 }

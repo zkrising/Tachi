@@ -34,7 +34,11 @@ export const CheckUserPlayedGamePlaytype: RequestHandler = async (req, res, next
         });
     }
 
-    AssignToReqTachiData(req, { requestedUserGameStats: stats });
+    AssignToReqTachiData(req, {
+        requestedUserGameStats: stats,
+        game: req.params.game,
+        playtype: req.params.playtype,
+    });
 
     return next();
 };

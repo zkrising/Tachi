@@ -9,6 +9,7 @@ If you're in a horribly hellish python environment like me (Sorry Sera, you know
 - `pip install mkdocs`
 - `git clone <this repo>`
 - `pip install mkdocs-material`
+- `cd repo`
 - `mkdocs serve`
 
 # Contributing

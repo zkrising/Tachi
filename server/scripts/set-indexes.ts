@@ -31,7 +31,7 @@ const UNIQUE = { unique: true };
 
 const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
     scores: [index({ scoreID: 1 }, UNIQUE)],
-    "score-pbs": [
+    "personal-bests": [
         index({ chartID: 1, userID: 1 }, UNIQUE),
         index({ chartID: 1, "scoreData.percent": 1 }),
     ],

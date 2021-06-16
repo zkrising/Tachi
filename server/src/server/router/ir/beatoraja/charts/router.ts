@@ -33,7 +33,7 @@ router.use(GetChartDocument);
 router.get("/scores", async (req, res) => {
     const chart = req[SYMBOL_TachiData]!.beatorajaChartDoc!;
 
-    const scores = (await db["score-pbs"].find({
+    const scores = (await db["personal-bests"].find({
         chartID: chart.chartID,
     })) as PBScoreDocument<"bms:7K" | "bms:14K">[];
 

@@ -406,7 +406,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
     });
 
     t.test("Should calculate pbDifferences if a scorePB exists.", async (t) => {
-        await db["score-pbs"].insert(TestingIIDXSPScorePB);
+        await db["personal-bests"].insert(TestingIIDXSPScorePB);
 
         const res = await LoadScoresIntoSessions(
             1,

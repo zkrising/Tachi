@@ -11,7 +11,7 @@ t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
     const GAZER_CHARTID = "88eb6cc5683e2740cbd07f588a5f3db1db8d467b";
 
     t.test("Should return PB scores on a chart", async (t) => {
-        await db["score-pbs"].insert({
+        await db["personal-bests"].insert({
             composedFrom: {
                 lampPB: "mock_lampPB",
             },

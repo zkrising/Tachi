@@ -58,7 +58,7 @@ export default async function ScoreImportMain<D, C>(
 
     logger.debug(`Parsing took ${parseTime} miliseconds.`);
 
-    // We have to cast here due to typescript generic confusions. This is guaranteed to be correct.
+    // We have to cast here due to typescript generic confusions. This is guaranteed` to be correct.
     const ConverterFunction = Converters[importType] as unknown as ConverterFunction<D, C>;
 
     // --- 2. Importing ---

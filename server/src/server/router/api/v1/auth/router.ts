@@ -12,7 +12,6 @@ import {
     GetUserCaseInsensitive,
     PRIVATEINFO_GetUserCaseInsensitive,
 } from "../../../../../utils/user";
-
 import db from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../../lib/logger/logger";
 import prValidate from "../../../../middleware/prudence-validate";
@@ -152,7 +151,7 @@ router.post(
                 });
             }
 
-            logger.verbose("Captcha validated!");
+            logger.debug("Captcha validated.");
         } else {
             logger.info("Skipped captcha check because not in production.");
         }

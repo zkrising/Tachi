@@ -12,7 +12,7 @@ import {
     REV_2DXTRA,
     REV_OMNIMIX,
 } from "../../../../constants/ea3id";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { ParserFunctionReturns } from "../../common/types";
 
 const PR_Fervidex: PrudenceSchema = {
     chart: p.isIn("spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"),
@@ -100,7 +100,7 @@ export function ParseFervidexSingle(
     body: Record<string, unknown>,
     headers: FerHeaders,
     logger: KtLogger
-): ParserFunctionReturnsSync<FervidexScore, FervidexContext> {
+): ParserFunctionReturns<FervidexScore, FervidexContext> {
     const version = SoftwareIDToVersion(headers.model);
 
     // more mods may be added in the future, so lets ignore excess keys.

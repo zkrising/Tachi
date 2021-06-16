@@ -4,7 +4,7 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import { FormatPrError } from "../../../../../utils/prudence";
 import { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
 import { ConverterIRBeatoraja } from "./converter";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { ParserFunctionReturns } from "../../common/types";
 
 const PR_BeatorajaScore = {
     sha256: "string",
@@ -65,7 +65,7 @@ const PR_BeatorajaChart = {
 export function ParseBeatorajaSingle(
     body: Record<string, unknown>,
     logger: KtLogger
-): ParserFunctionReturnsSync<BeatorajaScore, BeatorajaContext> {
+): ParserFunctionReturns<BeatorajaScore, BeatorajaContext> {
     const err = p(
         body.score,
         PR_BeatorajaScore,

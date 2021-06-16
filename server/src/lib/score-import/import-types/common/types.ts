@@ -103,19 +103,8 @@ export interface ImportInputParser<D, C> {
     (logger: KtLogger): ParserFunctionReturns<D, C> | Promise<ParserFunctionReturns<D, C>>;
 }
 
-export type ParserFunctionReturns<D, C> =
-    | ParserFunctionReturnsAsync<D, C>
-    | ParserFunctionReturnsSync<D, C>;
-
-export interface ParserFunctionReturnsAsync<D, C> {
-    iterable: AsyncIterable<D>;
-    context: C;
-    game: Game;
-    classHandler: ClassHandler | null;
-}
-
-export interface ParserFunctionReturnsSync<D, C> {
-    iterable: Iterable<D>;
+export interface ParserFunctionReturns<D, C> {
+    iterable: Iterable<D> | AsyncIterable<D>;
     context: C;
     game: Game;
     classHandler: ClassHandler | null;

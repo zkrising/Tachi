@@ -4,7 +4,7 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import p, { PrudenceSchema } from "prudence";
 import { FormatPrError } from "../../../../../utils/prudence";
 import { S3Score } from "./types";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { ParserFunctionReturns } from "../../common/types";
 import { KtLogger } from "../../../../logger/logger";
 
 const PR_SolidState: PrudenceSchema = {
@@ -54,7 +54,7 @@ export function ParseSolidStateXML(
     fileData: Express.Multer.File,
     body: Record<string, unknown>,
     logger: KtLogger
-): ParserFunctionReturnsSync<S3Score, EmptyObject> {
+): ParserFunctionReturns<S3Score, EmptyObject> {
     let parsedXML;
 
     try {

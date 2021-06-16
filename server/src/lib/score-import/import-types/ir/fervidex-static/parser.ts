@@ -7,7 +7,7 @@ import { FervidexStaticContext, FervidexStaticScore } from "./types";
 import { FerHeaders, SoftwareIDToVersion } from "../fervidex/parser";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import { CreateFerStaticClassHandler } from "./class-handler";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { ParserFunctionReturns } from "../../common/types";
 
 const PR_FervidexStatic: PrudenceSchema = {
     ex_score: p.isPositiveInteger,
@@ -19,7 +19,7 @@ export function ParseFervidexStatic(
     body: Record<string, unknown>,
     headers: FerHeaders,
     logger: KtLogger
-): ParserFunctionReturnsSync<FervidexStaticScore, FervidexStaticContext> {
+): ParserFunctionReturns<FervidexStaticScore, FervidexStaticContext> {
     const version = SoftwareIDToVersion(headers.model);
 
     const staticScores = body?.scores;

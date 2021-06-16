@@ -1,10 +1,4 @@
-import {
-    AnyChartDocument,
-    config,
-    integer,
-    ScoreDocument,
-    AnySongDocument,
-} from "tachi-common";
+import { AnyChartDocument, config, integer, ScoreDocument, AnySongDocument } from "tachi-common";
 import { KtLogger } from "../../../logger/logger";
 import { CreateCalculatedData } from "../calculated-data/calculated-data";
 import { CalculateESDForGame } from "../common/score-utils";

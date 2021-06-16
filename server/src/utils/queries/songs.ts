@@ -17,7 +17,7 @@ export function FindSongOnTitle(
     game: Game,
     title: string
 ): Promise<FindOneResult<AnySongDocument>> {
-    // @PERF: Performance should be tested here by having a utility field for all-titles.
+    // @optimisable: Performance should be tested here by having a utility field for all-titles.
     return db.songs[game].findOne({
         $or: [
             {
@@ -38,7 +38,7 @@ export function FindSongOnTitleInsensitive(
     game: Game,
     title: string
 ): Promise<FindOneResult<AnySongDocument>> {
-    // @PERF: Performance should be tested here by having a utility field for all-titles.
+    // @optimisable: Performance should be tested here by having a utility field for all-titles.
 
     const regex = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
     return db.songs[game].findOne({

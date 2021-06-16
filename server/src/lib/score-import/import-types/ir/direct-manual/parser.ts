@@ -1,7 +1,7 @@
 import { KtLogger } from "../../../../logger/logger";
 import { ParseBatchManualFromObject } from "../../common/batch-manual/parser";
 import { BatchManualContext, BatchManualScore } from "../../common/batch-manual/types";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { ParserFunctionReturns } from "../../common/types";
 
 /**
  * Parses an object of BATCH-MANUAL data.
@@ -11,7 +11,7 @@ import { ParserFunctionReturnsSync } from "../../common/types";
 function ParseDirectManual(
     body: Record<string, unknown>,
     logger: KtLogger
-): ParserFunctionReturnsSync<BatchManualScore, BatchManualContext> {
+): ParserFunctionReturns<BatchManualScore, BatchManualContext> {
     return ParseBatchManualFromObject(body, "ir/direct-manual", logger);
 }
 

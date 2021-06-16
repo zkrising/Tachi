@@ -5,7 +5,7 @@ import { FormatPrError } from "../../../../../utils/prudence";
 import { USCClientScore } from "../../../../../server/router/ir/usc/types";
 import { IRUSCContext } from "./types";
 import { ConverterIRUSC } from "./converter";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { ParserFunctionReturns } from "../../common/types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 
 const PR_USCIRScore: PrudenceSchema = {
@@ -27,7 +27,7 @@ export function ParseIRUSC(
     body: Record<string, unknown>,
     chart: ChartDocument<"usc:Single">,
     logger: KtLogger
-): ParserFunctionReturnsSync<USCClientScore, IRUSCContext> {
+): ParserFunctionReturns<USCClientScore, IRUSCContext> {
     const err = p(
         body.score,
         PR_USCIRScore,

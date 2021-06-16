@@ -4,13 +4,13 @@ import {
     IIDXEamusementCSVContext,
     IIDXEamusementCSVData,
 } from "../../common/eamusement-iidx-csv/types";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { ParserFunctionReturns } from "../../common/types";
 
 function ParsePLIIIDXCSV(
     fileData: Express.Multer.File,
     body: Record<string, unknown>,
     logger: KtLogger
-): ParserFunctionReturnsSync<IIDXEamusementCSVData, IIDXEamusementCSVContext> {
+): ParserFunctionReturns<IIDXEamusementCSVData, IIDXEamusementCSVContext> {
     return GenericParseEamIIDXCSV(fileData, body, "PLI", logger);
 }
 

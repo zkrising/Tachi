@@ -4,10 +4,9 @@ import { BatchManual, BatchManualContext, BatchManualScore } from "./types";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 import { lamps, validHitData, validPlaytypes } from "tachi-common/js/config";
 import { Game, ImportTypes } from "tachi-common";
-import { ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
 import { FormatPrError } from "../../../../../utils/prudence";
-import { ParserFunctionReturnsSync } from "../types";
+import { ParserFunctionReturns } from "../types";
 import { CONF_INFO } from "../../../../setup/config";
 
 const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));
@@ -117,7 +116,7 @@ export function ParseBatchManualFromObject(
     object: unknown,
     importType: ImportTypes,
     logger: KtLogger
-): ParserFunctionReturnsSync<BatchManualScore, BatchManualContext> {
+): ParserFunctionReturns<BatchManualScore, BatchManualContext> {
     // now to perform some basic validation so we can return
     // the iterable
 

@@ -3,7 +3,7 @@ import { FormatPrError } from "../../../../../utils/prudence";
 import { EmptyObject } from "../../../../../utils/types";
 import { KtLogger } from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { ParserFunctionReturns } from "../../common/types";
 import { ConvertFileMerIIDX } from "./converter";
 import { MerScore } from "./types";
 
@@ -30,7 +30,7 @@ export function ParseMerIIDX(
     fileData: Express.Multer.File,
     body: Record<string, unknown>,
     logger: KtLogger
-): ParserFunctionReturnsSync<MerScore, EmptyObject> {
+): ParserFunctionReturns<MerScore, EmptyObject> {
     let jsonData;
 
     try {

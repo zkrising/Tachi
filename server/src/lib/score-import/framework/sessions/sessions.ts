@@ -203,6 +203,10 @@ export async function LoadScoresIntoSessions(
         const startOfGroup = groupScores[0].timeAchieved!;
         const endOfGroup = groupScores[groupScores.length - 1].timeAchieved!;
 
+        // A bug exists here where if a session is created
+        // backwards in time, this will grab your PBs
+        // from the future.
+        // @todo #179
         const pbs = await db["score-pbs"].find({
             chartID: { $in: groupScores.map((e) => e.chartID) },
             userID,

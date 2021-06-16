@@ -2,7 +2,7 @@ import { KtLogger } from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParseBatchManualFromObject } from "../../common/batch-manual/parser";
 import { BatchManualContext, BatchManualScore } from "../../common/batch-manual/types";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { ParserFunctionReturns } from "../../common/types";
 
 /**
  * Parses a buffer of BATCH-MANUAL data.
@@ -13,7 +13,7 @@ function ParseBatchManual(
     fileData: Express.Multer.File,
     body: Record<string, unknown>,
     logger: KtLogger
-): ParserFunctionReturnsSync<BatchManualScore, BatchManualContext> {
+): ParserFunctionReturns<BatchManualScore, BatchManualContext> {
     let jsonData: unknown;
 
     try {

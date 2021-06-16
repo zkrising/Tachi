@@ -5,7 +5,7 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import { FormatPrError } from "../../../../../utils/prudence";
 import { BarbatosScore } from "./types";
 import { ConverterIRBarbatos } from "./converter";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { ParserFunctionReturns } from "../../common/types";
 
 const PR_Barbatos = {
     difficulty: p.isIn(1, 2, 3, 4),
@@ -28,7 +28,7 @@ const PR_Barbatos = {
 export function ParseBarbatosSingle(
     body: Record<string, unknown>,
     logger: KtLogger
-): ParserFunctionReturnsSync<BarbatosScore, EmptyObject> {
+): ParserFunctionReturns<BarbatosScore, EmptyObject> {
     const err = p(body, PR_Barbatos);
 
     if (err) {

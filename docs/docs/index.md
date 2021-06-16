@@ -17,18 +17,24 @@ works like a Monorepo for Tachi's documentation.
 This is for people who want to make things with Tachi's API, and assumes basic knowledge of
 APIs and how they work.
 
-!!! note
-	The API reference overlaps a bit with the Codebase reference, mainly in
-	the shape of various returned documents.
+View it [here](./api/overview.md).
+
 ### Codebase Reference
 
 This is for people who want to work on Tachi's codebase.
-Tachi is wrote almost entirely in [TypeScript](https://www.typescriptlang.org).
+This contains things like the tools we use and the
+infrastructure that powers Tachi.
+
+This also contains contribution information.
+
+View it [here](./codebase/overview.md).
 
 ### User Reference
 
 This is for end user reference, such as score importing tutorials, documentation on tachi's
 statistics. It requires no programming knowledge, and is mostly used as a wiki-like reference.
+
+View it [here](./user/overview.md).
 
 ## Contributing
 

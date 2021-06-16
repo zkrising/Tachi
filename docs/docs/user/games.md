@@ -49,6 +49,8 @@ The following games are supported on [Kamaitachi](https://kamaitachi.xyz).
 | Dance Dance Revolution | `ddr` | `SP`, `DP` |
 | CHUNITHM | `chunithm` | `Single` |
 | GITADORA | `gitadora` | `Gita`, `Dora` |
+| jubeat | `jubeat` | `Single` |
+| pop'n music | `popn` | `9B`[^1] |
 
 ### Bokutachi
 
@@ -59,7 +61,6 @@ The following games are supported on [Bokutachi](https://bokutachi.xyz).
 | BMS | `bms` | `7K`, `14K` |
 | unnamed_sdvx_clone | `usc` | `Single` |
 
-<!-- | jubeat | `jubeat` | `Single` | -->
-<!-- | pop'n music | `popn` | `9B`[^1] | -->
 
-<!-- [^1]: Pop'n *had* some other playtypes, namely a 5-Button mode, but it seems to be removed now. 9B is used instead of single here for futureproofing. -->
+
+[^1]: Pop'n *had* some other playtypes, namely a 5-Button mode, but it seems to be removed now. 9B is used instead of single here for futureproofing.

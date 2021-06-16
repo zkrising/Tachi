@@ -456,4 +456,43 @@ export declare const defaultRatingAlgorithm: {
         Dora: string;
     };
 };
+export declare const defaultScoreRatingAlgorithm: {
+    iidx: {
+        SP: string;
+        DP: string;
+    };
+    popn: {
+        "9B": string;
+    };
+    sdvx: {
+        Single: string;
+    };
+    usc: {
+        Single: string;
+    };
+    ddr: {
+        SP: string;
+        DP: string;
+    };
+    maimai: {
+        Single: string;
+    };
+    jubeat: {
+        Single: string;
+    };
+    museca: {
+        Single: string;
+    };
+    bms: {
+        "7K": string;
+        "14K": string;
+    };
+    chunithm: {
+        Single: string;
+    };
+    gitadora: {
+        Gita: string;
+        Dora: string;
+    };
+};
 export {};

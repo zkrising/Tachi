@@ -1599,3 +1599,43 @@ export const defaultRatingAlgorithm = {
         Dora: "skill",
     },
 };
+
+export const defaultScoreRatingAlgorithm = {
+    iidx: {
+        SP: "ktRating",
+        DP: "ktRating",
+    },
+    popn: {
+        "9B": "todo",
+    },
+    sdvx: {
+        Single: "VF6",
+    },
+    usc: {
+        Single: "VF6",
+    },
+    ddr: {
+        SP: "ktRating",
+        DP: "ktRating",
+    },
+    maimai: {
+        Single: "ktRating",
+    },
+    jubeat: {
+        Single: "jubility",
+    },
+    museca: {
+        Single: "ktRating",
+    },
+    bms: {
+        "7K": "ktLampRating",
+        "14K": "ktLampRating",
+    },
+    chunithm: {
+        Single: "rating",
+    },
+    gitadora: {
+        Gita: "skill",
+        Dora: "skill",
+    },
+};

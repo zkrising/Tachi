@@ -71,7 +71,7 @@ export interface GameToIDStrings {
 export interface MongoDBDocument {
     _id?: IObjectID;
 }
-export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "notifications" | "imports" | "import-timings" | "tierlist-data" | "tierlists" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users" | "kai-auth-tokens" | "usc-auth-tokens" | "beatoraja-auth-tokens" | "bms-course-lookup" | "api-tokens";
+export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "score-pbs" | "notifications" | "imports" | "import-timings" | "tierlist-data" | "tierlists" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users" | "kai-auth-tokens" | "usc-auth-tokens" | "beatoraja-auth-tokens" | "bms-course-lookup" | "api-tokens" | "import-locks";
 export declare type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 /**
  * Supported games by Kamaitachi.
@@ -1121,5 +1121,8 @@ export interface APITokenDocument extends MongoDBDocument {
     token: string | null;
     identifier: string;
     permissions: Partial<Record<APIPermissions, boolean>>;
+}
+export interface ImportLockDocument extends MongoDBDocument {
+    userID: integer;
 }
 export {};

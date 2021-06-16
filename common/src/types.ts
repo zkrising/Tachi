@@ -117,7 +117,8 @@ export type Databases =
     | "usc-auth-tokens"
     | "beatoraja-auth-tokens"
     | "bms-course-lookup"
-    | "api-tokens";
+    | "api-tokens"
+    | "import-locks";
 
 export type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 
@@ -1374,4 +1375,8 @@ export interface APITokenDocument extends MongoDBDocument {
     token: string | null;
     identifier: string;
     permissions: Partial<Record<APIPermissions, boolean>>;
+}
+
+export interface ImportLockDocument extends MongoDBDocument {
+    userID: integer;
 }

@@ -1,7 +1,8 @@
 // Config file that the CI deployment uses. This is moved to $pwd/conf.json5 before CI tests are ran.
 
 {
-  MONGO_BASE_URL: "127.0.0.1",
+  MONGO_CONNECTION_URL: "127.0.0.1:27017",
+  MONGO_DATABASE_NAME: "testingdb",
   LOG_LEVEL: "info",
   CAPTCHA_SECRET_KEY: "unused",
   SESSION_SECRET: "unused",

@@ -101,7 +101,7 @@ export type Databases =
     | "folders"
     | "folder-chart-lookup"
     | "scores"
-    | "score-pbs"
+    | "personal-bests"
     | "notifications"
     | "imports"
     | "import-timings"

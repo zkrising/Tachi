@@ -56,7 +56,7 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
  * Updates users' rankings on a given chart.
  */
 export async function UpdateChartRanking(chartID: string) {
-    const scores = await db["score-pbs"].find(
+    const scores = await db["personal-bests"].find(
         { chartID },
         {
             sort: {
@@ -89,7 +89,7 @@ export async function UpdateChartRanking(chartID: string) {
         });
     }
 
-    await db["score-pbs"].bulkWrite(bwrite, { ordered: false });
+    await db["personal-bests"].bulkWrite(bwrite, { ordered: false });
 }
 
 // Explicit acknowledgement that typing this properly simply takes too much time

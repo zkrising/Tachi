@@ -243,7 +243,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
     t.test("Should correctly return POSTScoresResponseBody", async (t) => {
         await db.scores.insert(mockScoreDocument);
 
-        await db["score-pbs"].insert(uscScorePBsSet);
+        await db["personal-bests"].insert(uscScorePBsSet);
         await db.users.insert(mockUserDocs);
 
         await db.scores.insert({
@@ -291,7 +291,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
     t.test("Should not return serverRecord in adjacentAbove", async (t) => {
         await db.scores.insert(mockScoreDocument);
 
-        await db["score-pbs"].insert(uscScorePBsSet);
+        await db["personal-bests"].insert(uscScorePBsSet);
         await db.users.insert(mockUserDocs);
 
         await db.scores.insert({
@@ -330,7 +330,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
     t.test("Should trim serverRecord in adjacentAbove", async (t) => {
         await db.scores.insert(mockScoreDocument);
 
-        await db["score-pbs"].insert(uscScorePBsSet);
+        await db["personal-bests"].insert(uscScorePBsSet);
         await db.users.insert(mockUserDocs);
 
         await db.scores.insert({
@@ -369,7 +369,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
     t.test("Should throw on no ScorePB", async (t) => {
         await db.scores.insert(mockScoreDocument);
 
-        // await db["score-pbs"].insert(uscScorePBsSet);
+        // await db["personal-bests"].insert(uscScorePBsSet);
         await db.users.insert(mockUserDocs);
 
         await db.scores.insert({
@@ -389,7 +389,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
     t.test("Should throw on no original score", async (t) => {
         await db.scores.insert(mockScoreDocument);
 
-        await db["score-pbs"].insert(uscScorePBsSet);
+        await db["personal-bests"].insert(uscScorePBsSet);
         await db.users.insert(mockUserDocs);
 
         // await db.scores.insert({

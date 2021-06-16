@@ -161,7 +161,7 @@ t.test("GET /ir/usc/:chartHash/record", (t) => {
     });
 
     t.test("Should return 20 and the Server Record.", async (t) => {
-        await db["score-pbs"].insert([
+        await db["personal-bests"].insert([
             // empty deepmerge is because monk monkey-patches _id on,
             // which means this crashes if you try to re-insert this document.
             deepmerge(USC_SCORE_PB, {}),
@@ -251,7 +251,7 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
     });
 
     t.test("Should return scorePBs for mode = best", async (t) => {
-        await db["score-pbs"].insert([
+        await db["personal-bests"].insert([
             deepmerge(USC_SCORE_PB, {}),
             deepmerge(USC_SCORE_PB, {
                 userID: 2,

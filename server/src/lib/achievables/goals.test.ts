@@ -21,7 +21,7 @@ t.test("#EvaluateGoalForUser", (t) => {
 
     t.test("Should correctly evaluate against single goals.", (t) => {
         t.beforeEach(async () => {
-            await db["score-pbs"].insert(TestingIIDXSPScorePB);
+            await db["personal-bests"].insert(TestingIIDXSPScorePB);
             delete TestingIIDXSPScorePB._id;
         });
 
@@ -44,7 +44,7 @@ t.test("#EvaluateGoalForUser", (t) => {
         });
 
         t.test("Should correctly evaluate goals if user fails.", async (t) => {
-            await db["score-pbs"].update(
+            await db["personal-bests"].update(
                 { userID: 1, chartID: Testing511SPA.chartID },
                 {
                     $set: {
@@ -72,7 +72,7 @@ t.test("#EvaluateGoalForUser", (t) => {
         });
 
         t.test("Should correctly evaluate goals when user has no score.", async (t) => {
-            await db["score-pbs"].remove({});
+            await db["personal-bests"].remove({});
 
             const res = await EvaluateGoalForUser(HC511Goal, 1, logger);
 
@@ -105,10 +105,10 @@ t.test("#EvaluateGoalForUser", (t) => {
         });
 
         t.beforeEach(async () => {
-            await db["score-pbs"].insert(TestingIIDXSPScorePB);
+            await db["personal-bests"].insert(TestingIIDXSPScorePB);
             delete TestingIIDXSPScorePB._id;
 
-            await db["score-pbs"].insert(
+            await db["personal-bests"].insert(
                 deepmerge(TestingIIDXSPScorePB, {
                     scoreData: { lamp: "CLEAR", lampIndex: 4 },
                     chartID: "fake_other_chart_id",
@@ -135,11 +135,11 @@ t.test("#EvaluateGoalForUser", (t) => {
         });
 
         t.test("Should work if other chart is >= HARD CLEAR", async (t) => {
-            await db["score-pbs"].update(
+            await db["personal-bests"].update(
                 { userID: 1, chartID: Testing511SPA.chartID },
                 { $set: { "scoreData.lamp": "CLEAR", "scoreData.lampIndex": 4 } }
             );
-            await db["score-pbs"].update(
+            await db["personal-bests"].update(
                 { userID: 1, chartID: "fake_other_chart_id" },
                 { $set: { "scoreData.lamp": "HARD CLEAR", "scoreData.lampIndex": 5 } }
             );
@@ -162,7 +162,7 @@ t.test("#EvaluateGoalForUser", (t) => {
         });
 
         t.test("Should work if user has no scores", async (t) => {
-            await db["score-pbs"].remove({});
+            await db["personal-bests"].remove({});
 
             const res = await EvaluateGoalForUser(multiGoal, 1, logger);
 
@@ -195,10 +195,10 @@ t.test("#EvaluateGoalForUser", (t) => {
         });
 
         t.beforeEach(async () => {
-            await db["score-pbs"].insert(TestingIIDXSPScorePB);
+            await db["personal-bests"].insert(TestingIIDXSPScorePB);
             delete TestingIIDXSPScorePB._id;
 
-            await db["score-pbs"].insert(
+            await db["personal-bests"].insert(
                 deepmerge(TestingIIDXSPScorePB, {
                     scoreData: { lamp: "CLEAR", lampIndex: 4 },
                     chartID: "other_sp10",
@@ -244,12 +244,12 @@ t.test("#EvaluateGoalForUser", (t) => {
         });
 
         t.test("Should work if other chart is >= HARD CLEAR", async (t) => {
-            await db["score-pbs"].update(
+            await db["personal-bests"].update(
                 { userID: 1, chartID: Testing511SPA.chartID },
                 { $set: { "scoreData.lamp": "CLEAR", "scoreData.lampIndex": 4 } }
             );
 
-            await db["score-pbs"].update(
+            await db["personal-bests"].update(
                 { userID: 1, chartID: "other_sp10" },
                 { $set: { "scoreData.lamp": "HARD CLEAR", "scoreData.lampIndex": 5 } }
             );
@@ -272,7 +272,7 @@ t.test("#EvaluateGoalForUser", (t) => {
         });
 
         t.test("Should work if user has no scores", async (t) => {
-            await db["score-pbs"].remove({});
+            await db["personal-bests"].remove({});
 
             const res = await EvaluateGoalForUser(folderGoal, 1, logger);
 

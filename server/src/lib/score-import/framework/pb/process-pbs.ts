@@ -39,7 +39,7 @@ export async function ProcessPBs(
     // this *is* bad behaviour, but I don't have a nice way to fix it.
     // This should be fixed in the future to avoid crashes between these two
     // calls - but that is unlikely.
-    await db["score-pbs"].bulkWrite(
+    await db["personal-bests"].bulkWrite(
         pbDocs.map((e) => ({
             updateOne: {
                 filter: { chartID: e.chartID, userID: e.userID },

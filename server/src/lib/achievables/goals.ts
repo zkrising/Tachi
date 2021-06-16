@@ -59,7 +59,7 @@ export async function EvaluateGoalForUser(
 
     // Next, we need to figure out our criteria.
     if (goal.criteria.mode === "single") {
-        const res = await db["score-pbs"].findOne(scoreQuery);
+        const res = await db["personal-bests"].findOne(scoreQuery);
         // hack, but guaranteed to work.
         const scoreDataKey = goal.criteria.key.split(".")[1] as
             | "lampIndex"
@@ -90,7 +90,7 @@ export async function EvaluateGoalForUser(
         }
 
         // if we weren't successful, we have to get the users next best score and put it up here
-        // this is made infinitely easier by the existance of score-pbs.
+        // this is made infinitely easier by the existance of personal-bests.
         const nextBestQuery: FilterQuery<PBScoreDocument> = {
             userID,
         };
@@ -99,7 +99,7 @@ export async function EvaluateGoalForUser(
             nextBestQuery.chartID = { $in: chartIDs };
         }
 
-        const nextBestScore = await db["score-pbs"].findOne(nextBestQuery, {
+        const nextBestScore = await db["personal-bests"].findOne(nextBestQuery, {
             sort: { [goal.criteria.key]: -1 },
         });
 
@@ -150,7 +150,7 @@ export async function EvaluateGoalForUser(
             count = Math.floor(goal.criteria.countNum * totalChartCount);
         }
 
-        const userCount = await db["score-pbs"].count(scoreQuery);
+        const userCount = await db["personal-bests"].count(scoreQuery);
 
         return {
             achieved: userCount >= count,

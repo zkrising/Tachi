@@ -50,7 +50,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
         // insert some mock scores
         const ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-        await db["score-pbs"].insert(
+        await db["personal-bests"].insert(
             ratings.map((e) =>
                 deepmerge(TestingIIDXSPScorePB, {
                     chartID: crypto.randomBytes(20).toString("hex"),

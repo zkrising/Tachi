@@ -124,7 +124,7 @@ export async function CreatePOSTScoresResponseBody(
     // This returns immediately ranked higher
     // than the current user.
 
-    const adjAbove = (await db["score-pbs"].find(
+    const adjAbove = (await db["personal-bests"].find(
         {
             chartID: chartDoc.chartID,
             "rankingData.rank": { $lt: usersRanking },
@@ -150,7 +150,7 @@ export async function CreatePOSTScoresResponseBody(
 
     // Similar to above, this returns the N most immediate
     // scores below the given user.
-    const adjBelow = (await db["score-pbs"].find(
+    const adjBelow = (await db["personal-bests"].find(
         {
             chartID: chartDoc.chartID,
             "rankingData.rank": { $gt: usersRanking },

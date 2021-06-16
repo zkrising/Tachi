@@ -141,7 +141,7 @@ router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
         });
     }
 
-    const serverRecord = (await db["score-pbs"].findOne({
+    const serverRecord = (await db["personal-bests"].findOne({
         chartID: chart.chartID,
         "rankingData.rank": 1,
     })) as PBScoreDocument<"usc:Single"> | null;
@@ -208,7 +208,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
         });
     }
 
-    const bestScores = (await db["score-pbs"].find(
+    const bestScores = (await db["personal-bests"].find(
         {
             chartID: chart.chartID,
         },

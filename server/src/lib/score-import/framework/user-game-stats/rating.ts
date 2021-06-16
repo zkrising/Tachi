@@ -13,7 +13,7 @@ type CustomCalcNames = ScoreCalculatedDataLookup[IDStrings];
 
 function LazySumAll(key: CustomCalcNames) {
     return async (game: Game, playtype: Playtypes[Game], userID: integer) => {
-        const sc = await db["score-pbs"].find({
+        const sc = await db["personal-bests"].find({
             game: game,
             playtype: playtype,
             userID: userID,
@@ -29,7 +29,7 @@ function LazySumAll(key: CustomCalcNames) {
 
 function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
     return async (game: Game, playtype: Playtypes[Game], userID: integer) => {
-        const sc = await db["score-pbs"].find(
+        const sc = await db["personal-bests"].find(
             {
                 game: game,
                 playtype: playtype,
@@ -161,7 +161,7 @@ async function CalculateGitadoraSkill(
     const hotChartIDs = hotCharts.map((e) => e.chartID);
 
     const [bestHotScores, bestScores] = await Promise.all([
-        db["score-pbs"].find(
+        db["personal-bests"].find(
             { userID, chartID: { $in: hotChartIDs } },
             {
                 sort: { "calculatedData.skill": -1 },
@@ -171,7 +171,7 @@ async function CalculateGitadoraSkill(
         ),
         // @inefficient
         // $nin is VERY expensive, there might be a better way to do this.
-        db["score-pbs"].find(
+        db["personal-bests"].find(
             { userID, chartID: { $nin: hotChartIDs } },
             {
                 sort: { "calculatedData.skill": -1 },
@@ -202,7 +202,7 @@ async function CalculateJubility(
     const hotChartIDs = hotCharts.map((e) => e.chartID);
 
     const [bestHotScores, bestScores] = await Promise.all([
-        db["score-pbs"].find(
+        db["personal-bests"].find(
             { userID, chartID: { $in: hotChartIDs } },
             {
                 sort: { "calculatedData.jubility": -1 },
@@ -212,7 +212,7 @@ async function CalculateJubility(
         ),
         // @inefficient
         // see gitadoraskillcalc
-        db["score-pbs"].find(
+        db["personal-bests"].find(
             { userID, chartID: { $nin: hotChartIDs } },
             {
                 sort: { "calculatedData.jubility": -1 },

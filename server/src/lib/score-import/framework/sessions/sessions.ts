@@ -207,7 +207,7 @@ export async function LoadScoresIntoSessions(
         // backwards in time, this will grab your PBs
         // from the future.
         // @todo #179
-        const pbs = await db["score-pbs"].find({
+        const pbs = await db["personal-bests"].find({
             chartID: { $in: groupScores.map((e) => e.chartID) },
             userID,
         });

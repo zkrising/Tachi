@@ -203,7 +203,7 @@ t.test("#UpdateGoalsForUser", (t) => {
         // we dont delete _id here because updategoalsforuser
         // depends on usergoal _id
 
-        await db["score-pbs"].insert(TestingIIDXSPScorePB);
+        await db["personal-bests"].insert(TestingIIDXSPScorePB);
         delete TestingIIDXSPScorePB._id;
 
         const ugMap = new Map([["FAKE_GOAL_ID", baseUserGoalDocument]]);
@@ -262,7 +262,7 @@ t.test("#UpdateGoalsForUser", (t) => {
         // we dont delete _id here because updategoalsforuser
         // depends on usergoal _id
 
-        await db["score-pbs"].insert(deepmerge(TestingIIDXSPScorePB, { scoreData: { score: 1 } }));
+        await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, { scoreData: { score: 1 } }));
 
         const ugMap = new Map([["FAKE_GOAL_ID", userGoal]]);
 
@@ -353,7 +353,7 @@ t.test("#ProcessGoal", (t) => {
 
     t.test("Should process the users goal if a score has changed.", async (t) => {
         await db["user-goals"].insert(HC511UserGoal);
-        await db["score-pbs"].insert(TestingIIDXSPScorePB); // score is EX HARD CLEAR by default.
+        await db["personal-bests"].insert(TestingIIDXSPScorePB); // score is EX HARD CLEAR by default.
 
         const res = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
 
@@ -396,7 +396,7 @@ t.test("#ProcessGoal", (t) => {
 
     t.test("Should return undefined if the progress has not changed.", async (t) => {
         await db["user-goals"].insert(HC511UserGoal);
-        await db["score-pbs"].insert(TestingIIDXSPScorePB);
+        await db["personal-bests"].insert(TestingIIDXSPScorePB);
 
         const firstUpdate = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
 

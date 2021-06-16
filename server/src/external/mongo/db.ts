@@ -107,7 +107,7 @@ const db = {
     scores: monkDB.get<ScoreDocument>("scores"),
     tierlists: monkDB.get<TierlistParent>("tierlists"),
     "tierlist-data": monkDB.get<TierlistDataDocument<never>>("tierlist-data"),
-    "score-pbs": monkDB.get<PBScoreDocument>("score-pbs"),
+    "personal-bests": monkDB.get<PBScoreDocument>("personal-bests"),
     folders: monkDB.get<FolderDocument>("folders"),
     "folder-chart-lookup": monkDB.get<FolderChartLookup>("folder-chart-lookup"),
     goals: monkDB.get<GoalDocument>("goals"),

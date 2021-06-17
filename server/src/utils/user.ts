@@ -163,16 +163,19 @@ export async function GetUsersRanking(stats: UserGameStats) {
             },
         },
         {
-            total: { $sum: 1 },
-            ranking: {
-                $sum: {
-                    $cond: {
-                        if: {
-                            // @ts-expect-error garbage...
-                            $gte: [`$ratings.${ratingKey}`, stats.ratings[ratingKey]],
+            $group: {
+                _id: null,
+                outOf: { $sum: 1 },
+                ranking: {
+                    $sum: {
+                        $cond: {
+                            if: {
+                                // @ts-expect-error garbage...
+                                $gte: [`$ratings.${ratingKey}`, stats.ratings[ratingKey]],
+                            },
+                            then: 1,
+                            else: 0,
                         },
-                        then: 1,
-                        else: 0,
                     },
                 },
             },
@@ -180,7 +183,7 @@ export async function GetUsersRanking(stats: UserGameStats) {
     ]);
 
     return {
-        ranking: aggRes.ranking,
-        total: aggRes.total,
+        ranking: (aggRes[0].ranking + 1) as integer,
+        outOf: aggRes[0].outOf as integer,
     };
 }

@@ -4,6 +4,8 @@ import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi
 import { GetRelevantSongsAndCharts } from "../../../../../../../../../utils/db";
 import { GetDefaultScoreRatingAlg, GetUsersRanking } from "../../../../../../../../../utils/user";
 import { CheckUserPlayedGamePlaytype } from "./middleware";
+import { FilterQuery } from "mongodb";
+import { UserGoalDocument, UserMilestoneDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -30,6 +32,7 @@ router.get("/", async (req, res) => {
                 userID: user.id,
                 game,
                 playtype,
+                timeAchieved: { $ne: null },
             },
             {
                 sort: {
@@ -42,6 +45,7 @@ router.get("/", async (req, res) => {
                 userID: user.id,
                 game,
                 playtype,
+                timeAchieved: { $ne: null },
             },
             {
                 sort: {
@@ -76,12 +80,17 @@ router.get("/goals", async (req, res) => {
     const game = req[SYMBOL_TachiData]!.game!;
     const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-    const userGoals = await db["user-goals"].find({
+    const query: FilterQuery<UserGoalDocument> = {
         userID: user.id,
         game,
         playtype,
-        achieved: req.query.unachieved ? false : undefined,
-    });
+    };
+
+    if (req.query.unachieved) {
+        query.achieved = false;
+    }
+
+    const userGoals = await db["user-goals"].find(query);
 
     const goals = await db.goals.find({
         goalID: { $in: userGoals.map((e) => e.goalID) },
@@ -89,7 +98,7 @@ router.get("/goals", async (req, res) => {
 
     return res.status(200).json({
         success: true,
-        description: `Successfully returned ${userGoals.length} goals.`,
+        description: `Successfully returned ${userGoals.length} goal(s).`,
         body: {
             userGoals,
             goals,
@@ -108,12 +117,17 @@ router.get("/milestones", async (req, res) => {
     const game = req[SYMBOL_TachiData]!.game!;
     const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-    const userMilestones = await db["user-milestones"].find({
+    const query: FilterQuery<UserMilestoneDocument> = {
         userID: user.id,
         game,
         playtype,
-        achieved: req.query.unachieved ? false : undefined,
-    });
+    };
+
+    if (req.query.unachieved) {
+        query.achieved = false;
+    }
+
+    const userMilestones = await db["user-milestones"].find(query);
 
     const milestones = await db.milestones.find({
         milestoneID: { $in: userMilestones.map((e) => e.milestoneID) },
@@ -121,7 +135,7 @@ router.get("/milestones", async (req, res) => {
 
     return res.status(200).json({
         success: true,
-        description: `Successfully returned ${userMilestones.length} milestones.`,
+        description: `Successfully returned ${userMilestones.length} milestone(s).`,
         body: {
             userMilestones,
             milestones,

@@ -60,7 +60,6 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
         index({ timestamp: 1 }),
         index({ total: 1 }),
     ],
-    // @todo #96 Add more indexes to the users collection.
     users: [index({ id: 1 }, UNIQUE)],
     tierlists: [
         index({ tierlistID: 1 }, UNIQUE),
@@ -105,12 +104,13 @@ for (const game of CONF_INFO.SUPPORTED_GAMES) {
     if (indexes[`songs-${game}` as ValidDatabases]) {
         indexes[`songs-${game}` as ValidDatabases]!.push(
             index({ id: 1 }, UNIQUE),
-            index({ title: 1 })
+            index({ title: "text", artist: "text", "alt-titles": "text", "search-titles": "text" })
         );
     } else {
         indexes[`songs-${game}` as ValidDatabases] = [
             index({ id: 1 }, UNIQUE),
             index({ title: 1 }),
+            index({ title: "text", artist: "text", "alt-titles": "text", "search-titles": "text" }),
         ];
     }
 }
@@ -124,6 +124,7 @@ export async function SetIndexes(dbst: string) {
         if (options.reset) {
             // eslint-disable-next-line no-await-in-loop
             await db.get(collection).dropIndexes();
+            logger.info(`Reset ${collection}.`);
         }
 
         // @ts-expect-error dru(n)kts
@@ -142,5 +143,5 @@ export async function SetIndexes(dbst: string) {
 
 // if calling this as a script -- similar to pythons if __name__ == "__main__"
 if (require.main === module) {
-    SetIndexes(options.db ?? "ktblackdb").then(process.exit(0));
+    SetIndexes(options.db ?? "ktblackdb").then(() => process.exit(0));
 }

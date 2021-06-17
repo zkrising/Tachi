@@ -6,6 +6,7 @@ import { GetDefaultScoreRatingAlg, GetUsersRanking } from "../../../../../../../
 import { CheckUserPlayedGamePlaytype } from "./middleware";
 import { FilterQuery } from "mongodb";
 import { UserGoalDocument, UserMilestoneDocument } from "tachi-common";
+import { SearchGameSongsAndCharts } from "../../../../../../../../../lib/search/songs-charts";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -146,9 +147,9 @@ router.get("/milestones", async (req, res) => {
 /**
  * Returns a users recent 100 scores for this game.
  *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/recent-scores
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/scores/recent
  */
-router.get("/recent-scores", async (req, res) => {
+router.get("/scores/recent", async (req, res) => {
     const user = req[SYMBOL_TachiData]!.requestedUser!;
     const game = req[SYMBOL_TachiData]!.game!;
     const playtype = req[SYMBOL_TachiData]!.playtype!;
@@ -181,11 +182,97 @@ router.get("/recent-scores", async (req, res) => {
 });
 
 /**
+ * Searches a user's individual scores.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/scores
+ */
+router.get("/scores", async (req, res) => {
+    const user = req[SYMBOL_TachiData]!.requestedUser!;
+    const game = req[SYMBOL_TachiData]!.game!;
+    const playtype = req[SYMBOL_TachiData]!.playtype!;
+
+    if (typeof req.query.search !== "string") {
+        return res.status(400).json({
+            success: false,
+            description: `Invalid value of ${req.query.search} for search parameter.`,
+        });
+    }
+
+    const { songs, charts } = await SearchGameSongsAndCharts(game, req.query.search, playtype);
+
+    const scores = await db.scores.find(
+        {
+            chartID: { $in: charts.map((e) => e.chartID) },
+            userID: user.id,
+        },
+        {
+            sort: {
+                timeAchieved: -1,
+            },
+            limit: 30,
+        }
+    );
+
+    return res.status(200).json({
+        success: true,
+        description: `Retrieved ${scores.length} scores.`,
+        body: {
+            scores,
+            songs,
+            charts,
+        },
+    });
+});
+
+/**
+ * Searches a user's personal bests.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/scores
+ */
+router.get("/pbs", async (req, res) => {
+    const user = req[SYMBOL_TachiData]!.requestedUser!;
+    const game = req[SYMBOL_TachiData]!.game!;
+    const playtype = req[SYMBOL_TachiData]!.playtype!;
+
+    if (typeof req.query.search !== "string") {
+        return res.status(400).json({
+            success: false,
+            description: `Invalid value of ${req.query.search} for search parameter.`,
+        });
+    }
+
+    const { songs, charts } = await SearchGameSongsAndCharts(game, req.query.search, playtype);
+
+    const pbs = await db["personal-bests"].find(
+        {
+            chartID: { $in: charts.map((e) => e.chartID) },
+            userID: user.id,
+        },
+        {
+            sort: {
+                timeAchieved: -1,
+            },
+            limit: 30,
+        }
+    );
+
+    return res.status(200).json({
+        success: true,
+        description: `Retrieved ${pbs.length} personal bests.`,
+        body: {
+            pbs,
+            songs,
+            charts,
+        },
+    });
+});
+
+/**
  * Returns a users best 100 personal-bests for this game.
  *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/best
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/best
  */
-router.get("/best", async (req, res) => {
+router.get("/pbs/best", async (req, res) => {
     const user = req[SYMBOL_TachiData]!.requestedUser!;
     const game = req[SYMBOL_TachiData]!.game!;
     const playtype = req[SYMBOL_TachiData]!.playtype!;

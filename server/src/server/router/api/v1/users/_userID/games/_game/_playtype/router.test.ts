@@ -246,7 +246,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/milestones", (t) => {
     t.end();
 });
 
-t.test("GET /api/v1/users/:userID/games/:game/:playtype/recent-scores", (t) => {
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/recent", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should return a users 100 most recent scores.", async (t) => {
@@ -270,7 +270,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/recent-scores", (t) => {
             delete sc._id; // lol
         }
 
-        const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/recent-scores");
+        const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/scores/recent");
 
         t.hasStrict(res.body, {
             success: true,

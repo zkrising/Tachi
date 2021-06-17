@@ -18,6 +18,9 @@ scripts/validate-database-errs/*
 
 scripts/__JSON-TO-KTDB/**/*.json
 
-/src/lib/env/config.json
+src/lib/env/config.json
+src/datasets/text-files/splash-text.txt
+src/datasets/text-files/pseudonyms.txt
 
-/local-cdn
+local-cdn
+

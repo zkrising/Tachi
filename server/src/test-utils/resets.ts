@@ -7,7 +7,7 @@ import path from "path";
 import CreateLogCtx from "../lib/logger/logger";
 // im installing an entire library for rm rf...
 import rimraf from "rimraf";
-import { KTCDN_ROOT } from "../lib/setup/config";
+import { KTCDN_ROOT, MONGO_CONNECTION_URL } from "../lib/setup/config";
 import { SetIndexes } from "../external/mongo/indexes";
 
 const logger = CreateLogCtx(__filename);
@@ -86,9 +86,16 @@ export function ResetCDN() {
     );
 }
 
-export function SetIndexesForDB() {
-    return SetIndexes(
-        process.env.TACHI_PARALLEL_TESTS ? `test-ephemeral-${process.pid.toString()}` : "testingdb",
+export async function SetIndexesForDB() {
+    await SetIndexes(
+        `${MONGO_CONNECTION_URL}/
+        ${
+            process.env.TACHI_PARALLEL_TESTS
+                ? `test-ephemeral-${process.pid.toString()}`
+                : "testingdb"
+        }`,
         true
     );
+
+    return true;
 }

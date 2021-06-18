@@ -1,10 +1,11 @@
 import winston, { format, transports, Logger, LeveledLogMethod } from "winston";
 import fs from "fs";
 import { EscapeStringRegexp } from "../../utils/misc";
+import { LOG_LEVEL } from "../setup/config";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };
 
-const level = process.env.LOG_LEVEL ?? "info";
+const level = LOG_LEVEL ?? "info";
 
 const IN_TESTING = process.env.NODE_ENV === "test";
 

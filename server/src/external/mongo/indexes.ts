@@ -134,4 +134,6 @@ export async function SetIndexes(mongoURL: string, reset: boolean) {
     }
 
     logger.debug("Done.");
+
+    await db.close();
 }

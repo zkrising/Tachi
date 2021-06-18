@@ -382,7 +382,7 @@ router.get("/sessions/best", async (req, res) => {
 
     return res.status(200).json({
         success: true,
-        description: `Returned ${sessions.length} sessions.`,
+        description: `Retrieved ${sessions.length} sessions.`,
         body: sessions,
     });
 });

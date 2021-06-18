@@ -577,6 +577,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions", (t) => {
             "/api/v1/users/test_zkldi/games/iidx/SP/sessions?search=Epic"
         );
 
+        // eslint-disable-next-line no-console
         console.dir(res.body);
 
         t.hasStrict(res.body, {

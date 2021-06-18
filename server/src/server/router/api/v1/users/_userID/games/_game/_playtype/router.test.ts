@@ -577,6 +577,8 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions", (t) => {
             "/api/v1/users/test_zkldi/games/iidx/SP/sessions?search=Epic"
         );
 
+        console.dir(res.body);
+
         t.hasStrict(res.body, {
             success: true,
             description: "Retrieved 3 sessions.",

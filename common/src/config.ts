@@ -1639,3 +1639,43 @@ export const defaultScoreRatingAlgorithm = {
         Dora: "skill",
     },
 };
+
+export const defaultSessionRatingAlgorithm = {
+    iidx: {
+        SP: "ktRating",
+        DP: "ktRating",
+    },
+    popn: {
+        "9B": "todo",
+    },
+    sdvx: {
+        Single: "ProfileVF6",
+    },
+    usc: {
+        Single: "ProfileVF6",
+    },
+    ddr: {
+        SP: "ktRating",
+        DP: "ktRating",
+    },
+    maimai: {
+        Single: "ktRating",
+    },
+    jubeat: {
+        Single: "jubility",
+    },
+    museca: {
+        Single: "ktRating",
+    },
+    bms: {
+        "7K": "ktLampRating",
+        "14K": "ktLampRating",
+    },
+    chunithm: {
+        Single: "rating",
+    },
+    gitadora: {
+        Gita: "skill",
+        Dora: "skill",
+    },
+};

@@ -2,11 +2,18 @@ import { Router } from "express";
 import db from "../../../../../../../../../external/mongo/db";
 import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi";
 import { GetRelevantSongsAndCharts } from "../../../../../../../../../utils/db";
-import { GetDefaultScoreRatingAlg, GetUsersRanking } from "../../../../../../../../../utils/user";
+import {
+    GetDefaultScoreRatingAlg,
+    GetDefaultSessionRatingAlg,
+    GetUsersRanking,
+} from "../../../../../../../../../utils/user";
 import { CheckUserPlayedGamePlaytype } from "./middleware";
 import { FilterQuery } from "mongodb";
 import { UserGoalDocument, UserMilestoneDocument } from "tachi-common";
-import { SearchGameSongsAndCharts } from "../../../../../../../../../lib/search/songs-charts";
+import {
+    SearchGameSongsAndCharts,
+    SearchSessions,
+} from "../../../../../../../../../lib/search/search";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -270,6 +277,8 @@ router.get("/pbs", async (req, res) => {
 /**
  * Returns a users best 100 personal-bests for this game.
  *
+ * @param alg - Specifies an override for the default algorithm
+ * to sort on. UNIMPLEMENTED.
  * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/best
  */
 router.get("/pbs/best", async (req, res) => {
@@ -302,6 +311,66 @@ router.get("/pbs/best", async (req, res) => {
             songs,
             charts,
         },
+    });
+});
+
+/**
+ * Search a users sessions.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions
+ */
+router.get("/sessions", async (req, res) => {
+    const user = req[SYMBOL_TachiData]!.requestedUser!;
+    const game = req[SYMBOL_TachiData]!.game!;
+    const playtype = req[SYMBOL_TachiData]!.playtype!;
+
+    if (typeof req.query.search !== "string") {
+        return res.status(400).json({
+            success: false,
+            description: `Invalid value of ${req.query.search} for search parameter.`,
+        });
+    }
+
+    const sessions = await SearchSessions(req.query.search, game, playtype, user.id, 100);
+
+    return res.status(200).json({
+        success: true,
+        description: `Successfully retrieved ${sessions.length} sessions.`,
+        body: sessions,
+    });
+});
+
+/**
+ * Returns a user's best 100 sessions according to the default statistic
+ * for that game.
+ *
+ * @param alg - An override to specify a different algorithm for that game.
+ * UNIMPLEMENTED!!!
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions/best
+ */
+router.get("/sessions/best", async (req, res) => {
+    const user = req[SYMBOL_TachiData]!.requestedUser!;
+    const game = req[SYMBOL_TachiData]!.game!;
+    const playtype = req[SYMBOL_TachiData]!.playtype!;
+
+    const sessions = await db.sessions.find(
+        {
+            userID: user.id,
+            game,
+            playtype,
+        },
+        {
+            limit: 100,
+            sort: {
+                [`calculatedData.${GetDefaultSessionRatingAlg(game, playtype)}`]: -1,
+            },
+        }
+    );
+
+    return res.status(200).json({
+        success: true,
+        description: `Returned ${sessions.length} sessions.`,
+        body: sessions,
     });
 });
 

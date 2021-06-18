@@ -26,9 +26,9 @@ router.get("/", (req, res) => {
  * Returns all of the game-stats this user has.
  * This endpoint doubles up as a way of checking what games a user has played.
  *
- * @name GET /api/v1/users/:userID/stats
+ * @name GET /api/v1/users/:userID/game-stats
  */
-router.get("/stats", async (req, res) => {
+router.get("/game-stats", async (req, res) => {
     const user = req[SYMBOL_TachiData]!.requestedUser!;
 
     // a user has played a game if and only if they have stats for it.

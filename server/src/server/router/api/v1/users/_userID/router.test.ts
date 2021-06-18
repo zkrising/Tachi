@@ -69,7 +69,7 @@ t.test("GET /api/v1/users/:userID", (t) => {
     t.end();
 });
 
-t.test("GET /api/v1/users/:userID/stats", (t) => {
+t.test("GET /api/v1/users/:userID/game-stats", (t) => {
     t.beforeEach(ResetDBState);
 
     t.test("Should return all of a user's game stats.", async (t) => {
@@ -111,7 +111,7 @@ t.test("GET /api/v1/users/:userID/stats", (t) => {
             delete s._id;
         }
 
-        const res = await mockApi.get("/api/v1/users/test_zkldi/stats");
+        const res = await mockApi.get("/api/v1/users/test_zkldi/game-stats");
 
         t.hasStrict(res.body, {
             success: true,

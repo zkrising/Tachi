@@ -3,7 +3,7 @@ import db from "../../external/mongo/db";
 import { CloseAllConnections } from "../../test-utils/close-connections";
 import ResetDBState from "../../test-utils/resets";
 import { LoadKTBlackIIDXData } from "../../test-utils/test-data";
-import { SearchGameSongs } from "./songs-charts";
+import { SearchGameSongs } from "./search";
 
 t.test("#SearchGameSongs", (t) => {
     t.beforeEach(ResetDBState);

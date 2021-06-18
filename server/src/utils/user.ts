@@ -2,7 +2,11 @@ import { integer, PublicUserDocument, UserGameStats, Game, Playtypes } from "tac
 import { FindOneResult } from "monk";
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
-import { defaultRatingAlgorithm, defaultScoreRatingAlgorithm } from "tachi-common/js/config";
+import {
+    defaultRatingAlgorithm,
+    defaultScoreRatingAlgorithm,
+    defaultSessionRatingAlgorithm,
+} from "tachi-common/js/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -150,6 +154,11 @@ export function GetDefaultProfileRatingAlg(game: Game, playtype: Playtypes[Game]
 export function GetDefaultScoreRatingAlg(game: Game, playtype: Playtypes[Game]) {
     // @ts-expect-error garbage...
     return defaultScoreRatingAlgorithm[game][playtype];
+}
+
+export function GetDefaultSessionRatingAlg(game: Game, playtype: Playtypes[Game]) {
+    // @ts-expect-error garbage...
+    return defaultSessionRatingAlgorithm[game][playtype];
 }
 
 export async function GetUsersRanking(stats: UserGameStats) {

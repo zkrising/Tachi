@@ -578,7 +578,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions", (t) => {
         );
 
         // eslint-disable-next-line no-console
-        console.dir(res.body);
+        console.dir(res);
 
         t.hasStrict(res.body, {
             success: true,

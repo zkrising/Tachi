@@ -2,8 +2,9 @@ import t from "tap";
 import db from "../../../../../../../../../external/mongo/db";
 import { CloseAllConnections } from "../../../../../../../../../test-utils/close-connections";
 import mockApi from "../../../../../../../../../test-utils/mock-api";
-import ResetDBState from "../../../../../../../../../test-utils/resets";
+import ResetDBState, { SetIndexesForDB } from "../../../../../../../../../test-utils/resets";
 import {
+    SessionDocument,
     ScoreDocument,
     UserGoalDocument,
     GoalDocument,
@@ -11,7 +12,14 @@ import {
     UserMilestoneDocument,
     PBScoreDocument,
 } from "tachi-common";
-import { Testing511Song, Testing511SPA } from "../../../../../../../../../test-utils/test-data";
+import {
+    GetKTDataJSON,
+    LoadKTBlackIIDXData,
+    Testing511Song,
+    Testing511SPA,
+} from "../../../../../../../../../test-utils/test-data";
+
+t.before(SetIndexesForDB);
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/", (t) => {
     t.beforeEach(ResetDBState);
@@ -324,6 +332,255 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/best", (t) => {
                 songs: [Testing511Song],
                 charts: [],
             },
+        });
+
+        t.end();
+    });
+
+    t.end();
+});
+
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs", (t) => {
+    t.beforeEach(ResetDBState);
+    t.beforeEach(LoadKTBlackIIDXData);
+
+    t.test("Should return 400 if no search param is given", async (t) => {
+        const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/pbs");
+
+        t.equal(res.statusCode, 400);
+        t.equal(res.body.success, false);
+
+        t.end();
+    });
+
+    t.test("Should return 400 if invalid search param is given", async (t) => {
+        const res = await mockApi.get(
+            "/api/v1/users/test_zkldi/games/iidx/SP/pbs?search=foo&search=bar"
+        );
+
+        t.equal(res.statusCode, 400);
+        t.equal(res.body.success, false);
+
+        const res2 = await mockApi.get(
+            "/api/v1/users/test_zkldi/games/iidx/SP/pbs?search[$where]=process.exit(1)"
+        );
+
+        t.equal(res2.statusCode, 400);
+        t.equal(res2.body.success, false);
+
+        t.end();
+    });
+
+    t.test("Should search a user's personal bests.", async (t) => {
+        const mockPBs: PBScoreDocument[] = [];
+
+        const charts = GetKTDataJSON("./tachi/ktblack-charts-iidx.json");
+
+        for (let i = 0; i < 200; i++) {
+            mockPBs.push({
+                userID: 1,
+                game: "iidx",
+                playtype: "SP",
+                isPrimary: true,
+                chartID: charts[i].chartID,
+                songID: charts[i].songID,
+                calculatedData: {
+                    ktRating: i,
+                },
+            } as PBScoreDocument);
+        }
+
+        await db["personal-bests"].insert(mockPBs);
+
+        const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/pbs?search=5.1.1.");
+
+        t.hasStrict(res.body, {
+            success: true,
+            description: "Retrieved 2 personal bests.",
+            body: {
+                pbs: [
+                    {
+                        chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",
+                    },
+                    {
+                        chartID: "c641238220d73faf82659513ba03bde71b0b45f0",
+                    },
+                ],
+                songs: [
+                    {
+                        title: "5.1.1.",
+                    },
+                ],
+                charts: [
+                    {
+                        chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",
+                    },
+                    {
+                        chartID: "c641238220d73faf82659513ba03bde71b0b45f0",
+                    },
+                ],
+            },
+        });
+
+        t.end();
+    });
+
+    t.end();
+});
+
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores", (t) => {
+    t.beforeEach(ResetDBState);
+    t.beforeEach(LoadKTBlackIIDXData);
+
+    t.test("Should return 400 if no search param is given", async (t) => {
+        const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/scores");
+
+        t.equal(res.statusCode, 400);
+        t.equal(res.body.success, false);
+
+        t.end();
+    });
+
+    t.test("Should return 400 if invalid search param is given", async (t) => {
+        const res = await mockApi.get(
+            "/api/v1/users/test_zkldi/games/iidx/SP/scores?search=foo&search=bar"
+        );
+
+        t.equal(res.statusCode, 400);
+        t.equal(res.body.success, false);
+
+        // evil eval attempts
+        const res2 = await mockApi.get(
+            "/api/v1/users/test_zkldi/games/iidx/SP/scores?search[$where]=process.exit(1)"
+        );
+
+        t.equal(res2.statusCode, 400);
+        t.equal(res2.body.success, false);
+
+        t.end();
+    });
+
+    t.test("Should search a user's scores.", async (t) => {
+        const mockScores: ScoreDocument[] = [];
+
+        const charts = GetKTDataJSON("./tachi/ktblack-charts-iidx.json");
+
+        for (let i = 0; i < 200; i++) {
+            mockScores.push({
+                scoreID: i.toString(),
+                userID: 1,
+                game: "iidx",
+                playtype: "SP",
+                isPrimary: true,
+                chartID: charts[i].chartID,
+                songID: charts[i].songID,
+                calculatedData: {
+                    ktRating: i,
+                },
+            } as ScoreDocument);
+        }
+
+        await db.scores.insert(mockScores);
+
+        const res = await mockApi.get(
+            "/api/v1/users/test_zkldi/games/iidx/SP/scores?search=5.1.1."
+        );
+
+        t.equal(res.body.body.scores.length, 3);
+        t.equal(res.body.body.songs.length, 1);
+        t.equal(res.body.body.charts.length, 2);
+
+        t.hasStrict(res.body, {
+            success: true,
+            description: "Retrieved 3 scores.",
+            body: {
+                scores: [
+                    {
+                        songID: 1,
+                    },
+                    {
+                        songID: 1,
+                    },
+                    {
+                        songID: 1,
+                    },
+                ],
+                songs: [
+                    {
+                        title: "5.1.1.",
+                    },
+                ],
+                charts: [
+                    {
+                        songID: 1,
+                    },
+                    {
+                        songID: 1,
+                    },
+                ],
+            },
+        });
+
+        t.end();
+    });
+
+    t.end();
+});
+
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions", (t) => {
+    t.beforeEach(ResetDBState);
+    t.beforeEach(LoadKTBlackIIDXData);
+
+    t.test("Should return 400 if no search param is given", async (t) => {
+        const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/sessions");
+
+        t.equal(res.statusCode, 400);
+        t.equal(res.body.success, false);
+
+        t.end();
+    });
+
+    t.test("Should return 400 if invalid search param is given", async (t) => {
+        const res = await mockApi.get(
+            "/api/v1/users/test_zkldi/games/iidx/SP/sessions?search=foo&search=bar"
+        );
+
+        t.equal(res.statusCode, 400);
+        t.equal(res.body.success, false);
+
+        // evil eval attempts
+        const res2 = await mockApi.get(
+            "/api/v1/users/test_zkldi/games/iidx/SP/sessions?search[$where]=process.exit(1)"
+        );
+
+        t.equal(res2.statusCode, 400);
+        t.equal(res2.body.success, false);
+
+        t.end();
+    });
+
+    t.test("Should search a user's sessions.", async (t) => {
+        await db.sessions.insert(
+            ["Epic Session", "Session Of Epic", "Epic Gaming", "something else", "bad session"].map(
+                (e) => ({
+                    userID: 1,
+                    game: "iidx",
+                    playtype: "SP",
+                    name: e,
+                    desc: "something",
+                    sessionID: e, // hack to avoid db nonsense
+                })
+            ) as SessionDocument[]
+        );
+
+        const res = await mockApi.get(
+            "/api/v1/users/test_zkldi/games/iidx/SP/sessions?search=Epic"
+        );
+
+        t.hasStrict(res.body, {
+            success: true,
+            description: "Retrieved 3 sessions.",
+            body: [],
         });
 
         t.end();

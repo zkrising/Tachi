@@ -88,7 +88,7 @@ export async function SearchGameSongsAndCharts(
         chartQuery.playtype = playtype;
     }
 
-    const charts = await db.charts[game].find(chartQuery);
+    const charts = (await db.charts[game].find(chartQuery)) as AnyChartDocument[];
 
     return { songs, charts };
 }

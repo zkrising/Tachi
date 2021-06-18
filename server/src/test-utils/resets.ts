@@ -8,6 +8,7 @@ import CreateLogCtx from "../lib/logger/logger";
 // im installing an entire library for rm rf...
 import rimraf from "rimraf";
 import { KTCDN_ROOT } from "../lib/setup/config";
+import { SetIndexes } from "../external/mongo/indexes";
 
 const logger = CreateLogCtx(__filename);
 
@@ -82,5 +83,12 @@ export function ResetCDN() {
             }
             resolve();
         })
+    );
+}
+
+export function SetIndexesForDB() {
+    return SetIndexes(
+        process.env.TACHI_PARALLEL_TESTS ? `test-ephemeral-${process.pid.toString()}` : "testingdb",
+        true
     );
 }

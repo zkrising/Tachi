@@ -14,6 +14,7 @@ import {
     SearchGameSongsAndCharts,
     SearchSessions,
 } from "../../../../../../../../../lib/search/search";
+import { FilterChartsAndSongs } from "../../../../../../../../../utils/scores";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -168,11 +169,15 @@ router.get("/scores", async (req, res) => {
         });
     }
 
-    const { songs, charts } = await SearchGameSongsAndCharts(game, req.query.search, playtype);
+    const { songs: allSongs, charts: allCharts } = await SearchGameSongsAndCharts(
+        game,
+        req.query.search,
+        playtype
+    );
 
     const scores = await db.scores.find(
         {
-            chartID: { $in: charts.map((e) => e.chartID) },
+            chartID: { $in: allCharts.map((e) => e.chartID) },
             userID: user.id,
         },
         {
@@ -182,6 +187,8 @@ router.get("/scores", async (req, res) => {
             limit: 30,
         }
     );
+
+    const { songs, charts } = FilterChartsAndSongs(scores, allCharts, allSongs);
 
     return res.status(200).json({
         success: true,
@@ -248,11 +255,15 @@ router.get("/pbs", async (req, res) => {
         });
     }
 
-    const { songs, charts } = await SearchGameSongsAndCharts(game, req.query.search, playtype);
+    const { songs: allSongs, charts: allCharts } = await SearchGameSongsAndCharts(
+        game,
+        req.query.search,
+        playtype
+    );
 
     const pbs = await db["personal-bests"].find(
         {
-            chartID: { $in: charts.map((e) => e.chartID) },
+            chartID: { $in: allCharts.map((e) => e.chartID) },
             userID: user.id,
         },
         {
@@ -262,6 +273,8 @@ router.get("/pbs", async (req, res) => {
             limit: 30,
         }
     );
+
+    const { songs, charts } = FilterChartsAndSongs(pbs, allCharts, allSongs);
 
     return res.status(200).json({
         success: true,
@@ -335,7 +348,7 @@ router.get("/sessions", async (req, res) => {
 
     return res.status(200).json({
         success: true,
-        description: `Successfully retrieved ${sessions.length} sessions.`,
+        description: `Retrieved ${sessions.length} sessions.`,
         body: sessions,
     });
 });

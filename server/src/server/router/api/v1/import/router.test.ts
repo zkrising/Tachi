@@ -9,17 +9,13 @@ import {
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 import { RequireNeutralAuthentication } from "../../../../../test-utils/api-common";
 import { CreateFakeAuthCookie } from "../../../../../test-utils/fake-auth";
-import ResetDBState from "../../../../../test-utils/resets";
+import ResetDBState, { SetIndexesForDB } from "../../../../../test-utils/resets";
 import db from "../../../../../external/mongo/db";
-import { SetIndexes } from "../../../../../../scripts/set-indexes";
 
 t.test("POST /api/v1/import/file", async (t) => {
     const cookie = await CreateFakeAuthCookie(mockApi);
 
-    await SetIndexes(
-        process.env.TACHI_PARALLEL_TESTS ? `test-ephemeral-${process.pid.toString()}` : "testingdb"
-    );
-
+    t.before(SetIndexesForDB);
     t.beforeEach(ResetDBState);
 
     RequireNeutralAuthentication("/api/v1/import/file", "POST");

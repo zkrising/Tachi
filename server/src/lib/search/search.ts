@@ -28,16 +28,13 @@ export function SearchCollection<T>(
     existingMatch: FilterQuery<T> = {},
     limit = 100
 ): Promise<(T & { __textScore: number })[]> {
-    try {
-        return collection.aggregate([
+    return collection
+        .aggregate([
             {
                 $match: deepmerge({ $text: { $search: search } }, existingMatch),
             },
-            // This is a weird optimisation, but generally
-            // the less data we return the better
-            // we're projecting __textScore here, and we
-            // use that opportunity to limit our returns
-            // generously.
+            // Project the __textScore field on so we can sort
+            // based on search proximity to query
             {
                 $addFields: {
                     __textScore: { $meta: "textScore" },
@@ -48,16 +45,16 @@ export function SearchCollection<T>(
             // hide nonsense
             { $match: { __textScore: { $gt: 0.25 } } },
             { $limit: limit },
-        ]);
-    } catch (err) {
-        logger.error(
-            `An error occured while trying to $text search collection ${collection.name}. Does this have a $text index?`,
-            { err }
-        );
+        ])
+        .catch((err) => {
+            logger.error(
+                `An error occured while trying to $text search collection ${collection.name}. Does this have a $text index?`,
+                { err }
+            );
 
-        // throw it up further
-        throw err;
-    }
+            // throw it up further
+            throw err;
+        });
 }
 
 export type SongSearchReturn = {

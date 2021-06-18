@@ -87,8 +87,10 @@ export function ResetCDN() {
 }
 
 export async function SetIndexesForDB() {
-    const url = `${MONGO_CONNECTION_URL}/
-    ${process.env.TACHI_PARALLEL_TESTS ? `test-ephemeral-${process.pid.toString()}` : "testingdb"}`;
+    const url = `${MONGO_CONNECTION_URL}/${
+        process.env.TACHI_PARALLEL_TESTS ? `test-ephemeral-${process.pid.toString()}` : "testingdb"
+    }`;
+
     logger.info(`Setting indexes for ${url}`);
 
     await SetIndexes(url, true);

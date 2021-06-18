@@ -577,9 +577,6 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions", (t) => {
             "/api/v1/users/test_zkldi/games/iidx/SP/sessions?search=Epic"
         );
 
-        // eslint-disable-next-line no-console
-        console.dir(res);
-
         t.hasStrict(res.body, {
             success: true,
             description: "Retrieved 3 sessions.",

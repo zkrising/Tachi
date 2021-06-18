@@ -1,6 +1,6 @@
 # Internal Authentication
 
-*****
+These endpoints relate to internal authentication methods. Read the warning below.
 
 !!! danger
 	This is **NOT** for external use. You should **NEVER**
@@ -10,6 +10,8 @@
 	is near-impossible because you need to complete a CAPTCHA.
 
 	This is documented for completeness' sake.
+
+*****
 
 ## Login with username and password.
 

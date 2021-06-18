@@ -1,5 +1,8 @@
 # Status Checks
 
+These endpoints are generally for programmers checking their code works.
+They can also be used to check the status of the server.
+
 *****
 
 ## Check server status.

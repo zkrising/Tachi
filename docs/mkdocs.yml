@@ -39,6 +39,9 @@ nav:
       - "api/routes/status.md"
       - "api/routes/import.md"
       - "api/routes/auth.md"
+      - "api/routes/users.md"
+      - "api/routes/user-gamept.md"
+
   - Codebase Reference:
     - "codebase/overview.md"
     - "codebase/contributing.md"
@@ -73,6 +76,9 @@ nav:
       - "codebase/import/milestones.md"
       - "codebase/import/import-doc-time.md"
 
+    - Implementation Details:
+      - "codebase/implementation-details/search.md"
+
 markdown_extensions:
   - admonition
   - pymdownx.highlight
@@ -80,3 +86,6 @@ markdown_extensions:
   - abbr
   - pymdownx.snippets
   - footnotes
+  - toc:
+      toc_depth: 2
+      permalink: true

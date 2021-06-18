@@ -57,7 +57,7 @@ scoreData=<file data>
 
 #### Response
 
-```json
+```js
 {
 	"importType": "file/eamusement-iidx-csv",
 	"idStrings": [
@@ -80,6 +80,6 @@ scoreData=<file data>
 	"classDeltas": [],
 	"goalInfo": [],
 	"milestoneInfo": [],
-	"userIntent": true
+	"userIntent": false, // if X-User-Intent was set, this would be true.
 }
 ```

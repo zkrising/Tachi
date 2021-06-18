@@ -1,7 +1,7 @@
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
 const logger = CreateLogCtx(__filename);
-import { integer } from "tachi-common";
+import { integer, Game, ScoreDocument, PBScoreDocument } from "tachi-common";
 
 export async function GetNextCounterValue(counterName: string): Promise<integer> {
     const sequenceDoc = await db.counters.findOneAndUpdate(
@@ -26,4 +26,20 @@ export async function GetNextCounterValue(counterName: string): Promise<integer>
     }
 
     return sequenceDoc.value;
+}
+
+export async function GetRelevantSongsAndCharts(
+    scores: (ScoreDocument | PBScoreDocument)[],
+    game: Game
+) {
+    const [songs, charts] = await Promise.all([
+        db.songs[game].find({
+            id: { $in: scores.map((e) => e.songID) },
+        }),
+        db.charts[game].find({
+            chartID: { $in: scores.map((e) => e.chartID) },
+        }),
+    ]);
+
+    return { songs, charts };
 }

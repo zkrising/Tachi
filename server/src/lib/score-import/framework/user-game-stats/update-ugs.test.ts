@@ -39,6 +39,8 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
     });
 
     t.test("Should update UserGameStats if the user has one", async (t) => {
+        await db["game-stats"].remove({});
+
         await db["game-stats"].insert({
             game: "iidx",
             playtype: "SP",
@@ -84,6 +86,8 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
     });
 
     t.test("Should return class deltas", async (t) => {
+        await db["game-stats"].remove({});
+
         await db["game-stats"].insert({
             game: "iidx",
             playtype: "SP",
@@ -134,6 +138,8 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
     });
 
     t.test("Should return updated class deltas", async (t) => {
+        await db["game-stats"].remove({});
+
         await db["game-stats"].insert({
             game: "iidx",
             playtype: "SP",

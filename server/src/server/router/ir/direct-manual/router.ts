@@ -3,7 +3,7 @@ import { GetUserWithIDGuaranteed } from "../../../../utils/user";
 import { RequireLoggedInSession } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import ParseDirectManual from "../../../../lib/score-import/import-types/ir/direct-manual/parser";
-import { SYMBOL_TachiAPIData } from "../../../../lib/constants/tachi";
+import { SYMBOL_TachiAPIAuth } from "../../../../lib/constants/tachi";
 import { RequirePermissions } from "../../../middleware/auth";
 
 const router: Router = Router({ mergeParams: true });
@@ -17,7 +17,7 @@ router.post(
     RequirePermissions("submit:score"),
     RequireLoggedInSession,
     async (req, res) => {
-        const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIData].userID!);
+        const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
 
         const intent = req.header("X-User-Intent");
 

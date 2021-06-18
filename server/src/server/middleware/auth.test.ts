@@ -2,7 +2,7 @@ import t from "tap";
 import { SetRequestPermissions, AllPermissions, RequireNotGuest, RequirePermissions } from "./auth";
 import expMiddlewareMock from "express-request-mock";
 import db from "../../external/mongo/db";
-import { SYMBOL_TachiAPIData } from "../../lib/constants/tachi";
+import { SYMBOL_TachiAPIAuth } from "../../lib/constants/tachi";
 import { CloseAllConnections } from "../../test-utils/close-connections";
 
 t.test("#SetRequestPermissions", (t) => {
@@ -22,7 +22,7 @@ t.test("#SetRequestPermissions", (t) => {
             },
         });
 
-        t.strictSame(req[SYMBOL_TachiAPIData], {
+        t.strictSame(req[SYMBOL_TachiAPIAuth], {
             userID: 1,
             identifier: "Mock API Token",
             permissions: {
@@ -37,7 +37,7 @@ t.test("#SetRequestPermissions", (t) => {
     t.test("Should assign guest APIKey information if no auth present", async (t) => {
         const { req } = await expMiddlewareMock(SetRequestPermissions);
 
-        t.strictSame(req[SYMBOL_TachiAPIData], {
+        t.strictSame(req[SYMBOL_TachiAPIAuth], {
             userID: null,
             identifier: "Guest Token",
             permissions: {},
@@ -101,7 +101,7 @@ t.test("#SetRequestPermissions", (t) => {
             },
         });
 
-        t.strictSame(req[SYMBOL_TachiAPIData], {
+        t.strictSame(req[SYMBOL_TachiAPIAuth], {
             userID: 1,
             identifier: `Session-Key 1`,
             token: null,

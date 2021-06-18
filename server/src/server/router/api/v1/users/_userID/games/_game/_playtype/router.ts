@@ -152,43 +152,6 @@ router.get("/milestones", async (req, res) => {
 });
 
 /**
- * Returns a users recent 100 scores for this game.
- *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/scores/recent
- */
-router.get("/scores/recent", async (req, res) => {
-    const user = req[SYMBOL_TachiData]!.requestedUser!;
-    const game = req[SYMBOL_TachiData]!.game!;
-    const playtype = req[SYMBOL_TachiData]!.playtype!;
-
-    const recentScores = await db.scores.find(
-        {
-            userID: user.id,
-            game,
-            playtype,
-        },
-        {
-            limit: 100,
-            sort: {
-                timeAchieved: -1,
-            },
-        }
-    );
-
-    const { songs, charts } = await GetRelevantSongsAndCharts(recentScores, game);
-
-    return res.status(200).json({
-        success: true,
-        description: `Retrieved ${recentScores.length} scores.`,
-        body: {
-            scores: recentScores,
-            songs,
-            charts,
-        },
-    });
-});
-
-/**
  * Searches a user's individual scores.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/scores
@@ -225,6 +188,43 @@ router.get("/scores", async (req, res) => {
         description: `Retrieved ${scores.length} scores.`,
         body: {
             scores,
+            songs,
+            charts,
+        },
+    });
+});
+
+/**
+ * Returns a users recent 100 scores for this game.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/scores/recent
+ */
+router.get("/scores/recent", async (req, res) => {
+    const user = req[SYMBOL_TachiData]!.requestedUser!;
+    const game = req[SYMBOL_TachiData]!.game!;
+    const playtype = req[SYMBOL_TachiData]!.playtype!;
+
+    const recentScores = await db.scores.find(
+        {
+            userID: user.id,
+            game,
+            playtype,
+        },
+        {
+            limit: 100,
+            sort: {
+                timeAchieved: -1,
+            },
+        }
+    );
+
+    const { songs, charts } = await GetRelevantSongsAndCharts(recentScores, game);
+
+    return res.status(200).json({
+        success: true,
+        description: `Retrieved ${recentScores.length} scores.`,
+        body: {
+            scores: recentScores,
             songs,
             charts,
         },
@@ -305,7 +305,7 @@ router.get("/pbs/best", async (req, res) => {
 
     return res.status(200).json({
         success: true,
-        description: `Retrieved ${pbs.length} scores.`,
+        description: `Retrieved ${pbs.length} personal bests.`,
         body: {
             scores: pbs,
             songs,

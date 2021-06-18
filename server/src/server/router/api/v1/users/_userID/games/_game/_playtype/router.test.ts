@@ -270,7 +270,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/recent", (t) => {
             delete sc._id; // lol
         }
 
-        const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/scores/recent");
+        const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/scores/recent");
 
         t.hasStrict(res.body, {
             success: true,
@@ -288,10 +288,10 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/recent", (t) => {
     t.end();
 });
 
-t.test("GET /api/v1/users/:userID/games/:game/:playtype/best", (t) => {
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/best", (t) => {
     t.beforeEach(ResetDBState);
 
-    t.test("Should return a users 100 most recent scores.", async (t) => {
+    t.test("Should return a users best 100 personal bests.", async (t) => {
         const mockPBs: PBScoreDocument[] = [];
 
         for (let i = 0; i < 200; i++) {
@@ -314,11 +314,11 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/best", (t) => {
             delete sc._id; // lol
         }
 
-        const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/best");
+        const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/pbs/best");
 
         t.hasStrict(res.body, {
             success: true,
-            description: "Retrieved 100 scores.",
+            description: "Retrieved 100 personal bests.",
             body: {
                 scores: mockPBs.slice(100).reverse(),
                 songs: [Testing511Song],

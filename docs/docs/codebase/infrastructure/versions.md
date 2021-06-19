@@ -31,7 +31,7 @@ their `MINOR` versions.
 The version names follow the song titles of an album. In `tachi-server`'s case, it follows
 [Portishead - Dummy](https://en.wikipedia.org/wiki/Dummy_(album))
 
-For `tachi-client`, we follow [The Stone Roses - S/T](https://en.wikipedia.org/wiki/The_Stone_Roses_(album))
+For `tachi-client`, we follow [The Cure - Disintegration](https://en.wikipedia.org/wiki/Disintegration_(The_Cure_album))
 
 ### Why?
 
@@ -44,5 +44,8 @@ Portishead's Dummy was chosen because Tachi V1 followed
 [Massive Attack - Mezzanine](https://en.wikipedia.org/wiki/Mezzanine_(album)). The two albums
 are both standout albums in the same genre, so it was fitting to follow it up.
 
-The Stone Roses' Self Titled was chosen because I wanted another album with
+The Cure's Disintegration was chosen because I wanted another album with
 the same amount of tracks as Dummy, and it's also a great album.
+
+!!! tip
+	These albums are great. Do yourself a favour and check them out.

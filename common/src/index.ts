@@ -1,5 +1,5 @@
 export * from "./types";
 
-export * as config from "./config";
+export * from "./config/config";
 export * as gameClasses from "./game-classes";
-export * as ESDCore from "./common-core/esd-core";
+export * as ESDCore from "./lib/esd";

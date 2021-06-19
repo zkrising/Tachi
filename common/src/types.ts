@@ -16,14 +16,14 @@ export interface CounterDocument {
 export type IDStrings =
     | "iidx:SP"
     | "iidx:DP"
-    | "popn:9B"
+    // | "popn:9B"
     | "sdvx:Single"
     | "usc:Single"
     | "ddr:SP"
     | "ddr:DP"
     | "maimai:Single"
     | "museca:Single"
-    | "jubeat:Single"
+    // | "jubeat:Single"
     | "bms:7K"
     | "bms:14K"
     | "chunithm:Single"
@@ -129,8 +129,8 @@ export type Game =
     | "iidx"
     | "museca"
     | "maimai"
-    | "jubeat"
-    | "popn"
+    // | "jubeat"
+    // | "popn"
     | "sdvx"
     | "ddr"
     | "bms"
@@ -197,8 +197,7 @@ type DDRGrades =
     | "AA-"
     | "AA"
     | "AA+"
-    | "AAA"
-    | "MAX";
+    | "AAA";
 
 type GitadoraGrades = "C" | "B" | "A" | "S" | "SS" | "MAX";
 
@@ -211,6 +210,7 @@ export interface Grades {
     "ddr:SP": DDRGrades;
     "ddr:DP": DDRGrades;
     "maimai:Single":
+        | "F"
         | "E"
         | "D"
         | "C"
@@ -228,7 +228,7 @@ export interface Grades {
     "museca:Single": "没" | "拙" | "凡" | "佳" | "良" | "優" | "秀" | "傑" | "傑G";
     "bms:7K": IIDXGrades;
     "bms:14K": IIDXGrades;
-    "chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
+    "chunithm:Single": "D" | "C" | "B" | "BB" | "BBB" | "A" | "AA" | "AAA" | "S" | "SS" | "SSS";
     "gitadora:Gita": GitadoraGrades;
     "gitadora:Dora": GitadoraGrades;
 }
@@ -291,8 +291,8 @@ export interface Difficulties {
     "maimai:Single": "Easy" | "Basic" | "Advanced" | "Expert" | "Master" | "Re:Master";
     "jubeat:Single": "BSC" | "ADV" | "EXT";
     "museca:Single": "Green" | "Yellow" | "Red";
-    "bms:7K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
-    "bms:14K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
+    "bms:7K": "CHART";
+    "bms:14K": "CHART";
     "chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
     "gitadora:Gita":
         | "BASIC"
@@ -535,7 +535,7 @@ interface SessionScoreNewInfo {
 
 export type SessionScoreInfo = SessionScorePBInfo | SessionScoreNewInfo;
 
-interface SessionCalculatedDataLookup {
+export interface SessionCalculatedDataLookup {
     "iidx:SP": "BPI" | "ktRating" | "ktLampRating";
     "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
     "popn:9B": never; // @todo
@@ -1143,13 +1143,13 @@ export interface JudgementLookup {
 export interface ScoreCalculatedDataLookup {
     "iidx:SP": "BPI" | "K%" | "ktRating" | "ktLampRating";
     "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
-    "popn:9B": never; // @todo
+    // "popn:9B": never; // @todo
     "sdvx:Single": "VF6";
     "usc:Single": "VF6";
     "ddr:SP": "MFCP" | "ktRating";
     "ddr:DP": "MFCP" | "ktRating";
     "maimai:Single": "ktRating";
-    "jubeat:Single": "jubility";
+    // "jubeat:Single": "jubility";
     "museca:Single": "ktRating";
     "bms:7K": "ktLampRating";
     "bms:14K": "ktLampRating";

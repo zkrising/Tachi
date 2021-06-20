@@ -1171,7 +1171,7 @@ export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBD
 		lampIndex: integer;
 		gradeIndex: integer;
 		esd: number | null;
-		hitData: Partial<Record<JudgementLookup[I], integer | null>>;
+		judgements: Partial<Record<JudgementLookup[I], integer | null>>;
 		hitMeta: Partial<HitMetaLookup[I]>;
 	};
 	scoreMeta: Partial<ScoreMetaLookup[I]>;
@@ -1219,7 +1219,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
 		lampIndex: integer;
 		gradeIndex: integer;
 		esd: number | null;
-		hitData: Partial<Record<JudgementLookup[I], integer | null>>;
+		judgements: Partial<Record<JudgementLookup[I], integer | null>>;
 		hitMeta: Partial<HitMetaLookup[I]>;
 	};
 	calculatedData: Partial<Record<ScoreCalculatedDataLookup[I], number | null>>;

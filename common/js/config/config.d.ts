@@ -22,8 +22,7 @@ interface BaseGamePTConfig<I extends IDStrings> {
     lamps: Lamps[I][];
     lampColours: Record<Lamps[I], string>;
     clearLamp: Lamps[I];
-    supportsESD: boolean;
-    judgementWindows?: ESDJudgementFormat[];
+    judgements: string[];
     defaultTable: string;
     scoreBucket: "grade" | "lamp";
 }

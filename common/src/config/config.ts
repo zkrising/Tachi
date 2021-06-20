@@ -40,8 +40,7 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	lampColours: Record<Lamps[I], string>;
 	clearLamp: Lamps[I];
 
-	supportsESD: boolean;
-	judgementWindows?: ESDJudgementFormat[];
+	judgements: string[];
 
 	defaultTable: string;
 
@@ -226,6 +225,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			{ name: "GREAT", msBorder: 33.333, value: 1 },
 			{ name: "GOOD", msBorder: 116.667, value: 0 },
 		],
+		judgements: ["pgreat", "great", "good", "bad", "poor"],
 
 		defaultTable: "Levels (N-1)",
 
@@ -293,6 +293,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			{ name: "GREAT", msBorder: 33.333, value: 1 },
 			{ name: "GOOD", msBorder: 116.667, value: 0 },
 		],
+		judgements: ["pgreat", "great", "good", "bad", "poor"],
 
 		defaultTable: "Levels (N-1)",
 
@@ -344,6 +345,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearLamp: "CLEAR",
 
 		supportsESD: false,
+		judgements: ["jcrit", "justice", "attack", "miss"],
 
 		defaultTable: "Levels (N-1)",
 
@@ -397,6 +399,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearLamp: "CLEAR",
 
 		supportsESD: false,
+		judgements: ["critical", "near", "miss"],
 
 		defaultTable: "Levels (N-1)",
 
@@ -446,6 +449,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearLamp: "CLEAR",
 
 		supportsESD: false,
+		judgements: ["critical", "near", "miss"],
 
 		defaultTable: "Levels (N-1)",
 
@@ -496,6 +500,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			{ name: "CRITICAL", msBorder: 33.333, value: 2 },
 			{ name: "NEAR", msBorder: 66.667, value: 1 },
 		],
+		judgements: ["critical", "near", "miss"],
 
 		defaultTable: "Levels (N-1)",
 
@@ -554,6 +559,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearLamp: "CLEAR",
 
 		supportsESD: false,
+		judgements: ["pgreat", "great", "good", "bad", "poor"],
 
 		defaultTable: "Insane",
 
@@ -613,6 +619,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearLamp: "CLEAR",
 
 		supportsESD: false,
+		judgements: ["pgreat", "great", "good", "bad", "poor"],
 
 		defaultTable: "Insane",
 
@@ -702,6 +709,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			{ name: "GOOD", msBorder: 89, value: 0 },
 			{ name: "BAD", msBorder: 119, value: 0 },
 		],
+		judgements: ["marvelous", "perfect", "great", "good", "boo", "miss", "ok", "ng"],
 
 		defaultTable: "Levels (N-1)",
 
@@ -790,6 +798,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			{ name: "GOOD", msBorder: 89, value: 0 },
 			{ name: "BAD", msBorder: 119, value: 0 },
 		],
+		judgements: ["marvelous", "perfect", "great", "good", "boo", "miss", "ok", "ng"],
 
 		defaultTable: "Levels (N-1)",
 
@@ -848,6 +857,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearLamp: "CLEAR",
 
 		supportsESD: false,
+		judgements: ["perfect", "great", "good", "miss"],
 
 		defaultTable: "Levels",
 
@@ -912,6 +922,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			{ name: "GOOD", msBorder: 81, value: 0.2 },
 			{ name: "OK", msBorder: 116.667 /* not really, but yknow */, value: 0 },
 		],
+		judgements: ["perfect", "great", "good", "ok", "miss"],
 
 		defaultTable: "Levels (N-1)",
 
@@ -963,6 +974,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			{ name: "GOOD", msBorder: 72, value: 0.2 },
 			{ name: "OK", msBorder: 116.667 /* not really, but yknow */, value: 0 },
 		],
+		judgements: ["perfect", "great", "good", "ok", "miss"],
 
 		defaultTable: "Levels (N-1)",
 

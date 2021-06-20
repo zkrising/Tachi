@@ -9,13 +9,12 @@ import {
 } from "../../../../../../../../../utils/user";
 import { CheckUserPlayedGamePlaytype } from "./middleware";
 import { FilterQuery } from "mongodb";
-import { UserGoalDocument, UserMilestoneDocument } from "tachi-common";
+import { UserGoalDocument, UserMilestoneDocument, GetGamePTConfig } from "tachi-common";
 import {
 	SearchGameSongsAndCharts,
 	SearchSessions,
 } from "../../../../../../../../../lib/search/search";
 import { FilterChartsAndSongs } from "../../../../../../../../../utils/scores";
-
 const router: Router = Router({ mergeParams: true });
 
 router.use(CheckUserPlayedGamePlaytype);
@@ -298,6 +297,7 @@ router.get("/pbs/best", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const pbs = await db["personal-bests"].find(
 		{
@@ -309,7 +309,7 @@ router.get("/pbs/best", async (req, res) => {
 		{
 			limit: 100,
 			sort: {
-				[`calculatedData.${GetDefaultScoreRatingAlg(game, playtype)}`]: -1,
+				[`calculatedData.${gptConfig.defaultScoreRatingAlg}`]: -1,
 			},
 		}
 	);
@@ -365,6 +365,7 @@ router.get("/sessions/best", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const sessions = await db.sessions.find(
 		{
@@ -375,7 +376,7 @@ router.get("/sessions/best", async (req, res) => {
 		{
 			limit: 100,
 			sort: {
-				[`calculatedData.${GetDefaultSessionRatingAlg(game, playtype)}`]: -1,
+				[`calculatedData.${gptConfig.defaultSessionRatingAlg}`]: -1,
 			},
 		}
 	);

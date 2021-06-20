@@ -124,7 +124,7 @@ const USC_SCORE_PB: PBScoreDocument = {
 		lamp: "EXCESSIVE CLEAR",
 		lampIndex: 2,
 		gradeIndex: 4, // idk, lazy
-		hitData: {
+		judgements: {
 			critical: 50,
 			near: 30,
 			miss: 10,

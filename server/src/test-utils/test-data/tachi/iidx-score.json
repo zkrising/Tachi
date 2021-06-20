@@ -12,7 +12,7 @@
         "esd": 30,
         "gradeIndex": 3,
         "lampIndex": 4,
-        "hitData": {
+        "judgements": {
             "pgreat": 50,
             "great": 10
         },

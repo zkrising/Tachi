@@ -364,7 +364,7 @@ t.test("#ConverterFn", (t) => {
 					score: 500,
 					grade: "E",
 					// percent: 31.5, -- ish, FPA is hard.
-					hitData: {},
+					judgements: {},
 					hitMeta: {},
 				},
 				scoreMeta: {},

@@ -35,7 +35,7 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 					// percent: 93.10699, floating point
 					score: 9310699,
 					lamp: "EXCESSIVE CLEAR",
-					hitData: {},
+					judgements: {},
 					hitMeta: {
 						fast: 70,
 						slow: 42,

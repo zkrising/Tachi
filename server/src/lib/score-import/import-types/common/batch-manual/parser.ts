@@ -74,7 +74,7 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 				(typeof self === "number" && self > 1_000_000_000_000) ||
 				"Expected a number greater than 1 Trillion - did you pass unix seconds instead of miliseconds?"
 		),
-		hitData: optNull((self) => {
+		judgements: optNull((self) => {
 			if (typeof self !== "object" || self === null) {
 				return "Not a valid object.";
 			}

@@ -24,7 +24,7 @@
         "gradeIndex": -1,
         "lamp": "EX HARD CLEAR",
         "lampIndex": 6,
-        "hitData": {
+        "judgements": {
             "pgreat": 697,
             "great": 85
         },

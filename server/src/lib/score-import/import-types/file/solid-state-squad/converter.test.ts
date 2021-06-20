@@ -38,7 +38,7 @@ t.test("#ConvertFileS3", (t) => {
 			grade: "F",
 			score: 100,
 			lamp: "FULL COMBO",
-			hitData: {
+			judgements: {
 				pgreat: 25,
 				great: 50,
 				good: 0,

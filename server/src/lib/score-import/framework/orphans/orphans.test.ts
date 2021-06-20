@@ -141,7 +141,7 @@ t.test("#ReprocessOrphan", (t) => {
 							score: 500,
 							grade: "E",
 							percent: 31.806615776081426,
-							hitData: {},
+							judgements: {},
 							hitMeta: {},
 						},
 						highlight: false,

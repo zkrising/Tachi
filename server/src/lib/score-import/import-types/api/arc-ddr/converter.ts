@@ -90,7 +90,7 @@ export const ConvertAPIArcDDR: ConverterFunction<unknown, EmptyObject> = async (
 			grade,
 			percent,
 			score: score.ex_score,
-			hitData: {
+			judgements: {
 				marvelous: score.judgments.marvelous,
 				perfect: score.judgments.perfect,
 				great: score.judgments.great,

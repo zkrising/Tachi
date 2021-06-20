@@ -78,7 +78,7 @@ export const ConvertAPIArcIIDX: ConverterFunction<unknown, EmptyObject> = async 
 			grade,
 			percent,
 			score: score.ex_score,
-			hitData: {},
+			judgements: {},
 			hitMeta: {
 				bp: score.miss_count,
 			},

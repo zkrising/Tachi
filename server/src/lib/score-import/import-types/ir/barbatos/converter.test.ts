@@ -61,7 +61,7 @@ t.test("#ConverterIRBarbatos", (t) => {
 					percent: 90,
 					grade: "A+",
 					lamp: "CLEAR",
-					hitData: {
+					judgements: {
 						critical: 100,
 						near: 50,
 						miss: 5,

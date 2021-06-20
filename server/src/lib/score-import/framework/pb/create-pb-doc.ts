@@ -141,7 +141,7 @@ async function MergeScoreLampIntoPB(
 			gradeIndex: scorePB.scoreData.gradeIndex,
 			lamp: lampPB.scoreData.lamp,
 			lampIndex: lampPB.scoreData.lampIndex,
-			hitData: scorePB.scoreData.hitData,
+			judgements: scorePB.scoreData.judgements,
 			hitMeta: scorePB.scoreData.hitMeta, // this will probably be overrode by game-specific fns
 		},
 		calculatedData: scorePB.calculatedData,

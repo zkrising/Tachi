@@ -44,7 +44,7 @@ t.test("#CreatePBDoc", (t) => {
 			esd: IIDXScore.scoreData.esd,
 			grade: IIDXScore.scoreData.grade,
 			gradeIndex: IIDXScore.scoreData.gradeIndex,
-			hitData: IIDXScore.scoreData.hitData,
+			judgements: IIDXScore.scoreData.judgements,
 			lamp: "FULL COMBO",
 			lampIndex: lamps.indexOf("FULL COMBO"),
 			hitMeta: { bp: 1 },

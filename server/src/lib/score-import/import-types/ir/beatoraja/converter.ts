@@ -73,7 +73,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		gauge: data.gauge === -1 ? null : data.gauge,
 	};
 
-	let hitData: DryScore<"bms:7K" | "bms:14K">["scoreData"]["hitData"] = {};
+	let judgements: DryScore<"bms:7K" | "bms:14K">["scoreData"]["judgements"] = {};
 
 	// if NOT CN mode we can assign judgements properly
 	if (data.lntype === 0) {
@@ -95,7 +95,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		hitMeta.epr! += data.ems;
 		hitMeta.lpr! += data.lms;
 
-		hitData = {
+		judgements = {
 			pgreat: data.epg + data.lpg,
 			great: data.egr + data.lgr,
 			good: data.egd + data.lgd,
@@ -122,7 +122,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 			score: data.exscore,
 			lamp,
 			hitMeta,
-			hitData,
+			judgements,
 		},
 		scoreMeta: {
 			client: context.client,

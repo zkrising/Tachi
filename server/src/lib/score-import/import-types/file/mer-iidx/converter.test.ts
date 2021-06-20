@@ -42,7 +42,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 						// percent: 63.61, approximately, fpa impossible.
 						grade: "B",
 						lamp: "CLEAR",
-						hitData: {},
+						judgements: {},
 						hitMeta: {
 							bp: 21,
 						},
@@ -76,7 +76,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 						// percent: 63.61, approximately, fpa impossible.
 						grade: "B",
 						lamp: "CLEAR",
-						hitData: {},
+						judgements: {},
 						hitMeta: {
 							bp: 21,
 						},

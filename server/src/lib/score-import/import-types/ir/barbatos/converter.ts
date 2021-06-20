@@ -71,7 +71,7 @@ export const ConverterIRBarbatos: ConverterFunction<BarbatosScore, EmptyObject> 
 			percent,
 			grade,
 			lamp: LAMP_LOOKUP[data.clear_type] as Lamps["sdvx:Single"],
-			hitData: {
+			judgements: {
 				critical: data.critical,
 				near: data.near_total,
 				miss: data.error,

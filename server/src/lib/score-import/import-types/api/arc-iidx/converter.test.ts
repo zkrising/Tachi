@@ -29,7 +29,7 @@ t.test("#ConvertAPIArcIIDX", (t) => {
 				scoreData: {
 					grade: "A",
 					score: 1200,
-					hitData: {},
+					judgements: {},
 					hitMeta: {
 						bp: 43,
 					},

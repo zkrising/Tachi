@@ -272,9 +272,9 @@ t.test("#ParserFn", (t) => {
 			t.end();
 		});
 
-		t.test("Valid HitData", (t) => {
+		t.test("Valid judgements", (t) => {
 			const res = ParserFn(
-				dm({ hitData: { pgreat: 1, great: null, bad: 0 } }),
+				dm({ judgements: { pgreat: 1, great: null, bad: 0 } }),
 				"file/batch-manual",
 				logger
 			);
@@ -294,7 +294,7 @@ t.test("#ParserFn", (t) => {
 						identifier: "123",
 						playtype: "SP",
 						difficulty: "ANOTHER",
-						hitData: {
+						judgements: {
 							pgreat: 1,
 							great: null,
 							bad: 0,
@@ -424,18 +424,18 @@ t.test("#ParserFn", (t) => {
 			t.end();
 		});
 
-		t.test("Invalid HitData", (t) => {
+		t.test("Invalid judgements", (t) => {
 			const fn = () =>
-				ParserFn(dm({ hitData: { not_key: 123 } }), "file/batch-manual", logger);
+				ParserFn(dm({ judgements: { not_key: 123 } }), "file/batch-manual", logger);
 
-			t.throws(fn, mockErr("body[0].hitData | Invalid Key not_key"));
+			t.throws(fn, mockErr("body[0].judgements | Invalid Key not_key"));
 
 			const fn2 = () =>
-				ParserFn(dm({ hitData: { pgreat: "123" } }), "file/batch-manual", logger);
+				ParserFn(dm({ judgements: { pgreat: "123" } }), "file/batch-manual", logger);
 
 			t.throws(
 				fn2,
-				mockErr("body[0].hitData | Key pgreat had an invalid value of 123 [string]")
+				mockErr("body[0].judgements | Key pgreat had an invalid value of 123 [string]")
 			);
 
 			t.end();

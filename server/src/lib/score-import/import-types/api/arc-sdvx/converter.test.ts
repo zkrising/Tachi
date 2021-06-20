@@ -34,7 +34,7 @@ t.test("#ConvertAPIArcSDVX", (t) => {
 					grade: "AA",
 					percent: 93.125,
 					score: 9312500,
-					hitData: {
+					judgements: {
 						critical: 946,
 						near: 45,
 						miss: 49,

@@ -74,7 +74,7 @@ export const ConvertAPIArcSDVX: ConverterFunction<unknown, EmptyObject> = async 
 			grade,
 			percent,
 			score: score.score,
-			hitData: {
+			judgements: {
 				critical: score.critical,
 				near: score.near,
 				miss: score.error,

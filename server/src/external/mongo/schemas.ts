@@ -67,7 +67,7 @@ export const PR_SCORE_GENERIC = {
 		grade: "string",
 		lampIndex: p.isPositiveInteger,
 		gradeIndex: p.isPositiveInteger,
-		hitData: {},
+		judgements: {},
 		hitMeta: {},
 	},
 	scoreMeta: {},
@@ -118,7 +118,7 @@ const CreateGameScoreData = (game: Game, hitMetaMerge: PrudenceSchema) => ({
 		p.isPositiveInteger,
 		(self, parent) => grades[game][self as number] === parent.grade
 	),
-	hitData: Object.fromEntries(validHitData[game].map((e) => [e, optionalPositiveInt])),
+	judgements: Object.fromEntries(validjudgements[game].map((e) => [e, optionalPositiveInt])),
 	hitMeta: deepmerge(
 		{
 			fast: nullableAndOptionalPosInt,

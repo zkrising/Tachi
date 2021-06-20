@@ -6,7 +6,7 @@
         "lamp": "CLEAR",
         "percent": 50,
         "grade": "C",
-        "hitData": {
+        "judgements": {
             "pgreat": 50,
             "great": 10
         },

@@ -32,7 +32,7 @@ t.test("#ConvertAPIArcDDR", (t) => {
 					grade: "AAA",
 					percent: 99.976,
 					score: 807,
-					hitData: {
+					judgements: {
 						marvelous: 236,
 						perfect: 24,
 						great: 0,

@@ -1,5 +1,4 @@
 import {
-	config,
 	Game,
 	Grades,
 	IDStrings,
@@ -8,8 +7,8 @@ import {
 	GameToIDStrings,
 	ESDCore,
 	Playtypes,
+	GetGamePTConfig,
 } from "tachi-common";
-import { judgementWindows, gamePercentMax } from "tachi-common/js/config";
 import CreateLogCtx from "../../../logger/logger";
 import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 
@@ -20,13 +19,14 @@ const logger = CreateLogCtx(__filename);
  */
 export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 	game: Game,
+	playtype: Playtypes[Game],
 	percent: number
 ): Grades[I] {
-	// @todo #102 update config to use game->pt
-	const boundaries = config.gradeBoundaries[game];
-	const grades = config.grades[game];
+	const gptConfig = GetGamePTConfig(game, playtype);
+	const boundaries = gptConfig.gradeBoundaries;
+	const grades = gptConfig.grades;
 
-	// eslint doesn't like backwards for loops (hey, this for loop is backwards!)
+	// (hey, this for loop is backwards!)
 	for (let i = boundaries.length; i >= 0; i--) {
 		if (percent >= boundaries[i]) {
 			return grades[i] as Grades[I];
@@ -49,14 +49,13 @@ export function GenericCalculatePercent(
 	switch (game) {
 		case "ddr":
 		case "museca":
-		case "jubeat":
 		case "chunithm":
 			return (score / 1_000_000) * 100;
 		case "sdvx":
 		case "usc":
 			return (score / 10_000_000) * 100;
-		case "popn":
-			return (score / 100_000) * 100;
+		// case "popn":
+		// 	return (score / 100_000) * 100;
 		case "gitadora":
 		case "maimai":
 			return score;
@@ -88,7 +87,12 @@ export function GenericCalculatePercent(
  *
  * This exists to support maimai, as it has a dynamic "max percent".
  */
-export function ValidatePercent(game: Game, percent: number, chart: AnyChartDocument) {
+export function ValidatePercent(
+	game: Game,
+	playtype: Playtypes[Game],
+	percent: number,
+	chart: AnyChartDocument
+) {
 	// i love needing a helper function for *ONE* game.
 	if (game === "maimai") {
 		const mmChart = chart as ChartDocument<"maimai:Single">;
@@ -99,9 +103,11 @@ export function ValidatePercent(game: Game, percent: number, chart: AnyChartDocu
 		}
 	}
 
-	if (percent > gamePercentMax[game]) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	if (percent > gptConfig.percentMax) {
 		throw new InvalidScoreFailure(
-			`Invalid percent of ${percent} - expected a value less than ${gamePercentMax[game]}% (${chart.songID} ${chart.playtype} ${chart.difficulty}).`
+			`Invalid percent of ${percent} - expected a value less than ${gptConfig.percentMax}% (${chart.songID} ${chart.playtype} ${chart.difficulty}).`
 		);
 	}
 }
@@ -113,14 +119,15 @@ export function ValidatePercent(game: Game, percent: number, chart: AnyChartDocu
  */
 export function GenericGetGradeAndPercent<G extends Game>(
 	game: G,
+	playtype: Playtypes[G],
 	score: number,
 	chart: AnyChartDocument
 ) {
 	const percent = GenericCalculatePercent(game, score, chart);
 
-	ValidatePercent(game, percent, chart);
+	ValidatePercent(game, playtype, percent, chart);
 
-	const grade = GetGradeFromPercent(game, percent) as Grades[GameToIDStrings[G]];
+	const grade = GetGradeFromPercent(game, playtype, percent) as Grades[GameToIDStrings[G]];
 
 	return { percent, grade };
 }
@@ -134,20 +141,13 @@ export function CalculateESDForGame(
 	playtype: Playtypes[Game],
 	percent: number
 ): number | null {
-	if (
-		Object.prototype.hasOwnProperty.call(judgementWindows, game) &&
-		// @ts-expect-error i know better
-		Object.prototype.hasOwnProperty.call(judgementWindows[game], playtype)
-	) {
-		if (percent > 0.1) {
-			// @ts-expect-error i know better
-			return ESDCore.CalculateESD(judgementWindows[game][playtype], percent);
-		} else {
-			return 200;
-		}
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	if (!gptConfig.supportsESD) {
+		return null;
 	}
 
-	return null;
+	return ESDCore.CalculateESD(gptConfig.judgementWindows, percent);
 }
 
 /**

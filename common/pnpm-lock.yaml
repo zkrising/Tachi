@@ -7,7 +7,7 @@ specifiers:
   eslint: ^7.22.0
   eslint-config-prettier: ^8.1.0
   eslint-plugin-prettier: ^3.3.1
-  monk: ^7.3.3
+  monk: ^7.3.4
   prettier: ^2.2.1
   tap: ^15.0.9
   ts-node: ^10.0.0
@@ -413,27 +413,22 @@ packages:
   /@types/bson/4.0.3:
     resolution: {integrity: sha512-mVRvYnTOZJz3ccpxhr3wgxVmSeiYinW+zlzQz3SXWaJmD1DuL05Jeq7nKw3SnbKmbleW5qrLG5vdyWe/A9sXhw==}
     dependencies:
-      '@types/node': 14.14.41
+      '@types/node': 15.12.4
     dev: false
 
   /@types/json-schema/7.0.7:
     resolution: {integrity: sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==}
     dev: true
 
-  /@types/mongodb/3.6.12:
-    resolution: {integrity: sha512-49aEzQD5VdHPxyd5dRyQdqEveAg9LanwrH8RQipnMuulwzKmODXIZRp0umtxi1eBUfEusRkoy8AVOMr+kVuFog==}
+  /@types/mongodb/3.6.18:
+    resolution: {integrity: sha512-JSVFt9p0rTfZ4EgzXmVHUB3ue00xe3CRbQho8nXfImzEDDM4O7I3po1bwbWl/EIbLENxUreZxqLOc8lvcnLVPA==}
     dependencies:
       '@types/bson': 4.0.3
-      '@types/node': 14.14.41
-    dev: false
-
-  /@types/node/14.14.41:
-    resolution: {integrity: sha512-dueRKfaJL4RTtSa7bWeTK1M+VH+Gns73oCgzvYfHZywRCoPSd8EkXBL0mZ9unPTveBn+D9phZBaxuzpwjWkW0g==}
+      '@types/node': 15.12.4
     dev: false
 
   /@types/node/15.12.4:
     resolution: {integrity: sha512-zrNj1+yqYF4WskCMOHwN+w9iuD12+dGm0rQ35HLl9/Ouuq52cEtd0CH9qMgrdNmi5ejC1/V7vKEXYubB+65DkA==}
-    dev: true
 
   /@types/tap/15.0.3:
     resolution: {integrity: sha512-usOLtmMm1jfjPdkt9R9HMTU/J6m9QNYjgFs5U2tFiOzQSd7lDd/aAMprExYLnJnZb6tM4ujmGv7ITe+1smIRgg==}
@@ -1799,8 +1794,8 @@ packages:
     hasBin: true
     dev: false
 
-  /mongodb/3.6.6:
-    resolution: {integrity: sha512-WlirMiuV1UPbej5JeCMqE93JRfZ/ZzqE7nJTwP85XzjAF4rRSeq2bGCb1cjfoHLOF06+HxADaPGqT0g3SbVT1w==}
+  /mongodb/3.6.9:
+    resolution: {integrity: sha512-1nSCKgSunzn/CXwgOWgbPHUWOO5OfERcuOWISmqd610jn0s8BU9K4879iJVabqgpPPbA6hO7rG48eq+fGED3Mg==}
     engines: {node: '>=4'}
     peerDependencies:
       aws4: '*'
@@ -1859,9 +1854,9 @@ packages:
   /monk/7.3.4:
     resolution: {integrity: sha512-PkPNiElwroVyKQj01usyziOvwiKYBUVSq7YU1FB4KFr0J3v0GeXW0TebYsLR4u33WB8JGqPiAcuzDspfdujqQg==}
     dependencies:
-      '@types/mongodb': 3.6.12
+      '@types/mongodb': 3.6.18
       debug: 4.3.1
-      mongodb: 3.6.6
+      mongodb: 3.6.9
       monk-middleware-cast-ids: 0.2.1
       monk-middleware-fields: 0.2.0
       monk-middleware-handle-callback: 0.2.2

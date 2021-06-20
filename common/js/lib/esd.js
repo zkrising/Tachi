@@ -14,18 +14,18 @@ function cdf(x, mean, variance) {
  */
 function erf(x) {
     // save the sign of x
-    let sign = x >= 0 ? 1 : -1;
+    const sign = x >= 0 ? 1 : -1;
     x = Math.abs(x);
     // constants
-    let a1 = 0.254829592;
-    let a2 = -0.284496736;
-    let a3 = 1.421413741;
-    let a4 = -1.453152027;
-    let a5 = 1.061405429;
-    let p = 0.3275911;
+    const a1 = 0.254829592;
+    const a2 = -0.284496736;
+    const a3 = 1.421413741;
+    const a4 = -1.453152027;
+    const a5 = 1.061405429;
+    const p = 0.3275911;
     // A&S formula 7.1.26
-    let t = 1.0 / (1.0 + p * x);
-    let y = 1.0 - ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+    const t = 1.0 / (1.0 + p * x);
+    const y = 1.0 - ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
     return sign * y; // erf(-x) = -erf(x);
 }
 function CDFBetween(lowBound, highBound, mean, variance) {
@@ -45,8 +45,8 @@ function StdDeviationToPercent(judgements, stddev, largestValue) {
     let lastJudgeMSBorder = 0;
     let prbSum = 0;
     for (let i = 0; i < judgements.length; i++) {
-        let judge = judgements[i];
-        let nVal = CDFBetween(lastJudgeMSBorder, judge.msBorder, MEAN, Math.pow(stddev, 2)) * judge.value;
+        const judge = judgements[i];
+        const nVal = CDFBetween(lastJudgeMSBorder, judge.msBorder, MEAN, Math.pow(stddev, 2)) * judge.value;
         lastJudgeMSBorder = judge.msBorder;
         prbSum += nVal;
     }
@@ -67,7 +67,7 @@ function CalculateESD(judgements, percent, errOnInaccuracy = false) {
     if (percent > 1 || percent < 0 || Number.isNaN(percent)) {
         throw new Error("(ESD) Invalid percent. Percent must be between 0 and 1, and also a number.");
     }
-    let largestValue = judgements.slice(0).sort((a, b) => b.value - a.value)[0].value;
+    const largestValue = judgements.slice(0).sort((a, b) => b.value - a.value)[0].value;
     // massive optimisation possible here by using better initial estimates with precalc'd table of values.
     // until then, it's just kinda slow.
     let minSD = 0;
@@ -80,7 +80,7 @@ function CalculateESD(judgements, percent, errOnInaccuracy = false) {
     // the defaults for these are 100 for iterations, and 0.001 for error.
     // for most of what i've tested, this has been fine.
     for (let i = 0; i < MAX_ITERATIONS; i++) {
-        let estimatedPercent = StdDeviationToPercent(judgements, estSD, largestValue);
+        const estimatedPercent = StdDeviationToPercent(judgements, estSD, largestValue);
         if (Math.abs(estimatedPercent - percent) < ACCEPTABLE_ERROR) {
             return estSD;
         }
@@ -99,10 +99,7 @@ function CalculateESD(judgements, percent, errOnInaccuracy = false) {
     if (errOnInaccuracy) {
         throw `(ESD-JS) Did not reach value within MAX_ITERATIONS (${MAX_ITERATIONS})`;
     }
-    else {
-        console.warn(`(ESD-JS) Did not reach value within MAX_ITERATIONS (${MAX_ITERATIONS}), returning last estimate (${estSD}), which was generated from ${percent}.`);
-        return estSD;
-    }
+    return estSD;
 }
 exports.CalculateESD = CalculateESD;
 /**
@@ -127,7 +124,7 @@ function ESDCompare(baseESD, compareESD, cdeg = 1) {
         variance = Math.pow(baseESD, 2);
         bound = CONFIDENCE_DEGREE * compareESD;
     }
-    let esdc = CDFBetween(-1 * bound, bound, 0, variance) / 2;
+    const esdc = CDFBetween(-1 * bound, bound, 0, variance) / 2;
     let besdc = BASE_CASE - esdc;
     if (inv) {
         besdc *= -1;
@@ -139,9 +136,9 @@ exports.ESDCompare = ESDCompare;
  * Converts two percents to ESD, then runs ESDCompare.
  */
 function PercentCompare(judgements, baseP, compareP, cdeg = 1) {
-    let e1 = CalculateESD(judgements, baseP);
-    let e2 = CalculateESD(judgements, compareP);
+    const e1 = CalculateESD(judgements, baseP);
+    const e2 = CalculateESD(judgements, compareP);
     return ESDCompare(e1, e2, cdeg);
 }
 exports.PercentCompare = PercentCompare;
-//# sourceMappingURL=esd-core.js.map
+//# sourceMappingURL=esd.js.map

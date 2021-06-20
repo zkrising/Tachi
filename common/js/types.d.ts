@@ -11,7 +11,7 @@ export interface CounterDocument {
  * apply two levels of indexing to types, which makes writing generic interfaces
  * like the ScoreDocument (Especially the ScoreDocument) *very* hard!
  */
-export declare type IDStrings = "iidx:SP" | "iidx:DP" | "popn:9B" | "sdvx:Single" | "usc:Single" | "ddr:SP" | "ddr:DP" | "maimai:Single" | "museca:Single" | "jubeat:Single" | "bms:7K" | "bms:14K" | "chunithm:Single" | "gitadora:Gita" | "gitadora:Dora";
+export declare type IDStrings = "iidx:SP" | "iidx:DP" | "sdvx:Single" | "usc:Single" | "ddr:SP" | "ddr:DP" | "maimai:Single" | "museca:Single" | "bms:7K" | "bms:14K" | "chunithm:Single" | "gitadora:Gita" | "gitadora:Dora";
 export interface IDStringToPlaytype {
     "iidx:SP": "SP";
     "iidx:DP": "DP";
@@ -76,7 +76,7 @@ export declare type ValidDatabases = Databases | `songs-${Game}` | `charts-${Gam
 /**
  * Supported games by Kamaitachi.
  */
-export declare type Game = "iidx" | "museca" | "maimai" | "jubeat" | "popn" | "sdvx" | "ddr" | "bms" | "chunithm" | "gitadora" | "usc";
+export declare type Game = "iidx" | "museca" | "maimai" | "sdvx" | "ddr" | "bms" | "chunithm" | "gitadora" | "usc";
 /**
  * This is the generic response from the Kamaitachi API in event of a failure.
  */
@@ -112,7 +112,7 @@ export interface Playtypes {
 }
 declare type IIDXGrades = "F" | "E" | "D" | "C" | "B" | "A" | "AA" | "AAA" | "MAX-" | "MAX";
 declare type SDVXGrades = "D" | "C" | "B" | "A" | "A+" | "AA" | "AA+" | "AAA" | "AAA+" | "S";
-declare type DDRGrades = "D" | "D+" | "C-" | "C" | "C+" | "B-" | "B" | "B+" | "A-" | "A" | "A+" | "AA-" | "AA" | "AA+" | "AAA" | "MAX";
+declare type DDRGrades = "D" | "D+" | "C-" | "C" | "C+" | "B-" | "B" | "B+" | "A-" | "A" | "A+" | "AA-" | "AA" | "AA+" | "AAA";
 declare type GitadoraGrades = "C" | "B" | "A" | "S" | "SS" | "MAX";
 export interface Grades {
     "iidx:SP": IIDXGrades;
@@ -122,12 +122,12 @@ export interface Grades {
     "usc:Single": SDVXGrades;
     "ddr:SP": DDRGrades;
     "ddr:DP": DDRGrades;
-    "maimai:Single": "E" | "D" | "C" | "B" | "A" | "AA" | "AAA" | "S" | "S+" | "SS" | "SS+" | "SSS" | "SSS+";
+    "maimai:Single": "F" | "E" | "D" | "C" | "B" | "A" | "AA" | "AAA" | "S" | "S+" | "SS" | "SS+" | "SSS" | "SSS+";
     "jubeat:Single": "E" | "D" | "C" | "B" | "A" | "S" | "SS" | "SSS" | "EXC";
     "museca:Single": "没" | "拙" | "凡" | "佳" | "良" | "優" | "秀" | "傑" | "傑G";
     "bms:7K": IIDXGrades;
     "bms:14K": IIDXGrades;
-    "chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
+    "chunithm:Single": "D" | "C" | "B" | "BB" | "BBB" | "A" | "AA" | "AAA" | "S" | "SS" | "SSS";
     "gitadora:Gita": GitadoraGrades;
     "gitadora:Dora": GitadoraGrades;
 }
@@ -163,8 +163,8 @@ export interface Difficulties {
     "maimai:Single": "Easy" | "Basic" | "Advanced" | "Expert" | "Master" | "Re:Master";
     "jubeat:Single": "BSC" | "ADV" | "EXT";
     "museca:Single": "Green" | "Yellow" | "Red";
-    "bms:7K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
-    "bms:14K": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "INSANE" | "CUSTOM";
+    "bms:7K": "CHART";
+    "bms:14K": "CHART";
     "chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
     "gitadora:Gita": "BASIC" | "ADVANCED" | "EXTREME" | "MASTER" | "BASS BASIC" | "BASS ADVANCED" | "BASS EXTREME" | "BASS MASTER";
     "gitadora:Dora": "BASIC" | "ADVANCED" | "EXTREME" | "MASTER";
@@ -367,7 +367,7 @@ interface SessionScoreNewInfo {
     isNewScore: true;
 }
 export declare type SessionScoreInfo = SessionScorePBInfo | SessionScoreNewInfo;
-interface SessionCalculatedDataLookup {
+export interface SessionCalculatedDataLookup {
     "iidx:SP": "BPI" | "ktRating" | "ktLampRating";
     "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
     "popn:9B": never;
@@ -934,13 +934,11 @@ export interface JudgementLookup {
 export interface ScoreCalculatedDataLookup {
     "iidx:SP": "BPI" | "K%" | "ktRating" | "ktLampRating";
     "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
-    "popn:9B": never;
     "sdvx:Single": "VF6";
     "usc:Single": "VF6";
     "ddr:SP": "MFCP" | "ktRating";
     "ddr:DP": "MFCP" | "ktRating";
     "maimai:Single": "ktRating";
-    "jubeat:Single": "jubility";
     "museca:Single": "ktRating";
     "bms:7K": "ktLampRating";
     "bms:14K": "ktLampRating";

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
@@ -7,7 +8,7 @@
 import { Game, Playtypes, ChartDocument, AnyChartDocument } from "../types";
 
 // human readable stuff for versions
-export const versionHuman: Record<Game, Record<string, string>> = {
+const versionHuman: Record<Game, Record<string, string>> = {
     iidx: {
         0: "1st Style",
         1: "substream",
@@ -156,7 +157,7 @@ export const versionHuman: Record<Game, Record<string, string>> = {
 };
 
 // release orders of the games.
-export const gameOrders = {
+const gameOrders = {
     iidx: [
         "0",
         "1",
@@ -311,7 +312,7 @@ export const gameOrders = {
     usc: ["0"],
 };
 
-export function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]): string {
+function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]): string {
     if (!pt) {
         return gameHuman[game];
     }
@@ -323,7 +324,7 @@ export function humaniseGame<T extends Game>(game: T, pt?: Playtypes[T]): string
     return `${gameHuman[game]} (${pt})`;
 }
 
-export const ratingParameters = {
+const ratingParameters = {
     iidx: {
         failHarshnessMultiplier: 0.3,
         pivotPercent: 0.7777, // Grade: AA
@@ -383,25 +384,25 @@ export const ratingParameters = {
 };
 
 function ChangeAlpha(string: string, alpha: string): string {
-    let spl = string.split(",");
+    const spl = string.split(",");
     spl[spl.length - 1] = `${alpha})`;
     return spl.join(",");
 }
 
-export function DirectScoreGradeDelta(
+function DirectScoreGradeDelta(
     game: Game,
     score: number,
     percent: number,
     chart: AnyChartDocument,
     delta: number
 ): SGDReturn | null {
-    let grade = GetGrade(game, percent);
+    const grade = GetGrade(game, percent);
 
     if (!grade) {
         throw new Error(`Invalid grade created from ${game}, ${percent}`);
     }
 
-    let scoreObj: PartialScore = {
+    const scoreObj: PartialScore = {
         scoreData: {
             score,
             grade,
@@ -424,21 +425,21 @@ interface PartialScore {
     };
 }
 
-export function ScoreGradeDelta(
+function ScoreGradeDelta(
     game: Game,
     score: PartialScore,
     chart: AnyChartDocument,
     delta: number
 ): SGDReturn | null {
-    let nextGrade = grades[game][grades[game].indexOf(score.scoreData.grade) + delta];
+    const nextGrade = grades[game][grades[game].indexOf(score.scoreData.grade) + delta];
 
     if (nextGrade) {
-        let nextGradePercent = gradeBoundaries[game][grades[game].indexOf(nextGrade)];
+        const nextGradePercent = gradeBoundaries[game][grades[game].indexOf(nextGrade)];
 
-        let nGScore = CalculateScore(game, nextGradePercent, chart);
+        const nGScore = CalculateScore(game, nextGradePercent, chart);
 
         if (nGScore) {
-            let delta = score.scoreData.score - nGScore;
+            const delta = score.scoreData.score - nGScore;
             let formattedString = `(${nextGrade})`;
 
             if (Number.isInteger(delta)) {
@@ -460,17 +461,17 @@ export function ScoreGradeDelta(
     }
 }
 
-export function AbsoluteScoreGradeDelta(
+function AbsoluteScoreGradeDelta(
     game: Game,
     score: number,
     percent: number,
     absDelta: number
 ): SGDReturn | null {
-    let grade = grades[game][absDelta];
+    const grade = grades[game][absDelta];
     if (grade) {
         let chart = null;
         if (game === "iidx" || game === "bms") {
-            let reversedNC = Math.floor((score / percent) * 100) / 2;
+            const reversedNC = Math.floor((score / percent) * 100) / 2;
             chart = {
                 data: {
                     notecount: reversedNC,
@@ -478,9 +479,9 @@ export function AbsoluteScoreGradeDelta(
             } as unknown; // heheh
         }
 
-        let sc = CalculateScore(game, gradeBoundaries[game][absDelta], chart as AnyChartDocument);
+        const sc = CalculateScore(game, gradeBoundaries[game][absDelta], chart as AnyChartDocument);
         if (sc) {
-            let delta = score - sc;
+            const delta = score - sc;
             let formattedString = `(${grade})`;
             formattedString += delta >= 0 ? `+${delta}` : `${delta}`;
             return {
@@ -496,11 +497,7 @@ export function AbsoluteScoreGradeDelta(
     }
 }
 
-export function CalculateScore(
-    game: Game,
-    percent: number,
-    chart: AnyChartDocument
-): number | null {
+function CalculateScore(game: Game, percent: number, chart: AnyChartDocument): number | null {
     let score = percent;
 
     if (game === "iidx" || game === "bms") {
@@ -519,7 +516,7 @@ export function CalculateScore(
     return null;
 }
 
-export function PercentToScore(percent: number, game: Game, chartData: AnyChartDocument): number {
+function PercentToScore(percent: number, game: Game, chartData: AnyChartDocument): number {
     let eScore = 0;
 
     if (game === "iidx" || game === "bms") {
@@ -541,7 +538,7 @@ export function PercentToScore(percent: number, game: Game, chartData: AnyChartD
     return eScore;
 }
 
-export function FormatDifficulty(chart: AnyChartDocument, game: Game): string {
+function FormatDifficulty(chart: AnyChartDocument, game: Game): string {
     if (validPlaytypes[game].length > 1) {
         return `${chart.playtype} ${chart.difficulty} ${chart.level}`;
     }

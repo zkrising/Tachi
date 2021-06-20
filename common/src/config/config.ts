@@ -19,6 +19,8 @@ export interface GameConfig<G extends Game = Game> {
 }
 
 interface BaseGamePTConfig<I extends IDStrings> {
+    idString: I;
+
     percentMax: number;
 
     defaultScoreRatingAlg: ScoreCalculatedDataLookup[I];
@@ -162,6 +164,8 @@ type GamePTConfigs = {
 
 const GAME_PT_CONFIGS: GamePTConfigs = {
     "iidx:SP": {
+        idString: "iidx:SP",
+
         percentMax: 100,
 
         defaultScoreRatingAlg: "ktRating",
@@ -228,6 +232,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
         scoreBucket: "lamp",
     },
     "iidx:DP": {
+        idString: "iidx:DP",
+
         percentMax: 100,
 
         defaultScoreRatingAlg: "ktRating",
@@ -293,6 +299,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
         scoreBucket: "lamp",
     },
     "chunithm:Single": {
+        idString: "chunithm:Single",
         percentMax: 101,
 
         defaultScoreRatingAlg: "rating",
@@ -343,6 +350,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
         scoreBucket: "grade",
     },
     "sdvx:Single": {
+        idString: "sdvx:Single",
         percentMax: 100,
 
         defaultScoreRatingAlg: "VF6",
@@ -395,6 +403,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
         scoreBucket: "grade",
     },
     "usc:Single": {
+        idString: "usc:Single",
         percentMax: 100,
 
         defaultScoreRatingAlg: "VF6",
@@ -443,6 +452,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
         scoreBucket: "grade",
     },
     "museca:Single": {
+        idString: "museca:Single",
         percentMax: 100,
 
         defaultScoreRatingAlg: "ktRating",
@@ -492,6 +502,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
         scoreBucket: "grade",
     },
     "bms:7K": {
+        idString: "bms:7K",
         percentMax: 100,
 
         defaultScoreRatingAlg: "ktLampRating",
@@ -549,6 +560,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
         scoreBucket: "lamp",
     },
     "bms:14K": {
+        idString: "bms:14K",
+
         percentMax: 100,
 
         defaultScoreRatingAlg: "ktLampRating",
@@ -606,6 +619,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
         scoreBucket: "lamp",
     },
     "ddr:SP": {
+        idString: "ddr:SP",
+
         percentMax: 100,
 
         defaultScoreRatingAlg: "ktRating",
@@ -693,6 +708,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
         scoreBucket: "lamp",
     },
     "ddr:DP": {
+        idString: "ddr:DP",
+
         percentMax: 100,
 
         defaultScoreRatingAlg: "ktRating",
@@ -779,6 +796,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
         scoreBucket: "lamp",
     },
     "maimai:Single": {
+        idString: "maimai:Single",
+
         percentMax: 120, // a safe estimate?
 
         defaultScoreRatingAlg: "ktRating",
@@ -835,6 +854,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
         scoreBucket: "grade",
     },
     "gitadora:Gita": {
+        idString: "gitadora:Gita",
+
         percentMax: 100,
 
         defaultScoreRatingAlg: "skill",
@@ -897,6 +918,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
         scoreBucket: "grade",
     },
     "gitadora:Dora": {
+        idString: "gitadora:Dora",
+
         percentMax: 100,
 
         defaultScoreRatingAlg: "skill",
@@ -963,6 +986,6 @@ export function GetGamePTConfig<I extends IDStrings = IDStrings>(
     game: Game,
     playtype: Playtypes[Game]
 ): GamePTConfig<I> {
-    let idString = `${game}:${playtype}` as IDStrings;
+    const idString = `${game}:${playtype}` as IDStrings;
     return (GAME_PT_CONFIGS[idString] as unknown) as GamePTConfig<I>;
 }

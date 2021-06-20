@@ -27,7 +27,7 @@
         "@typescript-eslint/no-extra-semi": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
         "no-unused-labels": "error",
-        "prefer-const": "off",
+        "prefer-const": "error",
         "eqeqeq": "error",
         "no-eval": "error",
         "no-var": "error",
@@ -47,6 +47,6 @@
         "dot-notation": "error",
         "space-before-blocks": "error",
         "no-prototype-builtins": "off",
-        "prefer-arrow-callback": "error"
+        "prefer-arrow-callback": "error",
     }
 }

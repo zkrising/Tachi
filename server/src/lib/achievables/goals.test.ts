@@ -6,10 +6,10 @@ import { EvaluateGoalForUser, HumaniseGoalProgress } from "./goals";
 import { GoalDocument } from "tachi-common";
 import deepmerge from "deepmerge";
 import {
-    HC511Goal,
-    Testing511SPA,
-    TestingIIDXFolderSP10,
-    TestingIIDXSPScorePB,
+	HC511Goal,
+	Testing511SPA,
+	TestingIIDXFolderSP10,
+	TestingIIDXSPScorePB,
 } from "../../test-utils/test-data";
 import { CreateFolderChartLookup } from "../../utils/folder";
 import { CloseAllConnections } from "../../test-utils/close-connections";
@@ -17,292 +17,292 @@ import { CloseAllConnections } from "../../test-utils/close-connections";
 const logger = CreateLogCtx(__filename);
 
 t.test("#EvaluateGoalForUser", (t) => {
-    t.beforeEach(ResetDBState);
+	t.beforeEach(ResetDBState);
 
-    t.test("Should correctly evaluate against single goals.", (t) => {
-        t.beforeEach(async () => {
-            await db["personal-bests"].insert(TestingIIDXSPScorePB);
-            delete TestingIIDXSPScorePB._id;
-        });
+	t.test("Should correctly evaluate against single goals.", (t) => {
+		t.beforeEach(async () => {
+			await db["personal-bests"].insert(TestingIIDXSPScorePB);
+			delete TestingIIDXSPScorePB._id;
+		});
 
-        t.test("Should correctly evaluate goals if user succeeds.", async (t) => {
-            const res = await EvaluateGoalForUser(HC511Goal, 1, logger);
+		t.test("Should correctly evaluate goals if user succeeds.", async (t) => {
+			const res = await EvaluateGoalForUser(HC511Goal, 1, logger);
 
-            t.strictSame(
-                res,
-                {
-                    achieved: true,
-                    outOf: 5,
-                    progress: 6,
-                    outOfHuman: "HARD CLEAR",
-                    progressHuman: "EX HARD CLEAR (BP: 2)",
-                },
-                "Should correctly evaluate the goal if the user succeeds."
-            );
+			t.strictSame(
+				res,
+				{
+					achieved: true,
+					outOf: 5,
+					progress: 6,
+					outOfHuman: "HARD CLEAR",
+					progressHuman: "EX HARD CLEAR (BP: 2)",
+				},
+				"Should correctly evaluate the goal if the user succeeds."
+			);
 
-            t.end();
-        });
+			t.end();
+		});
 
-        t.test("Should correctly evaluate goals if user fails.", async (t) => {
-            await db["personal-bests"].update(
-                { userID: 1, chartID: Testing511SPA.chartID },
-                {
-                    $set: {
-                        "scoreData.lamp": "CLEAR",
-                        "scoreData.lampIndex": 4,
-                    },
-                }
-            );
+		t.test("Should correctly evaluate goals if user fails.", async (t) => {
+			await db["personal-bests"].update(
+				{ userID: 1, chartID: Testing511SPA.chartID },
+				{
+					$set: {
+						"scoreData.lamp": "CLEAR",
+						"scoreData.lampIndex": 4,
+					},
+				}
+			);
 
-            const res = await EvaluateGoalForUser(HC511Goal, 1, logger);
+			const res = await EvaluateGoalForUser(HC511Goal, 1, logger);
 
-            t.strictSame(
-                res,
-                {
-                    achieved: false,
-                    outOf: 5,
-                    progress: 4,
-                    outOfHuman: "HARD CLEAR",
-                    progressHuman: "CLEAR (BP: 2)",
-                },
-                "Should correctly evaluate the goal if the user fails."
-            );
+			t.strictSame(
+				res,
+				{
+					achieved: false,
+					outOf: 5,
+					progress: 4,
+					outOfHuman: "HARD CLEAR",
+					progressHuman: "CLEAR (BP: 2)",
+				},
+				"Should correctly evaluate the goal if the user fails."
+			);
 
-            t.end();
-        });
+			t.end();
+		});
 
-        t.test("Should correctly evaluate goals when user has no score.", async (t) => {
-            await db["personal-bests"].remove({});
+		t.test("Should correctly evaluate goals when user has no score.", async (t) => {
+			await db["personal-bests"].remove({});
 
-            const res = await EvaluateGoalForUser(HC511Goal, 1, logger);
+			const res = await EvaluateGoalForUser(HC511Goal, 1, logger);
 
-            t.strictSame(
-                res,
-                {
-                    achieved: false,
-                    outOf: 5,
-                    progress: null,
-                    outOfHuman: "HARD CLEAR",
-                    progressHuman: "NO DATA",
-                },
-                "Should correctly evaluate the goal if the user has no score."
-            );
+			t.strictSame(
+				res,
+				{
+					achieved: false,
+					outOf: 5,
+					progress: null,
+					outOfHuman: "HARD CLEAR",
+					progressHuman: "NO DATA",
+				},
+				"Should correctly evaluate the goal if the user has no score."
+			);
 
-            t.end();
-        });
+			t.end();
+		});
 
-        t.end();
-    });
+		t.end();
+	});
 
-    t.test("Should correctly evaluate against multi goals.", (t) => {
-        // @ts-expect-error ???
-        // this goal is effectively "HC any of the charts"
-        const multiGoal: GoalDocument = deepmerge(HC511Goal, {
-            charts: {
-                type: "multi",
-                data: [Testing511SPA.chartID, "fake_other_chart_id"],
-            },
-        });
+	t.test("Should correctly evaluate against multi goals.", (t) => {
+		// @ts-expect-error ???
+		// this goal is effectively "HC any of the charts"
+		const multiGoal: GoalDocument = deepmerge(HC511Goal, {
+			charts: {
+				type: "multi",
+				data: [Testing511SPA.chartID, "fake_other_chart_id"],
+			},
+		});
 
-        t.beforeEach(async () => {
-            await db["personal-bests"].insert(TestingIIDXSPScorePB);
-            delete TestingIIDXSPScorePB._id;
+		t.beforeEach(async () => {
+			await db["personal-bests"].insert(TestingIIDXSPScorePB);
+			delete TestingIIDXSPScorePB._id;
 
-            await db["personal-bests"].insert(
-                deepmerge(TestingIIDXSPScorePB, {
-                    scoreData: { lamp: "CLEAR", lampIndex: 4 },
-                    chartID: "fake_other_chart_id",
-                })
-            );
-        });
+			await db["personal-bests"].insert(
+				deepmerge(TestingIIDXSPScorePB, {
+					scoreData: { lamp: "CLEAR", lampIndex: 4 },
+					chartID: "fake_other_chart_id",
+				})
+			);
+		});
 
-        t.test("Should work if 511 is >= HARD CLEAR", async (t) => {
-            const res = await EvaluateGoalForUser(multiGoal, 1, logger);
+		t.test("Should work if 511 is >= HARD CLEAR", async (t) => {
+			const res = await EvaluateGoalForUser(multiGoal, 1, logger);
 
-            t.strictSame(
-                res,
-                {
-                    achieved: true,
-                    outOf: 5,
-                    progress: 6,
-                    outOfHuman: "HARD CLEAR",
-                    progressHuman: "EX HARD CLEAR (BP: 2)",
-                },
-                "Should correctly evaluate the goal if the user succeeds."
-            );
+			t.strictSame(
+				res,
+				{
+					achieved: true,
+					outOf: 5,
+					progress: 6,
+					outOfHuman: "HARD CLEAR",
+					progressHuman: "EX HARD CLEAR (BP: 2)",
+				},
+				"Should correctly evaluate the goal if the user succeeds."
+			);
 
-            t.end();
-        });
+			t.end();
+		});
 
-        t.test("Should work if other chart is >= HARD CLEAR", async (t) => {
-            await db["personal-bests"].update(
-                { userID: 1, chartID: Testing511SPA.chartID },
-                { $set: { "scoreData.lamp": "CLEAR", "scoreData.lampIndex": 4 } }
-            );
-            await db["personal-bests"].update(
-                { userID: 1, chartID: "fake_other_chart_id" },
-                { $set: { "scoreData.lamp": "HARD CLEAR", "scoreData.lampIndex": 5 } }
-            );
+		t.test("Should work if other chart is >= HARD CLEAR", async (t) => {
+			await db["personal-bests"].update(
+				{ userID: 1, chartID: Testing511SPA.chartID },
+				{ $set: { "scoreData.lamp": "CLEAR", "scoreData.lampIndex": 4 } }
+			);
+			await db["personal-bests"].update(
+				{ userID: 1, chartID: "fake_other_chart_id" },
+				{ $set: { "scoreData.lamp": "HARD CLEAR", "scoreData.lampIndex": 5 } }
+			);
 
-            const res = await EvaluateGoalForUser(multiGoal, 1, logger);
+			const res = await EvaluateGoalForUser(multiGoal, 1, logger);
 
-            t.strictSame(
-                res,
-                {
-                    achieved: true,
-                    outOf: 5,
-                    progress: 5,
-                    outOfHuman: "HARD CLEAR",
-                    progressHuman: "HARD CLEAR (BP: 2)",
-                },
-                "Should correctly evaluate the goal if the user succeeds."
-            );
+			t.strictSame(
+				res,
+				{
+					achieved: true,
+					outOf: 5,
+					progress: 5,
+					outOfHuman: "HARD CLEAR",
+					progressHuman: "HARD CLEAR (BP: 2)",
+				},
+				"Should correctly evaluate the goal if the user succeeds."
+			);
 
-            t.end();
-        });
+			t.end();
+		});
 
-        t.test("Should work if user has no scores", async (t) => {
-            await db["personal-bests"].remove({});
+		t.test("Should work if user has no scores", async (t) => {
+			await db["personal-bests"].remove({});
 
-            const res = await EvaluateGoalForUser(multiGoal, 1, logger);
+			const res = await EvaluateGoalForUser(multiGoal, 1, logger);
 
-            t.strictSame(
-                res,
-                {
-                    achieved: false,
-                    outOf: 5,
-                    progress: null,
-                    outOfHuman: "HARD CLEAR",
-                    progressHuman: "NO DATA",
-                },
-                "Should correctly evaluate the goal if the user has no data."
-            );
+			t.strictSame(
+				res,
+				{
+					achieved: false,
+					outOf: 5,
+					progress: null,
+					outOfHuman: "HARD CLEAR",
+					progressHuman: "NO DATA",
+				},
+				"Should correctly evaluate the goal if the user has no data."
+			);
 
-            t.end();
-        });
+			t.end();
+		});
 
-        t.end();
-    });
+		t.end();
+	});
 
-    t.test("Should correctly evaluate against folder goals.", (t) => {
-        // @ts-expect-error ???
-        // this goal is effectively "HC any of the sp10s"
-        const folderGoal: GoalDocument = deepmerge(HC511Goal, {
-            charts: {
-                type: "folder",
-                data: "ed9d8c734447ce67d7135c0067441a98cc81aeaf",
-            },
-        });
+	t.test("Should correctly evaluate against folder goals.", (t) => {
+		// @ts-expect-error ???
+		// this goal is effectively "HC any of the sp10s"
+		const folderGoal: GoalDocument = deepmerge(HC511Goal, {
+			charts: {
+				type: "folder",
+				data: "ed9d8c734447ce67d7135c0067441a98cc81aeaf",
+			},
+		});
 
-        t.beforeEach(async () => {
-            await db["personal-bests"].insert(TestingIIDXSPScorePB);
-            delete TestingIIDXSPScorePB._id;
+		t.beforeEach(async () => {
+			await db["personal-bests"].insert(TestingIIDXSPScorePB);
+			delete TestingIIDXSPScorePB._id;
 
-            await db["personal-bests"].insert(
-                deepmerge(TestingIIDXSPScorePB, {
-                    scoreData: { lamp: "CLEAR", lampIndex: 4 },
-                    chartID: "other_sp10",
-                })
-            );
+			await db["personal-bests"].insert(
+				deepmerge(TestingIIDXSPScorePB, {
+					scoreData: { lamp: "CLEAR", lampIndex: 4 },
+					chartID: "other_sp10",
+				})
+			);
 
-            delete Testing511SPA._id;
+			delete Testing511SPA._id;
 
-            await db.charts.iidx.insert([
-                // @ts-expect-error ???
-                deepmerge(Testing511SPA, {
-                    songID: 123,
-                    level: "9",
-                    chartID: "not_sp10",
-                }),
-                // @ts-expect-error ???
-                deepmerge(Testing511SPA, {
-                    songID: 124,
-                    level: "10",
-                    chartID: "other_sp10",
-                }),
-            ]);
+			await db.charts.iidx.insert([
+				// @ts-expect-error ???
+				deepmerge(Testing511SPA, {
+					songID: 123,
+					level: "9",
+					chartID: "not_sp10",
+				}),
+				// @ts-expect-error ???
+				deepmerge(Testing511SPA, {
+					songID: 124,
+					level: "10",
+					chartID: "other_sp10",
+				}),
+			]);
 
-            await CreateFolderChartLookup(TestingIIDXFolderSP10);
-        });
+			await CreateFolderChartLookup(TestingIIDXFolderSP10);
+		});
 
-        t.test("Should work if 511 is >= HARD CLEAR", async (t) => {
-            const res = await EvaluateGoalForUser(folderGoal, 1, logger);
+		t.test("Should work if 511 is >= HARD CLEAR", async (t) => {
+			const res = await EvaluateGoalForUser(folderGoal, 1, logger);
 
-            t.strictSame(
-                res,
-                {
-                    achieved: true,
-                    outOf: 5,
-                    progress: 6,
-                    outOfHuman: "HARD CLEAR",
-                    progressHuman: "EX HARD CLEAR (BP: 2)",
-                },
-                "Should correctly evaluate the goal if the user succeeds."
-            );
+			t.strictSame(
+				res,
+				{
+					achieved: true,
+					outOf: 5,
+					progress: 6,
+					outOfHuman: "HARD CLEAR",
+					progressHuman: "EX HARD CLEAR (BP: 2)",
+				},
+				"Should correctly evaluate the goal if the user succeeds."
+			);
 
-            t.end();
-        });
+			t.end();
+		});
 
-        t.test("Should work if other chart is >= HARD CLEAR", async (t) => {
-            await db["personal-bests"].update(
-                { userID: 1, chartID: Testing511SPA.chartID },
-                { $set: { "scoreData.lamp": "CLEAR", "scoreData.lampIndex": 4 } }
-            );
+		t.test("Should work if other chart is >= HARD CLEAR", async (t) => {
+			await db["personal-bests"].update(
+				{ userID: 1, chartID: Testing511SPA.chartID },
+				{ $set: { "scoreData.lamp": "CLEAR", "scoreData.lampIndex": 4 } }
+			);
 
-            await db["personal-bests"].update(
-                { userID: 1, chartID: "other_sp10" },
-                { $set: { "scoreData.lamp": "HARD CLEAR", "scoreData.lampIndex": 5 } }
-            );
+			await db["personal-bests"].update(
+				{ userID: 1, chartID: "other_sp10" },
+				{ $set: { "scoreData.lamp": "HARD CLEAR", "scoreData.lampIndex": 5 } }
+			);
 
-            const res = await EvaluateGoalForUser(folderGoal, 1, logger);
+			const res = await EvaluateGoalForUser(folderGoal, 1, logger);
 
-            t.strictSame(
-                res,
-                {
-                    achieved: true,
-                    outOf: 5,
-                    progress: 5,
-                    outOfHuman: "HARD CLEAR",
-                    progressHuman: "HARD CLEAR (BP: 2)",
-                },
-                "Should correctly evaluate the goal if the user succeeds."
-            );
+			t.strictSame(
+				res,
+				{
+					achieved: true,
+					outOf: 5,
+					progress: 5,
+					outOfHuman: "HARD CLEAR",
+					progressHuman: "HARD CLEAR (BP: 2)",
+				},
+				"Should correctly evaluate the goal if the user succeeds."
+			);
 
-            t.end();
-        });
+			t.end();
+		});
 
-        t.test("Should work if user has no scores", async (t) => {
-            await db["personal-bests"].remove({});
+		t.test("Should work if user has no scores", async (t) => {
+			await db["personal-bests"].remove({});
 
-            const res = await EvaluateGoalForUser(folderGoal, 1, logger);
+			const res = await EvaluateGoalForUser(folderGoal, 1, logger);
 
-            t.strictSame(
-                res,
-                {
-                    achieved: false,
-                    outOf: 5,
-                    progress: null,
-                    outOfHuman: "HARD CLEAR",
-                    progressHuman: "NO DATA",
-                },
-                "Should correctly evaluate the goal if the user has no data."
-            );
+			t.strictSame(
+				res,
+				{
+					achieved: false,
+					outOf: 5,
+					progress: null,
+					outOfHuman: "HARD CLEAR",
+					progressHuman: "NO DATA",
+				},
+				"Should correctly evaluate the goal if the user has no data."
+			);
 
-            t.end();
-        });
+			t.end();
+		});
 
-        t.end();
-    });
+		t.end();
+	});
 
-    t.end();
+	t.end();
 });
 
 t.test("#HumaniseGoalProgress", (t) => {
-    t.equal(HumaniseGoalProgress("iidx", "scoreData.gradeIndex", 4, null), "B");
-    t.equal(HumaniseGoalProgress("iidx", "scoreData.lampIndex", 4, null), "CLEAR");
-    t.equal(HumaniseGoalProgress("iidx", "scoreData.percent", 90.1142, null), "90.11%");
-    t.equal(HumaniseGoalProgress("iidx", "scoreData.score", 2240, null), "2240");
+	t.equal(HumaniseGoalProgress("iidx", "scoreData.gradeIndex", 4, null), "B");
+	t.equal(HumaniseGoalProgress("iidx", "scoreData.lampIndex", 4, null), "CLEAR");
+	t.equal(HumaniseGoalProgress("iidx", "scoreData.percent", 90.1142, null), "90.11%");
+	t.equal(HumaniseGoalProgress("iidx", "scoreData.score", 2240, null), "2240");
 
-    t.end();
+	t.end();
 });
 t.teardown(CloseAllConnections);

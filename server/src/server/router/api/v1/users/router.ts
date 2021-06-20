@@ -11,7 +11,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users
  */
 router.get("/", async (req, res) => {
-    // i dont know yet.
+	// i dont know yet.
 });
 
 router.use("/:userID", userIDRouter);

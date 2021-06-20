@@ -5,27 +5,27 @@ import ResetDBState from "../test-utils/resets";
 import { CloseAllConnections } from "../test-utils/close-connections";
 
 t.test("#GetNextCounterValue", (t) => {
-    t.beforeEach(ResetDBState);
+	t.beforeEach(ResetDBState);
 
-    t.test("Increments on valid counter hit", async (t) => {
-        const response = await GetNextCounterValue("real-counter");
+	t.test("Increments on valid counter hit", async (t) => {
+		const response = await GetNextCounterValue("real-counter");
 
-        // database starts with this at one
-        t.equal(response, 2, "Counter should return the current number stored");
+		// database starts with this at one
+		t.equal(response, 2, "Counter should return the current number stored");
 
-        const dbData = await db.counters.findOne({
-            counterName: "real-counter",
-        });
+		const dbData = await db.counters.findOne({
+			counterName: "real-counter",
+		});
 
-        t.equal(dbData!.value, 3, "Counter should increment after being hit");
-    });
+		t.equal(dbData!.value, 3, "Counter should increment after being hit");
+	});
 
-    t.rejects(
-        () => GetNextCounterValue("fake-counter"),
-        "Could not find sequence document for fake-counter."
-    );
+	t.rejects(
+		() => GetNextCounterValue("fake-counter"),
+		"Could not find sequence document for fake-counter."
+	);
 
-    t.end();
+	t.end();
 });
 
 t.teardown(CloseAllConnections);

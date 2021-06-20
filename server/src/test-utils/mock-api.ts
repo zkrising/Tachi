@@ -12,7 +12,7 @@ logger.verbose("Connecting to Supertest...");
 const mockApi = supertest(connection);
 
 export function CloseServerConnection() {
-    connection.close();
+	connection.close();
 }
 
 export default mockApi;

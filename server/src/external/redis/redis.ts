@@ -9,20 +9,20 @@ export const RedisClient = redis.createClient();
 logger.verbose("Instantiated Redis Client");
 
 function EmitCritical() {
-    /* istanbul ignore next */
-    if (!RedisClient.connected) {
-        logger.crit(`Could not connect to redis in time. No more information is available.`);
-    }
+	/* istanbul ignore next */
+	if (!RedisClient.connected) {
+		logger.crit(`Could not connect to redis in time. No more information is available.`);
+	}
 }
 
 const ref = setTimeout(EmitCritical, 10000);
 
 RedisClient.on("connect", () => {
-    logger.verbose(`Connected to Redis.`);
+	logger.verbose(`Connected to Redis.`);
 
-    clearTimeout(ref);
+	clearTimeout(ref);
 });
 
 export function CloseRedisConnection() {
-    return RedisClient.quit();
+	return RedisClient.quit();
 }

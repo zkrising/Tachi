@@ -1,16 +1,16 @@
 import { Router } from "express";
 import Prudence from "prudence";
 import {
-    AddNewUser,
-    PasswordCompare,
-    ReinstateInvite,
-    ValidatePassword,
-    ValidateCaptcha,
+	AddNewUser,
+	PasswordCompare,
+	ReinstateInvite,
+	ValidatePassword,
+	ValidateCaptcha,
 } from "./auth";
 import {
-    FormatUserDoc,
-    GetUserCaseInsensitive,
-    PRIVATEINFO_GetUserCaseInsensitive,
+	FormatUserDoc,
+	GetUserCaseInsensitive,
+	PRIVATEINFO_GetUserCaseInsensitive,
 } from "../../../../../utils/user";
 import db from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../../lib/logger/logger";
@@ -28,86 +28,86 @@ const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
  * @name POST /api/v1/auth/login
  */
 router.post(
-    "/login",
-    prValidate(
-        {
-            username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
-            password: ValidatePassword,
-            captcha: "string",
-        },
-        {
-            username: "Invalid username.",
-            captcha: "Please fill out the captcha.",
-        }
-    ),
-    async (req, res) => {
-        if (req.session.tachi?.userID) {
-            logger.info(`Dual log-in attempted from ${req.session.tachi.userID}`);
-            return res.status(409).json({
-                success: false,
-                description: `You are already logged in as someone.`,
-            });
-        }
+	"/login",
+	prValidate(
+		{
+			username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
+			password: ValidatePassword,
+			captcha: "string",
+		},
+		{
+			username: "Invalid username.",
+			captcha: "Please fill out the captcha.",
+		}
+	),
+	async (req, res) => {
+		if (req.session.tachi?.userID) {
+			logger.info(`Dual log-in attempted from ${req.session.tachi.userID}`);
+			return res.status(409).json({
+				success: false,
+				description: `You are already logged in as someone.`,
+			});
+		}
 
-        logger.verbose(`Recieved login request with username ${req.body.username} (${req.ip})`);
+		logger.verbose(`Recieved login request with username ${req.body.username} (${req.ip})`);
 
-        /* istanbul ignore next */
-        if (process.env.NODE_ENV === "production") {
-            logger.verbose("Validating captcha...");
-            const validCaptcha = await ValidateCaptcha(
-                req.body.recaptcha,
-                req.socket.remoteAddress
-            );
+		/* istanbul ignore next */
+		if (process.env.NODE_ENV === "production") {
+			logger.verbose("Validating captcha...");
+			const validCaptcha = await ValidateCaptcha(
+				req.body.recaptcha,
+				req.socket.remoteAddress
+			);
 
-            if (!validCaptcha) {
-                logger.verbose("Captcha failed.");
-                return res.status(400).json({
-                    success: false,
-                    description: `Captcha failed.`,
-                });
-            }
+			if (!validCaptcha) {
+				logger.verbose("Captcha failed.");
+				return res.status(400).json({
+					success: false,
+					description: `Captcha failed.`,
+				});
+			}
 
-            logger.verbose("Captcha validated!");
-        } else {
-            logger.verbose("Skipped captcha check because not in production.");
-        }
+			logger.verbose("Captcha validated!");
+		} else {
+			logger.verbose("Skipped captcha check because not in production.");
+		}
 
-        const requestedUser = await PRIVATEINFO_GetUserCaseInsensitive(req.body.username);
+		const requestedUser = await PRIVATEINFO_GetUserCaseInsensitive(req.body.username);
 
-        if (!requestedUser) {
-            logger.verbose(`Invalid username for login ${req.body.username}.`);
-            return res.status(404).json({
-                success: false,
-                description: `This user does not exist.`,
-            });
-        }
+		if (!requestedUser) {
+			logger.verbose(`Invalid username for login ${req.body.username}.`);
+			return res.status(404).json({
+				success: false,
+				description: `This user does not exist.`,
+			});
+		}
 
-        const passwordMatch = await PasswordCompare(req.body.password, requestedUser.password);
+		const passwordMatch = await PasswordCompare(req.body.password, requestedUser.password);
 
-        if (!passwordMatch) {
-            logger.verbose("Invalid password provided.");
-            return res.status(401).json({
-                success: false,
-                description: `Invalid password.`,
-            });
-        }
+		if (!passwordMatch) {
+			logger.verbose("Invalid password provided.");
+			return res.status(401).json({
+				success: false,
+				description: `Invalid password.`,
+			});
+		}
 
-        req.session.tachi = {
-            userID: requestedUser.id,
-        };
+		req.session.tachi = {
+			userID: requestedUser.id,
+		};
 
-        req.session.cookie.maxAge = 3.154e10; // 1 year
+		req.session.cookie.maxAge = 3.154e10; // 1 year
 
-        logger.verbose(`${FormatUserDoc(requestedUser)} Logged in.`);
+		logger.verbose(`${FormatUserDoc(requestedUser)} Logged in.`);
 
-        return res.status(200).json({
-            success: true,
-            description: `Successfully logged in as ${FormatUserDoc(requestedUser)}`,
-            body: {
-                userID: requestedUser.id,
-            },
-        });
-    }
+		return res.status(200).json({
+			success: true,
+			description: `Successfully logged in as ${FormatUserDoc(requestedUser)}`,
+			body: {
+				userID: requestedUser.id,
+			},
+		});
+	}
 );
 
 /**
@@ -115,110 +115,110 @@ router.post(
  * @name POST /api/v1/auth/register
  */
 router.post(
-    "/register",
-    prValidate(
-        {
-            username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
-            password: ValidatePassword,
-            email: Prudence.regex(LAZY_EMAIL_REGEX),
-            inviteCode: "string",
-            captcha: "string",
-        },
-        {
-            username:
-                "Usernames must be between 3 and 20 characters long, and can only contain alphanumeric characters!",
-            email: "Invalid email.",
-            inviteCode: "Invalid invite code.",
-            captcha: "Please fill out the captcha.",
-        }
-    ),
-    async (req, res) => {
-        logger.verbose(`Recieved register request with username ${req.body.username} (${req.ip})`);
+	"/register",
+	prValidate(
+		{
+			username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
+			password: ValidatePassword,
+			email: Prudence.regex(LAZY_EMAIL_REGEX),
+			inviteCode: "string",
+			captcha: "string",
+		},
+		{
+			username:
+				"Usernames must be between 3 and 20 characters long, and can only contain alphanumeric characters!",
+			email: "Invalid email.",
+			inviteCode: "Invalid invite code.",
+			captcha: "Please fill out the captcha.",
+		}
+	),
+	async (req, res) => {
+		logger.verbose(`Recieved register request with username ${req.body.username} (${req.ip})`);
 
-        /* istanbul ignore next */
-        if (process.env.NODE_ENV === "production") {
-            logger.verbose("Validating captcha...");
-            const validCaptcha = await ValidateCaptcha(
-                req.body.recaptcha,
-                req.socket.remoteAddress
-            );
+		/* istanbul ignore next */
+		if (process.env.NODE_ENV === "production") {
+			logger.verbose("Validating captcha...");
+			const validCaptcha = await ValidateCaptcha(
+				req.body.recaptcha,
+				req.socket.remoteAddress
+			);
 
-            if (!validCaptcha) {
-                logger.verbose("Captcha failed.");
-                return res.status(400).json({
-                    success: false,
-                    description: `Captcha failed.`,
-                });
-            }
+			if (!validCaptcha) {
+				logger.verbose("Captcha failed.");
+				return res.status(400).json({
+					success: false,
+					description: `Captcha failed.`,
+				});
+			}
 
-            logger.debug("Captcha validated.");
-        } else {
-            logger.info("Skipped captcha check because not in production.");
-        }
+			logger.debug("Captcha validated.");
+		} else {
+			logger.info("Skipped captcha check because not in production.");
+		}
 
-        const existingUser = await GetUserCaseInsensitive(req.body.username);
+		const existingUser = await GetUserCaseInsensitive(req.body.username);
 
-        if (existingUser) {
-            logger.verbose(`Invalid username ${req.body.username}, already in use.`);
-            return res.status(409).json({
-                success: false,
-                description: "This username is already in use.",
-            });
-        }
+		if (existingUser) {
+			logger.verbose(`Invalid username ${req.body.username}, already in use.`);
+			return res.status(409).json({
+				success: false,
+				description: "This username is already in use.",
+			});
+		}
 
-        const inviteCodeDoc = await db.invites.findOneAndUpdate(
-            {
-                code: req.body.inviteCode,
-                consumed: false,
-            },
-            {
-                $set: {
-                    consumed: true,
-                },
-            }
-        );
+		const inviteCodeDoc = await db.invites.findOneAndUpdate(
+			{
+				code: req.body.inviteCode,
+				consumed: false,
+			},
+			{
+				$set: {
+					consumed: true,
+				},
+			}
+		);
 
-        if (!inviteCodeDoc) {
-            logger.info(`Invalid invite code given: ${req.body.inviteCode}.`);
-            return res.status(401).json({
-                success: false,
-                description: `This invite code is not valid.`,
-            });
-        }
+		if (!inviteCodeDoc) {
+			logger.info(`Invalid invite code given: ${req.body.inviteCode}.`);
+			return res.status(401).json({
+				success: false,
+				description: `This invite code is not valid.`,
+			});
+		}
 
-        logger.info(`Consumed invite ${inviteCodeDoc.code}.`);
+		logger.info(`Consumed invite ${inviteCodeDoc.code}.`);
 
-        // if we get to this point, We're good to create the user.
+		// if we get to this point, We're good to create the user.
 
-        try {
-            const newUser = await AddNewUser(req.body.username, req.body.password, req.body.email);
+		try {
+			const newUser = await AddNewUser(req.body.username, req.body.password, req.body.email);
 
-            if (!newUser) {
-                throw new Error("AddNewUser failed to create a user.");
-            }
+			if (!newUser) {
+				throw new Error("AddNewUser failed to create a user.");
+			}
 
-            return res.status(200).json({
-                success: true,
-                description: `Successfully created account ${req.body.username}!`,
-                body: {
-                    id: newUser.id,
-                    username: newUser.username,
-                },
-            });
-        } catch (err) {
-            logger.error(
-                `Bailed on user creation ${req.body.username} with invite code ${req.body.inviteCode}.`,
-                { err }
-            );
+			return res.status(200).json({
+				success: true,
+				description: `Successfully created account ${req.body.username}!`,
+				body: {
+					id: newUser.id,
+					username: newUser.username,
+				},
+			});
+		} catch (err) {
+			logger.error(
+				`Bailed on user creation ${req.body.username} with invite code ${req.body.inviteCode}.`,
+				{ err }
+			);
 
-            await ReinstateInvite(inviteCodeDoc);
+			await ReinstateInvite(inviteCodeDoc);
 
-            return res.status(500).json({
-                success: false,
-                description: "An internal server error has occured.",
-            });
-        }
-    }
+			return res.status(500).json({
+				success: false,
+				description: "An internal server error has occured.",
+			});
+		}
+	}
 );
 
 /**
@@ -226,13 +226,13 @@ router.post(
  * @name POST /api/v1/auth/logout
  */
 router.post("/logout", RequireLoggedInSession, (req, res) => {
-    req.session.destroy(() => 0);
+	req.session.destroy(() => 0);
 
-    return res.status(200).json({
-        success: true,
-        description: `Logged Out.`,
-        body: {},
-    });
+	return res.status(200).json({
+		success: true,
+		description: `Logged Out.`,
+		body: {},
+	});
 });
 
 export default router;

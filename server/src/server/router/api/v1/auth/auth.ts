@@ -15,7 +15,7 @@ const logger = CreateLogCtx(__filename);
 const BCRYPT_SALT_ROUNDS = 12;
 
 export const ValidatePassword = (self: unknown) =>
-    (typeof self === "string" && self.length >= 8) || "Passwords must be 8 characters or more.";
+	(typeof self === "string" && self.length >= 8) || "Passwords must be 8 characters or more.";
 
 /**
  * Compares a plaintext string of a users password to a hash.
@@ -23,97 +23,97 @@ export const ValidatePassword = (self: unknown) =>
  * @param password The hash to compare against.
  */
 export function PasswordCompare(plaintext: string, password: string) {
-    return bcrypt.compare(plaintext, password);
+	return bcrypt.compare(plaintext, password);
 }
 
 export function ReinstateInvite(inviteDoc: InviteCodeDocument) {
-    logger.info(`Reinstated Invite ${inviteDoc.code}`);
-    return db.invites.update(
-        {
-            _id: inviteDoc._id,
-        },
-        {
-            $set: {
-                consumed: false,
-            },
-        }
-    );
+	logger.info(`Reinstated Invite ${inviteDoc.code}`);
+	return db.invites.update(
+		{
+			_id: inviteDoc._id,
+		},
+		{
+			$set: {
+				consumed: false,
+			},
+		}
+	);
 }
 
 export async function AddNewInvite(user: PublicUserDocument) {
-    const code = Random20Hex();
+	const code = Random20Hex();
 
-    const result = await db.invites.insert({
-        code,
-        consumed: false,
-        createdBy: user.id,
-        createdOn: Date.now(),
-    });
+	const result = await db.invites.insert({
+		code,
+		consumed: false,
+		createdBy: user.id,
+		createdOn: Date.now(),
+	});
 
-    logger.info(`User ${FormatUserDoc(user)} created an invite.`);
+	logger.info(`User ${FormatUserDoc(user)} created an invite.`);
 
-    if (!result) {
-        logger.error(
-            `Fatal error in creating ${FormatUserDoc(
-                user
-            )}'s invite code. Database refused key ${code}.`
-        );
-        throw new Error(
-            `Fatal error in creating ${FormatUserDoc(
-                user
-            )}'s invite code. Database refused key ${code}.`
-        );
-    }
+	if (!result) {
+		logger.error(
+			`Fatal error in creating ${FormatUserDoc(
+				user
+			)}'s invite code. Database refused key ${code}.`
+		);
+		throw new Error(
+			`Fatal error in creating ${FormatUserDoc(
+				user
+			)}'s invite code. Database refused key ${code}.`
+		);
+	}
 
-    return result;
+	return result;
 }
 
 export async function AddNewUser(
-    username: string,
-    password: string,
-    email: string
+	username: string,
+	password: string,
+	email: string
 ): Promise<InsertResult<PrivateUserDocument>> {
-    const hashedPassword = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
+	const hashedPassword = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
 
-    logger.verbose(`Hashed password for ${username}.`);
+	logger.verbose(`Hashed password for ${username}.`);
 
-    const userID = await GetNextCounterValue("users");
+	const userID = await GetNextCounterValue("users");
 
-    const userDoc: PrivateUserDocument = {
-        id: userID,
-        username: username,
-        usernameLowercase: username.toLowerCase(),
-        password: hashedPassword,
-        about: "I'm a fairly nondescript person.",
-        email: email,
-        clan: null,
-        friends: [],
-        socialMedia: {},
-        settings: {
-            invisible: false,
-            nsfwSplashes: false,
-        },
-        customBanner: false,
-        customPfp: false,
-        lastSeen: Date.now(), // lol
-    };
+	const userDoc: PrivateUserDocument = {
+		id: userID,
+		username: username,
+		usernameLowercase: username.toLowerCase(),
+		password: hashedPassword,
+		about: "I'm a fairly nondescript person.",
+		email: email,
+		clan: null,
+		friends: [],
+		socialMedia: {},
+		settings: {
+			invisible: false,
+			nsfwSplashes: false,
+		},
+		customBanner: false,
+		customPfp: false,
+		lastSeen: Date.now(), // lol
+	};
 
-    return db.users.insert(userDoc);
+	return db.users.insert(userDoc);
 }
 
 export async function ValidateCaptcha(
-    recaptcha: string,
-    remoteAddr: string | undefined,
-    fetch = nodeFetch
+	recaptcha: string,
+	remoteAddr: string | undefined,
+	fetch = nodeFetch
 ) {
-    const r = await fetch(
-        `https://www.google.com/recaptcha/api/siteverify?secret=${CAPTCHA_SECRET_KEY}&response=${recaptcha}&remoteip=${remoteAddr}`
-    );
+	const r = await fetch(
+		`https://www.google.com/recaptcha/api/siteverify?secret=${CAPTCHA_SECRET_KEY}&response=${recaptcha}&remoteip=${remoteAddr}`
+	);
 
-    if (r.status !== 200) {
-        logger.verbose(`Failed GCaptcha response ${r.status}, ${r.body}`);
-        return false;
-    }
+	if (r.status !== 200) {
+		logger.verbose(`Failed GCaptcha response ${r.status}, ${r.body}`);
+		return false;
+	}
 
-    return true;
+	return true;
 }

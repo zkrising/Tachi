@@ -7,7 +7,7 @@ import { NodeFetch } from "../utils/fetch";
  * Creates a basic Fetch function used for statusCode checks.
  */
 export function MockBasicFetch(data: Partial<Response>) {
-    return (async () => data) as unknown as NodeFetch;
+	return (async () => data) as unknown as NodeFetch;
 }
 
 /**
@@ -15,13 +15,13 @@ export function MockBasicFetch(data: Partial<Response>) {
  * a fake JSON -> data function at that key.
  */
 export function MockJSONFetch(urlDataMap: Record<string, unknown>) {
-    return (async (url: string) => {
-        if (urlDataMap[url]) {
-            return {
-                json: async () => urlDataMap[url],
-            };
-        }
+	return (async (url: string) => {
+		if (urlDataMap[url]) {
+			return {
+				json: async () => urlDataMap[url],
+			};
+		}
 
-        throw new Error(`Unexpected url ${url} - No Data Present?`);
-    }) as NodeFetch;
+		throw new Error(`Unexpected url ${url} - No Data Present?`);
+	}) as NodeFetch;
 }

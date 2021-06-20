@@ -14,21 +14,21 @@ const MAX_PIPELINE_LENGTH = 500;
  * the score provided is already loaded.
  */
 export function QueueScoreInsert(score: ScoreDocument) {
-    if (ScoreIDs.has(score.scoreID)) {
-        // skip
-        logger.verbose(`Triggered skip for ID ${score.scoreID}`);
-        return null;
-    }
+	if (ScoreIDs.has(score.scoreID)) {
+		// skip
+		logger.verbose(`Triggered skip for ID ${score.scoreID}`);
+		return null;
+	}
 
-    ScoreQueue.push(score);
-    ScoreIDs.add(score.scoreID);
+	ScoreQueue.push(score);
+	ScoreIDs.add(score.scoreID);
 
-    if (ScoreQueue.length >= MAX_PIPELINE_LENGTH) {
-        logger.verbose(`Triggered pipeline flush with len ${ScoreQueue.length}.`);
-        return InsertQueue();
-    }
+	if (ScoreQueue.length >= MAX_PIPELINE_LENGTH) {
+		logger.verbose(`Triggered pipeline flush with len ${ScoreQueue.length}.`);
+		return InsertQueue();
+	}
 
-    return true;
+	return true;
 }
 
 /**
@@ -36,18 +36,18 @@ export function QueueScoreInsert(score: ScoreDocument) {
  * @warn Be cautious of inducing race conditions when using this function.
  */
 export async function InsertQueue() {
-    const temp = ScoreQueue.splice(0);
-    if (temp.length !== 0) {
-        ScoreIDs = new Set();
-        try {
-            await db.scores.insert(temp);
-        } catch (err) {
-            logger.warn(
-                `Triggered duplicate key protection. Race condition protected against, but this is not good.`
-            );
-            return null;
-        }
-    }
+	const temp = ScoreQueue.splice(0);
+	if (temp.length !== 0) {
+		ScoreIDs = new Set();
+		try {
+			await db.scores.insert(temp);
+		} catch (err) {
+			logger.warn(
+				`Triggered duplicate key protection. Race condition protected against, but this is not good.`
+			);
+			return null;
+		}
+	}
 
-    return temp.length;
+	return temp.length;
 }

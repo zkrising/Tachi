@@ -8,29 +8,29 @@ import { ParseBarbatosSingle } from "./parser";
 const logger = CreateLogCtx(__filename);
 
 t.test("#ParseBarbatosSingle", (t) => {
-    t.beforeEach(ResetDBState);
+	t.beforeEach(ResetDBState);
 
-    t.test("Should return the score as a payload", (t) => {
-        const res = ParseBarbatosSingle(barbScore as unknown as Record<string, unknown>, logger);
+	t.test("Should return the score as a payload", (t) => {
+		const res = ParseBarbatosSingle(barbScore as unknown as Record<string, unknown>, logger);
 
-        t.hasStrict(res, {
-            game: "sdvx",
-            context: {},
-            iterable: [barbScore],
-        });
+		t.hasStrict(res, {
+			game: "sdvx",
+			context: {},
+			iterable: [barbScore],
+		});
 
-        t.end();
-    });
+		t.end();
+	});
 
-    t.test("Should reject invalid scores", (t) => {
-        t.throws(() => ParseBarbatosSingle({}, logger), {
-            message: "Invalid Barbatos Request",
-        } as any);
+	t.test("Should reject invalid scores", (t) => {
+		t.throws(() => ParseBarbatosSingle({}, logger), {
+			message: "Invalid Barbatos Request",
+		} as any);
 
-        t.end();
-    });
+		t.end();
+	});
 
-    t.end();
+	t.end();
 });
 
 t.teardown(CloseAllConnections);

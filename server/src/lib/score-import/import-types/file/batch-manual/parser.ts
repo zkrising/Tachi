@@ -10,22 +10,22 @@ import { ParserFunctionReturns } from "../../common/types";
  * @param body - The request body that made this file import request.
  */
 function ParseBatchManual(
-    fileData: Express.Multer.File,
-    body: Record<string, unknown>,
-    logger: KtLogger
+	fileData: Express.Multer.File,
+	body: Record<string, unknown>,
+	logger: KtLogger
 ): ParserFunctionReturns<BatchManualScore, BatchManualContext> {
-    let jsonData: unknown;
+	let jsonData: unknown;
 
-    try {
-        jsonData = JSON.parse(fileData.buffer.toString("utf-8"));
-    } catch (err) {
-        throw new ScoreImportFatalError(
-            400,
-            `Invalid JSON. (${err?.message ?? "No Error Message Available."})`
-        );
-    }
+	try {
+		jsonData = JSON.parse(fileData.buffer.toString("utf-8"));
+	} catch (err) {
+		throw new ScoreImportFatalError(
+			400,
+			`Invalid JSON. (${err?.message ?? "No Error Message Available."})`
+		);
+	}
 
-    return ParseBatchManualFromObject(jsonData, "file/batch-manual", logger);
+	return ParseBatchManualFromObject(jsonData, "file/batch-manual", logger);
 }
 
 export default ParseBatchManual;

@@ -1,20 +1,20 @@
 export interface EamusementScoreData {
-    difficulty: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
-    lamp: string;
-    exscore: string;
-    pgreat: string;
-    great: string;
-    bp: string;
-    level: string;
+	difficulty: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
+	lamp: string;
+	exscore: string;
+	pgreat: string;
+	great: string;
+	bp: string;
+	level: string;
 }
 
 type BaseProps = {
-    title: string;
-    timestamp: string;
+	title: string;
+	timestamp: string;
 };
 
 export type IIDXEamusementCSVData = {
-    score: EamusementScoreData;
+	score: EamusementScoreData;
 } & BaseProps;
 
 type Props = "exscore" | "lamp" | "pgreat" | "great" | "bp" | "level";
@@ -22,13 +22,13 @@ type Props = "exscore" | "lamp" | "pgreat" | "great" | "bp" | "level";
 type RawPropKeys = `${"beginner" | "normal" | "hyper" | "another" | "leggendaria"}-${Props}`;
 
 export type RawIIDXEamusementCSVData = {
-    [K in RawPropKeys]: unknown;
+	[K in RawPropKeys]: unknown;
 } &
-    BaseProps & { [index: string]: unknown };
+	BaseProps & { [index: string]: unknown };
 
 export interface IIDXEamusementCSVContext {
-    playtype: "SP" | "DP";
-    importVersion: string;
-    hasBeginnerAndLegg: boolean;
-    service: string;
+	playtype: "SP" | "DP";
+	importVersion: string;
+	hasBeginnerAndLegg: boolean;
+	service: string;
 }

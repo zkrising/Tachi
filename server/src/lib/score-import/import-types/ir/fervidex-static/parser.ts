@@ -10,75 +10,75 @@ import { CreateFerStaticClassHandler } from "./class-handler";
 import { ParserFunctionReturns } from "../../common/types";
 
 const PR_FervidexStatic: PrudenceSchema = {
-    ex_score: p.isPositiveInteger,
-    miss_count: p.nullable(p.or(p.isPositiveInteger, p.is(-1))),
-    clear_type: p.isBoundedInteger(0, 7),
+	ex_score: p.isPositiveInteger,
+	miss_count: p.nullable(p.or(p.isPositiveInteger, p.is(-1))),
+	clear_type: p.isBoundedInteger(0, 7),
 };
 
 export function ParseFervidexStatic(
-    body: Record<string, unknown>,
-    headers: FerHeaders,
-    logger: KtLogger
+	body: Record<string, unknown>,
+	headers: FerHeaders,
+	logger: KtLogger
 ): ParserFunctionReturns<FervidexStaticScore, FervidexStaticContext> {
-    const version = SoftwareIDToVersion(headers.model);
+	const version = SoftwareIDToVersion(headers.model);
 
-    const staticScores = body?.scores;
+	const staticScores = body?.scores;
 
-    if (!staticScores || typeof staticScores !== "object") {
-        throw new ScoreImportFatalError(400, `Invalid body.scores.`);
-    }
+	if (!staticScores || typeof staticScores !== "object") {
+		throw new ScoreImportFatalError(400, `Invalid body.scores.`);
+	}
 
-    const scores: FervidexStaticScore[] = [];
+	const scores: FervidexStaticScore[] = [];
 
-    for (const songID in staticScores) {
-        // @ts-expect-error pls.
-        const subScores = staticScores[songID];
+	for (const songID in staticScores) {
+		// @ts-expect-error pls.
+		const subScores = staticScores[songID];
 
-        const song_id = AssertStrAsPositiveInt(songID, `Invalid songID ${songID}.`);
+		const song_id = AssertStrAsPositiveInt(songID, `Invalid songID ${songID}.`);
 
-        if (!subScores || typeof subScores !== "object") {
-            throw new ScoreImportFatalError(400, `Invalid score with songID ${songID}.`);
-        }
+		if (!subScores || typeof subScores !== "object") {
+			throw new ScoreImportFatalError(400, `Invalid score with songID ${songID}.`);
+		}
 
-        for (const chart in subScores) {
-            const score = subScores[chart];
+		for (const chart in subScores) {
+			const score = subScores[chart];
 
-            if (!score || typeof subScores !== "object") {
-                throw new ScoreImportFatalError(
-                    400,
-                    `Invalid score with songID ${songID} at chart ${chart}.`
-                );
-            }
+			if (!score || typeof subScores !== "object") {
+				throw new ScoreImportFatalError(
+					400,
+					`Invalid score with songID ${songID} at chart ${chart}.`
+				);
+			}
 
-            if (!["spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"].includes(chart)) {
-                throw new ScoreImportFatalError(400, `Invalid chart ${chart}.`);
-            }
+			if (!["spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"].includes(chart)) {
+				throw new ScoreImportFatalError(400, `Invalid chart ${chart}.`);
+			}
 
-            const err = p(score, PR_FervidexStatic);
+			const err = p(score, PR_FervidexStatic);
 
-            if (err) {
-                throw new ScoreImportFatalError(
-                    400,
-                    FormatPrError(err, `Invalid Score with songID ${songID} at chart ${chart}`)
-                );
-            }
+			if (err) {
+				throw new ScoreImportFatalError(
+					400,
+					FormatPrError(err, `Invalid Score with songID ${songID} at chart ${chart}`)
+				);
+			}
 
-            scores.push({
-                song_id,
-                // is asserted with the above check
-                chart: chart as FervidexStaticScore["chart"],
-                clear_type: score.clear_type,
-                ex_score: score.ex_score,
-                miss_count: score.miss_count,
-            });
-        }
-    }
+			scores.push({
+				song_id,
+				// is asserted with the above check
+				chart: chart as FervidexStaticScore["chart"],
+				clear_type: score.clear_type,
+				ex_score: score.ex_score,
+				miss_count: score.miss_count,
+			});
+		}
+	}
 
-    // asserted using prudence.
-    return {
-        context: { version },
-        game: "iidx",
-        iterable: scores,
-        classHandler: CreateFerStaticClassHandler(body),
-    };
+	// asserted using prudence.
+	return {
+		context: { version },
+		game: "iidx",
+		iterable: scores,
+		classHandler: CreateFerStaticClassHandler(body),
+	};
 }

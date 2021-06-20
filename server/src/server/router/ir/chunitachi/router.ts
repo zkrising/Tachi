@@ -12,30 +12,30 @@ const router: Router = Router({ mergeParams: true });
  * @name POST /ir/chunitachi/score/submit
  */
 router.post("/import", RequirePermissions("submit:score"), async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
+	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
 
-    if (req.body?.head?.game !== "chunithm") {
-        return res.status(400).json({
-            success: false,
-            description: "Invalid Game.",
-        });
-    }
+	if (req.body?.head?.game !== "chunithm") {
+		return res.status(400).json({
+			success: false,
+			description: "Invalid Game.",
+		});
+	}
 
-    if (req.body.head.service !== "Chunitachi") {
-        return res.status(400).json({
-            success: false,
-            description: `Unexpected service ${req.body.head.service} -- expected 'Chunitachi'`,
-        });
-    }
+	if (req.body.head.service !== "Chunitachi") {
+		return res.status(400).json({
+			success: false,
+			description: `Unexpected service ${req.body.head.service} -- expected 'Chunitachi'`,
+		});
+	}
 
-    const responseData = await ExpressWrappedScoreImportMain(
-        userDoc,
-        false,
-        "ir/chunitachi",
-        (logger) => ParseDirectManual(req.body, logger)
-    );
+	const responseData = await ExpressWrappedScoreImportMain(
+		userDoc,
+		false,
+		"ir/chunitachi",
+		(logger) => ParseDirectManual(req.body, logger)
+	);
 
-    return res.status(responseData.statusCode).json(responseData.body);
+	return res.status(responseData.statusCode).json(responseData.body);
 });
 
 export default router;

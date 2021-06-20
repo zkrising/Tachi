@@ -14,20 +14,20 @@ import { EscapeStringRegexp } from "../misc";
  * @returns AnySongDocument
  */
 export function FindSongOnTitle(
-    game: Game,
-    title: string
+	game: Game,
+	title: string
 ): Promise<FindOneResult<AnySongDocument>> {
-    // @optimisable: Performance should be tested here by having a utility field for all-titles.
-    return db.songs[game].findOne({
-        $or: [
-            {
-                title: title,
-            },
-            {
-                "alt-titles": title,
-            },
-        ],
-    });
+	// @optimisable: Performance should be tested here by having a utility field for all-titles.
+	return db.songs[game].findOne({
+		$or: [
+			{
+				title: title,
+			},
+			{
+				"alt-titles": title,
+			},
+		],
+	});
 }
 
 /**
@@ -35,22 +35,22 @@ export function FindSongOnTitle(
  * This is needed for services that provide horrifically mutated string titles.
  */
 export function FindSongOnTitleInsensitive(
-    game: Game,
-    title: string
+	game: Game,
+	title: string
 ): Promise<FindOneResult<AnySongDocument>> {
-    // @optimisable: Performance should be tested here by having a utility field for all-titles.
+	// @optimisable: Performance should be tested here by having a utility field for all-titles.
 
-    const regex = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
-    return db.songs[game].findOne({
-        $or: [
-            {
-                title: { $regex: regex },
-            },
-            {
-                "alt-titles": { $regex: regex },
-            },
-        ],
-    });
+	const regex = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
+	return db.songs[game].findOne({
+		$or: [
+			{
+				title: { $regex: regex },
+			},
+			{
+				"alt-titles": { $regex: regex },
+			},
+		],
+	});
 }
 
 /**
@@ -61,18 +61,18 @@ export function FindSongOnTitleInsensitive(
  * @returns AnySongDocument
  */
 export function FindSongOnID(game: Game, songID: integer): Promise<FindOneResult<AnySongDocument>> {
-    return db.songs[game].findOne({
-        id: songID,
-    });
+	return db.songs[game].findOne({
+		id: songID,
+	});
 }
 
 export async function FindSongOnIDGuaranteed(game: Game, songID: integer, logger: KtLogger) {
-    const song = await FindSongOnID(game, songID);
+	const song = await FindSongOnID(game, songID);
 
-    if (!song) {
-        logger.severe(`Song-Chart desync for ${songID}. Has charts, but no song.`);
-        throw new InternalFailure(`Song-Chart desync for ${songID}. Has charts, but no song.`);
-    }
+	if (!song) {
+		logger.severe(`Song-Chart desync for ${songID}. Has charts, but no song.`);
+		throw new InternalFailure(`Song-Chart desync for ${songID}. Has charts, but no song.`);
+	}
 
-    return song;
+	return song;
 }

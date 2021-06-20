@@ -7,25 +7,25 @@ import { ParserFunctionReturns } from "../../types";
 import { FLO_API_URL, EAG_API_URL } from "../../../../../setup/config";
 
 export function ParseKaiIIDX(
-    service: "FLO" | "EAG",
-    authDoc: KaiAuthDocument,
-    logger: KtLogger,
-    fetch = nodeFetch
+	service: "FLO" | "EAG",
+	authDoc: KaiAuthDocument,
+	logger: KtLogger,
+	fetch = nodeFetch
 ): ParserFunctionReturns<unknown, KaiContext> {
-    const baseUrl = service === "FLO" ? FLO_API_URL : EAG_API_URL;
+	const baseUrl = service === "FLO" ? FLO_API_URL : EAG_API_URL;
 
-    return {
-        iterable: TraverseKaiAPI(
-            baseUrl,
-            "/api/iidx/v2/play_history",
-            authDoc.token,
-            logger,
-            fetch
-        ),
-        context: {
-            service,
-        },
-        classHandler: null,
-        game: "iidx",
-    };
+	return {
+		iterable: TraverseKaiAPI(
+			baseUrl,
+			"/api/iidx/v2/play_history",
+			authDoc.token,
+			logger,
+			fetch
+		),
+		context: {
+			service,
+		},
+		classHandler: null,
+		game: "iidx",
+	};
 }

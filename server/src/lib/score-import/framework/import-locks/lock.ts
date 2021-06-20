@@ -8,27 +8,27 @@ import { integer } from "tachi-common";
  * If a lock exists for the user, the lock is returned.
  */
 export function GetOrSetUserLock(userID: integer) {
-    return db["import-locks"].findOneAndUpdate(
-        {
-            userID,
-        },
-        {
-            $set: { userID },
-        },
-        {
-            upsert: true,
-            // this is marked as deprecated, but it shouldn't be, as returnDocument: "before"
-            // does nothing.
-            returnOriginal: true,
-        }
-    );
+	return db["import-locks"].findOneAndUpdate(
+		{
+			userID,
+		},
+		{
+			$set: { userID },
+		},
+		{
+			upsert: true,
+			// this is marked as deprecated, but it shouldn't be, as returnDocument: "before"
+			// does nothing.
+			returnOriginal: true,
+		}
+	);
 }
 
 /**
  * Removes a users import lock.
  */
 export function RemoveUserLock(userID: integer) {
-    return db["import-locks"].remove({
-        userID,
-    });
+	return db["import-locks"].remove({
+		userID,
+	});
 }

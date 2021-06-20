@@ -2,7 +2,7 @@ import { Difficulties, Game, integer, Playtypes, IDStrings } from "tachi-common"
 import db from "../../external/mongo/db";
 
 export function FindChartWithChartID(game: Game, chartID: string) {
-    return db.charts[game].findOne({ chartID });
+	return db.charts[game].findOne({ chartID });
 }
 
 /**
@@ -11,16 +11,16 @@ export function FindChartWithChartID(game: Game, chartID: string) {
  * @see FindChartWithPTDFVersion
  */
 export function FindChartWithPTDF<
-    G extends Game = Game,
-    P extends Playtypes[G] = Playtypes[G],
-    I extends IDStrings = IDStrings
+	G extends Game = Game,
+	P extends Playtypes[G] = Playtypes[G],
+	I extends IDStrings = IDStrings
 >(game: G, songID: integer, playtype: P, difficulty: Difficulties[I]) {
-    return db.charts[game].findOne({
-        songID: songID,
-        playtype: playtype,
-        difficulty: difficulty,
-        isPrimary: true,
-    });
+	return db.charts[game].findOne({
+		songID: songID,
+		playtype: playtype,
+		difficulty: difficulty,
+		isPrimary: true,
+	});
 }
 
 /**
@@ -28,16 +28,16 @@ export function FindChartWithPTDF<
  * `isPrimary` set.
  */
 export function FindChartWithPTDFVersion<
-    G extends Game = Game,
-    P extends Playtypes[G] = Playtypes[G],
-    I extends IDStrings = IDStrings
+	G extends Game = Game,
+	P extends Playtypes[G] = Playtypes[G],
+	I extends IDStrings = IDStrings
 >(game: G, songID: integer, playtype: P, difficulty: Difficulties[I], version: string) {
-    return db.charts[game].findOne({
-        songID: songID,
-        playtype: playtype,
-        difficulty: difficulty,
-        versions: version,
-    });
+	return db.charts[game].findOne({
+		songID: songID,
+		playtype: playtype,
+		difficulty: difficulty,
+		versions: version,
+	});
 }
 
 /**
@@ -52,20 +52,20 @@ export function FindChartWithPTDFVersion<
  * @param difficulty The difficulty for the chart.
  */
 export function FindDDRChartOnSongHash(
-    songHash: string,
-    // Technically both of these should be "ddr" instead of Game, but it proves hard to work with.
-    playtype: Playtypes[Game],
-    difficulty: Difficulties[IDStrings]
+	songHash: string,
+	// Technically both of these should be "ddr" instead of Game, but it proves hard to work with.
+	playtype: Playtypes[Game],
+	difficulty: Difficulties[IDStrings]
 ) {
-    // note: this only works on accident because monk
-    // allows any strings like "foo.bar".
-    // We *should* normally cast this to ChartDocument<"ddr:SP" | "ddr:DP">
-    return db.charts.ddr.findOne({
-        "data.songHash": songHash,
-        playtype,
-        difficulty,
-        isPrimary: true,
-    });
+	// note: this only works on accident because monk
+	// allows any strings like "foo.bar".
+	// We *should* normally cast this to ChartDocument<"ddr:SP" | "ddr:DP">
+	return db.charts.ddr.findOne({
+		"data.songHash": songHash,
+		playtype,
+		difficulty,
+		isPrimary: true,
+	});
 }
 
 /**
@@ -73,29 +73,29 @@ export function FindDDRChartOnSongHash(
  * @param hash The md5 or sha256 hash to look for.
  */
 export function FindBMSChartOnHash(hash: string) {
-    return db.charts.bms.findOne({
-        $or: [{ "data.hashMD5": hash }, { "data.hashSHA256": hash }],
-    });
+	return db.charts.bms.findOne({
+		$or: [{ "data.hashMD5": hash }, { "data.hashSHA256": hash }],
+	});
 }
 
 /**
  * Find a chart on its in-game-ID, playtype and difficulty.
  */
 export function FindChartOnInGameID(
-    game: Game,
-    inGameID: number,
-    playtype: Playtypes[Game],
-    difficulty: Difficulties[IDStrings]
+	game: Game,
+	inGameID: number,
+	playtype: Playtypes[Game],
+	difficulty: Difficulties[IDStrings]
 ) {
-    if (game === "bms" || game === "usc") {
-        throw new Error(`Cannot call FindChartOnInGameID for game ${game}.`);
-    }
+	if (game === "bms" || game === "usc") {
+		throw new Error(`Cannot call FindChartOnInGameID for game ${game}.`);
+	}
 
-    return db.charts[game].findOne({
-        "data.inGameID": inGameID,
-        playtype,
-        difficulty,
-    });
+	return db.charts[game].findOne({
+		"data.inGameID": inGameID,
+		playtype,
+		difficulty,
+	});
 }
 
 /**
@@ -103,17 +103,17 @@ export function FindChartOnInGameID(
  * This explicitly ignores 2dxtra charts, and is necessary to use for iidx to disambiguate.
  */
 export function FindIIDXChartOnInGameID(
-    inGameID: number,
-    playtype: Playtypes[Game],
-    difficulty: Difficulties[IDStrings]
+	inGameID: number,
+	playtype: Playtypes[Game],
+	difficulty: Difficulties[IDStrings]
 ) {
-    return db.charts.iidx.findOne({
-        "data.inGameID": inGameID,
-        "flags.2dxtra": false,
-        isPrimary: true,
-        playtype,
-        difficulty,
-    });
+	return db.charts.iidx.findOne({
+		"data.inGameID": inGameID,
+		"flags.2dxtra": false,
+		isPrimary: true,
+		playtype,
+		difficulty,
+	});
 }
 
 /**
@@ -121,45 +121,45 @@ export function FindIIDXChartOnInGameID(
  * This explicitly ignores 2dxtra charts, and is necessary to use for iidx to disambiguate.
  */
 export function FindIIDXChartOnInGameIDVersion(
-    inGameID: number,
-    playtype: Playtypes[Game],
-    difficulty: Difficulties[IDStrings],
-    version: string
+	inGameID: number,
+	playtype: Playtypes[Game],
+	difficulty: Difficulties[IDStrings],
+	version: string
 ) {
-    return db.charts.iidx.findOne({
-        "data.inGameID": inGameID,
-        "flags.2dxtra": false,
-        playtype,
-        difficulty,
-        versions: version,
-    });
+	return db.charts.iidx.findOne({
+		"data.inGameID": inGameID,
+		"flags.2dxtra": false,
+		playtype,
+		difficulty,
+		versions: version,
+	});
 }
 
 /**
  * Find a chart on its in-game-ID, playtype, difficulty and version.
  */
 export function FindChartOnInGameIDVersion(
-    game: Game,
-    inGameID: number,
-    playtype: Playtypes[Game],
-    difficulty: Difficulties[IDStrings],
-    version: string
+	game: Game,
+	inGameID: number,
+	playtype: Playtypes[Game],
+	difficulty: Difficulties[IDStrings],
+	version: string
 ) {
-    return db.charts[game].findOne({
-        "data.inGameID": inGameID,
-        versions: version,
-        playtype,
-        difficulty,
-    });
+	return db.charts[game].findOne({
+		"data.inGameID": inGameID,
+		versions: version,
+		playtype,
+		difficulty,
+	});
 }
 
 /**
  * Finds an IIDX chart on its 2dxtra hash, which is the sha256 of the .1 buffer.
  */
 export function FindIIDXChartWith2DXtraHash(hash: string) {
-    return db.charts.iidx.findOne({
-        "data.hashSHA256": hash,
-    });
+	return db.charts.iidx.findOne({
+		"data.hashSHA256": hash,
+	});
 }
 
 /**
@@ -169,50 +169,50 @@ export function FindIIDXChartWith2DXtraHash(hash: string) {
  * all of those as the same difficulty, but we do not.
  */
 export function FindSDVXChartOnInGameID(
-    inGameID: number,
-    difficulty: Difficulties["sdvx:Single"] | "ANY_INF"
+	inGameID: number,
+	difficulty: Difficulties["sdvx:Single"] | "ANY_INF"
 ) {
-    const diffQuery =
-        difficulty === "ANY_INF"
-            ? { $in: ["INF", "GRV", "HVN", "VVD"] as Difficulties["sdvx:Single"][] }
-            : difficulty;
+	const diffQuery =
+		difficulty === "ANY_INF"
+			? { $in: ["INF", "GRV", "HVN", "VVD"] as Difficulties["sdvx:Single"][] }
+			: difficulty;
 
-    return db.charts.sdvx.findOne({
-        "data.inGameID": inGameID,
-        difficulty: diffQuery,
-        isPrimary: true,
-    });
+	return db.charts.sdvx.findOne({
+		"data.inGameID": inGameID,
+		difficulty: diffQuery,
+		isPrimary: true,
+	});
 }
 
 export function FindSDVXChartOnInGameIDVersion(
-    inGameID: number,
-    difficulty: "NOV" | "ADV" | "EXH" | "MXM" | "ANY_INF",
-    version: string
+	inGameID: number,
+	difficulty: "NOV" | "ADV" | "EXH" | "MXM" | "ANY_INF",
+	version: string
 ) {
-    const diffQuery =
-        difficulty === "ANY_INF"
-            ? { $in: ["INF", "GRV", "HVN", "VVD"] as Difficulties["sdvx:Single"][] }
-            : difficulty;
+	const diffQuery =
+		difficulty === "ANY_INF"
+			? { $in: ["INF", "GRV", "HVN", "VVD"] as Difficulties["sdvx:Single"][] }
+			: difficulty;
 
-    return db.charts.sdvx.findOne({
-        "data.inGameID": inGameID,
-        difficulty: diffQuery,
-        versions: version,
-    });
+	return db.charts.sdvx.findOne({
+		"data.inGameID": inGameID,
+		difficulty: diffQuery,
+		versions: version,
+	});
 }
 
 export function FindChartOnSHA256(game: Game, hash: string) {
-    if (game !== "bms" && game !== "usc" && game !== "iidx") {
-        throw new Error(`Cannot call FindChartOnSHA256 for game ${game}.`);
-    }
+	if (game !== "bms" && game !== "usc" && game !== "iidx") {
+		throw new Error(`Cannot call FindChartOnSHA256 for game ${game}.`);
+	}
 
-    return db.charts[game].findOne({
-        "data.hashSHA256": hash,
-    });
+	return db.charts[game].findOne({
+		"data.hashSHA256": hash,
+	});
 }
 
 export function FindChartOnARCID(game: "iidx" | "ddr" | "jubeat" | "sdvx", arcID: string) {
-    return db.charts[game].findOne({
-        "data.arcChartID": arcID,
-    });
+	return db.charts[game].findOne({
+		"data.arcChartID": arcID,
+	});
 }

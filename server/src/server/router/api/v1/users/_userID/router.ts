@@ -13,13 +13,13 @@ router.use(GetUserFromParam);
  * @name GET /api/v1/users/:userID
  */
 router.get("/", (req, res) => {
-    const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-    return res.status(200).json({
-        success: true,
-        description: `Found user ${user.username}.`,
-        body: user,
-    });
+	return res.status(200).json({
+		success: true,
+		description: `Found user ${user.username}.`,
+		body: user,
+	});
 });
 
 /**
@@ -29,16 +29,16 @@ router.get("/", (req, res) => {
  * @name GET /api/v1/users/:userID/game-stats
  */
 router.get("/game-stats", async (req, res) => {
-    const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-    // a user has played a game if and only if they have stats for it.
-    const stats = await db["game-stats"].find({ userID: user.id });
+	// a user has played a game if and only if they have stats for it.
+	const stats = await db["game-stats"].find({ userID: user.id });
 
-    return res.status(200).json({
-        success: true,
-        description: `Returned ${stats.length} stats objects.`,
-        body: stats,
-    });
+	return res.status(200).json({
+		success: true,
+		description: `Returned ${stats.length} stats objects.`,
+		body: stats,
+	});
 });
 
 router.use("/games/:game/:playtype", gamePTRouter);

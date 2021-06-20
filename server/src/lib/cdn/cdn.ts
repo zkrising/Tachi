@@ -14,16 +14,16 @@ const logger = CreateLogCtx(__filename);
  * Joins a file location against the location of the CDN static store.
  */
 function CDNRoot(fileLoc: string) {
-    return path.join(KTCDN_ROOT, fileLoc);
+	return path.join(KTCDN_ROOT, fileLoc);
 }
 
 /**
  * Retrieves the data of the file at the given CDN location.
  */
 export function RetrieveCDN(fileLoc: string) {
-    logger.debug(`Retrieving path ${fileLoc}.`);
+	logger.debug(`Retrieving path ${fileLoc}.`);
 
-    return readFilePromise(CDNRoot(fileLoc));
+	return readFilePromise(CDNRoot(fileLoc));
 }
 
 /**
@@ -36,12 +36,12 @@ const WRITE_NO_OVERWRITE = "wx";
  * @returns Nothing on success. Throws on error.
  */
 export async function StoreCDN(fileLoc: string, data: Buffer | string) {
-    logger.debug(`Storing path ${fileLoc}.`);
+	logger.debug(`Storing path ${fileLoc}.`);
 
-    const loc = CDNRoot(fileLoc);
+	const loc = CDNRoot(fileLoc);
 
-    // make the parent folders if they dont exist. else, mkdirp is a no-op.
-    await mkdirp(path.dirname(loc));
+	// make the parent folders if they dont exist. else, mkdirp is a no-op.
+	await mkdirp(path.dirname(loc));
 
-    return writeFilePromise(loc, data, { flag: WRITE_NO_OVERWRITE });
+	return writeFilePromise(loc, data, { flag: WRITE_NO_OVERWRITE });
 }

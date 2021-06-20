@@ -14,16 +14,16 @@ router.use(RequirePermissions("submit:score"));
  * @name POST /ir/barbatos/score/submit
  */
 router.post("/score/submit", async (req, res) => {
-    const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth]!.userID!);
+	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth]!.userID!);
 
-    const responseData = await ExpressWrappedScoreImportMain(
-        userDoc,
-        false,
-        "ir/barbatos",
-        (logger) => ParseBarbatosSingle(req.body, logger)
-    );
+	const responseData = await ExpressWrappedScoreImportMain(
+		userDoc,
+		false,
+		"ir/barbatos",
+		(logger) => ParseBarbatosSingle(req.body, logger)
+	);
 
-    return res.status(responseData.statusCode).json(responseData.body);
+	return res.status(responseData.statusCode).json(responseData.body);
 });
 
 export default router;

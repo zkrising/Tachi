@@ -12,26 +12,26 @@ const logger = CreateLogCtx(__filename);
 let store;
 
 if (process.env.NODE_ENV !== "test") {
-    const RedisStore = connectRedis(expressSession);
-    store = new RedisStore({
-        host: "localhost",
-        port: 6379,
-        client: RedisClient,
-    });
+	const RedisStore = connectRedis(expressSession);
+	store = new RedisStore({
+		host: "localhost",
+		port: 6379,
+		client: RedisClient,
+	});
 }
 
 const userSessionMiddleware = expressSession({
-    // append node_env onto the end of the session name
-    // so we can separate tokens under the same URL.
-    // say for staging.kamaitachi.xyz
-    name: `${CONFIG.TYPE}_${process.env.NODE_ENV}_session`,
-    secret: SESSION_SECRET,
-    store,
-    resave: true,
-    saveUninitialized: false,
-    cookie: {
-        secure: process.env.NODE_ENV === "production",
-    },
+	// append node_env onto the end of the session name
+	// so we can separate tokens under the same URL.
+	// say for staging.kamaitachi.xyz
+	name: `${CONFIG.TYPE}_${process.env.NODE_ENV}_session`,
+	secret: SESSION_SECRET,
+	store,
+	resave: true,
+	saveUninitialized: false,
+	cookie: {
+		secure: process.env.NODE_ENV === "production",
+	},
 });
 
 const app: Express = express();
@@ -49,9 +49,9 @@ app.set("query parser", "simple");
 // taken from https://nodejs.org/api/process.html#process_event_unhandledrejection
 // to avoid future deprecation.
 process.on("unhandledRejection", (reason, promise) => {
-    // @ts-expect-error reason is an error, and the logger can handle errors
-    // it just refuses.
-    logger.error(reason, { promise });
+	// @ts-expect-error reason is an error, and the logger can handle errors
+	// it just refuses.
+	logger.error(reason, { promise });
 });
 
 // enable reading json bodies
@@ -68,32 +68,32 @@ app.use("/", mainRouter);
  */
 app.get("*", (req, res) => res.status(200).send("todo"));
 app.all("*", (req, res) =>
-    res.status(404).json({ success: false, description: "404: This URL does not exist." })
+	res.status(404).json({ success: false, description: "404: This URL does not exist." })
 );
 
 // completely stolen from ktapi error handler
 interface ExpressJSONErr extends SyntaxError {
-    status: integer;
-    message: string;
+	status: integer;
+	message: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res) => {
-    logger.info("foo");
-    if (err instanceof SyntaxError) {
-        const expErr: ExpressJSONErr = err as ExpressJSONErr;
-        if (expErr.status === 400 && "body" in expErr) {
-            return res.status(400).send({ success: false, description: err.message });
-        }
+	logger.info("foo");
+	if (err instanceof SyntaxError) {
+		const expErr: ExpressJSONErr = err as ExpressJSONErr;
+		if (expErr.status === 400 && "body" in expErr) {
+			return res.status(400).send({ success: false, description: err.message });
+		}
 
-        // else, this isn't a JSON parsing error
-    }
+		// else, this isn't a JSON parsing error
+	}
 
-    logger.error(err, req.route);
-    return res.status(500).json({
-        success: false,
-        description: "A fatal internal server error has occured.",
-    });
+	logger.error(err, req.route);
+	return res.status(500).json({
+		success: false,
+		description: "A fatal internal server error has occured.",
+	});
 };
 
 app.use(MAIN_ERR_HANDLER);

@@ -23,9 +23,9 @@ const logger = CreateLogCtx(__filename);
 const router: Router = Router({ mergeParams: true });
 
 const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware(
-    "scoreData",
-    SIXTEEN_MEGABTYES,
-    logger
+	"scoreData",
+	SIXTEEN_MEGABTYES,
+	logger
 );
 
 /**
@@ -33,47 +33,47 @@ const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware(
  * @name POST /api/v1/import/file
  */
 router.post(
-    "/file",
-    RequireLoggedInSession,
-    RequireKamaitachi, // This is only useful for Kamaitachi, so.
-    ParseMultipartScoredata,
-    prValidate(
-        {
-            importType: Prudence.isIn(fileImportTypes),
-        },
-        {},
-        { allowExcessKeys: true }
-    ),
-    async (req, res) => {
-        if (!req.file) {
-            return res.status(400).json({
-                success: false,
-                description: `No file provided.`,
-            });
-        }
+	"/file",
+	RequireLoggedInSession,
+	RequireKamaitachi, // This is only useful for Kamaitachi, so.
+	ParseMultipartScoredata,
+	prValidate(
+		{
+			importType: Prudence.isIn(fileImportTypes),
+		},
+		{},
+		{ allowExcessKeys: true }
+	),
+	async (req, res) => {
+		if (!req.file) {
+			return res.status(400).json({
+				success: false,
+				description: `No file provided.`,
+			});
+		}
 
-        const importType = req.body.importType as FileUploadImportTypes;
+		const importType = req.body.importType as FileUploadImportTypes;
 
-        const inputParser = (logger: KtLogger) =>
-            ResolveFileUploadData(importType, req.file, req.body, logger);
+		const inputParser = (logger: KtLogger) =>
+			ResolveFileUploadData(importType, req.file, req.body, logger);
 
-        const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.userID);
+		const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.userID);
 
-        // The <any, any> here is deliberate - TS picks the IIDX-CSV generic values
-        // for this function call because it sees them first
-        // but that is ABSOLUTELY not what is actually occuring.
-        // We use this as an override because we know better.
-        // see: https://www.typescriptlang.org/play?ts=4.3.0-beta#code/GYVwdgxgLglg9mABAQQDwBUB8AKYc4BciAYvhpgJSIDeiAsAFCKID0LiAJnAKYDOivKCGDBGAX0aMYYKNwBOwAIYRuJMlhqNmzAEaK5RdOMkNQkWAkQAlbkLlgAynAC23UnGxVqW7W0QAHOVtuMA5EKAALGH5o8IjVIN4QABsoRDhgARdVaX8QNOlBbkUwjMQ5RVCXH2YYTOwAWUVIgDoKqudPRFREAAYWgFYvGu1mILskWj0DRAAiQTlpAHNZxAkmbXXRkfGQexpEaaIARgAmAGY14wZGZNt0vfdEAF5rWz3HbPdPAG4TZGwcEe+AoPyAA
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const responseData = await ExpressWrappedScoreImportMain<any, any>(
-            userDoc,
-            true,
-            importType,
-            inputParser
-        );
+		// The <any, any> here is deliberate - TS picks the IIDX-CSV generic values
+		// for this function call because it sees them first
+		// but that is ABSOLUTELY not what is actually occuring.
+		// We use this as an override because we know better.
+		// see: https://www.typescriptlang.org/play?ts=4.3.0-beta#code/GYVwdgxgLglg9mABAQQDwBUB8AKYc4BciAYvhpgJSIDeiAsAFCKID0LiAJnAKYDOivKCGDBGAX0aMYYKNwBOwAIYRuJMlhqNmzAEaK5RdOMkNQkWAkQAlbkLlgAynAC23UnGxVqW7W0QAHOVtuMA5EKAALGH5o8IjVIN4QABsoRDhgARdVaX8QNOlBbkUwjMQ5RVCXH2YYTOwAWUVIgDoKqudPRFREAAYWgFYvGu1mILskWj0DRAAiQTlpAHNZxAkmbXXRkfGQexpEaaIARgAmAGY14wZGZNt0vfdEAF5rWz3HbPdPAG4TZGwcEe+AoPyAA
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const responseData = await ExpressWrappedScoreImportMain<any, any>(
+			userDoc,
+			true,
+			importType,
+			inputParser
+		);
 
-        return res.status(responseData.statusCode).json(responseData.body);
-    }
+		return res.status(responseData.statusCode).json(responseData.body);
+	}
 );
 
 /**
@@ -87,28 +87,28 @@ router.post(
  * @param body - Other data passed by the user in the request body.
  */
 export function ResolveFileUploadData(
-    importType: FileUploadImportTypes,
-    fileData: Express.Multer.File,
-    body: Record<string, unknown>,
-    logger: KtLogger
+	importType: FileUploadImportTypes,
+	fileData: Express.Multer.File,
+	body: Record<string, unknown>,
+	logger: KtLogger
 ) {
-    switch (importType) {
-        case "file/eamusement-iidx-csv":
-            return ParseEamusementIIDXCSV(fileData, body, logger);
-        case "file/pli-iidx-csv":
-            return ParsePLIIIDXCSV(fileData, body, logger);
-        case "file/batch-manual":
-            return ParseBatchManual(fileData, body, logger);
-        case "file/solid-state-squad":
-            return ParseSolidStateXML(fileData, body, logger);
-        case "file/mer-iidx":
-            return ParseMerIIDX(fileData, body, logger);
-        default:
-            logger.error(
-                `importType ${importType} made it into ResolveFileUploadData, but should have been rejected by Prudence.`
-            );
-            throw new ScoreImportFatalError(400, `Invalid importType of ${importType}.`);
-    }
+	switch (importType) {
+		case "file/eamusement-iidx-csv":
+			return ParseEamusementIIDXCSV(fileData, body, logger);
+		case "file/pli-iidx-csv":
+			return ParsePLIIIDXCSV(fileData, body, logger);
+		case "file/batch-manual":
+			return ParseBatchManual(fileData, body, logger);
+		case "file/solid-state-squad":
+			return ParseSolidStateXML(fileData, body, logger);
+		case "file/mer-iidx":
+			return ParseMerIIDX(fileData, body, logger);
+		default:
+			logger.error(
+				`importType ${importType} made it into ResolveFileUploadData, but should have been rejected by Prudence.`
+			);
+			throw new ScoreImportFatalError(400, `Invalid importType of ${importType}.`);
+	}
 }
 
 export default router;

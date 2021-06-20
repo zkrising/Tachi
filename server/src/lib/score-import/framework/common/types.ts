@@ -5,10 +5,10 @@ import { IDStrings, ScoreDocument, Playtypes, Game } from "tachi-common";
  * HydrateScore.
  */
 export type DryScore<I extends IDStrings = IDStrings> = Pick<
-    ScoreDocument<I>,
-    "service" | "game" | "scoreMeta" | "timeAchieved" | "comment" | "importType"
+	ScoreDocument<I>,
+	"service" | "game" | "scoreMeta" | "timeAchieved" | "comment" | "importType"
 > & {
-    scoreData: Omit<ScoreDocument<I>["scoreData"], "gradeIndex" | "lampIndex" | "esd">;
+	scoreData: Omit<ScoreDocument<I>["scoreData"], "gradeIndex" | "lampIndex" | "esd">;
 };
 
 export type ScorePlaytypeMap = Partial<Record<Playtypes[Game], ScoreDocument[]>>;

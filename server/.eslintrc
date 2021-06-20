@@ -31,7 +31,8 @@
                 "singleQuote": false,
                 "trailingComma": "es5",
                 "bracketSpacing": true,
-                "endOfLine": "auto"
+                "endOfLine": "auto",
+                "useTabs": true
             }
         ],
         "@typescript-eslint/explicit-module-boundary-types": "off",

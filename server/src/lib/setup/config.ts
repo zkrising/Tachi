@@ -13,70 +13,70 @@ const confFile = fs.readFileSync("./conf.json5", "utf-8");
 const config = JSON5.parse(confFile);
 
 function isValidURL(self: unknown) {
-    if (typeof self !== "string") {
-        return `Expected URL, received type ${typeof self}`;
-    }
+	if (typeof self !== "string") {
+		return `Expected URL, received type ${typeof self}`;
+	}
 
-    try {
-        new URL(self);
-        return true;
-    } catch (err) {
-        return `Invalid URL ${self}.`;
-    }
+	try {
+		new URL(self);
+		return true;
+	} catch (err) {
+		return `Invalid URL ${self}.`;
+	}
 }
 
 export interface TachiConfig {
-    MONGO_CONNECTION_URL: string;
-    MONGO_DATABASE_NAME: string;
-    LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
-    CAPTCHA_SECRET_KEY: string;
-    SESSION_SECRET: string;
-    FLO_API_URL: string;
-    EAG_API_URL: string;
-    ARC_API_URL: string;
-    ARC_AUTH_TOKEN: string;
-    CDN_ROOT: string;
-    TYPE: "ktchi" | "btchi" | "omni";
-    PORT: integer;
-    TYPE_INFO: {
-        NAME: string;
-        SUPPORTED_GAMES: Game[];
-    };
+	MONGO_CONNECTION_URL: string;
+	MONGO_DATABASE_NAME: string;
+	LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
+	CAPTCHA_SECRET_KEY: string;
+	SESSION_SECRET: string;
+	FLO_API_URL: string;
+	EAG_API_URL: string;
+	ARC_API_URL: string;
+	ARC_AUTH_TOKEN: string;
+	CDN_ROOT: string;
+	TYPE: "ktchi" | "btchi" | "omni";
+	PORT: integer;
+	TYPE_INFO: {
+		NAME: string;
+		SUPPORTED_GAMES: Game[];
+	};
 }
 
 const err = p(config, {
-    MONGO_CONNECTION_URL: "string",
-    MONGO_DATABASE_NAME: "string",
-    LOG_LEVEL: p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit"),
-    CAPTCHA_SECRET_KEY: "string",
-    SESSION_SECRET: "string",
-    FLO_API_URL: isValidURL,
-    EAG_API_URL: isValidURL,
-    ARC_API_URL: isValidURL,
-    ARC_AUTH_TOKEN: "string",
-    CDN_ROOT: "string",
-    PORT: p.isPositiveInteger,
-    TYPE: p.isIn("ktchi", "btchi", "omni"),
+	MONGO_CONNECTION_URL: "string",
+	MONGO_DATABASE_NAME: "string",
+	LOG_LEVEL: p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit"),
+	CAPTCHA_SECRET_KEY: "string",
+	SESSION_SECRET: "string",
+	FLO_API_URL: isValidURL,
+	EAG_API_URL: isValidURL,
+	ARC_API_URL: isValidURL,
+	ARC_AUTH_TOKEN: "string",
+	CDN_ROOT: "string",
+	PORT: p.isPositiveInteger,
+	TYPE: p.isIn("ktchi", "btchi", "omni"),
 });
 
 if (err) {
-    throw FormatPrError(err, "Invalid conf.json5 file.");
+	throw FormatPrError(err, "Invalid conf.json5 file.");
 }
 
 /**
  * KTCHI | Kamaitachi is the arcade build of Tachi.
  */
 const KTCHI_INFO: TachiConfig["TYPE_INFO"] = {
-    NAME: "Kamaitachi",
-    SUPPORTED_GAMES: ["iidx", "gitadora", "chunithm", "maimai", "museca", "sdvx"],
+	NAME: "Kamaitachi",
+	SUPPORTED_GAMES: ["iidx", "gitadora", "chunithm", "maimai", "museca", "sdvx"],
 };
 
 /**
  * BTCHI | Bokutachi is the home-simulator build of Tachi.
  */
 const BTCHI_INFO: TachiConfig["TYPE_INFO"] = {
-    NAME: "Bokutachi",
-    SUPPORTED_GAMES: ["usc", "bms"],
+	NAME: "Bokutachi",
+	SUPPORTED_GAMES: ["usc", "bms"],
 };
 
 /**
@@ -86,16 +86,16 @@ const BTCHI_INFO: TachiConfig["TYPE_INFO"] = {
  * this codebase this is what you're looking for.
  */
 const OMNI_INFO: TachiConfig["TYPE_INFO"] = {
-    NAME: "Omnitachi",
-    SUPPORTED_GAMES: [...KTCHI_INFO.SUPPORTED_GAMES, ...BTCHI_INFO.SUPPORTED_GAMES],
+	NAME: "Omnitachi",
+	SUPPORTED_GAMES: [...KTCHI_INFO.SUPPORTED_GAMES, ...BTCHI_INFO.SUPPORTED_GAMES],
 };
 
 if (config.TYPE === "ktchi") {
-    config.TYPE_INFO = KTCHI_INFO;
+	config.TYPE_INFO = KTCHI_INFO;
 } else if (config.TYPE === "btchi") {
-    config.TYPE_INFO = BTCHI_INFO;
+	config.TYPE_INFO = BTCHI_INFO;
 } else if (config.TYPE === "omni") {
-    config.TYPE_INFO = OMNI_INFO;
+	config.TYPE_INFO = OMNI_INFO;
 }
 
 const tachiConfig = config as TachiConfig;

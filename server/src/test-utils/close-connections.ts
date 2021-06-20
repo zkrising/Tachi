@@ -4,8 +4,8 @@ import { CloseRedisConnection } from "../external/redis/redis";
 import { CloseServerConnection } from "./mock-api";
 
 export async function CloseAllConnections() {
-    await CloseMongoConnection();
-    await CloseServerConnection();
-    await CloseRedisConnection();
-    await CloseRedisPubSub();
+	await CloseMongoConnection();
+	await CloseServerConnection();
+	await CloseRedisConnection();
+	await CloseRedisPubSub();
 }

@@ -7,9 +7,9 @@ import db from "../external/mongo/db";
  * @param session The session to retrieve the score documents of.
  */
 export function GetScoresFromSession(session: SessionDocument) {
-    return db.scores.find({
-        scoreID: { $in: session.scoreInfo.map((e) => e.scoreID) },
-    });
+	return db.scores.find({
+		scoreID: { $in: session.scoreInfo.map((e) => e.scoreID) },
+	});
 }
 
 /**
@@ -17,8 +17,8 @@ export function GetScoresFromSession(session: SessionDocument) {
  * @param score The score to return the associated session of.
  */
 export function GetSessionFromScore(score: ScoreDocument) {
-    return db.sessions.findOne({
-        // ??? another bug in monks types i think
-        scoreInfo: { scoreID: score.scoreID } as Condition<SessionScoreInfo>,
-    });
+	return db.sessions.findOne({
+		// ??? another bug in monks types i think
+		scoreInfo: { scoreID: score.scoreID } as Condition<SessionScoreInfo>,
+	});
 }

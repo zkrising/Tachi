@@ -119,15 +119,14 @@ export function ValidatePercent(
  */
 export function GenericGetGradeAndPercent<G extends Game>(
 	game: G,
-	playtype: Playtypes[G],
 	score: number,
 	chart: AnyChartDocument
 ) {
 	const percent = GenericCalculatePercent(game, score, chart);
 
-	ValidatePercent(game, playtype, percent, chart);
+	ValidatePercent(game, chart.playtype, percent, chart);
 
-	const grade = GetGradeFromPercent(game, playtype, percent) as Grades[GameToIDStrings[G]];
+	const grade = GetGradeFromPercent(game, chart.playtype, percent) as Grades[GameToIDStrings[G]];
 
 	return { percent, grade };
 }

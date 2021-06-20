@@ -22,9 +22,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ESDCore = exports.gameClasses = void 0;
+exports.StaticConfig = exports.ESDCore = exports.gameClasses = void 0;
 __exportStar(require("./types"), exports);
 __exportStar(require("./config/config"), exports);
 exports.gameClasses = __importStar(require("./game-classes"));
 exports.ESDCore = __importStar(require("./lib/esd"));
+exports.StaticConfig = __importStar(require("./config/static-config"));
 //# sourceMappingURL=index.js.map

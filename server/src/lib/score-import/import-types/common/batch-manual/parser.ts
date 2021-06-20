@@ -2,8 +2,7 @@ import { KtLogger } from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { BatchManual, BatchManualContext, BatchManualScore } from "./types";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
-import { lamps, validHitData, validPlaytypes } from "tachi-common/js/config";
-import { Game, ImportTypes } from "tachi-common";
+import { Game, ImportTypes, GetGamePTConfig, Playtypes, GetGameConfig } from "tachi-common";
 import deepmerge from "deepmerge";
 import { FormatPrError } from "../../../../../utils/prudence";
 import { ParserFunctionReturns } from "../types";
@@ -25,7 +24,7 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 			gaugeHistory: optNull([p.isBoundedInteger(0, 100)]),
 			comboBreak: optNull(p.isPositiveInteger),
 		};
-	} else if (game === "popn" || game === "sdvx" || game === "usc") {
+	} else if (/* game === "popn" || */ game === "sdvx" || game === "usc") {
 		return {
 			gauge: optNull(p.isBoundedInteger(0, 100)),
 		};
@@ -50,61 +49,66 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 	return {};
 };
 
-const PR_BatchManualScore = (game: Game): PrudenceSchema => ({
-	score: "number",
-	lamp: p.isIn(lamps[game]),
-	matchType: p.isIn(
-		"songTitle",
-		"ddrSongHash",
-		"kamaitachiSongID",
-		"bmsChartHash",
-		"title",
-		"songHash",
-		"songID",
-		"hash"
-	),
-	identifier: "string",
-	comment: optNull(p.isBoundedString(3, 240)),
-	playtype: optNull(p.isIn(validPlaytypes[game])),
-	difficulty: "*?string", // this is checked in converting instead
-	// september 9th 2001 - this saves people not
-	// reading the documentation.
-	timeAchieved: optNull(
-		(self) =>
-			(typeof self === "number" && self > 1_000_000_000_000) ||
-			"Expected a number greater than 1 Trillion - did you pass unix seconds instead of miliseconds?"
-	),
-	hitData: optNull((self) => {
-		if (typeof self !== "object" || self === null) {
-			return "Not a valid object.";
-		}
-
-		for (const key in self) {
-			if (!validHitData[game].includes(key)) {
-				return `Invalid Key ${key}. Expected any of ${validHitData[game].join(", ")}`;
+const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => {
+	const gptConfig = GetGamePTConfig(game, playtype);
+	return {
+		score: "number",
+		lamp: p.isIn(gptConfig.lamps),
+		matchType: p.isIn(
+			"songTitle",
+			"ddrSongHash",
+			"kamaitachiSongID",
+			"bmsChartHash",
+			"title",
+			"songHash",
+			"songID",
+			"hash"
+		),
+		identifier: "string",
+		comment: optNull(p.isBoundedString(3, 240)),
+		difficulty: "*?string", // this is checked in converting instead
+		// september 9th 2001 - this saves people not
+		// reading the documentation.
+		timeAchieved: optNull(
+			(self) =>
+				(typeof self === "number" && self > 1_000_000_000_000) ||
+				"Expected a number greater than 1 Trillion - did you pass unix seconds instead of miliseconds?"
+		),
+		hitData: optNull((self) => {
+			if (typeof self !== "object" || self === null) {
+				return "Not a valid object.";
 			}
 
-			// @ts-expect-error shush
-			const v = self[key];
-			if ((!Number.isSafeInteger(v) || v < 0) && v !== null) {
-				return `Key ${key} had an invalid value of ${v} [${typeof v}]`;
+			for (const key in self) {
+				if (!gptConfig.judgements.includes(key)) {
+					return `Invalid Key ${key}. Expected any of ${gptConfig.judgements.join(", ")}`;
+				}
+
+				// @ts-expect-error shush
+				const v = self[key];
+				if ((!Number.isSafeInteger(v) || v < 0) && v !== null) {
+					return `Key ${key} had an invalid value of ${v} [${typeof v}]`;
+				}
 			}
-		}
 
-		return true;
-	}),
-	hitMeta: optNull(deepmerge(BaseValidHitMeta, PR_HitMeta(game)) as unknown as ValidSchemaValue),
-	// scoreMeta: @todo #74
-	// more game specific props, maybe?
-});
+			return true;
+		}),
+		hitMeta: optNull(
+			deepmerge(BaseValidHitMeta, PR_HitMeta(game)) as unknown as ValidSchemaValue
+		),
+		// scoreMeta: @todo #74
+		// more game specific props, maybe?
+	};
+};
 
-const PR_BatchManual = (game: Game): PrudenceSchema => ({
+const PR_BatchManual = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => ({
 	head: {
 		service: p.isBoundedString(3, 15),
-		game: p.isIn(CONF_INFO.SUPPORTED_GAMES),
+		game: p.isIn(CONF_INFO.supportedGames),
+		playtype: p.is(playtype),
 		version: "*?string",
 	},
-	body: [PR_BatchManualScore(game)],
+	body: [PR_BatchManualScore(game, playtype)],
 });
 
 /**
@@ -132,29 +136,44 @@ export function ParseBatchManualFromObject(
 	// attempt to retrieve game
 	// @ts-expect-error man.
 	const possiblyGame = object?.head?.game;
+	// @ts-expect-error man.
+	const possiblyPlaytype = object?.head?.playtype;
 
-	if (!possiblyGame) {
+	if (!possiblyGame || !possiblyPlaytype) {
 		throw new ScoreImportFatalError(
 			400,
 			`Could not retrieve head.game - is this valid BATCH-MANUAL?`
 		);
 	}
 
-	if (!CONF_INFO.SUPPORTED_GAMES.includes(possiblyGame)) {
+	if (!CONF_INFO.supportedGames.includes(possiblyGame)) {
 		throw new ScoreImportFatalError(
 			400,
-			`Invalid game ${possiblyGame} - expected any of ${CONF_INFO.SUPPORTED_GAMES.join(", ")}`
+			`Invalid game ${possiblyGame} - expected any of ${CONF_INFO.supportedGames.join(", ")}.`
 		);
 	}
 
 	const game: Game = possiblyGame;
+
+	const gameConfig = GetGameConfig(game);
+
+	if (!gameConfig.validPlaytypes.includes(possiblyPlaytype)) {
+		throw new ScoreImportFatalError(
+			400,
+			`Invalid playtype ${possiblyPlaytype} - expected any of ${gameConfig.validPlaytypes.join(
+				", "
+			)}.`
+		);
+	}
+
+	const playtype: Playtypes[Game] = possiblyPlaytype;
 
 	// now that we have the game, we can validate this against
 	// the prudence schema for batch-manual.
 	// This mostly works as a sanity check, and doesn't
 	// check things like whether a score is > 100%
 	// or something.
-	const err = p(object, PR_BatchManual(game));
+	const err = p(object, PR_BatchManual(game, playtype));
 
 	if (err) {
 		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid BATCH-MANUAL"));
@@ -167,6 +186,7 @@ export function ParseBatchManualFromObject(
 		context: {
 			service: batchManual.head.service,
 			game,
+			playtype,
 			version: batchManual.head.version ?? null,
 		},
 		iterable: batchManual.body,

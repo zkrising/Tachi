@@ -5,7 +5,7 @@ export type BatchManualScore = {
 	lamp: Lamps[IDStrings];
 	timeAchieved?: number | null;
 	comment?: string | null;
-	hitData?: Record<string, unknown> | null;
+	judgements?: Record<string, unknown> | null;
 	hitMeta?: Record<string, unknown> | null;
 	identifier: string;
 	matchType:
@@ -18,7 +18,6 @@ export type BatchManualScore = {
 		| "songID" // songID is legacy - use kamaitachiSongID
 		| "hash"; // hash is legacy - use bmsChartHash
 
-	playtype?: Playtypes[Game] | null;
 	difficulty?: string | null; // lazy...
 };
 
@@ -33,6 +32,7 @@ export interface BatchManual {
 
 export interface BatchManualContext {
 	game: Game;
+	playtype: Playtypes[Game];
 	service: string;
 	version: string | null;
 }

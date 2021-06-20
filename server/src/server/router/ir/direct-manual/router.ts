@@ -13,23 +13,23 @@ const router: Router = Router({ mergeParams: true });
  * @name POST /ir/direct-manual/import
  */
 router.post(
-    "/import",
-    RequirePermissions("submit:score"),
-    RequireLoggedInSession,
-    async (req, res) => {
-        const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
+	"/import",
+	RequirePermissions("submit:score"),
+	RequireLoggedInSession,
+	async (req, res) => {
+		const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
 
-        const intent = req.header("X-User-Intent");
+		const intent = req.header("X-User-Intent");
 
-        const responseData = await ExpressWrappedScoreImportMain(
-            userDoc,
-            !!intent,
-            "ir/direct-manual",
-            (logger) => ParseDirectManual(req.body, logger)
-        );
+		const responseData = await ExpressWrappedScoreImportMain(
+			userDoc,
+			!!intent,
+			"ir/direct-manual",
+			(logger) => ParseDirectManual(req.body, logger)
+		);
 
-        return res.status(responseData.statusCode).json(responseData.body);
-    }
+		return res.status(responseData.statusCode).json(responseData.body);
+	}
 );
 
 export default router;

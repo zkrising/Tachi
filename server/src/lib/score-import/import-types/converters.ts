@@ -16,29 +16,29 @@ import { ConverterIRFervidex } from "./ir/fervidex/converter";
 import { ConverterIRUSC } from "./ir/usc/converter";
 
 export type ConverterMap = {
-    [I in ImportTypes]: ConverterFunction<ImportTypeDataMap[I], ImportTypeContextMap[I]>;
+	[I in ImportTypes]: ConverterFunction<ImportTypeDataMap[I], ImportTypeContextMap[I]>;
 };
 
 export const Converters: ConverterMap = {
-    "file/solid-state-squad": ConvertFileS3,
-    "file/batch-manual": ConverterBatchManual,
-    "file/mer-iidx": ConvertFileMerIIDX,
-    "file/pli-iidx-csv": ConvertEamIIDXCSV,
-    "file/eamusement-iidx-csv": ConvertEamIIDXCSV,
+	"file/solid-state-squad": ConvertFileS3,
+	"file/batch-manual": ConverterBatchManual,
+	"file/mer-iidx": ConvertFileMerIIDX,
+	"file/pli-iidx-csv": ConvertEamIIDXCSV,
+	"file/eamusement-iidx-csv": ConvertEamIIDXCSV,
 
-    "api/eag-iidx": ConvertAPIKaiIIDX,
-    "api/eag-sdvx": ConvertAPIKaiSDVX,
-    "api/flo-iidx": ConvertAPIKaiIIDX,
-    "api/flo-sdvx": ConvertAPIKaiSDVX,
-    "api/arc-iidx": ConvertAPIArcIIDX,
-    "api/arc-ddr": ConvertAPIArcDDR,
-    "api/arc-sdvx": ConvertAPIArcSDVX,
+	"api/eag-iidx": ConvertAPIKaiIIDX,
+	"api/eag-sdvx": ConvertAPIKaiSDVX,
+	"api/flo-iidx": ConvertAPIKaiIIDX,
+	"api/flo-sdvx": ConvertAPIKaiSDVX,
+	"api/arc-iidx": ConvertAPIArcIIDX,
+	"api/arc-ddr": ConvertAPIArcDDR,
+	"api/arc-sdvx": ConvertAPIArcSDVX,
 
-    "ir/barbatos": ConverterIRBarbatos,
-    "ir/beatoraja": ConverterIRBeatoraja,
-    "ir/fervidex": ConverterIRFervidex,
-    "ir/fervidex-static": ConverterIRFervidexStatic,
-    "ir/direct-manual": ConverterBatchManual,
-    "ir/usc": ConverterIRUSC,
-    "ir/chunitachi": ConverterBatchManual,
+	"ir/barbatos": ConverterIRBarbatos,
+	"ir/beatoraja": ConverterIRBeatoraja,
+	"ir/fervidex": ConverterIRFervidex,
+	"ir/fervidex-static": ConverterIRFervidexStatic,
+	"ir/direct-manual": ConverterBatchManual,
+	"ir/usc": ConverterIRUSC,
+	"ir/chunitachi": ConverterBatchManual,
 };

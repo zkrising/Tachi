@@ -7,39 +7,39 @@ import { TestingBarbatosScore } from "../../../../test-utils/test-data";
 import db from "../../../../external/mongo/db";
 
 t.test("POST /ir/barbatos/score/submit", async (t) => {
-    const cookie = await CreateFakeAuthCookie(mockApi);
+	const cookie = await CreateFakeAuthCookie(mockApi);
 
-    t.beforeEach(ResetDBState);
+	t.beforeEach(ResetDBState);
 
-    t.test("Should import a valid score", async (t) => {
-        const res = await mockApi
-            .post("/ir/barbatos/score/submit")
-            .set("Cookie", cookie)
-            .send(TestingBarbatosScore);
+	t.test("Should import a valid score", async (t) => {
+		const res = await mockApi
+			.post("/ir/barbatos/score/submit")
+			.set("Cookie", cookie)
+			.send(TestingBarbatosScore);
 
-        t.equal(res.body.success, true, "Should be successful");
+		t.equal(res.body.success, true, "Should be successful");
 
-        t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
+		t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
-        const scores = await db.scores.count({
-            service: "Barbatos",
-        });
+		const scores = await db.scores.count({
+			service: "Barbatos",
+		});
 
-        t.equal(scores, 1, "Should import 1 score.");
+		t.equal(scores, 1, "Should import 1 score.");
 
-        t.end();
-    });
+		t.end();
+	});
 
-    t.test("Should reject an invalid body", async (t) => {
-        const res = await mockApi.post("/ir/barbatos/score/submit").set("Cookie", cookie).send({});
+	t.test("Should reject an invalid body", async (t) => {
+		const res = await mockApi.post("/ir/barbatos/score/submit").set("Cookie", cookie).send({});
 
-        t.equal(res.body.success, false, "Should not be successful.");
-        t.equal(res.status, 400, "Should return 400.");
+		t.equal(res.body.success, false, "Should not be successful.");
+		t.equal(res.status, 400, "Should return 400.");
 
-        t.end();
-    });
+		t.end();
+	});
 
-    t.end();
+	t.end();
 });
 
 t.teardown(CloseAllConnections);

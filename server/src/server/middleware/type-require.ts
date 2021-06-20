@@ -7,14 +7,14 @@ import { RequestHandler } from "express";
  * this restriction is bypassed.
  */
 export const RequireBokutachi: RequestHandler = (req, res, next) => {
-    if (CONFIG.TYPE === "btchi" || CONFIG.TYPE === "omni") {
-        return next();
-    }
+	if (CONFIG.TYPE === "btchi" || CONFIG.TYPE === "omni") {
+		return next();
+	}
 
-    return res.status(404).send({
-        success: false,
-        description: `The route ${req.url} is only available on Bokutachi.`,
-    });
+	return res.status(404).send({
+		success: false,
+		description: `The route ${req.url} is only available on Bokutachi.`,
+	});
 };
 
 /**
@@ -23,12 +23,12 @@ export const RequireBokutachi: RequestHandler = (req, res, next) => {
  * this restriction is bypassed.
  */
 export const RequireKamaitachi: RequestHandler = (req, res, next) => {
-    if (CONFIG.TYPE === "ktchi" || CONFIG.TYPE === "omni") {
-        return next();
-    }
+	if (CONFIG.TYPE === "ktchi" || CONFIG.TYPE === "omni") {
+		return next();
+	}
 
-    return res.status(404).send({
-        success: false,
-        description: `The route ${req.url} is only available on Kamaitachi.`,
-    });
+	return res.status(404).send({
+		success: false,
+		description: `The route ${req.url} is only available on Kamaitachi.`,
+	});
 };

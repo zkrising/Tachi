@@ -3,20 +3,20 @@ import { GameClasses } from "tachi-common/js/game-classes";
 import deepmerge from "deepmerge";
 import { KtLogger } from "../../../logger/logger";
 import {
-    CalculateGitadoraColour,
-    CalculateJubeatColour,
-    CalculateSDVXClass,
+	CalculateGitadoraColour,
+	CalculateJubeatColour,
+	CalculateSDVXClass,
 } from "./builtin-class-handlers";
 import { ReturnClassIfGreater } from "../../../../utils/class";
 import { RedisPub } from "../../../../external/redis/redis-IPC";
 import { ClassHandler, ScoreClasses } from "./types";
 
 type ClassHandlerMap = {
-    [G in Game]:
-        | {
-              [P in Playtypes[G]]: ClassHandler;
-          }
-        | null;
+	[G in Game]:
+		| {
+				[P in Playtypes[G]]: ClassHandler;
+		  }
+		| null;
 };
 
 /**
@@ -29,24 +29,24 @@ type ClassHandlerMap = {
  * on your profile skill level, which is known at the time this function is called.
  */
 const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
-    iidx: null,
-    bms: null,
-    chunithm: null,
-    ddr: null,
-    gitadora: {
-        Gita: CalculateGitadoraColour,
-        Dora: CalculateGitadoraColour,
-    },
-    jubeat: {
-        Single: CalculateJubeatColour,
-    },
-    maimai: null,
-    museca: null,
-    popn: null,
-    sdvx: {
-        Single: CalculateSDVXClass,
-    },
-    usc: null,
+	iidx: null,
+	bms: null,
+	chunithm: null,
+	ddr: null,
+	gitadora: {
+		Gita: CalculateGitadoraColour,
+		Dora: CalculateGitadoraColour,
+	},
+	jubeat: {
+		Single: CalculateJubeatColour,
+	},
+	maimai: null,
+	museca: null,
+	popn: null,
+	sdvx: {
+		Single: CalculateSDVXClass,
+	},
+	usc: null,
 };
 
 /**
@@ -71,35 +71,35 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
  * defaults.
  */
 export async function UpdateUGSClasses(
-    game: Game,
-    playtype: Playtypes[Game],
-    userID: integer,
-    ratings: Record<string, number>,
-    ClassHandler: ClassHandler | null,
-    logger: KtLogger
+	game: Game,
+	playtype: Playtypes[Game],
+	userID: integer,
+	ratings: Record<string, number>,
+	ClassHandler: ClassHandler | null,
+	logger: KtLogger
 ): Promise<ScoreClasses> {
-    let classes: ScoreClasses = {};
+	let classes: ScoreClasses = {};
 
-    // @ts-expect-error This one sucks - I need to look into a better way of representing these types
-    if (STATIC_CLASS_HANDLERS[game] && STATIC_CLASS_HANDLERS[game][playtype]) {
-        // @ts-expect-error see above
-        classes = await STATIC_CLASS_HANDLERS[game][playtype](
-            game,
-            playtype,
-            userID,
-            ratings,
-            logger
-        );
-    }
+	// @ts-expect-error This one sucks - I need to look into a better way of representing these types
+	if (STATIC_CLASS_HANDLERS[game] && STATIC_CLASS_HANDLERS[game][playtype]) {
+		// @ts-expect-error see above
+		classes = await STATIC_CLASS_HANDLERS[game][playtype](
+			game,
+			playtype,
+			userID,
+			ratings,
+			logger
+		);
+	}
 
-    if (ClassHandler) {
-        logger.debug(`Calling custom class handler.`);
-        const customClasses = (await ClassHandler(game, playtype, userID, ratings, logger)) ?? {};
+	if (ClassHandler) {
+		logger.debug(`Calling custom class handler.`);
+		const customClasses = (await ClassHandler(game, playtype, userID, ratings, logger)) ?? {};
 
-        classes = deepmerge(customClasses, classes);
-    }
+		classes = deepmerge(customClasses, classes);
+	}
 
-    return classes;
+	return classes;
 }
 
 /**
@@ -110,54 +110,54 @@ export async function UpdateUGSClasses(
  * so that other services can listen for it. In the future we might allow webhooks, too.
  */
 export function CalculateClassDeltas(
-    playtype: Playtypes[Game],
-    classes: ScoreClasses,
-    userGameStats: UserGameStats | null,
-    userID: integer,
-    logger: KtLogger
+	playtype: Playtypes[Game],
+	classes: ScoreClasses,
+	userGameStats: UserGameStats | null,
+	userID: integer,
+	logger: KtLogger
 ): ClassDelta[] {
-    const deltas: ClassDelta[] = [];
+	const deltas: ClassDelta[] = [];
 
-    for (const s in classes) {
-        const classSet = s as keyof GameClasses<IDStrings>;
-        const classVal = classes[classSet];
+	for (const s in classes) {
+		const classSet = s as keyof GameClasses<IDStrings>;
+		const classVal = classes[classSet];
 
-        if (classVal === undefined) {
-            logger.debug(`Skipped deltaing-class ${classSet}.`);
-            continue;
-        }
+		if (classVal === undefined) {
+			logger.debug(`Skipped deltaing-class ${classSet}.`);
+			continue;
+		}
 
-        try {
-            const isGreater = ReturnClassIfGreater(classSet, classVal, userGameStats);
+		try {
+			const isGreater = ReturnClassIfGreater(classSet, classVal, userGameStats);
 
-            if (isGreater === false) {
-                continue;
-            } else {
-                let delta: ClassDelta;
-                if (isGreater === null) {
-                    delta = {
-                        set: classSet,
-                        playtype,
-                        old: null,
-                        new: classVal,
-                    };
-                } else {
-                    delta = {
-                        set: classSet,
-                        playtype,
-                        old: userGameStats!.classes[classSet]!,
-                        new: classVal,
-                    };
-                }
+			if (isGreater === false) {
+				continue;
+			} else {
+				let delta: ClassDelta;
+				if (isGreater === null) {
+					delta = {
+						set: classSet,
+						playtype,
+						old: null,
+						new: classVal,
+					};
+				} else {
+					delta = {
+						set: classSet,
+						playtype,
+						old: userGameStats!.classes[classSet]!,
+						new: classVal,
+					};
+				}
 
-                RedisPub("class-update", { userID, ...delta });
+				RedisPub("class-update", { userID, ...delta });
 
-                deltas.push(delta);
-            }
-        } catch (err) {
-            logger.error(err);
-        }
-    }
+				deltas.push(delta);
+			}
+		} catch (err) {
+			logger.error(err);
+		}
+	}
 
-    return deltas;
+	return deltas;
 }

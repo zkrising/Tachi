@@ -8,7 +8,7 @@ const logger = CreateLogCtx(__filename);
 type RedisSubCallback<T extends RedisIPCChannels> = (data: RedisIPCData[T]) => void;
 
 type SubCallbacks = {
-    [K in RedisIPCChannels]: RedisSubCallback<K>[];
+	[K in RedisIPCChannels]: RedisSubCallback<K>[];
 };
 
 const SubCallbacks: Partial<SubCallbacks> = {};
@@ -22,64 +22,64 @@ const PubClient = redis.createClient();
 const PREFIX = CONFIG.TYPE.toUpperCase(); // KTCHI or BTCHI
 
 export function RedisPub<T extends RedisIPCChannels>(channel: T, data: RedisIPCData[T]) {
-    PubClient.publish(`${PREFIX}-${channel}`, JSON.stringify(data));
+	PubClient.publish(`${PREFIX}-${channel}`, JSON.stringify(data));
 }
 
 export function RedisSub<T extends RedisIPCChannels>(channel: T, callback: RedisSubCallback<T>) {
-    if (SubCallbacks[channel]) {
-        // @ts-expect-error It's complaining that the T in channel might be a different T to the T in callback
-        // this is obviously nonsense.
-        SubCallbacks[channel]!.push(callback);
-        logger.debug(`Pushed callback ${callback.name} to channel ${channel}.`);
-    } else {
-        // @ts-expect-error see above.
-        SubCallbacks[channel] = [callback];
-        SubClient.subscribe(`${PREFIX}-${channel}`);
-        logger.debug(`Added first callback ${callback.name} to channel ${channel}.`);
-    }
+	if (SubCallbacks[channel]) {
+		// @ts-expect-error It's complaining that the T in channel might be a different T to the T in callback
+		// this is obviously nonsense.
+		SubCallbacks[channel]!.push(callback);
+		logger.debug(`Pushed callback ${callback.name} to channel ${channel}.`);
+	} else {
+		// @ts-expect-error see above.
+		SubCallbacks[channel] = [callback];
+		SubClient.subscribe(`${PREFIX}-${channel}`);
+		logger.debug(`Added first callback ${callback.name} to channel ${channel}.`);
+	}
 }
 
 SubClient.on("message", (channel, strData) => {
-    if (!channel.startsWith(`${PREFIX}-`)) {
-        return; // not our business
-    }
+	if (!channel.startsWith(`${PREFIX}-`)) {
+		return; // not our business
+	}
 
-    const ktChannel = channel.slice(`${PREFIX}-`.length) as RedisIPCChannels;
+	const ktChannel = channel.slice(`${PREFIX}-`.length) as RedisIPCChannels;
 
-    if (!Object.prototype.hasOwnProperty.call(SubCallbacks, ktChannel)) {
-        return; // no callbacks to call
-    }
+	if (!Object.prototype.hasOwnProperty.call(SubCallbacks, ktChannel)) {
+		return; // no callbacks to call
+	}
 
-    const jsData = JSON.parse(strData);
+	const jsData = JSON.parse(strData);
 
-    for (const cb of SubCallbacks[ktChannel]!) {
-        try {
-            cb(jsData);
-        } catch (err) {
-            logger.error(`Error calling callback ${cb.name} for channel ${ktChannel}`, { err });
-        }
-    }
+	for (const cb of SubCallbacks[ktChannel]!) {
+		try {
+			cb(jsData);
+		} catch (err) {
+			logger.error(`Error calling callback ${cb.name} for channel ${ktChannel}`, { err });
+		}
+	}
 });
 
 // Awful...
 // Function is near-impossible to test.
 /* istanbul ignore next */
 export function CloseRedisPubSub() {
-    return new Promise<void>((resolve, reject) => {
-        PubClient.quit((err) => {
-            if (err) {
-                logger.crit(`PubClient QUIT error: ${err}`, { err });
-                reject(err);
-            }
+	return new Promise<void>((resolve, reject) => {
+		PubClient.quit((err) => {
+			if (err) {
+				logger.crit(`PubClient QUIT error: ${err}`, { err });
+				reject(err);
+			}
 
-            SubClient.quit((err) => {
-                if (err) {
-                    logger.crit(`SubClient QUIT error: ${err}`, { err });
-                    reject(err);
-                }
+			SubClient.quit((err) => {
+				if (err) {
+					logger.crit(`SubClient QUIT error: ${err}`, { err });
+					reject(err);
+				}
 
-                resolve();
-            });
-        });
-    });
+				resolve();
+			});
+		});
+	});
 }

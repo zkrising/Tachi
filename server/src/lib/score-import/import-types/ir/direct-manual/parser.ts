@@ -9,10 +9,10 @@ import { ParserFunctionReturns } from "../../common/types";
  * @param body - The request body that made this file import request.
  */
 function ParseDirectManual(
-    body: Record<string, unknown>,
-    logger: KtLogger
+	body: Record<string, unknown>,
+	logger: KtLogger
 ): ParserFunctionReturns<BatchManualScore, BatchManualContext> {
-    return ParseBatchManualFromObject(body, "ir/direct-manual", logger);
+	return ParseBatchManualFromObject(body, "ir/direct-manual", logger);
 }
 
 export default ParseDirectManual;

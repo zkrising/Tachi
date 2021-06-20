@@ -12,10 +12,10 @@ router.use("/import", importRouter);
 router.use("/users", usersRouter);
 
 router.all("*", (req, res) =>
-    res.status(404).json({
-        success: false,
-        description: "Endpoint Not Found.",
-    })
+	res.status(404).json({
+		success: false,
+		description: "Endpoint Not Found.",
+	})
 );
 
 export default router;

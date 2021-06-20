@@ -3,40 +3,40 @@ import { FindOneResult } from "monk";
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
 import {
-    defaultRatingAlgorithm,
-    defaultScoreRatingAlgorithm,
-    defaultSessionRatingAlgorithm,
+	defaultRatingAlgorithm,
+	defaultScoreRatingAlgorithm,
+	defaultSessionRatingAlgorithm,
 } from "tachi-common/js/config";
 
 const logger = CreateLogCtx(__filename);
 
 const OMIT_PRIVATE_USER_RETURNS = {
-    password: 0,
-    email: 0,
-    // legacy protection - this field does not exist on user documents anymore, but it did, and it *did* hold personal information.
-    integrations: 0,
+	password: 0,
+	email: 0,
+	// legacy protection - this field does not exist on user documents anymore, but it did, and it *did* hold personal information.
+	integrations: 0,
 };
 
 /**
  * Returns a user's username from their ID. Throws if no user with that ID exists.
  */
 export async function GetUsernameFromUserID(userID: integer): Promise<string> {
-    const partialDoc = await db.users.findOne(
-        {
-            id: userID,
-        },
-        {
-            projection: {
-                username: 1,
-            },
-        }
-    );
+	const partialDoc = await db.users.findOne(
+		{
+			id: userID,
+		},
+		{
+			projection: {
+				username: 1,
+			},
+		}
+	);
 
-    if (!partialDoc) {
-        throw new Error(`Could not find username for userID ${userID}.`);
-    }
+	if (!partialDoc) {
+		throw new Error(`Could not find username for userID ${userID}.`);
+	}
 
-    return partialDoc.username;
+	return partialDoc.username;
 }
 
 /**
@@ -45,16 +45,16 @@ export async function GetUsernameFromUserID(userID: integer): Promise<string> {
  * @returns PublicUserDocument | null
  */
 export function GetUserCaseInsensitive(
-    username: string
+	username: string
 ): Promise<FindOneResult<PublicUserDocument>> {
-    return db.users.findOne(
-        {
-            usernameLowercase: username.toLowerCase(),
-        },
-        {
-            projection: OMIT_PRIVATE_USER_RETURNS,
-        }
-    ) as Promise<FindOneResult<PublicUserDocument>>;
+	return db.users.findOne(
+		{
+			usernameLowercase: username.toLowerCase(),
+		},
+		{
+			projection: OMIT_PRIVATE_USER_RETURNS,
+		}
+	) as Promise<FindOneResult<PublicUserDocument>>;
 }
 
 /**
@@ -64,9 +64,9 @@ export function GetUserCaseInsensitive(
  * @returns PrivateUserDocument | null
  */
 export function PRIVATEINFO_GetUserCaseInsensitive(username: string) {
-    return db.users.findOne({
-        usernameLowercase: username.toLowerCase(),
-    });
+	return db.users.findOne({
+		usernameLowercase: username.toLowerCase(),
+	});
 }
 
 /**
@@ -75,14 +75,14 @@ export function PRIVATEINFO_GetUserCaseInsensitive(username: string) {
  * @returns PublicUserDocument | null
  */
 export function GetUserWithID(userID: integer): Promise<FindOneResult<PublicUserDocument>> {
-    return db.users.findOne(
-        {
-            id: userID,
-        },
-        {
-            projection: OMIT_PRIVATE_USER_RETURNS,
-        }
-    ) as Promise<FindOneResult<PublicUserDocument>>;
+	return db.users.findOne(
+		{
+			id: userID,
+		},
+		{
+			projection: OMIT_PRIVATE_USER_RETURNS,
+		}
+	) as Promise<FindOneResult<PublicUserDocument>>;
 }
 
 /**
@@ -94,18 +94,18 @@ export function GetUserWithID(userID: integer): Promise<FindOneResult<PublicUser
  * @returns PublicUserDocument
  */
 export async function GetUserWithIDGuaranteed(userID: integer): Promise<PublicUserDocument> {
-    const userDoc = await GetUserWithID(userID);
+	const userDoc = await GetUserWithID(userID);
 
-    if (!userDoc) {
-        logger.severe(
-            `User ${userID} does not have an associated user document, but one was expected.`
-        );
-        throw new Error(
-            `User ${userID} does not have an associated user document, but one was expected.`
-        );
-    }
+	if (!userDoc) {
+		logger.severe(
+			`User ${userID} does not have an associated user document, but one was expected.`
+		);
+		throw new Error(
+			`User ${userID} does not have an associated user document, but one was expected.`
+		);
+	}
 
-    return userDoc;
+	return userDoc;
 }
 
 /**
@@ -115,9 +115,9 @@ export async function GetUserWithIDGuaranteed(userID: integer): Promise<PublicUs
  * @returns PrivateUserDocument | null
  */
 export function PRIVATEINFO_GetUserWithID(userID: integer) {
-    return db.users.findOne({
-        id: userID,
-    });
+	return db.users.findOne({
+		id: userID,
+	});
 }
 
 /**
@@ -126,14 +126,14 @@ export function PRIVATEINFO_GetUserWithID(userID: integer) {
  * @param usernameOrID
  */
 export function ResolveUser(usernameOrID: string) {
-    // user ID passed
-    if (usernameOrID.match(/^[0-9]$/u)) {
-        const intID = Number(usernameOrID);
+	// user ID passed
+	if (usernameOrID.match(/^[0-9]$/u)) {
+		const intID = Number(usernameOrID);
 
-        return GetUserWithID(intID);
-    }
+		return GetUserWithID(intID);
+	}
 
-    return GetUserCaseInsensitive(usernameOrID);
+	return GetUserCaseInsensitive(usernameOrID);
 }
 
 /**
@@ -141,58 +141,58 @@ export function ResolveUser(usernameOrID: string) {
  * @param userdoc The user document to format.
  */
 export function FormatUserDoc(userdoc: PublicUserDocument) {
-    return `${userdoc.username} (#${userdoc.id})`;
+	return `${userdoc.username} (#${userdoc.id})`;
 }
 
 // temp function, to be removed with #186
 export function GetDefaultProfileRatingAlg(game: Game, playtype: Playtypes[Game]) {
-    // @ts-expect-error garbage...
-    return defaultRatingAlgorithm[game][playtype];
+	// @ts-expect-error garbage...
+	return defaultRatingAlgorithm[game][playtype];
 }
 
 // temp function, to be removed with #186
 export function GetDefaultScoreRatingAlg(game: Game, playtype: Playtypes[Game]) {
-    // @ts-expect-error garbage...
-    return defaultScoreRatingAlgorithm[game][playtype];
+	// @ts-expect-error garbage...
+	return defaultScoreRatingAlgorithm[game][playtype];
 }
 
 export function GetDefaultSessionRatingAlg(game: Game, playtype: Playtypes[Game]) {
-    // @ts-expect-error garbage...
-    return defaultSessionRatingAlgorithm[game][playtype];
+	// @ts-expect-error garbage...
+	return defaultSessionRatingAlgorithm[game][playtype];
 }
 
 export async function GetUsersRanking(stats: UserGameStats) {
-    const ratingKey = GetDefaultProfileRatingAlg(stats.game, stats.playtype);
+	const ratingKey = GetDefaultProfileRatingAlg(stats.game, stats.playtype);
 
-    const aggRes = await db["game-stats"].aggregate([
-        {
-            $match: {
-                game: stats.game,
-                playtype: stats.playtype,
-            },
-        },
-        {
-            $group: {
-                _id: null,
-                outOf: { $sum: 1 },
-                ranking: {
-                    $sum: {
-                        $cond: {
-                            if: {
-                                // @ts-expect-error garbage...
-                                $gte: [`$ratings.${ratingKey}`, stats.ratings[ratingKey]],
-                            },
-                            then: 1,
-                            else: 0,
-                        },
-                    },
-                },
-            },
-        },
-    ]);
+	const aggRes = await db["game-stats"].aggregate([
+		{
+			$match: {
+				game: stats.game,
+				playtype: stats.playtype,
+			},
+		},
+		{
+			$group: {
+				_id: null,
+				outOf: { $sum: 1 },
+				ranking: {
+					$sum: {
+						$cond: {
+							if: {
+								// @ts-expect-error garbage...
+								$gte: [`$ratings.${ratingKey}`, stats.ratings[ratingKey]],
+							},
+							then: 1,
+							else: 0,
+						},
+					},
+				},
+			},
+		},
+	]);
 
-    return {
-        ranking: (aggRes[0].ranking + 1) as integer,
-        outOf: aggRes[0].outOf as integer,
-    };
+	return {
+		ranking: (aggRes[0].ranking + 1) as integer,
+		outOf: aggRes[0].outOf as integer,
+	};
 }

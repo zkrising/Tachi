@@ -7,32 +7,32 @@ import db from "../external/mongo/db";
 const logger = CreateLogCtx(__filename);
 
 export async function CreateFakeAuthCookie(mockApi: supertest.SuperTest<supertest.Test>) {
-    await ResetDBState();
+	await ResetDBState();
 
-    // possible security issue, ask hazel
-    const res = await mockApi.post("/api/v1/auth/login").send({
-        username: "test_zkldi",
-        password: "password",
-        captcha: "asdf",
-    });
+	// possible security issue, ask hazel
+	const res = await mockApi.post("/api/v1/auth/login").send({
+		username: "test_zkldi",
+		password: "password",
+		captcha: "asdf",
+	});
 
-    if (res.status !== 200) {
-        logger.crit("Failed to login. Cannot generate auth cookie.");
-        throw res.body;
-    }
+	if (res.status !== 200) {
+		logger.crit("Failed to login. Cannot generate auth cookie.");
+		throw res.body;
+	}
 
-    return res.headers["set-cookie"] as string[];
+	return res.headers["set-cookie"] as string[];
 }
 
 // my local dev env hates this part because of pnpm
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function InsertFakeTokenWithAllPerms(token: string): () => any {
-    return () => {
-        db["api-tokens"].insert({
-            userID: 1,
-            identifier: "Mock API Token",
-            permissions: AllPermissions,
-            token,
-        });
-    };
+	return () => {
+		db["api-tokens"].insert({
+			userID: 1,
+			identifier: "Mock API Token",
+			permissions: AllPermissions,
+			token,
+		});
+	};
 }

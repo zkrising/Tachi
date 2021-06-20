@@ -8,65 +8,65 @@ import { RedisPub } from "../../../../external/redis/redis-IPC";
  * Update a user's progress on all of their set goals.
  */
 export async function GetAndUpdateUsersGoals(
-    game: Game,
-    userID: integer,
-    chartIDs: Set<string>,
-    logger: KtLogger
+	game: Game,
+	userID: integer,
+	chartIDs: Set<string>,
+	logger: KtLogger
 ) {
-    const { goals, userGoalsMap } = await GetRelevantGoals(game, userID, chartIDs, logger);
+	const { goals, userGoalsMap } = await GetRelevantGoals(game, userID, chartIDs, logger);
 
-    if (!goals.length) {
-        // if we hit the below code with an empty array mongodb will flip out on the bulkwrite op
-        return [];
-    }
+	if (!goals.length) {
+		// if we hit the below code with an empty array mongodb will flip out on the bulkwrite op
+		return [];
+	}
 
-    logger.verbose(`Found ${goals.length} relevant goals.`);
+	logger.verbose(`Found ${goals.length} relevant goals.`);
 
-    return UpdateGoalsForUser(goals, userGoalsMap, userID, logger);
+	return UpdateGoalsForUser(goals, userGoalsMap, userID, logger);
 }
 
 export async function UpdateGoalsForUser(
-    goals: GoalDocument[],
-    userGoalsMap: Map<string, UserGoalDocument>,
-    userID: integer,
-    logger: KtLogger
+	goals: GoalDocument[],
+	userGoalsMap: Map<string, UserGoalDocument>,
+	userID: integer,
+	logger: KtLogger
 ) {
-    const returns = await Promise.all(
-        goals.map((goal: GoalDocument) => {
-            const userGoal = userGoalsMap.get(goal.goalID);
+	const returns = await Promise.all(
+		goals.map((goal: GoalDocument) => {
+			const userGoal = userGoalsMap.get(goal.goalID);
 
-            if (!userGoal) {
-                logger.error(
-                    `UserGoal:GoalID mismatch ${goal.goalID} - this user has no userGoal for this, yet it is set.`
-                );
-                return;
-            }
+			if (!userGoal) {
+				logger.error(
+					`UserGoal:GoalID mismatch ${goal.goalID} - this user has no userGoal for this, yet it is set.`
+				);
+				return;
+			}
 
-            return ProcessGoal(goal, userGoal, userID, logger);
-        })
-    );
+			return ProcessGoal(goal, userGoal, userID, logger);
+		})
+	);
 
-    const importInfo = [];
-    const bulkWrite = [];
+	const importInfo = [];
+	const bulkWrite = [];
 
-    for (const ret of returns) {
-        if (!ret) {
-            continue;
-        }
+	for (const ret of returns) {
+		if (!ret) {
+			continue;
+		}
 
-        importInfo.push(ret.import);
-        bulkWrite.push(ret.bwrite);
-    }
+		importInfo.push(ret.import);
+		bulkWrite.push(ret.bwrite);
+	}
 
-    if (bulkWrite.length === 0) {
-        // bulkwrite cannot be an empty array -- this means there's nothing to update or return, then.
-        // i.e. goals was non empty but returns was entirely [undefined, undefined...].
-        return [];
-    }
+	if (bulkWrite.length === 0) {
+		// bulkwrite cannot be an empty array -- this means there's nothing to update or return, then.
+		// i.e. goals was non empty but returns was entirely [undefined, undefined...].
+		return [];
+	}
 
-    await db["user-goals"].bulkWrite(bulkWrite, { ordered: false });
+	await db["user-goals"].bulkWrite(bulkWrite, { ordered: false });
 
-    return importInfo;
+	return importInfo;
 }
 
 /**
@@ -76,73 +76,73 @@ export async function UpdateGoalsForUser(
  * to say (i.e. user didnt raise the goal).
  */
 export async function ProcessGoal(
-    goal: GoalDocument,
-    userGoal: UserGoalDocument,
-    userID: integer,
-    logger: KtLogger
+	goal: GoalDocument,
+	userGoal: UserGoalDocument,
+	userID: integer,
+	logger: KtLogger
 ) {
-    const res = await EvaluateGoalForUser(goal, userID, logger);
+	const res = await EvaluateGoalForUser(goal, userID, logger);
 
-    if (!res) {
-        // some sort of error occured - its logged by the previous function.
-        return;
-    }
+	if (!res) {
+		// some sort of error occured - its logged by the previous function.
+		return;
+	}
 
-    // nothing has changed
-    if (userGoal.progress === res.progress && userGoal.outOf === res.outOf) {
-        return;
-    }
+	// nothing has changed
+	if (userGoal.progress === res.progress && userGoal.outOf === res.outOf) {
+		return;
+	}
 
-    const newData = {
-        progress: res.progress,
-        progressHuman: res.progressHuman,
-        outOf: res.outOf,
-        outOfHuman: res.outOfHuman,
-        achieved: res.achieved,
-    };
+	const newData = {
+		progress: res.progress,
+		progressHuman: res.progressHuman,
+		outOf: res.outOf,
+		outOfHuman: res.outOfHuman,
+		achieved: res.achieved,
+	};
 
-    const oldData = {
-        progress: userGoal.progress,
-        progressHuman: userGoal.progressHuman,
-        outOf: userGoal.outOf,
-        outOfHuman: userGoal.outOfHuman,
-        achieved: userGoal.achieved,
-    };
+	const oldData = {
+		progress: userGoal.progress,
+		progressHuman: userGoal.progressHuman,
+		outOf: userGoal.outOf,
+		outOfHuman: userGoal.outOfHuman,
+		achieved: userGoal.achieved,
+	};
 
-    // if this is a newly-achieved goal
-    if (res.achieved && !userGoal.achieved) {
-        RedisPub("goal-achieved", {
-            userID,
-            goalID: goal.goalID,
-            old: oldData,
-            new: newData,
-        });
-    }
+	// if this is a newly-achieved goal
+	if (res.achieved && !userGoal.achieved) {
+		RedisPub("goal-achieved", {
+			userID,
+			goalID: goal.goalID,
+			old: oldData,
+			new: newData,
+		});
+	}
 
-    const bulkWrite = {
-        updateOne: {
-            filter: { _id: userGoal._id! },
-            update: {
-                $set: {
-                    ...newData,
-                    timeAchieved: newData.achieved ? Date.now() : null,
-                    // we're guaranteed that this works, because things
-                    // that haven't changed return nothing instead of
-                    // getting to this point.
-                    lastInteraction: Date.now(),
-                },
-            },
-        },
-    };
+	const bulkWrite = {
+		updateOne: {
+			filter: { _id: userGoal._id! },
+			update: {
+				$set: {
+					...newData,
+					timeAchieved: newData.achieved ? Date.now() : null,
+					// we're guaranteed that this works, because things
+					// that haven't changed return nothing instead of
+					// getting to this point.
+					lastInteraction: Date.now(),
+				},
+			},
+		},
+	};
 
-    return {
-        bwrite: bulkWrite,
-        import: {
-            goalID: goal.goalID,
-            old: oldData,
-            new: newData,
-        },
-    };
+	return {
+		bwrite: bulkWrite,
+		import: {
+			goalID: goal.goalID,
+			old: oldData,
+			new: newData,
+		},
+	};
 }
 
 /**
@@ -154,57 +154,57 @@ export async function ProcessGoal(
  * @returns An array of Goals, and an array of userGoals.
  */
 export async function GetRelevantGoals(
-    game: Game,
-    userID: integer,
-    chartIDs: Set<string>,
-    logger: KtLogger
+	game: Game,
+	userID: integer,
+	chartIDs: Set<string>,
+	logger: KtLogger
 ): Promise<{ goals: GoalDocument[]; userGoalsMap: Map<string, UserGoalDocument> }> {
-    const userGoals = await db["user-goals"].find({ game, userID });
+	const userGoals = await db["user-goals"].find({ game, userID });
 
-    logger.verbose(`Found user has ${userGoals.length} goals.`);
+	logger.verbose(`Found user has ${userGoals.length} goals.`);
 
-    if (!userGoals.length) {
-        return { goals: [], userGoalsMap: new Map() };
-    }
+	if (!userGoals.length) {
+		return { goals: [], userGoalsMap: new Map() };
+	}
 
-    const goalIDs = userGoals.map((e) => e.goalID);
+	const goalIDs = userGoals.map((e) => e.goalID);
 
-    const chartIDsArr: string[] = [];
-    for (const c of chartIDs) {
-        chartIDsArr.push(c);
-    }
+	const chartIDsArr: string[] = [];
+	for (const c of chartIDs) {
+		chartIDsArr.push(c);
+	}
 
-    const goals = await Promise.all([
-        // this gets the relevantGoals for direct and multi
-        db.goals.find({
-            "charts.type": { $in: ["single", "multi"] },
-            "charts.data": { $in: chartIDsArr },
-            goalID: { $in: goalIDs },
-        }),
-        db.goals.find({
-            "charts.type": "any",
-            goalID: { $in: goalIDs },
-        }),
-        GetRelevantFolderGoals(goalIDs, chartIDsArr),
-    ]).then((r) => r.flat(1));
+	const goals = await Promise.all([
+		// this gets the relevantGoals for direct and multi
+		db.goals.find({
+			"charts.type": { $in: ["single", "multi"] },
+			"charts.data": { $in: chartIDsArr },
+			goalID: { $in: goalIDs },
+		}),
+		db.goals.find({
+			"charts.type": "any",
+			goalID: { $in: goalIDs },
+		}),
+		GetRelevantFolderGoals(goalIDs, chartIDsArr),
+	]).then((r) => r.flat(1));
 
-    const goalSet = new Set(goals.map((e) => e.goalID));
+	const goalSet = new Set(goals.map((e) => e.goalID));
 
-    const userGoalsMap: Map<string, UserGoalDocument> = new Map();
+	const userGoalsMap: Map<string, UserGoalDocument> = new Map();
 
-    for (const userGoal of userGoals) {
-        if (!goalSet.has(userGoal.goalID)) {
-            continue;
-        }
-        // since these are guaranteed to be unique, lets make a hot map of goalID -> userGoalDocument, so we can
-        // pull them in for post-processing and filter out the userGoalDocuments that aren't relevant.
-        userGoalsMap.set(userGoal.goalID, userGoal);
-    }
+	for (const userGoal of userGoals) {
+		if (!goalSet.has(userGoal.goalID)) {
+			continue;
+		}
+		// since these are guaranteed to be unique, lets make a hot map of goalID -> userGoalDocument, so we can
+		// pull them in for post-processing and filter out the userGoalDocuments that aren't relevant.
+		userGoalsMap.set(userGoal.goalID, userGoal);
+	}
 
-    return {
-        goals,
-        userGoalsMap,
-    };
+	return {
+		goals,
+		userGoalsMap,
+	};
 }
 
 /**
@@ -212,34 +212,34 @@ export async function GetRelevantGoals(
  * of chartIDsArr.
  */
 export function GetRelevantFolderGoals(goalIDs: string[], chartIDsArr: string[]) {
-    // Slightly black magic - this is kind of like doing an SQL join.
-    // it's weird to do this in mongodb, but this seems like the right
-    // way to actually handle this.
+	// Slightly black magic - this is kind of like doing an SQL join.
+	// it's weird to do this in mongodb, but this seems like the right
+	// way to actually handle this.
 
-    return db.goals.aggregate([
-        {
-            $match: {
-                "charts.type": "folder",
-                goalID: { $in: goalIDs },
-            },
-        },
-        {
-            $lookup: {
-                from: "folder-chart-lookup",
-                localField: "charts.data",
-                foreignField: "folderID",
-                as: "folderCharts",
-            },
-        },
-        {
-            $match: {
-                "folderCharts.chartID": { $in: chartIDsArr },
-            },
-        },
-        {
-            $project: {
-                folderCharts: 0,
-            },
-        },
-    ]);
+	return db.goals.aggregate([
+		{
+			$match: {
+				"charts.type": "folder",
+				goalID: { $in: goalIDs },
+			},
+		},
+		{
+			$lookup: {
+				from: "folder-chart-lookup",
+				localField: "charts.data",
+				foreignField: "folderID",
+				as: "folderCharts",
+			},
+		},
+		{
+			$match: {
+				"folderCharts.chartID": { $in: chartIDsArr },
+			},
+		},
+		{
+			$project: {
+				folderCharts: 0,
+			},
+		},
+	]);
 }

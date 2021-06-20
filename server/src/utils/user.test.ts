@@ -7,87 +7,87 @@ import { CloseAllConnections } from "../test-utils/close-connections";
 import ResetDBState from "../test-utils/resets";
 
 t.test("#GetUserCaseInsensitive", (t) => {
-    t.beforeEach(ResetDBState);
+	t.beforeEach(ResetDBState);
 
-    t.test("Should return the user for an exact username", async (t) => {
-        const result = await GetUserCaseInsensitive("test_zkldi");
+	t.test("Should return the user for an exact username", async (t) => {
+		const result = await GetUserCaseInsensitive("test_zkldi");
 
-        t.not(result, null, "Should not return null");
+		t.not(result, null, "Should not return null");
 
-        t.equal(result!.username, "test_zkldi", "Should return test_zkldi");
+		t.equal(result!.username, "test_zkldi", "Should return test_zkldi");
 
-        prAssert(result, PRUDENCE_PUBLIC_USER, "Should return a conforming PublicUserDocument");
+		prAssert(result, PRUDENCE_PUBLIC_USER, "Should return a conforming PublicUserDocument");
 
-        // @ts-expect-error yeah
-        t.equal(result.password, undefined, "Should not return password");
-        // @ts-expect-error yeah
-        t.equal(result.email, undefined, "Should not return email");
-    });
+		// @ts-expect-error yeah
+		t.equal(result.password, undefined, "Should not return password");
+		// @ts-expect-error yeah
+		t.equal(result.email, undefined, "Should not return email");
+	});
 
-    t.test("Should return the user for an incorrectly cased username", async (t) => {
-        const result = await GetUserCaseInsensitive("tesT_ZkLdi");
+	t.test("Should return the user for an incorrectly cased username", async (t) => {
+		const result = await GetUserCaseInsensitive("tesT_ZkLdi");
 
-        t.not(result, null, "Should not return null");
+		t.not(result, null, "Should not return null");
 
-        t.equal(result!.username, "test_zkldi", "Should return test_zkldi");
+		t.equal(result!.username, "test_zkldi", "Should return test_zkldi");
 
-        prAssert(result, PRUDENCE_PUBLIC_USER, "Should return a conforming PublicUserDocument");
+		prAssert(result, PRUDENCE_PUBLIC_USER, "Should return a conforming PublicUserDocument");
 
-        // @ts-expect-error yeah
-        t.equal(result.password, undefined, "Should not return password");
-        // @ts-expect-error yeah
-        t.equal(result.email, undefined, "Should not return email");
-    });
+		// @ts-expect-error yeah
+		t.equal(result.password, undefined, "Should not return password");
+		// @ts-expect-error yeah
+		t.equal(result.email, undefined, "Should not return email");
+	});
 
-    t.test("Should not return the user for a username that does not exist", async (t) => {
-        const result = await GetUserCaseInsensitive("foobar");
+	t.test("Should not return the user for a username that does not exist", async (t) => {
+		const result = await GetUserCaseInsensitive("foobar");
 
-        t.equal(result, null, "Should return null");
-    });
+		t.equal(result, null, "Should return null");
+	});
 
-    t.end();
+	t.end();
 });
 
 t.test("#PRIVATEINFO_GetUserCaseInsensitive", (t) => {
-    t.beforeEach(ResetDBState);
+	t.beforeEach(ResetDBState);
 
-    t.test("Should return the user for an exact username", async (t) => {
-        const result = await PRIVATEINFO_GetUserCaseInsensitive("test_zkldi");
+	t.test("Should return the user for an exact username", async (t) => {
+		const result = await PRIVATEINFO_GetUserCaseInsensitive("test_zkldi");
 
-        t.not(result, null, "Should not return null");
+		t.not(result, null, "Should not return null");
 
-        t.equal(result!.username, "test_zkldi", "Should return test_rzkldi");
+		t.equal(result!.username, "test_zkldi", "Should return test_rzkldi");
 
-        prAssert(result, PRUDENCE_PRIVATE_USER, "Should return a conforming PrivateUserDocument");
-    });
+		prAssert(result, PRUDENCE_PRIVATE_USER, "Should return a conforming PrivateUserDocument");
+	});
 
-    t.test("Should return the user for an incorrectly cased username", async (t) => {
-        const result = await PRIVATEINFO_GetUserCaseInsensitive("tesT_ZkLdi");
+	t.test("Should return the user for an incorrectly cased username", async (t) => {
+		const result = await PRIVATEINFO_GetUserCaseInsensitive("tesT_ZkLdi");
 
-        t.not(result, null, "Should not return null");
+		t.not(result, null, "Should not return null");
 
-        t.equal(result!.username, "test_zkldi", "Should return test_zkldi");
+		t.equal(result!.username, "test_zkldi", "Should return test_zkldi");
 
-        prAssert(result, PRUDENCE_PRIVATE_USER, "Should return a conforming PrivateUserDocument");
-    });
+		prAssert(result, PRUDENCE_PRIVATE_USER, "Should return a conforming PrivateUserDocument");
+	});
 
-    t.test("Should not return the user for a username that does not exist", async (t) => {
-        const result = await PRIVATEINFO_GetUserCaseInsensitive("foobar");
+	t.test("Should not return the user for a username that does not exist", async (t) => {
+		const result = await PRIVATEINFO_GetUserCaseInsensitive("foobar");
 
-        t.equal(result, null, "Should return null");
-    });
+		t.equal(result, null, "Should return null");
+	});
 
-    t.end();
+	t.end();
 });
 
 t.test("#FormatUserDoc", (t) => {
-    t.equal(
-        FormatUserDoc({ username: "zkldi", id: 123 } as PublicUserDocument),
-        "zkldi (#123)",
-        "Should format a user document into username #id format."
-    );
+	t.equal(
+		FormatUserDoc({ username: "zkldi", id: 123 } as PublicUserDocument),
+		"zkldi (#123)",
+		"Should format a user document into username #id format."
+	);
 
-    t.end();
+	t.end();
 });
 
 t.teardown(CloseAllConnections);

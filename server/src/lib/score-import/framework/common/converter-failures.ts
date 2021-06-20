@@ -5,11 +5,11 @@ import { ImportTypes } from "tachi-common";
 import { ImportTypeDataMap, ImportTypeContextMap } from "../../import-types/common/types";
 
 export class ConverterFailure {
-    message: string | null;
+	message: string | null;
 
-    constructor(message: string | null) {
-        this.message = message;
-    }
+	constructor(message: string | null) {
+		this.message = message;
+	}
 }
 
 /**
@@ -25,22 +25,22 @@ export class SkipScoreFailure extends ConverterFailure {}
  * Alongside any other fields used in the query.
  */
 export class KTDataNotFoundFailure<T extends ImportTypes> extends ConverterFailure {
-    data: ImportTypeDataMap[T];
-    converterContext: ImportTypeContextMap[T];
-    importType: T;
+	data: ImportTypeDataMap[T];
+	converterContext: ImportTypeContextMap[T];
+	importType: T;
 
-    constructor(
-        message: string | null,
-        importType: T,
-        data: ImportTypeDataMap[T],
-        context: ImportTypeContextMap[T]
-    ) {
-        super(message);
+	constructor(
+		message: string | null,
+		importType: T,
+		data: ImportTypeDataMap[T],
+		context: ImportTypeContextMap[T]
+	) {
+		super(message);
 
-        this.importType = importType;
-        this.data = data;
-        this.converterContext = context;
-    }
+		this.importType = importType;
+		this.data = data;
+		this.converterContext = context;
+	}
 }
 
 /**

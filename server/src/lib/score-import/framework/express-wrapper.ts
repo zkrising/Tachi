@@ -1,9 +1,9 @@
 import {
-    ImportTypes,
-    PublicUserDocument,
-    SuccessfulAPIResponse,
-    UnsuccessfulAPIResponse,
-    ImportDocument,
+	ImportTypes,
+	PublicUserDocument,
+	SuccessfulAPIResponse,
+	UnsuccessfulAPIResponse,
+	ImportDocument,
 } from "tachi-common";
 import { ImportInputParser } from "../import-types/common/types";
 import { CreateImportLoggerAndID } from "./common/import-logger";
@@ -11,8 +11,8 @@ import ScoreImportMain from "./score-import-main";
 import ScoreImportFatalError from "./score-importing/score-import-error";
 
 export interface WrappedAPIResponse {
-    statusCode: number;
-    body: SuccessfulAPIResponse<ImportDocument> | UnsuccessfulAPIResponse;
+	statusCode: number;
+	body: SuccessfulAPIResponse<ImportDocument> | UnsuccessfulAPIResponse;
 }
 
 /**
@@ -21,48 +21,48 @@ export interface WrappedAPIResponse {
  * be immediately sent with res.json().
  */
 export async function ExpressWrappedScoreImportMain<D, C>(
-    user: PublicUserDocument,
-    userIntent: boolean,
-    importType: ImportTypes,
-    InputParser: ImportInputParser<D, C>
+	user: PublicUserDocument,
+	userIntent: boolean,
+	importType: ImportTypes,
+	InputParser: ImportInputParser<D, C>
 ): Promise<WrappedAPIResponse> {
-    const { importID, logger } = CreateImportLoggerAndID(user, importType);
-    logger.debug("Received import request.");
+	const { importID, logger } = CreateImportLoggerAndID(user, importType);
+	logger.debug("Received import request.");
 
-    try {
-        const res = await ScoreImportMain(user, userIntent, importType, InputParser, {
-            importID,
-            logger,
-        });
+	try {
+		const res = await ScoreImportMain(user, userIntent, importType, InputParser, {
+			importID,
+			logger,
+		});
 
-        return {
-            statusCode: 200,
-            body: {
-                success: true,
-                description: "Import successful.",
-                body: res,
-            },
-        };
-    } catch (err) {
-        if (err instanceof ScoreImportFatalError) {
-            logger.info(err.message);
-            return {
-                statusCode: 400,
-                body: {
-                    success: false,
-                    description: err.message,
-                },
-            };
-        }
+		return {
+			statusCode: 200,
+			body: {
+				success: true,
+				description: "Import successful.",
+				body: res,
+			},
+		};
+	} catch (err) {
+		if (err instanceof ScoreImportFatalError) {
+			logger.info(err.message);
+			return {
+				statusCode: 400,
+				body: {
+					success: false,
+					description: err.message,
+				},
+			};
+		}
 
-        logger.error(err);
-        return {
-            statusCode: 500,
-            body: {
-                success: false,
-                description:
-                    "An internal service error has occured. Please do not repeat this request.",
-            },
-        };
-    }
+		logger.error(err);
+		return {
+			statusCode: 500,
+			body: {
+				success: false,
+				description:
+					"An internal service error has occured. Please do not repeat this request.",
+			},
+		};
+	}
 }

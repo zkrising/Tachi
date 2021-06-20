@@ -9,31 +9,31 @@ t.beforeEach(ClearTestingRateLimitCache);
 // (which does a server status check)
 // and then check any of them return 429.
 t.test("Rate Limiting Test", async (t) => {
-    const promises = [];
+	const promises = [];
 
-    for (let i = 0; i < 150; i++) {
-        promises.push(mockApi.get("/api/v1/status"));
-    }
+	for (let i = 0; i < 150; i++) {
+		promises.push(mockApi.get("/api/v1/status"));
+	}
 
-    const res = await Promise.all(promises);
+	const res = await Promise.all(promises);
 
-    const rateLimited = res.filter((e) => e.statusCode === 429);
+	const rateLimited = res.filter((e) => e.statusCode === 429);
 
-    t.ok(rateLimited.length > 0, "Some requests should be rate limited.");
+	t.ok(rateLimited.length > 0, "Some requests should be rate limited.");
 
-    t.end();
+	t.end();
 });
 
 t.test("404 Handler", async (t) => {
-    const res = await mockApi.get("/api/v1/invalid_route_that_will_never_exist");
+	const res = await mockApi.get("/api/v1/invalid_route_that_will_never_exist");
 
-    t.equal(res.statusCode, 404);
-    t.strictSame(res.body, {
-        success: false,
-        description: "Endpoint Not Found.",
-    });
+	t.equal(res.statusCode, 404);
+	t.strictSame(res.body, {
+		success: false,
+		description: "Endpoint Not Found.",
+	});
 
-    t.end();
+	t.end();
 });
 
 t.teardown(CloseAllConnections);

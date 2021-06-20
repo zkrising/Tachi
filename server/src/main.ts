@@ -6,7 +6,7 @@ import { FormatVersion } from "./lib/constants/version";
 
 const logger = CreateLogCtx(__filename);
 
-logger.info(`Booting ${CONF_INFO.NAME} - ${FormatVersion()} [ENV: ${process.env.NODE_ENV}]`);
+logger.info(`Booting ${CONF_INFO.name} - ${FormatVersion()} [ENV: ${process.env.NODE_ENV}]`);
 logger.info(`Log level is set to ${LOG_LEVEL}.`);
 
 server.listen(PORT);

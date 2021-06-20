@@ -69,9 +69,9 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	sdvx: {
 		Single: CalculateDataSDVXorUSC,
 	},
-	popn: {
-		"9B": () => ({}),
-	},
+	// popn: {
+	// 	"9B": () => ({}),
+	// },
 	museca: {
 		Single: CalculateDataMuseca,
 	},
@@ -93,9 +93,9 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 		SP: CalculateDataDDR,
 		DP: CalculateDataDDR,
 	},
-	jubeat: {
-		Single: CalculateDataJubeat,
-	},
+	// jubeat: {
+	// 	Single: CalculateDataJubeat,
+	// },
 	usc: {
 		Single: CalculateDataSDVXorUSC,
 	},
@@ -310,13 +310,13 @@ async function CalculateDataBMS7K(
 	};
 }
 
-async function CalculateDataJubeat(
-	dryScore: DryScore,
-	chart: AnyChartDocument,
-	defaultTierlistID: string | undefined,
-	logger: KtLogger
-): Promise<CalculatedData<"jubeat:Single">> {
-	return {
-		jubility: 0, // @todo #163 Jubeat Jubility
-	};
-}
+// async function CalculateDataJubeat(
+// 	dryScore: DryScore,
+// 	chart: AnyChartDocument,
+// 	defaultTierlistID: string | undefined,
+// 	logger: KtLogger
+// ): Promise<CalculatedData<"jubeat:Single">> {
+// 	return {
+// 		jubility: 0, // @todo #163 Jubeat Jubility
+// 	};
+// }

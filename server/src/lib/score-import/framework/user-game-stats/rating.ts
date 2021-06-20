@@ -117,9 +117,9 @@ const RatingFunctions: RatingFunctions = {
 			naiveRating: await LazyMeanN("rating", 20)(g, p, u),
 		}),
 	},
-	popn: {
-		"9B": async () => ({}),
-	},
+	// popn: {
+	// 	"9B": async () => ({}),
+	// },
 	museca: {
 		Single: async (g, p, u) => ({
 			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
@@ -130,11 +130,11 @@ const RatingFunctions: RatingFunctions = {
 			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
 		}),
 	},
-	jubeat: {
-		Single: async (g, p, u, l) => ({
-			jubility: await CalculateJubility(g, p, u, l),
-		}),
-	},
+	// jubeat: {
+	// 	Single: async (g, p, u, l) => ({
+	// 		jubility: await CalculateJubility(g, p, u, l),
+	// 	}),
+	// },
 };
 
 export function CalculateRatings(
@@ -188,43 +188,43 @@ async function CalculateGitadoraSkill(
 	return skill;
 }
 
-async function CalculateJubility(
-	game: Game,
-	playtype: Playtypes[Game],
-	userID: integer,
-	logger: KtLogger
-): Promise<number> {
-	const hotCharts = await db.charts.jubeat.find(
-		{ "flags.HOT N-1": true },
-		{ projection: { chartID: 1 } }
-	);
+// async function CalculateJubility(
+// 	game: Game,
+// 	playtype: Playtypes[Game],
+// 	userID: integer,
+// 	logger: KtLogger
+// ): Promise<number> {
+// 	const hotCharts = await db.charts.jubeat.find(
+// 		{ "flags.HOT N-1": true },
+// 		{ projection: { chartID: 1 } }
+// 	);
 
-	const hotChartIDs = hotCharts.map((e) => e.chartID);
+// 	const hotChartIDs = hotCharts.map((e) => e.chartID);
 
-	const [bestHotScores, bestScores] = await Promise.all([
-		db["personal-bests"].find(
-			{ userID, chartID: { $in: hotChartIDs } },
-			{
-				sort: { "calculatedData.jubility": -1 },
-				limit: 25,
-				projection: { "calculatedData.jubility": 1 },
-			}
-		),
-		// @inefficient
-		// see gitadoraskillcalc
-		db["personal-bests"].find(
-			{ userID, chartID: { $nin: hotChartIDs } },
-			{
-				sort: { "calculatedData.jubility": -1 },
-				limit: 25,
-				projection: { "calculatedData.jubility": 1 },
-			}
-		),
-	]);
+// 	const [bestHotScores, bestScores] = await Promise.all([
+// 		db["personal-bests"].find(
+// 			{ userID, chartID: { $in: hotChartIDs } },
+// 			{
+// 				sort: { "calculatedData.jubility": -1 },
+// 				limit: 25,
+// 				projection: { "calculatedData.jubility": 1 },
+// 			}
+// 		),
+// 		// @inefficient
+// 		// see gitadoraskillcalc
+// 		db["personal-bests"].find(
+// 			{ userID, chartID: { $nin: hotChartIDs } },
+// 			{
+// 				sort: { "calculatedData.jubility": -1 },
+// 				limit: 25,
+// 				projection: { "calculatedData.jubility": 1 },
+// 			}
+// 		),
+// 	]);
 
-	let skill = 0;
-	skill += bestHotScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
-	skill += bestScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
+// 	let skill = 0;
+// 	skill += bestHotScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
+// 	skill += bestScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
 
-	return skill;
-}
+// 	return skill;
+// }

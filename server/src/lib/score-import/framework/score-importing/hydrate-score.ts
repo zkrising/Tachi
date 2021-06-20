@@ -1,4 +1,10 @@
-import { AnyChartDocument, config, integer, ScoreDocument, AnySongDocument } from "tachi-common";
+import {
+	AnyChartDocument,
+	integer,
+	ScoreDocument,
+	AnySongDocument,
+	GetGamePTConfig,
+} from "tachi-common";
 import { KtLogger } from "../../../logger/logger";
 import { CreateCalculatedData } from "../calculated-data/calculated-data";
 import { CalculateESDForGame } from "../common/score-utils";
@@ -27,12 +33,13 @@ export async function HydrateScore(
 
 	const { scoreData: dryScoreData, ...rest } = dryScore;
 
+	const gptConfig = GetGamePTConfig(dryScore.game, chart.playtype);
+
 	// Fill out the rest of the fields we want for scoreData
 	const scoreData = Object.assign(
 		{
-			// @todo #103 lamps may need to be separate upon game:playtype someday. Maybe. We need to check this out
-			lampIndex: config.lamps[dryScore.game].indexOf(dryScore.scoreData.lamp as string),
-			gradeIndex: config.grades[dryScore.game].indexOf(dryScore.scoreData.grade as string),
+			lampIndex: gptConfig.lamps.indexOf(dryScore.scoreData.lamp),
+			gradeIndex: gptConfig.grades.indexOf(dryScore.scoreData.grade),
 			esd,
 		},
 		dryScoreData

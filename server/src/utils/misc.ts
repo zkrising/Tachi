@@ -62,7 +62,7 @@ export function HasOwnProperty<T>(obj: T, key: string | number | symbol): key is
 }
 
 export function IsValidGame(str: string): str is Game {
-	return !!CONF_INFO.SUPPORTED_GAMES.includes(str as Game);
+	return !!CONF_INFO.supportedGames.includes(str as Game);
 }
 
 export function IsValidPlaytype(game: Game, str: string): str is Playtypes[Game] {

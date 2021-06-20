@@ -8,8 +8,6 @@ import { GetKTDataJSON } from "../../../../test-utils/test-data";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function TestHeaders(url: string, data: any) {
-	t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
-
 	t.test("Should reject invalid X-Software-Models", async (t) => {
 		let res = await mockApi
 			.post(url)

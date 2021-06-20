@@ -1,6 +1,7 @@
 {
     "head": {
         "game": "chunithm",
+        "playtype": "Single",
         "service": "Chunitachi"
     },
     "body": [{
@@ -8,7 +9,6 @@
         "lamp": "CLEAR",
         "matchType": "songTitle",
         "identifier": "B.B.K.K.B.K.K.",
-        "playtype": "Single",
         "difficulty": "BASIC"
     }]
 }

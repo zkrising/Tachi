@@ -139,10 +139,17 @@ export function ParseBatchManualFromObject(
 	// @ts-expect-error man.
 	const possiblyPlaytype = object?.head?.playtype;
 
-	if (!possiblyGame || !possiblyPlaytype) {
+	if (!possiblyGame) {
 		throw new ScoreImportFatalError(
 			400,
 			`Could not retrieve head.game - is this valid BATCH-MANUAL?`
+		);
+	}
+
+	if (!possiblyPlaytype) {
+		throw new ScoreImportFatalError(
+			400,
+			`Could not retrieve head.playtype - is this valid BATCH-MANUAL?`
 		);
 	}
 

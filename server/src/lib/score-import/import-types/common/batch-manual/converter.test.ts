@@ -20,6 +20,7 @@ const baseBatchManualScore = {
 
 const context = {
 	game: "iidx" as const,
+	playtype: "SP" as const,
 	service: "foo",
 	version: null,
 };
@@ -105,7 +106,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		const gazerSong = GetKTDataJSON("./tachi/bms-gazer-song.json");
 		const gazerChart = GetKTDataJSON("./tachi/bms-gazer-chart.json");
 
-		const bmsContext: any = deepmerge(context, { game: "bms" });
+		const bmsContext: any = deepmerge(context, { game: "bms", playtype: "7K" });
 
 		const resMD5 = await ResolveMatchTypeToKTData(
 			deepmerge(baseBatchManualScore, {
@@ -244,28 +245,11 @@ t.test("#ResolveChartFromSong", (t) => {
 		const res = await ResolveChartFromSong(
 			Testing511Song,
 			baseBatchManualScore, // has playtype + diff
-			{ game: "iidx", service: "foo", version: null },
+			{ game: "iidx", service: "foo", playtype: "SP", version: null },
 			importType
 		);
 
 		t.hasStrict(res, Testing511SPA);
-
-		t.end();
-	});
-
-	t.test("Should throw an error if no playtype is provided.", (t) => {
-		t.rejects(
-			() =>
-				ResolveChartFromSong(
-					Testing511Song,
-					deepmerge(baseBatchManualScore, { playtype: null }),
-					{ game: "iidx", service: "foo", version: null },
-					importType
-				),
-			new InvalidScoreFailure(
-				`Missing 'playtype' field, but was necessary for this lookup.`
-			) as any
-		);
 
 		t.end();
 	});
@@ -276,7 +260,7 @@ t.test("#ResolveChartFromSong", (t) => {
 				ResolveChartFromSong(
 					Testing511Song,
 					deepmerge(baseBatchManualScore, { difficulty: null }),
-					{ game: "iidx", service: "foo", version: null },
+					{ game: "iidx", service: "foo", playtype: "SP", version: null },
 					importType
 				),
 			new InvalidScoreFailure(
@@ -294,7 +278,7 @@ t.test("#ResolveChartFromSong", (t) => {
 					Testing511Song,
 					// @ts-expect-error faulty deepmerge types
 					deepmerge(baseBatchManualScore, { difficulty: "NOT_VALID_DIFFICULTY" }),
-					{ game: "iidx", service: "foo", version: null },
+					{ game: "iidx", service: "foo", playtype: "SP", version: null },
 					importType
 				),
 			new InvalidScoreFailure(
@@ -312,7 +296,7 @@ t.test("#ResolveChartFromSong", (t) => {
 					Testing511Song,
 					// @ts-expect-error faulty deepmerge types
 					deepmerge(baseBatchManualScore, { difficulty: "LEGGENDARIA" }), // 511 has no legg (yet, lol)
-					{ game: "iidx", service: "foo", version: null },
+					{ game: "iidx", service: "foo", version: null, playtype: "SP" },
 					importType
 				),
 			ktdWrap("Cannot find chart for 5.1.1. (SP LEGGENDARIA)")
@@ -328,6 +312,7 @@ t.test("#ResolveChartFromSong", (t) => {
 			{
 				game: "iidx",
 				service: "foo",
+				playtype: "SP",
 				version: "27",
 			},
 			importType
@@ -345,7 +330,7 @@ t.test("#ConverterFn", (t) => {
 	t.test("Should produce a DryScore", async (t) => {
 		const res = await ConverterBatchManual(
 			baseBatchManualScore,
-			{ game: "iidx", service: "foo", version: null },
+			{ game: "iidx", service: "foo", playtype: "SP", version: null },
 			importType,
 			logger
 		);
@@ -380,7 +365,7 @@ t.test("#ConverterFn", (t) => {
 				ConverterBatchManual(
 					// @ts-expect-error broken deepmerge
 					deepmerge(baseBatchManualScore, { score: 2000 }),
-					{ game: "iidx", service: "foo", version: null },
+					{ game: "iidx", service: "foo", playtype: "SP", version: null },
 					importType,
 					logger
 				),

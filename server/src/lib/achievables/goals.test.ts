@@ -13,6 +13,7 @@ import {
 } from "../../test-utils/test-data";
 import { CreateFolderChartLookup } from "../../utils/folder";
 import { CloseAllConnections } from "../../test-utils/close-connections";
+import { Random20Hex } from "../../utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -208,17 +209,21 @@ t.test("#EvaluateGoalForUser", (t) => {
 			delete Testing511SPA._id;
 
 			await db.charts.iidx.insert([
-				// @ts-expect-error ???
 				deepmerge(Testing511SPA, {
 					songID: 123,
 					level: "9",
 					chartID: "not_sp10",
+					data: {
+						arcChartID: Random20Hex(),
+					},
 				}),
-				// @ts-expect-error ???
 				deepmerge(Testing511SPA, {
 					songID: 124,
 					level: "10",
 					chartID: "other_sp10",
+					data: {
+						arcChartID: Random20Hex(),
+					},
 				}),
 			]);
 
@@ -298,10 +303,10 @@ t.test("#EvaluateGoalForUser", (t) => {
 });
 
 t.test("#HumaniseGoalProgress", (t) => {
-	t.equal(HumaniseGoalProgress("iidx", "scoreData.gradeIndex", 4, null), "B");
-	t.equal(HumaniseGoalProgress("iidx", "scoreData.lampIndex", 4, null), "CLEAR");
-	t.equal(HumaniseGoalProgress("iidx", "scoreData.percent", 90.1142, null), "90.11%");
-	t.equal(HumaniseGoalProgress("iidx", "scoreData.score", 2240, null), "2240");
+	t.equal(HumaniseGoalProgress("iidx", "SP", "scoreData.gradeIndex", 4, null), "B");
+	t.equal(HumaniseGoalProgress("iidx", "SP", "scoreData.lampIndex", 4, null), "CLEAR");
+	t.equal(HumaniseGoalProgress("iidx", "SP", "scoreData.percent", 90.1142, null), "90.11%");
+	t.equal(HumaniseGoalProgress("iidx", "SP", "scoreData.score", 2240, null), "2240");
 
 	t.end();
 });

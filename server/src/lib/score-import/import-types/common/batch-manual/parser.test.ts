@@ -18,7 +18,7 @@ const logger = CreateLogCtx(__filename);
 
 const baseBatchManual = {
 	body: [],
-	head: { service: "foo", game: "iidx" },
+	head: { service: "foo", game: "iidx", playtype: "SP" },
 };
 
 const baseBatchManualScore = {
@@ -26,7 +26,6 @@ const baseBatchManualScore = {
 	lamp: "HARD CLEAR",
 	matchType: "songID",
 	identifier: "123",
-	playtype: "SP",
 	difficulty: "ANOTHER",
 };
 
@@ -68,10 +67,33 @@ t.test("#ParserFn", (t) => {
 
 	t.test("No Game", (t) => {
 		t.throws(
-			() => ParserFn({ body: [], head: { service: "foo" } }, "file/batch-manual", logger),
+			() =>
+				ParserFn(
+					{ body: [], head: { service: "foo", playtype: "SP" } },
+					"file/batch-manual",
+					logger
+				),
 			new ScoreImportFatalError(
 				400,
 				"Could not retrieve head.game - is this valid BATCH-MANUAL?"
+			),
+			"Should throw an error."
+		);
+
+		t.end();
+	});
+
+	t.test("No Playtype", (t) => {
+		t.throws(
+			() =>
+				ParserFn(
+					{ body: [], head: { service: "foo", game: "iidx" } },
+					"file/batch-manual",
+					logger
+				),
+			new ScoreImportFatalError(
+				400,
+				"Could not retrieve head.playtype - is this valid BATCH-MANUAL?"
 			),
 			"Should throw an error."
 		);
@@ -83,7 +105,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "foo", game: "invalid_game" } },
+					{ body: [], head: { service: "foo", game: "invalid_game", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -93,7 +115,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "foo", game: 123 } },
+					{ body: [], head: { service: "foo", game: 123, playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -107,7 +129,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "1", game: "iidx" } },
+					{ body: [], head: { service: "1", game: "iidx", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -121,7 +143,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: 1, game: "iidx" } },
+					{ body: [], head: { service: 1, game: "iidx", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -137,7 +159,7 @@ t.test("#ParserFn", (t) => {
 
 	t.test("Valid Empty BATCH-MANUAL", (t) => {
 		const res = ParserFn(
-			{ body: [], head: { service: "foo", game: "iidx" } },
+			{ body: [], head: { service: "foo", game: "iidx", playtype: "SP" } },
 			"file/batch-manual",
 			logger
 		);
@@ -165,7 +187,6 @@ t.test("#ParserFn", (t) => {
 							lamp: "HARD CLEAR",
 							matchType: "songID",
 							identifier: "123",
-							playtype: "SP",
 							difficulty: "ANOTHER",
 						},
 						{
@@ -173,7 +194,6 @@ t.test("#ParserFn", (t) => {
 							lamp: "HARD CLEAR",
 							matchType: "kamaitachiSongID",
 							identifier: "123",
-							playtype: "DP",
 							difficulty: "HYPER",
 						},
 						{
@@ -189,7 +209,7 @@ t.test("#ParserFn", (t) => {
 							identifier: "5.1.1.",
 						},
 					],
-					head: { service: "foo", game: "iidx" },
+					head: { service: "foo", game: "iidx", playtype: "SP" },
 				} as BatchManual,
 				"file/batch-manual",
 				logger
@@ -200,6 +220,7 @@ t.test("#ParserFn", (t) => {
 				context: {
 					service: "foo",
 					game: "iidx",
+					playtype: "SP",
 					version: null,
 				},
 				iterable: [
@@ -208,7 +229,6 @@ t.test("#ParserFn", (t) => {
 						lamp: "HARD CLEAR",
 						matchType: "songID",
 						identifier: "123",
-						playtype: "SP",
 						difficulty: "ANOTHER",
 					},
 					{
@@ -216,7 +236,6 @@ t.test("#ParserFn", (t) => {
 						lamp: "HARD CLEAR",
 						matchType: "kamaitachiSongID",
 						identifier: "123",
-						playtype: "DP",
 						difficulty: "HYPER",
 					},
 					{
@@ -249,6 +268,7 @@ t.test("#ParserFn", (t) => {
 				context: {
 					service: "foo",
 					game: "iidx",
+					playtype: "SP",
 					version: null,
 				},
 				iterable: [
@@ -257,7 +277,6 @@ t.test("#ParserFn", (t) => {
 						lamp: "HARD CLEAR",
 						matchType: "songID",
 						identifier: "123",
-						playtype: "SP",
 						difficulty: "ANOTHER",
 						hitMeta: {
 							bp: 10,
@@ -284,6 +303,7 @@ t.test("#ParserFn", (t) => {
 				context: {
 					service: "foo",
 					game: "iidx",
+					playtype: "SP",
 					version: null,
 				},
 				iterable: [
@@ -292,7 +312,6 @@ t.test("#ParserFn", (t) => {
 						lamp: "HARD CLEAR",
 						matchType: "songID",
 						identifier: "123",
-						playtype: "SP",
 						difficulty: "ANOTHER",
 						judgements: {
 							pgreat: 1,
@@ -320,11 +339,10 @@ t.test("#ParserFn", (t) => {
 								lamp: "ALL JUSTICE", // not an iidx lamp
 								matchType: "songID",
 								identifier: "123",
-								playtype: "SP",
 								difficulty: "ANOTHER",
 							},
 						],
-						head: { service: "foo", game: "iidx" },
+						head: { service: "foo", game: "iidx", playtype: "SP" },
 					},
 					"file/batch-manual",
 					logger
@@ -380,21 +398,6 @@ t.test("#ParserFn", (t) => {
 					"Invalid BATCH-MANUAL: body[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of miliseconds? | Received 1620768609.637 [number]."
 				),
 				"Should throw if timeAchieved is less than 10_000_000_000."
-			);
-
-			t.end();
-		});
-
-		t.test("Invalid Playtype", (t) => {
-			// this is not a valid playtype for IIDX
-			const fn = () => ParserFn(dm({ playtype: "Single" }), "file/batch-manual", logger);
-
-			t.throws(
-				fn,
-				new ScoreImportFatalError(
-					400,
-					"Invalid BATCH-MANUAL: body[0].playtype | Expected any of SP, DP. | Received Single [string]."
-				)
 			);
 
 			t.end();

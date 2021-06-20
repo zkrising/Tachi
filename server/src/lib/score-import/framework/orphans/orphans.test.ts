@@ -232,6 +232,7 @@ t.test("#ReprocessOrphan", (t) => {
 				deepmerge(orphanDoc, {
 					context: {
 						game: "bms",
+						playtype: "7K",
 					},
 					data: {
 						matchType: "bmsChartHash",

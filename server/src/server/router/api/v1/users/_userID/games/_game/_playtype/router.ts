@@ -2,11 +2,7 @@ import { Router } from "express";
 import db from "../../../../../../../../../external/mongo/db";
 import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi";
 import { GetRelevantSongsAndCharts } from "../../../../../../../../../utils/db";
-import {
-	GetDefaultScoreRatingAlg,
-	GetDefaultSessionRatingAlg,
-	GetUsersRanking,
-} from "../../../../../../../../../utils/user";
+import { GetUsersRanking } from "../../../../../../../../../utils/user";
 import { CheckUserPlayedGamePlaytype } from "./middleware";
 import { FilterQuery } from "mongodb";
 import { UserGoalDocument, UserMilestoneDocument, GetGamePTConfig } from "tachi-common";

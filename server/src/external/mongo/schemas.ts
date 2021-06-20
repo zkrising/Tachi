@@ -1,13 +1,5 @@
 import deepmerge from "deepmerge";
 import { Game, Playtypes } from "tachi-common";
-import {
-	grades,
-	importTypes,
-	lamps,
-	validHitData,
-	validDifficulties,
-	validPlaytypes,
-} from "tachi-common/js/config";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 import { CONF_INFO } from "../../lib/setup/config";
 

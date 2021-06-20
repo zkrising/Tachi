@@ -1,27 +1,41 @@
 {
-  "name": "tachi-common",
-  "version": "0.1.0",
-  "description": "Common Types & Stuff for Tachi",
-  "main": "js/index.js",
-  "scripts": {
-    "test": "tap",
-    "build": "tsc"
-  },
-  "author": "zkldi",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/tap": "^15.0.3",
-    "@typescript-eslint/eslint-plugin": "^4.19.0",
-    "@typescript-eslint/parser": "^4.19.0",
-    "eslint": "^7.22.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "prettier": "^2.2.1",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.4"
-  },
-  "dependencies": {
-    "monk": "^7.3.3",
-    "tap": "^15.0.9"
-  }
+	"name": "tachi-common",
+	"version": "0.1.0",
+	"description": "Common Types & Stuff for Tachi",
+	"main": "js/index.js",
+	"scripts": {
+		"test": "tap",
+		"build": "tsc"
+	},
+	"author": "zkldi",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/tap": "^15.0.3",
+		"@typescript-eslint/eslint-plugin": "^4.19.0",
+		"@typescript-eslint/parser": "^4.19.0",
+		"eslint": "^7.22.0",
+		"eslint-config-prettier": "^8.1.0",
+		"eslint-plugin-prettier": "^3.3.1",
+		"prettier": "^2.2.1",
+		"ts-node": "^10.0.0",
+		"typescript": "^4.3.4"
+	},
+	"dependencies": {
+		"monk": "^7.3.3",
+		"tap": "^15.0.9"
+	},
+	"nyc": {
+		"reporter": [
+			"html",
+			"lcov"
+		],
+		"all": true,
+		"include": [
+			"src/*/!(test-utils)/**/*.ts"
+		],
+		"exclude": [
+			"src/**/*.test.ts",
+			"src/external/mongo/schemas.ts"
+		]
+	}
 }

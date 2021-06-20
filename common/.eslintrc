@@ -20,7 +20,8 @@
             "singleQuote": false,
             "trailingComma": "es5",
             "bracketSpacing": true,
-            "endOfLine": "auto"
+            "endOfLine": "auto",
+            "useTabs": true
         }],
         "@typescript-eslint/no-unused-vars": "error",
         "@typescript-eslint/no-unused-expressions": "error",

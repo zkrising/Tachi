@@ -1,12 +1,4 @@
-import {
-    AnyChartDocument,
-    ESDCore,
-    integer,
-    Grades,
-    Lamps,
-    Game,
-    Playtypes,
-} from "tachi-common";
+import { AnyChartDocument, ESDCore, integer, Grades, Lamps, Game, Playtypes } from "tachi-common";
 import db from "../../../../external/mongo/db";
 import { GetAllTierlistDataOfType, GetOneTierlistData } from "../../../../utils/tierlist";
 import { KtLogger } from "../../../logger/logger";

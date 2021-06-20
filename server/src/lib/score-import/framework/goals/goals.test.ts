@@ -262,7 +262,9 @@ t.test("#UpdateGoalsForUser", (t) => {
         // we dont delete _id here because updategoalsforuser
         // depends on usergoal _id
 
-        await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, { scoreData: { score: 1 } }));
+        await db["personal-bests"].insert(
+            deepmerge(TestingIIDXSPScorePB, { scoreData: { score: 1 } })
+        );
 
         const ugMap = new Map([["FAKE_GOAL_ID", userGoal]]);
 

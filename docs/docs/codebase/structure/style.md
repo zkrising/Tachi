@@ -17,9 +17,12 @@ ESLint is set up to automatically perform all of these changes when ran.
 
 ## Prettier Rules
 
-- 4 Spaces Indenting.
+- Tab Indenting.
 
-I'd prefer to use tabs, honestly, but Prettier and JSDoc like to align things with spaces and it messes with them.
+<del>I'd prefer to use tabs, honestly, but Prettier and JSDoc like to align things with spaces and it messes with them.</del>
+
+It turns out there's only one rare scenario where prettier mixes tabs and spaces (Rare as in, it happens
+once in an obscure place in the entire codebase), so we've switched to tabs.
 
 - Semicolons.
 
@@ -27,7 +30,8 @@ No-Semicolons causes issues with IIFEs.
 
 - Try to keep things under 100 characters.
 
-Absolutely do not insert random line breaks to keep stuff under 100 characters. It's fine for things to go a bit over.
+Absolutely **DO NOT** insert random line breaks to keep stuff under 100 characters. It's fine for things to go a bit over.
+Seriously, your editor is definitely capable of wrapping text if it goes too far.
 
 Prettier has its own opinions on where these line breaks should happen, just trust them.
 
@@ -35,11 +39,11 @@ Prettier has its own opinions on where these line breaks should happen, just tru
 
 JSON does it and that's pretty much the only reason why.
 
-- Line Break is LF, not CRLF
+- Line Break is LF, **not CRLF**
 
 Your editor will handle this properly. If it does not
 automatically set, check the bottom right of your editor.
-For Atom, VSCode and some others it will let you switch between
+For Atom, VSCode and most others it will let you switch between
 CRLF and LF.
 
 ## Commenting Style
@@ -70,10 +74,10 @@ function sd(arr: number[]) {
 This is bad code. Very bad code. It is not at all clear what
 this code does from any of the variable names, and the function signature barely helps.
 
-Lets try and make this code more self documenting.
+First, lets try and make this code more self documenting.
 
 We'll give everything proper variable names, and then
-expand the second `reduce` call into a simpler for loop.
+expand the second `reduce` call into a simpler for loop.[^1]
 
 ```ts
 function CalculateStandardDeviation(dataset: number[]) {
@@ -137,3 +141,8 @@ The list of directives and their meaning is here:
 Don't worry about this too much, At the end of the day, as
 long as the code is understandable and the linter is happy,
 it's good.
+
+[^1]: JS's ES6 array methods are the devil if used improperly. For some reason, lots of people in
+react and react-adjacent scenes seem to love (ab)using these array methods for everything. Complex
+`reduce` operations should always be turned into a `for loop`, and that's to say nothing of my opinions
+on `forEach`.

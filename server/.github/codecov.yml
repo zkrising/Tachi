@@ -1,6 +1,11 @@
 codecov:
   require_ci_to_pass: yes
   branch: develop
+
+coverage:
+  precision: 2
+  round: down
+  range: "50...100"
   status:
     project:
       default:
@@ -17,11 +22,6 @@ codecov:
         if_ci_failed: error #success, failure, error, ignore
         informational: false
         only_pulls: false
-
-coverage:
-  precision: 2
-  round: down
-  range: "50...100"
 
 parsers:
   gcov:

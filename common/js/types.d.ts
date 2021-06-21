@@ -169,61 +169,6 @@ export interface Difficulties {
     "gitadora:Gita": "BASIC" | "ADVANCED" | "EXTREME" | "MASTER" | "BASS BASIC" | "BASS ADVANCED" | "BASS EXTREME" | "BASS MASTER";
     "gitadora:Dora": "BASIC" | "ADVANCED" | "EXTREME" | "MASTER";
 }
-export interface CustomRatings {
-    iidx: {
-        SP: {
-            BPI: number;
-            "K%": number;
-        };
-        DP: {
-            BPI: number;
-        };
-    };
-    popn: {
-        "9B": Record<string, never>;
-    };
-    sdvx: {
-        Single: {
-            VF4: number;
-            VF5: number;
-        };
-    };
-    usc: {
-        Single: {
-            VF4: number;
-            VF5: number;
-        };
-    };
-    ddr: {
-        SP: {
-            MFCP: integer;
-        };
-        DP: {
-            MFCP: integer;
-        };
-    };
-    maimai: {
-        Single: Record<string, never>;
-    };
-    jubeat: {
-        Single: {
-            jubility: number;
-        };
-    };
-    museca: {
-        Single: Record<string, never>;
-    };
-    bms: {
-        "7K": Record<string, never>;
-        "14K": Record<string, never>;
-    };
-    chunithm: {
-        Single: Record<string, never>;
-    };
-    gitadora: {
-        Single: Record<string, never>;
-    };
-}
 /**
  * An alias for number, that makes part of the code self-documenting.
  * Note that if it were possible to enforce integer-y ness, then I would absolutely do so here
@@ -572,7 +517,7 @@ export interface PublicUserDocument extends MongoDBDocument {
     clan: string | null;
 }
 export interface UGSRatingsLookup {
-    "iidx:SP": "BPI" | "K%" | "ktRating" | "ktLampRating";
+    "iidx:SP": "BPI" | "ktRating" | "ktLampRating";
     "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
     "popn:9B": never;
     "sdvx:Single": "VF6";

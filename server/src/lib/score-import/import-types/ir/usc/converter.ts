@@ -91,7 +91,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 			percent,
 			score: data.score,
 			lamp: DeriveLamp(data, logger),
-			hitData: {
+			judgements: {
 				critical: data.crit,
 				near: data.near,
 				miss: data.error,

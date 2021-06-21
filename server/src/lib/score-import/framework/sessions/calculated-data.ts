@@ -64,9 +64,9 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 			};
 		},
 	},
-	popn: {
-		"9B": () => ({}),
-	},
+	// popn: {
+	// 	"9B": () => ({}),
+	// },
 	museca: {
 		Single: (scd) => ({
 			ktRating: AvgBest10Map(scd, "ktRating"),
@@ -108,11 +108,11 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 			ktRating: AvgBest10Map(scd, "ktRating"),
 		}),
 	},
-	jubeat: {
-		Single: (scd) => ({
-			jubility: AvgBest10Map(scd, "jubility"),
-		}),
-	},
+	// jubeat: {
+	// 	Single: (scd) => ({
+	// 		jubility: AvgBest10Map(scd, "jubility"),
+	// 	}),
+	// },
 	usc: {
 		Single: (scd) => {
 			const VF6 = AvgBest10Map(scd, "VF6");

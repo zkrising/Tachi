@@ -75,7 +75,7 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
 
 const indexes: Partial<Record<ValidDatabases, Index[]>> = staticIndexes;
 
-for (const game of CONF_INFO.SUPPORTED_GAMES) {
+for (const game of CONF_INFO.supportedGames) {
 	if (indexes[`charts-${game}` as ValidDatabases]) {
 		indexes[`charts-${game}` as ValidDatabases]!.push(
 			index({ chartID: 1 }, UNIQUE),

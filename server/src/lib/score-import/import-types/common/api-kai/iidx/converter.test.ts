@@ -35,7 +35,7 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 					// percent: 99.87277353689568 floating point,
 					score: 1570,
 					lamp: "HARD CLEAR",
-					hitData: {},
+					judgements: {},
 					hitMeta: {
 						fast: null,
 						slow: null,

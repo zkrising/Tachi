@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { FileUploadImportTypes } from "tachi-common";
-import { fileImportTypes } from "tachi-common/js/config";
 import Prudence from "prudence";
 import { GetUserWithIDGuaranteed } from "../../../../../utils/user";
 import CreateLogCtx, { KtLogger } from "../../../../../lib/logger/logger";
@@ -16,7 +15,7 @@ import ParseBatchManual from "../../../../../lib/score-import/import-types/file/
 import { ParseSolidStateXML } from "../../../../../lib/score-import/import-types/file/solid-state-squad/parser";
 import { ParseMerIIDX } from "../../../../../lib/score-import/import-types/file/mer-iidx/parser";
 import ParsePLIIIDXCSV from "../../../../../lib/score-import/import-types/file/pli-iidx-csv/parser";
-import { RequireKamaitachi } from "../../../../middleware/type-require";
+import { CONF_INFO } from "../../../../../lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -35,11 +34,10 @@ const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware(
 router.post(
 	"/file",
 	RequireLoggedInSession,
-	RequireKamaitachi, // This is only useful for Kamaitachi, so.
 	ParseMultipartScoredata,
 	prValidate(
 		{
-			importType: Prudence.isIn(fileImportTypes),
+			importType: Prudence.isIn(CONF_INFO.supportedImportTypes),
 		},
 		{},
 		{ allowExcessKeys: true }

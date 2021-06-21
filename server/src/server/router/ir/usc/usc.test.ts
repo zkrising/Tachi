@@ -28,7 +28,7 @@ const mockScorePB: PBScoreDocument<"usc:Single"> = {
 		esd: null,
 		grade: "AAA+",
 		gradeIndex: 7,
-		hitData: {
+		judgements: {
 			critical: 100,
 			miss: 15,
 		},

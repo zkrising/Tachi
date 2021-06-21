@@ -142,9 +142,9 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
 
 	const timeAchieved = ParseDateFromString(data.date);
 
-	let hitData = {};
+	let judgements = {};
 	if (data.scorebreakdown) {
-		hitData = {
+		judgements = {
 			pgreat: data.scorebreakdown.justgreats,
 			great: data.scorebreakdown.greats,
 			good: data.scorebreakdown.good,
@@ -163,7 +163,7 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
 			grade: grade as Grades["iidx:SP" | "iidx:DP"],
 			score: data.exscore,
 			lamp,
-			hitData,
+			judgements,
 			hitMeta: {},
 		},
 		scoreMeta: {},

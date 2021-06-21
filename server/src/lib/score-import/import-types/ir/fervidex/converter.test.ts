@@ -94,7 +94,7 @@ const baseDryScore = {
 		percent: 4.325699745547074,
 		grade: "F",
 		lamp: "FAILED",
-		hitData: {
+		judgements: {
 			pgreat: 34,
 			great: 0,
 			good: 0,

@@ -1,6 +1,7 @@
 {
     "head": {
         "game": "iidx",
+        "playtype": "SP",
         "service": "foobar"
     },
     "body": [{
@@ -8,7 +9,6 @@
         "lamp": "HARD CLEAR",
         "matchType": "songTitle",
         "identifier": "5.1.1.",
-        "playtype": "SP",
         "difficulty": "ANOTHER"
     }]
 }

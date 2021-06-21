@@ -1,9 +1,18 @@
-import { AnyChartDocument, ESDCore, integer, Grades, Lamps, Game, Playtypes } from "tachi-common";
+import {
+	AnyChartDocument,
+	ESDCore,
+	integer,
+	Grades,
+	Lamps,
+	Game,
+	Playtypes,
+	GetGamePTConfig,
+	IDStrings,
+} from "tachi-common";
 import db from "../../../../external/mongo/db";
 import { GetAllTierlistDataOfType, GetOneTierlistData } from "../../../../utils/tierlist";
 import { KtLogger } from "../../../logger/logger";
 import { DryScore } from "../common/types";
-import { lamps, clearLamp, ratingParameters } from "tachi-common/js/config";
 
 /**
  * Calculates the in-game CHUNITHM rating for a score.
@@ -305,9 +314,37 @@ function RatingCalcV0Fail(percentDiv100: number, levelNum: number, parameters: R
 	);
 }
 
+const ratingParameters = {
+	iidx: {
+		failHarshnessMultiplier: 0.3,
+		pivotPercent: 0.7777, // Grade: AA
+		clearExpMultiplier: 1,
+	},
+	bms: {
+		failHarshnessMultiplier: 0.5,
+		pivotPercent: 0.7777, // Grade: AA
+		clearExpMultiplier: 0.75,
+	},
+	museca: {
+		failHarshnessMultiplier: 1,
+		pivotPercent: 0.8, // grade: not fail
+		clearExpMultiplier: 1, // no real reason
+	},
+	maimai: {
+		failHarshnessMultiplier: 1,
+		pivotPercent: 0.8,
+		clearExpMultiplier: 1,
+	},
+	ddr: {
+		failHarshnessMultiplier: 0.9,
+		pivotPercent: 0.9,
+		clearExpMultiplier: 1,
+	},
+};
+
 export async function CalculateKTRating(
 	dryScore: DryScore,
-	game: Game,
+	game: "iidx" | "bms" | "ddr" | "maimai" | "museca",
 	playtype: Playtypes[Game],
 	chart: AnyChartDocument,
 	logger: KtLogger,
@@ -316,7 +353,7 @@ export async function CalculateKTRating(
 	// If this game doesn't have a specific rating function declared, fall back to the default "generic" rating function.
 	// This is just a function that is guaranteed to work for all input - and therefore not result in lower-skilled users
 	// always seeing 0.
-	const parameters = ratingParameters[dryScore.game];
+	const parameters = ratingParameters[game];
 
 	let levelNum = chart.levelNum;
 
@@ -346,21 +383,25 @@ export async function CalculateKTLampRating(
 ) {
 	// if no tierlist data
 	if (!defaultTierlistID) {
-		return LampRatingNoTierlistInfo(dryScore, game, chart);
+		return LampRatingNoTierlistInfo(dryScore, game, playtype, chart);
 	}
 
 	const lampTierlistInfo = await GetAllTierlistDataOfType(game, chart, "lamp", defaultTierlistID);
 
 	// if no tierlist info
 	if (lampTierlistInfo.length === 0) {
-		return LampRatingNoTierlistInfo(dryScore, game, chart);
+		return LampRatingNoTierlistInfo(dryScore, game, playtype, chart);
 	}
 
-	const userLampIndex = lamps[game].indexOf(dryScore.scoreData.lamp);
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	const lamps = gptConfig.lamps;
+
+	const userLampIndex = lamps.indexOf(dryScore.scoreData.lamp);
 
 	// if this score is a clear, the lowest we should go is the levelNum of the chart.
 	// Else, the lowest we can go is 0.
-	let lampRating = userLampIndex >= lamps[game].indexOf(clearLamp[game]) ? chart.levelNum : 0;
+	let lampRating = userLampIndex >= lamps.indexOf(gptConfig.clearLamp) ? chart.levelNum : 0;
 
 	// why is this like this and not a lookup table?
 	// Some charts have higher values for *lower* lamps, such as
@@ -371,7 +412,7 @@ export async function CalculateKTLampRating(
 			// this tierlistData has higher value than the current lampRating
 			tierlistData.data.value > lampRating &&
 			// and your clear is better than the lamp its for
-			lamps[game].indexOf(tierlistData.key!) <= userLampIndex
+			lamps.indexOf(tierlistData.key as Lamps[IDStrings]) <= userLampIndex
 		) {
 			lampRating = tierlistData.data.value;
 		}
@@ -380,11 +421,20 @@ export async function CalculateKTLampRating(
 	return lampRating;
 }
 
-function LampRatingNoTierlistInfo(dryScore: DryScore, game: Game, chart: AnyChartDocument) {
-	const CLEAR_LAMP_INDEX = lamps[game].indexOf(clearLamp[game]);
+function LampRatingNoTierlistInfo(
+	dryScore: DryScore,
+	game: Game,
+	playtype: Playtypes[Game],
+	chart: AnyChartDocument
+) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	const lamps = gptConfig.lamps;
+
+	const CLEAR_LAMP_INDEX = lamps.indexOf(gptConfig.clearLamp);
 
 	// if this is a clear
-	if (lamps[game].indexOf(dryScore.scoreData.lamp) >= CLEAR_LAMP_INDEX) {
+	if (lamps.indexOf(dryScore.scoreData.lamp) >= CLEAR_LAMP_INDEX) {
 		// return this chart's numeric level as the lamp rating
 		return chart.levelNum;
 	}

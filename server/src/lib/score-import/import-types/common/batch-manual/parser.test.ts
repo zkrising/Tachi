@@ -18,7 +18,7 @@ const logger = CreateLogCtx(__filename);
 
 const baseBatchManual = {
 	body: [],
-	head: { service: "foo", game: "iidx" },
+	head: { service: "foo", game: "iidx", playtype: "SP" },
 };
 
 const baseBatchManualScore = {
@@ -26,7 +26,6 @@ const baseBatchManualScore = {
 	lamp: "HARD CLEAR",
 	matchType: "songID",
 	identifier: "123",
-	playtype: "SP",
 	difficulty: "ANOTHER",
 };
 
@@ -68,10 +67,33 @@ t.test("#ParserFn", (t) => {
 
 	t.test("No Game", (t) => {
 		t.throws(
-			() => ParserFn({ body: [], head: { service: "foo" } }, "file/batch-manual", logger),
+			() =>
+				ParserFn(
+					{ body: [], head: { service: "foo", playtype: "SP" } },
+					"file/batch-manual",
+					logger
+				),
 			new ScoreImportFatalError(
 				400,
 				"Could not retrieve head.game - is this valid BATCH-MANUAL?"
+			),
+			"Should throw an error."
+		);
+
+		t.end();
+	});
+
+	t.test("No Playtype", (t) => {
+		t.throws(
+			() =>
+				ParserFn(
+					{ body: [], head: { service: "foo", game: "iidx" } },
+					"file/batch-manual",
+					logger
+				),
+			new ScoreImportFatalError(
+				400,
+				"Could not retrieve head.playtype - is this valid BATCH-MANUAL?"
 			),
 			"Should throw an error."
 		);
@@ -83,7 +105,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "foo", game: "invalid_game" } },
+					{ body: [], head: { service: "foo", game: "invalid_game", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -93,7 +115,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "foo", game: 123 } },
+					{ body: [], head: { service: "foo", game: 123, playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -107,7 +129,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "1", game: "iidx" } },
+					{ body: [], head: { service: "1", game: "iidx", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -121,7 +143,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: 1, game: "iidx" } },
+					{ body: [], head: { service: 1, game: "iidx", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -137,7 +159,7 @@ t.test("#ParserFn", (t) => {
 
 	t.test("Valid Empty BATCH-MANUAL", (t) => {
 		const res = ParserFn(
-			{ body: [], head: { service: "foo", game: "iidx" } },
+			{ body: [], head: { service: "foo", game: "iidx", playtype: "SP" } },
 			"file/batch-manual",
 			logger
 		);
@@ -165,7 +187,6 @@ t.test("#ParserFn", (t) => {
 							lamp: "HARD CLEAR",
 							matchType: "songID",
 							identifier: "123",
-							playtype: "SP",
 							difficulty: "ANOTHER",
 						},
 						{
@@ -173,7 +194,6 @@ t.test("#ParserFn", (t) => {
 							lamp: "HARD CLEAR",
 							matchType: "kamaitachiSongID",
 							identifier: "123",
-							playtype: "DP",
 							difficulty: "HYPER",
 						},
 						{
@@ -189,7 +209,7 @@ t.test("#ParserFn", (t) => {
 							identifier: "5.1.1.",
 						},
 					],
-					head: { service: "foo", game: "iidx" },
+					head: { service: "foo", game: "iidx", playtype: "SP" },
 				} as BatchManual,
 				"file/batch-manual",
 				logger
@@ -200,6 +220,7 @@ t.test("#ParserFn", (t) => {
 				context: {
 					service: "foo",
 					game: "iidx",
+					playtype: "SP",
 					version: null,
 				},
 				iterable: [
@@ -208,7 +229,6 @@ t.test("#ParserFn", (t) => {
 						lamp: "HARD CLEAR",
 						matchType: "songID",
 						identifier: "123",
-						playtype: "SP",
 						difficulty: "ANOTHER",
 					},
 					{
@@ -216,7 +236,6 @@ t.test("#ParserFn", (t) => {
 						lamp: "HARD CLEAR",
 						matchType: "kamaitachiSongID",
 						identifier: "123",
-						playtype: "DP",
 						difficulty: "HYPER",
 					},
 					{
@@ -249,6 +268,7 @@ t.test("#ParserFn", (t) => {
 				context: {
 					service: "foo",
 					game: "iidx",
+					playtype: "SP",
 					version: null,
 				},
 				iterable: [
@@ -257,7 +277,6 @@ t.test("#ParserFn", (t) => {
 						lamp: "HARD CLEAR",
 						matchType: "songID",
 						identifier: "123",
-						playtype: "SP",
 						difficulty: "ANOTHER",
 						hitMeta: {
 							bp: 10,
@@ -272,9 +291,9 @@ t.test("#ParserFn", (t) => {
 			t.end();
 		});
 
-		t.test("Valid HitData", (t) => {
+		t.test("Valid judgements", (t) => {
 			const res = ParserFn(
-				dm({ hitData: { pgreat: 1, great: null, bad: 0 } }),
+				dm({ judgements: { pgreat: 1, great: null, bad: 0 } }),
 				"file/batch-manual",
 				logger
 			);
@@ -284,6 +303,7 @@ t.test("#ParserFn", (t) => {
 				context: {
 					service: "foo",
 					game: "iidx",
+					playtype: "SP",
 					version: null,
 				},
 				iterable: [
@@ -292,9 +312,8 @@ t.test("#ParserFn", (t) => {
 						lamp: "HARD CLEAR",
 						matchType: "songID",
 						identifier: "123",
-						playtype: "SP",
 						difficulty: "ANOTHER",
-						hitData: {
+						judgements: {
 							pgreat: 1,
 							great: null,
 							bad: 0,
@@ -320,11 +339,10 @@ t.test("#ParserFn", (t) => {
 								lamp: "ALL JUSTICE", // not an iidx lamp
 								matchType: "songID",
 								identifier: "123",
-								playtype: "SP",
 								difficulty: "ANOTHER",
 							},
 						],
-						head: { service: "foo", game: "iidx" },
+						head: { service: "foo", game: "iidx", playtype: "SP" },
 					},
 					"file/batch-manual",
 					logger
@@ -385,21 +403,6 @@ t.test("#ParserFn", (t) => {
 			t.end();
 		});
 
-		t.test("Invalid Playtype", (t) => {
-			// this is not a valid playtype for IIDX
-			const fn = () => ParserFn(dm({ playtype: "Single" }), "file/batch-manual", logger);
-
-			t.throws(
-				fn,
-				new ScoreImportFatalError(
-					400,
-					"Invalid BATCH-MANUAL: body[0].playtype | Expected any of SP, DP. | Received Single [string]."
-				)
-			);
-
-			t.end();
-		});
-
 		t.test("Invalid Identifier", (t) => {
 			// this is not a valid playtype for IIDX
 			const fn = () => ParserFn(dm({ identifier: null }), "file/batch-manual", logger);
@@ -424,18 +427,18 @@ t.test("#ParserFn", (t) => {
 			t.end();
 		});
 
-		t.test("Invalid HitData", (t) => {
+		t.test("Invalid judgements", (t) => {
 			const fn = () =>
-				ParserFn(dm({ hitData: { not_key: 123 } }), "file/batch-manual", logger);
+				ParserFn(dm({ judgements: { not_key: 123 } }), "file/batch-manual", logger);
 
-			t.throws(fn, mockErr("body[0].hitData | Invalid Key not_key"));
+			t.throws(fn, mockErr("body[0].judgements | Invalid Key not_key"));
 
 			const fn2 = () =>
-				ParserFn(dm({ hitData: { pgreat: "123" } }), "file/batch-manual", logger);
+				ParserFn(dm({ judgements: { pgreat: "123" } }), "file/batch-manual", logger);
 
 			t.throws(
 				fn2,
-				mockErr("body[0].hitData | Key pgreat had an invalid value of 123 [string]")
+				mockErr("body[0].judgements | Key pgreat had an invalid value of 123 [string]")
 			);
 
 			t.end();

@@ -58,7 +58,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 			score: data.score,
 			grade,
 			percent,
-			hitData: data.hitData ?? {},
+			judgements: data.judgements ?? {},
 			hitMeta: data.hitMeta ?? {},
 		},
 		scoreMeta: {}, // @todo #74
@@ -95,6 +95,12 @@ export async function ResolveMatchTypeToKTData(
 			);
 		}
 
+		if (chart.playtype !== context.playtype) {
+			throw new InvalidScoreFailure(
+				`Chart ${chart.chartID}'s playtype was ${chart.playtype}, but this was not equal to the import playtype of ${context.playtype}.`
+			);
+		}
+
 		const song = await FindSongOnID(game, chart.songID);
 
 		if (!song) {
@@ -114,19 +120,13 @@ export async function ResolveMatchTypeToKTData(
 			);
 		}
 
-		if (!data.playtype) {
-			throw new InvalidScoreFailure(
-				`Missing 'playtype' field, but is needed for ddrSongHash lookup.`
-			);
-		}
+		const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
 
-		const difficulty = AssertStrAsDifficulty(data.difficulty, game, data.playtype);
-
-		const chart = await FindDDRChartOnSongHash(data.identifier, data.playtype, difficulty);
+		const chart = await FindDDRChartOnSongHash(data.identifier, context.playtype, difficulty);
 
 		if (!chart) {
 			throw new KTDataNotFoundFailure(
-				`Cannot find chart for songHash ${data.identifier} (${data.playtype} ${difficulty}).`,
+				`Cannot find chart for songHash ${data.identifier} (${context.playtype} ${difficulty}).`,
 				importType,
 				data,
 				context
@@ -199,13 +199,7 @@ export async function ResolveChartFromSong(
 		);
 	}
 
-	if (!data.playtype) {
-		throw new InvalidScoreFailure(
-			`Missing 'playtype' field, but was necessary for this lookup.`
-		);
-	}
-
-	const difficulty = AssertStrAsDifficulty(data.difficulty, game, data.playtype);
+	const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
 
 	let chart;
 
@@ -213,17 +207,17 @@ export async function ResolveChartFromSong(
 		chart = await FindChartWithPTDFVersion(
 			game,
 			song.id,
-			data.playtype,
+			context.playtype,
 			difficulty,
 			context.version
 		);
 	} else {
-		chart = await FindChartWithPTDF(game, song.id, data.playtype, difficulty);
+		chart = await FindChartWithPTDF(game, song.id, context.playtype, difficulty);
 	}
 
 	if (!chart) {
 		throw new KTDataNotFoundFailure(
-			`Cannot find chart for ${song.title} (${data.playtype} ${difficulty})`,
+			`Cannot find chart for ${song.title} (${context.playtype} ${difficulty})`,
 			importType,
 			data,
 			context

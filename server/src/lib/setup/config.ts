@@ -4,7 +4,7 @@ import JSON5 from "json5";
 import fs from "fs";
 import p from "prudence";
 import { FormatPrError } from "../../utils/prudence";
-import { integer, Game } from "tachi-common";
+import { integer, Game, StaticConfig } from "tachi-common";
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
 
 // reads from $pwd/conf.json5
@@ -38,10 +38,7 @@ export interface TachiConfig {
 	CDN_ROOT: string;
 	TYPE: "ktchi" | "btchi" | "omni";
 	PORT: integer;
-	TYPE_INFO: {
-		NAME: string;
-		SUPPORTED_GAMES: Game[];
-	};
+	TYPE_INFO: StaticConfig.ServerConfig;
 }
 
 const err = p(config, {
@@ -63,39 +60,12 @@ if (err) {
 	throw FormatPrError(err, "Invalid conf.json5 file.");
 }
 
-/**
- * KTCHI | Kamaitachi is the arcade build of Tachi.
- */
-const KTCHI_INFO: TachiConfig["TYPE_INFO"] = {
-	NAME: "Kamaitachi",
-	SUPPORTED_GAMES: ["iidx", "gitadora", "chunithm", "maimai", "museca", "sdvx"],
-};
-
-/**
- * BTCHI | Bokutachi is the home-simulator build of Tachi.
- */
-const BTCHI_INFO: TachiConfig["TYPE_INFO"] = {
-	NAME: "Bokutachi",
-	SUPPORTED_GAMES: ["usc", "bms"],
-};
-
-/**
- * OMNI | Omnitachi is a local development/testing build of Tachi, which enables all endpoints.
- *
- * If you're one of those nerds who is reading this to figure out how to steal and rerun
- * this codebase this is what you're looking for.
- */
-const OMNI_INFO: TachiConfig["TYPE_INFO"] = {
-	NAME: "Omnitachi",
-	SUPPORTED_GAMES: [...KTCHI_INFO.SUPPORTED_GAMES, ...BTCHI_INFO.SUPPORTED_GAMES],
-};
-
 if (config.TYPE === "ktchi") {
-	config.TYPE_INFO = KTCHI_INFO;
+	config.TYPE_INFO = StaticConfig.KTCHI_CONFIG;
 } else if (config.TYPE === "btchi") {
-	config.TYPE_INFO = BTCHI_INFO;
+	config.TYPE_INFO = StaticConfig.BTCHI_CONFIG;
 } else if (config.TYPE === "omni") {
-	config.TYPE_INFO = OMNI_INFO;
+	config.TYPE_INFO = StaticConfig.OMNI_CONFIG;
 }
 
 const tachiConfig = config as TachiConfig;

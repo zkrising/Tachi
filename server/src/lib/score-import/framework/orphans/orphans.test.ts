@@ -16,11 +16,15 @@ const batchManualScore: BatchManualScore = {
 	lamp: "HARD CLEAR",
 	matchType: "songTitle",
 	identifier: "5.1.1.",
-	playtype: "SP",
 	difficulty: "ANOTHER",
 };
 
-const batchManualContext: BatchManualContext = { game: "iidx", service: "foo", version: "27" };
+const batchManualContext: BatchManualContext = {
+	game: "iidx",
+	playtype: "SP",
+	service: "foo",
+	version: "27",
+};
 
 t.test("#OrphanScore", (t) => {
 	t.beforeEach(ResetDBState);
@@ -141,7 +145,7 @@ t.test("#ReprocessOrphan", (t) => {
 							score: 500,
 							grade: "E",
 							percent: 31.806615776081426,
-							hitData: {},
+							judgements: {},
 							hitMeta: {},
 						},
 						highlight: false,
@@ -228,6 +232,7 @@ t.test("#ReprocessOrphan", (t) => {
 				deepmerge(orphanDoc, {
 					context: {
 						game: "bms",
+						playtype: "7K",
 					},
 					data: {
 						matchType: "bmsChartHash",

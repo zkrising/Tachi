@@ -1,17 +1,17 @@
 import { InvalidScoreFailure } from "./converter-failures";
-import { Difficulties, Game, IDStrings, Playtypes } from "tachi-common";
-import { validDifficulties } from "tachi-common/js/config";
-
+import { Difficulties, Game, IDStrings, Playtypes, GetGamePTConfig } from "tachi-common";
 export function AssertStrAsDifficulty(
 	strVal: string,
 	game: Game,
 	playtype: Playtypes[Game]
 ): Difficulties[IDStrings] {
-	if (!validDifficulties[game].includes(strVal)) {
+	const validDifficulties = GetGamePTConfig(game, playtype).difficulties;
+
+	if (!validDifficulties.includes(strVal as Difficulties[IDStrings])) {
 		throw new InvalidScoreFailure(
-			`Invalid Difficulty for ${game} ${playtype} - Expected any of ${validDifficulties[
-				game
-			].join(", ")}`
+			`Invalid Difficulty for ${game} ${playtype} - Expected any of ${validDifficulties.join(
+				", "
+			)}`
 		);
 	}
 

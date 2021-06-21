@@ -69,9 +69,9 @@ export async function TachiScoreToServerScore(
 	return {
 		score: tachiScore.scoreData.score,
 		timestamp: MStoS(tachiScore.timeAchieved ?? 0),
-		crit: tachiScore.scoreData.hitData.critical ?? 0,
-		near: tachiScore.scoreData.hitData.near ?? 0,
-		error: tachiScore.scoreData.hitData.miss ?? 0,
+		crit: tachiScore.scoreData.judgements.critical ?? 0,
+		near: tachiScore.scoreData.judgements.near ?? 0,
+		error: tachiScore.scoreData.judgements.miss ?? 0,
 		ranking: tachiScore.rankingData.rank,
 		lamp: TACHI_LAMP_TO_USC[tachiScore.scoreData.lamp],
 		username: userDoc.username,

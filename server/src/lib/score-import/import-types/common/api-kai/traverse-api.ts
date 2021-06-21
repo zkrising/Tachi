@@ -41,7 +41,7 @@ export async function* TraverseKaiAPI(
 			const res = await fetch(url, {
 				headers: {
 					Authorization: `Bearer ${token}`,
-					"User-Agent": `${CONF_INFO.NAME}/${VERSION_STR}`,
+					"User-Agent": `${CONF_INFO.name}/${VERSION_STR}`,
 				},
 			});
 

@@ -1,5 +1,11 @@
-import { GoalDocument, integer, PBScoreDocument, Game } from "tachi-common";
-import { grades, lamps } from "tachi-common/js/config";
+import {
+	GoalDocument,
+	integer,
+	PBScoreDocument,
+	Game,
+	GetGamePTConfig,
+	Playtypes,
+} from "tachi-common";
 import db from "../../external/mongo/db";
 import { KtLogger } from "../logger/logger";
 import { GetFolderChartIDs } from "../../utils/folder";
@@ -69,6 +75,7 @@ export async function EvaluateGoalForUser(
 
 		const outOfHuman = HumaniseGoalProgress(
 			goal.game,
+			goal.playtype,
 			goal.criteria.key,
 			goal.criteria.value,
 			null
@@ -82,6 +89,7 @@ export async function EvaluateGoalForUser(
 				outOfHuman,
 				progressHuman: HumaniseGoalProgress(
 					goal.game,
+					goal.playtype,
 					goal.criteria.key,
 					res.scoreData[scoreDataKey],
 					res
@@ -120,6 +128,7 @@ export async function EvaluateGoalForUser(
 			progress: nextBestScore.scoreData[scoreDataKey],
 			progressHuman: HumaniseGoalProgress(
 				goal.game,
+				goal.playtype,
 				goal.criteria.key,
 				nextBestScore.scoreData[scoreDataKey],
 				nextBestScore
@@ -192,20 +201,22 @@ type IIDXOrBMSPB = PBScoreDocument<"iidx:SP" | "iidx:DP" | "bms:7K" | "bms:14K">
 // @todo, #100 improve this (add things like BP for iidx, maybe, percents for scores?)
 export function HumaniseGoalProgress(
 	game: Game,
+	playtype: Playtypes[Game],
 	key: GoalKeys,
 	value: number,
 	userPB: PBScoreDocument | null
 ): string {
+	const gptConfig = GetGamePTConfig(game, playtype);
 	switch (key) {
 		case "scoreData.gradeIndex":
-			return grades[game][value];
+			return gptConfig.grades[value];
 		case "scoreData.lampIndex":
 			if (userPB && (game === "iidx" || game === "bms")) {
-				return `${lamps[game][value]} (BP: ${
+				return `${gptConfig.lamps[value]} (BP: ${
 					(userPB as IIDXOrBMSPB).scoreData.hitMeta.bp ?? "N/A"
 				})`;
 			}
-			return lamps[game][value];
+			return gptConfig.lamps[value];
 		case "scoreData.percent":
 			return `${value.toFixed(2)}%`;
 		case "scoreData.score":

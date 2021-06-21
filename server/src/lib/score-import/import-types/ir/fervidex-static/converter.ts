@@ -54,7 +54,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 			percent,
 			grade,
 			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:SP" | "iidx:DP"],
-			hitData: {},
+			judgements: {},
 			hitMeta: {
 				bp: data.miss_count === -1 ? null : data.miss_count,
 			},

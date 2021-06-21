@@ -94,13 +94,13 @@ export function GitadoraSkillToColour(sk: number) {
 	return GitadoraColours.WHITE;
 }
 
-export function CalculateJubeatColour(
-	game: Game,
-	playtype: Playtypes[Game],
-	userID: integer,
-	ratings: Record<string, number>
-): GameClasses<"jubeat:Single"> {
-	throw new Error("Not implemented.");
-}
+// export function CalculateJubeatColour(
+// 	game: Game,
+// 	playtype: Playtypes[Game],
+// 	userID: integer,
+// 	ratings: Record<string, number>
+// ): GameClasses<"jubeat:Single"> {
+// 	throw new Error("Not implemented.");
+// }
 
 // function JubilityToColour(jb: number) {}

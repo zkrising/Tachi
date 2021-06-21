@@ -189,7 +189,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 			percent,
 			grade,
 			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:SP" | "iidx:DP"],
-			hitData: {
+			judgements: {
 				pgreat: data.pgreat,
 				great: data.great,
 				good: data.good,

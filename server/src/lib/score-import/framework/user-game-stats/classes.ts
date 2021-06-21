@@ -2,11 +2,7 @@ import { Game, Playtypes, integer, UserGameStats, ClassDelta, IDStrings } from "
 import { GameClasses } from "tachi-common/js/game-classes";
 import deepmerge from "deepmerge";
 import { KtLogger } from "../../../logger/logger";
-import {
-	CalculateGitadoraColour,
-	CalculateJubeatColour,
-	CalculateSDVXClass,
-} from "./builtin-class-handlers";
+import { CalculateGitadoraColour, CalculateSDVXClass } from "./builtin-class-handlers";
 import { ReturnClassIfGreater } from "../../../../utils/class";
 import { RedisPub } from "../../../../external/redis/redis-IPC";
 import { ClassHandler, ScoreClasses } from "./types";
@@ -37,12 +33,12 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 		Gita: CalculateGitadoraColour,
 		Dora: CalculateGitadoraColour,
 	},
-	jubeat: {
-		Single: CalculateJubeatColour,
-	},
+	// jubeat: {
+	// 	Single: CalculateJubeatColour,
+	// },
 	maimai: null,
 	museca: null,
-	popn: null,
+	// popn: null,
 	sdvx: {
 		Single: CalculateSDVXClass,
 	},

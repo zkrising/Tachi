@@ -9,14 +9,6 @@ const logger = CreateLogCtx(__filename);
 t.test("#CalculateRatings", (t) => {
 	t.beforeEach(ResetDBState);
 
-	t.test("Should work for games with no custom ratings", async (t) => {
-		const res = await CalculateRatings("popn", "9B", 1, logger);
-
-		t.strictSame(res, {}, "Should return an empty object.");
-
-		t.end();
-	});
-
 	t.test("Should return BPI for IIDX", async (t) => {
 		const res = await CalculateRatings("iidx", "SP", 1, logger);
 

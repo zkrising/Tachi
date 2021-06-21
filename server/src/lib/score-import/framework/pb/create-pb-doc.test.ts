@@ -5,13 +5,14 @@ import { GetKTDataJSON, Testing511SPA, TestingIIDXSPScore } from "../../../../te
 import { CreatePBDoc } from "./create-pb-doc";
 import deepmerge from "deepmerge";
 import CreateLogCtx, { KtLogger } from "../../../logger/logger";
-
-import { lamps } from "tachi-common/js/config";
+import { GetGamePTConfig } from "tachi-common";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 let IIDXScore = TestingIIDXSPScore;
 
 const logger = CreateLogCtx(__filename);
+
+const lamps = GetGamePTConfig("iidx", "SP").lamps;
 
 t.test("#CreatePBDoc", (t) => {
 	t.beforeEach(ResetDBState);
@@ -43,9 +44,9 @@ t.test("#CreatePBDoc", (t) => {
 			esd: IIDXScore.scoreData.esd,
 			grade: IIDXScore.scoreData.grade,
 			gradeIndex: IIDXScore.scoreData.gradeIndex,
-			hitData: IIDXScore.scoreData.hitData,
+			judgements: IIDXScore.scoreData.judgements,
 			lamp: "FULL COMBO",
-			lampIndex: lamps.iidx.indexOf("FULL COMBO"),
+			lampIndex: lamps.indexOf("FULL COMBO"),
 			hitMeta: { bp: 1 },
 		},
 		calculatedData: {
@@ -63,7 +64,7 @@ t.test("#CreatePBDoc", (t) => {
 				deepmerge(IIDXScore, {
 					scoreData: {
 						lamp: "FULL COMBO",
-						lampIndex: lamps.iidx.indexOf("FULL COMBO"),
+						lampIndex: lamps.indexOf("FULL COMBO"),
 						score: 0,
 						percent: 0,
 						hitMeta: {
@@ -78,7 +79,7 @@ t.test("#CreatePBDoc", (t) => {
 				deepmerge(IIDXScore, {
 					scoreData: {
 						lamp: "CLEAR",
-						lampIndex: lamps.iidx.indexOf("CLEAR"),
+						lampIndex: lamps.indexOf("CLEAR"),
 						score: 1,
 						percent: 1,
 						hitMeta: {
@@ -122,7 +123,7 @@ t.test("#CreatePBDoc", (t) => {
 		const d = deepmerge(IIDXScore, {
 			scoreData: {
 				lamp: "FULL COMBO",
-				lampIndex: lamps.iidx.indexOf("FULL COMBO"),
+				lampIndex: lamps.indexOf("FULL COMBO"),
 				score: 0,
 				percent: 0,
 				hitMeta: {

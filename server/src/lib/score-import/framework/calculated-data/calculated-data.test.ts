@@ -347,43 +347,43 @@ t.test("#CalculateDataForGamePT", (t) => {
 		t.end();
 	});
 
-	t.test("jubeat:Single", async (t) => {
-		const res = await CalculateDataForGamePT(
-			"jubeat",
-			"Single",
-			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
-			null,
-			defaultTierlistID,
-			logger
-		);
+	// t.test("jubeat:Single", async (t) => {
+	// 	const res = await CalculateDataForGamePT(
+	// 		"jubeat",
+	// 		"Single",
+	// 		Testing511SPA,
+	// 		TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+	// 		null,
+	// 		defaultTierlistID,
+	// 		logger
+	// 	);
 
-		prAssert(
-			res,
-			{
-				jubility: "?number",
-			},
-			"Response should contain nulled keys for jubeat:Single"
-		);
+	// 	prAssert(
+	// 		res,
+	// 		{
+	// 			jubility: "?number",
+	// 		},
+	// 		"Response should contain nulled keys for jubeat:Single"
+	// 	);
 
-		t.end();
-	});
+	// 	t.end();
+	// });
 
-	t.test("popn:9B", async (t) => {
-		const res = await CalculateDataForGamePT(
-			"popn",
-			"9B",
-			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
-			null,
-			defaultTierlistID,
-			logger
-		);
+	// t.test("popn:9B", async (t) => {
+	// 	const res = await CalculateDataForGamePT(
+	// 		"popn",
+	// 		"9B",
+	// 		Testing511SPA,
+	// 		TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+	// 		null,
+	// 		defaultTierlistID,
+	// 		logger
+	// 	);
 
-		prAssert(res, {}, "Response should contain nulled keys for popn:9B");
+	// 	prAssert(res, {}, "Response should contain nulled keys for popn:9B");
 
-		t.end();
-	});
+	// 	t.end();
+	// });
 
 	t.end();
 });

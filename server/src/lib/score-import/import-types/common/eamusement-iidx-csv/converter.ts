@@ -141,7 +141,7 @@ const ConvertEamIIDXCSV: ConverterFunction<IIDXEamusementCSVData, IIDXEamusement
 			scoreData: {
 				score: exscore,
 				lamp,
-				hitData: {
+				judgements: {
 					pgreat,
 					great,
 				},

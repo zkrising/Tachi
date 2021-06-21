@@ -1,13 +1,7 @@
-import { integer, PublicUserDocument, UserGameStats, Game, Playtypes } from "tachi-common";
+import { integer, PublicUserDocument, UserGameStats, GetGamePTConfig } from "tachi-common";
 import { FindOneResult } from "monk";
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
-import {
-	defaultRatingAlgorithm,
-	defaultScoreRatingAlgorithm,
-	defaultSessionRatingAlgorithm,
-} from "tachi-common/js/config";
-
 const logger = CreateLogCtx(__filename);
 
 const OMIT_PRIVATE_USER_RETURNS = {
@@ -144,25 +138,8 @@ export function FormatUserDoc(userdoc: PublicUserDocument) {
 	return `${userdoc.username} (#${userdoc.id})`;
 }
 
-// temp function, to be removed with #186
-export function GetDefaultProfileRatingAlg(game: Game, playtype: Playtypes[Game]) {
-	// @ts-expect-error garbage...
-	return defaultRatingAlgorithm[game][playtype];
-}
-
-// temp function, to be removed with #186
-export function GetDefaultScoreRatingAlg(game: Game, playtype: Playtypes[Game]) {
-	// @ts-expect-error garbage...
-	return defaultScoreRatingAlgorithm[game][playtype];
-}
-
-export function GetDefaultSessionRatingAlg(game: Game, playtype: Playtypes[Game]) {
-	// @ts-expect-error garbage...
-	return defaultSessionRatingAlgorithm[game][playtype];
-}
-
 export async function GetUsersRanking(stats: UserGameStats) {
-	const ratingKey = GetDefaultProfileRatingAlg(stats.game, stats.playtype);
+	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
 
 	const aggRes = await db["game-stats"].aggregate([
 		{
@@ -179,8 +156,10 @@ export async function GetUsersRanking(stats: UserGameStats) {
 					$sum: {
 						$cond: {
 							if: {
-								// @ts-expect-error garbage...
-								$gte: [`$ratings.${ratingKey}`, stats.ratings[ratingKey]],
+								$gte: [
+									`$ratings.${gptConfig.defaultProfileRatingAlg}`,
+									stats.ratings[gptConfig.defaultProfileRatingAlg],
+								],
 							},
 							then: 1,
 							else: 0,

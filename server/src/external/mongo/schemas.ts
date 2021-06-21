@@ -1,13 +1,5 @@
 import deepmerge from "deepmerge";
-import { Game, Playtypes } from "tachi-common";
-import {
-	grades,
-	importTypes,
-	lamps,
-	validHitData,
-	validDifficulties,
-	validPlaytypes,
-} from "tachi-common/js/config";
+import { Game, Playtypes, GetGameConfig, GetGamePTConfig } from "tachi-common";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 import { CONF_INFO } from "../../lib/setup/config";
 
@@ -75,7 +67,7 @@ export const PR_SCORE_GENERIC = {
 		grade: "string",
 		lampIndex: p.isPositiveInteger,
 		gradeIndex: p.isPositiveInteger,
-		hitData: {},
+		judgements: {},
 		hitMeta: {},
 	},
 	scoreMeta: {},
@@ -100,7 +92,7 @@ export const PR_SCORE_GENERIC = {
 	comment: p.nullable(p.isBoundedString(1, 240)),
 	timeAdded: p.isPositive,
 	scoreID: "string", // temp
-	importType: p.nullable(p.isIn(importTypes)),
+	importType: p.nullable(p.isIn(CONF_INFO.supportedImportTypes)),
 };
 
 type ScoreSchemas = {
@@ -115,28 +107,35 @@ const nullableAndOptional = (fn: ValidSchemaValue) => p.optional(p.nullable(fn))
 
 const nullableAndOptionalPosInt = nullableAndOptional(p.isPositiveInteger);
 
-const CreateGameScoreData = (game: Game, hitMetaMerge: PrudenceSchema) => ({
-	lamp: p.isIn(lamps[game]),
-	lampIndex: p.and(
-		p.isPositiveInteger,
-		(self, parent) => lamps[game][self as number] === parent.lamp
-	),
-	grade: p.isIn(grades[game]),
-	gradeIndex: p.and(
-		p.isPositiveInteger,
-		(self, parent) => grades[game][self as number] === parent.grade
-	),
-	hitData: Object.fromEntries(validHitData[game].map((e) => [e, optionalPositiveInt])),
-	hitMeta: deepmerge(
-		{
-			fast: nullableAndOptionalPosInt,
-			slow: nullableAndOptionalPosInt,
-			maxCombo: nullableAndOptionalPosInt,
-		},
-		hitMetaMerge
-	),
-	esd: p.nullable(p.isPositive),
-});
+const CreateGameScoreData = (
+	game: Game,
+	playtype: Playtypes[Game],
+	hitMetaMerge: PrudenceSchema
+) => {
+	const gptConfig = GetGamePTConfig(game, playtype);
+	return {
+		lamp: p.isIn(gptConfig.lamps),
+		lampIndex: p.and(
+			p.isPositiveInteger,
+			(self, parent) => gptConfig.lamps[self as number] === parent.lamp
+		),
+		grade: p.isIn(gptConfig.grades),
+		gradeIndex: p.and(
+			p.isPositiveInteger,
+			(self, parent) => gptConfig.grades[self as number] === parent.grade
+		),
+		judgements: Object.fromEntries(gptConfig.judgements.map((e) => [e, optionalPositiveInt])),
+		hitMeta: deepmerge(
+			{
+				fast: nullableAndOptionalPosInt,
+				slow: nullableAndOptionalPosInt,
+				maxCombo: nullableAndOptionalPosInt,
+			},
+			hitMetaMerge
+		),
+		esd: p.nullable(p.isPositive),
+	};
+};
 
 const PR_SCORE_IIDX_SP: PrudenceSchema = CreatePRScore(
 	"iidx",
@@ -202,7 +201,7 @@ function CreatePRScore<G extends Game>(
 	return deepmerge(PR_SCORE_GENERIC, {
 		game: p.equalTo(game),
 		playtype: p.equalTo(playtype),
-		scoreData: CreateGameScoreData(game, mergeHitMeta),
+		scoreData: CreateGameScoreData(game, playtype, mergeHitMeta),
 		scoreMeta: mergeScoreMeta,
 		calculatedData: {
 			gameSpecific: mergeGameSpecific,
@@ -300,9 +299,9 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
 		Gita: CreatePRScore("gitadora", "Gita"),
 		Dora: CreatePRScore("gitadora", "Dora"),
 	},
-	jubeat: {
-		Single: CreatePRScore("jubeat", "Single"),
-	},
+	// jubeat: {
+	// 	Single: CreatePRScore("jubeat", "Single"),
+	// },
 	maimai: {
 		Single: deepmerge(CreatePRScore("maimai", "Single"), {
 			scoreData: { percent: p.isBetween(0, 150) },
@@ -311,9 +310,9 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
 	museca: {
 		Single: CreatePRScore("museca", "Single"),
 	},
-	popn: {
-		"9B": CreatePRScore("popn", "9B", { gauge: p.optional(p.isBetween(0, 100)) }),
-	},
+	// popn: {
+	// 	"9B": CreatePRScore("popn", "9B", { gauge: p.optional(p.isBetween(0, 100)) }),
+	// },
 	usc: {
 		Single: CreatePRScore("usc", "Single", { gauge: p.optional(p.isBetween(0, 100)) }),
 	},
@@ -330,9 +329,16 @@ const PRUDENCE_CHART_BASE: PrudenceSchema = {
 };
 
 function CreatePrChart(game: Game, flags: string[], data: PrudenceSchema) {
+	const gameConfig = GetGameConfig(game);
+
+	const validDifficulties = [];
+	for (const playtype of gameConfig.validPlaytypes) {
+		validDifficulties.push(...GetGamePTConfig(game, playtype).difficulties);
+	}
+
 	return deepmerge(PRUDENCE_CHART_BASE, {
-		difficulty: p.isIn(validDifficulties[game]),
-		playtype: p.isIn(validPlaytypes[game]),
+		difficulty: p.isIn(validDifficulties),
+		playtype: p.isIn(gameConfig.validPlaytypes),
 		flags: Object.fromEntries(flags.map((e) => [e, "boolean"])),
 		data,
 	});
@@ -355,13 +361,13 @@ export const PRUDENCE_CHART_SCHEMAS: Record<Game, PrudenceSchema> = {
 	gitadora: CreatePrChart("gitadora", ["IN BASE GAME", "OMNIMIX", "HOT N-1", "HOT"], {
 		inGameID: p.isPositiveInteger,
 	}),
-	jubeat: CreatePrChart("jubeat", ["IN BASE GAME"], {}),
+	// jubeat: CreatePrChart("jubeat", ["IN BASE GAME"], {}),
 	maimai: CreatePrChart("maimai", ["IN BASE GAME"], {
 		maxPercent: p.gte(100),
 		inGameID: "string",
 	}),
 	museca: CreatePrChart("museca", ["IN BASE GAME", "OMNIMIX"], {}),
-	popn: CreatePrChart("popn", ["IN BASE GAME", "OMNIMIX"], {}),
+	// popn: CreatePrChart("popn", ["IN BASE GAME", "OMNIMIX"], {}),
 	sdvx: CreatePrChart("sdvx", ["IN BASE GAME", "OMNIMIX", "N-1"], {
 		inGameID: p.isPositiveInteger,
 	}),
@@ -393,10 +399,10 @@ export const PRUDENCE_SONG_SCHEMAS: Record<Game, PrudenceSchema> = {
 	chunithm: PRUDENCE_SONG_WITH_GENRE,
 	ddr: CreatePrSong({}),
 	gitadora: CreatePrSong({}),
-	jubeat: CreatePrSong({}),
+	// jubeat: CreatePrSong({}),
 	maimai: CreatePrSong({ titleJP: "string", artistJP: "string", genre: "string" }),
 	museca: CreatePrSong({ titleJP: "string", artistJP: "string" }),
-	popn: PRUDENCE_SONG_WITH_GENRE,
+	// popn: PRUDENCE_SONG_WITH_GENRE,
 	sdvx: CreatePrSong({ uscEquiv: p.nullable(p.isPositiveInteger) }),
 	usc: CreatePrSong({ sdvxEquiv: p.nullable(p.isPositiveInteger) }),
 };
@@ -408,8 +414,8 @@ const PRUDENCE_FOLDER_CHART_LOOKUP: PrudenceSchema = {
 
 const PRUDENCE_FOLDER: PrudenceSchema = {
 	title: "string",
-	game: p.isIn(CONF_INFO.SUPPORTED_GAMES),
-	playtype: (self, parent) => p.isIn(validPlaytypes[parent.game as Game])(self),
+	game: p.isIn(CONF_INFO.supportedGames),
+	playtype: (self, parent) => p.isIn(GetGameConfig(parent.game as Game).validPlaytypes)(self),
 	folderID: "string",
 	table: "string",
 	tableIndex: "number",

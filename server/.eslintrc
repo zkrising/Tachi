@@ -65,7 +65,6 @@
         "default-param-last": "error",
         "no-new-func": "error",
         "arrow-body-style": "error",
-        // "arrow-parens": ["error", "as-needed"] prettier hates this
         "no-useless-constructor": "error",
         "no-duplicate-imports": "error",
         "dot-notation": "error",

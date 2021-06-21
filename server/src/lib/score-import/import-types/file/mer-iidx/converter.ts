@@ -64,7 +64,7 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
 			percent,
 			grade,
 			lamp,
-			hitData: {},
+			judgements: {},
 			hitMeta: {
 				bp: data.miss_count === -1 ? null : data.miss_count,
 			},

@@ -78,7 +78,9 @@ nav:
       - "codebase/import/import-doc-time.md"
 
     - Implementation Details:
+      - "codebase/implementation-details/details.md"
       - "codebase/implementation-details/search.md"
+      - "codebase/implementation-details/statistics.md"
 
 markdown_extensions:
   - admonition

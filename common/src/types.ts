@@ -102,7 +102,6 @@ export type Databases =
 	| "folder-chart-lookup"
 	| "scores"
 	| "personal-bests"
-	| "notifications"
 	| "imports"
 	| "import-timings"
 	| "tierlist-data"
@@ -114,8 +113,6 @@ export type Databases =
 	| "game-stats"
 	| "users"
 	| "kai-auth-tokens"
-	| "usc-auth-tokens"
-	| "beatoraja-auth-tokens"
 	| "bms-course-lookup"
 	| "api-tokens"
 	| "import-locks";
@@ -662,28 +659,6 @@ export interface MilestoneGroupDocument extends MongoDBDocument {
 	desc: string;
 }
 
-export type NotificationType =
-	| "clandisband"
-	| "claninvite"
-	| "goals"
-	| "import"
-	| "milestone"
-	| "mrginvite"
-	| "mrgkicked"
-	| "mrgdisband"
-	| "mrginviterejected";
-
-export interface NotificationDocument extends MongoDBDocument {
-	notifID: string;
-	title: string;
-	read: boolean;
-	body: string;
-	toUserID: integer;
-	fromUserID: integer;
-	type: NotificationType;
-	data: Record<string, unknown>;
-}
-
 export interface FunFactDocument extends MongoDBDocument {
 	text: string;
 	nsfw: boolean;
@@ -965,9 +940,9 @@ interface IIDXSPScoreMeta {
 
 interface BMS7KScoreMeta {
 	random: RanOptions | null;
-	inputDevice: "KEYBOARD" | "BM_CONTROLLER" | "MIDI" | null;
+	inputDevice: "KEYBOARD" | "BM_CONTROLLER" | null;
 	client: "LR2" | "beatoraja" | "lr2oraja";
-	lntype: null | "LN" | "CN";
+	lnType: null | "LN" | "CN";
 }
 
 interface ScoreMetaLookup {
@@ -976,8 +951,8 @@ interface ScoreMetaLookup {
 	"popn:9B": Record<string, never>;
 	"sdvx:Single": { inSkillAnalyser: boolean | null };
 	"usc:Single": {
-		noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN";
-		gaugeMod: "NORMAL" | "HARD";
+		noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" | null;
+		gaugeMod: "NORMAL" | "HARD" | null;
 	};
 	"ddr:SP": Record<string, never>;
 	"ddr:DP": Record<string, never>;
@@ -1019,7 +994,6 @@ type BMSHitMeta = BASE_VALID_HIT_META &
 	} & {
 		bp: integer | null;
 		gauge: number | null;
-		diedAt: integer | null;
 	};
 
 type SDVXHitMeta = BASE_VALID_HIT_META & {
@@ -1035,8 +1009,8 @@ export interface HitMetaLookup {
 	"popn:9B": BASE_VALID_HIT_META & { gauge: number };
 	"sdvx:Single": SDVXHitMeta;
 	"usc:Single": SDVXHitMeta;
-	"ddr:SP": BASE_VALID_HIT_META & { exScore: integer };
-	"ddr:DP": BASE_VALID_HIT_META & { exScore: integer };
+	"ddr:SP": BASE_VALID_HIT_META;
+	"ddr:DP": BASE_VALID_HIT_META;
 	"maimai:Single": BASE_VALID_HIT_META;
 	"jubeat:Single": BASE_VALID_HIT_META;
 	"museca:Single": BASE_VALID_HIT_META;

@@ -19,7 +19,8 @@ the main benefits for us are as follows:
 
 ```js
 {
-	MONGO_BASE_URL: "127.0.0.1",
+	MONGO_CONNECTION_URL: "127.0.0.1:27017",
+	MONGO_DATABASE_NAME: "somedb",
 	LOG_LEVEL: "info",
 	CAPTCHA_SECRET_KEY: "google_given_secret_key",
 	SESSION_SECRET: "some_secret_key",
@@ -43,15 +44,21 @@ the main benefits for us are as follows:
 
 All properties are required.
 
-### MONGO_BASE_URL
+### MONGO_CONNECTION_URL
 
 - Type: String
 
 Where your MongoDB server is located. For most cases, this
-is `127.0.0.1` or `localhost`.
+is `127.0.0.1:27017` or `localhost:27017`.
 
 For more creative scenarios such as running through WSL, you
 might need to change this.
+
+### MONGO_DATABASE_NAME
+
+- Type: String
+
+What collection to use for your database.
 
 ### LOG_LEVEL
 

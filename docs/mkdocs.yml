@@ -55,11 +55,11 @@ nav:
       - "codebase/infrastructure/toolchain.md"
       - "codebase/infrastructure/logging.md"
       - "codebase/infrastructure/branches.md"
-      - "codebase/infrastructure/testing.md"
 
     - Structure:
       - "codebase/structure/style.md"
       - "codebase/structure/filesystem.md"
+      - "codebase/structure/testing.md"
 
     - Score Importing:
       - "codebase/import/overview.md"

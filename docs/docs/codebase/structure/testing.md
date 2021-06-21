@@ -18,6 +18,16 @@ pnpm fulltest
 This will execute every test, and also perform coverage
 analysis.
 
+!!! bug
+	This may or may not impact you depending on how
+	dependencies install, but `tap` requires `ts-node`
+	and `typescript` to also be installed.
+
+	Otherwise, you will get a
+	`cannot use import outside of module`
+	error, which indicates that our typescript hasn't
+	been transpiled.
+
 ## Parallel Tests
 
 You can run tests in parallel with:

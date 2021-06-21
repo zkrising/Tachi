@@ -12,7 +12,7 @@ This function can be found at `src/lib/score-import/framework/score-import-main.
 | Argument | Type | Description |
 | :: | :: | :: |
 | `user` | PublicUserDocument | The user that is making this import request. |
-| `userIntent` | boolean | Whether this import was performed with User Intent - See [Import Types](./import-types.md#User%20Intent) |
+| `userIntent` | boolean | Whether this import was performed with User Intent - See [Import Types](./import-types.md#user-intent) |
 | `importType` | ImportType | What kind of import "type" this is. For more on this, see [Import Types](./import-types.md)
 | `InputParser` | Function | The parser function to call. For more info, see [Parsing and Converting](./parse-conv.md)
 | `providedImportObjects` (Optional) | { logger, importID } | Optionally, a logger and existing importID can be passed here. This is used for scenarios where the logger and importID have already been created before importMain was called. |

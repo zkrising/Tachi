@@ -21,11 +21,12 @@ correspond to, how `thing` works, etc.
 
 ## Repos and Licenses
 
-Tachi is made up of three components:
+Tachi is made up of four components:
 
 - `tachi-common`: Common types and values for Tachi. [GitHub](https://github.com/zkldi/tachi-common). This is licensed under MIT.
 - `tachi-server`: The API, IR implementations and 'business logic' behind Tachi. [GitHub](https://github.com/zkldi/tachi-server). This is licensed under AGPLv3.
 - `tachi-client`: The front-end code for Tachi. This is closed source.
+- `tachi-docs`: The documentation you're reading right now! [GitHub](https://github.com/zkldi/tachi-docs). This is licensed under MIT.
 
 ### What's with `tachi-client`?
 

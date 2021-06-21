@@ -63,9 +63,9 @@ I am trying to keep the codebase well organised and tidy.
 	git config blame.ignoreRevsFile .git-blame-ignore-revs  
 	```
 
-	!!! info
+	!!! warning
 		This only works on git 2.23 or greater. Your package manager may not have a version
-		this recent. See [Git Installation for Linux](https://git-scm.com/download/linux)
+		this recent. See [Git Installation for Linux](https://git-scm.com/download/linux).
 
 ### Pull Requests
 
@@ -129,6 +129,3 @@ Non-Specific bug reports will be closed immediately and marked as invalid.
 - Documentation issues go in the other repo.
 
 Documentation issues should go [here](https://github.com/zkldi/tachi-docs) instead.
-
-## Other Things
-

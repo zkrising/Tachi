@@ -304,7 +304,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		percentMax: 101,
 
 		defaultScoreRatingAlg: "rating",
-		defaultSessionRatingAlg: "rating",
+		defaultSessionRatingAlg: "naiveRating",
 		defaultProfileRatingAlg: "naiveRating",
 
 		difficulties: ["BASIC", "ADVANCED", "EXPERT", "MASTER", "WORLD'S END"],

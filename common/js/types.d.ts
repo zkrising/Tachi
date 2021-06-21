@@ -325,7 +325,7 @@ export interface SessionCalculatedDataLookup {
     "museca:Single": "ktRating";
     "bms:7K": "sieglinde";
     "bms:14K": "sieglinde";
-    "chunithm:Single": "rating";
+    "chunithm:Single": "naiveRating";
     "gitadora:Gita": "skill";
     "gitadora:Dora": "skill";
 }
@@ -497,11 +497,6 @@ export interface PublicUserDocument extends MongoDBDocument {
     username: string;
     usernameLowercase: string;
     id: integer;
-    settings: {
-        nsfwSplashes: boolean;
-        invisible: boolean;
-    };
-    friends: integer[];
     socialMedia: {
         discord?: string | null;
         twitter?: string | null;
@@ -547,12 +542,6 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
 export interface PrivateUserDocument extends PublicUserDocument {
     password: string;
     email: string;
-}
-export interface IIDXEamusementScoreDocument extends MongoDBDocument {
-    chartID: string;
-    lamp: Lamps["iidx:SP" | "iidx:DP"];
-    score: integer;
-    ranking: integer;
 }
 interface ChartDocumentFlags {
     "iidx:SP": "IN BASE GAME" | "OMNIMIX" | "N-1" | "2dxtra";

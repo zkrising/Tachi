@@ -490,8 +490,8 @@ export interface SessionCalculatedDataLookup {
 	"maimai:Single": "ktRating";
 	"jubeat:Single": "jubility";
 	"museca:Single": "ktRating";
-	"bms:7K": "ktLampRating";
-	"bms:14K": "ktLampRating";
+	"bms:7K": "sieglinde";
+	"bms:14K": "sieglinde";
 	"chunithm:Single": "rating";
 	"gitadora:Gita": "skill";
 	"gitadora:Dora": "skill";
@@ -732,8 +732,8 @@ export interface UGSRatingsLookup {
 	"maimai:Single": "ktRating";
 	"jubeat:Single": "jubility";
 	"museca:Single": "ktRating";
-	"bms:7K": "ktLampRating";
-	"bms:14K": "ktLampRating";
+	"bms:7K": "sieglinde";
+	"bms:14K": "sieglinde";
 	"chunithm:Single": "naiveRating";
 	"gitadora:Gita": "skill";
 	"gitadora:Dora": "skill";
@@ -1095,8 +1095,8 @@ export interface ScoreCalculatedDataLookup {
 	"maimai:Single": "ktRating";
 	// "jubeat:Single": "jubility";
 	"museca:Single": "ktRating";
-	"bms:7K": "ktLampRating";
-	"bms:14K": "ktLampRating";
+	"bms:7K": "sieglinde";
+	"bms:14K": "sieglinde";
 	"chunithm:Single": "rating";
 	"gitadora:Gita": "skill";
 	"gitadora:Dora": "skill";

@@ -510,9 +510,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		idString: "bms:7K",
 		percentMax: 100,
 
-		defaultScoreRatingAlg: "ktLampRating",
-		defaultSessionRatingAlg: "ktLampRating",
-		defaultProfileRatingAlg: "ktLampRating",
+		defaultScoreRatingAlg: "sieglinde",
+		defaultSessionRatingAlg: "sieglinde",
+		defaultProfileRatingAlg: "sieglinde",
 
 		difficulties: ["CHART"],
 		defaultDifficulty: "CHART",
@@ -570,9 +570,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		percentMax: 100,
 
-		defaultScoreRatingAlg: "ktLampRating",
-		defaultSessionRatingAlg: "ktLampRating",
-		defaultProfileRatingAlg: "ktLampRating",
+		defaultScoreRatingAlg: "sieglinde",
+		defaultSessionRatingAlg: "sieglinde",
+		defaultProfileRatingAlg: "sieglinde",
 
 		difficulties: ["CHART"],
 		defaultDifficulty: "CHART",
@@ -915,13 +915,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportsESD: true,
-		judgementWindows: [
-			{ name: "PERFECT", msBorder: 33, value: 1 },
-			{ name: "GREAT", msBorder: 57, value: 0.5 },
-			{ name: "GOOD", msBorder: 81, value: 0.2 },
-			{ name: "OK", msBorder: 116.667 /* not really, but yknow */, value: 0 },
-		],
+		supportsESD: false,
 		judgements: ["perfect", "great", "good", "ok", "miss"],
 
 		defaultTable: "Levels (N-1)",
@@ -967,13 +961,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportsESD: true,
-		judgementWindows: [
-			{ name: "PERFECT", msBorder: 27, value: 1 },
-			{ name: "GREAT", msBorder: 48, value: 0.5 },
-			{ name: "GOOD", msBorder: 72, value: 0.2 },
-			{ name: "OK", msBorder: 116.667 /* not really, but yknow */, value: 0 },
-		],
+		supportsESD: false,
 		judgements: ["perfect", "great", "good", "ok", "miss"],
 
 		defaultTable: "Levels (N-1)",

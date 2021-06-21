@@ -29,6 +29,7 @@ nav:
     - "user/overview.md"
     - "user/rules.md"
     - "user/games.md"
+    - "user/stats.md"
 
   - API Reference:
     - "api/overview.md"
@@ -89,3 +90,10 @@ markdown_extensions:
   - toc:
       toc_depth: 2
       permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

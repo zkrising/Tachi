@@ -1085,7 +1085,7 @@ export interface JudgementLookup {
 }
 
 export interface ScoreCalculatedDataLookup {
-	"iidx:SP": "BPI" | "K%" | "ktRating" | "ktLampRating";
+	"iidx:SP": "BPI" | "ktRating" | "ktLampRating";
 	"iidx:DP": "BPI" | "ktRating" | "ktLampRating";
 	// "popn:9B": never; // @todo
 	"sdvx:Single": "VF6";

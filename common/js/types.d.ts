@@ -877,7 +877,7 @@ export interface JudgementLookup {
     "gitadora:Dora": GitadoraJudges;
 }
 export interface ScoreCalculatedDataLookup {
-    "iidx:SP": "BPI" | "K%" | "ktRating" | "ktLampRating";
+    "iidx:SP": "BPI" | "ktRating" | "ktLampRating";
     "iidx:DP": "BPI" | "ktRating" | "ktLampRating";
     "sdvx:Single": "VF6";
     "usc:Single": "VF6";

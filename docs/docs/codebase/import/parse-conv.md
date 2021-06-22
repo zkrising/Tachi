@@ -51,7 +51,7 @@ to.
 
 ### Implementation
 
-As an example, lets say we had a CSV being sent to us as a file.
+As an example, let's say we had a CSV being sent to us as a file.
 
 We could write a parser for that as follows:
 
@@ -256,7 +256,7 @@ function CreateIIDXFileParser(request) {
 
 ## Converters
 
-Lets say we have a parser for SDVX that returns:
+let's say we have a parser for SDVX that returns:
 ```js
 [{
 	score: 9000000,

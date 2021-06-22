@@ -75,7 +75,7 @@ You may recall that in [Parsers and Converters](./parse-conv.md) it was document
 ClassHandler. The ClassHandler is intended to handle those
 explicit changes.
 
-For example, lets say we have an import type that tells us:
+For example, let's say we have an import type that tells us:
 ```js
 {
 	scores: [{score: 1000, songID: 1, diff: "spa"}],

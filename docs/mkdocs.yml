@@ -29,6 +29,14 @@ nav:
     - "user/overview.md"
     - "user/rules.md"
     - "user/games.md"
+    - "user/features.md"
+
+    - Terminology:
+      - "user/terminology/lamps.md"
+
+    - Statistics:
+      - "user/stats/tachi.md"
+      - "user/stats/esd.md"
 
   - API Reference:
     - "api/overview.md"
@@ -39,6 +47,9 @@ nav:
       - "api/routes/status.md"
       - "api/routes/import.md"
       - "api/routes/auth.md"
+      - "api/routes/users.md"
+      - "api/routes/user-gamept.md"
+
   - Codebase Reference:
     - "codebase/overview.md"
     - "codebase/contributing.md"
@@ -51,11 +62,15 @@ nav:
       - "codebase/infrastructure/toolchain.md"
       - "codebase/infrastructure/logging.md"
       - "codebase/infrastructure/branches.md"
-      - "codebase/infrastructure/testing.md"
+      - "codebase/infrastructure/versions.md"
 
     - Structure:
       - "codebase/structure/style.md"
       - "codebase/structure/filesystem.md"
+      - "codebase/structure/testing.md"
+
+    - BATCH-MANUAL:
+      - "codebase/batch-manual/overview.md"
 
     - Score Importing:
       - "codebase/import/overview.md"
@@ -73,6 +88,19 @@ nav:
       - "codebase/import/milestones.md"
       - "codebase/import/import-doc-time.md"
 
+    - Implementation Details:
+      - "codebase/implementation-details/details.md"
+      - "codebase/implementation-details/search.md"
+      - "codebase/implementation-details/statistics.md"
+      - "codebase/implementation-details/songs-charts.md"
+      - "codebase/implementation-details/game-configuration.md"
+      - "codebase/implementation-details/esd.md"
+
+    - Documents:
+      - "codebase/documents/overview.md"
+      - "codebase/documents/user.md"
+      - "codebase/documents/score.md"
+
 markdown_extensions:
   - admonition
   - pymdownx.highlight
@@ -80,3 +108,12 @@ markdown_extensions:
   - abbr
   - pymdownx.snippets
   - footnotes
+  - toc:
+      toc_depth: 2
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

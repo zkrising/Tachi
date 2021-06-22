@@ -117,7 +117,7 @@ interactions **outside of Tachi**, which includes, **but is not limited to**:
 ## You are only allowed one account.
 
 Do not make multiple accounts, we track account IPs and it
-lets us know. This is to keep the leaderboards fair
+let's us know. This is to keep the leaderboards fair
 and avoid one player from taking multiple spaces.
 
 ## Do not set NSFW artwork as your avatar or banner.

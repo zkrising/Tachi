@@ -247,7 +247,7 @@ t.test("#ParserFn", (t) => {
 					{
 						score: 1000,
 						lamp: "HARD CLEAR",
-						matchType: "songtitle",
+						matchType: "songTitle",
 						identifier: "5.1.1.",
 					},
 				],

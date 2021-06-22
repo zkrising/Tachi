@@ -54,7 +54,7 @@ export function FindSongOnTitleInsensitive(
 }
 
 /**
- * Finds a song document based on the Kamaitachi songID. Depending on the database this might
+ * Finds a song document based on the Tachi songID. Depending on the database this might
  * also be the in-game-ID.
  * @param game - The game to search upon.
  * @param songID - The song ID to match.

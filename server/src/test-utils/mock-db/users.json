@@ -5,19 +5,11 @@
         "password": "$2b$12$QRFCAxvFoNI2spszFPgt/e.qLy55GvYWlSHioa0AujRbFpChLwHmu",
         "email": "thepasswordis@password.com",
         "id": 1,
-        "settings": {
-            "nsfwSplashes": true,
-            "invisible": false
-        },
-        "friends": [],
         "socialMedia": {},
         "lastSeen": null,
         "about": "test_user_not_real",
         "customPfp": true,
         "customBanner": true,
-        "permissions": {
-            "admin": true
-        },
         "clan": null
     }
 ]

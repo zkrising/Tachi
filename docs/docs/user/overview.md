@@ -34,8 +34,8 @@ that display your scores. I think that scores are integral
 to the rhythm game experience, and that displaying them
 properly is *just* as important.
 
-The benefits of Tachi include features like [Sessions](./features/sessions.md), which break your scores up into
-groups of when they were played, and [Goals](./features/goals.md) which let you set automatically updating targets for yourself!
+The benefits of Tachi include features like [Sessions](./features.md#sessions), which break your scores up into
+groups of when they were played, and [Goals](./features.md#goals) which let you set automatically updating targets for yourself!
 
 There are way more features that Tachi has, and you can
 read about all of them [here](./features.md).
@@ -57,7 +57,7 @@ Tachi's analytics!
 Yes.
 
 You should familiarise yourself with the rules before
-using any variant of Tachi.
+using any distribution of Tachi.
 
 The rules can be found [here](./rules.md).
 

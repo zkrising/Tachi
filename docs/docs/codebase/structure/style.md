@@ -74,7 +74,7 @@ function sd(arr: number[]) {
 This is bad code. Very bad code. It is not at all clear what
 this code does from any of the variable names, and the function signature barely helps.
 
-First, lets try and make this code more self documenting.
+First, let's try and make this code more self documenting.
 
 We'll give everything proper variable names, and then
 expand the second `reduce` call into a simpler for loop.[^1]

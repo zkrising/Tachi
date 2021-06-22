@@ -29,7 +29,14 @@ nav:
     - "user/overview.md"
     - "user/rules.md"
     - "user/games.md"
-    - "user/stats.md"
+    - "user/features.md"
+
+    - Terminology:
+      - "user/terminology/lamps.md"
+
+    - Statistics:
+      - "user/stats/tachi.md"
+      - "user/stats/esd.md"
 
   - API Reference:
     - "api/overview.md"
@@ -55,11 +62,15 @@ nav:
       - "codebase/infrastructure/toolchain.md"
       - "codebase/infrastructure/logging.md"
       - "codebase/infrastructure/branches.md"
+      - "codebase/infrastructure/versions.md"
 
     - Structure:
       - "codebase/structure/style.md"
       - "codebase/structure/filesystem.md"
       - "codebase/structure/testing.md"
+
+    - BATCH-MANUAL:
+      - "codebase/batch-manual/overview.md"
 
     - Score Importing:
       - "codebase/import/overview.md"
@@ -81,6 +92,14 @@ nav:
       - "codebase/implementation-details/details.md"
       - "codebase/implementation-details/search.md"
       - "codebase/implementation-details/statistics.md"
+      - "codebase/implementation-details/songs-charts.md"
+      - "codebase/implementation-details/game-configuration.md"
+      - "codebase/implementation-details/esd.md"
+
+    - Documents:
+      - "codebase/documents/overview.md"
+      - "codebase/documents/user.md"
+      - "codebase/documents/score.md"
 
 markdown_extensions:
   - admonition
@@ -96,6 +115,5 @@ markdown_extensions:
       generic: true
 
 extra_javascript:
-  - javascripts/config.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

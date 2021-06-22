@@ -10,8 +10,9 @@ combination, which contains things like the list of
 lamps for the game.
 
 !!! help
-	This page is currently unformatted, and is just a reference
-	to the codebase at points.
+	This page is currently unformatted,
+	and is pretty much just a copy-paste of the
+	local configuration files.
 
 	It would be really appreciated if someone formatted
 	the configurations for every game! For the time being,

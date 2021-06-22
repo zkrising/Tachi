@@ -95,11 +95,15 @@ nav:
       - "codebase/implementation-details/songs-charts.md"
       - "codebase/implementation-details/game-configuration.md"
       - "codebase/implementation-details/esd.md"
+      - "codebase/implementation-details/score-id.md"
+      - "codebase/implementation-details/goal-id.md"
 
     - Documents:
       - "codebase/documents/overview.md"
       - "codebase/documents/user.md"
       - "codebase/documents/score.md"
+      - "codebase/documents/goal.md"
+      - "codebase/documents/user-goal.md"
 
 markdown_extensions:
   - admonition

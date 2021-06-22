@@ -1,6 +1,5 @@
 import {
 	AnyChartDocument,
-	ESDCore,
 	integer,
 	Grades,
 	Lamps,
@@ -9,7 +8,6 @@ import {
 	GetGamePTConfig,
 	IDStrings,
 } from "tachi-common";
-import db from "../../../../external/mongo/db";
 import { GetAllTierlistDataOfType, GetOneTierlistData } from "../../../../utils/tierlist";
 import { KtLogger } from "../../../logger/logger";
 import { DryScore } from "../common/types";
@@ -87,8 +85,8 @@ export function CalculateBPI(
 	const wrPGF = BPIPikaGreatFn(wrEx, max);
 
 	// no idea what these var names are
-	const _s_ = yourPGF / kaidenPGF,
-		_z_ = wrPGF / kaidenPGF;
+	const _s_ = yourPGF / kaidenPGF;
+	const _z_ = wrPGF / kaidenPGF;
 
 	const isBetterThanKavg = yourEx >= kaidenEx;
 
@@ -104,38 +102,6 @@ export function CalculateBPI(
 				100
 		) / 100
 	);
-}
-
-/**
- * Calculates the percent of Kaidens you are ahead of with this score.
- * @returns Null, if this chart has no kaidens, a percent between 0 and 100, if there are.
- */
-export async function KaidenPercentile(scoreObj: DryScore, chartData: AnyChartDocument) {
-	const scoreCount = await db["iidx-eam-scores"].count({
-		chartID: chartData.chartID,
-	});
-
-	if (!scoreCount) {
-		return null;
-	}
-
-	const worseScores = await db["iidx-eam-scores"].count({
-		chartID: chartData.chartID,
-		score: { $lt: scoreObj.scoreData.score },
-	});
-
-	return (100 * worseScores) / scoreCount;
-}
-
-/**
- * An experimental statistic for determining how good a score is versus the Kaiden Average
- * For those who know what ESDC is (me), this is just ESDC(kesd, your esd).
- */
-export function CalculateKESDC(kaidenESD: number | null, yourESD: number) {
-	if (!kaidenESD) {
-		return null;
-	}
-	return ESDCore.ESDCompare(kaidenESD, yourESD);
 }
 
 /**
@@ -231,6 +197,7 @@ export function CalculateVF6(
 		logger.warn(`Invalid lamp of ${lamp} passed to CalculateVF5. Returning null.`);
 		return null;
 	}
+
 	if (!gradeCoefficient) {
 		logger.warn(`Invalid grade of ${grade} passed to CalculateVF5. Returning null.`);
 		return null;
@@ -307,7 +274,7 @@ function RatingCalcV1Clear(
 }
 
 function RatingCalcV0Fail(percentDiv100: number, levelNum: number, parameters: RatingParameters) {
-	// https://www.desmos.com/calculator/ngjie5elto
+	// https://www.desmos.com/calculator/hn7uxjmjkc
 	return (
 		percentDiv100 ** (parameters.failHarshnessMultiplier * levelNum) *
 		(levelNum / parameters.pivotPercent ** (parameters.failHarshnessMultiplier * levelNum))
@@ -399,9 +366,7 @@ export async function CalculateKTLampRating(
 
 	const userLampIndex = lamps.indexOf(dryScore.scoreData.lamp);
 
-	// if this score is a clear, the lowest we should go is the levelNum of the chart.
-	// Else, the lowest we can go is 0.
-	let lampRating = userLampIndex >= lamps.indexOf(gptConfig.clearLamp) ? chart.levelNum : 0;
+	let lampRating = 0;
 
 	// why is this like this and not a lookup table?
 	// Some charts have higher values for *lower* lamps, such as

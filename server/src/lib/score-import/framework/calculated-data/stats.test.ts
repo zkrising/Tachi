@@ -5,9 +5,7 @@ import {
 	CalculateBPI,
 	CalculateCHUNITHMRating,
 	CalculateGITADORASkill,
-	CalculateKESDC,
 	CalculateMFCP,
-	KaidenPercentile,
 	CalculateKTLampRating,
 	CalculateKTRating,
 	CalculateVF6,
@@ -124,14 +122,6 @@ t.test("#CalculateGITADORARating", (t) => {
 		82.08,
 		"Test GITADORA Rating function aligns with game (2)"
 	);
-
-	t.end();
-});
-
-// this metric is ground to be removed, possibly.
-t.test("#CalculateKESDC", (t) => {
-	t.equal(CalculateKESDC(10, 4), 37.18460876390943, "Should perform ESDC on two numbers.");
-	t.equal(CalculateKESDC(null, 4), null, "Should return null if kaidenESD is null.");
 
 	t.end();
 });
@@ -280,27 +270,6 @@ t.test("#CalculateVF6", (t) => {
 	t.equal(CalculateVF6("S", "PERFECT ULTIMATE CHAIN", 100, 18, logger), 0.415);
 	t.equal(CalculateVF6("S", "PERFECT ULTIMATE CHAIN", 100, 19, logger), 0.438);
 	t.equal(CalculateVF6("S", "PERFECT ULTIMATE CHAIN", 100, 20, logger), 0.462);
-
-	t.end();
-});
-
-t.test("#KaidenPercentile", async (t) => {
-	await db["iidx-eam-scores"].insert(
-		[100, 200, 300, 400, 1000, 2000, 3000, 4000].map((e) => ({
-			chartID: Testing511SPA.chartID,
-			score: e,
-			lamp: "EASY CLEAR",
-			ranking: 0, // ignore
-		}))
-	);
-
-	const res = await KaidenPercentile(TestingIIDXSPDryScore, Testing511SPA);
-	t.equal(res, 50);
-
-	await db["iidx-eam-scores"].remove({});
-	const res2 = await KaidenPercentile(TestingIIDXSPDryScore, Testing511SPA);
-
-	t.equal(res2, null);
 
 	t.end();
 });

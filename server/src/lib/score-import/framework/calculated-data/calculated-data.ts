@@ -139,7 +139,6 @@ async function CalculateDataIIDXSP(
 	});
 
 	let bpi;
-	const kPercent = await KaidenPercentile(dryScore, chart);
 
 	if (BPIData) {
 		bpi = CalculateBPI(
@@ -157,7 +156,6 @@ async function CalculateDataIIDXSP(
 
 	return {
 		BPI: bpi,
-		"K%": kPercent,
 		ktRating: await CalculateKTRating(dryScore, "iidx", "SP", chart, logger, defaultTierlistID),
 		ktLampRating: await CalculateKTLampRating(dryScore, "iidx", "SP", chart, defaultTierlistID),
 	};

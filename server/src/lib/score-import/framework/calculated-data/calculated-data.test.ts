@@ -26,7 +26,6 @@ t.test("#CreateCalculatedData", async (t) => {
 			ktRating: p.aprx(2.65),
 			ktLampRating: p.equalTo(10),
 			BPI: "?number",
-			"K%": "?number",
 		},
 		"Should correctly produce calculatedData"
 	);
@@ -71,7 +70,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 				ktRating: "?number",
 				ktLampRating: "?number",
 				BPI: "?number",
-				"K%": "?number",
 			},
 			"Response should contain keys for IIDX:SP"
 		);
@@ -251,7 +249,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		prAssert(
 			res,
 			{
-				ktLampRating: "?number",
+				sieglinde: "?number",
 			},
 			"Response should contain nulled keys for bms:7K"
 		);
@@ -273,7 +271,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		prAssert(
 			res,
 			{
-				ktLampRating: "?number",
+				sieglinde: "?number",
 			},
 			"Response should contain nulled keys for bms:14K"
 		);

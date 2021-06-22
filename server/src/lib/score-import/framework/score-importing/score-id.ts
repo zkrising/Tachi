@@ -3,12 +3,6 @@ import db from "../../../../external/mongo/db";
 import { integer } from "tachi-common";
 import { DryScore } from "../common/types";
 
-function CreateScoreIDString(userID: integer, partialScore: DryScore, chartID: string) {
-	const { lamp, grade } = partialScore.scoreData;
-
-	return `${userID}|${chartID}|${lamp}|${grade}|${partialScore.scoreData.score}|${partialScore.scoreData.percent}`;
-}
-
 /**
  * Performs sha256 hashing on the input data.
  * @param scoreIDString - The string to sha256 hash.
@@ -24,9 +18,11 @@ function HashScoreIDString(scoreIDString: string) {
  * @returns @see HashScoreIDString - prefixed with R.
  */
 export function CreateScoreID(userID: integer, dryScore: DryScore, chartID: string) {
-	const scoreIDString = CreateScoreIDString(userID, dryScore, chartID);
+	const hash = HashScoreIDString(
+		`${userID}|${chartID}|${dryScore.scoreData.lamp}|${dryScore.scoreData.grade}|${dryScore.scoreData.score}|${dryScore.scoreData.percent}`
+	);
 
-	return `R${HashScoreIDString(scoreIDString)}`;
+	return `R${hash}`;
 }
 
 export function GetWithScoreID(scoreID: string) {

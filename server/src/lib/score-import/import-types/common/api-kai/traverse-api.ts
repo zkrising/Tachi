@@ -60,7 +60,7 @@ export async function* TraverseKaiAPI(
 
 			throw new ScoreImportFatalError(
 				500,
-				`Recieved no _links prop from ${url}. This is not an error with Kamaitachi.`
+				`Recieved no _links prop from ${url}. This is not an error with ${CONF_INFO.name}.`
 			);
 		}
 

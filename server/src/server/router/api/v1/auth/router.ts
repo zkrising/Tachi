@@ -36,7 +36,8 @@ router.post(
 			captcha: "string",
 		},
 		{
-			username: "Invalid username.",
+			username:
+				"Invalid username. Usernames cannot start with a number, and must be between 2 and 20 characters.",
 			captcha: "Please fill out the captcha.",
 		}
 	),

@@ -31,8 +31,13 @@ export interface EvaluatedGoalReturn {
  * but that proves very complex to implement when it comes
  * to multiple games.
  */
-export function CreateGoalID(charts: GoalDocument["charts"], criteria: GoalDocument["criteria"]) {
-	return fjsh.hash({ charts, criteria }, "sha256");
+export function CreateGoalID(
+	charts: GoalDocument["charts"],
+	criteria: GoalDocument["criteria"],
+	game: Game,
+	playtype: Playtypes[Game]
+) {
+	return `G${fjsh.hash({ charts, criteria, game, playtype }, "sha256")}`;
 }
 
 export async function EvaluateGoalForUser(

@@ -10,11 +10,6 @@ export const PRUDENCE_PUBLIC_USER: PrudenceSchema = {
 	username: p.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
 	usernameLowercase: (self, parent) => self === (parent!.username as string).toLowerCase(),
 	id: p.isPositiveInteger,
-	settings: {
-		nsfwSplashes: "boolean",
-		invisible: "boolean",
-	},
-	friends: [p.isPositiveInteger],
 	socialMedia: {
 		discord: "*?string",
 		twitter: "*?string",
@@ -26,9 +21,6 @@ export const PRUDENCE_PUBLIC_USER: PrudenceSchema = {
 	about: p.isBoundedString(0, 4000),
 	customPfp: "boolean",
 	customBanner: "boolean",
-	permissions: {
-		admin: "*boolean",
-	},
 	clan: p.nullable(p.isBoundedString(1, 4)),
 	lastSeen: p.nullable(p.isPositiveInteger),
 };

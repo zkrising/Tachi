@@ -362,7 +362,7 @@ export interface GoalDocumentMulti extends BaseGoalDocument {
 }
 
 /**
- * Goal Document - Folder. A goal document who's set of charts is derived from
+ * Goal Document - Folder. A goal document whos set of charts is derived from
  * the folderID inside "charts".
  */
 export interface GoalDocumentFolder extends BaseGoalDocument {
@@ -373,7 +373,7 @@ export interface GoalDocumentFolder extends BaseGoalDocument {
 }
 
 /**
- * Goal Document - Any. A goal document who's set of charts is not bound.
+ * Goal Document - Any. A goal document whos set of charts is not bound.
  */
 export interface GoalDocumentAny extends BaseGoalDocument {
 	charts: {

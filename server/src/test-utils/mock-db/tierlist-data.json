@@ -12,5 +12,19 @@
         "key": "HARD CLEAR",
         "tierlistID": "ee9b756e50cff8282091102257b01f423ef855f2",
         "type": "lamp"
+    },
+    {
+        "tierlistDataID": "ce915895169642b143c450efca070947546bfe1d4863c27bd4301b34505f4a68",
+        "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
+        "data": {
+            "humanised": "F",
+            "value": 10.0,
+            "flags": {
+                "Individual Difference": false
+            }
+        },
+        "key": "CLEAR",
+        "tierlistID": "ee9b756e50cff8282091102257b01f423ef855f2",
+        "type": "lamp"
     }
 ]

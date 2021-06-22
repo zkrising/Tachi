@@ -31,7 +31,7 @@ t.test("#ConvertAPIArcDDR", (t) => {
 				scoreData: {
 					grade: "AAA",
 					percent: 99.976,
-					score: 807,
+					score: 999760,
 					judgements: {
 						marvelous: 236,
 						perfect: 24,
@@ -46,7 +46,6 @@ t.test("#ConvertAPIArcDDR", (t) => {
 						fast: 10,
 						slow: 14,
 						maxCombo: 260,
-						exScore: 807,
 					},
 					lamp: "PERFECT FULL COMBO",
 				},

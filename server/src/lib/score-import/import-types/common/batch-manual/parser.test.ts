@@ -24,7 +24,7 @@ const baseBatchManual = {
 const baseBatchManualScore = {
 	score: 1000,
 	lamp: "HARD CLEAR",
-	matchType: "songID",
+	matchType: "tachiSongID",
 	identifier: "123",
 	difficulty: "ANOTHER",
 };
@@ -185,7 +185,7 @@ t.test("#ParserFn", (t) => {
 						{
 							score: 1000,
 							lamp: "HARD CLEAR",
-							matchType: "songID",
+							matchType: "tachiSongID",
 							identifier: "123",
 							difficulty: "ANOTHER",
 						},
@@ -205,7 +205,7 @@ t.test("#ParserFn", (t) => {
 						{
 							score: 1000,
 							lamp: "HARD CLEAR",
-							matchType: "title",
+							matchType: "songTitle",
 							identifier: "5.1.1.",
 						},
 					],
@@ -227,7 +227,7 @@ t.test("#ParserFn", (t) => {
 					{
 						score: 1000,
 						lamp: "HARD CLEAR",
-						matchType: "songID",
+						matchType: "tachiSongID",
 						identifier: "123",
 						difficulty: "ANOTHER",
 					},
@@ -247,7 +247,7 @@ t.test("#ParserFn", (t) => {
 					{
 						score: 1000,
 						lamp: "HARD CLEAR",
-						matchType: "title",
+						matchType: "songtitle",
 						identifier: "5.1.1.",
 					},
 				],
@@ -275,7 +275,7 @@ t.test("#ParserFn", (t) => {
 					{
 						score: 1000,
 						lamp: "HARD CLEAR",
-						matchType: "songID",
+						matchType: "tachiSongID",
 						identifier: "123",
 						difficulty: "ANOTHER",
 						hitMeta: {
@@ -310,7 +310,7 @@ t.test("#ParserFn", (t) => {
 					{
 						score: 1000,
 						lamp: "HARD CLEAR",
-						matchType: "songID",
+						matchType: "tachiSongID",
 						identifier: "123",
 						difficulty: "ANOTHER",
 						judgements: {
@@ -337,7 +337,7 @@ t.test("#ParserFn", (t) => {
 							{
 								score: 1000,
 								lamp: "ALL JUSTICE", // not an iidx lamp
-								matchType: "songID",
+								matchType: "tachiSongID",
 								identifier: "123",
 								difficulty: "ANOTHER",
 							},

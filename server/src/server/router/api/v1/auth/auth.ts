@@ -87,12 +87,7 @@ export async function AddNewUser(
 		about: "I'm a fairly nondescript person.",
 		email: email,
 		clan: null,
-		friends: [],
 		socialMedia: {},
-		settings: {
-			invisible: false,
-			nsfwSplashes: false,
-		},
 		customBanner: false,
 		customPfp: false,
 		lastSeen: Date.now(), // lol

@@ -74,7 +74,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	},
 	chunithm: {
 		Single: (scd) => ({
-			rating: AvgBest10Map(scd, "rating"),
+			naiveRating: AvgBest10Map(scd, "rating"),
 		}),
 	},
 	maimai: {

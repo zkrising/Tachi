@@ -121,8 +121,8 @@ function TachiScoreDataToBeatorajaFormat(
 		deviceType: inputDevice ?? null,
 		gauge: scoreData.hitMeta.gauge ?? 0,
 		random: rajaRandom,
-		passnotes: scoreData.hitMeta.diedAt ?? notecount,
 		minbp: scoreData.hitMeta.bp ?? 0,
+		passnotes: 0,
 		notes: notecount,
 	};
 

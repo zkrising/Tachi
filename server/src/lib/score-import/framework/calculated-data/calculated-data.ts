@@ -19,7 +19,6 @@ import {
 	CalculateGITADORASkill,
 	CalculateBPI,
 	CalculateMFCP,
-	KaidenPercentile,
 	CalculateKTRating,
 	CalculateKTLampRating,
 	CalculateVF6,
@@ -293,7 +292,7 @@ async function CalculateDataBMS14K(
 	logger: KtLogger
 ): Promise<CalculatedData<"bms:14K">> {
 	return {
-		ktLampRating: await CalculateKTLampRating(dryScore, "bms", "14K", chart, defaultTierlistID),
+		sieglinde: 0, // @todo #33
 	};
 }
 
@@ -304,7 +303,7 @@ async function CalculateDataBMS7K(
 	logger: KtLogger
 ): Promise<CalculatedData<"bms:7K">> {
 	return {
-		ktLampRating: await CalculateKTLampRating(dryScore, "bms", "7K", chart, defaultTierlistID),
+		sieglinde: 0, // @todo #33
 	};
 }
 

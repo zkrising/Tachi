@@ -74,7 +74,7 @@ Your IIDX DP score will **not** be added to your SP session.
 
 ### What does this performance statistic mean?
 
-You can read all about session statistics [here](../stats/tachi.md#session-ratings).
+You can read all about session statistics [here](./stats/tachi.md#session-ratings).
 
 ### Summary
 

@@ -225,7 +225,7 @@ GET /api/v1/users/zkldi/games/iidx/SP/pbs?search=Verfl
 `GET /api/v1/users/:userID/games/:game/:playtype/pbs/best`
 
 This returns the users' best 100 personal bests according
-to the [Default Rating Algorithm](todo) for this game.
+to the [Default Rating Algorithm](../../codebase/implementation-details/game-configuration) for this game.
 
 This is returned in descending sorted order.
 

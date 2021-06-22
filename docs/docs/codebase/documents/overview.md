@@ -12,6 +12,11 @@ shape of those documents.
 	involve frequent links to this part of the
 	codebase documentation.
 
+!!! help
+	This section is a bit sparse, as I don't have the
+	time to populate it all. If you want to contribute
+	to this, please see [Contributing](../contributing.md).
+
 *****
 
 ## Definition

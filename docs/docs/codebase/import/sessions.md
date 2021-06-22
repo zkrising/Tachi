@@ -2,7 +2,7 @@
 
 This page documents how Sessions are constructed.
 For a humanised explaination of sessions, see
-TODO.
+[this page](../../user/features.md#sessions).
 
 *****
 

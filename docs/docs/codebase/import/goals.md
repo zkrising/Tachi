@@ -29,8 +29,6 @@ as a result of the import. This is calculated as follows:
 For every goal matched, we iterate over it and evaluate
 it using `EvaluateGoalForUser`.
 
-The details of how this algorithm works (and goals in general work) can be found at [Goals](todo).
-
 We then need to convert the returns of that function into
 the expected goal format for ImportDocuments.
 

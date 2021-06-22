@@ -64,7 +64,7 @@ The base score document is structured as follows:
 | `isPrimary` | Whether this score is was achieved on a "primary" chart or not. You can read more on what a primary chart is [here](../implementation-details/songs-charts.md#isPrimary). |
 | `highlight` | Whether this individual score was highlighted or not by the user. This is one of the few mutable fields on the score document. |
 | `comment` | A comment left by the user on this score. If one is not present, it is left as `null`. Comments are capped at 240 characters. |
-| `scoreID` | A unique identifier for this score. Score IDs are prefixed with `R`. This identifier is derived from the content of the score, and thus can be used to dedupe scores. See [Score IDs](todo). |
+| `scoreID` | A unique identifier for this score. Score IDs are prefixed with `R`. This identifier is derived from the content of the score, and thus can be used to dedupe scores. See [Score IDs](../implementation-details/score-id.md). |
 | `importType` | The import type used to import this score. For more on this, see [Import Types](../import/import-types.md) |
 
 Now, absolutely none of the above fields contain

@@ -12,7 +12,7 @@ import { CloseAllConnections } from "../../../../../test-utils/close-connections
 const baseBatchManualScore = {
 	score: 500,
 	lamp: "HARD CLEAR" as const,
-	matchType: "kamaitachiSongID" as const,
+	matchType: "tachiSongID" as const,
 	identifier: "1",
 	playtype: "SP" as const,
 	difficulty: "ANOTHER",

@@ -79,7 +79,7 @@ export async function ResolveMatchTypeToKTData(
 ): Promise<{ song: AnySongDocument; chart: AnyChartDocument }> {
 	const game = context.game;
 
-	if (data.matchType === "bmsChartHash" || data.matchType === "hash") {
+	if (data.matchType === "bmsChartHash") {
 		if (game !== "bms") {
 			throw new InvalidScoreFailure(`Cannot use bmsChartHash lookup on ${game}.`);
 		}
@@ -109,7 +109,7 @@ export async function ResolveMatchTypeToKTData(
 		}
 
 		return { chart, song };
-	} else if (data.matchType === "ddrSongHash" || data.matchType === "songHash") {
+	} else if (data.matchType === "ddrSongHash") {
 		if (game !== "ddr") {
 			throw new InvalidScoreFailure(`Cannot use ddrSongHash lookup on ${game}.`);
 		}
@@ -141,7 +141,7 @@ export async function ResolveMatchTypeToKTData(
 		}
 
 		return { song, chart };
-	} else if (data.matchType === "kamaitachiSongID" || data.matchType === "songID") {
+	} else if (data.matchType === "tachiSongID") {
 		const songID = AssertStrAsPositiveInt(
 			data.identifier,
 			"Invalid songID - must be a stringified positive integer."

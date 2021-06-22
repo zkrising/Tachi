@@ -54,16 +54,7 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 	return {
 		score: "number",
 		lamp: p.isIn(gptConfig.lamps),
-		matchType: p.isIn(
-			"songTitle",
-			"ddrSongHash",
-			"kamaitachiSongID",
-			"bmsChartHash",
-			"title",
-			"songHash",
-			"songID",
-			"hash"
-		),
+		matchType: p.isIn("songTitle", "ddrSongHash", "tachiSongID", "bmsChartHash"),
 		identifier: "string",
 		comment: optNull(p.isBoundedString(3, 240)),
 		difficulty: "*?string", // this is checked in converting instead

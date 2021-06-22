@@ -192,7 +192,7 @@ t.test("#ParserFn", (t) => {
 						{
 							score: 1000,
 							lamp: "HARD CLEAR",
-							matchType: "kamaitachiSongID",
+							matchType: "tachiSongID",
 							identifier: "123",
 							difficulty: "HYPER",
 						},
@@ -234,7 +234,7 @@ t.test("#ParserFn", (t) => {
 					{
 						score: 1000,
 						lamp: "HARD CLEAR",
-						matchType: "kamaitachiSongID",
+						matchType: "tachiSongID",
 						identifier: "123",
 						difficulty: "HYPER",
 					},

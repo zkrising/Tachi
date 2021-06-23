@@ -12,6 +12,9 @@ interface BaseGamePTConfig<I extends IDStrings> {
     defaultScoreRatingAlg: ScoreCalculatedDataLookup[I];
     defaultSessionRatingAlg: SessionCalculatedDataLookup[I];
     defaultProfileRatingAlg: UGSRatingsLookup[I];
+    scoreRatingAlgs: ScoreCalculatedDataLookup[I][];
+    sessionRatingAlgs: SessionCalculatedDataLookup[I][];
+    profileRatingAlgs: UGSRatingsLookup[I][];
     difficulties: Difficulties[I][];
     defaultDifficulty: Difficulties[I];
     difficultyColours: Record<Difficulties[I], string | null>;

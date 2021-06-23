@@ -27,6 +27,10 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	defaultSessionRatingAlg: SessionCalculatedDataLookup[I];
 	defaultProfileRatingAlg: UGSRatingsLookup[I];
 
+	scoreRatingAlgs: ScoreCalculatedDataLookup[I][];
+	sessionRatingAlgs: SessionCalculatedDataLookup[I][];
+	profileRatingAlgs: UGSRatingsLookup[I][];
+
 	difficulties: Difficulties[I][];
 	defaultDifficulty: Difficulties[I];
 	difficultyColours: Record<Difficulties[I], string | null>;
@@ -171,6 +175,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultSessionRatingAlg: "ktRating",
 		defaultProfileRatingAlg: "ktRating",
 
+		scoreRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
+		sessionRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
+		profileRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
+
 		difficulties: ["BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
 		defaultDifficulty: "ANOTHER",
 		difficultyColours: {
@@ -240,6 +248,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultSessionRatingAlg: "ktRating",
 		defaultProfileRatingAlg: "ktRating",
 
+		scoreRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
+		sessionRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
+		profileRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
+
 		difficulties: ["NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
 		defaultDifficulty: "ANOTHER",
 		difficultyColours: {
@@ -307,6 +319,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultSessionRatingAlg: "naiveRating",
 		defaultProfileRatingAlg: "naiveRating",
 
+		scoreRatingAlgs: ["rating"],
+		sessionRatingAlgs: ["naiveRating"],
+		profileRatingAlgs: ["naiveRating"],
+
 		difficulties: ["BASIC", "ADVANCED", "EXPERT", "MASTER", "WORLD'S END"],
 		defaultDifficulty: "MASTER",
 		difficultyColours: {
@@ -358,6 +374,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultScoreRatingAlg: "VF6",
 		defaultSessionRatingAlg: "ProfileVF6",
 		defaultProfileRatingAlg: "VF6",
+
+		scoreRatingAlgs: ["VF6"],
+		sessionRatingAlgs: ["ProfileVF6", "VF6"],
+		profileRatingAlgs: ["VF6"],
 
 		difficulties: ["NOV", "ADV", "EXH", "INF", "GRV", "HVN", "VVD", "MXM"],
 		defaultDifficulty: "EXH",
@@ -413,6 +433,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultSessionRatingAlg: "ProfileVF6",
 		defaultProfileRatingAlg: "VF6",
 
+		scoreRatingAlgs: ["VF6"],
+		sessionRatingAlgs: ["ProfileVF6", "VF6"],
+		profileRatingAlgs: ["VF6"],
+
 		difficulties: ["NOV", "ADV", "EXH", "INF"],
 		defaultDifficulty: "EXH",
 		difficultyColours: {
@@ -462,6 +486,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultScoreRatingAlg: "ktRating",
 		defaultSessionRatingAlg: "ktRating",
 		defaultProfileRatingAlg: "ktRating",
+
+		scoreRatingAlgs: ["ktRating"],
+		sessionRatingAlgs: ["ktRating"],
+		profileRatingAlgs: ["ktRating"],
 
 		difficulties: ["Green", "Yellow", "Red"],
 		defaultDifficulty: "Red",
@@ -513,6 +541,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultScoreRatingAlg: "sieglinde",
 		defaultSessionRatingAlg: "sieglinde",
 		defaultProfileRatingAlg: "sieglinde",
+
+		scoreRatingAlgs: ["sieglinde"],
+		sessionRatingAlgs: ["sieglinde"],
+		profileRatingAlgs: ["sieglinde"],
 
 		difficulties: ["CHART"],
 		defaultDifficulty: "CHART",
@@ -574,6 +606,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultSessionRatingAlg: "sieglinde",
 		defaultProfileRatingAlg: "sieglinde",
 
+		scoreRatingAlgs: ["sieglinde"],
+		sessionRatingAlgs: ["sieglinde"],
+		profileRatingAlgs: ["sieglinde"],
+
 		difficulties: ["CHART"],
 		defaultDifficulty: "CHART",
 		difficultyColours: {
@@ -633,6 +669,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultScoreRatingAlg: "ktRating",
 		defaultSessionRatingAlg: "ktRating",
 		defaultProfileRatingAlg: "ktRating",
+
+		scoreRatingAlgs: ["MFCP", "ktRating"],
+		sessionRatingAlgs: ["MFCP", "ktRating"],
+		profileRatingAlgs: ["MFCP", "ktRating"],
 
 		difficulties: ["BEGINNER", "BASIC", "DIFFICULT", "EXPERT", "CHALLENGE"],
 		defaultDifficulty: "EXPERT",
@@ -724,6 +764,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultSessionRatingAlg: "ktRating",
 		defaultProfileRatingAlg: "ktRating",
 
+		scoreRatingAlgs: ["MFCP", "ktRating"],
+		sessionRatingAlgs: ["MFCP", "ktRating"],
+		profileRatingAlgs: ["MFCP", "ktRating"],
+
 		difficulties: ["BASIC", "DIFFICULT", "EXPERT", "CHALLENGE"],
 		defaultDifficulty: "EXPERT",
 		difficultyColours: {
@@ -813,6 +857,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultSessionRatingAlg: "ktRating",
 		defaultProfileRatingAlg: "ktRating",
 
+		scoreRatingAlgs: ["ktRating"],
+		sessionRatingAlgs: ["ktRating"],
+		profileRatingAlgs: ["ktRating"],
+
 		difficulties: ["Easy", "Basic", "Advanced", "Expert", "Master", "Re:Master"],
 		defaultDifficulty: "Master",
 		difficultyColours: {
@@ -872,6 +920,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultSessionRatingAlg: "skill",
 		defaultProfileRatingAlg: "skill",
 
+		scoreRatingAlgs: ["skill"],
+		sessionRatingAlgs: ["skill"],
+		profileRatingAlgs: ["skill"],
+
 		difficulties: [
 			"BASIC",
 			"ADVANCED",
@@ -930,6 +982,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultScoreRatingAlg: "skill",
 		defaultSessionRatingAlg: "skill",
 		defaultProfileRatingAlg: "skill",
+
+		scoreRatingAlgs: ["skill"],
+		sessionRatingAlgs: ["skill"],
+		profileRatingAlgs: ["skill"],
 
 		difficulties: ["BASIC", "ADVANCED", "EXTREME", "MASTER"],
 		defaultDifficulty: "EXTREME",

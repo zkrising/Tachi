@@ -5,6 +5,8 @@ import {
 	UserGameStats,
 	Game,
 	Playtypes,
+	AnyChartDocument,
+	AnySongDocument,
 } from "tachi-common";
 
 declare module "express-session" {
@@ -48,4 +50,7 @@ export interface TachiRequestData {
 	requestedUserGameStats?: UserGameStats;
 	game?: Game;
 	playtype?: Playtypes[Game];
+
+	chartDoc?: AnyChartDocument;
+	songDoc?: AnySongDocument;
 }

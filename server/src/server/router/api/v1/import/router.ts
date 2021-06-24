@@ -53,7 +53,7 @@ router.post(
 		const importType = req.body.importType as FileUploadImportTypes;
 
 		const inputParser = (logger: KtLogger) =>
-			ResolveFileUploadData(importType, req.file, req.body, logger);
+			ResolveFileUploadData(importType, req.file!, req.body, logger);
 
 		const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.userID);
 

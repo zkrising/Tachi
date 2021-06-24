@@ -1,5 +1,6 @@
-import { Difficulties, Game, integer, Playtypes, IDStrings } from "tachi-common";
+import { Difficulties, Game, integer, Playtypes, IDStrings, AnyChartDocument } from "tachi-common";
 import db from "../../external/mongo/db";
+import { FilterQuery } from "mongodb";
 
 export function FindChartWithChartID(game: Game, chartID: string) {
 	return db.charts[game].findOne({ chartID });
@@ -215,4 +216,63 @@ export function FindChartOnARCID(game: "iidx" | "ddr" | "jubeat" | "sdvx", arcID
 	return db.charts[game].findOne({
 		"data.arcChartID": arcID,
 	});
+}
+
+/**
+ * Returns the N most popular charts for this game + playtype.
+ * Popularity is determined by how many scores match in the score
+ * collection.
+ *
+ * Performance of this is untested.
+ */
+export function FindChartsOnPopularity(
+	game: Game,
+	playtype: Playtypes[Game],
+	songIDs?: integer[],
+	skip = 0,
+	limit = 100,
+	scoreCollection: "personal-bests" | "scores" = "personal-bests"
+): Promise<(AnyChartDocument & { __playcount: integer })[]> {
+	const matchQuery: FilterQuery<AnyChartDocument> = {
+		playtype,
+	};
+
+	if (songIDs) {
+		matchQuery.songID = { $in: songIDs };
+	}
+
+	return db.charts[game].aggregate([
+		{
+			$match: matchQuery,
+		},
+		{
+			$lookup: {
+				from: scoreCollection,
+				localField: "chartID",
+				foreignField: "chartID",
+				as: "pbs",
+			},
+		},
+		{
+			$addFields: {
+				__playcount: { $size: "$pbs" },
+			},
+		},
+		{
+			$project: {
+				pbs: 0
+			}
+		},
+		{
+			$sort: {
+				__playcount: -1,
+			},
+		},
+		{
+			$skip: skip,
+		},
+		{
+			$limit: limit,
+		},
+	]);
 }

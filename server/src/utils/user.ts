@@ -35,8 +35,6 @@ export async function GetUsernameFromUserID(userID: integer): Promise<string> {
 
 /**
  * Gets a user based on their username case-insensitively.
- * @param username The username of the user.
- * @returns PublicUserDocument | null
  */
 export function GetUserCaseInsensitive(
 	username: string
@@ -54,8 +52,6 @@ export function GetUserCaseInsensitive(
 /**
  * Returns GetUserCaseInsensitive, but without the private field omission.
  * @see GetUserCaseInsensitive
- * @param username The username of the user.
- * @returns PrivateUserDocument | null
  */
 export function PRIVATEINFO_GetUserCaseInsensitive(username: string) {
 	return db.users.findOne({
@@ -65,8 +61,6 @@ export function PRIVATEINFO_GetUserCaseInsensitive(username: string) {
 
 /**
  * Gets a user from their userID.
- * @param userID The userID to retrieve the user document of.
- * @returns PublicUserDocument | null
  */
 export function GetUserWithID(userID: integer): Promise<FindOneResult<PublicUserDocument>> {
 	return db.users.findOne(
@@ -80,12 +74,23 @@ export function GetUserWithID(userID: integer): Promise<FindOneResult<PublicUser
 }
 
 /**
+ * Gets the users for these user IDs.
+ */
+export function GetUsersWithIDs(userIDs: integer[]) {
+	return db.users.find(
+		{
+			id: { $in: userIDs },
+		},
+		{
+			projection: OMIT_PRIVATE_USER_RETURNS,
+		}
+	);
+}
+
+/**
  * Retrieve a user document that is expected to exist.
  * If the user document is not found, a severe error is logged, and this
  * function throws.
- *
- * @param userID The userID to retrieve the user document of.
- * @returns PublicUserDocument
  */
 export async function GetUserWithIDGuaranteed(userID: integer): Promise<PublicUserDocument> {
 	const userDoc = await GetUserWithID(userID);
@@ -105,8 +110,6 @@ export async function GetUserWithIDGuaranteed(userID: integer): Promise<PublicUs
 /**
  * GetUserWithID, but return personal information, too.
  * @see GetUserWithID
- * @param userID
- * @returns PrivateUserDocument | null
  */
 export function PRIVATEINFO_GetUserWithID(userID: integer) {
 	return db.users.findOne({
@@ -117,7 +120,6 @@ export function PRIVATEINFO_GetUserWithID(userID: integer) {
 /**
  * Gets a user based on either their username case-insensitively, or a direct lookup of their ID.
  * This is used in URLs to resolve the passed user.
- * @param usernameOrID
  */
 export function ResolveUser(usernameOrID: string) {
 	// user ID passed
@@ -132,7 +134,6 @@ export function ResolveUser(usernameOrID: string) {
 
 /**
  * Returns a formatted string indicating the user. This is used for logging.
- * @param userdoc The user document to format.
  */
 export function FormatUserDoc(userdoc: PublicUserDocument) {
 	return `${userdoc.username} (#${userdoc.id})`;

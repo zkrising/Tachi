@@ -2,7 +2,11 @@ import { Router } from "express";
 import db from "../../../../../../../../../external/mongo/db";
 import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi";
 import { GetRelevantSongsAndCharts } from "../../../../../../../../../utils/db";
-import { GetUsersRanking } from "../../../../../../../../../utils/user";
+import {
+	GetUsersRanking,
+	GetUsersWithIDs,
+	ResolveUser,
+} from "../../../../../../../../../utils/user";
 import { CheckUserPlayedGamePlaytype } from "./middleware";
 import { FilterQuery } from "mongodb";
 import { UserGoalDocument, UserMilestoneDocument, GetGamePTConfig } from "tachi-common";
@@ -11,6 +15,8 @@ import {
 	SearchSessions,
 } from "../../../../../../../../../lib/search/search";
 import { FilterChartsAndSongs } from "../../../../../../../../../utils/scores";
+import { CheckStrProfileAlg } from "../../../../../../../../../utils/string-checks";
+import { IsString } from "../../../../../../../../../utils/misc";
 const router: Router = Router({ mergeParams: true });
 
 router.use(CheckUserPlayedGamePlaytype);
@@ -381,6 +387,86 @@ router.get("/sessions/best", async (req, res) => {
 		success: true,
 		description: `Retrieved ${sessions.length} sessions.`,
 		body: sessions,
+	});
+});
+
+/**
+ * Returns the users around the given user on the leaderboard.
+ *
+ * @param alg - Optional, the algorithm to use.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/leaderboard-adjacent
+ */
+router.get("/leaderboard-adjacent", async (req, res) => {
+	const game = req[SYMBOL_TachiData]!.game!;
+	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const gptConfig = GetGamePTConfig(game, playtype);
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+
+	let alg = gptConfig.defaultProfileRatingAlg;
+	if (IsString(req.query.alg)) {
+		const temp = CheckStrProfileAlg(game, playtype, req.query.alg);
+
+		if (temp === null) {
+			return res.status(400).json({
+				success: false,
+				description: `Invalid value of ${
+					req.query.alg
+				} for alg. Expected one of ${gptConfig.profileRatingAlgs.join(", ")}`,
+			});
+		}
+
+		alg = temp;
+	}
+
+	const yourStats = await db["game-stats"].findOne({ game, playtype, userID: user.id });
+
+	if (!yourStats) {
+		return res.status(400).json({
+			success: false,
+			description: `This user has not played this game.`,
+		});
+	}
+
+	const [above, below] = await Promise.all([
+		db["game-stats"].find(
+			{
+				game,
+				playtype,
+				userID: { $ne: user.id },
+				[`ratings.${alg}`]: { $gte: yourStats.ratings[alg] },
+			},
+			{
+				limit: 5,
+			}
+		),
+		db["game-stats"].find(
+			{
+				game,
+				playtype,
+				userID: { $ne: user.id },
+				[`ratings.${alg}`]: { $lte: yourStats.ratings[alg] },
+			},
+			{
+				limit: 5,
+			}
+		),
+	]);
+
+	const users = await GetUsersWithIDs([
+		...above.map((e) => e.userID),
+		...below.map((e) => e.userID),
+	]);
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned ${above.length + below.length} nearby stats.`,
+		body: {
+			above,
+			below,
+			users,
+			yourStats,
+		},
 	});
 });
 

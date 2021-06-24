@@ -4,8 +4,7 @@
     "calculatedData": {
         "ktRating": 0,
         "ktLampRating": 0,
-        "BPI": 10.10,
-        "K%": null
+        "BPI": 10.10
     },
     "comments": [],
     "composedFrom": {
@@ -14,8 +13,6 @@
     },
     "highlight": false,
     "isPrimary": true,
-    "outOf": 1,
-    "ranking": 1,
     "scoreData": {
         "score": 1479,
         "percent": 94.08396946564885,
@@ -31,6 +28,10 @@
         "hitMeta": {
             "bp": 2
         }
+    },
+    "rankingData": {
+        "rank": 1,
+        "outOf": 2
     },
     "songID": 1,
     "game": "iidx",

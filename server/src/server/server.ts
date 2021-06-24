@@ -78,8 +78,7 @@ interface ExpressJSONErr extends SyntaxError {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res) => {
-	logger.info("foo");
+const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, next) => {
 	if (err instanceof SyntaxError) {
 		const expErr: ExpressJSONErr = err as ExpressJSONErr;
 		if (expErr.status === 400 && "body" in expErr) {

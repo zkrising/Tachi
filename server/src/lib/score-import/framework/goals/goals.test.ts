@@ -60,7 +60,10 @@ t.test("#GetRelevantFolderGoals", (t) => {
 
 	t.beforeEach(async () => {
 		// @ts-expect-error garbage types
-		const sp11folder = deepmerge(TestingIIDXFolderSP10, { data: { level: "11" } });
+		const sp11folder = deepmerge(TestingIIDXFolderSP10, {
+			data: { level: "11" },
+			folderID: "foo",
+		});
 		await db.folders.insert(TestingIIDXFolderSP10);
 		await db.folders.insert(sp11folder);
 		await db.goals.insert(fakeFolderGoalDocument);

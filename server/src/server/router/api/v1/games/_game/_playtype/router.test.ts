@@ -1,6 +1,7 @@
 import t from "tap";
 import mockApi from "../../../../../../../test-utils/mock-api";
 import { GetGamePTConfig } from "tachi-common";
+import { CloseAllConnections } from "../../../../../../../test-utils/close-connections";
 
 t.test("GET /api/v1/games/:game/:playtype", (t) => {
 	t.test("Should return information about the game:playtype.", async (t) => {
@@ -23,3 +24,5 @@ t.test("GET /api/v1/games/:game/:playtype", (t) => {
 
 	t.end();
 });
+
+t.teardown(CloseAllConnections);

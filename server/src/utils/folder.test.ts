@@ -120,6 +120,9 @@ t.test("#ResolveFolderToCharts", (t) => {
 			deepmerge(Testing511SPA, {
 				difficulty: "NORMAL",
 				chartID: "FAKE_511_SPN",
+				data: {
+					arcChartID: "uniqueid",
+				},
 			}) as ChartDocument<"iidx:SP">
 		);
 

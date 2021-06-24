@@ -426,6 +426,7 @@ t.test("#CalculateLampRating", (t) => {
 	});
 
 	t.test("TierlistData edge cases", async (t) => {
+		await db["tierlist-data"].remove({ chartID: Testing511SPA.chartID, key: "CLEAR" });
 		// mock document that implies 5.1.1. SPA is worth 11.9 to NC and 10.6 to HC.
 		await db["tierlist-data"].insert({
 			chartID: Testing511SPA.chartID,

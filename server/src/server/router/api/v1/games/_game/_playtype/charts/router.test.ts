@@ -1,6 +1,6 @@
 import t from "tap";
 import db from "../../../../../../../../external/mongo/db";
-import ResetDBState from "../../../../../../../../test-utils/resets";
+import ResetDBState, { SetIndexesForDB } from "../../../../../../../../test-utils/resets";
 import { LoadKTBlackIIDXData, Testing511SPA } from "../../../../../../../../test-utils/test-data";
 import { PBScoreDocument } from "tachi-common";
 import mockApi from "../../../../../../../../test-utils/mock-api";
@@ -48,6 +48,8 @@ t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 	});
 
 	t.test("Should search charts if a search param is set.", async (t) => {
+		await SetIndexesForDB();
+
 		await db["personal-bests"].insert([
 			{
 				chartID: "fc7edc6bcfa701a261c89c999ddbba3e2195597b", //gambol hyper

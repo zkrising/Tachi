@@ -7,7 +7,7 @@ export const RequireLoggedInSession: RequestHandler = (req, res, next) => {
 	if (!req.session.tachi?.userID) {
 		logger.info(`Received unauthorised request from ${req.ip} from ${req.originalUrl}`);
 
-		return res.status(401).json({
+		return res.status(403).json({
 			success: false,
 			description: `You are not authorised to perform this action.`,
 		});

@@ -42,7 +42,7 @@ export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
 	if (req[SYMBOL_TachiAPIAuth].userID !== user.id) {
-		return res.status(401).json({
+		return res.status(403).json({
 			success: false,
 			description: "You are not authorised as this user.",
 		});

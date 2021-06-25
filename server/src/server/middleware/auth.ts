@@ -121,7 +121,7 @@ export const RequirePermissions =
 					req.url
 				}. ${missingPerms.join(", ")}`
 			);
-			return res.status(401).json({
+			return res.status(403).json({
 				success: false,
 				description: `You are missing the following permissions necessary for this request: ${missingPerms.join(
 					", "

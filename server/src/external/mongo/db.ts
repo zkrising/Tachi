@@ -72,10 +72,10 @@ const RemoveIDMiddleware: TMiddleware =
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	(args: any, method) => {
 		if ((method === "find" || method === "findOne") && !args.options.projectID) {
-			if (args.options.project) {
-				args.options.project._id = 0;
+			if (args.options.projection) {
+				args.options.projection._id = 0;
 			} else {
-				args.options.project = { _id: 0 };
+				args.options.projection = { _id: 0 };
 			}
 		}
 

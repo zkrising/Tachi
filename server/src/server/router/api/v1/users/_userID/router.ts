@@ -1,9 +1,10 @@
 import { Router } from "express";
 import db from "../../../../../../external/mongo/db";
 import { SYMBOL_TachiData } from "../../../../../../lib/constants/tachi";
-import { GetUserFromParam, RequireAuthedAsUser } from "./middleware";
+import { GetUserFromParam } from "./middleware";
 import gamePTRouter from "./games/_game/_playtype/router";
-import { RequirePermissions } from "../../../../../middleware/auth";
+import bannerRouter from "./banner/router";
+import pfpRouter from "./pfp/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -42,8 +43,8 @@ router.get("/game-stats", async (req, res) => {
 	});
 });
 
-router.put("/pfp", RequireAuthedAsUser, RequirePermissions(""))
-
 router.use("/games/:game/:playtype", gamePTRouter);
+router.use("/pfp", pfpRouter);
+router.use("/banner", bannerRouter);
 
 export default router;

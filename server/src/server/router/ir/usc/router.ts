@@ -17,9 +17,10 @@ import { ParseIRUSC } from "../../../../lib/score-import/import-types/ir/usc/par
 import { USCIR_MAX_LEADERBOARD_N } from "../../../../lib/constants/usc-ir";
 import { CreateMulterSingleUploadMiddleware } from "../../../middleware/multer-upload";
 import { AssignToReqTachiData } from "../../../../utils/req-tachi-data";
-import { StoreCDN } from "../../../../lib/cdn/cdn";
+import { CDNStore } from "../../../../lib/cdn/cdn";
 import { ONE_MEGABYTE } from "../../../../lib/constants/filesize";
 import { RequirePermissions } from "../../../middleware/auth";
+import { GetUSCIRReplayURL } from "../../../../lib/cdn/url-format";
 
 const logger = CreateLogCtx(__filename);
 
@@ -347,7 +348,7 @@ router.post(
 		}
 
 		try {
-			await StoreCDN(`/uscir/replays/${correspondingScore.scoreID}`, req.file.buffer);
+			await CDNStore(GetUSCIRReplayURL(correspondingScore.scoreID), req.file.buffer);
 
 			return res.status(200).json({
 				statusCode: STATUS_CODES.SUCCESS,

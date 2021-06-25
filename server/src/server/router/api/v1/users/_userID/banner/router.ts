@@ -80,7 +80,7 @@ router.get("/", async (req, res) => {
 
 	if (!user.customBanner) {
 		res.setHeader("Content-Type", "image/png");
-		const buf = await CDNRetrieve("/users/defaults/banner.png");
+		const buf = await CDNRetrieve("/users/default/banner.png");
 		return res.send(buf);
 	}
 

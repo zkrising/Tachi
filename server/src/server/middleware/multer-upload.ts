@@ -36,6 +36,13 @@ export const CreateMulterSingleUploadMiddleware = (
 				});
 			}
 
+			if (!req.file) {
+				return res.status(400).json({
+					success: false,
+					description: `Expected a file for field ${fieldName}.`,
+				});
+			}
+
 			return next();
 		});
 	};

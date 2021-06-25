@@ -29,9 +29,11 @@ router.put(
 	async (req, res) => {
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 
+		let updatePfp = false;
+
 		if (!user.customPfp) {
 			logger.verbose(`User ${FormatUserDoc(user)} set a custom profile picture.`);
-			await db.users.update({ id: user.id }, { $set: { customPfp: true } });
+			updatePfp = true;
 		} else {
 			logger.verbose(`User ${FormatUserDoc(user)} updated their profile picture.`);
 		}
@@ -57,6 +59,10 @@ router.put(
 			});
 		}
 
+		if (updatePfp) {
+			await db.users.update({ id: user.id }, { $set: { customPfp: true } });
+		}
+
 		return res.status(200).json({
 			success: true,
 			description: `Stored profile picture.`,
@@ -78,7 +84,7 @@ router.get("/", async (req, res) => {
 
 	if (!user.customPfp) {
 		res.setHeader("Content-Type", "image/png");
-		const buf = await CDNRetrieve("/users/defaults/pfp.png");
+		const buf = await CDNRetrieve("/users/default/pfp.png");
 		return res.send(buf);
 	}
 

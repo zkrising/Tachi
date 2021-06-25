@@ -41,8 +41,8 @@ jobs:
       - name: Lint Code
         run: pnpm lint
 
-      - name: Run Tests In Parallel
-        run: pnpm paralleltest
+      - name: Run Tests
+        run: pnpm fulltest
 
       - name: Upload Coverage
         if: always()

@@ -8,8 +8,8 @@
         "socialMedia": {},
         "lastSeen": null,
         "about": "test_user_not_real",
-        "customPfp": true,
-        "customBanner": true,
+        "customPfp": false,
+        "customBanner": false,
         "clan": null
     }
 ]

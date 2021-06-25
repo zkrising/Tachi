@@ -11,6 +11,9 @@ import {
 	AnyChartDocument,
 	integer,
 } from "tachi-common";
+import { EscapeStringRegexp } from "../../utils/misc";
+import { OMIT_PRIVATE_USER_RETURNS } from "../../utils/user";
+import { CONF_INFO } from "../setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -112,4 +115,57 @@ export function SearchSessions(
 	}
 
 	return SearchCollection(db.sessions, search, baseMatch, limit);
+}
+
+/**
+ * Searches the user collection for users that are *like* the
+ * provided string.
+ *
+ * We use regex matching because $text matches words, and users
+ * aren't allowed spaces in their name. In short, $text is very
+ * poor at actually matching usernames.
+ */
+export function SearchUsersRegExp(search: string) {
+	const regexEsc = EscapeStringRegexp(search.toLowerCase());
+
+	return db.users.find(
+		{
+			usernameLowercase: { $regex: new RegExp(regexEsc, "u") },
+		},
+		{
+			limit: 25,
+			projection: OMIT_PRIVATE_USER_RETURNS,
+		}
+	);
+}
+
+/**
+ * Terrible function name!
+ * Searches a single game, but optimised for the searchAllGames return.
+ */
+async function SearchAllGamesSingleGame(game: Game, search: string) {
+	const songs = (await SearchGameSongs(game, search, 10)) as (SongSearchReturn & {
+		game: Game;
+	})[];
+
+	for (const song of songs) {
+		song.game = game;
+	}
+
+	return songs;
+}
+
+/**
+ * Searches all games' songs.
+ */
+export async function SearchAllGamesSongs(search: string) {
+	const promises = [];
+
+	for (const game of CONF_INFO.supportedGames) {
+		promises.push(SearchAllGamesSingleGame(game, search));
+	}
+
+	const res = await Promise.all(promises);
+
+	return res.flat(1).sort((a, b) => b.__textScore - a.__textScore);
 }

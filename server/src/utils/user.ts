@@ -4,7 +4,7 @@ import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
 const logger = CreateLogCtx(__filename);
 
-const OMIT_PRIVATE_USER_RETURNS = {
+export const OMIT_PRIVATE_USER_RETURNS = {
 	password: 0,
 	email: 0,
 	// legacy protection - this field does not exist on user documents anymore, but it did, and it *did* hold personal information.

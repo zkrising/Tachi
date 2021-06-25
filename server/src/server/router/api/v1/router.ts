@@ -4,6 +4,7 @@ import importRouter from "./import/router";
 import statusRouter from "./status/router";
 import usersRouter from "./users/router";
 import gamesRouter from "./games/router";
+import searchRouter from "./search/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -12,6 +13,7 @@ router.use("/status", statusRouter);
 router.use("/import", importRouter);
 router.use("/users", usersRouter);
 router.use("/games", gamesRouter);
+router.use("/search", searchRouter);
 
 router.all("*", (req, res) =>
 	res.status(404).json({

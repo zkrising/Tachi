@@ -3,7 +3,13 @@ import db from "../../external/mongo/db";
 import { CloseAllConnections } from "../../test-utils/close-connections";
 import ResetDBState from "../../test-utils/resets";
 import { LoadKTBlackIIDXData } from "../../test-utils/test-data";
-import { SearchGameSongs } from "./search";
+import {
+	SearchGameSongs,
+	SearchCollection,
+	SearchGameSongsAndCharts,
+	SearchSessions,
+	SearchUsersRegExp,
+} from "./search";
 
 t.test("#SearchGameSongs", (t) => {
 	t.beforeEach(ResetDBState);
@@ -30,6 +36,30 @@ t.test("#SearchGameSongs", (t) => {
 			res.sort((a, b) => a.id - b.id).map((e) => e.title),
 			["A", "AA", "冥", "F", "HAERETICUS", "ZZ", "X", "AA -rebuild-", "∀"]
 		);
+
+		t.end();
+	});
+
+	t.end();
+});
+
+t.test("#SearchUsersRegExp", (t) => {
+	t.beforeEach(ResetDBState);
+
+	t.test("Should search users.", async (t) => {
+		const res = await SearchUsersRegExp("zkldi");
+
+		t.equal(res.length, 1);
+		t.equal(res[0].usernameLowercase, "test_zkldi");
+
+		const res2 = await SearchUsersRegExp("zk");
+
+		t.equal(res2.length, 1);
+		t.equal(res2[0].usernameLowercase, "test_zkldi");
+
+		const res3 = await SearchUsersRegExp("zkzdi");
+
+		t.equal(res3.length, 0);
 
 		t.end();
 	});

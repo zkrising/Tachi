@@ -5,7 +5,6 @@ import { GetProfilePictureURL } from "../../../../../../../lib/cdn/url-format";
 import { CloseAllConnections } from "../../../../../../../test-utils/close-connections";
 import mockApi from "../../../../../../../test-utils/mock-api";
 import ResetDBState from "../../../../../../../test-utils/resets";
-import fs from "fs";
 import { GetKTDataBuffer } from "../../../../../../../test-utils/test-data";
 
 t.test("GET /api/v1/users/:userID/pfp", (t) => {

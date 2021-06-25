@@ -31,9 +31,11 @@ router.put(
 	async (req, res) => {
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 
+		let updateBanner = false;
+
 		if (!user.customBanner) {
 			logger.verbose(`User ${FormatUserDoc(user)} set a custom profile banner.`);
-			await db.users.update({ id: user.id }, { $set: { customBanner: true } });
+			updateBanner = true;
 		} else {
 			logger.verbose(`User ${FormatUserDoc(user)} updated their profile banner.`);
 		}
@@ -57,6 +59,10 @@ router.put(
 				success: false,
 				description: `Invalid file - only JPG and PNG files are supported.`,
 			});
+		}
+
+		if (updateBanner) {
+			await db.users.update({ id: user.id }, { $set: { customBanner: true } });
 		}
 
 		return res.status(200).json({
@@ -111,9 +117,8 @@ router.delete(
 			});
 		}
 
-		await db.users.update({ id: user.id }, { $set: { customBanner: false } });
-
 		await CDNDelete(GetProfileBannerURL(user.id));
+		await db.users.update({ id: user.id }, { $set: { customBanner: false } });
 
 		return res.status(200).json({
 			success: true,

@@ -115,9 +115,9 @@ router.delete(
 			});
 		}
 
-		await db.users.update({ id: user.id }, { $set: { customPfp: false } });
-
 		await CDNDelete(GetProfilePictureURL(user.id));
+
+		await db.users.update({ id: user.id }, { $set: { customPfp: false } });
 
 		return res.status(200).json({
 			success: true,

@@ -2,14 +2,16 @@ import { Router } from "express";
 import db from "../../../../../../../../../external/mongo/db";
 import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi";
 import { GetRelevantSongsAndCharts } from "../../../../../../../../../utils/db";
-import {
-	GetUsersRanking,
-	GetUsersWithIDs,
-	ResolveUser,
-} from "../../../../../../../../../utils/user";
+import { GetUsersRanking, GetUsersWithIDs } from "../../../../../../../../../utils/user";
 import { CheckUserPlayedGamePlaytype } from "./middleware";
 import { FilterQuery } from "mongodb";
-import { UserGoalDocument, UserMilestoneDocument, GetGamePTConfig } from "tachi-common";
+import {
+	UserGoalDocument,
+	UserMilestoneDocument,
+	GetGamePTConfig,
+	integer,
+	PBScoreDocument,
+} from "tachi-common";
 import {
 	SearchGameSongsAndCharts,
 	SearchSessions,
@@ -387,6 +389,79 @@ router.get("/sessions/best", async (req, res) => {
 		success: true,
 		description: `Retrieved ${sessions.length} sessions.`,
 		body: sessions,
+	});
+});
+
+/**
+ * Returns the users most played charts by playcount.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/most-played
+ */
+router.get("/most-played", async (req, res) => {
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const game = req[SYMBOL_TachiData]!.game!;
+	const playtype = req[SYMBOL_TachiData]!.playtype!;
+
+	const mostPlayed: { playcount: integer; songID: integer; _id: string }[] =
+		await db.scores.aggregate([
+			{
+				$match: {
+					userID: user.id,
+					game,
+					playtype,
+				},
+			},
+			{
+				$group: {
+					_id: "$chartID",
+					// micro opt
+					songID: { $first: "$songID" },
+					playcount: { $sum: 1 },
+				},
+			},
+			{
+				$sort: {
+					playcount: -1,
+				},
+			},
+			{
+				$limit: 100,
+			},
+		]);
+
+	const chartIDs = mostPlayed.map((e) => e._id);
+	const songIDs = mostPlayed.map((e) => e.songID);
+
+	const [songs, charts, pbs] = await Promise.all([
+		await db.songs[game].find({ id: { $in: songIDs } }),
+		await db.charts[game].find({ chartID: { $in: chartIDs } }),
+		await db["personal-bests"].find({ chartID: { $in: chartIDs }, userID: user.id }),
+	]);
+
+	const playcountMap = new Map();
+
+	for (const doc of mostPlayed) {
+		playcountMap.set(doc._id, doc.playcount);
+	}
+
+	// @ts-expect-error monkeypatching
+	const playcountPBs = pbs as (PBScoreDocument & { __playcount: integer })[];
+
+	// monkey patch __playcount on
+	for (const pb of playcountPBs) {
+		pb.__playcount = playcountMap.get(pb.chartID);
+	}
+
+	playcountPBs.sort((a, b) => b.__playcount - a.__playcount);
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned ${playcountPBs.length} scores.`,
+		body: {
+			songs,
+			charts,
+			pbs: playcountPBs,
+		},
 	});
 });
 

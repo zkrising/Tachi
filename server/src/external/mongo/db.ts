@@ -24,10 +24,11 @@ import {
 	BMSCourseDocument,
 	ImportLockDocument,
 } from "tachi-common";
-import monk from "monk";
+import monk, { TMiddleware } from "monk";
 import { MONGO_CONNECTION_URL, MONGO_DATABASE_NAME } from "../../lib/setup/config";
 import CreateLogCtx from "../../lib/logger/logger";
 import { OrphanScoreDocument } from "../../lib/score-import/import-types/common/types";
+import * as util from "util";
 
 const logger = CreateLogCtx(__filename);
 
@@ -64,6 +65,24 @@ monkDB
 		logger.crit(err);
 		process.exit(1);
 	});
+
+const RemoveIDMiddleware: TMiddleware =
+	({ collection, monkInstance }) =>
+	(next) =>
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	(args: any, method) => {
+		if ((method === "find" || method === "findOne") && !args.options.projectID) {
+			if (args.options.project) {
+				args.options.project._id = 0;
+			} else {
+				args.options.project = { _id: 0 };
+			}
+		}
+
+		return next(args, method);
+	};
+
+monkDB.addMiddleware(RemoveIDMiddleware);
 
 export async function CloseMongoConnection() {
 	await monkDB.close();

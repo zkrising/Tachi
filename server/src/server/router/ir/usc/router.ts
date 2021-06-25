@@ -318,7 +318,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 router.post(
 	"/replays",
 	RequirePermissions("submit_score"),
-	CreateMulterSingleUploadMiddleware("replay", ONE_MEGABYTE, logger),
+	CreateMulterSingleUploadMiddleware("replay", ONE_MEGABYTE, logger, false),
 	async (req, res) => {
 		if (typeof req.body.identifier !== "string") {
 			return res.status(200).json({

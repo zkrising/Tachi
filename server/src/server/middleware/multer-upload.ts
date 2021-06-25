@@ -13,7 +13,8 @@ export const DefaultMulterUpload = multer({ limits: { fileSize: 1024 * 1024 * 16
 export const CreateMulterSingleUploadMiddleware = (
 	fieldName: string,
 	fileSize: integer = SIXTEEN_MEGABTYES,
-	logger = defaultLogger
+	logger = defaultLogger,
+	throwOnNoFile = true
 ): RequestHandler => {
 	const UploadMW = multer({ limits: { fileSize } }).single(fieldName);
 
@@ -36,7 +37,7 @@ export const CreateMulterSingleUploadMiddleware = (
 				});
 			}
 
-			if (!req.file) {
+			if (!req.file && throwOnNoFile) {
 				return res.status(400).json({
 					success: false,
 					description: `Expected a file for field ${fieldName}.`,

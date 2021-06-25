@@ -7,7 +7,7 @@ import { SYMBOL_TachiAPIAuth } from "../../../../lib/constants/tachi";
 
 const router: Router = Router({ mergeParams: true });
 
-router.use(RequirePermissions("submit:score"));
+router.use(RequirePermissions("submit_score"));
 
 /**
  * Submits a single score document from Barbatos clients.

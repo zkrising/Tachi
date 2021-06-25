@@ -151,7 +151,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 	return next();
 };
 
-router.use(RequirePermissions("submit:score"), ValidateFervidexHeader, ValidateModelHeader);
+router.use(RequirePermissions("submit_score"), ValidateFervidexHeader, ValidateModelHeader);
 
 /**
  * Submits all of a users data to Kamaitachi. This data is extremely minimal,

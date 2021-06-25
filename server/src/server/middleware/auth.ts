@@ -15,9 +15,8 @@ const GuestToken: APITokenDocument = {
 };
 
 export const AllPermissions: Record<APIPermissions, true> = {
-	"create:goal": true,
-	"manage:goal": true,
-	"submit:score": true,
+	customise_profile: true,
+	submit_score: true,
 };
 
 /**

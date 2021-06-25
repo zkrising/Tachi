@@ -13,7 +13,7 @@ async function InsertFakeUSCAuth() {
 		userID: 1,
 		identifier: "USC Token",
 		permissions: {
-			"submit:score": true,
+			"submit_score": true,
 		},
 		token: "foo",
 	});
@@ -44,7 +44,7 @@ t.test("GET /ir/usc", async (t) => {
 		userID: 1,
 		identifier: "USC Token",
 		permissions: {
-			"submit:score": true,
+			"submit_score": true,
 		},
 		token: "foo",
 	});

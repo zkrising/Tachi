@@ -3,7 +3,7 @@
         "userID": 1,
         "token": "fake_api_token",
         "permissions": {
-            "submit:goal": true
+            "submit_score": true
         },
         "identifier": "Mock Token For Testing"
     }

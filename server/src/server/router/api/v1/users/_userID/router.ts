@@ -1,8 +1,9 @@
 import { Router } from "express";
 import db from "../../../../../../external/mongo/db";
 import { SYMBOL_TachiData } from "../../../../../../lib/constants/tachi";
-import { GetUserFromParam } from "./middleware";
+import { GetUserFromParam, RequireAuthedAsUser } from "./middleware";
 import gamePTRouter from "./games/_game/_playtype/router";
+import { RequirePermissions } from "../../../../../middleware/auth";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -40,6 +41,8 @@ router.get("/game-stats", async (req, res) => {
 		body: stats,
 	});
 });
+
+router.put("/pfp", RequireAuthedAsUser, RequirePermissions(""))
 
 router.use("/games/:game/:playtype", gamePTRouter);
 

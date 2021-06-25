@@ -14,7 +14,7 @@ const router: Router = Router({ mergeParams: true });
  */
 router.post(
 	"/import",
-	RequirePermissions("submit:score"),
+	RequirePermissions("submit_score"),
 	RequireLoggedInSession,
 	async (req, res) => {
 		const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);

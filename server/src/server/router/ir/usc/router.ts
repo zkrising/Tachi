@@ -234,7 +234,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
  * https://uscir.readthedocs.io/en/latest/endpoints/score-submit.html
  * @name POST /ir/usc/scores
  */
-router.post("/scores", RequirePermissions("submit:score"), async (req, res) => {
+router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	if (typeof req.body.chart !== "object" || req.body.chart === null) {
 		return res.status(200).json({
 			statusCode: STATUS_CODES.BAD_REQ,
@@ -316,7 +316,7 @@ router.post("/scores", RequirePermissions("submit:score"), async (req, res) => {
  */
 router.post(
 	"/replays",
-	RequirePermissions("submit:score"),
+	RequirePermissions("submit_score"),
 	CreateMulterSingleUploadMiddleware("replay", ONE_MEGABYTE, logger),
 	async (req, res) => {
 		if (typeof req.body.identifier !== "string") {

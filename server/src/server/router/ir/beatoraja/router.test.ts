@@ -13,7 +13,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			userID: 1,
 			identifier: "Mock API Beatoraja Token",
 			permissions: {
-				"submit:score": true,
+				"submit_score": true,
 			},
 			token: "mock_token",
 		})
@@ -166,7 +166,7 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 			userID: 1,
 			identifier: "Mock API Beatoraja Token",
 			permissions: {
-				"submit:score": true,
+				"submit_score": true,
 			},
 			token: "mock_token",
 		})

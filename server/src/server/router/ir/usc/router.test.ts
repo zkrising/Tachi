@@ -6,7 +6,7 @@ import ResetDBState, { ResetCDN } from "../../../../test-utils/resets";
 import deepmerge from "deepmerge";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import { GetKTDataBuffer } from "../../../../test-utils/test-data";
-import { CDNRetrieve } from "../../../../lib/cdn/cdn";
+import { CDNRedirect } from "../../../../lib/cdn/cdn";
 
 async function InsertFakeUSCAuth() {
 	await db["api-tokens"].insert({
@@ -374,7 +374,7 @@ t.test("POST /replays", (t) => {
 			body: null,
 		});
 
-		const stored = await CDNRetrieve("/uscir/replays/MOCK_IDENTIFIER");
+		const stored = await CDNRedirect("/uscir/replays/MOCK_IDENTIFIER");
 
 		t.strictSame(stored, replayFile, "Should store the same file exactly.");
 

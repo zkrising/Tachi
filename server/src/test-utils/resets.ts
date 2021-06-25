@@ -7,7 +7,7 @@ import path from "path";
 import CreateLogCtx from "../lib/logger/logger";
 // im installing an entire library for rm rf...
 import rimraf from "rimraf";
-import { KTCDN_ROOT, MONGO_CONNECTION_URL } from "../lib/setup/config";
+import { CDN_ROOT, MONGO_CONNECTION_URL } from "../lib/setup/config";
 import { SetIndexes } from "../external/mongo/indexes";
 
 const logger = CreateLogCtx(__filename);
@@ -77,7 +77,7 @@ export default async function ResetDBState() {
 
 export function ResetCDN() {
 	return new Promise<void>((resolve, reject) =>
-		rimraf(KTCDN_ROOT, (err) => {
+		rimraf(CDN_ROOT, (err) => {
 			if (err) {
 				reject(err);
 			}

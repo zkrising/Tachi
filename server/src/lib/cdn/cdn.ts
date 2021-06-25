@@ -1,9 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { KTCDN_ROOT } from "../setup/config";
+import { CDN_ROOT, CDN_URL } from "../setup/config";
 import CreateLogCtx from "../logger/logger";
 import { promisify } from "util";
 import mkdirp from "mkdirp";
+import { Response } from "express";
 
 const readFilePromise = promisify(fs.readFile);
 const writeFilePromise = promisify(fs.writeFile);
@@ -18,16 +19,36 @@ const logger = CreateLogCtx(__filename);
  * Path directory traversal *is* possible, and *will* ruin your day.
  */
 function CDNRoot(fileLoc: string) {
-	return path.join(KTCDN_ROOT, fileLoc);
+	return path.join(CDN_ROOT, fileLoc);
 }
 
 /**
  * Retrieves the data of the file at the given CDN location.
+ *
+ * This is used for quick development setups, where a cdn server isn't available.
+ * As in, this ruins the purpose of a CDN! make sure you have one running.
  */
-export function CDNRetrieve(fileLoc: string) {
-	logger.debug(`Retrieving path ${fileLoc}.`);
+function CDNRetrieve(fileLoc: string) {
+	logger.debug(`Retrieving path ${fileLoc} locally.`);
 
 	return readFilePromise(CDNRoot(fileLoc));
+}
+
+/**
+ * Redirects the response to the CDN server at the given path.
+ *
+ * If no CDN_URL is set, then this falls back to fetching from the CDN ROOT via. FS.
+ */
+export function CDNRedirect(res: Response, fileLoc: string) {
+	if (fileLoc[0] !== "/") {
+		throw new Error(`Invalid fileLoc - did not start with /.`);
+	}
+
+	if (CDN_URL) {
+		return res.redirect(`${CDN_URL}${fileLoc}`);
+	} else {
+		return CDNRetrieve(fileLoc);
+	}
 }
 
 /**

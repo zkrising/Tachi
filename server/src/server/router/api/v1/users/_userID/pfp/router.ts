@@ -1,6 +1,6 @@
 import { Router } from "express";
 import db from "../../../../../../../external/mongo/db";
-import { CDNStoreOrOverwrite, CDNRetrieve, CDNDelete } from "../../../../../../../lib/cdn/cdn";
+import { CDNStoreOrOverwrite, CDNRedirect, CDNDelete } from "../../../../../../../lib/cdn/cdn";
 import { GetProfilePictureURL } from "../../../../../../../lib/cdn/url-format";
 import { ONE_MEGABYTE } from "../../../../../../../lib/constants/filesize";
 import { SYMBOL_TachiData } from "../../../../../../../lib/constants/tachi";
@@ -84,14 +84,14 @@ router.get("/", async (req, res) => {
 
 	if (!user.customPfp) {
 		res.setHeader("Content-Type", "image/png");
-		const buf = await CDNRetrieve("/users/default/pfp.png");
+		const buf = await CDNRedirect("/users/default/pfp.png");
 		return res.send(buf);
 	}
 
 	// this might be a png or a jpg. Could we sniff this out somehow?
 	// alternatively - could we convert jpgs to pngs on upload?
 	// this isn't my area of expertise - zkldi
-	const buf = await CDNRetrieve(GetProfilePictureURL(user.id));
+	const buf = await CDNRedirect(GetProfilePictureURL(user.id));
 
 	return res.send(buf);
 });

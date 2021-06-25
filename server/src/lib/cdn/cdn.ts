@@ -13,6 +13,9 @@ const logger = CreateLogCtx(__filename);
 
 /**
  * Joins a file location against the location of the CDN static store.
+ *
+ * @danger - This function should **NEVER** be called with unsanitised user input!
+ * Path directory traversal *is* possible, and *will* ruin your day.
  */
 function CDNRoot(fileLoc: string) {
 	return path.join(KTCDN_ROOT, fileLoc);

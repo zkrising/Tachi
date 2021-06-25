@@ -17,7 +17,10 @@ import {
 	LoadKTBlackIIDXData,
 	Testing511Song,
 	Testing511SPA,
+	TestingIIDXSPScore,
+	TestingIIDXSPScorePB,
 } from "../../../../../../../../../test-utils/test-data";
+import deepmerge from "deepmerge";
 
 t.before(SetIndexesForDB);
 
@@ -625,6 +628,36 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/best", (t) => {
 				.reverse()
 				.map((e) => e.sessionID)
 		);
+
+		t.end();
+	});
+
+	t.end();
+});
+
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/most-played", (t) => {
+	t.beforeEach(ResetDBState);
+
+	t.test("Should return the users most played scores.", async (t) => {
+		await db.scores.insert([
+			// @ts-expect-error nonsense
+			deepmerge(TestingIIDXSPScore, { scoreID: "something_else" }),
+			// @ts-expect-error nonsense
+			deepmerge(TestingIIDXSPScore, { scoreID: "something_else2" }),
+		]);
+
+		await db["personal-bests"].insert(TestingIIDXSPScorePB);
+
+		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/most-played");
+
+		t.equal(res.body.body.pbs.length, 1);
+		t.equal(res.body.body.pbs[0].__playcount, 3);
+
+		t.equal(res.body.body.songs.length, 1);
+		t.equal(res.body.body.songs[0].id, 1);
+
+		t.equal(res.body.body.charts.length, 1);
+		t.equal(res.body.body.charts[0].chartID, Testing511SPA.chartID);
 
 		t.end();
 	});

@@ -111,7 +111,7 @@ router.delete(
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 
 		if (!user.customBanner) {
-			return res.status(409).json({
+			return res.status(404).json({
 				success: false,
 				description: `You do not have a custom profile banner to delete.`,
 			});

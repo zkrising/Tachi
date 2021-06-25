@@ -1,9 +1,11 @@
 import t from "tap";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 import mockApi from "../../../../../test-utils/mock-api";
-import ResetDBState from "../../../../../test-utils/resets";
+import ResetDBState, { SetIndexesForDB } from "../../../../../test-utils/resets";
 import { LoadKTBlackIIDXData } from "../../../../../test-utils/test-data";
 import { AnySongDocument } from "tachi-common";
+
+t.before(SetIndexesForDB);
 
 t.test("GET /api/v1/search", (t) => {
 	t.beforeEach(ResetDBState);

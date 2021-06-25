@@ -17,7 +17,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 			token: "foo",
 			identifier: "bar",
 			permissions: {
-				"submit_score": false,
+				submit_score: false,
 			},
 			userID: 1,
 		});

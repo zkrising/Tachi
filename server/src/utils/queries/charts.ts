@@ -260,8 +260,8 @@ export function FindChartsOnPopularity(
 		},
 		{
 			$project: {
-				pbs: 0
-			}
+				pbs: 0,
+			},
 		},
 		{
 			$sort: {

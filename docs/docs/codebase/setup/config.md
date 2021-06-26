@@ -134,21 +134,3 @@ names.
 
 "omni" will run the server without any route restrictions.
 This is used for testing.
-
-## Environment Variables
-
-### TACHI_PARALLEL_TESTS
-
-If this is set and `tap` is invoked, this will change some
-things about the environment to support running multiple
-tests at once.
-
-!!! warning
-	This will ruin your MongoDB installation with lots of
-	ephemeral collections. Do not run this on a local
-	setup.
-
-	This is intended for Github Actions' runner, which is
-	designed to quickly start up and then tear everything
-	down afterwards.
-

@@ -4,10 +4,14 @@ import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../../tes
 import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
 import { EscapeStringRegexp } from "../../../../../utils/misc";
-import { Game } from "tachi-common";
+import { Game, ImportTypes } from "tachi-common";
 import ResetDBState from "../../../../../test-utils/resets";
-import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
+import {
+	InvalidScoreFailure,
+	KTDataNotFoundFailure,
+} from "../../../framework/common/converter-failures";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
+import { BatchManualContext } from "./types";
 
 const baseBatchManualScore = {
 	score: 500,
@@ -25,6 +29,7 @@ const context = {
 	version: null,
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ktdWrap = (msg: string, game: Game = "iidx", version = null): any => ({
 	importType: "file/batch-manual",
 	message: new RegExp(EscapeStringRegexp(msg), "u"),
@@ -106,7 +111,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		const gazerSong = GetKTDataJSON("./tachi/bms-gazer-song.json");
 		const gazerChart = GetKTDataJSON("./tachi/bms-gazer-chart.json");
 
-		const bmsContext: any = deepmerge(context, { game: "bms", playtype: "7K" });
+		const bmsContext: BatchManualContext = deepmerge(context, { game: "bms", playtype: "7K" });
 
 		const resMD5 = await ResolveMatchTypeToKTData(
 			deepmerge(baseBatchManualScore, {
@@ -169,7 +174,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 				importType,
 				logger
 			),
-			new InvalidScoreFailure("Cannot use ddrSongHash lookup on iidx.") as any
+			new InvalidScoreFailure("Cannot use ddrSongHash lookup on iidx.")
 		);
 
 		t.end();
@@ -229,7 +234,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 					importType,
 					logger
 				),
-			new InvalidScoreFailure(`Invalid matchType BAD_MATCHTYPE`) as any
+			new InvalidScoreFailure(`Invalid matchType BAD_MATCHTYPE`)
 		);
 
 		t.end();
@@ -265,7 +270,7 @@ t.test("#ResolveChartFromSong", (t) => {
 				),
 			new InvalidScoreFailure(
 				`Missing 'difficulty' field, but was necessary for this lookup.`
-			) as any
+			)
 		);
 
 		t.end();
@@ -283,7 +288,7 @@ t.test("#ResolveChartFromSong", (t) => {
 				),
 			new InvalidScoreFailure(
 				`Invalid Difficulty for iidx SP - Expected any of BEGINNER, NORMAL, HYPER, ANOTHER, LEGGENDARIA`
-			) as any
+			)
 		);
 
 		t.end();
@@ -369,7 +374,7 @@ t.test("#ConverterFn", (t) => {
 					importType,
 					logger
 				),
-			{ message: /Invalid percent/u } as any
+			{ message: /Invalid percent/u }
 		);
 
 		t.end();

@@ -79,7 +79,7 @@ t.test("#ConvertFileS3", (t) => {
 				chart: Testing511SPA,
 				song: Testing511Song,
 				dryScore: deepmerge(dryScore, { comment: "FOO BAR" }),
-			} as any,
+			},
 			"Should correctly return the song, chart and DryScore."
 		);
 
@@ -107,7 +107,7 @@ t.test("#ConvertFileS3", (t) => {
 	t.test("Should reject invalid styles in S3 scores", (t) => {
 		t.rejects(mfile({ styles: "3rd,4th,INVALID" }), {
 			message: /Song has invalid style INVALID/u,
-		} as any);
+		});
 
 		t.end();
 	});
@@ -115,7 +115,7 @@ t.test("#ConvertFileS3", (t) => {
 	t.test("Should throw ktdatanf if no song", (t) => {
 		t.rejects(mfile({ songname: "INVALID SONG TITLE" }), {
 			message: /Could not find song with title INVALID SONG TITLE/u,
-		} as any);
+		});
 
 		t.end();
 	});
@@ -123,7 +123,7 @@ t.test("#ConvertFileS3", (t) => {
 	t.test("Should throw ktdatanf if no song", (t) => {
 		t.rejects(mfile({ diff: "B" }), {
 			message: /Could not find chart 5\.1\.1\. \(SP LEGGENDARIA/u,
-		} as any);
+		});
 
 		t.end();
 	});
@@ -131,31 +131,34 @@ t.test("#ConvertFileS3", (t) => {
 	t.test("Should throw a skipscore if the song is 5key", (t) => {
 		t.rejects(mfile({ diff: 5 }), {
 			message: /5KEY scores are not supported/u,
-		} as any);
+		});
 
 		t.end();
 	});
 
 	t.test("Should throw an invalidscore if the difficulty is invalid", (t) => {
-		t.rejects(mfile({ diff: "INVALID" as any }), {
+		t.rejects(mfile({ diff: "INVALID" } as unknown as S3Score), {
 			message: /Invalid difficulty INVALID/u,
-		} as any);
+		});
 
 		t.end();
 	});
 
 	t.test("Should throw an invalidscore if the hardeasy is invalid", (t) => {
-		t.rejects(mfile({ mods: { hardeasy: "INVALID" } as any, cleartype: "cleared" }), {
-			message: /Invalid cleartype of 'cleared' with hardeasy of INVALID/u,
-		} as any);
+		t.rejects(
+			mfile({ mods: { hardeasy: "INVALID" }, cleartype: "cleared" } as unknown as S3Score),
+			{
+				message: /Invalid cleartype of 'cleared' with hardeasy of INVALID/u,
+			}
+		);
 
 		t.end();
 	});
 
 	t.test("Should throw an invalidscore if the cleartype is invalid", (t) => {
-		t.rejects(mfile({ cleartype: "INVALID" as any }), {
+		t.rejects(mfile({ cleartype: "INVALID" } as unknown as S3Score), {
 			message: /Invalid cleartype of INVALID/u,
-		} as any);
+		});
 
 		t.end();
 	});
@@ -163,7 +166,7 @@ t.test("#ConvertFileS3", (t) => {
 	t.test("Should throw an invalidscore if the exscore is greater than MAX", (t) => {
 		t.rejects(mfile({ exscore: 10000 }), {
 			message: /Invalid percent of 636/u,
-		} as any);
+		});
 
 		t.end();
 	});
@@ -171,7 +174,7 @@ t.test("#ConvertFileS3", (t) => {
 	t.test("Should throw an invalidscore if the date is invalid.", (t) => {
 		t.rejects(mfile({ date: "INVALID" }), {
 			message: /Invalid\/Unparsable score timestamp of INVALID/u,
-		} as any);
+		});
 
 		t.end();
 	});
@@ -213,9 +216,12 @@ t.test("#ResolveS3Lamp", (t) => {
 	t.equal(ResolveS3Lamp({ cleartype: "perfect" } as S3Score, logger), "FULL COMBO");
 	t.equal(ResolveS3Lamp({ cleartype: "perfected" } as S3Score, logger), "FULL COMBO");
 
-	t.throws(() => ResolveS3Lamp({ cleartype: "invalid" } as any, logger));
+	t.throws(() => ResolveS3Lamp({ cleartype: "invalid" } as unknown as S3Score, logger));
 	t.throws(() =>
-		ResolveS3Lamp({ cleartype: "cleared", mods: { hardeasy: "invalid" } } as any, logger)
+		ResolveS3Lamp(
+			{ cleartype: "cleared", mods: { hardeasy: "invalid" } } as unknown as S3Score,
+			logger
+		)
 	);
 
 	t.end();

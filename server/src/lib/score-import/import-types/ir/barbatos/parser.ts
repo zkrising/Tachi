@@ -4,7 +4,6 @@ import p from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { FormatPrError } from "../../../../../utils/prudence";
 import { BarbatosScore } from "./types";
-import { ConverterIRBarbatos } from "./converter";
 import { ParserFunctionReturns } from "../../common/types";
 
 const PR_Barbatos = {

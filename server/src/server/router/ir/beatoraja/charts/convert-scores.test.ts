@@ -180,7 +180,7 @@ t.test("#TachiPBScoreToBeatorajaFormat", (t) => {
 
 		t.rejects(() => TachiPBScoreToBeatorajaFormat(pbScore, gazerChart, 2), {
 			message: /User 1's PB on.*has no lampPB/u,
-		} as any);
+		});
 
 		t.end();
 	});

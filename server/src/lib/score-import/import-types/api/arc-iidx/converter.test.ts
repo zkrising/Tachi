@@ -53,7 +53,7 @@ t.test("#ConvertAPIArcIIDX", (t) => {
 				),
 			{
 				message: /Invalid ARC Score:/iu,
-			} as any
+			}
 		);
 
 		t.end();
@@ -70,7 +70,7 @@ t.test("#ConvertAPIArcIIDX", (t) => {
 				),
 			{
 				message: /Could not find chart/iu,
-			} as any
+			}
 		);
 
 		t.end();

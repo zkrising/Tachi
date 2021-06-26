@@ -13,8 +13,6 @@ import ResetDBState from "../test-utils/resets";
 import deepmerge from "deepmerge";
 import { CloseAllConnections } from "../test-utils/close-connections";
 
-const logger = CreateLogCtx(__filename);
-
 t.todo("#CreateFolderChartLookup");
 t.todo("#GetFolderCharts");
 

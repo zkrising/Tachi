@@ -16,7 +16,7 @@ t.test("#ParseMerIIDX", (t) => {
 		return ParseMerIIDX(MockMulterFile(buffer, "buffer.json"), {}, logger);
 	}
 
-	function mrfj(obj: any) {
+	function mrfj(obj: unknown) {
 		return ParseMerIIDX(
 			MockMulterFile(Buffer.from(JSON.stringify(obj)), "buffer.json"),
 			{},

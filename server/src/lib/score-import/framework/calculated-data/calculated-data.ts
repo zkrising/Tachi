@@ -285,7 +285,7 @@ async function CalculateDataDDR(
 	};
 }
 
-async function CalculateDataBMS14K(
+export async function CalculateDataBMS14K(
 	dryScore: DryScore,
 	chart: AnyChartDocument,
 	defaultTierlistID: string | undefined,
@@ -296,7 +296,7 @@ async function CalculateDataBMS14K(
 	};
 }
 
-async function CalculateDataBMS7K(
+export async function CalculateDataBMS7K(
 	dryScore: DryScore,
 	chart: AnyChartDocument,
 	defaultTierlistID: string | undefined,

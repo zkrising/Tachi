@@ -60,7 +60,7 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 				),
 			{
 				message: /Could not find chart with songID 0 \(SP ANOTHER - Version 26\)/u,
-			} as any
+			}
 		);
 
 		t.end();
@@ -77,7 +77,7 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 				),
 			{
 				message: /Error: music_id.*Expected a positive integer.* received foo \[string\]/iu,
-			} as any
+			}
 		);
 
 		t.end();
@@ -88,7 +88,7 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 
 		t.rejects(() => ConvertAPIKaiIIDX(iidxScore, { service: "FLO" }, "api/flo-iidx", logger), {
 			message: /Song-Chart desync/u,
-		} as any);
+		});
 
 		t.end();
 	});

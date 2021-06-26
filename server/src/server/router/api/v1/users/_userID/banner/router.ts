@@ -81,7 +81,7 @@ router.put(
  *
  * @name GET /api/v1/users/:userID/banner
  */
-router.get("/", async (req, res) => {
+router.get("/", (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
 	if (!user.customBanner) {

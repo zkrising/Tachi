@@ -4,7 +4,6 @@ import p, { PrudenceSchema } from "prudence";
 import { FormatPrError } from "../../../../../utils/prudence";
 import { USCClientScore } from "../../../../../server/router/ir/usc/types";
 import { IRUSCContext } from "./types";
-import { ConverterIRUSC } from "./converter";
 import { ParserFunctionReturns } from "../../common/types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 

@@ -113,7 +113,7 @@ t.test("#ParseSolidStateXML", (t) => {
 					{},
 					logger
 				),
-			{ message: /Invalid S3 XML/u } as any
+			{ message: /Invalid S3 XML/u }
 		);
 
 		t.end();
@@ -127,7 +127,7 @@ t.test("#ParseSolidStateXML", (t) => {
 					{},
 					logger
 				),
-			{ message: /Invalid S3 XML.*cleartype.*BAD LAMP/u } as any
+			{ message: /Invalid S3 XML.*cleartype.*BAD LAMP/u }
 		);
 
 		t.end();
@@ -144,7 +144,7 @@ t.test("#ParseSolidStateXML", (t) => {
 					{},
 					logger
 				),
-			{ message: /Invalid S3 XML.*object.*1/u } as any
+			{ message: /Invalid S3 XML.*object.*1/u }
 		);
 
 		t.end();
@@ -161,7 +161,7 @@ t.test("#ParseSolidStateXML", (t) => {
 					{},
 					logger
 				),
-			{ message: /Invalid S3 XML.*object.*1/u } as any
+			{ message: /Invalid S3 XML.*object.*1/u }
 		);
 
 		t.end();
@@ -178,7 +178,7 @@ t.test("#ParseSolidStateXML", (t) => {
 					{},
 					logger
 				),
-			{ message: /Invalid S3 XML.*exscore.*positive integer.*-1/u } as any
+			{ message: /Invalid S3 XML.*exscore.*positive integer.*-1/u }
 		);
 
 		t.end();
@@ -197,7 +197,7 @@ t.test("#ParseSolidStateXML", (t) => {
 					{},
 					logger
 				),
-			{ message: /Invalid S3 XML/u } as any
+			{ message: /Invalid S3 XML/u }
 		);
 
 		t.end();

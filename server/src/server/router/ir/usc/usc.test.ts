@@ -2,7 +2,7 @@ import t from "tap";
 import db from "../../../../external/mongo/db";
 import ResetDBState from "../../../../test-utils/resets";
 import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
-import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { ChartDocument, PBScoreDocument, ScoreDocument, PrivateUserDocument } from "tachi-common";
 import deepmerge from "deepmerge";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
@@ -107,9 +107,12 @@ t.test("#TachiScoreToServerScore", (t) => {
 	});
 
 	t.test("Should throw if user document does not exist.", (t) => {
-		t.rejects(() => TachiScoreToServerScore(deepmerge(mockScorePB, { userID: 2 } as any)), {
-			message: /User 2 from PB on chart.*has no user document\?/u,
-		} as any);
+		t.rejects(
+			() => TachiScoreToServerScore(deepmerge(mockScorePB, { userID: 2 } as ScoreDocument)),
+			{
+				message: /User 2 from PB on chart.*has no user document\?/u,
+			}
+		);
 
 		t.end();
 	});
@@ -118,7 +121,7 @@ t.test("#TachiScoreToServerScore", (t) => {
 		t.rejects(() => TachiScoreToServerScore(mockScorePB), {
 			message:
 				/Score USC_EXAMPLE_SCORE_PB_ID does not exist, but is referenced in 1's PBDoc on/u,
-		} as any);
+		});
 
 		t.end();
 	});
@@ -228,12 +231,12 @@ const uscScorePBsSet = [
 			outOf: 10,
 		},
 	},
-].map((e) => deepmerge(mockScorePB, e) as any);
+].map((e) => deepmerge(mockScorePB, e) as unknown as PBScoreDocument);
 
 const mockUserDocs = [2, 3, 4, 5, 6, 7, 8, 9, 10].map((e) => ({
 	id: e,
 	username: e.toString(),
-})) as any;
+})) as PrivateUserDocument[];
 
 t.test("#CreatePOSTScoresResponseBody", async (t) => {
 	t.beforeEach(ResetDBState);
@@ -251,7 +254,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 			scoreMeta: {
 				replayID: "foo_bar",
 			},
-		} as any);
+		} as unknown as ScoreDocument);
 
 		const res = await CreatePOSTScoresResponseBody(
 			1,
@@ -296,7 +299,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 
 		await db.scores.insert({
 			scoreID: "USER_4_SCORE_PB",
-		} as any);
+		} as ScoreDocument);
 
 		const res = await CreatePOSTScoresResponseBody(4, chartDoc, "USER_4_SCORE_PB");
 
@@ -335,7 +338,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 
 		await db.scores.insert({
 			scoreID: "USER_3_SCORE_PB",
-		} as any);
+		} as ScoreDocument);
 
 		const res = await CreatePOSTScoresResponseBody(3, chartDoc, "USER_3_SCORE_PB");
 
@@ -377,11 +380,11 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 			scoreMeta: {
 				replayID: "foo_bar",
 			},
-		} as any);
+		} as unknown as ScoreDocument);
 
 		t.rejects(() => CreatePOSTScoresResponseBody(1, chartDoc, "USER_1_SCORE_PB"), {
 			message: /Score was imported for chart, but no ScorePB was available on this chart/u,
-		} as any);
+		});
 
 		t.end();
 	});
@@ -401,7 +404,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 
 		t.rejects(() => CreatePOSTScoresResponseBody(1, chartDoc, "USER_1_SCORE_PB"), {
 			message: /Score with ID USER_1_SCORE_PB is not in the database/u,
-		} as any);
+		});
 
 		t.end();
 	});

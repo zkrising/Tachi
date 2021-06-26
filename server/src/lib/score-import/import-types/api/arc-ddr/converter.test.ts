@@ -67,7 +67,7 @@ t.test("#ConvertAPIArcDDR", (t) => {
 				),
 			{
 				message: /Invalid ARC Score:/iu,
-			} as any
+			}
 		);
 
 		t.end();
@@ -84,7 +84,7 @@ t.test("#ConvertAPIArcDDR", (t) => {
 				),
 			{
 				message: /Could not find chart/iu,
-			} as any
+			}
 		);
 
 		t.end();

@@ -79,21 +79,15 @@ router.put(
  *
  * @name GET /api/v1/users/:userID/pfp
  */
-router.get("/", async (req, res) => {
+router.get("/", (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
 	if (!user.customPfp) {
 		res.setHeader("Content-Type", "image/png");
-		const buf = await CDNRedirect("/users/default/pfp.png");
-		return res.send(buf);
+		return CDNRedirect(res, "/users/default/pfp.png");
 	}
 
-	// this might be a png or a jpg. Could we sniff this out somehow?
-	// alternatively - could we convert jpgs to pngs on upload?
-	// this isn't my area of expertise - zkldi
-	const buf = await CDNRedirect(GetProfilePictureURL(user.id));
-
-	return res.send(buf);
+	return CDNRedirect(res, GetProfilePictureURL(user.id));
 });
 
 /**

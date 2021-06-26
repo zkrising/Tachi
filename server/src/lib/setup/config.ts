@@ -36,7 +36,7 @@ export interface TachiConfig {
 	ARC_API_URL: string;
 	ARC_AUTH_TOKEN: string;
 	CDN_ROOT: string;
-	CDN_URL: string | null;
+	CDN_URL?: string | null;
 	TYPE: "ktchi" | "btchi" | "omni";
 	PORT: integer;
 	TYPE_INFO: StaticConfig.ServerConfig;
@@ -53,7 +53,7 @@ const err = p(config, {
 	ARC_API_URL: isValidURL,
 	ARC_AUTH_TOKEN: "string",
 	CDN_ROOT: "string",
-	CDN_URL: "?string",
+	CDN_URL: "*?string",
 	PORT: p.isPositiveInteger,
 	TYPE: p.isIn("ktchi", "btchi", "omni"),
 });

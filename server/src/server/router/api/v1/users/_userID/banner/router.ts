@@ -86,16 +86,11 @@ router.get("/", async (req, res) => {
 
 	if (!user.customBanner) {
 		res.setHeader("Content-Type", "image/png");
-		const buf = await CDNRedirect("/users/default/banner.png");
-		return res.send(buf);
+		return CDNRedirect(res, "/users/default/banner.png");
 	}
 
-	// this might be a png or a jpg. Could we sniff this out somehow?
-	// alternatively - could we convert jpgs to pngs on upload?
-	// this isn't my area of expertise - zkldi
-	const buf = await CDNRedirect(GetProfileBannerURL(user.id));
-
-	return res.send(buf);
+	// express sniffs whether this is a png or jpg **and** browsers dont care either.
+	return CDNRedirect(res, GetProfileBannerURL(user.id));
 });
 
 /**

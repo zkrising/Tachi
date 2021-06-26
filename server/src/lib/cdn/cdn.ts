@@ -28,7 +28,7 @@ function CDNRoot(fileLoc: string) {
  * This is used for quick development setups, where a cdn server isn't available.
  * As in, this ruins the purpose of a CDN! make sure you have one running.
  */
-function CDNRetrieve(fileLoc: string) {
+export function CDNRetrieve(fileLoc: string) {
 	logger.debug(`Retrieving path ${fileLoc} locally.`);
 
 	return readFilePromise(CDNRoot(fileLoc));
@@ -47,7 +47,7 @@ export function CDNRedirect(res: Response, fileLoc: string) {
 	if (CDN_URL) {
 		return res.redirect(`${CDN_URL}${fileLoc}`);
 	} else {
-		return CDNRetrieve(fileLoc);
+		return res.send(CDNRetrieve(fileLoc));
 	}
 }
 

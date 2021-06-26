@@ -9,10 +9,11 @@ import {
 	Playtypes,
 	SongDocument,
 	AnyChartDocument,
+	PrivateUserDocument,
 	integer,
 } from "tachi-common";
 import { EscapeStringRegexp } from "../../utils/misc";
-import { OMIT_PRIVATE_USER_RETURNS } from "../../utils/user";
+import { GetOnlineCutoff, OMIT_PRIVATE_USER_RETURNS } from "../../utils/user";
 import { CONF_INFO } from "../setup/config";
 
 const logger = CreateLogCtx(__filename);
@@ -125,18 +126,21 @@ export function SearchSessions(
  * aren't allowed spaces in their name. In short, $text is very
  * poor at actually matching usernames.
  */
-export function SearchUsersRegExp(search: string) {
+export function SearchUsersRegExp(search: string, matchOnline = false) {
 	const regexEsc = EscapeStringRegexp(search.toLowerCase());
 
-	return db.users.find(
-		{
-			usernameLowercase: { $regex: new RegExp(regexEsc, "u") },
-		},
-		{
-			limit: 25,
-			projection: OMIT_PRIVATE_USER_RETURNS,
-		}
-	);
+	const matchQuery: FilterQuery<PrivateUserDocument> = {
+		usernameLowercase: { $regex: new RegExp(regexEsc, "u") },
+	};
+
+	if (matchOnline) {
+		matchQuery.lastSeen = { $gt: GetOnlineCutoff() };
+	}
+
+	return db.users.find(matchQuery, {
+		limit: 25,
+		projection: OMIT_PRIVATE_USER_RETURNS,
+	});
 }
 
 /**

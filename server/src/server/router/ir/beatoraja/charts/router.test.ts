@@ -3,6 +3,7 @@ import { CloseAllConnections } from "../../../../../test-utils/close-connections
 import ResetDBState from "../../../../../test-utils/resets";
 import mockApi from "../../../../../test-utils/mock-api";
 import db from "../../../../../external/mongo/db";
+import { ScoreDocument, PBScoreDocument } from "tachi-common";
 
 t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 	t.beforeEach(ResetDBState);
@@ -23,7 +24,7 @@ t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 			scoreMeta: {},
 			chartID: GAZER_CHARTID,
 			userID: 1,
-		} as any); // very lazy fake scores
+		} as unknown as PBScoreDocument); // very lazy fake scores
 
 		await db.scores.insert({
 			scoreID: "mock_lampPB",
@@ -31,7 +32,7 @@ t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 				inputDevice: "BM_CONTROLLER",
 				random: "MIRROR",
 			},
-		} as any);
+		} as ScoreDocument);
 
 		const res = await mockApi
 			.get(`/ir/beatoraja/charts/${GAZER_SHA256}/scores`)

@@ -31,7 +31,7 @@ t.test("#SplitFervidexChartRef", (t) => {
 
 	t.throws(
 		() => SplitFervidexChartRef("INVALID" as "spn"),
-		new InternalFailure(`Invalid fervidex difficulty of INVALID`) as any
+		new InternalFailure(`Invalid fervidex difficulty of INVALID`)
 	);
 
 	t.end();
@@ -152,7 +152,7 @@ t.test("#ConverterIRFervidex", (t) => {
 				"ir/fervidex",
 				logger
 			),
-			{ message: /could not find chart/giu } as any
+			{ message: /could not find chart/giu }
 		);
 
 		t.end();
@@ -163,7 +163,7 @@ t.test("#ConverterIRFervidex", (t) => {
 
 		t.rejects(
 			ConverterIRFervidex(baseFervidexScore, { version: "27" }, "ir/fervidex", logger),
-			{ message: /Song 1 \(iidx\) has no parent song/giu } as any
+			{ message: /Song 1 \(iidx\) has no parent song/giu }
 		);
 
 		t.end();
@@ -178,7 +178,7 @@ t.test("#ConverterIRFervidex", (t) => {
 				"ir/fervidex",
 				logger
 			),
-			{ message: /Invalid percent/giu } as any
+			{ message: /Invalid percent/giu }
 		);
 
 		t.end();
@@ -193,7 +193,7 @@ t.test("#ConverterIRFervidex", (t) => {
 				"ir/fervidex",
 				logger
 			),
-			{ message: /Invalid value of gauge 150/giu } as any
+			{ message: /Invalid value of gauge 150/giu }
 		);
 
 		t.end();
@@ -215,7 +215,7 @@ t.test("#ConverterIRFervidex", (t) => {
 				dryScore: deepmerge(baseDryScore, {
 					scoreData: { hitMeta: { gauge: null, gaugeHistory: [10, 5, null, null] } },
 				}),
-			} as any, // broken
+			}, // broken
 			"Should return a dry score."
 		);
 

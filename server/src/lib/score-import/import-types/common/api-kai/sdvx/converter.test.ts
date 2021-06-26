@@ -61,7 +61,7 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 				),
 			{
 				message: /Could not find chart with songID 0 \(ADV - Version vivid\)/u,
-			} as any
+			}
 		);
 
 		t.end();
@@ -78,7 +78,7 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 				),
 			{
 				message: /Error: music_id.*Expected a positive integer.* received foo \[string\]/iu,
-			} as any
+			}
 		);
 
 		t.end();
@@ -89,7 +89,7 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 
 		t.rejects(() => ConvertAPIKaiSDVX(sdvxScore, { service: "FLO" }, "api/flo-sdvx", logger), {
 			message: /Song-Chart desync/u,
-		} as any);
+		});
 
 		t.end();
 	});

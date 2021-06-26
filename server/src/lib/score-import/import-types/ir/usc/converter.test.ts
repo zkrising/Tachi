@@ -75,7 +75,7 @@ t.test("#DeriveNoteMod", (t) => {
 	t.end();
 });
 
-const dm = (p: Partial<USCClientScore> | any) =>
+const dm = (p: Partial<USCClientScore>) =>
 	ConverterIRUSC(d(uscScore, p), { chart: uscChart }, "ir/usc", logger);
 
 t.test("#ConverterIRUSC", (t) => {
@@ -98,17 +98,17 @@ t.test("#ConverterIRUSC", (t) => {
 	});
 
 	t.test("Should reject scores with invalid hit windows", (t) => {
-		t.rejects(dm({ windows: { perfect: 0 } }));
-		t.rejects(dm({ windows: { good: 0 } }));
-		t.rejects(dm({ windows: { hold: 0 } }));
-		t.rejects(dm({ windows: { miss: 0 } }));
-		t.rejects(dm({ windows: { slam: 0 } }));
+		t.rejects(dm({ windows: { perfect: 0 } } as USCClientScore));
+		t.rejects(dm({ windows: { good: 0 } } as USCClientScore));
+		t.rejects(dm({ windows: { hold: 0 } } as USCClientScore));
+		t.rejects(dm({ windows: { miss: 0 } } as USCClientScore));
+		t.rejects(dm({ windows: { slam: 0 } } as USCClientScore));
 
 		t.end();
 	});
 
 	t.test("Should reject scores with invalid autoflags", (t) => {
-		t.rejects(dm({ options: { autoFlags: 1 } }));
+		t.rejects(dm({ options: { autoFlags: 1 } } as USCClientScore));
 
 		t.end();
 	});

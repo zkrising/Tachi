@@ -1,60 +1,60 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@types/bcrypt': ^5.0.0
-  '@types/connect-redis': ^0.0.16
-  '@types/express': ^4.17.12
-  '@types/express-rate-limit': ^5.1.2
-  '@types/express-session': ^1.17.3
-  '@types/mkdirp': ^1.0.1
-  '@types/multer': ^1.4.6
-  '@types/node': ^15.12.4
-  '@types/node-fetch': ^2.5.10
-  '@types/range-parser': ^1.2.3
-  '@types/rate-limit-redis': ^1.7.1
-  '@types/rimraf': ^3.0.0
-  '@types/supertest': ^2.0.11
-  '@types/tap': ^15.0.4
-  '@types/uuid': ^8.3.0
-  '@typescript-eslint/eslint-plugin': ^4.28.0
-  '@typescript-eslint/parser': ^4.28.0
-  bcrypt: ^5.0.1
-  bee-queue: ^1.4.0
-  commander: ^7.2.0
-  connect-redis: ^6.0.0
-  csv-parse: ^4.16.0
-  deepmerge: ^4.2.2
-  dotenv: ^10.0.0
-  eslint: ^7.29.0
-  eslint-config-prettier: ^8.3.0
-  eslint-plugin-import: ^2.23.4
-  eslint-plugin-prettier: ^3.4.0
-  express: ^4.17.1
-  express-async-errors: ^3.1.1
-  express-rate-limit: ^5.2.6
-  express-request-mock: ^3.1.0
-  express-session: ^1.17.2
-  fast-json-stable-hash: ^1.0.2
-  fast-xml-parser: ^3.19.0
-  json5: ^2.2.0
-  mkdirp: ^1.0.4
+  '@types/bcrypt': 5.0.0
+  '@types/connect-redis': 0.0.16
+  '@types/express': 4.17.12
+  '@types/express-rate-limit': 5.1.2
+  '@types/express-session': 1.17.3
+  '@types/mkdirp': 1.0.1
+  '@types/multer': 1.4.6
+  '@types/node': 15.12.4
+  '@types/node-fetch': 2.5.10
+  '@types/range-parser': 1.2.3
+  '@types/rate-limit-redis': 1.7.1
+  '@types/rimraf': 3.0.0
+  '@types/supertest': 2.0.11
+  '@types/tap': 15.0.4
+  '@types/uuid': 8.3.0
+  '@typescript-eslint/eslint-plugin': 4.28.0
+  '@typescript-eslint/parser': 4.28.0
+  bcrypt: 5.0.1
+  bee-queue: 1.4.0
+  commander: 7.2.0
+  connect-redis: 6.0.0
+  csv-parse: 4.16.0
+  deepmerge: 4.2.2
+  dotenv: 10.0.0
+  eslint: 7.29.0
+  eslint-config-prettier: 8.3.0
+  eslint-plugin-import: 2.23.4
+  eslint-plugin-prettier: 3.4.0
+  express: 4.17.1
+  express-async-errors: 3.1.1
+  express-rate-limit: 5.2.6
+  express-request-mock: 3.1.0
+  express-session: 1.17.2
+  fast-json-stable-hash: 1.0.2
+  fast-xml-parser: 3.19.0
+  json5: 2.2.0
+  mkdirp: 1.0.4
   mongodb: 3.6.3
-  monk: ^7.3.4
-  multer: ^1.4.2
-  node-fetch: ^2.6.1
-  node-mocks-http: ^1.10.1
-  prettier: ^2.3.1
-  prudence: ^0.9.6
-  rate-limit-redis: ^2.1.0
-  redis: ^3.1.2
-  rimraf: ^3.0.2
-  supertest: ^6.1.3
+  monk: 7.3.4
+  multer: 1.4.2
+  node-fetch: 2.6.1
+  node-mocks-http: 1.10.1
+  prettier: 2.3.1
+  prudence: 0.9.6
+  rate-limit-redis: 2.1.0
+  redis: 3.1.2
+  rimraf: 3.0.2
+  supertest: 6.1.3
   tachi-common: github:zkldi/tachi-common
-  tap: ^15.0.9
-  ts-node: ^10.0.0
-  typescript: ^4.3.4
-  why-is-node-running: ^2.2.0
-  winston: ^3.3.3
+  tap: 15.0.9
+  ts-node: 10.0.0
+  typescript: 4.3.4
+  why-is-node-running: 2.2.0
+  winston: 3.3.3
 
 dependencies:
   bcrypt: 5.0.1
@@ -80,7 +80,7 @@ dependencies:
   rate-limit-redis: 2.1.0
   redis: 3.1.2
   rimraf: 3.0.2
-  tachi-common: github.com/zkldi/tachi-common/65f1b0a6d7bf9c08d04b35901829df9e4b4207ff_ts-node@10.0.0+typescript@4.3.4
+  tachi-common: github.com/zkldi/tachi-common/0b3e388dd5f153e18a4cede1c9ba046f45c7a570_ts-node@10.0.0+typescript@4.3.4
   typescript: 4.3.4
   winston: 3.3.3
 
@@ -4130,7 +4130,7 @@ packages:
   /wide-align/1.1.3:
     resolution: {integrity: sha512-QGkOQc8XL6Bt5PwnsExKBPuMKBxnGxWWW3fU55Xt4feHozMUhdUMaBCk290qpm/wG5u/RSKzwdAC4i51YigihA==}
     dependencies:
-      string-width: 1.0.2
+      string-width: 2.1.1
     dev: false
 
   /winston-transport/4.4.0:
@@ -4233,9 +4233,9 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  github.com/zkldi/tachi-common/65f1b0a6d7bf9c08d04b35901829df9e4b4207ff_ts-node@10.0.0+typescript@4.3.4:
-    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/65f1b0a6d7bf9c08d04b35901829df9e4b4207ff}
-    id: github.com/zkldi/tachi-common/65f1b0a6d7bf9c08d04b35901829df9e4b4207ff
+  github.com/zkldi/tachi-common/0b3e388dd5f153e18a4cede1c9ba046f45c7a570_ts-node@10.0.0+typescript@4.3.4:
+    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/0b3e388dd5f153e18a4cede1c9ba046f45c7a570}
+    id: github.com/zkldi/tachi-common/0b3e388dd5f153e18a4cede1c9ba046f45c7a570
     name: tachi-common
     version: 0.1.0
     dependencies:

@@ -15,9 +15,8 @@ const GuestToken: APITokenDocument = {
 };
 
 export const AllPermissions: Record<APIPermissions, true> = {
-	"create:goal": true,
-	"manage:goal": true,
-	"submit:score": true,
+	customise_profile: true,
+	submit_score: true,
 };
 
 /**
@@ -122,7 +121,7 @@ export const RequirePermissions =
 					req.url
 				}. ${missingPerms.join(", ")}`
 			);
-			return res.status(401).json({
+			return res.status(403).json({
 				success: false,
 				description: `You are missing the following permissions necessary for this request: ${missingPerms.join(
 					", "

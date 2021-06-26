@@ -94,7 +94,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 	t.test("Invalid Chart", (t) => {
 		t.rejects(() => merc({ diff_type: "LEGGENDARIA" }), {
 			message: /Could not find chart with musicID 1000 \(SP LEGGENDARIA/u,
-		} as any);
+		});
 
 		t.end();
 	});
@@ -102,7 +102,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 	t.test("Invalid Song", (t) => {
 		t.rejects(() => merc({ music_id: 0 }), {
 			message: /Could not find chart with musicID 0/u,
-		} as any);
+		});
 
 		t.end();
 	});
@@ -112,7 +112,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 
 		t.rejects(() => merc(), {
 			message: /Song-Chart Desync on songID 1/u,
-		} as any);
+		});
 
 		t.end();
 	});
@@ -120,7 +120,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 	t.test("Invalid Percent", (t) => {
 		t.rejects(() => merc({ score: 9999 }), {
 			message: /Invalid percent/u,
-		} as any);
+		});
 
 		t.end();
 	});
@@ -128,7 +128,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 	t.test("Invalid Date", (t) => {
 		t.rejects(() => merc({ update_time: "INVALID" }), {
 			message: /Invalid\/Unparsable score timestamp of INVALID/u,
-		} as any);
+		});
 
 		t.end();
 	});

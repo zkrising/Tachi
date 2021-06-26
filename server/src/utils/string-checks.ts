@@ -1,4 +1,4 @@
-import { UserGameStats, Game, Playtypes, GetGamePTConfig, GamePTConfig } from "tachi-common";
+import { Game, Playtypes, GetGamePTConfig, GamePTConfig } from "tachi-common";
 import { IsString } from "./misc";
 
 const isIntegerRegex = /^-?\d+$/u;

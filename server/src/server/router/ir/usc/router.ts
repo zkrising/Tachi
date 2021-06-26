@@ -17,9 +17,10 @@ import { ParseIRUSC } from "../../../../lib/score-import/import-types/ir/usc/par
 import { USCIR_MAX_LEADERBOARD_N } from "../../../../lib/constants/usc-ir";
 import { CreateMulterSingleUploadMiddleware } from "../../../middleware/multer-upload";
 import { AssignToReqTachiData } from "../../../../utils/req-tachi-data";
-import { StoreCDN } from "../../../../lib/cdn/cdn";
+import { CDNStore } from "../../../../lib/cdn/cdn";
 import { ONE_MEGABYTE } from "../../../../lib/constants/filesize";
 import { RequirePermissions } from "../../../middleware/auth";
+import { GetUSCIRReplayURL } from "../../../../lib/cdn/url-format";
 
 const logger = CreateLogCtx(__filename);
 
@@ -234,7 +235,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
  * https://uscir.readthedocs.io/en/latest/endpoints/score-submit.html
  * @name POST /ir/usc/scores
  */
-router.post("/scores", RequirePermissions("submit:score"), async (req, res) => {
+router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	if (typeof req.body.chart !== "object" || req.body.chart === null) {
 		return res.status(200).json({
 			statusCode: STATUS_CODES.BAD_REQ,
@@ -316,8 +317,8 @@ router.post("/scores", RequirePermissions("submit:score"), async (req, res) => {
  */
 router.post(
 	"/replays",
-	RequirePermissions("submit:score"),
-	CreateMulterSingleUploadMiddleware("replay", ONE_MEGABYTE, logger),
+	RequirePermissions("submit_score"),
+	CreateMulterSingleUploadMiddleware("replay", ONE_MEGABYTE, logger, false),
 	async (req, res) => {
 		if (typeof req.body.identifier !== "string") {
 			return res.status(200).json({
@@ -347,7 +348,7 @@ router.post(
 		}
 
 		try {
-			await StoreCDN(`/uscir/replays/${correspondingScore.scoreID}`, req.file.buffer);
+			await CDNStore(GetUSCIRReplayURL(correspondingScore.scoreID), req.file.buffer);
 
 			return res.status(200).json({
 				statusCode: STATUS_CODES.SUCCESS,

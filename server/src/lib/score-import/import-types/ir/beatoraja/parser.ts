@@ -3,7 +3,6 @@ import p from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { FormatPrError } from "../../../../../utils/prudence";
 import { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
-import { ConverterIRBeatoraja } from "./converter";
 import { ParserFunctionReturns } from "../../common/types";
 
 const PR_BeatorajaScore = {

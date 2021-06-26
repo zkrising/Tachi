@@ -1,29 +1,54 @@
 import fs from "fs";
 import path from "path";
-import { KTCDN_ROOT } from "../setup/config";
+import { CDN_ROOT, CDN_URL } from "../setup/config";
 import CreateLogCtx from "../logger/logger";
 import { promisify } from "util";
 import mkdirp from "mkdirp";
+import { Response } from "express";
 
 const readFilePromise = promisify(fs.readFile);
 const writeFilePromise = promisify(fs.writeFile);
+const rmFilePromise = promisify(fs.rm);
 
 const logger = CreateLogCtx(__filename);
 
 /**
  * Joins a file location against the location of the CDN static store.
+ *
+ * @danger - This function should **NEVER** be called with unsanitised user input!
+ * Path directory traversal *is* possible, and *will* ruin your day.
  */
 function CDNRoot(fileLoc: string) {
-	return path.join(KTCDN_ROOT, fileLoc);
+	return path.join(CDN_ROOT, fileLoc);
 }
 
 /**
  * Retrieves the data of the file at the given CDN location.
+ *
+ * This is used for quick development setups, where a cdn server isn't available.
+ * As in, this ruins the purpose of a CDN! make sure you have one running.
  */
-export function RetrieveCDN(fileLoc: string) {
-	logger.debug(`Retrieving path ${fileLoc}.`);
+export function CDNRetrieve(fileLoc: string) {
+	logger.debug(`Retrieving path ${fileLoc} locally.`);
 
 	return readFilePromise(CDNRoot(fileLoc));
+}
+
+/**
+ * Redirects the response to the CDN server at the given path.
+ *
+ * If no CDN_URL is set, then this falls back to fetching from the CDN ROOT via. FS.
+ */
+export async function CDNRedirect(res: Response, fileLoc: string) {
+	if (fileLoc[0] !== "/") {
+		throw new Error(`Invalid fileLoc - did not start with /.`);
+	}
+
+	if (CDN_URL) {
+		return res.redirect(`${CDN_URL}${fileLoc}`);
+	} else {
+		return res.send(await CDNRetrieve(fileLoc));
+	}
 }
 
 /**
@@ -35,7 +60,7 @@ const WRITE_NO_OVERWRITE = "wx";
  * Stores the provided buffer or string as a file at the given location.
  * @returns Nothing on success. Throws on error.
  */
-export async function StoreCDN(fileLoc: string, data: Buffer | string) {
+export async function CDNStore(fileLoc: string, data: Buffer | string) {
 	logger.debug(`Storing path ${fileLoc}.`);
 
 	const loc = CDNRoot(fileLoc);
@@ -44,4 +69,29 @@ export async function StoreCDN(fileLoc: string, data: Buffer | string) {
 	await mkdirp(path.dirname(loc));
 
 	return writeFilePromise(loc, data, { flag: WRITE_NO_OVERWRITE });
+}
+
+/**
+ * Stores a file at fileLoc. If it already exists, overwrite it.
+ */
+export async function CDNStoreOrOverwrite(fileLoc: string, data: Buffer | string) {
+	logger.debug(`Storing or overwriting path ${fileLoc}.`);
+
+	const loc = CDNRoot(fileLoc);
+
+	// make the parent folders if they dont exist. else, mkdirp is a no-op.
+	await mkdirp(path.dirname(loc));
+
+	return writeFilePromise(loc, data);
+}
+
+/**
+ * Removes a file at this CDN location.
+ */
+export function CDNDelete(fileLoc: string) {
+	logger.verbose(`Deleting path ${fileLoc}.`);
+
+	const loc = CDNRoot(fileLoc);
+
+	return rmFilePromise(loc, { force: true });
 }

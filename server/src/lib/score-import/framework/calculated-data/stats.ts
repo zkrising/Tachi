@@ -144,19 +144,6 @@ export function CalculateMFCP(dryScore: DryScore, chartData: AnyChartDocument, l
 	return null;
 }
 
-const VF4GradeCoefficients = {
-	S: 1.0,
-	"AAA+": 0.99,
-	AAA: 0.98,
-	"AA+": 0.97,
-	AA: 0.96,
-	"A+": 0.95,
-	A: 0.94,
-	B: 0.93,
-	C: 0.92,
-	D: 0.91,
-};
-
 const VF5GradeCoefficients = {
 	S: 1.05,
 	"AAA+": 1.02,
@@ -409,6 +396,19 @@ function LampRatingNoTierlistInfo(
 }
 
 // deprecated calcs
+
+// const VF4GradeCoefficients = {
+// 	S: 1.0,
+// 	"AAA+": 0.99,
+// 	AAA: 0.98,
+// 	"AA+": 0.97,
+// 	AA: 0.96,
+// 	"A+": 0.95,
+// 	A: 0.94,
+// 	B: 0.93,
+// 	C: 0.92,
+// 	D: 0.91,
+// };
 
 // export function CalculateVF4(
 //     grade: Grades["sdvx:Single"],

@@ -65,7 +65,7 @@ t.test("#ConvertAPIArcSDVX", (t) => {
 				),
 			{
 				message: /Invalid ARC Score:/iu,
-			} as any
+			}
 		);
 
 		t.end();
@@ -82,7 +82,7 @@ t.test("#ConvertAPIArcSDVX", (t) => {
 				),
 			{
 				message: /Could not find chart/iu,
-			} as any
+			}
 		);
 
 		t.end();

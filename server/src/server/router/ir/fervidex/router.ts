@@ -3,7 +3,6 @@ import { UpdateClassIfGreater } from "../../../../utils/class";
 import { GetUserWithIDGuaranteed } from "../../../../utils/user";
 import { ParseEA3SoftID } from "../../../../utils/ea3id";
 import { EXT_HEROIC_VERSE, MODEL_INFINITAS_2, REV_2DXBMS } from "../../../../lib/constants/ea3id";
-import { RequireLoggedInSession } from "../../../middleware/require-logged-in";
 import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
 import { ParseFervidexStatic } from "../../../../lib/score-import/import-types/ir/fervidex-static/parser";
 import { ParseFervidexSingle } from "../../../../lib/score-import/import-types/ir/fervidex/parser";
@@ -151,7 +150,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 	return next();
 };
 
-router.use(RequirePermissions("submit:score"), ValidateFervidexHeader, ValidateModelHeader);
+router.use(RequirePermissions("submit_score"), ValidateFervidexHeader, ValidateModelHeader);
 
 /**
  * Submits all of a users data to Kamaitachi. This data is extremely minimal,

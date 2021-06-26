@@ -3,6 +3,8 @@ import db from "../../../../../../external/mongo/db";
 import { SYMBOL_TachiData } from "../../../../../../lib/constants/tachi";
 import { GetUserFromParam } from "./middleware";
 import gamePTRouter from "./games/_game/_playtype/router";
+import bannerRouter from "./banner/router";
+import pfpRouter from "./pfp/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -42,5 +44,7 @@ router.get("/game-stats", async (req, res) => {
 });
 
 router.use("/games/:game/:playtype", gamePTRouter);
+router.use("/pfp", pfpRouter);
+router.use("/banner", bannerRouter);
 
 export default router;

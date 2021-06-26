@@ -1,6 +1,5 @@
 import t from "tap";
 import db from "../../../../external/mongo/db";
-import { RequireNeutralAuthentication } from "../../../../test-utils/api-common";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 import { CreateFakeAuthCookie } from "../../../../test-utils/fake-auth";
 import mockApi from "../../../../test-utils/mock-api";
@@ -12,12 +11,12 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 
 	t.beforeEach(ResetDBState);
 
-	t.test("Should require submit:score permissions", async (t) => {
+	t.test("Should require submit_score permissions", async (t) => {
 		await db["api-tokens"].insert({
 			token: "foo",
 			identifier: "bar",
 			permissions: {
-				"submit:score": false,
+				submit_score: false,
 			},
 			userID: 1,
 		});
@@ -28,7 +27,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 
 		t.equal(res.body.success, false);
 
-		t.match(res.body.description, /submit:score/u);
+		t.match(res.body.description, /submit_score/u);
 
 		t.end();
 	});

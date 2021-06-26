@@ -3,6 +3,7 @@ import { CloseAllConnections } from "../../../../../test-utils/close-connections
 import ResetDBState from "../../../../../test-utils/resets";
 import CreateLogCtx from "../../../../logger/logger";
 import { CreateFerStaticClassHandler } from "./class-handler";
+import { Playtypes, Game } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -53,7 +54,7 @@ t.test("#FerStaticClassHandler", (t) => {
 
 	t.test("Should skip if playtype is invalid", (t) => {
 		const fn = CreateFerStaticClassHandler({ sp_dan: 5, dp_dan: 7 });
-		const res = fn("iidx", "INVALID" as any, 1, {}, logger);
+		const res = fn("iidx", "INVALID" as Playtypes[Game], 1, {}, logger);
 
 		t.equal(res, undefined, "Should skip over as a failsafe.");
 

@@ -6,6 +6,7 @@ import { ConverterIRBarbatos } from "./converter";
 import deepmerge from "deepmerge";
 import { barbScore } from "../../../../../test-utils/test-data";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
+import { BarbatosScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
 
@@ -77,7 +78,7 @@ t.test("#ConverterIRBarbatos", (t) => {
 					inSkillAnalyser: false,
 				},
 			},
-		} as any);
+		});
 
 		t.end();
 	});
@@ -86,14 +87,14 @@ t.test("#ConverterIRBarbatos", (t) => {
 		t.rejects(
 			() =>
 				ConverterIRBarbatos(
-					deepmerge(barbScore, { song_id: 1000 } as any),
+					deepmerge(barbScore, { song_id: 1000 }) as BarbatosScore,
 					{},
 					"ir/barbatos",
 					logger
 				),
 			{
 				message: /Could not find chart with songID 1000/u,
-			} as any
+			}
 		);
 
 		t.end();
@@ -104,7 +105,7 @@ t.test("#ConverterIRBarbatos", (t) => {
 
 		t.rejects(() => ConverterIRBarbatos(barbScore, {}, "ir/barbatos", logger), {
 			message: /Song 1 \(sdvx\) has no parent song/u,
-		} as any);
+		});
 
 		t.end();
 	});

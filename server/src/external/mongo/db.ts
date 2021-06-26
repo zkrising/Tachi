@@ -28,7 +28,6 @@ import monk, { TMiddleware } from "monk";
 import { MONGO_CONNECTION_URL, MONGO_DATABASE_NAME } from "../../lib/setup/config";
 import CreateLogCtx from "../../lib/logger/logger";
 import { OrphanScoreDocument } from "../../lib/score-import/import-types/common/types";
-import * as util from "util";
 
 const logger = CreateLogCtx(__filename);
 
@@ -36,11 +35,7 @@ let dbName = MONGO_DATABASE_NAME;
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV === "test") {
-	if (process.env.TACHI_PARALLEL_TESTS) {
-		dbName = `test-ephemeral-${process.pid}`;
-	} else {
-		dbName = `testingdb`;
-	}
+	dbName = `testingdb`;
 }
 
 let dbtime: [number, number] = [0, 0];

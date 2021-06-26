@@ -1,6 +1,5 @@
 import p from "prudence";
 import t from "tap";
-import db from "../../../../external/mongo/db";
 import CreateLogCtx from "../../../logger/logger";
 import { prAssert } from "../../../../test-utils/asserts";
 import {
@@ -11,8 +10,6 @@ import {
 	TestingSDVXSingleDryScore,
 } from "../../../../test-utils/test-data";
 import { CreateCalculatedData, CalculateDataForGamePT } from "./calculated-data";
-import deepmerge from "deepmerge";
-import ResetDBState from "../../../../test-utils/resets";
 import { CloseAllConnections } from "../../../../test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);

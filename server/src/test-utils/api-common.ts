@@ -11,7 +11,7 @@ export function RequireNeutralAuthentication(url: string, method: "GET" | "POST"
 			res = await mockApi.post(url);
 		}
 
-		t.equal(res.status, 401, "Should return 401 immediately.");
+		t.equal(res.status, 403, "Should return 403 immediately.");
 		t.equal(
 			res.body.description,
 			"You are not authorised to perform this action.",

@@ -11,7 +11,7 @@ import {
 import db from "../../../../external/mongo/db";
 import { BulkWriteUpdateOneOperation } from "mongodb";
 import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "../../../../utils/milestone";
-import { RedisPub, RedisSub } from "../../../../external/redis/redis-IPC";
+import { RedisPub } from "../../../../external/redis/redis-IPC";
 
 /**
  * Processes and updates a user's milestones from their Goal Import Info (i.e. what is returned

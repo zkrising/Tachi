@@ -3,6 +3,7 @@ import { CloseAllConnections } from "../../../../../test-utils/close-connections
 import { agta } from "../../../../../test-utils/misc";
 import { MockJSONFetch } from "../../../../../test-utils/mock-fetch";
 import ResetDBState from "../../../../../test-utils/resets";
+import { NodeFetch } from "../../../../../utils/fetch";
 import CreateLogCtx from "../../../../logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { TraverseKaiAPI } from "./traverse-api";
@@ -65,7 +66,7 @@ t.test("#TraverseKaiAPI", (t) => {
 	});
 
 	t.test("Should throw on invalid response JSON", (t) => {
-		const mockKaiAPI = () => ({ json: null } as any);
+		const mockKaiAPI = (() => ({ json: null })) as unknown as NodeFetch;
 		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, mockKaiAPI);
 
 		t.rejects(() => agta(res));

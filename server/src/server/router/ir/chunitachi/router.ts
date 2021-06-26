@@ -11,7 +11,7 @@ const router: Router = Router({ mergeParams: true });
  * Submits a single score document from Chunitachi clients.
  * @name POST /ir/chunitachi/score/submit
  */
-router.post("/import", RequirePermissions("submit:score"), async (req, res) => {
+router.post("/import", RequirePermissions("submit_score"), async (req, res) => {
 	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
 
 	if (req.body?.head?.game !== "chunithm") {

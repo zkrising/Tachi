@@ -7,15 +7,17 @@ import path from "path";
 import CreateLogCtx from "../lib/logger/logger";
 // im installing an entire library for rm rf...
 import rimraf from "rimraf";
-import { KTCDN_ROOT, MONGO_CONNECTION_URL } from "../lib/setup/config";
+import { CDN_ROOT, MONGO_CONNECTION_URL } from "../lib/setup/config";
 import { SetIndexes } from "../external/mongo/indexes";
 
 const logger = CreateLogCtx(__filename);
 
 const DATA_DIR = path.join(__dirname, "./mock-db");
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CACHE: Record<string, any[]> = {};
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function ResetState(data: any[], collection: any) {
 	await collection.remove({});
 
@@ -77,7 +79,7 @@ export default async function ResetDBState() {
 
 export function ResetCDN() {
 	return new Promise<void>((resolve, reject) =>
-		rimraf(KTCDN_ROOT, (err) => {
+		rimraf(CDN_ROOT, (err) => {
 			if (err) {
 				reject(err);
 			}
@@ -87,9 +89,7 @@ export function ResetCDN() {
 }
 
 export async function SetIndexesForDB() {
-	const url = `${MONGO_CONNECTION_URL}/${
-		process.env.TACHI_PARALLEL_TESTS ? `test-ephemeral-${process.pid.toString()}` : "testingdb"
-	}`;
+	const url = `${MONGO_CONNECTION_URL}/testingdb`;
 
 	logger.info(`Setting indexes for ${url}`);
 

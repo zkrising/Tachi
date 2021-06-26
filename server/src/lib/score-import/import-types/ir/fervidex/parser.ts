@@ -3,7 +3,6 @@ import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { FormatPrError, optNull } from "../../../../../utils/prudence";
 import { FervidexContext, FervidexScore } from "./types";
-import { ConverterIRFervidex } from "./converter";
 import { ParseEA3SoftID } from "../../../../../utils/ea3id";
 import {
 	EXT_HEROIC_VERSE,

@@ -1,5 +1,4 @@
 import winston, { format, transports, Logger, LeveledLogMethod } from "winston";
-import fs from "fs";
 import { EscapeStringRegexp } from "../../utils/misc";
 import { LOG_LEVEL } from "../setup/config";
 

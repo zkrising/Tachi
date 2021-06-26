@@ -4,7 +4,7 @@ import JSON5 from "json5";
 import fs from "fs";
 import p from "prudence";
 import { FormatPrError } from "../../utils/prudence";
-import { integer, Game, StaticConfig } from "tachi-common";
+import { integer, StaticConfig } from "tachi-common";
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
 
 // reads from $pwd/conf.json5
@@ -36,6 +36,7 @@ export interface TachiConfig {
 	ARC_API_URL: string;
 	ARC_AUTH_TOKEN: string;
 	CDN_ROOT: string;
+	CDN_URL?: string | null;
 	TYPE: "ktchi" | "btchi" | "omni";
 	PORT: integer;
 	TYPE_INFO: StaticConfig.ServerConfig;
@@ -52,6 +53,7 @@ const err = p(config, {
 	ARC_API_URL: isValidURL,
 	ARC_AUTH_TOKEN: "string",
 	CDN_ROOT: "string",
+	CDN_URL: "*?string",
 	PORT: p.isPositiveInteger,
 	TYPE: p.isIn("ktchi", "btchi", "omni"),
 });
@@ -79,7 +81,8 @@ export const FLO_API_URL = tachiConfig.FLO_API_URL;
 export const EAG_API_URL = tachiConfig.EAG_API_URL;
 export const ARC_API_URL = tachiConfig.ARC_API_URL;
 export const ARC_AUTH_TOKEN = tachiConfig.ARC_AUTH_TOKEN;
-export const KTCDN_ROOT = tachiConfig.CDN_ROOT;
+export const CDN_ROOT = tachiConfig.CDN_ROOT;
+export const CDN_URL = tachiConfig.CDN_URL;
 export const CONF_INFO = tachiConfig.TYPE_INFO;
 export const PORT = tachiConfig.PORT;
 export const CONFIG = tachiConfig;

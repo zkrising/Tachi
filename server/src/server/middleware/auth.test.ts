@@ -11,7 +11,7 @@ t.test("#SetRequestPermissions", (t) => {
 			userID: 1,
 			identifier: "Mock API Token",
 			permissions: {
-				"create:goal": true,
+				customise_profile: true,
 			},
 			token: "mock_token",
 		});
@@ -26,7 +26,7 @@ t.test("#SetRequestPermissions", (t) => {
 			userID: 1,
 			identifier: "Mock API Token",
 			permissions: {
-				"create:goal": true,
+				customise_profile: true,
 			},
 			token: "mock_token",
 		});

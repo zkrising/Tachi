@@ -25,7 +25,7 @@ t.test("#ParseBarbatosSingle", (t) => {
 	t.test("Should reject invalid scores", (t) => {
 		t.throws(() => ParseBarbatosSingle({}, logger), {
 			message: "Invalid Barbatos Request",
-		} as any);
+		});
 
 		t.end();
 	});

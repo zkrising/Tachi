@@ -108,3 +108,7 @@ export function FormatChart(game: Game, song: AnySongDocument, chart: AnyChartDo
 
 	return `${song.title} (${playtypeStr}${chart.difficulty})`;
 }
+
+export function DedupeArr<T>(arr: T[]): T[] {
+	return [...new Set(arr)];
+}

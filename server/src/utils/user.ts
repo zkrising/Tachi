@@ -176,3 +176,13 @@ export async function GetUsersRanking(stats: UserGameStats) {
 		outOf: aggRes[0].outOf as integer,
 	};
 }
+
+const FIVE_MINUTES = 1000 * 60 * 5;
+
+/**
+ * Returns the cutoff point for "being online" in tachi. This means the user
+ * has made any page request in the past 5 minutes.
+ */
+export function GetOnlineCutoff() {
+	return Date.now() - FIVE_MINUTES;
+}

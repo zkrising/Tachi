@@ -39,7 +39,7 @@ export function CDNRetrieve(fileLoc: string) {
  *
  * If no CDN_URL is set, then this falls back to fetching from the CDN ROOT via. FS.
  */
-export function CDNRedirect(res: Response, fileLoc: string) {
+export async function CDNRedirect(res: Response, fileLoc: string) {
 	if (fileLoc[0] !== "/") {
 		throw new Error(`Invalid fileLoc - did not start with /.`);
 	}
@@ -47,7 +47,7 @@ export function CDNRedirect(res: Response, fileLoc: string) {
 	if (CDN_URL) {
 		return res.redirect(`${CDN_URL}${fileLoc}`);
 	} else {
-		return res.send(CDNRetrieve(fileLoc));
+		return res.send(await CDNRetrieve(fileLoc));
 	}
 }
 

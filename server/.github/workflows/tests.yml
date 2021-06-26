@@ -42,7 +42,7 @@ jobs:
         run: pnpm lint
 
       - name: Run Tests
-        run: pnpm fulltest
+        run: pnpm test
 
       - name: Upload Coverage
         if: always()

@@ -4,7 +4,7 @@ import { CloseAllConnections } from "../../../../test-utils/close-connections";
 import mockApi from "../../../../test-utils/mock-api";
 import ResetDBState, { ResetCDN } from "../../../../test-utils/resets";
 import deepmerge from "deepmerge";
-import { PBScoreDocument, ScoreDocument } from "tachi-common";
+import { PBScoreDocument, ScoreDocument, PrivateUserDocument } from "tachi-common";
 import { GetKTDataBuffer } from "../../../../test-utils/test-data";
 import { CDNRetrieve } from "../../../../lib/cdn/cdn";
 
@@ -172,7 +172,7 @@ t.test("GET /ir/usc/:chartHash/record", (t) => {
 		await db.scores.insert({
 			scoreID: "usc_score_pb",
 			scoreMeta: { noteMod: "NORMAL", gaugeMod: "HARD" },
-		} as any);
+		} as ScoreDocument);
 
 		const res = await mockApi
 			.get("/ir/usc/charts/USC_CHART_HASH/record")
@@ -267,7 +267,7 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
 		await db.users.insert({
 			id: 2,
 			username: "not_zkldi",
-		} as any);
+		} as PrivateUserDocument);
 
 		await db.scores.insert([
 			{
@@ -278,7 +278,7 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
 				scoreID: "other_usc_score_pb",
 				scoreMeta: { noteMod: "NORMAL", gaugeMod: "HARD" },
 			},
-		] as any);
+		] as ScoreDocument[]);
 
 		const res = await mockApi
 			.get("/ir/usc/charts/USC_CHART_HASH/leaderboard?mode=best&n=2")

@@ -4,7 +4,7 @@
     "description": "A score tracking server.",
     "main": "js/index.js",
     "scripts": {
-        "fulltest": "tap",
+        "test": "tap",
         "watchtest": "tap --watch",
         "build": "tsc --project tsconfig.build.json",
         "lint": "eslint ./src --ext .ts --fix",

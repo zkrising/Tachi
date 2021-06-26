@@ -53,7 +53,7 @@ const err = p(config, {
 	ARC_API_URL: isValidURL,
 	ARC_AUTH_TOKEN: "string",
 	CDN_ROOT: "string",
-	CDN_URL: "*?string",
+	CDN_URL: p.nullable(p.optional(isValidURL)),
 	PORT: p.isPositiveInteger,
 	TYPE: p.isIn("ktchi", "btchi", "omni"),
 });

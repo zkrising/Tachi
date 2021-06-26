@@ -72,6 +72,7 @@ The valid input devices are listed below.
 ### Bokutachi
 
 | Game | Devices | Justifications |
+| :: | :: | :: |
 | unnamed_sdvx_clone | Same as SDVX | Keyboard play is not allowed, etc. |
 | BMS (7K) | Keyboard, any IIDX Controller | Keyboard play is allowed for BMS 7K. |
 | BMS (14K) | any two IIDX Controllers | Keyboard play is **NOT** allowed for BMS 14K. |
@@ -83,8 +84,9 @@ This rule is depressing to write, but it has to be said.
 
 This rule exists to make sure that the Tachi community is
 filled with good people, and that bad actors do not have
-a platform to be legitimised further. This rule covers
-interactions **outside of Tachi**, which includes, **but is not limited to**:
+a platform to be legitimised further. Unlike the civility
+rule, This rule covers interactions **outside of Tachi**,
+which includes, **but is not limited to**:
 
 - Assault of other community members (Physical, Sexual etc.).
 - Relationships with minors (When the offender is an adult of unreasonable age).
@@ -112,13 +114,11 @@ interactions **outside of Tachi**, which includes, **but is not limited to**:
 	stupid.)
 	- Not liking another community member.
 
-
-
 ## You are only allowed one account.
 
 Do not make multiple accounts, we track account IPs and it
-let's us know. This is to keep the leaderboards fair
-and avoid one player from taking multiple spaces.
+lets us know. This is to keep the leaderboards fair
+and avoid one player from taking up multiple spaces.
 
 ## Do not set NSFW artwork as your avatar or banner.
 

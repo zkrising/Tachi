@@ -111,4 +111,27 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/best", (t) => {
 	t.end();
 });
 
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/highlighted", (t) => {
+	t.beforeEach(ResetDBState);
+
+	t.test("Should return only highlighted sessions.", async (t) => {
+		await db.sessions.insert({
+			highlight: true,
+			userID: 1,
+			game: "iidx",
+			playtype: "SP",
+			sessionID: "highlighted_id",
+		} as SessionDocument);
+
+		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/sessions/highlighted");
+
+		t.equal(res.body.body.length, 1);
+		t.equal(res.body.body[0].sessionID, "highlighted_id");
+
+		t.end();
+	});
+
+	t.end();
+});
+
 t.teardown(CloseAllConnections);

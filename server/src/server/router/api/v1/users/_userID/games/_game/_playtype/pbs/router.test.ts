@@ -7,6 +7,8 @@ import {
 	Testing511Song,
 	LoadKTBlackIIDXData,
 	GetKTDataJSON,
+	TestingIIDXSPScorePB,
+	Testing511SPA,
 } from "../../../../../../../../../../test-utils/test-data";
 import { PBScoreDocument } from "tachi-common";
 
@@ -135,6 +137,38 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs", (t) => {
 				],
 			},
 		});
+
+		t.end();
+	});
+
+	t.end();
+});
+
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/:chartID", (t) => {
+	t.beforeEach(ResetDBState);
+
+	t.test("Should retrieve the PB at this chart ID.", async (t) => {
+		await db["personal-bests"].insert(TestingIIDXSPScorePB);
+
+		const res = await mockApi.get(`/api/v1/users/1/games/iidx/SP/pbs/${Testing511SPA.chartID}`);
+
+		t.equal(res.body.body.pb.chartID, Testing511SPA.chartID);
+		t.equal(res.body.body.chart.chartID, Testing511SPA.chartID);
+
+		t.end();
+	});
+
+	t.test("Should retrieve composed scores if param is set.", async (t) => {
+		await db["personal-bests"].insert(TestingIIDXSPScorePB);
+
+		const res = await mockApi.get(
+			`/api/v1/users/1/games/iidx/SP/pbs/${Testing511SPA.chartID}?getComposition=true`
+		);
+
+		t.equal(res.body.body.pb.chartID, Testing511SPA.chartID);
+		t.equal(res.body.body.chart.chartID, Testing511SPA.chartID);
+		t.equal(res.body.body.scores.length, 1);
+		t.equal(res.body.body.scores[0].scoreID, "TESTING_SCORE_ID");
 
 		t.end();
 	});

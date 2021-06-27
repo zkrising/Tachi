@@ -150,6 +150,7 @@ router.get("/:chartID", async (req, res) => {
 			description: `Successfull retrieved PB for user.`,
 			body: {
 				scores,
+				chart,
 				pb,
 			},
 		});

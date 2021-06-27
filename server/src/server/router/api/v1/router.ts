@@ -6,6 +6,7 @@ import usersRouter from "./users/router";
 import gamesRouter from "./games/router";
 import searchRouter from "./search/router";
 import scoresRouter from "./scores/router";
+import sessionsRouter from "./sessions/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -16,6 +17,7 @@ router.use("/users", usersRouter);
 router.use("/games", gamesRouter);
 router.use("/search", searchRouter);
 router.use("/scores", scoresRouter);
+router.use("/sessions", sessionsRouter);
 
 router.all("*", (req, res) =>
 	res.status(404).json({

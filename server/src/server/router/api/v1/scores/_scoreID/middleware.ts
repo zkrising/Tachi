@@ -4,13 +4,6 @@ import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "../../../../../../lib/con
 import { AssignToReqTachiData } from "../../../../../../utils/req-tachi-data";
 
 export const GetScoreFromParam: RequestHandler = async (req, res, next) => {
-	if (!req.params.scoreID) {
-		return res.status(400).json({
-			success: false,
-			description: `No scoreID given, but one was expected.`,
-		});
-	}
-
 	const score = await db.scores.findOne({ scoreID: req.params.scoreID });
 
 	if (!score) {

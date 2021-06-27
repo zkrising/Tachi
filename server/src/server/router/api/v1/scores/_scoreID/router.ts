@@ -82,7 +82,7 @@ router.patch(
 	RequireOwnershipOfScore,
 	RequirePermissions("customise_score"),
 	prValidate({
-		comment: p.optional(p.nullable(p.isBoundedString(1, 140))),
+		comment: p.optional(p.nullable(p.isBoundedString(1, 120))),
 		highlight: "*boolean",
 	}),
 	async (req, res) => {
@@ -94,7 +94,7 @@ router.patch(
 			modifyOption.comment = req.body.comment;
 		}
 
-		if (req.body.comment !== undefined) {
+		if (req.body.highlight !== undefined) {
 			modifyOption.highlight = req.body.highlight;
 		}
 

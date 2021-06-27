@@ -15,7 +15,6 @@ import {
 import db from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../../lib/logger/logger";
 import prValidate from "../../../../middleware/prudence-validate";
-import { RequireLoggedInSession } from "../../../../middleware/require-logged-in";
 
 const logger = CreateLogCtx(__filename);
 
@@ -226,7 +225,14 @@ router.post(
  * Logs out the requesting user.
  * @name POST /api/v1/auth/logout
  */
-router.post("/logout", RequireLoggedInSession, (req, res) => {
+router.post("/logout", (req, res) => {
+	if (!req.session?.tachi?.userID) {
+		return res.status(409).json({
+			success: false,
+			description: `You are not logged in.`,
+		});
+	}
+
 	req.session.destroy(() => 0);
 
 	return res.status(200).json({

@@ -4,7 +4,6 @@ import Prudence from "prudence";
 import { GetUserWithIDGuaranteed } from "../../../../../utils/user";
 import CreateLogCtx, { KtLogger } from "../../../../../lib/logger/logger";
 import prValidate from "../../../../middleware/prudence-validate";
-import { RequireLoggedInSession } from "../../../../middleware/require-logged-in";
 import ScoreImportFatalError from "../../../../../lib/score-import/framework/score-importing/score-import-error";
 import { SIXTEEN_MEGABTYES } from "../../../../../lib/constants/filesize";
 import { ExpressWrappedScoreImportMain } from "../../../../../lib/score-import/framework/express-wrapper";
@@ -16,6 +15,7 @@ import { ParseSolidStateXML } from "../../../../../lib/score-import/import-types
 import { ParseMerIIDX } from "../../../../../lib/score-import/import-types/file/mer-iidx/parser";
 import ParsePLIIIDXCSV from "../../../../../lib/score-import/import-types/file/pli-iidx-csv/parser";
 import { CONF_INFO } from "../../../../../lib/setup/config";
+import { RequirePermissions } from "../../../../middleware/auth";
 
 const logger = CreateLogCtx(__filename);
 
@@ -33,7 +33,7 @@ const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware(
  */
 router.post(
 	"/file",
-	RequireLoggedInSession,
+	RequirePermissions("submit_score"),
 	ParseMultipartScoredata,
 	prValidate(
 		{

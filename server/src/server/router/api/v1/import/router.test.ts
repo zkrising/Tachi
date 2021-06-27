@@ -7,7 +7,7 @@ import {
 	TestingIIDXEamusementCSV27,
 } from "../../../../../test-utils/test-data";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import { RequireNeutralAuthentication } from "../../../../../test-utils/api-common";
+import { RequireAuthPerms } from "../../../../../test-utils/api-common";
 import { CreateFakeAuthCookie } from "../../../../../test-utils/fake-auth";
 import ResetDBState, { SetIndexesForDB } from "../../../../../test-utils/resets";
 import db from "../../../../../external/mongo/db";
@@ -17,6 +17,8 @@ t.test("POST /api/v1/import/file", async (t) => {
 
 	t.before(SetIndexesForDB);
 	t.beforeEach(ResetDBState);
+
+	RequireAuthPerms("/api/v1/import/file", "submit_score", "POST");
 
 	t.test("file/eamusement-iidx-csv", (t) => {
 		t.beforeEach(LoadKTBlackIIDXData);

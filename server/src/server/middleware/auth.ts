@@ -111,6 +111,13 @@ export const RequirePermissions =
 			});
 		}
 
+		if (!req[SYMBOL_TachiAPIAuth].userID) {
+			return res.status(401).json({
+				success: false,
+				description: `You are not authorised to perform this action.`,
+			});
+		}
+
 		const missingPerms = [];
 		for (const perm of perms) {
 			if (!req[SYMBOL_TachiAPIAuth]!.permissions[perm]) {

@@ -18,8 +18,6 @@ t.test("POST /api/v1/import/file", async (t) => {
 	t.before(SetIndexesForDB);
 	t.beforeEach(ResetDBState);
 
-	RequireNeutralAuthentication("/api/v1/import/file", "POST");
-
 	t.test("file/eamusement-iidx-csv", (t) => {
 		t.beforeEach(LoadKTBlackIIDXData);
 

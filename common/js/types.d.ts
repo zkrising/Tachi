@@ -1028,7 +1028,7 @@ export declare type RedisIPCData = {
 /**
  * All the permissions a token may have.
  */
-export declare type APIPermissions = "submit_score" | "customise_profile" | "customise_session";
+export declare type APIPermissions = "submit_score" | "customise_profile" | "customise_session" | "customise_score" | "delete_score";
 /**
  * Information about the API Token used to make this request.
  */

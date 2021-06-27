@@ -1271,7 +1271,12 @@ export type RedisIPCData = {
 /**
  * All the permissions a token may have.
  */
-export type APIPermissions = "submit_score" | "customise_profile" | "customise_session";
+export type APIPermissions =
+	| "submit_score"
+	| "customise_profile"
+	| "customise_session"
+	| "customise_score"
+	| "delete_score";
 
 /**
  * Information about the API Token used to make this request.

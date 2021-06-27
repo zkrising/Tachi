@@ -3,7 +3,10 @@ import db from "../../../../../../external/mongo/db";
 import { SYMBOL_TachiData } from "../../../../../../lib/constants/tachi";
 import CreateLogCtx from "../../../../../../lib/logger/logger";
 import { GetUserWithID } from "../../../../../../utils/user";
-import { GetScoreFromParam } from "./middleware";
+import { RequirePermissions } from "../../../../../middleware/auth";
+import prValidate from "../../../../../middleware/prudence-validate";
+import { GetScoreFromParam, RequireOwnershipOfScore } from "./middleware";
+import p from "prudence";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -61,5 +64,58 @@ router.get("/", async (req, res) => {
 		},
 	});
 });
+
+interface ModifiableScoreProps {
+	comment?: string | null;
+	highlight?: boolean;
+}
+
+/**
+ * Modifies a score.
+ *
+ * Requires you to be the owner of this score, and have the modify_scores permission.
+ *
+ * @name PATCH /api/v1/scores/:scoreID
+ */
+router.patch(
+	"/",
+	RequireOwnershipOfScore,
+	RequirePermissions("customise_score"),
+	prValidate({
+		comment: p.optional(p.nullable(p.isBoundedString(1, 140))),
+		highlight: "*boolean",
+	}),
+	async (req, res) => {
+		const score = req[SYMBOL_TachiData]!.scoreDoc!;
+
+		const modifyOption: ModifiableScoreProps = {};
+
+		if (req.body.comment !== undefined) {
+			modifyOption.comment = req.body.comment;
+		}
+
+		if (req.body.comment !== undefined) {
+			modifyOption.highlight = req.body.highlight;
+		}
+
+		if (Object.keys(modifyOption).length === 0) {
+			return res.status(400).json({
+				success: false,
+				description: `This request modifies nothing about the score.`,
+			});
+		}
+
+		const newScore = await db.scores.findOneAndUpdate(
+			{ scoreID: score.scoreID },
+			{ $set: modifyOption }
+		);
+
+		return res.status(200).json({
+			success: true,
+			description: `Updated score.`,
+			body: newScore,
+		});
+	}
+);
 
 export default router;

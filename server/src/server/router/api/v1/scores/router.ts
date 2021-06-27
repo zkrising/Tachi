@@ -4,11 +4,11 @@ import scoreIDRouter from "./_scoreID/router";
 const router: Router = Router({ mergeParams: true });
 
 /**
- * No idea yet.
+ * Nothing? Maybe we can think of a good use for this endpoint at some point.
  *
- * @name GET /api/v1/scores
+ * @name GET /api/v1/scores/:scoreID
  */
-router.get("/", async (req, res) => {});
+// router.get("/", async (req, res) => {});
 
 router.use("/:scoreID", scoreIDRouter);
 

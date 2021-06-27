@@ -17,6 +17,9 @@ const GuestToken: APITokenDocument = {
 export const AllPermissions: Record<APIPermissions, true> = {
 	customise_profile: true,
 	submit_score: true,
+	customise_session: true,
+	customise_score: true,
+	delete_score: true,
 };
 
 /**
@@ -31,7 +34,7 @@ export const AllPermissions: Record<APIPermissions, true> = {
  * If this request was made with no auth headers or session tokens, then a guest
  * token is set as the request token, with no permissions.
  *
- * This is set on req[SYMBOL_TachiAPIData].
+ * This is set on req[SYMBOL_TachiAPIAuth].
  */
 export const SetRequestPermissions: RequestHandler = async (req, res, next) => {
 	if (req.session?.tachi?.userID) {
@@ -98,7 +101,9 @@ export const RequirePermissions =
 	(...perms: APIPermissions[]): RequestHandler =>
 	(req, res, next) => {
 		if (!req[SYMBOL_TachiAPIAuth]) {
-			logger.error(`RequirePermissions middleware was hit without any TachiAPIData?`);
+			logger.error(
+				`RequirePermissions middleware was hit without any TachiAPIAuthentication?`
+			);
 
 			return res.status(500).json({
 				success: false,

@@ -2,7 +2,8 @@ import { Router } from "express";
 import db from "../../../../../../../../../external/mongo/db";
 import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi";
 import CreateLogCtx from "../../../../../../../../../lib/logger/logger";
-import { FormatChart } from "../../../../../../../../../utils/misc";
+import { SearchUsersRegExp } from "../../../../../../../../../lib/search/search";
+import { FormatChart, IsString } from "../../../../../../../../../utils/misc";
 import { ParseStrPositiveNonZeroInt } from "../../../../../../../../../utils/string-checks";
 import { GetUsersWithIDs } from "../../../../../../../../../utils/user";
 import { ValidateAndGetChart } from "./middleware";
@@ -93,6 +94,40 @@ router.get("/pbs", async (req, res) => {
 	);
 
 	const users = await GetUsersWithIDs(pbs.map((e) => e.userID));
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned ${pbs.length} scores.`,
+		body: {
+			pbs,
+			users,
+		},
+	});
+});
+
+/**
+ * Searches the PBs on this chart for the given user(s).
+ *
+ * @param search - The user to search for
+ *
+ * @name GET /api/v1/games/:game/:playtype/charts/:chartID/pbs/search
+ */
+router.get("/pbs/search", async (req, res) => {
+	const chart = req[SYMBOL_TachiData]!.chartDoc!;
+
+	if (!IsString(req.query.search)) {
+		return res.status(400).json({
+			success: false,
+			description: `Invalid parameter for search.`,
+		});
+	}
+
+	const users = await SearchUsersRegExp(req.query.search);
+
+	const pbs = await db["personal-bests"].find({
+		chartID: chart.chartID,
+		userID: { $in: users.map((e) => e.id) },
+	});
 
 	return res.status(200).json({
 		success: true,

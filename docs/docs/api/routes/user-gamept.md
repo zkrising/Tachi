@@ -527,3 +527,49 @@ GET /api/v1/users/zkldi/games/iidx/SP/sessions/best
 	}
 ]
 ```
+
+## Get a user's most recent 100 highlighted sessions.
+
+`GET /api/v1/users/:userID/games/:game/:playtype/sessions/highlighted`
+
+Retrieves a user's most recent 100 highlighted sessions for this game.
+
+These are returned in descending order according to `timeEnded`.
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
+| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
+| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | Array&lt;SessionDocument&gt; | The array of the users highlighted sessions. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/users/zkldi/games/iidx/SP/sessions/highlighted
+```
+
+#### Response
+
+```js
+[
+	{
+		userID: 1,
+		game: "iidx",
+		playtype: "SP",
+		calculatedData: {
+			ktRating: 14,
+			bpi: 3
+		}
+		highlight: true
+	},
+]
+```

@@ -5,6 +5,7 @@ export interface CounterDocument {
     counterName: string;
     value: integer;
 }
+export declare type AnyPlaytype = Playtypes[Game];
 /**
  * IDStrings are an internal (ish) identifier used to identify
  * Game + Playtype combos. These are used because TypeScript cannot accurately
@@ -71,7 +72,7 @@ export interface GameToIDStrings {
 export interface MongoDBDocument {
     _id?: IObjectID;
 }
-export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "personal-bests" | "imports" | "import-timings" | "tierlist-data" | "tierlists" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users" | "kai-auth-tokens" | "bms-course-lookup" | "api-tokens" | "import-locks";
+export declare type Databases = "sessions" | "session-views" | "folders" | "folder-chart-lookup" | "scores" | "personal-bests" | "imports" | "import-timings" | "tierlist-data" | "tierlists" | "goals" | "user-goals" | "user-milestones" | "milestones" | "game-stats" | "users" | "kai-auth-tokens" | "bms-course-lookup" | "api-tokens" | "import-locks" | "tables";
 export declare type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 /**
  * Supported games by Kamaitachi.
@@ -175,10 +176,10 @@ export interface Difficulties {
  * but i can not.
  */
 export declare type integer = number;
-export declare type Ratings = Record<Game, Record<Playtypes[Game], number>>;
+export declare type Ratings = Record<Game, Record<AnyPlaytype, number>>;
 export interface BaseGoalDocument extends MongoDBDocument {
     game: Game;
-    playtype: Playtypes[Game];
+    playtype: AnyPlaytype;
     timeAdded: integer;
     createdBy: integer;
     title: string;
@@ -246,7 +247,7 @@ export interface RivalGroupDocument extends MongoDBDocument {
     mutualGroup: boolean;
     isDefault: boolean;
     game: Game;
-    playtype: Playtypes[Game];
+    playtype: AnyPlaytype;
     settings: {
         scoreCompareMode: "relevant" | "folder";
         strictness: number;
@@ -284,7 +285,7 @@ export interface MutualRivalGroupDocument extends MongoDBDocument {
     members: integer[];
     outgoingInvites: integer[];
     game: Game;
-    playtype: Playtypes[Game];
+    playtype: AnyPlaytype;
     folders: MRGFolderInformation[];
     settings: Record<string, never>;
     mrgID: string;
@@ -336,7 +337,7 @@ export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoD
     name: string;
     desc: string | null;
     game: Game;
-    playtype: Playtypes[Game];
+    playtype: AnyPlaytype;
     importType: ImportTypes;
     timeInserted: integer;
     timeEnded: integer;
@@ -355,7 +356,7 @@ interface ImportErrContent {
 }
 export interface ClassDelta {
     set: AllClassSets;
-    playtype: Playtypes[Game];
+    playtype: AnyPlaytype;
     old: integer | null;
     new: integer;
 }
@@ -418,7 +419,7 @@ export interface UserGoalDocument extends MongoDBDocument {
     goalID: string;
     userID: integer;
     game: Game;
-    playtype: Playtypes[Game];
+    playtype: AnyPlaytype;
     achieved: boolean;
     timeSet: integer;
     timeAchieved: integer | null;
@@ -439,7 +440,7 @@ interface MilestoneSection {
 }
 export interface MilestoneDocument extends MongoDBDocument {
     game: Game;
-    playtype: Playtypes[Game];
+    playtype: AnyPlaytype;
     /**
      * all: All goals must be achieved in order for the milestone to be complete
      * abs: Goals achieved must be greater than or equal to criteria.value.
@@ -463,7 +464,7 @@ interface MilestoneAbsPropCriteria {
 }
 export interface MilestoneGroupDocument extends MongoDBDocument {
     game: Game;
-    playtype: Playtypes[Game];
+    playtype: AnyPlaytype;
     isDefault: boolean;
     createdBy: integer;
     groupName: string;
@@ -606,7 +607,7 @@ export interface AnyChartDocument extends MongoDBDocument {
     level: string;
     levelNum: number;
     difficulty: Difficulties[IDStrings];
-    playtype: Playtypes[Game];
+    playtype: AnyPlaytype;
     isPrimary: boolean;
     versions: string[];
 }
@@ -704,13 +705,20 @@ export interface AnySongDocument extends MongoDBDocument {
 export interface SongDocument<G extends Game> extends AnySongDocument {
     data: SongDocumentData[G];
 }
+export interface TableDocument extends MongoDBDocument {
+    game: Game;
+    playtype: AnyPlaytype;
+    title: string;
+    description: string;
+    official: boolean;
+    createdBy: integer | null;
+    folders: string[];
+}
 export interface BaseFolderDocument extends MongoDBDocument {
     title: string;
     game: Game;
-    playtype: Playtypes[Game];
+    playtype: AnyPlaytype;
     folderID: string;
-    table: string;
-    tableIndex: number;
 }
 export interface FolderSongsDocument extends BaseFolderDocument {
     type: "songs";
@@ -733,7 +741,7 @@ export interface UserMilestoneDocument extends MongoDBDocument {
     milestoneID: string;
     userID: integer;
     game: Game;
-    playtype: Playtypes[Game];
+    playtype: AnyPlaytype;
     timeSet: integer;
     achieved: boolean;
     timeAchieved: integer | null;
@@ -909,7 +917,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
     userID: integer;
     chartID: string;
     game: Game;
-    playtype: Playtypes[Game];
+    playtype: AnyPlaytype;
     songID: integer;
     comments: string[];
     highlight: boolean;

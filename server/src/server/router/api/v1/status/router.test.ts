@@ -17,6 +17,7 @@ t.test("GET /api/v1/status", async (t) => {
 			"Should be roughly the current time (5 seconds lenience)"
 		);
 		t.equal(res.body.body.version, FormatVersion());
+		t.equal(res.body.body.whoami, 1);
 
 		t.end();
 	});
@@ -32,6 +33,7 @@ t.test("GET /api/v1/status", async (t) => {
 			"Should be roughly the current time (5 seconds lenience)"
 		);
 		t.equal(res.body.body.version, FormatVersion());
+		t.equal(res.body.body.whoami, 1);
 
 		t.end();
 	});
@@ -52,6 +54,7 @@ t.test("POST /api/v1/status", async (t) => {
 			"Should be roughly the current time (5 seconds lenience)"
 		);
 		t.equal(res.body.body.version, FormatVersion());
+		t.equal(res.body.body.whoami, 1);
 
 		t.end();
 	});
@@ -69,6 +72,7 @@ t.test("POST /api/v1/status", async (t) => {
 			"Should be roughly the current time (5 seconds lenience)"
 		);
 		t.equal(res.body.body.version, FormatVersion());
+		t.equal(res.body.body.whoami, 1);
 
 		t.end();
 	});

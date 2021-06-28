@@ -16,6 +16,7 @@ router.get("/", (req, res) => {
 		body: {
 			serverTime: Date.now(),
 			version: FormatVersion(),
+			whoami: req[SYMBOL_TachiAPIAuth].userID,
 			// converts {foo: true, bar: false, baz: true} into [foo, baz]
 			permissions: Object.entries(req[SYMBOL_TachiAPIAuth].permissions)
 				.filter((e) => e[1])
@@ -37,6 +38,7 @@ router.post("/", (req, res) => {
 		body: {
 			serverTime: Date.now(),
 			version: FormatVersion(),
+			whoami: req[SYMBOL_TachiAPIAuth].userID,
 			// converts {foo: true, bar: false, baz: true} into [foo, baz]
 			permissions: Object.entries(req[SYMBOL_TachiAPIAuth].permissions)
 				.filter((e) => e[1])

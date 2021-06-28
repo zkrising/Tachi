@@ -896,8 +896,6 @@ export interface TableDocument extends MongoDBDocument {
 	playtype: AnyPlaytype;
 	title: string;
 	description: string;
-	official: boolean;
-	createdBy: integer | null;
 	folders: string[];
 }
 

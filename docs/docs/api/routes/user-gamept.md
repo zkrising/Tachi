@@ -301,6 +301,53 @@ GET /api/v1/users/zkldi/games/iidx/SP/pbs/best?alg=BPI
 
 *****
 
+## Get A User's PB for a given chart.
+
+`GET /api/v1/users/:userID/games/:game/:playtype/pbs/:chartID`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
+| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
+| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+| `:chartID` | URL Parameter | The chart to retrieve this user's PB for. |
+| `getComposition` | Presence | If present, the individual ScoreDocuments that composed this PB will also be returned. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `pb` | PBDocument | The user's PB for this chart. |
+| `chart` | ChartDocument | The chart this PB is on. |
+| `scores` (Conditional) | ScoreDocument[] | If `getComposition` is present, then this field contains the array of score documents that composed this PB. | 
+
+### Example
+
+#### Request
+```
+GET /api/v1/users/1/games/iidx/SP/pbs/some_chart_id
+```
+
+#### Response
+
+```js
+{
+	pb: {
+		chartID: "some_chart_id",
+		userID: 1,
+		game: "iidx",
+		playtype: "SP",
+	},
+	chart: {
+		chartID: "some_chart_id"
+	}
+}
+```
+
+*****
+
 ## Search a user's individual scores.
 
 `GET /api/v1/users/:userID/games/:game/:playtype/scores`

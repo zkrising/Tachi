@@ -891,6 +891,7 @@ export interface SongDocument<G extends Game> extends AnySongDocument {
 }
 
 export interface TableDocument extends MongoDBDocument {
+	tableID: string;
 	game: Game;
 	playtype: AnyPlaytype;
 	title: string;

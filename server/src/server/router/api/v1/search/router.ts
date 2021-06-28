@@ -7,6 +7,8 @@ const router: Router = Router({ mergeParams: true });
 /**
  * Performs a generic "search" across Tachi.
  *
+ * @param search - The criteria to search on.
+ *
  * @name GET /api/v1/search
  */
 router.get("/", async (req, res) => {

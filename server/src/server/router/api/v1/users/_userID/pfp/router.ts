@@ -103,7 +103,7 @@ router.delete(
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 
 		if (!user.customPfp) {
-			return res.status(409).json({
+			return res.status(404).json({
 				success: false,
 				description: `You do not have a custom profile picture to delete.`,
 			});

@@ -12,9 +12,9 @@ This endpoints are for specific users information on specific game + playtype co
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 
 ### Response
 
@@ -68,9 +68,9 @@ GET /api/v1/users/zkldi/games/iidx/SP
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `unachieved` (Optional) | Presence | If present, only unachieved goals are returned. |
 
 ### Response
@@ -122,9 +122,9 @@ GET /api/v1/users/zkldi/games/iidx/SP/goals
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `unachieved` (Optional) | Presence | If present, only unachieved milestones are returned. |
 
 ### Response
@@ -172,9 +172,9 @@ GET /api/v1/users/zkldi/games/iidx/SP/milestones
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `search` | String | Limits the returned scores to those where the corresponding song is most similar to this query. |
 
 ### Response
@@ -236,9 +236,9 @@ different rating algorithm to sort under.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `alg` | String | An overriding rating algorithm to use instead of the default. |
 
 ### Response
@@ -301,6 +301,53 @@ GET /api/v1/users/zkldi/games/iidx/SP/pbs/best?alg=BPI
 
 *****
 
+## Get A User's PB for a given chart.
+
+`GET /api/v1/users/:userID/games/:game/:playtype/pbs/:chartID`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+
+
+
+
+| `getComposition` | Presence | If present, the individual ScoreDocuments that composed this PB will also be returned. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `pb` | PBDocument | The user's PB for this chart. |
+| `chart` | ChartDocument | The chart this PB is on. |
+| `scores` (Conditional) | ScoreDocument[] | If `getComposition` is present, then this field contains the array of score documents that composed this PB. | 
+
+### Example
+
+#### Request
+```
+GET /api/v1/users/1/games/iidx/SP/pbs/some_chart_id
+```
+
+#### Response
+
+```js
+{
+	pb: {
+		chartID: "some_chart_id",
+		userID: 1,
+		game: "iidx",
+		playtype: "SP",
+	},
+	chart: {
+		chartID: "some_chart_id"
+	}
+}
+```
+
+*****
+
 ## Search a user's individual scores.
 
 `GET /api/v1/users/:userID/games/:game/:playtype/scores`
@@ -309,9 +356,9 @@ GET /api/v1/users/zkldi/games/iidx/SP/pbs/best?alg=BPI
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `search` | String | Limits the returned scores to those where the corresponding song is most similar to this query. |
 
 ### Response
@@ -374,9 +421,9 @@ GET /api/v1/users/zkldi/games/iidx/SP/scores?search=Verfl
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 
 ### Response
 
@@ -435,9 +482,9 @@ song titles of played songs inside sessions.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `search` | string | The session name to search for. |
 
 ### Response
@@ -481,9 +528,9 @@ These are returned in descending order.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `alg` (Optional) | string | The name of the algorithm to use instead of the default. |
 
 ### Response
@@ -525,5 +572,51 @@ GET /api/v1/users/zkldi/games/iidx/SP/sessions/best
 			bpi: 4
 		}
 	}
+]
+```
+
+## Get a user's most recent 100 highlighted sessions.
+
+`GET /api/v1/users/:userID/games/:game/:playtype/sessions/highlighted`
+
+Retrieves a user's most recent 100 highlighted sessions for this game.
+
+These are returned in descending order according to `timeEnded`.
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+
+
+
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | Array&lt;SessionDocument&gt; | The array of the users highlighted sessions. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/users/zkldi/games/iidx/SP/sessions/highlighted
+```
+
+#### Response
+
+```js
+[
+	{
+		userID: 1,
+		game: "iidx",
+		playtype: "SP",
+		calculatedData: {
+			ktRating: 14,
+			bpi: 3
+		}
+		highlight: true
+	},
 ]
 ```

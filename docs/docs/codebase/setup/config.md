@@ -113,6 +113,21 @@ We use an ARC session token in order to pull scores from `ARC`. The session toke
 and profile pictures. This is a folder somewhere on the
 system (presumably using nginx serve-static).
 
+### CDN_URL
+
+- Type: URL or null (Optional).
+
+This parameter dictates where the CDN server is. Requests that hit the CDN
+will be redirected here. If null, or not present, `tachi-server` will use
+filesystem calls for the files (and return them) instead of redirects.
+
+!!! note
+	Nginx Serve-Static is relatively easy to set up, and provides
+	massive performance increases for this kind of stufff.
+
+	I highly recommend against leaving this null, as you can cause
+	large performance deficits.
+
 ### PORT
 
 - Type: Port (1-65536)
@@ -134,21 +149,3 @@ names.
 
 "omni" will run the server without any route restrictions.
 This is used for testing.
-
-## Environment Variables
-
-### TACHI_PARALLEL_TESTS
-
-If this is set and `tap` is invoked, this will change some
-things about the environment to support running multiple
-tests at once.
-
-!!! warning
-	This will ruin your MongoDB installation with lots of
-	ephemeral collections. Do not run this on a local
-	setup.
-
-	This is intended for Github Actions' runner, which is
-	designed to quickly start up and then tear everything
-	down afterwards.
-

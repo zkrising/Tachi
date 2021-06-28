@@ -1,7 +1,7 @@
 site_name: Tachi Documentation
 site_description: Mono-documentation for Kamaitachi, Bokutachi and related things.
 site_author: zkldi
-site_url: https://docs.bokutachi.xyz
+site_url: https://tachi.rtfd.io
 
 theme:
   name: material
@@ -49,6 +49,11 @@ nav:
       - "api/routes/auth.md"
       - "api/routes/users.md"
       - "api/routes/user-gamept.md"
+      - "api/routes/sessions.md"
+      - "api/routes/scores.md"
+      - "api/routes/search.md"
+      - "api/routes/games.md"
+      - "api/routes/gpt.md"
 
   - Codebase Reference:
     - "codebase/overview.md"

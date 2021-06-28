@@ -24,6 +24,7 @@ It's a good way of sanity checking whether your code works.
 | Property | Type | Description |
 | :: | :: | :: |
 | `serverTime` | integer | The current time of the server in Unix Milliseconds. |
+| `whoami` | integer \| null | The userID you are authenticated as. If you are not authenticated, this is null. |
 | `version` | string | The current version of Tachi-Server running. |
 | `permissions` | Array&lt;string&gt; | The permissions this request had. |
 | `echo` (Conditional) | string | If an `echo` parameter was provided, this is that exact parameter. |

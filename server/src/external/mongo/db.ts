@@ -62,7 +62,7 @@ monkDB
 	});
 
 const RemoveIDMiddleware: TMiddleware =
-	({ collection, monkInstance }) =>
+	() =>
 	(next) =>
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	(args: any, method) => {

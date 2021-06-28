@@ -4,7 +4,9 @@
         "token": "fake_api_token",
         "permissions": {
             "submit_score": true,
-            "customise_profile": true
+            "customise_profile": true,
+            "customise_score": true,
+            "customise_session": true
         },
         "identifier": "Mock Token For Testing"
     }

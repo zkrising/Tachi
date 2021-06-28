@@ -1,5 +1,7 @@
 import {
 	integer,
+	SessionDocument,
+	ScoreDocument,
 	ChartDocument,
 	PublicUserDocument,
 	UserGameStats,
@@ -53,4 +55,6 @@ export interface TachiRequestData {
 
 	chartDoc?: AnyChartDocument;
 	songDoc?: AnySongDocument;
+	scoreDoc?: ScoreDocument;
+	sessionDoc?: SessionDocument;
 }

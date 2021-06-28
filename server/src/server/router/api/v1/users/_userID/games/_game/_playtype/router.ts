@@ -12,13 +12,13 @@ import {
 	integer,
 	PBScoreDocument,
 } from "tachi-common";
-import {
-	SearchGameSongsAndCharts,
-	SearchSessions,
-} from "../../../../../../../../../lib/search/search";
+import { SearchGameSongsAndCharts } from "../../../../../../../../../lib/search/search";
 import { FilterChartsAndSongs } from "../../../../../../../../../utils/scores";
 import { CheckStrProfileAlg } from "../../../../../../../../../utils/string-checks";
 import { IsString } from "../../../../../../../../../utils/misc";
+import pbsRouter from "./pbs/router";
+import sessionsRouter from "./sessions/router";
+
 const router: Router = Router({ mergeParams: true });
 
 router.use(CheckUserPlayedGamePlaytype);
@@ -242,157 +242,6 @@ router.get("/scores/recent", async (req, res) => {
 });
 
 /**
- * Searches a user's personal bests.
- *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/scores
- */
-router.get("/pbs", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
-
-	if (typeof req.query.search !== "string") {
-		return res.status(400).json({
-			success: false,
-			description: `Invalid value of ${req.query.search} for search parameter.`,
-		});
-	}
-
-	const { songs: allSongs, charts: allCharts } = await SearchGameSongsAndCharts(
-		game,
-		req.query.search,
-		playtype
-	);
-
-	const pbs = await db["personal-bests"].find(
-		{
-			chartID: { $in: allCharts.map((e) => e.chartID) },
-			userID: user.id,
-		},
-		{
-			sort: {
-				timeAchieved: -1,
-			},
-			limit: 30,
-		}
-	);
-
-	const { songs, charts } = FilterChartsAndSongs(pbs, allCharts, allSongs);
-
-	return res.status(200).json({
-		success: true,
-		description: `Retrieved ${pbs.length} personal bests.`,
-		body: {
-			pbs,
-			songs,
-			charts,
-		},
-	});
-});
-
-/**
- * Returns a users best 100 personal-bests for this game.
- *
- * @param alg - Specifies an override for the default algorithm
- * to sort on. UNIMPLEMENTED.
- * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/best
- */
-router.get("/pbs/best", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	const pbs = await db["personal-bests"].find(
-		{
-			userID: user.id,
-			game,
-			playtype,
-			isPrimary: true,
-		},
-		{
-			limit: 100,
-			sort: {
-				[`calculatedData.${gptConfig.defaultScoreRatingAlg}`]: -1,
-			},
-		}
-	);
-
-	const { songs, charts } = await GetRelevantSongsAndCharts(pbs, game);
-
-	return res.status(200).json({
-		success: true,
-		description: `Retrieved ${pbs.length} personal bests.`,
-		body: {
-			scores: pbs,
-			songs,
-			charts,
-		},
-	});
-});
-
-/**
- * Search a users sessions.
- *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions
- */
-router.get("/sessions", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
-
-	if (typeof req.query.search !== "string") {
-		return res.status(400).json({
-			success: false,
-			description: `Invalid value of ${req.query.search} for search parameter.`,
-		});
-	}
-
-	const sessions = await SearchSessions(req.query.search, game, playtype, user.id, 100);
-
-	return res.status(200).json({
-		success: true,
-		description: `Retrieved ${sessions.length} sessions.`,
-		body: sessions,
-	});
-});
-
-/**
- * Returns a user's best 100 sessions according to the default statistic
- * for that game.
- *
- * @param alg - An override to specify a different algorithm for that game.
- * UNIMPLEMENTED!!!
- * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions/best
- */
-router.get("/sessions/best", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	const sessions = await db.sessions.find(
-		{
-			userID: user.id,
-			game,
-			playtype,
-		},
-		{
-			limit: 100,
-			sort: {
-				[`calculatedData.${gptConfig.defaultSessionRatingAlg}`]: -1,
-			},
-		}
-	);
-
-	return res.status(200).json({
-		success: true,
-		description: `Retrieved ${sessions.length} sessions.`,
-		body: sessions,
-	});
-});
-
-/**
  * Returns the users most played charts by playcount.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/most-played
@@ -544,5 +393,8 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 		},
 	});
 });
+
+router.use("/pbs", pbsRouter);
+router.use("/sessions", sessionsRouter);
 
 export default router;

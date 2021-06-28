@@ -6,6 +6,7 @@ import {
 	AnyChartDocument,
 	AnySongDocument,
 } from "tachi-common";
+import { DedupeArr } from "./misc";
 
 export function GetPBOnChart(userID: integer, chartID: string) {
 	return db["personal-bests"].findOne({
@@ -39,4 +40,14 @@ export function FilterChartsAndSongs(
 		songs: songs.filter((e) => songIDs.has(e.id)),
 		charts: charts.filter((e) => chartIDs.has(e.chartID)),
 	};
+}
+
+export function GetScoreIDsFromComposed(pb: PBScoreDocument) {
+	const arr = [pb.composedFrom.lampPB, pb.composedFrom.scorePB];
+
+	if (pb.composedFrom.other) {
+		arr.push(...pb.composedFrom.other.map((e) => e.scoreID));
+	}
+
+	return DedupeArr(arr);
 }

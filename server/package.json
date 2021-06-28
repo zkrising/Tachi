@@ -11,7 +11,7 @@
         "buildrun": "tsc --project tsconfig.build.json && node js/main.js"
     },
     "author": "zkldi",
-    "license": "ISC",
+    "license": "AGPL3",
     "devDependencies": {
         "@types/bcrypt": "5.0.0",
         "@types/connect-redis": "0.0.16",

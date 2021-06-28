@@ -31,6 +31,6 @@
         "comment": null,
         "timeAdded": 1,
         "scoreID": "TESTING_SCORE_ID",
-        "importType": "iidx:eamusement-csv"
+        "importType": "file/eamusement-iidx-csv"
     }
 ]

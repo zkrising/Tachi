@@ -51,6 +51,17 @@ GET /api/v1/users
 | :: | :: | :: |
 | `:userID` | URL Parameter | The user's userID or their username. |
 
+!!! note
+	The :userID param has some special functionality,
+	and any time you see it in these docs, that
+	functionality is supported.
+
+	You may pass the integer userID for this user - 1.
+	You may also pass the username - zkldi.
+	You may also pass the special string - `me` - which
+	will select whatever user this authentication token
+	is for.
+
 ### Response
 
 | Property | Type | Description |
@@ -70,6 +81,8 @@ GET /api/v1/users
 GET /api/v1/users/zkldi
 OR
 GET /api/v1/users/1
+OR
+GET /api/v1/users/me WHEN authenticated as userID 1.
 ```
 
 #### Response

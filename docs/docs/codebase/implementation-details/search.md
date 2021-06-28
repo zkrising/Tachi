@@ -24,3 +24,20 @@ This is sometimes exposed in the API for sorting reasons.
 	Regex has performance issues on larger datasets and we
 	want to avoid it. Most regexes cannot use indexes, and therefore invoke a COLLSCAN, which
 	we want to avoid.
+
+## User Searching
+
+Searching users, on the other hand, has to use regex-based
+searching.
+
+The `$text` method attempts to break things up based on their
+words, but that doesn't help with usernames, as they are all
+too frequently `XxX_One_Long_Str1ng_xXx`.
+
+Instead, we use a case insensitive regex - similar to SQL's
+`LIKE`.
+
+This means we do not have a `__textScore` property for this
+search to sort on. Instead, we just constrict returns to
+around 15, and have the user whittle their search down
+better.

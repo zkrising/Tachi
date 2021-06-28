@@ -13,7 +13,7 @@ These endpoints are related to users in general.
 | Property | Type | Description |
 | :: | :: | :: |
 | `online` (Optional) | Presence | If present, this limits the returned users to those that are currently online. |
-| `username` (Optional) | String | If present, this endpoint works like a search engine for usernames. Users will be returned in their proximity to the original text. |
+| `search` (Optional) | String | If present, this endpoint will only return users where this string is contained within their username. |
 
 ### Response
 
@@ -33,7 +33,7 @@ GET /api/v1/users
 
 ```js
 [{
-	"userID": 1,
+	"id": 1,
 	"username": "zkldi",
 	// ... continued
 }]
@@ -76,7 +76,7 @@ GET /api/v1/users/1
 
 ```js
 {
-	userID: 1,
+	id: 1,
 	username: "zkldi",
 	// ... so on
 }

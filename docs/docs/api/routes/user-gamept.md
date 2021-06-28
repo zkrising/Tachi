@@ -12,9 +12,9 @@ This endpoints are for specific users information on specific game + playtype co
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 
 ### Response
 
@@ -68,9 +68,9 @@ GET /api/v1/users/zkldi/games/iidx/SP
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `unachieved` (Optional) | Presence | If present, only unachieved goals are returned. |
 
 ### Response
@@ -122,9 +122,9 @@ GET /api/v1/users/zkldi/games/iidx/SP/goals
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `unachieved` (Optional) | Presence | If present, only unachieved milestones are returned. |
 
 ### Response
@@ -172,9 +172,9 @@ GET /api/v1/users/zkldi/games/iidx/SP/milestones
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `search` | String | Limits the returned scores to those where the corresponding song is most similar to this query. |
 
 ### Response
@@ -236,9 +236,9 @@ different rating algorithm to sort under.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `alg` | String | An overriding rating algorithm to use instead of the default. |
 
 ### Response
@@ -309,10 +309,10 @@ GET /api/v1/users/zkldi/games/iidx/SP/pbs/best?alg=BPI
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
-| `:chartID` | URL Parameter | The chart to retrieve this user's PB for. |
+
+
+
+
 | `getComposition` | Presence | If present, the individual ScoreDocuments that composed this PB will also be returned. |
 
 ### Response
@@ -356,9 +356,9 @@ GET /api/v1/users/1/games/iidx/SP/pbs/some_chart_id
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `search` | String | Limits the returned scores to those where the corresponding song is most similar to this query. |
 
 ### Response
@@ -421,9 +421,9 @@ GET /api/v1/users/zkldi/games/iidx/SP/scores?search=Verfl
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 
 ### Response
 
@@ -482,9 +482,9 @@ song titles of played songs inside sessions.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `search` | string | The session name to search for. |
 
 ### Response
@@ -528,9 +528,9 @@ These are returned in descending order.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 | `alg` (Optional) | string | The name of the algorithm to use instead of the default. |
 
 ### Response
@@ -587,9 +587,9 @@ These are returned in descending order according to `timeEnded`.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The ID or username of the user to retrieve information from. |
-| `:game` | URL Parameter | The game to retrieve information from. Must be a supported game. |
-| `:playtype` | URL Parameter | The playtype to retrieve information for. Must be a supported playtype of the previous game. |
+
+
+
 
 ### Response
 

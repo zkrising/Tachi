@@ -49,7 +49,7 @@ GET /api/v1/users
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The user's userID or their username. |
+
 
 !!! note
 	The :userID param has some special functionality,
@@ -105,7 +105,7 @@ GET /api/v1/users/me WHEN authenticated as userID 1.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `:userID` | URL Parameter | The user ID or username to fetch the data of. |
+
 
 ### Response
 

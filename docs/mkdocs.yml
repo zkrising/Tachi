@@ -50,7 +50,10 @@ nav:
       - "api/routes/users.md"
       - "api/routes/user-gamept.md"
       - "api/routes/sessions.md"
+      - "api/routes/scores.md"
       - "api/routes/search.md"
+      - "api/routes/games.md"
+      - "api/routes/gpt.md"
 
   - Codebase Reference:
     - "codebase/overview.md"

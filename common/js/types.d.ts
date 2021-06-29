@@ -644,7 +644,7 @@ export interface TierlistParent<G extends Game = Game> extends MongoDBDocument {
 export interface TierlistDataDocument<F extends string = never> extends MongoDBDocument {
     chartID: string;
     tierlistID: string;
-    type: "grade" | "lamp" | "score";
+    type: "lamp" | "score";
     key: string | null;
     tierlistDataID: string;
     data: {

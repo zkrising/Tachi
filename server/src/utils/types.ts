@@ -9,6 +9,7 @@ import {
 	UserGameStats,
 	Game,
 	Playtypes,
+	TierlistParent,
 	AnyChartDocument,
 	AnySongDocument,
 } from "tachi-common";
@@ -61,4 +62,5 @@ export interface TachiRequestData {
 	sessionDoc?: SessionDocument;
 	tableDoc?: TableDocument;
 	folderDoc?: FolderDocument;
+	tierlistDoc?: TierlistParent;
 }

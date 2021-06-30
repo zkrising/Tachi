@@ -5,7 +5,7 @@ import { SearchCollection } from "../../../../../../../../lib/search/search";
 import { GetFolderCharts } from "../../../../../../../../utils/folder";
 import { IsString } from "../../../../../../../../utils/misc";
 import { GetDefaultTierlist } from "../../../../../../../../utils/tierlist";
-import { GetFolderFromParam } from "./middleware";
+import { GetFolderFromParam, HandleTierlistIDParam } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -66,42 +66,15 @@ router.get("/:folderID", GetFolderFromParam, async (req, res) => {
  * @param type - The type of tierlist data to return. Can be "lamp" or
  * "score".
  */
-router.get("/:folderID/tierlist", GetFolderFromParam, async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+router.get("/:folderID/tierlist", GetFolderFromParam, HandleTierlistIDParam, async (req, res) => {
 	const folder = req[SYMBOL_TachiData]!.folderDoc!;
+	const tierlist = req[SYMBOL_TachiData]!.tierlistDoc!;
 
 	if (req.query.type !== "lamp" && req.query.type !== "score") {
 		return res.status(400).json({
 			success: false,
 			description: `Invalid value of type. Expected lamp or score.`,
 		});
-	}
-
-	let tierlist;
-
-	if (IsString(req.query.tierlistID)) {
-		tierlist = await db.tierlists.findOne({
-			tierlistID: req.query.tierlistID,
-			game,
-			playtype,
-		});
-
-		if (!tierlist) {
-			return res.status(404).json({
-				success: false,
-				description: `A tierlist with this ID (for this game + playtype) does not exist.`,
-			});
-		}
-	} else {
-		tierlist = await GetDefaultTierlist(game, playtype);
-
-		if (!tierlist) {
-			return res.status(501).json({
-				success: false,
-				description: `This game does not support tierlists, yet.`,
-			});
-		}
 	}
 
 	const { charts, songs } = await GetFolderCharts(folder, {}, true);

@@ -6,6 +6,7 @@ import { SearchUsersRegExp } from "../../../../../../../../../lib/search/search"
 import { FormatChart, IsString } from "../../../../../../../../../utils/misc";
 import { ParseStrPositiveNonZeroInt } from "../../../../../../../../../utils/string-checks";
 import { GetUsersWithIDs } from "../../../../../../../../../utils/user";
+import { HandleTierlistIDParam } from "../../folders/middleware";
 import { ValidateAndGetChart } from "./middleware";
 
 const logger = CreateLogCtx(__filename);
@@ -44,6 +45,33 @@ router.get("/", async (req, res) => {
 		body: {
 			song,
 			chart,
+		},
+	});
+});
+
+/**
+ * Returns all tierlist information for this chart.
+ *
+ * @param tierlistID - If specified, retrieve this tierlist instead of the
+ * default. If there is no default for this game, 501 is returned.
+ *
+ * @name GET /api/v1/games/:game/:playtype/charts/:chartID/tierlist
+ */
+router.get("/tierlist", HandleTierlistIDParam, async (req, res) => {
+	const tierlist = req[SYMBOL_TachiData]!.tierlistDoc!;
+	const chart = req[SYMBOL_TachiData]!.chartDoc!;
+
+	const tierlistData = await db["tierlist-data"].find({
+		chartID: chart.chartID,
+		tierlistID: tierlist.tierlistID,
+	});
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned ${tierlistData.length} tierlist information.`,
+		body: {
+			tierlist,
+			tierlistData,
 		},
 	});
 });

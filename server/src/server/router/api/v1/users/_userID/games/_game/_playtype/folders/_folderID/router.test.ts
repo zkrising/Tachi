@@ -64,10 +64,10 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeli
 			"/api/v1/users/1/games/iidx/SP/folders/testing_folder/timeline?criteriaType=lamp&criteriaValue=4"
 		);
 
-		t.equal(res.body.songs.length, 1);
-		t.equal(res.body.charts.length, 1);
-		t.equal(res.body.scores.length, 1);
-		t.equal(res.body.scores[0].scoreID, "TESTING_SCORE_ID");
+		t.equal(res.body.body.songs.length, 1);
+		t.equal(res.body.body.charts.length, 1);
+		t.equal(res.body.body.scores.length, 1);
+		t.equal(res.body.body.scores[0].scoreID, "TESTING_SCORE_ID");
 
 		t.end();
 	});

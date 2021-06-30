@@ -61,6 +61,14 @@ process.on("unhandledRejection", (reason, promise) => {
 // limit them so as not to choke the api
 app.use(express.json({ limit: "1mb" }));
 
+app.use((req, res, next) => {
+	if (req.method !== "GET" && !req.body) {
+		req.body = {};
+	}
+
+	return next();
+});
+
 import mainRouter from "./router/router";
 
 app.use("/", mainRouter);

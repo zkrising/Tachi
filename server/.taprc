@@ -3,7 +3,7 @@ test-env: NODE_ENV=test
 jobs: 1 # disable parallel to avoid db clashes
 timeout: 120 # might need to be increased
 ts: true
-before: "./src/test-utils/setup.ts"
+before: "./src/test-utils/hack-setup.js"
 check-coverage: true
 branches: 80
 functions: 80

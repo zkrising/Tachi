@@ -4,7 +4,7 @@ import CreateLogCtx from "../../../../logger/logger";
 import ResetDBState from "../../../../../test-utils/resets";
 import {
 	GetKTDataJSON,
-	LoadKTBlackIIDXData,
+	LoadTachiIIDXData,
 	Testing511Song,
 	Testing511SPA,
 } from "../../../../../test-utils/test-data";
@@ -58,7 +58,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 	});
 
 	t.test("Valid DP Conversion", async (t) => {
-		await LoadKTBlackIIDXData();
+		await LoadTachiIIDXData();
 		const res = await merc({ play_type: "DOUBLE" });
 
 		t.hasStrict(

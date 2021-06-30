@@ -1,6 +1,16 @@
+import {
+	Grades,
+	Lamps,
+	IDStrings,
+	TableDocument,
+	AnyChartDocument,
+	AnySongDocument,
+	integer,
+	PBScoreDocument,
+	FolderDocument,
+} from "tachi-common";
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
-import { FolderDocument, AnyChartDocument, AnySongDocument } from "tachi-common";
 import { FilterQuery } from "mongodb";
 import deepmerge from "deepmerge";
 
@@ -83,7 +93,7 @@ export async function GetFolderCharts(
 export async function GetFolderCharts(
 	folder: FolderDocument,
 	filter: FilterQuery<AnyChartDocument>,
-	getSongs?: false
+	getSongs: false
 ): Promise<{ charts: AnyChartDocument[] }>;
 export async function GetFolderCharts(
 	folder: FolderDocument,
@@ -147,4 +157,60 @@ export async function InitaliseFolderChartLookup() {
 	await Promise.all(folders.map(CreateFolderChartLookup));
 
 	logger.info(`Completed InitialiseFolderChartLookup.`);
+}
+
+export async function GetFoldersFromTable(table: TableDocument) {
+	const folders = await db.folders.find({
+		folderID: { $in: table.folders },
+	});
+
+	if (folders.length !== table.folders.length) {
+		// this is an error, but we can return anyway.
+		logger.warn(
+			`Table ${table.tableID} has a mismatch of real folders to stored folders. ${table.folders.length} -> ${folders.length}`
+		);
+	}
+
+	return folders;
+}
+
+export async function GetPBsOnFolder(userID: integer, folder: FolderDocument) {
+	const { charts, songs } = await GetFolderCharts(folder, {}, true);
+
+	const pbs = await db["personal-bests"].find({
+		userID,
+		chartID: { $in: charts.map((e) => e.chartID) },
+	});
+
+	return { pbs, charts, songs };
+}
+
+export function CalculateLampDistribution(pbs: PBScoreDocument[]) {
+	const lampDist: Partial<Record<Lamps[IDStrings], integer>> = {};
+
+	for (const pb of pbs) {
+		if (lampDist[pb.scoreData.lamp]) {
+			// @ts-expect-error ???
+			lampDist[pb.scoreData.lamp]++;
+		} else {
+			lampDist[pb.scoreData.lamp] = 1;
+		}
+	}
+
+	return lampDist;
+}
+
+export function CalculateGradeDistribution(pbs: PBScoreDocument[]) {
+	const gradeDist: Partial<Record<Grades[IDStrings], integer>> = {};
+
+	for (const pb of pbs) {
+		if (gradeDist[pb.scoreData.grade]) {
+			// @ts-expect-error ???
+			gradeDist[pb.scoreData.grade]++;
+		} else {
+			gradeDist[pb.scoreData.grade] = 1;
+		}
+	}
+
+	return gradeDist;
 }

@@ -2,11 +2,11 @@ import t from "tap";
 import { CloseAllConnections } from "../../../../../../../../../test-utils/close-connections";
 import mockApi from "../../../../../../../../../test-utils/mock-api";
 import ResetDBState from "../../../../../../../../../test-utils/resets";
-import { LoadKTBlackIIDXData } from "../../../../../../../../../test-utils/test-data";
+import { LoadTachiIIDXData } from "../../../../../../../../../test-utils/test-data";
 
 t.test("GET /api/v1/games/:game/:playtype/songs/:songID", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(LoadKTBlackIIDXData);
+	t.beforeEach(LoadTachiIIDXData);
 
 	t.test("Should return the song at this ID and all of its charts.", async (t) => {
 		const res = await mockApi.get("/api/v1/games/iidx/SP/songs/1");

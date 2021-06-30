@@ -5,7 +5,7 @@ import mockApi from "../../../../../../../../../../test-utils/mock-api";
 import ResetDBState from "../../../../../../../../../../test-utils/resets";
 import {
 	Testing511Song,
-	LoadKTBlackIIDXData,
+	LoadTachiIIDXData,
 	GetKTDataJSON,
 	TestingIIDXSPScorePB,
 	Testing511SPA,
@@ -58,7 +58,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/best", (t) => {
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(LoadKTBlackIIDXData);
+	t.beforeEach(LoadTachiIIDXData);
 
 	t.test("Should return 400 if no search param is given", async (t) => {
 		const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/pbs");
@@ -90,7 +90,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs", (t) => {
 	t.test("Should search a user's personal bests.", async (t) => {
 		const mockPBs: PBScoreDocument[] = [];
 
-		const charts = GetKTDataJSON("./tachi/ktblack-charts-iidx.json");
+		const charts = GetKTDataJSON("./tachi/tachi-charts-iidx.json");
 
 		for (let i = 0; i < 200; i++) {
 			mockPBs.push({

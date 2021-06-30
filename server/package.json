@@ -44,7 +44,6 @@
     },
     "dependencies": {
         "bcrypt": "5.0.1",
-        "bee-queue": "1.4.0",
         "commander": "7.2.0",
         "connect-redis": "6.0.0",
         "csv-parse": "4.16.0",

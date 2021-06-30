@@ -18,6 +18,7 @@ import {
 	AnySongDocument,
 	AnyChartDocument,
 	UserGameStats,
+	TableDocument,
 	UserGoalDocument,
 	PBScoreDocument,
 	UserMilestoneDocument,
@@ -139,6 +140,7 @@ const db = {
 	"api-tokens": monkDB.get<APITokenDocument>("api-tokens"),
 	"orphan-scores": monkDB.get<OrphanScoreDocument>("orphan-scores"),
 	"import-locks": monkDB.get<ImportLockDocument>("import-locks"),
+	tables: monkDB.get<TableDocument>("tables"),
 };
 
 export default db;

@@ -1,4 +1,6 @@
 import {
+	FolderDocument,
+	TableDocument,
 	integer,
 	SessionDocument,
 	ScoreDocument,
@@ -7,6 +9,7 @@ import {
 	UserGameStats,
 	Game,
 	Playtypes,
+	TierlistParent,
 	AnyChartDocument,
 	AnySongDocument,
 } from "tachi-common";
@@ -57,4 +60,7 @@ export interface TachiRequestData {
 	songDoc?: AnySongDocument;
 	scoreDoc?: ScoreDocument;
 	sessionDoc?: SessionDocument;
+	tableDoc?: TableDocument;
+	folderDoc?: FolderDocument;
+	tierlistDoc?: TierlistParent;
 }

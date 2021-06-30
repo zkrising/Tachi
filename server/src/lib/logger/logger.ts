@@ -52,15 +52,15 @@ const formatExcessPropertiesNoStack = (meta: Record<string, unknown>, omitKeys: 
 	return ` ${JSON.stringify(realMeta)}`;
 };
 
-const ktblackPrintf = format.printf(
-	({ level, message, context = "ktblack-root", timestamp, ...meta }) =>
+const tachiPrintf = format.printf(
+	({ level, message, context = "tachi-root", timestamp, ...meta }) =>
 		`${timestamp} [${
 			Array.isArray(context) ? context.join(" | ") : context
 		}] ${level}: ${message}${formatExcessProperties(meta)}`
 );
 
-const ktblackConsolePrintf = format.printf(
-	({ level, message, context = "ktblack-root", timestamp, hideFromConsole, ...meta }) =>
+const tachiConsolePrintf = format.printf(
+	({ level, message, context = "tachi-root", timestamp, hideFromConsole, ...meta }) =>
 		`${timestamp} [${
 			Array.isArray(context) ? context.join(" | ") : context
 		}] ${level}: ${message}${formatExcessPropertiesNoStack(meta, hideFromConsole)}`
@@ -85,13 +85,13 @@ const baseFormatRoute = format.combine(
 const defaultFormatRoute = format.combine(
 	baseFormatRoute,
 	format.errors({ stack: false }),
-	ktblackPrintf
+	tachiPrintf
 );
 
 const consoleFormatRoute = format.combine(
 	baseFormatRoute,
 	format.errors({ stack: false }),
-	ktblackConsolePrintf,
+	tachiConsolePrintf,
 	format.colorize({
 		all: true,
 	})
@@ -109,11 +109,11 @@ if (IN_TESTING) {
 } else {
 	tports = [
 		new transports.File({
-			filename: "logs/ktblack-error.log",
+			filename: "logs/tachi-error.log",
 			level: "error",
 			format: defaultFormatRoute,
 		}),
-		new transports.File({ filename: "logs/ktblack.log", format: defaultFormatRoute }),
+		new transports.File({ filename: "logs/tachi.log", format: defaultFormatRoute }),
 		new transports.Console({
 			format: consoleFormatRoute,
 		}),

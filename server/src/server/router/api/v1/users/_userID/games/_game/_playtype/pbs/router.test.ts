@@ -90,7 +90,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs", (t) => {
 	t.test("Should search a user's personal bests.", async (t) => {
 		const mockPBs: PBScoreDocument[] = [];
 
-		const charts = GetKTDataJSON("./tachi/ktblack-charts-iidx.json");
+		const charts = GetKTDataJSON("./tachi/tachi-charts-iidx.json");
 
 		for (let i = 0; i < 200; i++) {
 			mockPBs.push({

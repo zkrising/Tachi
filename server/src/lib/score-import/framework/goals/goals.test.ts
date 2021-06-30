@@ -96,7 +96,7 @@ t.test("#GetRelevantGoals", (t) => {
 		// use the real data so we have enough charts loaded for this to test properly.
 		await db.songs.iidx.remove({});
 		await db.charts.iidx.remove({});
-		await db.charts.iidx.insert(GetKTDataJSON("./tachi/ktblack-charts-iidx.json"));
+		await db.charts.iidx.insert(GetKTDataJSON("./tachi/tachi-charts-iidx.json"));
 		await db.songs.iidx.insert(GetKTDataJSON("./tachi/tachi-songs-iidx.json"));
 
 		const lotsOfCharts = await db.charts.iidx.find({}, { limit: 20 });

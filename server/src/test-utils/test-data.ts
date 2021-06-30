@@ -167,7 +167,7 @@ export async function LoadTachiIIDXData() {
 		charts = KTDATA_CACHE.charts;
 	} else {
 		songs = GetKTDataJSON("./tachi/tachi-songs-iidx.json");
-		charts = GetKTDataJSON("./tachi/ktblack-charts-iidx.json");
+		charts = GetKTDataJSON("./tachi/tachi-charts-iidx.json");
 		KTDATA_CACHE = { songs, charts };
 	}
 

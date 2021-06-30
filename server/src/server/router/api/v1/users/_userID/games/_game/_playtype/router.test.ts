@@ -330,7 +330,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores", (t) => {
 	t.test("Should search a user's scores.", async (t) => {
 		const mockScores: ScoreDocument[] = [];
 
-		const charts = GetKTDataJSON("./tachi/ktblack-charts-iidx.json");
+		const charts = GetKTDataJSON("./tachi/tachi-charts-iidx.json");
 
 		for (let i = 0; i < 200; i++) {
 			mockScores.push({

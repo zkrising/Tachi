@@ -55,6 +55,7 @@
         "express-session": "1.17.2",
         "fast-json-stable-hash": "1.0.2",
         "fast-xml-parser": "3.19.0",
+        "helmet": "4.6.0",
         "json5": "2.2.0",
         "mkdirp": "1.0.4",
         "mongodb": "3.6.3",

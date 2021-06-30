@@ -9,6 +9,8 @@ import { GetUsersWithIDs } from "../../../../../../../utils/user";
 import chartsRouter from "./charts/router";
 import songIDRouter from "./songs/_songID/router";
 import { ValidatePlaytypeFromParam } from "./middleware";
+import foldersRouter from "./folders/router";
+import tablesRouter from "./tables/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -108,5 +110,7 @@ router.get("/leaderboard", async (req, res) => {
 
 router.use("/charts", chartsRouter);
 router.use("/songs/:songID", songIDRouter);
+router.use("/folders", foldersRouter);
+router.use("/tables", tablesRouter);
 
 export default router;

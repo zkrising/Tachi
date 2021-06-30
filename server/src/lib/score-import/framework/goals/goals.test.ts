@@ -97,7 +97,7 @@ t.test("#GetRelevantGoals", (t) => {
 		await db.songs.iidx.remove({});
 		await db.charts.iidx.remove({});
 		await db.charts.iidx.insert(GetKTDataJSON("./tachi/ktblack-charts-iidx.json"));
-		await db.songs.iidx.insert(GetKTDataJSON("./tachi/ktblack-songs-iidx.json"));
+		await db.songs.iidx.insert(GetKTDataJSON("./tachi/tachi-songs-iidx.json"));
 
 		const lotsOfCharts = await db.charts.iidx.find({}, { limit: 20 });
 		const goals: GoalDocument[] = lotsOfCharts.map((e) => ({

@@ -3,12 +3,12 @@ import db from "../../../../../../../../../../external/mongo/db";
 import { CloseAllConnections } from "../../../../../../../../../../test-utils/close-connections";
 import mockApi from "../../../../../../../../../../test-utils/mock-api";
 import ResetDBState from "../../../../../../../../../../test-utils/resets";
-import { LoadKTBlackIIDXData } from "../../../../../../../../../../test-utils/test-data";
+import { LoadTachiIIDXData } from "../../../../../../../../../../test-utils/test-data";
 import { SessionDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(LoadKTBlackIIDXData);
+	t.beforeEach(LoadTachiIIDXData);
 
 	t.test("Should return 400 if no search param is given", async (t) => {
 		const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/sessions");
@@ -70,7 +70,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions", (t) => {
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/best", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(LoadKTBlackIIDXData);
+	t.beforeEach(LoadTachiIIDXData);
 
 	t.test("Should return a user's best 100 sessions.", async (t) => {
 		const sessions: SessionDocument[] = [];

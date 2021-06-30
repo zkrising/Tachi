@@ -1,0 +1,8 @@
+[{
+	"tableID": "mock_table",
+	"game": "iidx",
+	"playtype": "SP",
+	"title": "testing table",
+	"description": "something",
+	"folders": ["testing_folder"]
+}]

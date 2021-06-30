@@ -3,7 +3,7 @@ import CreateLogCtx from "../../../../logger/logger";
 import ResetDBState from "../../../../../test-utils/resets";
 import {
 	GetKTDataJSON,
-	LoadKTBlackIIDXData,
+	LoadTachiIIDXData,
 	Testing511Song,
 	Testing511SPA,
 } from "../../../../../test-utils/test-data";
@@ -87,7 +87,7 @@ t.test("#ConvertFileS3", (t) => {
 	});
 
 	t.test("Should find song case-insensitively", async (t) => {
-		await LoadKTBlackIIDXData();
+		await LoadTachiIIDXData();
 
 		const res = await mfile({ songname: "aBSolUte", diff: 7 });
 

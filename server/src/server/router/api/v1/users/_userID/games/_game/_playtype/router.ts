@@ -18,6 +18,8 @@ import { CheckStrProfileAlg } from "../../../../../../../../../utils/string-chec
 import { IsString } from "../../../../../../../../../utils/misc";
 import pbsRouter from "./pbs/router";
 import sessionsRouter from "./sessions/router";
+import foldersFolderIDRouter from "./folders/_folderID/router";
+import tablesRouter from "./tables/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -396,5 +398,7 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 
 router.use("/pbs", pbsRouter);
 router.use("/sessions", sessionsRouter);
+router.use("/tables", tablesRouter);
+router.use("/folders/:folderID", foldersFolderIDRouter);
 
 export default router;

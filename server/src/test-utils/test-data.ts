@@ -110,8 +110,6 @@ export const TestingIIDXFolderSP10: FolderDocument = {
 	playtype: "SP",
 	type: "charts",
 	folderID: "ed9d8c734447ce67d7135c0067441a98cc81aeaf",
-	table: "Levels",
-	tableIndex: 10,
 	data: {
 		level: "10",
 		"flags¬IN BASE GAME": true,
@@ -160,7 +158,7 @@ export const TestingIIDXSPMilestone: MilestoneDocument = {
 
 let KTDATA_CACHE: { songs: unknown[]; charts: unknown[] } | undefined;
 
-export async function LoadKTBlackIIDXData() {
+export async function LoadTachiIIDXData() {
 	let songs;
 	let charts;
 
@@ -168,7 +166,7 @@ export async function LoadKTBlackIIDXData() {
 		songs = KTDATA_CACHE.songs;
 		charts = KTDATA_CACHE.charts;
 	} else {
-		songs = GetKTDataJSON("./tachi/ktblack-songs-iidx.json");
+		songs = GetKTDataJSON("./tachi/tachi-songs-iidx.json");
 		charts = GetKTDataJSON("./tachi/ktblack-charts-iidx.json");
 		KTDATA_CACHE = { songs, charts };
 	}

@@ -2,7 +2,7 @@ import t from "tap";
 import db from "../../external/mongo/db";
 import { CloseAllConnections } from "../../test-utils/close-connections";
 import ResetDBState from "../../test-utils/resets";
-import { LoadKTBlackIIDXData } from "../../test-utils/test-data";
+import { LoadTachiIIDXData } from "../../test-utils/test-data";
 import {
 	SearchGameSongs,
 	SearchCollection,
@@ -13,7 +13,7 @@ import {
 
 t.test("#SearchGameSongs", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(LoadKTBlackIIDXData);
+	t.beforeEach(LoadTachiIIDXData);
 	t.beforeEach(async () => {
 		await db.songs.iidx.dropIndexes();
 		await db.songs.iidx.createIndex(

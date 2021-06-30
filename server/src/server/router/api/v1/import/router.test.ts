@@ -2,26 +2,25 @@ import t from "tap";
 import mockApi from "../../../../../test-utils/mock-api";
 import {
 	GetKTDataBuffer,
-	LoadKTBlackIIDXData,
+	LoadTachiIIDXData,
 	TestingIIDXEamusementCSV26,
 	TestingIIDXEamusementCSV27,
 } from "../../../../../test-utils/test-data";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 import { RequireAuthPerms } from "../../../../../test-utils/api-common";
 import { CreateFakeAuthCookie } from "../../../../../test-utils/fake-auth";
-import ResetDBState, { SetIndexesForDB } from "../../../../../test-utils/resets";
+import ResetDBState from "../../../../../test-utils/resets";
 import db from "../../../../../external/mongo/db";
 
 t.test("POST /api/v1/import/file", async (t) => {
 	const cookie = await CreateFakeAuthCookie(mockApi);
 
-	t.before(SetIndexesForDB);
 	t.beforeEach(ResetDBState);
 
 	RequireAuthPerms("/api/v1/import/file", "submit_score", "POST");
 
 	t.test("file/eamusement-iidx-csv", (t) => {
-		t.beforeEach(LoadKTBlackIIDXData);
+		t.beforeEach(LoadTachiIIDXData);
 
 		t.test("Mini HV import", async (t) => {
 			const res = await mockApi
@@ -109,7 +108,7 @@ t.test("POST /api/v1/import/file", async (t) => {
 
 	// thats right i literally just copied it
 	t.test("file/pli-iidx-csv", (t) => {
-		t.beforeEach(LoadKTBlackIIDXData);
+		t.beforeEach(LoadTachiIIDXData);
 
 		t.test("Mini HV import", async (t) => {
 			const res = await mockApi
@@ -260,7 +259,7 @@ t.test("POST /api/v1/import/file", async (t) => {
 	});
 
 	t.test("file/mer-iidx", (t) => {
-		t.beforeEach(LoadKTBlackIIDXData);
+		t.beforeEach(LoadTachiIIDXData);
 
 		t.test("Example Import", async (t) => {
 			const res = await mockApi
@@ -298,7 +297,7 @@ t.test("POST /api/v1/import/file", async (t) => {
 	});
 
 	t.skip("file/solid-state-squad", (t) => {
-		t.beforeEach(LoadKTBlackIIDXData);
+		t.beforeEach(LoadTachiIIDXData);
 
 		t.test("Large Import", async (t) => {
 			const res = await mockApi

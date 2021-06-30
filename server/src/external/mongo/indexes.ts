@@ -60,6 +60,7 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
 		index({ game: 1, playtype: 1 }),
 		index({ game: 1, playtype: 1, table: 1 }),
 		index({ game: 1, playtype: 1, table: 1, tableIndex: 1 }),
+		index({ title: "text" }),
 	],
 	"kai-auth-tokens": [index({ userID: 1, service: 1 }, UNIQUE)],
 	"charts-iidx": [
@@ -71,6 +72,7 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
 	],
 	"bms-course-lookup": [index({ md5sums: 1 }, UNIQUE)],
 	"api-tokens": [index({ token: 1 }, UNIQUE)],
+	tables: [index({ tableID: 1 }, UNIQUE), index({ game: 1, playtype: 1 })],
 };
 
 const indexes: Partial<Record<ValidDatabases, Index[]>> = staticIndexes;

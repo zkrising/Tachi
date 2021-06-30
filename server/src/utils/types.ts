@@ -1,4 +1,6 @@
 import {
+	FolderDocument,
+	TableDocument,
 	integer,
 	SessionDocument,
 	ScoreDocument,
@@ -57,4 +59,6 @@ export interface TachiRequestData {
 	songDoc?: AnySongDocument;
 	scoreDoc?: ScoreDocument;
 	sessionDoc?: SessionDocument;
+	tableDoc?: TableDocument;
+	folderDoc?: FolderDocument;
 }

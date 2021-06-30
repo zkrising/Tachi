@@ -2,7 +2,7 @@ import t from "tap";
 import db from "../../../../../../../../../external/mongo/db";
 import { CloseAllConnections } from "../../../../../../../../../test-utils/close-connections";
 import mockApi from "../../../../../../../../../test-utils/mock-api";
-import ResetDBState, { SetIndexesForDB } from "../../../../../../../../../test-utils/resets";
+import ResetDBState from "../../../../../../../../../test-utils/resets";
 import {
 	ScoreDocument,
 	UserGoalDocument,
@@ -12,15 +12,13 @@ import {
 } from "tachi-common";
 import {
 	GetKTDataJSON,
-	LoadKTBlackIIDXData,
+	LoadTachiIIDXData,
 	Testing511Song,
 	Testing511SPA,
 	TestingIIDXSPScore,
 	TestingIIDXSPScorePB,
 } from "../../../../../../../../../test-utils/test-data";
 import deepmerge from "deepmerge";
-
-t.before(SetIndexesForDB);
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/", (t) => {
 	t.beforeEach(ResetDBState);
@@ -299,7 +297,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/recent", (t) => {
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(LoadKTBlackIIDXData);
+	t.beforeEach(LoadTachiIIDXData);
 
 	t.test("Should return 400 if no search param is given", async (t) => {
 		const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/scores");

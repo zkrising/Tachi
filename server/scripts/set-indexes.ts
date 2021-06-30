@@ -6,8 +6,8 @@ const program = new Command();
 
 program.option("-d, --db <database>", "The database to index.");
 program.option(
-    "-r, --reset",
-    "Whether to reset all indexes on this database before indexing or not."
+	"-r, --reset",
+	"Whether to reset all indexes on this database before indexing or not."
 );
 
 program.parse(process.argv);

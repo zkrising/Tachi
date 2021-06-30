@@ -35,6 +35,7 @@ specifiers:
   express-session: 1.17.2
   fast-json-stable-hash: 1.0.2
   fast-xml-parser: 3.19.0
+  helmet: 4.6.0
   json5: 2.2.0
   mkdirp: 1.0.4
   mongodb: 3.6.3
@@ -68,6 +69,7 @@ dependencies:
   express-session: 1.17.2
   fast-json-stable-hash: 1.0.2
   fast-xml-parser: 3.19.0
+  helmet: 4.6.0
   json5: 2.2.0
   mkdirp: 1.0.4
   mongodb: 3.6.3
@@ -2119,6 +2121,11 @@ packages:
     dependencies:
       is-stream: 2.0.0
       type-fest: 0.8.1
+
+  /helmet/4.6.0:
+    resolution: {integrity: sha512-HVqALKZlR95ROkrnesdhbbZJFi/rIVSoNq6f3jA/9u6MIbTsPh3xZwihjeI5+DO/2sOV6HMHooXcEOuwskHpTg==}
+    engines: {node: '>=10.0.0'}
+    dev: false
 
   /hosted-git-info/2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}

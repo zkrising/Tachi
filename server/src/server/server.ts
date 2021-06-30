@@ -6,6 +6,7 @@ import { integer } from "tachi-common";
 import { RedisClient } from "../external/redis/redis";
 import { CONFIG, SESSION_SECRET } from "../lib/setup/config";
 import connectRedis from "connect-redis";
+import helmet from "helmet";
 
 const logger = CreateLogCtx(__filename);
 
@@ -35,6 +36,8 @@ const userSessionMiddleware = expressSession({
 });
 
 const app: Express = express();
+
+app.use(helmet());
 
 app.use(userSessionMiddleware);
 

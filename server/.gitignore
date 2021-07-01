@@ -3,6 +3,9 @@ js
 # .vscode
 logs
 
+# nonsense snyk stuff
+.dccache
+
 .nyc_output
 coverage
 .env

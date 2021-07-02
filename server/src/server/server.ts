@@ -13,7 +13,7 @@ import {
 import connectRedis from "connect-redis";
 import helmet from "helmet";
 import fs from "fs";
-import CreateLogCtx from "lib/logger/logger";
+import CreateLogCtx from "../lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 

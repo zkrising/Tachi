@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { CDN_ROOT, CDN_URL } from "../setup/config";
+import { CDN_FILE_ROOT } from "../setup/config";
 import CreateLogCtx from "../logger/logger";
 import { promisify } from "util";
 import mkdirp from "mkdirp";
@@ -19,7 +19,7 @@ const logger = CreateLogCtx(__filename);
  * Path directory traversal *is* possible, and *will* ruin your day.
  */
 function CDNRoot(fileLoc: string) {
-	return path.join(CDN_ROOT, fileLoc);
+	return path.join(CDN_FILE_ROOT, fileLoc);
 }
 
 /**
@@ -36,19 +36,13 @@ export function CDNRetrieve(fileLoc: string) {
 
 /**
  * Redirects the response to the CDN server at the given path.
- *
- * If no CDN_URL is set, then this falls back to fetching from the CDN ROOT via. FS.
  */
-export async function CDNRedirect(res: Response, fileLoc: string) {
+export function CDNRedirect(res: Response, fileLoc: string) {
 	if (fileLoc[0] !== "/") {
 		throw new Error(`Invalid fileLoc - did not start with /.`);
 	}
 
-	if (CDN_URL) {
-		return res.redirect(`${CDN_URL}${fileLoc}`);
-	} else {
-		return res.send(await CDNRetrieve(fileLoc));
-	}
+	return res.redirect(`/cdn${fileLoc}`);
 }
 
 /**

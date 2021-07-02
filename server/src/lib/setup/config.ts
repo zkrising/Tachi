@@ -47,11 +47,12 @@ export interface TachiConfig {
 	EAG_API_URL: string;
 	ARC_API_URL: string;
 	ARC_AUTH_TOKEN: string;
-	CDN_ROOT: string;
-	CDN_URL?: string | null;
+	CDN_FILE_ROOT: string;
 	TYPE: "ktchi" | "btchi" | "omni";
 	PORT: integer;
 	CLIENT_INDEX_HTML_PATH: string;
+	ENABLE_SERVER_HTTPS: boolean;
+	RUN_OWN_CDN: boolean;
 	TYPE_INFO: StaticConfig.ServerConfig;
 }
 
@@ -65,10 +66,11 @@ const err = p(config, {
 	EAG_API_URL: isValidURL,
 	ARC_API_URL: isValidURL,
 	ARC_AUTH_TOKEN: "string",
-	CDN_ROOT: "string",
-	CDN_URL: p.nullable(p.optional(isValidURL)),
+	CDN_FILE_ROOT: "string",
 	PORT: p.isPositiveInteger,
 	CLIENT_INDEX_HTML_PATH: "string",
+	ENABLE_SERVER_HTTPS: "boolean",
+	RUN_OWN_CDN: "boolean",
 	TYPE: p.isIn("ktchi", "btchi", "omni"),
 });
 
@@ -103,9 +105,10 @@ export const FLO_API_URL = tachiConfig.FLO_API_URL;
 export const EAG_API_URL = tachiConfig.EAG_API_URL;
 export const ARC_API_URL = tachiConfig.ARC_API_URL;
 export const ARC_AUTH_TOKEN = tachiConfig.ARC_AUTH_TOKEN;
-export const CDN_ROOT = tachiConfig.CDN_ROOT;
-export const CDN_URL = tachiConfig.CDN_URL;
+export const CDN_FILE_ROOT = tachiConfig.CDN_FILE_ROOT;
 export const CONF_INFO = tachiConfig.TYPE_INFO;
 export const PORT = tachiConfig.PORT;
 export const CONFIG = tachiConfig;
-export const CLIENT_INDEX_HTML_PATH = config.CLIENT_INDEX_HTML_PATH;
+export const CLIENT_INDEX_HTML_PATH = tachiConfig.CLIENT_INDEX_HTML_PATH;
+export const ENABLE_SERVER_HTTPS = tachiConfig.ENABLE_SERVER_HTTPS;
+export const RUN_OWN_CDN = tachiConfig.RUN_OWN_CDN;

@@ -17,6 +17,7 @@
         "sourceMap": true,
         "outDir": "./js",
         "typeRoots": [ "@types", "node_modules/@types" ],
+        "baseUrl": "src"
 
     },
     "include": [

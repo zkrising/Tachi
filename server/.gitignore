@@ -14,6 +14,10 @@ failed-tests.txt
 
 # config files
 conf.json5
+*.conf.json5
+
+# https local certs
+cert
 
 scripts/arc-db-sync/charts.json
 scripts/arc-db-sync/songs.json

@@ -1,13 +1,19 @@
 import express, { Express } from "express";
 import "express-async-errors";
-import CreateLogCtx from "../lib/logger/logger";
 import expressSession from "express-session";
 import { integer } from "tachi-common";
 import { RedisClient } from "../external/redis/redis";
-import { CLIENT_INDEX_HTML_PATH, CONFIG, SESSION_SECRET } from "../lib/setup/config";
+import {
+	CDN_FILE_ROOT,
+	CLIENT_INDEX_HTML_PATH,
+	CONFIG,
+	RUN_OWN_CDN,
+	SESSION_SECRET,
+} from "../lib/setup/config";
 import connectRedis from "connect-redis";
 import helmet from "helmet";
 import fs from "fs";
+import CreateLogCtx from "lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 
@@ -73,6 +79,19 @@ app.use((req, res, next) => {
 import mainRouter from "./router/router";
 
 app.use("/", mainRouter);
+
+// The RUN_OWN_CDN option means that our /cdn path has to be hosted by us. In production,
+// this is not the case (we have a dedicated nginx box for it running in a separate process).
+// In dev, this is a pain to setup, so we can just run it locally.
+if (RUN_OWN_CDN) {
+	if (process.env.NODE_ENV === "production") {
+		logger.warn(
+			`Running OWN_CDN in production. Consider making a separate process handle your CDN for performance.`
+		);
+	}
+
+	app.use("/cdn", express.static(CDN_FILE_ROOT));
+}
 
 const indexHTMLContent = fs.readFileSync(CLIENT_INDEX_HTML_PATH);
 

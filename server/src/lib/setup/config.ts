@@ -10,7 +10,7 @@ dotenv.config(); // imports things like NODE_ENV from a local .env file if one i
 // stub - having a real logger here creates a circular dependency.r
 const logger = console; // CreateLogCtx(__filename);
 
-const confLocation = process.env.TCHIS ?? "./conf.json5";
+const confLocation = process.env.TCHIS_CONF_LOCATION ?? "./conf.json5";
 
 // reads from $pwd/conf.json5, unless an override is set
 let confFile;

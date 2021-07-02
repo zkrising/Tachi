@@ -7,8 +7,18 @@ import { FormatPrError } from "../../utils/prudence";
 import { integer, StaticConfig } from "tachi-common";
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
 
+// stub - having a real logger here creates a circular dependency.r
+const logger = console; // CreateLogCtx(__filename);
+
 // reads from $pwd/conf.json5
-const confFile = fs.readFileSync("./conf.json5", "utf-8");
+let confFile;
+
+try {
+	confFile = fs.readFileSync("./conf.json5", "utf-8");
+} catch (err) {
+	logger.error("Error while trying to open conf.json5. Is one present?", { err });
+	process.exit(1);
+}
 
 const config = JSON5.parse(confFile);
 
@@ -39,6 +49,7 @@ export interface TachiConfig {
 	CDN_URL?: string | null;
 	TYPE: "ktchi" | "btchi" | "omni";
 	PORT: integer;
+	CLIENT_INDEX_HTML_PATH: string;
 	TYPE_INFO: StaticConfig.ServerConfig;
 }
 
@@ -55,6 +66,7 @@ const err = p(config, {
 	CDN_ROOT: "string",
 	CDN_URL: p.nullable(p.optional(isValidURL)),
 	PORT: p.isPositiveInteger,
+	CLIENT_INDEX_HTML_PATH: "string",
 	TYPE: p.isIn("ktchi", "btchi", "omni"),
 });
 
@@ -72,6 +84,14 @@ if (config.TYPE === "ktchi") {
 
 const tachiConfig = config as TachiConfig;
 
+// note: we dont use fs.exists here because the file may be moved underfoot.
+try {
+	fs.readFileSync(config.CLIENT_INDEX_HTML_PATH);
+} catch (err) {
+	logger.error(`Error while opening file at CLIENT_INDEX_HTML_PATH. Is one here?`);
+	process.exit(1);
+}
+
 export const MONGO_CONNECTION_URL = tachiConfig.MONGO_CONNECTION_URL;
 export const MONGO_DATABASE_NAME = tachiConfig.MONGO_DATABASE_NAME;
 export const LOG_LEVEL = tachiConfig.LOG_LEVEL;
@@ -86,3 +106,4 @@ export const CDN_URL = tachiConfig.CDN_URL;
 export const CONF_INFO = tachiConfig.TYPE_INFO;
 export const PORT = tachiConfig.PORT;
 export const CONFIG = tachiConfig;
+export const CLIENT_INDEX_HTML_PATH = config.CLIENT_INDEX_HTML_PATH;

@@ -4,9 +4,10 @@ import CreateLogCtx from "../lib/logger/logger";
 import expressSession from "express-session";
 import { integer } from "tachi-common";
 import { RedisClient } from "../external/redis/redis";
-import { CONFIG, SESSION_SECRET } from "../lib/setup/config";
+import { CLIENT_INDEX_HTML_PATH, CONFIG, SESSION_SECRET } from "../lib/setup/config";
 import connectRedis from "connect-redis";
 import helmet from "helmet";
+import fs from "fs";
 
 const logger = CreateLogCtx(__filename);
 
@@ -73,11 +74,20 @@ import mainRouter from "./router/router";
 
 app.use("/", mainRouter);
 
+const indexHTMLContent = fs.readFileSync(CLIENT_INDEX_HTML_PATH);
+
 /**
- * If any user gets to this point, we send them index.html and let react router do the routing (and 404ing)
- * @name ALL *
+ * If any user gets to this point, we send them index.html and yield routing to
+ * the ktchi-client react router.
+ * @name GET *
  */
-app.get("*", (req, res) => res.status(200).send("todo"));
+app.get("*", (req, res) => res.setHeader("Content-Type", "text/html").send(indexHTMLContent));
+
+/**
+ * If any user gets to this point, and are not making a GET request, they are probably making an API request.
+ * And want JSON back.
+ * @name ALL (except GET) *
+ */
 app.all("*", (req, res) =>
 	res.status(404).json({ success: false, description: "404: This URL does not exist." })
 );

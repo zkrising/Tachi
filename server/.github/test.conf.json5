@@ -13,4 +13,5 @@
   CDN_ROOT: "./local-cdn",
   PORT: 8080,
   TYPE: "omni", // It really doesn't matter whether we're in bokutachi or kamaitachi mode. If we had the performance we could run these in parallel?
+  CLIENT_INDEX_HTML_PATH: "./src/test-utils/mock-index.html",
 }

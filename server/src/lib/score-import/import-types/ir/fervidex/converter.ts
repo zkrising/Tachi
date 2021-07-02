@@ -29,12 +29,11 @@ export function TachifyAssist(
 	assist: FervidexScore["option"]["assist"]
 ): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["assist"] {
 	switch (assist) {
+		case "FULL_ASSIST":
 		case "ASCR_LEGACY":
 			return "FULL ASSIST";
 		case "AUTO_SCRATCH":
 			return "AUTO SCRATCH";
-		case "FULL_ASSIST":
-			return "FULL ASSIST";
 		case "LEGACY_NOTE":
 			return "LEGACY NOTE";
 		case null:

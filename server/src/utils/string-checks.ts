@@ -16,9 +16,7 @@ export function ParseStrPositiveInt(val: unknown) {
 
 	const v = Number(val);
 
-	if (!Number.isSafeInteger(v)) {
-		return null;
-	} else if (v < 0) {
+	if (!Number.isSafeInteger(v) || v < 0) {
 		return null;
 	}
 
@@ -38,9 +36,7 @@ export function ParseStrPositiveNonZeroInt(val: unknown) {
 
 	const v = Number(val);
 
-	if (!Number.isSafeInteger(v)) {
-		return null;
-	} else if (v <= 0) {
+	if (!Number.isSafeInteger(v) || v <= 0) {
 		return null;
 	}
 

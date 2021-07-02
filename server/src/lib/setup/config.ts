@@ -10,11 +10,13 @@ dotenv.config(); // imports things like NODE_ENV from a local .env file if one i
 // stub - having a real logger here creates a circular dependency.r
 const logger = console; // CreateLogCtx(__filename);
 
-// reads from $pwd/conf.json5
+const confLocation = process.env.TCHIS ?? "./conf.json5";
+
+// reads from $pwd/conf.json5, unless an override is set
 let confFile;
 
 try {
-	confFile = fs.readFileSync("./conf.json5", "utf-8");
+	confFile = fs.readFileSync(confLocation, "utf-8");
 } catch (err) {
 	logger.error("Error while trying to open conf.json5. Is one present?", { err });
 	process.exit(1);

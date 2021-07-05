@@ -1,0 +1,41 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"outDir": "./dist/",
+		"strictNullChecks": true,
+		"moduleResolution": "node",
+		"allowJs": true,
+		"noEmit": true,
+		"strict": true,
+		"esModuleInterop": true,
+		"jsx": "react",
+		"baseUrl": "src",
+		"lib": [
+			"dom.iterable",
+			"dom",
+			"ESNext"
+		],
+		"module": "esnext",
+		"removeComments": true,
+		"alwaysStrict": true,
+		"allowUnreachableCode": false,
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"forceConsistentCasingInFileNames": true,
+		"importHelpers": true,
+		"isolatedModules": true,
+		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true
+	},
+	"include": [
+		"src"
+, "reference/GoogleMaterialExamples", "reference/widgets"	],
+	"exclude": [
+		"node_modules"
+	]
+}

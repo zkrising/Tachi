@@ -48,7 +48,6 @@
         "no-await-in-loop": "warn",
         "no-unused-labels": "error",
         "prefer-const": "error",
-        "no-console": "error",
         "eqeqeq": "error",
         "no-eval": "error",
         "no-var": "error",

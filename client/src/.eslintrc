@@ -19,8 +19,7 @@
 		"plugin:prettier/recommended",
 		"plugin:import/typescript",
 		"plugin:import/warnings",
-		"plugin:import/errors",
-		"plugin:react-hooks/recommended"
+		"plugin:import/errors"
 	],
 	"rules": {
 		"prettier/prettier": [

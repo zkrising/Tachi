@@ -1,5 +1,5 @@
 import React from "react";
 
 export function DashboardPage() {
-	return <>Dashboard</>;
+	return <>To be honest, I have no idea what is going to go here just yet.</>;
 }

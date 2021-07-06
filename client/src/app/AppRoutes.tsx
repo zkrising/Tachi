@@ -1,7 +1,6 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
-import { Layout } from "../_metronic/layout";
-import BasePage from "./BasePage";
+import { Redirect, Route, Switch } from "react-router-dom";
+import DashboardRoutes from "./DashboardRoutes";
 import { ErrorPage } from "./pages/ErrorPage";
 
 /**
@@ -11,13 +10,15 @@ import { ErrorPage } from "./pages/ErrorPage";
 export function Routes() {
 	return (
 		<Switch>
-			// This should be removed - as it's only for debugging.
-			<Route path="/error">
+			<Redirect exact from="/" to="/dashboard" />
+
+			<Route path="/dashboard">
+				<DashboardRoutes />
+			</Route>
+
+			<Route path="*">
 				<ErrorPage statusCode={404} />
 			</Route>
-			<Layout>
-				<BasePage />
-			</Layout>
 		</Switch>
 	);
 }

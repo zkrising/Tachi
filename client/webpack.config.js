@@ -1,12 +1,10 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const WebpackMessages = require("webpack-messages");
-const del = require("del");
 
 const rootPath = path.resolve(__dirname);
-const distPath = `${rootPath}/src`;
+const distPath = `${rootPath}/dist`;
 
-module.exports = () => [{
+module.exports = {
 	mode: "development",
 	stats: "errors-only",
 	performance: {
@@ -16,29 +14,14 @@ module.exports = () => [{
 		"sass/style.react": "./src/index.scss",
 	},
 	output: {
-		// main output path in assets folder
 		path: distPath,
-		// output path based on the entries' filename
 		filename: "[name].js",
 	},
 	resolve: { extensions: [".scss"], },
 	plugins: [
-		new WebpackMessages({
-			name: "tachi-client",
-			logger: str => console.log(`>> ${str}`),
-		}),
 		new MiniCssExtractPlugin({
-			filename: "[name].css",
+			filename: "[name].min.css",
 		}),
-		{
-			apply: compiler => {
-				compiler.hooks.afterEmit.tap("AfterEmitPlugin", compilation => {
-					(async () => {
-						await del.sync(`${distPath}/sass/*.js`, { force: true });
-					})();
-				});
-			},
-		},
 	],
 	module: {
 		rules: [
@@ -56,5 +39,5 @@ module.exports = () => [{
 				],
 			},
 		],
-	},
-}];
+	}
+}

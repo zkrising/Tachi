@@ -29,6 +29,7 @@ specifiers:
   eslint-config-prettier: 8.3.0
   eslint-plugin-import: 2.23.4
   eslint-plugin-prettier: 3.4.0
+  eslint-plugin-react-hooks: 4.2.0
   fg-loadcss: 2.1.0
   lodash: 4.17.15
   material-ui-popup-state: 1.4.1
@@ -119,6 +120,7 @@ devDependencies:
   eslint-config-prettier: 8.3.0_eslint@7.30.0
   eslint-plugin-import: 2.23.4_eslint@7.30.0
   eslint-plugin-prettier: 3.4.0_4765e668ea0d2af8a7d598c9b64b7938
+  eslint-plugin-react-hooks: 4.2.0_eslint@7.30.0
   prettier: 1.19.1
   sass: 1.32.8
   serve: 11.2.0
@@ -5975,6 +5977,15 @@ packages:
     dependencies:
       eslint: 6.8.0
     dev: false
+
+  /eslint-plugin-react-hooks/4.2.0_eslint@7.30.0:
+    resolution: {integrity: sha512-623WEiZJqxR7VdxFCKLI6d6LLpwJkGPYKODnkH3D7WpOG5KM8yWueBd8TLsNAetEJNF5iJmolaAKO3F8yzyVBQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
+    dependencies:
+      eslint: 7.30.0
+    dev: true
 
   /eslint-plugin-react/7.14.3_eslint@6.8.0:
     resolution: {integrity: sha512-EzdyyBWC4Uz2hPYBiEJrKCUi2Fn+BJ9B/pJQcjw5X+x/H2Nm59S4MJIvL4O5NEE0+WbnQwEBxWY03oUk+Bc3FA==}

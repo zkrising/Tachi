@@ -1,3 +1,3 @@
 export interface JustChildren {
-	children: JSX.Element[];
+	children: JSX.Element[] | JSX.Element;
 }

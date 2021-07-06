@@ -1,68 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Tachi</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+	<head>
+		<meta charset="utf-8" />
+		<title>Tachi</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="%PUBLIC_URL%/media/logos/favicon.ico"
+		/>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="%PUBLIC_URL%/media/logos/favicon.ico"
-    />
-
-    <link
-      href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-    />
-    <!-- SPLASH SCREEN-->
-    <link
-      rel="stylesheet"
-      id="layout-styles-anchor"
-      href="%PUBLIC_URL%/css/splash-screen.css"
-    />
-    <script
-      crossorigin="anonymous"
-      src="https://polyfill.io/v3/polyfill.min.js?features=es2017%2Cdefault%2Ces2015%2Ces2016%2CIntl"
-    ></script>
-  </head>
-  <body id="kt_body">
-    <noscript>
-      You have JavaScript disabled, probably.<br>
-      I also use a JavaScript blocker!<br>
-      This site uses React to render its contents.<br>
-      We don't use JS to track you or try to do anything malicious. You'll have to enable JS in order for this site to work.
-    </noscript>
-    <div id="root"></div>
-    <div id="splash-screen" class="kt-splash-screen">
-      <img src="%PUBLIC_URL%/media/logos/logo-wordmark.png" width="100px" alt="Kamaitachi" />
-      <svg class="splash-spinner" viewBox="0 0 50 50">
-        <circle
-          class="path"
-          cx="25"
-          cy="25"
-          r="20"
-          fill="none"
-          stroke-width="5"
-        ></circle>
-      </svg>
-    </div>
-    <div id="layout-portal"></div>
-  </body>
+		<link
+			href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+		/>
+		<link
+			rel="stylesheet"
+			id="layout-styles-anchor"
+			href="%PUBLIC_URL%/css/splash-screen.css"
+		/>
+		<script
+			crossorigin="anonymous"
+			src="https://polyfill.io/v3/polyfill.min.js?features=es2017%2Cdefault%2Ces2015%2Ces2016%2CIntl"
+		></script>
+	</head>
+	<body id="kt_body">
+		<noscript>
+			You have JavaScript disabled, probably.<br />
+			I also use a JavaScript blocker!<br />
+			This site uses React to render its contents.<br />
+			We don't use JS to track you or try to do anything malicious. You'll have
+			to enable JS in order for this site to work.
+		</noscript>
+		<div id="root"></div>
+		<div id="splash-screen" class="kt-splash-screen">
+			<img
+				src="%PUBLIC_URL%/media/logos/logo-wordmark.png"
+				width="100px"
+				alt="Kamaitachi"
+			/>
+			<svg class="splash-spinner" viewBox="0 0 50 50">
+				<circle
+					class="path"
+					cx="25"
+					cy="25"
+					r="20"
+					fill="none"
+					stroke-width="5"
+				></circle>
+			</svg>
+		</div>
+		<div id="layout-portal"></div>
+	</body>
 </html>

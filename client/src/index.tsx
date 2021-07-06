@@ -12,15 +12,8 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./_metronic/_assets/plugins/flaticon/flaticon.css";
 import "./_metronic/_assets/plugins/flaticon2/flaticon.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { MetronicSplashScreenProvider, MetronicSubheaderProvider } from "./_metronic/layout";
 
+// eslint-disable-next-line no-undef
 const { PUBLIC_URL } = process.env;
 
-ReactDOM.render(
-	<MetronicSubheaderProvider>
-		<MetronicSplashScreenProvider>
-			<App basename={PUBLIC_URL} />
-		</MetronicSplashScreenProvider>
-	</MetronicSubheaderProvider>,
-	document.getElementById("root")
-);
+ReactDOM.render(<App basename={PUBLIC_URL} />, document.getElementById("root"));

@@ -1,16 +1,27 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routes } from "./AppRoutes";
-import { LayoutSplashScreen, MaterialThemeProvider } from "../_metronic/layout";
+import {
+	MaterialThemeProvider,
+	LoadingScreen,
+	MetronicSubheaderProvider,
+} from "../_metronic/layout";
+import { UserContextProvider } from "context/UserContext";
+import { Toaster } from "react-hot-toast";
 
 export default function App({ basename }: { basename: string }) {
 	return (
-		<Suspense fallback={<LayoutSplashScreen />}>
-			<BrowserRouter basename={basename}>
-				<MaterialThemeProvider>
-					<Routes />
-				</MaterialThemeProvider>
-			</BrowserRouter>
-		</Suspense>
+		<UserContextProvider>
+			<LoadingScreen>
+				<MetronicSubheaderProvider>
+					<BrowserRouter basename={basename}>
+						<MaterialThemeProvider>
+							<Toaster />
+							<Routes />
+						</MaterialThemeProvider>
+					</BrowserRouter>
+				</MetronicSubheaderProvider>
+			</LoadingScreen>
+		</UserContextProvider>
 	);
 }

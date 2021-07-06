@@ -49,6 +49,7 @@ specifiers:
   eslint-plugin-react-hooks: ^1.7.0
   fg-loadcss: 2.1.0
   file-loader: 3.0.1
+  formik: 2.2.9
   fs-extra: 7.0.1
   html-webpack-plugin: 4.0.0-beta.5
   identity-obj-proxy: 3.0.0
@@ -78,6 +79,7 @@ specifiers:
   react-dev-utils: ^9.1.0
   react-dom: 16.12.0
   react-draggable: 4.4.2
+  react-hot-toast: 2.0.0
   react-inlinesvg: 1.2.0
   react-intl: 3.6.2
   react-is: 16.13.1
@@ -156,6 +158,7 @@ dependencies:
   eslint-plugin-react: 7.14.3_eslint@6.8.0
   fg-loadcss: 2.1.0
   file-loader: 3.0.1_webpack@4.41.0
+  formik: 2.2.9_react@16.12.0
   fs-extra: 7.0.1
   html-webpack-plugin: 4.0.0-beta.5_webpack@4.41.0
   identity-obj-proxy: 3.0.0
@@ -184,6 +187,7 @@ dependencies:
   react-dev-utils: 9.1.0
   react-dom: 16.12.0_react@16.12.0
   react-draggable: 4.4.2
+  react-hot-toast: 2.0.0_react-dom@16.12.0+react@16.12.0
   react-inlinesvg: 1.2.0_react@16.12.0
   react-intl: 3.6.2_react@16.12.0
   react-is: 16.13.1
@@ -4816,6 +4820,11 @@ packages:
     resolution: {integrity: sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=}
     dev: false
 
+  /deepmerge/2.2.1:
+    resolution: {integrity: sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /default-gateway/4.2.0:
     resolution: {integrity: sha512-h6sMrVB1VMWVrW13mSc6ia/DwYYw5MN6+exNu1OaJeFac5aSAvwM7lZ0NVfTABuSkQelr4h5oebg3KB1XPdjgA==}
     engines: {node: '>=6'}
@@ -6076,6 +6085,21 @@ packages:
     engines: {node: '>=0.4.x'}
     dev: false
 
+  /formik/2.2.9_react@16.12.0:
+    resolution: {integrity: sha512-LQLcISMmf1r5at4/gyJigGn0gOwFbeEAlji+N9InZF6LIMXnFNkO42sCI8Jt84YZggpD4cPWObAZaxpEFtSzNA==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      deepmerge: 2.2.1
+      hoist-non-react-statics: 3.3.2
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      react: 16.12.0
+      react-fast-compare: 2.0.4
+      tiny-warning: 1.0.3
+      tslib: 1.14.1
+    dev: false
+
   /forwarded/0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
@@ -6319,6 +6343,12 @@ packages:
       ignore: 3.3.10
       pify: 3.0.0
       slash: 1.0.0
+    dev: false
+
+  /goober/2.0.38:
+    resolution: {integrity: sha512-oGrP8xMB3k6EEcEAuKstd05r0JRFs8L9ouPCTKxupu85PdDJ443LTCXvxRVMeYN6pVhV6htVb7FaKTk5JlFzCQ==}
+    peerDependencies:
+      csstype: ^2.6.2
     dev: false
 
   /good-listener/1.2.2:
@@ -8171,6 +8201,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       p-locate: 4.1.0
+    dev: false
+
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
     dev: false
 
   /lodash._reinterpolate/3.0.0:
@@ -10556,12 +10590,30 @@ packages:
       warning: 4.0.3
     dev: false
 
+  /react-fast-compare/2.0.4:
+    resolution: {integrity: sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==}
+    dev: false
+
   /react-from-dom/0.3.1_react@16.12.0:
     resolution: {integrity: sha512-PeNBa8iuzoD7qHA9O7YpGnXFvC+XFFwStmFh2/r2zJAvEIaRg6EwOj+EPcDIFwyYBhqPIItxIx/dGdeWiFivjQ==}
     peerDependencies:
       react: ^15.0.0 || ^16.0.0
     dependencies:
       react: 16.12.0
+    dev: false
+
+  /react-hot-toast/2.0.0_react-dom@16.12.0+react@16.12.0:
+    resolution: {integrity: sha512-J0J2rcSvKetlziVquwESgk85pV9JB0Dz3RJIZcAEv7CWU2y2z8BQqxmZHZUxjPKIBGPqXAocZch4Kj4oUdX4+w==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      goober: 2.0.38
+      react: 16.12.0
+      react-dom: 16.12.0_react@16.12.0
+    transitivePeerDependencies:
+      - csstype
     dev: false
 
   /react-inlinesvg/1.2.0_react@16.12.0:

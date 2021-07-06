@@ -1,4 +1,4 @@
-'use strict';
+
 
 const fs = require('fs');
 const isWsl = require('is-wsl');
@@ -114,7 +114,7 @@ module.exports = function(webpackEnv) {
             // which in turn let's users customize the target behavior as per their needs.
             postcssNormalize(),
           ],
-          sourceMap: isEnvProduction && shouldUseSourceMap,
+          sourceMap: shouldUseSourceMap,
         },
       },
     ].filter(Boolean);
@@ -123,7 +123,7 @@ module.exports = function(webpackEnv) {
         {
           loader: require.resolve('resolve-url-loader'),
           options: {
-            sourceMap: isEnvProduction && shouldUseSourceMap,
+            sourceMap: shouldUseSourceMap,
           },
         },
         {

@@ -46,7 +46,7 @@ specifiers:
   eslint-plugin-jsx-a11y: 6.2.3
   eslint-plugin-prettier: 3.4.0
   eslint-plugin-react: 7.14.3
-  eslint-plugin-react-hooks: ^1.6.1
+  eslint-plugin-react-hooks: ^1.7.0
   fg-loadcss: 2.1.0
   file-loader: 3.0.1
   fs-extra: 7.0.1
@@ -153,7 +153,6 @@ dependencies:
   eslint-plugin-import: 2.18.2_eslint@6.8.0
   eslint-plugin-jsx-a11y: 6.2.3_eslint@6.8.0
   eslint-plugin-react: 7.14.3_eslint@6.8.0
-  eslint-plugin-react-hooks: 1.7.0_eslint@6.8.0
   fg-loadcss: 2.1.0
   file-loader: 3.0.1_webpack@4.41.0
   fs-extra: 7.0.1
@@ -215,6 +214,7 @@ devDependencies:
   copyfiles: 2.1.1
   eslint-config-prettier: 8.3.0_eslint@6.8.0
   eslint-plugin-prettier: 3.4.0_7c29366ddef832706d6146b0c7b1c4d3
+  eslint-plugin-react-hooks: 1.7.0_eslint@6.8.0
   prettier: 1.19.1
   sass: 1.32.8
   serve: 11.2.0
@@ -5256,7 +5256,7 @@ packages:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
     dependencies:
       eslint: 6.8.0
-    dev: false
+    dev: true
 
   /eslint-plugin-react/7.14.3_eslint@6.8.0:
     resolution: {integrity: sha512-EzdyyBWC4Uz2hPYBiEJrKCUi2Fn+BJ9B/pJQcjw5X+x/H2Nm59S4MJIvL4O5NEE0+WbnQwEBxWY03oUk+Bc3FA==}

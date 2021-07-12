@@ -537,10 +537,3 @@ function PercentToScore(percent: number, game: Game, chartData: AnyChartDocument
 
 	return eScore;
 }
-
-function FormatDifficulty(chart: AnyChartDocument, game: Game): string {
-	if (validPlaytypes[game].length > 1) {
-		return `${chart.playtype} ${chart.difficulty} ${chart.level}`;
-	}
-	return `${chart.difficulty}`;
-}

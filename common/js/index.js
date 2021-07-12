@@ -28,4 +28,5 @@ __exportStar(require("./config/config"), exports);
 exports.gameClasses = __importStar(require("./game-classes"));
 exports.ESDCore = __importStar(require("./lib/esd"));
 exports.StaticConfig = __importStar(require("./config/static-config"));
+__exportStar(require("./utils/util"), exports);
 //# sourceMappingURL=index.js.map

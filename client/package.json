@@ -6,7 +6,7 @@
 		"start": "node scripts/start.js -o",
 		"build": "node scripts/build.js",
 		"test": "node scripts/test.js",
-		"lint": "eslint src --fix",
+		"lint": "eslint src --fix --ext .ts",
 		"format": "prettier --write \"src/**/*.{js,css,scss,html}\""
 	},
 	"browserslist": {
@@ -60,7 +60,7 @@
 		"dotenv": "6.2.0",
 		"dotenv-expand": "5.1.0",
 		"downshift": "3.4.2",
-		"eslint": "^6.1.0",
+		"eslint": "^7.30.0",
 		"eslint-config-react-app": "^5.0.2",
 		"eslint-loader": "3.0.2",
 		"eslint-plugin-flowtype": "3.13.0",
@@ -110,6 +110,7 @@
 		"react-swipeable-views": "0.13.9",
 		"react-swipeable-views-utils": "0.14.0",
 		"react-syntax-highlighter": "12.2.1",
+		"react-table": "7.7.0",
 		"react-window": "1.8.5",
 		"resolve": "1.12.0",
 		"resolve-url-loader": "3.1.0",

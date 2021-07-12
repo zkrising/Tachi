@@ -338,7 +338,8 @@ module.exports = function(webpackEnv) {
 				// First, run the linter.
 				// It's important to do this before Babel processes the JS.
 				{
-					test: /\.(js|mjs|jsx|ts|tsx)$/,
+					// WARN: disabled js here - should be re-enabled at some point.
+					test: /\.(jsx|ts|tsx)$/,
 					enforce: "pre",
 					use: [
 						{

@@ -4,10 +4,14 @@
 		"browser": true,
 		"es6": true
 	},
+	"globals": {
+		"process": "readonly"
+	},
 	"plugins": [
 		"@typescript-eslint",
 		"import"
 	],
+	"ignorePatterns": ["**/*.js", "react-app-env.d.ts"],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"sourceType": "module",
@@ -46,6 +50,7 @@
 		],
 		"@typescript-eslint/explicit-function-return-type": "off",
 		"import/no-unresolved": "off",
+		"react/prop-types": "warn",
 		"require-await": "warn",
 		"no-await-in-loop": "warn",
 		"no-unused-labels": "error",

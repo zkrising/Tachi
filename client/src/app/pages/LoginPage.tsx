@@ -35,7 +35,6 @@ export default function LoginPage() {
 			);
 
 			if (!rj.success) {
-				// hack!
 				setErr(HumaniseError(rj.description));
 				return;
 			}
@@ -73,9 +72,9 @@ export default function LoginPage() {
 					<span className="font-weight-bold text-dark-50">
 						Don&apos;t have an account?
 					</span>
-					<a href="#" className="font-weight-bold ml-2" id="kt_login_signup">
+					<Link to="/register" className="font-weight-bold ml-2">
 						Sign Up!
-					</a>
+					</Link>
 				</div>
 				<Form onSubmit={formik.handleSubmit}>
 					<Form.Group>

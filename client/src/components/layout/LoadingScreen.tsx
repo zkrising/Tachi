@@ -37,6 +37,7 @@ export function LoadingScreen({ children }: JustChildren) {
 				setBroke(
 					"A network error has occured while loading Kamaitachi. If you think this is on your end, try reloading the page. If you think it isn't, report this."
 				);
+				clearTimeout(timeout);
 			});
 	}, []);
 

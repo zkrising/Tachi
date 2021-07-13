@@ -28,9 +28,7 @@ export default function DashboardRoutes() {
 				</Route>
 
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype">
-					<div className="d-flex w-100">
-						<IIDXScoreTable />
-					</div>
+					<IIDXScoreTable />
 				</Route>
 			</Switch>
 		</Layout>

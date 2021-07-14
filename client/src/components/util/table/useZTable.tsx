@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { integer } from "tachi-common";
 import deepmerge from "deepmerge";
 
@@ -14,6 +14,7 @@ interface ZTableOptions<D> {
 	sortFunctions: Record<string, SortFN<D>>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const DefaultOptions: ZTableOptions<any> = {
 	pageLen: 10,
 	search: "",
@@ -28,10 +29,6 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 	// override all default options with any provided ones.
 	const options: ZTableOptions<D> = deepmerge(DefaultOptions, providedOptions ?? {});
 
-	const [page, setPage] = useState(1);
-	const [pageState, setPageState] = useState<"start" | "middle" | "end" | "start-end">("start");
-	const [displayStr, setDisplayStr] = useState(`Loading Data...`);
-
 	const {
 		search,
 		entryName,
@@ -42,7 +39,12 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 		defaultSortMode,
 	} = options;
 
+	const [page, setPage] = useState(1);
+
+	// what we're currently sorting on. If null, use natural order.
 	const [sortMode, setSortMode] = useState(defaultSortMode);
+
+	// whether we're sorting descendingly or not.
 	const [reverseSort, setReverseSort] = useState(defaultReverseSort);
 
 	const dataset = useMemo(() => {
@@ -65,35 +67,34 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 
 	const maxPage = useMemo(() => Math.ceil(dataset.length / pageLen), [dataset]);
 
-	useEffect(() => {
+	const pageState = useMemo(() => {
 		if (page === maxPage && page === 1) {
-			setPageState("start-end");
+			return "start-end";
 		} else if (page === maxPage) {
-			setPageState("end");
+			return "end";
 		} else if (page === 1) {
-			setPageState("start");
-		} else {
-			setPageState("middle");
+			return "start";
 		}
 
-		setDisplayStr(
-			`Displaying ${(page - 1) * pageLen + 1} to ${Math.min(
-				page * pageLen,
-				dataset.length
-			)} of ${dataset.length} ${entryName}.`
-		);
+		return "middle";
 	}, [page, maxPage, dataset]);
 
-	useEffect(() => {
-		setPage(1);
-		setDisplayStr(
-			`Displaying ${(page - 1) * pageLen + 1} to ${Math.min(
-				page * pageLen,
-				dataset.length
-			)} of ${dataset.length} ${entryName}.`
-		);
-	}, [dataset]);
+	const displayStr = useMemo(() => {
+		if (dataset.length === 0) {
+			if (search !== "") {
+				return `Displaying no ${entryName}. Your search might be too narrow.`;
+			}
 
+			return `Displaying no ${entryName}.`;
+		}
+
+		return `Displaying ${(page - 1) * pageLen + 1} to ${Math.min(
+			page * pageLen,
+			dataset.length
+		)} of ${dataset.length} ${entryName}.`;
+	}, [page, dataset]);
+
+	// Create a sliding window that can be used for pagination.
 	const window = useMemo(() => dataset.slice((page - 1) * pageLen, page * pageLen), [
 		page,
 		dataset,

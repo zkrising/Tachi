@@ -5,7 +5,8 @@ import { DashboardPage } from "./pages/dashboard/DashboardPage";
 import RequireAuthAsUserParam from "components/auth/RequireAuthAsUserParam";
 import UserPage from "./pages/dashboard/users/UserPage";
 import CreditsPage from "./pages/dashboard/misc/CreditsPage";
-import IIDXScoreTable from "components/tables/IIDXScoreTable";
+import IIDXScoreTable from "components/tables/IIDXPBTable";
+import PBsPage from "./pages/dashboard/users/games/game/playtype/PBsPage";
 
 export default function DashboardRoutes() {
 	return (
@@ -28,7 +29,7 @@ export default function DashboardRoutes() {
 				</Route>
 
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype">
-					<IIDXScoreTable />
+					<PBsPage />
 				</Route>
 			</Switch>
 		</Layout>

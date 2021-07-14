@@ -1,14 +1,4 @@
 import React, { useState } from "react";
-import { useQuery } from "react-query";
-import { APIFetchV1 } from "util/api";
-import Loading from "components/util/Loading";
-import {
-	PBScoreDocument,
-	SongDocument,
-	ChartDocument,
-	GetGamePTConfig,
-	ScoreCalculatedDataLookup,
-} from "tachi-common";
 import { FormatDifficulty } from "tachi-common/js/utils/util";
 import { Button } from "react-bootstrap";
 import { useZTable } from "components/util/table/useZTable";
@@ -18,16 +8,14 @@ import TimestampCell from "./cells/TimestampCell";
 import BPICell from "./cells/BPICell";
 import { ChangeOpacity } from "util/color-opacity";
 import PageSelector from "./components/PageSelector";
-import { PropSort, NumericSOV, StrSOV } from "util/sorts";
+import { NumericSOV, StrSOV } from "util/sorts";
 import SortableTH from "./components/SortableTH";
+import SelectableRating from "./components/SelectableRating";
+import { PBDataset } from "types/tables";
+import { GetGamePTConfig, ScoreCalculatedDataLookup } from "tachi-common";
 
-type ScoreDataset = (PBScoreDocument<"iidx:SP"> & {
-	__related: { chart: ChartDocument<"iidx:SP">; song: SongDocument<"iidx"> };
-})[];
-
-export default function IIDXScoreTable() {
+export default function IIDXPBTable({ dataset }: { dataset: PBDataset<"iidx:SP"> }) {
 	const [search, setSearch] = useState("");
-	const [dataset, setDataset] = useState<ScoreDataset>();
 	const gptConfig = GetGamePTConfig<"iidx:SP">("iidx", "SP");
 
 	const [rating, setRating] = useState<ScoreCalculatedDataLookup["iidx:SP"]>(
@@ -61,47 +49,6 @@ export default function IIDXScoreTable() {
 		},
 	});
 
-	const { isLoading, error } = useQuery("TEMP_PBS", async () => {
-		const res = await APIFetchV1<{
-			scores: PBScoreDocument<"iidx:SP">[];
-			charts: ChartDocument<"iidx:SP">[];
-			songs: SongDocument<"iidx">[];
-		}>("/users/me/games/iidx/SP/pbs/best");
-
-		if (!res.success) {
-			throw res;
-		}
-
-		const songMap = new Map();
-		const chartMap = new Map();
-
-		for (const song of res.body.songs) {
-			songMap.set(song.id, song);
-		}
-
-		for (const chart of res.body.charts) {
-			chartMap.set(chart.chartID, chart);
-		}
-
-		const data = res.body.scores.map(e => ({
-			...e,
-			__related: {
-				song: songMap.get(e.songID),
-				chart: chartMap.get(e.chartID),
-			},
-		}));
-
-		setDataset(data);
-	});
-
-	if (isLoading || !dataset || !window) {
-		return <Loading />;
-	}
-
-	if (error) {
-		return <>An error has occured.</>;
-	}
-
 	const thProps = {
 		changeSort,
 		currentSortMode: sortMode,
@@ -122,26 +69,11 @@ export default function IIDXScoreTable() {
 							<SortableTH name="Score" {...thProps} />
 							<SortableTH name="Deltas" {...thProps} />
 							<SortableTH name="Lamp" {...thProps} />
-							<th>
-								<select
-									onChange={v =>
-										setRating(
-											v.target.value as ScoreCalculatedDataLookup["iidx:SP"]
-										)
-									}
-									style={{
-										backgroundColor: "#131313",
-										border: "none",
-										color: "#ffffff",
-										fontSize: "inherit",
-										font: "inherit",
-									}}
-								>
-									{gptConfig.scoreRatingAlgs.map(s => (
-										<option key={s}>{s}</option>
-									))}
-								</select>
-							</th>
+							<SelectableRating<"iidx:SP">
+								game="iidx"
+								playtype="SP"
+								setRating={setRating}
+							/>
 							<SortableTH name="Ranking" {...thProps} />
 							<SortableTH name="Timestamp" {...thProps} />
 						</tr>

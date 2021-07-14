@@ -1,4 +1,4 @@
-import { AnyChartDocument, Game } from "..";
+import { AnyChartDocument, Game, Playtypes } from "..";
 import { GetGameConfig } from "../config/config";
 
 export function FormatDifficulty(chart: AnyChartDocument, game: Game): string {
@@ -8,4 +8,14 @@ export function FormatDifficulty(chart: AnyChartDocument, game: Game): string {
 	}
 
 	return `${chart.difficulty}`;
+}
+
+export function FormatGame(game: Game, playtype: Playtypes[Game]): string {
+	const gameConfig = GetGameConfig(game);
+
+	if (gameConfig.validPlaytypes.length === 1) {
+		return gameConfig.name;
+	}
+
+	return `${gameConfig.name} (${playtype})`;
 }

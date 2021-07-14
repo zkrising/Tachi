@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FormatGame = exports.OMNI_CONFIG = exports.BTCHI_CONFIG = exports.KTCHI_CONFIG = exports.allSupportedGames = exports.allImportTypes = exports.apiImportTypes = exports.irImportTypes = exports.fileImportTypes = void 0;
-const config_1 = require("./config");
+exports.OMNI_CONFIG = exports.BTCHI_CONFIG = exports.KTCHI_CONFIG = exports.allSupportedGames = exports.allImportTypes = exports.apiImportTypes = exports.irImportTypes = exports.fileImportTypes = void 0;
 exports.fileImportTypes = [
     "file/eamusement-iidx-csv",
     "file/batch-manual",
@@ -76,12 +75,4 @@ exports.OMNI_CONFIG = {
     supportedGames: exports.allSupportedGames,
     supportedImportTypes: exports.allImportTypes,
 };
-function FormatGame(game, playtype) {
-    const gameConfig = config_1.GetGameConfig(game);
-    if (gameConfig.validPlaytypes.length === 1) {
-        return gameConfig.name;
-    }
-    return `${gameConfig.name} (${playtype})`;
-}
-exports.FormatGame = FormatGame;
 //# sourceMappingURL=static-config.js.map

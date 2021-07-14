@@ -95,13 +95,3 @@ export const OMNI_CONFIG: ServerConfig = {
 	supportedGames: allSupportedGames,
 	supportedImportTypes: allImportTypes,
 };
-
-export function FormatGame(game: Game, playtype: Playtypes[Game]): string {
-	const gameConfig = GetGameConfig(game);
-
-	if (gameConfig.validPlaytypes.length === 1) {
-		return gameConfig.name;
-	}
-
-	return `${gameConfig.name} (${playtype})`;
-}

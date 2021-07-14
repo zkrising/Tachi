@@ -1,4 +1,11 @@
-import { FileUploadImportTypes, IRImportTypes, APIImportTypes, ImportTypes, Game } from "..";
+import {
+	FileUploadImportTypes,
+	IRImportTypes,
+	APIImportTypes,
+	ImportTypes,
+	Game,
+	Playtypes,
+} from "..";
 import { GetGameConfig } from "./config";
 
 export const fileImportTypes: FileUploadImportTypes[] = [

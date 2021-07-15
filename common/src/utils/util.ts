@@ -1,6 +1,5 @@
 import { AnyChartDocument, Game, Playtypes } from "..";
-import { GamePTConfig, GetGameConfig, GetGamePTConfig } from "../config/config";
-import { Difficulties, IDStrings } from "../types";
+import { GetGameConfig, GetGamePTConfig } from "../config/config";
 
 export function FormatDifficulty(chart: AnyChartDocument, game: Game): string {
 	const gameConfig = GetGameConfig(game);

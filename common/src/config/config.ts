@@ -32,6 +32,7 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	profileRatingAlgs: UGSRatingsLookup[I][];
 
 	difficulties: Difficulties[I][];
+	shortDifficulties: Partial<Record<Difficulties[I], string>>;
 	defaultDifficulty: Difficulties[I];
 	difficultyColours: Record<Difficulties[I], string | null>;
 
@@ -180,6 +181,13 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
 
 		difficulties: ["BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
+		shortDifficulties: {
+			BEGINNER: "B",
+			NORMAL: "N",
+			HYPER: "H",
+			ANOTHER: "A",
+			LEGGENDARIA: "L",
+		},
 		defaultDifficulty: "ANOTHER",
 		difficultyColours: {
 			BEGINNER: COLOUR_SET.paleGreen,
@@ -253,6 +261,12 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
 
 		difficulties: ["NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
+		shortDifficulties: {
+			NORMAL: "N",
+			HYPER: "H",
+			ANOTHER: "A",
+			LEGGENDARIA: "L",
+		},
 		defaultDifficulty: "ANOTHER",
 		difficultyColours: {
 			NORMAL: COLOUR_SET.blue,
@@ -324,6 +338,13 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["naiveRating"],
 
 		difficulties: ["BASIC", "ADVANCED", "EXPERT", "MASTER", "WORLD'S END"],
+		shortDifficulties: {
+			BASIC: "B",
+			ADVANCED: "A",
+			EXPERT: "E",
+			MASTER: "M",
+			"WORLD'S END": "W",
+		},
 		defaultDifficulty: "MASTER",
 		difficultyColours: {
 			BASIC: COLOUR_SET.blue,
@@ -380,6 +401,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["VF6"],
 
 		difficulties: ["NOV", "ADV", "EXH", "INF", "GRV", "HVN", "VVD", "MXM"],
+		shortDifficulties: {}, // they're all fine
 		defaultDifficulty: "EXH",
 		difficultyColours: {
 			NOV: COLOUR_SET.purple, // colour set dark purple
@@ -438,6 +460,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["VF6"],
 
 		difficulties: ["NOV", "ADV", "EXH", "INF"],
+		shortDifficulties: {}, // all fine
 		defaultDifficulty: "EXH",
 		difficultyColours: {
 			NOV: COLOUR_SET.purple, // colour set dark purple
@@ -492,6 +515,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["ktRating"],
 
 		difficulties: ["Green", "Yellow", "Red"],
+		shortDifficulties: { Green: "G", Yellow: "Y", Red: "R" },
 		defaultDifficulty: "Red",
 		difficultyColours: {
 			Green: COLOUR_SET.green,
@@ -547,6 +571,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["sieglinde"],
 
 		difficulties: ["CHART"],
+		shortDifficulties: {}, // not real
 		defaultDifficulty: "CHART",
 		difficultyColours: {
 			CHART: null,
@@ -611,6 +636,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["sieglinde"],
 
 		difficulties: ["CHART"],
+		shortDifficulties: {}, // not real
 		defaultDifficulty: "CHART",
 		difficultyColours: {
 			CHART: null,
@@ -675,6 +701,13 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["MFCP", "ktRating"],
 
 		difficulties: ["BEGINNER", "BASIC", "DIFFICULT", "EXPERT", "CHALLENGE"],
+		shortDifficulties: {
+			BEGINNER: "b",
+			BASIC: "B",
+			DIFFICULT: "D",
+			EXPERT: "E",
+			CHALLENGE: "C",
+		},
 		defaultDifficulty: "EXPERT",
 		difficultyColours: {
 			BEGINNER: COLOUR_SET.paleBlue,
@@ -769,6 +802,12 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["MFCP", "ktRating"],
 
 		difficulties: ["BASIC", "DIFFICULT", "EXPERT", "CHALLENGE"],
+		shortDifficulties: {
+			BASIC: "B",
+			DIFFICULT: "D",
+			EXPERT: "E",
+			CHALLENGE: "C",
+		},
 		defaultDifficulty: "EXPERT",
 		difficultyColours: {
 			BASIC: COLOUR_SET.orange,
@@ -862,6 +901,14 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["ktRating"],
 
 		difficulties: ["Easy", "Basic", "Advanced", "Expert", "Master", "Re:Master"],
+		shortDifficulties: {
+			Easy: "e",
+			Basic: "B",
+			Advanced: "A",
+			Expert: "E",
+			Master: "M",
+			"Re:Master": "Re",
+		},
 		defaultDifficulty: "Master",
 		difficultyColours: {
 			Easy: COLOUR_SET.blue,
@@ -934,6 +981,16 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"BASS EXTREME",
 			"BASS MASTER",
 		],
+		shortDifficulties: {
+			BASIC: "BSC",
+			ADVANCED: "ADV",
+			EXTREME: "EXT",
+			MASTER: "MAS",
+			"BASS BASIC": "B-BSC",
+			"BASS ADVANCED": "B-ADV",
+			"BASS EXTREME": "B-EXT",
+			"BASS MASTER": "B-MAS",
+		},
 		defaultDifficulty: "EXTREME",
 		difficultyColours: {
 			BASIC: COLOUR_SET.blue,
@@ -988,6 +1045,12 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["skill"],
 
 		difficulties: ["BASIC", "ADVANCED", "EXTREME", "MASTER"],
+		shortDifficulties: {
+			BASIC: "BSC",
+			ADVANCED: "ADV",
+			EXTREME: "EXT",
+			MASTER: "MAS",
+		},
 		defaultDifficulty: "EXTREME",
 		difficultyColours: {
 			BASIC: COLOUR_SET.blue,

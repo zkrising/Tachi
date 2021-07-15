@@ -16,6 +16,7 @@ interface BaseGamePTConfig<I extends IDStrings> {
     sessionRatingAlgs: SessionCalculatedDataLookup[I][];
     profileRatingAlgs: UGSRatingsLookup[I][];
     difficulties: Difficulties[I][];
+    shortDifficulties: Partial<Record<Difficulties[I], string>>;
     defaultDifficulty: Difficulties[I];
     difficultyColours: Record<Difficulties[I], string | null>;
     grades: Grades[I][];

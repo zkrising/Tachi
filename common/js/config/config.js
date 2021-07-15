@@ -103,6 +103,13 @@ const GAME_PT_CONFIGS = {
         sessionRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
         profileRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
         difficulties: ["BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
+        shortDifficulties: {
+            BEGINNER: "B",
+            NORMAL: "N",
+            HYPER: "H",
+            ANOTHER: "A",
+            LEGGENDARIA: "L",
+        },
         defaultDifficulty: "ANOTHER",
         difficultyColours: {
             BEGINNER: exports.COLOUR_SET.paleGreen,
@@ -167,6 +174,12 @@ const GAME_PT_CONFIGS = {
         sessionRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
         profileRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
         difficulties: ["NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
+        shortDifficulties: {
+            NORMAL: "N",
+            HYPER: "H",
+            ANOTHER: "A",
+            LEGGENDARIA: "L",
+        },
         defaultDifficulty: "ANOTHER",
         difficultyColours: {
             NORMAL: exports.COLOUR_SET.blue,
@@ -230,6 +243,13 @@ const GAME_PT_CONFIGS = {
         sessionRatingAlgs: ["naiveRating"],
         profileRatingAlgs: ["naiveRating"],
         difficulties: ["BASIC", "ADVANCED", "EXPERT", "MASTER", "WORLD'S END"],
+        shortDifficulties: {
+            BASIC: "B",
+            ADVANCED: "A",
+            EXPERT: "E",
+            MASTER: "M",
+            "WORLD'S END": "W",
+        },
         defaultDifficulty: "MASTER",
         difficultyColours: {
             BASIC: exports.COLOUR_SET.blue,
@@ -278,6 +298,7 @@ const GAME_PT_CONFIGS = {
         sessionRatingAlgs: ["ProfileVF6", "VF6"],
         profileRatingAlgs: ["VF6"],
         difficulties: ["NOV", "ADV", "EXH", "INF", "GRV", "HVN", "VVD", "MXM"],
+        shortDifficulties: {},
         defaultDifficulty: "EXH",
         difficultyColours: {
             NOV: exports.COLOUR_SET.purple,
@@ -328,6 +349,7 @@ const GAME_PT_CONFIGS = {
         sessionRatingAlgs: ["ProfileVF6", "VF6"],
         profileRatingAlgs: ["VF6"],
         difficulties: ["NOV", "ADV", "EXH", "INF"],
+        shortDifficulties: {},
         defaultDifficulty: "EXH",
         difficultyColours: {
             NOV: exports.COLOUR_SET.purple,
@@ -374,6 +396,7 @@ const GAME_PT_CONFIGS = {
         sessionRatingAlgs: ["ktRating"],
         profileRatingAlgs: ["ktRating"],
         difficulties: ["Green", "Yellow", "Red"],
+        shortDifficulties: { Green: "G", Yellow: "Y", Red: "R" },
         defaultDifficulty: "Red",
         difficultyColours: {
             Green: exports.COLOUR_SET.green,
@@ -421,6 +444,7 @@ const GAME_PT_CONFIGS = {
         sessionRatingAlgs: ["sieglinde"],
         profileRatingAlgs: ["sieglinde"],
         difficulties: ["CHART"],
+        shortDifficulties: {},
         defaultDifficulty: "CHART",
         difficultyColours: {
             CHART: null,
@@ -476,6 +500,7 @@ const GAME_PT_CONFIGS = {
         sessionRatingAlgs: ["sieglinde"],
         profileRatingAlgs: ["sieglinde"],
         difficulties: ["CHART"],
+        shortDifficulties: {},
         defaultDifficulty: "CHART",
         difficultyColours: {
             CHART: null,
@@ -531,6 +556,13 @@ const GAME_PT_CONFIGS = {
         sessionRatingAlgs: ["MFCP", "ktRating"],
         profileRatingAlgs: ["MFCP", "ktRating"],
         difficulties: ["BEGINNER", "BASIC", "DIFFICULT", "EXPERT", "CHALLENGE"],
+        shortDifficulties: {
+            BEGINNER: "b",
+            BASIC: "B",
+            DIFFICULT: "D",
+            EXPERT: "E",
+            CHALLENGE: "C",
+        },
         defaultDifficulty: "EXPERT",
         difficultyColours: {
             BEGINNER: exports.COLOUR_SET.paleBlue,
@@ -616,6 +648,12 @@ const GAME_PT_CONFIGS = {
         sessionRatingAlgs: ["MFCP", "ktRating"],
         profileRatingAlgs: ["MFCP", "ktRating"],
         difficulties: ["BASIC", "DIFFICULT", "EXPERT", "CHALLENGE"],
+        shortDifficulties: {
+            BASIC: "B",
+            DIFFICULT: "D",
+            EXPERT: "E",
+            CHALLENGE: "C",
+        },
         defaultDifficulty: "EXPERT",
         difficultyColours: {
             BASIC: exports.COLOUR_SET.orange,
@@ -700,6 +738,14 @@ const GAME_PT_CONFIGS = {
         sessionRatingAlgs: ["ktRating"],
         profileRatingAlgs: ["ktRating"],
         difficulties: ["Easy", "Basic", "Advanced", "Expert", "Master", "Re:Master"],
+        shortDifficulties: {
+            Easy: "e",
+            Basic: "B",
+            Advanced: "A",
+            Expert: "E",
+            Master: "M",
+            "Re:Master": "Re",
+        },
         defaultDifficulty: "Master",
         difficultyColours: {
             Easy: exports.COLOUR_SET.blue,
@@ -763,6 +809,16 @@ const GAME_PT_CONFIGS = {
             "BASS EXTREME",
             "BASS MASTER",
         ],
+        shortDifficulties: {
+            BASIC: "BSC",
+            ADVANCED: "ADV",
+            EXTREME: "EXT",
+            MASTER: "MAS",
+            "BASS BASIC": "B-BSC",
+            "BASS ADVANCED": "B-ADV",
+            "BASS EXTREME": "B-EXT",
+            "BASS MASTER": "B-MAS",
+        },
         defaultDifficulty: "EXTREME",
         difficultyColours: {
             BASIC: exports.COLOUR_SET.blue,
@@ -808,6 +864,12 @@ const GAME_PT_CONFIGS = {
         sessionRatingAlgs: ["skill"],
         profileRatingAlgs: ["skill"],
         difficulties: ["BASIC", "ADVANCED", "EXTREME", "MASTER"],
+        shortDifficulties: {
+            BASIC: "BSC",
+            ADVANCED: "ADV",
+            EXTREME: "EXT",
+            MASTER: "MAS",
+        },
         defaultDifficulty: "EXTREME",
         difficultyColours: {
             BASIC: exports.COLOUR_SET.blue,

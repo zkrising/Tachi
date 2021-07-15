@@ -1,6 +1,6 @@
 import React from "react";
 import { CircularProgress } from "@material-ui/core";
-import { toAbsoluteUrl } from "../../_metronic/_helpers";
+import { toAbsoluteUrl } from "_metronic/_helpers";
 
 export function SplashScreen({ broke }: { broke: string }) {
 	return (

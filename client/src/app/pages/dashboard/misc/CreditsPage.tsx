@@ -7,12 +7,10 @@ import { SubheaderContext } from "context/SubheaderContext";
 
 export default function CreditsPage() {
 	const { setTitle, setBreadcrumbs } = useContext(SubheaderContext);
+
+	UpdateSubheader(["Credits"], setTitle, setBreadcrumbs);
+
 	const [alt, setAlt] = useState(false);
-
-	useEffect(() => {
-		UpdateSubheader(["Credits"], setTitle, setBreadcrumbs);
-	}, []);
-
 	function a(normal: JSX.Element | string, ...altStr: (JSX.Element | string)[]) {
 		return alt ? RFA(altStr) : normal;
 	}

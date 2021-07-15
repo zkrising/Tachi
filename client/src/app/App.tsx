@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Routes } from "./AppRoutes";
+import { Routes } from "./routes/AppRoutes";
 import { MaterialThemeProvider } from "../_metronic/layout";
 import { UserContextProvider } from "context/UserContext";
 import { Toaster } from "react-hot-toast";
 import { SubheaderContextProvider } from "context/SubheaderContext";
-import { LoadingScreen } from "components/layout/LoadingScreen";
+import { LoadingScreen } from "components/layout/screens/LoadingScreen";
 import { QueryClientProvider, QueryClient } from "react-query";
 
 const queryClient = new QueryClient();

@@ -9,6 +9,7 @@ import {
 	useFormik,
 } from "formik";
 import { Dispatch, SetStateAction } from "react";
+import { Game, Playtypes } from "tachi-common";
 
 export interface JustChildren {
 	children: JSX.Element[] | JSX.Element | string;
@@ -83,3 +84,8 @@ export type UseFormik<Values> = {
 	status?: any;
 	submitCount: number;
 };
+
+export interface GamePT {
+	game: Game;
+	playtype: Playtypes[Game];
+}

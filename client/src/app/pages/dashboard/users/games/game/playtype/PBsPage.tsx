@@ -1,22 +1,57 @@
 import IIDXPBTable from "components/tables/IIDXPBTable";
 import Loading from "components/util/Loading";
-import React, { useState } from "react";
+import { BackgroundContext } from "context/BackgroundContext";
+import { SubheaderContext } from "context/SubheaderContext";
+import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import { PBScoreDocument, ChartDocument, SongDocument } from "tachi-common";
+import {
+	PBScoreDocument,
+	ChartDocument,
+	SongDocument,
+	PublicUserDocument,
+	Playtypes,
+	Game,
+	GetGameConfig,
+} from "tachi-common";
+import { GamePT } from "types/react";
 import { PBDataset } from "types/tables";
-import { APIFetchV1 } from "util/api";
+import { APIFetchV1, ToAPIURL } from "util/api";
+import { UpdateSubheader } from "util/subheader";
 
-export default function PBsPage() {
+export default function PBsPage({
+	reqUser,
+	game,
+	playtype,
+}: {
+	reqUser: PublicUserDocument;
+} & GamePT) {
 	const [dataset, setDataset] = useState<PBDataset<"iidx:SP">>([]);
-	const { userID } = useParams<{ userID: string }>();
+	const { setTitle, setBreadcrumbs } = useContext(SubheaderContext);
+	const { setBackground } = useContext(BackgroundContext);
 
-	const { isLoading, error } = useQuery("TEMP_PBS", async () => {
+	const gameConfig = GetGameConfig(game);
+
+	useEffect(() => {
+		UpdateSubheader(
+			["Users", reqUser.username, gameConfig.name, playtype],
+			setTitle,
+			setBreadcrumbs,
+			`${reqUser.username}'s ${gameConfig.name} ${playtype} Profile`
+		);
+
+		setBackground(ToAPIURL(`/users/${reqUser.username}/banner`));
+
+		return () => {
+			setBackground(null);
+		};
+	}, [reqUser]);
+
+	const { isLoading, error } = useQuery(`${reqUser.id}_pbs`, async () => {
 		const res = await APIFetchV1<{
 			scores: PBScoreDocument<"iidx:SP">[];
 			charts: ChartDocument<"iidx:SP">[];
 			songs: SongDocument<"iidx">[];
-		}>(`/users/${userID}/games/iidx/SP/pbs/best`);
+		}>(`/users/${reqUser.username}/games/iidx/SP/pbs/best`);
 
 		if (!res.success) {
 			throw res;
@@ -33,11 +68,12 @@ export default function PBsPage() {
 			chartMap.set(chart.chartID, chart);
 		}
 
-		const data = res.body.scores.map(e => ({
+		const data = res.body.scores.map((e, i) => ({
 			...e,
 			__related: {
 				song: songMap.get(e.songID),
 				chart: chartMap.get(e.chartID),
+				index: i,
 			},
 		}));
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
-import { DropdownTopbarItemToggler } from "../../_metronic/_partials/dropdowns";
+import { DropdownTopbarItemToggler } from "../../../_metronic/_partials/dropdowns";
 import Divider from "components/util/Divider";
 import { PublicUserDocument } from "tachi-common";
 import { Button } from "react-bootstrap";

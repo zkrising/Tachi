@@ -337,23 +337,23 @@ module.exports = function(webpackEnv) {
 
 				// First, run the linter.
 				// It's important to do this before Babel processes the JS.
-				{
-					// WARN: disabled js here - should be re-enabled at some point.
-					test: /\.(jsx|ts|tsx)$/,
-					enforce: "pre",
-					use: [
-						{
-							options: {
-								cache: true,
-								formatter: require.resolve("react-dev-utils/eslintFormatter"),
-								eslintPath: require.resolve("eslint"),
-								resolvePluginsRelativeTo: __dirname,
-							},
-							loader: require.resolve("eslint-loader"),
-						},
-					],
-					include: paths.appSrc,
-				},
+				// {
+				// 	// WARN: disabled js here - should be re-enabled at some point.
+				// 	test: /\.(jsx|ts|tsx)$/,
+				// 	enforce: "pre",
+				// 	use: [
+				// 		{
+				// 			options: {
+				// 				cache: true,
+				// 				formatter: require.resolve("react-dev-utils/eslintFormatter"),
+				// 				eslintPath: require.resolve("eslint"),
+				// 				resolvePluginsRelativeTo: __dirname,
+				// 			},
+				// 			loader: require.resolve("eslint-loader"),
+				// 		},
+				// 	],
+				// 	include: paths.appSrc,
+				// },
 				{
 					// "oneOf" will traverse all following loaders until one will
 					// match the requirements. When no loader matches it will fall

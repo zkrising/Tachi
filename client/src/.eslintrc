@@ -49,6 +49,7 @@
 			}
 		],
 		"@typescript-eslint/explicit-function-return-type": "off",
+		"react/display-name": "off",
 		"import/no-unresolved": "off",
 		"react/prop-types": "warn",
 		"require-await": "warn",

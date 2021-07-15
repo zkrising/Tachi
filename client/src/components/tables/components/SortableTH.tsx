@@ -1,8 +1,8 @@
 import React, { HTMLAttributes } from "react";
-import { SetState } from "types/react";
 
 export default function SortableTH({
 	name,
+	shortName,
 	sortingName = name,
 	changeSort,
 	currentSortMode,
@@ -10,6 +10,7 @@ export default function SortableTH({
 	style = {},
 }: {
 	name: string;
+	shortName: string;
 	sortingName?: string;
 	currentSortMode: string | null;
 	reverseSort: boolean;
@@ -17,8 +18,9 @@ export default function SortableTH({
 	style?: HTMLAttributes<HTMLTableCellElement>["style"];
 }) {
 	return (
-		<th onClick={() => changeSort(sortingName)} style={style}>
-			<span className="mr-2">{name}</span>
+		<th className="compressible-th" onClick={() => changeSort(sortingName)} style={style}>
+			<span className="mr-2 d-none d-lg-block">{name}</span>
+			<span className="mr-2 d-block d-lg-none">{shortName}</span>
 			<span>
 				<i
 					className={`mr-1 flaticon2-arrow-up icon-sm sort-icon ${

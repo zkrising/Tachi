@@ -2,9 +2,9 @@ import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import DashboardRoutes from "./DashboardRoutes";
-import { ErrorPage } from "./pages/ErrorPage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+import { ErrorPage } from "app/pages/ErrorPage";
+import LoginPage from "app/pages/LoginPage";
+import RegisterPage from "app/pages/RegisterPage";
 
 /**
  * Core Routes for Tachi-Client.

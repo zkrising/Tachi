@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { PublicUserDocument } from "tachi-common";
 import { JustChildren } from "types/react";
 import { APIFetchV1 } from "util/api";
-import { SplashScreen } from "_metronic/_partials/controls";
+import { SplashScreen } from "./SplashScreen";
 
 export function LoadingScreen({ children }: JustChildren) {
 	const [loading, setLoading] = useState(true);

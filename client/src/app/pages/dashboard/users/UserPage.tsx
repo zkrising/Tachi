@@ -1,40 +1,20 @@
 import Loading from "components/util/Loading";
 import { BackgroundContext } from "context/BackgroundContext";
-import React, { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
 import { PublicUserDocument } from "tachi-common";
-import { APIFetchV1, ToAPIURL } from "util/api";
+import { ToAPIURL } from "util/api";
 import { UpdateSubheader } from "util/subheader";
 import { SubheaderContext } from "context/SubheaderContext";
 import Divider from "components/util/Divider";
 
-export default function UserPage() {
+export default function UserPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	const { setBreadcrumbs, setTitle } = useContext(SubheaderContext);
 	const { setBackground } = useContext(BackgroundContext);
 
-	const { userID } = useParams<{ userID: string }>();
-	const history = useHistory();
-	const [reqUser, setReqUser] = useState<PublicUserDocument>();
-
 	useEffect(() => {
-		APIFetchV1<PublicUserDocument>(`/users/${userID}`).then(rj => {
-			if (!rj.success) {
-				history.push("/error");
-				return; // hack
-			}
-
-			setReqUser(rj.body);
-		});
-	}, []);
-
-	useEffect(() => {
-		if (!reqUser) {
-			return;
-		}
-
 		UpdateSubheader(["Users", `${reqUser.username}'s Profile`], setTitle, setBreadcrumbs);
 
-		setBackground(ToAPIURL(`/users/${userID}/banner`));
+		setBackground(ToAPIURL(`/users/${reqUser.id}/banner`));
 
 		return () => {
 			setBackground(null);

@@ -2,16 +2,17 @@ import { useMemo, useState } from "react";
 import { integer } from "tachi-common";
 import deepmerge from "deepmerge";
 
-type SortFN<T> = (a: T, b: T) => integer;
+export type ZTableSortFn<D> = (a: D, b: D) => integer;
+export type ZTableSearchFn<D> = (search: string, data: D) => boolean;
 
 interface ZTableOptions<D> {
 	pageLen: integer;
 	search: string;
-	searchFunction: (search: string, data: D) => boolean;
+	searchFunction: ZTableSearchFn<D>;
 	entryName: string;
 	defaultSortMode: string | null;
 	defaultReverseSort: boolean;
-	sortFunctions: Record<string, SortFN<D>>;
+	sortFunctions: Record<string, ZTableSortFn<D>>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

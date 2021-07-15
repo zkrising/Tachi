@@ -982,10 +982,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"BASS MASTER",
 		],
 		shortDifficulties: {
-			BASIC: "BSC",
-			ADVANCED: "ADV",
-			EXTREME: "EXT",
-			MASTER: "MAS",
+			BASIC: "G-BSC",
+			ADVANCED: "G-ADV",
+			EXTREME: "G-EXT",
+			MASTER: "G-MAS",
 			"BASS BASIC": "B-BSC",
 			"BASS ADVANCED": "B-ADV",
 			"BASS EXTREME": "B-EXT",
@@ -1046,10 +1046,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		difficulties: ["BASIC", "ADVANCED", "EXTREME", "MASTER"],
 		shortDifficulties: {
-			BASIC: "BSC",
-			ADVANCED: "ADV",
-			EXTREME: "EXT",
-			MASTER: "MAS",
+			BASIC: "D-BSC",
+			ADVANCED: "D-ADV",
+			EXTREME: "D-EXT",
+			MASTER: "D-MAS",
 		},
 		defaultDifficulty: "EXTREME",
 		difficultyColours: {

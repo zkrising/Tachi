@@ -28,23 +28,15 @@ export function FormatDifficultyShort(chart: AnyChartDocument, game: Game): stri
 		return `${chart.playtype} ${chart.level}`;
 	}
 
-	if (game === "gitadora" && chart.playtype === "Gita") {
-		if (chart.difficulty.startsWith("BASS ")) {
-			return shortDiff;
-		}
-
-		return `G-${shortDiff}`;
-	}
-
 	if (game === "ddr") {
 		return `${shortDiff}${chart.playtype}`;
 	}
 
-	if (gameConfig.validPlaytypes.length === 1) {
-		return shortDiff;
+	if (gameConfig.validPlaytypes.length === 1 || game === "gitadora") {
+		return `${shortDiff} ${chart.level}`;
 	}
 
-	return `${chart.playtype} ${shortDiff}`;
+	return `${chart.playtype}${shortDiff} ${chart.level}`;
 }
 
 export function FormatGame(game: Game, playtype: Playtypes[Game]): string {

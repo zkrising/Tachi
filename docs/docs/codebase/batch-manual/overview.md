@@ -22,7 +22,11 @@ obscure imports, and reduces the workload on Tachi.
 
 The format is incredibly simple JSON.
 
-It is comprised of two base keys, `head` and `body`.
+It is comprised of two base keys, `meta` and `scores`.
+
+!!! faq
+	These keys were originally called `head` and `body` in Kamaitachi. You will have to update
+	batch-manual code.
 
 ### Head
 
@@ -67,7 +71,7 @@ The properties are described as this:
 | :: | :: | :: |
 | `score` | Number | The score for this, well, score. This should use the default scoring algorithm for this game. |
 | `lamp` | Lamp | The lamp for this score. This should be one of the lamps as described in the config for your game + playtype. |
-| `matchType` | "songTitle" \| "ddrSongHash" \| "tachiSongID" \| "bmsChartHash" | This determines how `identifier` will be used to match your scores' chart with Tachi's database of songs and charts. |
+| `matchType` | "songTitle" \| "ddrSongHash" \| "tachiSongID" \| "bmsChartHash" \| "inGameID" | This determines how `identifier` will be used to match your scores' chart with Tachi's database of songs and charts. |
 | `identifier` | string | A string that Tachi uses to identify what chart this is for. How this is used depends on the `matchType`. |
 | `difficulty` (Conditional) | string | If `matchType` is "tachiSongID" or "songTitle", this field must be present, and describe the difficulty of the chart this score is for. |
 | `timeAchieved` (Optional) | integer \| null | This is *when* the score was achieved in unix milliseconds. This should be provided if possible, as Tachi uses it for a LOT of features. |
@@ -75,9 +79,16 @@ The properties are described as this:
 | `judgements` (Optional) | Record&lt;Game Judgement, integer&gt; | This should be a record of the judgements for your game + playtype, and the integer indicating how often they occured. |
 | `hitMeta` (Optional) | See [Game Specific Hit Meta](../documents/score.md#game-specific) | This can be a partial record of various `hitMeta` props for this game. |
 
+!!! warning
+	`identifier` should always be a string. Even if it's something like a numeric ID! Tachi will handle this.
+
+!!! warning
+	`timeAchieved` is in **UNIX MILLISECONDS**. Most programming languages use unix seconds. You might have to
+	multiply your timestamps by 1000.
+
 #### Match Type
 
-There are four match types, and they all use identifier
+There are five match types, and they all use identifier
 in a different way.
 
 - songTitle
@@ -115,6 +126,14 @@ This match type *necessitates* that `difficulty` be defined
 and set to a valid difficulty for DDR.
 
 This match type can only be used for DDR.
+
+- inGameID
+
+This uses the in-game-ID for this **SONG**. You, therefore,
+**MUST** specify the difficulty for this chart aswell.
+
+At the moment, this match type can only be used on `iidx`.
+This is expected to change before release.
 
 ## Example
 

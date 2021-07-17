@@ -73,7 +73,7 @@ The properties are described as this:
 | `lamp` | Lamp | The lamp for this score. This should be one of the lamps as described in the config for your game + playtype. |
 | `matchType` | "songTitle" \| "ddrSongHash" \| "tachiSongID" \| "bmsChartHash" \| "inGameID" | This determines how `identifier` will be used to match your scores' chart with Tachi's database of songs and charts. |
 | `identifier` | string | A string that Tachi uses to identify what chart this is for. How this is used depends on the `matchType`. |
-| `difficulty` (Conditional) | string | If `matchType` is "tachiSongID" or "songTitle", this field must be present, and describe the difficulty of the chart this score is for. |
+| `difficulty` (Conditional) | string | If `matchType` is "tachiSongID", "inGameID" or "songTitle", this field must be present, and describe the difficulty of the chart this score is for. |
 | `timeAchieved` (Optional) | integer \| null | This is *when* the score was achieved in unix milliseconds. This should be provided if possible, as Tachi uses it for a LOT of features. |
 | `comment` (Optional) | string \| null | A comment from the user about this score. |
 | `judgements` (Optional) | Record&lt;Game Judgement, integer&gt; | This should be a record of the judgements for your game + playtype, and the integer indicating how often they occured. |

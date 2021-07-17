@@ -103,9 +103,7 @@ GET /api/v1/users/me WHEN authenticated as userID 1.
 
 ### Parameters
 
-| Property | Type | Description |
-| :: | :: | :: |
-
+None.
 
 ### Response
 
@@ -117,9 +115,9 @@ GET /api/v1/users/me WHEN authenticated as userID 1.
 
 #### Request
 ```
-GET /api/v1/users/zkldi/stats
+GET /api/v1/users/zkldi/game-stats
 OR
-GET /api/v1/users/1/stats
+GET /api/v1/users/1/game-stats
 ```
 
 #### Response

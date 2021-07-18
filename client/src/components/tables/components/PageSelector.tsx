@@ -7,15 +7,13 @@ export default function PageSelector({
 	setPage,
 	currentPage,
 	maxPage,
-	isSmall = false,
 }: {
 	setPage: SetState<integer>;
 	currentPage: integer;
 	maxPage: integer;
-	isSmall?: boolean;
 }) {
-	const elipseStart = currentPage > (isSmall ? 2 : 4);
-	const elipseEnd = maxPage - currentPage > (isSmall ? 1 : 3);
+	const elipseStart = currentPage > 4;
+	const elipseEnd = maxPage - currentPage > 3;
 
 	function PageButton({ page }: { page: integer }) {
 		return (
@@ -48,32 +46,6 @@ export default function PageSelector({
 				{pageNums.map(e => (
 					<PageButton key={e} page={e} />
 				))}
-			</>
-		);
-	}
-
-	if (isSmall) {
-		return (
-			<>
-				<PageButton page={1} />
-				{elipseStart ? (
-					<Button disabled={true} variant="secondary">
-						...
-					</Button>
-				) : (
-					<PageButton page={2} />
-				)}
-				{middleNums.map(e => (
-					<PageButton key={e} page={e} />
-				))}
-				{elipseEnd ? (
-					<Button disabled={true} variant="secondary">
-						...
-					</Button>
-				) : (
-					<PageButton page={maxPage - 1} />
-				)}
-				<PageButton page={maxPage} />
 			</>
 		);
 	}

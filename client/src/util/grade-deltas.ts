@@ -9,12 +9,12 @@ export function AbsoluteGradeDelta<I extends IDStrings = IDStrings>(
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const maxScore = Math.floor(score * (percent / 100));
+	const maxScore = Math.ceil(score * (100 / percent));
 
 	const gradeIndex =
 		typeof gradeOrIndex === "number" ? gradeOrIndex : gptConfig.grades.indexOf(gradeOrIndex);
 
-	const gradeScore = Math.floor(gptConfig.gradeBoundaries[gradeIndex] * maxScore);
+	const gradeScore = Math.ceil((gptConfig.gradeBoundaries[gradeIndex] / 100) * maxScore);
 
 	return score - gradeScore;
 }
@@ -73,11 +73,11 @@ export function GenericFormatGradeDelta<I extends IDStrings = IDStrings>(
 		};
 	}
 
-	const formatUpper = `${WrapGrade(upper.grade)}-${formatNumFn(upper.delta)}`;
+	const formatUpper = `${WrapGrade(upper.grade)}${formatNumFn(upper.delta)}`;
 
 	return {
 		lower: formatLower,
 		upper: formatUpper,
-		closer: upper.delta - lower > 0 ? "lower" : "upper",
+		closer: upper.delta + lower < 0 ? "lower" : "upper",
 	};
 }

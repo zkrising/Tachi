@@ -1,3 +1,4 @@
+import { ErrorPage } from "app/pages/ErrorPage";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Layout } from "_metronic/layout";
@@ -19,6 +20,10 @@ export default function DashboardRoutes() {
 
 				<Route path="/dashboard/users/:userID">
 					<UserRoutes />
+				</Route>
+
+				<Route path="*">
+					<ErrorPage statusCode={404} />
 				</Route>
 			</Switch>
 		</Layout>

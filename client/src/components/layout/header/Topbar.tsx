@@ -2,18 +2,18 @@ import React, { useContext } from "react";
 import SVG from "react-inlinesvg";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { toAbsoluteUrl } from "../../../_metronic/_helpers";
-import { SearchDropdown } from "../../../_metronic/layout/components/extras/dropdowns/search/SearchDropdown";
 import { UserNotificationsDropdown } from "../../../_metronic/layout/components/extras/dropdowns/UserNotificationsDropdown";
 import { UserProfileDropdown } from "components/layout/header/UserProfileDropdown";
 import { UserContext } from "context/UserContext";
 import LinkButton from "components/util/LinkButton";
+import SearchBar from "./SearchBar";
 
 export function Topbar() {
 	const { user } = useContext(UserContext);
 
 	return (
 		<div className="topbar">
-			<SearchDropdown />
+			<SearchBar />
 
 			{user ? (
 				<>

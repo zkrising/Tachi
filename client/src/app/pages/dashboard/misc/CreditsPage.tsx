@@ -8,9 +8,12 @@ import { SubheaderContext } from "context/SubheaderContext";
 export default function CreditsPage() {
 	const { setTitle, setBreadcrumbs } = useContext(SubheaderContext);
 
-	UpdateSubheader(["Credits"], setTitle, setBreadcrumbs);
+	useEffect(() => {
+		UpdateSubheader(["Credits"], setTitle, setBreadcrumbs);
+	}, []);
 
 	const [alt, setAlt] = useState(false);
+
 	function a(normal: JSX.Element | string, ...altStr: (JSX.Element | string)[]) {
 		return alt ? RFA(altStr) : normal;
 	}
@@ -168,7 +171,7 @@ export default function CreditsPage() {
 						<ExternalLink href="https://node-tap.org">Node TAP</ExternalLink>
 						<br />
 						<small>
-							Node TAP is a testing frame work that does.not(&quot;suck&quot;)
+							Node TAP is a testing frame work that is.not.a(&quot;mess&quot;)
 						</small>
 					</li>
 					<li>

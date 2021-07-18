@@ -33,7 +33,7 @@ export default function PBsPage({
 
 	useEffect(() => {
 		UpdateSubheader(
-			["Users", reqUser.username, gameConfig.name, playtype],
+			["Users", reqUser.username, "Games", gameConfig.name, playtype],
 			setTitle,
 			setBreadcrumbs,
 			`${reqUser.username}'s ${gameConfig.name} ${playtype} Profile`

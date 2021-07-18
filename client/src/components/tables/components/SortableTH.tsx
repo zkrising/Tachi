@@ -23,7 +23,7 @@ export default function SortableTH({
 			<span className="mr-2 d-block d-lg-none">{shortName}</span>
 			<span>
 				<i
-					className={`mr-1 flaticon2-arrow-up icon-sm sort-icon ${
+					className={`flaticon2-arrow-up icon-sm sort-icon ${
 						currentSortMode === sortingName && reverseSort ? "active" : ""
 					}`}
 				></i>

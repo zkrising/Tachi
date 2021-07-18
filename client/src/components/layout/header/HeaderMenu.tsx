@@ -10,6 +10,8 @@ import MenuDropdown from "./MenuDropdown";
 import Loading from "components/util/Loading";
 import KTLayoutHeader from "_metronic/_assets/js/layout/base/header";
 import KTLayoutHeaderMenu from "_metronic/_assets/js/layout/base/header-menu";
+import { TachiConfig } from "lib/config";
+import AllGames from "./AllGames";
 
 export function HeaderMenu() {
 	const { user } = useContext(UserContext);
@@ -73,6 +75,8 @@ export function HeaderMenu() {
 							))}
 						</MenuDropdown>
 					)}
+
+					<AllGames />
 				</ul>
 			</div>
 		</div>

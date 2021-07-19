@@ -6,7 +6,7 @@ import { FORMATTED_VERSION } from "util/constants/version";
 export function Footer() {
 	return (
 		<>
-			<Divider />
+			<Divider className="mt-8" />
 
 			<div className="footer py-4 d-flex flex-lg-column" id="kt_footer">
 				<div className="container d-flex flex-column flex-md-row align-items-center justify-content-between">

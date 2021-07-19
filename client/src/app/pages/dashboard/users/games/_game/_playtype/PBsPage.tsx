@@ -41,12 +41,12 @@ export default function PBsPage({
 		};
 	}, [reqUser]);
 
-	const { isLoading, error } = useQuery(`${reqUser.id}_pbs`, async () => {
+	const { isLoading, error } = useQuery(`${reqUser.id}_${game}_${playtype}_pbs`, async () => {
 		const res = await APIFetchV1<{
 			scores: PBScoreDocument<"iidx:SP">[];
 			charts: ChartDocument<"iidx:SP">[];
 			songs: SongDocument<"iidx">[];
-		}>(`/users/${reqUser.username}/games/iidx/SP/pbs/best`);
+		}>(`/users/${reqUser.username}/games/${game}/${playtype}/pbs/best`);
 
 		if (!res.success) {
 			throw res;

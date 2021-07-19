@@ -20,7 +20,12 @@ export default function GameRoutes() {
 				{gameConfig.validPlaytypes.length === 1 ? (
 					<Redirect to={`/dashboard/games/${game}/${gameConfig.validPlaytypes[0]}`} />
 				) : (
-					<PlaytypeSelect game={game} />
+					<PlaytypeSelect
+						subheaderCrumbs={["Games", gameConfig.name]}
+						subheaderTitle={`${gameConfig.name} Playtype Select`}
+						base={`/dashboard/games/${game}`}
+						game={game}
+					/>
 				)}
 			</Route>
 

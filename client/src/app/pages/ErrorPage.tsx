@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export function ErrorPage({
 	statusCode,
@@ -9,6 +9,8 @@ export function ErrorPage({
 	customMessage?: string;
 }) {
 	let message;
+
+	const history = useHistory();
 
 	if (!customMessage) {
 		switch (statusCode) {
@@ -46,9 +48,14 @@ export function ErrorPage({
 						{statusCode}
 					</h1>
 					<p className="font-size-h3 font-weight-light">{message}</p>
-					<p>
-						<Link to="/">Go Home.</Link>
-					</p>
+					<a
+						className="text-primary"
+						onClick={() =>
+							history.length === 1 ? history.replace("/") : history.goBack()
+						}
+					>
+						Go Back.
+					</a>
 				</div>
 			</div>
 		</div>

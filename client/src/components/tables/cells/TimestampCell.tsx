@@ -7,9 +7,12 @@ export default function TimestampCell({ time }: { time: integer | null }) {
 		<td>
 			{time ? (
 				<>
-					{DateTime.fromMillis(time).toLocaleString(DateTime.DATETIME_MED)}
+					{DateTime.fromMillis(time).toRelative()}
+
 					<br />
-					<small className="text-muted">{DateTime.fromMillis(time).toRelative()}</small>
+					<small className="text-muted">
+						{DateTime.fromMillis(time).toLocaleString(DateTime.DATETIME_MED)}
+					</small>
 				</>
 			) : (
 				"No Data."

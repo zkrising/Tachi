@@ -3,13 +3,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Game, GetGameConfig } from "tachi-common";
 
-export default function PlaytypeSelect({ game }: { game: Game }) {
+export default function PlaytypeSelect({
+	game,
+	base,
+	subheaderCrumbs,
+	subheaderTitle,
+}: {
+	game: Game;
+	base: string;
+	subheaderCrumbs: string[] | string;
+	subheaderTitle: string;
+}) {
 	const gameConfig = GetGameConfig(game);
 
-	useSetSubheader(["Games", gameConfig.name], [game], `${gameConfig.name} Playtype Selection`);
+	useSetSubheader(subheaderCrumbs, [game], subheaderTitle);
 
 	return (
-		<div className="col-12 col-lg-6 justify-content-center">
+		<div className="col-12 col-lg-6 mx-auto">
 			<div className="card card-custom">
 				<div className="card-header">
 					<h3>Playtype Selector</h3>
@@ -23,7 +33,7 @@ export default function PlaytypeSelect({ game }: { game: Game }) {
 							<Link
 								key={pt}
 								className="btn btn-outline-primary float-right"
-								to={`/dashboard/games/${game}/${pt}`}
+								to={`${base}/${pt}`}
 							>
 								{pt}
 							</Link>

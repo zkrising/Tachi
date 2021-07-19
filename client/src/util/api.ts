@@ -17,16 +17,31 @@ export function ToAPIURL(url: string) {
 	return `${BASE_URL}/api/v1${url}`;
 }
 
+export function ToServerURL(url: string) {
+	if (url[0] !== "/") {
+		// eslint-disable-next-line no-param-reassign
+		url = `/${url}`;
+	}
+
+	return `${BASE_URL}${url}`;
+}
+
+export type APIFetchV1Return<T> = (UnsuccessfulAPIResponse | SuccessfulAPIResponse<T>) & {
+	statusCode: number;
+};
+
 export async function APIFetchV1<T = unknown>(
 	url: string,
 	options: RequestInit = {},
 	displaySuccess = false,
 	displayFailure = false
-): Promise<UnsuccessfulAPIResponse | SuccessfulAPIResponse<T>> {
+): Promise<APIFetchV1Return<T>> {
 	const mergedOptions = Object.assign({}, BASE_OPTIONS, options);
 
 	try {
-		const rj = await fetch(ToAPIURL(url), mergedOptions).then(r => r.json());
+		const res = await fetch(ToAPIURL(url), mergedOptions);
+
+		const rj = await res.json();
 
 		if (!rj.success && displayFailure) {
 			toast.error(rj.description, { duration: 10_000 });
@@ -37,7 +52,7 @@ export async function APIFetchV1<T = unknown>(
 			// toast success
 		}
 
-		return rj;
+		return { ...rj, statusCode: res.status };
 	} catch (err) {
 		console.error(err);
 		throw err;

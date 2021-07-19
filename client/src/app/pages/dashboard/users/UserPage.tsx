@@ -1,23 +1,12 @@
 import Loading from "components/util/Loading";
-import { BackgroundContext } from "context/BackgroundContext";
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { PublicUserDocument } from "tachi-common";
 import { ToAPIURL } from "util/api";
 import Divider from "components/util/Divider";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 
 export default function UserPage({ reqUser }: { reqUser: PublicUserDocument }) {
-	const { setBackground } = useContext(BackgroundContext);
-
-	useSetSubheader(["Users", `${reqUser.username}'s Profile`], [reqUser]);
-
-	useEffect(() => {
-		setBackground(ToAPIURL(`/users/${reqUser.id}/banner`));
-
-		return () => {
-			setBackground(null);
-		};
-	}, [reqUser]);
+	useSetSubheader(["Users", reqUser.username], [reqUser], `${reqUser.username}'s Profile`);
 
 	if (!reqUser) {
 		return <Loading />;

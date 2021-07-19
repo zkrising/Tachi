@@ -3,17 +3,15 @@ import { BackgroundContext } from "context/BackgroundContext";
 import React, { useContext, useEffect } from "react";
 import { PublicUserDocument } from "tachi-common";
 import { ToAPIURL } from "util/api";
-import { UpdateSubheader } from "util/subheader";
-import { SubheaderContext } from "context/SubheaderContext";
 import Divider from "components/util/Divider";
+import useSetSubheader from "components/layout/header/useSetSubheader";
 
 export default function UserPage({ reqUser }: { reqUser: PublicUserDocument }) {
-	const { setBreadcrumbs, setTitle } = useContext(SubheaderContext);
 	const { setBackground } = useContext(BackgroundContext);
 
-	useEffect(() => {
-		UpdateSubheader(["Users", `${reqUser.username}'s Profile`], setTitle, setBreadcrumbs);
+	useSetSubheader(["Users", `${reqUser.username}'s Profile`], [reqUser]);
 
+	useEffect(() => {
 		setBackground(ToAPIURL(`/users/${reqUser.id}/banner`));
 
 		return () => {

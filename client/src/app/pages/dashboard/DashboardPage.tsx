@@ -1,13 +1,8 @@
-import { SubheaderContext } from "context/SubheaderContext";
-import React, { useContext, useEffect } from "react";
+import useSetSubheader from "components/layout/header/useSetSubheader";
+import React from "react";
 
 export function DashboardPage() {
-	const { setBreadcrumbs, setTitle } = useContext(SubheaderContext);
-
-	useEffect(() => {
-		setBreadcrumbs([]);
-		setTitle("Dashboard");
-	}, []);
+	useSetSubheader("Dashboard");
 
 	return <>To be honest, I have no idea what is going to go here just yet.</>;
 }

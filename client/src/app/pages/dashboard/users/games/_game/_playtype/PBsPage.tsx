@@ -1,7 +1,7 @@
+import useSetSubheader from "components/layout/header/useSetSubheader";
 import IIDXPBTable from "components/tables/IIDXPBTable";
 import Loading from "components/util/Loading";
 import { BackgroundContext } from "context/BackgroundContext";
-import { SubheaderContext } from "context/SubheaderContext";
 import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import {
@@ -9,14 +9,11 @@ import {
 	ChartDocument,
 	SongDocument,
 	PublicUserDocument,
-	Playtypes,
-	Game,
 	GetGameConfig,
 } from "tachi-common";
 import { GamePT } from "types/react";
 import { PBDataset } from "types/tables";
 import { APIFetchV1, ToAPIURL } from "util/api";
-import { UpdateSubheader } from "util/subheader";
 
 export default function PBsPage({
 	reqUser,
@@ -26,19 +23,17 @@ export default function PBsPage({
 	reqUser: PublicUserDocument;
 } & GamePT) {
 	const [dataset, setDataset] = useState<PBDataset<"iidx:SP">>([]);
-	const { setTitle, setBreadcrumbs } = useContext(SubheaderContext);
 	const { setBackground } = useContext(BackgroundContext);
 
 	const gameConfig = GetGameConfig(game);
 
-	useEffect(() => {
-		UpdateSubheader(
-			["Users", reqUser.username, "Games", gameConfig.name, playtype],
-			setTitle,
-			setBreadcrumbs,
-			`${reqUser.username}'s ${gameConfig.name} ${playtype} Profile`
-		);
+	useSetSubheader(
+		["Users", reqUser.username, "Games", gameConfig.name, playtype],
+		[reqUser],
+		`${reqUser.username}'s ${gameConfig.name} ${playtype} Profile`
+	);
 
+	useEffect(() => {
 		setBackground(ToAPIURL(`/users/${reqUser.username}/banner`));
 
 		return () => {

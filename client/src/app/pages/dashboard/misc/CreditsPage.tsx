@@ -1,16 +1,12 @@
 import ExternalLink from "components/util/ExternalLink";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Contributors } from "util/constants/contributors";
 import { RFA } from "util/misc";
-import { UpdateSubheader } from "util/subheader";
-import { SubheaderContext } from "context/SubheaderContext";
+import { TachiConfig } from "lib/config";
+import useSetSubheader from "components/layout/header/useSetSubheader";
 
 export default function CreditsPage() {
-	const { setTitle, setBreadcrumbs } = useContext(SubheaderContext);
-
-	useEffect(() => {
-		UpdateSubheader(["Credits"], setTitle, setBreadcrumbs);
-	}, []);
+	useSetSubheader("Credits");
 
 	const [alt, setAlt] = useState(false);
 
@@ -23,12 +19,12 @@ export default function CreditsPage() {
 			<p>
 				{a(
 					<>
-						Kamaitachi has been the work of many people, and many more contributors.
-						None of this would be possible without these people.
+						{TachiConfig.name} has been the work of many people, and many more
+						contributors. None of this would be possible without these people.
 					</>,
 					"Funding for this program was made possible by by by by by-",
-					"Kamaitachi actually just appeared here one day, and we're not sure how.",
-					"Actually, we just ran npm install kamaitachi.",
+					`${TachiConfig.name} actually just appeared here one day, and we're not sure how.`,
+					`Actually, we just ran npm install ${TachiConfig.name}.`,
 					"To be honest, we had a surplus of monkeys and typewriters."
 				)}
 			</p>

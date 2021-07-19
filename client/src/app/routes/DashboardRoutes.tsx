@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { Layout } from "_metronic/layout";
 import { DashboardPage } from "../pages/dashboard/DashboardPage";
 import CreditsPage from "../pages/dashboard/misc/CreditsPage";
+import GameRoutes from "./GameRoutes";
 import UserRoutes from "./UserRoutes";
 
 export default function DashboardRoutes() {
@@ -20,6 +21,10 @@ export default function DashboardRoutes() {
 
 				<Route path="/dashboard/users/:userID">
 					<UserRoutes />
+				</Route>
+
+				<Route path="/dashboard/games/:game">
+					<GameRoutes />
 				</Route>
 
 				<Route path="*">

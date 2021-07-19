@@ -8,6 +8,7 @@ import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "context/UserContext";
 import { PublicUserDocument } from "tachi-common";
 import toast from "react-hot-toast";
+import { TachiConfig } from "lib/config";
 
 export default function LoginPage() {
 	const [err, setErr] = useState("");
@@ -63,7 +64,7 @@ export default function LoginPage() {
 				<div className="text-center mb-10 mb-lg-10">
 					<img
 						src={toAbsoluteUrl("/media/logos/logo-wordmark.png")}
-						alt="Kamaitachi"
+						alt={TachiConfig.name}
 						width="256px"
 					/>
 				</div>

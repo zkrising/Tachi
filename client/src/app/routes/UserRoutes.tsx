@@ -5,7 +5,7 @@ import { Route, Switch, useParams } from "react-router-dom";
 import { Game, PublicUserDocument } from "tachi-common";
 import { APIFetchV1 } from "util/api";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
-import PBsPage from "../pages/dashboard/users/games/game/playtype/PBsPage";
+import PBsPage from "../pages/dashboard/users/games/_game/_playtype/PBsPage";
 import UserPage from "../pages/dashboard/users/UserPage";
 
 export default function UserRoutes() {
@@ -49,7 +49,7 @@ function UserGameRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 	const { game } = useParams<{ game: string }>();
 
 	if (!IsSupportedGame(game)) {
-		return <ErrorPage statusCode={404} customMessage="This game is not supported." />;
+		return <ErrorPage statusCode={400} customMessage="This game is not supported." />;
 	}
 
 	return (
@@ -65,7 +65,7 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 	const { playtype } = useParams<{ playtype: string }>();
 
 	if (!IsSupportedPlaytype(game, playtype)) {
-		return <ErrorPage statusCode={404} customMessage="This game is not supported." />;
+		return <ErrorPage statusCode={400} customMessage="This playtype is not supported." />;
 	}
 
 	return (

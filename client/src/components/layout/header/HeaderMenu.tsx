@@ -35,11 +35,11 @@ export function HeaderMenu() {
 	}
 
 	useEffect(() => {
-		if (data) {
+		if (!isLoading) {
 			KTLayoutHeader.init("kt_header", "kt_header_mobile");
 			KTLayoutHeaderMenu.init("kt_header_menu", "kt_header_menu_wrapper");
 		}
-	}, [data]);
+	}, [isLoading]);
 
 	if (isLoading) {
 		return <Loading />;

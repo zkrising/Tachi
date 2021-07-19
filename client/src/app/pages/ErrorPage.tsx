@@ -1,5 +1,4 @@
 import React from "react";
-import { toAbsoluteUrl } from "../../_metronic/_helpers";
 import { Link } from "react-router-dom";
 
 export function ErrorPage({
@@ -39,12 +38,7 @@ export function ErrorPage({
 	return (
 		<div className="fullscreen">
 			<div className="d-flex flex-column flex-root">
-				<div
-					className="d-flex flex-row-fluid flex-column bgi-size-cover bgi-position-center bgi-no-repeat p-10 p-sm-30"
-					style={{
-						backgroundImage: `url(${toAbsoluteUrl("/media/error/bg1.jpg")})`,
-					}}
-				>
+				<div className="d-flex flex-row-fluid flex-column bgi-size-cover bgi-position-center bgi-no-repeat p-10 p-sm-30">
 					<h1
 						className="font-size-sm-100 font-weight-boldest mt-15"
 						style={{ fontSize: "150px" }}

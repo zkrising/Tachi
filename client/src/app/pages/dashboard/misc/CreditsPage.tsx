@@ -89,7 +89,9 @@ export default function CreditsPage() {
 			<div className="mt-6">
 				<h1>Significant Contributors</h1>
 
-				<p>These people have contributed a significant sub-project to Kamaitachi.</p>
+				<p>
+					These people have contributed a significant sub-project to {TachiConfig.name}.
+				</p>
 
 				<ul>
 					<li>
@@ -118,7 +120,7 @@ export default function CreditsPage() {
 			<div className="mt-6">
 				<h1>Contributors</h1>
 
-				<p>These people have contributed in any way to Kamaitachi.</p>
+				<p>These people have contributed to {TachiConfig.name}.</p>
 
 				<ul>
 					{Contributors.slice(0)

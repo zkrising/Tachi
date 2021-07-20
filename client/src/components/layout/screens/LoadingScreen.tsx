@@ -1,4 +1,5 @@
 import { UserContext } from "context/UserContext";
+import { TachiConfig } from "lib/config";
 import React, { useContext, useState, useEffect } from "react";
 import { PublicUserDocument } from "tachi-common";
 import { JustChildren } from "types/react";
@@ -16,7 +17,7 @@ export function LoadingScreen({ children }: JustChildren) {
 		const timeout = setTimeout(
 			() =>
 				setBroke(
-					"It's taking a long time for Kamaitachi to load. We might be under strain, or completely down, sorry!"
+					`It's taking a long time for ${TachiConfig.name} to load. We might be under strain, or completely down, sorry!`
 				),
 			4_000
 		);

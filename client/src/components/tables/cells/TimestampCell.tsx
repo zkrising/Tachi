@@ -1,18 +1,16 @@
 import React from "react";
 import { integer } from "tachi-common";
-import { DateTime } from "luxon";
+import { FormatTime, MillisToSince } from "util/time";
 
 export default function TimestampCell({ time }: { time: integer | null }) {
 	return (
 		<td>
 			{time ? (
 				<>
-					{DateTime.fromMillis(time).toRelative()}
+					{MillisToSince(time)}
 
 					<br />
-					<small className="text-muted">
-						{DateTime.fromMillis(time).toLocaleString(DateTime.DATETIME_MED)}
-					</small>
+					<small className="text-muted">{FormatTime(time)}</small>
 				</>
 			) : (
 				"No Data."

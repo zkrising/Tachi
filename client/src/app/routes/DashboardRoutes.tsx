@@ -1,7 +1,7 @@
 import { ErrorPage } from "app/pages/ErrorPage";
+import { Layout } from "components/layout/Layout";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Layout } from "_metronic/layout";
 import { DashboardPage } from "../pages/dashboard/DashboardPage";
 import CreditsPage from "../pages/dashboard/misc/CreditsPage";
 import GameRoutes from "./GameRoutes";

@@ -12,6 +12,7 @@ specifiers:
   '@material-ui/styles': 4.9.14
   '@svgr/webpack': 4.3.2
   '@tanem/svg-injector': 8.0.50
+  '@types/humanize-duration': 3.25.1
   '@types/jest': 26.0.23
   '@types/luxon': 1.27.1
   '@types/node': 16.0.0
@@ -55,6 +56,7 @@ specifiers:
   formik: 2.2.9
   fs-extra: 7.0.1
   html-webpack-plugin: ^4.5.2
+  humanize-duration: 3.27.0
   identity-obj-proxy: 3.0.0
   is-wsl: ^1.1.0
   jest: 24.9.0
@@ -169,6 +171,7 @@ dependencies:
   formik: 2.2.9_react@16.12.0
   fs-extra: 7.0.1
   html-webpack-plugin: 4.5.2_webpack@4.41.0
+  humanize-duration: 3.27.0
   identity-obj-proxy: 3.0.0
   is-wsl: 1.1.0
   jest: 24.9.0
@@ -229,6 +232,7 @@ dependencies:
   workbox-webpack-plugin: 4.3.1_webpack@4.41.0
 
 devDependencies:
+  '@types/humanize-duration': 3.25.1
   '@types/luxon': 1.27.1
   '@types/react-table': 7.7.2
   copyfiles: 2.1.1
@@ -3115,6 +3119,10 @@ packages:
   /@types/html-minifier-terser/5.1.2:
     resolution: {integrity: sha512-h4lTMgMJctJybDp8CQrxTUiiYmedihHWkjnF/8Pxseu2S6Nlfcy8kwboQ8yejh456rP2yWoEVm1sS/FVsfM48w==}
     dev: false
+
+  /@types/humanize-duration/3.25.1:
+    resolution: {integrity: sha512-WZU/4bb+lvzyDmZzjJtp++9mfKy6B3lH6gGISgkcz6SU8hMILKRM0vi08TxIsb0dQB4Gzo68MWLmctu6xqUi9g==}
+    dev: true
 
   /@types/invariant/2.2.34:
     resolution: {integrity: sha512-lYUtmJ9BqUN688fGY1U1HZoWT1/Jrmgigx2loq4ZcJpICECm/Om3V314BxdzypO0u5PORKGMM6x0OXaljV1YFg==}
@@ -7486,6 +7494,10 @@ packages:
 
   /https-browserify/1.0.0:
     resolution: {integrity: sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=}
+    dev: false
+
+  /humanize-duration/3.27.0:
+    resolution: {integrity: sha512-qLo/08cNc3Tb0uD7jK0jAcU5cnqCM0n568918E7R2XhMr/+7F37p4EY062W/stg7tmzvknNn9b/1+UhVRzsYrQ==}
     dev: false
 
   /hyphenate-style-name/1.0.4:

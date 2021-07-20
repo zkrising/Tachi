@@ -8,7 +8,7 @@ import { SubheaderContextProvider } from "context/SubheaderContext";
 import { LoadingScreen } from "components/layout/screens/LoadingScreen";
 import { QueryClientProvider, QueryClient } from "react-query";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({ defaultOptions: { queries: { staleTime: 1000 * 60 * 5 } } });
 
 export default function App({ basename }: { basename: string }) {
 	return (

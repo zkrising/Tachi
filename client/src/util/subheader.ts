@@ -1,3 +1,4 @@
+import { TachiConfig } from "lib/config";
 import { SetState } from "types/react";
 
 export function UpdateSubheader(
@@ -8,7 +9,7 @@ export function UpdateSubheader(
 ) {
 	const title = customTitle ?? breadcrumbs[breadcrumbs.length - 1];
 
-	document.title = `${title} | Kamaitachi`;
+	document.title = `${title} | ${TachiConfig.name}`;
 	setTitle(title);
 	setBreadcrumbs(breadcrumbs);
 }

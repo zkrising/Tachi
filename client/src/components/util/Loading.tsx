@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Loading() {
 	return (
-		<div className="mx-auto align-self-center">
+		<div className="d-flex justify-content-center w-100">
 			<CircularProgress />
 		</div>
 	);

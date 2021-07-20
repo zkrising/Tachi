@@ -10,6 +10,7 @@ import { PublicUserDocument } from "tachi-common";
 import toast from "react-hot-toast";
 import { UseFormik } from "types/react";
 import Divider from "components/util/Divider";
+import { TachiConfig } from "lib/config";
 
 // seconds it takes for a user to actually read the rules.
 const RULES_READ_TIME = 30;
@@ -107,7 +108,7 @@ export default function RegisterPage() {
 				<div className="text-center mb-10 mb-lg-10">
 					<img
 						src={toAbsoluteUrl("/media/logos/logo-wordmark.png")}
-						alt="Kamaitachi"
+						alt={TachiConfig.name}
 						width="256px"
 					/>
 				</div>

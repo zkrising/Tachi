@@ -69,7 +69,7 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 	const maxPage = useMemo(() => Math.ceil(dataset.length / pageLen), [dataset]);
 
 	const pageState = useMemo(() => {
-		if (page === maxPage && page === 1) {
+		if ((page === maxPage && page === 1) || maxPage === 0) {
 			return "start-end";
 		} else if (page === maxPage) {
 			return "end";
@@ -92,7 +92,7 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 		return `Displaying ${(page - 1) * pageLen + 1} to ${Math.min(
 			page * pageLen,
 			dataset.length
-		)} of ${dataset.length} ${entryName}.`;
+		)} of ${dataset.length} ${entryName.toLowerCase()}.`;
 	}, [page, dataset]);
 
 	// Create a sliding window that can be used for pagination.

@@ -687,7 +687,8 @@ GET /api/v1/users/zkldi/games/iidx/SP/most-played
 | `above` | Array&lt;UserGameStats&gt; | Up to 5 users' game stats better than this user. |
 | `below` | Array&lt;UserGameStats&gt; | Same as above, but below the user. |
 | `users` | Array&lt;UserDocument&gt; | The user documents related to the above statistics. |
-| `yourStats` | UserGameStats | The requested user's stats for this game. |
+| `thisUsersStats` | UserGameStats | The requested user's stats for this GPT. |
+| `thisUsersRanking` | {outOf: integer, ranking: integer} | The requested user's ranking for this GPT. |
 
 ### Example
 
@@ -737,6 +738,10 @@ GET /api/v1/users/zkldi/games/iidx/SP/leaderboard-adjacent
 		classes: {
 			dan: 5
 		}
+	},
+	thisUsersRanking: {
+		ranking: 2,
+		outOf: 3	
 	}
 }
 ```

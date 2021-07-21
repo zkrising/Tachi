@@ -30,6 +30,8 @@ nav:
     - "user/rules.md"
     - "user/games.md"
     - "user/features.md"
+    - "user/pbs-scores.md"
+    - "user/filter-directives.md"
 
     - Terminology:
       - "user/terminology/lamps.md"

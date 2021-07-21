@@ -10,11 +10,7 @@ This endpoints are for specific users information on specific game + playtype co
 
 ### Parameters
 
-| Property | Type | Description |
-| :: | :: | :: |
-
-
-
+None.
 
 ### Response
 
@@ -68,9 +64,6 @@ GET /api/v1/users/zkldi/games/iidx/SP
 
 | Property | Type | Description |
 | :: | :: | :: |
-
-
-
 | `unachieved` (Optional) | Presence | If present, only unachieved goals are returned. |
 
 ### Response
@@ -122,9 +115,6 @@ GET /api/v1/users/zkldi/games/iidx/SP/goals
 
 | Property | Type | Description |
 | :: | :: | :: |
-
-
-
 | `unachieved` (Optional) | Presence | If present, only unachieved milestones are returned. |
 
 ### Response
@@ -172,9 +162,6 @@ GET /api/v1/users/zkldi/games/iidx/SP/milestones
 
 | Property | Type | Description |
 | :: | :: | :: |
-
-
-
 | `search` | String | Limits the returned scores to those where the corresponding song is most similar to this query. |
 
 ### Response
@@ -236,9 +223,6 @@ different rating algorithm to sort under.
 
 | Property | Type | Description |
 | :: | :: | :: |
-
-
-
 | `alg` | String | An overriding rating algorithm to use instead of the default. |
 
 ### Response
@@ -309,10 +293,6 @@ GET /api/v1/users/zkldi/games/iidx/SP/pbs/best?alg=BPI
 
 | Property | Type | Description |
 | :: | :: | :: |
-
-
-
-
 | `getComposition` | Presence | If present, the individual ScoreDocuments that composed this PB will also be returned. |
 
 ### Response
@@ -356,9 +336,6 @@ GET /api/v1/users/1/games/iidx/SP/pbs/some_chart_id
 
 | Property | Type | Description |
 | :: | :: | :: |
-
-
-
 | `search` | String | Limits the returned scores to those where the corresponding song is most similar to this query. |
 
 ### Response
@@ -419,11 +396,7 @@ GET /api/v1/users/zkldi/games/iidx/SP/scores?search=Verfl
 
 ### Parameters
 
-| Property | Type | Description |
-| :: | :: | :: |
-
-
-
+None.
 
 ### Response
 
@@ -482,9 +455,6 @@ song titles of played songs inside sessions.
 
 | Property | Type | Description |
 | :: | :: | :: |
-
-
-
 | `search` | string | The session name to search for. |
 
 ### Response
@@ -528,9 +498,6 @@ These are returned in descending order.
 
 | Property | Type | Description |
 | :: | :: | :: |
-
-
-
 | `alg` (Optional) | string | The name of the algorithm to use instead of the default. |
 
 ### Response
@@ -575,6 +542,24 @@ GET /api/v1/users/zkldi/games/iidx/SP/sessions/best
 ]
 ```
 
+## Get a user's most recent 100 sessions.
+
+`GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent`
+
+Retrieves a user's most recent 100 sessions for this game.
+
+These are returned in descending order according to `timeEnded`.
+
+### Parameters
+
+None.
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | Array&lt;SessionDocument&gt; | The array of the users sessions. |
+
 ## Get a user's most recent 100 highlighted sessions.
 
 `GET /api/v1/users/:userID/games/:game/:playtype/sessions/highlighted`
@@ -585,11 +570,7 @@ These are returned in descending order according to `timeEnded`.
 
 ### Parameters
 
-| Property | Type | Description |
-| :: | :: | :: |
-
-
-
+None.
 
 ### Response
 

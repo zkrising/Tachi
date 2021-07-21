@@ -1,19 +1,19 @@
 // Config file that the CI deployment uses. This is moved to $pwd/conf.json5 before CI tests are ran.
 
 {
-  MONGO_CONNECTION_URL: "127.0.0.1:27017",
-  MONGO_DATABASE_NAME: "testingdb",
-  LOG_LEVEL: "info",
-  CAPTCHA_SECRET_KEY: "unused",
-  SESSION_SECRET: "unused",
-  FLO_API_URL: "https://flo.example.com",
-  EAG_API_URL: "https://eag.example.com",
-  ARC_API_URL: "https://arc.example.com",
-  ARC_AUTH_TOKEN: "unused",
-  CDN_FILE_ROOT: "./local-cdn",
-  PORT: 8080,
-  TYPE: "omni", // It really doesn't matter whether we're in bokutachi or kamaitachi mode. If we had the performance we could run these in parallel?
-  CLIENT_INDEX_HTML_PATH: "./src/test-utils/mock-index.html",
-  ENABLE_SERVER_HTTPS: false,
-  RUN_OWN_CDN: true
+	MONGO_CONNECTION_URL: "127.0.0.1:27017",
+	MONGO_DATABASE_NAME: "testingdb",
+	LOG_LEVEL: "info",
+	CAPTCHA_SECRET_KEY: "unused",
+	SESSION_SECRET: "unused",
+	FLO_API_URL: "https://flo.example.com",
+	EAG_API_URL: "https://eag.example.com",
+	ARC_API_URL: "https://arc.example.com",
+	ARC_AUTH_TOKEN: "unused",
+	CDN_FILE_ROOT: "./local-cdn",
+	PORT: 8080,
+	TYPE: "omni", // It really doesn't matter whether we're in bokutachi or kamaitachi mode. If we had the performance we could run these in parallel?
+	CLIENT_INDEX_HTML_PATH: "./src/test-utils/mock-index.html",
+	ENABLE_SERVER_HTTPS: false,
+	RUN_OWN_CDN: true
 }

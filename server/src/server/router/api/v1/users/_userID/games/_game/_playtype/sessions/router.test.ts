@@ -146,7 +146,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent", (t) =>
 				game: "iidx",
 				playtype: "SP",
 				sessionID: "recent_id1",
-				timeEnded: 1234,
+				timeEnded: 1,
 			},
 			{
 				highlight: false,
@@ -154,7 +154,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent", (t) =>
 				game: "iidx",
 				playtype: "SP",
 				sessionID: "recent_id2",
-				timeEnded: 12345,
+				timeEnded: 3,
 			},
 			{
 				highlight: false,
@@ -162,7 +162,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent", (t) =>
 				game: "iidx",
 				playtype: "SP",
 				sessionID: "recent_id3",
-				timeEnded: 12344,
+				timeEnded: 2,
 			},
 		] as SessionDocument[]);
 
@@ -172,7 +172,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent", (t) =>
 		t.strictSame(
 			// @ts-expect-error temporary type hack
 			res.body.body.map((e) => e.sessionID),
-			["recent_id1", "recent_id3", "recent_id2"]
+			["recent_id2", "recent_id3", "recent_id1"]
 		);
 
 		t.end();

@@ -345,9 +345,9 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 		alg = temp;
 	}
 
-	const yourStats = await db["game-stats"].findOne({ game, playtype, userID: user.id });
+	const thisUsersStats = await db["game-stats"].findOne({ game, playtype, userID: user.id });
 
-	if (!yourStats) {
+	if (!thisUsersStats) {
 		return res.status(400).json({
 			success: false,
 			description: `This user has not played this game.`,
@@ -360,7 +360,7 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 				game,
 				playtype,
 				userID: { $ne: user.id },
-				[`ratings.${alg}`]: { $gte: yourStats.ratings[alg] },
+				[`ratings.${alg}`]: { $gt: thisUsersStats.ratings[alg] },
 			},
 			{
 				limit: 5,
@@ -371,7 +371,7 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 				game,
 				playtype,
 				userID: { $ne: user.id },
-				[`ratings.${alg}`]: { $lte: yourStats.ratings[alg] },
+				[`ratings.${alg}`]: { $lte: thisUsersStats.ratings[alg] },
 			},
 			{
 				limit: 5,
@@ -384,6 +384,8 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 		...below.map((e) => e.userID),
 	]);
 
+	const thisUsersRanking = await GetUsersRanking(thisUsersStats);
+
 	return res.status(200).json({
 		success: true,
 		description: `Returned ${above.length + below.length} nearby stats.`,
@@ -391,7 +393,8 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 			above,
 			below,
 			users,
-			yourStats,
+			thisUsersStats,
+			thisUsersRanking,
 		},
 	});
 });

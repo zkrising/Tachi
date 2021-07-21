@@ -45,7 +45,7 @@ t.test("POST /ir/chunitachi/import", (t) => {
 		const res = await mockApi
 			.post("/ir/chunitachi/import")
 			.set("Authorization", `Bearer mock_token`)
-			.send(deepmerge(chunitachiBody, { head: { game: "iidx" } }));
+			.send(deepmerge(chunitachiBody, { meta: { game: "iidx" } }));
 
 		t.equal(res.body.success, false, "Should not be successful");
 
@@ -56,7 +56,7 @@ t.test("POST /ir/chunitachi/import", (t) => {
 		const res = await mockApi
 			.post("/ir/chunitachi/import")
 			.set("Authorization", `Bearer mock_token`)
-			.send(deepmerge(chunitachiBody, { head: { service: "foo bar" } }));
+			.send(deepmerge(chunitachiBody, { meta: { service: "foo bar" } }));
 
 		t.equal(res.body.success, false, "Should not be successful");
 

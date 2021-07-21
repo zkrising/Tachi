@@ -17,8 +17,8 @@ const mockErr = (...msg: string[]) =>
 const logger = CreateLogCtx(__filename);
 
 const baseBatchManual = {
-	body: [],
-	head: { service: "foo", game: "iidx", playtype: "SP" },
+	scores: [],
+	meta: { service: "foo", game: "iidx", playtype: "SP" },
 };
 
 const baseBatchManualScore = {
@@ -33,7 +33,7 @@ const baseBatchManualScore = {
 function dm(sc: any) {
 	return deepmerge(
 		baseBatchManual,
-		{ body: [deepmerge(baseBatchManualScore, sc)] },
+		{ scores: [deepmerge(baseBatchManualScore, sc)] },
 		{ arrayMerge: (r, c) => c }
 	);
 }
@@ -54,7 +54,7 @@ t.test("#ParserFn", (t) => {
 
 	t.test("No Header", (t) => {
 		t.throws(
-			() => ParserFn({ body: [] }, "file/batch-manual", logger),
+			() => ParserFn({ scores: [] }, "file/batch-manual", logger),
 			new ScoreImportFatalError(
 				400,
 				"Could not retrieve head.game - is this valid BATCH-MANUAL?"
@@ -69,7 +69,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "foo", playtype: "SP" } },
+					{ scores: [], meta: { service: "foo", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -87,7 +87,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "foo", game: "iidx" } },
+					{ scores: [], meta: { service: "foo", game: "iidx" } },
 					"file/batch-manual",
 					logger
 				),
@@ -105,7 +105,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "foo", game: "invalid_game", playtype: "SP" } },
+					{ scores: [], meta: { service: "foo", game: "invalid_game", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -115,7 +115,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "foo", game: 123, playtype: "SP" } },
+					{ scores: [], meta: { service: "foo", game: 123, playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -129,7 +129,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "1", game: "iidx", playtype: "SP" } },
+					{ scores: [], meta: { service: "1", game: "iidx", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -143,7 +143,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: 1, game: "iidx", playtype: "SP" } },
+					{ scores: [], meta: { service: 1, game: "iidx", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -159,7 +159,7 @@ t.test("#ParserFn", (t) => {
 
 	t.test("Valid Empty BATCH-MANUAL", (t) => {
 		const res = ParserFn(
-			{ body: [], head: { service: "foo", game: "iidx", playtype: "SP" } },
+			{ scores: [], meta: { service: "foo", game: "iidx", playtype: "SP" } },
 			"file/batch-manual",
 			logger
 		);
@@ -181,7 +181,7 @@ t.test("#ParserFn", (t) => {
 		t.test("Basic BATCH-MANUAL", (t) => {
 			const res = ParserFn(
 				{
-					body: [
+					scores: [
 						{
 							score: 1000,
 							lamp: "HARD CLEAR",
@@ -209,7 +209,7 @@ t.test("#ParserFn", (t) => {
 							identifier: "5.1.1.",
 						},
 					],
-					head: { service: "foo", game: "iidx", playtype: "SP" },
+					meta: { service: "foo", game: "iidx", playtype: "SP" },
 				} as BatchManual,
 				"file/batch-manual",
 				logger
@@ -333,7 +333,7 @@ t.test("#ParserFn", (t) => {
 			const fn = () =>
 				ParserFn(
 					{
-						body: [
+						scores: [
 							{
 								score: 1000,
 								lamp: "ALL JUSTICE", // not an iidx lamp
@@ -342,7 +342,7 @@ t.test("#ParserFn", (t) => {
 								difficulty: "ANOTHER",
 							},
 						],
-						head: { service: "foo", game: "iidx", playtype: "SP" },
+						meta: { service: "foo", game: "iidx", playtype: "SP" },
 					},
 					"file/batch-manual",
 					logger

@@ -12,7 +12,8 @@ t.test("GET /api/v1/users/:userID/pfp", (t) => {
 
 	t.test("Should return the default profile picture if user has no custom pfp", async (t) => {
 		await CDNStoreOrOverwrite("/users/default/pfp.png", "test");
-		const res = await mockApi.get("/api/v1/users/1/pfp");
+		// we have to follow redirs here lol
+		const res = await mockApi.get("/api/v1/users/1/pfp").redirects(1);
 
 		t.equal(res.body.toString(), "test");
 
@@ -22,7 +23,7 @@ t.test("GET /api/v1/users/:userID/pfp", (t) => {
 	t.test("Should return a custom profile picture if one is set", async (t) => {
 		await CDNStoreOrOverwrite(GetProfilePictureURL(1), "foo");
 		await db.users.update({ id: 1 }, { $set: { customPfp: true } });
-		const res = await mockApi.get("/api/v1/users/1/pfp");
+		const res = await mockApi.get("/api/v1/users/1/pfp").redirects(1);
 
 		t.equal(res.body.toString(), "foo");
 
@@ -45,7 +46,7 @@ t.test("PUT /api/v1/users/:userID/pfp", (t) => {
 
 		t.equal(res.statusCode, 200);
 
-		const get = await mockApi.get(res.body.body.get);
+		const get = await mockApi.get(res.body.body.get).redirects(1);
 
 		t.strictSame(img, get.body, "Profile picture should be stored.");
 
@@ -60,11 +61,11 @@ t.test("PUT /api/v1/users/:userID/pfp", (t) => {
 		const res = await mockApi
 			.put("/api/v1/users/1/pfp")
 			.set("Authorization", "Bearer fake_api_token")
-			.attach("pfp", img, "file.jpg");
+			.attach("pfp", img, "file.png");
 
 		t.equal(res.statusCode, 200);
 
-		const get = await mockApi.get(res.body.body.get);
+		const get = await mockApi.get(res.body.body.get).redirects(1);
 
 		t.strictSame(img, get.body, "Profile picture should be stored.");
 

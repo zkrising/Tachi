@@ -94,7 +94,7 @@ router.get("/best", async (req, res) => {
 		success: true,
 		description: `Retrieved ${pbs.length} personal bests.`,
 		body: {
-			scores: pbs,
+			pbs,
 			songs,
 			charts,
 		},

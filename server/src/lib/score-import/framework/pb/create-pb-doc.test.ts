@@ -27,7 +27,7 @@ t.test("#CreatePBDoc", (t) => {
 		chartID,
 		userID: 1,
 		songID: 1,
-		// rankingInfo -- is not present because it is not added until post-processing.
+		// rankingData -- is not present because it is not added until post-processing.
 		highlight: false,
 		isPrimary: true,
 		timeAchieved: 1619454485988,

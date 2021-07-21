@@ -1,4 +1,4 @@
-import { GetNextCounterValue } from "./db";
+import { DecrementCounterValue, GetNextCounterValue } from "./db";
 import t from "tap";
 import db from "../external/mongo/db";
 import ResetDBState from "../test-utils/resets";
@@ -18,6 +18,31 @@ t.test("#GetNextCounterValue", (t) => {
 		});
 
 		t.equal(dbData!.value, 3, "Counter should increment after being hit");
+	});
+
+	t.rejects(
+		() => GetNextCounterValue("fake-counter"),
+		"Could not find sequence document for fake-counter."
+	);
+
+	t.end();
+});
+
+t.test("#DecrementCounterValue", (t) => {
+	t.beforeEach(ResetDBState);
+
+	t.test("Should decrease a counter.", async (t) => {
+		await db.counters.insert({ counterName: "foo", value: 3 });
+
+		const res = await DecrementCounterValue("foo");
+
+		t.equal(res, 2);
+
+		const doc = await db.counters.findOne({ counterName: "foo" });
+
+		t.equal(doc?.value, 2);
+
+		t.end();
 	});
 
 	t.rejects(

@@ -35,7 +35,7 @@ export async function ProcessPBs(
 	}
 
 	// so here's the kinda awkward part - for the time between this operation
-	// and the next one - THE SCORE PBS ARE IN THE DATABASE WITHOUT RANKINGINFO.
+	// and the next one - THE SCORE PBS ARE IN THE DATABASE WITHOUT RANKINGDATA.
 	// this *is* bad behaviour, but I don't have a nice way to fix it.
 	// This should be fixed in the future to avoid crashes between these two
 	// calls - but that is unlikely.

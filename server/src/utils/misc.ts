@@ -69,20 +69,6 @@ export function IsValidPlaytype(game: Game, str: string): str is Playtypes[Game]
 	return GetGameConfig(game).validPlaytypes.includes(str as Playtypes[Game]);
 }
 
-/**
- * Formats a game and playtype depending on how many possible playtypes
- * this game has.
- */
-export function FormatGPT(game: Game, playtype: Playtypes[Game]) {
-	const gameConfig = GetGameConfig(game);
-
-	if (gameConfig.validPlaytypes.length === 1) {
-		return game;
-	}
-
-	return `${game} (${playtype})`;
-}
-
 export function IsString(val: unknown): val is string {
 	return typeof val === "string";
 }

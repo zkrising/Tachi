@@ -53,6 +53,7 @@ export interface TachiConfig {
 	CLIENT_INDEX_HTML_PATH: string;
 	ENABLE_SERVER_HTTPS: boolean;
 	RUN_OWN_CDN: boolean;
+	CLIENT_DEV_SERVER?: string | null;
 	TYPE_INFO: StaticConfig.ServerConfig;
 }
 
@@ -71,6 +72,7 @@ const err = p(config, {
 	CLIENT_INDEX_HTML_PATH: "string",
 	ENABLE_SERVER_HTTPS: "boolean",
 	RUN_OWN_CDN: "boolean",
+	CLIENT_DEV_SERVER: "*?string",
 	TYPE: p.isIn("ktchi", "btchi", "omni"),
 });
 
@@ -112,3 +114,4 @@ export const CONFIG = tachiConfig;
 export const CLIENT_INDEX_HTML_PATH = tachiConfig.CLIENT_INDEX_HTML_PATH;
 export const ENABLE_SERVER_HTTPS = tachiConfig.ENABLE_SERVER_HTTPS;
 export const RUN_OWN_CDN = tachiConfig.RUN_OWN_CDN;
+export const CLIENT_DEV_SERVER = tachiConfig.CLIENT_DEV_SERVER;

@@ -89,4 +89,26 @@ router.get("/highlighted", async (req, res) => {
 	});
 });
 
+/**
+ * Returns a users 100 most recent sessions. Returned in timeEnded order.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent
+ */
+router.get("/recent", async (req, res) => {
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const game = req[SYMBOL_TachiData]!.game!;
+	const playtype = req[SYMBOL_TachiData]!.playtype!;
+
+	const sessions = await db.sessions.find(
+		{ userID: user.id, game, playtype },
+		{ sort: { timeEnded: -1 }, limit: 100 }
+	);
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned ${sessions.length} sessions.`,
+		body: sessions,
+	});
+});
+
 export default router;

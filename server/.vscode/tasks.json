@@ -3,17 +3,6 @@
     "tasks": [
         {
             "type": "npm",
-            "script": "buildrun",
-            "problemMatcher": [],
-            "label": "npm: buildrun",
-            "detail": "tsc && export NODE_ENV=\"dev\" && node js/main.js",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "type": "npm",
             "script": "fulltest",
             "problemMatcher": [],
             "label": "npm: fulltest",
@@ -36,6 +25,17 @@
                 "reveal": "always",
                 "focus": false,
                 "panel": "dedicated"
+            }
+        },
+        {
+            "type": "npm",
+            "script": "start",
+            "problemMatcher": [],
+            "label": "npm: start",
+            "detail": "tsc --project tsconfig.build.json && node js/main.js",
+            "group": {
+                "kind": "build",
+                "isDefault": true
             }
         }
     ]

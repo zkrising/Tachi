@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { SYMBOL_TachiData } from "../../../../../../../lib/constants/tachi";
-import { FormatGPT, IsString } from "../../../../../../../utils/misc";
-import { GetGamePTConfig, UserGameStats, integer } from "tachi-common";
+import { IsString } from "../../../../../../../utils/misc";
+import { GetGamePTConfig, UserGameStats, integer, FormatGame } from "tachi-common";
 import { FindOptions } from "monk";
 import db from "../../../../../../../external/mongo/db";
 import { ParseStrPositiveInt, CheckStrProfileAlg } from "../../../../../../../utils/string-checks";
@@ -11,7 +11,6 @@ import songIDRouter from "./songs/_songID/router";
 import { ValidatePlaytypeFromParam } from "./middleware";
 import foldersRouter from "./folders/router";
 import tablesRouter from "./tables/router";
-
 const router: Router = Router({ mergeParams: true });
 
 router.use(ValidatePlaytypeFromParam);
@@ -27,7 +26,7 @@ router.get("/", (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: `Retrieved information about ${FormatGPT(game, playtype)}`,
+		description: `Retrieved information about ${FormatGame(game, playtype)}`,
 		body: {
 			config: GetGamePTConfig(game, playtype),
 		},

@@ -10,11 +10,14 @@ import {
 import {
 	FormatUserDoc,
 	GetUserCaseInsensitive,
+	GetUserWithEmail,
+	GetUserWithID,
 	PRIVATEINFO_GetUserCaseInsensitive,
 } from "../../../../../utils/user";
 import db from "../../../../../external/mongo/db";
 import CreateLogCtx from "../../../../../lib/logger/logger";
 import prValidate from "../../../../middleware/prudence-validate";
+import { DecrementCounterValue } from "../../../../../utils/db";
 
 const logger = CreateLogCtx(__filename);
 
@@ -126,7 +129,7 @@ router.post(
 		},
 		{
 			username:
-				"Usernames must be between 3 and 20 characters long, and can only contain alphanumeric characters!",
+				"Usernames must be between 3 and 20 characters long, can only contain alphanumeric characters and cannot start with a number.",
 			email: "Invalid email.",
 			inviteCode: "Invalid invite code.",
 			captcha: "Please fill out the captcha.",
@@ -151,9 +154,9 @@ router.post(
 				});
 			}
 
-			logger.debug("Captcha validated.");
+			logger.verbose("Captcha validated.");
 		} else {
-			logger.info("Skipped captcha check because not in production.");
+			logger.warn("Skipped captcha check because not in production.");
 		}
 
 		const existingUser = await GetUserCaseInsensitive(req.body.username);
@@ -163,6 +166,16 @@ router.post(
 			return res.status(409).json({
 				success: false,
 				description: "This username is already in use.",
+			});
+		}
+
+		const existingEmail = await GetUserWithEmail(req.body.email);
+
+		if (existingEmail) {
+			logger.info(`User attempted to use email ${req.body.email}, but was already in use.`);
+			return res.status(409).json({
+				success: false,
+				description: `This email is already in use.`,
 			});
 		}
 
@@ -197,13 +210,21 @@ router.post(
 				throw new Error("AddNewUser failed to create a user.");
 			}
 
+			// also set this as a cookie.
+			req.session.tachi = {
+				userID: newUser.id,
+			};
+
+			req.session.cookie.maxAge = 3.154e10;
+			req.session.cookie.secure = true;
+
+			// re-fetch the user like this so we guaranteeably omit the private fields.
+			const user = await GetUserWithID(newUser.id);
+
 			return res.status(200).json({
 				success: true,
 				description: `Successfully created account ${req.body.username}!`,
-				body: {
-					id: newUser.id,
-					username: newUser.username,
-				},
+				body: user,
 			});
 		} catch (err) {
 			logger.error(
@@ -212,6 +233,7 @@ router.post(
 			);
 
 			await ReinstateInvite(inviteCodeDoc);
+			await DecrementCounterValue("users");
 
 			return res.status(500).json({
 				success: false,

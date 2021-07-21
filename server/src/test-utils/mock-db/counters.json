@@ -2,5 +2,9 @@
     {
         "counterName": "real-counter",
         "value": 2
+    },
+    {
+        "counterName": "users",
+        "value": 2
     }
 ]

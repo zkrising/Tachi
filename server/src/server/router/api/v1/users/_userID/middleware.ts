@@ -15,7 +15,7 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 
 	if (req.params.userID === "me") {
 		if (!req[SYMBOL_TachiAPIAuth].userID) {
-			return res.status(403).json({
+			return res.status(401).json({
 				success: false,
 				description: "Cannot use 'me' userID with no authentication.",
 			});

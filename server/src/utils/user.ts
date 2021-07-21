@@ -50,6 +50,20 @@ export function GetUserCaseInsensitive(
 }
 
 /**
+ * Returns the user with this email.
+ */
+export function GetUserWithEmail(email: string): Promise<FindOneResult<PublicUserDocument>> {
+	return db.users.findOne(
+		{
+			email,
+		},
+		{
+			projection: OMIT_PRIVATE_USER_RETURNS,
+		}
+	);
+}
+
+/**
  * Returns GetUserCaseInsensitive, but without the private field omission.
  * @see GetUserCaseInsensitive
  */
@@ -157,7 +171,7 @@ export async function GetUsersRanking(stats: UserGameStats) {
 					$sum: {
 						$cond: {
 							if: {
-								$gte: [
+								$gt: [
 									`$ratings.${gptConfig.defaultProfileRatingAlg}`,
 									stats.ratings[gptConfig.defaultProfileRatingAlg],
 								],

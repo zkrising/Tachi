@@ -5,8 +5,10 @@ import { integer } from "tachi-common";
 import { RedisClient } from "../external/redis/redis";
 import {
 	CDN_FILE_ROOT,
+	CLIENT_DEV_SERVER,
 	CLIENT_INDEX_HTML_PATH,
 	CONFIG,
+	ENABLE_SERVER_HTTPS,
 	RUN_OWN_CDN,
 	SESSION_SECRET,
 } from "../lib/setup/config";
@@ -20,6 +22,7 @@ const logger = CreateLogCtx(__filename);
 let store;
 
 if (process.env.NODE_ENV !== "test") {
+	logger.info("Connecting ExpressSession to Redis.");
 	const RedisStore = connectRedis(expressSession);
 	store = new RedisStore({
 		host: "localhost",
@@ -38,13 +41,33 @@ const userSessionMiddleware = expressSession({
 	resave: true,
 	saveUninitialized: false,
 	cookie: {
-		secure: process.env.NODE_ENV === "production",
+		secure: process.env.NODE_ENV === "production" || ENABLE_SERVER_HTTPS,
 	},
 });
 
 const app: Express = express();
 
-app.use(helmet());
+if (process.env.NODE_ENV !== "production" && CLIENT_DEV_SERVER) {
+	logger.warn(`Enabling CORS requests from ${CLIENT_DEV_SERVER}.`);
+
+	// Allow CORS requests from another server (since we have our dev server hosted separately).
+	app.use((req, res, next) => {
+		res.header("Access-Control-Allow-Origin", CLIENT_DEV_SERVER!);
+		res.header(
+			"Access-Control-Allow-Headers",
+			"Origin, X-Requested-With, Content-Type, Accept"
+		);
+		res.header("Access-Control-Allow-Credentials", "true");
+		res.header("Access-Control-Allow-Methods", "GET,POST,PATCH,PUT,DELETE,OPTIONS");
+		next();
+	});
+
+	// hack to allow all OPTIONS requests. Remember that this setting should not be on in production!
+	// app.options("*", (req, res) => res.send());
+} else {
+	logger.info("Enabling Helmet, as no CLIENT_DEV_SERVER was set, or we are in production.");
+	app.use(helmet());
+}
 
 app.use(userSessionMiddleware);
 
@@ -77,6 +100,7 @@ app.use((req, res, next) => {
 });
 
 import mainRouter from "./router/router";
+import { SYMBOL_TachiAPIAuth } from "../lib/constants/tachi";
 
 app.use("/", mainRouter);
 
@@ -88,9 +112,12 @@ if (RUN_OWN_CDN) {
 		logger.warn(
 			`Running OWN_CDN in production. Consider making a separate process handle your CDN for performance.`
 		);
+	} else {
+		logger.info("Running own CDN.");
 	}
 
 	app.use("/cdn", express.static(CDN_FILE_ROOT));
+	app.get("/cdn/*", (req, res) => res.status(404).send("No content here."));
 }
 
 const indexHTMLContent = fs.readFileSync(CLIENT_INDEX_HTML_PATH);
@@ -122,6 +149,10 @@ const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, next) => {
 	if (err instanceof SyntaxError) {
 		const expErr: ExpressJSONErr = err as ExpressJSONErr;
 		if (expErr.status === 400 && "body" in expErr) {
+			logger.info(`JSON Parsing Error?`, {
+				url: req.originalUrl,
+				userID: req[SYMBOL_TachiAPIAuth]?.userID,
+			});
 			return res.status(400).send({ success: false, description: err.message });
 		}
 

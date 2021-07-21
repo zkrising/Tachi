@@ -134,4 +134,51 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/highlighted", (
 	t.end();
 });
 
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent", (t) => {
+	t.beforeEach(ResetDBState);
+
+	t.test("Should return the users most recent sessions.", async (t) => {
+		await db.sessions.remove({});
+		await db.sessions.insert([
+			{
+				highlight: false,
+				userID: 1,
+				game: "iidx",
+				playtype: "SP",
+				sessionID: "recent_id1",
+				timeEnded: 1234,
+			},
+			{
+				highlight: false,
+				userID: 1,
+				game: "iidx",
+				playtype: "SP",
+				sessionID: "recent_id2",
+				timeEnded: 12345,
+			},
+			{
+				highlight: false,
+				userID: 1,
+				game: "iidx",
+				playtype: "SP",
+				sessionID: "recent_id3",
+				timeEnded: 12344,
+			},
+		] as SessionDocument[]);
+
+		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/sessions/recent");
+
+		t.equal(res.body.body.length, 3);
+		t.strictSame(
+			// @ts-expect-error temporary type hack
+			res.body.body.map((e) => e.sessionID),
+			["recent_id1", "recent_id3", "recent_id2"]
+		);
+
+		t.end();
+	});
+
+	t.end();
+});
+
 t.teardown(CloseAllConnections);

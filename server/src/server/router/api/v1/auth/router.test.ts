@@ -1,4 +1,5 @@
 import t from "tap";
+import db from "../../../../../external/mongo/db";
 import { CloseAllConnections } from "../../../../../test-utils/close-connections";
 import mockApi from "../../../../../test-utils/mock-api";
 import ResetDBState from "../../../../../test-utils/resets";
@@ -104,6 +105,162 @@ t.test("POST /api/v1/auth/login", (t) => {
 		});
 
 		t.equal(res.status, 400);
+
+		t.end();
+	});
+
+	t.end();
+});
+
+t.test("POST /api/v1/auth/register", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(() =>
+		db.invites.insert({ code: "code", createdBy: 1, createdOn: 0, consumed: false })
+	);
+
+	t.test("Should register a new user.", async (t) => {
+		const res = await mockApi.post("/api/v1/auth/register").send({
+			username: "foo",
+			password: "password",
+			email: "foo@bar.com",
+			captcha: "1",
+			inviteCode: "code",
+		});
+
+		t.equal(res.statusCode, 200);
+		t.equal(res.body.success, true);
+		t.equal(res.body.body.username, "foo");
+
+		const doc = await db.users.findOne({ username: "foo" });
+
+		t.not(doc, null);
+
+		t.end();
+	});
+
+	t.test("Should disallow users with matching names.", async (t) => {
+		const res = await mockApi.post("/api/v1/auth/register").send({
+			username: "test_zkldi",
+			password: "password",
+			email: "foo@bar.com",
+			captcha: "1",
+			inviteCode: "code",
+		});
+
+		t.equal(res.statusCode, 409);
+		t.equal(res.body.success, false);
+
+		t.end();
+	});
+
+	t.test("Should disallow users with matching names case insensitively.", async (t) => {
+		const res = await mockApi.post("/api/v1/auth/register").send({
+			username: "test_zKLdi",
+			password: "password",
+			email: "foo@bar.com",
+			captcha: "1",
+			inviteCode: "code",
+		});
+
+		t.equal(res.statusCode, 409);
+		t.equal(res.body.success, false);
+
+		t.end();
+	});
+
+	t.test("Should disallow email if it is already used.", async (t) => {
+		const res = await mockApi.post("/api/v1/auth/register").send({
+			username: "foo",
+			password: "password",
+			email: "thepasswordis@password.com", // this is our test docs email, apparently.
+			captcha: "1",
+			inviteCode: "code",
+		});
+
+		t.equal(res.statusCode, 409);
+		t.equal(res.body.success, false);
+
+		t.end();
+	});
+
+	t.test("Should disallow invalid emails.", async (t) => {
+		const res = await mockApi.post("/api/v1/auth/register").send({
+			username: "foo",
+			password: "password",
+			email: "nonsense+email",
+			captcha: "1",
+			inviteCode: "code",
+		});
+
+		t.equal(res.statusCode, 400);
+		t.equal(res.body.success, false);
+
+		t.end();
+	});
+
+	t.test("Should disallow short passwords.", async (t) => {
+		const res = await mockApi.post("/api/v1/auth/register").send({
+			username: "foo",
+			password: "pass",
+			email: "foo@bar.com",
+			captcha: "1",
+			inviteCode: "code",
+		});
+
+		t.equal(res.statusCode, 400);
+		t.equal(res.body.success, false);
+
+		t.end();
+	});
+
+	t.test("Should disallow invalid usernames.", async (t) => {
+		const res = await mockApi.post("/api/v1/auth/register").send({
+			username: "3foo",
+			password: "password",
+			email: "foo@bar.com",
+			captcha: "1",
+			inviteCode: "code",
+		});
+
+		t.equal(res.statusCode, 400);
+		t.equal(res.body.success, false);
+
+		const res2 = await mockApi.post("/api/v1/auth/register").send({
+			username: "f",
+			password: "password",
+			email: "foo@bar.com",
+			captcha: "1",
+			inviteCode: "code",
+		});
+
+		t.equal(res2.statusCode, 400);
+		t.equal(res2.body.success, false);
+
+		t.end();
+	});
+
+	t.test("Should recover from a fatal error without breaking state.", async (t) => {
+		await db.counters.update({ counterName: "users" }, { $set: { value: 1 } }); // this will cause a userID collision
+
+		const res = await mockApi.post("/api/v1/auth/register").send({
+			username: "foo",
+			password: "password",
+			email: "foo@bar.com",
+			captcha: "1",
+			inviteCode: "code",
+		});
+
+		t.equal(res.statusCode, 500);
+
+		const counter = await db.counters.findOne({ counterName: "users" });
+
+		// value should not stay incremented
+		t.equal(counter?.value, 1);
+
+		const invite = await db.invites.findOne({ code: "code" });
+
+		// invite should not be consumed
+		t.equal(invite?.consumed, false);
 
 		t.end();
 	});

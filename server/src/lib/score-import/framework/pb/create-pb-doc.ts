@@ -79,7 +79,7 @@ export async function UpdateChartRanking(chartID: string) {
 				filter: { chartID: score.chartID, userID: score.userID },
 				update: {
 					$set: {
-						rankingInfo: {
+						rankingData: {
 							rank,
 							outOf: scores.length,
 						},

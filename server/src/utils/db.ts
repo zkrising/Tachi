@@ -28,6 +28,31 @@ export async function GetNextCounterValue(counterName: string): Promise<integer>
 	return sequenceDoc.value;
 }
 
+export async function DecrementCounterValue(counterName: string): Promise<integer> {
+	logger.verbose(`Decrementing Counter Value ${counterName}.`);
+
+	const sequenceDoc = await db.counters.findOneAndUpdate(
+		{
+			counterName,
+		},
+		{
+			$inc: {
+				value: -1,
+			},
+		},
+		{
+			returnOriginal: false,
+		}
+	);
+
+	if (!sequenceDoc) {
+		logger.error(`Could not find sequence document for ${counterName}`);
+		throw new Error(`Could not find sequence document for ${counterName}.`);
+	}
+
+	return sequenceDoc.value;
+}
+
 export async function GetRelevantSongsAndCharts(
 	scores: (ScoreDocument | PBScoreDocument)[],
 	game: Game

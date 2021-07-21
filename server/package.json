@@ -8,7 +8,7 @@
         "watchtest": "tap --watch",
         "build": "tsc --project tsconfig.build.json",
         "lint": "eslint ./src --ext .ts --fix",
-        "buildrun": "tsc --project tsconfig.build.json && node js/main.js"
+        "start": "tsc --project tsconfig.build.json && node js/main.js"
     },
     "author": "zkldi",
     "license": "AGPL3",

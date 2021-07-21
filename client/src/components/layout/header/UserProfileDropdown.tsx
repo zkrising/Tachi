@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
-import { DropdownTopbarItemToggler } from "../../../_metronic/_partials/dropdowns";
+// import { DropdownTopbarItemToggler } from "../../../_metronic/_partials/dropdowns";
 import Divider from "components/util/Divider";
 import { PublicUserDocument } from "tachi-common";
 import { Button } from "react-bootstrap";
 import { APIFetchV1, ToAPIURL } from "util/api";
 import toast from "react-hot-toast";
 import { UserContext } from "context/UserContext";
+import DropdownToggleOverride from "components/util/DropdownToggleOverride";
 
 export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 	const { setUser } = useContext(UserContext);
 
 	return (
 		<Dropdown drop="down" alignRight>
-			<Dropdown.Toggle as={DropdownTopbarItemToggler} id="dropdown-toggle-user-profile">
+			<Dropdown.Toggle as={DropdownToggleOverride} id="dropdown-toggle-user-profile">
 				<div
 					className={
 						"btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto"

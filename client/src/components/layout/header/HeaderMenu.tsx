@@ -62,7 +62,7 @@ export function HeaderMenu() {
 					</div>
 				</div>
 				<ul className="menu-nav">
-					<MenuLink name="Dashboard" to="/dashboard" />
+					{/* <MenuLink name="Dashboard" to="/dashboard" /> */}
 
 					{user && data && data.length !== 0 && (
 						<MenuDropdown name="My Games">

@@ -111,6 +111,16 @@ function GetStrData(dataValue: string | number | [string, number]) {
 	return dataValue[0];
 }
 
+function GetData(dataValue: string | number | [string, number]) {
+	if (typeof dataValue === "string") {
+		return dataValue;
+	} else if (typeof dataValue === "number") {
+		return dataValue;
+	}
+
+	return dataValue[0];
+}
+
 /**
  * Check whether the directive given matches the data.
  * @param directiveNumValue - If dataValue is hybrid, then this needs to be passed to compare numbers correctly.
@@ -139,7 +149,7 @@ function DirectiveMatch(
 		return Matchers[directive.mode](directiveNumValue!.toString(), dataValue[1]);
 	}
 
-	return Matchers[directive.mode](directive.value, GetStrData(dataValue));
+	return Matchers[directive.mode](directive.value, GetData(dataValue));
 }
 
 /**

@@ -43,6 +43,7 @@ nav:
   - API Reference:
     - "api/overview.md"
     - "api/auth.md"
+    - "api/terminology.md"
 
     - Endpoints:
       - "api/routes/example.md"

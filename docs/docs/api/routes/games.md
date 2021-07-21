@@ -53,6 +53,8 @@ GET /api/v1/games
 
 ### Parameters
 
+None.
+
 ### Response
 
 | Property | Type | Description |

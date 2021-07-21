@@ -1,10 +1,10 @@
 {
-    "head": {
+    "meta": {
         "game": "chunithm",
         "playtype": "Single",
         "service": "Chunitachi"
     },
-    "body": [{
+    "scores": [{
         "score": 900000,
         "lamp": "CLEAR",
         "matchType": "songTitle",

@@ -14,13 +14,13 @@ export type BatchManualScore = {
 };
 
 export interface BatchManual {
-	head: {
+	meta: {
 		service: string;
 		game: Game;
 		playtype: Playtypes[Game];
 		version?: string | null;
 	};
-	body: BatchManualScore[];
+	scores: BatchManualScore[];
 }
 
 export interface BatchManualContext {

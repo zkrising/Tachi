@@ -12,7 +12,7 @@ t.test("GET /api/v1/users/:userID/banner", (t) => {
 
 	t.test("Should return the default profile banner if user has no custom banner", async (t) => {
 		await CDNStoreOrOverwrite("/users/default/banner.png", "test");
-		const res = await mockApi.get("/api/v1/users/1/banner");
+		const res = await mockApi.get("/api/v1/users/1/banner").redirects(1);
 
 		t.equal(res.body.toString(), "test");
 
@@ -22,7 +22,7 @@ t.test("GET /api/v1/users/:userID/banner", (t) => {
 	t.test("Should return a custom profile banner if one is set", async (t) => {
 		await CDNStoreOrOverwrite(GetProfileBannerURL(1), "foo");
 		await db.users.update({ id: 1 }, { $set: { customBanner: true } });
-		const res = await mockApi.get("/api/v1/users/1/banner");
+		const res = await mockApi.get("/api/v1/users/1/banner").redirects(1);
 
 		t.equal(res.body.toString(), "foo");
 
@@ -45,7 +45,7 @@ t.test("PUT /api/v1/users/:userID/banner", (t) => {
 
 		t.equal(res.statusCode, 200);
 
-		const get = await mockApi.get(res.body.body.get);
+		const get = await mockApi.get(res.body.body.get).redirects(1);
 
 		t.strictSame(img, get.body, "Profile banner should be stored.");
 
@@ -64,7 +64,7 @@ t.test("PUT /api/v1/users/:userID/banner", (t) => {
 
 		t.equal(res.statusCode, 200);
 
-		const get = await mockApi.get(res.body.body.get);
+		const get = await mockApi.get(res.body.body.get).redirects(1);
 
 		t.strictSame(img, get.body, "Profile banner should be stored.");
 

@@ -17,8 +17,8 @@ const mockErr = (...msg: string[]) =>
 const logger = CreateLogCtx(__filename);
 
 const baseBatchManual = {
-	body: [],
-	head: { service: "foo", game: "iidx", playtype: "SP" },
+	scores: [],
+	meta: { service: "foo", game: "iidx", playtype: "SP" },
 };
 
 const baseBatchManualScore = {
@@ -33,7 +33,7 @@ const baseBatchManualScore = {
 function dm(sc: any) {
 	return deepmerge(
 		baseBatchManual,
-		{ body: [deepmerge(baseBatchManualScore, sc)] },
+		{ scores: [deepmerge(baseBatchManualScore, sc)] },
 		{ arrayMerge: (r, c) => c }
 	);
 }
@@ -54,10 +54,10 @@ t.test("#ParserFn", (t) => {
 
 	t.test("No Header", (t) => {
 		t.throws(
-			() => ParserFn({ body: [] }, "file/batch-manual", logger),
+			() => ParserFn({ scores: [] }, "file/batch-manual", logger),
 			new ScoreImportFatalError(
 				400,
-				"Could not retrieve head.game - is this valid BATCH-MANUAL?"
+				"Could not retrieve meta.game - is this valid BATCH-MANUAL?"
 			),
 			"Should throw an error."
 		);
@@ -69,13 +69,13 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "foo", playtype: "SP" } },
+					{ scores: [], meta: { service: "foo", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
 			new ScoreImportFatalError(
 				400,
-				"Could not retrieve head.game - is this valid BATCH-MANUAL?"
+				"Could not retrieve meta.game - is this valid BATCH-MANUAL?"
 			),
 			"Should throw an error."
 		);
@@ -87,13 +87,13 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "foo", game: "iidx" } },
+					{ scores: [], meta: { service: "foo", game: "iidx" } },
 					"file/batch-manual",
 					logger
 				),
 			new ScoreImportFatalError(
 				400,
-				"Could not retrieve head.playtype - is this valid BATCH-MANUAL?"
+				"Could not retrieve meta.playtype - is this valid BATCH-MANUAL?"
 			),
 			"Should throw an error."
 		);
@@ -105,7 +105,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "foo", game: "invalid_game", playtype: "SP" } },
+					{ scores: [], meta: { service: "foo", game: "invalid_game", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -115,7 +115,7 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "foo", game: 123, playtype: "SP" } },
+					{ scores: [], meta: { service: "foo", game: 123, playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
@@ -129,13 +129,13 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: "1", game: "iidx", playtype: "SP" } },
+					{ scores: [], meta: { service: "1", game: "iidx", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
 			new ScoreImportFatalError(
 				400,
-				"Invalid BATCH-MANUAL: head.service | Expected a string with length between 3 and 15. | Received 1 [string]."
+				"Invalid BATCH-MANUAL: meta.service | Expected a string with length between 3 and 15. | Received 1 [string]."
 			),
 			"Should throw an error."
 		);
@@ -143,13 +143,13 @@ t.test("#ParserFn", (t) => {
 		t.throws(
 			() =>
 				ParserFn(
-					{ body: [], head: { service: 1, game: "iidx", playtype: "SP" } },
+					{ scores: [], meta: { service: 1, game: "iidx", playtype: "SP" } },
 					"file/batch-manual",
 					logger
 				),
 			new ScoreImportFatalError(
 				400,
-				"Invalid BATCH-MANUAL: head.service | Expected a string with length between 3 and 15. | Received 1 [number]."
+				"Invalid BATCH-MANUAL: meta.service | Expected a string with length between 3 and 15. | Received 1 [number]."
 			),
 			"Should throw an error."
 		);
@@ -159,7 +159,7 @@ t.test("#ParserFn", (t) => {
 
 	t.test("Valid Empty BATCH-MANUAL", (t) => {
 		const res = ParserFn(
-			{ body: [], head: { service: "foo", game: "iidx", playtype: "SP" } },
+			{ scores: [], meta: { service: "foo", game: "iidx", playtype: "SP" } },
 			"file/batch-manual",
 			logger
 		);
@@ -181,7 +181,7 @@ t.test("#ParserFn", (t) => {
 		t.test("Basic BATCH-MANUAL", (t) => {
 			const res = ParserFn(
 				{
-					body: [
+					scores: [
 						{
 							score: 1000,
 							lamp: "HARD CLEAR",
@@ -209,7 +209,7 @@ t.test("#ParserFn", (t) => {
 							identifier: "5.1.1.",
 						},
 					],
-					head: { service: "foo", game: "iidx", playtype: "SP" },
+					meta: { service: "foo", game: "iidx", playtype: "SP" },
 				} as BatchManual,
 				"file/batch-manual",
 				logger
@@ -333,7 +333,7 @@ t.test("#ParserFn", (t) => {
 			const fn = () =>
 				ParserFn(
 					{
-						body: [
+						scores: [
 							{
 								score: 1000,
 								lamp: "ALL JUSTICE", // not an iidx lamp
@@ -342,7 +342,7 @@ t.test("#ParserFn", (t) => {
 								difficulty: "ANOTHER",
 							},
 						],
-						head: { service: "foo", game: "iidx", playtype: "SP" },
+						meta: { service: "foo", game: "iidx", playtype: "SP" },
 					},
 					"file/batch-manual",
 					logger
@@ -352,7 +352,7 @@ t.test("#ParserFn", (t) => {
 				fn,
 				new ScoreImportFatalError(
 					400,
-					"Invalid BATCH-MANUAL: body[0].lamp | Expected any of NO PLAY, FAILED, ASSIST CLEAR, EASY CLEAR, CLEAR, HARD CLEAR, EX HARD CLEAR, FULL COMBO. | Received ALL JUSTICE [string]."
+					"Invalid BATCH-MANUAL: scores[0].lamp | Expected any of NO PLAY, FAILED, ASSIST CLEAR, EASY CLEAR, CLEAR, HARD CLEAR, EX HARD CLEAR, FULL COMBO. | Received ALL JUSTICE [string]."
 				)
 			);
 
@@ -366,7 +366,7 @@ t.test("#ParserFn", (t) => {
 				fn,
 				new ScoreImportFatalError(
 					400,
-					"Invalid BATCH-MANUAL: body[0].score | Expected number. | Received 123 [string]."
+					"Invalid BATCH-MANUAL: scores[0].score | Expected number. | Received 123 [string]."
 				)
 			);
 
@@ -380,7 +380,7 @@ t.test("#ParserFn", (t) => {
 				fn,
 				new ScoreImportFatalError(
 					400,
-					"Invalid BATCH-MANUAL: body[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of miliseconds? | Received string [string]."
+					"Invalid BATCH-MANUAL: scores[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of miliseconds? | Received string [string]."
 				)
 			);
 
@@ -395,7 +395,7 @@ t.test("#ParserFn", (t) => {
 				fn2,
 				new ScoreImportFatalError(
 					400,
-					"Invalid BATCH-MANUAL: body[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of miliseconds? | Received 1620768609.637 [number]."
+					"Invalid BATCH-MANUAL: scores[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of miliseconds? | Received 1620768609.637 [number]."
 				),
 				"Should throw if timeAchieved is less than 10_000_000_000."
 			);
@@ -407,7 +407,7 @@ t.test("#ParserFn", (t) => {
 			// this is not a valid playtype for IIDX
 			const fn = () => ParserFn(dm({ identifier: null }), "file/batch-manual", logger);
 
-			t.throws(fn, mockErr("body[0].identifier | Expected string", "Received null [null]"));
+			t.throws(fn, mockErr("scores[0].identifier | Expected string", "Received null [null]"));
 
 			t.end();
 		});
@@ -419,7 +419,7 @@ t.test("#ParserFn", (t) => {
 			t.throws(
 				fn,
 				mockErr(
-					"body[0].matchType | Expected any of",
+					"scores[0].matchType | Expected any of",
 					"Received Invalid_MatchType [string]"
 				)
 			);
@@ -431,14 +431,14 @@ t.test("#ParserFn", (t) => {
 			const fn = () =>
 				ParserFn(dm({ judgements: { not_key: 123 } }), "file/batch-manual", logger);
 
-			t.throws(fn, mockErr("body[0].judgements | Invalid Key not_key"));
+			t.throws(fn, mockErr("scores[0].judgements | Invalid Key not_key"));
 
 			const fn2 = () =>
 				ParserFn(dm({ judgements: { pgreat: "123" } }), "file/batch-manual", logger);
 
 			t.throws(
 				fn2,
-				mockErr("body[0].judgements | Key pgreat had an invalid value of 123 [string]")
+				mockErr("scores[0].judgements | Key pgreat had an invalid value of 123 [string]")
 			);
 
 			t.end();
@@ -448,11 +448,11 @@ t.test("#ParserFn", (t) => {
 			const fn = () =>
 				ParserFn(dm({ hitMeta: { not_key: 123 } }), "file/batch-manual", logger);
 
-			t.throws(fn, mockErr("body[0].hitMeta | Unexpected"));
+			t.throws(fn, mockErr("scores[0].hitMeta | Unexpected"));
 
 			const fn2 = () => ParserFn(dm({ hitMeta: { bp: -1 } }), "file/batch-manual", logger);
 
-			t.throws(fn2, mockErr("body[0].hitMeta.bp | Expected a positive integer"));
+			t.throws(fn2, mockErr("scores[0].hitMeta.bp | Expected a positive integer"));
 
 			t.end();
 		});

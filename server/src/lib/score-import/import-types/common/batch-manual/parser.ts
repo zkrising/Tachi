@@ -93,13 +93,13 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 };
 
 const PR_BatchManual = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => ({
-	head: {
+	meta: {
 		service: p.isBoundedString(3, 15),
 		game: p.isIn(CONF_INFO.supportedGames),
 		playtype: p.is(playtype),
 		version: "*?string",
 	},
-	body: [PR_BatchManualScore(game, playtype)],
+	scores: [PR_BatchManualScore(game, playtype)],
 });
 
 /**
@@ -126,21 +126,21 @@ export function ParseBatchManualFromObject(
 
 	// attempt to retrieve game
 	// @ts-expect-error man.
-	const possiblyGame = object?.head?.game;
+	const possiblyGame = object?.meta?.game;
 	// @ts-expect-error man.
-	const possiblyPlaytype = object?.head?.playtype;
+	const possiblyPlaytype = object?.meta?.playtype;
 
 	if (!possiblyGame) {
 		throw new ScoreImportFatalError(
 			400,
-			`Could not retrieve head.game - is this valid BATCH-MANUAL?`
+			`Could not retrieve meta.game - is this valid BATCH-MANUAL?`
 		);
 	}
 
 	if (!possiblyPlaytype) {
 		throw new ScoreImportFatalError(
 			400,
-			`Could not retrieve head.playtype - is this valid BATCH-MANUAL?`
+			`Could not retrieve meta.playtype - is this valid BATCH-MANUAL?`
 		);
 	}
 
@@ -182,12 +182,12 @@ export function ParseBatchManualFromObject(
 	return {
 		game,
 		context: {
-			service: batchManual.head.service,
+			service: batchManual.meta.service,
 			game,
 			playtype,
-			version: batchManual.head.version ?? null,
+			version: batchManual.meta.version ?? null,
 		},
-		iterable: batchManual.body,
+		iterable: batchManual.scores,
 		classHandler: null,
 	};
 }

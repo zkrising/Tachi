@@ -1,10 +1,10 @@
 {
-    "head": {
+    "meta": {
         "game": "iidx",
         "playtype": "SP",
         "service": "foobar"
     },
-    "body": [{
+    "scores": [{
         "score": 500,
         "lamp": "HARD CLEAR",
         "matchType": "songTitle",

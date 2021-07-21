@@ -44,7 +44,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/best", (t) => {
 			success: true,
 			description: "Retrieved 100 personal bests.",
 			body: {
-				scores: mockPBs.slice(100).reverse(),
+				pbs: mockPBs.slice(100).reverse(),
 				songs: [Testing511Song],
 				charts: [],
 			},

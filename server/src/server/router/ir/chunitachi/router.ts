@@ -14,14 +14,14 @@ const router: Router = Router({ mergeParams: true });
 router.post("/import", RequirePermissions("submit_score"), async (req, res) => {
 	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
 
-	if (req.body?.head?.game !== "chunithm") {
+	if (req.body?.meta?.game !== "chunithm") {
 		return res.status(400).json({
 			success: false,
 			description: "Invalid Game.",
 		});
 	}
 
-	if (req.body.head.service !== "Chunitachi") {
+	if (req.body.meta.service !== "Chunitachi") {
 		return res.status(400).json({
 			success: false,
 			description: `Unexpected service ${req.body.head.service} -- expected 'Chunitachi'`,

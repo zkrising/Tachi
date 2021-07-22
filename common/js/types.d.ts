@@ -1048,10 +1048,17 @@ export interface APITokenDocument extends MongoDBDocument {
 export interface ImportLockDocument extends MongoDBDocument {
     userID: integer;
 }
-export interface UGPTStatDetails {
-    folderID: string;
-    key: "score" | "percent" | "grade" | "lamp";
-    value: number;
+export declare type UGPTStatDetails = UGPTStatFolder | UGPTStatChart;
+export interface UGPTStatFolder {
+    mode: "folder";
+    folderID: string | string[];
+    property: "score" | "percent" | "grade" | "lamp";
+    gte: number;
+}
+export interface UGPTStatChart {
+    mode: "chart";
+    chartID: string;
+    property: "score" | "percent" | "grade" | "lamp" | "playcount";
 }
 export interface UGPTSettings<I extends IDStrings> extends MongoDBDocument {
     userID: integer;

@@ -52,6 +52,7 @@ specifiers:
   tachi-common: github:zkldi/tachi-common
   tap: 15.0.9
   ts-node: 10.0.0
+  tsconfig-paths: 3.10.1
   typescript: 4.3.4
   why-is-node-running: 2.2.0
   winston: 3.3.3
@@ -80,7 +81,7 @@ dependencies:
   rate-limit-redis: 2.1.0
   redis: 3.1.2
   rimraf: 3.0.2
-  tachi-common: github.com/zkldi/tachi-common/7f0ff9c3905018070c291ae07f3f937d142f925d_ts-node@10.0.0+typescript@4.3.4
+  tachi-common: github.com/zkldi/tachi-common/362c3375c5f11b998aaedc34e4f14b62873b2ac7_ts-node@10.0.0+typescript@4.3.4
   typescript: 4.3.4
   winston: 3.3.3
 
@@ -112,6 +113,7 @@ devDependencies:
   supertest: 6.1.3
   tap: 15.0.9_ts-node@10.0.0+typescript@4.3.4
   ts-node: 10.0.0_83f53b0a0c5616d3fa00ed4e30b9ce1b
+  tsconfig-paths: 3.10.1
   why-is-node-running: 2.2.0
 
 packages:
@@ -3931,6 +3933,14 @@ packages:
       yn: 3.1.1
     dev: true
 
+  /tsconfig-paths/3.10.1:
+    resolution: {integrity: sha512-rETidPDgCpltxF7MjBZlAFPUHv5aHH2MymyPvh+vEyWAED4Eb/WeMbsnD/JDr4OKPOA1TssDHgIcpTN5Kh0p6Q==}
+    dependencies:
+      json5: 2.2.0
+      minimist: 1.2.5
+      strip-bom: 3.0.0
+    dev: true
+
   /tsconfig-paths/3.9.0:
     resolution: {integrity: sha512-dRcuzokWhajtZWkQsDVKbWyY+jgcLC5sqJhg2PSgf4ZkH2aHPvaOY8YWGhmjb68b5qqTfasSsDO9k7RUiEmZAw==}
     dependencies:
@@ -4204,9 +4214,9 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  github.com/zkldi/tachi-common/7f0ff9c3905018070c291ae07f3f937d142f925d_ts-node@10.0.0+typescript@4.3.4:
-    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/7f0ff9c3905018070c291ae07f3f937d142f925d}
-    id: github.com/zkldi/tachi-common/7f0ff9c3905018070c291ae07f3f937d142f925d
+  github.com/zkldi/tachi-common/362c3375c5f11b998aaedc34e4f14b62873b2ac7_ts-node@10.0.0+typescript@4.3.4:
+    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/362c3375c5f11b998aaedc34e4f14b62873b2ac7}
+    id: github.com/zkldi/tachi-common/362c3375c5f11b998aaedc34e4f14b62873b2ac7
     name: tachi-common
     version: 0.1.0
     dependencies:

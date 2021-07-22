@@ -22,8 +22,7 @@
                 "**/async_hooks.js",
                 "**/internal/**/*",
                 "**/domain.js",
-                "**/events.js",
-                "*"
+                "**/events.js"
             ],
             "smartStep": true,
             "outputCapture": "std",

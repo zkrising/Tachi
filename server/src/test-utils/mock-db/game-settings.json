@@ -1,0 +1,13 @@
+[
+	{
+		"userID": 1,
+		"game": "iidx",
+		"playtype": "SP",
+		"preferences": {
+			"preferredScoreAlg": null,
+			"preferredSessionAlg": null,
+			"preferredProfileAlg": null,
+			"stats": []
+		}
+	}
+]

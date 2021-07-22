@@ -14,29 +14,42 @@ const logger = CreateLogCtx(__filename);
 t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 	t.beforeEach(ResetDBState);
 
-	t.test("Should create new UserGameStats if the user has none", async (t) => {
-		await db["game-stats"].remove({});
+	t.test(
+		"Should create new UserGameStats and UserGameSettings if the user has none",
+		async (t) => {
+			await db["game-stats"].remove({});
+			await db["game-settings"].remove({});
 
-		const res = await UpdateUsersGamePlaytypeStats("iidx", "SP", 1, null, logger);
+			const res = await UpdateUsersGamePlaytypeStats("iidx", "SP", 1, null, logger);
 
-		t.strictSame(res, [], "Should return an empty object");
+			t.strictSame(res, [], "Should return an empty object");
 
-		const gs = await db["game-stats"].findOne();
+			const gs = await db["game-stats"].findOne();
 
-		t.hasStrict(
-			gs,
-			{
+			t.hasStrict(
+				gs,
+				{
+					game: "iidx",
+					playtype: "SP",
+					userID: 1,
+					ratings: { ktRating: 0, ktLampRating: 0 },
+					classes: {},
+				},
+				"Should insert an appropriate game-stats object"
+			);
+
+			const settings = await db["game-settings"].findOne();
+
+			t.hasStrict(settings, {
 				game: "iidx",
 				playtype: "SP",
 				userID: 1,
-				ratings: { ktRating: 0, ktLampRating: 0 },
-				classes: {},
-			},
-			"Should insert an appropriate game-stats object"
-		);
+				preferences: {},
+			});
 
-		t.end();
-	});
+			t.end();
+		}
+	);
 
 	t.test("Should update UserGameStats if the user has one", async (t) => {
 		await db["game-stats"].remove({});

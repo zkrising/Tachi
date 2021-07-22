@@ -19,10 +19,15 @@ function index(fields: Record<string, unknown>, options?: IndexOptions) {
 const UNIQUE = { unique: true };
 
 const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
-	scores: [index({ scoreID: 1 }, UNIQUE)],
+	scores: [
+		index({ scoreID: 1 }, UNIQUE),
+		index({ chartID: 1, userID: 1 }),
+		index({ game: 1, playtype: 1, userID: 1 }),
+	],
 	"personal-bests": [
 		index({ chartID: 1, userID: 1 }, UNIQUE),
 		index({ chartID: 1, "scoreData.percent": 1 }),
+		index({ game: 1, playtype: 1, userID: 1 }),
 	],
 	sessions: [
 		// lol
@@ -30,6 +35,7 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
 		index({ name: "text" }),
 	],
 	"game-stats": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
+	"game-settings": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
 	"folder-chart-lookup": [index({ chartID: 1, folderID: 1 }, UNIQUE)],
 	"tierlist-data": [
 		index({ tierlistDataID: 1 }, UNIQUE),
@@ -71,7 +77,7 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
 		index({ "data.hashSHA256": 1 }),
 	],
 	"bms-course-lookup": [index({ md5sums: 1 }, UNIQUE)],
-	"api-tokens": [index({ token: 1 }, UNIQUE)],
+	"api-tokens": [index({ token: 1 }, UNIQUE), index({ userID: 1 })],
 	tables: [index({ tableID: 1 }, UNIQUE), index({ game: 1, playtype: 1 })],
 };
 

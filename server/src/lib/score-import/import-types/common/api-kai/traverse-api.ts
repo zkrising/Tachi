@@ -30,6 +30,7 @@ export async function* TraverseKaiAPI(
 
 		if (origin !== baseUrl) {
 			logger.severe(`${baseUrl} attempted SSRF with url ${url}?`);
+
 			throw new ScoreImportFatalError(500, `${baseUrl} returned invalid data.`);
 		}
 
@@ -56,7 +57,7 @@ export async function* TraverseKaiAPI(
 		}
 
 		if (json._links === null || typeof json._links !== "object") {
-			logger.error(`Recieved invalid JSON from ${url}. Invalid _links.`);
+			logger.error(`Recieved invalid JSON from ${url}. Invalid _links.`, { body: json });
 
 			throw new ScoreImportFatalError(
 				500,
@@ -70,12 +71,18 @@ export async function* TraverseKaiAPI(
 			// exit the loop after this, we're on the last page.
 			fetchMoreData = false;
 		} else {
-			logger.error(`Recieved invalid response from ${url}. Invalid _links._next.`);
+			logger.error(`Recieved invalid response from ${url}. Invalid _links._next.`, {
+				body: json,
+			});
 
 			throw new ScoreImportFatalError(500, `Recieved invalid _links._next prop from ${url}.`);
 		}
 
 		if (!Array.isArray(json._items)) {
+			logger.error(`Recieved invalid response from ${url}. Invalid _items.`, {
+				body: json,
+			});
+
 			throw new ScoreImportFatalError(500, `Recieved invalid _items from ${url}.`);
 		}
 

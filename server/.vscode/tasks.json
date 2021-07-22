@@ -3,9 +3,9 @@
     "tasks": [
         {
             "type": "npm",
-            "script": "fulltest",
+            "script": "test",
             "problemMatcher": [],
-            "label": "npm: fulltest",
+            "label": "npm: test",
             "detail": "tap",
             "group": {
                 "kind": "test",

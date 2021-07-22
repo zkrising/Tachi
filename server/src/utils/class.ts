@@ -3,6 +3,7 @@ import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
 import { GameClassSets } from "tachi-common/js/game-classes";
 import { RedisPub } from "../external/redis/redis-IPC";
+import { CreateGameSettings } from "../lib/game-settings/create-game-settings";
 
 const logger = CreateLogCtx(__filename);
 
@@ -62,7 +63,10 @@ export async function UpdateClassIfGreater(
 				[classSet]: classVal,
 			},
 		});
-		logger.info(`Created new player gamestats for ${userID} ${game} (${playtype})`);
+
+		logger.info(`Created new player gamestats for ${userID} (${game} ${playtype})`);
+
+		await CreateGameSettings(userID, game, playtype);
 	}
 
 	if (isGreater === null) {

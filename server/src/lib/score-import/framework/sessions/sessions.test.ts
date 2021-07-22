@@ -432,7 +432,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 			{
 				scoreID: "TESTING_SCORE_ID",
 				isNewScore: false,
-				gradeDelta: 4,
+				gradeDelta: -4,
 				lampDelta: -2,
 				percentDelta: -44.08396946564885,
 				scoreDelta: -693,

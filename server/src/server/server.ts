@@ -101,6 +101,7 @@ app.use((req, res, next) => {
 
 import mainRouter from "./router/router";
 import { SYMBOL_TachiAPIAuth } from "../lib/constants/tachi";
+import { RequestLoggerMiddleware } from "./middleware/request-logger";
 
 app.use("/", mainRouter);
 
@@ -167,5 +168,7 @@ const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, next) => {
 };
 
 app.use(MAIN_ERR_HANDLER);
+
+app.use(RequestLoggerMiddleware);
 
 export default app;

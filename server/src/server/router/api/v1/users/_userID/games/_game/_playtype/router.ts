@@ -20,6 +20,8 @@ import pbsRouter from "./pbs/router";
 import sessionsRouter from "./sessions/router";
 import foldersFolderIDRouter from "./folders/_folderID/router";
 import tablesRouter from "./tables/router";
+import statsRouter from "./stats/router";
+import settingsRouter from "./settings/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -402,6 +404,8 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 router.use("/pbs", pbsRouter);
 router.use("/sessions", sessionsRouter);
 router.use("/tables", tablesRouter);
+router.use("/stats", statsRouter);
+router.use("/settings", settingsRouter);
 router.use("/folders/:folderID", foldersFolderIDRouter);
 
 export default router;

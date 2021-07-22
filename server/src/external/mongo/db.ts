@@ -24,6 +24,7 @@ import {
 	UserMilestoneDocument,
 	BMSCourseDocument,
 	ImportLockDocument,
+	UGPTSettings,
 } from "tachi-common";
 import monk, { TMiddleware } from "monk";
 import { MONGO_CONNECTION_URL, MONGO_DATABASE_NAME } from "../../lib/setup/config";
@@ -141,6 +142,7 @@ const db = {
 	"orphan-scores": monkDB.get<OrphanScoreDocument>("orphan-scores"),
 	"import-locks": monkDB.get<ImportLockDocument>("import-locks"),
 	tables: monkDB.get<TableDocument>("tables"),
+	"game-settings": monkDB.get<UGPTSettings>("game-settings"),
 };
 
 export default db;

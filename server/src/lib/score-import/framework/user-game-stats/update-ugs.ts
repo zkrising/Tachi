@@ -4,6 +4,7 @@
 
 import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "tachi-common";
 import db from "../../../../external/mongo/db";
+import { CreateGameSettings } from "../../../game-settings/create-game-settings";
 import { KtLogger } from "../../../logger/logger";
 import { CalculateClassDeltas, UpdateUGSClasses } from "./classes";
 import { CalculateRatings } from "./rating";
@@ -64,6 +65,7 @@ export async function UpdateUsersGamePlaytypeStats(
 
 		logger.info(`Created new gamestats for ${game} (${playtype})`);
 		await db["game-stats"].insert(newStats);
+		await CreateGameSettings(userID, game, playtype);
 	}
 
 	return deltas;

@@ -1060,7 +1060,7 @@ export interface UGPTStatChart {
     chartID: string;
     property: "score" | "percent" | "grade" | "lamp" | "playcount";
 }
-export interface UGPTSettings<I extends IDStrings> extends MongoDBDocument {
+export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDocument {
     userID: integer;
     game: IDStringToGame[I];
     playtype: IDStringToPlaytype[I];

@@ -1321,7 +1321,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 	userID: integer;
 	game: IDStringToGame[I];
 	playtype: IDStringToPlaytype[I];
-	settings: {
+	preferences: {
 		preferredScoreAlg: ScoreCalculatedDataLookup[I] | null;
 		preferredSessionAlg: SessionCalculatedDataLookup[I] | null;
 		preferredProfileAlg: UGSRatingsLookup[I] | null;

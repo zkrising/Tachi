@@ -113,6 +113,7 @@ export type Databases =
 	| "user-milestones"
 	| "milestones"
 	| "game-stats"
+	| "game-settings"
 	| "users"
 	| "kai-auth-tokens"
 	| "bms-course-lookup"
@@ -1299,4 +1300,22 @@ export interface APITokenDocument extends MongoDBDocument {
 
 export interface ImportLockDocument extends MongoDBDocument {
 	userID: integer;
+}
+
+export interface UGPTStatDetails {
+	folderID: string;
+	key: "score" | "percent" | "grade" | "lamp";
+	value: number;
+}
+
+export interface UGPTSettings<I extends IDStrings> extends MongoDBDocument {
+	userID: integer;
+	game: IDStringToGame[I];
+	playtype: IDStringToPlaytype[I];
+	settings: {
+		preferredScoreAlg: ScoreCalculatedDataLookup[I] | null;
+		preferredSessionAlg: SessionCalculatedDataLookup[I] | null;
+		preferredProfileAlg: UGSRatingsLookup[I] | null;
+		stats: UGPTStatDetails[];
+	};
 }

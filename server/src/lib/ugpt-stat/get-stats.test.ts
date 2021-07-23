@@ -15,6 +15,7 @@ import { CreateFolderChartLookup } from "../../utils/folder";
 t.beforeEach(ResetDBState);
 
 t.beforeEach(async () => {
+	await db.folders.insert(TestingIIDXFolderSP10);
 	await CreateFolderChartLookup(TestingIIDXFolderSP10);
 
 	await db["game-settings"].remove({});
@@ -57,11 +58,27 @@ t.test("#EvalulateUsersGPTStats", (t) => {
 					value: 1,
 					outOf: 1,
 				},
+				related: {
+					folders: [
+						{
+							folderID: TestingIIDXFolderSP10.folderID,
+						},
+					],
+				},
 			},
 			{
 				stat: { chartID: Testing511SPA.chartID },
 				value: {
 					value: 1479,
+				},
+				related: {
+					song: {
+						title: "5.1.1.",
+					},
+					chart: {
+						difficulty: "ANOTHER",
+						playtype: "SP",
+					},
 				},
 			},
 		]);

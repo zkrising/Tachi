@@ -97,7 +97,10 @@ const consoleFormatRoute = format.combine(
 	})
 );
 
-let tports = [];
+let tports: (
+	| winston.transports.ConsoleTransportInstance
+	| winston.transports.FileTransportInstance
+)[] = [];
 
 /* istanbul ignore next */
 if (IN_TESTING) {
@@ -153,6 +156,16 @@ export function AppendLogCtx(context: string, lg: KtLogger): KtLogger {
 	const newContext = [...lg.defaultMeta.context, context];
 
 	return lg.child({ context: newContext }) as KtLogger;
+}
+
+export function ChangeRootLogLevel(
+	level: "crit" | "severe" | "error" | "warn" | "info" | "verbose" | "debug"
+) {
+	rootLogger.info(`Changing log level to ${level}.`);
+
+	for (const tp of tports) {
+		tp.level = level;
+	}
 }
 
 export const Transports = tports;

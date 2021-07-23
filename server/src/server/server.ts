@@ -103,6 +103,8 @@ import mainRouter from "./router/router";
 import { SYMBOL_TachiAPIAuth } from "../lib/constants/tachi";
 import { RequestLoggerMiddleware } from "./middleware/request-logger";
 
+app.use(RequestLoggerMiddleware);
+
 app.use("/", mainRouter);
 
 // The RUN_OWN_CDN option means that our /cdn path has to be hosted by us. In production,
@@ -168,7 +170,5 @@ const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, next) => {
 };
 
 app.use(MAIN_ERR_HANDLER);
-
-app.use(RequestLoggerMiddleware);
 
 export default app;

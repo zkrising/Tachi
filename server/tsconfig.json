@@ -19,7 +19,7 @@
 		"typeRoots": [
 			"@types",
 			"node_modules/@types"
-		]
+		],
 	},
 	"ts-node": {
 		"require": [

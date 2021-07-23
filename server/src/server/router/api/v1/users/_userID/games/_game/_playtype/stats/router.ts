@@ -9,6 +9,7 @@ import { EvaluateUGPTStat } from "../../../../../../../../../../lib/ugpt-stat/ev
 import db from "../../../../../../../../../../external/mongo/db";
 import { RequirePermissions } from "../../../../../../../../../middleware/auth";
 import { RequireAuthedAsUser } from "../../../../middleware";
+import { GetRelatedStatDocuments } from "lib/ugpt-stat/get-related";
 const router: Router = Router({ mergeParams: true });
 
 /**
@@ -62,6 +63,7 @@ router.get("/", async (req, res) => {
  */
 router.get("/custom", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const game = req[SYMBOL_TachiData]!.game!;
 
 	let stat: UGPTStatDetails;
 
@@ -127,10 +129,12 @@ router.get("/custom", async (req, res) => {
 
 	const result = await EvaluateUGPTStat(stat, user.id);
 
+	const related = await GetRelatedStatDocuments(stat, game);
+
 	return res.status(200).json({
 		success: true,
 		description: `Evaluated Stat for ${user.username}`,
-		body: result,
+		body: { result, related },
 	});
 });
 

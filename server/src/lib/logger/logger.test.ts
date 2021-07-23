@@ -1,6 +1,6 @@
 import t from "tap";
 import { CloseAllConnections } from "../../test-utils/close-connections";
-import CreateLogCtx, { Transports } from "./logger";
+import CreateLogCtx, { ChangeRootLogLevel, rootLogger, Transports } from "./logger";
 
 t.test("Logger Tests", (t) => {
 	const logger = CreateLogCtx(__filename);
@@ -18,6 +18,25 @@ t.test("Logger Tests", (t) => {
 	Transports[0].level = process.env.LOG_LEVEL ?? "info";
 
 	logger.debug("This message shouldn't appear.");
+
+	t.end();
+});
+
+t.test("#ChangeRootLogLevel", (t) => {
+	t.test("Should work with the root logger.", (t) => {
+		rootLogger.info("The below message should appear.");
+
+		ChangeRootLogLevel("verbose");
+		rootLogger.verbose("== SHOULD APPEAR ==");
+
+		ChangeRootLogLevel("info");
+
+		rootLogger.info("The below message SHOULD NOT appear.");
+
+		rootLogger.verbose("== SHOULD NOT APPEAR ==");
+
+		t.end();
+	});
 
 	t.end();
 });

@@ -73,28 +73,6 @@ export function IsString(val: unknown): val is string {
 	return typeof val === "string";
 }
 
-export function FormatChart(game: Game, song: AnySongDocument, chart: AnyChartDocument) {
-	if (game === "bms") {
-		return song.title;
-	}
-
-	const gameConfig = GetGameConfig(game);
-
-	let playtypeStr = `${chart.playtype} `;
-
-	if (gameConfig.validPlaytypes.length === 1) {
-		playtypeStr = "";
-	}
-
-	// return the most recent version this chart appeared in if it
-	// is not primary.
-	if (!chart.isPrimary) {
-		return `${song.title} (${playtypeStr}${chart.difficulty} ${chart.versions[0]})`;
-	}
-
-	return `${song.title} (${playtypeStr}${chart.difficulty})`;
-}
-
 export function DedupeArr<T>(arr: T[]): T[] {
 	return [...new Set(arr)];
 }

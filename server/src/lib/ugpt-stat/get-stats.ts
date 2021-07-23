@@ -1,7 +1,8 @@
 import db from "../../external/mongo/db";
-import { integer, Game, Playtypes } from "tachi-common";
+import { integer, Game, Playtypes, UGPTStatDetails } from "tachi-common";
 import CreateLogCtx from "../logger/logger";
 import { EvaluateUGPTStat } from "./evaluator";
+import { GetRelatedStatDocuments } from "./get-related";
 
 const logger = CreateLogCtx(__filename);
 
@@ -34,10 +35,17 @@ export async function EvaluateUsersGPTStats(
 	}
 
 	const results = await Promise.all(
-		settings.preferences.stats.map((details) =>
-			EvaluateUGPTStat(details, userID).then((v) => ({ stat: details, value: v }))
-		)
+		settings.preferences.stats.map((details) => EvaluateStats(details, userID, game))
 	);
 
 	return results;
+}
+
+async function EvaluateStats(details: UGPTStatDetails, userID: integer, game: Game) {
+	const [result, related] = await Promise.all([
+		EvaluateUGPTStat(details, userID),
+		GetRelatedStatDocuments(details, game),
+	]);
+
+	return { stat: details, value: result, related };
 }

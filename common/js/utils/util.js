@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FormatGame = exports.FormatDifficultyShort = exports.FormatDifficulty = void 0;
+exports.FormatChart = exports.FormatGame = exports.FormatDifficultyShort = exports.FormatDifficulty = void 0;
 const config_1 = require("../config/config");
 function FormatDifficulty(chart, game) {
     const gameConfig = config_1.GetGameConfig(game);
@@ -42,4 +42,21 @@ function FormatGame(game, playtype) {
     return `${gameConfig.name} (${playtype})`;
 }
 exports.FormatGame = FormatGame;
+function FormatChart(game, song, chart) {
+    if (game === "bms") {
+        return song.title;
+    }
+    const gameConfig = config_1.GetGameConfig(game);
+    let playtypeStr = `${chart.playtype} `;
+    if (gameConfig.validPlaytypes.length === 1) {
+        playtypeStr = "";
+    }
+    // return the most recent version this chart appeared in if it
+    // is not primary.
+    if (!chart.isPrimary) {
+        return `${song.title} (${playtypeStr}${chart.difficulty} ${chart.versions[0]})`;
+    }
+    return `${song.title} (${playtypeStr}${chart.difficulty})`;
+}
+exports.FormatChart = FormatChart;
 //# sourceMappingURL=util.js.map

@@ -1,4 +1,4 @@
-import { AnyChartDocument, Game, Playtypes } from "..";
+import { AnyChartDocument, AnySongDocument, Game, Playtypes } from "..";
 import { GetGameConfig, GetGamePTConfig } from "../config/config";
 
 export function FormatDifficulty(chart: AnyChartDocument, game: Game): string {
@@ -47,4 +47,26 @@ export function FormatGame(game: Game, playtype: Playtypes[Game]): string {
 	}
 
 	return `${gameConfig.name} (${playtype})`;
+}
+
+export function FormatChart(game: Game, song: AnySongDocument, chart: AnyChartDocument): string {
+	if (game === "bms") {
+		return song.title;
+	}
+
+	const gameConfig = GetGameConfig(game);
+
+	let playtypeStr = `${chart.playtype} `;
+
+	if (gameConfig.validPlaytypes.length === 1) {
+		playtypeStr = "";
+	}
+
+	// return the most recent version this chart appeared in if it
+	// is not primary.
+	if (!chart.isPrimary) {
+		return `${song.title} (${playtypeStr}${chart.difficulty} ${chart.versions[0]})`;
+	}
+
+	return `${song.title} (${playtypeStr}${chart.difficulty})`;
 }

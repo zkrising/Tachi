@@ -1,5 +1,4 @@
 import { UserGameStats, UserGameStatsSnapshot } from "tachi-common";
-
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { GetUsersRanking } from "utils/user";
@@ -13,6 +12,8 @@ const currentTime = new Date().setUTCHours(0, 0, 0, 0);
 
 let batchWrite: UserGameStatsSnapshot[] = [];
 
+// This code is intentionally *very* robust, and handles a lot of unanticipated failures
+// because if it breaks, we brick the database.
 (async () => {
 	const timeStart = process.hrtime.bigint();
 

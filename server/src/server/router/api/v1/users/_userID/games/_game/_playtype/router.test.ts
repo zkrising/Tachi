@@ -134,19 +134,19 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/history", (t) => {
 
 		t.strictSame(res.body.body, [
 			{
-				ranking: 5,
-				playcount: 100,
-				classes: {},
-				ratings: {},
-				timestamp: 1234,
-			},
-			{
 				ranking: 1,
 				playcount: 1,
 				classes: {},
 				ratings: {},
 				// close enough, right?
 				timestamp: Math.floor(Date.now() / 100_000),
+			},
+			{
+				ranking: 5,
+				playcount: 100,
+				classes: {},
+				ratings: {},
+				timestamp: 1234,
 			},
 		]);
 

@@ -1,6 +1,7 @@
 import winston, { format, transports, Logger, LeveledLogMethod } from "winston";
 import { EscapeStringRegexp } from "../../utils/misc";
 import { LOG_LEVEL } from "../setup/config";
+import SafeJSONStringify from "safe-json-stringify";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };
 
@@ -23,7 +24,7 @@ const formatExcessProperties = (meta: Record<string, unknown>) => {
 		return "";
 	}
 
-	return ` ${JSON.stringify(meta)}`;
+	return ` ${SafeJSONStringify(meta)}`;
 };
 
 const formatExcessPropertiesNoStack = (meta: Record<string, unknown>, omitKeys: string[] = []) => {
@@ -49,7 +50,7 @@ const formatExcessPropertiesNoStack = (meta: Record<string, unknown>, omitKeys: 
 		return "";
 	}
 
-	return ` ${JSON.stringify(realMeta)}`;
+	return ` ${SafeJSONStringify(realMeta)}`;
 };
 
 const tachiPrintf = format.printf(

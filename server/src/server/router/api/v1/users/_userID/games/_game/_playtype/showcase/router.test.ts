@@ -131,9 +131,11 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&prop=grade&gte=3&folderID=${TestingIIDXFolderSP10.folderID}`
 		);
 
-		t.strictSame(res.body.body, {
-			value: 1,
-			outOf: 1,
+		t.hasStrict(res.body.body, {
+			result: {
+				value: 1,
+				outOf: 1,
+			},
 		});
 
 		t.end();
@@ -144,8 +146,8 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&prop=grade&chartID=${Testing511SPA.chartID}`
 		);
 
-		t.strictSame(res.body.body, {
-			value: IIDX_GRADES.AAA,
+		t.hasStrict(res.body.body, {
+			result: { value: IIDX_GRADES.AAA },
 		});
 
 		t.end();

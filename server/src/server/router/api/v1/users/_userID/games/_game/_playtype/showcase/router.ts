@@ -238,6 +238,34 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 				description: FormatPrError(err, "Invalid stat."),
 			});
 		}
+
+		if (stat.mode === "chart") {
+			// eslint-disable-next-line no-await-in-loop
+			const chart = await db.charts[game].findOne({ chartID: stat.chartID });
+
+			if (!chart || chart.playtype !== playtype) {
+				return res.status(400).json({
+					success: false,
+					description: `Invalid chartID - must be a chart for this game and playtype.`,
+				});
+			}
+		} else if (stat.mode === "folder") {
+			const folderIDs = Array.isArray(stat.folderID) ? stat.folderID : [stat.folderID];
+
+			// eslint-disable-next-line no-await-in-loop
+			const folders = await db.folders.find({ folderID: { $in: folderIDs } });
+
+			if (
+				folders.length !== folderIDs.length ||
+				!folders.every((r) => r.game === game && r.playtype === playtype)
+			) {
+				return res.status(400).json({
+					success: false,
+					// this error message is kinda lazy.
+					description: `Invalid folderID - must be a folder for this game and playtype.`,
+				});
+			}
+		}
 	}
 
 	await db["game-settings"].update(

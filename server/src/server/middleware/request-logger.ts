@@ -43,6 +43,7 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 			requestQuery: req.query,
 			requestBody: safeBody,
 			from: req[SYMBOL_TachiAPIAuth]?.userID ?? null,
+			fromIp: req.ip,
 		};
 
 		if (res.statusCode < 400) {

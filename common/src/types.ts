@@ -1303,16 +1303,16 @@ export interface ImportLockDocument extends MongoDBDocument {
 	userID: integer;
 }
 
-export type UGPTStatDetails = UGPTStatFolder | UGPTStatChart;
+export type ShowcaseStatDetails = ShowcaseStatFolder | ShowcaseStatChart;
 
-export interface UGPTStatFolder {
+export interface ShowcaseStatFolder {
 	mode: "folder";
 	folderID: string | string[];
 	property: "score" | "percent" | "grade" | "lamp";
 	gte: number;
 }
 
-export interface UGPTStatChart {
+export interface ShowcaseStatChart {
 	mode: "chart";
 	chartID: string;
 	property: "score" | "percent" | "grade" | "lamp" | "playcount";
@@ -1326,7 +1326,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 		preferredScoreAlg: ScoreCalculatedDataLookup[I] | null;
 		preferredSessionAlg: SessionCalculatedDataLookup[I] | null;
 		preferredProfileAlg: UGSRatingsLookup[I] | null;
-		stats: UGPTStatDetails[];
+		stats: ShowcaseStatDetails[];
 	};
 }
 

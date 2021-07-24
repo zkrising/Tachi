@@ -1048,14 +1048,14 @@ export interface APITokenDocument extends MongoDBDocument {
 export interface ImportLockDocument extends MongoDBDocument {
     userID: integer;
 }
-export declare type UGPTStatDetails = UGPTStatFolder | UGPTStatChart;
-export interface UGPTStatFolder {
+export declare type ShowcaseStatDetails = ShowcaseStatFolder | ShowcaseStatChart;
+export interface ShowcaseStatFolder {
     mode: "folder";
     folderID: string | string[];
     property: "score" | "percent" | "grade" | "lamp";
     gte: number;
 }
-export interface UGPTStatChart {
+export interface ShowcaseStatChart {
     mode: "chart";
     chartID: string;
     property: "score" | "percent" | "grade" | "lamp" | "playcount";
@@ -1068,7 +1068,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
         preferredScoreAlg: ScoreCalculatedDataLookup[I] | null;
         preferredSessionAlg: SessionCalculatedDataLookup[I] | null;
         preferredProfileAlg: UGSRatingsLookup[I] | null;
-        stats: UGPTStatDetails[];
+        stats: ShowcaseStatDetails[];
     };
 }
 export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings> extends MongoDBDocument, UserGameStats<I> {

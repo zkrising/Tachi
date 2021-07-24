@@ -42,9 +42,9 @@ t.beforeEach(async () => {
 	await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}));
 });
 
-t.test("GET /api/v1/users/:userID/games/:game/:playtype/stats", (t) => {
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 	t.test("Should return the evaluated stats for this user.", async (t) => {
-		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/stats");
+		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/showcase");
 
 		t.hasStrict(res.body.body, [
 			{
@@ -95,7 +95,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/stats", (t) => {
 			id: 2,
 		} as PrivateUserDocument);
 
-		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/stats?projectUser=2");
+		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/showcase?projectUser=2");
 
 		t.hasStrict(res.body.body, [
 			{
@@ -113,7 +113,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/stats", (t) => {
 	});
 
 	t.test("Should return 404 if the user has not played this game.", async (t) => {
-		const res = await mockApi.get("/api/v1/users/1/games/bms/7K/stats");
+		const res = await mockApi.get("/api/v1/users/1/games/bms/7K/showcase");
 
 		t.equal(res.statusCode, 404);
 
@@ -125,10 +125,10 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/stats", (t) => {
 	t.end();
 });
 
-t.test("GET /api/v1/users/:userID/games/:game/:playtype/stats/custom", (t) => {
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) => {
 	t.test("Should return a custom folder evaluated stat on a user.", async (t) => {
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/stats/custom?mode=folder&prop=grade&gte=3&folderID=${TestingIIDXFolderSP10.folderID}`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&prop=grade&gte=3&folderID=${TestingIIDXFolderSP10.folderID}`
 		);
 
 		t.strictSame(res.body.body, {
@@ -141,7 +141,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/stats/custom", (t) => {
 
 	t.test("Should return a custom chart evaluated stat on a user.", async (t) => {
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/stats/custom?mode=chart&prop=grade&chartID=${Testing511SPA.chartID}`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&prop=grade&chartID=${Testing511SPA.chartID}`
 		);
 
 		t.strictSame(res.body.body, {
@@ -153,13 +153,13 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/stats/custom", (t) => {
 
 	t.test("Should reject for invalid folderID.", async (t) => {
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/stats/custom?mode=folder&prop=grade&gte=4`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&prop=grade&gte=4`
 		);
 
 		t.equal(res.statusCode, 400, "Should reject for no folderID");
 
 		const res2 = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/stats/custom?mode=folder&prop=grade&gte=4&folderID=foo&folderID=bar`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&prop=grade&gte=4&folderID=foo&folderID=bar`
 		);
 
 		t.equal(res2.statusCode, 400, "Should reject for non-string folderID");
@@ -169,13 +169,13 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/stats/custom", (t) => {
 
 	t.test("Should reject for invalid chartID.", async (t) => {
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/stats/custom?mode=chart&prop=grade&gte=4`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&prop=grade&gte=4`
 		);
 
 		t.equal(res.statusCode, 400, "Should reject for no chartID");
 
 		const res2 = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/stats/custom?mode=chart&prop=grade&chartID=foo&chartID=bar`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&prop=grade&chartID=foo&chartID=bar`
 		);
 
 		t.equal(res2.statusCode, 400, "Should reject for non-string chartID");
@@ -185,7 +185,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/stats/custom", (t) => {
 
 	t.test("Should reject for invalid mode", async (t) => {
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/stats/custom?mode=nonsense&prop=grade&gte=4&chartID=foo`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=nonsense&prop=grade&gte=4&chartID=foo`
 		);
 
 		t.equal(res.statusCode, 400);
@@ -197,7 +197,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/stats/custom", (t) => {
 });
 
 // @todo #239 PUT UGPT-Stats needs some tests for input validation.
-t.test("PUT /api/v1/users/:userID/games/:game/:playtype/stats", (t) => {
+t.test("PUT /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 	t.test("Requires the user to be authed as the requested user.", async (t) => {
 		await db["api-tokens"].insert({
 			userID: 2,
@@ -209,7 +209,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/stats", (t) => {
 		});
 
 		const res = await mockApi
-			.put("/api/v1/users/1/games/iidx/SP/stats")
+			.put("/api/v1/users/1/games/iidx/SP/showcase")
 			.set("Authorization", `Bearer alt_token`);
 
 		t.equal(res.statusCode, 403);
@@ -228,7 +228,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/stats", (t) => {
 		});
 
 		const res = await mockApi
-			.put("/api/v1/users/1/games/iidx/SP/stats")
+			.put("/api/v1/users/1/games/iidx/SP/showcase")
 			.set("Authorization", `Bearer alt_token`);
 
 		t.equal(res.statusCode, 403);
@@ -247,7 +247,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/stats", (t) => {
 		});
 
 		const res = await mockApi
-			.put("/api/v1/users/1/games/iidx/SP/stats")
+			.put("/api/v1/users/1/games/iidx/SP/showcase")
 			.set("Authorization", `Bearer alt_token`)
 			.send([
 				{

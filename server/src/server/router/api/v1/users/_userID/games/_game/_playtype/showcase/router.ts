@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { SYMBOL_TachiData } from "../../../../../../../../../../lib/constants/tachi";
-import { EvaluateUsersStatsShowcase } from "../../../../../../../../../../lib/showcase-stats/get-stats";
-import { ResolveUser } from "../../../../../../../../../../utils/user";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { EvaluateUsersStatsShowcase } from "lib/showcase/get-stats";
+import { ResolveUser } from "utils/user";
 import p from "prudence";
-import { FormatPrError } from "../../../../../../../../../../utils/prudence";
+import { FormatPrError } from "utils/prudence";
 import { ShowcaseStatDetails, GetGamePTConfig } from "tachi-common";
-import { EvaluateShowcaseStat } from "../../../../../../../../../../lib/showcase-stats/evaluator";
-import db from "../../../../../../../../../../external/mongo/db";
-import { RequirePermissions } from "../../../../../../../../../middleware/auth";
-import { RequireAuthedAsUser } from "../../../../middleware";
-import { GetRelatedStatDocuments } from "lib/showcase-stats/get-related";
+import { EvaluateShowcaseStat } from "lib/showcase/evaluator";
+import db from "external/mongo/db";
+import { RequirePermissions } from "server/middleware/auth";
+import { RequireAuthedAsUser } from "server/router/api/v1/users/_userID/middleware";
+import { GetRelatedStatDocuments } from "lib/showcase/get-related";
 const router: Router = Router({ mergeParams: true });
 
 /**
@@ -17,7 +17,7 @@ const router: Router = Router({ mergeParams: true });
  *
  * @param projectUser - Project another user's stats instead of their set stats.
  *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/stats
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/showcase
  */
 router.get("/", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
@@ -59,7 +59,7 @@ router.get("/", async (req, res) => {
  * @TODO: #237 This custom stat code accepts charts and folders from any game and any playtype - technically,
  * this is breaking rest quite painfully!
  *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/stats/custom
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom
  */
 router.get("/custom", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
@@ -141,7 +141,7 @@ router.get("/custom", async (req, res) => {
 /**
  * Replaces a user's preferred stats.
  *
- * @name PUT /api/v1/users/:userID/games/:game/:playtype/stats
+ * @name PUT /api/v1/users/:userID/games/:game/:playtype/showcase
  */
 
 router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), async (req, res) => {

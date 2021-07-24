@@ -56,14 +56,13 @@ router.get("/", async (req, res) => {
  * @param chartID - If mode is "chart" this must contain the chartID the stat is referencing.
  * @param gte - If mode is "folder" this must contain the value the property must be greater than.
  *
- * @TODO: #237 This custom stat code accepts charts and folders from any game and any playtype - technically,
- * this is breaking rest quite painfully!
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom
  */
 router.get("/custom", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 	const game = req[SYMBOL_TachiData]!.game!;
+	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
 	let stat: ShowcaseStatDetails;
 
@@ -90,6 +89,18 @@ router.get("/custom", async (req, res) => {
 
 		const folderIDs = (req.query.folderID as string).split(",");
 
+		const folders = await db.folders.find({ folderID: { $in: folderIDs } });
+
+		if (
+			folders.length !== folderIDs.length ||
+			!folders.every((r) => r.game === game && r.playtype === playtype)
+		) {
+			return res.status(400).json({
+				success: false,
+				description: `Invalid folderID - all folders must be for this game, and exist.`,
+			});
+		}
+
 		stat = {
 			mode: "folder",
 			property: req.query.prop as "grade" | "lamp" | "score" | "percent",
@@ -112,6 +123,15 @@ router.get("/custom", async (req, res) => {
 			return res.status(400).json({
 				success: false,
 				description: FormatPrError(err, "Invalid chart stat"),
+			});
+		}
+
+		const chart = await db.charts[game].findOne({ chartID: req.query.chartID as string });
+
+		if (!chart || chart.playtype !== playtype) {
+			return res.status(400).json({
+				success: false,
+				description: `Chart does not exist, or is not for this game and playtype.`,
 			});
 		}
 
@@ -217,6 +237,34 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 				success: false,
 				description: FormatPrError(err, "Invalid stat."),
 			});
+		}
+
+		if (stat.mode === "chart") {
+			// eslint-disable-next-line no-await-in-loop
+			const chart = await db.charts[game].findOne({ chartID: stat.chartID });
+
+			if (!chart || chart.playtype !== playtype) {
+				return res.status(400).json({
+					success: false,
+					description: `Invalid chartID - must be a chart for this game and playtype.`,
+				});
+			}
+		} else if (stat.mode === "folder") {
+			const folderIDs = Array.isArray(stat.folderID) ? stat.folderID : [stat.folderID];
+
+			// eslint-disable-next-line no-await-in-loop
+			const folders = await db.folders.find({ folderID: { $in: folderIDs } });
+
+			if (
+				folders.length !== folderIDs.length ||
+				!folders.every((r) => r.game === game && r.playtype === playtype)
+			) {
+				return res.status(400).json({
+					success: false,
+					// this error message is kinda lazy.
+					description: `Invalid folderID - must be a folder for this game and playtype.`,
+				});
+			}
 		}
 	}
 

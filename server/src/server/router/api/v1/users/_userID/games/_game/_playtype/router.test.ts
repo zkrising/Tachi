@@ -129,7 +129,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/history", (t) => {
 
 		const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/history");
 
-		res.body.body[0].timestamp = Math.floor(res.body.body[1].timestamp / 100_000); // by default, it's set to the current time. we can't
+		res.body.body[0].timestamp = Math.floor(res.body.body[0].timestamp / 100_000); // by default, it's set to the current time. we can't
 		// test that nicely, so lets round it to the nearest 100 seconds.
 
 		t.strictSame(res.body.body, [

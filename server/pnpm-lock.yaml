@@ -81,7 +81,7 @@ dependencies:
   rate-limit-redis: 2.1.0
   redis: 3.1.2
   rimraf: 3.0.2
-  tachi-common: github.com/zkldi/tachi-common/62ea387173a0ee7019adf3371b90f6328081ae92_ts-node@10.0.0+typescript@4.3.4
+  tachi-common: github.com/zkldi/tachi-common/7a9f468590d81ea6309c34dc15a7619f9924ed9b_ts-node@10.0.0+typescript@4.3.4
   typescript: 4.3.4
   winston: 3.3.3
 
@@ -4214,9 +4214,9 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  github.com/zkldi/tachi-common/62ea387173a0ee7019adf3371b90f6328081ae92_ts-node@10.0.0+typescript@4.3.4:
-    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/62ea387173a0ee7019adf3371b90f6328081ae92}
-    id: github.com/zkldi/tachi-common/62ea387173a0ee7019adf3371b90f6328081ae92
+  github.com/zkldi/tachi-common/7a9f468590d81ea6309c34dc15a7619f9924ed9b_ts-node@10.0.0+typescript@4.3.4:
+    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/7a9f468590d81ea6309c34dc15a7619f9924ed9b}
+    id: github.com/zkldi/tachi-common/7a9f468590d81ea6309c34dc15a7619f9924ed9b
     name: tachi-common
     version: 0.1.0
     dependencies:

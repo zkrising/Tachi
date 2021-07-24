@@ -2,7 +2,12 @@ import { Router } from "express";
 import db from "../../../../../../../../../external/mongo/db";
 import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi";
 import { GetRelevantSongsAndCharts } from "../../../../../../../../../utils/db";
-import { GetUsersRankingAndOutOf, GetUsersWithIDs } from "../../../../../../../../../utils/user";
+import {
+	GetUGPTPlaycount,
+	GetUsersRanking,
+	GetUsersRankingAndOutOf,
+	GetUsersWithIDs,
+} from "../../../../../../../../../utils/user";
 import { CheckUserPlayedGamePlaytype } from "./middleware";
 import { FilterQuery } from "mongodb";
 import {
@@ -11,6 +16,7 @@ import {
 	GetGamePTConfig,
 	integer,
 	PBScoreDocument,
+	UserGameStatsSnapshot,
 } from "tachi-common";
 import { SearchGameSongsAndCharts } from "../../../../../../../../../lib/search/search";
 import { FilterChartsAndSongs } from "../../../../../../../../../utils/scores";
@@ -22,7 +28,6 @@ import foldersFolderIDRouter from "./folders/_folderID/router";
 import tablesRouter from "./tables/router";
 import showcaseRouter from "./showcase/router";
 import settingsRouter from "./settings/router";
-
 const router: Router = Router({ mergeParams: true });
 
 router.use(CheckUserPlayedGamePlaytype);
@@ -82,6 +87,51 @@ router.get("/", async (req, res) => {
 			totalScores,
 			rankingData,
 		},
+	});
+});
+
+/**
+ * Returns a users game-stats for the past 90 days.
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/history
+ */
+router.get("/history", async (req, res) => {
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const stats = req[SYMBOL_TachiData]!.requestedUserGameStats!;
+	const game = req[SYMBOL_TachiData]!.game!;
+	const playtype = req[SYMBOL_TachiData]!.playtype!;
+
+	const snapshots = (await db["game-stats-snapshots"].find(
+		{
+			userID: user.id,
+			game,
+			playtype,
+		},
+		{
+			sort: {
+				timestamp: -1,
+			},
+			// avoid sending so much garbage.
+			projection: {
+				userID: 0,
+				game: 0,
+				playtype: 0,
+			},
+			limit: 90,
+		}
+	)) as Omit<UserGameStatsSnapshot, "userID" | "game" | "playtype">[];
+
+	const currentSnapshot: Omit<UserGameStatsSnapshot, "userID" | "game" | "playtype"> = {
+		classes: stats.classes,
+		ratings: stats.ratings,
+		timestamp: Date.now(), // lazy, should probably be this midnight
+		playcount: await GetUGPTPlaycount(user.id, game, playtype),
+		ranking: await GetUsersRanking(stats),
+	};
+
+	return res.status(200).json({
+		success: true,
+		description: `Successfully returned history for the past ${snapshots.length} days.`,
+		body: [...snapshots, currentSnapshot],
 	});
 });
 

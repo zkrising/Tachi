@@ -1,7 +1,15 @@
-import { integer, PublicUserDocument, UserGameStats, GetGamePTConfig } from "tachi-common";
+import {
+	integer,
+	PublicUserDocument,
+	UserGameStats,
+	GetGamePTConfig,
+	Game,
+	Playtypes,
+} from "tachi-common";
 import { FindOneResult } from "monk";
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
+
 const logger = CreateLogCtx(__filename);
 
 export const OMIT_PRIVATE_USER_RETURNS = {
@@ -185,6 +193,10 @@ export async function GetUsersRanking(stats: UserGameStats) {
 	]);
 
 	return (aggRes[0].ranking + 1) as integer;
+}
+
+export function GetUGPTPlaycount(userID: integer, game: Game, playtype: Playtypes[Game]) {
+	return db.scores.count({ userID, game, playtype });
 }
 
 export async function GetUsersRankingAndOutOf(stats: UserGameStats) {

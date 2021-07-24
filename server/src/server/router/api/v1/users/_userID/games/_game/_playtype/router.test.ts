@@ -20,7 +20,7 @@ import {
 } from "../../../../../../../../../test-utils/test-data";
 import deepmerge from "deepmerge";
 
-t.test("GET /api/v1/users/:userID/games/:game/:playtype/", (t) => {
+t.test("GET /api/v1/users/:userID/games/:game/:playtype", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should return a users statistics for that game.", async (t) => {
@@ -103,6 +103,52 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/", (t) => {
 				},
 			},
 		});
+
+		t.end();
+	});
+
+	t.end();
+});
+
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/history", (t) => {
+	t.beforeEach(ResetDBState);
+
+	t.test("Should return a users history snapshots for that gpt.", async (t) => {
+		await db["game-stats-snapshots"].insert([
+			{
+				userID: 1,
+				game: "iidx",
+				playtype: "SP",
+				ranking: 5,
+				playcount: 100,
+				classes: {},
+				ratings: {},
+				timestamp: 1234,
+			},
+		]);
+
+		const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/history");
+
+		res.body.body[1].timestamp = Math.floor(res.body.body[1].timestamp / 100_000); // by default, it's set to the current time. we can't
+		// test that nicely, so lets round it to the nearest 100 seconds.
+
+		t.strictSame(res.body.body, [
+			{
+				ranking: 5,
+				playcount: 100,
+				classes: {},
+				ratings: {},
+				timestamp: 1234,
+			},
+			{
+				ranking: 1,
+				playcount: 1,
+				classes: {},
+				ratings: {},
+				// close enough, right?
+				timestamp: Math.floor(Date.now() / 100_000),
+			},
+		]);
 
 		t.end();
 	});

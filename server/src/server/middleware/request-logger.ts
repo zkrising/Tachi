@@ -1,5 +1,6 @@
 import CreateLogCtx from "lib/logger/logger";
 import { RequestHandler, Response } from "express-serve-static-core";
+import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 
 const logger = CreateLogCtx(__filename);
 
@@ -41,6 +42,7 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 			statusCode: res.statusCode,
 			requestQuery: req.query,
 			requestBody: safeBody,
+			from: req[SYMBOL_TachiAPIAuth].userID,
 		};
 
 		if (res.statusCode < 400) {

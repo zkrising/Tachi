@@ -1334,5 +1334,6 @@ export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>
 	extends MongoDBDocument,
 		UserGameStats<I> {
 	ranking: integer;
+	playcount: integer;
 	timestamp: integer;
 }

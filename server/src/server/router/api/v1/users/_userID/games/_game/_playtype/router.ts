@@ -131,7 +131,7 @@ router.get("/history", async (req, res) => {
 	return res.status(200).json({
 		success: true,
 		description: `Successfully returned history for the past ${snapshots.length} days.`,
-		body: [...snapshots, currentSnapshot],
+		body: [currentSnapshot, ...snapshots],
 	});
 });
 

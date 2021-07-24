@@ -1,10 +1,10 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { Game, UGPTStatDetails } from "tachi-common";
+import { Game, ShowcaseStatDetails } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
-export async function GetRelatedStatDocuments(stat: UGPTStatDetails, game: Game) {
+export async function GetRelatedStatDocuments(stat: ShowcaseStatDetails, game: Game) {
 	if (stat.mode === "chart") {
 		const chart = await db.charts[game].findOne({ chartID: stat.chartID });
 

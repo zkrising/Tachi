@@ -1,17 +1,17 @@
 import db from "../../external/mongo/db";
-import { integer, Game, Playtypes, UGPTStatDetails } from "tachi-common";
+import { integer, Game, Playtypes, ShowcaseStatDetails } from "tachi-common";
 import CreateLogCtx from "../logger/logger";
-import { EvaluateUGPTStat } from "./evaluator";
+import { EvaluateShowcaseStat } from "./evaluator";
 import { GetRelatedStatDocuments } from "./get-related";
 
 const logger = CreateLogCtx(__filename);
 
 /**
- * Evaluate a users set GPT Stats.
- * @param projectUserStats - Optionally, provide another users ID here. Their set stats will be
+ * Evaluate a users set Stats Showcase.
+ * @param projectUserStats - Optionally, provide another users ID here. Their stats showcase will be
  * used instead.
  */
-export async function EvaluateUsersGPTStats(
+export async function EvaluateUsersStatsShowcase(
 	userID: integer,
 	game: Game,
 	playtype: Playtypes[Game],
@@ -26,11 +26,11 @@ export async function EvaluateUsersGPTStats(
 
 	if (!settings) {
 		logger.error(
-			`User ${getSettingsID} has no game-settings, yet a call to EvalulateUsersGPTStats was made.`
+			`User ${getSettingsID} has no game-settings, yet a call to EvaluateUsersStatsShowcase was made.`
 		);
 
 		throw new Error(
-			`User ${getSettingsID} has no game-settings, yet a call to EvalulateUsersGPTStats was made.`
+			`User ${getSettingsID} has no game-settings, yet a call to EvaluateUsersStatsShowcase was made.`
 		);
 	}
 
@@ -41,9 +41,9 @@ export async function EvaluateUsersGPTStats(
 	return results;
 }
 
-async function EvaluateStats(details: UGPTStatDetails, userID: integer, game: Game) {
+async function EvaluateStats(details: ShowcaseStatDetails, userID: integer, game: Game) {
 	const [result, related] = await Promise.all([
-		EvaluateUGPTStat(details, userID),
+		EvaluateShowcaseStat(details, userID),
 		GetRelatedStatDocuments(details, game),
 	]);
 

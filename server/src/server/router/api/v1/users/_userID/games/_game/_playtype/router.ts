@@ -20,7 +20,7 @@ import pbsRouter from "./pbs/router";
 import sessionsRouter from "./sessions/router";
 import foldersFolderIDRouter from "./folders/_folderID/router";
 import tablesRouter from "./tables/router";
-import statsRouter from "./stats/router";
+import statsRouter from "./showcase/router";
 import settingsRouter from "./settings/router";
 
 const router: Router = Router({ mergeParams: true });

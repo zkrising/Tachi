@@ -1,15 +1,15 @@
 import { Router } from "express";
 import { SYMBOL_TachiData } from "../../../../../../../../../../lib/constants/tachi";
-import { EvaluateUsersGPTStats } from "../../../../../../../../../../lib/ugpt-stat/get-stats";
+import { EvaluateUsersStatsShowcase } from "../../../../../../../../../../lib/showcase-stats/get-stats";
 import { ResolveUser } from "../../../../../../../../../../utils/user";
 import p from "prudence";
 import { FormatPrError } from "../../../../../../../../../../utils/prudence";
-import { UGPTStatDetails, GetGamePTConfig } from "tachi-common";
-import { EvaluateUGPTStat } from "../../../../../../../../../../lib/ugpt-stat/evaluator";
+import { ShowcaseStatDetails, GetGamePTConfig } from "tachi-common";
+import { EvaluateShowcaseStat } from "../../../../../../../../../../lib/showcase-stats/evaluator";
 import db from "../../../../../../../../../../external/mongo/db";
 import { RequirePermissions } from "../../../../../../../../../middleware/auth";
 import { RequireAuthedAsUser } from "../../../../middleware";
-import { GetRelatedStatDocuments } from "lib/ugpt-stat/get-related";
+import { GetRelatedStatDocuments } from "lib/showcase-stats/get-related";
 const router: Router = Router({ mergeParams: true });
 
 /**
@@ -39,7 +39,7 @@ router.get("/", async (req, res) => {
 		projectUser = user.id;
 	}
 
-	const results = await EvaluateUsersGPTStats(user.id, game, playtype, projectUser);
+	const results = await EvaluateUsersStatsShowcase(user.id, game, playtype, projectUser);
 
 	return res.status(200).json({
 		success: true,
@@ -65,7 +65,7 @@ router.get("/custom", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 	const game = req[SYMBOL_TachiData]!.game!;
 
-	let stat: UGPTStatDetails;
+	let stat: ShowcaseStatDetails;
 
 	if (req.query.mode === "folder") {
 		const err = p(
@@ -127,7 +127,7 @@ router.get("/custom", async (req, res) => {
 		});
 	}
 
-	const result = await EvaluateUGPTStat(stat, user.id);
+	const result = await EvaluateShowcaseStat(stat, user.id);
 
 	const related = await GetRelatedStatDocuments(stat, game);
 

@@ -1,25 +1,25 @@
-import { integer, UGPTStatDetails, UGPTStatChart, UGPTStatFolder } from "tachi-common";
+import { integer, ShowcaseStatDetails, ShowcaseStatChart, ShowcaseStatFolder } from "tachi-common";
 import db from "../../external/mongo/db";
 import { GetFolderChartIDs } from "../../utils/folder";
 
-export function EvaluateUGPTStat(
-	details: UGPTStatDetails,
+export function EvaluateShowcaseStat(
+	details: ShowcaseStatDetails,
 	userID: integer
 ): Promise<{
 	value: number | null;
 	outOf?: number;
 }> {
 	if (details.mode === "chart") {
-		return EvaluateUGPTChartStat(details, userID);
+		return EvaluateShowcaseChartStat(details, userID);
 	} else if (details.mode === "folder") {
-		return EvaluateUGPTFolderStat(details, userID);
+		return EvaluateShowcaseFolderStat(details, userID);
 	}
 
 	// @ts-expect-error This should never happen anyway.
 	throw new Error(`Invalid mode of ${details.mode} as details mode?`);
 }
 
-async function EvaluateUGPTChartStat(details: UGPTStatChart, userID: integer) {
+async function EvaluateShowcaseChartStat(details: ShowcaseStatChart, userID: integer) {
 	// requires special handling
 	if (details.property === "playcount") {
 		return { value: await db.scores.count({ chartID: details.chartID, userID }) };
@@ -41,7 +41,7 @@ async function EvaluateUGPTChartStat(details: UGPTStatChart, userID: integer) {
 	return { value: pb.scoreData[scProp] };
 }
 
-async function EvaluateUGPTFolderStat(details: UGPTStatFolder, userID: integer) {
+async function EvaluateShowcaseFolderStat(details: ShowcaseStatFolder, userID: integer) {
 	let chartIDs;
 	if (Array.isArray(details.folderID)) {
 		chartIDs = (await Promise.all(details.folderID.map(GetFolderChartIDs))).flat(1);

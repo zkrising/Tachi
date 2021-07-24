@@ -166,6 +166,40 @@ export async function GetUsersRanking(stats: UserGameStats) {
 		{
 			$group: {
 				_id: null,
+				ranking: {
+					$sum: {
+						$cond: {
+							if: {
+								$gt: [
+									`$ratings.${gptConfig.defaultProfileRatingAlg}`,
+									stats.ratings[gptConfig.defaultProfileRatingAlg],
+								],
+							},
+							then: 1,
+							else: 0,
+						},
+					},
+				},
+			},
+		},
+	]);
+
+	return (aggRes[0].ranking + 1) as integer;
+}
+
+export async function GetUsersRankingAndOutOf(stats: UserGameStats) {
+	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
+
+	const aggRes = await db["game-stats"].aggregate([
+		{
+			$match: {
+				game: stats.game,
+				playtype: stats.playtype,
+			},
+		},
+		{
+			$group: {
+				_id: null,
 				outOf: { $sum: 1 },
 				ranking: {
 					$sum: {

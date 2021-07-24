@@ -2,7 +2,7 @@ import { Router } from "express";
 import db from "../../../../../../../../../external/mongo/db";
 import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi";
 import { GetRelevantSongsAndCharts } from "../../../../../../../../../utils/db";
-import { GetUsersRanking, GetUsersWithIDs } from "../../../../../../../../../utils/user";
+import { GetUsersRankingAndOutOf, GetUsersWithIDs } from "../../../../../../../../../utils/user";
 import { CheckUserPlayedGamePlaytype } from "./middleware";
 import { FilterQuery } from "mongodb";
 import {
@@ -69,7 +69,7 @@ router.get("/", async (req, res) => {
 				},
 			}
 		),
-		GetUsersRanking(stats),
+		GetUsersRankingAndOutOf(stats),
 	]);
 
 	return res.status(200).json({
@@ -386,7 +386,7 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 		...below.map((e) => e.userID),
 	]);
 
-	const thisUsersRanking = await GetUsersRanking(thisUsersStats);
+	const thisUsersRanking = await GetUsersRankingAndOutOf(thisUsersStats);
 
 	return res.status(200).json({
 		success: true,

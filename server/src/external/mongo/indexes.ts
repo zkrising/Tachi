@@ -79,6 +79,7 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
 	"bms-course-lookup": [index({ md5sums: 1 }, UNIQUE)],
 	"api-tokens": [index({ token: 1 }, UNIQUE), index({ userID: 1 })],
 	tables: [index({ tableID: 1 }, UNIQUE), index({ game: 1, playtype: 1 })],
+	"game-stats-snapshots": [index({ timestamp: 1, userID: 1, game: 1, playtype: 1 }, UNIQUE)],
 };
 
 const indexes: Partial<Record<ValidDatabases, Index[]>> = staticIndexes;

@@ -119,7 +119,8 @@ export type Databases =
 	| "bms-course-lookup"
 	| "api-tokens"
 	| "import-locks"
-	| "tables";
+	| "tables"
+	| "game-stats-snapshots";
 
 export type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 
@@ -1327,4 +1328,10 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 		preferredProfileAlg: UGSRatingsLookup[I] | null;
 		stats: UGPTStatDetails[];
 	};
+}
+
+export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>
+	extends MongoDBDocument,
+		UserGameStats<I> {
+	ranking: integer;
 }

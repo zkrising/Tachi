@@ -1073,5 +1073,6 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 }
 export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings> extends MongoDBDocument, UserGameStats<I> {
     ranking: integer;
+    timestamp: integer;
 }
 export {};

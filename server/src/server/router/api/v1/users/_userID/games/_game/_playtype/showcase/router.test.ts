@@ -11,6 +11,7 @@ import deepmerge from "deepmerge";
 
 t.beforeEach(ResetDBState);
 t.beforeEach(async () => {
+	await db.folders.insert(TestingIIDXFolderSP10);
 	await CreateFolderChartLookup(TestingIIDXFolderSP10);
 
 	await db["game-settings"].remove({});

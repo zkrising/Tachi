@@ -8,7 +8,7 @@ import {
 	TestingIIDXSPScorePB,
 } from "../../test-utils/test-data";
 import { IIDX_LAMPS } from "../constants/game";
-import { EvaluateUsersGPTStats } from "./get-stats";
+import { EvaluateUsersStatsShowcase } from "./get-stats";
 import deepmerge from "deepmerge";
 import { CreateFolderChartLookup } from "../../utils/folder";
 
@@ -47,9 +47,9 @@ t.beforeEach(async () => {
 	await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}));
 });
 
-t.test("#EvalulateUsersGPTStats", (t) => {
+t.test("#EvalulateUsersStatsShowcase", (t) => {
 	t.test("Should evaluate a user's preferred stats.", async (t) => {
-		const res = await EvaluateUsersGPTStats(1, "iidx", "SP");
+		const res = await EvaluateUsersStatsShowcase(1, "iidx", "SP");
 
 		t.hasStrict(res, [
 			{
@@ -89,7 +89,7 @@ t.test("#EvalulateUsersGPTStats", (t) => {
 	t.test("Should throw an error if the user does not have game-settings.", async (t) => {
 		await db["game-settings"].remove({});
 
-		t.rejects(() => EvaluateUsersGPTStats(1, "iidx", "SP"));
+		t.rejects(() => EvaluateUsersStatsShowcase(1, "iidx", "SP"));
 
 		t.end();
 	});
@@ -105,7 +105,7 @@ t.test("#EvalulateUsersGPTStats", (t) => {
 			})
 		);
 
-		const res = await EvaluateUsersGPTStats(2, "iidx", "SP", 1);
+		const res = await EvaluateUsersStatsShowcase(2, "iidx", "SP", 1);
 
 		t.hasStrict(res, [
 			{

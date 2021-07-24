@@ -13,6 +13,7 @@ specifiers:
   '@types/range-parser': 1.2.3
   '@types/rate-limit-redis': 1.7.1
   '@types/rimraf': 3.0.0
+  '@types/safe-json-stringify': 1.1.2
   '@types/supertest': 2.0.11
   '@types/tap': 15.0.4
   '@types/uuid': 8.3.0
@@ -48,6 +49,7 @@ specifiers:
   rate-limit-redis: 2.1.0
   redis: 3.1.2
   rimraf: 3.0.2
+  safe-json-stringify: 1.2.0
   supertest: 6.1.3
   tachi-common: github:zkldi/tachi-common
   tap: 15.0.9
@@ -81,7 +83,8 @@ dependencies:
   rate-limit-redis: 2.1.0
   redis: 3.1.2
   rimraf: 3.0.2
-  tachi-common: github.com/zkldi/tachi-common/62ea387173a0ee7019adf3371b90f6328081ae92_ts-node@10.0.0+typescript@4.3.4
+  safe-json-stringify: 1.2.0
+  tachi-common: github.com/zkldi/tachi-common/21c3bb4cc4407601a902e049fb1e1b774b793e40_ts-node@10.0.0+typescript@4.3.4
   typescript: 4.3.4
   winston: 3.3.3
 
@@ -98,6 +101,7 @@ devDependencies:
   '@types/range-parser': 1.2.3
   '@types/rate-limit-redis': 1.7.1
   '@types/rimraf': 3.0.0
+  '@types/safe-json-stringify': 1.1.2
   '@types/supertest': 2.0.11
   '@types/tap': 15.0.4
   '@types/uuid': 8.3.0
@@ -630,6 +634,10 @@ packages:
     dependencies:
       '@types/glob': 7.1.3
       '@types/node': 15.12.4
+    dev: true
+
+  /@types/safe-json-stringify/1.1.2:
+    resolution: {integrity: sha512-Hj/LZMBXFH3Qj9sNmNu6syBpkZqBaM00HgP7naf9CnZhB3kdxmrenWUD2cY6vvTWjuBM3NPOLknPKDUOQuTWXA==}
     dev: true
 
   /@types/serve-static/1.13.9:
@@ -3422,6 +3430,10 @@ packages:
   /safe-buffer/5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
 
+  /safe-json-stringify/1.2.0:
+    resolution: {integrity: sha512-gH8eh2nZudPQO6TytOvbxnuhYBOvDBBLW52tz5q6X58lJcd/tkmqFR+5Z9adS8aJtURSXWThWy/xJtJwixErvg==}
+    dev: false
+
   /safer-buffer/2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
@@ -4214,9 +4226,9 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  github.com/zkldi/tachi-common/62ea387173a0ee7019adf3371b90f6328081ae92_ts-node@10.0.0+typescript@4.3.4:
-    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/62ea387173a0ee7019adf3371b90f6328081ae92}
-    id: github.com/zkldi/tachi-common/62ea387173a0ee7019adf3371b90f6328081ae92
+  github.com/zkldi/tachi-common/21c3bb4cc4407601a902e049fb1e1b774b793e40_ts-node@10.0.0+typescript@4.3.4:
+    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/21c3bb4cc4407601a902e049fb1e1b774b793e40}
+    id: github.com/zkldi/tachi-common/21c3bb4cc4407601a902e049fb1e1b774b793e40
     name: tachi-common
     version: 0.1.0
     dependencies:

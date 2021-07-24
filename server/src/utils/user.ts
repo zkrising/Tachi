@@ -1,7 +1,15 @@
-import { integer, PublicUserDocument, UserGameStats, GetGamePTConfig } from "tachi-common";
+import {
+	integer,
+	PublicUserDocument,
+	UserGameStats,
+	GetGamePTConfig,
+	Game,
+	Playtypes,
+} from "tachi-common";
 import { FindOneResult } from "monk";
 import db from "../external/mongo/db";
 import CreateLogCtx from "../lib/logger/logger";
+
 const logger = CreateLogCtx(__filename);
 
 export const OMIT_PRIVATE_USER_RETURNS = {
@@ -154,6 +162,44 @@ export function FormatUserDoc(userdoc: PublicUserDocument) {
 }
 
 export async function GetUsersRanking(stats: UserGameStats) {
+	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
+
+	const aggRes = await db["game-stats"].aggregate([
+		{
+			$match: {
+				game: stats.game,
+				playtype: stats.playtype,
+			},
+		},
+		{
+			$group: {
+				_id: null,
+				ranking: {
+					$sum: {
+						$cond: {
+							if: {
+								$gt: [
+									`$ratings.${gptConfig.defaultProfileRatingAlg}`,
+									stats.ratings[gptConfig.defaultProfileRatingAlg],
+								],
+							},
+							then: 1,
+							else: 0,
+						},
+					},
+				},
+			},
+		},
+	]);
+
+	return (aggRes[0].ranking + 1) as integer;
+}
+
+export function GetUGPTPlaycount(userID: integer, game: Game, playtype: Playtypes[Game]) {
+	return db.scores.count({ userID, game, playtype });
+}
+
+export async function GetUsersRankingAndOutOf(stats: UserGameStats) {
 	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
 
 	const aggRes = await db["game-stats"].aggregate([

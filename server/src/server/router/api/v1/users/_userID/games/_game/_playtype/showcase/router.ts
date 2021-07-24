@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { SYMBOL_TachiData } from "../../../../../../../../../../lib/constants/tachi";
-import { EvaluateUsersGPTStats } from "../../../../../../../../../../lib/ugpt-stat/get-stats";
-import { ResolveUser } from "../../../../../../../../../../utils/user";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { EvaluateUsersStatsShowcase } from "lib/showcase/get-stats";
+import { ResolveUser } from "utils/user";
 import p from "prudence";
-import { FormatPrError } from "../../../../../../../../../../utils/prudence";
-import { UGPTStatDetails, GetGamePTConfig } from "tachi-common";
-import { EvaluateUGPTStat } from "../../../../../../../../../../lib/ugpt-stat/evaluator";
-import db from "../../../../../../../../../../external/mongo/db";
-import { RequirePermissions } from "../../../../../../../../../middleware/auth";
-import { RequireAuthedAsUser } from "../../../../middleware";
-import { GetRelatedStatDocuments } from "lib/ugpt-stat/get-related";
+import { FormatPrError } from "utils/prudence";
+import { ShowcaseStatDetails, GetGamePTConfig } from "tachi-common";
+import { EvaluateShowcaseStat } from "lib/showcase/evaluator";
+import db from "external/mongo/db";
+import { RequirePermissions } from "server/middleware/auth";
+import { RequireAuthedAsUser } from "server/router/api/v1/users/_userID/middleware";
+import { GetRelatedStatDocuments } from "lib/showcase/get-related";
 const router: Router = Router({ mergeParams: true });
 
 /**
@@ -17,7 +17,7 @@ const router: Router = Router({ mergeParams: true });
  *
  * @param projectUser - Project another user's stats instead of their set stats.
  *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/stats
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/showcase
  */
 router.get("/", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
@@ -39,7 +39,7 @@ router.get("/", async (req, res) => {
 		projectUser = user.id;
 	}
 
-	const results = await EvaluateUsersGPTStats(user.id, game, playtype, projectUser);
+	const results = await EvaluateUsersStatsShowcase(user.id, game, playtype, projectUser);
 
 	return res.status(200).json({
 		success: true,
@@ -59,13 +59,13 @@ router.get("/", async (req, res) => {
  * @TODO: #237 This custom stat code accepts charts and folders from any game and any playtype - technically,
  * this is breaking rest quite painfully!
  *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/stats/custom
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom
  */
 router.get("/custom", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 	const game = req[SYMBOL_TachiData]!.game!;
 
-	let stat: UGPTStatDetails;
+	let stat: ShowcaseStatDetails;
 
 	if (req.query.mode === "folder") {
 		const err = p(
@@ -127,7 +127,7 @@ router.get("/custom", async (req, res) => {
 		});
 	}
 
-	const result = await EvaluateUGPTStat(stat, user.id);
+	const result = await EvaluateShowcaseStat(stat, user.id);
 
 	const related = await GetRelatedStatDocuments(stat, game);
 
@@ -141,7 +141,7 @@ router.get("/custom", async (req, res) => {
 /**
  * Replaces a user's preferred stats.
  *
- * @name PUT /api/v1/users/:userID/games/:game/:playtype/stats
+ * @name PUT /api/v1/users/:userID/games/:game/:playtype/showcase
  */
 
 router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), async (req, res) => {

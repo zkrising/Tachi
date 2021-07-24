@@ -1,6 +1,6 @@
 import deepmerge from "deepmerge";
 import t from "tap";
-import { EvaluateUGPTStat } from "./evaluator";
+import { EvaluateShowcaseStat } from "./evaluator";
 import { CloseAllConnections } from "../../test-utils/close-connections";
 import ResetDBState from "../../test-utils/resets";
 import {
@@ -19,9 +19,9 @@ t.beforeEach(ResetDBState);
 t.beforeEach(async () => await CreateFolderChartLookup(TestingIIDXFolderSP10));
 t.beforeEach(async () => await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {})));
 
-t.test("#EvaluateUGPTStat", (t) => {
+t.test("#EvaluateShowcaseStat", (t) => {
 	t.test("Should evaluate a folder stat.", async (t) => {
-		const data = await EvaluateUGPTStat(
+		const data = await EvaluateShowcaseStat(
 			{
 				folderID: TestingIIDXFolderSP10.folderID,
 				mode: "folder",
@@ -40,7 +40,7 @@ t.test("#EvaluateUGPTStat", (t) => {
 	});
 
 	t.test("Should evaluate a multi-folder stat.", async (t) => {
-		const data = await EvaluateUGPTStat(
+		const data = await EvaluateShowcaseStat(
 			{
 				folderID: [TestingIIDXFolderSP10.folderID],
 				mode: "folder",
@@ -59,7 +59,7 @@ t.test("#EvaluateUGPTStat", (t) => {
 	});
 
 	t.test("Should evaluate a chart stat.", async (t) => {
-		const data = await EvaluateUGPTStat(
+		const data = await EvaluateShowcaseStat(
 			{
 				chartID: Testing511SPA.chartID,
 				mode: "chart",
@@ -76,7 +76,7 @@ t.test("#EvaluateUGPTStat", (t) => {
 	});
 
 	t.test("Should return null if the user has no score on this chart.", async (t) => {
-		const data = await EvaluateUGPTStat(
+		const data = await EvaluateShowcaseStat(
 			{
 				chartID: "nonsense",
 				mode: "chart",

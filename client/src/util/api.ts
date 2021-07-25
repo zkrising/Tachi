@@ -30,6 +30,8 @@ export type APIFetchV1Return<T> = (UnsuccessfulAPIResponse | SuccessfulAPIRespon
 	statusCode: number;
 };
 
+export type UnsuccessfulAPIFetchResponse = UnsuccessfulAPIResponse & { statusCode: number };
+
 export async function APIFetchV1<T = unknown>(
 	url: string,
 	options: RequestInit = {},

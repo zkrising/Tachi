@@ -1,5 +1,5 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
-import LoadingWrapper from "components/tables/LoadingWrapper";
+import LoadingWrapper from "components/util/LoadingWrapper";
 import GenericSessionTable, {
 	SessionDataset,
 } from "components/tables/sessions/GenericSessionTable";
@@ -12,6 +12,7 @@ import {
 	SessionDocument,
 	UnsuccessfulAPIResponse,
 	integer,
+	FormatGame,
 } from "tachi-common";
 import { GamePT } from "types/react";
 import { APIFetchV1 } from "util/api";
@@ -31,7 +32,7 @@ export default function SessionsPage({
 	useSetSubheader(
 		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Sessions"],
 		[reqUser],
-		`${reqUser.username}'s ${gameConfig.name} ${playtype} Sessions`
+		`${reqUser.username}'s ${FormatGame(game, playtype)} Sessions`
 	);
 
 	const baseUrl = `/users/${reqUser.id}/games/${game}/${playtype}/sessions`;

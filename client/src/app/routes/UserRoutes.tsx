@@ -1,15 +1,16 @@
 import PlaytypeSelect from "app/pages/dashboard/games/_game/PlaytypeSelect";
+import LeaderboardsPage from "app/pages/dashboard/users/games/_game/_playtype/LeaderboardsPage";
+import OverviewPage from "app/pages/dashboard/users/games/_game/_playtype/OverviewPage";
 import SessionsPage from "app/pages/dashboard/users/games/_game/_playtype/SessionsPage";
 import { ErrorPage } from "app/pages/ErrorPage";
 import RequireAuthAsUserParam from "components/auth/RequireAuthAsUserParam";
 import UGPTHeader from "components/user/UGPTHeader";
-import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import { BackgroundContext } from "context/BackgroundContext";
 import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Redirect, Route, Switch, useParams } from "react-router-dom";
-import { Game, GetGameConfig, PublicUserDocument, UserGameStats } from "tachi-common";
+import { Game, GetGameConfig, PublicUserDocument, UserGameStats, UGPTSettings } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import { APIFetchV1, APIFetchV1Return, ToAPIURL } from "util/api";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
@@ -102,8 +103,11 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 		return <ErrorPage statusCode={400} customMessage="This playtype is not supported." />;
 	}
 
-	const { isLoading, error, data } = useQuery<UGPTStatsReturn, APIFetchV1Return<UserGameStats>>(
-		`${reqUser.id}_${game}_${playtype}`,
+	const { isLoading, error, data } = useQuery<
+		[UGPTStatsReturn, UGPTSettings],
+		APIFetchV1Return<UserGameStats>
+	>(
+		[reqUser.id, game, playtype],
 		async () => {
 			const res = await APIFetchV1<UGPTStatsReturn>(
 				`/users/${reqUser.id}/games/${game}/${playtype}`
@@ -114,7 +118,16 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 				throw res;
 			}
 
-			return res.body;
+			const settingsRes = await APIFetchV1<UGPTSettings>(
+				`/users/${reqUser.id}/games/${game}/${playtype}/settings`
+			);
+
+			if (!settingsRes.success) {
+				console.error(settingsRes);
+				throw settingsRes;
+			}
+
+			return [res.body, settingsRes.body];
 		},
 		{ retry: 0 }
 	);
@@ -131,10 +144,20 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 		return <Loading />;
 	}
 
+	const [stats, settings] = data;
+
 	return (
 		<>
-			<UGPTHeader reqUser={reqUser} game={game} playtype={playtype} stats={data} />
+			<UGPTHeader reqUser={reqUser} game={game} playtype={playtype} stats={stats} />
 			<Switch>
+				<Route exact path="/dashboard/users/:userID/games/:game/:playtype">
+					<OverviewPage
+						reqUser={reqUser}
+						game={game}
+						playtype={playtype}
+						settings={settings}
+					/>
+				</Route>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/scores">
 					<ScoresPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
@@ -143,6 +166,15 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 				</Route>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/sessions">
 					<SessionsPage reqUser={reqUser} game={game} playtype={playtype} />
+				</Route>
+				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/achievables">
+					<div>goalsandmilestones</div>
+				</Route>
+				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/leaderboard">
+					<LeaderboardsPage reqUser={reqUser} game={game} playtype={playtype} />
+				</Route>
+				<Route path="*">
+					<ErrorPage statusCode={404} />
 				</Route>
 			</Switch>
 		</>

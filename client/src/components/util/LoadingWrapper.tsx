@@ -8,7 +8,7 @@ export default function LoadingWrapper({
 	error,
 	children,
 }: {
-	dataset: unknown[] | null | undefined;
+	dataset: unknown | null | undefined;
 	isLoading: boolean;
 	error: UnsuccessfulAPIResponse | null;
 	children: JSX.Element | JSX.Element[];

@@ -13,11 +13,12 @@ import {
 	IDStrings,
 	Game,
 	UnsuccessfulAPIResponse,
+	FormatGame,
 } from "tachi-common";
 import { GamePT } from "types/react";
 import { APIFetchV1 } from "util/api";
 import IIDXScoreTable from "components/tables/scores/IIDXScoreTable";
-import LoadingWrapper from "components/tables/LoadingWrapper";
+import LoadingWrapper from "components/util/LoadingWrapper";
 
 export default function ScoresPage({
 	reqUser,
@@ -33,7 +34,7 @@ export default function ScoresPage({
 	useSetSubheader(
 		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Scores"],
 		[reqUser],
-		`${reqUser.username}'s ${gameConfig.name} ${playtype} Scores`
+		`${reqUser.username}'s ${FormatGame(game, playtype)} Scores`
 	);
 
 	return (

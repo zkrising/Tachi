@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import { toAbsoluteUrl } from "../../../_metronic/_helpers";
 import Divider from "components/util/Divider";
 import { UserContext } from "context/UserContext";
@@ -10,13 +10,14 @@ import MenuDropdown from "./MenuDropdown";
 import Loading from "components/util/Loading";
 import KTLayoutHeader from "_metronic/_assets/js/layout/base/header";
 import KTLayoutHeaderMenu from "_metronic/_assets/js/layout/base/header-menu";
-import { TachiConfig } from "lib/config";
 import AllGames from "./AllGames";
+import { UserGameStatsContext } from "context/UserGameStatsContext";
 
 export function HeaderMenu() {
 	const { user } = useContext(UserContext);
+	const { ugs, setUGS } = useContext(UserGameStatsContext);
 
-	const { isLoading, error, data } = useQuery("USER_GAME_STATS", async () => {
+	const { isLoading, error } = useQuery([user?.id, "game_stats"], async () => {
 		if (!user) {
 			return null;
 		}
@@ -27,14 +28,14 @@ export function HeaderMenu() {
 			throw res;
 		}
 
-		return res.body;
+		return setUGS(res.body);
 	});
 
 	if (error) {
 		console.error(error);
 	}
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (!isLoading) {
 			KTLayoutHeader.init("kt_header", "kt_header_mobile");
 			KTLayoutHeaderMenu.init("kt_header_menu", "kt_header_menu_wrapper");
@@ -64,9 +65,9 @@ export function HeaderMenu() {
 				<ul className="menu-nav">
 					{/* <MenuLink name="Dashboard" to="/dashboard" /> */}
 
-					{user && data && data.length !== 0 && (
+					{user && ugs && ugs.length !== 0 && (
 						<MenuDropdown name="My Games">
-							{data.map(e => (
+							{ugs.map(e => (
 								<MenuLink
 									key={`${e.game}:${e.playtype}`}
 									name={FormatGame(e.game, e.playtype)}

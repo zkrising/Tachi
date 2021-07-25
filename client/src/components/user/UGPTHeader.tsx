@@ -1,4 +1,4 @@
-import MiniTable from "components/tables/MiniTable";
+import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
 import React from "react";
 import { Game, GetGameConfig, PublicUserDocument } from "tachi-common";
@@ -42,7 +42,7 @@ export default function UGPTHeader({
 								</div>
 							</div>
 
-							<div className="col-12 col-lg-3">
+							<div className="col-12 col-md-6 col-lg-3">
 								<MiniTable
 									className="table-sm text-center"
 									headers={["Player Info"]}
@@ -70,7 +70,7 @@ export default function UGPTHeader({
 									</tr>
 								</MiniTable>
 							</div>
-							<div className="col-12 col-lg-3">
+							<div className="col-12 col-md-6 col-lg-3">
 								<MiniTable
 									className="table-sm text-center"
 									headers={["Player Stats"]}
@@ -138,6 +138,7 @@ function BottomNav({ baseUrl }: { baseUrl: string }) {
 				<NavItem to={`${baseUrl}/sessions`}>Sessions</NavItem>
 				<NavItem to={`${baseUrl}/achievables`}>Goals &amp; Milestones</NavItem>
 				<NavItem to={`${baseUrl}/leaderboard`}>Leaderboard</NavItem>
+				<NavItem to={`${baseUrl}/leaderboard`}>Settings</NavItem>
 			</Navbar>
 		</div>
 	);

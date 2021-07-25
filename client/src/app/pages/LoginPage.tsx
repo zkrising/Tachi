@@ -22,6 +22,8 @@ export default function LoginPage() {
 			captcha: "temp",
 		},
 		onSubmit: async values => {
+			setErr("");
+
 			const rj = await APIFetchV1(
 				"/auth/login",
 				{

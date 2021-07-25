@@ -1,3 +1,4 @@
+import useSetSubheader from "components/layout/header/useSetSubheader";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 
@@ -8,6 +9,8 @@ export function ErrorPage({
 	statusCode: number;
 	customMessage?: string;
 }) {
+	useSetSubheader(statusCode.toString());
+
 	let message;
 
 	const history = useHistory();

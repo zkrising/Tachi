@@ -8,7 +8,7 @@ export default function MiniTable({
 	children,
 	headers,
 	colSpan = 1,
-}: { className: string; headers: string[]; colSpan?: integer } & JustChildren) {
+}: { className?: string; headers: string[]; colSpan?: integer } & JustChildren) {
 	return (
 		<table className={`table table-hover table-striped ${className}`}>
 			<thead>

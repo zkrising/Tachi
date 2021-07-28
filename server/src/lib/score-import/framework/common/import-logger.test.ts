@@ -1,7 +1,7 @@
 import t from "tap";
 import { CreateImportLoggerAndID } from "./import-logger";
 import { PublicUserDocument } from "tachi-common";
-import { CloseAllConnections } from "../../../../test-utils/close-connections";
+import { CloseAllConnections } from "test-utils/close-connections";
 
 t.test("#CreateImportLoggerAndID", (t) => {
 	const { importID, logger } = CreateImportLoggerAndID(

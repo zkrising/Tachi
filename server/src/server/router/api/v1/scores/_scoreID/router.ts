@@ -1,10 +1,10 @@
 import { Router } from "express";
-import db from "../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../lib/constants/tachi";
-import CreateLogCtx from "../../../../../../lib/logger/logger";
-import { GetUserWithID } from "../../../../../../utils/user";
-import { RequirePermissions } from "../../../../../middleware/auth";
-import prValidate from "../../../../../middleware/prudence-validate";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import CreateLogCtx from "lib/logger/logger";
+import { GetUserWithID } from "utils/user";
+import { RequirePermissions } from "server/middleware/auth";
+import prValidate from "server/middleware/prudence-validate";
 import { GetScoreFromParam, RequireOwnershipOfScore } from "./middleware";
 import p from "prudence";
 

@@ -1,15 +1,15 @@
 import t from "tap";
-import { CloseAllConnections } from "../../../../../../test-utils/close-connections";
-import ResetDBState from "../../../../../../test-utils/resets";
+import { CloseAllConnections } from "test-utils/close-connections";
+import ResetDBState from "test-utils/resets";
 import {
 	GetKTDataJSON,
 	TestingAlbidaADV,
 	TestingSDVXAlbidaSong,
-} from "../../../../../../test-utils/test-data";
-import CreateLogCtx from "../../../../../logger/logger";
+} from "test-utils/test-data";
+import CreateLogCtx from "lib/logger/logger";
 import { ConvertAPIKaiSDVX, ConvertDifficulty, ConvertVersion, ResolveKaiLamp } from "./converter";
 import deepmerge from "deepmerge";
-import db from "../../../../../../external/mongo/db";
+import db from "external/mongo/db";
 
 const logger = CreateLogCtx(__filename);
 

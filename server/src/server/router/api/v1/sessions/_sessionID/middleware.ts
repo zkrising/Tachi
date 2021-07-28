@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
-import db from "../../../../../../external/mongo/db";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "../../../../../../lib/constants/tachi";
-import { AssignToReqTachiData } from "../../../../../../utils/req-tachi-data";
+import db from "external/mongo/db";
+import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
+import { AssignToReqTachiData } from "utils/req-tachi-data";
 
 export const GetSessionFromParam: RequestHandler = async (req, res, next) => {
 	const session = await db.sessions.findOne({

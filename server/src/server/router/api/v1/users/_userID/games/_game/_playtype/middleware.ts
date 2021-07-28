@@ -1,8 +1,8 @@
 import { RequestHandler } from "express";
-import db from "../../../../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi";
-import { IsValidGame, IsValidPlaytype } from "../../../../../../../../../utils/misc";
-import { AssignToReqTachiData } from "../../../../../../../../../utils/req-tachi-data";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { IsValidGame, IsValidPlaytype } from "utils/misc";
+import { AssignToReqTachiData } from "utils/req-tachi-data";
 
 export const CheckUserPlayedGamePlaytype: RequestHandler = async (req, res, next) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;

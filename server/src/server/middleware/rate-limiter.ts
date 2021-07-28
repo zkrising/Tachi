@@ -1,8 +1,8 @@
 import RateLimitRedis from "rate-limit-redis";
-import { CONFIG } from "../../lib/setup/config";
+import { CONFIG } from "lib/setup/config";
 import rateLimit from "express-rate-limit";
-import CreateLogCtx from "../../lib/logger/logger";
-import { RedisClient } from "../../external/redis/redis";
+import CreateLogCtx from "lib/logger/logger";
+import { RedisClient } from "external/redis/redis";
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,21 +1,21 @@
 import { Router } from "express";
 import { FileUploadImportTypes } from "tachi-common";
 import Prudence from "prudence";
-import { GetUserWithIDGuaranteed } from "../../../../../utils/user";
-import CreateLogCtx, { KtLogger } from "../../../../../lib/logger/logger";
-import prValidate from "../../../../middleware/prudence-validate";
-import ScoreImportFatalError from "../../../../../lib/score-import/framework/score-importing/score-import-error";
-import { SIXTEEN_MEGABTYES } from "../../../../../lib/constants/filesize";
-import { ExpressWrappedScoreImportMain } from "../../../../../lib/score-import/framework/express-wrapper";
-import { CreateMulterSingleUploadMiddleware } from "../../../../middleware/multer-upload";
+import { GetUserWithIDGuaranteed } from "utils/user";
+import CreateLogCtx, { KtLogger } from "lib/logger/logger";
+import prValidate from "server/middleware/prudence-validate";
+import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
+import { SIXTEEN_MEGABTYES } from "lib/constants/filesize";
+import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
+import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 
-import ParseEamusementIIDXCSV from "../../../../../lib/score-import/import-types/file/eamusement-iidx-csv/parser";
-import ParseBatchManual from "../../../../../lib/score-import/import-types/file/batch-manual/parser";
-import { ParseSolidStateXML } from "../../../../../lib/score-import/import-types/file/solid-state-squad/parser";
-import { ParseMerIIDX } from "../../../../../lib/score-import/import-types/file/mer-iidx/parser";
-import ParsePLIIIDXCSV from "../../../../../lib/score-import/import-types/file/pli-iidx-csv/parser";
-import { CONF_INFO } from "../../../../../lib/setup/config";
-import { RequirePermissions } from "../../../../middleware/auth";
+import ParseEamusementIIDXCSV from "lib/score-import/import-types/file/eamusement-iidx-csv/parser";
+import ParseBatchManual from "lib/score-import/import-types/file/batch-manual/parser";
+import { ParseSolidStateXML } from "lib/score-import/import-types/file/solid-state-squad/parser";
+import { ParseMerIIDX } from "lib/score-import/import-types/file/mer-iidx/parser";
+import ParsePLIIIDXCSV from "lib/score-import/import-types/file/pli-iidx-csv/parser";
+import { CONF_INFO } from "lib/setup/config";
+import { RequirePermissions } from "server/middleware/auth";
 
 const logger = CreateLogCtx(__filename);
 

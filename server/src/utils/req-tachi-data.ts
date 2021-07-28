@@ -1,4 +1,4 @@
-import { SYMBOL_TachiData } from "../lib/constants/tachi";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { Request } from "express";
 import { TachiRequestData } from "./types";
 import deepmerge from "deepmerge";

@@ -1,6 +1,6 @@
-import { FindIIDXChartOnInGameID } from "../../../../../utils/queries/charts";
-import { FindSongOnID } from "../../../../../utils/queries/songs";
-import { EmptyObject } from "../../../../../utils/types";
+import { FindIIDXChartOnInGameID } from "utils/queries/charts";
+import { FindSongOnID } from "utils/queries/songs";
+import { EmptyObject } from "utils/types";
 import {
 	InternalFailure,
 	KTDataNotFoundFailure,

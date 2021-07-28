@@ -1,9 +1,9 @@
 import { Router } from "express";
-import db from "../../../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../../../lib/constants/tachi";
-import { SearchGameSongs } from "../../../../../../../../lib/search/search";
-import { IsString } from "../../../../../../../../utils/misc";
-import { FindChartsOnPopularity } from "../../../../../../../../utils/queries/charts";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SearchGameSongs } from "lib/search/search";
+import { IsString } from "utils/misc";
+import { FindChartsOnPopularity } from "utils/queries/charts";
 import chartIDRouter from "./_chartID/router";
 
 const router: Router = Router({ mergeParams: true });

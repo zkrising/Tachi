@@ -1,8 +1,8 @@
 import t from "tap";
-import { CloseAllConnections } from "../../../../../../../../../test-utils/close-connections";
-import mockApi from "../../../../../../../../../test-utils/mock-api";
-import ResetDBState from "../../../../../../../../../test-utils/resets";
-import { LoadTachiIIDXData } from "../../../../../../../../../test-utils/test-data";
+import { CloseAllConnections } from "test-utils/close-connections";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
+import { LoadTachiIIDXData } from "test-utils/test-data";
 
 t.test("GET /api/v1/games/:game/:playtype/songs/:songID", (t) => {
 	t.beforeEach(ResetDBState);

@@ -2,7 +2,7 @@ import express, { Express } from "express";
 import "express-async-errors";
 import expressSession from "express-session";
 import { integer } from "tachi-common";
-import { RedisClient } from "../external/redis/redis";
+import { RedisClient } from "external/redis/redis";
 import {
 	CDN_FILE_ROOT,
 	CLIENT_DEV_SERVER,
@@ -11,11 +11,11 @@ import {
 	ENABLE_SERVER_HTTPS,
 	RUN_OWN_CDN,
 	SESSION_SECRET,
-} from "../lib/setup/config";
+} from "lib/setup/config";
 import connectRedis from "connect-redis";
 import helmet from "helmet";
 import fs from "fs";
-import CreateLogCtx from "../lib/logger/logger";
+import CreateLogCtx from "lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 
@@ -102,7 +102,7 @@ app.use((req, res, next) => {
 });
 
 import mainRouter from "./router/router";
-import { SYMBOL_TachiAPIAuth } from "../lib/constants/tachi";
+import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import { RequestLoggerMiddleware } from "./middleware/request-logger";
 
 app.use(RequestLoggerMiddleware);

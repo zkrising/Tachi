@@ -1,12 +1,9 @@
 import { Router } from "express";
-import db from "../../../../../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../../../../../lib/constants/tachi";
-import { SearchGameSongsAndCharts } from "../../../../../../../../../../lib/search/search";
-import { GetRelevantSongsAndCharts } from "../../../../../../../../../../utils/db";
-import {
-	FilterChartsAndSongs,
-	GetScoreIDsFromComposed,
-} from "../../../../../../../../../../utils/scores";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SearchGameSongsAndCharts } from "lib/search/search";
+import { GetRelevantSongsAndCharts } from "utils/db";
+import { FilterChartsAndSongs, GetScoreIDsFromComposed } from "utils/scores";
 import { GetGamePTConfig } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });

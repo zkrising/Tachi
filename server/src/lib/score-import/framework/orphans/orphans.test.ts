@@ -1,8 +1,8 @@
 import t from "tap";
-import db from "../../../../external/mongo/db";
-import { CloseAllConnections } from "../../../../test-utils/close-connections";
-import ResetDBState from "../../../../test-utils/resets";
-import CreateLogCtx from "../../../logger/logger";
+import db from "external/mongo/db";
+import { CloseAllConnections } from "test-utils/close-connections";
+import ResetDBState from "test-utils/resets";
+import CreateLogCtx from "lib/logger/logger";
 import { BatchManualContext, BatchManualScore } from "../../import-types/common/batch-manual/types";
 import { OrphanScore, ReprocessOrphan } from "./orphans";
 import fjsh from "fast-json-stable-hash";

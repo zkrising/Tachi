@@ -1,9 +1,9 @@
 import { Game, integer, IDStrings, Playtypes, UserGameStats } from "tachi-common";
-import db from "../external/mongo/db";
-import CreateLogCtx from "../lib/logger/logger";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
 import { GameClassSets } from "tachi-common/js/game-classes";
-import { RedisPub } from "../external/redis/redis-IPC";
-import { CreateGameSettings } from "../lib/game-settings/create-game-settings";
+import { RedisPub } from "external/redis/redis-IPC";
+import { CreateGameSettings } from "lib/game-settings/create-game-settings";
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,9 +1,9 @@
 import t from "tap";
-import db from "../../../../external/mongo/db";
-import ResetDBState from "../../../../test-utils/resets";
+import db from "external/mongo/db";
+import ResetDBState from "test-utils/resets";
 import { GetRelevantFolderGoals, GetRelevantGoals, UpdateGoalsForUser, ProcessGoal } from "./goals";
 import { GoalDocument, UserGoalDocument } from "tachi-common";
-import { CreateFolderChartLookup } from "../../../../utils/folder";
+import { CreateFolderChartLookup } from "utils/folder";
 import {
 	GetKTDataJSON,
 	Testing511SPA,
@@ -11,11 +11,11 @@ import {
 	HC511Goal,
 	HC511UserGoal,
 	TestingIIDXFolderSP10,
-} from "../../../../test-utils/test-data";
+} from "test-utils/test-data";
 import deepmerge from "deepmerge";
-import CreateLogCtx from "../../../logger/logger";
+import CreateLogCtx from "lib/logger/logger";
 import crypto from "crypto";
-import { CloseAllConnections } from "../../../../test-utils/close-connections";
+import { CloseAllConnections } from "test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 

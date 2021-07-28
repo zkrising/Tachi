@@ -1,10 +1,10 @@
 import t from "tap";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import { agta } from "../../../../../test-utils/misc";
-import { MockJSONFetch } from "../../../../../test-utils/mock-fetch";
-import ResetDBState from "../../../../../test-utils/resets";
-import { NodeFetch } from "../../../../../utils/fetch";
-import CreateLogCtx from "../../../../logger/logger";
+import { CloseAllConnections } from "test-utils/close-connections";
+import { agta } from "test-utils/misc";
+import { MockJSONFetch } from "test-utils/mock-fetch";
+import ResetDBState from "test-utils/resets";
+import { NodeFetch } from "utils/fetch";
+import CreateLogCtx from "lib/logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { TraverseKaiAPI } from "./traverse-api";
 

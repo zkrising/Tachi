@@ -1,7 +1,7 @@
 import deepmerge from "deepmerge";
 import { Game, Playtypes, GetGameConfig, GetGamePTConfig } from "tachi-common";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
-import { CONF_INFO } from "../../lib/setup/config";
+import { CONF_INFO } from "lib/setup/config";
 
 const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
 

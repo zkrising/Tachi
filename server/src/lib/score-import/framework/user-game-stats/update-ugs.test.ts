@@ -1,12 +1,12 @@
 import t from "tap";
-import db from "../../../../external/mongo/db";
-import CreateLogCtx from "../../../logger/logger";
-import ResetDBState from "../../../../test-utils/resets";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import ResetDBState from "test-utils/resets";
 import { UpdateUsersGamePlaytypeStats } from "./update-ugs";
 import deepmerge from "deepmerge";
 import crypto from "crypto";
-import { TestingIIDXSPScorePB } from "../../../../test-utils/test-data";
-import { CloseAllConnections } from "../../../../test-utils/close-connections";
+import { TestingIIDXSPScorePB } from "test-utils/test-data";
+import { CloseAllConnections } from "test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 

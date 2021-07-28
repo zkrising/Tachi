@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { CDN_FILE_ROOT } from "../setup/config";
-import CreateLogCtx from "../logger/logger";
+import { CDN_FILE_ROOT } from "lib/setup/config";
+import CreateLogCtx from "lib/logger/logger";
 import { promisify } from "util";
 import mkdirp from "mkdirp";
 import { Response } from "express";

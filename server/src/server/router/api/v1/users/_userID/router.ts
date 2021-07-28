@@ -1,6 +1,6 @@
 import { Router } from "express";
-import db from "../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../lib/constants/tachi";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { GetUserFromParam } from "./middleware";
 import gamePTRouter from "./games/_game/_playtype/router";
 import bannerRouter from "./banner/router";

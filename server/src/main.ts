@@ -1,6 +1,6 @@
-import CreateLogCtx from "./lib/logger/logger";
-import server from "./server/server";
-import { CONF_INFO, LOG_LEVEL, PORT, ENABLE_SERVER_HTTPS } from "./lib/setup/config";
+import CreateLogCtx from "lib/logger/logger";
+import server from "server/server";
+import { CONF_INFO, LOG_LEVEL, PORT, ENABLE_SERVER_HTTPS } from "lib/setup/config";
 import https from "https";
 import fs from "fs";
 

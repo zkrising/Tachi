@@ -1,5 +1,5 @@
-import { FindChartOnSHA256 } from "../../../../../utils/queries/charts";
-import { FindSongOnID } from "../../../../../utils/queries/songs";
+import { FindChartOnSHA256 } from "utils/queries/charts";
+import { FindSongOnID } from "utils/queries/songs";
 import {
 	InternalFailure,
 	KTDataNotFoundFailure,

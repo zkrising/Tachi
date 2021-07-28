@@ -9,12 +9,12 @@ import {
 	SessionInfoReturn,
 	Game,
 } from "tachi-common";
-import db from "../../../../external/mongo/db";
-import { AppendLogCtx, KtLogger } from "../../../logger/logger";
+import db from "external/mongo/db";
+import { AppendLogCtx, KtLogger } from "lib/logger/logger";
 import { GenerateRandomSessionName } from "./name-generation";
 import crypto from "crypto";
 import { CreateSessionCalcData } from "./calculated-data";
-import { GetScoresFromSession } from "../../../../utils/session";
+import { GetScoresFromSession } from "utils/session";
 
 import { ScorePlaytypeMap } from "../common/types";
 

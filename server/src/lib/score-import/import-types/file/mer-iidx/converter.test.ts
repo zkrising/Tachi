@@ -1,17 +1,17 @@
 import t from "tap";
-import db from "../../../../../external/mongo/db";
-import CreateLogCtx from "../../../../logger/logger";
-import ResetDBState from "../../../../../test-utils/resets";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import ResetDBState from "test-utils/resets";
 import {
 	GetKTDataJSON,
 	LoadTachiIIDXData,
 	Testing511Song,
 	Testing511SPA,
-} from "../../../../../test-utils/test-data";
+} from "test-utils/test-data";
 import { ConvertFileMerIIDX } from "./converter";
 import deepmerge from "deepmerge";
 import { MerScore } from "./types";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
+import { CloseAllConnections } from "test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 

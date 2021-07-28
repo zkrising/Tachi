@@ -1,6 +1,6 @@
 import { ScoreDocument } from "tachi-common";
-import db from "../../../../external/mongo/db";
-import CreateLogCtx from "../../../logger/logger";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 const ScoreQueue: ScoreDocument[] = [];

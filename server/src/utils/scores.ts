@@ -1,4 +1,4 @@
-import db from "../external/mongo/db";
+import db from "external/mongo/db";
 import {
 	integer,
 	PBScoreDocument,

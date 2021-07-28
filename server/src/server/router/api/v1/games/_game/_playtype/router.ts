@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { SYMBOL_TachiData } from "../../../../../../../lib/constants/tachi";
-import { IsString } from "../../../../../../../utils/misc";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { IsString } from "utils/misc";
 import { GetGamePTConfig, UserGameStats, integer, FormatGame } from "tachi-common";
 import { FindOptions } from "monk";
-import db from "../../../../../../../external/mongo/db";
-import { ParseStrPositiveInt, CheckStrProfileAlg } from "../../../../../../../utils/string-checks";
-import { GetUsersWithIDs } from "../../../../../../../utils/user";
+import db from "external/mongo/db";
+import { ParseStrPositiveInt, CheckStrProfileAlg } from "utils/string-checks";
+import { GetUsersWithIDs } from "utils/user";
 import chartsRouter from "./charts/router";
 import songIDRouter from "./songs/_songID/router";
 import { ValidatePlaytypeFromParam } from "./middleware";

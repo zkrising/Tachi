@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { SYMBOL_TachiData } from "../../../../../../lib/constants/tachi";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { GetGameConfig } from "tachi-common";
 import { ValidateGameFromParam } from "./middleware";
 import playtypeRouter from "./_playtype/router";

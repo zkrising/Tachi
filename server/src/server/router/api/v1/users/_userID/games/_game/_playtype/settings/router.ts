@@ -1,13 +1,13 @@
 import { GetGamePTConfig } from "tachi-common";
 import { Router } from "express";
-import { SYMBOL_TachiData } from "../../../../../../../../../../lib/constants/tachi";
-import { RequirePermissions } from "../../../../../../../../../middleware/auth";
-import { RequireAuthedAsUser } from "../../../../middleware";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { RequirePermissions } from "server/middleware/auth";
 import p from "prudence";
-import { FormatPrError } from "../../../../../../../../../../utils/prudence";
-import db from "../../../../../../../../../../external/mongo/db";
-import CreateLogCtx from "../../../../../../../../../../lib/logger/logger";
-import { FormatUserDoc } from "../../../../../../../../../../utils/user";
+import { FormatPrError } from "utils/prudence";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import { FormatUserDoc } from "utils/user";
+import { RequireAuthedAsUser } from "../../../../middleware";
 
 const logger = CreateLogCtx(__filename);
 

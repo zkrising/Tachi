@@ -1,15 +1,15 @@
 import t from "tap";
-import db from "../../../../../../../../../../external/mongo/db";
-import { CloseAllConnections } from "../../../../../../../../../../test-utils/close-connections";
-import mockApi from "../../../../../../../../../../test-utils/mock-api";
-import ResetDBState from "../../../../../../../../../../test-utils/resets";
+import db from "external/mongo/db";
+import { CloseAllConnections } from "test-utils/close-connections";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
 import {
 	Testing511Song,
 	LoadTachiIIDXData,
 	GetKTDataJSON,
 	TestingIIDXSPScorePB,
 	Testing511SPA,
-} from "../../../../../../../../../../test-utils/test-data";
+} from "test-utils/test-data";
 import { PBScoreDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/best", (t) => {

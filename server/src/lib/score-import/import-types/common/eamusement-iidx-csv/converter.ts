@@ -1,6 +1,6 @@
 import { Lamps, ChartDocument } from "tachi-common";
-import { FindChartWithPTDFVersion } from "../../../../../utils/queries/charts";
-import { FindSongOnTitle } from "../../../../../utils/queries/songs";
+import { FindChartWithPTDFVersion } from "utils/queries/charts";
+import { FindSongOnTitle } from "utils/queries/songs";
 import {
 	KTDataNotFoundFailure,
 	InvalidScoreFailure,

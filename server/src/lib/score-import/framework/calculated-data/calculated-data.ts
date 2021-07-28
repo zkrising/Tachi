@@ -8,11 +8,11 @@ import {
 	Lamps,
 	IDStrings,
 } from "tachi-common";
-import db from "../../../../external/mongo/db";
-import { HasOwnProperty } from "../../../../utils/misc";
+import db from "external/mongo/db";
+import { HasOwnProperty } from "utils/misc";
 
-import { GetDefaultTierlist } from "../../../../utils/tierlist";
-import { KtLogger } from "../../../logger/logger";
+import { GetDefaultTierlist } from "utils/tierlist";
+import { KtLogger } from "lib/logger/logger";
 import { DryScore } from "../common/types";
 import {
 	CalculateCHUNITHMRating,

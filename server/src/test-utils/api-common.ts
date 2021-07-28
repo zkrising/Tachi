@@ -1,7 +1,7 @@
 import t from "tap";
 import mockApi from "./mock-api";
 import { APIPermissions } from "tachi-common";
-import db from "../external/mongo/db";
+import db from "external/mongo/db";
 import ResetDBState from "./resets";
 
 export function RequireAuthPerms(

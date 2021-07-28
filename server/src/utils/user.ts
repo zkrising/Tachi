@@ -7,8 +7,8 @@ import {
 	Playtypes,
 } from "tachi-common";
 import { FindOneResult } from "monk";
-import db from "../external/mongo/db";
-import CreateLogCtx from "../lib/logger/logger";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 

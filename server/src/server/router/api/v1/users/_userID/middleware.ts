@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "../../../../../../lib/constants/tachi";
-import { AssignToReqTachiData } from "../../../../../../utils/req-tachi-data";
-import { ResolveUser } from "../../../../../../utils/user";
+import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
+import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { ResolveUser } from "utils/user";
 
 export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 	if (!req.params.userID) {

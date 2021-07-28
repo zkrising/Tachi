@@ -1,12 +1,12 @@
-import { KtLogger } from "../../../../logger/logger";
+import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { BatchManual, BatchManualContext, BatchManualScore } from "./types";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 import { Game, ImportTypes, GetGamePTConfig, Playtypes, GetGameConfig } from "tachi-common";
 import deepmerge from "deepmerge";
-import { FormatPrError } from "../../../../../utils/prudence";
+import { FormatPrError } from "utils/prudence";
 import { ParserFunctionReturns } from "../types";
-import { CONF_INFO } from "../../../../setup/config";
+import { CONF_INFO } from "lib/setup/config";
 
 const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));
 

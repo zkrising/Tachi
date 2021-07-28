@@ -1,13 +1,13 @@
 import bcrypt from "bcrypt";
 import { InviteCodeDocument, PrivateUserDocument, PublicUserDocument } from "tachi-common";
 import { InsertResult } from "monk";
-import db from "../../../../../external/mongo/db";
-import { GetNextCounterValue } from "../../../../../utils/db";
-import CreateLogCtx from "../../../../../lib/logger/logger";
-import { FormatUserDoc } from "../../../../../utils/user";
-import nodeFetch from "../../../../../utils/fetch";
-import { CAPTCHA_SECRET_KEY } from "../../../../../lib/setup/config";
-import { Random20Hex } from "../../../../../utils/misc";
+import db from "external/mongo/db";
+import { GetNextCounterValue } from "utils/db";
+import CreateLogCtx from "lib/logger/logger";
+import { FormatUserDoc } from "utils/user";
+import nodeFetch from "utils/fetch";
+import { CAPTCHA_SECRET_KEY } from "lib/setup/config";
+import { Random20Hex } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 

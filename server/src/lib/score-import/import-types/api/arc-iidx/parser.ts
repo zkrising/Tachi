@@ -1,9 +1,9 @@
-import { KtLogger } from "../../../../logger/logger";
-import nodeFetch from "../../../../../utils/fetch";
+import { KtLogger } from "lib/logger/logger";
+import nodeFetch from "utils/fetch";
 import { TraverseKaiAPI } from "../../common/api-kai/traverse-api";
 import { ParserFunctionReturns } from "../../common/types";
-import { EmptyObject } from "../../../../../utils/types";
-import { ARC_API_URL, ARC_AUTH_TOKEN } from "../../../../setup/config";
+import { EmptyObject } from "utils/types";
+import { ARC_API_URL, ARC_AUTH_TOKEN } from "lib/setup/config";
 import { CreateArcIIDXClassHandler } from "./class-handler";
 
 export async function ParseArcIIDX(

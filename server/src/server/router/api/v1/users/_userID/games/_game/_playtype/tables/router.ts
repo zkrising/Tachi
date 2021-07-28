@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { SYMBOL_TachiData } from "../../../../../../../../../../lib/constants/tachi";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
 import {
 	CalculateGradeDistribution,
 	CalculateLampDistribution,
 	GetFoldersFromTable,
 	GetPBsOnFolder,
-} from "../../../../../../../../../../utils/folder";
+} from "utils/folder";
 // @todo maybe refactor where middleware is stored to avoid paths this ugly.
 import { GetTableFromParam } from "../../../../../../games/_game/_playtype/tables/middleware";
 

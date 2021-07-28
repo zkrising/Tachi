@@ -1,9 +1,9 @@
 import { integer, PBScoreDocument, ScoreDocument, ChartDocument } from "tachi-common";
-import CreateLogCtx from "../../../../lib/logger/logger";
-import { GetPBOnChart, GetServerRecordOnChart } from "../../../../utils/scores";
-import { MStoS } from "../../../../utils/misc";
-import { USCIR_ADJACENT_SCORE_N } from "../../../../lib/constants/usc-ir";
-import db from "../../../../external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import { GetPBOnChart, GetServerRecordOnChart } from "utils/scores";
+import { MStoS } from "utils/misc";
+import { USCIR_ADJACENT_SCORE_N } from "lib/constants/usc-ir";
+import db from "external/mongo/db";
 import { USCServerScore } from "./types";
 
 const logger = CreateLogCtx(__filename);

@@ -1,7 +1,7 @@
-import { KtLogger } from "../../../../logger/logger";
+import { KtLogger } from "lib/logger/logger";
 import p from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { FormatPrError } from "../../../../../utils/prudence";
+import { FormatPrError } from "utils/prudence";
 import { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
 import { ParserFunctionReturns } from "../../common/types";
 

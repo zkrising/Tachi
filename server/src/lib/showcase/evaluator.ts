@@ -1,6 +1,6 @@
 import { integer, ShowcaseStatDetails, ShowcaseStatChart, ShowcaseStatFolder } from "tachi-common";
-import db from "../../external/mongo/db";
-import { GetFolderChartIDs } from "../../utils/folder";
+import db from "external/mongo/db";
+import { GetFolderChartIDs } from "utils/folder";
 
 export function EvaluateShowcaseStat(
 	details: ShowcaseStatDetails,

@@ -1,16 +1,16 @@
 import p from "prudence";
 import t from "tap";
-import CreateLogCtx from "../../../logger/logger";
-import { prAssert } from "../../../../test-utils/asserts";
+import CreateLogCtx from "lib/logger/logger";
+import { prAssert } from "test-utils/asserts";
 import {
 	Testing511SPA,
 	TestingDoraChart,
 	TestingGITADORADoraDryScore,
 	TestingIIDXSPDryScore,
 	TestingSDVXSingleDryScore,
-} from "../../../../test-utils/test-data";
+} from "test-utils/test-data";
 import { CreateCalculatedData, CalculateDataForGamePT } from "./calculated-data";
-import { CloseAllConnections } from "../../../../test-utils/close-connections";
+import { CloseAllConnections } from "test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 

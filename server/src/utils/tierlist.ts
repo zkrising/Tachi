@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { AnyChartDocument, Game, Playtypes } from "tachi-common";
-import db from "../external/mongo/db";
-import CreateLogCtx from "../lib/logger/logger";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 

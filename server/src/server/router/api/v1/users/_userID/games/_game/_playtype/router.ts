@@ -1,13 +1,13 @@
 import { Router } from "express";
-import db from "../../../../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi";
-import { GetRelevantSongsAndCharts } from "../../../../../../../../../utils/db";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { GetRelevantSongsAndCharts } from "utils/db";
 import {
 	GetUGPTPlaycount,
 	GetUsersRanking,
 	GetUsersRankingAndOutOf,
 	GetUsersWithIDs,
-} from "../../../../../../../../../utils/user";
+} from "utils/user";
 import { CheckUserPlayedGamePlaytype } from "./middleware";
 import { FilterQuery } from "mongodb";
 import {
@@ -18,10 +18,10 @@ import {
 	PBScoreDocument,
 	UserGameStatsSnapshot,
 } from "tachi-common";
-import { SearchGameSongsAndCharts } from "../../../../../../../../../lib/search/search";
-import { FilterChartsAndSongs } from "../../../../../../../../../utils/scores";
-import { CheckStrProfileAlg } from "../../../../../../../../../utils/string-checks";
-import { IsString } from "../../../../../../../../../utils/misc";
+import { SearchGameSongsAndCharts } from "lib/search/search";
+import { FilterChartsAndSongs } from "utils/scores";
+import { CheckStrProfileAlg } from "utils/string-checks";
+import { IsString } from "utils/misc";
 import pbsRouter from "./pbs/router";
 import sessionsRouter from "./sessions/router";
 import foldersFolderIDRouter from "./folders/_folderID/router";

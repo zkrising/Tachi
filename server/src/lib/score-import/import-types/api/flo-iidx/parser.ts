@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../../logger/logger";
+import { KtLogger } from "lib/logger/logger";
 import { ParseKaiIIDX } from "../../common/api-kai/iidx/parser";
 import { KaiAuthDocument } from "tachi-common";
 

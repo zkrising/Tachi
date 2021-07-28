@@ -1,7 +1,7 @@
-import { KtLogger } from "../../../../logger/logger";
+import { KtLogger } from "lib/logger/logger";
 import p, { PrudenceSchema } from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { FormatPrError } from "../../../../../utils/prudence";
+import { FormatPrError } from "utils/prudence";
 import { FervidexStaticContext, FervidexStaticScore } from "./types";
 import { FerHeaders, SoftwareIDToVersion } from "../fervidex/parser";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";

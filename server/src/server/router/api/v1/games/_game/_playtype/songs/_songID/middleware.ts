@@ -1,8 +1,8 @@
 import { RequestHandler } from "express";
-import db from "../../../../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi";
-import { AssignToReqTachiData } from "../../../../../../../../../utils/req-tachi-data";
-import { ParseStrPositiveInt } from "../../../../../../../../../utils/string-checks";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { ParseStrPositiveInt } from "utils/string-checks";
 
 export const ValidateAndGetSong: RequestHandler = async (req, res, next) => {
 	const songID = ParseStrPositiveInt(req.params.songID);

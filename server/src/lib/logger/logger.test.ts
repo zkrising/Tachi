@@ -1,6 +1,6 @@
 import { LOG_LEVEL } from "lib/setup/config";
 import t from "tap";
-import { CloseAllConnections } from "../../test-utils/close-connections";
+import { CloseAllConnections } from "test-utils/close-connections";
 import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel, rootLogger, Transports } from "./logger";
 
 t.test("Logger Tests", (t) => {

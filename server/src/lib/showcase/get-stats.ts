@@ -1,6 +1,6 @@
-import db from "../../external/mongo/db";
+import db from "external/mongo/db";
 import { integer, Game, Playtypes, ShowcaseStatDetails } from "tachi-common";
-import CreateLogCtx from "../logger/logger";
+import CreateLogCtx from "lib/logger/logger";
 import { EvaluateShowcaseStat } from "./evaluator";
 import { GetRelatedStatDocuments } from "./get-related";
 

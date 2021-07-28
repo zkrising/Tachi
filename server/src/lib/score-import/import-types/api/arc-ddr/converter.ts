@@ -1,14 +1,14 @@
-import { EmptyObject } from "../../../../../utils/types";
+import { EmptyObject } from "utils/types";
 import { ConverterFunction } from "../../common/types";
 import p, { PrudenceSchema } from "prudence";
 import {
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { FormatPrError } from "../../../../../utils/prudence";
+import { FormatPrError } from "utils/prudence";
 import { ARCDDRScore } from "./types";
-import { FindChartOnARCID } from "../../../../../utils/queries/charts";
-import { FindSongOnIDGuaranteed } from "../../../../../utils/queries/songs";
+import { FindChartOnARCID } from "utils/queries/charts";
+import { FindSongOnIDGuaranteed } from "utils/queries/songs";
 import { DryScore } from "../../../framework/common/types";
 import {
 	GenericGetGradeAndPercent,

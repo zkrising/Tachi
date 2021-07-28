@@ -1,26 +1,26 @@
 import { Router, RequestHandler } from "express";
-import { FindChartOnSHA256 } from "../../../../utils/queries/charts";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "../../../../lib/constants/tachi";
-import db from "../../../../external/mongo/db";
+import { FindChartOnSHA256 } from "utils/queries/charts";
+import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
+import db from "external/mongo/db";
 import {
 	ChartDocument,
 	PBScoreDocument,
 	SuccessfulAPIResponse,
 	ImportDocument,
 } from "tachi-common";
-import { AssertStrAsPositiveNonZeroInt } from "../../../../lib/score-import/framework/common/string-asserts";
-import CreateLogCtx, { KtLogger } from "../../../../lib/logger/logger";
+import { AssertStrAsPositiveNonZeroInt } from "lib/score-import/framework/common/string-asserts";
+import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
-import { ExpressWrappedScoreImportMain } from "../../../../lib/score-import/framework/express-wrapper";
-import { GetUserWithID } from "../../../../utils/user";
-import { ParseIRUSC } from "../../../../lib/score-import/import-types/ir/usc/parser";
-import { USCIR_MAX_LEADERBOARD_N } from "../../../../lib/constants/usc-ir";
-import { CreateMulterSingleUploadMiddleware } from "../../../middleware/multer-upload";
-import { AssignToReqTachiData } from "../../../../utils/req-tachi-data";
-import { CDNStore } from "../../../../lib/cdn/cdn";
-import { ONE_MEGABYTE } from "../../../../lib/constants/filesize";
-import { RequirePermissions } from "../../../middleware/auth";
-import { GetUSCIRReplayURL } from "../../../../lib/cdn/url-format";
+import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
+import { GetUserWithID } from "utils/user";
+import { ParseIRUSC } from "lib/score-import/import-types/ir/usc/parser";
+import { USCIR_MAX_LEADERBOARD_N } from "lib/constants/usc-ir";
+import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
+import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { CDNStore } from "lib/cdn/cdn";
+import { ONE_MEGABYTE } from "lib/constants/filesize";
+import { RequirePermissions } from "server/middleware/auth";
+import { GetUSCIRReplayURL } from "lib/cdn/url-format";
 
 const logger = CreateLogCtx(__filename);
 

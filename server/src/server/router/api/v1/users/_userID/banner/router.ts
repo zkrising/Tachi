@@ -1,13 +1,13 @@
 import { Router } from "express";
-import db from "../../../../../../../external/mongo/db";
-import { CDNStoreOrOverwrite, CDNRedirect, CDNDelete } from "../../../../../../../lib/cdn/cdn";
-import { GetProfileBannerURL } from "../../../../../../../lib/cdn/url-format";
-import { ONE_MEGABYTE } from "../../../../../../../lib/constants/filesize";
-import { SYMBOL_TachiData } from "../../../../../../../lib/constants/tachi";
-import CreateLogCtx from "../../../../../../../lib/logger/logger";
-import { FormatUserDoc } from "../../../../../../../utils/user";
-import { RequirePermissions } from "../../../../../../middleware/auth";
-import { CreateMulterSingleUploadMiddleware } from "../../../../../../middleware/multer-upload";
+import db from "external/mongo/db";
+import { CDNStoreOrOverwrite, CDNRedirect, CDNDelete } from "lib/cdn/cdn";
+import { GetProfileBannerURL } from "lib/cdn/url-format";
+import { ONE_MEGABYTE } from "lib/constants/filesize";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import CreateLogCtx from "lib/logger/logger";
+import { FormatUserDoc } from "utils/user";
+import { RequirePermissions } from "server/middleware/auth";
+import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import { RequireAuthedAsUser } from "../middleware";
 
 // note: this is just the ../pfp/router.ts code copied and altered.

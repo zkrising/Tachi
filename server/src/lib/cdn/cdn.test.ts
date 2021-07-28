@@ -1,9 +1,9 @@
 import t from "tap";
 import { CDNDelete, CDNRedirect, CDNRetrieve, CDNStore, CDNStoreOrOverwrite } from "./cdn";
 import fs from "fs";
-import { CDN_FILE_ROOT } from "../setup/config";
+import { CDN_FILE_ROOT } from "lib/setup/config";
 import path from "path";
-import { CloseAllConnections } from "../../test-utils/close-connections";
+import { CloseAllConnections } from "test-utils/close-connections";
 import expressRequestMock from "express-request-mock";
 
 function getTestTxt() {

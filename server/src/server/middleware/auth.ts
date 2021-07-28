@@ -1,9 +1,9 @@
 import { RequestHandler } from "express";
-import db from "../../external/mongo/db";
-import { SYMBOL_TachiAPIAuth } from "../../lib/constants/tachi";
-import { SplitAuthorizationHeader } from "../../utils/misc";
+import db from "external/mongo/db";
+import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SplitAuthorizationHeader } from "utils/misc";
 import { APITokenDocument, APIPermissions } from "tachi-common";
-import CreateLogCtx from "../../lib/logger/logger";
+import CreateLogCtx from "lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 

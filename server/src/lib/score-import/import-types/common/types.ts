@@ -1,5 +1,5 @@
-import { EmptyObject } from "../../../../utils/types";
-import { KtLogger } from "../../../logger/logger";
+import { EmptyObject } from "utils/types";
+import { KtLogger } from "lib/logger/logger";
 import { MerScore } from "../file/mer-iidx/types";
 import { S3Score } from "../file/solid-state-squad/types";
 import { BarbatosScore } from "../ir/barbatos/types";
@@ -19,7 +19,7 @@ import {
 import { ConverterFailure } from "../../framework/common/converter-failures";
 import { DryScore } from "../../framework/common/types";
 import { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
-import { USCClientScore } from "../../../../server/router/ir/usc/types";
+import { USCClientScore } from "server/router/ir/usc/types";
 import { IRUSCContext } from "../ir/usc/types";
 import { ClassHandler } from "../../framework/user-game-stats/types";
 export interface ImportTypeDataMap {

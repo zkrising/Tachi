@@ -513,6 +513,7 @@ export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoD
 	timeStarted: integer;
 	calculatedData: Partial<Record<SessionCalculatedDataLookup[I], number | null>>;
 	highlight: boolean;
+	views: number;
 }
 
 export interface SessionViewDocument extends MongoDBDocument {

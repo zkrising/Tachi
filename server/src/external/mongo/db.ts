@@ -28,9 +28,9 @@ import {
 	UGPTSettings,
 } from "tachi-common";
 import monk, { TMiddleware } from "monk";
-import { MONGO_CONNECTION_URL, MONGO_DATABASE_NAME } from "../../lib/setup/config";
-import CreateLogCtx from "../../lib/logger/logger";
-import { OrphanScoreDocument } from "../../lib/score-import/import-types/common/types";
+import { MONGO_CONNECTION_URL, MONGO_DATABASE_NAME } from "lib/setup/config";
+import CreateLogCtx from "lib/logger/logger";
+import { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
 
 const logger = CreateLogCtx(__filename);
 

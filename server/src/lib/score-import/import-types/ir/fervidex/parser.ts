@@ -1,16 +1,16 @@
-import { KtLogger } from "../../../../logger/logger";
+import { KtLogger } from "lib/logger/logger";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { FormatPrError, optNull } from "../../../../../utils/prudence";
+import { FormatPrError, optNull } from "utils/prudence";
 import { FervidexContext, FervidexScore } from "./types";
-import { ParseEA3SoftID } from "../../../../../utils/ea3id";
+import { ParseEA3SoftID } from "utils/ea3id";
 import {
 	EXT_HEROIC_VERSE,
 	MODEL_IIDX,
 	MODEL_INFINITAS_2,
 	REV_2DXTRA,
 	REV_OMNIMIX,
-} from "../../../../constants/ea3id";
+} from "lib/constants/ea3id";
 import { ParserFunctionReturns } from "../../common/types";
 
 const PR_Fervidex: PrudenceSchema = {

@@ -1,7 +1,7 @@
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
-import { FindChartWithChartID } from "../../../../utils/queries/charts";
-import db from "../../../../external/mongo/db";
-import { KtLogger } from "../../../logger/logger";
+import { FindChartWithChartID } from "utils/queries/charts";
+import db from "external/mongo/db";
+import { KtLogger } from "lib/logger/logger";
 import { CalculateVF6 } from "../calculated-data/stats";
 import { InternalFailure } from "../common/converter-failures";
 

@@ -1,16 +1,16 @@
 import t from "tap";
-import mockApi from "../../../../../test-utils/mock-api";
+import mockApi from "test-utils/mock-api";
 import {
 	GetKTDataBuffer,
 	LoadTachiIIDXData,
 	TestingIIDXEamusementCSV26,
 	TestingIIDXEamusementCSV27,
-} from "../../../../../test-utils/test-data";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import { RequireAuthPerms } from "../../../../../test-utils/api-common";
-import { CreateFakeAuthCookie } from "../../../../../test-utils/fake-auth";
-import ResetDBState from "../../../../../test-utils/resets";
-import db from "../../../../../external/mongo/db";
+} from "test-utils/test-data";
+import { CloseAllConnections } from "test-utils/close-connections";
+import { RequireAuthPerms } from "test-utils/api-common";
+import { CreateFakeAuthCookie } from "test-utils/fake-auth";
+import ResetDBState from "test-utils/resets";
+import db from "external/mongo/db";
 
 t.test("POST /api/v1/import/file", async (t) => {
 	const cookie = await CreateFakeAuthCookie(mockApi);

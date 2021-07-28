@@ -1,7 +1,7 @@
-import db from "../../../../external/mongo/db";
+import db from "external/mongo/db";
 import { integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 
-import { KtLogger } from "../../../logger/logger";
+import { KtLogger } from "lib/logger/logger";
 import { IIDXMergeFn, SDVXMergeFn } from "./game-specific-merge";
 import { BulkWriteUpdateOneOperation } from "mongodb";
 export type PBScoreDocumentNoRank = Omit<PBScoreDocument, "rankingData">;

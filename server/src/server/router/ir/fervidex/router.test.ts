@@ -1,10 +1,10 @@
 import t from "tap";
-import db from "../../../../external/mongo/db";
-import { CloseAllConnections } from "../../../../test-utils/close-connections";
-import { InsertFakeTokenWithAllPerms } from "../../../../test-utils/fake-auth";
-import mockApi from "../../../../test-utils/mock-api";
-import ResetDBState from "../../../../test-utils/resets";
-import { GetKTDataJSON } from "../../../../test-utils/test-data";
+import db from "external/mongo/db";
+import { CloseAllConnections } from "test-utils/close-connections";
+import { InsertFakeTokenWithAllPerms } from "test-utils/fake-auth";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
+import { GetKTDataJSON } from "test-utils/test-data";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function TestHeaders(url: string, data: any) {

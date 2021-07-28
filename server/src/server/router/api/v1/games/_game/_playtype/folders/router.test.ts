@@ -1,12 +1,12 @@
 import t from "tap";
-import db from "../../../../../../../../external/mongo/db";
-import mockApi from "../../../../../../../../test-utils/mock-api";
-import ResetDBState from "../../../../../../../../test-utils/resets";
+import db from "external/mongo/db";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
 import deepmerge from "deepmerge";
 import { FolderDocument } from "tachi-common";
-import { CloseAllConnections } from "../../../../../../../../test-utils/close-connections";
-import { Testing511SPA } from "../../../../../../../../test-utils/test-data";
-import { CreateFolderChartLookup } from "../../../../../../../../utils/folder";
+import { CloseAllConnections } from "test-utils/close-connections";
+import { Testing511SPA } from "test-utils/test-data";
+import { CreateFolderChartLookup } from "utils/folder";
 
 const mockFolder: FolderDocument = {
 	folderID: "foo",

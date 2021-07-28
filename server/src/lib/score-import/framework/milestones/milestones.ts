@@ -1,4 +1,4 @@
-import { KtLogger } from "../../../logger/logger";
+import { KtLogger } from "lib/logger/logger";
 import {
 	integer,
 	Game,
@@ -8,10 +8,10 @@ import {
 	MilestoneImportInfo,
 	MilestoneDocument,
 } from "tachi-common";
-import db from "../../../../external/mongo/db";
+import db from "external/mongo/db";
 import { BulkWriteUpdateOneOperation } from "mongodb";
-import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "../../../../utils/milestone";
-import { RedisPub } from "../../../../external/redis/redis-IPC";
+import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "utils/milestone";
+import { RedisPub } from "external/redis/redis-IPC";
 
 /**
  * Processes and updates a user's milestones from their Goal Import Info (i.e. what is returned

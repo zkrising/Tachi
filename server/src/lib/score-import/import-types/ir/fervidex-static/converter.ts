@@ -1,11 +1,11 @@
-import { FindSongOnID } from "../../../../../utils/queries/songs";
+import { FindSongOnID } from "utils/queries/songs";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
 	InternalFailure,
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { Lamps } from "tachi-common";
-import { FindChartOnInGameIDVersion } from "../../../../../utils/queries/charts";
+import { FindChartOnInGameIDVersion } from "utils/queries/charts";
 import { FervidexStaticContext, FervidexStaticScore } from "./types";
 import { FERVIDEX_LAMP_LOOKUP, SplitFervidexChartRef } from "../fervidex/converter";
 import { DryScore } from "../../../framework/common/types";

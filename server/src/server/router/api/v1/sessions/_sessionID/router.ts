@@ -1,11 +1,11 @@
 import { Router } from "express";
-import db from "../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../lib/constants/tachi";
-import { RequirePermissions } from "../../../../../middleware/auth";
-import prValidate from "../../../../../middleware/prudence-validate";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { RequirePermissions } from "server/middleware/auth";
+import prValidate from "server/middleware/prudence-validate";
 import p from "prudence";
 import { GetSessionFromParam, RequireOwnershipOfSession } from "./middleware";
-import { GetUserWithID } from "../../../../../../utils/user";
+import { GetUserWithID } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
 

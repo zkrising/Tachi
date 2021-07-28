@@ -1,8 +1,8 @@
 import ResetDBState from "./resets";
-import CreateLogCtx from "../lib/logger/logger";
+import CreateLogCtx from "lib/logger/logger";
 import supertest from "supertest";
 import { AllPermissions } from "../server/middleware/auth";
-import db from "../external/mongo/db";
+import db from "external/mongo/db";
 
 const logger = CreateLogCtx(__filename);
 

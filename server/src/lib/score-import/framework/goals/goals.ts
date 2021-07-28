@@ -1,8 +1,8 @@
 import { integer, Game, GoalDocument, UserGoalDocument } from "tachi-common";
-import { EvaluateGoalForUser } from "../../../achievables/goals";
-import db from "../../../../external/mongo/db";
-import { KtLogger } from "../../../logger/logger";
-import { RedisPub } from "../../../../external/redis/redis-IPC";
+import { EvaluateGoalForUser } from "lib/achievables/goals";
+import db from "external/mongo/db";
+import { KtLogger } from "lib/logger/logger";
+import { RedisPub } from "external/redis/redis-IPC";
 
 /**
  * Update a user's progress on all of their set goals.

@@ -10,16 +10,16 @@ import {
 	SongDocument,
 } from "tachi-common";
 import path from "path";
-import db from "../external/mongo/db";
+import db from "external/mongo/db";
 import {
 	USC_DEFAULT_HOLD,
 	USC_DEFAULT_MISS,
 	USC_DEFAULT_NEAR,
 	USC_DEFAULT_PERFECT,
 	USC_DEFAULT_SLAM,
-} from "../lib/constants/usc-ir";
-import { DryScore } from "../lib/score-import/framework/common/types";
-import { BarbatosScore } from "../lib/score-import/import-types/ir/barbatos/types";
+} from "lib/constants/usc-ir";
+import { DryScore } from "lib/score-import/framework/common/types";
+import { BarbatosScore } from "lib/score-import/import-types/ir/barbatos/types";
 import { USCClientScore } from "../server/router/ir/usc/types";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);

@@ -1,8 +1,8 @@
 import { ICollection } from "monk";
 import { FilterQuery } from "mongodb";
-import CreateLogCtx from "../logger/logger";
+import CreateLogCtx from "lib/logger/logger";
 import deepmerge from "deepmerge";
-import db from "../../external/mongo/db";
+import db from "external/mongo/db";
 import {
 	Game,
 	SessionDocument,
@@ -12,9 +12,9 @@ import {
 	PrivateUserDocument,
 	integer,
 } from "tachi-common";
-import { EscapeStringRegexp } from "../../utils/misc";
-import { GetOnlineCutoff, OMIT_PRIVATE_USER_RETURNS } from "../../utils/user";
-import { CONF_INFO } from "../setup/config";
+import { EscapeStringRegexp } from "utils/misc";
+import { GetOnlineCutoff, OMIT_PRIVATE_USER_RETURNS } from "utils/user";
+import { CONF_INFO } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,9 +1,9 @@
 import t from "tap";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import { MockJSONFetch } from "../../../../../test-utils/mock-fetch";
-import ResetDBState from "../../../../../test-utils/resets";
-import { IIDXClasses } from "../../../../constants/classes";
-import CreateLogCtx from "../../../../logger/logger";
+import { CloseAllConnections } from "test-utils/close-connections";
+import { MockJSONFetch } from "test-utils/mock-fetch";
+import ResetDBState from "test-utils/resets";
+import { IIDXClasses } from "lib/constants/classes";
+import CreateLogCtx from "lib/logger/logger";
 import { CreateArcIIDXClassHandler } from "./class-handler";
 
 const logger = CreateLogCtx(__filename);

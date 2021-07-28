@@ -1,6 +1,6 @@
 import { integer } from "tachi-common";
-import db from "../../../../external/mongo/db";
-import { KtLogger } from "../../../logger/logger";
+import db from "external/mongo/db";
+import { KtLogger } from "lib/logger/logger";
 import { CreatePBDoc, UpdateChartRanking, PBScoreDocumentNoRank } from "./create-pb-doc";
 
 export async function ProcessPBs(

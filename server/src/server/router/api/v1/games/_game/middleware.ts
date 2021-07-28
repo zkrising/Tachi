@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
-import { CONF_INFO } from "../../../../../../lib/setup/config";
-import { IsValidGame } from "../../../../../../utils/misc";
-import { AssignToReqTachiData } from "../../../../../../utils/req-tachi-data";
+import { CONF_INFO } from "lib/setup/config";
+import { IsValidGame } from "utils/misc";
+import { AssignToReqTachiData } from "utils/req-tachi-data";
 
 export const ValidateGameFromParam: RequestHandler = (req, res, next) => {
 	if (!IsValidGame(req.params.game)) {

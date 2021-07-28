@@ -1,8 +1,8 @@
 import t from "tap";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import ResetDBState from "../../../../../test-utils/resets";
-import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../../test-utils/test-data";
-import CreateLogCtx from "../../../../logger/logger";
+import { CloseAllConnections } from "test-utils/close-connections";
+import ResetDBState from "test-utils/resets";
+import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
+import CreateLogCtx from "lib/logger/logger";
 import { ConvertAPIArcIIDX, ResolveARCIIDXLamp } from "./converter";
 import { ARCIIDXScore } from "./types";
 import deepmerge from "deepmerge";

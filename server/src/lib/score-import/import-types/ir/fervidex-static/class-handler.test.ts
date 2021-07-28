@@ -1,7 +1,7 @@
 import t from "tap";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import ResetDBState from "../../../../../test-utils/resets";
-import CreateLogCtx from "../../../../logger/logger";
+import { CloseAllConnections } from "test-utils/close-connections";
+import ResetDBState from "test-utils/resets";
+import CreateLogCtx from "lib/logger/logger";
 import { CreateFerStaticClassHandler } from "./class-handler";
 import { Playtypes, Game } from "tachi-common";
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CONF_INFO } from "../../../../../lib/setup/config";
+import { CONF_INFO } from "lib/setup/config";
 import { GetGameConfig } from "tachi-common";
 import gameRouter from "./_game/router";
 

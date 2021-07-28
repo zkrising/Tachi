@@ -1,8 +1,8 @@
 import t from "tap";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import mockApi from "../../../../../test-utils/mock-api";
-import ResetDBState from "../../../../../test-utils/resets";
-import { LoadTachiIIDXData } from "../../../../../test-utils/test-data";
+import { CloseAllConnections } from "test-utils/close-connections";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
+import { LoadTachiIIDXData } from "test-utils/test-data";
 import { AnySongDocument } from "tachi-common";
 
 t.test("GET /api/v1/search", (t) => {

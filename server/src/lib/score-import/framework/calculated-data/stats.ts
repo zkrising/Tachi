@@ -8,8 +8,8 @@ import {
 	GetGamePTConfig,
 	IDStrings,
 } from "tachi-common";
-import { GetAllTierlistDataOfType, GetOneTierlistData } from "../../../../utils/tierlist";
-import { KtLogger } from "../../../logger/logger";
+import { GetAllTierlistDataOfType, GetOneTierlistData } from "utils/tierlist";
+import { KtLogger } from "lib/logger/logger";
 import { DryScore } from "../common/types";
 
 /**

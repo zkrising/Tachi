@@ -1,6 +1,6 @@
-import { USCClientScore } from "../../../../../server/router/ir/usc/types";
-import { FindSongOnID } from "../../../../../utils/queries/songs";
-import { KtLogger } from "../../../../logger/logger";
+import { USCClientScore } from "server/router/ir/usc/types";
+import { FindSongOnID } from "utils/queries/songs";
+import { KtLogger } from "lib/logger/logger";
 import { InternalFailure, InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { IRUSCContext } from "./types";
@@ -13,7 +13,7 @@ import {
 	USC_DEFAULT_NEAR,
 	USC_DEFAULT_PERFECT,
 	USC_DEFAULT_SLAM,
-} from "../../../../constants/usc-ir";
+} from "lib/constants/usc-ir";
 
 /**
  * Interprets the "note mod" used based on the USC score.

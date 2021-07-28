@@ -1,8 +1,8 @@
 import t from "tap";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import ResetDBState from "../../../../../test-utils/resets";
-import { GetKTDataJSON } from "../../../../../test-utils/test-data";
-import CreateLogCtx from "../../../../logger/logger";
+import { CloseAllConnections } from "test-utils/close-connections";
+import ResetDBState from "test-utils/resets";
+import { GetKTDataJSON } from "test-utils/test-data";
+import CreateLogCtx from "lib/logger/logger";
 import { ConvertAPIArcDDR, ResolveARCDDRLamp } from "./converter";
 import { ARCDDRScore } from "./types";
 import deepmerge from "deepmerge";

@@ -1,7 +1,7 @@
 import { Session, SessionData } from "express-session";
 import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "../../src/lib/constants/tachi";
 import { TachiRequestData, TachiSessionData } from "../../src/utils/types";
-import { APITokenDocument, PublicUserDocument } from "tachi-common";
+import { APITokenDocument } from "tachi-common";
 
 export {};
 

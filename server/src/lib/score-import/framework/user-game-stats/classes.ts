@@ -1,10 +1,10 @@
 import { Game, Playtypes, integer, UserGameStats, ClassDelta, IDStrings } from "tachi-common";
 import { GameClasses } from "tachi-common/js/game-classes";
 import deepmerge from "deepmerge";
-import { KtLogger } from "../../../logger/logger";
+import { KtLogger } from "lib/logger/logger";
 import { CalculateGitadoraColour, CalculateSDVXClass } from "./builtin-class-handlers";
-import { ReturnClassIfGreater } from "../../../../utils/class";
-import { RedisPub } from "../../../../external/redis/redis-IPC";
+import { ReturnClassIfGreater } from "utils/class";
+import { RedisPub } from "external/redis/redis-IPC";
 import { ClassHandler, ScoreClasses } from "./types";
 
 type ClassHandlerMap = {

@@ -3,9 +3,9 @@
 // That's about all there is to it!
 
 import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "tachi-common";
-import db from "../../../../external/mongo/db";
-import { CreateGameSettings } from "../../../game-settings/create-game-settings";
-import { KtLogger } from "../../../logger/logger";
+import db from "external/mongo/db";
+import { CreateGameSettings } from "lib/game-settings/create-game-settings";
+import { KtLogger } from "lib/logger/logger";
 import { CalculateClassDeltas, UpdateUGSClasses } from "./classes";
 import { CalculateRatings } from "./rating";
 import { ClassHandler } from "./types";

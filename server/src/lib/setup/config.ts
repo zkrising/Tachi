@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import JSON5 from "json5";
 import fs from "fs";
 import p from "prudence";
-import { FormatPrError } from "../../utils/prudence";
+import { FormatPrError } from "utils/prudence";
 import { integer, StaticConfig } from "tachi-common";
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
 

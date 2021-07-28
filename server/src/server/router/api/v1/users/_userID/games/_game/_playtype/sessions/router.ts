@@ -1,7 +1,7 @@
 import { Router } from "express";
-import db from "../../../../../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../../../../../lib/constants/tachi";
-import { SearchSessions } from "../../../../../../../../../../lib/search/search";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SearchSessions } from "lib/search/search";
 import { GetGamePTConfig } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });

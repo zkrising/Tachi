@@ -1,8 +1,8 @@
-import { KtLogger } from "../../../../logger/logger";
+import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import nodeFetch from "../../../../../utils/fetch";
-import { VERSION_STR } from "../../../../constants/version";
-import { CONF_INFO } from "../../../../setup/config";
+import nodeFetch from "utils/fetch";
+import { VERSION_STR } from "lib/constants/version";
+import { CONF_INFO } from "lib/setup/config";
 
 /**
  * Traverses a Kai-like personal_bests api.

@@ -1,10 +1,10 @@
 import t from "tap";
-import db from "../../../../external/mongo/db";
-import ResetDBState from "../../../../test-utils/resets";
+import db from "external/mongo/db";
+import ResetDBState from "test-utils/resets";
 import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
 import { ChartDocument, PBScoreDocument, ScoreDocument, PrivateUserDocument } from "tachi-common";
 import deepmerge from "deepmerge";
-import { CloseAllConnections } from "../../../../test-utils/close-connections";
+import { CloseAllConnections } from "test-utils/close-connections";
 
 const mockScorePB: PBScoreDocument<"usc:Single"> = {
 	chartID: "USC_CHART_ID",

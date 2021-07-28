@@ -1,4 +1,4 @@
-import { CONFIG } from "../../lib/setup/config";
+import { CONFIG } from "lib/setup/config";
 import { RequestHandler } from "express";
 
 /**

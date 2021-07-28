@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
-import db from "../../../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../../../lib/constants/tachi";
-import { AssignToReqTachiData } from "../../../../../../../../utils/req-tachi-data";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { AssignToReqTachiData } from "utils/req-tachi-data";
 
 export const GetTableFromParam: RequestHandler = async (req, res, next) => {
 	const game = req[SYMBOL_TachiData]!.game;

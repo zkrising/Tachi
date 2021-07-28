@@ -1,11 +1,11 @@
 import { Router } from "express";
-import db from "../../../../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi";
-import CreateLogCtx from "../../../../../../../../../lib/logger/logger";
-import { SearchUsersRegExp } from "../../../../../../../../../lib/search/search";
-import { IsString } from "../../../../../../../../../utils/misc";
-import { ParseStrPositiveNonZeroInt } from "../../../../../../../../../utils/string-checks";
-import { GetUsersWithIDs } from "../../../../../../../../../utils/user";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import CreateLogCtx from "lib/logger/logger";
+import { SearchUsersRegExp } from "lib/search/search";
+import { IsString } from "utils/misc";
+import { ParseStrPositiveNonZeroInt } from "utils/string-checks";
+import { GetUsersWithIDs } from "utils/user";
 import { HandleTierlistIDParam } from "../../folders/middleware";
 import { ValidateAndGetChart } from "./middleware";
 import { FormatChart } from "tachi-common";

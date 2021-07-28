@@ -1,6 +1,6 @@
 import { Router } from "express";
-import db from "../../../../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../../../../lib/constants/tachi";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { ValidateAndGetSong } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });

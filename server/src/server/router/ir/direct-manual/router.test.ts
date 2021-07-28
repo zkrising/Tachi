@@ -1,10 +1,10 @@
 import t from "tap";
-import db from "../../../../external/mongo/db";
-import { CloseAllConnections } from "../../../../test-utils/close-connections";
-import { CreateFakeAuthCookie } from "../../../../test-utils/fake-auth";
-import mockApi from "../../../../test-utils/mock-api";
-import ResetDBState from "../../../../test-utils/resets";
-import { GetKTDataJSON } from "../../../../test-utils/test-data";
+import db from "external/mongo/db";
+import { CloseAllConnections } from "test-utils/close-connections";
+import { CreateFakeAuthCookie } from "test-utils/fake-auth";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
+import { GetKTDataJSON } from "test-utils/test-data";
 
 t.test("POST /ir/direct-manual/import", async (t) => {
 	const cookie = await CreateFakeAuthCookie(mockApi);

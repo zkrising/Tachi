@@ -1,9 +1,9 @@
 import t from "tap";
-import db from "../../../../../../external/mongo/db";
-import { CloseAllConnections } from "../../../../../../test-utils/close-connections";
-import mockApi from "../../../../../../test-utils/mock-api";
-import ResetDBState from "../../../../../../test-utils/resets";
-import { Testing511SPA } from "../../../../../../test-utils/test-data";
+import db from "external/mongo/db";
+import { CloseAllConnections } from "test-utils/close-connections";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
+import { Testing511SPA } from "test-utils/test-data";
 
 const TESTING_SESSION_ID = "Qe7b00261b1d3ba8e5c9ee4e76e77ea9f07d9493b";
 

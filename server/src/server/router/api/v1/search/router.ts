@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { SearchAllGamesSongs, SearchUsersRegExp } from "../../../../../lib/search/search";
-import { IsString } from "../../../../../utils/misc";
+import { SearchAllGamesSongs, SearchUsersRegExp } from "lib/search/search";
+import { IsString } from "utils/misc";
 
 const router: Router = Router({ mergeParams: true });
 

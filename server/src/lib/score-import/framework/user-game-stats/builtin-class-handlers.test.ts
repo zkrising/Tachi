@@ -1,6 +1,6 @@
 import t from "tap";
-import { GitadoraColours, SDVXVFClasses } from "../../../constants/classes";
-import CreateLogCtx from "../../../logger/logger";
+import { GitadoraColours, SDVXVFClasses } from "lib/constants/classes";
+import CreateLogCtx from "lib/logger/logger";
 import {
 	CalculateGitadoraColour,
 	GitadoraSkillToColour,

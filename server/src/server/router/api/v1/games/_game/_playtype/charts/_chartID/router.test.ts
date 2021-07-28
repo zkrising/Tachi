@@ -1,12 +1,9 @@
 import t from "tap";
-import db from "../../../../../../../../../external/mongo/db";
-import { CloseAllConnections } from "../../../../../../../../../test-utils/close-connections";
-import mockApi from "../../../../../../../../../test-utils/mock-api";
-import ResetDBState from "../../../../../../../../../test-utils/resets";
-import {
-	Testing511SPA,
-	TestingIIDXSPScorePB,
-} from "../../../../../../../../../test-utils/test-data";
+import db from "external/mongo/db";
+import { CloseAllConnections } from "test-utils/close-connections";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
+import { Testing511SPA, TestingIIDXSPScorePB } from "test-utils/test-data";
 import deepmerge from "deepmerge";
 import { PBScoreDocument, PrivateUserDocument } from "tachi-common";
 

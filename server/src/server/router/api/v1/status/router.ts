@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { SYMBOL_TachiAPIAuth } from "../../../../../lib/constants/tachi";
-import { FormatVersion } from "../../../../../lib/constants/version";
+import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { FormatVersion } from "lib/constants/version";
 
 const router: Router = Router({ mergeParams: true });
 

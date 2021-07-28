@@ -1,7 +1,7 @@
 import redis from "redis";
 import { RedisIPCChannels, RedisIPCData } from "tachi-common";
-import CreateLogCtx from "../../lib/logger/logger";
-import { CONFIG } from "../../lib/setup/config";
+import CreateLogCtx from "lib/logger/logger";
+import { CONFIG } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 

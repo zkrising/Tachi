@@ -1,6 +1,6 @@
 import winston, { format, transports, Logger, LeveledLogMethod } from "winston";
-import { EscapeStringRegexp } from "../../utils/misc";
-import { LOG_LEVEL } from "../setup/config";
+import { EscapeStringRegexp } from "utils/misc";
+import { LOG_LEVEL } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };

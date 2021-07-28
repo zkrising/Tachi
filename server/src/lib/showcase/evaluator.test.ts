@@ -1,16 +1,12 @@
 import deepmerge from "deepmerge";
 import t from "tap";
 import { EvaluateShowcaseStat } from "./evaluator";
-import { CloseAllConnections } from "../../test-utils/close-connections";
-import ResetDBState from "../../test-utils/resets";
-import {
-	Testing511SPA,
-	TestingIIDXFolderSP10,
-	TestingIIDXSPScorePB,
-} from "../../test-utils/test-data";
-import { IIDX_LAMPS } from "../constants/game";
-import { CreateFolderChartLookup } from "../../utils/folder";
-import db from "../../external/mongo/db";
+import { CloseAllConnections } from "test-utils/close-connections";
+import ResetDBState from "test-utils/resets";
+import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
+import { IIDX_LAMPS } from "lib/constants/game";
+import { CreateFolderChartLookup } from "utils/folder";
+import db from "external/mongo/db";
 
 /* eslint-disable no-return-await */
 // causes a race condition otherwise due to weird tap interaction

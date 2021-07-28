@@ -1,14 +1,14 @@
 /**
  * Resets the state of the database.
  */
-import db from "../external/mongo/db";
+import db from "external/mongo/db";
 import fs from "fs";
 import path from "path";
-import CreateLogCtx from "../lib/logger/logger";
+import CreateLogCtx from "lib/logger/logger";
 // im installing an entire library for rm rf...
 import rimraf from "rimraf";
-import { CDN_FILE_ROOT, MONGO_CONNECTION_URL } from "../lib/setup/config";
-import { SetIndexes } from "../external/mongo/indexes";
+import { CDN_FILE_ROOT, MONGO_CONNECTION_URL } from "lib/setup/config";
+import { SetIndexes } from "external/mongo/indexes";
 
 const logger = CreateLogCtx(__filename);
 

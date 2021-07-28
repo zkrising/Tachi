@@ -1,7 +1,7 @@
 import { Game, Playtypes, integer, ScoreCalculatedDataLookup } from "tachi-common";
 import { GameClasses } from "tachi-common/js/game-classes";
-import { GitadoraColours, SDVXVFClasses } from "../../../constants/classes";
-import { KtLogger } from "../../../logger/logger";
+import { GitadoraColours, SDVXVFClasses } from "lib/constants/classes";
+import { KtLogger } from "lib/logger/logger";
 
 export function CalculateSDVXClass(
 	game: Game,

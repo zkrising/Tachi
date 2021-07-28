@@ -1,8 +1,8 @@
 import t from "tap";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import ResetDBState from "../../../../../test-utils/resets";
-import mockApi from "../../../../../test-utils/mock-api";
-import db from "../../../../../external/mongo/db";
+import { CloseAllConnections } from "test-utils/close-connections";
+import ResetDBState from "test-utils/resets";
+import mockApi from "test-utils/mock-api";
+import db from "external/mongo/db";
 import { ScoreDocument, PBScoreDocument } from "tachi-common";
 
 t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {

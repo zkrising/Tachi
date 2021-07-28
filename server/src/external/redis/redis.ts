@@ -1,4 +1,4 @@
-import CreateLogCtx from "../../lib/logger/logger";
+import CreateLogCtx from "lib/logger/logger";
 import redis from "redis";
 
 const logger = CreateLogCtx(__filename);

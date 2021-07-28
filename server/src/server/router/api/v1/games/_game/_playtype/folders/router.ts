@@ -1,10 +1,10 @@
 import { Router } from "express";
-import db from "../../../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../../../lib/constants/tachi";
-import { SearchCollection } from "../../../../../../../../lib/search/search";
-import { GetFolderCharts } from "../../../../../../../../utils/folder";
-import { IsString } from "../../../../../../../../utils/misc";
-import { GetDefaultTierlist } from "../../../../../../../../utils/tierlist";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SearchCollection } from "lib/search/search";
+import { GetFolderCharts } from "utils/folder";
+import { IsString } from "utils/misc";
+import { GetDefaultTierlist } from "utils/tierlist";
 import { GetFolderFromParam, HandleTierlistIDParam } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });

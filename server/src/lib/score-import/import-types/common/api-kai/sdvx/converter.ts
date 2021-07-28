@@ -1,4 +1,4 @@
-import { FindSDVXChartOnInGameIDVersion } from "../../../../../../utils/queries/charts";
+import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
 import { KaiContext, KaiSDVXScore } from "../types";
 import p from "prudence";
 import {
@@ -6,8 +6,8 @@ import {
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
 } from "../../../../framework/common/converter-failures";
-import { FormatPrError } from "../../../../../../utils/prudence";
-import { FindSongOnID } from "../../../../../../utils/queries/songs";
+import { FormatPrError } from "utils/prudence";
+import { FindSongOnID } from "utils/queries/songs";
 import {
 	GenericGetGradeAndPercent,
 	ParseDateFromString,

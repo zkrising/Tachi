@@ -9,7 +9,7 @@ import {
 	Playtypes,
 	GetGamePTConfig,
 } from "tachi-common";
-import CreateLogCtx from "../../../logger/logger";
+import CreateLogCtx from "lib/logger/logger";
 import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 
 const logger = CreateLogCtx(__filename);

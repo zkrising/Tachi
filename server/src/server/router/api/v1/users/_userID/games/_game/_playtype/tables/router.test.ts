@@ -1,15 +1,12 @@
 import t from "tap";
-import db from "../../../../../../../../../../external/mongo/db";
-import { CloseAllConnections } from "../../../../../../../../../../test-utils/close-connections";
-import mockApi from "../../../../../../../../../../test-utils/mock-api";
-import ResetDBState from "../../../../../../../../../../test-utils/resets";
-import {
-	TestingIIDXFolderSP10,
-	TestingIIDXSPScorePB,
-} from "../../../../../../../../../../test-utils/test-data";
+import db from "external/mongo/db";
+import { CloseAllConnections } from "test-utils/close-connections";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
+import { TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
 import deepmerge from "deepmerge";
 import { FolderDocument } from "tachi-common";
-import { CreateFolderChartLookup } from "../../../../../../../../../../utils/folder";
+import { CreateFolderChartLookup } from "utils/folder";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/tables/:tableID", (t) => {
 	t.beforeEach(ResetDBState);

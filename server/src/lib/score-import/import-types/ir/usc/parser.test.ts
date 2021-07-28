@@ -1,7 +1,7 @@
 import t from "tap";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import { uscChart, uscScore } from "../../../../../test-utils/test-data";
-import CreateLogCtx from "../../../../logger/logger";
+import { CloseAllConnections } from "test-utils/close-connections";
+import { uscChart, uscScore } from "test-utils/test-data";
+import CreateLogCtx from "lib/logger/logger";
 import { ParseIRUSC } from "./parser";
 
 const logger = CreateLogCtx(__filename);

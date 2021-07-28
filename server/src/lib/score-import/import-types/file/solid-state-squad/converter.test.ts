@@ -1,16 +1,16 @@
 import t from "tap";
-import CreateLogCtx from "../../../../logger/logger";
-import ResetDBState from "../../../../../test-utils/resets";
+import CreateLogCtx from "lib/logger/logger";
+import ResetDBState from "test-utils/resets";
 import {
 	GetKTDataJSON,
 	LoadTachiIIDXData,
 	Testing511Song,
 	Testing511SPA,
-} from "../../../../../test-utils/test-data";
+} from "test-utils/test-data";
 import { ConvertFileS3, ParseDifficulty, ResolveS3Lamp } from "./converter";
 import { S3Score } from "./types";
 import deepmerge from "deepmerge";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
+import { CloseAllConnections } from "test-utils/close-connections";
 
 const logger = CreateLogCtx(__filename);
 

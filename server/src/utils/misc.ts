@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { CONF_INFO } from "../lib/setup/config";
+import { CONF_INFO } from "lib/setup/config";
 import { Game, Playtypes, GetGameConfig, AnySongDocument, AnyChartDocument } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js

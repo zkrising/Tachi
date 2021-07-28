@@ -1,6 +1,6 @@
 import t from "tap";
-import { CloseAllConnections } from "../../test-utils/close-connections";
-import ResetDBState from "../../test-utils/resets";
+import { CloseAllConnections } from "test-utils/close-connections";
+import ResetDBState from "test-utils/resets";
 import db from "./db";
 
 t.beforeEach(ResetDBState);

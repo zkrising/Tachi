@@ -1,6 +1,6 @@
 import t from "tap";
-import { CloseAllConnections } from "../test-utils/close-connections";
-import mockApi from "../test-utils/mock-api";
+import { CloseAllConnections } from "test-utils/close-connections";
+import mockApi from "test-utils/mock-api";
 
 t.test("GET /", (t) => {
 	t.test("Should return our index.html", async (t) => {

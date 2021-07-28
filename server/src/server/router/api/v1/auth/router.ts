@@ -13,11 +13,11 @@ import {
 	GetUserWithEmail,
 	GetUserWithID,
 	PRIVATEINFO_GetUserCaseInsensitive,
-} from "../../../../../utils/user";
-import db from "../../../../../external/mongo/db";
-import CreateLogCtx from "../../../../../lib/logger/logger";
-import prValidate from "../../../../middleware/prudence-validate";
-import { DecrementCounterValue } from "../../../../../utils/db";
+} from "utils/user";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import prValidate from "server/middleware/prudence-validate";
+import { DecrementCounterValue } from "utils/db";
 
 const logger = CreateLogCtx(__filename);
 

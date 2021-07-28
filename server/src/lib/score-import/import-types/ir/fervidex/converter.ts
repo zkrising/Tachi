@@ -1,4 +1,4 @@
-import { FindSongOnID } from "../../../../../utils/queries/songs";
+import { FindSongOnID } from "utils/queries/songs";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
 	InternalFailure,
@@ -7,10 +7,7 @@ import {
 } from "../../../framework/common/converter-failures";
 import { FervidexContext, FervidexScore } from "./types";
 import { Lamps, Difficulties, Playtypes } from "tachi-common";
-import {
-	FindIIDXChartOnInGameIDVersion,
-	FindIIDXChartWith2DXtraHash,
-} from "../../../../../utils/queries/charts";
+import { FindIIDXChartOnInGameIDVersion, FindIIDXChartWith2DXtraHash } from "utils/queries/charts";
 import { ConverterFunction } from "../../common/types";
 import { DryScore } from "../../../framework/common/types";
 

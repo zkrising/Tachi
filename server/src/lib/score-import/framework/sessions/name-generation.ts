@@ -1,4 +1,4 @@
-import { GetRandomAdjective, GetRandomNoun } from "../../../../datasets/words";
+import { GetRandomAdjective, GetRandomNoun } from "datasets/words";
 
 export function GenerateRandomSessionName() {
 	const adj1 = GetRandomAdjective();

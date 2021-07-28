@@ -1,12 +1,12 @@
 import t from "tap";
-import db from "../../../../../external/mongo/db";
-import ResetDBState from "../../../../../test-utils/resets";
-import { GetKTDataJSON } from "../../../../../test-utils/test-data";
+import db from "external/mongo/db";
+import ResetDBState from "test-utils/resets";
+import { GetKTDataJSON } from "test-utils/test-data";
 import { TachiPBScoreToBeatorajaFormat } from "./convert-scores";
 import { ScoreDocument, PBScoreDocument } from "tachi-common";
-import { Random20Hex } from "../../../../../utils/misc";
+import { Random20Hex } from "utils/misc";
 import deepmerge from "deepmerge";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
+import { CloseAllConnections } from "test-utils/close-connections";
 
 const gazerChart = GetKTDataJSON("./tachi/bms-gazer-chart.json");
 

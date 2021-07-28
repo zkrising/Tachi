@@ -1,8 +1,8 @@
 import { Game, AnySongDocument, integer } from "tachi-common";
 import { FindOneResult } from "monk";
-import db from "../../external/mongo/db";
-import { KtLogger } from "../../lib/logger/logger";
-import { InternalFailure } from "../../lib/score-import/framework/common/converter-failures";
+import db from "external/mongo/db";
+import { KtLogger } from "lib/logger/logger";
+import { InternalFailure } from "lib/score-import/framework/common/converter-failures";
 import { EscapeStringRegexp } from "../misc";
 
 /**

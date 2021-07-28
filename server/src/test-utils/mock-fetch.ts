@@ -1,7 +1,7 @@
 // We know! these are mock functions.
 /* eslint-disable require-await */
 import { Response } from "node-fetch";
-import { NodeFetch } from "../utils/fetch";
+import { NodeFetch } from "utils/fetch";
 
 /**
  * Creates a basic Fetch function used for statusCode checks.

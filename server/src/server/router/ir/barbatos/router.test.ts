@@ -1,10 +1,10 @@
 import t from "tap";
-import { CloseAllConnections } from "../../../../test-utils/close-connections";
-import { CreateFakeAuthCookie } from "../../../../test-utils/fake-auth";
-import ResetDBState from "../../../../test-utils/resets";
-import mockApi from "../../../../test-utils/mock-api";
-import { TestingBarbatosScore } from "../../../../test-utils/test-data";
-import db from "../../../../external/mongo/db";
+import { CloseAllConnections } from "test-utils/close-connections";
+import { CreateFakeAuthCookie } from "test-utils/fake-auth";
+import ResetDBState from "test-utils/resets";
+import mockApi from "test-utils/mock-api";
+import { TestingBarbatosScore } from "test-utils/test-data";
+import db from "external/mongo/db";
 
 t.test("POST /ir/barbatos/score/submit", async (t) => {
 	const cookie = await CreateFakeAuthCookie(mockApi);

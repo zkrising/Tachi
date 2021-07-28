@@ -1,7 +1,7 @@
 import t from "tap";
 import { ValidateIRClientVersion } from "./auth";
 import expMiddlewareMock from "express-request-mock";
-import { CloseAllConnections } from "../../../../test-utils/close-connections";
+import { CloseAllConnections } from "test-utils/close-connections";
 
 t.test("#ValidateIRClientVersion", (t) => {
 	t.test("Should reject clients that are not supported", async (t) => {

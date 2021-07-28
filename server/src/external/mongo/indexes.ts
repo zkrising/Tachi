@@ -2,8 +2,8 @@
 import monk from "monk";
 import { IndexOptions } from "mongodb";
 import { ValidDatabases } from "tachi-common";
-import CreateLogCtx from "../../lib/logger/logger";
-import { CONF_INFO } from "../../lib/setup/config";
+import CreateLogCtx from "lib/logger/logger";
+import { CONF_INFO } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 

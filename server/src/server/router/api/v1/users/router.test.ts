@@ -1,9 +1,9 @@
 import t from "tap";
-import db from "../../../../../external/mongo/db";
-import mockApi from "../../../../../test-utils/mock-api";
-import ResetDBState from "../../../../../test-utils/resets";
+import db from "external/mongo/db";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
 import { PrivateUserDocument, PublicUserDocument } from "tachi-common";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
+import { CloseAllConnections } from "test-utils/close-connections";
 
 t.test("GET /api/v1/users", (t) => {
 	t.beforeEach(ResetDBState);

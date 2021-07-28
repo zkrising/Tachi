@@ -1,7 +1,7 @@
-import nodeFetch from "../../../../../utils/fetch";
-import { HasOwnProperty } from "../../../../../utils/misc";
-import { IIDXClasses } from "../../../../constants/classes";
-import { ARC_API_URL } from "../../../../setup/config";
+import nodeFetch from "utils/fetch";
+import { HasOwnProperty } from "utils/misc";
+import { IIDXClasses } from "lib/constants/classes";
+import { ARC_API_URL } from "lib/setup/config";
 import { ClassHandler } from "../../../framework/user-game-stats/types";
 
 export async function CreateArcIIDXClassHandler(
@@ -11,7 +11,7 @@ export async function CreateArcIIDXClassHandler(
 ): Promise<ClassHandler> {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	let json: any;
-	let err: Error | undefined;
+	let err: unknown;
 
 	// SP and DP dans are located in the same place,
 	// fetch once, then return a function that traverses this data.
@@ -28,7 +28,6 @@ export async function CreateArcIIDXClassHandler(
 	}
 
 	return (game, playtype, userID, ratings, logger) => {
-		/* istanbul ignore next */
 		if (err) {
 			logger.error(`An error occured while updating classes for ${ARC_API_URL}.`, { err });
 			return {};

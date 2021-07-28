@@ -1,10 +1,10 @@
 import { FilterQuery } from "mongodb";
 import { GetGamePTConfig, ScoreDocument } from "tachi-common";
 import { Router } from "express";
-import db from "../../../../../../../../../../../external/mongo/db";
-import { SYMBOL_TachiData } from "../../../../../../../../../../../lib/constants/tachi";
-import { GetFolderCharts, GetPBsOnFolder } from "../../../../../../../../../../../utils/folder";
-import { ParseStrPositiveInt } from "../../../../../../../../../../../utils/string-checks";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { GetFolderCharts, GetPBsOnFolder } from "utils/folder";
+import { ParseStrPositiveInt } from "utils/string-checks";
 import { GetFolderFromParam } from "../../../../../../../games/_game/_playtype/folders/middleware";
 
 const router: Router = Router({ mergeParams: true });

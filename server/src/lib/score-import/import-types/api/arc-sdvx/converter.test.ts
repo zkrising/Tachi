@@ -1,12 +1,8 @@
 import t from "tap";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
-import ResetDBState from "../../../../../test-utils/resets";
-import {
-	GetKTDataJSON,
-	TestingAlbidaADV,
-	TestingSDVXAlbidaSong,
-} from "../../../../../test-utils/test-data";
-import CreateLogCtx from "../../../../logger/logger";
+import { CloseAllConnections } from "test-utils/close-connections";
+import ResetDBState from "test-utils/resets";
+import { GetKTDataJSON, TestingAlbidaADV, TestingSDVXAlbidaSong } from "test-utils/test-data";
+import CreateLogCtx from "lib/logger/logger";
 import { ConvertAPIArcSDVX, ResolveARCSDVXLamp } from "./converter";
 import { ARCSDVXScore } from "./types";
 import deepmerge from "deepmerge";

@@ -1,12 +1,12 @@
 import t from "tap";
-import db from "../../../../external/mongo/db";
-import { CloseAllConnections } from "../../../../test-utils/close-connections";
-import mockApi from "../../../../test-utils/mock-api";
-import ResetDBState, { ResetCDN } from "../../../../test-utils/resets";
+import db from "external/mongo/db";
+import { CloseAllConnections } from "test-utils/close-connections";
+import mockApi from "test-utils/mock-api";
+import ResetDBState, { ResetCDN } from "test-utils/resets";
 import deepmerge from "deepmerge";
 import { PBScoreDocument, ScoreDocument, PrivateUserDocument } from "tachi-common";
-import { GetKTDataBuffer } from "../../../../test-utils/test-data";
-import { CDNRetrieve } from "../../../../lib/cdn/cdn";
+import { GetKTDataBuffer } from "test-utils/test-data";
+import { CDNRetrieve } from "lib/cdn/cdn";
 
 async function InsertFakeUSCAuth() {
 	await db["api-tokens"].insert({

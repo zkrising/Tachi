@@ -1,8 +1,8 @@
-import { EmptyObject } from "../../../../../utils/types";
-import { KtLogger } from "../../../../logger/logger";
+import { EmptyObject } from "utils/types";
+import { KtLogger } from "lib/logger/logger";
 import p from "prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { FormatPrError } from "../../../../../utils/prudence";
+import { FormatPrError } from "utils/prudence";
 import { BarbatosScore } from "./types";
 import { ParserFunctionReturns } from "../../common/types";
 

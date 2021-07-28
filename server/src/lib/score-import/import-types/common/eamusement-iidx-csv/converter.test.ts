@@ -1,6 +1,6 @@
 import t from "tap";
-import ResetDBState from "../../../../../test-utils/resets";
-import { CloseAllConnections } from "../../../../../test-utils/close-connections";
+import ResetDBState from "test-utils/resets";
+import { CloseAllConnections } from "test-utils/close-connections";
 
 // const valid511Score = {
 // 	bp: "12",

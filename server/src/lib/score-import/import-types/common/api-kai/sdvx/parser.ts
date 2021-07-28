@@ -1,10 +1,10 @@
-import { KtLogger } from "../../../../../logger/logger";
-import nodeFetch from "../../../../../../utils/fetch";
+import { KtLogger } from "lib/logger/logger";
+import nodeFetch from "utils/fetch";
 import { KaiAuthDocument } from "tachi-common";
 import { KaiContext } from "../types";
 import { TraverseKaiAPI } from "../traverse-api";
 import { ParserFunctionReturns } from "../../types";
-import { EAG_API_URL, FLO_API_URL } from "../../../../../setup/config";
+import { EAG_API_URL, FLO_API_URL } from "lib/setup/config";
 
 export function ParseKaiSDVX(
 	service: "FLO" | "EAG",

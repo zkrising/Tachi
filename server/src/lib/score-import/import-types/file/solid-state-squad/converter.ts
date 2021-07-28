@@ -1,5 +1,5 @@
-import { EmptyObject } from "../../../../../utils/types";
-import { KtLogger } from "../../../../logger/logger";
+import { EmptyObject } from "utils/types";
+import { KtLogger } from "lib/logger/logger";
 import {
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
@@ -7,8 +7,8 @@ import {
 } from "../../../framework/common/converter-failures";
 import { S3Score } from "./types";
 import { Playtypes, Difficulties, Grades, Lamps } from "tachi-common";
-import { FindSongOnTitleInsensitive } from "../../../../../utils/queries/songs";
-import { FindChartWithPTDFVersion } from "../../../../../utils/queries/charts";
+import { FindSongOnTitleInsensitive } from "utils/queries/songs";
+import { FindChartWithPTDFVersion } from "utils/queries/charts";
 import {
 	GenericGetGradeAndPercent,
 	ParseDateFromString,

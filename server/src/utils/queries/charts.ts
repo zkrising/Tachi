@@ -1,5 +1,5 @@
 import { Difficulties, Game, integer, Playtypes, IDStrings, AnyChartDocument } from "tachi-common";
-import db from "../../external/mongo/db";
+import db from "external/mongo/db";
 import { FilterQuery } from "mongodb";
 
 export function FindChartWithChartID(game: Game, chartID: string) {

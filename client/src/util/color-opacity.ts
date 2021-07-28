@@ -6,9 +6,9 @@ export function ChangeOpacity(str: string, opacity: number) {
 	if (str.startsWith("#")) {
 		if (str.length === 7) {
 			return str + Math.floor(opacity * 255).toString(16);
-		} else {
-			return str.slice(0, 7) + Math.floor(opacity * 255).toString(16);
 		}
+
+		return str.slice(0, 7) + Math.floor(opacity * 255).toString(16);
 	} else if (str.startsWith("rgba(")) {
 		return str.replace(/, ?[0-9.]+\)$/u, `,${opacity})`);
 	} else if (str.startsWith("rgb(")) {

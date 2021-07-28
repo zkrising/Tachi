@@ -9,8 +9,11 @@ import { UserContext } from "context/UserContext";
 import { PublicUserDocument } from "tachi-common";
 import toast from "react-hot-toast";
 import { TachiConfig } from "lib/config";
+import useSetSubheader from "components/layout/header/useSetSubheader";
 
 export default function LoginPage() {
+	useSetSubheader("Login");
+
 	const [err, setErr] = useState("");
 	const { setUser } = useContext(UserContext);
 	const history = useHistory();

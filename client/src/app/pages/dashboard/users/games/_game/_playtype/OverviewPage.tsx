@@ -25,6 +25,7 @@ import { GamePT } from "types/react";
 import { APIFetchV1 } from "util/api";
 import AsyncLoader from "components/util/AsyncLoader";
 import { Playtype } from "types/tachi";
+import TimelineChart from "components/charts/TimelineChart";
 
 export default function OverviewPage({
 	reqUser,
@@ -59,12 +60,34 @@ function RankingInfo({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 					throw new Error(res.description);
 				}
 
-				return res.body;
+				const data: number[] = [];
+
+				for (let i = 0; i <= 90; i++) {
+					data.push(
+						(data[i - 1] ?? 50) +
+							Math.floor(Math.random() > 0.5 ? -Math.random() * 5 : Math.random() * 5)
+					);
+				}
+
+				return data.map((e, i) => ({
+					ranking: e,
+					timestamp: Date.now() - i * 1000 * 60 * 60 * 24,
+				}));
 			}}
 		>
 			{data => (
 				<Card className="mt-4" header="Ranking">
-					<div>{data.map(e => e.ranking)}</div>
+					<TimelineChart
+						height="30rem"
+						width="100%"
+						data={[
+							{
+								id: "ranking",
+								data: data.map(d => ({ x: d.timestamp, y: -d.ranking })),
+							},
+						]}
+						yAxisFormat={y => `#${-y}`}
+					/>
 				</Card>
 			)}
 		</AsyncLoader>

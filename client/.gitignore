@@ -1,15 +1,14 @@
 # dependencies
 /node_modules
+
 .env
 
-/reference
-
-/_site
 /build
 
-/public/media/svg
 /src/react-app-env.d.ts
 
 .vscode
 
 /src/react-app-env.d.ts
+
+.pnpm-debug.log

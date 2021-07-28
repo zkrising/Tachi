@@ -7,7 +7,7 @@ export function UpdateSubheader(
 	setBreadcrumbs: SetState<string[]>,
 	customTitle?: string
 ) {
-	const title = customTitle ?? breadcrumbs[breadcrumbs.length - 1];
+	const title = customTitle ?? breadcrumbs[breadcrumbs.length - 1] ?? "Somewhere...";
 
 	document.title = `${title} | ${TachiConfig.name}`;
 	setTitle(title);

@@ -11,11 +11,14 @@ import toast from "react-hot-toast";
 import { UseFormik } from "types/react";
 import Divider from "components/util/Divider";
 import { TachiConfig } from "lib/config";
+import useSetSubheader from "components/layout/header/useSetSubheader";
 
 // seconds it takes for a user to actually read the rules.
 const RULES_READ_TIME = 30;
 
 export default function RegisterPage() {
+	useSetSubheader("Register");
+
 	const [err, setErr] = useState("");
 	// not opened: user has not clicked the rules link
 	// opened: user has clicked the rules link

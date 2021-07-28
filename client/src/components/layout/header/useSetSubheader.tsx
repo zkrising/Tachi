@@ -17,9 +17,5 @@ export default function useSetSubheader(
 			setBreadcrumbs,
 			overrideTitle
 		);
-
-		return () => {
-			UpdateSubheader([], setTitle, setBreadcrumbs);
-		};
 	}, deps);
 }

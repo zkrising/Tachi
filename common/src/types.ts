@@ -691,6 +691,7 @@ export interface PublicUserDocument extends MongoDBDocument {
 		youtube?: string | null;
 		twitch?: string | null;
 	};
+	joinDate: integer;
 	lastSeen: integer;
 	about: string;
 	customPfp: boolean;

@@ -65,7 +65,9 @@ if (process.env.NODE_ENV !== "production" && CLIENT_DEV_SERVER) {
 	// hack to allow all OPTIONS requests. Remember that this setting should not be on in production!
 	// app.options("*", (req, res) => res.send());
 } else {
-	logger.info("Enabling Helmet, as no CLIENT_DEV_SERVER was set, or we are in production.");
+	if (process.env.NODE_ENV !== "test") {
+		logger.info("Enabling Helmet, as no CLIENT_DEV_SERVER was set, or we are in production.");
+	}
 	app.use(helmet());
 }
 
@@ -115,7 +117,7 @@ if (RUN_OWN_CDN) {
 		logger.warn(
 			`Running OWN_CDN in production. Consider making a separate process handle your CDN for performance.`
 		);
-	} else {
+	} else if (process.env.NODE_ENV !== "test") {
 		logger.info("Running own CDN.");
 	}
 

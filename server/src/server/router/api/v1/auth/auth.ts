@@ -91,7 +91,7 @@ export async function AddNewUser(
 		customPfp: false,
 		joinDate: Date.now(),
 		lastSeen: Date.now(), // lol
-		authLevel: null,
+		authLevel: "user",
 		badges: [],
 	};
 

@@ -212,20 +212,20 @@ export interface Grades {
 	"ddr:SP": DDRGrades;
 	"ddr:DP": DDRGrades;
 	"maimai:Single":
-		| "F"
-		| "E"
-		| "D"
-		| "C"
-		| "B"
-		| "A"
-		| "AA"
-		| "AAA"
-		| "S"
-		| "S+"
-		| "SS"
-		| "SS+"
-		| "SSS"
-		| "SSS+";
+	| "F"
+	| "E"
+	| "D"
+	| "C"
+	| "B"
+	| "A"
+	| "AA"
+	| "AAA"
+	| "S"
+	| "S+"
+	| "SS"
+	| "SS+"
+	| "SSS"
+	| "SSS+";
 	"jubeat:Single": "E" | "D" | "C" | "B" | "A" | "S" | "SS" | "SSS" | "EXC";
 	"museca:Single": "没" | "拙" | "凡" | "佳" | "良" | "優" | "秀" | "傑" | "傑G";
 	"bms:7K": IIDXGrades;
@@ -297,14 +297,14 @@ export interface Difficulties {
 	"bms:14K": "CHART";
 	"chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
 	"gitadora:Gita":
-		| "BASIC"
-		| "ADVANCED"
-		| "EXTREME"
-		| "MASTER"
-		| "BASS BASIC"
-		| "BASS ADVANCED"
-		| "BASS EXTREME"
-		| "BASS MASTER";
+	| "BASIC"
+	| "ADVANCED"
+	| "EXTREME"
+	| "MASTER"
+	| "BASS BASIC"
+	| "BASS ADVANCED"
+	| "BASS EXTREME"
+	| "BASS MASTER";
 	"gitadora:Dora": "BASIC" | "ADVANCED" | "EXTREME" | "MASTER";
 }
 
@@ -673,7 +673,7 @@ export interface FunFactDocument extends MongoDBDocument {
 	timestamp: integer;
 }
 
-export type UserBadges = "alpha" |"beta";
+export type UserBadges = "alpha" | "beta" | "devTeam";
 
 /**
  * PublicUserDocument: These are the public values returned from GetUser functions.
@@ -697,6 +697,7 @@ export interface PublicUserDocument extends MongoDBDocument {
 	customBanner: boolean;
 	clan: string | null; // todo
 	badges: UserBadges[];
+	authLevel: "banned" | null | "mod" | "admin"
 }
 
 export interface UGSRatingsLookup {
@@ -1335,7 +1336,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 
 export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>
 	extends MongoDBDocument,
-		UserGameStats<I> {
+	UserGameStats<I> {
 	ranking: integer;
 	playcount: integer;
 	timestamp: integer;

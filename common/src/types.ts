@@ -698,7 +698,7 @@ export interface PublicUserDocument extends MongoDBDocument {
 	customBanner: boolean;
 	clan: string | null; // todo
 	badges: UserBadges[];
-	authLevel: "banned" | null | "mod" | "admin"
+	authLevel: "banned" | "user" | "mod" | "admin"
 }
 
 export interface UGSRatingsLookup {

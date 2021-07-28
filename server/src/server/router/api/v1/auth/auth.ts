@@ -89,7 +89,10 @@ export async function AddNewUser(
 		socialMedia: {},
 		customBanner: false,
 		customPfp: false,
+		joinDate: Date.now(),
 		lastSeen: Date.now(), // lol
+		authLevel: null,
+		badges: [],
 	};
 
 	return db.users.insert(userDoc);

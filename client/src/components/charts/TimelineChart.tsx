@@ -47,7 +47,6 @@ export default function TimelineChart({
 
 	// bootstrap abuse to render two different graphs depending on what device.
 	// yeah, it's not great.
-
 	return (
 		<>
 			<div className="d-block d-md-none" style={{ height: mobileHeight, width: mobileWidth }}>

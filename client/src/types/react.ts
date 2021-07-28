@@ -12,7 +12,7 @@ import { Dispatch, SetStateAction } from "react";
 import { Game, Playtypes } from "tachi-common";
 
 export interface JustChildren {
-	children: JSX.Element[] | JSX.Element | string;
+	children: (JSX.Element | string)[] | JSX.Element | string;
 }
 
 export type SetState<T> = Dispatch<SetStateAction<T>>;

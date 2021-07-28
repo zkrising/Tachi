@@ -3,3 +3,7 @@ export function RFA<T>(arr: T[]): T {
 }
 
 export const NO_OP = () => void 0;
+
+export function UppercaseFirst(str: string) {
+	return str[0].toUpperCase() + str.substring(1);
+}

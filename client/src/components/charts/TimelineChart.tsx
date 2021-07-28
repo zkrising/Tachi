@@ -1,84 +1,90 @@
 import React from "react";
-import { FormatDate, FormatDuration, FormatTime, FormatTimeSmall, MillisToSince } from "util/time";
-import { ResponsiveLine, Serie } from "@nivo/line";
-import { DateTime } from "luxon";
+import { ResponsiveLine, Serie, PointTooltipProps } from "@nivo/line";
 import { TACHI_CHART_THEME } from "util/constants/chart-theme";
 import ChartTooltip from "./ChartTooltip";
+import { ColourConfig } from "lib/config";
 
-export default function TimelineChart<T>({
-	width,
-	height,
+export default function TimelineChart({
+	width = "100%",
+	height = "100%",
+	mobileHeight = "100%",
+	mobileWidth = width,
 	data,
-	yAxisFormat,
+	axisBottom,
+	axisLeft,
+	tooltipRenderFn,
+	reverse,
+	curve,
+	...props
 }: {
+	mobileHeight?: number | string;
+	mobileWidth?: number | string;
 	width?: number | string;
 	height?: number | string;
 	data: Serie[];
-	yAxisFormat?: (y: number) => string;
-}) {
+	tooltipRenderFn?: (p: PointTooltipProps["point"]) => JSX.Element;
+	reverse?: boolean;
+} & ResponsiveLine["props"]) {
+	if (!data[0] || data[0].data.length < 7) {
+		return (
+			<div
+				style={{ height, width }}
+				className="d-flex justify-content-center align-items-center"
+			>
+				Not Enough Data... Yet.
+			</div>
+		);
+	}
+
+	// bootstrap abuse to render two different graphs depending on what device.
+	// yeah, it's not great.
+
 	return (
-		<div style={{ height, width }}>
-			<ResponsiveLine
-				data={data}
-				margin={{ right: 110, top: 30, bottom: 50, left: 60 }}
-				xScale={{ type: "time", format: "%Q" }}
-				xFormat="time:%Q"
-				axisBottom={{
-					format: x => FormatTimeSmall(Number(x)),
-				}}
-				yScale={{ type: "linear", min: "auto", max: "auto", stacked: true, reverse: false }}
-				axisLeft={{
-					tickSize: 5,
-					tickPadding: 5,
-					tickRotation: 0,
-					format: y => (Number.isInteger(y) ? `#${-y}` : ""),
-				}}
-				enablePoints={false}
-				enableArea={true}
-				colors={["#cc527a"]}
-				useMesh={true}
-				theme={TACHI_CHART_THEME}
-				tooltip={d => (
-					<ChartTooltip
-						point={d.point}
-						renderFn={p => (
-							<div>
-								{MillisToSince(+p.data.xFormatted)}: #{-p.data.yFormatted}
-								<br />
-								<small className="text-muted">
-									({FormatDate(+p.data.xFormatted)})
-								</small>
-							</div>
-						)}
-					/>
-				)}
-				legends={[
-					{
-						anchor: "bottom-right",
-						direction: "column",
-						justify: false,
-						translateX: 100,
-						translateY: 0,
-						itemsSpacing: 0,
-						itemDirection: "left-to-right",
-						itemWidth: 80,
-						itemHeight: 20,
-						itemOpacity: 0.75,
-						symbolSize: 12,
-						symbolShape: "circle",
-						symbolBorderColor: "rgba(0, 0, 0, .5)",
-						effects: [
-							{
-								on: "hover",
-								style: {
-									itemBackground: "rgba(0, 0, 0, .03)",
-									itemOpacity: 1,
-								},
-							},
-						],
-					},
-				]}
-			/>
-		</div>
+		<>
+			<div className="d-block d-md-none" style={{ height: mobileHeight, width: mobileWidth }}>
+				<ResponsiveLine
+					data={data}
+					margin={{ top: 30, bottom: 50, left: 30, right: 0 }}
+					xScale={{ type: "time", format: "%Q" }}
+					xFormat="time:%Q"
+					axisBottom={axisBottom}
+					gridXValues={3}
+					motionConfig="stiff"
+					crosshairType="x"
+					yScale={{ type: "linear", min: "auto", max: "auto", reverse }}
+					axisLeft={axisLeft}
+					enablePoints={false}
+					colors={[ColourConfig.primary]}
+					useMesh={true}
+					theme={TACHI_CHART_THEME}
+					curve={curve}
+					tooltip={d => <ChartTooltip point={d.point} renderFn={tooltipRenderFn} />}
+					legends={[]}
+					{...props}
+				/>
+			</div>
+			<div className="d-none d-md-block" style={{ height, width }}>
+				<ResponsiveLine
+					data={data}
+					margin={{ top: 30, bottom: 50, left: 50, right: 50 }}
+					xScale={{ type: "time", format: "%Q" }}
+					xFormat="time:%Q"
+					axisBottom={axisBottom}
+					gridXValues={3}
+					motionConfig="stiff"
+					crosshairType="x"
+					yScale={{ type: "linear", min: "auto", max: "auto", reverse }}
+					axisLeft={axisLeft}
+					enablePoints={false}
+					colors={[ColourConfig.primary]}
+					useMesh={true}
+					theme={TACHI_CHART_THEME}
+					curve={curve}
+					tooltip={d => <ChartTooltip point={d.point} renderFn={tooltipRenderFn} />}
+					legends={[]}
+					{...props}
+				/>
+			</div>
+		</>
 	);
 }

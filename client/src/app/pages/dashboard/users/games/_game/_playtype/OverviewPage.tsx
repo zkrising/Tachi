@@ -5,8 +5,8 @@ import CardNavButton from "components/layout/page/CardNavButton";
 import { UserContext } from "context/UserContext";
 import { UserGameStatsContext } from "context/UserGameStatsContext";
 import { nanoid } from "nanoid";
-import React, { useContext, useState } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import React, { useContext, useMemo, useState } from "react";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
 	FormatGame,
@@ -19,6 +19,7 @@ import {
 	AnyChartDocument,
 	FolderDocument,
 	GetGamePTConfig,
+	UserGameStats,
 } from "tachi-common";
 import { UGPTHistory, UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
@@ -26,6 +27,12 @@ import { APIFetchV1 } from "util/api";
 import AsyncLoader from "components/util/AsyncLoader";
 import { Playtype } from "types/tachi";
 import TimelineChart from "components/charts/TimelineChart";
+import Divider from "components/util/Divider";
+import Icon from "components/util/Icon";
+import { DateTime } from "luxon";
+import { FormatDate, MillisToSince } from "util/time";
+import SelectButton from "components/util/SelectButton";
+import { UppercaseFirst } from "util/misc";
 
 export default function OverviewPage({
 	reqUser,
@@ -60,37 +67,206 @@ function RankingInfo({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 					throw new Error(res.description);
 				}
 
-				const data: number[] = [];
-
-				for (let i = 0; i <= 90; i++) {
-					data.push(
-						(data[i - 1] ?? 50) +
-							Math.floor(Math.random() > 0.5 ? -Math.random() * 5 : Math.random() * 5)
-					);
-				}
-
-				return data.map((e, i) => ({
-					ranking: e,
-					timestamp: Date.now() - i * 1000 * 60 * 60 * 24,
-				}));
+				return res.body;
 			}}
 		>
-			{data => (
-				<Card className="mt-4" header="Ranking">
-					<TimelineChart
-						height="30rem"
-						width="100%"
-						data={[
-							{
-								id: "ranking",
-								data: data.map(d => ({ x: d.timestamp, y: -d.ranking })),
-							},
-						]}
-						yAxisFormat={y => `#${-y}`}
-					/>
-				</Card>
-			)}
+			{data => <UserHistory {...{ data, game, playtype, reqUser }} />}
 		</AsyncLoader>
+	);
+}
+
+function UserHistory({
+	data,
+	reqUser,
+	game,
+	playtype,
+}: { data: UGPTHistory; reqUser: PublicUserDocument } & GamePT) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	const [mode, setMode] = useState<"ranking" | "playcount" | "rating">("ranking");
+	const [rating, setRating] = useState<keyof UserGameStats["ratings"]>(
+		gptConfig.defaultProfileRatingAlg
+	);
+
+	const propName = useMemo(() => {
+		if (mode === "rating" && rating) {
+			return UppercaseFirst(rating);
+		}
+
+		return UppercaseFirst(mode);
+	}, [mode, rating]);
+
+	const currentPropValue = useMemo(() => {
+		if (mode === "rating" && rating) {
+			return data[0].ratings[rating] ? data[0].ratings[rating]!.toFixed(2) : "N/A";
+		} else if (mode === "ranking") {
+			return `#${data[0].ranking}`;
+		}
+
+		return data[0].playcount;
+	}, [mode, rating]);
+
+	return (
+		<Card className="mt-4" header={`${reqUser.username}'s History`}>
+			<div className="row d-flex justify-content-center align-items-center mb-4">
+				<div className="d-none d-md-block col-md-3 text-center">
+					<div className="mb-4">Something</div>
+					<div>
+						<span className="display-4">Todo</span>
+					</div>
+				</div>
+				<div className="col-12 col-md-6 d-flex justify-content-center">
+					<div className="btn-group">
+						<SelectButton id="ranking" value={mode} setValue={setMode}>
+							<Icon type="trophy" />
+							Ranking
+						</SelectButton>
+						<SelectButton id="playcount" value={mode} setValue={setMode}>
+							<Icon type="gamepad" />
+							Playcount
+						</SelectButton>
+						<SelectButton id="rating" value={mode} setValue={setMode}>
+							<Icon type="chart-line" />
+							Ratings
+						</SelectButton>
+					</div>
+				</div>
+				<div className="col-12 d-block d-md-none mb-4"></div>
+				<div className="col-12 col-md-3 text-center">
+					<div className="mb-4">Current {propName}</div>
+					<div>
+						<span className="display-4">{currentPropValue}</span>
+					</div>
+				</div>
+			</div>
+			<Divider className="mt-6 mb-2" />
+			{mode === "ranking" ? (
+				<RankingTimeline data={data} />
+			) : mode === "playcount" ? (
+				<TimelineChart
+					height="30rem"
+					mobileHeight="20rem"
+					data={[
+						{
+							id: "playcount",
+							data: data.map(d => ({ x: d.timestamp, y: d.playcount })),
+						},
+					]}
+					axisBottom={{
+						format: x => DateTime.fromJSDate(x).toLocaleString(DateTime.DATE_FULL),
+						tickValues: 3,
+					}}
+					axisLeft={{
+						tickSize: 5,
+						tickPadding: 5,
+						tickRotation: 0,
+						format: y => (Number.isInteger(y) ? y : ""),
+					}}
+					tooltipRenderFn={p => (
+						<div>
+							{p.data.yFormatted} Play{p.data.yFormatted !== "1" && "s"}
+							<br />
+							<small className="text-muted">
+								{MillisToSince(+p.data.xFormatted)}
+							</small>
+						</div>
+					)}
+					curve={"stepAfter"}
+					enableArea={true}
+					areaBaselineValue={Math.min(...data.map(e => e.playcount))}
+				/>
+			) : (
+				<>
+					<div className="col-12 offset-md-4 col-md-4 mt-4">
+						<select
+							className="form-control"
+							value={rating}
+							onChange={e =>
+								setRating(e.target.value as keyof UserGameStats["ratings"])
+							}
+						>
+							{gptConfig.profileRatingAlgs.map(e => (
+								<option key={e} value={e}>
+									{UppercaseFirst(e)}
+								</option>
+							))}
+						</select>
+					</div>
+
+					<RatingTimeline {...{ data, rating }} />
+				</>
+			)}
+		</Card>
+	);
+}
+
+function RatingTimeline({
+	data,
+	rating,
+}: {
+	data: UGPTHistory;
+	rating: keyof UserGameStats["ratings"];
+}) {
+	const ratingDataset = [
+		{ id: rating, data: data.map(e => ({ x: e.timestamp, y: e.ratings[rating] })) },
+	];
+
+	return (
+		<TimelineChart
+			height="30rem"
+			mobileHeight="20rem"
+			data={ratingDataset}
+			axisBottom={{
+				format: x => DateTime.fromJSDate(x).toLocaleString(DateTime.DATE_FULL),
+				tickValues: 3, // temp
+			}}
+			axisLeft={{
+				tickSize: 5,
+				tickPadding: 5,
+				tickRotation: 0,
+				format: y => (y ? y.toFixed(2) : "N/A"),
+			}}
+			tooltipRenderFn={p => (
+				<div>
+					{p.data.y ? (p.data.y as number).toFixed(2) : "N/A"} {UppercaseFirst(rating)}
+					<br />
+					<small className="text-muted">{MillisToSince(+p.data.xFormatted)}</small>
+				</div>
+			)}
+		/>
+	);
+}
+
+function RankingTimeline({ data }: { data: UGPTHistory }) {
+	return (
+		<TimelineChart
+			height="30rem"
+			mobileHeight="20rem"
+			data={[
+				{
+					id: "ranking",
+					data: data.map(d => ({ x: d.timestamp, y: d.ranking })),
+				},
+			]}
+			axisBottom={{
+				format: x => DateTime.fromJSDate(x).toLocaleString(DateTime.DATE_FULL),
+				tickValues: 3, // temp
+			}}
+			axisLeft={{
+				tickSize: 5,
+				tickPadding: 5,
+				tickRotation: 0,
+				format: y => (Number.isInteger(y) ? `#${y}` : ""),
+			}}
+			reverse={true}
+			tooltipRenderFn={p => (
+				<div>
+					{MillisToSince(+p.data.xFormatted)}: #{p.data.yFormatted}
+					<br />
+					<small className="text-muted">({FormatDate(+p.data.xFormatted)})</small>
+				</div>
+			)}
+		/>
 	);
 }
 

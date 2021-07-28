@@ -121,7 +121,7 @@ function RankingData({ ranking, outOf }: { ranking: number; outOf: number }) {
 				<h4>Ranking</h4>
 			</div>
 			<div className="col-12">
-				<strong style={{ fontSize: "2rem" }}>#{ranking}</strong>
+				<strong className="display-4">#{ranking}</strong>
 				<span className="text-muted">/{outOf}</span>
 			</div>
 		</div>

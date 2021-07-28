@@ -1,4 +1,6 @@
-export const TACHI_CHART_THEME = {
+import { Theme } from "@nivo/core";
+
+export const TACHI_CHART_THEME: Theme = {
 	background: "#2b292b",
 	textColor: "#ffffff",
 	fontSize: 11,
@@ -20,6 +22,11 @@ export const TACHI_CHART_THEME = {
 		line: {
 			stroke: "#131313",
 			strokeWidth: 1,
+		},
+	},
+	crosshair: {
+		line: {
+			stroke: "white",
 		},
 	},
 };

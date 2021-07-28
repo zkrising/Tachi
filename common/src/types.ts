@@ -673,6 +673,8 @@ export interface FunFactDocument extends MongoDBDocument {
 	timestamp: integer;
 }
 
+export type UserBadges = "alpha" |"beta";
+
 /**
  * PublicUserDocument: These are the public values returned from GetUser functions.
  * Note that the private fields: password, email and integrations, are not present in this document.
@@ -694,6 +696,7 @@ export interface PublicUserDocument extends MongoDBDocument {
 	customPfp: boolean;
 	customBanner: boolean;
 	clan: string | null; // todo
+	badges: UserBadges[];
 }
 
 export interface UGSRatingsLookup {

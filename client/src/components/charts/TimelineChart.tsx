@@ -27,12 +27,21 @@ export default function TimelineChart({
 } & ResponsiveLine["props"]) {
 	if (!data[0] || data[0].data.length < 7) {
 		return (
-			<div
-				style={{ height, width }}
-				className="d-flex justify-content-center align-items-center"
-			>
-				Not Enough Data... Yet.
-			</div>
+			<>
+				<div
+					className="d-block d-md-none"
+					style={{ height: mobileHeight, width: mobileWidth }}
+				>
+					<div className="d-flex justify-content-center align-items-center">
+						Not Enough Data... Yet.
+					</div>
+				</div>
+				<div className="d-none d-md-block" style={{ height, width }}>
+					<div className="d-flex justify-content-center align-items-center">
+						Not Enough Data... Yet.
+					</div>
+				</div>
+			</>
 		);
 	}
 

@@ -8,7 +8,7 @@ export function HeaderMobile() {
 
 	return (
 		<>
-			<div id="kt_header_mobile" className="header-mobile">
+			<div id="kt_header_mobile" className="header-mobile header-mobile-fixed">
 				<div className="d-flex align-items-center justify-content-start">
 					<button
 						className="btn p-0 burger-icon burger-icon-right ml-2 mr-auto"

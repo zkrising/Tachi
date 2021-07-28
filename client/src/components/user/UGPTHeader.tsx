@@ -135,8 +135,8 @@ function BottomNav({ baseUrl }: { baseUrl: string }) {
 				<NavItem to={`${baseUrl}/`}>Overview</NavItem>
 				<NavItem to={`${baseUrl}/scores`}>Scores</NavItem>
 				<NavItem to={`${baseUrl}/folders`}>Folders</NavItem>
-				<NavItem to={`${baseUrl}/sessions`}>Sessions</NavItem>
 				<NavItem to={`${baseUrl}/achievables`}>Goals &amp; Milestones</NavItem>
+				<NavItem to={`${baseUrl}/sessions`}>Sessions</NavItem>
 				<NavItem to={`${baseUrl}/leaderboard`}>Leaderboard</NavItem>
 				<NavItem to={`${baseUrl}/leaderboard`}>Settings</NavItem>
 			</Navbar>

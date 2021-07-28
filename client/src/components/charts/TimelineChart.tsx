@@ -32,12 +32,12 @@ export default function TimelineChart({
 					className="d-block d-md-none"
 					style={{ height: mobileHeight, width: mobileWidth }}
 				>
-					<div className="d-flex justify-content-center align-items-center">
+					<div className="d-flex h-100 justify-content-center align-items-center">
 						Not Enough Data... Yet.
 					</div>
 				</div>
 				<div className="d-none d-md-block" style={{ height, width }}>
-					<div className="d-flex justify-content-center align-items-center">
+					<div className="d-flex h-100 justify-content-center align-items-center">
 						Not Enough Data... Yet.
 					</div>
 				</div>

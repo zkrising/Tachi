@@ -169,7 +169,7 @@ export default function CreditsPage() {
 						<ExternalLink href="https://node-tap.org">Node TAP</ExternalLink>
 						<br />
 						<small>
-							Node TAP is a testing frame work that is.not.a(&quot;mess&quot;)
+							Node TAP is a testing framework that is.not.a(&quot;mess&quot;)
 						</small>
 					</li>
 					<li>

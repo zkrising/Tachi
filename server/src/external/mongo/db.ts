@@ -31,6 +31,7 @@ import monk, { TMiddleware } from "monk";
 import { MONGO_CONNECTION_URL, MONGO_DATABASE_NAME } from "lib/setup/config";
 import CreateLogCtx from "lib/logger/logger";
 import { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
+import { GetMilisecondsSince } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -41,11 +42,11 @@ if (process.env.NODE_ENV === "test") {
 	dbName = `testingdb`;
 }
 
-let dbtime: [number, number] = [0, 0];
+let dbtime: bigint;
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== "test") {
 	logger.info(`Connecting to database ${MONGO_CONNECTION_URL}/${dbName}...`);
-	dbtime = process.hrtime();
+	dbtime = process.hrtime.bigint();
 }
 
 export const monkDB = monk(`${MONGO_CONNECTION_URL}/${dbName}`);
@@ -54,9 +55,7 @@ export const monkDB = monk(`${MONGO_CONNECTION_URL}/${dbName}`);
 monkDB
 	.then(() => {
 		if (process.env.NODE_ENV !== "test") {
-			const time = process.hrtime(dbtime);
-			const elapsed = time[0] + time[1] / 1e6;
-			logger.info(`Database connection successful: took ${elapsed}ms`);
+			logger.info(`Database connection successful: took ${GetMilisecondsSince(dbtime!)}ms`);
 		}
 	})
 	.catch((err) => {

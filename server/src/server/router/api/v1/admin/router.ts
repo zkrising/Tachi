@@ -65,7 +65,7 @@ router.post(
 	}),
 	(req, res) => {
 		const logLevel = GetLogLevel();
-		ChangeRootLogLevel(req.body.level);
+		ChangeRootLogLevel(req.body.logLevel);
 
 		const duration = req.body.duration ?? 60;
 
@@ -76,7 +76,7 @@ router.post(
 
 		logger.info(`Log level has been changed to ${req.body.level}.`);
 
-		if (req.body.noReset) {
+		if (!req.body.noReset) {
 			logger.info(`This will reset to "${LOG_LEVEL}" level in ${duration} minutes.`);
 
 			currentLogLevelTimer = setTimeout(() => {

@@ -6,10 +6,13 @@
         "email": "thepasswordis@password.com",
         "id": 1,
         "socialMedia": {},
-        "lastSeen": null,
+        "joinDate": 123,
+        "lastSeen": 123,
         "about": "test_user_not_real",
         "customPfp": false,
         "customBanner": false,
-        "clan": null
+        "clan": null,
+        "badges": [],
+        "authLevel": "admin"
     }
 ]

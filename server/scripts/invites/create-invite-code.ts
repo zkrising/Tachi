@@ -11,6 +11,10 @@ program.option("-c, --code <code>", "The code for this invite.");
 program.parse(process.argv);
 const options = program.opts();
 
+if (!options.code) {
+	throw new Error(`No code specified.`);
+}
+
 db.invites
 	.insert({
 		code: options.code,

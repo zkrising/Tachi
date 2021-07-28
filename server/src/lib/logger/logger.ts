@@ -169,6 +169,10 @@ export function ChangeRootLogLevel(
 	}
 }
 
+export function GetLogLevel() {
+	return tports[0].level;
+}
+
 export const Transports = tports;
 
 export default CreateLogCtx;

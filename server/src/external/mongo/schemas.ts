@@ -22,7 +22,10 @@ export const PRUDENCE_PUBLIC_USER: PrudenceSchema = {
 	customPfp: "boolean",
 	customBanner: "boolean",
 	clan: p.nullable(p.isBoundedString(1, 4)),
-	lastSeen: p.nullable(p.isPositiveInteger),
+	lastSeen: p.isPositiveInteger,
+	joinDate: p.isPositiveInteger,
+	badges: [p.isIn("beta", "alpha", "devTeam")],
+	authLevel: p.isIn("banned", "user", "mod", "admin"),
 };
 
 export const PRUDENCE_PRIVATE_USER = Object.assign(

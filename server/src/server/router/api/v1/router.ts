@@ -1,4 +1,5 @@
 import { Router } from "express";
+import adminRouter from "./admin/router";
 import authRouter from "./auth/router";
 import importRouter from "./import/router";
 import statusRouter from "./status/router";
@@ -10,6 +11,7 @@ import sessionsRouter from "./sessions/router";
 
 const router: Router = Router({ mergeParams: true });
 
+router.use("/admin", adminRouter);
 router.use("/auth", authRouter);
 router.use("/status", statusRouter);
 router.use("/import", importRouter);

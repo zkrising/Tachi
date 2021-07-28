@@ -1,6 +1,7 @@
+import { LOG_LEVEL } from "lib/setup/config";
 import t from "tap";
 import { CloseAllConnections } from "../../test-utils/close-connections";
-import CreateLogCtx, { ChangeRootLogLevel, rootLogger, Transports } from "./logger";
+import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel, rootLogger, Transports } from "./logger";
 
 t.test("Logger Tests", (t) => {
 	const logger = CreateLogCtx(__filename);
@@ -18,6 +19,17 @@ t.test("Logger Tests", (t) => {
 	Transports[0].level = process.env.LOG_LEVEL ?? "info";
 
 	logger.debug("This message shouldn't appear.");
+
+	t.end();
+});
+
+t.test("#GetLogLevel", (t) => {
+	t.equal(GetLogLevel(), LOG_LEVEL);
+
+	ChangeRootLogLevel("crit");
+	t.equal(GetLogLevel(), "crit");
+
+	ChangeRootLogLevel(LOG_LEVEL);
 
 	t.end();
 });

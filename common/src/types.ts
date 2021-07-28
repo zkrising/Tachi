@@ -517,7 +517,7 @@ export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoD
 
 export interface SessionViewDocument extends MongoDBDocument {
 	sessionID: string;
-	ip: string;
+	identifier: string | number; // either userID or req.ip
 	timestamp: number;
 }
 

@@ -7,7 +7,7 @@ import { ChangeOpacity } from "util/color-opacity";
 import { NumericSOV, StrSOV } from "util/sorts";
 import SelectableRating from "../components/SelectableRating";
 import { ScoreDataset } from "types/tables";
-import { GetGamePTConfig, ScoreCalculatedDataLookup } from "tachi-common";
+import { GetGamePTConfig, integer, ScoreCalculatedDataLookup } from "tachi-common";
 import TachiTable, { Header } from "../components/TachiTable";
 import DifficultyCell from "../cells/DifficultyCell";
 import ScoreCell from "../cells/ScoreCell";
@@ -15,7 +15,13 @@ import DeltaCell from "../cells/DeltaCell";
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { nanoid } from "nanoid";
 
-export default function IIDXScoreTable({ dataset }: { dataset: ScoreDataset<"iidx:SP"> }) {
+export default function IIDXScoreTable({
+	dataset,
+	pageLen,
+}: {
+	dataset: ScoreDataset<"iidx:SP">;
+	pageLen?: integer;
+}) {
 	const gptConfig = GetGamePTConfig<"iidx:SP">("iidx", "SP");
 
 	const [rating, setRating] = useState<ScoreCalculatedDataLookup["iidx:SP"]>(
@@ -25,6 +31,7 @@ export default function IIDXScoreTable({ dataset }: { dataset: ScoreDataset<"iid
 	return (
 		<TachiTable
 			dataset={dataset}
+			pageLen={pageLen}
 			headers={[
 				["Chart", "Ch.", NumericSOV(x => x.__related.chart.levelNum)],
 				["Song", "Song", StrSOV(x => x.__related.song.title)],
@@ -85,7 +92,27 @@ export default function IIDXScoreTable({ dataset }: { dataset: ScoreDataset<"iid
 					>
 						<strong>{sc.scoreData.lamp}</strong>
 						<br />
-						<small>[BP: {sc.scoreData.hitMeta.bp ?? "No Data"}]</small>
+						<small>
+							[BP: {sc.scoreData.hitMeta.bp ?? "No Data"}
+							{sc.scoreData.hitMeta.comboBreak
+								? `, CBRK: ${sc.scoreData.hitMeta.comboBreak}`
+								: ""}
+							]
+						</small>
+						{sc.scoreData.lamp === "FAILED" && (
+							<>
+								<br />
+								<small className="text-muted">
+									{sc.scoreData.hitMeta.gsm
+										? `EC: ${sc.scoreData.hitMeta.gsm.EASY}, NC: ${sc.scoreData.hitMeta.gsm.NORMAL}`
+										: sc.scoreMeta.gauge === "EASY"
+										? `EC: ${sc.scoreData.hitMeta.gauge}`
+										: sc.scoreMeta.gauge === "NORMAL"
+										? `NC: ${sc.scoreMeta.gauge}`
+										: ""}
+								</small>
+							</>
+						)}
 					</td>
 					{rating === "BPI" ? (
 						<BPICell bpi={sc.calculatedData.BPI} />

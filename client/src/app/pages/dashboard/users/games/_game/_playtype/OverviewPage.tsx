@@ -6,7 +6,7 @@ import { UserContext } from "context/UserContext";
 import { UserGameStatsContext } from "context/UserGameStatsContext";
 import { nanoid } from "nanoid";
 import React, { useContext, useMemo, useState } from "react";
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Badge, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
 	FormatGame,
@@ -20,8 +20,10 @@ import {
 	FolderDocument,
 	GetGamePTConfig,
 	UserGameStats,
+	SessionDocument,
+	ScoreDocument,
 } from "tachi-common";
-import { UGPTHistory, UGPTPreferenceStatsReturn } from "types/api-returns";
+import { SessionReturns, UGPTHistory, UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
 import { APIFetchV1 } from "util/api";
 import AsyncLoader from "components/util/AsyncLoader";
@@ -30,9 +32,16 @@ import TimelineChart from "components/charts/TimelineChart";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import { DateTime } from "luxon";
-import { FormatDate, MillisToSince } from "util/time";
+import { FormatDate, FormatDuration, FormatTime, MillisToSince } from "util/time";
 import SelectButton from "components/util/SelectButton";
 import { UppercaseFirst } from "util/misc";
+import { ONE_HOUR, ONE_MINUTE } from "util/constants/time";
+import MiniTable from "components/tables/components/MiniTable";
+import { GetPBs, CreateChartMap, CreateSongMap } from "util/data";
+import IIDXScoreTable from "components/tables/scores/IIDXScoreTable";
+
+import { NumericSOV } from "util/sorts";
+import { ScoreDataset } from "types/tables";
 
 export default function OverviewPage({
 	reqUser,
@@ -51,7 +60,199 @@ export default function OverviewPage({
 		<>
 			<StatShowcase reqUser={reqUser} game={game} playtype={playtype} />
 			<RankingInfo reqUser={reqUser} game={game} playtype={playtype} />
+			<LastSession reqUser={reqUser} game={game} playtype={playtype} />
 		</>
+	);
+}
+
+function LastSession({ reqUser, game, playtype }: { reqUser: PublicUserDocument } & GamePT) {
+	return (
+		<AsyncLoader
+			promiseFn={async () => {
+				const res = await APIFetchV1<SessionDocument>(
+					`/users/${reqUser.id}/games/${game}/${playtype}/sessions/last`
+				);
+
+				if (res.statusCode === 404) {
+					return null;
+				}
+
+				if (!res.success) {
+					throw new Error(res.description);
+				}
+
+				const sessionDataRes = await APIFetchV1<SessionReturns>(
+					`/sessions/${res.body!.sessionID}`
+				);
+
+				if (!sessionDataRes.success) {
+					throw new Error(res.description);
+				}
+
+				return { session: res.body, sessionData: sessionDataRes.body };
+			}}
+		>
+			{data =>
+				data && (
+					<Card className="mt-4" header="Most Recent Session">
+						<div className="row d-flex justify-content-center">
+							{
+								<>
+									<div className="col-12 text-center">
+										<h4 className="display-4">{data.session.name}</h4>
+										<span className="text-muted">{data.session.desc}</span>
+										<Divider className="mt-4 mb-8" />
+									</div>
+
+									<div className="col-12 col-lg-3 text-center">
+										<MiniTable
+											className="mt-4"
+											headers={["Information"]}
+											colSpan={2}
+										>
+											<tr>
+												<td>Started</td>
+												<td>{FormatTime(data.session.timeStarted)}</td>
+											</tr>
+											<tr>
+												{/* If session ended less than 2 hours ago, it can still be appended to. */}
+												{/* Kinda - time is a bit nonlinear wrt. importing scores, as scores don't have to have */}
+												{/* happened at the same time they were imported. */}
+												{/* that doesn't matter though - this is just a UI thing */}
+												<td>
+													{Date.now() - data.session.timeEnded <
+													ONE_HOUR * 2
+														? "Last Score"
+														: "Ended At"}
+												</td>
+												<td>
+													{FormatTime(data.session.timeEnded)}
+													{/* if the last score was less than 10 mins ago, this session is probably still being populated */}
+													{Date.now() - data.session.timeEnded <
+														ONE_MINUTE * 10 && (
+														<>
+															<br />
+															<Badge
+																variant="primary"
+																className="mt-2"
+															>
+																Maybe Ongoing?
+															</Badge>
+														</>
+													)}
+												</td>
+											</tr>
+											<tr>
+												<td>Duration</td>
+												<td>
+													{FormatDuration(
+														data.session.timeEnded -
+															data.session.timeStarted
+													)}
+												</td>
+											</tr>
+											<tr>
+												<td>Scores</td>
+												<td>{data.session.scoreInfo.length}</td>
+											</tr>
+											<tr>
+												<td>PBs</td>
+												<td>{GetPBs(data.session.scoreInfo).length}</td>
+											</tr>
+										</MiniTable>
+									</div>
+									<div className="col-12 col-lg-9">
+										<RecentSessionScoreInfo
+											{...data}
+											game={game}
+											playtype={playtype}
+										/>
+									</div>
+								</>
+							}
+						</div>
+					</Card>
+				)
+			}
+		</AsyncLoader>
+	);
+}
+
+function RecentSessionScoreInfo({
+	session,
+	sessionData,
+	game,
+	playtype,
+}: {
+	session: SessionDocument;
+	sessionData: SessionReturns;
+} & GamePT) {
+	const highlightedScores = sessionData.scores.find(e => e.highlight);
+
+	const [mode, setMode] = useState<"highlight" | "best" | "recent">(
+		highlightedScores ? "highlight" : "best"
+	);
+
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	const songMap = CreateSongMap(sessionData.songs);
+	const chartMap = CreateChartMap(sessionData.charts);
+
+	const dataset = useMemo(() => {
+		let scoreSet = sessionData.scores;
+		if (mode === "highlight") {
+			scoreSet = sessionData.scores.filter(e => e.highlight);
+		} else if (mode === "best") {
+			scoreSet.sort((a, b) =>
+				NumericSOV<ScoreDocument>(
+					d => d.calculatedData[gptConfig.defaultScoreRatingAlg] ?? 0
+				)(b, a)
+			);
+		} else if (mode === "recent") {
+			// sneaky hack to sort in reverse
+			scoreSet.sort((a, b) => NumericSOV<ScoreDocument>(d => d.timeAchieved ?? 0)(b, a));
+		}
+
+		const scoreDataset: ScoreDataset = [];
+
+		for (const score of scoreSet) {
+			const chart = chartMap.get(score.chartID)!;
+
+			scoreDataset.push({
+				...score,
+				__related: {
+					chart,
+					song: songMap.get(chart.songID)!,
+					index: 0,
+				},
+			});
+		}
+
+		return scoreDataset;
+	}, [mode]);
+
+	return (
+		<div className="row">
+			<div className="col-12 d-flex justify-content-center">
+				<div className="btn-group">
+					<SelectButton id="highlight" value={mode} setValue={setMode}>
+						<Icon type="star" />
+						Highlights
+					</SelectButton>
+					<SelectButton id="best" value={mode} setValue={setMode}>
+						<Icon type="sort-amount-up" />
+						Best
+					</SelectButton>
+					<SelectButton id="recent" value={mode} setValue={setMode}>
+						<Icon type="history" />
+						Recent
+					</SelectButton>
+				</div>
+			</div>
+			<div className="col-12 mt-4">
+				<IIDXScoreTable dataset={dataset as any} pageLen={5} />
+			</div>
+		</div>
 	);
 }
 
@@ -109,13 +310,13 @@ function UserHistory({
 	return (
 		<Card className="mt-4" header={`${reqUser.username}'s History`}>
 			<div className="row d-flex justify-content-center align-items-center mb-4">
-				<div className="d-none d-md-block col-md-3 text-center">
+				{/* <div className="d-none d-md-block col-md-3 text-center">
 					<div className="mb-4">Something</div>
 					<div>
 						<span className="display-4">Todo</span>
 					</div>
-				</div>
-				<div className="col-12 col-md-6 d-flex justify-content-center">
+				</div> */}
+				<div className="col-12 col-md-6 offset-md-3 d-flex justify-content-center">
 					<div className="btn-group">
 						<SelectButton id="ranking" value={mode} setValue={setMode}>
 							<Icon type="trophy" />

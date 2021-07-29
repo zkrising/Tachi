@@ -10,6 +10,10 @@ import {
 	ShowcaseStatChart,
 	ShowcaseStatFolder,
 	UserGameStatsSnapshot,
+	SessionDocument,
+	IDStringToGame,
+	ChartDocument,
+	SongDocument,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -55,3 +59,11 @@ export type UGPTPreferenceStatsReturn =
 	  };
 
 export type UGPTHistory = Omit<UserGameStatsSnapshot, "userID" | "game" | "playtype">[];
+
+export interface SessionReturns<I extends IDStrings = IDStrings> {
+	session: SessionDocument;
+	scores: ScoreDocument[];
+	songs: SongDocument<IDStringToGame[I]>[];
+	charts: ChartDocument<I>[];
+	user: PublicUserDocument;
+}

@@ -21,5 +21,5 @@ export default function AllGames() {
 		}
 	}
 
-	return <MenuDropdown name="All Games">{links}</MenuDropdown>;
+	return <MenuDropdown name="Games">{links}</MenuDropdown>;
 }

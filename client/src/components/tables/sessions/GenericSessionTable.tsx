@@ -9,6 +9,7 @@ import {
 	SessionScoreInfo,
 } from "tachi-common";
 import { Playtype } from "types/tachi";
+import { GetPBs } from "util/data";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { FormatDuration, FormatTime, MillisToSince } from "util/time";
 import IndexCell from "../cells/IndexCell";
@@ -86,8 +87,4 @@ export default function GenericSessionTable({
 			)}
 		/>
 	);
-}
-
-function GetPBs(scoreInfo: SessionScoreInfo[]) {
-	return scoreInfo.map(e => e.isNewScore === true || e.lampDelta > 0 || e.scoreDelta > 0);
 }

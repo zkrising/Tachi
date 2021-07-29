@@ -33,12 +33,24 @@ export default function TimelineChart({
 					style={{ height: mobileHeight, width: mobileWidth }}
 				>
 					<div className="d-flex h-100 justify-content-center align-items-center">
-						Not Enough Data... Yet.
+						<div className="text-center">
+							Not Enough Data... Yet.
+							<br />
+							<small className="text-muted">
+								(You need atleast 7 days worth of data)
+							</small>
+						</div>
 					</div>
 				</div>
 				<div className="d-none d-md-block" style={{ height, width }}>
 					<div className="d-flex h-100 justify-content-center align-items-center">
-						Not Enough Data... Yet.
+						<div className="text-center">
+							Not Enough Data... Yet.
+							<br />
+							<small className="text-muted">
+								(You need atleast 7 days worth of data)
+							</small>
+						</div>
 					</div>
 				</div>
 			</>

@@ -9,7 +9,7 @@ export default function AsyncLoader<T = unknown>({
 }: {
 	promiseFn?: () => Promise<T>;
 	promise?: Promise<T>;
-	children: (data: T) => JSX.Element;
+	children: (data: T) => JSX.Element | null | string | (JSX.Element | string)[];
 }) {
 	const Component = children;
 	return (

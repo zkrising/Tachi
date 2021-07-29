@@ -10,7 +10,9 @@ export default function MiniTable({
 	colSpan = 1,
 }: { className?: string; headers: string[]; colSpan?: integer } & JustChildren) {
 	return (
-		<table className={`table table-hover table-striped ${className}`}>
+		<table
+			className={`table table-hover table-striped table-vertical-center text-center ${className}`}
+		>
 			<thead>
 				<tr>
 					{headers.map(e => (

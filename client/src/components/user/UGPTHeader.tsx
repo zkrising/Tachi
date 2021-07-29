@@ -1,13 +1,15 @@
 import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
 import React from "react";
-import { Game, GetGameConfig, PublicUserDocument } from "tachi-common";
+import { Game, GetGameConfig, GetGamePTConfig, PublicUserDocument } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import { Playtype } from "types/tachi";
 import { MillisToSince } from "util/time";
 import ProfilePicture from "./ProfilePicture";
 import Navbar from "components/nav/Navbar";
 import NavItem from "components/nav/NavItem";
+import ClassBadge from "components/game/ClassBadge";
+import { UppercaseFirst } from "util/misc";
 
 export default function UGPTHeader({
 	reqUser,
@@ -21,6 +23,7 @@ export default function UGPTHeader({
 	stats: UGPTStatsReturn;
 }) {
 	const gameConfig = GetGameConfig(game);
+	const gptConfig = GetGamePTConfig(game, playtype);
 
 	return (
 		<div className="row">
@@ -77,16 +80,29 @@ export default function UGPTHeader({
 									colSpan={2}
 								>
 									<>
+										{gptConfig.supportedClasses.map(k => (
+											<tr key={k}>
+												<td>{UppercaseFirst(k)}</td>
+												<td>
+													{stats.gameStats.classes[k] ? (
+														<ClassBadge
+															showSetOnHover={false}
+															key={`${k}:${stats.gameStats.classes[k]}`}
+															game={game}
+															playtype={playtype}
+															classSet={k}
+															classValue={stats.gameStats.classes[k]!}
+														/>
+													) : (
+														"No Data"
+													)}
+												</td>
+											</tr>
+										))}
 										{Object.entries(stats.gameStats.ratings).map(([k, v]) => (
 											<tr key={k}>
 												<td>{k}</td>
 												<td>{v.toFixed(2)}</td>
-											</tr>
-										))}
-										{Object.entries(stats.gameStats.classes).map(([k, v]) => (
-											<tr key={k}>
-												<td>{k}</td>
-												<td>{v}</td>
 											</tr>
 										))}
 									</>

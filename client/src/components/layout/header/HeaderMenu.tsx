@@ -66,7 +66,7 @@ export function HeaderMenu() {
 					{/* <MenuLink name="Dashboard" to="/dashboard" /> */}
 
 					{user && ugs && ugs.length !== 0 && (
-						<MenuDropdown name="My Games">
+						<MenuDropdown name="Your Profiles">
 							{ugs.map(e => (
 								<MenuLink
 									key={`${e.game}:${e.playtype}`}

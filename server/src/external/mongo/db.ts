@@ -26,6 +26,7 @@ import {
 	BMSCourseDocument,
 	ImportLockDocument,
 	UGPTSettings,
+	SessionViewDocument,
 } from "tachi-common";
 import monk, { TMiddleware } from "monk";
 import { MONGO_CONNECTION_URL, MONGO_DATABASE_NAME } from "lib/setup/config";
@@ -144,6 +145,7 @@ const db = {
 	tables: monkDB.get<TableDocument>("tables"),
 	"game-settings": monkDB.get<UGPTSettings>("game-settings"),
 	"game-stats-snapshots": monkDB.get<UserGameStatsSnapshot>("game-stats-snapshots"),
+	"session-view-cache": monkDB.get<SessionViewDocument>("session-view-cache"),
 };
 
 export default db;

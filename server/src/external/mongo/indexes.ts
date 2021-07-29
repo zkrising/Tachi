@@ -4,6 +4,7 @@ import { IndexOptions } from "mongodb";
 import { ValidDatabases } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
 import { CONF_INFO } from "lib/setup/config";
+import { ONE_DAY } from "lib/constants/time";
 
 const logger = CreateLogCtx(__filename);
 
@@ -80,6 +81,10 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
 	"api-tokens": [index({ token: 1 }, UNIQUE), index({ userID: 1 })],
 	tables: [index({ tableID: 1 }, UNIQUE), index({ game: 1, playtype: 1 })],
 	"game-stats-snapshots": [index({ timestamp: 1, userID: 1, game: 1, playtype: 1 }, UNIQUE)],
+	"session-view-cache": [
+		index({ sessionID: 1, ip: 1 }, UNIQUE),
+		index({ timestamp: 1 }, { expireAfterSeconds: ONE_DAY / 1000 }),
+	],
 };
 
 const indexes: Partial<Record<ValidDatabases, Index[]>> = staticIndexes;

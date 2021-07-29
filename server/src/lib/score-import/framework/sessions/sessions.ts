@@ -133,6 +133,7 @@ function CreateSession(
 		timeStarted: groupScores[0].timeAchieved!,
 		timeEnded: groupScores[groupScores.length - 1].timeAchieved!,
 		calculatedData,
+		views: 0,
 	};
 }
 

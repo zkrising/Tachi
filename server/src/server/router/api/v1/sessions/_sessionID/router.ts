@@ -4,7 +4,11 @@ import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import p from "prudence";
-import { GetSessionFromParam, RequireOwnershipOfSession } from "./middleware";
+import {
+	GetSessionFromParam,
+	RequireOwnershipOfSession,
+	UpdateSessionViewcount,
+} from "./middleware";
 import { GetUserWithID } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
@@ -16,7 +20,7 @@ router.use(GetSessionFromParam);
  *
  * @name GET /api/v1/sessions/:sessionID
  */
-router.get("/", async (req, res) => {
+router.get("/", UpdateSessionViewcount, async (req, res) => {
 	const session = req[SYMBOL_TachiData]!.sessionDoc!;
 
 	const scores = await db.scores.find({

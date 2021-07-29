@@ -99,7 +99,7 @@ export interface MongoDBDocument {
 
 export type Databases =
 	| "sessions"
-	| "session-views"
+	| "session-view-cache"
 	| "folders"
 	| "folder-chart-lookup"
 	| "scores"

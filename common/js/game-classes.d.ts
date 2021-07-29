@@ -6,7 +6,7 @@ export interface ClassInfo {
         backgroundColor: string;
         color: string;
     };
-    variant?: "primary" | "secondary" | "success" | "warning" | "danger";
+    variant?: "primary" | "secondary" | "success" | "warning" | "danger" | "info";
 }
 export declare const IIDXDans: ClassInfo[];
 export declare const GitadoraColours: ClassInfo[];
@@ -14,18 +14,11 @@ export declare const BMSGenocideDans: ClassInfo[];
 export declare const BMSStSlDans: ClassInfo[];
 export declare const SDVXDans: ClassInfo[];
 export declare const SDVXVFClasses: ClassInfo[];
-export declare const DDRDans: ({
+export declare const DDRDans: {
     display: string;
     mouseover: string;
-    css: {
-        backgroundColor: string;
-        color: string;
-    };
-} | {
-    display: string;
-    mouseover: string;
-    variant: "warning" | "primary" | "secondary" | "success" | "danger";
-})[];
+    variant: "warning" | "primary" | "secondary" | "success" | "danger" | "info";
+}[];
 export interface GameClassSets {
     "iidx:SP": "dan";
     "iidx:DP": "dan";

@@ -348,7 +348,7 @@ export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoD
 }
 export interface SessionViewDocument extends MongoDBDocument {
     sessionID: string;
-    identifier: string | number;
+    ip: string;
     timestamp: number;
 }
 interface ImportErrContent {

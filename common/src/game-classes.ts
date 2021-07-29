@@ -5,82 +5,95 @@ import { IDStrings, integer } from "./types";
 
 export interface ClassInfo {
 	display: string;
-	mouseover: string | null;
+	mouseover?: string;
+	css?: {
+		backgroundColor: string;
+		color: string;
+	};
+	variant?: "primary" | "secondary" | "success" | "warning" | "danger";
 }
 
-function c(d: string, m: string) {
-	return { display: d, mouseover: m };
+function c(d: string, m: string, bg = "black", color = "white") {
+	return { display: d, mouseover: m, css: { backgroundColor: bg, color } };
 }
 
-function n(d: string) {
-	return { display: d, mouseover: null };
+function v(
+	d: string,
+	m: string,
+	variant: "primary" | "secondary" | "success" | "warning" | "danger"
+) {
+	return { display: d, mouseover: m, variant };
+}
+
+function n(d: string, bg = "#131313", color = "white") {
+	return { display: d, css: { backgroundColor: bg, color } };
 }
 
 export const IIDXDans: ClassInfo[] = [
-	c("七級", "7th Kyu"),
-	c("六級", "6th Kyu"),
-	c("五級", "5th Kyu"),
-	c("四級", "4th Kyu"),
-	c("三級", "3rd Kyu"),
-	c("二級", "2nd Kyu"),
-	c("一級", "1st Kyu"),
-	c("初段", "1st Dan"),
-	c("二段", "2nd Dan"),
-	c("三段", "3rd Dan"),
-	c("四段", "4th Dan"),
-	c("五段", "5th Dan"),
-	c("六段", "6th Dan"),
-	c("七段", "7th Dan"),
-	c("八段", "8th Dan"),
-	c("九段", "9th Dan"),
-	c("十段", "10th Dan"),
-	c("中伝", "Chuuden"),
-	c("皆伝", "Kaiden"),
+	c("七級", "7th Kyu", "green"),
+	c("六級", "6th Kyu", "green"),
+	c("五級", "5th Kyu", "green"),
+	c("四級", "4th Kyu", "green"),
+	c("三級", "3rd Kyu", "green"),
+	c("二級", "2nd Kyu", "green"),
+	c("一級", "1st Kyu", "green"),
+	c("初段", "1st Dan", "blue"),
+	c("二段", "2nd Dan", "blue"),
+	c("三段", "3rd Dan", "blue"),
+	c("四段", "4th Dan", "blue"),
+	c("五段", "5th Dan", "blue"),
+	c("六段", "6th Dan", "blue"),
+	c("七段", "7th Dan", "blue"),
+	c("八段", "8th Dan", "blue"),
+	v("九段", "9th Dan", "danger"),
+	v("十段", "10th Dan", "danger"),
+	c("中伝", "Chuuden", "silver", "black"),
+	v("皆伝", "Kaiden", "warning"),
 ];
 
 export const GitadoraColours: ClassInfo[] = [
-	c("白", "White"),
-	c("橙", "Orange"),
-	c("橙グラ", "Orange Gradient"),
-	c("黄", "Yellow"),
-	c("黄グラ", "Yellow Gradient"),
-	c("緑", "Green"),
-	c("緑グラ", "Green Gradient"),
-	c("青", "Blue"),
-	c("青グラ", "Blue Gradient"),
-	c("紫", "Purple"),
-	c("紫グラ", "Purple Gradient"),
-	c("赤", "Red"),
-	c("赤グラ", "Red Gradient"),
-	c("銅", "Bronze"),
-	c("銀", "Silver"),
-	c("金", "Gold"),
-	c("虹", "Rainbow"),
+	c("白", "White", "white", "black"),
+	c("橙", "Orange", "orange"),
+	c("橙グラ", "Orange Gradient", "orange"),
+	v("黄", "Yellow", "warning"),
+	v("黄グラ", "Yellow Gradient", "warning"),
+	c("緑", "Green", "green"),
+	c("緑グラ", "Green Gradient", "green"),
+	c("青", "Blue", "blue"),
+	c("青グラ", "Blue Gradient", "blue"),
+	c("紫", "Purple", "purple"),
+	c("紫グラ", "Purple Gradient", "purple"),
+	v("赤", "Red", "danger"),
+	v("赤グラ", "Red Gradient", "danger"),
+	c("銅", "Bronze", "bronze"),
+	c("銀", "Silver", "silver", "black"),
+	c("金", "Gold", "gold"),
+	c("虹", "Rainbow", "todo"),
 ];
 
 export const BMSGenocideDans: ClassInfo[] = [
-	c("☆1", "Normal 1st Dan"),
-	c("☆2", "Normal 2nd Dan"),
-	c("☆3", "Normal 3rd Dan"),
-	c("☆4", "Normal 4th Dan"),
-	c("☆5", "Normal 5th Dan"),
-	c("☆6", "Normal 6th Dan"),
-	c("☆7", "Normal 7th Dan"),
-	c("☆8", "Normal 8th Dan"),
-	c("☆9", "Normal 9th Dan"),
-	c("☆10", "Normal 10th Dan"),
-	c("★1", "Insane 1st Dan"),
-	c("★2", "Insane 2nd Dan"),
-	c("★3", "Insane 3rd Dan"),
-	c("★4", "Insane 4th Dan"),
-	c("★5", "Insane 5th Dan"),
-	c("★6", "Insane 6th Dan"),
-	c("★7", "Insane 7th Dan"),
-	c("★8", "Insane 8th Dan"),
-	c("★9", "Insane 9th Dan"),
-	c("★10", "Insane 10th Dan"),
-	c("★★", "Insane Kaiden"),
-	c("(^^)", "Overjoy"),
+	c("☆1", "Normal 1st Dan", "lightblue"),
+	c("☆2", "Normal 2nd Dan", "lightblue"),
+	c("☆3", "Normal 3rd Dan", "lightblue"),
+	c("☆4", "Normal 4th Dan", "lightblue"),
+	c("☆5", "Normal 5th Dan", "lightblue"),
+	c("☆6", "Normal 6th Dan", "lightblue"),
+	c("☆7", "Normal 7th Dan", "lightblue"),
+	c("☆8", "Normal 8th Dan", "lightblue"),
+	c("☆9", "Normal 9th Dan", "lightred"),
+	c("☆10", "Normal 10th Dan", "lightred"),
+	c("★1", "Insane 1st Dan", "blue"),
+	c("★2", "Insane 2nd Dan", "blue"),
+	c("★3", "Insane 3rd Dan", "blue"),
+	c("★4", "Insane 4th Dan", "blue"),
+	c("★5", "Insane 5th Dan", "blue"),
+	c("★6", "Insane 6th Dan", "blue"),
+	c("★7", "Insane 7th Dan", "blue"),
+	c("★8", "Insane 8th Dan", "blue"),
+	c("★9", "Insane 9th Dan", "red"),
+	c("★10", "Insane 10th Dan", "red"),
+	c("★★", "Insane Kaiden", "teal"),
+	c("(^^)", "Overjoy", "purple"),
 ];
 
 export const BMSStSlDans: ClassInfo[] = [
@@ -121,9 +134,9 @@ export const SDVXDans: ClassInfo[] = [
 	c("LV.07", "7th Dan"),
 	c("LV.08", "8th Dan"),
 	c("LV.09", "9th Dan"),
-	c("LV.10", "10th Dan"),
-	c("LV.11", "11th Dan"),
-	c("LV.INF", "Inf. Dan"),
+	v("LV.10", "10th Dan", "warning"),
+	v("LV.11", "11th Dan", "danger"),
+	c("LV.INF", "Inf. Dan", "purple", "gold"),
 ];
 
 export const SDVXVFClasses: ClassInfo[] = [
@@ -167,6 +180,20 @@ export const SDVXVFClasses: ClassInfo[] = [
 	n("Imperial II"),
 	n("Imperial III"),
 	n("Imperial IV"),
+];
+
+export const DDRDans = [
+	c("初段", "1st Dan", "blue"),
+	c("二段", "2nd Dan", "blue"),
+	c("三段", "3rd Dan", "blue"),
+	c("四段", "4th Dan", "blue"),
+	c("五段", "5th Dan", "blue"),
+	c("六段", "6th Dan", "blue"),
+	c("七段", "7th Dan", "blue"),
+	c("八段", "8th Dan", "blue"),
+	v("九段", "9th Dan", "danger"),
+	v("十段", "10th Dan", "danger"),
+	v("皆伝", "Kaiden", "warning"),
 ];
 
 export interface GameClassSets {

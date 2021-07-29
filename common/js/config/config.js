@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetGamePTConfig = exports.GetGameConfig = exports.COLOUR_SET = void 0;
+const game_classes_1 = require("../game-classes");
 /**
  * A collection of CSS colours we want to work with.
  */
@@ -154,6 +155,10 @@ const GAME_PT_CONFIGS = {
             "FULL COMBO": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
+        supportedClasses: ["dan"],
+        classHumanisedFormat: {
+            dan: game_classes_1.IIDXDans,
+        },
         supportsESD: true,
         judgementWindows: [
             { name: "PGREAT", msBorder: 16.667, value: 2 },
@@ -223,6 +228,10 @@ const GAME_PT_CONFIGS = {
             "FULL COMBO": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
+        supportedClasses: ["dan"],
+        classHumanisedFormat: {
+            dan: game_classes_1.IIDXDans,
+        },
         supportsESD: true,
         judgementWindows: [
             { name: "PGREAT", msBorder: 16.667, value: 2 },
@@ -283,6 +292,8 @@ const GAME_PT_CONFIGS = {
             "ALL JUSTICE CRITICAL": exports.COLOUR_SET.white,
         },
         clearLamp: "CLEAR",
+        supportedClasses: [],
+        classHumanisedFormat: {},
         supportsESD: false,
         judgements: ["jcrit", "justice", "attack", "miss"],
         defaultTable: "Levels (N-1)",
@@ -334,6 +345,11 @@ const GAME_PT_CONFIGS = {
             "PERFECT ULTIMATE CHAIN": exports.COLOUR_SET.gold,
         },
         clearLamp: "CLEAR",
+        supportedClasses: ["dan", "vfClass"],
+        classHumanisedFormat: {
+            dan: game_classes_1.SDVXDans,
+            vfClass: game_classes_1.SDVXVFClasses,
+        },
         supportsESD: false,
         judgements: ["critical", "near", "miss"],
         defaultTable: "Levels (N-1)",
@@ -381,6 +397,8 @@ const GAME_PT_CONFIGS = {
             "PERFECT ULTIMATE CHAIN": exports.COLOUR_SET.gold,
         },
         clearLamp: "CLEAR",
+        supportedClasses: [],
+        classHumanisedFormat: {},
         supportsESD: false,
         judgements: ["critical", "near", "miss"],
         defaultTable: "Levels (N-1)",
@@ -425,6 +443,8 @@ const GAME_PT_CONFIGS = {
             "PERFECT CONNECT ALL": exports.COLOUR_SET.gold,
         },
         clearLamp: "CLEAR",
+        supportedClasses: [],
+        classHumanisedFormat: {},
         supportsESD: true,
         judgementWindows: [
             { name: "CRITICAL", msBorder: 33.333, value: 2 },
@@ -485,6 +505,11 @@ const GAME_PT_CONFIGS = {
             "FULL COMBO": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
+        supportedClasses: ["genocideDan", "stslDan"],
+        classHumanisedFormat: {
+            genocideDan: game_classes_1.BMSGenocideDans,
+            stslDan: game_classes_1.BMSStSlDans,
+        },
         supportsESD: false,
         judgements: ["pgreat", "great", "good", "bad", "poor"],
         defaultTable: "Insane",
@@ -541,6 +566,10 @@ const GAME_PT_CONFIGS = {
             "FULL COMBO": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
+        supportedClasses: ["genocideDan"],
+        classHumanisedFormat: {
+            genocideDan: game_classes_1.BMSGenocideDans,
+        },
         supportsESD: false,
         judgements: ["pgreat", "great", "good", "bad", "poor"],
         defaultTable: "Insane",
@@ -626,6 +655,10 @@ const GAME_PT_CONFIGS = {
             "MARVELOUS FULL COMBO": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
+        supportedClasses: ["dan"],
+        classHumanisedFormat: {
+            dan: game_classes_1.DDRDans,
+        },
         supportsESD: true,
         judgementWindows: [
             { name: "MARVELOUS", msBorder: 15, value: 3 },
@@ -716,6 +749,10 @@ const GAME_PT_CONFIGS = {
             "MARVELOUS FULL COMBO": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
+        supportedClasses: ["dan"],
+        classHumanisedFormat: {
+            dan: game_classes_1.DDRDans,
+        },
         supportsESD: true,
         judgementWindows: [
             { name: "MARVELOUS", msBorder: 15, value: 3 },
@@ -785,6 +822,8 @@ const GAME_PT_CONFIGS = {
             "ALL PERFECT+": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
+        supportedClasses: [],
+        classHumanisedFormat: {},
         supportsESD: false,
         judgements: ["perfect", "great", "good", "miss"],
         defaultTable: "Levels",
@@ -849,6 +888,10 @@ const GAME_PT_CONFIGS = {
             EXCELLENT: exports.COLOUR_SET.gold,
         },
         clearLamp: "CLEAR",
+        supportedClasses: ["colour"],
+        classHumanisedFormat: {
+            colour: game_classes_1.GitadoraColours,
+        },
         supportsESD: false,
         judgements: ["perfect", "great", "good", "ok", "miss"],
         defaultTable: "Levels (N-1)",
@@ -896,6 +939,10 @@ const GAME_PT_CONFIGS = {
             EXCELLENT: exports.COLOUR_SET.gold,
         },
         clearLamp: "CLEAR",
+        supportedClasses: ["colour"],
+        classHumanisedFormat: {
+            colour: game_classes_1.GitadoraColours,
+        },
         supportsESD: false,
         judgements: ["perfect", "great", "good", "ok", "miss"],
         defaultTable: "Levels (N-1)",

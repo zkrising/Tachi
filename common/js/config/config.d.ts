@@ -1,3 +1,4 @@
+import { ClassInfo, GameClassSets } from "../game-classes";
 import { ESDJudgementFormat } from "../lib/esd";
 import { Playtypes, Game, Difficulties, IDStrings, ScoreCalculatedDataLookup, SessionCalculatedDataLookup, UGSRatingsLookup, Grades, Lamps } from "../types";
 export interface GameConfig<G extends Game = Game> {
@@ -26,6 +27,8 @@ interface BaseGamePTConfig<I extends IDStrings> {
     lamps: Lamps[I][];
     lampColours: Record<Lamps[I], string>;
     clearLamp: Lamps[I];
+    supportedClasses: GameClassSets[I][];
+    classHumanisedFormat: Record<GameClassSets[I], ClassInfo[]>;
     judgements: string[];
     defaultTable: string;
     scoreBucket: "grade" | "lamp";

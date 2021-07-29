@@ -1,3 +1,14 @@
+import {
+	BMSGenocideDans,
+	BMSStSlDans,
+	ClassInfo,
+	DDRDans,
+	GameClassSets,
+	GitadoraColours,
+	IIDXDans,
+	SDVXDans,
+	SDVXVFClasses,
+} from "../game-classes";
 import { ESDJudgementFormat } from "../lib/esd";
 import {
 	Playtypes,
@@ -44,6 +55,9 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	lamps: Lamps[I][];
 	lampColours: Record<Lamps[I], string>;
 	clearLamp: Lamps[I];
+
+	supportedClasses: GameClassSets[I][];
+	classHumanisedFormat: Record<GameClassSets[I], ClassInfo[]>;
 
 	judgements: string[];
 
@@ -235,6 +249,11 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
+		supportedClasses: ["dan"],
+		classHumanisedFormat: {
+			dan: IIDXDans,
+		},
+
 		supportsESD: true,
 		judgementWindows: [
 			{ name: "PGREAT", msBorder: 16.667, value: 2 },
@@ -313,6 +332,11 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
+		supportedClasses: ["dan"],
+		classHumanisedFormat: {
+			dan: IIDXDans,
+		},
+
 		supportsESD: true,
 		judgementWindows: [
 			{ name: "PGREAT", msBorder: 16.667, value: 2 },
@@ -381,6 +405,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
+		supportedClasses: [],
+		classHumanisedFormat: {},
+
 		supportsESD: false,
 		judgements: ["jcrit", "justice", "attack", "miss"],
 
@@ -440,6 +467,12 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
+		supportedClasses: ["dan", "vfClass"],
+		classHumanisedFormat: {
+			dan: SDVXDans,
+			vfClass: SDVXVFClasses,
+		},
+
 		supportsESD: false,
 		judgements: ["critical", "near", "miss"],
 
@@ -495,6 +528,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
+		supportedClasses: [],
+		classHumanisedFormat: {},
+
 		supportsESD: false,
 		judgements: ["critical", "near", "miss"],
 
@@ -546,6 +582,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"PERFECT CONNECT ALL": COLOUR_SET.gold,
 		},
 		clearLamp: "CLEAR",
+
+		supportedClasses: [],
+		classHumanisedFormat: {},
 
 		supportsESD: true,
 		judgementWindows: [
@@ -615,6 +654,12 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
+		supportedClasses: ["genocideDan", "stslDan"],
+		classHumanisedFormat: {
+			genocideDan: BMSGenocideDans,
+			stslDan: BMSStSlDans,
+		},
+
 		supportsESD: false,
 		judgements: ["pgreat", "great", "good", "bad", "poor"],
 
@@ -679,6 +724,11 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"FULL COMBO": COLOUR_SET.teal,
 		},
 		clearLamp: "CLEAR",
+
+		supportedClasses: ["genocideDan"],
+		classHumanisedFormat: {
+			genocideDan: BMSGenocideDans,
+		},
 
 		supportsESD: false,
 		judgements: ["pgreat", "great", "good", "bad", "poor"],
@@ -773,6 +823,11 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"MARVELOUS FULL COMBO": COLOUR_SET.teal,
 		},
 		clearLamp: "CLEAR",
+
+		supportedClasses: ["dan"],
+		classHumanisedFormat: {
+			dan: DDRDans,
+		},
 
 		supportsESD: true,
 		judgementWindows: [
@@ -873,6 +928,11 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
+		supportedClasses: ["dan"],
+		classHumanisedFormat: {
+			dan: DDRDans,
+		},
+
 		supportsESD: true,
 		judgementWindows: [
 			{ name: "MARVELOUS", msBorder: 15, value: 3 },
@@ -951,6 +1011,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
+		supportedClasses: [],
+		classHumanisedFormat: {},
+
 		supportsESD: false,
 		judgements: ["perfect", "great", "good", "miss"],
 
@@ -1024,6 +1087,11 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
+		supportedClasses: ["colour"],
+		classHumanisedFormat: {
+			colour: GitadoraColours,
+		},
+
 		supportsESD: false,
 		judgements: ["perfect", "great", "good", "ok", "miss"],
 
@@ -1079,6 +1147,11 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			EXCELLENT: COLOUR_SET.gold,
 		},
 		clearLamp: "CLEAR",
+
+		supportedClasses: ["colour"],
+		classHumanisedFormat: {
+			colour: GitadoraColours,
+		},
 
 		supportsESD: false,
 		judgements: ["perfect", "great", "good", "ok", "miss"],

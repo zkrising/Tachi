@@ -6,13 +6,12 @@ import {
 	FormikErrors,
 	FormikState,
 	FormikTouched,
-	useFormik,
 } from "formik";
-import { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Game, Playtypes } from "tachi-common";
 
 export interface JustChildren {
-	children: (JSX.Element | string)[] | JSX.Element | string;
+	children: React.ReactNode;
 }
 
 export type SetState<T> = Dispatch<SetStateAction<T>>;

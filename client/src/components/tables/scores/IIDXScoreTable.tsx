@@ -47,6 +47,7 @@ export default function IIDXScoreTable({
 							key={nanoid()}
 							game="iidx"
 							playtype="SP"
+							rating={rating}
 							setRating={setRating}
 						/>
 					),

@@ -1,7 +1,4 @@
 import React, { useContext } from "react";
-import SVG from "react-inlinesvg";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { toAbsoluteUrl } from "../../../_metronic/_helpers";
 import { UserNotificationsDropdown } from "../../../_metronic/layout/components/extras/dropdowns/UserNotificationsDropdown";
 import { UserProfileDropdown } from "components/layout/header/UserProfileDropdown";
 import { UserContext } from "context/UserContext";
@@ -19,7 +16,7 @@ export function Topbar() {
 				<>
 					<UserNotificationsDropdown />
 
-					<OverlayTrigger
+					{/* <OverlayTrigger
 						placement="bottom"
 						overlay={<Tooltip id="quick-panel-tooltip">Quick panel</Tooltip>}
 					>
@@ -42,7 +39,7 @@ export function Topbar() {
 								</span>
 							</div>
 						</div>
-					</OverlayTrigger>
+					</OverlayTrigger> */}
 
 					<UserProfileDropdown user={user} />
 				</>

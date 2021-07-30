@@ -3,7 +3,6 @@ import { FormatDifficulty } from "tachi-common/js/utils/util";
 import TitleCell from "../cells/TitleCell";
 import RankingCell from "../cells/RankingCell";
 import TimestampCell from "../cells/TimestampCell";
-import BPICell from "../cells/BPICell";
 import { ChangeOpacity } from "util/color-opacity";
 import { NumericSOV, StrSOV } from "util/sorts";
 import SelectableRating from "../components/SelectableRating";
@@ -16,6 +15,7 @@ import IndexCell from "../cells/IndexCell";
 import DeltaCell from "../cells/DeltaCell";
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { nanoid } from "nanoid";
+import DropdownRow from "../components/DropdownRow";
 
 export default function IIDXPBTable({
 	dataset,
@@ -45,6 +45,7 @@ export default function IIDXPBTable({
 					key={nanoid()}
 					game="iidx"
 					playtype="SP"
+					rating={rating}
 					setRating={setRating}
 				/>
 			),
@@ -81,7 +82,10 @@ export default function IIDXPBTable({
 			}}
 			defaultSortMode={indexCol ? "#" : undefined}
 			rowFunction={pb => (
-				<tr key={pb.chartID}>
+				<DropdownRow
+					dropdown={<div style={{ height: "200px" }}>{pb.chartID}</div>}
+					key={pb.chartID}
+				>
 					{indexCol && <IndexCell index={pb.__related.index} />}
 					<DifficultyCell chart={pb.__related.chart} game={"iidx"} />
 					<TitleCell artist={pb.__related.song.artist} title={pb.__related.song.title} />
@@ -105,18 +109,14 @@ export default function IIDXPBTable({
 						<br />
 						<small>[BP: {pb.scoreData.hitMeta.bp ?? "No Data"}]</small>
 					</td>
-					{rating === "BPI" ? (
-						<BPICell bpi={pb.calculatedData.BPI} />
-					) : (
-						<td>
-							{pb.calculatedData[rating]
-								? pb.calculatedData[rating]!.toFixed(2)
-								: "No Data."}
-						</td>
-					)}
+					<td>
+						{pb.calculatedData[rating]
+							? pb.calculatedData[rating]!.toFixed(2)
+							: "No Data."}
+					</td>
 					<RankingCell rankingData={pb.rankingData} />
 					<TimestampCell time={pb.timeAchieved} />
-				</tr>
+				</DropdownRow>
 			)}
 		/>
 	);

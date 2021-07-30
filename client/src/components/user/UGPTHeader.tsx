@@ -10,6 +10,7 @@ import Navbar from "components/nav/Navbar";
 import NavItem from "components/nav/NavItem";
 import ClassBadge from "components/game/ClassBadge";
 import { UppercaseFirst } from "util/misc";
+import ProfileBadges from "./ProfileBadges";
 
 export default function UGPTHeader({
 	reqUser,
@@ -37,8 +38,14 @@ export default function UGPTHeader({
 					<div className="card-body">
 						<div className="row align-items-center">
 							<div className="col-12 col-lg-3">
-								<div className="d-flex justify-content-center">
+								<div className="d-flex justify-content-center mb-3">
 									<ProfilePicture user={reqUser} />
+								</div>
+								<div
+									className="d-flex align-items-center"
+									style={{ flexDirection: "column" }}
+								>
+									<ProfileBadges badges={reqUser.badges} />
 								</div>
 								<div className="d-block d-lg-none">
 									<Divider className="mt-4 mb-4" />
@@ -101,7 +108,7 @@ export default function UGPTHeader({
 										))}
 										{Object.entries(stats.gameStats.ratings).map(([k, v]) => (
 											<tr key={k}>
-												<td>{k}</td>
+												<td>{UppercaseFirst(k)}</td>
 												<td>{v.toFixed(2)}</td>
 											</tr>
 										))}

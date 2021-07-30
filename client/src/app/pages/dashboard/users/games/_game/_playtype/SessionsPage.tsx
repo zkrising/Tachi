@@ -11,11 +11,12 @@ import {
 	GetGameConfig,
 	SessionDocument,
 	UnsuccessfulAPIResponse,
-	integer,
 	FormatGame,
 } from "tachi-common";
 import { GamePT } from "types/react";
 import { APIFetchV1 } from "util/api";
+import SelectButton from "components/util/SelectButton";
+import Icon from "components/util/Icon";
 
 export default function SessionsPage({
 	reqUser,
@@ -59,26 +60,18 @@ export default function SessionsPage({
 		<div className="row">
 			<div className="col-12 text-center">
 				<div className="btn-group mb-4">
-					<div
-						className={`btn btn-${sessionSet === "best" ? "primary" : "secondary"}`}
-						onClick={() => setSessionSet("best")}
-					>
+					<SelectButton id="best" setValue={setSessionSet} value={sessionSet}>
+						<Icon type="trophy" />
 						Best Sessions
-					</div>
-					<div
-						className={`btn btn-${sessionSet === "recent" ? "primary" : "secondary"}`}
-						onClick={() => setSessionSet("recent")}
-					>
+					</SelectButton>
+					<SelectButton id="recent" setValue={setSessionSet} value={sessionSet}>
+						<Icon type="history" />
 						Recent Sessions
-					</div>
-					<div
-						className={`btn btn-${
-							sessionSet === "highlighted" ? "primary" : "secondary"
-						}`}
-						onClick={() => setSessionSet("highlighted")}
-					>
+					</SelectButton>
+					<SelectButton id="highlighted" setValue={setSessionSet} value={sessionSet}>
+						<Icon type="star" />
 						Highlighted Sessions
-					</div>
+					</SelectButton>
 				</div>
 			</div>
 			<div className="col-12 mt-4">

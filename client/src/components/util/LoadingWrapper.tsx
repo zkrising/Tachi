@@ -1,5 +1,5 @@
+import React, { CSSProperties } from "react";
 import Loading from "components/util/Loading";
-import React from "react";
 import { UnsuccessfulAPIResponse } from "tachi-common";
 
 export default function LoadingWrapper({
@@ -7,14 +7,16 @@ export default function LoadingWrapper({
 	isLoading,
 	error,
 	children,
+	style,
 }: {
 	dataset: unknown | null | undefined;
 	isLoading: boolean;
 	error: UnsuccessfulAPIResponse | null;
 	children: JSX.Element | JSX.Element[];
+	style?: CSSProperties;
 }) {
 	if (isLoading || !dataset) {
-		return <Loading />;
+		return <Loading style={style} />;
 	}
 
 	if (error) {

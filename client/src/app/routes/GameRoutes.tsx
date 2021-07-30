@@ -34,7 +34,7 @@ export default function GameRoutes() {
 			</Route>
 
 			<Route path="*">
-				<ErrorPage statusCode={400} />
+				<ErrorPage statusCode={404} />
 			</Route>
 		</Switch>
 	);

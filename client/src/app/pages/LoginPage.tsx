@@ -110,9 +110,13 @@ export default function LoginPage() {
 						{err}
 					</Form.Group>
 					<Form.Group className="justify-content-center d-flex pt-4">
-						<Link to="/" tabIndex={4} className="mr-auto btn btn-outline-danger">
+						<span
+							onClick={() => history.goBack()}
+							tabIndex={4}
+							className="mr-auto btn btn-outline-danger"
+						>
 							Back
-						</Link>
+						</span>
 						<Button tabIndex={3} type="submit" className="ml-auto">
 							Log In
 						</Button>

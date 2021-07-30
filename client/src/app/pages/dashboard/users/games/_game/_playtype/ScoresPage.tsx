@@ -19,6 +19,8 @@ import { GamePT } from "types/react";
 import { APIFetchV1 } from "util/api";
 import IIDXScoreTable from "components/tables/scores/IIDXScoreTable";
 import LoadingWrapper from "components/util/LoadingWrapper";
+import Icon from "components/util/Icon";
+import SelectButton from "components/util/SelectButton";
 
 export default function ScoresPage({
 	reqUser,
@@ -41,18 +43,14 @@ export default function ScoresPage({
 		<div className="row">
 			<div className="col-12 text-center">
 				<div className="btn-group mb-4">
-					<div
-						className={`btn btn-${scoreSet === "best" ? "primary" : "secondary"}`}
-						onClick={() => setScoreSet("best")}
-					>
+					<SelectButton id="best" setValue={setScoreSet} value={scoreSet}>
+						<Icon type="trophy" />
 						Best Scores
-					</div>
-					<div
-						className={`btn btn-${scoreSet === "recent" ? "primary" : "secondary"}`}
-						onClick={() => setScoreSet("recent")}
-					>
+					</SelectButton>
+					<SelectButton id="recent" setValue={setScoreSet} value={scoreSet}>
+						<Icon type="history" />
 						Recent Scores
-					</div>
+					</SelectButton>
 				</div>
 			</div>
 			<div className="col-12 mt-4">
@@ -102,7 +100,10 @@ function PBsOverview({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 			</div>
 			<div className="col-12 mt-8">
 				{search === "" ? (
-					<LoadingWrapper {...{ isLoading, error, dataset: data }}>
+					<LoadingWrapper
+						style={{ height: 500 }}
+						{...{ isLoading, error, dataset: data }}
+					>
 						<IIDXPBTable dataset={data!} />
 					</LoadingWrapper>
 				) : (
@@ -170,7 +171,7 @@ function PBsSearch({
 	);
 
 	return (
-		<LoadingWrapper {...{ isLoading, error, dataset: data }}>
+		<LoadingWrapper style={{ height: 500 }} {...{ isLoading, error, dataset: data }}>
 			<IIDXPBTable indexCol={false} dataset={data!} />
 		</LoadingWrapper>
 	);
@@ -194,7 +195,10 @@ function ScoresOverview({ reqUser, game, playtype }: { reqUser: PublicUserDocume
 			</div>
 			<div className="col-12 mt-8">
 				{search === "" ? (
-					<LoadingWrapper {...{ isLoading, dataset: data, error }}>
+					<LoadingWrapper
+						style={{ height: 500 }}
+						{...{ isLoading, dataset: data, error }}
+					>
 						<IIDXScoreTable dataset={data!} />
 					</LoadingWrapper>
 				) : (
@@ -216,7 +220,7 @@ function ScoresSearch({
 	);
 
 	return (
-		<LoadingWrapper {...{ isLoading, error, dataset: data }}>
+		<LoadingWrapper style={{ height: 500 }} {...{ isLoading, error, dataset: data }}>
 			<IIDXScoreTable dataset={data!} />
 		</LoadingWrapper>
 	);

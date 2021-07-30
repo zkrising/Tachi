@@ -8,7 +8,7 @@ import { NumericSOV, StrSOV } from "util/sorts";
 import SelectableRating from "../components/SelectableRating";
 import { ScoreDataset } from "types/tables";
 import { GetGamePTConfig, integer, ScoreCalculatedDataLookup } from "tachi-common";
-import TachiTable, { Header } from "../components/TachiTable";
+import TachiTable from "../components/TachiTable";
 import DifficultyCell from "../cells/DifficultyCell";
 import ScoreCell from "../cells/ScoreCell";
 import DeltaCell from "../cells/DeltaCell";

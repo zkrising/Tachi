@@ -1,3 +1,4 @@
+import ClassBadge from "components/game/ClassBadge";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import MiniTable from "components/tables/components/MiniTable";
@@ -10,10 +11,12 @@ import {
 	FormatGame,
 	GetGameConfig,
 	GetGamePTConfig,
+	IDStrings,
 	integer,
 	PublicUserDocument,
 	UserGameStats,
 } from "tachi-common";
+import { GameClassSets } from "tachi-common/js/game-classes";
 import { GPTLeaderboard, UGPTLeaderboardAdjacent } from "types/api-returns";
 import { GamePT } from "types/react";
 import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
@@ -116,7 +119,15 @@ function LeaderboardsPageContent({
 				{/* temp */}
 				<td>
 					{Object.entries(s.classes).length
-						? Object.entries(s.classes).map(([k, v]) => `${k}: ${v}`)
+						? Object.entries(s.classes).map(([k, v]) => (
+								<ClassBadge
+									key={`${k}:${v}`}
+									classValue={v}
+									classSet={k as GameClassSets[IDStrings]}
+									game={game}
+									playtype={playtype}
+								/>
+						  ))
 						: "No Classes"}
 				</td>
 			</tr>
@@ -124,7 +135,17 @@ function LeaderboardsPageContent({
 	}
 
 	return (
-		<Card header={"Leaderboard"}>
+		<Card
+			header={"Leaderboard"}
+			footer={
+				<Link
+					to={`/dashboard/games/${game}/${playtype}/leaderboard`}
+					className="float-right"
+				>
+					View Global Leaderboards
+				</Link>
+			}
+		>
 			<MiniTable className="text-center" headers={["Position", "User", "Rating", "Classes"]}>
 				<>
 					{bestNearbyUser > 1 &&
@@ -141,9 +162,6 @@ function LeaderboardsPageContent({
 					))}
 				</>
 			</MiniTable>
-			<Link to={`/dashboard/games/${game}/${playtype}/leaderboard`} className="float-right">
-				View Global Leaderboards
-			</Link>
 		</Card>
 	);
 }

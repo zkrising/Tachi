@@ -43,7 +43,7 @@ export function HumanFriendlyStrToLampIndex(game: Game, playtype: Playtypes[Game
 			if (lamp.startsWith(lowerStr) && partialMatch === null) {
 				partialMatch = i;
 			}
-		}	
+		}
 
 		return partialMatch;
 	};

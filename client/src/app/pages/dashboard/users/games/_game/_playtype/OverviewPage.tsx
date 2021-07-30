@@ -6,7 +6,7 @@ import { UserContext } from "context/UserContext";
 import { UserGameStatsContext } from "context/UserGameStatsContext";
 import { nanoid } from "nanoid";
 import React, { useContext, useMemo, useState } from "react";
-import { Badge, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
 	FormatGame,
@@ -597,7 +597,10 @@ function StatShowcase({ reqUser, game, playtype }: { reqUser: PublicUserDocument
 					<div className="container">
 						{data.reqUserData.length === 0 ? (
 							<div className="row">
-								<div className="col-12 text-center">No stats configured.</div>
+								<div className="col-12 text-center">
+									{userIsReqUser ? "You have" : "This user has"} no stats
+									configured.
+								</div>
 								{userIsReqUser && (
 									<div className="col-12 mt-2 text-center">
 										Why not{" "}

@@ -88,13 +88,5 @@ if (config.TYPE === "ktchi") {
 
 const tachiConfig = config as TachiConfig;
 
-// note: we dont use fs.exists here because the file may be moved underfoot.
-try {
-	fs.readFileSync(config.CLIENT_INDEX_HTML_PATH);
-} catch (err) {
-	logger.error(`Error while opening file at CLIENT_INDEX_HTML_PATH. Is one here?`);
-	process.exit(1);
-}
-
 export const ServerTypeInfo = tachiConfig.SERVER_TYPE_INFO;
 export const ServerConfig = tachiConfig;

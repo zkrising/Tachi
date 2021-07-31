@@ -111,4 +111,33 @@ router.get("/recent", async (req, res) => {
 	});
 });
 
+/**
+ * Returns a user's most recent session.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent
+ */
+router.get("/last", async (req, res) => {
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const game = req[SYMBOL_TachiData]!.game!;
+	const playtype = req[SYMBOL_TachiData]!.playtype!;
+
+	const session = await db.sessions.findOne(
+		{ userID: user.id, game, playtype },
+		{ sort: { timeEnded: -1 } }
+	);
+
+	if (!session) {
+		return res.status(404).json({
+			success: false,
+			description: `This user has not got any sessions!`,
+		});
+	}
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned a session.`,
+		body: session,
+	});
+});
+
 export default router;

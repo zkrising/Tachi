@@ -3,7 +3,7 @@ import monk from "monk";
 import { IndexOptions } from "mongodb";
 import { ValidDatabases } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
-import { CONF_INFO } from "lib/setup/config";
+import { ServerTypeInfo } from "lib/setup/config";
 import { ONE_DAY } from "lib/constants/time";
 
 const logger = CreateLogCtx(__filename);
@@ -89,7 +89,7 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
 
 const indexes: Partial<Record<ValidDatabases, Index[]>> = staticIndexes;
 
-for (const game of CONF_INFO.supportedGames) {
+for (const game of ServerTypeInfo.supportedGames) {
 	if (indexes[`charts-${game}` as ValidDatabases]) {
 		indexes[`charts-${game}` as ValidDatabases]!.push(
 			index({ chartID: 1 }, UNIQUE),

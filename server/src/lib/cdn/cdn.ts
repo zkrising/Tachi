@@ -1,10 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { CDN_FILE_ROOT } from "lib/setup/config";
 import CreateLogCtx from "lib/logger/logger";
 import { promisify } from "util";
 import mkdirp from "mkdirp";
 import { Response } from "express";
+import { ServerConfig } from "lib/setup/config";
 
 const readFilePromise = promisify(fs.readFile);
 const writeFilePromise = promisify(fs.writeFile);
@@ -19,7 +19,7 @@ const logger = CreateLogCtx(__filename);
  * Path directory traversal *is* possible, and *will* ruin your day.
  */
 function CDNRoot(fileLoc: string) {
-	return path.join(CDN_FILE_ROOT, fileLoc);
+	return path.join(ServerConfig.CDN_FILE_ROOT, fileLoc);
 }
 
 /**

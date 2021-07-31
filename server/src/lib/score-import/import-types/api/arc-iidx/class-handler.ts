@@ -1,8 +1,8 @@
 import nodeFetch from "utils/fetch";
 import { HasOwnProperty } from "utils/misc";
 import { IIDXClasses } from "lib/constants/classes";
-import { ARC_API_URL } from "lib/setup/config";
 import { ClassHandler } from "../../../framework/user-game-stats/types";
+import { ServerConfig } from "lib/setup/config";
 
 export async function CreateArcIIDXClassHandler(
 	profileID: string,
@@ -16,11 +16,14 @@ export async function CreateArcIIDXClassHandler(
 	// SP and DP dans are located in the same place,
 	// fetch once, then return a function that traverses this data.
 	try {
-		const res = await fetch(`${ARC_API_URL}/api/v1/iidx/27/profiles?_id=${profileID}`, {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		});
+		const res = await fetch(
+			`${ServerConfig.ARC_API_URL}/api/v1/iidx/27/profiles?_id=${profileID}`,
+			{
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		);
 
 		json = await res.json();
 	} catch (e) {
@@ -29,7 +32,10 @@ export async function CreateArcIIDXClassHandler(
 
 	return (game, playtype, userID, ratings, logger) => {
 		if (err) {
-			logger.error(`An error occured while updating classes for ${ARC_API_URL}.`, { err });
+			logger.error(
+				`An error occured while updating classes for ${ServerConfig.ARC_API_URL}.`,
+				{ err }
+			);
 			return {};
 		}
 

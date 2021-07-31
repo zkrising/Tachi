@@ -29,14 +29,14 @@ import {
 	SessionViewDocument,
 } from "tachi-common";
 import monk, { TMiddleware } from "monk";
-import { MONGO_CONNECTION_URL, MONGO_DATABASE_NAME } from "lib/setup/config";
 import CreateLogCtx from "lib/logger/logger";
 import { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
 import { GetMilisecondsSince } from "utils/misc";
+import { ServerConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
-let dbName = MONGO_DATABASE_NAME;
+let dbName = ServerConfig.MONGO_DATABASE_NAME;
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV === "test") {
@@ -46,11 +46,11 @@ if (process.env.NODE_ENV === "test") {
 let dbtime: bigint;
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== "test") {
-	logger.info(`Connecting to database ${MONGO_CONNECTION_URL}/${dbName}...`);
+	logger.info(`Connecting to database ${ServerConfig.MONGO_CONNECTION_URL}/${dbName}...`);
 	dbtime = process.hrtime.bigint();
 }
 
-export const monkDB = monk(`${MONGO_CONNECTION_URL}/${dbName}`);
+export const monkDB = monk(`${ServerConfig.MONGO_CONNECTION_URL}/${dbName}`);
 
 /* istanbul ignore next */
 monkDB

@@ -4,7 +4,7 @@ import { KaiAuthDocument } from "tachi-common";
 import { KaiContext } from "../types";
 import { TraverseKaiAPI } from "../traverse-api";
 import { ParserFunctionReturns } from "../../types";
-import { FLO_API_URL, EAG_API_URL } from "lib/setup/config";
+import { ServerConfig } from "lib/setup/config";
 
 export function ParseKaiIIDX(
 	service: "FLO" | "EAG",
@@ -12,7 +12,7 @@ export function ParseKaiIIDX(
 	logger: KtLogger,
 	fetch = nodeFetch
 ): ParserFunctionReturns<unknown, KaiContext> {
-	const baseUrl = service === "FLO" ? FLO_API_URL : EAG_API_URL;
+	const baseUrl = service === "FLO" ? ServerConfig.FLO_API_URL : ServerConfig.EAG_API_URL;
 
 	return {
 		iterable: TraverseKaiAPI(

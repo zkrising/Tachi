@@ -3,15 +3,7 @@ import "express-async-errors";
 import expressSession from "express-session";
 import { integer } from "tachi-common";
 import { RedisClient } from "external/redis/redis";
-import {
-	CDN_FILE_ROOT,
-	CLIENT_DEV_SERVER,
-	CLIENT_INDEX_HTML_PATH,
-	CONFIG,
-	ENABLE_SERVER_HTTPS,
-	RUN_OWN_CDN,
-	SESSION_SECRET,
-} from "lib/setup/config";
+import { ServerConfig } from "lib/setup/config";
 import connectRedis from "connect-redis";
 import helmet from "helmet";
 import fs from "fs";
@@ -35,24 +27,24 @@ const userSessionMiddleware = expressSession({
 	// append node_env onto the end of the session name
 	// so we can separate tokens under the same URL.
 	// say for staging.kamaitachi.xyz
-	name: `${CONFIG.TYPE}_${process.env.NODE_ENV}_session`,
-	secret: SESSION_SECRET,
+	name: `${ServerConfig.TYPE}_${process.env.NODE_ENV}_session`,
+	secret: ServerConfig.SESSION_SECRET,
 	store,
 	resave: true,
 	saveUninitialized: false,
 	cookie: {
-		secure: process.env.NODE_ENV === "production" || ENABLE_SERVER_HTTPS,
+		secure: process.env.NODE_ENV === "production" || ServerConfig.ENABLE_SERVER_HTTPS,
 	},
 });
 
 const app: Express = express();
 
-if (process.env.NODE_ENV !== "production" && CLIENT_DEV_SERVER) {
-	logger.warn(`Enabling CORS requests from ${CLIENT_DEV_SERVER}.`);
+if (process.env.NODE_ENV !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
+	logger.warn(`Enabling CORS requests from ${ServerConfig.CLIENT_DEV_SERVER}.`);
 
 	// Allow CORS requests from another server (since we have our dev server hosted separately).
 	app.use((req, res, next) => {
-		res.header("Access-Control-Allow-Origin", CLIENT_DEV_SERVER!);
+		res.header("Access-Control-Allow-Origin", ServerConfig.CLIENT_DEV_SERVER!);
 		res.header(
 			"Access-Control-Allow-Headers",
 			"Origin, X-Requested-With, Content-Type, Accept"
@@ -112,7 +104,7 @@ app.use("/", mainRouter);
 // The RUN_OWN_CDN option means that our /cdn path has to be hosted by us. In production,
 // this is not the case (we have a dedicated nginx box for it running in a separate process).
 // In dev, this is a pain to setup, so we can just run it locally.
-if (RUN_OWN_CDN) {
+if (ServerConfig.RUN_OWN_CDN) {
 	if (process.env.NODE_ENV === "production") {
 		logger.warn(
 			`Running OWN_CDN in production. Consider making a separate process handle your CDN for performance.`
@@ -121,27 +113,9 @@ if (RUN_OWN_CDN) {
 		logger.info("Running own CDN.");
 	}
 
-	app.use("/cdn", express.static(CDN_FILE_ROOT));
+	app.use("/cdn", express.static(ServerConfig.CDN_FILE_ROOT));
 	app.get("/cdn/*", (req, res) => res.status(404).send("No content here."));
 }
-
-const indexHTMLContent = fs.readFileSync(CLIENT_INDEX_HTML_PATH);
-
-/**
- * If any user gets to this point, we send them index.html and yield routing to
- * the ktchi-client react router.
- * @name GET *
- */
-app.get("*", (req, res) => res.setHeader("Content-Type", "text/html").send(indexHTMLContent));
-
-/**
- * If any user gets to this point, and are not making a GET request, they are probably making an API request.
- * And want JSON back.
- * @name ALL (except GET) *
- */
-app.all("*", (req, res) =>
-	res.status(404).json({ success: false, description: "404: This URL does not exist." })
-);
 
 // completely stolen from ktapi error handler
 interface ExpressJSONErr extends SyntaxError {

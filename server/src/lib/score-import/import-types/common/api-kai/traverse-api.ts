@@ -2,7 +2,7 @@ import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import nodeFetch from "utils/fetch";
 import { VERSION_STR } from "lib/constants/version";
-import { CONF_INFO } from "lib/setup/config";
+import { ServerTypeInfo } from "lib/setup/config";
 
 /**
  * Traverses a Kai-like personal_bests api.
@@ -42,7 +42,7 @@ export async function* TraverseKaiAPI(
 			const res = await fetch(url, {
 				headers: {
 					Authorization: `Bearer ${token}`,
-					"User-Agent": `${CONF_INFO.name}/${VERSION_STR}`,
+					"User-Agent": `${ServerTypeInfo.name}/${VERSION_STR}`,
 				},
 			});
 
@@ -61,7 +61,7 @@ export async function* TraverseKaiAPI(
 
 			throw new ScoreImportFatalError(
 				500,
-				`Recieved no _links prop from ${url}. This is not an error with ${CONF_INFO.name}.`
+				`Recieved no _links prop from ${url}. This is not an error with ${ServerTypeInfo.name}.`
 			);
 		}
 

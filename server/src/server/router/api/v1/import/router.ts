@@ -14,7 +14,7 @@ import ParseBatchManual from "lib/score-import/import-types/file/batch-manual/pa
 import { ParseSolidStateXML } from "lib/score-import/import-types/file/solid-state-squad/parser";
 import { ParseMerIIDX } from "lib/score-import/import-types/file/mer-iidx/parser";
 import ParsePLIIIDXCSV from "lib/score-import/import-types/file/pli-iidx-csv/parser";
-import { CONF_INFO } from "lib/setup/config";
+import { ServerTypeInfo } from "lib/setup/config";
 import { RequirePermissions } from "server/middleware/auth";
 
 const logger = CreateLogCtx(__filename);
@@ -37,7 +37,7 @@ router.post(
 	ParseMultipartScoredata,
 	prValidate(
 		{
-			importType: Prudence.isIn(CONF_INFO.supportedImportTypes),
+			importType: Prudence.isIn(ServerTypeInfo.supportedImportTypes),
 		},
 		{},
 		{ allowExcessKeys: true }

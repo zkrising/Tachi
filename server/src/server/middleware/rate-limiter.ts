@@ -1,5 +1,5 @@
 import RateLimitRedis from "rate-limit-redis";
-import { CONFIG } from "lib/setup/config";
+import { ServerConfig } from "lib/setup/config";
 import rateLimit from "express-rate-limit";
 import CreateLogCtx from "lib/logger/logger";
 import { RedisClient } from "external/redis/redis";
@@ -8,7 +8,7 @@ const logger = CreateLogCtx(__filename);
 
 const store =
 	process.env.NODE_ENV === "production"
-		? new RateLimitRedis({ prefix: `${CONFIG.TYPE}-RL:`, client: RedisClient })
+		? new RateLimitRedis({ prefix: `${ServerConfig.TYPE}-RL:`, client: RedisClient })
 		: undefined; // undefined forces a default to an in-memory store
 
 export function ClearTestingRateLimitCache() {

@@ -20,6 +20,7 @@ import {
 	UGSRatingsLookup,
 	Grades,
 	Lamps,
+	JudgementLookup,
 } from "../types";
 
 export interface GameConfig<G extends Game = Game> {
@@ -59,7 +60,7 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	supportedClasses: GameClassSets[I][];
 	classHumanisedFormat: Record<GameClassSets[I], ClassInfo[]>;
 
-	judgements: string[];
+	judgements: JudgementLookup[I][];
 
 	defaultTable: string;
 

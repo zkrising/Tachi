@@ -63,6 +63,7 @@ export declare const COLOUR_SET: {
     vibrantOrange: string;
     vibrantBlue: string;
     vibrantGreen: string;
+    vibrantRed: string;
 };
 /**
  * Returns the configuration for this game.

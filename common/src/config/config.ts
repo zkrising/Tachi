@@ -102,6 +102,7 @@ export const COLOUR_SET = {
 	vibrantOrange: "rgba(248, 175, 6, 1)",
 	vibrantBlue: "rgba(43, 149, 237, 1)",
 	vibrantGreen: "rgba(26, 232, 26, 1)",
+	vibrantRed: "rgba(243, 23, 45, 1)",
 };
 
 type GameConfigs = {

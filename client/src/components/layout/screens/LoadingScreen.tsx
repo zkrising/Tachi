@@ -14,6 +14,11 @@ export function LoadingScreen({ children }: JustChildren) {
 	const { setUser } = useContext(UserContext);
 
 	useEffect(() => {
+		if (!localStorage.getItem("isLoggedIn")) {
+			setLoading(false);
+			return;
+		}
+
 		const timeout = setTimeout(
 			() =>
 				setBroke(

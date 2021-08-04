@@ -16,6 +16,7 @@ import DeltaCell from "../cells/DeltaCell";
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { nanoid } from "nanoid";
 import DropdownRow from "../components/DropdownRow";
+import IIDXPBDropdown from "./dropdowns/IIDXPBDropdown";
 
 export default function IIDXPBTable({
 	dataset,
@@ -83,7 +84,7 @@ export default function IIDXPBTable({
 			defaultSortMode={indexCol ? "#" : undefined}
 			rowFunction={pb => (
 				<DropdownRow
-					dropdown={<div style={{ height: "200px" }}>{pb.chartID}</div>}
+					dropdown={<IIDXPBDropdown pb={pb} game={"iidx"} playtype={"SP"} />}
 					key={pb.chartID}
 				>
 					{indexCol && <IndexCell index={pb.__related.index} />}

@@ -89,6 +89,7 @@ export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 									toast.success("Logged out.");
 									setTimeout(() => {
 										setUser(null);
+										localStorage.removeItem("isLoggedIn");
 									}, 500);
 								}
 							}}

@@ -57,6 +57,7 @@ export default function LoginPage() {
 
 			setTimeout(() => {
 				setUser(userRJ.body);
+				localStorage.setItem("isLoggedIn", "true");
 
 				history.goBack();
 			}, 500);

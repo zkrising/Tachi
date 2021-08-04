@@ -77,6 +77,7 @@ export default function RegisterPage() {
 
 			setTimeout(() => {
 				setUser(rj.body);
+				localStorage.setItem("isLoggedIn", "true");
 
 				history.goBack();
 			}, 500);

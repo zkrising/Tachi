@@ -1,6 +1,6 @@
 import { Game, Playtypes, integer, ScoreCalculatedDataLookup } from "tachi-common";
 import { GameClasses } from "tachi-common/js/game-classes";
-import { GitadoraColours, SDVXVFClasses } from "lib/constants/classes";
+import { CHUNITHM_COLOURS, GitadoraColours, SDVXVFClasses } from "lib/constants/classes";
 import { KtLogger } from "lib/logger/logger";
 
 export function CalculateSDVXClass(
@@ -92,6 +92,41 @@ export function GitadoraSkillToColour(sk: number) {
 	}
 
 	return GitadoraColours.WHITE;
+}
+
+export function CalculateChunithmColour(
+	game: Game,
+	playtype: Playtypes[Game],
+	userID: integer,
+	ratings: Record<string, number>
+) {
+	const colour = ChuniRatingToColour(ratings.naiveRating);
+
+	return { colour };
+}
+
+function ChuniRatingToColour(rating: number) {
+	if (rating >= 15) {
+		return CHUNITHM_COLOURS.RAINBOW;
+	} else if (rating >= 14.5) {
+		return CHUNITHM_COLOURS.PLATINUM;
+	} else if (rating >= 14) {
+		return CHUNITHM_COLOURS.GOLD;
+	} else if (rating >= 13) {
+		return CHUNITHM_COLOURS.SILVER;
+	} else if (rating >= 12) {
+		return CHUNITHM_COLOURS.BRONZE;
+	} else if (rating >= 10) {
+		return CHUNITHM_COLOURS.PURPLE;
+	} else if (rating >= 7) {
+		return CHUNITHM_COLOURS.RED;
+	} else if (rating >= 4) {
+		return CHUNITHM_COLOURS.ORANGE;
+	} else if (rating >= 2) {
+		return CHUNITHM_COLOURS.GREEN;
+	}
+
+	return CHUNITHM_COLOURS.BLUE;
 }
 
 // export function CalculateJubeatColour(

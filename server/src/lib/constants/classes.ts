@@ -159,3 +159,16 @@ export enum SDVXVFClasses {
 	IMPERIAL_III,
 	IMPERIAL_IV,
 }
+
+export enum CHUNITHM_COLOURS {
+	BLUE,
+	GREEN,
+	ORANGE,
+	RED,
+	PURPLE,
+	BRONZE,
+	SILVER,
+	GOLD,
+	PLATINUM,
+	RAINBOW,
+}

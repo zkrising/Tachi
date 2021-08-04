@@ -27,7 +27,6 @@ interface BaseGamePTConfig<I extends IDStrings> {
     lamps: Lamps[I][];
     lampColours: Record<Lamps[I], string>;
     clearLamp: Lamps[I];
-    supportedClasses: GameClassSets[I][];
     classHumanisedFormat: Record<GameClassSets[I], ClassInfo[]>;
     judgements: JudgementLookup[I][];
     defaultTable: string;

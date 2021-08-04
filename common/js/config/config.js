@@ -156,7 +156,6 @@ const GAME_PT_CONFIGS = {
             "FULL COMBO": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
-        supportedClasses: ["dan"],
         classHumanisedFormat: {
             dan: game_classes_1.IIDXDans,
         },
@@ -229,7 +228,6 @@ const GAME_PT_CONFIGS = {
             "FULL COMBO": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
-        supportedClasses: ["dan"],
         classHumanisedFormat: {
             dan: game_classes_1.IIDXDans,
         },
@@ -293,8 +291,9 @@ const GAME_PT_CONFIGS = {
             "ALL JUSTICE CRITICAL": exports.COLOUR_SET.white,
         },
         clearLamp: "CLEAR",
-        supportedClasses: [],
-        classHumanisedFormat: {},
+        classHumanisedFormat: {
+            colour: game_classes_1.CHUNITHMColours,
+        },
         supportsESD: false,
         judgements: ["jcrit", "justice", "attack", "miss"],
         defaultTable: "Levels (N-1)",
@@ -346,7 +345,6 @@ const GAME_PT_CONFIGS = {
             "PERFECT ULTIMATE CHAIN": exports.COLOUR_SET.gold,
         },
         clearLamp: "CLEAR",
-        supportedClasses: ["dan", "vfClass"],
         classHumanisedFormat: {
             dan: game_classes_1.SDVXDans,
             vfClass: game_classes_1.SDVXVFClasses,
@@ -398,7 +396,6 @@ const GAME_PT_CONFIGS = {
             "PERFECT ULTIMATE CHAIN": exports.COLOUR_SET.gold,
         },
         clearLamp: "CLEAR",
-        supportedClasses: [],
         classHumanisedFormat: {},
         supportsESD: false,
         judgements: ["critical", "near", "miss"],
@@ -444,7 +441,6 @@ const GAME_PT_CONFIGS = {
             "PERFECT CONNECT ALL": exports.COLOUR_SET.gold,
         },
         clearLamp: "CLEAR",
-        supportedClasses: [],
         classHumanisedFormat: {},
         supportsESD: true,
         judgementWindows: [
@@ -506,7 +502,6 @@ const GAME_PT_CONFIGS = {
             "FULL COMBO": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
-        supportedClasses: ["genocideDan", "stslDan"],
         classHumanisedFormat: {
             genocideDan: game_classes_1.BMSGenocideDans,
             stslDan: game_classes_1.BMSStSlDans,
@@ -567,7 +562,6 @@ const GAME_PT_CONFIGS = {
             "FULL COMBO": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
-        supportedClasses: ["genocideDan"],
         classHumanisedFormat: {
             genocideDan: game_classes_1.BMSGenocideDans,
         },
@@ -656,7 +650,6 @@ const GAME_PT_CONFIGS = {
             "MARVELOUS FULL COMBO": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
-        supportedClasses: ["dan"],
         classHumanisedFormat: {
             dan: game_classes_1.DDRDans,
         },
@@ -750,7 +743,6 @@ const GAME_PT_CONFIGS = {
             "MARVELOUS FULL COMBO": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
-        supportedClasses: ["dan"],
         classHumanisedFormat: {
             dan: game_classes_1.DDRDans,
         },
@@ -823,7 +815,6 @@ const GAME_PT_CONFIGS = {
             "ALL PERFECT+": exports.COLOUR_SET.teal,
         },
         clearLamp: "CLEAR",
-        supportedClasses: [],
         classHumanisedFormat: {},
         supportsESD: false,
         judgements: ["perfect", "great", "good", "miss"],
@@ -889,7 +880,6 @@ const GAME_PT_CONFIGS = {
             EXCELLENT: exports.COLOUR_SET.gold,
         },
         clearLamp: "CLEAR",
-        supportedClasses: ["colour"],
         classHumanisedFormat: {
             colour: game_classes_1.GitadoraColours,
         },
@@ -940,7 +930,6 @@ const GAME_PT_CONFIGS = {
             EXCELLENT: exports.COLOUR_SET.gold,
         },
         clearLamp: "CLEAR",
-        supportedClasses: ["colour"],
         classHumanisedFormat: {
             colour: game_classes_1.GitadoraColours,
         },

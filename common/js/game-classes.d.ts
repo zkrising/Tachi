@@ -19,6 +19,18 @@ export declare const DDRDans: {
     mouseover: string;
     variant: "warning" | "primary" | "secondary" | "success" | "danger" | "info";
 }[];
+export declare const CHUNITHMColours: ({
+    display: string;
+    mouseover: string;
+    css: {
+        backgroundColor: string;
+        color: string;
+    };
+} | {
+    display: string;
+    mouseover: string;
+    variant: "warning" | "primary" | "secondary" | "success" | "danger" | "info";
+})[];
 export interface GameClassSets {
     "iidx:SP": "dan";
     "iidx:DP": "dan";
@@ -32,7 +44,7 @@ export interface GameClassSets {
     "museca:Single": never;
     "bms:7K": "genocideDan" | "stslDan";
     "bms:14K": "genocideDan";
-    "chunithm:Single": never;
+    "chunithm:Single": "colour";
     "gitadora:Gita": "colour";
     "gitadora:Dora": "colour";
 }

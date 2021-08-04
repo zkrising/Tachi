@@ -2,7 +2,7 @@
 // Classes refer to things like dans.
 // Not the JS construct.
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DDRDans = exports.SDVXVFClasses = exports.SDVXDans = exports.BMSStSlDans = exports.BMSGenocideDans = exports.GitadoraColours = exports.IIDXDans = void 0;
+exports.CHUNITHMColours = exports.DDRDans = exports.SDVXVFClasses = exports.SDVXDans = exports.BMSStSlDans = exports.BMSGenocideDans = exports.GitadoraColours = exports.IIDXDans = void 0;
 function c(d, m, bg = "black", color = "white") {
     return { display: d, mouseover: m, css: { backgroundColor: bg, color } };
 }
@@ -171,5 +171,17 @@ exports.DDRDans = [
     v("九段", "9th Dan", "danger"),
     v("十段", "10th Dan", "danger"),
     v("皆伝", "Kaiden", "warning"),
+];
+exports.CHUNITHMColours = [
+    v("青", "Blue", "info"),
+    c("緑", "Green", "green"),
+    c("橙", "Orange", "orange"),
+    v("赤", "Red", "danger"),
+    c("紫", "Purple", "purple"),
+    c("銅", "Copper", "bronze"),
+    v("銀", "Silver", "secondary"),
+    v("金", "Gold", "warning"),
+    c("鉑", "Platinum", "silver", "black"),
+    v("虹", "Rainbow", "success"),
 ];
 //# sourceMappingURL=game-classes.js.map

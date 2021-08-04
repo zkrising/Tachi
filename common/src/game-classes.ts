@@ -196,6 +196,19 @@ export const DDRDans = [
 	v("皆伝", "Kaiden", "warning"),
 ];
 
+export const CHUNITHMColours = [
+	v("青", "Blue", "info"),
+	c("緑", "Green", "green"),
+	c("橙", "Orange", "orange"),
+	v("赤", "Red", "danger"),
+	c("紫", "Purple", "purple"),
+	c("銅", "Copper", "bronze"),
+	v("銀", "Silver", "secondary"),
+	v("金", "Gold", "warning"),
+	c("鉑", "Platinum", "silver", "black"),
+	v("虹", "Rainbow", "success"),
+];
+
 export interface GameClassSets {
 	"iidx:SP": "dan";
 	"iidx:DP": "dan";
@@ -209,7 +222,7 @@ export interface GameClassSets {
 	"museca:Single": never;
 	"bms:7K": "genocideDan" | "stslDan";
 	"bms:14K": "genocideDan";
-	"chunithm:Single": never;
+	"chunithm:Single": "colour";
 	"gitadora:Gita": "colour";
 	"gitadora:Dora": "colour";
 }

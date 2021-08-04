@@ -1,6 +1,7 @@
 import {
 	BMSGenocideDans,
 	BMSStSlDans,
+	CHUNITHMColours,
 	ClassInfo,
 	DDRDans,
 	GameClassSets,
@@ -57,7 +58,6 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	lampColours: Record<Lamps[I], string>;
 	clearLamp: Lamps[I];
 
-	supportedClasses: GameClassSets[I][];
 	classHumanisedFormat: Record<GameClassSets[I], ClassInfo[]>;
 
 	judgements: JudgementLookup[I][];
@@ -251,7 +251,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: ["dan"],
 		classHumanisedFormat: {
 			dan: IIDXDans,
 		},
@@ -334,7 +333,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: ["dan"],
 		classHumanisedFormat: {
 			dan: IIDXDans,
 		},
@@ -407,8 +405,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: [],
-		classHumanisedFormat: {},
+		classHumanisedFormat: {
+			colour: CHUNITHMColours,
+		},
 
 		supportsESD: false,
 		judgements: ["jcrit", "justice", "attack", "miss"],
@@ -469,7 +468,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: ["dan", "vfClass"],
 		classHumanisedFormat: {
 			dan: SDVXDans,
 			vfClass: SDVXVFClasses,
@@ -530,7 +528,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: [],
 		classHumanisedFormat: {},
 
 		supportsESD: false,
@@ -585,7 +582,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: [],
 		classHumanisedFormat: {},
 
 		supportsESD: true,
@@ -656,7 +652,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: ["genocideDan", "stslDan"],
 		classHumanisedFormat: {
 			genocideDan: BMSGenocideDans,
 			stslDan: BMSStSlDans,
@@ -727,7 +722,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: ["genocideDan"],
 		classHumanisedFormat: {
 			genocideDan: BMSGenocideDans,
 		},
@@ -826,7 +820,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: ["dan"],
 		classHumanisedFormat: {
 			dan: DDRDans,
 		},
@@ -930,7 +923,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: ["dan"],
 		classHumanisedFormat: {
 			dan: DDRDans,
 		},
@@ -1013,7 +1005,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: [],
 		classHumanisedFormat: {},
 
 		supportsESD: false,
@@ -1089,7 +1080,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: ["colour"],
 		classHumanisedFormat: {
 			colour: GitadoraColours,
 		},
@@ -1150,7 +1140,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearLamp: "CLEAR",
 
-		supportedClasses: ["colour"],
 		classHumanisedFormat: {
 			colour: GitadoraColours,
 		},

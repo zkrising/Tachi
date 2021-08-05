@@ -1,4 +1,5 @@
 import {
+	AnyChartDocument,
 	ChartDocument,
 	Game,
 	IDStrings,
@@ -29,4 +30,14 @@ export function CreateChartMap<I extends IDStrings = IDStrings>(charts: ChartDoc
 	}
 
 	return chartMap;
+}
+
+export function CreateChartLink(chart: AnyChartDocument, game: Game) {
+	if (chart.isPrimary) {
+		return `/dashboard/games/${game}/${chart.playtype}/songs/${
+			chart.songID
+		}/${encodeURIComponent(chart.difficulty)}`;
+	}
+
+	return `/dashboard/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
 }

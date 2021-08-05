@@ -9,15 +9,21 @@ export default function SelectButton<T>({
 	children,
 	onVariant = "primary",
 	offVariant = "outline-secondary",
+	disabled = false,
 }: {
 	id: T;
 	value: T;
 	setValue: SetState<T>;
 	onVariant?: Button["props"]["variant"];
 	offVariant?: Button["props"]["variant"];
+	disabled?: boolean;
 } & JustChildren) {
 	return (
-		<Button variant={id === value ? onVariant : offVariant} onClick={() => setValue(id)}>
+		<Button
+			disabled={disabled}
+			variant={id === value ? onVariant : offVariant}
+			onClick={() => setValue(id)}
+		>
 			{children}
 		</Button>
 	);

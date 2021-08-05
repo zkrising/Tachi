@@ -14,6 +14,7 @@ import {
 	IDStringToGame,
 	ChartDocument,
 	SongDocument,
+	PBScoreDocument,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -66,4 +67,10 @@ export interface SessionReturns<I extends IDStrings = IDStrings> {
 	songs: SongDocument<IDStringToGame[I]>[];
 	charts: ChartDocument<I>[];
 	user: PublicUserDocument;
+}
+
+export interface UGPTChartPBComposition<I extends IDStrings = IDStrings> {
+	scores: ScoreDocument<I>[];
+	chart: ChartDocument<I>;
+	pb: PBScoreDocument<I>;
 }

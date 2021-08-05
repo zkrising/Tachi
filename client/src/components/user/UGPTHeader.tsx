@@ -1,7 +1,7 @@
 import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
 import React from "react";
-import { Game, GetGameConfig, GetGamePTConfig, PublicUserDocument } from "tachi-common";
+import { Game, GetGameConfig, GetGamePTConfig, IDStrings, PublicUserDocument } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import { Playtype } from "types/tachi";
 import { MillisToSince } from "util/time";
@@ -11,6 +11,7 @@ import NavItem from "components/nav/NavItem";
 import ClassBadge from "components/game/ClassBadge";
 import { UppercaseFirst } from "util/misc";
 import ProfileBadges from "./ProfileBadges";
+import { GameClassSets } from "tachi-common/js/game-classes";
 
 export default function UGPTHeader({
 	reqUser,
@@ -87,7 +88,9 @@ export default function UGPTHeader({
 									colSpan={2}
 								>
 									<>
-										{gptConfig.supportedClasses.map(k => (
+										{(Object.keys(
+											gptConfig.classHumanisedFormat
+										) as GameClassSets[IDStrings][]).map(k => (
 											<tr key={k}>
 												<td>{UppercaseFirst(k)}</td>
 												<td>

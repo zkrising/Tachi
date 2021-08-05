@@ -7,8 +7,8 @@ import { ChangeOpacity } from "util/color-opacity";
 import { NumericSOV, StrSOV } from "util/sorts";
 import SelectableRating from "../components/SelectableRating";
 import { PBDataset } from "types/tables";
-import { GetGamePTConfig, ScoreCalculatedDataLookup } from "tachi-common";
-import TachiTable, { Header } from "../components/TachiTable";
+import { GetGamePTConfig, PublicUserDocument, ScoreCalculatedDataLookup } from "tachi-common";
+import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
 import DifficultyCell from "../cells/DifficultyCell";
 import ScoreCell from "../cells/ScoreCell";
 import IndexCell from "../cells/IndexCell";
@@ -17,13 +17,16 @@ import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/
 import { nanoid } from "nanoid";
 import DropdownRow from "../components/DropdownRow";
 import IIDXPBDropdown from "./dropdowns/IIDXPBDropdown";
+import IIDXLampCell from "../cells/IIDXLampCell";
 
 export default function IIDXPBTable({
 	dataset,
 	indexCol = true,
+	reqUser,
 }: {
 	dataset: PBDataset<"iidx:SP">;
 	indexCol?: boolean;
+	reqUser: PublicUserDocument;
 }) {
 	const gptConfig = GetGamePTConfig<"iidx:SP">("iidx", "SP");
 
@@ -40,14 +43,15 @@ export default function IIDXPBTable({
 		[
 			"Rating",
 			"Rating",
-			null,
-			() => (
+			NumericSOV(x => x.calculatedData[rating] ?? 0),
+			(thProps: ZTableTHProps) => (
 				<SelectableRating<"iidx:SP">
 					key={nanoid()}
 					game="iidx"
 					playtype="SP"
 					rating={rating}
 					setRating={setRating}
+					{...thProps}
 				/>
 			),
 		],
@@ -84,12 +88,20 @@ export default function IIDXPBTable({
 			defaultSortMode={indexCol ? "#" : undefined}
 			rowFunction={pb => (
 				<DropdownRow
-					dropdown={<IIDXPBDropdown pb={pb} game={"iidx"} playtype={"SP"} />}
+					dropdown={
+						<IIDXPBDropdown
+							chart={pb.__related.chart}
+							reqUser={reqUser}
+							pb={pb}
+							game={"iidx"}
+							playtype={"SP"}
+						/>
+					}
 					key={pb.chartID}
 				>
 					{indexCol && <IndexCell index={pb.__related.index} />}
 					<DifficultyCell chart={pb.__related.chart} game={"iidx"} />
-					<TitleCell artist={pb.__related.song.artist} title={pb.__related.song.title} />
+					<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="iidx" />
 					<ScoreCell score={pb} game="iidx" playtype="SP" />
 					<DeltaCell
 						game="iidx"
@@ -98,18 +110,7 @@ export default function IIDXPBTable({
 						percent={pb.scoreData.percent}
 						grade={pb.scoreData.grade}
 					/>
-					<td
-						style={{
-							backgroundColor: ChangeOpacity(
-								gptConfig.lampColours[pb.scoreData.lamp],
-								0.2
-							),
-						}}
-					>
-						<strong>{pb.scoreData.lamp}</strong>
-						<br />
-						<small>[BP: {pb.scoreData.hitMeta.bp ?? "No Data"}]</small>
-					</td>
+					<IIDXLampCell sc={pb} />
 					<td>
 						{pb.calculatedData[rating]
 							? pb.calculatedData[rating]!.toFixed(2)

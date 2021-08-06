@@ -523,7 +523,7 @@ function StatShowcase({ reqUser, game, playtype }: { reqUser: PublicUserDocument
 									placement="top"
 									overlay={
 										<Tooltip id="quick-panel-tooltip">
-											Return to {reqUser.username}&apos;s selected stats.
+											Return to {reqUser.username}'s selected stats.
 										</Tooltip>
 									}
 								>

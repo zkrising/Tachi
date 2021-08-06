@@ -104,7 +104,11 @@ function PBsOverview({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 						style={{ height: 500 }}
 						{...{ isLoading, error, dataset: data }}
 					>
-						<IIDXPBTable reqUser={reqUser} dataset={data!} />
+						<IIDXPBTable
+							reqUser={reqUser}
+							dataset={data!}
+							playtype={playtype as "SP" | "DP"}
+						/>
 					</LoadingWrapper>
 				) : (
 					<PBsSearch {...{ reqUser, game, playtype, search }} />
@@ -172,7 +176,12 @@ function PBsSearch({
 
 	return (
 		<LoadingWrapper style={{ height: 500 }} {...{ isLoading, error, dataset: data }}>
-			<IIDXPBTable reqUser={reqUser} indexCol={false} dataset={data!} />
+			<IIDXPBTable
+				reqUser={reqUser}
+				indexCol={false}
+				dataset={data!}
+				playtype={playtype as "SP" | "DP"}
+			/>
 		</LoadingWrapper>
 	);
 }

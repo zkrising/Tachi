@@ -1,11 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Collapse } from "react-bootstrap";
 import { JustChildren } from "types/react";
 
 export default function DropdownRow({
 	children,
+	className,
 	dropdown,
-}: { dropdown: React.ReactNode } & JustChildren) {
+}: { dropdown: React.ReactNode; className?: string } & JustChildren) {
 	const [showDropdown, setShowDropdown] = useState(false);
 
 	const [renderDropdown, setRenderDropdown] = useState(false);
@@ -24,7 +25,9 @@ export default function DropdownRow({
 
 	return (
 		<>
-			<tr onClick={() => setShowDropdown(!showDropdown)}>{children}</tr>
+			<tr className={className} onClick={() => setShowDropdown(!showDropdown)}>
+				{children}
+			</tr>
 			<tr className="expandable-pseudo-row">
 				<td colSpan={100}>
 					<Collapse in={showDropdown}>

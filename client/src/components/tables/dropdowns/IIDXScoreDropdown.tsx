@@ -3,15 +3,16 @@ import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
 import React, { useState } from "react";
 import { UGPTChartPBComposition } from "types/api-returns";
-import { GamePT } from "types/react";
+import { GamePT, SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
 import DropdownStructure from "./components/DropdownStructure";
 import { PublicUserDocument, ChartDocument, ScoreDocument } from "tachi-common";
 import { useQuery } from "react-query";
 import { IsScore } from "util/asserts";
-import { IIDXGraphsComponent, ScoreInfo, ModsTable } from "./components/IIDXScoreDropdownParts";
+import { IIDXGraphsComponent, ModsTable } from "./components/IIDXScoreDropdownParts";
 import JudgementTable from "./components/JudgementTable";
-import PBNote from "./components/PBNote";
+import CommentContainer from "./components/CommentContainer";
+import ScoreEditButtons from "./components/ScoreEditButtons";
 
 export default function IIDXScoreDropdown({
 	thisScore,
@@ -19,10 +20,17 @@ export default function IIDXScoreDropdown({
 	playtype,
 	reqUser,
 	chart,
+	scoreState,
 }: {
 	thisScore: ScoreDocument<"iidx:SP" | "iidx:DP">;
 	reqUser: PublicUserDocument;
-	chart: ChartDocument<"iidx:SP">;
+	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
+	scoreState: {
+		highlight: boolean;
+		comment: string | null;
+		setHighlight: SetState<boolean>;
+		setComment: SetState<string | null>;
+	};
 } & GamePT) {
 	const [view, setView] = useState<"vsPB" | "moreInfo" | "history">("moreInfo");
 
@@ -55,19 +63,14 @@ export default function IIDXScoreDropdown({
 
 	let content = null;
 
-	thisScore.comment = "THIS IS AN EXAMPLE COMMENT.";
-
 	if (view === "moreInfo") {
 		content = (
 			<>
 				<div className="col-9">
 					<div className="row">
 						<IIDXGraphsComponent score={thisScore} />
-						{thisScore.comment && (
-							<div className="col-12">
-								<em>&quot;{thisScore.comment}&quot;</em>
-							</div>
-						)}
+						<CommentContainer comment={scoreState.comment} />
+						<ScoreEditButtons score={thisScore} scoreState={scoreState} />
 					</div>
 				</div>
 				<div className="col-3 align-self-center">

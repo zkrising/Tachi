@@ -8,8 +8,7 @@ export default function IIDXLampCell({
 }: {
 	sc: ScoreDocument<"iidx:SP" | "iidx:DP"> | PBScoreDocument<"iidx:SP" | "iidx:DP">;
 }) {
-	// doesn't matter, both have same colours
-	const gptConfig = GetGamePTConfig("iidx", "SP");
+	const gptConfig = GetGamePTConfig("iidx", sc.playtype);
 
 	let gaugeText = null;
 

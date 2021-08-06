@@ -9,7 +9,7 @@ export default function GameRoutes() {
 	const { game } = useParams<{ game: string }>();
 
 	if (!IsSupportedGame(game)) {
-		return <ErrorPage statusCode={404} customMessage="This game is not supported." />;
+		return <ErrorPage statusCode={404} customMessage={`The game ${game} is not supported.`} />;
 	}
 
 	const gameConfig = GetGameConfig(game);
@@ -44,7 +44,12 @@ function GamePlaytypeRoutes({ game }: { game: Game }) {
 	const { playtype } = useParams<{ playtype: string }>();
 
 	if (!IsSupportedPlaytype(game, playtype)) {
-		return <ErrorPage statusCode={400} customMessage="This playtype is not supported." />;
+		return (
+			<ErrorPage
+				statusCode={400}
+				customMessage={`The playtype ${playtype} is not supported.`}
+			/>
+		);
 	}
 
 	return (

@@ -159,7 +159,7 @@ export default function SearchBar() {
 			>
 				<div className="btn btn-icon btn-hover-transparent-white btn-lg mr-1">
 					<span className="svg-icon svg-icon-xl">
-						<SVG src={toAbsoluteUrl("/media/svg/icons/General/Search.svg")} />
+						{/* <SVG src={toAbsoluteUrl("/media/svg/icons/General/Search.svg")} /> */}
 					</span>
 				</div>
 			</div>

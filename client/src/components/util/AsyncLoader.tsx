@@ -20,7 +20,7 @@ export default function AsyncLoader<T = unknown>({
 			<Async.Rejected>
 				{error => (
 					<div className="text-center">
-						Fatal Error: {error.message}. That&apos;s not good!
+						Fatal Error: {error.message}. That's not good!
 					</div>
 				)}
 			</Async.Rejected>

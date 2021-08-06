@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FormatDifficulty } from "tachi-common/js/utils/util";
 import TitleCell from "../cells/TitleCell";
 import TimestampCell from "../cells/TimestampCell";
-import BPICell from "../cells/BPICell";
 import { NumericSOV, StrSOV } from "util/sorts";
 import SelectableRating from "../components/SelectableRating";
 import { ScoreDataset } from "types/tables";
@@ -20,7 +19,8 @@ import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/
 import { nanoid } from "nanoid";
 import IIDXLampCell from "../cells/IIDXLampCell";
 import DropdownRow from "../components/DropdownRow";
-import IIDXScoreDropdown from "../pbs/dropdowns/IIDXScoreDropdown";
+import IIDXScoreDropdown from "../dropdowns/IIDXScoreDropdown";
+import { IsNullish } from "util/misc";
 
 export default function IIDXScoreTable({
 	reqUser,
@@ -81,41 +81,56 @@ export default function IIDXScoreTable({
 					strToNum: HumanFriendlyStrToGradeIndex("iidx", "SP"),
 				},
 			}}
-			rowFunction={sc => (
-				<DropdownRow
-					dropdown={
-						<IIDXScoreDropdown
-							chart={sc.__related.chart}
-							game="iidx"
-							playtype={sc.playtype}
-							reqUser={reqUser}
-							thisScore={sc}
-						/>
-					}
-				>
-					<DifficultyCell chart={sc.__related.chart} game={"iidx"} />
-					<TitleCell song={sc.__related.song} chart={sc.__related.chart} game="iidx" />
-					<ScoreCell score={sc} game="iidx" playtype="SP" />
-					<DeltaCell
-						game="iidx"
-						playtype="SP"
-						score={sc.scoreData.score}
-						percent={sc.scoreData.percent}
-						grade={sc.scoreData.grade}
-					/>
-					<IIDXLampCell sc={sc} />
-					{rating === "BPI" ? (
-						<BPICell bpi={sc.calculatedData.BPI} />
-					) : (
-						<td>
-							{sc.calculatedData[rating]
-								? sc.calculatedData[rating]!.toFixed(2)
-								: "No Data."}
-						</td>
-					)}
-					<TimestampCell time={sc.timeAchieved} />
-				</DropdownRow>
-			)}
+			rowFunction={sc => <Row sc={sc} reqUser={reqUser} rating={rating} />}
 		/>
+	);
+}
+
+function Row({
+	sc,
+	reqUser,
+	rating,
+}: {
+	sc: ScoreDataset<"iidx:SP" | "iidx:DP">[0];
+	reqUser: PublicUserDocument;
+	rating: ScoreCalculatedDataLookup["iidx:SP"];
+}) {
+	const [highlight, setHighlight] = useState(sc.highlight);
+	const [comment, setComment] = useState(sc.comment);
+
+	const scoreState = { highlight, comment, setHighlight, setComment };
+
+	return (
+		<DropdownRow
+			className={highlight ? "highlighted-row" : ""}
+			dropdown={
+				<IIDXScoreDropdown
+					chart={sc.__related.chart}
+					game="iidx"
+					playtype={sc.playtype}
+					reqUser={reqUser}
+					thisScore={sc}
+					scoreState={scoreState}
+				/>
+			}
+		>
+			<DifficultyCell chart={sc.__related.chart} game={"iidx"} />
+			<TitleCell song={sc.__related.song} chart={sc.__related.chart} game="iidx" />
+			<ScoreCell score={sc} game="iidx" playtype="SP" />
+			<DeltaCell
+				game="iidx"
+				playtype="SP"
+				score={sc.scoreData.score}
+				percent={sc.scoreData.percent}
+				grade={sc.scoreData.grade}
+			/>
+			<IIDXLampCell sc={sc} />
+			<td>
+				{IsNullish(sc.calculatedData[rating])
+					? sc.calculatedData[rating]!.toFixed(2)
+					: "No Data."}
+			</td>
+			<TimestampCell time={sc.timeAchieved} />
+		</DropdownRow>
 	);
 }

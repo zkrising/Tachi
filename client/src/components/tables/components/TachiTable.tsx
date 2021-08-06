@@ -7,7 +7,7 @@ import NoDataWrapper from "./NoDataWrapper";
 import PageSelector from "./PageSelector";
 import SortableTH from "./SortableTH";
 import FilterDirectivesIndicator from "./FilterDirectivesIndicator";
-import { ComposeSearchFunction, ValueGetter, ValueGetterOrHybrid } from "util/ztable/search";
+import { ComposeSearchFunction, ValueGetterOrHybrid } from "util/ztable/search";
 
 export interface ZTableTHProps {
 	changeSort: (str: string) => void;
@@ -140,7 +140,11 @@ export default function TachiTable<D>({
 				<table className="table table-striped table-hover table-vertical-center text-center table-responsive-md">
 					<thead>{headersRow}</thead>
 					<tbody>
-						<NoDataWrapper>{window.map(rowFunction)}</NoDataWrapper>
+						<NoDataWrapper>
+							{window.map((e, i) => (
+								<React.Fragment key={i}>{rowFunction(e)}</React.Fragment>
+							))}
+						</NoDataWrapper>
 					</tbody>
 				</table>
 			</div>

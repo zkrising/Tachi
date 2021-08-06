@@ -69,7 +69,7 @@ function UserGameRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 	const { game } = useParams<{ game: string }>();
 
 	if (!IsSupportedGame(game)) {
-		return <ErrorPage statusCode={400} customMessage="This game is not supported." />;
+		return <ErrorPage statusCode={400} customMessage={`The game ${game} is not supported.`} />;
 	}
 
 	const gameConfig = GetGameConfig(game);
@@ -100,7 +100,12 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 	const { playtype } = useParams<{ playtype: string }>();
 
 	if (!IsSupportedPlaytype(game, playtype)) {
-		return <ErrorPage statusCode={400} customMessage="This playtype is not supported." />;
+		return (
+			<ErrorPage
+				statusCode={400}
+				customMessage={`The playtype ${playtype} is not supported.`}
+			/>
+		);
 	}
 
 	const { isLoading, error, data } = useQuery<

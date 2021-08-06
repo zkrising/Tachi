@@ -137,7 +137,7 @@ export default function CreditsPage() {
 					These people (or teams) have created programs that have been massively
 					beneficial.
 					<br />
-					Note: I&apos;m leaving out huge teams here (like MongoDB and TypeScript), and
+					Note: I'm leaving out huge teams here (like MongoDB and TypeScript), and
 					focusing more on the smaller guys.
 				</p>
 
@@ -169,7 +169,7 @@ export default function CreditsPage() {
 						<ExternalLink href="https://node-tap.org">Node TAP</ExternalLink>
 						<br />
 						<small>
-							Node TAP is a testing framework that is.not.a(&quot;mess&quot;)
+							Node TAP is a testing framework that is.not.a("mess")
 						</small>
 					</li>
 					<li>

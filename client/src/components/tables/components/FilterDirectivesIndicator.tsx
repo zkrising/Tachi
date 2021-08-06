@@ -147,7 +147,7 @@ export default function FilterDirectivesIndicator<D>({
 						</table>
 					) : (
 						<span className="text-center">
-							Looks like this table has no data. We can&apos;t show anything about the
+							Looks like this table has no data. We can't show anything about the
 							directives.
 						</span>
 					)}

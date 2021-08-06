@@ -1,33 +1,33 @@
-import IIDXLampChart from "components/charts/IIDXLampChart";
-import DeltaCell from "components/tables/cells/DeltaCell";
-import IIDXLampCell from "components/tables/cells/IIDXLampCell";
-import ScoreCell from "components/tables/cells/ScoreCell";
-import TimestampCell from "components/tables/cells/TimestampCell";
-import MiniTable from "components/tables/components/MiniTable";
-import ExternalLink from "components/util/ExternalLink";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
 import React, { useMemo, useState } from "react";
 import { useQuery } from "react-query";
-import { ChartDocument, PBScoreDocument, PublicUserDocument } from "tachi-common";
+import { ChartDocument, PublicUserDocument } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
-import { GamePT } from "types/react";
+import { GamePT, SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
 import { IsScore } from "util/asserts";
+import CommentContainer from "./components/CommentContainer";
 import DropdownStructure from "./components/DropdownStructure";
 import { IIDXGraphsComponent, ModsTable, ScoreInfo } from "./components/IIDXScoreDropdownParts";
 import JudgementTable from "./components/JudgementTable";
 import PBNote from "./components/PBNote";
+import ScoreEditButtons from "./components/ScoreEditButtons";
 
 export default function IIDXPBDropdown({
 	game,
 	playtype,
 	reqUser,
 	chart,
+	scoreState,
 }: {
 	reqUser: PublicUserDocument;
-	chart: ChartDocument<"iidx:SP">;
+	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
+	scoreState: {
+		highlight: boolean;
+		setHighlight: SetState<boolean>;
+	};
 } & GamePT) {
 	const [view, setView] = useState<"pb" | "scorePB" | "lampPB" | "bpPB" | "history">("pb");
 
@@ -81,7 +81,11 @@ export default function IIDXPBDropdown({
 				</>
 			}
 		>
-			{view === "history" ? <></> : <DocumentDisplay pbData={data} view={view} />}
+			{view === "history" ? (
+				<></>
+			) : (
+				<DocumentDisplay pbData={data} view={view} scoreState={scoreState} />
+			)}
 		</DropdownStructure>
 	);
 }
@@ -89,9 +93,14 @@ export default function IIDXPBDropdown({
 function DocumentDisplay({
 	pbData,
 	view,
+	scoreState,
 }: {
 	pbData: UGPTChartPBComposition<"iidx:SP">;
 	view: "pb" | "scorePB" | "lampPB" | "bpPB";
+	scoreState: {
+		highlight: boolean;
+		setHighlight: SetState<boolean>;
+	};
 }) {
 	const idMap = {
 		scorePB: pbData.pb.composedFrom.scorePB,
@@ -108,8 +117,7 @@ function DocumentDisplay({
 		return pbData.scores.filter(e => e.scoreID === idMap[view])[0];
 	}, [view]);
 
-	// @ts-expect-error temp
-	currentDoc.comment = "THIS IS AN EXAMPLE COMMENT.";
+	const [comment, setComment] = useState(IsScore(currentDoc) ? currentDoc.comment : null);
 
 	return (
 		<>
@@ -119,11 +127,11 @@ function DocumentDisplay({
 					{IsScore(currentDoc) ? (
 						<>
 							<ScoreInfo score={currentDoc} />
-							{currentDoc.comment && (
-								<div className="col-12">
-									<em>&quot;{currentDoc.comment}&quot;</em>
-								</div>
-							)}
+							<CommentContainer comment={comment} />
+							<ScoreEditButtons
+								score={currentDoc}
+								scoreState={{ ...scoreState, comment, setComment }}
+							/>
 						</>
 					) : (
 						<div className="col-12">

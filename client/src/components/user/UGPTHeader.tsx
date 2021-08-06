@@ -33,7 +33,7 @@ export default function UGPTHeader({
 				<div className="card card-custom">
 					<div className="card-header">
 						<h4>
-							{reqUser.username}&apos;s {gameConfig.name} {playtype} Profile
+							{reqUser.username}'s {gameConfig.name} {playtype} Profile
 						</h4>
 					</div>
 					<div className="card-body">

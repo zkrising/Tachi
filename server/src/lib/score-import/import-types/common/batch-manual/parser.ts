@@ -71,6 +71,7 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 			}
 
 			for (const key in self) {
+				// @ts-expect-error check
 				if (!gptConfig.judgements.includes(key)) {
 					return `Invalid Key ${key}. Expected any of ${gptConfig.judgements.join(", ")}`;
 				}

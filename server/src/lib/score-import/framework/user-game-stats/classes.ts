@@ -32,7 +32,7 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 	iidx: null,
 	bms: null,
 	chunithm: {
-		colour: CalculateChunithmColour,
+		Single: CalculateChunithmColour,
 	},
 	ddr: null,
 	gitadora: {

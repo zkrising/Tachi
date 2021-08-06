@@ -144,7 +144,7 @@ router.get("/:chartID", async (req, res) => {
 
 		return res.status(200).json({
 			success: true,
-			description: `Successfull retrieved PB for user.`,
+			description: `Successfully retrieved PB for user.`,
 			body: {
 				scores,
 				chart,

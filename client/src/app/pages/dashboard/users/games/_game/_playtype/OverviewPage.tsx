@@ -166,6 +166,7 @@ function LastSession({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 											{...data}
 											game={game}
 											playtype={playtype}
+											reqUser={reqUser}
 										/>
 									</div>
 								</>
@@ -183,9 +184,11 @@ function RecentSessionScoreInfo({
 	sessionData,
 	game,
 	playtype,
+	reqUser,
 }: {
 	session: SessionDocument;
 	sessionData: SessionReturns;
+	reqUser: PublicUserDocument;
 } & GamePT) {
 	const highlightedScores = sessionData.scores.find(e => e.highlight);
 
@@ -250,7 +253,7 @@ function RecentSessionScoreInfo({
 				</div>
 			</div>
 			<div className="col-12 mt-4">
-				<IIDXScoreTable dataset={dataset as any} pageLen={5} />
+				<IIDXScoreTable dataset={dataset as any} pageLen={5} reqUser={reqUser} />
 			</div>
 		</div>
 	);

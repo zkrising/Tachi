@@ -92,7 +92,6 @@ export default function IIDXPBTable({
 						<IIDXPBDropdown
 							chart={pb.__related.chart}
 							reqUser={reqUser}
-							pb={pb}
 							game={"iidx"}
 							playtype={"SP"}
 						/>

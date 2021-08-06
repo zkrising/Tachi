@@ -199,7 +199,7 @@ function ScoresOverview({ reqUser, game, playtype }: { reqUser: PublicUserDocume
 						style={{ height: 500 }}
 						{...{ isLoading, dataset: data, error }}
 					>
-						<IIDXScoreTable dataset={data!} />
+						<IIDXScoreTable dataset={data!} reqUser={reqUser} />
 					</LoadingWrapper>
 				) : (
 					<ScoresSearch {...{ reqUser, game, playtype, search }} />
@@ -221,7 +221,7 @@ function ScoresSearch({
 
 	return (
 		<LoadingWrapper style={{ height: 500 }} {...{ isLoading, error, dataset: data }}>
-			<IIDXScoreTable dataset={data!} />
+			<IIDXScoreTable dataset={data!} reqUser={reqUser} />
 		</LoadingWrapper>
 	);
 }

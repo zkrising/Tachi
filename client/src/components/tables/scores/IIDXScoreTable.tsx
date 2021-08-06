@@ -6,7 +6,12 @@ import BPICell from "../cells/BPICell";
 import { NumericSOV, StrSOV } from "util/sorts";
 import SelectableRating from "../components/SelectableRating";
 import { ScoreDataset } from "types/tables";
-import { GetGamePTConfig, integer, ScoreCalculatedDataLookup } from "tachi-common";
+import {
+	GetGamePTConfig,
+	integer,
+	ScoreCalculatedDataLookup,
+	PublicUserDocument,
+} from "tachi-common";
 import TachiTable, { ZTableTHProps } from "../components/TachiTable";
 import DifficultyCell from "../cells/DifficultyCell";
 import ScoreCell from "../cells/ScoreCell";
@@ -14,11 +19,15 @@ import DeltaCell from "../cells/DeltaCell";
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { nanoid } from "nanoid";
 import IIDXLampCell from "../cells/IIDXLampCell";
+import DropdownRow from "../components/DropdownRow";
+import IIDXScoreDropdown from "../pbs/dropdowns/IIDXScoreDropdown";
 
 export default function IIDXScoreTable({
+	reqUser,
 	dataset,
 	pageLen,
 }: {
+	reqUser: PublicUserDocument;
 	dataset: ScoreDataset<"iidx:SP">;
 	pageLen?: integer;
 }) {
@@ -73,7 +82,17 @@ export default function IIDXScoreTable({
 				},
 			}}
 			rowFunction={sc => (
-				<tr key={sc.chartID}>
+				<DropdownRow
+					dropdown={
+						<IIDXScoreDropdown
+							chart={sc.__related.chart}
+							game="iidx"
+							playtype={sc.playtype}
+							reqUser={reqUser}
+							thisScore={sc}
+						/>
+					}
+				>
 					<DifficultyCell chart={sc.__related.chart} game={"iidx"} />
 					<TitleCell song={sc.__related.song} chart={sc.__related.chart} game="iidx" />
 					<ScoreCell score={sc} game="iidx" playtype="SP" />
@@ -95,7 +114,7 @@ export default function IIDXScoreTable({
 						</td>
 					)}
 					<TimestampCell time={sc.timeAchieved} />
-				</tr>
+				</DropdownRow>
 			)}
 		/>
 	);

@@ -453,12 +453,17 @@ export interface MutualRivalGroupDocument extends MongoDBDocument {
 	mrgID: string;
 }
 
-export interface InviteCodeDocument extends MongoDBDocument {
+interface BaseInviteCodeDocument extends MongoDBDocument {
 	createdBy: integer;
 	code: string;
-	createdOn: number;
-	consumed: boolean;
+	createdAt: number;
 }
+
+export type InviteCodeDocument = BaseInviteCodeDocument &
+	(
+		| { consumed: false; consumedBy: null; consumedAt: null }
+		| { consumed: true; consumedBy: integer; consumedAt: number }
+	);
 
 export interface SessionInfoReturn {
 	sessionID: string;

@@ -1,11 +1,18 @@
-[{
-    "code": "example_invite",
-    "consumed": false,
-    "createdBy": 1,
-    "createdOn": 0
-}, {
-    "code": "example_consumed_invite",
-    "consumed": true,
-    "createdBy": 1,
-    "createdOn": 0
-}]
+[
+	{
+		"code": "example_invite",
+		"createdBy": 1,
+		"createdAt": 0,
+		"consumed": false,
+		"consumedBy": null,
+		"consumedAt": null
+	},
+	{
+		"code": "example_consumed_invite",
+		"createdBy": 1,
+		"createdAt": 0,
+		"consumed": true,
+		"consumedBy": 2,
+		"consumedAt": 123
+	}
+]

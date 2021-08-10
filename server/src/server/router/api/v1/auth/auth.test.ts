@@ -14,10 +14,12 @@ t.test("#ReinstateInvite", (t) => {
 			code: "foobar",
 			consumed: true,
 			createdBy: 1,
-			createdOn: 1,
+			createdAt: 1,
+			consumedAt: 2,
+			consumedBy: 2,
 		});
 
-		const response = await ReinstateInvite(inviteDoc);
+		const response = await ReinstateInvite(inviteDoc.code);
 
 		t.equal(response.nModified, 1, "Should modify one document");
 
@@ -26,6 +28,8 @@ t.test("#ReinstateInvite", (t) => {
 		});
 
 		t.equal(invite2!.consumed, false, "Should no longer be consumed");
+		t.equal(invite2!.consumedAt, null, "Should revoke when it was consumed.");
+		t.equal(invite2!.consumedBy, null, "Should revoke who it was consumed by.");
 
 		t.end();
 	});
@@ -45,7 +49,7 @@ t.test("#AddNewInvite", (t) => {
 		t.equal(result.consumed, false, "Invite should not be consumed.");
 
 		// was created +/- 6 seconds from now. This is perhaps too lenient, but we're only really testing its just around now ish.
-		t.ok(Math.abs(result.createdOn - Date.now()) <= 6000, "Invite was created roughly now.");
+		t.ok(Math.abs(result.createdAt - Date.now()) <= 6000, "Invite was created roughly now.");
 
 		t.match(result.code, /^[0-9a-f]{40}$/u, "Invite code should be a 40 character hex string.");
 	});

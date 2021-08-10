@@ -20,7 +20,9 @@ db.invites
 		code: options.code,
 		createdBy: 1,
 		consumed: false,
-		createdOn: Date.now(),
+		createdAt: Date.now(),
+		consumedBy: null,
+		consumedAt: null,
 	})
 	.then(() => {
 		logger.info(`Created invite ${options.code}.`);

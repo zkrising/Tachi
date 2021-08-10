@@ -51,7 +51,7 @@ specifiers:
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
   supertest: 6.1.3
-  tachi-common: github:zkldi/tachi-common
+  tachi-common: ^0.1.1
   tap: 15.0.9
   ts-node: 10.0.0
   tsconfig-paths: 3.10.1
@@ -84,7 +84,7 @@ dependencies:
   redis: 3.1.2
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
-  tachi-common: github.com/zkldi/tachi-common/8939397a0dbbe2d45be7e71cde014891c8ea05fb_ts-node@10.0.0+typescript@4.3.4
+  tachi-common: 0.1.1_ts-node@10.0.0+typescript@4.3.4
   typescript: 4.3.4
   winston: 3.3.3
 
@@ -3774,6 +3774,24 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
+  /tachi-common/0.1.1_ts-node@10.0.0+typescript@4.3.4:
+    resolution: {integrity: sha512-mcVcGJDpahkScgWXn5AiM+gehqqvgsXh+iblgG3seuoCJc+/0qiw5uJMN3OzLb0Xjutf2pFgcdTWWfAw9lsqrA==}
+    dependencies:
+      monk: 7.3.4
+      tap: 15.0.9_ts-node@10.0.0+typescript@4.3.4
+    transitivePeerDependencies:
+      - aws4
+      - bson-ext
+      - flow-remove-types
+      - kerberos
+      - mongodb-client-encryption
+      - mongodb-extjson
+      - snappy
+      - supports-color
+      - ts-node
+      - typescript
+    dev: false
+
   /tap-mocha-reporter/5.0.1:
     resolution: {integrity: sha512-1knFWOwd4khx/7uSEnUeaP9IPW3w+sqTgJMhrwah6t46nZ8P25atOKAjSvVDsT67lOPu0nfdOqUwoyKn+3E5pA==}
     engines: {node: '>= 8'}
@@ -4225,24 +4243,3 @@ packages:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
     dev: true
-
-  github.com/zkldi/tachi-common/8939397a0dbbe2d45be7e71cde014891c8ea05fb_ts-node@10.0.0+typescript@4.3.4:
-    resolution: {tarball: https://codeload.github.com/zkldi/tachi-common/tar.gz/8939397a0dbbe2d45be7e71cde014891c8ea05fb}
-    id: github.com/zkldi/tachi-common/8939397a0dbbe2d45be7e71cde014891c8ea05fb
-    name: tachi-common
-    version: 0.1.1
-    dependencies:
-      monk: 7.3.4
-      tap: 15.0.9_ts-node@10.0.0+typescript@4.3.4
-    transitivePeerDependencies:
-      - aws4
-      - bson-ext
-      - flow-remove-types
-      - kerberos
-      - mongodb-client-encryption
-      - mongodb-extjson
-      - snappy
-      - supports-color
-      - ts-node
-      - typescript
-    dev: false

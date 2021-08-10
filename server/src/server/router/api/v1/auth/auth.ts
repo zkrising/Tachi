@@ -6,8 +6,8 @@ import { GetNextCounterValue } from "utils/db";
 import CreateLogCtx from "lib/logger/logger";
 import { FormatUserDoc } from "utils/user";
 import nodeFetch from "utils/fetch";
-import { CAPTCHA_SECRET_KEY } from "lib/setup/config";
 import { Random20Hex } from "utils/misc";
+import { ServerConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -104,7 +104,7 @@ export async function ValidateCaptcha(
 	fetch = nodeFetch
 ) {
 	const r = await fetch(
-		`https://www.google.com/recaptcha/api/siteverify?secret=${CAPTCHA_SECRET_KEY}&response=${recaptcha}&remoteip=${remoteAddr}`
+		`https://www.google.com/recaptcha/api/siteverify?secret=${ServerConfig.CAPTCHA_SECRET_KEY}&response=${recaptcha}&remoteip=${remoteAddr}`
 	);
 
 	if (r.status !== 200) {

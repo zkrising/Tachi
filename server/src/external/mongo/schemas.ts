@@ -1,7 +1,7 @@
 import deepmerge from "deepmerge";
 import { Game, Playtypes, GetGameConfig, GetGamePTConfig } from "tachi-common";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
-import { CONF_INFO } from "lib/setup/config";
+import { ServerTypeInfo } from "lib/setup/config";
 
 const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
 
@@ -87,7 +87,7 @@ export const PR_SCORE_GENERIC = {
 	comment: p.nullable(p.isBoundedString(1, 240)),
 	timeAdded: p.isPositive,
 	scoreID: "string", // temp
-	importType: p.nullable(p.isIn(CONF_INFO.supportedImportTypes)),
+	importType: p.nullable(p.isIn(ServerTypeInfo.supportedImportTypes)),
 };
 
 type ScoreSchemas = {
@@ -409,7 +409,7 @@ const PRUDENCE_FOLDER_CHART_LOOKUP: PrudenceSchema = {
 
 const PRUDENCE_FOLDER: PrudenceSchema = {
 	title: "string",
-	game: p.isIn(CONF_INFO.supportedGames),
+	game: p.isIn(ServerTypeInfo.supportedGames),
 	playtype: (self, parent) => p.isIn(GetGameConfig(parent.game as Game).validPlaytypes)(self),
 	folderID: "string",
 	table: "string",

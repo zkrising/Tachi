@@ -1,11 +1,7 @@
 import t from "tap";
 import { CloseAllConnections } from "test-utils/close-connections";
 import ResetDBState from "test-utils/resets";
-import {
-	GetKTDataJSON,
-	Testing511Song,
-	Testing511SPA,
-} from "test-utils/test-data";
+import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
 import CreateLogCtx from "lib/logger/logger";
 import { ConvertAPIKaiIIDX } from "./converter";
 import deepmerge from "deepmerge";

@@ -50,11 +50,10 @@ export interface TachiConfig {
 	CDN_FILE_ROOT: string;
 	TYPE: "ktchi" | "btchi" | "omni";
 	PORT: integer;
-	CLIENT_INDEX_HTML_PATH: string;
-	ENABLE_SERVER_HTTPS: boolean;
-	RUN_OWN_CDN: boolean;
+	ENABLE_SERVER_HTTPS?: boolean;
+	RUN_OWN_CDN?: boolean;
 	CLIENT_DEV_SERVER?: string | null;
-	TYPE_INFO: StaticConfig.ServerConfig;
+	SERVER_TYPE_INFO: StaticConfig.ServerConfig;
 }
 
 const err = p(config, {
@@ -69,9 +68,8 @@ const err = p(config, {
 	ARC_AUTH_TOKEN: "string",
 	CDN_FILE_ROOT: "string",
 	PORT: p.isPositiveInteger,
-	CLIENT_INDEX_HTML_PATH: "string",
-	ENABLE_SERVER_HTTPS: "boolean",
-	RUN_OWN_CDN: "boolean",
+	ENABLE_SERVER_HTTPS: "*boolean",
+	RUN_OWN_CDN: "*boolean",
 	CLIENT_DEV_SERVER: "*?string",
 	TYPE: p.isIn("ktchi", "btchi", "omni"),
 });
@@ -81,37 +79,14 @@ if (err) {
 }
 
 if (config.TYPE === "ktchi") {
-	config.TYPE_INFO = StaticConfig.KTCHI_CONFIG;
+	config.SERVER_TYPE_INFO = StaticConfig.KTCHI_CONFIG;
 } else if (config.TYPE === "btchi") {
-	config.TYPE_INFO = StaticConfig.BTCHI_CONFIG;
+	config.SERVER_TYPE_INFO = StaticConfig.BTCHI_CONFIG;
 } else if (config.TYPE === "omni") {
-	config.TYPE_INFO = StaticConfig.OMNI_CONFIG;
+	config.SERVER_TYPE_INFO = StaticConfig.OMNI_CONFIG;
 }
 
 const tachiConfig = config as TachiConfig;
 
-// note: we dont use fs.exists here because the file may be moved underfoot.
-try {
-	fs.readFileSync(config.CLIENT_INDEX_HTML_PATH);
-} catch (err) {
-	logger.error(`Error while opening file at CLIENT_INDEX_HTML_PATH. Is one here?`);
-	process.exit(1);
-}
-
-export const MONGO_CONNECTION_URL = tachiConfig.MONGO_CONNECTION_URL;
-export const MONGO_DATABASE_NAME = tachiConfig.MONGO_DATABASE_NAME;
-export const LOG_LEVEL = tachiConfig.LOG_LEVEL;
-export const SESSION_SECRET = tachiConfig.SESSION_SECRET;
-export const CAPTCHA_SECRET_KEY = tachiConfig.CAPTCHA_SECRET_KEY;
-export const FLO_API_URL = tachiConfig.FLO_API_URL;
-export const EAG_API_URL = tachiConfig.EAG_API_URL;
-export const ARC_API_URL = tachiConfig.ARC_API_URL;
-export const ARC_AUTH_TOKEN = tachiConfig.ARC_AUTH_TOKEN;
-export const CDN_FILE_ROOT = tachiConfig.CDN_FILE_ROOT;
-export const CONF_INFO = tachiConfig.TYPE_INFO;
-export const PORT = tachiConfig.PORT;
-export const CONFIG = tachiConfig;
-export const CLIENT_INDEX_HTML_PATH = tachiConfig.CLIENT_INDEX_HTML_PATH;
-export const ENABLE_SERVER_HTTPS = tachiConfig.ENABLE_SERVER_HTTPS;
-export const RUN_OWN_CDN = tachiConfig.RUN_OWN_CDN;
-export const CLIENT_DEV_SERVER = tachiConfig.CLIENT_DEV_SERVER;
+export const ServerTypeInfo = tachiConfig.SERVER_TYPE_INFO;
+export const ServerConfig = tachiConfig;

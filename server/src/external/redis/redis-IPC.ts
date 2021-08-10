@@ -1,7 +1,7 @@
 import redis from "redis";
 import { RedisIPCChannels, RedisIPCData } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
-import { CONFIG } from "lib/setup/config";
+import { ServerConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -19,7 +19,7 @@ const SubCallbacks: Partial<SubCallbacks> = {};
 const SubClient = redis.createClient();
 const PubClient = redis.createClient();
 
-const PREFIX = CONFIG.TYPE.toUpperCase(); // KTCHI or BTCHI
+const PREFIX = ServerConfig.TYPE.toUpperCase(); // KTCHI or BTCHI
 
 export function RedisPub<T extends RedisIPCChannels>(channel: T, data: RedisIPCData[T]) {
 	PubClient.publish(`${PREFIX}-${channel}`, JSON.stringify(data));

@@ -2,7 +2,11 @@ import { Game, Playtypes, integer, UserGameStats, ClassDelta, IDStrings } from "
 import { GameClasses } from "tachi-common/js/game-classes";
 import deepmerge from "deepmerge";
 import { KtLogger } from "lib/logger/logger";
-import { CalculateGitadoraColour, CalculateSDVXClass } from "./builtin-class-handlers";
+import {
+	CalculateChunithmColour,
+	CalculateGitadoraColour,
+	CalculateSDVXClass,
+} from "./builtin-class-handlers";
 import { ReturnClassIfGreater } from "utils/class";
 import { RedisPub } from "external/redis/redis-IPC";
 import { ClassHandler, ScoreClasses } from "./types";
@@ -27,7 +31,9 @@ type ClassHandlerMap = {
 const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 	iidx: null,
 	bms: null,
-	chunithm: null,
+	chunithm: {
+		Single: CalculateChunithmColour,
+	},
 	ddr: null,
 	gitadora: {
 		Gita: CalculateGitadoraColour,

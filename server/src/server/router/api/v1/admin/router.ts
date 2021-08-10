@@ -5,7 +5,7 @@ import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger
 import prValidate from "server/middleware/prudence-validate";
 import { GetUserWithID } from "utils/user";
 import { ONE_MINUTE } from "lib/constants/time";
-import { LOG_LEVEL } from "lib/setup/config";
+import { ServerConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -41,6 +41,8 @@ const RequireAdminLevel: RequestHandler = async (req, res, next) => {
 
 	return next();
 };
+
+const LOG_LEVEL = ServerConfig.LOG_LEVEL;
 
 router.use(RequireAdminLevel);
 

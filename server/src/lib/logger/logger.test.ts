@@ -1,7 +1,9 @@
-import { LOG_LEVEL } from "lib/setup/config";
+import { ServerConfig } from "lib/setup/config";
 import t from "tap";
 import { CloseAllConnections } from "test-utils/close-connections";
 import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel, rootLogger, Transports } from "./logger";
+
+const LOG_LEVEL = ServerConfig.LOG_LEVEL;
 
 t.test("Logger Tests", (t) => {
 	const logger = CreateLogCtx(__filename);

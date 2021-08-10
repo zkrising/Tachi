@@ -7,18 +7,18 @@ import CreateLogCtx from "../../src/common/logger";
 
 const logger = CreateLogCtx(__filename);
 
-let data = JSON.parse(fs.readFileSync(path.join(__dirname, "./hcnverdata.json"), "utf-8"));
+const data = JSON.parse(fs.readFileSync(path.join(__dirname, "./hcnverdata.json"), "utf-8"));
 
 for (const d of data) {
-    let r = p(d, PRUDENCE_CHART_SCHEMAS.iidx);
-    if (r) {
-        logger.error(r.userVal);
-        logger.error(r);
-        throw r;
-    }
+	const r = p(d, PRUDENCE_CHART_SCHEMAS.iidx);
+	if (r) {
+		logger.error(r.userVal);
+		logger.error(r);
+		throw r;
+	}
 }
 
 db.charts.iidx.insert(data).then(() => {
-    logger.info("Done.");
-    process.exit(0);
+	logger.info("Done.");
+	process.exit(0);
 });

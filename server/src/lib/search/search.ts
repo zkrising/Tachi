@@ -14,7 +14,7 @@ import {
 } from "tachi-common";
 import { EscapeStringRegexp } from "utils/misc";
 import { GetOnlineCutoff, OMIT_PRIVATE_USER_RETURNS } from "utils/user";
-import { CONF_INFO } from "lib/setup/config";
+import { ServerTypeInfo } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -165,7 +165,7 @@ async function SearchAllGamesSingleGame(game: Game, search: string) {
 export async function SearchAllGamesSongs(search: string) {
 	const promises = [];
 
-	for (const game of CONF_INFO.supportedGames) {
+	for (const game of ServerTypeInfo.supportedGames) {
 		promises.push(SearchAllGamesSingleGame(game, search));
 	}
 

@@ -1,10 +1,12 @@
 import { ONE_MINUTE } from "lib/constants/time";
 import { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger";
-import { LOG_LEVEL } from "lib/setup/config";
+import { ServerConfig } from "lib/setup/config";
 import t from "tap";
 import { CloseAllConnections } from "test-utils/close-connections";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
+
+const LOG_LEVEL = ServerConfig.LOG_LEVEL;
 
 t.test("POST /api/v1/admin/change-log-level", async (t) => {
 	t.beforeEach(() => {

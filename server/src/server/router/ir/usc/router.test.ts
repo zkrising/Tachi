@@ -97,7 +97,6 @@ t.test("GET /ir/usc/charts/:chartHash", (t) => {
 
 const USC_SCORE_PB: PBScoreDocument = {
 	chartID: "USC_CHART_ID",
-	comments: [],
 	rankingData: {
 		rank: 1,
 		outOf: 2,

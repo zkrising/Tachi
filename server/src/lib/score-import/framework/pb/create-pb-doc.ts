@@ -125,7 +125,6 @@ async function MergeScoreLampIntoPB(
 			lampPB: lampPB.scoreID,
 		},
 		chartID: scorePB.chartID,
-		comments: [scorePB.comment, lampPB.comment].filter((e) => e !== null) as string[],
 		userID,
 		songID: scorePB.songID,
 		highlight: scorePB.highlight || lampPB.highlight,

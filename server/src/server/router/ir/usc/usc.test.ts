@@ -8,7 +8,6 @@ import { CloseAllConnections } from "test-utils/close-connections";
 
 const mockScorePB: PBScoreDocument<"usc:Single"> = {
 	chartID: "USC_CHART_ID",
-	comments: [],
 	calculatedData: {
 		VF6: 0,
 	},

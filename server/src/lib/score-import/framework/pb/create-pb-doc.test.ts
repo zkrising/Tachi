@@ -33,7 +33,6 @@ t.test("#CreatePBDoc", (t) => {
 		timeAchieved: 1619454485988,
 		game: "iidx",
 		playtype: "SP",
-		comments: [],
 		composedFrom: {
 			scorePB: IIDXScore.scoreID,
 			lampPB: "LAMP_PB_ID",

@@ -1130,7 +1130,6 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
 	game: Game;
 	playtype: AnyPlaytype;
 	songID: integer;
-	comments: string[];
 	highlight: boolean;
 	isPrimary: boolean;
 	timeAchieved: number | null;

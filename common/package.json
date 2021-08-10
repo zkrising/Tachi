@@ -1,7 +1,7 @@
 {
 	"name": "tachi-common",
 	"version": "0.1.0",
-	"description": "Common Types & Stuff for Tachi",
+	"description": "Common Types & Utilities for Tachi",
 	"main": "js/index.js",
 	"scripts": {
 		"test": "tap",

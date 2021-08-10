@@ -115,7 +115,14 @@ t.test("POST /api/v1/auth/login", (t) => {
 t.test("POST /api/v1/auth/register", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(() =>
-		db.invites.insert({ code: "code", createdBy: 1, createdOn: 0, consumed: false })
+		db.invites.insert({
+			code: "code",
+			createdBy: 1,
+			createdAt: 0,
+			consumed: false,
+			consumedAt: null,
+			consumedBy: null,
+		})
 	);
 
 	t.test("Should register a new user.", async (t) => {

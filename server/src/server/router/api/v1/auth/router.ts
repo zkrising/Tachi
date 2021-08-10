@@ -17,7 +17,7 @@ import {
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import prValidate from "server/middleware/prudence-validate";
-import { DecrementCounterValue } from "utils/db";
+import { DecrementCounterValue, GetNextCounterValue } from "utils/db";
 
 const logger = CreateLogCtx(__filename);
 
@@ -179,32 +179,40 @@ router.post(
 			});
 		}
 
-		const inviteCodeDoc = await db.invites.findOneAndUpdate(
-			{
-				code: req.body.inviteCode,
-				consumed: false,
-			},
-			{
-				$set: {
-					consumed: true,
-				},
-			}
-		);
-
-		if (!inviteCodeDoc) {
-			logger.info(`Invalid invite code given: ${req.body.inviteCode}.`);
-			return res.status(401).json({
-				success: false,
-				description: `This invite code is not valid.`,
-			});
-		}
-
-		logger.info(`Consumed invite ${inviteCodeDoc.code}.`);
-
-		// if we get to this point, We're good to create the user.
-
 		try {
-			const newUser = await AddNewUser(req.body.username, req.body.password, req.body.email);
+			const userID = await GetNextCounterValue("users");
+			const inviteCodeDoc = await db.invites.findOneAndUpdate(
+				{
+					code: req.body.inviteCode,
+					consumed: false,
+				},
+				{
+					$set: {
+						consumed: true,
+						consumedAt: Date.now(),
+						consumedBy: userID,
+					},
+				}
+			);
+
+			if (!inviteCodeDoc) {
+				logger.info(`Invalid invite code given: ${req.body.inviteCode}.`);
+				return res.status(401).json({
+					success: false,
+					description: `This invite code is not valid.`,
+				});
+			}
+
+			logger.info(`Consumed invite ${inviteCodeDoc.code}.`);
+
+			// if we get to this point, We're good to create the user.
+
+			const newUser = await AddNewUser(
+				req.body.username,
+				req.body.password,
+				req.body.email,
+				userID
+			);
 
 			if (!newUser) {
 				throw new Error("AddNewUser failed to create a user.");
@@ -232,7 +240,7 @@ router.post(
 				{ err }
 			);
 
-			await ReinstateInvite(inviteCodeDoc);
+			await ReinstateInvite(req.body.inviteCode);
 			await DecrementCounterValue("users");
 
 			return res.status(500).json({

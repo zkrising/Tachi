@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { InviteCodeDocument, PrivateUserDocument, PublicUserDocument } from "tachi-common";
+import { integer, InviteCodeDocument, PrivateUserDocument, PublicUserDocument } from "tachi-common";
 import { InsertResult } from "monk";
 import db from "external/mongo/db";
 import { GetNextCounterValue } from "utils/db";
@@ -25,15 +25,17 @@ export function PasswordCompare(plaintext: string, password: string) {
 	return bcrypt.compare(plaintext, password);
 }
 
-export function ReinstateInvite(inviteDoc: InviteCodeDocument) {
-	logger.info(`Reinstated Invite ${inviteDoc.code}`);
+export function ReinstateInvite(code: string) {
+	logger.info(`Reinstated Invite ${code}`);
 	return db.invites.update(
 		{
-			_id: inviteDoc._id,
+			code,
 		},
 		{
 			$set: {
 				consumed: false,
+				consumedAt: null,
+				consumedBy: null,
 			},
 		}
 	);
@@ -46,7 +48,9 @@ export async function AddNewInvite(user: PublicUserDocument) {
 		code,
 		consumed: false,
 		createdBy: user.id,
-		createdOn: Date.now(),
+		createdAt: Date.now(),
+		consumedAt: null,
+		consumedBy: null,
 	});
 
 	logger.info(`User ${FormatUserDoc(user)} created an invite.`);
@@ -70,13 +74,12 @@ export async function AddNewInvite(user: PublicUserDocument) {
 export async function AddNewUser(
 	username: string,
 	password: string,
-	email: string
+	email: string,
+	userID: integer
 ): Promise<InsertResult<PrivateUserDocument>> {
 	const hashedPassword = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
 
 	logger.verbose(`Hashed password for ${username}.`);
-
-	const userID = await GetNextCounterValue("users");
 
 	const userDoc: PrivateUserDocument = {
 		id: userID,

@@ -6,8 +6,8 @@ const songs = JSON.parse(fs.readFileSync(path.join(__dirname, "songs.json"), "ut
 const charts = JSON.parse(fs.readFileSync(path.join(__dirname, "deduped-charts.json"), "utf-8"));
 
 (async () => {
-    await db.songs.usc.remove({});
-    await db.charts.usc.remove({});
-    await db.songs.usc.insert(songs);
-    await db.charts.usc.insert(charts);
+	await db.songs.usc.remove({});
+	await db.charts.usc.remove({});
+	await db.songs.usc.insert(songs);
+	await db.charts.usc.insert(charts);
 })();

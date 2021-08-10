@@ -1,11 +1,7 @@
 import t from "tap";
 import { CloseAllConnections } from "test-utils/close-connections";
 import ResetDBState from "test-utils/resets";
-import {
-	GetKTDataJSON,
-	TestingAlbidaADV,
-	TestingSDVXAlbidaSong,
-} from "test-utils/test-data";
+import { GetKTDataJSON, TestingAlbidaADV, TestingSDVXAlbidaSong } from "test-utils/test-data";
 import CreateLogCtx from "lib/logger/logger";
 import { ConvertAPIKaiSDVX, ConvertDifficulty, ConvertVersion, ResolveKaiLamp } from "./converter";
 import deepmerge from "deepmerge";

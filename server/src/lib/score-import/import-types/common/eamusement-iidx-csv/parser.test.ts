@@ -2,10 +2,7 @@ import t from "tap";
 import CreateLogCtx from "lib/logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import GenericParseEamIIDXCSV, { NaiveCSVParse, ResolveHeaders } from "./parser";
-import {
-	TestingIIDXEamusementCSV26,
-	TestingIIDXEamusementCSV27,
-} from "test-utils/test-data";
+import { TestingIIDXEamusementCSV26, TestingIIDXEamusementCSV27 } from "test-utils/test-data";
 import { MockMulterFile } from "test-utils/mock-multer";
 import { CloseAllConnections } from "test-utils/close-connections";
 

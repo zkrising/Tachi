@@ -10,39 +10,39 @@ import crypto from "crypto";
 const logger = CreateLogCtx(__filename);
 
 function ConvertFn(c: any): FolderDocument[] {
-    throw new Error("This doesn't work, It was migrated elsewhere.");
+	throw new Error("This doesn't work, It was migrated elsewhere.");
 
-    // let docs = [];
+	// let docs = [];
 
-    // for (const playtype of validPlaytypes[c.game as Game]) {
-    //     const fd: FolderDocument = {
-    //         title: c.title,
-    //         game: c.game,
-    //         playtype,
-    //         type: "query" as const,
-    //         query: {
-    //             collection: c.query.collection,
-    //             body: c.query.query,
-    //         },
-    //         folderID: crypto.randomBytes(20).toString("hex"),
-    //         table: c.table,
-    //         tableIndex: 0, // ???
-    //     };
+	// for (const playtype of validPlaytypes[c.game as Game]) {
+	//     const fd: FolderDocument = {
+	//         title: c.title,
+	//         game: c.game,
+	//         playtype,
+	//         type: "query" as const,
+	//         query: {
+	//             collection: c.query.collection,
+	//             body: c.query.query,
+	//         },
+	//         folderID: crypto.randomBytes(20).toString("hex"),
+	//         table: c.table,
+	//         tableIndex: 0, // ???
+	//     };
 
-    //     let gh = gameHuman[c.game as Game];
+	//     let gh = gameHuman[c.game as Game];
 
-    //     fd.title = fd.title.replace(new RegExp(`${gh} +`, "giu"), "");
+	//     fd.title = fd.title.replace(new RegExp(`${gh} +`, "giu"), "");
 
-    //     logger.info(`Porting folder ${fd.title} (${playtype})`);
+	//     logger.info(`Porting folder ${fd.title} (${playtype})`);
 
-    //     docs.push(fd);
-    // }
+	//     docs.push(fd);
+	// }
 
-    // return docs;
+	// return docs;
 }
 
 (async () => {
-    await MigrateRecords(db.folders, "folders", ConvertFn);
+	await MigrateRecords(db.folders, "folders", ConvertFn);
 
-    process.exit(0);
+	process.exit(0);
 })();

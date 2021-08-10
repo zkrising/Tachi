@@ -13,11 +13,7 @@ import {
 import CreateLogCtx from "lib/logger/logger";
 import { isApproximately } from "test-utils/asserts";
 import { DryScore } from "../common/types";
-import {
-	GetKTDataJSON,
-	Testing511SPA,
-	TestingIIDXSPDryScore,
-} from "test-utils/test-data";
+import { GetKTDataJSON, Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
 import { CloseAllConnections } from "test-utils/close-connections";
 import deepmerge from "deepmerge";
 import ResetDBState from "test-utils/resets";

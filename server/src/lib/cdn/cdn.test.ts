@@ -1,10 +1,12 @@
 import t from "tap";
 import { CDNDelete, CDNRedirect, CDNRetrieve, CDNStore, CDNStoreOrOverwrite } from "./cdn";
 import fs from "fs";
-import { CDN_FILE_ROOT } from "lib/setup/config";
+import { ServerConfig } from "lib/setup/config";
 import path from "path";
 import { CloseAllConnections } from "test-utils/close-connections";
 import expressRequestMock from "express-request-mock";
+
+const CDN_FILE_ROOT = ServerConfig.CDN_FILE_ROOT;
 
 function getTestTxt() {
 	return fs.readFileSync(path.join(CDN_FILE_ROOT, "test.txt"), "utf-8");

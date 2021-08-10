@@ -10,8 +10,16 @@ function approx(t: Tap.Test, given: number, recieved: number, acc = 0.01) {
 	}
 }
 
+const gptConfig = GetGamePTConfig("iidx", "SP");
+
+if (!gptConfig.supportsESD) {
+	throw new Error(`IIDX:SP no longer supports esd, these tests won't work.`);
+}
+
+const judgementWindows = gptConfig.judgementWindows;
+
 t.test("#CalculateESD", (t) => {
-	const jdg = GetGamePTConfig("iidx", "SP").judgementWindows!;
+	const jdg = judgementWindows;
 	approx(t, CalculateESD(jdg, 0.8), 17.58);
 	approx(t, CalculateESD(jdg, 0), 200);
 	t.throws(() => CalculateESD(jdg, 0, true));
@@ -28,7 +36,7 @@ t.test("#ESDCompare", (t) => {
 });
 
 t.test("#PercentCompare", (t) => {
-	const jdg = GetGamePTConfig("iidx", "SP").judgementWindows!;
+	const jdg = judgementWindows;
 	approx(t, PercentCompare(jdg, 0.99, 0.98), -5.53);
 	approx(t, PercentCompare(jdg, 0.99, 0.98), PercentCompare(jdg, 0.99, 0.98, 1));
 

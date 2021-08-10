@@ -1,5 +1,5 @@
+import CreateLogCtx from "lib/logger/logger";
 import { ICollection } from "monk";
-import CreateLogCtx from "../../src/common/logger";
 import { oldKTDB } from "./old-db";
 
 const logger = CreateLogCtx(__filename);

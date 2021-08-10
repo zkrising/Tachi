@@ -171,6 +171,9 @@ export async function GetFoldersFromTable(table: TableDocument) {
 		);
 	}
 
+	// we also need to sort folders in their indexed order.
+	folders.sort((a, b) => table.folders.indexOf(a.folderID) - table.folders.indexOf(b.folderID));
+
 	return folders;
 }
 

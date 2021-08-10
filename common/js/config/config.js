@@ -166,7 +166,7 @@ const GAME_PT_CONFIGS = {
             { name: "GOOD", msBorder: 116.667, value: 0 },
         ],
         judgements: ["pgreat", "great", "good", "bad", "poor"],
-        defaultTable: "Levels (N-1)",
+        defaultTable: "levels_n-1",
         scoreBucket: "lamp",
     },
     "iidx:DP": {
@@ -238,7 +238,7 @@ const GAME_PT_CONFIGS = {
             { name: "GOOD", msBorder: 116.667, value: 0 },
         ],
         judgements: ["pgreat", "great", "good", "bad", "poor"],
-        defaultTable: "Levels (N-1)",
+        defaultTable: "levels_n-1",
         scoreBucket: "lamp",
     },
     "chunithm:Single": {
@@ -296,7 +296,7 @@ const GAME_PT_CONFIGS = {
         },
         supportsESD: false,
         judgements: ["jcrit", "justice", "attack", "miss"],
-        defaultTable: "Levels (N-1)",
+        defaultTable: "levels_n-1",
         scoreBucket: "grade",
     },
     "sdvx:Single": {
@@ -351,7 +351,7 @@ const GAME_PT_CONFIGS = {
         },
         supportsESD: false,
         judgements: ["critical", "near", "miss"],
-        defaultTable: "Levels (N-1)",
+        defaultTable: "levels",
         scoreBucket: "grade",
     },
     "usc:Single": {
@@ -399,7 +399,7 @@ const GAME_PT_CONFIGS = {
         classHumanisedFormat: {},
         supportsESD: false,
         judgements: ["critical", "near", "miss"],
-        defaultTable: "Levels (N-1)",
+        defaultTable: "levels",
         scoreBucket: "grade",
     },
     "museca:Single": {
@@ -448,7 +448,7 @@ const GAME_PT_CONFIGS = {
             { name: "NEAR", msBorder: 66.667, value: 1 },
         ],
         judgements: ["critical", "near", "miss"],
-        defaultTable: "Levels (N-1)",
+        defaultTable: "levels",
         scoreBucket: "grade",
     },
     "bms:7K": {
@@ -508,7 +508,7 @@ const GAME_PT_CONFIGS = {
         },
         supportsESD: false,
         judgements: ["pgreat", "great", "good", "bad", "poor"],
-        defaultTable: "Insane",
+        defaultTable: "insane",
         scoreBucket: "lamp",
     },
     "bms:14K": {
@@ -567,7 +567,7 @@ const GAME_PT_CONFIGS = {
         },
         supportsESD: false,
         judgements: ["pgreat", "great", "good", "bad", "poor"],
-        defaultTable: "Insane",
+        defaultTable: "insane",
         scoreBucket: "lamp",
     },
     "ddr:SP": {
@@ -662,7 +662,7 @@ const GAME_PT_CONFIGS = {
             { name: "BAD", msBorder: 119, value: 0 },
         ],
         judgements: ["marvelous", "perfect", "great", "good", "boo", "miss", "ok", "ng"],
-        defaultTable: "Levels (N-1)",
+        defaultTable: "levels",
         scoreBucket: "lamp",
     },
     "ddr:DP": {
@@ -755,7 +755,7 @@ const GAME_PT_CONFIGS = {
             { name: "BAD", msBorder: 119, value: 0 },
         ],
         judgements: ["marvelous", "perfect", "great", "good", "boo", "miss", "ok", "ng"],
-        defaultTable: "Levels (N-1)",
+        defaultTable: "levels",
         scoreBucket: "lamp",
     },
     "maimai:Single": {
@@ -818,7 +818,7 @@ const GAME_PT_CONFIGS = {
         classHumanisedFormat: {},
         supportsESD: false,
         judgements: ["perfect", "great", "good", "miss"],
-        defaultTable: "Levels",
+        defaultTable: "levels",
         scoreBucket: "grade",
     },
     "gitadora:Gita": {
@@ -885,7 +885,7 @@ const GAME_PT_CONFIGS = {
         },
         supportsESD: false,
         judgements: ["perfect", "great", "good", "ok", "miss"],
-        defaultTable: "Levels (N-1)",
+        defaultTable: "levels",
         scoreBucket: "grade",
     },
     "gitadora:Dora": {
@@ -935,7 +935,7 @@ const GAME_PT_CONFIGS = {
         },
         supportsESD: false,
         judgements: ["perfect", "great", "good", "ok", "miss"],
-        defaultTable: "Levels (N-1)",
+        defaultTable: "levels",
         scoreBucket: "grade",
     },
 };

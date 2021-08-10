@@ -263,7 +263,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		],
 		judgements: ["pgreat", "great", "good", "bad", "poor"],
 
-		defaultTable: "Levels (N-1)",
+		defaultTable: "levels_n-1",
 
 		scoreBucket: "lamp",
 	},
@@ -345,7 +345,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		],
 		judgements: ["pgreat", "great", "good", "bad", "poor"],
 
-		defaultTable: "Levels (N-1)",
+		defaultTable: "levels_n-1",
 
 		scoreBucket: "lamp",
 	},
@@ -412,7 +412,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		supportsESD: false,
 		judgements: ["jcrit", "justice", "attack", "miss"],
 
-		defaultTable: "Levels (N-1)",
+		defaultTable: "levels_n-1",
 
 		scoreBucket: "grade",
 	},
@@ -476,7 +476,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		supportsESD: false,
 		judgements: ["critical", "near", "miss"],
 
-		defaultTable: "Levels (N-1)",
+		defaultTable: "levels",
 
 		scoreBucket: "grade",
 	},
@@ -533,7 +533,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		supportsESD: false,
 		judgements: ["critical", "near", "miss"],
 
-		defaultTable: "Levels (N-1)",
+		defaultTable: "levels",
 
 		scoreBucket: "grade",
 	},
@@ -591,7 +591,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		],
 		judgements: ["critical", "near", "miss"],
 
-		defaultTable: "Levels (N-1)",
+		defaultTable: "levels",
 
 		scoreBucket: "grade",
 	},
@@ -660,7 +660,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		supportsESD: false,
 		judgements: ["pgreat", "great", "good", "bad", "poor"],
 
-		defaultTable: "Insane",
+		defaultTable: "insane",
 
 		scoreBucket: "lamp",
 	},
@@ -729,7 +729,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		supportsESD: false,
 		judgements: ["pgreat", "great", "good", "bad", "poor"],
 
-		defaultTable: "Insane",
+		defaultTable: "insane",
 
 		scoreBucket: "lamp",
 	},
@@ -834,7 +834,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		],
 		judgements: ["marvelous", "perfect", "great", "good", "boo", "miss", "ok", "ng"],
 
-		defaultTable: "Levels (N-1)",
+		defaultTable: "levels",
 
 		scoreBucket: "lamp",
 	},
@@ -937,7 +937,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		],
 		judgements: ["marvelous", "perfect", "great", "good", "boo", "miss", "ok", "ng"],
 
-		defaultTable: "Levels (N-1)",
+		defaultTable: "levels",
 
 		scoreBucket: "lamp",
 	},
@@ -1010,7 +1010,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		supportsESD: false,
 		judgements: ["perfect", "great", "good", "miss"],
 
-		defaultTable: "Levels",
+		defaultTable: "levels",
 
 		scoreBucket: "grade",
 	},
@@ -1087,7 +1087,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		supportsESD: false,
 		judgements: ["perfect", "great", "good", "ok", "miss"],
 
-		defaultTable: "Levels (N-1)",
+		defaultTable: "levels",
 
 		scoreBucket: "grade",
 	},
@@ -1147,7 +1147,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		supportsESD: false,
 		judgements: ["perfect", "great", "good", "ok", "miss"],
 
-		defaultTable: "Levels (N-1)",
+		defaultTable: "levels",
 
 		scoreBucket: "grade",
 	},

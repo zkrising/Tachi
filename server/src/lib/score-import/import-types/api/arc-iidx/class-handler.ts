@@ -1,6 +1,6 @@
 import nodeFetch from "utils/fetch";
 import { HasOwnProperty } from "utils/misc";
-import { IIDXClasses } from "lib/constants/classes";
+import { IIDXDans } from "lib/constants/classes";
 import { ClassHandler } from "../../../framework/user-game-stats/types";
 import { ServerConfig } from "lib/setup/config";
 
@@ -72,24 +72,24 @@ export async function CreateArcIIDXClassHandler(
 }
 
 const ARCClasses = {
-	皆伝: IIDXClasses.KAIDEN,
-	中伝: IIDXClasses.CHUUDEN,
-	十段: IIDXClasses.DAN_10,
-	九段: IIDXClasses.DAN_9,
-	八段: IIDXClasses.DAN_8,
-	七段: IIDXClasses.DAN_7,
-	六段: IIDXClasses.DAN_6,
-	五段: IIDXClasses.DAN_5,
-	四段: IIDXClasses.DAN_4,
-	三段: IIDXClasses.DAN_3,
-	二段: IIDXClasses.DAN_2, // These two look very similar but they aren't
-	ニ段: IIDXClasses.DAN_2, // and ARC uses both, from what I can tell.
-	初段: IIDXClasses.DAN_1,
-	一級: IIDXClasses.KYU_1,
-	二級: IIDXClasses.KYU_2,
-	三級: IIDXClasses.KYU_3,
-	四級: IIDXClasses.KYU_4,
-	五級: IIDXClasses.KYU_5,
-	六級: IIDXClasses.KYU_6,
-	七級: IIDXClasses.KYU_7,
+	皆伝: IIDXDans.KAIDEN,
+	中伝: IIDXDans.CHUUDEN,
+	十段: IIDXDans.DAN_10,
+	九段: IIDXDans.DAN_9,
+	八段: IIDXDans.DAN_8,
+	七段: IIDXDans.DAN_7,
+	六段: IIDXDans.DAN_6,
+	五段: IIDXDans.DAN_5,
+	四段: IIDXDans.DAN_4,
+	三段: IIDXDans.DAN_3,
+	二段: IIDXDans.DAN_2, // These two look very similar but they aren't
+	ニ段: IIDXDans.DAN_2, // and ARC uses both, from what I can tell.
+	初段: IIDXDans.DAN_1,
+	一級: IIDXDans.KYU_1,
+	二級: IIDXDans.KYU_2,
+	三級: IIDXDans.KYU_3,
+	四級: IIDXDans.KYU_4,
+	五級: IIDXDans.KYU_5,
+	六級: IIDXDans.KYU_6,
+	七級: IIDXDans.KYU_7,
 };

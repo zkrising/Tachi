@@ -22,6 +22,10 @@ export function MockJSONFetch(urlDataMap: Record<string, unknown>) {
 			};
 		}
 
-		throw new Error(`Unexpected url ${url} - No Data Present?`);
+		throw new Error(
+			`Unexpected url ${url} - No Data Present? Valid urls are ${Object.keys(urlDataMap).join(
+				", "
+			)}`
+		);
 	}) as NodeFetch;
 }

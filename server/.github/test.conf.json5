@@ -8,6 +8,7 @@
 	SESSION_SECRET: "unused",
 	FLO_API_URL: "https://flo.example.com",
 	EAG_API_URL: "https://eag.example.com",
+	MIN_API_URL: "https://min.example.com",
 	ARC_API_URL: "https://arc.example.com",
 	ARC_AUTH_TOKEN: "unused",
 	CDN_FILE_ROOT: "./local-cdn",

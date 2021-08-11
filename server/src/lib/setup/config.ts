@@ -45,6 +45,7 @@ export interface TachiConfig {
 	SESSION_SECRET: string;
 	FLO_API_URL: string;
 	EAG_API_URL: string;
+	MIN_API_URL: string;
 	ARC_API_URL: string;
 	ARC_AUTH_TOKEN: string;
 	CDN_FILE_ROOT: string;
@@ -64,6 +65,7 @@ const err = p(config, {
 	SESSION_SECRET: "string",
 	FLO_API_URL: isValidURL,
 	EAG_API_URL: isValidURL,
+	MIN_API_URL: isValidURL,
 	ARC_API_URL: isValidURL,
 	ARC_AUTH_TOKEN: "string",
 	CDN_FILE_ROOT: "string",

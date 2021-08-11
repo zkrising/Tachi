@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { ServerTypeInfo } from "lib/setup/config";
+import { ServerConfig, ServerTypeInfo } from "lib/setup/config";
 import { Game, Playtypes, GetGameConfig, AnySongDocument, AnyChartDocument } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
@@ -75,4 +75,16 @@ export function IsString(val: unknown): val is string {
 
 export function DedupeArr<T>(arr: T[]): T[] {
 	return [...new Set(arr)];
+}
+
+export function KaiTypeToBaseURL(kaiType: "FLO" | "EAG" | "MIN") {
+	if (kaiType === "FLO") {
+		return ServerConfig.FLO_API_URL;
+	} else if (kaiType === "EAG") {
+		return ServerConfig.EAG_API_URL;
+	} else if (kaiType === "MIN") {
+		return ServerConfig.MIN_API_URL;
+	}
+
+	throw new Error(`Invalid Kai Type ${kaiType} provided.`);
 }

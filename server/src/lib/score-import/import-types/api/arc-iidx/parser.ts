@@ -21,7 +21,11 @@ export async function ParseArcIIDX(
 			fetch
 		),
 		context: {},
-		classHandler: await CreateArcIIDXClassHandler(arcProfileID, ServerConfig.ARC_AUTH_TOKEN),
+		classHandler: await CreateArcIIDXClassHandler(
+			arcProfileID,
+			ServerConfig.ARC_AUTH_TOKEN,
+			fetch
+		),
 		game: "iidx",
 	};
 }

@@ -5,14 +5,15 @@ import { KaiContext } from "../types";
 import { TraverseKaiAPI } from "../traverse-api";
 import { ParserFunctionReturns } from "../../types";
 import { ServerConfig } from "lib/setup/config";
+import { KaiTypeToBaseURL } from "utils/misc";
 
 export function ParseKaiSDVX(
-	service: "FLO" | "EAG",
+	service: "FLO" | "EAG" | "MIN",
 	authDoc: KaiAuthDocument,
 	logger: KtLogger,
 	fetch = nodeFetch
 ): ParserFunctionReturns<unknown, KaiContext> {
-	const baseUrl = service === "FLO" ? ServerConfig.FLO_API_URL : ServerConfig.EAG_API_URL;
+	const baseUrl = KaiTypeToBaseURL(service);
 
 	return {
 		iterable: TraverseKaiAPI(

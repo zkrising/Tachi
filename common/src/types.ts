@@ -1164,6 +1164,7 @@ export type APIImportTypes =
 	| "api/flo-sdvx"
 	| "api/eag-iidx"
 	| "api/eag-sdvx"
+	| "api/min-sdvx"
 	| "api/arc-iidx"
 	| "api/arc-sdvx"
 	| "api/arc-ddr";

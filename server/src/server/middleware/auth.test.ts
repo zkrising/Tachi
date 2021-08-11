@@ -1,9 +1,12 @@
 import t from "tap";
-import { SetRequestPermissions, AllPermissions, RequireNotGuest, RequirePermissions } from "./auth";
+import { SetRequestPermissions, AllPermissions } from "./auth";
 import expMiddlewareMock from "express-request-mock";
 import db from "external/mongo/db";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import { CloseAllConnections } from "test-utils/close-connections";
+import ResetDBState from "test-utils/resets";
+
+t.beforeEach(ResetDBState);
 
 t.test("#SetRequestPermissions", (t) => {
 	t.test("Should assign valid APIKey information to req[SYMBOL_TachiAPIData]", async (t) => {

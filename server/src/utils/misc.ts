@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { ServerConfig, ServerTypeInfo } from "lib/setup/config";
-import { Game, Playtypes, GetGameConfig, AnySongDocument, AnyChartDocument } from "tachi-common";
+import { Game, Playtypes, GetGameConfig } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
 // the developer of this has migrated everything to Force ES6 style modules,

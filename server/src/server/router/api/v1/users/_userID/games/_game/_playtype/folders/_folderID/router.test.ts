@@ -3,12 +3,7 @@ import db from "external/mongo/db";
 import { CloseAllConnections } from "test-utils/close-connections";
 import ResetDBState from "test-utils/resets";
 import deepmerge from "deepmerge";
-import {
-	Testing511SPA,
-	TestingIIDXFolderSP10,
-	TestingIIDXSPScore,
-	TestingIIDXSPScorePB,
-} from "test-utils/test-data";
+import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { FolderDocument } from "tachi-common";
 import mockApi from "test-utils/mock-api";
 import { CreateFolderChartLookup } from "utils/folder";

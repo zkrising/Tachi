@@ -1,6 +1,5 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
-import { AllPermissions } from "server/middleware/auth";
 import t from "tap";
 import { CloseAllConnections } from "test-utils/close-connections";
 import mockApi from "test-utils/mock-api";

@@ -1,13 +1,7 @@
 import t from "tap";
-import CreateLogCtx from "lib/logger/logger";
 import { Testing511SPA } from "test-utils/test-data";
 import { ChartDocument, FolderDocument } from "tachi-common";
-import {
-	CreateFolderChartLookup,
-	GetFolderChartIDs,
-	GetFolderCharts,
-	ResolveFolderToCharts,
-} from "./folder";
+import { GetFolderChartIDs, ResolveFolderToCharts } from "./folder";
 import db from "external/mongo/db";
 import ResetDBState from "test-utils/resets";
 import deepmerge from "deepmerge";

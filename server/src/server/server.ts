@@ -6,7 +6,6 @@ import { RedisClient } from "external/redis/redis";
 import { ServerConfig } from "lib/setup/config";
 import connectRedis from "connect-redis";
 import helmet from "helmet";
-import fs from "fs";
 import CreateLogCtx from "lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);

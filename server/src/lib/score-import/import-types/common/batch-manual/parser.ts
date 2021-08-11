@@ -110,6 +110,7 @@ const PR_BatchManual = (game: Game, playtype: Playtypes[Game]): PrudenceSchema =
  */
 export function ParseBatchManualFromObject(
 	object: unknown,
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	importType: ImportTypes,
 	logger: KtLogger
 ): ParserFunctionReturns<BatchManualScore, BatchManualContext> {

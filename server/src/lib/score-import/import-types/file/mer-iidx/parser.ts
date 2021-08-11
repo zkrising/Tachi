@@ -4,7 +4,6 @@ import { EmptyObject } from "utils/types";
 import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturns } from "../../common/types";
-import { ConvertFileMerIIDX } from "./converter";
 import { MerScore } from "./types";
 
 const PR_MerIIDX = {

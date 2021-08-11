@@ -25,7 +25,7 @@ import { CloseAllConnections } from "test-utils/close-connections";
 // 	title: "5.1.1",
 // };
 
-t.todo("#ConverterFn", async (t) => {
+t.todo("#ConverterFn", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.end();

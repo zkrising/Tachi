@@ -1,5 +1,4 @@
 import t from "tap";
-import { ImportAllIterableData, ImportIterableDatapoint } from "./score-importing";
 
 t.todo("#ImportAllIterableData", (t) => {
 	t.end();

@@ -1,8 +1,7 @@
 import bcrypt from "bcrypt";
-import { integer, InviteCodeDocument, PrivateUserDocument, PublicUserDocument } from "tachi-common";
+import { integer, PrivateUserDocument, PublicUserDocument } from "tachi-common";
 import { InsertResult } from "monk";
 import db from "external/mongo/db";
-import { GetNextCounterValue } from "utils/db";
 import CreateLogCtx from "lib/logger/logger";
 import { FormatUserDoc } from "utils/user";
 import nodeFetch from "utils/fetch";

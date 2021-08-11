@@ -4,7 +4,6 @@ import { KaiAuthDocument } from "tachi-common";
 import { KaiContext } from "../types";
 import { TraverseKaiAPI } from "../traverse-api";
 import { ParserFunctionReturns } from "../../types";
-import { ServerConfig } from "lib/setup/config";
 import { KaiTypeToBaseURL } from "utils/misc";
 import { CreateKaiIIDXClassHandler } from "./class-handler";
 

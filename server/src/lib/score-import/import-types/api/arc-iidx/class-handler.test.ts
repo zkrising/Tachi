@@ -2,7 +2,7 @@ import t from "tap";
 import { CloseAllConnections } from "test-utils/close-connections";
 import { MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
-import { IIDXClasses } from "lib/constants/classes";
+import { IIDXDans } from "lib/constants/classes";
 import CreateLogCtx from "lib/logger/logger";
 import { CreateArcIIDXClassHandler } from "./class-handler";
 
@@ -34,10 +34,10 @@ t.test("#CreateArcIIDXClassHandler", (t) => {
 		// its not async but typescript complains
 		const res = await fn("iidx", "SP", 1, {}, logger);
 
-		t.equal(res!.dan, IIDXClasses.CHUUDEN);
+		t.equal(res!.dan, IIDXDans.CHUUDEN);
 
 		const res2 = await fn("iidx", "DP", 1, {}, logger);
-		t.equal(res2!.dan, IIDXClasses.DAN_2);
+		t.equal(res2!.dan, IIDXDans.DAN_2);
 
 		t.end();
 	});

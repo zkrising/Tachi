@@ -1,4 +1,4 @@
-export enum IIDXClasses {
+export enum IIDXDans {
 	KYU_7,
 	KYU_6,
 	KYU_5,

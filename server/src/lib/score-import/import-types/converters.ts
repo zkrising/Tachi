@@ -30,6 +30,7 @@ export const Converters: ConverterMap = {
 	"api/eag-sdvx": ConvertAPIKaiSDVX,
 	"api/flo-iidx": ConvertAPIKaiIIDX,
 	"api/flo-sdvx": ConvertAPIKaiSDVX,
+	"api/min-sdvx": ConvertAPIKaiSDVX,
 	"api/arc-iidx": ConvertAPIArcIIDX,
 	"api/arc-ddr": ConvertAPIArcDDR,
 	"api/arc-sdvx": ConvertAPIArcSDVX,

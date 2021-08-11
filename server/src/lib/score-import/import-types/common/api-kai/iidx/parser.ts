@@ -5,14 +5,16 @@ import { KaiContext } from "../types";
 import { TraverseKaiAPI } from "../traverse-api";
 import { ParserFunctionReturns } from "../../types";
 import { ServerConfig } from "lib/setup/config";
+import { KaiTypeToBaseURL } from "utils/misc";
+import { CreateKaiIIDXClassHandler } from "./class-handler";
 
-export function ParseKaiIIDX(
+export async function ParseKaiIIDX(
 	service: "FLO" | "EAG",
 	authDoc: KaiAuthDocument,
 	logger: KtLogger,
 	fetch = nodeFetch
-): ParserFunctionReturns<unknown, KaiContext> {
-	const baseUrl = service === "FLO" ? ServerConfig.FLO_API_URL : ServerConfig.EAG_API_URL;
+): Promise<ParserFunctionReturns<unknown, KaiContext>> {
+	const baseUrl = KaiTypeToBaseURL(service);
 
 	return {
 		iterable: TraverseKaiAPI(
@@ -25,7 +27,7 @@ export function ParseKaiIIDX(
 		context: {
 			service,
 		},
-		classHandler: null,
+		classHandler: await CreateKaiIIDXClassHandler(service, authDoc.token, fetch),
 		game: "iidx",
 	};
 }

@@ -31,5 +31,5 @@ export interface KaiSDVXScore {
 }
 
 export interface KaiContext {
-	service: "FLO" | "EAG";
+	service: "FLO" | "EAG" | "MIN";
 }

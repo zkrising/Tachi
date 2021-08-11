@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "description": "A score tracking server.",
     "main": "js/index.js",
+    "private": true,
     "scripts": {
         "test": "tap",
         "watchtest": "tap --watch",

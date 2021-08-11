@@ -51,7 +51,7 @@ specifiers:
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
   supertest: 6.1.3
-  tachi-common: ^0.1.6
+  tachi-common: ^0.1.9
   tap: 15.0.9
   ts-node: 10.0.0
   tsconfig-paths: 3.10.1
@@ -84,7 +84,7 @@ dependencies:
   redis: 3.1.2
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
-  tachi-common: 0.1.6_ts-node@10.0.0+typescript@4.3.4
+  tachi-common: 0.1.9_ts-node@10.0.0+typescript@4.3.4
   typescript: 4.3.4
   winston: 3.3.3
 
@@ -3774,8 +3774,8 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tachi-common/0.1.6_ts-node@10.0.0+typescript@4.3.4:
-    resolution: {integrity: sha512-H2kjAIUXyvNGuPlOgvWc25KmujETee4XqRRSG/BQIall0FSiO7yWApZQMelQZITebdlKwzpd976P2NSejTv0Yg==}
+  /tachi-common/0.1.9_ts-node@10.0.0+typescript@4.3.4:
+    resolution: {integrity: sha512-nNChWe41kwizagY9tS5PCHTTSbT7VP87lejXn8sX19x+StNax/KJDyGhwXEuYyqo0pCoPYttHGZc4Aar6SgVyQ==}
     dependencies:
       monk: 7.3.4
       tap: 15.0.9_ts-node@10.0.0+typescript@4.3.4

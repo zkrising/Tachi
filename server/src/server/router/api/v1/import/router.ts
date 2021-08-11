@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { FileUploadImportTypes } from "tachi-common";
+import { APIImportTypes, FileUploadImportTypes, integer } from "tachi-common";
 import Prudence from "prudence";
 import { GetUserWithIDGuaranteed } from "utils/user";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
@@ -16,6 +16,14 @@ import { ParseMerIIDX } from "lib/score-import/import-types/file/mer-iidx/parser
 import ParsePLIIIDXCSV from "lib/score-import/import-types/file/pli-iidx-csv/parser";
 import { ServerTypeInfo } from "lib/setup/config";
 import { RequirePermissions } from "server/middleware/auth";
+import { ParseEagIIDX } from "lib/score-import/import-types/api/eag-iidx/parser";
+import { ParseEagSDVX } from "lib/score-import/import-types/api/eag-sdvx/parser";
+import { ParseFloIIDX } from "lib/score-import/import-types/api/flo-iidx/parser";
+import { ParseFloSDVX } from "lib/score-import/import-types/api/flo-sdvx/parser";
+import { ParseMinSDVX } from "lib/score-import/import-types/api/min-sdvx/parser";
+import { ParseArcDDR } from "lib/score-import/import-types/api/arc-ddr/parser";
+import { ParseArcSDVX } from "lib/score-import/import-types/api/arc-sdvx/parser";
+import { ParseArcIIDX } from "lib/score-import/import-types/api/arc-iidx/parser";
 
 const logger = CreateLogCtx(__filename);
 
@@ -27,6 +35,8 @@ const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware(
 	logger
 );
 
+const fileImportTypes = ServerTypeInfo.supportedImportTypes.filter((e) => e.startsWith("file/"));
+
 /**
  * Import scores from a file. Expects the post request to be multipart, and to provide a scoreData file.
  * @name POST /api/v1/import/file
@@ -37,7 +47,7 @@ router.post(
 	ParseMultipartScoredata,
 	prValidate(
 		{
-			importType: Prudence.isIn(ServerTypeInfo.supportedImportTypes),
+			importType: Prudence.isIn(fileImportTypes),
 		},
 		{},
 		{ allowExcessKeys: true }
@@ -62,6 +72,43 @@ router.post(
 		// but that is ABSOLUTELY not what is actually occuring.
 		// We use this as an override because we know better.
 		// see: https://www.typescriptlang.org/play?ts=4.3.0-beta#code/GYVwdgxgLglg9mABAQQDwBUB8AKYc4BciAYvhpgJSIDeiAsAFCKID0LiAJnAKYDOivKCGDBGAX0aMYYKNwBOwAIYRuJMlhqNmzAEaK5RdOMkNQkWAkQAlbkLlgAynAC23UnGxVqW7W0QAHOVtuMA5EKAALGH5o8IjVIN4QABsoRDhgARdVaX8QNOlBbkUwjMQ5RVCXH2YYTOwAWUVIgDoKqudPRFREAAYWgFYvGu1mILskWj0DRAAiQTlpAHNZxAkmbXXRkfGQexpEaaIARgAmAGY14wZGZNt0vfdEAF5rWz3HbPdPAG4TZGwcEe+AoPyAA
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const responseData = await ExpressWrappedScoreImportMain<any, any>(
+			userDoc,
+			true,
+			importType,
+			inputParser
+		);
+
+		return res.status(responseData.statusCode).json(responseData.body);
+	}
+);
+
+const apiImportTypes = ServerTypeInfo.supportedImportTypes.filter((e) => e.startsWith("api/"));
+
+/**
+ * Import scores from another API. This typically will perform a full sync.
+ * @name POST /api/v1/import/from-api
+ */
+router.post(
+	"/from-api",
+	RequirePermissions("submit_score"),
+	prValidate(
+		{
+			importType: Prudence.isIn(apiImportTypes),
+		},
+		{},
+		{ allowExcessKeys: true }
+	),
+	async (req, res) => {
+		const importType = req.body.importType as APIImportTypes;
+
+		const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.userID);
+
+		const inputParser = (logger: KtLogger) =>
+			ResolveAPIImportParser(userDoc.id, importType, logger);
+
+		// see the argument above about typescript falsely expanding types.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const responseData = await ExpressWrappedScoreImportMain<any, any>(
 			userDoc,
@@ -106,6 +153,34 @@ export function ResolveFileUploadData(
 				`importType ${importType} made it into ResolveFileUploadData, but should have been rejected by Prudence.`
 			);
 			throw new ScoreImportFatalError(400, `Invalid importType of ${importType}.`);
+	}
+}
+
+export function ResolveAPIImportParser(
+	userID: integer,
+	importType: APIImportTypes,
+	logger: KtLogger
+) {
+	switch (importType) {
+		case "api/eag-iidx":
+			return ParseEagIIDX(userID, logger);
+		case "api/eag-sdvx":
+			return ParseEagSDVX(userID, logger);
+		case "api/flo-iidx":
+			return ParseFloIIDX(userID, logger);
+		case "api/flo-sdvx":
+			return ParseFloSDVX(userID, logger);
+		case "api/min-sdvx":
+			return ParseMinSDVX(userID, logger);
+		case "api/arc-ddr":
+			return ParseArcDDR(userID, logger);
+		case "api/arc-iidx":
+			return ParseArcIIDX(userID, logger);
+		case "api/arc-sdvx":
+			return ParseArcSDVX(userID, logger);
+		default:
+			logger.error(`Unknown importType ${importType} has no handler?`);
+			throw new ScoreImportFatalError(500, `Unknown importType ${importType}.`);
 	}
 }
 

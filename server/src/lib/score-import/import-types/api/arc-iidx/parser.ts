@@ -5,24 +5,28 @@ import { ParserFunctionReturns } from "../../common/types";
 import { EmptyObject } from "utils/types";
 import { ServerConfig } from "lib/setup/config";
 import { CreateArcIIDXClassHandler } from "./class-handler";
+import { GetArcAuthGuaranteed } from "utils/queries/auth";
+import { integer } from "tachi-common";
 
 export async function ParseArcIIDX(
-	arcProfileID: string,
+	userID: integer,
 	logger: KtLogger,
 	fetch = nodeFetch
 ): Promise<ParserFunctionReturns<unknown, EmptyObject>> {
+	const authDoc = await GetArcAuthGuaranteed(userID, "api/arc-iidx", logger);
+
 	return {
 		iterable: TraverseKaiAPI(
 			ServerConfig.ARC_API_URL,
 			// HEROIC VERSE
-			`/api/v1/iidx/27/player_bests?profile_id=${arcProfileID}`,
+			`/api/v1/iidx/27/player_bests?profile_id=${authDoc.accountID}`,
 			ServerConfig.ARC_AUTH_TOKEN,
 			logger,
 			fetch
 		),
 		context: {},
 		classHandler: await CreateArcIIDXClassHandler(
-			arcProfileID,
+			authDoc.accountID,
 			ServerConfig.ARC_AUTH_TOKEN,
 			fetch
 		),

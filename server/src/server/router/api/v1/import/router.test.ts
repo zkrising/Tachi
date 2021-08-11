@@ -225,6 +225,20 @@ t.test("POST /api/v1/import/file", async (t) => {
 			t.end();
 		});
 
+		t.test("Invalid JSON", async (t) => {
+			const res = await mockApi
+				.post("/api/v1/import/file")
+				.set("Cookie", cookie)
+				.attach("scoreData", Buffer.from("{invalid JSON"))
+				.field("importType", "file/batch-manual");
+
+			t.equal(res.body.success, false, "Should be successful.");
+
+			t.equal(res.statusCode, 400);
+
+			t.end();
+		});
+
 		t.test("Single import", async (t) => {
 			const res = await mockApi
 				.post("/api/v1/import/file")

@@ -4,17 +4,21 @@ import { TraverseKaiAPI } from "../../common/api-kai/traverse-api";
 import { ParserFunctionReturns } from "../../common/types";
 import { EmptyObject } from "utils/types";
 import { ServerConfig } from "lib/setup/config";
+import { GetArcAuthGuaranteed } from "utils/queries/auth";
+import { integer } from "tachi-common";
 
-export function ParseArcSDVX(
-	arcProfileID: string,
+export async function ParseArcSDVX(
+	userID: integer,
 	logger: KtLogger,
 	fetch = nodeFetch
-): ParserFunctionReturns<unknown, EmptyObject> {
+): Promise<ParserFunctionReturns<unknown, EmptyObject>> {
+	const authDoc = await GetArcAuthGuaranteed(userID, "api/arc-sdvx", logger);
+
 	return {
 		iterable: TraverseKaiAPI(
 			ServerConfig.ARC_API_URL,
 			// VIVID WAVE.
-			`/api/v1/sdvx/5/player_bests?profile_id=${arcProfileID}`,
+			`/api/v1/sdvx/5/player_bests?profile_id=${authDoc.accountID}`,
 			ServerConfig.ARC_AUTH_TOKEN,
 			logger,
 			fetch

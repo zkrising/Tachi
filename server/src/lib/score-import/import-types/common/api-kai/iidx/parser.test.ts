@@ -36,7 +36,6 @@ t.test("#ParseKaiIIDX", (t) => {
 		const res = await ParseKaiIIDX("FLO", fakeAuth, logger, mockFloAPI);
 
 		t.equal(res.game, "iidx");
-		t.equal(res.classHandler, null);
 		t.strictSame(res.context, { service: "FLO" });
 
 		const iter = [];
@@ -69,7 +68,6 @@ t.test("#ParseKaiIIDX", (t) => {
 		const res = await ParseKaiIIDX("EAG", fakeAuth, logger, mockEagAPI);
 
 		t.equal(res.game, "iidx");
-		t.equal(res.classHandler, null);
 		t.strictSame(res.context, { service: "EAG" });
 
 		const iter = [];

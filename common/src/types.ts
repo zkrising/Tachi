@@ -120,7 +120,8 @@ export type Databases =
 	| "api-tokens"
 	| "import-locks"
 	| "tables"
-	| "game-stats-snapshots";
+	| "game-stats-snapshots"
+	| "arc-saved-profiles";
 
 export type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 
@@ -1347,4 +1348,11 @@ export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>
 	ranking: integer;
 	playcount: integer;
 	timestamp: integer;
+}
+
+export interface ARCSavedProfileDocument extends MongoDBDocument {
+	userID: integer;
+	accountID: string;
+	name: string;
+	forImportType: "api/arc-iidx" | "api/arc-sdvx" | "api/arc-ddr";
 }

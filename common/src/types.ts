@@ -1253,7 +1253,7 @@ export interface KaiAuthDocument {
 	userID: integer;
 	token: string;
 	refreshToken: string;
-	service: "FLO" | "EAG"; // MIN might exist at some point.
+	service: "FLO" | "EAG" | "MIN";
 }
 
 /**

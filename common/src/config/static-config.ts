@@ -1,12 +1,4 @@
-import {
-	FileUploadImportTypes,
-	IRImportTypes,
-	APIImportTypes,
-	ImportTypes,
-	Game,
-	Playtypes,
-} from "..";
-import { GetGameConfig } from "./config";
+import { FileUploadImportTypes, IRImportTypes, APIImportTypes, ImportTypes, Game } from "..";
 
 export const fileImportTypes: FileUploadImportTypes[] = [
 	"file/eamusement-iidx-csv",
@@ -45,7 +37,7 @@ export const allImportTypes: ImportTypes[] = [
 export const allSupportedGames: Game[] = [
 	"iidx",
 	"museca",
-	"maimai",
+	// "maimai",
 	// "jubeat",
 	// "popn",
 	"sdvx",

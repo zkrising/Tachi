@@ -33,7 +33,7 @@ t.test("#ParseKaiSDVX", (t) => {
 			},
 		});
 
-		const res = ParseKaiSDVX("FLO", fakeAuth, logger, mockFloAPI);
+		const res = await ParseKaiSDVX("FLO", fakeAuth, logger, mockFloAPI);
 
 		t.equal(res.game, "sdvx");
 		t.equal(res.classHandler, null);
@@ -66,7 +66,7 @@ t.test("#ParseKaiSDVX", (t) => {
 			},
 		});
 
-		const res = ParseKaiSDVX("EAG", fakeAuth, logger, mockEagAPI);
+		const res = await ParseKaiSDVX("EAG", fakeAuth, logger, mockEagAPI);
 
 		t.equal(res.game, "sdvx");
 		t.equal(res.classHandler, null);

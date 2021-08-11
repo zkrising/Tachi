@@ -4,7 +4,7 @@ import nodeFetch from "utils/fetch";
 import { KaiTypeToBaseURL } from "utils/misc";
 
 export async function CreateKaiSDVXClassHandler(
-	kaiType: "FLO" | "EAG",
+	kaiType: "FLO" | "EAG" | "MIN",
 	token: string,
 	fetch = nodeFetch
 ): Promise<ClassHandler> {

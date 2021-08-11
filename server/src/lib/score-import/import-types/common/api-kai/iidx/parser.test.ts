@@ -33,7 +33,7 @@ t.test("#ParseKaiIIDX", (t) => {
 			},
 		});
 
-		const res = ParseKaiIIDX("FLO", fakeAuth, logger, mockFloAPI);
+		const res = await ParseKaiIIDX("FLO", fakeAuth, logger, mockFloAPI);
 
 		t.equal(res.game, "iidx");
 		t.equal(res.classHandler, null);
@@ -66,7 +66,7 @@ t.test("#ParseKaiIIDX", (t) => {
 			},
 		});
 
-		const res = ParseKaiIIDX("EAG", fakeAuth, logger, mockEagAPI);
+		const res = await ParseKaiIIDX("EAG", fakeAuth, logger, mockEagAPI);
 
 		t.equal(res.game, "iidx");
 		t.equal(res.classHandler, null);

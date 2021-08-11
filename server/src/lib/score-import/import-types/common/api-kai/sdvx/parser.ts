@@ -6,13 +6,14 @@ import { TraverseKaiAPI } from "../traverse-api";
 import { ParserFunctionReturns } from "../../types";
 import { ServerConfig } from "lib/setup/config";
 import { KaiTypeToBaseURL } from "utils/misc";
+import { CreateKaiSDVXClassHandler } from "./class-handler";
 
-export function ParseKaiSDVX(
+export async function ParseKaiSDVX(
 	service: "FLO" | "EAG" | "MIN",
 	authDoc: KaiAuthDocument,
 	logger: KtLogger,
 	fetch = nodeFetch
-): ParserFunctionReturns<unknown, KaiContext> {
+): Promise<ParserFunctionReturns<unknown, KaiContext>> {
 	const baseUrl = KaiTypeToBaseURL(service);
 
 	return {
@@ -26,7 +27,7 @@ export function ParseKaiSDVX(
 		context: {
 			service,
 		},
-		classHandler: null,
+		classHandler: await CreateKaiSDVXClassHandler(service, authDoc.token, fetch),
 		game: "sdvx",
 	};
 }

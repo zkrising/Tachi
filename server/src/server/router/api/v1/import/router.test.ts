@@ -232,7 +232,7 @@ t.test("POST /api/v1/import/file", async (t) => {
 				.attach("scoreData", Buffer.from("{invalid JSON"))
 				.field("importType", "file/batch-manual");
 
-			t.equal(res.body.success, false, "Should be successful.");
+			t.equal(res.body.success, false, "Should not be successful.");
 
 			t.equal(res.statusCode, 400);
 

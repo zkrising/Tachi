@@ -21,7 +21,7 @@ function ParseBatchManual(
 	} catch (err) {
 		throw new ScoreImportFatalError(
 			400,
-			`Invalid JSON. (${err?.message ?? "No Error Message Available."})`
+			`Invalid JSON. (${(err as Error)?.message ?? "No Error Message Available."})`
 		);
 	}
 

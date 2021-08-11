@@ -37,6 +37,11 @@ function isValidURL(self: unknown) {
 	}
 }
 
+interface OAuth2Info {
+	CLIENT_ID: string;
+	CLIENT_SECRET: string;
+}
+
 export interface TachiConfig {
 	MONGO_CONNECTION_URL: string;
 	MONGO_DATABASE_NAME: string;
@@ -47,6 +52,9 @@ export interface TachiConfig {
 	EAG_API_URL: string;
 	MIN_API_URL: string;
 	ARC_API_URL: string;
+	FLO_OAUTH2_INFO?: OAuth2Info;
+	EAG_OAUTH2_INFO?: OAuth2Info;
+	MIN_OAUTH2_INFO?: OAuth2Info;
 	ARC_AUTH_TOKEN: string;
 	CDN_FILE_ROOT: string;
 	TYPE: "ktchi" | "btchi" | "omni";
@@ -56,6 +64,11 @@ export interface TachiConfig {
 	CLIENT_DEV_SERVER?: string | null;
 	SERVER_TYPE_INFO: StaticConfig.ServerConfig;
 }
+
+const isValidOauth2 = p.optional({
+	CLIENT_ID: "string",
+	CLIENT_SECRET: "string",
+});
 
 const err = p(config, {
 	MONGO_CONNECTION_URL: "string",
@@ -67,6 +80,9 @@ const err = p(config, {
 	EAG_API_URL: isValidURL,
 	MIN_API_URL: isValidURL,
 	ARC_API_URL: isValidURL,
+	FLO_OAUTH2_INFO: isValidOauth2,
+	EAG_OAUTH2_INFO: isValidOauth2,
+	MIN_OAUTH2_INFO: isValidOauth2,
 	ARC_AUTH_TOKEN: "string",
 	CDN_FILE_ROOT: "string",
 	PORT: p.isPositiveInteger,

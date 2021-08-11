@@ -37,7 +37,6 @@ router.get("/", (req, res) => {
  * Returns user-game-stats for this game in batches of 100.
  * This is sorted by the games default-sorting-statistic.
  *
- * @param start - A number dictating what value to start from.
  * @param alg - An alternative algorithm to use instead of the gpts default.
  *
  * @name GET /api/v1/games/:game/:playtype/leaderboard
@@ -46,18 +45,6 @@ router.get("/leaderboard", async (req, res) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 	const gptConfig = GetGamePTConfig(game, playtype);
-
-	let start: null | integer = null;
-	if (IsString(req.query.start)) {
-		start = ParseStrPositiveInt(req.query.start);
-
-		if (start === null) {
-			return res.status(400).json({
-				success: false,
-				description: `Invalid value of ${req.query.start} for start.`,
-			});
-		}
-	}
 
 	let alg = gptConfig.defaultProfileRatingAlg;
 	if (IsString(req.query.alg)) {
@@ -80,10 +67,6 @@ router.get("/leaderboard", async (req, res) => {
 			[`ratings.${alg}`]: -1,
 		},
 	};
-
-	if (start !== null) {
-		options.skip = start * 100;
-	}
 
 	const gameStats = await db["game-stats"].find(
 		{

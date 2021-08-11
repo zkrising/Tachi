@@ -1,7 +1,10 @@
 import { KtLogger } from "lib/logger/logger";
-import { KaiAuthDocument } from "tachi-common";
+import { integer, KaiAuthDocument } from "tachi-common";
+import { GetKaiAuthGuaranteed } from "utils/queries/auth";
 import { ParseKaiSDVX } from "../../common/api-kai/sdvx/parser";
 
-export function ParseEagSDVX(authDoc: KaiAuthDocument, logger: KtLogger) {
+export async function ParseEagSDVX(userID: integer, logger: KtLogger) {
+	const authDoc = await GetKaiAuthGuaranteed(userID, "EAG", logger);
+
 	return ParseKaiSDVX("EAG", authDoc, logger);
 }

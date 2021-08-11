@@ -64,7 +64,7 @@ export interface ServerConfig {
 
 export const KTCHI_CONFIG: ServerConfig = {
 	name: "Kamaitachi",
-	supportedGames: ["iidx", "gitadora", "chunithm", "maimai", "museca", "sdvx"],
+	supportedGames: ["iidx", "gitadora", "chunithm", "museca", "sdvx"],
 	supportedImportTypes: [
 		"api/arc-iidx",
 		"api/arc-sdvx",
@@ -73,6 +73,7 @@ export const KTCHI_CONFIG: ServerConfig = {
 		"api/eag-sdvx",
 		"api/flo-iidx",
 		"api/flo-sdvx",
+		"api/min-sdvx",
 		"ir/direct-manual",
 		"ir/fervidex",
 		"ir/fervidex-static",

@@ -944,7 +944,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 	"maimai:Single": {
 		idString: "maimai:Single",
 
-		percentMax: 120, // a safe estimate?
+		percentMax: Infinity, // doesn't apply to this game -- too difficult to make this field nullable though
 
 		defaultScoreRatingAlg: "ktRating",
 		defaultSessionRatingAlg: "ktRating",
@@ -993,7 +993,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearGrade: "A",
 		// @hack Maimai's top grade depends on the chart's maximum percent
 		// we just set it at percentMax, but it's not technically correct
-		gradeBoundaries: [0, 10, 20, 40, 60, 80, 90, 94, 97, 98, 99, 99.5, 100, 120],
+		gradeBoundaries: [0, 10, 20, 40, 60, 80, 90, 94, 97, 98, 99, 99.5, 100, Infinity],
 
 		lamps: ["FAILED", "CLEAR", "FULL COMBO", "ALL PERFECT", "ALL PERFECT+"],
 		lampColours: {

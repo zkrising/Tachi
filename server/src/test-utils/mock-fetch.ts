@@ -18,6 +18,7 @@ export function MockJSONFetch(urlDataMap: Record<string, unknown>) {
 	return (async (url: string) => {
 		if (urlDataMap[url]) {
 			return {
+				status: 200,
 				json: async () => urlDataMap[url],
 			};
 		}

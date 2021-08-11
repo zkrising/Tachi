@@ -21,6 +21,7 @@ export async function ParseArcDDR(
 			`/api/v1/ddr/16/player_bests?profile_id=${authDoc.accountID}`,
 			ServerConfig.ARC_AUTH_TOKEN,
 			logger,
+			null,
 			fetch
 		),
 		context: {},

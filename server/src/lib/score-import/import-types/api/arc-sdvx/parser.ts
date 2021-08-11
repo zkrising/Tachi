@@ -21,6 +21,7 @@ export async function ParseArcSDVX(
 			`/api/v1/sdvx/5/player_bests?profile_id=${authDoc.accountID}`,
 			ServerConfig.ARC_AUTH_TOKEN,
 			logger,
+			null,
 			fetch
 		),
 		context: {},

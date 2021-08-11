@@ -1,7 +1,7 @@
 import { IIDXDans } from "lib/constants/classes";
 import { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
 import nodeFetch from "utils/fetch";
-import { KaiTypeToBaseURL } from "utils/misc";
+import { KaiTypeToBaseURL } from "../utils";
 
 export async function CreateKaiIIDXClassHandler(
 	kaiType: "FLO" | "EAG",

@@ -601,3 +601,147 @@ GET /api/v1/users/zkldi/games/iidx/SP/sessions/highlighted
 	},
 ]
 ```
+
+*****
+
+## Get a user's most played charts.
+
+`GET /api/v1/users/:userID/games/:game/:playtype/most-played`
+
+### Parameters
+
+None.
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `songs` | Array&lt;SongDocument&gt; | The array of songs related to the pbs. |
+| `charts` | Array&lt;ChartDocument&gt; | The array of charts related to the pbs. |
+| `pbs` | Array&lt;(PBDocument & {__playcount: integer})&gt; | An array of PB documents with the `__playcount` property attached. This property dictates how many times the user has played this chart. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/users/zkldi/games/iidx/SP/most-played
+```
+
+#### Response
+
+```js
+{
+	songs: [{
+		id: 1,
+		title: "5.1.1.",
+		// ...
+	}, {
+		id: 2,
+		title: "GAMBOL",
+		// ...
+	}],
+	charts: [{
+		songID: 1,
+		difficulty: "ANOTHER",
+		// ...
+	}, {
+		songID: 2,
+		difficulty: "LEGGENDARIA",
+		// ...
+	}, {
+		songID: 1,
+		difficulty: "HYPER",
+	}],
+	pbs: [{
+		chartID: "something",
+		__playcount: 5,
+		// ...
+	}, {
+		chartID: "something_else",
+		__playcount: 2,
+		// ...
+	}, {
+		chartID: "something_more",
+		__playcount: 1,
+		// ...
+	}]
+}
+```
+
+*****
+
+## Retrieve a leaderboard around a user.
+
+`GET /api/v1/users/:userID/games/:game/:playtype/leaderboard-adjacent`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `alg` | String (Optional) | Optionally, you can provide an override algorithm to use for the leaderboards instead of the game+playtype default. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `above` | Array&lt;UserGameStats&gt; | Up to 5 users' game stats better than this user. |
+| `below` | Array&lt;UserGameStats&gt; | Same as above, but below the user. |
+| `users` | Array&lt;UserDocument&gt; | The user documents related to the above statistics. |
+| `thisUsersStats` | UserGameStats | The requested user's stats for this GPT. |
+| `thisUsersRanking` | {outOf: integer, ranking: integer} | The requested user's ranking for this GPT. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/users/zkldi/games/iidx/SP/leaderboard-adjacent
+```
+
+#### Response
+
+```js
+{
+	above: [{
+		userID: 2,
+		ratings: {
+			ktRating: 9
+		},
+		classes: {
+			dan: 10
+		},
+		// ...
+	}],
+	below: [{
+		userID: 3,
+		ratings: {
+			ktRating: 1
+		},
+		classes: {
+			dan: 5
+		},
+		// ...
+	}],
+	users: [{
+		userID: 2,
+		username: "sptmgtm",
+		// ...
+	}, {
+		userID: 3,
+		username: "neil.c",
+		// ...
+	}],
+	thisUsersStats: {
+		userID: 1,
+		ratings: {
+			ktRating: 5
+		},
+		classes: {
+			dan: 5
+		}
+	},
+	thisUsersRanking: {
+		ranking: 2,
+		outOf: 3	
+	}
+}
+```

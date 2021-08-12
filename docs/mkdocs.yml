@@ -43,6 +43,7 @@ nav:
   - API Reference:
     - "api/overview.md"
     - "api/auth.md"
+    - "api/terminology.md"
 
     - Endpoints:
       - "api/routes/example.md"
@@ -51,6 +52,7 @@ nav:
       - "api/routes/auth.md"
       - "api/routes/users.md"
       - "api/routes/user-gamept.md"
+      - "api/routes/user-integrations.md"
       - "api/routes/sessions.md"
       - "api/routes/scores.md"
       - "api/routes/search.md"

@@ -38,6 +38,9 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 	return next();
 };
 
+/**
+ * Require the user making this request to also be the user in the :userID param.
+ */
 export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
@@ -45,6 +48,24 @@ export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
 		return res.status(403).json({
 			success: false,
 			description: "You are not authorised as this user.",
+		});
+	}
+
+	return next();
+};
+
+/**
+ * Require that this request is made with a Cookie, instead of any
+ * API key. This is for things that services should not be allowed to
+ * alter/access, like integration information.
+ */
+export const RequireSelfRequestFromUser: RequestHandler = (req, res, next) => {
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+
+	if (!req.session.tachi?.userID || req[SYMBOL_TachiAPIAuth].userID !== user.id) {
+		return res.status(403).json({
+			success: false,
+			description: `This request cannot be performed by an API key, and requires authentication.`,
 		});
 	}
 

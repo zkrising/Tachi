@@ -4,8 +4,9 @@ import { KaiAuthDocument } from "tachi-common";
 import { KaiContext } from "../types";
 import { TraverseKaiAPI } from "../traverse-api";
 import { ParserFunctionReturns } from "../../types";
-import { KaiTypeToBaseURL } from "utils/misc";
+import { KaiTypeToBaseURL } from "../utils";
 import { CreateKaiIIDXClassHandler } from "./class-handler";
+import { CreateKaiReauthFunction } from "../reauth";
 
 export async function ParseKaiIIDX(
 	service: "FLO" | "EAG",
@@ -21,6 +22,7 @@ export async function ParseKaiIIDX(
 			"/api/iidx/v2/play_history",
 			authDoc.token,
 			logger,
+			CreateKaiReauthFunction(service, authDoc, logger, fetch),
 			fetch
 		),
 		context: {

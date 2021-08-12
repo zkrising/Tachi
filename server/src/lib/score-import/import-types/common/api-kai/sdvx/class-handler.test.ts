@@ -4,7 +4,7 @@ import t from "tap";
 import { CloseAllConnections } from "test-utils/close-connections";
 import { MockBasicFetch, MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
-import { KaiTypeToBaseURL } from "utils/misc";
+import { KaiTypeToBaseURL } from "../utils";
 import { CreateKaiSDVXClassHandler } from "./class-handler";
 
 const logger = CreateLogCtx(__filename);

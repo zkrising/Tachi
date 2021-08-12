@@ -1,7 +1,7 @@
 import t from "tap";
 import { CloseAllConnections } from "test-utils/close-connections";
 import { agta } from "test-utils/misc";
-import { MockJSONFetch } from "test-utils/mock-fetch";
+import { MockBasicFetch, MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
 import { NodeFetch } from "utils/fetch";
 import CreateLogCtx from "lib/logger/logger";
@@ -31,7 +31,7 @@ t.test("#TraverseKaiAPI", (t) => {
 			},
 		});
 
-		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, mockKaiAPI);
+		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, null, mockKaiAPI);
 
 		const elements = await agta(res);
 
@@ -55,7 +55,7 @@ t.test("#TraverseKaiAPI", (t) => {
 				_items: [5, 6],
 			},
 		});
-		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, mockKaiAPI);
+		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, null, mockKaiAPI);
 
 		t.rejects(
 			() => agta(res),
@@ -67,7 +67,7 @@ t.test("#TraverseKaiAPI", (t) => {
 
 	t.test("Should throw on invalid response JSON", (t) => {
 		const mockKaiAPI = (() => ({ json: null })) as unknown as NodeFetch;
-		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, mockKaiAPI);
+		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, null, mockKaiAPI);
 
 		t.rejects(() => agta(res));
 
@@ -78,7 +78,7 @@ t.test("#TraverseKaiAPI", (t) => {
 		const mockKaiAPI = () => {
 			throw new Error("Fake Request timeout...");
 		};
-		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, mockKaiAPI);
+		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, null, mockKaiAPI);
 
 		t.rejects(() => agta(res));
 
@@ -92,7 +92,7 @@ t.test("#TraverseKaiAPI", (t) => {
 			},
 		});
 
-		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, mockKaiAPI);
+		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, null, mockKaiAPI);
 
 		t.rejects(() => agta(res));
 
@@ -102,7 +102,7 @@ t.test("#TraverseKaiAPI", (t) => {
 			},
 		});
 
-		const res2 = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, mockKaiAPI2);
+		const res2 = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, null, mockKaiAPI2);
 
 		t.rejects(() => agta(res2));
 
@@ -116,7 +116,7 @@ t.test("#TraverseKaiAPI", (t) => {
 			},
 		});
 
-		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, mockKaiAPI);
+		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, null, mockKaiAPI);
 
 		t.rejects(() => agta(res));
 
@@ -128,7 +128,7 @@ t.test("#TraverseKaiAPI", (t) => {
 			},
 		});
 
-		const res2 = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, mockKaiAPI2);
+		const res2 = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, null, mockKaiAPI2);
 
 		t.rejects(() => agta(res2));
 
@@ -145,9 +145,56 @@ t.test("#TraverseKaiAPI", (t) => {
 			},
 		});
 
-		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, mockKaiAPI);
+		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, null, mockKaiAPI);
 
 		t.rejects(() => agta(res));
+
+		t.end();
+	});
+
+	t.test("Should throw on infinite loop", (t) => {
+		const mockKaiAPI = MockJSONFetch({
+			"http://url.com/sub": {
+				_links: {
+					_next: "http://url.com/sub",
+				},
+				_items: [1, 2, 3, 4],
+			},
+		});
+
+		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, null, mockKaiAPI);
+
+		t.rejects(() => agta(res));
+
+		t.end();
+	});
+
+	t.test("Should attempt reauthentication if authentication fails.", async (t) => {
+		const mockKaiAPI = MockBasicFetch({ status: 401 });
+
+		let hasAttemptedReauth = false;
+
+		const res = TraverseKaiAPI(
+			"http://url.com",
+			"/sub",
+			fakeAuth,
+			logger,
+			// eslint-disable-next-line require-await
+			async () => {
+				hasAttemptedReauth = true;
+				return "bar";
+			},
+			mockKaiAPI
+		);
+
+		await t.rejects(
+			// not redundant here
+			// eslint-disable-next-line no-return-await
+			async () => await agta(res),
+			"Should correctly bail out of an endless reauth loop."
+		);
+
+		t.equal(hasAttemptedReauth, true, "Should have called the reauth function.");
 
 		t.end();
 	});

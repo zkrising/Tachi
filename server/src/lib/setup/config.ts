@@ -37,7 +37,7 @@ function isValidURL(self: unknown) {
 	}
 }
 
-interface OAuth2Info {
+export interface OAuth2Info {
 	CLIENT_ID: string;
 	CLIENT_SECRET: string;
 }

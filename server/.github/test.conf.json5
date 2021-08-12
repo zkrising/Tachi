@@ -10,10 +10,18 @@
 	EAG_API_URL: "https://eag.example.com",
 	MIN_API_URL: "https://min.example.com",
 	ARC_API_URL: "https://arc.example.com",
+	FLO_OAUTH2_INFO: {
+		CLIENT_ID: "DUMMY_CLIENT_ID",
+		CLIENT_SECRET: "DUMMY_CLIENT_SECRET",
+	},
+	EAG_OAUTH2_INFO: {
+		CLIENT_ID: "DUMMY_CLIENT_ID",
+		CLIENT_SECRET: "DUMMY_CLIENT_SECRET",
+	},
 	ARC_AUTH_TOKEN: "unused",
 	CDN_FILE_ROOT: "./local-cdn",
 	PORT: 8080,
 	TYPE: "omni",
 	ENABLE_SERVER_HTTPS: false,
-	RUN_OWN_CDN: true
+	RUN_OWN_CDN: true,
 }

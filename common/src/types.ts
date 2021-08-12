@@ -1353,6 +1353,5 @@ export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>
 export interface ARCSavedProfileDocument extends MongoDBDocument {
 	userID: integer;
 	accountID: string;
-	name: string;
 	forImportType: "api/arc-iidx" | "api/arc-sdvx" | "api/arc-ddr";
 }

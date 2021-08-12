@@ -97,7 +97,7 @@ router.patch(
 						}
 					);
 				} else {
-					logger.info(`User changed ARC integration for ${importType}.`);
+					logger.info(`User created ARC integration for ${importType}.`);
 					await db["arc-saved-profiles"].insert({
 						userID: user.id,
 						forImportType: importType,

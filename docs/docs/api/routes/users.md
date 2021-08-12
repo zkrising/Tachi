@@ -6,7 +6,7 @@ These endpoints are related to users in general.
 
 ## List Users
 
-` /api/v1/users`
+`/api/v1/users`
 
 ### Parameters
 

@@ -4,7 +4,7 @@ To ensure that the score tracker stays accurate,
 and everyone has a nice time, Tachi enforces some
 rules.
 
-## Be civil.
+## R1: Be civil.
 
 In various places in Tachi you may write things, such
 as comments on your scores, or a profile about me.
@@ -20,7 +20,7 @@ The punishment for this ranges from warnings to permanent bans, depending on the
 
 Generally, just be a nice person. Please!
 
-## You **MUST NOT** deliberately fake score submissions to Tachi.
+## R2: You **MUST NOT** deliberately fake score submissions to Tachi.
 
 The punishment for this is an instant, permanent
 IP ban.
@@ -43,7 +43,7 @@ may be warned.
 	You do not get a second chance. If you fake scores, you
 	revoke all access to the tracker.
 
-## You **MUST NOT** play on invalid input devices.
+## R3: You **MUST NOT** play on invalid input devices.
 
 Games on Tachi have specific requirements for what kind of
 setups are 'legitimate'. That means that you **SHOULD NOT**
@@ -78,7 +78,7 @@ The valid input devices are listed below.
 | BMS (14K) | any two IIDX Controllers | Keyboard play is **NOT** allowed for BMS 14K. |
 
 
-## Do not harm other people in the community.
+## R4: Do not harm other people in the community.
 
 This rule is depressing to write, but it has to be said.
 
@@ -114,13 +114,13 @@ which includes, **but is not limited to**:
 	stupid.)
 	- Not liking another community member.
 
-## You are only allowed one account.
+## R5: You are only allowed one account.
 
 Do not make multiple accounts, we track account IPs and it
 lets us know. This is to keep the leaderboards fair
 and avoid one player from taking up multiple spaces.
 
-## Do not set NSFW artwork as your avatar or banner.
+## R6: Do not set NSFW artwork as your avatar or banner.
 
 Tachi does not allow you to set suggestive or NSFW
 artwork as your avatar or banner. Your avatar will be
@@ -132,7 +132,7 @@ deleted and you will be warned.
 	Uploading illegal (under international common or EU law)
 	material will result in an immediate permanent ban.
 
-## Use Common Sense.
+## R7: Use Common Sense.
 
 This list of rules isn't exhaustive, and staff reserve the
 right to ban you at any time for any reason. You should use

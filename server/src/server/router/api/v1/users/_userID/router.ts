@@ -5,6 +5,7 @@ import { GetUserFromParam } from "./middleware";
 import gamePTRouter from "./games/_game/_playtype/router";
 import bannerRouter from "./banner/router";
 import pfpRouter from "./pfp/router";
+import integrationsRouter from "./integrations/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -46,5 +47,6 @@ router.get("/game-stats", async (req, res) => {
 router.use("/games/:game/:playtype", gamePTRouter);
 router.use("/pfp", pfpRouter);
 router.use("/banner", bannerRouter);
+router.use("/integrations", integrationsRouter);
 
 export default router;

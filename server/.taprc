@@ -5,7 +5,7 @@ timeout: 120 # might need to be increased
 ts: true
 before: "./src/test-utils/hack-setup.js"
 check-coverage: true
-branches: 80
+branches: 75
 functions: 80
 lines: 80
 statements: 80

@@ -54,8 +54,8 @@ router.get("/", async (req, res) => {
  * @param mode - "folder" or "chart"
  * @param prop - "grade" | "lamp" | "score" | "percent" and "playcount" if mode is chart.
  * @param chartID - If mode is "chart" this must contain the chartID the stat is referencing.
+ * @param folderID - If mode is "folder" this must contain the folderID the stat is referencing.
  * @param gte - If mode is "folder" this must contain the value the property must be greater than.
- *
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom
  */
@@ -154,12 +154,12 @@ router.get("/custom", async (req, res) => {
 	return res.status(200).json({
 		success: true,
 		description: `Evaluated Stat for ${user.username}`,
-		body: { result, related },
+		body: { stat, result, related },
 	});
 });
 
 /**
- * Replaces a user's preferred stats.
+ * Replaces a user's stat showcase.
  *
  * @name PUT /api/v1/users/:userID/games/:game/:playtype/showcase
  */

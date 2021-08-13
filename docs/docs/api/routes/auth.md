@@ -108,3 +108,30 @@ POST /api/v1/auth/register
 	"username": "newguy"
 }
 ```
+
+*****
+
+## Log Out.
+
+`POST /api/v1/auth/logout`
+
+Destroys the current session associated with this cookie.
+
+### Parameters
+
+None.
+
+### Response
+
+Empty Object.
+
+### Example
+
+#### Request
+```
+POST /api/v1/auth/logout
+```
+
+#### Response
+
+Nothing.

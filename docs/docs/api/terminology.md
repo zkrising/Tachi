@@ -5,7 +5,7 @@ be familiar with.
 
 ## GPT
 
-Refers to "Game + Playtype" - a combination of a game and its playtype.
+Refers to "Game + Playtype" - a combination of a game and its playtype (i.e. IIDX SP).
 
 ## UGPT
 

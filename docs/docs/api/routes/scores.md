@@ -53,7 +53,7 @@ GET /api/v1/scores/Re7b00261b1d3ba8e5c9ee4e76e77ea9f07d9493b
 
 *****
 
-## Modify a score document
+## Modify a score document.
 
 `PATCH /api/v1/scores/:scoreID`
 

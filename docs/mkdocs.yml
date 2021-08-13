@@ -58,6 +58,7 @@ nav:
       - "api/routes/search.md"
       - "api/routes/games.md"
       - "api/routes/gpt.md"
+      - "api/routes/admin.md"
 
   - Codebase Reference:
     - "codebase/overview.md"

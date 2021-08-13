@@ -61,13 +61,13 @@ Not providing required parameters will result in a 400 error.
 !!! info
 	Since the above table corresponds to keys in the `body`
 	property of a request, the special property name
-	&lt;body&gt; refers to the body itself.
+	`<body>` refers to the body itself.
 
 	For example:
 
 	| Property | Type | Description |
 	| :: | :: | :: |
-	| &lt;body&gt; | string | The greeting. |
+	| `<body>` | string | The greeting. |
 
 	Corresponds to:
 	```json

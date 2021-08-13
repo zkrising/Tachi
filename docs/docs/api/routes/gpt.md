@@ -407,3 +407,167 @@ Same as `/api/v1/games/:game/:playtype/charts/:chartID/pbs`.
 
 See Above.
 
+*****
+
+## Search a GPT's folders.
+
+`GET /api/v1/games/:game/:playtype/folders`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `search` | String | A string to search for a given folder. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | Array&lt;FolderDocument&gt; | The folders that matched this search. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/games/iidx/SP/folders?search=12
+```
+
+#### Response
+```js
+[{
+	name: "beatmania IIDX Level 12",
+	// ...
+}]
+```
+
+*****
+
+## Retrieve information on a specific folderID
+
+`GET /api/v1/games/:game/folders/:folderID`
+
+### Parameters
+
+None.
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `songs` | Array&lt;SongDocument&gt; | The related song documents for this folder. |
+| `charts` | Array&lt;ChartDocument&gt; | The related chart documents for this folder. |
+| `folder` | FolderDocument | The folder document at this ID. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/games/iidx/SP/folders/some_folder_id
+```
+
+#### Response
+
+```js
+{
+	songs: [{
+		id: 123,
+		title: "Epic Song",
+		artist: "foo bar",
+		// ...
+	}],
+	charts: [{
+		chartID: "foo_bar",
+		songID: 123,
+		difficulty: "ANOTHER",
+		// ...
+	}],
+	folder: {
+		name: "beatmania IIDX Level 12",
+		folderID: "some_folder_id",
+		// ...
+	}
+}
+```
+
+*****
+
+## Return all the tables for this game
+
+`GET /api/v1/games/:game/:playtype/tables`
+
+!!! note
+	Unlike the folders endpoint, this one doesn't have a search parameter. This is because we expect
+	the total table count to stay rather small.
+
+	If this changes in the future, this might become a paginated search like endpoint.
+
+### Parameters
+
+None.
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `tables` | Array&lt;TableDocument&gt; | Every table for this GPT. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/games/bms/7K/tables
+```
+
+#### Response
+```js
+{
+	tables: [
+		{
+			name: "Insane",
+			// ...
+		}, {
+			name: "Overjoy",
+			// ...
+		}
+	]
+}
+
+```
+
+*****
+
+## Retrieve folder documents for a specific table.
+
+`GET /api/v1/games/:game/:playtype/tables/:tableID`
+
+### Parameters
+
+None.
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `folders` | Array&lt;FolderDocument&gt; | All of the folders for this table. |
+| `table` | TableDocument | The table document at this ID. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/games/bms/7K/tableID/insane
+```
+
+#### Response
+```js
+{
+	folders: [
+		// insane lv1, insane lv2 -- insane lv 25, so on.
+	],
+	table: {
+		tableID: "insane",
+		name: "Insane",
+		// ...
+	}
+}
+```

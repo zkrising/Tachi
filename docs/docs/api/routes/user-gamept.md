@@ -745,3 +745,135 @@ GET /api/v1/users/zkldi/games/iidx/SP/leaderboard-adjacent
 	}
 }
 ```
+
+*****
+
+## Retrieve this user's GPT stat history.
+
+`GET /api/v1/users/:userID/games/:game/:playtype/history`
+
+Every day, a user's game stats are snapshotted and saved. This returns the recent ones.
+
+### Parameters
+
+None.
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | Array&lt;UserGameStatsSnapshot&gt; | The most recent (up to) 90 UGS Snapshots, where the first element is the most recent one, and the last is the oldest. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/users/1/games/iidx/SP/history
+```
+
+#### Response
+
+```js
+[
+	{
+		classes: {
+			dan: 13,
+		},
+		ratings: {
+			BPI: 5,
+			ktRating: 3,
+			ktLampRating: 1,
+		},
+		timestamp: 12312323123123, // most recent
+		playcount: 500,
+		ranking: 14
+	},
+	// and so on..
+]
+```
+
+*****
+
+## Retrieve this user's GPT settings.
+
+`GET /api/v1/users/:userID/games/:game/:playtype/settings`
+
+!!! warn
+	Unlike most other applications, your settings are completely public. GPT Settings only concern
+	cosmetic things, like what rating algorithms to prefer.
+
+### Parameters
+
+None.
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | UGPTSettingsDocument | The settings document for this user. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/users/1/games/iidx/SP/settings
+```
+
+#### Response
+```js
+{
+	preferredScoreAlg: null,
+	preferredSessionAlg: "BPI",
+	preferredProfileAlg: null,
+	stats: []
+}
+```
+
+*****
+
+## Modify your UGPT settings.
+
+`PATCH /api/v1/users/:userID/games/:game/:playtype/settings`
+
+!!! note
+	Although `stats` are part of your settings, they are not modifiable under these endpoints,
+	instead you should use [UGPT Showcase Endpoints](./ugpt-showcase.md).
+
+### Permissions
+
+- `customise_profile`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | Partial UGPTSettingsDocument | A UGPTSettingsDocument where all properties are optional. Properties not present will not be modified. Note that `stats` are not modifiable here. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | UGPTSettingsDocument | The new UGPTSettingsDocument |
+
+### Example
+
+#### Request
+```
+PATCH /api/v1/users/1/games/iidx/SP/settings
+
+{
+	preferredScoreAlg: "BPI"
+}
+```
+
+#### Response
+
+```js
+
+{
+	preferredScoreAlg: "BPI",
+	preferredSessionAlg: "ktRating",
+	preferredProfileAlg: null,
+	stats: []
+}
+```

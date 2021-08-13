@@ -2,7 +2,7 @@
 
 *****
 
-## Search Everything
+## Search Everything.
 
 `GET /api/v1/search`
 

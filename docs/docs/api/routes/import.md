@@ -38,7 +38,7 @@ appropriate way to send files.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| &lt;body&gt; | ImportDocument | The Import Document created as a result of this import. |
+| `<body>` | ImportDocument | The Import Document created as a result of this import. |
 
 ### Example
 
@@ -83,3 +83,47 @@ scoreData=<file data>
 	"userIntent": false, // if X-User-Intent was set, this would be true.
 }
 ```
+
+*****
+
+## Synchronise scores up with an API.
+
+`POST /api/v1/import/from-api`
+
+This endpoint requests scores from an API to sync up with the requesting user's profile. This can
+be performed programmatically, as long as the key has `submit_score` permissions.
+
+!!! note
+	The user must configure integration with these services up.
+
+### Permissions
+
+- `submit_score`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `importType` | Any Supported API Import Type | The importType this synchronisation is for. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | ImportDocument | Information about this import. |
+
+### Example
+
+#### Request
+```
+POST /api/v1/import/from-api
+
+{
+	importType: "api/flo-iidx"
+}
+```
+
+
+#### Response
+
+See previous big example.

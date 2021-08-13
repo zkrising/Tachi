@@ -5,6 +5,7 @@ import { GetKaiTypeClientCredentials, KaiTypeToBaseURL } from "./utils";
 import nodeFetch from "utils/fetch";
 import p from "prudence";
 import { KaiAuthDocument } from "tachi-common";
+import { CreateURLWithParams } from "utils/url";
 
 const REAUTH_SCHEMA = {
 	access_token: "string",
@@ -35,11 +36,14 @@ export function CreateKaiReauthFunction(
 	return async () => {
 		let res;
 		try {
-			res = await fetch(
-				`${KaiTypeToBaseURL(kaiType)}/oauth/token?refresh_token=${
-					authDoc.refreshToken
-				}&grant_type=refresh_token&client_secret=${CLIENT_SECRET}&client_id=${CLIENT_ID}`
-			);
+			const url = CreateURLWithParams(`${KaiTypeToBaseURL(kaiType)}/oauth/token`, {
+				refresh_token: authDoc.refreshToken,
+				grant_type: "refresh_token",
+				client_secret: CLIENT_SECRET,
+				client_id: CLIENT_ID,
+			});
+
+			res = await fetch(url.href);
 		} catch (err) {
 			logger.error(`Unexpected error while fetching reauth?`, { res, err });
 			throw new ScoreImportFatalError(

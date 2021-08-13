@@ -61,6 +61,6 @@ is set to indicate that this was done with User Intent.
 | `ir/beatoraja` | A handler for BokutachiIR's score format. | Bokutachi | No |
 | `api/flo-iidx`, `api/eag-iidx` | Both the same IIDX format, but yielded from different APIs with different players. | Kamaitachi | Depends on Calling[^1] |
 | `api/flo-sdvx`, `api/eag-sdvx` | See above, but for SDVX. | Kamaitachi | Depends on Calling[^1] |
-| `api/arc-iidx`, `api/arc-sdvx`, `api/arc-ddr` | Formats yielded from ARC for that specific game. | Kamaitachi | Depends on Calling[^1] |
+| `api/arc-iidx`, `api/arc-sdvx` | Formats yielded from ARC for that specific game. | Kamaitachi | Depends on Calling[^1] |
 
 [^1]: If this is synced manually by the user, I.e. they have called it to be synced, then it is with intent. If it was called for them through automatic synchronisation, then it was not done with user intent.

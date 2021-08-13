@@ -7,6 +7,7 @@ import { FormatUserDoc } from "utils/user";
 import nodeFetch from "utils/fetch";
 import { Random20Hex } from "utils/misc";
 import { ServerConfig } from "lib/setup/config";
+import { CreateURLWithParams } from "utils/url";
 
 const logger = CreateLogCtx(__filename);
 
@@ -105,9 +106,13 @@ export async function ValidateCaptcha(
 	remoteAddr: string | undefined,
 	fetch = nodeFetch
 ) {
-	const r = await fetch(
-		`https://www.google.com/recaptcha/api/siteverify?secret=${ServerConfig.CAPTCHA_SECRET_KEY}&response=${recaptcha}&remoteip=${remoteAddr}`
-	);
+	const url = CreateURLWithParams(`https://www.google.com/recaptcha/api/siteverify`, {
+		secret: ServerConfig.CAPTCHA_SECRET_KEY,
+		response: recaptcha,
+		remoteip: remoteAddr ?? "",
+	});
+
+	const r = await fetch(url.href);
 
 	if (r.status !== 200) {
 		logger.verbose(`Failed GCaptcha response ${r.status}, ${r.body}`);

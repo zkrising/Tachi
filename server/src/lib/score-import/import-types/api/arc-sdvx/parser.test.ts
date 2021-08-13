@@ -31,7 +31,6 @@ t.test("#ParseArcSDVX", (t) => {
 			userID: 1,
 			accountID: "profile",
 			forImportType: "api/arc-sdvx",
-			name: "foo",
 		});
 
 		const res = await ParseArcSDVX(1, logger, mockArcAPI);
@@ -56,7 +55,6 @@ t.test("#ParseArcSDVX", (t) => {
 			userID: 1,
 			accountID: "profile",
 			forImportType: "api/arc-iidx",
-			name: "IIDX PROFILE",
 		});
 
 		t.rejects(() => ParseArcSDVX(1, logger, mockArcAPI), {

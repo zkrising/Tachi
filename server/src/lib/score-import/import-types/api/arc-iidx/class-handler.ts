@@ -3,6 +3,8 @@ import { HasOwnProperty } from "utils/misc";
 import { IIDXDans } from "lib/constants/classes";
 import { ClassHandler } from "../../../framework/user-game-stats/types";
 import { ServerConfig } from "lib/setup/config";
+import { CreateURLWithParams } from "utils/url";
+import { profile } from "console";
 
 export async function CreateArcIIDXClassHandler(
 	profileID: string,
@@ -16,14 +18,15 @@ export async function CreateArcIIDXClassHandler(
 	// SP and DP dans are located in the same place,
 	// fetch once, then return a function that traverses this data.
 	try {
-		const res = await fetch(
-			`${ServerConfig.ARC_API_URL}/api/v1/iidx/27/profiles?_id=${profileID}`,
-			{
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			}
-		);
+		const url = CreateURLWithParams(`${ServerConfig.ARC_API_URL}/api/v1/iidx/27/profiles`, {
+			_id: profileID,
+		});
+
+		const res = await fetch(url.href, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
 
 		json = await res.json();
 	} catch (e) {

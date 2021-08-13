@@ -39,7 +39,7 @@ router.get("/", async (req, res) => {
  * Returns the users scores in order of when they met this criteria.
  *
  * @param criteriaType - either "lamp" or "grade".
- * @param crtieriaValue - An index for this lamp or grade.
+ * @param criteriaValue - An index for this lamp or grade.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeline
  */

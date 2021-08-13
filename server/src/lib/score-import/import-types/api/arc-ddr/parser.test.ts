@@ -32,7 +32,6 @@ t.test("#ParseArcDDR", (t) => {
 			userID: 1,
 			accountID: "profile",
 			forImportType: "api/arc-ddr",
-			name: "foo",
 		});
 
 		const res = await ParseArcDDR(1, logger, mockArcAPI);
@@ -57,7 +56,6 @@ t.test("#ParseArcDDR", (t) => {
 			userID: 1,
 			accountID: "profile",
 			forImportType: "api/arc-sdvx",
-			name: "SDVX PROFILE",
 		});
 
 		t.rejects(() => ParseArcDDR(1, logger, mockArcAPI), {

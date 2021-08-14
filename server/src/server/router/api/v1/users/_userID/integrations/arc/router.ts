@@ -23,9 +23,8 @@ router.use(RequireSelfRequestFromUser);
 router.get("/", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-	const [iidx, ddr, sdvx] = await Promise.all([
+	const [iidx, sdvx] = await Promise.all([
 		GetArcAuth(user.id, "api/arc-iidx"),
-		GetArcAuth(user.id, "api/arc-ddr"),
 		GetArcAuth(user.id, "api/arc-sdvx"),
 	]);
 
@@ -34,7 +33,6 @@ router.get("/", async (req, res) => {
 		description: `Retrieved integration information for ARC.`,
 		body: {
 			iidx,
-			ddr,
 			sdvx,
 		},
 	});
@@ -57,15 +55,14 @@ router.patch(
 			});
 		}
 
-		const [iidx, ddr, sdvx] = await Promise.all([
+		const [iidx, sdvx] = await Promise.all([
 			GetArcAuth(user.id, "api/arc-iidx"),
-			GetArcAuth(user.id, "api/arc-ddr"),
 			GetArcAuth(user.id, "api/arc-sdvx"),
 		]);
 
-		const existingData = { iidx, ddr, sdvx };
+		const existingData = { iidx, sdvx };
 
-		for (const key of ["iidx", "ddr", "sdvx"] as const) {
+		for (const key of ["iidx", "sdvx"] as const) {
 			const importType = `api/arc-${key}` as const;
 
 			if (req.body[key] === null) {
@@ -107,9 +104,8 @@ router.patch(
 			}
 		}
 
-		const [iidx2, ddr2, sdvx2] = await Promise.all([
+		const [iidx2, sdvx2] = await Promise.all([
 			GetArcAuth(user.id, "api/arc-iidx"),
-			GetArcAuth(user.id, "api/arc-ddr"),
 			GetArcAuth(user.id, "api/arc-sdvx"),
 		]);
 
@@ -118,7 +114,6 @@ router.patch(
 			description: `Updated ARC integrations.`,
 			body: {
 				iidx: iidx2,
-				ddr: ddr2,
 				sdvx: sdvx2,
 			},
 		});

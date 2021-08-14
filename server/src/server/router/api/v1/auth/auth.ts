@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { integer, PrivateUserDocument, PublicUserDocument } from "tachi-common";
 import { InsertResult } from "monk";
 import db from "external/mongo/db";

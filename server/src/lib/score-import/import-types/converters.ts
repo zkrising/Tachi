@@ -1,5 +1,4 @@
 import { ImportTypes } from "tachi-common";
-import { ConvertAPIArcDDR } from "./api/arc-ddr/converter";
 import { ConvertAPIArcIIDX } from "./api/arc-iidx/converter";
 import { ConvertAPIArcSDVX } from "./api/arc-sdvx/converter";
 import { ConvertAPIKaiIIDX } from "./common/api-kai/iidx/converter";
@@ -32,7 +31,6 @@ export const Converters: ConverterMap = {
 	"api/flo-sdvx": ConvertAPIKaiSDVX,
 	"api/min-sdvx": ConvertAPIKaiSDVX,
 	"api/arc-iidx": ConvertAPIArcIIDX,
-	"api/arc-ddr": ConvertAPIArcDDR,
 	"api/arc-sdvx": ConvertAPIArcSDVX,
 
 	"ir/barbatos": ConverterIRBarbatos,

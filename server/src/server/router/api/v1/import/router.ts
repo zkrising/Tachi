@@ -21,7 +21,6 @@ import { ParseEagSDVX } from "lib/score-import/import-types/api/eag-sdvx/parser"
 import { ParseFloIIDX } from "lib/score-import/import-types/api/flo-iidx/parser";
 import { ParseFloSDVX } from "lib/score-import/import-types/api/flo-sdvx/parser";
 import { ParseMinSDVX } from "lib/score-import/import-types/api/min-sdvx/parser";
-import { ParseArcDDR } from "lib/score-import/import-types/api/arc-ddr/parser";
 import { ParseArcSDVX } from "lib/score-import/import-types/api/arc-sdvx/parser";
 import { ParseArcIIDX } from "lib/score-import/import-types/api/arc-iidx/parser";
 
@@ -172,8 +171,6 @@ export function ResolveAPIImportParser(
 			return ParseFloSDVX(userID, logger);
 		case "api/min-sdvx":
 			return ParseMinSDVX(userID, logger);
-		case "api/arc-ddr":
-			return ParseArcDDR(userID, logger);
 		case "api/arc-iidx":
 			return ParseArcIIDX(userID, logger);
 		case "api/arc-sdvx":

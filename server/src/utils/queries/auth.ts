@@ -25,10 +25,7 @@ export async function GetKaiAuthGuaranteed(
 	return authDoc;
 }
 
-export function GetArcAuth(
-	userID: integer,
-	forImportType: "api/arc-iidx" | "api/arc-ddr" | "api/arc-sdvx"
-) {
+export function GetArcAuth(userID: integer, forImportType: "api/arc-iidx" | "api/arc-sdvx") {
 	return db["arc-saved-profiles"].findOne({
 		userID,
 		forImportType,
@@ -37,7 +34,7 @@ export function GetArcAuth(
 
 export async function GetArcAuthGuaranteed(
 	userID: integer,
-	forImportType: "api/arc-iidx" | "api/arc-ddr" | "api/arc-sdvx",
+	forImportType: "api/arc-iidx" | "api/arc-sdvx",
 	logger: KtLogger
 ) {
 	const authDoc = await GetArcAuth(userID, forImportType);

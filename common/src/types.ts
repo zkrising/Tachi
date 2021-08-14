@@ -1167,8 +1167,7 @@ export type APIImportTypes =
 	| "api/eag-sdvx"
 	| "api/min-sdvx"
 	| "api/arc-iidx"
-	| "api/arc-sdvx"
-	| "api/arc-ddr";
+	| "api/arc-sdvx";
 
 export type IRImportTypes =
 	| "ir/direct-manual"
@@ -1353,5 +1352,5 @@ export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>
 export interface ARCSavedProfileDocument extends MongoDBDocument {
 	userID: integer;
 	accountID: string;
-	forImportType: "api/arc-iidx" | "api/arc-sdvx" | "api/arc-ddr";
+	forImportType: "api/arc-iidx" | "api/arc-sdvx";
 }

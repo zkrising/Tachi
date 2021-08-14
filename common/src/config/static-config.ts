@@ -21,11 +21,11 @@ export const irImportTypes: IRImportTypes[] = [
 export const apiImportTypes: APIImportTypes[] = [
 	"api/arc-iidx",
 	"api/arc-sdvx",
-	"api/arc-ddr",
 	"api/eag-iidx",
 	"api/eag-sdvx",
 	"api/flo-iidx",
 	"api/flo-sdvx",
+	"api/min-sdvx",
 ];
 
 export const allImportTypes: ImportTypes[] = [
@@ -60,7 +60,6 @@ export const KTCHI_CONFIG: ServerConfig = {
 	supportedImportTypes: [
 		"api/arc-iidx",
 		"api/arc-sdvx",
-		"api/arc-ddr",
 		"api/eag-iidx",
 		"api/eag-sdvx",
 		"api/flo-iidx",

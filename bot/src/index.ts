@@ -1,9 +1,9 @@
-import {Client, Intents, MessageActionRow, MessageButton, MessageEmbed, MessageSelectMenu} from "discord.js";
-import {LoggerLayers, platformData, platformRegex} from "./config";
-import {createLinkReply} from "./createEmbed/createEmbed";
-import {getSongLinkResponse} from "./getSongLink/getSongLink";
-import {createLayeredLogger} from "./utils/logger";
-import {shouldReply} from "./utils/utils";
+import { Client, Intents } from "discord.js";
+import { LoggerLayers, platformRegex } from "./config";
+import { createLinkReply } from "./createEmbed/createEmbed";
+import { getSongLinkResponse } from "./getSongLink/getSongLink";
+import { createLayeredLogger } from "./utils/logger";
+import { shouldReply } from "./utils/utils";
 
 const logger = createLayeredLogger(LoggerLayers.client);
 

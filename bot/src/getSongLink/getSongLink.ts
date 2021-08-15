@@ -2,8 +2,8 @@ import { getLinks } from "songlink-api";
 import * as deezerApi from "deezer-api-ts";
 import { SonglinkPlatform } from "songlink-api/lib/types/Platform";
 import { SonglinkResponse } from "songlink-api/lib/types/Response";
-import {LoggerLayers} from "../config";
-import {createLayeredLogger} from "../utils/logger";
+import { LoggerLayers } from "../config";
+import { createLayeredLogger } from "../utils/logger";
 
 const logger = createLayeredLogger(LoggerLayers.songLink);
 

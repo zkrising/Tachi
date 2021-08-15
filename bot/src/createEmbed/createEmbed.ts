@@ -1,7 +1,7 @@
-import {EmbedFieldData, MessageActionRow, MessageButton, MessageEmbed, ReplyMessageOptions} from "discord.js";
-import {LoggerLayers, platformData} from "../config";
-import {SongLinkData, SongLinkDataLinks} from "../getSongLink/getSongLink";
-import {createLayeredLogger} from "../utils/logger";
+import { EmbedFieldData, MessageActionRow, MessageButton, MessageEmbed, ReplyMessageOptions } from "discord.js";
+import { LoggerLayers, platformData } from "../config";
+import { SongLinkData, SongLinkDataLinks } from "../getSongLink/getSongLink";
+import { createLayeredLogger } from "../utils/logger";
 
 const logger = createLayeredLogger(LoggerLayers.embedGenerator);
 
@@ -122,5 +122,4 @@ export const createLinkReply = (data: SongLinkData): ReplyMessageOptions  => {
 	} catch (e) {
 		logger.error("Unable to create reply:", e);
 	}
-
 };

@@ -43,8 +43,20 @@ export const getDetailedMetadata = async (data: SonglinkResponse): Promise<MetaD
 		try {
 			logger.info("Fetching metadata from Deezer");
 
-			const albumId = getIdFromEntity(data.linksByPlatform.deezer.entityUniqueId);
-			const metaData = await deezerApi.getAlbum(parseInt(albumId));
+			const entityId = getIdFromEntity(data.linksByPlatform.deezer.entityUniqueId);
+
+			let metaData;
+			if (data.linksByPlatform.deezer.entityUniqueId.includes("SONG")) {
+				const songMetaData = await deezerApi.getTrack(parseInt(entityId));
+				metaData = {
+					title: songMetaData.title,
+					artist: songMetaData.artist,
+					artwork: songMetaData.album?.cover || ""
+				};
+			} else {
+				metaData = await deezerApi.getAlbum(parseInt(entityId));
+			}
+
 
 			if (!metaData.title) {
 				logger.warn("Attempted to fetch metadata from deezer but received empty response");
@@ -57,7 +69,7 @@ export const getDetailedMetadata = async (data: SonglinkResponse): Promise<MetaD
 				title: metaData.title,
 				artistName: metaData.artist.name,
 				artwork: metaData.cover,
-				genres: metaData.genres.data.map(genre => genre.name),
+				genres: metaData.genres?.data.map(genre => genre.name),
 				releaseYear: metaData.release_date
 			};
 		} catch (e) {

@@ -880,7 +880,7 @@ interface SongDocumentData {
 	ddr: Record<string, never>;
 	bms: { genre: string | null; subtitle: string | null; subartist: string | null };
 	chunithm: { genre: string };
-	gitadora: Record<string, never>;
+	gitadora: { isHot: boolean };
 }
 
 export interface AnySongDocument extends MongoDBDocument {

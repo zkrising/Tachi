@@ -757,8 +757,8 @@ interface ChartDocumentFlags {
 	"bms:7K": never;
 	"bms:14K": never;
 	"chunithm:Single": "IN BASE GAME" | "OMNIMIX";
-	"gitadora:Gita": "IN BASE GAME" | "OMNIMIX" | "HOT" | "HOT N-1";
-	"gitadora:Dora": "IN BASE GAME" | "OMNIMIX" | "HOT" | "HOT N-1";
+	"gitadora:Gita": "IN BASE GAME" | "HOT";
+	"gitadora:Dora": "IN BASE GAME" | "HOT";
 }
 
 interface CDDataIIDXSP {

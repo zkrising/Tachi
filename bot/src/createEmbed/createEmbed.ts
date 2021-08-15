@@ -46,17 +46,33 @@ const createEmbed = (data: SongLinkData): MessageEmbed => {
 	}
 };
 
+type IterableSongLinkDataLinks = Record<string, SongLinkDataLinks>
+
+const createPlatformButton = (links: IterableSongLinkDataLinks, item: string) => {
+	logger.verbose(`Creating button for ${platformData[item].prettyName}`);
+
+	try {
+		return new MessageButton({
+			label: platformData[item].prettyName,
+			disabled: false,
+			url: links[item].url,
+			style: "LINK",
+		}).setEmoji(platformData[item].emoji);
+	} catch (e) {
+		logger.error("Unabe to create platform button", e);
+	}
+};
+
 const createComponents = (data: SongLinkData): MessageActionRow[] => {
 	logger.info(`Creating components for ${data.metaData.title}`);
 
 	try {
 		const itemsPerRow = 2;
-		const links: Record<string, SongLinkDataLinks> = data.links;
+		const links: IterableSongLinkDataLinks = data.links;
 		const objectKeys = Object.keys(data.links).filter(key => platformData[key]);
 		const rowCount = Math.ceil(objectKeys.length / itemsPerRow);
 
 		const allRows = [];
-
 
 		for (let row = 0; row < rowCount; row++) {
 			const buttonRow = new MessageActionRow();
@@ -66,13 +82,7 @@ const createComponents = (data: SongLinkData): MessageActionRow[] => {
 
 			buttonRow.addComponents(
 				itemsInRow.map(item => {
-					logger.verbose(`Creating button for ${platformData[item].prettyName}`);
-					return new MessageButton({
-						label: platformData[item].prettyName,
-						disabled: false,
-						url: links[item].url,
-						style: "LINK",
-					}).setEmoji(platformData[item].emoji);
+					return createPlatformButton(links, item);
 				}));
 
 			allRows.push(buttonRow);

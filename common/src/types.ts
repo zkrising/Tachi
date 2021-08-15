@@ -772,7 +772,6 @@ interface CDDataIIDXSP {
 interface CDDataDDRSP {
 	songHash: string;
 	inGameID: string;
-	arcChartID: string | null;
 }
 
 interface CDDataBMS {

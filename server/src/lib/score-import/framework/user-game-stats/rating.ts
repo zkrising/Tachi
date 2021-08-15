@@ -5,6 +5,7 @@ import {
 	ScoreCalculatedDataLookup,
 	IDStrings,
 	UserGameStats,
+	PBScoreDocument,
 } from "tachi-common";
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
@@ -153,32 +154,18 @@ async function CalculateGitadoraSkill(
 	userID: integer,
 	logger: KtLogger
 ) {
-	const hotCharts = await db.charts.gitadora.find(
-		{ "flags.HOT N-1": true },
-		{ projection: { chartID: 1 } }
-	);
+	const hotSongIDs = (
+		await db.songs.gitadora.find({ "data.isHot": true }, { projection: { id: 1 } })
+	).map((e) => e.id);
 
-	const hotChartIDs = hotCharts.map((e) => e.chartID);
+	// get it
+	const coldSongIDs = (
+		await db.songs.gitadora.find({ "data.isHot": false }, { projection: { id: 1 } })
+	).map((e) => e.id);
 
 	const [bestHotScores, bestScores] = await Promise.all([
-		db["personal-bests"].find(
-			{ userID, chartID: { $in: hotChartIDs } },
-			{
-				sort: { "calculatedData.skill": -1 },
-				limit: 25,
-				projection: { "calculatedData.skill": 1 },
-			}
-		),
-		// @inefficient
-		// $nin is VERY expensive, there might be a better way to do this.
-		db["personal-bests"].find(
-			{ userID, chartID: { $nin: hotChartIDs } },
-			{
-				sort: { "calculatedData.skill": -1 },
-				limit: 25,
-				projection: { "calculatedData.skill": 1 },
-			}
-		),
+		GetBestRatingOnSongs(hotSongIDs, userID, game, playtype, "skill"),
+		GetBestRatingOnSongs(coldSongIDs, userID, game, playtype, "skill"),
 	]);
 
 	let skill = 0;
@@ -186,6 +173,42 @@ async function CalculateGitadoraSkill(
 	skill += bestScores.reduce((a, r) => a + r.calculatedData.skill!, 0);
 
 	return skill;
+}
+
+export async function GetBestRatingOnSongs(
+	songIDs: integer[],
+	userID: integer,
+	game: Game,
+	playtype: Playtypes[Game],
+	ratingProp: "skill",
+	limit = 25
+): Promise<PBScoreDocument[]> {
+	const r = await db["personal-bests"].aggregate([
+		{
+			$match: {
+				game,
+				playtype,
+				userID,
+				songID: { $in: songIDs },
+			},
+		},
+		{
+			$sort: {
+				[`calculatedData.${ratingProp}`]: -1,
+			},
+		},
+		{
+			$group: {
+				_id: "$songID",
+				doc: { $first: "$$ROOT" },
+			},
+		},
+		{
+			$limit: limit,
+		},
+	]);
+
+	return r.map((e: { _id: integer; doc: PBScoreDocument }) => e.doc);
 }
 
 // async function CalculateJubility(

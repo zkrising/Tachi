@@ -832,13 +832,13 @@ export interface AnyChartDocument extends MongoDBDocument {
 	difficulty: Difficulties[IDStrings];
 	playtype: AnyPlaytype;
 	isPrimary: boolean;
-	versions: GPTSupportedVersions[];
 }
 
 export interface ChartDocument<I extends IDStrings> extends AnyChartDocument {
 	difficulty: Difficulties[I];
 	playtype: IDStringToPlaytype[I];
 	data: ChartDocumentData[I];
+	versions: GPTSupportedVersions[I][];
 }
 
 interface TierlistPermissions {

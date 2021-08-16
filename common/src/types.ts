@@ -772,7 +772,7 @@ export interface GPTSupportedVersions {
 	"iidx:SP": SupportedIIDXVersions;
 	"iidx:DP": SupportedIIDXVersions;
 	"popn:9B": never;
-	"sdvx:Single": "5";
+	"sdvx:Single": "heaven" | "vivid";
 	"usc:Single": never;
 	"ddr:SP": "a20";
 	"ddr:DP": "a20";

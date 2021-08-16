@@ -22,7 +22,7 @@ import {
 	Grades,
 	Lamps,
 	JudgementLookup,
-	GPTVersions,
+	GPTSupportedVersions,
 } from "../types";
 
 export interface GameConfig<G extends Game = Game> {
@@ -67,9 +67,9 @@ interface BaseGamePTConfig<I extends IDStrings> {
 
 	scoreBucket: "grade" | "lamp";
 
-	currentLatestVersion: GPTVersions[I] | null;
-	currentLocalVersion: GPTVersions[I] | null;
-	currentGameOmniVersion: GPTVersions[I] | null;
+	currentLatestVersion: GPTSupportedVersions[I] | null;
+	currentLocalVersion: GPTSupportedVersions[I] | null;
+	currentGameOmniVersion: GPTSupportedVersions[I] | null;
 }
 
 interface GamePTConfigWithESD<I extends IDStrings> extends BaseGamePTConfig<I> {

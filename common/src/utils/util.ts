@@ -1,4 +1,4 @@
-import { ChartDocument, AnySongDocument, Game, IDStrings, Playtypes } from "..";
+import { ChartDocument, SongDocument, Game, IDStrings, Playtypes } from "..";
 import { GetGameConfig, GetGamePTConfig } from "../config/config";
 
 export function FormatDifficulty(chart: ChartDocument, game: Game): string {
@@ -51,7 +51,7 @@ export function FormatGame(game: Game, playtype: Playtypes[Game]): string {
 
 export function FormatChart(
 	game: Game,
-	song: AnySongDocument,
+	song: SongDocument,
 	chart: ChartDocument<IDStrings>
 ): string {
 	if (game === "bms") {

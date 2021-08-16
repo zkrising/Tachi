@@ -901,7 +901,7 @@ interface SongDocumentData {
 	gitadora: { isHot: boolean };
 }
 
-export interface AnySongDocument<G extends Game = Game> extends MongoDBDocument {
+export interface SongDocument<G extends Game = Game> extends MongoDBDocument {
 	id: integer;
 	title: string;
 	artist: string;
@@ -936,7 +936,7 @@ export interface BaseFolderDocument extends MongoDBDocument {
 
 export interface FolderSongsDocument extends BaseFolderDocument {
 	type: "songs";
-	data: FilterQuery<AnySongDocument>;
+	data: FilterQuery<SongDocument>;
 }
 
 export interface FolderChartsDocument extends BaseFolderDocument {

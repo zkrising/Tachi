@@ -1,4 +1,4 @@
-import { ChartDocument, AnySongDocument, ChartDocument, Game, IDStrings, Playtypes } from "..";
+import { ChartDocument, AnySongDocument, Game, IDStrings, Playtypes } from "..";
 import { GetGameConfig, GetGamePTConfig } from "../config/config";
 
 export function FormatDifficulty(chart: ChartDocument, game: Game): string {

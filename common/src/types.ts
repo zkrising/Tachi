@@ -680,7 +680,7 @@ export interface FunFactDocument extends MongoDBDocument {
 	timestamp: integer;
 }
 
-export type UserBadges = "alpha" | "beta" | "devTeam";
+export type UserBadges = "alpha" | "beta" | "devTeam" | "contributor" | "significant-contributor";
 
 /**
  * PublicUserDocument: These are the public values returned from GetUser functions.

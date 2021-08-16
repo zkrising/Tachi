@@ -497,8 +497,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		currentLatestVersion: "5",
-		currentLocalVersion: "5",
+		currentLatestVersion: "vivid",
+		currentLocalVersion: "vivid",
 		currentGameOmniVersion: null,
 	},
 	"usc:Single": {

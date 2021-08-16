@@ -5,7 +5,7 @@
 // disable all type checking, this is a legacy file and is only kept around
 // as a reference
 
-import { Game, Playtypes, ChartDocument, AnyChartDocument } from "../types";
+import { Game, Playtypes, ChartDocument, ChartDocument } from "../types";
 
 // human readable stuff for versions
 const versionHuman: Record<Game, Record<string, string>> = {
@@ -393,7 +393,7 @@ function DirectScoreGradeDelta(
 	game: Game,
 	score: number,
 	percent: number,
-	chart: AnyChartDocument,
+	chart: ChartDocument,
 	delta: number
 ): SGDReturn | null {
 	const grade = GetGrade(game, percent);
@@ -428,7 +428,7 @@ interface PartialScore {
 function ScoreGradeDelta(
 	game: Game,
 	score: PartialScore,
-	chart: AnyChartDocument,
+	chart: ChartDocument,
 	delta: number
 ): SGDReturn | null {
 	const nextGrade = grades[game][grades[game].indexOf(score.scoreData.grade) + delta];
@@ -479,7 +479,7 @@ function AbsoluteScoreGradeDelta(
 			} as unknown; // heheh
 		}
 
-		const sc = CalculateScore(game, gradeBoundaries[game][absDelta], chart as AnyChartDocument);
+		const sc = CalculateScore(game, gradeBoundaries[game][absDelta], chart as ChartDocument);
 		if (sc) {
 			const delta = score - sc;
 			let formattedString = `(${grade})`;
@@ -497,7 +497,7 @@ function AbsoluteScoreGradeDelta(
 	}
 }
 
-function CalculateScore(game: Game, percent: number, chart: AnyChartDocument): number | null {
+function CalculateScore(game: Game, percent: number, chart: ChartDocument): number | null {
 	let score = percent;
 
 	if (game === "iidx" || game === "bms") {
@@ -516,7 +516,7 @@ function CalculateScore(game: Game, percent: number, chart: AnyChartDocument): n
 	return null;
 }
 
-function PercentToScore(percent: number, game: Game, chartData: AnyChartDocument): number {
+function PercentToScore(percent: number, game: Game, chartData: ChartDocument): number {
 	let eScore = 0;
 
 	if (game === "iidx" || game === "bms") {

@@ -823,18 +823,13 @@ interface ChartDocumentData {
 	"gitadora:Dora": { inGameID: integer };
 }
 
-export interface AnyChartDocument extends MongoDBDocument {
+export interface ChartDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
 	chartID: string;
 	rgcID: string | null; // ID to perform backbeat lookup in future.
 	songID: integer;
 	level: string;
 	levelNum: number;
-	difficulty: Difficulties[IDStrings];
-	playtype: AnyPlaytype;
 	isPrimary: boolean;
-}
-
-export interface ChartDocument<I extends IDStrings> extends AnyChartDocument {
 	difficulty: Difficulties[I];
 	playtype: IDStringToPlaytype[I];
 	data: ChartDocumentData[I];
@@ -906,7 +901,7 @@ interface SongDocumentData {
 	gitadora: { isHot: boolean };
 }
 
-export interface AnySongDocument extends MongoDBDocument {
+export interface AnySongDocument<G extends Game = Game> extends MongoDBDocument {
 	id: integer;
 	title: string;
 	artist: string;
@@ -920,9 +915,6 @@ export interface AnySongDocument extends MongoDBDocument {
 	 * requested.
 	 */
 	"alt-titles": string[];
-}
-
-export interface SongDocument<G extends Game> extends AnySongDocument {
 	data: SongDocumentData[G];
 }
 
@@ -949,7 +941,7 @@ export interface FolderSongsDocument extends BaseFolderDocument {
 
 export interface FolderChartsDocument extends BaseFolderDocument {
 	type: "charts";
-	data: FilterQuery<AnyChartDocument>;
+	data: FilterQuery<ChartDocument>;
 }
 
 export interface FolderStaticDocument extends BaseFolderDocument {

@@ -1,7 +1,7 @@
-import { AnyChartDocument, AnySongDocument, ChartDocument, Game, IDStrings, Playtypes } from "..";
+import { ChartDocument, AnySongDocument, ChartDocument, Game, IDStrings, Playtypes } from "..";
 import { GetGameConfig, GetGamePTConfig } from "../config/config";
 
-export function FormatDifficulty(chart: AnyChartDocument, game: Game): string {
+export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 	const gameConfig = GetGameConfig(game);
 
 	if (game === "bms") {
@@ -19,7 +19,7 @@ export function FormatDifficulty(chart: AnyChartDocument, game: Game): string {
  * Formats a chart's difficulty into a shorter variant. This handles a lot of
  * game-specific strange edge cases.
  */
-export function FormatDifficultyShort(chart: AnyChartDocument, game: Game): string {
+export function FormatDifficultyShort(chart: ChartDocument, game: Game): string {
 	const gameConfig = GetGameConfig(game);
 	const gptConfig = GetGamePTConfig(game, chart.playtype);
 	const shortDiff = gptConfig.shortDifficulties[chart.difficulty] ?? chart.difficulty;

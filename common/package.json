@@ -8,7 +8,8 @@
 	],
 	"scripts": {
 		"test": "tap",
-		"build": "tsc"
+		"build": "tsc",
+		"pb": "pnpm build && pnpm publish"
 	},
 	"author": "zkldi",
 	"license": "MIT",

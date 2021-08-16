@@ -1,4 +1,4 @@
-import { AnyChartDocument, AnySongDocument, Game, Playtypes } from "..";
+import { AnyChartDocument, AnySongDocument, ChartDocument, Game, IDStrings, Playtypes } from "..";
 import { GetGameConfig, GetGamePTConfig } from "../config/config";
 
 export function FormatDifficulty(chart: AnyChartDocument, game: Game): string {
@@ -49,7 +49,11 @@ export function FormatGame(game: Game, playtype: Playtypes[Game]): string {
 	return `${gameConfig.name} (${playtype})`;
 }
 
-export function FormatChart(game: Game, song: AnySongDocument, chart: AnyChartDocument): string {
+export function FormatChart(
+	game: Game,
+	song: AnySongDocument,
+	chart: ChartDocument<IDStrings>
+): string {
 	if (game === "bms") {
 		return song.title;
 	}

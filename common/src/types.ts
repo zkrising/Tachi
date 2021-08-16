@@ -743,9 +743,34 @@ export interface PrivateUserDocument extends PublicUserDocument {
 	email: string;
 }
 
-export interface GPTVersions {
-	"iidx:SP": "26" | "27" | "28" | "27-omni" | "28-omni" | "inf" | "2dxtra";
-	"iidx:DP": "26" | "27" | "28" | "27-omni" | "28-omni" | "inf" | "2dxtra";
+type SupportedIIDXVersions =
+	| "26"
+	| "27"
+	| "28"
+	| "27-omni"
+	| "28-omni"
+	| "inf"
+	| "2dxtra"
+	| "bmus"
+	| "26-omni"
+	| "16-cs"
+	| "15-cs"
+	| "14-cs"
+	| "13-cs"
+	| "12-cs"
+	| "11-cs"
+	| "10-cs"
+	| "9-cs"
+	| "8-cs"
+	| "7-cs"
+	| "6-cs"
+	| "5-cs"
+	| "4-cs"
+	| "3-cs";
+
+export interface GPTSupportedVersions {
+	"iidx:SP": SupportedIIDXVersions;
+	"iidx:DP": SupportedIIDXVersions;
 	"popn:9B": never;
 	"sdvx:Single": "5";
 	"usc:Single": never;
@@ -807,7 +832,7 @@ export interface AnyChartDocument extends MongoDBDocument {
 	difficulty: Difficulties[IDStrings];
 	playtype: AnyPlaytype;
 	isPrimary: boolean;
-	versions: GPTVersions[];
+	versions: GPTSupportedVersions[];
 }
 
 export interface ChartDocument<I extends IDStrings> extends AnyChartDocument {

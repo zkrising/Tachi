@@ -743,22 +743,22 @@ export interface PrivateUserDocument extends PublicUserDocument {
 	email: string;
 }
 
-interface ChartDocumentFlags {
-	"iidx:SP": "IN BASE GAME" | "OMNIMIX" | "N-1" | "2dxtra";
-	"iidx:DP": "IN BASE GAME" | "OMNIMIX" | "N-1" | "2dxtra";
-	"popn:9B": "IN BASE GAME" | "OMNIMIX";
-	"sdvx:Single": "IN BASE GAME" | "OMNIMIX" | "N-1";
-	"usc:Single": "CUSTOM";
-	"ddr:SP": "IN BASE GAME" | "N-1";
-	"ddr:DP": "IN BASE GAME" | "N-1";
-	"maimai:Single": "IN BASE GAME";
-	"jubeat:Single": "IN BASE GAME";
-	"museca:Single": "IN BASE GAME" | "OMNIMIX";
+export interface GPTVersions {
+	"iidx:SP": "26" | "27" | "28" | "27-omni" | "28-omni" | "inf" | "2dxtra";
+	"iidx:DP": "26" | "27" | "28" | "27-omni" | "28-omni" | "inf" | "2dxtra";
+	"popn:9B": never;
+	"sdvx:Single": "5";
+	"usc:Single": never;
+	"ddr:SP": "a20";
+	"ddr:DP": "a20";
+	"maimai:Single": "finale";
+	"jubeat:Single": never;
+	"museca:Single": "1+1/2";
 	"bms:7K": never;
 	"bms:14K": never;
-	"chunithm:Single": "IN BASE GAME" | "OMNIMIX";
-	"gitadora:Gita": "IN BASE GAME" | "HOT";
-	"gitadora:Dora": "IN BASE GAME" | "HOT";
+	"chunithm:Single": "paradise";
+	"gitadora:Gita": "nextage";
+	"gitadora:Dora": "nextage";
 }
 
 interface CDDataIIDXSP {
@@ -785,7 +785,7 @@ interface ChartDocumentData {
 	"iidx:DP": CDDataIIDXSP;
 	"popn:9B": Record<string, never>;
 	"sdvx:Single": { inGameID: integer; arcChartID: string | null };
-	"usc:Single": { hashSHA1: string | string[] };
+	"usc:Single": { hashSHA1: string | string[]; isOfficial: boolean };
 	"ddr:SP": CDDataDDRSP;
 	"ddr:DP": CDDataDDRSP;
 	"maimai:Single": { maxPercent: number; inGameID: string };
@@ -807,13 +807,12 @@ export interface AnyChartDocument extends MongoDBDocument {
 	difficulty: Difficulties[IDStrings];
 	playtype: AnyPlaytype;
 	isPrimary: boolean;
-	versions: string[];
+	versions: GPTVersions[];
 }
 
 export interface ChartDocument<I extends IDStrings> extends AnyChartDocument {
 	difficulty: Difficulties[I];
 	playtype: IDStringToPlaytype[I];
-	flags: Record<ChartDocumentFlags[I], boolean>;
 	data: ChartDocumentData[I];
 }
 

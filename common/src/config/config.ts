@@ -22,6 +22,7 @@ import {
 	Grades,
 	Lamps,
 	JudgementLookup,
+	GPTVersions,
 } from "../types";
 
 export interface GameConfig<G extends Game = Game> {
@@ -65,6 +66,10 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	defaultTable: string;
 
 	scoreBucket: "grade" | "lamp";
+
+	currentLatestVersion: GPTVersions[I] | null;
+	currentLocalVersion: GPTVersions[I] | null;
+	currentGameOmniVersion: GPTVersions[I] | null;
 }
 
 interface GamePTConfigWithESD<I extends IDStrings> extends BaseGamePTConfig<I> {
@@ -266,6 +271,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "levels_n-1",
 
 		scoreBucket: "lamp",
+
+		currentLatestVersion: "28",
+		currentLocalVersion: "27",
+		currentGameOmniVersion: "27-omni",
 	},
 	"iidx:DP": {
 		idString: "iidx:DP",
@@ -348,6 +357,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "levels_n-1",
 
 		scoreBucket: "lamp",
+
+		currentLatestVersion: "28",
+		currentLocalVersion: "27",
+		currentGameOmniVersion: "27-omni",
 	},
 	"chunithm:Single": {
 		idString: "chunithm:Single",
@@ -415,6 +428,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "levels_n-1",
 
 		scoreBucket: "grade",
+
+		currentLatestVersion: "paradise",
+		currentLocalVersion: "paradise",
+		currentGameOmniVersion: null,
 	},
 	"sdvx:Single": {
 		idString: "sdvx:Single",
@@ -479,6 +496,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "levels",
 
 		scoreBucket: "grade",
+
+		currentLatestVersion: "5",
+		currentLocalVersion: "5",
+		currentGameOmniVersion: null,
 	},
 	"usc:Single": {
 		idString: "usc:Single",
@@ -536,6 +557,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "levels",
 
 		scoreBucket: "grade",
+
+		currentLatestVersion: null,
+		currentLocalVersion: null,
+		currentGameOmniVersion: null,
 	},
 	"museca:Single": {
 		idString: "museca:Single",
@@ -594,6 +619,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "levels",
 
 		scoreBucket: "grade",
+
+		currentLatestVersion: "1+1/2",
+		currentGameOmniVersion: "1+1/2",
+		currentLocalVersion: "1+1/2",
 	},
 	"bms:7K": {
 		idString: "bms:7K",
@@ -663,6 +692,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "insane",
 
 		scoreBucket: "lamp",
+
+		currentLatestVersion: null,
+		currentGameOmniVersion: null,
+		currentLocalVersion: null,
 	},
 	"bms:14K": {
 		idString: "bms:14K",
@@ -732,6 +765,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "insane",
 
 		scoreBucket: "lamp",
+
+		currentLatestVersion: null,
+		currentGameOmniVersion: null,
+		currentLocalVersion: null,
 	},
 	"ddr:SP": {
 		idString: "ddr:SP",
@@ -837,6 +874,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "levels",
 
 		scoreBucket: "lamp",
+
+		currentLatestVersion: "a20",
+		currentGameOmniVersion: null,
+		currentLocalVersion: null,
 	},
 	"ddr:DP": {
 		idString: "ddr:DP",
@@ -940,6 +981,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "levels",
 
 		scoreBucket: "lamp",
+
+		currentLatestVersion: "a20",
+		currentGameOmniVersion: null,
+		currentLocalVersion: null,
 	},
 	"maimai:Single": {
 		idString: "maimai:Single",
@@ -1013,6 +1058,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "levels",
 
 		scoreBucket: "grade",
+
+		currentLatestVersion: "finale",
+		currentGameOmniVersion: null,
+		currentLocalVersion: "finale",
 	},
 	"gitadora:Gita": {
 		idString: "gitadora:Gita",
@@ -1090,6 +1139,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "levels",
 
 		scoreBucket: "grade",
+
+		currentLatestVersion: "nextage",
+		currentGameOmniVersion: null,
+		currentLocalVersion: "nextage",
 	},
 	"gitadora:Dora": {
 		idString: "gitadora:Dora",
@@ -1150,6 +1203,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultTable: "levels",
 
 		scoreBucket: "grade",
+
+		currentLatestVersion: "nextage",
+		currentGameOmniVersion: null,
+		currentLocalVersion: "nextage",
 	},
 };
 

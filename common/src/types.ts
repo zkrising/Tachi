@@ -803,7 +803,7 @@ interface CDDataBMS {
 	notecount: integer;
 	hashMD5: string;
 	hashSHA256: string;
-	tableFolders: string[];
+	tableFolders: { table: string; level: string }[];
 }
 
 interface ChartDocumentData {

@@ -1,3 +1,4 @@
+import { FormatInt } from "..";
 import {
 	BMSGenocideDans,
 	BMSStSlDans,
@@ -44,6 +45,12 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	scoreRatingAlgs: ScoreCalculatedDataLookup[I][];
 	sessionRatingAlgs: SessionCalculatedDataLookup[I][];
 	profileRatingAlgs: UGSRatingsLookup[I][];
+
+	scoreRatingAlgFormatters: Partial<Record<ScoreCalculatedDataLookup[I], (v: number) => string>>;
+	sessionRatingAlgFormatters: Partial<
+		Record<SessionCalculatedDataLookup[I], (v: number) => string>
+	>;
+	profileRatingAlgFormatters: Partial<Record<UGSRatingsLookup[I], (v: number) => string>>;
 
 	difficulties: Difficulties[I][];
 	shortDifficulties: Partial<Record<Difficulties[I], string>>;
@@ -201,6 +208,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
 		profileRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
 
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
 		difficulties: ["BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
 		shortDifficulties: {
 			BEGINNER: "B",
@@ -289,6 +300,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
 		profileRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
 
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
 		difficulties: ["NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
 		shortDifficulties: {
 			NORMAL: "N",
@@ -374,6 +389,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["naiveRating"],
 		profileRatingAlgs: ["naiveRating"],
 
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
 		difficulties: ["BASIC", "ADVANCED", "EXPERT", "MASTER", "WORLD'S END"],
 		shortDifficulties: {
 			BASIC: "B",
@@ -445,6 +464,17 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["ProfileVF6", "VF6"],
 		profileRatingAlgs: ["VF6"],
 
+		scoreRatingAlgFormatters: {
+			VF6: (v) => v.toFixed(3),
+		},
+		profileRatingAlgFormatters: {
+			VF6: (v) => v.toFixed(3),
+		},
+		sessionRatingAlgFormatters: {
+			VF6: (v) => v.toFixed(3),
+			ProfileVF6: (v) => v.toFixed(3),
+		},
+
 		difficulties: ["NOV", "ADV", "EXH", "INF", "GRV", "HVN", "VVD", "MXM"],
 		shortDifficulties: {}, // they're all fine
 		defaultDifficulty: "EXH",
@@ -513,6 +543,17 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["ProfileVF6", "VF6"],
 		profileRatingAlgs: ["VF6"],
 
+		scoreRatingAlgFormatters: {
+			VF6: (v) => v.toFixed(3),
+		},
+		profileRatingAlgFormatters: {
+			VF6: (v) => v.toFixed(3),
+		},
+		sessionRatingAlgFormatters: {
+			VF6: (v) => v.toFixed(3),
+			ProfileVF6: (v) => v.toFixed(3),
+		},
+
 		difficulties: ["NOV", "ADV", "EXH", "INF"],
 		shortDifficulties: {}, // all fine
 		defaultDifficulty: "EXH",
@@ -573,6 +614,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgs: ["ktRating"],
 		sessionRatingAlgs: ["ktRating"],
 		profileRatingAlgs: ["ktRating"],
+
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
 
 		difficulties: ["Green", "Yellow", "Red"],
 		shortDifficulties: { Green: "G", Yellow: "Y", Red: "R" },
@@ -635,6 +680,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgs: ["sieglinde"],
 		sessionRatingAlgs: ["sieglinde"],
 		profileRatingAlgs: ["sieglinde"],
+
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
 
 		difficulties: ["CHART"],
 		shortDifficulties: {}, // not real
@@ -710,6 +759,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["sieglinde"],
 		profileRatingAlgs: ["sieglinde"],
 
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
 		difficulties: ["CHART"],
 		shortDifficulties: {}, // not real
 		defaultDifficulty: "CHART",
@@ -782,6 +835,16 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgs: ["MFCP", "ktRating"],
 		sessionRatingAlgs: ["MFCP", "ktRating"],
 		profileRatingAlgs: ["MFCP", "ktRating"],
+
+		scoreRatingAlgFormatters: {
+			MFCP: FormatInt,
+		},
+		profileRatingAlgFormatters: {
+			MFCP: FormatInt,
+		},
+		sessionRatingAlgFormatters: {
+			MFCP: FormatInt,
+		},
 
 		difficulties: ["BEGINNER", "BASIC", "DIFFICULT", "EXPERT", "CHALLENGE"],
 		shortDifficulties: {
@@ -892,6 +955,16 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["MFCP", "ktRating"],
 		profileRatingAlgs: ["MFCP", "ktRating"],
 
+		scoreRatingAlgFormatters: {
+			MFCP: FormatInt,
+		},
+		profileRatingAlgFormatters: {
+			MFCP: FormatInt,
+		},
+		sessionRatingAlgFormatters: {
+			MFCP: FormatInt,
+		},
+
 		difficulties: ["BASIC", "DIFFICULT", "EXPERT", "CHALLENGE"],
 		shortDifficulties: {
 			BASIC: "B",
@@ -999,6 +1072,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["ktRating"],
 		profileRatingAlgs: ["ktRating"],
 
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
 		difficulties: ["Easy", "Basic", "Advanced", "Expert", "Master", "Re:Master"],
 		shortDifficulties: {
 			Easy: "e",
@@ -1075,6 +1152,16 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgs: ["skill"],
 		sessionRatingAlgs: ["skill"],
 		profileRatingAlgs: ["skill"],
+
+		scoreRatingAlgFormatters: {
+			skill: FormatInt,
+		},
+		profileRatingAlgFormatters: {
+			skill: FormatInt,
+		},
+		sessionRatingAlgFormatters: {
+			skill: FormatInt,
+		},
 
 		difficulties: [
 			"BASIC",
@@ -1156,6 +1243,16 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgs: ["skill"],
 		sessionRatingAlgs: ["skill"],
 		profileRatingAlgs: ["skill"],
+
+		scoreRatingAlgFormatters: {
+			skill: FormatInt,
+		},
+		profileRatingAlgFormatters: {
+			skill: FormatInt,
+		},
+		sessionRatingAlgFormatters: {
+			skill: FormatInt,
+		},
 
 		difficulties: ["BASIC", "ADVANCED", "EXTREME", "MASTER"],
 		shortDifficulties: {

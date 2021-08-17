@@ -1,6 +1,10 @@
 import { ChartDocument, SongDocument, Game, IDStrings, Playtypes } from "..";
 import { GetGameConfig, GetGamePTConfig } from "../config/config";
 
+export function FormatInt(v: number): string {
+	return v.toString();
+}
+
 export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 	const gameConfig = GetGameConfig(game);
 

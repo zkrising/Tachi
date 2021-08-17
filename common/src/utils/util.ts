@@ -8,15 +8,11 @@ export function FormatInt(v: number): string {
 export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 	const gameConfig = GetGameConfig(game);
 
-	if (game === "bms") {
-		return `${chart.playtype} ${chart.level}`;
-	}
-
 	if (gameConfig.validPlaytypes.length > 1) {
 		return `${chart.playtype} ${chart.difficulty} ${chart.level}`;
 	}
 
-	return `${chart.difficulty}`;
+	return `${chart.difficulty} ${chart.level}`;
 }
 
 /**
@@ -27,10 +23,6 @@ export function FormatDifficultyShort(chart: ChartDocument, game: Game): string 
 	const gameConfig = GetGameConfig(game);
 	const gptConfig = GetGamePTConfig(game, chart.playtype);
 	const shortDiff = gptConfig.shortDifficulties[chart.difficulty] ?? chart.difficulty;
-
-	if (game === "bms") {
-		return `${chart.playtype} ${chart.level}`;
-	}
 
 	if (game === "ddr") {
 		return `${shortDiff}${chart.playtype}`;

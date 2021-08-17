@@ -115,6 +115,8 @@ export const COLOUR_SET = {
 	vibrantBlue: "rgba(43, 149, 237, 1)",
 	vibrantGreen: "rgba(26, 232, 26, 1)",
 	vibrantRed: "rgba(243, 23, 45, 1)",
+	pink: "rgba(255, 182, 193, 1)",
+	vibrantPink: "rgba(255, 105, 180, 1)",
 };
 
 type GameConfigs = {
@@ -482,10 +484,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			NOV: COLOUR_SET.purple, // colour set dark purple
 			ADV: COLOUR_SET.vibrantYellow,
 			EXH: COLOUR_SET.red,
-			INF: "TODO", // colour set light pink
+			INF: COLOUR_SET.vibrantPink,
 			GRV: COLOUR_SET.orange,
 			HVN: COLOUR_SET.teal,
-			VVD: "TODO", // colour set pink
+			VVD: COLOUR_SET.pink,
 			MXM: COLOUR_SET.white,
 		},
 
@@ -509,7 +511,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		lampColours: {
 			FAILED: COLOUR_SET.red,
 			CLEAR: COLOUR_SET.green,
-			"EXCESSIVE CLEAR": COLOUR_SET.orange,
+			"EXCESSIVE CLEAR": COLOUR_SET.purple,
 			"ULTIMATE CHAIN": COLOUR_SET.teal,
 			"PERFECT ULTIMATE CHAIN": COLOUR_SET.gold,
 		},

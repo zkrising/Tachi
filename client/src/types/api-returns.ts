@@ -1,6 +1,4 @@
 import {
-	AnyChartDocument,
-	AnySongDocument,
 	FolderDocument,
 	IDStrings,
 	integer,
@@ -49,8 +47,8 @@ export type UGPTPreferenceStatsReturn =
 			stat: ShowcaseStatChart;
 			value: { value: number };
 			related: {
-				song: AnySongDocument;
-				chart: AnyChartDocument;
+				song: SongDocument;
+				chart: ChartDocument;
 			};
 	  }
 	| {
@@ -73,4 +71,12 @@ export interface UGPTChartPBComposition<I extends IDStrings = IDStrings> {
 	scores: ScoreDocument<I>[];
 	chart: ChartDocument<I>;
 	pb: PBScoreDocument<I>;
+}
+
+export interface SpecificSessionReturns<I extends IDStrings = IDStrings> {
+	session: SessionDocument<I>;
+	scores: ScoreDocument<I>[];
+	songs: SongDocument<IDStringToGame[I]>[];
+	charts: ChartDocument<I>[];
+	user: PublicUserDocument;
 }

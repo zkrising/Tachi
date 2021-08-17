@@ -1,11 +1,11 @@
 import {
-	AnyChartDocument,
 	ChartDocument,
 	Game,
 	IDStrings,
 	integer,
 	SessionScoreInfo,
 	SongDocument,
+	ScoreDocument,
 } from "tachi-common";
 
 export function GetPBs(scoreInfo: SessionScoreInfo[]) {
@@ -32,7 +32,17 @@ export function CreateChartMap<I extends IDStrings = IDStrings>(charts: ChartDoc
 	return chartMap;
 }
 
-export function CreateChartLink(chart: AnyChartDocument, game: Game) {
+export function CreateScoreMap<I extends IDStrings = IDStrings>(scores: ScoreDocument<I>[]) {
+	const scoreMap = new Map<string, ScoreDocument<I>>();
+
+	for (const score of scores) {
+		scoreMap.set(score.scoreID, score);
+	}
+
+	return scoreMap;
+}
+
+export function CreateChartLink(chart: ChartDocument, game: Game) {
 	if (chart.isPrimary) {
 		return `/dashboard/games/${game}/${chart.playtype}/songs/${
 			chart.songID

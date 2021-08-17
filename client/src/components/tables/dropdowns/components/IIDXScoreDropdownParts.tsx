@@ -8,6 +8,7 @@ import { ScoreDocument, PBScoreDocument, Lamps } from "tachi-common";
 import { Nav } from ".pnpm/react-bootstrap@1.0.1_react-dom@16.12.0+react@17.0.2/node_modules/react-bootstrap";
 import IIDXLampChart from "components/charts/IIDXLampChart";
 import MiniTable from "components/tables/components/MiniTable";
+import { IsScore } from "util/asserts";
 
 export function ScoreInfo({ score }: { score: ScoreDocument<"iidx:SP" | "iidx:DP"> }) {
 	return (
@@ -71,7 +72,7 @@ export function IIDXGraphsComponent({
 }: {
 	score: ScoreDocument<"iidx:SP" | "iidx:DP"> | PBScoreDocument<"iidx:SP" | "iidx:DP">;
 }) {
-	const [lamp, setLamp] = useState(LampToKey(score.scoreData.lamp));
+	const [lamp, setLamp] = useState(LampToKey(score));
 
 	let gaugeStatus: "none" | "single" | "gsm" = "none";
 
@@ -85,7 +86,7 @@ export function IIDXGraphsComponent({
 		if (gaugeStatus === "gsm") {
 			return false;
 		} else if (gaugeStatus === "single") {
-			return r !== LampToKey(score.scoreData.lamp);
+			return r !== LampToKey(score);
 		}
 
 		return true;
@@ -163,7 +164,24 @@ function GraphComponent({ type, values }: { type: LampTypes; values: (number | n
 	);
 }
 
-function LampToKey(lamp: Lamps["iidx:SP"]): LampTypes {
+function LampToKey(
+	score: ScoreDocument<"iidx:SP" | "iidx:DP"> | PBScoreDocument<"iidx:SP" | "iidx:DP">
+): LampTypes {
+	const lamp = score.scoreData.lamp;
+
+	if (IsScore(score) && score.scoreMeta.gauge) {
+		switch (score.scoreMeta.gauge) {
+			case "EASY":
+			case "NORMAL":
+			case "HARD":
+				return score.scoreMeta.gauge;
+			case "ASSISTED EASY":
+				return "EASY";
+			case "EX HARD":
+				return "EX_HARD";
+		}
+	}
+
 	if (lamp === "CLEAR") {
 		return "NORMAL";
 	} else if (lamp === "EASY CLEAR") {
@@ -172,6 +190,12 @@ function LampToKey(lamp: Lamps["iidx:SP"]): LampTypes {
 		return "HARD";
 	} else if (lamp === "EX HARD CLEAR") {
 		return "EX_HARD";
+	} else if (lamp === "FULL COMBO") {
+		// @hack - attempt to guess what gauge they used?
+		if ((score.scoreData.hitMeta.gaugeHistory?.[0] ?? 0) > 22) {
+			return "EX_HARD";
+		}
+		return "NORMAL";
 	}
 
 	return "NORMAL";

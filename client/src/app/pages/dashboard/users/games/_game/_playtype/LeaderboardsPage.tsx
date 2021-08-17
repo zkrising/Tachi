@@ -106,10 +106,11 @@ function LeaderboardsPageContent({
 				style={{
 					backgroundColor:
 						reqUser.id === s.userID ? ChangeOpacity(COLOUR_SET.gold, 0.15) : undefined,
+					height: reqUser.id === s.userID ? "50px" : undefined,
 				}}
 			>
 				<td>
-					<strong>#{stats.thisUsersRanking.ranking - stats.above.length + i}</strong>
+					<strong>#{i}</strong>
 					{reqUser.id === s.userID && (
 						<small className="text-muted">/{stats.thisUsersRanking.outOf}</small>
 					)}
@@ -151,14 +152,18 @@ function LeaderboardsPageContent({
 					{bestNearbyUser > 1 &&
 						leaderboard.gameStats
 							.slice(0, bestNearbyUser)
-							.map((s, i) => <LeaderboardRow key={s.userID} s={s} i={i} />)}
+							.map((s, i) => <LeaderboardRow key={s.userID} s={s} i={i + 1} />)}
 					{bestNearbyUser > 4 && (
 						<tr style={{ lineHeight: "0.5rem" }}>
 							<td colSpan={4}>...</td>
 						</tr>
 					)}
 					{[...stats.above, stats.thisUsersStats, ...stats.below].map((s, i) => (
-						<LeaderboardRow key={s.userID} s={s} i={i} />
+						<LeaderboardRow
+							key={s.userID}
+							s={s}
+							i={stats.thisUsersRanking.ranking - stats.above.length + i}
+						/>
 					))}
 				</>
 			</MiniTable>

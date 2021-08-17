@@ -1,7 +1,14 @@
 import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
 import React from "react";
-import { Game, GetGameConfig, GetGamePTConfig, IDStrings, PublicUserDocument } from "tachi-common";
+import {
+	Game,
+	ScoreCalculatedDataLookup,
+	GetGamePTConfig,
+	IDStrings,
+	PublicUserDocument,
+	FormatGame,
+} from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import { Playtype } from "types/tachi";
 import { MillisToSince } from "util/time";
@@ -9,7 +16,7 @@ import ProfilePicture from "./ProfilePicture";
 import Navbar from "components/nav/Navbar";
 import NavItem from "components/nav/NavItem";
 import ClassBadge from "components/game/ClassBadge";
-import { UppercaseFirst } from "util/misc";
+import { FormatGPTRating, UppercaseFirst } from "util/misc";
 import ProfileBadges from "./ProfileBadges";
 import { GameClassSets } from "tachi-common/js/game-classes";
 
@@ -24,7 +31,6 @@ export default function UGPTHeader({
 	playtype: Playtype;
 	stats: UGPTStatsReturn;
 }) {
-	const gameConfig = GetGameConfig(game);
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	return (
@@ -33,7 +39,7 @@ export default function UGPTHeader({
 				<div className="card card-custom">
 					<div className="card-header">
 						<h4>
-							{reqUser.username}'s {gameConfig.name} {playtype} Profile
+							{reqUser.username}'s {FormatGame(game, playtype)} Profile
 						</h4>
 					</div>
 					<div className="card-body">
@@ -66,7 +72,8 @@ export default function UGPTHeader({
 									<tr>
 										<td>Last Played</td>
 										<td>
-											{stats.mostRecentScore.timeAchieved === null
+											{stats.mostRecentScore === null ||
+											stats.mostRecentScore.timeAchieved === null
 												? "Unknown."
 												: MillisToSince(stats.mostRecentScore.timeAchieved)}
 										</td>
@@ -74,7 +81,8 @@ export default function UGPTHeader({
 									<tr>
 										<td>First Play</td>
 										<td>
-											{stats.firstScore.timeAchieved === null
+											{stats.firstScore === null ||
+											stats.firstScore.timeAchieved === null
 												? "Unknown."
 												: MillisToSince(stats.firstScore.timeAchieved)}
 										</td>
@@ -112,7 +120,14 @@ export default function UGPTHeader({
 										{Object.entries(stats.gameStats.ratings).map(([k, v]) => (
 											<tr key={k}>
 												<td>{UppercaseFirst(k)}</td>
-												<td>{v.toFixed(2)}</td>
+												<td>
+													{FormatGPTRating(
+														game,
+														playtype,
+														k as ScoreCalculatedDataLookup[IDStrings],
+														v
+													)}
+												</td>
 											</tr>
 										))}
 									</>

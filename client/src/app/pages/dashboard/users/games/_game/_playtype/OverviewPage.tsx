@@ -15,8 +15,8 @@ import {
 	UGPTSettings,
 	FormatChart,
 	Game,
-	AnySongDocument,
-	AnyChartDocument,
+	SongDocument,
+	ChartDocument,
 	FolderDocument,
 	GetGamePTConfig,
 	UserGameStats,
@@ -190,10 +190,10 @@ function RecentSessionScoreInfo({
 	sessionData: SessionReturns;
 	reqUser: PublicUserDocument;
 } & GamePT) {
-	const highlightedScores = sessionData.scores.find(e => e.highlight);
+	const highlightedScores = sessionData.scores.filter(e => e.highlight);
 
 	const [mode, setMode] = useState<"highlight" | "best" | "recent">(
-		highlightedScores ? "highlight" : "best"
+		highlightedScores.length > 0 ? "highlight" : "best"
 	);
 
 	const gptConfig = GetGamePTConfig(game, playtype);
@@ -204,7 +204,7 @@ function RecentSessionScoreInfo({
 	const dataset = useMemo(() => {
 		let scoreSet = sessionData.scores;
 		if (mode === "highlight") {
-			scoreSet = sessionData.scores.filter(e => e.highlight);
+			scoreSet = highlightedScores;
 		} else if (mode === "best") {
 			scoreSet.sort((a, b) =>
 				NumericSOV<ScoreDocument>(
@@ -253,7 +253,12 @@ function RecentSessionScoreInfo({
 				</div>
 			</div>
 			<div className="col-12 mt-4">
-				<IIDXScoreTable dataset={dataset as any} pageLen={5} reqUser={reqUser} />
+				<IIDXScoreTable
+					dataset={dataset as any}
+					pageLen={5}
+					reqUser={reqUser}
+					playtype={playtype as any}
+				/>
 			</div>
 		</div>
 	);
@@ -739,7 +744,7 @@ function StatDisplay({
 	const { stat, value, related } = statData;
 
 	if (stat.mode === "chart") {
-		const { song, chart } = related as { song: AnySongDocument; chart: AnyChartDocument };
+		const { song, chart } = related as { song: SongDocument; chart: ChartDocument };
 
 		return (
 			<Card

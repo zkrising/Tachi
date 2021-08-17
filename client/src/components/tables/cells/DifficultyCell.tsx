@@ -1,9 +1,8 @@
-import { Tooltip } from "@material-ui/core";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import React from "react";
 import {
-	AnyChartDocument,
+	ChartDocument,
 	FormatDifficulty,
 	FormatDifficultyShort,
 	Game,
@@ -11,7 +10,15 @@ import {
 } from "tachi-common";
 import { ChangeOpacity } from "util/color-opacity";
 
-export default function DifficultyCell({ game, chart }: { game: Game; chart: AnyChartDocument }) {
+export default function DifficultyCell({
+	game,
+	chart,
+	alwaysShort,
+}: {
+	game: Game;
+	chart: ChartDocument;
+	alwaysShort?: boolean;
+}) {
 	const gptConfig = GetGamePTConfig(game, chart.playtype);
 
 	return (
@@ -20,8 +27,12 @@ export default function DifficultyCell({ game, chart }: { game: Game; chart: Any
 				backgroundColor: ChangeOpacity(gptConfig.difficultyColours[chart.difficulty]!, 0.2),
 			}}
 		>
-			<span className="d-none d-lg-block">{FormatDifficulty(chart, game)}</span>
-			<span className="d-lg-none">{FormatDifficultyShort(chart, game)}</span>
+			{!alwaysShort && (
+				<span className="d-none d-lg-block">{FormatDifficulty(chart, game)}</span>
+			)}
+			<span className={!alwaysShort ? "d-lg-none" : ""}>
+				{FormatDifficultyShort(chart, game)}
+			</span>
 			{!chart.isPrimary && (
 				<QuickTooltip text="This chart is an alternate, old chart.">
 					<div>

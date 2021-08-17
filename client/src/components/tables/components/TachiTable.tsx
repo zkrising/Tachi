@@ -140,11 +140,7 @@ export default function TachiTable<D>({
 				<table className="table table-striped table-hover table-vertical-center text-center table-responsive-md">
 					<thead>{headersRow}</thead>
 					<tbody>
-						<NoDataWrapper>
-							{window.map((e, i) => (
-								<React.Fragment key={i}>{rowFunction(e)}</React.Fragment>
-							))}
-						</NoDataWrapper>
+						<NoDataWrapper>{window.map(e => rowFunction(e))}</NoDataWrapper>
 					</tbody>
 				</table>
 			</div>

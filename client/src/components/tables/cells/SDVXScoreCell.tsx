@@ -4,16 +4,12 @@ import { GamePT } from "types/react";
 import { ChangeOpacity } from "util/color-opacity";
 import { FormatMillions } from "util/misc";
 
-export default function ScoreCell({
+export default function SDVXScoreCell({
 	game,
 	playtype,
 	score,
-	showScore = true,
-	scoreRenderFn,
 }: GamePT & {
 	score: PBScoreDocument | ScoreDocument;
-	showScore?: boolean;
-	scoreRenderFn?: (s: number) => string;
 }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
@@ -25,19 +21,7 @@ export default function ScoreCell({
 		>
 			<strong>{score.scoreData.grade}</strong>
 			<br />
-			{`${score.scoreData.percent.toFixed(2)}%`}
-			{showScore && (
-				<>
-					<br />
-					<small className="text-muted">
-						[
-						{scoreRenderFn
-							? scoreRenderFn(score.scoreData.score)
-							: score.scoreData.score}
-						]
-					</small>
-				</>
-			)}
+			{FormatMillions(score.scoreData.score)}
 		</td>
 	);
 }

@@ -9,6 +9,7 @@ import { APIFetchV1, ToAPIURL } from "util/api";
 import toast from "react-hot-toast";
 import { UserContext } from "context/UserContext";
 import DropdownToggleOverride from "components/util/DropdownToggleOverride";
+import Icon from "components/util/Icon";
 
 export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 	const { setUser } = useContext(UserContext);
@@ -70,7 +71,7 @@ export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 							<div className="navi-text">
 								<div className="font-weight-bold cursor-pointer">My Settings</div>
 								<div className="text-muted">
-									Manage your profile, API Tokens, and more!
+									Manage your profile, service integrations, and more!
 								</div>
 							</div>
 						</div>

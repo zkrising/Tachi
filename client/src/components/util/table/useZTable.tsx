@@ -83,7 +83,7 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 	const displayStr = useMemo(() => {
 		if (dataset.length === 0) {
 			if (search !== "") {
-				return `Displaying no ${entryName}. Your search might be too narrow.`;
+				return `Displaying no ${entryName}. Your filter might be too narrow.`;
 			}
 
 			return `Displaying no ${entryName}.`;

@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { UserNotificationsDropdown } from "../../../_metronic/layout/components/extras/dropdowns/UserNotificationsDropdown";
 import { UserProfileDropdown } from "components/layout/header/UserProfileDropdown";
 import { UserContext } from "context/UserContext";
 import LinkButton from "components/util/LinkButton";
@@ -14,8 +13,7 @@ export function Topbar() {
 
 			{user ? (
 				<>
-					<UserNotificationsDropdown />
-
+					{/* commented out quick panel stuff for future */}
 					{/* <OverlayTrigger
 						placement="bottom"
 						overlay={<Tooltip id="quick-panel-tooltip">Quick panel</Tooltip>}

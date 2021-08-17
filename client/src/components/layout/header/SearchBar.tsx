@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { AnySongDocument, Game, GetGameConfig, integer, PublicUserDocument } from "tachi-common";
+import { SongDocument, Game, GetGameConfig, integer, PublicUserDocument } from "tachi-common";
 import { APIFetchV1 } from "util/api";
 import { toAbsoluteUrl } from "_metronic/_helpers";
-import SVG from "react-inlinesvg";
 import { JustChildren } from "types/react";
 import { Link } from "react-router-dom";
 import Divider from "components/util/Divider";
+import { NO_OP, PREVENT_DEFAULT } from "util/misc";
+import Loading from "components/util/Loading";
 
 interface SearchReturns {
 	users: PublicUserDocument[];
-	songs: (AnySongDocument & { __textScore: number; game: Game })[];
+	songs: (SongDocument & { __textScore: number; game: Game })[];
 }
 
 function SearchResult({
@@ -29,6 +30,14 @@ function SearchResult({
 }
 
 function SearchResults({ results }: { results: SearchReturns }) {
+	if (!results.users.length && !results.songs.length) {
+		return (
+			<div className="font-size-sm font-weight-bolder text-uppercase mb-2 text-center">
+				Found nothing :(
+			</div>
+		);
+	}
+
 	return (
 		<div className="quick-search-result">
 			{results?.users.length ? (
@@ -110,6 +119,10 @@ export default function SearchBar() {
 		};
 	}, [ref]);
 
+	useEffect(() => {
+		setShow(search !== "");
+	}, [search]);
+
 	// debouncer result-getter
 	function UpdateSearch(event: React.ChangeEvent<HTMLInputElement>) {
 		setSearch(event.target.value);
@@ -130,11 +143,7 @@ export default function SearchBar() {
 						return;
 					}
 
-					if (r.body.users.length === 0 && r.body.songs.length === 0) {
-						setResults(null);
-					} else {
-						setResults(r.body);
-					}
+					setResults(r.body);
 				}
 			);
 		}, 250);
@@ -144,55 +153,44 @@ export default function SearchBar() {
 
 	return (
 		<div ref={ref} className="align-self-center">
-			<div
-				className="topbar-item"
-				onClick={() => {
-					if (show === false) {
-						setShow(true);
-						// @ts-expect-error temp
-						// Magic-level hack: wait 10ms before focusing this element because react fails otherwise
-						setTimeout(() => inputRef.current.focus(), 10);
-					} else {
-						setShow(false);
-					}
-				}}
-			>
-				<div className="btn btn-icon btn-hover-transparent-white btn-lg mr-1">
-					<span className="svg-icon svg-icon-xl">
-						{/* <SVG src={toAbsoluteUrl("/media/svg/icons/General/Search.svg")} /> */}
-					</span>
-				</div>
+			<div className="topbar-item mr-2">
+				<form className="quick-search-form" onSubmit={PREVENT_DEFAULT}>
+					<div className="input-group">
+						<input
+							className="form-control"
+							type="text"
+							ref={inputRef}
+							value={search}
+							onChange={UpdateSearch}
+							onClick={() => {
+								if (search !== "") {
+									setShow(true);
+								}
+							}}
+							placeholder="Search users, songs, charts..."
+						/>
+					</div>
+				</form>
 			</div>
-			<div style={{ position: "relative", right: "350px" }}>
+			<div style={{ position: "relative", top: "20px" }}>
 				<div
 					className={`dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg dropdown-menu dropdown-menu-right ${
 						show ? "show" : "hide"
 					}`}
 					style={{
 						position: "absolute",
+						borderRadius: "0 0 5px 5px",
 					}}
 				>
 					<div
 						id="kt_quick_search_dropdown"
 						className="quick-search quick-search-dropdown quick-search-has-result"
 					>
-						<form className="quick-search-form" onSubmit={() => 0}>
-							<div className="input-group">
-								<input
-									className="form-control"
-									type="text"
-									ref={inputRef}
-									value={search}
-									onChange={UpdateSearch}
-									placeholder="Search users, songs, charts..."
-								/>
-							</div>
-						</form>
 						<div
 							style={{ maxHeight: "325px", overflowY: "scroll" }}
 							className="quick-search-wrapper"
 						>
-							{results && search !== "" && <SearchResults results={results} />}
+							{results ? <SearchResults results={results} /> : <Loading />}
 						</div>
 					</div>
 				</div>

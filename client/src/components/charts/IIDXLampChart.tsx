@@ -76,7 +76,7 @@ export default function IIDXLampChart({
 			data={realData}
 			margin={{ top: 30, bottom: 50, left: 50, right: 50 }}
 			xScale={{ type: "linear" }}
-			axisBottom={{ format: x => (Math.floor(Number(x) / 4) + 1).toString() }}
+			axisBottom={{ format: x => Math.floor(Number(x) / 4).toString() }}
 			motionConfig="stiff"
 			crosshairType="x"
 			yScale={{ type: "linear", min: 0, max: 100 }}
@@ -119,7 +119,7 @@ export default function IIDXLampChart({
 					point={d.point}
 					renderFn={p => (
 						<div>
-							Measure {Math.floor(Number(p.data.xFormatted) / 4 + 1).toString()}:{" "}
+							Measure {Math.floor(Number(p.data.xFormatted) / 4).toString()}:{" "}
 							{p.data.yFormatted}%
 						</div>
 					)}

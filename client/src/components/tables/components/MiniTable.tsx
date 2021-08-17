@@ -8,15 +8,15 @@ export default function MiniTable({
 	children,
 	headers,
 	colSpan = 1,
-}: { className?: string; headers: string[]; colSpan?: integer } & JustChildren) {
+}: { className?: string; headers: string[]; colSpan?: integer | integer[] } & JustChildren) {
 	return (
 		<table
 			className={`table table-hover table-striped table-vertical-center text-center ${className}`}
 		>
 			<thead>
 				<tr>
-					{headers.map(e => (
-						<th colSpan={colSpan} key={nanoid()}>
+					{headers.map((e, i) => (
+						<th colSpan={Array.isArray(colSpan) ? colSpan[i] : colSpan} key={nanoid()}>
 							{e}
 						</th>
 					))}

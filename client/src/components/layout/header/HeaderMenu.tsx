@@ -4,7 +4,7 @@ import Divider from "components/util/Divider";
 import { UserContext } from "context/UserContext";
 import { useQuery } from "react-query";
 import { APIFetchV1 } from "util/api";
-import { UserGameStats, FormatGame } from "tachi-common";
+import { UserGameStats, FormatGame, GetGameConfig } from "tachi-common";
 import MenuLink from "./MenuLink";
 import MenuDropdown from "./MenuDropdown";
 import Loading from "components/util/Loading";
@@ -12,6 +12,7 @@ import KTLayoutHeader from "_metronic/_assets/js/layout/base/header";
 import KTLayoutHeaderMenu from "_metronic/_assets/js/layout/base/header-menu";
 import AllGames from "./AllGames";
 import { UserGameStatsContext } from "context/UserGameStatsContext";
+import { TachiConfig } from "lib/config";
 
 export function HeaderMenu() {
 	const { user } = useContext(UserContext);
@@ -46,6 +47,33 @@ export function HeaderMenu() {
 		return <Loading />;
 	}
 
+	const userProfileLinks = [];
+
+	if (user && ugs && ugs.length !== 0) {
+		const ugsMap = new Map();
+		for (const s of ugs) {
+			ugsMap.set(`${s.game}:${s.playtype}`, s);
+		}
+
+		for (const game of TachiConfig.supportedGames) {
+			for (const playtype of GetGameConfig(game).validPlaytypes) {
+				const e = ugsMap.get(`${game}:${playtype}`);
+
+				if (!e) {
+					continue;
+				}
+
+				userProfileLinks.push(
+					<MenuLink
+						key={`${e.game}:${e.playtype}`}
+						name={FormatGame(e.game, e.playtype)}
+						to={`/dashboard/users/${user.username}/games/${e.game}/${e.playtype}`}
+					/>
+				);
+			}
+		}
+	}
+
 	return (
 		<div className="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
 			<div
@@ -63,18 +91,8 @@ export function HeaderMenu() {
 					</div>
 				</div>
 				<ul className="menu-nav">
-					{/* <MenuLink name="Dashboard" to="/dashboard" /> */}
-
 					{user && ugs && ugs.length !== 0 && (
-						<MenuDropdown name="Your Profiles">
-							{ugs.map(e => (
-								<MenuLink
-									key={`${e.game}:${e.playtype}`}
-									name={FormatGame(e.game, e.playtype)}
-									to={`/dashboard/users/${user.username}/games/${e.game}/${e.playtype}`}
-								/>
-							))}
-						</MenuDropdown>
+						<MenuDropdown name="Your Profiles">{userProfileLinks}</MenuDropdown>
 					)}
 
 					<AllGames />

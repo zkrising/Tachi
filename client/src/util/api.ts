@@ -1,5 +1,7 @@
 import toast from "react-hot-toast";
 import { SuccessfulAPIResponse, UnsuccessfulAPIResponse } from "tachi-common";
+import { HumaniseError } from "./humanise-error";
+import { SendErrorToast, SendSuccessToast } from "./toaster";
 
 const BASE_OPTIONS = {
 	credentials: "include",
@@ -52,11 +54,16 @@ export async function APIFetchV1<T = unknown>(
 		}
 
 		if (!rj.success && displayFailure) {
-			toast.error(rj.description, { duration: 10_000 });
+			// probably a prudence error...
+			if (rj.description.includes("[K:")) {
+				SendErrorToast(HumaniseError(rj.description));
+			} else {
+				SendErrorToast(rj.description);
+			}
 		}
 
-		if (displaySuccess) {
-			toast.success(rj.description);
+		if (displaySuccess && rj.success) {
+			SendSuccessToast(rj.description);
 			// toast success
 		}
 

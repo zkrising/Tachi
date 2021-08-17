@@ -128,9 +128,13 @@ function GetData(dataValue: string | number | [string, number]) {
  */
 function DirectiveMatch(
 	directive: Directive,
-	dataValue: string | number | [string, number],
+	dataValue: string | number | [string, number] | null,
 	directiveNumValue?: number
 ) {
+	if (dataValue === null) {
+		return false;
+	}
+
 	if (!directive.mode) {
 		return NeutralMatch(directive.value, GetStrData(dataValue));
 	}
@@ -160,11 +164,11 @@ function DirectiveMatch(
  * a number for >= style comparisons. The value getter must return a tri-tuple of its string value,
  * its numerical value, and a function to convert the users string request to a number.
  */
-export type ValueGetter<D> = (data: D) => string | number;
+export type ValueGetter<D> = (data: D) => string | number | null;
 
 export type ValueGetterOrHybrid<D> =
 	| {
-			valueGetter: (data: D) => [string, number];
+			valueGetter: (data: D) => [string, number] | null;
 			strToNum: (s: string) => number | null;
 	  }
 	| ValueGetter<D>;
@@ -186,9 +190,15 @@ export function ComposeSearchFunction<D>(
 		const directives = ParseDirectives(search);
 
 		if (directives.length === 0) {
-			return allGetters.some(vgOrHybrid =>
-				NeutralMatch(search, GetStrData(GetValueGetter(vgOrHybrid)(data)))
-			);
+			return allGetters.some(vgOrHybrid => {
+				const v = GetValueGetter(vgOrHybrid)(data);
+
+				if (v === null) {
+					return null;
+				}
+
+				return NeutralMatch(search, GetStrData(v));
+			});
 		}
 
 		for (const directive of directives) {

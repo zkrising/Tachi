@@ -13,6 +13,7 @@ import { IIDXGraphsComponent, ModsTable } from "./components/IIDXScoreDropdownPa
 import JudgementTable from "./components/JudgementTable";
 import CommentContainer from "./components/CommentContainer";
 import ScoreEditButtons from "./components/ScoreEditButtons";
+import DebugContent from "components/util/DebugContent";
 
 export default function IIDXScoreDropdown({
 	thisScore,
@@ -32,7 +33,7 @@ export default function IIDXScoreDropdown({
 		setComment: SetState<string | null>;
 	};
 } & GamePT) {
-	const [view, setView] = useState<"vsPB" | "moreInfo" | "history">("moreInfo");
+	const [view, setView] = useState<"vsPB" | "moreInfo" | "history" | "debug">("moreInfo");
 
 	const { isLoading, error, data } = useQuery(
 		`/users/${reqUser.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`,
@@ -83,6 +84,8 @@ export default function IIDXScoreDropdown({
 				</div>
 			</>
 		);
+	} else if (view === "debug") {
+		content = <DebugContent data={data} />;
 	}
 
 	return (
@@ -100,6 +103,10 @@ export default function IIDXScoreDropdown({
 					<SelectButton setValue={setView} value={view} id="history" disabled>
 						<Icon type="history" />
 						Play History
+					</SelectButton>
+					<SelectButton setValue={setView} value={view} id="debug">
+						<Icon type="bug" />
+						Debug Info
 					</SelectButton>
 				</>
 			}

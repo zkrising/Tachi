@@ -2,6 +2,7 @@ import React from "react";
 import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { IsScore } from "util/asserts";
 import { ChangeOpacity } from "util/color-opacity";
+import { IsNotNullish, IsNullish } from "util/misc";
 
 export default function IIDXLampCell({
 	sc,
@@ -24,6 +25,16 @@ export default function IIDXLampCell({
 		}
 	}
 
+	let bpText;
+
+	if (IsNotNullish(sc.scoreData.hitMeta.bp) && IsNotNullish(sc.scoreData.hitMeta.comboBreak)) {
+		bpText = `[BP: ${sc.scoreData.hitMeta.bp}, CBRK: ${sc.scoreData.hitMeta.comboBreak}]`;
+	} else if (IsNotNullish(sc.scoreData.hitMeta.bp)) {
+		bpText = `[BP: ${sc.scoreData.hitMeta.bp}]`;
+	} else if (IsNotNullish(sc.scoreData.hitMeta.comboBreak)) {
+		bpText = `[CBRK: ${sc.scoreData.hitMeta.comboBreak}`;
+	}
+
 	return (
 		<td
 			style={{
@@ -31,14 +42,14 @@ export default function IIDXLampCell({
 			}}
 		>
 			<strong>{sc.scoreData.lamp}</strong>
-			<br />
-			<small>
-				[BP: {sc.scoreData.hitMeta.bp ?? "No Data"}
-				{sc.scoreData.hitMeta.comboBreak
-					? `, CBRK: ${sc.scoreData.hitMeta.comboBreak}`
-					: ""}
-				]
-			</small>
+
+			{bpText && (
+				<>
+					<br />
+					<small>{bpText}</small>
+				</>
+			)}
+
 			{sc.scoreData.lamp === "FAILED" && (
 				<>
 					<br />

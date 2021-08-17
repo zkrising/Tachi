@@ -4,16 +4,21 @@ import {
 	GetGamePTConfig,
 	IDStrings,
 	integer,
+	PublicUserDocument,
+	ScoreCalculatedDataLookup,
 	SessionCalculatedDataLookup,
 	SessionDocument,
-	SessionScoreInfo,
 } from "tachi-common";
+import { ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import { GetPBs } from "util/data";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { FormatDuration, FormatTime, MillisToSince } from "util/time";
 import IndexCell from "../cells/IndexCell";
+import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
+import GenericSessionDropdown from "../dropdowns/GenericSessionDropdown";
+import IIDXScoreDropdown from "../dropdowns/IIDXScoreDropdown";
 
 export type SessionDataset = (SessionDocument & { __related: { index: integer } })[];
 
@@ -56,35 +61,57 @@ export default function GenericSessionTable({
 				scores: x => x.scoreInfo.length,
 				pbs: x => GetPBs(x.scoreInfo).length,
 				pbRate: x => GetPBs(x.scoreInfo).length / x.scoreInfo.length,
-				duration: x => x.timeEnded - x.timeStarted,
+				duration: x => (x.timeEnded - x.timeStarted) / (1000 * 60),
 				timestamp: x => x.timeStarted,
 			}}
 			rowFunction={s => (
-				<tr key={s.sessionID}>
-					{indexCol && <IndexCell index={s.__related.index} />}
-					<td style={{ minWidth: "140px" }}>
-						{s.name}
-						<br />
-						<small className="text-muted">{s.desc}</small>
-					</td>
-					<td>
-						{s.scoreInfo.length}
-						<br />
-						<small className="text-muted">PBs: {GetPBs(s.scoreInfo).length}</small>
-					</td>
-					<td>
-						{s.calculatedData[rating]
-							? s.calculatedData[rating]?.toFixed(2)
-							: "No Data."}
-					</td>
-					<td>{FormatDuration(s.timeEnded - s.timeStarted)}</td>
-					<td>
-						{MillisToSince(s.timeStarted)}
-						<br />
-						<small className="text-muted">{FormatTime(s.timeStarted)}</small>
-					</td>
-				</tr>
+				<Row data={s} key={s.sessionID} rating={rating} indexCol={indexCol} />
 			)}
 		/>
+	);
+}
+
+function Row({
+	data,
+	rating,
+	indexCol = false,
+}: // reqUser,
+{
+	data: SessionDataset[0];
+	// reqUser: PublicUserDocument;
+	rating: SessionCalculatedDataLookup[IDStrings];
+	indexCol?: boolean;
+}) {
+	const [highlight, setHighlight] = useState(data.highlight);
+	const [desc, setDesc] = useState(data.desc);
+
+	const sessionState = { highlight, desc, setHighlight, setDesc };
+
+	return (
+		<DropdownRow
+			className={highlight ? "highlighted-row" : ""}
+			dropdown={<GenericSessionDropdown data={data} />}
+		>
+			{indexCol && <IndexCell index={data.__related.index} />}
+			<td style={{ minWidth: "140px" }}>
+				{data.name}
+				<br />
+				<small className="text-muted">{desc}</small>
+			</td>
+			<td>
+				{data.scoreInfo.length}
+				<br />
+				<small className="text-muted">PBs: {GetPBs(data.scoreInfo).length}</small>
+			</td>
+			<td>
+				{data.calculatedData[rating] ? data.calculatedData[rating]?.toFixed(2) : "No Data."}
+			</td>
+			<td>{FormatDuration(data.timeEnded - data.timeStarted)}</td>
+			<td>
+				{MillisToSince(data.timeStarted)}
+				<br />
+				<small className="text-muted">{FormatTime(data.timeStarted)}</small>
+			</td>
+		</DropdownRow>
 	);
 }

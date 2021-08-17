@@ -1,5 +1,4 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
-import IIDXPBTable from "components/tables/pbs/IIDXPBTable";
 import DebounceSearch from "components/util/DebounceSearch";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
@@ -21,6 +20,7 @@ import IIDXScoreTable from "components/tables/scores/IIDXScoreTable";
 import LoadingWrapper from "components/util/LoadingWrapper";
 import Icon from "components/util/Icon";
 import SelectButton from "components/util/SelectButton";
+import PBTable from "components/tables/pbs/PBTable";
 
 export default function ScoresPage({
 	reqUser,
@@ -45,7 +45,7 @@ export default function ScoresPage({
 				<div className="btn-group mb-4">
 					<SelectButton id="best" setValue={setScoreSet} value={scoreSet}>
 						<Icon type="trophy" />
-						Best Scores
+						Best PBs
 					</SelectButton>
 					<SelectButton id="recent" setValue={setScoreSet} value={scoreSet}>
 						<Icon type="history" />
@@ -104,9 +104,10 @@ function PBsOverview({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 						style={{ height: 500 }}
 						{...{ isLoading, error, dataset: data }}
 					>
-						<IIDXPBTable
+						<PBTable
 							reqUser={reqUser}
 							dataset={data!}
+							game={game}
 							playtype={playtype as "SP" | "DP"}
 						/>
 					</LoadingWrapper>
@@ -176,10 +177,11 @@ function PBsSearch({
 
 	return (
 		<LoadingWrapper style={{ height: 500 }} {...{ isLoading, error, dataset: data }}>
-			<IIDXPBTable
+			<PBTable
 				reqUser={reqUser}
 				indexCol={false}
 				dataset={data!}
+				game={game}
 				playtype={playtype as "SP" | "DP"}
 			/>
 		</LoadingWrapper>
@@ -208,7 +210,11 @@ function ScoresOverview({ reqUser, game, playtype }: { reqUser: PublicUserDocume
 						style={{ height: 500 }}
 						{...{ isLoading, dataset: data, error }}
 					>
-						<IIDXScoreTable dataset={data!} reqUser={reqUser} />
+						<IIDXScoreTable
+							dataset={data!}
+							reqUser={reqUser}
+							playtype={playtype as any}
+						/>
 					</LoadingWrapper>
 				) : (
 					<ScoresSearch {...{ reqUser, game, playtype, search }} />
@@ -230,7 +236,7 @@ function ScoresSearch({
 
 	return (
 		<LoadingWrapper style={{ height: 500 }} {...{ isLoading, error, dataset: data }}>
-			<IIDXScoreTable dataset={data!} reqUser={reqUser} />
+			<IIDXScoreTable dataset={data!} reqUser={reqUser} playtype={playtype as any} />
 		</LoadingWrapper>
 	);
 }

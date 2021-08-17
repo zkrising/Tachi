@@ -1,7 +1,8 @@
+import DebugContent from "components/util/DebugContent";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { ChartDocument, PublicUserDocument } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
@@ -29,7 +30,9 @@ export default function IIDXPBDropdown({
 		setHighlight: SetState<boolean>;
 	};
 } & GamePT) {
-	const [view, setView] = useState<"pb" | "scorePB" | "lampPB" | "bpPB" | "history">("pb");
+	const [view, setView] = useState<"pb" | "scorePB" | "lampPB" | "bpPB" | "history" | "debug">(
+		"pb"
+	);
 
 	const { isLoading, error, data } = useQuery(
 		`/users/${reqUser.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`,
@@ -78,11 +81,17 @@ export default function IIDXPBDropdown({
 						<Icon type="history" />
 						Play History
 					</SelectButton>
+					<SelectButton setValue={setView} value={view} id="debug">
+						<Icon type="bug" />
+						Debug Info
+					</SelectButton>
 				</>
 			}
 		>
 			{view === "history" ? (
 				<></>
+			) : view === "debug" ? (
+				<DebugContent data={data} />
 			) : (
 				<DocumentDisplay pbData={data} view={view} scoreState={scoreState} />
 			)}
@@ -118,6 +127,10 @@ function DocumentDisplay({
 	}, [view]);
 
 	const [comment, setComment] = useState(IsScore(currentDoc) ? currentDoc.comment : null);
+
+	useEffect(() => {
+		setComment(IsScore(currentDoc) ? currentDoc.comment : null);
+	}, [currentDoc]);
 
 	return (
 		<>

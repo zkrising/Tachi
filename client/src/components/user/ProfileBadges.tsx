@@ -1,11 +1,14 @@
 import React from "react";
 import { UserBadges } from "tachi-common";
+import { Badge } from "react-bootstrap";
 
 export default function ProfileBadges({ badges }: { badges: UserBadges[] }) {
 	return (
 		<>
 			{badges.map((e, i) => (
-				<ProfileBadge key={i} variant={e} />
+				<span key={i} className="mt-1">
+					<ProfileBadge variant={e} />
+				</span>
 			))}
 		</>
 	);
@@ -13,11 +16,17 @@ export default function ProfileBadges({ badges }: { badges: UserBadges[] }) {
 
 export function ProfileBadge({ variant }: { variant: UserBadges }) {
 	if (variant === "alpha") {
-		return <div className="badge badge-success mt-1">Alpha Tester</div>;
+		return <Badge variant="warning">Alpha Tester</Badge>;
 	} else if (variant === "beta") {
-		return <div className="badge badge-info mt-1">Beta Tester</div>;
+		return <Badge variant="info">Beta Tester</Badge>;
 	} else if (variant === "devTeam") {
-		return <div className="badge badge-primary mt-1">Dev Team</div>;
+		return <Badge variant="primary">Dev Team</Badge>;
+	} else if (variant === "contributor") {
+		// discord contributor colour
+		return <Badge style={{ backgroundColor: "#1abc9c" }}>Contributor</Badge>;
+	} else if (variant === "significant-contributor") {
+		// discord sig. contributor colour
+		return <Badge style={{ backgroundColor: "#e62e22" }}>Significant Contributor</Badge>;
 	}
 
 	return <></>;

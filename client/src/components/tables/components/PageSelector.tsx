@@ -12,8 +12,8 @@ export default function PageSelector({
 	currentPage: integer;
 	maxPage: integer;
 }) {
-	const elipseStart = currentPage > 4;
-	const elipseEnd = maxPage - currentPage > 3;
+	const elipseStart = currentPage > 4 && maxPage > 5;
+	const elipseEnd = maxPage - currentPage > 3 && maxPage > 5;
 
 	function PageButton({ page }: { page: integer }) {
 		return (

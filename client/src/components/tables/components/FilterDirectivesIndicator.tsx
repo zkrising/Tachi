@@ -7,13 +7,15 @@ import React, { useState } from "react";
 import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { GetValueGetter, ValueGetterOrHybrid } from "util/ztable/search";
 
-function AdditionalTableProps({ value }: { value: string | number | [string, number] }) {
+function AdditionalTableProps({ value }: { value: string | number | [string, number] | null }) {
 	let typeName;
 
 	if (Array.isArray(value)) {
 		typeName = "Hybrid";
 	} else if (typeof value === "string") {
 		typeName = "Text";
+	} else if (value === null) {
+		typeName = "Cannot Infer :(";
 	} else {
 		typeName = "Number";
 	}

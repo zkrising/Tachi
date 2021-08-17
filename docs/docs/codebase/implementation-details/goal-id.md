@@ -10,7 +10,7 @@ representing the same thing.
 
 ## Hashing
 
-To create the Goal ID, we perform a [json stable hash](https://github.com/zkldi/fast-stable-json-hash) on the
+To create the Goal ID, we perform a [json stable hash](https://github.com/zkldi/fast-json-stable-hash) on the
 `game`, `playtype`, `charts` and `criteria` of this field.
 
 This enforces that goals are unique on those fields.

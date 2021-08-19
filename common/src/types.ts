@@ -980,8 +980,7 @@ interface IIDXSPScoreMeta {
 interface BMS7KScoreMeta {
 	random: RanOptions | null;
 	inputDevice: "KEYBOARD" | "BM_CONTROLLER" | null;
-	client: "LR2" | "beatoraja" | "lr2oraja";
-	lnType: null | "LN" | "CN";
+	client: "LR2" | "lr2oraja";
 }
 
 interface ScoreMetaLookup {

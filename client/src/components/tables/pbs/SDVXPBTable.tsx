@@ -104,7 +104,7 @@ function Row({
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<DifficultyCell game="sdvx" chart={pb.__related.chart} />
 			<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="sdvx" />
-			<SDVXScoreCell score={pb} game="sdvx" playtype={pb.playtype} />
+			<SDVXScoreCell score={pb} />
 			<LampCell sc={pb} />
 			<td>
 				{!IsNullish(pb.calculatedData.VF6) ? pb.calculatedData.VF6!.toFixed(3) : "No Data."}

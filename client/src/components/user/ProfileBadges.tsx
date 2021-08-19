@@ -19,7 +19,7 @@ export function ProfileBadge({ variant }: { variant: UserBadges }) {
 		return <Badge variant="warning">Alpha Tester</Badge>;
 	} else if (variant === "beta") {
 		return <Badge variant="info">Beta Tester</Badge>;
-	} else if (variant === "devTeam") {
+	} else if (variant === "dev-team") {
 		return <Badge variant="primary">Dev Team</Badge>;
 	} else if (variant === "contributor") {
 		// discord contributor colour

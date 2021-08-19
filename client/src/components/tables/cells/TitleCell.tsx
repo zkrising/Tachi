@@ -15,7 +15,7 @@ export default function TitleCell({
 	noArtist?: boolean;
 }) {
 	return (
-		<td style={{ textAlign: "left", minWidth: "140px" }}>
+		<td style={{ textAlign: "left", minWidth: "140px", maxWidth: "300px" }}>
 			<Link className="song-title-link" to={CreateChartLink(chart, game)}>
 				{song.title}
 				{!noArtist && (

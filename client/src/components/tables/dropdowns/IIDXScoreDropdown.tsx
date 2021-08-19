@@ -75,11 +75,7 @@ export default function IIDXScoreDropdown({
 					</div>
 				</div>
 				<div className="col-3 align-self-center">
-					<JudgementTable
-						game="iidx"
-						playtype="SP"
-						judgements={thisScore.scoreData.judgements}
-					/>
+					<JudgementTable score={thisScore} />
 					{IsScore(thisScore) && <ModsTable score={thisScore} />}
 				</div>
 			</>

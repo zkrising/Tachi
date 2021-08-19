@@ -1,10 +1,9 @@
 import React from "react";
 import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { IsScore } from "util/asserts";
 import { ChangeOpacity } from "util/color-opacity";
-import { IsNotNullish, IsNullish } from "util/misc";
 
 export default function LampCell({ sc }: { sc: ScoreDocument | PBScoreDocument }) {
+	console.log(sc.game, sc.playtype);
 	const gptConfig = GetGamePTConfig(sc.game, sc.playtype);
 
 	return (

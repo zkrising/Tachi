@@ -60,17 +60,5 @@ export function ReverseStr(str: string) {
 }
 
 export function FormatMillions(v: number) {
-	let str = "";
-
-	const valueStr = v.toFixed();
-
-	for (let i = 0; i < valueStr.length; i++) {
-		const backwardsIndex = valueStr.length - i - 1;
-		if (i % 3 === 0 && i > 0) {
-			str += ",";
-		}
-		str += valueStr[backwardsIndex];
-	}
-
-	return ReverseStr(str);
+	return v.toLocaleString();
 }

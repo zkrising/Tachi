@@ -16,6 +16,7 @@ import LampCell from "../cells/LampCell";
 import BMSDifficultyCell from "../cells/BMSDifficultyCell";
 import { BMS_TABLES } from "util/constants/bms-tables";
 import { ValueGetterOrHybrid } from "util/ztable/search";
+import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
 
 function GetBMSTableVal(chart: ChartDocument<"bms:7K" | "bms:14K">, key: string) {
 	for (const table of chart.data.tableFolders) {
@@ -129,14 +130,13 @@ function Row({
 	return (
 		<DropdownRow
 			dropdown={
-				<></>
-				// <IIDXPBDropdown
-				// 	chart={pb.__related.chart}
-				// 	reqUser={reqUser}
-				// 	game="bms"
-				// 	playtype={pb.playtype}
-				// 	scoreState={scoreState}
-				// />
+				<GenericPBDropdown
+					chart={pb.__related.chart}
+					reqUser={reqUser}
+					game="bms"
+					playtype={pb.playtype}
+					scoreState={scoreState}
+				/>
 			}
 			className={highlight ? "highlighted-row" : ""}
 		>

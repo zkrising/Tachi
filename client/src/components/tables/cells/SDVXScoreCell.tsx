@@ -4,14 +4,8 @@ import { GamePT } from "types/react";
 import { ChangeOpacity } from "util/color-opacity";
 import { FormatMillions } from "util/misc";
 
-export default function SDVXScoreCell({
-	game,
-	playtype,
-	score,
-}: GamePT & {
-	score: PBScoreDocument | ScoreDocument;
-}) {
-	const gptConfig = GetGamePTConfig(game, playtype);
+export default function SDVXScoreCell({ score }: { score: PBScoreDocument | ScoreDocument }) {
+	const gptConfig = GetGamePTConfig("sdvx", "Single");
 
 	return (
 		<td

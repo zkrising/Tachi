@@ -42,6 +42,7 @@ import IIDXScoreTable from "components/tables/scores/IIDXScoreTable";
 
 import { NumericSOV } from "util/sorts";
 import { ScoreDataset } from "types/tables";
+import ScoreTable from "components/tables/scores/ScoreTable";
 
 export default function OverviewPage({
 	reqUser,
@@ -253,9 +254,10 @@ function RecentSessionScoreInfo({
 				</div>
 			</div>
 			<div className="col-12 mt-4">
-				<IIDXScoreTable
+				<ScoreTable
 					dataset={dataset as any}
 					pageLen={5}
+					game={game}
 					reqUser={reqUser}
 					playtype={playtype as any}
 				/>

@@ -21,6 +21,7 @@ import LoadingWrapper from "components/util/LoadingWrapper";
 import Icon from "components/util/Icon";
 import SelectButton from "components/util/SelectButton";
 import PBTable from "components/tables/pbs/PBTable";
+import ScoreTable from "components/tables/scores/ScoreTable";
 
 export default function ScoresPage({
 	reqUser,
@@ -150,9 +151,9 @@ function FormatData<
 function useFetchScores(url: string) {
 	const { isLoading, error, data } = useQuery(url, async () => {
 		const res = await APIFetchV1<{
-			scores: ScoreDocument<"iidx:SP">[];
-			charts: ChartDocument<"iidx:SP">[];
-			songs: SongDocument<"iidx">[];
+			scores: ScoreDocument[];
+			charts: ChartDocument[];
+			songs: SongDocument[];
 		}>(url);
 
 		if (!res.success) {
@@ -210,8 +211,9 @@ function ScoresOverview({ reqUser, game, playtype }: { reqUser: PublicUserDocume
 						style={{ height: 500 }}
 						{...{ isLoading, dataset: data, error }}
 					>
-						<IIDXScoreTable
+						<ScoreTable
 							dataset={data!}
+							game={game}
 							reqUser={reqUser}
 							playtype={playtype as any}
 						/>
@@ -236,7 +238,7 @@ function ScoresSearch({
 
 	return (
 		<LoadingWrapper style={{ height: 500 }} {...{ isLoading, error, dataset: data }}>
-			<IIDXScoreTable dataset={data!} reqUser={reqUser} playtype={playtype as any} />
+			<ScoreTable dataset={data!} game={game} reqUser={reqUser} playtype={playtype as any} />
 		</LoadingWrapper>
 	);
 }

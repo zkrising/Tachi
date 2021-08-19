@@ -4,17 +4,19 @@ import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
 import React, { useMemo, useState, useEffect } from "react";
 import { useQuery } from "react-query";
-import { ChartDocument, PublicUserDocument } from "tachi-common";
+import { ChartDocument, PBScoreDocument, PublicUserDocument, ScoreDocument } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
 import { IsScore } from "util/asserts";
 import CommentContainer from "./components/CommentContainer";
+import DropdownScoreButtons from "./components/DropdownScoreButtons";
 import DropdownStructure from "./components/DropdownStructure";
 import { IIDXGraphsComponent, ModsTable, ScoreInfo } from "./components/IIDXScoreDropdownParts";
 import JudgementTable from "./components/JudgementTable";
 import PBNote from "./components/PBNote";
 import ScoreEditButtons from "./components/ScoreEditButtons";
+import GenericPBDropdown, { ScoreState } from "./GenericPBDropdown";
 
 export default function IIDXPBDropdown({
 	game,
@@ -62,104 +64,30 @@ export default function IIDXPBDropdown({
 	}
 
 	return (
-		<DropdownStructure
-			buttons={
-				<>
-					<SelectButton setValue={setView} value={view} id="pb">
-						<Icon type="trophy" />
-						PB Info
-					</SelectButton>
-					<SelectButton setValue={setView} value={view} id="scorePB">
-						<Icon type="star-half-alt" />
-						Best Score
-					</SelectButton>
-					<SelectButton setValue={setView} value={view} id="lampPB">
-						<Icon type="lightbulb" />
-						Best Lamp
-					</SelectButton>
-					<SelectButton setValue={setView} value={view} id="history" disabled>
-						<Icon type="history" />
-						Play History
-					</SelectButton>
-					<SelectButton setValue={setView} value={view} id="debug">
-						<Icon type="bug" />
-						Debug Info
-					</SelectButton>
-				</>
-			}
-		>
-			{view === "history" ? (
-				<></>
-			) : view === "debug" ? (
-				<DebugContent data={data} />
-			) : (
-				<DocumentDisplay pbData={data} view={view} scoreState={scoreState} />
-			)}
-		</DropdownStructure>
+		<GenericPBDropdown
+			{...{ game, playtype, chart, reqUser, scoreState }}
+			DocComponent={DocumentDisplay}
+		/>
 	);
 }
 
 function DocumentDisplay({
-	pbData,
-	view,
+	score,
 	scoreState,
 }: {
-	pbData: UGPTChartPBComposition<"iidx:SP">;
-	view: "pb" | "scorePB" | "lampPB" | "bpPB";
-	scoreState: {
-		highlight: boolean;
-		setHighlight: SetState<boolean>;
-	};
+	score: PBScoreDocument<"iidx:SP" | "iidx:DP"> | ScoreDocument<"iidx:SP" | "iidx:DP">;
+	scoreState: ScoreState;
 }) {
-	const idMap = {
-		scorePB: pbData.pb.composedFrom.scorePB,
-		lampPB: pbData.pb.composedFrom.lampPB,
-		...Object.fromEntries((pbData.pb.composedFrom.other ?? []).map(e => [e.name, e.scoreID])),
-	};
-
-	const currentDoc = useMemo(() => {
-		if (view === "pb") {
-			return pbData.pb;
-		}
-
-		// @ts-expect-error awful
-		return pbData.scores.filter(e => e.scoreID === idMap[view])[0];
-	}, [view]);
-
-	const [comment, setComment] = useState(IsScore(currentDoc) ? currentDoc.comment : null);
-
-	useEffect(() => {
-		setComment(IsScore(currentDoc) ? currentDoc.comment : null);
-	}, [currentDoc]);
-
 	return (
 		<>
 			<div className="col-9">
 				<div className="row">
-					<IIDXGraphsComponent score={currentDoc} />
-					{IsScore(currentDoc) ? (
-						<>
-							<ScoreInfo score={currentDoc} />
-							<CommentContainer comment={comment} />
-							<ScoreEditButtons
-								score={currentDoc}
-								scoreState={{ ...scoreState, comment, setComment }}
-							/>
-						</>
-					) : (
-						<div className="col-12">
-							<PBNote />
-						</div>
-					)}
+					<IIDXGraphsComponent score={score} />
+					<DropdownScoreButtons {...{ score, scoreState }} />
 				</div>
 			</div>
 			<div className="col-3 align-self-center">
-				<JudgementTable
-					game="iidx"
-					playtype="SP"
-					judgements={currentDoc.scoreData.judgements}
-				/>
-				{IsScore(currentDoc) && <ModsTable score={currentDoc} />}
+				<JudgementTable score={score} />
 			</div>
 		</>
 	);

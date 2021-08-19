@@ -3,44 +3,30 @@ import { FormatDifficulty } from "tachi-common/js/utils/util";
 import TitleCell from "../cells/TitleCell";
 import TimestampCell from "../cells/TimestampCell";
 import { NumericSOV, StrSOV } from "util/sorts";
-import SelectableRating from "../components/SelectableRating";
 import { ScoreDataset } from "types/tables";
-import {
-	GetGamePTConfig,
-	integer,
-	ScoreCalculatedDataLookup,
-	PublicUserDocument,
-	Playtypes,
-} from "tachi-common";
-import TachiTable, { ZTableTHProps } from "../components/TachiTable";
-import DifficultyCell from "../cells/DifficultyCell";
+import { integer, PublicUserDocument, Playtypes } from "tachi-common";
+import TachiTable from "../components/TachiTable";
 import ScoreCell from "../cells/ScoreCell";
 import DeltaCell from "../cells/DeltaCell";
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
-import { nanoid } from "nanoid";
-import IIDXLampCell from "../cells/IIDXLampCell";
 import DropdownRow from "../components/DropdownRow";
-import IIDXScoreDropdown from "../dropdowns/IIDXScoreDropdown";
 import { IsNullish } from "util/misc";
+import LampCell from "../cells/LampCell";
+import BMSDifficultyCell from "../cells/BMSDifficultyCell";
 import { Playtype } from "types/tachi";
+import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
 
-export default function IIDXScoreTable({
+export default function BMSScoreTable({
 	reqUser,
 	dataset,
 	pageLen,
 	playtype,
 }: {
 	reqUser: PublicUserDocument;
-	dataset: ScoreDataset<"iidx:SP" | "iidx:DP">;
+	dataset: ScoreDataset<"bms:7K" | "bms:14K">;
 	pageLen?: integer;
-	playtype: Playtypes["iidx"];
+	playtype: Playtypes["bms"];
 }) {
-	const gptConfig = GetGamePTConfig<"iidx:SP" | "iidx:DP">("iidx", playtype);
-
-	const [rating, setRating] = useState<ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"]>(
-		gptConfig.defaultScoreRatingAlg
-	);
-
 	return (
 		<TachiTable
 			dataset={dataset}
@@ -51,48 +37,29 @@ export default function IIDXScoreTable({
 				["Score", "Score", NumericSOV(x => x.scoreData.percent)],
 				["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
 				["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
-				[
-					"Rating",
-					"Rating",
-					NumericSOV(x => x.calculatedData[rating] ?? 0),
-					(thProps: ZTableTHProps) => (
-						<SelectableRating<"iidx:SP" | "iidx:DP">
-							key={nanoid()}
-							game="iidx"
-							playtype={playtype}
-							rating={rating}
-							setRating={setRating}
-							{...thProps}
-						/>
-					),
-				],
+				["Sieglinde", "sgl.", NumericSOV(x => x.calculatedData.sieglinde ?? 0)],
+
 				["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
 			]}
 			entryName="Scores"
 			searchFunctions={{
 				artist: x => x.__related.song.artist,
 				title: x => x.__related.song.title,
-				difficulty: x => FormatDifficulty(x.__related.chart, "iidx"),
+				difficulty: x => FormatDifficulty(x.__related.chart, "bms"),
 				level: x => x.__related.chart.levelNum,
 				score: x => x.scoreData.score,
 				percent: x => x.scoreData.percent,
 				lamp: {
 					valueGetter: x => [x.scoreData.lamp, x.scoreData.lampIndex],
-					strToNum: HumanFriendlyStrToLampIndex("iidx", playtype),
+					strToNum: HumanFriendlyStrToLampIndex("bms", playtype),
 				},
 				grade: {
 					valueGetter: x => [x.scoreData.grade, x.scoreData.gradeIndex],
-					strToNum: HumanFriendlyStrToGradeIndex("iidx", playtype),
+					strToNum: HumanFriendlyStrToGradeIndex("bms", playtype),
 				},
 			}}
 			rowFunction={sc => (
-				<Row
-					key={sc.scoreID}
-					playtype={playtype}
-					sc={sc}
-					reqUser={reqUser}
-					rating={rating}
-				/>
+				<Row playtype={playtype} key={sc.scoreID} sc={sc} reqUser={reqUser} />
 			)}
 		/>
 	);
@@ -101,12 +68,10 @@ export default function IIDXScoreTable({
 function Row({
 	sc,
 	reqUser,
-	rating,
 	playtype,
 }: {
-	sc: ScoreDataset<"iidx:SP" | "iidx:DP">[0];
+	sc: ScoreDataset<"bms:7K" | "bms:14K">[0];
 	reqUser: PublicUserDocument;
-	rating: ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"];
 	playtype: Playtype;
 }) {
 	const [highlight, setHighlight] = useState(sc.highlight);
@@ -118,31 +83,30 @@ function Row({
 		<DropdownRow
 			className={highlight ? "highlighted-row" : ""}
 			dropdown={
-				<IIDXScoreDropdown
+				<GenericPBDropdown
 					chart={sc.__related.chart}
-					game="iidx"
-					playtype={sc.playtype}
 					reqUser={reqUser}
-					thisScore={sc}
+					game="bms"
+					playtype={sc.playtype}
 					scoreState={scoreState}
 				/>
 			}
 		>
-			<DifficultyCell chart={sc.__related.chart} game="iidx" />
-			<TitleCell song={sc.__related.song} chart={sc.__related.chart} game="iidx" />
-			<ScoreCell score={sc} game="iidx" playtype={playtype} />
+			<BMSDifficultyCell chart={sc.__related.chart} />
+			<TitleCell song={sc.__related.song} chart={sc.__related.chart} game="bms" />
+			<ScoreCell score={sc} game="bms" playtype={playtype} />
 			<DeltaCell
-				game="iidx"
+				game="bms"
 				playtype={playtype}
 				score={sc.scoreData.score}
 				percent={sc.scoreData.percent}
 				grade={sc.scoreData.grade}
 			/>
-			<IIDXLampCell sc={sc} />
+			<LampCell sc={sc} />
 			<td>
-				{!IsNullish(sc.calculatedData[rating])
-					? sc.calculatedData[rating]!.toFixed(2)
-					: "No Data."}
+				{!IsNullish(sc.calculatedData.sieglinde)
+					? sc.calculatedData.sieglinde!.toFixed(2)
+					: "N/A"}
 			</td>
 			<TimestampCell time={sc.timeAchieved} />
 		</DropdownRow>

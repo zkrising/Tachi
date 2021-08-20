@@ -34,13 +34,15 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 	reqUser,
 	chart,
 	scoreState,
+	thisScore,
 	defaultView = "moreInfo",
-	DocComponent = GenericScoreContentDropdown,
+	DocComponent = props => GenericScoreContentDropdown({ renderScoreInfo: false, ...props }),
 }: {
 	reqUser: PublicUserDocument;
 	chart: ChartDocument;
 	scoreState: ScoreState;
 	defaultView?: "vsPB" | "moreInfo" | "history" | "debug";
+	thisScore: ScoreDocument;
 	DocComponent?: (props: {
 		score: ScoreDocument<I> | PBScoreDocument<I>;
 		scoreState: ScoreState;
@@ -64,26 +66,6 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 		}
 	);
 
-	const currentScoreDoc: ScoreDocument<I> | PBScoreDocument<I> | null = useMemo(() => {
-		if (!data) {
-			// dont worry about this null, it never gets below the rquery checks
-			return null;
-		}
-
-		if (view === "pb") {
-			return data.pb;
-		}
-
-		const idMap = {
-			scorePB: data.pb.composedFrom.scorePB,
-			lampPB: data.pb.composedFrom.lampPB,
-			...Object.fromEntries((data.pb.composedFrom.other ?? []).map(e => [e.name, e.scoreID])),
-		};
-
-		// @ts-expect-error awful
-		return data.scores.filter(e => e.scoreID === idMap[view])[0];
-	}, [view, data]);
-
 	if (error) {
 		return <>An error has occured. Whoops.</>;
 	}
@@ -102,25 +84,21 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 		body = <></>; // todo
 	} else if (view === "debug") {
 		body = <DebugContent data={data} />;
-	} else {
-		body = <DocComponent score={currentScoreDoc!} scoreState={scoreState} />;
+	} else if (view === "moreInfo") {
+		body = <DocComponent score={thisScore as any} scoreState={scoreState} />;
 	}
 
 	return (
 		<DropdownStructure
 			buttons={
 				<>
-					<SelectButton setValue={setView} value={view} id="pb">
-						<Icon type="trophy" />
-						PB Info
+					<SelectButton setValue={setView} value={view} id="moreInfo">
+						<Icon type="chart-bar" />
+						This Score
 					</SelectButton>
-					<SelectButton setValue={setView} value={view} id="scorePB">
-						<Icon type="star-half-alt" />
-						Best Score
-					</SelectButton>
-					<SelectButton setValue={setView} value={view} id="lampPB">
-						<Icon type="lightbulb" />
-						Best Lamp
+					<SelectButton setValue={setView} value={view} id="vsPB">
+						<Icon type="balance-scale-right" />
+						Versus PB
 					</SelectButton>
 					<SelectButton setValue={setView} value={view} id="history" disabled>
 						<Icon type="history" />

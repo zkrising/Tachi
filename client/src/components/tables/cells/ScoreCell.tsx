@@ -5,17 +5,15 @@ import { ChangeOpacity } from "util/color-opacity";
 import { FormatMillions } from "util/misc";
 
 export default function ScoreCell({
-	game,
-	playtype,
 	score,
 	showScore = true,
 	scoreRenderFn,
-}: GamePT & {
+}: {
 	score: PBScoreDocument | ScoreDocument;
 	showScore?: boolean;
 	scoreRenderFn?: (s: number) => string;
 }) {
-	const gptConfig = GetGamePTConfig(game, playtype);
+	const gptConfig = GetGamePTConfig(score.game, score.playtype);
 
 	return (
 		<td

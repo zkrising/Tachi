@@ -132,7 +132,7 @@ function Row({
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<DifficultyCell chart={pb.__related.chart} game={"iidx"} />
 			<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="iidx" />
-			<ScoreCell score={pb} game="iidx" playtype={pb.playtype} />
+			<ScoreCell score={pb} />
 			<DeltaCell
 				game="iidx"
 				playtype={pb.playtype}

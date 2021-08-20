@@ -21,10 +21,10 @@ export function ScoreInfo({ score }: { score: ScoreDocument<"iidx:SP" | "iidx:DP
 				</thead>
 				<tbody>
 					<tr>
-						<ScoreCell score={score} game="iidx" playtype="SP" />
+						<ScoreCell score={score} />
 						<DeltaCell
 							game="iidx"
-							playtype="SP"
+							playtype={score.playtype}
 							score={score.scoreData.score}
 							percent={score.scoreData.percent}
 							grade={score.scoreData.grade}

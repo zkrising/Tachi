@@ -154,8 +154,7 @@ export default function RegisterPage() {
 								<br />I know it sucks to wait around, but the few rules we have are
 								enforced strictly.
 								<br />
-								The last thing you'd want is to accidentally get yourself
-								banned!
+								The last thing you'd want is to accidentally get yourself banned!
 							</p>
 						) : (
 							<></>

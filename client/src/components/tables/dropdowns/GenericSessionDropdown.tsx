@@ -416,13 +416,11 @@ function ElementStatTable({
 				}) as ScoreDocument;
 
 				if (type === "grade") {
-					preScoreCell = (
-						<ScoreCell score={mockScore} game={game} playtype={mockScore.playtype} />
-					);
+					preScoreCell = <ScoreCell score={mockScore} />;
 				} else {
 					preScoreCell = (
 						// @ts-expect-error temp
-						<IIDXLampCell sc={mockScore} game={game} playtype={mockScore.playtype} />
+						<IIDXLampCell sc={mockScore} />
 					);
 				}
 			}

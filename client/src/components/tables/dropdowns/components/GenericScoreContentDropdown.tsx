@@ -22,7 +22,7 @@ export function ScoreInfo({ score }: { score: ScoreDocument }) {
 				</thead>
 				<tbody>
 					<tr>
-						<ScoreCell score={score} game={score.game} playtype={score.playtype} />
+						<ScoreCell score={score} />
 						<DeltaCell
 							game={score.game}
 							playtype={score.playtype}
@@ -30,7 +30,7 @@ export function ScoreInfo({ score }: { score: ScoreDocument }) {
 							percent={score.scoreData.percent}
 							grade={score.scoreData.grade}
 						/>
-						<LampCell sc={score} />
+						<LampCell score={score} />
 						<TimestampCell time={score.timeAchieved} />
 					</tr>
 				</tbody>
@@ -42,9 +42,11 @@ export function ScoreInfo({ score }: { score: ScoreDocument }) {
 export default function GenericScoreContentDropdown({
 	score,
 	scoreState,
+	renderScoreInfo = true,
 }: {
 	score: ScoreDocument | PBScoreDocument;
 	scoreState: { highlight: boolean; setHighlight: SetState<boolean> };
+	renderScoreInfo?: boolean;
 }) {
 	const [comment, setComment] = useState(IsScore(score) ? score.comment : null);
 
@@ -55,10 +57,13 @@ export default function GenericScoreContentDropdown({
 	return (
 		<>
 			<div className="col-9">
-				<div className="row">
+				<div className="row h-100 justify-content-center">
+					<div className="d-flex align-items-center" style={{ height: "200px" }}>
+						<span className="text-muted">No graphs available :(</span>
+					</div>
 					{IsScore(score) ? (
 						<>
-							<ScoreInfo score={score} />
+							{renderScoreInfo && <ScoreInfo score={score} />}
 							<CommentContainer comment={comment} />
 							<ScoreEditButtons
 								score={score}
@@ -66,7 +71,7 @@ export default function GenericScoreContentDropdown({
 							/>
 						</>
 					) : (
-						<div className="col-12">
+						<div className="col-12 align-self-end">
 							<PBNote />
 						</div>
 					)}

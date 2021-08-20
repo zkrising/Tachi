@@ -168,9 +168,7 @@ export default function CreditsPage() {
 					<li>
 						<ExternalLink href="https://node-tap.org">Node TAP</ExternalLink>
 						<br />
-						<small>
-							Node TAP is a testing framework that is.not.a("mess")
-						</small>
+						<small>Node TAP is a testing framework that is.not.a("mess")</small>
 					</li>
 					<li>
 						<ExternalLink href="https://automattic.github.io/monk/docs/GETTING_STARTED.html">

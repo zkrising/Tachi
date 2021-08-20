@@ -6,27 +6,26 @@ import { NumericSOV, StrSOV } from "util/sorts";
 import { ScoreDataset } from "types/tables";
 import { integer, PublicUserDocument, Playtypes } from "tachi-common";
 import TachiTable from "../components/TachiTable";
+import DifficultyCell from "../cells/DifficultyCell";
 import ScoreCell from "../cells/ScoreCell";
-import DeltaCell from "../cells/DeltaCell";
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import DropdownRow from "../components/DropdownRow";
 import { IsNullish } from "util/misc";
 import LampCell from "../cells/LampCell";
-import BMSDifficultyCell from "../cells/BMSDifficultyCell";
-import { Playtype } from "types/tachi";
+import MillionsScoreCell from "../cells/MillionsScoreCell";
 import GenericScoreDropdown from "../dropdowns/GenericScoreDropdown";
-import SDVXJudgementCell from "../cells/SDVXJudgementCell";
+import RatingCell from "../cells/RatingCell";
+import MusecaJudgementCell from "../cells/MusecaJudgementCell";
 
-export default function BMSScoreTable({
+export default function MusecaScoreTable({
 	reqUser,
 	dataset,
 	pageLen,
-	playtype,
 }: {
 	reqUser: PublicUserDocument;
-	dataset: ScoreDataset<"bms:7K" | "bms:14K">;
+	dataset: ScoreDataset<"museca:Single">;
 	pageLen?: integer;
-	playtype: Playtypes["bms"];
+	playtype: Playtypes["museca"];
 }) {
 	return (
 		<TachiTable
@@ -36,9 +35,9 @@ export default function BMSScoreTable({
 				["Chart", "Ch.", NumericSOV(x => x.__related.chart.levelNum)],
 				["Song", "Song", StrSOV(x => x.__related.song.title)],
 				["Score", "Score", NumericSOV(x => x.scoreData.percent)],
-				["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
+				["Judgements", "Judge", NumericSOV(x => x.scoreData.percent)],
 				["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
-				["Sieglinde", "sgl.", NumericSOV(x => x.calculatedData.sieglinde ?? 0)],
+				["KtRating", "KtRating", NumericSOV(x => x.calculatedData.ktRating ?? 0)],
 
 				["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
 			]}
@@ -46,22 +45,20 @@ export default function BMSScoreTable({
 			searchFunctions={{
 				artist: x => x.__related.song.artist,
 				title: x => x.__related.song.title,
-				difficulty: x => FormatDifficulty(x.__related.chart, "bms"),
+				difficulty: x => FormatDifficulty(x.__related.chart, "museca"),
 				level: x => x.__related.chart.levelNum,
 				score: x => x.scoreData.score,
 				percent: x => x.scoreData.percent,
 				lamp: {
 					valueGetter: x => [x.scoreData.lamp, x.scoreData.lampIndex],
-					strToNum: HumanFriendlyStrToLampIndex("bms", playtype),
+					strToNum: HumanFriendlyStrToLampIndex("museca", "Single"),
 				},
 				grade: {
 					valueGetter: x => [x.scoreData.grade, x.scoreData.gradeIndex],
-					strToNum: HumanFriendlyStrToGradeIndex("bms", playtype),
+					strToNum: HumanFriendlyStrToGradeIndex("museca", "Single"),
 				},
 			}}
-			rowFunction={sc => (
-				<Row playtype={playtype} key={sc.scoreID} sc={sc} reqUser={reqUser} />
-			)}
+			rowFunction={sc => <Row key={sc.scoreID} sc={sc} reqUser={reqUser} />}
 		/>
 	);
 }
@@ -69,11 +66,9 @@ export default function BMSScoreTable({
 function Row({
 	sc,
 	reqUser,
-	playtype,
 }: {
-	sc: ScoreDataset<"bms:7K" | "bms:14K">[0];
+	sc: ScoreDataset<"museca:Single">[0];
 	reqUser: PublicUserDocument;
-	playtype: Playtype;
 }) {
 	const [highlight, setHighlight] = useState(sc.highlight);
 	const [comment, setComment] = useState(sc.comment);
@@ -94,22 +89,12 @@ function Row({
 				/>
 			}
 		>
-			<BMSDifficultyCell chart={sc.__related.chart} />
-			<TitleCell song={sc.__related.song} chart={sc.__related.chart} game="bms" />
-			<ScoreCell score={sc} />
-			<DeltaCell
-				game="bms"
-				playtype={playtype}
-				score={sc.scoreData.score}
-				percent={sc.scoreData.percent}
-				grade={sc.scoreData.grade}
-			/>
+			<DifficultyCell chart={sc.__related.chart} game="museca" />
+			<TitleCell song={sc.__related.song} chart={sc.__related.chart} game="museca" />
+			<MillionsScoreCell score={sc} />
+			<MusecaJudgementCell score={sc} />
 			<LampCell score={sc} />
-			<td>
-				{!IsNullish(sc.calculatedData.sieglinde)
-					? sc.calculatedData.sieglinde!.toFixed(2)
-					: "N/A"}
-			</td>
+			<RatingCell score={sc} />
 			<TimestampCell time={sc.timeAchieved} />
 		</DropdownRow>
 	);

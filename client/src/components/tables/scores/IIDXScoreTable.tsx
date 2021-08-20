@@ -130,7 +130,7 @@ function Row({
 		>
 			<DifficultyCell chart={sc.__related.chart} game="iidx" />
 			<TitleCell song={sc.__related.song} chart={sc.__related.chart} game="iidx" />
-			<ScoreCell score={sc} game="iidx" playtype={playtype} />
+			<ScoreCell score={sc} />
 			<DeltaCell
 				game="iidx"
 				playtype={playtype}

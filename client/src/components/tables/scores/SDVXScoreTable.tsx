@@ -12,7 +12,8 @@ import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/
 import DropdownRow from "../components/DropdownRow";
 import { IsNullish } from "util/misc";
 import LampCell from "../cells/LampCell";
-import SDVXScoreCell from "../cells/SDVXScoreCell";
+import MillionsScoreCell from "../cells/MillionsScoreCell";
+import GenericScoreDropdown from "../dropdowns/GenericScoreDropdown";
 
 export default function SDVXScoreTable({
 	reqUser,
@@ -69,22 +70,21 @@ function Row({ sc, reqUser }: { sc: ScoreDataset<"sdvx:Single">[0]; reqUser: Pub
 		<DropdownRow
 			className={highlight ? "highlighted-row" : ""}
 			dropdown={
-				<></>
-				// <sdvxScoreDropdown
-				// 	chart={sc.__related.chart}
-				// 	game="sdvx"
-				// 	playtype={sc.playtype}
-				// 	reqUser={reqUser}
-				// 	thisScore={sc}
-				// 	scoreState={scoreState}
-				// />
+				<GenericScoreDropdown
+					chart={sc.__related.chart}
+					reqUser={reqUser}
+					game={sc.game}
+					thisScore={sc}
+					playtype={sc.playtype}
+					scoreState={scoreState}
+				/>
 			}
 		>
 			<DifficultyCell chart={sc.__related.chart} game="sdvx" />
 			<TitleCell song={sc.__related.song} chart={sc.__related.chart} game="sdvx" />
-			<SDVXScoreCell score={sc} />
-			<LampCell sc={sc} />
-			<td>{!IsNullish(sc.calculatedData.VF6) ? sc.calculatedData.VF6!.toFixed(2) : "N/A"}</td>
+			<MillionsScoreCell score={sc} />
+			<LampCell score={sc} />
+			<td>{!IsNullish(sc.calculatedData.VF6) ? sc.calculatedData.VF6!.toFixed(3) : "N/A"}</td>
 			<TimestampCell time={sc.timeAchieved} />
 		</DropdownRow>
 	);

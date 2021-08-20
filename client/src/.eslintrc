@@ -52,6 +52,7 @@
 		"react/no-unescaped-entities": ["error", {"forbid": [">", "}"]}],
 		"react/display-name": "off",
 		"import/no-unresolved": "off",
+		"import/no-named-as-default": "off",
 		"react/prop-types": "warn",
 		"require-await": "warn",
 		"no-await-in-loop": "warn",

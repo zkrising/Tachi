@@ -133,7 +133,7 @@ function Row({
 				<GenericPBDropdown
 					chart={pb.__related.chart}
 					reqUser={reqUser}
-					game="bms"
+					game={pb.game}
 					playtype={pb.playtype}
 					scoreState={scoreState}
 				/>
@@ -143,7 +143,7 @@ function Row({
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<BMSDifficultyCell chart={pb.__related.chart} />
 			<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="bms" />
-			<ScoreCell score={pb} game="bms" playtype={pb.playtype} />
+			<ScoreCell score={pb} />
 			<DeltaCell
 				game="bms"
 				playtype={pb.playtype}
@@ -151,7 +151,7 @@ function Row({
 				percent={pb.scoreData.percent}
 				grade={pb.scoreData.grade}
 			/>
-			<LampCell sc={pb} />
+			<LampCell score={pb} />
 			<td>
 				{!IsNullish(pb.calculatedData.sieglinde)
 					? pb.calculatedData.sieglinde!.toFixed(2)

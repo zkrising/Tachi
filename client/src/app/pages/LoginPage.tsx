@@ -76,9 +76,7 @@ export default function LoginPage() {
 				</div>
 				<div className="text-center mb-10 mb-lg-20">
 					<h3 className="font-size-h1">Log In</h3>
-					<span className="font-weight-bold text-dark-50">
-						Don't have an account?
-					</span>
+					<span className="font-weight-bold text-dark-50">Don't have an account?</span>
 					<Link to="/register" className="font-weight-bold ml-2">
 						Sign Up!
 					</Link>

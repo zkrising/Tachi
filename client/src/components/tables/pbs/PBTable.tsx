@@ -5,6 +5,8 @@ import { PublicUserDocument } from "tachi-common";
 import IIDXPBTable from "./IIDXPBTable";
 import BMSPBTable from "./BMSPBTable";
 import SDVXPBTable from "./SDVXPBTable";
+import GenericPBTable from "./GenericPBTable";
+import MusecaPBTable from "./MusecaPBTable";
 
 export default function PBTable({
 	dataset,
@@ -22,13 +24,18 @@ export default function PBTable({
 	// ever.
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const props = { dataset, indexCol, reqUser, playtype } as any;
+
 	if (game === "iidx") {
 		return <IIDXPBTable {...props} />;
 	} else if (game === "bms") {
 		return <BMSPBTable {...props} />;
-	} else if (game === "sdvx") {
+	} else if (game === "sdvx" || game === "usc") {
 		return <SDVXPBTable {...props} />;
+	} else if (game === "maimai") {
+		return <GenericPBTable {...props} game={game} playtype={playtype} showScore={false} />;
+	} else if (game === "museca") {
+		return <MusecaPBTable {...props} />;
 	}
 
-	return <></>;
+	return <GenericPBTable {...props} game={game} playtype={playtype} />;
 }

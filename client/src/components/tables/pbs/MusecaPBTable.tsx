@@ -15,25 +15,27 @@ import DifficultyCell from "../cells/DifficultyCell";
 import MillionsScoreCell from "../cells/MillionsScoreCell";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
 import SDVXJudgementCell from "../cells/SDVXJudgementCell";
+import RatingCell from "../cells/RatingCell";
+import MusecaJudgementCell from "../cells/MusecaJudgementCell";
 
-export default function SDVXPBTable({
+export default function MusecaPBTable({
 	dataset,
 	indexCol = true,
 	reqUser,
 	playtype,
 }: {
-	dataset: PBDataset<"sdvx:Single">;
+	dataset: PBDataset<"museca:Single">;
 	indexCol?: boolean;
 	reqUser: PublicUserDocument;
-	playtype: "7K" | "14K";
+	playtype: "Single";
 }) {
-	const headers: Header<PBDataset<"sdvx:Single">[0]>[] = [
+	const headers: Header<PBDataset<"museca:Single">[0]>[] = [
 		["Chart", "Ch.", NumericSOV(x => x.__related.chart.levelNum)],
 		["Song", "Song", StrSOV(x => x.__related.song.title)],
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
 		["Judgements", "Judge", NumericSOV(x => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
-		["VF6", "VF6", NumericSOV(x => x.calculatedData.VF6 ?? 0)],
+		["ktRating", "ktRating", NumericSOV(x => x.calculatedData.ktRating ?? 0)],
 		["Ranking", "Rank", NumericSOV(x => x.rankingData.rank)],
 		["Last Raised", "Last Raised", NumericSOV(x => x.timeAchieved ?? 0)],
 	];
@@ -57,11 +59,11 @@ export default function SDVXPBTable({
 				ranking: x => x.rankingData.rank,
 				lamp: {
 					valueGetter: x => [x.scoreData.lamp, x.scoreData.lampIndex],
-					strToNum: HumanFriendlyStrToLampIndex("sdvx", playtype),
+					strToNum: HumanFriendlyStrToLampIndex("museca", playtype),
 				},
 				grade: {
 					valueGetter: x => [x.scoreData.grade, x.scoreData.gradeIndex],
-					strToNum: HumanFriendlyStrToGradeIndex("sdvx", playtype),
+					strToNum: HumanFriendlyStrToGradeIndex("museca", playtype),
 				},
 			}}
 			defaultSortMode={indexCol ? "#" : undefined}
@@ -82,7 +84,7 @@ function Row({
 	indexCol,
 	reqUser,
 }: {
-	pb: PBDataset<"sdvx:Single">[0];
+	pb: PBDataset<"museca:Single">[0];
 	indexCol: boolean;
 	reqUser: PublicUserDocument;
 }) {
@@ -104,14 +106,12 @@ function Row({
 			className={highlight ? "highlighted-row" : ""}
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
-			<DifficultyCell game="sdvx" chart={pb.__related.chart} />
-			<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="sdvx" />
+			<DifficultyCell game="museca" chart={pb.__related.chart} />
+			<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="museca" />
 			<MillionsScoreCell score={pb} />
-			<SDVXJudgementCell score={pb} />
+			<MusecaJudgementCell score={pb} />
 			<LampCell score={pb} />
-			<td>
-				{!IsNullish(pb.calculatedData.VF6) ? pb.calculatedData.VF6!.toFixed(3) : "No Data."}
-			</td>
+			<RatingCell score={pb} />
 			<RankingCell rankingData={pb.rankingData} />
 			<TimestampCell time={pb.timeAchieved} />
 		</DropdownRow>

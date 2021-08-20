@@ -5,6 +5,8 @@ import { PublicUserDocument, integer } from "tachi-common";
 import IIDXScoreTable from "./IIDXScoreTable";
 import BMSScoreTable from "./BMSScoreTable";
 import SDVXScoreTable from "./SDVXScoreTable";
+import GenericScoreTable from "./GenericScoreTable";
+import MusecaScoreTable from "./MusecaScoreTable";
 
 export default function ScoreTable({
 	dataset,
@@ -28,9 +30,13 @@ export default function ScoreTable({
 		return <IIDXScoreTable {...props} />;
 	} else if (game === "bms") {
 		return <BMSScoreTable {...props} />;
-	} else if (game === "sdvx") {
+	} else if (game === "sdvx" || game === "usc") {
 		return <SDVXScoreTable {...props} />;
+	} else if (game === "maimai") {
+		return <GenericScoreTable {...props} game={game} playtype={playtype} showScore={false} />;
+	} else if (game === "museca") {
+		return <MusecaScoreTable {...props} />;
 	}
 
-	return <></>;
+	return <GenericScoreTable {...props} game={game} playtype={playtype} />;
 }

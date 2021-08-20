@@ -44,7 +44,7 @@ export const allSupportedGames: Game[] = [
 	"ddr",
 	"bms",
 	"chunithm",
-	"gitadora",
+	// "gitadora",
 	"usc",
 ];
 
@@ -56,7 +56,7 @@ export interface ServerConfig {
 
 export const KTCHI_CONFIG: ServerConfig = {
 	name: "Kamaitachi",
-	supportedGames: ["iidx", "gitadora", "chunithm", "museca", "sdvx", "maimai"],
+	supportedGames: ["iidx", "chunithm", "museca", "sdvx", "maimai"],
 	supportedImportTypes: [
 		"api/arc-iidx",
 		"api/arc-sdvx",

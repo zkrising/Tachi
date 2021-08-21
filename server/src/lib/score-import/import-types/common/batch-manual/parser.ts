@@ -1,8 +1,16 @@
 import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { BatchManual, BatchManualContext, BatchManualScore } from "./types";
+import { BatchManualContext } from "./types";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
-import { Game, ImportTypes, GetGamePTConfig, Playtypes, GetGameConfig } from "tachi-common";
+import {
+	Game,
+	ImportTypes,
+	GetGamePTConfig,
+	Playtypes,
+	GetGameConfig,
+	BatchManualScore,
+	BatchManual,
+} from "tachi-common";
 import deepmerge from "deepmerge";
 import { FormatPrError } from "utils/prudence";
 import { ParserFunctionReturns } from "../types";

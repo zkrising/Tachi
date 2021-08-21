@@ -1381,11 +1381,11 @@ export type BatchManualScore<I extends IDStrings = IDStrings> = {
 	scoreMeta?: Partial<ScoreMetaLookup[I]>;
 } & (
 	| {
-			matchType: "tachiSongID" | "inGameID" | "songTitle";
+			matchType: "tachiSongID" | "inGameID" | "songTitle" | "ddrSongHash";
 			difficulty: Difficulties[I];
 	  }
 	| {
-			matchType: "ddrSongHash" | "bmsChartHash" | "uscChartHash";
+			matchType: "bmsChartHash" | "uscChartHash";
 	  }
 );
 

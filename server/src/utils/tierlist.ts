@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { AnyChartDocument, Game, Playtypes } from "tachi-common";
+import { ChartDocument, Game, Playtypes } from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 
@@ -40,7 +40,7 @@ async function GetDefaultTierlistID(game: Game, playtype: Playtypes[Game]) {
 
 export async function GetOneTierlistData(
 	game: Game,
-	chart: AnyChartDocument,
+	chart: ChartDocument,
 	type: "score" | "lamp" | "grade",
 	key: string | null,
 	tierlistID?: string
@@ -59,7 +59,7 @@ export async function GetOneTierlistData(
 
 export async function GetAllTierlistDataOfType(
 	game: Game,
-	chart: AnyChartDocument,
+	chart: ChartDocument,
 	type: "score" | "lamp" | "grade",
 	tierlistID?: string
 ) {

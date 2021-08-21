@@ -1,4 +1,12 @@
-import { Difficulties, Game, integer, Playtypes, IDStrings, AnyChartDocument } from "tachi-common";
+import {
+	Difficulties,
+	Game,
+	integer,
+	Playtypes,
+	IDStrings,
+	ChartDocument,
+	GPTSupportedVersions,
+} from "tachi-common";
 import db from "external/mongo/db";
 import { FilterQuery } from "mongodb";
 
@@ -32,7 +40,13 @@ export function FindChartWithPTDFVersion<
 	G extends Game = Game,
 	P extends Playtypes[G] = Playtypes[G],
 	I extends IDStrings = IDStrings
->(game: G, songID: integer, playtype: P, difficulty: Difficulties[I], version: string) {
+>(
+	game: G,
+	songID: integer,
+	playtype: P,
+	difficulty: Difficulties[I],
+	version: GPTSupportedVersions[I]
+) {
 	return db.charts[game].findOne({
 		songID: songID,
 		playtype: playtype,
@@ -125,7 +139,7 @@ export function FindIIDXChartOnInGameIDVersion(
 	inGameID: number,
 	playtype: Playtypes[Game],
 	difficulty: Difficulties[IDStrings],
-	version: string
+	version: GPTSupportedVersions[IDStrings]
 ) {
 	return db.charts.iidx.findOne({
 		"data.inGameID": inGameID,
@@ -139,12 +153,12 @@ export function FindIIDXChartOnInGameIDVersion(
 /**
  * Find a chart on its in-game-ID, playtype, difficulty and version.
  */
-export function FindChartOnInGameIDVersion(
+export function FindChartOnInGameIDVersion<I extends IDStrings = IDStrings>(
 	game: Game,
 	inGameID: number,
 	playtype: Playtypes[Game],
-	difficulty: Difficulties[IDStrings],
-	version: string
+	difficulty: Difficulties[I],
+	version: GPTSupportedVersions[I]
 ) {
 	return db.charts[game].findOne({
 		"data.inGameID": inGameID,
@@ -188,7 +202,7 @@ export function FindSDVXChartOnInGameID(
 export function FindSDVXChartOnInGameIDVersion(
 	inGameID: number,
 	difficulty: "NOV" | "ADV" | "EXH" | "MXM" | "ANY_INF",
-	version: string
+	version: GPTSupportedVersions["sdvx:Single"]
 ) {
 	const diffQuery =
 		difficulty === "ANY_INF"
@@ -232,8 +246,8 @@ export function FindChartsOnPopularity(
 	skip = 0,
 	limit = 100,
 	scoreCollection: "personal-bests" | "scores" = "personal-bests"
-): Promise<(AnyChartDocument & { __playcount: integer })[]> {
-	const matchQuery: FilterQuery<AnyChartDocument> = {
+): Promise<(ChartDocument & { __playcount: integer })[]> {
+	const matchQuery: FilterQuery<ChartDocument> = {
 		playtype,
 	};
 

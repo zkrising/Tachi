@@ -1,11 +1,5 @@
 import db from "external/mongo/db";
-import {
-	integer,
-	PBScoreDocument,
-	ScoreDocument,
-	AnyChartDocument,
-	AnySongDocument,
-} from "tachi-common";
+import { integer, PBScoreDocument, ScoreDocument, ChartDocument, SongDocument } from "tachi-common";
 import { DedupeArr } from "./misc";
 
 export function GetPBOnChart(userID: integer, chartID: string) {
@@ -24,8 +18,8 @@ export function GetServerRecordOnChart(chartID: string) {
 
 export function FilterChartsAndSongs(
 	scores: (PBScoreDocument | ScoreDocument)[],
-	charts: AnyChartDocument[],
-	songs: AnySongDocument[]
+	charts: ChartDocument[],
+	songs: SongDocument[]
 ) {
 	const chartIDs = new Set();
 	const songIDs = new Set();

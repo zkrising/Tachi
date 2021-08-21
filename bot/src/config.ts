@@ -1,3 +1,4 @@
+// noinspection JSUnusedGlobalSymbols
 /** @deprecated replace with database call & cache */
 export const allowedChannels = [
 	"876321394005254214"
@@ -6,7 +7,8 @@ export const allowedChannels = [
 export enum LoggerLayers  {
 	client = "client",
 	songLink = "songLink",
-	embedGenerator = "embedGenerator"
+	embedGenerator = "embedGenerator",
+	slashCommands = "slashCommands"
 }
 
 export const platformRegex = [

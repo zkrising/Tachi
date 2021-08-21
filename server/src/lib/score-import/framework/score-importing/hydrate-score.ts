@@ -1,10 +1,4 @@
-import {
-	AnyChartDocument,
-	integer,
-	ScoreDocument,
-	AnySongDocument,
-	GetGamePTConfig,
-} from "tachi-common";
+import { ChartDocument, integer, ScoreDocument, SongDocument, GetGamePTConfig } from "tachi-common";
 import { KtLogger } from "lib/logger/logger";
 import { CreateCalculatedData } from "../calculated-data/calculated-data";
 import { CalculateESDForGame } from "../common/score-utils";
@@ -18,8 +12,8 @@ import { DryScore } from "../common/types";
 export async function HydrateScore(
 	userID: integer,
 	dryScore: DryScore,
-	chart: AnyChartDocument,
-	song: AnySongDocument,
+	chart: ChartDocument,
+	song: SongDocument,
 	scoreID: string,
 	logger: KtLogger
 ): Promise<ScoreDocument> {

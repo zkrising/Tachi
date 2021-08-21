@@ -1,6 +1,6 @@
 import t from "tap";
 import db from "external/mongo/db";
-import { AnyChartDocument, Difficulties, Lamps, ScoreDocument } from "tachi-common";
+import { ChartDocument, Difficulties, Lamps, ScoreDocument } from "tachi-common";
 import {
 	CalculateBPI,
 	CalculateCHUNITHMRating,
@@ -103,7 +103,7 @@ t.test("#CalculateGITADORARating", (t) => {
 	function TestGitadoraRating(percent: number, levelNum: number) {
 		return CalculateGITADORASkill(
 			{ scoreData: { percent } } as DryScore,
-			{ levelNum } as AnyChartDocument
+			{ levelNum } as ChartDocument
 		);
 	}
 
@@ -139,7 +139,7 @@ t.test("#CalculateMFCP", (t) => {
 			{
 				difficulty,
 				levelNum,
-			} as AnyChartDocument,
+			} as ChartDocument,
 			logger
 		);
 	}

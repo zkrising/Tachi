@@ -1,5 +1,5 @@
 import {
-	AnyChartDocument,
+	ChartDocument,
 	integer,
 	Grades,
 	Lamps,
@@ -15,7 +15,7 @@ import { DryScore } from "../common/types";
 /**
  * Calculates the in-game CHUNITHM rating for a score.
  */
-export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: AnyChartDocument) {
+export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: ChartDocument) {
 	const score = dryScore.scoreData.score;
 	const levelBase = chartData.levelNum * 100;
 
@@ -43,7 +43,7 @@ export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: AnyChartD
 /**
  * Calculates the in-game GITADORA rating for a score.
  */
-export function CalculateGITADORASkill(dryScore: DryScore, chartData: AnyChartDocument) {
+export function CalculateGITADORASkill(dryScore: DryScore, chartData: ChartDocument) {
 	const trueRating = (dryScore.scoreData.percent / 100) * chartData.levelNum * 20;
 	const flooredRating = Math.floor(trueRating * 100) / 100;
 	return flooredRating;
@@ -110,7 +110,7 @@ export function CalculateBPI(
  * https://life4ddr.com/requirements/#mfcpoints
  * @returns Null if this score was not eligible, a number otherwise.
  */
-export function CalculateMFCP(dryScore: DryScore, chartData: AnyChartDocument, logger: KtLogger) {
+export function CalculateMFCP(dryScore: DryScore, chartData: ChartDocument, logger: KtLogger) {
 	if (dryScore.scoreData.lamp !== "MARVELOUS FULL COMBO") {
 		return null;
 	}
@@ -202,7 +202,7 @@ export function CalculateVF6(
 
 // function CalculateJubility(
 //     dryScore: DryScore<"jubeat:Single">,
-//     chartData: AnyChartDocument,
+//     chartData: ChartDocument,
 //     logger: KtLogger
 // ) {
 //     let rate = dryScore.calculatedData.musicRate; eurgh, this is hard.
@@ -300,7 +300,7 @@ export async function CalculateKTRating(
 	dryScore: DryScore,
 	game: "iidx" | "bms" | "ddr" | "maimai" | "museca",
 	playtype: Playtypes[Game],
-	chart: AnyChartDocument,
+	chart: ChartDocument,
 	logger: KtLogger,
 	defaultTierlistID?: string
 ) {
@@ -332,7 +332,7 @@ export async function CalculateKTLampRating(
 	dryScore: DryScore,
 	game: Game,
 	playtype: Playtypes[Game],
-	chart: AnyChartDocument,
+	chart: ChartDocument,
 	defaultTierlistID?: string
 ) {
 	// if no tierlist data
@@ -377,7 +377,7 @@ function LampRatingNoTierlistInfo(
 	dryScore: DryScore,
 	game: Game,
 	playtype: Playtypes[Game],
-	chart: AnyChartDocument
+	chart: ChartDocument
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 

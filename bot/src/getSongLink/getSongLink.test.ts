@@ -1,5 +1,5 @@
 import { SonglinkResponse } from "songlink-api/lib/types/Response";
-import {getDetailedMetadata, getIdFromEntity} from "./getSongLink";
+import { getDetailedMetadata, getIdFromEntity } from "./getSongLink";
 
 interface MockSonglinkResponse extends Omit<Omit<SonglinkResponse, "linksByPlatform">, "entitiesByUniqueId"> {
 	linksByPlatform: {

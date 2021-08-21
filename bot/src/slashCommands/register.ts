@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { REST } from "@discordjs/rest";
 import { APIApplicationCommandOption } from "discord-api-types";
 import { Routes } from "discord-api-types/v9";
-import { Client, CommandInteraction, Interaction } from "discord.js";
+import { Client, CommandInteraction } from "discord.js";
 import { LoggerLayers } from "../config";
 import { help } from "../help/help";
 import { createLayeredLogger } from "../utils/logger";

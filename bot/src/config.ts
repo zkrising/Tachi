@@ -1,3 +1,4 @@
+// noinspection JSUnusedGlobalSymbols
 /** @deprecated replace with database call & cache */
 export const allowedChannels = [
 	"876321394005254214"

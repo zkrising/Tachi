@@ -1,6 +1,6 @@
 {
 	"name": "tachi-common",
-	"version": "0.1.32",
+	"version": "0.1.33",
 	"description": "Common Types & Utilities for Tachi",
 	"main": "js/index.js",
 	"files": [
@@ -9,7 +9,7 @@
 	"scripts": {
 		"test": "tap",
 		"build": "tsc",
-		"pb": "pnpm build && pnpm publish"
+		"prepublish": "tsc"
 	},
 	"author": "zkldi",
 	"license": "MIT",

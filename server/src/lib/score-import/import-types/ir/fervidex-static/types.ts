@@ -1,4 +1,4 @@
-import { integer } from "tachi-common";
+import { GPTSupportedVersions, integer } from "tachi-common";
 
 export interface FervidexStaticScore {
 	clear_type: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
@@ -9,5 +9,5 @@ export interface FervidexStaticScore {
 }
 
 export interface FervidexStaticContext {
-	version: string;
+	version: GPTSupportedVersions["iidx:SP" | "iidx:DP"];
 }

@@ -416,6 +416,9 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 			},
 			{
 				limit: 5,
+				sort: {
+					[`ratings.${alg}`]: 1,
+				},
 			}
 		),
 		db["game-stats"].find(
@@ -427,6 +430,9 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 			},
 			{
 				limit: 5,
+				sort: {
+					[`ratings.${alg}`]: -1,
+				},
 			}
 		),
 	]);
@@ -442,7 +448,7 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 		success: true,
 		description: `Returned ${above.length + below.length} nearby stats.`,
 		body: {
-			above,
+			above: above.reverse(),
 			below,
 			users,
 			thisUsersStats,

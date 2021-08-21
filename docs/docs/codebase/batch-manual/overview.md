@@ -24,13 +24,13 @@ The format is incredibly simple JSON.
 
 It is comprised of two base keys, `meta` and `scores`.
 
-!!! faq
+!!! question
 	These keys were originally called `head` and `body` in Kamaitachi. You will have to update
 	batch-manual code.
 
-### Head
+### Meta
 
-The `head` key contains metadata, and looks like this:
+The `meta` key contains metadata, and looks like this:
 
 ```json
 {
@@ -49,9 +49,9 @@ The fields have the following values:
 | `service` | string | A humanised string to explain where these scores are from. This must be between 2 and 15 characters. |
 | `version` (Optional) | string | Optionally, you can specify a version of the game this import is for. This should be used when conflicting versions of songs exist, or when this import is rather old. Most of the time, this does not need to be present. |
 
-### Body
+### Scores
 
-The body is an array of Batch Manual Scores. An example
+The `scores` property is an array of Batch Manual Scores. An example
 score is as follows:
 
 ```json
@@ -71,9 +71,9 @@ The properties are described as this:
 | :: | :: | :: |
 | `score` | Number | The score for this, well, score. This should use the default scoring algorithm for this game. |
 | `lamp` | Lamp | The lamp for this score. This should be one of the lamps as described in the config for your game + playtype. |
-| `matchType` | "songTitle" \| "ddrSongHash" \| "tachiSongID" \| "bmsChartHash" \| "inGameID" | This determines how `identifier` will be used to match your scores' chart with Tachi's database of songs and charts. |
+| `matchType` | "songTitle" \| "ddrSongHash" \| "tachiSongID" \| "bmsChartHash" \| "inGameID" \| "uscChartHash" | This determines how `identifier` will be used to match your scores' chart with Tachi's database of songs and charts. |
 | `identifier` | string | A string that Tachi uses to identify what chart this is for. How this is used depends on the `matchType`. |
-| `difficulty` (Conditional) | string | If `matchType` is "tachiSongID", "inGameID" or "songTitle", this field must be present, and describe the difficulty of the chart this score is for. |
+| `difficulty` (Conditional) | string | If `matchType` is "tachiSongID", "inGameID", "ddrSongHash" or "songTitle", this field must be present, and describe the difficulty of the chart this score is for. |
 | `timeAchieved` (Optional) | integer \| null | This is *when* the score was achieved in unix milliseconds. This should be provided if possible, as Tachi uses it for a LOT of features. |
 | `comment` (Optional) | string \| null | A comment from the user about this score. |
 | `judgements` (Optional) | Record&lt;Game Judgement, integer&gt; | This should be a record of the judgements for your game + playtype, and the integer indicating how often they occured. |
@@ -117,6 +117,11 @@ both will match.
 
 This match type can only be used for BMS.
 
+- uscChartHash
+
+This looks for the chart SHA1 that USC uses. As expected, this
+can only be used for BMS.
+
 - ddrSongHash
 
 This looks for the DDR 'song hash'. This is an identifier
@@ -142,12 +147,12 @@ looks like this:
 
 ```json
 {
-	"head": {
+	"meta": {
 		"game": "iidx",
 		"playtype": "SP",
 		"service": "My Service"
 	},
-	"body": [{
+	"scores": [{
 		"score": 500,
 		"lamp": "HARD CLEAR",
 		"matchType": "songTitle",

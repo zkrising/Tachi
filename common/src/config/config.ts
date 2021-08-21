@@ -563,7 +563,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			NOV: COLOUR_SET.purple, // colour set dark purple
 			ADV: COLOUR_SET.vibrantYellow,
 			EXH: COLOUR_SET.red,
-			INF: "TODO", // colour set light pink
+			INF: COLOUR_SET.vibrantPink,
 		},
 
 		grades: ["D", "C", "B", "A", "A+", "AA", "AA+", "AAA", "AAA+", "S"],

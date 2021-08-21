@@ -16,7 +16,7 @@ export async function EfficientDBIterate<T, R>(
 
 	// eslint-disable-next-line no-constant-condition
 	while (true) {
-		logger.info(`Migrating ${i} - ${i + bucketSize} documents.`);
+		logger.info(`Running on ${i} - ${i + bucketSize} documents.`);
 		// eslint-disable-next-line no-await-in-loop
 		const docs = await collection.find(filter, { limit: bucketSize, skip: i });
 
@@ -29,7 +29,5 @@ export async function EfficientDBIterate<T, R>(
 		i += bucketSize;
 
 		await saveOp(rDocs);
-
-		logger.info(`Migrated ${i} documents.`);
 	}
 }

@@ -1396,5 +1396,5 @@ export interface BatchManual<I extends IDStrings = IDStrings> {
 		service: string;
 		version?: GPTSupportedVersions[I];
 	};
-	body: BatchManualScore<I>[];
+	scores: BatchManualScore<I>[];
 }

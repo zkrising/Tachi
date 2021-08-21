@@ -186,7 +186,7 @@ const GAME_CONFIGS: GameConfigs = {
 	},
 	usc: {
 		defaultPlaytype: "Single",
-		name: "unnamed_sdvx_clone",
+		name: "USC",
 		internalName: "usc",
 		validPlaytypes: ["Single"],
 	},

@@ -816,7 +816,7 @@ interface ChartDocumentData {
 	"ddr:DP": CDDataDDRSP;
 	"maimai:Single": { maxPercent: number; inGameID: number; inGameStrID: string };
 	"jubeat:Single": { arcChartID: string | null };
-	"museca:Single": Record<string, never>;
+	"museca:Single": { inGameID: integer };
 	"bms:7K": CDDataBMS;
 	"bms:14K": CDDataBMS;
 	"chunithm:Single": { inGameID: integer };
@@ -1034,19 +1034,16 @@ type BMSHitMeta = BASE_VALID_HIT_META &
 		gauge: number | null;
 	};
 
-type SDVXHitMeta = BASE_VALID_HIT_META & {
-	gauge: number | null;
-	btnRate: number | null;
-	holdRate: number | null;
-	laserRate: number | null;
-};
-
 export interface HitMetaLookup {
 	"iidx:SP": IIDXHitMeta;
 	"iidx:DP": IIDXHitMeta;
-	"popn:9B": BASE_VALID_HIT_META & { gauge: number };
-	"sdvx:Single": SDVXHitMeta;
-	"usc:Single": SDVXHitMeta;
+	"popn:9B": BASE_VALID_HIT_META & { gauge: number | null };
+	"sdvx:Single": BASE_VALID_HIT_META & {
+		gauge: number | null;
+	};
+	"usc:Single": BASE_VALID_HIT_META & {
+		gauge: number | null;
+	};
 	"ddr:SP": BASE_VALID_HIT_META;
 	"ddr:DP": BASE_VALID_HIT_META;
 	"maimai:Single": BASE_VALID_HIT_META;

@@ -4,6 +4,10 @@ As mentioned in the [Toolchain](./toolchain), we use
 WinstonJS for logging. We use a slightly modified setup
 of winston, but the same basic logging principles apply.
 
+!!! note
+	If you like my defaults for logging, they can be quickly
+	invoked with the [Mei](https://github.com/zkldi/mei) wrapper.
+
 *****
 
 ## Log Levels

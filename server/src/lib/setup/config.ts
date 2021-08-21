@@ -40,6 +40,7 @@ function isValidURL(self: unknown) {
 export interface OAuth2Info {
 	CLIENT_ID: string;
 	CLIENT_SECRET: string;
+	REDIRECT_URI: string;
 }
 
 export interface TachiConfig {

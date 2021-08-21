@@ -64,6 +64,7 @@ export interface TachiConfig {
 	RUN_OWN_CDN?: boolean;
 	CLIENT_DEV_SERVER?: string | null;
 	SERVER_TYPE_INFO: StaticConfig.ServerConfig;
+	RATE_LIMIT: integer;
 }
 
 const isValidOauth2 = p.optional({
@@ -91,6 +92,7 @@ const err = p(config, {
 	RUN_OWN_CDN: "*boolean",
 	CLIENT_DEV_SERVER: "*?string",
 	TYPE: p.isIn("ktchi", "btchi", "omni"),
+	RATE_LIMIT: p.optional(p.isPositiveInteger),
 });
 
 if (err) {
@@ -106,6 +108,9 @@ if (config.TYPE === "ktchi") {
 }
 
 const tachiConfig = config as TachiConfig;
+
+// default rate limit 500
+tachiConfig.RATE_LIMIT ??= 500;
 
 export const ServerTypeInfo = tachiConfig.SERVER_TYPE_INFO;
 export const ServerConfig = tachiConfig;

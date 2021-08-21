@@ -78,6 +78,7 @@ The properties are described as this:
 | `comment` (Optional) | string \| null | A comment from the user about this score. |
 | `judgements` (Optional) | Record&lt;Game Judgement, integer&gt; | This should be a record of the judgements for your game + playtype, and the integer indicating how often they occured. |
 | `hitMeta` (Optional) | See [Game Specific Hit Meta](../documents/score.md#game-specific) | This can be a partial record of various `hitMeta` props for this game. |
+| `scoreMeta` (Optional) | See [Game Specific Score Meta](../documents/score.md#game-specific) | This can be a partial record of various `scoreMeta` props for this game. |
 
 !!! warning
 	`identifier` should always be a string. Even if it's something like a numeric ID! Tachi will handle this.
@@ -167,6 +168,9 @@ looks like this:
 		"comment": "This score sucked!",
 		"hitMeta": {
 			"bp": 5
+		},
+		"scoreMeta": {
+			"random": "MIRROR"
 		}
 	}]
 }

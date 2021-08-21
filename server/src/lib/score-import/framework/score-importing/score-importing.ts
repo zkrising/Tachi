@@ -104,7 +104,7 @@ export async function ImportIterableDatapoint<D, C>(
 	try {
 		cfnReturn = await ConverterFunction(data, context, importType, logger);
 	} catch (err) {
-		cfnReturn = err;
+		cfnReturn = err as ConverterFailure | Error;
 	}
 
 	// if this conversion failed, return it in the proper format

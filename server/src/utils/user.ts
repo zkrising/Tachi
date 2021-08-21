@@ -145,7 +145,7 @@ export function PRIVATEINFO_GetUserWithID(userID: integer) {
  */
 export function ResolveUser(usernameOrID: string) {
 	// user ID passed
-	if (usernameOrID.match(/^[0-9]$/u)) {
+	if (usernameOrID.match(/^[0-9]+$/u)) {
 		const intID = Number(usernameOrID);
 
 		return GetUserWithID(intID);

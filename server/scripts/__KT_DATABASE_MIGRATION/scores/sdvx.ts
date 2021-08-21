@@ -71,6 +71,12 @@ async function ConvertFn(c: any): Promise<ScoreDocument | null> {
 		},
 	};
 
+	if (c.scoreData.hitData.error) {
+		base.scoreData.judgements.miss = c.scoreData.hitData.error;
+		// @ts-expect-error yeah we know
+		delete base.scoreData.judgements.error;
+	}
+
 	const scoreID = CreateScoreID(base.userID, base, base.chartID);
 
 	const exists = await db.scores.findOne({ scoreID });
@@ -85,10 +91,14 @@ async function ConvertFn(c: any): Promise<ScoreDocument | null> {
 		scoreID,
 	};
 
-	await oldKTDB.get("score-id-lookup").insert({
-		old: c.scoreID,
-		new: scoreID,
-	});
+	try {
+		await oldKTDB.get("score-id-lookup").insert({
+			old: c.scoreID,
+			new: scoreID,
+		});
+	} catch (err) {
+		// lol
+	}
 
 	return score;
 }

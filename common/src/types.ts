@@ -1386,6 +1386,7 @@ export type BatchManualScore<I extends IDStrings = IDStrings> = {
 	  }
 	| {
 			matchType: "bmsChartHash" | "uscChartHash";
+			difficulty?: undefined; // hack to stop ts from screaming when this is accessed sometimes
 	  }
 );
 

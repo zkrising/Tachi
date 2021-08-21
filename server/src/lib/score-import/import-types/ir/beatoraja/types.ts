@@ -1,7 +1,7 @@
 import { integer } from "tachi-common";
 
 export interface BeatorajaContext {
-	client: "beatoraja" | "lr2oraja";
+	client: "lr2oraja";
 	chart: BeatorajaChart;
 }
 

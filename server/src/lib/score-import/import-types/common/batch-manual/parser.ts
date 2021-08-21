@@ -91,10 +91,12 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 				EX_HARD: [p.nullable(p.isBoundedInteger(0, 100))],
 			}),
 		};
-	} else if (/* game === "popn" || */ game === "sdvx" || game === "usc") {
+	} else if (/* game === "popn" || */ game === "sdvx") {
 		return {
 			gauge: optNull(p.isBoundedInteger(0, 100)),
 		};
+	} else if (game === "usc") {
+		return { gauge: optNull(p.isBetween(0, 1)) };
 	} else if (game === "bms") {
 		return {
 			bp: optNull(p.isPositiveInteger),

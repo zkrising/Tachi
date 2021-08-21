@@ -11,7 +11,8 @@ t.beforeEach(ClearTestingRateLimitCache);
 t.test("Rate Limiting Test", async (t) => {
 	const promises = [];
 
-	for (let i = 0; i < 150; i++) {
+	// default rate limit is 500, so lets go a bit over
+	for (let i = 0; i < 600; i++) {
 		promises.push(mockApi.get("/api/v1/status"));
 	}
 

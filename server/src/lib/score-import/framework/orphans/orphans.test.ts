@@ -3,11 +3,12 @@ import db from "external/mongo/db";
 import { CloseAllConnections } from "test-utils/close-connections";
 import ResetDBState from "test-utils/resets";
 import CreateLogCtx from "lib/logger/logger";
-import { BatchManualContext, BatchManualScore } from "../../import-types/common/batch-manual/types";
+import { BatchManualContext } from "../../import-types/common/batch-manual/types";
 import { OrphanScore, ReprocessOrphan } from "./orphans";
 import fjsh from "fast-json-stable-hash";
 import { OrphanScoreDocument } from "../../import-types/common/types";
 import deepmerge from "deepmerge";
+import { BatchManualScore } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

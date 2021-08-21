@@ -26,7 +26,8 @@ async function ConvertFn(c: any): Promise<ChartDocument<"museca:Single"> | null>
 		playtype: c.playtype,
 		levelNum: c.levelNum,
 		level: c.level.toString(),
-		data: {},
+		// for our kt1 dataset, inGameID *is* song id.
+		data: { inGameID: c.id },
 		isPrimary: true,
 		versions: ["1+1/2"],
 	};

@@ -95,8 +95,8 @@ export function ParseBeatorajaSingle(
 
 	const client = body.client;
 
-	if (client !== "beatoraja" && client !== "lr2oraja") {
-		throw new ScoreImportFatalError(400, `Unknown client ${client}`);
+	if (client !== "lr2oraja") {
+		throw new ScoreImportFatalError(400, `Unsupported client ${client}`);
 	}
 
 	// asserted using prudence.

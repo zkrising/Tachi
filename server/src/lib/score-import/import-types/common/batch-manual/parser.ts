@@ -16,13 +16,72 @@ const BaseValidHitMeta = {
 	maxCombo: optNull(p.isPositiveInteger),
 };
 
+const PR_DPRandom = (self: unknown) => {
+	if (!Array.isArray(self) || self.length !== 2) {
+		return "Expected an array with length 2";
+	}
+
+	for (const a of self) {
+		if (p.isIn("NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR")(a) !== true) {
+			return false;
+		}
+	}
+
+	return true;
+};
+
+const PR_ScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => {
+	if (game === "iidx") {
+		const random =
+			playtype === "SP"
+				? optNull(p.isIn("NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"))
+				: PR_DPRandom;
+
+		return {
+			random,
+			assist: optNull(p.isIn("NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "FULL ASSIST")),
+			range: optNull(p.isIn("NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+")),
+			gauge: optNull(p.isIn("ASSISTED EASY", "EASY", "NORMAL", "HARD", "EX HARD")),
+		};
+	} else if (game === "bms") {
+		const random =
+			playtype === "7K"
+				? optNull(p.isIn("NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"))
+				: PR_DPRandom;
+
+		return {
+			random,
+			inputDevice: optNull(p.isIn("KEYBOARD", "BM_CONTROLLER")),
+			client: optNull(p.isIn("LR2", "lr2oraja")),
+		};
+	} else if (game === "usc") {
+		return {
+			noteMod: optNull(p.isIn("NORMAL", "MIRROR", "RANDOM", "MIR-RAN")),
+			gaugeMod: optNull(p.isIn("NORMAL", "HARD")),
+		};
+	} else if (game === "sdvx") {
+		return {
+			inSkillAnalyser: "*?boolean",
+		};
+	}
+
+	return {};
+};
+
 const PR_HitMeta = (game: Game): PrudenceSchema => {
 	if (game === "iidx") {
 		return {
 			bp: optNull(p.isPositiveInteger),
 			gauge: optNull(p.isBoundedInteger(0, 100)),
 			gaugeHistory: optNull([p.isBoundedInteger(0, 100)]),
+			scoreHistory: optNull([p.isPositiveInteger]),
 			comboBreak: optNull(p.isPositiveInteger),
+			gsm: optNull({
+				EASY: [p.nullable(p.isBoundedInteger(0, 100))],
+				NORMAL: [p.nullable(p.isBoundedInteger(0, 100))],
+				HARD: [p.nullable(p.isBoundedInteger(0, 100))],
+				EX_HARD: [p.nullable(p.isBoundedInteger(0, 100))],
+			}),
 		};
 	} else if (/* game === "popn" || */ game === "sdvx" || game === "usc") {
 		return {
@@ -42,7 +101,6 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 			egr: optNull(p.isPositiveInteger),
 			lpg: optNull(p.isPositiveInteger),
 			epg: optNull(p.isPositiveInteger),
-			diedAt: optNull(p.isPositiveInteger),
 		};
 	}
 
@@ -54,7 +112,14 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 	return {
 		score: "number",
 		lamp: p.isIn(gptConfig.lamps),
-		matchType: p.isIn("songTitle", "ddrSongHash", "tachiSongID", "bmsChartHash"),
+		matchType: p.isIn(
+			"songTitle",
+			"ddrSongHash",
+			"tachiSongID",
+			"bmsChartHash",
+			"inGameID",
+			"uscChartHash"
+		),
 		identifier: "string",
 		comment: optNull(p.isBoundedString(3, 240)),
 		difficulty: "*?string", // this is checked in converting instead
@@ -88,6 +153,7 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 		hitMeta: optNull(
 			deepmerge(BaseValidHitMeta, PR_HitMeta(game)) as unknown as ValidSchemaValue
 		),
+		scoreMeta: optNull(PR_ScoreMeta(game, playtype)),
 		// scoreMeta: @todo #74
 		// more game specific props, maybe?
 	};

@@ -28,26 +28,6 @@ analysis.
 	error, which indicates that our typescript hasn't
 	been transpiled.
 
-## Parallel Tests
-
-You can run tests in parallel with:
-```
-pnpm paralleltest
-```
-
-!!! danger
-	**DO NOT RUN THIS ON YOUR LOCAL DEVELOPMENT SETUP**!
-
-	This will flood your MongoDB installation with nonsense
-	collections.
-
-	This is intended for things like GitHub Actions, where
-	the environment itself is ephemeral and fine to be
-	destroyed.
-
-This provides slight performance benefits, but as mentioned
-in the warning above, is only for ephemeral environments.
-
 ## Writing Tests
 
 Tests should be located in the same folder as the file they're testing, and tests should only ever test

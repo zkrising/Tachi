@@ -80,9 +80,6 @@ export const ConvertAPIArcSDVX: ConverterFunction<unknown, EmptyObject> = async 
 				miss: score.error,
 			},
 			hitMeta: {
-				btnRate: score.btn_rate,
-				holdRate: score.long_rate,
-				laserRate: score.vol_rate,
 				maxCombo: score.max_chain,
 			},
 			lamp,

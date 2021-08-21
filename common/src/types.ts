@@ -1376,6 +1376,7 @@ export type BatchManualScore<I extends IDStrings = IDStrings> = {
 	identifier: string;
 	comment?: string | null;
 	judgements?: Record<JudgementLookup[I], integer>;
+	timeAchieved?: number | null;
 	hitMeta?: Partial<HitMetaLookup[I]>;
 	scoreMeta?: Partial<ScoreMetaLookup[I]>;
 } & (

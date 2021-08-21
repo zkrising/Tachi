@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { IsString } from "utils/misc";
-import { GetGamePTConfig, UserGameStats, integer, FormatGame } from "tachi-common";
+import { GetGamePTConfig, UserGameStats, FormatGame } from "tachi-common";
 import { FindOptions } from "monk";
 import db from "external/mongo/db";
-import { ParseStrPositiveInt, CheckStrProfileAlg } from "utils/string-checks";
+import { CheckStrProfileAlg, ParseStrPositiveNonZeroInt } from "utils/string-checks";
 import { GetUsersWithIDs } from "utils/user";
 import chartsRouter from "./charts/router";
 import songIDRouter from "./songs/_songID/router";
@@ -38,6 +38,7 @@ router.get("/", (req, res) => {
  * This is sorted by the games default-sorting-statistic.
  *
  * @param alg - An alternative algorithm to use instead of the gpts default.
+ * @param limit - How many users to return at most. Defaults (and is limited to) 50.
  *
  * @name GET /api/v1/games/:game/:playtype/leaderboard
  */
@@ -45,6 +46,8 @@ router.get("/leaderboard", async (req, res) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 	const gptConfig = GetGamePTConfig(game, playtype);
+
+	const limit = ParseStrPositiveNonZeroInt(req.query.limit) ?? 50;
 
 	let alg = gptConfig.defaultProfileRatingAlg;
 	if (IsString(req.query.alg)) {
@@ -66,6 +69,7 @@ router.get("/leaderboard", async (req, res) => {
 		sort: {
 			[`ratings.${alg}`]: -1,
 		},
+		limit,
 	};
 
 	const gameStats = await db["game-stats"].find(

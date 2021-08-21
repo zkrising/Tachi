@@ -814,7 +814,7 @@ interface ChartDocumentData {
 	"usc:Single": { hashSHA1: string | string[]; isOfficial: boolean };
 	"ddr:SP": CDDataDDRSP;
 	"ddr:DP": CDDataDDRSP;
-	"maimai:Single": { maxPercent: number; inGameID: string };
+	"maimai:Single": { maxPercent: number; inGameID: number; inGameStrID: string };
 	"jubeat:Single": { arcChartID: string | null };
 	"museca:Single": Record<string, never>;
 	"bms:7K": CDDataBMS;
@@ -894,8 +894,8 @@ interface SongDocumentData {
 	maimai: { titleJP: string; artistJP: string; genre: string };
 	jubeat: Record<string, never>;
 	popn: Record<string, never>;
-	sdvx: { uscEquiv: integer | null };
-	usc: { sdvxEquiv: integer | null };
+	sdvx: Record<string, never>;
+	usc: Record<string, never>;
 	ddr: Record<string, never>;
 	bms: { genre: string | null; subtitle: string | null; subartist: string | null };
 	chunithm: { genre: string };
@@ -1368,4 +1368,32 @@ export interface ARCSavedProfileDocument extends MongoDBDocument {
 	userID: integer;
 	accountID: string;
 	forImportType: "api/arc-iidx" | "api/arc-sdvx";
+}
+
+export type BatchManualScore<I extends IDStrings = IDStrings> = {
+	score: number;
+	lamp: Lamps[I];
+	identifier: string;
+	comment?: string | null;
+	judgements?: Record<JudgementLookup[I], integer>;
+	hitMeta?: Partial<HitMetaLookup[I]>;
+	scoreMeta?: Partial<ScoreMetaLookup[I]>;
+} & (
+	| {
+			matchType: "tachiSongID" | "inGameID" | "songTitle";
+			difficulty: Difficulties[I];
+	  }
+	| {
+			matchType: "ddrSongHash" | "bmsChartHash" | "uscChartHash";
+	  }
+);
+
+export interface BatchManual<I extends IDStrings = IDStrings> {
+	meta: {
+		game: IDStringToGame[I];
+		playtype: IDStringToPlaytype[I];
+		service: string;
+		version?: GPTSupportedVersions[I];
+	};
+	body: BatchManualScore<I>[];
 }

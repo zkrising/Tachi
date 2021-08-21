@@ -118,12 +118,12 @@ export function ConvertDifficulty(diff: number) {
 
 export function ConvertVersion(ver: number) {
 	switch (ver) {
-		case 0:
-			return "booth";
-		case 1:
-			return "inf";
-		case 2:
-			return "gw";
+		// case 0:
+		// 	return "booth";
+		// case 1:
+		// 	return "inf";
+		// case 2:
+		// 	return "gw";
 		case 3:
 			return "heaven";
 		case 4:

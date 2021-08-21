@@ -1,20 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { ChartDocument } from "tachi-common";
-import db from "../../src/db/db";
-import CreateLogCtx from "../../src/common/logger";
-import MigrateRecords from "./migrate";
-import { gameOrders } from "tachi-common/js/config";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import MigrateRecords from "../migrate";
 
 const logger = CreateLogCtx(__filename);
 
-async function ConvertFn(c: any): Promise<ChartDocument<"iidx:SP" | "iidx:DP">> {
+function Get2DXTraSet(flags: any) {
+	if (flags["All Scratch"]) {
+		return "All Scratch";
+	} else if (flags.Kiraku) {
+		return "Kiraku";
+	} else if (flags.Kichiku) {
+		return "Kichiku";
+	}
+
+	return null;
+}
+
+async function ConvertFn(c: any): Promise<ChartDocument<"iidx:SP" | "iidx:DP"> | null> {
 	const song = await db.songs.iidx.findOne({
 		id: c.id,
 	});
 
 	if (!song) {
-		logger.severe(`Cannot find song with ID ${c.id}?`);
+		logger.warn(`Cannot find song with ID ${c.id}?`);
+		return null;
 		throw new Error(`Cannot find song with ID ${c.id}?`);
 	}
 
@@ -26,28 +38,16 @@ async function ConvertFn(c: any): Promise<ChartDocument<"iidx:SP" | "iidx:DP">> 
 		playtype: c.playtype,
 		levelNum: c.levelNum,
 		level: c.level.toString(),
-		flags: {
-			"IN BASE GAME": !!c.flags["IN BASE GAME"],
-			OMNIMIX: !!c.flags.OMNIMIX,
-			"N-1": !!c.flags["N-1"],
-		},
 		data: {
 			inGameID: c.internals.inGameINTID,
 			notecount: c.notedata.notecount,
 			arcChartID: null,
+			hashSHA256: c.internals.checksum2DXtra,
+			"2dxtraSet": Get2DXTraSet(c.flags),
 		},
 		isPrimary: true,
-		versions: [], // sentinel
+		versions: [], // handled by scripts/single-use/fix-iidx-versions atm
 	};
-
-	const idx = gameOrders.iidx.indexOf(song.firstVersion!);
-
-	if (idx === -1) {
-		logger.warn(`Invalid firstAppearance of ${song.firstVersion!}, running anyway.`);
-		newChartDoc.versions = [song.firstVersion!];
-	} else {
-		newChartDoc.versions = gameOrders.iidx.slice(idx);
-	}
 
 	return newChartDoc;
 }

@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import db from "../../src/db/db";
+import db from "external/mongo/db";
 
 db.charts.iidx
 	.find({})

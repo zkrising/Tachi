@@ -3,7 +3,7 @@
 
 import fs from "fs";
 import path from "path";
-import db from "../../../src/db/db";
+import db from "external/mongo/db";
 import { MDBJson } from "./types";
 import { Difficulties, Playtypes, ChartDocument } from "tachi-common";
 import CreateLogCtx from "../../../src/common/logger";

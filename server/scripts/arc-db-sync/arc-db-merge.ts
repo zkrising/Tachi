@@ -1,7 +1,7 @@
 import fs from "fs";
 import { ICollection } from "monk";
 import path from "path";
-import db from "../../src/db/db";
+import db from "external/mongo/db";
 import CreateLogCtx from "../../src/common/logger";
 import { ChartDocument } from "tachi-common";
 import { FindSongOnTitle } from "../../src/common/database-lookup/song";

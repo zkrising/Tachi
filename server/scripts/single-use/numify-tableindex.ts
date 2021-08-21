@@ -1,4 +1,4 @@
-import db from "../../src/db/db";
+import db from "external/mongo/db";
 
 (async () => {
 	db.folders

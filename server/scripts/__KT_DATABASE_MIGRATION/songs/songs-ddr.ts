@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { SongDocument } from "tachi-common";
-import db from "../../src/db/db";
+import { gameOrders } from "tachi-common/js/config";
+import db from "external/mongo/db";
 import MigrateRecords from "./migrate";
 
-function ConvertFn(c: any): SongDocument<"gitadora"> {
-	const newSongDoc: SongDocument<"gitadora"> = {
+function ConvertFn(c: any): SongDocument<"ddr"> {
+	const newSongDoc: SongDocument<"ddr"> = {
 		title: c.title,
 		artist: c.artist,
 		id: c.id,
 		firstVersion: c.firstAppearance,
 		"alt-titles": c["alt-titles"] ? c["alt-titles"].filter((e: string) => e !== c.title) : [],
-		"search-titles": c["search-titles"]
+		"search-titles": c["search-title"]
 			.filter((e: string) => !!e)
 			.map((e: string) => e.toString())
 			.filter((e: string) => e !== c.title),
@@ -21,7 +22,7 @@ function ConvertFn(c: any): SongDocument<"gitadora"> {
 }
 
 (async () => {
-	await MigrateRecords(db.songs.gitadora, "songs-gitadora", ConvertFn);
+	await MigrateRecords(db.songs.ddr, "songs-ddr", ConvertFn);
 
 	process.exit(0);
 })();

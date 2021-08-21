@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import CreateLogCtx from "../../../src/common/logger";
-import db from "../../../src/db/db";
+import db from "external/mongo/db";
 const logger = CreateLogCtx(__filename);
 
 const charts = JSON.parse(fs.readFileSync(path.join(__dirname, "./charts.json"), "utf-8"));

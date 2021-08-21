@@ -1,4 +1,4 @@
-import db from "../../src/db/db";
+import db from "external/mongo/db";
 import fs from "fs";
 import path from "path";
 import { CalculateTierlistDataID } from "../../src/common/tierlist";

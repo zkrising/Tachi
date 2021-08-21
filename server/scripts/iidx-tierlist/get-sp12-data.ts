@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable no-param-reassign */
-import db from "../../src/db/db";
+import db from "external/mongo/db";
 import fetch from "node-fetch";
 import { FindSongOnTitle } from "../../src/common/database-lookup/song";
 import { FindChartWithPTDF } from "../../src/common/database-lookup/chart";

@@ -245,9 +245,6 @@ export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
 			"Single",
 			{
 				gauge: p.optional(p.isBetween(0, 100)),
-				btnRate: p.optional(p.isBetween(0, 100)),
-				holdRate: p.optional(p.isBetween(0, 100)),
-				laserRate: p.optional(p.isBetween(0, 100)),
 			},
 			{},
 			{

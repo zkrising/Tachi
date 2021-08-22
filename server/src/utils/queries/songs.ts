@@ -1,4 +1,4 @@
-import { Game, AnySongDocument, integer } from "tachi-common";
+import { Game, SongDocument, integer } from "tachi-common";
 import { FindOneResult } from "monk";
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
@@ -11,12 +11,9 @@ import { EscapeStringRegexp } from "../misc";
  * rather difficult. Prefer other functions!
  * @param game - The game to search upon.
  * @param title - The song title to match.
- * @returns AnySongDocument
+ * @returns SongDocument
  */
-export function FindSongOnTitle(
-	game: Game,
-	title: string
-): Promise<FindOneResult<AnySongDocument>> {
+export function FindSongOnTitle(game: Game, title: string): Promise<FindOneResult<SongDocument>> {
 	// @optimisable: Performance should be tested here by having a utility field for all-titles.
 	return db.songs[game].findOne({
 		$or: [
@@ -37,7 +34,7 @@ export function FindSongOnTitle(
 export function FindSongOnTitleInsensitive(
 	game: Game,
 	title: string
-): Promise<FindOneResult<AnySongDocument>> {
+): Promise<FindOneResult<SongDocument>> {
 	// @optimisable: Performance should be tested here by having a utility field for all-titles.
 
 	const regex = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
@@ -58,9 +55,9 @@ export function FindSongOnTitleInsensitive(
  * also be the in-game-ID.
  * @param game - The game to search upon.
  * @param songID - The song ID to match.
- * @returns AnySongDocument
+ * @returns SongDocument
  */
-export function FindSongOnID(game: Game, songID: integer): Promise<FindOneResult<AnySongDocument>> {
+export function FindSongOnID(game: Game, songID: integer): Promise<FindOneResult<SongDocument>> {
 	return db.songs[game].findOne({
 		id: songID,
 	});

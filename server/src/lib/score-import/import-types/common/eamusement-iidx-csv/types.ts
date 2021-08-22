@@ -1,3 +1,5 @@
+import { GPTSupportedVersions } from "tachi-common";
+
 export interface EamusementScoreData {
 	difficulty: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
 	lamp: string;
@@ -28,7 +30,7 @@ export type RawIIDXEamusementCSVData = {
 
 export interface IIDXEamusementCSVContext {
 	playtype: "SP" | "DP";
-	importVersion: string;
+	importVersion: GPTSupportedVersions["iidx:SP" | "iidx:DP"];
 	hasBeginnerAndLegg: boolean;
 	service: string;
 }

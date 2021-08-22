@@ -1,7 +1,8 @@
 import { KtLogger } from "lib/logger/logger";
+import { BatchManualScore } from "tachi-common";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParseBatchManualFromObject } from "../../common/batch-manual/parser";
-import { BatchManualContext, BatchManualScore } from "../../common/batch-manual/types";
+import { BatchManualContext } from "../../common/batch-manual/types";
 import { ParserFunctionReturns } from "../../common/types";
 
 /**

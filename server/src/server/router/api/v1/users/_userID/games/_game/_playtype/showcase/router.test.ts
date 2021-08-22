@@ -1,4 +1,4 @@
-import { AnyChartDocument, PrivateUserDocument } from "tachi-common";
+import { ChartDocument, PrivateUserDocument } from "tachi-common";
 import db from "external/mongo/db";
 import { IIDX_GRADES, IIDX_LAMPS } from "lib/constants/game";
 import t from "tap";
@@ -196,7 +196,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 		await db.charts.iidx.insert({
 			chartID: "testing_dp_chart",
 			playtype: "DP",
-		} as AnyChartDocument);
+		} as ChartDocument);
 
 		const res2 = await mockApi.get(
 			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&prop=grade&chartID=testing_dp_chart`
@@ -349,7 +349,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 		await db.charts.iidx.insert({
 			chartID: "testing_dp_chart",
 			playtype: "DP",
-		} as AnyChartDocument);
+		} as ChartDocument);
 
 		const res2 = await mockApi
 			.put("/api/v1/users/1/games/iidx/SP/showcase")

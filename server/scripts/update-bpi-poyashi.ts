@@ -9,7 +9,7 @@ import {
 	FindChartWithPTDF,
 	FindChartWithPTDFVersion,
 } from "../src/score-import/database-lookup/chart-ptdf";
-import db from "../src/db/db";
+import db from "external/mongo/db";
 import CreateLogCtx from "../src/common/logger";
 const program = new Command();
 

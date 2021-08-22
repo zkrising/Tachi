@@ -1,5 +1,5 @@
-import { BatchManualContext, BatchManualScore } from "./types";
-import { AnyChartDocument, AnySongDocument, ImportTypes } from "tachi-common";
+import { BatchManualContext } from "./types";
+import { ChartDocument, SongDocument, ImportTypes, BatchManualScore } from "tachi-common";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
@@ -20,6 +20,7 @@ import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils
 import { KtLogger } from "lib/logger/logger";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../types";
+import db from "external/mongo/db";
 
 /**
  * Creates a ConverterFn for the BatchManualScore format. This curries
@@ -76,7 +77,7 @@ export async function ResolveMatchTypeToKTData(
 	context: BatchManualContext,
 	importType: ImportTypes,
 	logger: KtLogger
-): Promise<{ song: AnySongDocument; chart: AnyChartDocument }> {
+): Promise<{ song: SongDocument; chart: ChartDocument }> {
 	const game = context.game;
 
 	if (data.matchType === "bmsChartHash") {
@@ -161,7 +162,7 @@ export async function ResolveMatchTypeToKTData(
 		const chart = await ResolveChartFromSong(song, data, context, importType);
 
 		return { song, chart };
-	} else if (data.matchType === "songTitle" || data.matchType === "title") {
+	} else if (data.matchType === "songTitle") {
 		const song = await FindSongOnTitleInsensitive(game, data.identifier);
 
 		if (!song) {
@@ -176,6 +177,76 @@ export async function ResolveMatchTypeToKTData(
 		const chart = await ResolveChartFromSong(song, data, context, importType);
 
 		return { song, chart };
+	} else if (data.matchType === "inGameID") {
+		const gamesWithInGameIDSupport = [
+			"iidx",
+			"ddr",
+			"sdvx",
+			"jubeat",
+			"chunithm",
+			"gitadora",
+			"maimai",
+			"museca",
+		];
+
+		if (!gamesWithInGameIDSupport.includes(game)) {
+			throw new InvalidScoreFailure(
+				`Cannot use inGameID on game ${game}. The game may not have a concept of an in game ID, or support just might not exist yet.`
+			);
+		}
+
+		let identifier: number | string = data.identifier;
+		// ddr uses weird strings as IDs instead of numbers
+		if (game !== "ddr") {
+			identifier = Number(data.identifier);
+		}
+
+		const chart = await db.charts[game].findOne({
+			"data.inGameID": identifier,
+			playtype: context.playtype,
+		});
+
+		if (!chart) {
+			throw new KTDataNotFoundFailure(
+				`Cannot find chart for inGameID ${data.identifier} (${context.playtype}).`,
+				importType,
+				data,
+				context
+			);
+		}
+
+		const song = await db.songs[game].findOne({ id: chart.songID });
+
+		if (!song) {
+			logger.severe(`Song-Chart desync on ${chart.songID}.`);
+			throw new InternalFailure(`Failed to get song for a chart that exists.`);
+		}
+
+		return { song, chart };
+	} else if (data.matchType === "uscChartHash") {
+		if (game !== "usc") {
+			throw new InvalidScoreFailure(`uscChartMash matchType can only be used on USC.`);
+		}
+
+		const chart = await db.charts.usc.findOne({ "data.hashSHA1": data.identifier });
+
+		if (!chart) {
+			throw new KTDataNotFoundFailure(
+				`Cannot find chart with hash ${data.identifier}.`,
+				importType,
+				data,
+				context
+			);
+		}
+
+		const song = await db.songs[game].findOne({ id: chart.songID });
+
+		if (!song) {
+			logger.severe(`Song-Chart desync on ${chart.songID}.`);
+			throw new InternalFailure(`Failed to get song for a chart that exists.`);
+		}
+
+		return { song, chart };
 	}
 
 	logger.error(
@@ -186,7 +257,7 @@ export async function ResolveMatchTypeToKTData(
 }
 
 export async function ResolveChartFromSong(
-	song: AnySongDocument,
+	song: SongDocument,
 	data: BatchManualScore,
 	context: BatchManualContext,
 	importType: ImportTypes

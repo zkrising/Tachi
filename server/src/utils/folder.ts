@@ -3,8 +3,8 @@ import {
 	Lamps,
 	IDStrings,
 	TableDocument,
-	AnyChartDocument,
-	AnySongDocument,
+	ChartDocument,
+	SongDocument,
 	integer,
 	PBScoreDocument,
 	FolderDocument,
@@ -20,21 +20,21 @@ const logger = CreateLogCtx(__filename);
 
 export async function ResolveFolderToCharts(
 	folder: FolderDocument,
-	filter: FilterQuery<AnyChartDocument>,
+	filter: FilterQuery<ChartDocument>,
 	getSongs: true
-): Promise<{ songs: AnySongDocument[]; charts: AnyChartDocument[] }>;
+): Promise<{ songs: SongDocument[]; charts: ChartDocument[] }>;
 export async function ResolveFolderToCharts(
 	folder: FolderDocument,
-	filter?: FilterQuery<AnyChartDocument>,
+	filter?: FilterQuery<ChartDocument>,
 	getSongs?: false
-): Promise<{ charts: AnyChartDocument[] }>;
+): Promise<{ charts: ChartDocument[] }>;
 export async function ResolveFolderToCharts(
 	folder: FolderDocument,
-	filter: FilterQuery<AnyChartDocument> = {},
+	filter: FilterQuery<ChartDocument> = {},
 	getSongs = false
-): Promise<{ songs?: AnySongDocument[]; charts: AnyChartDocument[] }> {
-	let songs: AnySongDocument[] | null = null;
-	let charts: AnyChartDocument[];
+): Promise<{ songs?: SongDocument[]; charts: ChartDocument[] }> {
+	let songs: SongDocument[] | null = null;
+	let charts: ChartDocument[];
 
 	if (folder.type === "static") {
 		charts = await db.charts[folder.game].find(
@@ -87,19 +87,19 @@ export async function ResolveFolderToCharts(
 
 export async function GetFolderCharts(
 	folder: FolderDocument,
-	filter: FilterQuery<AnyChartDocument>,
+	filter: FilterQuery<ChartDocument>,
 	getSongs: true
-): Promise<{ songs: AnySongDocument[]; charts: AnyChartDocument[] }>;
+): Promise<{ songs: SongDocument[]; charts: ChartDocument[] }>;
 export async function GetFolderCharts(
 	folder: FolderDocument,
-	filter: FilterQuery<AnyChartDocument>,
+	filter: FilterQuery<ChartDocument>,
 	getSongs: false
-): Promise<{ charts: AnyChartDocument[] }>;
+): Promise<{ charts: ChartDocument[] }>;
 export async function GetFolderCharts(
 	folder: FolderDocument,
-	filter: FilterQuery<AnyChartDocument> = {},
+	filter: FilterQuery<ChartDocument> = {},
 	getSongs = false
-): Promise<{ songs?: AnySongDocument[]; charts: AnyChartDocument[] }> {
+): Promise<{ songs?: SongDocument[]; charts: ChartDocument[] }> {
 	const chartIDs = await GetFolderChartIDs(folder.folderID);
 
 	const charts = await db.charts[folder.game].find(

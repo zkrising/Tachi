@@ -8,7 +8,7 @@ import {
 	SessionDocument,
 	Playtypes,
 	SongDocument,
-	AnyChartDocument,
+	ChartDocument,
 	PrivateUserDocument,
 	integer,
 } from "tachi-common";
@@ -81,7 +81,7 @@ export async function SearchGameSongsAndCharts(
 ) {
 	const songs = await SearchGameSongs(game, search, limit);
 
-	const chartQuery: FilterQuery<AnyChartDocument> = {
+	const chartQuery: FilterQuery<ChartDocument> = {
 		songID: { $in: songs.map((e) => e.id) },
 	};
 
@@ -89,7 +89,7 @@ export async function SearchGameSongsAndCharts(
 		chartQuery.playtype = playtype;
 	}
 
-	const charts = (await db.charts[game].find(chartQuery)) as AnyChartDocument[];
+	const charts = (await db.charts[game].find(chartQuery)) as ChartDocument[];
 
 	return { songs, charts };
 }

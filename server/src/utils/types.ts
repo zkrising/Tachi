@@ -10,8 +10,7 @@ import {
 	Game,
 	Playtypes,
 	TierlistParent,
-	AnyChartDocument,
-	AnySongDocument,
+	SongDocument,
 } from "tachi-common";
 
 declare module "express-session" {
@@ -56,8 +55,8 @@ export interface TachiRequestData {
 	game?: Game;
 	playtype?: Playtypes[Game];
 
-	chartDoc?: AnyChartDocument;
-	songDoc?: AnySongDocument;
+	chartDoc?: ChartDocument;
+	songDoc?: SongDocument;
 	scoreDoc?: ScoreDocument;
 	sessionDoc?: SessionDocument;
 	tableDoc?: TableDocument;

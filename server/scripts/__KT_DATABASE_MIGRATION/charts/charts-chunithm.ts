@@ -1,19 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChartDocument, SongDocument } from "tachi-common";
-import db from "../../src/db/db";
+
+import { ChartDocument } from "tachi-common";
+import db from "external/mongo/db";
 import CreateLogCtx from "../../src/common/logger";
-import MigrateRecords from "./migrate";
+import MigrateRecords from "../migrate";
 import { gameOrders } from "tachi-common/js/config";
-import { oldKTDB } from "./old-db";
 
 const logger = CreateLogCtx(__filename);
 
-async function ConvertFn(c: any): Promise<ChartDocument<"gitadora:Gita" | "gitadora:Dora">> {
-	const song = (await db.songs.gitadora.findOne({
-		id: c.id,
-	})) as SongDocument<"gitadora">;
-
-	const oldSong = await oldKTDB.get("songs-gitadora").findOne({
+async function ConvertFn(c: any): Promise<ChartDocument<"chunithm:Single">> {
+	const song = await db.songs.chunithm.findOne({
 		id: c.id,
 	});
 
@@ -22,7 +18,7 @@ async function ConvertFn(c: any): Promise<ChartDocument<"gitadora:Gita" | "gitad
 		throw new Error(`Cannot find song with ID ${c.id}?`);
 	}
 
-	const newChartDoc: ChartDocument<"gitadora:Gita" | "gitadora:Dora"> = {
+	const newChartDoc: ChartDocument<"chunithm:Single"> = {
 		rgcID: null,
 		chartID: c.chartID,
 		difficulty: c.difficulty,
@@ -31,30 +27,30 @@ async function ConvertFn(c: any): Promise<ChartDocument<"gitadora:Gita" | "gitad
 		levelNum: c.levelNum,
 		level: c.level.toString(),
 		flags: {
-			"IN BASE GAME": true,
-			OMNIMIX: true,
+			"IN BASE GAME": !!c.flags["IN BASE GAME"],
+			OMNIMIX: !!c.flags.OMNIMIX,
 		},
 		data: {
-			inGameID: c.internals.inGameINTID,
+			inGameID: c.internals.inGameID,
 		},
 		isPrimary: true,
 		versions: [], // sentinel
 	};
 
-	const idx = gameOrders.gitadora.indexOf(song.firstVersion!);
+	const idx = gameOrders.chunithm.indexOf(song.firstVersion!);
 
 	if (idx === -1) {
 		logger.warn(`Invalid firstAppearance of ${song.firstVersion!}, running anyway.`);
 		newChartDoc.versions = [song.firstVersion!];
 	} else {
-		newChartDoc.versions = gameOrders.gitadora.slice(idx);
+		newChartDoc.versions = gameOrders.chunithm.slice(idx);
 	}
 
 	return newChartDoc;
 }
 
 (async () => {
-	await MigrateRecords(db.charts.gitadora, "charts-gitadora", ConvertFn);
+	await MigrateRecords(db.charts.chunithm, "charts-chunithm", ConvertFn);
 
 	process.exit(0);
 })();

@@ -1,5 +1,5 @@
 import { PrivateUserDocument } from "tachi-common";
-import db from "../../src/db/db";
+import db from "external/mongo/db";
 import MigrateRecords from "./migrate";
 
 function ConvertFn(c: any): PrivateUserDocument {
@@ -11,15 +11,9 @@ function ConvertFn(c: any): PrivateUserDocument {
 		customBanner: c.custombanner,
 		customPfp: c.custompfp,
 		email: c.email,
-		friends: c.friends,
 		id: c.id,
 		lastSeen: c.lastSeen,
 		password: c.password,
-		permissions: {},
-		settings: {
-			invisible: !!c.settings.invisible,
-			nsfwSplashes: !!c.settings.nsfwsplashes,
-		},
 		socialMedia: {
 			discord: c.socialmedia.discord || null,
 			twitter: c.socialmedia.twitter || null,
@@ -28,6 +22,9 @@ function ConvertFn(c: any): PrivateUserDocument {
 			github: c.socialmedia.github || null,
 			steam: c.socialmedia.steam || null,
 		},
+		joinDate: 0,
+		authLevel: "user",
+		badges: ["beta"],
 	};
 
 	return newUserDoc;

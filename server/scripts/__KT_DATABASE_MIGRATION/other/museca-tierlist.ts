@@ -1,4 +1,4 @@
-import db from "../../../src/db/db";
+import db from "external/mongo/db";
 import { TierlistDataDocument } from "tachi-common";
 import { CalculateTierlistDataID } from "../../../src/common/tierlist";
 import { oldKTDB } from "../old-db";

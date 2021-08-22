@@ -6,15 +6,16 @@ import { BarbatosScore } from "../ir/barbatos/types";
 import { FervidexStaticContext, FervidexStaticScore } from "../ir/fervidex-static/types";
 import { FervidexContext, FervidexScore } from "../ir/fervidex/types";
 import { KaiContext } from "./api-kai/types";
-import { BatchManualContext, BatchManualScore } from "./batch-manual/types";
+import { BatchManualContext } from "./batch-manual/types";
 import { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./eamusement-iidx-csv/types";
 import {
 	ImportTypes,
 	Game,
-	AnyChartDocument,
-	AnySongDocument,
+	ChartDocument,
+	SongDocument,
 	integer,
 	MongoDBDocument,
+	BatchManualScore,
 } from "tachi-common";
 import { ConverterFailure } from "../../framework/common/converter-failures";
 import { DryScore } from "../../framework/common/types";
@@ -84,8 +85,8 @@ export interface OrphanScoreDocument<T extends ImportTypes = ImportTypes> extend
 
 export interface ConverterFnSuccessReturn {
 	dryScore: DryScore;
-	chart: AnyChartDocument;
-	song: AnySongDocument;
+	chart: ChartDocument;
+	song: SongDocument;
 }
 
 export type ConverterFnReturnOrFailure = ConverterFailure | ConverterFnSuccessReturn;

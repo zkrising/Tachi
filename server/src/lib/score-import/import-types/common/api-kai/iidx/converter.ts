@@ -67,12 +67,18 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 
 	const playtype = score.play_style === "SINGLE" ? "SP" : "DP";
 
+	const version = score.version_played.toString();
+
+	if (!["26", "27", "28"].includes(version)) {
+		throw new InvalidScoreFailure(`Unsupported version ${score.version_played}.`);
+	}
+
 	const chart = await FindIIDXChartOnInGameIDVersion(
 		score.music_id,
 		playtype,
 		score.difficulty,
 		// they send integers like 25, 27 - this will convert to our versions.
-		score.version_played.toString()
+		version as "26" | "27" | "28"
 	);
 
 	if (!chart) {

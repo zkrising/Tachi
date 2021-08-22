@@ -203,11 +203,9 @@ export const uscChart: ChartDocument<"usc:Single"> = {
 	playtype: "Single",
 	levelNum: 1,
 	level: "1",
-	flags: {
-		CUSTOM: true,
-	},
 	data: {
 		hashSHA1: "USC_CHART_HASH",
+		isOfficial: false,
 	},
 	isPrimary: true,
 	versions: [],

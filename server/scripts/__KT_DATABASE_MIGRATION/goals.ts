@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { GoalDocument } from "tachi-common";
-import db from "../../src/db/db";
+import db from "external/mongo/db";
 import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";
 

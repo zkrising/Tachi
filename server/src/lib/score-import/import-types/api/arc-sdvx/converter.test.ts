@@ -36,9 +36,6 @@ t.test("#ConvertAPIArcSDVX", (t) => {
 						miss: 49,
 					},
 					hitMeta: {
-						btnRate: 89.5,
-						holdRate: 92.5,
-						laserRate: 96.5,
 						maxCombo: 184,
 					},
 					lamp: "CLEAR",

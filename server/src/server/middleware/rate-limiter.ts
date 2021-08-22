@@ -18,7 +18,7 @@ export function ClearTestingRateLimitCache() {
 
 // 100 requests / minute is the current cap
 export const RateLimitMiddleware = rateLimit({
-	max: 100,
+	max: ServerConfig.RATE_LIMIT,
 	onLimitReached: (req) => {
 		logger.warn(`User ${req.ip} hit rate limit.`, {
 			url: req.url,
@@ -29,6 +29,6 @@ export const RateLimitMiddleware = rateLimit({
 	store,
 	message: {
 		success: false,
-		description: "You have exceeded 100 requests per minute. Please wait.",
+		description: `You have exceeded ${ServerConfig.RATE_LIMIT} requests per minute. Please wait.`,
 	} as any, // @todo #170 report this as a bug with rate-limit types.,
 });

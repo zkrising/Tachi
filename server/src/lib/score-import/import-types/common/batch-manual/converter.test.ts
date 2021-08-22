@@ -19,7 +19,7 @@ const baseBatchManualScore = {
 	matchType: "tachiSongID" as const,
 	identifier: "1",
 	playtype: "SP" as const,
-	difficulty: "ANOTHER",
+	difficulty: "ANOTHER" as const,
 };
 
 const context = {
@@ -281,7 +281,6 @@ t.test("#ResolveChartFromSong", (t) => {
 			() =>
 				ResolveChartFromSong(
 					Testing511Song,
-					// @ts-expect-error faulty deepmerge types
 					deepmerge(baseBatchManualScore, { difficulty: "NOT_VALID_DIFFICULTY" }),
 					{ game: "iidx", service: "foo", playtype: "SP", version: null },
 					importType
@@ -299,7 +298,6 @@ t.test("#ResolveChartFromSong", (t) => {
 			() =>
 				ResolveChartFromSong(
 					Testing511Song,
-					// @ts-expect-error faulty deepmerge types
 					deepmerge(baseBatchManualScore, { difficulty: "LEGGENDARIA" }), // 511 has no legg (yet, lol)
 					{ game: "iidx", service: "foo", version: null, playtype: "SP" },
 					importType

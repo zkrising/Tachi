@@ -207,7 +207,15 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 		);
 	}
 
-	return { iterableData, version: gameVersion.toString(), hasBeginnerAndLegg };
+	if (!["26", "27", "28"].includes(gameVersion.toString())) {
+		throw new ScoreImportFatalError(400, `Only versions 26, 27 and 28 are supported.`);
+	}
+
+	return {
+		iterableData,
+		version: gameVersion.toString() as "26" | "27" | "28",
+		hasBeginnerAndLegg,
+	};
 }
 
 /**

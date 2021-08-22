@@ -75,7 +75,7 @@ function ProcessScoreIntoSessionScoreInfo(
 	};
 }
 
-function CreateSessionID() {
+export function CreateSessionID() {
 	return `Q${crypto.randomBytes(20).toString("hex")}`;
 }
 

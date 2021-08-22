@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { SongDocument } from "tachi-common";
-import { gameOrders } from "tachi-common/js/config";
-import db from "../../src/db/db";
-import MigrateRecords from "./migrate";
+import db from "external/mongo/db";
+import MigrateRecords from "../migrate";
 
 function ConvertFn(c: any): SongDocument<"iidx"> {
 	const newSongDoc: SongDocument<"iidx"> = {

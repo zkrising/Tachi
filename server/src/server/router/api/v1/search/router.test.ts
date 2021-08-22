@@ -3,7 +3,7 @@ import { CloseAllConnections } from "test-utils/close-connections";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { LoadTachiIIDXData } from "test-utils/test-data";
-import { AnySongDocument } from "tachi-common";
+import { SongDocument } from "tachi-common";
 
 t.test("GET /api/v1/search", (t) => {
 	t.beforeEach(ResetDBState);
@@ -24,7 +24,7 @@ t.test("GET /api/v1/search", (t) => {
 
 		t.equal(res.body.body.songs.length, 2);
 		t.strictSame(
-			res.body.body.songs.map((e: AnySongDocument) => e.title),
+			res.body.body.songs.map((e: SongDocument) => e.title),
 			["AA", "AA -rebuild-"]
 		);
 

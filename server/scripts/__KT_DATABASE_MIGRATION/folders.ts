@@ -2,7 +2,7 @@
 
 import { FolderDocument, Game } from "tachi-common";
 import { validPlaytypes, gameHuman } from "tachi-common/js/config";
-import db from "../../src/db/db";
+import db from "external/mongo/db";
 import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";
 import crypto from "crypto";

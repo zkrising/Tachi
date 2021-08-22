@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
 			logger.error(
 				`Score ${
 					score.scoreID
-				} refers to non-existant data: [user,chart,song] [${!!user} ${!!chart} ${!!song}]`
+				} refers to non-existent data: [user,chart,song] [${!!user} ${!!chart} ${!!song}]`
 			);
 
 			return res.status(500).json({
@@ -109,6 +109,20 @@ router.patch(
 			{ scoreID: score.scoreID },
 			{ $set: modifyOption }
 		);
+
+		if (modifyOption.highlight === true || modifyOption.highlight === false) {
+			await db["personal-bests"].findOneAndUpdate(
+				{
+					chartID: score.chartID,
+					userID: score.userID,
+				},
+				{
+					$set: {
+						highlight: modifyOption.highlight,
+					},
+				}
+			);
+		}
 
 		return res.status(200).json({
 			success: true,

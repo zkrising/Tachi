@@ -44,6 +44,13 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
+	if (!req[SYMBOL_TachiAPIAuth].userID) {
+		return res.status(401).json({
+			success: false,
+			description: `Authentication is required for this endpoint.`,
+		});
+	}
+
 	if (req[SYMBOL_TachiAPIAuth].userID !== user.id) {
 		return res.status(403).json({
 			success: false,

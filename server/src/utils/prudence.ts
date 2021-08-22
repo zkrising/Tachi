@@ -11,3 +11,5 @@ export function FormatPrError(err: PrudenceError, foreword = "Error") {
 }
 
 export const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));
+
+export const optNullFluffStrField = optNull(p.isBoundedString(3, 140));

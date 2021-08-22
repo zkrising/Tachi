@@ -1,9 +1,10 @@
 /* eslint-disable no-await-in-loop */
-import db from "../../../src/db/db";
+import db from "external/mongo/db";
 import fs from "fs";
 import path from "path";
-import CreateLogCtx from "../../../src/common/logger";
-import { FindSongOnTitleInsensitive } from "../../../src/common/database-lookup/song";
+import CreateLogCtx from "lib/logger/logger";
+import { FindSongOnTitleInsensitive } from "utils/queries/songs";
+
 const logger = CreateLogCtx(__filename);
 
 const comicallyLargeJSONData = JSON.parse(
@@ -78,7 +79,7 @@ function ConvertVersion(c: string) {
 			continue;
 		}
 
-		// logger.info(relevantVersions);q
+		// logger.info(relevantVersions);
 
 		const chart = await db.charts.iidx.findOne({ songID: song.id, difficulty, playtype });
 

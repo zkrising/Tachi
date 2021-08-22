@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { SongDocument } from "tachi-common";
-import db from "../../src/db/db";
-import MigrateRecords from "./migrate";
+import db from "external/mongo/db";
+import MigrateRecords from "../migrate";
 
 function ConvertFn(c: any): SongDocument<"chunithm"> {
 	const newSongDoc: SongDocument<"chunithm"> = {

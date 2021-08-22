@@ -72,7 +72,7 @@ export function ResolveS3Lamp(data: S3Score, logger: KtLogger): Lamps["iidx:SP" 
 	throw new InvalidScoreFailure(`Invalid cleartype of ${data.cleartype}.`);
 }
 
-const S3_VERSION_CONV: Record<string, string> = {
+const S3_VERSION_CONV = {
 	"3rd": "3-cs",
 	"4th": "4-cs",
 	"5th": "5-cs",
@@ -89,14 +89,14 @@ const S3_VERSION_CONV: Record<string, string> = {
 	emp: "16-cs",
 	pb: "16-cs",
 	us: "bmus",
-};
+} as const;
 
 function ConvertVersion(joinedStyles: string) {
 	const styles = joinedStyles.split(",");
 
 	const style = styles[styles.length - 1];
 
-	const convertedStyle = S3_VERSION_CONV[style];
+	const convertedStyle = S3_VERSION_CONV[style as keyof typeof S3_VERSION_CONV];
 
 	if (!convertedStyle) {
 		throw new InvalidScoreFailure(`Song has invalid style ${style}.`);

@@ -1,4 +1,4 @@
-import db from "../../src/db/db";
+import db from "external/mongo/db";
 import { FolderDocument } from "tachi-common";
 
 (async () => {

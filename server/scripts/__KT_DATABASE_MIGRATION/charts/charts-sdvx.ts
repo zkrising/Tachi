@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { ChartDocument } from "tachi-common";
-import db from "../../src/db/db";
+import db from "external/mongo/db";
 import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";
 import { gameOrders } from "tachi-common/js/config";
 
 const logger = CreateLogCtx(__filename);
 
-async function ConvertFn(c: any): Promise<ChartDocument<"chunithm:Single">> {
-	const song = await db.songs.chunithm.findOne({
+async function ConvertFn(c: any): Promise<ChartDocument<"sdvx:Single">> {
+	const song = await db.songs.sdvx.findOne({
 		id: c.id,
 	});
 
@@ -18,7 +17,7 @@ async function ConvertFn(c: any): Promise<ChartDocument<"chunithm:Single">> {
 		throw new Error(`Cannot find song with ID ${c.id}?`);
 	}
 
-	const newChartDoc: ChartDocument<"chunithm:Single"> = {
+	const newChartDoc: ChartDocument<"sdvx:Single"> = {
 		rgcID: null,
 		chartID: c.chartID,
 		difficulty: c.difficulty,
@@ -29,28 +28,29 @@ async function ConvertFn(c: any): Promise<ChartDocument<"chunithm:Single">> {
 		flags: {
 			"IN BASE GAME": !!c.flags["IN BASE GAME"],
 			OMNIMIX: !!c.flags.OMNIMIX,
+			"N-1": !!c.flags["N-1"],
 		},
 		data: {
-			inGameID: c.internals.inGameID,
+			inGameID: c.internals.inGameINTID,
 		},
 		isPrimary: true,
 		versions: [], // sentinel
 	};
 
-	const idx = gameOrders.chunithm.indexOf(song.firstVersion!);
+	const idx = gameOrders.sdvx.indexOf(song.firstVersion!);
 
 	if (idx === -1) {
 		logger.warn(`Invalid firstAppearance of ${song.firstVersion!}, running anyway.`);
 		newChartDoc.versions = [song.firstVersion!];
 	} else {
-		newChartDoc.versions = gameOrders.chunithm.slice(idx);
+		newChartDoc.versions = gameOrders.sdvx.slice(idx);
 	}
 
 	return newChartDoc;
 }
 
 (async () => {
-	await MigrateRecords(db.charts.chunithm, "charts-chunithm", ConvertFn);
+	await MigrateRecords(db.charts.sdvx, "charts-sdvx", ConvertFn);
 
 	process.exit(0);
 })();

@@ -1,9 +1,9 @@
 import {
-	AnyChartDocument,
+	ChartDocument,
 	ImportProcessingInfo,
 	integer,
 	ScoreDocument,
-	AnySongDocument,
+	SongDocument,
 	ImportTypes,
 	IDStrings,
 } from "tachi-common";
@@ -104,7 +104,7 @@ export async function ImportIterableDatapoint<D, C>(
 	try {
 		cfnReturn = await ConverterFunction(data, context, importType, logger);
 	} catch (err) {
-		cfnReturn = err;
+		cfnReturn = err as ConverterFailure | Error;
 	}
 
 	// if this conversion failed, return it in the proper format
@@ -237,8 +237,8 @@ export async function ProcessSuccessfulConverterReturn(
 async function HydrateAndInsertScore(
 	userID: integer,
 	dryScore: DryScore,
-	chart: AnyChartDocument,
-	song: AnySongDocument,
+	chart: ChartDocument,
+	song: SongDocument,
 	importLogger: KtLogger
 ): Promise<ScoreDocument | null> {
 	const scoreID = CreateScoreID(userID, dryScore, chart.chartID);

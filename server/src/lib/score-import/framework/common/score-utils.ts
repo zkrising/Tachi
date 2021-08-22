@@ -2,7 +2,6 @@ import {
 	Game,
 	Grades,
 	IDStrings,
-	AnyChartDocument,
 	ChartDocument,
 	GameToIDStrings,
 	ESDCore,
@@ -41,11 +40,7 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
  * A Generic function for calculating a percent from a given score on
  * a given game.
  */
-export function GenericCalculatePercent(
-	game: Game,
-	score: number,
-	chart?: AnyChartDocument
-): number {
+export function GenericCalculatePercent(game: Game, score: number, chart?: ChartDocument): number {
 	switch (game) {
 		case "ddr":
 		case "museca":
@@ -91,7 +86,7 @@ export function ValidatePercent(
 	game: Game,
 	playtype: Playtypes[Game],
 	percent: number,
-	chart: AnyChartDocument
+	chart: ChartDocument
 ) {
 	// i love needing a helper function for *ONE* game.
 	if (game === "maimai") {
@@ -120,7 +115,7 @@ export function ValidatePercent(
 export function GenericGetGradeAndPercent<G extends Game>(
 	game: G,
 	score: number,
-	chart: AnyChartDocument
+	chart: ChartDocument
 ) {
 	const percent = GenericCalculatePercent(game, score, chart);
 

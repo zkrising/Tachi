@@ -40,7 +40,7 @@ t.test("GET /api/v1/games/:game/:playtype/tables/:tableID", (t) => {
 	});
 
 	t.test("Should return 404 if the table does not exist.", async (t) => {
-		const res = await mockApi.get("/api/v1/games/iidx/SP/tables/non_existant_table");
+		const res = await mockApi.get("/api/v1/games/iidx/SP/tables/non_existent_table");
 
 		t.equal(res.statusCode, 404);
 

@@ -513,6 +513,7 @@ export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoD
 	desc: string | null;
 	game: Game;
 	playtype: AnyPlaytype;
+	// For compatibility with kamaitachi1 sessions, where import types didn't exist.
 	importType: ImportTypes | null;
 	timeInserted: integer;
 	timeEnded: integer;

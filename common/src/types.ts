@@ -701,6 +701,7 @@ export interface PublicUserDocument extends MongoDBDocument {
 	joinDate: integer;
 	lastSeen: integer;
 	about: string;
+	status: string | null;
 	customPfp: boolean;
 	customBanner: boolean;
 	clan: string | null; // todo

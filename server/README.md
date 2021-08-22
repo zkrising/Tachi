@@ -1,7 +1,8 @@
 # Tachi-Server
 
-Tachi-Server is the backend component of Tachi. Tachi is a supercharged Rhythm Game Score Tracker.
-This powers sites like Kamaitachi and Bokutachi.
+Tachi-Server is the backend for Tachi.
+
+Tachi itself is a supercharged Rhythm Game Score Tracker, powering multiple games!
 
 ## What's it do?
 

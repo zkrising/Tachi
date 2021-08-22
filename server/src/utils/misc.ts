@@ -76,3 +76,23 @@ export function IsString(val: unknown): val is string {
 export function DedupeArr<T>(arr: T[]): T[] {
 	return [...new Set(arr)];
 }
+
+export function StripUrl(url: string, userInput: string | null) {
+	if (!userInput) {
+		return userInput;
+	}
+
+	if (userInput.toLowerCase().includes(url)) {
+		return userInput.split(url)[1];
+	}
+
+	return userInput;
+}
+
+export function DeleteUndefinedProps(record: any) {
+	for (const key in record) {
+		if (record[key] === undefined) {
+			delete record[key];
+		}
+	}
+}

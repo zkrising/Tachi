@@ -11,7 +11,7 @@ const router: Router = Router({ mergeParams: true });
 /**
  * Searches a user's personal bests.
  *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/scores
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs
  */
 router.get("/", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
@@ -54,6 +54,35 @@ router.get("/", async (req, res) => {
 			songs,
 			charts,
 		},
+	});
+});
+
+/**
+ * Returns all of a users personal bests.
+ *
+ * @warn This endpoint is probably quite expensive. We'll need to do
+ * some performance tests.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/all
+ */
+router.get("/all", async (req, res) => {
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const game = req[SYMBOL_TachiData]!.game!;
+	const playtype = req[SYMBOL_TachiData]!.playtype!;
+
+	const pbs = await db["personal-bests"].find({
+		userID: user.id,
+		game,
+		playtype,
+		isPrimary: true,
+	});
+
+	const { songs, charts } = await GetRelevantSongsAndCharts(pbs, game);
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned ${pbs.length} PBs.`,
+		body: { pbs, songs, charts },
 	});
 });
 

@@ -90,6 +90,7 @@ export async function AddNewUser(
 		email: email,
 		clan: null,
 		socialMedia: {},
+		status: null,
 		customBanner: false,
 		customPfp: false,
 		joinDate: Date.now(),

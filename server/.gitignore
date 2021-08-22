@@ -1,33 +1,25 @@
+# General node stuffs
 node_modules
 js
-# .vscode
 logs
 
-# nonsense snyk stuff
-.dccache
-
+# Test stuffs
 .nyc_output
 coverage
 .env
 .setup_env
 failed-tests.txt
 
-# config files
+# Config files
 conf.json5
 *.conf.json5
 
-# https local certs
+# HTTPS local certs
 cert
 
-scripts/arc-db-sync/charts.json
-scripts/arc-db-sync/songs.json
+# Error Files
 scripts/validate-database-errs/*
 
-scripts/__JSON-TO-KTDB/**/*.json
-
-src/lib/env/config.json
-src/datasets/text-files/splash-text.txt
-src/datasets/text-files/pseudonyms.txt
-
-local-cdn
-client
+# IDE Specific files
+.vscode
+.idea

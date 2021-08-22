@@ -513,7 +513,7 @@ export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoD
 	desc: string | null;
 	game: Game;
 	playtype: AnyPlaytype;
-	importType: ImportTypes;
+	importType: ImportTypes | null;
 	timeInserted: integer;
 	timeEnded: integer;
 	timeStarted: integer;

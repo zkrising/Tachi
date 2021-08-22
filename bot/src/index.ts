@@ -2,6 +2,7 @@ import { Client, Intents } from "discord.js";
 import { LoggerLayers, platformRegex } from "./config";
 import { createLinkReply } from "./createEmbed/createEmbed";
 import { getSongLinkResponse } from "./getSongLink/getSongLink";
+import { registerSlashCommands, slashCommands, tidyGuildCommands, SlashCommand } from "./slashCommands/register";
 import { createLayeredLogger } from "./utils/logger";
 import { shouldReply } from "./utils/utils";
 
@@ -37,8 +38,31 @@ client.on("messageCreate", async (message) => {
 	return;
 });
 
-client.login(process.env.DISCORDTOKEN).then(() => {
-	logger.info("Logged in successfully \n");
-}).catch((err) => {
-	logger.error("Log in Failed:", err);
+client.on("interactionCreate", async (interaction) => {
+	if (!interaction.isCommand()) return;
+	try {
+		const command = slashCommands.find((command: SlashCommand) => {
+			return command.info.name === interaction.commandName;
+		});
+
+		if (command && command.exec) {
+			logger.info(`Running ${command.info.name} interaction`);
+			command.exec(interaction);
+		}
+	} catch (e) {
+		logger.error("Failed to run interaction");
+	}
 });
+
+(async () => {
+	try {
+		await client.login(process.env.DISCORDTOKEN);
+		logger.info(`Logged in successfully to ${client.guilds.cache.size} guilds`);
+	} catch (e) {
+		logger.error("Log in Failed:", e);
+	} finally {
+		await tidyGuildCommands(client);
+		await registerSlashCommands(client);
+	}
+})();
+

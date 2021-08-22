@@ -50,7 +50,7 @@ export const getSongLinkResponse = async (url: string): Promise<SongLinkData> =>
 	logger.info("Fetching songLink");
 
 	try {
-		const rawData = await getLinks({url: url}, {apiKey: process.env.SONGLINKAPIKEY});
+		const rawData = await getLinks({ url: url }, { apiKey: process.env.SONGLINKAPIKEY });
 
 		const firstEntity = rawData.entitiesByUniqueId[Object.keys(rawData.entitiesByUniqueId)[0]];
 		const basicMetadata: MetaData = {

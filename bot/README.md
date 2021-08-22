@@ -2,13 +2,13 @@
 
 Automatically translate streaming service links.
 
-> [Invite the bot](https://discordapp.com/oauth2/authorize?client_id=686462477956808742&permissions=8&scope=bot)
+> [Invite the bot](https://discord.com/api/oauth2/authorize?client_id=686462477956808742&permissions=0&scope=applications.commands%20bot)
 
 > [Join the Server](https://discord.gg/a5a7NQV)
 
 ## Platform Support
 
-This bot supports every platform the [song.link](song.link) platform supports as it takes advantage of its API.
+This bot supports every platform the [song.link](https://song.link) platform supports as it takes advantage of its API.
 
 Currently, it detects the following URL Schemes:
 

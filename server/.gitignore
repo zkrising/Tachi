@@ -31,3 +31,7 @@ src/datasets/text-files/pseudonyms.txt
 
 local-cdn
 client
+
+# IDE Specific files
+.vscode
+.idea

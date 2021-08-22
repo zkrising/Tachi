@@ -15,8 +15,14 @@ This powers sites like Kamaitachi and Bokutachi.
 `tachi-server` is one part of the larger Tachi framework. Other repositories include:
 
 [tachi-common](https://github.com/zkldi/tachi-common): Common Types and Utilities for Tachi. (Stuff that's shared between the client and the server, basically.
+
 [tachi-docs](https://github.com/zkldi/tachi-docs): Documentation for Tachi.
+
 [tachi-db-importer](https://github.com/zkldi/tachi-db-importer): A UI for importing local database files to Tachi.
+
+## Where's the client?
+
+The client code is private. However, making a client is *definitely* not the hard part here, and you're completely free to make your own.
 
 ## Documentation
 

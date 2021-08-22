@@ -72,7 +72,7 @@ const nonDeezerMockSongData: MockSonglinkResponse = {
 describe("getDetailedMetadata", () => {
 	test("Should fetch detailed metadata for a song", async () => {
 		expect(await getDetailedMetadata(mockSongData as SonglinkResponse))
-			.toHaveProperty("artistName", "Neutral Milk Hotel");
+			.toHaveProperty("releaseYear", "2005-09-06");
 	});
 	test("Should fetch detailed metadata for an album", async () => {
 		expect(await getDetailedMetadata(mockAlbumData as SonglinkResponse))

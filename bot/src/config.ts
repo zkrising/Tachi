@@ -8,6 +8,7 @@ export enum LoggerLayers  {
 	client = "client",
 	songLink = "songLink",
 	embedGenerator = "embedGenerator",
+	deezerMetadata = "deezerMetadata",
 	slashCommands = "slashCommands"
 }
 

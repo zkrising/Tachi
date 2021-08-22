@@ -8,7 +8,7 @@ Automatically translate streaming service links.
 
 ## Platform Support
 
-This bot supports every platform the [song.link](song.link) platform supports as it takes advantage of its API.
+This bot supports every platform the [song.link](https://song.link) platform supports as it takes advantage of its API.
 
 Currently, it detects the following URL Schemes:
 

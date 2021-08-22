@@ -12,14 +12,14 @@ const generateEmbedFields = (data: SongLinkData): EmbedFieldData[] => {
 		if (data.metaData.genres) {
 			fields.push({
 				name: "Genres",
-				value: data.metaData.genres.join(", ")
+				value: data.metaData.genres.length ? data.metaData.genres.join(", ") : "Unknown?"
 			});
 		}
 
 		if (data.metaData.releaseYear) {
 			fields.push({
 				name: "Release Date",
-				value: data.metaData.releaseYear
+				value: data.metaData.releaseYear || "Unknown?"
 			});
 		}
 	} catch (e) {
@@ -34,8 +34,8 @@ const createEmbed = (data: SongLinkData): MessageEmbed => {
 
 	try {
 		return new MessageEmbed({
-			title: data.metaData.title,
-			description: data.metaData.artistName,
+			title: data.metaData.title || "Unknown?",
+			description: data.metaData.artistName || "Unknown?",
 			thumbnail: {
 				url: data.metaData.artwork
 			},

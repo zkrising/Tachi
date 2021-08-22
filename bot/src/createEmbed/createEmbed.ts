@@ -12,7 +12,7 @@ const generateEmbedFields = (data: SongLinkData): EmbedFieldData[] => {
 		if (data.metaData.genres) {
 			fields.push({
 				name: "Genres",
-				value: data.metaData.genres.toString()
+				value: data.metaData.genres.join(", ")
 			});
 		}
 

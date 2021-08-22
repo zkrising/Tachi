@@ -6,7 +6,8 @@ export const allowedChannels = [
 export enum LoggerLayers  {
 	client = "client",
 	songLink = "songLink",
-	embedGenerator = "embedGenerator"
+	embedGenerator = "embedGenerator",
+	deezerMetadata = "deezerMetadata",
 }
 
 export const platformRegex = [

@@ -74,7 +74,7 @@ You can read more on how this config file works at [Configuration Info](./config
 ### 7. Run!
 
 ```
-pnpm buildrun
+pnpm start
 ```
 
 This will build the server TypeScript into JS under `/js`,

@@ -4,13 +4,18 @@ import { FormatVersion } from "lib/constants/version";
 
 const router: Router = Router({ mergeParams: true });
 
+/**
+ * Returns the current status of the Tachi Server.
+ *
+ * @name GET /api/v1/status
+ */
 router.get("/", (req, res) => {
 	let echo;
 	if (req.query.echo && typeof req.query.echo === "string") {
 		echo = req.query.echo;
 	}
 
-	res.status(200).json({
+	return res.status(200).json({
 		success: true,
 		description: "Status check successful.",
 		body: {
@@ -26,13 +31,19 @@ router.get("/", (req, res) => {
 	});
 });
 
+/**
+ * Returns the current status of the Tachi Server, but as a POST
+ * request, for that kind of testing.
+ *
+ * @name POST /api/v1/status
+ */
 router.post("/", (req, res) => {
 	let echo;
 	if (req.body.echo && typeof req.body.echo === "string") {
 		echo = req.body.echo;
 	}
 
-	res.status(200).json({
+	return res.status(200).json({
 		success: true,
 		description: "Status check successful.",
 		body: {

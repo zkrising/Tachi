@@ -4,7 +4,6 @@ import { HeaderMobile } from "./header/HeaderMobile";
 import { Footer } from "./footer/Footer";
 import { LayoutInit } from "../../_metronic/layout/components/LayoutInit";
 import { SubHeader } from "./subheader/SubHeader";
-import { QuickPanel } from "../../_metronic/layout/components/extras/offcanvas/QuickPanel";
 import { AnimateLoading } from "../../_metronic/_partials/controls";
 import { JustChildren } from "types/react";
 import BackgroundImage from "components/layout/misc/BackgroundImage";
@@ -39,7 +38,6 @@ export function Layout({ children }: JustChildren) {
 					</div>
 				</div>
 			</div>
-			<QuickPanel />
 
 			<LayoutInit />
 		</>

@@ -3,9 +3,9 @@ import IIDXLampCell from "components/tables/cells/IIDXLampCell";
 import ScoreCell from "components/tables/cells/ScoreCell";
 import TimestampCell from "components/tables/cells/TimestampCell";
 import SelectNav from "components/util/SelectNav";
-import React, { useState } from "react";
-import { ScoreDocument, PBScoreDocument, Lamps } from "tachi-common";
-import { Nav } from ".pnpm/react-bootstrap@1.0.1_react-dom@16.12.0+react@17.0.2/node_modules/react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { ScoreDocument, PBScoreDocument } from "tachi-common";
+import { Nav } from "react-bootstrap";
 import IIDXLampChart from "components/charts/IIDXLampChart";
 import MiniTable from "components/tables/components/MiniTable";
 import { IsScore } from "util/asserts";
@@ -91,6 +91,10 @@ export function IIDXGraphsComponent({
 
 		return true;
 	};
+
+	useEffect(() => {
+		setLamp(LampToKey(score));
+	}, [score]);
 
 	return (
 		<>

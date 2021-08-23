@@ -54,9 +54,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 							>
 								<strong>{u.username}</strong>
 								<span className="font-size-sm font-weight-bold text-muted">
-									{u.about.length >= 50
-										? `${u.about.substring(0, 47)}...`
-										: u.about}
+									{u.status}
 								</span>
 							</SearchResult>
 						))}

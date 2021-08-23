@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TitleCell from "../cells/TitleCell";
 import RankingCell from "../cells/RankingCell";
 import TimestampCell from "../cells/TimestampCell";
@@ -15,15 +15,18 @@ import DifficultyCell from "../cells/DifficultyCell";
 import MillionsScoreCell from "../cells/MillionsScoreCell";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
 import SDVXJudgementCell from "../cells/SDVXJudgementCell";
+import { usePBState } from "../components/UseScoreState";
 
 export default function SDVXPBTable({
 	dataset,
 	indexCol = true,
+	showPlaycount = false,
 	reqUser,
 	playtype,
 }: {
 	dataset: PBDataset<"sdvx:Single">;
 	indexCol?: boolean;
+	showPlaycount?: boolean;
 	reqUser: PublicUserDocument;
 	playtype: "7K" | "14K";
 }) {
@@ -31,12 +34,16 @@ export default function SDVXPBTable({
 		["Chart", "Ch.", NumericSOV(x => x.__related.chart.levelNum)],
 		["Song", "Song", StrSOV(x => x.__related.song.title)],
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
-		["Judgements", "Judge", NumericSOV(x => x.scoreData.percent)],
+		["Near - Miss", "Nr-Ms", NumericSOV(x => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
 		["VF6", "VF6", NumericSOV(x => x.calculatedData.VF6 ?? 0)],
-		["Ranking", "Rank", NumericSOV(x => x.rankingData.rank)],
+		["Site Ranking", "Site Rank", NumericSOV(x => x.rankingData.rank)],
 		["Last Raised", "Last Raised", NumericSOV(x => x.timeAchieved ?? 0)],
 	];
+
+	if (showPlaycount) {
+		headers.push(["Playcount", "Plays", NumericSOV(x => x.__playcount ?? 0)]);
+	}
 
 	if (indexCol) {
 		headers.unshift(["#", "#", NumericSOV(x => x.__related.index)]);
@@ -71,6 +78,7 @@ export default function SDVXPBTable({
 					key={`${pb.chartID}:${pb.userID}`}
 					reqUser={reqUser}
 					indexCol={indexCol}
+					showPlaycount={showPlaycount}
 				/>
 			)}
 		/>
@@ -80,15 +88,15 @@ export default function SDVXPBTable({
 function Row({
 	pb,
 	indexCol,
+	showPlaycount,
 	reqUser,
 }: {
 	pb: PBDataset<"sdvx:Single">[0];
 	indexCol: boolean;
+	showPlaycount: boolean;
 	reqUser: PublicUserDocument;
 }) {
-	const [highlight, setHighlight] = useState(pb.highlight);
-
-	const scoreState = { highlight, setHighlight };
+	const scoreState = usePBState(pb);
 
 	return (
 		<DropdownRow
@@ -101,7 +109,7 @@ function Row({
 					scoreState={scoreState}
 				/>
 			}
-			className={highlight ? "highlighted-row" : ""}
+			className={scoreState.highlight ? "highlighted-row" : ""}
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<DifficultyCell game="sdvx" chart={pb.__related.chart} />
@@ -114,6 +122,7 @@ function Row({
 			</td>
 			<RankingCell rankingData={pb.rankingData} />
 			<TimestampCell time={pb.timeAchieved} />
+			{showPlaycount && <td>{pb.__playcount ?? 0}</td>}
 		</DropdownRow>
 	);
 }

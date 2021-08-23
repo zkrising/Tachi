@@ -29,6 +29,9 @@ export function ErrorPage({
 			case 404:
 				message = "This page does not exist. If you think it should exist, let us know!";
 				break;
+			case 429:
+				message = "You're being rate limited. If this was unexpected, please report this.";
+				break;
 			case 500:
 				message = "Looks like the server has failed. This has been reported!";
 				break;

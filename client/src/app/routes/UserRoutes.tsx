@@ -4,13 +4,22 @@ import OverviewPage from "app/pages/dashboard/users/games/_game/_playtype/Overvi
 import SessionsPage from "app/pages/dashboard/users/games/_game/_playtype/SessionsPage";
 import { ErrorPage } from "app/pages/ErrorPage";
 import RequireAuthAsUserParam from "components/auth/RequireAuthAsUserParam";
-import UGPTHeader from "components/user/UGPTHeader";
+import { UGPTBottomNav, UGPTHeaderBody } from "components/user/UGPTHeader";
+import { UserBottomNav, UserHeaderBody } from "components/user/UserHeader";
+import UserHeaderContainer from "components/user/UserHeaderContainer";
 import Loading from "components/util/Loading";
 import { BackgroundContext } from "context/BackgroundContext";
 import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Redirect, Route, Switch, useParams } from "react-router-dom";
-import { Game, GetGameConfig, PublicUserDocument, UserGameStats, UGPTSettings } from "tachi-common";
+import {
+	Game,
+	GetGameConfig,
+	PublicUserDocument,
+	UserGameStats,
+	UGPTSettings,
+	FormatGame,
+} from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import { APIFetchV1, APIFetchV1Return, ToAPIURL } from "util/api";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
@@ -30,6 +39,10 @@ export default function UserRoutes() {
 			} else {
 				setReqUser(res.body);
 			}
+
+			return () => {
+				setReqUser(null);
+			};
 		})();
 	}, [params.userID]);
 
@@ -50,18 +63,40 @@ export default function UserRoutes() {
 
 	return (
 		<Switch>
-			<Route exact path="/dashboard/users/:userID">
-				<UserPage reqUser={reqUser} />
-			</Route>
-
-			<Route exact path="/dashboard/users/:userID/settings">
-				<RequireAuthAsUserParam>Settings Page</RequireAuthAsUserParam>
-			</Route>
-
 			<Route path="/dashboard/users/:userID/games/:game">
 				<UserGameRoutes reqUser={reqUser} />
 			</Route>
+
+			<Route path="/dashboard/users/:userID">
+				<UserProfileRoutes reqUser={reqUser} />
+			</Route>
 		</Switch>
+	);
+}
+
+function UserProfileRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
+	return (
+		<>
+			<UserHeaderContainer
+				header={`${reqUser.username}'s Profile`}
+				footer={
+					<UserBottomNav
+						reqUser={reqUser}
+						baseUrl={`/dashboard/users/${reqUser.username}`}
+					/>
+				}
+			>
+				<UserHeaderBody reqUser={reqUser} />
+			</UserHeaderContainer>
+			<Switch>
+				<Route exact path="/dashboard/users/:userID">
+					<UserPage reqUser={reqUser} />
+				</Route>
+				<Route exact path="/dashboard/users/:userID/settings">
+					<RequireAuthAsUserParam>Settings Page</RequireAuthAsUserParam>
+				</Route>
+			</Switch>
+		</>
 	);
 }
 
@@ -153,7 +188,16 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 
 	return (
 		<>
-			<UGPTHeader reqUser={reqUser} game={game} playtype={playtype} stats={stats} />
+			<UserHeaderContainer
+				header={`${reqUser.username}'s ${FormatGame(game, playtype)} Profile`}
+				footer={
+					<UGPTBottomNav
+						baseUrl={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}`}
+					/>
+				}
+			>
+				<UGPTHeaderBody reqUser={reqUser} game={game} playtype={playtype} stats={stats} />
+			</UserHeaderContainer>
 			<Switch>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype">
 					<OverviewPage

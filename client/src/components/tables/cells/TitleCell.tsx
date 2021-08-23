@@ -8,11 +8,13 @@ export default function TitleCell({
 	song,
 	chart,
 	noArtist,
+	comment,
 }: {
 	song: SongDocument;
 	chart: ChartDocument;
 	game: Game;
 	noArtist?: boolean;
+	comment?: string | null;
 }) {
 	return (
 		<td style={{ textAlign: "left", minWidth: "140px", maxWidth: "300px" }}>
@@ -25,6 +27,12 @@ export default function TitleCell({
 					</>
 				)}
 			</Link>
+			{comment && (
+				<>
+					<br />
+					<small>"{comment}"</small>
+				</>
+			)}
 		</td>
 	);
 }

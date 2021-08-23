@@ -20,7 +20,7 @@ import { FormatGPTRating, UppercaseFirst } from "util/misc";
 import ProfileBadges from "./ProfileBadges";
 import { GameClassSets } from "tachi-common/js/game-classes";
 
-export default function UGPTHeader({
+export function UGPTHeaderBody({
 	reqUser,
 	game,
 	playtype,
@@ -34,124 +34,88 @@ export default function UGPTHeader({
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	return (
-		<div className="row">
-			<div className="col-12">
-				<div className="card card-custom">
-					<div className="card-header">
-						<h4>
-							{reqUser.username}'s {FormatGame(game, playtype)} Profile
-						</h4>
-					</div>
-					<div className="card-body">
-						<div className="row align-items-center">
-							<div className="col-12 col-lg-3">
-								<div className="d-flex justify-content-center mb-3">
-									<ProfilePicture user={reqUser} />
-								</div>
-								<div
-									className="d-flex align-items-center"
-									style={{ flexDirection: "column" }}
-								>
-									<ProfileBadges badges={reqUser.badges} />
-								</div>
-								<div className="d-block d-lg-none">
-									<Divider className="mt-4 mb-4" />
-								</div>
-							</div>
-
-							<div className="col-12 col-md-6 col-lg-3">
-								<MiniTable
-									className="table-sm text-center"
-									headers={["Player Info"]}
-									colSpan={2}
-								>
-									<tr>
-										<td>Playcount</td>
-										<td>{stats.totalScores}</td>
-									</tr>
-									<tr>
-										<td>Last Played</td>
-										<td>
-											{stats.mostRecentScore === null ||
-											stats.mostRecentScore.timeAchieved === null
-												? "Unknown."
-												: MillisToSince(stats.mostRecentScore.timeAchieved)}
-										</td>
-									</tr>
-									<tr>
-										<td>First Play</td>
-										<td>
-											{stats.firstScore === null ||
-											stats.firstScore.timeAchieved === null
-												? "Unknown."
-												: MillisToSince(stats.firstScore.timeAchieved)}
-										</td>
-									</tr>
-								</MiniTable>
-							</div>
-							<div className="col-12 col-md-6 col-lg-3">
-								<MiniTable
-									className="table-sm text-center"
-									headers={["Player Stats"]}
-									colSpan={2}
-								>
-									<>
-										{(Object.keys(
-											gptConfig.classHumanisedFormat
-										) as GameClassSets[IDStrings][]).map(k => (
-											<tr key={k}>
-												<td>{UppercaseFirst(k)}</td>
-												<td>
-													{stats.gameStats.classes[k] ? (
-														<ClassBadge
-															showSetOnHover={false}
-															key={`${k}:${stats.gameStats.classes[k]}`}
-															game={game}
-															playtype={playtype}
-															classSet={k}
-															classValue={stats.gameStats.classes[k]!}
-														/>
-													) : (
-														"No Data"
-													)}
-												</td>
-											</tr>
-										))}
-										{Object.entries(stats.gameStats.ratings).map(([k, v]) => (
-											<tr key={k}>
-												<td>{UppercaseFirst(k)}</td>
-												<td>
-													{FormatGPTRating(
-														game,
-														playtype,
-														k as ScoreCalculatedDataLookup[IDStrings],
-														v
-													)}
-												</td>
-											</tr>
-										))}
-									</>
-								</MiniTable>
-							</div>
-							<div className="col-12 col-lg-3">
-								<RankingData
-									ranking={stats.rankingData.ranking}
-									outOf={stats.rankingData.outOf}
-								/>
-							</div>
-						</div>
-					</div>
-					<div className="card-footer pb-0 pt-0">
-						<BottomNav
-							baseUrl={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}`}
-						/>
-					</div>
+		<>
+			<div className="col-12 col-lg-3">
+				<div className="d-flex justify-content-center mb-3">
+					<ProfilePicture user={reqUser} />
+				</div>
+				<div className="d-flex align-items-center" style={{ flexDirection: "column" }}>
+					<ProfileBadges badges={reqUser.badges} />
+				</div>
+				<div className="d-block d-lg-none">
+					<Divider className="mt-4 mb-4" />
 				</div>
 			</div>
-			<div className="col-12">
-				<Divider className="mt-8 mb-4" />
+
+			<div className="col-12 col-md-6 col-lg-3">
+				<MiniTable className="table-sm text-center" headers={["Player Info"]} colSpan={2}>
+					<tr>
+						<td>Playcount</td>
+						<td>{stats.totalScores}</td>
+					</tr>
+					<tr>
+						<td>Last Played</td>
+						<td>
+							{stats.mostRecentScore === null ||
+							stats.mostRecentScore.timeAchieved === null
+								? "Unknown."
+								: MillisToSince(stats.mostRecentScore.timeAchieved)}
+						</td>
+					</tr>
+					<tr>
+						<td>First Play</td>
+						<td>
+							{stats.firstScore === null || stats.firstScore.timeAchieved === null
+								? "Unknown."
+								: MillisToSince(stats.firstScore.timeAchieved)}
+						</td>
+					</tr>
+				</MiniTable>
 			</div>
-		</div>
+			<div className="col-12 col-md-6 col-lg-3">
+				<MiniTable className="table-sm text-center" headers={["Player Stats"]} colSpan={2}>
+					<>
+						{(Object.keys(
+							gptConfig.classHumanisedFormat
+						) as GameClassSets[IDStrings][]).map(k => (
+							<tr key={k}>
+								<td>{UppercaseFirst(k)}</td>
+								<td>
+									{stats.gameStats.classes[k] ? (
+										<ClassBadge
+											showSetOnHover={false}
+											key={`${k}:${stats.gameStats.classes[k]}`}
+											game={game}
+											playtype={playtype}
+											classSet={k}
+											classValue={stats.gameStats.classes[k]!}
+										/>
+									) : (
+										"No Data"
+									)}
+								</td>
+							</tr>
+						))}
+						{Object.entries(stats.gameStats.ratings).map(([k, v]) => (
+							<tr key={k}>
+								<td>{UppercaseFirst(k)}</td>
+								<td>
+									{FormatGPTRating(
+										game,
+										playtype,
+										k as ScoreCalculatedDataLookup[IDStrings],
+										v
+									)}
+								</td>
+							</tr>
+						))}
+					</>
+				</MiniTable>
+			</div>
+			<div className="col-12 col-lg-3">
+				<RankingData ranking={stats.rankingData.ranking} outOf={stats.rankingData.outOf} />
+			</div>
+		</>
 	);
 }
 
@@ -169,7 +133,7 @@ function RankingData({ ranking, outOf }: { ranking: number; outOf: number }) {
 	);
 }
 
-function BottomNav({ baseUrl }: { baseUrl: string }) {
+export function UGPTBottomNav({ baseUrl }: { baseUrl: string }) {
 	return (
 		<div className="row align-items-center mb-0">
 			<Navbar>

@@ -53,9 +53,12 @@ export default function ScoreEditButtons({
 						<Button
 							variant="success"
 							onClick={() =>
-								ModifyScore(score.scoreID, { highlight: false }).then(
-									r => r && setHighlight(false)
-								)
+								ModifyScore(score.scoreID, { highlight: false }).then(r => {
+									if (r) {
+										setHighlight(false);
+										score.highlight = false;
+									}
+								})
 							}
 						>
 							<Icon noPad type="star" />
@@ -66,9 +69,12 @@ export default function ScoreEditButtons({
 						<Button
 							variant="outline-secondary"
 							onClick={() =>
-								ModifyScore(score.scoreID, { highlight: true }).then(
-									r => r && setHighlight(true)
-								)
+								ModifyScore(score.scoreID, { highlight: true }).then(r => {
+									if (r) {
+										setHighlight(true);
+										score.highlight = true;
+									}
+								})
 							}
 						>
 							<Icon noPad type="star" />
@@ -82,6 +88,7 @@ export default function ScoreEditButtons({
 				comment={comment}
 				setComment={setComment}
 				scoreID={score.scoreID}
+				score={score}
 			/>
 		</div>
 	);
@@ -113,12 +120,14 @@ function CommentModal({
 	comment,
 	setComment,
 	scoreID,
+	score,
 }: {
 	show: boolean;
 	setShow: SetState<boolean>;
 	comment: string | null;
 	setComment: SetState<string | null>;
 	scoreID: string;
+	score: ScoreDocument;
 }) {
 	const [innerComment, setInnerComment] = useState(comment ?? "");
 
@@ -135,6 +144,7 @@ function CommentModal({
 						ModifyScore(scoreID, { comment: innerComment }).then(r => {
 							if (r) {
 								setComment(innerComment);
+								score.comment = innerComment;
 								setShow(false);
 							}
 						});
@@ -150,7 +160,7 @@ function CommentModal({
 								onChange={e => setInnerComment(e.target.value)}
 							/>
 							<div className="input-group-append">
-								<Button variant="outline-primary" type="submit">
+								<Button variant="primary" type="submit">
 									Submit
 								</Button>
 							</div>
@@ -159,11 +169,12 @@ function CommentModal({
 
 					<QuickTooltip text="Remove your comment on this score.">
 						<Button
-							variant="outline-secondary"
+							variant="outline-danger"
 							onClick={() =>
 								ModifyScore(scoreID, { comment: null }).then(r => {
 									if (r) {
 										setComment(null);
+										score.comment = null;
 										setShow(false);
 									}
 								})

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TitleCell from "../cells/TitleCell";
 import RankingCell from "../cells/RankingCell";
 import TimestampCell from "../cells/TimestampCell";
@@ -9,19 +9,18 @@ import TachiTable, { Header } from "../components/TachiTable";
 import IndexCell from "../cells/IndexCell";
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import DropdownRow from "../components/DropdownRow";
-import { IsNullish } from "util/misc";
 import LampCell from "../cells/LampCell";
 import DifficultyCell from "../cells/DifficultyCell";
-import MillionsScoreCell from "../cells/MillionsScoreCell";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
-import SDVXJudgementCell from "../cells/SDVXJudgementCell";
 import ScoreCell from "../cells/ScoreCell";
 import RatingCell from "../cells/RatingCell";
 import { Playtype } from "types/tachi";
+import { usePBState } from "../components/UseScoreState";
 
 export default function GenericPBTable({
 	dataset,
 	indexCol = true,
+	showPlaycount = false,
 	reqUser,
 	game,
 	playtype,
@@ -29,6 +28,7 @@ export default function GenericPBTable({
 }: {
 	dataset: PBDataset;
 	indexCol?: boolean;
+	showPlaycount?: boolean;
 	reqUser: PublicUserDocument;
 	game: Game;
 	playtype: Playtype;
@@ -46,9 +46,13 @@ export default function GenericPBTable({
 			gptConfig.defaultScoreRatingAlg,
 			NumericSOV(x => x.calculatedData[gptConfig.defaultScoreRatingAlg] ?? 0),
 		],
-		["Ranking", "Rank", NumericSOV(x => x.rankingData.rank)],
+		["Site Ranking", "Site Rank", NumericSOV(x => x.rankingData.rank)],
 		["Last Raised", "Last Raised", NumericSOV(x => x.timeAchieved ?? 0)],
 	];
+
+	if (showPlaycount) {
+		headers.push(["Playcount", "Plays", NumericSOV(x => x.__playcount ?? 0)]);
+	}
 
 	if (indexCol) {
 		headers.unshift(["#", "#", NumericSOV(x => x.__related.index)]);
@@ -84,6 +88,7 @@ export default function GenericPBTable({
 					reqUser={reqUser}
 					indexCol={indexCol}
 					showScore={showScore}
+					showPlaycount={showPlaycount}
 				/>
 			)}
 		/>
@@ -95,15 +100,15 @@ function Row({
 	indexCol,
 	reqUser,
 	showScore,
+	showPlaycount,
 }: {
 	pb: PBDataset[0];
 	indexCol: boolean;
+	showPlaycount: boolean;
 	reqUser: PublicUserDocument;
 	showScore?: boolean;
 }) {
-	const [highlight, setHighlight] = useState(pb.highlight);
-
-	const scoreState = { highlight, setHighlight };
+	const scoreState = usePBState(pb);
 
 	return (
 		<DropdownRow
@@ -116,7 +121,7 @@ function Row({
 					scoreState={scoreState}
 				/>
 			}
-			className={highlight ? "highlighted-row" : ""}
+			className={scoreState.highlight ? "highlighted-row" : ""}
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<DifficultyCell game={pb.game} chart={pb.__related.chart} />
@@ -126,6 +131,7 @@ function Row({
 			<RatingCell score={pb} />
 			<RankingCell rankingData={pb.rankingData} />
 			<TimestampCell time={pb.timeAchieved} />
+			{showPlaycount && <td>{pb.__playcount ?? 0}</td>}
 		</DropdownRow>
 	);
 }

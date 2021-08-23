@@ -17,6 +17,7 @@ import BMSDifficultyCell from "../cells/BMSDifficultyCell";
 import { BMS_TABLES } from "util/constants/bms-tables";
 import { ValueGetterOrHybrid } from "util/ztable/search";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
+import { usePBState } from "../components/UseScoreState";
 
 function GetBMSTableVal(chart: ChartDocument<"bms:7K" | "bms:14K">, key: string) {
 	for (const table of chart.data.tableFolders) {
@@ -31,12 +32,14 @@ function GetBMSTableVal(chart: ChartDocument<"bms:7K" | "bms:14K">, key: string)
 export default function BMSPBTable({
 	dataset,
 	indexCol = true,
+	showPlaycount = false,
 	reqUser,
 	playtype,
 }: {
 	dataset: PBDataset<"bms:7K" | "bms:14K">;
 	indexCol?: boolean;
 	reqUser: PublicUserDocument;
+	showPlaycount?: boolean;
 	playtype: "7K" | "14K";
 }) {
 	const headers: Header<PBDataset<"bms:7K" | "bms:14K">[0]>[] = [
@@ -46,9 +49,13 @@ export default function BMSPBTable({
 		["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
 		["Sieglinde", "sgl.", NumericSOV(x => x.calculatedData.sieglinde ?? 0)],
-		["Ranking", "Rank", NumericSOV(x => x.rankingData.rank)],
+		["Site Ranking", "Site Rank", NumericSOV(x => x.rankingData.rank)],
 		["Last Raised", "Last Raised", NumericSOV(x => x.timeAchieved ?? 0)],
 	];
+
+	if (showPlaycount) {
+		headers.push(["Playcount", "Plays", NumericSOV(x => x.__playcount ?? 0)]);
+	}
 
 	if (indexCol) {
 		headers.unshift(["#", "#", NumericSOV(x => x.__related.index)]);
@@ -107,6 +114,7 @@ export default function BMSPBTable({
 					pb={pb}
 					key={`${pb.chartID}:${pb.userID}`}
 					reqUser={reqUser}
+					showPlaycount={showPlaycount}
 					indexCol={indexCol}
 				/>
 			)}
@@ -118,14 +126,14 @@ function Row({
 	pb,
 	indexCol,
 	reqUser,
+	showPlaycount,
 }: {
 	pb: PBDataset<"bms:7K" | "bms:14K">[0];
 	indexCol: boolean;
+	showPlaycount: boolean;
 	reqUser: PublicUserDocument;
 }) {
-	const [highlight, setHighlight] = useState(pb.highlight);
-
-	const scoreState = { highlight, setHighlight };
+	const scoreState = usePBState(pb);
 
 	return (
 		<DropdownRow
@@ -138,7 +146,7 @@ function Row({
 					scoreState={scoreState}
 				/>
 			}
-			className={highlight ? "highlighted-row" : ""}
+			className={scoreState.highlight ? "highlighted-row" : ""}
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<BMSDifficultyCell chart={pb.__related.chart} />
@@ -159,6 +167,7 @@ function Row({
 			</td>
 			<RankingCell rankingData={pb.rankingData} />
 			<TimestampCell time={pb.timeAchieved} />
+			{showPlaycount && <td>{pb.__playcount ?? 0}</td>}
 		</DropdownRow>
 	);
 }

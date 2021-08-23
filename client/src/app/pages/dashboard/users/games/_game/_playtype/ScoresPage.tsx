@@ -30,7 +30,7 @@ export default function ScoresPage({
 }: {
 	reqUser: PublicUserDocument;
 } & GamePT) {
-	const [scoreSet, setScoreSet] = useState<"recent" | "best">("best");
+	const [scoreSet, setScoreSet] = useState<"recent" | "best" | "all" | "playcount">("best");
 
 	const gameConfig = GetGameConfig(game);
 
@@ -52,13 +52,41 @@ export default function ScoresPage({
 						<Icon type="history" />
 						Recent Scores
 					</SelectButton>
+					<SelectButton id="playcount" setValue={setScoreSet} value={scoreSet}>
+						<Icon type="mortar-pestle" />
+						Most Played
+					</SelectButton>
+					<SelectButton id="all" setValue={setScoreSet} value={scoreSet}>
+						<Icon type="database" />
+						All PBs
+					</SelectButton>
 				</div>
 			</div>
 			<div className="col-12 mt-4">
 				{scoreSet === "best" ? (
-					<PBsOverview {...{ reqUser, game, playtype }} />
-				) : (
+					<PBsOverview
+						url={`/users/${reqUser.id}/games/${game}/${playtype}/pbs/best`}
+						{...{ reqUser, game, playtype }}
+					/>
+				) : scoreSet === "recent" ? (
 					<ScoresOverview {...{ reqUser, game, playtype }} />
+				) : scoreSet === "all" ? (
+					<PBsOverview
+						url={`/users/${reqUser.id}/games/${game}/${playtype}/pbs/all`}
+						reqUser={reqUser}
+						game={game}
+						playtype={playtype}
+						indexCol={false}
+					/>
+				) : (
+					<PBsOverview
+						url={`/users/${reqUser.id}/games/${game}/${playtype}/most-played`}
+						reqUser={reqUser}
+						game={game}
+						playtype={playtype}
+						indexCol
+						showPlaycount
+					/>
 				)}
 			</div>
 		</div>
@@ -83,12 +111,22 @@ function useFetchPBs(url: string) {
 	return { isLoading, error: error as UnsuccessfulAPIResponse, data };
 }
 
-function PBsOverview({ reqUser, game, playtype }: { reqUser: PublicUserDocument } & GamePT) {
+function PBsOverview({
+	reqUser,
+	game,
+	playtype,
+	indexCol = true,
+	showPlaycount = false,
+	url,
+}: {
+	reqUser: PublicUserDocument;
+	url: string;
+	indexCol?: boolean;
+	showPlaycount?: boolean;
+} & GamePT) {
 	const [search, setSearch] = useState("");
 
-	const { isLoading, error, data } = useFetchPBs(
-		`/users/${reqUser.id}/games/${game}/${playtype}/pbs/best`
-	);
+	const { isLoading, error, data } = useFetchPBs(url);
 
 	return (
 		<div className="row">
@@ -109,6 +147,8 @@ function PBsOverview({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 							reqUser={reqUser}
 							dataset={data!}
 							game={game}
+							showPlaycount={showPlaycount}
+							indexCol={indexCol}
 							playtype={playtype as "SP" | "DP"}
 						/>
 					</LoadingWrapper>

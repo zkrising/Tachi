@@ -18,15 +18,18 @@ import DropdownRow from "../components/DropdownRow";
 import IIDXPBDropdown from "../dropdowns/IIDXPBDropdown";
 import IIDXLampCell from "../cells/IIDXLampCell";
 import { IsNullish } from "util/misc";
+import { usePBState } from "../components/UseScoreState";
 
 export default function IIDXPBTable({
 	dataset,
 	indexCol = true,
+	showPlaycount = false,
 	reqUser,
 	playtype,
 }: {
 	dataset: PBDataset<"iidx:SP" | "iidx:DP">;
 	indexCol?: boolean;
+	showPlaycount?: boolean;
 	reqUser: PublicUserDocument;
 	playtype: "SP" | "DP";
 }) {
@@ -57,9 +60,13 @@ export default function IIDXPBTable({
 				/>
 			),
 		],
-		["Ranking", "Rank", NumericSOV(x => x.rankingData.rank)],
+		["Site Ranking", "Site Rank", NumericSOV(x => x.rankingData.rank)],
 		["Last Raised", "Last Raised", NumericSOV(x => x.timeAchieved ?? 0)],
 	];
+
+	if (showPlaycount) {
+		headers.push(["Playcount", "Plays", NumericSOV(x => x.__playcount ?? 0)]);
+	}
 
 	if (indexCol) {
 		headers.unshift(["#", "#", NumericSOV(x => x.__related.index)]);
@@ -93,6 +100,7 @@ export default function IIDXPBTable({
 					pb={pb}
 					key={`${pb.chartID}:${pb.userID}`}
 					reqUser={reqUser}
+					showPlaycount={showPlaycount}
 					indexCol={indexCol}
 					rating={rating}
 				/>
@@ -106,15 +114,15 @@ function Row({
 	indexCol,
 	reqUser,
 	rating,
+	showPlaycount,
 }: {
 	pb: PBDataset<"iidx:SP" | "iidx:DP">[0];
 	indexCol: boolean;
 	reqUser: PublicUserDocument;
+	showPlaycount: boolean;
 	rating: ScoreCalculatedDataLookup["iidx:SP"];
 }) {
-	const [highlight, setHighlight] = useState(pb.highlight);
-
-	const scoreState = { highlight, setHighlight };
+	const scoreState = usePBState(pb);
 
 	return (
 		<DropdownRow
@@ -127,7 +135,7 @@ function Row({
 					scoreState={scoreState}
 				/>
 			}
-			className={highlight ? "highlighted-row" : ""}
+			className={scoreState.highlight ? "highlighted-row" : ""}
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<DifficultyCell chart={pb.__related.chart} game={"iidx"} />
@@ -148,6 +156,7 @@ function Row({
 			</td>
 			<RankingCell rankingData={pb.rankingData} />
 			<TimestampCell time={pb.timeAchieved} />
+			{showPlaycount && <td>{pb.__playcount ?? 0}</td>}
 		</DropdownRow>
 	);
 }

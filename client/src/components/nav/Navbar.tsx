@@ -4,18 +4,26 @@ import { useLocation } from "react-router-dom";
 import Tab from "@material-ui/core/Tab";
 
 export default function Navbar({ children }: { children: JSX.Element[] }) {
-	const links = children.map(e =>
-		e.props.to[e.props.to.length - 1] === "/"
-			? e.props.to.substring(0, e.props.to.length - 1)
-			: e.props.to
-	);
+	const links = children
+		.filter(e => e.props.to)
+		.map(e =>
+			e.props.to[e.props.to.length - 1] === "/"
+				? e.props.to.substring(0, e.props.to.length - 1)
+				: e.props.to
+		);
 
 	const location = useLocation();
 
 	const value = useMemo(() => {
 		const loc = location.pathname.split(/([#?]|\/$)/u)[0];
 
-		return links.indexOf(loc);
+		const x = links.indexOf(loc);
+
+		if (x === -1) {
+			return 0;
+		}
+
+		return x;
 	}, [location]);
 
 	return (

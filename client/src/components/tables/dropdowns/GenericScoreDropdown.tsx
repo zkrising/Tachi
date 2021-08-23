@@ -1,7 +1,7 @@
 import DebugContent from "components/util/DebugContent";
 import Icon from "components/util/Icon";
 import SelectButton from "components/util/SelectButton";
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useState } from "react";
 import DropdownStructure from "./components/DropdownStructure";
 import {
 	PublicUserDocument,
@@ -17,6 +17,9 @@ import { UGPTChartPBComposition } from "types/api-returns";
 import Loading from "components/util/Loading";
 import { UserContext } from "context/UserContext";
 import GenericScoreContentDropdown from "./components/GenericScoreContentDropdown";
+import PlayHistory from "./components/PlayHistory";
+import useApiQuery from "components/util/query/useApiQuery";
+import HasDevModeOn from "components/util/HasDevModeOn";
 
 export interface ScoreState {
 	highlight: boolean;
@@ -46,25 +49,19 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 	DocComponent?: (props: {
 		score: ScoreDocument<I> | PBScoreDocument<I>;
 		scoreState: ScoreState;
+		pbData: UGPTChartPBComposition;
 	}) => JSX.Element;
 } & GamePT) {
 	const { user } = useContext(UserContext);
 	const [view, setView] = useState(defaultView);
 
-	const { isLoading, error, data } = useQuery(
-		`/users/${reqUser.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`,
-		async () => {
-			const res = await APIFetchV1<UGPTChartPBComposition<I>>(
-				`/users/${reqUser.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
-			);
-
-			if (!res.success) {
-				throw new Error(res.description);
-			}
-
-			return res.body;
-		}
+	const { isLoading, error, data } = useApiQuery<UGPTChartPBComposition<I>>(
+		`/users/${reqUser.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
 	);
+
+	const { isLoading: histIsLoading, error: histError, data: histData } = useApiQuery<
+		ScoreDocument<I>[]
+	>(`/users/${reqUser.id}/games/${game}/${playtype}/scores/${chart.chartID}`);
 
 	if (error) {
 		return <>An error has occured. Whoops.</>;
@@ -81,11 +78,19 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 	let body;
 
 	if (view === "history") {
-		body = <></>; // todo
+		body = (
+			<PlayHistory
+				error={histError}
+				isLoading={histIsLoading}
+				game={game}
+				playtype={playtype}
+				data={histData}
+			/>
+		);
 	} else if (view === "debug") {
 		body = <DebugContent data={data} />;
 	} else if (view === "moreInfo") {
-		body = <DocComponent score={thisScore as any} scoreState={scoreState} />;
+		body = <DocComponent score={thisScore as any} scoreState={scoreState} pbData={data} />;
 	}
 
 	return (
@@ -100,16 +105,16 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 						<Icon type="balance-scale-right" />
 						Versus PB
 					</SelectButton>
-					<SelectButton setValue={setView} value={view} id="history" disabled>
+					<SelectButton setValue={setView} value={view} id="history">
 						<Icon type="history" />
 						Play History
 					</SelectButton>
-					{user?.authLevel === "admin" && (
+					<HasDevModeOn>
 						<SelectButton setValue={setView} value={view} id="debug">
 							<Icon type="bug" />
 							Debug Info
 						</SelectButton>
-					)}
+					</HasDevModeOn>
 				</>
 			}
 		>

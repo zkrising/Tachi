@@ -13,17 +13,19 @@ export default function PBTable({
 	indexCol = true,
 	reqUser,
 	playtype,
+	showPlaycount,
 	game,
 }: {
 	dataset: PBDataset;
 	indexCol?: boolean;
+	showPlaycount?: boolean;
 	reqUser: PublicUserDocument;
 } & GamePT) {
 	// We're just going to ignore all these errors
 	// and assume we just won't make a mistake.
 	// ever.
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const props = { dataset, indexCol, reqUser, playtype } as any;
+	const props = { dataset, indexCol, reqUser, playtype, showPlaycount } as any;
 
 	if (game === "iidx") {
 		return <IIDXPBTable {...props} />;

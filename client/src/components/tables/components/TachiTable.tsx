@@ -77,12 +77,14 @@ export default function TachiTable<D>({
 	defaultSortMode,
 	defaultReverseSort,
 	searchFunctions,
+	noTopDisplayStr = false,
 }: {
 	dataset: D[];
 	rowFunction: (data: D) => JSX.Element;
 	headers: Header<D>[];
-	entryName?: string;
+	entryName: string;
 	pageLen?: integer;
+	noTopDisplayStr?: boolean;
 	defaultSortMode?: string;
 	defaultReverseSort?: boolean;
 	searchFunctions?: Record<string, ValueGetterOrHybrid<D>>;
@@ -123,18 +125,26 @@ export default function TachiTable<D>({
 
 	return (
 		<div className="justify-content-center w-100">
-			{searchFunctions && (
-				<div className="col-12 col-lg-3 px-0 ml-auto input-group">
-					<input
-						className="form-control filter-directives-enabled"
-						onChange={e => setSearch(e.target.value)}
-						type="text"
-						placeholder={`Filter ${entryName}`}
-						value={search}
-					/>
-					<FilterDirectivesIndicator searchFunctions={searchFunctions} doc={dataset[0]} />
-				</div>
-			)}
+			<div className="row">
+				{!noTopDisplayStr && (
+					<div className="d-none d-lg-flex col-lg-6 align-self-center">{displayStr}</div>
+				)}
+				{searchFunctions && (
+					<div className="col-12 col-lg-3 ml-auto input-group">
+						<input
+							className="form-control filter-directives-enabled"
+							onChange={e => setSearch(e.target.value)}
+							type="text"
+							placeholder={`Filter ${entryName}`}
+							value={search}
+						/>
+						<FilterDirectivesIndicator
+							searchFunctions={searchFunctions}
+							doc={dataset[0]}
+						/>
+					</div>
+				)}
+			</div>
 
 			<div className="col-12 px-0 mt-4 mb-4">
 				<table className="table table-striped table-hover table-vertical-center text-center table-responsive-md">

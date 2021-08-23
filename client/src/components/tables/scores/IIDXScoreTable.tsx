@@ -11,6 +11,7 @@ import {
 	ScoreCalculatedDataLookup,
 	PublicUserDocument,
 	Playtypes,
+	ScoreDocument,
 } from "tachi-common";
 import TachiTable, { ZTableTHProps } from "../components/TachiTable";
 import DifficultyCell from "../cells/DifficultyCell";
@@ -23,6 +24,10 @@ import DropdownRow from "../components/DropdownRow";
 import IIDXScoreDropdown from "../dropdowns/IIDXScoreDropdown";
 import { IsNullish } from "util/misc";
 import { Playtype } from "types/tachi";
+import { useScoreState } from "../components/UseScoreState";
+import IIDXScoreCoreCells from "../game-core-cells/IIDXScoreCoreCells";
+import { CreateDefaultScoreSearch } from "util/tables";
+import RankingCell from "../cells/RankingCell";
 
 export default function IIDXScoreTable({
 	reqUser,
@@ -69,22 +74,7 @@ export default function IIDXScoreTable({
 				["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
 			]}
 			entryName="Scores"
-			searchFunctions={{
-				artist: x => x.__related.song.artist,
-				title: x => x.__related.song.title,
-				difficulty: x => FormatDifficulty(x.__related.chart, "iidx"),
-				level: x => x.__related.chart.levelNum,
-				score: x => x.scoreData.score,
-				percent: x => x.scoreData.percent,
-				lamp: {
-					valueGetter: x => [x.scoreData.lamp, x.scoreData.lampIndex],
-					strToNum: HumanFriendlyStrToLampIndex("iidx", playtype),
-				},
-				grade: {
-					valueGetter: x => [x.scoreData.grade, x.scoreData.gradeIndex],
-					strToNum: HumanFriendlyStrToGradeIndex("iidx", playtype),
-				},
-			}}
+			searchFunctions={CreateDefaultScoreSearch<"iidx:SP" | "iidx:DP">("iidx", playtype)}
 			rowFunction={sc => (
 				<Row
 					key={sc.scoreID}
@@ -109,14 +99,11 @@ function Row({
 	rating: ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"];
 	playtype: Playtype;
 }) {
-	const [highlight, setHighlight] = useState(sc.highlight);
-	const [comment, setComment] = useState(sc.comment);
-
-	const scoreState = { highlight, comment, setHighlight, setComment };
+	const scoreState = useScoreState(sc);
 
 	return (
 		<DropdownRow
-			className={highlight ? "highlighted-row" : ""}
+			className={scoreState.highlight ? "highlighted-row" : ""}
 			dropdown={
 				<IIDXScoreDropdown
 					chart={sc.__related.chart}
@@ -129,22 +116,14 @@ function Row({
 			}
 		>
 			<DifficultyCell chart={sc.__related.chart} game="iidx" />
-			<TitleCell song={sc.__related.song} chart={sc.__related.chart} game="iidx" />
-			<ScoreCell score={sc} />
-			<DeltaCell
+			<TitleCell
+				song={sc.__related.song}
+				comment={sc.comment}
+				chart={sc.__related.chart}
 				game="iidx"
-				playtype={playtype}
-				score={sc.scoreData.score}
-				percent={sc.scoreData.percent}
-				grade={sc.scoreData.grade}
 			/>
-			<IIDXLampCell sc={sc} />
-			<td>
-				{!IsNullish(sc.calculatedData[rating])
-					? sc.calculatedData[rating]!.toFixed(2)
-					: "No Data."}
-			</td>
-			<TimestampCell time={sc.timeAchieved} />
+			<IIDXScoreCoreCells sc={sc} rating={rating} />
+			<TimestampCell time={sc.timeAchieved} service={sc.service} />
 		</DropdownRow>
 	);
 }

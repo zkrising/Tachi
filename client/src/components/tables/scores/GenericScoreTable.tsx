@@ -16,6 +16,9 @@ import MillionsScoreCell from "../cells/MillionsScoreCell";
 import GenericScoreDropdown from "../dropdowns/GenericScoreDropdown";
 import RatingCell from "../cells/RatingCell";
 import { Playtype } from "types/tachi";
+import { useScoreState } from "../components/UseScoreState";
+import GenericScoreCoreCells from "../game-core-cells/GenericScoreCoreCells";
+import { CreateDefaultScoreSearch } from "util/tables";
 
 export default function GenericScoreTable({
 	reqUser,
@@ -51,22 +54,7 @@ export default function GenericScoreTable({
 				["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
 			]}
 			entryName="Scores"
-			searchFunctions={{
-				artist: x => x.__related.song.artist,
-				title: x => x.__related.song.title,
-				difficulty: x => FormatDifficulty(x.__related.chart, game),
-				level: x => x.__related.chart.levelNum,
-				score: x => x.scoreData.score,
-				percent: x => x.scoreData.percent,
-				lamp: {
-					valueGetter: x => [x.scoreData.lamp, x.scoreData.lampIndex],
-					strToNum: HumanFriendlyStrToLampIndex(game, playtype),
-				},
-				grade: {
-					valueGetter: x => [x.scoreData.grade, x.scoreData.gradeIndex],
-					strToNum: HumanFriendlyStrToGradeIndex(game, playtype),
-				},
-			}}
+			searchFunctions={CreateDefaultScoreSearch(game, playtype)}
 			rowFunction={sc => (
 				<Row key={sc.scoreID} sc={sc} reqUser={reqUser} showScore={showScore} />
 			)}
@@ -83,14 +71,11 @@ function Row({
 	reqUser: PublicUserDocument;
 	showScore?: boolean;
 }) {
-	const [highlight, setHighlight] = useState(sc.highlight);
-	const [comment, setComment] = useState(sc.comment);
-
-	const scoreState = { highlight, comment, setHighlight, setComment };
+	const scoreState = useScoreState(sc);
 
 	return (
 		<DropdownRow
-			className={highlight ? "highlighted-row" : ""}
+			className={scoreState.highlight ? "highlighted-row" : ""}
 			dropdown={
 				<GenericScoreDropdown
 					chart={sc.__related.chart}
@@ -103,11 +88,8 @@ function Row({
 			}
 		>
 			<DifficultyCell chart={sc.__related.chart} game={sc.game} />
-			<TitleCell song={sc.__related.song} chart={sc.__related.chart} game={sc.game} />
-			<ScoreCell score={sc} showScore={showScore} />
-			<LampCell score={sc} />
-			<RatingCell score={sc} />
-			<TimestampCell time={sc.timeAchieved} />
+			<GenericScoreCoreCells sc={sc} showScore={showScore} />
+			<TimestampCell time={sc.timeAchieved} service={sc.service} />
 		</DropdownRow>
 	);
 }

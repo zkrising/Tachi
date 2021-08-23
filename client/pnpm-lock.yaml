@@ -69,7 +69,6 @@ specifiers:
   react-query: 3.18.1
   react-router: 5.2.0
   react-router-dom: 5.1.2
-  react-table: 7.7.0
   resolve: 1.12.0
   resolve-url-loader: 3.1.0
   sass: 1.32.8
@@ -77,7 +76,7 @@ specifiers:
   serve: 11.2.0
   socicon: 3.0.5
   style-loader: 1.0.0
-  tachi-common: 0.1.31
+  tachi-common: 0.1.40
   terser-webpack-plugin: 1.4.1
   ts-pnp: 1.1.4
   typescript: 4.3.5
@@ -137,11 +136,10 @@ dependencies:
   react-query: 3.18.1_react-dom@16.12.0+react@17.0.2
   react-router: 5.2.0_react@17.0.2
   react-router-dom: 5.1.2_react@17.0.2
-  react-table: 7.7.0_react@17.0.2
   resolve: 1.12.0
   resolve-url-loader: 3.1.0
   socicon: 3.0.5
-  tachi-common: 0.1.31_typescript@4.3.5
+  tachi-common: 0.1.40_typescript@4.3.5
 
 devDependencies:
   '@types/humanize-duration': 3.25.1
@@ -10220,14 +10218,6 @@ packages:
       tiny-warning: 1.0.3
     dev: false
 
-  /react-table/7.7.0_react@17.0.2:
-    resolution: {integrity: sha512-jBlj70iBwOTvvImsU9t01LjFjy4sXEtclBovl3mTiqjz23Reu0DKnRza4zlLtOPACx6j2/7MrQIthIK1Wi+LIA==}
-    peerDependencies:
-      react: ^16.8.3 || ^17.0.0-0
-    dependencies:
-      react: 17.0.2
-    dev: false
-
   /react-transition-group/4.4.2_react-dom@16.12.0+react@17.0.2:
     resolution: {integrity: sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==}
     peerDependencies:
@@ -11483,8 +11473,8 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tachi-common/0.1.31_typescript@4.3.5:
-    resolution: {integrity: sha512-jaJhv/zW+ye/GAKrYBiJb31shP4hSFhpssM56LUccZJKppDtd56lUu6fFtPWgydt3EIG7fVLqmTQJtDC0WRugg==}
+  /tachi-common/0.1.40_typescript@4.3.5:
+    resolution: {integrity: sha512-oj52sHcb2x+Jcg/qyKx1ras/b/9AiW5n1yYa+1pw/6SD8ZcHtzXkSFnUhq0oFbcwPvfy+4m7ygczMfhw9BsN2g==}
     dependencies:
       monk: 7.3.4
       tap: 15.0.9_typescript@4.3.5

@@ -9,7 +9,7 @@ export function AbsoluteGradeDelta<I extends IDStrings = IDStrings>(
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const maxScore = Math.floor(score * (100 / percent));
+	const maxScore = Math.round(score * (100 / percent));
 
 	const gradeIndex =
 		typeof gradeOrIndex === "number" ? gradeOrIndex : gptConfig.grades.indexOf(gradeOrIndex);

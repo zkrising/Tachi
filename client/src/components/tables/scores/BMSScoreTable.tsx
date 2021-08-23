@@ -4,7 +4,7 @@ import TitleCell from "../cells/TitleCell";
 import TimestampCell from "../cells/TimestampCell";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { ScoreDataset } from "types/tables";
-import { integer, PublicUserDocument, Playtypes } from "tachi-common";
+import { integer, PublicUserDocument, Playtypes, ScoreDocument } from "tachi-common";
 import TachiTable from "../components/TachiTable";
 import ScoreCell from "../cells/ScoreCell";
 import DeltaCell from "../cells/DeltaCell";
@@ -16,6 +16,10 @@ import BMSDifficultyCell from "../cells/BMSDifficultyCell";
 import { Playtype } from "types/tachi";
 import GenericScoreDropdown from "../dropdowns/GenericScoreDropdown";
 import SDVXJudgementCell from "../cells/SDVXJudgementCell";
+import { useScoreState } from "../components/UseScoreState";
+import RatingCell from "../cells/RatingCell";
+import BMSScoreCoreCells from "../game-core-cells/BMSScoreCoreCells";
+import { CreateDefaultScoreSearch } from "util/tables";
 
 export default function BMSScoreTable({
 	reqUser,
@@ -43,22 +47,7 @@ export default function BMSScoreTable({
 				["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
 			]}
 			entryName="Scores"
-			searchFunctions={{
-				artist: x => x.__related.song.artist,
-				title: x => x.__related.song.title,
-				difficulty: x => FormatDifficulty(x.__related.chart, "bms"),
-				level: x => x.__related.chart.levelNum,
-				score: x => x.scoreData.score,
-				percent: x => x.scoreData.percent,
-				lamp: {
-					valueGetter: x => [x.scoreData.lamp, x.scoreData.lampIndex],
-					strToNum: HumanFriendlyStrToLampIndex("bms", playtype),
-				},
-				grade: {
-					valueGetter: x => [x.scoreData.grade, x.scoreData.gradeIndex],
-					strToNum: HumanFriendlyStrToGradeIndex("bms", playtype),
-				},
-			}}
+			searchFunctions={CreateDefaultScoreSearch<"bms:7K" | "bms:14K">("bms", playtype)}
 			rowFunction={sc => (
 				<Row playtype={playtype} key={sc.scoreID} sc={sc} reqUser={reqUser} />
 			)}
@@ -75,14 +64,11 @@ function Row({
 	reqUser: PublicUserDocument;
 	playtype: Playtype;
 }) {
-	const [highlight, setHighlight] = useState(sc.highlight);
-	const [comment, setComment] = useState(sc.comment);
-
-	const scoreState = { highlight, comment, setHighlight, setComment };
+	const scoreState = useScoreState(sc);
 
 	return (
 		<DropdownRow
-			className={highlight ? "highlighted-row" : ""}
+			className={scoreState.highlight ? "highlighted-row" : ""}
 			dropdown={
 				<GenericScoreDropdown
 					chart={sc.__related.chart}
@@ -95,22 +81,14 @@ function Row({
 			}
 		>
 			<BMSDifficultyCell chart={sc.__related.chart} />
-			<TitleCell song={sc.__related.song} chart={sc.__related.chart} game="bms" />
-			<ScoreCell score={sc} />
-			<DeltaCell
+			<TitleCell
+				song={sc.__related.song}
+				chart={sc.__related.chart}
 				game="bms"
-				playtype={playtype}
-				score={sc.scoreData.score}
-				percent={sc.scoreData.percent}
-				grade={sc.scoreData.grade}
+				comment={sc.comment}
 			/>
-			<LampCell score={sc} />
-			<td>
-				{!IsNullish(sc.calculatedData.sieglinde)
-					? sc.calculatedData.sieglinde!.toFixed(2)
-					: "N/A"}
-			</td>
-			<TimestampCell time={sc.timeAchieved} />
+			<BMSScoreCoreCells sc={sc} />
+			<TimestampCell time={sc.timeAchieved} service={sc.scoreMeta.client} />
 		</DropdownRow>
 	);
 }

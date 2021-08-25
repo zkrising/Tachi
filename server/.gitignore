@@ -2,6 +2,7 @@
 node_modules
 js
 logs
+.pnpm-debug.log
 
 # Test stuffs
 .nyc_output

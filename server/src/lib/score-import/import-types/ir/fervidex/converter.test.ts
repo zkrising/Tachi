@@ -144,6 +144,27 @@ t.test("#ConverterIRFervidex", (t) => {
 		t.end();
 	});
 
+	t.test("Should null BP if the user died pre-emptively.", async (t) => {
+		const res = await ConverterIRFervidex(
+			deepmerge(baseFervidexScore, { dead: { measure: 1, note: 10 } }),
+			{ version: "27" },
+			"ir/fervidex",
+			logger
+		);
+
+		t.hasStrict(
+			res,
+			{
+				song: Testing511Song,
+				chart: Testing511SPA,
+				dryScore: deepmerge(baseDryScore, { scoreData: { hitMeta: { bp: null } } }),
+			}, // broken
+			"Should return a dry score."
+		);
+
+		t.end();
+	});
+
 	t.test("Should reject scores on unknown charts", (t) => {
 		t.rejects(
 			ConverterIRFervidex(

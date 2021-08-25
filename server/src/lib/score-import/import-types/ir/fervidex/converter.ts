@@ -174,6 +174,12 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 
 	const { percent, grade } = GenericGetGradeAndPercent("iidx", data.ex_score, chart);
 
+	let bp: number | null = data.bad + data.poor;
+
+	if (data.dead) {
+		bp = null;
+	}
+
 	const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
 		game: "iidx",
 		service: "Fervidex",
@@ -199,7 +205,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 				gaugeHistory,
 				scoreHistory: data.ghost,
 				gauge,
-				bp: data.bad + data.poor,
+				bp,
 				comboBreak: data.combo_break,
 				gsm: data["2dx-gsm"],
 			},

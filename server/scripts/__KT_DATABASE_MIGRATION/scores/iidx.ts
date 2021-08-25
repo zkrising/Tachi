@@ -15,12 +15,6 @@ import { oldKTDB } from "../old-db";
 
 const logger = CreateLogCtx(__filename);
 
-function ConditionalAssign(base: any, baseProp: string, other: any, otherProp: string) {
-	if (Object.prototype.hasOwnProperty.call(other, otherProp)) {
-		base[baseProp] = other[otherProp];
-	}
-}
-
 async function ConvertFn(c: any): Promise<ScoreDocument | null> {
 	const game = c.game;
 	const playtype = c.scoreData.playtype;
@@ -57,7 +51,7 @@ async function ConvertFn(c: any): Promise<ScoreDocument | null> {
 		throw new Error(`Cannot find ChartDoc for ${c.scoreID} (${c.chartID})`);
 	}
 
-	const base: Omit<ScoreDocument, "scoreID"> = {
+	const base: Omit<ScoreDocument<"iidx:SP" | "iidx:DP">, "scoreID"> = {
 		userID: c.userID,
 		songID: chartDoc.songID,
 		playtype,
@@ -92,36 +86,31 @@ async function ConvertFn(c: any): Promise<ScoreDocument | null> {
 	};
 
 	if (c.scoreMeta) {
-		// @ts-expect-error this game is iidx
 		if (base.playtype === "DP" && !Array.isArray(base.scoreMeta.random)) {
-			// @ts-expect-error this game is iidx
 			base.scoreMeta.random = null;
 		}
 
 		// @ts-expect-error asdf
 		if (base.scoreMeta.range === "") {
-			// @ts-expect-error asdf
 			base.scoreMeta.range = "NONE";
+		}
+
+		if (c.scoreMeta.deadMeasure || c.scoreMeta.deadNote) {
+			base.scoreData.hitMeta.bp = null;
 		}
 	}
 
-	// @ts-expect-error shut
 	if (base.scoreData.hitMeta.bp === -1 || Number.isNaN(base.scoreData.hitMeta.bp)) {
-		// @ts-expect-error shut
 		base.scoreData.hitMeta.bp = null;
 	}
 
-	// @ts-expect-error nope
-	if (base.scoreData.hitMeta.gauge > 200) {
-		// @ts-expect-error nope
+	if ((base.scoreData.hitMeta.gauge ?? 0) > 200) {
 		base.scoreData.hitMeta.gauge = null;
 	}
 
-	// @ts-expect-error nope
 	if (base.scoreData.hitMeta.gaugeHistory) {
-		// @ts-expect-error nope
 		base.scoreData.hitMeta.gaugeHistory = base.scoreData.hitMeta.gaugeHistory.map((e) =>
-			e > 200 ? null : e
+			(e ?? 0) > 200 ? null : e
 		);
 	}
 

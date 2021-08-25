@@ -3,10 +3,6 @@
     "chart": "spa",
     "clear_type": 1,
     "combo_break": 6,
-    "dead": {
-        "measure": 18,
-        "note": 40
-    },
     "custom": false,
     "chart_sha256": "asdfasdf",
     "entry_id": 1000,

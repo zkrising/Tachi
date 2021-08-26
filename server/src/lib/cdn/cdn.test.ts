@@ -151,5 +151,3 @@ t.test("#CDNRedirect", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -32,5 +32,3 @@ t.test("#ParseBarbatosSingle", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

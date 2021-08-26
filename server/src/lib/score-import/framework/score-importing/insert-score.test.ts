@@ -105,5 +105,3 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

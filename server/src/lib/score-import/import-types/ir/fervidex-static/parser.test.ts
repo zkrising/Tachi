@@ -180,5 +180,3 @@ t.test("#ParseFervidexStatic", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

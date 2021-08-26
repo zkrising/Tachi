@@ -175,5 +175,3 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/:chartID", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

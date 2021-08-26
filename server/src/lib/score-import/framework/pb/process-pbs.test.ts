@@ -58,5 +58,3 @@ t.test("#ProcessPBs", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

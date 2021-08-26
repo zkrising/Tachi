@@ -58,5 +58,3 @@ t.test("POST /api/v1/admin/change-log-level", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

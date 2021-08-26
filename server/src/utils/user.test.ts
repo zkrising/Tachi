@@ -89,5 +89,3 @@ t.test("#FormatUserDoc", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

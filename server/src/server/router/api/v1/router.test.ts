@@ -38,5 +38,3 @@ t.test("404 Handler", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -382,5 +382,3 @@ t.test("#CalculateDataForGamePT", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

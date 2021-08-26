@@ -93,5 +93,3 @@ t.test("#CreateScoreID", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

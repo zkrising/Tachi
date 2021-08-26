@@ -72,5 +72,3 @@ t.test("#ValidateCaptcha", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -456,5 +456,3 @@ t.test("POST /replays", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

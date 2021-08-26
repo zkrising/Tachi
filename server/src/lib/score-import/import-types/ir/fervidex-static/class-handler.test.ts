@@ -63,5 +63,3 @@ t.test("#FerStaticClassHandler", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

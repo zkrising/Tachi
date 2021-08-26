@@ -115,5 +115,3 @@ t.test("#SetRequestPermissions", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

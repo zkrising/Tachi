@@ -18,5 +18,3 @@ t.test("#CreateImportLoggerAndID", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

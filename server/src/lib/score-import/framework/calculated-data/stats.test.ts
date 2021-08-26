@@ -509,5 +509,3 @@ t.test("#CalculateLampRating", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

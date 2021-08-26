@@ -339,5 +339,3 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

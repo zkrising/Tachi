@@ -274,5 +274,3 @@ t.test("POST /api/v1/auth/register", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

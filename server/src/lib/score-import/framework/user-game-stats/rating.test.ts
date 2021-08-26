@@ -71,5 +71,3 @@ t.test("#CalculateRatings", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

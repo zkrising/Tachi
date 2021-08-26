@@ -74,5 +74,3 @@ t.test("PUT /api/v1/users/:userID/pfp", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

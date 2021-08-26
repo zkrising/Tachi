@@ -139,5 +139,3 @@ t.test("GET /api/v1/games/:game/:playtype/folders/:folderID/tierlist", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

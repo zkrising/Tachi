@@ -92,5 +92,3 @@ t.test("#EvaluateShowcaseStat", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -408,5 +408,3 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

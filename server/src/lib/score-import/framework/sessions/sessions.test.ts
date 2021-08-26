@@ -444,5 +444,3 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

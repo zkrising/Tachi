@@ -223,5 +223,3 @@ t.test("#ParseSolidStateXML", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

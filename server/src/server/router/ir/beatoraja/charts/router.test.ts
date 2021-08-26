@@ -55,5 +55,3 @@ t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

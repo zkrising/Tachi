@@ -66,5 +66,3 @@ t.test("#ParseArcSDVX", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

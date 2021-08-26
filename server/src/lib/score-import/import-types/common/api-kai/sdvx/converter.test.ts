@@ -125,5 +125,3 @@ t.test("#ResolveKaiLamp", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

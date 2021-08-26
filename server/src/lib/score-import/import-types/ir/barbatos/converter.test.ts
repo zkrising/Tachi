@@ -112,5 +112,3 @@ t.test("#ConverterIRBarbatos", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

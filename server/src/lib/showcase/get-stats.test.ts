@@ -124,5 +124,3 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

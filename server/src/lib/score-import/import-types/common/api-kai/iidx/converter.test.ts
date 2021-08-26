@@ -91,5 +91,3 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

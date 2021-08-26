@@ -26,5 +26,3 @@ t.test("ID field autoprojection", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -226,5 +226,3 @@ t.test("#ResolveS3Lamp", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

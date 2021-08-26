@@ -310,4 +310,3 @@ t.test("#HumaniseGoalProgress", (t) => {
 
 	t.end();
 });
-t.teardown(CloseAllConnections);

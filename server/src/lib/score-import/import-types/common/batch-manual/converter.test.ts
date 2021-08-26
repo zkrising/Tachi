@@ -380,5 +380,3 @@ t.test("#ConverterFn", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -135,5 +135,3 @@ t.test("#ConvertFileMerIIDX", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

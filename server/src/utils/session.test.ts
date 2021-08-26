@@ -29,5 +29,3 @@ t.test("#GetScoresFromSession", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

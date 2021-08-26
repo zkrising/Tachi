@@ -145,5 +145,3 @@ t.test("#CreateKaiSDVXClassHandler", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

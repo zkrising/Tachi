@@ -122,5 +122,3 @@ t.test("#ConverterIRUSC", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -31,5 +31,3 @@ t.test("#CreateGameSettings", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

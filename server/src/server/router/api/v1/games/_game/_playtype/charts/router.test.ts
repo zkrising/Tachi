@@ -70,5 +70,3 @@ t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

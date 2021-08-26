@@ -22,5 +22,3 @@ t.test("GET /api/v1/games/:game", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

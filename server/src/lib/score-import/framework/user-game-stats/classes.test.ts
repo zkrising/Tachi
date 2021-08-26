@@ -135,5 +135,3 @@ t.test("#CalculateClassDeltas", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

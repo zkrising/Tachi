@@ -312,5 +312,3 @@ t.test("GET /api/v1/users/:userID/game-stats", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

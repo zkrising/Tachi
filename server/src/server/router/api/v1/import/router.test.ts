@@ -331,5 +331,3 @@ t.test("POST /api/v1/import/file", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

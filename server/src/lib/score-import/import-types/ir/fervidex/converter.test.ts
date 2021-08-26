@@ -245,5 +245,3 @@ t.test("#ConverterIRFervidex", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

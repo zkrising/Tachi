@@ -421,5 +421,3 @@ t.test("#ProcessGoal", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

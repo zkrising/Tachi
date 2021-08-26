@@ -201,5 +201,3 @@ t.test("PATCH /api/v1/sessions/:sessionID", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

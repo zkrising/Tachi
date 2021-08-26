@@ -141,5 +141,3 @@ t.test("#ParseMerIIDX", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

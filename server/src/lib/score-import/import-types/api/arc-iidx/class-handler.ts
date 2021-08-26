@@ -4,7 +4,6 @@ import { IIDXDans } from "lib/constants/classes";
 import { ClassHandler } from "../../../framework/user-game-stats/types";
 import { ServerConfig } from "lib/setup/config";
 import { CreateURLWithParams } from "utils/url";
-import { profile } from "console";
 
 export async function CreateArcIIDXClassHandler(
 	profileID: string,

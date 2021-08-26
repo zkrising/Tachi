@@ -1,5 +1,5 @@
 import { KtLogger } from "lib/logger/logger";
-import { integer, KaiAuthDocument } from "tachi-common";
+import { integer } from "tachi-common";
 import { GetKaiAuthGuaranteed } from "utils/queries/auth";
 import { ParseKaiSDVX } from "../../common/api-kai/sdvx/parser";
 

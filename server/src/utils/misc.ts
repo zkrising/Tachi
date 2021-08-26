@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { ServerConfig, ServerTypeInfo } from "lib/setup/config";
+import { ServerTypeInfo } from "lib/setup/config";
 import { Game, Playtypes, GetGameConfig } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
@@ -89,7 +89,7 @@ export function StripUrl(url: string, userInput: string | null) {
 	return userInput;
 }
 
-export function DeleteUndefinedProps(record: any) {
+export function DeleteUndefinedProps(record: Record<string, unknown>) {
 	for (const key in record) {
 		if (record[key] === undefined) {
 			delete record[key];

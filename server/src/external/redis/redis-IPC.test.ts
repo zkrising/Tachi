@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import t from "tap";
-import { CloseRedisPubSub, RedisPub, RedisSub } from "./redis-IPC";
+import { RedisPub, RedisSub } from "./redis-IPC";
 
 t.test("Basic PUB/SUB testing", (t) => {
 	t.setTimeout(2000);

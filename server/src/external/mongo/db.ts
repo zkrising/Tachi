@@ -81,6 +81,8 @@ const RemoveIDMiddleware: TMiddleware =
 		return next(args, method);
 	};
 
+// a bug in monks types means that :any has to be used here. Maybe we'll make a PR for this?
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const StripIDMiddleware: TMiddleware = () => (next) => (args: any, method) => {
 	if (method === "insert") {
 		if (Array.isArray(args.data)) {

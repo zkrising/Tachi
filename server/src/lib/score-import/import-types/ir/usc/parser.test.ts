@@ -29,7 +29,7 @@ t.test("#ParseIRUSC", (t) => {
 		t.throws(() => ParseIRUSC({}, uscChart, logger), {
 			statusCode: 400,
 			message: /invalid usc score/iu,
-		} as any);
+		});
 
 		t.end();
 	});

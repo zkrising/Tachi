@@ -4,12 +4,9 @@ import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-da
 import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
 import { EscapeStringRegexp } from "utils/misc";
-import { Game, ImportTypes } from "tachi-common";
+import { Game } from "tachi-common";
 import ResetDBState from "test-utils/resets";
-import {
-	InvalidScoreFailure,
-	KTDataNotFoundFailure,
-} from "../../../framework/common/converter-failures";
+import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
 
 import { BatchManualContext } from "./types";
 

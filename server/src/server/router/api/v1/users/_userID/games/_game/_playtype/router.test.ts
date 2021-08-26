@@ -10,14 +10,7 @@ import {
 	MilestoneDocument,
 	UserMilestoneDocument,
 } from "tachi-common";
-import {
-	GetKTDataJSON,
-	LoadTachiIIDXData,
-	Testing511Song,
-	Testing511SPA,
-	TestingIIDXSPScore,
-	TestingIIDXSPScorePB,
-} from "test-utils/test-data";
+import { Testing511SPA, TestingIIDXSPScore, TestingIIDXSPScorePB } from "test-utils/test-data";
 import deepmerge from "deepmerge";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype", (t) => {

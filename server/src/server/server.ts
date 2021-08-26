@@ -109,7 +109,7 @@ if (ServerConfig.RUN_OWN_CDN) {
 			`Running OWN_CDN in production. Consider making a separate process handle your CDN for performance.`
 		);
 	} else if (process.env.NODE_ENV !== "test") {
-		logger.info("Running own CDN.");
+		logger.info(`Running own CDN at ${ServerConfig.CDN_FILE_ROOT}.`);
 	}
 
 	app.use("/cdn", express.static(ServerConfig.CDN_FILE_ROOT));

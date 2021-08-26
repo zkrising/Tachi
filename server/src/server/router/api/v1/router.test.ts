@@ -3,16 +3,16 @@ import { CloseAllConnections } from "test-utils/close-connections";
 import mockApi from "test-utils/mock-api";
 import { ClearTestingRateLimitCache } from "server/middleware/rate-limiter";
 
-t.beforeEach(ClearTestingRateLimitCache);
-
 // just a rudimentary test for rate-limiting. We fire 150 requests at GET /api/v1
 // (which does a server status check)
 // and then check any of them return 429.
 t.test("Rate Limiting Test", async (t) => {
+	ClearTestingRateLimitCache();
+
 	const promises = [];
 
 	// default rate limit is 500, so lets go a bit over
-	for (let i = 0; i < 600; i++) {
+	for (let i = 0; i < 520; i++) {
 		promises.push(mockApi.get("/api/v1/status"));
 	}
 
@@ -26,6 +26,8 @@ t.test("Rate Limiting Test", async (t) => {
 });
 
 t.test("404 Handler", async (t) => {
+	ClearTestingRateLimitCache();
+
 	const res = await mockApi.get("/api/v1/invalid_route_that_will_never_exist");
 
 	t.equal(res.statusCode, 404);

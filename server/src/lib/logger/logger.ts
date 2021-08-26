@@ -105,11 +105,7 @@ let tports: (
 
 /* istanbul ignore next */
 if (IN_TESTING) {
-	tports = [
-		new transports.Console({
-			format: consoleFormatRoute,
-		}),
-	];
+	tports = [new transports.File({ filename: "logs/tachi-test.log", format: defaultFormatRoute })];
 } else {
 	tports = [
 		new transports.File({

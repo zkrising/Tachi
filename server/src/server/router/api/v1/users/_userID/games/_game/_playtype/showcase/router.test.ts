@@ -9,8 +9,7 @@ import { TestingIIDXFolderSP10, Testing511SPA, TestingIIDXSPScorePB } from "test
 import { CreateFolderChartLookup } from "utils/folder";
 import deepmerge from "deepmerge";
 
-t.beforeEach(ResetDBState);
-t.beforeEach(async () => {
+const SetFolders = async () => {
 	await db.folders.insert(TestingIIDXFolderSP10);
 	await CreateFolderChartLookup(TestingIIDXFolderSP10);
 
@@ -41,9 +40,12 @@ t.beforeEach(async () => {
 	});
 
 	await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}));
-});
+};
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(SetFolders);
+
 	t.test("Should return the evaluated stats for this user.", async (t) => {
 		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/showcase");
 
@@ -127,6 +129,9 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 });
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(SetFolders);
+
 	t.test("Should return a custom folder evaluated stat on a user.", async (t) => {
 		const res = await mockApi.get(
 			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&prop=grade&gte=3&folderID=${TestingIIDXFolderSP10.folderID}`
@@ -236,8 +241,10 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 	t.end();
 });
 
-// @todo #239 PUT UGPT-Stats needs some tests for input validation.
 t.test("PUT /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(SetFolders);
+
 	t.beforeEach(
 		async () =>
 			// eslint-disable-next-line no-return-await

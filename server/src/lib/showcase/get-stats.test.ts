@@ -8,42 +8,42 @@ import { EvaluateUsersStatsShowcase } from "./get-stats";
 import deepmerge from "deepmerge";
 import { CreateFolderChartLookup } from "utils/folder";
 
-t.beforeEach(ResetDBState);
+t.test("#EvalulateUsersStatsShowcase", (t) => {
+	t.beforeEach(ResetDBState);
 
-t.beforeEach(async () => {
-	await db.folders.insert(TestingIIDXFolderSP10);
-	await CreateFolderChartLookup(TestingIIDXFolderSP10);
+	t.beforeEach(async () => {
+		await db.folders.insert(TestingIIDXFolderSP10);
+		await CreateFolderChartLookup(TestingIIDXFolderSP10);
 
-	await db["game-settings"].remove({});
+		await db["game-settings"].remove({});
 
-	await db["game-settings"].insert({
-		userID: 1,
-		game: "iidx",
-		playtype: "SP",
-		preferences: {
-			preferredProfileAlg: null,
-			preferredScoreAlg: null,
-			preferredSessionAlg: null,
-			stats: [
-				{
-					folderID: TestingIIDXFolderSP10.folderID,
-					mode: "folder",
-					property: "lamp",
-					gte: IIDX_LAMPS.HARD_CLEAR,
-				},
-				{
-					chartID: Testing511SPA.chartID,
-					mode: "chart",
-					property: "score",
-				},
-			],
-		},
+		await db["game-settings"].insert({
+			userID: 1,
+			game: "iidx",
+			playtype: "SP",
+			preferences: {
+				preferredProfileAlg: null,
+				preferredScoreAlg: null,
+				preferredSessionAlg: null,
+				stats: [
+					{
+						folderID: TestingIIDXFolderSP10.folderID,
+						mode: "folder",
+						property: "lamp",
+						gte: IIDX_LAMPS.HARD_CLEAR,
+					},
+					{
+						chartID: Testing511SPA.chartID,
+						mode: "chart",
+						property: "score",
+					},
+				],
+			},
+		});
+
+		await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}));
 	});
 
-	await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}));
-});
-
-t.test("#EvalulateUsersStatsShowcase", (t) => {
 	t.test("Should evaluate a user's preferred stats.", async (t) => {
 		const res = await EvaluateUsersStatsShowcase(1, "iidx", "SP");
 

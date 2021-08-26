@@ -1,6 +1,5 @@
-files: "src/**/*.test.ts"
+files: "src/test-utils/single-process-tap.ts"
 test-env: [NODE_ENV=test, TCHIS_CONF_LOCATION=test.conf.json5]
-jobs: 1 # disable parallel to avoid db clashes
 timeout: 120 # might need to be increased
 ts: true
 before: "./src/test-utils/hack-setup.js"
@@ -10,4 +9,3 @@ functions: 80
 lines: 80
 statements: 80
 reporter: terse
-save: "failed-tests.txt"

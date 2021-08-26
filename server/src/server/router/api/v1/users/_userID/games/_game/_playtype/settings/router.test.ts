@@ -5,9 +5,9 @@ import { CloseAllConnections } from "test-utils/close-connections";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 
-t.beforeEach(ResetDBState);
-
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
+	t.beforeEach(ResetDBState);
+
 	t.test("Should return a user's settings.", async (t) => {
 		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/settings");
 
@@ -30,6 +30,8 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 });
 
 t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
+	t.beforeEach(ResetDBState);
+
 	t.test("Should update a user's settings.", async (t) => {
 		await db["api-tokens"].insert({
 			userID: 1,

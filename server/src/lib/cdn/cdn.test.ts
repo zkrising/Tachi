@@ -12,7 +12,7 @@ function getTestTxt() {
 	return fs.readFileSync(path.join(CDN_FILE_ROOT, "test.txt"), "utf-8");
 }
 
-t.beforeEach(() => {
+const ResetFileRoot = () => {
 	if (process.env.NODE_ENV !== "test") {
 		throw new Error(
 			`Not in test, yet CDN.test.ts was triggered, which could rm -rf something important.`
@@ -27,9 +27,11 @@ t.beforeEach(() => {
 
 	// isn't this terrifyingly risky?
 	fs.rmSync(CDN_FILE_ROOT, { recursive: true, force: true });
-});
+};
 
 t.test("#CDNStore", (t) => {
+	t.beforeEach(ResetFileRoot);
+
 	t.test("Should store a value.", async (t) => {
 		await CDNStore("test.txt", "hello world");
 
@@ -67,6 +69,8 @@ t.test("#CDNStore", (t) => {
 });
 
 t.test("#CDNDelete", (t) => {
+	t.beforeEach(ResetFileRoot);
+
 	t.test("Should delete the file at the given location.", async (t) => {
 		await CDNStore("test.txt", "1");
 
@@ -85,6 +89,8 @@ t.test("#CDNDelete", (t) => {
 });
 
 t.test("#CDNRetrieve", (t) => {
+	t.beforeEach(ResetFileRoot);
+
 	t.test("Should retrieve the file at the given location.", async (t) => {
 		await CDNStore("test.txt", "1");
 
@@ -105,6 +111,8 @@ t.test("#CDNRetrieve", (t) => {
 });
 
 t.test("#CDNStoreOrOverwrite", (t) => {
+	t.beforeEach(ResetFileRoot);
+
 	t.test("Should store a file if one doesn't exist", async (t) => {
 		await CDNStoreOrOverwrite("test.txt", "1");
 
@@ -127,6 +135,8 @@ t.test("#CDNStoreOrOverwrite", (t) => {
 });
 
 t.test("#CDNRedirect", (t) => {
+	t.beforeEach(ResetFileRoot);
+
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const mockMW = (req: any, res: any) => CDNRedirect(res, "/test.txt");
 

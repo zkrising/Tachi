@@ -11,11 +11,13 @@ import db from "external/mongo/db";
 /* eslint-disable no-return-await */
 // causes a race condition otherwise due to weird tap interaction
 
-t.beforeEach(ResetDBState);
-t.beforeEach(async () => await CreateFolderChartLookup(TestingIIDXFolderSP10));
-t.beforeEach(async () => await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {})));
-
 t.test("#EvaluateShowcaseStat", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(async () => await CreateFolderChartLookup(TestingIIDXFolderSP10));
+	t.beforeEach(
+		async () => await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}))
+	);
+
 	t.test("Should evaluate a folder stat.", async (t) => {
 		const data = await EvaluateShowcaseStat(
 			{

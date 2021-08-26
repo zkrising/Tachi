@@ -3,9 +3,9 @@ import { CloseAllConnections } from "test-utils/close-connections";
 import ResetDBState from "test-utils/resets";
 import db from "./db";
 
-t.beforeEach(ResetDBState);
-
 t.test("ID field autoprojection", async (t) => {
+	await ResetDBState();
+
 	const res = await db.scores.findOne();
 	t.equal(res!._id, undefined);
 

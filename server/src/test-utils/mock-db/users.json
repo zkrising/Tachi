@@ -9,6 +9,7 @@
         "joinDate": 123,
         "lastSeen": 123,
         "about": "test_user_not_real",
+        "status": "default status",
         "customPfp": false,
         "customBanner": false,
         "clan": null,

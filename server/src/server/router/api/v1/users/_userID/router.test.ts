@@ -128,6 +128,23 @@ t.test("PATCH /api/v1/users/:userID", (t) => {
 		t.end();
 	});
 
+	t.test("Shouldn't allow about me to be set to null.", async (t) => {
+		const res = await mockApi
+			.patch("/api/v1/users/1")
+			.set("Authorization", "Bearer valid_token")
+			.send({
+				about: null,
+			});
+
+		t.equal(res.statusCode, 400);
+
+		const dbUser = await db.users.findOne({ id: 1 });
+
+		t.equal(dbUser?.about, "test_user_not_real");
+
+		t.end();
+	});
+
 	t.test("Shouldn't alter other properties.", async (t) => {
 		await db.users.update({ id: 1 }, { $set: { "socialMedia.discord": "foo#123" } });
 

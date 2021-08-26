@@ -102,8 +102,21 @@ router.patch(
 			body.steam = StripUrl("steamcommunity.com/id/", body.steam);
 		}
 
+		if (body.about === null) {
+			return res.status(400).json({
+				success: false,
+				description: `Cannot set about me to null.`,
+			});
+		}
+
 		// :(
-		const modifyObject: any = {
+		const modifyObject: Partial<
+			Record<
+				| `socialMedia.${"twitch" | "github" | "youtube" | "steam" | "twitter" | "discord"}`
+				| "status",
+				string | null
+			> & { about: string }
+		> = {
 			about: body.about,
 			status: body.status,
 		};
@@ -116,7 +129,7 @@ router.patch(
 			"twitter",
 			"discord",
 		] as const) {
-			modifyObject[`socialMedia.${socMed}`] = body[socMed];
+			modifyObject[`socialMedia.${socMed}` as const] = body[socMed];
 		}
 
 		DeleteUndefinedProps(modifyObject);

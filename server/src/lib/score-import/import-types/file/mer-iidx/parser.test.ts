@@ -5,7 +5,7 @@ import ResetDBState from "test-utils/resets";
 import { GetKTDataBuffer, GetKTDataJSON } from "test-utils/test-data";
 import { ParseMerIIDX } from "./parser";
 import deepmerge from "deepmerge";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 const logger = CreateLogCtx(__filename);
 

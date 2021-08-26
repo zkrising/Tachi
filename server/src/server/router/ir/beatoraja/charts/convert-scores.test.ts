@@ -6,7 +6,7 @@ import { TachiPBScoreToBeatorajaFormat } from "./convert-scores";
 import { ScoreDocument, PBScoreDocument } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import deepmerge from "deepmerge";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 const gazerChart = GetKTDataJSON("./tachi/bms-gazer-chart.json");
 

@@ -12,7 +12,7 @@ import {
 	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import { Random20Hex } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);

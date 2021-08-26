@@ -1,5 +1,5 @@
 import t from "tap";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import { agta } from "test-utils/misc";
 import { MockBasicFetch, MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";

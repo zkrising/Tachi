@@ -5,7 +5,7 @@ import { GetFolderChartIDs, ResolveFolderToCharts } from "./folder";
 import db from "external/mongo/db";
 import ResetDBState from "test-utils/resets";
 import deepmerge from "deepmerge";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 t.todo("#CreateFolderChartLookup");
 t.todo("#GetFolderCharts");

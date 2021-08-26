@@ -14,7 +14,7 @@ import {
 } from "./converter";
 import { FervidexScore } from "./types";
 import deepmerge from "deepmerge";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 const logger = CreateLogCtx(__filename);
 

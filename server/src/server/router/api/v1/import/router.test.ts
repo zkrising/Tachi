@@ -6,7 +6,7 @@ import {
 	TestingIIDXEamusementCSV26,
 	TestingIIDXEamusementCSV27,
 } from "test-utils/test-data";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import { RequireAuthPerms } from "test-utils/api-common";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import ResetDBState from "test-utils/resets";

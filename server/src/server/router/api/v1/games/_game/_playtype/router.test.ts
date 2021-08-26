@@ -1,7 +1,7 @@
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import { GetGamePTConfig, UserGameStats } from "tachi-common";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import ResetDBState from "test-utils/resets";
 import db from "external/mongo/db";
 

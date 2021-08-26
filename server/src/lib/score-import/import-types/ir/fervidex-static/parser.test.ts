@@ -1,5 +1,5 @@
 import t from "tap";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON } from "test-utils/test-data";
 import CreateLogCtx from "lib/logger/logger";

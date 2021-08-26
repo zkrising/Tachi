@@ -1,5 +1,5 @@
 import t from "tap";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import ResetDBState from "test-utils/resets";
 import mockApi from "test-utils/mock-api";

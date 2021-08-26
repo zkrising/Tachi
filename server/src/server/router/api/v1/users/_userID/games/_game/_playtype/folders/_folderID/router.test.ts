@@ -1,6 +1,6 @@
 import t from "tap";
 import db from "external/mongo/db";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import ResetDBState from "test-utils/resets";
 import deepmerge from "deepmerge";
 import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";

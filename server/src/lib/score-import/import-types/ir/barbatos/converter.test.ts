@@ -5,7 +5,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { ConverterIRBarbatos } from "./converter";
 import deepmerge from "deepmerge";
 import { barbScore } from "test-utils/test-data";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import { BarbatosScore } from "./types";
 
 const logger = CreateLogCtx(__filename);

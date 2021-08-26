@@ -1,7 +1,7 @@
 import deepmerge from "deepmerge";
 import t from "tap";
 import { EvaluateShowcaseStat } from "./evaluator";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { IIDX_LAMPS } from "lib/constants/game";

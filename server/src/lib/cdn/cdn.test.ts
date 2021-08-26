@@ -3,7 +3,7 @@ import { CDNDelete, CDNRedirect, CDNRetrieve, CDNStore, CDNStoreOrOverwrite } fr
 import fs from "fs";
 import { ServerConfig } from "lib/setup/config";
 import path from "path";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import expressRequestMock from "express-request-mock";
 
 const CDN_FILE_ROOT = ServerConfig.CDN_FILE_ROOT;

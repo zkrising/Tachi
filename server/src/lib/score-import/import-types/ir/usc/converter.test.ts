@@ -5,7 +5,7 @@ import d from "deepmerge";
 import { uscChart, uscScore } from "test-utils/test-data";
 import CreateLogCtx from "lib/logger/logger";
 import ResetDBState from "test-utils/resets";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import { USCClientScore } from "server/router/ir/usc/types";
 
 const logger = CreateLogCtx(__filename);

@@ -10,7 +10,7 @@ import {
 	TestingSDVXSingleDryScore,
 } from "test-utils/test-data";
 import { CreateCalculatedData, CalculateDataForGamePT } from "./calculated-data";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 const logger = CreateLogCtx(__filename);
 

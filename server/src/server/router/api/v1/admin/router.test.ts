@@ -2,7 +2,7 @@ import { ONE_MINUTE } from "lib/constants/time";
 import { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import t from "tap";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 

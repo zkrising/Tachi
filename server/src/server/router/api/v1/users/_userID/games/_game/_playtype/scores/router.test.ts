@@ -1,7 +1,7 @@
 import db from "external/mongo/db";
 import { ScoreDocument } from "tachi-common";
 import t from "tap";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {

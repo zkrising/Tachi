@@ -1,7 +1,7 @@
 import { GetGameConfig } from "tachi-common";
 import t from "tap";
 import { ServerTypeInfo } from "lib/setup/config";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import mockApi from "test-utils/mock-api";
 
 t.test("GET /api/v1/games", async (t) => {

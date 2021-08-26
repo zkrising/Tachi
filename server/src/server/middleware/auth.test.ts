@@ -3,7 +3,7 @@ import { SetRequestPermissions, AllPermissions } from "./auth";
 import expMiddlewareMock from "express-request-mock";
 import db from "external/mongo/db";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import ResetDBState from "test-utils/resets";
 
 t.test("#SetRequestPermissions", (t) => {

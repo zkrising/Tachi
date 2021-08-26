@@ -3,7 +3,7 @@ import { PRUDENCE_PRIVATE_USER, PRUDENCE_PUBLIC_USER } from "external/mongo/sche
 import { prAssert } from "test-utils/asserts";
 import { GetUserCaseInsensitive, PRIVATEINFO_GetUserCaseInsensitive, FormatUserDoc } from "./user";
 import { PublicUserDocument } from "tachi-common";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import ResetDBState from "test-utils/resets";
 
 t.test("#GetUserCaseInsensitive", (t) => {

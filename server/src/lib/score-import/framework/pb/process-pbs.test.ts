@@ -6,7 +6,7 @@ import { Testing511SPA, TestingIIDXSPScore } from "test-utils/test-data";
 import { ProcessPBs } from "./process-pbs";
 import deepmerge from "deepmerge";
 import crypto from "crypto";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 const logger = CreateLogCtx(__filename);
 

@@ -10,7 +10,7 @@ import {
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import { BatchManualContext } from "./types";
 
 const baseBatchManualScore = {

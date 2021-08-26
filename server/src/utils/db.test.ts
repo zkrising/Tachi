@@ -2,7 +2,7 @@ import { DecrementCounterValue, GetNextCounterValue } from "./db";
 import t from "tap";
 import db from "external/mongo/db";
 import ResetDBState from "test-utils/resets";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 t.test("#GetNextCounterValue", (t) => {
 	t.beforeEach(ResetDBState);

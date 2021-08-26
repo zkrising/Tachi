@@ -2,7 +2,7 @@ import { ChartDocument, PrivateUserDocument } from "tachi-common";
 import db from "external/mongo/db";
 import { IIDX_GRADES, IIDX_LAMPS } from "lib/constants/game";
 import t from "tap";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXFolderSP10, Testing511SPA, TestingIIDXSPScorePB } from "test-utils/test-data";

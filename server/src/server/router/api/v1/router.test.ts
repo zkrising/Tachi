@@ -1,5 +1,5 @@
 import t from "tap";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import mockApi from "test-utils/mock-api";
 import { ClearTestingRateLimitCache } from "server/middleware/rate-limiter";
 

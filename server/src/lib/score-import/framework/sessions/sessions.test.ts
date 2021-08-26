@@ -1,6 +1,6 @@
 import t from "tap";
 import db from "external/mongo/db";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScore, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { CreateScoreLogger } from "../common/import-logger";

@@ -4,7 +4,7 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import { ParseBatchManualFromObject as ParserFn } from "./parser";
 import { EscapeStringRegexp } from "utils/misc";
 import deepmerge from "deepmerge";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import { BatchManual } from "tachi-common";
 
 const mockErr = (...msg: string[]) =>

@@ -2,7 +2,7 @@ import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { CalculateRatings } from "./rating";
 import CreateLogCtx from "lib/logger/logger";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 const logger = CreateLogCtx(__filename);
 

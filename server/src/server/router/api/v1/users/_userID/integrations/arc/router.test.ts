@@ -1,6 +1,6 @@
 import db from "external/mongo/db";
 import t from "tap";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";

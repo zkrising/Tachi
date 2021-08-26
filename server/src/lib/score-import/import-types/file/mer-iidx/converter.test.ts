@@ -11,7 +11,7 @@ import {
 import { ConvertFileMerIIDX } from "./converter";
 import deepmerge from "deepmerge";
 import { MerScore } from "./types";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 const logger = CreateLogCtx(__filename);
 

@@ -4,7 +4,6 @@ import ResetDBState from "test-utils/resets";
 import { LoadTachiIIDXData, Testing511SPA } from "test-utils/test-data";
 import { PBScoreDocument } from "tachi-common";
 import mockApi from "test-utils/mock-api";
-import { CloseAllConnections } from "test-utils/close-connections";
 
 t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 	t.beforeEach(ResetDBState);

@@ -1,5 +1,5 @@
 import t from "tap";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import { MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
 import CreateLogCtx from "lib/logger/logger";

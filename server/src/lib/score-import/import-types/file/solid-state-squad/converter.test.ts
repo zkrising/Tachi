@@ -10,7 +10,7 @@ import {
 import { ConvertFileS3, ParseDifficulty, ResolveS3Lamp } from "./converter";
 import { S3Score } from "./types";
 import deepmerge from "deepmerge";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 const logger = CreateLogCtx(__filename);
 

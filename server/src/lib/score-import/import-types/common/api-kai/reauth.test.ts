@@ -4,7 +4,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import { KaiAuthDocument } from "tachi-common";
 import t from "tap";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 import { MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
 import { CreateKaiReauthFunction } from "./reauth";

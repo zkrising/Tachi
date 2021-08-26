@@ -6,7 +6,7 @@ import { UpdateUsersGamePlaytypeStats } from "./update-ugs";
 import deepmerge from "deepmerge";
 import crypto from "crypto";
 import { TestingIIDXSPScorePB } from "test-utils/test-data";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 const logger = CreateLogCtx(__filename);
 

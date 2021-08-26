@@ -4,7 +4,7 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import GenericParseEamIIDXCSV, { NaiveCSVParse, ResolveHeaders } from "./parser";
 import { TestingIIDXEamusementCSV26, TestingIIDXEamusementCSV27 } from "test-utils/test-data";
 import { MockMulterFile } from "test-utils/mock-multer";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 const logger = CreateLogCtx(__filename);
 

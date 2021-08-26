@@ -6,7 +6,7 @@ import { TestingIIDXSPMilestone } from "test-utils/test-data";
 import { UpdateUsersMilestones } from "./milestones";
 import { GoalImportInfo } from "tachi-common";
 import deepmerge from "deepmerge";
-import { CloseAllConnections } from "test-utils/close-connections";
+
 
 const logger = CreateLogCtx(__filename);
 

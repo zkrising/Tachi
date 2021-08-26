@@ -59,5 +59,3 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

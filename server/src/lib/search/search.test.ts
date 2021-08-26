@@ -60,5 +60,3 @@ t.test("#SearchUsersRegExp", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

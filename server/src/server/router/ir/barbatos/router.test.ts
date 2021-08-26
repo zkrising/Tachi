@@ -41,5 +41,3 @@ t.test("POST /ir/barbatos/score/submit", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

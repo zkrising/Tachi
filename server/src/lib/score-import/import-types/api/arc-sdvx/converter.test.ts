@@ -93,5 +93,3 @@ t.test("#ResolveARCSDVXLamp", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

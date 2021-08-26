@@ -187,5 +187,3 @@ t.test("#TachiPBScoreToBeatorajaFormat", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

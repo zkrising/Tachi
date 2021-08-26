@@ -462,5 +462,3 @@ t.test("#ParserFn", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -353,5 +353,3 @@ t.test("#UpdateUsersMilestones", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

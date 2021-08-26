@@ -5,8 +5,9 @@ import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
 import { CreateScoreID, GetWithScoreID } from "./score-id";
 
-t.beforeEach(ResetDBState);
 t.test("#GetWithScoreID", async (t) => {
+	await ResetDBState();
+
 	const sc = await GetWithScoreID("TESTING_SCORE_ID");
 
 	t.not(sc, null, "Return a score for a valid score id");
@@ -92,5 +93,3 @@ t.test("#CreateScoreID", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

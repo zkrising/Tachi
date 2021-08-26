@@ -54,5 +54,3 @@ t.test("#ChangeRootLogLevel", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

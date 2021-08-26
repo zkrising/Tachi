@@ -201,5 +201,3 @@ t.test("#TraverseKaiAPI", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

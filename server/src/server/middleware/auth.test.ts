@@ -6,9 +6,9 @@ import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import { CloseAllConnections } from "test-utils/close-connections";
 import ResetDBState from "test-utils/resets";
 
-t.beforeEach(ResetDBState);
-
 t.test("#SetRequestPermissions", (t) => {
+	t.beforeEach(ResetDBState);
+
 	t.test("Should assign valid APIKey information to req[SYMBOL_TachiAPIData]", async (t) => {
 		await db["api-tokens"].insert({
 			userID: 1,
@@ -115,5 +115,3 @@ t.test("#SetRequestPermissions", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

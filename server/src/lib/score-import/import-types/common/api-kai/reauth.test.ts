@@ -127,5 +127,3 @@ t.test("#CreateKaiReauthFunction", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -202,5 +202,3 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/:chartID", (t) =>
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

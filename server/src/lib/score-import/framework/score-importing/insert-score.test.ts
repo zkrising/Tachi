@@ -44,8 +44,6 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 
 	let r = await InsertQueue(); // flush queue just incase former test fails.
 
-	t.equal(r, 0, "Queue should be empty after test.");
-
 	t.test("Queue Overflow Test", async (t) => {
 		for (let i = 0; i < 499; i++) {
 			// eslint-disable-next-line no-await-in-loop
@@ -107,5 +105,3 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

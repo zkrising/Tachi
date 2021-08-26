@@ -242,5 +242,3 @@ t.test("#ReprocessOrphan", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -43,5 +43,3 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/tables/:tableID", (t) =>
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -65,5 +65,3 @@ t.test("POST /ir/chunitachi/import", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

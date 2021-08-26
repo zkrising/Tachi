@@ -143,5 +143,3 @@ t.test("#CreateArcIIDXClassHandler", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -410,5 +410,3 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

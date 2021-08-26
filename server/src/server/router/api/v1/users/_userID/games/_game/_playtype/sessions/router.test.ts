@@ -180,5 +180,3 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent", (t) =>
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

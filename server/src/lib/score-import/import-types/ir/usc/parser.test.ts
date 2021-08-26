@@ -36,5 +36,3 @@ t.test("#ParseIRUSC", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

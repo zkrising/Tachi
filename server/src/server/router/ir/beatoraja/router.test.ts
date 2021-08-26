@@ -392,5 +392,3 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

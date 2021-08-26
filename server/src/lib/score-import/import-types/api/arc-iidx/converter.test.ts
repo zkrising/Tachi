@@ -91,5 +91,3 @@ t.test("#ResolveARCIIDXLamp", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

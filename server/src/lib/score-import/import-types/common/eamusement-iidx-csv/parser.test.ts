@@ -300,5 +300,3 @@ t.test("#ParseEamusementCSV", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

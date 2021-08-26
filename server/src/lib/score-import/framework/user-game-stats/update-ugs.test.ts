@@ -205,5 +205,3 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -328,5 +328,3 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/most-played", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -174,5 +174,3 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

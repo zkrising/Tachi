@@ -176,5 +176,3 @@ t.test("PATCH /api/v1/users/:userID/integrations/arc", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

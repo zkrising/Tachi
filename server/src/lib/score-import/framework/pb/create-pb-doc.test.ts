@@ -168,5 +168,3 @@ t.test("#CreatePBDoc", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

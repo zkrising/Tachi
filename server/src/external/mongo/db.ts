@@ -81,6 +81,21 @@ const RemoveIDMiddleware: TMiddleware =
 		return next(args, method);
 	};
 
+const StripIDMiddleware: TMiddleware = () => (next) => (args: any, method) => {
+	if (method === "insert") {
+		if (Array.isArray(args.data)) {
+			for (const d of args.data) {
+				delete d._id;
+			}
+		} else {
+			delete args.data._id;
+		}
+	}
+
+	return next(args, method);
+};
+
+monkDB.addMiddleware(StripIDMiddleware);
 monkDB.addMiddleware(RemoveIDMiddleware);
 
 export async function CloseMongoConnection() {

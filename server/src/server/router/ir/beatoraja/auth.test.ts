@@ -46,5 +46,3 @@ t.test("#ValidateIRClientVersion", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

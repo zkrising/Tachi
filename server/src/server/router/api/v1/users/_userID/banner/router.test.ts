@@ -73,5 +73,3 @@ t.test("PUT /api/v1/users/:userID/banner", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

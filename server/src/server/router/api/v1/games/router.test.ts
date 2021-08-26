@@ -16,5 +16,3 @@ t.test("GET /api/v1/games", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

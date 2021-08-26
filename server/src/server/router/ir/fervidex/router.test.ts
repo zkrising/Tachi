@@ -102,10 +102,10 @@ function TestHeaders(url: string, data: any) {
 	});
 }
 
-t.beforeEach(ResetDBState);
-t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
-
 t.test("POST /ir/fervidex/class/submit", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
+
 	TestHeaders("/ir/fervidex/class/submit", {});
 
 	t.test("Should update a users class.", async (t) => {
@@ -220,6 +220,9 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 });
 
 t.test("POST /ir/fervidex/score/submit", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
+
 	TestHeaders("/ir/fervidex/score/submit", GetKTDataJSON("./fervidex/base.json"));
 
 	t.test("Should import a valid score", async (t) => {
@@ -280,6 +283,9 @@ t.test("POST /ir/fervidex/score/submit", (t) => {
 });
 
 t.test("POST /ir/fervidex/profile/submit", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
+
 	TestHeaders("/ir/fervidex/class/submit", GetKTDataJSON("./fervidex-static/base.json"));
 
 	const ferStaticBody = GetKTDataJSON("./fervidex-static/base.json");
@@ -333,5 +339,3 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

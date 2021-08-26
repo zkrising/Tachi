@@ -41,5 +41,3 @@ t.test("GET /api/v1/search", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

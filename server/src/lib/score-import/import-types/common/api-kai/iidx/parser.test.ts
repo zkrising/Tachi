@@ -83,5 +83,3 @@ t.test("#ParseKaiIIDX", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

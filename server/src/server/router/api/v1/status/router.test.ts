@@ -79,5 +79,3 @@ t.test("POST /api/v1/status", async (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

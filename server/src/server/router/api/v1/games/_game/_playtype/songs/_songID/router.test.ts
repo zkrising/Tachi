@@ -40,5 +40,3 @@ t.test("GET /api/v1/games/:game/:playtype/songs/:songID", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

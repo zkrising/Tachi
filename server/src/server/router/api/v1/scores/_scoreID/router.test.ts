@@ -175,5 +175,3 @@ t.test("PATCH /api/v1/scores/:scoreID", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

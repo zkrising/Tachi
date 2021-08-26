@@ -199,5 +199,3 @@ t.test("#GetFolderChartIDs", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

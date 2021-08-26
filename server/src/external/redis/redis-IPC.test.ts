@@ -12,5 +12,3 @@ t.test("Basic PUB/SUB testing", (t) => {
 
 	RedisPub("test" as any, { userID: 1 } as any);
 });
-
-t.teardown(CloseRedisPubSub);

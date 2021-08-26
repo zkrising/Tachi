@@ -123,5 +123,3 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeli
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

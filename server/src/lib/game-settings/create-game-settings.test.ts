@@ -4,9 +4,9 @@ import { CloseAllConnections } from "test-utils/close-connections";
 import ResetDBState from "test-utils/resets";
 import { CreateGameSettings } from "./create-game-settings";
 
-t.beforeEach(ResetDBState);
-
 t.test("#CreateGameSettings", (t) => {
+	t.beforeEach(ResetDBState);
+
 	t.test("Should create a new user's settings.", async (t) => {
 		await CreateGameSettings(1, "bms", "7K");
 
@@ -31,5 +31,3 @@ t.test("#CreateGameSettings", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

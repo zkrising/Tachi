@@ -52,5 +52,3 @@ t.test("#DecrementCounterValue", (t) => {
 
 	t.end();
 });
-
-t.teardown(CloseAllConnections);

@@ -16,7 +16,6 @@ import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
 import crypto from "crypto";
 
-
 const logger = CreateLogCtx(__filename);
 
 t.test("#GetRelevantFolderGoals", (t) => {

@@ -3,7 +3,6 @@ import t from "tap";
 import db from "external/mongo/db";
 import ResetDBState from "test-utils/resets";
 
-
 t.test("#GetNextCounterValue", (t) => {
 	t.beforeEach(ResetDBState);
 

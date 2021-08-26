@@ -11,7 +11,6 @@ import {
 } from "test-utils/test-data";
 import { CreateCalculatedData, CalculateDataForGamePT } from "./calculated-data";
 
-
 const logger = CreateLogCtx(__filename);
 
 t.test("#CreateCalculatedData", async (t) => {

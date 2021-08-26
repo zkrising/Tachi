@@ -11,7 +11,6 @@ import { ConvertFileS3, ParseDifficulty, ResolveS3Lamp } from "./converter";
 import { S3Score } from "./types";
 import deepmerge from "deepmerge";
 
-
 const logger = CreateLogCtx(__filename);
 
 function cfile(data: S3Score) {

@@ -5,7 +5,6 @@ import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
 import { ChartDocument, PBScoreDocument, ScoreDocument, PrivateUserDocument } from "tachi-common";
 import deepmerge from "deepmerge";
 
-
 const mockScorePB: PBScoreDocument<"usc:Single"> = {
 	chartID: "USC_CHART_ID",
 	calculatedData: {

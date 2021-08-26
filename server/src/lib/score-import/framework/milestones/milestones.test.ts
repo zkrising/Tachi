@@ -7,7 +7,6 @@ import { UpdateUsersMilestones } from "./milestones";
 import { GoalImportInfo } from "tachi-common";
 import deepmerge from "deepmerge";
 
-
 const logger = CreateLogCtx(__filename);
 
 function CreateMockGII(...garr: [string, boolean][]) {

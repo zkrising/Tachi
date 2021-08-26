@@ -7,7 +7,6 @@ import { ScoreDocument, PBScoreDocument } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import deepmerge from "deepmerge";
 
-
 const gazerChart = GetKTDataJSON("./tachi/bms-gazer-chart.json");
 
 const pbScore = {

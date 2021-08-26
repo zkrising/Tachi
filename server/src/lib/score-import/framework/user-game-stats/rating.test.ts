@@ -3,7 +3,6 @@ import ResetDBState from "test-utils/resets";
 import { CalculateRatings } from "./rating";
 import CreateLogCtx from "lib/logger/logger";
 
-
 const logger = CreateLogCtx(__filename);
 
 t.test("#CalculateRatings", (t) => {

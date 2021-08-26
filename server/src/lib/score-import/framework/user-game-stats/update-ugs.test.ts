@@ -7,7 +7,6 @@ import deepmerge from "deepmerge";
 import crypto from "crypto";
 import { TestingIIDXSPScorePB } from "test-utils/test-data";
 
-
 const logger = CreateLogCtx(__filename);
 
 // more of an integration test

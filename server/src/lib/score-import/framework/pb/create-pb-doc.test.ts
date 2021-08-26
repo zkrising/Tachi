@@ -7,7 +7,6 @@ import deepmerge from "deepmerge";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import { GetGamePTConfig } from "tachi-common";
 
-
 let IIDXScore = TestingIIDXSPScore;
 
 const logger = CreateLogCtx(__filename);

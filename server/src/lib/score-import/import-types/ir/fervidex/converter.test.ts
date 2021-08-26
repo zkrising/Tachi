@@ -15,7 +15,6 @@ import {
 import { FervidexScore } from "./types";
 import deepmerge from "deepmerge";
 
-
 const logger = CreateLogCtx(__filename);
 
 t.test("#SplitFervidexChartRef", (t) => {

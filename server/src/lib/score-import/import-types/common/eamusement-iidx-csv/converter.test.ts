@@ -1,7 +1,6 @@
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 
-
 // const valid511Score = {
 // 	bp: "12",
 // 	difficulty: "ANOTHER" as const, // lol

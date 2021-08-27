@@ -27,3 +27,6 @@ scripts/validate-database-errs/*
 
 # Inline CDN
 local-cdn
+
+# Weird Redis Dumps
+dump.rdb

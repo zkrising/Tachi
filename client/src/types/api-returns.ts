@@ -80,3 +80,7 @@ export interface SpecificSessionReturns<I extends IDStrings = IDStrings> {
 	charts: ChartDocument<I>[];
 	user: PublicUserDocument;
 }
+
+export type UGSWithRankingData<I extends IDStrings = IDStrings> = UserGameStats<I> & {
+	__rankingData: { outOf: number; ranking: number };
+};

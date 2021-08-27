@@ -1,5 +1,5 @@
+import GentleLink from "components/util/GentleLink";
 import React from "react";
-import { Link } from "react-router-dom";
 import { ChartDocument, SongDocument, Game } from "tachi-common";
 import { CreateChartLink } from "util/data";
 
@@ -18,7 +18,7 @@ export default function TitleCell({
 }) {
 	return (
 		<td style={{ textAlign: "left", minWidth: "140px", maxWidth: "300px" }}>
-			<Link className="song-title-link" to={CreateChartLink(chart, game)}>
+			<GentleLink to={CreateChartLink(chart, game)}>
 				{song.title}
 				{!noArtist && (
 					<>
@@ -26,7 +26,7 @@ export default function TitleCell({
 						<small>{song.artist}</small>
 					</>
 				)}
-			</Link>
+			</GentleLink>
 			{comment && (
 				<>
 					<br />

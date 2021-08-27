@@ -2,6 +2,7 @@ import ClassBadge from "components/game/ClassBadge";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import MiniTable from "components/tables/components/MiniTable";
+import GentleLink from "components/util/GentleLink";
 import LoadingWrapper from "components/util/LoadingWrapper";
 import React from "react";
 import { useQuery } from "react-query";
@@ -115,7 +116,11 @@ function LeaderboardsPageContent({
 						<small className="text-muted">/{stats.thisUsersRanking.outOf}</small>
 					)}
 				</td>
-				<td>{userMap.get(s.userID)?.username}</td>
+				<td>
+					<GentleLink to={`/dashboard/users/${userMap.get(s.userID)?.username}`}>
+						{userMap.get(s.userID)?.username}
+					</GentleLink>
+				</td>
 				<td>{(s.ratings[gptConfig.defaultProfileRatingAlg] ?? 0).toFixed(2)}</td>
 				{/* temp */}
 				<td>

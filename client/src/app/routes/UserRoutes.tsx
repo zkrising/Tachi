@@ -2,6 +2,7 @@ import PlaytypeSelect from "app/pages/dashboard/games/_game/PlaytypeSelect";
 import LeaderboardsPage from "app/pages/dashboard/users/games/_game/_playtype/LeaderboardsPage";
 import OverviewPage from "app/pages/dashboard/users/games/_game/_playtype/OverviewPage";
 import SessionsPage from "app/pages/dashboard/users/games/_game/_playtype/SessionsPage";
+import UserGamesPage from "app/pages/dashboard/users/UserGamesPage";
 import { ErrorPage } from "app/pages/ErrorPage";
 import RequireAuthAsUserParam from "components/auth/RequireAuthAsUserParam";
 import { UGPTBottomNav, UGPTHeaderBody } from "components/user/UGPTHeader";
@@ -91,6 +92,9 @@ function UserProfileRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 			<Switch>
 				<Route exact path="/dashboard/users/:userID">
 					<UserPage reqUser={reqUser} />
+				</Route>
+				<Route exact path="/dashboard/users/:userID/games">
+					<UserGamesPage reqUser={reqUser} />
 				</Route>
 				<Route exact path="/dashboard/users/:userID/settings">
 					<RequireAuthAsUserParam>Settings Page</RequireAuthAsUserParam>

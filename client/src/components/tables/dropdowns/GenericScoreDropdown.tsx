@@ -20,6 +20,7 @@ import GenericScoreContentDropdown from "./components/GenericScoreContentDropdow
 import PlayHistory from "./components/PlayHistory";
 import useApiQuery from "components/util/query/useApiQuery";
 import HasDevModeOn from "components/util/HasDevModeOn";
+import PBCompare from "./components/PBCompare";
 
 export interface ScoreState {
 	highlight: boolean;
@@ -91,6 +92,8 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 		body = <DebugContent data={data} />;
 	} else if (view === "moreInfo") {
 		body = <DocComponent score={thisScore as any} scoreState={scoreState} pbData={data} />;
+	} else if (view === "vsPB") {
+		body = <PBCompare data={data} DocComponent={DocComponent} scoreState={scoreState} />;
 	}
 
 	return (
@@ -102,8 +105,8 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 						This Score
 					</SelectButton>
 					<SelectButton setValue={setView} value={view} id="vsPB">
-						<Icon type="balance-scale-right" />
-						Versus PB
+						<Icon type="trophy" />
+						Chart PB
 					</SelectButton>
 					<SelectButton setValue={setView} value={view} id="history">
 						<Icon type="history" />

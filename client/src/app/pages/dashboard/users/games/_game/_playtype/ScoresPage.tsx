@@ -16,7 +16,6 @@ import {
 } from "tachi-common";
 import { GamePT } from "types/react";
 import { APIFetchV1 } from "util/api";
-import IIDXScoreTable from "components/tables/scores/IIDXScoreTable";
 import LoadingWrapper from "components/util/LoadingWrapper";
 import Icon from "components/util/Icon";
 import SelectButton from "components/util/SelectButton";

@@ -13,7 +13,7 @@ import JudgementTable from "./JudgementTable";
 import PBNote from "./PBNote";
 import ScoreEditButtons from "./ScoreEditButtons";
 
-export function ScoreInfo({ score }: { score: ScoreDocument }) {
+export function ScoreInfo({ score }: { score: ScoreDocument | PBScoreDocument }) {
 	return (
 		<div className="col-12">
 			<table className="table">
@@ -33,7 +33,8 @@ export function ScoreInfo({ score }: { score: ScoreDocument }) {
 							grade={score.scoreData.grade}
 						/>
 						<LampCell score={score} />
-						<TimestampCell time={score.timeAchieved} service={score.service} />
+						{/* @ts-expect-error yeah we know service doesnt necessarily exist */}
+						<TimestampCell time={score.timeAchieved} service={score?.service} />
 					</tr>
 				</tbody>
 			</table>
@@ -47,6 +48,7 @@ export default function GenericScoreContentDropdown({
 	renderScoreInfo = true,
 	showSingleScoreNote = false,
 	GraphComponent = null,
+	forceScoreData = false,
 	pbData,
 }: {
 	score: ScoreDocument | PBScoreDocument;
@@ -54,6 +56,7 @@ export default function GenericScoreContentDropdown({
 	renderScoreInfo?: boolean;
 	showSingleScoreNote?: boolean;
 	pbData: UGPTChartPBComposition;
+	forceScoreData?: boolean;
 	GraphComponent?:
 		| (({ score }: { score: ScoreDocument | PBScoreDocument }) => JSX.Element)
 		| null;
@@ -97,6 +100,7 @@ export default function GenericScoreContentDropdown({
 						</>
 					) : (
 						<div className="col-12 align-self-end">
+							{forceScoreData && !showSingleScoreNote && <ScoreInfo score={score} />}
 							<CommentContainer
 								comment={pbData.scores
 									.map(e => e.comment)

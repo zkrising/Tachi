@@ -19,6 +19,8 @@ import ClassBadge from "components/game/ClassBadge";
 import { FormatGPTRating, UppercaseFirst } from "util/misc";
 import ProfileBadges from "./ProfileBadges";
 import { GameClassSets } from "tachi-common/js/game-classes";
+import UGPTRatingsTable from "./UGPTStatsOverview";
+import RankingData from "./UGPTRankingData";
 
 export function UGPTHeaderBody({
 	reqUser,
@@ -73,63 +75,12 @@ export function UGPTHeaderBody({
 				</MiniTable>
 			</div>
 			<div className="col-12 col-md-6 col-lg-3">
-				<MiniTable className="table-sm text-center" headers={["Player Stats"]} colSpan={2}>
-					<>
-						{(Object.keys(
-							gptConfig.classHumanisedFormat
-						) as GameClassSets[IDStrings][]).map(k => (
-							<tr key={k}>
-								<td>{UppercaseFirst(k)}</td>
-								<td>
-									{stats.gameStats.classes[k] ? (
-										<ClassBadge
-											showSetOnHover={false}
-											key={`${k}:${stats.gameStats.classes[k]}`}
-											game={game}
-											playtype={playtype}
-											classSet={k}
-											classValue={stats.gameStats.classes[k]!}
-										/>
-									) : (
-										"No Data"
-									)}
-								</td>
-							</tr>
-						))}
-						{Object.entries(stats.gameStats.ratings).map(([k, v]) => (
-							<tr key={k}>
-								<td>{UppercaseFirst(k)}</td>
-								<td>
-									{FormatGPTRating(
-										game,
-										playtype,
-										k as ScoreCalculatedDataLookup[IDStrings],
-										v
-									)}
-								</td>
-							</tr>
-						))}
-					</>
-				</MiniTable>
+				<UGPTRatingsTable ugs={stats.gameStats} />
 			</div>
 			<div className="col-12 col-lg-3">
 				<RankingData ranking={stats.rankingData.ranking} outOf={stats.rankingData.outOf} />
 			</div>
 		</>
-	);
-}
-
-function RankingData({ ranking, outOf }: { ranking: number; outOf: number }) {
-	return (
-		<div className="row text-center">
-			<div className="col-12">
-				<h4>Ranking</h4>
-			</div>
-			<div className="col-12">
-				<strong className="display-4">#{ranking}</strong>
-				<span className="text-muted">/{outOf}</span>
-			</div>
-		</div>
 	);
 }
 

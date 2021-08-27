@@ -6,6 +6,7 @@ import Navbar from "components/nav/Navbar";
 import NavItem from "components/nav/NavItem";
 import ProfileBadges from "./ProfileBadges";
 import { UserContext } from "context/UserContext";
+import Muted from "components/util/Muted";
 
 export function UserHeaderBody({ reqUser }: { reqUser: PublicUserDocument }) {
 	return (
@@ -20,6 +21,10 @@ export function UserHeaderBody({ reqUser }: { reqUser: PublicUserDocument }) {
 				<div className="d-block d-lg-none">
 					<Divider className="mt-4 mb-4" />
 				</div>
+			</div>
+			<div className="col-12 col-lg-6 d-flex justify-content-center">{reqUser.about}</div>
+			<div className="col-12 col-lg-3 d-flex justify-content-center">
+				<Muted>UserID: {reqUser.id}</Muted>
 			</div>
 		</>
 	);
@@ -38,7 +43,7 @@ export function UserBottomNav({
 
 	const navItems = [
 		<NavItem key="about" to={`${baseUrl}/`}>
-			About
+			Overview
 		</NavItem>,
 		<NavItem key="games" to={`${baseUrl}/games`}>
 			Games

@@ -11,7 +11,8 @@ import p from "prudence";
 import { optNull, optNullFluffStrField } from "utils/prudence";
 import { DeleteUndefinedProps, StripUrl } from "utils/misc";
 import { RequirePermissions } from "server/middleware/auth";
-import { GetUserWithID } from "utils/user";
+import { GetUsersRankingAndOutOf, GetUserWithID } from "utils/user";
+import { UserGameStats } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -155,6 +156,8 @@ router.patch(
 
 /**
  * Returns all of the game-stats this user has.
+ * Additionally, adds a __rankingData property, which contains this users
+ * ranking information.
  * This endpoint doubles up as a way of checking what games a user has played.
  *
  * @name GET /api/v1/users/:userID/game-stats
@@ -163,7 +166,15 @@ router.get("/game-stats", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
 	// a user has played a game if and only if they have stats for it.
-	const stats = await db["game-stats"].find({ userID: user.id });
+	const stats: (UserGameStats & { __rankingData?: { outOf: number; ranking: number } })[] =
+		await db["game-stats"].find({ userID: user.id });
+
+	await Promise.all(
+		stats.map(async (s) => {
+			const data = await GetUsersRankingAndOutOf(s);
+			s.__rankingData = data;
+		})
+	);
 
 	return res.status(200).json({
 		success: true,

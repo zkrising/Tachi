@@ -1398,3 +1398,11 @@ export interface BatchManual<I extends IDStrings = IDStrings> {
 	};
 	scores: BatchManualScore<I>[];
 }
+
+export interface UserSettings {
+	userID: integer;
+	preferences: {
+		invisible: boolean;
+		developerMode: boolean;
+	};
+}

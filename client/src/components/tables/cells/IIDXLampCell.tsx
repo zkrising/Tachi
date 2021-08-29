@@ -31,8 +31,6 @@ export default function IIDXLampCell({
 		bpText = `[BP: ${sc.scoreData.hitMeta.bp}, CBRK: ${sc.scoreData.hitMeta.comboBreak}]`;
 	} else if (IsNotNullish(sc.scoreData.hitMeta.bp)) {
 		bpText = `[BP: ${sc.scoreData.hitMeta.bp}]`;
-	} else if (IsNotNullish(sc.scoreData.hitMeta.comboBreak)) {
-		bpText = `[CBRK: ${sc.scoreData.hitMeta.comboBreak}]`;
 	}
 
 	return (

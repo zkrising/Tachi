@@ -48,7 +48,6 @@ export async function IIDXMergeFn(
 	}
 
 	pbDoc.scoreData.hitMeta.bp = bpPB.scoreData.hitMeta.bp!;
-	pbDoc.scoreData.hitMeta.comboBreak = bpPB.scoreData.hitMeta.comboBreak;
 
 	pbDoc.composedFrom.other = [{ name: "Best BP", scoreID: bpPB.scoreID }];
 

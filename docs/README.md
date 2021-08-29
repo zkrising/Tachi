@@ -2,6 +2,8 @@
 
 This is the documentation for Tachi.
 
+We host this on readthedocs, and you can find it [here](https://tachi.rtfd.io)!
+
 # Setup
 
 If you're in a horribly hellish python environment like me (Sorry Sera, you know its true) make sure you use `pip3`

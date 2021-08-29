@@ -53,7 +53,7 @@
 		"react/display-name": "off",
 		"import/no-unresolved": "off",
 		"import/no-named-as-default": "off",
-		"react/prop-types": "warn",
+		"react/prop-types": "off",
 		"require-await": "warn",
 		"no-await-in-loop": "warn",
 		"no-unused-labels": "error",

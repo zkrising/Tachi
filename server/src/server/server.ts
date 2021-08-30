@@ -54,7 +54,9 @@ if (process.env.NODE_ENV !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
 	});
 
 	// hack to allow all OPTIONS requests. Remember that this setting should not be on in production!
-	// app.options("*", (req, res) => res.send());
+	if (ServerConfig.OPTIONS_ALWAYS_SUCCEEDS) {
+		app.options("*", (req, res) => res.send());
+	}
 } else {
 	if (process.env.NODE_ENV !== "test") {
 		logger.info("Enabling Helmet, as no CLIENT_DEV_SERVER was set, or we are in production.");

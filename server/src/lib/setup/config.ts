@@ -65,6 +65,7 @@ export interface TachiConfig {
 	CLIENT_DEV_SERVER?: string | null;
 	SERVER_TYPE_INFO: StaticConfig.ServerConfig;
 	RATE_LIMIT: integer;
+	OPTIONS_ALWAYS_SUCCEEDS?: boolean;
 }
 
 const isValidOauth2 = p.optional({
@@ -93,6 +94,7 @@ const err = p(config, {
 	CLIENT_DEV_SERVER: "*?string",
 	TYPE: p.isIn("ktchi", "btchi", "omni"),
 	RATE_LIMIT: p.optional(p.isPositiveInteger),
+	OPTIONS_ALWAYS_SUCCEEDS: "*boolean",
 });
 
 if (err) {

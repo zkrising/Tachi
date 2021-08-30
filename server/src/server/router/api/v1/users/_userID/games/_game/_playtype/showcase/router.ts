@@ -52,7 +52,7 @@ router.get("/", async (req, res) => {
  * Evalulate a custom stat on this user.
  *
  * @param mode - "folder" or "chart"
- * @param prop - "grade" | "lamp" | "score" | "percent" and "playcount" if mode is chart.
+ * @param property - "grade" | "lamp" | "score" | "percent" and "playcount" if mode is chart.
  * @param chartID - If mode is "chart" this must contain the chartID the stat is referencing.
  * @param folderID - If mode is "folder" this must contain the folderID the stat is referencing.
  * @param gte - If mode is "folder" this must contain the value the property must be greater than.
@@ -71,7 +71,7 @@ router.get("/custom", async (req, res) => {
 			req.query,
 			{
 				mode: p.is("folder"),
-				prop: p.isIn("grade", "lamp", "score", "percent"),
+				property: p.isIn("grade", "lamp", "score", "percent"),
 				folderID: "string",
 				// lazy regex for matching strings that look like numbers
 				gte: p.regex(/^[0-9]*(.[0-9])?$/u),
@@ -103,7 +103,7 @@ router.get("/custom", async (req, res) => {
 
 		stat = {
 			mode: "folder",
-			property: req.query.prop as "grade" | "lamp" | "score" | "percent",
+			property: req.query.property as "grade" | "lamp" | "score" | "percent",
 			folderID: folderIDs.length === 1 ? (req.query.folderID as string) : folderIDs,
 			gte: Number(req.query.gte),
 		};
@@ -112,7 +112,7 @@ router.get("/custom", async (req, res) => {
 			req.query,
 			{
 				mode: p.is("chart"),
-				prop: p.isIn("grade", "lamp", "score", "percent", "playcount"),
+				property: p.isIn("grade", "lamp", "score", "percent", "playcount"),
 				chartID: "string",
 			},
 			{},
@@ -137,7 +137,7 @@ router.get("/custom", async (req, res) => {
 
 		stat = {
 			mode: "chart",
-			property: req.query.prop as "grade" | "lamp" | "score" | "percent" | "playcount",
+			property: req.query.property as "grade" | "lamp" | "score" | "percent" | "playcount",
 			chartID: req.query.chartID as string,
 		};
 	} else {

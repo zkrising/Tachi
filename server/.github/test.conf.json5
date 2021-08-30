@@ -19,7 +19,7 @@
 		CLIENT_SECRET: "DUMMY_CLIENT_SECRET",
 	},
 	ARC_AUTH_TOKEN: "unused",
-	CDN_FILE_ROOT: "./local-cdn",
+	CDN_FILE_ROOT: "./test-cdn",
 	PORT: 8080,
 	TYPE: "omni",
 	ENABLE_SERVER_HTTPS: false,

@@ -19,7 +19,7 @@ const ResetFileRoot = () => {
 		);
 	}
 
-	if (CDN_FILE_ROOT !== "./local-cdn") {
+	if (CDN_FILE_ROOT !== "./test-cdn") {
 		throw new Error(
 			`Unexpected CDN_FILE_ROOT of ${CDN_FILE_ROOT}. This is a security precaution, so that tests do not unexpectedly rm -rf important directories.`
 		);

@@ -381,7 +381,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 			.send([
 				{
 					mode: "folder",
-					prop: "grade",
+					property: "grade",
 					gte: 4,
 					folderID: "folder_does_not_exist",
 				},
@@ -395,7 +395,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 			.send([
 				{
 					mode: "folder",
-					prop: "grade",
+					property: "grade",
 					gte: 4,
 					folderID: [TestingIIDXFolderSP10.folderID, "folder_does_not_exist"],
 				},

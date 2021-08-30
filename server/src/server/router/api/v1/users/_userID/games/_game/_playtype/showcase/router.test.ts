@@ -134,7 +134,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 
 	t.test("Should return a custom folder evaluated stat on a user.", async (t) => {
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&prop=grade&gte=3&folderID=${TestingIIDXFolderSP10.folderID}`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&property=grade&gte=3&folderID=${TestingIIDXFolderSP10.folderID}`
 		);
 
 		t.hasStrict(res.body.body, {
@@ -149,7 +149,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 
 	t.test("Should return a custom chart evaluated stat on a user.", async (t) => {
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&prop=grade&chartID=${Testing511SPA.chartID}`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&property=grade&chartID=${Testing511SPA.chartID}`
 		);
 
 		t.hasStrict(res.body.body, {
@@ -161,13 +161,13 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 
 	t.test("Should reject for invalid folderID.", async (t) => {
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&prop=grade&gte=4`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&property=grade&gte=4`
 		);
 
 		t.equal(res.statusCode, 400, "Should reject for no folderID");
 
 		const res2 = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&prop=grade&gte=4&folderID=foo&folderID=bar`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&property=grade&gte=4&folderID=foo&folderID=bar`
 		);
 
 		t.equal(res2.statusCode, 400, "Should reject for non-string folderID");
@@ -177,13 +177,13 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 
 	t.test("Should reject for invalid chartID.", async (t) => {
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&prop=grade&gte=4`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&property=grade&gte=4`
 		);
 
 		t.equal(res.statusCode, 400, "Should reject for no chartID");
 
 		const res2 = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&prop=grade&chartID=foo&chartID=bar`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&property=grade&chartID=foo&chartID=bar`
 		);
 
 		t.equal(res2.statusCode, 400, "Should reject for non-string chartID");
@@ -193,7 +193,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 
 	t.test("Should reject for chartID that doesn't exist.", async (t) => {
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&prop=grade&chartID=chart_does_not_exist`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&property=grade&chartID=chart_does_not_exist`
 		);
 
 		t.equal(res.statusCode, 400);
@@ -204,7 +204,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 		} as ChartDocument);
 
 		const res2 = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&prop=grade&chartID=testing_dp_chart`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&property=grade&chartID=testing_dp_chart`
 		);
 
 		t.equal(res2.statusCode, 400);
@@ -214,13 +214,13 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 
 	t.test("Should reject for folderID that doesn't exist.", async (t) => {
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&prop=grade&gte=4&folderID=invalid`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&property=grade&gte=4&folderID=invalid`
 		);
 
 		t.equal(res.statusCode, 400);
 
 		const res2 = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&prop=grade&gte=4&folderID=${TestingIIDXFolderSP10},invalid`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&property=grade&gte=4&folderID=${TestingIIDXFolderSP10},invalid`
 		);
 
 		t.equal(res2.statusCode, 400);
@@ -230,7 +230,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 
 	t.test("Should reject for invalid mode", async (t) => {
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=nonsense&prop=grade&gte=4&chartID=foo`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=nonsense&property=grade&gte=4&chartID=foo`
 		);
 
 		t.equal(res.statusCode, 400);

@@ -23,6 +23,7 @@ export const PRUDENCE_PUBLIC_USER: PrudenceSchema = {
 	customBanner: "boolean",
 	clan: p.nullable(p.isBoundedString(1, 4)),
 	lastSeen: p.isPositiveInteger,
+	status: "?string",
 	joinDate: p.isPositiveInteger,
 	badges: [p.isIn("beta", "alpha", "devTeam")],
 	authLevel: p.isIn("banned", "user", "mod", "admin"),

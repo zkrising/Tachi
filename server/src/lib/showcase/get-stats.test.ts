@@ -50,7 +50,7 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 		t.hasStrict(res, [
 			{
 				stat: { folderID: TestingIIDXFolderSP10.folderID },
-				value: {
+				result: {
 					value: 1,
 					outOf: 1,
 				},
@@ -64,7 +64,7 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 			},
 			{
 				stat: { chartID: Testing511SPA.chartID },
-				value: {
+				result: {
 					value: 1479,
 				},
 				related: {
@@ -106,14 +106,14 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 		t.hasStrict(res, [
 			{
 				stat: { folderID: TestingIIDXFolderSP10.folderID },
-				value: {
+				result: {
 					value: 0,
 					outOf: 1,
 				},
 			},
 			{
 				stat: { chartID: Testing511SPA.chartID },
-				value: {
+				result: {
 					value: 300,
 				},
 			},

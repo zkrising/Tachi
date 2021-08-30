@@ -2,10 +2,10 @@ import React from "react";
 import { PublicUserDocument } from "tachi-common";
 import { ToAPIURL } from "util/api";
 
-export default function ProfilePicture({ user }: { user: PublicUserDocument }) {
+export default function ProfilePicture({ user, src }: { user: PublicUserDocument; src?: string }) {
 	return (
 		<img
-			src={ToAPIURL(`/users/${user.id}/pfp`)}
+			src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
 			alt={`${user.username}'s Profile Picture`}
 			className="rounded"
 			style={{

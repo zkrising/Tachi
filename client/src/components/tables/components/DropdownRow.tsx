@@ -12,15 +12,21 @@ export default function DropdownRow({
 	const [renderDropdown, setRenderDropdown] = useState(false);
 
 	useEffect(() => {
+		// temp hack for weird nodejs types (lazy)
+		let timeout: any;
 		if (!renderDropdown && showDropdown) {
 			setRenderDropdown(true);
 		} else if (renderDropdown && !showDropdown) {
-			setTimeout(() => {
+			timeout = setTimeout(() => {
 				if (renderDropdown && !showDropdown) {
 					setRenderDropdown(false);
 				}
 			}, 300);
 		}
+
+		return () => {
+			clearTimeout(timeout);
+		};
 	}, [showDropdown]);
 
 	return (

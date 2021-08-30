@@ -13,21 +13,23 @@ const queryClient = new QueryClient({ defaultOptions: { queries: { staleTime: 10
 
 export default function App({ basename }: { basename: string }) {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<UserContextProvider>
-				<UserGameStatsContextProvider>
-					<LoadingScreen>
-						<BrowserRouter basename={basename}>
-							<MaterialThemeProvider>
-								<Toaster />
-								<SubheaderContextProvider>
-									<Routes />
-								</SubheaderContextProvider>
-							</MaterialThemeProvider>
-						</BrowserRouter>
-					</LoadingScreen>
-				</UserGameStatsContextProvider>
-			</UserContextProvider>
-		</QueryClientProvider>
+		<React.StrictMode>
+			<QueryClientProvider client={queryClient}>
+				<UserContextProvider>
+					<UserGameStatsContextProvider>
+						<LoadingScreen>
+							<BrowserRouter basename={basename}>
+								<MaterialThemeProvider>
+									<Toaster />
+									<SubheaderContextProvider>
+										<Routes />
+									</SubheaderContextProvider>
+								</MaterialThemeProvider>
+							</BrowserRouter>
+						</LoadingScreen>
+					</UserGameStatsContextProvider>
+				</UserContextProvider>
+			</QueryClientProvider>
+		</React.StrictMode>
 	);
 }

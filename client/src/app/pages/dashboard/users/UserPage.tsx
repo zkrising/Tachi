@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { PublicUserDocument } from "tachi-common";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
@@ -26,7 +26,8 @@ function AboutMeCard({ reqUser }: Props) {
 	const [editMode, setEditMode] = useState(false);
 	const [content, setContent] = useState(reqUser.about);
 
-	async function SubmitNewAboutMe(text: string) {
+	async function SubmitNewAboutMe() {
+		console.log(content);
 		const res = await APIFetchV1(
 			`/users/${user!.id}`,
 			{
@@ -34,13 +35,15 @@ function AboutMeCard({ reqUser }: Props) {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ about: text }),
+				body: JSON.stringify({ about: content }),
 			},
 			true,
 			true
 		);
 
-		setEditMode(!res.success);
+		if (res.success) {
+			setEditMode(false);
+		}
 	}
 
 	useEffect(() => {
@@ -52,36 +55,43 @@ function AboutMeCard({ reqUser }: Props) {
 		}
 	}, [content]);
 
-	const footer = useMemo(() => {
-		if (user?.id !== reqUser.id) {
-			return <></>;
-		}
+	let footer = <></>;
 
+	if (user?.id === reqUser.id) {
 		if (!editMode) {
-			return (
+			footer = (
 				<div className="d-flex justify-content-end">
 					<Button onClick={() => setEditMode(true)} variant="info">
 						Edit
 					</Button>
 				</div>
 			);
+		} else {
+			footer = (
+				<div className="d-flex">
+					<Button
+						className="mr-auto"
+						onClick={() => {
+							setEditMode(false);
+							setContent(reqUser.about);
+						}}
+						variant="secondary"
+					>
+						Cancel
+					</Button>
+					<Button
+						className="ml-auto"
+						onClick={() => SubmitNewAboutMe()}
+						variant="success"
+					>
+						Submit
+					</Button>
+				</div>
+			);
 		}
+	}
 
-		return (
-			<div className="d-flex">
-				<Button className="mr-auto" onClick={() => setEditMode(false)} variant="secondary">
-					Cancel
-				</Button>
-				<Button
-					className="ml-auto"
-					onClick={() => SubmitNewAboutMe(content)}
-					variant="success"
-				>
-					Submit
-				</Button>
-			</div>
-		);
-	}, [editMode, reqUser]);
+	console.log(content);
 
 	return (
 		<Card header="About Me" footer={footer}>

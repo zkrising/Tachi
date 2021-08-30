@@ -63,7 +63,7 @@
 		"postcss-safe-parser": "4.0.1",
 		"react": "^17.0.2",
 		"react-async": "10.0.1",
-		"react-bootstrap": "1.0.1",
+		"react-bootstrap": "^1.6.1",
 		"react-dom": "16.12.0",
 		"react-hot-toast": "2.0.0",
 		"react-markdown": "^7.0.1",
@@ -74,11 +74,10 @@
 		"resolve": "1.12.0",
 		"resolve-url-loader": "3.1.0",
 		"socicon": "3.0.5",
-		"tachi-common": "0.1.40"
+		"tachi-common": "0.1.42"
 	},
 	"devDependencies": {
 		"@types/humanize-duration": "3.25.1",
-		"@types/jest": "26.0.23",
 		"@types/luxon": "1.27.1",
 		"@types/node": "16.0.0",
 		"@types/react": "17.0.13",

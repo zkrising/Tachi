@@ -136,7 +136,9 @@ export default function RegisterPage() {
 									target="_blank"
 									rel="noopener noreferrer"
 									onAuxClick={ReadRulesWait}
-									onClick={ReadRulesWait}
+									onClick={() => {
+										setTimeout(() => ReadRulesWait(), 300);
+									}}
 								>
 									Rules.
 								</a>

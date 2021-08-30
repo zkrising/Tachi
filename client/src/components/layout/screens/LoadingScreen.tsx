@@ -31,6 +31,8 @@ export function LoadingScreen({ children }: JustChildren) {
 			APIFetchV1<PublicUserDocument>("/users/me").then(rj => {
 				if (rj.success) {
 					setUser(rj.body);
+				} else {
+					localStorage.removeItem("isLoggedIn");
 				}
 			}),
 		])

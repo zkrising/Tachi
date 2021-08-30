@@ -3,7 +3,6 @@ import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { ChangeOpacity } from "util/color-opacity";
 
 export default function LampCell({ score }: { score: ScoreDocument | PBScoreDocument }) {
-	console.log(score.game, score.playtype);
 	const gptConfig = GetGamePTConfig(score.game, score.playtype);
 
 	return (

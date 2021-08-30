@@ -117,7 +117,11 @@ function LeaderboardsPageContent({
 					)}
 				</td>
 				<td>
-					<GentleLink to={`/dashboard/users/${userMap.get(s.userID)?.username}`}>
+					<GentleLink
+						to={`/dashboard/users/${
+							userMap.get(s.userID)!.username
+						}/games/${game}/${playtype}`}
+					>
 						{userMap.get(s.userID)?.username}
 					</GentleLink>
 				</td>

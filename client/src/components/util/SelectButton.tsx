@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { ButtonVariant } from "react-bootstrap/esm/types";
 import { JustChildren, SetState } from "types/react";
 
 export default function SelectButton<T>({
@@ -14,8 +15,8 @@ export default function SelectButton<T>({
 	id: T;
 	value: T;
 	setValue: SetState<T>;
-	onVariant?: Button["props"]["variant"];
-	offVariant?: Button["props"]["variant"];
+	onVariant?: ButtonVariant;
+	offVariant?: ButtonVariant;
 	disabled?: boolean;
 } & JustChildren) {
 	return (

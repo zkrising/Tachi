@@ -62,3 +62,7 @@ export function ReverseStr(str: string) {
 export function FormatMillions(v: number) {
 	return v.toLocaleString();
 }
+
+export function DelayedPageReload(delay = 300) {
+	setTimeout(() => window.location.reload(), delay);
+}

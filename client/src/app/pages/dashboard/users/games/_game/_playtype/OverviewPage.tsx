@@ -1,33 +1,21 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
-import CardHeader from "components/layout/page/CardHeader";
-import CardNavButton from "components/layout/page/CardNavButton";
-import { UserContext } from "context/UserContext";
-import { UserGameStatsContext } from "context/UserGameStatsContext";
-import { nanoid } from "nanoid";
-import React, { useContext, useMemo, useState } from "react";
-import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useMemo, useState } from "react";
+import { Badge } from "react-bootstrap";
 import {
 	FormatGame,
 	GetGameConfig,
 	PublicUserDocument,
 	UGPTSettings,
-	FormatChart,
-	Game,
-	SongDocument,
-	ChartDocument,
-	FolderDocument,
 	GetGamePTConfig,
 	UserGameStats,
 	SessionDocument,
 	ScoreDocument,
 } from "tachi-common";
-import { SessionReturns, UGPTHistory, UGPTPreferenceStatsReturn } from "types/api-returns";
+import { SessionReturns, UGPTHistory } from "types/api-returns";
 import { GamePT } from "types/react";
 import { APIFetchV1 } from "util/api";
 import AsyncLoader from "components/util/AsyncLoader";
-import { Playtype } from "types/tachi";
 import TimelineChart from "components/charts/TimelineChart";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
@@ -38,7 +26,6 @@ import { UppercaseFirst } from "util/misc";
 import { ONE_HOUR, ONE_MINUTE } from "util/constants/time";
 import MiniTable from "components/tables/components/MiniTable";
 import { GetPBs, CreateChartMap, CreateSongMap } from "util/data";
-import IIDXScoreTable from "components/tables/scores/IIDXScoreTable";
 
 import { NumericSOV } from "util/sorts";
 import { ScoreDataset } from "types/tables";
@@ -49,8 +36,7 @@ export default function OverviewPage({
 	reqUser,
 	game,
 	playtype,
-	settings,
-}: { reqUser: PublicUserDocument; settings: UGPTSettings } & GamePT) {
+}: { reqUser: PublicUserDocument } & GamePT) {
 	const gameConfig = GetGameConfig(game);
 	useSetSubheader(
 		["Users", reqUser.username, "Games", gameConfig.name, playtype],
@@ -59,11 +45,11 @@ export default function OverviewPage({
 	);
 
 	return (
-		<>
+		<React.Fragment key={`${game}:${playtype}`}>
 			<StatShowcase reqUser={reqUser} game={game} playtype={playtype} />
 			<RankingInfo reqUser={reqUser} game={game} playtype={playtype} />
 			<LastSession reqUser={reqUser} game={game} playtype={playtype} />
-		</>
+		</React.Fragment>
 	);
 }
 

@@ -12,8 +12,8 @@ export function SplashScreen({ broke }: { broke: string }) {
 				max-width="50%"
 				width="256px"
 			/>
-			<CircularProgress className="splash-screen-spinner" />
-			{broke ? <p className="mt-4">{broke}</p> : null}
+			{!broke && <CircularProgress className="splash-screen-spinner" />}
+			{broke && <p className="mt-4">{broke}</p>}
 		</div>
 	);
 }

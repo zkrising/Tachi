@@ -94,7 +94,7 @@ export function UGPTBottomNav({ baseUrl }: { baseUrl: string }) {
 				<NavItem to={`${baseUrl}/achievables`}>Goals &amp; Milestones</NavItem>
 				<NavItem to={`${baseUrl}/sessions`}>Sessions</NavItem>
 				<NavItem to={`${baseUrl}/leaderboard`}>Leaderboard</NavItem>
-				<NavItem to={`${baseUrl}/leaderboard`}>Settings</NavItem>
+				<NavItem to={`${baseUrl}/settings`}>Settings</NavItem>
 			</Navbar>
 		</div>
 	);

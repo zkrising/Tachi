@@ -2,15 +2,20 @@ import PlaytypeSelect from "app/pages/dashboard/games/_game/PlaytypeSelect";
 import LeaderboardsPage from "app/pages/dashboard/users/games/_game/_playtype/LeaderboardsPage";
 import OverviewPage from "app/pages/dashboard/users/games/_game/_playtype/OverviewPage";
 import SessionsPage from "app/pages/dashboard/users/games/_game/_playtype/SessionsPage";
+import UGPTSettingsPage from "app/pages/dashboard/users/games/_game/_playtype/UGPTSettingsPage";
 import UserGamesPage from "app/pages/dashboard/users/UserGamesPage";
+import UserSettingsPage from "app/pages/dashboard/users/UserSettingsPage";
 import { ErrorPage } from "app/pages/ErrorPage";
 import RequireAuthAsUserParam from "components/auth/RequireAuthAsUserParam";
 import { UGPTBottomNav, UGPTHeaderBody } from "components/user/UGPTHeader";
 import { UserBottomNav, UserHeaderBody } from "components/user/UserHeader";
 import UserHeaderContainer from "components/user/UserHeaderContainer";
 import Loading from "components/util/Loading";
+import useApiQuery from "components/util/query/useApiQuery";
 import { BackgroundContext } from "context/BackgroundContext";
-import React, { useContext, useEffect, useState } from "react";
+import { UGPTSettingsContext, UGPTSettingsContextProvider } from "context/UGPTSettingsContext";
+import { UserContext } from "context/UserContext";
+import React, { useContext, useEffect } from "react";
 import { useQuery } from "react-query";
 import { Redirect, Route, Switch, useParams } from "react-router-dom";
 import {
@@ -28,24 +33,11 @@ import ScoresPage from "../pages/dashboard/users/games/_game/_playtype/ScoresPag
 import UserPage from "../pages/dashboard/users/UserPage";
 
 export default function UserRoutes() {
-	const [reqUser, setReqUser] = useState<PublicUserDocument | null>(null);
 	const params = useParams<{ userID: string }>();
 
-	useEffect(() => {
-		(async () => {
-			const res = await APIFetchV1<PublicUserDocument>(`/users/${params.userID}`);
-
-			if (!res.success) {
-				console.error(res);
-			} else {
-				setReqUser(res.body);
-			}
-
-			return () => {
-				setReqUser(null);
-			};
-		})();
-	}, [params.userID]);
+	const { data: reqUser, isLoading, error } = useApiQuery<PublicUserDocument>(
+		`/users/${params.userID}`
+	);
 
 	const { setBackground } = useContext(BackgroundContext);
 	useEffect(() => {
@@ -58,18 +50,27 @@ export default function UserRoutes() {
 		};
 	}, [reqUser]);
 
-	if (!reqUser) {
+	if (isLoading || !reqUser) {
 		return null;
+	}
+
+	if (error && error.statusCode === 404) {
+		return <ErrorPage statusCode={404} customMessage="This user does not exist!" />;
+	}
+
+	if (error) {
+		return <ErrorPage statusCode={error.statusCode} customMessage={error.description} />;
 	}
 
 	return (
 		<Switch>
-			<Route path="/dashboard/users/:userID/games/:game">
-				<UserGameRoutes reqUser={reqUser} />
-			</Route>
-
 			<Route path="/dashboard/users/:userID">
-				<UserProfileRoutes reqUser={reqUser} />
+				<Switch>
+					<Route path="/dashboard/users/:userID/games/:game">
+						<UserGameRoutes reqUser={reqUser} />
+					</Route>
+					<UserProfileRoutes reqUser={reqUser} />
+				</Switch>
 			</Route>
 		</Switch>
 	);
@@ -89,17 +90,17 @@ function UserProfileRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 			>
 				<UserHeaderBody reqUser={reqUser} />
 			</UserHeaderContainer>
-			<Switch>
-				<Route exact path="/dashboard/users/:userID">
-					<UserPage reqUser={reqUser} />
-				</Route>
-				<Route exact path="/dashboard/users/:userID/games">
-					<UserGamesPage reqUser={reqUser} />
-				</Route>
-				<Route exact path="/dashboard/users/:userID/settings">
-					<RequireAuthAsUserParam>Settings Page</RequireAuthAsUserParam>
-				</Route>
-			</Switch>
+			<Route exact path="/dashboard/users/:userID">
+				<UserPage reqUser={reqUser} />
+			</Route>
+			<Route exact path="/dashboard/users/:userID/games">
+				<UserGamesPage reqUser={reqUser} />
+			</Route>
+			<Route exact path="/dashboard/users/:userID/settings">
+				<RequireAuthAsUserParam>
+					<UserSettingsPage reqUser={reqUser} />
+				</RequireAuthAsUserParam>
+			</Route>
 		</>
 	);
 }
@@ -117,7 +118,9 @@ function UserGameRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 		<Switch>
 			<Route exact path="/dashboard/users/:userID/games/:game">
 				{gameConfig.validPlaytypes.length === 1 ? (
-					<Redirect to={`/dashboard/games/${game}/${gameConfig.validPlaytypes[0]}`} />
+					<Redirect
+						to={`/dashboard/users/${reqUser.username}/games/${game}/${gameConfig.validPlaytypes[0]}`}
+					/>
 				) : (
 					<PlaytypeSelect
 						subheaderCrumbs={["Users", reqUser.username, "Games", gameConfig.name]}
@@ -129,7 +132,9 @@ function UserGameRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 			</Route>
 
 			<Route path="/dashboard/users/:userID/games/:game/:playtype">
-				<UserGamePlaytypeRoutes reqUser={reqUser} game={game} />
+				<UGPTSettingsContextProvider>
+					<UserGamePlaytypeRoutes reqUser={reqUser} game={game} />
+				</UGPTSettingsContextProvider>
 			</Route>
 		</Switch>
 	);
@@ -147,10 +152,10 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 		);
 	}
 
-	const { isLoading, error, data } = useQuery<
-		[UGPTStatsReturn, UGPTSettings],
-		APIFetchV1Return<UserGameStats>
-	>(
+	const { user } = useContext(UserContext);
+	const { setSettings } = useContext(UGPTSettingsContext);
+
+	const { isLoading, error, data } = useQuery<UGPTStatsReturn, APIFetchV1Return<UserGameStats>>(
 		[reqUser.id, game, playtype],
 		async () => {
 			const res = await APIFetchV1<UGPTStatsReturn>(
@@ -162,16 +167,20 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 				throw res;
 			}
 
-			const settingsRes = await APIFetchV1<UGPTSettings>(
-				`/users/${reqUser.id}/games/${game}/${playtype}/settings`
-			);
+			if (user) {
+				const settingsRes = await APIFetchV1<UGPTSettings>(
+					`/users/${user.id}/games/${game}/${playtype}/settings`
+				);
 
-			if (!settingsRes.success) {
-				console.error(settingsRes);
-				throw settingsRes;
+				if (!settingsRes.success) {
+					console.error(settingsRes);
+					throw settingsRes;
+				}
+
+				setSettings(settingsRes.body);
 			}
 
-			return [res.body, settingsRes.body];
+			return res.body;
 		},
 		{ retry: 0 }
 	);
@@ -188,7 +197,7 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 		return <Loading />;
 	}
 
-	const [stats, settings] = data;
+	const stats = data;
 
 	return (
 		<>
@@ -204,12 +213,7 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 			</UserHeaderContainer>
 			<Switch>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype">
-					<OverviewPage
-						reqUser={reqUser}
-						game={game}
-						playtype={playtype}
-						settings={settings}
-					/>
+					<OverviewPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/scores">
 					<ScoresPage reqUser={reqUser} game={game} playtype={playtype} />
@@ -225,6 +229,9 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 				</Route>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/leaderboard">
 					<LeaderboardsPage reqUser={reqUser} game={game} playtype={playtype} />
+				</Route>
+				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/settings">
+					<UGPTSettingsPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
 				<Route path="*">
 					<ErrorPage statusCode={404} />

@@ -2,6 +2,7 @@ import Card from "components/layout/page/Card";
 import CardHeader from "components/layout/page/CardHeader";
 import CardNavButton from "components/layout/page/CardNavButton";
 import AsyncLoader from "components/util/AsyncLoader";
+import ReferToUser from "components/util/ReferToUser";
 import { UserContext } from "context/UserContext";
 import { UserGameStatsContext } from "context/UserGameStatsContext";
 import { nanoid } from "nanoid";
@@ -153,8 +154,7 @@ export default function StatShowcase({
 						{data.reqUserData.length === 0 ? (
 							<div className="row">
 								<div className="col-12 text-center">
-									{userIsReqUser ? "You have" : "This user has"} no stats
-									configured.
+									<ReferToUser reqUser={reqUser} /> no stats configured.
 								</div>
 								{userIsReqUser && (
 									<div className="col-12 mt-2 text-center">

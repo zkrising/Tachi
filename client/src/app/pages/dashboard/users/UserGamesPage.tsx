@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo, useEffect } from "react";
+import React from "react";
 import { FormatGame, PublicUserDocument, UserGameStats } from "tachi-common";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
@@ -14,13 +14,18 @@ import UGPTRatingsTable from "components/user/UGPTStatsOverview";
 import LinkButton from "components/util/LinkButton";
 import { UGSWithRankingData } from "types/api-returns";
 import RankingData from "components/user/UGPTRankingData";
+import ReferToUser from "components/util/ReferToUser";
 
 interface Props {
 	reqUser: PublicUserDocument;
 }
 
 export default function UserGamesPage({ reqUser }: Props) {
-	useSetSubheader(["Users", reqUser.username], [reqUser], `${reqUser.username}'s Profile`);
+	useSetSubheader(
+		["Users", reqUser.username, "Games"],
+		[reqUser],
+		`${reqUser.username}'s Game Profiles`
+	);
 
 	return (
 		<div className="row">
@@ -38,29 +43,37 @@ export default function UserGamesPage({ reqUser }: Props) {
 				}}
 			>
 				{ugs =>
-					ugs.map((e, i) => {
-						// uses modulo to determine whether we're on the
-						// last row or not
-						// to do sizing like [12] or [6][6] instead of [3][3][3]
-						let mdSize = "6";
-						let lgSize = "4";
-						if (ugs.length - i <= ugs.length % 3) {
-							lgSize = (12 / (ugs.length % 3)).toString();
-						}
+					ugs.length ? (
+						ugs.map((e, i) => {
+							// uses modulo to determine whether we're on the
+							// last row or not
+							// to do sizing like [12] or [6][6] instead of [3][3][3]
+							let mdSize = "6";
+							let lgSize = "4";
+							if (ugs.length - i <= ugs.length % 3) {
+								lgSize = (12 / (ugs.length % 3)).toString();
+							}
 
-						if (ugs.length - i <= ugs.length % 2) {
-							mdSize = (12 / (ugs.length % 2)).toString();
-						}
+							if (ugs.length - i <= ugs.length % 2) {
+								mdSize = (12 / (ugs.length % 2)).toString();
+							}
 
-						return (
-							<div
-								className={`col-12 col-md-${mdSize} col-lg-${lgSize}`}
-								key={`${e.game}:${e.playtype}`}
-							>
-								<GameStatContainer ugs={e} reqUser={reqUser} />
-							</div>
-						);
-					})
+							return (
+								<div
+									className={`col-12 col-md-${mdSize} col-lg-${lgSize}`}
+									key={`${e.game}:${e.playtype}`}
+								>
+									<GameStatContainer ugs={e} reqUser={reqUser} />
+								</div>
+							);
+						})
+					) : (
+						<div className="col-12 text-center">
+							<Muted>
+								<ReferToUser reqUser={reqUser} /> not played anything.
+							</Muted>
+						</div>
+					)
 				}
 			</AsyncLoader>
 		</div>

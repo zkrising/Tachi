@@ -47,5 +47,5 @@ async function EvaluateStats(details: ShowcaseStatDetails, userID: integer, game
 		GetRelatedStatDocuments(details, game),
 	]);
 
-	return { stat: details, value: result, related };
+	return { stat: details, result, related };
 }

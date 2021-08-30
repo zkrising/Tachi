@@ -54,7 +54,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 				stat: {
 					mode: "folder",
 				},
-				value: {
+				result: {
 					value: 1,
 					outOf: 1,
 				},
@@ -63,7 +63,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 				stat: {
 					mode: "chart",
 				},
-				value: {
+				result: {
 					value: 1479,
 				},
 			},
@@ -105,7 +105,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 				stat: {
 					mode: "folder",
 				},
-				value: {
+				result: {
 					value: 0,
 					outOf: 1,
 				},

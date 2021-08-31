@@ -304,9 +304,6 @@ export async function CalculateKTRating(
 	logger: KtLogger,
 	defaultTierlistID?: string
 ) {
-	// If this game doesn't have a specific rating function declared, fall back to the default "generic" rating function.
-	// This is just a function that is guaranteed to work for all input - and therefore not result in lower-skilled users
-	// always seeing 0.
 	const parameters = ratingParameters[game];
 
 	let levelNum = chart.levelNum;

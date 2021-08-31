@@ -289,7 +289,7 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 
 	return res.status(200).json({
 		success: true,
-		description: `Overwrote preferences.stats.`,
+		description: `Updated stat showcase.`,
 		body: newSettings,
 	});
 });

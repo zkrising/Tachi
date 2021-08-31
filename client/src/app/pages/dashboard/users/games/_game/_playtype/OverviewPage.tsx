@@ -30,7 +30,7 @@ import { GetPBs, CreateChartMap, CreateSongMap } from "util/data";
 import { NumericSOV } from "util/sorts";
 import { ScoreDataset } from "types/tables";
 import ScoreTable from "components/tables/scores/ScoreTable";
-import StatShowcase from "components/user/UGPTStatShowcase";
+import UGPTStatShowcase from "components/user/UGPTStatShowcase";
 
 export default function OverviewPage({
 	reqUser,
@@ -46,7 +46,7 @@ export default function OverviewPage({
 
 	return (
 		<React.Fragment key={`${game}:${playtype}`}>
-			<StatShowcase reqUser={reqUser} game={game} playtype={playtype} />
+			<UGPTStatShowcase reqUser={reqUser} game={game} playtype={playtype} />
 			<RankingInfo reqUser={reqUser} game={game} playtype={playtype} />
 			<LastSession reqUser={reqUser} game={game} playtype={playtype} />
 		</React.Fragment>

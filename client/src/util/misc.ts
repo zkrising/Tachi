@@ -66,3 +66,10 @@ export function FormatMillions(v: number) {
 export function DelayedPageReload(delay = 300) {
 	setTimeout(() => window.location.reload(), delay);
 }
+
+export const FetchJSONBody = (json: unknown) => ({
+	headers: {
+		"Content-Type": "application/json",
+	},
+	body: JSON.stringify(json),
+});

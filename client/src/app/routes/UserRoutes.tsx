@@ -205,6 +205,7 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 				header={`${reqUser.username}'s ${FormatGame(game, playtype)} Profile`}
 				footer={
 					<UGPTBottomNav
+						isRequestedUser={reqUser.id === user?.id}
 						baseUrl={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}`}
 					/>
 				}

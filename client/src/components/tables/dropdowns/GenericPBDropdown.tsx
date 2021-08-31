@@ -11,14 +11,13 @@ import {
 	IDStrings,
 } from "tachi-common";
 import { GamePT, SetState } from "types/react";
-import { useQuery } from "react-query";
-import { APIFetchV1 } from "util/api";
 import { UGPTChartPBComposition } from "types/api-returns";
 import Loading from "components/util/Loading";
-import { UserContext } from "context/UserContext";
 import GenericScoreContentDropdown from "./components/GenericScoreContentDropdown";
 import PlayHistory from "./components/PlayHistory";
 import useApiQuery from "components/util/query/useApiQuery";
+import { UserSettingsContext } from "context/UserSettingsContext";
+import HasDevModeOn from "components/util/HasDevModeOn";
 
 export interface ScoreState {
 	highlight: boolean;
@@ -51,7 +50,8 @@ export default function GenericPBDropdown<I extends IDStrings = IDStrings>({
 		pbData: UGPTChartPBComposition<I>;
 	}) => JSX.Element;
 } & GamePT) {
-	const { user } = useContext(UserContext);
+	const { settings } = useContext(UserSettingsContext);
+
 	const [view, setView] = useState(defaultView);
 
 	const { isLoading, error, data } = useApiQuery<UGPTChartPBComposition<I>>(
@@ -152,12 +152,12 @@ export default function GenericPBDropdown<I extends IDStrings = IDStrings>({
 						<Icon type="history" />
 						Play History{histData && ` (${histData.length})`}
 					</SelectButton>
-					{user?.authLevel === "admin" && (
+					<HasDevModeOn>
 						<SelectButton setValue={setView} value={view} id="debug">
 							<Icon type="bug" />
 							Debug Info
 						</SelectButton>
-					)}
+					</HasDevModeOn>
 				</>
 			}
 		>

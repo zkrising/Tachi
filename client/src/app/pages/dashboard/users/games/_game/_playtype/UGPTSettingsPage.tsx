@@ -1,5 +1,7 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
+import UGPTStatContainer from "components/user/UGPTStatContainer";
+import UGPTStatCreator from "components/user/UGPTStatCreator";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import SelectButton from "components/util/SelectButton";
@@ -13,11 +15,11 @@ import {
 	GetGameConfig,
 	GetGamePTConfig,
 	PublicUserDocument,
+	ShowcaseStatDetails,
 	UGPTSettings,
 } from "tachi-common";
-import { GamePT } from "types/react";
+import { GamePT, SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
-import { DelayedPageReload } from "util/misc";
 
 type Props = { reqUser: PublicUserDocument } & GamePT;
 
@@ -158,5 +160,80 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 }
 
 function ShowcaseForm({ reqUser, game, playtype }: Props) {
-	return <></>;
+	const { settings, setSettings } = useContext(UGPTSettingsContext);
+
+	const [stats, setStats] = useState(settings!.preferences.stats);
+	const [show, setShow] = useState(false);
+
+	return (
+		<div className="row">
+			{stats.length < 6 && (
+				<div className="col-12">
+					<div className="row justify-content-center align-items-center mt-4">
+						<Button variant="info" onClick={() => setShow(true)}>
+							Add Statistic
+						</Button>
+					</div>
+				</div>
+			)}
+			<RenderCurrentStats {...{ reqUser, game, playtype, stats, setStats }} />
+			<div className="col-12 d-flex justify-content-center mt-4">
+				<Button
+					variant="success"
+					onClick={async () => {
+						await APIFetchV1(
+							`/users/${reqUser.id}/games/${game}/${playtype}/showcase`,
+							{
+								method: "PUT",
+								body: JSON.stringify(stats),
+								headers: { "Content-Type": "application/json" },
+							},
+							true,
+							true
+						);
+					}}
+				>
+					Save Changes
+				</Button>
+			</div>
+			<UGPTStatCreator
+				game={game}
+				playtype={playtype}
+				show={show}
+				setShow={setShow}
+				reqUser={reqUser}
+				onCreate={stat => setStats([...stats, stat])}
+			/>
+		</div>
+	);
+}
+
+function RenderCurrentStats({
+	stats,
+	setStats,
+	reqUser,
+	game,
+	playtype,
+}: {
+	stats: ShowcaseStatDetails[];
+	setStats: SetState<ShowcaseStatDetails[]>;
+} & Props) {
+	function RemoveStatAtIndex(index: number) {
+		setStats(stats.filter((e, i) => i !== index));
+	}
+
+	return (
+		<>
+			{stats.map((e, i) => (
+				<div key={i} className="col-12 col-lg-6">
+					<UGPTStatContainer stat={e} reqUser={reqUser} game={game} playtype={playtype} />
+					<div className="row justify-content-center mt-4">
+						<Button variant="danger" onClick={() => RemoveStatAtIndex(i)}>
+							Delete
+						</Button>
+					</div>
+				</div>
+			))}
+		</>
+	);
 }

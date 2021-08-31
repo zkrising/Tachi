@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
-// import { DropdownTopbarItemToggler } from "../../../_metronic/_partials/dropdowns";
 import Divider from "components/util/Divider";
 import { PublicUserDocument } from "tachi-common";
 import { Button } from "react-bootstrap";
@@ -9,7 +8,6 @@ import { APIFetchV1, ToAPIURL } from "util/api";
 import toast from "react-hot-toast";
 import { UserContext } from "context/UserContext";
 import DropdownToggleOverride from "components/util/DropdownToggleOverride";
-import Icon from "components/util/Icon";
 
 export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 	const { setUser } = useContext(UserContext);
@@ -23,7 +21,7 @@ export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 					}
 				>
 					<span className="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">
-						Hi,
+						Welcome Back,
 					</span>{" "}
 					<span className="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">
 						{user.username}

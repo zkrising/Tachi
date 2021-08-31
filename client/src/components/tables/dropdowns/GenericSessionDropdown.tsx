@@ -33,6 +33,7 @@ import Divider from "components/util/Divider";
 import ScoreCell from "../cells/ScoreCell";
 import deepmerge from "deepmerge";
 import IIDXLampCell from "../cells/IIDXLampCell";
+import HasDevModeOn from "components/util/HasDevModeOn";
 
 export default function GenericSessionDropdown({ data }: { data: SessionDataset[0] }) {
 	const { isLoading, error, data: sessionData } = useQuery(
@@ -82,11 +83,12 @@ export default function GenericSessionDropdown({ data }: { data: SessionDataset[
 						<Icon type="star" />
 						Highlights
 					</SelectButton>
-
-					<SelectButton setValue={setView} value={view} id="debug">
-						<Icon type="bug" />
-						Debug Info
-					</SelectButton>
+					<HasDevModeOn>
+						<SelectButton setValue={setView} value={view} id="debug">
+							<Icon type="bug" />
+							Debug Info
+						</SelectButton>
+					</HasDevModeOn>
 				</>
 			}
 		>

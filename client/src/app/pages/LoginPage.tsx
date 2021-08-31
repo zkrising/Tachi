@@ -6,10 +6,11 @@ import { APIFetchV1 } from "util/api";
 import { HumaniseError } from "util/humanise-error";
 import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "context/UserContext";
-import { PublicUserDocument } from "tachi-common";
+import { PublicUserDocument, UserSettings } from "tachi-common";
 import toast from "react-hot-toast";
 import { TachiConfig } from "lib/config";
 import useSetSubheader from "components/layout/header/useSetSubheader";
+import { UserSettingsContext } from "context/UserSettingsContext";
 
 export default function LoginPage() {
 	useSetSubheader("Login");

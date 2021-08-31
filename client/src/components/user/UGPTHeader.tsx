@@ -84,18 +84,41 @@ export function UGPTHeaderBody({
 	);
 }
 
-export function UGPTBottomNav({ baseUrl }: { baseUrl: string }) {
+export function UGPTBottomNav({
+	baseUrl,
+	isRequestedUser,
+}: {
+	baseUrl: string;
+	isRequestedUser: boolean;
+}) {
+	const navItems = [
+		<NavItem key="overview" to={`${baseUrl}/`}>
+			Overview
+		</NavItem>,
+		<NavItem key="scores" to={`${baseUrl}/scores`}>
+			Scores
+		</NavItem>,
+		<NavItem key="folders" to={`${baseUrl}/folders`}>
+			Folders
+		</NavItem>,
+		<NavItem key="goals" to={`${baseUrl}/achievables`}>
+			Goals &amp; Milestones
+		</NavItem>,
+		<NavItem key="sessions" to={`${baseUrl}/sessions`}>
+			Sessions
+		</NavItem>,
+		<NavItem key="leaderboard" to={`${baseUrl}/leaderboard`}>
+			Leaderboard
+		</NavItem>,
+	];
+
+	if (isRequestedUser) {
+		navItems.push(<NavItem to={`${baseUrl}/settings`}>Settings</NavItem>);
+	}
+
 	return (
 		<div className="row align-items-center mb-0">
-			<Navbar>
-				<NavItem to={`${baseUrl}/`}>Overview</NavItem>
-				<NavItem to={`${baseUrl}/scores`}>Scores</NavItem>
-				<NavItem to={`${baseUrl}/folders`}>Folders</NavItem>
-				<NavItem to={`${baseUrl}/achievables`}>Goals &amp; Milestones</NavItem>
-				<NavItem to={`${baseUrl}/sessions`}>Sessions</NavItem>
-				<NavItem to={`${baseUrl}/leaderboard`}>Leaderboard</NavItem>
-				<NavItem to={`${baseUrl}/settings`}>Settings</NavItem>
-			</Navbar>
+			<Navbar>{navItems}</Navbar>
 		</div>
 	);
 }

@@ -21,6 +21,7 @@ import PlayHistory from "./components/PlayHistory";
 import useApiQuery from "components/util/query/useApiQuery";
 import HasDevModeOn from "components/util/HasDevModeOn";
 import PBCompare from "./components/PBCompare";
+import { UserSettingsContext } from "context/UserSettingsContext";
 
 export interface ScoreState {
 	highlight: boolean;
@@ -53,7 +54,6 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 		pbData: UGPTChartPBComposition;
 	}) => JSX.Element;
 } & GamePT) {
-	const { user } = useContext(UserContext);
 	const [view, setView] = useState(defaultView);
 
 	const { isLoading, error, data } = useApiQuery<UGPTChartPBComposition<I>>(

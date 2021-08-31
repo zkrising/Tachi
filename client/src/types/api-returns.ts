@@ -13,6 +13,7 @@ import {
 	ChartDocument,
 	SongDocument,
 	PBScoreDocument,
+	ShowcaseStatDetails,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -45,7 +46,7 @@ export interface GPTLeaderboard {
 export type UGPTPreferenceStatsReturn =
 	| {
 			stat: ShowcaseStatChart;
-			value: { value: number };
+			result: { value: number };
 			related: {
 				song: SongDocument;
 				chart: ChartDocument;
@@ -53,7 +54,7 @@ export type UGPTPreferenceStatsReturn =
 	  }
 	| {
 			stat: ShowcaseStatFolder;
-			value: { value: integer; outOf: integer };
+			result: { value: integer; outOf: integer };
 			related: { folders: FolderDocument[] };
 	  };
 
@@ -84,3 +85,8 @@ export interface SpecificSessionReturns<I extends IDStrings = IDStrings> {
 export type UGSWithRankingData<I extends IDStrings = IDStrings> = UserGameStats<I> & {
 	__rankingData: { outOf: number; ranking: number };
 };
+
+export interface SongChartsSearch<I extends IDStrings = IDStrings> {
+	songs: SongDocument<IDStringToGame[I]>[];
+	charts: ChartDocument<I>[];
+}

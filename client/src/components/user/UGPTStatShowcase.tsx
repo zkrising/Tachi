@@ -2,12 +2,14 @@ import Card from "components/layout/page/Card";
 import CardHeader from "components/layout/page/CardHeader";
 import CardNavButton from "components/layout/page/CardNavButton";
 import AsyncLoader from "components/util/AsyncLoader";
+import Divider from "components/util/Divider";
+import Icon from "components/util/Icon";
 import ReferToUser from "components/util/ReferToUser";
 import { UserContext } from "context/UserContext";
 import { UserGameStatsContext } from "context/UserGameStatsContext";
 import { nanoid } from "nanoid";
 import React, { useContext, useState } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
 	PublicUserDocument,
@@ -17,13 +19,17 @@ import {
 	ChartDocument,
 	FormatChart,
 	FolderDocument,
+	ShowcaseStatDetails,
 } from "tachi-common";
 import { UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
 import { Playtype } from "types/tachi";
 import { APIFetchV1 } from "util/api";
+import { UppercaseFirst } from "util/misc";
+import UGPTStatContainer from "./UGPTStatContainer";
+import UGPTStatCreator from "./UGPTStatCreator";
 
-export default function StatShowcase({
+export default function UGPTStatShowcase({
 	reqUser,
 	game,
 	playtype,
@@ -40,158 +46,213 @@ export default function StatShowcase({
 
 	const shouldFetchThisUserData = hasUserPlayedGame && !userIsReqUser;
 
+	const [customShow, setCustomShow] = useState(false);
+	const [customStat, setCustomStat] = useState<ShowcaseStatDetails | null>(null);
+
 	return (
-		<Card
-			className="card-dark"
-			header={
-				<CardHeader
-					rightContent={
-						userIsReqUser ? (
-							<CardNavButton
-								type="edit"
-								to={`/dashboard/users/${
-									user!.username
-								}/games/${game}/${playtype}/settings`}
-								hoverText="Modify your statistics showcase."
-							/>
-						) : null
-					}
-				>
-					<h3>
-						{projectingStats
-							? `${user!.username}'s Stat Showcase (Projected onto ${
-									reqUser.username
-							  })`
-							: `${reqUser.username}'s Stat Showcase`}
-					</h3>
-				</CardHeader>
-			}
-			footer={
-				<div className="d-flex w-100 justify-content-center">
-					<div className="btn-group">
-						{hasUserPlayedGame &&
-							!userIsReqUser &&
-							(projectingStats ? (
-								<OverlayTrigger
-									placement="top"
-									overlay={
-										<Tooltip id="quick-panel-tooltip">
-											Return to {reqUser.username}'s selected stats.
-										</Tooltip>
-									}
-								>
-									<div
-										className="btn btn-success"
-										onClick={() => setProjectingStats(false)}
+		<>
+			<Card
+				className="card-dark"
+				header={
+					<CardHeader
+						rightContent={
+							userIsReqUser ? (
+								<CardNavButton
+									type="edit"
+									to={`/dashboard/users/${
+										user!.username
+									}/games/${game}/${playtype}/settings`}
+									hoverText="Modify your statistics showcase."
+								/>
+							) : null
+						}
+					>
+						<h3>
+							{projectingStats
+								? `${user!.username}'s Stat Showcase (Projected onto ${
+										reqUser.username
+								  })`
+								: `${reqUser.username}'s Stat Showcase`}
+						</h3>
+					</CardHeader>
+				}
+				footer={
+					<div className="d-flex w-100 justify-content-center">
+						<div className="btn-group">
+							{hasUserPlayedGame &&
+								!userIsReqUser &&
+								(projectingStats ? (
+									<OverlayTrigger
+										placement="top"
+										overlay={
+											<Tooltip id="quick-panel-tooltip">
+												Return to {reqUser.username}'s selected stats.
+											</Tooltip>
+										}
 									>
-										<i className="fas fa-sync" style={{ paddingRight: 0 }} />
-									</div>
-								</OverlayTrigger>
-							) : (
-								<OverlayTrigger
-									placement="top"
-									overlay={
-										<Tooltip id={nanoid()}>
-											Change the displayed stats to the same ones you use!
-										</Tooltip>
-									}
-								>
-									<div
-										className="btn btn-outline-secondary"
-										onClick={() => setProjectingStats(true)}
+										<div
+											className="btn btn-success"
+											onClick={() => setProjectingStats(false)}
+										>
+											<i
+												className="fas fa-sync"
+												style={{ paddingRight: 0 }}
+											/>
+										</div>
+									</OverlayTrigger>
+								) : (
+									<OverlayTrigger
+										placement="top"
+										overlay={
+											<Tooltip id={nanoid()}>
+												Change the displayed stats to the same ones you use!
+											</Tooltip>
+										}
 									>
-										<i className="fas fa-sync" style={{ paddingRight: 0 }} />
-									</div>
-								</OverlayTrigger>
-							))}
-						<OverlayTrigger
-							placement="top"
-							overlay={
-								<Tooltip id="quick-panel-tooltip">
-									Evaluate a custom statistic.
-								</Tooltip>
-							}
-						>
-							<div className="btn btn-outline-secondary">
-								<i className="fas fa-file-signature" style={{ paddingRight: 0 }} />
-							</div>
-						</OverlayTrigger>
+										<div
+											className="btn btn-outline-secondary"
+											onClick={() => setProjectingStats(true)}
+										>
+											<i
+												className="fas fa-sync"
+												style={{ paddingRight: 0 }}
+											/>
+										</div>
+									</OverlayTrigger>
+								))}
+							<OverlayTrigger
+								placement="top"
+								overlay={
+									<Tooltip id="quick-panel-tooltip">
+										Evaluate a custom statistic.
+									</Tooltip>
+								}
+							>
+								<div
+									className="btn btn-outline-secondary"
+									onClick={() => setCustomShow(true)}
+								>
+									<i
+										className="fas fa-file-signature"
+										style={{ paddingRight: 0 }}
+									/>
+								</div>
+							</OverlayTrigger>
+						</div>
 					</div>
-				</div>
-			}
-		>
-			<AsyncLoader
-				promiseFn={async () => {
-					const res = await APIFetchV1<UGPTPreferenceStatsReturn[]>(
-						`/users/${reqUser.id}/games/${game}/${playtype}/showcase${
-							projectingStats ? `?projectUser=${user!.id}` : ""
-						}`
-					);
-
-					if (!res.success) {
-						throw new Error(res.description);
-					}
-
-					if (shouldFetchThisUserData) {
-						const res2 = await APIFetchV1<UGPTPreferenceStatsReturn[]>(
-							`/users/${user!.id}/games/${game}/${playtype}/showcase${
-								!projectingStats ? `?projectUser=${reqUser.id}` : ""
+				}
+			>
+				<AsyncLoader
+					promiseFn={async () => {
+						const res = await APIFetchV1<UGPTPreferenceStatsReturn[]>(
+							`/users/${reqUser.id}/games/${game}/${playtype}/showcase${
+								projectingStats ? `?projectUser=${user!.id}` : ""
 							}`
 						);
 
-						if (!res2.success) {
-							throw new Error(res2.description);
+						if (!res.success) {
+							throw new Error(res.description);
 						}
 
-						return { reqUserData: res.body, thisUserData: res2.body };
-					}
+						if (shouldFetchThisUserData) {
+							const res2 = await APIFetchV1<UGPTPreferenceStatsReturn[]>(
+								`/users/${user!.id}/games/${game}/${playtype}/showcase${
+									!projectingStats ? `?projectUser=${reqUser.id}` : ""
+								}`
+							);
 
-					return { reqUserData: res.body };
-				}}
-			>
-				{data => (
-					<div className="container">
-						{data.reqUserData.length === 0 ? (
-							<div className="row">
-								<div className="col-12 text-center">
-									<ReferToUser reqUser={reqUser} /> no stats configured.
-								</div>
-								{userIsReqUser && (
-									<div className="col-12 mt-2 text-center">
-										Why not{" "}
-										<Link
-											to={`/dashboard/users/${
-												user!.username
-											}/games/${game}/${playtype}/settings`}
-										>
-											Set Some?
-										</Link>
-									</div>
-								)}
-							</div>
-						) : (
-							<div className="row justify-content-center">
-								{data.reqUserData.map((e, i) => (
-									<div
-										key={nanoid()}
-										className="col-12 col-md-4 d-flex align-items-stretch mt-8"
-									>
-										<StatDisplay
-											statData={e}
-											compareData={
-												data.thisUserData ? data.thisUserData[i] : undefined
+							if (!res2.success) {
+								throw new Error(res2.description);
+							}
+
+							return { reqUserData: res.body, thisUserData: res2.body };
+						}
+
+						return { reqUserData: res.body };
+					}}
+				>
+					{data => (
+						<div className="container">
+							{customStat ? (
+								<div className="row justify-content-center">
+									<div className="col-12 col-lg-4 lg-offset-8">
+										<Alert variant="info" className="text-center">
+											CUSTOM STAT{" "}
+											<span className="float-right">
+												<Icon
+													type="times"
+													onClick={() => setCustomStat(null)}
+												/>
+											</span>
+										</Alert>
+										<UGPTStatContainer
+											shouldFetchCompareID={
+												(shouldFetchThisUserData && user!.id) || undefined
 											}
+											stat={customStat}
+											reqUser={reqUser}
 											game={game}
 											playtype={playtype}
 										/>
 									</div>
-								))}
-							</div>
-						)}
-					</div>
-				)}
-			</AsyncLoader>
-		</Card>
+
+									<Divider className="mt-4" />
+								</div>
+							) : (
+								<></>
+							)}
+							{data.reqUserData.length === 0 ? (
+								<div className="row">
+									<div className="col-12 text-center">
+										<ReferToUser reqUser={reqUser} /> no stats configured.
+									</div>
+									{userIsReqUser && (
+										<div className="col-12 mt-2 text-center">
+											Why not{" "}
+											<Link
+												to={`/dashboard/users/${
+													user!.username
+												}/games/${game}/${playtype}/settings`}
+											>
+												Set Some?
+											</Link>
+										</div>
+									)}
+								</div>
+							) : (
+								<div className="row justify-content-center">
+									{data.reqUserData.map((e, i) => (
+										<div
+											key={nanoid()}
+											className="col-12 col-md-4 d-flex align-items-stretch mt-8"
+										>
+											<StatDisplay
+												statData={e}
+												compareData={
+													data.thisUserData
+														? data.thisUserData[i]
+														: undefined
+												}
+												game={game}
+												playtype={playtype}
+											/>
+										</div>
+									))}
+								</div>
+							)}
+						</div>
+					)}
+				</AsyncLoader>
+			</Card>
+			<UGPTStatCreator
+				show={customShow}
+				setShow={setCustomShow}
+				game={game}
+				playtype={playtype}
+				onCreate={stat => setCustomStat(stat)}
+				reqUser={reqUser}
+			/>
+		</>
 	);
 }
 
@@ -238,7 +299,7 @@ function StatDelta({
 	);
 }
 
-function FormatValue(
+export function FormatValue(
 	game: Game,
 	playtype: Playtype,
 	mode: "folder" | "chart",
@@ -262,13 +323,17 @@ function FormatValue(
 	return value;
 }
 
-function FormatPropertyGTE(
+export function FormatPropertyGTE(
 	game: Game,
 	playtype: Playtype,
 	prop: "grade" | "lamp" | "score" | "percent" | "playcount",
 	gte: number
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
+
+	if (gte === null) {
+		return "NO DATA";
+	}
 
 	if (prop === "grade") {
 		return gptConfig.grades[gte];
@@ -282,13 +347,29 @@ function FormatPropertyGTE(
 	// }
 }
 
-function StatDisplay({
+export function GetStatName(
+	stat: ShowcaseStatDetails,
+	game: Game,
+	related: UGPTPreferenceStatsReturn["related"]
+) {
+	if (stat.mode === "folder") {
+		return (related as { folders: FolderDocument[] }).folders.map(e => e.title).join(",");
+	} else if (stat.mode === "chart") {
+		const r = related as { song: SongDocument; chart: ChartDocument };
+		return FormatChart(game, r.song, r.chart);
+	}
+
+	// @ts-expect-error yeah it's an error state lol
+	throw new Error(`Unknown stat.mode ${stat.mode}`);
+}
+
+export function StatDisplay({
 	statData,
 	compareData,
 	game,
 	playtype,
 }: { statData: UGPTPreferenceStatsReturn; compareData?: UGPTPreferenceStatsReturn } & GamePT) {
-	const { stat, value, related } = statData;
+	const { stat, result, related } = statData;
 
 	if (stat.mode === "chart") {
 		const { song, chart } = related as { song: SongDocument; chart: ChartDocument };
@@ -301,16 +382,12 @@ function StatDisplay({
 				<>
 					<h4>{FormatChart(game, song, chart)}</h4>
 					<h4>
-						{stat.property[0].toUpperCase() + stat.property.substring(1)}:{" "}
-						{value.value
-							? stat.property === "percent"
-								? `${value.value.toFixed(2)}%`
-								: value.value
-							: "No Data."}
+						{UppercaseFirst(stat.property)}:{" "}
+						{FormatPropertyGTE(game, playtype, stat.property, result.value)}
 					</h4>
 					<StatDelta
-						v1={statData.value.value}
-						v2={compareData?.value.value}
+						v1={statData.result.value}
+						v2={compareData?.result.value}
 						mode={stat.mode}
 						property={stat.property}
 						game={game}
@@ -326,7 +403,7 @@ function StatDisplay({
 		if (folders.length === 1) {
 			headerStr = folders[0].title;
 		} else {
-			headerStr = folders.map(e => e.title).join(" and ");
+			headerStr = folders.map(e => e.title).join(", ");
 		}
 
 		return (
@@ -337,18 +414,18 @@ function StatDisplay({
 				<>
 					<h4>{headerStr}</h4>
 					<h5>
-						{stat.property[0].toUpperCase() + stat.property.substring(1)} &gt;={" "}
+						{UppercaseFirst(stat.property)} &gt;={" "}
 						{FormatPropertyGTE(game, playtype, stat.property, stat.gte)}
 					</h5>
 					<h4>
-						{value.value}
+						{result.value}
 						{/* @ts-expect-error temp */}
-						<small className="text-muted">/{value.outOf}</small>
+						<small className="text-muted">/{result.outOf}</small>
 					</h4>
 
 					<StatDelta
-						v1={statData.value.value}
-						v2={compareData?.value.value}
+						v1={statData.result.value}
+						v2={compareData?.result.value}
 						mode={stat.mode}
 						property={stat.property}
 						game={game}

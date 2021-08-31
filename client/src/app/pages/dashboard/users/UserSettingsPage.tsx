@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { PublicUserDocument } from "tachi-common";
+import React, { useContext, useState } from "react";
+import { PublicUserDocument, UserSettings } from "tachi-common";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import SelectButton from "components/util/SelectButton";
@@ -9,8 +9,9 @@ import { Alert, Button, Form } from "react-bootstrap";
 import { APIFetchV1, ToAPIURL } from "util/api";
 import ProfilePicture from "components/user/ProfilePicture";
 import { useFormik } from "formik";
-import { DelayedPageReload, UppercaseFirst } from "util/misc";
+import { DelayedPageReload, FetchJSONBody, UppercaseFirst } from "util/misc";
 import { TachiConfig } from "lib/config";
+import { UserSettingsContext, UserSettingsContextProvider } from "context/UserSettingsContext";
 
 interface Props {
 	reqUser: PublicUserDocument;
@@ -23,7 +24,7 @@ export default function UserSettingsPage({ reqUser }: Props) {
 		`${reqUser.username}'s Settings`
 	);
 
-	const [page, setPage] = useState<"image" | "socialMedia">("image");
+	const [page, setPage] = useState<"image" | "socialMedia" | "preferences">("image");
 
 	return (
 		<Card header="Settings" className="col-12 offset-lg-2 col-lg-8">
@@ -38,18 +39,76 @@ export default function UserSettingsPage({ reqUser }: Props) {
 							<Icon type="twitter" brand />
 							Social Media
 						</SelectButton>
+						<SelectButton value={page} setValue={setPage} id="preferences">
+							<Icon type="cogs" />
+							UI Preferences
+						</SelectButton>
 					</div>
 				</div>
 				<div className="col-12">
 					<Divider className="mt-4 mb-4" />
 					{page === "image" ? (
 						<ImageForm reqUser={reqUser} />
-					) : (
+					) : page === "socialMedia" ? (
 						<SocialMediaForm reqUser={reqUser} />
+					) : (
+						<PreferencesForm reqUser={reqUser} />
 					)}
 				</div>
 			</div>
 		</Card>
+	);
+}
+
+function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
+	const { settings, setSettings } = useContext(UserSettingsContext);
+
+	const formik = useFormik({
+		initialValues: {
+			developerMode: settings?.preferences.developerMode ?? false,
+			invisible: settings?.preferences.invisible ?? false,
+		},
+		onSubmit: async values => {
+			const res = await APIFetchV1<UserSettings>(
+				`/users/${reqUser.id}/settings`,
+				{
+					method: "PATCH",
+					...FetchJSONBody(values),
+				},
+				true,
+				true
+			);
+
+			if (res.success) {
+				setSettings(res.body);
+			}
+		},
+	});
+
+	return (
+		<Form onSubmit={formik.handleSubmit}>
+			<Form.Group>
+				<Form.Check
+					type="checkbox"
+					id="developerMode"
+					checked={formik.values.developerMode}
+					onChange={formik.handleChange}
+					label="Developer Mode"
+				/>
+				<Form.Text>Enable debug information for easier development.</Form.Text>
+			</Form.Group>
+			<Form.Group>
+				<Form.Check
+					type="checkbox"
+					id="invisible"
+					checked={formik.values.invisible}
+					onChange={formik.handleChange}
+					label="Invisible Mode"
+				/>
+				<Form.Text>Hide your last seen status.</Form.Text>
+			</Form.Group>
+			<Button type="submit">Update Settings</Button>
+		</Form>
 	);
 }
 
@@ -97,8 +156,8 @@ function ImageForm({ reqUser }: { reqUser: PublicUserDocument }) {
 					<img
 						className="rounded"
 						style={{
-							width: "576px",
-							height: "324px",
+							width: "57.6vw",
+							height: "32.4vh",
 							boxShadow: "0px 0px 10px 0px #000000",
 						}}
 						src={

@@ -121,7 +121,8 @@ export type Databases =
 	| "import-locks"
 	| "tables"
 	| "game-stats-snapshots"
-	| "arc-saved-profiles";
+	| "arc-saved-profiles"
+	| "user-settings";
 
 export type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
 

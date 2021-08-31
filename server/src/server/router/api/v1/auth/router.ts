@@ -6,9 +6,12 @@ import {
 	ReinstateInvite,
 	ValidatePassword,
 	ValidateCaptcha,
+	MountAuthCookie,
+	InsertDefaultUserSettings,
 } from "./auth";
 import {
 	FormatUserDoc,
+	GetSettingsForUser,
 	GetUserCaseInsensitive,
 	GetUserWithEmail,
 	GetUserWithID,
@@ -44,8 +47,8 @@ router.post(
 		}
 	),
 	async (req, res) => {
-		if (req.session.tachi?.userID) {
-			logger.info(`Dual log-in attempted from ${req.session.tachi.userID}`);
+		if (req.session.tachi?.user.id) {
+			logger.info(`Dual log-in attempted from ${req.session.tachi.user.id}`);
 			return res.status(409).json({
 				success: false,
 				description: `You are already logged in as someone.`,
@@ -95,11 +98,24 @@ router.post(
 			});
 		}
 
-		req.session.tachi = {
-			userID: requestedUser.id,
-		};
+		const user = await GetUserWithID(requestedUser.id);
 
-		req.session.cookie.maxAge = 3.154e10; // 1 year
+		if (!user) {
+			logger.severe(`User logged in as someone who does not exist?`, { requestedUser });
+			return res.status(500).json({
+				success: false,
+				description: `An internal server error has occured.`,
+			});
+		}
+
+		let settings = await GetSettingsForUser(requestedUser.id);
+
+		if (!settings) {
+			logger.warn(`User ${FormatUserDoc(user)} has no settings. Inserting default settings.`);
+			settings = await InsertDefaultUserSettings(user.id);
+		}
+
+		MountAuthCookie(req, user, settings);
 
 		logger.verbose(`${FormatUserDoc(requestedUser)} Logged in.`);
 
@@ -207,7 +223,7 @@ router.post(
 
 			// if we get to this point, We're good to create the user.
 
-			const newUser = await AddNewUser(
+			const { newUser, newSettings } = await AddNewUser(
 				req.body.username,
 				req.body.password,
 				req.body.email,
@@ -218,16 +234,10 @@ router.post(
 				throw new Error("AddNewUser failed to create a user.");
 			}
 
-			// also set this as a cookie.
-			req.session.tachi = {
-				userID: newUser.id,
-			};
-
-			req.session.cookie.maxAge = 3.154e10;
-			req.session.cookie.secure = true;
-
 			// re-fetch the user like this so we guaranteeably omit the private fields.
 			const user = await GetUserWithID(newUser.id);
+
+			MountAuthCookie(req, user!, newSettings);
 
 			return res.status(200).json({
 				success: true,
@@ -256,7 +266,7 @@ router.post(
  * @name POST /api/v1/auth/logout
  */
 router.post("/logout", (req, res) => {
-	if (!req.session?.tachi?.userID) {
+	if (!req.session?.tachi?.user.id) {
 		return res.status(409).json({
 			success: false,
 			description: `You are not logged in.`,

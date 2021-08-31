@@ -1,6 +1,5 @@
 import bcrypt from "bcryptjs";
-import { integer, PrivateUserDocument, PublicUserDocument } from "tachi-common";
-import { InsertResult } from "monk";
+import { integer, PrivateUserDocument, PublicUserDocument, UserSettings } from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { FormatUserDoc } from "utils/user";
@@ -71,12 +70,17 @@ export async function AddNewInvite(user: PublicUserDocument) {
 	return result;
 }
 
+const DEFAULT_USER_SETTINGS: UserSettings["preferences"] = {
+	developerMode: false,
+	invisible: false,
+};
+
 export async function AddNewUser(
 	username: string,
 	password: string,
 	email: string,
 	userID: integer
-): Promise<InsertResult<PrivateUserDocument>> {
+) {
 	const hashedPassword = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
 
 	logger.verbose(`Hashed password for ${username}.`);
@@ -99,7 +103,21 @@ export async function AddNewUser(
 		badges: [],
 	};
 
-	return db.users.insert(userDoc);
+	const res = await db.users.insert(userDoc);
+
+	const settingsRes = await InsertDefaultUserSettings(userID);
+
+	return { newUser: res, newSettings: settingsRes };
+}
+
+export function InsertDefaultUserSettings(userID: integer) {
+	logger.verbose(`Inserting default settings for ${userID}.`);
+	const userSettings: UserSettings = {
+		userID,
+		preferences: DEFAULT_USER_SETTINGS,
+	};
+
+	return db["user-settings"].insert(userSettings);
 }
 
 export async function ValidateCaptcha(
@@ -121,4 +139,18 @@ export async function ValidateCaptcha(
 	}
 
 	return true;
+}
+
+export function MountAuthCookie(
+	req: Express.Request,
+	user: PublicUserDocument,
+	settings: UserSettings
+) {
+	req.session.tachi = {
+		user,
+		settings,
+	};
+
+	req.session.cookie.maxAge = 3.154e10;
+	req.session.cookie.secure = process.env.NODE_ENV === "production";
 }

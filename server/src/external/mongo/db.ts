@@ -28,6 +28,7 @@ import {
 	UGPTSettings,
 	SessionViewDocument,
 	ARCSavedProfileDocument,
+	UserSettings,
 } from "tachi-common";
 import monk, { TMiddleware } from "monk";
 import CreateLogCtx from "lib/logger/logger";
@@ -165,6 +166,7 @@ const db = {
 	"game-stats-snapshots": monkDB.get<UserGameStatsSnapshot>("game-stats-snapshots"),
 	"session-view-cache": monkDB.get<SessionViewDocument>("session-view-cache"),
 	"arc-saved-profiles": monkDB.get<ARCSavedProfileDocument>("arc-saved-profiles"),
+	"user-settings": monkDB.get<UserSettings>("user-settings"),
 };
 
 export default db;

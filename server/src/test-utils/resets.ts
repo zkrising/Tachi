@@ -89,6 +89,7 @@ export function ResetCDN() {
 }
 
 export async function SetIndexesForDB() {
+	await ResetDBState();
 	const url = `${ServerConfig.MONGO_CONNECTION_URL}/testingdb`;
 
 	logger.info(`Setting indexes for ${url}`);

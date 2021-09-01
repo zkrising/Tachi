@@ -37,10 +37,10 @@ export const AllPermissions: Record<APIPermissions, true> = {
  * This is set on req[SYMBOL_TachiAPIAuth].
  */
 export const SetRequestPermissions: RequestHandler = async (req, res, next) => {
-	if (req.session?.tachi?.userID) {
+	if (req.session?.tachi?.user.id) {
 		req[SYMBOL_TachiAPIAuth] = {
-			userID: req.session.tachi.userID,
-			identifier: `Session-Key ${req.session.tachi.userID}`,
+			userID: req.session.tachi.user.id,
+			identifier: `Session-Key ${req.session.tachi.user.id}`,
 			token: null,
 			permissions: AllPermissions,
 		};

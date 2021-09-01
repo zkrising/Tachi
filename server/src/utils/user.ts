@@ -95,6 +95,12 @@ export function GetUserWithID(userID: integer): Promise<FindOneResult<PublicUser
 	) as Promise<FindOneResult<PublicUserDocument>>;
 }
 
+export function GetSettingsForUser(userID: integer) {
+	return db["user-settings"].findOne({
+		userID: userID,
+	});
+}
+
 /**
  * Gets the users for these user IDs.
  */

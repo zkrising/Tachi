@@ -1,7 +1,6 @@
 import {
 	FolderDocument,
 	TableDocument,
-	integer,
 	SessionDocument,
 	ScoreDocument,
 	ChartDocument,
@@ -11,6 +10,7 @@ import {
 	Playtypes,
 	TierlistParent,
 	SongDocument,
+	UserSettings,
 } from "tachi-common";
 
 declare module "express-session" {
@@ -21,7 +21,8 @@ declare module "express-session" {
 }
 
 export interface TachiSessionData {
-	userID: integer;
+	user: PublicUserDocument;
+	settings: UserSettings;
 }
 
 export interface TachiAPIFailResponse {

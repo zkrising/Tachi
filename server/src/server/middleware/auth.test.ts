@@ -99,7 +99,8 @@ t.test("#SetRequestPermissions", (t) => {
 		const { req } = await expMiddlewareMock(SetRequestPermissions, {
 			session: {
 				tachi: {
-					userID: 1,
+					user: await db.users.findOne({ id: 1 }),
+					settings: await db["user-settings"].findOne({ userID: 1 }),
 				},
 			},
 		});

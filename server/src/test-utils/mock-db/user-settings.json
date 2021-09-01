@@ -1,0 +1,9 @@
+[
+    {
+        "userID": 1,
+        "preferences": {
+            "developerMode": true,
+            "invisible": false
+        }
+    }
+]

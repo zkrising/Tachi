@@ -6,6 +6,7 @@ import gamePTRouter from "./games/_game/_playtype/router";
 import bannerRouter from "./banner/router";
 import pfpRouter from "./pfp/router";
 import integrationsRouter from "./integrations/router";
+import settingsRouter from "./settings/router";
 import prValidate from "server/middleware/prudence-validate";
 import p from "prudence";
 import { optNull, optNullFluffStrField } from "utils/prudence";
@@ -187,5 +188,6 @@ router.use("/games/:game/:playtype", gamePTRouter);
 router.use("/pfp", pfpRouter);
 router.use("/banner", bannerRouter);
 router.use("/integrations", integrationsRouter);
+router.use("/settings", settingsRouter);
 
 export default router;

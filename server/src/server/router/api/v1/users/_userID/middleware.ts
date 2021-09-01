@@ -69,7 +69,7 @@ export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
 export const RequireSelfRequestFromUser: RequestHandler = (req, res, next) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-	if (!req.session.tachi?.userID || req[SYMBOL_TachiAPIAuth].userID !== user.id) {
+	if (!req.session.tachi?.user.id || req[SYMBOL_TachiAPIAuth].userID !== user.id) {
 		return res.status(403).json({
 			success: false,
 			description: `This request cannot be performed by an API key, and requires authentication.`,

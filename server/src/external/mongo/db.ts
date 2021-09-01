@@ -35,6 +35,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
 import { GetMilisecondsSince } from "utils/misc";
 import { ServerConfig } from "lib/setup/config";
+import { ONE_MINUTE } from "lib/constants/time";
 
 const logger = CreateLogCtx(__filename);
 
@@ -45,21 +46,19 @@ if (process.env.NODE_ENV === "test") {
 	dbName = `testingdb`;
 }
 
-let dbtime: bigint;
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "test") {
-	logger.info(`Connecting to database ${ServerConfig.MONGO_CONNECTION_URL}/${dbName}...`);
-	dbtime = process.hrtime.bigint();
-}
+logger.info(`Connecting to database ${ServerConfig.MONGO_CONNECTION_URL}/${dbName}...`);
+const dbtime = process.hrtime.bigint();
 
-export const monkDB = monk(`${ServerConfig.MONGO_CONNECTION_URL}/${dbName}`);
+// By default the connectTimeoutMS is 30 seconds. This has been upped to 2 minutes, due to poor performance
+// inside githubs test runners.
+export const monkDB = monk(`${ServerConfig.MONGO_CONNECTION_URL}/${dbName}`, {
+	serverSelectionTimeoutMS: ONE_MINUTE * 2,
+});
 
 /* istanbul ignore next */
 monkDB
 	.then(() => {
-		if (process.env.NODE_ENV !== "test") {
-			logger.info(`Database connection successful: took ${GetMilisecondsSince(dbtime!)}ms`);
-		}
+		logger.info(`Database connection successful: took ${GetMilisecondsSince(dbtime)}ms`);
 	})
 	.catch((err) => {
 		logger.crit(err);

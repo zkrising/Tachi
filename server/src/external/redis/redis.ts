@@ -15,7 +15,7 @@ function EmitCritical() {
 	}
 }
 
-const ref = setTimeout(EmitCritical, 10000);
+const ref = setTimeout(EmitCritical, 30000);
 
 RedisClient.on("connect", () => {
 	logger.verbose(`Connected to Redis.`);

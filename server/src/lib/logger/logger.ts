@@ -98,26 +98,24 @@ const consoleFormatRoute = format.combine(
 	})
 );
 
-let tports: (
+const tports: (
 	| winston.transports.ConsoleTransportInstance
 	| winston.transports.FileTransportInstance
-)[] = [];
+)[] = [
+	new transports.File({
+		filename: "logs/tachi-error.log",
+		level: "error",
+		format: defaultFormatRoute,
+	}),
+	new transports.File({ filename: "logs/tachi.log", format: defaultFormatRoute }),
+];
 
-/* istanbul ignore next */
-if (IN_TESTING) {
-	tports = [new transports.File({ filename: "logs/tachi-test.log", format: defaultFormatRoute })];
-} else {
-	tports = [
-		new transports.File({
-			filename: "logs/tachi-error.log",
-			level: "error",
-			format: defaultFormatRoute,
-		}),
-		new transports.File({ filename: "logs/tachi.log", format: defaultFormatRoute }),
+if (!ServerConfig.NO_CONSOLE) {
+	tports.push(
 		new transports.Console({
 			format: consoleFormatRoute,
-		}),
-	];
+		})
+	);
 }
 
 export const rootLogger = winston.createLogger({

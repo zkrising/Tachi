@@ -16,6 +16,7 @@ import {
 	integer,
 	PBScoreDocument,
 	UserGameStatsSnapshot,
+	UserGameStats,
 } from "tachi-common";
 import { CheckStrProfileAlg } from "utils/string-checks";
 import { IsString } from "utils/misc";
@@ -40,6 +41,8 @@ router.get("/", async (req, res) => {
 	const stats = req[SYMBOL_TachiData]!.requestedUserGameStats!;
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
+
+	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const [totalScores, firstScore, mostRecentScore, rankingData] = await Promise.all([
 		db.scores.count({
@@ -73,7 +76,7 @@ router.get("/", async (req, res) => {
 				},
 			}
 		),
-		GetUsersRankingAndOutOf(stats),
+		GetAllRankings(stats),
 	]);
 
 	return res.status(200).json({
@@ -88,6 +91,18 @@ router.get("/", async (req, res) => {
 		},
 	});
 });
+
+async function GetAllRankings(stats: UserGameStats) {
+	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
+
+	const entries = await Promise.all(
+		gptConfig.profileRatingAlgs.map((k) =>
+			GetUsersRankingAndOutOf(stats, k).then((r) => [k, r])
+		)
+	);
+
+	return Object.fromEntries(entries);
+}
 
 /**
  * Returns a users game-stats for the past 90 days.
@@ -355,7 +370,7 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 		...below.map((e) => e.userID),
 	]);
 
-	const thisUsersRanking = await GetUsersRankingAndOutOf(thisUsersStats);
+	const thisUsersRanking = await GetUsersRankingAndOutOf(thisUsersStats, alg);
 
 	return res.status(200).json({
 		success: true,

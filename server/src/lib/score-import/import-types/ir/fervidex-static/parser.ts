@@ -19,7 +19,7 @@ export function ParseFervidexStatic(
 	headers: FerHeaders,
 	logger: KtLogger
 ): ParserFunctionReturns<FervidexStaticScore, FervidexStaticContext> {
-	const version = SoftwareIDToVersion(headers.model);
+	const version = SoftwareIDToVersion(headers.model, logger);
 
 	const staticScores = body?.scores;
 

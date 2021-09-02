@@ -77,9 +77,7 @@ export function TachifyRange(
 	}
 }
 
-export function TachifyRandom(
-	gauge: FervidexScore["option"]["style"]
-): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["random"] {
+export function TachifyRandom(gauge: FervidexScore["option"]["style"]) {
 	switch (gauge) {
 		case "RANDOM":
 			return "RANDOM";
@@ -213,7 +211,12 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 		scoreMeta: {
 			assist: TachifyAssist(data.option.assist),
 			gauge: TachifyGauge(data.option.gauge),
-			random: TachifyRandom(data.option.style),
+			// @ts-expect-error Awkward expansion of iidx:SP|DP strings here causes this
+			// to complain that [x,x] is not assignable to SP randoms. This is a lazy ignore!
+			random:
+				chart.playtype === "SP"
+					? TachifyRandom(data.option.style)
+					: [TachifyRandom(data.option.style), TachifyRandom(data.option.style_2p)],
 			range: TachifyRange(data.option.range),
 		},
 	};

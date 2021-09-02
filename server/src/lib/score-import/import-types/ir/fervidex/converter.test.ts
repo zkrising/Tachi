@@ -14,6 +14,7 @@ import {
 } from "./converter";
 import { FervidexScore } from "./types";
 import deepmerge from "deepmerge";
+import { ChartDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -136,7 +137,43 @@ t.test("#ConverterIRFervidex", (t) => {
 				song: Testing511Song,
 				chart: Testing511SPA,
 				dryScore: baseDryScore,
-			}, // broken
+			},
+			"Should return a dry score."
+		);
+
+		t.end();
+	});
+
+	t.test("Should turn DP randoms into tuples.", async (t) => {
+		// lazily clone the SPA as a DPA.
+
+		const Testing511DPA = deepmerge(Testing511SPA, {
+			playtype: "DP",
+			chartID: "dp_test",
+			data: { arcChartID: "dp_test" },
+		});
+
+		await db.charts.iidx.insert(Testing511DPA);
+
+		// @ts-expect-error apparantly this prop isnt optional. but i'm sure it is.
+		delete Testing511DPA._id;
+
+		const res = await ConverterIRFervidex(
+			deepmerge(baseFervidexScore, { option: { style_2p: "R_RANDOM" }, chart: "dpa" }),
+			{ version: "27" },
+			"ir/fervidex",
+			logger
+		);
+
+		t.hasStrict(
+			res,
+			{
+				song: Testing511Song,
+				chart: Testing511DPA,
+				dryScore: deepmerge(baseDryScore, {
+					scoreMeta: { random: ["RANDOM", "R-RANDOM"] },
+				}),
+			},
 			"Should return a dry score."
 		);
 
@@ -157,7 +194,7 @@ t.test("#ConverterIRFervidex", (t) => {
 				song: Testing511Song,
 				chart: Testing511SPA,
 				dryScore: deepmerge(baseDryScore, { scoreData: { hitMeta: { bp: null } } }),
-			}, // broken
+			},
 			"Should return a dry score."
 		);
 
@@ -235,7 +272,7 @@ t.test("#ConverterIRFervidex", (t) => {
 				dryScore: deepmerge(baseDryScore, {
 					scoreData: { hitMeta: { gauge: null, gaugeHistory: [10, 5, null, null] } },
 				}),
-			}, // broken
+			},
 			"Should return a dry score."
 		);
 

@@ -21,6 +21,12 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 			});
 		}
 
+		// fast assign using JWT
+		if (req.session.tachi?.user) {
+			AssignToReqTachiData(req, { requestedUser: req.session.tachi.user });
+			return next();
+		}
+
 		userID = req[SYMBOL_TachiAPIAuth].userID!.toString();
 	}
 
@@ -68,6 +74,13 @@ export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
  */
 export const RequireSelfRequestFromUser: RequestHandler = (req, res, next) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
+
+	if (!req[SYMBOL_TachiAPIAuth].userID) {
+		return res.status(401).json({
+			success: false,
+			description: `This endpoint requires session-level authentication.`,
+		});
+	}
 
 	if (!req.session.tachi?.user.id || req[SYMBOL_TachiAPIAuth].userID !== user.id) {
 		return res.status(403).json({

@@ -1,5 +1,8 @@
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { PrivateUserDocument } from "tachi-common";
 import t from "tap";
+import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 
@@ -23,27 +26,16 @@ t.test("GET /api/v1/users/:userID/settings", (t) => {
 	t.end();
 });
 
-t.test("PATCH /api/v1/users/:userID/settings", (t) => {
+t.test("PATCH /api/v1/users/:userID/settings", async (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(async () => {
-		await db["api-tokens"].insert({
-			identifier: "foo",
-			permissions: {
-				customise_profile: true,
-			},
-			token: "foo",
-			userID: 1,
-		});
-	});
+
+	const cookie = await CreateFakeAuthCookie(mockApi);
 
 	t.test("Should mutate the users settings.", async (t) => {
-		const res = await mockApi
-			.patch("/api/v1/users/1/settings")
-			.set("Authorization", "Bearer foo")
-			.send({
-				developerMode: false,
-				invisible: true,
-			});
+		const res = await mockApi.patch("/api/v1/users/1/settings").set("Cookie", cookie).send({
+			developerMode: false,
+			invisible: true,
+		});
 
 		t.strictSame(res.body.body, {
 			userID: 1,
@@ -67,10 +59,7 @@ t.test("PATCH /api/v1/users/:userID/settings", (t) => {
 	});
 
 	t.test("Should 400 if body is empty.", async (t) => {
-		const res = await mockApi
-			.patch("/api/v1/users/1/settings")
-			.set("Authorization", "Bearer foo")
-			.send({});
+		const res = await mockApi.patch("/api/v1/users/1/settings").set("Cookie", cookie).send({});
 
 		t.equal(res.statusCode, 400);
 
@@ -92,27 +81,21 @@ t.test("PATCH /api/v1/users/:userID/settings", (t) => {
 	});
 
 	t.test("Should validate input.", async (t) => {
-		const res = await mockApi
-			.patch("/api/v1/users/1/settings")
-			.set("Authorization", "Bearer foo")
-			.send({
-				developerMode: "true",
-			});
+		const res = await mockApi.patch("/api/v1/users/1/settings").set("Cookie", cookie).send({
+			developerMode: "true",
+		});
 
 		t.equal(res.statusCode, 400);
 
-		const res2 = await mockApi
-			.patch("/api/v1/users/1/settings")
-			.set("Authorization", "Bearer foo")
-			.send({
-				invalid_prop: true,
-			});
+		const res2 = await mockApi.patch("/api/v1/users/1/settings").set("Cookie", cookie).send({
+			invalid_prop: true,
+		});
 
 		t.equal(res2.statusCode, 400);
 
 		const res3 = await mockApi
 			.patch("/api/v1/users/1/settings")
-			.set("Authorization", "Bearer foo")
+			.set("Cookie", cookie)
 			.send({
 				invisible: { $where: "alert(1)" },
 			});
@@ -123,18 +106,18 @@ t.test("PATCH /api/v1/users/:userID/settings", (t) => {
 	});
 
 	t.test("Must be authenticated as that user.", async (t) => {
-		await db["api-tokens"].insert({
-			identifier: "not user1",
-			permissions: {
-				customise_profile: true,
-			},
-			token: "not_user1",
-			userID: 2,
-		});
+		const user = await db.users.findOne({});
+		await db.users.insert(
+			deepmerge(user!, {
+				id: 2,
+				username: "something_else",
+				usernameLowercase: "something_else",
+			}) as PrivateUserDocument
+		);
 
 		const res = await mockApi
-			.patch("/api/v1/users/1/settings")
-			.set("Authorization", "Bearer not_user1")
+			.patch("/api/v1/users/2/settings")
+			.set("Cookie", cookie) // this token is for user 1, not 2
 			.send({
 				developerMode: false,
 			});
@@ -152,10 +135,13 @@ t.test("PATCH /api/v1/users/:userID/settings", (t) => {
 		t.end();
 	});
 
-	t.test("Must have the customise_profile permission.", async (t) => {
+	t.test("Must not work with an API key.", async (t) => {
 		await db["api-tokens"].insert({
 			identifier: "no perm",
-			permissions: {},
+			permissions: {
+				// has relevant permissions
+				customise_profile: true,
+			},
 			token: "no_perm",
 			userID: 1,
 		});

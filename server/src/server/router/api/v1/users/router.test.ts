@@ -39,6 +39,7 @@ t.test("GET /api/v1/users", (t) => {
 		t.equal(res.body.body.length, 0);
 
 		await db.users.insert({
+			username: "online_dude",
 			usernameLowercase: "online_dude",
 			lastSeen: Date.now(),
 			id: 2,
@@ -54,6 +55,7 @@ t.test("GET /api/v1/users", (t) => {
 
 	t.test("Should return users sorted by lastSeen if no arguments are passed.", async (t) => {
 		await db.users.insert({
+			username: "online_dude",
 			usernameLowercase: "online_dude",
 			lastSeen: Date.now(),
 			id: 2,

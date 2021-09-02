@@ -266,6 +266,7 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
 		await db.users.insert({
 			id: 2,
 			username: "not_zkldi",
+			usernameLowercase: "not_zkldi",
 		} as PrivateUserDocument);
 
 		await db.scores.insert([

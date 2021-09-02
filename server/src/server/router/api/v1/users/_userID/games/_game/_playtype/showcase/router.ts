@@ -163,7 +163,6 @@ router.get("/custom", async (req, res) => {
  *
  * @name PUT /api/v1/users/:userID/games/:game/:playtype/showcase
  */
-
 router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 	const game = req[SYMBOL_TachiData]!.game!;

@@ -40,6 +40,7 @@ export interface FervidexScore {
 			| "LIFT_SUD_PLUS"
 			| null;
 		style?: "RANDOM" | "R_RANDOM" | "S_RANDOM" | "MIRROR" | null;
+		style_2p?: "RANDOM" | "R_RANDOM" | "S_RANDOM" | "MIRROR" | null;
 		assist?: "AUTO_SCRATCH" | "LEGACY_NOTE" | "ASCR_LEGACY" | "FULL_ASSIST" | null;
 	};
 

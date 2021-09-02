@@ -5,6 +5,8 @@ import {
 	GetGamePTConfig,
 	Game,
 	Playtypes,
+	UGSRatingsLookup,
+	IDStrings,
 } from "tachi-common";
 import { FindOneResult } from "monk";
 import db from "external/mongo/db";
@@ -205,8 +207,13 @@ export function GetUGPTPlaycount(userID: integer, game: Game, playtype: Playtype
 	return db.scores.count({ userID, game, playtype });
 }
 
-export async function GetUsersRankingAndOutOf(stats: UserGameStats) {
+export async function GetUsersRankingAndOutOf(
+	stats: UserGameStats,
+	alg?: UGSRatingsLookup[IDStrings]
+) {
 	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
+
+	const ratingAlg = alg ?? gptConfig.defaultProfileRatingAlg;
 
 	const aggRes = await db["game-stats"].aggregate([
 		{
@@ -223,10 +230,7 @@ export async function GetUsersRankingAndOutOf(stats: UserGameStats) {
 					$sum: {
 						$cond: {
 							if: {
-								$gt: [
-									`$ratings.${gptConfig.defaultProfileRatingAlg}`,
-									stats.ratings[gptConfig.defaultProfileRatingAlg],
-								],
+								$gt: [`$ratings.${ratingAlg}`, stats.ratings[ratingAlg]],
 							},
 							then: 1,
 							else: 0,

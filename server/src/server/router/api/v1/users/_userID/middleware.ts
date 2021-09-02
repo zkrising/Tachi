@@ -21,6 +21,12 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 			});
 		}
 
+		// fast assign using JWT
+		if (req.session.tachi?.user) {
+			AssignToReqTachiData(req, { requestedUser: req.session.tachi.user });
+			return next();
+		}
+
 		userID = req[SYMBOL_TachiAPIAuth].userID!.toString();
 	}
 

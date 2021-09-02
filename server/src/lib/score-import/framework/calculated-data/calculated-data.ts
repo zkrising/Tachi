@@ -199,6 +199,11 @@ function CalculateDataSDVXorUSC(
 	defaultTierlistID: string | undefined,
 	logger: KtLogger
 ): CalculatedData<"sdvx:Single" | "usc:Single"> {
+	// for usc, unofficial charts currently have no VF6 value.
+	if (dryScore.game === "usc" && !(chart as ChartDocument<"usc:Single">).data.isOfficial) {
+		return { VF6: null };
+	}
+
 	const VF6 = CalculateVF6(
 		dryScore.scoreData.grade as Grades["sdvx:Single"],
 		dryScore.scoreData.lamp as Lamps["sdvx:Single"],

@@ -10,6 +10,7 @@ import {
 	TestingSDVXSingleDryScore,
 } from "test-utils/test-data";
 import { CreateCalculatedData, CalculateDataForGamePT } from "./calculated-data";
+import { ChartDocument, ScoreDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -40,6 +41,15 @@ t.test("#CreateCalculatedData", async (t) => {
 		},
 		"Should correctly call rating function overrides for different games"
 	);
+
+	const uscRes = await CreateCalculatedData(
+		{ game: "usc", playtype: "Single" } as ScoreDocument,
+		{ data: { isOfficial: false }, playtype: "Single" } as ChartDocument,
+		null,
+		logger
+	);
+
+	t.strictSame(uscRes, { VF6: null }, "Should return null if chart was not an official.");
 
 	t.end();
 });

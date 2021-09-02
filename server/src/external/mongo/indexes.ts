@@ -57,7 +57,11 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
 		index({ timestamp: 1 }),
 		index({ total: 1 }),
 	],
-	users: [index({ id: 1 }, UNIQUE)],
+	users: [
+		index({ id: 1 }, UNIQUE),
+		index({ username: 1 }, UNIQUE),
+		index({ usernameLowercase: 1 }, UNIQUE),
+	],
 	tierlists: [
 		index({ tierlistID: 1 }, UNIQUE),
 		index({ game: 1, playtype: 1, isDefault: 1 }, UNIQUE),

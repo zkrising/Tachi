@@ -2,11 +2,10 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
-import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { DeleteUndefinedProps } from "utils/misc";
 import { FormatUserDoc, GetSettingsForUser } from "utils/user";
-import { RequireAuthedAsUser } from "../middleware";
+import { RequireSelfRequestFromUser } from "../middleware";
 
 const logger = CreateLogCtx(__filename);
 const router: Router = Router({ mergeParams: true });
@@ -48,8 +47,7 @@ router.get("/", async (req, res) => {
  */
 router.patch(
 	"/",
-	RequirePermissions("customise_profile"),
-	RequireAuthedAsUser,
+	RequireSelfRequestFromUser,
 	prValidate({
 		invisible: "*boolean",
 		developerMode: "*boolean",
@@ -85,6 +83,21 @@ router.patch(
 		);
 
 		const settings = await GetSettingsForUser(user.id);
+
+		if (!settings) {
+			logger.severe(
+				`User ${FormatUserDoc(user)} has no settings, yet just successfully updated them?`,
+				{ user }
+			);
+			return res.status(500).json({
+				success: false,
+				description: `An internal server error has occured.`,
+			});
+		}
+
+		if (req.session.tachi?.settings) {
+			req.session.tachi.settings = settings;
+		}
 
 		return res.status(200).json({
 			success: true,

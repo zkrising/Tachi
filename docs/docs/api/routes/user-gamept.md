@@ -20,7 +20,7 @@ None.
 | `firstScore` | ScoreDocument or Null | The user's first score for this game + playtype. This is null if the user has no scores with timestamps. |
 | `mostRecentScore` | ScoreDocument or Null | The user's most recent score. This is null if the user has no scores with timestamps. |
 | `totalScores` | integer | The total amount of scores this user has. |
-| `rankingData` | { ranking: integer, outOf: integer } | The position of this player on the default leaderboards for this game, and how many players it is out of. |
+| `rankingData` | Record&lt;Rating Algorithm, { ranking: integer, outOf: integer }&gt; | The position of this player on the default leaderboards for this game, and how many players it is out of. |
 
 ### Example
 
@@ -48,8 +48,18 @@ GET /api/v1/users/zkldi/games/iidx/SP
 	mostRecentScore: null,
 	totalScores: 5,
 	rankingData: {
-		ranking: 3,
-		outOf: 18
+		ktRating: {
+			ranking: 3,
+			outOf: 18
+		}
+		ktLampRating: {
+			ranking: 2,
+			outOf: 18
+		},
+		BPI: {
+			ranking: 5,
+			outOf: 18
+		}
 	}
 }
 ```

@@ -97,35 +97,6 @@ export interface MongoDBDocument {
 	_id?: IObjectID;
 }
 
-export type Databases =
-	| "sessions"
-	| "session-view-cache"
-	| "folders"
-	| "folder-chart-lookup"
-	| "scores"
-	| "personal-bests"
-	| "imports"
-	| "import-timings"
-	| "tierlist-data"
-	| "tierlists"
-	| "goals"
-	| "user-goals"
-	| "user-milestones"
-	| "milestones"
-	| "game-stats"
-	| "game-settings"
-	| "users"
-	| "kai-auth-tokens"
-	| "bms-course-lookup"
-	| "api-tokens"
-	| "import-locks"
-	| "tables"
-	| "game-stats-snapshots"
-	| "arc-saved-profiles"
-	| "user-settings";
-
-export type ValidDatabases = Databases | `songs-${Game}` | `charts-${Game}`;
-
 /**
  * Supported games by Kamaitachi.
  */
@@ -693,7 +664,6 @@ export interface PublicUserDocument extends MongoDBDocument {
 	usernameLowercase: string;
 	id: integer;
 	socialMedia: {
-		discord?: string | null;
 		twitter?: string | null;
 		github?: string | null;
 		steam?: string | null;

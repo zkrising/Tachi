@@ -5,6 +5,7 @@ import { SearchGameSongsAndCharts } from "lib/search/search";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { FilterChartsAndSongs, GetScoreIDsFromComposed } from "utils/scores";
 import { GetGamePTConfig } from "tachi-common";
+import { IsValidScoreAlg } from "utils/misc";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -90,7 +91,7 @@ router.get("/all", async (req, res) => {
  * Returns a users best 100 personal-bests for this game.
  *
  * @param alg - Specifies an override for the default algorithm
- * to sort on. UNIMPLEMENTED.
+ * to sort on.
  * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/best
  */
 router.get("/best", async (req, res) => {
@@ -98,6 +99,17 @@ router.get("/best", async (req, res) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 	const gptConfig = GetGamePTConfig(game, playtype);
+
+	if (req.query.alg && !IsValidScoreAlg(gptConfig, req.query.alg)) {
+		return res.status(400).json({
+			success: false,
+			description: `Invalid score algorithm. Expected any of ${gptConfig.scoreRatingAlgs.join(
+				", "
+			)}`,
+		});
+	}
+
+	const alg = req.query.alg ?? gptConfig.defaultScoreRatingAlg;
 
 	const pbs = await db["personal-bests"].find(
 		{
@@ -109,7 +121,7 @@ router.get("/best", async (req, res) => {
 		{
 			limit: 100,
 			sort: {
-				[`calculatedData.${gptConfig.defaultScoreRatingAlg}`]: -1,
+				[`calculatedData.${alg}`]: -1,
 			},
 		}
 	);

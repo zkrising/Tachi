@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { ServerTypeInfo } from "lib/setup/config";
-import { Game, Playtypes, GetGameConfig } from "tachi-common";
+import { Game, Playtypes, GetGameConfig, GamePTConfig } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
 // the developer of this has migrated everything to Force ES6 style modules,
@@ -67,6 +67,13 @@ export function IsValidGame(str: string): str is Game {
 
 export function IsValidPlaytype(game: Game, str: string): str is Playtypes[Game] {
 	return GetGameConfig(game).validPlaytypes.includes(str as Playtypes[Game]);
+}
+
+export function IsValidScoreAlg(
+	gptConfig: GamePTConfig,
+	str: unknown
+): str is GamePTConfig["scoreRatingAlgs"][0] {
+	return gptConfig.scoreRatingAlgs.includes(str as GamePTConfig["scoreRatingAlgs"][0]);
 }
 
 export function IsString(val: unknown): val is string {

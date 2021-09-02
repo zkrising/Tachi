@@ -34,8 +34,15 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype", (t) => {
 				mostRecentScore: null,
 				totalScores: 1,
 				rankingData: {
-					ranking: 1,
-					outOf: 1,
+					ktRating: { ranking: 1, outOf: 1 },
+					ktLampRating: {
+						ranking: 1,
+						outOf: 1,
+					},
+					BPI: {
+						ranking: 1,
+						outOf: 1,
+					},
 				},
 			},
 		});
@@ -91,8 +98,15 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype", (t) => {
 				},
 				totalScores: 4,
 				rankingData: {
-					ranking: 1,
-					outOf: 1,
+					ktRating: { ranking: 1, outOf: 1 },
+					ktLampRating: {
+						ranking: 1,
+						outOf: 1,
+					},
+					BPI: {
+						ranking: 1,
+						outOf: 1,
+					},
 				},
 			},
 		});

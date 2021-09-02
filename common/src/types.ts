@@ -664,6 +664,7 @@ export interface PublicUserDocument extends MongoDBDocument {
 	usernameLowercase: string;
 	id: integer;
 	socialMedia: {
+		discord?: string | null;
 		twitter?: string | null;
 		github?: string | null;
 		steam?: string | null;

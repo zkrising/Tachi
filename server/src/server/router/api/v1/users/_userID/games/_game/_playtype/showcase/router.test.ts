@@ -95,6 +95,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 		// hack
 		await db.users.insert({
 			username: "test_acc",
+			usernameLowercase: "test_acc",
 			id: 2,
 		} as PrivateUserDocument);
 

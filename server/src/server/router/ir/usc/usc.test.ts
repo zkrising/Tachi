@@ -234,6 +234,7 @@ const uscScorePBsSet = [
 const mockUserDocs = [2, 3, 4, 5, 6, 7, 8, 9, 10].map((e) => ({
 	id: e,
 	username: e.toString(),
+	usernameLowercase: e.toString(),
 })) as PrivateUserDocument[];
 
 t.test("#CreatePOSTScoresResponseBody", async (t) => {

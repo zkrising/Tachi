@@ -54,6 +54,7 @@ t.test("GET /api/v1/games/:game/:playtype/charts/:chartID/pbs", (t) => {
 		await db.users.insert({
 			id: 2,
 			username: "foo",
+			usernameLowercase: "foo",
 		} as PrivateUserDocument);
 
 		const res = await mockApi.get(`/api/v1/games/iidx/SP/charts/${Testing511SPA.chartID}/pbs`);

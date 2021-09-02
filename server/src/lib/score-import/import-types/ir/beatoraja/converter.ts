@@ -2,6 +2,7 @@ import { FindChartOnSHA256 } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import {
 	InternalFailure,
+	InvalidScoreFailure,
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
@@ -36,6 +37,10 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 	importType,
 	logger
 ) => {
+	if (data.lntype !== 0) {
+		throw new InvalidScoreFailure("CN or HCN mode is not supported by this IR.");
+	}
+
 	const chart = (await FindChartOnSHA256("bms", data.sha256)) as ChartDocument<
 		"bms:7K" | "bms:14K"
 	> | null;
@@ -58,14 +63,6 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		throw new InternalFailure(`Song-Chart Desync with BMS ${chart.chartID}.`);
 	}
 
-	// if CN mode
-	if (data.lntype === 1) {
-		// Divide the EX score by the CN note count, then multiply it by the LN
-		// notecount. This converts CN EXScores to LN EXScores by routing
-		// through percent.
-		data.exscore = Math.floor((data.exscore / context.chart.notes) * chart.data.notecount);
-	}
-
 	const { grade, percent } = GenericGetGradeAndPercent("bms", data.exscore, chart);
 
 	const hitMeta: DryScore<"bms:7K" | "bms:14K">["scoreData"]["hitMeta"] = {
@@ -73,36 +70,31 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		gauge: data.gauge === -1 ? null : data.gauge,
 	};
 
-	let judgements: DryScore<"bms:7K" | "bms:14K">["scoreData"]["judgements"] = {};
-
-	// if NOT CN mode we can assign judgements properly
-	if (data.lntype === 0) {
-		for (const k of [
-			"ebd",
-			"lbd",
-			"egd",
-			"lgd",
-			"egr",
-			"lgr",
-			"epg",
-			"lpg",
-			"epr",
-			"lpr",
-		] as const) {
-			hitMeta[k] = data[k];
-		}
-
-		hitMeta.epr! += data.ems;
-		hitMeta.lpr! += data.lms;
-
-		judgements = {
-			pgreat: data.epg + data.lpg,
-			great: data.egr + data.lgr,
-			good: data.egd + data.lgd,
-			bad: data.ebd + data.lbd,
-			poor: data.epr + data.lpr + data.ems + data.lms,
-		};
+	for (const k of [
+		"ebd",
+		"lbd",
+		"egd",
+		"lgd",
+		"egr",
+		"lgr",
+		"epg",
+		"lpg",
+		"epr",
+		"lpr",
+	] as const) {
+		hitMeta[k] = data[k];
 	}
+
+	hitMeta.epr! += data.ems;
+	hitMeta.lpr! += data.lms;
+
+	const judgements = {
+		pgreat: data.epg + data.lpg,
+		great: data.egr + data.lgr,
+		good: data.egd + data.lgd,
+		bad: data.ebd + data.lbd,
+		poor: data.epr + data.lpr + data.ems + data.lms,
+	};
 
 	let random = null;
 

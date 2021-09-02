@@ -1,33 +1,20 @@
 import React, { useState } from "react";
-import { FormatDifficulty } from "tachi-common/js/utils/util";
 import TitleCell from "../cells/TitleCell";
 import TimestampCell from "../cells/TimestampCell";
 import { NumericSOV, StrSOV } from "util/sorts";
 import SelectableRating from "../components/SelectableRating";
 import { ScoreDataset } from "types/tables";
-import {
-	GetGamePTConfig,
-	integer,
-	ScoreCalculatedDataLookup,
-	PublicUserDocument,
-	Playtypes,
-	ScoreDocument,
-} from "tachi-common";
+import { integer, ScoreCalculatedDataLookup, PublicUserDocument, Playtypes } from "tachi-common";
 import TachiTable, { ZTableTHProps } from "../components/TachiTable";
 import DifficultyCell from "../cells/DifficultyCell";
-import ScoreCell from "../cells/ScoreCell";
-import DeltaCell from "../cells/DeltaCell";
-import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { nanoid } from "nanoid";
-import IIDXLampCell from "../cells/IIDXLampCell";
 import DropdownRow from "../components/DropdownRow";
 import IIDXScoreDropdown from "../dropdowns/IIDXScoreDropdown";
-import { IsNullish } from "util/misc";
 import { Playtype } from "types/tachi";
 import { useScoreState } from "../components/UseScoreState";
 import IIDXScoreCoreCells from "../game-core-cells/IIDXScoreCoreCells";
 import { CreateDefaultScoreSearch } from "util/tables";
-import RankingCell from "../cells/RankingCell";
+import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 
 export default function IIDXScoreTable({
 	reqUser,
@@ -40,10 +27,9 @@ export default function IIDXScoreTable({
 	pageLen?: integer;
 	playtype: Playtypes["iidx"];
 }) {
-	const gptConfig = GetGamePTConfig<"iidx:SP" | "iidx:DP">("iidx", playtype);
-
+	const defaultRating = useScoreRatingAlg<"iidx:SP" | "iidx:DP">("iidx", playtype);
 	const [rating, setRating] = useState<ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"]>(
-		gptConfig.defaultScoreRatingAlg
+		defaultRating
 	);
 
 	return (

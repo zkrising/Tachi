@@ -13,14 +13,20 @@ import {
 	Game,
 	UnsuccessfulAPIResponse,
 	FormatGame,
+	GetGamePTConfig,
+	ScoreCalculatedDataLookup,
+	GamePTConfig,
 } from "tachi-common";
-import { GamePT } from "types/react";
+import { GamePT, SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
 import LoadingWrapper from "components/util/LoadingWrapper";
 import Icon from "components/util/Icon";
 import SelectButton from "components/util/SelectButton";
 import PBTable from "components/tables/pbs/PBTable";
 import ScoreTable from "components/tables/scores/ScoreTable";
+import useScoreRatingAlg from "components/util/useScoreRatingAlg";
+import { Alert } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function ScoresPage({
 	reqUser,
@@ -32,6 +38,11 @@ export default function ScoresPage({
 	const [scoreSet, setScoreSet] = useState<"recent" | "best" | "all" | "playcount">("best");
 
 	const gameConfig = GetGameConfig(game);
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	const defaultRating = useScoreRatingAlg(game, playtype);
+
+	const [alg, setAlg] = useState(defaultRating);
 
 	useSetSubheader(
 		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Scores"],
@@ -63,10 +74,15 @@ export default function ScoresPage({
 			</div>
 			<div className="col-12 mt-4">
 				{scoreSet === "best" ? (
-					<PBsOverview
-						url={`/users/${reqUser.id}/games/${game}/${playtype}/pbs/best`}
-						{...{ reqUser, game, playtype }}
-					/>
+					<>
+						<PBsOverview
+							url={`/users/${reqUser.id}/games/${game}/${playtype}/pbs/best?alg=${alg}`}
+							{...{ reqUser, game, playtype, alg }}
+						/>
+						{gptConfig.scoreRatingAlgs.length > 1 && (
+							<AlgSelector {...{ alg, setAlg, gptConfig }} />
+						)}
+					</>
 				) : scoreSet === "recent" ? (
 					<ScoresOverview {...{ reqUser, game, playtype }} />
 				) : scoreSet === "all" ? (
@@ -87,6 +103,33 @@ export default function ScoresPage({
 						showPlaycount
 					/>
 				)}
+			</div>
+		</div>
+	);
+}
+
+function AlgSelector({
+	gptConfig,
+	alg,
+	setAlg,
+}: {
+	gptConfig: GamePTConfig;
+	alg: ScoreCalculatedDataLookup[IDStrings];
+	setAlg: SetState<ScoreCalculatedDataLookup[IDStrings]>;
+}) {
+	return (
+		<div className="row justify-content-center mb-4">
+			<div className="form-group">
+				<span className="form-group-prefix">Best 100 scores according to </span>
+				<select
+					className="form-control"
+					value={alg}
+					onChange={e => setAlg(e.target.value as any)}
+				>
+					{gptConfig.scoreRatingAlgs.map(e => (
+						<option key={e}>{e}</option>
+					))}
+				</select>
 			</div>
 		</div>
 	);
@@ -117,11 +160,13 @@ function PBsOverview({
 	indexCol = true,
 	showPlaycount = false,
 	url,
+	alg,
 }: {
 	reqUser: PublicUserDocument;
 	url: string;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
+	alg?: ScoreCalculatedDataLookup[IDStrings];
 } & GamePT) {
 	const [search, setSearch] = useState("");
 
@@ -148,6 +193,7 @@ function PBsOverview({
 							game={game}
 							showPlaycount={showPlaycount}
 							indexCol={indexCol}
+							alg={alg}
 							playtype={playtype as "SP" | "DP"}
 						/>
 					</LoadingWrapper>
@@ -210,7 +256,12 @@ function PBsSearch({
 	game,
 	playtype,
 	search,
-}: { reqUser: PublicUserDocument; search: string } & GamePT) {
+	alg,
+}: {
+	reqUser: PublicUserDocument;
+	search: string;
+	alg?: ScoreCalculatedDataLookup[IDStrings];
+} & GamePT) {
 	const { isLoading, error, data } = useFetchPBs(
 		`/users/${reqUser.id}/games/${game}/${playtype}/pbs?search=${search}`
 	);
@@ -222,6 +273,7 @@ function PBsSearch({
 				indexCol={false}
 				dataset={data!}
 				game={game}
+				alg={alg}
 				playtype={playtype as "SP" | "DP"}
 			/>
 		</LoadingWrapper>

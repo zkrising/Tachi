@@ -52,6 +52,11 @@ export const loggedInSplashes = [
 	"https://github.com/EpicGames/Signup/pull/10",
 	"Have you tried PNPM?",
 	"MongoDB is web scale, actually.",
+	"▼LTRA ▼IOLENCE EDITION",
+	"It's all about the CEO grindset.",
+	"through ivy - out middle",
+	"The graphics. That's what it's really about.",
+	"you could be playing mario galaxy right now",
 ];
 
 // Stuff that's bad for the kids, you know?

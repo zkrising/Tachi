@@ -1,3 +1,4 @@
+import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
 import {
@@ -8,13 +9,11 @@ import {
 	ScoreCalculatedDataLookup,
 	ScoreDocument,
 } from "tachi-common";
-import { SetState } from "types/react";
 import { Playtype } from "types/tachi";
 import { NumericSOV } from "util/sorts";
 import TimestampCell from "../cells/TimestampCell";
 import SelectableRating from "../components/SelectableRating";
 import TachiTable, { ZTableTHProps } from "../components/TachiTable";
-import IIDXScoreCoreCells from "../game-core-cells/IIDXScoreCoreCells";
 import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 
 export default function HistoryScoreTable({
@@ -28,9 +27,9 @@ export default function HistoryScoreTable({
 	playtype: Playtype;
 	game: Game;
 }) {
-	const gptConfig = GetGamePTConfig(game, playtype);
+	const defaultRating = useScoreRatingAlg(game, playtype);
 
-	const [rating, setRating] = useState(gptConfig.defaultScoreRatingAlg);
+	const [rating, setRating] = useState(defaultRating);
 
 	return (
 		<TachiTable

@@ -1,24 +1,23 @@
+import { useSessionRatingAlg } from "components/util/useScoreRatingAlg";
+import { nanoid } from "nanoid";
 import React, { useState } from "react";
 import {
 	Game,
 	GetGamePTConfig,
 	IDStrings,
 	integer,
-	PublicUserDocument,
-	ScoreCalculatedDataLookup,
 	SessionCalculatedDataLookup,
 	SessionDocument,
 } from "tachi-common";
-import { ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import { GetPBs } from "util/data";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { FormatDuration, FormatTime, MillisToSince } from "util/time";
 import IndexCell from "../cells/IndexCell";
 import DropdownRow from "../components/DropdownRow";
-import TachiTable, { Header } from "../components/TachiTable";
+import SelectableRating from "../components/SelectableRating";
+import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
 import GenericSessionDropdown from "../dropdowns/GenericSessionDropdown";
-import IIDXScoreDropdown from "../dropdowns/IIDXScoreDropdown";
 
 export type SessionDataset = (SessionDocument & { __related: { index: integer } })[];
 
@@ -35,17 +34,36 @@ export default function GenericSessionTable({
 }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const [rating, setRating] = useState<SessionCalculatedDataLookup[IDStrings]>(
-		gptConfig.defaultSessionRatingAlg
-	);
+	const defaultRating = useSessionRatingAlg(game, playtype);
+
+	const [alg, setAlg] = useState<SessionCalculatedDataLookup[IDStrings]>(defaultRating);
 
 	const headers: Header<SessionDataset[0]>[] = [
 		["Name", "Name", StrSOV(x => x.name)],
 		["Scores", "Scores", NumericSOV(x => x.scoreInfo.length)],
-		[rating, rating, NumericSOV(x => x.calculatedData[rating] ?? 0)],
+		[alg, alg, NumericSOV(x => x.calculatedData[alg] ?? 0)],
 		["Duration", "Dur.", NumericSOV(x => x.timeEnded - x.timeStarted)],
 		["Timestamp", "Timestamp", NumericSOV(x => x.timeStarted)],
 	];
+
+	if (gptConfig.sessionRatingAlgs.length > 1) {
+		headers[2] = [
+			"Rating",
+			"Rating",
+			NumericSOV(x => x.calculatedData[alg] ?? 0),
+			(thProps: ZTableTHProps) => (
+				<SelectableRating
+					key={nanoid()}
+					game={game}
+					playtype={playtype}
+					rating={alg}
+					setRating={setAlg}
+					mode="session"
+					{...thProps}
+				/>
+			),
+		];
+	}
 
 	if (indexCol) {
 		headers.unshift(["#", "#", NumericSOV(x => x.__related.index)]);
@@ -64,9 +82,7 @@ export default function GenericSessionTable({
 				duration: x => (x.timeEnded - x.timeStarted) / (1000 * 60),
 				timestamp: x => x.timeStarted,
 			}}
-			rowFunction={s => (
-				<Row data={s} key={s.sessionID} rating={rating} indexCol={indexCol} />
-			)}
+			rowFunction={s => <Row data={s} key={s.sessionID} rating={alg} indexCol={indexCol} />}
 		/>
 	);
 }

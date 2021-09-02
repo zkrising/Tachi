@@ -1,13 +1,24 @@
 import React from "react";
 import {
 	Game,
+	GamePTConfig,
 	GetGamePTConfig,
 	IDStrings,
 	Playtypes,
 	ScoreCalculatedDataLookup,
+	SessionCalculatedDataLookup,
+	UGSRatingsLookup,
 } from "tachi-common";
 import { SetState } from "types/react";
 import { ZTableTHProps } from "./TachiTable";
+
+// type AllRatings<I extends IDStrings> =
+// 	| ScoreCalculatedDataLookup[I]
+// 	| SessionCalculatedDataLookup[I]
+// 	| UGSRatingsLookup[I];
+
+// hack to get everything to work
+type AllRatings<I> = any;
 
 export default function SelectableRating<I extends IDStrings>({
 	game,
@@ -17,13 +28,25 @@ export default function SelectableRating<I extends IDStrings>({
 	changeSort,
 	currentSortMode,
 	reverseSort,
+	mode = "score",
 }: {
 	game: Game;
 	playtype: Playtypes[Game];
-	rating: ScoreCalculatedDataLookup[I];
-	setRating: SetState<ScoreCalculatedDataLookup[I]>;
+	rating: AllRatings<I>;
+	setRating: SetState<AllRatings<I>>;
+	mode?: "score" | "session" | "profile";
 } & ZTableTHProps) {
 	const gptConfig = GetGamePTConfig(game, playtype);
+
+	let key: "scoreRatingAlgs" | "sessionRatingAlgs" | "profileRatingAlgs";
+	if (mode === "score") {
+		key = "scoreRatingAlgs";
+	} else if (mode === "profile") {
+		key = "profileRatingAlgs";
+	} else {
+		key = "sessionRatingAlgs";
+	}
+
 	return (
 		<th>
 			<select
@@ -37,7 +60,7 @@ export default function SelectableRating<I extends IDStrings>({
 					font: "inherit",
 				}}
 			>
-				{gptConfig.scoreRatingAlgs.map(s => (
+				{gptConfig[key].map(s => (
 					<option key={s}>{s}</option>
 				))}
 			</select>

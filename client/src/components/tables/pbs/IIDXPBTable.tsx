@@ -6,7 +6,7 @@ import TimestampCell from "../cells/TimestampCell";
 import { NumericSOV, StrSOV } from "util/sorts";
 import SelectableRating from "../components/SelectableRating";
 import { PBDataset } from "types/tables";
-import { GetGamePTConfig, PublicUserDocument, ScoreCalculatedDataLookup } from "tachi-common";
+import { PublicUserDocument, ScoreCalculatedDataLookup } from "tachi-common";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
 import DifficultyCell from "../cells/DifficultyCell";
 import ScoreCell from "../cells/ScoreCell";
@@ -19,24 +19,27 @@ import IIDXPBDropdown from "../dropdowns/IIDXPBDropdown";
 import IIDXLampCell from "../cells/IIDXLampCell";
 import { IsNullish } from "util/misc";
 import { usePBState } from "../components/UseScoreState";
+import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 
 export default function IIDXPBTable({
 	dataset,
 	indexCol = true,
 	showPlaycount = false,
 	reqUser,
+	alg,
 	playtype,
 }: {
 	dataset: PBDataset<"iidx:SP" | "iidx:DP">;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
 	reqUser: PublicUserDocument;
+	alg?: ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"];
 	playtype: "SP" | "DP";
 }) {
-	const gptConfig = GetGamePTConfig<"iidx:SP" | "iidx:DP">("iidx", playtype);
+	const defaultRating = useScoreRatingAlg<"iidx:SP" | "iidx:DP">("iidx", playtype);
 
 	const [rating, setRating] = useState<ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"]>(
-		gptConfig.defaultScoreRatingAlg
+		alg ?? defaultRating
 	);
 
 	const headers: Header<PBDataset<"iidx:SP" | "iidx:DP">[0]>[] = [

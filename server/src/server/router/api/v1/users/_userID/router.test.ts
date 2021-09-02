@@ -4,6 +4,7 @@ import db from "external/mongo/db";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { UserGameStats } from "tachi-common";
+import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 
 t.test("GET /api/v1/users/:userID", (t) => {
 	t.beforeEach(ResetDBState);
@@ -69,24 +70,17 @@ t.test("GET /api/v1/users/:userID", (t) => {
 	t.end();
 });
 
-t.test("PATCH /api/v1/users/:userID", (t) => {
+t.test("PATCH /api/v1/users/:userID", async (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(async () => {
-		await db["api-tokens"].insert({
-			identifier: "customiseProfile",
-			permissions: {
-				customise_profile: true,
-			},
-			token: "valid_token",
-			userID: 1,
-		});
-	});
+
+	const cookie = await CreateFakeAuthCookie(mockApi);
 
 	t.test("Should require authentication", async (t) => {
 		const res = await mockApi.patch("/api/v1/users/1");
 
 		t.equal(res.statusCode, 401);
 
+		// needs self key auth
 		await db["api-tokens"].insert({
 			token: "noperm",
 			permissions: {},
@@ -102,9 +96,7 @@ t.test("PATCH /api/v1/users/:userID", (t) => {
 	});
 
 	t.test("Should reject empty updates.", async (t) => {
-		const res = await mockApi
-			.patch("/api/v1/users/1")
-			.set("Authorization", "Bearer valid_token");
+		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie);
 
 		t.equal(res.statusCode, 400);
 
@@ -112,12 +104,9 @@ t.test("PATCH /api/v1/users/:userID", (t) => {
 	});
 
 	t.test("Should update the user doc.", async (t) => {
-		const res = await mockApi
-			.patch("/api/v1/users/1")
-			.set("Authorization", "Bearer valid_token")
-			.send({
-				status: "Hello World!",
-			});
+		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
+			status: "Hello World!",
+		});
 
 		t.equal(res.body.body.status, "Hello World!");
 
@@ -129,12 +118,9 @@ t.test("PATCH /api/v1/users/:userID", (t) => {
 	});
 
 	t.test("Shouldn't allow about me to be set to null.", async (t) => {
-		const res = await mockApi
-			.patch("/api/v1/users/1")
-			.set("Authorization", "Bearer valid_token")
-			.send({
-				about: null,
-			});
+		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
+			about: null,
+		});
 
 		t.equal(res.statusCode, 400);
 
@@ -148,12 +134,9 @@ t.test("PATCH /api/v1/users/:userID", (t) => {
 	t.test("Shouldn't alter other properties.", async (t) => {
 		await db.users.update({ id: 1 }, { $set: { "socialMedia.discord": "foo#123" } });
 
-		const res = await mockApi
-			.patch("/api/v1/users/1")
-			.set("Authorization", "Bearer valid_token")
-			.send({
-				status: "Hello World!",
-			});
+		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
+			status: "Hello World!",
+		});
 
 		t.equal(res.body.body.status, "Hello World!");
 
@@ -167,12 +150,9 @@ t.test("PATCH /api/v1/users/:userID", (t) => {
 	});
 
 	t.test("Should correctly strip twitter urls.", async (t) => {
-		const res = await mockApi
-			.patch("/api/v1/users/1")
-			.set("Authorization", "Bearer valid_token")
-			.send({
-				twitter: "https://twitter.com/zkldi",
-			});
+		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
+			twitter: "https://twitter.com/zkldi",
+		});
 
 		t.equal(res.body.body.socialMedia.twitter, "zkldi");
 
@@ -184,12 +164,9 @@ t.test("PATCH /api/v1/users/:userID", (t) => {
 	});
 
 	t.test("Should correctly strip youtube urls.", async (t) => {
-		const res = await mockApi
-			.patch("/api/v1/users/1")
-			.set("Authorization", "Bearer valid_token")
-			.send({
-				youtube: "https://youtube.com/user/zkldi",
-			});
+		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
+			youtube: "https://youtube.com/user/zkldi",
+		});
 
 		t.equal(res.body.body.socialMedia.youtube, "zkldi");
 
@@ -197,12 +174,9 @@ t.test("PATCH /api/v1/users/:userID", (t) => {
 
 		t.equal(dbUser?.socialMedia.youtube, "zkldi");
 
-		const res2 = await mockApi
-			.patch("/api/v1/users/1")
-			.set("Authorization", "Bearer valid_token")
-			.send({
-				youtube: "https://youtube.com/channel/zkldi",
-			});
+		const res2 = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
+			youtube: "https://youtube.com/channel/zkldi",
+		});
 
 		t.equal(res2.body.body.socialMedia.youtube, "zkldi");
 
@@ -214,12 +188,9 @@ t.test("PATCH /api/v1/users/:userID", (t) => {
 	});
 
 	t.test("Should correctly strip github urls.", async (t) => {
-		const res = await mockApi
-			.patch("/api/v1/users/1")
-			.set("Authorization", "Bearer valid_token")
-			.send({
-				github: "https://github.com/zkldi",
-			});
+		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
+			github: "https://github.com/zkldi",
+		});
 
 		t.equal(res.body.body.socialMedia.github, "zkldi");
 
@@ -231,12 +202,9 @@ t.test("PATCH /api/v1/users/:userID", (t) => {
 	});
 
 	t.test("Should correctly strip twitch urls.", async (t) => {
-		const res = await mockApi
-			.patch("/api/v1/users/1")
-			.set("Authorization", "Bearer valid_token")
-			.send({
-				twitch: "https://twitch.tv/zkldi",
-			});
+		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
+			twitch: "https://twitch.tv/zkldi",
+		});
 
 		t.equal(res.body.body.socialMedia.twitch, "zkldi");
 
@@ -248,12 +216,9 @@ t.test("PATCH /api/v1/users/:userID", (t) => {
 	});
 
 	t.test("Should correctly strip steam urls.", async (t) => {
-		const res = await mockApi
-			.patch("/api/v1/users/1")
-			.set("Authorization", "Bearer valid_token")
-			.send({
-				steam: "https://steamcommunity.com/id/zkldi",
-			});
+		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
+			steam: "https://steamcommunity.com/id/zkldi",
+		});
 
 		t.equal(res.body.body.socialMedia.steam, "zkldi");
 

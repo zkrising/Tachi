@@ -1,7 +1,7 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { GetUserFromParam, RequireAuthedAsUser } from "./middleware";
+import { GetUserFromParam, RequireSelfRequestFromUser } from "./middleware";
 import gamePTRouter from "./games/_game/_playtype/router";
 import bannerRouter from "./banner/router";
 import pfpRouter from "./pfp/router";
@@ -11,9 +11,11 @@ import prValidate from "server/middleware/prudence-validate";
 import p from "prudence";
 import { optNull, optNullFluffStrField } from "utils/prudence";
 import { DeleteUndefinedProps, StripUrl } from "utils/misc";
-import { RequirePermissions } from "server/middleware/auth";
-import { GetUsersRankingAndOutOf, GetUserWithID } from "utils/user";
+import { FormatUserDoc, GetUsersRankingAndOutOf, GetUserWithID } from "utils/user";
 import { UserGameStats } from "tachi-common";
+import CreateLogCtx from "lib/logger/logger";
+
+const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 
@@ -60,8 +62,7 @@ interface UserPatchBody {
  */
 router.patch(
 	"/",
-	RequireAuthedAsUser,
-	RequirePermissions("customise_profile"),
+	RequireSelfRequestFromUser,
 	prValidate({
 		about: optNull(p.isBoundedString(3, 2000)),
 		status: optNullFluffStrField,
@@ -146,6 +147,22 @@ router.patch(
 		);
 
 		const newUser = await GetUserWithID(user.id);
+
+		if (!newUser) {
+			logger.severe(
+				`User ${FormatUserDoc(user)} updated profile but user doc no longer exists?`,
+				{ user }
+			);
+
+			return res.status(500).json({
+				success: false,
+				description: `An internal error has occured.`,
+			});
+		}
+
+		if (req.session.tachi?.user) {
+			req.session.tachi.user = newUser;
+		}
 
 		return res.status(200).json({
 			success: true,

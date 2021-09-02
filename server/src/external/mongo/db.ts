@@ -29,6 +29,7 @@ import {
 	SessionViewDocument,
 	ARCSavedProfileDocument,
 	UserSettings,
+	Game,
 } from "tachi-common";
 import monk, { TMiddleware } from "monk";
 import CreateLogCtx from "lib/logger/logger";
@@ -167,5 +168,34 @@ const db = {
 	"arc-saved-profiles": monkDB.get<ARCSavedProfileDocument>("arc-saved-profiles"),
 	"user-settings": monkDB.get<UserSettings>("user-settings"),
 };
+
+export type StaticDatabases =
+	| "sessions"
+	| "session-view-cache"
+	| "folders"
+	| "folder-chart-lookup"
+	| "scores"
+	| "personal-bests"
+	| "imports"
+	| "import-timings"
+	| "tierlist-data"
+	| "tierlists"
+	| "goals"
+	| "user-goals"
+	| "user-milestones"
+	| "milestones"
+	| "game-stats"
+	| "game-settings"
+	| "users"
+	| "kai-auth-tokens"
+	| "bms-course-lookup"
+	| "api-tokens"
+	| "import-locks"
+	| "tables"
+	| "game-stats-snapshots"
+	| "arc-saved-profiles"
+	| "user-settings";
+
+export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;
 
 export default db;

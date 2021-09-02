@@ -1,10 +1,10 @@
 /* eslint-disable no-await-in-loop */
 import monk from "monk";
 import { IndexOptions } from "mongodb";
-import { ValidDatabases } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerTypeInfo } from "lib/setup/config";
 import { ONE_DAY } from "lib/constants/time";
+import { Databases } from "./db";
 
 const logger = CreateLogCtx(__filename);
 
@@ -19,7 +19,7 @@ function index(fields: Record<string, unknown>, options?: IndexOptions) {
 
 const UNIQUE = { unique: true };
 
-const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
+const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	scores: [
 		index({ scoreID: 1 }, UNIQUE),
 		index({ chartID: 1, userID: 1 }),
@@ -92,11 +92,11 @@ const staticIndexes: Partial<Record<ValidDatabases, Index[]>> = {
 	"user-settings": [index({ userID: 1 }, UNIQUE)],
 };
 
-const indexes: Partial<Record<ValidDatabases, Index[]>> = staticIndexes;
+const indexes: Partial<Record<Databases, Index[]>> = staticIndexes;
 
 for (const game of ServerTypeInfo.supportedGames) {
-	if (indexes[`charts-${game}` as ValidDatabases]) {
-		indexes[`charts-${game}` as ValidDatabases]!.push(
+	if (indexes[`charts-${game}` as Databases]) {
+		indexes[`charts-${game}` as Databases]!.push(
 			index({ chartID: 1 }, UNIQUE),
 			index(
 				{ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 },
@@ -104,19 +104,19 @@ for (const game of ServerTypeInfo.supportedGames) {
 			)
 		);
 	} else {
-		indexes[`charts-${game}` as ValidDatabases] = [
+		indexes[`charts-${game}` as Databases] = [
 			index({ chartID: 1 }, UNIQUE),
 			index({ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 }, UNIQUE),
 		];
 	}
 
-	if (indexes[`songs-${game}` as ValidDatabases]) {
-		indexes[`songs-${game}` as ValidDatabases]!.push(
+	if (indexes[`songs-${game}` as Databases]) {
+		indexes[`songs-${game}` as Databases]!.push(
 			index({ id: 1 }, UNIQUE),
 			index({ title: "text", artist: "text", "alt-titles": "text", "search-titles": "text" })
 		);
 	} else {
-		indexes[`songs-${game}` as ValidDatabases] = [
+		indexes[`songs-${game}` as Databases] = [
 			index({ id: 1 }, UNIQUE),
 			index({ title: 1 }),
 			index({ title: "text", artist: "text", "alt-titles": "text", "search-titles": "text" }),

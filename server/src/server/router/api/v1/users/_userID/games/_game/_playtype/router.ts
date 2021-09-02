@@ -42,8 +42,6 @@ router.get("/", async (req, res) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-	const gptConfig = GetGamePTConfig(game, playtype);
-
 	const [totalScores, firstScore, mostRecentScore, rankingData] = await Promise.all([
 		db.scores.count({
 			userID: user.id,

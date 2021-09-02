@@ -47,6 +47,7 @@ const PR_Fervidex: PrudenceSchema = {
 			p.isIn("SUDDEN_PLUS", "HIDDEN_PLUS", "SUD_PLUS_HID_PLUS", "LIFT", "LIFT_SUD_PLUS")
 		),
 		style: optNull(p.isIn("RANDOM", "R_RANDOM", "S_RANDOM", "MIRROR")),
+		style_2p: optNull(p.isIn("RANDOM", "R_RANDOM", "S_RANDOM", "MIRROR")),
 		assist: optNull(p.isIn("AUTO_SCRATCH", "LEGACY_NOTE", "ASCR_LEGACY", "FULL_ASSIST")),
 	},
 
@@ -65,7 +66,7 @@ const PR_Fervidex: PrudenceSchema = {
  * Converts a string of the form LDJ:X:X:X:2020092900 into a game version.
  * I don't really understand the software model format, so this is lazy.
  */
-export function SoftwareIDToVersion(model: string) {
+export function SoftwareIDToVersion(model: string, logger: KtLogger) {
 	try {
 		const data = ParseEA3SoftID(model);
 
@@ -85,9 +86,11 @@ export function SoftwareIDToVersion(model: string) {
 			}
 		}
 
+		logger.warn(`Unsupported Software Model ${model}.`);
 		throw new ScoreImportFatalError(400, `Unsupported Software Model ${model}.`);
 	} catch (err) {
-		throw new ScoreImportFatalError(400, `Unsupported Software Model ${model}`);
+		logger.warn(`Unsupported Software Model ${model}.`, { err });
+		throw new ScoreImportFatalError(400, `Unsupported Software Model ${model}.`);
 	}
 }
 
@@ -100,7 +103,7 @@ export function ParseFervidexSingle(
 	headers: FerHeaders,
 	logger: KtLogger
 ): ParserFunctionReturns<FervidexScore, FervidexContext> {
-	const version = SoftwareIDToVersion(headers.model);
+	const version = SoftwareIDToVersion(headers.model, logger);
 
 	// more mods may be added in the future, so lets ignore excess keys.
 	const err = p(body, PR_Fervidex, undefined, { allowExcessKeys: true });

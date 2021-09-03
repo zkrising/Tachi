@@ -1382,4 +1382,5 @@ export interface OAuth2ApplicationDocument {
 	name: string;
 	author: integer;
 	requestedPermissions: APIPermissions[];
+	redirectUri: string;
 }

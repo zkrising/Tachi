@@ -1,19 +1,17 @@
-import { PrivateUserDocument } from "tachi-common";
 import db from "external/mongo/db";
+import { PublicUserDocument } from "tachi-common";
 import MigrateRecords from "./migrate";
 
-function ConvertFn(c: any): PrivateUserDocument {
-	const newUserDoc: PrivateUserDocument = {
+function ConvertFn(c: any): PublicUserDocument {
+	const newUserDoc: PublicUserDocument = {
 		username: c.username,
 		usernameLowercase: c.username.toLowerCase(),
 		about: c.about,
 		clan: c.clan,
 		customBanner: c.custombanner,
 		customPfp: c.custompfp,
-		email: c.email,
 		id: c.id,
 		lastSeen: c.lastSeen,
-		password: c.password,
 		socialMedia: {
 			discord: c.socialmedia.discord || null,
 			twitter: c.socialmedia.twitter || null,
@@ -24,6 +22,7 @@ function ConvertFn(c: any): PrivateUserDocument {
 		},
 		joinDate: 0,
 		authLevel: "user",
+		status: null,
 		badges: ["beta"],
 	};
 

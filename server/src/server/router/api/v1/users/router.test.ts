@@ -2,7 +2,7 @@ import t from "tap";
 import db from "external/mongo/db";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { PrivateUserDocument, PublicUserDocument } from "tachi-common";
+import { PublicUserDocument } from "tachi-common";
 
 t.test("GET /api/v1/users", (t) => {
 	t.beforeEach(ResetDBState);
@@ -43,7 +43,7 @@ t.test("GET /api/v1/users", (t) => {
 			usernameLowercase: "online_dude",
 			lastSeen: Date.now(),
 			id: 2,
-		} as PrivateUserDocument);
+		} as PublicUserDocument);
 
 		const res2 = await mockApi.get("/api/v1/users?online=true");
 
@@ -59,7 +59,7 @@ t.test("GET /api/v1/users", (t) => {
 			usernameLowercase: "online_dude",
 			lastSeen: Date.now(),
 			id: 2,
-		} as PrivateUserDocument);
+		} as PublicUserDocument);
 
 		const res = await mockApi.get("/api/v1/users");
 

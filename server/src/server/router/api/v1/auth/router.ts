@@ -10,12 +10,12 @@ import {
 	InsertDefaultUserSettings,
 } from "./auth";
 import {
+	CheckIfEmailInUse,
 	FormatUserDoc,
 	GetSettingsForUser,
 	GetUserCaseInsensitive,
-	GetUserWithEmail,
+	GetUserPrivateInfo,
 	GetUserWithID,
-	PRIVATEINFO_GetUserCaseInsensitive,
 } from "utils/user";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
@@ -78,7 +78,7 @@ router.post(
 			logger.verbose("Skipped captcha check because not in production.");
 		}
 
-		const requestedUser = await PRIVATEINFO_GetUserCaseInsensitive(req.body.username);
+		const requestedUser = await GetUserCaseInsensitive(req.body.username);
 
 		if (!requestedUser) {
 			logger.verbose(`Invalid username for login ${req.body.username}.`);
@@ -88,7 +88,23 @@ router.post(
 			});
 		}
 
-		const passwordMatch = await PasswordCompare(req.body.password, requestedUser.password);
+		const privateInfo = await GetUserPrivateInfo(requestedUser.id);
+
+		if (!privateInfo) {
+			logger.severe(
+				`State desync for user ${FormatUserDoc(
+					requestedUser
+				)}. This user has no password/email information?`,
+				{ requestedUser }
+			);
+
+			return res.status(500).json({
+				success: false,
+				description: `An internal server error has occured.`,
+			});
+		}
+
+		const passwordMatch = await PasswordCompare(req.body.password, privateInfo.password);
 
 		if (!passwordMatch) {
 			logger.verbose("Invalid password provided.");
@@ -185,10 +201,10 @@ router.post(
 			});
 		}
 
-		const existingEmail = await GetUserWithEmail(req.body.email);
+		const existingEmail = await CheckIfEmailInUse(req.body.email);
 
 		if (existingEmail) {
-			logger.info(`User attempted to use email ${req.body.email}, but was already in use.`);
+			logger.info(`User attempted to sign up with email that was already in use.`);
 			return res.status(409).json({
 				success: false,
 				description: `This email is already in use.`,

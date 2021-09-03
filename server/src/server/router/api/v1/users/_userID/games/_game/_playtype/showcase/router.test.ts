@@ -1,4 +1,4 @@
-import { ChartDocument, PrivateUserDocument } from "tachi-common";
+import { ChartDocument, PublicUserDocument } from "tachi-common";
 import db from "external/mongo/db";
 import { IIDX_GRADES, IIDX_LAMPS } from "lib/constants/game";
 import t from "tap";
@@ -97,7 +97,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 			username: "test_acc",
 			usernameLowercase: "test_acc",
 			id: 2,
-		} as PrivateUserDocument);
+		} as PublicUserDocument);
 
 		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/showcase?projectUser=2");
 

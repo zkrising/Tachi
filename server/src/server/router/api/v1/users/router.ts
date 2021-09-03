@@ -2,7 +2,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { SearchUsersRegExp } from "lib/search/search";
 import { IsString } from "utils/misc";
-import { GetOnlineCutoff, OMIT_PRIVATE_USER_RETURNS } from "utils/user";
+import { GetOnlineCutoff } from "utils/user";
 import userIDRouter from "./_userID/router";
 
 const router: Router = Router({ mergeParams: true });
@@ -35,7 +35,6 @@ router.get("/", async (req, res) => {
 		users = await db.users.find(query, {
 			sort: { lastSeen: -1 },
 			limit: 100,
-			projection: OMIT_PRIVATE_USER_RETURNS,
 		});
 	}
 

@@ -2,7 +2,7 @@ import t from "tap";
 import db from "external/mongo/db";
 import ResetDBState from "test-utils/resets";
 import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
-import { ChartDocument, PBScoreDocument, ScoreDocument, PrivateUserDocument } from "tachi-common";
+import { ChartDocument, PBScoreDocument, ScoreDocument, PublicUserDocument } from "tachi-common";
 import deepmerge from "deepmerge";
 
 const mockScorePB: PBScoreDocument<"usc:Single"> = {
@@ -235,7 +235,7 @@ const mockUserDocs = [2, 3, 4, 5, 6, 7, 8, 9, 10].map((e) => ({
 	id: e,
 	username: e.toString(),
 	usernameLowercase: e.toString(),
-})) as PrivateUserDocument[];
+})) as PublicUserDocument[];
 
 t.test("#CreatePOSTScoresResponseBody", async (t) => {
 	t.beforeEach(ResetDBState);

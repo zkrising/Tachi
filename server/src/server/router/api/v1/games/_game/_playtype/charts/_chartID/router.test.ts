@@ -5,7 +5,7 @@ import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXSPScorePB } from "test-utils/test-data";
 import deepmerge from "deepmerge";
-import { PBScoreDocument, PrivateUserDocument } from "tachi-common";
+import { PBScoreDocument, PublicUserDocument } from "tachi-common";
 
 t.test("GET /api/v1/games/:game/:playtype/charts/:chartID", (t) => {
 	t.beforeEach(ResetDBState);
@@ -55,7 +55,7 @@ t.test("GET /api/v1/games/:game/:playtype/charts/:chartID/pbs", (t) => {
 			id: 2,
 			username: "foo",
 			usernameLowercase: "foo",
-		} as PrivateUserDocument);
+		} as PublicUserDocument);
 
 		const res = await mockApi.get(`/api/v1/games/iidx/SP/charts/${Testing511SPA.chartID}/pbs`);
 

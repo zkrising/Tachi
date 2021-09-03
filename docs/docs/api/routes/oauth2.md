@@ -4,7 +4,7 @@ Tachi provides an OAuth2 API and some other things
 so that you can create your own clients and retrieve
 user api keys safely.
 
-For a detailed explaination on how to use the OAuth2 flow, you can check [Using OAuth2 With Tachi](../../codebase/batch-manual/oauth2.md)
+For a detailed explaination on how to use the OAuth2 flow, you can check [Using OAuth2 With Tachi](../../codebase/infrastructure/oauth2.md)
 
 *****
 

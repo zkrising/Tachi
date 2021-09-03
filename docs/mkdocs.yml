@@ -59,6 +59,7 @@ nav:
       - "api/routes/games.md"
       - "api/routes/gpt.md"
       - "api/routes/admin.md"
+      - "api/routes/ugpt-showcase.md"
       - "api/routes/oauth2.md"
       - "api/routes/oauth2-clients.md"
 
@@ -75,6 +76,7 @@ nav:
       - "codebase/infrastructure/logging.md"
       - "codebase/infrastructure/branches.md"
       - "codebase/infrastructure/versions.md"
+      - "codebase/infrastructure/oauth2.md"
 
     - Structure:
       - "codebase/structure/style.md"

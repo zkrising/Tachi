@@ -709,6 +709,7 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
 }
 
 export interface PrivateUserInfoDocument {
+	userID: integer;
 	password: string;
 	email: string;
 }

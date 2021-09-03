@@ -14,13 +14,6 @@ import CreateLogCtx from "lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 
-export const OMIT_PRIVATE_USER_RETURNS = {
-	password: 0,
-	email: 0,
-	// legacy protection - this field does not exist on user documents anymore, but it did, and it *did* hold personal information.
-	integrations: 0,
-};
-
 /**
  * Returns a user's username from their ID. Throws if no user with that ID exists.
  */
@@ -49,52 +42,28 @@ export async function GetUsernameFromUserID(userID: integer): Promise<string> {
 export function GetUserCaseInsensitive(
 	username: string
 ): Promise<FindOneResult<PublicUserDocument>> {
-	return db.users.findOne(
-		{
-			usernameLowercase: username.toLowerCase(),
-		},
-		{
-			projection: OMIT_PRIVATE_USER_RETURNS,
-		}
-	) as Promise<FindOneResult<PublicUserDocument>>;
-}
-
-/**
- * Returns the user with this email.
- */
-export function GetUserWithEmail(email: string): Promise<FindOneResult<PublicUserDocument>> {
-	return db.users.findOne(
-		{
-			email,
-		},
-		{
-			projection: OMIT_PRIVATE_USER_RETURNS,
-		}
-	);
-}
-
-/**
- * Returns GetUserCaseInsensitive, but without the private field omission.
- * @see GetUserCaseInsensitive
- */
-export function PRIVATEINFO_GetUserCaseInsensitive(username: string) {
 	return db.users.findOne({
 		usernameLowercase: username.toLowerCase(),
-	});
+	}) as Promise<FindOneResult<PublicUserDocument>>;
+}
+
+export async function CheckIfEmailInUse(email: string) {
+	const doc = await db["user-private-information"].findOne({ email });
+
+	return !!doc;
+}
+
+export function GetUserPrivateInfo(userID: integer) {
+	return db["user-private-information"].findOne({ userID });
 }
 
 /**
  * Gets a user from their userID.
  */
 export function GetUserWithID(userID: integer): Promise<FindOneResult<PublicUserDocument>> {
-	return db.users.findOne(
-		{
-			id: userID,
-		},
-		{
-			projection: OMIT_PRIVATE_USER_RETURNS,
-		}
-	) as Promise<FindOneResult<PublicUserDocument>>;
+	return db.users.findOne({
+		id: userID,
+	}) as Promise<FindOneResult<PublicUserDocument>>;
 }
 
 export function GetSettingsForUser(userID: integer) {
@@ -107,14 +76,9 @@ export function GetSettingsForUser(userID: integer) {
  * Gets the users for these user IDs.
  */
 export function GetUsersWithIDs(userIDs: integer[]) {
-	return db.users.find(
-		{
-			id: { $in: userIDs },
-		},
-		{
-			projection: OMIT_PRIVATE_USER_RETURNS,
-		}
-	);
+	return db.users.find({
+		id: { $in: userIDs },
+	});
 }
 
 /**
@@ -135,16 +99,6 @@ export async function GetUserWithIDGuaranteed(userID: integer): Promise<PublicUs
 	}
 
 	return userDoc;
-}
-
-/**
- * GetUserWithID, but return personal information, too.
- * @see GetUserWithID
- */
-export function PRIVATEINFO_GetUserWithID(userID: integer) {
-	return db.users.findOne({
-		id: userID,
-	});
 }
 
 /**

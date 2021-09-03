@@ -11,7 +11,6 @@ import {
 	MilestoneDocument,
 	FolderChartLookup,
 	ImportTimingsDocument,
-	PrivateUserDocument,
 	ScoreDocument,
 	KaiAuthDocument,
 	UserGameStatsSnapshot,
@@ -30,6 +29,8 @@ import {
 	ARCSavedProfileDocument,
 	UserSettings,
 	Game,
+	PrivateUserInfoDocument,
+	PublicUserDocument,
 } from "tachi-common";
 import monk, { TMiddleware } from "monk";
 import CreateLogCtx from "lib/logger/logger";
@@ -148,7 +149,7 @@ const db = {
 	"user-goals": monkDB.get<UserGoalDocument>("user-goals"),
 	milestones: monkDB.get<MilestoneDocument>("milestones"),
 	"user-milestones": monkDB.get<UserMilestoneDocument>("user-milestones"),
-	users: monkDB.get<PrivateUserDocument>("users"),
+	users: monkDB.get<PublicUserDocument>("users"),
 	imports: monkDB.get<ImportDocument>("imports"),
 	"import-timings": monkDB.get<ImportTimingsDocument>("import-timings"),
 	sessions: monkDB.get<SessionDocument>("sessions"),
@@ -167,6 +168,7 @@ const db = {
 	"session-view-cache": monkDB.get<SessionViewDocument>("session-view-cache"),
 	"arc-saved-profiles": monkDB.get<ARCSavedProfileDocument>("arc-saved-profiles"),
 	"user-settings": monkDB.get<UserSettings>("user-settings"),
+	"user-private-information": monkDB.get<PrivateUserInfoDocument>("user-private-information"),
 };
 
 export type StaticDatabases =
@@ -194,6 +196,7 @@ export type StaticDatabases =
 	| "tables"
 	| "game-stats-snapshots"
 	| "arc-saved-profiles"
+	| "user-private-information"
 	| "user-settings";
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;

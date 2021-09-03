@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { integer, PrivateUserDocument, PublicUserDocument, UserSettings } from "tachi-common";
+import { integer, PrivateUserInfoDocument, PublicUserDocument, UserSettings } from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { FormatUserDoc } from "utils/user";
@@ -85,20 +85,18 @@ export async function AddNewUser(
 
 	logger.verbose(`Hashed password for ${username}.`);
 
-	const userDoc: PrivateUserDocument = {
+	const userDoc: PublicUserDocument = {
 		id: userID,
-		username: username,
+		username,
 		usernameLowercase: username.toLowerCase(),
-		password: hashedPassword,
 		about: "I'm a fairly nondescript person.",
-		email: email,
 		clan: null,
 		socialMedia: {},
 		status: null,
 		customBanner: false,
 		customPfp: false,
 		joinDate: Date.now(),
-		lastSeen: Date.now(), // lol
+		lastSeen: Date.now(),
 		authLevel: "user",
 		badges: [],
 	};
@@ -107,7 +105,19 @@ export async function AddNewUser(
 
 	const settingsRes = await InsertDefaultUserSettings(userID);
 
+	await InsertPrivateUserInfo(userID, hashedPassword, email);
+
 	return { newUser: res, newSettings: settingsRes };
+}
+
+export function InsertPrivateUserInfo(userID: integer, hashedPassword: string, email: string) {
+	const privateInfo: PrivateUserInfoDocument = {
+		userID,
+		email,
+		password: hashedPassword,
+	};
+
+	return db["user-private-information"].insert(privateInfo);
 }
 
 export function InsertDefaultUserSettings(userID: integer) {

@@ -9,11 +9,11 @@ import {
 	Playtypes,
 	SongDocument,
 	ChartDocument,
-	PrivateUserDocument,
 	integer,
+	PublicUserDocument,
 } from "tachi-common";
 import { EscapeStringRegexp } from "utils/misc";
-import { GetOnlineCutoff, OMIT_PRIVATE_USER_RETURNS } from "utils/user";
+import { GetOnlineCutoff } from "utils/user";
 import { ServerTypeInfo } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
@@ -129,7 +129,7 @@ export function SearchSessions(
 export function SearchUsersRegExp(search: string, matchOnline = false) {
 	const regexEsc = EscapeStringRegexp(search.toLowerCase());
 
-	const matchQuery: FilterQuery<PrivateUserDocument> = {
+	const matchQuery: FilterQuery<PublicUserDocument> = {
 		usernameLowercase: { $regex: new RegExp(regexEsc, "u") },
 	};
 
@@ -139,7 +139,6 @@ export function SearchUsersRegExp(search: string, matchOnline = false) {
 
 	return db.users.find(matchQuery, {
 		limit: 25,
-		projection: OMIT_PRIVATE_USER_RETURNS,
 	});
 }
 

@@ -14,6 +14,7 @@ import { DeleteUndefinedProps, StripUrl } from "utils/misc";
 import { FormatUserDoc, GetUsersRankingAndOutOf, GetUserWithID } from "utils/user";
 import { UserGameStats } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
+import apiTokensRouter from "./api-tokens/router";
 
 const logger = CreateLogCtx(__filename);
 
@@ -206,5 +207,6 @@ router.use("/pfp", pfpRouter);
 router.use("/banner", bannerRouter);
 router.use("/integrations", integrationsRouter);
 router.use("/settings", settingsRouter);
+router.use("/api-tokens", apiTokensRouter);
 
 export default router;

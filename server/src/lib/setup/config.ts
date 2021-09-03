@@ -65,6 +65,7 @@ export interface TachiConfig {
 	CLIENT_DEV_SERVER?: string | null;
 	SERVER_TYPE_INFO: StaticConfig.ServerConfig;
 	RATE_LIMIT: integer;
+	OAUTH_CLIENT_CAP: integer;
 	OPTIONS_ALWAYS_SUCCEEDS?: boolean;
 	NO_CONSOLE?: boolean;
 }
@@ -95,6 +96,7 @@ const err = p(config, {
 	CLIENT_DEV_SERVER: "*?string",
 	TYPE: p.isIn("ktchi", "btchi", "omni"),
 	RATE_LIMIT: p.optional(p.isPositiveInteger),
+	OAUTH_CLIENT_CAP: p.optional(p.isPositiveInteger),
 	OPTIONS_ALWAYS_SUCCEEDS: "*boolean",
 	NO_CONSOLE: "*boolean",
 });
@@ -115,6 +117,7 @@ const tachiConfig = config as TachiConfig;
 
 // default rate limit 500
 tachiConfig.RATE_LIMIT ??= 500;
+tachiConfig.OAUTH_CLIENT_CAP ??= 15;
 
 export const ServerTypeInfo = tachiConfig.SERVER_TYPE_INFO;
 export const ServerConfig = tachiConfig;

@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
 /**
  * Delete this token.
  *
- * @name DELETE /api/v1/users/:userID/api-token
+ * @name DELETE /api/v1/users/:userID/api-token/:token
  */
 router.delete("/:token", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;

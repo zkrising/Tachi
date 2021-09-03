@@ -14,7 +14,7 @@ This endpoint greets the user.
 
 *If permissions are required, they will be listed here.*
 
-- example:permission
+- example_permission
 
 ### Parameters
 

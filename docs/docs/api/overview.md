@@ -26,10 +26,10 @@ cool things, and used responsibly.
 
 Abuse of this API will result in your ability to use it being banned.
 
-The API has a rate limit of 100 requests every minute. This is a rather
-generous rate limit, and you should not be close to hitting it.
+The API has a rate limit of 500 requests every minute. This is a very
+generous rate limit, and you should not even be close to hitting it.
 
-If you are in a scenario where you might be hitting 100 requests a minute,
+If you are in a scenario where you might be hitting even 100 requests a minute consistently,
 please contact me at `zkldi#2965`. Otherwise, you might have your tokens revoked
 for API abuse.
 
@@ -67,9 +67,9 @@ As the name implies, the Success Response is returned on a successful request.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| success | true | Always true for a successful response. |
-| description | string | Information about what happened with the request. |
-| body | Endpoint Dependent | Any data that the endpoint needs to return, such as a user's document from a profile request. | 
+| `success` | true | Always true for a successful response. |
+| `description` | string | Information about what happened with the request. |
+| `body` | Endpoint Dependent | Any data that the endpoint needs to return, such as a user's document from a profile request. | 
 
 The HTTP Status Code for any Success Response will always be of 2XX form.
 
@@ -79,8 +79,8 @@ As the name implies, the Failed Response is returned when a request fails.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| success | false | Always false for a failed response. |
-| description | string | Information about what went wrong with the request. |
+| `success` | false | Always false for a failed response. |
+| `description` | string | Information about what went wrong with the request. |
 
 The HTTP Status Code for any Failed Response will always be of either 4XX or 5XX form.
 

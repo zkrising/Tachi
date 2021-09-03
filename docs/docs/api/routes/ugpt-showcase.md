@@ -108,7 +108,7 @@ PATCH /api/v1/users/1/games/iidx/SP/showcase
 | Property | Type | Description |
 | :: | :: | :: |
 | `mode` | "folder" \| "chart" | Whether the stat to evaluate is on a folder or a chart. |
-| `prop` | "grade" \| "lamp" \| "score" \| "percent" or "playcount" if mode is chart. | What property to evaluate on the given criteria. |
+| `property` | "grade" \| "lamp" \| "score" \| "percent" or "playcount" if mode is chart. | What property to evaluate on the given criteria. |
 | `chartID` | string, if mode === "chart" | If mode is chart, this should contain the relevant chartID. |
 | `folderID` | string, if mode === "folder" | If mode is folder, this should contain the relevant folderID. |
 | `gte` | number, if mode === "folder" | If mode is folder, this must contain the value the property must be greater than, i.e. lamp >= 6, or percent >= 90 |
@@ -125,7 +125,7 @@ PATCH /api/v1/users/1/games/iidx/SP/showcase
 
 #### Request
 ```
-GET /api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&prop=percent&chartID=some_chart_id
+GET /api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&property=percent&chartID=some_chart_id
 ```
 
 #### Response
@@ -133,7 +133,7 @@ GET /api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&prop=percent&chartI
 {
 	stat: {
 		mode: "chart",
-		prop: "percent",
+		property: "percent",
 		chartID: "some_chart_id",
 	},
 	result: {

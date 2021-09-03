@@ -12,7 +12,7 @@ Perform a score import that depends on a file, such as a .csv import.
 
 ### Permissions
 
-- `submit:score`
+- `submit_score`
 
 ### Parameters
 

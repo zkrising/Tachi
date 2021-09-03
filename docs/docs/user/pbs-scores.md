@@ -1,5 +1,4 @@
 # What's the difference between a PB and a Score?
-
 A PB is all of your best scores on that chart joined together.
 
 In most games, this means joining your best score with your best lamp.

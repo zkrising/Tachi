@@ -51,7 +51,7 @@ CRLF and LF.
 The Tachi-Server codebase handles code comments against these rules:
 
 1. Do not write redundant comments.
-2. Return signatures are obvious from TypeScript most of the time. If they aren't, declare them.
+2. Return signatures are obvious from TypeScript most of the time. If they aren't, declare them with TypeScript rather than commenting them.
 3. Most of the time, comments should describe *why* code does something.
 4. The exception is when a line or function **needs** to do something complicated - in which case, comments can be *how*.
 5. That said, code should be self-explanatory.
@@ -93,7 +93,7 @@ function CalculateStandardDeviation(dataset: number[]) {
 }
 ```
 
-Now that is much cleaner, but it's still perfect.
+Now that is much cleaner, but it's still not perfect.
 
 For example, what if someone didn't know what the standard deviation was?
 Standard Deviation is *external knowledge*, and as such, we should document what this is.

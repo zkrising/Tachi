@@ -77,7 +77,7 @@ space inside a value, you should quote it, like this:
 !!! tip
 	If you need quotes *inside* that, you should escape them, like this:
 
-	`title:!"A Tribe Called \"Quest\"" percent:>50`
+	`artist:!"A Tribe Called \"Quest\"" percent:>50`
 
 	However, it is likely you will never need to use this.
 

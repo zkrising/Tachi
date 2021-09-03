@@ -82,7 +82,7 @@ sub-document.
 | Property | Description |
 | :: | :: |
 | `score` | A number describing the "score" the user got. Depending on the game, this may be bounded between various numbers. |
-| `lamp` | The lamp the user got. For more information on what a lamp is, see [What are Lamps?](../../user/terminology/lamps.md)
+| `lamp` | The lamp the user got. For more information on what a lamp is, see [What are Lamps?](../../user/lamps.md)
 | `percent` | The 'percent' the user got. That is, their score scaled to the total amount of score they could have possibly got. There are some oddities with this field.[^1]. |
 | `grade` | The grade the user got. For most games, this is a set of discrete cutoffs for the score's `percent`.[^2] |
 | `lampIndex`, `gradeIndex` | While `lamp` and `grade` are both strings, these are the raw enum values for those fields. This can be used for filters (select scores where lampIndex > lamps.HARD_CLEAR), or other query methods. |

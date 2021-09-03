@@ -26,7 +26,14 @@ the main benefits for us are as follows:
 	SESSION_SECRET: "other_secret_key",
 	FLO_API_URL: "https://flo.example.com",
 	EAG_API_URL: "https://eag.example.com",
+	MIN_API_URL: "https://min.example.com",
 	ARC_API_URL: "https://arc.example.com",
+	FLO_OAUTH2_INFO: {
+		CLIENT_ID: "OUR_CLIENT_ID",
+		CLIENT_SECRET: "OUR_CLIENT_SECRET",
+		REDIRECT_URI: "https://tachi.example.com/callback"
+	},
+	// FLO_OAUTH2_INFO, EAG_OAUTH2_INFO and MIN_OAUTH2_INFO are all optional.
 	ARC_AUTH_TOKEN: "unused",
 	CDN_FILE_ROOT: "../tachi-cdn",
 	PORT: 8080,
@@ -143,15 +150,6 @@ names.
 "omni" will run the server without any route restrictions.
 This is used for testing.
 
-### CLIENT_INDEX_HTML_PATH
-
-- Type: File Path
-
-The location of `index.html` to serve when any non-server route is hit.
-
-Since we use a react app for client navigation, the server does not concern itself
-with routing the user around, so this is just the react-app index.html to send.
-
 ### ENABLE_SERVER_HTTPS
 
 - Type: Boolean
@@ -180,3 +178,48 @@ This uses `CDN_FILE_ROOT` to determine where the CDN's content should be.
 If present, and a string, this points to the webpack dev server for a react app. Having this
 option set results in CORS being enabled for *that* specific URL. This is useful for local
 development, but should not be used in production.
+
+### FLO/MIN/EAG_OAUTH2_INFO
+
+- Type: OAuth2Info | undefined
+
+If present, these define our OAuth2 Client data for interacting with these services. These look like this:
+```js
+{
+	FLO_OAUTH2_INFO: {
+		CLIENT_ID: "OUR_CLIENT_ID",
+		CLIENT_SECRET: "OUR_CLIENT_SECRET",
+		REDIRECT_URI: "https://tachi.example.com"
+	}
+}
+```
+
+### RATE_LIMIT
+
+- Type: Positive Integer
+- Default: 500
+
+Determines how many requests an APIKey OR IP can make every minute.
+
+The default is set to the very generous 500, as it's possible for users to accidentally hit 100 requests/min by refreshing very fast.
+
+### OAUTH_CLIENT_CAP
+
+- Type: Positive Integer
+- Default: 15
+
+The amount of OAuth2Clients one user can create at any one time. Defaults to 15.
+
+### OPTIONS_ALWAYS_SUCCEEDS
+
+- Type: Boolean
+- Default: false
+
+If true, all `OPTIONS` requests to the server will return `200`, no matter what. This is a hack used for development CORS.
+
+### NO_CONSOLE
+
+- Type: Boolean
+- Default: false
+
+If true, logging to the console will be disabled, and only filesystem logging will be on.

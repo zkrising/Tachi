@@ -32,9 +32,7 @@ nav:
     - "user/features.md"
     - "user/pbs-scores.md"
     - "user/filter-directives.md"
-
-    - Terminology:
-      - "user/terminology/lamps.md"
+    - "user/lamps.md"
 
     - Statistics:
       - "user/stats/tachi.md"

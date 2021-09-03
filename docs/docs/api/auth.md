@@ -9,6 +9,8 @@ This page covers how to present your permissions to the server, and what those p
 
 There are two ways to authorise a request. The first one involves API keys.
 
+### Token Authentication
+
 To use authentication with a request, you should set a HTTP header of:
 
 ```
@@ -17,8 +19,9 @@ Authorization: Bearer API_KEY
 
 Where API_KEY is the api key you wish to use.
 
-The other way to authorise a request is with your session cookie. This is **NOT** recommended
-for non-user use, and is instead a way for logged-in users to interact with the API as themselves.
+### Self-Key Authentication
+
+The other way to authorise a request is with your session cookie. This **MUST NOT** be used by code, and is instead a way for logged-in users to interact with the API as themselves.
 
 To use authentication in this way, simply make a request with your `ktchi_production_session` or
 `btchi_production_session` cookie.
@@ -27,11 +30,11 @@ The reason for this second authentication method is so that, when a user logs in
 the cookie they were set to also interact with the API.
 
 This type of authentication is referred to as "Self-Key" or "Session-Key" authentication, and it grants special
-permissions, such as being able to change your password.
+permissions over API Tokens, such as being able to change your password.
 
 ## Getting Tokens
 
-Users may create API tokens at Settings > API Tokens. They may also revoke these tokens.
+[Our OAuth2 Flow](../codebase/infrastructure/oauth2.md) should be used to acquire API Tokens.
 
 ## Permissions
 

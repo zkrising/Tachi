@@ -1,4 +1,4 @@
-# Score ID implementation.
+# Score ID implementation
 
 Score IDs exist to dedupe scores when a user re-submits
 the same scores. This happens frequently with `file/`

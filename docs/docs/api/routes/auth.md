@@ -23,19 +23,19 @@ Logs a user in and returns a session cookie.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| username | string | The user's username. This is compared case-insensitively.
-| password | string | The user's password. |
-| captcha | string | |
+| `username` | string | The user's username. This is compared case-insensitively.
+| `password` | string | The user's password. |
+| `captcha` | string | |
 
 ### Response
 
 | Property | Type | Description |
 | :: | :: | :: |
-| userID | integer | The ID of the user you authenticated as. |
+| `userID` | integer | The ID of the user you authenticated as. |
 
 | HTTP Header | Description |
 | :: | :: |
-| Set-Cookie | Contains a session cookie for future authentication. |
+| `Set-Cookie` | Contains a session cookie for future authentication. |
 
 ### Example
 

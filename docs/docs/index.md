@@ -42,7 +42,7 @@ If you want to contribute to this documentation, you can find the repository [he
 
 If you want to contribute to the Tachi backend code, you can find the repository [here!](https://github.com/zkldi/tachi-server)
 !!! note
-	You should read the [Contributing To Tachi-Server](./codebase/contributing.md) page beforehand.
+	You should really read the [Contributing To Tachi](./codebase/contributing.md) page beforehand!
 
 ## Acknowledgements
 

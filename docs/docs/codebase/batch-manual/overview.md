@@ -3,7 +3,7 @@
 BATCH-MANUAL is a JSON format that Tachi accepts.
 This format can be submitted as [a file](../../api/routes/import.md#import-scores-from-a-file)
 using the `file/batch-manual` [Import Type](../import/import-types.md), or it can be submitted as a
-[HTTP request body](todo)
+[HTTP request body](todo).
 
 *****
 
@@ -24,9 +24,9 @@ The format is incredibly simple JSON.
 
 It is comprised of two base keys, `meta` and `scores`.
 
-!!! question
+!!! note
 	These keys were originally called `head` and `body` in Kamaitachi. You will have to update
-	batch-manual code.
+	existing batch-manual code.
 
 ### Meta
 
@@ -121,7 +121,7 @@ This match type can only be used for BMS.
 - uscChartHash
 
 This looks for the chart SHA1 that USC uses. As expected, this
-can only be used for BMS.
+can only be used for USC.
 
 - ddrSongHash
 

@@ -4,8 +4,7 @@ This page documents how to get the `tachi-server` up and running.
 
 This guide assumes that you are running on some
 flavour of Linux.
-`tachi-server` is not tested on Windows, but it is likely
-to work, as we don't depend on any OS specific calls.
+`tachi-server` does not work out of the box on windows, as it depends on Redis (See [How do I run Redis on Windows?](https://stackoverflow.com/questions/6476945/how-do-i-run-redis-on-windows)). That said, the `tachi-server` code does not depend on any os-specific calls, and likely will work if you can fix the redis thing.
 
 ## Externals
 
@@ -68,7 +67,7 @@ server.
 
 The config file we use for running tests can be found in `.github/test.conf.json5`
 
-You can read more on how this config file works at [Configuration Info](./config.md)
+You can read more on how this config file works at [Configuration Info](./config.md).
 
 
 ### 7. Run!

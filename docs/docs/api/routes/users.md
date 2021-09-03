@@ -109,7 +109,10 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | Array&lt;UserGameStatsDocument&gt; | The array of User Game Stats this user has. |
+| `<body>` | Array&lt;UserGameStatsDocument & __rankingData&gt; | The array of User Game Stats this user has. |
+
+!!! info
+	For UI reasons, the UserGameStatsDocuments here have an additional `__rankingData` property, which contains leaderboard ranking information for this user.
 
 ### Example
 
@@ -133,6 +136,16 @@ GET /api/v1/users/1/game-stats
 	classes: {
 		dan: 14
 	},
+	__rankingData: {
+		ktRating: {
+			ranking: 15,
+			outOf: 74
+		},
+		BPI: {
+			ranking: 12,
+			outOf: 74
+		}
+	}
 }, {
 	userID: 1,
 	game: "gitadora",
@@ -142,6 +155,12 @@ GET /api/v1/users/1/game-stats
 	},
 	classes: {
 		skillColour: 1
+	},
+	__rankingData: {
+		skill: {
+			ranking: 199,
+			outOf: 202
+		}
 	}
 }]
 ```

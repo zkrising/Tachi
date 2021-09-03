@@ -2,6 +2,8 @@
 
 This endpoints are for specific users information on specific game + playtype combinations.
 
+This scenario appears frequently, and is typically shortened to UGPT.
+
 *****
 
 ## Get information about a user's plays on a game + playtype.
@@ -311,7 +313,7 @@ GET /api/v1/users/zkldi/games/iidx/SP/pbs/best?alg=BPI
 | :: | :: | :: |
 | `pb` | PBDocument | The user's PB for this chart. |
 | `chart` | ChartDocument | The chart this PB is on. |
-| `scores` (Conditional) | ScoreDocument[] | If `getComposition` is present, then this field contains the array of score documents that composed this PB. | 
+| `scores` (Conditional) | Array&lt;ScoreDocument&gt; | If `getComposition` is present, then this field contains the array of score documents that composed this PB. | 
 
 ### Example
 
@@ -863,7 +865,7 @@ GET /api/v1/users/1/games/iidx/SP/settings
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | UGPTSettingsDocument | The new UGPTSettingsDocument |
+| `<body>` | UGPTSettingsDocument | The new UGPTSettingsDocument. |
 
 ### Example
 

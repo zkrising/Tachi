@@ -91,7 +91,7 @@ looks like it belongs.
 - Follow the branching rules.
 
 Your code should follow the branching setup we have.
-You can read about it [here](./infrastructure/branches)
+You can read about it [here](./infrastructure/branches).
 
 - Your PR should fix an issue.
 

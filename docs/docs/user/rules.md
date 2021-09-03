@@ -46,7 +46,7 @@ may be warned.
 ## R3: You **MUST NOT** play on invalid input devices.
 
 Games on Tachi have specific requirements for what kind of
-setups are 'legitimate'. That means that you **SHOULD NOT**
+setups are 'legitimate'. That means that you **MUST NOT**
 submit scores on input devices that aren't fair for
 that game, such as playing pop'n on a keyboard.
 
@@ -77,6 +77,8 @@ The valid input devices are listed below.
 | BMS (7K) | Keyboard, any IIDX Controller | Keyboard play is allowed for BMS 7K. |
 | BMS (14K) | any two IIDX Controllers | Keyboard play is **NOT** allowed for BMS 14K. |
 
+!!! info
+	As always though, exercise some common sense. I'm not going to whitelist controllers on here, because that's asking for trouble. Use your head as for whether something is fair or not, and if you're not certain still, ask in the discord.
 
 ## R4: Do not harm other people in the community.
 

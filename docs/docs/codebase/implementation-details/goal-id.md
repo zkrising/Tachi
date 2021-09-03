@@ -1,4 +1,4 @@
-# Goal ID implementation.
+# Goal ID implementation
 
 Goal IDs exist to dedupe goals when a user creates
 a new goal. For example, if a user wants to create a

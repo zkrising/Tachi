@@ -125,8 +125,11 @@ You can set goals for Lamps, Grades, Percents and score.
 
 !!! example
 	Get 950'000 on FREEDOM DiVE.
+
 	SS FREEDOM DiVE.
+
 	Clear FREEDOM DiVE
+
 	Get 95% on FREEDOM DiVE.
 
 We can also control *how many* scores need to match the
@@ -200,7 +203,7 @@ aiming for, or is just lazy and doesn't like setting goals?
 In general, we're bad at setting our own goals. How can
 we fix that?
 
-### Why Milestones?
+### What are Milestones?
 
 Milestones are **pre-made groups of goals**. As an example,
 we might bundle together some goals aimed at SOUND VOLTEX

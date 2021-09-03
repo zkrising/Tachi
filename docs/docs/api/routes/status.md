@@ -37,7 +37,7 @@ It's a good way of sanity checking whether your code works.
 {
 	"serverTime": 1623331110661,
 	"version": "v2.0.0 (Mysterons)",
-	"permissions": ["score:submit", "example:permission"],
+	"permissions": ["score_submit", "example_permission"],
 	"echo": "helloworld"
 }
 ```
@@ -68,7 +68,7 @@ POST /status
 {
 	"serverTime": 1623331110662,
 	"version": "v2.0.0 (Mysterons)",
-	"permissions": ["score:submit", "example:permission"],
+	"permissions": ["score_submit", "example_permission"],
 	"echo": "hello world"
 }
 ```

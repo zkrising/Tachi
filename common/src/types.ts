@@ -1375,3 +1375,11 @@ export interface UserSettings {
 		developerMode: boolean;
 	};
 }
+
+export interface OAuth2ApplicationDocument {
+	clientID: string;
+	clientSecret: string;
+	name: string;
+	author: integer;
+	requestedPermissions: APIPermissions[];
+}

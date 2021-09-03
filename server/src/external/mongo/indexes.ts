@@ -90,6 +90,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 		index({ timestamp: 1 }, { expireAfterSeconds: ONE_DAY / 1000 }),
 	],
 	"user-settings": [index({ userID: 1 }, UNIQUE)],
+	"user-private-information": [index({ userID: 1 }, UNIQUE)],
 };
 
 const indexes: Partial<Record<Databases, Index[]>> = staticIndexes;

@@ -4,7 +4,7 @@ import db from "external/mongo/db";
 import mockApi from "test-utils/mock-api";
 import ResetDBState, { ResetCDN } from "test-utils/resets";
 import deepmerge from "deepmerge";
-import { PBScoreDocument, ScoreDocument, PrivateUserDocument } from "tachi-common";
+import { PBScoreDocument, ScoreDocument, PublicUserDocument } from "tachi-common";
 import { GetKTDataBuffer } from "test-utils/test-data";
 import { CDNRetrieve } from "lib/cdn/cdn";
 
@@ -267,7 +267,7 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
 			id: 2,
 			username: "not_zkldi",
 			usernameLowercase: "not_zkldi",
-		} as PrivateUserDocument);
+		} as PublicUserDocument);
 
 		await db.scores.insert([
 			{

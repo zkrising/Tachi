@@ -1,6 +1,6 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { PrivateUserDocument } from "tachi-common";
+import { PublicUserDocument } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
@@ -112,7 +112,7 @@ t.test("PATCH /api/v1/users/:userID/settings", async (t) => {
 				id: 2,
 				username: "something_else",
 				usernameLowercase: "something_else",
-			}) as PrivateUserDocument
+			}) as PublicUserDocument
 		);
 
 		const res = await mockApi

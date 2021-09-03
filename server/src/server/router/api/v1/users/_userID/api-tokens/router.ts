@@ -12,10 +12,10 @@ const router: Router = Router({ mergeParams: true });
 router.use(RequireSelfRequestFromUser);
 
 /**
- * Retrieve this users API keys.
+ * Retrieve this users API tokens.
  * This request MUST be performed with session-level auth.
  *
- * @name GET /api/v1/users/:userID/api-keys
+ * @name GET /api/v1/users/:userID/api-tokens
  */
 router.get("/", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;

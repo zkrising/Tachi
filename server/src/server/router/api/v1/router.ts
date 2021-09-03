@@ -8,6 +8,7 @@ import gamesRouter from "./games/router";
 import searchRouter from "./search/router";
 import scoresRouter from "./scores/router";
 import sessionsRouter from "./sessions/router";
+import oauthRouter from "./oauth/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -20,7 +21,13 @@ router.use("/games", gamesRouter);
 router.use("/search", searchRouter);
 router.use("/scores", scoresRouter);
 router.use("/sessions", sessionsRouter);
+router.use("/oauth", oauthRouter);
 
+/**
+ * Return a JSON 404 response if an endpoint is hit that does not exist.
+ *
+ * @name ALL /api/v1/*
+ */
 router.all("*", (req, res) =>
 	res.status(404).json({
 		success: false,

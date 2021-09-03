@@ -29,14 +29,6 @@ export const PRUDENCE_PUBLIC_USER: PrudenceSchema = {
 	authLevel: p.isIn("banned", "user", "mod", "admin"),
 };
 
-export const PRUDENCE_PRIVATE_USER = Object.assign(
-	{
-		password: "string", // could be a tighter fit related to bcrypt?
-		email: p.regex(LAZY_EMAIL_REGEX),
-	},
-	PRUDENCE_PUBLIC_USER
-);
-
 export const PRUDENCE_IIDX_BPI_DATA = {
 	coef: p.nullable(p.isPositiveNonZero),
 	kavg: p.isPositiveNonZeroInteger,
@@ -432,7 +424,7 @@ const PRUDENCE_FOLDER: PrudenceSchema = {
  * being different depending on the score.game field.
  */
 export const STATIC_SCHEMAS = {
-	users: PRUDENCE_PRIVATE_USER,
+	users: PRUDENCE_PUBLIC_USER,
 	"iidx-bpi-data": PRUDENCE_IIDX_BPI_DATA,
 	counters: PRUDENCE_COUNTER,
 	charts: PRUDENCE_CHART_SCHEMAS,

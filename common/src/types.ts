@@ -1291,6 +1291,9 @@ export interface APITokenDocument extends MongoDBDocument {
 	token: string | null;
 	identifier: string;
 	permissions: Partial<Record<APIPermissions, boolean>>;
+	// API Tokens may be created as a result of an oauth2 flow. This prop optionally
+	// stores that.
+	fromOAuth2Client?: string;
 }
 
 export interface ImportLockDocument extends MongoDBDocument {

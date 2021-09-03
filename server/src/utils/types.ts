@@ -11,6 +11,7 @@ import {
 	TierlistParent,
 	SongDocument,
 	UserSettings,
+	OAuth2ApplicationDocument,
 } from "tachi-common";
 
 declare module "express-session" {
@@ -63,4 +64,6 @@ export interface TachiRequestData {
 	tableDoc?: TableDocument;
 	folderDoc?: FolderDocument;
 	tierlistDoc?: TierlistParent;
+
+	oauth2ClientDoc: Omit<OAuth2ApplicationDocument, "clientSecret">;
 }

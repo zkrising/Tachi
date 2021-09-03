@@ -18,13 +18,16 @@ Authorization: Bearer API_KEY
 Where API_KEY is the api key you wish to use.
 
 The other way to authorise a request is with your session cookie. This is **NOT** recommended
-for normal use, and is instead a way for logged-in users to interact with the API as themselves.
+for non-user use, and is instead a way for logged-in users to interact with the API as themselves.
 
 To use authentication in this way, simply make a request with your `ktchi_production_session` or
 `btchi_production_session` cookie.
 
 The reason for this second authentication method is so that, when a user logs in, they can use
 the cookie they were set to also interact with the API.
+
+This type of authentication is referred to as "Self-Key" or "Session-Key" authentication, and it grants special
+permissions, such as being able to change your password.
 
 ## Getting Tokens
 
@@ -33,7 +36,7 @@ Users may create API tokens at Settings > API Tokens. They may also revoke these
 ## Permissions
 
 An API key does not implicitly have permission to do anything on a users behalf for security reasons.
-Some endpoints require specific permissions, such as a `score:submit` permission for submitting scores.
+Some endpoints require specific permissions, such as a `score_submit` permission for submitting scores.
 
 !!! warning
 	API keys **can not** have their permissions altered once set, a new key must be generated.
@@ -47,4 +50,8 @@ The table of permissions is as follows.
 
 | Permission | Description |
 | :: | :: |
-| `score:submit` | Perform requests that could submit scores for the user. |
+| `submit_score` | Perform requests that could submit scores for the user. |
+| `customise_profile` | Perform requests that could modify user info, like their status or about me. |
+| `customise_session` | Perform requests that could modify the users sessions, such as changing their names. |
+| `customise_score` | Perform requests that could modify a users scores, such as adding a comment. |
+| `delete_score` | Perform requests that could delete scores for that user. |

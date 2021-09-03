@@ -16,4 +16,4 @@ If you're in a horribly hellish python environment like me (Sorry Sera, you know
 
 # Contributing
 
-Fork the repository and PR your changes to `develop`.
+Fork the repository and PR your changes to `master`.

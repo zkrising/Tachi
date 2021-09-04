@@ -30,6 +30,8 @@ export const RateLimitMiddleware = rateLimit({
 	message: {
 		success: false,
 		description: `You have exceeded ${ServerConfig.RATE_LIMIT} requests per minute. Please wait.`,
+		status: 429,
+		message: "You're being rate limited.",
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	} as any, // @todo #170 report this as a bug with rate-limit types.,
+	},
 });

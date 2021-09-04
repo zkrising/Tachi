@@ -1,5 +1,7 @@
 # Tachi-Server
 
+[![codecov](https://codecov.io/gh/zkldi/tachi-server/branch/develop/graph/badge.svg?token=RAZSDSH1Y9)](https://codecov.io/gh/zkldi/tachi-server)
+
 Tachi-Server is the backend for Tachi.
 
 Tachi itself is a supercharged Rhythm Game Score Tracker, powering multiple games!

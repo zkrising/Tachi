@@ -11,6 +11,7 @@ specifiers:
   '@types/multer': 1.4.6
   '@types/node': 15.12.4
   '@types/node-fetch': 2.5.10
+  '@types/nodemailer': ^6.4.4
   '@types/range-parser': 1.2.3
   '@types/rate-limit-redis': 1.7.1
   '@types/rimraf': 3.0.0
@@ -45,6 +46,7 @@ specifiers:
   multer: 1.4.2
   node-fetch: 2.6.1
   node-mocks-http: 1.10.1
+  nodemailer: ^6.6.3
   prettier: 2.3.1
   prudence: 0.9.6
   rate-limit-redis: 2.1.0
@@ -80,6 +82,7 @@ dependencies:
   monk: 7.3.4
   multer: 1.4.2
   node-fetch: 2.6.1
+  nodemailer: 6.6.3
   prudence: 0.9.6
   rate-limit-redis: 2.1.0
   redis: 3.1.2
@@ -100,6 +103,7 @@ devDependencies:
   '@types/multer': 1.4.6
   '@types/node': 15.12.4
   '@types/node-fetch': 2.5.10
+  '@types/nodemailer': 6.4.4
   '@types/range-parser': 1.2.3
   '@types/rate-limit-redis': 1.7.1
   '@types/rimraf': 3.0.0
@@ -591,6 +595,12 @@ packages:
 
   /@types/node/15.12.4:
     resolution: {integrity: sha512-zrNj1+yqYF4WskCMOHwN+w9iuD12+dGm0rQ35HLl9/Ouuq52cEtd0CH9qMgrdNmi5ejC1/V7vKEXYubB+65DkA==}
+
+  /@types/nodemailer/6.4.4:
+    resolution: {integrity: sha512-Ksw4t7iliXeYGvIQcSIgWQ5BLuC/mljIEbjf615svhZL10PE9t+ei8O9gDaD3FPCasUJn9KTLwz2JFJyiiyuqw==}
+    dependencies:
+      '@types/node': 15.12.4
+    dev: true
 
   /@types/qs/6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
@@ -2750,6 +2760,11 @@ packages:
 
   /node-releases/1.1.74:
     resolution: {integrity: sha512-caJBVempXZPepZoZAPCWRTNxYQ+xtG/KAi4ozTA5A+nJ7IU+kLQCbqaUjb5Rwy14M9upBWiQ4NutcmW04LJSRw==}
+
+  /nodemailer/6.6.3:
+    resolution: {integrity: sha512-faZFufgTMrphYoDjvyVpbpJcYzwyFnbAMmQtj1lVBYAUSm3SOy2fIdd9+Mr4UxPosBa0JRw9bJoIwQn+nswiew==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /normalize-package-data/2.5.0:
     resolution: {integrity: sha512-/5CMN3T0R4XTj4DcGaexo+roZSdSFW/0AOOTROrjxzCG1wrWXEsGbRKevjlIL+ZDE4sZlJr5ED4YW0yqmkK+eA==}

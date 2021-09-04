@@ -655,6 +655,12 @@ export interface FunFactDocument extends MongoDBDocument {
 
 export type UserBadges = "alpha" | "beta" | "dev-team" | "contributor" | "significant-contributor";
 
+export enum UserAuthLevels {
+	BANNED,
+	USER,
+	MOD,
+	ADMIN,
+}
 /**
  * PublicUserDocument: These are the public values returned from GetUser functions.
  * Note that the private fields: password, email and integrations, are not present in this document.
@@ -679,7 +685,7 @@ export interface PublicUserDocument extends MongoDBDocument {
 	customBanner: boolean;
 	clan: string | null; // todo
 	badges: UserBadges[];
-	authLevel: "banned" | "user" | "mod" | "admin";
+	authLevel: UserAuthLevels;
 }
 
 export interface UGSRatingsLookup {

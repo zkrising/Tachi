@@ -68,6 +68,10 @@ export interface TachiConfig {
 	OAUTH_CLIENT_CAP: integer;
 	OPTIONS_ALWAYS_SUCCEEDS?: boolean;
 	NO_CONSOLE?: boolean;
+	EMAIL_CONFIG?: {
+		FROM: string;
+		SENDMAIL_BIN?: string;
+	};
 }
 
 const isValidOauth2 = p.optional({
@@ -99,6 +103,10 @@ const err = p(config, {
 	OAUTH_CLIENT_CAP: p.optional(p.isPositiveInteger),
 	OPTIONS_ALWAYS_SUCCEEDS: "*boolean",
 	NO_CONSOLE: "*boolean",
+	EMAIL_CONFIG: p.optional({
+		FROM: "string",
+		SENDMAIL_BIN: "*string",
+	}),
 });
 
 if (err) {
@@ -118,6 +126,10 @@ const tachiConfig = config as TachiConfig;
 // default rate limit 500
 tachiConfig.RATE_LIMIT ??= 500;
 tachiConfig.OAUTH_CLIENT_CAP ??= 15;
+
+if (tachiConfig.EMAIL_CONFIG) {
+	tachiConfig.EMAIL_CONFIG.SENDMAIL_BIN ??= "/usr/bin/sendmail";
+}
 
 export const ServerTypeInfo = tachiConfig.SERVER_TYPE_INFO;
 export const ServerConfig = tachiConfig;

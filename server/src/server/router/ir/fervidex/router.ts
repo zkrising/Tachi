@@ -8,8 +8,9 @@ import { ParseFervidexStatic } from "lib/score-import/import-types/ir/fervidex-s
 import { ParseFervidexSingle } from "lib/score-import/import-types/ir/fervidex/parser";
 import { Playtypes, integer } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
 import { RequirePermissions } from "server/middleware/auth";
+import db from "external/mongo/db";
 
 const logger = CreateLogCtx(__filename);
 
@@ -68,7 +69,14 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 	return next();
 };
 
-const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
+const RequireInf2ModelHeaderOrForceStatic: RequestHandler = async (req, res, next) => {
+	const settings = await db["fer-settings"].findOne({ userID: req[SYMBOL_TachiAPIAuth].userID! });
+
+	if (settings && settings.forceStaticImport) {
+		logger.debug(`User ${settings.userID} had forceStaticImport set, allowing request.`);
+		return next();
+	}
+
 	const swModel = req.header("X-Software-Model");
 
 	if (!swModel) {
@@ -150,7 +158,39 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 	return next();
 };
 
-router.use(RequirePermissions("submit_score"), ValidateFervidexHeader, ValidateModelHeader);
+const ValidateCards: RequestHandler = async (req, res, next) => {
+	const userID = req[SYMBOL_TachiAPIAuth]!.userID!;
+
+	const cardFilters = await db["fer-settings"].findOne({ userID });
+
+	if (!cardFilters || !cardFilters.cards) {
+		return next();
+	}
+
+	const cardID = req.header("X-Account-Id");
+	if (!cardID) {
+		return res.status(400).json({
+			success: false,
+			description: `Fervidex did not provide a card ID.`,
+		});
+	}
+
+	if (!cardFilters.cards.includes(cardID)) {
+		return res.status(400).json({
+			success: false,
+			description: `The card ID ${cardID} is not in your list of filters. Ignoring.`,
+		});
+	}
+
+	return next();
+};
+
+router.use(
+	RequirePermissions("submit_score"),
+	ValidateFervidexHeader,
+	ValidateModelHeader,
+	ValidateCards
+);
 
 /**
  * Submits all of a users data to Kamaitachi. This data is extremely minimal,
@@ -160,7 +200,7 @@ router.use(RequirePermissions("submit_score"), ValidateFervidexHeader, ValidateM
  *
  * @name POST /ir/fervidex/profile/submit
  */
-router.post("/profile/submit", RequireInf2ModelHeader, async (req, res) => {
+router.post("/profile/submit", RequireInf2ModelHeaderOrForceStatic, async (req, res) => {
 	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
 
 	const headers = {

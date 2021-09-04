@@ -6,6 +6,7 @@ import prValidate from "server/middleware/prudence-validate";
 import { GetUserWithID } from "utils/user";
 import { ONE_MINUTE } from "lib/constants/time";
 import { ServerConfig } from "lib/setup/config";
+import { UserAuthLevels } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -32,7 +33,7 @@ const RequireAdminLevel: RequestHandler = async (req, res, next) => {
 		});
 	}
 
-	if (userDoc.authLevel !== "admin") {
+	if (userDoc.authLevel !== UserAuthLevels.ADMIN) {
 		return res.status(403).json({
 			success: false,
 			description: `You are not authorised to perform this.`,

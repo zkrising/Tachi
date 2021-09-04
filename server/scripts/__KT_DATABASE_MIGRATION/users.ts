@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { PublicUserDocument } from "tachi-common";
+import { PublicUserDocument, UserAuthLevels } from "tachi-common";
 import MigrateRecords from "./migrate";
 
 function ConvertFn(c: any): PublicUserDocument {
@@ -21,7 +21,7 @@ function ConvertFn(c: any): PublicUserDocument {
 			steam: c.socialmedia.steam || null,
 		},
 		joinDate: 0,
-		authLevel: "user",
+		authLevel: UserAuthLevels.USER,
 		status: null,
 		badges: ["beta"],
 	};

@@ -1,5 +1,5 @@
 import deepmerge from "deepmerge";
-import { Game, Playtypes, GetGameConfig, GetGamePTConfig } from "tachi-common";
+import { Game, Playtypes, GetGameConfig, GetGamePTConfig, UserAuthLevels } from "tachi-common";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 import { ServerTypeInfo } from "lib/setup/config";
 
@@ -26,7 +26,7 @@ export const PRUDENCE_PUBLIC_USER: PrudenceSchema = {
 	status: "?string",
 	joinDate: p.isPositiveInteger,
 	badges: [p.isIn("beta", "alpha", "devTeam")],
-	authLevel: p.isIn("banned", "user", "mod", "admin"),
+	authLevel: p.isBoundedInteger(UserAuthLevels.BANNED, UserAuthLevels.ADMIN),
 };
 
 export const PRUDENCE_IIDX_BPI_DATA = {

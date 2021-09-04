@@ -1,5 +1,11 @@
 import bcrypt from "bcryptjs";
-import { integer, PrivateUserInfoDocument, PublicUserDocument, UserSettings } from "tachi-common";
+import {
+	integer,
+	PrivateUserInfoDocument,
+	PublicUserDocument,
+	UserAuthLevels,
+	UserSettings,
+} from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { FormatUserDoc } from "utils/user";
@@ -97,7 +103,7 @@ export async function AddNewUser(
 		customPfp: false,
 		joinDate: Date.now(),
 		lastSeen: Date.now(),
-		authLevel: "user",
+		authLevel: UserAuthLevels.USER,
 		badges: [],
 	};
 

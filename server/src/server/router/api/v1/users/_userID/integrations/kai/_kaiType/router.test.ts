@@ -63,4 +63,4 @@ t.test("GET /api/v1/users/:userID/integrations/kai/:kaiType", async (t) => {
 });
 
 // test is currently undoable due to issues with mocking out real Fetch calls.
-t.todo("PATCH /api/v1/userse/:userID/integrations/kai/:kaiType/oauth2callback");
+t.todo("PATCH /api/v1/users/:userID/integrations/kai/:kaiType/oauth2callback");

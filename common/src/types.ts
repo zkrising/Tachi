@@ -1388,7 +1388,8 @@ export interface OAuth2ApplicationDocument {
 	redirectUri: string;
 }
 
-export interface FervidexCardsDocument {
+export interface FervidexSettingsDocument {
 	userID: integer;
 	cards: string[] | null;
+	forceStaticImport: boolean;
 }

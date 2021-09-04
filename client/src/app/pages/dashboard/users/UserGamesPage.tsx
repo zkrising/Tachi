@@ -13,7 +13,7 @@ import AsyncLoader from "components/util/AsyncLoader";
 import UGPTRatingsTable from "components/user/UGPTStatsOverview";
 import LinkButton from "components/util/LinkButton";
 import { UGSWithRankingData } from "types/api-returns";
-import RankingData from "components/user/UGPTRankingData";
+import RankingData, { LazyRankingData } from "components/user/UGPTRankingData";
 import ReferToUser from "components/util/ReferToUser";
 
 interface Props {
@@ -96,7 +96,7 @@ function GameStatContainer({ ugs, reqUser }: { ugs: UGSWithRankingData } & Props
 			header={FormatGame(ugs.game, ugs.playtype)}
 		>
 			<UGPTRatingsTable ugs={ugs} />
-			<RankingData ranking={ugs.__rankingData.ranking} outOf={ugs.__rankingData.outOf} />
+			<LazyRankingData ranking={ugs.__rankingData.ranking} outOf={ugs.__rankingData.outOf} />
 		</Card>
 	);
 }

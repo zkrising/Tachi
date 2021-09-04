@@ -155,18 +155,8 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 	const { user } = useContext(UserContext);
 	const { setSettings } = useContext(UGPTSettingsContext);
 
-	const { isLoading, error, data } = useQuery<UGPTStatsReturn, APIFetchV1Return<UserGameStats>>(
-		[reqUser.id, game, playtype],
-		async () => {
-			const res = await APIFetchV1<UGPTStatsReturn>(
-				`/users/${reqUser.id}/games/${game}/${playtype}`
-			);
-
-			if (!res.success) {
-				console.error(res);
-				throw res;
-			}
-
+	useEffect(() => {
+		(async () => {
 			if (user) {
 				const settingsRes = await APIFetchV1<UGPTSettings>(
 					`/users/${user.id}/games/${game}/${playtype}/settings`
@@ -177,7 +167,27 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 					throw settingsRes;
 				}
 
+				console.log(settingsRes.body);
+
 				setSettings(settingsRes.body);
+			}
+		})();
+
+		return () => {
+			setSettings(null);
+		};
+	}, [user, game, playtype]);
+
+	const { isLoading, error, data } = useQuery<UGPTStatsReturn, APIFetchV1Return<UserGameStats>>(
+		[reqUser.id, game, playtype],
+		async () => {
+			const res = await APIFetchV1<UGPTStatsReturn>(
+				`/users/${reqUser.id}/games/${game}/${playtype}`
+			);
+
+			if (!res.success) {
+				console.error(res);
+				throw res;
 			}
 
 			return res.body;

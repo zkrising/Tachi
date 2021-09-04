@@ -13,7 +13,7 @@ import {
 	ChartDocument,
 	SongDocument,
 	PBScoreDocument,
-	ShowcaseStatDetails,
+	UGSRatingsLookup,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -21,10 +21,13 @@ export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
 	firstScore: ScoreDocument<I>;
 	mostRecentScore: ScoreDocument<I>;
 	totalScores: number;
-	rankingData: {
-		ranking: integer;
-		outOf: integer;
-	};
+	rankingData: Record<
+		UGSRatingsLookup[I],
+		{
+			ranking: integer;
+			outOf: integer;
+		}
+	>;
 }
 
 export interface UGPTLeaderboardAdjacent {

@@ -6,6 +6,7 @@ import {
 	IDStrings,
 	ScoreCalculatedDataLookup,
 	SessionCalculatedDataLookup,
+	UGSRatingsLookup,
 } from "tachi-common";
 import { Playtype } from "types/tachi";
 
@@ -37,4 +38,19 @@ export function useSessionRatingAlg<I extends IDStrings = IDStrings>(
 	}
 
 	return settings.preferences.preferredSessionAlg as SessionCalculatedDataLookup[I];
+}
+
+export function useProfileRatingAlg<I extends IDStrings = IDStrings>(
+	game: Game,
+	playtype: Playtype
+): UGSRatingsLookup[I] {
+	const { settings } = useContext(UGPTSettingsContext);
+
+	if (!settings?.preferences.preferredProfileAlg) {
+		const gptConfig = GetGamePTConfig(game, playtype);
+
+		return gptConfig.defaultProfileRatingAlg as UGSRatingsLookup[I];
+	}
+
+	return settings.preferences.preferredProfileAlg as UGSRatingsLookup[I];
 }

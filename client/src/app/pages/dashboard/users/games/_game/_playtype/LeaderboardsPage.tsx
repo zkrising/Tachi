@@ -4,7 +4,8 @@ import Card from "components/layout/page/Card";
 import MiniTable from "components/tables/components/MiniTable";
 import GentleLink from "components/util/GentleLink";
 import LoadingWrapper from "components/util/LoadingWrapper";
-import React from "react";
+import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import {
@@ -15,11 +16,12 @@ import {
 	IDStrings,
 	integer,
 	PublicUserDocument,
+	UGSRatingsLookup,
 	UserGameStats,
 } from "tachi-common";
 import { GameClassSets } from "tachi-common/js/game-classes";
 import { GPTLeaderboard, UGPTLeaderboardAdjacent } from "types/api-returns";
-import { GamePT } from "types/react";
+import { GamePT, SetState } from "types/react";
 import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
 
@@ -40,7 +42,10 @@ export default function LeaderboardsPage({
 		`${reqUser.username}'s ${FormatGame(game, playtype)} Leaderboard`
 	);
 
-	const url = `/users/${reqUser.id}/games/${game}/${playtype}/leaderboard-adjacent`;
+	const defaultRating = useProfileRatingAlg(game, playtype);
+	const [alg, setAlg] = useState(defaultRating);
+
+	const url = `/users/${reqUser.id}/games/${game}/${playtype}/leaderboard-adjacent?alg=${alg}`;
 
 	const { isLoading, error, data } = useQuery<LeaderboardsData, UnsuccessfulAPIFetchResponse>(
 		url,
@@ -52,7 +57,7 @@ export default function LeaderboardsPage({
 			}
 
 			const lRes = await APIFetchV1<GPTLeaderboard>(
-				`/games/${game}/${playtype}/leaderboard?limit=3`
+				`/games/${game}/${playtype}/leaderboard?limit=3&alg=${alg}`
 			);
 
 			if (!lRes.success) {
@@ -68,7 +73,7 @@ export default function LeaderboardsPage({
 
 	return (
 		<LoadingWrapper {...{ dataset: data, isLoading, error }}>
-			<LeaderboardsPageContent {...{ reqUser, game, playtype, data: data! }} />
+			<LeaderboardsPageContent {...{ reqUser, game, playtype, data: data!, alg, setAlg }} />
 		</LoadingWrapper>
 	);
 }
@@ -78,9 +83,12 @@ function LeaderboardsPageContent({
 	game,
 	playtype,
 	data,
+	alg,
 }: {
 	reqUser: PublicUserDocument;
 	data: LeaderboardsData;
+	alg: UGSRatingsLookup[IDStrings];
+	setAlg: SetState<UGSRatingsLookup[IDStrings]>;
 } & GamePT) {
 	const { stats, leaderboard } = data;
 
@@ -96,8 +104,6 @@ function LeaderboardsPageContent({
 
 	// hack - we aren't returned from this api call for some reason.
 	userMap.set(reqUser.id, reqUser);
-
-	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const bestNearbyUser = stats.thisUsersRanking.ranking - stats.above.length;
 
@@ -125,7 +131,7 @@ function LeaderboardsPageContent({
 						{userMap.get(s.userID)?.username}
 					</GentleLink>
 				</td>
-				<td>{(s.ratings[gptConfig.defaultProfileRatingAlg] ?? 0).toFixed(2)}</td>
+				<td>{(s.ratings[alg] ?? 0).toFixed(2)}</td>
 				{/* temp */}
 				<td>
 					{Object.entries(s.classes).length
@@ -156,7 +162,7 @@ function LeaderboardsPageContent({
 				</Link>
 			}
 		>
-			<MiniTable className="text-center" headers={["Position", "User", "Rating", "Classes"]}>
+			<MiniTable className="text-center" headers={["Position", "User", alg, "Classes"]}>
 				<>
 					{bestNearbyUser > 1 &&
 						leaderboard.gameStats

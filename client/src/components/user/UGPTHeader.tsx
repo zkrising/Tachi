@@ -21,6 +21,7 @@ import ProfileBadges from "./ProfileBadges";
 import { GameClassSets } from "tachi-common/js/game-classes";
 import UGPTRatingsTable from "./UGPTStatsOverview";
 import RankingData from "./UGPTRankingData";
+import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 
 export function UGPTHeaderBody({
 	reqUser,
@@ -78,7 +79,7 @@ export function UGPTHeaderBody({
 				<UGPTRatingsTable ugs={stats.gameStats} />
 			</div>
 			<div className="col-12 col-lg-3">
-				<RankingData ranking={stats.rankingData.ranking} outOf={stats.rankingData.outOf} />
+				<RankingData rankingData={stats.rankingData} game={game} playtype={playtype} />
 			</div>
 		</>
 	);

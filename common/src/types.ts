@@ -1390,5 +1390,5 @@ export interface OAuth2ApplicationDocument {
 
 export interface FervidexCardsDocument {
 	userID: integer;
-	cards: string[];
+	cards: string[] | null;
 }

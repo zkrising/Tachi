@@ -8,6 +8,37 @@ import { GetKTDataJSON } from "test-utils/test-data";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function TestHeaders(url: string, data: any) {
+	t.test("Should validate against card filters", async (t) => {
+		await db["fer-cards"].remove({});
+		await db["fer-cards"].insert({
+			userID: 1,
+			cards: ["foo"],
+		});
+
+		const res = await mockApi
+			.post(url)
+			.set("Authorization", "Bearer mock_token")
+			// rootage
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
+			.set("X-Account-Id", "bar")
+			.set("User-Agent", "fervidex/1.3.0")
+			.send(data);
+
+		t.equal(res.body.success, false, "Should reject invalid card.");
+
+		const res2 = await mockApi
+			.post(url)
+			.set("Authorization", "Bearer mock_token")
+			// rootage
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
+			.set("User-Agent", "fervidex/1.3.0")
+			.send(data);
+
+		t.equal(res2.body.success, false, "Should reject no card.");
+
+		t.end();
+	});
+
 	t.test("Should reject invalid X-Software-Models", async (t) => {
 		let res = await mockApi
 			.post(url)

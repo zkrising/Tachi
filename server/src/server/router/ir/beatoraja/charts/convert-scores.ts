@@ -36,48 +36,6 @@ type BeatorajaPartialScoreFormat = {
 
 export type BeatorajaIRScoreFormat = BeatorajaPartialScoreFormat & BeatorajaScoreJudgements;
 
-const logger = CreateLogCtx(__filename);
-
-/**
- * Converts a Tachi Score PB into the beatoraja IR format.
- * @param pbScore - The PB score to convert.
- * @param chart - The chart document the PB score belongs to.
- * @param requestingUserID - The user who requested this conversion. This is
- * because beatoraja uses the empty string to dictate that the score was from
- * the requesting user.
- */
-export async function TachiPBScoreToBeatorajaFormat(
-	pbScore: PBScoreDocument<"bms:7K" | "bms:14K">,
-	chart: ChartDocument<"bms:7K" | "bms:14K">,
-	requestingUserID: integer
-) {
-	const playcount = await db.scores.count({ userID: pbScore.userID, chartID: chart.chartID });
-	const username =
-		pbScore.userID === requestingUserID ? "" : await GetUsernameFromUserID(pbScore.userID);
-	const lampPB = (await db.scores.findOne({
-		scoreID: pbScore.composedFrom.lampPB,
-	})) as ScoreDocument<"bms:7K" | "bms:14K"> | null;
-
-	if (!lampPB) {
-		logger.severe(
-			`User ${pbScore.userID}'s PB on ${chart.chartID} has no lampPB, but references ${pbScore.composedFrom.lampPB}.`
-		);
-		throw new Error(
-			`User ${pbScore.userID}'s PB on ${chart.chartID} has no lampPB, but references ${pbScore.composedFrom.lampPB}.`
-		);
-	}
-
-	return TachiScoreDataToBeatorajaFormat(
-		pbScore,
-		chart.data.hashSHA256,
-		username,
-		chart.data.notecount,
-		playcount,
-		lampPB.scoreMeta.inputDevice,
-		lampPB.scoreMeta.random
-	);
-}
-
 /**
  * Converts various data from Tachi to the beatoraja format.
  * @param pbScore - The users PB Score document for this chart.
@@ -89,27 +47,14 @@ export async function TachiPBScoreToBeatorajaFormat(
  * @param random - What random modifier was used.
  * @returns A Beatoraja Score Document.
  */
-function TachiScoreDataToBeatorajaFormat(
+export function TachiScoreDataToBeatorajaFormat(
 	pbScore: PBScoreDocument<"bms:7K" | "bms:14K">,
 	sha256: string,
 	username: string,
 	notecount: integer,
-	playcount: integer,
-	inputDevice: ScoreDocument<"bms:7K" | "bms:14K">["scoreMeta"]["inputDevice"],
-	random: ScoreDocument<"bms:7K" | "bms:14K">["scoreMeta"]["random"]
+	playcount: integer
 ) {
 	const scoreData = pbScore.scoreData;
-
-	let rajaRandom = 0 as const;
-
-	// Beatoraja does not support DP randoms - it only stores them in replay files,
-	// and only sends the left hand random here.
-	if (pbScore.playtype === "7K") {
-		if (random) {
-			// @ts-expect-error Invalid indexing because playtype removes the random tuple.
-			rajaRandom = RAN_INDEXES[random];
-		}
-	}
 
 	const beatorajaScore: BeatorajaPartialScoreFormat = {
 		sha256,
@@ -118,9 +63,9 @@ function TachiScoreDataToBeatorajaFormat(
 		clear: LAMP_TO_BEATORAJA[scoreData.lampIndex] ?? 0,
 		date: pbScore.timeAchieved ?? 0,
 		maxcombo: scoreData.hitMeta.maxCombo ?? 0,
-		deviceType: inputDevice ?? null,
 		gauge: scoreData.hitMeta.gauge ?? 0,
-		random: rajaRandom,
+		deviceType: null, // These two are now unsupported due to performance concerns.
+		random: null,
 		minbp: scoreData.hitMeta.bp ?? 0,
 		passnotes: 0,
 		notes: notecount,

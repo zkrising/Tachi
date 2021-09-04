@@ -1,8 +1,8 @@
 import { ChartDocument, PBScoreDocument } from "tachi-common";
 import { Router, RequestHandler } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
-import { TachiPBScoreToBeatorajaFormat } from "./convert-scores";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 
 const router: Router = Router({ mergeParams: true });
@@ -37,13 +37,36 @@ router.get("/scores", async (req, res) => {
 		chartID: chart.chartID,
 	})) as PBScoreDocument<"bms:7K" | "bms:14K">[];
 
-	// @todo #139 Optimise GET /ir/beatoraja/chart/:chartSHA256/scores
-	// @optimisable - This should be solved with a couple queries and a hashmap.
-	const beatorajaScores = await Promise.all(
-		scores.map((e) =>
-			TachiPBScoreToBeatorajaFormat(e, chart, req[SYMBOL_TachiAPIAuth]!.userID!)
-		)
+	const userDocs = await db.users.find(
+		{
+			id: { $in: scores.map((e) => e.userID) },
+		},
+		{
+			projection: {
+				id: 1,
+				username: 1,
+			},
+		}
 	);
+
+	const userMap = new Map();
+	for (const user of userDocs) {
+		userMap.set(user.id, user);
+	}
+
+	const beatorajaScores = [];
+
+	for (const score of scores) {
+		beatorajaScores.push(
+			TachiScoreDataToBeatorajaFormat(
+				score,
+				chart.data.hashSHA256,
+				userMap.get(score.userID).username,
+				chart.data.notecount,
+				0 // Playcount is always 0 at the moment due to performance concerns.
+			)
+		);
+	}
 
 	return res.status(200).json({
 		success: true,

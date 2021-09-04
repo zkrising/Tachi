@@ -9,8 +9,8 @@ import { GetKTDataJSON } from "test-utils/test-data";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function TestHeaders(url: string, data: any) {
 	t.test("Should validate against card filters", async (t) => {
-		await db["fer-cards"].remove({});
-		await db["fer-cards"].insert({
+		await db["fer-settings"].remove({});
+		await db["fer-settings"].insert({
 			userID: 1,
 			cards: ["foo"],
 		});

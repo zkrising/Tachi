@@ -23,7 +23,7 @@ t.test("GET /api/v1/users/:userID/integrations/fervidex/card", async (t) => {
 	});
 
 	t.test("Should return null if this user has no cards set.", async (t) => {
-		await db["fer-cards"].remove({});
+		await db["fer-settings"].remove({});
 
 		const res = await mockApi
 			.get("/api/v1/users/1/integrations/fervidex/cards")
@@ -37,7 +37,7 @@ t.test("GET /api/v1/users/:userID/integrations/fervidex/card", async (t) => {
 	});
 
 	t.test("Should return this users list of cards if they have some set.", async (t) => {
-		await db["fer-cards"].update({ userID: 1 }, { $set: { cards: ["foo", "bar"] } });
+		await db["fer-settings"].update({ userID: 1 }, { $set: { cards: ["foo", "bar"] } });
 
 		const res = await mockApi
 			.get("/api/v1/users/1/integrations/fervidex/cards")
@@ -95,7 +95,7 @@ t.test("PUT /api/v1/users/:userID/integrations/fervidex/cards", async (t) => {
 
 		t.strictSame(res.body.body, ["foo", "bar"]);
 
-		const dbRes = await db["fer-cards"].findOne({ userID: 1 });
+		const dbRes = await db["fer-settings"].findOne({ userID: 1 });
 
 		t.strictSame(dbRes?.cards, ["foo", "bar"]);
 
@@ -103,7 +103,7 @@ t.test("PUT /api/v1/users/:userID/integrations/fervidex/cards", async (t) => {
 	});
 
 	t.test("Should insert a card filter document if one doesn't exist.", async (t) => {
-		await db["fer-cards"].remove({});
+		await db["fer-settings"].remove({});
 
 		const res = await mockApi
 			.put("/api/v1/users/1/integrations/fervidex/cards")
@@ -114,7 +114,7 @@ t.test("PUT /api/v1/users/:userID/integrations/fervidex/cards", async (t) => {
 
 		t.strictSame(res.body.body, ["foo", "bar"]);
 
-		const dbRes = await db["fer-cards"].findOne({ userID: 1 });
+		const dbRes = await db["fer-settings"].findOne({ userID: 1 });
 
 		t.strictSame(dbRes?.cards, ["foo", "bar"]);
 
@@ -131,7 +131,7 @@ t.test("PUT /api/v1/users/:userID/integrations/fervidex/cards", async (t) => {
 
 		t.strictSame(res.body.body, null);
 
-		const dbRes = await db["fer-cards"].findOne({ userID: 1 });
+		const dbRes = await db["fer-settings"].findOne({ userID: 1 });
 
 		t.strictSame(dbRes?.cards, null);
 

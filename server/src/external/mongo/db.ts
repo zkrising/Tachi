@@ -176,7 +176,7 @@ const db = {
 	"oauth2-auth-codes":
 		// i've inlined this one because i don't see it appearing anywhere else.
 		monkDB.get<{ code: string; userID: integer; createdOn: number }>("oauth2-auth-codes"),
-	"fer-cards": monkDB.get<FervidexCardsDocument>("fer-cards"),
+	"fer-settings": monkDB.get<FervidexCardsDocument>("fer-settings"),
 };
 
 export type StaticDatabases =
@@ -207,7 +207,7 @@ export type StaticDatabases =
 	| "user-private-information"
 	| "oauth2-clients"
 	| "oauth2-auth-codes"
-	| "fer-cards"
+	| "fer-settings"
 	| "user-settings";
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;

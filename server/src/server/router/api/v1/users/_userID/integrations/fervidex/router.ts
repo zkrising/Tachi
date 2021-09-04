@@ -20,7 +20,7 @@ router.use(RequireSelfRequestFromUser);
 router.get("/cards", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-	const cardDoc = await db["fer-cards"].findOne({
+	const cardDoc = await db["fer-settings"].findOne({
 		userID: user.id,
 	});
 
@@ -57,7 +57,7 @@ router.put("/cards", prValidate({ cards: p.nullable(["string"]) }), async (req, 
 
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-	await db["fer-cards"].update(
+	await db["fer-settings"].update(
 		{ userID: user.id },
 		{
 			$set: {

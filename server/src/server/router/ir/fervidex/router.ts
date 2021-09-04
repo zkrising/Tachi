@@ -154,7 +154,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 const ValidateCards: RequestHandler = async (req, res, next) => {
 	const userID = req[SYMBOL_TachiAPIAuth]!.userID!;
 
-	const cardFilters = await db["fer-cards"].findOne({ userID });
+	const cardFilters = await db["fer-settings"].findOne({ userID });
 
 	if (!cardFilters || !cardFilters.cards) {
 		return next();

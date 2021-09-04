@@ -1387,3 +1387,8 @@ export interface OAuth2ApplicationDocument {
 	requestedPermissions: APIPermissions[];
 	redirectUri: string;
 }
+
+export interface FervidexCardsDocument {
+	userID: integer;
+	cards: string[];
+}

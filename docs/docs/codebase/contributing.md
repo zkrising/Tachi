@@ -31,7 +31,7 @@ logic in the codebase) may be subject to some more scrutiny
 to make sure that they are correct, but are also significantly appreciated.
 
 To contribute to the documentation, you should go to
-the [GitHub](https://github.com/zkldi/tachi-docs), and
+the [GitHub](https://github.com/TeamNewGuys/tachi-docs), and
 fork the repository.
 
 ## Non-Code Contributions
@@ -70,7 +70,7 @@ I am trying to keep the codebase well organised and tidy.
 ### Pull Requests
 
 You can contribute to `tachi-server` by going to the
-[GitHub](https://github.com/zkldi/tachi-server), forking,
+[GitHub](https://github.com/TeamNewGuys/tachi-server), forking,
 and then making your changes.
 
 There are a couple of strict guidelines to follow when
@@ -128,4 +128,4 @@ Non-Specific bug reports will be closed immediately and marked as invalid.
 
 - Documentation issues go in the other repo.
 
-Documentation issues should go [here](https://github.com/zkldi/tachi-docs) instead.
+Documentation issues should go [here](https://github.com/TeamNewGuys/tachi-docs) instead.

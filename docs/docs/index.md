@@ -38,9 +38,9 @@ View it [here](./user/overview.md).
 
 ## Contributing
 
-If you want to contribute to this documentation, you can find the repository [here!](https://github.com/zkldi/tachi-docs)
+If you want to contribute to this documentation, you can find the repository [here!](https://github.com/TeamNewGuys/tachi-docs)
 
-If you want to contribute to the Tachi backend code, you can find the repository [here!](https://github.com/zkldi/tachi-server)
+If you want to contribute to the Tachi backend code, you can find the repository [here!](https://github.com/TeamNewGuys/tachi-server)
 !!! note
 	You should really read the [Contributing To Tachi](./codebase/contributing.md) page beforehand!
 

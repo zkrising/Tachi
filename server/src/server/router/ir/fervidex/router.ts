@@ -69,7 +69,14 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 	return next();
 };
 
-const RequireInf2ModelHeader: RequestHandler = (req, res, next) => {
+const RequireInf2ModelHeaderOrForceStatic: RequestHandler = async (req, res, next) => {
+	const settings = await db["fer-settings"].findOne({ userID: req[SYMBOL_TachiAPIAuth].userID! });
+
+	if (settings && settings.forceStaticImport) {
+		logger.debug(`User ${settings.userID} had forceStaticImport set, allowing request.`);
+		return next();
+	}
+
 	const swModel = req.header("X-Software-Model");
 
 	if (!swModel) {
@@ -193,7 +200,7 @@ router.use(
  *
  * @name POST /ir/fervidex/profile/submit
  */
-router.post("/profile/submit", RequireInf2ModelHeader, async (req, res) => {
+router.post("/profile/submit", RequireInf2ModelHeaderOrForceStatic, async (req, res) => {
 	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
 
 	const headers = {

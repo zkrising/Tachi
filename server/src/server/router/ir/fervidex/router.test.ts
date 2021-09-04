@@ -13,6 +13,7 @@ function TestHeaders(url: string, data: any) {
 		await db["fer-settings"].insert({
 			userID: 1,
 			cards: ["foo"],
+			forceStaticImport: false,
 		});
 
 		const res = await mockApi
@@ -332,6 +333,54 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 			.set("Authorization", "Bearer mock_token")
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("X-Software-Model", "P2D:J:B:A:2020092900")
+			.send(ferStaticBody);
+
+		t.equal(res.body.success, true, "Should be successful");
+
+		t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
+
+		t.strictSame(
+			res.body.body.classDeltas,
+			[
+				{
+					set: "dan",
+					playtype: "SP",
+					old: null,
+					new: 15,
+				},
+			],
+			"Should return updated dan deltas."
+		);
+
+		const scores = await db.scores.count({
+			service: "Fervidex Static",
+		});
+
+		t.equal(scores, 3, "Should import 3 scores.");
+
+		const ugs = await db["game-stats"].findOne({
+			userID: 1,
+			game: "iidx",
+			playtype: "SP",
+		});
+
+		t.equal(ugs!.classes.dan, 15, "Should successfully update dan to 9th.");
+
+		t.end();
+	});
+
+	t.test("Should allow requests from non INF2 if forceStaticImport is true.", async (t) => {
+		await db["fer-settings"].update({ userID: 1 }, { $set: { forceStaticImport: true } });
+		await db.songs.iidx.remove({});
+		await db.songs.iidx.insert(GetKTDataJSON("./tachi/tachi-songs-iidx.json"));
+		await db.charts.iidx.remove({});
+		await db.charts.iidx.insert(GetKTDataJSON("./tachi/tachi-charts-iidx.json"));
+
+		const res = await mockApi
+			.post("/ir/fervidex/profile/submit")
+			.set("Authorization", "Bearer mock_token")
+			.set("User-Agent", "fervidex/1.3.0")
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
 			.send(ferStaticBody);
 
 		t.equal(res.body.success, true, "Should be successful");

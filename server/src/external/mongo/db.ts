@@ -33,7 +33,7 @@ import {
 	PublicUserDocument,
 	OAuth2ApplicationDocument,
 	integer,
-	FervidexCardsDocument,
+	FervidexSettingsDocument,
 } from "tachi-common";
 import monk, { TMiddleware } from "monk";
 import CreateLogCtx from "lib/logger/logger";
@@ -176,7 +176,7 @@ const db = {
 	"oauth2-auth-codes":
 		// i've inlined this one because i don't see it appearing anywhere else.
 		monkDB.get<{ code: string; userID: integer; createdOn: number }>("oauth2-auth-codes"),
-	"fer-settings": monkDB.get<FervidexCardsDocument>("fer-settings"),
+	"fer-settings": monkDB.get<FervidexSettingsDocument>("fer-settings"),
 };
 
 export type StaticDatabases =

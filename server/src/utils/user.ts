@@ -161,6 +161,18 @@ export function GetUGPTPlaycount(userID: integer, game: Game, playtype: Playtype
 	return db.scores.count({ userID, game, playtype });
 }
 
+export async function GetAllRankings(stats: UserGameStats) {
+	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
+
+	const entries = await Promise.all(
+		gptConfig.profileRatingAlgs.map((k) =>
+			GetUsersRankingAndOutOf(stats, k).then((r) => [k, r])
+		)
+	);
+
+	return Object.fromEntries(entries);
+}
+
 export async function GetUsersRankingAndOutOf(
 	stats: UserGameStats,
 	alg?: UGSRatingsLookup[IDStrings]

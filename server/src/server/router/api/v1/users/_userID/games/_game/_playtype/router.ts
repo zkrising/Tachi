@@ -2,6 +2,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import {
+	GetAllRankings,
 	GetUGPTPlaycount,
 	GetUsersRanking,
 	GetUsersRankingAndOutOf,
@@ -16,7 +17,6 @@ import {
 	integer,
 	PBScoreDocument,
 	UserGameStatsSnapshot,
-	UserGameStats,
 } from "tachi-common";
 import { CheckStrProfileAlg } from "utils/string-checks";
 import { IsString } from "utils/misc";
@@ -89,18 +89,6 @@ router.get("/", async (req, res) => {
 		},
 	});
 });
-
-async function GetAllRankings(stats: UserGameStats) {
-	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
-
-	const entries = await Promise.all(
-		gptConfig.profileRatingAlgs.map((k) =>
-			GetUsersRankingAndOutOf(stats, k).then((r) => [k, r])
-		)
-	);
-
-	return Object.fromEntries(entries);
-}
 
 /**
  * Returns a users game-stats for the past 90 days.

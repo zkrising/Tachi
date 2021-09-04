@@ -11,7 +11,7 @@ import prValidate from "server/middleware/prudence-validate";
 import p from "prudence";
 import { optNull, optNullFluffStrField } from "utils/prudence";
 import { DeleteUndefinedProps, StripUrl } from "utils/misc";
-import { FormatUserDoc, GetUsersRankingAndOutOf, GetUserWithID } from "utils/user";
+import { FormatUserDoc, GetAllRankings, GetUserWithID } from "utils/user";
 import { UserGameStats } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
 import apiTokensRouter from "./api-tokens/router";
@@ -190,7 +190,7 @@ router.get("/game-stats", async (req, res) => {
 
 	await Promise.all(
 		stats.map(async (s) => {
-			const data = await GetUsersRankingAndOutOf(s);
+			const data = await GetAllRankings(s);
 			s.__rankingData = data;
 		})
 	);

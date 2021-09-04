@@ -12,6 +12,8 @@ const router: Router = Router({ mergeParams: true });
 /**
  * Searches a user's personal bests.
  *
+ * @param search - The search criteria.
+ *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs
  */
 router.get("/", async (req, res) => {

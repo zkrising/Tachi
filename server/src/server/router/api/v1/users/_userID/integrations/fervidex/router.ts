@@ -1,10 +1,11 @@
 import { Router } from "express";
-import p from "prudence";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import { RequireSelfRequestFromUser } from "../../middleware";
+import { optNull } from "utils/prudence";
+import { DeleteUndefinedProps } from "utils/misc";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -12,68 +13,74 @@ router.use(RequireKamaitachi);
 router.use(RequireSelfRequestFromUser);
 
 /**
- * Retrieve all of your configured fervidex cards. Returns null instead
- * of an empty array if no cards are configured.
+ * Retrieve your fervidex settings.
  *
- * @name GET /api/v1/users/:userID/integrations/fervidex/cards
+ * @name GET /api/v1/users/:userID/integrations/fervidex/settings
  */
-router.get("/cards", async (req, res) => {
+router.get("/settings", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-	const cardDoc = await db["fer-settings"].findOne({
+	const settingsDoc = await db["fer-settings"].findOne({
 		userID: user.id,
 	});
 
-	if (!cardDoc || !cardDoc.cards) {
-		return res.status(200).json({
-			success: true,
-			description: `No card filters enabled.`,
-			body: null,
-		});
-	}
-
 	return res.status(200).json({
 		success: true,
-		description: `Found ${cardDoc.cards.length} card filters.`,
-		body: cardDoc.cards,
+		description: `Retrieved Fervidex settings.`,
+		body: settingsDoc ?? null,
 	});
 });
 
 /**
- * Replace your configured fervidex cards. Alternatively, pass null to disable
- * the filter.
+ * Update your fervidex configuration.
  *
- * @param cards - An array of strings or null.
+ * @param cards - An array of strings to be used as a cards whitelist.
+ * @param forceStaticImport - Whether or whether not to force a static import on non-INF2 clients.
  *
- * @name PUT /api/v1/users/:userID/integrations/fervidex
+ * @name PUT /api/v1/users/:userID/integrations/fervidex/settings
  */
-router.put("/cards", prValidate({ cards: p.nullable(["string"]) }), async (req, res) => {
-	if (req.body.cards && req.body.cards.length > 6) {
-		return res.status(400).json({
-			success: false,
-			description: `You cannot have more than 6 card filters at once.`,
+router.patch(
+	"/settings",
+	prValidate({ cards: optNull(["string"]), forceStaticImport: "*?boolean" }),
+	async (req, res) => {
+		if (req.body.cards && req.body.cards.length > 6) {
+			return res.status(400).json({
+				success: false,
+				description: `You cannot have more than 6 card filters at once.`,
+			});
+		}
+
+		const user = req[SYMBOL_TachiData]!.requestedUser!;
+
+		const modifyDocument = req.body;
+
+		DeleteUndefinedProps(modifyDocument);
+
+		if (Object.keys(modifyDocument).length === 0) {
+			return res.status(400).json({
+				success: false,
+				description: `No modifications sent.`,
+			});
+		}
+
+		await db["fer-settings"].update(
+			{ userID: user.id },
+			{
+				$set: modifyDocument,
+			},
+			{
+				upsert: true,
+			}
+		);
+
+		const settings = await db["fer-settings"].findOne({ userID: user.id });
+
+		return res.status(200).json({
+			success: true,
+			description: `Successfully updated settings.`,
+			body: settings,
 		});
 	}
-
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-
-	await db["fer-settings"].update(
-		{ userID: user.id },
-		{
-			$set: {
-				cards: req.body.cards,
-			},
-		},
-		{
-			upsert: true,
-		}
-	);
-
-	return res.status(200).json({
-		success: true,
-		description: `Successfully updated cards.`,
-		body: req.body.cards,
-	});
-});
+);
 
 export default router;

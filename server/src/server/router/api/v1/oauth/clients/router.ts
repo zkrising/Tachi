@@ -87,8 +87,8 @@ router.post(
 			});
 		}
 
-		const clientID = Random20Hex();
-		const clientSecret = Random20Hex();
+		const clientID = `CI${Random20Hex()}`;
+		const clientSecret = `CS${Random20Hex()}`;
 
 		const clientDoc = {
 			clientID,

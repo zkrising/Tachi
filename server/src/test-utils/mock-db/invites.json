@@ -10,7 +10,7 @@
 	{
 		"code": "example_consumed_invite",
 		"createdBy": 1,
-		"createdAt": 0,
+		"createdAt": 1,
 		"consumed": true,
 		"consumedBy": 2,
 		"consumedAt": 123

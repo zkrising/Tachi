@@ -3,7 +3,7 @@ import { RequestHandler } from "express";
 
 /**
  * Middleware that makes the route only available under Bokutachi.
- * Note that if the special type "tachi" is set (which is set for testing purposes)
+ * Note that if the special type "omni" is set (which is set for testing purposes)
  * this restriction is bypassed.
  */
 export const RequireBokutachi: RequestHandler = (req, res, next) => {
@@ -19,7 +19,7 @@ export const RequireBokutachi: RequestHandler = (req, res, next) => {
 
 /**
  * Middleware that makes the route only available under Kamaitachi.
- * Note that if the special type "tachi" is set (which is set for testing purposes)
+ * Note that if the special type "omni" is set (which is set for testing purposes)
  * this restriction is bypassed.
  */
 export const RequireKamaitachi: RequestHandler = (req, res, next) => {

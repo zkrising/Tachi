@@ -4,5 +4,9 @@ export const allowedChannels = ["876321394005254214"];
 
 export enum LoggerLayers {
 	client = "client",
-	slashCommands = "slashCommands"
+	slashCommands = "slashCommands",
+	server = "server",
+	serverAuth = "serverAuth",
+	botConfigSetup = "botConfigSetup",
+	tachiFetch = "tachiFetch"
 }

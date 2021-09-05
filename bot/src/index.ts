@@ -2,6 +2,9 @@ import { Client, Intents } from "discord.js";
 import { LoggerLayers } from "./config";
 import { registerSlashCommands, slashCommands, tidyGuildCommands, SlashCommand } from "./slashCommands/register";
 import { createLayeredLogger } from "./utils/logger";
+import { config } from "dotenv";
+
+config();
 
 const logger = createLayeredLogger(LoggerLayers.client);
 
@@ -32,13 +35,18 @@ client.on("interactionCreate", async (interaction) => {
 
 (async () => {
 	try {
-		await client.login(process.env.DISCORDTOKEN);
+		if (!process.env.ENV) {
+			throw new Error("Environment not configured");
+		}
+
+		logger.info(`Running on ${process.env.ENV} environment`);
+		await client.login(process.env.DISCORD_TOKEN);
 		logger.info(`Logged in successfully to ${client.guilds.cache.size} guilds`);
-	} catch (e) {
-		logger.error("Log in Failed:", e);
-	} finally {
+
 		await tidyGuildCommands(client);
 		await registerSlashCommands(client);
+	} catch (e) {
+		logger.error("Log in Failed:", e);
 	}
 })();
 

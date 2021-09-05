@@ -2,7 +2,10 @@
   "compilerOptions": {
     "module": "commonjs",
     "noImplicitAny": true,
+    "strict": true,
     "types": ["node", "jest"],
+    "esModuleInterop": true, // lets us use module.exports stuff as if they were ES6 modules.
+    "baseUrl": "src" // Enables importing from the root of the project.
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

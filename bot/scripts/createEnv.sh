@@ -2,7 +2,7 @@
 DOT_ENV_PATH="$(dirname "$0")/../.env"
 
 # Wipe existing file
-rm "$DOT_ENV_PATH"  2> /dev/null
+rm "$DOT_ENV_PATH" 2> /dev/null
 
 # Setup env based on $ENV
 if [[ "$ENV" != "PROD" ]]; then

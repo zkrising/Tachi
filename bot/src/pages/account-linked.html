@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Successful link</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap');
+
+        body{
+            height: 100vh;
+            
+            font-family: 'Poppins', sans-serif;
+            background-color: #131313;
+            color: #fff;
+
+            display: flex;
+            align-items:center;
+            justify-content: center;
+        }
+
+        .message{
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        .checkmark_container {
+            width: 15rem;
+            height: 15rem;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke:  #e61c6e;
+            stroke-miterlimit: 10;
+            margin: 2rem auto;
+        }
+
+        .checkmark_border {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #e61c6e;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark_check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="check">
+            <svg class="checkmark_container" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" >
+                <circle class="checkmark_border"  cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark_check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+              </svg>
+        </div>
+        <div class="message">
+            Your accounts are now linked!
+        </div>
+    </div>
+</body>
+</html>

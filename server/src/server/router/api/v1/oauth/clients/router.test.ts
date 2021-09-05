@@ -14,6 +14,7 @@ const clientDataset: OAuth2ApplicationDocument[] = [
 		name: "foo",
 		redirectUri: "example.com",
 		requestedPermissions: ["customise_profile"],
+		webhookUri: null,
 	},
 	{
 		author: 1,
@@ -22,6 +23,7 @@ const clientDataset: OAuth2ApplicationDocument[] = [
 		name: "bar",
 		redirectUri: "example.com",
 		requestedPermissions: ["customise_profile"],
+		webhookUri: null,
 	},
 	{
 		author: 2,
@@ -30,6 +32,7 @@ const clientDataset: OAuth2ApplicationDocument[] = [
 		name: "baz",
 		redirectUri: "example.com",
 		requestedPermissions: ["customise_profile"],
+		webhookUri: null,
 	},
 ];
 
@@ -59,6 +62,7 @@ t.test("GET /api/v1/oauth/clients", async (t) => {
 					name: "foo",
 					redirectUri: "example.com",
 					requestedPermissions: ["customise_profile"],
+					webhookUri: null,
 				},
 				{
 					author: 1,
@@ -67,6 +71,7 @@ t.test("GET /api/v1/oauth/clients", async (t) => {
 					name: "bar",
 					redirectUri: "example.com",
 					requestedPermissions: ["customise_profile"],
+					webhookUri: null,
 				},
 			]
 		);
@@ -220,6 +225,7 @@ t.test("GET /api/v1/oauth/clients/:clientID", (t) => {
 			author: 1,
 			requestedPermissions: ["customise_profile"],
 			redirectUri: "https://example.com/callback",
+			webhookUri: null,
 		});
 
 		t.end();
@@ -260,6 +266,25 @@ t.test("PATCH /api/v1/oauth/clients/:clientID", async (t) => {
 		});
 
 		t.equal(dbRes?.name, "NEW NAME");
+
+		t.end();
+	});
+
+	t.test("Should be able to modify a clients webhookUri.", async (t) => {
+		const res = await mockApi
+			.patch("/api/v1/oauth/clients/CLIENT_1")
+			.send({ webhookUri: "https://example.com" })
+			.set("Cookie", cookie);
+
+		t.equal(res.statusCode, 200);
+
+		t.equal(res.body.body.webhookUri, "https://example.com");
+
+		const dbRes = await db["oauth2-clients"].findOne({
+			clientID: "CLIENT_1",
+		});
+
+		t.equal(dbRes?.webhookUri, "https://example.com");
 
 		t.end();
 	});

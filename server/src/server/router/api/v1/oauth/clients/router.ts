@@ -4,12 +4,13 @@ import prValidate from "server/middleware/prudence-validate";
 import p from "prudence";
 import db from "external/mongo/db";
 import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
-import { DedupeArr, IsValidURL, Random20Hex } from "utils/misc";
+import { DedupeArr, DeleteUndefinedProps, IsValidURL, Random20Hex } from "utils/misc";
 import CreateLogCtx from "lib/logger/logger";
 import { APIPermissions } from "tachi-common";
 import { AllPermissions } from "server/middleware/auth";
 import { ServerConfig } from "lib/setup/config";
 import { FormatUserDoc } from "utils/user";
+import { optNull } from "utils/prudence";
 
 const logger = CreateLogCtx(__filename);
 
@@ -97,6 +98,7 @@ router.post(
 			name: req.body.name,
 			author: req.session.tachi.user.id,
 			redirectUri: req.body.redirectUri,
+			webhookUri: null,
 		};
 
 		await db["oauth2-clients"].insert(clientDoc);
@@ -134,8 +136,8 @@ router.get("/:clientID", GetClientFromID, (req, res) => {
  * Update an existing client. The requester must be the owner of this
  * client, and must also be making a session-level request.
  *
- * @param name - Change the name of this client. This is the only option at
- * the moment, and I do not imagine that will change.
+ * @param name - Change the name of this client.
+ * @param webhookUri - Change a bound webhookUri for this client.
  *
  * @name PATCH /api/v1/oauth/clients/:clientID
  */
@@ -143,18 +145,39 @@ router.patch(
 	"/:clientID",
 	GetClientFromID,
 	RequireOwnershipOfClient,
-	prValidate({ name: p.isBoundedString(3, 80) }),
+	prValidate({
+		name: p.optional(p.isBoundedString(3, 80)),
+		webhookUri: optNull((self) => {
+			if (typeof self !== "string") {
+				return "Expected a string.";
+			}
+			const res = IsValidURL(self);
+
+			if (!res) {
+				return "Invalid URL.";
+			}
+
+			return true;
+		}),
+	}),
 	async (req, res) => {
 		const client = req[SYMBOL_TachiData]!.oauth2ClientDoc!;
+
+		DeleteUndefinedProps(req.body);
+
+		if (Object.keys(req.body).length === 0) {
+			return res.status(400).json({
+				success: false,
+				description: `No changes to make.`,
+			});
+		}
 
 		const newClient = await db["oauth2-clients"].findOneAndUpdate(
 			{
 				clientID: client.clientID,
 			},
 			{
-				$set: {
-					name: req.body.name,
-				},
+				$set: req.body,
 			}
 		);
 

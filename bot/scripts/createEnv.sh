@@ -11,6 +11,6 @@ if [[ "$ENV" != "PROD" ]]; then
   echo "DISCORD_TOKEN=${NON_PROD_DISCORD_TOKEN:-"_"}" >> "$DOT_ENV_PATH"
 else
   # Prod environment
- echo "ENV=PROD" >> "$DOT_ENV_PATH"
- echo "DISCORD_TOKEN=${PROD_DISCORD_TOKEN:-"_"}" >> "$DOT_ENV_PATH"
+  echo "ENV=PROD" >> "$DOT_ENV_PATH"
+  echo "DISCORD_TOKEN=${PROD_DISCORD_TOKEN:-"_"}" >> "$DOT_ENV_PATH"
 fi

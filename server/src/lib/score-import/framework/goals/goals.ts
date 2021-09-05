@@ -2,7 +2,7 @@ import { integer, Game, GoalDocument, UserGoalDocument } from "tachi-common";
 import { EvaluateGoalForUser } from "lib/achievables/goals";
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
-import { RedisPub } from "external/redis/redis-IPC";
+import { EmitWebhookEvent } from "lib/webhooks/webhooks";
 
 /**
  * Update a user's progress on all of their set goals.
@@ -111,11 +111,14 @@ export async function ProcessGoal(
 
 	// if this is a newly-achieved goal
 	if (res.achieved && !userGoal.achieved) {
-		RedisPub("goal-achieved", {
-			userID,
-			goalID: goal.goalID,
-			old: oldData,
-			new: newData,
+		EmitWebhookEvent({
+			type: "goal-achieved/v1",
+			content: {
+				userID,
+				goalID: goal.goalID,
+				old: oldData,
+				new: newData,
+			},
 		});
 	}
 

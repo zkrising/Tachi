@@ -2,8 +2,8 @@ import { Game, integer, IDStrings, Playtypes, UserGameStats } from "tachi-common
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { GameClassSets } from "tachi-common/js/game-classes";
-import { RedisPub } from "external/redis/redis-IPC";
 import { CreateGameSettings } from "lib/game-settings/create-game-settings";
+import { EmitWebhookEvent } from "lib/webhooks/webhooks";
 
 const logger = CreateLogCtx(__filename);
 
@@ -70,15 +70,21 @@ export async function UpdateClassIfGreater(
 	}
 
 	if (isGreater === null) {
-		RedisPub("class-update", { userID, new: classVal, old: null, set: classSet });
+		EmitWebhookEvent({
+			type: "class-update/v1",
+			content: { userID, new: classVal, old: null, set: classSet },
+		});
 
 		return null;
 	} else {
-		RedisPub("class-update", {
-			userID,
-			new: classVal,
-			old: userGameStats!.classes[classSet]!,
-			set: classSet,
+		EmitWebhookEvent({
+			type: "class-update/v1",
+			content: {
+				userID,
+				new: classVal,
+				old: userGameStats!.classes[classSet]!,
+				set: classSet,
+			},
 		});
 
 		return true;

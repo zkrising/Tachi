@@ -2,7 +2,12 @@
 import t from "tap";
 import { RedisPub, RedisSub } from "./redis-IPC";
 
-t.test("Basic PUB/SUB testing", (t) => {
+/**
+ * Note: The functions these things use have been stubbed out. However, the tests still run and
+ * they also still work. We'll skip them though, anyway.
+ */
+
+t.skip("Basic PUB/SUB testing", (t) => {
 	t.setTimeout(2000);
 	RedisSub("test" as any, (d) => {
 		t.equal(d.userID, 1);

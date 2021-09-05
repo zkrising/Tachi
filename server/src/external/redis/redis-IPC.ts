@@ -1,9 +1,23 @@
 import redis from "redis";
-import { RedisIPCChannels, RedisIPCData } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 
+/**
+ * This code has been stubbed out! It doesn't really have a use at the moment.
+ * At some point, though, we might actually need this. (Maybe for a logging framework)
+ *
+ * This was used to communicate with other processes running on the same host as this server.
+ * The idea was the use it for the discord bot, however, we have webhooks now that do this (better).
+ * Thanks!
+ */
+
 const logger = CreateLogCtx(__filename);
+
+// Stub types. In the future, we may actually use this.
+export type RedisIPCChannels = "";
+export type RedisIPCData = {
+	"": unknown;
+};
 
 type RedisSubCallback<T extends RedisIPCChannels> = (data: RedisIPCData[T]) => void;
 

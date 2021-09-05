@@ -11,7 +11,7 @@ import {
 import db from "external/mongo/db";
 import { BulkWriteUpdateOneOperation } from "mongodb";
 import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "utils/milestone";
-import { RedisPub } from "external/redis/redis-IPC";
+import { EmitWebhookEvent } from "lib/webhooks/webhooks";
 
 /**
  * Processes and updates a user's milestones from their Goal Import Info (i.e. what is returned
@@ -131,9 +131,12 @@ export async function UpdateUsersMilestones(
 		}
 
 		if (achieved && !userMilestone.achieved) {
-			RedisPub("milestone-achieved", {
-				userID,
-				...milestoneInfo,
+			EmitWebhookEvent({
+				type: "milestone-achieved/v1",
+				content: {
+					userID,
+					...milestoneInfo,
+				},
 			});
 		}
 	}

@@ -15,17 +15,8 @@ config();
 const logger = createLayeredLogger(LoggerLayers.botConfigSetup);
 
 export interface BotConfig {
-	/**
-	 * Determines what port to host the express server on.
-	 */
 	SERVER_PORT: number;
-	/**
-	 * Determines where our relevant tachi-server instance is.
-	 */
 	TACHI_SERVER_LOCATION: string;
-	/**
-	 * Determines where we're hosted.
-	 */
 	OUR_URL: string;
 }
 
@@ -57,21 +48,9 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 }
 
 export interface ProcessEnvironment {
-	/**
-	 * What environment we're running in. This is typically "PROD" or "DEV"
-	 */
 	ENV: string;
-	/**
-	 * Our discord authentication token.
-	 */
 	DISCORD_TOKEN: string;
-	/**
-	 * Our tachi OAuth2 client's secret token.
-	 */
 	BOT_CLIENT_SECRET: string;
-	/**
-	 * Our tachi OAuth2 client's ID.
-	 */
 	BOT_CLIENT_ID: string;
 }
 

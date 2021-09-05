@@ -1,6 +1,6 @@
 import { IObjectID } from "monk";
 import { FilterQuery } from "mongodb";
-import { AllClassSets, GameClasses, GameClassSets } from "./game-classes";
+import { AllClassSets, GameClasses } from "./game-classes";
 
 export interface CounterDocument {
 	counterName: string;
@@ -1255,29 +1255,6 @@ export interface BMSCourseDocument {
 	playtype: "7K" | "14K";
 	value: integer;
 }
-
-export type RedisIPCChannels = "class-update" | "goal-achieved" | "milestone-achieved";
-
-export type RedisIPCData = {
-	"class-update": {
-		userID: integer;
-		set: GameClassSets[IDStrings];
-		old: integer | null;
-		new: integer | null;
-	};
-	"goal-achieved": {
-		userID: integer;
-		goalID: string;
-		old: GoalImportStat;
-		new: GoalImportStat;
-	};
-	"milestone-achieved": {
-		userID: integer;
-		milestoneID: string;
-		old: MilestoneImportStat;
-		new: MilestoneImportStat;
-	};
-};
 
 /**
  * All the permissions a token may have.

@@ -1369,6 +1369,7 @@ export interface OAuth2ApplicationDocument {
 	author: integer;
 	requestedPermissions: APIPermissions[];
 	redirectUri: string;
+	webhookUri: null | string;
 }
 
 export interface FervidexSettingsDocument {

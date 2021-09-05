@@ -14,14 +14,6 @@ config();
 
 const logger = createLayeredLogger(LoggerLayers.botConfigSetup);
 
-
-/**
- * The bot config is parsed from a JSON5 file, and supports complex
- * data structures like objects/arrays.
- * 
- * This shouldn't store any secrets, and should instead store various
- * configuration variables.
- */
 export interface BotConfig {
 	/**
 	 * Determines what port to host the express server on.
@@ -64,9 +56,6 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 	return data;
 }
 
-/**
- * In contrast to BotConfig, this should contain important environment secrets.
- */
 export interface ProcessEnvironment {
 	/**
 	 * What environment we're running in. This is typically "PROD" or "DEV"

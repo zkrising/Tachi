@@ -10,6 +10,7 @@ import {
 import { ReturnClassIfGreater } from "utils/class";
 import { RedisPub } from "external/redis/redis-IPC";
 import { ClassHandler, ScoreClasses } from "./types";
+import { EmitWebhookEvent } from "lib/webhooks/webhooks";
 
 type ClassHandlerMap = {
 	[G in Game]:
@@ -152,7 +153,7 @@ export function CalculateClassDeltas(
 					};
 				}
 
-				RedisPub("class-update", { userID, ...delta });
+				EmitWebhookEvent({ type: "class-update/v1", content: { userID, ...delta } });
 
 				deltas.push(delta);
 			}

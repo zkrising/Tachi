@@ -22,7 +22,7 @@ export const slashCommands: SlashCommand[] = [
 	{
 		info: new SlashCommandBuilder()
 			.setName("help")
-			.setDescription("Shows information about Music Linkr")
+			.setDescription("Shows information about this bot")
 			.toJSON(),
 		exec: async (interaction: CommandInteraction) => await help(interaction),
 	}
@@ -45,6 +45,7 @@ export const registerSlashCommands = async (client: Client): Promise<void> => {
 	}
 };
 
+/** @TODO Potentially re-work this to only run on PROD env, handy for DEV env! **/
 /** @deprecated Remove once no guilds have legacy commands */
 export const tidyGuildCommands = async (client: Client): Promise<void> => {
 	try {

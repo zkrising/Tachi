@@ -1,10 +1,7 @@
 import { Client, Intents } from "discord.js";
-import { LoggerLayers, platformRegex } from "./config";
-import { createLinkReply } from "./createEmbed/createEmbed";
-import { getSongLinkResponse } from "./getSongLink/getSongLink";
+import { LoggerLayers } from "./config";
 import { registerSlashCommands, slashCommands, tidyGuildCommands, SlashCommand } from "./slashCommands/register";
 import { createLayeredLogger } from "./utils/logger";
-import { shouldReply } from "./utils/utils";
 
 const logger = createLayeredLogger(LoggerLayers.client);
 
@@ -16,30 +13,9 @@ const client = new Client({
 	]
 });
 
-client.on("messageCreate", async (message) => {
-	try {
-		if (shouldReply(message)) {
-			if (new RegExp(platformRegex.join("|")).test(message.content)) {
-				logger.info("Received valid message");
-				const services = message.content.match(/\bhttps?:\/\/\S+/gi);
-
-				for (let i = 0; i < services.length; i++) {
-					const data = await getSongLinkResponse(services[i]);
-					await message.channel.send(createLinkReply(data));
-				}
-
-				logger.info("Complete \n");
-			}
-		}
-	} catch (e) {
-		logger.error("messageCreate Error:", e);
-	}
-
-	return;
-});
-
 client.on("interactionCreate", async (interaction) => {
 	if (!interaction.isCommand()) return;
+
 	try {
 		const command = slashCommands.find((command: SlashCommand) => {
 			return command.info.name === interaction.commandName;

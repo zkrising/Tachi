@@ -1,8 +1,8 @@
 {
-  "name": "music_linkr",
+  "name": "tachi-bot",
   "version": "1.0.0",
   "main": "src/index.ts",
-  "license": "MIT",
+  "license": "AGPL3",
   "scripts": {
     "start": "ts-node src/index.ts"
   },

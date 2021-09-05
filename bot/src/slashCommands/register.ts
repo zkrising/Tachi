@@ -32,7 +32,7 @@ const rest = new REST({
 export const registerSlashCommands = async (client: Client): Promise<void> => {
 	try {
 		logger.info("Registering slash commands");
-		await rest.put(Routes.applicationCommands(client.application.id), {
+		await rest.put(Routes.applicationCommands(client.application!.id), {
 			body: slashCommands.map((command) => command.info)
 		});
 	} catch (e) {

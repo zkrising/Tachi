@@ -33,9 +33,7 @@ const logger = createLayeredLogger("client")
 ```
 
 ### Prettier
-Prettier is not installed due to its habit of making code look terrible. We trust that contributors will format their code to match the style in the codebase. A new developer should not be able to tell code apart by contributor.
-
-Potentially at some-point ESLint rules may be configured to further enforce code style however as it is now, We trust contributors will format their code to match the style in the codebase.
+Prettier should be run on save and before committing.
 
 ### ESLint
 Eslint should be run on save and before committing.

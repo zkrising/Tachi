@@ -6,12 +6,13 @@ const loggerFormat = printf(({ level, message, label, timestamp }) => {
 	return `${timestamp} [${label}] ${level} ${message}`;
 });
 
-
 export const createLayeredLogger = (layer: LoggerLayers): Logger => {
 	return createLogger({
-		transports: [ new transports.Console() ],
+		transports: [new transports.Console()],
 		format: combine(
-			label({ label: layer }),
+			label({
+				label: layer
+			}),
 			colorize(),
 			timestamp(),
 			align(),

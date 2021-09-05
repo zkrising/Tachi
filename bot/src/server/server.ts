@@ -105,7 +105,6 @@ app.get("/oauth/callback", async (req, res) => {
 	// const apiToken = tokenRes.body.token;
 	// @todo Store discordID & apiToken somewhere.
 
-	// @todo Make this prettier - maybe just serve a HTML file back.
 	return res.sendFile("../pages/account-linked.html");
 });
 

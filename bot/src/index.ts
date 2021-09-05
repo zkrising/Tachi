@@ -6,11 +6,7 @@ import { createLayeredLogger } from "./utils/logger";
 const logger = createLayeredLogger(LoggerLayers.client);
 
 const client = new Client({
-	intents: [
-		Intents.FLAGS.GUILDS,
-		Intents.FLAGS.DIRECT_MESSAGES,
-		Intents.FLAGS.GUILD_MESSAGES
-	]
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGES]
 });
 
 client.on("interactionCreate", async (interaction) => {
@@ -41,4 +37,3 @@ client.on("interactionCreate", async (interaction) => {
 		await registerSlashCommands(client);
 	}
 })();
-

@@ -3,6 +3,7 @@ import { REST } from "@discordjs/rest";
 import { APIApplicationCommandOption } from "discord-api-types";
 import { Routes } from "discord-api-types/v9";
 import { Client, CommandInteraction } from "discord.js";
+import { ProcessEnv } from "setup";
 import { LoggerLayers } from "../config";
 import { help } from "../help/help";
 import { createLayeredLogger } from "../utils/logger";
@@ -27,7 +28,7 @@ export const slashCommands: SlashCommand[] = [
 
 const rest = new REST({
 	version: "9"
-}).setToken(process.env.DISCORD_TOKEN);
+}).setToken(ProcessEnv.DISCORD_TOKEN);
 export const registerSlashCommands = async (client: Client): Promise<void> => {
 	try {
 		logger.info("Registering slash commands");

@@ -38,9 +38,11 @@ client.on("interactionCreate", async (interaction) => {
 		logger.info(`Running on ${process.env.ENV} environment`);
 		await client.login(process.env.DISCORD_TOKEN);
 		logger.info(`Logged in successfully to ${client.guilds.cache.size} guilds`);
-		logger.info(`https://discord.com/api/oauth2/authorize?client_id=${client.application.id}&permissions=8&scope=applications.commands%20bot`);
-		
-    await registerSlashCommands(client);
+		logger.info(
+			`https://discord.com/api/oauth2/authorize?client_id=${client.application.id}&permissions=8&scope=applications.commands%20bot`
+		);
+
+		await registerSlashCommands(client);
 	} catch (e) {
 		logger.error("Log in Failed:", e);
 	}

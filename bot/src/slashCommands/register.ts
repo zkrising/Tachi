@@ -33,22 +33,16 @@ export const registerSlashCommands = async (client: Client): Promise<void> => {
 		if (process.env.ENV === "PROD") {
 			logger.info("Registering global slash commands");
 
-			await rest.put(
-				Routes.applicationCommands(client.application.id),{
-
-					body: slashCommands.map((command) => command.info)
-				}
-			);
+			await rest.put(Routes.applicationCommands(client.application.id), {
+				body: slashCommands.map((command) => command.info)
+			});
 		} else {
 			logger.info("Registering guild slash commands");
 
 			await tidyOldGuildCommands(client);
-			await rest.put(
-				Routes.applicationGuildCommands(client.application.id, process.env.DEV_SERVER_ID),
-				{
-					body: slashCommands.map(command => command.info)
-				}
-			);
+			await rest.put(Routes.applicationGuildCommands(client.application.id, process.env.DEV_SERVER_ID), {
+				body: slashCommands.map((command) => command.info)
+			});
 		}
 
 		logger.info("Successfully registered slash commands");

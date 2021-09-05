@@ -2,7 +2,7 @@
   "name": "tachi-bot",
   "version": "1.0.0",
   "main": "src/index.ts",
-  "license": "AGPL3",
+  "license": "MIT",
   "scripts": {
     "start": "ts-node src/index.ts"
   },

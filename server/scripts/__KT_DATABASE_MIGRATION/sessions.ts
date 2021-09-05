@@ -15,7 +15,7 @@ interface LegacySessionScoreFormat {
 		isGradePB: boolean;
 		isLampPB: boolean;
 		isNewScore: boolean;
-		lampDeleta: integer;
+		lampDelta: integer;
 		percentDelta: number;
 		gradeDelta: integer;
 		scoreDelta: number;
@@ -48,7 +48,7 @@ async function ConvertScoreToScoreInfo(
 		scoreID: scoreIDs.new,
 		isNewScore: false,
 		gradeDelta: score.pbInfo.gradeDelta,
-		lampDelta: score.pbInfo.lampDeleta,
+		lampDelta: score.pbInfo.lampDelta,
 		percentDelta: score.pbInfo.percentDelta,
 		scoreDelta: score.pbInfo.scoreDelta,
 	};

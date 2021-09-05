@@ -4,7 +4,8 @@
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "setup": "./scripts/createEnv.sh"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
@@ -22,6 +23,7 @@
     "@discordjs/rest": "^0.1.0-canary.0",
     "deezer-api-ts": "^1.2.1",
     "discord.js": "^13.1.0",
+    "dotenv": "^10.0.0",
     "songlink-api": "^1.0.0",
     "ts-node": "^10.2.0",
     "winston": "^3.3.3"

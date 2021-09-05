@@ -27,7 +27,7 @@ export const slashCommands: SlashCommand[] = [
 
 const rest = new REST({
 	version: "9"
-}).setToken(process.env.DISCORDTOKEN);
+}).setToken(process.env.DISCORD_TOKEN);
 export const registerSlashCommands = async (client: Client): Promise<void> => {
 	try {
 		logger.info("Registering slash commands");

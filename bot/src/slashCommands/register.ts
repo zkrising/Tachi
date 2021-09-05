@@ -20,24 +20,23 @@ export interface SlashCommand {
 
 export const slashCommands: SlashCommand[] = [
 	{
-		info: new SlashCommandBuilder()
-			.setName("help")
-			.setDescription("Shows information about this bot")
-			.toJSON(),
-		exec: async (interaction: CommandInteraction) => await help(interaction),
+		info: new SlashCommandBuilder().setName("help").setDescription("Shows information about this bot").toJSON(),
+		exec: async (interaction: CommandInteraction) => await help(interaction)
 	}
 ];
 
-const rest = new REST({ version: "9" }).setToken(process.env.DISCORD_TOKEN);
+const rest = new REST({
+	version: "9"
+}).setToken(process.env.DISCORD_TOKEN);
 export const registerSlashCommands = async (client: Client): Promise<void> => {
 	try {
 		if (process.env.ENV === "PROD") {
 			logger.info("Registering global slash commands");
 
 			await rest.put(
-				Routes.applicationCommands(client.application.id),
-				{
-					body: slashCommands.map(command => command.info)
+				Routes.applicationCommands(client.application.id),{
+
+					body: slashCommands.map((command) => command.info)
 				}
 			);
 		} else {
@@ -62,9 +61,9 @@ export const tidyOldGuildCommands = async (client: Client): Promise<void> => {
 	try {
 		logger.info("Tidying old guild slash commands");
 		const guilds = client.guilds.cache;
-		guilds.forEach(guild => {
+		guilds.forEach((guild) => {
 			const commands = guild.commands.cache;
-			commands.forEach(command => {
+			commands.forEach((command) => {
 				command.delete();
 			});
 		});

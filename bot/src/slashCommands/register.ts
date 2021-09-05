@@ -31,25 +31,36 @@ export const slashCommands: SlashCommand[] = [
 const rest = new REST({ version: "9" }).setToken(process.env.DISCORD_TOKEN);
 export const registerSlashCommands = async (client: Client): Promise<void> => {
 	try {
-		logger.info("Registering slash commands");
-		await rest.put(
-			Routes.applicationCommands(client.application.id),
-			{
-				body: slashCommands.map(command => command.info)
-			}
-		);
+		if (process.env.ENV === "PROD") {
+			logger.info("Registering global slash commands");
+
+			await rest.put(
+				Routes.applicationCommands(client.application.id),
+				{
+					body: slashCommands.map(command => command.info)
+				}
+			);
+		} else {
+			logger.info("Registering guild slash commands");
+
+			await tidyOldGuildCommands(client);
+			await rest.put(
+				Routes.applicationGuildCommands(client.application.id, process.env.DEV_SERVER_ID),
+				{
+					body: slashCommands.map(command => command.info)
+				}
+			);
+		}
+
+		logger.info("Successfully registered slash commands");
 	} catch (e) {
 		logger.error("Failed to register slash commands", e);
-	} finally {
-		logger.info("Successfully registered slash commands");
 	}
 };
 
-/** @TODO Potentially re-work this to only run on PROD env, handy for DEV env! **/
-/** @deprecated Remove once no guilds have legacy commands */
-export const tidyGuildCommands = async (client: Client): Promise<void> => {
+export const tidyOldGuildCommands = async (client: Client): Promise<void> => {
 	try {
-		logger.info("Removing legacy slash commands");
+		logger.info("Tidying old guild slash commands");
 		const guilds = client.guilds.cache;
 		guilds.forEach(guild => {
 			const commands = guild.commands.cache;
@@ -57,9 +68,9 @@ export const tidyGuildCommands = async (client: Client): Promise<void> => {
 				command.delete();
 			});
 		});
+
+		logger.info("Successfully tidied old guild slash commands");
 	} catch (e) {
-		logger.error("Failed to remove legacy slash commands");
-	} finally {
-		logger.info("Successfully removed legacy slash commands");
+		logger.error("Failed to tidy old guild slash commands");
 	}
 };

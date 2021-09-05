@@ -3,7 +3,7 @@ import { createLayeredLogger } from "utils/logger";
 import { FormatPrError } from "utils/prudence";
 import JSON5 from "json5";
 import fs from "fs";
-import p from "prudence";
+import Prudence from "prudence";
 import { config } from "dotenv";
 
 // Initialise .env.
@@ -41,8 +41,8 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 		throw err;
 	}
 
-	const err = p(data, {
-		SERVER_PORT: p.isPositiveNonZeroInteger,
+	const err = Prudence(data, {
+		SERVER_PORT: Prudence.isPositiveNonZeroInteger,
 		TACHI_SERVER_LOCATION: "string",
 		OUR_URL: "string",
 	});
@@ -76,7 +76,7 @@ export interface ProcessEnvironment {
 }
 
 function ParseEnvVars() {
-	const err = p(process.env, {
+	const err = Prudence(process.env, {
 		ENV: "string",
 		DISCORD_TOKEN: "string",
 		BOT_CLIENT_SECRET: "string",

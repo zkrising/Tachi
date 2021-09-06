@@ -1380,5 +1380,6 @@ export interface FervidexSettingsDocument {
 
 export interface USCOrphanChart {
 	chartDoc: ChartDocument<"usc:Single">;
+	songDoc: SongDocument<"usc">;
 	userIDs: integer[];
 }

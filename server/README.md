@@ -17,11 +17,13 @@ Tachi itself is a supercharged Rhythm Game Score Tracker, powering multiple game
 
 `tachi-server` is one part of the larger Tachi framework. Other repositories include:
 
-[tachi-common](https://github.com/zkldi/tachi-common): Common Types and Utilities for Tachi. (Stuff that's shared between the client and the server, basically.
+[tachi-common](https://github.com/TeamNewGuys/tachi-common): Common Types and Utilities for Tachi. (Stuff that's shared between the client and the server, basically.
 
-[tachi-docs](https://github.com/zkldi/tachi-docs): Documentation for Tachi.
+[tachi-docs](https://github.com/TeamNewGuys/tachi-docs): Documentation for Tachi.
 
-[tachi-db-importer](https://github.com/zkldi/tachi-db-importer): A UI for importing local database files to Tachi.
+[tachi-db-importer](https://github.com/TeamNewGuys/tachi-db-importer): A UI for importing local database files to Tachi.
+
+[tachi-bot](https://github.com/TeamNewGuys/tachi-db-importer): A discord bot that integrates with the Tachi API.
 
 ## Where's the client?
 

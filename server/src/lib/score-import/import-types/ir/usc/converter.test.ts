@@ -76,7 +76,12 @@ t.test("#DeriveNoteMod", (t) => {
 });
 
 const dm = (p: Partial<USCClientScore>) =>
-	ConverterIRUSC(d(uscScore, p), { chart: uscChart }, "ir/usc", logger);
+	ConverterIRUSC(
+		d(uscScore, p),
+		{ chartHash: uscChart.data.hashSHA1 as string },
+		"ir/usc",
+		logger
+	);
 
 t.test("#ConverterIRUSC", (t) => {
 	t.beforeEach(ResetDBState);

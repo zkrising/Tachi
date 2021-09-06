@@ -24,7 +24,7 @@ const PR_USCIRScore: PrudenceSchema = {
 
 export function ParseIRUSC(
 	body: Record<string, unknown>,
-	chart: ChartDocument<"usc:Single">,
+	chartHash: string,
 	logger: KtLogger
 ): ParserFunctionReturns<USCClientScore, IRUSCContext> {
 	const err = p(
@@ -40,7 +40,7 @@ export function ParseIRUSC(
 
 	return {
 		context: {
-			chart,
+			chartHash,
 		},
 		game: "usc",
 		iterable: [body.score] as USCClientScore[],

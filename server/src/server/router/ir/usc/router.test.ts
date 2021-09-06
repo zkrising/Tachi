@@ -457,3 +457,229 @@ t.test("POST /replays", (t) => {
 
 	t.end();
 });
+
+t.test("POST /scores", async (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(async () => {
+		await db["api-tokens"].insert({
+			userID: 1,
+			identifier: "token",
+			permissions: { submit_score: true },
+			token: "token",
+		});
+	});
+
+	const validRequest = {
+		chart: {
+			chartHash: "USC_CHART_HASH",
+			artist: "test_artist",
+			title: "test",
+			level: 5,
+			difficulty: 0,
+			effector: "test",
+			illustrator: "test",
+			bpm: "test",
+		},
+		score: {
+			score: 9_000_000,
+			gauge: 50,
+			timestamp: 1_000_000,
+			crit: 5,
+			near: 4,
+			error: 3,
+			options: {
+				gaugeType: 0,
+				gaugeOpt: 0,
+				mirror: true,
+				random: false,
+				autoFlags: 0,
+			},
+			windows: {
+				perfect: 46,
+				good: 150,
+				hold: 150,
+				miss: 300,
+				slam: 84,
+			},
+		},
+	};
+
+	t.test("Should submit a score from a valid request.", async (t) => {
+		const res = await mockApi
+			.post("/ir/usc/scores")
+			.set("Authorization", "Bearer token")
+			.send(validRequest);
+
+		t.equal(res.body.statusCode, 20);
+
+		const dbScore = await db.scores.findOne({
+			game: "usc",
+		});
+
+		t.hasStrict(dbScore, {
+			scoreData: {
+				score: 9_000_000,
+				percent: 90,
+				lamp: "FAILED",
+			},
+			scoreMeta: {
+				noteMod: "MIRROR",
+				gaugeMod: "NORMAL",
+			},
+		});
+
+		t.end();
+	});
+
+	t.test("Should orphan a score and return 22 if chart has never been seen.", async (t) => {
+		const res = await mockApi
+			.post("/ir/usc/scores")
+			.set("Authorization", "Bearer token")
+			.send(
+				deepmerge(validRequest, {
+					chart: {
+						chartHash: "NEW_CHART",
+					},
+				})
+			);
+
+		t.equal(res.body.statusCode, 22);
+
+		const dbScore = await db.scores.findOne({
+			game: "usc",
+		});
+
+		t.equal(dbScore, null, "Should not exist in db.");
+
+		const orphanData = await db["usc-orphan-chart-queue"].findOne({
+			"chartDoc.data.hashSHA1": "NEW_CHART",
+		});
+
+		t.strictSame(orphanData?.userIDs, [1]);
+
+		t.strictSame(orphanData?.songDoc, {
+			title: "test",
+			artist: "test_artist",
+			firstVersion: null,
+			id: 0,
+			"alt-titles": [],
+			"search-titles": [],
+			data: {},
+		});
+
+		t.hasStrict(orphanData?.chartDoc, {
+			songID: 0,
+			difficulty: "NOV",
+			data: {
+				hashSHA1: "NEW_CHART",
+			},
+			isPrimary: true,
+			level: "?",
+			levelNum: 0,
+		});
+
+		t.end();
+	});
+
+	t.test("Should unorphan charts on their Nth unique user.", async (t) => {
+		await db["api-tokens"].insert([
+			{
+				userID: 2,
+				identifier: "token2",
+				permissions: { submit_score: true },
+				token: "token2",
+			},
+			{
+				userID: 3,
+				identifier: "token3",
+				permissions: { submit_score: true },
+				token: "token3",
+			},
+		]);
+
+		await db.users.insert([
+			{
+				id: 2,
+				username: "foo",
+				usernameLowercase: "foo",
+			},
+			{
+				id: 3,
+				username: "bar",
+				usernameLowercase: "bar",
+			},
+		] as PublicUserDocument[]);
+
+		const res = await mockApi
+			.post("/ir/usc/scores")
+			.set("Authorization", "Bearer token")
+			.send(
+				deepmerge(validRequest, {
+					chart: {
+						chartHash: "NEW_CHART",
+					},
+				})
+			);
+
+		t.equal(res.body.statusCode, 22);
+
+		const res2 = await mockApi
+			.post("/ir/usc/scores")
+			.set("Authorization", "Bearer token2")
+			.send(
+				deepmerge(validRequest, {
+					chart: {
+						chartHash: "NEW_CHART",
+					},
+				})
+			);
+
+		t.equal(res2.body.statusCode, 22);
+
+		const orphanData = await db["usc-orphan-chart-queue"].findOne({
+			"chartDoc.data.hashSHA1": "NEW_CHART",
+		});
+
+		t.strictSame(orphanData?.userIDs, [1, 2]);
+
+		const res3 = await mockApi
+			.post("/ir/usc/scores")
+			.set("Authorization", "Bearer token3")
+			.send(
+				deepmerge(validRequest, {
+					chart: {
+						chartHash: "NEW_CHART",
+					},
+				})
+			);
+
+		t.equal(res3.body.statusCode, 20);
+
+		const orphanData2 = await db["usc-orphan-chart-queue"].findOne({
+			"chartDoc.data.hashSHA1": "NEW_CHART",
+		});
+
+		t.equal(orphanData2, null, "Orphan data should be removed from the database.");
+
+		const score = await db.scores.findOne({
+			game: "usc",
+			userID: 3,
+		});
+
+		t.hasStrict(score, {
+			scoreData: {
+				score: 9_000_000,
+				percent: 90,
+				lamp: "FAILED",
+			},
+			scoreMeta: {
+				noteMod: "MIRROR",
+				gaugeMod: "NORMAL",
+			},
+		});
+
+		t.end();
+	});
+
+	t.end();
+});

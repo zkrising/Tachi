@@ -1,4 +1,5 @@
 import { Router, RequestHandler } from "express";
+import p from "prudence";
 import { FindChartOnSHA256 } from "utils/queries/charts";
 import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
 import db from "external/mongo/db";
@@ -21,20 +22,24 @@ import { CDNStore } from "lib/cdn/cdn";
 import { ONE_MEGABYTE } from "lib/constants/filesize";
 import { RequirePermissions } from "server/middleware/auth";
 import { GetUSCIRReplayURL } from "lib/cdn/url-format";
+import { FormatPrError } from "utils/prudence";
+import { USCClientChart } from "./types";
+import { HandleOrphanQueue } from "./orphan-queue";
 
 const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 
-const STATUS_CODES = {
-	UNAUTH: 41,
-	CHART_REFUSE: 42,
-	FORBIDDEN: 43,
-	NOT_FOUND: 44,
-	SERVER_ERROR: 50,
-	SUCCESS: 20,
-	BAD_REQ: 40,
-};
+enum STATUS_CODES {
+	UNAUTH = 41,
+	CHART_REFUSE = 42,
+	FORBIDDEN = 43,
+	NOT_FOUND = 44,
+	SERVER_ERROR = 50,
+	SUCCESS = 20,
+	ACCEPTED = 22,
+	BAD_REQ = 40,
+}
 
 const ValidateUSCRequest: RequestHandler = async (req, res, next) => {
 	const token = req.header("Authorization");
@@ -95,7 +100,7 @@ router.get("/", (req, res) =>
 );
 
 const RetrieveChart: RequestHandler = async (req, res, next) => {
-	const chart = await FindChartOnSHA256("usc", req.params.chartHash);
+	const chart = await db.charts.usc.findOne({ "data.hashSHA1": req.params.chartHash });
 
 	AssignToReqTachiData(req, {
 		uscChartDoc: (chart ?? undefined) as ChartDocument<"usc:Single"> | undefined,
@@ -230,36 +235,52 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
 	});
 });
 
+const PR_USCIRChartDoc = {
+	chartHash: "string",
+	artist: "string",
+	title: "string",
+	level: p.isBoundedInteger(1, 20),
+	difficulty: p.isBoundedInteger(0, 3),
+	effector: "string",
+	illustrator: "string",
+	bpm: "string",
+};
+
 /**
  * Sends a score to the server.
  * https://uscir.readthedocs.io/en/latest/endpoints/score-submit.html
  * @name POST /ir/usc/scores
  */
 router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
-	if (typeof req.body.chart !== "object" || req.body.chart === null) {
+	const chartErr = p(
+		req.body.chart,
+		PR_USCIRChartDoc,
+		{},
+		{
+			throwOnNonObject: false,
+			allowExcessKeys: true,
+		}
+	);
+
+	if (chartErr) {
 		return res.status(200).json({
 			statusCode: STATUS_CODES.BAD_REQ,
-			description: "Invalid chart provided.",
+			description: FormatPrError(chartErr, "Invalid chart."),
 		});
 	}
 
-	if (typeof req.body.chart.chartHash !== "string") {
-		return res.status(200).json({
-			statusCode: STATUS_CODES.BAD_REQ,
-			description: "Invalid chart provided.",
-		});
-	}
+	const uscChart = req.body.chart as USCClientChart;
 
-	const chartDoc = (await FindChartOnSHA256(
-		"usc",
-		req.body.chart.chartHash
-	)) as ChartDocument<"usc:Single"> | null;
+	let chartDoc = (await db.charts.usc.findOne({
+		"data.hashSHA1": uscChart.chartHash,
+	})) as ChartDocument<"usc:Single"> | null;
 
+	// If the chart doesn't exist, call HandleOrphanQueue.
+	// If this chart has never been seen before, orphan it.
+	// If this chart is already orphaned, increase its unique player
+	// playcount.
 	if (!chartDoc) {
-		return res.status(200).json({
-			statusCode: STATUS_CODES.CHART_REFUSE,
-			description: "This chart is not supported.",
-		});
+		chartDoc = await HandleOrphanQueue(uscChart, req[SYMBOL_TachiAPIAuth].userID!);
 	}
 
 	const userDoc = await GetUserWithID(req[SYMBOL_TachiAPIAuth]!.userID!);
@@ -272,9 +293,19 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 		});
 	}
 
-	const importParser = (logger: KtLogger) => ParseIRUSC(req.body, chartDoc, logger);
+	const importParser = (logger: KtLogger) => ParseIRUSC(req.body, uscChart.chartHash, logger);
 
 	const importRes = await ExpressWrappedScoreImportMain(userDoc, false, "ir/usc", importParser);
+
+	// If this was an orphan chart request, return ACCEPTED,
+	// since it may be unorphaned in the future
+	if (!chartDoc) {
+		return res.status(200).json({
+			statusCode: STATUS_CODES.ACCEPTED,
+			description:
+				"This score has been accepted, but is waiting for more players before its parent chart is accepted.",
+		});
+	}
 
 	if (importRes.statusCode === 500) {
 		return res.status(200).json({

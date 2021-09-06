@@ -1,7 +1,11 @@
 import { USCClientScore } from "server/router/ir/usc/types";
 import { FindSongOnID } from "utils/queries/songs";
 import { KtLogger } from "lib/logger/logger";
-import { InternalFailure, InvalidScoreFailure } from "../../../framework/common/converter-failures";
+import {
+	InternalFailure,
+	InvalidScoreFailure,
+	KTDataNotFoundFailure,
+} from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { IRUSCContext } from "./types";
 import { Lamps } from "tachi-common";
@@ -14,6 +18,7 @@ import {
 	USC_DEFAULT_PERFECT,
 	USC_DEFAULT_SLAM,
 } from "lib/constants/usc-ir";
+import db from "external/mongo/db";
 
 /**
  * Interprets the "note mod" used based on the USC score.
@@ -71,14 +76,22 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 		throw new InvalidScoreFailure(`Autoplay was enabled - Score is invalid.`);
 	}
 
-	const song = await FindSongOnID("usc", context.chart.songID);
+	const chartDoc = await db.charts.usc.findOne({
+		"data.hashSHA1": context.chartHash,
+	});
 
-	if (!song) {
-		logger.severe(`Song-Chart desync on USCIR ${context.chart.songID}.`);
-		throw new InternalFailure(`Song-Chart desync on USCIR ${context.chart.songID}.`);
+	if (!chartDoc) {
+		throw new KTDataNotFoundFailure("Chart is orphaned.", "ir/usc", data, context);
 	}
 
-	const { grade, percent } = GenericGetGradeAndPercent("usc", data.score, context.chart);
+	const song = await FindSongOnID("usc", chartDoc.songID);
+
+	if (!song) {
+		logger.severe(`Song-Chart desync on USCIR ${chartDoc.songID}.`);
+		throw new InternalFailure(`Song-Chart desync on USCIR ${chartDoc.songID}.`);
+	}
+
+	const { grade, percent } = GenericGetGradeAndPercent("usc", data.score, chartDoc);
 
 	const dryScore: DryScore<"usc:Single"> = {
 		comment: null,
@@ -106,5 +119,5 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 		},
 	};
 
-	return { chart: context.chart, song, dryScore };
+	return { chart: chartDoc, song, dryScore };
 };

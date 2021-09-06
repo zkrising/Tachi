@@ -36,7 +36,7 @@ t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 
 		const res = await mockApi
 			.get(`/ir/beatoraja/charts/${GAZER_SHA256}/scores`)
-			.set("X-BokutachiIR-Version", "2.0.0");
+			.set("X-TachiIR-Version", "2.0.0");
 
 		t.equal(res.status, 200);
 
@@ -46,7 +46,7 @@ t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 	t.test("Should return 404 if chart doesnt exist", async (t) => {
 		const res = await mockApi
 			.get(`/ir/beatoraja/charts/INVALID/scores`)
-			.set("X-BokutachiIR-Version", "2.0.0");
+			.set("X-TachiIR-Version", "2.0.0");
 
 		t.equal(res.status, 404);
 

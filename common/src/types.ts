@@ -1377,3 +1377,8 @@ export interface FervidexSettingsDocument {
 	cards: string[] | null;
 	forceStaticImport: boolean;
 }
+
+export interface USCOrphanChart {
+	chartDoc: ChartDocument<"usc:Single">;
+	userIDs: integer[];
+}

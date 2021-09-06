@@ -30,7 +30,7 @@ function ConvertFn(c: any): PublicUserDocument {
 }
 
 (async () => {
-	await MigrateRecords(db.users, "users", ConvertFn);
+	await MigrateRecords(db, "users", ConvertFn);
 
 	process.exit(0);
 })();

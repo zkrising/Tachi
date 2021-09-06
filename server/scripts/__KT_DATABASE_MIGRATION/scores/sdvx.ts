@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import {
-	PrivateUserDocument,
-	ScoreDocument,
-	GetGameConfig,
-	GetGamePTConfig,
-	StaticConfig,
-} from "tachi-common";
+import { ScoreDocument, GetGamePTConfig, StaticConfig } from "tachi-common";
 import db from "external/mongo/db";
 import MigrateRecords from "../migrate";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";

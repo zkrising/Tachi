@@ -13,7 +13,7 @@ function ConvertFn(c: any): PrivateUserInfoDocument {
 }
 
 (async () => {
-	await MigrateRecords(db.users, "user-private-information", ConvertFn);
+	await MigrateRecords(db["user-private-information"], "users", ConvertFn);
 
 	process.exit(0);
 })();

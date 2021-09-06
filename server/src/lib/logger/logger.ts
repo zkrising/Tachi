@@ -5,7 +5,7 @@ import { ServerConfig } from "lib/setup/config";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };
 
-const level = ServerConfig.LOG_LEVEL;
+const level = process.env.LOG_LEVEL ?? ServerConfig.LOG_LEVEL;
 
 const IN_TESTING = process.env.NODE_ENV === "test";
 

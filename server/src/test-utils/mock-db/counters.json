@@ -6,5 +6,9 @@
     {
         "counterName": "users",
         "value": 2
+    },
+    {
+        "counterName": "usc-song-id",
+        "value": 2
     }
 ]

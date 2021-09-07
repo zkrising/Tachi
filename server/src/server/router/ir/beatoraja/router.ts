@@ -4,6 +4,7 @@ import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { ParseBeatorajaSingle } from "lib/score-import/import-types/ir/beatoraja/parser";
+import { ServerConfig } from "lib/setup/config";
 import { UpdateClassIfGreater } from "utils/class";
 import { GetUserWithIDGuaranteed } from "utils/user";
 import { ValidateIRClientVersion } from "./auth";
@@ -16,14 +17,14 @@ const router: Router = Router({ mergeParams: true });
 router.use(ValidateIRClientVersion);
 
 /**
- * Submits a beatoraja score to Kamaitachi. If the chart is unavailable,
- * store it as a new chart alongside the new score.
+ * Submits a beatoraja score to Tachi.
+ *
  * @name POST /ir/beatoraja/submit-score
  */
 router.post("/submit-score", async (req, res) => {
 	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth]!.userID!);
 
-	const ParserFunction = (logger: KtLogger) => ParseBeatorajaSingle(req.body, logger);
+	const ParserFunction = (logger: KtLogger) => ParseBeatorajaSingle(req.body, userDoc.id, logger);
 
 	const importRes = await ExpressWrappedScoreImportMain(
 		userDoc,
@@ -35,6 +36,13 @@ router.post("/submit-score", async (req, res) => {
 	if (!importRes.body.success) {
 		return res.status(400).json(importRes.body);
 	} else if (importRes.body.body.errors.length !== 0) {
+		if (importRes.body.body.errors[0].type === "KTDataNotFound") {
+			return res.status(202).json({
+				success: true,
+				description: `Chart and score have been orphaned. This score will reify when atleast ${ServerConfig.BEATORAJA_QUEUE_SIZE} players have played the chart.`,
+			});
+		}
+
 		// since we're only ever importing one score, we can guarantee
 		// that this means the score we tried to import was skipped.
 		return res.status(400).json({
@@ -78,8 +86,9 @@ router.post("/submit-score", async (req, res) => {
 });
 
 /**
- * Submits a course result to Kamaitachi. This only accepts a limited set of
+ * Submits a course result to Tachi. This only accepts a limited set of
  * courses - all of which are dans.
+ *
  * @name POST /ir/beatoraja/submit-course
  */
 router.post("/submit-course", async (req, res) => {

@@ -10,5 +10,9 @@
     {
         "counterName": "usc-song-id",
         "value": 2
+    },
+    {
+        "counterName": "bms-song-id",
+        "value": 2
     }
 ]

@@ -1,6 +1,13 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { ChartDocument, IDStrings, IDStringToGame, integer, SongDocument } from "tachi-common";
+import {
+	ChartDocument,
+	IDStrings,
+	IDStringToGame,
+	integer,
+	OrphanChart,
+	SongDocument,
+} from "tachi-common";
 import { GetNextCounterValue } from "utils/db";
 import { FilterQuery } from "mongodb";
 
@@ -23,7 +30,7 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 	game: IDStringToGame[I],
 	chartDoc: ChartDocument<I>,
 	songDoc: SongDocument<IDStringToGame[I]>,
-	orphanMatchCriteria: FilterQuery<ChartDocument<I>>,
+	orphanMatchCriteria: FilterQuery<OrphanChart<I>>,
 	queueSize: integer,
 	userID: integer,
 	chartName: string

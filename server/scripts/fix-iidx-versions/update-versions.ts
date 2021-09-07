@@ -83,7 +83,7 @@ function ConvertVersion(c: string): any {
 		if (!relevantVersions.includes("27-omni") && !relevantVersions.includes("inf")) {
 			if (relevantVersions.includes("26-omni")) {
 				logger.info(
-					`Song ${song.title} (${playtype} ${difficulty})  was a very recent removal. Consider deprimarifying it.(had ${relevantVersions})`,
+					`Song ${song.title} (${playtype} ${difficulty})  was a very recent removal. Consider deprimarifying it. (had ${relevantVersions})`,
 					{ keys: Object.keys(data).filter((e) => data[e] === "1") }
 				);
 			} else {
@@ -96,9 +96,10 @@ function ConvertVersion(c: string): any {
 			continue;
 		}
 
-		// logger.info(relevantVersions);
-
-		const chart = await db.charts.iidx.findOne({ songID: song.id, difficulty, playtype });
+		const chart = await db.charts.iidx.findOne(
+			{ songID: song.id, difficulty, playtype },
+			{ projectID: true }
+		);
 
 		if (!chart) {
 			logger.error(`Can't find chart ${song.title} (${playtype} ${difficulty})`);

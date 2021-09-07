@@ -3,14 +3,13 @@ import fetch from "node-fetch";
 import { Command } from "commander";
 import fs from "fs";
 import path from "path";
-import { config, Difficulties, ESDCore, IIDXBPIData, ChartDocument } from "tachi-common";
-import { FindSongOnTitle } from "../src/score-import/database-lookup/song-title";
-import {
-	FindChartWithPTDF,
-	FindChartWithPTDFVersion,
-} from "../src/score-import/database-lookup/chart-ptdf";
+import { Difficulties, ESDCore, IIDXBPIData, ChartDocument } from "tachi-common";
 import db from "external/mongo/db";
-import CreateLogCtx from "../src/common/logger";
+import CreateLogCtx from "lib/logger/logger";
+import { config } from "process";
+import { FindChartWithPTDFVersion } from "utils/queries/charts";
+import { FindSongOnTitle } from "utils/queries/songs";
+
 const program = new Command();
 
 const logger = CreateLogCtx(__filename);
@@ -91,17 +90,11 @@ async function UpdatePoyashiData() {
 			continue;
 		}
 
-		const kesd = ESDCore.CalculateESD(
-			config.judgementWindows.iidx.SP,
-			kavg / (tachiChart.data.notecount * 2)
-		);
-
 		realData.push({
 			coef: d.coef === -1 ? null : d.coef,
 			kavg: Number(d.avg),
 			wr: Number(d.wr),
 			chartID: tachiChart.chartID,
-			kesd,
 		});
 	}
 

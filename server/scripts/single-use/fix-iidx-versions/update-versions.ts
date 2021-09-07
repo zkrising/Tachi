@@ -19,7 +19,7 @@ const DIFF_MAP = {
 	X: "LEGGENDARIA",
 } as any;
 
-function ConvertVersion(c: string) {
+function ConvertVersion(c: string): any {
 	if (c.startsWith("AC")) {
 		return c.split("AC")[1];
 	} else if (c.startsWith("OM")) {
@@ -54,6 +54,12 @@ function ConvertVersion(c: string) {
 			"OM26",
 			"AC27",
 			"AC26",
+			"AC25",
+			"AC24",
+			"AC23",
+			"AC22",
+			"AC21",
+			"AC20",
 			"INF",
 			"CS16",
 			"CS15",
@@ -75,7 +81,18 @@ function ConvertVersion(c: string) {
 			.map(ConvertVersion);
 
 		if (!relevantVersions.includes("27-omni") && !relevantVersions.includes("inf")) {
-			logger.warn(`Song ${song.title} (${playtype} ${difficulty}) has no relevant versions.`);
+			if (relevantVersions.includes("26-omni")) {
+				logger.info(
+					`Song ${song.title} (${playtype} ${difficulty})  was a very recent removal. Consider deprimarifying it.(had ${relevantVersions})`,
+					{ keys: Object.keys(data).filter((e) => data[e] === "1") }
+				);
+			} else {
+				logger.verbose(
+					`Song ${song.title} (${playtype} ${difficulty}) has no relevant versions. (had ${relevantVersions})`,
+					{ keys: Object.keys(data).filter((e) => data[e] === "1") }
+				);
+			}
+
 			continue;
 		}
 

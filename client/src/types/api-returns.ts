@@ -86,7 +86,7 @@ export interface SpecificSessionReturns<I extends IDStrings = IDStrings> {
 }
 
 export type UGSWithRankingData<I extends IDStrings = IDStrings> = UserGameStats<I> & {
-	__rankingData: { outOf: number; ranking: number };
+	__rankingData: Record<UGSRatingsLookup[I], { outOf: number; ranking: number }>;
 };
 
 export interface SongChartsSearch<I extends IDStrings = IDStrings> {

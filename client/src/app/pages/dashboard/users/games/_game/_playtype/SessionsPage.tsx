@@ -17,6 +17,8 @@ import { GamePT } from "types/react";
 import { APIFetchV1 } from "util/api";
 import SelectButton from "components/util/SelectButton";
 import Icon from "components/util/Icon";
+import { useSessionRatingAlg } from "components/util/useScoreRatingAlg";
+import { NumericSOV } from "util/sorts";
 
 export default function SessionsPage({
 	reqUser,
@@ -38,6 +40,8 @@ export default function SessionsPage({
 
 	const baseUrl = `/users/${reqUser.id}/games/${game}/${playtype}/sessions`;
 
+	const rating = useSessionRatingAlg(game, playtype);
+
 	const { isLoading, error, data } = useQuery<SessionDataset, UnsuccessfulAPIResponse>(
 		`${baseUrl}/${sessionSet}`,
 		async () => {
@@ -47,12 +51,14 @@ export default function SessionsPage({
 				throw res;
 			}
 
-			return res.body.map((e, i) => ({
-				...e,
-				__related: {
-					index: i,
-				},
-			}));
+			return res.body
+				.sort(NumericSOV(x => x.calculatedData[rating] ?? 0, true))
+				.map((e, i) => ({
+					...e,
+					__related: {
+						index: i,
+					},
+				}));
 		}
 	);
 

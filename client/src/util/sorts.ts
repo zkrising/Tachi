@@ -16,7 +16,10 @@ export function PropSort(...props: string[]) {
  * Sorts On Value numerically.
  * @returns A sorting function
  */
-export function NumericSOV<T>(getValueFn: (data: T) => number) {
+export function NumericSOV<T>(getValueFn: (data: T) => number, reverse = false) {
+	if (reverse) {
+		return (a: T, b: T) => getValueFn(b) - getValueFn(a);
+	}
 	return (a: T, b: T) => getValueFn(a) - getValueFn(b);
 }
 

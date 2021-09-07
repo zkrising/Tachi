@@ -96,7 +96,7 @@ function GameStatContainer({ ugs, reqUser }: { ugs: UGSWithRankingData } & Props
 			header={FormatGame(ugs.game, ugs.playtype)}
 		>
 			<UGPTRatingsTable ugs={ugs} />
-			<LazyRankingData ranking={ugs.__rankingData.ranking} outOf={ugs.__rankingData.outOf} />
+			<RankingData game={ugs.game} playtype={ugs.playtype} rankingData={ugs.__rankingData} />
 		</Card>
 	);
 }

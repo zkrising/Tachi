@@ -1231,7 +1231,6 @@ export interface IIDXBPIData {
 	chartID: string;
 	kavg: integer;
 	wr: integer;
-	kesd: number;
 	coef: number | null;
 }
 

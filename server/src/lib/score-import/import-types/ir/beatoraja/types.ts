@@ -3,6 +3,7 @@ import { integer } from "tachi-common";
 export interface BeatorajaContext {
 	client: "lr2oraja";
 	chart: BeatorajaChart;
+	userID: integer; // unexpectedly necessary for orphan code!
 }
 
 export interface BeatorajaChart {
@@ -18,6 +19,7 @@ export interface BeatorajaChart {
 	mode: "BEAT_7K" | "BEAT_14K";
 	judge: number;
 	notes: integer;
+	hasRandom: boolean;
 }
 
 export interface BeatorajaScore {

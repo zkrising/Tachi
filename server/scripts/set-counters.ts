@@ -3,6 +3,7 @@ import db from "external/mongo/db";
 
 (async () => {
 	const uscSongCount = await db.songs.usc.find({});
+	const bmsSongCount = await db.songs.bms.find({});
 
 	const Counters: CounterDocument[] = [
 		{
@@ -12,6 +13,10 @@ import db from "external/mongo/db";
 		{
 			counterName: "usc-song-id",
 			value: uscSongCount.length + 1,
+		},
+		{
+			counterName: "bms-song-id",
+			value: bmsSongCount.length + 1,
 		},
 	];
 

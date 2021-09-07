@@ -551,7 +551,7 @@ t.test("POST /scores", async (t) => {
 
 		t.equal(dbScore, null, "Should not exist in db.");
 
-		const orphanData = await db["usc-orphan-chart-queue"].findOne({
+		const orphanData = await db["orphan-chart-queue"].findOne({
 			"chartDoc.data.hashSHA1": "NEW_CHART",
 		});
 
@@ -636,7 +636,7 @@ t.test("POST /scores", async (t) => {
 
 		t.equal(res2.body.statusCode, 22);
 
-		const orphanData = await db["usc-orphan-chart-queue"].findOne({
+		const orphanData = await db["orphan-chart-queue"].findOne({
 			"chartDoc.data.hashSHA1": "NEW_CHART",
 		});
 
@@ -655,7 +655,7 @@ t.test("POST /scores", async (t) => {
 
 		t.equal(res3.body.statusCode, 20);
 
-		const orphanData2 = await db["usc-orphan-chart-queue"].findOne({
+		const orphanData2 = await db["orphan-chart-queue"].findOne({
 			"chartDoc.data.hashSHA1": "NEW_CHART",
 		});
 

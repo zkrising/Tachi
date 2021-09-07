@@ -4,6 +4,7 @@ import ScoreImportFatalError from "../../../framework/score-importing/score-impo
 import { FormatPrError } from "utils/prudence";
 import { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
 import { ParserFunctionReturns } from "../../common/types";
+import { integer } from "tachi-common";
 
 const PR_BeatorajaScore = {
 	sha256: "string",
@@ -63,6 +64,7 @@ const PR_BeatorajaChart = {
 
 export function ParseBeatorajaSingle(
 	body: Record<string, unknown>,
+	userID: integer,
 	logger: KtLogger
 ): ParserFunctionReturns<BeatorajaScore, BeatorajaContext> {
 	const err = p(
@@ -104,6 +106,7 @@ export function ParseBeatorajaSingle(
 		context: {
 			client,
 			chart: body.chart as BeatorajaChart,
+			userID,
 		},
 		game: "bms",
 		iterable: [body.score] as unknown as BeatorajaScore[],

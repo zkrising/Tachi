@@ -1,6 +1,5 @@
 import { Router, RequestHandler } from "express";
 import p from "prudence";
-import { FindChartOnSHA256 } from "utils/queries/charts";
 import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
 import db from "external/mongo/db";
 import {
@@ -11,7 +10,12 @@ import {
 } from "tachi-common";
 import { AssertStrAsPositiveNonZeroInt } from "lib/score-import/framework/common/string-asserts";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
-import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
+import {
+	ConvertUSCChart,
+	CreatePOSTScoresResponseBody,
+	TachiScoreToServerScore,
+	USCChartIndexToDiff,
+} from "./usc";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { GetUserWithID } from "utils/user";
 import { ParseIRUSC } from "lib/score-import/import-types/ir/usc/parser";
@@ -24,7 +28,8 @@ import { RequirePermissions } from "server/middleware/auth";
 import { GetUSCIRReplayURL } from "lib/cdn/url-format";
 import { FormatPrError } from "utils/prudence";
 import { USCClientChart } from "./types";
-import { HandleOrphanQueue } from "./orphan-queue";
+import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
+import { ServerConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -280,7 +285,24 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	// If this chart is already orphaned, increase its unique player
 	// playcount.
 	if (!chartDoc) {
-		chartDoc = await HandleOrphanQueue(uscChart, req[SYMBOL_TachiAPIAuth].userID!);
+		const { song, chart } = ConvertUSCChart(uscChart);
+
+		const uscChartName = `${uscChart.artist} - ${uscChart.title} (${USCChartIndexToDiff(
+			uscChart.difficulty
+		)})`;
+
+		chartDoc = await HandleOrphanQueue(
+			"usc:Single",
+			"usc",
+			chart,
+			song,
+			{
+				"chartDoc.data.hashSHA1": uscChart.chartHash,
+			},
+			ServerConfig.USC_QUEUE_SIZE,
+			req[SYMBOL_TachiAPIAuth].userID!,
+			uscChartName
+		);
 	}
 
 	const userDoc = await GetUserWithID(req[SYMBOL_TachiAPIAuth]!.userID!);

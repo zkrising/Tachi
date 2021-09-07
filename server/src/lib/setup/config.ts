@@ -73,6 +73,7 @@ export interface TachiConfig {
 		SENDMAIL_BIN?: string;
 	};
 	USC_QUEUE_SIZE: integer;
+	BEATORAJA_QUEUE_SIZE: integer;
 }
 
 const isValidOauth2 = p.optional({
@@ -109,6 +110,7 @@ const err = p(config, {
 		SENDMAIL_BIN: "*string",
 	}),
 	USC_QUEUE_SIZE: p.optional(p.gteInt(2)),
+	BEATORAJA_QUEUE_SIZE: p.optional(p.gteInt(2)),
 });
 
 if (err) {
@@ -129,6 +131,7 @@ const tachiConfig = config as TachiConfig;
 tachiConfig.RATE_LIMIT ??= 500;
 tachiConfig.OAUTH_CLIENT_CAP ??= 15;
 tachiConfig.USC_QUEUE_SIZE ??= 3;
+tachiConfig.BEATORAJA_QUEUE_SIZE ??= 3;
 
 if (tachiConfig.EMAIL_CONFIG) {
 	tachiConfig.EMAIL_CONFIG.SENDMAIL_BIN ??= "/usr/bin/sendmail";

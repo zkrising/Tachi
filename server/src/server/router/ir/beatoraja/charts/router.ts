@@ -28,6 +28,7 @@ router.use(GetChartDocument);
 
 /**
  * Retrieves scores for the given chart.
+ *
  * @name GET /ir/beatoraja/chart/:chartSHA256/scores
  */
 router.get("/scores", async (req, res) => {

@@ -5,6 +5,7 @@ import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON } from "test-utils/test-data";
 import deepmerge from "deepmerge";
+import { PublicUserDocument } from "tachi-common";
 
 t.test("POST /ir/beatoraja/submit-score", (t) => {
 	t.beforeEach(ResetDBState);
@@ -99,6 +100,132 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 
 		t.equal(res.body.success, false);
 		t.match(res.body.description, /Invalid Beatoraja Import - Chart/u);
+
+		t.end();
+	});
+
+	t.test("Should defer a chart to the orphan queue if not found.", async (t) => {
+		const res = await mockApi
+			.post("/ir/beatoraja/submit-score")
+			.set("X-TachiIR-Version", "2.0.0")
+			.set("Authorization", "Bearer mock_token")
+			.send(
+				deepmerge(scoreReq, {
+					chart: { sha256: "new_chart", md5: "new_md5" },
+					score: { sha256: "new_chart", md5: "new_md5" },
+				})
+			);
+
+		t.equal(res.status, 202);
+
+		t.equal(res.body.success, true);
+		t.match(res.body.description, /Chart and score have been orphaned/u);
+
+		const orphanChart = await db["orphan-chart-queue"].findOne({
+			"chartDoc.data.hashSHA256": "new_chart",
+		});
+
+		t.hasStrict(orphanChart?.chartDoc, {
+			data: {
+				hashSHA256: "new_chart",
+				hashMD5: "new_md5",
+			},
+		});
+
+		t.end();
+	});
+
+	t.test("Should eventually unorphan a chart.", async (t) => {
+		await db["api-tokens"].insert([
+			{
+				userID: 2,
+				identifier: "token2",
+				permissions: { submit_score: true },
+				token: "token2",
+			},
+			{
+				userID: 3,
+				identifier: "token3",
+				permissions: { submit_score: true },
+				token: "token3",
+			},
+		]);
+
+		await db.users.insert([
+			{
+				id: 2,
+				username: "foo",
+				usernameLowercase: "foo",
+			},
+			{
+				id: 3,
+				username: "bar",
+				usernameLowercase: "bar",
+			},
+		] as PublicUserDocument[]);
+
+		const res = await mockApi
+			.post("/ir/beatoraja/submit-score")
+			.set("X-TachiIR-Version", "2.0.0")
+			.set("Authorization", "Bearer mock_token")
+			.send(
+				deepmerge(scoreReq, {
+					chart: { sha256: "new_chart", md5: "new_md5" },
+					score: { sha256: "new_chart", md5: "new_md5" },
+				})
+			);
+
+		t.equal(res.statusCode, 202);
+
+		const res2 = await mockApi
+			.post("/ir/beatoraja/submit-score")
+			.set("X-TachiIR-Version", "2.0.0")
+			.set("Authorization", "Bearer token2")
+			.send(
+				deepmerge(scoreReq, {
+					chart: { sha256: "new_chart", md5: "new_md5" },
+					score: { sha256: "new_chart", md5: "new_md5" },
+				})
+			);
+
+		t.equal(res2.statusCode, 202);
+
+		const orphanData = await db["orphan-chart-queue"].findOne({
+			"chartDoc.data.hashSHA256": "new_chart",
+		});
+
+		t.strictSame(orphanData?.userIDs, [1, 2]);
+
+		const res3 = await mockApi
+			.post("/ir/beatoraja/submit-score")
+			.set("X-TachiIR-Version", "2.0.0")
+			.set("Authorization", "Bearer token3")
+			.send(
+				deepmerge(scoreReq, {
+					chart: { sha256: "new_chart", md5: "new_md5" },
+					score: { sha256: "new_chart", md5: "new_md5" },
+				})
+			);
+
+		t.equal(res3.statusCode, 200);
+
+		const orphanData2 = await db["orphan-chart-queue"].findOne({
+			"chartDoc.data.hashSHA256": "new_chart",
+		});
+
+		t.equal(orphanData2, null, "Orphan data should be removed from the database.");
+
+		const score = await db.scores.findOne({
+			game: "bms",
+			userID: 3,
+		});
+
+		t.hasStrict(score, {
+			scoreData: {
+				score: 1004,
+			},
+			importType: "ir/beatoraja",
+		});
 
 		t.end();
 	});

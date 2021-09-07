@@ -105,6 +105,8 @@ router.post(
  * its score data.
  *
  * @param chartID - the chartID to deprimarify.
+ * @param game - The game this chart is on.
+ * @param songID - Alternatively, this will deprimarify all charts for this songID.
  *
  * @name POST /api/v1/admin/deprimarify
  */
@@ -157,7 +159,7 @@ router.post(
 
 			await coll.update(
 				{
-					chartID: req.body.chartID,
+					chartID: chart.chartID,
 				},
 				{
 					$set: {
@@ -169,7 +171,7 @@ router.post(
 			logger.info(`Emptying all calculated data for this chart.`);
 
 			await db.scores.update(
-				{ chartID: req.body.chartID },
+				{ chartID: chart.chartID },
 				{
 					$set: {
 						calculatedData: {},
@@ -182,7 +184,7 @@ router.post(
 
 			await db["personal-bests"].update(
 				{
-					chartID: req.body.chartID,
+					chartID: chart.chartID,
 				},
 				{
 					$set: {

@@ -5,8 +5,10 @@ import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger
 import prValidate from "server/middleware/prudence-validate";
 import { GetUserWithID } from "utils/user";
 import { ONE_MINUTE } from "lib/constants/time";
-import { ServerConfig } from "lib/setup/config";
-import { UserAuthLevels } from "tachi-common";
+import { ServerConfig, ServerTypeInfo } from "lib/setup/config";
+import { Game, UserAuthLevels } from "tachi-common";
+
+import db from "external/mongo/db";
 
 const logger = CreateLogCtx(__filename);
 
@@ -93,6 +95,94 @@ router.post(
 			success: true,
 			description: `Changed log level from ${logLevel} to ${req.body.level}.`,
 			body: {},
+		});
+	}
+);
+
+/**
+ * Removes the isPrimary status from a chart, and uncalcs all of
+ * its score data.
+ *
+ * @param chartID - the chartID to deprimarify.
+ *
+ * @name POST /api/v1/admin/deprimarify
+ */
+router.post(
+	"/deprimarify",
+	prValidate({ chartID: "string", game: p.isIn(ServerTypeInfo.supportedGames) }),
+	async (req, res) => {
+		const coll = db.charts[req.body.game as Game];
+		const chart = await coll.findOne({
+			chartID: req.body.chartID,
+		});
+
+		if (!chart) {
+			return res.status(404).json({
+				success: false,
+				description: `The chart ${req.body.chartID} does not exist.`,
+			});
+		}
+
+		const song = await db.songs[req.body.game as Game].findOne({
+			id: chart.songID,
+		});
+
+		if (!song) {
+			logger.severe(`Song-chart desync on ${chart.songID}.`);
+			return res.status(500).json({
+				success: false,
+				description: `S-C Desync.`,
+			});
+		}
+
+		logger.info(`Deprimarifying ${song.title} (${chart.chartID}).`);
+
+		await coll.update(
+			{
+				chartID: req.body.chartID,
+			},
+			{
+				$set: {
+					isPrimary: false,
+				},
+			}
+		);
+
+		logger.info(`Emptying all calculated data for this chart.`);
+
+		await db.scores.update(
+			{ chartID: req.body.chartID },
+			{
+				$set: {
+					calculatedData: {},
+				},
+			},
+			{
+				multi: true,
+			}
+		);
+
+		await db["personal-bests"].update(
+			{
+				chartID: req.body.chartID,
+			},
+			{
+				$set: {
+					calculatedData: {},
+				},
+			},
+			{
+				multi: true,
+			}
+		);
+
+		return res.status(200).json({
+			success: true,
+			description: `Deprimarified.`,
+			body: {
+				song,
+				chart,
+			},
 		});
 	}
 );

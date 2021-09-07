@@ -1,10 +1,10 @@
-import { integer, PBScoreDocument, ScoreDocument, ChartDocument } from "tachi-common";
+import { integer, PBScoreDocument, ScoreDocument, ChartDocument, SongDocument } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
 import { GetPBOnChart, GetServerRecordOnChart } from "utils/scores";
-import { MStoS } from "utils/misc";
+import { MStoS, Random20Hex } from "utils/misc";
 import { USCIR_ADJACENT_SCORE_N } from "lib/constants/usc-ir";
 import db from "external/mongo/db";
-import { USCServerScore } from "./types";
+import { USCClientChart, USCServerScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
 
@@ -200,4 +200,40 @@ export interface POSTScoresResponseBody {
 	isPB: boolean;
 	isServerRecord: boolean;
 	sendReplay: string;
+}
+
+export function ConvertUSCChart(uscChartDoc: USCClientChart) {
+	const chart: ChartDocument<"usc:Single"> = {
+		chartID: Random20Hex(),
+		difficulty: USCChartIndexToDiff(uscChartDoc.difficulty),
+		isPrimary: true,
+		level: "?",
+		levelNum: 0,
+		playtype: "Single",
+		rgcID: null,
+		songID: 0,
+		versions: [],
+		data: {
+			hashSHA1: uscChartDoc.chartHash,
+			isOfficial: false,
+		},
+	};
+
+	const song: SongDocument<"usc"> = {
+		title: uscChartDoc.title,
+		artist: uscChartDoc.artist,
+		firstVersion: null,
+		id: 0,
+		data: {},
+		"alt-titles": [],
+		"search-titles": [],
+	};
+
+	return { chart, song };
+}
+
+export function USCChartIndexToDiff(
+	index: 0 | 1 | 2 | 3
+): ChartDocument<"usc:Single">["difficulty"] {
+	return (["NOV", "ADV", "EXH", "INF"] as const)[index];
 }

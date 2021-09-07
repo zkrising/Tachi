@@ -34,7 +34,7 @@ import {
 	OAuth2ApplicationDocument,
 	integer,
 	FervidexSettingsDocument,
-	USCOrphanChart,
+	OrphanChart,
 } from "tachi-common";
 import monk, { TMiddleware } from "monk";
 import CreateLogCtx from "lib/logger/logger";
@@ -178,7 +178,7 @@ const db = {
 		// i've inlined this one because i don't see it appearing anywhere else.
 		monkDB.get<{ code: string; userID: integer; createdOn: number }>("oauth2-auth-codes"),
 	"fer-settings": monkDB.get<FervidexSettingsDocument>("fer-settings"),
-	"usc-orphan-chart-queue": monkDB.get<USCOrphanChart>("usc-orphan-chart-queue"),
+	"orphan-chart-queue": monkDB.get<OrphanChart>("orphan-chart-queue"),
 };
 
 export type StaticDatabases =
@@ -210,7 +210,7 @@ export type StaticDatabases =
 	| "oauth2-clients"
 	| "oauth2-auth-codes"
 	| "fer-settings"
-	| "usc-orphan-chart-queue"
+	| "orphan-chart-queue"
 	| "user-settings";
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;

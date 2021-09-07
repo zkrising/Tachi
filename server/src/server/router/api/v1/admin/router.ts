@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import { RequestHandler, Router } from "express";
 import p from "prudence";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
@@ -109,79 +110,96 @@ router.post(
  */
 router.post(
 	"/deprimarify",
-	prValidate({ chartID: "string", game: p.isIn(ServerTypeInfo.supportedGames) }),
+	prValidate({
+		chartID: "*string",
+		game: p.isIn(ServerTypeInfo.supportedGames),
+		songID: p.optional(p.isPositiveNonZeroInteger),
+	}),
 	async (req, res) => {
 		const coll = db.charts[req.body.game as Game];
-		const chart = await coll.findOne({
-			chartID: req.body.chartID,
-		});
 
-		if (!chart) {
-			return res.status(404).json({
+		if (!req.body.chartID && !req.body.songID) {
+			return res.status(400).json({
 				success: false,
-				description: `The chart ${req.body.chartID} does not exist.`,
+				description: `Invalid request - need either chartID or songID.`,
 			});
 		}
 
-		const song = await db.songs[req.body.game as Game].findOne({
-			id: chart.songID,
-		});
+		let charts = [];
 
-		if (!song) {
-			logger.severe(`Song-chart desync on ${chart.songID}.`);
-			return res.status(500).json({
-				success: false,
-				description: `S-C Desync.`,
-			});
+		if (req.body.chartID) {
+			charts.push(await coll.findOne({ chartID: req.body.chartID }));
+		} else {
+			charts = await coll.find({ songID: req.body.songID });
 		}
 
-		logger.info(`Deprimarifying ${song.title} (${chart.chartID}).`);
-
-		await coll.update(
-			{
-				chartID: req.body.chartID,
-			},
-			{
-				$set: {
-					isPrimary: false,
-				},
+		for (const chart of charts) {
+			if (!chart) {
+				return res.status(404).json({
+					success: false,
+					description: `The chart ${req.body.chartID} does not exist.`,
+				});
 			}
-		);
 
-		logger.info(`Emptying all calculated data for this chart.`);
+			const song = await db.songs[req.body.game as Game].findOne({
+				id: chart.songID,
+			});
 
-		await db.scores.update(
-			{ chartID: req.body.chartID },
-			{
-				$set: {
-					calculatedData: {},
-				},
-			},
-			{
-				multi: true,
+			if (!song) {
+				logger.severe(`Song-chart desync on ${chart.songID}.`);
+				return res.status(500).json({
+					success: false,
+					description: `S-C Desync.`,
+				});
 			}
-		);
 
-		await db["personal-bests"].update(
-			{
-				chartID: req.body.chartID,
-			},
-			{
-				$set: {
-					calculatedData: {},
+			logger.info(`Deprimarifying ${song.title} (${chart.chartID}).`);
+
+			await coll.update(
+				{
+					chartID: req.body.chartID,
 				},
-			},
-			{
-				multi: true,
-			}
-		);
+				{
+					$set: {
+						isPrimary: false,
+					},
+				}
+			);
+
+			logger.info(`Emptying all calculated data for this chart.`);
+
+			await db.scores.update(
+				{ chartID: req.body.chartID },
+				{
+					$set: {
+						calculatedData: {},
+					},
+				},
+				{
+					multi: true,
+				}
+			);
+
+			await db["personal-bests"].update(
+				{
+					chartID: req.body.chartID,
+				},
+				{
+					$set: {
+						calculatedData: {},
+					},
+				},
+				{
+					multi: true,
+				}
+			);
+		}
 
 		return res.status(200).json({
 			success: true,
 			description: `Deprimarified.`,
 			body: {
-				song,
-				chart,
+				charts,
 			},
 		});
 	}

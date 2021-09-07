@@ -74,6 +74,7 @@ export interface TachiConfig {
 	};
 	USC_QUEUE_SIZE: integer;
 	BEATORAJA_QUEUE_SIZE: integer;
+	OUR_URL: string;
 }
 
 const isValidOauth2 = p.optional({
@@ -111,6 +112,7 @@ const err = p(config, {
 	}),
 	USC_QUEUE_SIZE: p.optional(p.gteInt(2)),
 	BEATORAJA_QUEUE_SIZE: p.optional(p.gteInt(2)),
+	OUR_URL: "string",
 });
 
 if (err) {

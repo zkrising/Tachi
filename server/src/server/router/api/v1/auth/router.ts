@@ -8,6 +8,7 @@ import {
 	ValidateCaptcha,
 	MountAuthCookie,
 	InsertDefaultUserSettings,
+	HashPassword,
 } from "./auth";
 import {
 	CheckIfEmailInUse,
@@ -21,6 +22,10 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import prValidate from "server/middleware/prudence-validate";
 import { DecrementCounterValue, GetNextCounterValue } from "utils/db";
+import { SendEmail } from "lib/email/client";
+import { EmailFormatResetPassword } from "lib/email/formats";
+import { Random20Hex } from "utils/misc";
+import { ServerConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -297,5 +302,110 @@ router.post("/logout", (req, res) => {
 		body: {},
 	});
 });
+
+/**
+ * Creates a password reset code for a user. The user will then
+ * be able to trigger POST /reset-password with that code.
+ *
+ * @param email - The email associated with the account you want to reset.
+ *
+ * @name POST /api/v1/auth/forgot-password
+ */
+router.post("/forgot-password", prValidate({ email: "string" }), async (req, res) => {
+	if (!ServerConfig.EMAIL_CONFIG) {
+		return res.status(501).json({
+			success: false,
+			description: `This server does not support password resets.`,
+		});
+	}
+
+	logger.debug(`Recieved password reset request for ${req.body.email}.`);
+	// For timing attack and infosec reasons, we can't do anything but **immediately** return here.
+	res.status(202).json({
+		success: true,
+		description: "A code has been sent to your email.",
+		body: {},
+	});
+
+	const userPrivateInfo = await db["user-private-information"].findOne({ email: req.body.email });
+
+	if (userPrivateInfo) {
+		const user = await db.users.findOne({ id: userPrivateInfo.userID });
+
+		if (!user) {
+			logger.severe(
+				`User ${userPrivateInfo.userID} has private information but no real account.`
+			);
+			return;
+		}
+
+		const code = `M${Random20Hex()}`;
+
+		logger.verbose(`Created password reset code for ${FormatUserDoc(user)}.`);
+
+		await db["password-reset-codes"].insert({
+			code,
+			userID: user.id,
+			createdOn: Date.now(),
+		});
+
+		await SendEmail(
+			userPrivateInfo.email,
+			EmailFormatResetPassword(user.username, code, req.ip)
+		);
+	} else {
+		logger.info(
+			`Silently rejected password reset request for ${req.body.email}, as no user has this email.`
+		);
+	}
+});
+
+/**
+ * Takes a code generated from /forgot-password, a new password,
+ * and performs the reset for the user.
+ *
+ * @param password - The users new password.
+ * @param code - The code to use to reset this password.
+ *
+ * @name POST /api/v1/auth/reset-password
+ */
+router.post(
+	"/reset-password",
+	prValidate({
+		code: "string",
+		password: ValidatePassword,
+	}),
+	async (req, res) => {
+		const code = await db["password-reset-codes"].findOne({
+			code: req.body.code,
+		});
+
+		if (!code) {
+			return res.status(404).json({
+				success: false,
+				description: `This code does not exist.`,
+			});
+		}
+
+		const encryptedPassword = await HashPassword(req.body.password);
+
+		await db["user-private-information"].update(
+			{
+				userID: code.userID,
+			},
+			{
+				$set: {
+					password: encryptedPassword,
+				},
+			}
+		);
+
+		return res.status(200).json({
+			success: true,
+			description: `Reset your password.`,
+			body: {},
+		});
+	}
+);
 
 export default router;

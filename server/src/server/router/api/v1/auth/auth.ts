@@ -81,13 +81,17 @@ const DEFAULT_USER_SETTINGS: UserSettings["preferences"] = {
 	invisible: false,
 };
 
+export function HashPassword(plaintext: string) {
+	return bcrypt.hash(plaintext, BCRYPT_SALT_ROUNDS);
+}
+
 export async function AddNewUser(
 	username: string,
-	password: string,
+	plaintext: string,
 	email: string,
 	userID: integer
 ) {
-	const hashedPassword = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
+	const hashedPassword = await HashPassword(plaintext);
 
 	logger.verbose(`Hashed password for ${username}.`);
 

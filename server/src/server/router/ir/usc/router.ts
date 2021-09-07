@@ -297,7 +297,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 			chart,
 			song,
 			{
-				"data.hashSHA1": uscChart.chartHash,
+				"chartDoc.data.hashSHA1": uscChart.chartHash,
 			},
 			ServerConfig.USC_QUEUE_SIZE,
 			req[SYMBOL_TachiAPIAuth].userID!,

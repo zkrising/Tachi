@@ -1378,8 +1378,9 @@ export interface FervidexSettingsDocument {
 	forceStaticImport: boolean;
 }
 
-export interface USCOrphanChart {
-	chartDoc: ChartDocument<"usc:Single">;
-	songDoc: SongDocument<"usc">;
+export interface OrphanChart<I extends IDStrings = IDStrings> {
+	idString: I;
+	chartDoc: ChartDocument<I>;
+	songDoc: SongDocument<IDStringToGame[I]>;
 	userIDs: integer[];
 }

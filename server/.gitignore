@@ -31,3 +31,5 @@ test-cdn
 
 # Weird Redis Dumps
 dump.rdb
+
+scripts/quick-insert/insert.ts

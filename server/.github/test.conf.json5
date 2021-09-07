@@ -24,4 +24,8 @@
 	TYPE: "omni",
 	ENABLE_SERVER_HTTPS: false,
 	RUN_OWN_CDN: true,
+	OUR_URL: "https://example.com",
+	EMAIL_CONFIG: {
+		FROM: "test <zkldi@example.com>",
+	}
 }

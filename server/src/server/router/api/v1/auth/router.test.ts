@@ -3,6 +3,7 @@ import db from "external/mongo/db";
 
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
+import { Sleep } from "utils/misc";
 
 t.test("POST /api/v1/auth/login", (t) => {
 	t.beforeEach(ResetDBState);
@@ -271,6 +272,58 @@ t.test("POST /api/v1/auth/register", (t) => {
 
 		t.end();
 	});
+
+	t.end();
+});
+
+t.test("POST /api/v1/auth/forgot-password", (t) => {
+	t.beforeEach(ResetDBState);
+
+	t.test("Should create a code to reset a password with.", async (t) => {
+		const res = await mockApi.post("/api/v1/auth/forgot-password").send({
+			email: "thepasswordis@password.com",
+		});
+
+		t.equal(res.statusCode, 202, "Should return 202 immediately.");
+
+		t.strictSame(res.body.body, {}, "Should have no body.");
+
+		// We have to wait for this operation to complete, otherwise, this isn't going to work.
+		// Note that 3seconds is a bit excessive, but better safe than
+		// sorry!
+		await Sleep(3_000);
+
+		const dbRes = await db["password-reset-codes"].findOne({
+			userID: 1,
+		});
+
+		t.not(dbRes, null, "Should exist and save a code to the database.");
+
+		t.end();
+	});
+
+	t.test(
+		"Should not create a code to reset a password with if the email does not exist.",
+		async (t) => {
+			const res = await mockApi.post("/api/v1/auth/forgot-password").send({
+				email: "bademail@example.com",
+			});
+
+			t.equal(res.statusCode, 202, "Should return 202 immediately.");
+
+			t.strictSame(res.body.body, {}, "Should have no body.");
+
+			await Sleep(3_000);
+
+			const dbRes = await db["password-reset-codes"].findOne({
+				userID: 1,
+			});
+
+			t.equal(dbRes, null, "Should not bother sending a code to the database.");
+
+			t.end();
+		}
+	);
 
 	t.end();
 });

@@ -179,6 +179,8 @@ const db = {
 		monkDB.get<{ code: string; userID: integer; createdOn: number }>("oauth2-auth-codes"),
 	"fer-settings": monkDB.get<FervidexSettingsDocument>("fer-settings"),
 	"orphan-chart-queue": monkDB.get<OrphanChart>("orphan-chart-queue"),
+	"password-reset-codes":
+		monkDB.get<{ code: string; userID: integer; createdOn: number }>("password-reset-codes"),
 };
 
 export type StaticDatabases =
@@ -211,6 +213,7 @@ export type StaticDatabases =
 	| "oauth2-auth-codes"
 	| "fer-settings"
 	| "orphan-chart-queue"
+	| "password-reset-codes"
 	| "user-settings";
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;

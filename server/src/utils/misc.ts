@@ -112,3 +112,7 @@ export function IsValidURL(string: string) {
 		return false;
 	}
 }
+
+export function Sleep(ms: number) {
+	return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
+}

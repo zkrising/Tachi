@@ -128,6 +128,9 @@ Tachi does not allow you to set suggestive or NSFW
 artwork as your avatar or banner. Your avatar will be
 deleted and you will be warned.
 
+Don't try and push this rule either. If you wouldn't
+show it to your mother, it doesn't belong here.
+
 !!! info
 	This includes anything illegal under EU law.
 

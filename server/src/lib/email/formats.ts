@@ -5,7 +5,7 @@ import { ServerConfig, ServerTypeInfo } from "lib/setup/config";
 
 export function EmailFormatResetPassword(username: string, resetCode: string, ipAddr: string) {
 	return MainHTMLWrapper(
-		`Hey ${username}, you've recieved a password reset request.<br/><a href="${ServerConfig.OUR_URL}/password-reset?code=${resetCode}">Click here</a> to perform the reset.<br/>If you did not request this reset, report this! This reset request was made by ${ipAddr}.`
+		`Hey ${username}, you've recieved a password reset request.<br/><a href="${ServerConfig.OUR_URL}/reset-password?code=${resetCode}">Click here</a> to perform the reset.<br/>If you did not request this reset, report this! This reset request was made by ${ipAddr}.`
 	);
 }
 

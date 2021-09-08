@@ -4,6 +4,7 @@ import db from "external/mongo/db";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { Sleep } from "utils/misc";
+import { PasswordCompare } from "./auth";
 
 t.test("POST /api/v1/auth/login", (t) => {
 	t.beforeEach(ResetDBState);
@@ -324,6 +325,44 @@ t.test("POST /api/v1/auth/forgot-password", (t) => {
 			t.end();
 		}
 	);
+
+	t.end();
+});
+
+t.test("POST /api/v1/auth/reset-password", async (t) => {
+	t.beforeEach(ResetDBState);
+
+	t.test("Should reset a users password if they have a valid code.", async (t) => {
+		await db["password-reset-codes"].insert({
+			code: "SECRET_CODE",
+			createdOn: Date.now(),
+			userID: 1,
+		});
+
+		const res = await mockApi.post("/api/v1/auth/reset-password").send({
+			code: "SECRET_CODE",
+			password: "newpassword",
+		});
+
+		t.equal(res.statusCode, 200);
+
+		const dbRes = await db["password-reset-codes"].findOne({
+			code: "SECRET_CODE",
+		});
+
+		t.equal(dbRes, null, "Codes MUST be destroyed after use.");
+
+		const privateInfo = await db["user-private-information"].findOne({
+			userID: 1,
+		});
+
+		t.ok(
+			await PasswordCompare("newpassword", privateInfo!.password),
+			"Password must be updated to 'newpassword'"
+		);
+
+		t.end();
+	});
 
 	t.end();
 });

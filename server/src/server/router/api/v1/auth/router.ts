@@ -376,7 +376,7 @@ router.post(
 		password: ValidatePassword,
 	}),
 	async (req, res) => {
-		const code = await db["password-reset-codes"].findOne({
+		const code = await db["password-reset-codes"].findOneAndDelete({
 			code: req.body.code,
 		});
 
@@ -399,6 +399,8 @@ router.post(
 				},
 			}
 		);
+
+		logger.info(`User ${code.userID} reset their password.`);
 
 		return res.status(200).json({
 			success: true,

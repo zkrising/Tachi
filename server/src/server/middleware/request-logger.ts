@@ -24,7 +24,7 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 	// still, i don't like it.
 
 	const safeBody = Object.prototype.hasOwnProperty.call(req.body, "password")
-		? Object.assign({ password: "[OMITTED]" }, req.body)
+		? Object.assign(req.body, { password: "[OMITTED]" })
 		: req.body;
 
 	logger.debug(`Received request ${req.method} ${req.url}.`, {

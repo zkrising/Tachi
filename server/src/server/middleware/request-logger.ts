@@ -27,7 +27,7 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 		? Object.assign({}, req.body, { password: "[OMITTED]" })
 		: req.body;
 
-	logger.debug(`Received request ${req.method} ${req.url}.`, {
+	logger.debug(`Received request ${req.method} ${req.originalUrl}.`, {
 		query: req.query,
 		body: safeBody,
 	});
@@ -47,11 +47,11 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 		};
 
 		if (res.statusCode < 400) {
-			logger.verbose(`(${req.method} ${req.url}) Returned`, contents);
+			logger.verbose(`(${req.method} ${req.originalUrl}) Returned`, contents);
 		} else if (res.statusCode < 500) {
-			logger.info(`(${req.method} ${req.url}) Returned`, contents);
+			logger.info(`(${req.method} ${req.originalUrl}) Returned`, contents);
 		} else {
-			logger.error(`(${req.method} ${req.url}) Returned`, contents);
+			logger.error(`(${req.method} ${req.originalUrl}) Returned`, contents);
 		}
 	});
 

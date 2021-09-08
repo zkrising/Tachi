@@ -383,7 +383,7 @@ router.post(
 		if (!code) {
 			return res.status(404).json({
 				success: false,
-				description: `This code does not exist.`,
+				description: `Invalid Reset Code.`,
 			});
 		}
 

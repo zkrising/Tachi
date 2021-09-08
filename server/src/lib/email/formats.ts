@@ -20,7 +20,7 @@ export function MainHTMLWrapper(innerHTML: string) {
 		<title>${ServerTypeInfo.name}</title>
 	</head>
 	<body>
-		${innerHTML} 
+		${innerHTML}
 	</body>
 	</html>`;
 }

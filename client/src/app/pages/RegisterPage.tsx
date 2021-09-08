@@ -218,8 +218,9 @@ function RegisterForm({
 					onChange={formik.handleChange}
 				/>
 				<Form.Text className="text-muted">
-					This is used for things like password recovery, and authentication checks. Make
-					sure this email is legitimate.
+					This is used for things like password recovery, and authentication checks. If
+					this email is fake, and you forget your password,{" "}
+					<b>You will be permanently locked out of your account.</b>
 					<br />
 					We will never use this to send spam!
 				</Form.Text>

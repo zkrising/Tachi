@@ -9,7 +9,7 @@ export function ErrorPage({
 	statusCode: number;
 	customMessage?: string;
 }) {
-	useSetSubheader(statusCode.toString());
+	useSetSubheader(statusCode ? statusCode.toString() : "Completely Screwed.");
 
 	let message;
 
@@ -35,6 +35,10 @@ export function ErrorPage({
 			case 500:
 				message = "Looks like the server has failed. This has been reported!";
 				break;
+			case undefined:
+				message =
+					"Looks like the server has completely crashed. Ah well. Try reloading, but there's no promises.";
+				break;
 			default:
 				message = "An unexpected error has occured. This has been reported!";
 				break;
@@ -51,7 +55,7 @@ export function ErrorPage({
 						className="font-size-sm-100 font-weight-boldest mt-15"
 						style={{ fontSize: "150px" }}
 					>
-						{statusCode}
+						{statusCode || "Completely Screwed."}
 					</h1>
 					<p className="font-size-h3 font-weight-light">{message}</p>
 					<a

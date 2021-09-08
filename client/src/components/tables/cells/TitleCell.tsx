@@ -26,6 +26,12 @@ export default function TitleCell({
 						<small>{song.artist}</small>
 					</>
 				)}
+				{!chart.isPrimary && (
+					<>
+						<br />
+						<small className="text-muted">({chart.versions.join("/")})</small>
+					</>
+				)}
 			</GentleLink>
 			{comment && (
 				<>

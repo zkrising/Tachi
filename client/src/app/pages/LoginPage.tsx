@@ -11,6 +11,8 @@ import toast from "react-hot-toast";
 import { TachiConfig } from "lib/config";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import { UserSettingsContext } from "context/UserSettingsContext";
+import CenterPage from "components/util/CenterPage";
+import SiteWordmark from "components/util/SiteWordmark";
 
 export default function LoginPage() {
 	useSetSubheader("Login");
@@ -66,15 +68,9 @@ export default function LoginPage() {
 	});
 
 	return (
-		<div className="container d-flex flex-column flex-root justify-content-center align-items-center">
+		<CenterPage>
 			<Col lg="6">
-				<div className="text-center mb-10 mb-lg-10">
-					<img
-						src={toAbsoluteUrl("/media/logos/logo-wordmark.png")}
-						alt={TachiConfig.name}
-						width="256px"
-					/>
-				</div>
+				<SiteWordmark />
 				<div className="text-center mb-10 mb-lg-20">
 					<h3 className="font-size-h1">Log In</h3>
 					<span className="font-weight-bold text-dark-50">Don't have an account?</span>
@@ -117,12 +113,13 @@ export default function LoginPage() {
 						>
 							Back
 						</span>
+						<Link to="/forgot-password">Forgot Password</Link>
 						<Button tabIndex={3} type="submit" className="ml-auto">
 							Log In
 						</Button>
 					</Form.Group>
 				</Form>
 			</Col>
-		</div>
+		</CenterPage>
 	);
 }

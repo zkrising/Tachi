@@ -32,8 +32,8 @@ import DifficultyCell from "../cells/DifficultyCell";
 import Divider from "components/util/Divider";
 import ScoreCell from "../cells/ScoreCell";
 import deepmerge from "deepmerge";
-import IIDXLampCell from "../cells/IIDXLampCell";
 import HasDevModeOn from "components/util/HasDevModeOn";
+import LampCell from "../cells/LampCell";
 
 export default function GenericSessionDropdown({ data }: { data: SessionDataset[0] }) {
 	const { isLoading, error, data: sessionData } = useQuery(
@@ -420,10 +420,7 @@ function ElementStatTable({
 				if (type === "grade") {
 					preScoreCell = <ScoreCell score={mockScore} />;
 				} else {
-					preScoreCell = (
-						// @ts-expect-error temp
-						<IIDXLampCell sc={mockScore} />
-					);
+					preScoreCell = <LampCell score={mockScore} />;
 				}
 			}
 
@@ -437,8 +434,7 @@ function ElementStatTable({
 						{type === "grade" ? (
 							<ScoreCell {...{ score, game, playtype: score.playtype }} />
 						) : (
-							// @ts-expect-error temp
-							<IIDXLampCell sc={score} game={game} playtype={score.playtype} />
+							<LampCell score={score} />
 						)}
 					</>
 				);

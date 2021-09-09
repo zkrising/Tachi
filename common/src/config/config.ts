@@ -77,6 +77,7 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	currentLatestVersion: GPTSupportedVersions[I] | null;
 	currentLocalVersion: GPTSupportedVersions[I] | null;
 	currentGameOmniVersion: GPTSupportedVersions[I] | null;
+	supportedVersions: GPTSupportedVersions[I][];
 }
 
 interface GamePTConfigWithESD<I extends IDStrings> extends BaseGamePTConfig<I> {
@@ -288,6 +289,36 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: "28",
 		currentLocalVersion: "27",
 		currentGameOmniVersion: "27-omni",
+		supportedVersions: [
+			"3-cs",
+			"4-cs",
+			"5-cs",
+			"6-cs",
+			"7-cs",
+			"8-cs",
+			"9-cs",
+			"10-cs",
+			"11-cs",
+			"12-cs",
+			"13-cs",
+			"14-cs",
+			"15-cs",
+			"16-cs",
+			"20",
+			"21",
+			"22",
+			"23",
+			"24",
+			"25",
+			"26",
+			"27",
+			"28",
+			"26-omni",
+			"27-omni",
+			"2dxtra",
+			"bmus",
+			"inf",
+		],
 	},
 	"iidx:DP": {
 		idString: "iidx:DP",
@@ -378,6 +409,36 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: "28",
 		currentLocalVersion: "27",
 		currentGameOmniVersion: "27-omni",
+		supportedVersions: [
+			"3-cs",
+			"4-cs",
+			"5-cs",
+			"6-cs",
+			"7-cs",
+			"8-cs",
+			"9-cs",
+			"10-cs",
+			"11-cs",
+			"12-cs",
+			"13-cs",
+			"14-cs",
+			"15-cs",
+			"16-cs",
+			"20",
+			"21",
+			"22",
+			"23",
+			"24",
+			"25",
+			"26",
+			"27",
+			"28",
+			"26-omni",
+			"27-omni",
+			"2dxtra",
+			"bmus",
+			"inf",
+		],
 	},
 	"chunithm:Single": {
 		idString: "chunithm:Single",
@@ -453,6 +514,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: "paradise",
 		currentLocalVersion: "paradise",
 		currentGameOmniVersion: null,
+		supportedVersions: ["paradise"],
 	},
 	"sdvx:Single": {
 		idString: "sdvx:Single",
@@ -533,6 +595,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: "vivid",
 		currentLocalVersion: "vivid",
 		currentGameOmniVersion: null,
+		supportedVersions: ["heaven", "vivid"],
 	},
 	"usc:Single": {
 		idString: "usc:Single",
@@ -606,6 +669,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: null,
 		currentLocalVersion: null,
 		currentGameOmniVersion: null,
+		supportedVersions: [],
 	},
 	"museca:Single": {
 		idString: "museca:Single",
@@ -669,9 +733,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		currentLatestVersion: "1+1/2",
-		currentGameOmniVersion: "1+1/2",
-		currentLocalVersion: "1+1/2",
+		currentLatestVersion: "1.5",
+		currentGameOmniVersion: "1.5-b",
+		currentLocalVersion: "1.5",
+		supportedVersions: ["1.5", "1.5-b"],
 	},
 	"bms:7K": {
 		idString: "bms:7K",
@@ -749,6 +814,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: null,
 		currentGameOmniVersion: null,
 		currentLocalVersion: null,
+		supportedVersions: [],
 	},
 	"bms:14K": {
 		idString: "bms:14K",
@@ -826,6 +892,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: null,
 		currentGameOmniVersion: null,
 		currentLocalVersion: null,
+		supportedVersions: [],
 	},
 	"ddr:SP": {
 		idString: "ddr:SP",
@@ -945,6 +1012,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: "a20",
 		currentGameOmniVersion: null,
 		currentLocalVersion: null,
+		supportedVersions: ["a20"],
 	},
 	"ddr:DP": {
 		idString: "ddr:DP",
@@ -1062,6 +1130,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: "a20",
 		currentGameOmniVersion: null,
 		currentLocalVersion: null,
+		supportedVersions: ["a20"],
 	},
 	"maimai:Single": {
 		idString: "maimai:Single",
@@ -1143,6 +1212,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: "finale",
 		currentGameOmniVersion: null,
 		currentLocalVersion: "finale",
+		supportedVersions: ["finale"],
 	},
 	"gitadora:Gita": {
 		idString: "gitadora:Gita",
@@ -1234,6 +1304,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: "nextage",
 		currentGameOmniVersion: null,
 		currentLocalVersion: "nextage",
+		supportedVersions: ["nextage"],
 	},
 	"gitadora:Dora": {
 		idString: "gitadora:Dora",
@@ -1308,6 +1379,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: "nextage",
 		currentGameOmniVersion: null,
 		currentLocalVersion: "nextage",
+		supportedVersions: ["nextage"],
 	},
 };
 

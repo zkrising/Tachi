@@ -761,7 +761,7 @@ export interface GPTSupportedVersions {
 	"ddr:DP": "a20";
 	"maimai:Single": "finale";
 	"jubeat:Single": never;
-	"museca:Single": "1+1/2";
+	"museca:Single": "1.5" | "1.5-b";
 	"bms:7K": never;
 	"bms:14K": never;
 	"chunithm:Single": "paradise";

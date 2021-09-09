@@ -491,7 +491,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MXM: COLOUR_SET.white,
 		},
 
-		grades: ["D", "C", "B", "A", "A+", "AA", "AA+", "AAA", "AAA+", "S"],
+		grades: ["D", "C", "B", "A", "A+", "AA", "AA+", "AAA", "AAA+", "S", "PUC"],
 		gradeColours: {
 			D: COLOUR_SET.gray,
 			C: COLOUR_SET.red,
@@ -503,9 +503,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			AAA: COLOUR_SET.gold,
 			"AAA+": COLOUR_SET.vibrantYellow,
 			S: COLOUR_SET.teal,
+			PUC: COLOUR_SET.pink,
 		},
 		clearGrade: "A",
-		gradeBoundaries: [0, 70, 80, 87, 90, 93, 95, 97, 98, 99],
+		gradeBoundaries: [0, 70, 80, 87, 90, 93, 95, 97, 98, 99, 100],
 
 		lamps: ["FAILED", "CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"],
 		lampColours: {
@@ -566,7 +567,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			INF: COLOUR_SET.vibrantPink,
 		},
 
-		grades: ["D", "C", "B", "A", "A+", "AA", "AA+", "AAA", "AAA+", "S"],
+		grades: ["D", "C", "B", "A", "A+", "AA", "AA+", "AAA", "AAA+", "S", "PUC"],
 		gradeColours: {
 			D: COLOUR_SET.gray,
 			C: COLOUR_SET.red,
@@ -578,9 +579,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			AAA: COLOUR_SET.gold,
 			"AAA+": COLOUR_SET.vibrantYellow,
 			S: COLOUR_SET.teal,
+			PUC: COLOUR_SET.pink,
 		},
 		clearGrade: "A",
-		gradeBoundaries: [0, 70, 80, 87, 90, 93, 95, 97, 98, 99],
+		gradeBoundaries: [0, 70, 80, 87, 90, 93, 95, 97, 98, 99, 100],
 
 		lamps: ["FAILED", "CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"],
 		lampColours: {

@@ -909,6 +909,7 @@ export interface TableDocument extends MongoDBDocument {
 	title: string;
 	description: string;
 	folders: string[];
+	inactive: boolean;
 }
 
 export interface BaseFolderDocument extends MongoDBDocument {

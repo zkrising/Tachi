@@ -916,6 +916,11 @@ export interface BaseFolderDocument extends MongoDBDocument {
 	game: Game;
 	playtype: AnyPlaytype;
 	folderID: string;
+	/**
+	 * This folder has been superceded by another folder,
+	 * such as one on a more modern version of the game.
+	 */
+	inactive: boolean;
 }
 
 export interface FolderSongsDocument extends BaseFolderDocument {

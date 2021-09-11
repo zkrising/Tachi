@@ -25,7 +25,7 @@ See [Redis QuickStart](https://redis.io/topics/quickstart).
 
 ### 3. Get NodeJS and NPM.
 
-``s`
+```
 sudo apt-get install nodejs
 ```
 

@@ -1,14 +1,14 @@
-import { LoggerLayers } from "config";
+import { LoggerLayers } from "../config";
 import { RequestHandler } from "express";
-import { ProcessEnv } from "setup";
-import { createLayeredLogger } from "utils/logger";
+import { ProcessEnv } from "../setup";
+import { createLayeredLogger } from "../utils/logger";
 
 const logger = createLayeredLogger(LoggerLayers.serverAuth);
 
 /**
- * Middleware that checks that a webhook request has Authorization set to 
+ * Middleware that checks that a webhook request has Authorization set to
  * exactly "Bearer $CLIENT_SECRET".
- * 
+ *
  * This is to prevent things like users spoofing webhook events.
  * $CLIENT_SECRET is part of the registered tachi OAuth2 client.
  */

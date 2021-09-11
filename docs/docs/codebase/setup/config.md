@@ -223,3 +223,57 @@ If true, all `OPTIONS` requests to the server will return `200`, no matter what.
 - Default: false
 
 If true, logging to the console will be disabled, and only filesystem logging will be on.
+
+### OAUTH_CLIENT_CAP
+
+- Type: Integer
+- Default: 15
+
+Determines the maximum amount of OAuth Clients one user
+can make.
+
+### USC_QUEUE_SIZE
+
+- Type: Integer
+- Default: 3
+
+Determines the amount of unique players that must have
+played a chart for it to be available in the
+database. This is to stop IR Flooding.
+
+### BEATORAJA_QUEUE_SIZE
+
+- Type: Integer
+- Default: 3
+
+See above, but for the beatorajaIR.
+
+### OUR_URL
+
+- Type: String
+
+Where *this* server is hosted. This is used to
+provide callback URLs inside emails. You may stub
+it out if emails are unsupported.
+
+### EMAIL_CONFIG
+
+- Type: EMAIL_CONFIG | undefined.
+
+Configures how emails will be sent by Tachi.
+If not present, email calls will become no-ops, and
+certain features (such as resetting passwords)
+will be disabled.
+
+`FROM` determines the email `From` header, and optionally
+`SENDMAIL_BIN` can override the location of the `sendmail`
+binary. Defaults to `/usr/bin/sendmail`, but some distros
+may have it in `sbin`.
+
+```ts
+interface EMAIL_CONFIG {
+	FROM: string;
+	SENDMAIL_BIN?: string
+}
+```
+

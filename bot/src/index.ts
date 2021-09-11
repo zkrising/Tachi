@@ -1,7 +1,7 @@
 import { Client, Intents } from "discord.js";
 import { ProcessEnv } from "setup";
 import { LoggerLayers } from "./config";
-import { registerSlashCommands, slashCommands, tidyGuildCommands, SlashCommand } from "./slashCommands/register";
+import { registerSlashCommands, slashCommands, SlashCommand } from "./slashCommands/register";
 import { createLayeredLogger } from "./utils/logger";
 
 
@@ -37,8 +37,10 @@ client.on("interactionCreate", async (interaction) => {
 		logger.info(`Running on ${ProcessEnv.ENV} environment`);
 		await client.login(ProcessEnv.DISCORD_TOKEN);
 		logger.info(`Logged in successfully to ${client.guilds.cache.size} guilds`);
+		logger.info(
+			`Invite URL: https://discord.com/api/oauth2/authorize?client_id=${client.application!.id}&permissions=8&scope=applications.commands%20bot`
+		);
 
-		await tidyGuildCommands(client);
 		await registerSlashCommands(client);
 	} catch (e) {
 		logger.error("Log in Failed:", e);

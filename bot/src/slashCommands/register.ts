@@ -3,6 +3,7 @@ import { REST } from "@discordjs/rest";
 import { APIApplicationCommandOption } from "discord-api-types";
 import { Routes } from "discord-api-types/v9";
 import { Client, CommandInteraction } from "discord.js";
+import { ProcessEnv } from "setup";
 import { LoggerLayers } from "../config";
 import { help } from "../help/help";
 import { createLayeredLogger } from "../utils/logger";
@@ -27,22 +28,24 @@ export const slashCommands: SlashCommand[] = [
 
 const rest = new REST({
 	version: "9"
-}).setToken(process.env.DISCORD_TOKEN);
+}).setToken(ProcessEnv.DISCORD_TOKEN);
 export const registerSlashCommands = async (client: Client): Promise<void> => {
 	try {
 		if (process.env.ENV === "PROD") {
 			logger.info("Registering global slash commands");
 
-			await rest.put(Routes.applicationCommands(client.application.id), {
+			await rest.put(Routes.applicationCommands(client.application!.id), {
 				body: slashCommands.map((command) => command.info)
 			});
 		} else {
 			logger.info("Registering guild slash commands");
 
 			await tidyOldGuildCommands(client);
-			await rest.put(Routes.applicationGuildCommands(client.application.id, process.env.DEV_SERVER_ID), {
-				body: slashCommands.map((command) => command.info)
-			});
+			if (process.env.DEV_SERVER_ID) {
+				await rest.put(Routes.applicationGuildCommands(client.application!.id, process.env.DEV_SERVER_ID), {
+					body: slashCommands.map((command) => command.info)
+				});
+			}
 		}
 
 		logger.info("Successfully registered slash commands");

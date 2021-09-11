@@ -10,8 +10,12 @@ if [[ "$ENV" != "PROD" ]]; then
   echo "ENV=DEV" >> "$DOT_ENV_PATH"
   echo "DISCORD_TOKEN=${NON_PROD_DISCORD_TOKEN:-"_"}" >> "$DOT_ENV_PATH"
   echo "DEV_SERVER_ID=883949913887612938" >> "$DOT_ENV_PATH" # Where is testing taking place?
+  echo "BOT_CLIENT_SECRET=${NON_PROD_BOT_CLIENT_SECRET:-"_"}" >> "$DOT_ENV_PATH"
+  echo "BOT_CLIENT_ID=${NON_PROD_BOT_CLIENT_ID:-"_"}" >> "$DOT_ENV_PATH"
 else
   # Prod environment
   echo "ENV=PROD" >> "$DOT_ENV_PATH"
   echo "DISCORD_TOKEN=${PROD_DISCORD_TOKEN:-"_"}" >> "$DOT_ENV_PATH"
+  echo "BOT_CLIENT_SECRET=${PROD_BOT_CLIENT_SECRET:-"_"}" >> "$DOT_ENV_PATH"
+  echo "BOT_CLIENT_ID=${PROD_BOT_CLIENT_ID:-"_"}" >> "$DOT_ENV_PATH"
 fi

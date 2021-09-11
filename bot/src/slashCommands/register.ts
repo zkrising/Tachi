@@ -5,7 +5,7 @@ import { Routes } from "discord-api-types/v9";
 import { Client, CommandInteraction } from "discord.js";
 import { ProcessEnv } from "../setup";
 import { LoggerLayers } from "../config";
-import { help } from "../help/help";
+import { help } from "../commands/help/help";
 import { createLayeredLogger } from "../utils/logger";
 
 const logger = createLayeredLogger(LoggerLayers.slashCommands);

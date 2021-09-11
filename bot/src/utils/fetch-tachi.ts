@@ -1,5 +1,5 @@
-import { LoggerLayers } from "config";
-import { BotConfig } from "setup";
+import { LoggerLayers } from "../config";
+import { BotConfig } from "../setup";
 import { integer, SuccessfulAPIResponse, UnsuccessfulAPIResponse } from "tachi-common";
 import { createLayeredLogger } from "./logger";
 
@@ -29,7 +29,7 @@ export async function TachiServerV1Request<T>(method: Exclude<RequestTypes, Requ
 	const loggerUrl = `${method} ${realUrl}`;
 
 	logger.debug(`Making a request to ${loggerUrl}.`);
-	
+
 	try {
 		const res = await fetch(realUrl, {
 			method,
@@ -47,7 +47,7 @@ export async function TachiServerV1Request<T>(method: Exclude<RequestTypes, Requ
 		return contents;
 	} catch (err) {
 		logger.error(`Failed while requesting ${method} ${realUrl}.`, { err });
-		
+
 		// Throw the error upwards for it to be caught be a higher handler.
 		throw err;
 	}
@@ -65,7 +65,7 @@ export async function TachiServerV1Get<T = unknown>(url: string, params: Record<
 		const urlParams = new URLSearchParams(params);
 
 		const realUrl = `${PrependTachiUrl(url, "1")}?${urlParams.toString()}`;
-	
+
 		const res = await fetch(realUrl);
 		const json = await res.json();
 		const contents = { ...json, statusCode: res.status };
@@ -75,7 +75,7 @@ export async function TachiServerV1Get<T = unknown>(url: string, params: Record<
 		return contents;
 	} catch (err) {
 		logger.error(`Failed while requesting GET ${url}.`, { err });
-		
+
 		throw err;
 	}
 }

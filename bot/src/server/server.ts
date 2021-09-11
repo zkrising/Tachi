@@ -1,10 +1,10 @@
 import express, { Express } from "express";
-import { LoggerLayers } from "config";
-import { createLayeredLogger } from "utils/logger";
+import { LoggerLayers } from "../config";
+import { createLayeredLogger } from "../utils/logger";
 import { ValidateWebhookRequest } from "./middleware";
 import { WebhookEvents, APITokenDocument } from "tachi-common";
-import { BotConfig, ProcessEnv } from "setup";
-import { RequestTypes, TachiServerV1Request } from "utils/fetch-tachi";
+import { BotConfig, ProcessEnv } from "../setup";
+import { RequestTypes, TachiServerV1Request } from "../utils/fetch-tachi";
 
 const app: Express = express();
 
@@ -21,7 +21,7 @@ app.set("query parser", "simple");
 
 /**
  * Return the status of this bot and the version it's running.
- * 
+ *
  * @name GET /
  */
 app.get("/", (req, res) => {
@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
 
 /**
  * Listens for tachi-server style webhook calls.
- * 
+ *
  * @name POST /webhook
  */
 app.post("/webhook", ValidateWebhookRequest, (req, res) => {
@@ -71,7 +71,7 @@ app.post("/webhook", ValidateWebhookRequest, (req, res) => {
 /**
  * Our OAuth2 Callback handler. Note that this is a GET request, as per
  * OAuth spec, but does perform *real* mutations on data. It's awkward.
- * 
+ *
  * @param code - The intermediate code for us to send back.
  * @param context - The discordID we fired this auth request with.
  *
@@ -111,7 +111,7 @@ app.get("/oauth/callback", async (req, res) => {
 
 /**
  * 404 Handler. If something gets to this point, they haven't matched with anything.
- * 
+ *
  * @name ALL *
  */
 app.all("*", (req, res) => {

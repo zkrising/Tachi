@@ -1,6 +1,6 @@
-import { LoggerLayers } from "config";
-import { createLayeredLogger } from "utils/logger";
-import { FormatPrError } from "utils/prudence";
+import { LoggerLayers } from "./config";
+import { createLayeredLogger } from "./utils/logger";
+import { FormatPrError } from "./utils/prudence";
 import JSON5 from "json5";
 import fs from "fs";
 import Prudence from "prudence";
@@ -27,7 +27,7 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 		const contents = fs.readFileSync(fileLoc, "utf-8");
 		data = JSON5.parse(contents);
 	} catch (err) {
-		logger.crit("Failed to find a valid conf.json5 file. Cannot boot.", { err });
+		logger.error("Failed to find a valid conf.json5 file. Cannot boot.", { err });
 
 		throw err;
 	}
@@ -39,7 +39,7 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 	});
 
 	if (err) {
-		logger.crit(FormatPrError(err, "Invalid conf.json5 file. Cannot safely boot."));
+		logger.error(FormatPrError(err, "Invalid conf.json5 file. Cannot safely boot."));
 
 		throw err;
 	}
@@ -63,7 +63,7 @@ function ParseEnvVars() {
 	}, {}, { allowExcessKeys: true });
 
 	if (err) {
-		logger.crit(FormatPrError(err, "Invalid environment. Cannot safely boot."));
+		logger.error(FormatPrError(err, "Invalid environment. Cannot safely boot."));
 
 		throw err;
 	}

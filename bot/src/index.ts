@@ -1,5 +1,5 @@
 import { Client, Intents } from "discord.js";
-import { ProcessEnv } from "setup";
+import { ProcessEnv } from "./setup";
 import { LoggerLayers } from "./config";
 import { registerSlashCommands, slashCommands, SlashCommand } from "./slashCommands/register";
 import { createLayeredLogger } from "./utils/logger";

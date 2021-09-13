@@ -21,12 +21,12 @@ import { GamePT, SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
 import LoadingWrapper from "components/util/LoadingWrapper";
 import Icon from "components/util/Icon";
-import SelectButton from "components/util/SelectButton";
+import SelectLinkButton from "components/util/SelectLinkButton";
 import PBTable from "components/tables/pbs/PBTable";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
-import { Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import useUGPTBase from "components/util/useUGPTBase";
+import { Switch, Route } from "react-router-dom";
 
 export default function ScoresPage({
 	reqUser,
@@ -35,8 +35,6 @@ export default function ScoresPage({
 }: {
 	reqUser: PublicUserDocument;
 } & GamePT) {
-	const [scoreSet, setScoreSet] = useState<"recent" | "best" | "all" | "playcount">("best");
-
 	const gameConfig = GetGameConfig(game);
 	const gptConfig = GetGamePTConfig(game, playtype);
 
@@ -50,59 +48,66 @@ export default function ScoresPage({
 		`${reqUser.username}'s ${FormatGame(game, playtype)} Scores`
 	);
 
+	const base = useUGPTBase({ reqUser, game, playtype });
+
 	return (
 		<div className="row">
 			<div className="col-12 text-center">
 				<div className="btn-group mb-4">
-					<SelectButton id="best" setValue={setScoreSet} value={scoreSet}>
+					<SelectLinkButton to={`${base}/scores`}>
 						<Icon type="trophy" />
 						Best PBs
-					</SelectButton>
-					<SelectButton id="recent" setValue={setScoreSet} value={scoreSet}>
+					</SelectLinkButton>
+					<SelectLinkButton to={`${base}/scores/history`}>
 						<Icon type="history" />
 						Recent Scores
-					</SelectButton>
-					<SelectButton id="playcount" setValue={setScoreSet} value={scoreSet}>
+					</SelectLinkButton>
+					<SelectLinkButton to={`${base}/scores/most-played`}>
 						<Icon type="mortar-pestle" />
 						Most Played
-					</SelectButton>
-					<SelectButton id="all" setValue={setScoreSet} value={scoreSet}>
+					</SelectLinkButton>
+					<SelectLinkButton to={`${base}/scores/all`}>
 						<Icon type="database" />
 						All PBs
-					</SelectButton>
+					</SelectLinkButton>
 				</div>
 			</div>
 			<div className="col-12 mt-4">
-				{scoreSet === "best" ? (
-					<>
+				<Switch>
+					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/scores">
+						<>
+							<PBsOverview
+								url={`/users/${reqUser.id}/games/${game}/${playtype}/pbs/best?alg=${alg}`}
+								{...{ reqUser, game, playtype, alg }}
+							/>
+							{gptConfig.scoreRatingAlgs.length > 1 && (
+								<AlgSelector {...{ alg, setAlg, gptConfig }} />
+							)}
+						</>
+					</Route>
+					<Route path="/dashboard/users/:userID/games/:game/:playtype/scores/history">
+						<ScoresOverview {...{ reqUser, game, playtype }} />
+					</Route>
+					<Route path="/dashboard/users/:userID/games/:game/:playtype/scores/all">
 						<PBsOverview
-							url={`/users/${reqUser.id}/games/${game}/${playtype}/pbs/best?alg=${alg}`}
-							{...{ reqUser, game, playtype, alg }}
+							url={`/users/${reqUser.id}/games/${game}/${playtype}/pbs/all`}
+							reqUser={reqUser}
+							game={game}
+							playtype={playtype}
+							indexCol={false}
 						/>
-						{gptConfig.scoreRatingAlgs.length > 1 && (
-							<AlgSelector {...{ alg, setAlg, gptConfig }} />
-						)}
-					</>
-				) : scoreSet === "recent" ? (
-					<ScoresOverview {...{ reqUser, game, playtype }} />
-				) : scoreSet === "all" ? (
-					<PBsOverview
-						url={`/users/${reqUser.id}/games/${game}/${playtype}/pbs/all`}
-						reqUser={reqUser}
-						game={game}
-						playtype={playtype}
-						indexCol={false}
-					/>
-				) : (
-					<PBsOverview
-						url={`/users/${reqUser.id}/games/${game}/${playtype}/most-played`}
-						reqUser={reqUser}
-						game={game}
-						playtype={playtype}
-						indexCol
-						showPlaycount
-					/>
-				)}
+					</Route>
+					<Route path="/dashboard/users/:userID/games/:game/:playtype/scores/most-played">
+						<PBsOverview
+							url={`/users/${reqUser.id}/games/${game}/${playtype}/most-played`}
+							reqUser={reqUser}
+							game={game}
+							playtype={playtype}
+							indexCol
+							showPlaycount
+						/>
+					</Route>
+				</Switch>
 			</div>
 		</div>
 	);

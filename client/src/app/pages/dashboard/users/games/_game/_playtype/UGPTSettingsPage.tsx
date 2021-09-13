@@ -8,7 +8,7 @@ import SelectButton from "components/util/SelectButton";
 import { UGPTSettingsContext } from "context/UGPTSettingsContext";
 import deepmerge from "deepmerge";
 import { useFormik } from "formik";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import {
 	FormatGame,
@@ -165,6 +165,29 @@ function ShowcaseForm({ reqUser, game, playtype }: Props) {
 	const [stats, setStats] = useState(settings!.preferences.stats);
 	const [show, setShow] = useState(false);
 
+	const SaveChanges = async () => {
+		await APIFetchV1(
+			`/users/${reqUser.id}/games/${game}/${playtype}/showcase`,
+			{
+				method: "PUT",
+				body: JSON.stringify(stats),
+				headers: { "Content-Type": "application/json" },
+			},
+			true,
+			true
+		);
+	};
+
+	const [isFirstPaint, setIsFirstPaint] = useState(true);
+
+	useEffect(() => {
+		if (isFirstPaint) {
+			setIsFirstPaint(false);
+		} else {
+			SaveChanges();
+		}
+	}, [stats]);
+
 	return (
 		<div className="row">
 			{stats.length < 6 && (
@@ -177,32 +200,15 @@ function ShowcaseForm({ reqUser, game, playtype }: Props) {
 				</div>
 			)}
 			<RenderCurrentStats {...{ reqUser, game, playtype, stats, setStats }} />
-			<div className="col-12 d-flex justify-content-center mt-4">
-				<Button
-					variant="success"
-					onClick={async () => {
-						await APIFetchV1(
-							`/users/${reqUser.id}/games/${game}/${playtype}/showcase`,
-							{
-								method: "PUT",
-								body: JSON.stringify(stats),
-								headers: { "Content-Type": "application/json" },
-							},
-							true,
-							true
-						);
-					}}
-				>
-					Save Changes
-				</Button>
-			</div>
 			<UGPTStatCreator
 				game={game}
 				playtype={playtype}
 				show={show}
 				setShow={setShow}
 				reqUser={reqUser}
-				onCreate={stat => setStats([...stats, stat])}
+				onCreate={stat => {
+					setStats([...stats, stat]);
+				}}
 			/>
 		</div>
 	);

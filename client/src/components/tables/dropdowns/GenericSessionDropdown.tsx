@@ -34,6 +34,7 @@ import ScoreCell from "../cells/ScoreCell";
 import deepmerge from "deepmerge";
 import HasDevModeOn from "components/util/HasDevModeOn";
 import LampCell from "../cells/LampCell";
+import BMSDifficultyCell from "../cells/BMSDifficultyCell";
 
 export default function GenericSessionDropdown({ data }: { data: SessionDataset[0] }) {
 	const { isLoading, error, data: sessionData } = useQuery(
@@ -49,7 +50,7 @@ export default function GenericSessionDropdown({ data }: { data: SessionDataset[
 		}
 	);
 
-	const [view, setView] = useState<"raises" | "highlights" | "graphs" | "debug">("graphs");
+	const [view, setView] = useState<"raises" | "debug">("raises");
 
 	if (error) {
 		return <>{(error as Error).message}</>;
@@ -71,17 +72,9 @@ export default function GenericSessionDropdown({ data }: { data: SessionDataset[
 		<DropdownStructure
 			buttons={
 				<>
-					<SelectButton setValue={setView} value={view} id="graphs">
-						<Icon type="chart-area" />
-						Graphs
-					</SelectButton>
 					<SelectButton setValue={setView} value={view} id="raises">
 						<Icon type="receipt" />
 						Raises
-					</SelectButton>
-					<SelectButton setValue={setView} value={view} id="highlights">
-						<Icon type="star" />
-						Highlights
 					</SelectButton>
 					<HasDevModeOn>
 						<SelectButton setValue={setView} value={view} id="debug">
@@ -101,15 +94,20 @@ function SessionRaiseBreakdown({ sessionData }: { sessionData: SpecificSessionRe
 	const game = sessionData.session.game;
 	const playtype = sessionData.session.playtype;
 
-	const gptConfig = GetGamePTConfig(game, playtype);
+	// todo infer default table
+	// const gptConfig = GetGamePTConfig(game, playtype);
 
 	const [chartIDs, setChartIDs] = useState<string[] | null>([]);
-	const [tableID, setTableID] = useState<string>("levels");
+	const [tableID, setTableID] = useState<string | null>(null);
 	const [tableFolders, setTableFolders] = useState<FolderDocument[]>([]);
 	const [folder, setFolder] = useState<FolderDocument | null>(null);
 	const [filter, setFilter] = useState<"folder" | "all" | "highlighted">("all");
 
 	useEffect(() => {
+		if (!tableID) {
+			return;
+		}
+
 		APIFetchV1(`/games/${game}/${playtype}/tables/${tableID}`).then(r => {
 			if (!r.success) {
 				throw new Error(r.description);
@@ -148,6 +146,12 @@ function SessionRaiseBreakdown({ sessionData }: { sessionData: SpecificSessionRe
 		return res.body;
 	});
 
+	useEffect(() => {
+		if (tableID === null && (data?.length ?? 0) > 0) {
+			setTableID(data![0].tableID);
+		}
+	}, [data]);
+
 	if (error) {
 		return <>{(error as Error).message}</>;
 	}
@@ -184,7 +188,6 @@ function SessionRaiseBreakdown({ sessionData }: { sessionData: SpecificSessionRe
 							<div className="col-6">
 								<select
 									className="form-control"
-									value={tableID}
 									onChange={e => setTableID(e.target.value)}
 								>
 									{data.map(e => (
@@ -428,7 +431,13 @@ function ElementStatTable({
 				return (
 					<>
 						<TitleCell chart={chart} game={game} song={song} />
-						<DifficultyCell chart={chart} game={game} />
+						{game !== "bms" ? (
+							<DifficultyCell chart={chart} game={game} />
+						) : (
+							<BMSDifficultyCell
+								chart={chart as ChartDocument<"bms:7K" | "bms:14K">}
+							/>
+						)}
 						{preScoreCell}
 						<td>⟶</td>
 						{type === "grade" ? (

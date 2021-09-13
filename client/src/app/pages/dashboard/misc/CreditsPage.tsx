@@ -108,6 +108,10 @@ export default function CreditsPage() {
 						<strong>haste</strong>
 					</li>
 					<li>
+						{a("Tachi-Bot Work", "oooOoooo you want to use redux oooo")}:{" "}
+						<strong>pfych</strong>
+					</li>
+					<li>
 						{a("Chunitachi", "CHUNITHM Black Magic")}: <strong>tomatosoup</strong>
 					</li>
 					<li>
@@ -146,8 +150,8 @@ export default function CreditsPage() {
 						<ExternalLink href="https://pnpm.io">PNPM</ExternalLink>
 						<br />
 						<small>
-							PNPM is a monumental improvement over NPM and Yarn. I cannot recommend
-							it highly enough.
+							PNPM is a monumental improvement over NPM. I cannot recommend it highly
+							enough.
 						</small>
 					</li>
 					<li>
@@ -179,6 +183,11 @@ export default function CreditsPage() {
 							Monk is a no-nonsense driver wrapper for MongoDB wrote and maintained by
 							one guy.
 						</small>
+					</li>
+					<li>
+						<ExternalLink href="https://nivo.rocks">Nivo</ExternalLink>
+						<br />
+						<small>Nivo is the best graphing library ever made. That's it.</small>
 					</li>
 				</ul>
 			</div>

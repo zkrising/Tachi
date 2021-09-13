@@ -27,7 +27,6 @@ function AboutMeCard({ reqUser }: Props) {
 	const [content, setContent] = useState(reqUser.about);
 
 	async function SubmitNewAboutMe() {
-		console.log(content);
 		const res = await APIFetchV1(
 			`/users/${user!.id}`,
 			{
@@ -90,8 +89,6 @@ function AboutMeCard({ reqUser }: Props) {
 			);
 		}
 	}
-
-	console.log(content);
 
 	return (
 		<Card header="About Me" footer={footer}>

@@ -8,6 +8,8 @@ import RegisterPage from "app/pages/RegisterPage";
 import ForgotPasswordPage from "app/pages/ForgotPasswordPage";
 import ResetPasswordPage from "app/pages/ResetPasswordPage";
 import CenterPage from "components/util/CenterPage";
+import { ClientConfig } from "lib/config";
+import MainPageTitleContainer from "components/util/MainPageTitleContainer";
 
 /**
  * Core Routes for Tachi-Client.
@@ -20,10 +22,12 @@ export function Routes() {
 
 	return (
 		<Switch>
-			<Redirect exact from="/" to="/dashboard" />
+			<Route exact path="/">
+				{!user && ClientConfig.MANDATE_LOGIN ? <LoginPage /> : <Redirect to="/dashboard" />}
+			</Route>
 
 			<Route path="/dashboard">
-				<DashboardRoutes />
+				{!user && ClientConfig.MANDATE_LOGIN ? <LoginPage /> : <DashboardRoutes />}
 			</Route>
 
 			<Route exact path="/login">
@@ -43,7 +47,10 @@ export function Routes() {
 					<Redirect to="/dashboard" />
 				) : (
 					<CenterPage>
-						<b>You can't.</b> I specifically said not to do this!
+						<MainPageTitleContainer
+							title="You can't."
+							desc="If you signed up with a fake email, you're now locked out of this account. Nice one."
+						/>
 						<span
 							onClick={() => history.goBack()}
 							tabIndex={4}

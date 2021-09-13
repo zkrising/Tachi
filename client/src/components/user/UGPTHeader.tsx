@@ -1,27 +1,16 @@
 import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
 import React from "react";
-import {
-	Game,
-	ScoreCalculatedDataLookup,
-	GetGamePTConfig,
-	IDStrings,
-	PublicUserDocument,
-	FormatGame,
-} from "tachi-common";
+import { Game, GetGamePTConfig, PublicUserDocument } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import { Playtype } from "types/tachi";
 import { MillisToSince } from "util/time";
 import ProfilePicture from "./ProfilePicture";
 import Navbar from "components/nav/Navbar";
 import NavItem from "components/nav/NavItem";
-import ClassBadge from "components/game/ClassBadge";
-import { FormatGPTRating, UppercaseFirst } from "util/misc";
 import ProfileBadges from "./ProfileBadges";
-import { GameClassSets } from "tachi-common/js/game-classes";
 import UGPTRatingsTable from "./UGPTStatsOverview";
 import RankingData from "./UGPTRankingData";
-import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 
 export function UGPTHeaderBody({
 	reqUser,
@@ -53,7 +42,7 @@ export function UGPTHeaderBody({
 			<div className="col-12 col-md-6 col-lg-3">
 				<MiniTable className="table-sm text-center" headers={["Player Info"]} colSpan={2}>
 					<tr>
-						<td>Playcount</td>
+						<td>Scores</td>
 						<td>{stats.totalScores}</td>
 					</tr>
 					<tr>
@@ -114,7 +103,11 @@ export function UGPTBottomNav({
 	];
 
 	if (isRequestedUser) {
-		navItems.push(<NavItem to={`${baseUrl}/settings`}>Settings</NavItem>);
+		navItems.push(
+			<NavItem key="settings" to={`${baseUrl}/settings`}>
+				Settings
+			</NavItem>
+		);
 	}
 
 	return (

@@ -14,6 +14,9 @@ import {
 	SongDocument,
 	PBScoreDocument,
 	UGSRatingsLookup,
+	Grades,
+	Lamps,
+	TableDocument,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -92,4 +95,22 @@ export type UGSWithRankingData<I extends IDStrings = IDStrings> = UserGameStats<
 export interface SongChartsSearch<I extends IDStrings = IDStrings> {
 	songs: SongDocument<IDStringToGame[I]>[];
 	charts: ChartDocument<I>[];
+}
+
+export interface FolderStatsInfo<I extends IDStrings = IDStrings> {
+	grades: Record<Grades[I], integer>;
+	lamps: Record<Lamps[I], integer>;
+	folderID: string;
+	chartCount: integer;
+}
+
+export interface UGPTFolderSearch {
+	folders: FolderDocument[];
+	stats: FolderStatsInfo[];
+}
+
+export interface UGPTTableReturns {
+	folders: FolderDocument[];
+	stats: FolderStatsInfo[];
+	table: TableDocument;
 }

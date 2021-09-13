@@ -11,6 +11,7 @@ import {
 } from "tachi-common";
 import { Playtype } from "types/tachi";
 import { GetPBs } from "util/data";
+import { UppercaseFirst } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { FormatDuration, FormatTime, MillisToSince } from "util/time";
 import IndexCell from "../cells/IndexCell";
@@ -41,7 +42,7 @@ export default function GenericSessionTable({
 	const headers: Header<SessionDataset[0]>[] = [
 		["Name", "Name", StrSOV(x => x.name)],
 		["Scores", "Scores", NumericSOV(x => x.scoreInfo.length)],
-		[alg, alg, NumericSOV(x => x.calculatedData[alg] ?? 0)],
+		[UppercaseFirst(alg), UppercaseFirst(alg), NumericSOV(x => x.calculatedData[alg] ?? 0)],
 		["Duration", "Dur.", NumericSOV(x => x.timeEnded - x.timeStarted)],
 		["Timestamp", "Timestamp", NumericSOV(x => x.timeStarted)],
 	];
@@ -81,6 +82,7 @@ export default function GenericSessionTable({
 				pbRate: x => GetPBs(x.scoreInfo).length / x.scoreInfo.length,
 				duration: x => (x.timeEnded - x.timeStarted) / (1000 * 60),
 				timestamp: x => x.timeStarted,
+				[alg]: x => x.calculatedData[alg] ?? 0,
 			}}
 			rowFunction={s => <Row data={s} key={s.sessionID} rating={alg} indexCol={indexCol} />}
 		/>

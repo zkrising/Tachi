@@ -30,6 +30,7 @@
 		"@material-ui/lab": "4.0.0-alpha.53",
 		"@material-ui/pickers": "3.2.10",
 		"@material-ui/styles": "4.9.14",
+		"@nivo/bar": "^0.73.1",
 		"@nivo/calendar": "^0.73.0",
 		"@nivo/core": "^0.73.0",
 		"@nivo/line": "^0.73.0",
@@ -74,7 +75,7 @@
 		"resolve": "1.12.0",
 		"resolve-url-loader": "3.1.0",
 		"socicon": "3.0.5",
-		"tachi-common": "0.2.4"
+		"tachi-common": "0.2.9"
 	},
 	"devDependencies": {
 		"@types/humanize-duration": "3.25.1",

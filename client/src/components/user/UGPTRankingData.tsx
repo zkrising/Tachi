@@ -19,7 +19,7 @@ export default function RankingData({
 
 		if (key !== alg) {
 			extendData.push(
-				<div className="col-12">
+				<div key={key} className="col-12">
 					<small className="text-muted">
 						{key}: #{rankingData[key].ranking}/{rankingData[key].outOf}
 					</small>

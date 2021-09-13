@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { forwardRef } from "react";
-import { SetState } from "types/react";
 
 // todo: understand this file - it was leveraged from metronic and uses something weird.
 // it exists because we need to override reactbootstraps default of adding btn btn-primary to dropdowns
@@ -16,10 +15,12 @@ const DropdownTopbarItemToggler = forwardRef((props, ref) => (
 			props.onClick(e);
 		}}
 	>
+		{/* @ts-expect-error see todo */}
 		{props.children}
 	</div>
 ));
 
+/* @ts-expect-error see todo */
 DropdownTopbarItemToggler.displayName = "DropdownTopbarItemToggler";
 
 export default DropdownTopbarItemToggler;

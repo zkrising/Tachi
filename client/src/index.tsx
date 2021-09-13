@@ -14,8 +14,6 @@ import "./_metronic/_assets/plugins/flaticon2/flaticon.css";
 
 const { PUBLIC_URL } = process.env;
 
-console.log(process.env);
-
 // if (!PUBLIC_URL) {
 // 	throw new Error(
 // 		`No PUBLIC_URL was defined in environment. Have you forgot to set it in a .env file?`

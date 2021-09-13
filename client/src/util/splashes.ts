@@ -57,6 +57,12 @@ export const loggedInSplashes = [
 	"through ivy - out middle",
 	"The graphics. That's what it's really about.",
 	"you could be playing mario galaxy right now",
+	"...When yours just crashes?",
+	"My Beautiful Score Tracking Fantasy",
+	"The Supercharged Score Tracker.",
+	"Play ULTRAKILL.",
+	"A Cutting-Edge Score Tracker (heh).",
+	"Winnipeg is a warm, nice place to live.",
 ];
 
 // Stuff that's bad for the kids, you know?

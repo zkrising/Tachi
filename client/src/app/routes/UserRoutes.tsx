@@ -1,4 +1,6 @@
 import PlaytypeSelect from "app/pages/dashboard/games/_game/PlaytypeSelect";
+import AchievablesPage from "app/pages/dashboard/users/games/_game/_playtype/AchievablesPage";
+import FoldersMainPage from "app/pages/dashboard/users/games/_game/_playtype/folders/FoldersMainPage";
 import LeaderboardsPage from "app/pages/dashboard/users/games/_game/_playtype/LeaderboardsPage";
 import OverviewPage from "app/pages/dashboard/users/games/_game/_playtype/OverviewPage";
 import SessionsPage from "app/pages/dashboard/users/games/_game/_playtype/SessionsPage";
@@ -19,12 +21,12 @@ import React, { useContext, useEffect } from "react";
 import { useQuery } from "react-query";
 import { Redirect, Route, Switch, useParams } from "react-router-dom";
 import {
+	FormatGame,
 	Game,
 	GetGameConfig,
 	PublicUserDocument,
-	UserGameStats,
 	UGPTSettings,
-	FormatGame,
+	UserGameStats,
 } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import { APIFetchV1, APIFetchV1Return, ToAPIURL } from "util/api";
@@ -167,8 +169,6 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 					throw settingsRes;
 				}
 
-				console.log(settingsRes.body);
-
 				setSettings(settingsRes.body);
 			}
 		})();
@@ -226,17 +226,17 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype">
 					<OverviewPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
-				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/scores">
+				<Route path="/dashboard/users/:userID/games/:game/:playtype/scores">
 					<ScoresPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
-				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/folders">
-					<div>foo</div>
+				<Route path="/dashboard/users/:userID/games/:game/:playtype/folders">
+					<FoldersMainPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/sessions">
 					<SessionsPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/achievables">
-					<div>goalsandmilestones</div>
+					<AchievablesPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/leaderboard">
 					<LeaderboardsPage reqUser={reqUser} game={game} playtype={playtype} />

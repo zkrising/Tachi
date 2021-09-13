@@ -33,7 +33,7 @@ export function Footer() {
 							Discord
 						</a>
 						<a
-							href="https://github.com/zkldi/tachi-server"
+							href="https://github.com/TeamNewGuys/tachi-server"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="nav-link px-3"

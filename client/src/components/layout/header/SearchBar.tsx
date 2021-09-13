@@ -1,12 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
-import { SongDocument, Game, GetGameConfig, integer, PublicUserDocument } from "tachi-common";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import {
+	SongDocument,
+	Game,
+	GetGameConfig,
+	integer,
+	PublicUserDocument,
+	FormatGame,
+} from "tachi-common";
 import { APIFetchV1 } from "util/api";
-import { toAbsoluteUrl } from "_metronic/_helpers";
-import { JustChildren } from "types/react";
-import { Link } from "react-router-dom";
+import { GamePT, JustChildren } from "types/react";
+import { Link, useLocation } from "react-router-dom";
 import Divider from "components/util/Divider";
-import { NO_OP, PREVENT_DEFAULT } from "util/misc";
+import { PREVENT_DEFAULT } from "util/misc";
 import Loading from "components/util/Loading";
+import { Playtype } from "types/tachi";
+import { TachiConfig } from "lib/config";
+import Icon from "components/util/Icon";
+import QuickTooltip from "../misc/QuickTooltip";
 
 interface SearchReturns {
 	users: PublicUserDocument[];
@@ -29,6 +39,44 @@ function SearchResult({
 	);
 }
 
+function GPTSearchResult({
+	user,
+	game,
+	playtype,
+	tabIndex,
+}: {
+	user: PublicUserDocument;
+	tabIndex: integer;
+} & GamePT) {
+	const currentLoc = window.location.href.split(`games/${game}/${playtype}`)[1];
+
+	return (
+		<div className="d-flex flex-column ml-3 mt-2 mb-2">
+			<strong>
+				<Link to={`/dashboard/users/${user.username}`}>{user.username}</Link>
+				<Link
+					className="float-right gentle-link mr-4"
+					tabIndex={tabIndex}
+					to={`/dashboard/users/${user.username}/games/${game}/${playtype}${currentLoc}`}
+					style={{
+						fontWeight: "lighter",
+					}}
+				>
+					<QuickTooltip
+						text={`Go to ${user.username}'s ${FormatGame(
+							game,
+							playtype
+						)} profile, if they have one.`}
+					>
+						<Icon type="exchange-alt" />
+					</QuickTooltip>
+				</Link>
+			</strong>
+			<span className="font-size-sm font-weight-bold text-muted">{user.status}</span>
+		</div>
+	);
+}
+
 function SearchResults({ results }: { results: SearchReturns }) {
 	if (!results.users.length && !results.songs.length) {
 		return (
@@ -38,6 +86,22 @@ function SearchResults({ results }: { results: SearchReturns }) {
 		);
 	}
 
+	// useParams doesn't do what i think it does, so...
+	// here's a hack.
+	const params = useLocation<{ game?: Game; playtype?: Playtype }>();
+
+	const { game, playtype } = useMemo(() => {
+		const regexp = `/games/(${TachiConfig.supportedGames.join("|")})/[^/]*/?`;
+
+		if (params.pathname.match(new RegExp(regexp, "u"))) {
+			const hack = params.pathname.split("/games/")[1].split("/");
+
+			return { game: hack[0] as Game, playtype: hack[1] as Playtype };
+		}
+
+		return { game: null, playtype: null };
+	}, [params.pathname]);
+
 	return (
 		<div className="quick-search-result">
 			{results?.users.length ? (
@@ -46,18 +110,28 @@ function SearchResults({ results }: { results: SearchReturns }) {
 						Users
 					</div>
 					<div>
-						{results.users.map(u => (
-							<SearchResult
-								key={u.id}
-								link={`/dashboard/users/${u.username}`}
-								tabIndex={0}
-							>
-								<strong>{u.username}</strong>
-								<span className="font-size-sm font-weight-bold text-muted">
-									{u.status}
-								</span>
-							</SearchResult>
-						))}
+						{results.users.map(u =>
+							game && playtype ? (
+								<GPTSearchResult
+									key={u.id}
+									game={game}
+									playtype={playtype}
+									tabIndex={0}
+									user={u}
+								/>
+							) : (
+								<SearchResult
+									key={u.id}
+									link={`/dashboard/users/${u.username}`}
+									tabIndex={0}
+								>
+									<strong>{u.username}</strong>
+									<span className="font-size-sm font-weight-bold text-muted">
+										{u.status}
+									</span>
+								</SearchResult>
+							)
+						)}
 					</div>
 					<Divider className="mt-2 mb-4" />
 				</>

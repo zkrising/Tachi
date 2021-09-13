@@ -15,6 +15,7 @@ import LinkButton from "components/util/LinkButton";
 import { UGSWithRankingData } from "types/api-returns";
 import RankingData, { LazyRankingData } from "components/user/UGPTRankingData";
 import ReferToUser from "components/util/ReferToUser";
+import { GetSortedGPTs } from "util/site";
 
 interface Props {
 	reqUser: PublicUserDocument;
@@ -44,29 +45,7 @@ export default function UserGamesPage({ reqUser }: Props) {
 			>
 				{ugs =>
 					ugs.length ? (
-						ugs.map((e, i) => {
-							// uses modulo to determine whether we're on the
-							// last row or not
-							// to do sizing like [12] or [6][6] instead of [3][3][3]
-							let mdSize = "6";
-							let lgSize = "4";
-							if (ugs.length - i <= ugs.length % 3) {
-								lgSize = (12 / (ugs.length % 3)).toString();
-							}
-
-							if (ugs.length - i <= ugs.length % 2) {
-								mdSize = (12 / (ugs.length % 2)).toString();
-							}
-
-							return (
-								<div
-									className={`col-12 col-md-${mdSize} col-lg-${lgSize}`}
-									key={`${e.game}:${e.playtype}`}
-								>
-									<GameStatContainer ugs={e} reqUser={reqUser} />
-								</div>
-							);
-						})
+						<GamesInfo ugs={ugs} reqUser={reqUser} />
 					) : (
 						<div className="col-12 text-center">
 							<Muted>
@@ -77,6 +56,50 @@ export default function UserGamesPage({ reqUser }: Props) {
 				}
 			</AsyncLoader>
 		</div>
+	);
+}
+
+function GamesInfo({ ugs, reqUser }: { ugs: UserGameStats[]; reqUser: PublicUserDocument }) {
+	const gpts = GetSortedGPTs();
+
+	const ugsMap = new Map();
+
+	for (const u of ugs) {
+		ugsMap.set(`${u.game}:${u.playtype}`, u);
+	}
+
+	return (
+		<>
+			{gpts.map(({ game, playtype }, i) => {
+				const e = ugsMap.get(`${game}:${playtype}`);
+
+				if (!e) {
+					return <></>;
+				}
+
+				// uses modulo to determine whether we're on the
+				// last row or not
+				// to do sizing like [12] or [6][6] instead of [3][3][3]
+				let mdSize = "6";
+				let lgSize = "4";
+				if (ugs.length - i <= ugs.length % 3) {
+					lgSize = (12 / (ugs.length % 3)).toString();
+				}
+
+				if (ugs.length - i <= ugs.length % 2) {
+					mdSize = (12 / (ugs.length % 2)).toString();
+				}
+
+				return (
+					<div
+						className={`col-12 col-md-${mdSize} col-lg-${lgSize}`}
+						key={`${e.game}:${e.playtype}`}
+					>
+						<GameStatContainer ugs={e} reqUser={reqUser} />
+					</div>
+				);
+			})}
+		</>
 	);
 }
 

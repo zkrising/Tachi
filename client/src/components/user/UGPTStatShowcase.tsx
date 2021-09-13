@@ -293,7 +293,7 @@ function StatDelta({
 	return (
 		<div className={`mt-2 text-${colour}`}>
 			<span>
-				You: {formattedV2} ({v2 > v1 ? `+${d}` : d})
+				You: {formattedV2} ({v2 > v1 ? `+${d}` : v2 === v1 ? `±${d}` : d})
 			</span>
 		</div>
 	);

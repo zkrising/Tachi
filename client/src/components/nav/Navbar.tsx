@@ -17,13 +17,16 @@ export default function Navbar({ children }: { children: JSX.Element[] }) {
 	const value = useMemo(() => {
 		const loc = location.pathname.split(/([#?]|\/$)/u)[0];
 
-		const x = links.indexOf(loc);
-
-		if (x === -1) {
-			return 0;
+		let lidx = 0;
+		for (let i = 0; i < links.length; i++) {
+			const link = links[i];
+			if (loc.startsWith(link)) {
+				lidx = i;
+				// break; THIS IS DELIBERATE TO AVOID / matching everything
+			}
 		}
 
-		return x;
+		return lidx;
 	}, [location]);
 
 	return (

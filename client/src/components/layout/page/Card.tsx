@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { JustChildren } from "types/react";
 
 export default function Card({
@@ -6,13 +6,15 @@ export default function Card({
 	children,
 	footer,
 	className,
+	style,
 }: {
 	header: JSX.Element | string;
 	footer?: JSX.Element | string;
 	className?: string;
+	style?: CSSProperties;
 } & JustChildren) {
 	return (
-		<div className={`card card-custom ${className}`}>
+		<div className={`card card-custom ${className ? className : ""}`} style={style}>
 			<div className="card-header">
 				{typeof header === "string" ? (
 					<h3 className="text-center mb-0">{header}</h3>

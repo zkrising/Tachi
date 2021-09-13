@@ -819,58 +819,6 @@ export interface ChartDocument<I extends IDStrings = IDStrings> extends MongoDBD
 	data: ChartDocumentData[I];
 	versions: GPTSupportedVersions[I][];
 }
-
-interface TierlistPermissions {
-	// all permission values are as follows:
-	// 0 -> cannot do this
-	// 1 -> can do this, but can be overrode by requireState
-	// 2 -> can do this, and cannot be overrode.
-	edit: integer;
-	submit: integer;
-	vote: integer;
-}
-
-export interface TierlistParent<G extends Game = Game> extends MongoDBDocument {
-	game: G;
-	playtype: Playtypes[G];
-	name: string;
-	isDefault: boolean;
-	tierlistID: string;
-	createdBy: integer;
-	createdAt: number;
-	permissions: Record<integer, TierlistPermissions> & { anyPlayer: TierlistPermissions };
-	description: string;
-	lastUpdated: number;
-	config: {
-		// Automatically update TierlistDataDocuments with humanised strings. idk how this will work yet.
-		autoHumanise: boolean;
-		// No matter what, users have a permission of 000 if they have not cleared/played the chart
-		requireState: null | "clear" | "play";
-		// the list of flags that can appear in TierlistDataDocuments
-		flags: string[];
-	};
-}
-
-export interface TierlistDataDocument<F extends string = never> extends MongoDBDocument {
-	chartID: string;
-	tierlistID: string;
-	// lamp -> same, but for the lamp
-	// score -> A generic, single value that determines how hard it is to "score" on this song. This is not
-	// useful, to be honest, but is still used in generic rating calculations.
-	type: "lamp" | "score";
-	// null if type is "score", else, the grade or lamp this corresponds to.
-	key: string | null;
-	// used as primary key - is a hash of this data.
-	tierlistDataID: string;
-	data: {
-		value: number;
-		humanised: string;
-		flags: {
-			[flag in F]: boolean;
-		};
-	};
-}
-
 interface SongDocumentData {
 	iidx: { genre: string };
 	museca: { titleJP: string; artistJP: string };

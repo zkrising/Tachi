@@ -12,6 +12,7 @@ const router: Router = Router({ mergeParams: true });
  * Search the folders for this game.
  *
  * @param search - The query to search for.
+ * @param inactive - Also show inactive folders, such as those on old versions.
  *
  * @name GET /api/v1/games/:game/:playtype/folders
  */
@@ -26,7 +27,12 @@ router.get("/", async (req, res) => {
 		});
 	}
 
-	const folders = await SearchCollection(db.folders, req.query.search, { game, playtype }, 100);
+	const folders = await SearchCollection(
+		db.folders,
+		req.query.search,
+		{ game, playtype, inactive: !!req.query.inactive },
+		100
+	);
 
 	return res.status(200).json({
 		success: true,

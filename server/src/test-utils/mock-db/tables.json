@@ -4,5 +4,6 @@
 	"playtype": "SP",
 	"title": "testing table",
 	"description": "something",
-	"folders": ["testing_folder"]
+	"folders": ["testing_folder"],
+	"inactive": false
 }]

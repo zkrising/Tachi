@@ -59,6 +59,4 @@ export default async function MigrateRecords(
 	}
 
 	logger.info(`Done!`);
-
-	process.exit(0);
 }

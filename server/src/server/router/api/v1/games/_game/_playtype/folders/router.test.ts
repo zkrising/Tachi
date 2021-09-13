@@ -17,6 +17,7 @@ const mockFolder: FolderDocument = {
 		level: "10",
 	},
 	type: "charts",
+	inactive: false,
 };
 
 t.test("GET /api/v1/games/:game/:playtype/folders", (t) => {

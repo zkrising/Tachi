@@ -45,3 +45,7 @@ export async function RecalcAllScores(filter = {}) {
 
 	logger.info(`Done!`);
 }
+
+if (require.main === module) {
+	RecalcAllScores();
+}

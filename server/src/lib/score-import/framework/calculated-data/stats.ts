@@ -145,6 +145,7 @@ export function CalculateMFCP(dryScore: DryScore, chartData: ChartDocument, logg
 }
 
 const VF5GradeCoefficients = {
+	PUC: 1.05,
 	S: 1.05,
 	"AAA+": 1.02,
 	AAA: 1.0,

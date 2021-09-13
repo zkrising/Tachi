@@ -807,6 +807,30 @@ interface ChartDocumentData {
 	"gitadora:Dora": { inGameID: integer };
 }
 
+export interface GPTTierlists {
+	"iidx:SP": "kt-HC" | "kt-NC" | "kt-EXHC";
+	"iidx:DP": never;
+	"bms:7K": "sgl-HC" | "sgl-EC";
+	"bms:14K": "sgl-HC" | "sgl-EC";
+	"popn:9B": never;
+	"sdvx:Single": never;
+	"usc:Single": never;
+	"ddr:SP": never;
+	"ddr:DP": never;
+	"maimai:Single": never;
+	"jubeat:Single": never;
+	"museca:Single": "tachi-score";
+	"chunithm:Single": never;
+	"gitadora:Gita": never;
+	"gitadora:Dora": never;
+}
+
+export interface ChartTierlistInfo {
+	text: string;
+	value: number;
+	individualDifference?: boolean;
+}
+
 export interface ChartDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
 	chartID: string;
 	rgcID: string | null; // ID to perform backbeat lookup in future.
@@ -817,6 +841,7 @@ export interface ChartDocument<I extends IDStrings = IDStrings> extends MongoDBD
 	difficulty: Difficulties[I];
 	playtype: IDStringToPlaytype[I];
 	data: ChartDocumentData[I];
+	tierlistInfo: Record<GPTTierlists[I], ChartTierlistInfo | null>;
 	versions: GPTSupportedVersions[I][];
 }
 interface SongDocumentData {

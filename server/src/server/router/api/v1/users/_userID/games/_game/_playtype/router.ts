@@ -22,7 +22,7 @@ import { CheckStrProfileAlg } from "utils/string-checks";
 import { IsString } from "utils/misc";
 import pbsRouter from "./pbs/router";
 import sessionsRouter from "./sessions/router";
-import foldersFolderIDRouter from "./folders/_folderID/router";
+import foldersRouter from "./folders/router";
 import tablesRouter from "./tables/router";
 import showcaseRouter from "./showcase/router";
 import settingsRouter from "./settings/router";
@@ -377,6 +377,6 @@ router.use("/sessions", sessionsRouter);
 router.use("/tables", tablesRouter);
 router.use("/showcase", showcaseRouter);
 router.use("/settings", settingsRouter);
-router.use("/folders/:folderID", foldersFolderIDRouter);
+router.use("/folders", foldersRouter);
 
 export default router;

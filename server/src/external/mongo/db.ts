@@ -140,7 +140,7 @@ const charts = {
 
 const db = {
 	// i have to handwrite this out for TS... :(
-	// dont worry, it was all macro'd
+	// dont worry, it was all macro'd.
 	songs,
 	charts,
 	scores: monkDB.get<ScoreDocument>("scores"),
@@ -214,7 +214,8 @@ export type StaticDatabases =
 	| "fer-settings"
 	| "orphan-chart-queue"
 	| "password-reset-codes"
-	| "user-settings";
+	| "user-settings"
+	| "counters";
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;
 

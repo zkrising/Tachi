@@ -27,7 +27,7 @@ const logger = CreateLogCtx(__filename);
  * by.
  */
 export function SearchCollection<T>(
-	collection: ICollection,
+	collection: ICollection<T>,
 	search: string,
 	existingMatch: FilterQuery<T> = {},
 	limit = 100

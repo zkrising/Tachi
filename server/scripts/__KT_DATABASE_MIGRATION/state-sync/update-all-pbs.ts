@@ -23,3 +23,7 @@ export async function UpdateAllPBs(filter = {}) {
 
 	logger.info(`Done!`);
 }
+
+if (require.main === module) {
+	UpdateAllPBs();
+}

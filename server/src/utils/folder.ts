@@ -8,11 +8,14 @@ import {
 	integer,
 	PBScoreDocument,
 	FolderDocument,
+	Playtypes,
+	Game,
 } from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { FilterQuery } from "mongodb";
 import deepmerge from "deepmerge";
+import fjsh from "fast-json-stable-hash";
 
 const logger = CreateLogCtx(__filename);
 
@@ -216,4 +219,26 @@ export function CalculateGradeDistribution(pbs: PBScoreDocument[]) {
 	}
 
 	return gradeDist;
+}
+export async function GetGradeDistributionForFolder(userID: integer, folder: FolderDocument) {
+	const pbData = await GetPBsOnFolder(userID, folder);
+
+	return {
+		grades: CalculateGradeDistribution(pbData.pbs),
+		lamps: CalculateLampDistribution(pbData.pbs),
+		folderID: folder.folderID,
+		chartCount: pbData.charts.length,
+	};
+}
+
+export function GetGradeDistributionForFolders(userID: integer, folders: FolderDocument[]) {
+	return Promise.all(folders.map((f) => GetGradeDistributionForFolder(userID, f)));
+}
+
+export function CreateFolderID(
+	query: Record<string, unknown>,
+	game: Game,
+	playtype: Playtypes[Game]
+) {
+	return `F${fjsh.hash(Object.assign({ game, playtype }, query), "SHA256")}`;
 }

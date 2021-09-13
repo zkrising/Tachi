@@ -46,6 +46,12 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 			fromIp: req.ip,
 		};
 
+		// special overrides
+		// This stuff is spam, so we'll just not log it.
+		if (res.statusCode === 429) {
+			return;
+		}
+
 		if (res.statusCode < 400) {
 			logger.verbose(`(${req.method} ${req.originalUrl}) Returned`, contents);
 		} else if (res.statusCode < 500) {

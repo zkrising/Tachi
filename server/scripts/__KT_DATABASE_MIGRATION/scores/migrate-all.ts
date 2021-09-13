@@ -16,10 +16,6 @@ const logger = CreateLogCtx(__filename);
 
 	await MigrateBMSScores();
 
-	logger.info(`Migrating DDR Scores.`);
-
-	await MigrateDDRScores();
-
 	logger.info(`Migrating MUSECA Scores.`);
 
 	await MigrateMusecaScores();

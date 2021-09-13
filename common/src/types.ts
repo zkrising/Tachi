@@ -841,7 +841,7 @@ export interface ChartDocument<I extends IDStrings = IDStrings> extends MongoDBD
 	difficulty: Difficulties[I];
 	playtype: IDStringToPlaytype[I];
 	data: ChartDocumentData[I];
-	tierlistInfo: Record<GPTTierlists[I], ChartTierlistInfo | null>;
+	tierlistInfo: Partial<Record<GPTTierlists[I], ChartTierlistInfo>>;
 	versions: GPTSupportedVersions[I][];
 }
 interface SongDocumentData {

@@ -8,6 +8,7 @@ import { FormatGame, GetGameConfig, PublicUserDocument } from "tachi-common";
 import { GamePT } from "types/react";
 import FolderSelectPage from "./FolderSelectPage";
 import FolderTablePage from "./FolderTablePage";
+import SpecificFolderPage from "./SpecificFolderPage";
 
 type Props = { reqUser: PublicUserDocument } & GamePT;
 
@@ -46,6 +47,12 @@ export default function FoldersMainPage({ reqUser, game, playtype }: Props) {
 						path="/dashboard/users/:userID/games/:game/:playtype/folders/search"
 					>
 						<FolderSelectPage {...{ reqUser, game, playtype }} />
+					</Route>
+					<Route
+						exact
+						path="/dashboard/users/:userID/games/:game/:playtype/folders/:folderID"
+					>
+						<SpecificFolderPage {...{ reqUser, game, playtype }} />
 					</Route>
 				</Switch>
 			</div>

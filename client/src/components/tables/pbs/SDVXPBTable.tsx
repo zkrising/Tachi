@@ -1,21 +1,23 @@
 import React from "react";
-import TitleCell from "../cells/TitleCell";
-import RankingCell from "../cells/RankingCell";
-import TimestampCell from "../cells/TimestampCell";
-import { NumericSOV, StrSOV } from "util/sorts";
-import { PBDataset } from "types/tables";
 import { PublicUserDocument } from "tachi-common";
-import TachiTable, { Header } from "../components/TachiTable";
-import IndexCell from "../cells/IndexCell";
-import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
-import DropdownRow from "../components/DropdownRow";
+import { PBDataset } from "types/tables";
 import { IsNullish } from "util/misc";
-import LampCell from "../cells/LampCell";
+import { NumericSOV, StrSOV } from "util/sorts";
+import { CreateDefaultPBSearchParams } from "util/tables/create-search";
 import DifficultyCell from "../cells/DifficultyCell";
+import IndexCell from "../cells/IndexCell";
+import IndicatorsCell from "../cells/IndicatorsCell";
+import LampCell from "../cells/LampCell";
 import MillionsScoreCell from "../cells/MillionsScoreCell";
-import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
+import RankingCell from "../cells/RankingCell";
 import SDVXJudgementCell from "../cells/SDVXJudgementCell";
+import TimestampCell from "../cells/TimestampCell";
+import TitleCell from "../cells/TitleCell";
+import DropdownRow from "../components/DropdownRow";
+import TachiTable, { Header } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
+import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
+import IndicatorHeader from "../headers/IndicatorHeader";
 
 export default function SDVXPBTable({
 	dataset,
@@ -32,9 +34,10 @@ export default function SDVXPBTable({
 }) {
 	const headers: Header<PBDataset<"sdvx:Single">[0]>[] = [
 		["Chart", "Ch.", NumericSOV(x => x.__related.chart.levelNum)],
+		IndicatorHeader,
 		["Song", "Song", StrSOV(x => x.__related.song.title)],
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
-		["Near - Miss", "Nr-Ms", NumericSOV(x => x.scoreData.percent)],
+		["Near - Miss", "Nr. Ms.", NumericSOV(x => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
 		["VF6", "VF6", NumericSOV(x => x.calculatedData.VF6 ?? 0)],
 		["Site Ranking", "Site Rank", NumericSOV(x => x.rankingData.rank)],
@@ -54,23 +57,7 @@ export default function SDVXPBTable({
 			dataset={dataset}
 			headers={headers}
 			entryName="PBs"
-			searchFunctions={{
-				artist: x => x.__related.song.artist,
-				title: x => x.__related.song.title,
-				difficulty: x => x.__related.chart.difficulty,
-				level: x => x.__related.chart.levelNum,
-				score: x => x.scoreData.score,
-				percent: x => x.scoreData.percent,
-				ranking: x => x.rankingData.rank,
-				lamp: {
-					valueGetter: x => [x.scoreData.lamp, x.scoreData.lampIndex],
-					strToNum: HumanFriendlyStrToLampIndex("sdvx", playtype),
-				},
-				grade: {
-					valueGetter: x => [x.scoreData.grade, x.scoreData.gradeIndex],
-					strToNum: HumanFriendlyStrToGradeIndex("sdvx", playtype),
-				},
-			}}
+			searchFunctions={CreateDefaultPBSearchParams("sdvx", playtype)}
 			defaultSortMode={indexCol ? "#" : undefined}
 			rowFunction={pb => (
 				<Row
@@ -113,6 +100,7 @@ function Row({
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<DifficultyCell game="sdvx" chart={pb.__related.chart} />
+			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="sdvx" />
 			<MillionsScoreCell score={pb} />
 			<SDVXJudgementCell score={pb} />

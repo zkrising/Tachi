@@ -63,7 +63,7 @@ function GPTSearchResult({
 					}}
 				>
 					<QuickTooltip
-						text={`Go to ${user.username}'s ${FormatGame(
+						tooltipContent={`Go to ${user.username}'s ${FormatGame(
 							game,
 							playtype
 						)} profile, if they have one.`}

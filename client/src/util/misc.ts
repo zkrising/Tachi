@@ -115,3 +115,15 @@ export function StepFromToMax(max: integer, step: integer = 50) {
 	arr.push(max);
 	return arr;
 }
+
+export function ComposeExpFn(pow: number) {
+	return (x: number) => Math.pow(x, pow);
+}
+
+export function ComposeInverseExpFn(pow: number) {
+	return (x: number) => Math.pow(x, 1 / pow);
+}
+
+export function ComposeLogFn(base: number) {
+	return (x: number) => Math.log(x) / Math.log(base);
+}

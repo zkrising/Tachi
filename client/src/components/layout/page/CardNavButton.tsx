@@ -1,5 +1,4 @@
 import React from "react";
-import { OverlayTrigger } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import QuickTooltip from "../misc/QuickTooltip";
 
@@ -17,7 +16,7 @@ export default function CardNavButton({
 	}
 
 	return (
-		<QuickTooltip text={hoverText}>
+		<QuickTooltip tooltipContent={hoverText}>
 			<Link className={`fas fa-${type} h3 card-nav-icon`} to={to} />
 		</QuickTooltip>
 	);

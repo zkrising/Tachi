@@ -1,5 +1,6 @@
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
+import Muted from "components/util/Muted";
 import React from "react";
 import {
 	ChartDocument,
@@ -9,6 +10,7 @@ import {
 	GetGamePTConfig,
 } from "tachi-common";
 import { ChangeOpacity } from "util/color-opacity";
+import TierlistInfoPart from "./TierlistInfoPart";
 
 export default function DifficultyCell({
 	game,
@@ -28,13 +30,18 @@ export default function DifficultyCell({
 			}}
 		>
 			{!alwaysShort && (
-				<span className="d-none d-lg-block">{FormatDifficulty(chart, game)}</span>
+				<>
+					<span className="d-none d-lg-block">{FormatDifficulty(chart, game)}</span>
+					{Object.keys(chart.tierlistInfo).length > 0 && (
+						<TierlistInfoPart chart={chart} />
+					)}
+				</>
 			)}
 			<span className={!alwaysShort ? "d-lg-none" : ""}>
 				{FormatDifficultyShort(chart, game)}
 			</span>
 			{!chart.isPrimary && (
-				<QuickTooltip text="This chart is an alternate, old chart.">
+				<QuickTooltip tooltipContent="This chart is an alternate, old chart.">
 					<div>
 						<Icon type="exclamation-triangle" />
 					</div>

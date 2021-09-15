@@ -34,14 +34,14 @@ export default function ScoreEditButtons({
 			<div className="btn-group">
 				{comment ? (
 					<>
-						<QuickTooltip text="Edit your comment on this score.">
+						<QuickTooltip tooltipContent="Edit your comment on this score.">
 							<Button variant="outline-secondary" onClick={() => setShow(true)}>
 								<Icon noPad type="file-signature" />
 							</Button>
 						</QuickTooltip>
 					</>
 				) : (
-					<QuickTooltip text="Comment on this score.">
+					<QuickTooltip tooltipContent="Comment on this score.">
 						<Button variant="outline-secondary" onClick={() => setShow(true)}>
 							<Icon noPad type="file-signature" />
 						</Button>
@@ -49,7 +49,7 @@ export default function ScoreEditButtons({
 				)}
 
 				{highlight ? (
-					<QuickTooltip text="Unhighlight this score.">
+					<QuickTooltip tooltipContent="Unhighlight this score.">
 						<Button
 							variant="success"
 							onClick={() =>
@@ -65,7 +65,7 @@ export default function ScoreEditButtons({
 						</Button>
 					</QuickTooltip>
 				) : (
-					<QuickTooltip text="Highlight this score.">
+					<QuickTooltip tooltipContent="Highlight this score.">
 						<Button
 							variant="outline-secondary"
 							onClick={() =>
@@ -167,7 +167,7 @@ function CommentModal({
 						</div>
 					</Form.Group>
 
-					<QuickTooltip text="Remove your comment on this score.">
+					<QuickTooltip tooltipContent="Remove your comment on this score.">
 						<Button
 							variant="outline-danger"
 							onClick={() =>

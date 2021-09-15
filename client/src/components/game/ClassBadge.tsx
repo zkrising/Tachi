@@ -36,14 +36,14 @@ export default function ClassBadge<I extends IDStrings = IDStrings>({
 
 	if (data.mouseover && showSetOnHover) {
 		return (
-			<QuickTooltip text={`${UppercaseFirst(classSet)}: ${data.mouseover}`}>
+			<QuickTooltip tooltipContent={`${UppercaseFirst(classSet)}: ${data.mouseover}`}>
 				{badgeComponent}
 			</QuickTooltip>
 		);
 	} else if (data.mouseover) {
-		return <QuickTooltip text={data.mouseover}>{badgeComponent}</QuickTooltip>;
+		return <QuickTooltip tooltipContent={data.mouseover}>{badgeComponent}</QuickTooltip>;
 	} else if (showSetOnHover) {
-		<QuickTooltip text={UppercaseFirst(classSet)}>{badgeComponent}</QuickTooltip>;
+		<QuickTooltip tooltipContent={UppercaseFirst(classSet)}>{badgeComponent}</QuickTooltip>;
 	}
 
 	return badgeComponent;

@@ -22,6 +22,16 @@ export function CreateSongMap<G extends Game = Game>(songs: SongDocument<G>[]) {
 	return songMap;
 }
 
+export function CreateChartIDMap<T extends { chartID: string }>(arr: T[]): Map<string, T> {
+	const map = new Map();
+
+	for (const t of arr) {
+		map.set(t.chartID, t);
+	}
+
+	return map;
+}
+
 export function CreateChartMap<I extends IDStrings = IDStrings>(charts: ChartDocument<I>[]) {
 	const chartMap = new Map<string, ChartDocument<I>>();
 
@@ -30,16 +40,6 @@ export function CreateChartMap<I extends IDStrings = IDStrings>(charts: ChartDoc
 	}
 
 	return chartMap;
-}
-
-export function CreateScoreMap<I extends IDStrings = IDStrings>(scores: ScoreDocument<I>[]) {
-	const scoreMap = new Map<string, ScoreDocument<I>>();
-
-	for (const score of scores) {
-		scoreMap.set(score.scoreID, score);
-	}
-
-	return scoreMap;
 }
 
 export function CreateChartLink(chart: ChartDocument, game: Game) {

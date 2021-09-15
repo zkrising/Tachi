@@ -1,12 +1,12 @@
 import React from "react";
+import { IDStrings, PublicUserDocument, ScoreCalculatedDataLookup } from "tachi-common";
 import { GamePT } from "types/react";
 import { PBDataset } from "types/tables";
-import { IDStrings, PublicUserDocument, ScoreCalculatedDataLookup } from "tachi-common";
-import IIDXPBTable from "./IIDXPBTable";
 import BMSPBTable from "./BMSPBTable";
-import SDVXPBTable from "./SDVXPBTable";
 import GenericPBTable from "./GenericPBTable";
+import IIDXPBTable from "./IIDXPBTable";
 import MusecaPBTable from "./MusecaPBTable";
+import SDVXPBTable from "./SDVXPBTable";
 
 export default function PBTable({
 	dataset,

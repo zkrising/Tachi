@@ -169,6 +169,7 @@ function TableFolderTable({
 	return (
 		<TachiTable
 			dataset={dataset}
+			pageLen={25}
 			headers={[
 				["Folder", "Folder", StrSOV(x => x.folder.title)],
 				["Chart Count", "Charts", NumericSOV(x => x.stats.chartCount)],
@@ -250,8 +251,6 @@ function TableBarChart({
 		return arr.reverse();
 	}, [dataMap, mode]);
 
-	console.log(dataset);
-
 	return (
 		<Card header="Overview">
 			<div className="row">
@@ -321,8 +320,6 @@ function OverviewBarChart({
 		[dataset]
 	);
 
-	console.log(longestTitle);
-
 	return (
 		<ResponsiveBar
 			indexBy="folder"
@@ -352,7 +349,7 @@ function OverviewBarChart({
 			minValue={0}
 			maxValue={100}
 			valueFormat={v => `${v.toFixed(2)}%`}
-			margin={{ left: 10 + longestTitle.length * 10, bottom: 50, top: 20, right: 20 }}
+			margin={{ left: 10 + longestTitle.length * 7, bottom: 50, top: 20, right: 20 }}
 			layout="horizontal"
 			axisBottom={{
 				tickSize: 5,

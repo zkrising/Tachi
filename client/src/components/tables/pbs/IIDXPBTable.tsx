@@ -1,25 +1,28 @@
-import React, { useState } from "react";
-import { FormatDifficulty } from "tachi-common/js/utils/util";
-import TitleCell from "../cells/TitleCell";
-import RankingCell from "../cells/RankingCell";
-import TimestampCell from "../cells/TimestampCell";
-import { NumericSOV, StrSOV } from "util/sorts";
-import SelectableRating from "../components/SelectableRating";
-import { PBDataset } from "types/tables";
-import { PublicUserDocument, ScoreCalculatedDataLookup } from "tachi-common";
-import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
-import DifficultyCell from "../cells/DifficultyCell";
-import ScoreCell from "../cells/ScoreCell";
-import IndexCell from "../cells/IndexCell";
-import DeltaCell from "../cells/DeltaCell";
-import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
-import { nanoid } from "nanoid";
-import DropdownRow from "../components/DropdownRow";
-import IIDXPBDropdown from "../dropdowns/IIDXPBDropdown";
-import IIDXLampCell from "../cells/IIDXLampCell";
-import { IsNullish } from "util/misc";
-import { usePBState } from "../components/UseScoreState";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
+import { nanoid } from "nanoid";
+import React, { useState } from "react";
+import { PublicUserDocument, ScoreCalculatedDataLookup } from "tachi-common";
+import { FormatDifficulty } from "tachi-common/js/utils/util";
+import { PBDataset } from "types/tables";
+import { IsNullish } from "util/misc";
+import { NumericSOV, StrSOV } from "util/sorts";
+import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
+import { CreateDefaultPBSearchParams } from "util/tables/create-search";
+import DeltaCell from "../cells/DeltaCell";
+import DifficultyCell from "../cells/DifficultyCell";
+import IIDXLampCell from "../cells/IIDXLampCell";
+import IndexCell from "../cells/IndexCell";
+import IndicatorsCell from "../cells/IndicatorsCell";
+import RankingCell from "../cells/RankingCell";
+import ScoreCell from "../cells/ScoreCell";
+import TimestampCell from "../cells/TimestampCell";
+import TitleCell from "../cells/TitleCell";
+import DropdownRow from "../components/DropdownRow";
+import SelectableRating from "../components/SelectableRating";
+import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
+import { usePBState } from "../components/UseScoreState";
+import IIDXPBDropdown from "../dropdowns/IIDXPBDropdown";
+import IndicatorHeader from "../headers/IndicatorHeader";
 
 export default function IIDXPBTable({
 	dataset,
@@ -43,7 +46,17 @@ export default function IIDXPBTable({
 	);
 
 	const headers: Header<PBDataset<"iidx:SP" | "iidx:DP">[0]>[] = [
-		["Chart", "Ch.", NumericSOV(x => x.__related.chart.levelNum)],
+		[
+			"Chart",
+			"Ch.",
+			NumericSOV(
+				x =>
+					x.__related.chart.tierlistInfo["kt-NC"]?.value ??
+					x.__related.chart.tierlistInfo["kt-HC"]?.value ??
+					x.__related.chart.levelNum
+			),
+		],
+		IndicatorHeader,
 		["Song", "Song", StrSOV(x => x.__related.song.title)],
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
 		["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
@@ -80,23 +93,7 @@ export default function IIDXPBTable({
 			dataset={dataset}
 			headers={headers}
 			entryName="PBs"
-			searchFunctions={{
-				artist: x => x.__related.song.artist,
-				title: x => x.__related.song.title,
-				difficulty: x => FormatDifficulty(x.__related.chart, "iidx"),
-				level: x => x.__related.chart.levelNum,
-				score: x => x.scoreData.score,
-				percent: x => x.scoreData.percent,
-				ranking: x => x.rankingData.rank,
-				lamp: {
-					valueGetter: x => [x.scoreData.lamp, x.scoreData.lampIndex],
-					strToNum: HumanFriendlyStrToLampIndex("iidx", playtype),
-				},
-				grade: {
-					valueGetter: x => [x.scoreData.grade, x.scoreData.gradeIndex],
-					strToNum: HumanFriendlyStrToGradeIndex("iidx", playtype),
-				},
-			}}
+			searchFunctions={CreateDefaultPBSearchParams("iidx", playtype)}
 			defaultSortMode={indexCol ? "#" : undefined}
 			rowFunction={pb => (
 				<Row
@@ -138,10 +135,10 @@ function Row({
 					scoreState={scoreState}
 				/>
 			}
-			className={scoreState.highlight ? "highlighted-row" : ""}
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<DifficultyCell chart={pb.__related.chart} game={"iidx"} />
+			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="iidx" />
 			<ScoreCell score={pb} />
 			<DeltaCell

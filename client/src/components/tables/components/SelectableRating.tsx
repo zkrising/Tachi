@@ -58,6 +58,7 @@ export default function SelectableRating<I extends IDStrings>({
 					color: "#ffffff",
 					fontSize: "inherit",
 					font: "inherit",
+					textAlign: "center",
 				}}
 			>
 				{gptConfig[key].map(s => (

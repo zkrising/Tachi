@@ -1,11 +1,15 @@
 import React from "react";
-import { ScoreDocument } from "tachi-common";
+import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import DeltaCell from "../cells/DeltaCell";
 import LampCell from "../cells/LampCell";
 import RatingCell from "../cells/RatingCell";
 import ScoreCell from "../cells/ScoreCell";
 
-export default function BMSScoreCoreCells({ sc }: { sc: ScoreDocument<"bms:7K" | "bms:14K"> }) {
+export default function BMSScoreCoreCells({
+	sc,
+}: {
+	sc: PBScoreDocument<"bms:7K" | "bms:14K"> | ScoreDocument<"bms:7K" | "bms:14K">;
+}) {
 	return (
 		<>
 			<ScoreCell score={sc} />

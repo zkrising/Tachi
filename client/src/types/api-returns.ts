@@ -1,22 +1,22 @@
 import {
+	ChartDocument,
 	FolderDocument,
+	Grades,
 	IDStrings,
+	IDStringToGame,
 	integer,
+	Lamps,
+	PBScoreDocument,
 	PublicUserDocument,
 	ScoreDocument,
-	UserGameStats,
+	SessionDocument,
 	ShowcaseStatChart,
 	ShowcaseStatFolder,
-	UserGameStatsSnapshot,
-	SessionDocument,
-	IDStringToGame,
-	ChartDocument,
 	SongDocument,
-	PBScoreDocument,
-	UGSRatingsLookup,
-	Grades,
-	Lamps,
 	TableDocument,
+	UGSRatingsLookup,
+	UserGameStats,
+	UserGameStatsSnapshot,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -113,4 +113,11 @@ export interface UGPTTableReturns {
 	folders: FolderDocument[];
 	stats: FolderStatsInfo[];
 	table: TableDocument;
+}
+
+export interface UGPTFolderReturns<I extends IDStrings = IDStrings> {
+	folder: FolderDocument;
+	songs: SongDocument<IDStringToGame[I]>[];
+	charts: ChartDocument<I>[];
+	pbs: PBScoreDocument<I>[];
 }

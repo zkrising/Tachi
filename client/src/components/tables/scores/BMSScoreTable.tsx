@@ -1,25 +1,19 @@
-import React, { useState } from "react";
-import { FormatDifficulty } from "tachi-common/js/utils/util";
-import TitleCell from "../cells/TitleCell";
-import TimestampCell from "../cells/TimestampCell";
-import { NumericSOV, StrSOV } from "util/sorts";
+import React from "react";
+import { integer, Playtypes, PublicUserDocument } from "tachi-common";
 import { ScoreDataset } from "types/tables";
-import { integer, PublicUserDocument, Playtypes, ScoreDocument } from "tachi-common";
-import TachiTable from "../components/TachiTable";
-import ScoreCell from "../cells/ScoreCell";
-import DeltaCell from "../cells/DeltaCell";
-import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
-import DropdownRow from "../components/DropdownRow";
-import { IsNullish } from "util/misc";
-import LampCell from "../cells/LampCell";
-import BMSDifficultyCell from "../cells/BMSDifficultyCell";
 import { Playtype } from "types/tachi";
-import GenericScoreDropdown from "../dropdowns/GenericScoreDropdown";
-import SDVXJudgementCell from "../cells/SDVXJudgementCell";
+import { NumericSOV, StrSOV } from "util/sorts";
+import { CreateDefaultScoreSearchParams } from "util/tables/create-search";
+import BMSDifficultyCell from "../cells/BMSDifficultyCell";
+import IndicatorsCell from "../cells/IndicatorsCell";
+import TimestampCell from "../cells/TimestampCell";
+import TitleCell from "../cells/TitleCell";
+import DropdownRow from "../components/DropdownRow";
+import TachiTable, { Header } from "../components/TachiTable";
 import { useScoreState } from "../components/UseScoreState";
-import RatingCell from "../cells/RatingCell";
+import GenericScoreDropdown from "../dropdowns/GenericScoreDropdown";
 import BMSScoreCoreCells from "../game-core-cells/BMSScoreCoreCells";
-import { CreateDefaultScoreSearch } from "util/tables";
+import IndicatorHeader from "../headers/IndicatorHeader";
 
 export default function BMSScoreTable({
 	reqUser,
@@ -36,18 +30,30 @@ export default function BMSScoreTable({
 		<TachiTable
 			dataset={dataset}
 			pageLen={pageLen}
-			headers={[
-				["Chart", "Ch.", NumericSOV(x => x.__related.chart.levelNum)],
-				["Song", "Song", StrSOV(x => x.__related.song.title)],
-				["Score", "Score", NumericSOV(x => x.scoreData.percent)],
-				["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
-				["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
-				["Sieglinde", "sgl.", NumericSOV(x => x.calculatedData.sieglinde ?? 0)],
+			headers={
+				[
+					[
+						"Chart",
+						"Ch.",
+						NumericSOV(
+							x =>
+								x.__related.chart.tierlistInfo["sgl-EC"]?.value ??
+								x.__related.chart.tierlistInfo["sgl-HC"]?.value ??
+								x.__related.chart.levelNum
+						),
+					],
+					IndicatorHeader,
+					["Song", "Song", StrSOV(x => x.__related.song.title)],
+					["Score", "Score", NumericSOV(x => x.scoreData.percent)],
+					["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
+					["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
+					["Sieglinde", "sgl.", NumericSOV(x => x.calculatedData.sieglinde ?? 0)],
 
-				["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
-			]}
+					["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
+				] as Header<ScoreDataset<"bms:7K" | "bms:14K">[0]>[]
+			}
 			entryName="Scores"
-			searchFunctions={CreateDefaultScoreSearch<"bms:7K" | "bms:14K">("bms", playtype)}
+			searchFunctions={CreateDefaultScoreSearchParams("bms", playtype)}
 			rowFunction={sc => (
 				<Row playtype={playtype} key={sc.scoreID} sc={sc} reqUser={reqUser} />
 			)}
@@ -81,6 +87,7 @@ function Row({
 			}
 		>
 			<BMSDifficultyCell chart={sc.__related.chart} />
+			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell
 				song={sc.__related.song}
 				chart={sc.__related.chart}

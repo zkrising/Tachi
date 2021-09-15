@@ -4,6 +4,7 @@ import React from "react";
 import { ChartDocument, Game, COLOUR_SET } from "tachi-common";
 import { ChangeOpacity } from "util/color-opacity";
 import { FormatBMSTables } from "util/misc";
+import TierlistInfoPart from "./TierlistInfoPart";
 
 export default function BMSDifficultyCell({
 	chart,
@@ -20,8 +21,9 @@ export default function BMSDifficultyCell({
 			}}
 		>
 			<span>{levelText}</span>
+			<TierlistInfoPart chart={chart} />
 			{!chart.isPrimary && (
-				<QuickTooltip text="This chart is an alternate, old chart.">
+				<QuickTooltip tooltipContent="This chart is an alternate, old chart.">
 					<div>
 						<Icon type="exclamation-triangle" />
 					</div>

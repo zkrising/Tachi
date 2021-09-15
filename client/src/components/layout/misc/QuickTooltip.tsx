@@ -5,10 +5,10 @@ import { JustChildren } from "types/react";
 
 export default function QuickTooltip({
 	children,
-	text,
-}: { text: string } & { children: JSX.Element }) {
+	tooltipContent,
+}: { tooltipContent: React.ReactChild } & { children: JSX.Element }) {
 	return (
-		<OverlayTrigger placement="top" overlay={<Tooltip id={nanoid()}>{text}</Tooltip>}>
+		<OverlayTrigger placement="top" overlay={<Tooltip id={nanoid()}>{tooltipContent}</Tooltip>}>
 			{children}
 		</OverlayTrigger>
 	);

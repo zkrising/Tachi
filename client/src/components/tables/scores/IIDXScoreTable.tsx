@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import TitleCell from "../cells/TitleCell";
-import TimestampCell from "../cells/TimestampCell";
-import { NumericSOV, StrSOV } from "util/sorts";
-import SelectableRating from "../components/SelectableRating";
-import { ScoreDataset } from "types/tables";
-import { integer, ScoreCalculatedDataLookup, PublicUserDocument, Playtypes } from "tachi-common";
-import TachiTable, { ZTableTHProps } from "../components/TachiTable";
-import DifficultyCell from "../cells/DifficultyCell";
-import { nanoid } from "nanoid";
-import DropdownRow from "../components/DropdownRow";
-import IIDXScoreDropdown from "../dropdowns/IIDXScoreDropdown";
-import { Playtype } from "types/tachi";
-import { useScoreState } from "../components/UseScoreState";
-import IIDXScoreCoreCells from "../game-core-cells/IIDXScoreCoreCells";
-import { CreateDefaultScoreSearch } from "util/tables";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
+import { nanoid } from "nanoid";
+import React, { useState } from "react";
+import { integer, Playtypes, PublicUserDocument, ScoreCalculatedDataLookup } from "tachi-common";
+import { ScoreDataset } from "types/tables";
+import { Playtype } from "types/tachi";
+import { NumericSOV, StrSOV } from "util/sorts";
+import { CreateDefaultScoreSearchParams } from "util/tables/create-search";
+import DifficultyCell from "../cells/DifficultyCell";
+import IndicatorsCell from "../cells/IndicatorsCell";
+import TimestampCell from "../cells/TimestampCell";
+import TitleCell from "../cells/TitleCell";
+import DropdownRow from "../components/DropdownRow";
+import SelectableRating from "../components/SelectableRating";
+import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
+import { useScoreState } from "../components/UseScoreState";
+import IIDXScoreDropdown from "../dropdowns/IIDXScoreDropdown";
+import IIDXScoreCoreCells from "../game-core-cells/IIDXScoreCoreCells";
+import IndicatorHeader from "../headers/IndicatorHeader";
 
 export default function IIDXScoreTable({
 	reqUser,
@@ -36,31 +38,43 @@ export default function IIDXScoreTable({
 		<TachiTable
 			dataset={dataset}
 			pageLen={pageLen}
-			headers={[
-				["Chart", "Ch.", NumericSOV(x => x.__related.chart.levelNum)],
-				["Song", "Song", StrSOV(x => x.__related.song.title)],
-				["Score", "Score", NumericSOV(x => x.scoreData.percent)],
-				["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
-				["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
+			headers={
 				[
-					"Rating",
-					"Rating",
-					NumericSOV(x => x.calculatedData[rating] ?? 0),
-					(thProps: ZTableTHProps) => (
-						<SelectableRating<"iidx:SP" | "iidx:DP">
-							key={nanoid()}
-							game="iidx"
-							playtype={playtype}
-							rating={rating}
-							setRating={setRating}
-							{...thProps}
-						/>
-					),
-				],
-				["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
-			]}
+					[
+						"Chart",
+						"Ch.",
+						NumericSOV(
+							x =>
+								x.__related.chart.tierlistInfo["kt-NC"]?.value ??
+								x.__related.chart.tierlistInfo["kt-HC"]?.value ??
+								x.__related.chart.levelNum
+						),
+					],
+					IndicatorHeader,
+					["Song", "Song", StrSOV(x => x.__related.song.title)],
+					["Score", "Score", NumericSOV(x => x.scoreData.percent)],
+					["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
+					["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
+					[
+						"Rating",
+						"Rating",
+						NumericSOV(x => x.calculatedData[rating] ?? 0),
+						(thProps: ZTableTHProps) => (
+							<SelectableRating<"iidx:SP" | "iidx:DP">
+								key={nanoid()}
+								game="iidx"
+								playtype={playtype}
+								rating={rating}
+								setRating={setRating}
+								{...thProps}
+							/>
+						),
+					],
+					["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
+				] as Header<ScoreDataset<"iidx:SP" | "iidx:DP">[0]>[]
+			}
 			entryName="Scores"
-			searchFunctions={CreateDefaultScoreSearch<"iidx:SP" | "iidx:DP">("iidx", playtype)}
+			searchFunctions={CreateDefaultScoreSearchParams("iidx", playtype)}
 			rowFunction={sc => (
 				<Row
 					key={sc.scoreID}
@@ -102,6 +116,7 @@ function Row({
 			}
 		>
 			<DifficultyCell chart={sc.__related.chart} game="iidx" />
+			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell
 				song={sc.__related.song}
 				comment={sc.comment}

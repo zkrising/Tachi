@@ -38,7 +38,7 @@ export function ParseDirectives(search: string): Directive[] {
 		}
 
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const [_wholeMatch, key, mode, value] = ps;
+		const [wholeMatch, key, mode, value] = ps;
 
 		let v = value;
 
@@ -101,6 +101,14 @@ const Matchers: Record<DirectiveModes, MatchFn> = {
 
 const NeutralMatch = (sv: string, dv: string) => dv.toLowerCase().includes(sv.toLowerCase());
 
+const BooleanMatch = (sv: string, dv: boolean) => {
+	if (dv) {
+		return ["yes", "true"].some(x => x.startsWith(sv.toLowerCase()));
+	}
+
+	return ["no", "false"].some(x => x.startsWith(sv.toLowerCase()));
+};
+
 function GetStrData(dataValue: string | number | [string, number]) {
 	if (typeof dataValue === "string") {
 		return dataValue;
@@ -128,11 +136,21 @@ function GetData(dataValue: string | number | [string, number]) {
  */
 function DirectiveMatch(
 	directive: Directive,
-	dataValue: string | number | [string, number] | null,
+	dataValue: string | number | boolean | [string, number] | null,
 	directiveNumValue?: number
 ) {
+	if (dataValue === undefined) {
+		console.warn(`Unexpected undefined for dataValue ${directive}. Casting to null.`);
+		// eslint-disable-next-line no-param-reassign
+		dataValue = null;
+	}
+
 	if (dataValue === null) {
 		return false;
+	}
+
+	if (typeof dataValue === "boolean") {
+		return BooleanMatch(directive.value, dataValue);
 	}
 
 	if (!directive.mode) {
@@ -164,7 +182,7 @@ function DirectiveMatch(
  * a number for >= style comparisons. The value getter must return a tri-tuple of its string value,
  * its numerical value, and a function to convert the users string request to a number.
  */
-export type ValueGetter<D> = (data: D) => string | number | null;
+export type ValueGetter<D> = (data: D) => string | number | boolean | null;
 
 export type ValueGetterOrHybrid<D> =
 	| {
@@ -193,7 +211,19 @@ export function ComposeSearchFunction<D>(
 			return allGetters.some(vgOrHybrid => {
 				const v = GetValueGetter(vgOrHybrid)(data);
 
+				if (v === undefined) {
+					console.warn(
+						`Unexpected undefined in directive ${vgOrHybrid}, casting to null.`
+					);
+					return null;
+				}
+
 				if (v === null) {
+					return null;
+				}
+
+				// These don't make sense for a neutral.
+				if (typeof v === "boolean") {
 					return null;
 				}
 

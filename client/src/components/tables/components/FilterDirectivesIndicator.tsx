@@ -7,7 +7,11 @@ import React, { useState } from "react";
 import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { GetValueGetter, ValueGetterOrHybrid } from "util/ztable/search";
 
-function AdditionalTableProps({ value }: { value: string | number | [string, number] | null }) {
+function AdditionalTableProps({
+	value,
+}: {
+	value: string | number | [string, number] | boolean | null;
+}) {
 	let typeName;
 
 	if (Array.isArray(value)) {
@@ -16,6 +20,8 @@ function AdditionalTableProps({ value }: { value: string | number | [string, num
 		typeName = "Text";
 	} else if (value === null) {
 		typeName = "Cannot Infer :(";
+	} else if (typeof value === "boolean") {
+		typeName = "Presence";
 	} else {
 		typeName = "Number";
 	}
@@ -23,7 +29,13 @@ function AdditionalTableProps({ value }: { value: string | number | [string, num
 	return (
 		<>
 			<td>{typeName}</td>
-			<td>{Array.isArray(value) ? `${value[0]} (${value[1]})` : value}</td>
+			<td>
+				{typeof value === "boolean"
+					? "Yes/No/True/False"
+					: Array.isArray(value)
+					? `${value[0]} (${value[1]})`
+					: value}
+			</td>
 		</>
 	);
 }

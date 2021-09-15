@@ -8,7 +8,7 @@ import { APIFetchV1 } from "util/api";
 import { SpecificSessionReturns } from "types/api-returns";
 import Loading from "components/util/Loading";
 import DebugContent from "components/util/DebugContent";
-import { CreateChartMap, CreateScoreMap, CreateSongMap } from "util/data";
+import { CreateChartMap, CreateChartIDMap, CreateSongMap } from "util/data";
 import {
 	Lamps,
 	Grades,
@@ -236,7 +236,7 @@ function SessionScoreStatBreakdown({
 }) {
 	const songMap = CreateSongMap(sessionData.songs);
 	const chartMap = CreateChartMap(sessionData.charts);
-	const scoreMap = CreateScoreMap(sessionData.scores);
+	const scoreMap = CreateChartIDMap(sessionData.scores);
 
 	const [newLamps, newGrades] = useMemo(() => {
 		const newLamps: Partial<Record<

@@ -1,24 +1,18 @@
-import React, { useState } from "react";
-import { FormatDifficulty } from "tachi-common/js/utils/util";
-import TitleCell from "../cells/TitleCell";
-import TimestampCell from "../cells/TimestampCell";
-import { NumericSOV, StrSOV } from "util/sorts";
+import React from "react";
+import { Game, GetGamePTConfig, integer, PublicUserDocument } from "tachi-common";
 import { ScoreDataset } from "types/tables";
-import { integer, PublicUserDocument, Playtypes, Game, GetGamePTConfig } from "tachi-common";
-import TachiTable from "../components/TachiTable";
-import DifficultyCell from "../cells/DifficultyCell";
-import ScoreCell from "../cells/ScoreCell";
-import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
-import DropdownRow from "../components/DropdownRow";
-import { IsNullish } from "util/misc";
-import LampCell from "../cells/LampCell";
-import MillionsScoreCell from "../cells/MillionsScoreCell";
-import GenericScoreDropdown from "../dropdowns/GenericScoreDropdown";
-import RatingCell from "../cells/RatingCell";
 import { Playtype } from "types/tachi";
+import { NumericSOV, StrSOV } from "util/sorts";
+import { CreateDefaultScoreSearchParams } from "util/tables/create-search";
+import DifficultyCell from "../cells/DifficultyCell";
+import IndicatorsCell from "../cells/IndicatorsCell";
+import TimestampCell from "../cells/TimestampCell";
+import DropdownRow from "../components/DropdownRow";
+import TachiTable from "../components/TachiTable";
 import { useScoreState } from "../components/UseScoreState";
+import GenericScoreDropdown from "../dropdowns/GenericScoreDropdown";
 import GenericScoreCoreCells from "../game-core-cells/GenericScoreCoreCells";
-import { CreateDefaultScoreSearch } from "util/tables";
+import IndicatorHeader from "../headers/IndicatorHeader";
 
 export default function GenericScoreTable({
 	reqUser,
@@ -43,6 +37,7 @@ export default function GenericScoreTable({
 			pageLen={pageLen}
 			headers={[
 				["Chart", "Ch.", NumericSOV(x => x.__related.chart.levelNum)],
+				IndicatorHeader,
 				["Song", "Song", StrSOV(x => x.__related.song.title)],
 				["Score", "Score", NumericSOV(x => x.scoreData.percent)],
 				["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
@@ -54,7 +49,7 @@ export default function GenericScoreTable({
 				["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
 			]}
 			entryName="Scores"
-			searchFunctions={CreateDefaultScoreSearch(game, playtype)}
+			searchFunctions={CreateDefaultScoreSearchParams(game, playtype)}
 			rowFunction={sc => (
 				<Row key={sc.scoreID} sc={sc} reqUser={reqUser} showScore={showScore} />
 			)}
@@ -88,6 +83,7 @@ function Row({
 			}
 		>
 			<DifficultyCell chart={sc.__related.chart} game={sc.game} />
+			<IndicatorsCell highlight={scoreState.highlight} />
 			<GenericScoreCoreCells sc={sc} showScore={showScore} />
 			<TimestampCell time={sc.timeAchieved} service={sc.service} />
 		</DropdownRow>

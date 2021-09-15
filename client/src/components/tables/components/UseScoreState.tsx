@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import { PBDataset, ScoreDataset } from "types/tables";
 
 export function useScoreState(sc: ScoreDataset[0]) {
@@ -13,7 +14,7 @@ export function useScoreState(sc: ScoreDataset[0]) {
 	return { highlight, comment, setHighlight, setComment };
 }
 
-export function usePBState(pb: PBDataset[0]) {
+export function usePBState(pb: PBScoreDocument) {
 	const [highlight, setHighlight] = useState(pb.highlight);
 
 	useEffect(() => {

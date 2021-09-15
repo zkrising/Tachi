@@ -3,6 +3,7 @@ import { REST } from "@discordjs/rest";
 import { APIApplicationCommandOption } from "discord-api-types";
 import { Routes } from "discord-api-types/v9";
 import { Client, CommandInteraction } from "discord.js";
+import { getProfileByName } from "../profile/fetch";
 import { ProcessEnv } from "../setup";
 import { LoggerLayers } from "../config";
 import { help } from "../help/help";
@@ -23,6 +24,14 @@ export const slashCommands: SlashCommand[] = [
 	{
 		info: new SlashCommandBuilder().setName("help").setDescription("Shows information about this bot").toJSON(),
 		exec: async (interaction: CommandInteraction) => await help(interaction)
+	},
+	{
+		info: new SlashCommandBuilder()
+			.setName("profile")
+			.setDescription("Displays a Kamaitachi Profile")
+			.addStringOption((option) => option.setName("user").setDescription("The users id").setRequired(false))
+			.toJSON(),
+		exec: async (interaction: CommandInteraction) => await getProfileByName(interaction)
 	}
 ];
 

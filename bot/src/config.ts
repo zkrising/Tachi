@@ -8,5 +8,6 @@ export enum LoggerLayers {
 	server = "server",
 	serverAuth = "serverAuth",
 	botConfigSetup = "botConfigSetup",
-	tachiFetch = "tachiFetch"
+	tachiFetch = "tachiFetch",
+	profile = "profile"
 }

@@ -1,4 +1,4 @@
-import { FormatInt } from "..";
+import { FormatInt, GPTTierlists } from "..";
 import {
 	BMSGenocideDans,
 	BMSStSlDans,
@@ -78,6 +78,9 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	currentLocalVersion: GPTSupportedVersions[I] | null;
 	currentGameOmniVersion: GPTSupportedVersions[I] | null;
 	supportedVersions: GPTSupportedVersions[I][];
+
+	tierlists: GPTTierlists[I][];
+	tierlistDescriptions: Record<GPTTierlists[I], string>;
 }
 
 interface GamePTConfigWithESD<I extends IDStrings> extends BaseGamePTConfig<I> {
@@ -319,6 +322,16 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"bmus",
 			"inf",
 		],
+
+		tierlists: ["kt-NC", "kt-HC", "kt-EXHC"],
+		tierlistDescriptions: {
+			"kt-NC":
+				"The Normal Clear tiers for Kamaitachi. These are adapted from multiple sources.",
+			"kt-HC":
+				"The Hard Clear tiers for Kamaitachi. These are adapted from multiple sources.",
+			"kt-EXHC":
+				"The EX-HARD Clear tiers for Kamaitachi. These are adapted from multiple sources",
+		},
 	},
 	"iidx:DP": {
 		idString: "iidx:DP",
@@ -439,6 +452,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"bmus",
 			"inf",
 		],
+
+		tierlists: [],
+		tierlistDescriptions: {},
 	},
 	"chunithm:Single": {
 		idString: "chunithm:Single",
@@ -515,6 +531,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLocalVersion: "paradise",
 		currentGameOmniVersion: null,
 		supportedVersions: ["paradise"],
+
+		tierlists: [],
+		tierlistDescriptions: {},
 	},
 	"sdvx:Single": {
 		idString: "sdvx:Single",
@@ -596,6 +615,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLocalVersion: "vivid",
 		currentGameOmniVersion: null,
 		supportedVersions: ["heaven", "vivid"],
+
+		tierlists: [],
+		tierlistDescriptions: {},
 	},
 	"usc:Single": {
 		idString: "usc:Single",
@@ -670,6 +692,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLocalVersion: null,
 		currentGameOmniVersion: null,
 		supportedVersions: [],
+
+		tierlists: [],
+		tierlistDescriptions: {},
 	},
 	"museca:Single": {
 		idString: "museca:Single",
@@ -737,6 +762,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentGameOmniVersion: "1.5-b",
 		currentLocalVersion: "1.5",
 		supportedVersions: ["1.5", "1.5-b"],
+
+		tierlists: ["tachi-score"],
+		tierlistDescriptions: { "tachi-score": "MUSECA chart ratings based on timing difficulty." },
 	},
 	"bms:7K": {
 		idString: "bms:7K",
@@ -815,6 +843,12 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentGameOmniVersion: null,
 		currentLocalVersion: null,
 		supportedVersions: [],
+
+		tierlists: ["sgl-EC", "sgl-HC"],
+		tierlistDescriptions: {
+			"sgl-EC": "Sieglinde Easy Clear ratings.",
+			"sgl-HC": "Sieglinde Hard Clear ratings.",
+		},
 	},
 	"bms:14K": {
 		idString: "bms:14K",
@@ -893,6 +927,12 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentGameOmniVersion: null,
 		currentLocalVersion: null,
 		supportedVersions: [],
+
+		tierlists: ["sgl-EC", "sgl-HC"],
+		tierlistDescriptions: {
+			"sgl-EC": "Sieglinde Easy Clear ratings.",
+			"sgl-HC": "Sieglinde Hard Clear ratings.",
+		},
 	},
 	"ddr:SP": {
 		idString: "ddr:SP",
@@ -1013,6 +1053,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentGameOmniVersion: null,
 		currentLocalVersion: null,
 		supportedVersions: ["a20"],
+
+		tierlists: [],
+		tierlistDescriptions: {},
 	},
 	"ddr:DP": {
 		idString: "ddr:DP",
@@ -1131,6 +1174,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentGameOmniVersion: null,
 		currentLocalVersion: null,
 		supportedVersions: ["a20"],
+
+		tierlists: [],
+		tierlistDescriptions: {},
 	},
 	"maimai:Single": {
 		idString: "maimai:Single",
@@ -1213,6 +1259,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentGameOmniVersion: null,
 		currentLocalVersion: "finale",
 		supportedVersions: ["finale"],
+
+		tierlists: [],
+		tierlistDescriptions: {},
 	},
 	"gitadora:Gita": {
 		idString: "gitadora:Gita",
@@ -1305,6 +1354,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentGameOmniVersion: null,
 		currentLocalVersion: "nextage",
 		supportedVersions: ["nextage"],
+
+		tierlists: [],
+		tierlistDescriptions: {},
 	},
 	"gitadora:Dora": {
 		idString: "gitadora:Dora",
@@ -1380,6 +1432,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentGameOmniVersion: null,
 		currentLocalVersion: "nextage",
 		supportedVersions: ["nextage"],
+
+		tierlists: [],
+		tierlistDescriptions: {},
 	},
 };
 

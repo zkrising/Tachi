@@ -208,6 +208,7 @@ export const uscChart: ChartDocument<"usc:Single"> = {
 		hashSHA1: "USC_CHART_HASH",
 		isOfficial: false,
 	},
+	tierlistInfo: {},
 	isPrimary: true,
 	versions: [],
 };

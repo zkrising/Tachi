@@ -38,12 +38,6 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	"game-stats": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
 	"game-settings": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
 	"folder-chart-lookup": [index({ chartID: 1, folderID: 1 }, UNIQUE)],
-	"tierlist-data": [
-		index({ tierlistDataID: 1 }, UNIQUE),
-		index({ chartID: 1, tierlistID: 1 }),
-		index({ chartID: 1, tierlistID: 1, type: 1 }),
-		index({ chartID: 1, tierlistID: 1, type: 1, key: 1 }, UNIQUE),
-	],
 	goals: [index({ goalID: 1 }, UNIQUE)],
 	"user-goals": [index({ goalID: 1, userID: 1 }, UNIQUE), index({ goalID: 1 })],
 	milestones: [index({ milestoneID: 1 }, UNIQUE), index({ group: 1, game: 1, playtype: 1 })],
@@ -61,10 +55,6 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 		index({ id: 1 }, UNIQUE),
 		index({ username: 1 }, UNIQUE),
 		index({ usernameLowercase: 1 }, UNIQUE),
-	],
-	tierlists: [
-		index({ tierlistID: 1 }, UNIQUE),
-		index({ game: 1, playtype: 1, isDefault: 1 }, UNIQUE),
 	],
 	folders: [
 		index({ folderID: 1 }, UNIQUE),

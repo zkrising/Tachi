@@ -3,7 +3,8 @@ import db from "external/mongo/db";
 
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXFolderSP10, Testing511SPA, TestingIIDXSPScorePB } from "test-utils/test-data";
-import { IIDX_LAMPS } from "lib/constants/game";
+import { IIDX_LAMPS } from "tachi-common";
+
 import { EvaluateUsersStatsShowcase } from "./get-stats";
 import deepmerge from "deepmerge";
 import { CreateFolderChartLookup } from "utils/folder";

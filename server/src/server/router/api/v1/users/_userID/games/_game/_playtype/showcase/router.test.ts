@@ -1,8 +1,6 @@
-import { ChartDocument, PublicUserDocument } from "tachi-common";
+import { ChartDocument, PublicUserDocument, IIDX_LAMPS, IIDX_GRADES } from "tachi-common";
 import db from "external/mongo/db";
-import { IIDX_GRADES, IIDX_LAMPS } from "lib/constants/game";
 import t from "tap";
-
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXFolderSP10, Testing511SPA, TestingIIDXSPScorePB } from "test-utils/test-data";

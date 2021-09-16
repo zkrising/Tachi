@@ -173,6 +173,7 @@ function ConvertBeatorajaChartToTachi(chart: BeatorajaChart) {
 		rgcID: null,
 		songID: 0,
 		versions: [],
+		tierlistInfo: {},
 		data: {
 			hashMD5: chart.md5,
 			hashSHA256: chart.sha256,

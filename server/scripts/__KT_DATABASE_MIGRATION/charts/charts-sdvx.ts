@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChartDocument } from "tachi-common";
 import db from "external/mongo/db";
-import CreateLogCtx from "../../src/common/logger";
-import MigrateRecords from "./migrate";
-import { gameOrders } from "tachi-common/js/config";
+import CreateLogCtx from "lib/logger/logger";
+import MigrateRecords from "../migrate";
 
 const logger = CreateLogCtx(__filename);
 
@@ -25,26 +24,14 @@ async function ConvertFn(c: any): Promise<ChartDocument<"sdvx:Single">> {
 		playtype: c.playtype,
 		levelNum: c.levelNum,
 		level: c.level.toString(),
-		flags: {
-			"IN BASE GAME": !!c.flags["IN BASE GAME"],
-			OMNIMIX: !!c.flags.OMNIMIX,
-			"N-1": !!c.flags["N-1"],
-		},
 		data: {
 			inGameID: c.internals.inGameINTID,
+			arcChartID: null,
 		},
 		isPrimary: true,
-		versions: [], // sentinel
+		tierlistInfo: {},
+		versions: ["vivid"],
 	};
-
-	const idx = gameOrders.sdvx.indexOf(song.firstVersion!);
-
-	if (idx === -1) {
-		logger.warn(`Invalid firstAppearance of ${song.firstVersion!}, running anyway.`);
-		newChartDoc.versions = [song.firstVersion!];
-	} else {
-		newChartDoc.versions = gameOrders.sdvx.slice(idx);
-	}
 
 	return newChartDoc;
 }

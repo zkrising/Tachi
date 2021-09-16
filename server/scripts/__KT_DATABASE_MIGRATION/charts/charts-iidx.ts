@@ -27,7 +27,6 @@ async function ConvertFn(c: any): Promise<ChartDocument<"iidx:SP" | "iidx:DP"> |
 	if (!song) {
 		logger.warn(`Cannot find song with ID ${c.id}?`);
 		return null;
-		throw new Error(`Cannot find song with ID ${c.id}?`);
 	}
 
 	const newChartDoc: ChartDocument<"iidx:SP" | "iidx:DP"> = {
@@ -46,6 +45,7 @@ async function ConvertFn(c: any): Promise<ChartDocument<"iidx:SP" | "iidx:DP"> |
 			"2dxtraSet": Get2DXTraSet(c.flags),
 		},
 		isPrimary: true,
+		tierlistInfo: {},
 		versions: [], // handled by scripts/single-use/fix-iidx-versions atm
 	};
 

@@ -29,7 +29,8 @@ async function ConvertFn(c: any): Promise<ChartDocument<"museca:Single"> | null>
 		// for our kt1 dataset, inGameID *is* song id.
 		data: { inGameID: c.id },
 		isPrimary: true,
-		versions: ["1+1/2"],
+		tierlistInfo: {},
+		versions: ["1.5", "1.5-b"],
 	};
 
 	return newChartDoc;

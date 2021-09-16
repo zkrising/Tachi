@@ -8,7 +8,6 @@ import {
 	GetGamePTConfig,
 	IDStrings,
 } from "tachi-common";
-import { GetAllTierlistDataOfType, GetOneTierlistData } from "utils/tierlist";
 import { KtLogger } from "lib/logger/logger";
 import { DryScore } from "../common/types";
 
@@ -302,26 +301,11 @@ export async function CalculateKTRating(
 	game: "iidx" | "bms" | "ddr" | "maimai" | "museca",
 	playtype: Playtypes[Game],
 	chart: ChartDocument,
-	logger: KtLogger,
-	defaultTierlistID?: string
+	logger: KtLogger
 ) {
 	const parameters = ratingParameters[game];
 
-	let levelNum = chart.levelNum;
-
-	if (defaultTierlistID) {
-		const tierlistData = await GetOneTierlistData(
-			game,
-			chart,
-			"score",
-			null,
-			defaultTierlistID
-		);
-
-		if (tierlistData) {
-			levelNum = tierlistData.data.value;
-		}
-	}
+	const levelNum = chart.levelNum;
 
 	return KTRatingCalcV1(dryScore.scoreData.percent, levelNum, parameters, logger);
 }
@@ -330,45 +314,9 @@ export async function CalculateKTLampRating(
 	dryScore: DryScore,
 	game: Game,
 	playtype: Playtypes[Game],
-	chart: ChartDocument,
-	defaultTierlistID?: string
+	chart: ChartDocument
 ) {
-	// if no tierlist data
-	if (!defaultTierlistID) {
-		return LampRatingNoTierlistInfo(dryScore, game, playtype, chart);
-	}
-
-	const lampTierlistInfo = await GetAllTierlistDataOfType(game, chart, "lamp", defaultTierlistID);
-
-	// if no tierlist info
-	if (lampTierlistInfo.length === 0) {
-		return LampRatingNoTierlistInfo(dryScore, game, playtype, chart);
-	}
-
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	const lamps = gptConfig.lamps;
-
-	const userLampIndex = lamps.indexOf(dryScore.scoreData.lamp);
-
-	let lampRating = 0;
-
-	// why is this like this and not a lookup table?
-	// Some charts have higher values for *lower* lamps, such as
-	// one more lovely in IIDX being harder to NC than it is to HC!
-	// this means we have to iterate over all tierlist data, in general.
-	for (const tierlistData of lampTierlistInfo) {
-		if (
-			// this tierlistData has higher value than the current lampRating
-			tierlistData.data.value > lampRating &&
-			// and your clear is better than the lamp its for
-			lamps.indexOf(tierlistData.key as Lamps[IDStrings]) <= userLampIndex
-		) {
-			lampRating = tierlistData.data.value;
-		}
-	}
-
-	return lampRating;
+	return LampRatingNoTierlistInfo(dryScore, game, playtype, chart);
 }
 
 function LampRatingNoTierlistInfo(

@@ -8,7 +8,6 @@ import {
 	UserGameStats,
 	Game,
 	Playtypes,
-	TierlistParent,
 	SongDocument,
 	UserSettings,
 	OAuth2ApplicationDocument,
@@ -63,7 +62,6 @@ export interface TachiRequestData {
 	sessionDoc?: SessionDocument;
 	tableDoc?: TableDocument;
 	folderDoc?: FolderDocument;
-	tierlistDoc?: TierlistParent;
 
 	oauth2ClientDoc: Omit<OAuth2ApplicationDocument, "clientSecret">;
 }

@@ -10,7 +10,6 @@ import {
 import db from "external/mongo/db";
 import { HasOwnProperty } from "utils/misc";
 
-import { GetDefaultTierlist } from "utils/tierlist";
 import { KtLogger } from "lib/logger/logger";
 import { DryScore } from "../common/types";
 import {
@@ -32,16 +31,12 @@ export async function CreateCalculatedData(
 	const game = dryScore.game;
 	const playtype = chart.playtype;
 
-	const defaultTierlist = await GetDefaultTierlist(game, playtype);
-	const defaultTierlistID = defaultTierlist?.tierlistID; // tierlistID | undefined
-
 	const calculatedData = await CalculateDataForGamePT(
 		game,
 		playtype,
 		chart,
 		dryScore,
 		esd,
-		defaultTierlistID,
 		logger
 	);
 
@@ -53,7 +48,6 @@ type CalculatedDataFunctions = {
 		[P in Playtypes[G]]: (
 			dryScore: DryScore,
 			chart: ChartDocument,
-			defaultTierlistID: string,
 			logger: KtLogger
 		) => Promise<ScoreDocument["calculatedData"]> | ScoreDocument["calculatedData"];
 	};
@@ -109,7 +103,6 @@ export async function CalculateDataForGamePT<G extends Game>(
 	// ESD gets specially passed through because it's not part of the DryScore, but
 	// can be used for statistics anyway.
 	esd: number | null,
-	defaultTierlistID: string | undefined,
 	logger: KtLogger
 ): Promise<ScoreDocument["calculatedData"]> {
 	const GameRatingFns = CalculatedDataFunctions[game];
@@ -122,7 +115,7 @@ export async function CalculateDataForGamePT<G extends Game>(
 	}
 
 	// @ts-expect-error standard game->pt stuff.
-	return GameRatingFns[playtype](dryScore, chart, defaultTierlistID, logger);
+	return GameRatingFns[playtype](dryScore, chart, logger);
 }
 
 type CalculatedData<I extends IDStrings> = Required<ScoreDocument<I>["calculatedData"]>;
@@ -130,7 +123,6 @@ type CalculatedData<I extends IDStrings> = Required<ScoreDocument<I>["calculated
 async function CalculateDataIIDXSP(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	defaultTierlistID: string | undefined,
 	logger: KtLogger
 ): Promise<CalculatedData<"iidx:SP">> {
 	const BPIData = await db["iidx-bpi-data"].findOne({
@@ -155,15 +147,14 @@ async function CalculateDataIIDXSP(
 
 	return {
 		BPI: bpi,
-		ktRating: await CalculateKTRating(dryScore, "iidx", "SP", chart, logger, defaultTierlistID),
-		ktLampRating: await CalculateKTLampRating(dryScore, "iidx", "SP", chart, defaultTierlistID),
+		ktRating: await CalculateKTRating(dryScore, "iidx", "SP", chart, logger),
+		ktLampRating: await CalculateKTLampRating(dryScore, "iidx", "SP", chart),
 	};
 }
 
 async function CalculateDataIIDXDP(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	defaultTierlistID: string | undefined,
 	logger: KtLogger
 ): Promise<CalculatedData<"iidx:DP">> {
 	const BPIData = await db["iidx-bpi-data"].findOne({
@@ -188,15 +179,14 @@ async function CalculateDataIIDXDP(
 
 	return {
 		BPI: bpi,
-		ktRating: await CalculateKTRating(dryScore, "iidx", "DP", chart, logger, defaultTierlistID),
-		ktLampRating: await CalculateKTLampRating(dryScore, "iidx", "DP", chart, defaultTierlistID),
+		ktRating: await CalculateKTRating(dryScore, "iidx", "DP", chart, logger),
+		ktLampRating: await CalculateKTLampRating(dryScore, "iidx", "DP", chart),
 	};
 }
 
 function CalculateDataSDVXorUSC(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	defaultTierlistID: string | undefined,
 	logger: KtLogger
 ): CalculatedData<"sdvx:Single" | "usc:Single"> {
 	// for usc, unofficial charts currently have no VF6 value.
@@ -220,18 +210,10 @@ function CalculateDataSDVXorUSC(
 async function CalculateDataMuseca(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	defaultTierlistID: string | undefined,
 	logger: KtLogger
 ): Promise<CalculatedData<"museca:Single">> {
 	return {
-		ktRating: await CalculateKTRating(
-			dryScore,
-			"museca",
-			"Single",
-			chart,
-			logger,
-			defaultTierlistID
-		),
+		ktRating: await CalculateKTRating(dryScore, "museca", "Single", chart, logger),
 	};
 }
 
@@ -247,18 +229,10 @@ function CalculateDataCHUNITHM(
 async function CalculateDataMaimai(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	defaultTierlistID: string | undefined,
 	logger: KtLogger
 ): Promise<CalculatedData<"maimai:Single">> {
 	return {
-		ktRating: await CalculateKTRating(
-			dryScore,
-			"maimai",
-			"Single",
-			chart,
-			logger,
-			defaultTierlistID
-		),
+		ktRating: await CalculateKTRating(dryScore, "maimai", "Single", chart, logger),
 	};
 }
 
@@ -274,26 +248,17 @@ function CalculateDataGitadora(
 async function CalculateDataDDR(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	defaultTierlistID: string | undefined,
 	logger: KtLogger
 ): Promise<CalculatedData<"ddr:SP" | "ddr:DP">> {
 	return {
 		MFCP: CalculateMFCP(dryScore, chart, logger),
-		ktRating: await CalculateKTRating(
-			dryScore,
-			"ddr",
-			chart.playtype,
-			chart,
-			logger,
-			defaultTierlistID
-		),
+		ktRating: await CalculateKTRating(dryScore, "ddr", chart.playtype, chart, logger),
 	};
 }
 
 export async function CalculateDataBMS14K(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	defaultTierlistID: string | undefined,
 	logger: KtLogger
 ): Promise<CalculatedData<"bms:14K">> {
 	return {
@@ -304,7 +269,6 @@ export async function CalculateDataBMS14K(
 export async function CalculateDataBMS7K(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	defaultTierlistID: string | undefined,
 	logger: KtLogger
 ): Promise<CalculatedData<"bms:7K">> {
 	return {
@@ -315,7 +279,6 @@ export async function CalculateDataBMS7K(
 // async function CalculateDataJubeat(
 // 	dryScore: DryScore,
 // 	chart: ChartDocument,
-// 	defaultTierlistID: string | undefined,
 // 	logger: KtLogger
 // ): Promise<CalculatedData<"jubeat:Single">> {
 // 	return {

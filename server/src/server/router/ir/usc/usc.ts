@@ -213,6 +213,7 @@ export function ConvertUSCChart(uscChartDoc: USCClientChart) {
 		rgcID: null,
 		songID: 0,
 		versions: [],
+		tierlistInfo: {},
 		data: {
 			hashSHA1: uscChartDoc.chartHash,
 			isOfficial: false,

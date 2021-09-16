@@ -4,10 +4,8 @@ import {
 	GoalDocument,
 	IIDXBPIData,
 	ImportDocument,
-	TierlistParent,
 	InviteCodeDocument,
 	APITokenDocument,
-	TierlistDataDocument,
 	MilestoneDocument,
 	FolderChartLookup,
 	ImportTimingsDocument,
@@ -144,8 +142,6 @@ const db = {
 	songs,
 	charts,
 	scores: monkDB.get<ScoreDocument>("scores"),
-	tierlists: monkDB.get<TierlistParent>("tierlists"),
-	"tierlist-data": monkDB.get<TierlistDataDocument<never>>("tierlist-data"),
 	"personal-bests": monkDB.get<PBScoreDocument>("personal-bests"),
 	folders: monkDB.get<FolderDocument>("folders"),
 	"folder-chart-lookup": monkDB.get<FolderChartLookup>("folder-chart-lookup"),
@@ -192,8 +188,6 @@ export type StaticDatabases =
 	| "personal-bests"
 	| "imports"
 	| "import-timings"
-	| "tierlist-data"
-	| "tierlists"
 	| "goals"
 	| "user-goals"
 	| "user-milestones"

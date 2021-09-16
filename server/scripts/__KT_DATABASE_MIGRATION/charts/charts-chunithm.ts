@@ -2,9 +2,8 @@
 
 import { ChartDocument } from "tachi-common";
 import db from "external/mongo/db";
-import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "../migrate";
-import { gameOrders } from "tachi-common/js/config";
+import CreateLogCtx from "lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 
@@ -26,25 +25,13 @@ async function ConvertFn(c: any): Promise<ChartDocument<"chunithm:Single">> {
 		playtype: c.playtype,
 		levelNum: c.levelNum,
 		level: c.level.toString(),
-		flags: {
-			"IN BASE GAME": !!c.flags["IN BASE GAME"],
-			OMNIMIX: !!c.flags.OMNIMIX,
-		},
+		tierlistInfo: {},
 		data: {
 			inGameID: c.internals.inGameID,
 		},
 		isPrimary: true,
 		versions: [], // sentinel
 	};
-
-	const idx = gameOrders.chunithm.indexOf(song.firstVersion!);
-
-	if (idx === -1) {
-		logger.warn(`Invalid firstAppearance of ${song.firstVersion!}, running anyway.`);
-		newChartDoc.versions = [song.firstVersion!];
-	} else {
-		newChartDoc.versions = gameOrders.chunithm.slice(idx);
-	}
 
 	return newChartDoc;
 }

@@ -58,7 +58,6 @@ t.test("#CreateCalculatedData", async (t) => {
  * These tests only check that the right properties are assigned.
  */
 t.test("#CalculateDataForGamePT", (t) => {
-	const defaultTierlistID = undefined;
 	t.test("IIDX:SP", async (t) => {
 		const res = await CalculateDataForGamePT(
 			"iidx",
@@ -66,7 +65,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingIIDXSPDryScore,
 			30,
-			defaultTierlistID,
+
 			logger
 		);
 
@@ -90,7 +89,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingIIDXSPDryScore, // fake! this is an SP score. but we're testing
 			30,
-			defaultTierlistID,
+
 			logger
 		);
 
@@ -114,7 +113,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingSDVXSingleDryScore,
 			null,
-			defaultTierlistID,
 			logger
 		);
 
@@ -136,7 +134,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 			null,
-			defaultTierlistID,
 			logger
 		);
 
@@ -159,7 +156,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 			null,
-			defaultTierlistID,
 			logger
 		);
 
@@ -182,7 +178,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 			null,
-			defaultTierlistID,
 			logger
 		);
 
@@ -204,7 +199,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 			null,
-			defaultTierlistID,
 			logger
 		);
 
@@ -226,7 +220,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 			null,
-			defaultTierlistID,
 			logger
 		);
 
@@ -248,7 +241,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 			null,
-			defaultTierlistID,
 			logger
 		);
 
@@ -270,7 +262,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 			null,
-			defaultTierlistID,
 			logger
 		);
 
@@ -292,7 +283,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 			null,
-			defaultTierlistID,
 			logger
 		);
 
@@ -314,7 +304,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 			null,
-			defaultTierlistID,
 			logger
 		);
 
@@ -336,7 +325,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 			Testing511SPA,
 			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 			null,
-			defaultTierlistID,
 			logger
 		);
 
@@ -358,7 +346,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 	// 		Testing511SPA,
 	// 		TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 	// 		null,
-	// 		defaultTierlistID,
+	//
 	// 		logger
 	// 	);
 
@@ -380,7 +368,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 	// 		Testing511SPA,
 	// 		TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 	// 		null,
-	// 		defaultTierlistID,
+	//
 	// 		logger
 	// 	);
 

@@ -4,9 +4,9 @@ import { EvaluateShowcaseStat } from "./evaluator";
 
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
-import { IIDX_LAMPS } from "lib/constants/game";
 import { CreateFolderChartLookup } from "utils/folder";
 import db from "external/mongo/db";
+import { IIDX_LAMPS } from "tachi-common";
 
 /* eslint-disable no-return-await */
 // causes a race condition otherwise due to weird tap interaction

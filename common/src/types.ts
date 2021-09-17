@@ -863,15 +863,8 @@ export interface SongDocument<G extends Game = Game> extends MongoDBDocument {
 	title: string;
 	artist: string;
 	firstVersion: string | null;
-	/**
-	 * Alternative names for this song, to be used while searching.
-	 */
-	"search-titles": string[];
-	/**
-	 * Alternative titles for this song, to be used whenever the song is
-	 * requested.
-	 */
-	"alt-titles": string[];
+	searchTerms: string[];
+	altTitles: string[];
 	data: SongDocumentData[G];
 }
 

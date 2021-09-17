@@ -61,7 +61,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 		index({ game: 1, playtype: 1 }),
 		index({ game: 1, playtype: 1, table: 1 }),
 		index({ game: 1, playtype: 1, table: 1, tableIndex: 1 }),
-		index({ title: "text" }),
+		index({ title: "text", searchTerms: "text" }),
 	],
 	"kai-auth-tokens": [index({ userID: 1, service: 1 }, UNIQUE)],
 	"charts-iidx": [

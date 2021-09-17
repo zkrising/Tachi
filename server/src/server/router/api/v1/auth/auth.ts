@@ -76,9 +76,10 @@ export async function AddNewInvite(user: PublicUserDocument) {
 	return result;
 }
 
-const DEFAULT_USER_SETTINGS: UserSettings["preferences"] = {
+export const DEFAULT_USER_SETTINGS: UserSettings["preferences"] = {
 	developerMode: false,
 	invisible: false,
+	contentiousContent: false,
 };
 
 export function HashPassword(plaintext: string) {

@@ -70,8 +70,6 @@ interface BaseGamePTConfig<I extends IDStrings> {
 
 	judgements: JudgementLookup[I][];
 
-	defaultTable: string;
-
 	scoreBucket: "grade" | "lamp";
 
 	currentLatestVersion: GPTSupportedVersions[I] | null;
@@ -218,13 +216,49 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgFormatters: {},
 		sessionRatingAlgFormatters: {},
 
-		difficulties: ["BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
+		difficulties: [
+			"BEGINNER",
+			"NORMAL",
+			"HYPER",
+			"ANOTHER",
+			"LEGGENDARIA",
+			"All Scratch BEGINNER",
+			"All Scratch NORMAL",
+			"All Scratch HYPER",
+			"All Scratch ANOTHER",
+			"All Scratch LEGGENDARIA",
+			"Kichiku BEGINNER",
+			"Kichiku NORMAL",
+			"Kichiku HYPER",
+			"Kichiku ANOTHER",
+			"Kichiku LEGGENDARIA",
+			"Kiraku BEGINNER",
+			"Kiraku NORMAL",
+			"Kiraku HYPER",
+			"Kiraku ANOTHER",
+			"Kiraku LEGGENDARIA",
+		],
 		shortDifficulties: {
 			BEGINNER: "B",
 			NORMAL: "N",
 			HYPER: "H",
 			ANOTHER: "A",
 			LEGGENDARIA: "L",
+			"All Scratch BEGINNER": "Scr. B",
+			"All Scratch NORMAL": "Scr. N",
+			"All Scratch HYPER": "Scr. H",
+			"All Scratch ANOTHER": "Scr. A",
+			"All Scratch LEGGENDARIA": "Scr. L",
+			"Kichiku BEGINNER": "Kc. B",
+			"Kichiku NORMAL": "Kc. N",
+			"Kichiku HYPER": "Kc. H",
+			"Kichiku ANOTHER": "Kc. A",
+			"Kichiku LEGGENDARIA": "Kc. L",
+			"Kiraku BEGINNER": "Kr. B",
+			"Kiraku NORMAL": "Kr. N",
+			"Kiraku HYPER": "Kr. H",
+			"Kiraku ANOTHER": "Kr. A",
+			"Kiraku LEGGENDARIA": "Kr. L",
 		},
 		defaultDifficulty: "ANOTHER",
 		difficultyColours: {
@@ -233,6 +267,21 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			HYPER: COLOUR_SET.orange,
 			ANOTHER: COLOUR_SET.red,
 			LEGGENDARIA: COLOUR_SET.purple,
+			"All Scratch BEGINNER": COLOUR_SET.paleGreen,
+			"All Scratch NORMAL": COLOUR_SET.blue,
+			"All Scratch HYPER": COLOUR_SET.orange,
+			"All Scratch ANOTHER": COLOUR_SET.red,
+			"All Scratch LEGGENDARIA": COLOUR_SET.purple,
+			"Kichiku BEGINNER": COLOUR_SET.paleGreen,
+			"Kichiku NORMAL": COLOUR_SET.blue,
+			"Kichiku HYPER": COLOUR_SET.orange,
+			"Kichiku ANOTHER": COLOUR_SET.red,
+			"Kichiku LEGGENDARIA": COLOUR_SET.purple,
+			"Kiraku BEGINNER": COLOUR_SET.paleGreen,
+			"Kiraku NORMAL": COLOUR_SET.blue,
+			"Kiraku HYPER": COLOUR_SET.orange,
+			"Kiraku ANOTHER": COLOUR_SET.red,
+			"Kiraku LEGGENDARIA": COLOUR_SET.purple,
 		},
 
 		grades: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
@@ -284,8 +333,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			{ name: "GOOD", msBorder: 116.667, value: 0 },
 		],
 		judgements: ["pgreat", "great", "good", "bad", "poor"],
-
-		defaultTable: "levels_n-1",
 
 		scoreBucket: "lamp",
 
@@ -350,12 +397,41 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgFormatters: {},
 		sessionRatingAlgFormatters: {},
 
-		difficulties: ["NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"],
+		difficulties: [
+			"NORMAL",
+			"HYPER",
+			"ANOTHER",
+			"LEGGENDARIA",
+			"All Scratch NORMAL",
+			"All Scratch HYPER",
+			"All Scratch ANOTHER",
+			"All Scratch LEGGENDARIA",
+			"Kichiku NORMAL",
+			"Kichiku HYPER",
+			"Kichiku ANOTHER",
+			"Kichiku LEGGENDARIA",
+			"Kiraku NORMAL",
+			"Kiraku HYPER",
+			"Kiraku ANOTHER",
+			"Kiraku LEGGENDARIA",
+		],
 		shortDifficulties: {
 			NORMAL: "N",
 			HYPER: "H",
 			ANOTHER: "A",
 			LEGGENDARIA: "L",
+			"All Scratch NORMAL": "Scr. N",
+			"All Scratch HYPER": "Scr. H",
+			"All Scratch ANOTHER": "Scr. A",
+			"All Scratch LEGGENDARIA": "Scr. L",
+			"Kichiku NORMAL": "Kc. N",
+			"Kichiku HYPER": "Kc. H",
+			"Kichiku ANOTHER": "Kc. A",
+			"Kichiku LEGGENDARIA": "Kc. L",
+			"Kiraku NORMAL": "Kr. N",
+			"Kiraku HYPER": "Kr. H",
+			"Kiraku ANOTHER": "Kr. A",
+			"Kiraku LEGGENDARIA": "Kr. L",
 		},
 		defaultDifficulty: "ANOTHER",
 		difficultyColours: {
@@ -363,6 +439,18 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			HYPER: COLOUR_SET.orange,
 			ANOTHER: COLOUR_SET.red,
 			LEGGENDARIA: COLOUR_SET.purple,
+			"All Scratch NORMAL": COLOUR_SET.blue,
+			"All Scratch HYPER": COLOUR_SET.orange,
+			"All Scratch ANOTHER": COLOUR_SET.red,
+			"All Scratch LEGGENDARIA": COLOUR_SET.purple,
+			"Kichiku NORMAL": COLOUR_SET.blue,
+			"Kichiku HYPER": COLOUR_SET.orange,
+			"Kichiku ANOTHER": COLOUR_SET.red,
+			"Kichiku LEGGENDARIA": COLOUR_SET.purple,
+			"Kiraku NORMAL": COLOUR_SET.blue,
+			"Kiraku HYPER": COLOUR_SET.orange,
+			"Kiraku ANOTHER": COLOUR_SET.red,
+			"Kiraku LEGGENDARIA": COLOUR_SET.purple,
 		},
 
 		grades: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
@@ -414,8 +502,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			{ name: "GOOD", msBorder: 116.667, value: 0 },
 		],
 		judgements: ["pgreat", "great", "good", "bad", "poor"],
-
-		defaultTable: "levels_n-1",
 
 		scoreBucket: "lamp",
 
@@ -523,8 +609,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		supportsESD: false,
 		judgements: ["jcrit", "justice", "attack", "miss"],
 
-		defaultTable: "levels_n-1",
-
 		scoreBucket: "grade",
 
 		currentLatestVersion: "paradise",
@@ -607,8 +691,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		supportsESD: false,
 		judgements: ["critical", "near", "miss"],
 
-		defaultTable: "levels",
-
 		scoreBucket: "grade",
 
 		currentLatestVersion: "vivid",
@@ -684,8 +766,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		supportsESD: false,
 		judgements: ["critical", "near", "miss"],
 
-		defaultTable: "levels",
-
 		scoreBucket: "grade",
 
 		currentLatestVersion: null,
@@ -753,8 +833,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			{ name: "NEAR", msBorder: 66.667, value: 1 },
 		],
 		judgements: ["critical", "near", "miss"],
-
-		defaultTable: "levels",
 
 		scoreBucket: "grade",
 
@@ -834,8 +912,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		supportsESD: false,
 		judgements: ["pgreat", "great", "good", "bad", "poor"],
-
-		defaultTable: "insane",
 
 		scoreBucket: "lamp",
 
@@ -918,8 +994,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		supportsESD: false,
 		judgements: ["pgreat", "great", "good", "bad", "poor"],
-
-		defaultTable: "insane",
 
 		scoreBucket: "lamp",
 
@@ -1045,8 +1119,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		],
 		judgements: ["marvelous", "perfect", "great", "good", "boo", "miss", "ok", "ng"],
 
-		defaultTable: "levels",
-
 		scoreBucket: "lamp",
 
 		currentLatestVersion: "a20",
@@ -1166,8 +1238,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		],
 		judgements: ["marvelous", "perfect", "great", "good", "boo", "miss", "ok", "ng"],
 
-		defaultTable: "levels",
-
 		scoreBucket: "lamp",
 
 		currentLatestVersion: "a20",
@@ -1250,8 +1320,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		supportsESD: false,
 		judgements: ["perfect", "great", "good", "miss"],
-
-		defaultTable: "levels",
 
 		scoreBucket: "grade",
 
@@ -1346,8 +1414,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		supportsESD: false,
 		judgements: ["perfect", "great", "good", "ok", "miss"],
 
-		defaultTable: "levels",
-
 		scoreBucket: "grade",
 
 		currentLatestVersion: "nextage",
@@ -1423,8 +1489,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		supportsESD: false,
 		judgements: ["perfect", "great", "good", "ok", "miss"],
-
-		defaultTable: "levels",
 
 		scoreBucket: "grade",
 

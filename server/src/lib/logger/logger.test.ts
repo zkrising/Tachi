@@ -32,6 +32,7 @@ t.test("#GetLogLevel", (t) => {
 	t.equal(GetLogLevel(), "crit");
 
 	ChangeRootLogLevel(LOG_LEVEL);
+	t.equal(GetLogLevel(), LOG_LEVEL);
 
 	t.end();
 });

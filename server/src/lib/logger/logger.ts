@@ -2,12 +2,11 @@ import winston, { format, transports, Logger, LeveledLogMethod } from "winston";
 import { EscapeStringRegexp } from "utils/misc";
 import SafeJSONStringify from "safe-json-stringify";
 import { ServerConfig } from "lib/setup/config";
+import CreateDiscordWinstonTransport from "./discord-transport";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };
 
 const level = process.env.LOG_LEVEL ?? ServerConfig.LOG_LEVEL;
-
-const IN_TESTING = process.env.NODE_ENV === "test";
 
 const formatExcessProperties = (meta: Record<string, unknown>) => {
 	let i = 0;
@@ -98,10 +97,7 @@ const consoleFormatRoute = format.combine(
 	})
 );
 
-const tports: (
-	| winston.transports.ConsoleTransportInstance
-	| winston.transports.FileTransportInstance
-)[] = [
+const tports: winston.transport[] = [
 	new transports.File({
 		filename: "logs/tachi-error.log",
 		level: "error",
@@ -114,6 +110,15 @@ if (!ServerConfig.NO_CONSOLE) {
 	tports.push(
 		new transports.Console({
 			format: consoleFormatRoute,
+		})
+	);
+}
+
+if (ServerConfig.LOGGER_DISCORD_WEBHOOK) {
+	tports.push(
+		new CreateDiscordWinstonTransport({
+			webhook: ServerConfig.LOGGER_DISCORD_WEBHOOK,
+			level: "warn",
 		})
 	);
 }
@@ -132,6 +137,10 @@ export const rootLogger = winston.createLogger({
 	format: defaultFormatRoute,
 	transports: tports,
 });
+
+if (ServerConfig.LOGGER_DISCORD_WEBHOOK) {
+	rootLogger.info(`Discord logging enabled.`);
+}
 
 function CreateLogCtx(filename: string, lg = rootLogger): KtLogger {
 	const replacedFilename = filename.replace(

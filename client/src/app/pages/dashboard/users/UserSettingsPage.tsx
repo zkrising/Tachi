@@ -67,6 +67,7 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 		initialValues: {
 			developerMode: settings?.preferences.developerMode ?? false,
 			invisible: settings?.preferences.invisible ?? false,
+			contentiousContent: settings?.preferences.contentiousContent ?? false,
 		},
 		onSubmit: async values => {
 			const res = await APIFetchV1<UserSettings>(
@@ -106,6 +107,18 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 					label="Invisible Mode"
 				/>
 				<Form.Text>Hide your last seen status.</Form.Text>
+			</Form.Group>
+			<Form.Group>
+				<Form.Check
+					type="checkbox"
+					id="contentiousContent"
+					checked={formik.values.contentiousContent}
+					onChange={formik.handleChange}
+					label="Contentious Content"
+				/>
+				<Form.Text>
+					Show slightly less appropriate splash texts in certain places.
+				</Form.Text>
 			</Form.Group>
 			<Button type="submit">Update Settings</Button>
 		</Form>

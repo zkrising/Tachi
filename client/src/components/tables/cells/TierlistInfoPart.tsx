@@ -51,9 +51,10 @@ export default function TierlistInfoPart({ chart, game }: { chart: ChartDocument
 			<div className="d-block d-lg-none">
 				<Muted>
 					{keys.map(k => (
-						<>
-							{chart.tierlistInfo[k]!.text} <br />
-						</>
+						<React.Fragment key={k}>
+							{chart.tierlistInfo[k]!.text}
+							<br />
+						</React.Fragment>
 					))}
 				</Muted>
 			</div>

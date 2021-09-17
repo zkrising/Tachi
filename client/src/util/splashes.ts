@@ -64,6 +64,9 @@ export const loggedInSplashes = [
 	"A Cutting-Edge Score Tracker (heh).",
 	"Winnipeg is a warm, nice place to live.",
 	"I accidentally the score tracker.",
+	"~𝒕𝒉𝒆 𝒈𝒆𝒂𝒓𝒔 𝒕𝒖𝒓𝒏 𝒐𝒏𝒄𝒆 𝒎𝒐𝒓𝒆~",
+	"<script>alert(1)</script>",
+	"come on down",
 ];
 
 // Stuff that's bad for the kids, you know?
@@ -72,4 +75,5 @@ export const contentiousSplashes = [
 	"Node.js Is Bad Ass Rock Star Tech",
 	"i'm obligated to ask for you to seek immediate psychological attention",
 	"Is IIDX still a good game or are you all basically stupid?",
+	"Please do not reply to or quote my posts in the future.",
 ];

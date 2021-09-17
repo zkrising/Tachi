@@ -91,9 +91,9 @@ export function UGPTBottomNav({
 		<NavItem key="folders" to={`${baseUrl}/folders`}>
 			Folders
 		</NavItem>,
-		<NavItem key="goals" to={`${baseUrl}/achievables`}>
-			Goals &amp; Milestones
-		</NavItem>,
+		// <NavItem key="goals" to={`${baseUrl}/achievables`}>
+		// 	Goals &amp; Milestones
+		// </NavItem>,
 		<NavItem key="sessions" to={`${baseUrl}/sessions`}>
 			Sessions
 		</NavItem>,

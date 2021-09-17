@@ -5,11 +5,12 @@ export function UpdateSubheader(
 	breadcrumbs: string[],
 	setTitle: SetState<string>,
 	setBreadcrumbs: SetState<string[]>,
+	splash: string,
 	customTitle?: string
 ) {
 	const title = customTitle ?? breadcrumbs[breadcrumbs.length - 1] ?? "Somewhere...";
 
 	document.title = `${title} | ${TachiConfig.name}`;
 	setTitle(title);
-	setBreadcrumbs(breadcrumbs);
+	setBreadcrumbs(breadcrumbs.length === 1 ? [splash] : breadcrumbs);
 }

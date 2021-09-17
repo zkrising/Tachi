@@ -1,13 +1,12 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import SplashText from "components/util/SplashText";
-import React from "react";
+import { UserSettingsContext } from "context/UserSettingsContext";
+import React, { useContext } from "react";
 
 export function DashboardPage() {
-	useSetSubheader("Dashboard");
+	const { settings } = useContext(UserSettingsContext);
 
-	return (
-		<>
-			<SplashText />
-		</>
-	);
+	useSetSubheader("Dashboard", [settings]);
+
+	return <>{/* <SplashText /> */}</>;
 }

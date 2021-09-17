@@ -1,3 +1,4 @@
+import useSplashText from "components/util/useSplashText";
 import { SubheaderContext } from "context/SubheaderContext";
 import { useContext, useEffect } from "react";
 import { UpdateSubheader } from "util/subheader";
@@ -10,11 +11,14 @@ export default function useSetSubheader(
 ) {
 	const { setTitle, setBreadcrumbs } = useContext(SubheaderContext);
 
+	const splash = useSplashText();
+
 	useEffect(() => {
 		UpdateSubheader(
 			Array.isArray(content) ? content : [content],
 			setTitle,
 			setBreadcrumbs,
+			splash,
 			overrideTitle
 		);
 	}, deps);

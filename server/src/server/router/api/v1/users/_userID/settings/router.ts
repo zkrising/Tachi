@@ -51,6 +51,7 @@ router.patch(
 	prValidate({
 		invisible: "*boolean",
 		developerMode: "*boolean",
+		contentiousContent: "*boolean",
 	}),
 	async (req, res) => {
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
@@ -58,6 +59,7 @@ router.patch(
 		const preferences = {
 			invisible: req.body.invisible,
 			developerMode: req.body.developerMode,
+			contentiousContent: req.body.contentiousContent,
 		};
 
 		DeleteUndefinedProps(preferences);

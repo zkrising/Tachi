@@ -48,7 +48,7 @@ export default function BMSPBTable({
 	const headers: Header<PBDataset<"bms:7K" | "bms:14K">[0]>[] = [
 		[
 			"Chart",
-			"Ch.",
+			"Chart",
 			NumericSOV(
 				x =>
 					x.__related.chart.tierlistInfo["sgl-EC"]?.value ??

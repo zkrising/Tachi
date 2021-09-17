@@ -31,7 +31,7 @@ export default function BMSFolderTable({
 	const headers: Header<FolderDataset<"bms:7K" | "bms:14K">[0]>[] = [
 		[
 			"Chart",
-			"Ch.",
+			"Chart",
 			NumericSOV(
 				x =>
 					x.tierlistInfo["sgl-EC"]?.value ?? x.tierlistInfo["sgl-HC"]?.value ?? x.levelNum

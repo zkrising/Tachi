@@ -30,16 +30,14 @@ export default function DifficultyCell({
 			}}
 		>
 			{!alwaysShort && (
-				<>
-					<span className="d-none d-lg-block">{FormatDifficulty(chart, game)}</span>
-					{Object.keys(chart.tierlistInfo).length > 0 && (
-						<TierlistInfoPart chart={chart} />
-					)}
-				</>
+				<span className="d-none d-lg-block">{FormatDifficulty(chart, game)}</span>
 			)}
 			<span className={!alwaysShort ? "d-lg-none" : ""}>
 				{FormatDifficultyShort(chart, game)}
 			</span>
+			{Object.keys(chart.tierlistInfo).length > 0 && (
+				<TierlistInfoPart chart={chart} game={game} />
+			)}
 			{!chart.isPrimary && (
 				<QuickTooltip tooltipContent="This chart is an alternate, old chart.">
 					<div>

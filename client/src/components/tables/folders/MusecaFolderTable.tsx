@@ -31,7 +31,7 @@ export default function MusecaFolderTable({
 	playtype: Playtype;
 }) {
 	const headers: Header<FolderDataset<"museca:Single">[0]>[] = [
-		["Chart", "Ch.", NumericSOV(x => x.levelNum)],
+		["Chart", "Chart", NumericSOV(x => x.levelNum)],
 		FolderIndicatorHeader,
 		["Song", "Song", StrSOV(x => x.__related.song.title)],
 		["Score", "Score", NumericSOV(x => x.__related.pb?.scoreData.percent ?? -Infinity)],

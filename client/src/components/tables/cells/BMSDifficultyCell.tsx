@@ -21,7 +21,7 @@ export default function BMSDifficultyCell({
 			}}
 		>
 			<span>{levelText}</span>
-			<TierlistInfoPart chart={chart} />
+			<TierlistInfoPart chart={chart} game="bms" />
 			{!chart.isPrimary && (
 				<QuickTooltip tooltipContent="This chart is an alternate, old chart.">
 					<div>

@@ -34,7 +34,7 @@ export default function BMSScoreTable({
 				[
 					[
 						"Chart",
-						"Ch.",
+						"Chart",
 						NumericSOV(
 							x =>
 								x.__related.chart.tierlistInfo["sgl-EC"]?.value ??

@@ -56,7 +56,10 @@ export default function FilterDirectivesIndicator<D>({
 				component={
 					<>
 						You can use{" "}
-						<a rel="noreferrer" href="#">
+						<a
+							rel="noreferrer"
+							href="https://tachi.readthedocs.io/en/latest/user/filter-directives/"
+						>
 							<strong>Filter Directives</strong>
 						</a>{" "}
 						inside this filter box.
@@ -79,7 +82,10 @@ export default function FilterDirectivesIndicator<D>({
 					<p>
 						This is a slightly advanced feature for{" "}
 						<HoverText hover="nerds">power users</HoverText>. You can read about it{" "}
-						<a href="#">here</a>.<br />
+						<a href="https://tachi.readthedocs.io/en/latest/user/filter-directives/">
+							here
+						</a>
+						.<br />
 						The quick explanation is that you can use directives like{" "}
 						<code>Title:conflict Score:&gt;=100</code> to perform advanced filters!
 					</p>

@@ -64,7 +64,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: PublicUserDocument }) {
 						href="https://steamcommunity.com/id/"
 						mode="steam"
 					/>
-					<ConditionalSocialMediaRender href="https://twitch.tv/" mode="twitch" />
+					<ConditionalSocialMediaRender href="https://twitCharttv/" mode="twitch" />
 					<ConditionalSocialMediaRender href="https://twitter.com/" mode="twitter" />
 					<ConditionalSocialMediaRender
 						href="https://youtube.com/channel/"

@@ -63,6 +63,7 @@ export const loggedInSplashes = [
 	"Play ULTRAKILL.",
 	"A Cutting-Edge Score Tracker (heh).",
 	"Winnipeg is a warm, nice place to live.",
+	"I accidentally the score tracker.",
 ];
 
 // Stuff that's bad for the kids, you know?
@@ -70,4 +71,5 @@ export const contentiousSplashes = [
 	"Formerly Chucks",
 	"Node.js Is Bad Ass Rock Star Tech",
 	"i'm obligated to ask for you to seek immediate psychological attention",
+	"Is IIDX still a good game or are you all basically stupid?",
 ];

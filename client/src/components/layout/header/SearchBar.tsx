@@ -68,7 +68,9 @@ function GPTSearchResult({
 							playtype
 						)} profile, if they have one.`}
 					>
-						<Icon type="exchange-alt" />
+						<span>
+							<Icon type="exchange-alt" />
+						</span>
 					</QuickTooltip>
 				</Link>
 			</strong>

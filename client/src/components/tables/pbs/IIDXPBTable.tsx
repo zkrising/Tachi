@@ -48,7 +48,7 @@ export default function IIDXPBTable({
 	const headers: Header<PBDataset<"iidx:SP" | "iidx:DP">[0]>[] = [
 		[
 			"Chart",
-			"Ch.",
+			"Chart",
 			NumericSOV(
 				x =>
 					x.__related.chart.tierlistInfo["kt-NC"]?.value ??

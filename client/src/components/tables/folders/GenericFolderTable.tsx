@@ -35,7 +35,7 @@ export default function GenericFolderTable({
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const headers: Header<FolderDataset[0]>[] = [
-		["Chart", "Ch.", NumericSOV(x => x.levelNum)],
+		["Chart", "Chart", NumericSOV(x => x.levelNum)],
 		FolderIndicatorHeader,
 		["Song", "Song", StrSOV(x => x.__related.song.title)],
 		["Score", "Score", NumericSOV(x => x.__related.pb?.scoreData.percent ?? -Infinity)],

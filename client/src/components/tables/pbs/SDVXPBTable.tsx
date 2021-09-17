@@ -33,7 +33,7 @@ export default function SDVXPBTable({
 	playtype: "7K" | "14K";
 }) {
 	const headers: Header<PBDataset<"sdvx:Single">[0]>[] = [
-		["Chart", "Ch.", NumericSOV(x => x.__related.chart.levelNum)],
+		["Chart", "Chart", NumericSOV(x => x.__related.chart.levelNum)],
 		IndicatorHeader,
 		["Song", "Song", StrSOV(x => x.__related.song.title)],
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],

@@ -36,7 +36,7 @@ export default function GenericScoreTable({
 			dataset={dataset}
 			pageLen={pageLen}
 			headers={[
-				["Chart", "Ch.", NumericSOV(x => x.__related.chart.levelNum)],
+				["Chart", "Chart", NumericSOV(x => x.__related.chart.levelNum)],
 				IndicatorHeader,
 				["Song", "Song", StrSOV(x => x.__related.song.title)],
 				["Score", "Score", NumericSOV(x => x.scoreData.percent)],

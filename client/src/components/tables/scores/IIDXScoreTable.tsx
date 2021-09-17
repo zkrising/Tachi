@@ -42,7 +42,7 @@ export default function IIDXScoreTable({
 				[
 					[
 						"Chart",
-						"Ch.",
+						"Chart",
 						NumericSOV(
 							x =>
 								x.__related.chart.tierlistInfo["kt-NC"]?.value ??

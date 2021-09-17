@@ -39,7 +39,7 @@ export default function IIDXFolderTable({
 	const headers: Header<FolderDataset<"iidx:SP" | "iidx:DP">[0]>[] = [
 		[
 			"Chart",
-			"Ch.",
+			"Chart",
 			NumericSOV(
 				x => x.tierlistInfo["kt-NC"]?.value ?? x.tierlistInfo["kt-HC"]?.value ?? x.levelNum
 			),

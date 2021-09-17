@@ -97,7 +97,7 @@ in a different way.
 As the name implies, this searches for a song who's title
 resembles `identifier`. **THIS IS NOT FUZZY MATCHING**,
 and is by far the least reliable way to send scores to
-Tachi. However, in most scenarios, it will work.
+Tachi. This is kept for compatibility purposes with poor quality APIs.
 
 This match type *necessitates* that `difficulty` be defined
 and set to a valid difficulty for this game + playtype.

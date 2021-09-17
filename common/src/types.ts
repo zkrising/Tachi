@@ -895,6 +895,7 @@ export interface BaseFolderDocument extends MongoDBDocument {
 	 * such as one on a more modern version of the game.
 	 */
 	inactive: boolean;
+	searchTerms: string[];
 }
 
 export interface FolderSongsDocument extends BaseFolderDocument {

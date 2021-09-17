@@ -61,6 +61,7 @@ specifiers:
   typescript: 4.3.4
   why-is-node-running: 2.2.0
   winston: 3.3.3
+  winston-transport: ^4.4.0
 
 dependencies:
   bcryptjs: 2.4.3
@@ -91,6 +92,7 @@ dependencies:
   tachi-common: 0.2.18
   typescript: 4.3.4
   winston: 3.3.3
+  winston-transport: 4.4.0
 
 devDependencies:
   '@types/bcrypt': 5.0.0

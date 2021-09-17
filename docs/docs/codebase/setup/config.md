@@ -277,3 +277,22 @@ interface EMAIL_CONFIG {
 }
 ```
 
+### LOGGER_DISCORD_WEBHOOK
+
+- Type: String | undefined
+
+If present, uses the URL as a discord webhook to POST to.
+This endpoint will have logs sent to it that are either warn or above in severity.
+
+!!! info
+	The channel this is posted to should be private!
+
+### DISCORD_WHO_TO_TAG
+
+- Type: Array&lt;string&gt; | undefined
+
+If present, this should be an array of discord IDs to tag in the event of a `severe`
+or `crit` level log.
+
+This is so those specific people can *immediately* know when something is up, and should
+be notified quickly.

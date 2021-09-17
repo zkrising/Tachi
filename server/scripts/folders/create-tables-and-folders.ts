@@ -133,6 +133,7 @@ async function InsertStaticLevelVersionFolders() {
 					title: `Level ${level} (${version})`,
 					type: "charts",
 					data: query,
+					searchTerms: [],
 					inactive,
 				});
 

@@ -1,6 +1,7 @@
-import db from "../../src/external/mongo/db";
+import db from "external/mongo/db";
 import { Command } from "commander";
-import CreateLogCtx from "../../src/lib/logger/logger";
+import CreateLogCtx from "lib/logger/logger";
+import { Random20Hex } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -12,7 +13,7 @@ program.parse(process.argv);
 const options = program.opts();
 
 if (!options.code) {
-	throw new Error(`No code specified.`);
+	options.code = Random20Hex();
 }
 
 db.invites

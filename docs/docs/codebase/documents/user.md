@@ -19,11 +19,15 @@ interface PublicUserDocument {
 		youtube?: string | null;
 		twitch?: string | null;
 	};
+	joinDate: integer;
 	lastSeen: integer;
 	about: string;
+	status: string | null;
 	customPfp: boolean;
 	customBanner: boolean;
-	clan: string | null;
+	clan: string | null; // todo
+	badges: UserBadges[];
+	authLevel: UserAuthLevels;
 }
 ```
 
@@ -34,9 +38,13 @@ interface PublicUserDocument {
 | `id` | This is a unique auto-incrementing integer for the user, and is completely immutable. |
 | `socialMedia` | Contains popular social media sites and a way of referencing that user. |
 | `lastSeen` | The last time this user made a request to Tachi. |
+| `joinDate` | The time this user joined the site. |
 | `about` | This user's about me. This is evaluated as markdown. |
+| `status` | This users status. This is a short text field. |
 | `customPfp`, `customBanner` | Whether this user has a custom profile picture and banner. |
 | `clan` | Currently unused. This will store a users clan tag if they are in a clan. |
+| `badges` | An array of badges for this user. This contains things like "beta" and "alpha" tester indicators. |
+| `authLevel` | This users auth level. This is an enum stored inside tachi-common, where 0 states the user is banned. |
 
 ## Example
 
@@ -50,16 +58,12 @@ interface PublicUserDocument {
 		"steam": null
 	},
 	"lastSeen": null,
+	"joinDate": 1234123412341,
 	"about": "test_user_not_real",
 	"customPfp": true,
 	"customBanner": true,
-	"clan": null
+	"clan": null,
+	"badges": ["dev-team"],
+	"authLevel": 3
 }
 ```
-
-!!! note
-	An extension of the user document - `PrivateUserDocument`,
-	is what is actually stored in the database.
-
-	This appends two fields - `email` and `password`,
-	and is not exposed over the API for obvious reasons.

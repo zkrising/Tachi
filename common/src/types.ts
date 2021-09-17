@@ -255,9 +255,16 @@ export interface Lamps {
 	"gitadora:Dora": GitadoraLamps;
 }
 
+export type IIDX2DXTraSets = "Kichiku" | "Kiraku" | "All Scratch";
+
 export interface Difficulties {
-	"iidx:SP": "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
-	"iidx:DP": "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
+	"iidx:SP": `${`${IIDX2DXTraSets} ` | ""}${
+		| "BEGINNER"
+		| "NORMAL"
+		| "HYPER"
+		| "ANOTHER"
+		| "LEGGENDARIA"}`;
+	"iidx:DP": `${`${IIDX2DXTraSets} ` | ""}${"NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA"}`;
 	"popn:9B": "Easy" | "Normal" | "Hyper" | "EX";
 	"sdvx:Single": "NOV" | "ADV" | "EXH" | "MXM" | "INF" | "GRV" | "HVN" | "VVD";
 	"usc:Single": "NOV" | "ADV" | "EXH" | "INF";

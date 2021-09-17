@@ -17,6 +17,7 @@ const mockFolder: FolderDocument = {
 		level: "10",
 	},
 	type: "charts",
+	searchTerms: [],
 	inactive: false,
 };
 

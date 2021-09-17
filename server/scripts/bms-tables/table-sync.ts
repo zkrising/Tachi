@@ -142,6 +142,7 @@ export async function UpdateTable(table: BMSTablesDataset) {
 			playtype: table.playtype,
 			type: "charts",
 			data: query,
+			searchTerms: [`${table.name} ${level}`],
 		});
 
 		logger.info(`Inserted new table ${table.prefix}${level}.`);

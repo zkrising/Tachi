@@ -14,8 +14,8 @@ t.test("#SearchGameSongs", (t) => {
 			{
 				title: "text",
 				artist: "text",
-				"alt-titles": "text",
-				"search-titles": "text",
+				altTitles: "text",
+				searchTerms: "text",
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			} as any /* known bug with monk */
 		);

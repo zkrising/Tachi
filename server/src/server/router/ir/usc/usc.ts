@@ -226,8 +226,8 @@ export function ConvertUSCChart(uscChartDoc: USCClientChart) {
 		firstVersion: null,
 		id: 0,
 		data: {},
-		"alt-titles": [],
-		"search-titles": [],
+		altTitles: [],
+		searchTerms: [],
 	};
 
 	return { chart, song };

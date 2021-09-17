@@ -187,8 +187,8 @@ function ConvertBeatorajaChartToTachi(chart: BeatorajaChart) {
 		title: chart.title,
 		firstVersion: "",
 		id: 0,
-		"alt-titles": [],
-		"search-titles": [],
+		altTitles: [],
+		searchTerms: [],
 		data: {
 			genre: chart.genre,
 			subartist: chart.subartist,

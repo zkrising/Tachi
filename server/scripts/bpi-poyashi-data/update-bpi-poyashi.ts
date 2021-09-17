@@ -19,7 +19,7 @@ program.option("-f, --fetch", "Fetch the latest data from the poyashi repo.");
 program.parse(process.argv);
 const options = program.opts();
 
-const dataLoc = path.join(__dirname, "./bpi-poyashi-data/output.json");
+const dataLoc = path.join(__dirname, "./output.json");
 
 const difficultyResolve: Record<string, [string, string]> = {
 	3: ["SP", "HYPER"],

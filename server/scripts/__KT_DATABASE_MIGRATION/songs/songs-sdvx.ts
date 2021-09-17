@@ -9,8 +9,8 @@ function ConvertFn(c: any): SongDocument<"sdvx"> {
 		artist: c.artist,
 		id: c.id,
 		firstVersion: c.firstAppearance,
-		"alt-titles": c["alt-titles"].filter((e: string) => e !== c.title),
-		"search-titles": c["search-titles"]
+		altTitles: c.altTitles.filter((e: string) => e !== c.title),
+		searchTerms: c.searchTerms
 			.map((e: string) => e.toString())
 			.filter((e: string) => e !== c.title),
 		data: {

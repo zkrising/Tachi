@@ -10,8 +10,8 @@ function ConvertFn(c: any): SongDocument<"ddr"> {
 		artist: c.artist,
 		id: c.id,
 		firstVersion: c.firstAppearance,
-		"alt-titles": c["alt-titles"] ? c["alt-titles"].filter((e: string) => e !== c.title) : [],
-		"search-titles": c["search-title"]
+		altTitles: c.altTitles ? c.altTitles.filter((e: string) => e !== c.title) : [],
+		searchTerms: c["search-title"]
 			.filter((e: string) => !!e)
 			.map((e: string) => e.toString())
 			.filter((e: string) => e !== c.title),

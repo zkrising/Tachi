@@ -562,8 +562,8 @@ t.test("POST /scores", async (t) => {
 			artist: "test_artist",
 			firstVersion: null,
 			id: 0,
-			"alt-titles": [],
-			"search-titles": [],
+			altTitles: [],
+			searchTerms: [],
 			data: {},
 		});
 

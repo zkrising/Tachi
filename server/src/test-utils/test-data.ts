@@ -114,6 +114,7 @@ export const TestingIIDXFolderSP10: FolderDocument = {
 		level: "10",
 		"flags¬IN BASE GAME": true,
 	},
+	searchTerms: [],
 	inactive: false,
 };
 

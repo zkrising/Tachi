@@ -365,8 +365,8 @@ const PRUDENCE_SONG_BASE: PrudenceSchema = {
 	id: p.isPositiveInteger,
 	title: "string",
 	artist: "string",
-	"search-titles": [p.and("string", (self, parent) => self !== parent.title)],
-	"alt-titles": [p.and("string", (self, parent) => self !== parent.title)],
+	searchTerms: [p.and("string", (self, parent) => self !== parent.title)],
+	altTitles: [p.and("string", (self, parent) => self !== parent.title)],
 	firstVersion: "string",
 };
 

@@ -663,7 +663,6 @@ export enum UserAuthLevels {
 }
 /**
  * PublicUserDocument: These are the public values returned from GetUser functions.
- * Note that the private fields: password, email and integrations, are not present in this document.
  */
 export interface PublicUserDocument extends MongoDBDocument {
 	username: string;
@@ -1337,6 +1336,7 @@ export interface UserSettings {
 	preferences: {
 		invisible: boolean;
 		developerMode: boolean;
+		contentiousContent: boolean;
 	};
 }
 

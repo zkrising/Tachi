@@ -4,7 +4,9 @@ This page documents how to get the `tachi-server` up and running.
 
 This guide assumes that you are running on some
 flavour of Linux.
-`tachi-server` does not work out of the box on windows, as it depends on Redis (See [How do I run Redis on Windows?](https://stackoverflow.com/questions/6476945/how-do-i-run-redis-on-windows)). That said, the `tachi-server` code does not depend on any os-specific calls, and likely will work if you can fix the redis thing.
+`tachi-server` does not work out of the box on windows, as it depends on Redis (See [How do I run Redis on Windows?](https://stackoverflow.com/questions/6476945/how-do-i-run-redis-on-windows)). As of even more recently, it depends on the `sendmail` binary to send emails around, which might be even less portable.
+
+In short: Just run it on linux. If you're using a windows box, use [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
 ## Externals
 

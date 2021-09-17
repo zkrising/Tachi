@@ -106,13 +106,13 @@ for (const game of ServerTypeInfo.supportedGames) {
 	if (indexes[`songs-${game}` as Databases]) {
 		indexes[`songs-${game}` as Databases]!.push(
 			index({ id: 1 }, UNIQUE),
-			index({ title: "text", artist: "text", "alt-titles": "text", "search-titles": "text" })
+			index({ title: "text", artist: "text", altTitles: "text", searchTerms: "text" })
 		);
 	} else {
 		indexes[`songs-${game}` as Databases] = [
 			index({ id: 1 }, UNIQUE),
 			index({ title: 1 }),
-			index({ title: "text", artist: "text", "alt-titles": "text", "search-titles": "text" }),
+			index({ title: "text", artist: "text", altTitles: "text", searchTerms: "text" }),
 		];
 	}
 }

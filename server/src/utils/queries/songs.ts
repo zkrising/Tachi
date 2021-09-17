@@ -21,7 +21,7 @@ export function FindSongOnTitle(game: Game, title: string): Promise<FindOneResul
 				title: title,
 			},
 			{
-				"alt-titles": title,
+				altTitles: title,
 			},
 		],
 	});
@@ -44,7 +44,7 @@ export function FindSongOnTitleInsensitive(
 				title: { $regex: regex },
 			},
 			{
-				"alt-titles": { $regex: regex },
+				altTitles: { $regex: regex },
 			},
 		],
 	});

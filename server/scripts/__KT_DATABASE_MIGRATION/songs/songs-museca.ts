@@ -9,8 +9,8 @@ function ConvertFn(c: any): SongDocument<"museca"> {
 		artist: c.artist,
 		id: c.id,
 		firstVersion: c.firstAppearance,
-		"alt-titles": [],
-		"search-titles": [],
+		altTitles: [],
+		searchTerms: [],
 		data: {
 			titleJP: c.title_jp,
 			artistJP: c.artist_jp,

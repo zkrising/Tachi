@@ -18,8 +18,8 @@ t.test("#ConverterIRBarbatos", (t) => {
 		artist: "無力P",
 		id: 1,
 		firstVersion: "booth",
-		"alt-titles": [],
-		"search-titles": ["albida_muryoku", "ｱﾙﾋﾞﾀﾞﾊﾟﾜｰﾚｽﾐｯｸｽ"],
+		altTitles: [],
+		searchTerms: ["albida_muryoku", "ｱﾙﾋﾞﾀﾞﾊﾟﾜｰﾚｽﾐｯｸｽ"],
 		data: {
 			uscEquiv: null,
 		},

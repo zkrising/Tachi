@@ -81,3 +81,19 @@ pnpm start
 This will build the server TypeScript into JS under `/js`,
 and run it. The port it runs on is determined by the config
 file.
+
+### 8. Other Stuff
+
+You will also want to install [ts-node](https://github.com/TypeStrong/ts-node).
+```
+[*sudo] pnpm install -g ts-node
+```
+
+!!! warning
+	You should hopefully need `sudo` to install global binaries with `-g`.
+
+You can then use `ts-node` to run certain scripts in the `scripts/` directory. One of the important
+setup scripts is `scripts/set-indexes.ts`, which will enable indexing (A huge performance increase).
+
+!!! warning
+	Search functionality will crash if indexes are not enabled.

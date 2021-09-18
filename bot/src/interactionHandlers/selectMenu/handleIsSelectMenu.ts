@@ -10,6 +10,7 @@ export const handleIsSelectMenu = async (interaction: Interaction): Promise<void
 	try {
 		/** Rechecking required to enforce types */
 		if (interaction.isSelectMenu()) {
+			/** @TODO Split this out when we add more dropdowns */
 			const userId = interaction.customId.split(":")[1];
 			await interaction.update(
 				await buildProfileIntractable(userId, stringToSimpleGameType(interaction.values[0]))

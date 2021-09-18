@@ -1,5 +1,7 @@
 import { FormatGame, Game, Playtypes } from "tachi-common";
 import { IDStrings, UGSRatingsLookup } from "tachi-common/js/types";
+import { ProcessEnv } from "../setup";
+import { PrependTachiUrl } from "./fetch-tachi";
 
 export interface SimpleGameType<T extends Game> {
 	game: T;
@@ -26,10 +28,17 @@ export const prettyRatingString = <I extends IDStrings = IDStrings>(rating: UGSR
 		case "VF6":
 			return "Volforce";
 		case "BPI":
-			return "BPI";
+			return "Beat Power Index";
 		case "MFCP":
-			return "???";
+			return "MFCs";
 		default:
 			return "Skill";
 	}
+};
+
+export const getPfpUrl = (userId: number): string => {
+	if (ProcessEnv.ENV !== "prod") {
+		return `https://kamaitachi.xyz/static/images/users/${userId}-pfp.png`;
+	}
+	return PrependTachiUrl(`/users/${userId}/pfp`);
 };

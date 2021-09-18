@@ -1,11 +1,17 @@
 import { InteractionReplyOptions, MessageActionRow, MessageEmbed, MessagePayload, MessageSelectMenu } from "discord.js";
 import { Game, UserGameStats } from "tachi-common";
-import { IDStrings, UGSRatingsLookup } from "tachi-common/js/types";
+import { IDStrings, PublicUserDocument, UGSRatingsLookup } from "tachi-common/js/types";
 import { find } from "lodash";
 import { LoggerLayers } from "../config";
 import { TachiServerV1Get } from "../utils/fetch-tachi";
 import { createLayeredLogger } from "../utils/logger";
-import { formatGameWrapper, prettyRatingString, SimpleGameType, simpleGameTypeToString } from "../utils/utils";
+import {
+	formatGameWrapper,
+	getPfpUrl,
+	prettyRatingString,
+	SimpleGameType,
+	simpleGameTypeToString
+} from "../utils/utils";
 
 const logger = createLayeredLogger(LoggerLayers.buildProfileEmbed);
 
@@ -23,14 +29,32 @@ const pullRatings = <I extends IDStrings = IDStrings>(
 	return allRatings;
 };
 
-export const buildProfileEmbed = (data: UserGameStats[], game?: SimpleGameType<Game>): MessageEmbed => {
+export const fetchUserDetails = async (userId: number): Promise<PublicUserDocument> => {
+	try {
+		logger.info(`Fetching public user document for ${userId}`);
+		const data = (await TachiServerV1Get<PublicUserDocument>(`/users/${userId}`))?.body;
+		if (data) {
+			return data;
+		} else {
+			throw new Error(`Could not find public user document for ${userId}`);
+		}
+	} catch (e) {
+		logger.error("Unable to  fetch user details");
+		throw new Error("Unable to  fetch user details");
+	}
+};
+
+export const buildProfileEmbed = async (data: UserGameStats[], game?: SimpleGameType<Game>): Promise<MessageEmbed> => {
 	const embed = new MessageEmbed().setColor("#cc527a");
 
-	/** @TODO FETCH USERS ACTUAL DETAILS */
-	embed.addField("Foo", "Foo");
-	embed.addField("Bar", "Bar");
-	embed.addField("Baz", "Baz");
-	embed.setThumbnail("https://cdn.mos.cms.futurecdn.net/mrArzwHcNuQbRwbEmuiwdJ.jpg");
+	const userId = data[0].userID;
+	const userDetails = await fetchUserDetails(userId);
+	const pfp = userDetails.customPfp
+		? getPfpUrl(userId)
+		: "https://cdn.mos.cms.futurecdn.net/mrArzwHcNuQbRwbEmuiwdJ.jpg";
+	embed.setTitle(`${userDetails.username}'s Profile`);
+	embed.setThumbnail(pfp);
+	embed.setAuthor(`@${userDetails.username}`, pfp);
 
 	if (game) {
 		const specificData: UserGameStats | undefined = find(
@@ -72,7 +96,7 @@ export const buildProfileIntractable = async (
 					)
 			);
 
-			return { embeds: [buildProfileEmbed(data, game)], components: [dropdown] };
+			return { embeds: [await buildProfileEmbed(data, game)], components: [dropdown] };
 		} else {
 			throw new Error(`No data found for user ${userId}`);
 		}

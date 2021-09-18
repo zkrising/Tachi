@@ -62,12 +62,7 @@ function GPTSearchResult({
 						fontWeight: "lighter",
 					}}
 				>
-					<QuickTooltip
-						tooltipContent={`Go to ${user.username}'s ${FormatGame(
-							game,
-							playtype
-						)} profile, if they have one.`}
-					>
+					<QuickTooltip tooltipContent={`Go to this page, but for ${user.username}.`}>
 						<span>
 							<Icon type="exchange-alt" />
 						</span>

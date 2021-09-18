@@ -9,5 +9,6 @@ export enum LoggerLayers {
 	serverAuth = "serverAuth",
 	botConfigSetup = "botConfigSetup",
 	tachiFetch = "tachiFetch",
-	profile = "profile"
+	profile = "profile",
+	selectInteractionHandler = "selectInteractionHandler"
 }

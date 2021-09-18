@@ -1,10 +1,9 @@
 import { Client, Intents } from "discord.js";
-import { UserGameStats } from "tachi-common";
-import { buildProfileIntractable } from "./profile/buildProfileEmbed";
+import { handleIsCommand } from "./interactionHandlers/command/handleIsCommand";
+import { handleIsSelectMenu } from "./interactionHandlers/selectMenu/handleIsSelectMenu";
 import { ProcessEnv } from "./setup";
 import { LoggerLayers } from "./config";
-import { registerSlashCommands, slashCommands, SlashCommand } from "./slashCommands/register";
-import { TachiServerV1Get } from "./utils/fetch-tachi";
+import { registerSlashCommands } from "./slashCommands/register";
 import { createLayeredLogger } from "./utils/logger";
 
 const logger = createLayeredLogger(LoggerLayers.client);
@@ -16,27 +15,11 @@ const client = new Client({
 client.on("interactionCreate", async (interaction) => {
 	try {
 		if (interaction.isSelectMenu()) {
-			/** @TODO Move this to its own handler!
-			 * We only have one intractable but for now this works */
-			const userId = interaction.customId.split(":")[1];
-			const userData = (await TachiServerV1Get<UserGameStats[]>(`/users/${userId}/game-stats`))?.body;
-			if (userData) {
-				await interaction.update(buildProfileIntractable(userData, userId, interaction.values[0]));
-			} else {
-				throw new Error("Failed to re-fetch user data! This is a bad sign!");
-			}
-			return;
+			return await handleIsSelectMenu(interaction);
 		}
 
-		if (!interaction.isCommand()) return;
-
-		const command = slashCommands.find((command: SlashCommand) => {
-			return command.info.name === interaction.commandName;
-		});
-
-		if (command && command.exec) {
-			logger.info(`Running ${command.info.name} interaction`);
-			command.exec(interaction);
+		if (interaction.isCommand()) {
+			return await handleIsCommand(interaction);
 		}
 	} catch (e) {
 		logger.error("Failed to run interaction");

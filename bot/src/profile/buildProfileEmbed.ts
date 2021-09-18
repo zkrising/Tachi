@@ -45,32 +45,43 @@ export const fetchUserDetails = async (userId: number): Promise<PublicUserDocume
 };
 
 export const buildProfileEmbed = async (data: UserGameStats[], game?: SimpleGameType<Game>): Promise<MessageEmbed> => {
-	const embed = new MessageEmbed().setColor("#cc527a");
+	try {
+		logger.info(`Building profile embed${game ? `for ${formatGameWrapper(game)}` : ""}`);
+		const embed = new MessageEmbed().setColor("#cc527a");
 
-	const userId = data[0].userID;
-	const userDetails = await fetchUserDetails(userId);
-	const pfp = userDetails.customPfp
-		? getPfpUrl(userId)
-		: "https://cdn.mos.cms.futurecdn.net/mrArzwHcNuQbRwbEmuiwdJ.jpg";
-	embed.setTitle(`${userDetails.username}'s Profile`);
-	embed.setThumbnail(pfp);
-	embed.setAuthor(`@${userDetails.username}`, pfp);
+		const userId = data[0].userID;
+		const userDetails = await fetchUserDetails(userId);
+		const pfp = userDetails.customPfp
+			? getPfpUrl(userId)
+			: "https://cdn.mos.cms.futurecdn.net/mrArzwHcNuQbRwbEmuiwdJ.jpg";
+		embed.setTitle(`${userDetails.username}'s Profile`);
+		embed.setThumbnail(pfp);
+		embed.setAuthor(`@${userDetails.username}`, pfp);
 
-	if (game) {
-		const specificData: UserGameStats | undefined = find(
-			data,
-			(item) => simpleGameTypeToString(game) === `${item.game}:${item.playtype}`
-		);
-		if (specificData) {
-			embed.addField(`Stats for: ${formatGameWrapper(game)}`, `${pullRatings(specificData.ratings).join("\n")}`);
+		logger.info(`Embed is for ${userDetails.username}`);
+
+		if (game) {
+			const specificData: UserGameStats | undefined = find(
+				data,
+				(item) => simpleGameTypeToString(game) === `${item.game}:${item.playtype}`
+			);
+			if (specificData) {
+				embed.addField(
+					`Stats for: ${formatGameWrapper(game)}`,
+					`${pullRatings(specificData.ratings).join("\n")}`
+				);
+			} else {
+				embed.addField("Select a game to see stats", `No stats for ${formatGameWrapper(game)}`);
+			}
 		} else {
-			throw new Error(`Could not get ratings for requested game: ${game}`);
+			embed.addField("Select a game to see stats", "\u200B");
 		}
-	} else {
-		embed.addField("Select a game to see stats", "\u200B");
-	}
 
-	return embed;
+		return embed;
+	} catch (e) {
+		logger.error(e);
+		throw new Error("Unable to build profile embed");
+	}
 };
 
 export const buildProfileIntractable = async (
@@ -81,16 +92,17 @@ export const buildProfileIntractable = async (
 		const data = (await TachiServerV1Get<UserGameStats[]>(`/users/${userId}/game-stats`))?.body;
 		logger.verbose(data);
 
+		/** @TODO Verify we got valid data here! */
 		if (data) {
 			const dropdown = new MessageActionRow().addComponents(
 				new MessageSelectMenu()
 					.setCustomId(`SelectGameForProfile:${userId}`)
 					.setPlaceholder("Browse By Game")
 					.addOptions(
-						data.map((game) => {
+						data.map((_game) => {
 							return {
-								label: `${formatGameWrapper(game)}`,
-								value: `${game.game}:${game.playtype}`
+								label: `${formatGameWrapper(_game)}`,
+								value: `${_game.game}:${_game.playtype}`
 							};
 						})
 					)

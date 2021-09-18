@@ -8,6 +8,7 @@ import { ProcessEnv } from "../setup";
 import { LoggerLayers } from "../config";
 import { help } from "../help/help";
 import { createLayeredLogger } from "../utils/logger";
+import { gamesToChoicesObject } from "../utils/utils";
 
 const logger = createLayeredLogger(LoggerLayers.slashCommands);
 
@@ -30,6 +31,13 @@ export const slashCommands: SlashCommand[] = [
 			.setName("profile")
 			.setDescription("Displays a Kamaitachi Profile")
 			.addStringOption((option) => option.setName("user").setDescription("The users id").setRequired(false))
+			.addStringOption((option) =>
+				option
+					.setName("game")
+					.setDescription("The game id")
+					.setRequired(false)
+					.addChoices(gamesToChoicesObject())
+			)
 			.toJSON(),
 		exec: async (interaction: CommandInteraction) => await getProfileByName(interaction)
 	}

@@ -1,3 +1,4 @@
+import { APIApplicationCommandOptionChoice } from "discord-api-types";
 import { FormatGame, Game, Playtypes } from "tachi-common";
 import { IDStrings, UGSRatingsLookup } from "tachi-common/js/types";
 import { ProcessEnv } from "../setup";
@@ -41,4 +42,26 @@ export const getPfpUrl = (userId: number): string => {
 		return `https://kamaitachi.xyz/static/images/users/${userId}-pfp.png`;
 	}
 	return PrependTachiUrl(`/users/${userId}/pfp`);
+};
+
+/** @TODO @zkldi is there somewhere this exists already? */
+export const gameIdentifierStrings = [
+	"iidx:SP",
+	"iidx:DP",
+	"sdvx:Single",
+	"usc:Single",
+	"ddr:SP",
+	"ddr:DP",
+	"maimai:Single",
+	"museca:Single",
+	"bms:7K",
+	"bms:14K",
+	"chunithm:Single",
+	"gitadora:Gita",
+	"gitadora:Dora"
+];
+export const gamesToChoicesObject = (): [name: string, value: string][] => {
+	return gameIdentifierStrings.map((identifier) => {
+		return [formatGameWrapper(stringToSimpleGameType(identifier)), identifier];
+	});
 };

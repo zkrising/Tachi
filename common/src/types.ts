@@ -256,15 +256,12 @@ export interface Lamps {
 }
 
 export type IIDX2DXTraSets = "Kichiku" | "Kiraku" | "All Scratch";
+export type IIDXSPDifficulties = "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
+export type IIDXDPDifficulties = "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
 
 export interface Difficulties {
-	"iidx:SP": `${`${IIDX2DXTraSets} ` | ""}${
-		| "BEGINNER"
-		| "NORMAL"
-		| "HYPER"
-		| "ANOTHER"
-		| "LEGGENDARIA"}`;
-	"iidx:DP": `${`${IIDX2DXTraSets} ` | ""}${"NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA"}`;
+	"iidx:SP": `${`${IIDX2DXTraSets} ` | ""}${IIDXSPDifficulties}`;
+	"iidx:DP": `${`${IIDX2DXTraSets} ` | ""}${IIDXDPDifficulties}`;
 	"popn:9B": "Easy" | "Normal" | "Hyper" | "EX";
 	"sdvx:Single": "NOV" | "ADV" | "EXH" | "MXM" | "INF" | "GRV" | "HVN" | "VVD";
 	"usc:Single": "NOV" | "ADV" | "EXH" | "INF";

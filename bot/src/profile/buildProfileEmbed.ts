@@ -109,9 +109,9 @@ export const buildProfileIntractable = async (
 			);
 
 			return { embeds: [await buildProfileEmbed(data, game)], components: [dropdown] };
-		} else {
-			throw new Error(`No data found for user ${userId}`);
 		}
+
+		throw new Error(`No data found for user ${userId}`);
 	} catch (e) {
 		logger.error("Unable to build profile interactable");
 		throw new Error("Unable to build profile interactable");

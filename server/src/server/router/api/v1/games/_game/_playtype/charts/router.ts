@@ -30,14 +30,7 @@ router.get("/", async (req, res) => {
 	const skip = 0;
 	const limit = 100;
 
-	const charts = await FindChartsOnPopularity(
-		game,
-		playtype,
-		songIDs,
-		skip,
-		limit,
-		"personal-bests"
-	);
+	const charts = await FindChartsOnPopularity(game, playtype, songIDs, skip, limit, "scores");
 
 	// @optimisable
 	// could use songIDs from above instead of refetching

@@ -236,8 +236,6 @@ export function FindChartOnARCID(game: "iidx" | "ddr" | "jubeat" | "sdvx", arcID
  * Returns the N most popular charts for this game + playtype.
  * Popularity is determined by how many scores match in the score
  * collection.
- *
- * Performance of this is untested.
  */
 export function FindChartsOnPopularity(
 	game: Game,

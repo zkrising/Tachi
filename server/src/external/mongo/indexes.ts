@@ -24,11 +24,13 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 		index({ scoreID: 1 }, UNIQUE),
 		index({ chartID: 1, userID: 1 }),
 		index({ game: 1, playtype: 1, userID: 1 }),
+		index({ chartID: 1 }),
 	],
 	"personal-bests": [
 		index({ chartID: 1, userID: 1 }, UNIQUE),
 		index({ chartID: 1, "scoreData.percent": 1 }),
 		index({ game: 1, playtype: 1, userID: 1 }),
+		index({ chartID: 1 }),
 	],
 	sessions: [
 		// lol
@@ -83,6 +85,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	"user-private-information": [index({ userID: 1 }, UNIQUE), index({ email: 1 }, UNIQUE)],
 	"fer-settings": [index({ userID: 1 }, UNIQUE)],
 	counters: [index({ counterName: 1 }, UNIQUE)],
+	"class-achievements": [index({ game: 1, playtype: 1, timeAchieved: 1 })],
 };
 
 const indexes: Partial<Record<Databases, Index[]>> = staticIndexes;
@@ -94,12 +97,16 @@ for (const game of ServerTypeInfo.supportedGames) {
 			index(
 				{ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 },
 				{ unique: true, partialFilterExpression: { isPrimary: { $eq: true } } }
-			)
+			),
+			index({ songID: 1 }),
+			index({ playtype: 1 })
 		);
 	} else {
 		indexes[`charts-${game}` as Databases] = [
 			index({ chartID: 1 }, UNIQUE),
 			index({ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 }, UNIQUE),
+			index({ songID: 1 }),
+			index({ playtype: 1 }),
 		];
 	}
 

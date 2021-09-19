@@ -1372,7 +1372,7 @@ export interface OrphanChart<I extends IDStrings = IDStrings> {
 export interface ClassAchievementDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
 	game: IDStringToGame[I];
 	playtype: IDStringToPlaytype[I];
-	classSet: gameClasses.GameClasses<I>;
+	classSet: AllClassSets;
 	classOldValue: null | integer;
 	classValue: integer;
 	timeAchieved: number;

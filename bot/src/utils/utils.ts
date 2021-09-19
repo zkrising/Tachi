@@ -1,6 +1,4 @@
-import { APIApplicationCommandOptionChoice } from "discord-api-types";
-import { FormatGame, Game, Playtypes } from "tachi-common";
-import { IDStrings, UGSRatingsLookup } from "tachi-common/js/types";
+import { FormatGame, Game, Playtypes, IDStrings, UGSRatingsLookup } from "tachi-common";
 import { ProcessEnv } from "../setup";
 import { PrependTachiUrl } from "./fetch-tachi";
 

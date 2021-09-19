@@ -23,18 +23,16 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	scores: [
 		index({ scoreID: 1 }, UNIQUE),
 		index({ chartID: 1, userID: 1 }),
-		index({ game: 1, playtype: 1, userID: 1 }),
-		index({ chartID: 1 }),
+		index({ userID: 1, game: 1, playtype: 1 }),
 	],
 	"personal-bests": [
 		index({ chartID: 1, userID: 1 }, UNIQUE),
 		index({ chartID: 1, "scoreData.percent": 1 }),
-		index({ game: 1, playtype: 1, userID: 1 }),
-		index({ chartID: 1 }),
+		index({ userID: 1, game: 1, playtype: 1 }),
 	],
 	sessions: [
 		// lol
-		index({ timeStarted: 1, timeEnded: 1, userID: 1, game: 1, playtype: 1 }),
+		index({ userID: 1, game: 1, playtype: 1, timeStarted: 1, timeEnded: 1 }),
 		index({ name: "text" }),
 	],
 	"game-stats": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
@@ -60,8 +58,6 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	],
 	folders: [
 		index({ folderID: 1 }, UNIQUE),
-		index({ game: 1, playtype: 1 }),
-		index({ game: 1, playtype: 1, table: 1 }),
 		index({ game: 1, playtype: 1, table: 1, tableIndex: 1 }),
 		index({ title: "text", searchTerms: "text" }),
 	],

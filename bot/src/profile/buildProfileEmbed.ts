@@ -34,7 +34,7 @@ const pullRatings = <I extends IDStrings = IDStrings>(
 export const fetchUserDetails = async (userId: number): Promise<PublicUserDocument> => {
 	try {
 		logger.info(`Fetching public user document for ${userId}`);
-		const data = (await TachiServerV1Get<PublicUserDocument>(`/users/${userId}`))?.body;
+		const data = (await TachiServerV1Get<PublicUserDocument>(`/users/${userId}`)).body;
 		if (data) {
 			return data;
 		} else {

@@ -7,14 +7,14 @@ export interface SimpleGameType<T extends Game> {
 	playtype: Playtypes[T];
 }
 
-export const simpleGameTypeToString = <T extends Game>(game: SimpleGameType<T>): IDStrings =>
-	<IDStrings>`${game.game}:${game.playtype}`;
+export const simpleGameTypeToString = <T extends Game>(gpt: SimpleGameType<T>): IDStrings =>
+	<IDStrings>`${gpt.game}:${gpt.playtype}`;
 
-export const stringToSimpleGameType = (game: string): SimpleGameType<Game> => {
-	return { game: <Game>game.split(":")[0], playtype: <Playtypes[never]>game.split(":")[1] };
+export const stringToSimpleGameType = (gptString: string): SimpleGameType<Game> => {
+	return { game: <Game>gptString.split(":")[0], playtype: <Playtypes[never]>gptString.split(":")[1] };
 };
 
-export const formatGameWrapper = (game: SimpleGameType<Game>): string => FormatGame(game.game, game.playtype);
+export const formatGameWrapper = (gpt: SimpleGameType<Game>): string => FormatGame(gpt.game, gpt.playtype);
 
 export const capitalise = (s: string): string => (s && s[0].toUpperCase() + s.slice(1)) || "";
 

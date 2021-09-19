@@ -1,7 +1,6 @@
 import { IObjectID } from "monk";
 import { FilterQuery } from "mongodb";
 import { AllClassSets, GameClasses } from "./game-classes";
-import { gameClasses } from ".";
 
 export interface CounterDocument {
 	counterName: string;

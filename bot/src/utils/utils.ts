@@ -18,23 +18,10 @@ export const stringToSimpleGameType = (game: string): SimpleGameType<Game> => {
 
 export const formatGameWrapper = (game: SimpleGameType<Game>): string => FormatGame(game.game, game.playtype);
 
+export const capitalise = (s: string): string => (s && s[0].toUpperCase() + s.slice(1)) || "";
+
 export const prettyRatingString = <I extends IDStrings = IDStrings>(rating: UGSRatingsLookup[I]): string => {
-	switch (rating) {
-		case "ktRating":
-			return "Kamai Rating";
-		case "ktLampRating":
-			return "Kamai Lamp Rating";
-		case "sieglinde":
-			return "???";
-		case "VF6":
-			return "Volforce";
-		case "BPI":
-			return "Beat Power Index";
-		case "MFCP":
-			return "MFCs";
-		default:
-			return "Skill";
-	}
+	return capitalise(rating);
 };
 
 export const getPfpUrl = (userId: number): string => {

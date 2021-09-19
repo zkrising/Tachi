@@ -1372,6 +1372,7 @@ export interface ClassAchievementDocument<I extends IDStrings = IDStrings> exten
 	game: IDStringToGame[I];
 	playtype: IDStringToPlaytype[I];
 	classSet: gameClasses.GameClasses<I>;
+	classOldValue: null | integer;
 	classValue: integer;
 	timeAchieved: number;
 	userID: integer;

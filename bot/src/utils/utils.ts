@@ -1,4 +1,5 @@
-import { FormatGame, Game, Playtypes, IDStrings, UGSRatingsLookup } from "tachi-common";
+import { FormatGame, Game, Playtypes, IDStrings, UGSRatingsLookup, GetGamePTConfig } from "tachi-common";
+import { ScoreCalculatedDataLookup } from "tachi-common/js/types";
 import { ProcessEnv } from "../setup";
 import { PrependTachiUrl } from "./fetch-tachi";
 
@@ -49,4 +50,18 @@ export const gamesToChoicesObject = (): [name: string, value: string][] => {
 	return gameIdentifierStrings.map((identifier) => {
 		return [formatGameWrapper(stringToSimpleGameType(identifier)), identifier];
 	});
+};
+
+export const formatGameScoreRating = <I extends IDStrings = IDStrings>(
+	gpt: SimpleGameType<Game>,
+	ratingName: UGSRatingsLookup[I],
+	value: number
+): string => {
+	const gptConfig = GetGamePTConfig(gpt.game, gpt.playtype);
+	/** @TODO UGSRatingsLookup should be able to cast to ScoreCalculatedDataLookup straight up */
+	const val = gptConfig.scoreRatingAlgFormatters[ratingName as unknown as ScoreCalculatedDataLookup[I]];
+	if (val) {
+		return val(value);
+	}
+	return value.toFixed(2);
 };

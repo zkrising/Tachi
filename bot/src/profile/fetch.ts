@@ -1,5 +1,5 @@
 import { CommandInteraction } from "discord.js";
-import { IDStrings } from "tachi-common/js/types";
+import { IDStrings } from "tachi-common";
 import { LoggerLayers } from "../config";
 import { BotConfig } from "../setup";
 import { createLayeredLogger } from "../utils/logger";

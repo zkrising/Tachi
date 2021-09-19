@@ -1,11 +1,12 @@
 import { InteractionReplyOptions, MessageActionRow, MessageEmbed, MessagePayload, MessageSelectMenu } from "discord.js";
-import { Game, UserGameStats } from "tachi-common";
-import { IDStrings, PublicUserDocument, UGSRatingsLookup } from "tachi-common/js/types";
+import { Game, UserGameStats, IDStrings, PublicUserDocument, UGSRatingsLookup } from "tachi-common";
 import { find } from "lodash";
+import { ScoreCalculatedDataLookup } from "tachi-common/js/types";
 import { LoggerLayers } from "../config";
 import { TachiServerV1Get } from "../utils/fetch-tachi";
 import { createLayeredLogger } from "../utils/logger";
 import {
+	formatGameScoreRating,
 	formatGameWrapper,
 	getPfpUrl,
 	prettyRatingString,
@@ -16,14 +17,15 @@ import {
 const logger = createLayeredLogger(LoggerLayers.buildProfileEmbed);
 
 const pullRatings = <I extends IDStrings = IDStrings>(
+	gpt: SimpleGameType<Game>,
 	ratings: Partial<Record<UGSRatingsLookup[I], number>>
 ): string[] => {
 	const allRatings: string[] = [];
 	const RatingKeys = <UGSRatingsLookup[I][]>Object.keys(ratings);
 
-	RatingKeys.map((rating) => {
-		const ratingValue: number = ratings[rating] || 0;
-		allRatings.push(`${prettyRatingString(rating)}: ${Math.round((ratingValue + Number.EPSILON) * 100) / 100}`);
+	RatingKeys.forEach((rating) => {
+		const ratingValue: string = formatGameScoreRating(gpt, rating, ratings[rating] || 0);
+		allRatings.push(`${prettyRatingString(rating)}: ${ratingValue}`);
 	});
 
 	return allRatings;
@@ -68,7 +70,7 @@ export const buildProfileEmbed = async (data: UserGameStats[], game?: SimpleGame
 			if (specificData) {
 				embed.addField(
 					`Stats for: ${formatGameWrapper(game)}`,
-					`${pullRatings(specificData.ratings).join("\n")}`
+					`${pullRatings(game, specificData.ratings).join("\n")}`
 				);
 			} else {
 				embed.addField("Select a game to see stats", `No stats for ${formatGameWrapper(game)}`);

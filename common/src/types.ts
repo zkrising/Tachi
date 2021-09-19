@@ -1,6 +1,7 @@
 import { IObjectID } from "monk";
 import { FilterQuery } from "mongodb";
 import { AllClassSets, GameClasses } from "./game-classes";
+import { gameClasses } from ".";
 
 export interface CounterDocument {
 	counterName: string;
@@ -1365,4 +1366,13 @@ export interface OrphanChart<I extends IDStrings = IDStrings> {
 	chartDoc: ChartDocument<I>;
 	songDoc: SongDocument<IDStringToGame[I]>;
 	userIDs: integer[];
+}
+
+export interface ClassAchievementDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
+	game: IDStringToGame[I];
+	playtype: IDStringToPlaytype[I];
+	classSet: gameClasses.GameClasses<I>;
+	classValue: integer;
+	timeAchieved: number;
+	userID: integer;
 }

@@ -32,11 +32,7 @@ export const slashCommands: SlashCommand[] = [
 			.setDescription("Displays a Kamaitachi Profile")
 			.addStringOption((option) => option.setName("user").setDescription("The users id").setRequired(false))
 			.addStringOption((option) =>
-				option
-					.setName("game")
-					.setDescription("The game id")
-					.setRequired(false)
-					.addChoices(gamesToChoicesObject())
+				option.setName("game").setDescription("The Game").setRequired(false).addChoices(gamesToChoicesObject())
 			)
 			.toJSON(),
 		exec: async (interaction: CommandInteraction) => await getProfileByName(interaction)

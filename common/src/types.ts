@@ -512,6 +512,7 @@ interface ImportErrContent {
 }
 
 export interface ClassDelta {
+	game: Game;
 	set: AllClassSets;
 	playtype: AnyPlaytype;
 	old: integer | null;

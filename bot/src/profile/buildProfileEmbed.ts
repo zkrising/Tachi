@@ -41,8 +41,8 @@ export const fetchUserDetails = async (userId: number): Promise<PublicUserDocume
 			throw new Error(`Could not find public user document for ${userId}`);
 		}
 	} catch (e) {
-		logger.error("Unable to  fetch user details");
-		throw new Error("Unable to  fetch user details");
+		logger.error("Unable to fetch user details");
+		throw new Error("Unable to fetch user details");
 	}
 };
 

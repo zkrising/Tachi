@@ -1,3 +1,5 @@
+import { IDStrings } from "tachi-common";
+
 export const neutralSplashes = ["A Rhythm Game Score Manager", "The Rhythm Game Score Manager"];
 
 export const loggedInSplashes = [
@@ -67,6 +69,8 @@ export const loggedInSplashes = [
 	"~𝒕𝒉𝒆 𝒈𝒆𝒂𝒓𝒔 𝒕𝒖𝒓𝒏 𝒐𝒏𝒄𝒆 𝒎𝒐𝒓𝒆~",
 	"<script>alert(1)</script>",
 	"come on down",
+	"The preparation for a dive is always a tense time.",
+	"Music Is Math",
 ];
 
 // Stuff that's bad for the kids, you know?

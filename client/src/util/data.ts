@@ -6,6 +6,7 @@ import {
 	SessionScoreInfo,
 	SongDocument,
 	ScoreDocument,
+	PublicUserDocument,
 } from "tachi-common";
 
 export function GetPBs(scoreInfo: SessionScoreInfo[]) {
@@ -20,6 +21,16 @@ export function CreateSongMap<G extends Game = Game>(songs: SongDocument<G>[]) {
 	}
 
 	return songMap;
+}
+
+export function CreateUserMap(users: PublicUserDocument[]) {
+	const userMap = new Map<integer, PublicUserDocument>();
+
+	for (const user of users) {
+		userMap.set(user.id, user);
+	}
+
+	return userMap;
 }
 
 export function CreateChartIDMap<T extends { chartID: string }>(arr: T[]): Map<string, T> {

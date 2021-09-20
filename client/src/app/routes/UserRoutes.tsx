@@ -9,9 +9,9 @@ import UserGamesPage from "app/pages/dashboard/users/UserGamesPage";
 import UserSettingsPage from "app/pages/dashboard/users/UserSettingsPage";
 import { ErrorPage } from "app/pages/ErrorPage";
 import RequireAuthAsUserParam from "components/auth/RequireAuthAsUserParam";
+import LayoutHeaderContainer from "components/layout/LayoutHeaderContainer";
 import { UGPTBottomNav, UGPTHeaderBody } from "components/user/UGPTHeader";
 import { UserBottomNav, UserHeaderBody } from "components/user/UserHeader";
-import UserHeaderContainer from "components/user/UserHeaderContainer";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { BackgroundContext } from "context/BackgroundContext";
@@ -52,16 +52,16 @@ export default function UserRoutes() {
 		};
 	}, [reqUser]);
 
-	if (isLoading || !reqUser) {
-		return null;
-	}
-
 	if (error && error.statusCode === 404) {
 		return <ErrorPage statusCode={404} customMessage="This user does not exist!" />;
 	}
 
 	if (error) {
 		return <ErrorPage statusCode={error.statusCode} customMessage={error.description} />;
+	}
+
+	if (isLoading || !reqUser) {
+		return null;
 	}
 
 	return (
@@ -81,7 +81,7 @@ export default function UserRoutes() {
 function UserProfileRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 	return (
 		<>
-			<UserHeaderContainer
+			<LayoutHeaderContainer
 				header={`${reqUser.username}'s Profile`}
 				footer={
 					<UserBottomNav
@@ -91,7 +91,7 @@ function UserProfileRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 				}
 			>
 				<UserHeaderBody reqUser={reqUser} />
-			</UserHeaderContainer>
+			</LayoutHeaderContainer>
 			<Route exact path="/dashboard/users/:userID">
 				<UserPage reqUser={reqUser} />
 			</Route>
@@ -211,7 +211,7 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 
 	return (
 		<>
-			<UserHeaderContainer
+			<LayoutHeaderContainer
 				header={`${reqUser.username}'s ${FormatGame(game, playtype)} Profile`}
 				footer={
 					<UGPTBottomNav
@@ -221,7 +221,7 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 				}
 			>
 				<UGPTHeaderBody reqUser={reqUser} game={game} playtype={playtype} stats={stats} />
-			</UserHeaderContainer>
+			</LayoutHeaderContainer>
 			<Switch>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype">
 					<OverviewPage reqUser={reqUser} game={game} playtype={playtype} />

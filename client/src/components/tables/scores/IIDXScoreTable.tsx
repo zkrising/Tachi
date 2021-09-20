@@ -10,6 +10,7 @@ import DifficultyCell from "../cells/DifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
 import TimestampCell from "../cells/TimestampCell";
 import TitleCell from "../cells/TitleCell";
+import UserCell from "../cells/UserCell";
 import DropdownRow from "../components/DropdownRow";
 import SelectableRating from "../components/SelectableRating";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
@@ -19,60 +20,64 @@ import IIDXScoreCoreCells from "../game-core-cells/IIDXScoreCoreCells";
 import IndicatorHeader from "../headers/IndicatorHeader";
 
 export default function IIDXScoreTable({
-	reqUser,
 	dataset,
 	pageLen,
 	playtype,
+	userCol = false,
 }: {
-	reqUser: PublicUserDocument;
 	dataset: ScoreDataset<"iidx:SP" | "iidx:DP">;
 	pageLen?: integer;
 	playtype: Playtypes["iidx"];
+	userCol?: boolean;
 }) {
 	const defaultRating = useScoreRatingAlg<"iidx:SP" | "iidx:DP">("iidx", playtype);
 	const [rating, setRating] = useState<ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"]>(
 		defaultRating
 	);
 
+	const headers: Header<ScoreDataset<"iidx:SP" | "iidx:DP">[0]>[] = [
+		[
+			"Chart",
+			"Chart",
+			NumericSOV(
+				x =>
+					x.__related.chart.tierlistInfo["kt-NC"]?.value ??
+					x.__related.chart.tierlistInfo["kt-HC"]?.value ??
+					x.__related.chart.levelNum
+			),
+		],
+		IndicatorHeader,
+		["Song", "Song", StrSOV(x => x.__related.song.title)],
+		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
+		["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
+		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
+		[
+			"Rating",
+			"Rating",
+			NumericSOV(x => x.calculatedData[rating] ?? 0),
+			(thProps: ZTableTHProps) => (
+				<SelectableRating<"iidx:SP" | "iidx:DP">
+					key={nanoid()}
+					game="iidx"
+					playtype={playtype}
+					rating={rating}
+					setRating={setRating}
+					{...thProps}
+				/>
+			),
+		],
+		["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
+	];
+
+	if (userCol) {
+		headers.unshift(["User", "User", StrSOV(x => x.__related.user.username)]);
+	}
+
 	return (
 		<TachiTable
 			dataset={dataset}
 			pageLen={pageLen}
-			headers={
-				[
-					[
-						"Chart",
-						"Chart",
-						NumericSOV(
-							x =>
-								x.__related.chart.tierlistInfo["kt-NC"]?.value ??
-								x.__related.chart.tierlistInfo["kt-HC"]?.value ??
-								x.__related.chart.levelNum
-						),
-					],
-					IndicatorHeader,
-					["Song", "Song", StrSOV(x => x.__related.song.title)],
-					["Score", "Score", NumericSOV(x => x.scoreData.percent)],
-					["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
-					["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
-					[
-						"Rating",
-						"Rating",
-						NumericSOV(x => x.calculatedData[rating] ?? 0),
-						(thProps: ZTableTHProps) => (
-							<SelectableRating<"iidx:SP" | "iidx:DP">
-								key={nanoid()}
-								game="iidx"
-								playtype={playtype}
-								rating={rating}
-								setRating={setRating}
-								{...thProps}
-							/>
-						),
-					],
-					["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
-				] as Header<ScoreDataset<"iidx:SP" | "iidx:DP">[0]>[]
-			}
+			headers={headers}
 			entryName="Scores"
 			searchFunctions={CreateDefaultScoreSearchParams("iidx", playtype)}
 			rowFunction={sc => (
@@ -80,8 +85,8 @@ export default function IIDXScoreTable({
 					key={sc.scoreID}
 					playtype={playtype}
 					sc={sc}
-					reqUser={reqUser}
 					rating={rating}
+					userCol={userCol}
 				/>
 			)}
 		/>
@@ -90,31 +95,32 @@ export default function IIDXScoreTable({
 
 function Row({
 	sc,
-	reqUser,
 	rating,
 	playtype,
+	userCol,
 }: {
 	sc: ScoreDataset<"iidx:SP" | "iidx:DP">[0];
-	reqUser: PublicUserDocument;
 	rating: ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"];
 	playtype: Playtype;
+	userCol: boolean;
 }) {
 	const scoreState = useScoreState(sc);
 
 	return (
 		<DropdownRow
-			className={scoreState.highlight ? "highlighted-row" : ""}
+			
 			dropdown={
 				<IIDXScoreDropdown
 					chart={sc.__related.chart}
 					game="iidx"
 					playtype={sc.playtype}
-					reqUser={reqUser}
+					user={sc.__related.user}
 					thisScore={sc}
 					scoreState={scoreState}
 				/>
 			}
 		>
+			{userCol && <UserCell game={sc.game} playtype={sc.playtype} user={sc.__related.user} />}
 			<DifficultyCell chart={sc.__related.chart} game="iidx" />
 			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell

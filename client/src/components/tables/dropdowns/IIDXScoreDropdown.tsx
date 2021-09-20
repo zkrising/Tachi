@@ -12,12 +12,12 @@ export default function IIDXScoreDropdown({
 	thisScore,
 	game,
 	playtype,
-	reqUser,
+	user,
 	chart,
 	scoreState,
 }: {
 	thisScore: ScoreDocument<"iidx:SP" | "iidx:DP">;
-	reqUser: PublicUserDocument;
+	user: PublicUserDocument;
 	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
 	scoreState: {
 		highlight: boolean;
@@ -27,7 +27,7 @@ export default function IIDXScoreDropdown({
 	};
 } & GamePT) {
 	const { isLoading, error, data } = useApiQuery<UGPTChartPBComposition<"iidx:SP" | "iidx:DP">>(
-		`/users/${reqUser.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
+		`/users/${user.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
 	);
 
 	if (error) {
@@ -44,7 +44,7 @@ export default function IIDXScoreDropdown({
 
 	return (
 		<GenericScoreDropdown<"iidx:SP" | "iidx:DP">
-			{...{ game, playtype, chart, reqUser, scoreState, thisScore }}
+			{...{ game, playtype, chart, reqUser: user, scoreState, thisScore, user }}
 			DocComponent={props =>
 				GenericScoreContentDropdown({
 					...props,

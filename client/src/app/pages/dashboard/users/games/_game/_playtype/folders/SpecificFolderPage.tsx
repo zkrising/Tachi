@@ -67,6 +67,7 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 				__related: {
 					pb: pbMap.get(chart.chartID) ?? null,
 					song: songMap.get(chart.songID)!,
+					user: reqUser,
 				},
 			});
 		}
@@ -92,12 +93,12 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 		);
 	}, [folderDataset]);
 
-	if (isLoading || !data || !folderDataset) {
-		return <Loading />;
-	}
-
 	if (error) {
 		return <ApiError error={error} />;
+	}
+
+	if (isLoading || !data || !folderDataset) {
+		return <Loading />;
 	}
 
 	return (
@@ -107,7 +108,7 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 			</div>
 			<div className="col-12">{folderInfoHeader}</div>
 			<div className="col-12">
-				<Divider className="my-4" />
+				<Divider />
 			</div>
 			<div className="col-12 d-flex">
 				<div className="btn-group mx-auto">
@@ -124,7 +125,7 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 				</div>
 			</div>
 			<div className="col-12">
-				<Divider className="my-4" />
+				<Divider />
 			</div>
 			<div className="col-12">
 				{mode === "normal" ? (
@@ -174,7 +175,7 @@ function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps
 			<Col xs={12}>
 				<Card header="Tierlist View Configuration">
 					<span>Here you can select what tierlist blocks to show!</span>
-					<Divider className="my-4" />
+					<Divider />
 					{gptConfig.tierlists.length > 1 &&
 						gptConfig.tierlists.map(e => (
 							<>
@@ -201,7 +202,7 @@ function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps
 				</Card>
 			</Col>
 			<Col xs={12}>
-				<Divider className="my-4" />
+				<Divider />
 			</Col>
 			<Col xs={12}>
 				<TierlistInfoLadder

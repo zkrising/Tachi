@@ -109,7 +109,7 @@ function Row({
 					scoreState={scoreState}
 				/>
 			}
-			className={scoreState.highlight ? "highlighted-row" : ""}
+			
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<DifficultyCell game={pb.game} chart={pb.__related.chart} />

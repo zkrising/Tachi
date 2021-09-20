@@ -7,6 +7,7 @@ import DifficultyCell from "../cells/DifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
 import TimestampCell from "../cells/TimestampCell";
 import TitleCell from "../cells/TitleCell";
+import UserCell from "../cells/UserCell";
 import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
 import { useScoreState } from "../components/UseScoreState";
@@ -18,46 +19,59 @@ export default function SDVXScoreTable({
 	reqUser,
 	dataset,
 	pageLen,
+	userCol = false,
 }: {
 	reqUser: PublicUserDocument;
 	dataset: ScoreDataset<"sdvx:Single">;
 	pageLen?: integer;
 	playtype: Playtypes["sdvx"];
+	userCol?: boolean;
 }) {
+	const headers: Header<ScoreDataset<"sdvx:Single">[0]>[] = [
+		["Chart", "Chart", NumericSOV(x => x.__related.chart.levelNum)],
+		IndicatorHeader,
+		["Song", "Song", StrSOV(x => x.__related.song.title)],
+		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
+		["Near - Miss", "Nr. Ms.", NumericSOV(x => x.scoreData.percent)],
+		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
+		["VF6", "VF6", NumericSOV(x => x.calculatedData.VF6 ?? 0)],
+
+		["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
+	];
+
+	if (userCol) {
+		headers.unshift(["User", "User", StrSOV(x => x.__related.user.username)]);
+	}
+
 	return (
 		<TachiTable
 			dataset={dataset}
 			pageLen={pageLen}
-			headers={
-				[
-					["Chart", "Chart", NumericSOV(x => x.__related.chart.levelNum)],
-					IndicatorHeader,
-					["Song", "Song", StrSOV(x => x.__related.song.title)],
-					["Score", "Score", NumericSOV(x => x.scoreData.percent)],
-					["Near - Miss", "Nr. Ms.", NumericSOV(x => x.scoreData.percent)],
-					["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
-					["VF6", "VF6", NumericSOV(x => x.calculatedData.VF6 ?? 0)],
-
-					["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
-				] as Header<ScoreDataset<"sdvx:Single">[0]>[]
-			}
+			headers={headers}
 			entryName="Scores"
 			searchFunctions={CreateDefaultScoreSearchParams("museca", "Single")}
-			rowFunction={sc => <Row key={sc.scoreID} sc={sc} reqUser={reqUser} />}
+			rowFunction={sc => <Row key={sc.scoreID} sc={sc} reqUser={reqUser} userCol={userCol} />}
 		/>
 	);
 }
 
-function Row({ sc, reqUser }: { sc: ScoreDataset<"sdvx:Single">[0]; reqUser: PublicUserDocument }) {
+function Row({
+	sc,
+	reqUser,
+	userCol,
+}: {
+	sc: ScoreDataset<"sdvx:Single">[0];
+	reqUser: PublicUserDocument;
+	userCol: boolean;
+}) {
 	const scoreState = useScoreState(sc);
 
 	return (
 		<DropdownRow
-			className={scoreState.highlight ? "highlighted-row" : ""}
 			dropdown={
 				<GenericScoreDropdown
 					chart={sc.__related.chart}
-					reqUser={reqUser}
+					user={sc.__related.user}
 					game={sc.game}
 					thisScore={sc}
 					playtype={sc.playtype}
@@ -65,6 +79,7 @@ function Row({ sc, reqUser }: { sc: ScoreDataset<"sdvx:Single">[0]; reqUser: Pub
 				/>
 			}
 		>
+			{userCol && <UserCell game={sc.game} playtype={sc.playtype} user={sc.__related.user} />}
 			<DifficultyCell chart={sc.__related.chart} game="sdvx" />
 			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell

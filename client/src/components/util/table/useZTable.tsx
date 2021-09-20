@@ -58,6 +58,7 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 
 		if (sortMode !== null) {
 			mutatedSet = mutatedSet.slice().sort(sortFunctions[sortMode]);
+
 			if (reverseSort) {
 				mutatedSet.reverse();
 			}

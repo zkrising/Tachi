@@ -77,7 +77,7 @@ function Row({
 	game: Game;
 }) {
 	return (
-		<tr className={sc.highlight ? "highlighted-row" : ""}>
+		<tr>
 			<ScoreCoreCells score={sc} game={game} rating={rating as any} />
 			<TimestampCell time={sc.timeAchieved} service={sc.service} />
 		</tr>

@@ -62,12 +62,12 @@ export default function UGPTStatContainer({
 		}
 	);
 
-	if (isLoading || !data) {
-		return <Loading />;
-	}
-
 	if (error) {
 		return <>{(error as any).description}</>;
+	}
+
+	if (isLoading || !data) {
+		return <Loading />;
 	}
 
 	return (

@@ -215,6 +215,7 @@ function RecentSessionScoreInfo({
 					chart,
 					song: songMap.get(chart.songID)!,
 					index: 0,
+					user: reqUser,
 				},
 			});
 		}
@@ -245,7 +246,6 @@ function RecentSessionScoreInfo({
 					dataset={dataset as any}
 					pageLen={5}
 					game={game}
-					reqUser={reqUser}
 					playtype={playtype as any}
 				/>
 			</div>

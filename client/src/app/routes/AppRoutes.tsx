@@ -26,6 +26,10 @@ export function Routes() {
 				{!user && ClientConfig.MANDATE_LOGIN ? <LoginPage /> : <Redirect to="/dashboard" />}
 			</Route>
 
+			<Route path="/michael">
+				<ErrorPage statusCode={999} customMessage="He has been summoned." />
+			</Route>
+
 			<Route path="/dashboard">
 				{!user && ClientConfig.MANDATE_LOGIN ? <LoginPage /> : <DashboardRoutes />}
 			</Route>

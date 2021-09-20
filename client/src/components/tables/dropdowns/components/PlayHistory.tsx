@@ -16,12 +16,12 @@ export default function PlayHistory({
 	isLoading: boolean;
 	error: UnsuccessfulAPIFetchResponse | null;
 } & GamePT) {
-	if (isLoading || !data) {
-		return <Loading />;
-	}
-
 	if (error) {
 		return <>{error.description}</>;
+	}
+
+	if (isLoading || !data) {
+		return <Loading />;
 	}
 
 	return (

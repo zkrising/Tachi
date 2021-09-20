@@ -10,7 +10,9 @@ import { LoadingScreen } from "components/layout/screens/LoadingScreen";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { UserSettingsContextProvider } from "context/UserSettingsContext";
 
-const queryClient = new QueryClient({ defaultOptions: { queries: { staleTime: 1000 * 60 * 5 } } });
+const queryClient = new QueryClient({
+	defaultOptions: { queries: { staleTime: 1000 * 60 * 5, retry: 1 } },
+});
 
 export default function App({ basename }: { basename: string }) {
 	return (

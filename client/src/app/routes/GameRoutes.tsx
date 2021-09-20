@@ -1,8 +1,14 @@
 import PlaytypeSelect from "app/pages/dashboard/games/_game/PlaytypeSelect";
+import GPTSongsPage from "app/pages/dashboard/games/_game/_playtype/GPTSongsPage";
+import GPTDevInfo from "app/pages/dashboard/games/_game/_playtype/GPTDevInfo";
+import GPTLeaderboardsPage from "app/pages/dashboard/games/_game/_playtype/GPTLeaderboardsPage";
+import GPTMainPage from "app/pages/dashboard/games/_game/_playtype/GPTMainPage";
 import { ErrorPage } from "app/pages/ErrorPage";
+import { GPTBottomNav, GPTHeaderBody } from "components/game/GPTHeader";
+import LayoutHeaderContainer from "components/layout/LayoutHeaderContainer";
 import React from "react";
 import { Redirect, Route, Switch, useParams } from "react-router-dom";
-import { Game, GetGameConfig } from "tachi-common";
+import { FormatGame, Game, GetGameConfig } from "tachi-common";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
 
 export default function GameRoutes() {
@@ -29,7 +35,7 @@ export default function GameRoutes() {
 				)}
 			</Route>
 
-			<Route exact path="/dashboard/games/:game/:playtype">
+			<Route path="/dashboard/games/:game/:playtype">
 				<GamePlaytypeRoutes game={game} />
 			</Route>
 
@@ -53,10 +59,34 @@ function GamePlaytypeRoutes({ game }: { game: Game }) {
 	}
 
 	return (
-		<Switch>
-			<Route exact path="/dashboard/games/:game/:playtype">
-				{game} {playtype}
-			</Route>
-		</Switch>
+		<>
+			<LayoutHeaderContainer
+				footer={<GPTBottomNav baseUrl={`/dashboard/games/${game}/${playtype}`} />}
+				header={FormatGame(game, playtype)}
+			>
+				<GPTHeaderBody game={game} playtype={playtype} />
+			</LayoutHeaderContainer>
+			<Switch>
+				<Route exact path="/dashboard/games/:game/:playtype">
+					<GPTMainPage game={game} playtype={playtype} />
+				</Route>
+
+				<Route exact path="/dashboard/games/:game/:playtype/songs">
+					<GPTSongsPage game={game} playtype={playtype} />
+				</Route>
+
+				<Route exact path="/dashboard/games/:game/:playtype/leaderboards">
+					<GPTLeaderboardsPage game={game} playtype={playtype} />
+				</Route>
+
+				<Route exact path="/dashboard/games/:game/:playtype/dev-info">
+					<GPTDevInfo game={game} playtype={playtype} />
+				</Route>
+
+				<Route path="*">
+					<ErrorPage statusCode={404} />
+				</Route>
+			</Switch>
+		</>
 	);
 }

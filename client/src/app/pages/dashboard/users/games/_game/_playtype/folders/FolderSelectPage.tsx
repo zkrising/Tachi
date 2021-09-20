@@ -140,7 +140,7 @@ function FolderInfoComponent({
 								Lamps
 							</SelectButton>
 						</div>
-						<Divider className="my-4" />
+						<Divider />
 						{dataset}
 					</div>
 				</div>

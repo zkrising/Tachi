@@ -1,6 +1,9 @@
 import {
 	ChartDocument,
+	ClassAchievementDocument,
+	ClassDelta,
 	FolderDocument,
+	GamePTConfig,
 	Grades,
 	IDStrings,
 	IDStringToGame,
@@ -120,4 +123,16 @@ export interface UGPTFolderReturns<I extends IDStrings = IDStrings> {
 	songs: SongDocument<IDStringToGame[I]>[];
 	charts: ChartDocument<I>[];
 	pbs: PBScoreDocument<I>[];
+}
+
+export interface GPTStatsReturn {
+	config: GamePTConfig;
+	playerCount: integer;
+	chartCount: integer;
+	scoreCount: integer;
+}
+
+export interface RecentClassesReturn {
+	classes: ClassAchievementDocument[];
+	users: PublicUserDocument[];
 }

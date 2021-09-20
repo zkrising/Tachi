@@ -36,14 +36,14 @@ export interface ScoreDropdownProps<I extends IDStrings = IDStrings> {
 export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 	game,
 	playtype,
-	reqUser,
+	user,
 	chart,
 	scoreState,
 	thisScore,
 	defaultView = "moreInfo",
 	DocComponent = props => GenericScoreContentDropdown({ renderScoreInfo: false, ...props }),
 }: {
-	reqUser: PublicUserDocument;
+	user: PublicUserDocument;
 	chart: ChartDocument;
 	scoreState: ScoreState;
 	defaultView?: "vsPB" | "moreInfo" | "history" | "debug";
@@ -57,12 +57,12 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 	const [view, setView] = useState(defaultView);
 
 	const { isLoading, error, data } = useApiQuery<UGPTChartPBComposition<I>>(
-		`/users/${reqUser.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
+		`/users/${user.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
 	);
 
 	const { isLoading: histIsLoading, error: histError, data: histData } = useApiQuery<
 		ScoreDocument<I>[]
-	>(`/users/${reqUser.id}/games/${game}/${playtype}/scores/${chart.chartID}`);
+	>(`/users/${user.id}/games/${game}/${playtype}/scores/${chart.chartID}`);
 
 	if (error) {
 		return <>An error has occured. Whoops.</>;

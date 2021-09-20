@@ -55,12 +55,12 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 		}
 	}, [data]);
 
-	if (isLoading || !data) {
-		return <Loading />;
-	}
-
 	if (error) {
 		return <ApiError error={error} />;
+	}
+
+	if (isLoading || !data) {
+		return <Loading />;
 	}
 
 	return (
@@ -82,7 +82,7 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 					))}
 				</Form.Control>
 			</InputGroup>
-			<Divider className="my-4" />
+			<Divider />
 			{table && <TableFolderViewer {...{ reqUser, game, playtype, table }} />}
 		</>
 	);
@@ -118,18 +118,18 @@ function TableFolderViewer({ reqUser, game, playtype, table }: Props & { table: 
 		}
 	}, [data]);
 
-	if (isLoading || !data || !hasLoadedFolderMap) {
-		return <Loading />;
-	}
-
 	if (error) {
 		return <ApiError error={error} />;
+	}
+
+	if (isLoading || !data || !hasLoadedFolderMap) {
+		return <Loading />;
 	}
 
 	return (
 		<>
 			<TableBarChart table={table} dataMap={dataMap} />
-			<Divider className="my-4" />
+			<Divider />
 			<TableFolderTable
 				reqUser={reqUser}
 				game={game}
@@ -267,7 +267,7 @@ function TableBarChart({
 					</div>
 				</div>
 				<div className="col-12">
-					<Divider className="my-4" />
+					<Divider />
 				</div>
 
 				<div className="col-12">

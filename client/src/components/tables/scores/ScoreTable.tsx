@@ -11,21 +11,21 @@ import MusecaScoreTable from "./MusecaScoreTable";
 export default function ScoreTable({
 	dataset,
 	indexCol = true,
-	reqUser,
+	userCol = false,
 	playtype,
 	pageLen = 10,
 	game,
 }: {
 	dataset: ScoreDataset;
 	indexCol?: boolean;
-	reqUser: PublicUserDocument;
+	userCol?: boolean;
 	pageLen?: integer;
 } & GamePT) {
 	// We're just going to ignore all these errors
 	// and assume we just won't make a mistake.
 	// ever.
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const props = { dataset, indexCol, reqUser, playtype, pageLen } as any;
+	const props = { dataset, indexCol, playtype, pageLen, userCol } as any;
 	if (game === "iidx") {
 		return <IIDXScoreTable {...props} />;
 	} else if (game === "bms") {

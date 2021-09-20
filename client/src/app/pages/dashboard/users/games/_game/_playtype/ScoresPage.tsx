@@ -140,7 +140,7 @@ function AlgSelector({
 	);
 }
 
-function useFetchPBs(url: string) {
+function useFetchPBs(url: string, reqUser: PublicUserDocument) {
 	const { isLoading, error, data } = useQuery(url, async () => {
 		const res = await APIFetchV1<{
 			pbs: PBScoreDocument<"iidx:SP">[];
@@ -152,7 +152,7 @@ function useFetchPBs(url: string) {
 			throw res;
 		}
 
-		return FormatData(res.body.pbs, res.body.songs, res.body.charts);
+		return FormatData(res.body.pbs, res.body.songs, res.body.charts, reqUser);
 	});
 
 	return { isLoading, error: error as UnsuccessfulAPIResponse, data };
@@ -175,7 +175,7 @@ function PBsOverview({
 } & GamePT) {
 	const [search, setSearch] = useState("");
 
-	const { isLoading, error, data } = useFetchPBs(url);
+	const { isLoading, error, data } = useFetchPBs(url, reqUser);
 
 	return (
 		<div className="row">
@@ -214,7 +214,7 @@ function FormatData<
 	D extends PBScoreDocument | ScoreDocument,
 	I extends IDStrings = IDStrings,
 	G extends Game = Game
->(d: D[], songs: SongDocument<G>[], charts: ChartDocument<I>[]) {
+>(d: D[], songs: SongDocument<G>[], charts: ChartDocument<I>[], reqUser: PublicUserDocument) {
 	const songMap = new Map();
 	const chartMap = new Map();
 
@@ -232,13 +232,14 @@ function FormatData<
 			song: songMap.get(e.songID),
 			chart: chartMap.get(e.chartID),
 			index: i,
+			user: reqUser,
 		},
 	}));
 
 	return data;
 }
 
-function useFetchScores(url: string) {
+function useFetchScores(url: string, reqUser: PublicUserDocument) {
 	const { isLoading, error, data } = useQuery(url, async () => {
 		const res = await APIFetchV1<{
 			scores: ScoreDocument[];
@@ -250,7 +251,7 @@ function useFetchScores(url: string) {
 			throw res;
 		}
 
-		return FormatData(res.body.scores, res.body.songs, res.body.charts);
+		return FormatData(res.body.scores, res.body.songs, res.body.charts, reqUser);
 	});
 
 	return { isLoading, error: error as UnsuccessfulAPIResponse, data };
@@ -268,7 +269,8 @@ function PBsSearch({
 	alg?: ScoreCalculatedDataLookup[IDStrings];
 } & GamePT) {
 	const { isLoading, error, data } = useFetchPBs(
-		`/users/${reqUser.id}/games/${game}/${playtype}/pbs?search=${search}`
+		`/users/${reqUser.id}/games/${game}/${playtype}/pbs?search=${search}`,
+		reqUser
 	);
 
 	return (
@@ -289,7 +291,8 @@ function ScoresOverview({ reqUser, game, playtype }: { reqUser: PublicUserDocume
 	const [search, setSearch] = useState("");
 
 	const { isLoading, error, data } = useFetchScores(
-		`/users/${reqUser.id}/games/${game}/${playtype}/scores/recent`
+		`/users/${reqUser.id}/games/${game}/${playtype}/scores/recent`,
+		reqUser
 	);
 
 	return (
@@ -307,12 +310,7 @@ function ScoresOverview({ reqUser, game, playtype }: { reqUser: PublicUserDocume
 						style={{ height: 500 }}
 						{...{ isLoading, dataset: data, error }}
 					>
-						<ScoreTable
-							dataset={data!}
-							game={game}
-							reqUser={reqUser}
-							playtype={playtype as any}
-						/>
+						<ScoreTable dataset={data!} game={game} playtype={playtype as any} />
 					</LoadingWrapper>
 				) : (
 					<ScoresSearch {...{ reqUser, game, playtype, search }} />
@@ -329,12 +327,13 @@ function ScoresSearch({
 	search,
 }: { reqUser: PublicUserDocument; search: string } & GamePT) {
 	const { isLoading, error, data } = useFetchScores(
-		`/users/${reqUser.id}/games/${game}/${playtype}/scores?search=${search}`
+		`/users/${reqUser.id}/games/${game}/${playtype}/scores?search=${search}`,
+		reqUser
 	);
 
 	return (
 		<LoadingWrapper style={{ height: 500 }} {...{ isLoading, error, dataset: data }}>
-			<ScoreTable dataset={data!} game={game} reqUser={reqUser} playtype={playtype as any} />
+			<ScoreTable dataset={data!} game={game} playtype={playtype as any} />
 		</LoadingWrapper>
 	);
 }

@@ -15,12 +15,12 @@ export default function LoadingWrapper({
 	children: JSX.Element | JSX.Element[];
 	style?: CSSProperties;
 }) {
-	if (isLoading || !dataset) {
-		return <Loading style={style} />;
-	}
-
 	if (error) {
 		return <h3>An error has occured. {error.description}</h3>;
+	}
+
+	if (isLoading || !dataset) {
+		return <Loading style={style} />;
 	}
 
 	return <>{children}</>;

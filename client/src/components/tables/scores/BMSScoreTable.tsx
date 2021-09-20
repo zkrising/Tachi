@@ -8,6 +8,7 @@ import BMSDifficultyCell from "../cells/BMSDifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
 import TimestampCell from "../cells/TimestampCell";
 import TitleCell from "../cells/TitleCell";
+import UserCell from "../cells/UserCell";
 import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
 import { useScoreState } from "../components/UseScoreState";
@@ -16,46 +17,50 @@ import BMSScoreCoreCells from "../game-core-cells/BMSScoreCoreCells";
 import IndicatorHeader from "../headers/IndicatorHeader";
 
 export default function BMSScoreTable({
-	reqUser,
 	dataset,
 	pageLen,
 	playtype,
+	userCol = false,
 }: {
-	reqUser: PublicUserDocument;
 	dataset: ScoreDataset<"bms:7K" | "bms:14K">;
 	pageLen?: integer;
 	playtype: Playtypes["bms"];
+	userCol?: boolean;
 }) {
+	const headers: Header<ScoreDataset<"bms:7K" | "bms:14K">[0]>[] = [
+		[
+			"Chart",
+			"Chart",
+			NumericSOV(
+				x =>
+					x.__related.chart.tierlistInfo["sgl-EC"]?.value ??
+					x.__related.chart.tierlistInfo["sgl-HC"]?.value ??
+					x.__related.chart.levelNum
+			),
+		],
+		IndicatorHeader,
+		["Song", "Song", StrSOV(x => x.__related.song.title)],
+		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
+		["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
+		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
+		["Sieglinde", "sgl.", NumericSOV(x => x.calculatedData.sieglinde ?? 0)],
+
+		["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
+	];
+
+	if (userCol) {
+		headers.unshift(["User", "User", StrSOV(x => x.__related.user.username)]);
+	}
+
 	return (
 		<TachiTable
 			dataset={dataset}
 			pageLen={pageLen}
-			headers={
-				[
-					[
-						"Chart",
-						"Chart",
-						NumericSOV(
-							x =>
-								x.__related.chart.tierlistInfo["sgl-EC"]?.value ??
-								x.__related.chart.tierlistInfo["sgl-HC"]?.value ??
-								x.__related.chart.levelNum
-						),
-					],
-					IndicatorHeader,
-					["Song", "Song", StrSOV(x => x.__related.song.title)],
-					["Score", "Score", NumericSOV(x => x.scoreData.percent)],
-					["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
-					["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
-					["Sieglinde", "sgl.", NumericSOV(x => x.calculatedData.sieglinde ?? 0)],
-
-					["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
-				] as Header<ScoreDataset<"bms:7K" | "bms:14K">[0]>[]
-			}
+			headers={headers}
 			entryName="Scores"
 			searchFunctions={CreateDefaultScoreSearchParams("bms", playtype)}
 			rowFunction={sc => (
-				<Row playtype={playtype} key={sc.scoreID} sc={sc} reqUser={reqUser} />
+				<Row playtype={playtype} key={sc.scoreID} sc={sc} userCol={userCol} />
 			)}
 		/>
 	);
@@ -63,22 +68,21 @@ export default function BMSScoreTable({
 
 function Row({
 	sc,
-	reqUser,
 	playtype,
+	userCol,
 }: {
 	sc: ScoreDataset<"bms:7K" | "bms:14K">[0];
-	reqUser: PublicUserDocument;
 	playtype: Playtype;
+	userCol: boolean;
 }) {
 	const scoreState = useScoreState(sc);
 
 	return (
 		<DropdownRow
-			className={scoreState.highlight ? "highlighted-row" : ""}
 			dropdown={
 				<GenericScoreDropdown
 					chart={sc.__related.chart}
-					reqUser={reqUser}
+					user={sc.__related.user}
 					game={sc.game}
 					thisScore={sc}
 					playtype={sc.playtype}
@@ -86,6 +90,7 @@ function Row({
 				/>
 			}
 		>
+			{userCol && <UserCell game={sc.game} playtype={sc.playtype} user={sc.__related.user} />}
 			<BMSDifficultyCell chart={sc.__related.chart} />
 			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell

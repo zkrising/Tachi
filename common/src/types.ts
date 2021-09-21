@@ -737,7 +737,7 @@ type SupportedIIDXVersions =
 	| "21"
 	| "20"
 	| "inf"
-	| "2dxtra"
+	| "27-2dxtra"
 	| "bmus"
 	| "26-omni"
 	| "16-cs"

@@ -2,7 +2,6 @@ import React from "react";
 import { PublicUserDocument } from "tachi-common";
 import { PBDataset } from "types/tables";
 import { NumericSOV, StrSOV } from "util/sorts";
-import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { CreateDefaultPBSearchParams } from "util/tables/create-search";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndexCell from "../cells/IndexCell";
@@ -24,13 +23,11 @@ export default function MusecaPBTable({
 	dataset,
 	indexCol = true,
 	showPlaycount = false,
-	reqUser,
 	playtype,
 }: {
 	dataset: PBDataset<"museca:Single">;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
-	reqUser: PublicUserDocument;
 	playtype: "Single";
 }) {
 	const headers: Header<PBDataset<"museca:Single">[0]>[] = [
@@ -64,7 +61,6 @@ export default function MusecaPBTable({
 				<Row
 					pb={pb}
 					key={`${pb.chartID}:${pb.userID}`}
-					reqUser={reqUser}
 					indexCol={indexCol}
 					showPlaycount={showPlaycount}
 				/>
@@ -76,13 +72,11 @@ export default function MusecaPBTable({
 function Row({
 	pb,
 	indexCol,
-	reqUser,
 	showPlaycount,
 }: {
 	pb: PBDataset<"museca:Single">[0];
 	indexCol: boolean;
 	showPlaycount: boolean;
-	reqUser: PublicUserDocument;
 }) {
 	const scoreState = usePBState(pb);
 
@@ -91,7 +85,7 @@ function Row({
 			dropdown={
 				<GenericPBDropdown
 					chart={pb.__related.chart}
-					reqUser={reqUser}
+					userID={pb.userID}
 					game={pb.game}
 					playtype={pb.playtype}
 					scoreState={scoreState}

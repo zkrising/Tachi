@@ -23,13 +23,11 @@ export default function SDVXPBTable({
 	dataset,
 	indexCol = true,
 	showPlaycount = false,
-	reqUser,
 	playtype,
 }: {
 	dataset: PBDataset<"sdvx:Single">;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
-	reqUser: PublicUserDocument;
 	playtype: "7K" | "14K";
 }) {
 	const headers: Header<PBDataset<"sdvx:Single">[0]>[] = [
@@ -63,7 +61,6 @@ export default function SDVXPBTable({
 				<Row
 					pb={pb}
 					key={`${pb.chartID}:${pb.userID}`}
-					reqUser={reqUser}
 					indexCol={indexCol}
 					showPlaycount={showPlaycount}
 				/>
@@ -76,12 +73,10 @@ function Row({
 	pb,
 	indexCol,
 	showPlaycount,
-	reqUser,
 }: {
 	pb: PBDataset<"sdvx:Single">[0];
 	indexCol: boolean;
 	showPlaycount: boolean;
-	reqUser: PublicUserDocument;
 }) {
 	const scoreState = usePBState(pb);
 
@@ -90,13 +85,12 @@ function Row({
 			dropdown={
 				<GenericPBDropdown
 					chart={pb.__related.chart}
-					reqUser={reqUser}
+					userID={pb.userID}
 					game={pb.game}
 					playtype={pb.playtype}
 					scoreState={scoreState}
 				/>
 			}
-			
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<DifficultyCell game="sdvx" chart={pb.__related.chart} />

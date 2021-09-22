@@ -24,7 +24,6 @@ export default function GenericPBTable({
 	dataset,
 	indexCol = true,
 	showPlaycount = false,
-	reqUser,
 	game,
 	playtype,
 	showScore,
@@ -32,7 +31,6 @@ export default function GenericPBTable({
 	dataset: PBDataset;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
-	reqUser: PublicUserDocument;
 	game: Game;
 	playtype: Playtype;
 	showScore?: boolean;
@@ -73,7 +71,6 @@ export default function GenericPBTable({
 				<Row
 					pb={pb}
 					key={`${pb.chartID}:${pb.userID}`}
-					reqUser={reqUser}
 					indexCol={indexCol}
 					showScore={showScore}
 					showPlaycount={showPlaycount}
@@ -86,14 +83,12 @@ export default function GenericPBTable({
 function Row({
 	pb,
 	indexCol,
-	reqUser,
 	showScore,
 	showPlaycount,
 }: {
 	pb: PBDataset[0];
 	indexCol: boolean;
 	showPlaycount: boolean;
-	reqUser: PublicUserDocument;
 	showScore?: boolean;
 }) {
 	const scoreState = usePBState(pb);
@@ -103,13 +98,12 @@ function Row({
 			dropdown={
 				<GenericPBDropdown
 					chart={pb.__related.chart}
-					reqUser={reqUser}
+					userID={pb.userID}
 					game={pb.game}
 					playtype={pb.playtype}
 					scoreState={scoreState}
 				/>
 			}
-			
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<DifficultyCell game={pb.game} chart={pb.__related.chart} />

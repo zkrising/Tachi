@@ -94,7 +94,7 @@ function Row({
 			dropdown={
 				<GenericPBDropdown
 					chart={data}
-					reqUser={reqUser}
+					userID={score.userID}
 					game={game}
 					playtype={data.playtype}
 					scoreState={scoreState}

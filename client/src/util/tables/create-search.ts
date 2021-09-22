@@ -47,6 +47,7 @@ export function CreateDefaultPBSearchParams<I extends IDStrings = IDStrings>(
 		percent: x => x.scoreData.percent,
 		ranking: x => x.rankingData.rank,
 		highlight: x => !!x.highlight,
+		username: x => x.__related.user?.username ?? null,
 		lamp: {
 			valueGetter: x => [x.scoreData.lamp, x.scoreData.lampIndex],
 			strToNum: HumanFriendlyStrToLampIndex(game, playtype),

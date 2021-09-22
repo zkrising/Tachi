@@ -136,3 +136,20 @@ export interface RecentClassesReturn {
 	classes: ClassAchievementDocument[];
 	users: PublicUserDocument[];
 }
+
+export interface SongsReturn<I extends IDStrings = IDStrings> {
+	song: SongDocument<IDStringToGame[I]>;
+	charts: ChartDocument<I>[];
+}
+
+export interface ChartPBLeaderboardReturn<I extends IDStrings = IDStrings> {
+	users: PublicUserDocument[];
+	pbs: PBScoreDocument<I>[];
+}
+
+export interface UGPTChartLeaderboardAdjacent<I extends IDStrings = IDStrings> {
+	users: PublicUserDocument[];
+	pb: PBScoreDocument<I>;
+	adjacentAbove: PBScoreDocument<I>[];
+	adjacentBelow: PBScoreDocument<I>[];
+}

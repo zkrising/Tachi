@@ -1,5 +1,11 @@
 import React from "react";
-import { Game, IDStrings, ScoreCalculatedDataLookup, ScoreDocument } from "tachi-common";
+import {
+	Game,
+	IDStrings,
+	PBScoreDocument,
+	ScoreCalculatedDataLookup,
+	ScoreDocument,
+} from "tachi-common";
 import { GamePT } from "types/react";
 import BMSScoreCoreCells from "./BMSScoreCoreCells";
 import GenericScoreCoreCells from "./GenericScoreCoreCells";
@@ -12,7 +18,7 @@ export default function ScoreCoreCells({
 	score,
 	rating,
 }: {
-	score: ScoreDocument;
+	score: ScoreDocument | PBScoreDocument;
 	rating: ScoreCalculatedDataLookup[IDStrings];
 	game: Game;
 }) {

@@ -1,7 +1,7 @@
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
-import { integer, Playtypes, PublicUserDocument, ScoreCalculatedDataLookup } from "tachi-common";
+import { integer, Playtypes, ScoreCalculatedDataLookup } from "tachi-common";
 import { ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import { NumericSOV, StrSOV } from "util/sorts";
@@ -108,7 +108,6 @@ function Row({
 
 	return (
 		<DropdownRow
-			
 			dropdown={
 				<IIDXScoreDropdown
 					chart={sc.__related.chart}

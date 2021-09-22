@@ -1,13 +1,13 @@
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
+import { UserContext } from "context/UserContext";
 import { nanoid } from "nanoid";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { PublicUserDocument, ScoreCalculatedDataLookup } from "tachi-common";
-import { FormatDifficulty } from "tachi-common/js/utils/util";
 import { PBDataset } from "types/tables";
 import { IsNullish } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
-import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { CreateDefaultPBSearchParams } from "util/tables/create-search";
+import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
 import DeltaCell from "../cells/DeltaCell";
 import DifficultyCell from "../cells/DifficultyCell";
 import IIDXLampCell from "../cells/IIDXLampCell";
@@ -17,36 +17,40 @@ import RankingCell from "../cells/RankingCell";
 import ScoreCell from "../cells/ScoreCell";
 import TimestampCell from "../cells/TimestampCell";
 import TitleCell from "../cells/TitleCell";
+import UserCell from "../cells/UserCell";
 import DropdownRow from "../components/DropdownRow";
 import SelectableRating from "../components/SelectableRating";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
 import IIDXPBDropdown from "../dropdowns/IIDXPBDropdown";
-import IndicatorHeader from "../headers/IndicatorHeader";
 
 export default function IIDXPBTable({
 	dataset,
 	indexCol = true,
 	showPlaycount = false,
-	reqUser,
+	showUser = false,
+	showChart = true,
 	alg,
 	playtype,
 }: {
 	dataset: PBDataset<"iidx:SP" | "iidx:DP">;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
-	reqUser: PublicUserDocument;
+	showUser?: boolean;
+	showChart?: boolean;
 	alg?: ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"];
 	playtype: "SP" | "DP";
 }) {
 	const defaultRating = useScoreRatingAlg<"iidx:SP" | "iidx:DP">("iidx", playtype);
+
+	console.log(alg, defaultRating);
 
 	const [rating, setRating] = useState<ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"]>(
 		alg ?? defaultRating
 	);
 
 	const headers: Header<PBDataset<"iidx:SP" | "iidx:DP">[0]>[] = [
-		[
+		...GetPBLeadingHeaders(showUser, showChart, [
 			"Chart",
 			"Chart",
 			NumericSOV(
@@ -55,9 +59,7 @@ export default function IIDXPBTable({
 					x.__related.chart.tierlistInfo["kt-HC"]?.value ??
 					x.__related.chart.levelNum
 			),
-		],
-		IndicatorHeader,
-		["Song", "Song", StrSOV(x => x.__related.song.title)],
+		]),
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
 		["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
@@ -69,7 +71,7 @@ export default function IIDXPBTable({
 				<SelectableRating<"iidx:SP" | "iidx:DP">
 					key={nanoid()}
 					game="iidx"
-					playtype="SP"
+					playtype={playtype}
 					rating={rating}
 					setRating={setRating}
 					{...thProps}
@@ -84,9 +86,15 @@ export default function IIDXPBTable({
 		headers.push(["Playcount", "Plays", NumericSOV(x => x.__playcount ?? 0)]);
 	}
 
+	// if (hideRankingCell) {
+
+	// }
+
 	if (indexCol) {
 		headers.unshift(["#", "#", NumericSOV(x => x.__related.index)]);
 	}
+
+	const { user } = useContext(UserContext);
 
 	return (
 		<TachiTable
@@ -99,10 +107,12 @@ export default function IIDXPBTable({
 				<Row
 					pb={pb}
 					key={`${pb.chartID}:${pb.userID}`}
-					reqUser={reqUser}
 					showPlaycount={showPlaycount}
 					indexCol={indexCol}
 					rating={rating}
+					showUser={showUser}
+					showChart={showChart}
+					user={user}
 				/>
 			)}
 		/>
@@ -112,24 +122,29 @@ export default function IIDXPBTable({
 function Row({
 	pb,
 	indexCol,
-	reqUser,
 	rating,
 	showPlaycount,
+	showChart,
+	showUser,
+	user,
 }: {
 	pb: PBDataset<"iidx:SP" | "iidx:DP">[0];
 	indexCol: boolean;
-	reqUser: PublicUserDocument;
 	showPlaycount: boolean;
+	showUser: boolean;
+	showChart: boolean;
 	rating: ScoreCalculatedDataLookup["iidx:SP"];
+	user: PublicUserDocument | null;
 }) {
 	const scoreState = usePBState(pb);
 
 	return (
 		<DropdownRow
+			className={pb.userID === user?.id ? "highlighted-row" : ""}
 			dropdown={
 				<IIDXPBDropdown
 					chart={pb.__related.chart}
-					reqUser={reqUser}
+					userID={pb.userID}
 					game="iidx"
 					playtype={pb.playtype}
 					scoreState={scoreState}
@@ -137,9 +152,27 @@ function Row({
 			}
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
-			<DifficultyCell chart={pb.__related.chart} game={"iidx"} />
-			<IndicatorsCell highlight={scoreState.highlight} />
-			<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="iidx" />
+			{showUser && showChart && (
+				<>
+					<UserCell game="iidx" playtype={pb.playtype} user={pb.__related.user!} />
+					<DifficultyCell chart={pb.__related.chart} game={"iidx"} />
+					<IndicatorsCell highlight={scoreState.highlight} />
+					<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="iidx" />
+				</>
+			)}
+			{showUser && !showChart && (
+				<>
+					<IndicatorsCell highlight={scoreState.highlight} />
+					<UserCell game="iidx" playtype={pb.playtype} user={pb.__related.user!} />
+				</>
+			)}
+			{!showUser && showChart && (
+				<>
+					<DifficultyCell chart={pb.__related.chart} game={"iidx"} />
+					<IndicatorsCell highlight={scoreState.highlight} />
+					<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="iidx" />
+				</>
+			)}
 			<ScoreCell score={pb} />
 			<DeltaCell
 				game="iidx"

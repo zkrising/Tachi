@@ -11,23 +11,25 @@ import SDVXPBTable from "./SDVXPBTable";
 export default function PBTable({
 	dataset,
 	indexCol = true,
-	reqUser,
 	playtype,
 	showPlaycount,
 	game,
 	alg,
+	showChart = true,
+	showUser = false,
 }: {
 	dataset: PBDataset;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
-	reqUser: PublicUserDocument;
 	alg?: ScoreCalculatedDataLookup[IDStrings];
+	showChart?: boolean;
+	showUser?: boolean;
 } & GamePT) {
 	// We're just going to ignore all these errors
 	// and assume we just won't make a mistake.
 	// ever.
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const props = { dataset, indexCol, reqUser, playtype, showPlaycount, alg } as any;
+	const props = { dataset, indexCol, playtype, showPlaycount, alg, showChart, showUser } as any;
 
 	if (game === "iidx") {
 		return <IIDXPBTable {...props} />;

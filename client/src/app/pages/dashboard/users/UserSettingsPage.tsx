@@ -114,7 +114,7 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 					id="contentiousContent"
 					checked={formik.values.contentiousContent}
 					onChange={formik.handleChange}
-					label="Contentious Content"
+					label="Family Unfriendly Mode"
 				/>
 				<Form.Text>
 					Show slightly less appropriate splash texts in certain places.

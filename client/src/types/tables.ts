@@ -10,7 +10,12 @@ import {
 } from "tachi-common";
 
 export type PBDataset<I extends IDStrings = IDStrings> = (PBScoreDocument<I> & {
-	__related: { chart: ChartDocument<I>; song: SongDocument<IDStringToGame[I]>; index: integer };
+	__related: {
+		chart: ChartDocument<I>;
+		song: SongDocument<IDStringToGame[I]>;
+		index: integer;
+		user?: PublicUserDocument;
+	};
 	__playcount?: integer;
 })[];
 
@@ -27,6 +32,12 @@ export type FolderDataset<I extends IDStrings = IDStrings> = (ChartDocument<I> &
 	__related: {
 		pb: PBScoreDocument<I> | null;
 		song: SongDocument<IDStringToGame[I]>;
+		user: PublicUserDocument;
+	};
+})[];
+
+export type ChartLeaderboardDataset<I extends IDStrings = IDStrings> = (PBScoreDocument<I> & {
+	__related: {
 		user: PublicUserDocument;
 	};
 })[];

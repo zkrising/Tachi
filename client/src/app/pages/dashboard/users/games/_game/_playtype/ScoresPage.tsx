@@ -193,7 +193,6 @@ function PBsOverview({
 						{...{ isLoading, error, dataset: data }}
 					>
 						<PBTable
-							reqUser={reqUser}
 							dataset={data!}
 							game={game}
 							showPlaycount={showPlaycount}
@@ -276,7 +275,6 @@ function PBsSearch({
 	return (
 		<LoadingWrapper style={{ height: 500 }} {...{ isLoading, error, dataset: data }}>
 			<PBTable
-				reqUser={reqUser}
 				indexCol={false}
 				dataset={data!}
 				game={game}

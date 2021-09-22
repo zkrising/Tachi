@@ -1,5 +1,3 @@
-import { IDStrings } from "tachi-common";
-
 export const neutralSplashes = ["A Rhythm Game Score Manager", "The Rhythm Game Score Manager"];
 
 export const loggedInSplashes = [

@@ -68,7 +68,6 @@ function Row({
 
 	return (
 		<DropdownRow
-			
 			dropdown={
 				<GenericScoreDropdown
 					chart={sc.__related.chart}

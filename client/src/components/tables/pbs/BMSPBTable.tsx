@@ -36,12 +36,10 @@ export default function BMSPBTable({
 	dataset,
 	indexCol = true,
 	showPlaycount = false,
-	reqUser,
 	playtype,
 }: {
 	dataset: PBDataset<"bms:7K" | "bms:14K">;
 	indexCol?: boolean;
-	reqUser: PublicUserDocument;
 	showPlaycount?: boolean;
 	playtype: "7K" | "14K";
 }) {
@@ -110,7 +108,6 @@ export default function BMSPBTable({
 				<Row
 					pb={pb}
 					key={`${pb.chartID}:${pb.userID}`}
-					reqUser={reqUser}
 					showPlaycount={showPlaycount}
 					indexCol={indexCol}
 				/>
@@ -122,13 +119,11 @@ export default function BMSPBTable({
 function Row({
 	pb,
 	indexCol,
-	reqUser,
 	showPlaycount,
 }: {
 	pb: PBDataset<"bms:7K" | "bms:14K">[0];
 	indexCol: boolean;
 	showPlaycount: boolean;
-	reqUser: PublicUserDocument;
 }) {
 	const scoreState = usePBState(pb);
 
@@ -137,7 +132,7 @@ function Row({
 			dropdown={
 				<GenericPBDropdown
 					chart={pb.__related.chart}
-					reqUser={reqUser}
+					userID={pb.userID}
 					game={pb.game}
 					playtype={pb.playtype}
 					scoreState={scoreState}

@@ -1,23 +1,18 @@
+import ApiError from "components/util/ApiError";
 import DebugContent from "components/util/DebugContent";
+import HasDevModeOn from "components/util/HasDevModeOn";
 import Icon from "components/util/Icon";
-import SelectButton from "components/util/SelectButton";
-import React, { useContext, useMemo, useState } from "react";
-import DropdownStructure from "./components/DropdownStructure";
-import {
-	PublicUserDocument,
-	ChartDocument,
-	ScoreDocument,
-	PBScoreDocument,
-	IDStrings,
-} from "tachi-common";
-import { GamePT, SetState } from "types/react";
-import { UGPTChartPBComposition } from "types/api-returns";
 import Loading from "components/util/Loading";
+import useApiQuery from "components/util/query/useApiQuery";
+import SelectButton from "components/util/SelectButton";
+import { UserSettingsContext } from "context/UserSettingsContext";
+import React, { useContext, useMemo, useState } from "react";
+import { ChartDocument, IDStrings, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { UGPTChartPBComposition } from "types/api-returns";
+import { GamePT, SetState } from "types/react";
+import DropdownStructure from "./components/DropdownStructure";
 import GenericScoreContentDropdown from "./components/GenericScoreContentDropdown";
 import PlayHistory from "./components/PlayHistory";
-import useApiQuery from "components/util/query/useApiQuery";
-import { UserSettingsContext } from "context/UserSettingsContext";
-import HasDevModeOn from "components/util/HasDevModeOn";
 
 export interface ScoreState {
 	highlight: boolean;
@@ -33,13 +28,13 @@ export interface ScoreDropdownProps<I extends IDStrings = IDStrings> {
 export default function GenericPBDropdown<I extends IDStrings = IDStrings>({
 	game,
 	playtype,
-	reqUser,
 	chart,
 	scoreState,
 	defaultView = "pb",
+	userID,
 	DocComponent = GenericScoreContentDropdown,
 }: {
-	reqUser: PublicUserDocument;
+	userID: integer;
 	chart: ChartDocument;
 	scoreState: ScoreState;
 	defaultView?: "pb" | "scorePB" | "lampPB" | "history" | "debug";
@@ -55,12 +50,12 @@ export default function GenericPBDropdown<I extends IDStrings = IDStrings>({
 	const [view, setView] = useState(defaultView);
 
 	const { isLoading, error, data } = useApiQuery<UGPTChartPBComposition<I>>(
-		`/users/${reqUser.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
+		`/users/${userID}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
 	);
 
 	const { isLoading: histIsLoading, error: histError, data: histData } = useApiQuery<
 		ScoreDocument<I>[]
-	>(`/users/${reqUser.id}/games/${game}/${playtype}/scores/${chart.chartID}`);
+	>(`/users/${userID}/games/${game}/${playtype}/scores/${chart.chartID}`);
 
 	const currentScoreDoc: ScoreDocument<I> | PBScoreDocument<I> | null = useMemo(() => {
 		if (!data) {
@@ -73,7 +68,7 @@ export default function GenericPBDropdown<I extends IDStrings = IDStrings>({
 				// scores have more information than PBs.
 				// In this case, the PB is only composed of one score,
 				// so we should default to this instead.
-				return data.scores[0];
+				return data.scores.filter(e => e.scoreID === data.pb.composedFrom.lampPB)[0];
 			}
 			return data.pb;
 		}
@@ -89,7 +84,7 @@ export default function GenericPBDropdown<I extends IDStrings = IDStrings>({
 	}, [view, data]);
 
 	if (error) {
-		return <>An error has occured. Whoops.</>;
+		return <ApiError error={error} />;
 	}
 
 	if (isLoading || !data) {

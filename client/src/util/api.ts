@@ -48,9 +48,9 @@ export async function APIFetchV1<T = unknown>(
 		const rj = await res.json();
 
 		if (!rj.success) {
-			console.error(rj);
+			console.warn(rj);
 		} else {
-			console.log(rj.description);
+			console.debug(rj.description);
 		}
 
 		if (!rj.success && displayFailure) {

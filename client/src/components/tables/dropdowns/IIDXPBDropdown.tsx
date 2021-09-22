@@ -1,5 +1,11 @@
 import React from "react";
-import { ChartDocument, PBScoreDocument, PublicUserDocument, ScoreDocument } from "tachi-common";
+import {
+	ChartDocument,
+	integer,
+	PBScoreDocument,
+	PublicUserDocument,
+	ScoreDocument,
+} from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import DropdownScoreButtons from "./components/DropdownScoreButtons";
@@ -10,11 +16,11 @@ import GenericPBDropdown, { ScoreState } from "./GenericPBDropdown";
 export default function IIDXPBDropdown({
 	game,
 	playtype,
-	reqUser,
 	chart,
 	scoreState,
+	userID,
 }: {
-	reqUser: PublicUserDocument;
+	userID: integer;
 	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
 	scoreState: {
 		highlight: boolean;
@@ -23,7 +29,7 @@ export default function IIDXPBDropdown({
 } & GamePT) {
 	return (
 		<GenericPBDropdown
-			{...{ game, playtype, chart, reqUser, scoreState }}
+			{...{ game, playtype, chart, userID, scoreState }}
 			DocComponent={DocumentDisplay}
 		/>
 	);

@@ -24,21 +24,21 @@ export interface DetailedSongResponse {
 	charts: ChartDocument[];
 }
 
-export const getChartMeta = async (chartName: string): Promise<SongSearchResult[]> => {
+export const getSongMeta = async (songName: string): Promise<SongSearchResult[]> => {
 	try {
-		logger.info(`Searching for ${chartName}`);
-		const chartResponse = (
+		logger.info(`Searching for ${songName}`);
+		const songResponse = (
 			await TachiServerV1Get<SearchResult>("/search", {
-				search: chartName
+				search: songName
 			})
 		).body?.songs;
 
-		if (chartResponse && chartResponse.length > 0) {
-			logger.info(`${chartResponse.length} values found`);
-			return chartResponse;
+		if (songResponse && songResponse.length > 0) {
+			logger.info(`${songResponse.length} values found`);
+			return songResponse;
 		} else {
-			logger.error(`No results found for ${chartName}`);
-			throw new Error(`No results found for ${chartName}`);
+			logger.error(`No results found for ${songName}`);
+			throw new Error(`No results found for ${songName}`);
 		}
 	} catch (e) {
 		logger.error(e);
@@ -46,32 +46,32 @@ export const getChartMeta = async (chartName: string): Promise<SongSearchResult[
 	}
 };
 
-export const getChartMetaFiltered = async (chartName: string, game: Game): Promise<SongSearchResult[]> => {
+export const getSongMetaFiltered = async (chartName: string, game: Game): Promise<SongSearchResult[]> => {
 	try {
-		const chartMeta = await getChartMeta(chartName);
-		const chartMetaFiltered = chartMeta.filter((chart) => chart.game === game);
-		if (chartMetaFiltered.length === 0) {
-			logger.info("No charts found");
+		const songMeta = await getSongMeta(chartName);
+		const songMetaFiltered = songMeta.filter((chart) => chart.game === game);
+		if (songMetaFiltered.length === 0) {
+			logger.info("No songs found");
 
-			throw new Error("No charts found");
+			throw new Error("No songs found");
 		}
 
-		return chartMetaFiltered;
+		return songMetaFiltered;
 	} catch (e) {
 		logger.info(e);
 
-		throw new Error("No charts found");
+		throw new Error("No songs found");
 	}
 };
 
-export const getDetailedChartData = async <T extends Game>(
-	chartId: string,
+export const getDetailedSongData = async <T extends Game>(
+	songId: string,
 	playtype: Playtypes[T],
 	game: Game
 ): Promise<DetailedSongResponse> => {
 	try {
-		logger.info(`Getting detailed info for ${chartId} (${game}:${playtype})`);
-		const data = await TachiServerV1Get<DetailedSongResponse>(`/games/${game}/${playtype}/songs/${chartId}`);
+		logger.info(`Getting detailed info for ${songId} (${game}:${playtype})`);
+		const data = await TachiServerV1Get<DetailedSongResponse>(`/games/${game}/${playtype}/songs/${songId}`);
 		if (data.success) {
 			return data.body;
 		} else {
@@ -80,24 +80,24 @@ export const getDetailedChartData = async <T extends Game>(
 		}
 	} catch (e) {
 		logger.info(e);
-		throw new Error("Unable to fetch detailed chart data");
+		throw new Error("Unable to fetch detailed song data");
 	}
 };
 
-export const searchForChart = async (interaction: CommandInteraction): Promise<void> => {
-	const chartName = interaction.options.getString("chart", true);
+export const searchForSong = async (interaction: CommandInteraction): Promise<void> => {
+	const songName = interaction.options.getString("song", true);
 	const gpt = stringToSimpleGameType(interaction.options.getString("game", true));
 	const game = gpt.game;
 	const playtype = gpt.playtype;
 
 	try {
-		logger.info(`Requested ${chartName} in ${game}`);
+		logger.info(`Requested ${songName} in ${game}`);
 
-		const chartMetaFiltered = await getChartMetaFiltered(chartName, game);
+		const songMetaFiltered = await getSongMetaFiltered(songName, game);
 
-		await interaction.reply(await buildChartEmbed({ searchResults: chartMetaFiltered, playtype, game }));
+		await interaction.reply(await buildChartEmbed({ searchResults: songMetaFiltered, playtype, game }));
 	} catch (e) {
-		await interaction.reply(`No results found for ${chartName}`);
+		await interaction.reply(`No results found for ${songName}`);
 		logger.error(e);
 	}
 };

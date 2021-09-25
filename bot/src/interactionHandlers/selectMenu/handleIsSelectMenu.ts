@@ -9,7 +9,7 @@ import { stringToSimpleGameType } from "../../utils/utils";
 const logger = createLayeredLogger(LoggerLayers.selectInteractionHandler);
 
 export enum validSelectCustomIdPrefaces {
-	SelectChartForSearch = "SelectChartForSearch",
+	selectSongForSearch = "selectSongForSearch",
 	SelectGameForProfile = "SelectGameForProfile"
 }
 
@@ -19,7 +19,7 @@ export const selectHandlers: SelectHandlersType = {
 		const userId = interaction.customId.split(":")[1];
 		await interaction.update(await buildProfileIntractable(userId, stringToSimpleGameType(interaction.values[0])));
 	},
-	[validSelectCustomIdPrefaces.SelectChartForSearch]: async <T extends Game>(
+	[validSelectCustomIdPrefaces.selectSongForSearch]: async <T extends Game>(
 		interaction: SelectMenuInteraction
 	): Promise<void> => {
 		const interactionValues = interaction.values[0].split(":");

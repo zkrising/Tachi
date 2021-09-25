@@ -2,19 +2,20 @@ import { InteractionReplyOptions, MessageActionRow, MessageEmbed, MessagePayload
 import { Game, Playtypes } from "tachi-common";
 import { LoggerLayers } from "../config";
 import { validSelectCustomIdPrefaces } from "../interactionHandlers/selectMenu/handleIsSelectMenu";
+import { TachiServerV1Get } from "../utils/fetch-tachi";
 import { createLayeredLogger } from "../utils/logger";
 import { getGameImage } from "../utils/utils";
-import { getDetailedChartData, SongSearchResult } from "./chartSearch";
+import { getDetailedSongData, SongSearchResult } from "./chartSearch";
 
 const logger = createLayeredLogger(LoggerLayers.buildChartEmbed);
 
-export const buildChartsSelect = <T extends Game>(charts: SongSearchResult[], playtype: Playtypes[T], game: Game) => {
+export const buildSongSelect = <T extends Game>(songs: SongSearchResult[], playtype: Playtypes[T], game: Game) => {
 	return new MessageActionRow().addComponents(
 		new MessageSelectMenu()
-			.setCustomId(validSelectCustomIdPrefaces.SelectChartForSearch)
-			.setPlaceholder("Select Chart")
+			.setCustomId(validSelectCustomIdPrefaces.selectSongForSearch)
+			.setPlaceholder("Select Song")
 			.addOptions(
-				charts.map((chart) => {
+				songs.map((chart) => {
 					return {
 						label: `${chart.title} - ${chart.artist}`,
 						value: `${chart.id}:${playtype}:${game}`
@@ -37,10 +38,10 @@ export const buildChartEmbed = async <T extends Game>(args: {
 
 		if (!songId && searchResults) {
 			embed.addField(`${searchResults.length} potential results found`, "Select from the dropdown");
-			return { embeds: [embed], components: [buildChartsSelect(searchResults, playtype, game)] };
+			return { embeds: [embed], components: [buildSongSelect(searchResults, playtype, game)] };
 		} else if (songId) {
-			const details = await getDetailedChartData(songId, playtype, game);
-			embed.addField(details.song.title || "Chart", details.song.artist || "Artist");
+			const details = await getDetailedSongData(songId, playtype, game);
+			embed.addField(details.song.title || "Song", details.song.artist || "Artist");
 			embed.setThumbnail(getGameImage(details.song.firstVersion || "0", game));
 
 			const sortedCharts = details.charts.sort((a, b) => a.levelNum - b.levelNum);

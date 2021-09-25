@@ -3,13 +3,13 @@ import { REST } from "@discordjs/rest";
 import { APIApplicationCommandOption } from "discord-api-types";
 import { Routes } from "discord-api-types/v9";
 import { Client, CommandInteraction } from "discord.js";
-import { searchForChart } from "../chartSearch/chartSearch";
+import { searchForSong } from "../chartSearch/chartSearch";
 import { getProfileByName } from "../profile/fetch";
 import { ProcessEnv } from "../setup";
 import { LoggerLayers } from "../config";
 import { help } from "../help/help";
 import { createLayeredLogger } from "../utils/logger";
-import { gamesToChoicesObject, gamesToGenericChoicesObject } from "../utils/utils";
+import { gamesToChoicesObject } from "../utils/utils";
 
 const logger = createLayeredLogger(LoggerLayers.slashCommands);
 
@@ -46,9 +46,9 @@ export const slashCommands: SlashCommand[] = [
 			.addStringOption((option) =>
 				option.setName("game").setDescription("The Game").setRequired(true).addChoices(gamesToChoicesObject())
 			)
-			.addStringOption((option) => option.setName("chart").setDescription("The chart name").setRequired(true))
+			.addStringOption((option) => option.setName("song").setDescription("The song name").setRequired(true))
 			.toJSON(),
-		exec: async (interaction: CommandInteraction) => await searchForChart(interaction)
+		exec: async (interaction: CommandInteraction) => await searchForSong(interaction)
 	}
 ];
 

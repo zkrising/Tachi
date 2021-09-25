@@ -29,7 +29,6 @@ export const getPfpUrl = (userId: number): string => {
 	return PrependTachiUrl(`/users/${userId}/pfp`);
 };
 
-/** @TODO @zkldi is there somewhere this exists already? */
 export const gameIdentifierStrings = [
 	"iidx:SP",
 	"iidx:DP",
@@ -57,7 +56,6 @@ export const formatGameScoreRating = <I extends IDStrings = IDStrings>(
 	value: number
 ): string => {
 	const gptConfig = GetGamePTConfig(gpt.game, gpt.playtype);
-	/** @TODO UGSRatingsLookup should be able to cast to ScoreCalculatedDataLookup straight up */
 	const val = gptConfig.profileRatingAlgFormatters[ratingName];
 	if (val) {
 		return val(value);

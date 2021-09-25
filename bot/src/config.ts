@@ -10,5 +10,7 @@ export enum LoggerLayers {
 	tachiFetch = "tachiFetch",
 	profile = "profile",
 	selectInteractionHandler = "selectInteractionHandler",
-	buildProfileEmbed = "buildProfileEmbed"
+	buildProfileEmbed = "buildProfileEmbed",
+	chartSearch = "chartSearch",
+	buildChartEmbed = "buildChartEmbed"
 }

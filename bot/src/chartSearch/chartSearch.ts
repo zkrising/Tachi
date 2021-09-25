@@ -51,8 +51,6 @@ export const getSongMetaFiltered = async (chartName: string, game: Game): Promis
 		const songMeta = await getSongMeta(chartName);
 		const songMetaFiltered = songMeta.filter((chart) => chart.game === game);
 		if (songMetaFiltered.length === 0) {
-			logger.info("No songs found");
-
 			throw new Error("No songs found");
 		}
 

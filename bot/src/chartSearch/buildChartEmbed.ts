@@ -60,7 +60,7 @@ export const getPBForChart = async <T extends Game>(
 			throw new Error(data.description);
 		}
 	} catch (e) {
-		logger.info(e);
+		logger.error(e);
 
 		throw new Error("Unable to fetch PBs for chart");
 	}

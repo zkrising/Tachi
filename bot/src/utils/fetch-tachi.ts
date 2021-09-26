@@ -1,3 +1,4 @@
+import axios from "axios";
 import { LoggerLayers } from "../config";
 import { BotConfig } from "../setup";
 import { integer, SuccessfulAPIResponse, UnsuccessfulAPIResponse } from "tachi-common";
@@ -5,14 +6,16 @@ import { createLayeredLogger } from "./logger";
 
 const logger = createLayeredLogger(LoggerLayers.tachiFetch);
 
-export type APIResponse<T> = (SuccessfulAPIResponse<T> | UnsuccessfulAPIResponse) & { statusCode: integer };
+export type APIResponse<T> = (SuccessfulAPIResponse<T> | (UnsuccessfulAPIResponse & { body: null })) & {
+	statusCode: integer;
+};
 
 export enum RequestTypes {
 	GET = "GET",
 	POST = "POST",
 	PATCH = "PATCH",
 	PUT = "PUT",
-	DELETE = "DELETE",
+	DELETE = "DELETE"
 	// HEAD, OPTIONS not used by tachi-server anywhere.
 }
 
@@ -24,22 +27,26 @@ export enum RequestTypes {
  * @param body - Optionally, provide some content for the request body.
  * @param T - A generic that asserts the type of the response contents. Defaults to unknown.
  */
-export async function TachiServerV1Request<T>(method: Exclude<RequestTypes, RequestTypes.GET>, url: string, body: unknown = {}): Promise<APIResponse<T>> {
+export async function TachiServerV1Request<T>(
+	method: Exclude<RequestTypes, RequestTypes.GET>,
+	url: string,
+	body: unknown = {}
+): Promise<APIResponse<T>> {
 	const realUrl = PrependTachiUrl(url, "1");
 	const loggerUrl = `${method} ${realUrl}`;
 
 	logger.debug(`Making a request to ${loggerUrl}.`);
 
 	try {
-		const res = await fetch(realUrl, {
+		const res = await axios(realUrl, {
 			method,
 			headers: {
 				"Content-Type": "application/json"
 			},
-			body: JSON.stringify(body)
+			data: JSON.stringify(body)
 		});
 
-		const json = await res.json();
+		const json = (await res.data) as APIResponse<T>;
 		const contents = { ...json, statusCode: res.status };
 
 		LogRequestResult(loggerUrl, contents);
@@ -60,14 +67,17 @@ export async function TachiServerV1Request<T>(method: Exclude<RequestTypes, Requ
  * @param params - Any URL params for this request.
  * @param T - A generic that asserts the type of the response contents. Defaults to unknown.
  */
-export async function TachiServerV1Get<T = unknown>(url: string, params: Record<string, string> = {}): Promise<APIResponse<T>> {
+export async function TachiServerV1Get<T = unknown>(
+	url: string,
+	params: Record<string, string> = {}
+): Promise<APIResponse<T>> {
 	try {
 		const urlParams = new URLSearchParams(params);
 
 		const realUrl = `${PrependTachiUrl(url, "1")}?${urlParams.toString()}`;
 
-		const res = await fetch(realUrl);
-		const json = await res.json();
+		const res = await axios(realUrl, { method: RequestTypes.GET });
+		const json = (await res.data) as APIResponse<T>;
 		const contents = { ...json, statusCode: res.status };
 
 		LogRequestResult(`GET ${realUrl}`, contents);

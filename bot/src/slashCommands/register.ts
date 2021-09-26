@@ -3,10 +3,12 @@ import { REST } from "@discordjs/rest";
 import { APIApplicationCommandOption } from "discord-api-types";
 import { Routes } from "discord-api-types/v9";
 import { Client, CommandInteraction } from "discord.js";
+import { getProfileByName } from "../profile/fetch";
 import { ProcessEnv } from "../setup";
 import { LoggerLayers } from "../config";
 import { help } from "../commands/help/help";
 import { createLayeredLogger } from "../utils/logger";
+import { gamesToChoicesObject } from "../utils/utils";
 
 const logger = createLayeredLogger(LoggerLayers.slashCommands);
 
@@ -23,6 +25,18 @@ export const slashCommands: SlashCommand[] = [
 	{
 		info: new SlashCommandBuilder().setName("help").setDescription("Shows information about this bot").toJSON(),
 		exec: async (interaction: CommandInteraction) => await help(interaction)
+	},
+	{
+		info: new SlashCommandBuilder()
+			.setName("profile")
+			.setDescription("Displays a Kamaitachi Profile")
+			/** @TODO Make this optional once we have a fallback */
+			.addStringOption((option) => option.setName("user").setDescription("The users id").setRequired(true))
+			.addStringOption((option) =>
+				option.setName("game").setDescription("The Game").setRequired(false).addChoices(gamesToChoicesObject())
+			)
+			.toJSON(),
+		exec: async (interaction: CommandInteraction) => await getProfileByName(interaction)
 	}
 ];
 

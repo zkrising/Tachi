@@ -1,9 +1,10 @@
 import { Client, Intents } from "discord.js";
+import { handleIsCommand } from "./interactionHandlers/command/handleIsCommand";
+import { handleIsSelectMenu } from "./interactionHandlers/selectMenu/handleIsSelectMenu";
 import { ProcessEnv } from "./setup";
 import { LoggerLayers } from "./config";
-import { registerSlashCommands, slashCommands, SlashCommand } from "./slashCommands/register";
+import { registerSlashCommands } from "./slashCommands/register";
 import { createLayeredLogger } from "./utils/logger";
-
 
 const logger = createLayeredLogger(LoggerLayers.client);
 
@@ -12,16 +13,13 @@ const client = new Client({
 });
 
 client.on("interactionCreate", async (interaction) => {
-	if (!interaction.isCommand()) return;
-
 	try {
-		const command = slashCommands.find((command: SlashCommand) => {
-			return command.info.name === interaction.commandName;
-		});
+		if (interaction.isSelectMenu()) {
+			return await handleIsSelectMenu(interaction);
+		}
 
-		if (command && command.exec) {
-			logger.info(`Running ${command.info.name} interaction`);
-			command.exec(interaction);
+		if (interaction.isCommand()) {
+			return await handleIsCommand(interaction);
 		}
 	} catch (e) {
 		logger.error("Failed to run interaction");
@@ -38,7 +36,9 @@ client.on("interactionCreate", async (interaction) => {
 		await client.login(ProcessEnv.DISCORD_TOKEN);
 		logger.info(`Logged in successfully to ${client.guilds.cache.size} guilds`);
 		logger.info(
-			`Invite URL: https://discord.com/api/oauth2/authorize?client_id=${client.application!.id}&permissions=8&scope=applications.commands%20bot`
+			`Invite URL: https://discord.com/api/oauth2/authorize?client_id=${
+				client.application!.id
+			}&permissions=8&scope=applications.commands%20bot`
 		);
 
 		await registerSlashCommands(client);

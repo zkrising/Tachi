@@ -12,5 +12,6 @@ export enum LoggerLayers {
 	selectInteractionHandler = "selectInteractionHandler",
 	buildProfileEmbed = "buildProfileEmbed",
 	chartSearch = "chartSearch",
-	buildChartEmbed = "buildChartEmbed"
+	buildChartEmbed = "buildChartEmbed",
+	tachiLinker = "tachiLinker"
 }

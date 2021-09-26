@@ -7,7 +7,7 @@ import { searchForSong } from "../chartSearch/chartSearch";
 import { getProfileByName } from "../profile/fetch";
 import { ProcessEnv } from "../setup";
 import { LoggerLayers } from "../config";
-import { help } from "../help/help";
+import { help } from "../commands/help/help";
 import { createLayeredLogger } from "../utils/logger";
 import { gamesToChoicesObject } from "../utils/utils";
 

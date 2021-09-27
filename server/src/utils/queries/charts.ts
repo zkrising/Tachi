@@ -124,7 +124,7 @@ export function FindIIDXChartOnInGameID(
 ) {
 	return db.charts.iidx.findOne({
 		"data.inGameID": inGameID,
-		"flags.2dxtra": false,
+		"data.2dxtraSet": null,
 		isPrimary: true,
 		playtype,
 		difficulty,
@@ -143,7 +143,7 @@ export function FindIIDXChartOnInGameIDVersion(
 ) {
 	return db.charts.iidx.findOne({
 		"data.inGameID": inGameID,
-		"flags.2dxtra": false,
+		"data.2dxtraSet": null,
 		playtype,
 		difficulty,
 		versions: version,

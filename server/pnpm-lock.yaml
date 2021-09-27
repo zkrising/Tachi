@@ -55,7 +55,7 @@ specifiers:
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
   supertest: 6.1.3
-  tachi-common: 0.2.25
+  tachi-common: 0.2.19
   tap: 15.0.9
   ts-node: 10.0.0
   tsconfig-paths: 3.10.1
@@ -91,7 +91,7 @@ dependencies:
   redis: 3.1.2
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
-  tachi-common: 0.2.25
+  tachi-common: 0.2.19
   typescript: 4.3.4
   winston: 3.3.3
   winston-transport: 4.4.0
@@ -2042,6 +2042,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -3552,6 +3553,7 @@ packages:
   /saslprep/1.0.3:
     resolution: {integrity: sha512-/MY/PEMbk2SuY5sScONwhUDsV2p77Znkb/q3nSVstq/yQzYJOH/Azh29p9oJLsl3LnQwSvZDKagDGBsBwSooag==}
     engines: {node: '>=6'}
+    requiresBuild: true
     dependencies:
       sparse-bitfield: 3.0.3
     dev: false
@@ -3908,8 +3910,8 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tachi-common/0.2.25:
-    resolution: {integrity: sha512-FSMwEWWcvP5Vw2heSD6vD7Iz1/lI+bO1HF0+0iURw5Ybj16yJZQ9wBiaIz2hotNweMhlQ73v57tj2TMUmFyG9w==}
+  /tachi-common/0.2.19:
+    resolution: {integrity: sha512-Gy4tr1XmwgpIfJqAKk6PUxTETg+4N00mLrSNBqBwKvRfINBBI6vQ5wp98PHTaCEE8h+dKkv1Uj0u0VnCRrLZig==}
     dependencies:
       monk: 7.3.4
     transitivePeerDependencies:

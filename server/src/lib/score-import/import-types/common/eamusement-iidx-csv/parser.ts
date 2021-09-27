@@ -1,4 +1,3 @@
-import { Difficulties } from "tachi-common";
 import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturns } from "../types";
@@ -128,8 +127,8 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 	const { hasBeginnerAndLegg } = ResolveHeaders(rawHeaders, logger);
 
 	const diffs = hasBeginnerAndLegg
-		? ["beginner", "normal", "hyper", "another", "leggendaria"]
-		: ["normal", "hyper", "another"];
+		? (["beginner", "normal", "hyper", "another", "leggendaria"] as const)
+		: (["normal", "hyper", "another"] as const);
 
 	const iterableData = [];
 
@@ -188,7 +187,7 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 			const di = 5 + d * 7;
 
 			scores.push({
-				difficulty: diff.toUpperCase() as Difficulties["iidx:SP" | "iidx:DP"],
+				difficulty: diff.toUpperCase() as Uppercase<typeof diff>,
 				bp: cells[di + 4],
 				exscore: cells[di + 1],
 				pgreat: cells[di + 2],

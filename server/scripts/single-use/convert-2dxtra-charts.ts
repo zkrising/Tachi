@@ -63,7 +63,7 @@ if (require.main === module) {
 		rootLogger.info(`Removing ${modCharts.length} songs.`);
 
 		await db.songs.iidx.remove({
-			songID: { $in: modCharts.map((e) => e.songID) },
+			id: { $in: modCharts.map((e) => e.songID) },
 		});
 
 		rootLogger.info(`Done.`);

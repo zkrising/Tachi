@@ -4,7 +4,7 @@ import { ChartDocument, IDStrings } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 
 export async function QuickInsert<I extends IDStrings>(
-	base: ChartDocument<I>,
+	base: Omit<ChartDocument<I>, "chartID">,
 	content: Partial<ChartDocument<I>>[],
 	coll: ICollection
 ) {

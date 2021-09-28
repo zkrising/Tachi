@@ -124,7 +124,7 @@ export function FindIIDXChartOnInGameID(
 ) {
 	return db.charts.iidx.findOne({
 		"data.inGameID": inGameID,
-		"flags.2dxtra": false,
+		"data.2dxtraSet": null,
 		isPrimary: true,
 		playtype,
 		difficulty,
@@ -143,7 +143,7 @@ export function FindIIDXChartOnInGameIDVersion(
 ) {
 	return db.charts.iidx.findOne({
 		"data.inGameID": inGameID,
-		"flags.2dxtra": false,
+		"data.2dxtraSet": null,
 		playtype,
 		difficulty,
 		versions: version,
@@ -236,8 +236,6 @@ export function FindChartOnARCID(game: "iidx" | "ddr" | "jubeat" | "sdvx", arcID
  * Returns the N most popular charts for this game + playtype.
  * Popularity is determined by how many scores match in the score
  * collection.
- *
- * Performance of this is untested.
  */
 export function FindChartsOnPopularity(
 	game: Game,

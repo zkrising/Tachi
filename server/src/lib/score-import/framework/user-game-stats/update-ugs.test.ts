@@ -121,6 +121,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 			res,
 			[
 				{
+					game: "iidx",
 					set: "dan",
 					playtype: "SP",
 					old: null,
@@ -174,6 +175,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 			res,
 			[
 				{
+					game: "iidx",
 					set: "dan",
 					playtype: "SP",
 					old: 17,

@@ -343,6 +343,7 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 			res.body.body.classDeltas,
 			[
 				{
+					game: "iidx",
 					set: "dan",
 					playtype: "SP",
 					old: null,
@@ -391,6 +392,7 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 			res.body.body.classDeltas,
 			[
 				{
+					game: "iidx",
 					set: "dan",
 					playtype: "SP",
 					old: null,

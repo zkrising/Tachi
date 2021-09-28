@@ -6,6 +6,8 @@ import { GetRelevantSongsAndCharts } from "utils/db";
 import { FilterChartsAndSongs, GetScoreIDsFromComposed } from "utils/scores";
 import { GetGamePTConfig } from "tachi-common";
 import { IsValidScoreAlg } from "utils/misc";
+import { GetAdjacentAbove, GetAdjacentBelow } from "utils/queries/pbs";
+import { GetUsersWithIDs } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -202,6 +204,61 @@ router.get("/:chartID", async (req, res) => {
 		body: {
 			pb,
 			chart,
+		},
+	});
+});
+
+/**
+ * Return this users PB on this chart, and N nearby players on the
+ * leaderboard.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/:chartID/leaderboard-adjacent
+ */
+router.get("/:chartID/leaderboard-adjacent", async (req, res) => {
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const game = req[SYMBOL_TachiData]!.game!;
+	const playtype = req[SYMBOL_TachiData]!.playtype!;
+
+	const chart = await db.charts[game].findOne({
+		chartID: req.params.chartID,
+		playtype,
+	});
+
+	if (!chart) {
+		return res.status(404).json({
+			success: false,
+			description: `This chart does not exist.`,
+		});
+	}
+
+	const pb = await db["personal-bests"].findOne({
+		chartID: req.params.chartID,
+		userID: user.id,
+	});
+
+	if (!pb) {
+		return res.status(404).json({
+			success: false,
+			description: `This user has not played this chart.`,
+		});
+	}
+
+	const [adjacentAbove, adjacentBelow] = await Promise.all([
+		GetAdjacentAbove(pb),
+		GetAdjacentBelow(pb),
+	]);
+
+	const users = await GetUsersWithIDs([...adjacentAbove, ...adjacentBelow].map((e) => e.userID));
+
+	return res.status(200).json({
+		success: true,
+		description: `Successfully retrieved PB for user.`,
+		body: {
+			pb,
+			chart,
+			adjacentAbove,
+			adjacentBelow,
+			users,
 		},
 	});
 });

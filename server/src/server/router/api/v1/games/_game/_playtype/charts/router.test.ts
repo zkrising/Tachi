@@ -62,7 +62,7 @@ t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 		});
 
 		// gambol has SPB, SPN and SPH
-		t.equal(res.body.body.charts.length, 2);
+		t.equal(res.body.body.charts.length, 1);
 
 		t.end();
 	});

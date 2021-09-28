@@ -1,5 +1,6 @@
 import { Router } from "express";
 import db from "external/mongo/db";
+import { FilterQuery } from "mongodb";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { SearchUsersRegExp } from "lib/search/search";
@@ -7,7 +8,7 @@ import { IsString } from "utils/misc";
 import { ParseStrPositiveNonZeroInt } from "utils/string-checks";
 import { GetUsersWithIDs } from "utils/user";
 import { ValidateAndGetChart } from "./middleware";
-import { FormatChart } from "tachi-common";
+import { FormatChart, FolderDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -46,6 +47,44 @@ router.get("/", async (req, res) => {
 			song,
 			chart,
 		},
+	});
+});
+
+/**
+ * Returns any folders that contain this chart.
+ *
+ * @param inactive - Also include inactive folders.
+ *
+ * @name GET /api/v1/games/:game/:playtype/charts/:chartID/folders
+ */
+router.get("/folders", async (req, res) => {
+	const chart = req[SYMBOL_TachiData]!.chartDoc!;
+
+	const folderIDs = await db["folder-chart-lookup"].find(
+		{
+			chartID: chart.chartID,
+		},
+		{
+			projection: {
+				folderID: 1,
+			},
+		}
+	);
+
+	const query: FilterQuery<FolderDocument> = {
+		folderID: { $in: folderIDs.map((e) => e.folderID) },
+	};
+
+	if (!req.query.inactive) {
+		query.inactive = false;
+	}
+
+	const folders = await db.folders.find(query);
+
+	return res.status(200).json({
+		success: true,
+		description: `Found ${folders.length} folders that contain this chart.`,
+		body: folders,
 	});
 });
 

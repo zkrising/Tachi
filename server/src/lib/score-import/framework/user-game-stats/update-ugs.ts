@@ -6,7 +6,7 @@ import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "tachi-commo
 import db from "external/mongo/db";
 import { CreateGameSettings } from "lib/game-settings/create-game-settings";
 import { KtLogger } from "lib/logger/logger";
-import { CalculateClassDeltas, UpdateUGSClasses } from "./classes";
+import { ProcessClassDeltas, UpdateUGSClasses } from "./classes";
 import { CalculateRatings } from "./rating";
 import { ClassHandler } from "./types";
 
@@ -35,7 +35,7 @@ export async function UpdateUsersGamePlaytypeStats(
 
 	logger.debug(`Calculating Class Deltas...`);
 
-	const deltas = CalculateClassDeltas(playtype, classes, userGameStats, userID, logger);
+	const deltas = await ProcessClassDeltas(game, playtype, classes, userGameStats, userID, logger);
 
 	logger.debug(`Had ${deltas.length} deltas.`);
 

@@ -81,6 +81,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	"user-private-information": [index({ userID: 1 }, UNIQUE), index({ email: 1 }, UNIQUE)],
 	"fer-settings": [index({ userID: 1 }, UNIQUE)],
 	counters: [index({ counterName: 1 }, UNIQUE)],
+	"class-achievements": [index({ game: 1, playtype: 1, timeAchieved: 1 })],
 };
 
 const indexes: Partial<Record<Databases, Index[]>> = staticIndexes;

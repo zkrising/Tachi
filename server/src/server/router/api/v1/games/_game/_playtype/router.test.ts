@@ -11,7 +11,9 @@ t.test("GET /api/v1/games/:game/:playtype", (t) => {
 
 		t.strictSame(res.body.body.config, GetGamePTConfig("iidx", "SP"));
 
-		// something else needs to go here?
+		t.equal(res.body.body.chartCount, 1);
+		t.equal(res.body.body.playerCount, 1);
+		t.equal(res.body.body.scoreCount, 1);
 
 		t.end();
 	});

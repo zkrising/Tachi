@@ -33,6 +33,7 @@ import {
 	integer,
 	FervidexSettingsDocument,
 	OrphanChart,
+	ClassAchievementDocument,
 } from "tachi-common";
 import monk, { TMiddleware } from "monk";
 import CreateLogCtx from "lib/logger/logger";
@@ -177,6 +178,7 @@ const db = {
 	"orphan-chart-queue": monkDB.get<OrphanChart>("orphan-chart-queue"),
 	"password-reset-codes":
 		monkDB.get<{ code: string; userID: integer; createdOn: number }>("password-reset-codes"),
+	"class-achievements": monkDB.get<ClassAchievementDocument>("class-achievements"),
 };
 
 export type StaticDatabases =
@@ -209,7 +211,8 @@ export type StaticDatabases =
 	| "orphan-chart-queue"
 	| "password-reset-codes"
 	| "user-settings"
-	| "counters";
+	| "counters"
+	| "class-achievements";
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;
 

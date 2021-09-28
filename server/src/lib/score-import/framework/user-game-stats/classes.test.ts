@@ -2,7 +2,7 @@ import { UserGameStats } from "tachi-common";
 import t from "tap";
 import CreateLogCtx from "lib/logger/logger";
 import ResetDBState from "test-utils/resets";
-import { CalculateClassDeltas, UpdateUGSClasses } from "./classes";
+import { ProcessClassDeltas, UpdateUGSClasses } from "./classes";
 
 import { GitadoraColours } from "lib/constants/classes";
 
@@ -45,14 +45,15 @@ t.test("#UpdateUGSClasses", (t) => {
 	t.end();
 });
 
-t.test("#CalculateClassDeltas", (t) => {
+t.test("#ProcessClassDeltas", (t) => {
 	t.beforeEach(ResetDBState);
 
-	t.test("Should return improved classes from null", (t) => {
-		const res = CalculateClassDeltas("SP", { dan: 18 }, null, 1, logger);
+	t.test("Should return improved classes from null", async (t) => {
+		const res = await ProcessClassDeltas("iidx", "SP", { dan: 18 }, null, 1, logger);
 
 		t.strictSame(res, [
 			{
+				game: "iidx",
 				set: "dan",
 				playtype: "SP",
 				old: null,
@@ -63,8 +64,9 @@ t.test("#CalculateClassDeltas", (t) => {
 		t.end();
 	});
 
-	t.test("Should return improved classes from null class", (t) => {
-		const res = CalculateClassDeltas(
+	t.test("Should return improved classes from null class", async (t) => {
+		const res = await ProcessClassDeltas(
+			"iidx",
 			"SP",
 			{ dan: 18 },
 			{ classes: {} } as UserGameStats,
@@ -74,6 +76,7 @@ t.test("#CalculateClassDeltas", (t) => {
 
 		t.strictSame(res, [
 			{
+				game: "iidx",
 				set: "dan",
 				playtype: "SP",
 				old: null,
@@ -84,8 +87,9 @@ t.test("#CalculateClassDeltas", (t) => {
 		t.end();
 	});
 
-	t.test("Should return improved classes", (t) => {
-		const res = CalculateClassDeltas(
+	t.test("Should return improved classes", async (t) => {
+		const res = await ProcessClassDeltas(
+			"iidx",
 			"SP",
 			{ dan: 18 },
 			{ classes: { dan: 17 } } as unknown as UserGameStats,
@@ -95,6 +99,7 @@ t.test("#CalculateClassDeltas", (t) => {
 
 		t.strictSame(res, [
 			{
+				game: "iidx",
 				set: "dan",
 				playtype: "SP",
 				old: 17,
@@ -105,8 +110,9 @@ t.test("#CalculateClassDeltas", (t) => {
 		t.end();
 	});
 
-	t.test("Should not return identical classes", (t) => {
-		const res = CalculateClassDeltas(
+	t.test("Should not return identical classes", async (t) => {
+		const res = await ProcessClassDeltas(
+			"iidx",
 			"SP",
 			{ dan: 18 },
 			{ classes: { dan: 18 } } as unknown as UserGameStats,
@@ -119,8 +125,9 @@ t.test("#CalculateClassDeltas", (t) => {
 		t.end();
 	});
 
-	t.test("Should not return worse classes", (t) => {
-		const res = CalculateClassDeltas(
+	t.test("Should not return worse classes", async (t) => {
+		const res = await ProcessClassDeltas(
+			"iidx",
 			"SP",
 			{ dan: 16 },
 			{ classes: { dan: 18 } } as unknown as UserGameStats,

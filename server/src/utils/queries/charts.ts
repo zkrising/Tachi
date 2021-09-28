@@ -237,7 +237,7 @@ export function FindChartOnARCID(game: "iidx" | "ddr" | "jubeat" | "sdvx", arcID
  * Popularity is determined by how many scores match in the score
  * collection.
  */
-export function FindChartsOnPopularity(
+export async function FindChartsOnPopularity(
 	game: Game,
 	playtype: Playtypes[Game],
 	songIDs?: integer[],
@@ -253,31 +253,29 @@ export function FindChartsOnPopularity(
 		matchQuery.songID = { $in: songIDs };
 	}
 
-	return db.charts[game].aggregate([
+	// MongoDB is a hard beast to wield.
+	// This code might look very inefficient, but originally this *was*
+	// a single aggregate pipeline.
+	//
+	// We've split it up into multiple queries as this is an order of
+	// magnitude faster.
+	// Not entirely sure why, but $lookup is incredibly inefficient,
+	// and you should just avoid it.
+	const chartSet = await db.charts[game].find(matchQuery, { projection: { chartID: 1 } });
+
+	const scoreCounts = (await db[scoreCollection].aggregate([
 		{
-			$match: matchQuery,
+			$match: { chartID: { $in: chartSet.map((e) => e.chartID) } },
 		},
 		{
-			$lookup: {
-				from: scoreCollection,
-				localField: "chartID",
-				foreignField: "chartID",
-				as: "pbs",
-			},
-		},
-		{
-			$addFields: {
-				__playcount: { $size: "$pbs" },
-			},
-		},
-		{
-			$project: {
-				pbs: 0,
+			$group: {
+				_id: "$chartID",
+				count: { $sum: 1 },
 			},
 		},
 		{
 			$sort: {
-				__playcount: -1,
+				count: -1,
 			},
 		},
 		{
@@ -286,5 +284,21 @@ export function FindChartsOnPopularity(
 		{
 			$limit: limit,
 		},
-	]);
+	])) as { _id: string; count: integer }[];
+
+	const charts = (await db.charts[game].find({
+		chartID: { $in: scoreCounts.map((e) => e._id) },
+	})) as unknown as (ChartDocument & { __playcount: integer })[];
+
+	const scoreCountMap = new Map();
+
+	for (const sc of scoreCounts) {
+		scoreCountMap.set(sc._id, sc.count);
+	}
+
+	for (const chart of charts) {
+		chart.__playcount = scoreCountMap.get(chart.chartID);
+	}
+
+	return charts.sort((a, b) => b.__playcount - a.__playcount);
 }

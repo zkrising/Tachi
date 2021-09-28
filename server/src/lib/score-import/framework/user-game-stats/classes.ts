@@ -1,16 +1,16 @@
-import { Game, Playtypes, integer, UserGameStats, ClassDelta, IDStrings } from "tachi-common";
-import { GameClasses } from "tachi-common/js/game-classes";
 import deepmerge from "deepmerge";
+import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
+import { EmitWebhookEvent } from "lib/webhooks/webhooks";
+import { ClassDelta, Game, IDStrings, integer, Playtypes, UserGameStats } from "tachi-common";
+import { GameClasses } from "tachi-common/js/game-classes";
+import { ReturnClassIfGreater } from "utils/class";
 import {
 	CalculateChunithmColour,
 	CalculateGitadoraColour,
 	CalculateSDVXClass,
 } from "./builtin-class-handlers";
-import { ReturnClassIfGreater } from "utils/class";
-import { RedisPub } from "external/redis/redis-IPC";
 import { ClassHandler, ScoreClasses } from "./types";
-import { EmitWebhookEvent } from "lib/webhooks/webhooks";
 
 type ClassHandlerMap = {
 	[G in Game]:
@@ -110,16 +110,19 @@ export async function UpdateUGSClasses(
  * This is for calculating scenarios where a users class has improved (i.e. they have gone from 9th dan to 10th dan).
  *
  * Knowing this information allows us to attach it onto the import, and also emit things on redis
- * so that other services can listen for it. In the future we might allow webhooks, too.
+ * s**This function emits webhook events and inserts classachieved documents into the DB!**
  */
-export function CalculateClassDeltas(
+export async function ProcessClassDeltas(
+	game: Game,
 	playtype: Playtypes[Game],
 	classes: ScoreClasses,
 	userGameStats: UserGameStats | null,
 	userID: integer,
 	logger: KtLogger
-): ClassDelta[] {
+): Promise<ClassDelta[]> {
 	const deltas: ClassDelta[] = [];
+
+	const updateOps = [];
 
 	for (const s in classes) {
 		const classSet = s as keyof GameClasses<IDStrings>;
@@ -139,6 +142,7 @@ export function CalculateClassDeltas(
 				let delta: ClassDelta;
 				if (isGreater === null) {
 					delta = {
+						game,
 						set: classSet,
 						playtype,
 						old: null,
@@ -146,6 +150,7 @@ export function CalculateClassDeltas(
 					};
 				} else {
 					delta = {
+						game,
 						set: classSet,
 						playtype,
 						old: userGameStats!.classes[classSet]!,
@@ -155,12 +160,24 @@ export function CalculateClassDeltas(
 
 				EmitWebhookEvent({ type: "class-update/v1", content: { userID, ...delta } });
 
+				updateOps.push({
+					userID,
+					classSet: delta.set,
+					classOldValue: delta.old,
+					classValue: delta.new,
+					game,
+					playtype,
+					timeAchieved: Date.now(),
+				});
+
 				deltas.push(delta);
 			}
 		} catch (err) {
 			logger.error(err);
 		}
 	}
+
+	await db["class-achievements"].insert(updateOps);
 
 	return deltas;
 }

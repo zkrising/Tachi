@@ -62,61 +62,61 @@ nav:
       - "api/routes/oauth2.md"
       - "api/routes/oauth2-clients.md"
 
-  - Codebase Reference:
-    - "codebase/overview.md"
-    - "codebase/contributing.md"
+  - Tachi Server Reference:
+    - "tachi-server/overview.md"
+    - "tachi-server/contributing.md"
 
     - Setup:
-      - "codebase/setup/setup.md"
-      - "codebase/setup/config.md"
+      - "tachi-server/setup/setup.md"
+      - "tachi-server/setup/config.md"
 
     - Infrastructure:
-      - "codebase/infrastructure/toolchain.md"
-      - "codebase/infrastructure/logging.md"
-      - "codebase/infrastructure/branches.md"
-      - "codebase/infrastructure/versions.md"
-      - "codebase/infrastructure/oauth2.md"
+      - "tachi-server/infrastructure/toolchain.md"
+      - "tachi-server/infrastructure/logging.md"
+      - "tachi-server/infrastructure/branches.md"
+      - "tachi-server/infrastructure/versions.md"
+      - "tachi-server/infrastructure/oauth2.md"
 
     - Structure:
-      - "codebase/structure/style.md"
-      - "codebase/structure/filesystem.md"
-      - "codebase/structure/testing.md"
+      - "tachi-server/structure/style.md"
+      - "tachi-server/structure/filesystem.md"
+      - "tachi-server/structure/testing.md"
 
     - BATCH-MANUAL:
-      - "codebase/batch-manual/overview.md"
+      - "tachi-server/batch-manual/overview.md"
 
     - Score Importing:
-      - "codebase/import/overview.md"
-      - "codebase/import/main.md"
-      - "codebase/import/import-types.md"
-      - "codebase/import/parse-conv.md"
-      - "codebase/import/conv-failures.md"
-      - "codebase/import/importing.md"
-      - "codebase/import/orphans.md"
-      - "codebase/import/parse-ipi.md"
-      - "codebase/import/sessions.md"
-      - "codebase/import/pbs.md"
-      - "codebase/import/ugs.md"
-      - "codebase/import/goals.md"
-      - "codebase/import/milestones.md"
-      - "codebase/import/import-doc-time.md"
+      - "tachi-server/import/overview.md"
+      - "tachi-server/import/main.md"
+      - "tachi-server/import/import-types.md"
+      - "tachi-server/import/parse-conv.md"
+      - "tachi-server/import/conv-failures.md"
+      - "tachi-server/import/importing.md"
+      - "tachi-server/import/orphans.md"
+      - "tachi-server/import/parse-ipi.md"
+      - "tachi-server/import/sessions.md"
+      - "tachi-server/import/pbs.md"
+      - "tachi-server/import/ugs.md"
+      - "tachi-server/import/goals.md"
+      - "tachi-server/import/milestones.md"
+      - "tachi-server/import/import-doc-time.md"
 
     - Implementation Details:
-      - "codebase/implementation-details/details.md"
-      - "codebase/implementation-details/search.md"
-      - "codebase/implementation-details/statistics.md"
-      - "codebase/implementation-details/songs-charts.md"
-      - "codebase/implementation-details/game-configuration.md"
-      - "codebase/implementation-details/esd.md"
-      - "codebase/implementation-details/score-id.md"
-      - "codebase/implementation-details/goal-id.md"
+      - "tachi-server/implementation-details/details.md"
+      - "tachi-server/implementation-details/search.md"
+      - "tachi-server/implementation-details/statistics.md"
+      - "tachi-server/implementation-details/songs-charts.md"
+      - "tachi-server/implementation-details/game-configuration.md"
+      - "tachi-server/implementation-details/esd.md"
+      - "tachi-server/implementation-details/score-id.md"
+      - "tachi-server/implementation-details/goal-id.md"
 
     - Documents:
-      - "codebase/documents/overview.md"
-      - "codebase/documents/user.md"
-      - "codebase/documents/score.md"
-      - "codebase/documents/goal.md"
-      - "codebase/documents/user-goal.md"
+      - "tachi-server/documents/overview.md"
+      - "tachi-server/documents/user.md"
+      - "tachi-server/documents/score.md"
+      - "tachi-server/documents/goal.md"
+      - "tachi-server/documents/user-goal.md"
 
 markdown_extensions:
   - admonition

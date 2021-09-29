@@ -41,16 +41,6 @@ statistics. It requires no programming knowledge, and is mostly used as a wiki-l
 
 View it [here](./user/overview.md).
 
-## Contributing
-
-If you want to contribute to this documentation, you can find the repository [here!](https://github.com/TeamNewGuys/tachi-docs)
-
-If you want to contribute to the Tachi backend code, you can find the repository [here!](https://github.com/TeamNewGuys/tachi-server)
-
-
-!!! note
-	You should really read the [Contributing To Tachi](./tachi-server/contributing.md) page beforehand!
-
 ## Acknowledgements
 
 This documentation is built ontop of the beautiful [Material MKDocs](https://squidfunk.github.io/mkdocs-material) theme.

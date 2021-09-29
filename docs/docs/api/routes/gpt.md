@@ -22,7 +22,7 @@ None.
 
 !!! warning
 	A GamePTConfig is different to a GameConfig! Read more
-	[here](../../codebase/implementation-details/game-configuration.md).
+	[here](../../tachi-server/implementation-details/game-configuration.md).
 
 ### Example
 

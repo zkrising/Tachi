@@ -34,7 +34,7 @@ permissions over API Tokens, such as being able to change your password.
 
 ## Getting Tokens
 
-[Our OAuth2 Flow](../codebase/infrastructure/oauth2.md) should be used to acquire API Tokens.
+[Our OAuth2 Flow](../tachi-server/infrastructure/oauth2.md) should be used to acquire API Tokens.
 
 ## Permissions
 

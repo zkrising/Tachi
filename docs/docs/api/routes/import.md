@@ -27,7 +27,7 @@ appropriate way to send files.
 
 | HTTP Header | Description |
 | :: | :: |
-| `X-User-Intent` (optional) | If this header is present, the request is assumed to have been sent with 'User Intent'. For more on this, see [Import Types](../../codebase/import/import-types.md) |
+| `X-User-Intent` (optional) | If this header is present, the request is assumed to have been sent with 'User Intent'. For more on this, see [Import Types](../../tachi-server/import/import-types.md) |
 
 !!! info
 	It's the responsibility of the API user to use the X-User-Intent

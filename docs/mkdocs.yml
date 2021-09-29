@@ -24,6 +24,7 @@ theme:
 
 nav:
   - Introduction: "index.md"
+  - Contributing: "contributing.md"
 
   - User Reference:
     - "user/overview.md"
@@ -117,6 +118,9 @@ nav:
       - "tachi-server/documents/score.md"
       - "tachi-server/documents/goal.md"
       - "tachi-server/documents/user-goal.md"
+  
+  - Tachi Bot Reference:
+    - "tachi-bot/overview.md"
 
 markdown_extensions:
   - admonition

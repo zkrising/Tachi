@@ -27,7 +27,7 @@ infrastructure that powers Tachi.
 
 This also contains contribution information.
 
-View it [here](./codebase/overview.md).
+View it [here](./tachi-server/overview.md).
 
 ### User Reference
 
@@ -41,8 +41,10 @@ View it [here](./user/overview.md).
 If you want to contribute to this documentation, you can find the repository [here!](https://github.com/TeamNewGuys/tachi-docs)
 
 If you want to contribute to the Tachi backend code, you can find the repository [here!](https://github.com/TeamNewGuys/tachi-server)
+
+
 !!! note
-	You should really read the [Contributing To Tachi](./codebase/contributing.md) page beforehand!
+	You should really read the [Contributing To Tachi](./tachi-server/contributing.md) page beforehand!
 
 ## Acknowledgements
 

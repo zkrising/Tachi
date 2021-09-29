@@ -224,7 +224,7 @@ GET /api/v1/users/zkldi/games/iidx/SP/pbs?search=Verfl
 `GET /api/v1/users/:userID/games/:game/:playtype/pbs/best`
 
 This returns the users' best 100 personal bests according
-to the [Default Rating Algorithm](../../codebase/implementation-details/game-configuration) for this game.
+to the [Default Rating Algorithm](../../tachi-server/implementation-details/game-configuration) for this game.
 
 This is returned in descending sorted order.
 
@@ -363,7 +363,7 @@ GET /api/v1/users/1/games/iidx/SP/pbs/some_chart_id
 	property. This property describes how close the query
 	was to the actual text, and is mostly internal.
 
-	You can read more into the details of this at [Search Implementation](../../codebase/implementation-details/search.md)
+	You can read more into the details of this at [Search Implementation](../../tachi-server/implementation-details/search.md)
 
 ### Example
 

@@ -2,7 +2,7 @@
 
 These endpoints relate to managing your OAuth2 clients, such as creating new ones or deleting them.
 
-For a detailed explaination on how to use the OAuth2 flow, you can check [Using OAuth2 With Tachi](../../codebase/infrastructure/oauth2.md)
+For a detailed explaination on how to use the OAuth2 flow, you can check [Using OAuth2 With Tachi](../../tachi-server/infrastructure/oauth2.md)
 
 *****
 

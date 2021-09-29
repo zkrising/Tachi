@@ -17,7 +17,7 @@
 | Property | Type | Description |
 | :: | :: | :: |
 | `users` | UserDocument[] | The array of users whose usernames look like the search criterion. |
-| `songs` | (SongDocument With [__textScore](../../codebase/implementation-details/search.md) and `game`.)[] | An array of songs from all games, with `__textScore` and `game` properties attached. |
+| `songs` | (SongDocument With [__textScore](../../tachi-server/implementation-details/search.md) and `game`.)[] | An array of songs from all games, with `__textScore` and `game` properties attached. |
 
 ### Example
 
@@ -49,4 +49,4 @@ GET /api/v1/search?search=freedom
 ```
 
 !!! info
-	For more details on how searching works, see [Search Implementation](../../codebase/implementation-details/search.md).
+	For more details on how searching works, see [Search Implementation](../../tachi-server/implementation-details/search.md).

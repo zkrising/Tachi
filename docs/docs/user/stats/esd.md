@@ -45,7 +45,7 @@ to derive other statistics from.
 	and every hit has to involve a timing window.
 
 For details on the implementation of ESD, you can see
-[here](../../codebase/implementation-details/esd.md).
+[here](../../tachi-server/implementation-details/esd.md).
 
 !!! warning
 	Implementation details about ESD require some

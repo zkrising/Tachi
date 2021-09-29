@@ -5,7 +5,7 @@ statistics used for each game, and what they mean.
 
 !!! note
 	These explainations brush over the technical details a bit. If you're interested
-	in that, you might want to see the [Implementation Details](../../codebase/implementation-details/statistics.md).
+	in that, you might want to see the [Implementation Details](../../tachi-server/implementation-details/statistics.md).
 
 *****
 

@@ -19,15 +19,20 @@ APIs and how they work.
 
 View it [here](./api/overview.md).
 
-### Codebase Reference
+### Server Codebase Reference
 
-This is for people who want to work on Tachi's codebase.
+This is for people who want to work on `Tachi-Server`'s codebase.
 This contains things like the tools we use and the
 infrastructure that powers Tachi.
 
-This also contains contribution information.
-
 View it [here](./tachi-server/overview.md).
+
+### Bot Codebase Reference
+
+This is for people who want to work on the `Tachi-Bot`.
+This codebase is maintained by [pfych](https://github.com/pfych), and is wrote in TypeScript.
+
+View it [here](./tachi-bot/overview.md).
 
 ### User Reference
 

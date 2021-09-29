@@ -62,6 +62,13 @@ const PR_BeatorajaChart = {
 	hasRandom: p.is(false),
 };
 
+const SUPPORTED_BEATORAJA_CLIENTS = [
+	"lr2oraja 0.8.3",
+	"lr2oraja 0.8.2",
+	"lr2oraja 0.8.1",
+	"lr2oraja 0.8.0",
+];
+
 export function ParseBeatorajaSingle(
 	body: Record<string, unknown>,
 	userID: integer,
@@ -95,16 +102,17 @@ export function ParseBeatorajaSingle(
 		);
 	}
 
-	const client = body.client;
+	// Force stringify this, since it's not validated by prudence.
+	const client = `${body.client}`;
 
-	if (client !== "lr2oraja") {
+	if (!SUPPORTED_BEATORAJA_CLIENTS.includes(client)) {
 		throw new ScoreImportFatalError(400, `Unsupported client ${client}`);
 	}
 
 	// asserted using prudence.
 	return {
 		context: {
-			client,
+			client: "lr2oraja",
 			chart: body.chart as BeatorajaChart,
 			userID,
 		},

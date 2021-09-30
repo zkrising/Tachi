@@ -534,7 +534,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"28",
 			"26-omni",
 			"27-omni",
-			"2dxtra",
+			"27-2dxtra",
 			"bmus",
 			"inf",
 		],

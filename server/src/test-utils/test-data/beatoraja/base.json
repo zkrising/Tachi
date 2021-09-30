@@ -56,5 +56,5 @@
         "rule": "LR2",
         "exscore": 1004
     },
-    "client": "lr2oraja"
+    "client": "lr2oraja 0.8.0"
 }

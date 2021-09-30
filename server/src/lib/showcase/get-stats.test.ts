@@ -39,6 +39,9 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 						property: "score",
 					},
 				],
+				gameSpecific: {
+					display2DXTra: false,
+				},
 			},
 		});
 

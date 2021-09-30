@@ -14,7 +14,7 @@ t.test("#ValidateIRClientVersion", (t) => {
 
 		t.equal(res.statusCode, 400);
 		t.equal(json.success, false);
-		t.match(json.description, /Invalid BokutachiIR client version/u);
+		t.match(json.description, /Invalid TachiIR client version/u);
 
 		t.end();
 	});
@@ -26,7 +26,7 @@ t.test("#ValidateIRClientVersion", (t) => {
 
 		t.equal(res.statusCode, 400);
 		t.equal(json.success, false);
-		t.match(json.description, /Invalid BokutachiIR client version/u);
+		t.match(json.description, /Invalid TachiIR client version/u);
 
 		t.end();
 	});

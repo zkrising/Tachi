@@ -34,6 +34,9 @@ const SetFolders = async () => {
 					property: "score",
 				},
 			],
+			gameSpecific: {
+				display2DXTra: false,
+			},
 		},
 	});
 
@@ -87,6 +90,9 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 						gte: 1480,
 					},
 				],
+				gameSpecific: {
+					display2DXTra: false,
+				},
 			},
 		});
 

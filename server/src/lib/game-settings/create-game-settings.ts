@@ -25,8 +25,13 @@ export async function CreateGameSettings(userID: integer, game: Game, playtype: 
 		);
 	}
 
-	// @TODO: #238 set sane defaults for game-settings stats.
-	// const gptConfig = GetGamePTConfig(game, playtype);
+	let gameSpecific = {};
+
+	if (game === "iidx") {
+		gameSpecific = {
+			display2DXTra: false,
+		};
+	}
 
 	await db["game-settings"].insert({
 		userID,
@@ -37,6 +42,7 @@ export async function CreateGameSettings(userID: integer, game: Game, playtype: 
 			preferredSessionAlg: null,
 			preferredScoreAlg: null,
 			stats: [],
+			gameSpecific,
 		},
 	});
 

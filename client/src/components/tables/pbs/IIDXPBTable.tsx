@@ -5,7 +5,7 @@ import React, { useContext, useState } from "react";
 import { PublicUserDocument, ScoreCalculatedDataLookup } from "tachi-common";
 import { PBDataset } from "types/tables";
 import { IsNullish } from "util/misc";
-import { NumericSOV, StrSOV } from "util/sorts";
+import { NumericSOV } from "util/sorts";
 import { CreateDefaultPBSearchParams } from "util/tables/create-search";
 import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
 import DeltaCell from "../cells/DeltaCell";
@@ -23,6 +23,7 @@ import SelectableRating from "../components/SelectableRating";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
 import IIDXPBDropdown from "../dropdowns/IIDXPBDropdown";
+import PBLeadingRows from "./PBLeadingRows";
 
 export default function IIDXPBTable({
 	dataset,
@@ -140,7 +141,7 @@ function Row({
 
 	return (
 		<DropdownRow
-			className={pb.userID === user?.id ? "highlighted-row" : ""}
+			// className={pb.userID === user?.id ? "highlighted-row" : ""}
 			dropdown={
 				<IIDXPBDropdown
 					chart={pb.__related.chart}
@@ -152,27 +153,7 @@ function Row({
 			}
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
-			{showUser && showChart && (
-				<>
-					<UserCell game="iidx" playtype={pb.playtype} user={pb.__related.user!} />
-					<DifficultyCell chart={pb.__related.chart} game={"iidx"} />
-					<IndicatorsCell highlight={scoreState.highlight} />
-					<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="iidx" />
-				</>
-			)}
-			{showUser && !showChart && (
-				<>
-					<IndicatorsCell highlight={scoreState.highlight} />
-					<UserCell game="iidx" playtype={pb.playtype} user={pb.__related.user!} />
-				</>
-			)}
-			{!showUser && showChart && (
-				<>
-					<DifficultyCell chart={pb.__related.chart} game={"iidx"} />
-					<IndicatorsCell highlight={scoreState.highlight} />
-					<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="iidx" />
-				</>
-			)}
+			<PBLeadingRows {...{ showUser, showChart, pb, scoreState }} />
 			<ScoreCell score={pb} />
 			<DeltaCell
 				game="iidx"

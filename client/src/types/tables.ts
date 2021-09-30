@@ -7,6 +7,7 @@ import {
 	integer,
 	ScoreDocument,
 	PublicUserDocument,
+	UserGameStats,
 } from "tachi-common";
 
 export type PBDataset<I extends IDStrings = IDStrings> = (PBScoreDocument<I> & {
@@ -39,5 +40,12 @@ export type FolderDataset<I extends IDStrings = IDStrings> = (ChartDocument<I> &
 export type ChartLeaderboardDataset<I extends IDStrings = IDStrings> = (PBScoreDocument<I> & {
 	__related: {
 		user: PublicUserDocument;
+	};
+})[];
+
+export type UGSDataset<I extends IDStrings = IDStrings> = (UserGameStats<I> & {
+	__related: {
+		user: PublicUserDocument;
+		index: integer;
 	};
 })[];

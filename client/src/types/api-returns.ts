@@ -153,3 +153,15 @@ export interface UGPTChartLeaderboardAdjacent<I extends IDStrings = IDStrings> {
 	adjacentAbove: PBScoreDocument<I>[];
 	adjacentBelow: PBScoreDocument<I>[];
 }
+
+export interface ScoreLeaderboardReturns<I extends IDStrings = IDStrings> {
+	users: PublicUserDocument[];
+	songs: SongDocument<IDStringToGame[I]>[];
+	charts: ChartDocument<I>[];
+	pbs: PBScoreDocument<I>[];
+}
+
+export interface UserLeaderboardReturns<I extends IDStrings = IDStrings> {
+	users: PublicUserDocument[];
+	gameStats: UserGameStats<I>[];
+}

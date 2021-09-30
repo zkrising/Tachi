@@ -1,5 +1,14 @@
 import { Playtype } from "types/tachi";
-import { GetGamePTConfig, Game, ScoreCalculatedDataLookup, IDStrings, integer } from "tachi-common";
+import {
+	GetGamePTConfig,
+	Game,
+	ScoreCalculatedDataLookup,
+	IDStrings,
+	integer,
+	ChartDocument,
+	GamePTConfig,
+} from "tachi-common";
+import toast from "react-hot-toast";
 
 export function RFA<T>(arr: T[]): T {
 	return arr[Math.floor(Math.random() * arr.length)];
@@ -126,4 +135,32 @@ export function ComposeInverseExpFn(pow: number) {
 
 export function ComposeLogFn(base: number) {
 	return (x: number) => Math.log(x) / Math.log(base);
+}
+
+export function SelectRightChart(
+	gptConfig: GamePTConfig,
+	chartID: string,
+	charts: ChartDocument[]
+) {
+	if (gptConfig.difficulties.includes(chartID as any)) {
+		for (const chart of charts) {
+			if (chart.difficulty === chartID && chart.isPrimary) {
+				return chart;
+			}
+		}
+	} else {
+		// else, its a chart ID.
+		for (const chart of charts) {
+			if (chartID === chart.chartID) {
+				return chart;
+			}
+		}
+	}
+
+	return null;
+}
+
+export function CopyToClipboard(data: unknown) {
+	toast.success("Copied data to clipboard.");
+	navigator.clipboard.writeText(JSON.stringify(data, null, "\t"));
 }

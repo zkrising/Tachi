@@ -9,6 +9,7 @@ import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
+import Muted from "components/util/Muted";
 import SelectButton from "components/util/SelectButton";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
@@ -31,6 +32,7 @@ import { GamePT, SetState } from "types/react";
 import { PBDataset } from "types/tables";
 import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
 import { CreateUserMap } from "util/data";
+import { SelectRightChart } from "util/misc";
 
 // This component forms a wrapper around the Real GPT Chart Page
 // which handles the case where activeChart == null.
@@ -60,9 +62,9 @@ export default function GPTChartPage({
 		`${formatSongTitle} (${formatDiff})`
 	);
 
-	if (!chart) {
-		setActiveChart(SelectRightChart(gptConfig, difficulty, allCharts));
+	setActiveChart(SelectRightChart(gptConfig, difficulty, allCharts));
 
+	if (!chart) {
 		return <Loading />;
 	}
 
@@ -158,7 +160,12 @@ function InternalGPTChartPage({
 						<Icon type="trophy" />
 						Best 100
 					</SelectButton>
-					<SelectButton value={mode} setValue={setMode} id="adjacent">
+					<SelectButton
+						value={mode}
+						setValue={setMode}
+						id="adjacent"
+						disabled={!data.adjacent}
+					>
 						<Icon type="user" />
 						Your Position
 					</SelectButton>
@@ -241,11 +248,26 @@ function TopShowcase({
 	const bestUser = userMap.get(bestPlay.userID)!;
 
 	// User hasn't played, or isn't logged in or something.
-	if (!data.adjacent || user?.id === bestPlay.userID) {
+	if (user?.id === bestPlay.userID) {
 		return (
 			<Col xs={12}>
 				<PlayCard name="Best Play" pb={bestPlay} user={bestUser} />
 			</Col>
+		);
+	}
+
+	if (!data.adjacent) {
+		return (
+			<>
+				<Col xs={12} lg={6}>
+					<PlayCard name="Best Play" pb={bestPlay} user={bestUser} />
+				</Col>
+				<Col xs={12} lg={6}>
+					<Card header="Your Score" className="text-center">
+						<Muted>You've not played this chart.</Muted>
+					</Card>
+				</Col>
+			</>
 		);
 	}
 
@@ -303,23 +325,4 @@ function PlayCard({
 			</Row>
 		</Card>
 	);
-}
-
-function SelectRightChart(gptConfig: GamePTConfig, chartID: string, charts: ChartDocument[]) {
-	if (gptConfig.difficulties.includes(chartID as any)) {
-		for (const chart of charts) {
-			if (chart.difficulty === chartID && chart.isPrimary) {
-				return chart;
-			}
-		}
-	} else {
-		// else, its a chart ID.
-		for (const chart of charts) {
-			if (chartID === chart.chartID) {
-				return chart;
-			}
-		}
-	}
-
-	return null;
 }

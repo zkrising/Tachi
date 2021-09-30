@@ -3,7 +3,6 @@ import GPTChartPage from "app/pages/dashboard/games/_game/_playtype/GPTChartPage
 import GPTDevInfo from "app/pages/dashboard/games/_game/_playtype/GPTDevInfo";
 import GPTLeaderboardsPage from "app/pages/dashboard/games/_game/_playtype/GPTLeaderboardsPage";
 import GPTMainPage from "app/pages/dashboard/games/_game/_playtype/GPTMainPage";
-import GPTSongPage from "app/pages/dashboard/games/_game/_playtype/GPTSongPage";
 import GPTSongsPage from "app/pages/dashboard/games/_game/_playtype/GPTSongsPage";
 import { ErrorPage } from "app/pages/ErrorPage";
 import ChartInfoFormat from "components/game/charts/ChartInfoFormat";
@@ -15,6 +14,8 @@ import Divider from "components/util/Divider";
 import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
+import { UGPTSettingsContext, UGPTSettingsContextProvider } from "context/UGPTSettingsContext";
+import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
@@ -25,9 +26,11 @@ import {
 	Game,
 	GetGameConfig,
 	GetGamePTConfig,
+	UGPTSettings,
 } from "tachi-common";
 import { SongsReturn } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
+import { APIFetchV1 } from "util/api";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
 import { ChangeOpacity } from "util/color-opacity";
 import { NumericSOV } from "util/sorts";
@@ -57,7 +60,9 @@ export default function GameRoutes() {
 			</Route>
 
 			<Route path="/dashboard/games/:game/:playtype">
-				<GamePlaytypeRoutes game={game} />
+				<UGPTSettingsContextProvider>
+					<GamePlaytypeRoutes game={game} />
+				</UGPTSettingsContextProvider>
 			</Route>
 
 			<Route path="*">
@@ -78,6 +83,30 @@ function GamePlaytypeRoutes({ game }: { game: Game }) {
 			/>
 		);
 	}
+
+	const { user } = useContext(UserContext);
+	const { setSettings } = useContext(UGPTSettingsContext);
+
+	useEffect(() => {
+		(async () => {
+			if (user) {
+				const settingsRes = await APIFetchV1<UGPTSettings>(
+					`/users/${user.id}/games/${game}/${playtype}/settings`
+				);
+
+				if (!settingsRes.success) {
+					setSettings(null);
+					return;
+				}
+
+				setSettings(settingsRes.body);
+			}
+		})();
+
+		return () => {
+			setSettings(null);
+		};
+	}, [user, game, playtype]);
 
 	return (
 		<>
@@ -122,12 +151,13 @@ function SongChartRoutes({ game, playtype }: GamePT) {
 
 	const { settings } = useContext(UserSettingsContext);
 
+	const gptConfig = GetGamePTConfig(game, playtype);
+
 	const [activeChart, setActiveChart] = useState<ChartDocument | null>(null);
 
 	useEffect(() => {
 		setActiveChart(null);
 	}, [game, playtype]);
-
 	if (error) {
 		return <ErrorPage statusCode={error.statusCode} customMessage={error.description} />;
 	}
@@ -148,12 +178,12 @@ function SongChartRoutes({ game, playtype }: GamePT) {
 			<Divider />
 			<Switch>
 				<Route exact path="/dashboard/games/:game/:playtype/songs/:songID">
-					<GPTSongPage
-						game={game}
-						playtype={playtype}
-						song={data.song}
-						charts={data.charts}
-						setActiveChart={setActiveChart}
+					{/* Select the hardest chart for this. */}
+					<Redirect
+						to={`/dashboard/games/${game}/${playtype}/songs/${data.song.id}/${
+							data.charts.slice(0).sort(NumericSOV(x => x.levelNum, true))[0]
+								.difficulty
+						}`}
 					/>
 				</Route>
 
@@ -193,10 +223,6 @@ function SongInfoHeader({
 	setActiveChart,
 }: { activeChart: ChartDocument | null; setActiveChart: SetState<ChartDocument | null> } & GamePT &
 	SongsReturn) {
-	// @TODO: Custom game song formatting functions, since for some games
-	// (like popn) players use the genres to discuss them.
-	const formatSongTitle = `${song.artist} - ${song.title}`;
-
 	const [imgShow, setImgShow] = useState(true);
 
 	const gptConfig = GetGamePTConfig(game, playtype);

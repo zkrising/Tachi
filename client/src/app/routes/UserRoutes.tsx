@@ -165,8 +165,8 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 				);
 
 				if (!settingsRes.success) {
-					console.error(settingsRes);
-					throw settingsRes;
+					setSettings(null);
+					return;
 				}
 
 				setSettings(settingsRes.body);

@@ -5,6 +5,7 @@ import { Playtype } from "types/tachi";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { CreateDefaultPBSearchParams } from "util/tables/create-search";
+import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndexCell from "../cells/IndexCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
@@ -19,6 +20,7 @@ import TachiTable, { Header } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
 import IndicatorHeader from "../headers/IndicatorHeader";
+import PBLeadingRows from "./PBLeadingRows";
 
 export default function GenericPBTable({
 	dataset,
@@ -27,6 +29,8 @@ export default function GenericPBTable({
 	game,
 	playtype,
 	showScore,
+	showUser = false,
+	showChart = true,
 }: {
 	dataset: PBDataset;
 	indexCol?: boolean;
@@ -34,13 +38,17 @@ export default function GenericPBTable({
 	game: Game;
 	playtype: Playtype;
 	showScore?: boolean;
+	showUser?: boolean;
+	showChart?: boolean;
 }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const headers: Header<PBDataset[0]>[] = [
-		["Chart", "Chart", NumericSOV(x => x.__related.chart.levelNum)],
-		IndicatorHeader,
-		["Song", "Song", StrSOV(x => x.__related.song.title)],
+		...GetPBLeadingHeaders(showUser, showChart, [
+			"Chart",
+			"Chart",
+			NumericSOV(x => x.__related.chart.levelNum),
+		]),
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
 		[
@@ -74,6 +82,8 @@ export default function GenericPBTable({
 					indexCol={indexCol}
 					showScore={showScore}
 					showPlaycount={showPlaycount}
+					showUser={showUser}
+					showChart={showChart}
 				/>
 			)}
 		/>
@@ -85,11 +95,15 @@ function Row({
 	indexCol,
 	showScore,
 	showPlaycount,
+	showUser,
+	showChart,
 }: {
 	pb: PBDataset[0];
 	indexCol: boolean;
 	showPlaycount: boolean;
 	showScore?: boolean;
+	showUser: boolean;
+	showChart: boolean;
 }) {
 	const scoreState = usePBState(pb);
 
@@ -106,9 +120,12 @@ function Row({
 			}
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
-			<DifficultyCell game={pb.game} chart={pb.__related.chart} />
-			<IndicatorsCell highlight={scoreState.highlight} />
-			<TitleCell song={pb.__related.song} chart={pb.__related.chart} game={pb.game} />
+			<PBLeadingRows
+				pb={pb}
+				scoreState={scoreState}
+				showChart={showChart}
+				showUser={showUser}
+			/>
 			<ScoreCell score={pb} showScore={showScore} />
 			<LampCell score={pb} />
 			<RatingCell score={pb} />

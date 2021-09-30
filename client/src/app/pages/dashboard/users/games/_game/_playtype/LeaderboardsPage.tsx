@@ -155,7 +155,7 @@ function LeaderboardsPageContent({
 			header={"Leaderboard"}
 			footer={
 				<Link
-					to={`/dashboard/games/${game}/${playtype}/leaderboard`}
+					to={`/dashboard/games/${game}/${playtype}/leaderboards`}
 					className="float-right"
 				>
 					View Global Leaderboards

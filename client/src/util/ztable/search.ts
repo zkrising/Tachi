@@ -7,11 +7,12 @@ export interface SearchDirective {
 	value: string;
 }
 
-type DirectiveModes = "!" | ">" | ">=" | "<" | "<=" | "~";
+type DirectiveModes = "$" | ">" | ">=" | "<" | "<=" | "~" | "!";
 
 export interface Directive {
 	key: string;
-	// :! - EXACT
+	// :$ - EXACT
+	// :! - NOT
 	// :> - GREATER THAN
 	// :>= - GREATER THAN OR EQ
 	// :< - LESS THAN
@@ -29,7 +30,7 @@ export interface Directive {
 // VALUE = /("(?:\\"|[^"])+"|[^ ]+)/ - Parses the value.
 
 export function ParseDirectives(search: string): Directive[] {
-	const parsedSearch = search.matchAll(/([^ ]+):(>=|<=|!|>|<|~)?("(?:\\"|[^"])+"|[^ ]+)/gu);
+	const parsedSearch = search.matchAll(/([^ ]+):(>=|<=|!|\$|>|<|~)?("(?:\\"|[^"])+"|[^ ]+)/gu);
 
 	const searchDirectives = [];
 	for (const ps of parsedSearch) {
@@ -62,7 +63,9 @@ type MatchFn = (searchValue: string, dataValue: string | number) => boolean;
 
 const Matchers: Record<DirectiveModes, MatchFn> = {
 	// Exact: Make sure this string is exactly the data value.
-	"!": (sv, dv) => sv === dv.toString(),
+	$: (sv, dv) => sv === dv.toString(),
+	// Not: this value is not equal to the provided value. Case insensitive.
+	"!": (sv, dv) => sv.toLowerCase() !== dv.toString().toLowerCase(),
 	// LT, LTE, GT, GTE: If the data value is a number, compare numerically. If the data value is a string
 	// compare alphabetically.
 	// equality for alphabetical is implemented as .startsWith case insensitively.

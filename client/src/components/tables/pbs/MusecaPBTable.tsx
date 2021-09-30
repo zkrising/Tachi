@@ -3,6 +3,7 @@ import { PublicUserDocument } from "tachi-common";
 import { PBDataset } from "types/tables";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { CreateDefaultPBSearchParams } from "util/tables/create-search";
+import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndexCell from "../cells/IndexCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
@@ -18,22 +19,29 @@ import TachiTable, { Header } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
 import IndicatorHeader from "../headers/IndicatorHeader";
+import PBLeadingRows from "./PBLeadingRows";
 
 export default function MusecaPBTable({
 	dataset,
 	indexCol = true,
 	showPlaycount = false,
+	showUser = false,
+	showChart = true,
 	playtype,
 }: {
 	dataset: PBDataset<"museca:Single">;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
+	showUser?: boolean;
+	showChart?: boolean;
 	playtype: "Single";
 }) {
 	const headers: Header<PBDataset<"museca:Single">[0]>[] = [
-		["Chart", "Chart", NumericSOV(x => x.__related.chart.levelNum)],
-		IndicatorHeader,
-		["Song", "Song", StrSOV(x => x.__related.song.title)],
+		...GetPBLeadingHeaders(showUser, showChart, [
+			"Chart",
+			"Chart",
+			NumericSOV(x => x.__related.chart.levelNum),
+		]),
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
 		["Near - Miss", "Nr. Ms.", NumericSOV(x => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
@@ -63,6 +71,8 @@ export default function MusecaPBTable({
 					key={`${pb.chartID}:${pb.userID}`}
 					indexCol={indexCol}
 					showPlaycount={showPlaycount}
+					showChart={showChart}
+					showUser={showUser}
 				/>
 			)}
 		/>
@@ -73,10 +83,14 @@ function Row({
 	pb,
 	indexCol,
 	showPlaycount,
+	showChart,
+	showUser,
 }: {
 	pb: PBDataset<"museca:Single">[0];
 	indexCol: boolean;
 	showPlaycount: boolean;
+	showChart: boolean;
+	showUser: boolean;
 }) {
 	const scoreState = usePBState(pb);
 
@@ -93,9 +107,7 @@ function Row({
 			}
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
-			<DifficultyCell game="museca" chart={pb.__related.chart} />
-			<IndicatorsCell highlight={scoreState.highlight} />
-			<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="museca" />
+			<PBLeadingRows {...{ showUser, showChart, pb, scoreState }} />
 			<MillionsScoreCell score={pb} />
 			<MusecaJudgementCell score={pb} />
 			<LampCell score={pb} />

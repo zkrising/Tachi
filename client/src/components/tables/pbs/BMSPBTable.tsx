@@ -6,6 +6,7 @@ import { FormatBMSTables, IsNullish } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { CreateDefaultPBSearchParams } from "util/tables/create-search";
+import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
 import { ValueGetterOrHybrid } from "util/ztable/search";
 import BMSDifficultyCell from "../cells/BMSDifficultyCell";
 import DeltaCell from "../cells/DeltaCell";
@@ -21,6 +22,7 @@ import TachiTable, { Header } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
 import IndicatorHeader from "../headers/IndicatorHeader";
+import PBLeadingRows from "./PBLeadingRows";
 
 function GetBMSTableVal(chart: ChartDocument<"bms:7K" | "bms:14K">, key: string) {
 	for (const table of chart.data.tableFolders) {
@@ -37,14 +39,18 @@ export default function BMSPBTable({
 	indexCol = true,
 	showPlaycount = false,
 	playtype,
+	showUser = false,
+	showChart = true,
 }: {
 	dataset: PBDataset<"bms:7K" | "bms:14K">;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
 	playtype: "7K" | "14K";
+	showUser?: boolean;
+	showChart?: boolean;
 }) {
 	const headers: Header<PBDataset<"bms:7K" | "bms:14K">[0]>[] = [
-		[
+		...GetPBLeadingHeaders(showUser, showChart, [
 			"Chart",
 			"Chart",
 			NumericSOV(
@@ -53,9 +59,7 @@ export default function BMSPBTable({
 					x.__related.chart.tierlistInfo["sgl-HC"]?.value ??
 					x.__related.chart.levelNum
 			),
-		],
-		IndicatorHeader,
-		["Song", "Song", StrSOV(x => x.__related.song.title)],
+		]),
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
 		["Deltas", "Deltas", NumericSOV(x => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
@@ -102,7 +106,7 @@ export default function BMSPBTable({
 			dataset={dataset}
 			headers={headers}
 			entryName="PBs"
-			searchFunctions={CreateDefaultPBSearchParams("bms", playtype)}
+			searchFunctions={{ ...CreateDefaultPBSearchParams("bms", playtype), ...tableSearchFns }}
 			defaultSortMode={indexCol ? "#" : undefined}
 			rowFunction={pb => (
 				<Row
@@ -110,6 +114,8 @@ export default function BMSPBTable({
 					key={`${pb.chartID}:${pb.userID}`}
 					showPlaycount={showPlaycount}
 					indexCol={indexCol}
+					showUser={showUser}
+					showChart={showChart}
 				/>
 			)}
 		/>
@@ -120,10 +126,14 @@ function Row({
 	pb,
 	indexCol,
 	showPlaycount,
+	showUser,
+	showChart,
 }: {
 	pb: PBDataset<"bms:7K" | "bms:14K">[0];
 	indexCol: boolean;
 	showPlaycount: boolean;
+	showUser: boolean;
+	showChart: boolean;
 }) {
 	const scoreState = usePBState(pb);
 
@@ -140,9 +150,13 @@ function Row({
 			}
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
-			<BMSDifficultyCell chart={pb.__related.chart} />
-			<IndicatorsCell highlight={scoreState.highlight} />
-			<TitleCell song={pb.__related.song} chart={pb.__related.chart} game="bms" />
+			<PBLeadingRows
+				pb={pb}
+				scoreState={scoreState}
+				showChart={showChart}
+				showUser={showUser}
+				overrideDiffCell={<BMSDifficultyCell chart={pb.__related.chart} />}
+			/>
 			<ScoreCell score={pb} />
 			<DeltaCell
 				game="bms"

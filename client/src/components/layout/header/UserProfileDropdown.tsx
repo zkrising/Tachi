@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import Dropdown from "react-bootstrap/Dropdown";
 import Divider from "components/util/Divider";
-import { PublicUserDocument } from "tachi-common";
-import { Button } from "react-bootstrap";
-import { APIFetchV1, ToAPIURL } from "util/api";
-import toast from "react-hot-toast";
-import { UserContext } from "context/UserContext";
 import DropdownToggleOverride from "components/util/DropdownToggleOverride";
+import { UserContext } from "context/UserContext";
+import React, { useContext } from "react";
+import { Button } from "react-bootstrap";
+import Dropdown from "react-bootstrap/Dropdown";
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import { PublicUserDocument } from "tachi-common";
+import { APIFetchV1, ToAPIURL } from "util/api";
 
 export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 	const { setUser } = useContext(UserContext);

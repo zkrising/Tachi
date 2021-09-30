@@ -1280,6 +1280,24 @@ export interface ShowcaseStatChart {
 	property: "score" | "percent" | "grade" | "lamp" | "playcount";
 }
 
+export interface UGPTSpecificPreferences {
+	"iidx:SP": { display2DXTra: boolean };
+	"iidx:DP": { display2DXTra: boolean };
+	"popn:9B": Record<string, never>;
+	"sdvx:Single": Record<string, never>;
+	"usc:Single": Record<string, never>;
+	"ddr:SP": Record<string, never>;
+	"ddr:DP": Record<string, never>;
+	"maimai:Single": Record<string, never>;
+	"jubeat:Single": Record<string, never>;
+	"museca:Single": Record<string, never>;
+	"bms:7K": Record<string, never>;
+	"bms:14K": Record<string, never>;
+	"chunithm:Single": Record<string, never>;
+	"gitadora:Gita": Record<string, never>;
+	"gitadora:Dora": Record<string, never>;
+}
+
 export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDocument {
 	userID: integer;
 	game: IDStringToGame[I];
@@ -1289,6 +1307,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 		preferredSessionAlg: SessionCalculatedDataLookup[I] | null;
 		preferredProfileAlg: UGSRatingsLookup[I] | null;
 		stats: ShowcaseStatDetails[];
+		gameSpecific: UGPTSpecificPreferences[I];
 	};
 }
 

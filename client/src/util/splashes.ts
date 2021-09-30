@@ -69,6 +69,7 @@ export const loggedInSplashes = [
 	"come on down",
 	"The preparation for a dive is always a tense time.",
 	"Music Is Math",
+	"The public gets what the public wants!",
 ];
 
 // Stuff that's bad for the kids, you know?
@@ -78,4 +79,5 @@ export const contentiousSplashes = [
 	"i'm obligated to ask for you to seek immediate psychological attention",
 	"Is IIDX still a good game or are you all basically stupid?",
 	"Please do not reply to or quote my posts in the future.",
+	"The public wants what the public gets!",
 ];

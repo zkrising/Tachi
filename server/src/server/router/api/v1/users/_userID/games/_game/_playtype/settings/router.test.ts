@@ -20,6 +20,9 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				preferredSessionAlg: null,
 				preferredProfileAlg: null,
 				stats: [],
+				gameSpecific: {
+					display2DXTra: false,
+				},
 			},
 		});
 
@@ -60,6 +63,59 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					preferredSessionAlg: null,
 					preferredProfileAlg: null,
 					stats: [],
+					gameSpecific: {
+						display2DXTra: false,
+					},
+				},
+			},
+			"Should only update the mutated properties."
+		);
+
+		const data = await db["game-settings"].findOne({
+			userID: 1,
+			game: "iidx",
+			playtype: "SP",
+		});
+
+		t.equal(data?.preferences.preferredScoreAlg, "ktRating");
+
+		t.end();
+	});
+
+	t.test("Should update a user's game specific settings.", async (t) => {
+		await db["api-tokens"].insert({
+			userID: 1,
+			identifier: "api_token",
+			permissions: {
+				customise_profile: true,
+			},
+			token: "api_token",
+		});
+
+		const res = await mockApi
+			.patch("/api/v1/users/1/games/iidx/SP/settings")
+			.set("Authorization", "Bearer api_token")
+			.send({
+				preferredScoreAlg: "ktRating",
+				gameSpecific: {
+					display2DXTra: true,
+				},
+			});
+
+		t.strictSame(
+			res.body.body,
+			{
+				userID: 1,
+				game: "iidx",
+				playtype: "SP",
+				preferences: {
+					preferredScoreAlg: "ktRating",
+					preferredSessionAlg: null,
+					preferredProfileAlg: null,
+					stats: [],
+					gameSpecific: {
+						display2DXTra: true,
+					},
 				},
 			},
 			"Should only update the mutated properties."

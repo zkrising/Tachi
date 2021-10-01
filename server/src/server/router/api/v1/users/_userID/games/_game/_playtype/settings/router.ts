@@ -35,6 +35,8 @@ router.patch(
 			preferredScoreAlg: p.optional(p.nullable(p.isIn(gptConfig.scoreRatingAlgs))),
 			preferredSessionAlg: p.optional(p.nullable(p.isIn(gptConfig.sessionRatingAlgs))),
 			preferredProfileAlg: p.optional(p.nullable(p.isIn(gptConfig.profileRatingAlgs))),
+			// This is a pretty stupid IIFE level hack, ah well.
+			gameSpecific: p.any,
 		});
 
 		if (err) {
@@ -42,6 +44,29 @@ router.patch(
 				success: false,
 				description: FormatPrError(err, "Invalid game-settings."),
 			});
+		}
+
+		if (req.body.gameSpecific) {
+			let schema = {};
+
+			if (game === "iidx") {
+				schema = {
+					display2DXTra: "boolean",
+				};
+			}
+			const err = p(
+				req.body,
+				{ gameSpecific: p.optional(schema) },
+				{},
+				{ allowExcessKeys: true }
+			);
+
+			if (err) {
+				return res.status(400).json({
+					success: false,
+					description: FormatPrError(err, "Invalid game-settings."),
+				});
+			}
 		}
 
 		const updateQuery: Record<string, string> = {};
@@ -52,6 +77,12 @@ router.patch(
 
 			if (req.body[k] !== undefined) {
 				updateQuery[`preferences.${k}`] = req.body[k];
+			}
+		}
+
+		if (req.body.gameSpecific) {
+			for (const key in req.body.gameSpecific) {
+				updateQuery[`preferences.gameSpecific.${key}`] = req.body.gameSpecific[key];
 			}
 		}
 

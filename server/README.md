@@ -21,7 +21,7 @@ Tachi itself is a supercharged Rhythm Game Score Tracker, powering multiple game
 
 [tachi-docs](https://github.com/TeamNewGuys/tachi-docs): Documentation for Tachi.
 
-[tachi-db-importer](https://github.com/TeamNewGuys/tachi-db-importer): A UI for importing local database files to Tachi.
+[tachi-import-scripts](https://github.com/TeamNewGuys/tachi-import-scripts): A UI for converting local files into Batch-Manual format, then uploading to Tachi..
 
 [tachi-beatoraja-ir](https://github.com/TeamNewGuys/tachi-beatoraja-ir): A beatoraja IR client for integrating with Tachi.
 

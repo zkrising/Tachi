@@ -12,6 +12,7 @@ import { useFormik } from "formik";
 import { DelayedPageReload, FetchJSONBody, UppercaseFirst } from "util/misc";
 import { TachiConfig } from "lib/config";
 import { UserSettingsContext, UserSettingsContextProvider } from "context/UserSettingsContext";
+import Muted from "components/util/Muted";
 
 interface Props {
 	reqUser: PublicUserDocument;
@@ -54,6 +55,13 @@ export default function UserSettingsPage({ reqUser }: Props) {
 					) : (
 						<PreferencesForm reqUser={reqUser} />
 					)}
+				</div>
+				<div className="col-12">
+					<Divider />
+					<Muted>
+						Looking to change settings for a specific game? Go to your game profile, and
+						select those settings!
+					</Muted>
 				</div>
 			</div>
 		</Card>

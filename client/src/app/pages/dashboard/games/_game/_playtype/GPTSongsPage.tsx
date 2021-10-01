@@ -5,19 +5,18 @@ import TitleCell from "components/tables/cells/TitleCell";
 import TachiTable from "components/tables/components/TachiTable";
 import ApiError from "components/util/ApiError";
 import DebounceSearch from "components/util/DebounceSearch";
-import DebugContent from "components/util/DebugContent";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import {
-	GetGameConfig,
-	FormatGame,
 	ChartDocument,
-	SongDocument,
-	integer,
+	FormatGame,
+	GetGameConfig,
 	GetGamePTConfig,
+	integer,
+	SongDocument,
 } from "tachi-common";
 import { GamePT } from "types/react";
 import { CreateSongMap } from "util/data";

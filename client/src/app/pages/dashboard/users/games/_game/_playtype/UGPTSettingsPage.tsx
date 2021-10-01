@@ -76,6 +76,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 				settings!.preferences.preferredProfileAlg || gptConfig.defaultProfileRatingAlg,
 			preferredSessionAlg:
 				settings!.preferences.preferredSessionAlg || gptConfig.defaultSessionRatingAlg,
+			gameSpecific: settings!.preferences.gameSpecific,
 		},
 		onSubmit: async values => {
 			const rj = await APIFetchV1<PublicUserDocument>(
@@ -150,6 +151,21 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 					used for things like leaderboards.
 				</Form.Text>
 			</Form.Group>
+			{game === "iidx" && (
+				<Form.Group>
+					<Form.Check
+						type="checkbox"
+						id="gameSpecific.display2DXTra"
+						name="gameSpecific.display2DXTra"
+						checked={formik.values.gameSpecific.display2DXTra}
+						onChange={formik.handleChange}
+						label="Display 2DX-tra Charts"
+					/>
+					<Form.Text className="text-muted">
+						Display 2DX-tra charts on the song page.
+					</Form.Text>
+				</Form.Group>
+			)}
 			<div className="row justify-content-center">
 				<Button type="submit" variant="success">
 					Save Changes

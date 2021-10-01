@@ -14,6 +14,7 @@ import Divider from "components/util/Divider";
 import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
+import SelectButton from "components/util/SelectButton";
 import { UGPTSettingsContext, UGPTSettingsContextProvider } from "context/UGPTSettingsContext";
 import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
@@ -26,6 +27,7 @@ import {
 	Game,
 	GetGameConfig,
 	GetGamePTConfig,
+	SongDocument,
 	UGPTSettings,
 } from "tachi-common";
 import { SongsReturn } from "types/api-returns";
@@ -257,28 +259,29 @@ function SongInfoHeader({
 						<h5>Charts</h5>
 						<hr />
 						<div className="btn-group-vertical d-flex justify-content-center">
-							{sortedCharts.map(e => (
-								<LinkButton
-									onClick={() => setActiveChart(e)}
-									className="btn-secondary"
-									key={e.chartID}
-									to={`/dashboard/games/${game}/${playtype}/songs/${song.id}/${e.difficulty}`}
-									style={{
-										backgroundColor: gptConfig.difficultyColours[e.difficulty]
-											? ChangeOpacity(
-													gptConfig.difficultyColours[e.difficulty]!,
-													activeChart?.chartID === e.chartID ? 0.4 : 0.2
-											  )
-											: undefined,
+							{game === "iidx" ? (
+								<IIDXDifficultyList
+									{...{
+										activeChart,
+										charts: sortedCharts,
+										game,
+										playtype,
+										setActiveChart,
+										song,
 									}}
-								>
-									{activeChart?.chartID === e.chartID ? (
-										<strong>{FormatDifficulty(e, game)}</strong>
-									) : (
-										FormatDifficulty(e, game)
-									)}
-								</LinkButton>
-							))}
+								/>
+							) : (
+								<DifficultyList
+									{...{
+										activeChart,
+										charts: sortedCharts,
+										game,
+										playtype,
+										setActiveChart,
+										song,
+									}}
+								/>
+							)}
 						</div>
 					</Col>
 				)}
@@ -290,5 +293,144 @@ function SongInfoHeader({
 				)}
 			</Row>
 		</Card>
+	);
+}
+
+type Props = { song: SongDocument } & {
+	activeChart: ChartDocument | null;
+	setActiveChart: SetState<ChartDocument | null>;
+} & GamePT;
+
+function DifficultyButton({
+	chart,
+	song,
+	game,
+	playtype,
+	setActiveChart,
+	activeChart,
+}: Props & { chart: ChartDocument }) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	return (
+		<LinkButton
+			onClick={() => setActiveChart(chart)}
+			className="btn-secondary"
+			key={chart.chartID}
+			to={`/dashboard/games/${game}/${playtype}/songs/${song.id}/${chart.difficulty}`}
+			style={{
+				backgroundColor: gptConfig.difficultyColours[chart.difficulty]
+					? ChangeOpacity(
+							gptConfig.difficultyColours[chart.difficulty]!,
+							activeChart?.chartID === chart.chartID ? 0.4 : 0.2
+					  )
+					: undefined,
+			}}
+		>
+			{activeChart?.chartID === chart.chartID ? (
+				<strong>{FormatDifficulty(chart, game)}</strong>
+			) : (
+				FormatDifficulty(chart, game)
+			)}
+		</LinkButton>
+	);
+}
+
+function DifficultyList({
+	charts,
+	song,
+	activeChart,
+	setActiveChart,
+	game,
+	playtype,
+}: {
+	charts: ChartDocument[];
+} & Props) {
+	return (
+		<>
+			{charts.map(e => (
+				<DifficultyButton
+					activeChart={activeChart}
+					setActiveChart={setActiveChart}
+					game={game}
+					playtype={playtype}
+					song={song}
+					chart={e}
+					key={e.chartID}
+				/>
+			))}
+		</>
+	);
+}
+
+/**
+ * We need some special handling for IIDX Special Difficulties.
+ * Thanks.
+ */
+function IIDXDifficultyList({
+	charts,
+	song,
+	activeChart,
+	setActiveChart,
+	game,
+	playtype,
+}: {
+	charts: ChartDocument[];
+} & Props) {
+	const { settings } = useContext(UGPTSettingsContext);
+
+	const [set, setSet] = useState<null | "All Scratch" | "Kichiku" | "Kiraku">(null);
+
+	if (
+		!(activeChart as ChartDocument<"iidx:SP" | "iidx:DP">)?.data["2dxtraSet"] &&
+		!settings?.preferences.gameSpecific.display2DXTra
+	) {
+		return (
+			<DifficultyList
+				{...{
+					charts: charts.filter(
+						// @ts-expect-error hack
+						(e: ChartDocument<"iidx:SP" | "iidx:DP">) => e.data["2dxtraSet"] === null
+					),
+					song,
+					activeChart,
+					setActiveChart,
+					game,
+					playtype,
+				}}
+			/>
+		);
+	}
+
+	return (
+		<>
+			<div className="btn-group">
+				<SelectButton value={set} setValue={setSet} id={null}>
+					Normal
+				</SelectButton>
+				<SelectButton value={set} setValue={setSet} id="All Scratch">
+					All Scr.
+				</SelectButton>
+				<SelectButton value={set} setValue={setSet} id="Kichiku">
+					Kichiku
+				</SelectButton>
+				<SelectButton value={set} setValue={setSet} id="Kiraku">
+					Kiraku
+				</SelectButton>
+			</div>
+			<DifficultyList
+				{...{
+					charts: charts.filter(
+						// @ts-expect-error hack
+						(e: ChartDocument<"iidx:SP" | "iidx:DP">) =>
+							set ? e.difficulty.startsWith(set) : e.data["2dxtraSet"] === null
+					),
+					song,
+					activeChart,
+					setActiveChart,
+					game,
+					playtype,
+				}}
+			/>
+		</>
 	);
 }

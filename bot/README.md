@@ -1,7 +1,14 @@
-# Tachi-Bot
+# Tachi Bot
 
-Integrate with Tachi Services
+A discord bot that interacts with an instance of the [Tachi Server](https://github.com/TeamNewGuys/tachi-server).
 
-## Support & Maintenance
+## Setup
 
-If you have any problems with the bot or have suggestions please create a Github issue.
+- Install dependencies with `yarn install`.
+- Create the relevant `conf.json5` and `.env` files. At the moment, you'll have to read the codebase for information about them.
+- Run `yarn start`.
+
+## Contributions
+
+You can contribute to this project by requesting features or reporting bugs under issues. Pull requests for features are also appreciated.
+You should also read the [Contribution Information](https://tachi.readthedocs.io/en/latest/codebase/contributing/) for Tachi.

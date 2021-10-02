@@ -31,10 +31,7 @@ export const buildSongSelect = <T extends Game>(songs: SongSearchResult[], playt
 	);
 };
 
-interface SimplePBDocument
-	extends Pick<PBScoreDocument, "scoreData">,
-		Pick<PBScoreDocument, "calculatedData">,
-		Partial<PublicUserDocument> {}
+interface SimplePBDocument extends PBScoreDocument, Partial<PublicUserDocument> {}
 
 export const getPBForChart = async <T extends Game>(
 	chartId: string,
@@ -51,9 +48,8 @@ export const getPBForChart = async <T extends Game>(
 			const topUser = users.find((user) => user.id === topPb.userID);
 
 			return {
-				...topUser,
-				scoreData: topPb.scoreData,
-				calculatedData: topPb.calculatedData
+				...topPb,
+				...topUser
 			};
 		} else {
 			logger.error(data.description);

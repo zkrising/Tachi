@@ -35,6 +35,7 @@ export const getGameImage = (gameId: string, game: Game): string => {
 	if (ProcessEnv.ENV !== "prod") {
 		return `https://kamaitachi.xyz/static/images/gameicons/${game}/${gameId}.png`;
 	}
+	/** @TODO Prod CDN for game images */
 	return PrependTachiUrl(`/users/${gameId}/pfp`);
 };
 

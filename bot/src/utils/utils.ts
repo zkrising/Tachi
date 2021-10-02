@@ -1,5 +1,4 @@
-import { FormatGame, Game, Playtypes, IDStrings, UGSRatingsLookup, GetGamePTConfig } from "tachi-common";
-import { GetGameConfig } from "tachi-common/js/config/config";
+import { FormatGame, Game, Playtypes, IDStrings, UGSRatingsLookup, GetGamePTConfig, GetGameConfig } from "tachi-common";
 import { ProcessEnv } from "../setup";
 import { PrependTachiUrl } from "./fetch-tachi";
 

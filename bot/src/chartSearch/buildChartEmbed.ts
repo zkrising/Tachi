@@ -67,10 +67,11 @@ export const buildChartEmbed = async <T extends Game, I extends IDStrings = IDSt
 	songId?: string;
 	playtype: Playtypes[T];
 	game: Game;
+	/** @TODO Let users Toggle showing 2dExtra charts */
+	IIDExtra?: boolean;
 }): Promise<InteractionReplyOptions | MessagePayload> => {
 	try {
-		const { searchResults, songId, playtype, game } = args;
-
+		const { searchResults, songId, playtype, game, IIDExtra } = args;
 		const embed = new MessageEmbed().setColor("#cc527a");
 
 		if (!songId && searchResults) {
@@ -81,18 +82,29 @@ export const buildChartEmbed = async <T extends Game, I extends IDStrings = IDSt
 			embed.addField(details.song.title || "Song", details.song.artist || "Artist");
 			embed.setThumbnail(getGameImage(details.song.firstVersion || "0", game));
 
-			const sortedCharts = details.charts.sort((a, b) => a.levelNum - b.levelNum);
+			const filteredCharts = details.charts.filter((chart) => {
+				if (IIDExtra) {
+					return true;
+				} else {
+					if (chart.data && !(chart.data as any)?.["2dxtraSet"]) {
+						return true;
+					}
+				}
+
+				return false;
+			});
+			const sortedCharts = filteredCharts.sort((a, b) => a.levelNum - b.levelNum);
 
 			for (const chart of sortedCharts) {
 				try {
 					const PB = await getPBForChart(chart.chartID, chart.playtype, game);
 					embed.addField(
 						`${chart.difficulty} (${chart.level})`,
-						`Server Top: **[${PB.username}](https://kamaitachi.xyz/dashboard/profiles/${
+						`Server Top: **[${PB.username}](https://kamaitachi.xyz/dashboard/users/${
 							PB.id
-						}/games/${game}?playtype=${playtype})**\n${PB.scoreData.percent.toFixed(2)}% [${
-							PB.scoreData.score
-						}]\n${PB.scoreData.grade} [${PB.scoreData.lamp}]\n${Object.keys(PB.calculatedData)
+						}/games/${game}/${playtype})**\n${PB.scoreData.percent.toFixed(2)}% [${PB.scoreData.score}]\n${
+							PB.scoreData.grade
+						} [${PB.scoreData.lamp}]\n${Object.keys(PB.calculatedData)
 							.map((item) => {
 								return `${item}: ${formatGameScoreRating(
 									{ game, playtype },

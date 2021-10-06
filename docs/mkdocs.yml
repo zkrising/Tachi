@@ -34,6 +34,7 @@ nav:
     - "user/pbs-scores.md"
     - "user/filter-directives.md"
     - "user/lamps.md"
+    - "user/score-oddities.md"
 
     - Statistics:
       - "user/stats/tachi.md"

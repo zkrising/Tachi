@@ -1,6 +1,6 @@
 # Tachi Bot
 
-A discord bot that interacts with an instance of the [Tachi Server](https://github.com/TeamNewGuys/tachi-server).
+A discord bot that interacts with an instance of the [Tachi Server](https://github.com/tng-dev/tachi-server).
 
 ## Setup
 

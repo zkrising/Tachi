@@ -1,4 +1,4 @@
-import { FormatGame, Game, Playtypes, IDStrings, UGSRatingsLookup, GetGamePTConfig } from "tachi-common";
+import { FormatGame, Game, Playtypes, IDStrings, UGSRatingsLookup, GetGamePTConfig, GetGameConfig } from "tachi-common";
 import { ProcessEnv } from "../setup";
 import { PrependTachiUrl } from "./fetch-tachi";
 
@@ -15,6 +15,7 @@ export const stringToSimpleGameType = (gptString: string): SimpleGameType<Game> 
 };
 
 export const formatGameWrapper = (gpt: SimpleGameType<Game>): string => FormatGame(gpt.game, gpt.playtype);
+export const formatGameWrapperSimple = (gpt: Game): string => GetGameConfig(gpt).name;
 
 export const capitalise = (s: string): string => (s && s[0].toUpperCase() + s.slice(1)) || "";
 
@@ -27,6 +28,14 @@ export const getPfpUrl = (userId: number): string => {
 		return `https://kamaitachi.xyz/static/images/users/${userId}-pfp.png`;
 	}
 	return PrependTachiUrl(`/users/${userId}/pfp`);
+};
+
+export const getGameImage = (gameId: string, game: Game): string => {
+	if (ProcessEnv.ENV !== "prod") {
+		return `https://kamaitachi.xyz/static/images/gameicons/${game}/${gameId}.png`;
+	}
+	/** @TODO Prod CDN for game images */
+	return PrependTachiUrl(`/users/${gameId}/pfp`);
 };
 
 export const gameIdentifierStrings = [
@@ -44,9 +53,29 @@ export const gameIdentifierStrings = [
 	"gitadora:Gita",
 	"gitadora:Dora"
 ];
+
+export const simpleGameIdentifierStrings = [
+	"iidx",
+	"museca",
+	"maimai",
+	"sdvx",
+	"ddr",
+	"bms",
+	"chunithm",
+	"gitadora",
+	"usc"
+];
+
 export const gamesToChoicesObject = (): [name: string, value: string][] => {
 	return gameIdentifierStrings.map((identifier) => {
 		return [formatGameWrapper(stringToSimpleGameType(identifier)), identifier];
+	});
+};
+
+/** @description excludes play-types from options */
+export const gamesToGenericChoicesObject = (): [name: string, value: string][] => {
+	return simpleGameIdentifierStrings.map((identifier) => {
+		return [formatGameWrapperSimple(<Game>identifier), identifier];
 	});
 };
 

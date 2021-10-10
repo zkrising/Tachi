@@ -3,6 +3,7 @@ import { REST } from "@discordjs/rest";
 import { APIApplicationCommandOption } from "discord-api-types";
 import { Routes } from "discord-api-types/v9";
 import { Client, CommandInteraction } from "discord.js";
+import { searchForSong } from "../chartSearch/chartSearch";
 import { getProfileByName } from "../profile/fetch";
 import { ProcessEnv } from "../setup";
 import { LoggerLayers } from "../config";
@@ -37,6 +38,17 @@ export const slashCommands: SlashCommand[] = [
 			)
 			.toJSON(),
 		exec: async (interaction: CommandInteraction) => await getProfileByName(interaction)
+	},
+	{
+		info: new SlashCommandBuilder()
+			.setName("search")
+			.setDescription("Search for a song")
+			.addStringOption((option) =>
+				option.setName("game").setDescription("The Game").setRequired(true).addChoices(gamesToChoicesObject())
+			)
+			.addStringOption((option) => option.setName("song").setDescription("The song name").setRequired(true))
+			.toJSON(),
+		exec: async (interaction: CommandInteraction) => await searchForSong(interaction)
 	}
 ];
 

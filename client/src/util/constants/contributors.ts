@@ -11,5 +11,4 @@ export const Contributors = [
 	"Highflyer",
 	"Fluzzarn",
 	"Jag",
-	"pfych",
 ];

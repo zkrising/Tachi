@@ -10,6 +10,8 @@ import ResetPasswordPage from "app/pages/ResetPasswordPage";
 import CenterPage from "components/util/CenterPage";
 import { ClientConfig } from "lib/config";
 import MainPageTitleContainer from "components/util/MainPageTitleContainer";
+import OAuthRoutes from "./OAuthRoutes";
+import OAuth2CallbackRoutes from "./OAuth2CallbackRoutes";
 
 /**
  * Core Routes for Tachi-Client.
@@ -32,6 +34,13 @@ export function Routes() {
 
 			<Route path="/dashboard">
 				{!user && ClientConfig.MANDATE_LOGIN ? <LoginPage /> : <DashboardRoutes />}
+			</Route>
+
+			<Route path="/oauth2-callback">
+				<OAuth2CallbackRoutes />
+			</Route>
+			<Route path="/oauth">
+				<OAuthRoutes />
 			</Route>
 
 			<Route exact path="/login">

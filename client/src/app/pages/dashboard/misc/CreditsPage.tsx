@@ -1,17 +1,27 @@
 import ExternalLink from "components/util/ExternalLink";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Contributors } from "util/constants/contributors";
 import { RFA } from "util/misc";
 import { TachiConfig } from "lib/config";
 import useSetSubheader from "components/layout/header/useSetSubheader";
+import { UserContext } from "context/UserContext";
 
 export default function CreditsPage() {
 	useSetSubheader("Credits");
 
 	const [alt, setAlt] = useState(false);
+	const [whatTheHell, setWhatTheHell] = useState(0);
+
+	const { user } = useContext(UserContext);
 
 	function a(normal: JSX.Element | string, ...altStr: (JSX.Element | string)[]) {
-		return alt ? RFA(altStr) : normal;
+		if (!alt) {
+			return normal;
+		} else if (whatTheHell < 0) {
+			return normal;
+		}
+
+		return RFA(altStr);
 	}
 
 	return (
@@ -31,7 +41,19 @@ export default function CreditsPage() {
 			<div className="mt-4">
 				<h1>
 					De
-					<span className="text-white credits-easter-egg" onClick={() => setAlt(!alt)}>
+					<span
+						className="text-white credits-easter-egg"
+						onClick={() => {
+							if (alt) {
+								// Force a different RFA
+								// by incrementing a random
+								// variable
+								setWhatTheHell(whatTheHell + 1);
+							} else {
+								setAlt(true);
+							}
+						}}
+					>
 						v
 					</span>{" "}
 					Team
@@ -84,6 +106,15 @@ export default function CreditsPage() {
 						)}
 						: <strong>Percyqaz</strong>
 					</li>
+					<li>
+						{a(
+							"Tachi Discord Bot Work",
+							"oooOoooo you want to use redux oooo",
+							"Java Skirt Whore",
+							"Urbit Enjoyer"
+						)}
+						: <strong>pfych</strong>
+					</li>
 				</ul>
 			</div>
 			<div className="mt-6">
@@ -106,10 +137,6 @@ export default function CreditsPage() {
 					<li>
 						{a("APIs, Massive Dev Support", "Have you tried Elixir?")}:{" "}
 						<strong>haste</strong>
-					</li>
-					<li>
-						{a("Tachi-Bot Work", "oooOoooo you want to use redux oooo")}:{" "}
-						<strong>pfych</strong>
 					</li>
 					<li>
 						{a("Chunitachi", "CHUNITHM Black Magic")}: <strong>tomatosoup</strong>
@@ -190,6 +217,18 @@ export default function CreditsPage() {
 						<small>Nivo is the best graphing library ever made. That's it.</small>
 					</li>
 				</ul>
+			</div>
+			<div className="mt-6">
+				<h1>And...</h1>
+
+				<p>
+					Everyone who was part of the beta.
+					{user?.badges.some(x => x === "beta" || x === "alpha") ? " (That's you!)" : ""}
+				</p>
+
+				<p>
+					Everyone in the <code>#dev</code> chat for the constant advice and comedy gold.
+				</p>
 			</div>
 			<span className="text-muted" style={{ fontSize: "0.2rem" }}>
 				Click the V in Dev Team.

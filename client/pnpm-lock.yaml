@@ -30,6 +30,7 @@ specifiers:
   bootstrap: 4.6.0
   case-sensitive-paths-webpack-plugin: 2.2.0
   copyfiles: 2.1.1
+  crypto-js: ^4.1.1
   css-loader: 2.1.1
   deepmerge: 4.2.2
   dotenv: 6.2.0
@@ -109,6 +110,7 @@ dependencies:
   babel-preset-react-app: 9.1.2
   bootstrap: 4.6.0
   case-sensitive-paths-webpack-plugin: 2.2.0
+  crypto-js: 4.1.1
   css-loader: 2.1.1_webpack@4.41.0
   deepmerge: 4.2.2
   dotenv: 6.2.0
@@ -4706,6 +4708,10 @@ packages:
       randombytes: 2.1.0
       randomfill: 1.0.4
     dev: true
+
+  /crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
+    dev: false
 
   /css-blank-pseudo/0.1.4:
     resolution: {integrity: sha512-LHz35Hr83dnFeipc7oqFDmsjHdljj3TQtxGGiNWSOsTLIAubSm4TEz8qCaKFpk7idaQ1GfWscF4E6mgpBysA1w==}

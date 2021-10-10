@@ -1,7 +1,7 @@
 import { ErrorPage } from "app/pages/ErrorPage";
 import { Layout } from "components/layout/Layout";
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { DashboardPage } from "../pages/dashboard/DashboardPage";
 import CreditsPage from "../pages/dashboard/misc/CreditsPage";
 import GameRoutes from "./GameRoutes";
@@ -17,6 +17,10 @@ export default function DashboardRoutes() {
 
 				<Route exact path="/dashboard/credits">
 					<CreditsPage />
+				</Route>
+
+				<Route exact path="/dashboard/users">
+					<Redirect to="/dashboard" />
 				</Route>
 
 				<Route path="/dashboard/users/:userID">

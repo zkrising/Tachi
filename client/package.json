@@ -42,6 +42,7 @@
 		"babel-preset-react-app": "^9.1.2",
 		"bootstrap": "4.6.0",
 		"case-sensitive-paths-webpack-plugin": "2.2.0",
+		"crypto-js": "^4.1.1",
 		"css-loader": "2.1.1",
 		"deepmerge": "4.2.2",
 		"dotenv": "6.2.0",

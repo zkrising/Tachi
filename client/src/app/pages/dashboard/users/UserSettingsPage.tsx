@@ -30,8 +30,8 @@ export default function UserSettingsPage({ reqUser }: Props) {
 	return (
 		<Card header="Settings" className="col-12 offset-lg-2 col-lg-8">
 			<div className="row">
-				<div className="col-12 d-flex justify-content-center">
-					<div className="btn-group">
+				<div className="col-12">
+					<div className="btn-group d-flex justify-content-center">
 						<SelectButton value={page} setValue={setPage} id="image">
 							<Icon type="image" />
 							Pictures
@@ -104,7 +104,7 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 					onChange={formik.handleChange}
 					label="Developer Mode"
 				/>
-				<Form.Text>Enable debug information for easier development.</Form.Text>
+				<Form.Text>Enable debug information.</Form.Text>
 			</Form.Group>
 			<Form.Group>
 				<Form.Check

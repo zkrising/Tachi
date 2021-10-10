@@ -1,6 +1,8 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import { ToServerURL } from "util/api";
+import { toAbsoluteUrl } from "_metronic/_helpers";
 
 export function ErrorPage({
 	statusCode,
@@ -48,7 +50,20 @@ export function ErrorPage({
 	}
 
 	return (
-		<div className="fullscreen">
+		<div
+			className="fullscreen text-center"
+			style={
+				statusCode === 999
+					? {
+							background: "red",
+							backgroundImage: `url(${ToServerURL("/cdn/eggs/michael.png")})`,
+							backgroundRepeat: "no-repeat",
+							backgroundPosition: "center",
+							backgroundSize: "cover",
+					  }
+					: undefined
+			}
+		>
 			<div className="d-flex flex-column flex-root">
 				<div className="d-flex flex-row-fluid flex-column bgi-size-cover bgi-position-center bgi-no-repeat p-10 p-sm-30">
 					<h1

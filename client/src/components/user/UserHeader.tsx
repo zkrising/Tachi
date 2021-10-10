@@ -108,6 +108,11 @@ export function UserBottomNav({
 				Settings
 			</NavItem>
 		);
+		navItems.push(
+			<NavItem key="integrations" to={`${baseUrl}/integrations`}>
+				Integrations
+			</NavItem>
+		);
 	}
 
 	return (

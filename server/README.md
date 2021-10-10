@@ -17,17 +17,17 @@ Tachi itself is a supercharged Rhythm Game Score Tracker, powering multiple game
 
 `tachi-server` is one part of the larger Tachi framework. Other repositories include:
 
-[tachi-common](https://github.com/TeamNewGuys/tachi-common): Common Types and Utilities for Tachi. (Stuff that's shared between the client and the server, basically.)
+[tachi-common](https://github.com/tng-dev/tachi-common): Common Types and Utilities for Tachi. (Stuff that's shared between the client and the server, basically.)
 
-[tachi-docs](https://github.com/TeamNewGuys/tachi-docs): Documentation for Tachi.
+[tachi-docs](https://github.com/tng-dev/tachi-docs): Documentation for Tachi.
 
-[tachi-import-scripts](https://github.com/TeamNewGuys/tachi-import-scripts): A UI for converting local files into Batch-Manual format, then uploading to Tachi..
+[tachi-import-scripts](https://github.com/tng-dev/tachi-import-scripts): A UI for converting local files into Batch-Manual format, then uploading to Tachi..
 
-[tachi-beatoraja-ir](https://github.com/TeamNewGuys/tachi-beatoraja-ir): A beatoraja IR client for integrating with Tachi.
+[tachi-beatoraja-ir](https://github.com/tng-dev/tachi-beatoraja-ir): A beatoraja IR client for integrating with Tachi.
 
-[tachi-database-seeds](https://github.com/TeamNewGuys/tachi-database-seeds): Backbone data for Tachi, such as song and chart information. Free to use.
+[tachi-database-seeds](https://github.com/tng-dev/tachi-database-seeds): Backbone data for Tachi, such as song and chart information. Free to use.
 
-[tachi-bot](https://github.com/TeamNewGuys/tachi-db-importer): A discord bot that integrates with the Tachi API.
+[tachi-bot](https://github.com/tng-dev/tachi-db-importer): A discord bot that integrates with the Tachi API.
 
 ## Where's the client?
 

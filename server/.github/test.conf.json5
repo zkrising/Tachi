@@ -13,10 +13,12 @@
 	FLO_OAUTH2_INFO: {
 		CLIENT_ID: "DUMMY_CLIENT_ID",
 		CLIENT_SECRET: "DUMMY_CLIENT_SECRET",
+		REDIRECT_URI: "https://example.com",
 	},
 	EAG_OAUTH2_INFO: {
 		CLIENT_ID: "DUMMY_CLIENT_ID",
 		CLIENT_SECRET: "DUMMY_CLIENT_SECRET",
+		REDIRECT_URI: "https://example.com",
 	},
 	ARC_AUTH_TOKEN: "unused",
 	CDN_FILE_ROOT: "./test-cdn",
@@ -27,5 +29,5 @@
 	OUR_URL: "https://example.com",
 	EMAIL_CONFIG: {
 		FROM: "test <zkldi@example.com>",
-	}
+	},
 }

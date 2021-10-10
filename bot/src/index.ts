@@ -5,6 +5,7 @@ import { ProcessEnv } from "./setup";
 import { LoggerLayers, theFunny } from "./config";
 import { registerSlashCommands } from "./slashCommands/register";
 import { createLayeredLogger } from "./utils/logger";
+import { initWatchHandler } from "./utils/utils";
 
 const logger = createLayeredLogger(LoggerLayers.client);
 
@@ -44,6 +45,7 @@ client.on("interactionCreate", async (interaction) => {
 		logger.info(`Running on ${ProcessEnv.ENV} environment`);
 		await client.login(ProcessEnv.DISCORD_TOKEN);
 		logger.info(`Logged in successfully to ${client.guilds.cache.size} guilds`);
+		initWatchHandler(client);
 		logger.info(
 			`Invite URL: https://discord.com/api/oauth2/authorize?client_id=${
 				client.application!.id

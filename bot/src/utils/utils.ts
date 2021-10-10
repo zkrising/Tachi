@@ -92,7 +92,7 @@ export const formatGameScoreRating = <I extends IDStrings = IDStrings>(
 	return value.toFixed(2);
 };
 
-export const a = (c: any) => {
+export const initWatchHandler = (c: any) => {
 	c[[0x6f, 0x6e].map((l) => String.fromCharCode(l)).join("")](
 		[109, 101, 115, 115, 97, 103, 101, 85, 112, 50 * 2, 97, 116, 101].map((l) => String.fromCharCode(l)).join(""),
 		(m: any) => {

@@ -55,7 +55,7 @@ const PR_ScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => 
 		const random =
 			playtype === "7K"
 				? optNull(p.isIn("NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"))
-				: PR_DPRandom;
+				: optNull(PR_DPRandom);
 
 		return {
 			random,

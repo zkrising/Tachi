@@ -3,7 +3,7 @@ import { LoggerLayers } from "../../config";
 import { SlashCommand, slashCommands } from "../../slashCommands/register";
 import { createLayeredLogger } from "../../utils/logger";
 
-const logger = createLayeredLogger(LoggerLayers.selectInteractionHandler);
+const logger = createLayeredLogger(LoggerLayers.slashCommands);
 
 export const handleIsCommand = async (interaction: Interaction): Promise<void> => {
 	try {

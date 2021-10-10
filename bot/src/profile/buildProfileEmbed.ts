@@ -2,6 +2,7 @@ import { InteractionReplyOptions, MessageActionRow, MessageEmbed, MessagePayload
 import { Game, UserGameStats, IDStrings, PublicUserDocument, UGSRatingsLookup } from "tachi-common";
 import { find } from "lodash";
 import { LoggerLayers } from "../config";
+import { validSelectCustomIdPrefaces } from "../interactionHandlers/selectMenu/handleIsSelectMenu";
 import { TachiServerV1Get } from "../utils/fetch-tachi";
 import { createLayeredLogger } from "../utils/logger";
 import {
@@ -97,7 +98,7 @@ export const buildProfileIntractable = async (
 		if (data) {
 			const dropdown = new MessageActionRow().addComponents(
 				new MessageSelectMenu()
-					.setCustomId(`SelectGameForProfile:${userId}`)
+					.setCustomId(`${validSelectCustomIdPrefaces.SelectGameForProfile}:${userId}`)
 					.setPlaceholder("Browse By Game")
 					.addOptions(
 						data.map((_game) => {

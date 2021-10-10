@@ -19,4 +19,4 @@ lamps for the game.
 
 *****
 
-This documentation is unfinished. It is probably easier for you to [just read the config.ts file](https://github.com/TeamNewGuys/tachi-common/tree/master/src/config/config.ts)
+This documentation is unfinished. It is probably easier for you to [just read the config.ts file](https://github.com/tng-dev/tachi-common/tree/master/src/config/config.ts)

@@ -18,7 +18,7 @@ shape of those documents.
 	to this, please see [Contributing](../contributing.md).
 
 	If you need information on a document that is not specified here,
-	You will have to check [tachi-common](https://github.com/TeamNewGuys/tachi-common) manually.
+	You will have to check [tachi-common](https://github.com/tng-dev/tachi-common) manually.
 	Sorry!
 
 *****

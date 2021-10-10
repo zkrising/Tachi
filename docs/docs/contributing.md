@@ -24,7 +24,7 @@ logic in the codebase) may be subject to some more scrutiny
 to make sure that they are correct, but are also significantly appreciated.
 
 To contribute to the documentation, you should go to
-the [GitHub](https://github.com/TeamNewGuys/tachi-docs), and
+the [GitHub](https://github.com/tng-dev/tachi-docs), and
 fork the repository.
 
 ## Non-Code Contributions

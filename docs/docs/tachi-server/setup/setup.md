@@ -42,7 +42,7 @@ sudo apt-get install nodejs
 ### 4. Pull the code.
 
 ```
-git clone https://github.com/TeamNewGuys/tachi-server
+git clone https://github.com/tng-dev/tachi-server
 cd tachi-server
 ```
 

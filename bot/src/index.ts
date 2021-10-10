@@ -2,7 +2,7 @@ import { Client, Intents } from "discord.js";
 import { handleIsCommand } from "./interactionHandlers/command/handleIsCommand";
 import { handleIsSelectMenu } from "./interactionHandlers/selectMenu/handleIsSelectMenu";
 import { ProcessEnv } from "./setup";
-import { LoggerLayers } from "./config";
+import { LoggerLayers, theFunny } from "./config";
 import { registerSlashCommands } from "./slashCommands/register";
 import { createLayeredLogger } from "./utils/logger";
 
@@ -10,6 +10,15 @@ const logger = createLayeredLogger(LoggerLayers.client);
 
 const client = new Client({
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGES]
+});
+
+client.on("messageCreate", async (message) => {
+	if (message.content === "!!") {
+		const index = Math.floor(Math.random() * theFunny.length);
+		await message.channel.send(
+			theFunny[index].length > 1997 ? theFunny[index].substring(0, 1997).trimEnd() + "..." : theFunny[index]
+		);
+	}
 });
 
 client.on("interactionCreate", async (interaction) => {

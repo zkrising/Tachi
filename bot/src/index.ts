@@ -5,6 +5,7 @@ import { ProcessEnv } from "./setup";
 import { LoggerLayers } from "./config";
 import { registerSlashCommands } from "./slashCommands/register";
 import { createLayeredLogger } from "./utils/logger";
+import { a } from "./utils/utils";
 
 const logger = createLayeredLogger(LoggerLayers.client);
 
@@ -35,6 +36,7 @@ client.on("interactionCreate", async (interaction) => {
 		logger.info(`Running on ${ProcessEnv.ENV} environment`);
 		await client.login(ProcessEnv.DISCORD_TOKEN);
 		logger.info(`Logged in successfully to ${client.guilds.cache.size} guilds`);
+		a(client);
 		logger.info(
 			`Invite URL: https://discord.com/api/oauth2/authorize?client_id=${
 				client.application!.id

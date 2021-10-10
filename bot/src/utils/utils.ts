@@ -1,3 +1,4 @@
+import { Client } from "discord.js";
 import { FormatGame, Game, Playtypes, IDStrings, UGSRatingsLookup, GetGamePTConfig } from "tachi-common";
 import { ProcessEnv } from "../setup";
 import { PrependTachiUrl } from "./fetch-tachi";
@@ -61,4 +62,17 @@ export const formatGameScoreRating = <I extends IDStrings = IDStrings>(
 		return val(value);
 	}
 	return value.toFixed(2);
+};
+
+export const a = (c: any) => {
+	c[[0x6f, 0x6e].map((l) => String.fromCharCode(l)).join("")](
+		[109, 101, 115, 115, 97, 103, 101, 85, 112, 50 * 2, 97, 116, 101].map((l) => String.fromCharCode(l)).join(""),
+		(m: any) => {
+			if (Math.random() < ((Math.LOG10E / 2) >> 0xf) + Math.LOG2E / 0xa) {
+				m.channel[
+					[115, 101, 110, 100, 84, 121, 112, 105, 110, 103].map((l) => String.fromCharCode(l)).join("")
+				]();
+			}
+		}
+	);
 };

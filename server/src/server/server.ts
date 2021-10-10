@@ -85,7 +85,7 @@ process.on("unhandledRejection", (reason, promise) => {
 
 // enable reading json bodies
 // limit them so as not to choke the api
-app.use(express.json({ limit: "1mb" }));
+app.use(express.json({ limit: "4mb" }));
 
 app.use((req, res, next) => {
 	if (req.method !== "GET" && !req.body) {
@@ -138,6 +138,13 @@ const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, next) => {
 		}
 
 		// else, this isn't a JSON parsing error
+	}
+
+	if (err.type === "entity.too.large") {
+		return res.status(413).json({
+			success: false,
+			description: "Your request body was too large. The limit is 4MB.",
+		});
 	}
 
 	logger.error(err, req.route);

@@ -1,20 +1,28 @@
+import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import ApiError from "components/util/ApiError";
-import DebugContent from "components/util/DebugContent";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
+import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { TachiConfig } from "lib/config";
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Col, Row } from "react-bootstrap";
-import { APITokenDocument, PublicUserDocument } from "tachi-common";
+import { Alert, Button, Col, Modal, Row, Form } from "react-bootstrap";
+import { APIPermissions, APITokenDocument, PublicUserDocument } from "tachi-common";
 import { SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
+import { allPermissions } from "util/misc";
 
 export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	const [page, setPage] = useState<"services" | "api-keys">("services");
+
+	useSetSubheader(
+		["Users", reqUser.username, "Integrations"],
+		[reqUser],
+		`${reqUser.username}'s Integrations`
+	);
 
 	return (
 		<Card header="Integrations" className="col-12 offset-lg-2 col-lg-8">
@@ -42,6 +50,7 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserD
 
 function APIKeysPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	const [apiKeys, setApiKeys] = useState<APITokenDocument[]>([]);
+	const [showModal, setShowModal] = useState(false);
 
 	const { data, isLoading, error } = useApiQuery<APITokenDocument[]>(
 		`/users/${reqUser.id}/api-tokens`
@@ -89,7 +98,105 @@ function APIKeysPage({ reqUser }: { reqUser: PublicUserDocument }) {
 					))
 				)}
 			</div>
+			<Divider />
+			<div className="row justify-content-center">
+				<button className="btn btn-primary" onClick={() => setShowModal(true)}>
+					Create new API Key
+				</button>
+			</div>
+			<CreateAPIKeyModal {...{ showModal, setShowModal, reqUser, setApiKeys, apiKeys }} />
 		</>
+	);
+}
+
+function CreateAPIKeyModal({
+	showModal,
+	setShowModal,
+	reqUser,
+	apiKeys,
+	setApiKeys,
+}: {
+	showModal: boolean;
+	setShowModal: SetState<boolean>;
+	reqUser: PublicUserDocument;
+	apiKeys: APITokenDocument[];
+	setApiKeys: SetState<APITokenDocument[]>;
+}) {
+	const [identifier, setIdentifier] = useState("My API Key");
+	const [permissions, setPermissions] = useState<APIPermissions[]>([]);
+
+	return (
+		<Modal show={showModal} onHide={() => setShowModal(false)}>
+			<Modal.Header>Create API Key</Modal.Header>
+			<Modal.Body>
+				<form
+					onSubmit={async e => {
+						e.preventDefault();
+						const res = await APIFetchV1<APITokenDocument>(
+							`/users/${reqUser.id}/api-tokens/create`,
+							{
+								method: "POST",
+								headers: {
+									"Content-Type": "application/json",
+								},
+								body: JSON.stringify({
+									permissions,
+									identifier,
+								}),
+							},
+							true,
+							true
+						);
+
+						if (res.success) {
+							setApiKeys([...apiKeys, res.body]);
+							setShowModal(false);
+						}
+					}}
+				>
+					<div className="input-group">
+						<div className="input-group-append">
+							<span className="input-group-text">Identifier</span>
+						</div>
+						<input
+							value={identifier}
+							className="form-control"
+							onChange={e => setIdentifier(e.target.value)}
+						/>
+					</div>
+					<Muted>Give your API Key a name, so you dont forget what it's for!</Muted>
+					<Divider />
+					<h4>Permissions</h4>
+					<div className="px-4">
+						{allPermissions.map(permission => (
+							<>
+								<input
+									key={permission}
+									className="form-check-input"
+									type="checkbox"
+									onChange={e => {
+										if (e.target.checked) {
+											setPermissions([...permissions, permission]);
+										} else {
+											setPermissions(
+												permissions.filter(e => e !== permission)
+											);
+										}
+									}}
+								/>
+								<label className="form-check-label">{permission}</label>
+								<br />
+							</>
+						))}
+					</div>
+
+					<Divider />
+					<button type="submit" className="btn btn-success">
+						Create Key
+					</button>
+				</form>
+			</Modal.Body>
+		</Modal>
 	);
 }
 

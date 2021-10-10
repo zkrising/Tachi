@@ -7,6 +7,7 @@ import {
 	integer,
 	ChartDocument,
 	GamePTConfig,
+	APIPermissions,
 } from "tachi-common";
 import toast from "react-hot-toast";
 
@@ -164,3 +165,11 @@ export function CopyToClipboard(data: unknown) {
 	toast.success("Copied data to clipboard.");
 	navigator.clipboard.writeText(JSON.stringify(data, null, "\t"));
 }
+
+export const allPermissions: APIPermissions[] = [
+	"customise_profile",
+	"customise_score",
+	"customise_session",
+	"delete_score",
+	"submit_score",
+];

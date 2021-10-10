@@ -13,6 +13,8 @@ import { FormatUserDoc } from "utils/user";
 import { GetKaiAuth } from "utils/queries/auth";
 import { RequireSelfRequestFromUser } from "../../../middleware";
 import { RequireKamaitachi } from "server/middleware/type-require";
+import fetch from "utils/fetch";
+import { Random20Hex } from "utils/misc";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -69,6 +71,36 @@ router.post(
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 		const kaiType = req.params.kaiType.toUpperCase() as "FLO" | "EAG" | "MIN";
 
+		if (process.env.NODE_ENV === "dev") {
+			await db["kai-auth-tokens"].update(
+				{
+					userID: user.id,
+					service: kaiType,
+				},
+				{
+					$set: {
+						userID: user.id,
+						service: kaiType,
+						refreshToken: Random20Hex(),
+						token: Random20Hex(),
+					},
+				},
+				{
+					upsert: true,
+				}
+			);
+
+			logger.warn(
+				`Cannot use kai OAuth2 in development. This endpoint has been stubbed out.`
+			);
+
+			return res.status(200).json({
+				success: true,
+				description: `Successfully updated auth for ${kaiType}`,
+				body: {},
+			});
+		}
+
 		const baseUrl = KaiTypeToBaseURL(kaiType);
 
 		const maybeCredentials = GetKaiTypeClientCredentials(kaiType);
@@ -83,7 +115,7 @@ router.post(
 			});
 		}
 
-		const { CLIENT_SECRET, CLIENT_ID } = maybeCredentials;
+		const { CLIENT_SECRET, CLIENT_ID, REDIRECT_URI } = maybeCredentials;
 
 		const url = new URL(`${baseUrl}/oauth/token`);
 
@@ -91,10 +123,21 @@ router.post(
 		url.searchParams.append("grant_type", "authorization_code");
 		url.searchParams.append("client_secret", CLIENT_SECRET);
 		url.searchParams.append("client_id", CLIENT_ID);
-		url.searchParams.append("redirect_uri", "somewhere?");
+		url.searchParams.append("redirect_uri", REDIRECT_URI);
 
-		// this also isn't a POST??
-		const getTokenRes = await fetch(url.href);
+		logger.info(`Making token reify request from ${baseUrl}/oauth/token`);
+		let getTokenRes;
+
+		try {
+			// this also isn't a POST??
+			getTokenRes = await fetch(url.href);
+		} catch (err) {
+			logger.error(`Completely failed to getTokenRes from ${baseUrl}/oauth/token.`, err);
+			return res.status(500).json({
+				success: false,
+				description: `An internal server error has occured.`,
+			});
+		}
 
 		if (getTokenRes.status !== 200) {
 			logger.error(

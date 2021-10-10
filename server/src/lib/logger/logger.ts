@@ -8,7 +8,7 @@ export type KtLogger = Logger & { severe: LeveledLogMethod };
 
 const level = process.env.LOG_LEVEL ?? ServerConfig.LOG_LEVEL;
 
-const formatExcessProperties = (meta: Record<string, unknown>) => {
+const formatExcessProperties = (meta: Record<string, unknown>, limit = false) => {
 	let i = 0;
 	for (const key in meta) {
 		const val = meta[key];
@@ -23,10 +23,24 @@ const formatExcessProperties = (meta: Record<string, unknown>) => {
 		return "";
 	}
 
-	return ` ${SafeJSONStringify(meta)}`;
+	const content = SafeJSONStringify(meta);
+
+	return ` ${limit ? StrCap(content) : content}`;
 };
 
-const formatExcessPropertiesNoStack = (meta: Record<string, unknown>, omitKeys: string[] = []) => {
+function StrCap(string: string) {
+	if (string.length > 300) {
+		return `${string.slice(0, 297)}...`;
+	}
+
+	return string;
+}
+
+const formatExcessPropertiesNoStack = (
+	meta: Record<string, unknown>,
+	omitKeys: string[] = [],
+	limit = false
+) => {
 	let i = 0;
 	const realMeta: Record<string, unknown> = {};
 
@@ -49,21 +63,23 @@ const formatExcessPropertiesNoStack = (meta: Record<string, unknown>, omitKeys: 
 		return "";
 	}
 
-	return ` ${SafeJSONStringify(realMeta)}`;
+	const content = SafeJSONStringify(realMeta);
+
+	return ` ${limit ? StrCap(content) : content}`;
 };
 
 const tachiPrintf = format.printf(
 	({ level, message, context = "tachi-root", timestamp, ...meta }) =>
 		`${timestamp} [${
 			Array.isArray(context) ? context.join(" | ") : context
-		}] ${level}: ${message}${formatExcessProperties(meta)}`
+		}] ${level}: ${message}${formatExcessProperties(meta, true)}`
 );
 
 const tachiConsolePrintf = format.printf(
 	({ level, message, context = "tachi-root", timestamp, hideFromConsole, ...meta }) =>
 		`${timestamp} [${
 			Array.isArray(context) ? context.join(" | ") : context
-		}] ${level}: ${message}${formatExcessPropertiesNoStack(meta, hideFromConsole)}`
+		}] ${level}: ${message}${formatExcessPropertiesNoStack(meta, hideFromConsole, true)}`
 );
 
 winston.addColors({

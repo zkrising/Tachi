@@ -1,4 +1,3 @@
-import Divider from "components/util/Divider";
 import React from "react";
 import { JustChildren } from "types/react";
 import SplashImage from "./misc/SplashImage";

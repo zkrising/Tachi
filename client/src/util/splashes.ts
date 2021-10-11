@@ -70,6 +70,8 @@ export const loggedInSplashes = [
 	"The preparation for a dive is always a tense time.",
 	"Music Is Math",
 	"The public gets what the public wants!",
+	"Our most beautiful melody.",
+	"Cwalina Subsidiary",
 ];
 
 // Stuff that's bad for the kids, you know?

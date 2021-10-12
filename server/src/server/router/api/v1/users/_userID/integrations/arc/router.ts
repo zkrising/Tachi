@@ -42,82 +42,76 @@ router.get("/", async (req, res) => {
  * Modify this users integrations for ARC.
  * @name PATCH /api/v1/users/:userID/integrations/arc
  */
-router.patch(
-	"/",
-	prValidate({ iidx: "*?string", ddr: "*?string", sdvx: "*?string" }),
-	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
+router.patch("/", prValidate({ iidx: "*?string", sdvx: "*?string" }), async (req, res) => {
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-		if (Object.keys(req.body).length === 0) {
-			return res.status(400).json({
-				success: false,
-				description: `Invalid request to modify nothing.`,
-			});
-		}
+	if (Object.keys(req.body).length === 0) {
+		return res.status(400).json({
+			success: false,
+			description: `Invalid request to modify nothing.`,
+		});
+	}
 
-		const [iidx, sdvx] = await Promise.all([
-			GetArcAuth(user.id, "api/arc-iidx"),
-			GetArcAuth(user.id, "api/arc-sdvx"),
-		]);
+	const [iidx, sdvx] = await Promise.all([
+		GetArcAuth(user.id, "api/arc-iidx"),
+		GetArcAuth(user.id, "api/arc-sdvx"),
+	]);
 
-		const existingData = { iidx, sdvx };
+	const existingData = { iidx, sdvx };
 
-		for (const key of ["iidx", "sdvx"] as const) {
-			const importType = `api/arc-${key}` as const;
+	for (const key of ["iidx", "sdvx"] as const) {
+		const importType = `api/arc-${key}` as const;
 
-			if (req.body[key] === null) {
-				logger.info(
-					`User ${FormatUserDoc(user)} removed ARC integration for ${importType}.`
-				);
+		if (req.body[key] === null) {
+			logger.info(`User ${FormatUserDoc(user)} removed ARC integration for ${importType}.`);
 
-				await db["arc-saved-profiles"].remove(
+			await db["arc-saved-profiles"].remove(
+				{
+					userID: user.id,
+					forImportType: importType,
+				},
+				{
+					single: true,
+				}
+			);
+		} else if (req.body[key]) {
+			if (existingData[key]) {
+				logger.info(`User updated ARC integration for ${importType}.`);
+				await db["arc-saved-profiles"].update(
 					{
 						userID: user.id,
 						forImportType: importType,
 					},
 					{
-						single: true,
+						$set: {
+							accountID: req.body[key],
+						},
 					}
 				);
-			} else if (req.body[key]) {
-				if (existingData[key]) {
-					logger.info(`User updated ARC integration for ${importType}.`);
-					await db["arc-saved-profiles"].update(
-						{
-							userID: user.id,
-							forImportType: importType,
-						},
-						{
-							$set: {
-								accountID: req.body[key],
-							},
-						}
-					);
-				} else {
-					logger.info(`User created ARC integration for ${importType}.`);
-					await db["arc-saved-profiles"].insert({
-						userID: user.id,
-						forImportType: importType,
-						accountID: req.body[key],
-					});
-				}
+			} else {
+				logger.info(`User created ARC integration for ${importType}.`);
+				await db["arc-saved-profiles"].insert({
+					userID: user.id,
+					forImportType: importType,
+					accountID: req.body[key],
+				});
 			}
 		}
-
-		const [iidx2, sdvx2] = await Promise.all([
-			GetArcAuth(user.id, "api/arc-iidx"),
-			GetArcAuth(user.id, "api/arc-sdvx"),
-		]);
-
-		return res.status(200).json({
-			success: true,
-			description: `Updated ARC integrations.`,
-			body: {
-				iidx: iidx2,
-				sdvx: sdvx2,
-			},
-		});
 	}
-);
+
+	const [iidx2, sdvx2] = await Promise.all([
+		GetArcAuth(user.id, "api/arc-iidx"),
+		GetArcAuth(user.id, "api/arc-sdvx"),
+	]);
+
+	return res.status(200).json({
+		success: true,
+		description: `Updated ARC integrations.`,
+		body: {
+			iidx: iidx2,
+			sdvx: sdvx2,
+		},
+	});
+});
 
 export default router;

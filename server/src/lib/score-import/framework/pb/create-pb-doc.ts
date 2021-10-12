@@ -24,7 +24,7 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
 			chartID,
 			userID,
 		});
-		return; // ??
+		return;
 	}
 
 	const lampPB = (await db.scores.findOne(
@@ -87,6 +87,12 @@ export async function UpdateChartRanking(chartID: string) {
 				},
 			},
 		});
+	}
+
+	// If a score is deleted such that the chart is now empty of
+	// scores, the below statement will crash with no op specified.
+	if (bwrite.length === 0) {
+		return;
 	}
 
 	await db["personal-bests"].bulkWrite(bwrite, { ordered: false });

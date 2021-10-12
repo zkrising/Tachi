@@ -175,3 +175,78 @@ t.test("PATCH /api/v1/scores/:scoreID", (t) => {
 
 	t.end();
 });
+
+t.test("DELETE /api/v1/scores/:scoreID", (t) => {
+	t.beforeEach(ResetDBState);
+
+	t.test("Should delete a score if the requester can.", async (t) => {
+		await db["api-tokens"].insert({
+			userID: 1,
+			identifier: "foo",
+			permissions: {
+				delete_score: true,
+			},
+			token: "foo",
+		});
+
+		const res = await mockApi
+			.delete("/api/v1/scores/TESTING_SCORE_ID")
+			.set("Authorization", "Bearer foo");
+
+		t.equal(res.statusCode, 200);
+
+		const dbScore = await db.scores.findOne({ scoreID: "TESTING_SCORE_ID" });
+
+		t.equal(dbScore, null, "Should remove the score from the database.");
+
+		t.end();
+	});
+
+	t.test("Should require authorisation as this user.", async (t) => {
+		await db["api-tokens"].insert({
+			token: "some_dude",
+			userID: 2,
+			identifier: "Fake Token",
+			permissions: {
+				delete_score: true,
+			},
+		});
+
+		const res = await mockApi
+			.delete("/api/v1/scores/TESTING_SCORE_ID")
+			.set("Authorization", "Bearer some_dude")
+			.send({
+				comment: "foo",
+			});
+
+		t.equal(res.statusCode, 403);
+
+		t.match(res.body.description, /You are not authorised/u);
+
+		t.end();
+	});
+
+	t.test("Should require the delete_score permission", async (t) => {
+		await db["api-tokens"].insert({
+			token: "some_token",
+			userID: 1,
+			identifier: "another fake token",
+			permissions: {},
+		});
+
+		const res = await mockApi
+			.delete("/api/v1/scores/TESTING_SCORE_ID")
+			.set("Authorization", "Bearer some_token")
+			.send({
+				comment: "foo",
+			});
+
+		t.equal(res.statusCode, 403);
+
+		t.match(res.body.description, /delete_score/u);
+
+		t.end();
+	});
+
+	t.end();
+});

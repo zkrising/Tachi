@@ -7,6 +7,7 @@ import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { GetScoreFromParam, RequireOwnershipOfScore } from "./middleware";
 import p from "prudence";
+import { DeleteScore } from "lib/delete-scores/delete-scores";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -128,6 +129,31 @@ router.patch(
 			success: true,
 			description: `Updated score.`,
 			body: newScore,
+		});
+	}
+);
+
+/**
+ * Deletes the score.
+ *
+ * @param blacklist - Whether to blacklist this scoreID or not.
+ * A blacklisted score will never be reimported.
+ *
+ * @name DELETE /api/v1/scores/:scoreID
+ */
+router.delete(
+	"/",
+	RequireOwnershipOfScore,
+	RequirePermissions("delete_score"),
+	async (req, res) => {
+		const score = req[SYMBOL_TachiData]!.scoreDoc!;
+
+		await DeleteScore(score, !!req.body.blacklist);
+
+		return res.status(200).json({
+			success: true,
+			description: `Successfully deleted score.`,
+			body: {},
 		});
 	}
 );

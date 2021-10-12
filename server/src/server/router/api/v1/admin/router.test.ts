@@ -1,10 +1,14 @@
+import db from "external/mongo/db";
 import { ONE_MINUTE } from "lib/constants/time";
 import { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import t from "tap";
-
+import deepmerge from "deepmerge";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
+import { TestingIIDXSPScore } from "test-utils/test-data";
+import { ScoreDocument } from "tachi-common";
 
 const LOG_LEVEL = ServerConfig.LOG_LEVEL;
 
@@ -55,6 +59,35 @@ t.test("POST /api/v1/admin/change-log-level", async (t) => {
 
 		t.end();
 	});
+
+	t.end();
+});
+
+t.test("POST /api/v1/admin/delete-score", async (t) => {
+	t.beforeEach(ResetDBState);
+
+	const auth = await CreateFakeAuthCookie(mockApi);
+
+	await db.scores.insert(
+		deepmerge<ScoreDocument>(TestingIIDXSPScore, {
+			scoreID: "deleteme",
+		})
+	);
+
+	const res = await mockApi
+		.post("/api/v1/admin/delete-score")
+		.set({
+			Cookie: auth,
+		})
+		.send({
+			scoreID: "deleteme",
+		});
+
+	t.equal(res.statusCode, 200);
+
+	const dbScore = await db.scores.findOne({ scoreID: "deleteme" });
+
+	t.equal(dbScore, null, "Should remove the score from the database.");
 
 	t.end();
 });

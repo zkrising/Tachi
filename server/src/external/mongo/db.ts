@@ -1,46 +1,46 @@
+import { ONE_MINUTE } from "lib/constants/time";
+import CreateLogCtx from "lib/logger/logger";
+import { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
+import { ServerConfig } from "lib/setup/config";
+import monk, { TMiddleware } from "monk";
 import {
+	APITokenDocument,
+	ARCSavedProfileDocument,
+	BMSCourseDocument,
+	ChartDocument,
+	ClassAchievementDocument,
 	CounterDocument,
+	FervidexSettingsDocument,
+	FolderChartLookup,
 	FolderDocument,
+	Game,
 	GoalDocument,
 	IIDXBPIData,
 	ImportDocument,
-	InviteCodeDocument,
-	APITokenDocument,
-	MilestoneDocument,
-	FolderChartLookup,
-	ImportTimingsDocument,
-	ScoreDocument,
-	KaiAuthDocument,
-	UserGameStatsSnapshot,
-	SessionDocument,
-	SongDocument,
-	ChartDocument,
-	UserGameStats,
-	TableDocument,
-	UserGoalDocument,
-	PBScoreDocument,
-	UserMilestoneDocument,
-	BMSCourseDocument,
 	ImportLockDocument,
-	UGPTSettings,
-	SessionViewDocument,
-	ARCSavedProfileDocument,
-	UserSettings,
-	Game,
+	ImportTimingsDocument,
+	integer,
+	InviteCodeDocument,
+	KaiAuthDocument,
+	MilestoneDocument,
+	OAuth2ApplicationDocument,
+	OrphanChart,
+	PBScoreDocument,
 	PrivateUserInfoDocument,
 	PublicUserDocument,
-	OAuth2ApplicationDocument,
-	integer,
-	FervidexSettingsDocument,
-	OrphanChart,
-	ClassAchievementDocument,
+	ScoreDocument,
+	SessionDocument,
+	SessionViewDocument,
+	SongDocument,
+	TableDocument,
+	UGPTSettings,
+	UserGameStats,
+	UserGameStatsSnapshot,
+	UserGoalDocument,
+	UserMilestoneDocument,
+	UserSettings,
 } from "tachi-common";
-import monk, { TMiddleware } from "monk";
-import CreateLogCtx from "lib/logger/logger";
-import { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
 import { GetMilisecondsSince } from "utils/misc";
-import { ServerConfig } from "lib/setup/config";
-import { ONE_MINUTE } from "lib/constants/time";
 
 const logger = CreateLogCtx(__filename);
 
@@ -176,9 +176,14 @@ const db = {
 		monkDB.get<{ code: string; userID: integer; createdOn: number }>("oauth2-auth-codes"),
 	"fer-settings": monkDB.get<FervidexSettingsDocument>("fer-settings"),
 	"orphan-chart-queue": monkDB.get<OrphanChart>("orphan-chart-queue"),
-	"password-reset-codes":
-		monkDB.get<{ code: string; userID: integer; createdOn: number }>("password-reset-codes"),
+	"password-reset-codes": monkDB.get<{
+		code: string;
+		userID: integer;
+		createdOn: number;
+	}>("password-reset-codes"),
 	"class-achievements": monkDB.get<ClassAchievementDocument>("class-achievements"),
+	"score-blacklist":
+		monkDB.get<{ scoreID: string; userID: integer; score: ScoreDocument }>("score-blacklist"),
 };
 
 export type StaticDatabases =
@@ -212,6 +217,7 @@ export type StaticDatabases =
 	| "password-reset-codes"
 	| "user-settings"
 	| "counters"
+	| "score-blacklist"
 	| "class-achievements";
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;

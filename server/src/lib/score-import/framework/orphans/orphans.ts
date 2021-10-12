@@ -67,7 +67,11 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
  * could be imported when parents were found).
  * ImportProcessingInfo on success.
  */
-export async function ReprocessOrphan(orphan: OrphanScoreDocument, logger: KtLogger) {
+export async function ReprocessOrphan(
+	orphan: OrphanScoreDocument,
+	blacklist: string[],
+	logger: KtLogger
+) {
 	const ConverterFunction = Converters[orphan.importType] as ConverterFunction<
 		ImportTypeDataMap[ImportTypes],
 		ImportTypeContextMap[ImportTypes]
@@ -113,5 +117,5 @@ export async function ReprocessOrphan(orphan: OrphanScoreDocument, logger: KtLog
 	await db["orphan-scores"].remove({ orphanID: orphan.orphanID });
 
 	// else, import the orphan.
-	return ProcessSuccessfulConverterReturn(orphan.userID, res, logger);
+	return ProcessSuccessfulConverterReturn(orphan.userID, res, blacklist, logger);
 }

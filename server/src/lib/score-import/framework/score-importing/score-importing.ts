@@ -44,6 +44,16 @@ export async function ImportAllIterableData<D, C>(
 	context: C,
 	logger: KtLogger
 ): Promise<ImportProcessingInfo[]> {
+	logger.verbose("Getting Blacklist...");
+
+	// @optimisable: could filter harder with score.game and score.playtype
+	// stuff.
+	const blacklist = (
+		await db["score-blacklist"].find({
+			userID,
+		})
+	).map((e) => e.scoreID);
+
 	logger.verbose(`Starting Data Processing...`);
 
 	const promises = [];
@@ -53,7 +63,15 @@ export async function ImportAllIterableData<D, C>(
 	// the first set of data.
 	for await (const data of iterableData) {
 		promises.push(
-			ImportIterableDatapoint(userID, importType, data, ConverterFunction, context, logger)
+			ImportIterableDatapoint(
+				userID,
+				importType,
+				data,
+				ConverterFunction,
+				context,
+				blacklist,
+				logger
+			)
 		);
 	}
 
@@ -96,6 +114,7 @@ export async function ImportIterableDatapoint<D, C>(
 	data: D,
 	ConverterFunction: ConverterFunction<D, C>,
 	context: C,
+	blacklist: string[],
 	logger: KtLogger
 ): Promise<ImportProcessingInfo | null> {
 	// Converter Function Return
@@ -192,12 +211,18 @@ export async function ImportIterableDatapoint<D, C>(
 		};
 	}
 
-	return ProcessSuccessfulConverterReturn(userID, cfnReturn as ConverterFnSuccessReturn, logger);
+	return ProcessSuccessfulConverterReturn(
+		userID,
+		cfnReturn as ConverterFnSuccessReturn,
+		blacklist,
+		logger
+	);
 }
 
 export async function ProcessSuccessfulConverterReturn(
 	userID: integer,
 	cfnReturn: ConverterFnSuccessReturn,
+	blacklist: string[],
 	logger: KtLogger
 ): Promise<ImportProcessingInfo | null> {
 	const result = await HydrateAndInsertScore(
@@ -205,6 +230,7 @@ export async function ProcessSuccessfulConverterReturn(
 		cfnReturn.dryScore,
 		cfnReturn.chart,
 		cfnReturn.song,
+		blacklist,
 		logger
 	);
 
@@ -239,12 +265,18 @@ async function HydrateAndInsertScore(
 	dryScore: DryScore,
 	chart: ChartDocument,
 	song: SongDocument,
+	blacklist: string[],
 	importLogger: KtLogger
 ): Promise<ScoreDocument | null> {
 	const scoreID = CreateScoreID(userID, dryScore, chart.chartID);
 
 	// sub-context the logger so the below logs are more accurate
 	const logger = AppendLogCtx(scoreID, importLogger);
+
+	if (blacklist.length && blacklist.includes(scoreID)) {
+		logger.verbose("Skipped score, as it was on the blacklist.");
+		return null;
+	}
 
 	const existingScore = await db.scores.findOne(
 		{

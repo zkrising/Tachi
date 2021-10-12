@@ -188,5 +188,5 @@ export async function RevertImport(importDocument: ImportDocument) {
 		scoreID: { $in: importDocument.scoreIDs },
 	});
 
-	await RemoveMultipleScores(scores);
+	await DeleteMultipleScores(scores);
 }

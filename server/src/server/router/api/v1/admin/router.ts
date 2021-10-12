@@ -10,6 +10,7 @@ import { ServerConfig, ServerTypeInfo } from "lib/setup/config";
 import { Game, UserAuthLevels } from "tachi-common";
 
 import db from "external/mongo/db";
+import { DeleteScore } from "lib/delete-scores/delete-scores";
 
 const logger = CreateLogCtx(__filename);
 
@@ -206,5 +207,31 @@ router.post(
 		});
 	}
 );
+
+/**
+ * Force Delete anyones score.
+ *
+ * @param scoreID - The scoreID to delete.
+ *
+ * @name POST /api/v1/admin/delete-score
+ */
+router.post("/delete-score", prValidate({ scoreID: "string" }), async (req, res) => {
+	const score = await db.scores.findOne({ scoreID: req.body.scoreID });
+
+	if (!score) {
+		return res.status(404).json({
+			success: false,
+			description: `This score does not exist.`,
+		});
+	}
+
+	await DeleteScore(score);
+
+	return res.status(200).json({
+		success: true,
+		description: `Removed score.`,
+		body: {},
+	});
+});
 
 export default router;

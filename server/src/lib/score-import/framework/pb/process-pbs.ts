@@ -3,6 +3,9 @@ import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
 import { CreatePBDoc, UpdateChartRanking, PBScoreDocumentNoRank } from "./create-pb-doc";
 
+/**
+ * Process, recalculate and update a users PBs for this set of chartIDs.
+ */
 export async function ProcessPBs(
 	userID: integer,
 	chartIDs: Set<string>,

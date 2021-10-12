@@ -4,7 +4,7 @@ timeout: 240 # Was increased for slow github runners. Might be insufferable for 
 ts: true
 before: "./src/test-utils/hack-setup.js"
 check-coverage: true
-branches: 75
+branches: 70
 functions: 80
 lines: 80
 statements: 80

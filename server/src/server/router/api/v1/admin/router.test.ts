@@ -66,21 +66,28 @@ t.test("POST /api/v1/admin/change-log-level", async (t) => {
 t.test("POST /api/v1/admin/delete-score", async (t) => {
 	t.beforeEach(ResetDBState);
 
+	const auth = await CreateFakeAuthCookie(mockApi);
+
 	await db.scores.insert(
 		deepmerge<ScoreDocument>(TestingIIDXSPScore, {
 			scoreID: "deleteme",
 		})
 	);
 
-	const res = await mockApi.post("/api/v1/admin/delete-score").send({
-		scoreID: "deleteme",
-	});
+	const res = await mockApi
+		.post("/api/v1/admin/delete-score")
+		.set({
+			Cookie: auth,
+		})
+		.send({
+			scoreID: "deleteme",
+		});
 
 	t.equal(res.statusCode, 200);
 
 	const dbScore = await db.scores.findOne({ scoreID: "deleteme" });
 
-	t.equal(dbScore, null, "Should remove teh score from the database.");
+	t.equal(dbScore, null, "Should remove the score from the database.");
 
 	t.end();
 });

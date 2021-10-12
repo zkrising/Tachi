@@ -122,7 +122,7 @@ t.test("#ReprocessOrphan", (t) => {
 	t.test("Should convert and insert an orphan if parents are found", async (t) => {
 		// this orphan doc is for 5.1.1. SPA, which definitely exists in
 		// the test DB.
-		const res = await ReprocessOrphan(orphanDoc, logger);
+		const res = await ReprocessOrphan(orphanDoc, [], logger);
 
 		t.hasStrict(
 			res,
@@ -171,6 +171,7 @@ t.test("#ReprocessOrphan", (t) => {
 					score: 99999,
 				},
 			}),
+			[],
 			logger
 		);
 
@@ -193,6 +194,7 @@ t.test("#ReprocessOrphan", (t) => {
 						identifier: "NONSENSE CHART TITLE",
 					},
 				}),
+				[],
 				logger
 			);
 
@@ -227,6 +229,7 @@ t.test("#ReprocessOrphan", (t) => {
 						identifier: GAZER_SHA256,
 					},
 				}),
+				[],
 				logger
 			);
 

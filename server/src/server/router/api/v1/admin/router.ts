@@ -105,7 +105,7 @@ router.post(
  * Removes the isPrimary status from a chart, and uncalcs all of
  * its score data.
  *
- * @param chartID - the chartID to deprimarify.
+ * @param chartID - The chartID to deprimarify.
  * @param game - The game this chart is on.
  * @param songID - Alternatively, this will deprimarify all charts for this songID.
  *

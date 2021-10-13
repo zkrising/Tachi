@@ -77,6 +77,7 @@ export interface TachiConfig {
 	OUR_URL: string;
 	LOGGER_DISCORD_WEBHOOK?: string;
 	DISCORD_WHO_TO_TAG?: string[];
+	INVOKE_JOB_RUNNER?: boolean;
 }
 
 const isValidOauth2 = p.optional({
@@ -118,6 +119,7 @@ const err = p(config, {
 	OUR_URL: "string",
 	LOGGER_DISCORD_WEBHOOK: "*string",
 	DISCORD_WHO_TO_TAG: p.optional(["string"]),
+	INVOKE_JOB_RUNNER: "*boolean",
 });
 
 if (err) {

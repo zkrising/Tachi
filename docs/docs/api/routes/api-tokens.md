@@ -65,3 +65,28 @@ DELETE /api/v1/users/1/api-token/foobar
 ```json
 {}
 ```
+
+*****
+
+## Create an API Token
+
+`POST /api/v1/users/:userID/api-tokens/create`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `permissions` | Array&lt;String&gt; | An array of permissions you wish the key to have. |
+| `clientID` | String | Alternatively, you can pass the clientID of an OAuth2 Client. This will select permissions based on what that client wants. |
+| `identifier` | String | A humanised identifier for what the string was from. Necessary if using `permissions`. Filled out for you if using `clientID`.
+
+!!! info
+	If using ClientID for permissions, the clientID will be pinned to the
+	token you've created as `fromOAuth2Client`. You can only have one
+	API Token per OAuth2 client, and will get a 409 if you repeat the request.
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | APITokenDocument | The API Token you created. |

@@ -14,16 +14,19 @@ let batchWrite: UserGameStatsSnapshot[] = [];
 
 // This code is intentionally *very* robust, and handles a lot of unanticipated failures
 // because if it breaks, we brick the database.
-(async () => {
+export async function UGSSnapshot() {
 	const timeStart = process.hrtime.bigint();
 
 	const alreadyExists = await db["game-stats-snapshots"].findOne({ timestamp: currentTime });
 
 	if (alreadyExists) {
-		logger.severe(
-			`FATAL IN UGS-SNAPSHOT - There already exists snapshots at this time. Has this script been ran twice?`
+		logger.warn(
+			`There already exists snapshots at this time. Has this script been ran twice on one day? Ignoring request.`
 		);
-		process.exit(1);
+
+		throw new Error(
+			`There already exists snapshots at this time. Has this script been ran twice on one day? Ignoring request.`
+		);
 	}
 
 	logger.info(`Snapshotting UserGameStats.`);
@@ -69,8 +72,6 @@ let batchWrite: UserGameStatsSnapshot[] = [];
 				currentTime
 			).toString()}. Took ${GetMilisecondsSince(timeStart)} ms.`
 		);
-
-		process.exit(0);
 	} catch (err) {
 		// if we panic, we need to revert whatever we did.
 		logger.severe(`FATAL IN UGS-SNAPSHOT - Possibly failed midway through snapshotting.`, {
@@ -83,6 +84,6 @@ let batchWrite: UserGameStatsSnapshot[] = [];
 
 		logger.info(`Removed.`);
 
-		process.exit(1);
+		throw err;
 	}
-})();
+}

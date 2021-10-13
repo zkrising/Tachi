@@ -51,4 +51,9 @@ if (ServerConfig.INVOKE_JOB_RUNNER || process.env.INVOKE_JOB_RUNNER) {
 		logger.crit(`Failed to spawn job runner. Terminating process.`, { err });
 		process.exit(1);
 	});
+
+	process.on("beforeExit", () => {
+		logger.info(`Killing Job Runner.`);
+		jobProcess.kill();
+	});
 }

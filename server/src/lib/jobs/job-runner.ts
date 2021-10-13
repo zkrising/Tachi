@@ -20,7 +20,7 @@ const jobs: Job[] = [
 		name: "De-Orphan Scores",
 		// We run an hour after snapshotting UGS
 		// just to spread load out a bit.
-		cronFormat: "1 * * * * *",
+		cronFormat: "1 0 * * *",
 		run: DeoprhanScores,
 	},
 ];
@@ -66,7 +66,7 @@ export function InitialiseJobRunner() {
 		return true;
 	});
 
-	logger.info(`Initialised ${jobs.length} jobs.`);
+	logger.info(`Initialised ${jobs.length} jobs (${jobs.map((e) => e.name).join(", ")}).`);
 }
 
 if (require.main === module) {

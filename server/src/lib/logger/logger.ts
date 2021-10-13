@@ -1,5 +1,6 @@
 import winston, { format, transports, Logger, LeveledLogMethod } from "winston";
 import { EscapeStringRegexp } from "utils/misc";
+import "winston-daily-rotate-file";
 import SafeJSONStringify from "safe-json-stringify";
 import { ServerConfig } from "lib/setup/config";
 import CreateDiscordWinstonTransport from "./discord-transport";
@@ -114,12 +115,16 @@ const consoleFormatRoute = format.combine(
 );
 
 const tports: winston.transport[] = [
-	new transports.File({
-		filename: "logs/tachi-error.log",
-		level: "error",
+	new transports.DailyRotateFile({
+		filename: "logs/tachi-%DATE%.log",
+		datePattern: "YYYY-MM-DD-HH",
+		zippedArchive: true,
+		maxSize: "20m",
+		maxFiles: "14d",
+		createSymlink: true,
+		symlinkName: "tachi.log",
 		format: defaultFormatRoute,
 	}),
-	new transports.File({ filename: "logs/tachi.log", format: defaultFormatRoute }),
 ];
 
 if (!ServerConfig.NO_CONSOLE) {

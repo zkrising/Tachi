@@ -156,6 +156,13 @@ router.get("/score-leaderboard", async (req, res) => {
 
 	const limit = ParseStrPositiveNonZeroInt(req.query.limit) ?? 50;
 
+	if (limit > 50) {
+		return res.status(400).json({
+			success: false,
+			description: `Cannot specify a limit higher than 50.`,
+		});
+	}
+
 	let alg = gptConfig.defaultProfileRatingAlg;
 	if (IsString(req.query.alg)) {
 		const temp = CheckStrProfileAlg(game, playtype, req.query.alg);

@@ -66,7 +66,7 @@ export function InitialiseJobRunner() {
 		return true;
 	});
 
-	logger.info(`Initialised ${jobs.length} jobs.`);
+	logger.info(`Initialised ${jobs.length} jobs (${jobs.map((e) => e.name).join(", ")}).`);
 }
 
 if (require.main === module) {

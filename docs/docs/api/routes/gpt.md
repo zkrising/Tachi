@@ -53,7 +53,7 @@ GET /api/v1/games/iidx/SP
 
 ## Retrieve the player leaderboard.
 
-`GET /api/v1/leaderboard`
+`GET /api/v1/games/:game/:playtype/leaderboard`
 
 ### Parameters
 
@@ -571,3 +571,110 @@ GET /api/v1/games/bms/7K/tableID/insane
 	}
 }
 ```
+
+*****
+
+## Retrieve the score leaderboard for this Game.
+
+`GET /api/v1/games/:game/:playtype/score-leaderboard`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `alg` | String | An alternative algorithm to use instead of the GPTs default. |
+| `limit` | Optional Integer | Optionally, provide a number between 1 and 50 to change the amount of scores returned. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `pbs` | Array&lt;PBScoreDocument&gt; | The array of pbs part of the score leaderboard. |
+| `songs` | Array&lt;SongDocument&gt; | The array of songs part of the PBs. |
+| `charts` | Array&lt;ChartDocument&gt; | The array of charts part of the PBs. |
+| `users` | Array&lt;UserDocument&gt; | The array of users part of the PBs. |
+
+*****
+
+## Get the distribution of players for a provided class.
+
+`GET /api/v1/games/:game/:playtype/player-distribution`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `class` | String | Must be one of the GPTs supported classes, This specifies what distribution to return. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | Record&lt;ClassValue, integer&gt; | Returns a record of the class value against the amount of people who have it. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/games/bms/7K/player-distribution?class=stslDan
+```
+
+#### Response
+
+```js
+{
+	"12": 1,
+	"11": 5,
+	"10": 7,
+	"9": 6,
+	"8": 4,
+	// Note that keys will be empty if nobody has them.
+	"5": 30,
+	// ... so on
+}
+```
+
+!!! info
+	You can find the humanised conversions for these classes in the gptConfig for this GPT.
+
+	See [tachi-common](https://github.com/tng-dev/tachi-common) for more information.
+
+*****
+
+## Retrieve recent class updates from all users on this game.
+
+`GET /api/v1/games/:game/:playtype/player-distribution`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `limit` | Optional Integer | Optionally, An integer between 1 and 50 can be provided to limit the amount of returns. Defaults to 10. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `users` | Array&lt;UserDocument&gt; | Array of the users who achieved the courses. |
+| `classes` | Array&lt;ClassAchievementDocument&gt; | Data about the recently achieved classes. |
+
+*****
+
+## Retrieve the most recent highlighted scores for this GPT.
+
+`GET /api/v1/games/:game/:playtype/scores/highlighted`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `limit` | Optional Integer | Optionally, provide an integer between 1 and 100 to return this amount of scores. Defaults to 10. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `scores` | Array&lt;ScoreDocument&gt; | The highlighted scores. |
+| `users` | Array&lt;UserDocument&gt; | The users who own the scores. |
+| `songs` | Array&lt;SongDocument&gt; | The songs the scores are on. |
+| `charts` | Array&lt;ChartDocument&gt; | The charts the scores are on. |

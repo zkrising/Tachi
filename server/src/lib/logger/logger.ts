@@ -116,11 +116,13 @@ const consoleFormatRoute = format.combine(
 
 const tports: winston.transport[] = [
 	new transports.DailyRotateFile({
-		filename: "logs/tachi-error-%DATE%.log",
+		filename: "logs/tachi-%DATE%.log",
 		datePattern: "YYYY-MM-DD-HH",
 		zippedArchive: true,
 		maxSize: "20m",
 		maxFiles: "14d",
+		createSymlink: true,
+		symlinkName: "tachi.log",
 		format: defaultFormatRoute,
 	}),
 ];

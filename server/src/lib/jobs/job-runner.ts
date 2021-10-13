@@ -20,7 +20,7 @@ const jobs: Job[] = [
 		name: "De-Orphan Scores",
 		// We run an hour after snapshotting UGS
 		// just to spread load out a bit.
-		cronFormat: "1 * * * * *",
+		cronFormat: "1 0 * * *",
 		run: DeoprhanScores,
 	},
 ];

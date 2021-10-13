@@ -1,21 +1,27 @@
 import Queue from "bull";
 import CreateLogCtx from "lib/logger/logger";
 import { DedupeArr } from "utils/misc";
+import { DeoprhanScores } from "./jobs/deorphan-scores";
 import { UGSSnapshot } from "./jobs/ugs-snapshot";
 
 interface Job {
 	name: string;
 	cronFormat: string;
-	run: () => Promise<void>;
+	run: (job: Queue.Job) => Promise<void>;
 }
-
-const CRON_RUN_AT_MIDNIGHT = "0 * * * * *";
 
 const jobs: Job[] = [
 	{
 		name: "Snapshot User Game Stats",
-		cronFormat: CRON_RUN_AT_MIDNIGHT,
+		cronFormat: "0 0 * * *",
 		run: UGSSnapshot,
+	},
+	{
+		name: "De-Orphan Scores",
+		// We run an hour after snapshotting UGS
+		// just to spread load out a bit.
+		cronFormat: "1 * * * * *",
+		run: DeoprhanScores,
 	},
 ];
 
@@ -55,7 +61,7 @@ export function InitialiseJobRunner() {
 			return false;
 		}
 
-		await jobInfo.run();
+		await jobInfo.run(j);
 
 		return true;
 	});

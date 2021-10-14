@@ -7,13 +7,14 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
-import { TachiConfig } from "lib/config";
+import { mode, TachiConfig } from "lib/config";
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Col, Modal, Row, Form } from "react-bootstrap";
 import { APIPermissions, APITokenDocument, PublicUserDocument } from "tachi-common";
 import { SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
 import { allPermissions } from "util/misc";
+import FervidexIntegrationPage from "./FervidexIntegrationPage";
 
 export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	const [page, setPage] = useState<"services" | "api-keys">("services");
@@ -41,10 +42,62 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserD
 					<Divider />
 				</Col>
 				<Col xs={12}>
-					{page === "services" ? <div>hey</div> : <APIKeysPage reqUser={reqUser} />}
+					{page === "services" ? (
+						<IntegrationsPage reqUser={reqUser} />
+					) : (
+						<APIKeysPage reqUser={reqUser} />
+					)}
 				</Col>
 			</Row>
 		</Card>
+	);
+}
+
+function IntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
+	if (mode === "btchi") {
+		return (
+			<Row className="text-center">
+				Looks like there's no services available for integration.
+			</Row>
+		);
+	}
+
+	const [page, setPage] = useState<"fervidex" | "arc" | "flo" | "eag" | "min">("fervidex");
+
+	return (
+		<>
+			<Row className="text-center justify-content-center">
+				<Col xs={12}>
+					<h3>Services</h3>
+					<Muted>
+						Some services have had their names truncated to their first three characters
+						for privacy reasons.
+					</Muted>
+					<Divider />
+				</Col>
+				<Col xs={12}>
+					<div className="btn-group">
+						<SelectButton value={page} setValue={setPage} id="fervidex">
+							Fervidex
+						</SelectButton>
+						<SelectButton value={page} setValue={setPage} id="arc">
+							ARC
+						</SelectButton>
+						<SelectButton value={page} setValue={setPage} id="flo">
+							FLO
+						</SelectButton>
+						<SelectButton value={page} setValue={setPage} id="eag">
+							EAG
+						</SelectButton>
+						<SelectButton value={page} setValue={setPage} id="min">
+							MIN
+						</SelectButton>
+					</div>
+					<Divider />
+				</Col>
+				{page === "fervidex" ? <FervidexIntegrationPage reqUser={reqUser} /> : <></>}
+			</Row>
+		</>
 	);
 }
 

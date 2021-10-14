@@ -72,6 +72,7 @@ export const loggedInSplashes = [
 	"The public gets what the public wants!",
 	"Our most beautiful melody.",
 	"Cwalina Subsidiary",
+	"Let's do it now.",
 ];
 
 // Stuff that's bad for the kids, you know?

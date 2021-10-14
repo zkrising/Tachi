@@ -2,9 +2,10 @@ import express, { Express } from "express";
 import { LoggerLayers } from "../config";
 import { createLayeredLogger } from "../utils/logger";
 import { ValidateWebhookRequest } from "./middleware";
-import { WebhookEvents, APITokenDocument } from "tachi-common";
+import { WebhookEvents, APITokenDocument, PublicUserDocument } from "tachi-common";
 import { BotConfig, ProcessEnv } from "../setup";
-import { RequestTypes, TachiServerV1Request } from "../utils/fetch-tachi";
+import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "../utils/fetch-tachi";
+import db from "../mongo/mongo";
 
 const app: Express = express();
 
@@ -48,21 +49,21 @@ app.post("/webhook", ValidateWebhookRequest, (req, res) => {
 	const statusCode = 200;
 
 	switch (webhookEvent.type) {
-	case "class-update/v1":
-	case "goal-achieved/v1":
-	case "milestone-achieved/v1":
+		case "class-update/v1":
+		case "goal-achieved/v1":
+		case "milestone-achieved/v1":
 		// @TODO add actual webhook handlers.
 		// These will set the value of statusCode.
-		break;
-	default:
+			break;
+		default:
 		// According to the types, this should never happen.
 		// However, tachi-server/common may recieve an update
 		// to define new webhooks, and the bot might not
 		// get around to updating in time.
-		return res.status(501).json({
-			success: false,
-			description: `The type ${(webhookEvent as WebhookEvents).type} is unsupported.`
-		});
+			return res.status(501).json({
+				success: false,
+				description: `The type ${(webhookEvent as WebhookEvents).type} is unsupported.`
+			});
 	}
 
 	return res.sendStatus(statusCode);
@@ -86,7 +87,7 @@ app.get("/oauth/callback", async (req, res) => {
 		return res.status(400).send("Bad Request.");
 	}
 
-	const tokenRes = await TachiServerV1Request<APITokenDocument>(RequestTypes.POST, "/oauth/token", {
+	const tokenRes = await TachiServerV1Request<APITokenDocument>(RequestTypes.POST, "/oauth/token", null, {
 		code: req.query.code,
 		client_id: ProcessEnv.BOT_CLIENT_ID,
 		client_secret: ProcessEnv.BOT_CLIENT_SECRET,
@@ -101,9 +102,26 @@ app.get("/oauth/callback", async (req, res) => {
 		});
 	}
 
-	// const discordID = req.query.context;
-	// const apiToken = tokenRes.body.token;
-	// @todo Store discordID & apiToken somewhere.
+	const discordID = req.query.context;
+	const apiToken = tokenRes.body.token!;
+
+	const whoamiRes = await TachiServerV1Get<PublicUserDocument>("/api/v1/users/me", apiToken);
+
+	if (!whoamiRes.success) {
+		logger.error("Failed to request user with token we just got?", { discordID });
+		// @todo actually make this html file
+		return res.sendFile("../pages/account-link-failed.html");
+	}
+
+	const user = whoamiRes.body;
+
+	logger.info(`Saving user-discord-link for ${user.username} (#${user.id}).`);
+
+	await db.discordUserMap.insert({
+		discordID,
+		tachiApiToken: apiToken,
+		userID: user.id
+	});
 
 	return res.sendFile("../pages/account-linked.html");
 });

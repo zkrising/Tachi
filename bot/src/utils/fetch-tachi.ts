@@ -30,6 +30,7 @@ export enum RequestTypes {
 export async function TachiServerV1Request<T>(
 	method: Exclude<RequestTypes, RequestTypes.GET>,
 	url: string,
+	token?: string | null,
 	body: unknown = {}
 ): Promise<APIResponse<T>> {
 	const realUrl = PrependTachiUrl(url, "1");
@@ -41,7 +42,8 @@ export async function TachiServerV1Request<T>(
 		const res = await axios(realUrl, {
 			method,
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				Authorization: token ? `Bearer ${token}` : undefined,
 			},
 			data: JSON.stringify(body)
 		});
@@ -69,6 +71,7 @@ export async function TachiServerV1Request<T>(
  */
 export async function TachiServerV1Get<T = unknown>(
 	url: string,
+	token?: string,
 	params: Record<string, string> = {}
 ): Promise<APIResponse<T>> {
 	try {
@@ -76,7 +79,9 @@ export async function TachiServerV1Get<T = unknown>(
 
 		const realUrl = `${PrependTachiUrl(url, "1")}?${urlParams.toString()}`;
 
-		const res = await axios(realUrl, { method: RequestTypes.GET });
+		const res = await axios(realUrl, { method: RequestTypes.GET, headers: {
+			Authorization: token ? `Bearer ${token}` : undefined,
+		} });
 		const json = (await res.data) as APIResponse<T>;
 		const contents = { ...json, statusCode: res.status };
 

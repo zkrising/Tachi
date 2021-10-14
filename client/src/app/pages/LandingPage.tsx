@@ -20,7 +20,7 @@ export default function LandingPage() {
 					<div
 						className="hero-bg-image"
 						style={{
-							backgroundImage: `url(${ToServerURL("/cdn/splashes/default.png")})`,
+							backgroundImage: `url(${ToServerURL("/cdn/game-banners/default")})`,
 						}}
 					/>
 					<div

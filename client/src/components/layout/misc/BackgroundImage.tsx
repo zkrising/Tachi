@@ -11,7 +11,7 @@ export default function BackgroundImage() {
 			style={{
 				backgroundImage: background
 					? `url(${background})`
-					: `url(${ToServerURL("/cdn/splashes/default.png")})`,
+					: `url(${ToServerURL("/cdn/game-banners/default")})`,
 			}}
 		></div>
 	);

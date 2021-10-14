@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 25.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 1080 1080" style="enable-background:new 0 0 1080 1080;" xml:space="preserve">
+	 viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#E61C6E;}
-	.st1{fill:#D1D0D1;}
+	.st0{fill:#DCDFDC;}
+	.st1{fill:#527ACC;}
 </style>
-<path class="st0" d="M310.57,596.05c1.33,0,93.27,0,93.27,0l76.38-131.46l188.75,0.89l36.42-62.62H424.26L310.57,596.05z"/>
-<polygon class="st1" points="768.8,482.62 732.82,546.58 549.48,547.88 501.04,547.88 526.13,581.5 468.36,677.65 374.92,677.65 
-	489.01,481.3 "/>
+<polyline class="st0" points="366.49,162.16 334,214.58 177.88,214.58 194.02,232.36 149.64,303.98 79.03,303.98 166.92,162.16 
+	366.49,162.16 "/>
+<polyline class="st1" points="320.1,96.09 120.52,96.09 32.63,237.91 103.24,237.91 158.64,148.51 287.61,148.51 320.1,96.09 "/>
 </svg>

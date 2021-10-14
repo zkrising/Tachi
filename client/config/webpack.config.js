@@ -49,7 +49,7 @@ const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 let COLOUR_SET;
-if (process.env.REACT_APP_TCHIC_MODE === "ktchi") {
+if (process.env.REACT_APP_TCHIC_MODE === "ktchi" || process.env.REACT_APP_TCHIC_MODE === "omni") {
 	COLOUR_SET = `$tachi-primary: #e61c6e;
 	$tachi-primary-hover: #de6589;
 	$tachi-background: #131313;
@@ -60,7 +60,7 @@ if (process.env.REACT_APP_TCHIC_MODE === "ktchi") {
 	$tachi-info: #527acc;
 	$tachi-info-hover: #8da7dd;`;
 } else {
-	COLOUR_SET = `
+	COLOUR_ = `
 	$tachi-primary: #527acc;
 	$tachi-primary-hover: #8da7dd;
 	$tachi-background: #131313;

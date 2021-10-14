@@ -89,6 +89,10 @@ export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 									setTimeout(() => {
 										setUser(null);
 										localStorage.removeItem("isLoggedIn");
+										// This has to be the case.
+										// Otherwise, react just ruins its own
+										// state. I hate react state.
+										window.location.href = "/";
 									}, 500);
 								}
 							}}

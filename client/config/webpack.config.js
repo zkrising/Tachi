@@ -60,8 +60,7 @@ if (process.env.REACT_APP_TCHIC_MODE === "ktchi" || process.env.REACT_APP_TCHIC_
 	$tachi-info: #527acc;
 	$tachi-info-hover: #8da7dd;`;
 } else {
-	COLOUR_ = `
-	$tachi-primary: #527acc;
+	COLOUR_SET = `$tachi-primary: #527acc;
 	$tachi-primary-hover: #8da7dd;
 	$tachi-background: #131313;
 	$tachi-lightground: #2b292b;

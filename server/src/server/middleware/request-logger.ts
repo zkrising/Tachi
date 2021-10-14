@@ -52,7 +52,7 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 			return;
 		}
 
-		if (res.statusCode < 400) {
+		if (res.statusCode < 400 || res.statusCode === 404) {
 			logger.verbose(`(${req.method} ${req.originalUrl}) Returned`, contents);
 		} else if (res.statusCode < 500) {
 			logger.info(`(${req.method} ${req.originalUrl}) Returned`, contents);

@@ -184,6 +184,8 @@ const db = {
 	"class-achievements": monkDB.get<ClassAchievementDocument>("class-achievements"),
 	"score-blacklist":
 		monkDB.get<{ scoreID: string; userID: integer; score: ScoreDocument }>("score-blacklist"),
+	"verify-email-codes":
+		monkDB.get<{ userID: integer; code: string; email: string }>("verify-email-codes"),
 };
 
 export type StaticDatabases =
@@ -218,6 +220,7 @@ export type StaticDatabases =
 	| "user-settings"
 	| "counters"
 	| "score-blacklist"
+	| "verify-email-codes"
 	| "class-achievements";
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;

@@ -23,7 +23,7 @@ import CreateLogCtx from "lib/logger/logger";
 import prValidate from "server/middleware/prudence-validate";
 import { DecrementCounterValue, GetNextCounterValue } from "utils/db";
 import { SendEmail } from "lib/email/client";
-import { EmailFormatResetPassword } from "lib/email/formats";
+import { EmailFormatResetPassword, EmailFormatVerifyEmail } from "lib/email/formats";
 import { Random20Hex } from "utils/misc";
 import { ServerConfig } from "lib/setup/config";
 
@@ -260,6 +260,16 @@ router.post(
 
 			MountAuthCookie(req, user!, newSettings);
 
+			const resetEmailCode = Random20Hex();
+
+			await db["verify-email-codes"].insert({
+				code: resetEmailCode,
+				userID: userID,
+				email: req.body.email,
+			});
+
+			await SendEmail(req.body.email, EmailFormatVerifyEmail(user!.username, resetEmailCode));
+
 			return res.status(200).json({
 				success: true,
 				description: `Successfully created account ${req.body.username}!`,
@@ -281,6 +291,79 @@ router.post(
 		}
 	}
 );
+
+/**
+ * Verifies the provided email according to the code provided.
+ *
+ * @param code - The emailCode set in the /register function.
+ *
+ * @name POST /api/v1/auth/verify-email
+ */
+router.post(
+	"/verify-email",
+	prValidate({
+		code: "string",
+	}),
+	async (req, res) => {
+		const code = await db["verify-email-codes"].findOne({
+			code: req.body.code,
+		});
+
+		if (!code) {
+			return res.status(400).json({
+				success: false,
+				description: `This email code is invalid.`,
+			});
+		}
+
+		await db["verify-email-codes"].remove({
+			code: req.body.code,
+		});
+
+		return res.status(200).json({
+			success: true,
+			description: `Verified email!`,
+			body: {},
+		});
+	}
+);
+
+/**
+ * Resend a verification email, for when they fall through the
+ * cracks.
+ *
+ * @param email - The email to send a verification email to.
+ *
+ * @name POST /api/v1/auth/resend-verify-email
+ */
+router.post("/resend-verify-email", prValidate({ email: "string" }), async (req, res) => {
+	// Immediately send a response so the existence of emails
+	// cannot be timing attacked out.
+	res.status(200).json({
+		success: true,
+		description: `Sent an email if the email address has not been verified.`,
+		body: {},
+	});
+
+	const verifyInfo = await db["verify-email-codes"].findOne({ email: req.body.email });
+
+	if (!verifyInfo) {
+		logger.warn(
+			`Attempted to send reset email to ${req.body.email}, but no verifyInfo was set for them.`
+		);
+		return;
+	}
+
+	const user = await GetUserWithID(verifyInfo.userID);
+
+	if (!user) {
+		logger.severe(`Email verifyInfo belongs to user that no longer exists?`, verifyInfo);
+		return;
+	}
+
+	// Send the email again.
+	await SendEmail(req.body.email, EmailFormatVerifyEmail(user!.username, verifyInfo.code));
+});
 
 /**
  * Logs out the requesting user.

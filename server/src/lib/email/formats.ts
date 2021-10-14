@@ -9,6 +9,12 @@ export function EmailFormatResetPassword(username: string, resetCode: string, ip
 	);
 }
 
+export function EmailFormatVerifyEmail(username: string, code: string) {
+	return MainHTMLWrapper(
+		`Hey ${username}, You need to verify your email before you can use the site.<br/><a href="${ServerConfig.OUR_URL}/verify-email?code=${code}">Click here</a> to verify your email.`
+	);
+}
+
 export function MainHTMLWrapper(innerHTML: string) {
 	return `<!DOCTYPE html>
 	<html lang="en">

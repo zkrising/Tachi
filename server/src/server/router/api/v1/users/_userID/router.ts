@@ -203,6 +203,34 @@ router.get("/game-stats", async (req, res) => {
 	});
 });
 
+/**
+ * Returns whether the user has verified their email or not.
+ * Requires self-key level permissions.
+ *
+ * @name GET /api/v1/users/:userID/is-email-verified
+ */
+router.get("/is-email-verified", RequireSelfRequestFromUser, async (req, res) => {
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+
+	const verifyInfo = await db["verify-email-codes"].findOne({
+		userID: user.id,
+	});
+
+	if (verifyInfo) {
+		return res.status(200).json({
+			success: true,
+			description: `User has not verified email.`,
+			body: false,
+		});
+	}
+
+	return res.status(200).json({
+		success: true,
+		description: `User has verified email.`,
+		body: true,
+	});
+});
+
 router.use("/games/:game/:playtype", gamePTRouter);
 router.use("/pfp", pfpRouter);
 router.use("/banner", bannerRouter);

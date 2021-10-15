@@ -84,7 +84,7 @@ router.get("/", (req, res) => {
 
 	if (!user.customPfp) {
 		res.setHeader("Content-Type", "image/png");
-		return CDNRedirect(res, "/users/default/pfp.png");
+		return CDNRedirect(res, "/users/default/pfp");
 	}
 
 	return CDNRedirect(res, GetProfilePictureURL(user.id));

@@ -1,7 +1,10 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
+import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
+import { updateLanguageServiceSourceFile } from "typescript";
 import { EfficientDBIterate } from "../../util/efficient-db-iterate";
+import { UpdateAllPBs } from "./update-all-pbs";
 
 const logger = CreateLogCtx(__filename);
 
@@ -42,6 +45,9 @@ export async function RecalcAllScores(filter = {}) {
 		},
 		filter
 	);
+
+	logger.info("Reprocessing PBs...");
+	await UpdateAllPBs(filter);
 
 	logger.info(`Done!`);
 }

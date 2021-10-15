@@ -11,7 +11,7 @@ t.test("GET /api/v1/users/:userID/pfp", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should return the default profile picture if user has no custom pfp", async (t) => {
-		await CDNStoreOrOverwrite("/users/default/pfp.png", "test");
+		await CDNStoreOrOverwrite("/users/default/pfp", "test");
 		// we have to follow redirs here lol
 		const res = await mockApi.get("/api/v1/users/1/pfp").redirects(1);
 

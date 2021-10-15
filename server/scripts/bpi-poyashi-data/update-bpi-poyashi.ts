@@ -9,6 +9,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { config } from "process";
 import { FindChartWithPTDFVersion } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
+import { RecalcAllScores } from "../__KT_DATABASE_MIGRATION/state-sync/recalc-all-scores";
 
 const program = new Command();
 
@@ -35,9 +36,7 @@ async function UpdatePoyashiData() {
 	if (options.fetch) {
 		// lol!
 		logger.info("Fetching data from github...");
-		const rj = await fetch(
-			"https://raw.githubusercontent.com/potakusan/bpim-score-repo/master/output/release.json"
-		).then((r) => r.json());
+		const rj = await fetch("https://proxy.poyashi.me/?type=bpi").then((r) => r.json());
 
 		logger.info("Fetched data.");
 		fs.writeFileSync(dataLoc, JSON.stringify(rj));
@@ -71,7 +70,7 @@ async function UpdatePoyashiData() {
 			tachiSong.id,
 			playtype as "SP" | "DP",
 			diff as Difficulties["iidx:DP" | "iidx:SP"],
-			"28"
+			"27"
 		)) as ChartDocument<"iidx:SP" | "iidx:DP">;
 
 		if (!tachiChart) {
@@ -90,6 +89,11 @@ async function UpdatePoyashiData() {
 			continue;
 		}
 
+		if (d.removed) {
+			logger.info(`Skipping removed chart ${tachiSong.title}.`);
+			continue;
+		}
+
 		realData.push({
 			coef: d.coef === -1 ? null : d.coef,
 			kavg: Number(d.avg),
@@ -102,6 +106,14 @@ async function UpdatePoyashiData() {
 	await db["iidx-bpi-data"].insert(realData);
 
 	logger.info(`Removed all, and inserted ${realData.length} documents.`);
+
+	logger.info(`Triggering IIDX Recalc.`);
+
+	await RecalcAllScores({ game: "iidx" });
+
+	logger.info(`Done.`);
 }
 
-UpdatePoyashiData();
+if (require.main === module) {
+	UpdatePoyashiData();
+}

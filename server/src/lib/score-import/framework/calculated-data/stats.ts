@@ -6,7 +6,6 @@ import {
 	Game,
 	Playtypes,
 	GetGamePTConfig,
-	IDStrings,
 } from "tachi-common";
 import { KtLogger } from "lib/logger/logger";
 import { DryScore } from "../common/types";
@@ -78,7 +77,11 @@ export function CalculateBPI(
 	max: integer,
 	pc: number | null
 ) {
-	const powCoef = pc ?? 1.175;
+	let powCoef = pc ?? 1.175;
+	if (powCoef === -1) {
+		powCoef = 1.175;
+	}
+
 	const yourPGF = BPIPikaGreatFn(yourEx, max);
 	const kaidenPGF = BPIPikaGreatFn(kaidenEx, max);
 	const wrPGF = BPIPikaGreatFn(wrEx, max);
@@ -90,8 +93,7 @@ export function CalculateBPI(
 	const isBetterThanKavg = yourEx >= kaidenEx;
 
 	// this line of code isn't mine, and that's why it's *really* bad here.
-	return Math.max(
-		-15,
+	const bpi =
 		Math.round(
 			(isBetterThanKavg ? 100 : -100) *
 				Math.pow(
@@ -99,8 +101,13 @@ export function CalculateBPI(
 					powCoef
 				) *
 				100
-		) / 100
-	);
+		) / 100;
+
+	if (bpi < -15) {
+		return -15;
+	}
+
+	return bpi;
 }
 
 /**

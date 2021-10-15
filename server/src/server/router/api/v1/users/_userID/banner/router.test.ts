@@ -11,7 +11,7 @@ t.test("GET /api/v1/users/:userID/banner", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should return the default profile banner if user has no custom banner", async (t) => {
-		await CDNStoreOrOverwrite("/users/default/banner.png", "test");
+		await CDNStoreOrOverwrite("/users/default/banner", "test");
 		const res = await mockApi.get("/api/v1/users/1/banner").redirects(1);
 
 		t.equal(res.body.toString(), "test");

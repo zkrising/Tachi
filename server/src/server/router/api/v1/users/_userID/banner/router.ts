@@ -86,7 +86,7 @@ router.get("/", (req, res) => {
 
 	if (!user.customBanner) {
 		res.setHeader("Content-Type", "image/png");
-		return CDNRedirect(res, "/users/default/banner.png");
+		return CDNRedirect(res, "/users/default/banner");
 	}
 
 	// express sniffs whether this is a png or jpg **and** browsers dont care either.

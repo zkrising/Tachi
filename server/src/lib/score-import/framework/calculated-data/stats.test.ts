@@ -53,6 +53,21 @@ t.test("#CalculateBPI", (t) => {
 		t.end();
 	});
 
+	t.test("COLOSSEUM BPI Tests", (t) => {
+		const WR_AFT = 2312;
+		const KAVG_CL = 2131;
+		const MAX_CL = 2318;
+		const COEF_CL = -1;
+
+		function CL_BPI(yourEx: number) {
+			return CalculateBPI(KAVG_CL, WR_AFT, yourEx, MAX_CL, COEF_CL);
+		}
+
+		isApproximately(CL_BPI(2307), 79.63);
+
+		t.end();
+	});
+
 	// This song has both no co-efficient and is an sp11, so it serves
 	// as another interesting test.
 	t.test("Afterimage d'automne BPI tests", (t) => {

@@ -18390,6 +18390,21 @@
 		]
 	},
 	{
+		"_id": "60989a56359683129e155fca",
+		"title": "AUTOMATION PARADISE",
+		"artist": "-",
+		"id": 1259,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"automation_paradise",
+			"ｵｰﾄﾒｰｼｮﾝﾊﾟﾗﾀﾞｲｽ"
+		]
+	},
+	{
 		"_id": "60989a56359683129e155eda",
 		"title": "Chrono Diver -PENDULUMs-",
 		"artist": "猫叉L.E.D.Master+",
@@ -21060,6 +21075,21 @@
 		]
 	},
 	{
+		"_id": "60989a56359683129e155fcb",
+		"title": "おーとめーしょんぱらだいす",
+		"artist": "-",
+		"id": 1438,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"automation_paradise_2019apr",
+			"ｵｰﾄﾒｰｼｮﾝﾊﾟﾗﾀﾞｲｽﾆｰｾﾞﾛｲﾁｷｭｰｴｲﾌﾟﾘﾙﾐｯｸｽ"
+		]
+	},
+	{
 		"_id": "60989a56359683129e155f8c",
 		"title": "諏訪大信仰",
 		"artist": "ビートまりお＋あまね（COOL&CREATE）",
@@ -21225,6 +21255,51 @@
 		]
 	},
 	{
+		"_id": "60989a56359683129e155fcc",
+		"title": "ユニバーページ（i-world Mix）",
+		"artist": "Remixed by BEMANI Sound Team \"Yvya\" feat. かなたん",
+		"id": 1450,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"univerpage_yvya",
+			"ﾕﾆﾊﾞｰﾍﾟｰｼﾞｱｲﾜｰﾙﾄﾞﾐｯｸｽ"
+		]
+	},
+	{
+		"_id": "60989a56359683129e155fcd",
+		"title": "かくしん的☆めたまるふぉ～ぜっ！（crabMixx）",
+		"artist": "土間うまる（CV.田中あいみ） Remixed by いぬ",
+		"id": 1451,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"kakushinteki_inu",
+			"ｶｸｼﾝﾃｷﾒﾀﾏﾙﾌｫｰｾﾞｸﾗﾌﾞﾐｯｸｽ"
+		]
+	},
+	{
+		"_id": "60989a56359683129e155fce",
+		"title": "鏡面の波（ramble mix）",
+		"artist": "YURiKA Remixed by BEMANI Sound Team \"DJ TOTTO\"",
+		"id": 1452,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"kyoumennonami_djtotto",
+			"ｷｮｳﾒﾝﾉﾅﾐﾗﾝﾌﾞﾙﾐｯｸｽ"
+		]
+	},
+	{
 		"_id": "60989a56359683129e155f97",
 		"title": "動く、動く（\"A&M Chillin' \" Electro Remix）",
 		"artist": "Remixed by かめりあ feat.響木アオ＆虹乃まほろ",
@@ -21282,6 +21357,36 @@
 		"searchTerms": [
 			"styxhelix_realremixer0123",
 			"ｽﾃｭｸｽﾍﾘｯｸｽﾃﾞｼﾞﾛｯｸﾘﾐｯｸｽ"
+		]
+	},
+	{
+		"_id": "60989a56359683129e155fcf",
+		"title": "ふ・れ・ん・ど・し・た・い（WEREHEREMIX)",
+		"artist": "Remixed by ボルテ学園生活部",
+		"id": 1457,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"friendshitai_voltegakuen",
+			"ﾌﾚﾝﾄﾞｼﾀｲｳｨｱﾋｱﾐｯｸｽ"
+		]
+	},
+	{
+		"_id": "60989a56359683129e155fd0",
+		"title": "Daydream caf齷 (Euro Hopping Mix)",
+		"artist": "Remixed by BEMANI Sound Team \"TAG\" feat. ななひら",
+		"id": 1458,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"daydreamcafe_tag",
+			"ﾃﾞｲﾄﾞﾘｰﾑｶﾌｪﾕｰﾛﾎｯﾋﾟﾝｸﾞﾐｯｸｽ"
 		]
 	},
 	{
@@ -21525,6 +21630,21 @@
 		]
 	},
 	{
+		"_id": "60989a56359683129e155fd1",
+		"title": "L9",
+		"artist": "paraoka",
+		"id": 1480,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"l9_paraoka",
+			"ｴﾙｷｭｳ"
+		]
+	},
+	{
 		"_id": "60989a56359683129e155fab",
 		"title": "ミッドナイト☆WAR",
 		"artist": "いちか",
@@ -21657,6 +21777,36 @@
 		"searchTerms": [
 			"blackjackal_akiracomplex",
 			"ﾌﾞﾗｯｸｼﾞｬｯｶﾙ"
+		]
+	},
+	{
+		"_id": "60989a56359683129e155fd2",
+		"title": "MAX BURNING!! (FOR INFINITE EXTENDED VERSION)",
+		"artist": "BLACKY",
+		"id": 1490,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"max_burning_blacky",
+			"ﾏｯｸｽﾊﾞｰﾆﾝｸﾞ"
+		]
+	},
+	{
+		"_id": "60989a56359683129e155fd3",
+		"title": "Zusammenbruch of Gott",
+		"artist": "Hommarju",
+		"id": 1491,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"gott_hommarju",
+			"ｺﾞｯﾄ"
 		]
 	},
 	{
@@ -21855,6 +22005,51 @@
 		]
 	},
 	{
+		"_id": "60989a56359683129e155fd4",
+		"title": "Blue Forest (Prog Keys Remix)",
+		"artist": "とろまる",
+		"id": 1514,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"blueforestrmx_toromaru",
+			"ﾌﾞﾙｰﾌｫﾚｽﾄﾌﾟﾛｸﾞｷｰｽﾞﾘﾐｯｸｽ"
+		]
+	},
+	{
+		"_id": "60989a56359683129e155fd5",
+		"title": "cloche(といぼっくすうぃんぐ　みっくす)",
+		"artist": "coTatsu",
+		"id": 1516,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"clochermx_cotatsu",
+			"ｸﾛｼｪﾄｲﾎﾞｯｸｽｳｨﾝｸﾞﾐｯｸｽ"
+		]
+	},
+	{
+		"_id": "60989a56359683129e155fd6",
+		"title": "EGOISM -Rebuild-",
+		"artist": "HAMA topground",
+		"id": 1518,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"egoismrmx_hamatopground",
+			"ｴｺﾞｲｽﾞﾑﾘﾋﾞﾙﾄﾞ"
+		]
+	},
+	{
 		"_id": "60989a56359683129e155fc1",
 		"title": "Elemental Creation (kamome sano Remix)",
 		"artist": "kamome sano",
@@ -21867,6 +22062,21 @@
 		"searchTerms": [
 			"elecrermx_kamomesano",
 			"ｴﾚﾒﾝﾀﾙｸﾘｴｲｼｮﾝｶﾓﾒｻﾉﾘﾐｯｸｽ"
+		]
+	},
+	{
+		"_id": "60989a56359683129e155fd7",
+		"title": "Re：Elemental Creation",
+		"artist": "uma meets モリモリあつし",
+		"id": 1521,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"elecrermx_uma_morimori",
+			"ﾘｰｴﾚﾒﾝﾀﾙｸﾘｴｲｼｮﾝ"
 		]
 	},
 	{
@@ -21885,6 +22095,36 @@
 		]
 	},
 	{
+		"_id": "60989a56359683129e155fd8",
+		"title": "Mynarco(Nagomu 2Step Remix)",
+		"artist": "Akizuki Nagomu feat. fu-ko",
+		"id": 1526,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"mynarcormx_akizukinagomu",
+			"ﾏｲﾅﾙｺﾅｺﾞﾑﾂｰｽﾃｯﾌﾟ ﾘﾐｯｸｽ"
+		]
+	},
+	{
+		"_id": "60989a56359683129e155fd9",
+		"title": "POSSESSION(Gowrock Remix)",
+		"artist": "Gowrock",
+		"id": 1529,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"posessionrmx_gowrock",
+			"ﾎﾟｾﾞｯｼｮﾝｶﾞｳﾛｯｸﾘﾐｯｸｽ"
+		]
+	},
+	{
 		"_id": "60989a56359683129e155fc3",
 		"title": "SHION (ロースピード幻想チューン Remix)",
 		"artist": "HOUJIROU feat. 駄々子",
@@ -21897,6 +22137,21 @@
 		"searchTerms": [
 			"shionrmx_houjirou",
 			"ｼｵﾝﾛｰｽﾋﾟｰﾄﾞｹﾞﾝｿｳﾁｭｰﾝﾘﾐｯｸｽ"
+		]
+	},
+	{
+		"_id": "60989a56359683129e155fda",
+		"title": "DEEP PSYCHEDELIC STRIKER",
+		"artist": "影虎。",
+		"id": 1534,
+		"firstVersion": "vivid",
+		"data": {
+			"uscEquiv": null
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"deepstrikerrnx_kagetora",
+			"ﾃﾞｨｰﾌﾟｻｲｹﾃﾞﾘｯｸｽﾄﾗｲｶｰ"
 		]
 	},
 	{
@@ -21987,261 +22242,6 @@
 		"searchTerms": [
 			"finallydivekorsk_kokoknatsu",
 			"ﾌｧｲﾅﾘｰﾀﾞｲﾌﾞｺｰｽｹﾘﾐｯｸｽ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fca",
-		"title": "AUTOMATION PARADISE",
-		"artist": "-",
-		"id": 1259,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"automation_paradise",
-			"ｵｰﾄﾒｰｼｮﾝﾊﾟﾗﾀﾞｲｽ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fcb",
-		"title": "おーとめーしょんぱらだいす",
-		"artist": "-",
-		"id": 1438,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"automation_paradise_2019apr",
-			"ｵｰﾄﾒｰｼｮﾝﾊﾟﾗﾀﾞｲｽﾆｰｾﾞﾛｲﾁｷｭｰｴｲﾌﾟﾘﾙﾐｯｸｽ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fcc",
-		"title": "ユニバーページ（i-world Mix）",
-		"artist": "Remixed by BEMANI Sound Team \"Yvya\" feat. かなたん",
-		"id": 1450,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"univerpage_yvya",
-			"ﾕﾆﾊﾞｰﾍﾟｰｼﾞｱｲﾜｰﾙﾄﾞﾐｯｸｽ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fcd",
-		"title": "かくしん的☆めたまるふぉ～ぜっ！（crabMixx）",
-		"artist": "土間うまる（CV.田中あいみ） Remixed by いぬ",
-		"id": 1451,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"kakushinteki_inu",
-			"ｶｸｼﾝﾃｷﾒﾀﾏﾙﾌｫｰｾﾞｸﾗﾌﾞﾐｯｸｽ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fce",
-		"title": "鏡面の波（ramble mix）",
-		"artist": "YURiKA Remixed by BEMANI Sound Team \"DJ TOTTO\"",
-		"id": 1452,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"kyoumennonami_djtotto",
-			"ｷｮｳﾒﾝﾉﾅﾐﾗﾝﾌﾞﾙﾐｯｸｽ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fcf",
-		"title": "ふ・れ・ん・ど・し・た・い（WEREHEREMIX)",
-		"artist": "Remixed by ボルテ学園生活部",
-		"id": 1457,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"friendshitai_voltegakuen",
-			"ﾌﾚﾝﾄﾞｼﾀｲｳｨｱﾋｱﾐｯｸｽ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fd0",
-		"title": "Daydream caf齷 (Euro Hopping Mix)",
-		"artist": "Remixed by BEMANI Sound Team \"TAG\" feat. ななひら",
-		"id": 1458,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"daydreamcafe_tag",
-			"ﾃﾞｲﾄﾞﾘｰﾑｶﾌｪﾕｰﾛﾎｯﾋﾟﾝｸﾞﾐｯｸｽ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fd1",
-		"title": "L9",
-		"artist": "paraoka",
-		"id": 1480,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"l9_paraoka",
-			"ｴﾙｷｭｳ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fd2",
-		"title": "MAX BURNING!! (FOR INFINITE EXTENDED VERSION)",
-		"artist": "BLACKY",
-		"id": 1490,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"max_burning_blacky",
-			"ﾏｯｸｽﾊﾞｰﾆﾝｸﾞ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fd3",
-		"title": "Zusammenbruch of Gott",
-		"artist": "Hommarju",
-		"id": 1491,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"gott_hommarju",
-			"ｺﾞｯﾄ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fd4",
-		"title": "Blue Forest (Prog Keys Remix)",
-		"artist": "とろまる",
-		"id": 1514,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"blueforestrmx_toromaru",
-			"ﾌﾞﾙｰﾌｫﾚｽﾄﾌﾟﾛｸﾞｷｰｽﾞﾘﾐｯｸｽ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fd5",
-		"title": "cloche(といぼっくすうぃんぐ　みっくす)",
-		"artist": "coTatsu",
-		"id": 1516,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"clochermx_cotatsu",
-			"ｸﾛｼｪﾄｲﾎﾞｯｸｽｳｨﾝｸﾞﾐｯｸｽ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fd6",
-		"title": "EGOISM -Rebuild-",
-		"artist": "HAMA topground",
-		"id": 1518,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"egoismrmx_hamatopground",
-			"ｴｺﾞｲｽﾞﾑﾘﾋﾞﾙﾄﾞ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fd7",
-		"title": "Re：Elemental Creation",
-		"artist": "uma meets モリモリあつし",
-		"id": 1521,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"elecrermx_uma_morimori",
-			"ﾘｰｴﾚﾒﾝﾀﾙｸﾘｴｲｼｮﾝ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fd8",
-		"title": "Mynarco(Nagomu 2Step Remix)",
-		"artist": "Akizuki Nagomu feat. fu-ko",
-		"id": 1526,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"mynarcormx_akizukinagomu",
-			"ﾏｲﾅﾙｺﾅｺﾞﾑﾂｰｽﾃｯﾌﾟ ﾘﾐｯｸｽ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fd9",
-		"title": "POSSESSION(Gowrock Remix)",
-		"artist": "Gowrock",
-		"id": 1529,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"posessionrmx_gowrock",
-			"ﾎﾟｾﾞｯｼｮﾝｶﾞｳﾛｯｸﾘﾐｯｸｽ"
-		]
-	},
-	{
-		"_id": "60989a56359683129e155fda",
-		"title": "DEEP PSYCHEDELIC STRIKER",
-		"artist": "影虎。",
-		"id": 1534,
-		"firstVersion": "vivid",
-		"data": {
-			"uscEquiv": null
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"deepstrikerrnx_kagetora",
-			"ﾃﾞｨｰﾌﾟｻｲｹﾃﾞﾘｯｸｽﾄﾗｲｶｰ"
 		]
 	},
 	{

@@ -22011,17 +22011,6 @@
 		"searchTerms": []
 	},
 	{
-		"id": 1984,
-		"title": "Remain",
-		"artist": "ZERO+ZIBA",
-		"firstVersion": "inf",
-		"data": {
-			"genre": "RUINOUS SPIRITUALS"
-		},
-		"altTitles": [],
-		"searchTerms": []
-	},
-	{
 		"title": "Chewingood!!!",
 		"artist": "TORIENA",
 		"id": 1985,
@@ -22031,19 +22020,6 @@
 		},
 		"altTitles": [],
 		"searchTerms": []
-	},
-	{
-		"id": 1985,
-		"title": "雫",
-		"artist": "あさき",
-		"firstVersion": "inf",
-		"data": {
-			"genre": "LAMENTO"
-		},
-		"altTitles": [],
-		"searchTerms": [
-			"Shizuku"
-		]
 	},
 	{
 		"title": "Crazy Jackpot",
@@ -22057,34 +22033,12 @@
 		"searchTerms": []
 	},
 	{
-		"id": 1986,
-		"title": "Harmonia",
-		"artist": "ATSUMI UEDA",
-		"firstVersion": "inf",
-		"data": {
-			"genre": "NU PRELUDE"
-		},
-		"altTitles": [],
-		"searchTerms": []
-	},
-	{
 		"title": "That Feeling",
 		"artist": "Crayvxn",
 		"id": 1987,
 		"firstVersion": "28",
 		"data": {
 			"genre": "SPEED HOUSE"
-		},
-		"altTitles": [],
-		"searchTerms": []
-	},
-	{
-		"id": 1987,
-		"title": "Space Dog",
-		"artist": "Sana",
-		"firstVersion": "inf",
-		"data": {
-			"genre": "UCHU-RYOKOU"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -22167,7 +22121,7 @@
 		"searchTerms": []
 	},
 	{
-		"id": 7464,
+		"id": 1995,
 		"title": "Amabie",
 		"artist": "BEMANI Sound Team “Coyaan”",
 		"firstVersion": "inf",
@@ -22178,7 +22132,7 @@
 		"searchTerms": []
 	},
 	{
-		"id": 7465,
+		"id": 1996,
 		"title": "朱と碧のランページ",
 		"artist": "NU-KO",
 		"firstVersion": "inf",
@@ -22191,7 +22145,7 @@
 		]
 	},
 	{
-		"id": 7466,
+		"id": 1997,
 		"title": "雪上断火",
 		"artist": "Des-ROW・組",
 		"firstVersion": "inf",
@@ -22202,5 +22156,51 @@
 		"searchTerms": [
 			"Setsujoudanka"
 		]
+	},
+	{
+		"id": 1998,
+		"title": "Remain",
+		"artist": "ZERO+ZIBA",
+		"firstVersion": "inf",
+		"data": {
+			"genre": "RUINOUS SPIRITUALS"
+		},
+		"altTitles": [],
+		"searchTerms": []
+	},
+	{
+		"id": 1999,
+		"title": "雫",
+		"artist": "あさき",
+		"firstVersion": "inf",
+		"data": {
+			"genre": "LAMENTO"
+		},
+		"altTitles": [],
+		"searchTerms": [
+			"Shizuku"
+		]
+	},
+	{
+		"id": 2000,
+		"title": "Harmonia",
+		"artist": "ATSUMI UEDA",
+		"firstVersion": "inf",
+		"data": {
+			"genre": "NU PRELUDE"
+		},
+		"altTitles": [],
+		"searchTerms": []
+	},
+	{
+		"id": 2001,
+		"title": "Space Dog",
+		"artist": "Sana",
+		"firstVersion": "inf",
+		"data": {
+			"genre": "UCHU-RYOKOU"
+		},
+		"altTitles": [],
+		"searchTerms": []
 	}
 ]

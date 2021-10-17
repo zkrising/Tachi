@@ -1,17 +1,14 @@
-import { PBScoreDocument, integer, ScoreDocument, ChartDocument } from "tachi-common";
-import db from "external/mongo/db";
-import CreateLogCtx from "lib/logger/logger";
-import { GetUsernameFromUserID } from "utils/user";
+import { integer, PBScoreDocument } from "tachi-common";
 
 const LAMP_TO_BEATORAJA = [0, 1, 3, 4, 5, 6, 7, 8] as const;
 
-const RAN_INDEXES = {
-	NONRAN: 0,
-	MIRROR: 1,
-	RANDOM: 2,
-	"R-RANDOM": 3,
-	"S-RANDOM": 4,
-} as const;
+// const RAN_INDEXES = {
+// 	NONRAN: 0,
+// 	MIRROR: 1,
+// 	RANDOM: 2,
+// 	"R-RANDOM": 3,
+// 	"S-RANDOM": 4,
+// } as const;
 
 type BeatorajaJudgements = `${"e" | "l"}${"pg" | "gr" | "gd" | "bd" | "pr"}`;
 

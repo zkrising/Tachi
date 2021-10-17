@@ -303,7 +303,7 @@ const ratingParameters = {
 	},
 };
 
-export async function CalculateKTRating(
+export function CalculateKTRating(
 	dryScore: DryScore,
 	game: "iidx" | "bms" | "ddr" | "maimai" | "museca",
 	playtype: Playtypes[Game],
@@ -317,7 +317,7 @@ export async function CalculateKTRating(
 	return KTRatingCalcV1(dryScore.scoreData.percent, levelNum, parameters, logger);
 }
 
-export async function CalculateKTLampRating(
+export function CalculateKTLampRating(
 	dryScore: DryScore,
 	game: Game,
 	playtype: Playtypes[Game],

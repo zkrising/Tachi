@@ -1,6 +1,7 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
 import { InternalFailure } from "../../../framework/common/converter-failures";
@@ -13,8 +14,6 @@ import {
 	TachifyRange,
 } from "./converter";
 import { FervidexScore } from "./types";
-import deepmerge from "deepmerge";
-import { ChartDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

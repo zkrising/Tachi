@@ -1,22 +1,18 @@
-import t from "tap";
-import db from "external/mongo/db";
+import deepmerge from "deepmerge";
+import CreateLogCtx from "lib/logger/logger";
 import { ChartDocument, Difficulties, Lamps, ScoreDocument } from "tachi-common";
+import t from "tap";
+import { isApproximately } from "test-utils/asserts";
+import { GetKTDataJSON, Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
+import { DryScore } from "../common/types";
 import {
 	CalculateBPI,
 	CalculateCHUNITHMRating,
 	CalculateGITADORASkill,
-	CalculateMFCP,
-	CalculateKTLampRating,
 	CalculateKTRating,
+	CalculateMFCP,
 	CalculateVF6,
 } from "./stats";
-import CreateLogCtx from "lib/logger/logger";
-import { isApproximately } from "test-utils/asserts";
-import { DryScore } from "../common/types";
-import { GetKTDataJSON, Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
-
-import deepmerge from "deepmerge";
-import ResetDBState from "test-utils/resets";
 
 t.test("#CalculateBPI", (t) => {
 	t.test("AA BPI tests", (t) => {

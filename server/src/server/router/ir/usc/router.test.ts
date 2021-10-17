@@ -458,7 +458,7 @@ t.test("POST /replays", (t) => {
 	t.end();
 });
 
-t.test("POST /scores", async (t) => {
+t.test("POST /scores", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(async () => {
 		await db["api-tokens"].insert({

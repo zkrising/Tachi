@@ -1,7 +1,6 @@
 import { RequestHandler } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { IsString } from "utils/misc";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 
 export const GetFolderFromParam: RequestHandler = async (req, res, next) => {

@@ -1,24 +1,23 @@
+import db from "external/mongo/db";
+import { KtLogger } from "lib/logger/logger";
 import {
 	ChartDocument,
 	Game,
+	Grades,
+	IDStrings,
+	Lamps,
 	Playtypes,
 	ScoreDocument,
-	Grades,
-	Lamps,
-	IDStrings,
 } from "tachi-common";
-import db from "external/mongo/db";
 import { HasOwnProperty } from "utils/misc";
-
-import { KtLogger } from "lib/logger/logger";
 import { DryScore } from "../common/types";
 import {
+	CalculateBPI,
 	CalculateCHUNITHMRating,
 	CalculateGITADORASkill,
-	CalculateBPI,
-	CalculateMFCP,
-	CalculateKTRating,
 	CalculateKTLampRating,
+	CalculateKTRating,
+	CalculateMFCP,
 	CalculateVF6,
 } from "./stats";
 

@@ -1,16 +1,16 @@
-import { Router, RequestHandler } from "express";
-import { UpdateClassIfGreater } from "utils/class";
-import { GetUserWithIDGuaranteed } from "utils/user";
-import { ParseEA3SoftID } from "utils/ea3id";
+import { RequestHandler, Router } from "express";
+import db from "external/mongo/db";
 import { EXT_HEROIC_VERSE, MODEL_INFINITAS_2, REV_2DXBMS } from "lib/constants/ea3id";
+import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { ParseFervidexStatic } from "lib/score-import/import-types/ir/fervidex-static/parser";
 import { ParseFervidexSingle } from "lib/score-import/import-types/ir/fervidex/parser";
-import { Playtypes, integer } from "tachi-common";
-import CreateLogCtx from "lib/logger/logger";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
 import { RequirePermissions } from "server/middleware/auth";
-import db from "external/mongo/db";
+import { integer, Playtypes } from "tachi-common";
+import { UpdateClassIfGreater } from "utils/class";
+import { ParseEA3SoftID } from "utils/ea3id";
+import { GetUserWithIDGuaranteed } from "utils/user";
 
 const logger = CreateLogCtx(__filename);
 

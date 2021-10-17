@@ -1,11 +1,10 @@
 import { KtLogger } from "lib/logger/logger";
-import { ChartDocument } from "tachi-common";
 import p, { PrudenceSchema } from "prudence";
-import { FormatPrError } from "utils/prudence";
 import { USCClientScore } from "server/router/ir/usc/types";
-import { IRUSCContext } from "./types";
-import { ParserFunctionReturns } from "../../common/types";
+import { FormatPrError } from "utils/prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
+import { ParserFunctionReturns } from "../../common/types";
+import { IRUSCContext } from "./types";
 
 const PR_USCIRScore: PrudenceSchema = {
 	score: p.isBoundedInteger(0, 10_000_000),

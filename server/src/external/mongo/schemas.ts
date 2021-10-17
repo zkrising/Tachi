@@ -3,8 +3,6 @@ import { Game, Playtypes, GetGameConfig, GetGamePTConfig, UserAuthLevels } from 
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
 import { ServerTypeInfo } from "lib/setup/config";
 
-const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
-
 export const PRUDENCE_PUBLIC_USER: PrudenceSchema = {
 	_id: p.any,
 	username: p.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),

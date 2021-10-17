@@ -22202,5 +22202,456 @@
 		},
 		"altTitles": [],
 		"searchTerms": []
+	},
+	{
+		"id": 2002,
+		"artist": "BEMANI Sound Team \"TAG\"",
+		"title": "無意識のフィロソフィア",
+		"data": {
+			"genre": "HARD TRANCE"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2003,
+		"artist": "CANVAS feat. Quimär & BEMANI Sound Team \"L.E.D.-G\"",
+		"title": "LOCUS OF THE TRAVEL",
+		"data": {
+			"genre": "HAPPY BISTRO CORE"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2004,
+		"artist": "ぺのれり vs. BEMANI Sound Team \"HuΣeR\"",
+		"title": "ディスコルディア",
+		"data": {
+			"genre": "CROSSOVER"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2005,
+		"artist": "BEMANI Sound Team \"D.J.Amuro\"",
+		"title": "-65℃",
+		"data": {
+			"genre": "WHITE OUT"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2006,
+		"artist": "BEMANI Sound Team \"TAG\" feat. 猫体質",
+		"title": "儚き恋の華",
+		"data": {
+			"genre": "BLOOM ROCK"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2007,
+		"artist": "BEMANI Sound Team \"U1 overground\"",
+		"title": "Pārvatī",
+		"data": {
+			"genre": "ORBITALIC WORLD MUSIC"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2008,
+		"artist": "BEMANI Sound Team \"Captain Sonic\"",
+		"title": "COSMIC RAY",
+		"data": {
+			"genre": "BIGCORE"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2009,
+		"artist": "BEMANI Sound Team \"HuΣeR\" & kors k",
+		"title": "Winner's Proof ft. KANASA from bless4",
+		"data": {
+			"genre": "THEME SONG"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2010,
+		"artist": "神楽改",
+		"title": "Sinus Iridum",
+		"data": {
+			"genre": "KAMIKURA"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2011,
+		"artist": "kors k feat.Hboy",
+		"title": "Tiempo Loco",
+		"data": {
+			"genre": "Hi-TECH / PSY CORE"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2012,
+		"artist": "nora2r",
+		"title": "Frisk And Squeak",
+		"data": {
+			"genre": "MAKINA"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2013,
+		"artist": "Maozon",
+		"title": "As You Want",
+		"data": {
+			"genre": "CYBER LIQUID FUNK"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2014,
+		"artist": "Nhato",
+		"title": "Dawn Saga",
+		"data": {
+			"genre": "CELTIC TRANCE STEP"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2015,
+		"artist": "Feryquitous",
+		"title": "Danza Aestas",
+		"data": {
+			"genre": "CONTEMPORARY SALSA"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2016,
+		"artist": "KO3 & Relect",
+		"title": "Ritual of Anubis",
+		"data": {
+			"genre": "ARABIC HARD RITUAL"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2017,
+		"artist": "OSTER project",
+		"title": "innocent revolver",
+		"data": {
+			"genre": "BIGBAND JAZZ"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2018,
+		"artist": "Hommarju",
+		"title": "Jungle Eater",
+		"data": {
+			"genre": "DRUMSTEP / RAGGATEK"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2019,
+		"artist": "m1dy",
+		"title": "Brahma",
+		"data": {
+			"genre": "TOKYO STYLE SPEEDCORE"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2020,
+		"artist": "Juggernaut.",
+		"title": "apo:llioth",
+		"data": {
+			"genre": "HARDCORE"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2021,
+		"artist": "Pizuya's Cell",
+		"title": "Tell me what you wish feat.らっぷびと",
+		"data": {
+			"genre": "ROCK"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2022,
+		"artist": "lapix",
+		"title": "Rosa azuL",
+		"data": {
+			"genre": "HARD LATIN"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2023,
+		"artist": "BlackYooh vs. siromaru",
+		"title": "BLACK or WHITE?",
+		"data": {
+			"genre": "SYMPHONIC SPEED SCHRANZ"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2024,
+		"artist": "Snail's House",
+		"title": "Zenith",
+		"data": {
+			"genre": "PLUS ONE"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2025,
+		"artist": "上ノ瀬つかさ",
+		"title": "二人ノ廃城幽踊宴",
+		"data": {
+			"genre": "SPUKWALZER"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2026,
+		"artist": "KOTONOHOUSE",
+		"title": "Sugarplum",
+		"data": {
+			"genre": "MOE CORE"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2027,
+		"artist": "BEMANI Sound Team \"神\"",
+		"title": "Ignis†Iræ",
+		"data": {
+			"genre": "X"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2028,
+		"artist": "BEMANI Sound Team \"Trance Liquid\"",
+		"title": "OTOKOZAKA",
+		"data": {
+			"genre": "OLD FASHIONED"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2029,
+		"artist": "kors k vs MAD CHILD",
+		"title": "Neo Heritage",
+		"data": {
+			"genre": "HDM"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2030,
+		"artist": "かめりあ feat. ななひら",
+		"title": "バッド・スイーツ、バッド・ドリーム",
+		"data": {
+			"genre": ".+:☆ BAD FUTURE ☆:+."
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2031,
+		"artist": "DJ TOTTO VS 兎々",
+		"title": "伐折羅-vajra-",
+		"data": {
+			"genre": "KUDOS CORE"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2032,
+		"artist": "Osamu Kubota",
+		"title": "Scandal",
+		"data": {
+			"genre": "PROGRESSIVE SWING"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2033,
+		"artist": "Yamato",
+		"title": "Level 3",
+		"data": {
+			"genre": "DRUMSTEP / DnB"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2034,
+		"artist": "kors k",
+		"title": "Fire Beat",
+		"data": {
+			"genre": "EXPERIMENTAL EUROBEAT"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2035,
+		"artist": "sanodg",
+		"title": "Playball",
+		"data": {
+			"genre": "TECH HOUSE"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2036,
+		"artist": "かなたん,アマギセーラ,ぁゅ by BEMANI Sound Team \"藤森崇多\"",
+		"title": "MA・TSU・RI",
+		"data": {
+			"genre": "JAPANESQUE"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2037,
+		"artist": "Jonny Dynamite!,Lisa - paint with stars -,Rio Hiiragi by BEMANI ",
+		"title": "MOVE! (We Keep It Movin')",
+		"data": {
+			"genre": "ORBITALIC ELECTRIC MUSIC"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2038,
+		"artist": "koyomi,星野奏子 by BEMANI Sound Team \"TAKA\"",
+		"title": "LIKE A VAMPIRE",
+		"data": {
+			"genre": "HEAVY METAL"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2039,
+		"artist": "すわひでお,秋成,かぼちゃ,藍月なくる,NU-KO by BEMANI Sound Team \"",
+		"title": "スーパー戦湯ババンバーン",
+		"data": {
+			"genre": "オンセン♨ヒーロー"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2040,
+		"artist": "Sana,ATSUMI UEDA by BEMANI Sound Team \"PON\"",
+		"title": "Globe Glitter",
+		"data": {
+			"genre": "RAVE STEP"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2041,
+		"artist": "Mayumi Morinaga,Fernweh by BEMANI Sound Team \"L.E.D. & HuΣeR\"",
+		"title": "DUAL STRIKER",
+		"data": {
+			"genre": "IIDX SOUNDS"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
+	},
+	{
+		"id": 2042,
+		"artist": "BEMANI Sound Team \"HuΣeR\"",
+		"title": "Rejection Girl",
+		"data": {
+			"genre": "STYLISH FUTURE"
+		},
+		"firstVersion": "28",
+		"searchTerms": [],
+		"altTitles": []
 	}
 ]

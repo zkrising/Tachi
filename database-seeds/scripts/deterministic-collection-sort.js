@@ -19,16 +19,24 @@ function ChartSort(a, b) {
 	return 0;
 }
 
-for (const collection of collections) {
-	const collPath = path.join(__dirname, "../collections", collection);
-	const content = JSON.parse(fs.readFileSync(collPath));
+function DeterministicCollectionSort() {
+	for (const collection of collections) {
+		const collPath = path.join(__dirname, "../collections", collection);
+		const content = JSON.parse(fs.readFileSync(collPath));
 
-	if (collection.startsWith("charts-")) {
-		content.sort(ChartSort);
-	}
-	if (collection.startsWith("songs-")) {
-		content.sort((a, b) => a.id - b.id);
-	}
+		if (collection.startsWith("charts-")) {
+			content.sort(ChartSort);
+		}
+		if (collection.startsWith("songs-")) {
+			content.sort((a, b) => a.id - b.id);
+		}
 
-	fs.writeFileSync(collPath, JSON.stringify(content, null, "\t"));
+		fs.writeFileSync(collPath, JSON.stringify(content, null, "\t"));
+	}
 }
+
+if (require.main === module) {
+	DeterministicCollectionSort();
+}
+
+module.exports = DeterministicCollectionSort

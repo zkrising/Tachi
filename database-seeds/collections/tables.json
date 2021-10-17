@@ -1,6 +1,5 @@
 [
 	{
-		"_id": "6139ec9daadfc43ef2418991",
 		"tableID": "iidx-SP-3-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 3-cs.",
 		"title": "beatmania IIDX (SP) (3-cs)",
@@ -23,7 +22,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef241899e",
 		"tableID": "iidx-SP-4-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 4-cs.",
 		"title": "beatmania IIDX (SP) (4-cs)",
@@ -46,7 +44,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef24189ab",
 		"tableID": "iidx-SP-5-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 5-cs.",
 		"title": "beatmania IIDX (SP) (5-cs)",
@@ -69,7 +66,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef24189b8",
 		"tableID": "iidx-SP-6-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 6-cs.",
 		"title": "beatmania IIDX (SP) (6-cs)",
@@ -92,7 +88,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef24189c5",
 		"tableID": "iidx-SP-7-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 7-cs.",
 		"title": "beatmania IIDX (SP) (7-cs)",
@@ -115,7 +110,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef24189d2",
 		"tableID": "iidx-SP-8-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 8-cs.",
 		"title": "beatmania IIDX (SP) (8-cs)",
@@ -138,7 +132,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef24189df",
 		"tableID": "iidx-SP-9-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 9-cs.",
 		"title": "beatmania IIDX (SP) (9-cs)",
@@ -161,7 +154,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef24189ec",
 		"tableID": "iidx-SP-10-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 10-cs.",
 		"title": "beatmania IIDX (SP) (10-cs)",
@@ -184,7 +176,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef24189f9",
 		"tableID": "iidx-SP-11-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 11-cs.",
 		"title": "beatmania IIDX (SP) (11-cs)",
@@ -207,7 +198,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418a06",
 		"tableID": "iidx-SP-12-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 12-cs.",
 		"title": "beatmania IIDX (SP) (12-cs)",
@@ -230,7 +220,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418a13",
 		"tableID": "iidx-SP-13-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 13-cs.",
 		"title": "beatmania IIDX (SP) (13-cs)",
@@ -253,7 +242,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418a20",
 		"tableID": "iidx-SP-14-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 14-cs.",
 		"title": "beatmania IIDX (SP) (14-cs)",
@@ -276,7 +264,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418a2d",
 		"tableID": "iidx-SP-15-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 15-cs.",
 		"title": "beatmania IIDX (SP) (15-cs)",
@@ -299,7 +286,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418a3a",
 		"tableID": "iidx-SP-16-cs-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 16-cs.",
 		"title": "beatmania IIDX (SP) (16-cs)",
@@ -322,7 +308,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418a47",
 		"tableID": "iidx-SP-20-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 20.",
 		"title": "beatmania IIDX (SP) (20)",
@@ -345,7 +330,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418a54",
 		"tableID": "iidx-SP-21-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 21.",
 		"title": "beatmania IIDX (SP) (21)",
@@ -368,7 +352,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418a61",
 		"tableID": "iidx-SP-22-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 22.",
 		"title": "beatmania IIDX (SP) (22)",
@@ -391,7 +374,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418a6e",
 		"tableID": "iidx-SP-23-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 23.",
 		"title": "beatmania IIDX (SP) (23)",
@@ -414,7 +396,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418a7b",
 		"tableID": "iidx-SP-24-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 24.",
 		"title": "beatmania IIDX (SP) (24)",
@@ -437,7 +418,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418a88",
 		"tableID": "iidx-SP-25-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 25.",
 		"title": "beatmania IIDX (SP) (25)",
@@ -460,7 +440,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418a95",
 		"tableID": "iidx-SP-26-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 26.",
 		"title": "beatmania IIDX (SP) (26)",
@@ -483,7 +462,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418aa2",
 		"tableID": "iidx-SP-27-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 27.",
 		"title": "beatmania IIDX (SP) (27)",
@@ -506,7 +484,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418aaf",
 		"tableID": "iidx-SP-28-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 28.",
 		"title": "beatmania IIDX (SP) (28)",
@@ -529,7 +506,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418abc",
 		"tableID": "iidx-SP-26-omni-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 26-omni.",
 		"title": "beatmania IIDX (SP) (26-omni)",
@@ -552,7 +528,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418ac9",
 		"tableID": "iidx-SP-27-omni-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 27-omni.",
 		"title": "beatmania IIDX (SP) (27-omni)",
@@ -575,7 +550,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418ad6",
 		"tableID": "iidx-SP-2dxtra-levels",
 		"description": "Levels for beatmania IIDX (SP) in version 2dxtra.",
 		"title": "beatmania IIDX (SP) (2dxtra)",
@@ -598,7 +572,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418ae3",
 		"tableID": "iidx-SP-bmus-levels",
 		"description": "Levels for beatmania IIDX (SP) in version bmus.",
 		"title": "beatmania IIDX (SP) (bmus)",
@@ -621,7 +594,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418af0",
 		"tableID": "iidx-SP-inf-levels",
 		"description": "Levels for beatmania IIDX (SP) in version inf.",
 		"title": "beatmania IIDX (SP) (inf)",
@@ -644,7 +616,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418afd",
 		"tableID": "iidx-DP-3-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 3-cs.",
 		"title": "beatmania IIDX (DP) (3-cs)",
@@ -667,7 +638,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418b0a",
 		"tableID": "iidx-DP-4-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 4-cs.",
 		"title": "beatmania IIDX (DP) (4-cs)",
@@ -690,7 +660,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418b17",
 		"tableID": "iidx-DP-5-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 5-cs.",
 		"title": "beatmania IIDX (DP) (5-cs)",
@@ -713,7 +682,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418b24",
 		"tableID": "iidx-DP-6-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 6-cs.",
 		"title": "beatmania IIDX (DP) (6-cs)",
@@ -736,7 +704,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418b31",
 		"tableID": "iidx-DP-7-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 7-cs.",
 		"title": "beatmania IIDX (DP) (7-cs)",
@@ -759,7 +726,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418b3e",
 		"tableID": "iidx-DP-8-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 8-cs.",
 		"title": "beatmania IIDX (DP) (8-cs)",
@@ -782,7 +748,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418b4b",
 		"tableID": "iidx-DP-9-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 9-cs.",
 		"title": "beatmania IIDX (DP) (9-cs)",
@@ -805,7 +770,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418b58",
 		"tableID": "iidx-DP-10-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 10-cs.",
 		"title": "beatmania IIDX (DP) (10-cs)",
@@ -828,7 +792,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418b65",
 		"tableID": "iidx-DP-11-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 11-cs.",
 		"title": "beatmania IIDX (DP) (11-cs)",
@@ -851,7 +814,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418b72",
 		"tableID": "iidx-DP-12-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 12-cs.",
 		"title": "beatmania IIDX (DP) (12-cs)",
@@ -874,7 +836,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418b7f",
 		"tableID": "iidx-DP-13-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 13-cs.",
 		"title": "beatmania IIDX (DP) (13-cs)",
@@ -897,7 +858,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418b8c",
 		"tableID": "iidx-DP-14-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 14-cs.",
 		"title": "beatmania IIDX (DP) (14-cs)",
@@ -920,7 +880,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418b99",
 		"tableID": "iidx-DP-15-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 15-cs.",
 		"title": "beatmania IIDX (DP) (15-cs)",
@@ -943,7 +902,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418ba6",
 		"tableID": "iidx-DP-16-cs-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 16-cs.",
 		"title": "beatmania IIDX (DP) (16-cs)",
@@ -966,7 +924,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418bb3",
 		"tableID": "iidx-DP-20-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 20.",
 		"title": "beatmania IIDX (DP) (20)",
@@ -989,7 +946,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418bc0",
 		"tableID": "iidx-DP-21-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 21.",
 		"title": "beatmania IIDX (DP) (21)",
@@ -1012,7 +968,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418bcd",
 		"tableID": "iidx-DP-22-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 22.",
 		"title": "beatmania IIDX (DP) (22)",
@@ -1035,7 +990,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418bda",
 		"tableID": "iidx-DP-23-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 23.",
 		"title": "beatmania IIDX (DP) (23)",
@@ -1058,7 +1012,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418be7",
 		"tableID": "iidx-DP-24-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 24.",
 		"title": "beatmania IIDX (DP) (24)",
@@ -1081,7 +1034,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418bf4",
 		"tableID": "iidx-DP-25-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 25.",
 		"title": "beatmania IIDX (DP) (25)",
@@ -1104,7 +1056,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418c01",
 		"tableID": "iidx-DP-26-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 26.",
 		"title": "beatmania IIDX (DP) (26)",
@@ -1127,7 +1078,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418c0e",
 		"tableID": "iidx-DP-27-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 27.",
 		"title": "beatmania IIDX (DP) (27)",
@@ -1150,7 +1100,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418c1b",
 		"tableID": "iidx-DP-28-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 28.",
 		"title": "beatmania IIDX (DP) (28)",
@@ -1173,7 +1122,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418c28",
 		"tableID": "iidx-DP-26-omni-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 26-omni.",
 		"title": "beatmania IIDX (DP) (26-omni)",
@@ -1196,7 +1144,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418c35",
 		"tableID": "iidx-DP-27-omni-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 27-omni.",
 		"title": "beatmania IIDX (DP) (27-omni)",
@@ -1219,7 +1166,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418c42",
 		"tableID": "iidx-DP-2dxtra-levels",
 		"description": "Levels for beatmania IIDX (DP) in version 2dxtra.",
 		"title": "beatmania IIDX (DP) (2dxtra)",
@@ -1242,7 +1188,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418c4f",
 		"tableID": "iidx-DP-bmus-levels",
 		"description": "Levels for beatmania IIDX (DP) in version bmus.",
 		"title": "beatmania IIDX (DP) (bmus)",
@@ -1265,7 +1210,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418c5c",
 		"tableID": "iidx-DP-inf-levels",
 		"description": "Levels for beatmania IIDX (DP) in version inf.",
 		"title": "beatmania IIDX (DP) (inf)",
@@ -1288,7 +1232,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418c69",
 		"tableID": "museca-Single-1.5-levels",
 		"description": "Levels for MÚSECA in version 1.5.",
 		"title": "MÚSECA (1.5)",
@@ -1314,7 +1257,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418c79",
 		"tableID": "museca-Single-1.5-b-levels",
 		"description": "Levels for MÚSECA in version 1.5-b.",
 		"title": "MÚSECA (1.5-b)",
@@ -1340,7 +1282,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418c89",
 		"tableID": "maimai-Single-finale-levels",
 		"description": "Levels for maimai in version finale.",
 		"title": "maimai (finale)",
@@ -1372,7 +1313,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418c9f",
 		"tableID": "sdvx-Single-heaven-levels",
 		"description": "Levels for SOUND VOLTEX in version heaven.",
 		"title": "SOUND VOLTEX (heaven)",
@@ -1403,7 +1343,6 @@
 		"inactive": true
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418cb4",
 		"tableID": "sdvx-Single-vivid-levels",
 		"description": "Levels for SOUND VOLTEX in version vivid.",
 		"title": "SOUND VOLTEX (vivid)",
@@ -1434,7 +1373,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418cc9",
 		"tableID": "ddr-SP-a20-levels",
 		"description": "Levels for DDR (SP) in version a20.",
 		"title": "DDR (SP) (a20)",
@@ -1465,7 +1403,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418cde",
 		"tableID": "ddr-DP-a20-levels",
 		"description": "Levels for DDR (DP) in version a20.",
 		"title": "DDR (DP) (a20)",
@@ -1496,7 +1433,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "6139ec9daadfc43ef2418cf3",
 		"tableID": "chunithm-Single-paradise-levels",
 		"description": "Levels for CHUNITHM in version paradise.",
 		"title": "CHUNITHM (paradise)",
@@ -1529,7 +1465,6 @@
 		"inactive": false
 	},
 	{
-		"_id": "613dd44dae8c0220f46413a1",
 		"tableID": "bms-7K-insane",
 		"description": "The 7K GENOSIDE insane table.",
 		"folders": [
@@ -1566,7 +1501,6 @@
 		"title": "Insane"
 	},
 	{
-		"_id": "613dd45cae8c0220f4641bd3",
 		"tableID": "bms-7K-normal",
 		"description": "The 7K GENOSIDE normal table.",
 		"folders": [
@@ -1591,7 +1525,6 @@
 		"title": "Normal"
 	},
 	{
-		"_id": "613dd467ae8c0220f46420e1",
 		"tableID": "bms-7K-st",
 		"description": "The stella table, from Stellaverse.",
 		"folders": [
@@ -1615,7 +1548,6 @@
 		"title": "Stella"
 	},
 	{
-		"_id": "613dd479ae8c0220f4642937",
 		"tableID": "bms-7K-sl",
 		"description": "The satellite table, from Stellaverse.",
 		"folders": [
@@ -1639,7 +1571,6 @@
 		"title": "Satellite"
 	},
 	{
-		"_id": "613dd536ae8c0220f46452dc",
 		"tableID": "bms-7K-overjoy",
 		"description": "The overjoy table. Level 1 is roughly equivalent to Insane 20.",
 		"folders": [
@@ -1659,7 +1590,6 @@
 		"title": "Overjoy"
 	},
 	{
-		"_id": "613dd53cae8c0220f46454fc",
 		"tableID": "bms-14K-dpInsane",
 		"description": "The 14K Insane table.",
 		"folders": [
@@ -1684,7 +1614,6 @@
 		"title": "DP Insane"
 	},
 	{
-		"_id": "613dd545ae8c0220f46459d6",
 		"tableID": "bms-14K-dpNormal",
 		"description": "The 14K Normal table, Sometimes called the delta table.",
 		"folders": [
@@ -1707,7 +1636,6 @@
 		"title": "DP Normal"
 	},
 	{
-		"_id": "613dd54fae8c0220f4645f01",
 		"tableID": "bms-14K-dpSatellite",
 		"description": "The 14K Satellite table.",
 		"folders": [
@@ -1731,7 +1659,6 @@
 		"title": "DP Satellite"
 	},
 	{
-		"_id": "613dd5b3ae8c0220f46481ee",
 		"tableID": "bms-7K-normal2",
 		"description": "A successor to the original normal table.",
 		"folders": [
@@ -1758,7 +1685,6 @@
 		"title": "Normal2"
 	},
 	{
-		"_id": "613dd663ae8c0220f464c0b4",
 		"tableID": "bms-7K-insane2",
 		"description": "A successor to the original insane table, but is generally less consistent.",
 		"folders": [

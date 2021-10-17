@@ -1,6 +1,5 @@
 [
 	{
-		"_id": "60989c49dd034613c80940f6",
 		"title": "天体観測",
 		"artist": "BUMP OF CHICKEN [cover]",
 		"id": 0,
@@ -12,7 +11,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093df5",
 		"title": "B.B.K.K.B.K.K.",
 		"artist": "nora2r",
 		"id": 3,
@@ -24,7 +22,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ef",
 		"title": "Scatman (Ski Ba Bop Ba Dop Bop)",
 		"artist": "Scatman John",
 		"id": 5,
@@ -36,7 +33,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093dfc",
 		"title": "Reach for the Stars",
 		"artist": "ソニック カラーズ",
 		"id": 6,
@@ -48,7 +44,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093df7",
 		"title": "初音ミクの消失",
 		"artist": "cosMo＠暴走P",
 		"id": 7,
@@ -60,7 +55,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940f4",
 		"title": "情熱大陸",
 		"artist": "→Pia-no-jaC←×葉加瀬 太郎",
 		"id": 9,
@@ -72,7 +66,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ed",
 		"title": "All I Want",
 		"artist": "The Offspring",
 		"id": 10,
@@ -84,7 +77,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ee",
 		"title": "紅蓮の弓矢",
 		"artist": "Linked Horizon",
 		"id": 12,
@@ -96,7 +88,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093df6",
 		"title": "コネクト",
 		"artist": "ClariS 「魔法少女まどか☆マギカ」",
 		"id": 14,
@@ -108,7 +99,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940f0",
 		"title": "空色デイズ",
 		"artist": "中川 翔子",
 		"id": 17,
@@ -120,7 +110,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093df9",
 		"title": "千本桜",
 		"artist": "黒うさP",
 		"id": 18,
@@ -132,7 +121,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093df8",
 		"title": "DRAGONLADY",
 		"artist": "Nankumo/CUBE3",
 		"id": 19,
@@ -144,7 +132,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093dfa",
 		"title": "taboo tears you up",
 		"artist": "REDALiCE (HARDCORE TANO*C)",
 		"id": 20,
@@ -156,7 +143,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093dfb",
 		"title": "ナイト・オブ・ナイツ",
 		"artist": "ビートまりお",
 		"id": 21,
@@ -168,7 +154,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e02",
 		"title": "一触即発☆禅ガール",
 		"artist": "れるりり",
 		"id": 23,
@@ -180,7 +165,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e10",
 		"title": "ドーナツホール",
 		"artist": "ハチ",
 		"id": 24,
@@ -192,7 +176,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093dfd",
 		"title": "タイガーランペイジ",
 		"artist": "sasakure.UK",
 		"id": 27,
@@ -204,7 +187,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093dfe",
 		"title": "Pursuing My True Self",
 		"artist": "目黒将司「ペルソナ4 ダンシング・オールナイト」",
 		"id": 28,
@@ -216,7 +198,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e00",
 		"title": "Blue Noise",
 		"artist": "from PACA PACA PASSION",
 		"id": 33,
@@ -228,7 +209,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093dff",
 		"title": "亡國覚醒カタルシス",
 		"artist": "ALI PROJECT",
 		"id": 34,
@@ -240,7 +220,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e01",
 		"title": "Lapis",
 		"artist": "SHIKI",
 		"id": 35,
@@ -252,7 +231,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940f1",
 		"title": "届かない恋 '13",
 		"artist": "上原 れな 「WHITE ALBUM2」",
 		"id": 36,
@@ -264,7 +242,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e09",
 		"title": "鳥の詩",
 		"artist": "Lia「AIR」",
 		"id": 37,
@@ -276,7 +253,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e03",
 		"title": "天ノ弱",
 		"artist": "164",
 		"id": 38,
@@ -288,7 +264,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940f2",
 		"title": "1/3の純情な感情",
 		"artist": "SIAM SHADE [covered by 湯毛]",
 		"id": 39,
@@ -300,7 +275,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e05",
 		"title": "sweet little sister",
 		"artist": "Silver Forest",
 		"id": 41,
@@ -312,7 +286,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940f3",
 		"title": "oath sign",
 		"artist": "LiSA",
 		"id": 42,
@@ -324,7 +297,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940fa",
 		"title": "太陽曰く燃えよカオス",
 		"artist": "後ろから這いより隊G [cover]",
 		"id": 43,
@@ -336,7 +308,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e04",
 		"title": "L9",
 		"artist": "paraoka",
 		"id": 45,
@@ -348,7 +319,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e07",
 		"title": "Bad Apple!! feat.nomico",
 		"artist": "Masayoshi Minoshima",
 		"id": 46,
@@ -360,7 +330,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e06",
 		"title": "六兆年と一夜物語",
 		"artist": "kemu",
 		"id": 47,
@@ -372,7 +341,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e08",
 		"title": "Unlimited Spark!",
 		"artist": "t+pazolite feat.鈴木 ななこ",
 		"id": 48,
@@ -384,7 +352,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e1b",
 		"title": "エピクロスの虹はもう見えない",
 		"artist": "SYNC.ART'S feat.美里",
 		"id": 49,
@@ -396,7 +363,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e0a",
 		"title": "Sinfonie Nr. 9 d-moll op. 125",
 		"artist": "SEGA",
 		"id": 50,
@@ -408,7 +374,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e0b",
 		"title": "My First Phone",
 		"artist": "cubesato",
 		"id": 51,
@@ -420,7 +385,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e0c",
 		"title": "Cyberozar",
 		"artist": "削除",
 		"id": 52,
@@ -432,7 +396,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e0d",
 		"title": "Teriqma",
 		"artist": "owl＊tree",
 		"id": 53,
@@ -444,7 +407,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940f7",
 		"title": "ブルーバード",
 		"artist": "いきものがかり [cover]",
 		"id": 54,
@@ -456,7 +418,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e0e",
 		"title": "夏祭り",
 		"artist": "JITTERIN'JINN [covered by ろん]",
 		"id": 55,
@@ -468,7 +429,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940f5",
 		"title": "そばかす",
 		"artist": "JUDY AND MARY [cover]",
 		"id": 56,
@@ -480,7 +440,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940f8",
 		"title": "STAY AWAY",
 		"artist": "L'Arc～en～Ciel [cover]",
 		"id": 57,
@@ -492,7 +451,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940fb",
 		"title": "魂のルフラン",
 		"artist": "[cover]",
 		"id": 58,
@@ -504,7 +462,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e0f",
 		"title": "Invitation",
 		"artist": "れるりり feat.ろん",
 		"id": 59,
@@ -516,7 +473,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940f9",
 		"title": "only my railgun",
 		"artist": "fripSide [cover]",
 		"id": 60,
@@ -528,7 +484,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e15",
 		"title": "GOLDEN RULE",
 		"artist": "Morrigan",
 		"id": 61,
@@ -540,7 +495,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e12",
 		"title": "名も無い鳥",
 		"artist": "六弦アリス",
 		"id": 62,
@@ -552,7 +506,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e11",
 		"title": "Gate of Fate",
 		"artist": "Godspeed",
 		"id": 63,
@@ -564,7 +517,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e13",
 		"title": "今ぞ♡崇め奉れ☆オマエらよ！！～姫の秘メタル渇望～",
 		"artist": "あべにゅうぷろじぇくと feat.佐倉 紗織　produced by ave;new",
 		"id": 64,
@@ -576,7 +528,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e14",
 		"title": "Anemone",
 		"artist": "ESTi",
 		"id": 65,
@@ -588,7 +539,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e16",
 		"title": "明るい未来",
 		"artist": "豚乙女",
 		"id": 66,
@@ -600,7 +550,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e17",
 		"title": "昵懇レファレンス",
 		"artist": "halyosy",
 		"id": 67,
@@ -612,7 +561,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e18",
 		"title": "乗り切れ受験ウォーズ",
 		"artist": "solfa feat.茶太",
 		"id": 68,
@@ -624,7 +572,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e19",
 		"title": "The wheel to the right",
 		"artist": "Sampling Masters MEGA",
 		"id": 69,
@@ -636,7 +583,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e1a",
 		"title": "STAR",
 		"artist": "SEXY-SYNTHESIZER",
 		"id": 70,
@@ -648,7 +594,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e1d",
 		"title": "Infantoon Fantasy",
 		"artist": "t+pazolite",
 		"id": 71,
@@ -660,7 +605,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e29",
 		"title": "Genesis",
 		"artist": "Morrigan feat.Lily",
 		"id": 72,
@@ -672,7 +616,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e2a",
 		"title": "MUSIC PЯAYER",
 		"artist": "A-One",
 		"id": 73,
@@ -684,7 +627,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e1c",
 		"title": "リリーシア",
 		"artist": "TaNaBaTa",
 		"id": 74,
@@ -696,7 +638,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e1e",
 		"title": "Counselor",
 		"artist": "DECO*27 feat.echo",
 		"id": 75,
@@ -708,7 +649,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e1f",
 		"title": "luna blu",
 		"artist": "WASi303",
 		"id": 76,
@@ -720,7 +660,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e20",
 		"title": "ケモノガル",
 		"artist": "ゼッケン屋",
 		"id": 77,
@@ -732,7 +671,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e22",
 		"title": "crossing field",
 		"artist": "LiSA",
 		"id": 78,
@@ -744,7 +682,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e21",
 		"title": "ＧＯ！ＧＯ！ラブリズム♥",
 		"artist": "片霧烈火オンザみんマンション",
 		"id": 79,
@@ -756,7 +693,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e24",
 		"title": "Grab your sword",
 		"artist": "古代 祐三",
 		"id": 80,
@@ -768,7 +704,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e23",
 		"title": "Sinfonie Nr. 9 d-moll op. 125 (Master)",
 		"artist": "SEGA",
 		"id": 81,
@@ -780,7 +715,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e26",
 		"title": "Memories of Sun and Moon",
 		"artist": "Aiko Oi",
 		"id": 82,
@@ -792,7 +726,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e25",
 		"title": "ロストワンの号哭",
 		"artist": "Neru",
 		"id": 83,
@@ -804,7 +737,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940fc",
 		"title": "V.I.P",
 		"artist": "シド [cover]",
 		"id": 84,
@@ -816,7 +748,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940fd",
 		"title": "睡蓮花",
 		"artist": "湘南乃風 [cover]",
 		"id": 85,
@@ -828,7 +759,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940fe",
 		"title": "キラーボール",
 		"artist": "ゲスの極み乙女。",
 		"id": 86,
@@ -840,7 +770,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ff",
 		"title": "Butter-Fly",
 		"artist": "和田 光司 [cover]",
 		"id": 87,
@@ -852,7 +781,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e27",
 		"title": "The Concept of Love",
 		"artist": "長沼 英樹",
 		"id": 88,
@@ -864,7 +792,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e28",
 		"title": "JET",
 		"artist": "from PACA PACA PASSION Special",
 		"id": 89,
@@ -876,7 +803,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e2f",
 		"title": "L'épisode",
 		"artist": "Osamu Kubota",
 		"id": 90,
@@ -888,7 +814,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e35",
 		"title": "Yet Another ”drizzly rain”",
 		"artist": "myu314 feat.あまね（COOL&CREATE）",
 		"id": 91,
@@ -900,7 +825,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e2c",
 		"title": "最終鬼畜妹・一部声",
 		"artist": "ビートまりお",
 		"id": 92,
@@ -912,7 +836,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e2b",
 		"title": "蒼空に舞え、墨染の桜",
 		"artist": "Silver Forest",
 		"id": 93,
@@ -924,7 +847,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e2d",
 		"title": "セツナトリップ",
 		"artist": "Last Note.",
 		"id": 94,
@@ -936,7 +858,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e2e",
 		"title": "砂漠のハンティングガール♡",
 		"artist": "海田 明里",
 		"id": 95,
@@ -948,7 +869,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e30",
 		"title": "チルノのパーフェクトさんすう教室",
 		"artist": "ARM＋夕野ヨシミ (IOSYS) feat.miko",
 		"id": 96,
@@ -960,7 +880,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e31",
 		"title": "Help me, ERINNNNNN!!",
 		"artist": "ビートまりお",
 		"id": 97,
@@ -972,7 +891,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e32",
 		"title": "魔理沙は大変なものを盗んでいきました",
 		"artist": "ARM＋夕野ヨシミ (IOSYS) feat.藤咲かりん",
 		"id": 98,
@@ -984,7 +902,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e34",
 		"title": "言ノ葉カルマ",
 		"artist": "そらる・ろん×れるりり",
 		"id": 99,
@@ -996,7 +913,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e33",
 		"title": "After the rain",
 		"artist": "霜月はるか",
 		"id": 100,
@@ -1008,7 +924,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e4e",
 		"title": "Tango Rouge",
 		"artist": "Yoko Shimomura",
 		"id": 101,
@@ -1020,7 +935,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e36",
 		"title": "Tuning Rangers",
 		"artist": "COOL&CREATE",
 		"id": 102,
@@ -1032,7 +946,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e3d",
 		"title": "エンドマークに希望と涙を添えて",
 		"artist": "cosMo＠暴走P",
 		"id": 103,
@@ -1044,7 +957,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e37",
 		"title": "とーきょー全域★アキハバラ？",
 		"artist": "MOSAIC.WAV",
 		"id": 104,
@@ -1056,7 +968,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e38",
 		"title": "overcome",
 		"artist": "景山 将太",
 		"id": 105,
@@ -1068,7 +979,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e39",
 		"title": "宛城、炎上！！",
 		"artist": "Cranky feat.おもしろ三国志",
 		"id": 106,
@@ -1080,7 +990,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e3a",
 		"title": "We Gonna Journey",
 		"artist": "Queen P.A.L.",
 		"id": 107,
@@ -1092,7 +1001,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e3b",
 		"title": "The ether",
 		"artist": "浜渦 正志",
 		"id": 108,
@@ -1104,7 +1012,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094106",
 		"title": "Emotions",
 		"artist": "MAN WITH A MISSION",
 		"id": 109,
@@ -1116,7 +1023,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094100",
 		"title": "Magia",
 		"artist": "Kalafina 「魔法少女まどか☆マギカ」",
 		"id": 110,
@@ -1128,7 +1034,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094102",
 		"title": "staple stable",
 		"artist": "戦場ヶ原 ひたぎ 「化物語」",
 		"id": 111,
@@ -1140,7 +1045,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094101",
 		"title": "マジLOVE1000%",
 		"artist": "ST☆RISH",
 		"id": 112,
@@ -1152,7 +1056,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e3c",
 		"title": "ストリーミングハート",
 		"artist": "DECO*27",
 		"id": 113,
@@ -1164,7 +1067,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e49",
 		"title": "Sweet Devil",
 		"artist": "八王子P",
 		"id": 114,
@@ -1176,7 +1078,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e3e",
 		"title": "Dreaming",
 		"artist": "Alstroemeria Records",
 		"id": 115,
@@ -1188,7 +1089,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e3f",
 		"title": "君の知らない物語",
 		"artist": "supercell 「化物語」",
 		"id": 116,
@@ -1200,7 +1100,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e41",
 		"title": "M.S.S.Planet",
 		"artist": "M.S.S Project",
 		"id": 117,
@@ -1212,7 +1111,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e40",
 		"title": "腐れ外道とチョコレゐト",
 		"artist": "ピノキオピー",
 		"id": 118,
@@ -1224,7 +1122,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e42",
 		"title": "アウターサイエンス",
 		"artist": "じん",
 		"id": 119,
@@ -1236,7 +1133,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e43",
 		"title": "四次元跳躍機関",
 		"artist": "koutaq",
 		"id": 120,
@@ -1248,7 +1144,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e44",
 		"title": "東方妖々夢 ～the maximum moving about～",
 		"artist": "石鹸屋",
 		"id": 121,
@@ -1260,7 +1155,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e45",
 		"title": "少女幻葬戦慄曲　～　Necro Fantasia",
 		"artist": "どぶウサギ",
 		"id": 122,
@@ -1272,7 +1166,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e47",
 		"title": "橙の幻想郷音頭",
 		"artist": "発熱巫女～ず",
 		"id": 123,
@@ -1284,7 +1177,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e46",
 		"title": "夏影",
 		"artist": "VisualArt's/Key「AIR」",
 		"id": 124,
@@ -1296,7 +1188,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094105",
 		"title": "Little Busters! ～TV animation ver.～",
 		"artist": "Rita",
 		"id": 125,
@@ -1308,7 +1199,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094103",
 		"title": "Heart To Heart",
 		"artist": "上原 れな",
 		"id": 126,
@@ -1320,7 +1210,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e48",
 		"title": "The Formula",
 		"artist": "Junk",
 		"id": 128,
@@ -1332,7 +1221,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094104",
 		"title": "Hacking to the Gate",
 		"artist": "いとう かなこ 「STEINS;GATE」",
 		"id": 129,
@@ -1344,7 +1232,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809410e",
 		"title": "スカイクラッドの観測者",
 		"artist": "いとう かなこ 「STEINS;GATE」",
 		"id": 130,
@@ -1356,7 +1243,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e4a",
 		"title": "チルドレンレコード",
 		"artist": "じん 「カゲロウプロジェクト」",
 		"id": 131,
@@ -1368,7 +1254,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e4b",
 		"title": "イカサマライフゲイム",
 		"artist": "kemu",
 		"id": 132,
@@ -1380,7 +1265,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e4d",
 		"title": "シリョクケンサ",
 		"artist": "40mP",
 		"id": 133,
@@ -1392,7 +1276,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e4c",
 		"title": "HAELEQUIN (Original Remaster)",
 		"artist": "orangentle",
 		"id": 134,
@@ -1404,7 +1287,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e4f",
 		"title": "Vallista",
 		"artist": "削除",
 		"id": 135,
@@ -1416,7 +1298,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e5e",
 		"title": "Äventyr",
 		"artist": "Grand Thaw / Rigel Theatre",
 		"id": 136,
@@ -1428,7 +1309,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e5f",
 		"title": "Angel dust",
 		"artist": "LV.4",
 		"id": 137,
@@ -1440,7 +1320,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e52",
 		"title": "conflict",
 		"artist": "siromaru + cranky",
 		"id": 138,
@@ -1452,7 +1331,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e50",
 		"title": "Guilty",
 		"artist": "MintJam",
 		"id": 140,
@@ -1464,7 +1342,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e51",
 		"title": "閃鋼のブリューナク",
 		"artist": "sasakure.UK",
 		"id": 141,
@@ -1476,7 +1353,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e53",
 		"title": "Altale",
 		"artist": "削除",
 		"id": 142,
@@ -1488,7 +1364,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e54",
 		"title": "ODDS&ENDS",
 		"artist": "ryo(supercell)",
 		"id": 143,
@@ -1500,7 +1375,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e55",
 		"title": "Aragami",
 		"artist": "xi",
 		"id": 144,
@@ -1512,7 +1386,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e56",
 		"title": "Change Our MIRAI！",
 		"artist": "イロドリミドリ",
 		"id": 145,
@@ -1524,7 +1397,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e57",
 		"title": "夕暮れワンルーム",
 		"artist": "40mP feat.シャノ",
 		"id": 146,
@@ -1536,7 +1408,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e58",
 		"title": "こころここから",
 		"artist": "ふわりP",
 		"id": 147,
@@ -1548,7 +1419,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e59",
 		"title": "Theme of SeelischTact",
 		"artist": "植松 伸夫",
 		"id": 148,
@@ -1560,7 +1430,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e5a",
 		"title": "緋色のDance",
 		"artist": "岸田教団＆THE明星ロケッツ",
 		"id": 149,
@@ -1572,7 +1441,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e5b",
 		"title": "brilliant better",
 		"artist": "御形 アリシアナ(CV:福原 綾香)",
 		"id": 150,
@@ -1584,7 +1452,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e5c",
 		"title": "Alma",
 		"artist": "光田 康典",
 		"id": 151,
@@ -1596,7 +1463,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e5d",
 		"title": "Gustav Battle",
 		"artist": "伊藤 賢治",
 		"id": 152,
@@ -1608,7 +1474,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e60",
 		"title": "SAVIOR OF SONG",
 		"artist": "ナノ feat.MY FIRST STORY 「蒼き鋼のアルペジオ ‐アルス・ノヴァ‐」",
 		"id": 154,
@@ -1620,7 +1485,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094109",
 		"title": "ブルー・フィールド",
 		"artist": "Trident 「蒼き鋼のアルペジオ ‐アルス・ノヴァ‐」",
 		"id": 155,
@@ -1632,7 +1496,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e61",
 		"title": "FREELY TOMORROW",
 		"artist": "Mitchie M",
 		"id": 156,
@@ -1644,7 +1507,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e62",
 		"title": "ギガンティックO.T.N",
 		"artist": "ギガ",
 		"id": 157,
@@ -1656,7 +1518,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e63",
 		"title": "フォルテシモBELL",
 		"artist": "天王洲 なずな(CV:山本 彩乃)",
 		"id": 158,
@@ -1668,7 +1529,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e64",
 		"title": "ジングルベル",
 		"artist": "SEGA Sound Unit[H.]",
 		"id": 159,
@@ -1680,7 +1540,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e73",
 		"title": "言ノ葉遊戯",
 		"artist": "S!N・高橋菜々×ひとしずく・やま△",
 		"id": 160,
@@ -1692,7 +1551,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e65",
 		"title": "私の中の幻想的世界観及びその顕現を想起させたある現実での出来事に関する一考察",
 		"artist": "小仏 凪(CV:佐倉 薫)",
 		"id": 161,
@@ -1704,7 +1562,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e6c",
 		"title": "幾四音-Ixion-",
 		"artist": "M.S.S Project",
 		"id": 163,
@@ -1716,7 +1573,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e66",
 		"title": "ぼくらの16bit戦争",
 		"artist": "sasakure.UK",
 		"id": 165,
@@ -1728,7 +1584,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e67",
 		"title": "裏表ラバーズ",
 		"artist": "wowaka",
 		"id": 166,
@@ -1740,7 +1595,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e69",
 		"title": "脳漿炸裂ガール",
 		"artist": "れるりり",
 		"id": 167,
@@ -1752,7 +1606,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e68",
 		"title": "ネトゲ廃人シュプレヒコール",
 		"artist": "さつき が てんこもり",
 		"id": 168,
@@ -1764,7 +1617,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e6a",
 		"title": "elegante",
 		"artist": "Junk",
 		"id": 169,
@@ -1776,7 +1628,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e6b",
 		"title": "DETARAME ROCK&ROLL THEORY",
 		"artist": "箱部 なる(CV:M・A・O)",
 		"id": 170,
@@ -1788,7 +1639,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e7e",
 		"title": "XL TECHNO",
 		"artist": "from PACA PACA PASSION",
 		"id": 171,
@@ -1800,7 +1650,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e6d",
 		"title": "Halcyon",
 		"artist": "xi",
 		"id": 173,
@@ -1812,7 +1661,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e6e",
 		"title": "Dance!",
 		"artist": "小塚良太「ペルソナ4 ダンシング・オールナイト」",
 		"id": 176,
@@ -1824,7 +1672,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e6f",
 		"title": "Jimang Shot",
 		"artist": "じまんぐ",
 		"id": 177,
@@ -1836,7 +1683,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e70",
 		"title": "stella=steLLa",
 		"artist": "marasy",
 		"id": 178,
@@ -1848,7 +1694,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e71",
 		"title": "すろぉもぉしょん",
 		"artist": "ピノキオピー",
 		"id": 179,
@@ -1860,7 +1705,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e72",
 		"title": "怒槌",
 		"artist": "光吉猛修",
 		"id": 180,
@@ -1872,7 +1716,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e78",
 		"title": "ユクエシレズ",
 		"artist": "こじろー",
 		"id": 181,
@@ -1884,7 +1727,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094107",
 		"title": "WHITE ALBUM Live at Campus Fes",
 		"artist": "小木曽 雪菜(CV:米澤 円) 「WHITE ALBUM2」",
 		"id": 182,
@@ -1896,7 +1738,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094108",
 		"title": "Last regrets",
 		"artist": "彩菜",
 		"id": 184,
@@ -1908,7 +1749,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809410c",
 		"title": "楽園の翼",
 		"artist": "黒崎 真音 「グリザイアの果実」",
 		"id": 185,
@@ -1920,7 +1760,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e74",
 		"title": "ってゐ！　～えいえんてゐVer～",
 		"artist": "石鹸屋",
 		"id": 186,
@@ -1932,7 +1771,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e76",
 		"title": "患部で止まってすぐ溶ける～狂気の優曇華院",
 		"artist": "ARM＋夕野ヨシミ (IOSYS) feat.miko",
 		"id": 187,
@@ -1944,7 +1782,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e75",
 		"title": "ひれ伏せ愚民どもっ！",
 		"artist": "ARM＋夕野ヨシミ (IOSYS) feat.miko",
 		"id": 189,
@@ -1956,7 +1793,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e77",
 		"title": "エテルニタス・ルドロジー",
 		"artist": "IRON ATTACK!",
 		"id": 190,
@@ -1968,7 +1804,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e79",
 		"title": "幽闇に目醒めしは",
 		"artist": "セブンスヘブンMAXION",
 		"id": 191,
@@ -1980,7 +1815,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e7a",
 		"title": "Starlight Vision",
 		"artist": "矢鴇つかさ feat. 三澤秋",
 		"id": 192,
@@ -1992,7 +1826,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e7b",
 		"title": "Club Ibuki in Break All",
 		"artist": "void＋夕野ヨシミ (IOSYS) feat.藤原鞠菜",
 		"id": 193,
@@ -2004,7 +1837,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e7c",
 		"title": "Phantasm Brigade",
 		"artist": "Silver Forest",
 		"id": 194,
@@ -2016,7 +1848,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e7d",
 		"title": "永遠のメロディ",
 		"artist": "あ～るの～と（いえろ～ぜぶら）",
 		"id": 195,
@@ -2028,7 +1859,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e7f",
 		"title": "FREEDOM DiVE",
 		"artist": "xi",
 		"id": 196,
@@ -2040,7 +1870,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e87",
 		"title": "Jack-the-Ripper◆",
 		"artist": "sasakure.UK",
 		"id": 197,
@@ -2052,7 +1881,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e8d",
 		"title": "AVALON",
 		"artist": "sasakure.UK",
 		"id": 198,
@@ -2064,7 +1892,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e81",
 		"title": "ハート・ビート",
 		"artist": "明坂 芹菜(CV:新田 恵海)",
 		"id": 199,
@@ -2076,7 +1903,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e80",
 		"title": "無敵We are one!!",
 		"artist": "イロドリミドリ",
 		"id": 200,
@@ -2088,7 +1914,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e82",
 		"title": "Contrapasso -inferno-",
 		"artist": "t+pazolite",
 		"id": 201,
@@ -2100,7 +1925,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e83",
 		"title": "GEMINI -C-",
 		"artist": "Tatsh",
 		"id": 202,
@@ -2112,7 +1936,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e84",
 		"title": "FLOWER",
 		"artist": "DJ YOSHITAKA",
 		"id": 203,
@@ -2124,7 +1947,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e86",
 		"title": "ちくわパフェだよ☆CKP",
 		"artist": "日向美ビタースイーツ♪",
 		"id": 204,
@@ -2136,7 +1958,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e85",
 		"title": "SNIPE WHOLE",
 		"artist": "Masayoshi Minoshima feat.Mei Ayakura",
 		"id": 205,
@@ -2148,7 +1969,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e89",
 		"title": "Signs Of Love (“Never More” ver.)",
 		"artist": "目黒将司「ペルソナ4 ダンシング・オールナイト」",
 		"id": 206,
@@ -2160,7 +1980,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e88",
 		"title": "Your Affection (Daisuke Asakura Remix)",
 		"artist": "目黒将司 Remixed by 浅倉大介「ペルソナ4 ダンシング・オールナイト」",
 		"id": 207,
@@ -2172,7 +1991,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e8a",
 		"title": "SAMBISTA",
 		"artist": "DOT96",
 		"id": 208,
@@ -2184,7 +2002,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809410a",
 		"title": "君色シグナル",
 		"artist": "春奈 るな 「冴えない彼女の育てかた」",
 		"id": 209,
@@ -2196,7 +2013,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e8b",
 		"title": "アスノヨゾラ哨戒班",
 		"artist": "Orangestar",
 		"id": 210,
@@ -2208,7 +2024,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e8c",
 		"title": "天樂",
 		"artist": "ゆうゆ",
 		"id": 211,
@@ -2220,7 +2035,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e94",
 		"title": "いろは唄",
 		"artist": "銀サク",
 		"id": 212,
@@ -2232,7 +2046,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e97",
 		"title": "星屑ユートピア",
 		"artist": "otetsu",
 		"id": 213,
@@ -2244,7 +2057,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809410b",
 		"title": "青春はNon-Stop！",
 		"artist": "プラズマジカ 「SHOW BY ROCK!!」",
 		"id": 214,
@@ -2256,7 +2068,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809410d",
 		"title": "Falling Roses",
 		"artist": "シンガンクリムゾンズ 「SHOW BY ROCK!!」",
 		"id": 215,
@@ -2268,7 +2079,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e8e",
 		"title": "放課後革命",
 		"artist": "放課後楽園部 「ミカグラ学園組曲」",
 		"id": 216,
@@ -2280,7 +2090,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e8f",
 		"title": "楽園ファンファーレ",
 		"artist": "放課後楽園部 「ミカグラ学園組曲」",
 		"id": 217,
@@ -2292,7 +2101,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e91",
 		"title": "サウンドプレイヤー",
 		"artist": "tilt-six feat.バル",
 		"id": 218,
@@ -2304,7 +2112,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e90",
 		"title": "玩具狂奏曲 -終焉-",
 		"artist": "きくお",
 		"id": 219,
@@ -2316,7 +2123,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e92",
 		"title": "如月アテンション",
 		"artist": "じん 「カゲロウプロジェクト」",
 		"id": 220,
@@ -2328,7 +2134,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e93",
 		"title": "Mr. Wonderland",
 		"artist": "sasakure.UK",
 		"id": 222,
@@ -2340,7 +2145,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e9d",
 		"title": "カミサマネジマキ",
 		"artist": "kemu",
 		"id": 223,
@@ -2352,7 +2156,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e96",
 		"title": "恋愛裁判",
 		"artist": "40mP",
 		"id": 224,
@@ -2364,7 +2167,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e95",
 		"title": "ウミユリ海底譚",
 		"artist": "n-buna",
 		"id": 225,
@@ -2376,7 +2178,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e98",
 		"title": "Garakuta Doll Play",
 		"artist": "t+pazolite",
 		"id": 226,
@@ -2388,7 +2189,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e99",
 		"title": "洗脳",
 		"artist": "ゆりん・柿チョコ×Neru",
 		"id": 227,
@@ -2400,7 +2200,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e9b",
 		"title": "このふざけた素晴らしき世界は、僕の為にある",
 		"artist": "n.k",
 		"id": 228,
@@ -2412,7 +2211,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e9a",
 		"title": "紅華刑",
 		"artist": "-45",
 		"id": 229,
@@ -2424,7 +2222,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e9c",
 		"title": "Hyperion",
 		"artist": "Maozon",
 		"id": 230,
@@ -2436,7 +2233,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094116",
 		"title": "カラフル。",
 		"artist": "沢井 美空 「冴えない彼女の育てかた」",
 		"id": 231,
@@ -2448,7 +2244,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e9e",
 		"title": "Elemental Creation",
 		"artist": "dj TAKA meets DJ YOSHITAKA",
 		"id": 232,
@@ -2460,7 +2255,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ea3",
 		"title": "アルストロメリア",
 		"artist": "TAG",
 		"id": 233,
@@ -2472,7 +2266,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093e9f",
 		"title": "Devastating Blaster",
 		"artist": "INNOCENT NOIZE",
 		"id": 234,
@@ -2484,7 +2277,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ea2",
 		"title": "ファッとして桃源郷",
 		"artist": "新庄 かなえ(CV:三森 すずこ) 「てーきゅう」",
 		"id": 235,
@@ -2496,7 +2288,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ea0",
 		"title": "フレンズ",
 		"artist": "レベッカ [covered by 光吉猛修]",
 		"id": 238,
@@ -2508,7 +2299,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ea1",
 		"title": "夜咄ディセイブ",
 		"artist": "じん 「カゲロウプロジェクト」",
 		"id": 240,
@@ -2520,7 +2310,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ea4",
 		"title": "シュガーソングとビターステップ",
 		"artist": "UNISON SQUARE GARDEN",
 		"id": 243,
@@ -2532,7 +2321,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ea5",
 		"title": "回レ！雪月花",
 		"artist": "歌組雪月花 夜々(原田 ひとみ)/いろり(茅野 愛衣)/小紫(小倉 唯) 「機巧少女は傷つかない」",
 		"id": 244,
@@ -2544,7 +2332,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ea6",
 		"title": "Help me, あーりん！",
 		"artist": "イロドリミドリ",
 		"id": 245,
@@ -2556,7 +2343,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ea7",
 		"title": "なるとなぎのパーフェクトロックンロール教室",
 		"artist": "イロドリミドリ",
 		"id": 246,
@@ -2568,7 +2354,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ea8",
 		"title": "絶世スターゲイト",
 		"artist": "蒼井 翔太 「ファンタシースターオンライン2 ジ アニメーション」",
 		"id": 247,
@@ -2580,7 +2365,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eab",
 		"title": "Schrecklicher Aufstand",
 		"artist": "Katzeohr & Spiegel",
 		"id": 248,
@@ -2592,7 +2376,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ea9",
 		"title": "ドライヴ・オン・ザ・レインボー",
 		"artist": "並木晃一",
 		"id": 249,
@@ -2604,7 +2387,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eaa",
 		"title": "Philosopher",
 		"artist": "少女病",
 		"id": 250,
@@ -2616,7 +2398,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eaf",
 		"title": "Crazy ∞ nighT",
 		"artist": "ひとしずく×やま△",
 		"id": 251,
@@ -2628,7 +2409,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eac",
 		"title": "愛迷エレジー",
 		"artist": "DECO*27",
 		"id": 252,
@@ -2640,7 +2420,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eae",
 		"title": "Warcry",
 		"artist": "YATAGARASU",
 		"id": 253,
@@ -2652,7 +2431,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ead",
 		"title": "その群青が愛しかったようだった",
 		"artist": "n-buna feat.ヤギヌマカナ",
 		"id": 254,
@@ -2664,7 +2442,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094112",
 		"title": "激情！ミルキィ大作戦",
 		"artist": "ミルキィホームズ 「劇場版 探偵オペラ ミルキィホームズ ～逆襲のミルキィホームズ～」",
 		"id": 255,
@@ -2676,7 +2453,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eb9",
 		"title": "札付きのワル　～マイケルのうた～",
 		"artist": "ひーちゃんとあーちゃんとたーちゃん",
 		"id": 256,
@@ -2688,7 +2464,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eb5",
 		"title": "BOKUTO",
 		"artist": "じーざすP feat.kradness",
 		"id": 257,
@@ -2700,7 +2475,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eb8",
 		"title": "TiamaT:F minor",
 		"artist": "Team Grimoire",
 		"id": 258,
@@ -2712,7 +2486,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eb0",
 		"title": "Oshama Scramble! (Cranky Remix)",
 		"artist": "Cranky",
 		"id": 259,
@@ -2724,7 +2497,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eb1",
 		"title": "D.E.A.D.L.Y.",
 		"artist": "さつき が てんこもり feat.YURiCa/花たん",
 		"id": 260,
@@ -2736,7 +2508,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eb2",
 		"title": "ロボットプラネットユートピア",
 		"artist": "lumo",
 		"id": 261,
@@ -2748,7 +2519,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eb3",
 		"title": "Tidal Wave",
 		"artist": "D-Cee",
 		"id": 262,
@@ -2760,7 +2530,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eb4",
 		"title": "Hand in Hand",
 		"artist": "livetune",
 		"id": 263,
@@ -2772,7 +2541,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eb6",
 		"title": "My Dearest Song",
 		"artist": "月鈴 白奈(CV:高野 麻里佳)",
 		"id": 264,
@@ -2784,7 +2552,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eba",
 		"title": "猫祭り",
 		"artist": "箱部 なる(CV:M・A・O)",
 		"id": 265,
@@ -2796,7 +2563,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eb7",
 		"title": "ゲシュタルト！テスト期間！！",
 		"artist": "solfa feat.茶太",
 		"id": 266,
@@ -2808,7 +2574,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ebb",
 		"title": "心象蜃気楼",
 		"artist": "Orangestar",
 		"id": 267,
@@ -2820,7 +2585,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ebf",
 		"title": "Bang Babang Bang!!!",
 		"artist": "御形 アリシアナ(CV:福原 綾香)",
 		"id": 268,
@@ -2832,7 +2596,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ec3",
 		"title": "僕らの翼",
 		"artist": "隣人部「僕は友達が少ないNEXT」",
 		"id": 269,
@@ -2844,7 +2607,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ebc",
 		"title": "エンヴィキャットウォーク",
 		"artist": "トーマ",
 		"id": 270,
@@ -2856,7 +2618,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ebd",
 		"title": "鬼KYOKAN",
 		"artist": "じーざすP（ワンダフル☆オポチュニティ！）",
 		"id": 271,
@@ -2868,7 +2629,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ebe",
 		"title": "有頂天ビバーチェ",
 		"artist": "Last Note.",
 		"id": 272,
@@ -2880,7 +2640,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ec0",
 		"title": "ビバハピ",
 		"artist": "Mitchie M",
 		"id": 273,
@@ -2892,7 +2651,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ec1",
 		"title": "願い星",
 		"artist": "霜月はるか",
 		"id": 274,
@@ -2904,7 +2662,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ec2",
 		"title": "愛言葉",
 		"artist": "DECO*27",
 		"id": 275,
@@ -2916,7 +2673,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ecb",
 		"title": "後夜祭",
 		"artist": "田口囁一／感傷ベクトル",
 		"id": 276,
@@ -2928,7 +2684,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ec4",
 		"title": "TRUST",
 		"artist": "小仏 凪(CV:佐倉 薫)",
 		"id": 277,
@@ -2940,7 +2695,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ec5",
 		"title": "からくりピエロ",
 		"artist": "40mP",
 		"id": 278,
@@ -2952,7 +2706,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ec6",
 		"title": "深海少女",
 		"artist": "ゆうゆ",
 		"id": 279,
@@ -2964,7 +2717,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ec7",
 		"title": "リモコン",
 		"artist": "じーざすP（ワンダフル☆オポチュニティ！）",
 		"id": 280,
@@ -2976,7 +2728,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ec8",
 		"title": "ラクガキスト",
 		"artist": "cosMo＠暴走P",
 		"id": 281,
@@ -2988,7 +2739,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ec9",
 		"title": "アカツキアライヴァル",
 		"artist": "Last Note.",
 		"id": 282,
@@ -3000,7 +2750,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eca",
 		"title": "神曲",
 		"artist": "おにゅうP",
 		"id": 283,
@@ -3012,7 +2761,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ece",
 		"title": "幸せになれる隠しコマンドがあるらしい",
 		"artist": "うたたP",
 		"id": 284,
@@ -3024,7 +2772,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809404c",
 		"title": "メルト",
 		"artist": "supercell",
 		"id": 285,
@@ -3036,7 +2783,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ecc",
 		"title": "Tell Your World",
 		"artist": "livetune",
 		"id": 286,
@@ -3048,7 +2794,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ecd",
 		"title": "ロミオとシンデレラ",
 		"artist": "doriko",
 		"id": 287,
@@ -3060,7 +2805,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ecf",
 		"title": "First Twinkle",
 		"artist": "折戸伸治 feat.北沢綾香",
 		"id": 288,
@@ -3072,7 +2816,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ed0",
 		"title": "ウソラセラ",
 		"artist": "ピノキオピー",
 		"id": 289,
@@ -3084,7 +2827,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ed2",
 		"title": "檄!帝国華撃団",
 		"artist": "真宮寺さくら（横山智佐）＆帝国歌劇団「サクラ大戦」",
 		"id": 290,
@@ -3096,7 +2838,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ed1",
 		"title": "Kronos",
 		"artist": "削除",
 		"id": 291,
@@ -3108,7 +2849,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ed4",
 		"title": "月に叢雲華に風",
 		"artist": "幽閉サテライト",
 		"id": 292,
@@ -3120,7 +2860,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ed3",
 		"title": "インビジブル",
 		"artist": "kemu",
 		"id": 293,
@@ -3132,7 +2871,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ed5",
 		"title": "人生リセットボタン",
 		"artist": "kemu",
 		"id": 294,
@@ -3144,7 +2882,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ed6",
 		"title": "響",
 		"artist": "志方あきこ",
 		"id": 295,
@@ -3156,7 +2893,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ed7",
 		"title": "かくしん的☆めたまるふぉ～ぜっ!",
 		"artist": "土間うまる [CV.田中あいみ]「干物妹！うまるちゃん」",
 		"id": 296,
@@ -3168,7 +2904,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ed8",
 		"title": "風仁雷仁",
 		"artist": "カラフル・サウンズ・ポート",
 		"id": 297,
@@ -3180,7 +2915,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ed9",
 		"title": "PRIVATE SERVICE",
 		"artist": "from PACA PACA PASSION 2",
 		"id": 298,
@@ -3192,7 +2926,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eda",
 		"title": "secret base ～君がくれたもの～ (10 years after Ver.)",
 		"artist": "本間芽衣子(茅野愛衣)、安城鳴子(戸松遥)、鶴見知利子(早見沙織)「あの日見た花の名前を僕達はまだ知らない。」",
 		"id": 299,
@@ -3204,7 +2937,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093edf",
 		"title": "No Routine",
 		"artist": "A-One",
 		"id": 300,
@@ -3216,7 +2948,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093edb",
 		"title": "白い雪のプリンセスは",
 		"artist": "のぼる↑",
 		"id": 301,
@@ -3228,7 +2959,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093edc",
 		"title": "Strahv",
 		"artist": "Feryquitous feat.Sennzai",
 		"id": 302,
@@ -3240,7 +2970,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093edd",
 		"title": "Dreams Dreams:Kids Ver.",
 		"artist": "Tomoko Sasaki「NiGHTS～星降る夜の物語～」",
 		"id": 303,
@@ -3252,7 +2981,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ede",
 		"title": "In The Blue Sky '01",
 		"artist": "電脳戦機バーチャロンフォース",
 		"id": 304,
@@ -3264,7 +2992,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ee0",
 		"title": "幻想のサテライト",
 		"artist": "豚乙女",
 		"id": 305,
@@ -3276,7 +3003,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ee1",
 		"title": "凛として咲く花の如く",
 		"artist": "紅色リトマス",
 		"id": 306,
@@ -3288,7 +3014,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ee5",
 		"title": "Paqqin",
 		"artist": "owl＊tree",
 		"id": 307,
@@ -3300,7 +3025,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ee7",
 		"title": "fake!fake!",
 		"artist": "カラスは真っ白",
 		"id": 308,
@@ -3312,7 +3036,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ee6",
 		"title": "Rising Hope",
 		"artist": "LiSA",
 		"id": 309,
@@ -3324,7 +3047,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ee2",
 		"title": "覚醒楽奏メタフィクション",
 		"artist": "マチゲリータ",
 		"id": 310,
@@ -3336,7 +3058,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ee3",
 		"title": "Be My Friend",
 		"artist": "隣人部「僕は友達が少ないNEXT」",
 		"id": 311,
@@ -3348,7 +3069,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ee4",
 		"title": "ぶいえす!!らいばる!!",
 		"artist": "羽瀬川小鳩（CV:花澤香菜）・高山マリア（CV:井口裕香）「僕は友達が少ないNEXT」",
 		"id": 312,
@@ -3360,7 +3080,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ee8",
 		"title": "ひだまりデイズ",
 		"artist": "妹S（シスターズ）（土間うまる [CV.田中あいみ]、海老名菜々 [CV.影山灯]、本場切絵 [CV.白石晴香]、橘・シルフィンフォード [CV.古川由利奈]）「干物妹！うまるちゃん」",
 		"id": 313,
@@ -3372,7 +3091,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ee9",
 		"title": "This game",
 		"artist": "鈴木このみ「ノーゲーム・ノーライフ」",
 		"id": 314,
@@ -3384,7 +3102,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eea",
 		"title": "オラシオン",
 		"artist": "白（CV:茅野愛衣）「ノーゲーム・ノーライフ」",
 		"id": 315,
@@ -3396,7 +3113,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eed",
 		"title": "みくみくにしてあげる♪【してやんよ】",
 		"artist": "ika",
 		"id": 316,
@@ -3408,7 +3124,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eeb",
 		"title": "Air",
 		"artist": "SHIKI",
 		"id": 317,
@@ -3420,7 +3135,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eec",
 		"title": "DataErr0r",
 		"artist": "Lunatic Sounds",
 		"id": 318,
@@ -3432,7 +3146,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ef0",
 		"title": "Say A Vengeance",
 		"artist": "ETIA. feat.Jenga",
 		"id": 319,
@@ -3444,7 +3157,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093efa",
 		"title": "010",
 		"artist": "eoll",
 		"id": 320,
@@ -3456,7 +3168,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eee",
 		"title": "ERIS -Legend of Gaidelia-",
 		"artist": "Grand Thaw / Rigel Theatre",
 		"id": 321,
@@ -3468,7 +3179,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eef",
 		"title": "Imperishable Night 2006 (2016 Refine)",
 		"artist": "ゆうゆ / 篠螺悠那",
 		"id": 322,
@@ -3480,7 +3190,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ef1",
 		"title": "Dreadnought",
 		"artist": "Mastermind(xi+nora2r)",
 		"id": 323,
@@ -3492,7 +3201,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ef2",
 		"title": "STAGER",
 		"artist": "Ras",
 		"id": 324,
@@ -3504,7 +3212,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ef5",
 		"title": "Her Majesty",
 		"artist": "naotyu-",
 		"id": 325,
@@ -3516,7 +3223,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ef3",
 		"title": "Sakura Fubuki",
 		"artist": "Street",
 		"id": 326,
@@ -3528,7 +3234,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ef7",
 		"title": "JULIAN",
 		"artist": "Queen P.A.L.",
 		"id": 327,
@@ -3540,7 +3245,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ef4",
 		"title": "★LittlE HearTs★",
 		"artist": "ねこみみ魔法使い",
 		"id": 328,
@@ -3552,7 +3256,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ef6",
 		"title": "STAIRWAY TO GENERATION",
 		"artist": "Yosh(Survive Said The Prophet)「ボーダーブレイク」",
 		"id": 329,
@@ -3564,7 +3267,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ef8",
 		"title": "ドキドキDREAM!!!",
 		"artist": "イロドリミドリ",
 		"id": 330,
@@ -3576,7 +3278,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ef9",
 		"title": "猛進ソリストライフ！",
 		"artist": "月鈴 那知(CV:今村 彩夏)",
 		"id": 331,
@@ -3588,7 +3289,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093efb",
 		"title": "空威張りビヘイビア",
 		"artist": "un:c・ろん×じーざすP",
 		"id": 332,
@@ -3600,7 +3300,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093efd",
 		"title": "FLOATED CALM",
 		"artist": "from PACA PACA PASSION",
 		"id": 334,
@@ -3612,7 +3311,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093efc",
 		"title": "Supersonic Generation",
 		"artist": "Massive New Krew",
 		"id": 335,
@@ -3624,7 +3322,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093efe",
 		"title": "シジョウノコエ VOCALO ver.",
 		"artist": "OSTER project",
 		"id": 336,
@@ -3636,7 +3333,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f07",
 		"title": "Tic Tac DREAMIN’",
 		"artist": "天王洲 なずな(CV:山本 彩乃)",
 		"id": 337,
@@ -3648,7 +3344,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f03",
 		"title": "SPICY SWINGY STYLE",
 		"artist": "明坂 芹菜(CV:新田 恵海)",
 		"id": 338,
@@ -3660,7 +3355,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f06",
 		"title": "RevolutionGame",
 		"artist": "れるりり feat.ろん",
 		"id": 339,
@@ -3672,7 +3366,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093eff",
 		"title": "Still",
 		"artist": "イロドリミドリ",
 		"id": 340,
@@ -3684,7 +3377,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f00",
 		"title": "おまかせ！！トラブルメイ娘☆とれびちゃん",
 		"artist": "かたほとり feat.桃箱",
 		"id": 341,
@@ -3696,7 +3388,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f01",
 		"title": "オススメ☆♂♀☆でぃすとぴあ",
 		"artist": "ULTRA-PRISM",
 		"id": 342,
@@ -3708,7 +3399,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f02",
 		"title": "Daydream café",
 		"artist": "Petit Rabbit's「ご注文はうさぎですか？？」",
 		"id": 343,
@@ -3720,7 +3410,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f04",
 		"title": "ノーポイッ!",
 		"artist": "Petit Rabbit's「ご注文はうさぎですか？？」",
 		"id": 344,
@@ -3732,7 +3421,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f05",
 		"title": "ムーンライト伝説",
 		"artist": "DALI [covered by 光吉猛修]",
 		"id": 345,
@@ -3744,7 +3432,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f0b",
 		"title": "Jumping!!",
 		"artist": "Rhodanthe*",
 		"id": 348,
@@ -3756,7 +3443,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f1f",
 		"title": "極上スマイル",
 		"artist": "Wake Up, Girls！",
 		"id": 349,
@@ -3768,7 +3454,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f0c",
 		"title": "FEEL×ALIVE",
 		"artist": "佐咲紗花",
 		"id": 350,
@@ -3780,7 +3465,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f08",
 		"title": "ぶぉん！ぶぉん！らいど・おん！",
 		"artist": "佐倉羽音(CV.上田麗奈)、鈴乃木凜(CV.東山奈央)、天野恩紗(CV.内山夕実)、三ノ輪聖(CV.山口立花子)",
 		"id": 351,
@@ -3792,7 +3476,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f09",
 		"title": "Star☆Glitter",
 		"artist": "セブンスシスターズ「Tokyo 7th シスターズ」",
 		"id": 352,
@@ -3804,7 +3487,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f0a",
 		"title": "H-A-J-I-M-A-R-I-U-T-A-!!",
 		"artist": "777☆SISTERS「Tokyo 7th シスターズ」",
 		"id": 353,
@@ -3816,7 +3498,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f0d",
 		"title": "ラブリー☆えんじぇる!!",
 		"artist": "あべにゅうぷろじぇくと feat.佐倉紗織&井上みゆ「パチスロ快盗天使ツインエンジェル」",
 		"id": 354,
@@ -3828,7 +3509,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f0f",
 		"title": "だんご大家族",
 		"artist": "茶太「CLANNAD -クラナド-」",
 		"id": 355,
@@ -3840,7 +3520,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f0e",
 		"title": "クローバー♣かくめーしょん",
 		"artist": "とりぷる♣ふぃーりんぐ(和久井 優／金澤まい／今村彩夏)「三者三葉」",
 		"id": 356,
@@ -3852,7 +3531,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f14",
 		"title": "ぐーちょきパレード",
 		"artist": "とりぷる♣ふぃーりんぐ(和久井 優／金澤まい／今村彩夏)「三者三葉」",
 		"id": 357,
@@ -3864,7 +3542,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f11",
 		"title": "My Soul,Your Beats!",
 		"artist": "Lia「Angel Beats!」",
 		"id": 358,
@@ -3876,7 +3553,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f10",
 		"title": "Thousand Enemies",
 		"artist": "Girls Dead Monster「Angel Beats!」",
 		"id": 359,
@@ -3888,7 +3564,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f13",
 		"title": "夢想歌",
 		"artist": "Suara「うたわれるもの」",
 		"id": 360,
@@ -3900,7 +3575,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f12",
 		"title": "Face of Fact",
 		"artist": "KOTOKO",
 		"id": 362,
@@ -3912,7 +3586,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f15",
 		"title": "true my heart -Lovable mix-",
 		"artist": "ave;new feat.佐倉紗織",
 		"id": 363,
@@ -3924,7 +3597,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f16",
 		"title": "桜ノ雨",
 		"artist": "halyosy",
 		"id": 365,
@@ -3936,7 +3608,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f17",
 		"title": "いーあるふぁんくらぶ",
 		"artist": "みきとP",
 		"id": 367,
@@ -3948,7 +3619,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f18",
 		"title": "おこちゃま戦争",
 		"artist": "ギガ/れをる",
 		"id": 368,
@@ -3960,7 +3630,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f19",
 		"title": "エイリアンエイリアン",
 		"artist": "ナユタン星人",
 		"id": 369,
@@ -3972,7 +3641,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f1a",
 		"title": "虎視眈々",
 		"artist": "梅とら",
 		"id": 370,
@@ -3984,7 +3652,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f1b",
 		"title": "アンハッピーリフレイン",
 		"artist": "wowaka",
 		"id": 371,
@@ -3996,7 +3663,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f1c",
 		"title": "すきなことだけでいいです",
 		"artist": "ピノキオピー",
 		"id": 372,
@@ -4008,7 +3674,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f1e",
 		"title": "デリヘル呼んだら君が来た",
 		"artist": "ナナホシ管弦楽団",
 		"id": 373,
@@ -4020,7 +3685,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f1d",
 		"title": "チュルリラ・チュルリラ・ダッダッダ！",
 		"artist": "和田たけあき(くらげP)",
 		"id": 374,
@@ -4032,7 +3696,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f31",
 		"title": "だんだん早くなる",
 		"artist": "40mP",
 		"id": 375,
@@ -4044,7 +3707,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f22",
 		"title": "ECHO",
 		"artist": "CIRCRUSH",
 		"id": 376,
@@ -4056,7 +3718,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f23",
 		"title": "泡沫、哀のまほろば",
 		"artist": "幽閉サテライト",
 		"id": 377,
@@ -4068,7 +3729,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f20",
 		"title": "愛き夜道 feat. ランコ、雨天決行",
 		"artist": "魂音泉",
 		"id": 379,
@@ -4080,7 +3740,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f21",
 		"title": "Starlight Dance Floor",
 		"artist": "発熱巫女～ず",
 		"id": 380,
@@ -4092,7 +3751,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f25",
 		"title": "Witches night",
 		"artist": "Liz Triangle",
 		"id": 381,
@@ -4104,7 +3762,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f24",
 		"title": "Help me, ERINNNNNN!! -Cranky remix-",
 		"artist": "ビートまりお × Cranky",
 		"id": 382,
@@ -4116,7 +3773,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f26",
 		"title": "仙酌絶唱のファンタジア",
 		"artist": "博麗神社例大祭コラボユニット",
 		"id": 383,
@@ -4128,7 +3784,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f27",
 		"title": "キュアリアス光吉古牌　－祭－",
 		"artist": "光吉猛修「東方幻想麻雀」",
 		"id": 384,
@@ -4140,7 +3795,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f2a",
 		"title": "Evans",
 		"artist": "DJ YOSHITAKA",
 		"id": 385,
@@ -4152,7 +3806,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f29",
 		"title": "神威",
 		"artist": "TJ.hangneil",
 		"id": 386,
@@ -4164,7 +3817,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f28",
 		"title": "GOODTEK",
 		"artist": "EBIMAYO",
 		"id": 388,
@@ -4176,7 +3828,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f2b",
 		"title": "Name of oath",
 		"artist": "void (Mournfinale) feat. コツキミヤ (Gt. えば)",
 		"id": 389,
@@ -4188,7 +3839,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f2c",
 		"title": "Bird Sprite",
 		"artist": "syatten",
 		"id": 390,
@@ -4200,7 +3850,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f2d",
 		"title": "オモイヨシノ",
 		"artist": "loos feat. 柊莉杏",
 		"id": 391,
@@ -4212,7 +3861,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f2e",
 		"title": "Dengeki Tube",
 		"artist": "BACO",
 		"id": 393,
@@ -4224,7 +3872,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f30",
 		"title": "若い力 -SEGA HARD GIRLS MIX-",
 		"artist": "セガ・ハード・ガールズ",
 		"id": 394,
@@ -4236,7 +3883,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f38",
 		"title": "レッツゴー!陰陽師",
 		"artist": "「新豪血寺一族 -煩悩解放-」",
 		"id": 395,
@@ -4248,7 +3894,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f2f",
 		"title": "あねぺったん",
 		"artist": "月鈴姉妹(イロドリミドリ)",
 		"id": 396,
@@ -4260,7 +3905,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f32",
 		"title": "Like the Wind [Reborn]",
 		"artist": "sampling masters MEGA「パワードリフト」",
 		"id": 397,
@@ -4272,7 +3916,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f33",
 		"title": "天国と地獄 -言ノ葉リンネ-",
 		"artist": "伊東歌詞太郎・ろん×れるりり",
 		"id": 398,
@@ -4284,7 +3927,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f34",
 		"title": "最愛テトラグラマトン",
 		"artist": "片霧烈火",
 		"id": 399,
@@ -4296,7 +3938,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f35",
 		"title": "悪戯",
 		"artist": "ろん×田中秀和(MONACA)",
 		"id": 402,
@@ -4308,7 +3949,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f37",
 		"title": "りばーぶ",
 		"artist": "高橋菜々×岡部啓一(MONACA)",
 		"id": 403,
@@ -4320,7 +3960,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f3e",
 		"title": "Barbed Eye",
 		"artist": "柿チョコ×みきとP",
 		"id": 404,
@@ -4332,7 +3971,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f36",
 		"title": "分からない",
 		"artist": "ろん×黒魔",
 		"id": 405,
@@ -4344,7 +3982,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f3a",
 		"title": "相思創愛",
 		"artist": "伊東歌詞太郎・ろん×まらしぃ",
 		"id": 406,
@@ -4356,7 +3993,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f39",
 		"title": "混沌を越えし我らが神聖なる調律主を讃えよ",
 		"artist": "穴山大輔",
 		"id": 407,
@@ -4368,7 +4004,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f3c",
 		"title": "Finite",
 		"artist": "Sta",
 		"id": 409,
@@ -4380,7 +4015,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f3b",
 		"title": "MY LIBERATION",
 		"artist": "ナノ「チェインクロニクル ～ヘクセイタスの閃～」",
 		"id": 410,
@@ -4392,7 +4026,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f3d",
 		"title": "地球最後の告白を",
 		"artist": "kemu",
 		"id": 411,
@@ -4404,7 +4037,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f40",
 		"title": "The wheel to the Night ～インド人が夢に!?～",
 		"artist": "Sampling Masters なる＆せりな(イロドリミドリ)",
 		"id": 413,
@@ -4416,7 +4048,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f45",
 		"title": "We Gonna Party -Feline Groove Mix-",
 		"artist": "Morrigan feat.Lily",
 		"id": 414,
@@ -4428,7 +4059,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f3f",
 		"title": "Through The Tower",
 		"artist": "SoundTeMP「ラグナロクオンライン」",
 		"id": 416,
@@ -4440,7 +4070,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f46",
 		"title": "Redo",
 		"artist": "鈴木このみ「Re:ゼロから始める異世界生活」",
 		"id": 417,
@@ -4452,7 +4081,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f41",
 		"title": "SAKURAスキップ",
 		"artist": "fourfolium「NEW GAME!」",
 		"id": 419,
@@ -4464,7 +4092,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f43",
 		"title": "Now Loading!!!!",
 		"artist": "fourfolium「NEW GAME!」",
 		"id": 420,
@@ -4476,7 +4103,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f42",
 		"title": "前前前世",
 		"artist": "RADWIMPS「君の名は。」",
 		"id": 421,
@@ -4488,7 +4114,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f44",
 		"title": "MEMORIA",
 		"artist": "藍井エイル",
 		"id": 422,
@@ -4500,7 +4125,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f65",
 		"title": "MIRU key way",
 		"artist": "JaccaPoP",
 		"id": 424,
@@ -4512,7 +4136,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f4a",
 		"title": "華鳥風月",
 		"artist": "幽閉サテライト",
 		"id": 426,
@@ -4524,7 +4147,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f55",
 		"title": "儚きもの人間",
 		"artist": "豚乙女",
 		"id": 427,
@@ -4536,7 +4158,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f47",
 		"title": "ＧＯ！ＧＯ！ラブリズム♥ ～あーりん書類審査通過記念Ver.～",
 		"artist": "御形アリシアナオンザイロドリマンション(イロドリミドリ)",
 		"id": 430,
@@ -4548,7 +4169,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f48",
 		"title": "Session High⤴",
 		"artist": "イロドリミドリ",
 		"id": 431,
@@ -4560,7 +4180,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f49",
 		"title": "光線チューニング",
 		"artist": "ナユタン星人",
 		"id": 432,
@@ -4572,7 +4191,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f4b",
 		"title": "立川浄穢捕物帳",
 		"artist": "青島探偵事務所器楽捜査部B担",
 		"id": 433,
@@ -4584,7 +4202,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f4c",
 		"title": "眠れぬ夜君を想フ",
 		"artist": "baker",
 		"id": 434,
@@ -4596,7 +4213,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f4e",
 		"title": "JIGOKU STATION CENTRAL GATE",
 		"artist": "鬱P feat.000",
 		"id": 435,
@@ -4608,7 +4224,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f4d",
 		"title": "PinqPiq",
 		"artist": "owl＊tree feat.awao＊tree",
 		"id": 436,
@@ -4620,7 +4235,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f4f",
 		"title": "トリスメギストス",
 		"artist": "bermei.inazawa",
 		"id": 437,
@@ -4632,7 +4246,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f50",
 		"title": "WE GOTTA SOUL",
 		"artist": "魂音泉",
 		"id": 438,
@@ -4644,7 +4257,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f51",
 		"title": "哀しみ集め",
 		"artist": "幽閉サテライト",
 		"id": 439,
@@ -4656,7 +4268,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f52",
 		"title": "キラメケ→Shoot it Now!",
 		"artist": "t+pazolite feat.ななひら",
 		"id": 440,
@@ -4668,7 +4279,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f53",
 		"title": "Kattobi KEIKYU Rider",
 		"artist": "Sampling Masters MEGA",
 		"id": 441,
@@ -4680,7 +4290,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f54",
 		"title": "Glorious Crown (tpz over-Over-OVERCUTE REMIX)",
 		"artist": "t+pazolite",
 		"id": 442,
@@ -4692,7 +4301,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f56",
 		"title": "エレクトロサチュレイタ",
 		"artist": "tilt-six",
 		"id": 444,
@@ -4704,7 +4312,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f59",
 		"title": "Palette",
 		"artist": "ゆよゆっペ/meola",
 		"id": 445,
@@ -4716,7 +4323,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f5d",
 		"title": "アマツキツネ",
 		"artist": "まらしぃ",
 		"id": 446,
@@ -4728,7 +4334,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f57",
 		"title": "パーフェクト生命",
 		"artist": "ナユタン星人",
 		"id": 447,
@@ -4740,7 +4345,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f58",
 		"title": "のぼれ！すすめ！高い塔",
 		"artist": "きくお",
 		"id": 448,
@@ -4752,7 +4356,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f5a",
 		"title": "害虫",
 		"artist": "鬱P",
 		"id": 449,
@@ -4764,7 +4367,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f5b",
 		"title": "ガチャガチャきゅ～と・ふぃぎゅ@メイト",
 		"artist": "MOSAIC.WAV",
 		"id": 454,
@@ -4776,7 +4378,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f5c",
 		"title": "Vampire",
 		"artist": "電気式華憐音楽集団",
 		"id": 455,
@@ -4788,7 +4389,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f5e",
 		"title": "ケロ⑨destiny",
 		"artist": "Silver Forest",
 		"id": 456,
@@ -4800,7 +4400,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f64",
 		"title": "Last Moments",
 		"artist": "NJK Record (3L&maria♂polo)",
 		"id": 457,
@@ -4812,7 +4411,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f60",
 		"title": "風に乗せた願い",
 		"artist": "豚乙女",
 		"id": 458,
@@ -4824,7 +4422,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f5f",
 		"title": "天狗の落とし文 feat. ｙｔｒ",
 		"artist": "魂音泉",
 		"id": 459,
@@ -4836,7 +4433,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f61",
 		"title": "星色夜空",
 		"artist": "あ～るの～と（いえろ～ぜぶら＆電開製作所）",
 		"id": 460,
@@ -4848,7 +4444,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f62",
 		"title": "物凄い勢いでけーねが物凄いうた",
 		"artist": "Halozy",
 		"id": 462,
@@ -4860,7 +4455,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f66",
 		"title": "Wake up Dreamer",
 		"artist": "Junk",
 		"id": 463,
@@ -4872,7 +4466,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f63",
 		"title": "World Vanquisher",
 		"artist": "void (Mournfinale)",
 		"id": 464,
@@ -4884,7 +4477,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f6e",
 		"title": "macrocosmos",
 		"artist": "LeaF",
 		"id": 465,
@@ -4896,7 +4488,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f68",
 		"title": "Iudicium",
 		"artist": "Powerless feat.kakichoco",
 		"id": 466,
@@ -4908,7 +4499,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f83",
 		"title": "Twice up Scenery",
 		"artist": "q/stol",
 		"id": 467,
@@ -4920,7 +4510,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f67",
 		"title": "奏者はただ背中と提琴で語るのみ",
 		"artist": "月鈴 那知(CV:今村 彩夏)",
 		"id": 468,
@@ -4932,7 +4521,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f69",
 		"title": "Xevel",
 		"artist": "Tatsh",
 		"id": 469,
@@ -4944,7 +4532,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f6a",
 		"title": "セイクリッド　ルイン",
 		"artist": "Drop＆祇羽 feat. 葉月ゆら「太鼓の達人」より",
 		"id": 470,
@@ -4956,7 +4543,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f6b",
 		"title": "極圏",
 		"artist": "cosMo VS dj TAKA「SOUND VOLTEX」より",
 		"id": 471,
@@ -4968,7 +4554,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f6c",
 		"title": "Scarlet Lance",
 		"artist": "MASAKI（ZUNTATA）「グルーヴコースター 3EX ドリームパーティー」より",
 		"id": 472,
@@ -4980,7 +4565,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809404d",
 		"title": "DreamRiser",
 		"artist": "ChouCho",
 		"id": 473,
@@ -4992,7 +4576,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f6d",
 		"title": "ホシトハナ",
 		"artist": "讃州中学勇者部(照井春佳、三森すずこ、内山夕実、黒沢ともよ、長妻樹里)「結城友奈は勇者である」",
 		"id": 475,
@@ -5004,7 +4587,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f84",
 		"title": "Just Be Friends",
 		"artist": "Dixie Flatline",
 		"id": 476,
@@ -5016,7 +4598,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f6f",
 		"title": "炉心融解",
 		"artist": "iroha(sasaki)／kuma(alfred)",
 		"id": 477,
@@ -5028,7 +4609,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f70",
 		"title": "Fire◎Flower",
 		"artist": "halyosy",
 		"id": 478,
@@ -5040,7 +4620,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f72",
 		"title": "卑怯戦隊うろたんだー",
 		"artist": "シンP",
 		"id": 479,
@@ -5052,7 +4631,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f71",
 		"title": "イロトリドリのメロディ",
 		"artist": "小仏 凪(CV:佐倉 薫)",
 		"id": 481,
@@ -5064,7 +4642,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f73",
 		"title": "セハガガガンバッちゃう！！",
 		"artist": "Hi☆sCoool! セハガール",
 		"id": 482,
@@ -5076,7 +4653,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f74",
 		"title": "Burning Hearts ～炎のANGEL～",
 		"artist": "光吉猛修「バーニングレンジャー」",
 		"id": 483,
@@ -5088,7 +4664,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f76",
 		"title": "Our Fighting",
 		"artist": "クーナ(CV.喜多村英梨)「PHANTASY STAR ONLINE 2」",
 		"id": 485,
@@ -5100,7 +4675,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f75",
 		"title": "VERTeX",
 		"artist": "Hiro「maimai」より",
 		"id": 486,
@@ -5112,7 +4686,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f77",
 		"title": "-OutsideR:RequieM-",
 		"artist": "箱部 なる(CV:M・A・O)",
 		"id": 487,
@@ -5124,7 +4697,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f78",
 		"title": "夢と夢～あの日のメロディ～",
 		"artist": "月鈴姉妹(イロドリミドリ)",
 		"id": 488,
@@ -5136,7 +4708,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f79",
 		"title": "La Baguette Magique",
 		"artist": "OSTER project feat.ジェム",
 		"id": 489,
@@ -5148,7 +4719,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f7a",
 		"title": "bubble attack",
 		"artist": "HALFBY",
 		"id": 490,
@@ -5160,7 +4730,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f7b",
 		"title": "The Darkness of Valhalla",
 		"artist": "うたたP",
 		"id": 491,
@@ -5172,7 +4741,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f7c",
 		"title": "時の冒険者",
 		"artist": "40mP feat.シャノ",
 		"id": 492,
@@ -5184,7 +4752,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f7d",
 		"title": "Rendezvous",
 		"artist": "Crusher-P",
 		"id": 493,
@@ -5196,7 +4763,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f7e",
 		"title": "EXECUTOR",
 		"artist": "doriko feat.VALSHE",
 		"id": 494,
@@ -5208,7 +4774,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f7f",
 		"title": "不安定な神様",
 		"artist": "Suara「うたわれるもの 偽りの仮面」",
 		"id": 495,
@@ -5220,7 +4785,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f80",
 		"title": "Hyper Active",
 		"artist": "HiTECH NINJA",
 		"id": 496,
@@ -5232,7 +4796,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f81",
 		"title": "L'épilogue",
 		"artist": "SOUND HOLIC feat. Nana Takahashi",
 		"id": 497,
@@ -5244,7 +4807,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f8b",
 		"title": "D✪N’T ST✪P R✪CKIN’ ～[✪_✪] MIX～",
 		"artist": "EB (aka EarBreaker)",
 		"id": 498,
@@ -5256,7 +4818,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f82",
 		"title": "Caliburne ～Story of the Legendary sword～",
 		"artist": "Project Grimoire",
 		"id": 499,
@@ -5268,7 +4829,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f85",
 		"title": "プリズム",
 		"artist": "御形 アリシアナ(CV:福原 綾香)",
 		"id": 500,
@@ -5280,7 +4840,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f86",
 		"title": "星灯",
 		"artist": "Suara「うたわれるもの 二人の白皇」",
 		"id": 501,
@@ -5292,7 +4851,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f89",
 		"title": "Clover Heart's",
 		"artist": "真理絵",
 		"id": 502,
@@ -5304,7 +4862,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f87",
 		"title": "スイートマジック",
 		"artist": "ろん×Junky",
 		"id": 503,
@@ -5316,7 +4873,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f88",
 		"title": "Calamity Fortune",
 		"artist": "LeaF",
 		"id": 504,
@@ -5328,7 +4884,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f91",
 		"title": "Melody！",
 		"artist": "あ～るの～と（いえろ～ぜぶら）",
 		"id": 505,
@@ -5340,7 +4895,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f8a",
 		"title": "G e n g a o z o",
 		"artist": "-45",
 		"id": 506,
@@ -5352,7 +4906,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f8d",
 		"title": "Vitalization",
 		"artist": "水樹奈々「戦姫絶唱シンフォギアＧ」",
 		"id": 509,
@@ -5364,7 +4917,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f8c",
 		"title": "フラジール",
 		"artist": "ぬゆり",
 		"id": 512,
@@ -5376,7 +4928,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f90",
 		"title": "Absolunote",
 		"artist": "Lemm",
 		"id": 513,
@@ -5388,7 +4939,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f8e",
 		"title": "木彫り鯰と右肩ゾンビ",
 		"artist": "hanzo",
 		"id": 514,
@@ -5400,7 +4950,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f8f",
 		"title": "ヒビカセ",
 		"artist": "GigaReol",
 		"id": 515,
@@ -5412,7 +4961,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f93",
 		"title": "WAVE",
 		"artist": "niki",
 		"id": 516,
@@ -5424,7 +4972,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809404e",
 		"title": "高気圧ねこロック",
 		"artist": "小野隊長とJimmy親分",
 		"id": 517,
@@ -5436,7 +4983,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f9a",
 		"title": "Philosophyz",
 		"artist": "水谷瑠奈（NanosizeMir）「Rewrite」",
 		"id": 522,
@@ -5448,7 +4994,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f95",
 		"title": "虹色のフリューゲル",
 		"artist": "立花響（悠木碧）、風鳴翼（水樹奈々）、雪音クリス（高垣彩陽）、マリア・カデンツァヴナ・イヴ（日笠陽子）、月読調（南條愛乃）、暁切歌（茅野愛衣）、天羽奏（高山みなみ）「戦姫絶唱シンフォギアＧ」",
 		"id": 523,
@@ -5460,7 +5005,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f92",
 		"title": "ETERNAL DRAIN",
 		"artist": "カラフル・サウンズ・ポート",
 		"id": 524,
@@ -5472,7 +5016,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f94",
 		"title": "Paradisus-Paradoxum",
 		"artist": "MYTH & ROID「Re:ゼロから始める異世界生活」",
 		"id": 525,
@@ -5484,7 +5027,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f96",
 		"title": "ようこそジャパリパークへ",
 		"artist": "どうぶつビスケッツ×PPP「けものフレンズ」",
 		"id": 526,
@@ -5496,7 +5038,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f99",
 		"title": "チルノのパーフェクトさんすう教室　⑨周年バージョン",
 		"artist": "IOSYSと愉快な⑨周年フレンズ",
 		"id": 528,
@@ -5508,7 +5049,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f97",
 		"title": "プレパレード",
 		"artist": "逢坂大河（CV：釘宮理恵）・櫛枝実乃梨（CV：堀江由衣）・川嶋亜美（CV：喜多村英梨）「とらドラ！」",
 		"id": 529,
@@ -5520,7 +5060,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f98",
 		"title": "オレンジ",
 		"artist": "逢坂大河（CV：釘宮理恵）・櫛枝実乃梨（CV：堀江由衣）・川嶋亜美（CV：喜多村英梨）「とらドラ！」",
 		"id": 530,
@@ -5532,7 +5071,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fa1",
 		"title": "ホーリーナイト",
 		"artist": "逢坂大河（CV：釘宮理恵）・川嶋亜美（CV：喜多村英梨）「とらドラ！」",
 		"id": 531,
@@ -5544,7 +5082,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f9c",
 		"title": "Cosmic twinkle star",
 		"artist": "クーナ(CV.喜多村英梨)「PHANTASY STAR ONLINE 2」",
 		"id": 532,
@@ -5556,7 +5093,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fa3",
 		"title": "終わりなき物語",
 		"artist": "クーナ(CV.喜多村英梨)「PHANTASY STAR ONLINE 2」",
 		"id": 533,
@@ -5568,7 +5104,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f9b",
 		"title": "BlazinG AIR",
 		"artist": "kanone",
 		"id": 534,
@@ -5580,7 +5115,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f9d",
 		"title": "Change me",
 		"artist": "shu-t",
 		"id": 535,
@@ -5592,7 +5126,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f9e",
 		"title": "ハレ晴レユカイ",
 		"artist": "平野 綾、茅原実里、後藤邑子　TVアニメ「涼宮ハルヒの憂鬱」",
 		"id": 537,
@@ -5604,7 +5137,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093f9f",
 		"title": "AMAZING MIGHTYYYY!!!!",
 		"artist": "WAiKURO",
 		"id": 538,
@@ -5616,7 +5148,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fa0",
 		"title": "砂の惑星 feat. HATSUNE MIKU",
 		"artist": "ハチ",
 		"id": 540,
@@ -5628,7 +5159,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fa2",
 		"title": "ヒトリゴト",
 		"artist": "ClariS「エロマンガ先生」",
 		"id": 541,
@@ -5640,7 +5170,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fac",
 		"title": "adrenaline!!!",
 		"artist": "TrySail「エロマンガ先生」",
 		"id": 542,
@@ -5652,7 +5181,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fb1",
 		"title": "夢路らびりんす",
 		"artist": "らびりんず【千矢（ＣＶ．原田彩楓）＆紺（ＣＶ．本渡 楓）＆小梅（ＣＶ．久保ユリカ）＆ノノ（ＣＶ．佳村はるか）】「うらら迷路帖」",
 		"id": 544,
@@ -5664,7 +5192,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fa4",
 		"title": "全力バタンキュー",
 		"artist": "A応P「おそ松さん」",
 		"id": 545,
@@ -5676,7 +5203,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fa5",
 		"title": "Last Proof",
 		"artist": "ZAQ「劇場版トリニティセブン」",
 		"id": 546,
@@ -5688,7 +5214,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fa7",
 		"title": "拝啓ドッペルゲンガー",
 		"artist": "kemu",
 		"id": 547,
@@ -5700,7 +5225,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fa6",
 		"title": "Doppelganger",
 		"artist": "LeaF",
 		"id": 548,
@@ -5712,7 +5236,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fa8",
 		"title": "色は匂へど散りぬるを",
 		"artist": "幽閉サテライト",
 		"id": 549,
@@ -5724,7 +5247,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fa9",
 		"title": "ポルカドット",
 		"artist": "天王洲 なずな(CV:山本 彩乃)",
 		"id": 550,
@@ -5736,7 +5258,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fb2",
 		"title": "Sparking Revolver",
 		"artist": "xi",
 		"id": 551,
@@ -5748,7 +5269,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093faa",
 		"title": "Gate of Doom",
 		"artist": "Masahiro “Godspeed” Aoki",
 		"id": 552,
@@ -5760,7 +5280,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fab",
 		"title": "ダンスロボットダンス",
 		"artist": "ナユタン星人「#コンパス」",
 		"id": 553,
@@ -5772,7 +5291,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fad",
 		"title": "アルカリレットウセイ",
 		"artist": "かいりきベア「#コンパス」",
 		"id": 554,
@@ -5784,7 +5302,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fae",
 		"title": "キレキャリオン",
 		"artist": "ポリスピカデリー「#コンパス」",
 		"id": 555,
@@ -5796,7 +5313,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fb0",
 		"title": "グラーヴェ",
 		"artist": "niki「#コンパス」",
 		"id": 556,
@@ -5808,7 +5324,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093faf",
 		"title": "レトロマニア狂想曲",
 		"artist": "PolyphonicBranch「#コンパス」",
 		"id": 557,
@@ -5820,7 +5335,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fc7",
 		"title": "イロドリミドリ杯花映塚全一決定戦公式テーマソング『ウソテイ』",
 		"artist": "イロドリミドリ",
 		"id": 558,
@@ -5832,7 +5346,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fc1",
 		"title": "otorii INNOVATED -[i]3-",
 		"artist": "NAOKI underground",
 		"id": 559,
@@ -5844,7 +5357,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fb4",
 		"title": "未来イマジネーション！",
 		"artist": "SPRiNGS「温泉むすめ」",
 		"id": 560,
@@ -5856,7 +5368,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fb3",
 		"title": "純情-SAKURA-",
 		"artist": "SPRiNGS「温泉むすめ」",
 		"id": 561,
@@ -5868,7 +5379,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fb6",
 		"title": "青春サイダー",
 		"artist": "SPRiNGS「温泉むすめ」",
 		"id": 562,
@@ -5880,7 +5390,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fb5",
 		"title": "Very! Merry!! Session!!!",
 		"artist": "明坂 芹菜(CV:新田 恵海)",
 		"id": 564,
@@ -5892,7 +5401,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fb7",
 		"title": "popcorn",
 		"artist": "happy machine",
 		"id": 565,
@@ -5904,7 +5412,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fb8",
 		"title": "Pastel Party",
 		"artist": "Tomggg",
 		"id": 566,
@@ -5916,7 +5423,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fb9",
 		"title": "はちみつアドベンチャー",
 		"artist": "Yunomi feat.nicamoq",
 		"id": 567,
@@ -5928,7 +5434,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fba",
 		"title": "CHOCOLATE BOMB!!!!",
 		"artist": "YUC'e",
 		"id": 568,
@@ -5940,7 +5445,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fbb",
 		"title": "Twilight",
 		"artist": "Pa's Lam System",
 		"id": 569,
@@ -5952,7 +5456,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fbc",
 		"title": "ねぇ、壊れタ人形ハ何処へ棄テらレるノ？",
 		"artist": "cosMo＠暴走P",
 		"id": 570,
@@ -5964,7 +5467,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fbd",
 		"title": "WARNING×WARNING×WARNING",
 		"artist": "暁Records",
 		"id": 572,
@@ -5976,7 +5478,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809404f",
 		"title": "Grip & Break down !!",
 		"artist": "SOUND HOLIC feat. Nana Takahashi",
 		"id": 573,
@@ -5988,7 +5489,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fbe",
 		"title": "ネ！コ！",
 		"artist": "パトリシア・オブ・エンド(CV:高森奈津美)・黒木未知(CV:仙台エリ)・夕莉シャチ(CV:浅川悠)・明日原ユウキ(CV:種﨑敦美)「ノラと皇女と野良猫ハート」",
 		"id": 574,
@@ -6000,7 +5500,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fbf",
 		"title": "マトリョシカ",
 		"artist": "ハチ",
 		"id": 575,
@@ -6012,7 +5511,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fce",
 		"title": "ゴーゴー幽霊船",
 		"artist": "米津玄師",
 		"id": 577,
@@ -6024,7 +5522,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fc0",
 		"title": "La Flesvelka",
 		"artist": "Grand Thaw / Rigel Theatre",
 		"id": 578,
@@ -6036,7 +5533,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fc2",
 		"title": "羽ばたきのバースデイ",
 		"artist": "Baby's breath「天使の3P！」",
 		"id": 579,
@@ -6048,7 +5544,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fc3",
 		"title": "楔",
 		"artist": "Baby's breath「天使の3P！」",
 		"id": 580,
@@ -6060,7 +5555,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fc4",
 		"title": "Los! Los! Los!",
 		"artist": "ターニャ・デグレチャフ(CV.悠木碧)「幼女戦記」",
 		"id": 581,
@@ -6072,7 +5566,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fc5",
 		"title": "Uncontrollable",
 		"artist": "いとうかなこ「CHAOS;CHILD」",
 		"id": 582,
@@ -6084,7 +5577,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fc6",
 		"title": "碧き孤島のアングゥィス",
 		"artist": "電気式華憐音楽集団",
 		"id": 583,
@@ -6096,7 +5588,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094050",
 		"title": "Love your enemies",
 		"artist": "分島花音「劇場版selector destructed WIXOSS」",
 		"id": 584,
@@ -6108,7 +5599,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fd9",
 		"title": "ラブって♡ジュエリー♪えんじぇる☆ブレイク！！",
 		"artist": "あべにゅうぷろじぇくと feat.天月めぐる＆如月すみれ「ツインエンジェルBREAK」",
 		"id": 585,
@@ -6120,7 +5610,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fca",
 		"title": "ぶれいくるみるくらぶ！",
 		"artist": "みるくちゃん「ツインエンジェルBREAK」",
 		"id": 586,
@@ -6132,7 +5621,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fc8",
 		"title": "クレッシェンド・ストーリー",
 		"artist": "月鈴 白奈(CV:高野 麻里佳)",
 		"id": 587,
@@ -6144,7 +5632,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fc9",
 		"title": "Sentimental Snow",
 		"artist": "霜月はるか",
 		"id": 588,
@@ -6156,7 +5643,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fcb",
 		"title": "サンシャインサマー☆夏期講習",
 		"artist": "solfa feat.茶太",
 		"id": 589,
@@ -6168,7 +5654,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fcc",
 		"title": "NYAN-NYA, More! ラブシャイン、Chu♥",
 		"artist": "片霧烈火オンザみんマンション",
 		"id": 590,
@@ -6180,7 +5665,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fcd",
 		"title": "ガヴリールドロップキック",
 		"artist": "ガヴリール（富田美憂），ヴィーネ（大西沙織），サターニャ（大空直美），ラフィエル（花澤香菜）「ガヴリールドロップアウト」",
 		"id": 591,
@@ -6192,7 +5676,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fd3",
 		"title": "厨病激発ボーイ",
 		"artist": "れるりり",
 		"id": 592,
@@ -6204,7 +5687,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fd0",
 		"title": "StargazeR",
 		"artist": "骨盤P",
 		"id": 593,
@@ -6216,7 +5698,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fcf",
 		"title": "ゴーストルール",
 		"artist": "DECO*27",
 		"id": 594,
@@ -6228,7 +5709,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fd1",
 		"title": "頓珍漢の宴",
 		"artist": "ピノキオピー",
 		"id": 595,
@@ -6240,7 +5720,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fd2",
 		"title": "TOMORROW",
 		"artist": "Machico「この素晴らしい世界に祝福を！2」",
 		"id": 597,
@@ -6252,7 +5731,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094051",
 		"title": "Super Lovely (Heavenly Remix)",
 		"artist": "EarBreaker feat. Mes w/光吉猛修",
 		"id": 598,
@@ -6264,7 +5742,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fd8",
 		"title": "Chocolate Happy",
 		"artist": "Carotte☆（ripple＆めらみぽっぷ）",
 		"id": 599,
@@ -6276,7 +5753,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fd4",
 		"title": "管弦楽組曲 第3番 ニ長調「第2曲（G線上のアリア）」BWV.1068-2",
 		"artist": "月鈴 那知（ヴァイオリン） 伴奏：イロドリミドリ",
 		"id": 600,
@@ -6288,7 +5764,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fd5",
 		"title": "ここで一席！　Oshama Scramble!",
 		"artist": "なずな師匠＆小仏亭ちゃんなぎ(イロドリミドリ)",
 		"id": 601,
@@ -6300,7 +5775,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094052",
 		"title": "ウサテイ",
 		"artist": "あまね＋ビートまりお(COOL＆CREATE)",
 		"id": 604,
@@ -6312,7 +5786,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fdc",
 		"title": "Scream out! -CHUNITHM Tuning-",
 		"artist": "A-One",
 		"id": 605,
@@ -6324,7 +5797,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fd6",
 		"title": "Spring of Dreams",
 		"artist": "3L (NJK Record)",
 		"id": 606,
@@ -6336,7 +5808,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fd7",
 		"title": "Floating Darkness",
 		"artist": "Tatsh feat. 月子",
 		"id": 607,
@@ -6348,7 +5819,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fdb",
 		"title": "あ・え・い・う・え・お・あお!!",
 		"artist": "劇団ひととせ「ひなこのーと」",
 		"id": 609,
@@ -6360,7 +5830,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fda",
 		"title": "かーてんこーる!!!!!",
 		"artist": "劇団ひととせ「ひなこのーと」",
 		"id": 610,
@@ -6372,7 +5841,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fdd",
 		"title": "SEVENTH HAVEN",
 		"artist": "セブンスシスターズ「Tokyo 7th シスターズ」",
 		"id": 611,
@@ -6384,7 +5852,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fde",
 		"title": "Bravely You",
 		"artist": "Lia「Charlotte」",
 		"id": 612,
@@ -6396,7 +5863,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fe1",
 		"title": "Link with U",
 		"artist": "L.I.N.K.s（相坂優歌／石原 舞／高橋李依／生田善子／山本希望）「アンジュ・ヴィエルジュ」",
 		"id": 613,
@@ -6408,7 +5874,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fe6",
 		"title": "Change Our MIRAI！ (Our 7 Lights)",
 		"artist": "イロドリミドリ",
 		"id": 614,
@@ -6420,7 +5885,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fdf",
 		"title": "Dual Fractal",
 		"artist": "M2U",
 		"id": 615,
@@ -6432,7 +5896,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fe0",
 		"title": "Drivessover",
 		"artist": "Taishi",
 		"id": 616,
@@ -6444,7 +5907,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fe2",
 		"title": "Surveiller et punir",
 		"artist": "cybermiso",
 		"id": 617,
@@ -6456,7 +5918,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fe3",
 		"title": "業 -善なる神とこの世の悪について-",
 		"artist": "光吉猛修 VS 穴山大輔",
 		"id": 618,
@@ -6468,7 +5929,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094053",
 		"title": "End Time",
 		"artist": "Cres.",
 		"id": 619,
@@ -6480,7 +5940,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fe4",
 		"title": "メニメニマニマニ",
 		"artist": "高宮なすの(CV:鳴海杏子)「てーきゅう」",
 		"id": 620,
@@ -6492,7 +5951,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fe5",
 		"title": "ニホンゴワカリマセン",
 		"artist": "トマリン(CV:小倉唯)「てーきゅう」",
 		"id": 621,
@@ -6504,7 +5962,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fed",
 		"title": "Get goal!",
 		"artist": "RO-KYU-BU!「ロウきゅーぶ！SS」",
 		"id": 622,
@@ -6516,7 +5973,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fe7",
 		"title": "Rolling Rolling!",
 		"artist": "RO-KYU-BU!「ロウきゅーぶ！SS」",
 		"id": 623,
@@ -6528,7 +5984,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fe8",
 		"title": "灼熱スイッチ",
 		"artist": "雀が原中学卓球部「灼熱の卓球娘」",
 		"id": 624,
@@ -6540,7 +5995,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fe9",
 		"title": "volcanic",
 		"artist": "DETRO a.k.a ルゼ",
 		"id": 625,
@@ -6552,7 +6006,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fea",
 		"title": "アンノウン・マザーグース",
 		"artist": "wowaka",
 		"id": 626,
@@ -6564,7 +6017,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093feb",
 		"title": "ゆけむり魂温泉 II",
 		"artist": "魂音泉",
 		"id": 627,
@@ -6576,7 +6028,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fec",
 		"title": "サドマミホリック",
 		"artist": "ビートまりお（COOL&CREATE）",
 		"id": 628,
@@ -6588,7 +6039,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ff5",
 		"title": "Candyland Symphony",
 		"artist": "Kai「Wonderland Wars」",
 		"id": 629,
@@ -6600,7 +6050,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ff3",
 		"title": "初音ミクの激唱",
 		"artist": "Storyteller",
 		"id": 631,
@@ -6612,7 +6061,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094001",
 		"title": "つるぺったん",
 		"artist": "Silver Forest",
 		"id": 632,
@@ -6624,7 +6072,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fee",
 		"title": "咲キ誇レ常世ノ華",
 		"artist": "Sou×マチゲリータ",
 		"id": 633,
@@ -6636,7 +6083,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fef",
 		"title": "チルノおかんのさいきょう☆バイブスごはん",
 		"artist": "D.watt feat. ビートまりお (COOL&CREATE)",
 		"id": 635,
@@ -6648,7 +6094,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ff0",
 		"title": "放課後ストライド",
 		"artist": "Last Note.",
 		"id": 636,
@@ -6660,7 +6105,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ff1",
 		"title": "きゅうりバーにダイブ",
 		"artist": "ゆずひこ feat.めらみぽっぷ",
 		"id": 637,
@@ -6672,7 +6116,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ff2",
 		"title": "むしとりのうた",
 		"artist": "清水一人(歌：近藤佳奈子)「新甲虫王者ムシキング」",
 		"id": 638,
@@ -6684,7 +6127,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ff4",
 		"title": "sister's noise",
 		"artist": "fripSide「とある科学の超電磁砲S」",
 		"id": 639,
@@ -6696,7 +6138,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094002",
 		"title": "POP TEAM EPIC",
 		"artist": "上坂すみれ「ポプテピピック」",
 		"id": 640,
@@ -6708,7 +6149,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094054",
 		"title": "青空のラプソディ",
 		"artist": "fhána",
 		"id": 642,
@@ -6720,7 +6160,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094055",
 		"title": "Butterfly -CHUNITHM edit-",
 		"artist": "PAULA TERRY",
 		"id": 644,
@@ -6732,7 +6171,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094056",
 		"title": "コレカラ",
 		"artist": "Machico「りゅうおうのおしごと！」",
 		"id": 645,
@@ -6744,7 +6182,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094057",
 		"title": "理燃-コトワリ-",
 		"artist": "Suara「うたわれるもの斬」",
 		"id": 646,
@@ -6756,7 +6193,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094058",
 		"title": "アルカテイル",
 		"artist": "鈴木このみ「Summer Pockets」",
 		"id": 647,
@@ -6768,7 +6204,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094059",
 		"title": "The Girls Are Alright!",
 		"artist": "saya「宇宙よりも遠い場所」",
 		"id": 648,
@@ -6780,7 +6215,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809405a",
 		"title": "MIRACLE RUSH",
 		"artist": "StylipS",
 		"id": 649,
@@ -6792,7 +6226,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809405b",
 		"title": "Futuristic Player",
 		"artist": "橋本みゆき",
 		"id": 650,
@@ -6804,7 +6237,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809405c",
 		"title": "Clattanoia",
 		"artist": "OxT「オーバーロード」",
 		"id": 651,
@@ -6816,7 +6248,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809405d",
 		"title": "L.L.L.",
 		"artist": "MYTH & ROID「オーバーロード」",
 		"id": 652,
@@ -6828,7 +6259,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809405e",
 		"title": "ミリオン／ワンズ",
 		"artist": "じん×kemu",
 		"id": 653,
@@ -6840,7 +6270,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809405f",
 		"title": "ブリキノダンス",
 		"artist": "日向電工",
 		"id": 654,
@@ -6852,7 +6281,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094060",
 		"title": "フリィダム ロリィタ",
 		"artist": "ねじ式",
 		"id": 655,
@@ -6864,7 +6292,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094061",
 		"title": "DAYBREAK FRONTLINE",
 		"artist": "Orangestar",
 		"id": 656,
@@ -6876,7 +6303,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094062",
 		"title": "バレリーコ",
 		"artist": "みきとP",
 		"id": 657,
@@ -6888,7 +6314,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094063",
 		"title": "おちゃめ機能",
 		"artist": "ろん",
 		"id": 658,
@@ -6900,7 +6325,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094064",
 		"title": "輪廻転生",
 		"artist": "まふまふ",
 		"id": 659,
@@ -6912,7 +6336,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094065",
 		"title": "シャルル",
 		"artist": "バルーン",
 		"id": 660,
@@ -6924,7 +6347,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809407a",
 		"title": "地獄の端にて君を待つ",
 		"artist": "石鹸屋",
 		"id": 662,
@@ -6936,7 +6358,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094070",
 		"title": "聖少女サクリファイス",
 		"artist": "Silver Forest",
 		"id": 663,
@@ -6948,7 +6369,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094079",
 		"title": "究極焼肉レストラン！お燐の地獄亭！",
 		"artist": "ARM＋夕野ヨシミ (IOSYS) feat.藤枝あかね",
 		"id": 664,
@@ -6960,7 +6380,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094066",
 		"title": "WARNING!",
 		"artist": "NJK Record",
 		"id": 665,
@@ -6972,7 +6391,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094067",
 		"title": "Paranoia",
 		"artist": "DiGiTAL WiNG feat. 花たん",
 		"id": 666,
@@ -6984,7 +6402,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094068",
 		"title": "ナイト・オブ・ナイツ (Cranky Remix)",
 		"artist": "ビートまりお × Cranky",
 		"id": 667,
@@ -6996,7 +6413,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094069",
 		"title": "Brain Power",
 		"artist": "ノマ",
 		"id": 668,
@@ -7008,7 +6424,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809406a",
 		"title": "ouroboros -twin stroke of the end-",
 		"artist": "Cranky VS MASAKI「グルーヴコースター 3EX ドリームパーティー」より",
 		"id": 669,
@@ -7020,7 +6435,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809406b",
 		"title": "GERBERA",
 		"artist": "BEMANI Sound Team \"TAG\"「SOUND VOLTEX」より",
 		"id": 670,
@@ -7032,7 +6446,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809406c",
 		"title": "Taiko Drum Monster",
 		"artist": "steμ feat.siroa「太鼓の達人」より",
 		"id": 671,
@@ -7044,7 +6457,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809406d",
 		"title": "Blooming Villain (ATLUS Konishi Remix)",
 		"artist": "目黒将司 Remixed by 小西利樹「ペルソナ5 ダンシング・スターナイト」",
 		"id": 672,
@@ -7056,7 +6468,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809406e",
 		"title": "GROOVY",
 		"artist": "小塚良太「ペルソナ5 ダンシング・スターナイト」",
 		"id": 673,
@@ -7068,7 +6479,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809406f",
 		"title": "Mass Destruction (\"P3\" + \"P3F\" ver.)",
 		"artist": "目黒将司「ペルソナ3 ダンシング・ムーンナイト」",
 		"id": 674,
@@ -7080,7 +6490,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094071",
 		"title": "全ての人の魂の戦い (Daisuke Asakura Remix)",
 		"artist": "目黒将司 Remixed by 浅倉大介「ペルソナ3 ダンシング・ムーンナイト」",
 		"id": 675,
@@ -7092,7 +6501,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094073",
 		"title": "Nhelv",
 		"artist": "Silentroom",
 		"id": 676,
@@ -7104,7 +6512,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094072",
 		"title": "PUPA",
 		"artist": "モリモリあつし",
 		"id": 677,
@@ -7116,7 +6523,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094074",
 		"title": "Parousia",
 		"artist": "xi",
 		"id": 678,
@@ -7128,7 +6534,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094075",
 		"title": "Papyrus",
 		"artist": "papyrus (orangentle)",
 		"id": 679,
@@ -7140,7 +6545,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094076",
 		"title": "Black Lair",
 		"artist": "削除 feat. void (Mournfinale)",
 		"id": 681,
@@ -7152,7 +6556,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094078",
 		"title": "Pilgrimage",
 		"artist": "山本美禰子「トトリのアトリエ ～アーランドの錬金術士２～」",
 		"id": 682,
@@ -7164,7 +6567,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094077",
 		"title": "オーケー？　オーライ！",
 		"artist": "五十嵐 撫子(CV:花井 美春)",
 		"id": 683,
@@ -7176,7 +6578,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809407b",
 		"title": "Black'n White JAMMIN' CATS",
 		"artist": "箱部 なる(CV:M・A・O)＆月鈴 白奈(CV:高野 麻里佳)",
 		"id": 684,
@@ -7188,7 +6589,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809407d",
 		"title": "ライトスピード・デイズ",
 		"artist": "明坂 芹菜(CV:新田 恵海)＆小仏 凪(CV:佐倉 薫)",
 		"id": 685,
@@ -7200,7 +6600,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809407c",
 		"title": "Fire me up",
 		"artist": "御形 アリシアナ(CV:福原 綾香)＆天王洲 なずな(CV:山本 彩乃)",
 		"id": 686,
@@ -7212,7 +6611,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ff7",
 		"title": "朝焼けプラットホーム",
 		"artist": "40mP feat.シャノ",
 		"id": 688,
@@ -7224,7 +6622,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ff6",
 		"title": "PAST",
 		"artist": "164 feat.ウォルピスカーター",
 		"id": 689,
@@ -7236,7 +6633,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ff9",
 		"title": "Blessed",
 		"artist": "Palme",
 		"id": 690,
@@ -7248,7 +6644,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ff8",
 		"title": "FRIDAY FRIDAY",
 		"artist": "emon(Tes.) feat.松平なな",
 		"id": 691,
@@ -7260,7 +6655,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ffa",
 		"title": "足立オウフwwww",
 		"artist": "笑う角を曲がる",
 		"id": 692,
@@ -7272,7 +6666,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ffb",
 		"title": "Seagull",
 		"artist": "Snail's House",
 		"id": 693,
@@ -7284,7 +6677,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ffc",
 		"title": "Blaster Heaven",
 		"artist": "カヒーナムジカ",
 		"id": 694,
@@ -7296,7 +6688,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ffe",
 		"title": "ハートアタック",
 		"artist": "Omoi feat.+α/あるふぁきゅん。",
 		"id": 695,
@@ -7308,7 +6699,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093ffd",
 		"title": "Summer is over",
 		"artist": "TORIENA",
 		"id": 696,
@@ -7320,7 +6710,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8093fff",
 		"title": "folern",
 		"artist": "ぬゆり",
 		"id": 697,
@@ -7332,7 +6721,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809407e",
 		"title": "2DVenture",
 		"artist": "dawn-system",
 		"id": 698,
@@ -7344,7 +6732,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809407f",
 		"title": "ぜったい！昇天★鎮魂歌♂",
 		"artist": "NirNo",
 		"id": 699,
@@ -7356,7 +6743,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809408d",
 		"title": "夕焼けのRed Parade",
 		"artist": "technoplanet",
 		"id": 700,
@@ -7368,7 +6754,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094080",
 		"title": "StufeStern",
 		"artist": "Feryquitous",
 		"id": 701,
@@ -7380,7 +6765,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809409c",
 		"title": "スピカの天秤",
 		"artist": "Acotto",
 		"id": 702,
@@ -7392,7 +6776,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094081",
 		"title": "涙色メモリア",
 		"artist": "キノシタ feat.YURiCa/花たん",
 		"id": 703,
@@ -7404,7 +6787,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094082",
 		"title": "Magic",
 		"artist": "niki feat.noire",
 		"id": 704,
@@ -7416,7 +6798,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094083",
 		"title": "男装女形表裏一体発狂小娘の詐称疑惑と苦悩と情熱。",
 		"artist": "SLAVE.V-V-R feat.Fantastic Youth",
 		"id": 705,
@@ -7428,7 +6809,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094084",
 		"title": "コモリの怪物",
 		"artist": "盛るP feat.鈴森あおい",
 		"id": 706,
@@ -7440,7 +6820,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094086",
 		"title": "中学2年生のアンドロイド",
 		"artist": "カルロス袴田(サイゼP) feat.あやぽんず＊",
 		"id": 707,
@@ -7452,7 +6831,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094085",
 		"title": "Life",
 		"artist": "Relect",
 		"id": 708,
@@ -7464,7 +6842,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094087",
 		"title": "Solstånd",
 		"artist": "Rigel Theatre feat.ミーウェル",
 		"id": 710,
@@ -7476,7 +6853,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094089",
 		"title": "Sqlupp",
 		"artist": "owl＊tree feat.yaki＊tree",
 		"id": 711,
@@ -7488,7 +6864,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094088",
 		"title": "Climax",
 		"artist": "USAO",
 		"id": 712,
@@ -7500,7 +6875,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809408a",
 		"title": "larva",
 		"artist": "ガリガリさむし",
 		"id": 713,
@@ -7512,7 +6886,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809408c",
 		"title": "CYCLES",
 		"artist": "Masayoshi Minoshima feat. 綾倉盟",
 		"id": 715,
@@ -7524,7 +6897,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809408b",
 		"title": "夢花火",
 		"artist": "豚乙女",
 		"id": 716,
@@ -7536,7 +6908,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809408e",
 		"title": "FEEL the BEATS",
 		"artist": "A-One",
 		"id": 717,
@@ -7548,7 +6919,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094095",
 		"title": "ロキ",
 		"artist": "みきとP",
 		"id": 720,
@@ -7560,7 +6930,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809408f",
 		"title": "Innocent Truth",
 		"artist": "Endorfin.",
 		"id": 721,
@@ -7572,7 +6941,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094091",
 		"title": "CITRUS MONSTER",
 		"artist": "D-Cee",
 		"id": 722,
@@ -7584,7 +6952,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094090",
 		"title": "キミとボクのミライ",
 		"artist": "ジータ（CV:金元寿子）、ルリア（CV:東山奈央）、ヴィーラ（CV:今井麻美）、マリー（CV:長谷川明子）「グランブルーファンタジー」",
 		"id": 724,
@@ -7596,7 +6963,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094093",
 		"title": "SHINY DAYS",
 		"artist": "亜咲花「ゆるキャン△」",
 		"id": 725,
@@ -7608,7 +6974,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094092",
 		"title": "Sparkling Daydream",
 		"artist": "ZAQ",
 		"id": 726,
@@ -7620,7 +6985,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094094",
 		"title": "U.S.A.",
 		"artist": "DA PUMP",
 		"id": 727,
@@ -7632,7 +6996,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940a6",
 		"title": "Don't say \"lazy\"",
 		"artist": "桜高軽音部「けいおん！」",
 		"id": 728,
@@ -7644,7 +7007,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094096",
 		"title": "サヨナラフリーウェイ",
 		"artist": "萩原 七々瀬(CV:東城 日沙子)",
 		"id": 729,
@@ -7656,7 +7018,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094098",
 		"title": "Ai Nov",
 		"artist": "Feryquitous",
 		"id": 730,
@@ -7668,7 +7029,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094097",
 		"title": "エンジェデビ",
 		"artist": "中路もとめ feat.砂糖子",
 		"id": 731,
@@ -7680,7 +7040,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094099",
 		"title": "Servant of Love",
 		"artist": "PandaBoY",
 		"id": 732,
@@ -7692,7 +7051,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809409b",
 		"title": "アイリちゃんは暗黒魔導士!",
 		"artist": "MOSAIC.WAV",
 		"id": 733,
@@ -7704,7 +7062,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809409a",
 		"title": "電光石火",
 		"artist": "HiTECH NINJA",
 		"id": 734,
@@ -7716,7 +7073,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940a7",
 		"title": "strelitzia",
 		"artist": "zts",
 		"id": 735,
@@ -7728,7 +7084,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940a0",
 		"title": "サヨナラチェーンソー",
 		"artist": "くらげP",
 		"id": 736,
@@ -7740,7 +7095,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809409d",
 		"title": "Seyana. ～何でも言うことを聞いてくれるアカネチャン～",
 		"artist": "GYARI",
 		"id": 737,
@@ -7752,7 +7106,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809409e",
 		"title": "はやくそれになりたい！",
 		"artist": "キノシタ feat. 音街ウナ",
 		"id": 738,
@@ -7764,7 +7117,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809409f",
 		"title": "ちがう!!!",
 		"artist": "カルロス袴田(サイゼP)",
 		"id": 739,
@@ -7776,7 +7128,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940a1",
 		"title": "雨とペトラ",
 		"artist": "バルーン",
 		"id": 740,
@@ -7788,7 +7139,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940a3",
 		"title": "あうんどばいみー",
 		"artist": "森羅万象",
 		"id": 741,
@@ -7800,7 +7150,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940a2",
 		"title": "White Traveling Girl",
 		"artist": "A-One",
 		"id": 742,
@@ -7812,7 +7161,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940a4",
 		"title": "トランスダンスアナーキー",
 		"artist": "暁Records",
 		"id": 743,
@@ -7824,7 +7172,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940a5",
 		"title": "ゴールドビジョン",
 		"artist": "Pizuya's Cell",
 		"id": 744,
@@ -7836,7 +7183,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940af",
 		"title": "【東方ニコカラ】秘神マターラ feat.魂音泉【IOSYS】",
 		"artist": "ARM (IOSYS)",
 		"id": 745,
@@ -7848,7 +7194,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940d0",
 		"title": "Ever green Never end",
 		"artist": "月鈴 白奈(CV:高野 麻里佳)",
 		"id": 746,
@@ -7860,7 +7205,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ab",
 		"title": "咲かせよ 沸かせよ バンバンBURN！",
 		"artist": "温泉むすめ 下呂美月 役 佐伯伊織「温泉むすめ」",
 		"id": 747,
@@ -7872,7 +7216,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940a8",
 		"title": "Fracture Ray",
 		"artist": "削除「Arcaea」",
 		"id": 749,
@@ -7884,7 +7227,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940a9",
 		"title": "Axium Crisis",
 		"artist": "ak+q「Arcaea」",
 		"id": 750,
@@ -7896,7 +7238,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940aa",
 		"title": "Grievous Lady",
 		"artist": "Team Grimoire vs Laur「Arcaea」",
 		"id": 751,
@@ -7908,7 +7249,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ac",
 		"title": "CO5M1C R4ILR0AD",
 		"artist": "kanone",
 		"id": 752,
@@ -7920,7 +7260,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ae",
 		"title": "Pure Ruby",
 		"artist": "SHIKI",
 		"id": 753,
@@ -7932,7 +7271,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ad",
 		"title": "一世嬉遊曲‐ディヴェルティメント‐",
 		"artist": "月鈴 那知(CV:今村 彩夏)",
 		"id": 754,
@@ -7944,7 +7282,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940b6",
 		"title": "恋のチャイム",
 		"artist": "霜月はるか",
 		"id": 755,
@@ -7956,7 +7293,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940b0",
 		"title": "逃げろ！サテライトキャンパス！！",
 		"artist": "solfa feat.茶太",
 		"id": 756,
@@ -7968,7 +7304,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940b2",
 		"title": "THE BRASS OF GOODSPEED!!",
 		"artist": "片霧烈火",
 		"id": 757,
@@ -7980,7 +7315,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940b1",
 		"title": "TREAT OR TREAT?",
 		"artist": "4U「Tokyo 7th シスターズ」",
 		"id": 758,
@@ -7992,7 +7326,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940b3",
 		"title": "TRIGGER",
 		"artist": "The QUEEN of PURPLE「Tokyo 7th シスターズ」",
 		"id": 759,
@@ -8004,7 +7337,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940b5",
 		"title": "カゲロウデイズ",
 		"artist": "じん",
 		"id": 760,
@@ -8016,7 +7348,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940b4",
 		"title": "妄想感傷代償連盟",
 		"artist": "DECO*27",
 		"id": 761,
@@ -8028,7 +7359,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940c3",
 		"title": "Everlasting Today",
 		"artist": "void (Mournfinale)",
 		"id": 762,
@@ -8040,7 +7370,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940b7",
 		"title": "Distance",
 		"artist": "村川梨衣「ヒナまつり」",
 		"id": 763,
@@ -8052,7 +7381,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940b8",
 		"title": "Outlaw's Lullaby",
 		"artist": "庄司英徳「龍が如く２」",
 		"id": 764,
@@ -8064,7 +7392,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ba",
 		"title": "The Pursuit of Speed",
 		"artist": "SoundDrive「龍が如く５　夢、叶えし者」",
 		"id": 765,
@@ -8076,7 +7403,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940b9",
 		"title": "光線チューニング ～なずな妄想海フェスイメージトレーニングVer.～",
 		"artist": "ナズナン星人 with せりな・あーりん(イロドリミドリ)",
 		"id": 766,
@@ -8088,7 +7414,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940bb",
 		"title": "39",
 		"artist": "sasakure.UK x DECO*27",
 		"id": 768,
@@ -8100,7 +7425,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940bc",
 		"title": "FLY two BLUE",
 		"artist": "大空 遥（CV：優木かな）、比嘉かなた（CV：宮下早紀）「はるかなレシーブ」",
 		"id": 769,
@@ -8112,7 +7436,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940bd",
 		"title": "Wish me luck!!!!",
 		"artist": "大空 遥（CV：優木かな）、比嘉かなた（CV：宮下早紀）、トーマス・紅愛（CV：種﨑敦美）、トーマス・恵美理（CV：末柄里恵）「はるかなレシーブ」",
 		"id": 770,
@@ -8124,7 +7447,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940bf",
 		"title": "Funny Funky Freaky",
 		"artist": "mommy",
 		"id": 771,
@@ -8136,7 +7458,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940be",
 		"title": "Pangaea",
 		"artist": "sasakure.UK",
 		"id": 772,
@@ -8148,7 +7469,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940c0",
 		"title": "ZEUS",
 		"artist": "ルゼ",
 		"id": 773,
@@ -8160,7 +7480,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940c2",
 		"title": "Agitation！",
 		"artist": "舞ヶ原高校軽音部",
 		"id": 774,
@@ -8172,7 +7491,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940c1",
 		"title": "暗晦にハイライト",
 		"artist": "igel",
 		"id": 775,
@@ -8184,7 +7502,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940df",
 		"title": "8-EM",
 		"artist": "Sampling Masters AYA",
 		"id": 776,
@@ -8196,7 +7513,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940c4",
 		"title": "Killing Rhythm",
 		"artist": "DJ Myosuke",
 		"id": 777,
@@ -8208,7 +7524,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940c5",
 		"title": "The Other Side of the Wall",
 		"artist": "Void_Chords feat.MARU",
 		"id": 778,
@@ -8220,7 +7535,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940c7",
 		"title": "WORLD'S END",
 		"artist": "セブンスシスターズ「Tokyo 7th シスターズ」",
 		"id": 779,
@@ -8232,7 +7546,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940c6",
 		"title": "METEOR",
 		"artist": "DIVELA",
 		"id": 780,
@@ -8244,7 +7557,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940c8",
 		"title": "ワールズエンド・ダンスホール",
 		"artist": "wowaka",
 		"id": 781,
@@ -8256,7 +7568,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940c9",
 		"title": "Worlds End",
 		"artist": "あ～るの～と（いえろ～ぜぶら）",
 		"id": 782,
@@ -8268,7 +7579,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ca",
 		"title": "Shout Our Evidence!",
 		"artist": "イロドリミドリ",
 		"id": 783,
@@ -8280,7 +7590,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940cc",
 		"title": "YURUSHITE",
 		"artist": "t+pazolite",
 		"id": 784,
@@ -8292,7 +7601,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940cb",
 		"title": "ユメキキョウ",
 		"artist": "RD-Sounds feat.中恵光城",
 		"id": 785,
@@ -8304,7 +7612,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940cd",
 		"title": "Black Swan Lake",
 		"artist": "葉月ゆら",
 		"id": 786,
@@ -8316,7 +7623,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940cf",
 		"title": "GIGA DRIVE",
 		"artist": "黒沢ダイスケ",
 		"id": 787,
@@ -8328,7 +7634,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ce",
 		"title": "Rebellion",
 		"artist": "Kai",
 		"id": 788,
@@ -8340,7 +7645,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940d1",
 		"title": "NEVER SURRENDER",
 		"artist": "水樹奈々「魔法少女リリカルなのは Detonation」",
 		"id": 789,
@@ -8352,7 +7656,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940d8",
 		"title": "Doll Judgment",
 		"artist": "ぬるはち",
 		"id": 791,
@@ -8364,7 +7667,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940d2",
 		"title": "お嫁にしなさいっ！",
 		"artist": "ARM＋夕野ヨシミ (IOSYS)",
 		"id": 792,
@@ -8376,7 +7678,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940d3",
 		"title": "待チ人ハ来ズ。",
 		"artist": "豚乙女",
 		"id": 793,
@@ -8388,7 +7689,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940d6",
 		"title": "One In A Billion",
 		"artist": "Wake Up, May'n！「異世界食堂」",
 		"id": 794,
@@ -8400,7 +7700,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940d4",
 		"title": "命ばっかり",
 		"artist": "ぬゆり",
 		"id": 795,
@@ -8412,7 +7711,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940d5",
 		"title": "テオ",
 		"artist": "Omoi",
 		"id": 796,
@@ -8424,7 +7722,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940d7",
 		"title": "ハイセンスナンセンス",
 		"artist": "盛るP",
 		"id": 797,
@@ -8436,7 +7733,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940e9",
 		"title": "デンパラダイム",
 		"artist": "lumo",
 		"id": 798,
@@ -8448,7 +7744,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940d9",
 		"title": "星の器～STAR OF ANDROMEDA",
 		"artist": "sun3",
 		"id": 799,
@@ -8460,7 +7755,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940db",
 		"title": "STARTLINER",
 		"artist": "曲：kz(livetune)／歌：オンゲキシューターズ",
 		"id": 802,
@@ -8472,7 +7766,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940da",
 		"title": "Vibrant Verve",
 		"artist": "siqlo",
 		"id": 803,
@@ -8484,7 +7777,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940dc",
 		"title": "燃えてもエンジョイ！宛城、炎上！！",
 		"artist": "箱部孟徳 feat.小仏氏(イロドリミドリ)",
 		"id": 804,
@@ -8496,7 +7788,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940dd",
 		"title": "水晶世界 ～Fracture～",
 		"artist": "wa. remixed celas",
 		"id": 806,
@@ -8508,7 +7799,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940de",
 		"title": "BlythE",
 		"artist": "M2U",
 		"id": 807,
@@ -8520,7 +7810,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940e4",
 		"title": "GO",
 		"artist": "BUMP OF CHICKEN「グランブルーファンタジー」",
 		"id": 808,
@@ -8532,7 +7821,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940e2",
 		"title": "grilletto",
 		"artist": "GARNiDELiA「魔法科高校の劣等生」",
 		"id": 809,
@@ -8544,7 +7832,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940e0",
 		"title": "UNION",
 		"artist": "OxT「SSSS.GRIDMAN」",
 		"id": 810,
@@ -8556,7 +7843,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940e1",
 		"title": "Excalibur ～Revived resolution～",
 		"artist": "Project Grimoire",
 		"id": 822,
@@ -8568,7 +7854,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940e3",
 		"title": "Opfer",
 		"artist": "かねこちはる",
 		"id": 823,
@@ -8580,7 +7865,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940e5",
 		"title": "サヴァイバル・キリング・メーカー",
 		"artist": "じーざす（ワンダフル☆オポチュニティ！） ft.96猫",
 		"id": 825,
@@ -8592,7 +7876,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940e6",
 		"title": "ツクヨミステップ",
 		"artist": "ユリイ・カノン feat.nameless",
 		"id": 826,
@@ -8604,7 +7887,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940e7",
 		"title": "【冒険】イングリット葛西降臨！【実況】",
 		"artist": "溝口ゆうま axel. 大瀬良あい",
 		"id": 827,
@@ -8616,7 +7898,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940e8",
 		"title": "ハジマリノピアノ",
 		"artist": "ゆゆうた",
 		"id": 828,
@@ -8628,7 +7909,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ea",
 		"title": "レーイレーイ",
 		"artist": "かいりきベア feat.松下",
 		"id": 829,
@@ -8640,7 +7920,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940eb",
 		"title": "Surrogate Life",
 		"artist": "石渡太輔／アークシステムワークス",
 		"id": 830,
@@ -8652,7 +7931,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c80940ec",
 		"title": "Nijirate Fanatics",
 		"artist": "yukitani",
 		"id": 831,
@@ -8664,7 +7942,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094000",
 		"title": "幾四音-Ixion-",
 		"artist": "M.S.S Project",
 		"id": 8000,
@@ -8676,7 +7953,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094117",
 		"title": "幾四音-Ixion-",
 		"artist": "M.S.S Project",
 		"id": 8001,
@@ -8688,7 +7964,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809410f",
 		"title": "Aragami",
 		"artist": "xi",
 		"id": 8002,
@@ -8700,7 +7975,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094110",
 		"title": "My First Phone",
 		"artist": "cubesato",
 		"id": 8003,
@@ -8712,7 +7986,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094111",
 		"title": "The Concept of Love",
 		"artist": "長沼 英樹",
 		"id": 8004,
@@ -8724,7 +7997,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094113",
 		"title": "Altale",
 		"artist": "削除",
 		"id": 8007,
@@ -8736,7 +8008,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094003",
 		"title": "ナイト・オブ・ナイツ",
 		"artist": "ビートまりお",
 		"id": 8008,
@@ -8748,7 +8019,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094115",
 		"title": "Invitation",
 		"artist": "れるりり feat.ろん",
 		"id": 8009,
@@ -8760,7 +8030,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094114",
 		"title": "今ぞ♡崇め奉れ☆オマエらよ！！～姫の秘メタル渇望～",
 		"artist": "あべにゅうぷろじぇくと feat.佐倉 紗織　produced by ave;new",
 		"id": 8010,
@@ -8772,7 +8041,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094118",
 		"title": "ギガンティックO.T.N",
 		"artist": "ギガ",
 		"id": 8011,
@@ -8784,7 +8052,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809411f",
 		"title": "The wheel to the right",
 		"artist": "Sampling Masters MEGA",
 		"id": 8015,
@@ -8796,7 +8063,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094120",
 		"title": "こころここから",
 		"artist": "ふわりP",
 		"id": 8016,
@@ -8808,7 +8074,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094119",
 		"title": "Aragami",
 		"artist": "xi",
 		"id": 8017,
@@ -8820,7 +8085,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809411c",
 		"title": "Theme of SeelischTact",
 		"artist": "植松 伸夫",
 		"id": 8018,
@@ -8832,7 +8096,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809411a",
 		"title": "Teriqma",
 		"artist": "owl＊tree",
 		"id": 8019,
@@ -8844,7 +8107,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094004",
 		"title": "B.B.K.K.B.K.K.",
 		"artist": "nora2r",
 		"id": 8020,
@@ -8856,7 +8118,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809411b",
 		"title": "B.B.K.K.B.K.K.",
 		"artist": "nora2r",
 		"id": 8022,
@@ -8868,7 +8129,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809411d",
 		"title": "閃鋼のブリューナク",
 		"artist": "sasakure.UK",
 		"id": 8023,
@@ -8880,7 +8140,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094005",
 		"title": "Garakuta Doll Play (sasakure.UK clutter remix)",
 		"artist": "sasakure.UK",
 		"id": 8024,
@@ -8892,7 +8151,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094006",
 		"title": "Help me, あーりん！",
 		"artist": "イロドリミドリ",
 		"id": 8025,
@@ -8904,7 +8162,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094007",
 		"title": "FREEDOM DiVE",
 		"artist": "xi",
 		"id": 8026,
@@ -8916,7 +8173,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094008",
 		"title": "elegante",
 		"artist": "Junk",
 		"id": 8029,
@@ -8928,7 +8184,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809411e",
 		"title": "とーきょー全域★アキハバラ？",
 		"artist": "MOSAIC.WAV",
 		"id": 8030,
@@ -8940,7 +8195,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094121",
 		"title": "ＧＯ！ＧＯ！ラブリズム♥",
 		"artist": "片霧烈火オンザみんマンション",
 		"id": 8032,
@@ -8952,7 +8206,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809401e",
 		"title": "Your Affection (Daisuke Asakura Remix)",
 		"artist": "目黒将司 Remixed by 浅倉大介「ペルソナ4 ダンシング・オールナイト」",
 		"id": 8033,
@@ -8964,7 +8217,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094019",
 		"title": "一触即発☆禅ガール",
 		"artist": "れるりり",
 		"id": 8034,
@@ -8976,7 +8228,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094133",
 		"title": "Jack-the-Ripper◆",
 		"artist": "sasakure.UK",
 		"id": 8035,
@@ -8988,7 +8239,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809412f",
 		"title": "sweet little sister",
 		"artist": "Silver Forest",
 		"id": 8036,
@@ -9000,7 +8250,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094124",
 		"title": "GEMINI -C-",
 		"artist": "Tatsh",
 		"id": 8037,
@@ -9012,7 +8261,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094122",
 		"title": "The ether",
 		"artist": "浜渦 正志",
 		"id": 8038,
@@ -9024,7 +8272,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094123",
 		"title": "FREEDOM DiVE",
 		"artist": "xi",
 		"id": 8039,
@@ -9036,7 +8283,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094125",
 		"title": "ぼくらの16bit戦争",
 		"artist": "sasakure.UK",
 		"id": 8040,
@@ -9048,7 +8294,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094128",
 		"title": "Cyberozar",
 		"artist": "削除",
 		"id": 8041,
@@ -9060,7 +8305,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094126",
 		"title": "GOLDEN RULE",
 		"artist": "Morrigan",
 		"id": 8042,
@@ -9072,7 +8316,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809400a",
 		"title": "Genesis",
 		"artist": "Morrigan feat.Lily",
 		"id": 8043,
@@ -9084,7 +8327,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094127",
 		"title": "Bad Apple!! feat.nomico",
 		"artist": "Masayoshi Minoshima",
 		"id": 8044,
@@ -9096,7 +8338,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094009",
 		"title": "Elemental Creation",
 		"artist": "dj TAKA meets DJ YOSHITAKA",
 		"id": 8045,
@@ -9108,7 +8349,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809400b",
 		"title": "いろは唄",
 		"artist": "銀サク",
 		"id": 8046,
@@ -9120,7 +8360,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809400d",
 		"title": "Alma",
 		"artist": "光田 康典",
 		"id": 8048,
@@ -9132,7 +8371,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809400c",
 		"title": "チルノのパーフェクトさんすう教室",
 		"artist": "ARM＋夕野ヨシミ (IOSYS) feat.miko",
 		"id": 8049,
@@ -9144,7 +8382,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094129",
 		"title": "Infantoon Fantasy",
 		"artist": "t+pazolite",
 		"id": 8050,
@@ -9156,7 +8393,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809400e",
 		"title": "回レ！雪月花",
 		"artist": "歌組雪月花 夜々(原田 ひとみ)/いろり(茅野 愛衣)/小紫(小倉 唯) 「機巧少女は傷つかない」",
 		"id": 8051,
@@ -9168,7 +8404,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809412b",
 		"title": "明るい未来",
 		"artist": "豚乙女",
 		"id": 8052,
@@ -9180,7 +8415,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809400f",
 		"title": "Oshama Scramble!",
 		"artist": "t+pazolite",
 		"id": 8053,
@@ -9192,7 +8426,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809412a",
 		"title": "Contrapasso -inferno-",
 		"artist": "t+pazolite",
 		"id": 8054,
@@ -9204,7 +8437,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809412c",
 		"title": "DETARAME ROCK&ROLL THEORY",
 		"artist": "箱部 なる(CV:M・A・O)",
 		"id": 8056,
@@ -9216,7 +8448,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094011",
 		"title": "砂漠のハンティングガール♡",
 		"artist": "海田 明里",
 		"id": 8057,
@@ -9228,7 +8459,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094010",
 		"title": "ジングルベル",
 		"artist": "SEGA Sound Unit[H.]",
 		"id": 8058,
@@ -9240,7 +8470,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094012",
 		"title": "エンドマークに希望と涙を添えて",
 		"artist": "cosMo＠暴走P",
 		"id": 8059,
@@ -9252,7 +8481,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809412e",
 		"title": "The Concept of Love",
 		"artist": "長沼 英樹",
 		"id": 8060,
@@ -9264,7 +8492,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809412d",
 		"title": "SNIPE WHOLE",
 		"artist": "Masayoshi Minoshima feat.Mei Ayakura",
 		"id": 8061,
@@ -9276,7 +8503,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094132",
 		"title": "裏表ラバーズ",
 		"artist": "wowaka",
 		"id": 8062,
@@ -9288,7 +8514,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094013",
 		"title": "Counselor",
 		"artist": "DECO*27 feat.echo",
 		"id": 8063,
@@ -9300,7 +8525,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094014",
 		"title": "SAMBISTA",
 		"artist": "DOT96",
 		"id": 8064,
@@ -9312,7 +8536,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094015",
 		"title": "We Gonna Journey",
 		"artist": "Queen P.A.L.",
 		"id": 8065,
@@ -9324,7 +8547,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094016",
 		"title": "The ether",
 		"artist": "浜渦 正志",
 		"id": 8066,
@@ -9336,7 +8558,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809401f",
 		"title": "DRAGONLADY",
 		"artist": "Nankumo/CUBE3",
 		"id": 8067,
@@ -9348,7 +8569,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094136",
 		"title": "FREELY TOMORROW",
 		"artist": "Mitchie M",
 		"id": 8068,
@@ -9360,7 +8580,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094017",
 		"title": "★LittlE HearTs★",
 		"artist": "ねこみみ魔法使い",
 		"id": 8069,
@@ -9372,7 +8591,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094018",
 		"title": "Paqqin",
 		"artist": "owl＊tree",
 		"id": 8070,
@@ -9384,7 +8602,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094130",
 		"title": "Change Our MIRAI！",
 		"artist": "イロドリミドリ",
 		"id": 8071,
@@ -9396,7 +8613,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809401a",
 		"title": "Gate of Fate",
 		"artist": "Godspeed",
 		"id": 8072,
@@ -9408,7 +8624,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809401b",
 		"title": "MUSIC PЯAYER",
 		"artist": "A-One",
 		"id": 8074,
@@ -9420,7 +8635,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094131",
 		"title": "FEEL×ALIVE",
 		"artist": "佐咲紗花「ばくおん!!」",
 		"id": 8076,
@@ -9432,7 +8646,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094137",
 		"title": "ぶぉん！ぶぉん！らいど・おん！",
 		"artist": "佐倉羽音(CV.上田麗奈)、鈴乃木凜(CV.東山奈央)、天野恩紗(CV.内山夕実)、三ノ輪聖(CV.山口立花子)「ばくおん!!」",
 		"id": 8077,
@@ -9444,7 +8657,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809401c",
 		"title": "あねぺったん",
 		"artist": "月鈴姉妹(イロドリミドリ)",
 		"id": 8078,
@@ -9456,7 +8668,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809401d",
 		"title": "The wheel to the right",
 		"artist": "Sampling Masters MEGA",
 		"id": 8079,
@@ -9468,7 +8679,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094027",
 		"title": "Schrecklicher Aufstand",
 		"artist": "Katzeohr & Spiegel",
 		"id": 8080,
@@ -9480,7 +8690,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094021",
 		"title": "檄!帝国華撃団",
 		"artist": "真宮寺さくら（横山智佐）＆帝国歌劇団「サクラ大戦」",
 		"id": 8081,
@@ -9492,7 +8701,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809404b",
 		"title": "神威",
 		"artist": "TJ.hangneil",
 		"id": 8082,
@@ -9504,7 +8712,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094135",
 		"title": "Reach for the Stars",
 		"artist": "ソニック カラーズ",
 		"id": 8083,
@@ -9516,7 +8723,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094020",
 		"title": "だんだん早くなる",
 		"artist": "40mP",
 		"id": 8084,
@@ -9528,7 +8734,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094022",
 		"title": "エテルニタス・ルドロジー",
 		"artist": "IRON ATTACK!",
 		"id": 8085,
@@ -9540,7 +8745,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094023",
 		"title": "Blue Noise",
 		"artist": "from PACA PACA PASSION",
 		"id": 8086,
@@ -9552,7 +8756,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094024",
 		"title": "Air",
 		"artist": "SHIKI",
 		"id": 8087,
@@ -9564,7 +8767,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094134",
 		"title": "言ノ葉カルマ",
 		"artist": "そらる・ろん×れるりり",
 		"id": 8088,
@@ -9576,7 +8778,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094025",
 		"title": "Dengeki Tube",
 		"artist": "BACO",
 		"id": 8089,
@@ -9588,7 +8789,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094026",
 		"title": "Title",
 		"artist": "SoundTeMP「ラグナロクオンライン」",
 		"id": 8090,
@@ -9600,7 +8800,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094028",
 		"title": "Oshama Scramble! (Cranky Remix)",
 		"artist": "Cranky",
 		"id": 8091,
@@ -9612,7 +8811,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809402a",
 		"title": "STAR",
 		"artist": "SEXY-SYNTHESIZER",
 		"id": 8092,
@@ -9624,7 +8822,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094029",
 		"title": "Star☆Glitter",
 		"artist": "セブンスシスターズ「Tokyo 7th シスターズ」",
 		"id": 8093,
@@ -9636,7 +8833,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809402b",
 		"title": "Starlight Dance Floor",
 		"artist": "発熱巫女～ず",
 		"id": 8094,
@@ -9648,7 +8844,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809402c",
 		"title": "ひだまりデイズ",
 		"artist": "妹S（シスターズ）（土間うまる [CV.田中あいみ]、海老名菜々 [CV.影山灯]、本場切絵 [CV.白石晴香]、橘・シルフィンフォード [CV.古川由利奈]）「干物妹！うまるちゃん」",
 		"id": 8095,
@@ -9660,7 +8855,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809402d",
 		"title": "elegante",
 		"artist": "Junk",
 		"id": 8097,
@@ -9672,7 +8866,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809402e",
 		"title": "今ぞ♡崇め奉れ☆オマエらよ！！～姫の秘メタル渇望～",
 		"artist": "あべにゅうぷろじぇくと feat.佐倉 紗織　produced by ave;new",
 		"id": 8098,
@@ -9684,7 +8877,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809402f",
 		"title": "Tidal Wave",
 		"artist": "D-Cee",
 		"id": 8099,
@@ -9696,7 +8888,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094031",
 		"title": "L9",
 		"artist": "paraoka",
 		"id": 8100,
@@ -9708,7 +8899,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094039",
 		"title": "RevolutionGame",
 		"artist": "れるりり feat.ろん",
 		"id": 8101,
@@ -9720,7 +8910,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094030",
 		"title": "taboo tears you up",
 		"artist": "REDALiCE (HARDCORE TANO*C)",
 		"id": 8103,
@@ -9732,7 +8921,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094033",
 		"title": "玩具狂奏曲 -終焉-",
 		"artist": "きくお",
 		"id": 8104,
@@ -9744,7 +8932,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094032",
 		"title": "その群青が愛しかったようだった",
 		"artist": "n-buna feat.ヤギヌマカナ",
 		"id": 8105,
@@ -9756,7 +8943,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094034",
 		"title": "アウターサイエンス",
 		"artist": "じん",
 		"id": 8106,
@@ -9768,7 +8954,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094035",
 		"title": "L'épisode",
 		"artist": "Osamu Kubota",
 		"id": 8107,
@@ -9780,7 +8965,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094036",
 		"title": "G e n g a o z o",
 		"artist": "-45",
 		"id": 8108,
@@ -9792,7 +8976,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094037",
 		"title": "AMAZING MIGHTYYYY!!!!",
 		"artist": "WAiKURO",
 		"id": 8110,
@@ -9804,7 +8987,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094038",
 		"title": "MIRU key way",
 		"artist": "JaccaPoP",
 		"id": 8111,
@@ -9816,7 +8998,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809403a",
 		"title": "HAELEQUIN (Original Remaster)",
 		"artist": "orangentle",
 		"id": 8112,
@@ -9828,7 +9009,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809403c",
 		"title": "Theme of SeelischTact",
 		"artist": "植松 伸夫",
 		"id": 8113,
@@ -9840,7 +9020,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809403b",
 		"title": "Glorious Crown (tpz over-Over-OVERCUTE REMIX)",
 		"artist": "t+pazolite",
 		"id": 8114,
@@ -9852,7 +9031,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809403d",
 		"title": "若い力 -SEGA HARD GIRLS MIX-",
 		"artist": "セガ・ハード・ガールズ",
 		"id": 8115,
@@ -9864,7 +9042,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809403e",
 		"title": "イロドリミドリ杯花映塚全一決定戦公式テーマソング『ウソテイ』",
 		"artist": "イロドリミドリ",
 		"id": 8116,
@@ -9876,7 +9053,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809403f",
 		"title": "青春サイダー",
 		"artist": "SPRiNGS「温泉むすめ」",
 		"id": 8117,
@@ -9888,7 +9064,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094041",
 		"title": "悪戯",
 		"artist": "ろん×田中秀和(MONACA)",
 		"id": 8118,
@@ -9900,7 +9075,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094040",
 		"title": "adrenaline!!!",
 		"artist": "TrySail「エロマンガ先生」",
 		"id": 8119,
@@ -9912,7 +9086,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094042",
 		"title": "ロボットプラネットユートピア",
 		"artist": "lumo",
 		"id": 8120,
@@ -9924,7 +9097,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094043",
 		"title": "ウソラセラ",
 		"artist": "ピノキオピー",
 		"id": 8121,
@@ -9936,7 +9108,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094044",
 		"title": "GEMINI -M-",
 		"artist": "Tatsh",
 		"id": 8123,
@@ -9948,7 +9119,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094045",
 		"title": "volcanic",
 		"artist": "DETRO a.k.a ルゼ",
 		"id": 8124,
@@ -9960,7 +9130,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094047",
 		"title": "Hyper Active",
 		"artist": "HiTECH NINJA",
 		"id": 8125,
@@ -9972,7 +9141,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c809404a",
 		"title": "macrocosmos",
 		"artist": "LeaF",
 		"id": 8126,
@@ -9984,7 +9152,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094046",
 		"title": "Devastating Blaster",
 		"artist": "INNOCENT NOIZE",
 		"id": 8127,
@@ -9996,7 +9163,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094048",
 		"title": "凛として咲く花の如く",
 		"artist": "紅色リトマス",
 		"id": 8128,
@@ -10008,7 +9174,6 @@
 		"searchTerms": []
 	},
 	{
-		"_id": "60989c49dd034613c8094049",
 		"title": "Starlight Disco",
 		"artist": "loos feat. Meramipop",
 		"id": 8129,

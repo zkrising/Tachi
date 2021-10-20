@@ -47,6 +47,11 @@ Note that you'll need `pnpm` and `node` installed.
 
 You can then use a tool like [MongoDB Compass](https://www.mongodb.com/products/compass) to analyse the data.
 
+## Contribution
+
+If your change involves inserting or removing records, you **must** run `node scripts/deterministic-collection-sort.js`.
+This will ensure diffs stay somewhat sane.
+
 ## I want db dumps for things like scores and users!
 
 Coming soon...

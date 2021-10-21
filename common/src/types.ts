@@ -453,7 +453,7 @@ interface SessionScorePBInfo {
 	scoreDelta: number;
 	gradeDelta: integer;
 	lampDelta: integer;
-	percentDelta: integer;
+	percentDelta: number;
 }
 
 interface SessionScoreNewInfo {
@@ -496,7 +496,7 @@ export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoD
 	timeStarted: integer;
 	calculatedData: Partial<Record<SessionCalculatedDataLookup[I], number | null>>;
 	highlight: boolean;
-	views: number;
+	views: integer;
 }
 
 export interface SessionViewDocument extends MongoDBDocument {
@@ -945,7 +945,7 @@ interface BMS7KScoreMeta {
 
 interface ScoreMetaLookup {
 	"iidx:SP": IIDXSPScoreMeta;
-	"iidx:DP": IIDXSPScoreMeta & { random: [RanOptions, RanOptions] | null };
+	"iidx:DP": IIDXSPScoreMeta & { random: { left: RanOptions; right: RanOptions } | null };
 	"popn:9B": Record<string, never>;
 	"sdvx:Single": { inSkillAnalyser: boolean | null };
 	"usc:Single": {
@@ -958,7 +958,7 @@ interface ScoreMetaLookup {
 	"jubeat:Single": Record<string, never>;
 	"museca:Single": Record<string, never>;
 	"bms:7K": BMS7KScoreMeta;
-	"bms:14K": BMS7KScoreMeta & { random: [RanOptions, RanOptions] | null };
+	"bms:14K": BMS7KScoreMeta & { random: { left: RanOptions; right: RanOptions } | null };
 	"chunithm:Single": Record<string, never>;
 	"gitadora:Gita": Record<string, never>;
 	"gitadora:Dora": Record<string, never>;

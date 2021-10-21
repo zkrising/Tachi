@@ -60,7 +60,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 
 			return {
 				VF6,
-				profileVF6: VF6 === null ? null : VF6 * 50,
+				ProfileVF6: VF6 === null ? null : VF6 * 50,
 			};
 		},
 	},
@@ -119,7 +119,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 
 			return {
 				VF6,
-				profileVF6: VF6 === null ? null : VF6 * 50,
+				ProfileVF6: VF6 === null ? null : VF6 * 50,
 			};
 		},
 	},

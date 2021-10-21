@@ -10,6 +10,7 @@ const logger = CreateLogCtx(__filename);
 
 export async function RecalcSessions() {
 	const allSessions = await db.sessions.find({});
+	logger.info(`Recalcing ${allSessions.length} sessions.`);
 
 	for (const session of allSessions) {
 		const scores = await db.scores.find(

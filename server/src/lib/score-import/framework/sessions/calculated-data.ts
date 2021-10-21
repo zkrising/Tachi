@@ -92,10 +92,10 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	},
 	bms: {
 		"7K": (scd) => ({
-			ktLampRating: AvgBest10Map(scd, "ktLampRating"),
+			sieglinde: AvgBest10Map(scd, "sieglinde"),
 		}),
 		"14K": (scd) => ({
-			ktLampRating: AvgBest10Map(scd, "ktLampRating"),
+			sieglinde: AvgBest10Map(scd, "sieglinde"),
 		}),
 	},
 	ddr: {

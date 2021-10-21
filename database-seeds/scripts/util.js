@@ -14,6 +14,17 @@ function IterateCollections(cb) {
 	DeterministicCollectionSort();
 }
 
+function MutateCollection(name, cb) {
+	const main = path.join(__dirname, "../collections");
+
+	const data = cb(JSON.parse(fs.readFileSync(path.join(main, name))));
+
+	fs.writeFileSync(path.join(main, name), JSON.stringify(data, null, "\t"));
+
+	DeterministicCollectionSort();
+}
+
 module.exports = {
-	IterateCollections
+	IterateCollections,
+	MutateCollection,
 }

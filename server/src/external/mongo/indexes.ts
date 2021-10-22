@@ -69,6 +69,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 		),
 		index({ "data.hashSHA256": 1 }),
 	],
+	"charts-bms": [index({ "data.hashMD5": 1 }, UNIQUE), index({ "data.hashSHA256": 1 }, UNIQUE)],
 	"bms-course-lookup": [index({ md5sums: 1 }, UNIQUE)],
 	"api-tokens": [index({ token: 1 }, UNIQUE), index({ userID: 1 })],
 	tables: [index({ tableID: 1, game: 1, playtype: 1 }, UNIQUE)],

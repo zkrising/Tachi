@@ -482,6 +482,19 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		folderID: "string",
 		inactive: "boolean",
 		searchTerms: ["string"],
+		type: p.isIn("songs", "charts", "static"),
+		data: (self, parent) => {
+			if (parent.type === "songs") {
+				return true; //temp. should be a song.
+			} else if (parent.type === "charts") {
+				return true; //temp. should be a chart.
+			}
+
+			return (
+				(Array.isArray(self) && self.every((r) => typeof r === "string")) ||
+				"Expected an array of only strings."
+			);
+		},
 	}),
 	tables: prSchemaify({
 		tableID: "string",

@@ -34,3 +34,5 @@ dump.rdb
 
 scripts/quick-insert/insert.ts
 scripts/bpi-poyashi-data/output.json
+
+scripts/sync-database/tachi-database-seeds

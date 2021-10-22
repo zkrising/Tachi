@@ -1,3 +1,10 @@
+// THIS SCRIPT IS NOT FOR IMPORTING TO AN INSTANCE OF TACHI.
+// THAT PROCESS IS *SIGNIFICANTLY* MORE COMPLEX, AND IS PART
+// OF TACHI-SERVER.
+
+// This script is for importing the collections *immediately* into
+// any old mongo instance.
+
 const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
@@ -35,7 +42,7 @@ for (const file of fs.readdirSync(base)) {
 	logger.info(`Running ${command}.`);
 
 	try {
-		execSync(command, {stdio: "inherit"});
+		execSync(command, { stdio: "inherit" });
 	} catch (err) {
 		logger.error(`Failed to import ${file}.`, { command, err });
 	}

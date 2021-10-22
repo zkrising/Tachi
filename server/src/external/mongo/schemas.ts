@@ -131,7 +131,7 @@ const GetHitMeta = (game: Game): PrudenceSchema => {
 	return {};
 };
 
-const PR_Random = optNull(p.isIn("NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"));
+const PR_Random = p.isIn("NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR");
 
 const getPlaytype = (game: Game, self: unknown): Playtypes[Game] => {
 	if (!self || typeof self !== "object") {
@@ -190,7 +190,7 @@ const PR_ChartDocument = (
 const GetScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => {
 	if (game === "iidx" && playtype === "SP") {
 		return {
-			random: PR_Random,
+			random: optNull(PR_Random),
 			assist: optNull(p.isIn("NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "FULL ASSIST")),
 			range: optNull(p.isIn("NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+")),
 			gauge: optNull(p.isIn("ASSISTED EASY", "EASY", "NORMAL", "HARD", "EX-HARD")),
@@ -214,16 +214,16 @@ const GetScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => 
 		};
 	} else if (game === "bms" && playtype === "7K") {
 		return {
-			random: PR_Random,
+			random: optNull(PR_Random),
 			inputDevice: optNull(p.isIn("KEYBOARD", "BM_CONTROLLER")),
 			client: optNull(p.isIn("LR2", "lr2oraja")),
 		};
 	} else if (game === "bms" && playtype === "14K") {
 		return {
-			random: {
+			random: optNull({
 				left: PR_Random,
 				right: PR_Random,
-			},
+			}),
 			inputDevice: optNull(p.isIn("KEYBOARD", "BM_CONTROLLER")),
 			client: optNull(p.isIn("LR2", "lr2oraja")),
 		};

@@ -54,6 +54,7 @@ export async function ValidateAllCollections() {
 if (require.main === module) {
 	if (options.collection) {
 		ValidateCollection(options.collection).then(() => process.exit(0));
+	} else {
+		ValidateAllCollections().then(() => process.exit(0));
 	}
-	ValidateAllCollections().then(() => process.exit(0));
 }

@@ -6,6 +6,14 @@ import { FormatPrError } from "utils/prudence";
 // note: a hell of a lot of this code is copy pasted
 // this is just a script, so, feel free to refactor it.
 
+import { Command } from "commander";
+
+const program = new Command();
+program.option("-c, --collection <collectionName>");
+
+program.parse(process.argv);
+const options = program.opts();
+
 const logger = CreateLogCtx(__filename);
 
 export async function ValidateCollection(collectionName: Databases): Promise<void> {
@@ -44,5 +52,8 @@ export async function ValidateAllCollections() {
 }
 
 if (require.main === module) {
+	if (options.collection) {
+		ValidateCollection(options.collection).then(() => process.exit(0));
+	}
 	ValidateAllCollections().then(() => process.exit(0));
 }

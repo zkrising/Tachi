@@ -14,6 +14,12 @@ export async function ParseArcSDVX(
 ): Promise<ParserFunctionReturns<unknown, EmptyObject>> {
 	const authDoc = await GetArcAuthGuaranteed(userID, "api/arc-sdvx", logger);
 
+	if (!ServerConfig.ARC_AUTH_TOKEN || !ServerConfig.ARC_API_URL) {
+		throw new Error(
+			`Cannot parse ArcSDVX withouth ARC_API_URL and ARC_AUTH_TOKEN being defined.`
+		);
+	}
+
 	return {
 		iterable: TraverseKaiAPI(
 			ServerConfig.ARC_API_URL,

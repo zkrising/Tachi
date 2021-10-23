@@ -48,14 +48,14 @@ export interface TachiConfig {
 	LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
 	CAPTCHA_SECRET_KEY: string;
 	SESSION_SECRET: string;
-	FLO_API_URL: string;
-	EAG_API_URL: string;
-	MIN_API_URL: string;
-	ARC_API_URL: string;
+	FLO_API_URL?: string;
+	EAG_API_URL?: string;
+	MIN_API_URL?: string;
+	ARC_API_URL?: string;
 	FLO_OAUTH2_INFO?: OAuth2Info;
 	EAG_OAUTH2_INFO?: OAuth2Info;
 	MIN_OAUTH2_INFO?: OAuth2Info;
-	ARC_AUTH_TOKEN: string;
+	ARC_AUTH_TOKEN?: string;
 	TYPE: "ktchi" | "btchi" | "omni";
 	ENABLE_SERVER_HTTPS?: boolean;
 	RUN_OWN_CDN?: boolean;
@@ -87,14 +87,14 @@ const err = p(config, {
 	LOG_LEVEL: p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit"),
 	CAPTCHA_SECRET_KEY: "string",
 	SESSION_SECRET: "string",
-	FLO_API_URL: isValidURL,
-	EAG_API_URL: isValidURL,
-	MIN_API_URL: isValidURL,
-	ARC_API_URL: isValidURL,
+	FLO_API_URL: p.optional(isValidURL),
+	EAG_API_URL: p.optional(isValidURL),
+	MIN_API_URL: p.optional(isValidURL),
+	ARC_API_URL: p.optional(isValidURL),
 	FLO_OAUTH2_INFO: isValidOauth2,
 	EAG_OAUTH2_INFO: isValidOauth2,
 	MIN_OAUTH2_INFO: isValidOauth2,
-	ARC_AUTH_TOKEN: "string",
+	ARC_AUTH_TOKEN: "*string",
 	ENABLE_SERVER_HTTPS: "*boolean",
 	RUN_OWN_CDN: "*boolean",
 	CLIENT_DEV_SERVER: "*?string",

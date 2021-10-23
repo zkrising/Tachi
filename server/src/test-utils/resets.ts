@@ -79,7 +79,7 @@ export default async function ResetDBState() {
 
 export function ResetCDN() {
 	return new Promise<void>((resolve, reject) =>
-		rimraf(ServerConfig.CDN_FILE_ROOT, (err) => {
+		rimraf(Environment.cdnRoot, (err) => {
 			if (err) {
 				reject(err);
 			}

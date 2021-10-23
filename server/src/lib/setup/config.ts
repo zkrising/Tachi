@@ -171,5 +171,6 @@ export const Environment = {
 	port,
 	redisUrl,
 	mongoUrl,
-	cdnRoot,
+	// If node_env is test, force to ./test-cdn.
+	cdnRoot: process.env.NODE_ENV === "test" ? "./test-cdn" : cdnRoot,
 };

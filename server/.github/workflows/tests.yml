@@ -40,6 +40,10 @@ jobs:
 
       - name: Run Tests
         run: pnpm test
+        env:
+          PORT: 8080
+          MONGO_URL: "127.0.0.1"
+          REDIS_URL: "127.0.0.1"
 
       - name: Lint Code
         run: pnpm lint
@@ -49,32 +53,3 @@ jobs:
         run: |
           pnpm install -g codecov
           cat coverage/lcov.info | codecov
-  # deploy:
-  #   if: ${{ github.ref == 'master' }}
-  #   needs: test
-  #   name: Deploy
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout Code
-  #       uses: actions/checkout@v2
-
-  #     - name: Install Node.js 15
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: 15.x
-
-  #     - name: Install PNPM
-  #       uses: pnpm/action-setup@v2.0.1
-  #       with:
-  #         version: 6.0.2
-
-  #     # configure external dbs
-  #     - uses: supercharge/mongodb-github-action@1.4.1
-  #     - uses: supercharge/redis-github-action@1.1.0
-
-  #     - name: Install Dependencies
-  #       run: pnpm i
-
-  #     # for the time being, disable lint checking.
-  #     # - name: Lint Code
-  #     #   run: pnpm lint

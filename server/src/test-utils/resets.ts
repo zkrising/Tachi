@@ -8,7 +8,7 @@ import CreateLogCtx from "lib/logger/logger";
 // im installing an entire library for rm rf...
 import rimraf from "rimraf";
 import { SetIndexes } from "external/mongo/indexes";
-import { ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -90,7 +90,7 @@ export function ResetCDN() {
 
 export async function SetIndexesForDB() {
 	await ResetDBState();
-	const url = `${ServerConfig.MONGO_CONNECTION_URL}/testingdb`;
+	const url = `${Environment.mongoUrl}/testingdb`;
 
 	logger.info(`Setting indexes for ${url}`);
 

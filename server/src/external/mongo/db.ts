@@ -1,7 +1,7 @@
 import { ONE_MINUTE } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
-import { ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig } from "lib/setup/config";
 import monk, { TMiddleware } from "monk";
 import {
 	APITokenDocument,
@@ -51,12 +51,12 @@ if (process.env.NODE_ENV === "test") {
 	dbName = `testingdb`;
 }
 
-logger.info(`Connecting to database ${ServerConfig.MONGO_CONNECTION_URL}/${dbName}...`);
+logger.info(`Connecting to database ${Environment.mongoUrl}/${dbName}...`);
 const dbtime = process.hrtime.bigint();
 
 // By default the connectTimeoutMS is 30 seconds. This has been upped to 2 minutes, due to poor performance
 // inside githubs test runners.
-export const monkDB = monk(`${ServerConfig.MONGO_CONNECTION_URL}/${dbName}`, {
+export const monkDB = monk(`${Environment.mongoUrl}/${dbName}`, {
 	serverSelectionTimeoutMS: ONE_MINUTE * 2,
 });
 

@@ -1,7 +1,6 @@
 // Config file that the CI deployment uses. This is moved to $pwd/conf.json5 before CI tests are ran.
 
 {
-	MONGO_CONNECTION_URL: "127.0.0.1:27017",
 	MONGO_DATABASE_NAME: "testingdb",
 	LOG_LEVEL: "info",
 	CAPTCHA_SECRET_KEY: "unused",
@@ -21,8 +20,6 @@
 		REDIRECT_URI: "https://example.com",
 	},
 	ARC_AUTH_TOKEN: "unused",
-	CDN_FILE_ROOT: "./test-cdn",
-	PORT: 8080,
 	TYPE: "omni",
 	ENABLE_SERVER_HTTPS: false,
 	RUN_OWN_CDN: true,

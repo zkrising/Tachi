@@ -3,7 +3,7 @@ import "express-async-errors";
 import expressSession from "express-session";
 import { integer } from "tachi-common";
 import { RedisClient } from "external/redis/redis";
-import { ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig } from "lib/setup/config";
 import connectRedis from "connect-redis";
 import helmet from "helmet";
 import CreateLogCtx from "lib/logger/logger";
@@ -19,6 +19,7 @@ if (process.env.NODE_ENV !== "test") {
 		host: "localhost",
 		port: 6379,
 		client: RedisClient,
+		prefix: ServerConfig.TYPE,
 	});
 }
 
@@ -112,10 +113,10 @@ if (ServerConfig.RUN_OWN_CDN) {
 			`Running OWN_CDN in production. Consider making a separate process handle your CDN for performance.`
 		);
 	} else if (process.env.NODE_ENV !== "test") {
-		logger.info(`Running own CDN at ${ServerConfig.CDN_FILE_ROOT}.`);
+		logger.info(`Running own CDN at ${Environment.cdnRoot}.`);
 	}
 
-	app.use("/cdn", express.static(ServerConfig.CDN_FILE_ROOT));
+	app.use("/cdn", express.static(Environment.cdnRoot));
 	app.get("/cdn/*", (req, res) => res.status(404).send("No content here."));
 }
 

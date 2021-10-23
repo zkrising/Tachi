@@ -1,11 +1,14 @@
 import CreateLogCtx from "lib/logger/logger";
+import { Environment } from "lib/setup/config";
 import redis from "redis";
 
 const logger = CreateLogCtx(__filename);
 
 logger.verbose("Instantiated Redis Store");
 
-export const RedisClient = redis.createClient();
+export const RedisClient = redis.createClient({
+	url: `redis://${Environment.redisUrl}`,
+});
 logger.verbose("Instantiated Redis Client");
 
 function EmitCritical() {

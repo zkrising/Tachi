@@ -7,7 +7,7 @@ import { FormatPrError } from "utils/prudence";
 import { integer, StaticConfig } from "tachi-common";
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
 
-// stub - having a real logger here creates a circular dependency.r
+// stub - having a real logger here creates a circular dependency.
 const logger = console; // CreateLogCtx(__filename);
 
 const confLocation = process.env.TCHIS_CONF_LOCATION ?? "./conf.json5";
@@ -44,7 +44,6 @@ export interface OAuth2Info {
 }
 
 export interface TachiConfig {
-	MONGO_CONNECTION_URL: string;
 	MONGO_DATABASE_NAME: string;
 	LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
 	CAPTCHA_SECRET_KEY: string;
@@ -57,9 +56,7 @@ export interface TachiConfig {
 	EAG_OAUTH2_INFO?: OAuth2Info;
 	MIN_OAUTH2_INFO?: OAuth2Info;
 	ARC_AUTH_TOKEN: string;
-	CDN_FILE_ROOT: string;
 	TYPE: "ktchi" | "btchi" | "omni";
-	PORT: integer;
 	ENABLE_SERVER_HTTPS?: boolean;
 	RUN_OWN_CDN?: boolean;
 	CLIENT_DEV_SERVER?: string | null;
@@ -77,7 +74,6 @@ export interface TachiConfig {
 	OUR_URL: string;
 	LOGGER_DISCORD_WEBHOOK?: string;
 	DISCORD_WHO_TO_TAG?: string[];
-	INVOKE_JOB_RUNNER?: boolean;
 }
 
 const isValidOauth2 = p.optional({
@@ -87,7 +83,6 @@ const isValidOauth2 = p.optional({
 });
 
 const err = p(config, {
-	MONGO_CONNECTION_URL: "string",
 	MONGO_DATABASE_NAME: "string",
 	LOG_LEVEL: p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit"),
 	CAPTCHA_SECRET_KEY: "string",
@@ -100,8 +95,6 @@ const err = p(config, {
 	EAG_OAUTH2_INFO: isValidOauth2,
 	MIN_OAUTH2_INFO: isValidOauth2,
 	ARC_AUTH_TOKEN: "string",
-	CDN_FILE_ROOT: "string",
-	PORT: p.isPositiveInteger,
 	ENABLE_SERVER_HTTPS: "*boolean",
 	RUN_OWN_CDN: "*boolean",
 	CLIENT_DEV_SERVER: "*?string",
@@ -119,7 +112,6 @@ const err = p(config, {
 	OUR_URL: "string",
 	LOGGER_DISCORD_WEBHOOK: "*string",
 	DISCORD_WHO_TO_TAG: p.optional(["string"]),
-	INVOKE_JOB_RUNNER: "*boolean",
 });
 
 if (err) {
@@ -148,3 +140,37 @@ if (tachiConfig.EMAIL_CONFIG) {
 
 export const ServerTypeInfo = tachiConfig.SERVER_TYPE_INFO;
 export const ServerConfig = tachiConfig;
+
+// Environment Variable Validation
+
+let port = Number(process.env.PORT);
+if (Number.isNaN(port)) {
+	logger.warn(`No/invalid PORT specified in environment, defaulting to 8080.`);
+	port = 8080;
+}
+
+const redisUrl = process.env.REDIS_URL;
+if (!redisUrl) {
+	logger.error(`No REDIS_URL specified in environment. Terminating.`);
+	process.exit(1);
+}
+
+const mongoUrl = process.env.MONGO_URL;
+if (!mongoUrl) {
+	logger.error(`No MONGO_URL specified in environment. Terminating.`);
+	process.exit(1);
+}
+
+const cdnRoot = process.env.CDN_FILE_ROOT;
+if (!cdnRoot) {
+	logger.error(`No CDN_FILE_ROOT specified in environment. Terminating.`);
+	process.exit(1);
+}
+
+export const Environment = {
+	port,
+	redisUrl,
+	mongoUrl,
+	// If node_env is test, force to ./test-cdn.
+	cdnRoot: process.env.NODE_ENV === "test" ? "./test-cdn" : cdnRoot,
+};

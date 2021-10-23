@@ -1,6 +1,6 @@
 import CreateLogCtx from "lib/logger/logger";
 import server from "server/server";
-import { ServerTypeInfo, ServerConfig } from "lib/setup/config";
+import { ServerTypeInfo, ServerConfig, Environment } from "lib/setup/config";
 import https from "https";
 import fs from "fs";
 import { FormatVersion } from "./lib/constants/version";
@@ -21,14 +21,14 @@ if (ServerConfig.ENABLE_SERVER_HTTPS) {
 
 	const httpsServer = https.createServer({ key: privateKey, cert: certificate }, server);
 
-	httpsServer.listen(ServerConfig.PORT);
-	logger.info(`HTTPS Listening on port ${ServerConfig.PORT}`);
+	httpsServer.listen(Environment.port);
+	logger.info(`HTTPS Listening on port ${Environment.port}`);
 } else {
-	server.listen(ServerConfig.PORT);
-	logger.info(`HTTP Listening on port ${ServerConfig.PORT}`);
+	server.listen(Environment.port);
+	logger.info(`HTTP Listening on port ${Environment.port}`);
 }
 
-if (ServerConfig.INVOKE_JOB_RUNNER || process.env.INVOKE_JOB_RUNNER) {
+if (process.env.INVOKE_JOB_RUNNER) {
 	logger.info(`Spawning a tachi-server job runner.`);
 
 	// Spawn as a separate process to avoid hogging the main thread.

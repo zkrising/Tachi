@@ -4,7 +4,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { promisify } from "util";
 import mkdirp from "mkdirp";
 import { Response } from "express";
-import { ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig } from "lib/setup/config";
 
 const readFilePromise = promisify(fs.readFile);
 const writeFilePromise = promisify(fs.writeFile);
@@ -19,7 +19,7 @@ const logger = CreateLogCtx(__filename);
  * Path directory traversal *is* possible, and *will* ruin your day.
  */
 function CDNRoot(fileLoc: string) {
-	return path.join(ServerConfig.CDN_FILE_ROOT, fileLoc);
+	return path.join(Environment.cdnRoot, fileLoc);
 }
 
 /**

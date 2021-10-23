@@ -44,6 +44,7 @@ jobs:
           PORT: 8080
           MONGO_URL: "127.0.0.1"
           REDIS_URL: "127.0.0.1"
+          CDN_FILE_ROOT: "./test-cdn"
 
       - name: Lint Code
         run: pnpm lint

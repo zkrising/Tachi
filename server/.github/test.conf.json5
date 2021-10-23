@@ -20,7 +20,6 @@
 		REDIRECT_URI: "https://example.com",
 	},
 	ARC_AUTH_TOKEN: "unused",
-	CDN_FILE_ROOT: "./test-cdn",
 	TYPE: "omni",
 	ENABLE_SERVER_HTTPS: false,
 	RUN_OWN_CDN: true,

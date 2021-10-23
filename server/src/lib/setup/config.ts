@@ -56,7 +56,6 @@ export interface TachiConfig {
 	EAG_OAUTH2_INFO?: OAuth2Info;
 	MIN_OAUTH2_INFO?: OAuth2Info;
 	ARC_AUTH_TOKEN: string;
-	CDN_FILE_ROOT: string;
 	TYPE: "ktchi" | "btchi" | "omni";
 	ENABLE_SERVER_HTTPS?: boolean;
 	RUN_OWN_CDN?: boolean;
@@ -96,7 +95,6 @@ const err = p(config, {
 	EAG_OAUTH2_INFO: isValidOauth2,
 	MIN_OAUTH2_INFO: isValidOauth2,
 	ARC_AUTH_TOKEN: "string",
-	CDN_FILE_ROOT: "string",
 	ENABLE_SERVER_HTTPS: "*boolean",
 	RUN_OWN_CDN: "*boolean",
 	CLIENT_DEV_SERVER: "*?string",
@@ -163,8 +161,15 @@ if (!mongoUrl) {
 	process.exit(1);
 }
 
+const cdnRoot = process.env.CDN_FILE_ROOT;
+if (!cdnRoot) {
+	logger.error(`No CDN_FILE_ROOT specified in environment. Terminating.`);
+	process.exit(1);
+}
+
 export const Environment = {
 	port,
 	redisUrl,
 	mongoUrl,
+	cdnRoot,
 };

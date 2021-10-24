@@ -73,6 +73,8 @@ export const loggedInSplashes = [
 	"Our most beautiful melody.",
 	"Cwalina Subsidiary",
 	"Let's do it now.",
+	"Brought by GameMasterAnthony",
+	"bwhæhæhææhæhhææhæh",
 ];
 
 // Stuff that's bad for the kids, you know?

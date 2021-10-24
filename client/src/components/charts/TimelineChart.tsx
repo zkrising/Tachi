@@ -25,7 +25,7 @@ export default function TimelineChart({
 	tooltipRenderFn?: (p: PointTooltipProps["point"]) => JSX.Element;
 	reverse?: boolean;
 } & ResponsiveLine["props"]) {
-	if (!data[0] || data[0].data.length < 7) {
+	if (!data[0] || data[0].data.length < 2) {
 		return (
 			<>
 				<div
@@ -37,7 +37,7 @@ export default function TimelineChart({
 							Not Enough Data... Yet.
 							<br />
 							<small className="text-muted">
-								(You need atleast 7 days worth of data)
+								(You need atleast 2 days worth of data)
 							</small>
 						</div>
 					</div>
@@ -48,7 +48,7 @@ export default function TimelineChart({
 							Not Enough Data... Yet.
 							<br />
 							<small className="text-muted">
-								(You need atleast 7 days worth of data)
+								(You need atleast 2 days worth of data)
 							</small>
 						</div>
 					</div>

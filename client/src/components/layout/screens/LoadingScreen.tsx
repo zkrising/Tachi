@@ -43,7 +43,7 @@ export function LoadingScreen({ children }: JustChildren) {
 			.catch(err => {
 				console.error(err);
 				setBroke(
-					"A network error has occured while loading Kamaitachi. If you think this is on your end, try reloading the page. If you think it isn't, report this."
+					`A network error has occured while loading ${TachiConfig.name}. If you think this is on your end, try reloading the page. If you think it isn't, report this.`
 				);
 				clearTimeout(timeout);
 			});

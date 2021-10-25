@@ -75,6 +75,7 @@ export const loggedInSplashes = [
 	"Let's do it now.",
 	"Brought by GameMasterAnthony",
 	"bwhæhæhææhæhhææhæh",
+	"Maximal opinions and Minimal evidence",
 ];
 
 // Stuff that's bad for the kids, you know?

@@ -1,10 +1,13 @@
+/* eslint-disable no-await-in-loop */
 import { Command } from "commander";
 import { ServerConfig } from "lib/setup/config";
 import db from "external/mongo/db";
-import { FindChartWithPTDFVersion } from "utils/queries/charts";
+import { FindChartWithPTDFVersion, FindSDVXChartOnDFVersion } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "utils/fetch";
+import fs from "fs";
+import path from "path";
 
 const logger = CreateLogCtx(__filename);
 
@@ -13,6 +16,7 @@ const program = new Command();
 program.option("-u, --url <URL>", "The base URL to sync from.");
 program.option("-b, --bearer <token>", "The authorization bearer token to use.");
 program.option("-g, --game <game>", "Should be exactly iidx or sdvx.");
+program.option("-c, --cache", "Use a local cached JSON file, instead of requesting from the api.");
 
 program.parse(process.argv);
 const options = program.opts();
@@ -96,8 +100,25 @@ async function GetCharts() {
 	return allCharts;
 }
 
+const cacheLoc = path.join(__dirname, "cache.json");
+
 async function MergeIDs() {
-	const charts = await GetCharts();
+	let charts;
+
+	if (options.cache) {
+		logger.info(`--cache provided, reading cache.`);
+		try {
+			charts = JSON.parse(fs.readFileSync(cacheLoc, "utf-8"));
+		} catch (err) {
+			throw new Error(`No cache, cannot use --cache!`);
+		}
+	} else {
+		logger.info(`Reading from arc.`);
+
+		charts = await GetCharts();
+	}
+
+	fs.writeFileSync(cacheLoc, JSON.stringify(charts));
 
 	for (const chartData of charts) {
 		const songTitle = chartData._related.music[0].title;
@@ -106,11 +127,15 @@ async function MergeIDs() {
 		const song = await FindSongOnTitle(options.game, songTitle);
 
 		if (!song) {
-			logger.error(`Could not resolve ${songTitle}?`);
+			logger.error(`Could not resolve song ${songTitle}?`);
 			continue;
 		}
 
 		for (const chart of chartData._items) {
+			if (chart.rating === 0) {
+				continue;
+			}
+
 			const playtype: "SP" | "DP" | "Single" =
 				options.game === "iidx" ? (chart.play_style === "DOUBLE" ? "DP" : "SP") : "Single";
 
@@ -127,14 +152,22 @@ async function MergeIDs() {
 				difficulty = "ANOTHER";
 			}
 
-			// eslint-disable-next-line no-await-in-loop
-			const tachiChart = await FindChartWithPTDFVersion(
-				options.game,
-				song.id,
-				playtype,
-				difficulty,
-				version
-			);
+			let tachiChart;
+			if (options.game === "sdvx") {
+				tachiChart = await FindSDVXChartOnDFVersion(
+					song.id,
+					difficulty === "INF" ? "ANY_INF" : difficulty,
+					version as "vivid"
+				);
+			} else {
+				tachiChart = await FindChartWithPTDFVersion(
+					options.game,
+					song.id,
+					playtype,
+					difficulty,
+					version
+				);
+			}
 
 			if (!tachiChart) {
 				logger.error(
@@ -157,7 +190,7 @@ async function MergeIDs() {
 		}
 	}
 
-	const r = await db.charts[options.game as "sdvx" | "iidx"].update(
+	await db.charts[options.game as "sdvx" | "iidx"].update(
 		{
 			"data.arcChartID": { $exists: false },
 		},
@@ -167,7 +200,9 @@ async function MergeIDs() {
 		}
 	);
 
-	logger.info("done.", { r });
+	logger.info("done.");
+
+	process.exit(0);
 }
 
 if (require.main === module) {

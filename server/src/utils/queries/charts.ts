@@ -216,6 +216,23 @@ export function FindSDVXChartOnInGameIDVersion(
 	});
 }
 
+export function FindSDVXChartOnDFVersion(
+	songID: integer,
+	difficulty: "NOV" | "ADV" | "EXH" | "MXM" | "ANY_INF",
+	version: GPTSupportedVersions["sdvx:Single"]
+) {
+	const diffQuery =
+		difficulty === "ANY_INF"
+			? { $in: ["INF", "GRV", "HVN", "VVD"] as Difficulties["sdvx:Single"][] }
+			: difficulty;
+
+	return db.charts.sdvx.findOne({
+		songID,
+		difficulty: diffQuery,
+		versions: version,
+	});
+}
+
 export function FindChartOnSHA256(game: Game, hash: string) {
 	if (game !== "bms" && game !== "usc" && game !== "iidx") {
 		throw new Error(`Cannot call FindChartOnSHA256 for game ${game}.`);

@@ -759,7 +759,7 @@ export interface GPTSupportedVersions {
 	"iidx:SP": SupportedIIDXVersions;
 	"iidx:DP": SupportedIIDXVersions;
 	"popn:9B": never;
-	"sdvx:Single": "heaven" | "vivid";
+	"sdvx:Single": "booth" | "inf" | "gw" | "heaven" | "vivid";
 	"usc:Single": never;
 	"ddr:SP": "a20";
 	"ddr:DP": "a20";
@@ -934,7 +934,7 @@ interface IIDXSPScoreMeta {
 	random: RanOptions | null;
 	assist: "NO ASSIST" | "AUTO SCRATCH" | "LEGACY NOTE" | "FULL ASSIST" | null;
 	range: "NONE" | "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+" | null;
-	gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX HARD" | null;
+	gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX-HARD" | null;
 }
 
 interface BMS7KScoreMeta {

@@ -696,7 +696,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLatestVersion: "vivid",
 		currentLocalVersion: "vivid",
 		currentGameOmniVersion: null,
-		supportedVersions: ["heaven", "vivid"],
+		supportedVersions: ["booth", "inf", "gw", "heaven", "vivid"],
 
 		tierlists: [],
 		tierlistDescriptions: {},

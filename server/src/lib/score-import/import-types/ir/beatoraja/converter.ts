@@ -185,7 +185,6 @@ function ConvertBeatorajaChartToTachi(chart: BeatorajaChart) {
 	const songDoc: SongDocument<"bms"> = {
 		artist: chart.artist,
 		title: chart.title,
-		firstVersion: "",
 		id: 0,
 		altTitles: [],
 		searchTerms: [],

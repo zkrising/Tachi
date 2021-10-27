@@ -78,9 +78,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 		}),
 	},
 	maimai: {
-		Single: (scd) => ({
-			ktRating: AvgBest10Map(scd, "ktRating"),
-		}),
+		Single: (scd) => ({}),
 	},
 	gitadora: {
 		Gita: (scd) => ({

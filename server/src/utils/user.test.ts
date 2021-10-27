@@ -1,5 +1,5 @@
 import t from "tap";
-import { PRUDENCE_PUBLIC_USER } from "external/mongo/schemas";
+import { DatabaseSchemas } from "external/mongo/schemas";
 import { prAssert } from "test-utils/asserts";
 import { GetUserCaseInsensitive, FormatUserDoc } from "./user";
 import { PublicUserDocument } from "tachi-common";
@@ -16,7 +16,7 @@ t.test("#GetUserCaseInsensitive", (t) => {
 
 		t.equal(result!.username, "test_zkldi", "Should return test_zkldi");
 
-		prAssert(result, PRUDENCE_PUBLIC_USER, "Should return a conforming PublicUserDocument");
+		t.ok(DatabaseSchemas.users(result), "Should return a conforming PublicUserDocument");
 
 		// @ts-expect-error yeah
 		t.equal(result.password, undefined, "Should not return password");
@@ -31,7 +31,7 @@ t.test("#GetUserCaseInsensitive", (t) => {
 
 		t.equal(result!.username, "test_zkldi", "Should return test_zkldi");
 
-		prAssert(result, PRUDENCE_PUBLIC_USER, "Should return a conforming PublicUserDocument");
+		t.ok(DatabaseSchemas.users(result), "Should return a conforming PublicUserDocument");
 
 		// @ts-expect-error yeah
 		t.equal(result.password, undefined, "Should not return password");

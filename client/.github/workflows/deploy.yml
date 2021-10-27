@@ -1,0 +1,17 @@
+name: deploy
+
+on:
+  push:
+    branches: [master]
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run deploy script on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.TACHI_HOST }}
+          username: tachi
+          key: ${{ secrets.TACHI_KEY }}
+          script: tachi-client-deploy

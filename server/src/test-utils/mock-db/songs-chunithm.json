@@ -1,11 +1,13 @@
-[{
-    "title": "B.B.K.K.B.K.K.",
-    "artist": "nora2r",
-    "id": 3,
-    "firstVersion": "chuni",
-    "altTitles": [],
-    "searchTerms": [],
-    "data": {
-        "genre": "VARIETY"
+[
+    {
+        "title": "B.B.K.K.B.K.K.",
+        "artist": "nora2r",
+        "id": 3,
+        "altTitles": [],
+        "searchTerms": [],
+        "data": {
+            "genre": "VARIETY",
+            "firstVersion": "chuni"
+        }
     }
-}]
+]

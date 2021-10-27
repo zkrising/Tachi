@@ -3,11 +3,11 @@
         "title": "5.1.1.",
         "artist": "dj nagureo",
         "id": 1,
-        "firstVersion": "0",
         "altTitles": [],
         "searchTerms": [],
         "data": {
-            "genre": "PIANO AMBIENT"
+            "genre": "PIANO AMBIENT",
+            "firstVersion": "1"
         }
     }
 ]

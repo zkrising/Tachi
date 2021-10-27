@@ -6,7 +6,7 @@ function IterateCollections(cb) {
 	const main = path.join(__dirname, "../collections");
 
 	for (const collection of fs.readdirSync(main)) {
-		const data = cb(JSON.parse(fs.readFileSync(path.join(main, collection))));
+		const data = cb(JSON.parse(fs.readFileSync(path.join(main, collection))), collection);
 
 		fs.writeFileSync(path.join(main, collection), JSON.stringify(data, null, "\t"));
 	}

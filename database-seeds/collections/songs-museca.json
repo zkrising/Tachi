@@ -3,10 +3,10 @@
 		"title": "セツナトリップ",
 		"artist": "Last Note. feat. GUMI",
 		"id": 1,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｾﾂﾅﾄﾘｯﾌﾟ",
-			"artistJP": "ﾗｽﾄﾉｰﾄﾌｨｰﾁｬﾘﾝｸﾞｸﾞﾐ"
+			"artistJP": "ﾗｽﾄﾉｰﾄﾌｨｰﾁｬﾘﾝｸﾞｸﾞﾐ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -15,10 +15,10 @@
 		"title": "天ノ弱",
 		"artist": "164 feat. GUMI",
 		"id": 2,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｱﾏﾉｼﾞｬｸ",
-			"artistJP": "ｲﾁﾛｸﾖﾝﾌｨｰﾁｬﾘﾝｸﾞｸﾞﾐ"
+			"artistJP": "ｲﾁﾛｸﾖﾝﾌｨｰﾁｬﾘﾝｸﾞｸﾞﾐ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -27,10 +27,10 @@
 		"title": "いーあるふぁんくらぶ",
 		"artist": "みきとP",
 		"id": 3,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｲｰｱﾙﾌｧﾝｸﾗﾌﾞ",
-			"artistJP": "ﾐｷﾄﾋﾟｰ"
+			"artistJP": "ﾐｷﾄﾋﾟｰ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -39,10 +39,10 @@
 		"title": "ケッペキショウ",
 		"artist": "すこっぷ",
 		"id": 4,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｹｯﾍﾟｷｼｮｳ",
-			"artistJP": "ｽｺｯﾌﾟ"
+			"artistJP": "ｽｺｯﾌﾟ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -51,10 +51,10 @@
 		"title": "ルービックキューブ",
 		"artist": "otetsu feat.GUMI",
 		"id": 5,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾙｰﾋﾞｯｸｷｭｰﾌﾞ",
-			"artistJP": "ｵﾃﾂﾌｨｰﾁｬﾘﾝｸﾞｸﾞﾐ"
+			"artistJP": "ｵﾃﾂﾌｨｰﾁｬﾘﾝｸﾞｸﾞﾐ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -63,10 +63,10 @@
 		"title": "マネマネサイコトロピック",
 		"artist": "かいりきベア",
 		"id": 6,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾏﾈﾏﾈｻｲｺﾄﾛﾋﾟｯｸ",
-			"artistJP": "ｶｲﾘｷﾍﾞｱ"
+			"artistJP": "ｶｲﾘｷﾍﾞｱ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -75,10 +75,10 @@
 		"title": "Bad ∞ End ∞ Night",
 		"artist": "ひとしずく×やま△",
 		"id": 7,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾊﾞｯﾄﾞｴﾝﾄﾞﾅｲﾄ",
-			"artistJP": "ﾋﾄｼﾂﾞｸｶｹﾙﾔﾏｻﾝｶｯｹｲ"
+			"artistJP": "ﾋﾄｼﾂﾞｸｶｹﾙﾔﾏｻﾝｶｯｹｲ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -87,10 +87,10 @@
 		"title": "僕は空気が嫁ない",
 		"artist": "cosMo＠暴走P",
 		"id": 8,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾎﾞｸﾊｸｳｷｶﾞﾖﾒﾅｲ",
-			"artistJP": "ｺｽﾓｱｯﾄﾎﾞｳｿｳﾋﾟｰ"
+			"artistJP": "ｺｽﾓｱｯﾄﾎﾞｳｿｳﾋﾟｰ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -99,10 +99,10 @@
 		"title": "ドレミファロンド",
 		"artist": "40mP",
 		"id": 9,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾄﾞﾚﾐﾌｧﾛﾝﾄﾞ",
-			"artistJP": "ﾖﾝｼﾞｭｳﾒｰﾄﾙﾋﾟｰ"
+			"artistJP": "ﾖﾝｼﾞｭｳﾒｰﾄﾙﾋﾟｰ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -111,10 +111,10 @@
 		"title": "メルヘン彼氏とメルヘン彼女",
 		"artist": "Nem",
 		"id": 10,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾒﾙﾍﾝｶﾚｼﾄﾒﾙﾍﾝｶﾉｼﾞｮ",
-			"artistJP": "ﾈﾑ"
+			"artistJP": "ﾈﾑ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -123,10 +123,10 @@
 		"title": "LEMON SUMMER",
 		"artist": "パイタン",
 		"id": 11,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾚﾓﾝｻﾏｰ",
-			"artistJP": "ﾊﾟｲﾀﾝ"
+			"artistJP": "ﾊﾟｲﾀﾝ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -135,10 +135,10 @@
 		"title": "STARDUST MERMAID",
 		"artist": "Music by MasKaleido, Vocal by ぁゅ",
 		"id": 12,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｽﾀｰﾀﾞｽﾄﾏｰﾒｲﾄﾞ",
-			"artistJP": "ﾏｽｶﾚｲﾄﾞ"
+			"artistJP": "ﾏｽｶﾚｲﾄﾞ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -147,10 +147,10 @@
 		"title": "Foolish Hero",
 		"artist": "lapix",
 		"id": 13,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾌｰﾘｯｼｭﾋｰﾛｰ",
-			"artistJP": "ﾗﾋﾟｽ"
+			"artistJP": "ﾗﾋﾟｽ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -159,10 +159,10 @@
 		"title": "華陽炎-Hana Kagerou-",
 		"artist": "源屋 feat.Kuroa*",
 		"id": 14,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾊﾅｶｹﾞﾛｳ",
-			"artistJP": "ﾐﾅﾓﾄﾔ ﾌｨｰﾁｬﾘﾝｸﾞｸﾛｱ"
+			"artistJP": "ﾐﾅﾓﾄﾔ ﾌｨｰﾁｬﾘﾝｸﾞｸﾛｱ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -171,10 +171,10 @@
 		"title": "will o' the wisp",
 		"artist": "XIzE",
 		"id": 15,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｳｨﾙｵｻﾞｳｨｽﾌﾟ",
-			"artistJP": "ｻｲｽﾞ"
+			"artistJP": "ｻｲｽﾞ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -183,10 +183,10 @@
 		"title": "Appliqué",
 		"artist": "モリモリあつし",
 		"id": 16,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｱｯﾌﾟﾘｹ",
-			"artistJP": "ﾓﾘﾓﾘｱﾂｼ"
+			"artistJP": "ﾓﾘﾓﾘｱﾂｼ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -195,10 +195,10 @@
 		"title": "Tomato Leaf Breaks",
 		"artist": "millstones",
 		"id": 17,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾄﾏﾄﾘｰﾌﾌﾞﾚｲｸｽ",
-			"artistJP": "ﾐﾙｽﾄｰﾝｽﾞ"
+			"artistJP": "ﾐﾙｽﾄｰﾝｽﾞ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -207,10 +207,10 @@
 		"title": "Lovesick Lovetune",
 		"artist": "VALLEYSTONE feat. 紫崎 雪",
 		"id": 18,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾗﾌﾞｼｯｸ ﾗﾌﾞﾁｭｰﾝ",
-			"artistJP": "ﾊﾞﾘｰｽﾄｰﾝ ﾋｭｰﾁｬﾘﾝｸﾞ ｼｻﾞｷﾕｷ"
+			"artistJP": "ﾊﾞﾘｰｽﾄｰﾝ ﾋｭｰﾁｬﾘﾝｸﾞ ｼｻﾞｷﾕｷ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -219,10 +219,10 @@
 		"title": "時計仕掛けのメリーゴーランド",
 		"artist": "餡若feat.みゅい",
 		"id": 19,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾄｹｲｼﾞｶｹﾉﾒﾘｰｺﾞｰﾗﾝﾄﾞ",
-			"artistJP": "ｱﾝﾆｬﾌｨｰﾄﾐｭｲ"
+			"artistJP": "ｱﾝﾆｬﾌｨｰﾄﾐｭｲ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -231,10 +231,10 @@
 		"title": "One & Only",
 		"artist": "Salk2d",
 		"id": 20,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾜﾝｱﾝﾄﾞｵﾝﾘｰ",
-			"artistJP": "ｿｰｸﾂｰﾃﾞｨｰ"
+			"artistJP": "ｿｰｸﾂｰﾃﾞｨｰ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -243,10 +243,10 @@
 		"title": "好きトキメキとキス",
 		"artist": "かねこちはる feat. はぁち",
 		"id": 21,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｽｷﾄｷﾒｷﾄｷｽ",
-			"artistJP": "ｶﾈｺﾁﾊﾙ ﾌｨｰﾁｬﾘﾝｸﾞ ﾊｧﾁ"
+			"artistJP": "ｶﾈｺﾁﾊﾙ ﾌｨｰﾁｬﾘﾝｸﾞ ﾊｧﾁ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -255,10 +255,10 @@
 		"title": "Pon-Pon-Pompoko Dai-Sen-Saw!",
 		"artist": "黒魔",
 		"id": 22,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾎﾟﾝﾎﾟﾝﾎﾟﾝﾎﾟｺﾀﾞｲｾﾝｿｳ!",
-			"artistJP": "ｸﾛﾏ"
+			"artistJP": "ｸﾛﾏ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -267,10 +267,10 @@
 		"title": "prison",
 		"artist": "Last Note.",
 		"id": 23,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾌﾟﾘｽﾞﾝ",
-			"artistJP": "ﾗｽﾄﾉｰﾄ"
+			"artistJP": "ﾗｽﾄﾉｰﾄ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -279,10 +279,10 @@
 		"title": "birth",
 		"artist": "Yu_Asahina",
 		"id": 24,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾊﾞｰｽ",
-			"artistJP": "ﾕｳｱｻﾋﾅ"
+			"artistJP": "ﾕｳｱｻﾋﾅ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -291,10 +291,10 @@
 		"title": "BUBBLE CH",
 		"artist": "TORIENA",
 		"id": 25,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾊﾞﾌﾞﾙﾁｬﾝﾈﾙ",
-			"artistJP": "ﾄﾘｴﾅ"
+			"artistJP": "ﾄﾘｴﾅ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -303,10 +303,10 @@
 		"title": "月に叢雲華に風",
 		"artist": "幽閉サテライト feat. senya",
 		"id": 26,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾂｷﾆﾑﾗｸﾓﾊﾅﾆｶｾﾞ",
-			"artistJP": "ﾕｳﾍｲｻﾃﾗｲﾄﾌｨｰﾁｬﾘﾝｸﾞｾﾆｬ"
+			"artistJP": "ﾕｳﾍｲｻﾃﾗｲﾄﾌｨｰﾁｬﾘﾝｸﾞｾﾆｬ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -315,10 +315,10 @@
 		"title": "ナイト・オブ・ナイツ",
 		"artist": "ビートまりお（COOL&CREATE）",
 		"id": 27,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾅｲﾄｵﾌﾞﾅｲﾂ",
-			"artistJP": "ﾋﾞｰﾄﾏﾘｵ"
+			"artistJP": "ﾋﾞｰﾄﾏﾘｵ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -327,10 +327,10 @@
 		"title": "Bad Apple!! feat. nomico",
 		"artist": "Alstroemeria Records",
 		"id": 28,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾊﾞｯﾄﾞｱｯﾌﾟﾙﾌｨｰﾁｬﾘﾝｸﾞﾉﾐｺ",
-			"artistJP": "ｱﾙｽﾄﾛﾒﾘｱﾚｺｰｽﾞ"
+			"artistJP": "ｱﾙｽﾄﾛﾒﾘｱﾚｺｰｽﾞ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -339,10 +339,10 @@
 		"title": "U.N.オーエンは彼女なのか？(TO-HOlic mix)",
 		"artist": "C-Show",
 		"id": 29,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾕｰｴﾇｵｰｴﾝﾜｶﾉｼﾞｮﾅﾉｶﾄｰﾎﾘｯｸﾐｯｸｽ",
-			"artistJP": "ｼｼｮｳ"
+			"artistJP": "ｼｼｮｳ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -351,10 +351,10 @@
 		"title": "魔理沙は大変なものを盗んでいきました",
 		"artist": "ARM＋夕野ヨシミ (IOSYS) feat. 藤咲かりん",
 		"id": 31,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾏﾘｻﾊﾀｲﾍﾝﾅﾓﾉｦﾇｽﾝﾃﾞｲｷﾏｼﾀ",
-			"artistJP": "ｱｰﾑ"
+			"artistJP": "ｱｰﾑ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -363,10 +363,10 @@
 		"title": "待チ人ハ来ズ。",
 		"artist": "豚乙女",
 		"id": 32,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾏﾁﾋﾞﾄﾊｺｽﾞ",
-			"artistJP": "ﾌﾞﾀｵﾄﾒ"
+			"artistJP": "ﾌﾞﾀｵﾄﾒ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -375,10 +375,10 @@
 		"title": "inverted RAINBOW (M齣SECA Ver.)",
 		"artist": "DiGiTAL WiNG feat.花たん",
 		"id": 33,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｲﾝﾊﾞｰﾃｯﾄﾞﾚｲﾝﾎﾞｰﾐｭｾﾞｶﾊﾞｰｼﾞｮﾝ",
-			"artistJP": "ﾃﾞｼﾞﾀﾙｳｨﾝｸﾞﾌｭｰﾁｬﾘﾝｸﾞﾊﾅﾀﾝ"
+			"artistJP": "ﾃﾞｼﾞﾀﾙｳｨﾝｸﾞﾌｭｰﾁｬﾘﾝｸﾞﾊﾅﾀﾝ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -387,10 +387,10 @@
 		"title": "euclase",
 		"artist": "ZYTOKINE feat. irony",
 		"id": 34,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾕｰｸﾚｲｽ",
-			"artistJP": "ﾂｧｲﾄｶｲﾝﾌｭｰﾁｬﾘﾝｸﾞｱｲﾛﾆｰ"
+			"artistJP": "ﾂｧｲﾄｶｲﾝﾌｭｰﾁｬﾘﾝｸﾞｱｲﾛﾆｰ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -399,10 +399,10 @@
 		"title": "天空の花の都",
 		"artist": "埼玉最終兵器",
 		"id": 35,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾃﾝｸｳﾉﾊﾅﾉﾐﾔｺ",
-			"artistJP": "ｻｲﾀﾏｻｲｼｭｳﾍｲｷ"
+			"artistJP": "ｻｲﾀﾏｻｲｼｭｳﾍｲｷ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -411,10 +411,10 @@
 		"title": "ほおずきみたいに紅い魂-情熱style-",
 		"artist": "XL Project -yanagizm side-",
 		"id": 37,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾎｵｽﾞｷﾐﾀｲﾆｱｶｲﾀﾏｼｲｼﾞｮｳﾈﾂｽﾀｲﾙ",
-			"artistJP": "ｴｸｾﾙﾌﾟﾛｼﾞｪｸﾄﾔﾅｷﾞｽﾞﾑｻｲﾄﾞ"
+			"artistJP": "ｴｸｾﾙﾌﾟﾛｼﾞｪｸﾄﾔﾅｷﾞｽﾞﾑｻｲﾄﾞ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -423,10 +423,10 @@
 		"title": "ダブルラリアット",
 		"artist": "アゴアニキ",
 		"id": 38,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾀﾞﾌﾞﾙﾗﾘｱｯﾄ",
-			"artistJP": "ｱｺﾞｱﾆｷ"
+			"artistJP": "ｱｺﾞｱﾆｷ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -435,10 +435,10 @@
 		"title": "パケットヒーロー",
 		"artist": "MARETU",
 		"id": 43,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾊﾟｹｯﾄﾋｰﾛｰ",
-			"artistJP": "ﾏﾚﾂ"
+			"artistJP": "ﾏﾚﾂ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -447,10 +447,10 @@
 		"title": "だんだん早くなる",
 		"artist": "40mP",
 		"id": 45,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾀﾞﾝﾀﾞﾝﾊﾔｸﾅﾙ",
-			"artistJP": "ﾖﾝｼﾞｭｳﾒｰﾄﾙﾋﾟｰ"
+			"artistJP": "ﾖﾝｼﾞｭｳﾒｰﾄﾙﾋﾟｰ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -459,10 +459,10 @@
 		"title": "ハートの後味",
 		"artist": "まふまふ",
 		"id": 46,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾊｰﾄﾉｱﾄｱｼﾞ",
-			"artistJP": "ﾏﾌﾏﾌ"
+			"artistJP": "ﾏﾌﾏﾌ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -471,10 +471,10 @@
 		"title": "neko*neko",
 		"artist": "日向美ビタースイーツ♪",
 		"id": 47,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾈｺﾈｺ",
-			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ"
+			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -483,10 +483,10 @@
 		"title": "激アツ☆マジヤバ☆チアガール",
 		"artist": "日向美ビタースイーツ♪",
 		"id": 48,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｹﾞｷｱﾂﾏｼﾞﾔﾊﾞﾁｱｶﾞｰﾙ",
-			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ"
+			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -495,10 +495,10 @@
 		"title": "漆黒のスペシャルプリンセスサンデー",
 		"artist": "日向美ビタースイーツ♪",
 		"id": 49,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｼｯｺｸﾉｽﾍﾟｼｬﾙﾌﾟﾘﾝｾｽｻﾝﾃﾞｰ",
-			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ"
+			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -507,10 +507,10 @@
 		"title": "地方創生☆チクワクティクス",
 		"artist": "日向美ビタースイーツ♪",
 		"id": 51,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾁﾎｳｿｳｾｲﾁｸﾜｸﾃｨｸｽ",
-			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ"
+			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -519,10 +519,10 @@
 		"title": "フラッター現象の顛末と単一指向性の感情論",
 		"artist": "日向美ビタースイーツ♪",
 		"id": 52,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾌﾗｯﾀｰｹﾞﾝｼｮｳﾉﾃﾝﾏﾂﾄﾀﾝｲﾂｼｺｳｾｲﾉｶﾝｼﾞｮｳﾛﾝ",
-			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ"
+			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -531,10 +531,10 @@
 		"title": "[AZAKA]",
 		"artist": "源屋",
 		"id": 53,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｱｻﾞｶ",
-			"artistJP": "ﾐﾅﾓﾄﾔ"
+			"artistJP": "ﾐﾅﾓﾄﾔ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -543,10 +543,10 @@
 		"title": "Snowscapes",
 		"artist": "ginkiha",
 		"id": 54,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｽﾉｰｽｹｰﾌﾟｽ",
-			"artistJP": "ｷﾞﾝｷﾊ"
+			"artistJP": "ｷﾞﾝｷﾊ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -555,10 +555,10 @@
 		"title": "エレシュキガル",
 		"artist": "Noah",
 		"id": 55,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｴﾚｼｭｷｶﾞﾙ",
-			"artistJP": "ﾉｱ"
+			"artistJP": "ﾉｱ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -567,10 +567,10 @@
 		"title": "Teaspoon Story",
 		"artist": "colate",
 		"id": 56,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾃｨｰｽﾌﾟｰﾝｽﾄｰﾘｰ",
-			"artistJP": "ｺﾚｰﾄ"
+			"artistJP": "ｺﾚｰﾄ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -579,10 +579,10 @@
 		"title": "Virtual Bit",
 		"artist": "KAN TAKAHIKO",
 		"id": 57,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｳﾞｧｰﾁｬﾙﾋﾞｯﾄ",
-			"artistJP": "ｶﾝﾀｶﾋｺ"
+			"artistJP": "ｶﾝﾀｶﾋｺ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -591,10 +591,10 @@
 		"title": "Town Walk",
 		"artist": "Carpainter（TREKKIE TRAX）",
 		"id": 58,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾀｳﾝｳｫｰｸ",
-			"artistJP": "ｶｰﾍﾟｲﾝﾀｰ"
+			"artistJP": "ｶｰﾍﾟｲﾝﾀｰ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -603,10 +603,10 @@
 		"title": "Star☆Beat",
 		"artist": "PandaBoY feat.ななひら",
 		"id": 59,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｽﾀｰﾋﾞｰﾄ",
-			"artistJP": "ﾊﾟﾝﾀﾞﾎﾞｰｲﾌｭｰﾁｬﾘﾝｸﾞﾅﾅﾋﾗ"
+			"artistJP": "ﾊﾟﾝﾀﾞﾎﾞｰｲﾌｭｰﾁｬﾘﾝｸﾞﾅﾅﾋﾗ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -615,10 +615,10 @@
 		"title": "Capitalism Cannon",
 		"artist": "O2i3",
 		"id": 60,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｷｬﾋﾟﾀﾘｽﾞﾑｷｬﾉﾝ",
-			"artistJP": "ｵｰﾆｲｻﾝ"
+			"artistJP": "ｵｰﾆｲｻﾝ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -627,10 +627,10 @@
 		"title": "{albus}",
 		"artist": "かめりあ",
 		"id": 61,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｱﾙﾊﾞｽ",
-			"artistJP": "ｶﾒﾘｱ"
+			"artistJP": "ｶﾒﾘｱ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -639,10 +639,10 @@
 		"title": "White Lady",
 		"artist": "HOUJIROU",
 		"id": 62,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾎﾜｲﾄﾚﾃﾞｨ",
-			"artistJP": "ﾎｳｼﾞﾛｳ"
+			"artistJP": "ﾎｳｼﾞﾛｳ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -651,10 +651,10 @@
 		"title": "Metsysralos",
 		"artist": "庭師",
 		"id": 63,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾒﾄｽｨｽﾗﾛｽ",
-			"artistJP": "ﾆﾜｼ"
+			"artistJP": "ﾆﾜｼ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -663,10 +663,10 @@
 		"title": "モノノアハレに哭く桜",
 		"artist": "柳田Ethnica",
 		"id": 64,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾓﾉﾉｱﾊﾚﾆﾅｸｻｸﾗ",
-			"artistJP": "ﾔﾅｷﾞﾀﾞｴｽﾆｶ"
+			"artistJP": "ﾔﾅｷﾞﾀﾞｴｽﾆｶ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -675,10 +675,10 @@
 		"title": "Brain system",
 		"artist": "Ryo Arue",
 		"id": 65,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾌﾞﾚｲﾝｼｽﾃﾑ",
-			"artistJP": "ﾘｮｳｱﾙｴ"
+			"artistJP": "ﾘｮｳｱﾙｴ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -687,10 +687,10 @@
 		"title": "Mr.REAPER",
 		"artist": "eksΩ feat.ロクナナハチ",
 		"id": 66,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾐｽﾀｰﾘｰﾊﾟｰ",
-			"artistJP": "ｴｸｽｵﾒｶﾞﾌｨｰﾁｬﾘﾝｸﾞﾛｸﾅﾅﾊﾁ"
+			"artistJP": "ｴｸｽｵﾒｶﾞﾌｨｰﾁｬﾘﾝｸﾞﾛｸﾅﾅﾊﾁ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -699,10 +699,10 @@
 		"title": "Chippin Break",
 		"artist": "あるふぁ",
 		"id": 67,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾁｯﾋﾟﾝﾌﾞﾚｰｸ",
-			"artistJP": "ｱﾙﾌｧ"
+			"artistJP": "ｱﾙﾌｧ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -711,10 +711,10 @@
 		"title": "ミライチューナー",
 		"artist": "U-ske feat.すずしろ",
 		"id": 68,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾐﾗｲﾁｭｰﾅｰ",
-			"artistJP": "ﾕｰｽｹﾌｨｰﾁｬﾘﾝｸﾞｽｽﾞｼﾛ"
+			"artistJP": "ﾕｰｽｹﾌｨｰﾁｬﾘﾝｸﾞｽｽﾞｼﾛ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -723,10 +723,10 @@
 		"title": "Prismatic",
 		"artist": "平茸",
 		"id": 69,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾌﾟﾘｽﾞﾏﾃｨｯｸ",
-			"artistJP": "ﾋﾗﾀｹ"
+			"artistJP": "ﾋﾗﾀｹ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -735,10 +735,10 @@
 		"title": "SodaSplash!",
 		"artist": "monoq",
 		"id": 70,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｿｰﾀﾞｽﾌﾟﾗｯｼｭ",
-			"artistJP": "ﾓﾉｯｸ"
+			"artistJP": "ﾓﾉｯｸ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -747,10 +747,10 @@
 		"title": "Purple Arise",
 		"artist": "Ayatsugu_Otowa",
 		"id": 71,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾊﾟｰﾌﾟﾙｱﾗｲｽﾞ",
-			"artistJP": "ｱﾔﾂｸﾞｵﾄﾜ"
+			"artistJP": "ｱﾔﾂｸﾞｵﾄﾜ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -759,10 +759,10 @@
 		"title": "コンフリクト",
 		"artist": "Shouya Namai feat.築山さえ",
 		"id": 72,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｺﾝﾌﾘｸﾄ",
-			"artistJP": "ｼｮｳﾔﾅﾏｲﾌｨｰﾁｬﾘﾝｸﾞﾂｷﾔﾏｻｴ"
+			"artistJP": "ｼｮｳﾔﾅﾏｲﾌｨｰﾁｬﾘﾝｸﾞﾂｷﾔﾏｻｴ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -771,10 +771,10 @@
 		"title": "Magical electrica",
 		"artist": "こふ",
 		"id": 73,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾏｼﾞｶﾙｴﾚｸﾄﾘｶ",
-			"artistJP": "ｺﾌ"
+			"artistJP": "ｺﾌ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -783,10 +783,10 @@
 		"title": "ネコクマウササー",
 		"artist": "溝口ゆうま feat. みこ齶なち齶あい",
 		"id": 74,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾈｺｸﾏｳｻｻｰ",
-			"artistJP": "ﾐｿﾞﾉｸﾁﾕｳﾏﾌｭｰﾁｬﾘﾝｸﾞﾐｺﾅﾁｱｲ"
+			"artistJP": "ﾐｿﾞﾉｸﾁﾕｳﾏﾌｭｰﾁｬﾘﾝｸﾞﾐｺﾅﾁｱｲ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -795,10 +795,10 @@
 		"title": "MERRiESTxHOLiC",
 		"artist": "miko齶nachi feat.u-z",
 		"id": 75,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾏﾘｴｽﾄﾎﾘｯｸ",
-			"artistJP": "ﾐｺﾊｰﾄﾅﾁﾌｨｰﾁｬﾘﾝｸﾞﾕｰｼﾞ"
+			"artistJP": "ﾐｺﾊｰﾄﾅﾁﾌｨｰﾁｬﾘﾝｸﾞﾕｰｼﾞ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -807,10 +807,10 @@
 		"title": "Redshift",
 		"artist": "technoplanet",
 		"id": 76,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾚｯﾄﾞｼﾌﾄ",
-			"artistJP": "ﾃｸﾉﾌﾟﾗﾈｯﾄ"
+			"artistJP": "ﾃｸﾉﾌﾟﾗﾈｯﾄ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -819,10 +819,10 @@
 		"title": "Mechanician",
 		"artist": "くるぶっこちゃん",
 		"id": 77,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾒｶﾆｼｱﾝ",
-			"artistJP": "ｸﾙﾌﾞｯｺﾁｬﾝ"
+			"artistJP": "ｸﾙﾌﾞｯｺﾁｬﾝ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -831,10 +831,10 @@
 		"title": "H_Y_D_R",
 		"artist": "AMAZE",
 		"id": 78,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾊｲﾄﾞﾛ",
-			"artistJP": "ｱﾒｲｽﾞ"
+			"artistJP": "ｱﾒｲｽﾞ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -843,10 +843,10 @@
 		"title": "Bolérrot",
 		"artist": "かねこちはる",
 		"id": 79,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾎﾞﾚﾛ",
-			"artistJP": "ｶﾈｺﾁﾊﾙ"
+			"artistJP": "ｶﾈｺﾁﾊﾙ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -855,10 +855,10 @@
 		"title": "Lupus",
 		"artist": "Zino",
 		"id": 80,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾙﾌﾟｽ",
-			"artistJP": "ｽﾞｨｰﾉ"
+			"artistJP": "ｽﾞｨｰﾉ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -867,10 +867,10 @@
 		"title": "Laughin' Muffin",
 		"artist": "Gowrock",
 		"id": 81,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾗﾌｨﾝﾏﾌｨﾝ",
-			"artistJP": "ｶﾞｳﾛｯｸ"
+			"artistJP": "ｶﾞｳﾛｯｸ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -879,10 +879,10 @@
 		"title": "Lo-Fi-M",
 		"artist": "yaseta",
 		"id": 82,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾛｰﾌｧｲﾒﾓﾘｱﾙ",
-			"artistJP": "ﾔｾﾀ"
+			"artistJP": "ﾔｾﾀ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -891,10 +891,10 @@
 		"title": "ワスレナグサ",
 		"artist": "White Tail Box ft.りり",
 		"id": 83,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾜｽﾚﾅｸﾞｻ",
-			"artistJP": "ﾎﾜｲﾄﾃｲﾙﾎﾞｯｸｽﾌｨｰﾁｬﾘﾝｸﾞﾘﾘ"
+			"artistJP": "ﾎﾜｲﾄﾃｲﾙﾎﾞｯｸｽﾌｨｰﾁｬﾘﾝｸﾞﾘﾘ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -903,10 +903,10 @@
 		"title": "prudentia",
 		"artist": "Hidra-Xjeil",
 		"id": 84,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾌﾟﾙﾃﾞﾝﾃｨｱ",
-			"artistJP": "ﾊｲﾄﾞﾗ"
+			"artistJP": "ﾊｲﾄﾞﾗ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -915,10 +915,10 @@
 		"title": "Ice Petal",
 		"artist": "sky_delta + daph",
 		"id": 85,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｱｲｽﾍﾟﾄｩﾙ",
-			"artistJP": "ｽｶｲﾃﾞﾙﾀﾌﾟﾗｽﾀﾞﾌ"
+			"artistJP": "ｽｶｲﾃﾞﾙﾀﾌﾟﾗｽﾀﾞﾌ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -927,10 +927,10 @@
 		"title": "Galacti[x]Discord",
 		"artist": "Ange;art vs brz",
 		"id": 86,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｷﾞｬﾗｸﾃｨｸｽﾃﾞｨｽｺｰﾄﾞ",
-			"artistJP": "ｱﾝｼﾞｪｱｰﾄﾌﾞｲｴｽﾌﾞﾘｰｽﾞ"
+			"artistJP": "ｱﾝｼﾞｪｱｰﾄﾌﾞｲｴｽﾌﾞﾘｰｽﾞ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -939,10 +939,10 @@
 		"title": "kyokugen da!!",
 		"artist": "すのうまん",
 		"id": 87,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｷｮｸｹﾞﾝﾀﾞ",
-			"artistJP": "ｽﾉｳﾏﾝ"
+			"artistJP": "ｽﾉｳﾏﾝ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -951,10 +951,10 @@
 		"title": "スノウイコン",
 		"artist": "mazuka153",
 		"id": 88,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｽﾉｳｲｺﾝ",
-			"artistJP": "ﾏｽﾞｶｲｺｻ"
+			"artistJP": "ﾏｽﾞｶｲｺｻ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -963,10 +963,10 @@
 		"title": "～仔羊のナヴァラン・クリシェを添えて～",
 		"artist": "PiyoPiyo Kitchen",
 		"id": 89,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｺﾋﾂｼﾞﾉﾅｳﾞｧﾗﾝｸﾘｼｪｦｿｴﾃ",
-			"artistJP": "ﾋﾟﾖﾋﾟﾖｷｯﾁﾝ"
+			"artistJP": "ﾋﾟﾖﾋﾟﾖｷｯﾁﾝ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -975,10 +975,10 @@
 		"title": "Astarl",
 		"artist": "メロポ",
 		"id": 90,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｱｽﾀﾙﾙ",
-			"artistJP": "ﾒﾛﾎﾟ"
+			"artistJP": "ﾒﾛﾎﾟ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -987,10 +987,10 @@
 		"title": "銃創のフロンティア",
 		"artist": "上村香月",
 		"id": 91,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｼﾞｭｳｿｳﾉﾌﾛﾝﾃｨｱ",
-			"artistJP": "ｳｴﾑﾗｶﾂｷ"
+			"artistJP": "ｳｴﾑﾗｶﾂｷ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -999,10 +999,10 @@
 		"title": "齧rche",
 		"artist": "モリモリあつし vs. uma",
 		"id": 92,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｱﾙｼｭ",
-			"artistJP": "ﾓﾘﾓﾘｱﾂｼﾊﾞｰｻｽﾕｳﾏ"
+			"artistJP": "ﾓﾘﾓﾘｱﾂｼﾊﾞｰｻｽﾕｳﾏ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1011,10 +1011,10 @@
 		"title": "Paradission",
 		"artist": "BlackY",
 		"id": 93,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾊﾟﾗﾃﾞｨｯｼｮﾝ",
-			"artistJP": "ﾌﾞﾗｯｷｰ"
+			"artistJP": "ﾌﾞﾗｯｷｰ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1023,10 +1023,10 @@
 		"title": "片翼のディザイア",
 		"artist": "Endorfin.",
 		"id": 94,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾍﾝﾖｸﾉﾃﾞｨｻﾞｲｱ",
-			"artistJP": "ｴﾝﾄﾞﾙﾌｨﾝ"
+			"artistJP": "ｴﾝﾄﾞﾙﾌｨﾝ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1035,10 +1035,10 @@
 		"title": "Replica",
 		"artist": "Endorfin.",
 		"id": 95,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾚﾌﾟﾘｶ",
-			"artistJP": "ｴﾝﾄﾞﾙﾌｨﾝ"
+			"artistJP": "ｴﾝﾄﾞﾙﾌｨﾝ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1047,10 +1047,10 @@
 		"title": "Nostalgia Contrast",
 		"artist": "Sanaas & hurce",
 		"id": 96,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾉｽﾀﾙｼﾞｱｺﾝﾄﾗｽﾄ",
-			"artistJP": "ｻﾅｰｽﾞｱﾝﾄﾞﾊｰｽ"
+			"artistJP": "ｻﾅｰｽﾞｱﾝﾄﾞﾊｰｽ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1059,10 +1059,10 @@
 		"title": "香港功夫大旋風",
 		"artist": "Daisuke Ohnuma",
 		"id": 97,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾎﾝｺﾝｶﾝﾌｰﾊﾘｹｰﾝ",
-			"artistJP": "ﾀﾞｲｽｹｵｵﾇﾏ"
+			"artistJP": "ﾀﾞｲｽｹｵｵﾇﾏ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1071,10 +1071,10 @@
 		"title": "Dawn of Asia",
 		"artist": "ginkiha+kamome sano",
 		"id": 98,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾄﾞｰﾝｵﾌﾞｴｲｼﾞｱ",
-			"artistJP": "ｷﾞﾝｷﾊﾌﾟﾗｽｶﾓﾒｻﾉ"
+			"artistJP": "ｷﾞﾝｷﾊﾌﾟﾗｽｶﾓﾒｻﾉ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1083,10 +1083,10 @@
 		"title": "F.K.S.",
 		"artist": "Nizikawa",
 		"id": 99,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｴﾌｹｰｴｽ",
-			"artistJP": "ﾆｼﾞｶﾜ"
+			"artistJP": "ﾆｼﾞｶﾜ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1095,10 +1095,10 @@
 		"title": "嗚呼、素晴らしきニャン生",
 		"artist": "Nem",
 		"id": 101,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｱｱｽﾊﾞﾗｼｷﾆｬﾝｾｲ",
-			"artistJP": "ﾈﾑ"
+			"artistJP": "ﾈﾑ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1107,10 +1107,10 @@
 		"title": "魔法少女幸福論",
 		"artist": "トーマ",
 		"id": 103,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾏﾎｳｼｮｳｼﾞｮｺｳﾌｸﾛﾝ",
-			"artistJP": "ﾄｰﾏ"
+			"artistJP": "ﾄｰﾏ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1119,10 +1119,10 @@
 		"title": "M.S.S.Planet",
 		"artist": "M.S.S Project",
 		"id": 104,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｴﾑｴｽｴｽﾌﾟﾗﾈｯﾄ",
-			"artistJP": "ｴﾑｴｽｴｽﾌﾟﾛｼﾞｪｸﾄ"
+			"artistJP": "ｴﾑｴｽｴｽﾌﾟﾛｼﾞｪｸﾄ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1131,10 +1131,10 @@
 		"title": "アスノヨゾラ哨戒班",
 		"artist": "Orangestar",
 		"id": 106,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｱｽﾉﾖｿﾞﾗｼｮｳｶｲﾊﾝ",
-			"artistJP": "ｵﾚﾝｼﾞｽﾀｰ"
+			"artistJP": "ｵﾚﾝｼﾞｽﾀｰ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1143,10 +1143,10 @@
 		"title": "このふざけた素晴らしき世界は、僕の為にある",
 		"artist": "n.k",
 		"id": 107,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｺﾉﾌｻﾞｹﾀｽﾊﾞﾗｼｷｾｶｲﾊ､ﾎﾞｸﾉﾀﾒﾆｱﾙ",
-			"artistJP": "ｴﾇｹｰ"
+			"artistJP": "ｴﾇｹｰ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1155,10 +1155,10 @@
 		"title": "無人駅",
 		"artist": "n-buna",
 		"id": 108,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾑｼﾞﾝｴｷ",
-			"artistJP": "ﾅﾌﾞﾅ"
+			"artistJP": "ﾅﾌﾞﾅ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1167,10 +1167,10 @@
 		"title": "ロストワンの号哭",
 		"artist": "Neru",
 		"id": 109,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾛｽﾄﾜﾝﾉｺﾞｳｺｸ",
-			"artistJP": "ﾈﾙ"
+			"artistJP": "ﾈﾙ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1179,10 +1179,10 @@
 		"title": "If",
 		"artist": "Pa's Lam System",
 		"id": 110,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｲﾌ",
-			"artistJP": "ﾊﾟｽﾞﾗﾑｼｽﾃﾑ"
+			"artistJP": "ﾊﾟｽﾞﾗﾑｼｽﾃﾑ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1191,10 +1191,10 @@
 		"title": "Function #05",
 		"artist": "Yu_Asahina",
 		"id": 111,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾌｧﾝｸｼｮﾝﾅﾝﾊﾞｰﾌｧｲﾌﾞ",
-			"artistJP": "ﾕｳｱｻﾋﾅ"
+			"artistJP": "ﾕｳｱｻﾋﾅ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1203,10 +1203,10 @@
 		"title": "みたらしプラトニック (feat. nicamoq)",
 		"artist": "Yunomi",
 		"id": 112,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾐﾀﾗｼﾌﾟﾗﾄﾆｯｸﾌｨｰﾁｬﾘﾝｸﾞﾆｶﾓｷｭ",
-			"artistJP": "ﾕﾉﾐ"
+			"artistJP": "ﾕﾉﾐ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1215,10 +1215,10 @@
 		"title": "黒髪乱れし修羅となりて～凛 edition～",
 		"artist": "日向美ビタースイーツ♪",
 		"id": 113,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｸﾛｶﾐﾐﾀﾞﾚｼｼｭﾗﾄﾅﾘﾃﾘﾝｴﾃﾞｨｼｮﾝ",
-			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ"
+			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1227,10 +1227,10 @@
 		"title": "ぽかぽかレトロード",
 		"artist": "日向美ビタースイーツ♪",
 		"id": 115,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾎﾟｶﾎﾟｶﾚﾄﾛｰﾄﾞ",
-			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ"
+			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1239,10 +1239,10 @@
 		"title": "完全無欠の無重力ダイブ",
 		"artist": "日向美ビタースイーツ♪",
 		"id": 116,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｶﾝｾﾞﾝﾑｹﾂﾉﾑｼﾞｭｳﾘｮｸﾀﾞｲﾌﾞ",
-			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ"
+			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1251,10 +1251,10 @@
 		"title": "エキサイティング！！も・ちゃ・ちゃ☆",
 		"artist": "日向美ビタースイーツ♪",
 		"id": 117,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｴｷｻｲﾃｨﾝｸﾞﾓﾁｬﾁｬ",
-			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ"
+			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1263,10 +1263,10 @@
 		"title": "とびっきりのふわっふわ",
 		"artist": "日向美ビタースイーツ♪",
 		"id": 118,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾄﾋﾞｯｷﾘﾉﾌﾜｯﾌﾜ",
-			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ"
+			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1275,10 +1275,10 @@
 		"title": "3 A.M. ディテクティブ・ゲーム",
 		"artist": "日向美ビタースイーツ♪",
 		"id": 119,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｽﾘｰｴｰｴﾑﾃﾞｨﾃｸﾃｨﾌﾞｹﾞｰﾑ",
-			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ"
+			"artistJP": "ﾋﾅﾀﾋﾞﾋﾞﾀｰｽｲｰﾂ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1287,10 +1287,10 @@
 		"title": "Red＋White＝Kawaii",
 		"artist": "こすも８ｂｉｔ",
 		"id": 126,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾚｯﾄﾞﾌﾟﾗｽﾎﾜｲﾄｲｺｰﾙｶﾜｲｲ",
-			"artistJP": "ｺｽﾓｴｲﾄﾋﾞｯﾄ"
+			"artistJP": "ｺｽﾓｴｲﾄﾋﾞｯﾄ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1299,10 +1299,10 @@
 		"title": "Sweet Clock",
 		"artist": "あるふぁ",
 		"id": 127,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｽｳｨｰﾄｸﾛｯｸ",
-			"artistJP": "ｱﾙﾌｧ"
+			"artistJP": "ｱﾙﾌｧ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1311,10 +1311,10 @@
 		"title": "Neo Age",
 		"artist": "Rin",
 		"id": 128,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾈｵｴｲｼﾞ",
-			"artistJP": "ﾘﾝ"
+			"artistJP": "ﾘﾝ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1323,10 +1323,10 @@
 		"title": "Skyflare!!!!",
 		"artist": "taiyo",
 		"id": 129,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｽｶｲﾌﾚｱ",
-			"artistJP": "ﾀｲﾖｰ"
+			"artistJP": "ﾀｲﾖｰ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1335,10 +1335,10 @@
 		"title": "焦がれ唄",
 		"artist": "ちきんぐ feat.TEA",
 		"id": 130,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｺｶﾞﾚｳﾀ",
-			"artistJP": "ﾁｷﾝｸﾞﾌｨｰﾁｬﾘﾝｸﾞﾃｱ"
+			"artistJP": "ﾁｷﾝｸﾞﾌｨｰﾁｬﾘﾝｸﾞﾃｱ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1347,10 +1347,10 @@
 		"title": "ユキイロサクラ",
 		"artist": "かゆき feat.燈露",
 		"id": 131,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾕｷｲﾛｻｸﾗ",
-			"artistJP": "ｶﾕｷﾌｨｰﾁｬﾘﾝｸﾞﾋﾛ"
+			"artistJP": "ｶﾕｷﾌｨｰﾁｬﾘﾝｸﾞﾋﾛ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1359,10 +1359,10 @@
 		"title": "天黎鏡明",
 		"artist": "かゆき feat.歯医者マン",
 		"id": 132,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾃﾝﾚｲｷｮｳﾒｲ",
-			"artistJP": "ｶﾕｷﾌｨｰﾁｬﾘﾝｸﾞﾊｲｼｬﾏﾝ"
+			"artistJP": "ｶﾕｷﾌｨｰﾁｬﾘﾝｸﾞﾊｲｼｬﾏﾝ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1371,10 +1371,10 @@
 		"title": "c2Theater",
 		"artist": "yaseta + Hidra-Xjeil",
 		"id": 133,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｼｰﾂｰｼｱﾀｰ",
-			"artistJP": "ﾔｾﾀﾌﾟﾗｽﾊｲﾄﾞﾗ"
+			"artistJP": "ﾔｾﾀﾌﾟﾗｽﾊｲﾄﾞﾗ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1383,10 +1383,10 @@
 		"title": "デュナミス",
 		"artist": "Noah",
 		"id": 134,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾃﾞｭﾅﾐｽ",
-			"artistJP": "ﾉｱ"
+			"artistJP": "ﾉｱ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1395,10 +1395,10 @@
 		"title": "Eternal Prayer",
 		"artist": "Soleily",
 		"id": 135,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｴﾀｰﾅﾙﾌﾟﾚｲﾔｰ",
-			"artistJP": "ｿﾚｲﾘｰ"
+			"artistJP": "ｿﾚｲﾘｰ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1407,10 +1407,10 @@
 		"title": "キカイノミルユメ",
 		"artist": "はがね",
 		"id": 136,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｷｶｲﾉﾐﾙﾕﾒ",
-			"artistJP": "ﾊｶﾞﾈ"
+			"artistJP": "ﾊｶﾞﾈ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1419,10 +1419,10 @@
 		"title": "Immortal Knights",
 		"artist": "すのうまん",
 		"id": 137,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｲﾓｰﾀﾙﾅｲﾂ",
-			"artistJP": "ｽﾉｳﾏﾝ"
+			"artistJP": "ｽﾉｳﾏﾝ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1431,10 +1431,10 @@
 		"title": "絶対零度",
 		"artist": "かねこちはる",
 		"id": 138,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｾﾞｯﾀｲﾚｲﾄﾞ",
-			"artistJP": "ｶﾈｺﾁﾊﾙ"
+			"artistJP": "ｶﾈｺﾁﾊﾙ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1443,10 +1443,10 @@
 		"title": "eXtridia",
 		"artist": "unatra×Nego_tiator",
 		"id": 139,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｴｸｽﾄﾗｲﾃﾞｨｱ",
-			"artistJP": "ｳﾅﾄﾗｳﾞｧｰｻｽﾈｺﾞｼｴｰﾀｰ"
+			"artistJP": "ｳﾅﾄﾗｳﾞｧｰｻｽﾈｺﾞｼｴｰﾀｰ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1455,10 +1455,10 @@
 		"title": "永遠に続く道",
 		"artist": "kanone feat. せんざい",
 		"id": 140,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾄﾜﾆﾂﾂﾞｸﾐﾁ",
-			"artistJP": "ｶﾉﾈﾌｨｰﾁｬﾘﾝｸﾞｾﾝｻﾞｲ"
+			"artistJP": "ｶﾉﾈﾌｨｰﾁｬﾘﾝｸﾞｾﾝｻﾞｲ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1467,10 +1467,10 @@
 		"title": "Debug Dance",
 		"artist": "lapix",
 		"id": 141,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾃﾞﾊﾞｯｸﾞﾀﾞﾝｽ",
-			"artistJP": "ﾗﾋﾟｽ"
+			"artistJP": "ﾗﾋﾟｽ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1479,10 +1479,10 @@
 		"title": "Sparkle Justice",
 		"artist": "VALLEYSTONE&udouddo",
 		"id": 142,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｽﾊﾟｰｸﾙｼﾞｬｽﾃｨｽ",
-			"artistJP": "ﾊﾞﾘｰｽﾄｰﾝｱﾝﾄﾞｳﾄﾞｳｯﾄﾞ"
+			"artistJP": "ﾊﾞﾘｰｽﾄｰﾝｱﾝﾄﾞｳﾄﾞｳｯﾄﾞ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1491,10 +1491,10 @@
 		"title": "Soldier of sorrow",
 		"artist": "歯医者マン",
 		"id": 143,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｿﾙｼﾞｬｰｵﾌﾞｿｳﾛｳ",
-			"artistJP": "ﾊｲｼｬﾏﾝ"
+			"artistJP": "ﾊｲｼｬﾏﾝ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1503,10 +1503,10 @@
 		"title": "NIN-NIN-NIN!!",
 		"artist": "よああああ（ああああ＋yoa）",
 		"id": 144,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾆﾝﾆﾝﾆﾝ",
-			"artistJP": "ﾖｱｱｱｱｱｱｱｱｱﾝﾄﾞﾖｱ"
+			"artistJP": "ﾖｱｱｱｱｱｱｱｱｱﾝﾄﾞﾖｱ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1515,10 +1515,10 @@
 		"title": "Metamorphobia",
 		"artist": "winddrums",
 		"id": 145,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾒﾀﾓﾙﾌｫﾋﾞｱ",
-			"artistJP": "ｳｨﾝﾄﾞﾄﾞﾗﾑｽ"
+			"artistJP": "ｳｨﾝﾄﾞﾄﾞﾗﾑｽ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1527,10 +1527,10 @@
 		"title": "有終の里",
 		"artist": "iru1919",
 		"id": 146,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾕｳｼｭｳﾉｻﾄ",
-			"artistJP": "ｲﾙ"
+			"artistJP": "ｲﾙ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1539,10 +1539,10 @@
 		"title": "ワンダーワンダーシンクロニシティ",
 		"artist": "ボタントビート",
 		"id": 147,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾜﾝﾀﾞｰﾜﾝﾀﾞｰｼﾝｸﾛﾆｼﾃｨ",
-			"artistJP": "ﾎﾞﾀﾝﾄﾋﾞｰﾄ"
+			"artistJP": "ﾎﾞﾀﾝﾄﾋﾞｰﾄ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1551,10 +1551,10 @@
 		"title": "antiphona",
 		"artist": "a_hisa vs KV.S&はらたま",
 		"id": 148,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｱﾝﾃｨﾌｫﾅ",
-			"artistJP": "ｴｰﾋｻﾊﾞｰｻｽｹｰﾌﾞｲｴｽｱﾝﾄﾞﾊﾗﾀﾏ"
+			"artistJP": "ｴｰﾋｻﾊﾞｰｻｽｹｰﾌﾞｲｴｽｱﾝﾄﾞﾊﾗﾀﾏ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1563,10 +1563,10 @@
 		"title": "novaluna",
 		"artist": "KLing",
 		"id": 149,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾉｳﾞｧﾙﾅ",
-			"artistJP": "ｸﾘﾝｸﾞ"
+			"artistJP": "ｸﾘﾝｸﾞ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1575,10 +1575,10 @@
 		"title": "Krack Your Soul",
 		"artist": "Daisuke Ohnuma",
 		"id": 150,
-		"firstVersion": "15",
 		"data": {
 			"titleJP": "ｸﾗｯｸﾕｱｿｳﾙ",
-			"artistJP": "ﾀﾞｲｽｹｵｵﾇﾏ"
+			"artistJP": "ﾀﾞｲｽｹｵｵﾇﾏ",
+			"displayVersion": "15"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1587,10 +1587,10 @@
 		"title": "Egotistical Drug",
 		"artist": "HALLPBE.S",
 		"id": 151,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｴｺﾞﾃｨｽﾃｨｶﾙﾄﾞﾗｯｸﾞ",
-			"artistJP": "ﾊﾙﾌﾟﾌﾞｽﾀｼﾞｵ"
+			"artistJP": "ﾊﾙﾌﾟﾌﾞｽﾀｼﾞｵ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1599,10 +1599,10 @@
 		"title": "Artificial Mind",
 		"artist": "dotη",
 		"id": 152,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｱｰﾃｨﾌｨｼｬﾙﾏｲﾝﾄﾞ",
-			"artistJP": "ﾄﾞｯﾄｲｰﾀ"
+			"artistJP": "ﾄﾞｯﾄｲｰﾀ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1611,10 +1611,10 @@
 		"title": "Vampin' Magic",
 		"artist": "uma",
 		"id": 153,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｳﾞｧﾝﾋﾟﾝﾏｼﾞｯｸ",
-			"artistJP": "ﾕｳﾏ"
+			"artistJP": "ﾕｳﾏ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1623,10 +1623,10 @@
 		"title": "Oboro Cybernetics",
 		"artist": "Tanchiky",
 		"id": 154,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｵﾎﾞﾛｻｲﾊﾞﾈﾃｨｸｽ",
-			"artistJP": "ﾀﾝﾁｷ"
+			"artistJP": "ﾀﾝﾁｷ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1635,10 +1635,10 @@
 		"title": "Longinus",
 		"artist": "brz",
 		"id": 155,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾛﾝｷﾞﾇｽ",
-			"artistJP": "ﾌﾞﾘｰｽﾞ"
+			"artistJP": "ﾌﾞﾘｰｽﾞ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1647,10 +1647,10 @@
 		"title": "メンタンピンドラドラ",
 		"artist": "enzo + O2i3",
 		"id": 156,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾒﾝﾀﾝﾋﾟﾝﾄﾞﾗﾄﾞﾗ",
-			"artistJP": "ｴﾝｿﾞｰﾌﾟﾗｽｵｰﾆｲｻﾝ"
+			"artistJP": "ｴﾝｿﾞｰﾌﾟﾗｽｵｰﾆｲｻﾝ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1659,10 +1659,10 @@
 		"title": "Bioslaves",
 		"artist": "mazuka153",
 		"id": 157,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾊﾞｲｵｽﾚｲﾌﾞｽ",
-			"artistJP": "ﾏｽﾞｶｲｺｻ"
+			"artistJP": "ﾏｽﾞｶｲｺｻ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1671,10 +1671,10 @@
 		"title": "竜攘虎搏",
 		"artist": "Gowrock vs. 豪狼",
 		"id": 158,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾘｭｳｼﾞｮｳｺﾊｸ",
-			"artistJP": "ｶﾞｳﾛｯｸｳﾞｧｰｻｽｺﾞｳﾛｳ"
+			"artistJP": "ｶﾞｳﾛｯｸｳﾞｧｰｻｽｺﾞｳﾛｳ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1683,10 +1683,10 @@
 		"title": "オリガミカル・スウィートラヴ",
 		"artist": "かめりあ feat. ななひら",
 		"id": 159,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｵﾘｶﾞﾐｶﾙｽｳｨｰﾄﾗｳﾞ",
-			"artistJP": "ｶﾒﾘｱﾌｨｰﾁｬﾘﾝｸﾞﾅﾅﾋﾗ"
+			"artistJP": "ｶﾒﾘｱﾌｨｰﾁｬﾘﾝｸﾞﾅﾅﾋﾗ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1695,10 +1695,10 @@
 		"title": "結ばれぬ二人の刻印",
 		"artist": "TAKU1175 feat.かなたん",
 		"id": 160,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾑｽﾊﾞﾚﾇﾌﾀﾘﾉｺｸｲﾝ",
-			"artistJP": "ﾀｸｲｲﾅｺﾞﾌｨｰﾁｬﾘﾝｸﾞｶﾅﾀﾝ"
+			"artistJP": "ﾀｸｲｲﾅｺﾞﾌｨｰﾁｬﾘﾝｸﾞｶﾅﾀﾝ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1707,10 +1707,10 @@
 		"title": "Prayer",
 		"artist": "溝口ゆうま feat. 大瀬良あい",
 		"id": 161,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾌﾟﾚｲﾔｰ",
-			"artistJP": "ﾐｿﾞﾉｸﾁﾕｳﾏﾌｨｰﾄｵｵｾﾗｱｲ"
+			"artistJP": "ﾐｿﾞﾉｸﾁﾕｳﾏﾌｨｰﾄｵｵｾﾗｱｲ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1719,10 +1719,10 @@
 		"title": "DEREVA",
 		"artist": "ぺのれり",
 		"id": 162,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾃﾞﾚｳﾞｧ",
-			"artistJP": "ﾍﾟﾉﾚﾘ"
+			"artistJP": "ﾍﾟﾉﾚﾘ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1731,10 +1731,10 @@
 		"title": "MeteorA",
 		"artist": "Verseus",
 		"id": 163,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾒﾃｵﾗ",
-			"artistJP": "ｳﾞｪﾙｾｳｽ"
+			"artistJP": "ｳﾞｪﾙｾｳｽ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1743,10 +1743,10 @@
 		"title": "GRISAILLE",
 		"artist": "SOUND HOLIC feat. Nana Takahashi",
 		"id": 164,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｸﾞﾘｻﾞｲﾕ",
-			"artistJP": "ｻｳﾝﾄﾞﾎﾘｯｸﾌｨｰﾁｬﾘﾝｸﾞﾅﾅﾀｶﾊｼ"
+			"artistJP": "ｻｳﾝﾄﾞﾎﾘｯｸﾌｨｰﾁｬﾘﾝｸﾞﾅﾅﾀｶﾊｼ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1755,10 +1755,10 @@
 		"title": "恋繋エピローグ",
 		"artist": "Amateras Records feat.KUMI(ヲタみん)",
 		"id": 165,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ﾚﾝｹｲｴﾋﾟﾛｰｸﾞ",
-			"artistJP": "ｱﾏﾃﾗｽﾚｺｰｽﾞﾌｨｰﾁｬﾘﾝｸﾞｸﾐｦﾀﾐﾝ"
+			"artistJP": "ｱﾏﾃﾗｽﾚｺｰｽﾞﾌｨｰﾁｬﾘﾝｸﾞｸﾐｦﾀﾐﾝ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1767,10 +1767,10 @@
 		"title": "CENSORED!!",
 		"artist": "t+pazolite",
 		"id": 166,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｾﾝｻｰﾄﾞ",
-			"artistJP": "ﾄﾊﾟｿﾞﾗｲﾄ"
+			"artistJP": "ﾄﾊﾟｿﾞﾗｲﾄ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1779,10 +1779,10 @@
 		"title": "crescent moon",
 		"artist": "FELT",
 		"id": 167,
-		"firstVersion": "1",
 		"data": {
 			"titleJP": "ｸﾚｯｾﾝﾄﾑｰﾝ",
-			"artistJP": "ﾌｪﾙﾄ"
+			"artistJP": "ﾌｪﾙﾄ",
+			"displayVersion": "1"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1791,10 +1791,10 @@
 		"title": "仙酌絶唱のファンタジア",
 		"artist": "博麗神社例大祭コラボユニット",
 		"id": 168,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｾﾝｼｬｸｾﾞｯｼｮｳﾉﾌｧﾝﾀｼﾞｱ",
-			"artistJP": "ﾊｸﾚｲｼﾞﾝｼﾞｬﾚｲﾀｲｻｲｺﾗﾎﾞﾕﾆｯﾄ"
+			"artistJP": "ﾊｸﾚｲｼﾞﾝｼﾞｬﾚｲﾀｲｻｲｺﾗﾎﾞﾕﾆｯﾄ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1803,10 +1803,10 @@
 		"title": "Quietus Ray",
 		"artist": "xi",
 		"id": 169,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｸﾜｲﾀｽﾚｲ",
-			"artistJP": "ｻｲ"
+			"artistJP": "ｻｲ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1815,10 +1815,10 @@
 		"title": "雪女",
 		"artist": "かねこちはる",
 		"id": 170,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾕｷｵﾝﾅ",
-			"artistJP": "ｶﾈｺﾁﾊﾙ"
+			"artistJP": "ｶﾈｺﾁﾊﾙ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1827,10 +1827,10 @@
 		"title": "零の位相",
 		"artist": "kradness",
 		"id": 172,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｾﾞﾛﾉｲｿｳ",
-			"artistJP": "ｸﾗｯﾄﾞﾈｽ"
+			"artistJP": "ｸﾗｯﾄﾞﾈｽ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1839,10 +1839,10 @@
 		"title": "ぬ？",
 		"artist": "Mizuike",
 		"id": 173,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾇ",
-			"artistJP": "ﾐｽﾞｲｹ"
+			"artistJP": "ﾐｽﾞｲｹ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1851,10 +1851,10 @@
 		"title": "Mag Mell",
 		"artist": "nay",
 		"id": 174,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾏｸﾞﾒﾙ",
-			"artistJP": "ﾈｲ"
+			"artistJP": "ﾈｲ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1863,10 +1863,10 @@
 		"title": "Touch My Body",
 		"artist": "anubasu-anubasu",
 		"id": 175,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾀｯﾁﾏｲﾊﾞﾃﾞｨ",
-			"artistJP": "ｱﾇﾊﾞｽｱﾇﾊﾞｽ"
+			"artistJP": "ｱﾇﾊﾞｽｱﾇﾊﾞｽ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1875,10 +1875,10 @@
 		"title": "KIL×LER BR×EAKs",
 		"artist": "K.AyuTAka",
 		"id": 176,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｷﾗｰﾌﾞﾚｲｸｽ",
-			"artistJP": "ｹｰｱﾕﾀｶ"
+			"artistJP": "ｹｰｱﾕﾀｶ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1887,10 +1887,10 @@
 		"title": "STRANGE JOURNEY",
 		"artist": "Psy Hedgehog",
 		"id": 177,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｽﾄﾚﾝｼﾞｼﾞｬｰﾆｰ",
-			"artistJP": "ｻｲﾍｯｼﾞﾎｯｸﾞ"
+			"artistJP": "ｻｲﾍｯｼﾞﾎｯｸﾞ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1899,10 +1899,10 @@
 		"title": "リビングデッドサマーダイブ",
 		"artist": "708/残響P",
 		"id": 178,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾘﾋﾞﾝｸﾞﾃﾞｯﾄﾞｻﾏｰﾀﾞｲﾌﾞ",
-			"artistJP": "ﾅｵﾔｻﾞﾝｷｮｰﾋﾟｰ"
+			"artistJP": "ﾅｵﾔｻﾞﾝｷｮｰﾋﾟｰ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1911,10 +1911,10 @@
 		"title": "Angritte",
 		"artist": "Lafale",
 		"id": 179,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｱﾝｸﾞﾘｯﾄ",
-			"artistJP": "ﾗﾌｧｰﾙ"
+			"artistJP": "ﾗﾌｧｰﾙ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1923,10 +1923,10 @@
 		"title": "Trash",
 		"artist": "Candy House",
 		"id": 180,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾄﾗｯｼｭ",
-			"artistJP": "ｷｬﾝﾃﾞｨｰﾊｳｽ"
+			"artistJP": "ｷｬﾝﾃﾞｨｰﾊｳｽ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1935,10 +1935,10 @@
 		"title": "105小節のラストページ",
 		"artist": "からとP feat.脱線ぐーぅ",
 		"id": 181,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾋｬｸｺﾞｼｮｳｾﾂﾉﾗｽﾄﾍﾟｰｼﾞ",
-			"artistJP": "ｶﾗﾄﾋﾟｰﾌｭｰﾁｬﾘﾝｸﾞﾀﾞｯｾﾝｸﾞｰｩ"
+			"artistJP": "ｶﾗﾄﾋﾟｰﾌｭｰﾁｬﾘﾝｸﾞﾀﾞｯｾﾝｸﾞｰｩ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1947,10 +1947,10 @@
 		"title": "Shera",
 		"artist": "MYUKKE.",
 		"id": 182,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｼｪﾗ",
-			"artistJP": "ﾐｭｯｹ"
+			"artistJP": "ﾐｭｯｹ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1959,10 +1959,10 @@
 		"title": "Twilight Way Home",
 		"artist": "Y-SHIN",
 		"id": 183,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾄﾜｲﾗｲﾄｳｪｲﾎｰﾑ",
-			"artistJP": "ﾜｲｼﾝ"
+			"artistJP": "ﾜｲｼﾝ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1971,10 +1971,10 @@
 		"title": "ドラマチック・デイドリーマー",
 		"artist": "Ms.",
 		"id": 184,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾄﾞﾗﾏﾁｯｸﾃﾞｲﾄﾞﾘｰﾏｰ",
-			"artistJP": "ﾐｽﾞ"
+			"artistJP": "ﾐｽﾞ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1983,10 +1983,10 @@
 		"title": "Refrain",
 		"artist": "お月さま交響曲",
 		"id": 185,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾘﾌﾚｲﾝ",
-			"artistJP": "ｵﾂｷｻﾏｺｳｷｮｳｷｮｸ"
+			"artistJP": "ｵﾂｷｻﾏｺｳｷｮｳｷｮｸ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -1995,10 +1995,10 @@
 		"title": "Other World",
 		"artist": "Nush",
 		"id": 186,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｱｻﾞｰﾜｰﾙﾄﾞ",
-			"artistJP": "ﾅｯｼｭ"
+			"artistJP": "ﾅｯｼｭ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2007,10 +2007,10 @@
 		"title": "Still Lonesome",
 		"artist": "PSYQUI",
 		"id": 187,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｽﾃｨﾙﾛﾝｻﾑ",
-			"artistJP": "ｻｲｷ"
+			"artistJP": "ｻｲｷ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2019,10 +2019,10 @@
 		"title": "XclusivE DisjunctioN",
 		"artist": "Ne+komp!LE",
 		"id": 188,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｴｸｽｸﾙｰｼﾌﾞﾃﾞｨｽｼﾞｬﾝｸｼｮﾝ",
-			"artistJP": "ﾈｺﾝﾊﾟｲﾙ"
+			"artistJP": "ﾈｺﾝﾊﾟｲﾙ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2031,10 +2031,10 @@
 		"title": "NeverWorld",
 		"artist": "奏音",
 		"id": 189,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾈﾊﾞｰﾜｰﾙﾄﾞ",
-			"artistJP": "ｶﾉﾝ"
+			"artistJP": "ｶﾉﾝ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2043,10 +2043,10 @@
 		"title": "La Danza del Fuego",
 		"artist": "Kiryu",
 		"id": 190,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾗﾀﾞﾝｻﾃﾞﾙﾌｴｺﾞ",
-			"artistJP": "ｷﾘｭｳ"
+			"artistJP": "ｷﾘｭｳ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2055,10 +2055,10 @@
 		"title": "WAVES Seeker",
 		"artist": "LAriA",
 		"id": 191,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｳｪｲﾌﾞｽｼｰｶｰ",
-			"artistJP": "ﾚｲﾘｱ"
+			"artistJP": "ﾚｲﾘｱ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2067,10 +2067,10 @@
 		"title": "Breath",
 		"artist": "fZy",
 		"id": 192,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾌﾞﾚｽ",
-			"artistJP": "ﾌｼﾞｨ"
+			"artistJP": "ﾌｼﾞｨ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2079,10 +2079,10 @@
 		"title": "Sirius",
 		"artist": "Elkei",
 		"id": 193,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｼﾘｳｽ",
-			"artistJP": "ｴﾙｹｨ"
+			"artistJP": "ｴﾙｹｨ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2091,10 +2091,10 @@
 		"title": "JOMANDA",
 		"artist": "DJ YOSHITAKA",
 		"id": 194,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｼﾞｮﾏﾝﾀﾞ",
-			"artistJP": "ﾃﾞｨｰｼﾞｪｰﾖｼﾀｶ"
+			"artistJP": "ﾃﾞｨｰｼﾞｪｰﾖｼﾀｶ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2103,10 +2103,10 @@
 		"title": "VALLIS-NERIA",
 		"artist": "DJ YOSHITAKA",
 		"id": 195,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｳﾞｧﾘｽﾈﾘｱ",
-			"artistJP": "ﾃﾞｨｰｼﾞｪｰﾖｼﾀｶ"
+			"artistJP": "ﾃﾞｨｰｼﾞｪｰﾖｼﾀｶ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2115,10 +2115,10 @@
 		"title": "千本桜",
 		"artist": "黒うさP feat.初音ミク",
 		"id": 197,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｾﾝﾎﾞﾝｻﾞｸﾗ",
-			"artistJP": "ｸﾛｳｻﾋﾟｰ"
+			"artistJP": "ｸﾛｳｻﾋﾟｰ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2127,10 +2127,10 @@
 		"title": "恋愛裁判",
 		"artist": "40mP feat.初音ミク",
 		"id": 198,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾚﾝｱｲｻｲﾊﾞﾝ",
-			"artistJP": "ﾖﾝｼﾞｭｳﾒｰﾄﾙﾋﾟｰ"
+			"artistJP": "ﾖﾝｼﾞｭｳﾒｰﾄﾙﾋﾟｰ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2139,10 +2139,10 @@
 		"title": "深海少女",
 		"artist": "ゆうゆ feat. 初音ミク",
 		"id": 199,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｼﾝｶｲｼｮｳｼﾞｮ",
-			"artistJP": "ﾕｳﾕ"
+			"artistJP": "ﾕｳﾕ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2151,10 +2151,10 @@
 		"title": "からくりピエロ",
 		"artist": "40mP feat.初音ミク",
 		"id": 201,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｶﾗｸﾘﾋﾟｴﾛ",
-			"artistJP": "ﾖﾝｼﾞｭｳﾒｰﾄﾙﾋﾟｰ"
+			"artistJP": "ﾖﾝｼﾞｭｳﾒｰﾄﾙﾋﾟｰ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2163,10 +2163,10 @@
 		"title": "ネトゲ廃人シュプレヒコール",
 		"artist": "さつき が てんこもり",
 		"id": 202,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾈﾄｹﾞﾊｲｼﾞﾝｼｭﾌﾟﾚﾋｺｰﾙ",
-			"artistJP": "ｻﾂｷｶﾞﾃﾝｺﾓﾘ"
+			"artistJP": "ｻﾂｷｶﾞﾃﾝｺﾓﾘ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2175,10 +2175,10 @@
 		"title": "Din Don Dan (Fusion Remix)",
 		"artist": "TAKU1175 feat.かなたん",
 		"id": 203,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾃﾞｨﾝﾄﾞﾝﾀﾞﾝﾌｭｰｼﾞｮﾝﾘﾐｯｸｽ",
-			"artistJP": "ﾀｸｲﾁｲﾁﾅﾅｺﾞｰﾌｨｰﾁｬﾘﾝｸﾞｶﾅﾀﾝ"
+			"artistJP": "ﾀｸｲﾁｲﾁﾅﾅｺﾞｰﾌｨｰﾁｬﾘﾝｸﾞｶﾅﾀﾝ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2187,10 +2187,10 @@
 		"title": "Invitation from Mr.C",
 		"artist": "C-Show",
 		"id": 204,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｲﾝﾋﾞﾃｰｼｮﾝﾌﾛﾑﾐｽﾀｰｼｰ",
-			"artistJP": "ｼｼｮｳ"
+			"artistJP": "ｼｼｮｳ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2199,10 +2199,10 @@
 		"title": "Angelic Jelly",
 		"artist": "t+pazolite",
 		"id": 205,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｴﾝｼﾞｪﾘｯｸｼﾞｪﾘｰ",
-			"artistJP": "ﾄﾊﾟｿﾞﾗｲﾄ"
+			"artistJP": "ﾄﾊﾟｿﾞﾗｲﾄ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2211,10 +2211,10 @@
 		"title": "StrayedCatz",
 		"artist": "削除",
 		"id": 206,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｽﾄﾚｲﾄﾞｷｬｯﾂ",
-			"artistJP": "ｻｸｼﾞｮ"
+			"artistJP": "ｻｸｼﾞｮ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2223,10 +2223,10 @@
 		"title": "Grand Chariot",
 		"artist": "xi",
 		"id": 207,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｸﾞﾗﾝｼｬﾘｵ",
-			"artistJP": "ｻｲ"
+			"artistJP": "ｻｲ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2235,10 +2235,10 @@
 		"title": "Sephirot",
 		"artist": "SHIKI",
 		"id": 208,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｾﾌｨﾛﾄ",
-			"artistJP": "ｼｷ"
+			"artistJP": "ｼｷ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2247,10 +2247,10 @@
 		"title": "ZEPHYRANTHES",
 		"artist": "TAG",
 		"id": 209,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｾﾞﾌｨﾗﾝｻｽ",
-			"artistJP": "ﾀｸﾞ"
+			"artistJP": "ﾀｸﾞ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2259,10 +2259,10 @@
 		"title": "Triple Counter",
 		"artist": "DJ YOSHITAKA meets dj TAKA",
 		"id": 210,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾄﾘﾌﾟﾙｶｳﾝﾀｰ",
-			"artistJP": "ﾃﾞｨｰｼﾞｪｲﾖｼﾀｶﾐｰﾂﾃﾞｨｰｼﾞｪｲﾀｶ"
+			"artistJP": "ﾃﾞｨｰｼﾞｪｲﾖｼﾀｶﾐｰﾂﾃﾞｨｰｼﾞｪｲﾀｶ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2271,10 +2271,10 @@
 		"title": "Onigo",
 		"artist": "Hommarju",
 		"id": 211,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｵﾆｺﾞ",
-			"artistJP": "ｵﾏｰｼﾞｭ"
+			"artistJP": "ｵﾏｰｼﾞｭ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2283,10 +2283,10 @@
 		"title": "Blacksphere",
 		"artist": "s-don as Iriss",
 		"id": 212,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾌﾞﾗｯｸｽﾌｨｱ",
-			"artistJP": "ｽｳﾄﾞﾝｱｽﾞｱｲﾘｽ"
+			"artistJP": "ｽｳﾄﾞﾝｱｽﾞｱｲﾘｽ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2295,10 +2295,10 @@
 		"title": "バイナリスター",
 		"artist": "ここなつ",
 		"id": 213,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾊﾞｲﾅﾘｽﾀｰ",
-			"artistJP": "ｺｺﾅﾂ"
+			"artistJP": "ｺｺﾅﾂ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2307,10 +2307,10 @@
 		"title": "ヒミツダイヤル",
 		"artist": "ここなつ",
 		"id": 214,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾋﾐﾂﾀﾞｲﾔﾙ",
-			"artistJP": "ｺｺﾅﾂ"
+			"artistJP": "ｺｺﾅﾂ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2319,10 +2319,10 @@
 		"title": "Cleopatrysm",
 		"artist": "ピラミッ℃",
 		"id": 215,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｸﾚｵﾊﾟﾄﾘｽﾞﾑ",
-			"artistJP": "ﾋﾟﾗﾐｯﾄﾞ"
+			"artistJP": "ﾋﾟﾗﾐｯﾄﾞ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2331,10 +2331,10 @@
 		"title": "御千手メディテーション",
 		"artist": "昇天家族",
 		"id": 216,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｵｾﾝｼﾞｭﾒﾃﾞｨﾃｰｼｮﾝ",
-			"artistJP": "ｼｮｳﾃﾝｶｿﾞｸ"
+			"artistJP": "ｼｮｳﾃﾝｶｿﾞｸ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2343,10 +2343,10 @@
 		"title": "KHAMEN BREAK",
 		"artist": "くふおー",
 		"id": 217,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｶｰﾒﾝﾌﾞﾚｲｸ",
-			"artistJP": "ｸﾌｵｰ"
+			"artistJP": "ｸﾌｵｰ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2355,10 +2355,10 @@
 		"title": "大宇宙ステージ",
 		"artist": "黒魔",
 		"id": 218,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾀﾞｲｳﾁｭｳｽﾃｰｼﾞ",
-			"artistJP": "ｸﾛﾏ"
+			"artistJP": "ｸﾛﾏ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2367,10 +2367,10 @@
 		"title": "アルストロメリア",
 		"artist": "TAG",
 		"id": 219,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｱﾙｽﾄﾛﾒﾘｱ",
-			"artistJP": "ﾀｸﾞ"
+			"artistJP": "ﾀｸﾞ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2379,10 +2379,10 @@
 		"title": "Fly far bounce",
 		"artist": "猫叉Master",
 		"id": 220,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾌﾗｲﾌｧｰﾊﾞｳﾝｽ",
-			"artistJP": "ﾈｺﾏﾀﾏｽﾀｰ"
+			"artistJP": "ﾈｺﾏﾀﾏｽﾀｰ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2391,10 +2391,10 @@
 		"title": "FLOWER",
 		"artist": "DJ YOSHITAKA",
 		"id": 221,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ﾌﾗﾜｰ",
-			"artistJP": "ﾃﾞｨｰｼﾞｪｰﾖｼﾀｶ"
+			"artistJP": "ﾃﾞｨｰｼﾞｪｰﾖｼﾀｶ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2403,10 +2403,10 @@
 		"title": "I'm so Happy",
 		"artist": "Ryu☆",
 		"id": 222,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｱｲﾑｿｳﾊｯﾋﾟｰ",
-			"artistJP": "ﾘｭｳ"
+			"artistJP": "ﾘｭｳ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2415,10 +2415,10 @@
 		"title": "V",
 		"artist": "TAKA",
 		"id": 223,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｳﾞｲ",
-			"artistJP": "ﾀｶ"
+			"artistJP": "ﾀｶ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2427,10 +2427,10 @@
 		"title": "SHOCKER BREAKER",
 		"artist": "Yu_Asahina",
 		"id": 225,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｼｮｯｶｰﾌﾞﾚｲｶｰ",
-			"artistJP": "ﾕｳｱｻﾋﾅ"
+			"artistJP": "ﾕｳｱｻﾋﾅ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []
@@ -2439,10 +2439,10 @@
 		"title": "Everlasting Message",
 		"artist": "ぺのれり",
 		"id": 226,
-		"firstVersion": "1.5",
 		"data": {
 			"titleJP": "ｴｳﾞｧｰﾗｽﾃｨﾝｸﾞﾒｯｾｰｼﾞ",
-			"artistJP": "ﾍﾟﾉﾚﾘ"
+			"artistJP": "ﾍﾟﾉﾚﾘ",
+			"displayVersion": "1.5"
 		},
 		"altTitles": [],
 		"searchTerms": []

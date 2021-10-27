@@ -8,7 +8,7 @@ const BASE_OPTIONS = {
 };
 
 // eslint-disable-next-line no-undef
-const BASE_URL = process.env.REACT_APP_API_URL ?? "";
+const BASE_URL = process.env.REACT_APP_SERVER_URL ?? "";
 
 export function ToAPIURL(url: string) {
 	if (url[0] !== "/") {

@@ -849,24 +849,23 @@ export interface ChartDocument<I extends IDStrings = IDStrings> extends MongoDBD
 	versions: GPTSupportedVersions[I][];
 }
 interface SongDocumentData {
-	iidx: { genre: string };
-	museca: { titleJP: string; artistJP: string };
-	maimai: { titleJP: string; artistJP: string; genre: string };
-	jubeat: Record<string, never>;
-	popn: Record<string, never>;
-	sdvx: Record<string, never>;
+	iidx: { genre: string; displayVersion: string | null };
+	museca: { titleJP: string; artistJP: string; displayVersion: string };
+	maimai: { titleJP: string; artistJP: string; genre: string; displayVersion: string };
+	jubeat: { displayVersion: string };
+	popn: { displayVersion: string };
+	sdvx: { displayVersion: string };
 	usc: Record<string, never>;
-	ddr: Record<string, never>;
+	ddr: { displayVersion: string };
 	bms: { genre: string | null; subtitle: string | null; subartist: string | null };
-	chunithm: { genre: string };
-	gitadora: { isHot: boolean };
+	chunithm: { genre: string; displayVersion: string };
+	gitadora: { isHot: boolean; displayVersion: string };
 }
 
 export interface SongDocument<G extends Game = Game> extends MongoDBDocument {
 	id: integer;
 	title: string;
 	artist: string;
-	firstVersion: string | null;
 	searchTerms: string[];
 	altTitles: string[];
 	data: SongDocumentData[G];

@@ -853,7 +853,7 @@ export interface ChartDocument<I extends IDStrings = IDStrings> extends MongoDBD
 interface SongDocumentData {
 	iidx: { genre: string; displayVersion: string | null };
 	museca: { titleJP: string; artistJP: string; displayVersion: string };
-	maimai: { titleJP: string; artistJP: string; genre: string; displayVersion: string };
+	maimai: { titleJP: string; artistJP: string; displayVersion: string };
 	jubeat: { displayVersion: string };
 	popn: { displayVersion: string };
 	sdvx: { displayVersion: string };

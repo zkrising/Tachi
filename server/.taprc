@@ -1,6 +1,6 @@
 files: "src/test-utils/single-process-tap.ts"
 test-env: [NODE_ENV=test, TCHIS_CONF_LOCATION=test.conf.json5]
-timeout: 240 # Was increased for slow github runners. Might be insufferable for real world use.
+timeout: 480 # Was increased for slow github runners. multiple times. Might be insufferable for real world use.
 ts: true
 before: "./src/test-utils/hack-setup.js"
 check-coverage: true

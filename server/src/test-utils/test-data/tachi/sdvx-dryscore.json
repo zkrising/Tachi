@@ -13,5 +13,5 @@
     "scoreMeta": {},
     "timeAchieved": null,
     "comment": null,
-    "importType": "sdvx:eamusement-csv"
+    "importType": "file/batch-manual"
 }

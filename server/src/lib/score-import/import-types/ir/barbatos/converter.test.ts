@@ -21,7 +21,7 @@ t.test("#ConverterIRBarbatos", (t) => {
 		searchTerms: ["albida_muryoku", "ｱﾙﾋﾞﾀﾞﾊﾟﾜｰﾚｽﾐｯｸｽ"],
 		data: {
 			uscEquiv: null,
-			firstVersion: "booth",
+			displayVersion: "booth",
 		},
 	};
 

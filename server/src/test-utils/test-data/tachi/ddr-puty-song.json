@@ -2,10 +2,11 @@
     "title": "PUT YOUR FAITH IN ME",
     "artist": "UZI-LAY",
     "id": 10,
-    "firstVersion": "2",
     "altTitles": [],
     "searchTerms": [
         "putyourfaithinme"
     ],
-    "data": {}
+    "data": {
+        "displayVersion": "2"
+    }
 }

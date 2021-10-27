@@ -11,7 +11,7 @@ t.test("GET /api/v1/games/:game/:playtype/songs/:songID", (t) => {
 	t.test("Should return the song at this ID and all of its charts.", async (t) => {
 		const res = await mockApi.get("/api/v1/games/iidx/SP/songs/1");
 
-		t.equal(res.body.body.charts.length, 4);
+		t.equal(res.body.body.charts.length, 14);
 
 		t.equal(res.body.body.song.id, 1);
 

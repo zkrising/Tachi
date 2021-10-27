@@ -106,6 +106,8 @@ function ConvertVersion(c: string): any {
 			continue;
 		}
 
+		relevantVersions.push(...chart.versions.filter((e) => !relevantVersions.includes(e)));
+
 		await db.charts.iidx.update({ _id: chart._id }, { $set: { versions: relevantVersions } });
 	}
 

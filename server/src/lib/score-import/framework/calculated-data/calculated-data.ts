@@ -230,8 +230,9 @@ async function CalculateDataMaimai(
 	chart: ChartDocument,
 	logger: KtLogger
 ): Promise<CalculatedData<"maimai:Single">> {
+	// @todo #373 Add maimai rating algorithms.
 	return {
-		ktRating: await CalculateKTRating(dryScore, "maimai", "Single", chart, logger),
+		ktRating: 0,
 	};
 }
 

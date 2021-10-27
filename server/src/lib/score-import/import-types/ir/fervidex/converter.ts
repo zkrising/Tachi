@@ -48,7 +48,7 @@ export function TachifyGauge(
 		case "EASY":
 			return "EASY";
 		case "EX_HARD":
-			return "EX HARD";
+			return "EX-HARD";
 		case "HARD":
 			return "HARD";
 		case null:

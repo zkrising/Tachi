@@ -51,7 +51,7 @@ t.test("#TachifyGauge", (t) => {
 	t.equal(TachifyGauge("ASSISTED_EASY"), "ASSISTED EASY");
 	t.equal(TachifyGauge("EASY"), "EASY");
 	t.equal(TachifyGauge("HARD"), "HARD");
-	t.equal(TachifyGauge("EX_HARD"), "EX HARD");
+	t.equal(TachifyGauge("EX_HARD"), "EX-HARD");
 	t.equal(TachifyGauge(null), "NORMAL");
 	t.equal(TachifyGauge(undefined), "NORMAL");
 

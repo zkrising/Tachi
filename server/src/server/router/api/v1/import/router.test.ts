@@ -11,6 +11,7 @@ import { RequireAuthPerms } from "test-utils/api-common";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import ResetDBState from "test-utils/resets";
 import db from "external/mongo/db";
+import { rootLogger } from "lib/logger/logger";
 
 t.test("POST /api/v1/import/file", async (t) => {
 	const cookie = await CreateFakeAuthCookie(mockApi);
@@ -88,7 +89,7 @@ t.test("POST /api/v1/import/file", async (t) => {
 
 			t.equal(res.body.success, true, "Should be successful.");
 
-			t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
+			t.strictSame(res.body.body.errors, [], "Should have 0 failed scores.");
 
 			const scoreCount = await db.scores.find({
 				scoreID: { $in: res.body.body.scoreIDs },

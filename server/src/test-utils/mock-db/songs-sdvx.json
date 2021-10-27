@@ -3,14 +3,14 @@
         "title": "ALBIDA Powerless Mix",
         "artist": "無力P",
         "id": 1,
-        "firstVersion": "booth",
         "altTitles": [],
         "searchTerms": [
             "albida_muryoku",
             "ｱﾙﾋﾞﾀﾞﾊﾟﾜｰﾚｽﾐｯｸｽ"
         ],
         "data": {
-            "uscEquiv": null
+            "uscEquiv": null,
+            "displayVersion": "booth"
         }
     }
 ]

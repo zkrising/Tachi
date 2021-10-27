@@ -1,432 +1,923 @@
-import deepmerge from "deepmerge";
-import { Game, Playtypes, GetGameConfig, GetGamePTConfig, UserAuthLevels } from "tachi-common";
-import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
+import {
+	Game,
+	GetGamePTConfig,
+	Playtypes,
+	UserAuthLevels,
+	GamePTConfig,
+	GetGameConfig,
+} from "tachi-common";
+import { allIDStrings, allImportTypes } from "tachi-common/js/config/static-config";
+import p, { PrudenceSchema } from "prudence";
+import { Databases } from "./db";
+import { AllPermissions } from "server/middleware/auth";
 import { ServerTypeInfo } from "lib/setup/config";
+import { IsValidGame, IsValidPlaytype } from "utils/misc";
+import { optNull } from "utils/prudence";
 
-export const PRUDENCE_PUBLIC_USER: PrudenceSchema = {
-	_id: p.any,
-	username: p.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
-	usernameLowercase: (self, parent) => self === (parent!.username as string).toLowerCase(),
-	id: p.isPositiveInteger,
-	socialMedia: {
-		discord: "*?string",
-		twitter: "*?string",
-		github: "*?string",
-		steam: "*?string",
-		youtube: "*?string",
-		twitch: "*?string",
-	},
-	about: p.isBoundedString(0, 4000),
-	customPfp: "boolean",
-	customBanner: "boolean",
-	clan: p.nullable(p.isBoundedString(1, 4)),
-	lastSeen: p.isPositiveInteger,
-	status: "?string",
-	joinDate: p.isPositiveInteger,
-	badges: [p.isIn("beta", "alpha", "devTeam")],
-	authLevel: p.isBoundedInteger(UserAuthLevels.BANNED, UserAuthLevels.ADMIN),
+// The idea of this file is to export a function for every database
+// that will validate that collection.
+
+// If it returns true, that document is valid. If it throws any sort
+// of error, it is invalid.
+
+function prSchemaify(schema: PrudenceSchema) {
+	return (s: unknown): true => {
+		const err = p(s, schema);
+
+		if (err) {
+			throw err;
+		}
+
+		return true;
+	};
+}
+
+const games = ServerTypeInfo.supportedGames;
+const isValidPlaytype = (self: unknown, parent: Record<string, unknown>) => {
+	if (!parent.game || typeof parent.game !== "string" || !IsValidGame(parent.game)) {
+		throw new Error(`Invalid Schema, need game to base IsValidPlaytype off of.`);
+	}
+
+	if (typeof self !== "string") {
+		return "Expected a string.";
+	}
+
+	if (!IsValidPlaytype(parent.game, self)) {
+		return `Expected a valid playtype for ${parent.game}`;
+	}
+
+	return true;
 };
 
-export const PRUDENCE_IIDX_BPI_DATA = {
-	coef: p.nullable(p.isPositiveNonZero),
-	kavg: p.isPositiveNonZeroInteger,
-	wr: p.isPositiveNonZeroInteger,
-	chartID: "string",
-	kesd: p.isPositiveNonZero,
+const extractGPT = (self: unknown) => {
+	if (typeof self !== "object" || !self) {
+		throw new Error("Expected an object.");
+	}
+
+	const s = self as Record<string, unknown>;
+
+	if (typeof s.game !== "string") {
+		throw new Error(`Expected a string where self.game is. Got ${s.game}`);
+	}
+
+	if (typeof s.playtype !== "string") {
+		throw new Error(`Expected a string where self.playtype is. Got ${s.playtype}`);
+	}
+
+	if (!IsValidGame(s.game)) {
+		throw new Error(`Expected valid game -- got ${s.game}.`);
+	}
+
+	if (!IsValidPlaytype(s.game, s.playtype)) {
+		throw new Error(`Expected valid playtype -- got ${s.playtype}.`);
+	}
+
+	return { game: s.game, playtype: s.playtype };
 };
 
-export const PRUDENCE_COUNTER = {
-	counterName: "string",
-	value: p.isPositiveNonZeroInteger, // is nonzero?
-};
+export type ValidatorFunction = (s: unknown) => true;
 
-export const PR_SCORE_GENERIC = {
-	service: p.isBoundedString(3, 64),
-	game: "string",
-	playtype: "string",
-	difficulty: "string",
+const PR_GameStats = (game: Game, playtype: Playtypes[Game], gptConfig: GamePTConfig) => ({
 	userID: p.isPositiveNonZeroInteger,
-	scoreData: {
-		score: p.isPositive,
-		percent: p.isBetween(0, 100), // could be overrode!
-		lamp: "string",
-		grade: "string",
-		lampIndex: p.isPositiveInteger,
-		gradeIndex: p.isPositiveInteger,
-		judgements: {},
-		hitMeta: {},
-	},
-	scoreMeta: {},
-	calculatedData: {
-		rating: p.isPositive,
-		lampRating: p.isPositive,
-		gameSpecific: {},
-		// ranking: p.nullable(p.isPositiveNonZeroInteger),
-		// outOf: p.nullable(
-		//     p.and(
-		//         p.isPositiveNonZeroInteger,
-		//         (self, parent: Record<string, unknown>) =>
-		//             (parent.ranking as number) <= (self as number)
-		//     )
-		// ),
-	},
-	timeAchieved: p.nullable(p.isPositive),
-	songID: p.isInteger,
-	chartID: (self: unknown) => typeof self === "string" && self.length === 40,
-	highlight: "boolean",
-	isPrimary: "boolean",
-	comment: p.nullable(p.isBoundedString(1, 240)),
-	timeAdded: p.isPositive,
-	scoreID: "string", // temp
-	importType: p.nullable(p.isIn(ServerTypeInfo.supportedImportTypes)),
+	game: p.is(game),
+	playtype: p.is(playtype),
+	ratings: Object.fromEntries(gptConfig.scoreRatingAlgs.map((s) => [s, "*number"])),
+	classes: Object.fromEntries(
+		Object.keys(gptConfig.classHumanisedFormat).map((e) => [e, p.optional(p.isInteger)])
+	),
+});
+
+const PR_GoalInfo = {
+	progress: "?number",
+	progressHuman: "string",
+	outOf: "number",
+	outOfHuman: "string",
+	achieved: "boolean",
 };
 
-type ScoreSchemas = {
-	[G in Game]: {
-		[P in Playtypes[G]]: PrudenceSchema;
-	};
+const GetHitMeta = (game: Game): PrudenceSchema => {
+	if (game === "iidx") {
+		return {
+			bp: optNull(p.isPositiveInteger),
+			gauge: optNull(p.isBetween(0, 100)),
+			gaugeHistory: optNull([p.nullable(p.isBetween(0, 100))]),
+			comboBreak: optNull(p.isPositiveInteger),
+			gsm: optNull({
+				EASY: [p.nullable(p.isBetween(0, 100))],
+				NORMAL: [p.nullable(p.isBetween(0, 100))],
+				HARD: [p.nullable(p.isBetween(0, 100))],
+				EX_HARD: [p.nullable(p.isBetween(0, 100))],
+			}),
+		};
+	} else if (game === "bms") {
+		return {
+			epg: optNull(p.isPositiveInteger),
+			egr: optNull(p.isPositiveInteger),
+			egd: optNull(p.isPositiveInteger),
+			epr: optNull(p.isPositiveInteger),
+			ebd: optNull(p.isPositiveInteger),
+			lpg: optNull(p.isPositiveInteger),
+			lgr: optNull(p.isPositiveInteger),
+			lgd: optNull(p.isPositiveInteger),
+			lpr: optNull(p.isPositiveInteger),
+			lbd: optNull(p.isPositiveInteger),
+			bp: optNull(p.isPositiveInteger),
+			gauge: optNull(p.isBetween(0, 100)),
+		};
+	} else if (game === "sdvx" || game === "usc") {
+		return { gauge: optNull(p.isBetween(0, 100)) };
+	}
+
+	return {};
 };
 
-const optionalPositiveInt = p.optional(p.isPositiveInteger);
+const PR_Random = p.isIn("NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR");
 
-const nullableAndOptional = (fn: ValidSchemaValue) => p.optional(p.nullable(fn));
-
-const nullableAndOptionalPosInt = nullableAndOptional(p.isPositiveInteger);
-
-const CreateGameScoreData = (
-	game: Game,
-	playtype: Playtypes[Game],
-	hitMetaMerge: PrudenceSchema
-) => {
-	const gptConfig = GetGamePTConfig(game, playtype);
-	return {
-		lamp: p.isIn(gptConfig.lamps),
-		lampIndex: p.and(
-			p.isPositiveInteger,
-			(self, parent) => gptConfig.lamps[self as number] === parent.lamp
-		),
-		grade: p.isIn(gptConfig.grades),
-		gradeIndex: p.and(
-			p.isPositiveInteger,
-			(self, parent) => gptConfig.grades[self as number] === parent.grade
-		),
-		judgements: Object.fromEntries(gptConfig.judgements.map((e) => [e, optionalPositiveInt])),
-		hitMeta: deepmerge(
-			{
-				fast: nullableAndOptionalPosInt,
-				slow: nullableAndOptionalPosInt,
-				maxCombo: nullableAndOptionalPosInt,
-			},
-			hitMetaMerge
-		),
-		esd: p.nullable(p.isPositive),
-	};
-};
-
-const PR_SCORE_IIDX_SP: PrudenceSchema = CreatePRScore(
-	"iidx",
-	"SP",
-	{
-		bp: nullableAndOptional(p.isPositiveInteger),
-		gauge: nullableAndOptional(p.isBetween(0, 100)),
-		gaugeHistory: p.optional([nullableAndOptional(p.isBetween(0, 100))]),
-		comboBreak: optionalPositiveInt,
-		deadMeasure: nullableAndOptional(p.isPositiveInteger),
-		deadNote: nullableAndOptional(p.isPositiveInteger),
-	},
-	{
-		random: nullableAndOptional(p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])),
-		gauge: nullableAndOptional(p.isIn(["ASSISTED EASY", "EASY", "NORMAL", "HARD", "EX-HARD"])),
-		assist: nullableAndOptional(
-			p.isIn(["NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "ASCR + LEGACY"])
-		),
-		range: nullableAndOptional(
-			p.isIn(["NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+"])
-		),
-		pacemaker: "*?string", // lazy
-		pacemakerName: "*?string",
-		pacemakerTarget: nullableAndOptional(p.isPositiveInteger),
-	},
-	{
-		BPI: "?number",
-		"K%": p.nullable(p.isBetween(0, 100)),
-	}
-);
-
-const PR_SCORE_BMS_7K: PrudenceSchema = CreatePRScore(
-	"bms",
-	"7K",
-	{
-		gauge: nullableAndOptional(p.isBetween(0, 100)),
-		bp: nullableAndOptionalPosInt,
-		diedAt: nullableAndOptionalPosInt,
-		lpr: nullableAndOptionalPosInt,
-		lbd: nullableAndOptionalPosInt,
-		lgd: nullableAndOptionalPosInt,
-		lgr: nullableAndOptionalPosInt,
-		lpg: nullableAndOptionalPosInt,
-		epr: nullableAndOptionalPosInt,
-		ebd: nullableAndOptionalPosInt,
-		egd: nullableAndOptionalPosInt,
-		egr: nullableAndOptionalPosInt,
-		epg: nullableAndOptionalPosInt,
-	},
-	{
-		random: nullableAndOptional(p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])),
-		inputDevice: nullableAndOptional(p.isIn(["KEYBOARD", "BM_CONTROLLER", "MIDI"])),
-	}
-);
-
-function CreatePRScore<G extends Game>(
-	game: G,
-	playtype: Playtypes[G],
-	mergeHitMeta: PrudenceSchema = {},
-	mergeScoreMeta: PrudenceSchema = {},
-	mergeGameSpecific: PrudenceSchema = {}
-) {
-	return deepmerge(PR_SCORE_GENERIC, {
-		game: p.equalTo(game),
-		playtype: p.equalTo(playtype),
-		scoreData: CreateGameScoreData(game, playtype, mergeHitMeta),
-		scoreMeta: mergeScoreMeta,
-		calculatedData: {
-			gameSpecific: mergeGameSpecific,
-		},
-	});
-}
-
-function DoublePlayTwinRandomTuple(self: unknown) {
-	if (!Array.isArray(self)) {
-		return "Expected an array.";
+const getPlaytype = (game: Game, self: unknown): Playtypes[Game] => {
+	if (!self || typeof self !== "object") {
+		throw new Error("Expected an object.");
 	}
 
-	if (self.length !== 2) {
-		return "Expected exactly 2 elements.";
-	}
-
-	const ls = p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])(self[0]);
-
-	if (ls !== true) {
-		return ls;
-	}
-
-	const rs = p.isIn(["NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"])(self[1]);
-
-	return rs;
-}
-
-export const PRUDENCE_SCORE_SCHEMAS: ScoreSchemas = {
-	iidx: {
-		SP: PR_SCORE_IIDX_SP,
-		DP: deepmerge(PR_SCORE_IIDX_SP, {
-			playtype: p.equalTo("DP"),
-			scoreMeta: {
-				random: nullableAndOptional(DoublePlayTwinRandomTuple),
-			},
-			calculatedData: {
-				gameSpecific: {
-					"K%": "undefined", // remove with override
-				},
-			},
-		}),
-	},
-	sdvx: {
-		Single: CreatePRScore(
-			"sdvx",
-			"Single",
-			{
-				gauge: p.optional(p.isBetween(0, 100)),
-			},
-			{},
-			{
-				VF4: p.nullable(p.isPositiveInteger),
-				VF5: p.nullable(p.isBetween(0, 0.5)), // hack
-			}
-		),
-	},
-	bms: {
-		"7K": PR_SCORE_BMS_7K,
-		"14K": deepmerge(PR_SCORE_BMS_7K, {
-			playtype: p.equalTo("14K"),
-			scoreMeta: {
-				random: p.optional(DoublePlayTwinRandomTuple),
-			},
-		}),
-	},
-	chunithm: {
-		Single: deepmerge(CreatePRScore("chunithm", "Single"), {
-			scoreData: { percent: p.isBetween(0, 101) },
-		}),
-	},
-	ddr: {
-		SP: CreatePRScore(
-			"ddr",
-			"SP",
-			{},
-			{},
-			{
-				MFCP: p.nullable(p.isBoundedInteger(1, 25)),
-			}
-		),
-		DP: CreatePRScore(
-			"ddr",
-			"DP",
-			{},
-			{},
-			{
-				MFCP: p.nullable(p.isBoundedInteger(1, 25)),
-			}
-		),
-	},
-	gitadora: {
-		Gita: CreatePRScore("gitadora", "Gita"),
-		Dora: CreatePRScore("gitadora", "Dora"),
-	},
-	// jubeat: {
-	// 	Single: CreatePRScore("jubeat", "Single"),
-	// },
-	maimai: {
-		Single: deepmerge(CreatePRScore("maimai", "Single"), {
-			scoreData: { percent: p.isBetween(0, 150) },
-		}),
-	},
-	museca: {
-		Single: CreatePRScore("museca", "Single"),
-	},
-	// popn: {
-	// 	"9B": CreatePRScore("popn", "9B", { gauge: p.optional(p.isBetween(0, 100)) }),
-	// },
-	usc: {
-		Single: CreatePRScore("usc", "Single", { gauge: p.optional(p.isBetween(0, 100)) }),
-	},
-};
-
-const PRUDENCE_CHART_BASE: PrudenceSchema = {
-	chartID: "string",
-	rgcID: "?string",
-	songID: p.isPositiveInteger,
-	level: "string",
-	levelNum: p.isPositive,
-	isPrimary: "boolean",
-	versions: ["string"],
-};
-
-function CreatePrChart(game: Game, flags: string[], data: PrudenceSchema) {
 	const gameConfig = GetGameConfig(game);
 
-	const validDifficulties = [];
-	for (const playtype of gameConfig.validPlaytypes) {
-		validDifficulties.push(...GetGamePTConfig(game, playtype).difficulties);
+	const s = self as Record<string, unknown>;
+
+	const playtype = s.playtype as string;
+	if (!IsValidPlaytype(game, playtype)) {
+		throw new Error(`Expected any of ${gameConfig.validPlaytypes.join(", ")}`);
 	}
 
-	return deepmerge(PRUDENCE_CHART_BASE, {
-		difficulty: p.isIn(validDifficulties),
-		playtype: p.isIn(gameConfig.validPlaytypes),
-		flags: Object.fromEntries(flags.map((e) => [e, "boolean"])),
-		data,
-	});
-}
-
-export const PRUDENCE_CHART_SCHEMAS: Record<Game, PrudenceSchema> = {
-	iidx: CreatePrChart("iidx", ["IN BASE GAME", "OMNIMIX", "N-1"], {
-		notecount: p.isPositiveInteger,
-		inGameID: p.isPositiveInteger,
-		arcChartID: "?string",
-	}),
-	bms: CreatePrChart("bms", [], { hashMD5: "string", hashSHA256: "string" }),
-	chunithm: CreatePrChart("chunithm", ["IN BASE GAME", "OMNIMIX"], {
-		inGameID: p.isPositiveInteger,
-	}),
-	ddr: CreatePrChart("ddr", ["IN BASE GAME", "N-1"], {
-		songHash: "string",
-		inGameID: "string",
-	}),
-	gitadora: CreatePrChart("gitadora", ["IN BASE GAME", "OMNIMIX", "HOT N-1", "HOT"], {
-		inGameID: p.isPositiveInteger,
-	}),
-	// jubeat: CreatePrChart("jubeat", ["IN BASE GAME"], {}),
-	maimai: CreatePrChart("maimai", ["IN BASE GAME"], {
-		maxPercent: p.gte(100),
-		inGameID: "string",
-	}),
-	museca: CreatePrChart("museca", ["IN BASE GAME", "OMNIMIX"], {}),
-	// popn: CreatePrChart("popn", ["IN BASE GAME", "OMNIMIX"], {}),
-	sdvx: CreatePrChart("sdvx", ["IN BASE GAME", "OMNIMIX", "N-1"], {
-		inGameID: p.isPositiveInteger,
-	}),
-	usc: CreatePrChart("usc", ["CUSTOM"], {
-		hashSHA256: "string",
-	}),
+	return playtype;
 };
 
-const PRUDENCE_SONG_BASE: PrudenceSchema = {
+const PR_SongDocument = (data: PrudenceSchema): PrudenceSchema => ({
 	id: p.isPositiveInteger,
 	title: "string",
 	artist: "string",
-	searchTerms: [p.and("string", (self, parent) => self !== parent.title)],
-	altTitles: [p.and("string", (self, parent) => self !== parent.title)],
-	firstVersion: "string",
-};
+	searchTerms: ["string"],
+	altTitles: ["string"],
+	data,
+});
 
-function CreatePrSong(data: PrudenceSchema) {
-	return deepmerge(PRUDENCE_SONG_BASE, {
+const PR_ChartDocument = (
+	game: Game,
+	playtype: Playtypes[Game],
+	data: PrudenceSchema
+): PrudenceSchema => {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	return {
+		songID: p.isPositiveInteger,
+		chartID: "string",
+		rgcID: "?string",
+		level: "string",
+		levelNum: "number",
+		isPrimary: "boolean",
+		difficulty: p.isIn(gptConfig.difficulties),
+		playtype: p.is(playtype),
 		data,
-	});
-}
-
-const PRUDENCE_SONG_WITH_GENRE = CreatePrSong({ genre: "string" });
-
-export const PRUDENCE_SONG_SCHEMAS: Record<Game, PrudenceSchema> = {
-	iidx: PRUDENCE_SONG_WITH_GENRE,
-	bms: PRUDENCE_SONG_WITH_GENRE,
-	chunithm: PRUDENCE_SONG_WITH_GENRE,
-	ddr: CreatePrSong({}),
-	gitadora: CreatePrSong({}),
-	// jubeat: CreatePrSong({}),
-	maimai: CreatePrSong({ titleJP: "string", artistJP: "string", genre: "string" }),
-	museca: CreatePrSong({ titleJP: "string", artistJP: "string" }),
-	// popn: PRUDENCE_SONG_WITH_GENRE,
-	sdvx: CreatePrSong({ uscEquiv: p.nullable(p.isPositiveInteger) }),
-	usc: CreatePrSong({ sdvxEquiv: p.nullable(p.isPositiveInteger) }),
+		tierlistInfo: Object.fromEntries(
+			gptConfig.tierlists.map((t) => [
+				t,
+				p.optional({ text: "string", value: "number", individualDifference: "*boolean" }),
+			])
+		),
+		versions: [p.isIn(gptConfig.supportedVersions)],
+	};
 };
 
-const PRUDENCE_FOLDER_CHART_LOOKUP: PrudenceSchema = {
-	chartID: "string",
-	folderID: "string",
+const GetScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => {
+	if (game === "iidx" && playtype === "SP") {
+		return {
+			random: optNull(PR_Random),
+			assist: optNull(p.isIn("NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "FULL ASSIST")),
+			range: optNull(p.isIn("NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+")),
+			gauge: optNull(p.isIn("ASSISTED EASY", "EASY", "NORMAL", "HARD", "EX-HARD")),
+		};
+	} else if (game === "iidx" && playtype === "DP") {
+		return {
+			random: optNull({
+				left: PR_Random,
+				right: PR_Random,
+			}),
+			assist: optNull(p.isIn("NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "FULL ASSIST")),
+			range: optNull(p.isIn("NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+")),
+			gauge: optNull(p.isIn("ASSISTED EASY", "EASY", "NORMAL", "HARD", "EX-HARD")),
+		};
+	} else if (game === "sdvx") {
+		return { inSkillAnalyser: "*?boolean" };
+	} else if (game === "usc") {
+		return {
+			noteMod: optNull(p.isIn("NORMAL", "MIRROR", "RANDOM", "MIR-RAN")),
+			gaugeMod: optNull(p.isIn("NORMAL", "HARD")),
+		};
+	} else if (game === "bms" && playtype === "7K") {
+		return {
+			random: optNull(PR_Random),
+			inputDevice: optNull(p.isIn("KEYBOARD", "BM_CONTROLLER")),
+			client: optNull(p.isIn("LR2", "lr2oraja")),
+		};
+	} else if (game === "bms" && playtype === "14K") {
+		return {
+			random: optNull({
+				left: PR_Random,
+				right: PR_Random,
+			}),
+			inputDevice: optNull(p.isIn("KEYBOARD", "BM_CONTROLLER")),
+			client: optNull(p.isIn("LR2", "lr2oraja")),
+		};
+	}
+
+	return {};
 };
 
-const PRUDENCE_FOLDER: PrudenceSchema = {
-	title: "string",
-	game: p.isIn(ServerTypeInfo.supportedGames),
-	playtype: (self, parent) => p.isIn(GetGameConfig(parent.game as Game).validPlaytypes)(self),
-	folderID: "string",
-	table: "string",
-	tableIndex: "number",
-	type: p.isIn("songs", "charts", "static"),
-	data: (self, parent) => {
-		if (parent.type === "static") {
-			return Array.isArray(self) && self.every((e) => typeof e === "string");
-		}
+export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
+	users: prSchemaify({
+		username: p.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
+		usernameLowercase: (self, parent) => self === (parent.username as string).toLowerCase(),
+		id: p.isPositiveInteger,
+		socialMedia: {
+			discord: "*?string",
+			twitter: "*?string",
+			github: "*?string",
+			steam: "*?string",
+			youtube: "*?string",
+			twitch: "*?string",
+		},
+		joinDate: p.isPositiveInteger,
+		about: p.isBoundedString(0, 4000),
+		status: p.nullable(p.isBoundedString(3, 140)),
+		customPfp: "boolean",
+		customBanner: "boolean",
+		clan: p.nullable(p.isBoundedString(2, 4)),
+		lastSeen: p.isPositiveInteger,
+		badges: [p.isIn("beta", "alpha", "devTeam")],
+		authLevel: p.isBoundedInteger(UserAuthLevels.BANNED, UserAuthLevels.ADMIN),
+	}),
+	"api-tokens": prSchemaify({
+		userID: p.nullable(p.isPositiveNonZeroInteger),
+		token: "?string",
+		identifier: "string",
+		permissions: (self) => {
+			if (typeof self !== "object" || !self) {
+				return `Invalid permissions - expected an object.`;
+			}
 
-		// this is a temp hackjob, it should technically
-		// check whether this document matches a
-		// partialised chart/song doc
-		// but.. can be done later.
-		return typeof self === "object" && !!self; // whatever
+			// Typescript moment...
+			const s = self as Record<string, unknown>;
+
+			for (const key in AllPermissions) {
+				if (s[key] !== undefined && typeof s[key] !== "boolean") {
+					return `Invalid permission value of ${s[key]} at ${key}.`;
+				}
+			}
+
+			return true;
+		},
+		fromOAuth2Client: "*string",
+	}),
+	"arc-saved-profiles": prSchemaify({
+		userID: p.isPositiveNonZeroInteger,
+		accountID: "string",
+		forImportType: p.isIn("api/arc-iidx", "api/arc-sdvx"),
+	}),
+	"bms-course-lookup": prSchemaify({
+		title: "string",
+		// Must be comprised of 4 md5 hashes, which are 32 chars long.
+		md5sums: (self) => {
+			if (typeof self !== "string") {
+				return "Expected a string";
+			}
+
+			if (self.length !== 32 * 4) {
+				return "Expected 32 * 4 characters (4 md5 hashes long).";
+			}
+
+			if (!self.match(/^[a-z0-9]*$/u)) {
+				return "Expected all chars to be in the range of a-z0-9.";
+			}
+
+			return true;
+		},
+		set: p.isIn("genocideDan", "stslDan"),
+		playtype: p.isIn("7K", "14K"),
+		value: p.isInteger,
+	}),
+	"class-achievements": prSchemaify({
+		game: p.isIn(games),
+		playtype: isValidPlaytype,
+		classSet: (self, parent) => {
+			const gptConfig = GetGamePTConfig(
+				parent.game as Game,
+				parent.playtype as Playtypes[Game]
+			);
+
+			const keys = Object.keys(gptConfig.classHumanisedFormat);
+
+			if (typeof self !== "string") {
+				return "Expected a string.";
+			}
+
+			if (!keys.includes(self)) {
+				return `Expected any of ${keys.join(", ")}`;
+			}
+
+			return true;
+		},
+		classOldValue: p.nullable(p.isInteger),
+		classValue: p.isInteger,
+		timeAchieved: p.isPositive,
+		userID: p.isPositiveNonZeroInteger,
+	}),
+	"fer-settings": prSchemaify({
+		userID: p.isPositiveNonZeroInteger,
+		cards: p.nullable(
+			(self) =>
+				Array.isArray(self) && self.length <= 6 && self.every((t) => typeof t === "string")
+		),
+		forceStaticImport: "boolean",
+	}),
+	"folder-chart-lookup": prSchemaify({
+		chartID: "string",
+		folderID: "string",
+	}),
+	"game-settings": (s) => {
+		const { game, playtype } = extractGPT(s);
+
+		const gptConfig = GetGamePTConfig(game, playtype);
+
+		return prSchemaify({
+			userID: p.isPositiveNonZeroInteger,
+			game: p.is(game),
+			playtype: p.is(playtype),
+			preferences: {
+				preferredScoreAlg: p.nullable(p.isIn(gptConfig.scoreRatingAlgs)),
+				preferredSessionAlg: p.nullable(p.isIn(gptConfig.sessionRatingAlgs)),
+				preferredProfileAlg: p.nullable(p.isIn(gptConfig.profileRatingAlgs)),
+				// ouch
+				stats: p.and(
+					[
+						p.or(
+							{
+								mode: p.is("chart"),
+								chartID: "string",
+								property: p.isIn("score", "percent", "grade", "lamp", "playcount"),
+							},
+							{
+								mode: p.is("folder"),
+								folderID: p.or("string", ["string"]),
+								property: p.isIn("score", "percent", "grade", "lamp"),
+								gte: p.isPositive,
+							}
+						),
+					],
+					(self) => Array.isArray(self) && self.length <= 6
+				),
+				gameSpecific:
+					game === "iidx"
+						? {
+								display2DXTra: "boolean",
+						  }
+						: {},
+			},
+		})(s);
 	},
-};
+	"game-stats": (self) => {
+		const { game, playtype } = extractGPT(self);
 
-/**
- * Schemas that are "static", i.e. the content of the document
- * does not depend on fields in the document (such as score docs)
- * being different depending on the score.game field.
- */
-export const STATIC_SCHEMAS = {
-	users: PRUDENCE_PUBLIC_USER,
-	"iidx-bpi-data": PRUDENCE_IIDX_BPI_DATA,
-	counters: PRUDENCE_COUNTER,
-	charts: PRUDENCE_CHART_SCHEMAS,
-	songs: PRUDENCE_SONG_SCHEMAS,
-	"folder-chart-lookup": PRUDENCE_FOLDER_CHART_LOOKUP,
-	folders: PRUDENCE_FOLDER,
+		const gptConfig = GetGamePTConfig(game, playtype);
+
+		return prSchemaify(PR_GameStats(game, playtype, gptConfig))(self);
+	},
+	"game-stats-snapshots": (self) => {
+		const { game, playtype } = extractGPT(self);
+
+		const gptConfig = GetGamePTConfig(game, playtype);
+
+		return prSchemaify(
+			Object.assign(PR_GameStats(game, playtype, gptConfig), {
+				ranking: p.isPositiveNonZeroInteger,
+				playcount: p.isPositiveInteger,
+				timestamp: p.isPositive,
+			})
+		)(self);
+	},
+	"import-locks": prSchemaify({
+		userID: p.isPositiveNonZeroInteger,
+	}),
+	"import-timings": prSchemaify({
+		importID: "string",
+		timestamp: p.isPositive,
+		total: p.isPositive,
+		rel: Object.fromEntries(
+			["import", "importParse", "session", "pb"].map((k) => [k, p.isPositive])
+		),
+		abs: Object.fromEntries(
+			["parse", "import", "importParse", "session", "pb", "ugs", "goal", "milestone"].map(
+				(k) => [k, p.isPositive]
+			)
+		),
+	}),
+	"kai-auth-tokens": prSchemaify({
+		userID: p.isPositiveNonZeroInteger,
+		token: "string",
+		refreshToken: "string",
+		service: p.isIn("FLO", "EAG", "MIN"),
+	}),
+	"oauth2-auth-codes": prSchemaify({
+		code: "string",
+		userID: p.isPositiveNonZeroInteger,
+		createdOn: p.isPositive,
+	}),
+	"oauth2-clients": prSchemaify({
+		clientID: "string",
+		clientSecret: "string",
+		name: "string",
+		author: p.isPositiveNonZeroInteger,
+		requestedPermissions: [p.isIn(Object.keys(AllPermissions))],
+		redirectUri: "string",
+		webhookUri: "?string",
+	}),
+	"orphan-chart-queue": prSchemaify({
+		idString: p.isIn(allIDStrings),
+		// @todo #370 Properly prudence-def orphan-chart-queue.
+		chartDoc: p.any,
+		songDoc: p.any,
+		userIDs: [p.isPositiveNonZeroInteger],
+	}),
+	"password-reset-codes": prSchemaify({
+		code: "string",
+		userID: p.isPositiveNonZeroInteger,
+		createdOn: p.isPositive,
+	}),
+	"score-blacklist": prSchemaify({
+		scoreID: "string",
+		userID: p.isPositiveNonZeroInteger,
+		score: p.any,
+	}),
+	"session-view-cache": prSchemaify({
+		sessionID: "string",
+		ip: "string",
+		timestamp: p.isPositive,
+	}),
+	"user-private-information": prSchemaify({
+		userID: p.isPositiveNonZeroInteger,
+		password: "string",
+		email: "string",
+	}),
+	"verify-email-codes": prSchemaify({
+		userID: p.isPositiveNonZeroInteger,
+		code: "string",
+		email: "string",
+	}),
+	counters: prSchemaify({
+		counterName: "string",
+		value: p.isPositiveInteger,
+	}),
+	folders: prSchemaify({
+		title: "string",
+		game: p.isIn(games),
+		playtype: isValidPlaytype,
+		folderID: "string",
+		inactive: "boolean",
+		searchTerms: ["string"],
+		type: p.isIn("songs", "charts", "static"),
+		data: (self, parent) => {
+			if (parent.type === "songs") {
+				return true; //temp. should be a song.
+			} else if (parent.type === "charts") {
+				return true; //temp. should be a chart.
+			}
+
+			return (
+				(Array.isArray(self) && self.every((r) => typeof r === "string")) ||
+				"Expected an array of only strings."
+			);
+		},
+	}),
+	tables: prSchemaify({
+		tableID: "string",
+		game: p.isIn(games),
+		playtype: isValidPlaytype,
+		title: "string",
+		description: "string",
+		folders: ["string"],
+		inactive: "boolean",
+	}),
+	"user-settings": prSchemaify({
+		userID: p.isPositiveNonZeroInteger,
+		preferences: {
+			invisible: "boolean",
+			developerMode: "boolean",
+			contentiousContent: "boolean",
+		},
+	}),
+	sessions: (self) => {
+		const { game, playtype } = extractGPT(self);
+
+		const gptConfig = GetGamePTConfig(game, playtype);
+
+		return prSchemaify({
+			userID: p.isPositiveNonZeroInteger,
+			sessionID: "string",
+			name: "string",
+			desc: "?string",
+			game: p.is(game),
+			playtype: isValidPlaytype,
+			importType: p.nullable(p.isIn(allImportTypes)),
+			timeInserted: p.isPositiveInteger,
+			timeEnded: p.isPositiveInteger,
+			timeStarted: p.isPositiveInteger,
+			highlight: "boolean",
+			views: p.isInteger,
+			calculatedData: Object.fromEntries(
+				gptConfig.sessionRatingAlgs.map((k) => [k, "*?number"])
+			),
+			scoreInfo: [
+				p.or(
+					{
+						scoreID: "string",
+						isNewScore: p.is(true),
+					},
+					{
+						scoreID: "string",
+						isNewScore: p.is(false),
+						scoreDelta: "number",
+						gradeDelta: p.isInteger,
+						lampDelta: p.isInteger,
+						percentDelta: "number",
+					}
+				),
+			],
+		})(self);
+	},
+	imports: prSchemaify({
+		userID: p.isPositiveNonZeroInteger,
+		timeStarted: p.isPositive,
+		timeFinished: p.isPositive,
+		idStrings: [p.isIn(allIDStrings)],
+		importID: "string",
+		scoreIDs: ["string"],
+		errors: [
+			{
+				type: "string",
+				message: "?string",
+			},
+		],
+		createdSessions: [
+			{
+				sessionID: "string",
+				type: p.isIn("Created", "Appended"),
+			},
+		],
+		importType: p.nullable(p.isIn(allImportTypes)),
+		classDeltas: [
+			{
+				game: p.isIn(games),
+				playtype: isValidPlaytype,
+				set: "string", // Technically false, but the validation is a pain.
+				old: p.nullable(p.isInteger),
+				new: p.isInteger,
+			},
+		],
+		goalInfo: [
+			{
+				goalID: "string",
+				old: PR_GoalInfo,
+				new: PR_GoalInfo,
+			},
+		],
+		milestoneInfo: [
+			{
+				milestoneID: "string",
+				old: { progress: p.isInteger, achieved: "boolean" },
+				new: { progress: p.isInteger, achieved: "boolean" },
+			},
+		],
+		userIntent: "boolean",
+	}),
+	scores: (self) => {
+		const { game, playtype } = extractGPT(self);
+
+		const gptConfig = GetGamePTConfig(game, playtype);
+
+		const hitMeta = Object.assign(
+			{
+				fast: optNull(p.isPositiveInteger),
+				slow: optNull(p.isPositiveInteger),
+				maxCombo: optNull(p.isPositiveInteger),
+			},
+			GetHitMeta(game)
+		);
+
+		const scoreMeta = GetScoreMeta(game, playtype);
+
+		return prSchemaify({
+			service: "string",
+			game: p.is(game),
+			playtype: p.is(playtype),
+			userID: p.isPositiveNonZeroInteger,
+			songID: p.isPositiveInteger,
+			chartID: "string",
+			isPrimary: "boolean",
+			highlight: "boolean",
+			comment: "?string",
+			timeAdded: p.isInteger,
+			scoreID: "string",
+			importType: p.nullable(p.isIn(allImportTypes)),
+			timeAchieved: p.nullable(p.isPositive),
+			scoreData: {
+				score: "number",
+				lamp: p.isIn(gptConfig.lamps),
+				lampIndex: p.isIn(Object.keys(gptConfig.lamps).map(Number)),
+				grade: p.isIn(gptConfig.grades),
+				gradeIndex: p.isIn(Object.keys(gptConfig.grades).map(Number)),
+				percent: p.isBetween(0, gptConfig.percentMax),
+				esd: "?number",
+				judgements: Object.fromEntries(
+					gptConfig.judgements.map((j) => [j, optNull(p.isInteger)])
+				),
+				hitMeta,
+			},
+			scoreMeta,
+			calculatedData: Object.fromEntries(
+				gptConfig.scoreRatingAlgs.map((a) => [a, "*?number"])
+			),
+		})(self);
+	},
+	"personal-bests": (self) => {
+		const { game, playtype } = extractGPT(self);
+
+		const gptConfig = GetGamePTConfig(game, playtype);
+
+		const hitMeta = Object.assign(
+			{
+				fast: optNull(p.isPositiveInteger),
+				slow: optNull(p.isPositiveInteger),
+				maxCombo: optNull(p.isPositiveInteger),
+			},
+			GetHitMeta(game)
+		);
+
+		return prSchemaify({
+			composedFrom: {
+				scorePB: "string",
+				lampPB: "string",
+				other: p.optional([{ name: "string", scoreID: "string" }]),
+			},
+			rankingData: {
+				rank: p.isPositiveNonZeroInteger,
+				outOf: p.isPositiveNonZeroInteger,
+			},
+			userID: p.isPositiveNonZeroInteger,
+			chartID: "string",
+			game: p.is(game),
+			playtype: p.is(playtype),
+			songID: p.isPositiveNonZeroInteger,
+			highlight: "boolean",
+			isPrimary: "boolean",
+			timeAchieved: p.nullable(p.isPositive),
+			scoreData: {
+				score: "number",
+				lamp: p.isIn(gptConfig.lamps),
+				lampIndex: p.isIn(Object.keys(gptConfig.lamps).map(Number)),
+				grade: p.isIn(gptConfig.grades),
+				gradeIndex: p.isIn(Object.keys(gptConfig.grades).map(Number)),
+				percent: p.isBetween(0, gptConfig.percentMax),
+				esd: "?number",
+				judgements: Object.fromEntries(
+					gptConfig.judgements.map((j) => [j, optNull(p.isInteger)])
+				),
+				hitMeta,
+			},
+			calculatedData: Object.fromEntries(
+				gptConfig.scoreRatingAlgs.map((a) => [a, "*?number"])
+			),
+		})(self);
+	},
+	"songs-bms": prSchemaify(
+		PR_SongDocument({
+			genre: "?string",
+			subtitle: "?string",
+			subartist: "?string",
+		})
+	),
+	"songs-chunithm": prSchemaify(
+		PR_SongDocument({
+			genre: "string",
+			displayVersion: "string",
+		})
+	),
+	"songs-ddr": prSchemaify(
+		PR_SongDocument({
+			displayVersion: "string",
+		})
+	),
+	"songs-sdvx": prSchemaify(
+		PR_SongDocument({
+			displayVersion: "string",
+		})
+	),
+	"songs-usc": prSchemaify(PR_SongDocument({})),
+	"songs-maimai": prSchemaify(
+		PR_SongDocument({
+			titleJP: "string",
+			artistJP: "string",
+			displayVersion: "string",
+		})
+	),
+	"songs-museca": prSchemaify(
+		PR_SongDocument({
+			titleJP: "string",
+			artistJP: "string",
+			displayVersion: "string",
+		})
+	),
+	"songs-gitadora": prSchemaify(
+		PR_SongDocument({
+			isHot: "boolean",
+		})
+	),
+	"songs-iidx": prSchemaify(
+		PR_SongDocument({
+			genre: "string",
+			displayVersion: "string",
+		})
+	),
+	"charts-iidx": (self) => {
+		const playtype = getPlaytype("iidx", self);
+
+		return prSchemaify(
+			PR_ChartDocument("iidx", playtype, {
+				notecount: p.isPositiveNonZeroInteger,
+				inGameID: p.isPositiveNonZeroInteger,
+				arcChartID: "?string",
+				hashSHA256: "?string",
+				"2dxtraSet": "?string",
+			})
+		)(self);
+	},
+	"charts-bms": (self) => {
+		const playtype = getPlaytype("bms", self);
+
+		return prSchemaify(
+			PR_ChartDocument("bms", playtype, {
+				notecount: p.isPositiveNonZeroInteger,
+				hashSHA256: "?string",
+				hashMD5: "?string",
+				tableFolders: [
+					{
+						table: "string",
+						level: "string",
+					},
+				],
+			})
+		)(self);
+	},
+	"charts-chunithm": prSchemaify(
+		PR_ChartDocument("chunithm", "Single", {
+			inGameID: p.isPositiveInteger,
+		})
+	),
+	"charts-gitadora": (self) => {
+		const playtype = getPlaytype("gitadora", self);
+
+		return prSchemaify(
+			PR_ChartDocument("gitadora", playtype, {
+				inGameID: p.isPositiveInteger,
+			})
+		)(self);
+	},
+	"charts-ddr": (self) => {
+		const playtype = getPlaytype("ddr", self);
+
+		return prSchemaify(
+			PR_ChartDocument("ddr", playtype, {
+				inGameID: "string",
+				songHash: "string",
+			})
+		)(self);
+	},
+	"charts-maimai": prSchemaify(
+		PR_ChartDocument("maimai", "Single", {
+			maxPercent: p.gt(0),
+			inGameID: p.isPositiveInteger,
+			inGameStrID: "string",
+		})
+	),
+	"charts-museca": prSchemaify(
+		PR_ChartDocument("museca", "Single", {
+			inGameID: p.isPositiveInteger,
+		})
+	),
+	"charts-sdvx": prSchemaify(
+		PR_ChartDocument("sdvx", "Single", {
+			inGameID: p.isPositiveInteger,
+			arcChartID: "?string",
+		})
+	),
+	"charts-usc": prSchemaify(
+		PR_ChartDocument("usc", "Single", {
+			hashSHA1: p.or("string", ["string"]),
+			isOfficial: "boolean",
+		})
+	),
+	goals: prSchemaify({
+		game: p.isIn(games),
+		playtype: isValidPlaytype,
+		timeAdded: p.isPositive,
+		createdBy: p.isPositiveNonZeroInteger,
+		title: "string",
+		goalID: "string",
+		criteria: p.or(
+			{
+				mode: p.is("single"),
+				key: p.isIn(
+					"scoreData.percent",
+					"scoreData.lampIndex",
+					"scoreData.gradeIndex",
+					"scoreData.score"
+				),
+				value: "number",
+			},
+			{
+				mode: p.isIn("abs", "proportion"),
+				countNum: p.isPositive,
+				key: p.isIn(
+					"scoreData.percent",
+					"scoreData.lampIndex",
+					"scoreData.gradeIndex",
+					"scoreData.score"
+				),
+				value: "number",
+			}
+		),
+		charts: p.or(
+			{
+				type: p.is("any"),
+			},
+			{
+				type: p.is("folder"),
+				data: "string",
+			},
+			{
+				type: p.is("multi"),
+				data: ["string"],
+			},
+			{
+				type: p.is("single"),
+				data: "string",
+			}
+		),
+	}),
+	milestones: prSchemaify({
+		game: p.isIn(games),
+		playtype: isValidPlaytype,
+		createdBy: p.isPositiveNonZeroInteger,
+		name: "string",
+		desc: "string",
+		milestoneID: "string",
+		group: "?string",
+		groupINdex: p.nullable(p.isInteger),
+		milestoneData: [
+			{
+				title: "string",
+				desc: "string",
+				goals: [{ goalID: "string", note: "*string" }],
+			},
+		],
+		criteria: p.or(
+			{
+				type: "all",
+			},
+			{
+				type: p.isIn("abs", "proportion"),
+				value: p.isPositive,
+			}
+		),
+	}),
+	"user-goals": prSchemaify({
+		goalID: "string",
+		userID: p.isPositiveNonZeroInteger,
+		game: p.isIn(games),
+		playtype: isValidPlaytype,
+		achieved: "boolean",
+		timeSet: p.isPositive,
+		timeAchieved: p.nullable(p.isPositive),
+		lastInteraction: p.nullable(p.isPositive),
+		progress: "?number",
+		progressHuman: "string",
+		outOf: "number",
+		outOfHuman: "string",
+	}),
+	"user-milestones": prSchemaify({
+		milestoneID: "string",
+		userID: p.isPositiveNonZeroInteger,
+		game: p.isIn(games),
+		playtype: isValidPlaytype,
+		timeSet: p.isPositive,
+		achieved: "boolean",
+		timeAchieved: p.nullable(p.isPositive),
+		progress: p.isInteger,
+	}),
 };

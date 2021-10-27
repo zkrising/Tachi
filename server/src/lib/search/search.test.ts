@@ -29,7 +29,7 @@ t.test("#SearchGameSongs", (t) => {
 			// return order is ambiguous) we sort on
 			// songID here and expect this.
 			res.sort((a, b) => a.id - b.id).map((e) => e.title),
-			["A", "AA", "冥", "F", "HAERETICUS", "ZZ", "X", "AA -rebuild-", "∀"]
+			["A", "AA", "冥", "F", "HAERETICUS", "ZZ", "X", "AA -rebuild-", "∀", "-65℃"]
 		);
 
 		t.end();

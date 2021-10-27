@@ -223,7 +223,6 @@ export function ConvertUSCChart(uscChartDoc: USCClientChart) {
 	const song: SongDocument<"usc"> = {
 		title: uscChartDoc.title,
 		artist: uscChartDoc.artist,
-		firstVersion: null,
 		id: 0,
 		data: {},
 		altTitles: [],

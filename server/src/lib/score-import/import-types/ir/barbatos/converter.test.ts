@@ -17,11 +17,11 @@ t.test("#ConverterIRBarbatos", (t) => {
 		title: "ALBIDA Powerless Mix",
 		artist: "無力P",
 		id: 1,
-		firstVersion: "booth",
 		altTitles: [],
 		searchTerms: ["albida_muryoku", "ｱﾙﾋﾞﾀﾞﾊﾟﾜｰﾚｽﾐｯｸｽ"],
 		data: {
 			uscEquiv: null,
+			displayVersion: "booth",
 		},
 	};
 

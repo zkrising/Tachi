@@ -84,6 +84,14 @@ async function ConvertFn(c: any): Promise<ScoreDocument | null> {
 			base.scoreMeta.random = null;
 		}
 
+		if (c.scoreData.hitMeta.gauge < 0) {
+			c.scoreData.hitMeta.gauge = null;
+		}
+
+		if (!Array.isArray(c.scoreData.hitMeta.gaugeHistory)) {
+			c.scoreData.hitMeta.gaugeHistory = null;
+		}
+
 		// @ts-expect-error asdf
 		if (base.scoreMeta.range === "") {
 			base.scoreMeta.range = "NONE";
@@ -131,7 +139,7 @@ async function ConvertFn(c: any): Promise<ScoreDocument | null> {
 }
 
 export async function MigrateIIDXScores() {
-	await MigrateRecords(db.scores, "scores", ConvertFn, { game: "iidx" });
+	await MigrateRecords(db.scores, "scores", ConvertFn, { game: "iidx" }, true);
 }
 
 if (require.main === module) {

@@ -60,7 +60,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 
 			return {
 				VF6,
-				profileVF6: VF6 === null ? null : VF6 * 50,
+				ProfileVF6: VF6 === null ? null : VF6 * 50,
 			};
 		},
 	},
@@ -78,9 +78,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 		}),
 	},
 	maimai: {
-		Single: (scd) => ({
-			ktRating: AvgBest10Map(scd, "ktRating"),
-		}),
+		Single: (scd) => ({}),
 	},
 	gitadora: {
 		Gita: (scd) => ({
@@ -92,10 +90,10 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	},
 	bms: {
 		"7K": (scd) => ({
-			ktLampRating: AvgBest10Map(scd, "ktLampRating"),
+			sieglinde: AvgBest10Map(scd, "sieglinde"),
 		}),
 		"14K": (scd) => ({
-			ktLampRating: AvgBest10Map(scd, "ktLampRating"),
+			sieglinde: AvgBest10Map(scd, "sieglinde"),
 		}),
 	},
 	ddr: {
@@ -119,7 +117,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 
 			return {
 				VF6,
-				profileVF6: VF6 === null ? null : VF6 * 50,
+				ProfileVF6: VF6 === null ? null : VF6 * 50,
 			};
 		},
 	},

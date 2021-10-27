@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { integer, SessionDocument, SessionScoreInfo } from "tachi-common";
 import db from "external/mongo/db";
-import MigrateRecords from "./migrate";
-import { CreateSessionID } from "lib/score-import/framework/sessions/sessions";
-import { oldKTDB } from "./old-db";
 import CreateLogCtx from "lib/logger/logger";
+import { CreateSessionID } from "lib/score-import/framework/sessions/sessions";
+import { GetGameConfig, integer, SessionDocument, SessionScoreInfo } from "tachi-common";
 import { allSupportedGames } from "tachi-common/js/config/static-config";
+import MigrateRecords from "./migrate";
+import { oldKTDB } from "./old-db";
 
 const logger = CreateLogCtx(__filename);
 
@@ -44,6 +44,10 @@ async function ConvertScoreToScoreInfo(
 		};
 	}
 
+	if (score.pbInfo.scoreDelta === null) {
+		return null;
+	}
+
 	return {
 		scoreID: scoreIDs.new,
 		isNewScore: false,
@@ -56,6 +60,12 @@ async function ConvertScoreToScoreInfo(
 
 async function ConvertFn(c: any): Promise<SessionDocument | null> {
 	if (!allSupportedGames.includes(c.game)) {
+		return null;
+	}
+
+	const gameConfig = GetGameConfig(c.game);
+
+	if (!gameConfig.validPlaytypes.includes(c.playtype)) {
 		return null;
 	}
 

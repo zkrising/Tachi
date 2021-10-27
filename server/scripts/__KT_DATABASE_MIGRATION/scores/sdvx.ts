@@ -58,14 +58,19 @@ async function ConvertFn(c: any): Promise<ScoreDocument | null> {
 			percent: c.scoreData.percent,
 			score: c.scoreData.score,
 			judgements: c.scoreData.hitData,
-			hitMeta: c.scoreData.hitMeta,
+			hitMeta: {
+				fast: c.scoreData.hitMeta.fast,
+				slow: c.scoreData.hitMeta.slow,
+				maxCombo: c.scoreData.hitMeta.maxCombo,
+				gauge: c.scoreData.hitMeta.gauge,
+			},
 		},
 		scoreMeta: {
 			inSkillAnalyser: null,
 		},
 	};
 
-	if (c.scoreData.hitData.error) {
+	if (c.scoreData.hitData.error !== undefined) {
 		base.scoreData.judgements.miss = c.scoreData.hitData.error;
 		// @ts-expect-error yeah we know
 		delete base.scoreData.judgements.error;

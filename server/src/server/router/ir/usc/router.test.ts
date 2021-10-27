@@ -560,7 +560,6 @@ t.test("POST /scores", (t) => {
 		t.strictSame(orphanData?.songDoc, {
 			title: "test",
 			artist: "test_artist",
-			firstVersion: null,
 			id: 0,
 			altTitles: [],
 			searchTerms: [],

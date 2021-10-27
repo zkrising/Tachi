@@ -2,10 +2,10 @@
     "title": "B.B.K.K.B.K.K.",
     "artist": "nora2r",
     "id": 3,
-    "firstVersion": "chuni",
     "altTitles": [],
     "searchTerms": [],
     "data": {
-        "genre": "VARIETY"
+        "genre": "VARIETY",
+        "displayVersion": "chuni"
     }
 }

@@ -40,7 +40,6 @@ async function ConvertFn(c: any): Promise<ScoreDocument | null> {
 		const oldSong = await oldKTDB.get("songs-bms").findOne({ id: c.songID });
 		logger.warn(`Cannot find ChartDoc for ${oldSong.title} ${oldChartDoc.level} ${playtype}`);
 		return null;
-		throw new Error(`Cannot find ChartDoc for ${c.scoreID} (${c.chartID})`);
 	}
 
 	const gptConfig = GetGamePTConfig(game, chartDoc.playtype);
@@ -75,7 +74,23 @@ async function ConvertFn(c: any): Promise<ScoreDocument | null> {
 			percent: c.scoreData.percent,
 			score: c.scoreData.score,
 			judgements: c.scoreData.hitData,
-			hitMeta: c.scoreData.hitMeta,
+			hitMeta: {
+				fast: c.scoreData.hitMeta.fast,
+				slow: c.scoreData.hitMeta.slow,
+				maxCombo: c.scoreData.hitMeta.maxCombo,
+				bp: c.scoreData.hitMeta.bp,
+				gauge: c.scoreData.hitMeta.gauge,
+				epg: c.scoreData.hitMeta.epg,
+				egr: c.scoreData.hitMeta.egr,
+				egd: c.scoreData.hitMeta.egd,
+				ebd: c.scoreData.hitMeta.ebd,
+				epr: c.scoreData.hitMeta.epr,
+				lpg: c.scoreData.hitMeta.lpg,
+				lgr: c.scoreData.hitMeta.lgr,
+				lgd: c.scoreData.hitMeta.lgd,
+				lbd: c.scoreData.hitMeta.lbd,
+				lpr: c.scoreData.hitMeta.lpr,
+			},
 		},
 		scoreMeta: {
 			random: c.scoreMeta?.optionsRandom ?? null,
@@ -85,6 +100,12 @@ async function ConvertFn(c: any): Promise<ScoreDocument | null> {
 
 	// @ts-expect-error shut
 	if (base.scoreData.hitMeta.bp === -1 || Number.isNaN(base.scoreData.hitMeta.bp)) {
+		// @ts-expect-error shut
+		base.scoreData.hitMeta.bp = null;
+	}
+
+	// @ts-expect-error shut
+	if (Number(base.scoreData.hitMeta.bp) < 0) {
 		// @ts-expect-error shut
 		base.scoreData.hitMeta.bp = null;
 	}

@@ -305,7 +305,7 @@ const ratingParameters = {
 
 export function CalculateKTRating(
 	dryScore: DryScore,
-	game: "iidx" | "bms" | "ddr" | "maimai" | "museca",
+	game: "iidx" | "ddr" | "museca",
 	playtype: Playtypes[Game],
 	chart: ChartDocument,
 	logger: KtLogger

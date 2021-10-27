@@ -15,14 +15,6 @@
     },
     "isPrimary": true,
     "versions": [
-        "chuni",
-        "chuniplus",
-        "air",
-        "airplus",
-        "star",
-        "starplus",
-        "amazon",
-        "amazonplus",
         "crystal",
         "crystalplus"
     ]

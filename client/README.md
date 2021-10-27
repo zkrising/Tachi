@@ -20,6 +20,5 @@ pnpm start
 # .env
 REACT_APP_TCHIC_MODE="omni" # "btchi" or "ktchi", in prod
 REACT_APP_API_URL="wherever the related tachi-server is hosted."
-# REACT_APP_MANDATE_LOGIN="true" # Whether to mandate logins or not. This should be "true" for ktchi, and false for btchi.
 ```
 

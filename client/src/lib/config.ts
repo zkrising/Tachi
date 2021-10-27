@@ -3,7 +3,7 @@ import { StaticConfig } from "tachi-common";
 export const mode = process.env.REACT_APP_TCHIC_MODE;
 
 if (!mode) {
-	throw new Error("No TCHIC_MODE set. Cannot boot.");
+	throw new Error("No REACT_APP_TCHIC_MODE set in Process Environment, refusing to boot.");
 }
 
 let conf;
@@ -25,11 +25,11 @@ if (mode === "ktchi") {
 		primary: "#e61c6e",
 	};
 } else {
-	throw new Error(`Invalid TCHIC_MODE of ${mode}. Cannot boot.`);
+	throw new Error("Invalid REACT_APP_TCHIC_MODE. Expected ktchi, btchi or omni.");
 }
 
 export const TachiConfig = conf;
 export const ColourConfig = colourConf;
 export const ClientConfig = {
-	MANDATE_LOGIN: !!process.env.REACT_APP_MANDATE_LOGIN,
+	MANDATE_LOGIN: process.env.REACT_APP_TCHIC_MODE === "ktchi",
 };

@@ -336,9 +336,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "lamp",
 
-		currentLatestVersion: "28",
-		currentLocalVersion: "27",
-		currentGameOmniVersion: "27-omni",
+		currentLatestVersion: "29",
+		currentLocalVersion: "28",
+		currentGameOmniVersion: "28-omni",
 		supportedVersions: [
 			"3-cs",
 			"4-cs",
@@ -363,8 +363,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"26",
 			"27",
 			"28",
+			"29",
 			"26-omni",
 			"27-omni",
+			"28-omni",
 			"27-2dxtra",
 			"bmus",
 			"inf",

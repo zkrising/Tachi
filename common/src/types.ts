@@ -728,6 +728,8 @@ type SupportedIIDXVersions =
 	| "26"
 	| "27"
 	| "28"
+	| "29"
+	| "28-omni"
 	| "27-omni"
 	| "28-omni"
 	| "25"

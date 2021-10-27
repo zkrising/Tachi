@@ -83,27 +83,29 @@ checkBrowsers(paths.appPath, isInteractive)
 				console.log(chalk.green('Compiled successfully.\n'));
 			}
 
-			/*console.log('File sizes after gzip:\n');
-			printFileSizesAfterBuild(
-				stats,
-				previousFileSizes,
-				paths.appBuild,
-				WARN_AFTER_BUNDLE_GZIP_SIZE,
-				WARN_AFTER_CHUNK_GZIP_SIZE
-			);
-			console.log();
+			// Force build script to shut up since ereti doesn't like it
 
-			const appPackage = require(paths.appPackageJson);
-			const publicUrl = paths.publicUrl;
-			const publicPath = config.output.publicPath;
-			const buildFolder = path.relative(process.cwd(), paths.appBuild);
-			printHostingInstructions(
-				appPackage,
-				publicUrl,
-				publicPath,
-				buildFolder,
-				useYarn
-			);*/
+			// console.log('File sizes after gzip:\n');
+			// printFileSizesAfterBuild(
+			// 	stats,
+			// 	previousFileSizes,
+			// 	paths.appBuild,
+			// 	WARN_AFTER_BUNDLE_GZIP_SIZE,
+			// 	WARN_AFTER_CHUNK_GZIP_SIZE
+			// );
+			// console.log();
+
+			// const appPackage = require(paths.appPackageJson);
+			// const publicUrl = paths.publicUrl;
+			// const publicPath = config.output.publicPath;
+			// const buildFolder = path.relative(process.cwd(), paths.appBuild);
+			// printHostingInstructions(
+			// 	appPackage,
+			// 	publicUrl,
+			// 	publicPath,
+			// 	buildFolder,
+			// 	useYarn
+			// );
 		},
 		err => {
 			const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === 'true';

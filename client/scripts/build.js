@@ -83,7 +83,7 @@ checkBrowsers(paths.appPath, isInteractive)
 				console.log(chalk.green('Compiled successfully.\n'));
 			}
 
-			console.log('File sizes after gzip:\n');
+			/*console.log('File sizes after gzip:\n');
 			printFileSizesAfterBuild(
 				stats,
 				previousFileSizes,
@@ -103,7 +103,7 @@ checkBrowsers(paths.appPath, isInteractive)
 				publicPath,
 				buildFolder,
 				useYarn
-			);
+			);*/
 		},
 		err => {
 			const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === 'true';

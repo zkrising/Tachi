@@ -9550,50 +9550,6 @@
 		"searchTerms": []
 	},
 	{
-		"title": "TUTORIAL 2",
-		"artist": "ARTIST",
-		"id": 837,
-		"data": {
-			"genre": "GENRE",
-			"displayVersion": "16"
-		},
-		"altTitles": [],
-		"searchTerms": []
-	},
-	{
-		"title": "HOW TO",
-		"artist": "ARTIST",
-		"id": 838,
-		"data": {
-			"genre": "GENRE",
-			"displayVersion": "16"
-		},
-		"altTitles": [],
-		"searchTerms": []
-	},
-	{
-		"title": "TUTORIAL BASIC",
-		"artist": "ARTIST",
-		"id": 839,
-		"data": {
-			"genre": "GENRE",
-			"displayVersion": "16"
-		},
-		"altTitles": [],
-		"searchTerms": []
-	},
-	{
-		"title": "TUTORIAL CN",
-		"artist": "ARTIST",
-		"id": 840,
-		"data": {
-			"genre": "GENRE",
-			"displayVersion": "16"
-		},
-		"altTitles": [],
-		"searchTerms": []
-	},
-	{
 		"title": "Back Into The Light -Feelings Won't Fade Vocal Mix-",
 		"artist": "Sota Fujimori",
 		"id": 846,

@@ -1,7 +1,7 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { ToServerURL } from "util/api";
+import { ToCDNURL, ToServerURL } from "util/api";
 import { toAbsoluteUrl } from "_metronic/_helpers";
 
 export function ErrorPage({
@@ -56,7 +56,7 @@ export function ErrorPage({
 				statusCode === 999
 					? {
 							background: "red",
-							backgroundImage: `url(${ToServerURL("/cdn/eggs/michael.png")})`,
+							backgroundImage: `url(${ToCDNURL("/eggs/michael.png")})`,
 							backgroundRepeat: "no-repeat",
 							backgroundPosition: "center",
 							backgroundSize: "cover",

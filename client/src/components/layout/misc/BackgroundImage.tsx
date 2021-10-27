@@ -1,6 +1,6 @@
 import { BackgroundContext } from "context/BackgroundContext";
 import React, { useContext } from "react";
-import { ToServerURL } from "util/api";
+import { ToCDNURL, ToServerURL } from "util/api";
 
 export default function BackgroundImage() {
 	const { background } = useContext(BackgroundContext);
@@ -11,7 +11,7 @@ export default function BackgroundImage() {
 			style={{
 				backgroundImage: background
 					? `url(${background})`
-					: `url(${ToServerURL("/cdn/game-banners/default")})`,
+					: `url(${ToCDNURL("/game-banners/default")})`,
 			}}
 		></div>
 	);

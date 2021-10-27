@@ -9,6 +9,11 @@ const BASE_OPTIONS = {
 
 // eslint-disable-next-line no-undef
 const BASE_URL = process.env.REACT_APP_SERVER_URL ?? "";
+const CDN_URL = process.env.REACT_APP_CDN_URL;
+
+if (!CDN_URL) {
+	throw new Error(`Cannot run -- no REACT_APP_CDN_URL provided?`);
+}
 
 export function ToAPIURL(url: string) {
 	if (url[0] !== "/") {
@@ -17,6 +22,14 @@ export function ToAPIURL(url: string) {
 	}
 
 	return `${BASE_URL}/api/v1${url}`;
+}
+
+export function ToCDNURL(url: string) {
+	if (url[0] !== "/") {
+		url = `/${url}`;
+	}
+
+	return `${CDN_URL}${url}`;
 }
 
 export function ToServerURL(url: string) {

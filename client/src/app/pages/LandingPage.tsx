@@ -5,7 +5,7 @@ import Divider from "components/util/Divider";
 import LinkButton from "components/util/LinkButton";
 import { TachiConfig } from "lib/config";
 import React from "react";
-import { ToServerURL } from "util/api";
+import { ToCDNURL, ToServerURL } from "util/api";
 import { toAbsoluteUrl } from "_metronic/_helpers";
 
 // This page is currently unused,
@@ -20,13 +20,13 @@ export default function LandingPage() {
 					<div
 						className="hero-bg-image"
 						style={{
-							backgroundImage: `url(${ToServerURL("/cdn/game-banners/default")})`,
+							backgroundImage: `url(${ToCDNURL("/game-banners/default")})`,
 						}}
 					/>
 					<div
 						className="hero-bg-fader"
 						style={{
-							backgroundImage: `url(${ToServerURL("/cdn/misc/overlay.png")})`,
+							backgroundImage: `url(${ToCDNURL("/misc/overlay.png")})`,
 						}}
 					/>
 					<div className="hero-content-wrapper">
@@ -73,7 +73,7 @@ export default function LandingPage() {
 							>
 								<FeatureImage
 									alt="Picture of scores."
-									src={ToServerURL("/cdn/hero/scores.png")}
+									src={ToCDNURL("/hero/scores.png")}
 								/>
 							</FeatureContainer>
 							<FeatureContainer

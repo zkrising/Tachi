@@ -179,7 +179,7 @@ async function MergeIDs() {
 			// eslint-disable-next-line no-await-in-loop
 			await db.charts[options.game as "sdvx" | "iidx"].update(
 				{
-					_id: tachiChart._id,
+					chartID: tachiChart.chartID,
 				},
 				{
 					$set: {

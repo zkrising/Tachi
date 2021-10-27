@@ -11,6 +11,13 @@ import { ICollection } from "monk";
 import path from "path";
 import { ChartDocument, FolderDocument, SongDocument, TableDocument } from "tachi-common";
 import deepEqual from "deep-equal";
+import { Command } from "commander";
+
+const program = new Command();
+program.option("-c, --cache");
+
+program.parse(process.argv);
+const options = program.opts();
 
 interface SyncInstructions {
 	pattern: RegExp;
@@ -70,14 +77,12 @@ async function GenericUpsert<T>(
 			});
 		} else if (!deepEqual(document, exists, { strict: true })) {
 			bwriteOps.push({
-				updateOne: {
+				replaceOne: {
 					// @ts-expect-error Known X->Y generic issue.
 					filter: {
 						[field]: document[field],
 					},
-					update: {
-						$set: document,
-					},
+					replacement: document,
 				},
 			});
 		}
@@ -102,12 +107,12 @@ const syncInstructions: SyncInstructions[] = [
 	{
 		pattern: /^charts-/u,
 		handler: (charts: ChartDocument[], collection: ICollection<ChartDocument>, logger) =>
-			GenericUpsert(charts, collection, "chartID", logger),
+			GenericUpsert(charts, collection, "chartID", logger, true),
 	},
 	{
 		pattern: /^songs-/u,
 		handler: (songs: SongDocument[], collection: ICollection<SongDocument>, logger) =>
-			GenericUpsert(songs, collection, "id", logger),
+			GenericUpsert(songs, collection, "id", logger, true),
 	},
 	{
 		pattern: /^folders$/u,
@@ -146,7 +151,9 @@ const syncInstructions: SyncInstructions[] = [
 				}
 			}
 
-			await collection.bulkWrite(bwriteOps);
+			if (bwriteOps.length) {
+				await collection.bulkWrite(bwriteOps);
+			}
 		},
 	},
 	{
@@ -186,7 +193,9 @@ const syncInstructions: SyncInstructions[] = [
 				}
 			}
 
-			await collection.bulkWrite(bwriteOps);
+			if (bwriteOps.length) {
+				await collection.bulkWrite(bwriteOps);
+			}
 		},
 	},
 ];
@@ -196,11 +205,15 @@ const logger = CreateLogCtx("Database Sync");
 async function SynchroniseDBWithSeeds() {
 	const seedsDir = path.join(__dirname, "tachi-database-seeds");
 
-	fs.rmSync(seedsDir, { recursive: true, force: true });
-	// This will create a directory called tachi-database-seeds in this folder.
-	execSync(`cd ${__dirname} && git clone https://github.com/TNG-dev/tachi-database-seeds`, {
-		stdio: "inherit",
-	});
+	if (!options.cache) {
+		fs.rmSync(seedsDir, { recursive: true, force: true });
+
+		logger.info(`--cache not provided, fetching from git.`);
+		// This will create a directory called tachi-database-seeds in this folder.
+		execSync(`cd ${__dirname} && git clone https://github.com/TNG-dev/tachi-database-seeds`, {
+			stdio: "inherit",
+		});
+	}
 
 	const collections = fs.readdirSync(path.join(seedsDir, "collections"));
 
@@ -225,11 +238,11 @@ async function SynchroniseDBWithSeeds() {
 			fs.readFileSync(path.join(seedsDir, "collections", jsonName), "utf-8")
 		);
 
-		spawnLogger.info(`Found ${data.length} documents.`);
+		spawnLogger.verbose(`Found ${data.length} documents.`);
 
 		let matchedSomething = false;
 		for (const syncInst of syncInstructions) {
-			if (jsonName.match(syncInst.pattern)) {
+			if (collectionName.match(syncInst.pattern)) {
 				spawnLogger.verbose(`Starting handler...`);
 				await syncInst.handler(data, monkDB.get(collectionName), spawnLogger);
 				matchedSomething = true;

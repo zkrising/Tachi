@@ -151,10 +151,9 @@ const getPlaytype = (game: Game, self: unknown): Playtypes[Game] => {
 };
 
 const PR_SongDocument = (data: PrudenceSchema): PrudenceSchema => ({
-	id: p.isPositiveNonZeroInteger,
+	id: p.isPositiveInteger,
 	title: "string",
 	artist: "string",
-	firstVersion: "?string",
 	searchTerms: ["string"],
 	altTitles: ["string"],
 	data,
@@ -168,7 +167,7 @@ const PR_ChartDocument = (
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	return {
-		songID: p.isPositiveNonZeroInteger,
+		songID: p.isPositiveInteger,
 		chartID: "string",
 		rgcID: "?string",
 		level: "string",
@@ -247,7 +246,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		},
 		joinDate: p.isPositiveInteger,
 		about: p.isBoundedString(0, 4000),
-		status: p.isBoundedString(3, 140),
+		status: p.nullable(p.isBoundedString(3, 140)),
 		customPfp: "boolean",
 		customBanner: "boolean",
 		clan: p.nullable(p.isBoundedString(2, 4)),
@@ -268,7 +267,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 			const s = self as Record<string, unknown>;
 
 			for (const key in AllPermissions) {
-				if (s[key] !== undefined || typeof s[key] !== "boolean") {
+				if (s[key] !== undefined && typeof s[key] !== "boolean") {
 					return `Invalid permission value of ${s[key]} at ${key}.`;
 				}
 			}
@@ -354,7 +353,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 			preferences: {
 				preferredScoreAlg: p.nullable(p.isIn(gptConfig.scoreRatingAlgs)),
 				preferredSessionAlg: p.nullable(p.isIn(gptConfig.sessionRatingAlgs)),
-				preferredProfileAlgs: p.nullable(p.isIn(gptConfig.profileRatingAlgs)),
+				preferredProfileAlg: p.nullable(p.isIn(gptConfig.profileRatingAlgs)),
 				// ouch
 				stats: p.and(
 					[
@@ -462,7 +461,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		timestamp: p.isPositive,
 	}),
 	"user-private-information": prSchemaify({
-		userInfo: p.isPositiveNonZeroInteger,
+		userID: p.isPositiveNonZeroInteger,
 		password: "string",
 		email: "string",
 	}),
@@ -706,30 +705,45 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 	"songs-chunithm": prSchemaify(
 		PR_SongDocument({
 			genre: "string",
+			displayVersion: "string",
 		})
 	),
-	"songs-ddr": prSchemaify(PR_SongDocument({})),
-	"songs-sdvx": prSchemaify(PR_SongDocument({})),
+	"songs-ddr": prSchemaify(
+		PR_SongDocument({
+			displayVersion: "string",
+		})
+	),
+	"songs-sdvx": prSchemaify(
+		PR_SongDocument({
+			displayVersion: "string",
+		})
+	),
 	"songs-usc": prSchemaify(PR_SongDocument({})),
 	"songs-maimai": prSchemaify(
 		PR_SongDocument({
 			titleJP: "string",
 			artistJP: "string",
-			genre: "string",
+			displayVersion: "string",
 		})
 	),
 	"songs-museca": prSchemaify(
 		PR_SongDocument({
 			titleJP: "string",
 			artistJP: "string",
+			displayVersion: "string",
 		})
 	),
-	"songs-gitadora": prSchemaify({
-		isHot: "boolean",
-	}),
-	"songs-iidx": prSchemaify({
-		genre: "string",
-	}),
+	"songs-gitadora": prSchemaify(
+		PR_SongDocument({
+			isHot: "boolean",
+		})
+	),
+	"songs-iidx": prSchemaify(
+		PR_SongDocument({
+			genre: "string",
+			displayVersion: "string",
+		})
+	),
 	"charts-iidx": (self) => {
 		const playtype = getPlaytype("iidx", self);
 
@@ -799,7 +813,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 	"charts-sdvx": prSchemaify(
 		PR_ChartDocument("sdvx", "Single", {
 			inGameID: p.isPositiveInteger,
-			arcChartID: "string",
+			arcChartID: "?string",
 		})
 	),
 	"charts-usc": prSchemaify(
@@ -817,7 +831,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		goalID: "string",
 		criteria: p.or(
 			{
-				mode: "single",
+				mode: p.is("single"),
 				key: p.isIn(
 					"scoreData.percent",
 					"scoreData.lampIndex",
@@ -840,18 +854,18 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		),
 		charts: p.or(
 			{
-				type: "any",
+				type: p.is("any"),
 			},
 			{
-				type: "folder",
+				type: p.is("folder"),
 				data: "string",
 			},
 			{
-				type: "multi",
+				type: p.is("multi"),
 				data: ["string"],
 			},
 			{
-				type: "single",
+				type: p.is("single"),
 				data: "string",
 			}
 		),

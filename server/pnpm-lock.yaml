@@ -53,13 +53,13 @@ specifiers:
   node-mocks-http: 1.10.1
   nodemailer: ^6.6.3
   prettier: 2.3.1
-  prudence: 0.9.6
+  prudence: 0.9.7
   rate-limit-redis: 2.1.0
   redis: 3.1.2
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
   supertest: 6.1.3
-  tachi-common: 0.2.28
+  tachi-common: 0.2.34
   tap: 15.0.9
   ts-node: 10.0.0
   tsconfig-paths: 3.10.1
@@ -95,12 +95,12 @@ dependencies:
   node-cache: 5.1.2
   node-fetch: 2.6.1
   nodemailer: 6.6.3
-  prudence: 0.9.6
+  prudence: 0.9.7
   rate-limit-redis: 2.1.0
   redis: 3.1.2
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
-  tachi-common: 0.2.28
+  tachi-common: 0.2.34
   ts-node: 10.0.0_83f53b0a0c5616d3fa00ed4e30b9ce1b
   typescript: 4.3.4
   winston: 3.3.3
@@ -3554,8 +3554,8 @@ packages:
       ipaddr.js: 1.9.1
     dev: false
 
-  /prudence/0.9.6:
-    resolution: {integrity: sha512-kCPaLDVfVovahwd+SXlszt4y+av3VJL5HXD4II2+m8+zm6J6wt8vFU+kDFeZvaycaGJemB8VUv39hFplHbxTIw==}
+  /prudence/0.9.7:
+    resolution: {integrity: sha512-7214GHTBThBI/PGlKWXUSJ++ca0ld54VpF4k98U1EDAFXai5mnvWbb4speVOnWkilqfN25x8biWUAj4gHNu5Og==}
     dev: false
 
   /psl/1.8.0:
@@ -4189,8 +4189,8 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tachi-common/0.2.28:
-    resolution: {integrity: sha512-9iqO/2y7VNbpyJBf4CDffw6E9PZuiib7nkK4Vk6Ov4i6a2zn787rBzQ8XgoQGRZKlHV5tfFd+CFbbiTRPM3ZBA==}
+  /tachi-common/0.2.34:
+    resolution: {integrity: sha512-qKXIqzMTuT4eNL0Eo3N00fGYDF63bLxvZbf1/7jI+i8pDqJ8Xd1kmSuzNENBr+cp75Krh3qt279xf5oejUOiGw==}
     dependencies:
       monk: 7.3.4
     transitivePeerDependencies:

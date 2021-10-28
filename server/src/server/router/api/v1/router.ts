@@ -9,6 +9,7 @@ import searchRouter from "./search/router";
 import scoresRouter from "./scores/router";
 import sessionsRouter from "./sessions/router";
 import oauthRouter from "./oauth/router";
+import importsRouter from "./imports/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -16,6 +17,7 @@ router.use("/admin", adminRouter);
 router.use("/auth", authRouter);
 router.use("/status", statusRouter);
 router.use("/import", importRouter);
+router.use("/imports", importsRouter);
 router.use("/users", usersRouter);
 router.use("/games", gamesRouter);
 router.use("/search", searchRouter);

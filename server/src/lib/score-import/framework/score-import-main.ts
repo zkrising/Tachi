@@ -188,6 +188,8 @@ export default async function ScoreImportMain<D, C>(
 			importType,
 			idStrings: playtypes.map((e) => `${game}:${e}`) as IDStrings[],
 			scoreIDs,
+			playtypes,
+			game,
 			errors,
 			importID,
 			timeFinished: Date.now(),

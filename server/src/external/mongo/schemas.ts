@@ -558,6 +558,9 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		idStrings: [p.isIn(allIDStrings)],
 		importID: "string",
 		scoreIDs: ["string"],
+		game: p.isIn(games),
+		// @ts-expect-error We've asserted this is definitely a game.
+		playtypes: [(self) => p.isIn(GetGameConfig(self.game).validPlaytypes)(self)],
 		errors: [
 			{
 				type: "string",

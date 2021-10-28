@@ -20,6 +20,8 @@ const mockImportDocument: ImportDocument = {
 	scoreIDs: ["scoreid_1", "scoreid_2"],
 	timeFinished: 1000,
 	timeStarted: 0,
+	game: "iidx",
+	playtypes: ["SP"],
 };
 
 const mockSessionDocument: SessionDocument = {

@@ -527,6 +527,7 @@ export interface ImportDocument extends MongoDBDocument {
 	importID: string;
 	scoreIDs: string[];
 	game: Game;
+	playtypes: Playtypes[Game][];
 	errors: ImportErrContent[];
 	// For performance reasons, imports only show what sessions they created, rather than what sessions they didn't.
 	// This is just an array of sessionIDs, to keep things normalised. May be empty.

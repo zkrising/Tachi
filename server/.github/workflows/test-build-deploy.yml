@@ -1,0 +1,99 @@
+name: Test, Build, Deploy
+
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: "test"
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v2
+
+      - name: Install Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: Install PNPM
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.0.2
+          
+      - name: Install Dependencies
+        run: pnpm i
+        
+       # configure external dbs
+      - uses: supercharge/mongodb-github-action@1.4.1
+      - uses: supercharge/redis-github-action@1.1.0
+      
+      - name: Move Config File
+        run: mv ./.github/test.conf.json5 ./test.conf.json5
+
+      - name: Run Tests
+        run: pnpm test
+
+      - name: Lint Code
+        run: pnpm lint
+
+      - name: Upload Coverage
+        if: always()
+        run: |
+          pnpm install -g codecov
+          cat coverage/lcov.info | codecov
+  docker-push:
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Docker Hub login
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+          
+      - name: Latest tag
+        if: github.ref == 'refs/heads/develop'
+        run: echo "BRANCH_TAG=latest" >> $GITHUB_ENV
+        
+      - name: Stable tag
+        if: github.ref == 'refs/heads/master'
+        run: echo "BRANCH_TAG=stable" >> $GITHUB_ENV
+          
+      - name: Version tag
+        run: "echo \"VERSION_TAG=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\", ]//g')\" >> $GITHUB_ENV"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/tachi-server:${{ env.BRANCH_TAG }},${{ secrets.DOCKER_USERNAME }}/tachi-server:${{ env.VERSION_TAG }},
+          
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [docker-push]
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Run deploy script on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.TACHI_HOST }}
+          username: tachi
+          key: ${{ secrets.TACHI_KEY }}
+          script: tachi-server-deploy

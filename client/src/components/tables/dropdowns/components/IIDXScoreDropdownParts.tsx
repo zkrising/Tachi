@@ -181,7 +181,7 @@ function LampToKey(
 				return score.scoreMeta.gauge;
 			case "ASSISTED EASY":
 				return "EASY";
-			case "EX HARD":
+			case "EX-HARD":
 				return "EX_HARD";
 		}
 	}

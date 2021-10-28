@@ -8,7 +8,7 @@ export default function TimestampCell({
 	service,
 }: {
 	time: integer | null;
-	service?: string;
+	service?: string | null;
 }) {
 	return (
 		<td style={{ minWidth: "140px", maxWidth: "200px" }}>

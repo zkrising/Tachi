@@ -48,7 +48,7 @@ if (process.env.NODE_ENV !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
 		res.header("Access-Control-Allow-Origin", ServerConfig.CLIENT_DEV_SERVER!);
 		res.header(
 			"Access-Control-Allow-Headers",
-			"Origin, X-Requested-With, Content-Type, Accept"
+			"Origin, X-Requested-With, Content-Type, Accept, X-User-Intent"
 		);
 		res.header("Access-Control-Allow-Credentials", "true");
 		res.header("Access-Control-Allow-Methods", "GET,POST,PATCH,PUT,DELETE,OPTIONS");

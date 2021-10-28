@@ -210,9 +210,12 @@ async function SynchroniseDBWithSeeds() {
 
 		logger.info(`--cache not provided, fetching from git.`);
 		// This will create a directory called tachi-database-seeds in this folder.
-		execSync(`cd ${__dirname} && git clone https://github.com/TNG-dev/tachi-database-seeds`, {
-			stdio: "inherit",
-		});
+		execSync(
+			`cd ${__dirname} && git clone https://github.com/TNG-dev/tachi-database-seeds --depth=1`,
+			{
+				stdio: "inherit",
+			}
+		);
 	}
 
 	const collections = fs.readdirSync(path.join(seedsDir, "collections"));

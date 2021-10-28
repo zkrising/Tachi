@@ -1,6 +1,11 @@
 files: "src/test-utils/single-process-tap.ts"
 test-env: [NODE_ENV=test, TCHIS_CONF_LOCATION=test.conf.json5]
-timeout: 480 # Was increased for slow github runners. multiple times. Might be insufferable for real world use.
+# On a local machine, these tests run in under 2-3 minutes.
+# On github actions, these tests take an inordinate amount of time.
+# I do not know why, and it suddenly started happening one day.
+# The timeout is set to 16 minutes, which is ridiculous.
+# Doesn't matter for real machines.
+timeout: 960
 ts: true
 before: "./src/test-utils/hack-setup.js"
 check-coverage: true

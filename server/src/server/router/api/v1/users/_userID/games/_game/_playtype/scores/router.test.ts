@@ -111,13 +111,13 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores", (t) => {
 			"/api/v1/users/test_zkldi/games/iidx/SP/scores?search=5.1.1."
 		);
 
-		t.equal(res.body.body.scores.length, 3);
+		t.equal(res.body.body.scores.length, 5);
 		t.equal(res.body.body.songs.length, 1);
-		t.equal(res.body.body.charts.length, 2);
+		t.equal(res.body.body.charts.length, 4);
 
 		t.hasStrict(res.body, {
 			success: true,
-			description: "Retrieved 3 scores.",
+			description: "Retrieved 5 scores.",
 			body: {
 				scores: [
 					{

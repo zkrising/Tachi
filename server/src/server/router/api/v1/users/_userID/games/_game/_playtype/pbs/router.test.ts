@@ -112,9 +112,15 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs", (t) => {
 
 		t.hasStrict(res.body, {
 			success: true,
-			description: "Retrieved 2 personal bests.",
+			description: "Retrieved 4 personal bests.",
 			body: {
 				pbs: [
+					{
+						chartID: "71865a2b6d3581decf076ae83c6621302c4bb271",
+					},
+					{
+						chartID: "952805894d7d78257e87019426fa1d87aec834a5",
+					},
 					{
 						chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",
 					},
@@ -132,7 +138,13 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs", (t) => {
 						chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",
 					},
 					{
+						chartID: "71865a2b6d3581decf076ae83c6621302c4bb271",
+					},
+					{
 						chartID: "c641238220d73faf82659513ba03bde71b0b45f0",
+					},
+					{
+						chartID: "952805894d7d78257e87019426fa1d87aec834a5",
 					},
 				],
 			},

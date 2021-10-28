@@ -2,16 +2,16 @@
 // This script syncs this tachi instances database up with the tachi-database-seeds.
 
 import { execSync } from "child_process";
-import db, { monkDB } from "external/mongo/db";
+import deepEqual from "deep-equal";
+import { monkDB } from "external/mongo/db";
 import fs from "fs";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import { ServerTypeInfo } from "lib/setup/config";
-import { BulkWriteOperation, FilterQuery } from "mongodb";
+import { BulkWriteOperation } from "mongodb";
 import { ICollection } from "monk";
+import os from "os";
 import path from "path";
 import { ChartDocument, FolderDocument, SongDocument, TableDocument } from "tachi-common";
-import deepEqual from "deep-equal";
-import { Command } from "commander";
 
 interface SyncInstructions {
 	pattern: RegExp;
@@ -197,7 +197,9 @@ const syncInstructions: SyncInstructions[] = [
 const logger = CreateLogCtx("Database Sync");
 
 async function SynchroniseDBWithSeeds() {
-	const seedsDir = fs.mkdtempSync("tachi-database-seeds");
+	const seedsDir = fs.mkdtempSync(path.join(os.tmpdir(), "tachi-database-seeds-"));
+
+	logger.info(`Cloning data to ${seedsDir}.`);
 
 	fs.rmSync(seedsDir, { recursive: true, force: true });
 

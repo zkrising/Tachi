@@ -101,12 +101,12 @@ const syncInstructions: SyncInstructions[] = [
 	{
 		pattern: /^charts-/u,
 		handler: (charts: ChartDocument[], collection: ICollection<ChartDocument>, logger) =>
-			GenericUpsert(charts, collection, "chartID", logger, true),
+			GenericUpsert(charts, collection, "chartID", logger),
 	},
 	{
 		pattern: /^songs-/u,
 		handler: (songs: SongDocument[], collection: ICollection<SongDocument>, logger) =>
-			GenericUpsert(songs, collection, "id", logger, true),
+			GenericUpsert(songs, collection, "id", logger),
 	},
 	{
 		pattern: /^folders$/u,

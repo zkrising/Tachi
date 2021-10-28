@@ -1,5 +1,5 @@
 import React from "react";
-import { integer, Playtypes, PublicUserDocument } from "tachi-common";
+import { integer, Playtypes } from "tachi-common";
 import { ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import { NumericSOV, StrSOV } from "util/sorts";
@@ -68,7 +68,6 @@ export default function BMSScoreTable({
 
 function Row({
 	sc,
-	playtype,
 	userCol,
 }: {
 	sc: ScoreDataset<"bms:7K" | "bms:14K">[0];

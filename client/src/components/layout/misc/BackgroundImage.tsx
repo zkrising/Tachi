@@ -1,6 +1,6 @@
 import { BackgroundContext } from "context/BackgroundContext";
 import React, { useContext } from "react";
-import { ToCDNURL, ToServerURL } from "util/api";
+import { ToCDNURL } from "util/api";
 
 export default function BackgroundImage() {
 	const { background } = useContext(BackgroundContext);

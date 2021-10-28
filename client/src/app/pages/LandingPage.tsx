@@ -5,7 +5,7 @@ import Divider from "components/util/Divider";
 import LinkButton from "components/util/LinkButton";
 import { TachiConfig } from "lib/config";
 import React from "react";
-import { ToCDNURL, ToServerURL } from "util/api";
+import { ToCDNURL } from "util/api";
 import { toAbsoluteUrl } from "_metronic/_helpers";
 
 // This page is currently unused,

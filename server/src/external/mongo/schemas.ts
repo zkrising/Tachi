@@ -558,6 +558,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		idStrings: [p.isIn(allIDStrings)],
 		importID: "string",
 		scoreIDs: ["string"],
+		game: p.isIn(games),
 		errors: [
 			{
 				type: "string",

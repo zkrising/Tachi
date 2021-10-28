@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     env:
       NODE_ENV: "test"
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

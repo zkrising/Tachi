@@ -13,12 +13,6 @@ import { ChartDocument, FolderDocument, SongDocument, TableDocument } from "tach
 import deepEqual from "deep-equal";
 import { Command } from "commander";
 
-const program = new Command();
-program.option("-c, --cache");
-
-program.parse(process.argv);
-const options = program.opts();
-
 interface SyncInstructions {
 	pattern: RegExp;
 	handler: (c: any[], collection: ICollection<any>, logger: KtLogger) => Promise<void>;
@@ -203,20 +197,13 @@ const syncInstructions: SyncInstructions[] = [
 const logger = CreateLogCtx("Database Sync");
 
 async function SynchroniseDBWithSeeds() {
-	const seedsDir = path.join(__dirname, "tachi-database-seeds");
+	const seedsDir = fs.mkdtempSync("tachi-database-seeds");
 
-	if (!options.cache) {
-		fs.rmSync(seedsDir, { recursive: true, force: true });
+	fs.rmSync(seedsDir, { recursive: true, force: true });
 
-		logger.info(`--cache not provided, fetching from git.`);
-		// This will create a directory called tachi-database-seeds in this folder.
-		execSync(
-			`cd ${__dirname} && git clone https://github.com/TNG-dev/tachi-database-seeds --depth=1`,
-			{
-				stdio: "inherit",
-			}
-		);
-	}
+	execSync(`git clone https://github.com/TNG-dev/tachi-database-seeds --depth=1 ${seedsDir}`, {
+		stdio: "inherit",
+	});
 
 	const collections = fs.readdirSync(path.join(seedsDir, "collections"));
 

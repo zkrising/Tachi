@@ -1,0 +1,17 @@
+name: update
+
+on:
+  push:
+    branches: [master]
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run database sync on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.TACHI_HOST }}
+          username: tachi
+          key: ${{ secrets.TACHI_KEY }}
+          script: tachi-database-sync

@@ -1,3 +1,6 @@
+import { monkDB } from "external/mongo/db";
 import { SetIndexesForDB } from "./resets";
 
-SetIndexesForDB().then(() => process.exit(0));
+SetIndexesForDB()
+	.then(monkDB.close)
+	.then(() => process.exit(0));

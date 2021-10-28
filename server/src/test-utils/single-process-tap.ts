@@ -3,6 +3,8 @@ import path from "path";
 import t from "tap";
 import { CloseAllConnections } from "./close-connections";
 
+import "external/mongo/db";
+
 const files = glob.sync(path.join(__dirname, "../../", "**/*.test.ts"));
 
 process.env.NODE_PATH = path.join(__dirname, "../../");

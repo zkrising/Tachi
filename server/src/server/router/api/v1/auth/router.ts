@@ -161,7 +161,7 @@ router.post(
 			username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
 			password: ValidatePassword,
 			email: Prudence.regex(LAZY_EMAIL_REGEX),
-			inviteCode: "string",
+			inviteCode: "*string",
 			captcha: "string",
 		},
 		{
@@ -218,29 +218,32 @@ router.post(
 
 		try {
 			const userID = await GetNextCounterValue("users");
-			const inviteCodeDoc = await db.invites.findOneAndUpdate(
-				{
-					code: req.body.inviteCode,
-					consumed: false,
-				},
-				{
-					$set: {
-						consumed: true,
-						consumedAt: Date.now(),
-						consumedBy: userID,
+
+			if (!ServerConfig.ENABLE_PUBLIC_SIGNUP) {
+				const inviteCodeDoc = await db.invites.findOneAndUpdate(
+					{
+						code: req.body.inviteCode,
+						consumed: false,
 					},
+					{
+						$set: {
+							consumed: true,
+							consumedAt: Date.now(),
+							consumedBy: userID,
+						},
+					}
+				);
+
+				if (!inviteCodeDoc) {
+					logger.info(`Invalid invite code given: ${req.body.inviteCode}.`);
+					return res.status(401).json({
+						success: false,
+						description: `This invite code is not valid.`,
+					});
 				}
-			);
 
-			if (!inviteCodeDoc) {
-				logger.info(`Invalid invite code given: ${req.body.inviteCode}.`);
-				return res.status(401).json({
-					success: false,
-					description: `This invite code is not valid.`,
-				});
+				logger.info(`Consumed invite ${inviteCodeDoc.code}.`);
 			}
-
-			logger.info(`Consumed invite ${inviteCodeDoc.code}.`);
 
 			// if we get to this point, We're good to create the user.
 
@@ -276,12 +279,12 @@ router.post(
 				body: user,
 			});
 		} catch (err) {
-			logger.error(
-				`Bailed on user creation ${req.body.username} with invite code ${req.body.inviteCode}.`,
-				{ err }
-			);
+			logger.error(`Bailed on user creation ${req.body.username}.`, { err });
 
-			await ReinstateInvite(req.body.inviteCode);
+			if (!ServerConfig.ENABLE_PUBLIC_SIGNUP) {
+				await ReinstateInvite(req.body.inviteCode);
+			}
+
 			await DecrementCounterValue("users");
 
 			return res.status(500).json({

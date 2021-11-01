@@ -13,6 +13,7 @@ import KTLayoutHeaderMenu from "_metronic/_assets/js/layout/base/header-menu";
 import AllGames from "./AllGames";
 import { UserGameStatsContext } from "context/UserGameStatsContext";
 import { TachiConfig } from "lib/config";
+import ImportScoresLink from "./ImportScoresLink";
 
 export function HeaderMenu() {
 	const { user } = useContext(UserContext);
@@ -82,7 +83,7 @@ export function HeaderMenu() {
 			>
 				<div className="d-lg-none">
 					<img
-						src={toAbsoluteUrl("/media/logos/logo-wordmark.png")}
+						src={toAbsoluteUrl("/cdn/logos/logo-wordmark.png")}
 						width="100%"
 						className="px-10 mt-4"
 					/>
@@ -96,6 +97,8 @@ export function HeaderMenu() {
 					)}
 
 					<AllGames />
+
+					{user && <ImportScoresLink />}
 				</ul>
 			</div>
 		</div>

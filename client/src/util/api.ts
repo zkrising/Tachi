@@ -26,6 +26,7 @@ export function ToAPIURL(url: string) {
 
 export function ToCDNURL(url: string) {
 	if (url[0] !== "/") {
+		// eslint-disable-next-line no-param-reassign
 		url = `/${url}`;
 	}
 

@@ -14,7 +14,7 @@ export function Header() {
 							<img
 								className="logo-default max-h-40px"
 								alt="Logo"
-								src={toAbsoluteUrl("/media/logos/logo-mark.png")}
+								src={toAbsoluteUrl("/cdn/logos/logo-mark.png")}
 							/>
 						</Link>
 					</div>

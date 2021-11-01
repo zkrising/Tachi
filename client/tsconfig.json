@@ -31,7 +31,7 @@
 		"skipLibCheck": true,
 		"allowSyntheticDefaultImports": true,
 		"allowUnusedLabels": true,
-		"resolveJsonModule": true
+		"resolveJsonModule": true,
 	},
 	"include": [
 		"src"

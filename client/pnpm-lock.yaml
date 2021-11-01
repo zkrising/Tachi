@@ -60,6 +60,7 @@ specifiers:
   postcss-preset-env: 6.7.0
   postcss-safe-parser: 4.0.1
   prettier: 1.19.1
+  pretty-bytes: ^5.6.0
   react: ^17.0.2
   react-async: 10.0.1
   react-bootstrap: ^1.6.1
@@ -78,7 +79,7 @@ specifiers:
   serve: 11.2.0
   socicon: 3.0.5
   style-loader: 1.0.0
-  tachi-common: 0.2.34
+  tachi-common: 0.2.36
   terser-webpack-plugin: 1.4.1
   ts-pnp: 1.1.4
   typescript: 4.3.5
@@ -131,6 +132,7 @@ dependencies:
   postcss-normalize: 7.0.1
   postcss-preset-env: 6.7.0
   postcss-safe-parser: 4.0.1
+  pretty-bytes: 5.6.0
   react: 17.0.2
   react-async: 10.0.1_react@17.0.2
   react-bootstrap: 1.6.1_react-dom@16.12.0+react@17.0.2
@@ -144,7 +146,7 @@ dependencies:
   resolve: 1.12.0
   resolve-url-loader: 3.1.0
   socicon: 3.0.5
-  tachi-common: 0.2.34
+  tachi-common: 0.2.36
 
 devDependencies:
   '@types/humanize-duration': 3.25.1
@@ -9534,7 +9536,6 @@ packages:
   /pretty-bytes/5.6.0:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
     engines: {node: '>=6'}
-    dev: true
 
   /pretty-error/2.1.2:
     resolution: {integrity: sha512-EY5oDzmsX5wvuynAByrmY0P0hcp+QpnAKbJng2A2MPjVKXCxrDSUkzghVJ4ZGPIv+JC4gX8fPUWscC0RtjsWGw==}
@@ -11184,8 +11185,8 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tachi-common/0.2.34:
-    resolution: {integrity: sha512-qKXIqzMTuT4eNL0Eo3N00fGYDF63bLxvZbf1/7jI+i8pDqJ8Xd1kmSuzNENBr+cp75Krh3qt279xf5oejUOiGw==}
+  /tachi-common/0.2.36:
+    resolution: {integrity: sha512-4/enfkwE8HA4x4vrbNMrhLx2j/8JGnEMwAO5b0zSM150chDZiK30vXOmDW1IHSqxoIRZVuIyRqP7aEyUbf7FKA==}
     dependencies:
       monk: 7.3.4
     transitivePeerDependencies:

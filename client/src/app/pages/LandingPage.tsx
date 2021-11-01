@@ -36,18 +36,14 @@ export default function LandingPage() {
 									<div className="col-12 mb-8">
 										<div className="d-none d-lg-block">
 											<img
-												src={toAbsoluteUrl(
-													"/media/logos/logo-wordmark.png"
-												)}
+												src={toAbsoluteUrl("/cdn/logos/logo-wordmark.png")}
 												alt={TachiConfig.name}
 												width="30%"
 											/>
 										</div>
 										<div className="d-block d-lg-none">
 											<img
-												src={toAbsoluteUrl(
-													"/media/logos/logo-wordmark.png"
-												)}
+												src={toAbsoluteUrl("/cdn/logos/logo-wordmark.png")}
 												alt={TachiConfig.name}
 												width="80%"
 											/>

@@ -1,4 +1,5 @@
 import Divider from "components/util/Divider";
+import ExternalLink from "components/util/ExternalLink";
 import HoverText from "components/util/HoverText";
 import SmallText from "components/util/SmallText";
 import StickyPopover from "components/util/StickyPopover";
@@ -56,12 +57,9 @@ export default function FilterDirectivesIndicator<D>({
 				component={
 					<>
 						You can use{" "}
-						<a
-							rel="noreferrer"
-							href="https://tachi.readthedocs.io/en/latest/user/filter-directives/"
-						>
+						<ExternalLink href="https://tachi.readthedocs.io/en/latest/user/filter-directives/">
 							<strong>Filter Directives</strong>
-						</a>{" "}
+						</ExternalLink>{" "}
 						inside this filter box.
 						<Divider className="mt-2 mb-2" />
 						You can click this button to view the filter directives for this table.

@@ -173,3 +173,11 @@ export const allPermissions: APIPermissions[] = [
 	"delete_score",
 	"submit_score",
 ];
+
+export function WrapError<T>(fn: () => T, errMsg: string) {
+	try {
+		return fn();
+	} catch (err) {
+		throw new Error(errMsg);
+	}
+}

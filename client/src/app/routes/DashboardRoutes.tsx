@@ -5,6 +5,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { DashboardPage } from "../pages/dashboard/DashboardPage";
 import CreditsPage from "../pages/dashboard/misc/CreditsPage";
 import GameRoutes from "./GameRoutes";
+import ImportRoutes from "./ImportRoutes";
 import UserRoutes from "./UserRoutes";
 
 export default function DashboardRoutes() {
@@ -29,6 +30,10 @@ export default function DashboardRoutes() {
 
 				<Route path="/dashboard/games/:game">
 					<GameRoutes />
+				</Route>
+
+				<Route path="/dashboard/import">
+					<ImportRoutes />
 				</Route>
 
 				<Route path="*">

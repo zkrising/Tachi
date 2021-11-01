@@ -51,6 +51,7 @@ router.post("/", (req, res) => {
 		description: "Status check successful.",
 		body: {
 			serverTime: Date.now(),
+			startTime,
 			version: FormatVersion(),
 			whoami: req[SYMBOL_TachiAPIAuth].userID,
 			// converts {foo: true, bar: false, baz: true} into [foo, baz]

@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run database sync on server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
         with:
           host: ${{ secrets.TACHI_HOST }}
           username: tachi

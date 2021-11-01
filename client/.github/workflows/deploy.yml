@@ -2,17 +2,25 @@ name: deploy
 
 on:
   push:
-    branches: [master]
+    branches: [master, develop]
   workflow_dispatch:
     
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Staging selection
+        if: github.ref == 'refs/heads/develop'
+        run: echo "SCRIPT=tachi-client-deploy -s" >> $GITHUB_ENV
+        
+      - name: Live selection
+        if: github.ref == 'refs/heads/master'
+        run: echo "SCRIPT=tachi-client-deploy" >> $GITHUB_ENV
+        
       - name: Run deploy script on server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
         with:
           host: ${{ secrets.TACHI_HOST }}
           username: tachi
           key: ${{ secrets.TACHI_KEY }}
-          script: tachi-client-deploy
+          script: ${{ env.SCRIPT }}

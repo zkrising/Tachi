@@ -31,5 +31,6 @@ if (mode === "ktchi") {
 export const TachiConfig = conf;
 export const ColourConfig = colourConf;
 export const ClientConfig = {
-	MANDATE_LOGIN: process.env.REACT_APP_TCHIC_MODE === "ktchi",
+	MANDATE_LOGIN:
+		process.env.REACT_APP_TCHIC_MODE === "ktchi" || process.env.REACT_APP_MANDATE_LOGIN,
 };

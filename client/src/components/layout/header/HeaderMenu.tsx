@@ -1,19 +1,18 @@
-import React, { useContext, useLayoutEffect } from "react";
-import { toAbsoluteUrl } from "../../../_metronic/_helpers";
 import Divider from "components/util/Divider";
-import { UserContext } from "context/UserContext";
-import { useQuery } from "react-query";
-import { APIFetchV1 } from "util/api";
-import { UserGameStats, FormatGame, GetGameConfig } from "tachi-common";
-import MenuLink from "./MenuLink";
-import MenuDropdown from "./MenuDropdown";
 import Loading from "components/util/Loading";
+import { UserContext } from "context/UserContext";
+import { UserGameStatsContext } from "context/UserGameStatsContext";
+import { TachiConfig } from "lib/config";
+import React, { useContext, useLayoutEffect } from "react";
+import { useQuery } from "react-query";
+import { FormatGame, GetGameConfig, UserGameStats } from "tachi-common";
+import { APIFetchV1, ToCDNURL } from "util/api";
 import KTLayoutHeader from "_metronic/_assets/js/layout/base/header";
 import KTLayoutHeaderMenu from "_metronic/_assets/js/layout/base/header-menu";
 import AllGames from "./AllGames";
-import { UserGameStatsContext } from "context/UserGameStatsContext";
-import { TachiConfig } from "lib/config";
 import ImportScoresLink from "./ImportScoresLink";
+import MenuDropdown from "./MenuDropdown";
+import MenuLink from "./MenuLink";
 
 export function HeaderMenu() {
 	const { user } = useContext(UserContext);
@@ -83,7 +82,7 @@ export function HeaderMenu() {
 			>
 				<div className="d-lg-none">
 					<img
-						src={toAbsoluteUrl("/cdn/logos/logo-wordmark.png")}
+						src={ToCDNURL("/logos/logo-wordmark.png")}
 						width="100%"
 						className="px-10 mt-4"
 					/>

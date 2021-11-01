@@ -1,8 +1,7 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { ToCDNURL, ToServerURL } from "util/api";
-import { toAbsoluteUrl } from "_metronic/_helpers";
+import { useHistory } from "react-router-dom";
+import { ToCDNURL } from "util/api";
 
 export function ErrorPage({
 	statusCode,

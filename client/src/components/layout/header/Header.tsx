@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { toAbsoluteUrl } from "../../../_metronic/_helpers";
-import { Topbar } from "./Topbar";
+import { ToCDNURL } from "util/api";
 import { HeaderMenu } from "./HeaderMenu";
+import { Topbar } from "./Topbar";
 
 export function Header() {
 	return (
@@ -14,7 +14,7 @@ export function Header() {
 							<img
 								className="logo-default max-h-40px"
 								alt="Logo"
-								src={toAbsoluteUrl("/cdn/logos/logo-mark.png")}
+								src={ToCDNURL("/logos/logo-mark.png")}
 							/>
 						</Link>
 					</div>

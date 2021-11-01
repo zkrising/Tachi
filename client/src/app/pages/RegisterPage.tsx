@@ -1,18 +1,16 @@
+import useSetSubheader from "components/layout/header/useSetSubheader";
+import Divider from "components/util/Divider";
+import { UserContext } from "context/UserContext";
+import { useFormik } from "formik";
+import { TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
-import { toAbsoluteUrl } from "_metronic/_helpers";
-import { useFormik } from "formik";
-import { APIFetchV1 } from "util/api";
-import { HumaniseError } from "util/humanise-error";
-import { Link, useHistory } from "react-router-dom";
-import { UserContext } from "context/UserContext";
-import { PublicUserDocument, UserSettings } from "tachi-common";
 import toast from "react-hot-toast";
+import { Link, useHistory } from "react-router-dom";
+import { PublicUserDocument } from "tachi-common";
 import { UseFormik } from "types/react";
-import Divider from "components/util/Divider";
-import { TachiConfig } from "lib/config";
-import useSetSubheader from "components/layout/header/useSetSubheader";
-import { UserSettingsContext } from "context/UserSettingsContext";
+import { APIFetchV1, ToCDNURL } from "util/api";
+import { HumaniseError } from "util/humanise-error";
 
 // seconds it takes for a user to actually read the rules.
 const RULES_READ_TIME = 30;
@@ -112,7 +110,7 @@ export default function RegisterPage() {
 			<Col lg="6">
 				<div className="text-center mb-10 mb-lg-10">
 					<img
-						src={toAbsoluteUrl("/cdn/logos/logo-wordmark.png")}
+						src={ToCDNURL("/logos/logo-wordmark.png")}
 						alt={TachiConfig.name}
 						width="256px"
 					/>

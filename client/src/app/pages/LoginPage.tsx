@@ -1,18 +1,15 @@
-import React, { useContext, useState } from "react";
-import { Button, Col, Form } from "react-bootstrap";
-import { toAbsoluteUrl } from "_metronic/_helpers";
-import { useFormik } from "formik";
-import { APIFetchV1 } from "util/api";
-import { HumaniseError } from "util/humanise-error";
-import { Link, useHistory } from "react-router-dom";
-import { UserContext } from "context/UserContext";
-import { PublicUserDocument, UserSettings } from "tachi-common";
-import toast from "react-hot-toast";
-import { TachiConfig } from "lib/config";
 import useSetSubheader from "components/layout/header/useSetSubheader";
-import { UserSettingsContext } from "context/UserSettingsContext";
 import CenterPage from "components/util/CenterPage";
 import SiteWordmark from "components/util/SiteWordmark";
+import { UserContext } from "context/UserContext";
+import { useFormik } from "formik";
+import React, { useContext, useState } from "react";
+import { Button, Col, Form } from "react-bootstrap";
+import toast from "react-hot-toast";
+import { Link, useHistory } from "react-router-dom";
+import { PublicUserDocument } from "tachi-common";
+import { APIFetchV1 } from "util/api";
+import { HumaniseError } from "util/humanise-error";
 
 export default function LoginPage() {
 	useSetSubheader("Login");

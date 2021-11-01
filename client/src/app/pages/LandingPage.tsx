@@ -6,7 +6,6 @@ import LinkButton from "components/util/LinkButton";
 import { TachiConfig } from "lib/config";
 import React from "react";
 import { ToCDNURL } from "util/api";
-import { toAbsoluteUrl } from "_metronic/_helpers";
 
 // This page is currently unused,
 // It's alright, but hey, we could do more.
@@ -36,14 +35,14 @@ export default function LandingPage() {
 									<div className="col-12 mb-8">
 										<div className="d-none d-lg-block">
 											<img
-												src={toAbsoluteUrl("/cdn/logos/logo-wordmark.png")}
+												src={ToCDNURL("/logos/logo-wordmark.png")}
 												alt={TachiConfig.name}
 												width="30%"
 											/>
 										</div>
 										<div className="d-block d-lg-none">
 											<img
-												src={toAbsoluteUrl("/cdn/logos/logo-wordmark.png")}
+												src={ToCDNURL("/logos/logo-wordmark.png")}
 												alt={TachiConfig.name}
 												width="80%"
 											/>

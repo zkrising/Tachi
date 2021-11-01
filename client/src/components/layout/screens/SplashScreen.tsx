@@ -1,7 +1,5 @@
-import React from "react";
 import { CircularProgress } from "@material-ui/core";
-import { toAbsoluteUrl } from "_metronic/_helpers";
-import { TachiConfig } from "lib/config";
+import React from "react";
 import SplashImage from "../misc/SplashImage";
 
 export function SplashScreen({ broke }: { broke: string }) {

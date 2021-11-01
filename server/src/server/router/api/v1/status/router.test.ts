@@ -15,6 +15,7 @@ t.test("GET /api/v1/status", async (t) => {
 			Math.abs(Date.now() - res.body.body.serverTime) < 5_000,
 			"Should be roughly the current time (5 seconds lenience)"
 		);
+		t.type(res.body.body.startTime, "number", "Should return a number for startTime.");
 		t.equal(res.body.body.version, FormatVersion());
 		t.equal(res.body.body.whoami, 1);
 
@@ -31,6 +32,7 @@ t.test("GET /api/v1/status", async (t) => {
 			Math.abs(Date.now() - res.body.body.serverTime) < 5_000,
 			"Should be roughly the current time (5 seconds lenience)"
 		);
+		t.type(res.body.body.startTime, "number", "Should return a number for startTime.");
 		t.equal(res.body.body.version, FormatVersion());
 		t.equal(res.body.body.whoami, 1);
 
@@ -54,6 +56,7 @@ t.test("POST /api/v1/status", async (t) => {
 		);
 		t.equal(res.body.body.version, FormatVersion());
 		t.equal(res.body.body.whoami, 1);
+		t.type(res.body.body.startTime, "number", "Should return a number for startTime.");
 
 		t.end();
 	});
@@ -72,6 +75,7 @@ t.test("POST /api/v1/status", async (t) => {
 		);
 		t.equal(res.body.body.version, FormatVersion());
 		t.equal(res.body.body.whoami, 1);
+		t.type(res.body.body.startTime, "number", "Should return a number for startTime.");
 
 		t.end();
 	});

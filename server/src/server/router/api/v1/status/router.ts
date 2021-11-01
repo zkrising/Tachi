@@ -4,6 +4,8 @@ import { FormatVersion } from "lib/constants/version";
 
 const router: Router = Router({ mergeParams: true });
 
+const startTime = Date.now();
+
 /**
  * Returns the current status of the Tachi Server.
  *
@@ -20,6 +22,7 @@ router.get("/", (req, res) => {
 		description: "Status check successful.",
 		body: {
 			serverTime: Date.now(),
+			startTime,
 			version: FormatVersion(),
 			whoami: req[SYMBOL_TachiAPIAuth].userID,
 			// converts {foo: true, bar: false, baz: true} into [foo, baz]

@@ -42,7 +42,7 @@ export function CDNRedirect(res: Response, fileLoc: string) {
 		throw new Error(`Invalid fileLoc - did not start with /.`);
 	}
 
-	return res.redirect(`/cdn${fileLoc}`);
+	return res.redirect(`${ServerConfig.CDN_WEB_LOCATION}${fileLoc}`);
 }
 
 /**

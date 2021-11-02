@@ -78,6 +78,7 @@ export interface TachiConfig {
 	LOGGER_DISCORD_WEBHOOK?: string;
 	DISCORD_WHO_TO_TAG?: string[];
 	ENABLE_PUBLIC_SIGNUP?: boolean;
+	CDN_WEB_LOCATION: string;
 }
 
 const isValidOauth2 = p.optional({
@@ -118,6 +119,7 @@ const err = p(config, {
 	LOGGER_DISCORD_WEBHOOK: "*string",
 	DISCORD_WHO_TO_TAG: p.optional(["string"]),
 	ENABLE_PUBLIC_SIGNUP: "*boolean",
+	CDN_WEB_LOCATION: "string",
 });
 
 if (err) {

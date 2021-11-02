@@ -14,7 +14,7 @@ jobs:
       NODE_ENV: "test"
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     steps:
-      - name: Checkout 
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Install Node.js 16
@@ -26,20 +26,21 @@ jobs:
         uses: pnpm/action-setup@v2.0.1
         with:
           version: 6.0.2
-          
+
       - name: Install Dependencies
         run: pnpm i
-        
-       # configure external dbs
+
+        # configure external dbs
       - uses: supercharge/mongodb-github-action@1.4.1
       - uses: supercharge/redis-github-action@1.1.0
-      
+
       - name: Move Config File
         run: mv ./.github/test.conf.json5 ./test.conf.json5
 
       - name: Run Tests
         run: pnpm test
         env:
+          NODE_ENV: "test"
           PORT: 8080
           MONGO_URL: "127.0.0.1"
           REDIS_URL: "127.0.0.1"
@@ -60,27 +61,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
+
       - name: Docker Hub login
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
-          
+
       - name: Latest tag
         if: github.ref == 'refs/heads/develop'
         run: echo "BRANCH_TAG=latest" >> $GITHUB_ENV
-        
+
       - name: Stable tag
         if: github.ref == 'refs/heads/master'
         run: echo "BRANCH_TAG=stable" >> $GITHUB_ENV
-          
+
       - name: Version tag
-        run: "echo \"VERSION_TAG=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\", ]//g')\" >> $GITHUB_ENV"
+        run: 'echo "VERSION_TAG=$(cat package.json | grep version | head -1 | awk -F: ''{ print $2 }'' | sed ''s/[", ]//g'')" >> $GITHUB_ENV'
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-        
+
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
@@ -89,7 +90,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/tachi-server:${{ env.BRANCH_TAG }},${{ secrets.DOCKER_USERNAME }}/tachi-server:${{ env.VERSION_TAG }},
-          
+
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
   deploy:
@@ -105,7 +106,7 @@ jobs:
           username: tachi
           key: ${{ secrets.TACHI_KEY }}
           script: tachi-server-deploy -s
-        
+
       - name: Deploy to live
         if: github.ref == 'refs/heads/master'
         uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8

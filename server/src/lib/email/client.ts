@@ -55,5 +55,6 @@ export function SendEmail(
 		to,
 		subject,
 		html: htmlContent,
+		dkim: ServerConfig.EMAIL_CONFIG?.DKIM,
 	});
 }

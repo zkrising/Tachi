@@ -5,6 +5,8 @@ import fs from "fs";
 import p from "prudence";
 import { FormatPrError } from "utils/prudence";
 import { integer, StaticConfig } from "tachi-common";
+import { SendMailOptions } from "nodemailer";
+
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
 
 // stub - having a real logger here creates a circular dependency.
@@ -68,6 +70,7 @@ export interface TachiConfig {
 	EMAIL_CONFIG?: {
 		FROM: string;
 		SENDMAIL_BIN?: string;
+		DKIM?: SendMailOptions["dkim"];
 	};
 	USC_QUEUE_SIZE: integer;
 	BEATORAJA_QUEUE_SIZE: integer;
@@ -107,6 +110,7 @@ const err = p(config, {
 	EMAIL_CONFIG: p.optional({
 		FROM: "string",
 		SENDMAIL_BIN: "*string",
+		DKIM: "*object",
 	}),
 	USC_QUEUE_SIZE: p.optional(p.gteInt(2)),
 	BEATORAJA_QUEUE_SIZE: p.optional(p.gteInt(2)),

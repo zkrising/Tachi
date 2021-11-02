@@ -47,7 +47,9 @@ export async function InitSequenceDocs() {
 		},
 	];
 
-	logger.info(`Inserting ${Counters.map((e) => `${e.counterName}: ${e.value}`)}`);
+	logger.verbose(
+		`Setting Counters -> ${Counters.map((e) => `${e.counterName}: ${e.value}`).join(", ")}`
+	);
 
 	await db.counters.insert(Counters);
 }

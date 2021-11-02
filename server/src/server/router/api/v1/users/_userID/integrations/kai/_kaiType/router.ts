@@ -15,6 +15,7 @@ import { RequireSelfRequestFromUser } from "../../../middleware";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import fetch from "utils/fetch";
 import { Random20Hex } from "utils/misc";
+import { Environment } from "lib/setup/config";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -71,7 +72,7 @@ router.post(
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 		const kaiType = req.params.kaiType.toUpperCase() as "FLO" | "EAG" | "MIN";
 
-		if (process.env.NODE_ENV === "dev") {
+		if (Environment.nodeEnv === "dev") {
 			await db["kai-auth-tokens"].update(
 				{
 					userID: user.id,

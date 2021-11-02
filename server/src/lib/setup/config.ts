@@ -169,10 +169,24 @@ if (!cdnRoot) {
 	process.exit(1);
 }
 
+const nodeEnv = process.env.NODE_ENV;
+if (!nodeEnv) {
+	logger.error(`No NODE_ENV specified in environment. Terminating.`);
+	process.exit(1);
+}
+
+if (!["dev", "production", "staging", "test"].includes(nodeEnv)) {
+	logger.error(
+		`Invalid NODE_ENV set in environment. Expected dev, production, test or staging. Got ${nodeEnv}.`
+	);
+	process.exit(1);
+}
+
 export const Environment = {
 	port,
 	redisUrl,
 	mongoUrl,
 	// If node_env is test, force to ./test-cdn.
-	cdnRoot: process.env.NODE_ENV === "test" ? "./test-cdn" : cdnRoot,
+	cdnRoot: nodeEnv === "test" ? "./test-cdn" : cdnRoot,
+	nodeEnv,
 };

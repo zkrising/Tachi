@@ -1,6 +1,7 @@
 import { RequestHandler } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { Environment } from "lib/setup/config";
 import { OAuth2ApplicationDocument } from "tachi-common";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 
@@ -36,7 +37,7 @@ export const RequireOwnershipOfClient: RequestHandler = (req, res, next) => {
 	// request. To hack around this for testing, we perform this hack.
 	// There's an open issue for this here: https://github.com/i-like-robots/express-request-mock/issues/19
 	/* istanbul ignore next */
-	if (process.env.NODE_ENV === "test" && req.body.__terribleHackOauth2ClientDoc) {
+	if (Environment.nodeEnv === "test" && req.body.__terribleHackOauth2ClientDoc) {
 		// obviously a glaring hack and security flaw - this only applies
 		// in testing.
 		client = req.body.__terribleHackOauth2ClientDoc;

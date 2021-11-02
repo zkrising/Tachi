@@ -1,5 +1,5 @@
 import CreateLogCtx from "lib/logger/logger";
-import { ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig } from "lib/setup/config";
 import nodemailer, { SentMessageInfo, Transporter } from "nodemailer";
 
 const logger = CreateLogCtx(__filename);
@@ -34,7 +34,7 @@ if (ServerConfig.EMAIL_CONFIG) {
 }
 
 export function SendEmail(to: string, htmlContent: string): Promise<SentMessageInfo> | undefined {
-	if (process.env.NODE_ENV === "test") {
+	if (Environment.nodeEnv === "test") {
 		logger.debug(`Stubbed out SendEmail as env was test.`);
 		return;
 	}

@@ -12,7 +12,7 @@ const logger = CreateLogCtx(__filename);
 
 let store;
 
-if (process.env.NODE_ENV !== "test") {
+if (Environment.nodeEnv !== "test") {
 	logger.info("Connecting ExpressSession to Redis.");
 	const RedisStore = connectRedis(expressSession);
 	store = new RedisStore({
@@ -27,20 +27,20 @@ const userSessionMiddleware = expressSession({
 	// append node_env onto the end of the session name
 	// so we can separate tokens under the same URL.
 	// say for staging.kamaitachi.xyz
-	name: `${ServerConfig.TYPE}_${process.env.NODE_ENV}_session`,
+	name: `${ServerConfig.TYPE}_${Environment.nodeEnv}_session`,
 	secret: ServerConfig.SESSION_SECRET,
 	store,
 	resave: true,
 	saveUninitialized: false,
 	cookie: {
-		secure: process.env.NODE_ENV === "production" || ServerConfig.ENABLE_SERVER_HTTPS,
+		secure: Environment.nodeEnv === "production" || ServerConfig.ENABLE_SERVER_HTTPS,
 		sameSite: "lax", // Very important. Without this, we're vulnerable to CSRF!
 	},
 });
 
 const app: Express = express();
 
-if (process.env.NODE_ENV !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
+if (Environment.nodeEnv !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
 	logger.warn(`Enabling CORS requests from ${ServerConfig.CLIENT_DEV_SERVER}.`);
 
 	// Allow CORS requests from another server (since we have our dev server hosted separately).
@@ -60,7 +60,7 @@ if (process.env.NODE_ENV !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
 		app.options("*", (req, res) => res.send());
 	}
 } else {
-	if (process.env.NODE_ENV !== "test") {
+	if (Environment.nodeEnv !== "test") {
 		logger.info("Enabling Helmet, as no CLIENT_DEV_SERVER was set, or we are in production.");
 	}
 	app.use(helmet());
@@ -108,11 +108,11 @@ app.use("/", mainRouter);
 // this is not the case (we have a dedicated nginx box for it running in a separate process).
 // In dev, this is a pain to setup, so we can just run it locally.
 if (ServerConfig.RUN_OWN_CDN) {
-	if (process.env.NODE_ENV === "production") {
+	if (Environment.nodeEnv === "production") {
 		logger.warn(
 			`Running OWN_CDN in production. Consider making a separate process handle your CDN for performance.`
 		);
-	} else if (process.env.NODE_ENV !== "test") {
+	} else if (Environment.nodeEnv !== "test") {
 		logger.info(`Running own CDN at ${Environment.cdnRoot}.`);
 	}
 

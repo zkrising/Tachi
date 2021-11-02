@@ -11,7 +11,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { FormatUserDoc } from "utils/user";
 import nodeFetch from "utils/fetch";
 import { Random20Hex } from "utils/misc";
-import { ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig } from "lib/setup/config";
 import { CreateURLWithParams } from "utils/url";
 
 const logger = CreateLogCtx(__filename);
@@ -173,5 +173,5 @@ export function MountAuthCookie(
 	};
 
 	req.session.cookie.maxAge = 3.154e10;
-	req.session.cookie.secure = process.env.NODE_ENV === "production";
+	req.session.cookie.secure = Environment.nodeEnv === "production";
 }

@@ -13,7 +13,7 @@ function getTestTxt() {
 }
 
 const ResetFileRoot = () => {
-	if (process.env.NODE_ENV !== "test") {
+	if (Environment.nodeEnv !== "test") {
 		throw new Error(
 			`Not in test, yet CDN.test.ts was triggered, which could rm -rf something important.`
 		);

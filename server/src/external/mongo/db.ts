@@ -47,7 +47,7 @@ const logger = CreateLogCtx(__filename);
 let dbName = ServerConfig.MONGO_DATABASE_NAME;
 
 /* istanbul ignore next */
-if (process.env.NODE_ENV === "test") {
+if (Environment.nodeEnv === "test") {
 	dbName = `testingdb`;
 }
 

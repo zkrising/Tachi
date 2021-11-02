@@ -25,7 +25,7 @@ import { DecrementCounterValue, GetNextCounterValue } from "utils/db";
 import { SendEmail } from "lib/email/client";
 import { EmailFormatResetPassword, EmailFormatVerifyEmail } from "lib/email/formats";
 import { Random20Hex } from "utils/misc";
-import { ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig } from "lib/setup/config";
 import { integer } from ".pnpm/tachi-common@0.2.36/node_modules/tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -64,7 +64,7 @@ router.post(
 		logger.verbose(`Recieved login request with username ${req.body.username} (${req.ip})`);
 
 		/* istanbul ignore next */
-		if (process.env.NODE_ENV === "production") {
+		if (Environment.nodeEnv === "production" || Environment.nodeEnv === "staging") {
 			logger.verbose("Validating captcha...");
 			const validCaptcha = await ValidateCaptcha(
 				req.body.recaptcha,
@@ -177,7 +177,7 @@ router.post(
 		logger.verbose(`Recieved register request with username ${req.body.username} (${req.ip})`);
 
 		/* istanbul ignore next */
-		if (process.env.NODE_ENV === "production") {
+		if (Environment.nodeEnv === "production" || Environment.nodeEnv === "staging") {
 			logger.verbose("Validating captcha...");
 			const validCaptcha = await ValidateCaptcha(
 				req.body.recaptcha,

@@ -6,11 +6,15 @@ import fs from "fs";
 import { FormatVersion } from "./lib/constants/version";
 import { spawn } from "child_process";
 import path from "path";
+import { InitSequenceDocs } from "external/mongo/sequence-docs";
 
 const logger = CreateLogCtx(__filename);
 
 logger.info(`Booting ${ServerTypeInfo.name} - ${FormatVersion()} [ENV: ${process.env.NODE_ENV}]`);
 logger.info(`Log level is set to ${ServerConfig.LOG_LEVEL}.`);
+
+logger.info(`Loading sequence documents...`);
+InitSequenceDocs();
 
 if (ServerConfig.ENABLE_SERVER_HTTPS) {
 	logger.warn(

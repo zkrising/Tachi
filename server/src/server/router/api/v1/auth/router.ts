@@ -26,6 +26,7 @@ import { SendEmail } from "lib/email/client";
 import { EmailFormatResetPassword, EmailFormatVerifyEmail } from "lib/email/formats";
 import { Random20Hex } from "utils/misc";
 import { ServerConfig } from "lib/setup/config";
+import { integer } from ".pnpm/tachi-common@0.2.36/node_modules/tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -216,6 +217,8 @@ router.post(
 			});
 		}
 
+		let hasInsertedUserID: integer | null = null;
+
 		try {
 			const userID = await GetNextCounterValue("users");
 
@@ -258,6 +261,8 @@ router.post(
 				throw new Error("AddNewUser failed to create a user.");
 			}
 
+			hasInsertedUserID = newUser.id;
+
 			// re-fetch the user like this so we guaranteeably omit the private fields.
 			const user = await GetUserWithID(newUser.id);
 
@@ -283,6 +288,15 @@ router.post(
 
 			if (!ServerConfig.ENABLE_PUBLIC_SIGNUP) {
 				await ReinstateInvite(req.body.inviteCode);
+			}
+
+			if (hasInsertedUserID !== null) {
+				logger.warn(
+					`Removing user ${req.body.username} (#${hasInsertedUserID}), as their document was created, but creation still failed.`
+				);
+				await db.users.remove({ username: req.body.username });
+				await db["user-settings"].remove({ userID: hasInsertedUserID });
+				await db["user-private-information"].remove({ userID: hasInsertedUserID });
 			}
 
 			await DecrementCounterValue("users");

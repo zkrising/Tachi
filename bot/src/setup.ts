@@ -37,7 +37,7 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 		SERVER_PORT: Prudence.isPositiveNonZeroInteger,
 		TACHI_SERVER_LOCATION: "string",
 		OUR_URL: "string",
-		GENERIC_ERROR_MESSAGE: "string"
+		GENERIC_ERROR_MESSAGE: "string",
 	});
 
 	if (err) {
@@ -54,6 +54,7 @@ export interface ProcessEnvironment {
 	DISCORD_TOKEN: string;
 	BOT_CLIENT_SECRET: string;
 	BOT_CLIENT_ID: string;
+	MONGO_URL: string;
 }
 
 function ParseEnvVars() {
@@ -63,7 +64,8 @@ function ParseEnvVars() {
 			ENV: "string",
 			DISCORD_TOKEN: "string",
 			BOT_CLIENT_SECRET: "string",
-			BOT_CLIENT_ID: "string"
+			BOT_CLIENT_ID: "string",
+			MONGO_URL: "string",
 		},
 		{},
 		{ allowExcessKeys: true }

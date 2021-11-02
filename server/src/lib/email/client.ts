@@ -33,7 +33,11 @@ if (ServerConfig.EMAIL_CONFIG) {
 	logger.warn(`No EMAIL_CONFIG present in conf, emails will not be sent from the server.`);
 }
 
-export function SendEmail(to: string, htmlContent: string): Promise<SentMessageInfo> | undefined {
+export function SendEmail(
+	to: string,
+	subject: string,
+	htmlContent: string
+): Promise<SentMessageInfo> | undefined {
 	if (Environment.nodeEnv === "test") {
 		logger.debug(`Stubbed out SendEmail as env was test.`);
 		return;
@@ -49,6 +53,7 @@ export function SendEmail(to: string, htmlContent: string): Promise<SentMessageI
 	return transporter.sendMail({
 		from: ServerConfig.EMAIL_CONFIG!.FROM,
 		to,
+		subject,
 		html: htmlContent,
 	});
 }

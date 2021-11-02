@@ -276,7 +276,11 @@ router.post(
 				email: req.body.email,
 			});
 
-			await SendEmail(req.body.email, EmailFormatVerifyEmail(user!.username, resetEmailCode));
+			await SendEmail(
+				req.body.email,
+				"Email Verification",
+				EmailFormatVerifyEmail(user!.username, resetEmailCode)
+			);
 
 			return res.status(200).json({
 				success: true,
@@ -379,7 +383,11 @@ router.post("/resend-verify-email", prValidate({ email: "string" }), async (req,
 	}
 
 	// Send the email again.
-	await SendEmail(req.body.email, EmailFormatVerifyEmail(user!.username, verifyInfo.code));
+	await SendEmail(
+		req.body.email,
+		"Email Verification",
+		EmailFormatVerifyEmail(user!.username, verifyInfo.code)
+	);
 });
 
 /**
@@ -451,6 +459,7 @@ router.post("/forgot-password", prValidate({ email: "string" }), async (req, res
 
 		await SendEmail(
 			userPrivateInfo.email,
+			"Reset Password",
 			EmailFormatResetPassword(user.username, code, req.ip)
 		);
 	} else {

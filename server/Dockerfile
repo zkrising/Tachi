@@ -1,7 +1,7 @@
 FROM node
 RUN apt-get update
 WORKDIR /app
-RUN apt-get install sendmail
+RUN apt-get install -y sendmail
 RUN npm install -g pnpm
 COPY . /app
 RUN pnpm i

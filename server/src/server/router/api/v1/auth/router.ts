@@ -276,7 +276,7 @@ router.post(
 				email: req.body.email,
 			});
 
-			await SendEmail(
+			SendEmail(
 				req.body.email,
 				"Email Verification",
 				EmailFormatVerifyEmail(user!.username, resetEmailCode)
@@ -383,7 +383,7 @@ router.post("/resend-verify-email", prValidate({ email: "string" }), async (req,
 	}
 
 	// Send the email again.
-	await SendEmail(
+	SendEmail(
 		req.body.email,
 		"Email Verification",
 		EmailFormatVerifyEmail(user!.username, verifyInfo.code)
@@ -457,7 +457,7 @@ router.post("/forgot-password", prValidate({ email: "string" }), async (req, res
 			createdOn: Date.now(),
 		});
 
-		await SendEmail(
+		SendEmail(
 			userPrivateInfo.email,
 			"Reset Password",
 			EmailFormatResetPassword(user.username, code, req.ip)

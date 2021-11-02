@@ -222,7 +222,7 @@ router.post(
 		try {
 			const userID = await GetNextCounterValue("users");
 
-			if (!ServerConfig.ENABLE_PUBLIC_SIGNUP) {
+			if (!ServerConfig.INVITE_CODE_CONFIG) {
 				const inviteCodeDoc = await db.invites.findOneAndUpdate(
 					{
 						code: req.body.inviteCode,
@@ -290,7 +290,7 @@ router.post(
 		} catch (err) {
 			logger.error(`Bailed on user creation ${req.body.username}.`, { err });
 
-			if (!ServerConfig.ENABLE_PUBLIC_SIGNUP) {
+			if (!ServerConfig.INVITE_CODE_CONFIG) {
 				await ReinstateInvite(req.body.inviteCode);
 			}
 

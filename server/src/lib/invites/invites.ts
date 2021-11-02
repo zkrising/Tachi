@@ -1,11 +1,9 @@
 import { ONE_MONTH } from "lib/constants/time";
+import CreateLogCtx, { rootLogger } from "lib/logger/logger";
+import { ServerConfig } from "lib/setup/config";
 import { PublicUserDocument } from "tachi-common";
 
-// These aren't controlled by config because they only apply
-// to kamaitachi, and I'm lazy in that regard.
-const INVITE_BATCH_SIZE = 2;
-const INVITE_CAP = 100;
-const BETA_USER_BONUS = 5;
+const logger = CreateLogCtx(__filename);
 
 /**
  * Users are only allowed to invite so many users, and their invites are
@@ -15,18 +13,25 @@ const BETA_USER_BONUS = 5;
  * This is capped at INVITE_CAP, which defaults to 100.
  */
 export function GetTotalAllowedInvites(user: PublicUserDocument) {
+	if (!ServerConfig.INVITE_CODE_CONFIG) {
+		logger.warn(
+			`No INVITE_CODE_CONFIG set, but tried to get total allowed invites? Returning 0.`
+		);
+		return 0;
+	}
+
 	const joinedSince = Date.now() - user.joinDate;
 
 	const monthsSinceJoin = Math.floor(joinedSince / ONE_MONTH);
 
-	let invites = monthsSinceJoin * INVITE_BATCH_SIZE;
+	let invites = monthsSinceJoin * ServerConfig.INVITE_CODE_CONFIG.BATCH_SIZE;
 
 	if (user.badges.includes("alpha") || user.badges.includes("beta")) {
-		invites += BETA_USER_BONUS;
+		invites += ServerConfig.INVITE_CODE_CONFIG.BETA_USER_BONUS;
 	}
 
-	if (invites > INVITE_CAP) {
-		return INVITE_CAP;
+	if (invites > ServerConfig.INVITE_CODE_CONFIG.INVITE_CAP) {
+		return ServerConfig.INVITE_CODE_CONFIG.INVITE_CAP;
 	}
 
 	return invites;

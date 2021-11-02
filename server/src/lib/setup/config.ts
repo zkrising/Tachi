@@ -77,8 +77,12 @@ export interface TachiConfig {
 	OUR_URL: string;
 	LOGGER_DISCORD_WEBHOOK?: string;
 	DISCORD_WHO_TO_TAG?: string[];
-	ENABLE_PUBLIC_SIGNUP?: boolean;
 	CDN_WEB_LOCATION: string;
+	INVITE_CODE_CONFIG?: {
+		BATCH_SIZE: integer;
+		INVITE_CAP: integer;
+		BETA_USER_BONUS: integer;
+	};
 }
 
 const isValidOauth2 = p.optional({
@@ -118,8 +122,12 @@ const err = p(config, {
 	OUR_URL: "string",
 	LOGGER_DISCORD_WEBHOOK: "*string",
 	DISCORD_WHO_TO_TAG: p.optional(["string"]),
-	ENABLE_PUBLIC_SIGNUP: "*boolean",
 	CDN_WEB_LOCATION: "string",
+	INVITE_CODE_CONFIG: p.optional({
+		BATCH_SIZE: p.isPositiveInteger,
+		INVITE_CAP: p.isPositiveInteger,
+		BETA_USER_BONUS: p.isPositiveInteger,
+	}),
 });
 
 if (err) {

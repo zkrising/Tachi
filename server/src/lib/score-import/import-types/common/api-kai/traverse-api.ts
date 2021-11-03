@@ -111,7 +111,10 @@ export async function* TraverseKaiAPI(
 			// eslint-disable-next-line no-await-in-loop
 			json = await res.json();
 		} catch (err) {
-			logger.error(`Recieved invalid (non-json) response from ${url}.`, { err });
+			logger.error(
+				`Recieved invalid (non-json) response from ${url}. Status code was ${res.status}.`,
+				{ err }
+			);
 			throw new ScoreImportFatalError(
 				500,
 				`Recieved invalid response from ${url}. Are they down?`

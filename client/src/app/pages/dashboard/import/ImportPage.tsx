@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { Game, GetGameConfig } from "tachi-common";
 
 export default function ImportPage() {
-	useSetSubheader(["Dashboard", "Import Scores"]);
+	useSetSubheader(["Import Scores"]);
 
 	const [game, setGame] = useState<Game | null>(null);
 

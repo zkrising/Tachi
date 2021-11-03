@@ -4,6 +4,7 @@ specifiers:
   '@types/bcrypt': 5.0.0
   '@types/bcryptjs': ^2.4.2
   '@types/bull': ^3.15.5
+  '@types/bunyan': ^1.8.7
   '@types/connect-redis': 0.0.16
   '@types/deep-equal': ^1.0.1
   '@types/express': 4.17.12
@@ -25,6 +26,7 @@ specifiers:
   '@typescript-eslint/parser': 4.28.0
   bcryptjs: ^2.4.3
   bull: ^3.29.2
+  bunyan: ^1.8.15
   commander: 7.2.0
   connect-redis: 6.0.0
   csv-parse: 4.16.0
@@ -71,9 +73,11 @@ specifiers:
 
 dependencies:
   '@types/bull': 3.15.5
+  '@types/bunyan': 1.8.7
   '@types/deep-equal': 1.0.1
   bcryptjs: 2.4.3
   bull: 3.29.2
+  bunyan: 1.8.15
   commander: 7.2.0
   connect-redis: 6.0.0
   csv-parse: 4.16.0
@@ -545,6 +549,12 @@ packages:
     resolution: {integrity: sha512-XgJQWJ03jyKMfdoL8IAIoHIo7JkkL74kcxuujTONkSJswm0giIJ9kuVgDNHS0OvD+OiPNcFmbBl0H3scj2+A8A==}
     dependencies:
       '@types/ioredis': 4.26.7
+    dev: false
+
+  /@types/bunyan/1.8.7:
+    resolution: {integrity: sha512-jaNt6xX5poSmXuDAkQrSqx2zkR66OrdRDuVnU8ldvn3k/Ci/7Sf5nooKspQWimDnw337Bzt/yirqSThTjvrHkg==}
+    dependencies:
+      '@types/node': 15.12.4
     dev: false
 
   /@types/connect-redis/0.0.16:
@@ -1108,6 +1118,17 @@ packages:
       - supports-color
     dev: false
 
+  /bunyan/1.8.15:
+    resolution: {integrity: sha512-0tECWShh6wUysgucJcBAoYegf3JJoZWibxdqhTm7OHPeT42qdjkZ29QCMcKwbgU1kiH+auSIasNRXMLWXafXig==}
+    engines: {'0': node >=0.10.0}
+    hasBin: true
+    optionalDependencies:
+      dtrace-provider: 0.8.8
+      moment: 2.29.1
+      mv: 2.1.1
+      safe-json-stringify: 1.2.0
+    dev: false
+
   /busboy/0.2.14:
     resolution: {integrity: sha1-bCpiLvz0fFe7vh4qnDetNseSVFM=}
     engines: {node: '>=0.8.0'}
@@ -1560,6 +1581,15 @@ packages:
     resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
     engines: {node: '>=10'}
     dev: false
+
+  /dtrace-provider/0.8.8:
+    resolution: {integrity: sha512-b7Z7cNtHPhH9EJhNNbbeqTcXB8LGFFZhq1PGgEvpeHlzd36bhbdTWoE/Ba/YguqpBSlAPKnARWhVlhunCMwfxg==}
+    engines: {node: '>=0.10'}
+    requiresBuild: true
+    dependencies:
+      nan: 2.15.0
+    dev: false
+    optional: true
 
   /ecc-jsbn/0.1.2:
     resolution: {integrity: sha1-OoOpBOVDUyh4dMVkt1SThoSamMk=}
@@ -2234,6 +2264,17 @@ packages:
     dependencies:
       is-glob: 4.0.1
     dev: true
+
+  /glob/6.0.4:
+    resolution: {integrity: sha1-DwiGD2oVUSey+t1PnOJLGqtuTSI=}
+    dependencies:
+      inflight: 1.0.6
+      inherits: 2.0.4
+      minimatch: 3.0.4
+      once: 1.4.0
+      path-is-absolute: 1.0.1
+    dev: false
+    optional: true
 
   /glob/7.1.7:
     resolution: {integrity: sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==}
@@ -3119,9 +3160,31 @@ packages:
       xtend: 4.0.2
     dev: false
 
+  /mv/2.1.1:
+    resolution: {integrity: sha1-rmzg1vbV4KT32JN5jQPB6pVZtqI=}
+    engines: {node: '>=0.8.0'}
+    requiresBuild: true
+    dependencies:
+      mkdirp: 0.5.5
+      ncp: 2.0.0
+      rimraf: 2.4.5
+    dev: false
+    optional: true
+
+  /nan/2.15.0:
+    resolution: {integrity: sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==}
+    dev: false
+    optional: true
+
   /natural-compare/1.4.0:
     resolution: {integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=}
     dev: true
+
+  /ncp/2.0.0:
+    resolution: {integrity: sha1-GVoh1sRuNh0vsSgbo4uR6d9727M=}
+    hasBin: true
+    dev: false
+    optional: true
 
   /negotiator/0.6.2:
     resolution: {integrity: sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==}
@@ -3805,6 +3868,14 @@ packages:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
     dev: true
+
+  /rimraf/2.4.5:
+    resolution: {integrity: sha1-7nEM5dk6j9uFb7Xqj/Di11k0sto=}
+    hasBin: true
+    dependencies:
+      glob: 6.0.4
+    dev: false
+    optional: true
 
   /rimraf/3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}

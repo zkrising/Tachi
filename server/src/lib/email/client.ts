@@ -1,6 +1,7 @@
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
 import nodemailer, { SentMessageInfo, Transporter } from "nodemailer";
+import bunyan from "bunyan";
 
 const logger = CreateLogCtx(__filename);
 
@@ -19,7 +20,9 @@ if (ServerConfig.EMAIL_CONFIG) {
 			newline: "unix",
 			path: conf.SENDMAIL_BIN ?? "/usr/bin/sendmail",
 			debug: !!ServerConfig.EMAIL_CONFIG?.DEBUG,
-			logger: CreateLogCtx("email-server"),
+			logger: ServerConfig.EMAIL_CONFIG.DEBUG
+				? bunyan.createLogger({ name: "Email Logger" })
+				: undefined,
 		});
 
 		transporter.verify((err) => {

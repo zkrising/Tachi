@@ -30,7 +30,7 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 					grade: "AA",
 					// percent: 93.10699, floating point
 					score: 9310699,
-					lamp: "EXCESSIVE CLEAR",
+					lamp: "CLEAR",
 					judgements: {},
 					hitMeta: {
 						fast: 70,
@@ -116,12 +116,13 @@ t.test("#ConvertVersion", (t) => {
 });
 
 t.test("#ResolveKaiLamp", (t) => {
-	t.equal(ResolveKaiLamp(0), "FAILED");
-	t.equal(ResolveKaiLamp(1), "CLEAR");
-	t.equal(ResolveKaiLamp(2), "EXCESSIVE CLEAR");
-	t.equal(ResolveKaiLamp(3), "ULTIMATE CHAIN");
-	t.equal(ResolveKaiLamp(4), "PERFECT ULTIMATE CHAIN");
-	t.throws(() => ConvertDifficulty(5));
+	t.equal(ResolveKaiLamp(1), "FAILED");
+	t.equal(ResolveKaiLamp(2), "CLEAR");
+	t.equal(ResolveKaiLamp(3), "EXCESSIVE CLEAR");
+	t.equal(ResolveKaiLamp(4), "ULTIMATE CHAIN");
+	t.equal(ResolveKaiLamp(5), "PERFECT ULTIMATE CHAIN");
+	t.throws(() => ConvertDifficulty(6));
+	t.throws(() => ConvertDifficulty(0));
 
 	t.end();
 });

@@ -36,7 +36,7 @@ t.test("#CreateKaiSDVXClassHandler", async (t) => {
 	t.test("Should call the provided URL with the authentication token", (t) => {
 		const res = fn("sdvx", "Single", 1, {}, logger);
 
-		t.strictSame(res, { dan: 10 });
+		t.strictSame(res, { dan: 9 });
 
 		t.end();
 	});
@@ -73,7 +73,7 @@ t.test("#CreateKaiSDVXClassHandler", async (t) => {
 					_links: {},
 					sdvx_id: 12345678,
 					name: "SOMEONE",
-					skill_level: SDVXDans.INF + 1,
+					skill_level: SDVXDans.INF + 2,
 					access_time: "2019-08-26T18:22:36Z",
 					register_time: "2019-08-26T18:22:36Z",
 				},

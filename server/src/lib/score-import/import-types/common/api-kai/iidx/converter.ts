@@ -23,7 +23,7 @@ const PR_KaiIIDXScore = {
 	version_played: p.isBoundedInteger(9, 28),
 	lamp: p.isBoundedInteger(0, 7),
 	ex_score: p.isPositiveInteger,
-	miss_count: p.or(p.isPositiveInteger, p.is(-1)),
+	miss_count: p.or(p.isPositiveInteger, p.is(-1), "null"),
 	fast_count: p.nullable(p.isPositiveInteger),
 	slow_count: p.nullable(p.isPositiveInteger),
 	timestamp: "string",
@@ -69,7 +69,7 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 
 	const version = score.version_played.toString();
 
-	if (!["26", "27", "28"].includes(version)) {
+	if (!["20", "21", "22", "23", "24", "25", "26", "27", "28"].includes(version)) {
 		throw new InvalidScoreFailure(`Unsupported version ${score.version_played}.`);
 	}
 
@@ -118,7 +118,7 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 			hitMeta: {
 				fast: score.fast_count,
 				slow: score.slow_count,
-				bp: score.miss_count === -1 ? null : score.miss_count,
+				bp: score.miss_count === -1 || score.miss_count === null ? null : score.miss_count,
 			},
 		},
 		scoreMeta: {},

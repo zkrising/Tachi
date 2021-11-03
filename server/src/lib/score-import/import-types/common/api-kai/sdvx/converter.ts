@@ -25,9 +25,9 @@ const PR_KaiSDVXScore = {
 	score: p.isBoundedInteger(0, 10_000_000),
 	critical: p.isPositiveInteger,
 	near: p.isPositiveInteger,
-	error: p.isPositiveInteger,
-	early: p.isPositiveInteger,
-	late: p.isPositiveInteger,
+	error: p.nullable(p.isPositiveInteger),
+	early: p.nullable(p.isPositiveInteger),
+	late: p.nullable(p.isPositiveInteger),
 	gauge_rate: p.isBoundedInteger(0, 100),
 	timestamp: "string",
 };
@@ -135,15 +135,15 @@ export function ConvertVersion(ver: number) {
 
 export function ResolveKaiLamp(clear: number): Lamps["sdvx:Single"] {
 	switch (clear) {
-		case 0:
-			return "FAILED";
 		case 1:
-			return "CLEAR";
+			return "FAILED";
 		case 2:
-			return "EXCESSIVE CLEAR";
+			return "CLEAR";
 		case 3:
-			return "ULTIMATE CHAIN";
+			return "EXCESSIVE CLEAR";
 		case 4:
+			return "ULTIMATE CHAIN";
+		case 5:
 			return "PERFECT ULTIMATE CHAIN";
 	}
 

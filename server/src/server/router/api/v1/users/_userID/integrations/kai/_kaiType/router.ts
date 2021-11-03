@@ -72,36 +72,6 @@ router.post(
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 		const kaiType = req.params.kaiType.toUpperCase() as "FLO" | "EAG" | "MIN";
 
-		if (Environment.nodeEnv === "dev") {
-			await db["kai-auth-tokens"].update(
-				{
-					userID: user.id,
-					service: kaiType,
-				},
-				{
-					$set: {
-						userID: user.id,
-						service: kaiType,
-						refreshToken: Random20Hex(),
-						token: Random20Hex(),
-					},
-				},
-				{
-					upsert: true,
-				}
-			);
-
-			logger.warn(
-				`Cannot use kai OAuth2 in development. This endpoint has been stubbed out.`
-			);
-
-			return res.status(200).json({
-				success: true,
-				description: `Successfully updated auth for ${kaiType}`,
-				body: {},
-			});
-		}
-
 		const baseUrl = KaiTypeToBaseURL(kaiType);
 
 		const maybeCredentials = GetKaiTypeClientCredentials(kaiType);

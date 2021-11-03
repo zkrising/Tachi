@@ -12,9 +12,14 @@ if (ServerConfig.EMAIL_CONFIG) {
 
 	try {
 		transporter = nodemailer.createTransport({
+			// @ts-expect-error There's a bug in nodemailers types
+			// where it thinks that sendmail cannot be true while
+			// debug or logging are enabled.
 			sendmail: true,
 			newline: "unix",
 			path: conf.SENDMAIL_BIN ?? "/usr/bin/sendmail",
+			debug: !!ServerConfig.EMAIL_CONFIG?.DEBUG,
+			logger: CreateLogCtx("email-server"),
 		});
 
 		transporter.verify((err) => {

@@ -71,6 +71,7 @@ export interface TachiConfig {
 		FROM: string;
 		SENDMAIL_BIN?: string;
 		DKIM?: SendMailOptions["dkim"];
+		DEBUG?: boolean;
 	};
 	USC_QUEUE_SIZE: integer;
 	BEATORAJA_QUEUE_SIZE: integer;
@@ -116,6 +117,7 @@ const err = p(config, {
 		FROM: "string",
 		SENDMAIL_BIN: "*string",
 		DKIM: "*object",
+		DEBUG: "*boolean",
 	}),
 	USC_QUEUE_SIZE: p.optional(p.gteInt(2)),
 	BEATORAJA_QUEUE_SIZE: p.optional(p.gteInt(2)),

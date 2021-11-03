@@ -5,4 +5,4 @@ RUN apt-get install -y sendmail
 RUN npm install -g pnpm
 COPY . /app
 RUN pnpm i
-CMD service sendmail start && pnpm start
+CMD ./hosts.sh && service sendmail start && pnpm start

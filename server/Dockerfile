@@ -1,8 +1,6 @@
 FROM node
-RUN apt-get update
 WORKDIR /app
-RUN apt-get install -y sendmail
-RUN npm install -g pnpm
 COPY . /app
-RUN pnpm i
+RUN apt-get update && apt-get install -y sendmail && rm -rf /var/lib/apt/lists/*
+RUN npm install -g pnpm && pnpm i
 CMD ./hosts.sh && service sendmail start && pnpm start

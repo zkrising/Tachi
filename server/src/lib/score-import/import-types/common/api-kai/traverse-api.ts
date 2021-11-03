@@ -71,6 +71,7 @@ export async function* TraverseKaiAPI(
 				headers: {
 					Authorization: `Bearer ${token}`,
 					"User-Agent": `${ServerTypeInfo.name}/${VERSION_STR}`,
+					"Content-Type": "application/json",
 				},
 			});
 		} catch (err) {

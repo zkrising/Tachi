@@ -13,7 +13,7 @@ import { APIFetchV1, ToCDNURL } from "util/api";
 import { HumaniseError } from "util/humanise-error";
 
 // seconds it takes for a user to actually read the rules.
-const RULES_READ_TIME = 30;
+const RULES_READ_TIME = Number(process.env.REACT_APP_RULES_READ_TIME) ?? 30;
 
 export default function RegisterPage() {
 	useSetSubheader("Register");

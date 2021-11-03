@@ -47,7 +47,7 @@ export async function ExpressWrappedScoreImportMain<D, C>(
 		if (err instanceof ScoreImportFatalError) {
 			logger.info(err.message);
 			return {
-				statusCode: 400,
+				statusCode: err.statusCode,
 				body: {
 					success: false,
 					description: err.message,

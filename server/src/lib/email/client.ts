@@ -15,8 +15,6 @@ if (ServerConfig.EMAIL_CONFIG) {
 		transporter = nodemailer.createTransport(
 			Object.assign(
 				{
-					path: "/usr/bin/sendmail",
-					sendmail: true,
 					newline: "unix",
 					logger: conf.TRANSPORT_OPS?.debug
 						? bunyan.createLogger({ name: "Email Logger" })

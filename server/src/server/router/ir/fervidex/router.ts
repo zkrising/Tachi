@@ -25,7 +25,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 		);
 		return res.status(400).json({
 			success: false,
-			description: `Invalid User-Agent.`,
+			error: `Invalid User-Agent.`,
 		});
 	}
 
@@ -37,7 +37,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 		);
 		return res.status(400).json({
 			success: false,
-			description: `Invalid User-Agent ${agent} - expected fervidex client.`,
+			error: `Invalid User-Agent ${agent} - expected fervidex client.`,
 		});
 	}
 
@@ -51,7 +51,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 		);
 		return res.status(400).json({
 			success: false,
-			description: `Invalid version ${versions.join(".")}.`,
+			error: `Invalid version ${versions.join(".")}.`,
 		});
 	}
 
@@ -62,7 +62,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 		);
 		return res.status(400).json({
 			success: false,
-			description: `Versions of fervidex < 1.3.0 are not supported.`,
+			error: `Versions of fervidex < 1.3.0 are not supported.`,
 		});
 	}
 
@@ -85,7 +85,7 @@ const RequireInf2ModelHeaderOrForceStatic: RequestHandler = async (req, res, nex
 		);
 		return res.status(400).json({
 			success: false,
-			description: `Invalid X-Software-Model.`,
+			error: `Invalid X-Software-Model.`,
 		});
 	}
 
@@ -103,7 +103,7 @@ const RequireInf2ModelHeaderOrForceStatic: RequestHandler = async (req, res, nex
 		logger.debug(err);
 		return res.status(400).json({
 			success: false,
-			description: `Invalid X-Software-Model.`,
+			error: `Invalid X-Software-Model.`,
 		});
 	}
 
@@ -119,7 +119,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 		);
 		return res.status(400).json({
 			success: false,
-			description: `Invalid X-Software-Model.`,
+			error: `Invalid X-Software-Model.`,
 		});
 	}
 
@@ -151,7 +151,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 		logger.debug(err);
 		return res.status(400).json({
 			success: false,
-			description: `Invalid X-Software-Model.`,
+			error: `Invalid X-Software-Model.`,
 		});
 	}
 
@@ -171,14 +171,14 @@ const ValidateCards: RequestHandler = async (req, res, next) => {
 	if (!cardID) {
 		return res.status(400).json({
 			success: false,
-			description: `Fervidex did not provide a card ID.`,
+			error: `Fervidex did not provide a card ID.`,
 		});
 	}
 
 	if (!cardFilters.cards.includes(cardID)) {
 		return res.status(400).json({
 			success: false,
-			description: `The card ID ${cardID} is not in your list of filters. Ignoring.`,
+			error: `The card ID ${cardID} is not in your list of filters. Ignoring.`,
 		});
 	}
 
@@ -233,7 +233,7 @@ router.post("/score/submit", ValidateModelHeader, async (req, res) => {
 	if (!model) {
 		return res.status(400).json({
 			success: false,
-			description: "No X-Software-Model header provided?",
+			error: "No X-Software-Model header provided?",
 		});
 	}
 
@@ -265,7 +265,7 @@ router.post("/class/submit", ValidateModelHeader, async (req, res) => {
 	if (!Number.isInteger(req.body.course_id)) {
 		return res.status(400).json({
 			success: false,
-			description: `Invalid course_id ${req.body.course_id}.`,
+			error: `Invalid course_id ${req.body.course_id}.`,
 		});
 	}
 
@@ -274,14 +274,14 @@ router.post("/class/submit", ValidateModelHeader, async (req, res) => {
 	if (courseID < 0 || courseID > 18) {
 		return res.status(400).json({
 			success: false,
-			description: `Invalid course_id ${req.body.course_id}.`,
+			error: `Invalid course_id ${req.body.course_id}.`,
 		});
 	}
 
 	if (req.body.play_style !== 0 && req.body.play_style !== 1) {
 		return res.status(400).json({
 			success: false,
-			description: `Invalid play_style ${req.body.playstyle}`,
+			error: `Invalid play_style ${req.body.playstyle}`,
 		});
 	}
 

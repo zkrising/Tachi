@@ -201,7 +201,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 			.send({ cleared: true, course_id: null, play_style: 1 });
 
 		t.equal(res.status, 400);
-		t.match(res.body.description, /Invalid course_id/u);
+		t.match(res.body.error, /Invalid course_id/u);
 
 		t.end();
 	});
@@ -215,7 +215,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 			.send({ cleared: true, course_id: 20, play_style: 1 });
 
 		t.equal(res.status, 400);
-		t.match(res.body.description, /Invalid course_id 20/u);
+		t.match(res.body.error, /Invalid course_id 20/u);
 
 		t.end();
 	});
@@ -229,7 +229,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 			.send({ cleared: true, course_id: -1, play_style: 1 });
 
 		t.equal(res.status, 400);
-		t.match(res.body.description, /Invalid course_id -1/u);
+		t.match(res.body.error, /Invalid course_id -1/u);
 
 		t.end();
 	});
@@ -243,7 +243,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 			.send({ cleared: true, course_id: 16, play_style: null });
 
 		t.equal(res.status, 400);
-		t.match(res.body.description, /Invalid play_style/u);
+		t.match(res.body.error, /Invalid play_style/u);
 
 		t.end();
 	});

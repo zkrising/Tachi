@@ -420,7 +420,7 @@ router.post("/logout", (req, res) => {
  * @name POST /api/v1/auth/forgot-password
  */
 router.post("/forgot-password", prValidate({ email: "string" }), async (req, res) => {
-	if (!ServerConfig.EMAIL_CONFIG) {
+	if (!ServerConfig.EMAIL_CONFIG && Environment.nodeEnv !== "test") {
 		return res.status(501).json({
 			success: false,
 			description: `This server does not support password resets.`,

@@ -1,11 +1,11 @@
 // barrel file for re-exporting env variables.
 import dotenv from "dotenv";
-import JSON5 from "json5";
 import fs from "fs";
-import p from "prudence";
-import { FormatPrError } from "utils/prudence";
-import { integer, StaticConfig } from "tachi-common";
+import JSON5 from "json5";
 import { SendMailOptions } from "nodemailer";
+import p from "prudence";
+import { integer, StaticConfig } from "tachi-common";
+import { FormatPrError } from "utils/prudence";
 
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
 
@@ -69,9 +69,13 @@ export interface TachiConfig {
 	NO_CONSOLE?: boolean;
 	EMAIL_CONFIG?: {
 		FROM: string;
-		SENDMAIL_BIN?: string;
 		DKIM?: SendMailOptions["dkim"];
-		DEBUG?: boolean;
+		// @warning This is explicitly allowed to be any
+		// As nodemailer doesnt properly export the types we care about
+		// This should be set to SMTPTransport.Options, but it is
+		// inaccessible.
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		TRANSPORT_OPS: any;
 	};
 	USC_QUEUE_SIZE: integer;
 	BEATORAJA_QUEUE_SIZE: integer;
@@ -115,9 +119,11 @@ const err = p(config, {
 	NO_CONSOLE: "*boolean",
 	EMAIL_CONFIG: p.optional({
 		FROM: "string",
-		SENDMAIL_BIN: "*string",
 		DKIM: "*object",
-		DEBUG: "*boolean",
+		// WARN: This validation is improper and lazy.
+		// The actual content is just some wacky options object.
+		// I'm not going to assert this properly.
+		TRANSPORT_OPS: "*object",
 	}),
 	USC_QUEUE_SIZE: p.optional(p.gteInt(2)),
 	BEATORAJA_QUEUE_SIZE: p.optional(p.gteInt(2)),
@@ -151,10 +157,6 @@ tachiConfig.RATE_LIMIT ??= 500;
 tachiConfig.OAUTH_CLIENT_CAP ??= 15;
 tachiConfig.USC_QUEUE_SIZE ??= 3;
 tachiConfig.BEATORAJA_QUEUE_SIZE ??= 3;
-
-if (tachiConfig.EMAIL_CONFIG) {
-	tachiConfig.EMAIL_CONFIG.SENDMAIL_BIN ??= "/usr/bin/sendmail";
-}
 
 export const ServerTypeInfo = tachiConfig.SERVER_TYPE_INFO;
 export const ServerConfig = tachiConfig;

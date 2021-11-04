@@ -121,8 +121,8 @@ t.test("#ResolveKaiLamp", (t) => {
 	t.equal(ResolveKaiLamp(3), "EXCESSIVE CLEAR");
 	t.equal(ResolveKaiLamp(4), "ULTIMATE CHAIN");
 	t.equal(ResolveKaiLamp(5), "PERFECT ULTIMATE CHAIN");
-	t.throws(() => ConvertDifficulty(6));
-	t.throws(() => ConvertDifficulty(0));
+	t.throws(() => ResolveKaiLamp(6));
+	t.throws(() => ResolveKaiLamp(0));
 
 	t.end();
 });

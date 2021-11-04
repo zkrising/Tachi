@@ -25,9 +25,6 @@
 	RUN_OWN_CDN: true,
 	CDN_WEB_LOCATION: "/cdn",
 	OUR_URL: "https://example.com",
-	EMAIL_CONFIG: {
-		FROM: "test <zkldi@example.com>",
-	},
 	INVITE_CODE_CONFIG: {
 		BATCH_SIZE: 2,
 		INVITE_CAP: 100,

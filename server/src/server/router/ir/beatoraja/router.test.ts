@@ -230,6 +230,30 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 		t.end();
 	});
 
+	t.test("Should require authentication.", async (t) => {
+		const res = await mockApi
+			.post("/ir/beatoraja/submit-score")
+			.set("X-TachiIR-Version", "2.0.0")
+			.send(scoreReq);
+
+		t.equal(res.status, 401);
+
+		t.end();
+	});
+
+	t.test("Should reject non-corresponding tokens.", async (t) => {
+		const res = await mockApi
+			.post("/ir/beatoraja/submit-score")
+			.set("X-TachiIR-Version", "2.0.0")
+			.set("Authorization", "Bearer invalid_token")
+
+			.send(scoreReq);
+
+		t.equal(res.status, 401);
+
+		t.end();
+	});
+
 	t.end();
 });
 

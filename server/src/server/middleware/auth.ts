@@ -22,6 +22,8 @@ export const AllPermissions: Record<APIPermissions, true> = {
 	delete_score: true,
 };
 
+export const SetRequestPermissions: RequestHandler = CreateSetRequestPermissions("description");
+
 /**
  * Sets the permissions for this request, alongside the user that is making the request.
  *
@@ -36,61 +38,73 @@ export const AllPermissions: Record<APIPermissions, true> = {
  *
  * This is set on req[SYMBOL_TachiAPIAuth].
  */
-export const SetRequestPermissions: RequestHandler = async (req, res, next) => {
-	if (req.session?.tachi?.user.id) {
+function CreateSetRequestPermissions(errorKeyName: string): RequestHandler {
+	return async (req, res, next) => {
+		if (req.session?.tachi?.user.id) {
+			req[SYMBOL_TachiAPIAuth] = {
+				userID: req.session.tachi.user.id,
+				identifier: `Session-Key ${req.session.tachi.user.id}`,
+				token: null,
+				permissions: AllPermissions,
+			};
+			return next();
+		}
+
+		const header = req.header("Authorization");
+
+		// if no auth was attempted, default to the guest token.
+		if (!header) {
+			req[SYMBOL_TachiAPIAuth] = GuestToken;
+			return next();
+		}
+
+		const { token, type } = SplitAuthorizationHeader(header);
+
+		if (type !== "Bearer") {
+			return res.status(400).json({
+				success: false,
+				[errorKeyName]: "Invalid Authorization Type - Expected Bearer.",
+			});
+		}
+
+		if (!token) {
+			return res.status(401).json({
+				success: false,
+				[errorKeyName]: "Invalid token.",
+			});
+		}
+
+		const apiTokenData = await db["api-tokens"].findOne({
+			token,
+		});
+
+		if (!apiTokenData) {
+			return res.status(401).json({
+				success: false,
+				[errorKeyName]:
+					"The provided API token does not correspond with any key in the database.",
+			});
+		}
+
 		req[SYMBOL_TachiAPIAuth] = {
-			userID: req.session.tachi.user.id,
-			identifier: `Session-Key ${req.session.tachi.user.id}`,
-			token: null,
-			permissions: AllPermissions,
+			userID: apiTokenData.userID,
+			token,
+			permissions: apiTokenData.permissions,
+			identifier: apiTokenData.identifier,
 		};
+
 		return next();
-	}
-
-	const header = req.header("Authorization");
-
-	// if no auth was attempted, default to the guest token.
-	if (!header) {
-		req[SYMBOL_TachiAPIAuth] = GuestToken;
-		return next();
-	}
-
-	const { token, type } = SplitAuthorizationHeader(header);
-
-	if (type !== "Bearer") {
-		return res.status(400).json({
-			success: false,
-			description: "Invalid Authorization Type - Expected Bearer.",
-		});
-	}
-
-	if (!token) {
-		return res.status(401).json({
-			success: false,
-			description: "Invalid token.",
-		});
-	}
-
-	const apiTokenData = await db["api-tokens"].findOne({
-		token,
-	});
-
-	if (!apiTokenData) {
-		return res.status(401).json({
-			success: false,
-			description: "The provided API token does not correspond with any key in the database.",
-		});
-	}
-
-	req[SYMBOL_TachiAPIAuth] = {
-		userID: apiTokenData.userID,
-		token,
-		permissions: apiTokenData.permissions,
-		identifier: apiTokenData.identifier,
 	};
+}
 
-	return next();
-};
+/**
+ * An identical implementation of SetRequestPermissions, but returns
+ * fervidex-style errors (error, instead of description).
+ *
+ * @see SetRequestPermissions
+ */
+export const SetFervidexStyleRequestPermissions: RequestHandler =
+	CreateSetRequestPermissions("error");
 
 /**
  * Returns a middleware that enforces the request has the necessary permissions.
@@ -144,22 +158,28 @@ export const RequirePermissions =
 		return next();
 	};
 
-export const RequireNotGuest: RequestHandler = (req, res, next) => {
-	if (!req[SYMBOL_TachiAPIAuth]) {
-		logger.error(`RequirePermissions middleware was hit without any TachiAPIData?`);
-		return res.status(500).json({
-			success: false,
-			description: "An internal error has occured.",
-		});
-	}
+const CreateRequireNotGuest =
+	(errorKeyName: string): RequestHandler =>
+	(req, res, next) => {
+		if (!req[SYMBOL_TachiAPIAuth]) {
+			logger.error(`RequirePermissions middleware was hit without any TachiAPIData?`);
+			return res.status(500).json({
+				success: false,
+				description: "An internal error has occured.",
+			});
+		}
 
-	if (!req[SYMBOL_TachiAPIAuth].userID) {
-		logger.info(`Request to ${req.method} ${req.url} was attempted by guest.`);
-		return res.status(401).json({
-			success: false,
-			description: "This endpoint requires authentication.",
-		});
-	}
+		if (req[SYMBOL_TachiAPIAuth].userID === null) {
+			logger.info(`Request to ${req.method} ${req.url} was attempted by guest.`);
+			return res.status(401).json({
+				success: false,
+				[errorKeyName]: "This endpoint requires authentication.",
+			});
+		}
 
-	return next();
-};
+		return next();
+	};
+
+export const RequireNotGuest: RequestHandler = CreateRequireNotGuest("description");
+
+export const FervidexStyleRequireNotGuest: RequestHandler = CreateRequireNotGuest("error");

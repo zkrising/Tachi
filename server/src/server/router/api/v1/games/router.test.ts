@@ -1,6 +1,6 @@
 import { GetGameConfig } from "tachi-common";
 import t from "tap";
-import { ServerTypeInfo } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 
 import mockApi from "test-utils/mock-api";
 
@@ -9,10 +9,10 @@ t.test("GET /api/v1/games", async (t) => {
 	// and also returns configs properly.
 	const res = await mockApi.get("/api/v1/games");
 
-	t.strictSame(res.body.body.supportedGames, ServerTypeInfo.supportedGames);
+	t.strictSame(res.body.body.supportedGames, TachiConfig.GAMES);
 
 	t.strictSame(res.body.body.configs.iidx, GetGameConfig("iidx"));
-	t.equal(Object.keys(res.body.body.configs).length, ServerTypeInfo.supportedGames.length);
+	t.equal(Object.keys(res.body.body.configs).length, TachiConfig.GAMES.length);
 
 	t.end();
 });

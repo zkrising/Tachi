@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { ServerTypeInfo } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 import { Game, Playtypes, GetGameConfig, GamePTConfig } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
@@ -62,7 +62,7 @@ export function HasOwnProperty<T>(obj: T, key: string | number | symbol): key is
 }
 
 export function IsValidGame(str: string): str is Game {
-	return !!ServerTypeInfo.supportedGames.includes(str as Game);
+	return !!TachiConfig.GAMES.includes(str as Game);
 }
 
 export function IsValidPlaytype(game: Game, str: string): str is Playtypes[Game] {

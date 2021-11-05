@@ -1,7 +1,7 @@
 // Email HTML is a hellish mess of IE5 era nonsense.
 // Good luck.
 
-import { ServerConfig, ServerTypeInfo } from "lib/setup/config";
+import { ServerConfig, TachiConfig, TachiServerConfig } from "lib/setup/config";
 
 export function EmailFormatResetPassword(username: string, resetCode: string, ipAddr: string) {
 	return MainHTMLWrapper(
@@ -23,7 +23,7 @@ export function MainHTMLWrapper(innerHTML: string) {
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
-		<title>${ServerTypeInfo.name}</title>
+		<title>${TachiConfig.NAME}</title>
 	</head>
 	<body>
 		${innerHTML}

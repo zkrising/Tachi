@@ -8,3 +8,5 @@ export const REV_2DXBMS = "Z";
 export const REV_OMNIMIX = "X";
 
 export const EXT_HEROIC_VERSE = "2020092900";
+
+export const MODEL_SDVX3_KONASTE = "QCV";

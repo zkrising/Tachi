@@ -29,7 +29,7 @@ import { DryScore } from "../common/types";
 import { OrphanScore } from "../orphans/orphans";
 
 /**
- * Processes the iterable data into the Kamaitachi database.
+ * Processes the iterable data into the Tachi database.
  * @param userID - The user this score import was for.
  * @param iterableData - The data to iterate upon.
  * @param ConverterFunction - The function needed to convert the data into an IntermediateScore
@@ -254,7 +254,7 @@ export async function ProcessSuccessfulConverterReturn(
 }
 
 /**
- * Hydrates and inserts a score to the Kamaitachi database.
+ * Hydrates and inserts a score to the Tachi database.
  * @param userID - The user this score is from.
  * @param dryScore - The score that is to be hydrated and inserted.
  * @param chart - The chart this score is on.

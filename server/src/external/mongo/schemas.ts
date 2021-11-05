@@ -10,7 +10,7 @@ import { allIDStrings, allImportTypes } from "tachi-common/js/config/static-conf
 import p, { PrudenceSchema } from "prudence";
 import { Databases } from "./db";
 import { AllPermissions } from "server/middleware/auth";
-import { ServerTypeInfo } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 import { IsValidGame, IsValidPlaytype } from "utils/misc";
 import { optNull } from "utils/prudence";
 
@@ -32,7 +32,7 @@ function prSchemaify(schema: PrudenceSchema) {
 	};
 }
 
-const games = ServerTypeInfo.supportedGames;
+const games = TachiConfig.GAMES;
 const isValidPlaytype = (self: unknown, parent: Record<string, unknown>) => {
 	if (!parent.game || typeof parent.game !== "string" || !IsValidGame(parent.game)) {
 		throw new Error(`Invalid Schema, need game to base IsValidPlaytype off of.`);

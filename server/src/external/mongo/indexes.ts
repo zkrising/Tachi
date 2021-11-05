@@ -2,7 +2,7 @@
 import monk, { IMonkManager } from "monk";
 import { IndexOptions } from "mongodb";
 import CreateLogCtx from "lib/logger/logger";
-import { ServerTypeInfo } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 import { ONE_DAY } from "lib/constants/time";
 import { Databases } from "./db";
 
@@ -87,7 +87,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 
 const indexes: Partial<Record<Databases, Index[]>> = staticIndexes;
 
-for (const game of ServerTypeInfo.supportedGames) {
+for (const game of TachiConfig.GAMES) {
 	if (indexes[`charts-${game}` as Databases]) {
 		indexes[`charts-${game}` as Databases]!.push(
 			index({ chartID: 1 }, UNIQUE),

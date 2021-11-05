@@ -63,5 +63,24 @@ t.test("POST /ir/chunitachi/import", (t) => {
 		t.end();
 	});
 
+	t.test("Should require authentication.", async (t) => {
+		const res = await mockApi.post("/ir/chunitachi/import").send(chunitachiBody);
+
+		t.equal(res.statusCode, 401);
+
+		t.end();
+	});
+
+	t.test("Should require a valid auth token.", async (t) => {
+		const res = await mockApi
+			.post("/ir/chunitachi/import")
+			.set("Authorization", "Bearer invalid_token")
+			.send(chunitachiBody);
+
+		t.equal(res.statusCode, 401);
+
+		t.end();
+	});
+
 	t.end();
 });

@@ -100,7 +100,7 @@ const RequireInf2ModelHeaderOrForceStatic: RequestHandler = async (req, res, nex
 			});
 		}
 	} catch (err) {
-		logger.debug(err);
+		logger.info(`Invalid softID from ${req[SYMBOL_TachiAPIAuth].userID!}.`, { err });
 		return res.status(400).json({
 			success: false,
 			error: `Invalid X-Software-Model.`,
@@ -193,7 +193,7 @@ router.use(
 );
 
 /**
- * Submits all of a users data to Kamaitachi. This data is extremely minimal,
+ * Submits all of a users data to Tachi. This data is extremely minimal,
  * as only a users Lamp and Score are sent. As such, this is not the prefered
  * way of syncing scores outside of INF2, where there is no other way to
  * retrieve scores.
@@ -215,13 +215,21 @@ router.post("/profile/submit", RequireInf2ModelHeaderOrForceStatic, async (req, 
 		(logger) => ParseFervidexStatic(req.body, headers, logger)
 	);
 
+	if (!responseData.body.success) {
+		// in-air rewrite description to error.
+		// @ts-expect-error Hack!
+		responseData.body.error = responseData.body.description;
+		// @ts-expect-error Hack!
+		delete responseData.body.description;
+	}
+
 	return res.status(responseData.statusCode).json(responseData.body);
 });
 
 /**
- * Submits a single score to Kamaitachi. In contrast to profile/submit, this
+ * Submits a single score to Tachi. In contrast to profile/submit, this
  * sends the most data (and most accurate data) of any score hook.
- * As such, this is the preferred way of submitting IIDX scores to Kamaitachi.
+ * As such, this is the preferred way of submitting IIDX scores to Tachi.
  *
  * @name POST /ir/fervidex/score/submit
  */
@@ -248,11 +256,19 @@ router.post("/score/submit", ValidateModelHeader, async (req, res) => {
 		(logger) => ParseFervidexSingle(req.body, headers, logger)
 	);
 
+	if (!responseData.body.success) {
+		// in-air rewrite description to error.
+		// @ts-expect-error Hack!
+		responseData.body.error = responseData.body.description;
+		// @ts-expect-error Hack!
+		delete responseData.body.description;
+	}
+
 	return res.status(responseData.statusCode).json(responseData.body);
 });
 
 /**
- * Submits the result of a class to Kamaitachi. This contains the dan played
+ * Submits the result of a class to Tachi. This contains the dan played
  * and whether it was achieved.
  *
  * @name POST /ir/fervidex/class/submit

@@ -3,7 +3,7 @@ import "express-async-errors";
 import expressSession from "express-session";
 import { integer } from "tachi-common";
 import { RedisClient } from "external/redis/redis";
-import { Environment, ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import connectRedis from "connect-redis";
 import helmet from "helmet";
 import CreateLogCtx from "lib/logger/logger";
@@ -19,7 +19,7 @@ if (Environment.nodeEnv !== "test") {
 		host: "localhost",
 		port: 6379,
 		client: RedisClient,
-		prefix: ServerConfig.TYPE,
+		prefix: TachiConfig.NAME,
 	});
 }
 
@@ -27,7 +27,7 @@ const userSessionMiddleware = expressSession({
 	// append node_env onto the end of the session name
 	// so we can separate tokens under the same URL.
 	// say for staging.kamaitachi.xyz
-	name: `${ServerConfig.TYPE}_${Environment.nodeEnv}_session`,
+	name: `${TachiConfig.NAME} (${Environment.nodeEnv}) SESSION`,
 	secret: ServerConfig.SESSION_SECRET,
 	store,
 	resave: true,

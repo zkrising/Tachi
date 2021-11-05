@@ -26,7 +26,7 @@ import { SendEmail } from "lib/email/client";
 import { EmailFormatResetPassword, EmailFormatVerifyEmail } from "lib/email/formats";
 import { Random20Hex } from "utils/misc";
 import { Environment, ServerConfig } from "lib/setup/config";
-import { integer } from ".pnpm/tachi-common@0.2.36/node_modules/tachi-common";
+import { integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

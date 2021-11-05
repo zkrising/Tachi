@@ -5,6 +5,7 @@ import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { ParseBeatorajaSingle } from "lib/score-import/import-types/ir/beatoraja/parser";
 import { ServerConfig } from "lib/setup/config";
+import { RequireNotGuest } from "server/middleware/auth";
 import { UpdateClassIfGreater } from "utils/class";
 import { GetUserWithIDGuaranteed } from "utils/user";
 import { ValidateIRClientVersion } from "./auth";
@@ -21,7 +22,7 @@ router.use(ValidateIRClientVersion);
  *
  * @name POST /ir/beatoraja/submit-score
  */
-router.post("/submit-score", async (req, res) => {
+router.post("/submit-score", RequireNotGuest, async (req, res) => {
 	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth]!.userID!);
 
 	const ParserFunction = (logger: KtLogger) => ParseBeatorajaSingle(req.body, userDoc.id, logger);
@@ -91,7 +92,7 @@ router.post("/submit-score", async (req, res) => {
  *
  * @name POST /ir/beatoraja/submit-course
  */
-router.post("/submit-course", async (req, res) => {
+router.post("/submit-course", RequireNotGuest, async (req, res) => {
 	const charts = req.body.course?.charts;
 
 	if (

@@ -21,7 +21,7 @@ export const TACHI_LAMP_TO_USC: Record<
 };
 
 /**
- * Converts a Kamaitachi Score to the ServerScoreDocument
+ * Converts a Tachi Score to the ServerScoreDocument
  * as specified in the USCIR spec. This function silently
  * returns sentinel values in the case that certain
  * fields are null.

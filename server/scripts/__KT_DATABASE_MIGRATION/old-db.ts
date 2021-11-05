@@ -1,12 +1,12 @@
 import monk from "monk";
-import { ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig } from "lib/setup/config";
 import CreateLogCtx from "lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 
-logger.info(`Connecting to Old KTDB at ${ServerConfig.MONGO_CONNECTION_URL}/kamaitachidb.`);
+logger.info(`Connecting to Old KTDB at ${Environment.mongoUrl}/kamaitachidb.`);
 
-export const oldKTDB = monk(`${ServerConfig.MONGO_CONNECTION_URL}/kamaitachidb`);
+export const oldKTDB = monk(`${Environment.mongoUrl}/kamaitachidb`);
 
 oldKTDB
 	.then(() => {

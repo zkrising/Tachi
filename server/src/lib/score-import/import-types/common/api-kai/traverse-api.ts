@@ -2,7 +2,7 @@ import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import nodeFetch from "utils/fetch";
 import { VERSION_STR } from "lib/constants/version";
-import { ServerTypeInfo } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 
 /**
  * A Kai Reauth function is an async function that returns a string
@@ -70,7 +70,7 @@ export async function* TraverseKaiAPI(
 			res = await fetch(url, {
 				headers: {
 					Authorization: `Bearer ${token}`,
-					"User-Agent": `${ServerTypeInfo.name}/${VERSION_STR}`,
+					"User-Agent": `${TachiConfig.NAME}/${VERSION_STR}`,
 					"Content-Type": "application/json",
 				},
 			});
@@ -127,7 +127,7 @@ export async function* TraverseKaiAPI(
 
 			throw new ScoreImportFatalError(
 				500,
-				`Recieved no _links prop from ${url}. This is not an error with ${ServerTypeInfo.name}.`
+				`Recieved no _links prop from ${url}. This is not an error with ${TachiConfig.NAME}.`
 			);
 		}
 

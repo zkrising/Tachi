@@ -116,7 +116,6 @@ const err = p(config, {
 	ENABLE_SERVER_HTTPS: "*boolean",
 	RUN_OWN_CDN: "*boolean",
 	CLIENT_DEV_SERVER: "*?string",
-	TYPE: p.isIn("ktchi", "btchi", "omni"),
 	RATE_LIMIT: p.optional(p.isPositiveInteger),
 	OAUTH_CLIENT_CAP: p.optional(p.isPositiveInteger),
 	OPTIONS_ALWAYS_SUCCEEDS: "*boolean",

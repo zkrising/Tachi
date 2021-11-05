@@ -308,6 +308,8 @@ t.test("POST /ir/fervidex/score/submit", (t) => {
 
 		t.equal(res.body.success, false, "Should not be successful");
 
+		t.type(res.body.error, "string", "Should have an error prop that is a string.");
+
 		t.end();
 	});
 

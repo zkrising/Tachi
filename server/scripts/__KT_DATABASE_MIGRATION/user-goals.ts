@@ -2,7 +2,7 @@
 
 import { UserGoalDocument } from "tachi-common";
 import db from "external/mongo/db";
-import CreateLogCtx from "../../src/common/logger";
+import CreateLogCtx from "lib/logger/logger";
 import MigrateRecords from "./migrate";
 
 const logger = CreateLogCtx(__filename);

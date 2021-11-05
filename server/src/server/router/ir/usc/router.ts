@@ -29,7 +29,7 @@ import { GetUSCIRReplayURL } from "lib/cdn/url-format";
 import { FormatPrError } from "utils/prudence";
 import { USCClientChart } from "./types";
 import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
-import { ServerConfig } from "lib/setup/config";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -98,7 +98,7 @@ router.get("/", (req, res) =>
 		description: "IR Request Successful.",
 		body: {
 			serverTime: Math.floor(Date.now() / 1000),
-			serverName: "Bokutachi",
+			serverName: TachiConfig.NAME,
 			irVersion: "0.3.1-a",
 		},
 	})

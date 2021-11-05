@@ -12,6 +12,7 @@ import { ICollection } from "monk";
 import os from "os";
 import path from "path";
 import { ChartDocument, FolderDocument, SongDocument, TableDocument } from "tachi-common";
+import { InitaliseFolderChartLookup } from "utils/folder";
 
 interface SyncInstructions {
 	pattern: RegExp;
@@ -147,6 +148,7 @@ const syncInstructions: SyncInstructions[] = [
 
 			if (bwriteOps.length) {
 				await collection.bulkWrite(bwriteOps);
+				await InitaliseFolderChartLookup();
 			}
 		},
 	},

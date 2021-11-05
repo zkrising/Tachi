@@ -8,6 +8,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig, ServerTypeInfo } from "lib/setup/config";
 import path from "path";
 import server from "server/server";
+import { InitaliseFolderChartLookup } from "utils/folder";
 import { FormatVersion } from "./lib/constants/version";
 
 const logger = CreateLogCtx(__filename);
@@ -27,6 +28,13 @@ db.users.indexes().then((r) => {
 	if (Object.keys(r).length === 1) {
 		logger.info(`First-time Mongo startup detected. Running SetIndexes.`);
 		SetIndexesWithDB(monkDB, true);
+	}
+});
+
+db["folder-chart-lookup"].findOne().then((r) => {
+	// If there are no folder chart lookups, initialise them.
+	if (!r) {
+		InitaliseFolderChartLookup();
 	}
 });
 

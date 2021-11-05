@@ -100,7 +100,7 @@ const RequireInf2ModelHeaderOrForceStatic: RequestHandler = async (req, res, nex
 			});
 		}
 	} catch (err) {
-		logger.debug(err);
+		logger.info(`Invalid softID from ${req[SYMBOL_TachiAPIAuth].userID!}.`, { err });
 		return res.status(400).json({
 			success: false,
 			error: `Invalid X-Software-Model.`,
@@ -215,6 +215,14 @@ router.post("/profile/submit", RequireInf2ModelHeaderOrForceStatic, async (req, 
 		(logger) => ParseFervidexStatic(req.body, headers, logger)
 	);
 
+	if (!responseData.body.success) {
+		// in-air rewrite description to error.
+		// @ts-expect-error Hack!
+		responseData.body.error = responseData.body.description;
+		// @ts-expect-error Hack!
+		delete responseData.body.description;
+	}
+
 	return res.status(responseData.statusCode).json(responseData.body);
 });
 
@@ -247,6 +255,14 @@ router.post("/score/submit", ValidateModelHeader, async (req, res) => {
 		"ir/fervidex",
 		(logger) => ParseFervidexSingle(req.body, headers, logger)
 	);
+
+	if (!responseData.body.success) {
+		// in-air rewrite description to error.
+		// @ts-expect-error Hack!
+		responseData.body.error = responseData.body.description;
+		// @ts-expect-error Hack!
+		delete responseData.body.description;
+	}
 
 	return res.status(responseData.statusCode).json(responseData.body);
 });

@@ -159,6 +159,18 @@ router.patch(
 
 			return true;
 		}),
+		redirectUri: optNull((self) => {
+			if (typeof self !== "string") {
+				return "Expected a string.";
+			}
+			const res = IsValidURL(self);
+
+			if (!res) {
+				return "Invalid URL.";
+			}
+
+			return true;
+		}),
 	}),
 	async (req, res) => {
 		const client = req[SYMBOL_TachiData]!.oauth2ClientDoc!;

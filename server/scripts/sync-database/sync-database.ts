@@ -2,7 +2,6 @@
 // This script syncs this tachi instances database up with the tachi-database-seeds.
 
 import { execSync } from "child_process";
-import deepEqual from "deep-equal";
 import { monkDB } from "external/mongo/db";
 import fs from "fs";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
@@ -13,6 +12,7 @@ import os from "os";
 import path from "path";
 import { ChartDocument, FolderDocument, SongDocument, TableDocument } from "tachi-common";
 import { InitaliseFolderChartLookup } from "utils/folder";
+import fjsh from "fast-json-stable-hash";
 
 interface SyncInstructions {
 	pattern: RegExp;
@@ -70,7 +70,7 @@ async function GenericUpsert<T>(
 				// @ts-expect-error Actually, T is assignable to OptionalId<T>.
 				insertOne: { document },
 			});
-		} else if (!deepEqual(document, exists, { strict: true })) {
+		} else if (fjsh.hash(document, "sha256") !== fjsh.hash(exists, "sha256")) {
 			bwriteOps.push({
 				replaceOne: {
 					// @ts-expect-error Known X->Y generic issue.
@@ -132,7 +132,7 @@ const syncInstructions: SyncInstructions[] = [
 						// @ts-expect-error faulty monk types
 						insertOne: { document: folder },
 					});
-				} else if (!deepEqual(folder, exists, { strict: true })) {
+				} else if (fjsh.hash(document, "sha256") !== fjsh.hash(exists, "sha256")) {
 					bwriteOps.push({
 						updateOne: {
 							filter: {
@@ -175,7 +175,7 @@ const syncInstructions: SyncInstructions[] = [
 						// @ts-expect-error faulty monk types
 						insertOne: { document: table },
 					});
-				} else if (!deepEqual(table, exists, { strict: true })) {
+				} else if (fjsh.hash(document, "sha256") !== fjsh.hash(exists, "sha256")) {
 					bwriteOps.push({
 						updateOne: {
 							filter: {

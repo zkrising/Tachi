@@ -5,6 +5,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
 import { ONE_DAY } from "lib/constants/time";
 import { Databases } from "./db";
+import { Random20Hex } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -128,8 +129,9 @@ export async function SetIndexesWithDB(db: IMonkManager, reset: boolean) {
 		if (!collections.includes(collection)) {
 			// this creates a collection, i cant find the createCollection
 			// call.
-			await db.get(collection).insert({});
-			await db.get(collection).remove({});
+			const tmp = Random20Hex();
+			await db.get(collection).insert({ __tmp: tmp });
+			await db.get(collection).remove({ __tmp: tmp });
 		}
 
 		if (reset) {

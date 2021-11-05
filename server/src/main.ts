@@ -20,16 +20,25 @@ logger.info(`Loading sequence documents...`);
 InitSequenceDocs();
 
 // If no indexes are set, then we need to load mongo indexes.
-db.users.indexes().then((r) => {
-	// If there's only one index on users
-	// that means that only _id has indexes.
-	// This means that there are likely to be no indexes
-	// configured in the database.
-	if (Object.keys(r).length === 1) {
-		logger.info(`First-time Mongo startup detected. Running SetIndexes.`);
+db.users
+	.indexes()
+	.then((r) => {
+		// If there's only one index on users
+		// that means that only _id has indexes.
+		// This means that there are likely to be no indexes
+		// configured in the database.
+		if (Object.keys(r).length === 1) {
+			logger.info(`First-time Mongo startup detected. Running SetIndexes.`);
+			SetIndexesWithDB(monkDB, true);
+		}
+	})
+	.catch((err) => {
+		logger.info(
+			`Error in finding users collection. First time startup likely. Running SetIndexes.`,
+			err
+		);
 		SetIndexesWithDB(monkDB, true);
-	}
-});
+	});
 
 db["folder-chart-lookup"].findOne().then((r) => {
 	// If there are no folder chart lookups, initialise them.

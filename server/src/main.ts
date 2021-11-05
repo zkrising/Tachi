@@ -1,12 +1,14 @@
-import CreateLogCtx from "lib/logger/logger";
-import server from "server/server";
-import { ServerTypeInfo, ServerConfig, Environment } from "lib/setup/config";
-import https from "https";
-import fs from "fs";
-import { FormatVersion } from "./lib/constants/version";
 import { spawn } from "child_process";
-import path from "path";
+import db, { monkDB } from "external/mongo/db";
+import { SetIndexesWithDB } from "external/mongo/indexes";
 import { InitSequenceDocs } from "external/mongo/sequence-docs";
+import fs from "fs";
+import https from "https";
+import CreateLogCtx from "lib/logger/logger";
+import { Environment, ServerConfig, ServerTypeInfo } from "lib/setup/config";
+import path from "path";
+import server from "server/server";
+import { FormatVersion } from "./lib/constants/version";
 
 const logger = CreateLogCtx(__filename);
 
@@ -15,6 +17,18 @@ logger.info(`Log level is set to ${ServerConfig.LOG_LEVEL}.`);
 
 logger.info(`Loading sequence documents...`);
 InitSequenceDocs();
+
+// If no indexes are set, then we need to load mongo indexes.
+db.users.indexes().then((r) => {
+	// If there's only one index on users
+	// that means that only _id has indexes.
+	// This means that there are likely to be no indexes
+	// configured in the database.
+	if (Object.keys(r).length === 1) {
+		logger.info(`First-time Mongo startup detected. Running SetIndexes.`);
+		SetIndexesWithDB(monkDB, true);
+	}
+});
 
 if (ServerConfig.ENABLE_SERVER_HTTPS) {
 	logger.warn(

@@ -21,6 +21,7 @@ import {
 import { DryScore } from "lib/score-import/framework/common/types";
 import { BarbatosScore } from "lib/score-import/import-types/ir/barbatos/types";
 import { USCClientScore } from "../server/router/ir/usc/types";
+import { KsHookSV3CScore } from "lib/score-import/import-types/ir/kshook-sv3c/types";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
 
@@ -37,6 +38,8 @@ export const TestingIIDXSPScorePB = GetKTDataJSON(
 export const TestingIIDXSPScore = GetKTDataJSON(
 	"./tachi/iidx-score.json"
 ) as ScoreDocument<"iidx:SP">;
+
+export const TestingKsHookSV3CScore = GetKTDataJSON("./kshook-sv3c/base.json") as KsHookSV3CScore;
 
 export const Testing511SPA = GetKTDataJSON("./tachi/iidx-511spa.json") as ChartDocument<"iidx:SP">;
 

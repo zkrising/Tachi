@@ -33,11 +33,6 @@ t.test("#ConverterIRBarbatos", (t) => {
 		playtype: "Single",
 		levelNum: 10,
 		level: "10",
-		flags: {
-			"IN BASE GAME": true,
-			OMNIMIX: false,
-			"N-1": false,
-		},
 		data: {
 			inGameID: 1,
 		},

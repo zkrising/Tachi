@@ -73,6 +73,8 @@ const ValidateHeaders: RequestHandler = (req, res, next) => {
 	return next();
 };
 
+router.use(ValidateHeaders);
+
 /**
  * Saves a SDVX Konaste score.
  *

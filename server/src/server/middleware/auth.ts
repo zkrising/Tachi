@@ -158,22 +158,28 @@ export const RequirePermissions =
 		return next();
 	};
 
-export const RequireNotGuest: RequestHandler = (req, res, next) => {
-	if (!req[SYMBOL_TachiAPIAuth]) {
-		logger.error(`RequirePermissions middleware was hit without any TachiAPIData?`);
-		return res.status(500).json({
-			success: false,
-			description: "An internal error has occured.",
-		});
-	}
+const CreateRequireNotGuest =
+	(errorKeyName: string): RequestHandler =>
+	(req, res, next) => {
+		if (!req[SYMBOL_TachiAPIAuth]) {
+			logger.error(`RequirePermissions middleware was hit without any TachiAPIData?`);
+			return res.status(500).json({
+				success: false,
+				description: "An internal error has occured.",
+			});
+		}
 
-	if (!req[SYMBOL_TachiAPIAuth].userID) {
-		logger.info(`Request to ${req.method} ${req.url} was attempted by guest.`);
-		return res.status(401).json({
-			success: false,
-			description: "This endpoint requires authentication.",
-		});
-	}
+		if (req[SYMBOL_TachiAPIAuth].userID === null) {
+			logger.info(`Request to ${req.method} ${req.url} was attempted by guest.`);
+			return res.status(401).json({
+				success: false,
+				[errorKeyName]: "This endpoint requires authentication.",
+			});
+		}
 
-	return next();
-};
+		return next();
+	};
+
+export const RequireNotGuest: RequestHandler = CreateRequireNotGuest("description");
+
+export const FervidexStyleRequireNotGuest: RequestHandler = CreateRequireNotGuest("error");

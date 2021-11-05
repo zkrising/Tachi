@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ServerTypeInfo } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 import { GetGameConfig } from "tachi-common";
 import gameRouter from "./_game/router";
 
@@ -13,15 +13,13 @@ const router: Router = Router({ mergeParams: true });
  */
 router.get("/", (req, res) => {
 	// this line is a bit too 'smart' for its own good, but whatever.
-	const configs = Object.fromEntries(
-		ServerTypeInfo.supportedGames.map((e) => [e, GetGameConfig(e)])
-	);
+	const configs = Object.fromEntries(TachiConfig.GAMES.map((e) => [e, GetGameConfig(e)]));
 
 	return res.status(200).json({
 		success: true,
-		description: `Returned support information for ${ServerTypeInfo.supportedGames.length} game(s).`,
+		description: `Returned support information for ${TachiConfig.GAMES.length} game(s).`,
 		body: {
-			supportedGames: ServerTypeInfo.supportedGames,
+			supportedGames: TachiConfig.GAMES,
 			configs,
 		},
 	});

@@ -5,7 +5,7 @@ import { InitSequenceDocs } from "external/mongo/sequence-docs";
 import fs from "fs";
 import https from "https";
 import CreateLogCtx from "lib/logger/logger";
-import { Environment, ServerConfig, ServerTypeInfo } from "lib/setup/config";
+import { Environment, ServerConfig, TachiConfig, TachiServerConfig } from "lib/setup/config";
 import path from "path";
 import server from "server/server";
 import { InitaliseFolderChartLookup } from "utils/folder";
@@ -13,7 +13,7 @@ import { FormatVersion } from "./lib/constants/version";
 
 const logger = CreateLogCtx(__filename);
 
-logger.info(`Booting ${ServerTypeInfo.name} - ${FormatVersion()} [ENV: ${Environment.nodeEnv}]`);
+logger.info(`Booting ${TachiConfig.NAME} - ${FormatVersion()} [ENV: ${Environment.nodeEnv}]`);
 logger.info(`Log level is set to ${ServerConfig.LOG_LEVEL}.`);
 
 logger.info(`Loading sequence documents...`);

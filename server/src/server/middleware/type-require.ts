@@ -1,4 +1,4 @@
-import { ServerConfig } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 import { RequestHandler } from "express";
 
 /**
@@ -7,7 +7,7 @@ import { RequestHandler } from "express";
  * this restriction is bypassed.
  */
 export const RequireBokutachi: RequestHandler = (req, res, next) => {
-	if (ServerConfig.TYPE === "btchi" || ServerConfig.TYPE === "omni") {
+	if (TachiConfig.TYPE === "btchi" || TachiConfig.TYPE === "omni") {
 		return next();
 	}
 
@@ -23,7 +23,7 @@ export const RequireBokutachi: RequestHandler = (req, res, next) => {
  * this restriction is bypassed.
  */
 export const RequireKamaitachi: RequestHandler = (req, res, next) => {
-	if (ServerConfig.TYPE === "ktchi" || ServerConfig.TYPE === "omni") {
+	if (TachiConfig.TYPE === "ktchi" || TachiConfig.TYPE === "omni") {
 		return next();
 	}
 

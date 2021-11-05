@@ -14,7 +14,7 @@ import {
 import deepmerge from "deepmerge";
 import { FormatPrError } from "utils/prudence";
 import { ParserFunctionReturns } from "../types";
-import { ServerTypeInfo } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 
 const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));
 
@@ -172,7 +172,7 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 const PR_BatchManual = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => ({
 	meta: {
 		service: p.isBoundedString(3, 15),
-		game: p.isIn(ServerTypeInfo.supportedGames),
+		game: p.isIn(TachiConfig.GAMES),
 		playtype: p.is(playtype),
 		version: "*?string",
 	},
@@ -222,12 +222,10 @@ export function ParseBatchManualFromObject(
 		);
 	}
 
-	if (!ServerTypeInfo.supportedGames.includes(possiblyGame)) {
+	if (!TachiConfig.GAMES.includes(possiblyGame)) {
 		throw new ScoreImportFatalError(
 			400,
-			`Invalid game ${possiblyGame} - expected any of ${ServerTypeInfo.supportedGames.join(
-				", "
-			)}.`
+			`Invalid game ${possiblyGame} - expected any of ${TachiConfig.GAMES.join(", ")}.`
 		);
 	}
 

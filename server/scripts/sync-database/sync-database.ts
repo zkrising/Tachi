@@ -6,7 +6,7 @@ import deepEqual from "deep-equal";
 import { monkDB } from "external/mongo/db";
 import fs from "fs";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
-import { ServerTypeInfo } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 import { BulkWriteOperation } from "mongodb";
 import { ICollection } from "monk";
 import os from "os";
@@ -119,7 +119,7 @@ const syncInstructions: SyncInstructions[] = [
 			const bwriteOps: BulkWriteOperation<FolderDocument>[] = [];
 
 			for (const folder of folders) {
-				if (!ServerTypeInfo.supportedGames.includes(folder.game)) {
+				if (!TachiConfig.GAMES.includes(folder.game)) {
 					continue; // Skip things for games we don't care about.
 				}
 
@@ -162,7 +162,7 @@ const syncInstructions: SyncInstructions[] = [
 			const bwriteOps: BulkWriteOperation<TableDocument>[] = [];
 
 			for (const table of tables) {
-				if (!ServerTypeInfo.supportedGames.includes(table.game)) {
+				if (!TachiConfig.GAMES.includes(table.game)) {
 					continue; // Skip things for games we don't care about.
 				}
 
@@ -218,9 +218,9 @@ async function SynchroniseDBWithSeeds() {
 		if (collectionName.startsWith("songs-") || collectionName.startsWith("charts-")) {
 			const game = collectionName.split("-")[1];
 
-			if (!ServerTypeInfo.supportedGames.includes(game as any)) {
+			if (!TachiConfig.GAMES.includes(game as any)) {
 				spawnLogger.info(
-					`Skipping ${collectionName} (${game}) as it isn't for ${ServerTypeInfo.name}.`
+					`Skipping ${collectionName} (${game}) as it isn't for ${TachiConfig.NAME}.`
 				);
 				continue;
 			}

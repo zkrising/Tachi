@@ -14,7 +14,7 @@ import ParseBatchManual from "lib/score-import/import-types/file/batch-manual/pa
 import { ParseSolidStateXML } from "lib/score-import/import-types/file/solid-state-squad/parser";
 import { ParseMerIIDX } from "lib/score-import/import-types/file/mer-iidx/parser";
 import ParsePLIIIDXCSV from "lib/score-import/import-types/file/pli-iidx-csv/parser";
-import { ServerTypeInfo } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 import { RequirePermissions } from "server/middleware/auth";
 import { ParseEagIIDX } from "lib/score-import/import-types/api/eag-iidx/parser";
 import { ParseEagSDVX } from "lib/score-import/import-types/api/eag-sdvx/parser";
@@ -34,7 +34,7 @@ const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware(
 	logger
 );
 
-const fileImportTypes = ServerTypeInfo.supportedImportTypes.filter((e) => e.startsWith("file/"));
+const fileImportTypes = TachiConfig.IMPORT_TYPES.filter((e) => e.startsWith("file/"));
 
 /**
  * Import scores from a file. Expects the post request to be multipart, and to provide a scoreData file.
@@ -83,7 +83,7 @@ router.post(
 	}
 );
 
-const apiImportTypes = ServerTypeInfo.supportedImportTypes.filter((e) => e.startsWith("api/"));
+const apiImportTypes = TachiConfig.IMPORT_TYPES.filter((e) => e.startsWith("api/"));
 
 /**
  * Import scores from another API. This typically will perform a full sync.

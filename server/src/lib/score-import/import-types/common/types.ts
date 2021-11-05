@@ -23,6 +23,7 @@ import { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
 import { USCClientScore } from "server/router/ir/usc/types";
 import { IRUSCContext } from "../ir/usc/types";
 import { ClassHandler } from "../../framework/user-game-stats/types";
+import { KsHookSV3CScore } from "../ir/kshook-sv3c/types";
 export interface ImportTypeDataMap {
 	"file/eamusement-iidx-csv": IIDXEamusementCSVData;
 	"file/batch-manual": BatchManualScore;
@@ -37,6 +38,7 @@ export interface ImportTypeDataMap {
 	"ir/chunitachi": BatchManualScore;
 	"ir/beatoraja": BeatorajaScore;
 	"ir/usc": USCClientScore;
+	"ir/kshook-sv3c": KsHookSV3CScore;
 
 	// These aren't placeholder values - the data is yielded in a way that
 	// the value of these is legitimately unknown at convert time.
@@ -63,6 +65,7 @@ export interface ImportTypeContextMap {
 	"ir/chunitachi": BatchManualContext;
 	"ir/beatoraja": BeatorajaContext;
 	"ir/usc": IRUSCContext;
+	"ir/kshook-sv3c": EmptyObject;
 
 	"api/arc-iidx": EmptyObject;
 	"api/arc-sdvx": EmptyObject;

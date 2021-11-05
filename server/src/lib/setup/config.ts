@@ -4,7 +4,7 @@ import fs from "fs";
 import JSON5 from "json5";
 import { SendMailOptions } from "nodemailer";
 import p from "prudence";
-import { integer, StaticConfig } from "tachi-common";
+import { integer, StaticConfig, Game, ImportTypes } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
 
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
@@ -45,7 +45,7 @@ export interface OAuth2Info {
 	REDIRECT_URI: string;
 }
 
-export interface TachiConfig {
+export interface TachiServerConfig {
 	MONGO_DATABASE_NAME: string;
 	LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
 	CAPTCHA_SECRET_KEY: string;
@@ -58,11 +58,9 @@ export interface TachiConfig {
 	EAG_OAUTH2_INFO?: OAuth2Info;
 	MIN_OAUTH2_INFO?: OAuth2Info;
 	ARC_AUTH_TOKEN?: string;
-	TYPE: "ktchi" | "btchi" | "omni";
 	ENABLE_SERVER_HTTPS?: boolean;
 	RUN_OWN_CDN?: boolean;
 	CLIENT_DEV_SERVER?: string | null;
-	SERVER_TYPE_INFO: StaticConfig.ServerConfig;
 	RATE_LIMIT: integer;
 	OAUTH_CLIENT_CAP: integer;
 	OPTIONS_ALWAYS_SUCCEEDS?: boolean;
@@ -87,6 +85,12 @@ export interface TachiConfig {
 		BATCH_SIZE: integer;
 		INVITE_CAP: integer;
 		BETA_USER_BONUS: integer;
+	};
+	TACHI_CONFIG: {
+		NAME: string;
+		TYPE: "ktchi" | "btchi" | "omni";
+		GAMES: Game[];
+		IMPORT_TYPES: ImportTypes[];
 	};
 }
 
@@ -136,30 +140,28 @@ const err = p(config, {
 		INVITE_CAP: p.isPositiveInteger,
 		BETA_USER_BONUS: p.isPositiveInteger,
 	}),
+	TACHI_CONFIG: {
+		NAME: "string",
+		TYPE: p.isIn("ktchi", "btchi", "omni"),
+		GAMES: [p.isIn(StaticConfig.allSupportedGames)],
+		IMPORT_TYPES: [p.isIn(StaticConfig.allImportTypes)],
+	},
 });
 
 if (err) {
 	throw FormatPrError(err, "Invalid conf.json5 file.");
 }
 
-if (config.TYPE === "ktchi") {
-	config.SERVER_TYPE_INFO = StaticConfig.KTCHI_CONFIG;
-} else if (config.TYPE === "btchi") {
-	config.SERVER_TYPE_INFO = StaticConfig.BTCHI_CONFIG;
-} else if (config.TYPE === "omni") {
-	config.SERVER_TYPE_INFO = StaticConfig.OMNI_CONFIG;
-}
-
-const tachiConfig = config as TachiConfig;
+const tachiServerConfig = config as TachiServerConfig;
 
 // default rate limit 500
-tachiConfig.RATE_LIMIT ??= 500;
-tachiConfig.OAUTH_CLIENT_CAP ??= 15;
-tachiConfig.USC_QUEUE_SIZE ??= 3;
-tachiConfig.BEATORAJA_QUEUE_SIZE ??= 3;
+tachiServerConfig.RATE_LIMIT ??= 500;
+tachiServerConfig.OAUTH_CLIENT_CAP ??= 15;
+tachiServerConfig.USC_QUEUE_SIZE ??= 3;
+tachiServerConfig.BEATORAJA_QUEUE_SIZE ??= 3;
 
-export const ServerTypeInfo = tachiConfig.SERVER_TYPE_INFO;
-export const ServerConfig = tachiConfig;
+export const TachiConfig = tachiServerConfig.TACHI_CONFIG;
+export const ServerConfig = tachiServerConfig;
 
 // Environment Variable Validation
 

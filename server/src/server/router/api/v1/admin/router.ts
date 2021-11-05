@@ -6,7 +6,7 @@ import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger
 import prValidate from "server/middleware/prudence-validate";
 import { GetUserWithID } from "utils/user";
 import { ONE_MINUTE } from "lib/constants/time";
-import { ServerConfig, ServerTypeInfo } from "lib/setup/config";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { Game, UserAuthLevels } from "tachi-common";
 
 import db from "external/mongo/db";
@@ -115,7 +115,7 @@ router.post(
 	"/deprimarify",
 	prValidate({
 		chartID: "*string",
-		game: p.isIn(ServerTypeInfo.supportedGames),
+		game: p.isIn(TachiConfig.GAMES),
 		songID: p.optional(p.isPositiveNonZeroInteger),
 	}),
 	async (req, res) => {

@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { ServerTypeInfo } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 import { IsValidGame } from "utils/misc";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 
@@ -9,7 +9,7 @@ export const ValidateGameFromParam: RequestHandler = (req, res, next) => {
 			success: false,
 			description: `Invalid/unsupported game ${
 				req.params.game
-			} - Expected any of ${ServerTypeInfo.supportedGames.join(", ")}`,
+			} - Expected any of ${TachiConfig.GAMES.join(", ")}`,
 		});
 	}
 

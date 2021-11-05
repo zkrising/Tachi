@@ -12,7 +12,7 @@ import { BeatorajaContext, BeatorajaScore, BeatorajaChart } from "./types";
 import { ChartDocument, SongDocument } from "tachi-common";
 import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
 import { Random20Hex } from "utils/misc";
-import { ServerConfig, ServerTypeInfo } from "lib/setup/config";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
 
 const LAMP_LOOKUP = {
 	NoPlay: "NO PLAY",
@@ -56,9 +56,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 			// check, remember to change the entire score import
 			// framework and database to be able to handle variable notecounts.
 			logger.verbose(`Declined to orphan chart ${chartName} as it has #RANDOM declarations.`);
-			throw new InvalidScoreFailure(
-				`${ServerTypeInfo.name} will not support #RANDOM charts.`
-			);
+			throw new InvalidScoreFailure(`${TachiConfig.NAME} will not support #RANDOM charts.`);
 		}
 
 		const idString = context.chart.mode === "BEAT_7K" ? "bms:7K" : "bms:14K";

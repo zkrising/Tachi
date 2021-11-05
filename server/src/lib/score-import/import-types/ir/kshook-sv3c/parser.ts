@@ -1,6 +1,6 @@
 import { SDVXDans } from "lib/constants/classes";
 import { KtLogger } from "lib/logger/logger";
-import { InvalidScoreFailure } from "lib/score-import/framework/common/converter-failures";
+import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import p, { PrudenceSchema } from "prudence";
 import { FormatPrError } from "utils/prudence";
 import { EmptyObject } from "utils/types";
@@ -8,7 +8,7 @@ import { ParserFunctionReturns } from "../../common/types";
 import { KsHookSV3CScore } from "./types";
 
 const PR_KsHookSV3C: PrudenceSchema = {
-	appeal_id: p.isInteger,
+	appeal_id: p.isPositiveInteger,
 	clear: p.isIn(
 		"CLEAR_PLAYED",
 		"CLEAR_EFFECTIVE",
@@ -80,7 +80,7 @@ export function ParseKsHookSV3C(
 	const err = p(body, PR_KsHookSV3C, undefined, { allowExcessKeys: true });
 
 	if (err) {
-		throw new InvalidScoreFailure(FormatPrError(err));
+		throw new ScoreImportFatalError(400, FormatPrError(err));
 	}
 
 	const score = body as unknown as KsHookSV3CScore;
@@ -104,7 +104,7 @@ export function ParseKsHookSV3C(
 	};
 }
 
-function ConvertSkillLevel(skill: KsHookSV3CScore["skill_level"]): SDVXDans | null {
+export function ConvertSkillLevel(skill: KsHookSV3CScore["skill_level"]): SDVXDans | null {
 	switch (skill) {
 		case "SKILL_LEVEL_01":
 			return SDVXDans.DAN_1;

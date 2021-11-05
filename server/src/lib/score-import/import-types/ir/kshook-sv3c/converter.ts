@@ -11,7 +11,7 @@ import { FindSongOnID } from "utils/queries/songs";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { DryScore } from "lib/score-import/framework/common/types";
 
-export const ConverterIRKShookSV3C: ConverterFunction<KsHookSV3CScore, EmptyObject> = async (
+export const ConverterIRKsHookSV3C: ConverterFunction<KsHookSV3CScore, EmptyObject> = async (
 	data,
 	context,
 	importType,

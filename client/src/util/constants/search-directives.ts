@@ -1,6 +1,7 @@
 export const SEARCH_DIRECTIVES = {
 	REGEX: "~",
-	EXACT: "!",
+	NOT: "!",
+	EXACT: "$",
 	LESS_THAN: "<",
 	LESS_THAN_EQ: "<=",
 	GREATER_THAN: ">",

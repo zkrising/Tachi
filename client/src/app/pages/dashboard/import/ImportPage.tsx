@@ -142,21 +142,21 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			/>,
 			<ImportInfoCard
 				name="FLO Integration"
-				href="flo-sdvx"
+				href="sdvx-flo"
 				desc="Pull your SDVX scores from the FLO Network."
 				moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 				key="FLO Integration"
 			/>,
 			<ImportInfoCard
 				name="EAG Integration"
-				href="eag-sdvx"
+				href="sdvx-eag"
 				desc="Pull your SDVX scores from the EAG Network."
 				moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 				key="EAG Integration"
 			/>,
 			<ImportInfoCard
 				name="MIN Integration"
-				href="min-sdvx"
+				href="sdvx-min"
 				desc="Pull your SDVX scores from the MIN Network."
 				moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 				key="MIN Integration"

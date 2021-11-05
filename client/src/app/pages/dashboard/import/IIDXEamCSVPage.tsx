@@ -69,12 +69,15 @@ const MoreDataForm: MoreDataForm = ({ setFulfilled, setInfo }) => {
 							assertPlaytypeCorrect: e.target.checked ? "true" : "",
 						});
 					}}
-					label="Override all safety checks"
+					label="Disable Filename Checks"
 				/>
 				<Form.Text>
 					<span className="text-warning">
-						This will override all safety checks. Do not use this unless you know what
-						you're doing.
+						This will disable a safety feature of checking the uploaded filename for
+						"SP" or "DP", and prevent you from accidentally selecting the wrong
+						playtype.
+						<br />
+						Use this only if you get errors normally.
 					</span>
 				</Form.Text>
 			</Form.Group>

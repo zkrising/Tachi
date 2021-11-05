@@ -17,7 +17,7 @@ import { allPermissions } from "util/misc";
 import FervidexIntegrationPage from "./FervidexIntegrationPage";
 
 export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
-	const [page, setPage] = useState<"services" | "api-keys">("services");
+	const [page, setPage] = useState<"services" | "api-keys" | "oauth-clients">("api-keys");
 
 	useSetSubheader(
 		["Users", reqUser.username, "Integrations"],
@@ -30,13 +30,19 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserD
 			<Row>
 				<Col xs={12}>
 					<div className="btn-group d-flex justify-content-center">
-						<SelectButton value={page} setValue={setPage} id="services">
-							<Icon type="network-wired" />
-							Integrations
-						</SelectButton>
+						{mode !== "btchi" && (
+							<SelectButton value={page} setValue={setPage} id="services">
+								<Icon type="network-wired" />
+								Integrations
+							</SelectButton>
+						)}
 						<SelectButton value={page} setValue={setPage} id="api-keys">
 							<Icon type="key" />
 							API Keys
+						</SelectButton>
+						<SelectButton value={page} setValue={setPage} id="oauth-clients">
+							<Icon type="robot" />
+							My OAuth Clients
 						</SelectButton>
 					</div>
 					<Divider />
@@ -44,13 +50,48 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserD
 				<Col xs={12}>
 					{page === "services" ? (
 						<IntegrationsPage reqUser={reqUser} />
-					) : (
+					) : page === "api-keys" ? (
 						<APIKeysPage reqUser={reqUser} />
+					) : (
+						<OAuthClientPage reqUser={reqUser} />
 					)}
 				</Col>
 			</Row>
 		</Card>
 	);
+}
+
+function OAuthClientPage({ reqUser }: { reqUser: PublicUserDocument }) {
+	return (
+		<Row className="text-center justify-content-center">
+			<Col xs={12}>
+				<h3>OAuth Clients</h3>
+				<Alert variant="info" style={{ color: "black" }}>
+					This page is for programmers who want to make their own things that interface
+					with {TachiConfig.name}.
+				</Alert>
+				<Muted>Register your own clients for integrating with {TachiConfig.name}.</Muted>
+				<Divider />
+			</Col>
+			<Col xs={12}>
+				<OAuthClientInfo />
+			</Col>
+		</Row>
+	);
+}
+
+function OAuthClientInfo() {
+	const { data, isLoading, error } = useApiQuery("/oauth/clients");
+
+	if (error) {
+		return <ApiError error={error} />;
+	}
+
+	if (isLoading || !data) {
+		return <Loading />;
+	}
+
+	return <>heyt</>;
 }
 
 function IntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
@@ -65,39 +106,37 @@ function IntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	const [page, setPage] = useState<"fervidex" | "arc" | "flo" | "eag" | "min">("fervidex");
 
 	return (
-		<>
-			<Row className="text-center justify-content-center">
-				<Col xs={12}>
-					<h3>Services</h3>
-					<Muted>
-						Some services have had their names truncated to their first three characters
-						for privacy reasons.
-					</Muted>
-					<Divider />
-				</Col>
-				<Col xs={12}>
-					<div className="btn-group">
-						<SelectButton value={page} setValue={setPage} id="fervidex">
-							Fervidex
-						</SelectButton>
-						<SelectButton value={page} setValue={setPage} id="arc">
-							ARC
-						</SelectButton>
-						<SelectButton value={page} setValue={setPage} id="flo">
-							FLO
-						</SelectButton>
-						<SelectButton value={page} setValue={setPage} id="eag">
-							EAG
-						</SelectButton>
-						<SelectButton value={page} setValue={setPage} id="min">
-							MIN
-						</SelectButton>
-					</div>
-					<Divider />
-				</Col>
-				{page === "fervidex" ? <FervidexIntegrationPage reqUser={reqUser} /> : <></>}
-			</Row>
-		</>
+		<Row className="text-center justify-content-center">
+			<Col xs={12}>
+				<h3>Services</h3>
+				<Muted>
+					Some services have had their names truncated to their first three characters for
+					privacy reasons.
+				</Muted>
+				<Divider />
+			</Col>
+			<Col xs={12}>
+				<div className="btn-group">
+					<SelectButton value={page} setValue={setPage} id="fervidex">
+						Fervidex
+					</SelectButton>
+					<SelectButton value={page} setValue={setPage} id="arc">
+						ARC
+					</SelectButton>
+					<SelectButton value={page} setValue={setPage} id="flo">
+						FLO
+					</SelectButton>
+					<SelectButton value={page} setValue={setPage} id="eag">
+						EAG
+					</SelectButton>
+					<SelectButton value={page} setValue={setPage} id="min">
+						MIN
+					</SelectButton>
+				</div>
+				<Divider />
+			</Col>
+			{page === "fervidex" ? <FervidexIntegrationPage reqUser={reqUser} /> : <></>}
+		</Row>
 	);
 }
 

@@ -763,7 +763,7 @@ export interface GPTSupportedVersions {
 	"iidx:SP": SupportedIIDXVersions;
 	"iidx:DP": SupportedIIDXVersions;
 	"popn:9B": never;
-	"sdvx:Single": "booth" | "inf" | "gw" | "heaven" | "vivid";
+	"sdvx:Single": "booth" | "inf" | "gw" | "heaven" | "vivid" | "konaste";
 	"usc:Single": never;
 	"ddr:SP": "a20";
 	"ddr:DP": "a20";

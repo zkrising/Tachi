@@ -50,7 +50,8 @@ change that behaviour!
 | Name | Example | What it does. |
 | :: | :: | :: |
 | Normal | `title:AA` | Matches any title that contains "AA". |
-| Exact | `title:!AA` | Matches any title that is *exactly* AA. |
+| Exact | `title:$AA` | Matches any title that is *exactly* AA. |
+| Not | `title:!AA` | Matches any title that does not contain AA. |
 | Less Than | `percent:<50` | Matches any percent that is less than 50. |
 | Less Than Equal | `percent:<=50` | Matches any percent that is less than or equal to 50. |
 | Greater Than | `percent:>50` | Matches any percent that is greater than 50. |
@@ -67,12 +68,12 @@ change that behaviour!
 
 You can use multiple directives in one filter!
 
-`title:!AA percent:>50` - Find all scores on AA where the percent is greater than 50.
+`title:$AA percent:>50` - Find all scores on AA where the percent is greater than 50.
 
 Multiple directives are separated by spaces. However, if you need to use a
 space inside a value, you should quote it, like this:
 
-`title:!"FREEDOM DiVE" percent:>50`.
+`title:$"FREEDOM DiVE" percent:>50`.
 
 !!! tip
 	If you need quotes *inside* that, you should escape them, like this:

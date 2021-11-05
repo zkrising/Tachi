@@ -332,3 +332,70 @@ t.test("POST /api/v1/import/file", async (t) => {
 
 	t.end();
 });
+
+t.test("POST /api/v1/import/orphans", async (t) => {
+	const cookie = await CreateFakeAuthCookie(mockApi);
+
+	t.beforeEach(ResetDBState);
+
+	t.test("Should force a reprocessing of orphan scores.", async (t) => {
+		await db["orphan-scores"].insert([
+			{
+				userID: 1,
+				timeInserted: 1000,
+				orphanID: "asdf",
+				importType: "ir/direct-manual",
+				errMsg: "foo",
+				context: {
+					game: "iidx",
+					playtype: "SP",
+					service: "foo",
+					version: null,
+				},
+				data: {
+					score: 500,
+					lamp: "HARD CLEAR",
+					matchType: "songTitle",
+					identifier: "5.1.1.",
+					difficulty: "ANOTHER",
+				},
+			},
+			{
+				userID: 1,
+				timeInserted: 1000,
+				orphanID: "asdf2",
+				importType: "ir/direct-manual",
+				errMsg: "foo",
+				context: {
+					game: "iidx",
+					playtype: "SP",
+					service: "foo",
+					version: null,
+				},
+				data: {
+					score: 500,
+					lamp: "HARD CLEAR",
+					matchType: "songTitle",
+					identifier: "TITLE NOBODY WILL USE",
+					difficulty: "ANOTHER",
+				},
+			},
+		]);
+
+		const res = await mockApi.post("/api/v1/import/orphans").set("Cookie", cookie);
+
+		t.equal(res.statusCode, 200, "Should return 200.");
+
+		t.equal(res.body.body.success, 1, "Should successfully reprocess one orphan.");
+		t.equal(res.body.body.done, 2, "Should reprocess two orphans.");
+		t.equal(res.body.body.failed, 1, "Should fail in de-orphaning one orphan.");
+
+		const dbCount = await db["orphan-scores"].count({});
+
+		t.equal(dbCount, 1, "Should only leave one orphan-score in the database.");
+
+		t.end();
+	});
+
+	t.end();
+});

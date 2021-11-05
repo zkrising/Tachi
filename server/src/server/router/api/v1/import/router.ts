@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { APIImportTypes, FileUploadImportTypes, integer } from "tachi-common";
 import Prudence from "prudence";
-import { GetUserWithIDGuaranteed } from "utils/user";
+import { FormatUserDoc, GetUserWithIDGuaranteed } from "utils/user";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import prValidate from "server/middleware/prudence-validate";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
@@ -23,6 +23,8 @@ import { ParseFloSDVX } from "lib/score-import/import-types/api/flo-sdvx/parser"
 import { ParseMinSDVX } from "lib/score-import/import-types/api/min-sdvx/parser";
 import { ParseArcSDVX } from "lib/score-import/import-types/api/arc-sdvx/parser";
 import { ParseArcIIDX } from "lib/score-import/import-types/api/arc-iidx/parser";
+import db from "external/mongo/db";
+import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
 
 const logger = CreateLogCtx(__filename);
 
@@ -119,6 +121,62 @@ router.post(
 		return res.status(responseData.statusCode).json(responseData.body);
 	}
 );
+
+/**
+ * Force Tachi to reprocess your orphanned scores. This is automatically done
+ * daily, but this endpoint allows users to speed that up.
+ *
+ * @name POST /api/v1/import/orphans
+ */
+router.post("/orphans", RequirePermissions("submit_score"), async (req, res) => {
+	const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.user.id);
+
+	logger.info(`User ${FormatUserDoc(userDoc)} forced an orphan sync.`);
+
+	const orphans = await db["orphan-scores"].find({
+		userID: userDoc.id,
+	});
+
+	// ScoreIDs are essentially userID dependent, so this is fine.
+	const blacklist = (await db["score-blacklist"].find({ userID: userDoc.id })).map(
+		(e) => e.scoreID
+	);
+
+	let done = 0;
+	let failed = 0;
+	let success = 0;
+	let removed = 0;
+
+	await Promise.all(
+		orphans.map((or) =>
+			ReprocessOrphan(or, blacklist, logger).then((r) => {
+				done++;
+				if (r === null) {
+					removed++;
+				} else if (r === false) {
+					failed++;
+				} else {
+					success++;
+				}
+			})
+		)
+	);
+
+	logger.info(`Finished attempting deorphaning.`);
+
+	logger.info(`Success: ${success} | Failed ${failed} | Removed ${removed}.`);
+
+	return res.status(200).json({
+		success: true,
+		description: `Reprocessed ${done} orphan scores.`,
+		body: {
+			done,
+			failed,
+			success,
+			removed,
+		},
+	});
+});
 
 /**
  * Resolves the data from a file upload into an iterable,

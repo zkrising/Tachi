@@ -1,5 +1,5 @@
 /* eslint-disable no-await-in-loop */
-import monk from "monk";
+import monk, { IMonkManager } from "monk";
 import { IndexOptions } from "mongodb";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerTypeInfo } from "lib/setup/config";
@@ -121,11 +121,7 @@ for (const game of ServerTypeInfo.supportedGames) {
 	}
 }
 
-export async function SetIndexes(mongoURL: string, reset: boolean) {
-	const db = monk(mongoURL);
-
-	logger.debug(`Starting indexing for ${mongoURL}...`);
-
+export async function SetIndexesWithDB(db: IMonkManager, reset: boolean) {
 	const collections = (await db.listCollections()).map((e) => e.name);
 
 	for (const collection in indexes) {
@@ -150,6 +146,12 @@ export async function SetIndexes(mongoURL: string, reset: boolean) {
 	}
 
 	logger.debug("Done.");
+}
 
-	await db.close();
+export async function SetIndexes(mongoUrl: string, reset: boolean) {
+	const monkDb = monk(mongoUrl);
+
+	await SetIndexesWithDB(monkDb, reset);
+
+	await monkDb.close();
 }

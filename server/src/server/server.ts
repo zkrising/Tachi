@@ -27,7 +27,7 @@ const userSessionMiddleware = expressSession({
 	// append node_env onto the end of the session name
 	// so we can separate tokens under the same URL.
 	// say for staging.kamaitachi.xyz
-	name: `${TachiConfig.NAME} (${Environment.nodeEnv}) SESSION`,
+	name: `${TachiConfig.NAME.replace(/ /gu, "_")}_SESSION`,
 	secret: ServerConfig.SESSION_SECRET,
 	store,
 	resave: true,

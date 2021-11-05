@@ -1151,7 +1151,8 @@ export type IRImportTypes =
 	| "ir/usc"
 	| "ir/chunitachi"
 	| "ir/beatoraja"
-	| "ir/fervidex-static";
+	| "ir/fervidex-static"
+	| "ir/kshook-sv3c";
 
 export type ImportTypes = FileUploadImportTypes | IRImportTypes | APIImportTypes;
 

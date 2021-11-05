@@ -57,5 +57,26 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 		t.end();
 	});
 
+	t.test("Should require authentication.", async (t) => {
+		const res = await mockApi
+			.post("/ir/direct-manual/import")
+			.send(GetKTDataJSON("./batch-manual/small-file.json"));
+
+		t.equal(res.statusCode, 401);
+
+		t.end();
+	});
+
+	t.test("Should require a valid auth token.", async (t) => {
+		const res = await mockApi
+			.post("/ir/direct-manual/import")
+			.set("Authorization", "Bearer invalid_token")
+			.send(GetKTDataJSON("./batch-manual/small-file.json"));
+
+		t.equal(res.statusCode, 401);
+
+		t.end();
+	});
+
 	t.end();
 });

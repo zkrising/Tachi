@@ -132,6 +132,29 @@ function TestHeaders(url: string, data: any) {
 
 		t.end();
 	});
+
+	t.test("Should require authorization.", async (t) => {
+		const res = await mockApi
+			.post(url)
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
+			.set("User-Agent", "fervidex/1.3.0")
+			.send(data);
+
+		t.equal(res.status, 401, "Should return 401.");
+		t.type(res.body.error, "string", "Should have an error message.");
+
+		const res2 = await mockApi
+			.post(url)
+			.set("Authorization", "Bearer invalid_token")
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
+			.set("User-Agent", "fervidex/1.3.0")
+			.send(data);
+
+		t.equal(res2.status, 401, "Should return 401.");
+		t.type(res2.body.error, "string", "Should have an error message.");
+
+		t.end();
+	});
 }
 
 t.test("POST /ir/fervidex/class/submit", (t) => {

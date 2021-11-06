@@ -132,7 +132,7 @@ const syncInstructions: SyncInstructions[] = [
 						// @ts-expect-error faulty monk types
 						insertOne: { document: folder },
 					});
-				} else if (fjsh.hash(document, "sha256") !== fjsh.hash(exists, "sha256")) {
+				} else if (fjsh.hash(folder, "sha256") !== fjsh.hash(exists, "sha256")) {
 					bwriteOps.push({
 						updateOne: {
 							filter: {
@@ -175,7 +175,7 @@ const syncInstructions: SyncInstructions[] = [
 						// @ts-expect-error faulty monk types
 						insertOne: { document: table },
 					});
-				} else if (fjsh.hash(document, "sha256") !== fjsh.hash(exists, "sha256")) {
+				} else if (fjsh.hash(table, "sha256") !== fjsh.hash(exists, "sha256")) {
 					bwriteOps.push({
 						updateOne: {
 							filter: {

@@ -1374,7 +1374,7 @@ export interface TachiAPIClientDocument {
 	name: string;
 	author: integer;
 	requestedPermissions: APIPermissions[];
-	redirectUri: string;
+	redirectUri: null | string;
 	webhookUri: null | string;
 	apiKeyTemplate: null | string;
 	apiKeyFilename: null | string;

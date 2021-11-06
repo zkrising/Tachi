@@ -24,7 +24,7 @@ const KtchiDefaultClients: DefaultClients = [
 		apiKeyFilename: "kamaitachi.fervidex.json",
 		apiKeyTemplate: JSON.stringify(
 			{
-				url: `${ServerConfig.OUR_URL}/internal-api/ir/fervidex`,
+				url: `${ServerConfig.OUR_URL}/ir/fervidex`,
 				token: "%%TACHI_KEY%%",
 			},
 			null,
@@ -41,6 +41,23 @@ const KtchiDefaultClients: DefaultClients = [
 		apiKeyTemplate: JSON.stringify(
 			{
 				api_key: "%%TACHI_KEY%%",
+			},
+			null,
+			"\t"
+		),
+	},
+	{
+		name: "Konaste Hook",
+		webhookUri: null,
+		redirectUri: null,
+		requestedPermissions: ["submit_score"],
+		clientID: "CXKsHook",
+		apiKeyFilename: "kamaitachi.kshook.json",
+		apiKeyTemplate: JSON.stringify(
+			{
+				url: `${ServerConfig.OUR_URL}/ir/kshook`,
+				token: "%%TACHI_KEY",
+				games: ["sv3c"],
 			},
 			null,
 			"\t"

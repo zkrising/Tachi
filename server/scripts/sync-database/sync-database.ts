@@ -60,7 +60,7 @@ async function GenericUpsert<T>(
 	for (const document of documents) {
 		i++;
 		if (i % 10_000 === 0) {
-			logger.info(`On document ${i}/${documents.length}.`);
+			logger.verbose(`On document ${i}/${documents.length}.`);
 		}
 
 		const exists = map.get(document[field]);
@@ -87,7 +87,7 @@ async function GenericUpsert<T>(
 	}
 
 	if (bwriteOps.length === 0) {
-		logger.info(`No differences. Not performing any update.`);
+		logger.verbose(`No differences. Not performing any update.`);
 	} else {
 		const result = await collection.bulkWrite(bwriteOps);
 		logger.info(`Performed bulkWrite.`, result);
@@ -219,7 +219,7 @@ async function SynchroniseDBWithSeeds() {
 			const game = collectionName.split("-")[1];
 
 			if (!TachiConfig.GAMES.includes(game as any)) {
-				spawnLogger.info(
+				spawnLogger.verbose(
 					`Skipping ${collectionName} (${game}) as it isn't for ${TachiConfig.NAME}.`
 				);
 				continue;

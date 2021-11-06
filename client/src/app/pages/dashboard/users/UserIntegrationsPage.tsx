@@ -2,6 +2,8 @@ import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
+import ExternalLink from "components/util/ExternalLink";
+import FormInput from "components/util/FormInput";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
@@ -9,11 +11,16 @@ import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { mode, TachiConfig } from "lib/config";
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Col, Modal, Row, Form } from "react-bootstrap";
-import { APIPermissions, APITokenDocument, PublicUserDocument } from "tachi-common";
+import { Alert, Button, Col, Form, InputGroup, Modal, Row } from "react-bootstrap";
+import {
+	APIPermissions,
+	APITokenDocument,
+	OAuth2ApplicationDocument,
+	PublicUserDocument,
+} from "tachi-common";
 import { SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
-import { allPermissions } from "util/misc";
+import { allPermissions, DelayedPageReload } from "util/misc";
 import FervidexIntegrationPage from "./FervidexIntegrationPage";
 
 export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
@@ -53,7 +60,7 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserD
 					) : page === "api-keys" ? (
 						<APIKeysPage reqUser={reqUser} />
 					) : (
-						<OAuthClientPage reqUser={reqUser} />
+						<OAuthClientPage />
 					)}
 				</Col>
 			</Row>
@@ -61,7 +68,7 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserD
 	);
 }
 
-function OAuthClientPage({ reqUser }: { reqUser: PublicUserDocument }) {
+function OAuthClientPage() {
 	return (
 		<Row className="text-center justify-content-center">
 			<Col xs={12}>
@@ -69,6 +76,12 @@ function OAuthClientPage({ reqUser }: { reqUser: PublicUserDocument }) {
 				<Alert variant="info" style={{ color: "black" }}>
 					This page is for programmers who want to make their own things that interface
 					with {TachiConfig.name}.
+					<br />
+					You can read the documentation{" "}
+					<ExternalLink style={{ color: "white" }} href="#">
+						here
+					</ExternalLink>
+					!
 				</Alert>
 				<Muted>Register your own clients for integrating with {TachiConfig.name}.</Muted>
 				<Divider />
@@ -81,7 +94,13 @@ function OAuthClientPage({ reqUser }: { reqUser: PublicUserDocument }) {
 }
 
 function OAuthClientInfo() {
-	const { data, isLoading, error } = useApiQuery("/oauth/clients");
+	const { data, isLoading, error } = useApiQuery<OAuth2ApplicationDocument[]>("/oauth/clients");
+
+	const [clients, setClients] = useState<OAuth2ApplicationDocument[]>([]);
+
+	useEffect(() => {
+		setClients(data ?? []);
+	}, [data]);
 
 	if (error) {
 		return <ApiError error={error} />;
@@ -91,7 +110,383 @@ function OAuthClientInfo() {
 		return <Loading />;
 	}
 
-	return <>heyt</>;
+	if (clients.length === 0) {
+		return (
+			<>
+				<Muted>You don't have any OAuth Clients.</Muted>
+				<Divider />
+				<CreateNewOAuthClient setClients={setClients} />
+			</>
+		);
+	}
+
+	return (
+		<>
+			{clients.map(e => (
+				<OAuthClientRow
+					setClients={setClients}
+					clients={clients}
+					key={e.clientID}
+					client={e}
+				/>
+			))}
+			<Divider />
+			<CreateNewOAuthClient setClients={setClients} />
+		</>
+	);
+}
+
+function CreateNewOAuthClient({
+	setClients,
+}: {
+	setClients: SetState<OAuth2ApplicationDocument[]>;
+}) {
+	const [show, setShow] = useState(false);
+	const [name, setName] = useState("");
+	const [url, setUrl] = useState("");
+	const [permissions, setPermissions] = useState<APIPermissions[]>([]);
+
+	return (
+		<>
+			<Button onClick={() => setShow(true)} variant="success">
+				Create New Client
+			</Button>
+			<Modal show={show} onHide={() => setShow(false)}>
+				<Modal.Header closeButton>
+					<Modal.Title>Create New Client</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<Form
+						onSubmit={async e => {
+							e.preventDefault();
+
+							const res = await APIFetchV1(
+								"/oauth/clients/create",
+								{
+									method: "POST",
+									headers: {
+										"Content-Type": "application/json",
+									},
+									body: JSON.stringify({
+										name,
+										redirectUri: url,
+										permissions,
+									}),
+								},
+								true,
+								true
+							);
+
+							if (res.success) {
+								DelayedPageReload();
+							}
+						}}
+					>
+						<div className="input-group">
+							<div className="input-group-append">
+								<span className="input-group-text">Name</span>
+							</div>
+							<input
+								value={name}
+								className="form-control"
+								onChange={e => setName(e.target.value)}
+								placeholder="My OAuth Service"
+							/>
+						</div>
+						<Muted>
+							Give your Service a name. This will be shown when users use follow OAuth
+							flow.
+						</Muted>
+						<Divider />
+						<div className="input-group">
+							<div className="input-group-append">
+								<span className="input-group-text">Redirect URI</span>
+							</div>
+							<input
+								value={url}
+								className="form-control"
+								onChange={e => setUrl(e.target.value)}
+								placeholder="https://example.com/callback"
+							/>
+						</div>
+						<Muted>
+							This is the URL {TachiConfig.name} will redirect to as part of the OAuth
+							flow.
+						</Muted>
+						<Divider />
+						<h4>Permissions</h4>
+						<div className="px-4">
+							{allPermissions.map(permission => (
+								<>
+									<input
+										key={permission}
+										className="form-check-input"
+										type="checkbox"
+										onChange={e => {
+											if (e.target.checked) {
+												setPermissions([...permissions, permission]);
+											} else {
+												setPermissions(
+													permissions.filter(e => e !== permission)
+												);
+											}
+										}}
+									/>
+									<label className="form-check-label">{permission}</label>
+									<br />
+								</>
+							))}
+						</div>
+
+						<Divider />
+						<button type="submit" className="btn btn-success">
+							Create Client
+						</button>
+					</Form>
+				</Modal.Body>
+			</Modal>
+		</>
+	);
+}
+
+interface OAuthClientProps {
+	client: OAuth2ApplicationDocument;
+	clients: OAuth2ApplicationDocument[];
+	setClients: SetState<OAuth2ApplicationDocument[]>;
+}
+
+function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
+	const [hasWarned, setHasWarned] = useState(false);
+	const [showDangerousStuff, setShowDangerousStuff] = useState(false);
+	const [deleteModalShow, setDeleteModalShow] = useState(false);
+	const [editModalShow, setEditModalShow] = useState(false);
+
+	return (
+		<div key={client.clientID} className="col-12">
+			<h2 className="mb-4">{client.name}</h2>
+			<div className="text-left">
+				<h5>
+					Client ID: <code>{client.clientID}</code>
+				</h5>
+				<h5>
+					Client Secret:{" "}
+					<code onClick={() => setHasWarned(true)}>
+						{hasWarned ? client.clientSecret : "SENSITIVE: CLICK TO REVEAL"}
+					</code>
+				</h5>
+				<h5>
+					Permissions: <code>{client.requestedPermissions.join(", ")}</code>
+				</h5>
+				<h5>
+					Redirect Uri: <code>{client.redirectUri}</code>
+				</h5>
+				<h5>
+					Webhook Uri: <code>{client.webhookUri ?? "No Webhook URI"}</code>
+				</h5>
+			</div>
+
+			<Divider />
+
+			<div className="d-flex" style={{ justifyContent: "space-around" }}>
+				<Button variant="info" onClick={() => setEditModalShow(!editModalShow)}>
+					Edit Client
+				</Button>
+
+				<Button
+					onClick={() => {
+						setShowDangerousStuff(!showDangerousStuff);
+					}}
+					variant="danger"
+				>
+					{showDangerousStuff ? "Hide Dangerous Stuff" : "Show Dangerous Stuff"}
+				</Button>
+			</div>
+
+			{showDangerousStuff && (
+				<div className="mt-8">
+					<Button
+						onClick={async () => {
+							const res = await APIFetchV1<OAuth2ApplicationDocument>(
+								`/oauth/clients/${client.clientID}/reset-secret`,
+								{
+									method: "POST",
+								},
+								true,
+								true
+							);
+
+							if (res.success) {
+								setClients(
+									clients.map(e => {
+										if (e.clientID === client.clientID) {
+											return res.body;
+										}
+										return e;
+									})
+								);
+							}
+						}}
+						variant="warning"
+					>
+						Reset Client Secret
+					</Button>
+					<br />
+					<Muted>
+						You can reset your client secret incase you accidentally exposed it.
+					</Muted>
+					<br />
+					<Button
+						className="mt-4"
+						onClick={() => setDeleteModalShow(true)}
+						variant="danger"
+					>
+						Destroy Client
+					</Button>
+					<br />
+					<Muted>
+						This will destroy your client and all API Keys associated with it.
+					</Muted>
+				</div>
+			)}
+
+			<Divider />
+
+			<EditClientModal
+				{...{ client, setClients, clients, show: editModalShow, setShow: setEditModalShow }}
+			/>
+
+			<Modal show={deleteModalShow} onHide={() => setDeleteModalShow(false)}>
+				<Modal.Header closeButton>
+					<Modal.Title>Seriously, are you really sure?</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					All keys ever created for this OAuth Client will be deleted.
+					<br />
+					<strong className="text-danger">
+						ALL USERS USING THIS APPLICATION WILL NO LONGER BE ABLE TO USE THE
+						ASSOCIATED KEYS!
+					</strong>
+					<Divider />
+					<div className="w-100 d-flex justify-content-center">
+						<Button
+							variant="danger"
+							onClick={async () => {
+								const res = await APIFetchV1(
+									`/oauth/clients/${client.clientID}`,
+									{
+										method: "DELETE",
+									},
+									true,
+									true
+								);
+
+								if (res.success) {
+									setClients(clients.filter(e => e.clientID !== client.clientID));
+								}
+							}}
+						>
+							I'm sure.
+						</Button>
+					</div>
+				</Modal.Body>
+			</Modal>
+		</div>
+	);
+}
+
+function EditClientModal({
+	client,
+	clients,
+	setClients,
+	show,
+	setShow,
+}: OAuthClientProps & {
+	show: boolean;
+	setShow: SetState<boolean>;
+}) {
+	const [name, setName] = useState(client.name);
+	const [redirectUri, setRedirectUri] = useState(client.redirectUri);
+	const [webhookUri, setWebhookUri] = useState(client.webhookUri ?? "");
+
+	return (
+		<Modal show={show} onHide={() => setShow(false)}>
+			<Modal.Header closeButton>
+				<Modal.Title>Edit {client.name}</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
+				<Form
+					onSubmit={async e => {
+						e.preventDefault();
+
+						const res = await APIFetchV1<OAuth2ApplicationDocument>(
+							`/oauth/clients/${client.clientID}`,
+							{
+								method: "PATCH",
+								headers: {
+									"Content-Type": "application/json",
+								},
+								body: JSON.stringify({
+									name,
+									redirectUri,
+									webhookUri: webhookUri === "" ? null : webhookUri,
+								}),
+							},
+							true,
+							true
+						);
+
+						if (res.success) {
+							setClients(
+								clients.map(e => {
+									if (e.clientID === client.clientID) {
+										return res.body;
+									}
+
+									return e;
+								})
+							);
+						}
+					}}
+				>
+					<FormInput
+						fieldName="Client Name"
+						value={name}
+						setValue={setName}
+						placeholder="My OAuth Client"
+					/>
+					<Divider />
+					<FormInput
+						fieldName="Redirect URI"
+						value={redirectUri}
+						setValue={setRedirectUri}
+						placeholder="https://example.com/callback"
+					/>
+					<Muted>
+						Where a user will be redirected to after completing the OAuth flow.
+					</Muted>
+
+					<Divider />
+					<FormInput
+						fieldName="Webhook URI"
+						value={webhookUri}
+						setValue={setWebhookUri}
+						placeholder="https://example.com/webhook"
+					/>
+					<Muted>
+						Where to send webhook events to. Please read the{" "}
+						<ExternalLink href="#">Webhook Documentation</ExternalLink> before using
+						this.
+					</Muted>
+
+					<Divider />
+
+					<button type="submit" className="btn btn-success">
+						Update Client
+					</button>
+				</Form>
+			</Modal.Body>
+		</Modal>
+	);
 }
 
 function IntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {

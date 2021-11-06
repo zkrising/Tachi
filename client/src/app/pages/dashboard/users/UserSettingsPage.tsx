@@ -1,18 +1,18 @@
-import React, { useContext, useState } from "react";
-import { PublicUserDocument, UserSettings } from "tachi-common";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
-import SelectButton from "components/util/SelectButton";
-import Icon from "components/util/Icon";
-import Divider from "components/util/Divider";
-import { Alert, Button, Form } from "react-bootstrap";
-import { APIFetchV1, ToAPIURL } from "util/api";
 import ProfilePicture from "components/user/ProfilePicture";
-import { useFormik } from "formik";
-import { DelayedPageReload, FetchJSONBody, UppercaseFirst } from "util/misc";
-import { TachiConfig } from "lib/config";
-import { UserSettingsContext, UserSettingsContextProvider } from "context/UserSettingsContext";
+import Divider from "components/util/Divider";
+import Icon from "components/util/Icon";
 import Muted from "components/util/Muted";
+import SelectButton from "components/util/SelectButton";
+import { UserSettingsContext } from "context/UserSettingsContext";
+import { useFormik } from "formik";
+import { TachiConfig } from "lib/config";
+import React, { useContext, useState } from "react";
+import { Alert, Button, Form } from "react-bootstrap";
+import { PublicUserDocument, UserSettings } from "tachi-common";
+import { APIFetchV1, ToAPIURL } from "util/api";
+import { DelayedPageReload, FetchJSONBody, UppercaseFirst } from "util/misc";
 
 interface Props {
 	reqUser: PublicUserDocument;

@@ -1,12 +1,12 @@
 import db from "external/mongo/db";
 import { ServerConfig } from "lib/setup/config";
-import { APITokenDocument, OAuth2ApplicationDocument } from "tachi-common";
+import { APITokenDocument, TachiAPIClientDocument } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 
-const clientDataset: OAuth2ApplicationDocument[] = [
+const clientDataset: TachiAPIClientDocument[] = [
 	{
 		author: 1,
 		clientID: "CLIENT_1",
@@ -15,6 +15,8 @@ const clientDataset: OAuth2ApplicationDocument[] = [
 		redirectUri: "example.com",
 		requestedPermissions: ["customise_profile"],
 		webhookUri: null,
+		apiKeyFilename: null,
+		apiKeyTemplate: null,
 	},
 	{
 		author: 1,
@@ -24,6 +26,8 @@ const clientDataset: OAuth2ApplicationDocument[] = [
 		redirectUri: "example.com",
 		requestedPermissions: ["customise_profile"],
 		webhookUri: null,
+		apiKeyFilename: null,
+		apiKeyTemplate: null,
 	},
 	{
 		author: 2,
@@ -33,6 +37,8 @@ const clientDataset: OAuth2ApplicationDocument[] = [
 		redirectUri: "example.com",
 		requestedPermissions: ["customise_profile"],
 		webhookUri: null,
+		apiKeyFilename: null,
+		apiKeyTemplate: null,
 	},
 ];
 
@@ -391,12 +397,12 @@ t.test("DELETE /api/v1/clients/:clientID", async (t) => {
 	t.test("Should destroy the client and all associated api keys.", async (t) => {
 		await db["api-tokens"].insert([
 			{
-				fromOAuth2Client: "CLIENT_1",
+				fromAPIClient: "CLIENT_1",
 				token: "foo",
 				userID: 1,
 			},
 			{
-				fromOAuth2Client: "CLIENT_1",
+				fromAPIClient: "CLIENT_1",
 				token: "bar",
 				userID: 1,
 			},

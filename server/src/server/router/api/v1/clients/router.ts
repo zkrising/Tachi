@@ -6,7 +6,7 @@ import db from "external/mongo/db";
 import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
 import { DedupeArr, DeleteUndefinedProps, IsValidURL, Random20Hex } from "utils/misc";
 import CreateLogCtx from "lib/logger/logger";
-import { APIPermissions } from "tachi-common";
+import { APIPermissions, TachiAPIClientDocument } from "tachi-common";
 import { AllPermissions } from "server/middleware/auth";
 import { ServerConfig } from "lib/setup/config";
 import { FormatUserDoc } from "utils/user";
@@ -61,7 +61,7 @@ router.post(
 	"/create",
 	prValidate({
 		name: p.isBoundedString(3, 80),
-		redirectUri: "string",
+		redirectUri: "*string",
 		webhookUri: "*string",
 		apiKeyTemplate: (self) => {
 			if (self === undefined) {
@@ -109,37 +109,46 @@ router.post(
 			});
 		}
 
-		if (!IsValidURL(req.body.redirectUri)) {
+		if (req.body.redirectUri && !IsValidURL(req.body.redirectUri)) {
 			return res.status(400).json({
 				success: false,
-				description: `Invalid URL for ${req.body.redirectUri}.`,
+				description: `Invalid Redirect URL.`,
+			});
+		}
+
+		if (req.body.webhookUri && !IsValidURL(req.body.webhookUri)) {
+			return res.status(400).json({
+				success: false,
+				description: `Invalid Webhook URL.`,
 			});
 		}
 
 		const clientID = `CI${Random20Hex()}`;
 		const clientSecret = `CS${Random20Hex()}`;
 
-		const clientDoc = {
+		const clientDoc: TachiAPIClientDocument = {
 			clientID,
 			clientSecret,
 			requestedPermissions: permissions,
 			name: req.body.name,
 			author: req.session.tachi.user.id,
 			redirectUri: req.body.redirectUri,
-			webhookUri: null,
+			webhookUri: req.body.webhookUri ?? null,
+			apiKeyFilename: req.body.apiKeyFilename ?? null,
+			apiKeyTemplate: req.body.apiKeyTemplate ?? null,
 		};
 
 		await db["api-clients"].insert(clientDoc);
 
 		logger.info(
-			`User ${FormatUserDoc(req.session.tachi.user)} created a new OAuth2 Client ${
+			`User ${FormatUserDoc(req.session.tachi.user)} created a new API Client ${
 				req.body.name
 			} (${clientID}).`
 		);
 
 		return res.status(200).json({
 			success: true,
-			description: `Created a new OAuth2 client.`,
+			description: `Created a new API client.`,
 			body: clientDoc,
 		});
 	}
@@ -151,7 +160,7 @@ router.post(
  * @name GET /api/v1/clients/:clientID
  */
 router.get("/:clientID", GetClientFromID, (req, res) => {
-	const client = req[SYMBOL_TachiData]!.oauth2ClientDoc!;
+	const client = req[SYMBOL_TachiData]!.apiClientDoc!;
 
 	return res.status(200).json({
 		success: true,
@@ -201,7 +210,7 @@ router.patch(
 		}),
 	}),
 	async (req, res) => {
-		const client = req[SYMBOL_TachiData]!.oauth2ClientDoc!;
+		const client = req[SYMBOL_TachiData]!.apiClientDoc!;
 
 		DeleteUndefinedProps(req.body);
 
@@ -244,7 +253,7 @@ router.post(
 	GetClientFromID,
 	RequireOwnershipOfClient,
 	async (req, res) => {
-		const client = req[SYMBOL_TachiData]!.oauth2ClientDoc!;
+		const client = req[SYMBOL_TachiData]!.apiClientDoc!;
 		const clientName = `${client.name} (${client.clientID})`;
 
 		logger.info(`Recieved request to reset client secret for ${clientName}`);
@@ -276,7 +285,7 @@ router.post(
  * @name DELETE /api/v1/clients/:clientID
  */
 router.delete("/:clientID", GetClientFromID, RequireOwnershipOfClient, async (req, res) => {
-	const client = req[SYMBOL_TachiData]!.oauth2ClientDoc!;
+	const client = req[SYMBOL_TachiData]!.apiClientDoc!;
 
 	const clientName = `${client.name} (${client.clientID})`;
 

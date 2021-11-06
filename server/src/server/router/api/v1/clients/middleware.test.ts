@@ -15,7 +15,7 @@ t.test("#GetClientFromID", (t) => {
 		});
 
 		t.strictSame(
-			req[SYMBOL_TachiData]?.oauth2ClientDoc,
+			req[SYMBOL_TachiData]?.apiClientDoc,
 			{
 				clientID: "OAUTH2_CLIENT_ID",
 				// clientSecret: "OAUTH2_CLIENT_SECRET",

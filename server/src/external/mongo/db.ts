@@ -23,7 +23,7 @@ import {
 	InviteCodeDocument,
 	KaiAuthDocument,
 	MilestoneDocument,
-	OAuth2ApplicationDocument,
+	TachiAPIClientDocument,
 	OrphanChart,
 	PBScoreDocument,
 	PrivateUserInfoDocument,
@@ -170,7 +170,7 @@ const db = {
 	"arc-saved-profiles": monkDB.get<ARCSavedProfileDocument>("arc-saved-profiles"),
 	"user-settings": monkDB.get<UserSettings>("user-settings"),
 	"user-private-information": monkDB.get<PrivateUserInfoDocument>("user-private-information"),
-	"api-clients": monkDB.get<OAuth2ApplicationDocument>("api-clients"),
+	"api-clients": monkDB.get<TachiAPIClientDocument>("api-clients"),
 	"oauth2-auth-codes":
 		// i've inlined this one because i don't see it appearing anywhere else.
 		monkDB.get<{ code: string; userID: integer; createdOn: number }>("oauth2-auth-codes"),

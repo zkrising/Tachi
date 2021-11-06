@@ -10,7 +10,7 @@ import {
 	Playtypes,
 	SongDocument,
 	UserSettings,
-	OAuth2ApplicationDocument,
+	TachiAPIClientDocument,
 } from "tachi-common";
 
 declare module "express-session" {
@@ -63,5 +63,5 @@ export interface TachiRequestData {
 	tableDoc?: TableDocument;
 	folderDoc?: FolderDocument;
 
-	oauth2ClientDoc: Omit<OAuth2ApplicationDocument, "clientSecret">;
+	apiClientDoc: Omit<TachiAPIClientDocument, "clientSecret">;
 }

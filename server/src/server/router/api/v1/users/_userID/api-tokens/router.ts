@@ -65,10 +65,10 @@ router.post(
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 
 		let identifier: string;
-		let fromOAuth2Client;
+		let fromAPIClient;
 
 		if (req.body.clientID) {
-			const client = await db["oauth2-clients"].findOne(
+			const client = await db["api-clients"].findOne(
 				{
 					clientID: req.body.clientID,
 				},
@@ -101,7 +101,7 @@ router.post(
 
 			permissions = client.requestedPermissions;
 			identifier = client.name;
-			fromOAuth2Client = client.clientID;
+			fromAPIClient = client.clientID;
 
 			logger.info(
 				`Creating API Key for ${FormatUserDoc(user)} from ${client.name} specification.`
@@ -127,7 +127,7 @@ router.post(
 			permissions: permissionsObject,
 			token: Random20Hex(),
 			userID: user.id,
-			fromOAuth2Client,
+			fromAPIClient,
 		};
 
 		await db["api-tokens"].insert(apiTokenDocument);

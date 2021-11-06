@@ -4,7 +4,7 @@ import { IndexOptions } from "mongodb";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
 import { ONE_DAY } from "lib/constants/time";
-import { Databases } from "./db";
+import db, { Databases, monkDB } from "./db";
 import { Random20Hex } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
@@ -84,6 +84,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	"fer-settings": [index({ userID: 1 }, UNIQUE)],
 	counters: [index({ counterName: 1 }, UNIQUE)],
 	"class-achievements": [index({ game: 1, playtype: 1, timeAchieved: 1 })],
+	"api-clients": [index({ clientID: 1 }, UNIQUE)],
 };
 
 const indexes: Partial<Record<Databases, Index[]>> = staticIndexes;
@@ -156,4 +157,27 @@ export async function SetIndexes(mongoUrl: string, reset: boolean) {
 	await SetIndexesWithDB(monkDb, reset);
 
 	await monkDb.close();
+}
+
+export function SetIndexesIfNoneSet() {
+	// If no indexes are set, then we need to load mongo indexes.
+	return db.users
+		.indexes()
+		.then((r) => {
+			// If there's only one index on users
+			// that means that only _id has indexes.
+			// This means that there are likely to be no indexes
+			// configured in the database.
+			if (Object.keys(r).length === 1) {
+				logger.info(`First-time Mongo startup detected. Running SetIndexes.`);
+				SetIndexesWithDB(monkDB, true);
+			}
+		})
+		.catch((err) => {
+			logger.info(
+				`Error in finding users collection. First time startup likely. Running SetIndexes.`,
+				err
+			);
+			SetIndexesWithDB(monkDB, true);
+		});
 }

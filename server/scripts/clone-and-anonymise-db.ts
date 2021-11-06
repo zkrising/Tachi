@@ -74,7 +74,7 @@ async function AnonymiseDB(nsTo: string) {
 	logger.info(`Stripped username info.`, { r2 });
 
 	for (const collection of [
-		"oauth2-clients",
+		"api-clients",
 		"oauth2-auth-codes",
 		"password-reset-codes",
 		"api-tokens",

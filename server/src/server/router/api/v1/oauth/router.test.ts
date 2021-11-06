@@ -23,7 +23,7 @@ t.test("POST /api/v1/oauth/token", (t) => {
 
 		t.not(tokenDoc, null);
 		t.equal(tokenDoc?.userID, 1);
-		t.equal(tokenDoc?.fromOAuth2Client, "OAUTH2_CLIENT_ID");
+		t.equal(tokenDoc?.fromAPIClient, "OAUTH2_CLIENT_ID");
 		t.strictSame(
 			tokenDoc?.permissions,
 			{

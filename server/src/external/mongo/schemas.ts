@@ -429,14 +429,26 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		userID: p.isPositiveNonZeroInteger,
 		createdOn: p.isPositive,
 	}),
-	"oauth2-clients": prSchemaify({
+	"api-clients": prSchemaify({
 		clientID: "string",
 		clientSecret: "string",
 		name: "string",
 		author: p.isPositiveNonZeroInteger,
 		requestedPermissions: [p.isIn(Object.keys(AllPermissions))],
-		redirectUri: "string",
+		redirectUri: "?string",
 		webhookUri: "?string",
+		apiKeyTemplate: p.nullable((self) => {
+			if (typeof self !== "string") {
+				return "Expected a string.";
+			}
+
+			if (!self.includes("%%TACHI_KEY%%")) {
+				return "Template must include %%TACHI_KEY%%.";
+			}
+
+			return true;
+		}),
+		apiKeyFilename: "?string",
 	}),
 	"orphan-chart-queue": prSchemaify({
 		idString: p.isIn(allIDStrings),

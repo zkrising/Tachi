@@ -2,11 +2,11 @@ import { RequestHandler } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { Environment } from "lib/setup/config";
-import { OAuth2ApplicationDocument } from "tachi-common";
+import { TachiAPIClientDocument } from "tachi-common";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 
 export const GetClientFromID: RequestHandler = async (req, res, next) => {
-	const client = await db["oauth2-clients"].findOne(
+	const client = await db["api-clients"].findOne(
 		{
 			clientID: req.params.clientID,
 		},
@@ -24,13 +24,13 @@ export const GetClientFromID: RequestHandler = async (req, res, next) => {
 		});
 	}
 
-	AssignToReqTachiData(req, { oauth2ClientDoc: client });
+	AssignToReqTachiData(req, { apiClientDoc: client });
 
 	return next();
 };
 
 export const RequireOwnershipOfClient: RequestHandler = (req, res, next) => {
-	let client: Omit<OAuth2ApplicationDocument, "clientSecret">;
+	let client: Omit<TachiAPIClientDocument, "clientSecret">;
 
 	// @hack
 	// Sadly, expMiddlewareMock doesn't support mounting symbol props on
@@ -42,7 +42,7 @@ export const RequireOwnershipOfClient: RequestHandler = (req, res, next) => {
 		// in testing.
 		client = req.body.__terribleHackOauth2ClientDoc;
 	} else {
-		client = req[SYMBOL_TachiData]!.oauth2ClientDoc!;
+		client = req[SYMBOL_TachiData]!.apiClientDoc!;
 	}
 
 	const user = req.session.tachi?.user;

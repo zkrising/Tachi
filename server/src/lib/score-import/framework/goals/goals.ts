@@ -118,6 +118,8 @@ export async function ProcessGoal(
 				goalID: goal.goalID,
 				old: oldData,
 				new: newData,
+				game: goal.game,
+				playtype: goal.playtype,
 			},
 		});
 	}

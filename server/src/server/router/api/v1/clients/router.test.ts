@@ -70,6 +70,8 @@ t.test("GET /api/v1/clients", async (t) => {
 					redirectUri: "example.com",
 					requestedPermissions: ["customise_profile"],
 					webhookUri: null,
+					apiKeyFilename: null,
+					apiKeyTemplate: null,
 				},
 				{
 					author: 1,
@@ -79,6 +81,8 @@ t.test("GET /api/v1/clients", async (t) => {
 					redirectUri: "example.com",
 					requestedPermissions: ["customise_profile"],
 					webhookUri: null,
+					apiKeyFilename: null,
+					apiKeyTemplate: null,
 				},
 			]
 		);
@@ -212,6 +216,8 @@ t.test("POST /api/v1/clients/create", async (t) => {
 			}
 		);
 
+		const cookie2 = await CreateFakeAuthCookie(mockApi);
+
 		for (let i = 0; i < ServerConfig.OAUTH_CLIENT_CAP; i++) {
 			// eslint-disable-next-line no-await-in-loop
 			await mockApi
@@ -224,7 +230,7 @@ t.test("POST /api/v1/clients/create", async (t) => {
 					apiKeyTemplate: null,
 					apiKeyFilename: null,
 				})
-				.set("Cookie", cookie);
+				.set("Cookie", cookie2);
 		}
 
 		const res = await mockApi
@@ -237,7 +243,7 @@ t.test("POST /api/v1/clients/create", async (t) => {
 				apiKeyTemplate: null,
 				apiKeyFilename: null,
 			})
-			.set("Cookie", cookie);
+			.set("Cookie", cookie2);
 
 		t.equal(res.statusCode, 400);
 

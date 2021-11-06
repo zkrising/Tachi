@@ -175,6 +175,9 @@ router.get("/:clientID", GetClientFromID, (req, res) => {
  *
  * @param name - Change the name of this client.
  * @param webhookUri - Change a bound webhookUri for this client.
+ * @param redirectUri - Change a bound redirectUri for this client.
+ * @param apiKeyFormat - Change the APIKeyFormat for this client.
+ * @param apiKeyFilename - Change the APIKeyFilename for this client.
  *
  * @name PATCH /api/v1/clients/:clientID
  */
@@ -184,6 +187,18 @@ router.patch(
 	RequireOwnershipOfClient,
 	prValidate({
 		name: p.optional(p.isBoundedString(3, 80)),
+		apiKeyFormat: optNull((self) => {
+			if (typeof self !== "string") {
+				return "Expected a string.";
+			}
+
+			if (!self.includes("%%TACHI_KEY%%")) {
+				return "Must contain a %%TACHI_KEY%% placeholder.";
+			}
+
+			return true;
+		}),
+		apiKeyFilename: p.optional(p.isBoundedString(3, 80)),
 		webhookUri: optNull((self) => {
 			if (typeof self !== "string") {
 				return "Expected a string.";

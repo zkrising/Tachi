@@ -136,6 +136,8 @@ export async function UpdateUsersMilestones(
 				content: {
 					userID,
 					...milestoneInfo,
+					game,
+					playtype: milestone.playtype,
 				},
 			});
 		}

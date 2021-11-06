@@ -34,7 +34,8 @@ permissions over API Tokens, such as being able to change your password.
 
 ## Getting Tokens
 
-[Our OAuth2 Flow](../tachi-server/infrastructure/oauth2.md) should be used to acquire API Tokens.
+You should make a Tachi API Client. With that, you can use [our OAuth2 Flow](../tachi-server/infrastructure/oauth2.md),
+or our [Client File Flow](../tachi-server/infrastructure/file-flow.md).
 
 ## Permissions
 

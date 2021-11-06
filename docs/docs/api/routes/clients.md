@@ -1,6 +1,6 @@
-# OAuth2 Client Management
+# API Client Management
 
-These endpoints relate to managing your OAuth2 clients, such as creating new ones or deleting them.
+These endpoints relate to managing your Tachi API clients, such as creating new ones or deleting them.
 
 For a detailed explaination on how to use the OAuth2 flow, you can check [Using OAuth2 With Tachi](../../tachi-server/infrastructure/oauth2.md)
 
@@ -15,7 +15,7 @@ For a detailed explaination on how to use the OAuth2 flow, you can check [Using 
 
 ## Retrieve all clients you have created.
 
-`GET /api/v1/oauth/clients`
+`GET /api/v1/clients`
 
 ### Parameters
 
@@ -31,7 +31,7 @@ None.
 
 #### Request
 ```
-GET /api/v1/oauth/clients
+GET /api/v1/clients
 ```
 
 #### Response
@@ -53,7 +53,7 @@ GET /api/v1/oauth/clients
 
 ## Create a new OAuth2 Client
 
-`POST /api/v1/oauth/clients/create`
+`POST /api/v1/clients/create`
 
 ### Parameters
 
@@ -73,7 +73,7 @@ GET /api/v1/oauth/clients
 
 #### Request
 ```
-POST /api/v1/oauth/clients/create
+POST /api/v1/clients/create
 
 {
 	"name": "My Client",
@@ -98,7 +98,7 @@ POST /api/v1/oauth/clients/create
 
 ## Retrieve information about a client
 
-`GET /api/v1/oauth/clients/:clientID`
+`GET /api/v1/clients/:clientID`
 
 This is used to display information about this client to the user, when they are deciding on whether to authenticate it.
 
@@ -116,7 +116,7 @@ None.
 
 #### Request
 ```
-GET /api/v1/oauth/clients/some_client_id
+GET /api/v1/clients/some_client_id
 ```
 
 #### Response
@@ -134,7 +134,7 @@ GET /api/v1/oauth/clients/some_client_id
 
 ## Modify existing client
 
-`PATCH /api/v1/oauth/clients/:clientID`
+`PATCH /api/v1/clients/:clientID`
 
 ### Permissions
 
@@ -161,7 +161,7 @@ GET /api/v1/oauth/clients/some_client_id
 
 #### Request
 ```
-PATCH /api/v1/oauth/clients/some_client_id
+PATCH /api/v1/clients/some_client_id
 
 {
 	"name": "new name!"
@@ -182,7 +182,7 @@ PATCH /api/v1/oauth/clients/some_client_id
 
 ## Reset your client's secret.
 
-`POST /api/v1/oauth/clients/:clientID/reset-secret`
+`POST /api/v1/clients/:clientID/reset-secret`
 
 !!! warn
 	This does **NOT** reset api keys created by this client as per OAuth2 spec.
@@ -208,7 +208,7 @@ None.
 
 #### Request
 ```
-POST /api/v1/oauth/clients/some_client_id/reset-secret
+POST /api/v1/clients/some_client_id/reset-secret
 ```
 
 #### Response
@@ -225,7 +225,7 @@ POST /api/v1/oauth/clients/some_client_id/reset-secret
 
 ## Delete your client.
 
-`DELETE /api/v1/oauth/clients/:clientID`
+`DELETE /api/v1/clients/:clientID`
 
 ### Permissions
 
@@ -243,7 +243,7 @@ Empty Object.
 
 #### Request
 ```
-DELETE /api/v1/oauth/clients/some_client_id
+DELETE /api/v1/clients/some_client_id
 ```
 
 #### Response

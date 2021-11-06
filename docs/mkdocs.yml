@@ -4,138 +4,139 @@ site_author: zkldi
 site_url: https://tachi.rtfd.io
 
 theme:
-  name: material
-  features:
-    - navigation.instant
-    - navigation.tabs
-  palette:
-    - scheme: slate
-      primary: deep purple
-      accent: deep purple
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
-    - scheme: default
-      primary: deep purple
-      accent: deep purple
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
+    name: material
+    features:
+        - navigation.instant
+        - navigation.tabs
+    palette:
+        - scheme: slate
+          primary: deep purple
+          accent: deep purple
+          toggle:
+              icon: material/weather-sunny
+              name: Switch to light mode
+        - scheme: default
+          primary: deep purple
+          accent: deep purple
+          toggle:
+              icon: material/weather-night
+              name: Switch to dark mode
 
 nav:
-  - Introduction: "index.md"
-  - Contributing: "contributing.md"
+    - Introduction: "index.md"
+    - Contributing: "contributing.md"
 
-  - User Reference:
-    - "user/overview.md"
-    - "user/rules.md"
-    - "user/games.md"
-    - "user/features.md"
-    - "user/pbs-scores.md"
-    - "user/filter-directives.md"
-    - "user/lamps.md"
-    - "user/score-oddities.md"
+    - User Reference:
+          - "user/overview.md"
+          - "user/rules.md"
+          - "user/games.md"
+          - "user/features.md"
+          - "user/pbs-scores.md"
+          - "user/filter-directives.md"
+          - "user/lamps.md"
+          - "user/score-oddities.md"
 
-    - Statistics:
-      - "user/stats/tachi.md"
-      - "user/stats/esd.md"
+          - Statistics:
+                - "user/stats/tachi.md"
+                - "user/stats/esd.md"
 
-  - API Reference:
-    - "api/overview.md"
-    - "api/auth.md"
-    - "api/terminology.md"
+    - API Reference:
+          - "api/overview.md"
+          - "api/auth.md"
+          - "api/terminology.md"
 
-    - Endpoints:
-      - "api/routes/example.md"
-      - "api/routes/status.md"
-      - "api/routes/import.md"
-      - "api/routes/auth.md"
-      - "api/routes/users.md"
-      - "api/routes/user-gamept.md"
-      - "api/routes/user-integrations.md"
-      - "api/routes/sessions.md"
-      - "api/routes/scores.md"
-      - "api/routes/search.md"
-      - "api/routes/games.md"
-      - "api/routes/gpt.md"
-      - "api/routes/admin.md"
-      - "api/routes/ugpt-showcase.md"
-      - "api/routes/api-tokens.md"
-      - "api/routes/oauth2.md"
-      - "api/routes/oauth2-clients.md"
+          - Endpoints:
+                - "api/routes/example.md"
+                - "api/routes/status.md"
+                - "api/routes/import.md"
+                - "api/routes/auth.md"
+                - "api/routes/users.md"
+                - "api/routes/user-gamept.md"
+                - "api/routes/user-integrations.md"
+                - "api/routes/sessions.md"
+                - "api/routes/scores.md"
+                - "api/routes/search.md"
+                - "api/routes/games.md"
+                - "api/routes/gpt.md"
+                - "api/routes/admin.md"
+                - "api/routes/ugpt-showcase.md"
+                - "api/routes/api-tokens.md"
+                - "api/routes/oauth2.md"
+                - "api/routes/clients.md"
 
-  - Tachi Server Reference:
-    - "tachi-server/overview.md"
-    - "tachi-server/contributing.md"
+    - Tachi Server Reference:
+          - "tachi-server/overview.md"
+          - "tachi-server/contributing.md"
 
-    - Setup:
-      - "tachi-server/setup/setup.md"
-      - "tachi-server/setup/config.md"
+          - Setup:
+                - "tachi-server/setup/setup.md"
+                - "tachi-server/setup/config.md"
 
-    - Infrastructure:
-      - "tachi-server/infrastructure/toolchain.md"
-      - "tachi-server/infrastructure/logging.md"
-      - "tachi-server/infrastructure/branches.md"
-      - "tachi-server/infrastructure/versions.md"
-      - "tachi-server/infrastructure/oauth2.md"
+          - Infrastructure:
+                - "tachi-server/infrastructure/toolchain.md"
+                - "tachi-server/infrastructure/logging.md"
+                - "tachi-server/infrastructure/branches.md"
+                - "tachi-server/infrastructure/versions.md"
+                - "tachi-server/infrastructure/oauth2.md"
+                - "tachi-server/infrastructure/file-flow.md"
 
-    - Structure:
-      - "tachi-server/structure/style.md"
-      - "tachi-server/structure/filesystem.md"
-      - "tachi-server/structure/testing.md"
+          - Structure:
+                - "tachi-server/structure/style.md"
+                - "tachi-server/structure/filesystem.md"
+                - "tachi-server/structure/testing.md"
 
-    - BATCH-MANUAL:
-      - "tachi-server/batch-manual/overview.md"
+          - BATCH-MANUAL:
+                - "tachi-server/batch-manual/overview.md"
 
-    - Score Importing:
-      - "tachi-server/import/overview.md"
-      - "tachi-server/import/main.md"
-      - "tachi-server/import/import-types.md"
-      - "tachi-server/import/parse-conv.md"
-      - "tachi-server/import/conv-failures.md"
-      - "tachi-server/import/importing.md"
-      - "tachi-server/import/orphans.md"
-      - "tachi-server/import/parse-ipi.md"
-      - "tachi-server/import/sessions.md"
-      - "tachi-server/import/pbs.md"
-      - "tachi-server/import/ugs.md"
-      - "tachi-server/import/goals.md"
-      - "tachi-server/import/milestones.md"
-      - "tachi-server/import/import-doc-time.md"
+          - Score Importing:
+                - "tachi-server/import/overview.md"
+                - "tachi-server/import/main.md"
+                - "tachi-server/import/import-types.md"
+                - "tachi-server/import/parse-conv.md"
+                - "tachi-server/import/conv-failures.md"
+                - "tachi-server/import/importing.md"
+                - "tachi-server/import/orphans.md"
+                - "tachi-server/import/parse-ipi.md"
+                - "tachi-server/import/sessions.md"
+                - "tachi-server/import/pbs.md"
+                - "tachi-server/import/ugs.md"
+                - "tachi-server/import/goals.md"
+                - "tachi-server/import/milestones.md"
+                - "tachi-server/import/import-doc-time.md"
 
-    - Implementation Details:
-      - "tachi-server/implementation-details/details.md"
-      - "tachi-server/implementation-details/search.md"
-      - "tachi-server/implementation-details/statistics.md"
-      - "tachi-server/implementation-details/songs-charts.md"
-      - "tachi-server/implementation-details/game-configuration.md"
-      - "tachi-server/implementation-details/esd.md"
-      - "tachi-server/implementation-details/score-id.md"
-      - "tachi-server/implementation-details/goal-id.md"
+          - Implementation Details:
+                - "tachi-server/implementation-details/details.md"
+                - "tachi-server/implementation-details/search.md"
+                - "tachi-server/implementation-details/statistics.md"
+                - "tachi-server/implementation-details/songs-charts.md"
+                - "tachi-server/implementation-details/game-configuration.md"
+                - "tachi-server/implementation-details/esd.md"
+                - "tachi-server/implementation-details/score-id.md"
+                - "tachi-server/implementation-details/goal-id.md"
 
-    - Documents:
-      - "tachi-server/documents/overview.md"
-      - "tachi-server/documents/user.md"
-      - "tachi-server/documents/score.md"
-      - "tachi-server/documents/goal.md"
-      - "tachi-server/documents/user-goal.md"
-  
-  - Tachi Bot Reference:
-    - "tachi-bot/overview.md"
+          - Documents:
+                - "tachi-server/documents/overview.md"
+                - "tachi-server/documents/user.md"
+                - "tachi-server/documents/score.md"
+                - "tachi-server/documents/goal.md"
+                - "tachi-server/documents/user-goal.md"
+
+    - Tachi Bot Reference:
+          - "tachi-bot/overview.md"
 
 markdown_extensions:
-  - admonition
-  - pymdownx.highlight
-  - pymdownx.superfences
-  - abbr
-  - pymdownx.snippets
-  - footnotes
-  - toc:
-      toc_depth: 2
-      permalink: true
-  - pymdownx.arithmatex:
-      generic: true
+    - admonition
+    - pymdownx.highlight
+    - pymdownx.superfences
+    - abbr
+    - pymdownx.snippets
+    - footnotes
+    - toc:
+          toc_depth: 2
+          permalink: true
+    - pymdownx.arithmatex:
+          generic: true
 
 extra_javascript:
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    - https://polyfill.io/v3/polyfill.min.js?features=es6
+    - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

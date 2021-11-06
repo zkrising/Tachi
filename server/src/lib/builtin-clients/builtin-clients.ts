@@ -5,6 +5,9 @@ import { TachiAPIClientDocument, UserAuthLevels } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import fjsh from "fast-json-stable-hash";
 import CreateLogCtx from "lib/logger/logger";
+import { DatabaseSchemas } from "external/mongo/schemas";
+import { FormatPrError } from "utils/prudence";
+import p from "prudence";
 
 const logger = CreateLogCtx(__filename);
 
@@ -56,7 +59,7 @@ const KtchiDefaultClients: DefaultClients = [
 		apiKeyTemplate: JSON.stringify(
 			{
 				url: `${ServerConfig.OUR_URL}/ir/kshook`,
-				token: "%%TACHI_KEY",
+				token: "%%TACHI_KEY%%",
 				games: ["sv3c"],
 			},
 			null,
@@ -132,6 +135,13 @@ async function LoadClients(clients: DefaultClients) {
 			clientSecret: `CS${Random20Hex()}`,
 			author: 1,
 		};
+
+		try {
+			DatabaseSchemas["api-clients"](realClient);
+		} catch (err) {
+			logger.error(`Invalid API Client ${client.name}: ${FormatPrError(err)}.`);
+			continue;
+		}
 
 		// No replaceOne support in monk -- have to do this.
 		await db["api-clients"].remove({

@@ -36,17 +36,17 @@ const clientDataset: OAuth2ApplicationDocument[] = [
 	},
 ];
 
-t.test("GET /api/v1/oauth/clients", async (t) => {
+t.test("GET /api/v1/clients", async (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(async () => {
-		await db["oauth2-clients"].remove({});
-		await db["oauth2-clients"].insert(clientDataset);
+		await db["api-clients"].remove({});
+		await db["api-clients"].insert(clientDataset);
 	});
 
 	const cookie = await CreateFakeAuthCookie(mockApi);
 
 	t.test("Should retrieve your clients.", async (t) => {
-		const res = await mockApi.get("/api/v1/oauth/clients").set("Cookie", cookie);
+		const res = await mockApi.get("/api/v1/clients").set("Cookie", cookie);
 
 		t.equal(res.statusCode, 200);
 
@@ -80,12 +80,12 @@ t.test("GET /api/v1/oauth/clients", async (t) => {
 	});
 
 	t.test("Requires self-key level authentication.", async (t) => {
-		const res = await mockApi.get("/api/v1/oauth/clients");
+		const res = await mockApi.get("/api/v1/clients");
 
 		t.equal(res.statusCode, 401);
 
 		const res2 = await mockApi
-			.get("/api/v1/oauth/clients")
+			.get("/api/v1/clients")
 			.set("Authorization", "Bearer fake_api_token");
 
 		t.equal(res2.statusCode, 401);
@@ -96,14 +96,14 @@ t.test("GET /api/v1/oauth/clients", async (t) => {
 	t.end();
 });
 
-t.test("POST /api/v1/oauth/clients/create", async (t) => {
+t.test("POST /api/v1/clients/create", async (t) => {
 	t.beforeEach(ResetDBState);
 
 	const cookie = await CreateFakeAuthCookie(mockApi);
 
 	t.test("Should create a new client.", async (t) => {
 		const res = await mockApi
-			.post("/api/v1/oauth/clients/create")
+			.post("/api/v1/clients/create")
 			.send({
 				name: "Hello World",
 				redirectUri: "https://example.com/callback",
@@ -113,7 +113,7 @@ t.test("POST /api/v1/oauth/clients/create", async (t) => {
 
 		t.equal(res.statusCode, 200);
 
-		const dbRes = await db["oauth2-clients"].findOne({ clientID: res.body.body.clientID });
+		const dbRes = await db["api-clients"].findOne({ clientID: res.body.body.clientID });
 
 		t.not(dbRes, null, "Should be saved in the database.");
 
@@ -124,7 +124,7 @@ t.test("POST /api/v1/oauth/clients/create", async (t) => {
 
 	t.test("Should validate names to be between 3 and 80 characters.", async (t) => {
 		const res = await mockApi
-			.post("/api/v1/oauth/clients/create")
+			.post("/api/v1/clients/create")
 			.send({
 				name: "2",
 				redirectUri: "https://example.com/callback",
@@ -135,7 +135,7 @@ t.test("POST /api/v1/oauth/clients/create", async (t) => {
 		t.equal(res.statusCode, 400);
 
 		const res2 = await mockApi
-			.post("/api/v1/oauth/clients/create")
+			.post("/api/v1/clients/create")
 			.send({
 				name: "2".repeat(100),
 				redirectUri: "https://example.com/callback",
@@ -150,7 +150,7 @@ t.test("POST /api/v1/oauth/clients/create", async (t) => {
 
 	t.test("Should validate urls to be between 3 and 80 characters.", async (t) => {
 		const res = await mockApi
-			.post("/api/v1/oauth/clients/create")
+			.post("/api/v1/clients/create")
 			.send({
 				name: "Hello World",
 				redirectUri: "ftp://example.com/callback",
@@ -165,7 +165,7 @@ t.test("POST /api/v1/oauth/clients/create", async (t) => {
 
 	t.test("Should validate permissions.", async (t) => {
 		const res = await mockApi
-			.post("/api/v1/oauth/clients/create")
+			.post("/api/v1/clients/create")
 			.send({
 				name: "Hello World",
 				redirectUri: "http://example.com/callback",
@@ -182,7 +182,7 @@ t.test("POST /api/v1/oauth/clients/create", async (t) => {
 		for (let i = 0; i < ServerConfig.OAUTH_CLIENT_CAP; i++) {
 			// eslint-disable-next-line no-await-in-loop
 			await mockApi
-				.post("/api/v1/oauth/clients/create")
+				.post("/api/v1/clients/create")
 				.send({
 					name: "Hello World",
 					redirectUri: "https://example.com/callback",
@@ -192,7 +192,7 @@ t.test("POST /api/v1/oauth/clients/create", async (t) => {
 		}
 
 		const res = await mockApi
-			.post("/api/v1/oauth/clients/create")
+			.post("/api/v1/clients/create")
 			.send({
 				name: "Hello World",
 				redirectUri: "https://example.com/callback",
@@ -202,7 +202,7 @@ t.test("POST /api/v1/oauth/clients/create", async (t) => {
 
 		t.equal(res.statusCode, 400);
 
-		const dbCount = await db["oauth2-clients"].count({ author: 1 });
+		const dbCount = await db["api-clients"].count({ author: 1 });
 
 		t.equal(dbCount, ServerConfig.OAUTH_CLIENT_CAP);
 
@@ -212,11 +212,11 @@ t.test("POST /api/v1/oauth/clients/create", async (t) => {
 	t.end();
 });
 
-t.test("GET /api/v1/oauth/clients/:clientID", (t) => {
+t.test("GET /api/v1/clients/:clientID", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should return information about the client at that ID.", async (t) => {
-		const res = await mockApi.get("/api/v1/oauth/clients/OAUTH2_CLIENT_ID");
+		const res = await mockApi.get("/api/v1/clients/OAUTH2_CLIENT_ID");
 
 		t.strictSame(res.body.body, {
 			clientID: "OAUTH2_CLIENT_ID",
@@ -226,13 +226,15 @@ t.test("GET /api/v1/oauth/clients/:clientID", (t) => {
 			requestedPermissions: ["customise_profile"],
 			redirectUri: "https://example.com/callback",
 			webhookUri: null,
+			apiKeyTemplate: null,
+			apiKeyFilename: null,
 		});
 
 		t.end();
 	});
 
 	t.test("Should return 404 if client doesn't exist.", async (t) => {
-		const res = await mockApi.get("/api/v1/oauth/clients/BAD_CLIENT");
+		const res = await mockApi.get("/api/v1/clients/BAD_CLIENT");
 
 		t.equal(res.statusCode, 404);
 
@@ -242,18 +244,18 @@ t.test("GET /api/v1/oauth/clients/:clientID", (t) => {
 	t.end();
 });
 
-t.test("PATCH /api/v1/oauth/clients/:clientID", async (t) => {
+t.test("PATCH /api/v1/clients/:clientID", async (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(async () => {
-		await db["oauth2-clients"].remove({});
-		await db["oauth2-clients"].insert(clientDataset);
+		await db["api-clients"].remove({});
+		await db["api-clients"].insert(clientDataset);
 	});
 
 	const cookie = await CreateFakeAuthCookie(mockApi);
 
 	t.test("Should be able to modify a clients name.", async (t) => {
 		const res = await mockApi
-			.patch("/api/v1/oauth/clients/CLIENT_1")
+			.patch("/api/v1/clients/CLIENT_1")
 			.send({ name: "NEW NAME" })
 			.set("Cookie", cookie);
 
@@ -261,7 +263,7 @@ t.test("PATCH /api/v1/oauth/clients/:clientID", async (t) => {
 
 		t.equal(res.body.body.name, "NEW NAME");
 
-		const dbRes = await db["oauth2-clients"].findOne({
+		const dbRes = await db["api-clients"].findOne({
 			clientID: "CLIENT_1",
 		});
 
@@ -272,7 +274,7 @@ t.test("PATCH /api/v1/oauth/clients/:clientID", async (t) => {
 
 	t.test("Should be able to modify a clients webhookUri.", async (t) => {
 		const res = await mockApi
-			.patch("/api/v1/oauth/clients/CLIENT_1")
+			.patch("/api/v1/clients/CLIENT_1")
 			.send({ webhookUri: "https://example.com" })
 			.set("Cookie", cookie);
 
@@ -280,7 +282,7 @@ t.test("PATCH /api/v1/oauth/clients/:clientID", async (t) => {
 
 		t.equal(res.body.body.webhookUri, "https://example.com");
 
-		const dbRes = await db["oauth2-clients"].findOne({
+		const dbRes = await db["api-clients"].findOne({
 			clientID: "CLIENT_1",
 		});
 
@@ -291,14 +293,14 @@ t.test("PATCH /api/v1/oauth/clients/:clientID", async (t) => {
 
 	t.test("Must validate name to be between 3 and 80 characters.", async (t) => {
 		const res = await mockApi
-			.patch("/api/v1/oauth/clients/CLIENT_1")
+			.patch("/api/v1/clients/CLIENT_1")
 			.send({ name: "2" })
 			.set("Cookie", cookie);
 
 		t.equal(res.statusCode, 400);
 
 		const res2 = await mockApi
-			.patch("/api/v1/oauth/clients/CLIENT_1")
+			.patch("/api/v1/clients/CLIENT_1")
 			.send({ name: "2".repeat(100) })
 			.set("Cookie", cookie);
 
@@ -308,10 +310,7 @@ t.test("PATCH /api/v1/oauth/clients/:clientID", async (t) => {
 	});
 
 	t.test("Must provide name to modify.", async (t) => {
-		const res = await mockApi
-			.patch("/api/v1/oauth/clients/CLIENT_1")
-			.send({})
-			.set("Cookie", cookie);
+		const res = await mockApi.patch("/api/v1/clients/CLIENT_1").send({}).set("Cookie", cookie);
 
 		t.equal(res.statusCode, 400);
 
@@ -320,13 +319,13 @@ t.test("PATCH /api/v1/oauth/clients/:clientID", async (t) => {
 
 	t.test("Must be owner of client.", async (t) => {
 		const res = await mockApi
-			.patch("/api/v1/oauth/clients/CLIENT_3")
+			.patch("/api/v1/clients/CLIENT_3")
 			.send({ name: "foo" })
 			.set("Cookie", cookie);
 
 		t.equal(res.statusCode, 403);
 
-		const res2 = await mockApi.patch("/api/v1/oauth/clients/CLIENT_3").send({ name: "foo" });
+		const res2 = await mockApi.patch("/api/v1/clients/CLIENT_3").send({ name: "foo" });
 
 		t.equal(res2.statusCode, 401);
 
@@ -336,25 +335,25 @@ t.test("PATCH /api/v1/oauth/clients/:clientID", async (t) => {
 	t.end();
 });
 
-t.test("POST /api/v1/oauth/clients/:clientID/reset-secret", async (t) => {
+t.test("POST /api/v1/clients/:clientID/reset-secret", async (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(async () => {
-		await db["oauth2-clients"].remove({});
-		await db["oauth2-clients"].insert(clientDataset);
+		await db["api-clients"].remove({});
+		await db["api-clients"].insert(clientDataset);
 	});
 
 	const cookie = await CreateFakeAuthCookie(mockApi);
 
 	t.test("Should reset the client's secret.", async (t) => {
 		const res = await mockApi
-			.post("/api/v1/oauth/clients/CLIENT_1/reset-secret")
+			.post("/api/v1/clients/CLIENT_1/reset-secret")
 			.set("Cookie", cookie);
 
 		t.equal(res.statusCode, 200);
 
 		t.not(res.body.body.clientSecret, "SECRET_1", "Should return the new secret.");
 
-		const dbRes = await db["oauth2-clients"].findOne({
+		const dbRes = await db["api-clients"].findOne({
 			clientID: "CLIENT_1",
 		});
 
@@ -365,12 +364,12 @@ t.test("POST /api/v1/oauth/clients/:clientID/reset-secret", async (t) => {
 
 	t.test("Must be owner of client.", async (t) => {
 		const res = await mockApi
-			.post("/api/v1/oauth/clients/CLIENT_3/reset-secret")
+			.post("/api/v1/clients/CLIENT_3/reset-secret")
 			.set("Cookie", cookie);
 
 		t.equal(res.statusCode, 403);
 
-		const res2 = await mockApi.post("/api/v1/oauth/clients/CLIENT_3/reset-secret");
+		const res2 = await mockApi.post("/api/v1/clients/CLIENT_3/reset-secret");
 
 		t.equal(res2.statusCode, 401);
 
@@ -380,11 +379,11 @@ t.test("POST /api/v1/oauth/clients/:clientID/reset-secret", async (t) => {
 	t.end();
 });
 
-t.test("DELETE /api/v1/oauth/clients/:clientID", async (t) => {
+t.test("DELETE /api/v1/clients/:clientID", async (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(async () => {
-		await db["oauth2-clients"].remove({});
-		await db["oauth2-clients"].insert(clientDataset);
+		await db["api-clients"].remove({});
+		await db["api-clients"].insert(clientDataset);
 	});
 
 	const cookie = await CreateFakeAuthCookie(mockApi);
@@ -403,11 +402,11 @@ t.test("DELETE /api/v1/oauth/clients/:clientID", async (t) => {
 			},
 		] as APITokenDocument[]);
 
-		const res = await mockApi.delete("/api/v1/oauth/clients/CLIENT_1").set("Cookie", cookie);
+		const res = await mockApi.delete("/api/v1/clients/CLIENT_1").set("Cookie", cookie);
 
 		t.equal(res.statusCode, 200);
 
-		const dbRes = await db["oauth2-clients"].findOne({ clientID: "CLIENT_1" });
+		const dbRes = await db["api-clients"].findOne({ clientID: "CLIENT_1" });
 
 		t.equal(dbRes, null, "Should no longer exist.");
 
@@ -419,11 +418,11 @@ t.test("DELETE /api/v1/oauth/clients/:clientID", async (t) => {
 	});
 
 	t.test("Must be owner of client.", async (t) => {
-		const res = await mockApi.delete("/api/v1/oauth/clients/CLIENT_3").set("Cookie", cookie);
+		const res = await mockApi.delete("/api/v1/clients/CLIENT_3").set("Cookie", cookie);
 
 		t.equal(res.statusCode, 403);
 
-		const res2 = await mockApi.delete("/api/v1/oauth/clients/CLIENT_3");
+		const res2 = await mockApi.delete("/api/v1/clients/CLIENT_3");
 
 		t.equal(res2.statusCode, 401);
 

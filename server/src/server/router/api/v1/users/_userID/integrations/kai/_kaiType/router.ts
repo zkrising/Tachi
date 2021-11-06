@@ -1,21 +1,19 @@
 import { Router } from "express";
+import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import {
 	GetKaiTypeClientCredentials,
 	KaiTypeToBaseURL,
 } from "lib/score-import/import-types/common/api-kai/utils";
-import prValidate from "server/middleware/prudence-validate";
-import { ValidateKaiType } from "./middleware";
 import p from "prudence";
-import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { FormatUserDoc } from "utils/user";
-import { GetKaiAuth } from "utils/queries/auth";
-import { RequireSelfRequestFromUser } from "../../../middleware";
+import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import fetch from "utils/fetch";
-import { Random20Hex } from "utils/misc";
-import { Environment } from "lib/setup/config";
+import { GetKaiAuth } from "utils/queries/auth";
+import { FormatUserDoc } from "utils/user";
+import { RequireSelfRequestFromUser } from "../../../middleware";
+import { ValidateKaiType } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });
 

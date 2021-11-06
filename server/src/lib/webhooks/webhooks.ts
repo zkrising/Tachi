@@ -6,7 +6,7 @@ const logger = CreateLogCtx(__filename);
 
 // @todo make use of aggressive caching here?
 export async function GetWebhookUrlInfo() {
-	const urls = await db["oauth2-clients"].find(
+	const urls = await db["api-clients"].find(
 		{ webhookUri: { $ne: null } },
 		{ projection: { webhookUri: 1, clientSecret: 1 } }
 	);

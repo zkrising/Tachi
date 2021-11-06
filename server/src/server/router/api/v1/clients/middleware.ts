@@ -6,7 +6,7 @@ import { OAuth2ApplicationDocument } from "tachi-common";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 
 export const GetClientFromID: RequestHandler = async (req, res, next) => {
-	const client = await db["oauth2-clients"].findOne(
+	const client = await db["api-clients"].findOne(
 		{
 			clientID: req.params.clientID,
 		},

@@ -3,7 +3,6 @@ import db from "external/mongo/db";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { Random20Hex } from "utils/misc";
-import clientsRouter from "./clients/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -32,7 +31,7 @@ router.post(
 		code: "string",
 	}),
 	async (req, res) => {
-		const client = await db["oauth2-clients"].findOne({
+		const client = await db["api-clients"].findOne({
 			clientID: req.body.client_id,
 		});
 
@@ -113,7 +112,5 @@ router.post("/create-code", async (req, res) => {
 		body: doc,
 	});
 });
-
-router.use("/clients", clientsRouter);
 
 export default router;

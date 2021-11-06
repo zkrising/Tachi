@@ -1,15 +1,16 @@
 import { Router } from "express";
 import adminRouter from "./admin/router";
 import authRouter from "./auth/router";
+import clientsRouter from "./clients/router";
+import gamesRouter from "./games/router";
 import importRouter from "./import/router";
+import importsRouter from "./imports/router";
+import oauthRouter from "./oauth/router";
+import scoresRouter from "./scores/router";
+import searchRouter from "./search/router";
+import sessionsRouter from "./sessions/router";
 import statusRouter from "./status/router";
 import usersRouter from "./users/router";
-import gamesRouter from "./games/router";
-import searchRouter from "./search/router";
-import scoresRouter from "./scores/router";
-import sessionsRouter from "./sessions/router";
-import oauthRouter from "./oauth/router";
-import importsRouter from "./imports/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -24,6 +25,7 @@ router.use("/search", searchRouter);
 router.use("/scores", scoresRouter);
 router.use("/sessions", sessionsRouter);
 router.use("/oauth", oauthRouter);
+router.use("/clients", clientsRouter);
 
 /**
  * Return a JSON 404 response if an endpoint is hit that does not exist.

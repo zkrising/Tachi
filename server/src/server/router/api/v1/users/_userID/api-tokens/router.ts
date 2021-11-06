@@ -68,7 +68,7 @@ router.post(
 		let fromOAuth2Client;
 
 		if (req.body.clientID) {
-			const client = await db["oauth2-clients"].findOne(
+			const client = await db["api-clients"].findOne(
 				{
 					clientID: req.body.clientID,
 				},

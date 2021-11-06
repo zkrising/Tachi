@@ -24,6 +24,8 @@ t.test("#GetClientFromID", (t) => {
 				requestedPermissions: ["customise_profile"],
 				redirectUri: "https://example.com/callback",
 				webhookUri: null,
+				apiKeyTemplate: null,
+				apiKeyFilename: null,
 			},
 			"Should assign clientDoc with secret ommitted."
 		);

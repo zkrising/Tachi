@@ -429,7 +429,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		userID: p.isPositiveNonZeroInteger,
 		createdOn: p.isPositive,
 	}),
-	"oauth2-clients": prSchemaify({
+	"api-clients": prSchemaify({
 		clientID: "string",
 		clientSecret: "string",
 		name: "string",
@@ -437,6 +437,8 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		requestedPermissions: [p.isIn(Object.keys(AllPermissions))],
 		redirectUri: "string",
 		webhookUri: "?string",
+		apiKeyTemplate: "?string",
+		apiKeyFilename: "?string",
 	}),
 	"orphan-chart-queue": prSchemaify({
 		idString: p.isIn(allIDStrings),

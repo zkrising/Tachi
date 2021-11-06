@@ -1,6 +1,7 @@
 import db from "external/mongo/db";
+import { UserAuthLevels, APITokenDocument, TachiAPIClientDocument } from "tachi-common";
 import { ServerConfig } from "lib/setup/config";
-import { APITokenDocument, TachiAPIClientDocument } from "tachi-common";
+
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
@@ -114,6 +115,9 @@ t.test("POST /api/v1/clients/create", async (t) => {
 				name: "Hello World",
 				redirectUri: "https://example.com/callback",
 				permissions: ["customise_profile"],
+				webhookUri: null,
+				apiKeyTemplate: null,
+				apiKeyFilename: null,
 			})
 			.set("Cookie", cookie);
 
@@ -135,6 +139,9 @@ t.test("POST /api/v1/clients/create", async (t) => {
 				name: "2",
 				redirectUri: "https://example.com/callback",
 				permissions: ["customise_profile"],
+				webhookUri: null,
+				apiKeyTemplate: null,
+				apiKeyFilename: null,
 			})
 			.set("Cookie", cookie);
 
@@ -146,6 +153,9 @@ t.test("POST /api/v1/clients/create", async (t) => {
 				name: "2".repeat(100),
 				redirectUri: "https://example.com/callback",
 				permissions: ["customise_profile"],
+				webhookUri: null,
+				apiKeyTemplate: null,
+				apiKeyFilename: null,
 			})
 			.set("Cookie", cookie);
 
@@ -161,6 +171,9 @@ t.test("POST /api/v1/clients/create", async (t) => {
 				name: "Hello World",
 				redirectUri: "ftp://example.com/callback",
 				permissions: ["customise_profile"],
+				webhookUri: null,
+				apiKeyTemplate: null,
+				apiKeyFilename: null,
 			})
 			.set("Cookie", cookie);
 
@@ -176,6 +189,9 @@ t.test("POST /api/v1/clients/create", async (t) => {
 				name: "Hello World",
 				redirectUri: "http://example.com/callback",
 				permissions: ["permission_that_doesnt_exist"],
+				webhookUri: null,
+				apiKeyTemplate: null,
+				apiKeyFilename: null,
 			})
 			.set("Cookie", cookie);
 
@@ -185,6 +201,17 @@ t.test("POST /api/v1/clients/create", async (t) => {
 	});
 
 	t.test("Should cap a user at OAUTH_CLIENT_CAP.", async (t) => {
+		await db.users.update(
+			{
+				id: 1,
+			},
+			{
+				$set: {
+					authLevel: UserAuthLevels.USER,
+				},
+			}
+		);
+
 		for (let i = 0; i < ServerConfig.OAUTH_CLIENT_CAP; i++) {
 			// eslint-disable-next-line no-await-in-loop
 			await mockApi
@@ -193,6 +220,9 @@ t.test("POST /api/v1/clients/create", async (t) => {
 					name: "Hello World",
 					redirectUri: "https://example.com/callback",
 					permissions: ["customise_profile"],
+					webhookUri: null,
+					apiKeyTemplate: null,
+					apiKeyFilename: null,
 				})
 				.set("Cookie", cookie);
 		}
@@ -203,6 +233,9 @@ t.test("POST /api/v1/clients/create", async (t) => {
 				name: "Hello World",
 				redirectUri: "https://example.com/callback",
 				permissions: ["customise_profile"],
+				webhookUri: null,
+				apiKeyTemplate: null,
+				apiKeyFilename: null,
 			})
 			.set("Cookie", cookie);
 

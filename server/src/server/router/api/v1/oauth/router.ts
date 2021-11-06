@@ -73,7 +73,7 @@ router.post(
 			identifier: `${client.name} Token`,
 			// converts ["a","b"] to {a: true, b: true}.
 			permissions: Object.fromEntries(client.requestedPermissions.map((e) => [e, true])),
-			fromOAuth2Client: client.clientID,
+			fromAPIClient: client.clientID,
 		};
 
 		// Now we can actually register the api key (lol)

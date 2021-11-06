@@ -1260,9 +1260,9 @@ export interface APITokenDocument extends MongoDBDocument {
 	token: string | null;
 	identifier: string;
 	permissions: Partial<Record<APIPermissions, boolean>>;
-	// API Tokens may be created as a result of an oauth2 flow. This prop optionally
+	// API Tokens may be created as a result of a Tachi Client flow. This prop optionally
 	// stores that.
-	fromOAuth2Client?: string;
+	fromAPIClient?: string;
 }
 
 export interface ImportLockDocument extends MongoDBDocument {
@@ -1368,7 +1368,7 @@ export interface UserSettings {
 	};
 }
 
-export interface OAuth2ApplicationDocument {
+export interface TachiAPIClientDocument {
 	clientID: string;
 	clientSecret: string;
 	name: string;
@@ -1376,6 +1376,8 @@ export interface OAuth2ApplicationDocument {
 	requestedPermissions: APIPermissions[];
 	redirectUri: string;
 	webhookUri: null | string;
+	apiKeyTemplate: null | string;
+	apiKeyFilename: null | string;
 }
 
 export interface FervidexSettingsDocument {

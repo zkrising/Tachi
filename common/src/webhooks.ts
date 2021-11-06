@@ -1,3 +1,4 @@
+import { Game, Playtypes } from ".";
 import { GameClassSets } from "./game-classes";
 import { GoalImportStat, IDStrings, integer, MilestoneImportStat } from "./types";
 
@@ -11,6 +12,8 @@ export interface WebhookEventClassUpdateV1 {
 		set: GameClassSets[IDStrings];
 		old: integer | null;
 		new: integer | null;
+		game: Game;
+		playtype: Playtypes[Game];
 	};
 }
 
@@ -24,6 +27,8 @@ export interface WebhookEventGoalAchievedV1 {
 		goalID: string;
 		old: GoalImportStat;
 		new: GoalImportStat;
+		game: Game;
+		playtype: Playtypes[Game];
 	};
 }
 
@@ -37,6 +42,8 @@ export interface WebhookEventMilestoneAchievedV1 {
 		milestoneID: string;
 		old: MilestoneImportStat;
 		new: MilestoneImportStat;
+		game: Game;
+		playtype: Playtypes[Game];
 	};
 }
 

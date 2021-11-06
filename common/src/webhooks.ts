@@ -11,7 +11,7 @@ export interface WebhookEventClassUpdateV1 {
 		userID: integer;
 		set: GameClassSets[IDStrings];
 		old: integer | null;
-		new: integer | null;
+		new: integer;
 		game: Game;
 		playtype: Playtypes[Game];
 	};

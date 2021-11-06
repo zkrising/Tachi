@@ -70,7 +70,7 @@ This also uncalcs all score data for scores on the chart.
 
 ## Delete any Score
 
-This performs all the necessary checks to remove a score document aswell
+This performs all the necessary checks to remove a score document aswell.
 
 `POST /api/v1/admin/delete-score`
 

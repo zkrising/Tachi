@@ -60,7 +60,10 @@ GET /api/v1/clients
 | Property | Type | Description |
 | :: | :: | :: |
 | `name` | String | A string between 3 and 80 characters. The name for this client. |
-| `redirectUri` | String (Valid URI) | Must be a HTTP/HTTPS URL, This is where users will be sent to after clicking Yes on the prompt. |
+| `redirectUri` | Optional String (Valid URI) | Must be a HTTP/HTTPS URL, This is where users will be sent to after clicking Yes on the prompt. |
+| `webhookUri` | Optional String (Valid URI) | Must be a HTTP/HTTPS URL. Registers this URL as a URL that wants webhook events to be sent to it. Read more about webhooks [here](../webhooks/main.md). |
+| `apiKeyFormat` | Optional String | If present, this sets an expected format for the API Key in [Client File Flow](../../tachi-server/infrastructure/file-flow.md). Must contain %%TACHI_KEY%%. |
+| `apiKeyFilename` | Optional String | If present, this sets a filename fir [Client File Flow](../../tachi-server/infrastructure/file-flow.md). |
 | `permissions` | Array&lt;Permissions&gt; | An array of permissions this client requests. You can check all permissions [here](../auth.md). |
 
 ### Response
@@ -88,9 +91,12 @@ POST /api/v1/clients/create
 {
 	"name": "My Client",
 	"redirectUri": "https://example.com/callback",
+	"webhookUri": null,
 	"requestedPermissions": ["customise_profile"],
 	"clientID": "foobar",
-	"clientSecret": "secret_val"
+	"clientSecret": "secret_val",
+	"apiKeyFormat": null,
+	"apiKeyFilename": null
 }
 ```
 
@@ -122,11 +128,14 @@ GET /api/v1/clients/some_client_id
 #### Response
 ```json
 {
-	"name": "Some Client",
-	"requestedPermissions": ["customise_profile"],
-	"clientID": "some_client_id",
-	"author": 1,
+	"name": "My Client",
 	"redirectUri": "https://example.com/callback",
+	"webhookUri": null,
+	"requestedPermissions": ["customise_profile"],
+	"clientID": "foobar",
+	"clientSecret": "secret_val",
+	"apiKeyFormat": null,
+	"apiKeyFilename": null
 }
 ```
 
@@ -145,11 +154,16 @@ GET /api/v1/clients/some_client_id
 | Property | Type | Description |
 | :: | :: | :: |
 | `name` | String | A string between 3 and 80 characters. |
+| `webhookUri` | String | A new webhookUri. |
+| `redirectUri` | String | A new redirectUri. |
+| `apiKeyFormat` | String | A new apiKeyFormat. |
+| `apiKeyFilename` | String | A new apiKeyFilename. |
+
 
 !!! note
-	This is the only modifiable property of an OAuth2 Client.
+	If you need to change permissions, you must make another client.
 
-	If you need to change permissions, you should make another client.
+	Also, all the above properties are optional. If not present, they will not be changed.
 
 ### Response
 
@@ -238,15 +252,3 @@ None.
 ### Response
 
 Empty Object.
-
-### Example
-
-#### Request
-```
-DELETE /api/v1/clients/some_client_id
-```
-
-#### Response
-```json
-{}
-```

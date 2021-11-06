@@ -64,6 +64,9 @@ nav:
                 - "api/routes/oauth2.md"
                 - "api/routes/clients.md"
 
+          - Webhooks:
+                - "api/webhooks/main.md"
+
     - Tachi Server Reference:
           - "tachi-server/overview.md"
           - "tachi-server/contributing.md"

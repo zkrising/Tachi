@@ -37,7 +37,10 @@ export default function BeatorajaIRPage() {
 				</li>
 				<li>Open the game options, and navigate to the IR section.</li>
 				<li>Select {TachiConfig.name} IR.</li>
-				<li>Get an API token for the IR by clicking this link.</li>
+				<li>
+					Get an API token for the IR by clicking{" "}
+					<ExternalLink href="/client-file-flow/CXBeatorajaIR">this link</ExternalLink>.
+				</li>
 				<li>
 					Place the API token in the password field. The username field is ignored - you
 					can leave it empty or fill it out for completeness' sake.

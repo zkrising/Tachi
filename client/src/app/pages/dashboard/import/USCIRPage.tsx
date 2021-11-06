@@ -19,8 +19,9 @@ export default function USCIRPage() {
 					Fill out IR Base URL with <code>{ToServerURL("/ir/usc")}</code>.
 				</li>
 				<li>
-					Grab an API Token from <ExternalLink>here</ExternalLink>, and place it in the
-					API Token field.
+					Grab an API Token from{" "}
+					<ExternalLink href="/client-file-flow/CXUSCIR">here</ExternalLink>, and place it
+					in the API Token field.
 				</li>
 				<li>That's it! Your scores will now automatically upload to the server.</li>
 			</ol>

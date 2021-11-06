@@ -1,11 +1,11 @@
 import { ErrorPage } from "app/pages/ErrorPage";
-import ManualAPIKeyPage from "app/pages/ManualAPIKeyPage";
+import ClientFileFlowPage from "app/pages/ClientFileFlowPage";
 import CenterLayoutPage from "components/layout/CenterLayoutPage";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 
-export default function OAuthRoutes() {
+export default function ClientFileFlowRoutes() {
 	const { user } = useContext(UserContext);
 
 	if (!user) {
@@ -19,9 +19,9 @@ export default function OAuthRoutes() {
 
 	return (
 		<Switch>
-			<Route exact path="/oauth/manual-apikey/:clientID">
+			<Route exact path="/client-file-flow/:clientID">
 				<CenterLayoutPage>
-					<ManualAPIKeyPage />
+					<ClientFileFlowPage />
 				</CenterLayoutPage>
 			</Route>
 

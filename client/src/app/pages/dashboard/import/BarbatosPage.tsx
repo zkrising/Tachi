@@ -24,7 +24,8 @@ export default function BarbatosPage() {
 					<ExternalLink href="https://client.fervidex.net/latest.zip">here</ExternalLink>.
 				</li>
 				<li>
-					Download your config file <ExternalLink href="#">here</ExternalLink>. <br />
+					Download your config file{" "}
+					<ExternalLink href="/client-file-flow/CXBarbatos">here</ExternalLink>. <br />
 					<b>This file contains an API Key, which is meant to be kept secret!</b>
 				</li>
 				<li>

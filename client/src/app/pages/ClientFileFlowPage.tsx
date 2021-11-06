@@ -3,20 +3,21 @@ import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
+import { TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { APITokenDocument, OAuth2ApplicationDocument } from "tachi-common";
+import { APITokenDocument, TachiAPIClientDocument } from "tachi-common";
 import { APIFetchV1 } from "util/api";
 
-export default function ManualAPIKeyPage() {
+export default function ClientFileFlowPage() {
 	const { clientID } = useParams<{ clientID: string }>();
-	const [createdKey, setCreatedKey] = useState<APITokenDocument | null>(null);
+	const [createdKey, setCreatedKey] = useState<string | null>(null);
 	const [showKey, setShowKey] = useState(false);
 
 	const { user } = useContext(UserContext);
 
-	const { data, isLoading, error } = useApiQuery<Omit<OAuth2ApplicationDocument, "clientSecret">>(
-		`/oauth/clients/${clientID}`
+	const { data, isLoading, error } = useApiQuery<Omit<TachiAPIClientDocument, "clientSecret">>(
+		`/clients/${clientID}`
 	);
 
 	if (error) {
@@ -74,7 +75,14 @@ export default function ManualAPIKeyPage() {
 								);
 
 								if (res.success) {
-									setCreatedKey(res.body);
+									setCreatedKey(
+										data.apiKeyTemplate
+											? data.apiKeyTemplate.replace(
+													"%%TACHI_KEY%%",
+													res.body.token!
+											  )
+											: res.body.token
+									);
 								}
 							}}
 						>
@@ -89,14 +97,33 @@ export default function ManualAPIKeyPage() {
 						<Divider />
 						{showKey ? (
 							<>
-								<code>{createdKey.token}</code>
+								<code>{createdKey}</code>
 								<br />
 								You should copy this token back to the application that requested
 								this.
 							</>
+						) : data.apiKeyFilename ? (
+							<>
+								<a
+									className="btn btn-info"
+									download={data.apiKeyFilename}
+									href={`data:text/plain;base64,${window.btoa(createdKey)}`}
+								>
+									Download {data.apiKeyFilename}
+								</a>
+								<br />
+								<Link className="mt-8" style={{ fontSize: "0.9rem" }} to="/">
+									Go Back to {TachiConfig.name}
+								</Link>
+							</>
 						) : (
-							<button className="btn btn-danger" onClick={() => setShowKey(true)}>
-								Reveal Key
+							<button
+								className="btn btn-danger"
+								onClick={() => {
+									setShowKey(true);
+								}}
+							>
+								Reveal key
 							</button>
 						)}
 					</div>

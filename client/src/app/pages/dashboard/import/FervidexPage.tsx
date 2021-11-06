@@ -1,7 +1,6 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
-import Muted from "components/util/Muted";
 import { TachiConfig } from "lib/config";
 import React from "react";
 
@@ -24,7 +23,8 @@ export default function FervidexPage() {
 					<ExternalLink href="https://client.fervidex.net/latest.zip">Here</ExternalLink>.
 				</li>
 				<li>
-					Download your <code>fervidex.json</code> config file here. <br />
+					Download your <code>fervidex.json</code> config file{" "}
+					<ExternalLink href="/client-file-flow/CXFervidex">here</ExternalLink>. <br />
 					<b>This config file contains an API Key, which should be kept secret!</b>.
 				</li>
 				<li>

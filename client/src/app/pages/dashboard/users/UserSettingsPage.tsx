@@ -173,21 +173,21 @@ function ImageForm({ reqUser }: { reqUser: PublicUserDocument }) {
 					multiple={false}
 					onChange={e => setBanner(e.target.files![0])}
 				/>
-				<div className="d-flex justify-content-center mt-4">
-					<img
-						className="rounded"
-						style={{
-							width: "57.6vw",
-							height: "32.4vh",
-							boxShadow: "0px 0px 10px 0px #000000",
-						}}
-						src={
+				<div
+					className="d-flex justify-content-center mt-4 rounded"
+					style={{
+						height: "200px",
+						boxShadow: "0px 0px 10px 0px #000000",
+						backgroundRepeat: "no-repeat",
+						backgroundSize: "cover",
+						backgroundPosition: "center",
+						backgroundImage: `url(${
 							banner
 								? URL.createObjectURL(banner)
 								: ToAPIURL(`/users/${reqUser.id}/banner`)
-						}
-					/>
-				</div>
+						})`,
+					}}
+				/>
 				<FileUploadController file={banner} reqUser={reqUser} type="banner" />
 			</Form.Group>
 		</div>

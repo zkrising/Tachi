@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ElementType } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { SetState } from "types/react";
 
@@ -7,11 +7,13 @@ export default function FormInput({
 	value,
 	setValue,
 	placeholder,
+	as,
 }: {
 	fieldName: string;
 	value: string;
 	setValue: SetState<string>;
 	placeholder?: string;
+	as?: ElementType;
 }) {
 	return (
 		<InputGroup>
@@ -19,6 +21,7 @@ export default function FormInput({
 				<InputGroup.Text>{fieldName}</InputGroup.Text>
 			</InputGroup.Append>
 			<Form.Control
+				as={as}
 				placeholder={placeholder}
 				value={value}
 				onChange={e => setValue(e.target.value)}

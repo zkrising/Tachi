@@ -1,19 +1,18 @@
-import Divider from "components/util/Divider";
-import React, { useContext, useState } from "react";
-import { PublicUserDocument } from "tachi-common";
-import ProfilePicture from "./ProfilePicture";
 import Navbar from "components/nav/Navbar";
 import NavItem from "components/nav/NavItem";
-import ProfileBadges from "./ProfileBadges";
-import { UserContext } from "context/UserContext";
-import Muted from "components/util/Muted";
-import { FormatDate, FormatDuration, FormatTime, MillisToSince } from "util/time";
-import Icon from "components/util/Icon";
+import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
-import { NO_OP } from "util/misc";
+import Icon from "components/util/Icon";
+import Muted from "components/util/Muted";
+import { UserContext } from "context/UserContext";
+import React, { useContext, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { APIFetchV1 } from "util/api";
+import { PublicUserDocument } from "tachi-common";
 import { SetState } from "types/react";
+import { APIFetchV1 } from "util/api";
+import { FormatDate } from "util/time";
+import ProfileBadges from "./ProfileBadges";
+import ProfilePicture from "./ProfilePicture";
 
 export function UserHeaderBody({ reqUser }: { reqUser: PublicUserDocument }) {
 	function ConditionalSocialMediaRender({

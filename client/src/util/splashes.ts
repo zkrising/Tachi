@@ -1,3 +1,6 @@
+import { mode } from "lib/config";
+import { FormatDate } from "./time";
+
 export const neutralSplashes = ["A Rhythm Game Score Manager", "The Rhythm Game Score Manager"];
 
 export const loggedInSplashes = [
@@ -76,6 +79,9 @@ export const loggedInSplashes = [
 	"Brought by GameMasterAnthony",
 	"bwhæhæhææhæhhææhæh",
 	"Maximal opinions and Minimal evidence",
+	"Who is the scrimbler bimbler?",
+	"You wish you know who the hibble gibble gobbler was.",
+	`The current day is ${FormatDate(Date.now())}, probably.`,
 ];
 
 // Stuff that's bad for the kids, you know?
@@ -83,6 +89,7 @@ export const contentiousSplashes = [
 	"Formerly Chucks",
 	"Node.js Is Bad Ass Rock Star Tech",
 	"i'm obligated to ask for you to seek immediate psychological attention",
-	"Is IIDX still a good game or are you all basically stupid?",
+	`Is ${mode === "ktchi" ? "IIDX" : "BMS"} still a good game or are you all basically stupid?`,
 	"Please do not reply to or quote my posts in the future.",
+	"Is this your IP? (178.62.116.150)",
 ];

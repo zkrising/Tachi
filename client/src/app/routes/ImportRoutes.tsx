@@ -5,6 +5,7 @@ import BeatorajaIRPage from "app/pages/dashboard/import/BeatorajaIRPage";
 import FervidexPage from "app/pages/dashboard/import/FervidexPage";
 import IIDXEamCSVPage from "app/pages/dashboard/import/IIDXEamCSVPage";
 import ImportPage from "app/pages/dashboard/import/ImportPage";
+import KsHookPage from "app/pages/dashboard/import/KsHookPage";
 import LR2DBPage from "app/pages/dashboard/import/LR2DBPage";
 import MerJSONPage from "app/pages/dashboard/import/MerJSONPage";
 import SSSXMLPage from "app/pages/dashboard/import/SSSXMLPage";
@@ -88,6 +89,10 @@ export default function ImportRoutes() {
 							<Route exact path="/dashboard/import/barbatos">
 								<BarbatosPage />
 							</Route>
+							<Route exact path="/dashboard/import/ks-hook">
+								<KsHookPage />
+							</Route>
+
 							<Route exact path="/dashboard/import/iidx-flo">
 								<KAIIntegrationPage
 									hash="6f64b82107cea90aa4c51a33705cd57c1883c8cdc22a634730ca461a431744b3"
@@ -99,7 +104,7 @@ export default function ImportRoutes() {
 							</Route>
 							<Route exact path="/dashboard/import/iidx-eag">
 								<KAIIntegrationPage
-									hash="7745e8a7f20d9493d537df507124d8d719bf1d32afcd3cf4f94af53b3dcd7ac9"
+									hash="0451a33ffc7f8b0c089450d842efb8b7099e22a2df2251ae4e6d9ec1b3cb4a5f"
 									clientID={process.env.REACT_APP_EAG_CLIENT_ID ?? ""}
 									redirectUri={`${window.location.origin}/oauth2-callback/eag`}
 									kaiType="EAG"

@@ -24,6 +24,10 @@ export default function DashboardRoutes() {
 					<Redirect to="/dashboard" />
 				</Route>
 
+				<Route exact path="/dashboard/games">
+					<Redirect to="/dashboard" />
+				</Route>
+
 				<Route path="/dashboard/users/:userID">
 					<UserRoutes />
 				</Route>

@@ -5,6 +5,7 @@ import { RFA } from "util/misc";
 import { TachiConfig } from "lib/config";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import { UserContext } from "context/UserContext";
+import Divider from "components/util/Divider";
 
 export default function CreditsPage() {
 	useSetSubheader("Credits");
@@ -38,6 +39,15 @@ export default function CreditsPage() {
 					"To be honest, we had a surplus of monkeys and typewriters."
 				)}
 			</p>
+			<Divider />
+			<p>
+				If you want to support {TachiConfig.name} development, you can donate to the Lead
+				Dev's{" "}
+				<ExternalLink href="https://patreon.com/zkldi">Patreon (Subscription)</ExternalLink>{" "}
+				or <ExternalLink href="https://ko-fi.com/zkldi">Ko-Fi (One-Time)</ExternalLink>.
+			</p>
+			<Divider />
+
 			<div className="mt-4">
 				<h1>
 					De
@@ -130,6 +140,9 @@ export default function CreditsPage() {
 					</li>
 					<li>
 						{a("Barbatos", "SDVX Black Magic")}: <strong>Arm1stice</strong>
+					</li>
+					<li>
+						{a("KsHook", "Konaste Black Magic")}: <strong>Emma</strong>
 					</li>
 					<li>
 						{a("APIs, Databasing", "All Black Magic")}: <strong>Felix</strong>

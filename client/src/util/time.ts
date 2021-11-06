@@ -1,5 +1,5 @@
-import { DateTime, Duration } from "luxon";
 import humaniseDuration from "humanize-duration";
+import { DateTime } from "luxon";
 
 export function MillisToSince(ms: number) {
 	return DateTime.fromMillis(ms).toRelative();

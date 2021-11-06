@@ -10,7 +10,7 @@ import ResetPasswordPage from "app/pages/ResetPasswordPage";
 import CenterPage from "components/util/CenterPage";
 import { ClientConfig } from "lib/config";
 import MainPageTitleContainer from "components/util/MainPageTitleContainer";
-import OAuthRoutes from "./OAuthRoutes";
+import ClientFileFlowRoutes from "./ClientFileFlowRoutes";
 import OAuth2CallbackRoutes from "./OAuth2CallbackRoutes";
 
 /**
@@ -39,8 +39,8 @@ export function Routes() {
 			<Route path="/oauth2-callback">
 				<OAuth2CallbackRoutes />
 			</Route>
-			<Route path="/oauth">
-				<OAuthRoutes />
+			<Route path="/client-file-flow">
+				<ClientFileFlowRoutes />
 			</Route>
 
 			<Route exact path="/login">

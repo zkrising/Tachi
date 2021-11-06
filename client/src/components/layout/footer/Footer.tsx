@@ -24,14 +24,16 @@ export function Footer() {
 						>
 							Credits
 						</Link>
-						<a
-							href="#"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="nav-link px-3"
-						>
-							Discord
-						</a>
+						{process.env.REACT_APP_DISCORD && (
+							<a
+								href={process.env.REACT_APP_DISCORD}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="nav-link px-3"
+							>
+								Discord
+							</a>
+						)}
 						<a
 							href="https://github.com/tng-dev/tachi-server"
 							target="_blank"

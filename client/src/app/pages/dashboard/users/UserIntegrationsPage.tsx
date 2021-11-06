@@ -1,6 +1,7 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import ApiError from "components/util/ApiError";
+import DebugContent from "components/util/DebugContent";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import FormInput from "components/util/FormInput";
@@ -11,11 +12,11 @@ import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { mode, TachiConfig } from "lib/config";
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Col, Form, InputGroup, Modal, Row } from "react-bootstrap";
+import { Alert, Button, Col, Form, Modal, Row } from "react-bootstrap";
 import {
 	APIPermissions,
 	APITokenDocument,
-	OAuth2ApplicationDocument,
+	TachiAPIClientDocument,
 	PublicUserDocument,
 } from "tachi-common";
 import { SetState } from "types/react";
@@ -49,7 +50,7 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserD
 						</SelectButton>
 						<SelectButton value={page} setValue={setPage} id="oauth-clients">
 							<Icon type="robot" />
-							My OAuth Clients
+							My API Clients
 						</SelectButton>
 					</div>
 					<Divider />
@@ -72,19 +73,21 @@ function OAuthClientPage() {
 	return (
 		<Row className="text-center justify-content-center">
 			<Col xs={12}>
-				<h3>OAuth Clients</h3>
+				<h3>API Clients</h3>
 				<Alert variant="info" style={{ color: "black" }}>
 					This page is for programmers who want to make their own things that interface
 					with {TachiConfig.name}.
 					<br />
 					You can read the documentation{" "}
-					<ExternalLink style={{ color: "white" }} href="#">
+					<ExternalLink
+						style={{ color: "white" }}
+						href="https://tachi.readthedocs.io/en/latest/tachi-server/infrastructure/api-clients/"
+					>
 						here
 					</ExternalLink>
 					!
 				</Alert>
 				<Muted>Register your own clients for integrating with {TachiConfig.name}.</Muted>
-				<Divider />
 			</Col>
 			<Col xs={12}>
 				<OAuthClientInfo />
@@ -94,9 +97,9 @@ function OAuthClientPage() {
 }
 
 function OAuthClientInfo() {
-	const { data, isLoading, error } = useApiQuery<OAuth2ApplicationDocument[]>("/oauth/clients");
+	const { data, isLoading, error } = useApiQuery<TachiAPIClientDocument[]>("/clients");
 
-	const [clients, setClients] = useState<OAuth2ApplicationDocument[]>([]);
+	const [clients, setClients] = useState<TachiAPIClientDocument[]>([]);
 
 	useEffect(() => {
 		setClients(data ?? []);
@@ -113,7 +116,7 @@ function OAuthClientInfo() {
 	if (clients.length === 0) {
 		return (
 			<>
-				<Muted>You don't have any OAuth Clients.</Muted>
+				<Muted>You don't have any API Clients.</Muted>
 				<Divider />
 				<CreateNewOAuthClient setClients={setClients} />
 			</>
@@ -136,14 +139,13 @@ function OAuthClientInfo() {
 	);
 }
 
-function CreateNewOAuthClient({
-	setClients,
-}: {
-	setClients: SetState<OAuth2ApplicationDocument[]>;
-}) {
+function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPIClientDocument[]> }) {
 	const [show, setShow] = useState(false);
 	const [name, setName] = useState("");
-	const [url, setUrl] = useState("");
+	const [redirectUri, setRedirectUri] = useState("");
+	const [webhookUri, setWebhookUri] = useState("");
+	const [apiKeyFilename, setApiKeyFilename] = useState("");
+	const [apiKeyTemplate, setApiKeyTemplate] = useState("");
 	const [permissions, setPermissions] = useState<APIPermissions[]>([]);
 
 	return (
@@ -161,7 +163,7 @@ function CreateNewOAuthClient({
 							e.preventDefault();
 
 							const res = await APIFetchV1(
-								"/oauth/clients/create",
+								"/clients/create",
 								{
 									method: "POST",
 									headers: {
@@ -169,8 +171,11 @@ function CreateNewOAuthClient({
 									},
 									body: JSON.stringify({
 										name,
-										redirectUri: url,
+										redirectUri: redirectUri || null,
 										permissions,
+										apiKeyTemplate: apiKeyTemplate || null,
+										apiKeyFilename: apiKeyFilename || null,
+										webhookUri: webhookUri || null,
 									}),
 								},
 								true,
@@ -190,7 +195,7 @@ function CreateNewOAuthClient({
 								value={name}
 								className="form-control"
 								onChange={e => setName(e.target.value)}
-								placeholder="My OAuth Service"
+								placeholder="My API Client"
 							/>
 						</div>
 						<Muted>
@@ -203,15 +208,64 @@ function CreateNewOAuthClient({
 								<span className="input-group-text">Redirect URI</span>
 							</div>
 							<input
-								value={url}
+								value={redirectUri}
 								className="form-control"
-								onChange={e => setUrl(e.target.value)}
+								onChange={e => setRedirectUri(e.target.value)}
 								placeholder="https://example.com/callback"
 							/>
 						</div>
 						<Muted>
 							This is the URL {TachiConfig.name} will redirect to as part of the OAuth
 							flow.
+						</Muted>
+						<Divider />
+						<FormInput
+							fieldName="Webhook Uri"
+							value={webhookUri}
+							setValue={setWebhookUri}
+							placeholder="https://example.com/webhook"
+						/>
+						<Muted>
+							This is the URL {TachiConfig.name} will send webhook info to. Leave this
+							blank to not recieve webhook events.
+						</Muted>
+						<Divider />
+						<FormInput
+							as="textarea"
+							fieldName="File Template"
+							value={apiKeyTemplate}
+							setValue={setApiKeyTemplate}
+							placeholder={JSON.stringify({ token: "%%TACHI_KEY%%" }, null, "\t")}
+						/>
+						<Muted>
+							In what format should a generated API Key be shown to the user? This
+							only applies to Client File Flow. <code>%%TACHI_KEY%%</code> will be
+							replaced with the generated key. Read more about client file flow{" "}
+							<ExternalLink href="https://tachi.readthedocs.io/en/latest/tachi-server/infrastructure/file-flow/">
+								here
+							</ExternalLink>
+							.
+							<br />
+							Leave this empty to spit the key out directly.
+						</Muted>
+						{apiKeyTemplate !== "" && !apiKeyTemplate.includes("%%TACHI_KEY%%") && (
+							<>
+								<br />
+								<span className="text-danger">
+									No %%TACHI_KEY%% detected in file template. Please add one!
+								</span>
+							</>
+						)}
+						<Divider />
+						<FormInput
+							fieldName="File Template"
+							value={apiKeyFilename}
+							setValue={setApiKeyFilename}
+							placeholder="my-service-config.json"
+						/>
+						<Muted>
+							If this is not empty, Client File Flow will result in a file of this
+							name being downloaded (in the above format).
 						</Muted>
 						<Divider />
 						<h4>Permissions</h4>
@@ -250,9 +304,9 @@ function CreateNewOAuthClient({
 }
 
 interface OAuthClientProps {
-	client: OAuth2ApplicationDocument;
-	clients: OAuth2ApplicationDocument[];
-	setClients: SetState<OAuth2ApplicationDocument[]>;
+	client: TachiAPIClientDocument;
+	clients: TachiAPIClientDocument[];
+	setClients: SetState<TachiAPIClientDocument[]>;
 }
 
 function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
@@ -263,6 +317,8 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 
 	return (
 		<div key={client.clientID} className="col-12">
+			<Divider />
+
 			<h2 className="mb-4">{client.name}</h2>
 			<div className="text-left">
 				<h5>
@@ -278,11 +334,28 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 					Permissions: <code>{client.requestedPermissions.join(", ")}</code>
 				</h5>
 				<h5>
-					Redirect Uri: <code>{client.redirectUri}</code>
+					Redirect Uri: <code>{client.redirectUri ?? "No Redirect URI"}</code>
 				</h5>
 				<h5>
 					Webhook Uri: <code>{client.webhookUri ?? "No Webhook URI"}</code>
 				</h5>
+				<h5>
+					Download Filename: <code>{client.apiKeyFilename ?? "No Filename"}</code>
+				</h5>
+				<h5>
+					File Format:{" "}
+					<textarea
+						readOnly
+						className="w-100 mt-2 text-monospace"
+						value={client.apiKeyTemplate ?? "%%TACHI_KEY%%"}
+					/>
+				</h5>
+				<h6>
+					Client File Flow Link: <br />
+					<code>
+						{window.location.origin}/client-file-flow/{client.clientID}
+					</code>
+				</h6>
 			</div>
 
 			<Divider />
@@ -306,8 +379,8 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 				<div className="mt-8">
 					<Button
 						onClick={async () => {
-							const res = await APIFetchV1<OAuth2ApplicationDocument>(
-								`/oauth/clients/${client.clientID}/reset-secret`,
+							const res = await APIFetchV1<TachiAPIClientDocument>(
+								`/clients/${client.clientID}/reset-secret`,
 								{
 									method: "POST",
 								},
@@ -349,8 +422,6 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 				</div>
 			)}
 
-			<Divider />
-
 			<EditClientModal
 				{...{ client, setClients, clients, show: editModalShow, setShow: setEditModalShow }}
 			/>
@@ -360,7 +431,7 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 					<Modal.Title>Seriously, are you really sure?</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					All keys ever created for this OAuth Client will be deleted.
+					All keys ever created for this API Client will be deleted.
 					<br />
 					<strong className="text-danger">
 						ALL USERS USING THIS APPLICATION WILL NO LONGER BE ABLE TO USE THE
@@ -372,7 +443,7 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 							variant="danger"
 							onClick={async () => {
 								const res = await APIFetchV1(
-									`/oauth/clients/${client.clientID}`,
+									`/clients/${client.clientID}`,
 									{
 										method: "DELETE",
 									},
@@ -418,8 +489,8 @@ function EditClientModal({
 					onSubmit={async e => {
 						e.preventDefault();
 
-						const res = await APIFetchV1<OAuth2ApplicationDocument>(
-							`/oauth/clients/${client.clientID}`,
+						const res = await APIFetchV1<TachiAPIClientDocument>(
+							`/clients/${client.clientID}`,
 							{
 								method: "PATCH",
 								headers: {
@@ -452,7 +523,7 @@ function EditClientModal({
 						fieldName="Client Name"
 						value={name}
 						setValue={setName}
-						placeholder="My OAuth Client"
+						placeholder="My API Client"
 					/>
 					<Divider />
 					<FormInput
@@ -474,8 +545,10 @@ function EditClientModal({
 					/>
 					<Muted>
 						Where to send webhook events to. Please read the{" "}
-						<ExternalLink href="#">Webhook Documentation</ExternalLink> before using
-						this.
+						<ExternalLink href="https://tachi.readthedocs.io/en/latest/api/webhooks/main/">
+							Webhook Documentation
+						</ExternalLink>{" "}
+						before using this, as there are necessary security precautions.
 					</Muted>
 
 					<Divider />
@@ -498,7 +571,7 @@ function IntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
 		);
 	}
 
-	const [page, setPage] = useState<"fervidex" | "arc" | "flo" | "eag" | "min">("fervidex");
+	const [page, setPage] = useState<"fervidex" | "arc">("fervidex");
 
 	return (
 		<Row className="text-center justify-content-center">
@@ -517,15 +590,6 @@ function IntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
 					</SelectButton>
 					<SelectButton value={page} setValue={setPage} id="arc">
 						ARC
-					</SelectButton>
-					<SelectButton value={page} setValue={setPage} id="flo">
-						FLO
-					</SelectButton>
-					<SelectButton value={page} setValue={setPage} id="eag">
-						EAG
-					</SelectButton>
-					<SelectButton value={page} setValue={setPage} id="min">
-						MIN
 					</SelectButton>
 				</div>
 				<Divider />
@@ -704,9 +768,7 @@ function APIKeyRow({
 			<Divider />
 			<h4>{apiKey.identifier}</h4>
 			{show ? (
-				<code style={{ fontSize: "2rem" }} onClick={() => setShow(false)}>
-					{apiKey.token}
-				</code>
+				<code style={{ fontSize: "2rem" }}>{apiKey.token}</code>
 			) : (
 				<code style={{ fontSize: "2rem" }} onClick={() => setShow(true)}>
 					Sensitive Information. Click to reveal.

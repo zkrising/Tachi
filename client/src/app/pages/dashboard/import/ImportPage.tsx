@@ -141,6 +141,12 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				key="Barbatos"
 			/>,
 			<ImportInfoCard
+				name="Konaste Hook"
+				href="ks-hook"
+				desc="Automatically import scores from SDVX 3 Konaste!"
+				key="Konaste Hook"
+			/>,
+			<ImportInfoCard
 				name="FLO Integration"
 				href="sdvx-flo"
 				desc="Pull your SDVX scores from the FLO Network."

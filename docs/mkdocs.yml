@@ -81,6 +81,7 @@ nav:
                 - "tachi-server/infrastructure/logging.md"
                 - "tachi-server/infrastructure/branches.md"
                 - "tachi-server/infrastructure/versions.md"
+                - "tachi-server/infrastructure/api-clients.md"
                 - "tachi-server/infrastructure/oauth2.md"
                 - "tachi-server/infrastructure/file-flow.md"
 

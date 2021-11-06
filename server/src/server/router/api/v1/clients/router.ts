@@ -6,7 +6,7 @@ import db from "external/mongo/db";
 import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
 import { DedupeArr, DeleteUndefinedProps, IsValidURL, Random20Hex } from "utils/misc";
 import CreateLogCtx from "lib/logger/logger";
-import { APIPermissions, TachiAPIClientDocument } from "tachi-common";
+import { APIPermissions, TachiAPIClientDocument, UserAuthLevels } from "tachi-common";
 import { AllPermissions } from "server/middleware/auth";
 import { ServerConfig } from "lib/setup/config";
 import { FormatUserDoc } from "utils/user";
@@ -61,10 +61,10 @@ router.post(
 	"/create",
 	prValidate({
 		name: p.isBoundedString(3, 80),
-		redirectUri: "*string",
-		webhookUri: "*string",
+		redirectUri: "?string",
+		webhookUri: "?string",
 		apiKeyTemplate: (self) => {
-			if (self === undefined) {
+			if (self === null) {
 				return true;
 			}
 
@@ -78,7 +78,7 @@ router.post(
 
 			return true;
 		},
-		apiKeyFilename: "*string",
+		apiKeyFilename: "?string",
 		permissions: [p.isIn(Object.keys(AllPermissions))],
 	}),
 	async (req, res) => {
@@ -93,10 +93,14 @@ router.post(
 			author: req.session.tachi.user.id,
 		});
 
-		if (existingClients.length >= ServerConfig.OAUTH_CLIENT_CAP) {
+		// Note: Admins are excluded from the API client cap.
+		if (
+			req.session.tachi.user.authLevel !== UserAuthLevels.ADMIN &&
+			existingClients.length >= ServerConfig.OAUTH_CLIENT_CAP
+		) {
 			return res.status(400).json({
 				success: false,
-				description: `You have created too many OAuth2 clients. The current cap is ${ServerConfig.OAUTH_CLIENT_CAP}.`,
+				description: `You have created too many API clients. The current cap is ${ServerConfig.OAUTH_CLIENT_CAP}.`,
 			});
 		}
 
@@ -109,14 +113,14 @@ router.post(
 			});
 		}
 
-		if (req.body.redirectUri && !IsValidURL(req.body.redirectUri)) {
+		if (req.body.redirectUri !== null && !IsValidURL(req.body.redirectUri)) {
 			return res.status(400).json({
 				success: false,
 				description: `Invalid Redirect URL.`,
 			});
 		}
 
-		if (req.body.webhookUri && !IsValidURL(req.body.webhookUri)) {
+		if (req.body.webhookUri !== null && !IsValidURL(req.body.webhookUri)) {
 			return res.status(400).json({
 				success: false,
 				description: `Invalid Webhook URL.`,
@@ -246,7 +250,7 @@ router.patch(
 		);
 
 		logger.info(
-			`OAuth2 Client ${client.name} (${client.clientID}) has been renamed to ${req.body.name}.`
+			`API Client ${client.name} (${client.clientID}) has been renamed to ${req.body.name}.`
 		);
 
 		return res.status(200).json({
@@ -304,13 +308,13 @@ router.delete("/:clientID", GetClientFromID, RequireOwnershipOfClient, async (re
 
 	const clientName = `${client.name} (${client.clientID})`;
 
-	logger.info(`Recieved request to destroy OAuth2 Client ${client.name} (${client.clientID})`);
+	logger.info(`Recieved request to destroy API Client ${client.name} (${client.clientID})`);
 
-	logger.verbose(`Removing OAuth2 Client ${clientName}.`);
+	logger.verbose(`Removing API Client ${clientName}.`);
 	await db["api-clients"].remove({
 		clientID: client.clientID,
 	});
-	logger.info(`Removed OAuth2 Client ${clientName}.`);
+	logger.info(`Removed API Client ${clientName}.`);
 
 	logger.verbose(`Removing all associated api tokens.`);
 	const result = await db["api-tokens"].remove({

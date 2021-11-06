@@ -1,11 +1,12 @@
 import { spawn } from "child_process";
-import db, { monkDB } from "external/mongo/db";
-import { SetIndexesWithDB } from "external/mongo/indexes";
+import db from "external/mongo/db";
+import { SetIndexesIfNoneSet } from "external/mongo/indexes";
 import { InitSequenceDocs } from "external/mongo/sequence-docs";
 import fs from "fs";
 import https from "https";
+import { LoadDefaultClients } from "lib/builtin-clients/builtin-clients";
 import CreateLogCtx from "lib/logger/logger";
-import { Environment, ServerConfig, TachiConfig, TachiServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import path from "path";
 import server from "server/server";
 import { InitaliseFolderChartLookup } from "utils/folder";
@@ -17,35 +18,22 @@ logger.info(`Booting ${TachiConfig.NAME} - ${FormatVersion()} [ENV: ${Environmen
 logger.info(`Log level is set to ${ServerConfig.LOG_LEVEL}.`);
 
 logger.info(`Loading sequence documents...`);
-InitSequenceDocs();
 
-// If no indexes are set, then we need to load mongo indexes.
-db.users
-	.indexes()
-	.then((r) => {
-		// If there's only one index on users
-		// that means that only _id has indexes.
-		// This means that there are likely to be no indexes
-		// configured in the database.
-		if (Object.keys(r).length === 1) {
-			logger.info(`First-time Mongo startup detected. Running SetIndexes.`);
-			SetIndexesWithDB(monkDB, true);
+async function RunOnInit() {
+	await InitSequenceDocs();
+	await SetIndexesIfNoneSet();
+
+	await db["folder-chart-lookup"].findOne().then((r) => {
+		// If there are no folder chart lookups, initialise them.
+		if (!r) {
+			InitaliseFolderChartLookup();
 		}
-	})
-	.catch((err) => {
-		logger.info(
-			`Error in finding users collection. First time startup likely. Running SetIndexes.`,
-			err
-		);
-		SetIndexesWithDB(monkDB, true);
 	});
 
-db["folder-chart-lookup"].findOne().then((r) => {
-	// If there are no folder chart lookups, initialise them.
-	if (!r) {
-		InitaliseFolderChartLookup();
-	}
-});
+	await LoadDefaultClients();
+}
+
+RunOnInit();
 
 if (ServerConfig.ENABLE_SERVER_HTTPS) {
 	logger.warn(

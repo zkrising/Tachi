@@ -66,6 +66,7 @@ nav:
 
           - Webhooks:
                 - "api/webhooks/main.md"
+                - "api/webhooks/class-update-v1.md"
 
     - Tachi Server Reference:
           - "tachi-server/overview.md"

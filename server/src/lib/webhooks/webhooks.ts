@@ -1,6 +1,7 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { WebhookEvents } from "tachi-common";
+import fetch from "utils/fetch";
 
 const logger = CreateLogCtx(__filename);
 

@@ -22,29 +22,39 @@ router.get("/", async (req, res) => {
 
 	let songIDs = undefined;
 
+	let songs;
+
 	if (IsString(req.query.search)) {
-		const songs = await SearchGameSongs(game, req.query.search, 100);
+		songs = await SearchGameSongs(game, req.query.search, 100);
 		songIDs = songs.map((e) => e.id);
 	}
 
 	const skip = 0;
 	const limit = 100;
 
-	const charts = await FindChartsOnPopularity(
-		game,
-		playtype,
-		songIDs,
-		skip,
-		limit,
-		"personal-bests"
-	);
+	let charts;
 
-	// @optimisable
-	// could use songIDs from above instead of refetching
-	// but this is not very expensive.
-	const songs = await db.songs[game].find({
-		id: { $in: charts.map((e) => e.songID) },
-	});
+	if (IsString(req.query.search)) {
+		charts = await db.charts[game].find({
+			songID: { $in: songIDs },
+		});
+	} else {
+		charts = await FindChartsOnPopularity(
+			game,
+			playtype,
+			songIDs,
+			skip,
+			limit,
+			"personal-bests"
+		);
+
+		// @optimisable
+		// could use songIDs from above instead of refetching
+		// but this is not very expensive.
+		songs = await db.songs[game].find({
+			id: { $in: charts.map((e) => e.songID) },
+		});
+	}
 
 	return res.status(200).json({
 		success: true,

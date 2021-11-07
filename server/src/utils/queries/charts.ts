@@ -278,11 +278,13 @@ export async function FindChartsOnPopularity(
 	// magnitude faster.
 	// Not entirely sure why, but $lookup is incredibly inefficient,
 	// and you should just avoid it.
-	const chartSet = await db.charts[game].find(matchQuery, { projection: { chartID: 1 } });
+	const charts = (await db.charts[game].find(matchQuery)) as unknown as (ChartDocument & {
+		__playcount: integer;
+	})[];
 
 	const scoreCounts = (await db[scoreCollection].aggregate([
 		{
-			$match: { chartID: { $in: chartSet.map((e) => e.chartID) } },
+			$match: { chartID: { $in: charts.map((e) => e.chartID) } },
 		},
 		{
 			$group: {
@@ -303,10 +305,6 @@ export async function FindChartsOnPopularity(
 		},
 	])) as { _id: string; count: integer }[];
 
-	const charts = (await db.charts[game].find({
-		chartID: { $in: scoreCounts.map((e) => e._id) },
-	})) as unknown as (ChartDocument & { __playcount: integer })[];
-
 	const scoreCountMap = new Map();
 
 	for (const sc of scoreCounts) {
@@ -314,8 +312,8 @@ export async function FindChartsOnPopularity(
 	}
 
 	for (const chart of charts) {
-		chart.__playcount = scoreCountMap.get(chart.chartID);
+		chart.__playcount = scoreCountMap.get(chart.chartID) ?? 0;
 	}
 
-	return charts.sort((a, b) => b.__playcount - a.__playcount);
+	return charts.sort((a, b) => b.__playcount - a.__playcount).slice(skip, skip + limit);
 }

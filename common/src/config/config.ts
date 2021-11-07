@@ -379,7 +379,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"kt-HC":
 				"The Hard Clear tiers for Kamaitachi. These are adapted from multiple sources.",
 			"kt-EXHC":
-				"The EX-HARD Clear tiers for Kamaitachi. These are adapted from multiple sources",
+				"The EX-HARD Clear tiers for Kamaitachi. These are adapted from multiple sources.",
 		},
 	},
 	"iidx:DP": {

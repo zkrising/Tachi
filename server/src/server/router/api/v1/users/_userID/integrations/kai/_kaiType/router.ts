@@ -101,10 +101,10 @@ router.post(
 			// this also isn't a POST??
 			getTokenRes = await fetch(url.href);
 		} catch (err) {
-			logger.error(`Completely failed to getTokenRes from ${baseUrl}/oauth/token.`, err);
+			logger.error(`Completely failed to getTokenRes from ${url.href}.`, err);
 			return res.status(500).json({
 				success: false,
-				description: `An internal server error has occured.`,
+				description: `We failed to reach this site. Are they down?`,
 			});
 		}
 

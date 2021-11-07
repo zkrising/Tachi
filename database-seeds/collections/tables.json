@@ -613,7 +613,7 @@
 		],
 		"game": "iidx",
 		"playtype": "SP",
-		"inactive": true
+		"inactive": false
 	},
 	{
 		"tableID": "iidx-DP-3-cs-levels",
@@ -1229,7 +1229,7 @@
 		],
 		"game": "iidx",
 		"playtype": "DP",
-		"inactive": true
+		"inactive": false
 	},
 	{
 		"tableID": "museca-Single-1.5-levels",

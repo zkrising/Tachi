@@ -32,7 +32,7 @@ import {
 } from "tachi-common";
 import { SongsReturn } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
-import { APIFetchV1 } from "util/api";
+import { APIFetchV1, ToCDNURL } from "util/api";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
 import { ChangeOpacity } from "util/color-opacity";
 import { NumericSOV } from "util/sorts";
@@ -242,11 +242,11 @@ function SongInfoHeader({
 					justifyContent: "space-evenly",
 				}}
 			>
-				{imgShow && (
+				{imgShow && "displayVersion" in song.data && (
 					<Col xs={12} lg={3} className="text-center">
 						<img
-							src="https://kamaitachi.xyz/static/images/gameicons/iidx/18z.png"
-							onError={() => setImgShow(false)}
+							src={ToCDNURL(`/game-icons/${game}/${song.data.displayVersion}`)}
+							// onError={() => seetImgShow(false)}
 							className="w-100"
 						/>
 					</Col>

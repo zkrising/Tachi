@@ -26,6 +26,6 @@
 		"commander": "^8.2.0",
 		"mei-logger": "^1.0.1",
 		"monk": "^7.3.4",
-		"tachi-common": "0.2.26"
+		"tachi-common": "0.2.43"
 	}
 }

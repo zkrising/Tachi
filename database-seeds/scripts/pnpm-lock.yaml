@@ -4,13 +4,13 @@ specifiers:
   commander: ^8.2.0
   mei-logger: ^1.0.1
   monk: ^7.3.4
-  tachi-common: 0.2.26
+  tachi-common: 0.2.43
 
 dependencies:
   commander: 8.2.0
   mei-logger: 1.0.1
   monk: 7.3.4
-  tachi-common: 0.2.26
+  tachi-common: 0.2.43
 
 packages:
 
@@ -1962,8 +1962,8 @@ packages:
       has-flag: 4.0.0
     dev: false
 
-  /tachi-common/0.2.26:
-    resolution: {integrity: sha512-4WsJbj8DNgSzkWteCF+vVkw4b3tloFwdLwCHOHd9F61Ul2FVRq1fzqWh4NY+KfgJlzZ8PoEJu3iKnbcIV27WDw==}
+  /tachi-common/0.2.43:
+    resolution: {integrity: sha512-dpR9uSx7kFHCtNLb/24/hk6Nnmzep7l934pXGHP076JxepMFSyexgaRQxuC6/2c9U9ImcDvey25WMhpgp8kFCg==}
     dependencies:
       monk: 7.3.4
     transitivePeerDependencies:

@@ -1,8 +1,8 @@
 [
 	{
 		"tableID": "iidx-SP-3-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 3-cs.",
-		"title": "beatmania IIDX (SP) (3-cs)",
+		"description": "Levels for beatmania IIDX (SP) in 3rd Style CS.",
+		"title": "beatmania IIDX (SP) (3rd Style CS)",
 		"folders": [
 			"F62be6a3a8500e079458068fd7fcdad2ae1231b90bee978fb60bb046b749ffbbc",
 			"F4b4ebd471eea51a8ef9ef59ce732d06e0aa212da6372a4d66a096b6ed30d0f6a",
@@ -23,8 +23,8 @@
 	},
 	{
 		"tableID": "iidx-SP-4-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 4-cs.",
-		"title": "beatmania IIDX (SP) (4-cs)",
+		"description": "Levels for beatmania IIDX (SP) in 4th Style CS.",
+		"title": "beatmania IIDX (SP) (4th Style CS)",
 		"folders": [
 			"F031f9f8146fbd1a1a3d9d47eee9ee7b87f492611847ee94c95efb1f887fd1b01",
 			"F68fc134e0ce39fbad19038093332729bd724a1a21785e6482fa688cfeeb7d97e",
@@ -45,8 +45,8 @@
 	},
 	{
 		"tableID": "iidx-SP-5-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 5-cs.",
-		"title": "beatmania IIDX (SP) (5-cs)",
+		"description": "Levels for beatmania IIDX (SP) in 5th Style CS.",
+		"title": "beatmania IIDX (SP) (5th Style CS)",
 		"folders": [
 			"Fb31d427ce4d1dae4de4a5ba54925db87f98c4d828d4c122498909485c1239501",
 			"Faec066572b059ee6d374905fac7950cd0e51bd171d1f4815e3d1e033506ea359",
@@ -67,8 +67,8 @@
 	},
 	{
 		"tableID": "iidx-SP-6-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 6-cs.",
-		"title": "beatmania IIDX (SP) (6-cs)",
+		"description": "Levels for beatmania IIDX (SP) in 6th Style CS.",
+		"title": "beatmania IIDX (SP) (6th Style CS)",
 		"folders": [
 			"F7c769666afd3ccdbc92a7410d01f29f69786b07cbc1052ccd34b1e15f0763ff0",
 			"Fb0deb61e78f2228b922dde883cc26484b27dd9d2f61da77a9e4b725666fe427b",
@@ -89,8 +89,8 @@
 	},
 	{
 		"tableID": "iidx-SP-7-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 7-cs.",
-		"title": "beatmania IIDX (SP) (7-cs)",
+		"description": "Levels for beatmania IIDX (SP) in 7th Style CS.",
+		"title": "beatmania IIDX (SP) (7th Style CS)",
 		"folders": [
 			"Fc17cedd5ad39020645fad5a794949ba755e8b78411f0d973e097f8276255c015",
 			"Fe9fc7da6b9b659bcc77b06075c8b0b5f92b708d0f3293fba14393f7a8f794360",
@@ -111,8 +111,8 @@
 	},
 	{
 		"tableID": "iidx-SP-8-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 8-cs.",
-		"title": "beatmania IIDX (SP) (8-cs)",
+		"description": "Levels for beatmania IIDX (SP) in 8th Style CS.",
+		"title": "beatmania IIDX (SP) (8th Style CS)",
 		"folders": [
 			"F5b3544ca63c29fe0036134d8acb7c407e8399a34ddfed32df5cfd01e114f66cc",
 			"F369550e7af389a714aefca0cf17846c71010805698122330588d83a65d56185f",
@@ -133,8 +133,8 @@
 	},
 	{
 		"tableID": "iidx-SP-9-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 9-cs.",
-		"title": "beatmania IIDX (SP) (9-cs)",
+		"description": "Levels for beatmania IIDX (SP) in 9th Style CS.",
+		"title": "beatmania IIDX (SP) (9th Style CS)",
 		"folders": [
 			"Fe6d0f8f01f169abaf815fdb2ff90e9cb4058a0b4dbd1af3235966c9bd86c1610",
 			"F942b1dc10c65f9a04ef348942ce940638f08ac31698aa4cfc0843dcc74733b5a",
@@ -155,8 +155,8 @@
 	},
 	{
 		"tableID": "iidx-SP-10-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 10-cs.",
-		"title": "beatmania IIDX (SP) (10-cs)",
+		"description": "Levels for beatmania IIDX (SP) in 10th Style CS.",
+		"title": "beatmania IIDX (SP) (10th Style CS)",
 		"folders": [
 			"F132363598bdf3d3e575fb6caa5e48a85f7d43efe0934718b863820133e1478dc",
 			"F49a9cd7de77e522f6d97a922897f165fb796ad229a37f45bb3d79945a51269e4",
@@ -177,8 +177,8 @@
 	},
 	{
 		"tableID": "iidx-SP-11-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 11-cs.",
-		"title": "beatmania IIDX (SP) (11-cs)",
+		"description": "Levels for beatmania IIDX (SP) in IIDX RED CS.",
+		"title": "beatmania IIDX (SP) (IIDX RED CS)",
 		"folders": [
 			"F704b24f77370fbc964bd50f1c68ccae57d5a169e85144ebe8a5f837b3e7ad9bb",
 			"F5ed5afd6405820688020eec1d90b5671f807acebaecf69ba9f3d1472e156c4f1",
@@ -199,8 +199,8 @@
 	},
 	{
 		"tableID": "iidx-SP-12-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 12-cs.",
-		"title": "beatmania IIDX (SP) (12-cs)",
+		"description": "Levels for beatmania IIDX (SP) in HAPPY SKY CS.",
+		"title": "beatmania IIDX (SP) (HAPPY SKY CS)",
 		"folders": [
 			"F405d449ee1369d90079287fd1f5768eafb7a8a7a793cbeb05a2e5c97e4069f81",
 			"Fa7682c57afb47799ef84bd1a2a6ea2c766650e2acadae96cd0e641c3a93698ee",
@@ -221,8 +221,8 @@
 	},
 	{
 		"tableID": "iidx-SP-13-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 13-cs.",
-		"title": "beatmania IIDX (SP) (13-cs)",
+		"description": "Levels for beatmania IIDX (SP) in DISTORTED CS.",
+		"title": "beatmania IIDX (SP) (DISTORTED CS)",
 		"folders": [
 			"F8f3c8f4088c910322adc85d89739196a83980e76991ee03760927dd350dc1ac9",
 			"F8f74dfd6bb2e75050c9274c68d8f8a81e2513370c599de2a5db513fe6c99ee22",
@@ -243,8 +243,8 @@
 	},
 	{
 		"tableID": "iidx-SP-14-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 14-cs.",
-		"title": "beatmania IIDX (SP) (14-cs)",
+		"description": "Levels for beatmania IIDX (SP) in GOLD CS.",
+		"title": "beatmania IIDX (SP) (GOLD CS)",
 		"folders": [
 			"Fcafbdbef61a09b59b6174ff09a7c948b3f30c688cee1db7e74262613a40ac3c7",
 			"Fb80de22bbd3ae7602c516b0e50595bba7f5a837eb1eb4cb4e67506b70f9d4f0a",
@@ -265,8 +265,8 @@
 	},
 	{
 		"tableID": "iidx-SP-15-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 15-cs.",
-		"title": "beatmania IIDX (SP) (15-cs)",
+		"description": "Levels for beatmania IIDX (SP) in DJ TROOPERS CS.",
+		"title": "beatmania IIDX (SP) (DJ TROOPERS CS)",
 		"folders": [
 			"Fdea903b053d3c59f1d5fd0698555566c194a7712150e97ee9401b945e97893f6",
 			"Ffda725209670312d0567d38e5f8fb2ee4129f7372abf1878efefe908a0a8c8f4",
@@ -287,8 +287,8 @@
 	},
 	{
 		"tableID": "iidx-SP-16-cs-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 16-cs.",
-		"title": "beatmania IIDX (SP) (16-cs)",
+		"description": "Levels for beatmania IIDX (SP) in EMPRESS CS.",
+		"title": "beatmania IIDX (SP) (EMPRESS CS)",
 		"folders": [
 			"F1d57ae148bbdb8ecfd7c28f62344f133cb2a3210291f311b95db837f7450ce28",
 			"F065fa3ff8ef5d6c9de444e7aae5232cc3e670fab7cd626811ee6ce063e5d4d7a",
@@ -309,8 +309,8 @@
 	},
 	{
 		"tableID": "iidx-SP-20-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 20.",
-		"title": "beatmania IIDX (SP) (20)",
+		"description": "Levels for beatmania IIDX (SP) in tricoro.",
+		"title": "beatmania IIDX (SP) (tricoro)",
 		"folders": [
 			"F6095ba01f3315014139aa226347443a7ccd186d97b22735a7bfc1524944f3e44",
 			"F1e512811461894e6ba3f350094a0c2f45eecfbc46367073e43519305b8916bc2",
@@ -331,8 +331,8 @@
 	},
 	{
 		"tableID": "iidx-SP-21-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 21.",
-		"title": "beatmania IIDX (SP) (21)",
+		"description": "Levels for beatmania IIDX (SP) in SPADA.",
+		"title": "beatmania IIDX (SP) (SPADA)",
 		"folders": [
 			"Fb3fa87047caba5c9c51507e20de7959aed4cf847fa23c8838a890f4ce5bc4768",
 			"Fbc80115e3b8b4ddded77fae6862a1053322c1dc8121bbe701eeb950996a8259e",
@@ -353,8 +353,8 @@
 	},
 	{
 		"tableID": "iidx-SP-22-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 22.",
-		"title": "beatmania IIDX (SP) (22)",
+		"description": "Levels for beatmania IIDX (SP) in PENDUAL.",
+		"title": "beatmania IIDX (SP) (PENDUAL)",
 		"folders": [
 			"Ff4fd285a2850eee2af8f6f6c9db2a54aab85cb78a113043a59318a16a2c9e290",
 			"F8817af52c94889db4b4aa506ce39bde7bdcddf6a042e90f6703252c5a6a24be5",
@@ -375,8 +375,8 @@
 	},
 	{
 		"tableID": "iidx-SP-23-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 23.",
-		"title": "beatmania IIDX (SP) (23)",
+		"description": "Levels for beatmania IIDX (SP) in copula.",
+		"title": "beatmania IIDX (SP) (copula)",
 		"folders": [
 			"F204d8a86fb7b58bc0c7892bc6f4fe3216c974f64b36d7971b800587aa603a929",
 			"F2c6dc648f7a632b1586dda6612bdd6be503961e69d7270efbb8baa69b25f11a3",
@@ -397,8 +397,8 @@
 	},
 	{
 		"tableID": "iidx-SP-24-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 24.",
-		"title": "beatmania IIDX (SP) (24)",
+		"description": "Levels for beatmania IIDX (SP) in SINOBUZ.",
+		"title": "beatmania IIDX (SP) (SINOBUZ)",
 		"folders": [
 			"F228f2c4287f349ba4c90f9577b30f587018eff4bfff6a09ff5b196e65fbb1886",
 			"Fb3e8a194a181840eb872618f43993c42957d37c17e35908746007a32d97dabbb",
@@ -419,8 +419,8 @@
 	},
 	{
 		"tableID": "iidx-SP-25-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 25.",
-		"title": "beatmania IIDX (SP) (25)",
+		"description": "Levels for beatmania IIDX (SP) in CANNON BALLERS.",
+		"title": "beatmania IIDX (SP) (CANNON BALLERS)",
 		"folders": [
 			"Fe05d0b3366e5595112394d175970ed7a978c5de0d30cf03d7fa63b545ca87cad",
 			"F04725858e0175e0fef4348759e0813d168e8b973c74ed934cd7b71afe4b5beed",
@@ -441,8 +441,8 @@
 	},
 	{
 		"tableID": "iidx-SP-26-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 26.",
-		"title": "beatmania IIDX (SP) (26)",
+		"description": "Levels for beatmania IIDX (SP) in ROOTAGE.",
+		"title": "beatmania IIDX (SP) (ROOTAGE)",
 		"folders": [
 			"F1bb772000fb4246ad3e515bf166e977ae23d6baf6d8392cd96e990d1eec72e99",
 			"Ffca7d0c9c2f696cb49ec25231c2c29831ae6c5b20d2dc4b6b56345bf03e98e3c",
@@ -463,8 +463,8 @@
 	},
 	{
 		"tableID": "iidx-SP-27-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 27.",
-		"title": "beatmania IIDX (SP) (27)",
+		"description": "Levels for beatmania IIDX (SP) in HEROIC VERSE.",
+		"title": "beatmania IIDX (SP) (HEROIC VERSE)",
 		"folders": [
 			"Fca672e5e67354ea7d7c3e56036ebbee03b6c4e1355002d1b2037e0af402ea8b0",
 			"Fbe976e04ba31601f0727716060397e82890eb696d82d9061a5b6bbc43d1c7923",
@@ -485,8 +485,8 @@
 	},
 	{
 		"tableID": "iidx-SP-28-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 28.",
-		"title": "beatmania IIDX (SP) (28)",
+		"description": "Levels for beatmania IIDX (SP) in BISTROVER.",
+		"title": "beatmania IIDX (SP) (BISTROVER)",
 		"folders": [
 			"Fcc30582cf542a3dee8a4eb571db7a0243e95b11873293b9392b503b2bb27e345",
 			"Fe0c707b8fbe896ccb73766bffdf828758e0071aad38c93796d7406bdf34038e8",
@@ -507,8 +507,8 @@
 	},
 	{
 		"tableID": "iidx-SP-26-omni-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 26-omni.",
-		"title": "beatmania IIDX (SP) (26-omni)",
+		"description": "Levels for beatmania IIDX (SP) in ROOTAGE Omnimix.",
+		"title": "beatmania IIDX (SP) (ROOTAGE Omnimix)",
 		"folders": [
 			"F226f4eb9264db4034d02d7ff765fd5cfb8adda48667c3a66a1fa513b4708cb5b",
 			"F327d088f5332901ac22c301e1e365ab6e34955c708e867b82e1dcd1085a87515",
@@ -529,8 +529,8 @@
 	},
 	{
 		"tableID": "iidx-SP-27-omni-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 27-omni.",
-		"title": "beatmania IIDX (SP) (27-omni)",
+		"description": "Levels for beatmania IIDX (SP) in HEROIC VERSE Omnimix.",
+		"title": "beatmania IIDX (SP) (HEROIC VERSE Omnimix)",
 		"folders": [
 			"Fd5f9d621c4052c6d6b9af777538112d5d6564e68845c9d7983d75a1dc77aa621",
 			"F649d4109689abfd12109a17f895bd279a0648cca55d99ed5264b90798d296956",
@@ -550,9 +550,9 @@
 		"inactive": false
 	},
 	{
-		"tableID": "iidx-SP-2dxtra-levels",
-		"description": "Levels for beatmania IIDX (SP) in version 2dxtra.",
-		"title": "beatmania IIDX (SP) (2dxtra)",
+		"tableID": "iidx-SP-27-2dxtra-levels",
+		"description": "Levels for beatmania IIDX (SP) in HEROIC VERSE 2dxtra.",
+		"title": "beatmania IIDX (SP) (HEROIC VERSE 2dxtra)",
 		"folders": [
 			"F8e39ab05dd02aa1d915d91aa5b6b938d5151920210da2684dabfa7b751f1e325",
 			"F009f9cdd691ce375bcb2034fa8faa5d2d7fa7cad8c661ccb25c6f881f5adc01d",
@@ -573,8 +573,8 @@
 	},
 	{
 		"tableID": "iidx-SP-bmus-levels",
-		"description": "Levels for beatmania IIDX (SP) in version bmus.",
-		"title": "beatmania IIDX (SP) (bmus)",
+		"description": "Levels for beatmania IIDX (SP) in BEATMANIA US.",
+		"title": "beatmania IIDX (SP) (BEATMANIA US)",
 		"folders": [
 			"F9db3ab4536dda590da0ae557992e24540a21cd8659c509a004f3875d70b68c77",
 			"F1a3a62275fec4dca5139d51fcada8cac7686f0f742d52e5accb91bd2db3d6e81",
@@ -595,8 +595,8 @@
 	},
 	{
 		"tableID": "iidx-SP-inf-levels",
-		"description": "Levels for beatmania IIDX (SP) in version inf.",
-		"title": "beatmania IIDX (SP) (inf)",
+		"description": "Levels for beatmania IIDX (SP) in INFINITAS.",
+		"title": "beatmania IIDX (SP) (INFINITAS)",
 		"folders": [
 			"Ff311f174f84caedd50c91801b3f8da7df9ce1a4bc7523c28c094a5e5c98320e1",
 			"F2cbab285fb20dbf8926aa081c6091a3f4fbc84fbd91e688a3f4ad5e231f14a7d",
@@ -617,8 +617,8 @@
 	},
 	{
 		"tableID": "iidx-DP-3-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 3-cs.",
-		"title": "beatmania IIDX (DP) (3-cs)",
+		"description": "Levels for beatmania IIDX (DP) in 3rd Style CS.",
+		"title": "beatmania IIDX (DP) (3rd Style CS)",
 		"folders": [
 			"Feeaf81047210abc2e25d3b75b6c1d251ebf818ca6cd6c1d4a81bea6e687e4783",
 			"Feab2d365b3486306ef400e5e708552bd4c0037a54a07e836a0b0ec9335f64ae3",
@@ -639,8 +639,8 @@
 	},
 	{
 		"tableID": "iidx-DP-4-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 4-cs.",
-		"title": "beatmania IIDX (DP) (4-cs)",
+		"description": "Levels for beatmania IIDX (DP) in 4th Style CS.",
+		"title": "beatmania IIDX (DP) (4th Style CS)",
 		"folders": [
 			"Fd6e27bc530f88d69b02c7b48341d6902af628abcc84ba70bb335a9bfe1e2ac8d",
 			"F47fec6dbe123e6066ed80088df7c6c10e4a07ea5decb9a480d289ffa5cf15588",
@@ -661,8 +661,8 @@
 	},
 	{
 		"tableID": "iidx-DP-5-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 5-cs.",
-		"title": "beatmania IIDX (DP) (5-cs)",
+		"description": "Levels for beatmania IIDX (DP) in 5th Style CS.",
+		"title": "beatmania IIDX (DP) (5th Style CS)",
 		"folders": [
 			"Fe28ce538dc009afbca6d346616e3ff0095315bf36f607eb23bcc0b2bf236968d",
 			"F3386fe13a210a7f25c78d6a288733bbfd4d040d2ab0c196feb668daa94da26bd",
@@ -683,8 +683,8 @@
 	},
 	{
 		"tableID": "iidx-DP-6-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 6-cs.",
-		"title": "beatmania IIDX (DP) (6-cs)",
+		"description": "Levels for beatmania IIDX (DP) in 6th Style CS.",
+		"title": "beatmania IIDX (DP) (6th Style CS)",
 		"folders": [
 			"Fd8928c46e1d5e0aff58b05098150adadece53af556b3889e69b9f74b5167c8d7",
 			"F1a9b080dcb2ce22c767cfb73b2eb763dd572e95a993cc518f51baa7ac78ee195",
@@ -705,8 +705,8 @@
 	},
 	{
 		"tableID": "iidx-DP-7-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 7-cs.",
-		"title": "beatmania IIDX (DP) (7-cs)",
+		"description": "Levels for beatmania IIDX (DP) in 7th Style CS.",
+		"title": "beatmania IIDX (DP) (7th Style CS)",
 		"folders": [
 			"F058c8060f18c19f025ee21cc5dceb6fefbd0593cc07173313dc663879f39cc4c",
 			"F0d71e2e42d147ab762bf6a5b0462635d4d50749fc9d6a49c3cffe782ad1309c2",
@@ -727,8 +727,8 @@
 	},
 	{
 		"tableID": "iidx-DP-8-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 8-cs.",
-		"title": "beatmania IIDX (DP) (8-cs)",
+		"description": "Levels for beatmania IIDX (DP) in 8th Style CS.",
+		"title": "beatmania IIDX (DP) (8th Style CS)",
 		"folders": [
 			"F52303aa8c8d9d260eea27e75b432fe27cf7adfdd941df8d72bbc8c6b32c43f1e",
 			"F5016b4eda3b01ecba0047eebcd45db9f341f4533a8f1c3b6d1fb4109c6aa0c0e",
@@ -749,8 +749,8 @@
 	},
 	{
 		"tableID": "iidx-DP-9-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 9-cs.",
-		"title": "beatmania IIDX (DP) (9-cs)",
+		"description": "Levels for beatmania IIDX (DP) in 9th Style CS.",
+		"title": "beatmania IIDX (DP) (9th Style CS)",
 		"folders": [
 			"Febe38040f3dbae7aeba59e7231ba900c3bb069dd812501cda7ace8c598762236",
 			"F89de284781ec1fb2a796ec72e839b8f227fe72dec4a595573aee2832dfe688df",
@@ -771,8 +771,8 @@
 	},
 	{
 		"tableID": "iidx-DP-10-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 10-cs.",
-		"title": "beatmania IIDX (DP) (10-cs)",
+		"description": "Levels for beatmania IIDX (DP) in 10th Style CS.",
+		"title": "beatmania IIDX (DP) (10th Style CS)",
 		"folders": [
 			"F1817b2ac2faeef75eba1fdb4be776cd04512a48cbbe28bfd139076a8f4d8e396",
 			"F871fb54146d2f860d9c9a36710777f1097e2f5331de512e9bed690975846d5cc",
@@ -793,8 +793,8 @@
 	},
 	{
 		"tableID": "iidx-DP-11-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 11-cs.",
-		"title": "beatmania IIDX (DP) (11-cs)",
+		"description": "Levels for beatmania IIDX (DP) in IIDX RED CS.",
+		"title": "beatmania IIDX (DP) (IIDX RED CS)",
 		"folders": [
 			"F452a320e22cb3b8403840485ea79bea58c2ce6f296650f1b52f56b7453372a6f",
 			"Fa5bcc37a1feaf3f48bc5dbbfba94598f4ee579b8745b135210933f11a0c087ff",
@@ -815,8 +815,8 @@
 	},
 	{
 		"tableID": "iidx-DP-12-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 12-cs.",
-		"title": "beatmania IIDX (DP) (12-cs)",
+		"description": "Levels for beatmania IIDX (DP) in HAPPY SKY CS.",
+		"title": "beatmania IIDX (DP) (HAPPY SKY CS)",
 		"folders": [
 			"Ffe9a9fa1a0450daa931eabd6e11412b6b9552a7d0ce422a2dd0307ba713f3c67",
 			"Fcc700b9ba3a337b5107b88e9a10632c0de79c328f1fb1d3e5e134974cbad5c61",
@@ -837,8 +837,8 @@
 	},
 	{
 		"tableID": "iidx-DP-13-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 13-cs.",
-		"title": "beatmania IIDX (DP) (13-cs)",
+		"description": "Levels for beatmania IIDX (DP) in DISTORTED CS.",
+		"title": "beatmania IIDX (DP) (DISTORTED CS)",
 		"folders": [
 			"F82b4222c41c0edfe21d44a42caaa8ee94378ed2351a2063cbb4edefd059e8037",
 			"F785319f6eaaf765a5ae546ac083f62993cf13987d0047ee3264c3a8bb8ab6f35",
@@ -859,8 +859,8 @@
 	},
 	{
 		"tableID": "iidx-DP-14-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 14-cs.",
-		"title": "beatmania IIDX (DP) (14-cs)",
+		"description": "Levels for beatmania IIDX (DP) in GOLD CS.",
+		"title": "beatmania IIDX (DP) (GOLD CS)",
 		"folders": [
 			"F14159009731b0ab1fca61d9f61a51aafb9c014ef6a5aa814db697ffefc79cfc1",
 			"F093a9944c0cf2948f5c8a6a51867c991415866778e168c8d18803f3ef747c148",
@@ -881,8 +881,8 @@
 	},
 	{
 		"tableID": "iidx-DP-15-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 15-cs.",
-		"title": "beatmania IIDX (DP) (15-cs)",
+		"description": "Levels for beatmania IIDX (DP) in DJ TROOPERS CS.",
+		"title": "beatmania IIDX (DP) (DJ TROOPERS CS)",
 		"folders": [
 			"F1acc29dcea7c4eec57a0af090ee8dad0f35d33ae8a8ff371cd21e5e2d7cccce2",
 			"F6d914fc58effa5e1b8b4359833608c2974e8bc03f5cc08c7ee1e904c6f7c310b",
@@ -903,8 +903,8 @@
 	},
 	{
 		"tableID": "iidx-DP-16-cs-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 16-cs.",
-		"title": "beatmania IIDX (DP) (16-cs)",
+		"description": "Levels for beatmania IIDX (DP) in EMPRESS CS.",
+		"title": "beatmania IIDX (DP) (EMPRESS CS)",
 		"folders": [
 			"F529b2870050fd91bf57d23ddb27489939d2bdc0e88ffd70aa58d81ffd6a3ad0e",
 			"F1b65f9212b0fc399bc184f461dab33e2bcc1d6aa7f6041241172d96f636de249",
@@ -925,8 +925,8 @@
 	},
 	{
 		"tableID": "iidx-DP-20-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 20.",
-		"title": "beatmania IIDX (DP) (20)",
+		"description": "Levels for beatmania IIDX (DP) in tricoro.",
+		"title": "beatmania IIDX (DP) (tricoro)",
 		"folders": [
 			"Fbf2c18031f426d0eeb5a72809e53bdb8b29dcf56ed6b3acfcf26cd3d000078df",
 			"F60b82c8df8c4dc907a604cc14990effca46885602c8c31096b21a7b574ec2add",
@@ -947,8 +947,8 @@
 	},
 	{
 		"tableID": "iidx-DP-21-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 21.",
-		"title": "beatmania IIDX (DP) (21)",
+		"description": "Levels for beatmania IIDX (DP) in SPADA.",
+		"title": "beatmania IIDX (DP) (SPADA)",
 		"folders": [
 			"Feea7c9a8d302a75b704ce3e2a6500895027ca2aafbc4377a3d72dccbf217ac19",
 			"F96e1a01f2cab7afcace0983e4dd64e067ccfa9e00e6b7c207d289ea9071ae7bd",
@@ -969,8 +969,8 @@
 	},
 	{
 		"tableID": "iidx-DP-22-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 22.",
-		"title": "beatmania IIDX (DP) (22)",
+		"description": "Levels for beatmania IIDX (DP) in PENDUAL.",
+		"title": "beatmania IIDX (DP) (PENDUAL)",
 		"folders": [
 			"F323a40926c9239a8258047fd327ff4d457d7a369a7c7e279c12cd0435bb44a73",
 			"F70a918a5684f7a171cbee68c9e57d679db92f8c89b8b67b1f72c6040debf02d7",
@@ -991,8 +991,8 @@
 	},
 	{
 		"tableID": "iidx-DP-23-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 23.",
-		"title": "beatmania IIDX (DP) (23)",
+		"description": "Levels for beatmania IIDX (DP) in copula.",
+		"title": "beatmania IIDX (DP) (copula)",
 		"folders": [
 			"F86d78c9c8af785c164be547ed6aab72bdc9f45a5bfaed99c28ee1d5827ee21b2",
 			"Fe7b1459d6cb10fe6e8e25c02c3f8883c070856e0fe5b2db681bbaaf8550cddc1",
@@ -1013,8 +1013,8 @@
 	},
 	{
 		"tableID": "iidx-DP-24-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 24.",
-		"title": "beatmania IIDX (DP) (24)",
+		"description": "Levels for beatmania IIDX (DP) in SINOBUZ.",
+		"title": "beatmania IIDX (DP) (SINOBUZ)",
 		"folders": [
 			"F2f00312f395eb78c060f47e090cf814754b051ed27ee0e52bedebca6277bb735",
 			"Fdcd6abae0b57c30320eaa172ccc5240886d3aa717bf40cd7c8dab42fab17d53d",
@@ -1035,8 +1035,8 @@
 	},
 	{
 		"tableID": "iidx-DP-25-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 25.",
-		"title": "beatmania IIDX (DP) (25)",
+		"description": "Levels for beatmania IIDX (DP) in CANNON BALLERS.",
+		"title": "beatmania IIDX (DP) (CANNON BALLERS)",
 		"folders": [
 			"F37beed3c3fd45a06151c4d61e357e6b4a84630b6c956ea34b7aaa7197a586952",
 			"F3fcb0c5210d5c064754e6d219af47a1df5792ab9f97dd8c108bb7282b95ff25e",
@@ -1057,8 +1057,8 @@
 	},
 	{
 		"tableID": "iidx-DP-26-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 26.",
-		"title": "beatmania IIDX (DP) (26)",
+		"description": "Levels for beatmania IIDX (DP) in ROOTAGE.",
+		"title": "beatmania IIDX (DP) (ROOTAGE)",
 		"folders": [
 			"Ff1a84ddf3b7a6985fafdae0e2b53eebec5a2fc88908a4f5ef7ca67b271c4fa49",
 			"F06fb212d370cf400183254affcdfa9fc0db28d625d52460eb3e58fb8dabe1b4f",
@@ -1079,8 +1079,8 @@
 	},
 	{
 		"tableID": "iidx-DP-27-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 27.",
-		"title": "beatmania IIDX (DP) (27)",
+		"description": "Levels for beatmania IIDX (DP) in HEROIC VERSE.",
+		"title": "beatmania IIDX (DP) (HEROIC VERSE)",
 		"folders": [
 			"Fe27db32043858983c036c171fad659d4b276efccb6e124414a5c215e6a1ebd99",
 			"F0355c67b5677103ef932bee1fbe06c78f468d5ae3c6f474f5caa9a1e769ba277",
@@ -1101,8 +1101,8 @@
 	},
 	{
 		"tableID": "iidx-DP-28-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 28.",
-		"title": "beatmania IIDX (DP) (28)",
+		"description": "Levels for beatmania IIDX (DP) in BISTROVER.",
+		"title": "beatmania IIDX (DP) (BISTROVER)",
 		"folders": [
 			"Ff16f1e656bc837c56291d1477408fe90c88b093f998969be328583273e3d35a5",
 			"F40eb795af4d63730218b9be37d3a6dd20e34e637783bcce03a313222b5db6f04",
@@ -1123,8 +1123,8 @@
 	},
 	{
 		"tableID": "iidx-DP-26-omni-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 26-omni.",
-		"title": "beatmania IIDX (DP) (26-omni)",
+		"description": "Levels for beatmania IIDX (DP) in ROOTAGE Omnimix.",
+		"title": "beatmania IIDX (DP) (ROOTAGE Omnimix)",
 		"folders": [
 			"F174738197aea623b7c061abf43b373474caf980e9956141fbd6fcd1d49d4123c",
 			"F27fb9d0e1dc57c08837b3a776b72050feb5fb5de2fe0a26acc156f0eda3380e3",
@@ -1145,8 +1145,8 @@
 	},
 	{
 		"tableID": "iidx-DP-27-omni-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 27-omni.",
-		"title": "beatmania IIDX (DP) (27-omni)",
+		"description": "Levels for beatmania IIDX (DP) in HEROIC VERSE Omnimix.",
+		"title": "beatmania IIDX (DP) (HEROIC VERSE Omnimix)",
 		"folders": [
 			"F6f66e1724c49e4ba2912c4d5ba43229e0ca22d6302b9a61a55cfb27c99250467",
 			"F7e7415394af686324194d79d373d8abb24797fda82ae6a36ce1c410a0b8680ab",
@@ -1166,9 +1166,9 @@
 		"inactive": false
 	},
 	{
-		"tableID": "iidx-DP-2dxtra-levels",
-		"description": "Levels for beatmania IIDX (DP) in version 2dxtra.",
-		"title": "beatmania IIDX (DP) (2dxtra)",
+		"tableID": "iidx-DP-27-2dxtra-levels",
+		"description": "Levels for beatmania IIDX (DP) in HEROIC VERSE 2dxtra.",
+		"title": "beatmania IIDX (DP) (HEROIC VERSE 2dxtra)",
 		"folders": [
 			"F95714060b906bcf5ad8c56a5eb7188c33e33625641aa402525dc736b135f71b6",
 			"F8699f3dd12540244af207725cd1d72ac614b924362ef325f3b6bc6a4a053d594",
@@ -1189,8 +1189,8 @@
 	},
 	{
 		"tableID": "iidx-DP-bmus-levels",
-		"description": "Levels for beatmania IIDX (DP) in version bmus.",
-		"title": "beatmania IIDX (DP) (bmus)",
+		"description": "Levels for beatmania IIDX (DP) in BEATMANIA US.",
+		"title": "beatmania IIDX (DP) (BEATMANIA US)",
 		"folders": [
 			"Fd380fe20c20201f1bba2acc27eea89b6f8f25fd441f9f5244d6cf137d3038c06",
 			"F466351166533a94e6fdc3635b6237f814a40d6be4a3a46bf9e8159e66e97fe2a",
@@ -1211,8 +1211,8 @@
 	},
 	{
 		"tableID": "iidx-DP-inf-levels",
-		"description": "Levels for beatmania IIDX (DP) in version inf.",
-		"title": "beatmania IIDX (DP) (inf)",
+		"description": "Levels for beatmania IIDX (DP) in INFINITAS.",
+		"title": "beatmania IIDX (DP) (INFINITAS)",
 		"folders": [
 			"F53bacbfb216135e2a22cd89055625d62610389cc488042c1ed09a6118f593ce4",
 			"F93c3cbf19b67abcdf6cb9f30076aaada549f28fbaf5373d20962e9ea716df192",
@@ -1233,8 +1233,8 @@
 	},
 	{
 		"tableID": "museca-Single-1.5-levels",
-		"description": "Levels for MÚSECA in version 1.5.",
-		"title": "MÚSECA (1.5)",
+		"description": "Levels for MÚSECA in 1 + 1/2.",
+		"title": "MÚSECA (1 + 1/2)",
 		"folders": [
 			"Fa0bf1a555ff954866487ef254c0e62328feffa2c4e795ecfc28a0b014d4a557f",
 			"F35c650cc79bd54fd0411919e9b143ec7e6507753b2b2bd5046ad36b56b49518d",
@@ -1258,8 +1258,8 @@
 	},
 	{
 		"tableID": "museca-Single-1.5-b-levels",
-		"description": "Levels for MÚSECA in version 1.5-b.",
-		"title": "MÚSECA (1.5-b)",
+		"description": "Levels for MÚSECA in 1 + 1/2 Rev. B.",
+		"title": "MÚSECA (1 + 1/2 Rev. B)",
 		"folders": [
 			"Fa6dd05737a2f54494e81b1fd59b4a6b8885f7cfc673dba6f62797db7135c5993",
 			"F3a9ad835fbcf803e5e134686d3c837a2e01bf2f90ee1a7ba076d205e451c5d0b",
@@ -1283,8 +1283,8 @@
 	},
 	{
 		"tableID": "maimai-Single-finale-levels",
-		"description": "Levels for maimai in version finale.",
-		"title": "maimai (finale)",
+		"description": "Levels for maimai in FiNALE.",
+		"title": "maimai (FiNALE)",
 		"folders": [
 			"F1a0c0e32b477738519b1a69e167b4c6f87fa5ffd704b2a47759b414a7da4b8c4",
 			"Fae54b2e40ea8e8a3cab7f007a516f6c4dbbb0eda8a6d211d02e1b8cce5cf1ff9",
@@ -1314,8 +1314,8 @@
 	},
 	{
 		"tableID": "sdvx-Single-heaven-levels",
-		"description": "Levels for SOUND VOLTEX in version heaven.",
-		"title": "SOUND VOLTEX (heaven)",
+		"description": "Levels for SOUND VOLTEX in HEAVENLY HAVEN.",
+		"title": "SOUND VOLTEX (HEAVENLY HAVEN)",
 		"folders": [
 			"F5c71548c82d436d6c3a811f1f6e6f267cecdc0ed40736aff2d10c43895e164bd",
 			"F4c1dd44e6db251bd185724295a5b29f30021ab94f4acbe12f670e3cd34651f18",
@@ -1344,8 +1344,8 @@
 	},
 	{
 		"tableID": "sdvx-Single-vivid-levels",
-		"description": "Levels for SOUND VOLTEX in version vivid.",
-		"title": "SOUND VOLTEX (vivid)",
+		"description": "Levels for SOUND VOLTEX in VIVID WAVE.",
+		"title": "SOUND VOLTEX (VIVID WAVE)",
 		"folders": [
 			"F6f759af83ab316bde12f923433945a025c0782a77ed0d2c27aedfa4ba6db9a43",
 			"F848a99e733cddf868e9b633f5c9e3427e5bbe72526ead6fccc15adab6b59ccaf",
@@ -1374,8 +1374,8 @@
 	},
 	{
 		"tableID": "ddr-SP-a20-levels",
-		"description": "Levels for DDR (SP) in version a20.",
-		"title": "DDR (SP) (a20)",
+		"description": "Levels for DDR (SP) in A20.",
+		"title": "DDR (SP) (A20)",
 		"folders": [
 			"Fbd426239e8fd94b9ed6d54b50ac1fe2d1f39f26926b27d91ebc5b76cb0b1dc87",
 			"Fbdbe830277086bf4b0e0b6b9ab36956c36ee88037a91eac02253e19a2930dcb4",
@@ -1404,8 +1404,8 @@
 	},
 	{
 		"tableID": "ddr-DP-a20-levels",
-		"description": "Levels for DDR (DP) in version a20.",
-		"title": "DDR (DP) (a20)",
+		"description": "Levels for DDR (DP) in A20.",
+		"title": "DDR (DP) (A20)",
 		"folders": [
 			"F9cfb5fc3b40592366d252c9c52a66bb965076cf14905ae48c2d2868a2850cc12",
 			"Fac6c9a7c503835a797424e6dba2bd721aa8e4322258e9e8660cf909ce94c1927",
@@ -1434,8 +1434,8 @@
 	},
 	{
 		"tableID": "chunithm-Single-paradise-levels",
-		"description": "Levels for CHUNITHM in version paradise.",
-		"title": "CHUNITHM (paradise)",
+		"description": "Levels for CHUNITHM in Paradise.",
+		"title": "CHUNITHM (Paradise)",
 		"folders": [
 			"F40d2f7fcff33d7429874834148ffb43732d508ace05ed70e60768981f439dd1b",
 			"F1718139d741fb101a5c436b67f871d9656b99596c32da1ff319c7f5a36b7c50a",

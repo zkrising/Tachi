@@ -15,6 +15,8 @@ const router: Router = Router({ mergeParams: true });
  * returns the 100 most popular charts for this game.
  *
  * @param search - The song title to match on.
+ * @param noIntelligentOmit - If present, will not perform intelligent
+ * chart omissions from results.
  *
  * @name GET /api/v1/games/:game/:playtype/charts
  */
@@ -55,7 +57,7 @@ router.get("/", async (req, res) => {
 	//
 	// Since most players will have this off, this is not a significant
 	// performance hit.
-	if (game === "iidx") {
+	if (game === "iidx" && !req.query.noIntelligentOmit) {
 		if (!req[SYMBOL_TachiAPIAuth].userID) {
 			charts = charts.filter(
 				(e) => (e as ChartDocument<"iidx:SP" | "iidx:DP">).data["2dxtraSet"] === null

@@ -36,7 +36,8 @@ async function RunOnInit() {
 		await fetch("https://example.com");
 	} catch (err) {
 		logger.crit(
-			`Cannot send HTTPS request to https://example.com. This instance of tachi-server cannot access the internet?`
+			`Cannot send HTTPS request to https://example.com. This instance of tachi-server cannot access the internet?`,
+			err
 		);
 		// process.exit(1);
 	}

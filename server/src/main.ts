@@ -31,6 +31,15 @@ async function RunOnInit() {
 	});
 
 	await LoadDefaultClients();
+
+	try {
+		await fetch("https://example.com");
+	} catch (err) {
+		logger.crit(
+			`Cannot send HTTPS request to https://example.com. This instance of tachi-server cannot access the internet?`
+		);
+		process.exit(1);
+	}
 }
 
 RunOnInit();

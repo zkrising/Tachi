@@ -11,6 +11,7 @@ import path from "path";
 import server from "server/server";
 import { InitaliseFolderChartLookup } from "utils/folder";
 import { FormatVersion } from "./lib/constants/version";
+import fetch from "utils/fetch";
 
 const logger = CreateLogCtx(__filename);
 
@@ -39,7 +40,7 @@ async function RunOnInit() {
 			`Cannot send HTTPS request to https://example.com. This instance of tachi-server cannot access the internet?`,
 			err
 		);
-		// process.exit(1);
+		process.exit(1);
 	}
 }
 

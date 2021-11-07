@@ -3,6 +3,7 @@
 
 import { execSync } from "child_process";
 import { monkDB } from "external/mongo/db";
+import fjsh from "fast-json-stable-hash";
 import fs from "fs";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
@@ -12,7 +13,6 @@ import os from "os";
 import path from "path";
 import { ChartDocument, FolderDocument, SongDocument, TableDocument } from "tachi-common";
 import { InitaliseFolderChartLookup } from "utils/folder";
-import fjsh from "fast-json-stable-hash";
 
 interface SyncInstructions {
 	pattern: RegExp;

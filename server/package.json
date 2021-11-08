@@ -47,11 +47,9 @@
 		"why-is-node-running": "2.2.0"
 	},
 	"dependencies": {
-		"@types/bull": "^3.15.5",
 		"@types/bunyan": "^1.8.7",
 		"@types/deep-equal": "^1.0.1",
 		"bcryptjs": "^2.4.3",
-		"bull": "^3.29.2",
 		"bunyan": "^1.8.15",
 		"commander": "7.2.0",
 		"connect-redis": "6.0.0",

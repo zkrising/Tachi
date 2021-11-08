@@ -1,13 +1,12 @@
 // Attempt to deoprhan lost scores.
 
-import Bull from "bull";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
 
 const logger = CreateLogCtx(__dirname);
 
-export async function DeoprhanScores(job: Bull.Job) {
+export async function DeoprhanScores() {
 	const orphans = await db["orphan-scores"].find({});
 
 	// ScoreIDs are essentially userID dependent, so this is fine.
@@ -15,7 +14,6 @@ export async function DeoprhanScores(job: Bull.Job) {
 
 	logger.info(`Found ${orphans.length} orphans.`);
 
-	let done = 0;
 	let failed = 0;
 	let success = 0;
 	let removed = 0;
@@ -23,7 +21,6 @@ export async function DeoprhanScores(job: Bull.Job) {
 	await Promise.all(
 		orphans.map((or) =>
 			ReprocessOrphan(or, blacklist, logger).then((r) => {
-				done++;
 				if (r === null) {
 					removed++;
 				} else if (r === false) {
@@ -31,8 +28,6 @@ export async function DeoprhanScores(job: Bull.Job) {
 				} else {
 					success++;
 				}
-
-				job.progress((100 * done) / orphans.length);
 			})
 		)
 	);
@@ -40,4 +35,10 @@ export async function DeoprhanScores(job: Bull.Job) {
 	logger.info(`Finished attempting deorphaning.`);
 
 	logger.info(`Success: ${success} | Failed ${failed} | Removed ${removed}.`);
+}
+
+if (require.main === module) {
+	DeoprhanScores().then(() => {
+		process.exit(0);
+	});
 }

@@ -191,7 +191,7 @@ router.patch(
 	RequireOwnershipOfClient,
 	prValidate({
 		name: p.optional(p.isBoundedString(3, 80)),
-		apiKeyFormat: optNull((self) => {
+		apiKeyTemplate: optNull((self) => {
 			if (typeof self !== "string") {
 				return "Expected a string.";
 			}

@@ -70,8 +70,8 @@ app.use(userSessionMiddleware);
 
 // Most of these options are leveraged from KTAPI
 
-// allow nginx to work its magic
-app.set("trust proxy", "loopback");
+// Pass the IP of the user up our increasingly insane chain of nginx/docker nonsense
+app.set("trust proxy", ["loopback", "linklocal", "uniquelocal"]);
 
 // we don't allow nesting in query strings.
 app.set("query parser", "simple");

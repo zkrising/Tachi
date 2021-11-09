@@ -17,7 +17,7 @@ router.post("/import", RequirePermissions("submit_score"), async (req, res) => {
 	if (req.body?.meta?.game !== "chunithm") {
 		return res.status(400).json({
 			success: false,
-			description: "Invalid Game.",
+			description: `Invalid Game. Expected 'chunithm', but got ${req.body?.meta?.game}`,
 		});
 	}
 

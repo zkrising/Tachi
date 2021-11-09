@@ -1,14 +1,16 @@
 {
-    "meta": {
-        "game": "chunithm",
-        "playtype": "Single",
-        "service": "Chunitachi"
-    },
-    "scores": [{
-        "score": 900000,
-        "lamp": "CLEAR",
-        "matchType": "songTitle",
-        "identifier": "B.B.K.K.B.K.K.",
-        "difficulty": "BASIC"
-    }]
+	"meta": {
+		"game": "chunithm",
+		"playtype": "Single",
+		"service": "ChunItachi"
+	},
+	"scores": [
+		{
+			"score": 900000,
+			"lamp": "CLEAR",
+			"matchType": "songTitle",
+			"identifier": "B.B.K.K.B.K.K.",
+			"difficulty": "BASIC"
+		}
+	]
 }

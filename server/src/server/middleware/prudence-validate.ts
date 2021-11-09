@@ -4,7 +4,7 @@ import CreateLogCtx from "lib/logger/logger";
 const logger = CreateLogCtx(__filename);
 
 const printf = (message: string, stringVal: string | null, keychain: string | null) =>
-	` [${keychain}] ${message}${stringVal ? ` (Received ${stringVal})` : ""}`;
+	`[${keychain}] ${message}${stringVal ? ` (Received ${stringVal})` : ""}`;
 
 const API_ERR_HANDLER: MiddlewareErrorHandler = (req, res, next, error) => {
 	let stringVal = error.userVal;

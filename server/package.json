@@ -9,7 +9,8 @@
 		"watchtest": "tap --watch",
 		"build": "tsc --project tsconfig.build.json",
 		"lint": "eslint ./src --ext .ts --fix",
-		"start": "tsc --project tsconfig.build.json && export NODE_PATH=js/ && node js/main.js"
+		"start": "tsc --project tsconfig.build.json && export NODE_PATH=js/ && node js/main.js",
+		"run": "export NODE_PATH=js/ && node js/main.js"
 	},
 	"author": "zkldi",
 	"license": "AGPL3",

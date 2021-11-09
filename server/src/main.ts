@@ -67,7 +67,7 @@ if (ServerConfig.ENABLE_SERVER_HTTPS) {
 }
 
 process.on("SIGTERM", () => {
-	logger.info("SIGTERM Recieved, closing program.");
+	logger.info("SIGTERM Received, closing program.");
 
 	instance.close(async () => {
 		logger.info("Closing Mongo Database.");

@@ -202,7 +202,7 @@ router.patch(
 
 			return true;
 		}),
-		apiKeyFilename: p.optional(p.isBoundedString(3, 80)),
+		apiKeyFilename: optNull(p.isBoundedString(3, 80)),
 		webhookUri: optNull((self) => {
 			if (typeof self !== "string") {
 				return "Expected a string.";

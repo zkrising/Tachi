@@ -215,7 +215,7 @@ router.patch(
 
 			return true;
 		}),
-		redirectUri: p.optional((self) => {
+		redirectUri: optNull((self) => {
 			if (typeof self !== "string") {
 				return "Expected a string.";
 			}

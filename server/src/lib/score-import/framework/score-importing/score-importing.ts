@@ -56,14 +56,14 @@ export async function ImportAllIterableData<D, C>(
 
 	logger.verbose(`Starting Data Processing...`);
 
-	const promises = [];
+	const processedResults = [];
 
 	// for await is used here as iterableData may be an async iterable
 	// An example would be making an api request after exhausting
 	// the first set of data.
 	for await (const data of iterableData) {
-		promises.push(
-			ImportIterableDatapoint(
+		processedResults.push(
+			await ImportIterableDatapoint(
 				userID,
 				importType,
 				data,
@@ -76,9 +76,8 @@ export async function ImportAllIterableData<D, C>(
 	}
 
 	// We need to filter out nulls, which we don't care for (these are neither successes or failures)
-	const processedResults = await Promise.all(promises);
 
-	logger.verbose(`Finished Importing Data (${promises.length} datapoints).`);
+	logger.verbose(`Finished Importing Data (${processedResults.length} datapoints).`);
 	logger.debug(`Removing null returns...`);
 
 	const datapoints = processedResults.filter(
@@ -87,7 +86,7 @@ export async function ImportAllIterableData<D, C>(
 
 	logger.debug(`Removed null from results.`);
 
-	logger.verbose(`Recieved ${datapoints.length} returns, from ${promises.length} data.`);
+	logger.verbose(`Recieved ${datapoints.length} returns, from ${processedResults.length} data.`);
 
 	// Flush the score queue out after finishing most of the import. This ensures no scores get left in the
 	// queue.

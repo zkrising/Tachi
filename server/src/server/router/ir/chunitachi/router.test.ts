@@ -23,7 +23,7 @@ t.test("POST /ir/chunitachi/import", (t) => {
 
 		t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
-		const scoreCount = await db.scores.count({ service: "Chunitachi" });
+		const scoreCount = await db.scores.count({ service: "ChunItachi" });
 
 		t.equal(scoreCount, 1, "Should import one score.");
 

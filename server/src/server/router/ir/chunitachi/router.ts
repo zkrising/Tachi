@@ -21,7 +21,7 @@ router.post("/import", RequirePermissions("submit_score"), async (req, res) => {
 		});
 	}
 
-	if (req.body.meta.service !== "Chunitachi") {
+	if (req.body.meta.service !== "ChunItachi") {
 		return res.status(400).json({
 			success: false,
 			description: `Unexpected service ${req.body.head.service} -- expected 'Chunitachi'`,

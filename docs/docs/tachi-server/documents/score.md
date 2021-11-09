@@ -129,7 +129,7 @@ The below document is an example IIDX - SP score.
 		"esd": 10.15625,
 		"score": 1729,
 		"lamp": "FULL COMBO",
-		"hitData": {
+		"judgements": {
 			"pgreat": 821,
 			"great": 87
 		},

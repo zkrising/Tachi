@@ -1,5 +1,5 @@
 import { spawn } from "child_process";
-import db from "external/mongo/db";
+import db, { monkDB } from "external/mongo/db";
 import { SetIndexesIfNoneSet } from "external/mongo/indexes";
 import { InitSequenceDocs } from "external/mongo/sequence-docs";
 import fs from "fs";
@@ -12,6 +12,8 @@ import server from "server/server";
 import { InitaliseFolderChartLookup } from "utils/folder";
 import { FormatVersion } from "./lib/constants/version";
 import fetch from "utils/fetch";
+import http from "http";
+import { CloseRedisConnection } from "external/redis/redis";
 
 const logger = CreateLogCtx(__filename);
 
@@ -46,6 +48,8 @@ async function RunOnInit() {
 
 RunOnInit();
 
+let instance: http.Server | https.Server;
+
 if (ServerConfig.ENABLE_SERVER_HTTPS) {
 	logger.warn(
 		"HTTPS Mode is enabled. This should not be used in production, and you should instead run behind a reverse proxy."
@@ -55,12 +59,26 @@ if (ServerConfig.ENABLE_SERVER_HTTPS) {
 
 	const httpsServer = https.createServer({ key: privateKey, cert: certificate }, server);
 
-	httpsServer.listen(Environment.port);
+	instance = httpsServer.listen(Environment.port);
 	logger.info(`HTTPS Listening on port ${Environment.port}`);
 } else {
-	server.listen(Environment.port);
+	instance = server.listen(Environment.port);
 	logger.info(`HTTP Listening on port ${Environment.port}`);
 }
+
+process.on("SIGTERM", () => {
+	logger.info("SIGTERM Received, closing program.");
+
+	instance.close(async () => {
+		logger.info("Closing Mongo Database.");
+		await monkDB.close();
+
+		logger.info("Closing Redis Connection.");
+		CloseRedisConnection();
+
+		logger.info("Everything closed. Waiting for process to exit naturally.");
+	});
+});
 
 if (process.env.INVOKE_JOB_RUNNER) {
 	logger.info(`Spawning a tachi-server job runner inline.`);

@@ -18,7 +18,7 @@ t.test("#PrudenceMiddleware", (t) => {
 		const json = res._getJSONData();
 		t.equal(
 			json.description,
-			"example error message (Received bar) [K:foo]",
+			"[foo] example error message (Received bar)",
 			"Should return error message"
 		);
 
@@ -35,7 +35,7 @@ t.test("#PrudenceMiddleware", (t) => {
 		const json = res._getJSONData();
 		t.equal(
 			json.description,
-			"example error message (Received nothing) [K:foo]",
+			"[foo] example error message (Received nothing)",
 			"Should return error message with recieved nothing"
 		);
 
@@ -86,7 +86,7 @@ t.test("#PrudenceMiddleware", (t) => {
 		const json = res._getJSONData();
 		t.equal(
 			json.description,
-			"example error message (Received bar) [K:foo]",
+			"[foo] example error message (Received bar)",
 			"Should return error message"
 		);
 
@@ -109,7 +109,7 @@ t.test("#PrudenceMiddleware", (t) => {
 			const json = res._getJSONData();
 			t.equal(
 				json.description,
-				"invalid password (Received ****) [K:password]",
+				"[password] invalid password (Received ****)",
 				"Should return obscured error message"
 			);
 
@@ -131,7 +131,7 @@ t.test("#PrudenceMiddleware", (t) => {
 			const json = res._getJSONData();
 			t.equal(
 				json.description,
-				"invalid password (Received nothing) [K:password]",
+				"[password] invalid password (Received nothing)",
 				"Should indicate if no data was sent in obscured error message"
 			);
 

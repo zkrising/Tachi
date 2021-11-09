@@ -101,7 +101,7 @@ t.test("PATCH /api/v1/scores/:scoreID", (t) => {
 			});
 
 		t.equal(res.statusCode, 400);
-		t.match(res.body.description, /\[K:comment\]/u);
+		t.match(res.body.description, /\[comment\]/u);
 
 		const res2 = await mockApi
 			.patch("/api/v1/scores/TESTING_SCORE_ID")
@@ -111,7 +111,7 @@ t.test("PATCH /api/v1/scores/:scoreID", (t) => {
 			});
 
 		t.equal(res2.statusCode, 400);
-		t.match(res2.body.description, /\[K:comment\]/u);
+		t.match(res2.body.description, /\[comment\]/u);
 
 		t.end();
 	});

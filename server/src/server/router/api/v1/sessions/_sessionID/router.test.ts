@@ -103,7 +103,7 @@ t.test("PATCH /api/v1/sessions/:sessionID", (t) => {
 			});
 
 		t.equal(res.statusCode, 400);
-		t.match(res.body.description, /\[K:name\]/u);
+		t.match(res.body.description, /\[name\]/u);
 
 		const res2 = await mockApi
 			.patch(`/api/v1/sessions/${TESTING_SESSION_ID}`)
@@ -113,7 +113,7 @@ t.test("PATCH /api/v1/sessions/:sessionID", (t) => {
 			});
 
 		t.equal(res2.statusCode, 400);
-		t.match(res2.body.description, /\[K:name\]/u);
+		t.match(res2.body.description, /\[name\]/u);
 
 		t.end();
 	});
@@ -127,7 +127,7 @@ t.test("PATCH /api/v1/sessions/:sessionID", (t) => {
 			});
 
 		t.equal(res.statusCode, 400);
-		t.match(res.body.description, /\[K:desc\]/u);
+		t.match(res.body.description, /\[desc\]/u);
 
 		const res2 = await mockApi
 			.patch(`/api/v1/sessions/${TESTING_SESSION_ID}`)
@@ -137,7 +137,7 @@ t.test("PATCH /api/v1/sessions/:sessionID", (t) => {
 			});
 
 		t.equal(res2.statusCode, 400);
-		t.match(res2.body.description, /\[K:desc\]/u);
+		t.match(res2.body.description, /\[desc\]/u);
 
 		t.end();
 	});

@@ -87,3 +87,9 @@ export async function UGSSnapshot() {
 		throw err;
 	}
 }
+
+if (require.main === module) {
+	UGSSnapshot().then(() => {
+		process.exit(0);
+	});
+}

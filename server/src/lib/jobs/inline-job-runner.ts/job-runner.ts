@@ -1,8 +1,8 @@
 import Queue from "bull";
 import CreateLogCtx from "lib/logger/logger";
 import { DedupeArr } from "utils/misc";
-import { DeoprhanScores } from "./jobs/deorphan-scores";
-import { UGSSnapshot } from "./jobs/ugs-snapshot";
+import { DeoprhanScores } from "../deorphan-scores";
+import { UGSSnapshot } from "../ugs-snapshot";
 
 interface Job {
 	name: string;

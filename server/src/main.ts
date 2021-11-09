@@ -63,7 +63,13 @@ if (ServerConfig.ENABLE_SERVER_HTTPS) {
 }
 
 if (process.env.INVOKE_JOB_RUNNER) {
-	logger.info(`Spawning a tachi-server job runner.`);
+	logger.info(`Spawning a tachi-server job runner inline.`);
+
+	if (Environment.nodeEnv === "production") {
+		logger.warn(
+			`Spawning inline tachi-server job runner in production. Is this actually what you want? You should run a tool like Ofelia to manage this.`
+		);
+	}
 
 	// Spawn as a separate process to avoid hogging the main thread.
 	const jobProcess = spawn(

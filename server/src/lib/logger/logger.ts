@@ -1,5 +1,5 @@
 import { Transport as SeqTransport } from "@valuabletouch/winston-seq";
-import { Environment, ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
 import { SeqLogLevel } from "seq-logging";
 import { EscapeStringRegexp } from "utils/misc";
@@ -191,6 +191,10 @@ export const rootLogger = winston.createLogger({
 	level,
 	format: defaultFormatRoute,
 	transports: tports,
+	defaultMeta: {
+		__ServerName: TachiConfig.NAME,
+		__ReplicaID: Environment.replicaIdentity,
+	},
 });
 
 if (!!ServerConfig.LOGGER_CONFIG.SEQ_API_KEY !== !!Environment.seqUrl) {

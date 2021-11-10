@@ -42,7 +42,7 @@ export default function BeatorajaIRPage() {
 					<ExternalLink href="/client-file-flow/CXBeatorajaIR">this link</ExternalLink>.
 				</li>
 				<li>
-					Place the API token in the password field. Put your username in aswell! The IR
+					Place the API token in the password field. Put your username in as well! The IR
 					wont load if you don't have a username set.
 				</li>
 				<li>

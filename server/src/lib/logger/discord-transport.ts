@@ -111,9 +111,16 @@ export default class DiscordTransport extends Transport {
 	private sendBucketData() {
 		let color = 0;
 
+		const fields = [];
+
 		for (const key of ["warn", "error"] as const) {
-			if (this.bucketData[key]) {
+			if (this.bucketData[key].length !== 0) {
 				color = DiscordColours[key];
+				fields.push({
+					// uppercase first char
+					name: key[0].toUpperCase() + key.slice(1),
+					value: this.bucketData[key].length,
+				});
 			}
 		}
 
@@ -130,10 +137,7 @@ export default class DiscordTransport extends Transport {
 			embeds: [
 				{
 					title: `${TachiConfig.NAME} Log Summary`,
-					fields: Object.entries(this.bucketData).map(([k, v]) => ({
-						name: k[0].toUpperCase() + k.slice(1) + (v.length === 1 ? "" : "s"),
-						value: v.length.toString(),
-					})),
+					fields,
 					description: `Log summary for ${this.bucketStart?.toUTCString()} to ${new Date().toUTCString()}.`,
 					color,
 					timestamp: new Date().toISOString(),

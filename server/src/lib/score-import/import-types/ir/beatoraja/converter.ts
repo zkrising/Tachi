@@ -80,7 +80,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		// orphan this score and return ktdnf
 		if (!chart) {
 			throw new KTDataNotFoundFailure(
-				`This chart is orphaned.`,
+				`This chart (${context.chart.artist} - ${context.chart.title}) is orphaned.`,
 				"ir/beatoraja",
 				data,
 				context

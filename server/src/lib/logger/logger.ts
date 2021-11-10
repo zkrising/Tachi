@@ -1,9 +1,11 @@
-import winston, { format, transports, Logger, LeveledLogMethod } from "winston";
-import { EscapeStringRegexp } from "utils/misc";
-import "winston-daily-rotate-file";
-import SafeJSONStringify from "safe-json-stringify";
+import { Transport as SeqTransport } from "@valuabletouch/winston-seq";
 import { Environment, ServerConfig } from "lib/setup/config";
-import CreateDiscordWinstonTransport from "./discord-transport";
+import SafeJSONStringify from "safe-json-stringify";
+import { SeqLogLevel } from "seq-logging";
+import { EscapeStringRegexp } from "utils/misc";
+import winston, { format, LeveledLogMethod, Logger, transports } from "winston";
+import "winston-daily-rotate-file";
+import DiscordWinstonTransport from "./discord-transport";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };
 
@@ -116,18 +118,22 @@ const consoleFormatRoute = format.combine(
 	})
 );
 
-const tports: winston.transport[] = [
-	new transports.DailyRotateFile({
-		filename: "logs/tachi-%DATE%.log",
-		datePattern: "YYYY-MM-DD-HH",
-		zippedArchive: true,
-		maxSize: "20m",
-		maxFiles: "14d",
-		createSymlink: true,
-		symlinkName: "tachi.log",
-		format: defaultFormatRoute,
-	}),
-];
+const tports: winston.transport[] = [];
+
+if (ServerConfig.LOGGER_CONFIG.FILE) {
+	tports.push(
+		new transports.DailyRotateFile({
+			filename: "logs/tachi-%DATE%.log",
+			datePattern: "YYYY-MM-DD-HH",
+			zippedArchive: true,
+			maxSize: "20m",
+			maxFiles: "14d",
+			createSymlink: true,
+			symlinkName: "tachi.log",
+			format: defaultFormatRoute,
+		})
+	);
+}
 
 if (ServerConfig.LOGGER_CONFIG.CONSOLE) {
 	tports.push(
@@ -139,9 +145,33 @@ if (ServerConfig.LOGGER_CONFIG.CONSOLE) {
 
 if (ServerConfig.LOGGER_CONFIG.DISCORD) {
 	tports.push(
-		new CreateDiscordWinstonTransport({
+		new DiscordWinstonTransport({
 			webhook: ServerConfig.LOGGER_CONFIG.DISCORD.WEBHOOK_URL,
 			level: "warn",
+		})
+	);
+}
+
+if (ServerConfig.LOGGER_CONFIG.SEQ_API_KEY && Environment.seqUrl) {
+	// Turns winston log levels into seq format.
+	const levelMap: Record<string, SeqLogLevel> = {
+		crit: "Fatal",
+		severe: "Error",
+		error: "Error",
+		warn: "Warning",
+		info: "Information",
+		// Very cool that they've decided to swap these. Very funny.
+		verbose: "Debug",
+		debug: "Verbose",
+	};
+
+	tports.push(
+		new SeqTransport({
+			apiKey: ServerConfig.LOGGER_CONFIG.SEQ_API_KEY,
+			serverUrl: Environment.seqUrl,
+			levelMapper(level = "") {
+				return levelMap[level] ?? "information";
+			},
 		})
 	);
 }
@@ -160,6 +190,19 @@ export const rootLogger = winston.createLogger({
 	format: defaultFormatRoute,
 	transports: tports,
 });
+
+if (!!ServerConfig.LOGGER_CONFIG.SEQ_API_KEY !== !!Environment.seqUrl) {
+	rootLogger.warn(
+		`Only one of SEQ_API_KEY (conf.json5) and SEQ_URL (Environment) were set. Not sending logs to Seq, as both must be provided.`
+	);
+}
+
+if (tports.length === 0) {
+	// eslint-disable-next-line no-console
+	console.warn(
+		"You have no transports set. Absolutely no logs will be saved. This is a terrible idea!"
+	);
+}
 
 function CreateLogCtx(filename: string, lg = rootLogger): KtLogger {
 	const replacedFilename = filename.replace(

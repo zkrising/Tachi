@@ -107,14 +107,18 @@ export default class DiscordTransport extends Transport {
 	}
 
 	private sendBucketData() {
-		let description = "";
+		let description = "Warnings or Errors have been triggered!";
 
 		// damn americans...
 		let color = 0;
 
 		for (const key of ["warn", "error"] as const) {
 			if (this.bucketData[key]) {
-				description += `[${key.toUpperCase()}]: ${this.bucketData[key]}`;
+				description += "\n";
+				description += `There were ${
+					this.bucketData[key]
+				} ${key.toUpperCase()} level logs in the past minute.`;
+
 				color = DiscordColours[key];
 			}
 		}

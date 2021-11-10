@@ -136,8 +136,6 @@ const err = p(config, {
 	USC_QUEUE_SIZE: p.optional(p.gteInt(2)),
 	BEATORAJA_QUEUE_SIZE: p.optional(p.gteInt(2)),
 	OUR_URL: "string",
-	LOGGER_DISCORD_WEBHOOK: "*string",
-	DISCORD_WHO_TO_TAG: p.optional(["string"]),
 	CDN_WEB_LOCATION: "string",
 	INVITE_CODE_CONFIG: p.optional({
 		BATCH_SIZE: p.isPositiveInteger,
@@ -157,6 +155,10 @@ const err = p(config, {
 		CONSOLE: "*boolean",
 		FILE: "*boolean",
 		SEQ_API_KEY: "*string",
+		DISCORD: p.optional({
+			WEBHOOK_URL: "string",
+			WHO_TO_TAG: ["string"],
+		}),
 	},
 });
 

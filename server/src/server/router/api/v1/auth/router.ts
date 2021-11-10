@@ -50,7 +50,9 @@ router.post(
 			username:
 				"Invalid username. Usernames cannot start with a number, and must be between 2 and 20 characters.",
 			captcha: "Please fill out the captcha.",
-		}
+		},
+		undefined,
+		"verbose"
 	),
 	async (req, res) => {
 		if (req.session.tachi?.user.id) {
@@ -171,7 +173,9 @@ router.post(
 			email: "Invalid email.",
 			inviteCode: "Invalid invite code.",
 			captcha: "Please fill out the captcha.",
-		}
+		},
+		undefined,
+		"verbose"
 	),
 	async (req, res) => {
 		logger.verbose(`Recieved register request with username ${req.body.username} (${req.ip})`);

@@ -10,14 +10,8 @@ import { FormatPrError } from "utils/prudence";
 
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
 
-const replicaInfo = process.env.REPLICA_IDENTITY ? ` (${process.env.REPLICA_IDENTITY})` : "";
-
 // stub - having a real logger here creates a circular dependency.
-const logger = {
-	info: (...content: unknown[]) => console.log(replicaInfo, content),
-	error: (...content: unknown[]) => console.error(replicaInfo, content),
-	warn: (...content: unknown[]) => console.warn(replicaInfo, content),
-}; // CreateLogCtx(__filename);
+const logger = console;
 
 const confLocation = process.env.TCHIS_CONF_LOCATION ?? "./conf.json5";
 
@@ -54,7 +48,6 @@ export interface OAuth2Info {
 
 export interface TachiServerConfig {
 	MONGO_DATABASE_NAME: string;
-	LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
 	CAPTCHA_SECRET_KEY: string;
 	SESSION_SECRET: string;
 	FLO_API_URL?: string;
@@ -71,7 +64,6 @@ export interface TachiServerConfig {
 	RATE_LIMIT: integer;
 	OAUTH_CLIENT_CAP: integer;
 	OPTIONS_ALWAYS_SUCCEEDS?: boolean;
-	NO_CONSOLE?: boolean;
 	EMAIL_CONFIG?: {
 		FROM: string;
 		DKIM?: SendMailOptions["dkim"];
@@ -85,8 +77,6 @@ export interface TachiServerConfig {
 	USC_QUEUE_SIZE: integer;
 	BEATORAJA_QUEUE_SIZE: integer;
 	OUR_URL: string;
-	LOGGER_DISCORD_WEBHOOK?: string;
-	DISCORD_WHO_TO_TAG?: string[];
 	CDN_WEB_LOCATION: string;
 	INVITE_CODE_CONFIG?: {
 		BATCH_SIZE: integer;
@@ -99,6 +89,16 @@ export interface TachiServerConfig {
 		GAMES: Game[];
 		IMPORT_TYPES: ImportTypes[];
 	};
+	LOGGER_CONFIG: {
+		LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
+		CONSOLE: boolean;
+		FILE: boolean;
+		SEQ_API_KEY: string | undefined;
+		DISCORD?: {
+			WEBHOOK_URL: string;
+			WHO_TO_TAG: string[];
+		};
+	};
 }
 
 const isValidOauth2 = p.optional({
@@ -109,7 +109,6 @@ const isValidOauth2 = p.optional({
 
 const err = p(config, {
 	MONGO_DATABASE_NAME: "string",
-	LOG_LEVEL: p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit"),
 	CAPTCHA_SECRET_KEY: "string",
 	SESSION_SECRET: "string",
 	FLO_API_URL: p.optional(isValidURL),
@@ -126,7 +125,6 @@ const err = p(config, {
 	RATE_LIMIT: p.optional(p.isPositiveInteger),
 	OAUTH_CLIENT_CAP: p.optional(p.isPositiveInteger),
 	OPTIONS_ALWAYS_SUCCEEDS: "*boolean",
-	NO_CONSOLE: "*boolean",
 	EMAIL_CONFIG: p.optional({
 		FROM: "string",
 		DKIM: "*object",
@@ -152,6 +150,14 @@ const err = p(config, {
 		GAMES: [p.isIn(StaticConfig.allSupportedGames)],
 		IMPORT_TYPES: [p.isIn(StaticConfig.allImportTypes)],
 	},
+	LOGGER_CONFIG: {
+		LOG_LEVEL: p.optional(
+			p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit")
+		),
+		CONSOLE: "*boolean",
+		FILE: "*boolean",
+		SEQ_API_KEY: "*string",
+	},
 });
 
 if (err) {
@@ -165,6 +171,16 @@ tachiServerConfig.RATE_LIMIT ??= 500;
 tachiServerConfig.OAUTH_CLIENT_CAP ??= 15;
 tachiServerConfig.USC_QUEUE_SIZE ??= 3;
 tachiServerConfig.BEATORAJA_QUEUE_SIZE ??= 3;
+
+// Assign sane defaults to the logger config.
+tachiServerConfig.LOGGER_CONFIG = Object.assign(
+	{
+		LOG_LEVEL: "info",
+		CONSOLE: true,
+		FILE: true,
+	},
+	tachiServerConfig.LOGGER_CONFIG
+);
 
 export const TachiConfig = tachiServerConfig.TACHI_CONFIG;
 export const ServerConfig = tachiServerConfig;
@@ -189,6 +205,13 @@ if (!mongoUrl) {
 	process.exit(1);
 }
 
+const seqUrl = process.env.SEQ_URL;
+if (!seqUrl && tachiServerConfig.LOGGER_CONFIG.SEQ_API_KEY) {
+	logger.warn(
+		`No SEQ_URL specified in environment, yet LOGGER_CONFIG.SEQ_API_KEY was defined. No logs will be sent to Seq!`
+	);
+}
+
 const cdnRoot = process.env.CDN_FILE_ROOT;
 if (!cdnRoot) {
 	logger.error(`No CDN_FILE_ROOT specified in environment. Terminating.`);
@@ -209,11 +232,6 @@ if (!["dev", "production", "staging", "test"].includes(nodeEnv)) {
 }
 
 const replicaIdentity = process.env.REPLICA_IDENTITY;
-if (!replicaIdentity) {
-	logger.info(
-		`No REPLICA_IDENTITY set in environment. We are not running in a distributed environment.`
-	);
-}
 
 export const Environment = {
 	port,
@@ -223,4 +241,5 @@ export const Environment = {
 	cdnRoot: nodeEnv === "test" ? "./test-cdn" : cdnRoot,
 	nodeEnv,
 	replicaIdentity,
+	seqUrl,
 };

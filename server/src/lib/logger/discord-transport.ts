@@ -1,12 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ServerConfig } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
 import fetch from "utils/fetch";
 import Transport, { TransportStreamOptions } from "winston-transport";
 import { DiscordColours } from "./colours";
+import { integer } from "tachi-common";
+import { ONE_MINUTE } from "lib/constants/time";
 
 interface DiscordTransportOptions extends TransportStreamOptions {
 	/** Webhook obtained from Discord */
 	webhook: string;
+}
+
+interface LogLevelCountState {
+	warn: integer;
+	error: integer;
 }
 
 /**
@@ -22,8 +30,17 @@ export default class DiscordTransport extends Transport {
 	/** Initialization promise resolved after retrieving discord id and token */
 	private initalised: Promise<void>;
 
+	private bucketData: LogLevelCountState = {
+		warn: 0,
+		error: 0,
+	};
+
+	private isBucketing = false;
+
 	constructor(opts: DiscordTransportOptions) {
 		super(opts);
+
+		this.resetBucketData();
 
 		this.initalised = fetch(opts.webhook)
 			.then((r) => {
@@ -38,12 +55,19 @@ export default class DiscordTransport extends Transport {
 			});
 	}
 
+	private resetBucketData() {
+		this.bucketData = {
+			warn: 0,
+			error: 0,
+		};
+	}
+
 	log(info: any, cb: () => void) {
 		if (info.noDiscord !== false) {
 			try {
 				setImmediate(() => {
 					this.initalised.then(() => {
-						this.SendToDiscord(this.webhookUrl, info);
+						this.handleSendToDiscord(info);
 					});
 				});
 			} catch (err) {
@@ -56,13 +80,62 @@ export default class DiscordTransport extends Transport {
 		cb();
 	}
 
-	private GetWhoToTag() {
-		return ServerConfig.DISCORD_WHO_TO_TAG
-			? ServerConfig.DISCORD_WHO_TO_TAG.map((e) => `<@${e}>`).join(" ")
+	private handleSendToDiscord(info: any) {
+		if (info.level === "crit" || info.level === "severe") {
+			return this.sendLogDirectlyToDiscord(info);
+		}
+
+		if (!["warn", "error", "severe"].includes(info.level)) {
+			// Don't need to send notifications about these.
+			return;
+		}
+
+		this.bucketData[info.level as "warn" | "error"] += 1;
+
+		if (!this.isBucketing) {
+			this.isBucketing = true;
+			setTimeout(() => {
+				this.sendBucketData();
+			}, ONE_MINUTE);
+		}
+	}
+
+	private getWhoToTag() {
+		return ServerConfig.LOGGER_CONFIG.DISCORD!.WHO_TO_TAG
+			? ServerConfig.LOGGER_CONFIG.DISCORD!.WHO_TO_TAG.map((e) => `<@${e}>`).join(" ")
 			: "Nobody configured to tag, but this is bad, get someone!";
 	}
 
-	private async SendToDiscord(webhookLocation: string, info: any) {
+	private sendBucketData() {
+		let description = "";
+
+		// damn americans...
+		let color = 0;
+
+		for (const key of ["warn", "error"] as const) {
+			if (this.bucketData[key]) {
+				description += `[${key.toUpperCase()}]: ${this.bucketData[key]}`;
+				color = DiscordColours[key];
+			}
+		}
+
+		const postBody = {
+			content: "",
+			embeds: [
+				{
+					description,
+					color,
+					timestamp: new Date().toISOString(),
+				},
+			],
+		};
+
+		this.POSTData(postBody);
+		this.resetBucketData();
+		this.isBucketing = false;
+	}
+
+	private async sendLogDirectlyToDiscord(info: any) {
 		const postBody = {
 			content: "",
 			embeds: [
@@ -82,11 +155,11 @@ export default class DiscordTransport extends Transport {
 		// These two levels are bad, and require near-immediate attention.
 
 		if (info.level === "severe") {
-			postBody.content = `SEVERE ERROR: ${this.GetWhoToTag()}\n${postBody.content}`;
+			postBody.content = `SEVERE ERROR: ${this.getWhoToTag()}\n${postBody.content}`;
 		}
 
 		if (info.level === "crit") {
-			postBody.content = `CRITICAL ERROR: ${this.GetWhoToTag()}\n${postBody.content}`;
+			postBody.content = `CRITICAL ERROR: ${this.getWhoToTag()}\n${postBody.content}`;
 		}
 
 		await this.POSTData(postBody);

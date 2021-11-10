@@ -47,7 +47,7 @@ const RequireAdminLevel: RequestHandler = async (req, res, next) => {
 	return next();
 };
 
-const LOG_LEVEL = ServerConfig.LOG_LEVEL;
+const LOG_LEVEL = ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
 
 router.use(RequireAdminLevel);
 

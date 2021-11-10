@@ -2,7 +2,6 @@
 
 {
 	MONGO_DATABASE_NAME: "testingdb",
-	LOG_LEVEL: "info",
 	CAPTCHA_SECRET_KEY: "unused",
 	SESSION_SECRET: "unused",
 	FLO_API_URL: "https://flo.example.com",
@@ -64,5 +63,10 @@
 			"api/flo-sdvx",
 			"api/min-sdvx",
 		],
+	},
+	LOGGER_CONFIG: {
+		FILE: false,
+		CONSOLE: true,
+		LOG_LEVEL: "info",
 	},
 }

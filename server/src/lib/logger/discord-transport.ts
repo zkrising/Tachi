@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ServerConfig } from "lib/setup/config";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
 import fetch from "utils/fetch";
 import Transport, { TransportStreamOptions } from "winston-transport";
@@ -107,18 +107,10 @@ export default class DiscordTransport extends Transport {
 	}
 
 	private sendBucketData() {
-		let description = "Warnings or Errors have been triggered!";
-
-		// damn americans...
 		let color = 0;
 
 		for (const key of ["warn", "error"] as const) {
 			if (this.bucketData[key]) {
-				description += "\n";
-				description += `There were ${
-					this.bucketData[key]
-				} ${key.toUpperCase()} level logs in the past minute.`;
-
 				color = DiscordColours[key];
 			}
 		}
@@ -127,7 +119,12 @@ export default class DiscordTransport extends Transport {
 			content: "",
 			embeds: [
 				{
-					description,
+					title: `${TachiConfig.NAME} Log Summary`,
+					fields: Object.entries(this.bucketData).map(([k, v]) => ({
+						name: k.toUpperCase(),
+						value: v.toString(),
+					})),
+					description: `Log summary for ${new Date().toUTCString()}.`,
 					color,
 					timestamp: new Date().toISOString(),
 				},

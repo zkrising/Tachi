@@ -124,8 +124,8 @@ router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
 
 	if (!chart) {
 		return res.status(200).json({
-			statusCode: STATUS_CODES.CHART_REFUSE,
-			description: "This chart is not tracked, and will not be accepted.",
+			statusCode: STATUS_CODES.NOT_FOUND,
+			description: "This chart is not available on the IR yet, more people need to play it!",
 		});
 	}
 
@@ -171,7 +171,7 @@ router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
 	return res.status(200).json({
 		statusCode: STATUS_CODES.SUCCESS,
 		description: "Retrieved score.",
-		body: serverScore,
+		body: { record: serverScore },
 	});
 });
 

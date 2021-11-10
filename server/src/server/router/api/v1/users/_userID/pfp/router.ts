@@ -50,7 +50,11 @@ router.put(
 			});
 		}
 
-		if (req.file.mimetype === "image/jpeg" || req.file.mimetype === "image/png") {
+		if (
+			req.file.mimetype === "image/jpeg" ||
+			req.file.mimetype === "image/png" ||
+			req.file.mimetype === "image/gif"
+		) {
 			await CDNStoreOrOverwrite(GetProfilePictureURL(user.id), req.file.buffer);
 		} else {
 			return res.status(400).json({

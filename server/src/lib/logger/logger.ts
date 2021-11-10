@@ -193,6 +193,7 @@ export const rootLogger = winston.createLogger({
 	transports: tports,
 	defaultMeta: {
 		__ServerName: TachiConfig.NAME,
+		__Worker: !!process.env.IS_WORKER,
 		__ReplicaID: Environment.replicaIdentity,
 	},
 });

@@ -54,7 +54,6 @@ export interface OAuth2Info {
 
 export interface TachiServerConfig {
 	MONGO_DATABASE_NAME: string;
-	LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
 	CAPTCHA_SECRET_KEY: string;
 	SESSION_SECRET: string;
 	FLO_API_URL?: string;
@@ -71,7 +70,6 @@ export interface TachiServerConfig {
 	RATE_LIMIT: integer;
 	OAUTH_CLIENT_CAP: integer;
 	OPTIONS_ALWAYS_SUCCEEDS?: boolean;
-	NO_CONSOLE?: boolean;
 	EMAIL_CONFIG?: {
 		FROM: string;
 		DKIM?: SendMailOptions["dkim"];
@@ -99,6 +97,12 @@ export interface TachiServerConfig {
 		GAMES: Game[];
 		IMPORT_TYPES: ImportTypes[];
 	};
+	LOGGER_CONFIG: {
+		LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
+		CONSOLE: boolean | undefined;
+		FILE: boolean | undefined;
+		SEQ_API_KEY: string | undefined;
+	};
 }
 
 const isValidOauth2 = p.optional({
@@ -109,7 +113,6 @@ const isValidOauth2 = p.optional({
 
 const err = p(config, {
 	MONGO_DATABASE_NAME: "string",
-	LOG_LEVEL: p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit"),
 	CAPTCHA_SECRET_KEY: "string",
 	SESSION_SECRET: "string",
 	FLO_API_URL: p.optional(isValidURL),
@@ -126,7 +129,6 @@ const err = p(config, {
 	RATE_LIMIT: p.optional(p.isPositiveInteger),
 	OAUTH_CLIENT_CAP: p.optional(p.isPositiveInteger),
 	OPTIONS_ALWAYS_SUCCEEDS: "*boolean",
-	NO_CONSOLE: "*boolean",
 	EMAIL_CONFIG: p.optional({
 		FROM: "string",
 		DKIM: "*object",
@@ -152,6 +154,14 @@ const err = p(config, {
 		GAMES: [p.isIn(StaticConfig.allSupportedGames)],
 		IMPORT_TYPES: [p.isIn(StaticConfig.allImportTypes)],
 	},
+	LOGGER_CONFIG: {
+		LOG_LEVEL: p.optional(
+			p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit")
+		),
+		CONSOLE: "*boolean",
+		FILE: "*boolean",
+		SEQ_API_KEY: "*string",
+	},
 });
 
 if (err) {
@@ -165,6 +175,16 @@ tachiServerConfig.RATE_LIMIT ??= 500;
 tachiServerConfig.OAUTH_CLIENT_CAP ??= 15;
 tachiServerConfig.USC_QUEUE_SIZE ??= 3;
 tachiServerConfig.BEATORAJA_QUEUE_SIZE ??= 3;
+
+// Assign sane defaults to the logger config.
+tachiServerConfig.LOGGER_CONFIG = Object.assign(
+	{
+		LOG_LEVEL: "info",
+		CONSOLE: true,
+		FILE: true,
+	},
+	tachiServerConfig.LOGGER_CONFIG
+);
 
 export const TachiConfig = tachiServerConfig.TACHI_CONFIG;
 export const ServerConfig = tachiServerConfig;
@@ -187,6 +207,13 @@ const mongoUrl = process.env.MONGO_URL;
 if (!mongoUrl) {
 	logger.error(`No MONGO_URL specified in environment. Terminating.`);
 	process.exit(1);
+}
+
+const seqUrl = process.env.SEQ_URL;
+if (!seqUrl && tachiServerConfig.LOGGER_CONFIG.SEQ_API_KEY) {
+	logger.warn(
+		`No SEQ_URL specified in environment, yet LOGGER_CONFIG.SEQ_API_KEY was defined. No logs will be sent to Seq!`
+	);
 }
 
 const cdnRoot = process.env.CDN_FILE_ROOT;
@@ -223,4 +250,5 @@ export const Environment = {
 	cdnRoot: nodeEnv === "test" ? "./test-cdn" : cdnRoot,
 	nodeEnv,
 	replicaIdentity,
+	seqUrl,
 };

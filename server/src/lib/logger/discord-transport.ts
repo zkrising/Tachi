@@ -36,6 +36,7 @@ export default class DiscordTransport extends Transport {
 	};
 
 	private isBucketing = false;
+	private bucketStart: Date | null = null;
 
 	constructor(opts: DiscordTransportOptions) {
 		super(opts);
@@ -94,6 +95,7 @@ export default class DiscordTransport extends Transport {
 
 		if (!this.isBucketing) {
 			this.isBucketing = true;
+			this.bucketStart = new Date();
 			setTimeout(() => {
 				this.sendBucketData();
 			}, ONE_MINUTE);
@@ -124,7 +126,7 @@ export default class DiscordTransport extends Transport {
 						name: k[0].toUpperCase() + k.slice(1) + (v === 1 ? "" : "s"),
 						value: v.toString(),
 					})),
-					description: `Log summary for ${new Date().toUTCString()}.`,
+					description: `Log summary for ${this.bucketStart?.toUTCString()} to ${new Date().toUTCString()}.`,
 					color,
 					timestamp: new Date().toISOString(),
 				},
@@ -134,6 +136,7 @@ export default class DiscordTransport extends Transport {
 		this.POSTData(postBody);
 		this.resetBucketData();
 		this.isBucketing = false;
+		this.bucketStart = null;
 	}
 
 	private async sendLogDirectlyToDiscord(info: any) {

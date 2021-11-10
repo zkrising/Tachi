@@ -82,12 +82,12 @@ t.test("GET /ir/usc/charts/:chartHash", (t) => {
 		t.end();
 	});
 
-	t.test("Should return 42 if the chartHash doesn't match a chart.", async (t) => {
+	t.test("Should return 44 if the chartHash doesn't match a chart.", async (t) => {
 		const res = await mockApi
 			.get("/ir/usc/charts/INVALID_HASH")
 			.set("Authorization", "Bearer foo");
 
-		t.equal(res.body.statusCode, 42, "Should return 42");
+		t.equal(res.body.statusCode, 44, "Should return 44");
 
 		t.end();
 	});
@@ -139,12 +139,12 @@ t.test("GET /ir/usc/:chartHash/record", (t) => {
 	t.beforeEach(InsertFakeUSCAuth);
 	TestAuth("/ir/usc/:chartHash/record");
 
-	t.test("Should return 42 if the chartHash doesn't match a chart.", async (t) => {
+	t.test("Should return 44 if the chartHash doesn't match a chart.", async (t) => {
 		const res = await mockApi
 			.get("/ir/usc/charts/INVALID_HASH/record")
 			.set("Authorization", "Bearer foo");
 
-		t.equal(res.body.statusCode, 42, "Should return 42");
+		t.equal(res.body.statusCode, 44, "Should return 44");
 
 		t.end();
 	});
@@ -154,7 +154,7 @@ t.test("GET /ir/usc/:chartHash/record", (t) => {
 			.get("/ir/usc/charts/USC_CHART_HASH/record")
 			.set("Authorization", "Bearer foo");
 
-		t.equal(res.body.statusCode, 44, "Should return 42");
+		t.equal(res.body.statusCode, 44, "Should return 44");
 
 		t.end();
 	});
@@ -180,7 +180,7 @@ t.test("GET /ir/usc/:chartHash/record", (t) => {
 		t.equal(res.body.statusCode, 20, "Should return 20");
 
 		t.strictSame(
-			res.body.body,
+			res.body.body.record,
 			{
 				score: 9_000_000,
 				timestamp: 0,

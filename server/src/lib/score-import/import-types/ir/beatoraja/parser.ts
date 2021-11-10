@@ -63,10 +63,10 @@ const PR_BeatorajaChart = {
 };
 
 const SUPPORTED_BEATORAJA_CLIENTS = [
-	"lr2oraja 0.8.3",
-	"lr2oraja 0.8.2",
-	"lr2oraja 0.8.1",
-	"lr2oraja 0.8.0",
+	"LR2oraja 0.8.3",
+	"LR2oraja 0.8.2",
+	"LR2oraja 0.8.1",
+	"LR2oraja 0.8.0",
 ];
 
 export function ParseBeatorajaSingle(

@@ -7,7 +7,7 @@ import CreateDiscordWinstonTransport from "./discord-transport";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };
 
-const level = process.env.LOG_LEVEL ?? ServerConfig.LOG_LEVEL;
+const level = process.env.LOG_LEVEL ?? ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
 
 const formatExcessProperties = (meta: Record<string, unknown>, limit = false) => {
 	let i = 0;
@@ -129,7 +129,7 @@ const tports: winston.transport[] = [
 	}),
 ];
 
-if (!ServerConfig.NO_CONSOLE) {
+if (ServerConfig.LOGGER_CONFIG.CONSOLE) {
 	tports.push(
 		new transports.Console({
 			format: consoleFormatRoute,
@@ -137,10 +137,10 @@ if (!ServerConfig.NO_CONSOLE) {
 	);
 }
 
-if (ServerConfig.LOGGER_DISCORD_WEBHOOK) {
+if (ServerConfig.LOGGER_CONFIG.DISCORD) {
 	tports.push(
 		new CreateDiscordWinstonTransport({
-			webhook: ServerConfig.LOGGER_DISCORD_WEBHOOK,
+			webhook: ServerConfig.LOGGER_CONFIG.DISCORD.WEBHOOK_URL,
 			level: "warn",
 		})
 	);
@@ -160,10 +160,6 @@ export const rootLogger = winston.createLogger({
 	format: defaultFormatRoute,
 	transports: tports,
 });
-
-if (ServerConfig.LOGGER_DISCORD_WEBHOOK) {
-	rootLogger.info(`Discord logging enabled.`);
-}
 
 function CreateLogCtx(filename: string, lg = rootLogger): KtLogger {
 	const replacedFilename = filename.replace(

@@ -83,8 +83,6 @@ export interface TachiServerConfig {
 	USC_QUEUE_SIZE: integer;
 	BEATORAJA_QUEUE_SIZE: integer;
 	OUR_URL: string;
-	LOGGER_DISCORD_WEBHOOK?: string;
-	DISCORD_WHO_TO_TAG?: string[];
 	CDN_WEB_LOCATION: string;
 	INVITE_CODE_CONFIG?: {
 		BATCH_SIZE: integer;
@@ -102,6 +100,10 @@ export interface TachiServerConfig {
 		CONSOLE: boolean;
 		FILE: boolean;
 		SEQ_API_KEY: string | undefined;
+		DISCORD?: {
+			WEBHOOK_URL: string;
+			WHO_TO_TAG: string[];
+		};
 	};
 }
 

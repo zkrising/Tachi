@@ -18,7 +18,7 @@ import { CloseRedisConnection } from "external/redis/redis";
 const logger = CreateLogCtx(__filename);
 
 logger.info(`Booting ${TachiConfig.NAME} - ${FormatVersion()} [ENV: ${Environment.nodeEnv}]`);
-logger.info(`Log level is set to ${ServerConfig.LOG_LEVEL}.`);
+logger.info(`Log level is set to ${ServerConfig.LOGGER_CONFIG.LOG_LEVEL}.`);
 
 logger.info(`Loading sequence documents...`);
 

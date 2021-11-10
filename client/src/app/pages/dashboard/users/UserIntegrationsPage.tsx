@@ -478,6 +478,8 @@ function EditClientModal({
 	const [name, setName] = useState(client.name);
 	const [redirectUri, setRedirectUri] = useState(client.redirectUri);
 	const [webhookUri, setWebhookUri] = useState(client.webhookUri ?? "");
+	const [apiKeyFilename, setApiKeyFilename] = useState("");
+	const [apiKeyTemplate, setApiKeyTemplate] = useState("");
 
 	return (
 		<Modal show={show} onHide={() => setShow(false)}>
@@ -500,6 +502,8 @@ function EditClientModal({
 									name,
 									redirectUri,
 									webhookUri: webhookUri === "" ? null : webhookUri,
+									apiKeyFilename: apiKeyFilename === "" ? null : apiKeyFilename,
+									apiKeyTemplate: apiKeyTemplate === "" ? null : apiKeyTemplate,
 								}),
 							},
 							true,
@@ -549,6 +553,45 @@ function EditClientModal({
 							Webhook Documentation
 						</ExternalLink>{" "}
 						before using this, as there are necessary security precautions.
+					</Muted>
+
+					<Divider />
+					<FormInput
+						as="textarea"
+						fieldName="File Template"
+						value={apiKeyTemplate}
+						setValue={setApiKeyTemplate}
+						placeholder={JSON.stringify({ token: "%%TACHI_KEY%%" }, null, "\t")}
+					/>
+					<Muted>
+						In what format should a generated API Key be shown to the user? This only
+						applies to Client File Flow. <code>%%TACHI_KEY%%</code> will be replaced
+						with the generated key. Read more about client file flow{" "}
+						<ExternalLink href="https://tachi.readthedocs.io/en/latest/tachi-server/infrastructure/file-flow/">
+							here
+						</ExternalLink>
+						.
+						<br />
+						Leave this empty to spit the key out directly.
+					</Muted>
+					{apiKeyTemplate !== "" && !apiKeyTemplate.includes("%%TACHI_KEY%%") && (
+						<>
+							<br />
+							<span className="text-danger">
+								No %%TACHI_KEY%% detected in file template. Please add one!
+							</span>
+						</>
+					)}
+					<Divider />
+					<FormInput
+						fieldName="File Template"
+						value={apiKeyFilename}
+						setValue={setApiKeyFilename}
+						placeholder="my-service-config.json"
+					/>
+					<Muted>
+						If this is not empty, Client File Flow will result in a file of this name
+						being downloaded (in the above format).
 					</Muted>
 
 					<Divider />

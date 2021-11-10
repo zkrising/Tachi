@@ -2,6 +2,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
+import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { ParseBeatorajaSingle } from "lib/score-import/import-types/ir/beatoraja/parser";
 import { ServerConfig } from "lib/setup/config";

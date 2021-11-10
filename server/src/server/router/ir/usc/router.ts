@@ -30,6 +30,8 @@ import { FormatPrError } from "utils/prudence";
 import { USCClientChart } from "./types";
 import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
+import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
+import { GetBlacklist } from "utils/queries/blacklist";
 
 const logger = CreateLogCtx(__filename);
 
@@ -305,6 +307,15 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 			req[SYMBOL_TachiAPIAuth].userID!,
 			uscChartName
 		);
+
+		if (chartDoc) {
+			const blacklist = await GetBlacklist();
+			const scoresToDeorphan = await db["orphan-scores"].find({
+				"context.chartHash": chartDoc.data.hashSHA1,
+			});
+
+			await Promise.all(scoresToDeorphan.map((e) => ReprocessOrphan(e, blacklist, logger)));
+		}
 	}
 
 	const userDoc = await GetUserWithID(req[SYMBOL_TachiAPIAuth]!.userID!);

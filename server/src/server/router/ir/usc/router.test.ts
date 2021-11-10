@@ -482,7 +482,7 @@ t.test("POST /scores", (t) => {
 		},
 		score: {
 			score: 9_000_000,
-			gauge: 50,
+			gauge: 0.5,
 			timestamp: 1_000_000,
 			crit: 5,
 			near: 4,

@@ -8,7 +8,7 @@ import { IRUSCContext } from "./types";
 
 const PR_USCIRScore: PrudenceSchema = {
 	score: p.isBoundedInteger(0, 10_000_000),
-	gauge: p.isBetween(0, 100),
+	gauge: p.isBetween(0, 1),
 	timestamp: p.isPositiveInteger,
 	crit: p.isPositiveInteger,
 	near: p.isPositiveInteger,

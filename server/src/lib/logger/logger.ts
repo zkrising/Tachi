@@ -160,9 +160,11 @@ if (ServerConfig.LOGGER_CONFIG.SEQ_API_KEY && Environment.seqUrl) {
 		error: "Error",
 		warn: "Warning",
 		info: "Information",
-		// Very cool that they've decided to swap these. Very funny.
-		verbose: "Debug",
-		debug: "Verbose",
+		// Note that Seq interprets these in reverse,
+		// however, it's easier to read this code if I just
+		// use the same levels, instead of the right onesQ.
+		verbose: "Verbose",
+		debug: "Debug",
 	};
 
 	tports.push(

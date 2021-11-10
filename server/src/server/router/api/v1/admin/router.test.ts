@@ -10,7 +10,7 @@ import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScore } from "test-utils/test-data";
 import { ScoreDocument } from "tachi-common";
 
-const LOG_LEVEL = ServerConfig.LOG_LEVEL;
+const LOG_LEVEL = ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
 
 t.test("POST /api/v1/admin/change-log-level", async (t) => {
 	t.beforeEach(() => {

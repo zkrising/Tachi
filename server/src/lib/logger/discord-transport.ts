@@ -131,14 +131,12 @@ export default class DiscordTransport extends Transport {
 
 		const postBody = {
 			content: `
-			\`\`\`
-				${logSnippet.length > 1500 ? `${logSnippet.slice(0, 1500 - 3)}...` : logSnippet}
-			\`\`\``,
+			\`\`\`${logSnippet.length > 1500 ? `${logSnippet.slice(0, 1500 - 3)}...` : logSnippet}\`\`\``,
 			embeds: [
 				{
 					title: `${TachiConfig.NAME} Log Summary`,
 					fields,
-					description: `Log summary for ${this.bucketStart?.toUTCString()} to ${new Date().toUTCString()}.`,
+					description: `Log summary for ${this.bucketStart?.toISOString()} to ${new Date().toISOString()}.`,
 					color,
 					timestamp: new Date().toISOString(),
 				},

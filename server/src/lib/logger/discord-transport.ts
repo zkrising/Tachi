@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ServerConfig, TachiConfig } from "lib/setup/config";
+import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
 import fetch from "utils/fetch";
 import Transport, { TransportStreamOptions } from "winston-transport";
@@ -134,7 +134,11 @@ export default class DiscordTransport extends Transport {
 			\`\`\`${logSnippet.length > 1500 ? `${logSnippet.slice(0, 1500 - 3)}...` : logSnippet}\`\`\``,
 			embeds: [
 				{
-					title: `${TachiConfig.NAME} Log Summary`,
+					title: `${TachiConfig.NAME} Log Summary${
+						Environment.replicaIdentity
+							? ` (Replica: ${Environment.replicaIdentity})`
+							: ""
+					}`,
 					fields,
 					description: `Log summary for ${this.bucketStart?.toISOString()} to ${new Date().toISOString()}.`,
 					color,

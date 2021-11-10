@@ -92,4 +92,6 @@ export const contentiousSplashes = [
 	`Is ${mode === "ktchi" ? "IIDX" : "BMS"} still a good game or are you all basically stupid?`,
 	"Please do not reply to or quote my posts in the future.",
 	"Is this your IP? (178.62.116.150)",
+	"Bad faith just coincidentally happens to be something my enemies do...",
+	"...and good faith is when people agree with me",
 ];

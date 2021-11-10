@@ -42,8 +42,8 @@ export default function BeatorajaIRPage() {
 					<ExternalLink href="/client-file-flow/CXBeatorajaIR">this link</ExternalLink>.
 				</li>
 				<li>
-					Place the API token in the password field. The username field is ignored - you
-					can leave it empty or fill it out for completeness' sake.
+					Place the API token in the password field. Put your username in aswell! The IR
+					wont load if you don't have a username set.
 				</li>
 				<li>
 					That's it! Launch the game and start playing, your scores will automatically

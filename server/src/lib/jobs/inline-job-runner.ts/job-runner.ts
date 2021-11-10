@@ -7,7 +7,7 @@ import { UGSSnapshot } from "../ugs-snapshot";
 interface Job {
 	name: string;
 	cronFormat: string;
-	run: (job: Queue.Job) => Promise<void>;
+	run: () => Promise<void>;
 }
 
 const jobs: Job[] = [
@@ -61,7 +61,7 @@ export function InitialiseJobRunner() {
 			return false;
 		}
 
-		await jobInfo.run(j);
+		await jobInfo.run();
 
 		return true;
 	});

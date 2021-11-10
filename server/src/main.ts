@@ -17,10 +17,12 @@ import { CloseRedisConnection } from "external/redis/redis";
 
 const logger = CreateLogCtx(__filename);
 
-logger.info(`Booting ${TachiConfig.NAME} - ${FormatVersion()} [ENV: ${Environment.nodeEnv}]`);
-logger.info(`Log level is set to ${ServerConfig.LOGGER_CONFIG.LOG_LEVEL}.`);
+logger.info(`Booting ${TachiConfig.NAME} - ${FormatVersion()} [ENV: ${Environment.nodeEnv}]`, {
+	bootInfo: true,
+});
+logger.info(`Log level is set to ${ServerConfig.LOGGER_CONFIG.LOG_LEVEL}.`, { bootInfo: true });
 
-logger.info(`Loading sequence documents...`);
+logger.info(`Loading sequence documents...`, { bootInfo: true });
 
 async function RunOnInit() {
 	await InitSequenceDocs();
@@ -52,7 +54,8 @@ let instance: http.Server | https.Server;
 
 if (ServerConfig.ENABLE_SERVER_HTTPS) {
 	logger.warn(
-		"HTTPS Mode is enabled. This should not be used in production, and you should instead run behind a reverse proxy."
+		"HTTPS Mode is enabled. This should not be used in production, and you should instead run behind a reverse proxy.",
+		{ bootInfo: true }
 	);
 	const privateKey = fs.readFileSync("./cert/key.pem");
 	const certificate = fs.readFileSync("./cert/cert.pem");
@@ -60,32 +63,35 @@ if (ServerConfig.ENABLE_SERVER_HTTPS) {
 	const httpsServer = https.createServer({ key: privateKey, cert: certificate }, server);
 
 	instance = httpsServer.listen(Environment.port);
-	logger.info(`HTTPS Listening on port ${Environment.port}`);
+	logger.info(`HTTPS Listening on port ${Environment.port}`, { bootInfo: true });
 } else {
 	instance = server.listen(Environment.port);
-	logger.info(`HTTP Listening on port ${Environment.port}`);
+	logger.info(`HTTP Listening on port ${Environment.port}`, { bootInfo: true });
 }
 
 process.on("SIGTERM", () => {
-	logger.info("SIGTERM Received, closing program.");
+	logger.info("SIGTERM Received, closing program.", { shutdownInfo: true });
 
 	instance.close(async () => {
-		logger.info("Closing Mongo Database.");
+		logger.info("Closing Mongo Database.", { shutdownInfo: true });
 		await monkDB.close();
 
-		logger.info("Closing Redis Connection.");
+		logger.info("Closing Redis Connection.", { shutdownInfo: true });
 		CloseRedisConnection();
 
-		logger.info("Everything closed. Waiting for process to exit naturally.");
+		logger.info("Everything closed. Waiting for process to exit naturally.", {
+			shutdownInfo: true,
+		});
 	});
 });
 
 if (process.env.INVOKE_JOB_RUNNER) {
-	logger.info(`Spawning a tachi-server job runner inline.`);
+	logger.info(`Spawning a tachi-server job runner inline.`, { bootInfo: true });
 
 	if (Environment.nodeEnv === "production") {
 		logger.warn(
-			`Spawning inline tachi-server job runner in production. Is this actually what you want? You should run a tool like Ofelia to manage this.`
+			`Spawning inline tachi-server job runner in production. Is this actually what you want? You should run a tool like Ofelia to manage this.`,
+			{ bootInfo: true }
 		);
 	}
 

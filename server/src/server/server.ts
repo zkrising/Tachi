@@ -41,7 +41,9 @@ const userSessionMiddleware = expressSession({
 const app: Express = express();
 
 if (Environment.nodeEnv !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
-	logger.warn(`Enabling CORS requests from ${ServerConfig.CLIENT_DEV_SERVER}.`);
+	logger.warn(`Enabling CORS requests from ${ServerConfig.CLIENT_DEV_SERVER}.`, {
+		bootInfo: true,
+	});
 
 	// Allow CORS requests from another server (since we have our dev server hosted separately).
 	app.use((req, res, next) => {
@@ -61,7 +63,9 @@ if (Environment.nodeEnv !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
 	}
 } else {
 	if (Environment.nodeEnv !== "test") {
-		logger.info("Enabling Helmet, as no CLIENT_DEV_SERVER was set, or we are in production.");
+		logger.info("Enabling Helmet, as no CLIENT_DEV_SERVER was set, or we are in production.", {
+			bootInfo: true,
+		});
 	}
 	app.use(helmet());
 }
@@ -110,10 +114,11 @@ app.use("/", mainRouter);
 if (ServerConfig.RUN_OWN_CDN) {
 	if (Environment.nodeEnv === "production") {
 		logger.warn(
-			`Running OWN_CDN in production. Consider making a separate process handle your CDN for performance.`
+			`Running OWN_CDN in production. Consider making a separate process handle your CDN for performance.`,
+			{ bootInfo: true }
 		);
 	} else if (Environment.nodeEnv !== "test") {
-		logger.info(`Running own CDN at ${Environment.cdnRoot}.`);
+		logger.info(`Running own CDN at ${Environment.cdnRoot}.`, { bootInfo: true });
 	}
 
 	app.use("/cdn", express.static(Environment.cdnRoot));

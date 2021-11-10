@@ -8,7 +8,7 @@ const logger = CreateLogCtx(__filename);
 let transporter: Transporter | undefined;
 
 if (ServerConfig.EMAIL_CONFIG) {
-	logger.info(`Connecting to email server...`);
+	logger.info(`Connecting to email server...`, { bootInfo: true });
 	const conf = ServerConfig.EMAIL_CONFIG;
 
 	try {
@@ -37,7 +37,9 @@ if (ServerConfig.EMAIL_CONFIG) {
 		throw err;
 	}
 } else {
-	logger.warn(`No EMAIL_CONFIG present in conf, emails will not be sent from the server.`);
+	logger.warn(`No EMAIL_CONFIG present in conf, emails will not be sent from the server.`, {
+		bootInfo: true,
+	});
 }
 
 export function SendEmail(

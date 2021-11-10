@@ -51,7 +51,7 @@ if (Environment.nodeEnv === "test") {
 	dbName = `testingdb`;
 }
 
-logger.info(`Connecting to database ${Environment.mongoUrl}/${dbName}...`);
+logger.info(`Connecting to database ${Environment.mongoUrl}/${dbName}...`, { bootInfo: true });
 const dbtime = process.hrtime.bigint();
 
 // By default the connectTimeoutMS is 30 seconds. This has been upped to 2 minutes, due to poor performance
@@ -63,7 +63,9 @@ export const monkDB = monk(`${Environment.mongoUrl}/${dbName}`, {
 /* istanbul ignore next */
 monkDB
 	.then(() => {
-		logger.info(`Database connection successful: took ${GetMilisecondsSince(dbtime)}ms`);
+		logger.info(`Database connection successful: took ${GetMilisecondsSince(dbtime)}ms`, {
+			bootInfo: true,
+		});
 	})
 	.catch((err) => {
 		logger.crit(err);

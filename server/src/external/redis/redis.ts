@@ -6,14 +6,14 @@ import { GetMilisecondsSince } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
-logger.verbose("Instantiated Redis Store");
+logger.verbose("Instantiated Redis Store", { bootInfo: true });
 
 export const RedisClient = redis.createClient({
 	url: `redis://${Environment.redisUrl}`,
 });
 const startConnect = process.hrtime.bigint();
 
-logger.verbose("Instantiated Redis Client");
+logger.verbose("Instantiated Redis Client", { bootInfo: true });
 
 function EmitCritical() {
 	/* istanbul ignore next */
@@ -27,7 +27,9 @@ function EmitCritical() {
 const ref = setTimeout(EmitCritical, ONE_MINUTE * 2);
 
 RedisClient.on("connect", () => {
-	logger.info(`Connected to Redis. Took ${GetMilisecondsSince(startConnect)}ms`);
+	logger.info(`Connected to Redis. Took ${GetMilisecondsSince(startConnect)}ms`, {
+		bootInfo: true,
+	});
 
 	clearTimeout(ref);
 });

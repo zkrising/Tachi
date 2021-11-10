@@ -147,7 +147,7 @@ function ImageForm({ reqUser }: { reqUser: PublicUserDocument }) {
 				<Form.Label>Profile Picture</Form.Label>
 				<input
 					className="form-control"
-					accept="image/png,image/jpeg"
+					accept="image/png,image/jpeg,image/gif"
 					tabIndex={1}
 					type="file"
 					id="pfp"
@@ -166,7 +166,7 @@ function ImageForm({ reqUser }: { reqUser: PublicUserDocument }) {
 				<Form.Label>Profile Banner</Form.Label>
 				<input
 					className="form-control"
-					accept="image/png,image/jpeg"
+					accept="image/png,image/jpeg,image/gif"
 					tabIndex={2}
 					type="file"
 					id="banner"

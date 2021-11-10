@@ -31,4 +31,4 @@ I am trying to keep the codebase well organised and tidy.
 
 !!! warn
 	Your code should follow the branching setup we have.
-	You can read about it [here](./infrastructure/branches).
+	You can read about it [here](../infrastructure/branches).

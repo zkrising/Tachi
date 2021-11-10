@@ -238,11 +238,6 @@ if (!["dev", "production", "staging", "test"].includes(nodeEnv)) {
 }
 
 const replicaIdentity = process.env.REPLICA_IDENTITY;
-if (!replicaIdentity) {
-	logger.info(
-		`No REPLICA_IDENTITY set in environment. We are not running in a distributed environment.`
-	);
-}
 
 export const Environment = {
 	port,

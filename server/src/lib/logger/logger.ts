@@ -44,7 +44,6 @@ const formatExcessPropertiesNoStack = (
 	omitKeys: string[] = [],
 	limit = false
 ) => {
-	let i = 0;
 	const realMeta: Record<string, unknown> = {};
 
 	for (const key in meta) {
@@ -56,13 +55,12 @@ const formatExcessPropertiesNoStack = (
 
 		if (val instanceof Error) {
 			realMeta[key] = { message: val.message };
-		} else {
+		} else if (!key.startsWith("__") && !key.startsWith("!")) {
 			realMeta[key] = val;
 		}
-		i++;
 	}
 
-	if (!i) {
+	if (Object.keys(realMeta).length === 0) {
 		return "";
 	}
 
@@ -221,7 +219,9 @@ function CreateLogCtx(filename: string, lg = rootLogger): KtLogger {
 		context: [replacedFilename],
 	}) as KtLogger;
 
-	logger.defaultMeta = { context: [replacedFilename] };
+	logger.defaultMeta = Object.assign({}, logger.defaultMeta ?? {}, {
+		context: [replacedFilename],
+	});
 	return logger;
 }
 

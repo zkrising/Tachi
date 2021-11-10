@@ -148,7 +148,7 @@ const err = p(config, {
 		GAMES: [p.isIn(StaticConfig.allSupportedGames)],
 		IMPORT_TYPES: [p.isIn(StaticConfig.allImportTypes)],
 	},
-	LOGGER_CONFIG: {
+	LOGGER_CONFIG: p.optional({
 		LOG_LEVEL: p.optional(
 			p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit")
 		),
@@ -159,7 +159,7 @@ const err = p(config, {
 			WEBHOOK_URL: "string",
 			WHO_TO_TAG: ["string"],
 		}),
-	},
+	}),
 });
 
 if (err) {
@@ -181,7 +181,7 @@ tachiServerConfig.LOGGER_CONFIG = Object.assign(
 		CONSOLE: true,
 		FILE: true,
 	},
-	tachiServerConfig.LOGGER_CONFIG
+	tachiServerConfig.LOGGER_CONFIG ?? {}
 );
 
 export const TachiConfig = tachiServerConfig.TACHI_CONFIG;

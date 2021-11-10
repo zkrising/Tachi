@@ -81,7 +81,12 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 	});
 
 	if (!chartDoc) {
-		throw new KTDataNotFoundFailure("Chart is orphaned.", "ir/usc", data, context);
+		throw new KTDataNotFoundFailure(
+			`Chart ${context.chartHash} is orphaned.`,
+			"ir/usc",
+			data,
+			context
+		);
 	}
 
 	const song = await FindSongOnID("usc", chartDoc.songID);

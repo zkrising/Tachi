@@ -2,6 +2,7 @@ FROM node:16
 WORKDIR /app
 COPY --chown=node:node . /app
 RUN npm install --silent -g pnpm 
+RUN groupmod -g 1003 node
 RUN chown node:node /app
 USER node
 RUN pnpm i --silent

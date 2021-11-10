@@ -201,6 +201,13 @@ if (!["dev", "production", "staging", "test"].includes(nodeEnv)) {
 	process.exit(1);
 }
 
+const replicaIdentity = process.env.REPLICA_IDENTITY;
+if (!replicaIdentity) {
+	logger.info(
+		`No REPLICA_IDENTITY set in environment. We are not running in a distributed environment.`
+	);
+}
+
 export const Environment = {
 	port,
 	redisUrl,
@@ -208,4 +215,5 @@ export const Environment = {
 	// If node_env is test, force to ./test-cdn.
 	cdnRoot: nodeEnv === "test" ? "./test-cdn" : cdnRoot,
 	nodeEnv,
+	replicaIdentity,
 };

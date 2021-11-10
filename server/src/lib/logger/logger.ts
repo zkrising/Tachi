@@ -2,7 +2,7 @@ import winston, { format, transports, Logger, LeveledLogMethod } from "winston";
 import { EscapeStringRegexp } from "utils/misc";
 import "winston-daily-rotate-file";
 import SafeJSONStringify from "safe-json-stringify";
-import { ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig } from "lib/setup/config";
 import CreateDiscordWinstonTransport from "./discord-transport";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };
@@ -69,16 +69,18 @@ const formatExcessPropertiesNoStack = (
 	return ` ${limit ? StrCap(content) : content}`;
 };
 
+const replicaInfo = Environment.replicaIdentity ? ` (${Environment.replicaIdentity})` : "";
+
 const tachiPrintf = format.printf(
 	({ level, message, context = "tachi-root", timestamp, ...meta }) =>
-		`${timestamp} [${
+		`${timestamp}${replicaInfo} [${
 			Array.isArray(context) ? context.join(" | ") : context
 		}] ${level}: ${message}${formatExcessProperties(meta, true)}`
 );
 
 const tachiConsolePrintf = format.printf(
 	({ level, message, context = "tachi-root", timestamp, hideFromConsole, ...meta }) =>
-		`${timestamp} [${
+		`${timestamp}${replicaInfo} [${
 			Array.isArray(context) ? context.join(" | ") : context
 		}] ${level}: ${message}${formatExcessPropertiesNoStack(meta, hideFromConsole, true)}`
 );

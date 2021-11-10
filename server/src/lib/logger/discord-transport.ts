@@ -13,8 +13,8 @@ interface DiscordTransportOptions extends TransportStreamOptions {
 }
 
 interface LogLevelCountState {
-	warn: integer;
-	error: integer;
+	warn: string[];
+	error: string[];
 }
 
 /**
@@ -31,8 +31,8 @@ export default class DiscordTransport extends Transport {
 	private initalised: Promise<void>;
 
 	private bucketData: LogLevelCountState = {
-		warn: 0,
-		error: 0,
+		warn: [],
+		error: [],
 	};
 
 	private isBucketing = false;
@@ -58,8 +58,8 @@ export default class DiscordTransport extends Transport {
 
 	private resetBucketData() {
 		this.bucketData = {
-			warn: 0,
-			error: 0,
+			warn: [],
+			error: [],
 		};
 	}
 
@@ -91,7 +91,7 @@ export default class DiscordTransport extends Transport {
 			return;
 		}
 
-		this.bucketData[info.level as "warn" | "error"] += 1;
+		this.bucketData[info.level as "warn" | "error"].push(info.message);
 
 		if (!this.isBucketing) {
 			this.isBucketing = true;
@@ -117,14 +117,22 @@ export default class DiscordTransport extends Transport {
 			}
 		}
 
+		const logSnippet = [
+			...this.bucketData.error.map((e) => `[ERROR] ${e}`),
+			...this.bucketData.warn.map((e) => `[WARN] ${e}`),
+		].join("\n");
+
 		const postBody = {
-			content: "",
+			content: `
+			\`\`\`
+				${logSnippet.length > 1500 ? `${logSnippet.slice(0, 1500 - 3)}...` : logSnippet}
+			\`\`\``,
 			embeds: [
 				{
 					title: `${TachiConfig.NAME} Log Summary`,
 					fields: Object.entries(this.bucketData).map(([k, v]) => ({
-						name: k[0].toUpperCase() + k.slice(1) + (v === 1 ? "" : "s"),
-						value: v.toString(),
+						name: k[0].toUpperCase() + k.slice(1) + (v.length === 1 ? "" : "s"),
+						value: v.length.toString(),
 					})),
 					description: `Log summary for ${this.bucketStart?.toUTCString()} to ${new Date().toUTCString()}.`,
 					color,

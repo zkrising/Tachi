@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // barrel file for re-exporting env variables.
 import dotenv from "dotenv";
 import fs from "fs";
@@ -9,8 +10,14 @@ import { FormatPrError } from "utils/prudence";
 
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
 
+const replicaInfo = process.env.REPLICA_IDENTITY ? ` (${process.env.REPLICA_IDENTITY})` : "";
+
 // stub - having a real logger here creates a circular dependency.
-const logger = console; // CreateLogCtx(__filename);
+const logger = {
+	info: (...content: unknown[]) => console.log(replicaInfo, content),
+	error: (...content: unknown[]) => console.error(replicaInfo, content),
+	warn: (...content: unknown[]) => console.warn(replicaInfo, content),
+}; // CreateLogCtx(__filename);
 
 const confLocation = process.env.TCHIS_CONF_LOCATION ?? "./conf.json5";
 
@@ -201,6 +208,13 @@ if (!["dev", "production", "staging", "test"].includes(nodeEnv)) {
 	process.exit(1);
 }
 
+const replicaIdentity = process.env.REPLICA_IDENTITY;
+if (!replicaIdentity) {
+	logger.info(
+		`No REPLICA_IDENTITY set in environment. We are not running in a distributed environment.`
+	);
+}
+
 export const Environment = {
 	port,
 	redisUrl,
@@ -208,4 +222,5 @@ export const Environment = {
 	// If node_env is test, force to ./test-cdn.
 	cdnRoot: nodeEnv === "test" ? "./test-cdn" : cdnRoot,
 	nodeEnv,
+	replicaIdentity,
 };

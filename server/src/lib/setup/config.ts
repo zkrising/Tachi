@@ -99,8 +99,8 @@ export interface TachiServerConfig {
 	};
 	LOGGER_CONFIG: {
 		LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
-		CONSOLE: boolean | undefined;
-		FILE: boolean | undefined;
+		CONSOLE: boolean;
+		FILE: boolean;
 		SEQ_API_KEY: string | undefined;
 	};
 }

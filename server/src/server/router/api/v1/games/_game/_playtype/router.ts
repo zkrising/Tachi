@@ -213,7 +213,7 @@ router.get("/score-leaderboard", async (req, res) => {
  *
  * @param class - This should be one of the games supported classes.
  *
- * @name GET /api/v1/games/:game/:playtype/player-distribution
+ * @name GET /api/v1/games/:game/:playtype/class-distribution
  */
 router.get(
 	"/class-distribution",

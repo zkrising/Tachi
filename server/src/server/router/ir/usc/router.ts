@@ -143,12 +143,14 @@ router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
 router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
 	const chart = req[SYMBOL_TachiData]!.uscChartDoc;
 
-	// spec ambigious here
-
 	if (!chart) {
 		return res.status(200).json({
-			statusCode: STATUS_CODES.CHART_REFUSE,
-			description: "This IR is not currently tracking this chart.",
+			statusCode: STATUS_CODES.NOT_FOUND,
+			description: `This IR doesn't have any record data yet, or ${
+				ServerConfig.USC_QUEUE_SIZE
+			} ${
+				ServerConfig.USC_QUEUE_SIZE === 1 ? "person has" : "people have"
+			} not played the chart yet.`,
 		});
 	}
 

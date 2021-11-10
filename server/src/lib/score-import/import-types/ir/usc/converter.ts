@@ -44,7 +44,7 @@ export function DeriveLamp(scoreDoc: USCClientScore, logger: KtLogger): Lamps["u
 	} else if (scoreDoc.error === 0) {
 		return "ULTIMATE CHAIN";
 	} else if (scoreDoc.options.gaugeType === 0) {
-		return scoreDoc.gauge >= 70 ? "CLEAR" : "FAILED";
+		return scoreDoc.gauge >= 0.7 ? "CLEAR" : "FAILED";
 	} else if (scoreDoc.options.gaugeType === 1) {
 		return scoreDoc.gauge > 0 ? "EXCESSIVE CLEAR" : "FAILED";
 	}

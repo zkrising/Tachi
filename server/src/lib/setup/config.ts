@@ -10,14 +10,8 @@ import { FormatPrError } from "utils/prudence";
 
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
 
-const replicaInfo = process.env.REPLICA_IDENTITY ? ` (${process.env.REPLICA_IDENTITY})` : "";
-
 // stub - having a real logger here creates a circular dependency.
-const logger = {
-	info: (...content: unknown[]) => console.log(replicaInfo, content),
-	error: (...content: unknown[]) => console.error(replicaInfo, content),
-	warn: (...content: unknown[]) => console.warn(replicaInfo, content),
-}; // CreateLogCtx(__filename);
+const logger = console;
 
 const confLocation = process.env.TCHIS_CONF_LOCATION ?? "./conf.json5";
 

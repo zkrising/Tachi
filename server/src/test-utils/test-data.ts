@@ -221,7 +221,7 @@ export const uscScore: USCClientScore = {
 	crit: 100,
 	error: 5,
 	near: 50,
-	gauge: 80,
+	gauge: 0.8,
 	options: {
 		autoFlags: 0,
 		gaugeOpt: 0,

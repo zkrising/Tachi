@@ -13,9 +13,9 @@ const logger = CreateLogCtx(__filename);
 t.test("#DeriveLamp", (t) => {
 	t.equal(DeriveLamp(uscScore, logger), "EXCESSIVE CLEAR");
 
-	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 0 }, gauge: 50 }), logger), "FAILED");
+	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 0 }, gauge: 0.5 }), logger), "FAILED");
 
-	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 0 }, gauge: 70 }), logger), "CLEAR");
+	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 0 }, gauge: 0.7 }), logger), "CLEAR");
 
 	t.equal(
 		DeriveLamp(d(uscScore, { options: { gaugeType: 1 }, gauge: 0.1 }), logger),
@@ -51,7 +51,7 @@ t.test("#DeriveLamp", (t) => {
 			d(uscScore, {
 				score: 9_000_000,
 				options: { gaugeType: 0 },
-				gauge: 15,
+				gauge: 0.15,
 				error: 0,
 			}),
 			logger

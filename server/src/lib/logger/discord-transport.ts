@@ -121,7 +121,7 @@ export default class DiscordTransport extends Transport {
 				{
 					title: `${TachiConfig.NAME} Log Summary`,
 					fields: Object.entries(this.bucketData).map(([k, v]) => ({
-						name: k[0].toUpperCase() + k.slice(1),
+						name: k[0].toUpperCase() + k.slice(1) + (v === 1 ? "" : "s"),
 						value: v.toString(),
 					})),
 					description: `Log summary for ${new Date().toUTCString()}.`,

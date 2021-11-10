@@ -50,6 +50,11 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 			success: false,
 			description: `[${importRes.body.body.errors[0].type}] - ${importRes.body.body.errors[0].message}`,
 		});
+	} else if (importRes.body.body.scoreIDs.length === 0) {
+		return res.status(400).json({
+			success: false,
+			description: `No scores were imported.`,
+		});
 	}
 
 	const scoreDoc = await db.scores.findOne({

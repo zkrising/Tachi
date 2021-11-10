@@ -128,7 +128,7 @@ export async function ImportIterableDatapoint<D, C>(
 	// if this conversion failed, return it in the proper format
 	if (cfnReturn instanceof ConverterFailure) {
 		if (cfnReturn instanceof KTDataNotFoundFailure) {
-			logger.warn(`KTDataNotFoundFailure: ${cfnReturn.message ?? "No message?"}`, {
+			logger.info(`KTDataNotFoundFailure: ${cfnReturn.message ?? "No message?"}`, {
 				cfnReturn,
 				hideFromConsole: ["cfnReturn"],
 			});

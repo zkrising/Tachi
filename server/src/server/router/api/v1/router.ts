@@ -11,6 +11,7 @@ import searchRouter from "./search/router";
 import sessionsRouter from "./sessions/router";
 import statusRouter from "./status/router";
 import usersRouter from "./users/router";
+import configRouter from "./config/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -26,6 +27,7 @@ router.use("/scores", scoresRouter);
 router.use("/sessions", sessionsRouter);
 router.use("/oauth", oauthRouter);
 router.use("/clients", clientsRouter);
+router.use("/config", configRouter);
 
 /**
  * Return a JSON 404 response if an endpoint is hit that does not exist.

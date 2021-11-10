@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { ONE_MINUTE } from "lib/constants/time";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
 import fetch from "utils/fetch";
 import Transport, { TransportStreamOptions } from "winston-transport";
 import { DiscordColours } from "./colours";
-import { integer } from "tachi-common";
-import { ONE_MINUTE } from "lib/constants/time";
 
 interface DiscordTransportOptions extends TransportStreamOptions {
 	/** Webhook obtained from Discord */

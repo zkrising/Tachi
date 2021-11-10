@@ -13,6 +13,10 @@ import { ChartDocument, SongDocument } from "tachi-common";
 import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
 import { Random20Hex } from "utils/misc";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
+import db from "external/mongo/db";
+import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
+import { GetBlacklist } from "utils/queries/blacklist";
+import { KtLogger } from "lib/logger/logger";
 
 const LAMP_LOOKUP = {
 	NoPlay: "NO PLAY",
@@ -34,6 +38,59 @@ const RANDOM_LOOKUP = {
 	4: "S-RANDOM",
 } as const;
 
+async function HandleOrphanChartProcess(
+	data: BeatorajaScore,
+	context: BeatorajaContext,
+	logger: KtLogger
+) {
+	const chartName = `${context.chart.artist} (${context.chart.subartist})- ${context.chart.title} (${context.chart.subtitle})`;
+
+	if (context.chart.hasRandom) {
+		// If you're someone forking tachi looking to remove this
+		// check, remember to change the entire score import
+		// framework and database to be able to handle variable notecounts.
+		logger.verbose(`Declined to orphan chart ${chartName} as it has #RANDOM declarations.`);
+		throw new InvalidScoreFailure(`${TachiConfig.NAME} will not support #RANDOM charts.`);
+	}
+
+	const idString = context.chart.mode === "BEAT_7K" ? "bms:7K" : "bms:14K";
+
+	const { chartDoc, songDoc } = ConvertBeatorajaChartToTachi(context.chart);
+
+	const chart = await HandleOrphanQueue(
+		idString,
+		"bms",
+		chartDoc,
+		songDoc,
+		{
+			"chartDoc.data.hashSHA256": context.chart.sha256,
+		},
+		ServerConfig.BEATORAJA_QUEUE_SIZE,
+		context.userID,
+		chartName
+	);
+
+	// If chart wasn't unorphaned as a result of this request
+	// orphan this score and return ktdnf
+	if (!chart) {
+		throw new KTDataNotFoundFailure(
+			`This chart (${context.chart.artist} - ${context.chart.title}) is orphaned.`,
+			"ir/beatoraja",
+			data,
+			context
+		);
+	}
+
+	const blacklist = await GetBlacklist();
+	const scoresToDeorphan = await db["orphan-scores"].find({
+		"data.sha256": chartDoc.data.hashSHA256,
+	});
+
+	await Promise.all(scoresToDeorphan.map((e) => ReprocessOrphan(e, blacklist, logger)));
+
+	return chart;
+}
+
 export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaContext> = async (
 	data,
 	context,
@@ -49,43 +106,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 	> | null;
 
 	if (!chart) {
-		const chartName = `${context.chart.artist} (${context.chart.subartist})- ${context.chart.title} (${context.chart.subtitle})`;
-
-		if (context.chart.hasRandom) {
-			// If you're someone forking tachi looking to remove this
-			// check, remember to change the entire score import
-			// framework and database to be able to handle variable notecounts.
-			logger.verbose(`Declined to orphan chart ${chartName} as it has #RANDOM declarations.`);
-			throw new InvalidScoreFailure(`${TachiConfig.NAME} will not support #RANDOM charts.`);
-		}
-
-		const idString = context.chart.mode === "BEAT_7K" ? "bms:7K" : "bms:14K";
-
-		const { chartDoc, songDoc } = ConvertBeatorajaChartToTachi(context.chart);
-
-		chart = await HandleOrphanQueue(
-			idString,
-			"bms",
-			chartDoc,
-			songDoc,
-			{
-				"chartDoc.data.hashSHA256": context.chart.sha256,
-			},
-			ServerConfig.BEATORAJA_QUEUE_SIZE,
-			context.userID,
-			chartName
-		);
-
-		// If chart wasn't unorphaned as a result of this request
-		// orphan this score and return ktdnf
-		if (!chart) {
-			throw new KTDataNotFoundFailure(
-				`This chart (${context.chart.artist} - ${context.chart.title}) is orphaned.`,
-				"ir/beatoraja",
-				data,
-				context
-			);
-		}
+		chart = await HandleOrphanChartProcess(data, context, logger);
 	}
 
 	const song = await FindSongOnID("bms", chart.songID);

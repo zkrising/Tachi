@@ -25,7 +25,7 @@ import {
 import { DryScore } from "../common/types";
 import { OrphanScore } from "../orphans/orphans";
 import { HydrateScore } from "./hydrate-score";
-import { InsertQueue, QueueScoreInsert, ScoreIDs } from "./insert-score";
+import { GetScoreQueueMaybe, InsertQueue, QueueScoreInsert } from "./insert-score";
 import { CreateScoreID } from "./score-id";
 
 /**
@@ -92,7 +92,7 @@ export async function ImportAllIterableData<D, C>(
 
 	// Flush the score queue out after finishing most of the import. This ensures no scores get left in the
 	// queue.
-	const emptied = await InsertQueue();
+	const emptied = await InsertQueue(userID);
 
 	if (emptied) {
 		logger.verbose(`Emptied ${emptied} documents from score queue.`);
@@ -309,7 +309,8 @@ async function HydrateAndInsertScore(
 		return null;
 	}
 
-	if (ScoreIDs.has(scoreID)) {
+	// If this users score queue
+	if (GetScoreQueueMaybe(userID)?.scoreIDSet.has(scoreID)) {
 		logger.verbose(`Skipped score.`);
 		return null;
 	}
@@ -323,7 +324,7 @@ async function HydrateAndInsertScore(
 		res = await QueueScoreInsert(score);
 	}
 
-	// emergency state - this is a last resort for avoiding doubled imports
+	// this is a last resort for avoiding doubled imports
 	if (res === null) {
 		logger.verbose(`Skipped score - Race Condition protection triggered.`);
 		return null;

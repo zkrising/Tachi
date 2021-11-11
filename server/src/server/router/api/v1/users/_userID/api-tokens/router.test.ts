@@ -272,7 +272,7 @@ t.test("POST /api/v1/users/:userID/api-tokens/create", async (t) => {
 			});
 
 		t.equal(res.statusCode, 400, "Should return 400.");
-		t.match(res.body.description, /invalid permissions/iu);
+		t.match(res.body.description, /invalid_permission/iu);
 
 		t.end();
 	});

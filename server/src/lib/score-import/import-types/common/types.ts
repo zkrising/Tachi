@@ -24,6 +24,7 @@ import { USCClientScore } from "server/router/ir/usc/types";
 import { IRUSCContext } from "../ir/usc/types";
 import { ClassHandler } from "../../framework/user-game-stats/types";
 import { KsHookSV3CScore } from "../ir/kshook-sv3c/types";
+
 export interface ImportTypeDataMap {
 	"file/eamusement-iidx-csv": IIDXEamusementCSVData;
 	"file/batch-manual": BatchManualScore;
@@ -84,6 +85,7 @@ export interface OrphanScoreDocument<T extends ImportTypes = ImportTypes> extend
 	orphanID: string;
 	userID: integer;
 	timeInserted: number;
+	game: Game;
 }
 
 export interface ConverterFnSuccessReturn {

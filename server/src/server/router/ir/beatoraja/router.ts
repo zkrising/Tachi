@@ -38,15 +38,22 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 	if (!importRes.body.success) {
 		return res.status(400).json(importRes.body);
 	} else if (importRes.body.body.errors.length !== 0) {
-		if (importRes.body.body.errors[0].type === "KTDataNotFound") {
+		const type = importRes.body.body.errors[0].type;
+		if (type === "KTDataNotFound") {
 			return res.status(202).json({
 				success: true,
 				description: `Chart and score have been orphaned. This score will reify when atleast ${ServerConfig.BEATORAJA_QUEUE_SIZE} players have played the chart.`,
+			});
+		} else if (type === "InternalError") {
+			return res.status(500).json({
+				success: false,
+				description: `[${importRes.body.body.errors[0].type}] - ${importRes.body.body.errors[0].message}`,
 			});
 		}
 
 		// since we're only ever importing one score, we can guarantee
 		// that this means the score we tried to import was skipped.
+
 		return res.status(400).json({
 			success: false,
 			description: `[${importRes.body.body.errors[0].type}] - ${importRes.body.body.errors[0].message}`,

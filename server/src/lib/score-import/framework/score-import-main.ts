@@ -89,6 +89,7 @@ export default async function ScoreImportMain<D, C>(
 			iterable,
 			ConverterFunction,
 			context,
+			game,
 			logger
 		);
 
@@ -97,90 +98,24 @@ export default async function ScoreImportMain<D, C>(
 
 		logger.debug(`Importing took ${importTime} miliseconds. (${importTimeRel}ms/doc)`);
 
-		// --- 3. ParseImportInfo ---
-		// ImportInfo is a relatively complex structure. We need some information from it for subsequent steps
-		// such as the list of chartIDs involved in this import.
-		const importParseTimeStart = process.hrtime.bigint();
-		const { scorePlaytypeMap, errors, scoreIDs, chartIDs } = ParseImportInfo(importInfo);
-
-		const importParseTime = GetMilisecondsSince(importParseTimeStart);
-		const importParseTimeRel = importParseTime / importInfo.length;
-
-		logger.debug(
-			`Import Parsing took ${importParseTime} miliseconds. (${importParseTimeRel}ms/doc)`
-		);
-
-		// --- 4. Sessions ---
-		// We create (or update existing) sessions here. This uses the aforementioned parsed import info
-		// to determine what goes where.
-		const sessionTimeStart = process.hrtime.bigint();
-		const sessionInfo = await CreateSessions(
-			user.id,
-			importType,
-			game,
-			scorePlaytypeMap,
-			logger
-		);
-
-		const sessionTime = GetMilisecondsSince(sessionTimeStart);
-		const sessionTimeRel = sessionTime / sessionInfo.length;
-
-		logger.debug(
-			`Session Processing took ${sessionTime} miliseconds (${sessionTimeRel}ms/doc).`
-		);
-
-		// --- 5. PersonalBests ---
-		// We want to keep an updated reference of a users best score on a given chart.
-		// This function also handles conjoining different scores together (such as unioning best lamp and
-		// best score).
-		const pbTimeStart = process.hrtime.bigint();
-		await ProcessPBs(user.id, chartIDs, logger);
-
-		const pbTime = GetMilisecondsSince(pbTimeStart);
-		const pbTimeRel = pbTime / chartIDs.size;
-
-		logger.debug(`PB Processing took ${pbTime} miliseconds (${pbTimeRel}ms/doc)`);
-
-		const playtypes = Object.keys(scorePlaytypeMap) as Playtypes[Game][];
-
-		// --- 6. Game Stats ---
-		// This function updates the users "stats" for this game - such as their profile rating or their classes.
-		const ugsTimeStart = process.hrtime.bigint();
-		const classDeltas = await UpdateUsersGameStats(
-			game,
+		// Steps 3-8 are handled inside here.
+		// This was moved inside here so the score de-orphaning process
+		// could hook into importing better
+		const {
 			playtypes,
-			user.id,
-			classHandler,
-			logger
-		);
-
-		const ugsTime = GetMilisecondsSince(ugsTimeStart);
-
-		logger.debug(`UGS Processing took ${ugsTime} miliseconds.`);
-
-		// --- 7. Goals ---
-		// Evaluate and update the users goals. This returns information about goals that have changed.
-		const goalTimeStart = process.hrtime.bigint();
-		const goalInfo = await GetAndUpdateUsersGoals(game, user.id, chartIDs, logger);
-
-		const goalTime = GetMilisecondsSince(goalTimeStart);
-
-		logger.debug(`Goal Processing took ${goalTime} miliseconds.`);
-
-		// --- 8. Milestones ---
-		// Evaluate and update the users milestones. This returns...
-		const milestoneTimeStart = process.hrtime.bigint();
-		const milestoneInfo = await UpdateUsersMilestones(
+			scoreIDs,
+			errors,
+			sessionInfo,
+			classDeltas,
 			goalInfo,
-			game,
-			playtypes,
-			user.id,
-			logger
-		);
+			milestoneInfo,
+			relativeTimes,
+			absoluteTimes,
+		} = await HandlePostImportSteps(importInfo, user, importType, game, classHandler, logger);
 
-		const milestoneTime = GetMilisecondsSince(milestoneTimeStart);
-
-		logger.debug(`Milestone Processing took ${milestoneTime} miliseconds.`);
+		const { importParseTimeRel, pbTimeRel, sessionTimeRel } = relativeTimes;
+		const { importParseTime, sessionTime, pbTime, ugsTime, goalTime, milestoneTime } =
+			absoluteTimes;
 
 		// --- 9. Finalise Import Document ---
 		// Create and Save an import document to the database, and finish everything up!
@@ -243,13 +178,112 @@ export default async function ScoreImportMain<D, C>(
 			},
 		});
 
-		await RemoveUserLock(user.id);
-
 		return ImportDocument;
-	} catch (err) {
+	} finally {
 		await RemoveUserLock(user.id);
-		throw err;
 	}
+}
+
+/**
+ * Handles every single processing step after actually loading scores
+ * into the database, such as updating goals, reprocessing sessions,
+ * and updating a users game stats.
+ */
+export async function HandlePostImportSteps(
+	importInfo: ImportProcessingInfo[],
+	user: PublicUserDocument,
+	importType: ImportTypes,
+	game: Game,
+	classHandler: ClassHandler | null,
+	logger: KtLogger
+) {
+	// --- 3. ParseImportInfo ---
+	// ImportInfo is a relatively complex structure. We need some information from it for subsequent steps
+	// such as the list of chartIDs involved in this import.
+	const importParseTimeStart = process.hrtime.bigint();
+	const { scorePlaytypeMap, errors, scoreIDs, chartIDs } = ParseImportInfo(importInfo);
+
+	const importParseTime = GetMilisecondsSince(importParseTimeStart);
+	const importParseTimeRel = importParseTime / importInfo.length;
+
+	logger.debug(
+		`Import Parsing took ${importParseTime} miliseconds. (${importParseTimeRel}ms/doc)`
+	);
+
+	// --- 4. Sessions ---
+	// We create (or update existing) sessions here. This uses the aforementioned parsed import info
+	// to determine what goes where.
+	const sessionTimeStart = process.hrtime.bigint();
+	const sessionInfo = await CreateSessions(user.id, importType, game, scorePlaytypeMap, logger);
+
+	const sessionTime = GetMilisecondsSince(sessionTimeStart);
+	const sessionTimeRel = sessionTime / sessionInfo.length;
+
+	logger.debug(`Session Processing took ${sessionTime} miliseconds (${sessionTimeRel}ms/doc).`);
+
+	// --- 5. PersonalBests ---
+	// We want to keep an updated reference of a users best score on a given chart.
+	// This function also handles conjoining different scores together (such as unioning best lamp and
+	// best score).
+	const pbTimeStart = process.hrtime.bigint();
+	await ProcessPBs(user.id, chartIDs, logger);
+
+	const pbTime = GetMilisecondsSince(pbTimeStart);
+	const pbTimeRel = pbTime / chartIDs.size;
+
+	logger.debug(`PB Processing took ${pbTime} miliseconds (${pbTimeRel}ms/doc)`);
+
+	const playtypes = Object.keys(scorePlaytypeMap) as Playtypes[Game][];
+
+	// --- 6. Game Stats ---
+	// This function updates the users "stats" for this game - such as their profile rating or their classes.
+	const ugsTimeStart = process.hrtime.bigint();
+	const classDeltas = await UpdateUsersGameStats(game, playtypes, user.id, classHandler, logger);
+
+	const ugsTime = GetMilisecondsSince(ugsTimeStart);
+
+	logger.debug(`UGS Processing took ${ugsTime} miliseconds.`);
+
+	// --- 7. Goals ---
+	// Evaluate and update the users goals. This returns information about goals that have changed.
+	const goalTimeStart = process.hrtime.bigint();
+	const goalInfo = await GetAndUpdateUsersGoals(game, user.id, chartIDs, logger);
+
+	const goalTime = GetMilisecondsSince(goalTimeStart);
+
+	logger.debug(`Goal Processing took ${goalTime} miliseconds.`);
+
+	// --- 8. Milestones ---
+	// Evaluate and update the users milestones. This returns...
+	const milestoneTimeStart = process.hrtime.bigint();
+	const milestoneInfo = await UpdateUsersMilestones(goalInfo, game, playtypes, user.id, logger);
+
+	const milestoneTime = GetMilisecondsSince(milestoneTimeStart);
+
+	logger.debug(`Milestone Processing took ${milestoneTime} miliseconds.`);
+
+	return {
+		classDeltas,
+		milestoneInfo,
+		goalInfo,
+		playtypes,
+		scoreIDs,
+		errors,
+		sessionInfo,
+		relativeTimes: {
+			importParseTimeRel,
+			pbTimeRel,
+			sessionTimeRel,
+		},
+		absoluteTimes: {
+			importParseTime,
+			sessionTime,
+			pbTime,
+			ugsTime,
+			goalTime,
+			milestoneTime,
+		},
+	};
 }
 
 /**

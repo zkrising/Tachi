@@ -65,9 +65,7 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 	// If N or more people have played this chart while orphaned, unorphan
 	// it.
 	if (playcount >= queueSize) {
-		logger.info(
-			`Song ${chartName} was unorphaned by ${uniqueUsersArr.join(", ")} and ${userID}.`
-		);
+		logger.info(`Song ${chartName} was unorphaned by userIDs ${uniqueUsersArr.join(", ")}.`);
 		const songID = await GetNextCounterValue(`${game}-song-id`);
 
 		logger.verbose(`${chartName} has been assigned songID ${songID}.`);

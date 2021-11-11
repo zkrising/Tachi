@@ -1,14 +1,20 @@
+import db from "external/mongo/db";
+import { AppendLogCtx, KtLogger } from "lib/logger/logger";
 import {
 	ChartDocument,
+	Game,
+	IDStrings,
 	ImportProcessingInfo,
+	ImportTypes,
 	integer,
 	ScoreDocument,
 	SongDocument,
-	ImportTypes,
-	IDStrings,
 } from "tachi-common";
-import { HydrateScore } from "./hydrate-score";
-import { InsertQueue, QueueScoreInsert, ScoreIDs } from "./insert-score";
+import {
+	ConverterFnReturnOrFailure,
+	ConverterFnSuccessReturn,
+	ConverterFunction,
+} from "../../import-types/common/types";
 import {
 	ConverterFailure,
 	InternalFailure,
@@ -16,17 +22,11 @@ import {
 	KTDataNotFoundFailure,
 	SkipScoreFailure,
 } from "../common/converter-failures";
-import { CreateScoreID } from "./score-id";
-import db from "external/mongo/db";
-import { AppendLogCtx, KtLogger } from "lib/logger/logger";
-
-import {
-	ConverterFnReturnOrFailure,
-	ConverterFunction,
-	ConverterFnSuccessReturn,
-} from "../../import-types/common/types";
 import { DryScore } from "../common/types";
 import { OrphanScore } from "../orphans/orphans";
+import { HydrateScore } from "./hydrate-score";
+import { InsertQueue, QueueScoreInsert, ScoreIDs } from "./insert-score";
+import { CreateScoreID } from "./score-id";
 
 /**
  * Processes the iterable data into the Tachi database.
@@ -42,6 +42,7 @@ export async function ImportAllIterableData<D, C>(
 	iterableData: Iterable<D> | AsyncIterable<D>,
 	ConverterFunction: ConverterFunction<D, C>,
 	context: C,
+	game: Game,
 	logger: KtLogger
 ): Promise<ImportProcessingInfo[]> {
 	logger.verbose("Getting Blacklist...");
@@ -69,6 +70,7 @@ export async function ImportAllIterableData<D, C>(
 				data,
 				ConverterFunction,
 				context,
+				game,
 				blacklist,
 				logger
 			)
@@ -113,6 +115,7 @@ export async function ImportIterableDatapoint<D, C>(
 	data: D,
 	ConverterFunction: ConverterFunction<D, C>,
 	context: C,
+	game: Game,
 	blacklist: string[],
 	logger: KtLogger
 ): Promise<ImportProcessingInfo | null> {
@@ -139,6 +142,7 @@ export async function ImportIterableDatapoint<D, C>(
 				cfnReturn.data,
 				cfnReturn.converterContext,
 				cfnReturn.message,
+				game,
 				logger
 			);
 
@@ -222,7 +226,8 @@ export async function ProcessSuccessfulConverterReturn(
 	userID: integer,
 	cfnReturn: ConverterFnSuccessReturn,
 	blacklist: string[],
-	logger: KtLogger
+	logger: KtLogger,
+	forceImmediateImport = false
 ): Promise<ImportProcessingInfo | null> {
 	const result = await HydrateAndInsertScore(
 		userID,
@@ -230,7 +235,8 @@ export async function ProcessSuccessfulConverterReturn(
 		cfnReturn.chart,
 		cfnReturn.song,
 		blacklist,
-		logger
+		logger,
+		forceImmediateImport
 	);
 
 	// This used to be a ScoreExists error. However, we never actually care about
@@ -258,6 +264,10 @@ export async function ProcessSuccessfulConverterReturn(
  * @param dryScore - The score that is to be hydrated and inserted.
  * @param chart - The chart this score is on.
  * @param song - The song this score is on.
+ * @param blacklist - A list of ScoreIDs to never write to the database.
+ *
+ * @param force - Whether to immediately insert the score into the database
+ * or not.
  */
 async function HydrateAndInsertScore(
 	userID: integer,
@@ -265,7 +275,8 @@ async function HydrateAndInsertScore(
 	chart: ChartDocument,
 	song: SongDocument,
 	blacklist: string[],
-	importLogger: KtLogger
+	importLogger: KtLogger,
+	force = false
 ): Promise<ScoreDocument | null> {
 	const scoreID = CreateScoreID(userID, dryScore, chart.chartID);
 
@@ -305,7 +316,12 @@ async function HydrateAndInsertScore(
 
 	const score = await HydrateScore(userID, dryScore, chart, song, scoreID, logger);
 
-	const res = await QueueScoreInsert(score);
+	let res;
+	if (force) {
+		res = await db.scores.insert(score);
+	} else {
+		res = await QueueScoreInsert(score);
+	}
 
 	// emergency state - this is a last resort for avoiding doubled imports
 	if (res === null) {

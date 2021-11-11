@@ -1,36 +1,34 @@
+import TimelineChart from "components/charts/TimelineChart";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
+import MiniTable from "components/tables/components/MiniTable";
+import ScoreTable from "components/tables/scores/ScoreTable";
+import UGPTStatShowcase from "components/user/UGPTStatShowcase";
+import AsyncLoader from "components/util/AsyncLoader";
+import Divider from "components/util/Divider";
+import Icon from "components/util/Icon";
+import SelectButton from "components/util/SelectButton";
+import { DateTime } from "luxon";
 import React, { useMemo, useState } from "react";
 import { Badge } from "react-bootstrap";
 import {
 	FormatGame,
 	GetGameConfig,
-	PublicUserDocument,
-	UGPTSettings,
 	GetGamePTConfig,
-	UserGameStats,
-	SessionDocument,
+	PublicUserDocument,
 	ScoreDocument,
+	SessionDocument,
+	UserGameStats,
 } from "tachi-common";
 import { SessionReturns, UGPTHistory } from "types/api-returns";
 import { GamePT } from "types/react";
-import { APIFetchV1 } from "util/api";
-import AsyncLoader from "components/util/AsyncLoader";
-import TimelineChart from "components/charts/TimelineChart";
-import Divider from "components/util/Divider";
-import Icon from "components/util/Icon";
-import { DateTime } from "luxon";
-import { FormatDate, FormatDuration, FormatTime, MillisToSince } from "util/time";
-import SelectButton from "components/util/SelectButton";
-import { UppercaseFirst } from "util/misc";
-import { ONE_HOUR, ONE_MINUTE } from "util/constants/time";
-import MiniTable from "components/tables/components/MiniTable";
-import { GetPBs, CreateChartMap, CreateSongMap } from "util/data";
-
-import { NumericSOV } from "util/sorts";
 import { ScoreDataset } from "types/tables";
-import ScoreTable from "components/tables/scores/ScoreTable";
-import UGPTStatShowcase from "components/user/UGPTStatShowcase";
+import { APIFetchV1 } from "util/api";
+import { ONE_HOUR, ONE_MINUTE } from "util/constants/time";
+import { CreateChartMap, CreateSongMap, GetPBs } from "util/data";
+import { UppercaseFirst } from "util/misc";
+import { NumericSOV } from "util/sorts";
+import { FormatDate, FormatDuration, FormatTime, MillisToSince } from "util/time";
 
 export default function OverviewPage({
 	reqUser,

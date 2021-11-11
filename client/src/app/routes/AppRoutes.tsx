@@ -1,16 +1,16 @@
-import { UserContext } from "context/UserContext";
-import React, { useContext } from "react";
-import { Redirect, Route, Switch, useHistory } from "react-router-dom";
-import DashboardRoutes from "./DashboardRoutes";
 import { ErrorPage } from "app/pages/ErrorPage";
+import ForgotPasswordPage from "app/pages/ForgotPasswordPage";
 import LoginPage from "app/pages/LoginPage";
 import RegisterPage from "app/pages/RegisterPage";
-import ForgotPasswordPage from "app/pages/ForgotPasswordPage";
 import ResetPasswordPage from "app/pages/ResetPasswordPage";
 import CenterPage from "components/util/CenterPage";
-import { ClientConfig } from "lib/config";
 import MainPageTitleContainer from "components/util/MainPageTitleContainer";
+import { UserContext } from "context/UserContext";
+import { ClientConfig } from "lib/config";
+import React, { useContext } from "react";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import ClientFileFlowRoutes from "./ClientFileFlowRoutes";
+import DashboardRoutes from "./DashboardRoutes";
 import OAuth2CallbackRoutes from "./OAuth2CallbackRoutes";
 
 /**

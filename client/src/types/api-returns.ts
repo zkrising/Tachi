@@ -1,7 +1,6 @@
 import {
 	ChartDocument,
 	ClassAchievementDocument,
-	ClassDelta,
 	FolderDocument,
 	GamePTConfig,
 	Grades,

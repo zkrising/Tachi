@@ -1,6 +1,6 @@
+import deepmerge from "deepmerge";
 import { useMemo, useState } from "react";
 import { integer } from "tachi-common";
-import deepmerge from "deepmerge";
 
 export type ZTableSortFn<D> = (a: D, b: D) => integer;
 export type ZTableSearchFn<D> = (search: string, data: D) => boolean;

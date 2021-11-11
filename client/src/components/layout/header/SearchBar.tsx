@@ -1,21 +1,14 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import {
-	SongDocument,
-	Game,
-	GetGameConfig,
-	integer,
-	PublicUserDocument,
-	FormatGame,
-} from "tachi-common";
-import { APIFetchV1 } from "util/api";
-import { GamePT, JustChildren } from "types/react";
-import { Link, useLocation } from "react-router-dom";
 import Divider from "components/util/Divider";
-import { PREVENT_DEFAULT } from "util/misc";
-import Loading from "components/util/Loading";
-import { Playtype } from "types/tachi";
-import { TachiConfig } from "lib/config";
 import Icon from "components/util/Icon";
+import Loading from "components/util/Loading";
+import { TachiConfig } from "lib/config";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Game, GetGameConfig, integer, PublicUserDocument, SongDocument } from "tachi-common";
+import { GamePT, JustChildren } from "types/react";
+import { Playtype } from "types/tachi";
+import { APIFetchV1 } from "util/api";
+import { PREVENT_DEFAULT } from "util/misc";
 import QuickTooltip from "../misc/QuickTooltip";
 
 interface SearchReturns {

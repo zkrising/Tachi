@@ -1,16 +1,16 @@
+import Icon from "components/util/Icon";
 import SmallText from "components/util/SmallText";
 import { useZTable, ZTableSortFn } from "components/util/table/useZTable";
+import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { integer } from "tachi-common";
+import { CopyToClipboard } from "util/misc";
+import { ComposeSearchFunction, ValueGetterOrHybrid } from "util/ztable/search";
+import FilterDirectivesIndicator from "./FilterDirectivesIndicator";
 import NoDataWrapper from "./NoDataWrapper";
 import PageSelector from "./PageSelector";
 import SortableTH from "./SortableTH";
-import FilterDirectivesIndicator from "./FilterDirectivesIndicator";
-import { ComposeSearchFunction, ValueGetterOrHybrid } from "util/ztable/search";
-import { UserSettingsContext } from "context/UserSettingsContext";
-import Icon from "components/util/Icon";
-import { CopyToClipboard } from "util/misc";
 
 export interface ZTableTHProps {
 	changeSort: (str: string) => void;

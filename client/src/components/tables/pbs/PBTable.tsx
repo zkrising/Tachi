@@ -1,5 +1,5 @@
 import React from "react";
-import { IDStrings, PublicUserDocument, ScoreCalculatedDataLookup } from "tachi-common";
+import { IDStrings, ScoreCalculatedDataLookup } from "tachi-common";
 import { GamePT } from "types/react";
 import { PBDataset } from "types/tables";
 import BMSPBTable from "./BMSPBTable";

@@ -133,8 +133,8 @@ const err = p(config, {
 		// I'm not going to assert this properly.
 		TRANSPORT_OPS: "*object",
 	}),
-	USC_QUEUE_SIZE: p.optional(p.gteInt(1)),
-	BEATORAJA_QUEUE_SIZE: p.optional(p.gteInt(1)),
+	USC_QUEUE_SIZE: p.optional(p.gteInt(2)),
+	BEATORAJA_QUEUE_SIZE: p.optional(p.gteInt(2)),
 	OUR_URL: "string",
 	CDN_WEB_LOCATION: "string",
 	INVITE_CODE_CONFIG: p.optional({

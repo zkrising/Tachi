@@ -2,7 +2,7 @@ import { UserGameStats, UserGameStatsSnapshot } from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { GetUsersRanking } from "utils/user";
-import { GetMilisecondsSince } from "utils/misc";
+import { GetMillisecondsSince } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -70,7 +70,7 @@ export async function UGSSnapshot() {
 		logger.info(
 			`Successfully snapshotted all data as of ${new Date(
 				currentTime
-			).toString()}. Took ${GetMilisecondsSince(timeStart)} ms.`
+			).toString()}. Took ${GetMillisecondsSince(timeStart)} ms.`
 		);
 	} catch (err) {
 		// if we panic, we need to revert whatever we did.

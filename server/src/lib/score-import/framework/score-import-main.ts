@@ -12,7 +12,7 @@ import { KtLogger } from "lib/logger/logger";
 import { ImportAllIterableData } from "./score-importing/score-importing";
 import { CreateImportLoggerAndID } from "./common/import-logger";
 import { CreateSessions } from "./sessions/sessions";
-import { GetMilisecondsSince } from "utils/misc";
+import { GetMillisecondsSince } from "utils/misc";
 import { ProcessPBs } from "./pb/process-pbs";
 import { UpdateUsersGamePlaytypeStats } from "./user-game-stats/update-ugs";
 import db from "external/mongo/db";
@@ -48,7 +48,7 @@ export default async function ScoreImportMain<D, C>(
 			//
 			// Under normal circumstances, there is no scenario where a user would have two ongoing
 			// imports at the same time - even if they were using single-score imports on a 5 second
-			// chart, as each score import takes only around ~10-15miliseconds.
+			// chart, as each score import takes only around ~10-15millisecondss.
 			throw new ScoreImportFatalError(409, "This user already has an ongoing import.");
 		}
 
@@ -73,9 +73,9 @@ export default async function ScoreImportMain<D, C>(
 		const parseTimeStart = process.hrtime.bigint();
 		const { iterable, context, game, classHandler } = await InputParser(logger);
 
-		const parseTime = GetMilisecondsSince(parseTimeStart);
+		const parseTime = GetMillisecondsSince(parseTimeStart);
 
-		logger.debug(`Parsing took ${parseTime} miliseconds.`);
+		logger.debug(`Parsing took ${parseTime} millisecondss.`);
 
 		// We have to cast here due to typescript generic confusions. This is guaranteed` to be correct.
 		const ConverterFunction = Converters[importType] as unknown as ConverterFunction<D, C>;
@@ -93,10 +93,10 @@ export default async function ScoreImportMain<D, C>(
 			logger
 		);
 
-		const importTime = GetMilisecondsSince(importTimeStart);
+		const importTime = GetMillisecondsSince(importTimeStart);
 		const importTimeRel = importTime / importInfo.length;
 
-		logger.debug(`Importing took ${importTime} miliseconds. (${importTimeRel}ms/doc)`);
+		logger.debug(`Importing took ${importTime} millisecondss. (${importTimeRel}ms/doc)`);
 
 		// Steps 3-8 are handled inside here.
 		// This was moved inside here so the score de-orphaning process
@@ -203,11 +203,11 @@ export async function HandlePostImportSteps(
 	const importParseTimeStart = process.hrtime.bigint();
 	const { scorePlaytypeMap, errors, scoreIDs, chartIDs } = ParseImportInfo(importInfo);
 
-	const importParseTime = GetMilisecondsSince(importParseTimeStart);
+	const importParseTime = GetMillisecondsSince(importParseTimeStart);
 	const importParseTimeRel = importParseTime / importInfo.length;
 
 	logger.debug(
-		`Import Parsing took ${importParseTime} miliseconds. (${importParseTimeRel}ms/doc)`
+		`Import Parsing took ${importParseTime} millisecondss. (${importParseTimeRel}ms/doc)`
 	);
 
 	// --- 4. Sessions ---
@@ -216,10 +216,10 @@ export async function HandlePostImportSteps(
 	const sessionTimeStart = process.hrtime.bigint();
 	const sessionInfo = await CreateSessions(user.id, importType, game, scorePlaytypeMap, logger);
 
-	const sessionTime = GetMilisecondsSince(sessionTimeStart);
+	const sessionTime = GetMillisecondsSince(sessionTimeStart);
 	const sessionTimeRel = sessionTime / sessionInfo.length;
 
-	logger.debug(`Session Processing took ${sessionTime} miliseconds (${sessionTimeRel}ms/doc).`);
+	logger.debug(`Session Processing took ${sessionTime} millisecondss (${sessionTimeRel}ms/doc).`);
 
 	// --- 5. PersonalBests ---
 	// We want to keep an updated reference of a users best score on a given chart.
@@ -228,10 +228,10 @@ export async function HandlePostImportSteps(
 	const pbTimeStart = process.hrtime.bigint();
 	await ProcessPBs(user.id, chartIDs, logger);
 
-	const pbTime = GetMilisecondsSince(pbTimeStart);
+	const pbTime = GetMillisecondsSince(pbTimeStart);
 	const pbTimeRel = pbTime / chartIDs.size;
 
-	logger.debug(`PB Processing took ${pbTime} miliseconds (${pbTimeRel}ms/doc)`);
+	logger.debug(`PB Processing took ${pbTime} millisecondss (${pbTimeRel}ms/doc)`);
 
 	const playtypes = Object.keys(scorePlaytypeMap) as Playtypes[Game][];
 
@@ -240,27 +240,27 @@ export async function HandlePostImportSteps(
 	const ugsTimeStart = process.hrtime.bigint();
 	const classDeltas = await UpdateUsersGameStats(game, playtypes, user.id, classHandler, logger);
 
-	const ugsTime = GetMilisecondsSince(ugsTimeStart);
+	const ugsTime = GetMillisecondsSince(ugsTimeStart);
 
-	logger.debug(`UGS Processing took ${ugsTime} miliseconds.`);
+	logger.debug(`UGS Processing took ${ugsTime} millisecondss.`);
 
 	// --- 7. Goals ---
 	// Evaluate and update the users goals. This returns information about goals that have changed.
 	const goalTimeStart = process.hrtime.bigint();
 	const goalInfo = await GetAndUpdateUsersGoals(game, user.id, chartIDs, logger);
 
-	const goalTime = GetMilisecondsSince(goalTimeStart);
+	const goalTime = GetMillisecondsSince(goalTimeStart);
 
-	logger.debug(`Goal Processing took ${goalTime} miliseconds.`);
+	logger.debug(`Goal Processing took ${goalTime} millisecondss.`);
 
 	// --- 8. Milestones ---
 	// Evaluate and update the users milestones. This returns...
 	const milestoneTimeStart = process.hrtime.bigint();
 	const milestoneInfo = await UpdateUsersMilestones(goalInfo, game, playtypes, user.id, logger);
 
-	const milestoneTime = GetMilisecondsSince(milestoneTimeStart);
+	const milestoneTime = GetMillisecondsSince(milestoneTimeStart);
 
-	logger.debug(`Milestone Processing took ${milestoneTime} miliseconds.`);
+	logger.debug(`Milestone Processing took ${milestoneTime} millisecondss.`);
 
 	return {
 		classDeltas,

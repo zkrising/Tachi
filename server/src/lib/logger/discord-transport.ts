@@ -200,7 +200,7 @@ export default class DiscordTransport extends Transport {
 			// It's possible that messages here could all get stuck in an
 			// awful loop, so we have a tuning off parameter.
 			// The scaleRetryDebouncer will get squared every call,
-			// so the initial request takes 2 * (generally 1milisecond),
+			// so the initial request takes 2 * (generally 1milliseconds),
 			// then following requests will take even longer...
 			// It's possible this might blow up in our face.
 			// We'll have to see. - zkldi 2021/09/17

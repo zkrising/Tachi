@@ -2,7 +2,7 @@ import { ONE_MINUTE } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment } from "lib/setup/config";
 import redis from "redis";
-import { GetMilisecondsSince } from "utils/misc";
+import { GetMillisecondsSince } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -27,7 +27,7 @@ function EmitCritical() {
 const ref = setTimeout(EmitCritical, ONE_MINUTE * 2);
 
 RedisClient.on("connect", () => {
-	logger.info(`Connected to Redis. Took ${GetMilisecondsSince(startConnect)}ms`, {
+	logger.info(`Connected to Redis. Took ${GetMillisecondsSince(startConnect)}ms`, {
 		bootInfo: true,
 	});
 

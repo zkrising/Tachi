@@ -40,7 +40,7 @@ import {
 	UserMilestoneDocument,
 	UserSettings,
 } from "tachi-common";
-import { GetMilisecondsSince } from "utils/misc";
+import { GetMillisecondsSince } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -63,7 +63,7 @@ export const monkDB = monk(`${Environment.mongoUrl}/${dbName}`, {
 /* istanbul ignore next */
 monkDB
 	.then(() => {
-		logger.info(`Database connection successful: took ${GetMilisecondsSince(dbtime)}ms`, {
+		logger.info(`Database connection successful: took ${GetMillisecondsSince(dbtime)}ms`, {
 			bootInfo: true,
 		});
 	})

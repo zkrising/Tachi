@@ -1,7 +1,6 @@
 import { ScoreDocument, integer } from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { InternalFailure } from "../common/converter-failures";
 
 const logger = CreateLogCtx(__filename);
 const MAX_PIPELINE_LENGTH = 500;
@@ -21,16 +20,27 @@ const ScoreQueues: Record<integer, ScoreQueue> = {};
  *
  * If a score queue does not exist for the user, one is created.
  */
-function GetScoreQueue(userID: integer) {
+function GetOrSetScoreQueue(userID: integer) {
 	const queue = ScoreQueues[userID];
 
 	if (!queue) {
-		logger.debug(`Creating new ScoreQueue for user ${userID}.`);
-		ScoreQueues[userID] = {
-			queue: [],
-			scoreIDSet: new Set(),
-		};
+		return SetScoreQueue(userID);
 	}
+
+	return queue;
+}
+
+export function GetScoreQueueMaybe(userID: integer): ScoreQueue | undefined {
+	return ScoreQueues[userID];
+}
+
+function SetScoreQueue(userID: integer) {
+	const queue: ScoreQueue = {
+		queue: [],
+		scoreIDSet: new Set(),
+	};
+
+	ScoreQueues[userID] = queue;
 
 	return queue;
 }
@@ -43,7 +53,9 @@ function AddToScoreQueue(scoreQueue: ScoreQueue, score: ScoreDocument) {
 	scoreQueue.scoreIDSet.add(score.scoreID);
 }
 
-async function InsertQueue(scoreQueue: ScoreQueue, userID: integer) {
+export async function InsertQueue(userID: integer) {
+	const scoreQueue = GetOrSetScoreQueue(userID);
+
 	const queuedScores = scoreQueue.queue.splice(0);
 
 	if (queuedScores.length !== 0) {
@@ -69,7 +81,7 @@ async function InsertQueue(scoreQueue: ScoreQueue, userID: integer) {
  * the score provided is already loaded.
  */
 export function QueueScoreInsert(score: ScoreDocument) {
-	const scoreQueue = GetScoreQueue(score.userID);
+	const scoreQueue = GetOrSetScoreQueue(score.userID);
 
 	if (scoreQueue.scoreIDSet.has(score.scoreID)) {
 		// skip
@@ -79,9 +91,11 @@ export function QueueScoreInsert(score: ScoreDocument) {
 
 	AddToScoreQueue(scoreQueue, score);
 
+	logger.debug(`ScoreQueue for ${score.userID} is now at ${scoreQueue.queue.length}.`);
+
 	if (scoreQueue.queue.length >= MAX_PIPELINE_LENGTH) {
 		logger.verbose(`Triggered pipeline flush with len ${scoreQueue.queue.length}.`);
-		return InsertQueue(scoreQueue, score.userID);
+		return InsertQueue(score.userID);
 	}
 
 	return true;

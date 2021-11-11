@@ -16,7 +16,10 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 
 	t.test("Single Queue Test", async (t) => {
 		// fake score doc
-		const res = await QueueScoreInsert({ scoreID: "foo" } as unknown as ScoreDocument);
+		const res = await QueueScoreInsert({
+			scoreID: "foo",
+			userID: 1,
+		} as unknown as ScoreDocument);
 
 		t.equal(
 			res,
@@ -25,7 +28,7 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 		);
 
 		// this is the best way to get the size of the queue
-		const flushSize = await InsertQueue();
+		const flushSize = await InsertQueue(1);
 
 		t.equal(flushSize, 1, "QueueScoreInsert should append the score to the queue.");
 
@@ -42,17 +45,22 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 		t.end();
 	});
 
-	let r = await InsertQueue(); // flush queue just incase former test fails.
+	let r = await InsertQueue(1); // flush queue just incase former test fails.
 
 	t.test("Queue Overflow Test", async (t) => {
 		for (let i = 0; i < 499; i++) {
 			// eslint-disable-next-line no-await-in-loop
-			await QueueScoreInsert({ scoreID: i, chartID: "test" } as unknown as ScoreDocument);
+			await QueueScoreInsert({
+				scoreID: i,
+				chartID: "test",
+				userID: 1,
+			} as unknown as ScoreDocument);
 		}
 
 		const overflowRes = await QueueScoreInsert({
 			scoreID: "foo",
 			chartID: "test",
+			userID: 1,
 		} as unknown as ScoreDocument);
 
 		t.equal(
@@ -61,7 +69,7 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 			"Appending 500 items to the queue should result in them being inserted."
 		);
 
-		const flushRes = await InsertQueue();
+		const flushRes = await InsertQueue(1);
 
 		t.equal(flushRes, 0, "The queue should now be empty.");
 
@@ -79,20 +87,25 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 		t.end();
 	});
 
-	r = await InsertQueue(); // flush queue just incase former test fails.
+	r = await InsertQueue(1); // flush queue just incase former test fails.
 
 	t.equal(r, 0, "Queue should be empty after test.");
 
 	t.test("Queue Dedupe Test", async (t) => {
-		await QueueScoreInsert({ scoreID: 1, chartID: "foo" } as unknown as ScoreDocument);
+		await QueueScoreInsert({
+			scoreID: 1,
+			chartID: "foo",
+			userID: 1,
+		} as unknown as ScoreDocument);
 		const r2 = await QueueScoreInsert({
 			scoreID: 1,
 			chartID: "foo",
+			userID: 1,
 		} as unknown as ScoreDocument);
 
 		t.equal(r2, null, "Should return null when a duplicate scoreID is submitted");
 
-		const flushRes = await InsertQueue();
+		const flushRes = await InsertQueue(1);
 
 		t.equal(flushRes, 1, "Should flush 1 score document");
 

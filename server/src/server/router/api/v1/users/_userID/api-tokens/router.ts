@@ -8,7 +8,7 @@ import { FormatUserDoc } from "utils/user";
 import { RequireSelfRequestFromUser } from "../middleware";
 import { AllPermissions } from "server/middleware/auth";
 import { APIPermissions, APITokenDocument } from "tachi-common";
-import { Random20Hex } from "utils/misc";
+import { DeleteUndefinedProps, Random20Hex } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -40,6 +40,7 @@ router.get("/", async (req, res) => {
  * Create a new API token.
  *
  * @param clientID - Create a token that has the permissions implied from this client.
+ * @param identifier - A user provided string to identify this API Key.
  * @param permissions - An array of strings dictating what permissions to create with.
  * This is incompatible with the first option.
  *
@@ -88,7 +89,7 @@ router.post(
 
 			const exists = await db["api-tokens"].findOne({
 				userID: user.id,
-				fromOAuth2Client: client.clientID,
+				fromAPIClient: client.clientID,
 			});
 
 			if (exists) {
@@ -129,6 +130,10 @@ router.post(
 			userID: user.id,
 			fromAPIClient,
 		};
+
+		// Inserting { fromAPIClient: undefined } results in bson
+		// conversion to {fromAPIClient: null}, which is not the same
+		DeleteUndefinedProps(apiTokenDocument);
 
 		await db["api-tokens"].insert(apiTokenDocument);
 

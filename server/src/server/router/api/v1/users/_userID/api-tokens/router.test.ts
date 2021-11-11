@@ -141,3 +141,141 @@ t.test("DELETE /api/v1/users/:userID/api-tokens/:token", async (t) => {
 
 	t.end();
 });
+
+t.test("POST /api/v1/users/:userID/api-tokens/create", async (t) => {
+	t.beforeEach(ResetDBState);
+
+	const cookie = await CreateFakeAuthCookie(mockApi);
+
+	t.test("Should create a new API Key for this user with provided permissions.", async (t) => {
+		const res = await mockApi
+			.post("/api/v1/users/1/api-tokens/create")
+			.set("Cookie", cookie)
+			.send({
+				identifier: "Hello World",
+				permissions: ["submit_score", "customise_profile"],
+			});
+
+		t.equal(res.statusCode, 200, "Should return 200.");
+
+		t.hasStrict(
+			res.body.body,
+			{
+				identifier: "Hello World",
+				permissions: { submit_score: true, customise_profile: true },
+				userID: 1,
+				fromAPIClient: undefined,
+			},
+			"Should return a conforming API Token."
+		);
+
+		const dbRes = await db["api-tokens"].findOne({
+			identifier: "Hello World",
+		});
+
+		t.hasStrict(
+			dbRes,
+			{
+				identifier: "Hello World",
+				permissions: { submit_score: true, customise_profile: true },
+				userID: 1,
+				fromAPIClient: undefined,
+			},
+			"Should insert a conforming API Token into the database."
+		);
+
+		t.end();
+	});
+
+	t.test(
+		"Should create a new API Key for this user according to an existing clientID.",
+		async (t) => {
+			const res = await mockApi
+				.post("/api/v1/users/1/api-tokens/create")
+				.set("Cookie", cookie)
+				.send({
+					clientID: "OAUTH2_CLIENT_ID",
+				});
+
+			t.equal(res.statusCode, 200, "Should return 200.");
+
+			t.hasStrict(
+				res.body.body,
+				{
+					identifier: "Test_Service",
+					permissions: { customise_profile: true },
+					userID: 1,
+					fromAPIClient: "OAUTH2_CLIENT_ID",
+				},
+				"Should return a conforming API Token, with the permissions from that client."
+			);
+
+			const dbRes = await db["api-tokens"].findOne({
+				identifier: "Test_Service",
+			});
+
+			t.hasStrict(
+				dbRes,
+				{
+					identifier: "Test_Service",
+					permissions: { customise_profile: true },
+					userID: 1,
+					fromAPIClient: "OAUTH2_CLIENT_ID",
+				},
+				"Should insert a conforming API Token into the database."
+			);
+
+			t.end();
+		}
+	);
+
+	t.test("Should reject requests that use both provided permissions and clientID.", async (t) => {
+		const res = await mockApi
+			.post("/api/v1/users/1/api-tokens/create")
+			.set("Cookie", cookie)
+			.send({
+				identifier: "Hello World",
+				permissions: ["submit_score", "customise_profile"],
+				clientID: "OAUTH2_CLIENT_ID",
+			});
+
+		t.equal(res.statusCode, 400, "Should return 400.");
+		t.match(
+			res.body.description,
+			/clientID creation and permissions creation at the same time/iu
+		);
+
+		t.end();
+	});
+
+	t.test("Should reject requests with no provided permissions or clientID.", async (t) => {
+		const res = await mockApi
+			.post("/api/v1/users/1/api-tokens/create")
+			.set("Cookie", cookie)
+			.send({
+				identifier: "Hello World",
+			});
+
+		t.equal(res.statusCode, 400, "Should return 400.");
+		t.match(res.body.description, /must specify either clientID or permissions/iu);
+
+		t.end();
+	});
+
+	t.test("Should reject invalid permissions.", async (t) => {
+		const res = await mockApi
+			.post("/api/v1/users/1/api-tokens/create")
+			.set("Cookie", cookie)
+			.send({
+				identifier: "Hello World",
+				permissions: ["submit_score", "invalid_permission"],
+			});
+
+		t.equal(res.statusCode, 400, "Should return 400.");
+		t.match(res.body.description, /invalid permissions/iu);
+
+		t.end();
+	});
+
+	t.end();
+});

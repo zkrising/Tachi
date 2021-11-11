@@ -96,7 +96,19 @@ export function StripUrl(url: string, userInput: string | null) {
 	return userInput;
 }
 
-export function DeleteUndefinedProps(record: Record<string, unknown>) {
+// It's really hard to type this properly because iterating over
+// object keys and then accessing the objects properties is a pain
+// in typescript. My initial approach was to just use
+// Record<string, unknown>, but then it mandates everything passed
+// to it has string indexing.
+// Since this is not possible, I've set it to any and just use
+// runtime validation.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function DeleteUndefinedProps(record: any) {
+	if (typeof record !== "object" || record === null) {
+		throw new Error(`Non-object passed to DeleteUndefinedProps.`);
+	}
+
 	for (const key in record) {
 		if (record[key] === undefined) {
 			delete record[key];

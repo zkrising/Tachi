@@ -93,7 +93,7 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 		return `Displaying ${(page - 1) * pageLen + 1} to ${Math.min(
 			page * pageLen,
 			dataset.length
-		)} of ${dataset.length} ${entryName.toLowerCase()}${
+		)} of ${dataset.length} ${entryName}${
 			search !== "" ? ` (Filtered from ${originalDataset.length})` : ""
 		}.`;
 	}, [page, dataset]);

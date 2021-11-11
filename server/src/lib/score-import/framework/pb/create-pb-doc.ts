@@ -1,9 +1,9 @@
 import db from "external/mongo/db";
-import { integer, PBScoreDocument, ScoreDocument } from "tachi-common";
-
 import { KtLogger } from "lib/logger/logger";
-import { IIDXMergeFn, SDVXMergeFn } from "./game-specific-merge";
 import { BulkWriteUpdateOneOperation } from "mongodb";
+import { integer, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { IIDXMergeFn, SDVXMergeFn } from "./game-specific-merge";
+
 export type PBScoreDocumentNoRank = Omit<PBScoreDocument, "rankingData">;
 
 export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLogger) {

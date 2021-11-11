@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { GetUserWithIDGuaranteed } from "utils/user";
+import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { ParseBarbatosSingle } from "lib/score-import/import-types/ir/barbatos/parser";
 import { RequirePermissions } from "server/middleware/auth";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { GetUserWithIDGuaranteed } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
 

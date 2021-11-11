@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ScoreDocument, GetGameConfig, GetGamePTConfig, StaticConfig } from "tachi-common";
 import db from "external/mongo/db";
-import MigrateRecords from "../migrate";
-import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import CreateLogCtx from "lib/logger/logger";
+import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
+import { GetGameConfig, GetGamePTConfig, ScoreDocument } from "tachi-common";
+import MigrateRecords from "../migrate";
 import { oldKTDB } from "../old-db";
 
 const logger = CreateLogCtx(__filename);
@@ -42,7 +42,6 @@ async function ConvertFn(c: any): Promise<ScoreDocument | null> {
 	if (!chartDoc) {
 		logger.warn(`Cannot find ChartDoc for ${c.songID} ${c.scoreData.difficulty} ${playtype} `);
 		return null;
-		throw new Error(`Cannot find ChartDoc for ${c.scoreID} (${c.chartID})`);
 	}
 
 	const base: Omit<ScoreDocument<"iidx:SP" | "iidx:DP">, "scoreID"> = {

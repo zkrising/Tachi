@@ -1,8 +1,8 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import fs from "fs";
-import path from "path";
 import CreateLogCtx from "lib/logger/logger";
+import path from "path";
 import { FindSongOnTitleInsensitive } from "utils/queries/songs";
 
 const logger = CreateLogCtx(__filename);

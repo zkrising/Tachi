@@ -1,9 +1,9 @@
 /* eslint-disable no-await-in-loop */
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
 import { FormatUserDoc } from "utils/user";
-import deepmerge from "deepmerge";
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,9 +1,9 @@
 import {
+	ImportDocument,
 	ImportTypes,
 	PublicUserDocument,
 	SuccessfulAPIResponse,
 	UnsuccessfulAPIResponse,
-	ImportDocument,
 } from "tachi-common";
 import { ImportInputParser } from "../import-types/common/types";
 import { CreateImportLoggerAndID } from "./common/import-logger";

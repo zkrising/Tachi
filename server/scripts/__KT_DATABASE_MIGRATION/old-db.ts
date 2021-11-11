@@ -1,6 +1,6 @@
-import monk from "monk";
-import { Environment, ServerConfig } from "lib/setup/config";
 import CreateLogCtx from "lib/logger/logger";
+import { Environment } from "lib/setup/config";
+import monk from "monk";
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ScoreDocument, GetGamePTConfig, StaticConfig } from "tachi-common";
 import db from "external/mongo/db";
-import MigrateRecords from "../migrate";
-import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import CreateLogCtx from "lib/logger/logger";
+import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
+import { GetGamePTConfig, ScoreDocument, StaticConfig } from "tachi-common";
+import MigrateRecords from "../migrate";
 import { oldKTDB } from "../old-db";
 
 const logger = CreateLogCtx(__filename);

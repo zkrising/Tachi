@@ -1,6 +1,7 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
 import ResetDBState from "test-utils/resets";
 import {
 	GetKTDataJSON,
@@ -9,7 +10,6 @@ import {
 	Testing511SPA,
 } from "test-utils/test-data";
 import { ConvertFileMerIIDX } from "./converter";
-import deepmerge from "deepmerge";
 import { MerScore } from "./types";
 
 const logger = CreateLogCtx(__filename);

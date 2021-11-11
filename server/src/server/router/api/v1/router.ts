@@ -2,6 +2,7 @@ import { Router } from "express";
 import adminRouter from "./admin/router";
 import authRouter from "./auth/router";
 import clientsRouter from "./clients/router";
+import configRouter from "./config/router";
 import gamesRouter from "./games/router";
 import importRouter from "./import/router";
 import importsRouter from "./imports/router";
@@ -11,7 +12,6 @@ import searchRouter from "./search/router";
 import sessionsRouter from "./sessions/router";
 import statusRouter from "./status/router";
 import usersRouter from "./users/router";
-import configRouter from "./config/router";
 
 const router: Router = Router({ mergeParams: true });
 

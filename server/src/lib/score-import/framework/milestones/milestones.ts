@@ -1,17 +1,17 @@
-import { KtLogger } from "lib/logger/logger";
-import {
-	integer,
-	Game,
-	Playtypes,
-	GoalImportInfo,
-	UserMilestoneDocument,
-	MilestoneImportInfo,
-	MilestoneDocument,
-} from "tachi-common";
 import db from "external/mongo/db";
-import { BulkWriteUpdateOneOperation } from "mongodb";
-import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "utils/milestone";
+import { KtLogger } from "lib/logger/logger";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
+import { BulkWriteUpdateOneOperation } from "mongodb";
+import {
+	Game,
+	GoalImportInfo,
+	integer,
+	MilestoneDocument,
+	MilestoneImportInfo,
+	Playtypes,
+	UserMilestoneDocument,
+} from "tachi-common";
+import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "utils/milestone";
 
 /**
  * Processes and updates a user's milestones from their Goal Import Info (i.e. what is returned

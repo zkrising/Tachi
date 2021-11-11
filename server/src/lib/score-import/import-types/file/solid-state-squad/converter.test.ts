@@ -1,5 +1,6 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
 import ResetDBState from "test-utils/resets";
 import {
 	GetKTDataJSON,
@@ -9,7 +10,6 @@ import {
 } from "test-utils/test-data";
 import { ConvertFileS3, ParseDifficulty, ResolveS3Lamp } from "./converter";
 import { S3Score } from "./types";
-import deepmerge from "deepmerge";
 
 const logger = CreateLogCtx(__filename);
 

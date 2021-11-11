@@ -1,6 +1,6 @@
+import { PublicUserDocument } from "tachi-common";
 import t from "tap";
 import { CreateImportLoggerAndID } from "./import-logger";
-import { PublicUserDocument } from "tachi-common";
 
 t.test("#CreateImportLoggerAndID", (t) => {
 	const { importID, logger } = CreateImportLoggerAndID(

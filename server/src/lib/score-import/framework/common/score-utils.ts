@@ -1,14 +1,14 @@
+import CreateLogCtx from "lib/logger/logger";
 import {
+	ChartDocument,
+	ESDCore,
 	Game,
+	GameToIDStrings,
+	GetGamePTConfig,
 	Grades,
 	IDStrings,
-	ChartDocument,
-	GameToIDStrings,
-	ESDCore,
 	Playtypes,
-	GetGamePTConfig,
 } from "tachi-common";
-import CreateLogCtx from "lib/logger/logger";
 import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 
 const logger = CreateLogCtx(__filename);

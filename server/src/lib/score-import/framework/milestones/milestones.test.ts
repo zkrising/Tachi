@@ -1,11 +1,11 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { GoalImportInfo } from "tachi-common";
+import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPMilestone } from "test-utils/test-data";
 import { UpdateUsersMilestones } from "./milestones";
-import { GoalImportInfo } from "tachi-common";
-import deepmerge from "deepmerge";
 
 const logger = CreateLogCtx(__filename);
 

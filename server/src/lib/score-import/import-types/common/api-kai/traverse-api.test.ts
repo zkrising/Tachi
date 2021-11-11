@@ -1,10 +1,9 @@
+import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
-
 import { agta } from "test-utils/misc";
 import { MockBasicFetch, MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
 import { NodeFetch } from "utils/fetch";
-import CreateLogCtx from "lib/logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { TraverseKaiAPI } from "./traverse-api";
 

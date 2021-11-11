@@ -1,12 +1,10 @@
-import { Databases, monkDB } from "external/mongo/db";
-import CreateLogCtx from "lib/logger/logger";
-import { DatabaseSchemas } from "external/mongo/schemas";
-import { FormatPrError } from "utils/prudence";
-
 // note: a hell of a lot of this code is copy pasted
 // this is just a script, so, feel free to refactor it.
-
 import { Command } from "commander";
+import { Databases, monkDB } from "external/mongo/db";
+import { DatabaseSchemas } from "external/mongo/schemas";
+import CreateLogCtx from "lib/logger/logger";
+import { FormatPrError } from "utils/prudence";
 
 const program = new Command();
 program.option("-c, --collection <collectionName>");

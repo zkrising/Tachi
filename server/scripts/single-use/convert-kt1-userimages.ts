@@ -1,7 +1,6 @@
+import { Command } from "commander";
 import fs from "fs";
 import path from "path";
-
-import { Command } from "commander";
 
 const program = new Command();
 program.option("-d, --dir <dir>");

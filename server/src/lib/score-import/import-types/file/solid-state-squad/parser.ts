@@ -1,11 +1,11 @@
 import { parse as FastParseXML } from "fast-xml-parser";
-import { EmptyObject } from "utils/types";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
+import { KtLogger } from "lib/logger/logger";
 import p, { PrudenceSchema } from "prudence";
 import { FormatPrError } from "utils/prudence";
-import { S3Score } from "./types";
+import { EmptyObject } from "utils/types";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturns } from "../../common/types";
-import { KtLogger } from "lib/logger/logger";
+import { S3Score } from "./types";
 
 const PR_SolidState: PrudenceSchema = {
 	s3data: {

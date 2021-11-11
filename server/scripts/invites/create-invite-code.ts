@@ -1,5 +1,5 @@
-import db from "external/mongo/db";
 import { Command } from "commander";
+import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { Random20Hex } from "utils/misc";
 

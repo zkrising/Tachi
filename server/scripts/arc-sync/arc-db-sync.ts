@@ -1,13 +1,13 @@
 /* eslint-disable no-await-in-loop */
 import { Command } from "commander";
-import { ServerConfig } from "lib/setup/config";
 import db from "external/mongo/db";
+import fs from "fs";
+import CreateLogCtx from "lib/logger/logger";
+import { ServerConfig } from "lib/setup/config";
+import path from "path";
+import fetch from "utils/fetch";
 import { FindChartWithPTDFVersion, FindSDVXChartOnDFVersion } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
-import CreateLogCtx from "lib/logger/logger";
-import fetch from "utils/fetch";
-import fs from "fs";
-import path from "path";
 
 const logger = CreateLogCtx(__filename);
 

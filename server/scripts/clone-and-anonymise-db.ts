@@ -1,8 +1,7 @@
+import { execSync } from "child_process";
+import { Command } from "commander";
 import CreateLogCtx from "lib/logger/logger";
 import monk from "monk";
-import { execSync } from "child_process";
-
-import { Command } from "commander";
 
 const program = new Command();
 program

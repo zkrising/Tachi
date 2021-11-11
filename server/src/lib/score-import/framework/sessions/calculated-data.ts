@@ -1,4 +1,4 @@
-import { ScoreDocument, SessionDocument, Game, Playtypes } from "tachi-common";
+import { Game, Playtypes, ScoreDocument, SessionDocument } from "tachi-common";
 
 type ScoreCalculatedDataOnly = Pick<ScoreDocument, "calculatedData">;
 

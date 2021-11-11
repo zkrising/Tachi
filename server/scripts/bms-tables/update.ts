@@ -1,5 +1,5 @@
-import { BMSTablesDataset, UpdateTable } from "./table-sync";
 import { BMS_TABLES } from "lib/constants/bms-tables";
+import { BMSTablesDataset, UpdateTable } from "./table-sync";
 
 // I have no confidence in half of these links surviving.
 // Eventually, some of these are going to disappear, and we'll have to find

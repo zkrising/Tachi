@@ -1,6 +1,5 @@
 import CreateLogCtx from "lib/logger/logger";
 import { MigrateBMSScores } from "./bms";
-import { MigrateDDRScores } from "./ddr";
 import { MigrateIIDXScores } from "./iidx";
 import { MigrateMusecaScores } from "./museca";
 import { MigrateSDVXScores } from "./sdvx";

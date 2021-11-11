@@ -1,8 +1,8 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { ChartDocument } from "tachi-common";
 import fetch from "node-fetch";
+import { ChartDocument } from "tachi-common";
 import { CreateFolderID } from "utils/folder";
 
 // this seems to be all we care about

@@ -1,12 +1,12 @@
 import { KtLogger } from "lib/logger/logger";
-import nodeFetch from "utils/fetch";
 import { KaiAuthDocument } from "tachi-common";
-import { KaiContext } from "../types";
-import { TraverseKaiAPI } from "../traverse-api";
+import nodeFetch from "utils/fetch";
 import { ParserFunctionReturns } from "../../types";
+import { CreateKaiReauthFunction } from "../reauth";
+import { TraverseKaiAPI } from "../traverse-api";
+import { KaiContext } from "../types";
 import { KaiTypeToBaseURL } from "../utils";
 import { CreateKaiIIDXClassHandler } from "./class-handler";
-import { CreateKaiReauthFunction } from "../reauth";
 
 export async function ParseKaiIIDX(
 	service: "FLO" | "EAG",

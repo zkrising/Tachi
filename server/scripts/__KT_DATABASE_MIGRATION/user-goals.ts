@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { UserGoalDocument } from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { UserGoalDocument } from "tachi-common";
 import MigrateRecords from "./migrate";
 
 const logger = CreateLogCtx(__filename);

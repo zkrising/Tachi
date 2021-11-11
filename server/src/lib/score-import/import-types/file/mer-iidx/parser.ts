@@ -1,7 +1,7 @@
+import { KtLogger } from "lib/logger/logger";
 import p from "prudence";
 import { FormatPrError } from "utils/prudence";
 import { EmptyObject } from "utils/types";
-import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturns } from "../../common/types";
 import { MerScore } from "./types";

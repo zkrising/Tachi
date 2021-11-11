@@ -1,22 +1,21 @@
-import {
-	integer,
-	ImportTypes,
-	ScoreDocument,
-	SessionDocument,
-	Playtypes,
-	PBScoreDocument,
-	SessionScoreInfo,
-	SessionInfoReturn,
-	Game,
-} from "tachi-common";
+import crypto from "crypto";
 import db from "external/mongo/db";
 import { AppendLogCtx, KtLogger } from "lib/logger/logger";
-import { GenerateRandomSessionName } from "./name-generation";
-import crypto from "crypto";
-import { CreateSessionCalcData } from "./calculated-data";
+import {
+	Game,
+	ImportTypes,
+	integer,
+	PBScoreDocument,
+	Playtypes,
+	ScoreDocument,
+	SessionDocument,
+	SessionInfoReturn,
+	SessionScoreInfo,
+} from "tachi-common";
 import { GetScoresFromSession } from "utils/session";
-
 import { ScorePlaytypeMap } from "../common/types";
+import { CreateSessionCalcData } from "./calculated-data";
+import { GenerateRandomSessionName } from "./name-generation";
 
 const TWO_HOURS = 1000 * 60 * 60 * 2;
 

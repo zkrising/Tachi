@@ -1,8 +1,8 @@
-import { CreateGameProfiles } from "./create-game-profiles";
-import { UpdateAllPBs } from "./update-all-pbs";
-import { RecalcAllScores } from "./recalc-all-scores";
 import CreateLogCtx from "lib/logger/logger";
+import { CreateGameProfiles } from "./create-game-profiles";
+import { RecalcAllScores } from "./recalc-all-scores";
 import { RecalcSessions } from "./recalc-sessions";
+import { UpdateAllPBs } from "./update-all-pbs";
 
 const logger = CreateLogCtx(__filename);
 

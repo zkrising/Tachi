@@ -1,12 +1,11 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-
+import { PublicUserDocument, ScoreDocument, SessionDocument } from "tachi-common";
+import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScore, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { CreateScoreLogger } from "../common/import-logger";
 import { CreateSessions, LoadScoresIntoSessions } from "./sessions";
-import { PublicUserDocument, ScoreDocument, SessionDocument } from "tachi-common";
-import deepmerge from "deepmerge";
 
 const logger = CreateScoreLogger(
 	{ username: "test_zkldi", id: 1 } as PublicUserDocument,

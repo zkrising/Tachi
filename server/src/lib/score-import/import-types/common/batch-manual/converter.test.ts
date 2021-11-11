@@ -1,13 +1,12 @@
-import t from "tap";
-import CreateLogCtx from "lib/logger/logger";
-import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
-import { ResolveChartFromSong, ResolveMatchTypeToKTData, ConverterBatchManual } from "./converter";
 import deepmerge from "deepmerge";
-import { EscapeStringRegexp } from "utils/misc";
+import CreateLogCtx from "lib/logger/logger";
 import { Game } from "tachi-common";
+import t from "tap";
 import ResetDBState from "test-utils/resets";
+import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
+import { EscapeStringRegexp } from "utils/misc";
 import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
-
+import { ConverterBatchManual, ResolveChartFromSong, ResolveMatchTypeToKTData } from "./converter";
 import { BatchManualContext } from "./types";
 
 const baseBatchManualScore = {

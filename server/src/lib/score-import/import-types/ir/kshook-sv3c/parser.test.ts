@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import deepmerge from "deepmerge";
 import { SDVXDans } from "lib/constants/classes";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { TestingKsHookSV3CScore } from "test-utils/test-data";
 import { ConvertSkillLevel, ParseKsHookSV3C } from "./parser";
-import deepmerge from "deepmerge";
 
 const logger = CreateLogCtx(__filename);
 

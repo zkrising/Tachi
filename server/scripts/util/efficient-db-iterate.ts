@@ -1,7 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import CreateLogCtx from "lib/logger/logger";
 import { ICollection } from "monk";
-import { oldKTDB } from "../__KT_DATABASE_MIGRATION/old-db";
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,8 +1,8 @@
 // oh boy
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { GoalDocument } from "tachi-common";
 import db from "external/mongo/db";
+import { GoalDocument } from "tachi-common";
 import CreateLogCtx from "../../src/common/logger";
 import MigrateRecords from "./migrate";
 

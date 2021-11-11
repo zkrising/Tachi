@@ -1,5 +1,5 @@
+import { Difficulties, Game, GetGamePTConfig, IDStrings, Playtypes } from "tachi-common";
 import { InvalidScoreFailure } from "./converter-failures";
-import { Difficulties, Game, IDStrings, Playtypes, GetGamePTConfig } from "tachi-common";
 export function AssertStrAsDifficulty(
 	strVal: string,
 	game: Game,

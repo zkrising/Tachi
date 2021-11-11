@@ -1,7 +1,7 @@
-import { integer } from "tachi-common";
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
-import { CreatePBDoc, UpdateChartRanking, PBScoreDocumentNoRank } from "./create-pb-doc";
+import { integer } from "tachi-common";
+import { CreatePBDoc, PBScoreDocumentNoRank, UpdateChartRanking } from "./create-pb-doc";
 
 /**
  * Process, recalculate and update a users PBs for this set of chartIDs.

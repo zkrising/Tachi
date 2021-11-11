@@ -1,3 +1,4 @@
+import { Lamps } from "tachi-common";
 import { FindIIDXChartOnInGameID } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import { EmptyObject } from "utils/types";
@@ -9,10 +10,9 @@ import {
 	GenericGetGradeAndPercent,
 	ParseDateFromString,
 } from "../../../framework/common/score-utils";
-import { MerScore } from "./types";
-import { Lamps } from "tachi-common";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../../common/types";
+import { MerScore } from "./types";
 
 function ConvertMERLamp(lamp: MerScore["clear_type"]): Lamps["iidx:DP" | "iidx:SP"] {
 	if (lamp === "FULLCOMBO CLEAR") {

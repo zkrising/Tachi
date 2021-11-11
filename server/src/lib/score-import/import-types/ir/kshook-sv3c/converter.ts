@@ -1,15 +1,15 @@
-import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
-import { EmptyObject } from "utils/types";
-import { ConverterFunction } from "../../common/types";
-import { KsHookSV3CScore } from "./types";
-import { Lamps } from "tachi-common";
 import {
 	InternalFailure,
 	KTDataNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
-import { FindSongOnID } from "utils/queries/songs";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { DryScore } from "lib/score-import/framework/common/types";
+import { Lamps } from "tachi-common";
+import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
+import { FindSongOnID } from "utils/queries/songs";
+import { EmptyObject } from "utils/types";
+import { ConverterFunction } from "../../common/types";
+import { KsHookSV3CScore } from "./types";
 
 export const ConverterIRKsHookSV3C: ConverterFunction<KsHookSV3CScore, EmptyObject> = async (
 	data,

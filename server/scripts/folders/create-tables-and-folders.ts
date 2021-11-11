@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
 import {
 	FormatGame,
 	GetGameConfig,
@@ -8,9 +9,6 @@ import {
 	integer,
 	StaticConfig,
 } from "tachi-common";
-import fjsh from "fast-json-stable-hash";
-import CreateLogCtx from "lib/logger/logger";
-import { BMS_TABLES } from "lib/constants/bms-tables";
 import { CreateFolderID } from "utils/folder";
 
 const logger = CreateLogCtx(__filename);

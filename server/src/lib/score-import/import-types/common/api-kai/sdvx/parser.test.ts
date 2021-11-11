@@ -1,8 +1,7 @@
+import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
-
 import { MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
-import CreateLogCtx from "lib/logger/logger";
 import { ParseKaiSDVX } from "./parser";
 
 const fakeAuth = {

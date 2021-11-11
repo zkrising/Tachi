@@ -1,13 +1,13 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { DeleteScore } from "lib/delete-scores/delete-scores";
 import CreateLogCtx from "lib/logger/logger";
-import { GetUserWithID } from "utils/user";
+import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
+import { GetUserWithID } from "utils/user";
 import { GetScoreFromParam, RequireOwnershipOfScore } from "./middleware";
-import p from "prudence";
-import { DeleteScore } from "lib/delete-scores/delete-scores";
 
 const router: Router = Router({ mergeParams: true });
 

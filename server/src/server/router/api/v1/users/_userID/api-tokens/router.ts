@@ -1,14 +1,14 @@
 import { Router } from "express";
-import p from "prudence";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
-import prValidate from "server/middleware/prudence-validate";
-import { FormatUserDoc } from "utils/user";
-import { RequireSelfRequestFromUser } from "../middleware";
+import p from "prudence";
 import { AllPermissions } from "server/middleware/auth";
+import prValidate from "server/middleware/prudence-validate";
 import { APIPermissions, APITokenDocument } from "tachi-common";
 import { DeleteUndefinedProps, Random20Hex } from "utils/misc";
+import { FormatUserDoc } from "utils/user";
+import { RequireSelfRequestFromUser } from "../middleware";
 
 const logger = CreateLogCtx(__filename);
 

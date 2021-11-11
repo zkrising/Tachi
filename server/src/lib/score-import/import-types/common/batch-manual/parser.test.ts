@@ -1,11 +1,10 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
+import { BatchManual } from "tachi-common";
+import t from "tap";
+import { EscapeStringRegexp } from "utils/misc";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParseBatchManualFromObject as ParserFn } from "./parser";
-import { EscapeStringRegexp } from "utils/misc";
-import deepmerge from "deepmerge";
-
-import { BatchManual } from "tachi-common";
 
 const mockErr = (...msg: string[]) =>
 	({

@@ -1,12 +1,11 @@
 /* eslint-disable no-await-in-loop */
-import fetch from "node-fetch";
 import { Command } from "commander";
-import fs from "fs";
-import path from "path";
-import { Difficulties, ESDCore, IIDXBPIData, ChartDocument } from "tachi-common";
 import db from "external/mongo/db";
+import fs from "fs";
 import CreateLogCtx from "lib/logger/logger";
-import { config } from "process";
+import fetch from "node-fetch";
+import path from "path";
+import { ChartDocument, Difficulties, IIDXBPIData } from "tachi-common";
 import { FindChartWithPTDFVersion } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
 import { RecalcAllScores } from "../__KT_DATABASE_MIGRATION/state-sync/recalc-all-scores";

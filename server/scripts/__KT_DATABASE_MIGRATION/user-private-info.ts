@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { PrivateUserInfoDocument, PublicUserDocument } from "tachi-common";
+import { PrivateUserInfoDocument } from "tachi-common";
 import MigrateRecords from "./migrate";
 
 function ConvertFn(c: any): PrivateUserInfoDocument {

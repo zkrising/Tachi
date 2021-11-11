@@ -37,6 +37,7 @@ t.test("#OrphanScore", (t) => {
 			batchManualScore,
 			batchManualContext,
 			"Example Error Message",
+			"iidx",
 			logger
 		);
 
@@ -83,6 +84,7 @@ t.test("#OrphanScore", (t) => {
 			batchManualScore,
 			batchManualContext,
 			"Example Error Message",
+			"iidx",
 			logger
 		);
 
@@ -92,6 +94,7 @@ t.test("#OrphanScore", (t) => {
 			batchManualScore,
 			batchManualContext,
 			"Example Error Message",
+			"iidx",
 			logger
 		);
 
@@ -116,6 +119,7 @@ t.test("#ReprocessOrphan", (t) => {
 		importType: "ir/direct-manual",
 		orphanID: "foo",
 		timeInserted: 0,
+		game: "iidx",
 		userID: 1,
 	};
 

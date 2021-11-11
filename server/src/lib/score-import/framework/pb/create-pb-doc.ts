@@ -20,10 +20,13 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
 	);
 
 	if (!scorePB) {
-		logger.severe(`User has no scores on chart, but a PB was attempted to be created?`, {
-			chartID,
-			userID,
-		});
+		logger.severe(
+			`User ${userID} has no scores on chart, but a PB was attempted to be created?`,
+			{
+				chartID,
+				userID,
+			}
+		);
 		return;
 	}
 

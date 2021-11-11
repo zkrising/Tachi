@@ -6,7 +6,7 @@ import {
 	ImportTypeDataMap,
 	OrphanScoreDocument,
 } from "../../import-types/common/types";
-import { ImportTypes, integer } from "tachi-common";
+import { Game, ImportTypes, integer } from "tachi-common";
 import fjsh from "fast-json-stable-hash";
 import { KtLogger } from "lib/logger/logger";
 import { Converters } from "../../import-types/converters";
@@ -16,6 +16,8 @@ import {
 	KTDataNotFoundFailure,
 } from "../common/converter-failures";
 import { ProcessSuccessfulConverterReturn } from "../score-importing/score-importing";
+import { HandlePostImportSteps } from "../score-import-main";
+import { GetUserWithID } from "utils/user";
 
 /**
  * Creates an OrphanedScore document from the data and context,
@@ -29,6 +31,7 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
 	data: ImportTypeDataMap[T],
 	context: ImportTypeContextMap[T],
 	errMsg: string | null,
+	game: Game,
 	logger: KtLogger
 ) {
 	const orphan: Pick<OrphanScoreDocument, "importType" | "data" | "context" | "userID"> = {
@@ -50,6 +53,7 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
 	const orphanScoreDoc: OrphanScoreDocument = {
 		...orphan,
 		orphanID,
+		game,
 		errMsg,
 		timeInserted: Date.now(),
 	};
@@ -117,5 +121,35 @@ export async function ReprocessOrphan(
 	await db["orphan-scores"].remove({ orphanID: orphan.orphanID });
 
 	// else, import the orphan.
-	return ProcessSuccessfulConverterReturn(orphan.userID, res, blacklist, logger);
+	const converterReturns = await ProcessSuccessfulConverterReturn(
+		orphan.userID,
+		res,
+		blacklist,
+		logger,
+		true
+	);
+
+	if (converterReturns === null || !converterReturns.success) {
+		return null;
+	}
+
+	const user = await GetUserWithID(orphan.userID);
+
+	if (!user) {
+		logger.severe(
+			`Orphan ${orphan.orphanID} belongs to ${orphan.userID}, but that user no longer exists in the database. Going to skip this and remove the orphan.`
+		);
+		return null;
+	}
+
+	await HandlePostImportSteps(
+		[converterReturns],
+		user,
+		orphan.importType,
+		orphan.game,
+		null,
+		logger
+	);
+
+	return converterReturns;
 }

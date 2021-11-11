@@ -359,6 +359,7 @@ t.test("POST /api/v1/import/orphans", async (t) => {
 					identifier: "5.1.1.",
 					difficulty: "ANOTHER",
 				},
+				game: "iidx",
 			},
 			{
 				userID: 1,
@@ -379,6 +380,7 @@ t.test("POST /api/v1/import/orphans", async (t) => {
 					identifier: "TITLE NOBODY WILL USE",
 					difficulty: "ANOTHER",
 				},
+				game: "iidx",
 			},
 		]);
 

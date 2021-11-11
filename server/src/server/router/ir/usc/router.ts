@@ -314,7 +314,9 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 				"context.chartHash": chartDoc.data.hashSHA1,
 			});
 
-			await Promise.all(scoresToDeorphan.map((e) => ReprocessOrphan(e, blacklist, logger)));
+			for (const score of scoresToDeorphan) {
+				await ReprocessOrphan(score, blacklist, logger);
+			}
 		}
 	}
 

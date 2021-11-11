@@ -1262,7 +1262,7 @@ export interface APITokenDocument extends MongoDBDocument {
 	permissions: Partial<Record<APIPermissions, boolean>>;
 	// API Tokens may be created as a result of a Tachi Client flow. This prop optionally
 	// stores that.
-	fromAPIClient?: string;
+	fromAPIClient: string | null;
 }
 
 export interface ImportLockDocument extends MongoDBDocument {

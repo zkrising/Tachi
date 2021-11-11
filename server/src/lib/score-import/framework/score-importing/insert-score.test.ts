@@ -116,5 +116,37 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 		t.equal(dbRes.length, 1, "Should only insert one document");
 	});
 
+	t.test("Should give separate users separate queues.", async (t) => {
+		await QueueScoreInsert({
+			scoreID: "1",
+			chartID: "foo",
+			userID: 1,
+		} as unknown as ScoreDocument);
+		await QueueScoreInsert({
+			scoreID: "2",
+			chartID: "foo",
+			userID: 2,
+		} as unknown as ScoreDocument);
+
+		const r1 = await InsertQueue(1);
+		t.equal(r1, 1, "Queue for userID 1 should have length 1.");
+
+		const r2 = await InsertQueue(2);
+		t.equal(r2, 1, "Queue for userID 2 should also have length 1.");
+
+		t.end();
+	});
+
+	t.test("Should not throw if InsertQueue is called on an empty queue.", async (t) => {
+		try {
+			await InsertQueue(1);
+			t.pass("Did not throw when inserting an empty queue.");
+		} catch (err) {
+			t.fail(err);
+		}
+
+		t.end();
+	});
+
 	t.end();
 });

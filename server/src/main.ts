@@ -75,7 +75,7 @@ if (ServerConfig.ENABLE_SERVER_HTTPS) {
 	logger.info(`HTTP Listening on port ${Environment.port}`, { bootInfo: true });
 }
 
-process.on("SIGTERM", HandleSIGTERMGracefully);
+process.on("SIGTERM", () => HandleSIGTERMGracefully(instance));
 
 if (process.env.INVOKE_JOB_RUNNER) {
 	logger.info(`Spawning a tachi-server job runner inline.`, { bootInfo: true });

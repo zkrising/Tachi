@@ -1,14 +1,11 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
-import CreateLogCtx, { KtLogger } from "lib/logger/logger";
-import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
+import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
-import { ParseBeatorajaSingle } from "lib/score-import/import-types/ir/beatoraja/parser";
 import { ServerConfig } from "lib/setup/config";
 import { RequireNotGuest } from "server/middleware/auth";
 import { UpdateClassIfGreater } from "utils/class";
-import { GetUserWithIDGuaranteed } from "utils/user";
 import { ValidateIRClientVersion } from "./auth";
 import chartsRouter from "./charts/router";
 
@@ -24,21 +21,19 @@ router.use(ValidateIRClientVersion);
  * @name POST /ir/beatoraja/submit-score
  */
 router.post("/submit-score", RequireNotGuest, async (req, res) => {
-	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth]!.userID!);
+	const userID = req[SYMBOL_TachiAPIAuth]!.userID!;
 
-	const ParserFunction = (logger: KtLogger) => ParseBeatorajaSingle(req.body, userDoc.id, logger);
-
-	const importRes = await ExpressWrappedScoreImportMain(
-		userDoc,
-		false,
-		"ir/beatoraja",
-		ParserFunction
-	);
+	const importRes = await ExpressWrappedScoreImportMain(userID, false, "ir/beatoraja", [
+		req.body,
+		userID,
+	]);
 
 	if (!importRes.body.success) {
 		return res.status(400).json(importRes.body);
 	} else if (importRes.body.body.errors.length !== 0) {
 		const type = importRes.body.body.errors[0].type;
+		const errMsg = importRes.body.body.errors[0].message;
+
 		if (type === "KTDataNotFound") {
 			return res.status(202).json({
 				success: true,
@@ -47,7 +42,7 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 		} else if (type === "InternalError") {
 			return res.status(500).json({
 				success: false,
-				description: `[${importRes.body.body.errors[0].type}] - ${importRes.body.body.errors[0].message}`,
+				description: `[${type}] - ${errMsg}`,
 			});
 		}
 
@@ -56,7 +51,7 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 
 		return res.status(400).json({
 			success: false,
-			description: `[${importRes.body.body.errors[0].type}] - ${importRes.body.body.errors[0].message}`,
+			description: `[${type}] - ${errMsg}`,
 		});
 	} else if (importRes.body.body.scoreIDs.length === 0) {
 		return res.status(400).json({

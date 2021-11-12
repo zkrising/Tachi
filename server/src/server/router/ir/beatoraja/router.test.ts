@@ -1,11 +1,10 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-
+import { PublicUserDocument } from "tachi-common";
+import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON } from "test-utils/test-data";
-import deepmerge from "deepmerge";
-import { PublicUserDocument } from "tachi-common";
 
 t.test("POST /ir/beatoraja/submit-score", (t) => {
 	t.beforeEach(ResetDBState);
@@ -17,6 +16,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 				submit_score: true,
 			},
 			token: "mock_token",
+			fromAPIClient: null,
 		})
 	);
 
@@ -142,12 +142,14 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 				identifier: "token2",
 				permissions: { submit_score: true },
 				token: "token2",
+				fromAPIClient: null,
 			},
 			{
 				userID: 3,
 				identifier: "token3",
 				permissions: { submit_score: true },
 				token: "token3",
+				fromAPIClient: null,
 			},
 		]);
 
@@ -320,6 +322,7 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 				submit_score: true,
 			},
 			token: "mock_token",
+			fromAPIClient: null,
 		})
 	);
 

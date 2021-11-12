@@ -1,6 +1,5 @@
-import t from "tap";
 import db from "external/mongo/db";
-
+import t from "tap";
 import { InsertFakeTokenWithAllPerms } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";

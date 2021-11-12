@@ -1,11 +1,10 @@
-import t from "tap";
-import db from "external/mongo/db";
-import ResetDBState from "test-utils/resets";
-import CreateLogCtx from "lib/logger/logger";
-import { ConverterIRBarbatos } from "./converter";
 import deepmerge from "deepmerge";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
+import ResetDBState from "test-utils/resets";
 import { barbScore } from "test-utils/test-data";
-
+import { ConverterIRBarbatos } from "./converter";
 import { BarbatosScore } from "./types";
 
 const logger = CreateLogCtx(__filename);

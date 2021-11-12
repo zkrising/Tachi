@@ -12,6 +12,7 @@ const GuestToken: APITokenDocument = {
 	userID: null,
 	identifier: "Guest Token",
 	permissions: {},
+	fromAPIClient: null,
 };
 
 export const AllPermissions: Record<APIPermissions, true> = {
@@ -46,6 +47,7 @@ function CreateSetRequestPermissions(errorKeyName: string): RequestHandler {
 				identifier: `Session-Key ${req.session.tachi.user.id}`,
 				token: null,
 				permissions: AllPermissions,
+				fromAPIClient: null,
 			};
 			return next();
 		}
@@ -91,6 +93,7 @@ function CreateSetRequestPermissions(errorKeyName: string): RequestHandler {
 			token,
 			permissions: apiTokenData.permissions,
 			identifier: apiTokenData.identifier,
+			fromAPIClient: apiTokenData.fromAPIClient,
 		};
 
 		return next();

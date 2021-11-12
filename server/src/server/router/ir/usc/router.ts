@@ -1,37 +1,35 @@
-import { Router, RequestHandler } from "express";
-import p from "prudence";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
+import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
+import { CDNStore } from "lib/cdn/cdn";
+import { GetUSCIRReplayURL } from "lib/cdn/url-format";
+import { ONE_MEGABYTE } from "lib/constants/filesize";
+import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
+import { USCIR_MAX_LEADERBOARD_N } from "lib/constants/usc-ir";
+import CreateLogCtx from "lib/logger/logger";
+import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
+import { AssertStrAsPositiveNonZeroInt } from "lib/score-import/framework/common/string-asserts";
+import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
+import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
+import p from "prudence";
+import { RequirePermissions } from "server/middleware/auth";
+import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import {
 	ChartDocument,
+	ImportDocument,
 	PBScoreDocument,
 	SuccessfulAPIResponse,
-	ImportDocument,
 } from "tachi-common";
-import { AssertStrAsPositiveNonZeroInt } from "lib/score-import/framework/common/string-asserts";
-import CreateLogCtx, { KtLogger } from "lib/logger/logger";
+import { FormatPrError } from "utils/prudence";
+import { GetBlacklist } from "utils/queries/blacklist";
+import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { USCClientChart } from "./types";
 import {
 	ConvertUSCChart,
 	CreatePOSTScoresResponseBody,
 	TachiScoreToServerScore,
 	USCChartIndexToDiff,
 } from "./usc";
-import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
-import { GetUserWithID } from "utils/user";
-import { ParseIRUSC } from "lib/score-import/import-types/ir/usc/parser";
-import { USCIR_MAX_LEADERBOARD_N } from "lib/constants/usc-ir";
-import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
-import { CDNStore } from "lib/cdn/cdn";
-import { ONE_MEGABYTE } from "lib/constants/filesize";
-import { RequirePermissions } from "server/middleware/auth";
-import { GetUSCIRReplayURL } from "lib/cdn/url-format";
-import { FormatPrError } from "utils/prudence";
-import { USCClientChart } from "./types";
-import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
-import { ServerConfig, TachiConfig } from "lib/setup/config";
-import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
-import { GetBlacklist } from "utils/queries/blacklist";
 
 const logger = CreateLogCtx(__filename);
 
@@ -314,25 +312,18 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 				"context.chartHash": chartDoc.data.hashSHA1,
 			});
 
-			for (const score of scoresToDeorphan) {
-				await ReprocessOrphan(score, blacklist, logger);
-			}
+			await Promise.all(
+				scoresToDeorphan.map((score) => ReprocessOrphan(score, blacklist, logger))
+			);
 		}
 	}
 
-	const userDoc = await GetUserWithID(req[SYMBOL_TachiAPIAuth]!.userID!);
+	const userID = req[SYMBOL_TachiAPIAuth]!.userID!;
 
-	if (!userDoc) {
-		logger.severe(`User ${req[SYMBOL_TachiAPIAuth]!.userID!} as no parent userDoc?`);
-		return res.status(200).json({
-			statusCode: STATUS_CODES.SERVER_ERROR,
-			description: "An internal server error has occured.",
-		});
-	}
-
-	const importParser = (logger: KtLogger) => ParseIRUSC(req.body, uscChart.chartHash, logger);
-
-	const importRes = await ExpressWrappedScoreImportMain(userDoc, false, "ir/usc", importParser);
+	const importRes = await ExpressWrappedScoreImportMain(userID, false, "ir/usc", [
+		req.body,
+		uscChart.chartHash,
+	]);
 
 	// If this was an orphan chart request, return ACCEPTED,
 	// since it may be unorphaned in the future
@@ -359,11 +350,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	const importDoc = (importRes.body as SuccessfulAPIResponse).body as ImportDocument;
 
 	try {
-		const body = await CreatePOSTScoresResponseBody(
-			userDoc.id,
-			chartDoc,
-			importDoc.scoreIDs[0]
-		);
+		const body = await CreatePOSTScoresResponseBody(userID, chartDoc, importDoc.scoreIDs[0]);
 
 		return res.status(200).json({
 			statusCode: STATUS_CODES.SUCCESS,

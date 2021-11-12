@@ -1,6 +1,6 @@
+import expMiddlewareMock from "express-request-mock";
 import t from "tap";
 import { ValidateIRClientVersion } from "./auth";
-import expMiddlewareMock from "express-request-mock";
 
 t.test("#ValidateIRClientVersion", (t) => {
 	t.test("Should reject clients that are not supported", async (t) => {

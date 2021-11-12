@@ -81,13 +81,11 @@ router.use(ValidateHeaders);
  * @name POST /ir/kshook/sv3c/score/save
  */
 router.post("/score/save", async (req, res) => {
-	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
-
 	const responseData = await ExpressWrappedScoreImportMain(
-		userDoc,
+		req[SYMBOL_TachiAPIAuth].userID!,
 		true,
 		"ir/kshook-sv3c",
-		(logger) => ParseKsHookSV3C(req.body, logger)
+		[req.body]
 	);
 
 	if (!responseData.body.success) {

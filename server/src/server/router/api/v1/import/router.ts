@@ -1,30 +1,20 @@
 import { Router } from "express";
-import { APIImportTypes, FileUploadImportTypes, integer } from "tachi-common";
-import Prudence from "prudence";
-import { FormatUserDoc, GetUserWithIDGuaranteed } from "utils/user";
-import CreateLogCtx, { KtLogger } from "lib/logger/logger";
-import prValidate from "server/middleware/prudence-validate";
-import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
-import { SIXTEEN_MEGABTYES } from "lib/constants/filesize";
-import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
-import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
-
-import ParseEamusementIIDXCSV from "lib/score-import/import-types/file/eamusement-iidx-csv/parser";
-import ParseBatchManual from "lib/score-import/import-types/file/batch-manual/parser";
-import { ParseSolidStateXML } from "lib/score-import/import-types/file/solid-state-squad/parser";
-import { ParseMerIIDX } from "lib/score-import/import-types/file/mer-iidx/parser";
-import ParsePLIIIDXCSV from "lib/score-import/import-types/file/pli-iidx-csv/parser";
-import { TachiConfig } from "lib/setup/config";
-import { RequirePermissions } from "server/middleware/auth";
-import { ParseEagIIDX } from "lib/score-import/import-types/api/eag-iidx/parser";
-import { ParseEagSDVX } from "lib/score-import/import-types/api/eag-sdvx/parser";
-import { ParseFloIIDX } from "lib/score-import/import-types/api/flo-iidx/parser";
-import { ParseFloSDVX } from "lib/score-import/import-types/api/flo-sdvx/parser";
-import { ParseMinSDVX } from "lib/score-import/import-types/api/min-sdvx/parser";
-import { ParseArcSDVX } from "lib/score-import/import-types/api/arc-sdvx/parser";
-import { ParseArcIIDX } from "lib/score-import/import-types/api/arc-iidx/parser";
 import db from "external/mongo/db";
+import { SIXTEEN_MEGABTYES } from "lib/constants/filesize";
+import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import CreateLogCtx from "lib/logger/logger";
+import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
+import { MakeScoreImport } from "lib/score-import/framework/score-import";
+import { ScoreImportJobData } from "lib/score-import/worker/types";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
+import Prudence from "prudence";
+import { RequirePermissions } from "server/middleware/auth";
+import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
+import prValidate from "server/middleware/prudence-validate";
+import { APIImportTypes, FileUploadImportTypes } from "tachi-common";
+import { Random20Hex } from "utils/misc";
+import { FormatUserDoc, GetUserWithIDGuaranteed } from "utils/user";
 
 const logger = CreateLogCtx(__filename);
 
@@ -37,9 +27,14 @@ const ParseMultipartScoredata = CreateMulterSingleUploadMiddleware(
 );
 
 const fileImportTypes = TachiConfig.IMPORT_TYPES.filter((e) => e.startsWith("file/"));
+const apiImportTypes = TachiConfig.IMPORT_TYPES.filter((e) => e.startsWith("api/"));
 
 /**
  * Import scores from a file. Expects the post request to be multipart, and to provide a scoreData file.
+ *
+ * @param importType - The import type for this file.
+ * @param file - The actual file. Should be passed as multipart.
+ *
  * @name POST /api/v1/import/file
  */
 router.post(
@@ -63,29 +58,44 @@ router.post(
 
 		const importType = req.body.importType as FileUploadImportTypes;
 
-		const inputParser = (logger: KtLogger) =>
-			ResolveFileUploadData(importType, req.file!, req.body, logger);
+		const userIntent = !!req.header("X-User-Intent");
 
-		const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.user.id);
+		if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER) {
+			const importID = Random20Hex();
 
-		// The <any, any> here is deliberate - TS picks the IIDX-CSV generic values
-		// for this function call because it sees them first
-		// but that is ABSOLUTELY not what is actually occuring.
-		// We use this as an override because we know better.
-		// see: https://www.typescriptlang.org/play?ts=4.3.0-beta#code/GYVwdgxgLglg9mABAQQDwBUB8AKYc4BciAYvhpgJSIDeiAsAFCKID0LiAJnAKYDOivKCGDBGAX0aMYYKNwBOwAIYRuJMlhqNmzAEaK5RdOMkNQkWAkQAlbkLlgAynAC23UnGxVqW7W0QAHOVtuMA5EKAALGH5o8IjVIN4QABsoRDhgARdVaX8QNOlBbkUwjMQ5RVCXH2YYTOwAWUVIgDoKqudPRFREAAYWgFYvGu1mILskWj0DRAAiQTlpAHNZxAkmbXXRkfGQexpEaaIARgAmAGY14wZGZNt0vfdEAF5rWz3HbPdPAG4TZGwcEe+AoPyAA
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const responseData = await ExpressWrappedScoreImportMain<any, any>(
-			userDoc,
-			true,
-			importType,
-			inputParser
-		);
+			const job: ScoreImportJobData<FileUploadImportTypes> = {
+				importID,
+				userID: req[SYMBOL_TachiAPIAuth].userID!,
+				userIntent,
+				importType,
+				parserArguments: [req.file, req.body],
+			};
 
-		return res.status(responseData.statusCode).json(responseData.body);
+			// Fire the score import, but make no guarantees about its state.
+			MakeScoreImport<FileUploadImportTypes>(job);
+
+			return res.status(202).json({
+				success: true,
+				description:
+					"Import loaded into queue. You can poll the provided URL for information on when its complete.",
+				body: {
+					url: `${ServerConfig.OUR_URL}/api/v1/imports/${importID}/poll-status`,
+					importID,
+				},
+			});
+		} else {
+			// Fire the score import and wait for it to finish!
+			const importResponse = await ExpressWrappedScoreImportMain<FileUploadImportTypes>(
+				req[SYMBOL_TachiAPIAuth].userID!,
+				userIntent,
+				importType,
+				[req.file, req.body]
+			);
+
+			return res.status(importResponse.statusCode).json(importResponse.body);
+		}
 	}
 );
-
-const apiImportTypes = TachiConfig.IMPORT_TYPES.filter((e) => e.startsWith("api/"));
 
 /**
  * Import scores from another API. This typically will perform a full sync.
@@ -104,21 +114,44 @@ router.post(
 	async (req, res) => {
 		const importType = req.body.importType as APIImportTypes;
 
-		const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.user.id);
+		const importID = Random20Hex();
 
-		const inputParser = (logger: KtLogger) =>
-			ResolveAPIImportParser(userDoc.id, importType, logger);
+		const userID = req[SYMBOL_TachiAPIAuth].userID!;
 
-		// see the argument above about typescript falsely expanding types.
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const responseData = await ExpressWrappedScoreImportMain<any, any>(
-			userDoc,
-			true,
-			importType,
-			inputParser
-		);
+		const userIntent = !!req.header("X-User-Intent");
 
-		return res.status(responseData.statusCode).json(responseData.body);
+		if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER) {
+			const job: ScoreImportJobData<APIImportTypes> = {
+				importID,
+				userID,
+				userIntent,
+				importType,
+				parserArguments: [userID],
+			};
+
+			// Fire the score import, but make no guarantees about its state.
+			MakeScoreImport<APIImportTypes>(job);
+
+			return res.status(202).json({
+				success: true,
+				description:
+					"Import loaded into queue. You can poll the provided URL for information on when its complete.",
+				body: {
+					url: `${ServerConfig.OUR_URL}/api/v1/imports/${importID}/poll-status`,
+					importID,
+				},
+			});
+		} else {
+			// Fire the score import and wait for it to finish!
+			const importResponse = await ExpressWrappedScoreImportMain<APIImportTypes>(
+				userID,
+				userIntent,
+				importType,
+				[userID]
+			);
+
+			return res.status(importResponse.statusCode).json(importResponse.body);
+		}
 	}
 );
 
@@ -177,66 +210,5 @@ router.post("/orphans", RequirePermissions("submit_score"), async (req, res) => 
 		},
 	});
 });
-
-/**
- * Resolves the data from a file upload into an iterable,
- * The appropriate processing function to map that iterable over,
- * and and any context the processing may need (such as playtype)
- *
- * This also performs validation on the type of file uploaded.
- * @param importType - The type of import request this was.
- * @param fileData - The data sent by the user.
- * @param body - Other data passed by the user in the request body.
- */
-export function ResolveFileUploadData(
-	importType: FileUploadImportTypes,
-	fileData: Express.Multer.File,
-	body: Record<string, unknown>,
-	logger: KtLogger
-) {
-	switch (importType) {
-		case "file/eamusement-iidx-csv":
-			return ParseEamusementIIDXCSV(fileData, body, logger);
-		case "file/pli-iidx-csv":
-			return ParsePLIIIDXCSV(fileData, body, logger);
-		case "file/batch-manual":
-			return ParseBatchManual(fileData, body, logger);
-		case "file/solid-state-squad":
-			return ParseSolidStateXML(fileData, body, logger);
-		case "file/mer-iidx":
-			return ParseMerIIDX(fileData, body, logger);
-		default:
-			logger.error(
-				`importType ${importType} made it into ResolveFileUploadData, but should have been rejected by Prudence.`
-			);
-			throw new ScoreImportFatalError(400, `Invalid importType of ${importType}.`);
-	}
-}
-
-export function ResolveAPIImportParser(
-	userID: integer,
-	importType: APIImportTypes,
-	logger: KtLogger
-) {
-	switch (importType) {
-		case "api/eag-iidx":
-			return ParseEagIIDX(userID, logger);
-		case "api/eag-sdvx":
-			return ParseEagSDVX(userID, logger);
-		case "api/flo-iidx":
-			return ParseFloIIDX(userID, logger);
-		case "api/flo-sdvx":
-			return ParseFloSDVX(userID, logger);
-		case "api/min-sdvx":
-			return ParseMinSDVX(userID, logger);
-		case "api/arc-iidx":
-			return ParseArcIIDX(userID, logger);
-		case "api/arc-sdvx":
-			return ParseArcSDVX(userID, logger);
-		default:
-			logger.error(`Unknown importType ${importType} has no handler?`);
-			throw new ScoreImportFatalError(500, `Unknown importType ${importType}.`);
-	}
-}
 
 export default router;

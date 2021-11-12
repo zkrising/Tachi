@@ -15,18 +15,21 @@ t.test("GET /api/v1/users/:userID/api-tokens", async (t) => {
 				identifier: "foo",
 				permissions: {},
 				token: "tfoo",
+				fromAPIClient: null,
 			},
 			{
 				userID: 1,
 				identifier: "bar",
 				permissions: {},
 				token: "tbar",
+				fromAPIClient: null,
 			},
 			{
 				userID: 2,
 				identifier: "baz",
 				permissions: {},
 				token: "tbaz",
+				fromAPIClient: null,
 			},
 		]);
 	});
@@ -47,12 +50,14 @@ t.test("GET /api/v1/users/:userID/api-tokens", async (t) => {
 					identifier: "foo",
 					permissions: {},
 					token: "tfoo",
+					fromAPIClient: null,
 				},
 				{
 					userID: 1,
 					identifier: "bar",
 					permissions: {},
 					token: "tbar",
+					fromAPIClient: null,
 				},
 			]
 		);
@@ -117,6 +122,7 @@ t.test("DELETE /api/v1/users/:userID/api-tokens/:token", async (t) => {
 			permissions: {},
 			token: "foo",
 			userID: 2,
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi.delete("/api/v1/users/1/api-tokens/foo").set("Cookie", cookie);
@@ -164,7 +170,7 @@ t.test("POST /api/v1/users/:userID/api-tokens/create", async (t) => {
 				identifier: "Hello World",
 				permissions: { submit_score: true, customise_profile: true },
 				userID: 1,
-				fromAPIClient: undefined,
+				fromAPIClient: null,
 			},
 			"Should return a conforming API Token."
 		);
@@ -179,7 +185,7 @@ t.test("POST /api/v1/users/:userID/api-tokens/create", async (t) => {
 				identifier: "Hello World",
 				permissions: { submit_score: true, customise_profile: true },
 				userID: 1,
-				fromAPIClient: undefined,
+				fromAPIClient: null,
 			},
 			"Should insert a conforming API Token into the database."
 		);

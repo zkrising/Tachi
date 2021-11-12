@@ -1,9 +1,8 @@
+import "external/mongo/db";
 import glob from "glob";
 import path from "path";
 import t from "tap";
 import { CloseAllConnections } from "./close-connections";
-
-import "external/mongo/db";
 
 const files = glob.sync(path.join(__dirname, "../../", "**/*.test.ts"));
 

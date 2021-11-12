@@ -16,7 +16,7 @@ import {
 	KTDataNotFoundFailure,
 } from "../common/converter-failures";
 import { ProcessSuccessfulConverterReturn } from "../score-importing/score-importing";
-import { HandlePostImportSteps } from "../score-import-main";
+import { HandlePostImportSteps } from "../score-importing/score-import-main";
 import { GetUserWithID } from "utils/user";
 
 /**

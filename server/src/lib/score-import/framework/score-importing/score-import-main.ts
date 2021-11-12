@@ -1,40 +1,51 @@
+import db from "external/mongo/db";
+import { KtLogger } from "lib/logger/logger";
 import {
+	Game,
+	IDStrings,
+	ImportDocument,
 	ImportProcessingInfo,
 	ImportTypes,
-	ImportDocument,
-	PublicUserDocument,
-	Playtypes,
-	Game,
 	integer,
-	IDStrings,
+	Playtypes,
+	PublicUserDocument,
 } from "tachi-common";
-import { KtLogger } from "lib/logger/logger";
-import { ImportAllIterableData } from "./score-importing/score-importing";
-import { CreateImportLoggerAndID } from "./common/import-logger";
-import { CreateSessions } from "./sessions/sessions";
 import { GetMillisecondsSince } from "utils/misc";
-import { ProcessPBs } from "./pb/process-pbs";
-import { UpdateUsersGamePlaytypeStats } from "./user-game-stats/update-ugs";
-import db from "external/mongo/db";
-import { GetAndUpdateUsersGoals } from "./goals/goals";
-import { UpdateUsersMilestones } from "./milestones/milestones";
-import { ConverterFunction, ImportInputParser } from "../import-types/common/types";
-import { ScorePlaytypeMap } from "./common/types";
-import { Converters } from "../import-types/converters";
-import { ClassHandler } from "./user-game-stats/types";
-import { GetOrSetUserLock, RemoveUserLock } from "./import-locks/lock";
-import ScoreImportFatalError from "./score-importing/score-import-error";
+import { GetUserWithID } from "utils/user";
+import { ConverterFunction, ImportInputParser } from "../../import-types/common/types";
+import { Converters } from "../../import-types/converters";
+import { InternalFailure } from "../common/converter-failures";
+import { CreateScoreLogger } from "../common/import-logger";
+import { ScorePlaytypeMap } from "../common/types";
+import { GetAndUpdateUsersGoals } from "../goals/goals";
+import { GetOrSetUserLock, RemoveUserLock } from "../import-locks/lock";
+import { UpdateUsersMilestones } from "../milestones/milestones";
+import { ProcessPBs } from "../pb/process-pbs";
+import { CreateSessions } from "../sessions/sessions";
+import { ClassHandler } from "../user-game-stats/types";
+import { UpdateUsersGamePlaytypeStats } from "../user-game-stats/update-ugs";
+import ScoreImportFatalError from "./score-import-error";
+import { ImportAllIterableData } from "./score-importing";
 
 /**
  * Performs a Score Import.
  */
 export default async function ScoreImportMain<D, C>(
-	user: PublicUserDocument,
+	userID: integer,
 	userIntent: boolean,
 	importType: ImportTypes,
 	InputParser: ImportInputParser<D, C>,
-	providedImportObjects?: { logger: KtLogger; importID: string }
+	importID: string,
+	providedLogger?: KtLogger
 ) {
+	const user = await GetUserWithID(userID);
+
+	if (!user) {
+		throw new InternalFailure(
+			`User with ID ${userID} does not exist, but attempted to make an import?`
+		);
+	}
+
 	// in the event of any error, we remove the user lock.
 	try {
 		const lock = await GetOrSetUserLock(user.id);
@@ -53,18 +64,17 @@ export default async function ScoreImportMain<D, C>(
 		}
 
 		const timeStarted = Date.now();
-		let importID;
 		let logger;
 
-		if (!providedImportObjects) {
+		if (!providedLogger) {
 			// If they weren't given to us -
 			// we create an "import logger".
 			// this holds a reference to the user's name, ID, and type
 			// of score import for any future debugging.
-			({ importID, logger } = CreateImportLoggerAndID(user, importType));
+			logger = CreateScoreLogger(user, importID, importType);
 			logger.debug("Received import request.");
 		} else {
-			({ importID, logger } = providedImportObjects);
+			logger = providedLogger;
 		}
 
 		// --- 1. Parsing ---

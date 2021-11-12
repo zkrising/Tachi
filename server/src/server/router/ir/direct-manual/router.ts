@@ -12,15 +12,13 @@ const router: Router = Router({ mergeParams: true });
  * @name POST /ir/direct-manual/import
  */
 router.post("/import", RequirePermissions("submit_score"), async (req, res) => {
-	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
-
 	const intent = req.header("X-User-Intent");
 
 	const responseData = await ExpressWrappedScoreImportMain(
-		userDoc,
+		req[SYMBOL_TachiAPIAuth].userID!,
 		!!intent,
 		"ir/direct-manual",
-		(logger) => ParseDirectManual(req.body, logger)
+		[req.body]
 	);
 
 	return res.status(responseData.statusCode).json(responseData.body);

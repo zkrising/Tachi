@@ -161,6 +161,7 @@ t.test("PATCH /api/v1/sessions/:sessionID", (t) => {
 			permissions: {
 				customise_session: true,
 			},
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi
@@ -183,6 +184,7 @@ t.test("PATCH /api/v1/sessions/:sessionID", (t) => {
 			userID: 1,
 			identifier: "another fake token",
 			permissions: {},
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi

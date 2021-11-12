@@ -1,9 +1,7 @@
 import { Router } from "express";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
-import { ParseBarbatosSingle } from "lib/score-import/import-types/ir/barbatos/parser";
 import { RequirePermissions } from "server/middleware/auth";
-import { GetUserWithIDGuaranteed } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -14,13 +12,11 @@ router.use(RequirePermissions("submit_score"));
  * @name POST /ir/barbatos/score/submit
  */
 router.post("/score/submit", async (req, res) => {
-	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth]!.userID!);
-
 	const responseData = await ExpressWrappedScoreImportMain(
-		userDoc,
+		req[SYMBOL_TachiAPIAuth]!.userID!,
 		false,
 		"ir/barbatos",
-		(logger) => ParseBarbatosSingle(req.body, logger)
+		[req.body]
 	);
 
 	return res.status(responseData.statusCode).json(responseData.body);

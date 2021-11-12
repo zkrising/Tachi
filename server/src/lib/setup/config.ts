@@ -64,6 +64,7 @@ export interface TachiServerConfig {
 	RATE_LIMIT: integer;
 	OAUTH_CLIENT_CAP: integer;
 	OPTIONS_ALWAYS_SUCCEEDS?: boolean;
+	USE_EXTERNAL_SCORE_IMPORT_WORKER?: boolean;
 	EMAIL_CONFIG?: {
 		FROM: string;
 		DKIM?: SendMailOptions["dkim"];
@@ -125,6 +126,7 @@ const err = p(config, {
 	RATE_LIMIT: p.optional(p.isPositiveInteger),
 	OAUTH_CLIENT_CAP: p.optional(p.isPositiveInteger),
 	OPTIONS_ALWAYS_SUCCEEDS: "*boolean",
+	USE_EXTERNAL_SCORE_IMPORT_WORKER: "*boolean",
 	EMAIL_CONFIG: p.optional({
 		FROM: "string",
 		DKIM: "*object",

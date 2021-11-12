@@ -66,7 +66,7 @@ router.post(
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 
 		let identifier: string;
-		let fromAPIClient;
+		let fromAPIClient = null;
 
 		if (req.body.clientID) {
 			const client = await db["api-clients"].findOne(
@@ -130,10 +130,6 @@ router.post(
 			userID: user.id,
 			fromAPIClient,
 		};
-
-		// Inserting { fromAPIClient: undefined } results in bson
-		// conversion to {fromAPIClient: null}, which is not the same
-		DeleteUndefinedProps(apiTokenDocument);
 
 		await db["api-tokens"].insert(apiTokenDocument);
 

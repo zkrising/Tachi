@@ -39,6 +39,7 @@ t.test("GET /api/v1/users/:userID/integrations/arc", async (t) => {
 			permissions: {},
 			token: "foobar",
 			userID: 1,
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi

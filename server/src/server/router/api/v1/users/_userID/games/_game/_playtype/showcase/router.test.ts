@@ -260,6 +260,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 					customise_profile: true,
 				},
 				token: "alt_token",
+				fromAPIClient: null,
 			})
 	);
 
@@ -271,6 +272,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 				customise_profile: true,
 			},
 			token: "altz_token",
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi
@@ -290,6 +292,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 				customise_profile: false,
 			},
 			token: "unauth_token",
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi

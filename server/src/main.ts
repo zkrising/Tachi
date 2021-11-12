@@ -14,6 +14,7 @@ import { FormatVersion } from "./lib/constants/version";
 import fetch from "utils/fetch";
 import http from "http";
 import { CloseRedisConnection } from "external/redis/redis";
+import { CloseScoreImportQueue } from "lib/score-import/worker/queue";
 
 const logger = CreateLogCtx(__filename);
 
@@ -78,6 +79,9 @@ process.on("SIGTERM", () => {
 
 		logger.info("Closing Redis Connection.", { shutdownInfo: true });
 		CloseRedisConnection();
+
+		logger.info("Closing Score Import Queue.", { shutdownInfo: true });
+		CloseScoreImportQueue();
 
 		logger.info("Everything closed. Waiting for process to exit naturally.", {
 			shutdownInfo: true,

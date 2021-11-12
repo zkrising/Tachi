@@ -1,13 +1,14 @@
+import CreateLogCtx from "lib/logger/logger";
 import {
 	ImportDocument,
 	ImportTypes,
-	PublicUserDocument,
+	integer,
 	SuccessfulAPIResponse,
 	UnsuccessfulAPIResponse,
 } from "tachi-common";
-import { ImportInputParser } from "../import-types/common/types";
-import { CreateImportLoggerAndID } from "./common/import-logger";
-import ScoreImportMain from "./score-import-main";
+import { Random20Hex } from "utils/misc";
+import { ParserArguments } from "../worker/types";
+import { MakeScoreImport } from "./score-import";
 import ScoreImportFatalError from "./score-importing/score-import-error";
 
 export interface WrappedAPIResponse {
@@ -15,24 +16,30 @@ export interface WrappedAPIResponse {
 	body: SuccessfulAPIResponse<ImportDocument> | UnsuccessfulAPIResponse;
 }
 
+const logger = CreateLogCtx(__filename);
+
 /**
  * A thin(ish) wrapper for ScoreImportMain which converts thrown
  * errors and import documents into a WrappedAPIResponse, which can
  * be immediately sent with res.json().
  */
-export async function ExpressWrappedScoreImportMain<D, C>(
-	user: PublicUserDocument,
+export async function ExpressWrappedScoreImportMain<I extends ImportTypes>(
+	userID: integer,
 	userIntent: boolean,
-	importType: ImportTypes,
-	InputParser: ImportInputParser<D, C>
+	importType: I,
+	parserArguments: ParserArguments<I>
 ): Promise<WrappedAPIResponse> {
-	const { importID, logger } = CreateImportLoggerAndID(user, importType);
+	const importID = Random20Hex();
+
 	logger.debug("Received import request.");
 
 	try {
-		const res = await ScoreImportMain(user, userIntent, importType, InputParser, {
+		const res = await MakeScoreImport({
 			importID,
-			logger,
+			importType,
+			userIntent,
+			userID,
+			parserArguments,
 		});
 
 		return {
@@ -60,8 +67,7 @@ export async function ExpressWrappedScoreImportMain<D, C>(
 			statusCode: 500,
 			body: {
 				success: false,
-				description:
-					"An internal service error has occured. Please do not repeat this request.",
+				description: "An internal service error has occured. This has been reported!",
 			},
 		};
 	}

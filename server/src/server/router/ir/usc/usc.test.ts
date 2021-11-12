@@ -1,9 +1,9 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { ChartDocument, PBScoreDocument, PublicUserDocument, ScoreDocument } from "tachi-common";
+import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
-import { ChartDocument, PBScoreDocument, ScoreDocument, PublicUserDocument } from "tachi-common";
-import deepmerge from "deepmerge";
 
 const mockScorePB: PBScoreDocument<"usc:Single"> = {
 	chartID: "USC_CHART_ID",

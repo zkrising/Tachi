@@ -1,6 +1,7 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import ScoreImportQueue from "lib/score-import/worker/queue";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { GetRelevantSongsAndCharts } from "utils/db";
@@ -104,9 +105,20 @@ router.get("/:importID/poll-status", async (req, res) => {
 	}
 
 	if (job.isFailed()) {
-		const returns = await job.finished();
+		const err = await job.finished();
 
-		// todo expressify these
+		if (err instanceof ScoreImportFatalError) {
+			logger.info(err.message);
+			return res.status(err.statusCode).json({
+				success: false,
+				description: err.message,
+			});
+		}
+
+		return res.status(500).json({
+			success: false,
+			description: `An internal service error has occured with this import. This has been reported!`,
+		});
 	} else if (job.isCompleted()) {
 		return res.status(200).json({
 			success: true,

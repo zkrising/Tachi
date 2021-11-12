@@ -43,6 +43,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				customise_profile: true,
 			},
 			token: "api_token",
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi
@@ -90,6 +91,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				customise_profile: true,
 			},
 			token: "api_token",
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi
@@ -140,6 +142,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				customise_profile: true,
 			},
 			token: "api_token",
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi
@@ -159,6 +162,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				customise_profile: false,
 			},
 			token: "api_token",
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi
@@ -178,6 +182,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				customise_profile: true,
 			},
 			token: "api_token",
+			fromAPIClient: null,
 		});
 
 		for (const key of [

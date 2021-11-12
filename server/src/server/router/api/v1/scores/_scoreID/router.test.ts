@@ -134,6 +134,7 @@ t.test("PATCH /api/v1/scores/:scoreID", (t) => {
 			permissions: {
 				customise_score: true,
 			},
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi
@@ -156,6 +157,7 @@ t.test("PATCH /api/v1/scores/:scoreID", (t) => {
 			userID: 1,
 			identifier: "another fake token",
 			permissions: {},
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi
@@ -186,6 +188,7 @@ t.test("DELETE /api/v1/scores/:scoreID", (t) => {
 				delete_score: true,
 			},
 			token: "foo",
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi
@@ -209,6 +212,7 @@ t.test("DELETE /api/v1/scores/:scoreID", (t) => {
 			permissions: {
 				delete_score: true,
 			},
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi
@@ -231,6 +235,7 @@ t.test("DELETE /api/v1/scores/:scoreID", (t) => {
 			userID: 1,
 			identifier: "another fake token",
 			permissions: {},
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi

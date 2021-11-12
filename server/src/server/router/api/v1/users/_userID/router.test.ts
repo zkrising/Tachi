@@ -1,10 +1,9 @@
-import t from "tap";
 import db from "external/mongo/db";
-
+import { UserGameStats } from "tachi-common";
+import t from "tap";
+import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { UserGameStats } from "tachi-common";
-import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 
 t.test("GET /api/v1/users/:userID", (t) => {
 	t.beforeEach(ResetDBState);
@@ -86,6 +85,7 @@ t.test("PATCH /api/v1/users/:userID", async (t) => {
 			permissions: {},
 			identifier: "No permissions token",
 			userID: 1,
+			fromAPIClient: null,
 		});
 
 		const res2 = await mockApi.patch("/api/v1/users/1").set("Authorization", "Bearer noperm");

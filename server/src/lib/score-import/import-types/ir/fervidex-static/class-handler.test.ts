@@ -1,9 +1,8 @@
-import t from "tap";
-
-import ResetDBState from "test-utils/resets";
 import CreateLogCtx from "lib/logger/logger";
+import { Game, Playtypes } from "tachi-common";
+import t from "tap";
+import ResetDBState from "test-utils/resets";
 import { CreateFerStaticClassHandler } from "./class-handler";
-import { Playtypes, Game } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,7 +1,7 @@
 // Email HTML is a hellish mess of IE5 era nonsense.
 // Good luck.
 
-import { ServerConfig, TachiConfig, TachiServerConfig } from "lib/setup/config";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
 
 export function EmailFormatResetPassword(username: string, resetCode: string, ipAddr: string) {
 	return MainHTMLWrapper(

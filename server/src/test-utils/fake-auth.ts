@@ -33,6 +33,7 @@ export function InsertFakeTokenWithAllPerms(token: string): () => any {
 			identifier: "Mock API Token",
 			permissions: AllPermissions,
 			token,
+			fromAPIClient: null,
 		});
 	};
 }

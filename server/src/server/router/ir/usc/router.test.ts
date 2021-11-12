@@ -1,12 +1,11 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-
+import { CDNRetrieve } from "lib/cdn/cdn";
+import { PBScoreDocument, PublicUserDocument, ScoreDocument } from "tachi-common";
+import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState, { ResetCDN } from "test-utils/resets";
-import deepmerge from "deepmerge";
-import { PBScoreDocument, ScoreDocument, PublicUserDocument } from "tachi-common";
 import { GetKTDataBuffer } from "test-utils/test-data";
-import { CDNRetrieve } from "lib/cdn/cdn";
 
 async function InsertFakeUSCAuth() {
 	await db["api-tokens"].insert({
@@ -16,6 +15,7 @@ async function InsertFakeUSCAuth() {
 			submit_score: true,
 		},
 		token: "foo",
+		fromAPIClient: null,
 	});
 }
 
@@ -47,6 +47,7 @@ t.test("GET /ir/usc", async (t) => {
 			submit_score: true,
 		},
 		token: "foo",
+		fromAPIClient: null,
 	});
 
 	t.beforeEach(ResetDBState);
@@ -466,6 +467,7 @@ t.test("POST /scores", (t) => {
 			identifier: "token",
 			permissions: { submit_score: true },
 			token: "token",
+			fromAPIClient: null,
 		});
 	});
 
@@ -587,12 +589,14 @@ t.test("POST /scores", (t) => {
 				identifier: "token2",
 				permissions: { submit_score: true },
 				token: "token2",
+				fromAPIClient: null,
 			},
 			{
 				userID: 3,
 				identifier: "token3",
 				permissions: { submit_score: true },
 				token: "token3",
+				fromAPIClient: null,
 			},
 		]);
 

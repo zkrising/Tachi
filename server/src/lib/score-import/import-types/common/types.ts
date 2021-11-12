@@ -36,7 +36,6 @@ export interface ImportTypeDataMap {
 	"ir/barbatos": BarbatosScore;
 	"ir/fervidex": FervidexScore;
 	"ir/fervidex-static": FervidexStaticScore;
-	"ir/chunitachi": BatchManualScore;
 	"ir/beatoraja": BeatorajaScore;
 	"ir/usc": USCClientScore;
 	"ir/kshook-sv3c": KsHookSV3CScore;
@@ -63,7 +62,6 @@ export interface ImportTypeContextMap {
 	"ir/barbatos": EmptyObject;
 	"ir/fervidex": FervidexContext;
 	"ir/fervidex-static": FervidexStaticContext;
-	"ir/chunitachi": BatchManualContext;
 	"ir/beatoraja": BeatorajaContext;
 	"ir/usc": IRUSCContext;
 	"ir/kshook-sv3c": EmptyObject;
@@ -115,3 +113,5 @@ export interface ParserFunctionReturns<D, C> {
 	game: Game;
 	classHandler: ClassHandler | null;
 }
+
+export type ParserFunction<D, C, A extends unknown[]> = (...args: A) => ParserFunctionReturns<D, C>;

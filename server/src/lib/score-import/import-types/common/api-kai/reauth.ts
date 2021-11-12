@@ -1,11 +1,11 @@
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
-import { GetKaiTypeClientCredentials, KaiTypeToBaseURL } from "./utils";
-import nodeFetch from "utils/fetch";
 import p from "prudence";
 import { KaiAuthDocument } from "tachi-common";
+import nodeFetch from "utils/fetch";
 import { CreateURLWithParams } from "utils/url";
+import { GetKaiTypeClientCredentials, KaiTypeToBaseURL } from "./utils";
 
 const REAUTH_SCHEMA = {
 	access_token: "string",

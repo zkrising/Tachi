@@ -1,7 +1,7 @@
+import bunyan from "bunyan";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
 import nodemailer, { SentMessageInfo, Transporter } from "nodemailer";
-import bunyan from "bunyan";
 
 const logger = CreateLogCtx(__filename);
 

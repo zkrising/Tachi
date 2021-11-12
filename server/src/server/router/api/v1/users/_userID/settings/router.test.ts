@@ -144,6 +144,7 @@ t.test("PATCH /api/v1/users/:userID/settings", async (t) => {
 			},
 			token: "no_perm",
 			userID: 1,
+			fromAPIClient: null,
 		});
 
 		const res = await mockApi

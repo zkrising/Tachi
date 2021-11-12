@@ -1,10 +1,9 @@
-import t from "tap";
-
-import { CreateFakeAuthCookie, InsertFakeTokenWithAllPerms } from "test-utils/fake-auth";
-import ResetDBState from "test-utils/resets";
-import mockApi from "test-utils/mock-api";
-import { TestingBarbatosScore } from "test-utils/test-data";
 import db from "external/mongo/db";
+import t from "tap";
+import { InsertFakeTokenWithAllPerms } from "test-utils/fake-auth";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
+import { TestingBarbatosScore } from "test-utils/test-data";
 
 t.test("POST /ir/barbatos/score/submit", (t) => {
 	t.beforeEach(ResetDBState);

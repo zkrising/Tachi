@@ -1,20 +1,20 @@
-import { ICollection } from "monk";
-import { FilterQuery } from "mongodb";
-import CreateLogCtx from "lib/logger/logger";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import { TachiConfig } from "lib/setup/config";
+import { FilterQuery } from "mongodb";
+import { ICollection } from "monk";
 import {
-	Game,
-	SessionDocument,
-	Playtypes,
-	SongDocument,
 	ChartDocument,
+	Game,
 	integer,
+	Playtypes,
 	PublicUserDocument,
+	SessionDocument,
+	SongDocument,
 } from "tachi-common";
 import { EscapeStringRegexp } from "utils/misc";
 import { GetOnlineCutoff } from "utils/user";
-import { TachiConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,12 +1,7 @@
-import crypto from "crypto";
 import { KtLogger, rootLogger } from "lib/logger/logger";
 import { ImportTypes, PublicUserDocument } from "tachi-common";
+import { Random20Hex } from "utils/misc";
 import { FormatUserDoc } from "utils/user";
-
-export function CreateImportLoggerAndID(userDoc: PublicUserDocument, importType: ImportTypes) {
-	const importID = crypto.randomBytes(20).toString("hex");
-	return { logger: CreateScoreLogger(userDoc, importID, importType), importID };
-}
 
 export function CreateScoreLogger(
 	user: PublicUserDocument,

@@ -1,6 +1,7 @@
-import p from "prudence";
-import t from "tap";
 import CreateLogCtx from "lib/logger/logger";
+import p from "prudence";
+import { ChartDocument, ScoreDocument } from "tachi-common";
+import t from "tap";
 import { prAssert } from "test-utils/asserts";
 import {
 	Testing511SPA,
@@ -9,8 +10,7 @@ import {
 	TestingIIDXSPDryScore,
 	TestingSDVXSingleDryScore,
 } from "test-utils/test-data";
-import { CreateCalculatedData, CalculateDataForGamePT } from "./calculated-data";
-import { ChartDocument, ScoreDocument } from "tachi-common";
+import { CalculateDataForGamePT, CreateCalculatedData } from "./calculated-data";
 
 const logger = CreateLogCtx(__filename);
 

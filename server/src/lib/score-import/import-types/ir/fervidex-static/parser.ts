@@ -1,12 +1,12 @@
 import { KtLogger } from "lib/logger/logger";
 import p, { PrudenceSchema } from "prudence";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { FormatPrError } from "utils/prudence";
-import { FervidexStaticContext, FervidexStaticScore } from "./types";
-import { FerHeaders, SoftwareIDToVersion } from "../fervidex/parser";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
-import { CreateFerStaticClassHandler } from "./class-handler";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturns } from "../../common/types";
+import { FerHeaders, SoftwareIDToVersion } from "../fervidex/parser";
+import { CreateFerStaticClassHandler } from "./class-handler";
+import { FervidexStaticContext, FervidexStaticScore } from "./types";
 
 const PR_FervidexStatic: PrudenceSchema = {
 	ex_score: p.isPositiveInteger,

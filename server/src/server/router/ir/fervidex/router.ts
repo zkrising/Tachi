@@ -201,18 +201,16 @@ router.use(
  * @name POST /ir/fervidex/profile/submit
  */
 router.post("/profile/submit", RequireInf2ModelHeaderOrForceStatic, async (req, res) => {
-	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
-
 	const headers = {
 		// guaranteed to exist because of RequireInf2ModelHeader
 		model: req.header("X-Software-Model")!,
 	};
 
 	const responseData = await ExpressWrappedScoreImportMain(
-		userDoc,
+		req[SYMBOL_TachiAPIAuth].userID!,
 		false,
 		"ir/fervidex-static",
-		(logger) => ParseFervidexStatic(req.body, headers, logger)
+		[req.body, headers]
 	);
 
 	if (!responseData.body.success) {
@@ -234,8 +232,6 @@ router.post("/profile/submit", RequireInf2ModelHeaderOrForceStatic, async (req, 
  * @name POST /ir/fervidex/score/submit
  */
 router.post("/score/submit", ValidateModelHeader, async (req, res) => {
-	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
-
 	const model = req.header("X-Software-Model");
 
 	if (!model) {
@@ -250,10 +246,10 @@ router.post("/score/submit", ValidateModelHeader, async (req, res) => {
 	};
 
 	const responseData = await ExpressWrappedScoreImportMain(
-		userDoc,
+		req[SYMBOL_TachiAPIAuth].userID!,
 		true,
 		"ir/fervidex",
-		(logger) => ParseFervidexSingle(req.body, headers, logger)
+		[req.body, headers]
 	);
 
 	if (!responseData.body.success) {

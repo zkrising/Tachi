@@ -1,6 +1,5 @@
 import { Router } from "express";
 import barbatosIR from "./barbatos/router";
-import chunitachiIR from "./chunitachi/router";
 import directManualIR from "./direct-manual/router";
 import fervidexIR from "./fervidex/router";
 import uscIR from "./usc/router";
@@ -32,7 +31,6 @@ router.use("/beatoraja", SetRequestPermissions, RequireBokutachi, beatorajaIR);
 // Kamaitachi IRs
 
 router.use("/barbatos", SetRequestPermissions, RequireNotGuest, RequireKamaitachi, barbatosIR);
-router.use("/chunitachi", SetRequestPermissions, RequireNotGuest, RequireKamaitachi, chunitachiIR);
 router.use(
 	"/fervidex",
 	SetFervidexStyleRequestPermissions,

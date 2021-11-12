@@ -1,20 +1,20 @@
-import { FindIIDXChartOnInGameIDVersion } from "utils/queries/charts";
-import { KaiContext, KaiIIDXScore } from "../types";
 import p from "prudence";
+import { Lamps } from "tachi-common";
+import { FormatPrError } from "utils/prudence";
+import { FindIIDXChartOnInGameIDVersion } from "utils/queries/charts";
+import { FindSongOnID } from "utils/queries/songs";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
 } from "../../../../framework/common/converter-failures";
-import { FormatPrError } from "utils/prudence";
-import { FindSongOnID } from "utils/queries/songs";
 import {
 	GenericGetGradeAndPercent,
 	ParseDateFromString,
 } from "../../../../framework/common/score-utils";
-import { Lamps } from "tachi-common";
-import { ConverterFunction } from "../../types";
 import { DryScore } from "../../../../framework/common/types";
+import { ConverterFunction } from "../../types";
+import { KaiContext, KaiIIDXScore } from "../types";
 
 const PR_KaiIIDXScore = {
 	music_id: p.isPositiveInteger,

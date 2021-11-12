@@ -1,7 +1,7 @@
+import db from "external/mongo/db";
+import { APIPermissions } from "tachi-common";
 import t from "tap";
 import mockApi from "./mock-api";
-import { APIPermissions } from "tachi-common";
-import db from "external/mongo/db";
 import ResetDBState from "./resets";
 
 export function RequireAuthPerms(
@@ -22,6 +22,7 @@ export function RequireAuthPerms(
 			permissions: {},
 			token: "temp_auth",
 			userID: 1,
+			fromAPIClient: null,
 		});
 
 		const resAuth = await mockApi[m](url).set("Authorization", "Bearer temp_auth");
@@ -35,6 +36,7 @@ export function RequireAuthPerms(
 			permissions: Object.fromEntries(prm.map((e) => [e, true])),
 			token: "temp_auth2",
 			userID: 1,
+			fromAPIClient: null,
 		});
 
 		const resAuthed = await mockApi[m](url).set("Authorization", "Bearer temp_auth2");

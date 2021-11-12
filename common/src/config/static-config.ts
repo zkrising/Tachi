@@ -22,7 +22,6 @@ export const irImportTypes: IRImportTypes[] = [
 	"ir/fervidex",
 	"ir/fervidex-static",
 	"ir/beatoraja",
-	"ir/chunitachi",
 	"ir/usc",
 	"ir/kshook-sv3c",
 ];

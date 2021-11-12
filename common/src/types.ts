@@ -1149,7 +1149,6 @@ export type IRImportTypes =
 	| "ir/barbatos"
 	| "ir/fervidex"
 	| "ir/usc"
-	| "ir/chunitachi"
 	| "ir/beatoraja"
 	| "ir/fervidex-static"
 	| "ir/kshook-sv3c";

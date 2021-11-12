@@ -1,6 +1,6 @@
 import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
-import { CDNStore } from "lib/cdn/cdn";
+import { CDNStoreOrOverwrite } from "lib/cdn/cdn";
 import { GetUSCIRReplayURL } from "lib/cdn/url-format";
 import { ONE_MEGABYTE } from "lib/constants/filesize";
 import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
@@ -403,7 +403,10 @@ router.post(
 		}
 
 		try {
-			await CDNStore(GetUSCIRReplayURL(correspondingScore.scoreID), req.file.buffer);
+			await CDNStoreOrOverwrite(
+				GetUSCIRReplayURL(correspondingScore.scoreID),
+				req.file.buffer
+			);
 
 			return res.status(200).json({
 				statusCode: STATUS_CODES.SUCCESS,

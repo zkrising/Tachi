@@ -59,7 +59,6 @@ export interface TachiServerConfig {
 	MIN_OAUTH2_INFO?: OAuth2Info;
 	ARC_AUTH_TOKEN?: string;
 	ENABLE_SERVER_HTTPS?: boolean;
-	RUN_OWN_CDN?: boolean;
 	CLIENT_DEV_SERVER?: string | null;
 	RATE_LIMIT: integer;
 	OAUTH_CLIENT_CAP: integer;
@@ -78,7 +77,6 @@ export interface TachiServerConfig {
 	USC_QUEUE_SIZE: integer;
 	BEATORAJA_QUEUE_SIZE: integer;
 	OUR_URL: string;
-	CDN_WEB_LOCATION: string;
 	INVITE_CODE_CONFIG?: {
 		BATCH_SIZE: integer;
 		INVITE_CAP: integer;
@@ -99,6 +97,18 @@ export interface TachiServerConfig {
 			WEBHOOK_URL: string;
 			WHO_TO_TAG: string[];
 		};
+	};
+	CDN_CONFIG: {
+		WEB_LOCATION: string;
+		SAVE_LOCATION:
+			| { TYPE: "LOCAL_FILESYSTEM"; LOCATION: string; RUN_OWN_CDN?: boolean }
+			| {
+					TYPE: "S3_BUCKET";
+					ENDPOINT: string;
+					ACCESS_KEY: string;
+					SECRET_ACCESS_KEY: string;
+					BUCKET: string;
+			  };
 	};
 }
 
@@ -121,7 +131,6 @@ const err = p(config, {
 	MIN_OAUTH2_INFO: isValidOauth2,
 	ARC_AUTH_TOKEN: "*string",
 	ENABLE_SERVER_HTTPS: "*boolean",
-	RUN_OWN_CDN: "*boolean",
 	CLIENT_DEV_SERVER: "*?string",
 	RATE_LIMIT: p.optional(p.isPositiveInteger),
 	OAUTH_CLIENT_CAP: p.optional(p.isPositiveInteger),
@@ -138,7 +147,6 @@ const err = p(config, {
 	USC_QUEUE_SIZE: p.optional(p.gteInt(2)),
 	BEATORAJA_QUEUE_SIZE: p.optional(p.gteInt(2)),
 	OUR_URL: "string",
-	CDN_WEB_LOCATION: "string",
 	INVITE_CODE_CONFIG: p.optional({
 		BATCH_SIZE: p.isPositiveInteger,
 		INVITE_CAP: p.isPositiveInteger,
@@ -162,6 +170,23 @@ const err = p(config, {
 			WHO_TO_TAG: ["string"],
 		}),
 	}),
+	CDN_CONFIG: {
+		WEB_LOCATION: "string",
+		SAVE_LOCATION: p.or(
+			{
+				TYPE: p.is("LOCAL_FILESYSTEM"),
+				SERVE_OWN_CDN: "*boolean",
+				LOCATION: "string",
+			},
+			{
+				TYPE: p.is("S3_BUCKET"),
+				ENDPOINT: "string",
+				ACCESS_KEY: "string",
+				SECRET_ACCESS_KEY: "string",
+				BUCKET: "string",
+			}
+		),
+	},
 });
 
 if (err) {
@@ -216,12 +241,6 @@ if (!seqUrl && tachiServerConfig.LOGGER_CONFIG.SEQ_API_KEY) {
 	);
 }
 
-const cdnRoot = process.env.CDN_FILE_ROOT;
-if (!cdnRoot) {
-	logger.error(`No CDN_FILE_ROOT specified in environment. Terminating.`);
-	process.exit(1);
-}
-
 const nodeEnv = process.env.NODE_ENV;
 if (!nodeEnv) {
 	logger.error(`No NODE_ENV specified in environment. Terminating.`);
@@ -241,8 +260,6 @@ export const Environment = {
 	port,
 	redisUrl,
 	mongoUrl,
-	// If node_env is test, force to ./test-cdn.
-	cdnRoot: nodeEnv === "test" ? "./test-cdn" : cdnRoot,
 	nodeEnv,
 	replicaIdentity,
 	seqUrl,

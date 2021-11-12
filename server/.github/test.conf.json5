@@ -20,13 +20,19 @@
 	},
 	ARC_AUTH_TOKEN: "unused",
 	ENABLE_SERVER_HTTPS: false,
-	RUN_OWN_CDN: true,
-	CDN_WEB_LOCATION: "/cdn",
 	OUR_URL: "https://example.com",
 	INVITE_CODE_CONFIG: {
 		BATCH_SIZE: 2,
 		INVITE_CAP: 100,
 		BETA_USER_BONUS: 5,
+	},
+	CDN_CONFIG: {
+		WEB_LOCATION: "/cdn",
+		SAVE_LOCATION: {
+			TYPE: "LOCAL_FILESYSTEM",
+			LOCATION: "./test-cdn",
+			SERVE_OWN_CDN: true,
+		},
 	},
 	TACHI_CONFIG: {
 		TYPE: "omni",

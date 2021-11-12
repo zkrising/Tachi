@@ -1,12 +1,16 @@
 import t from "tap";
-import { CDNDelete, CDNRedirect, CDNRetrieve, CDNStore, CDNStoreOrOverwrite } from "./cdn";
+import { CDNDelete, CDNRedirect, CDNRetrieve, CDNStoreOrOverwrite } from "./cdn";
 import fs from "fs";
 import { Environment, ServerConfig } from "lib/setup/config";
 import path from "path";
 
 import expressRequestMock from "express-request-mock";
 
-const CDN_FILE_ROOT = Environment.cdnRoot;
+if (ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE !== "LOCAL_FILESYSTEM") {
+	throw new Error(`Tests must run against LOCAL_FILESYSTEM.`);
+}
+
+const CDN_FILE_ROOT = ServerConfig.CDN_CONFIG.SAVE_LOCATION.LOCATION;
 
 function getTestTxt() {
 	return fs.readFileSync(path.join(CDN_FILE_ROOT, "test.txt"), "utf-8");
@@ -29,70 +33,11 @@ const ResetFileRoot = () => {
 	fs.rmSync(CDN_FILE_ROOT, { recursive: true, force: true });
 };
 
-t.test("#CDNStore", (t) => {
-	t.beforeEach(ResetFileRoot);
-
-	t.test("Should store a value.", async (t) => {
-		await CDNStore("test.txt", "hello world");
-
-		const data = fs.readFileSync(path.join(CDN_FILE_ROOT, "test.txt"), "utf8");
-
-		t.equal(data, "hello world", "Should store the data at the CDN_FILE_ROOT.");
-
-		t.end();
-	});
-
-	t.test("Should generate paths on the way to the file if they do not exist.", async (t) => {
-		await CDNStore("a/b/c/d/e/f/g.txt", "hello");
-
-		const data = fs.readFileSync(path.join(CDN_FILE_ROOT, "a/b/c/d/e/f/g.txt"), "utf8");
-
-		t.equal(data, "hello", "Should store the data at the deeply nested location.");
-
-		t.end();
-	});
-
-	t.test("Should not overwrite files.", async (t) => {
-		await CDNStore("test.txt", "1");
-		t.rejects(
-			() => CDNStore("test.txt", "2"),
-			"Should reject an overwrite to an existing file."
-		);
-
-		const data = getTestTxt();
-
-		t.equal(data, "1", "Should not have been overwrote.");
-		t.end();
-	});
-
-	t.end();
-});
-
-t.test("#CDNDelete", (t) => {
-	t.beforeEach(ResetFileRoot);
-
-	t.test("Should delete the file at the given location.", async (t) => {
-		await CDNStore("test.txt", "1");
-
-		const data = getTestTxt();
-
-		t.equal(data, "1");
-
-		await CDNDelete("test.txt");
-
-		t.not(fs.existsSync(path.join(CDN_FILE_ROOT, "test.txt")), "File should not exist.");
-
-		t.end();
-	});
-
-	t.end();
-});
-
 t.test("#CDNRetrieve", (t) => {
 	t.beforeEach(ResetFileRoot);
 
 	t.test("Should retrieve the file at the given location.", async (t) => {
-		await CDNStore("test.txt", "1");
+		await CDNStoreOrOverwrite("test.txt", "1");
 
 		const data = await CDNRetrieve("test.txt");
 
@@ -113,6 +58,26 @@ t.test("#CDNRetrieve", (t) => {
 t.test("#CDNStoreOrOverwrite", (t) => {
 	t.beforeEach(ResetFileRoot);
 
+	t.test("Should store a value.", async (t) => {
+		await CDNStoreOrOverwrite("test.txt", "hello world");
+
+		const data = fs.readFileSync(path.join(CDN_FILE_ROOT, "test.txt"), "utf8");
+
+		t.equal(data, "hello world", "Should store the data at the CDN_FILE_ROOT.");
+
+		t.end();
+	});
+
+	t.test("Should generate paths on the way to the file if they do not exist.", async (t) => {
+		await CDNStoreOrOverwrite("a/b/c/d/e/f/g.txt", "hello");
+
+		const data = fs.readFileSync(path.join(CDN_FILE_ROOT, "a/b/c/d/e/f/g.txt"), "utf8");
+
+		t.equal(data, "hello", "Should store the data at the deeply nested location.");
+
+		t.end();
+	});
+
 	t.test("Should store a file if one doesn't exist", async (t) => {
 		await CDNStoreOrOverwrite("test.txt", "1");
 
@@ -127,6 +92,26 @@ t.test("#CDNStoreOrOverwrite", (t) => {
 
 		await CDNStoreOrOverwrite("test.txt", "2");
 		t.equal(getTestTxt(), "2");
+
+		t.end();
+	});
+
+	t.end();
+});
+
+t.test("#CDNDelete", (t) => {
+	t.beforeEach(ResetFileRoot);
+
+	t.test("Should delete the file at the given location.", async (t) => {
+		await CDNStoreOrOverwrite("test.txt", "1");
+
+		const data = getTestTxt();
+
+		t.equal(data, "1");
+
+		await CDNDelete("test.txt");
+
+		t.not(fs.existsSync(path.join(CDN_FILE_ROOT, "test.txt")), "File should not exist.");
 
 		t.end();
 	});

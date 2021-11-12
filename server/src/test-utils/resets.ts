@@ -10,6 +10,12 @@ import rimraf from "rimraf";
 import { SetIndexes } from "external/mongo/indexes";
 import { Environment, ServerConfig } from "lib/setup/config";
 
+if (ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE !== "LOCAL_FILESYSTEM") {
+	throw new Error(
+		`Cannot run tests when CDN_CONFIG.SAVE_LOCATION.TYPE is not LOCAL_FILESYSTEM! (Got ${ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE}.)`
+	);
+}
+
 const logger = CreateLogCtx(__filename);
 
 const DATA_DIR = path.join(__dirname, "./mock-db");
@@ -78,14 +84,20 @@ export default async function ResetDBState() {
 }
 
 export function ResetCDN() {
-	return new Promise<void>((resolve, reject) =>
-		rimraf(Environment.cdnRoot, (err) => {
+	return new Promise<void>((resolve, reject) => {
+		if (ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE !== "LOCAL_FILESYSTEM") {
+			throw new Error(
+				`Cannot run tests when CDN_CONFIG.SAVE_LOCATION.TYPE is not LOCAL_FILESYSTEM! (Got ${ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE}.)`
+			);
+		}
+
+		rimraf(ServerConfig.CDN_CONFIG.SAVE_LOCATION.LOCATION, (err) => {
 			if (err) {
 				reject(err);
 			}
 			resolve();
-		})
-	);
+		});
+	});
 }
 
 export async function SetIndexesForDB() {

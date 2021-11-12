@@ -12,6 +12,7 @@
 // Explicitly set this before importing anything!
 process.env.IS_SCORE_WORKER_SERVER = "true";
 
+import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
 import CreateLogCtx from "lib/logger/logger";
 import { ImportTypes } from "tachi-common";
 import { FormatUserDoc, GetUserWithID } from "utils/user";
@@ -67,3 +68,5 @@ ScoreImportQueue.process(async <I extends ImportTypes>(job: ScoreImportJob<I>) =
 
 	return importDocument;
 });
+
+process.on("SIGTERM", HandleSIGTERMGracefully);

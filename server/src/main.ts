@@ -19,6 +19,7 @@ import fetch from "utils/fetch";
 import http from "http";
 import { CloseRedisConnection } from "external/redis/redis";
 import { CloseScoreImportQueue } from "lib/score-import/worker/queue";
+import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
 
 const logger = CreateLogCtx(__filename);
 
@@ -74,24 +75,7 @@ if (ServerConfig.ENABLE_SERVER_HTTPS) {
 	logger.info(`HTTP Listening on port ${Environment.port}`, { bootInfo: true });
 }
 
-process.on("SIGTERM", () => {
-	logger.info("SIGTERM Received, closing program.", { shutdownInfo: true });
-
-	instance.close(async () => {
-		logger.info("Closing Mongo Database.", { shutdownInfo: true });
-		await monkDB.close();
-
-		logger.info("Closing Redis Connection.", { shutdownInfo: true });
-		CloseRedisConnection();
-
-		logger.info("Closing Score Import Queue.", { shutdownInfo: true });
-		CloseScoreImportQueue();
-
-		logger.info("Everything closed. Waiting for process to exit naturally.", {
-			shutdownInfo: true,
-		});
-	});
-});
+process.on("SIGTERM", HandleSIGTERMGracefully);
 
 if (process.env.INVOKE_JOB_RUNNER) {
 	logger.info(`Spawning a tachi-server job runner inline.`, { bootInfo: true });

@@ -40,6 +40,5 @@ export const Converters: ConverterMap = {
 	"ir/fervidex-static": ConverterIRFervidexStatic,
 	"ir/direct-manual": ConverterBatchManual,
 	"ir/usc": ConverterIRUSC,
-	"ir/chunitachi": ConverterBatchManual,
 	"ir/kshook-sv3c": ConverterIRKsHookSV3C,
 };

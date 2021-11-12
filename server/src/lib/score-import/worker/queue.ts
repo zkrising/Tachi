@@ -1,5 +1,4 @@
 import Queue from "bull";
-import { RedisClient } from "external/redis/redis";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, TachiConfig } from "lib/setup/config";
 import ScoreImportFatalError from "../framework/score-importing/score-import-error";

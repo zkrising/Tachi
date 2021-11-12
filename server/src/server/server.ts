@@ -108,12 +108,12 @@ app.use(RequestLoggerMiddleware);
 
 app.use("/", mainRouter);
 
-// The RUN_OWN_CDN option means that our /cdn path has to be hosted by us. In production,
+// The SERVE_OWN_CDN option means that our /cdn path has to be hosted by us. In production,
 // this is not the case (we have a dedicated nginx box for it running in a separate process).
 // In dev, this is a pain to setup, so we can just run it locally.
 if (
 	ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE === "LOCAL_FILESYSTEM" &&
-	ServerConfig.CDN_CONFIG.SAVE_LOCATION.RUN_OWN_CDN
+	ServerConfig.CDN_CONFIG.SAVE_LOCATION.SERVE_OWN_CDN
 ) {
 	if (Environment.nodeEnv === "production") {
 		logger.warn(
@@ -126,7 +126,7 @@ if (
 		});
 	}
 
-	app.use("/cdn", express.static(ServerConfig.CDN_CONFIG.SAVE_LOCATION.LOCATION));
+	app.use("/cdn", express.static("/home/zkldi/Repos/Projects/Tachi/tachi-server/test-cdn"));
 	app.get("/cdn/*", (req, res) => res.status(404).send("No content here."));
 }
 

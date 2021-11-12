@@ -19,7 +19,7 @@ const logger = CreateLogCtx(__filename);
  * @danger - This function should **NEVER** be called with unsanitised user input!
  * Path directory traversal *is* possible, and *will* ruin your day.
  */
-function CDNFileSystemRoot(fileLoc: string) {
+export function CDNFileSystemRoot(fileLoc: string) {
 	if (ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE !== "LOCAL_FILESYSTEM") {
 		logger.severe(
 			`Attempted to run CDNFileSystemRoot, but was not using LOCAL_FILESYSTEM as a CDN.`,
@@ -53,6 +53,8 @@ export function CDNRedirect(res: Response, fileLoc: string) {
 	if (fileLoc[0] !== "/") {
 		throw new Error(`Invalid fileLoc - did not start with /.`);
 	}
+
+	logger.debug(`CDN Redirecting to ${ServerConfig.CDN_CONFIG.WEB_LOCATION}${fileLoc}.`);
 
 	return res.redirect(`${ServerConfig.CDN_CONFIG.WEB_LOCATION}${fileLoc}`);
 }

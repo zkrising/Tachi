@@ -5,9 +5,9 @@ export function GetUSCIRReplayURL(scoreID: string) {
 }
 
 export function GetProfilePictureURL(userID: integer) {
-	return `/users/pfp/${userID}`;
+	return `/users/${userID}/pfp`;
 }
 
 export function GetProfileBannerURL(userID: integer) {
-	return `/users/banner/${userID}`;
+	return `/users/${userID}/banner`;
 }

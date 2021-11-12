@@ -101,7 +101,7 @@ export interface TachiServerConfig {
 	CDN_CONFIG: {
 		WEB_LOCATION: string;
 		SAVE_LOCATION:
-			| { TYPE: "LOCAL_FILESYSTEM"; LOCATION: string; RUN_OWN_CDN?: boolean }
+			| { TYPE: "LOCAL_FILESYSTEM"; LOCATION: string; SERVE_OWN_CDN?: boolean }
 			| {
 					TYPE: "S3_BUCKET";
 					ENDPOINT: string;

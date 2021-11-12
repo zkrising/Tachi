@@ -12,6 +12,10 @@ if (!options.dir) {
 	throw new Error(`No dir provided, yet one is necessary.`);
 }
 
+// @warn THIS SCRIPT IS OUTDATED!
+// Tachi now uses /users/${userID}/banner instead of
+// /users/banner/${userID}
+
 fs.mkdirSync("users/banner", { recursive: true });
 fs.mkdirSync("users/pfp", { recursive: true });
 

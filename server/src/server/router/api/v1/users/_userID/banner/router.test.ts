@@ -1,8 +1,7 @@
-import t from "tap";
 import db from "external/mongo/db";
 import { CDNStoreOrOverwrite } from "lib/cdn/cdn";
 import { GetProfileBannerURL } from "lib/cdn/url-format";
-
+import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataBuffer } from "test-utils/test-data";
@@ -14,6 +13,8 @@ t.test("GET /api/v1/users/:userID/banner", (t) => {
 		await CDNStoreOrOverwrite("/users/default/banner", "test");
 		const res = await mockApi.get("/api/v1/users/1/banner").redirects(1);
 
+		t.equal(res.statusCode, 200, "Should return 200.");
+
 		t.equal(res.body.toString(), "test");
 
 		t.end();
@@ -24,6 +25,7 @@ t.test("GET /api/v1/users/:userID/banner", (t) => {
 		await db.users.update({ id: 1 }, { $set: { customBanner: true } });
 		const res = await mockApi.get("/api/v1/users/1/banner").redirects(1);
 
+		t.equal(res.statusCode, 200, "Should return 200.");
 		t.equal(res.body.toString(), "foo");
 
 		t.end();

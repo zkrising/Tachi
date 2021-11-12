@@ -1,5 +1,5 @@
-import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { rootLogger } from "lib/logger/logger";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
@@ -79,6 +79,16 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 		t.end();
 	});
 
+	t.beforeEach(() =>
+		db["api-tokens"].insert({
+			token: "mock_token",
+			fromAPIClient: null,
+			identifier: "Mock CHUNITACHI Token",
+			permissions: { submit_score: true },
+			userID: 1,
+		})
+	);
+
 	const chunitachiBody = GetKTDataJSON("./batch-manual/chunitachi.json");
 
 	t.test("Should work for CHUNITACHI requests", async (t) => {
@@ -91,7 +101,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 
 		t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
-		const scoreCount = await db.scores.count({ service: "ChunItachi" });
+		const scoreCount = await db.scores.count({ service: "ChunItachi (DIRECT-MANUAL)" });
 
 		t.equal(scoreCount, 1, "Should import one score.");
 
@@ -103,28 +113,6 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 			.post("/ir/direct-manual/import")
 			.set("Authorization", `Bearer mock_token`)
 			.send({});
-
-		t.equal(res.body.success, false, "Should not be successful");
-
-		t.end();
-	});
-
-	t.test("Should reject batch-manual requests if game is not chunithm", async (t) => {
-		const res = await mockApi
-			.post("/ir/direct-manual/import")
-			.set("Authorization", `Bearer mock_token`)
-			.send(deepmerge(chunitachiBody, { meta: { game: "iidx" } }));
-
-		t.equal(res.body.success, false, "Should not be successful");
-
-		t.end();
-	});
-
-	t.test("Should reject batch-manual requests if service is not Chunitachi", async (t) => {
-		const res = await mockApi
-			.post("/ir/direct-manual/import")
-			.set("Authorization", `Bearer mock_token`)
-			.send(deepmerge(chunitachiBody, { meta: { service: "foo bar" } }));
 
 		t.equal(res.body.success, false, "Should not be successful");
 

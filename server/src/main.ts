@@ -1,3 +1,7 @@
+// Before we run anything, set a global to indicate to the code that
+// we're running as a server, and not as a job runner or score worker.
+process.env.IS_SERVER = "true";
+
 import { spawn } from "child_process";
 import db, { monkDB } from "external/mongo/db";
 import { SetIndexesIfNoneSet } from "external/mongo/indexes";

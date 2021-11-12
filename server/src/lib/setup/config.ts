@@ -192,7 +192,7 @@ export const ServerConfig = tachiServerConfig;
 // Environment Variable Validation
 
 let port = Number(process.env.PORT);
-if (Number.isNaN(port)) {
+if (Number.isNaN(port) && process.env.IS_SERVER) {
 	logger.warn(`No/invalid PORT specified in environment, defaulting to 8080.`);
 	port = 8080;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { ScoreDocument, ScoreCalculatedDataLookup, PBScoreDocument } from "tachi-common";
+import { PBScoreDocument, ScoreCalculatedDataLookup, ScoreDocument } from "tachi-common";
 import { IsNullish } from "util/misc";
 import DeltaCell from "../cells/DeltaCell";
 import IIDXLampCell from "../cells/IIDXLampCell";

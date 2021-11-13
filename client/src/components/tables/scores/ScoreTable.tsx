@@ -1,12 +1,12 @@
 import React from "react";
+import { integer } from "tachi-common";
 import { GamePT } from "types/react";
 import { ScoreDataset } from "types/tables";
-import { PublicUserDocument, integer } from "tachi-common";
-import IIDXScoreTable from "./IIDXScoreTable";
 import BMSScoreTable from "./BMSScoreTable";
-import SDVXScoreTable from "./SDVXScoreTable";
 import GenericScoreTable from "./GenericScoreTable";
+import IIDXScoreTable from "./IIDXScoreTable";
 import MusecaScoreTable from "./MusecaScoreTable";
+import SDVXScoreTable from "./SDVXScoreTable";
 
 export default function ScoreTable({
 	dataset,

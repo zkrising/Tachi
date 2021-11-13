@@ -1,8 +1,6 @@
 import React from "react";
 import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { GamePT } from "types/react";
 import { ChangeOpacity } from "util/color-opacity";
-import { FormatMillions } from "util/misc";
 
 export default function ScoreCell({
 	score,

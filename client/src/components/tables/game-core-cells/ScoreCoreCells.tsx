@@ -6,7 +6,6 @@ import {
 	ScoreCalculatedDataLookup,
 	ScoreDocument,
 } from "tachi-common";
-import { GamePT } from "types/react";
 import BMSScoreCoreCells from "./BMSScoreCoreCells";
 import GenericScoreCoreCells from "./GenericScoreCoreCells";
 import IIDXScoreCoreCells from "./IIDXScoreCoreCells";

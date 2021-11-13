@@ -1,14 +1,7 @@
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
-import {
-	Game,
-	GetGamePTConfig,
-	IDStrings,
-	integer,
-	ScoreCalculatedDataLookup,
-	ScoreDocument,
-} from "tachi-common";
+import { Game, IDStrings, integer, ScoreCalculatedDataLookup, ScoreDocument } from "tachi-common";
 import { Playtype } from "types/tachi";
 import { NumericSOV } from "util/sorts";
 import TimestampCell from "../cells/TimestampCell";

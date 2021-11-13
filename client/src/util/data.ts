@@ -3,11 +3,10 @@ import {
 	Game,
 	IDStrings,
 	integer,
+	PublicUserDocument,
+	ScoreDocument,
 	SessionScoreInfo,
 	SongDocument,
-	ScoreDocument,
-	PublicUserDocument,
-	PBScoreDocument,
 } from "tachi-common";
 
 export function GetPBs(scoreInfo: SessionScoreInfo[]) {

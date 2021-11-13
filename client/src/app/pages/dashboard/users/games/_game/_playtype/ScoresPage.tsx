@@ -1,32 +1,32 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
+import PBTable from "components/tables/pbs/PBTable";
+import ScoreTable from "components/tables/scores/ScoreTable";
 import DebounceSearch from "components/util/DebounceSearch";
+import Icon from "components/util/Icon";
+import LoadingWrapper from "components/util/LoadingWrapper";
+import SelectLinkButton from "components/util/SelectLinkButton";
+import useScoreRatingAlg from "components/util/useScoreRatingAlg";
+import useUGPTBase from "components/util/useUGPTBase";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { Route, Switch } from "react-router-dom";
 import {
-	PBScoreDocument,
 	ChartDocument,
-	SongDocument,
-	PublicUserDocument,
-	GetGameConfig,
-	ScoreDocument,
-	IDStrings,
-	Game,
-	UnsuccessfulAPIResponse,
 	FormatGame,
-	GetGamePTConfig,
-	ScoreCalculatedDataLookup,
+	Game,
 	GamePTConfig,
+	GetGameConfig,
+	GetGamePTConfig,
+	IDStrings,
+	PBScoreDocument,
+	PublicUserDocument,
+	ScoreCalculatedDataLookup,
+	ScoreDocument,
+	SongDocument,
+	UnsuccessfulAPIResponse,
 } from "tachi-common";
 import { GamePT, SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
-import LoadingWrapper from "components/util/LoadingWrapper";
-import Icon from "components/util/Icon";
-import SelectLinkButton from "components/util/SelectLinkButton";
-import PBTable from "components/tables/pbs/PBTable";
-import ScoreTable from "components/tables/scores/ScoreTable";
-import useScoreRatingAlg from "components/util/useScoreRatingAlg";
-import useUGPTBase from "components/util/useUGPTBase";
-import { Switch, Route } from "react-router-dom";
 
 export default function ScoresPage({
 	reqUser,

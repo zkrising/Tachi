@@ -1,6 +1,6 @@
 import GentleLink from "components/util/GentleLink";
 import React from "react";
-import { ChartDocument, SongDocument, Game } from "tachi-common";
+import { ChartDocument, Game, SongDocument } from "tachi-common";
 import { CreateChartLink } from "util/data";
 
 export default function TitleCell({

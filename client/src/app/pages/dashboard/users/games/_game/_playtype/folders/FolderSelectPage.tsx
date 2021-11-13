@@ -11,13 +11,13 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import useUGPTBase from "components/util/useUGPTBase";
-import React, { useState, useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { FolderDocument, GetGamePTConfig, integer, PublicUserDocument } from "tachi-common";
-import { UGPTFolderSearch, FolderStatsInfo } from "types/api-returns";
+import { FolderStatsInfo, UGPTFolderSearch } from "types/api-returns";
 import { GamePT } from "types/react";
 import { ChangeOpacity } from "util/color-opacity";
 import { TACHI_CHART_THEME } from "util/constants/chart-theme";
-import { Reverse, StepFromToMax, PercentFrom } from "util/misc";
+import { PercentFrom, Reverse, StepFromToMax } from "util/misc";
 
 type Props = { reqUser: PublicUserDocument } & GamePT;
 

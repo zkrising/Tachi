@@ -1,15 +1,15 @@
-import { Playtype } from "types/tachi";
+import toast from "react-hot-toast";
 import {
-	GetGamePTConfig,
+	APIPermissions,
+	ChartDocument,
 	Game,
-	ScoreCalculatedDataLookup,
+	GamePTConfig,
+	GetGamePTConfig,
 	IDStrings,
 	integer,
-	ChartDocument,
-	GamePTConfig,
-	APIPermissions,
+	ScoreCalculatedDataLookup,
 } from "tachi-common";
-import toast from "react-hot-toast";
+import { Playtype } from "types/tachi";
 
 export function RFA<T>(arr: T[]): T {
 	return arr[Math.floor(Math.random() * arr.length)];

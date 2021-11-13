@@ -12,7 +12,6 @@ import {
 	COLOUR_SET,
 	FormatGame,
 	GetGameConfig,
-	GetGamePTConfig,
 	IDStrings,
 	integer,
 	PublicUserDocument,

@@ -6,7 +6,6 @@ import MiniTable from "components/tables/components/MiniTable";
 import PBTable from "components/tables/pbs/PBTable";
 import ProfilePicture from "components/user/ProfilePicture";
 import ApiError from "components/util/ApiError";
-import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
@@ -19,7 +18,6 @@ import { Link, useParams } from "react-router-dom";
 import {
 	ChartDocument,
 	FormatDifficulty,
-	GamePTConfig,
 	GetGameConfig,
 	GetGamePTConfig,
 	integer,

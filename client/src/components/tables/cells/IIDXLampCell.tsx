@@ -2,7 +2,7 @@ import React from "react";
 import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { IsScore } from "util/asserts";
 import { ChangeOpacity } from "util/color-opacity";
-import { IsNotNullish, IsNullish } from "util/misc";
+import { IsNotNullish } from "util/misc";
 
 export default function IIDXLampCell({
 	sc,

@@ -2,6 +2,7 @@ import React from "react";
 import { Game, GetGamePTConfig } from "tachi-common";
 import { PBDataset } from "types/tables";
 import { Playtype } from "types/tachi";
+import { UppercaseFirst } from "util/misc";
 import { NumericSOV } from "util/sorts";
 import { CreateDefaultPBSearchParams } from "util/tables/create-search";
 import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
@@ -47,8 +48,8 @@ export default function GenericPBTable({
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
 		[
-			gptConfig.defaultScoreRatingAlg,
-			gptConfig.defaultScoreRatingAlg,
+			UppercaseFirst(gptConfig.defaultScoreRatingAlg),
+			UppercaseFirst(gptConfig.defaultScoreRatingAlg),
 			NumericSOV(x => x.calculatedData[gptConfig.defaultScoreRatingAlg] ?? -Infinity),
 		],
 		["Site Ranking", "Site Rank", NumericSOV(x => x.rankingData.rank)],

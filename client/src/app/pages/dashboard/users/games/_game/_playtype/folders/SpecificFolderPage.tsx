@@ -116,7 +116,7 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 						<Icon type="table" />
 						Normal View
 					</SelectButton>
-					{gptConfig.tierlists.length && (
+					{gptConfig.tierlists.length !== 0 && (
 						<SelectButton value={mode} setValue={setMode} id="ladder">
 							<Icon type="sort-alpha-up" />
 							Tierlist View

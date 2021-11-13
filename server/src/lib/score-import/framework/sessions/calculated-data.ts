@@ -112,7 +112,15 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	// 	}),
 	// },
 	usc: {
-		Single: (scd) => {
+		Controller: (scd) => {
+			const VF6 = AvgBest10Map(scd, "VF6");
+
+			return {
+				VF6,
+				ProfileVF6: VF6 === null ? null : VF6 * 50,
+			};
+		},
+		Keyboard: (scd) => {
 			const VF6 = AvgBest10Map(scd, "VF6");
 
 			return {

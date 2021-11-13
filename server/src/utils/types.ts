@@ -47,7 +47,7 @@ export type EmptyObject = Record<string, never>;
  * Data that may be monkey-patched onto req.tachi. This holds things such as middleware results.
  */
 export interface TachiRequestData {
-	uscChartDoc?: ChartDocument<"usc:Single">;
+	uscChartDoc?: ChartDocument<"usc:Controller" | "usc:Keyboard">;
 
 	beatorajaChartDoc?: ChartDocument<"bms:7K" | "bms:14K">;
 

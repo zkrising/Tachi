@@ -100,9 +100,14 @@ async function GenericUpsert<T>(
 
 const syncInstructions: SyncInstructions[] = [
 	{
+		pattern: /^charts-(usc|bms)$/u,
+		handler: (charts: ChartDocument[], collection: ICollection<ChartDocument>, logger) =>
+			GenericUpsert(charts, collection, "chartID", logger, false),
+	},
+	{
 		pattern: /^charts-/u,
 		handler: (charts: ChartDocument[], collection: ICollection<ChartDocument>, logger) =>
-			GenericUpsert(charts, collection, "chartID", logger),
+			GenericUpsert(charts, collection, "chartID", logger, true),
 	},
 	{
 		pattern: /^songs-/u,

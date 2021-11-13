@@ -28,18 +28,26 @@ t.test("#CalculateRatings", (t) => {
 		t.end();
 	});
 
-	t.test("Should return VF4 and VF5 for SDVX", async (t) => {
+	t.test("Should return VF6 for SDVX", async (t) => {
 		const res = await CalculateRatings("sdvx", "Single", 1, logger);
 
-		t.strictSame(res, { VF6: 0 }, "Should return VF4 and VF5 keys.");
+		t.strictSame(res, { VF6: 0 }, "Should return VF6 keys.");
 
 		t.end();
 	});
 
-	t.test("Should return VF4 and VF5 for USC", async (t) => {
-		const res = await CalculateRatings("usc", "Single", 1, logger);
+	t.test("Should return VF6 for USC:Keyboard", async (t) => {
+		const res = await CalculateRatings("usc", "Keyboard", 1, logger);
 
-		t.strictSame(res, { VF6: 0 }, "Should return VF4 and VF5 keys.");
+		t.strictSame(res, { VF6: 0 }, "Should return VF6 keys.");
+
+		t.end();
+	});
+
+	t.test("Should return VF6 for USC:Controller", async (t) => {
+		const res = await CalculateRatings("usc", "Controller", 1, logger);
+
+		t.strictSame(res, { VF6: 0 }, "Should return VF6 keys.");
 
 		t.end();
 	});

@@ -5,7 +5,7 @@ import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
 
-const mockScorePB: PBScoreDocument<"usc:Single"> = {
+const mockScorePB: PBScoreDocument<"usc:Controller" | "usc:Keyboard"> = {
 	chartID: "USC_CHART_ID",
 	calculatedData: {
 		VF6: 0,
@@ -17,7 +17,7 @@ const mockScorePB: PBScoreDocument<"usc:Single"> = {
 	game: "usc",
 	highlight: false,
 	isPrimary: true,
-	playtype: "Single",
+	playtype: "Controller",
 	rankingData: {
 		outOf: 2,
 		rank: 1,
@@ -240,7 +240,9 @@ const mockUserDocs = [2, 3, 4, 5, 6, 7, 8, 9, 10].map((e) => ({
 t.test("#CreatePOSTScoresResponseBody", async (t) => {
 	t.beforeEach(ResetDBState);
 
-	const chartDoc = (await db.charts.usc.findOne()) as ChartDocument<"usc:Single">;
+	const chartDoc = (await db.charts.usc.findOne()) as ChartDocument<
+		"usc:Controller" | "usc:Keyboard"
+	>;
 
 	t.test("Should correctly return POSTScoresResponseBody", async (t) => {
 		await db.scores.insert(mockScoreDocument);
@@ -257,7 +259,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 
 		const res = await CreatePOSTScoresResponseBody(
 			1,
-			chartDoc as ChartDocument<"usc:Single">,
+			chartDoc as ChartDocument<"usc:Controller" | "usc:Keyboard">,
 			"USER_1_SCORE_PB"
 		);
 

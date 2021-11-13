@@ -5,8 +5,7 @@ import d from "deepmerge";
 import { uscChart, uscScore } from "test-utils/test-data";
 import CreateLogCtx from "lib/logger/logger";
 import ResetDBState from "test-utils/resets";
-
-import { USCClientScore } from "server/router/ir/usc/types";
+import { USCClientScore } from "server/router/ir/usc/_playtype/types";
 
 const logger = CreateLogCtx(__filename);
 
@@ -78,7 +77,7 @@ t.test("#DeriveNoteMod", (t) => {
 const dm = (p: Partial<USCClientScore>) =>
 	ConverterIRUSC(
 		d(uscScore, p),
-		{ chartHash: uscChart.data.hashSHA1 as string },
+		{ chartHash: uscChart.data.hashSHA1 as string, playtype: "Controller" },
 		"ir/usc",
 		logger
 	);

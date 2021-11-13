@@ -831,12 +831,16 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 			arcChartID: "?string",
 		})
 	),
-	"charts-usc": prSchemaify(
-		PR_ChartDocument("usc", "Single", {
-			hashSHA1: p.or("string", ["string"]),
-			isOfficial: "boolean",
-		})
-	),
+	"charts-usc": (self) => {
+		const playtype = getPlaytype("usc", self);
+
+		return prSchemaify(
+			PR_ChartDocument("usc", playtype, {
+				hashSHA1: p.or("string", ["string"]),
+				isOfficial: "boolean",
+			})
+		)(self);
+	},
 	goals: prSchemaify({
 		game: p.isIn(games),
 		playtype: isValidPlaytype,

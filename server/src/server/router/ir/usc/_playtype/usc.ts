@@ -1,15 +1,21 @@
 import db from "external/mongo/db";
 import { USCIR_ADJACENT_SCORE_N } from "lib/constants/usc-ir";
 import CreateLogCtx from "lib/logger/logger";
-import { ChartDocument, integer, PBScoreDocument, ScoreDocument, SongDocument } from "tachi-common";
+import {
+	ChartDocument,
+	integer,
+	PBScoreDocument,
+	Playtypes,
+	ScoreDocument,
+	SongDocument,
+} from "tachi-common";
 import { MStoS, Random20Hex } from "utils/misc";
 import { GetPBOnChart, GetServerRecordOnChart } from "utils/scores";
 import { USCClientChart, USCServerScore } from "./types";
-
 const logger = CreateLogCtx(__filename);
 
 export const TACHI_LAMP_TO_USC: Record<
-	PBScoreDocument<"usc:Single">["scoreData"]["lamp"],
+	PBScoreDocument<"usc:Controller" | "usc:Keyboard">["scoreData"]["lamp"],
 	USCServerScore["lamp"]
 > = {
 	// we don't do NO PLAY, so its not handled.
@@ -27,7 +33,7 @@ export const TACHI_LAMP_TO_USC: Record<
  * fields are null.
  */
 export async function TachiScoreToServerScore(
-	tachiScore: PBScoreDocument<"usc:Single">
+	tachiScore: PBScoreDocument<"usc:Controller" | "usc:Keyboard">
 ): Promise<USCServerScore> {
 	// @optimisable
 	// Repeated calls to this may pre-emptively provide usernames
@@ -54,7 +60,7 @@ export async function TachiScoreToServerScore(
 
 	const scorePB = (await db.scores.findOne({
 		scoreID: tachiScore.composedFrom.scorePB,
-	})) as ScoreDocument<"usc:Single"> | null;
+	})) as ScoreDocument<"usc:Controller" | "usc:Keyboard"> | null;
 
 	if (!scorePB) {
 		logger.severe(
@@ -82,13 +88,12 @@ export async function TachiScoreToServerScore(
 
 export async function CreatePOSTScoresResponseBody(
 	userID: integer,
-	chartDoc: ChartDocument<"usc:Single">,
+	chartDoc: ChartDocument<"usc:Controller" | "usc:Keyboard">,
 	scoreID: string
 ): Promise<POSTScoresResponseBody> {
-	const scorePB = (await GetPBOnChart(
-		userID,
-		chartDoc.chartID
-	)) as PBScoreDocument<"usc:Single"> | null;
+	const scorePB = (await GetPBOnChart(userID, chartDoc.chartID)) as PBScoreDocument<
+		"usc:Controller" | "usc:Keyboard"
+	> | null;
 
 	if (!scorePB) {
 		logger.severe(`Score was imported for chart, but no ScorePB was available on this chart?`, {
@@ -100,9 +105,9 @@ export async function CreatePOSTScoresResponseBody(
 		);
 	}
 
-	const ktServerRecord = (await GetServerRecordOnChart(
-		chartDoc.chartID
-	)) as PBScoreDocument<"usc:Single"> | null;
+	const ktServerRecord = (await GetServerRecordOnChart(chartDoc.chartID)) as PBScoreDocument<
+		"usc:Controller" | "usc:Keyboard"
+	> | null;
 
 	// this is impossible to trigger without making a race-condition.
 	/* istanbul ignore next */
@@ -133,7 +138,7 @@ export async function CreatePOSTScoresResponseBody(
 			limit: USCIR_ADJACENT_SCORE_N,
 			sort: { "rankingData.rank": -1 },
 		}
-	)) as PBScoreDocument<"usc:Single">[];
+	)) as PBScoreDocument<"usc:Controller" | "usc:Keyboard">[];
 
 	// The specification enforces that we return them in
 	// ascending order, though, so we reverse this after
@@ -159,7 +164,7 @@ export async function CreatePOSTScoresResponseBody(
 			limit: USCIR_ADJACENT_SCORE_N,
 			sort: { "rankingData.rank": 1 },
 		}
-	)) as PBScoreDocument<"usc:Single">[];
+	)) as PBScoreDocument<"usc:Controller" | "usc:Keyboard">[];
 
 	const [score, serverRecord, adjacentAbove, adjacentBelow] = await Promise.all([
 		TachiScoreToServerScore(scorePB),
@@ -170,7 +175,7 @@ export async function CreatePOSTScoresResponseBody(
 
 	const originalScore = (await db.scores.findOne({
 		scoreID,
-	})) as ScoreDocument<"usc:Single">;
+	})) as ScoreDocument<"usc:Controller" | "usc:Keyboard">;
 
 	if (!originalScore) {
 		logger.severe(
@@ -202,14 +207,14 @@ export interface POSTScoresResponseBody {
 	sendReplay: string;
 }
 
-export function ConvertUSCChart(uscChartDoc: USCClientChart) {
-	const chart: ChartDocument<"usc:Single"> = {
+export function ConvertUSCChart(uscChartDoc: USCClientChart, playtype: Playtypes["usc"]) {
+	const chart: ChartDocument<"usc:Controller" | "usc:Keyboard"> = {
 		chartID: Random20Hex(),
 		difficulty: USCChartIndexToDiff(uscChartDoc.difficulty),
 		isPrimary: true,
 		level: "?",
 		levelNum: 0,
-		playtype: "Single",
+		playtype,
 		rgcID: null,
 		songID: 0,
 		versions: [],
@@ -234,6 +239,6 @@ export function ConvertUSCChart(uscChartDoc: USCClientChart) {
 
 export function USCChartIndexToDiff(
 	index: 0 | 1 | 2 | 3
-): ChartDocument<"usc:Single">["difficulty"] {
+): ChartDocument<"usc:Controller" | "usc:Keyboard">["difficulty"] {
 	return (["NOV", "ADV", "EXH", "INF"] as const)[index];
 }

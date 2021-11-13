@@ -11,7 +11,7 @@ export async function GetAdjacentAbove(userPB: PBScoreDocument, size = 5) {
 			limit: size,
 			sort: { "rankingData.rank": -1 },
 		}
-	)) as PBScoreDocument<"usc:Single">[];
+	)) as PBScoreDocument<"usc:Controller" | "usc:Keyboard">[];
 
 	return adjAbove;
 }
@@ -26,7 +26,7 @@ export async function GetAdjacentBelow(userPB: PBScoreDocument, size = 5) {
 			limit: size,
 			sort: { "rankingData.rank": 1 },
 		}
-	)) as PBScoreDocument<"usc:Single">[];
+	)) as PBScoreDocument<"usc:Controller" | "usc:Keyboard">[];
 
 	return adjAbove;
 }

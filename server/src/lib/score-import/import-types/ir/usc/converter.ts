@@ -1,16 +1,4 @@
-import { USCClientScore } from "server/router/ir/usc/types";
-import { FindSongOnID } from "utils/queries/songs";
-import { KtLogger } from "lib/logger/logger";
-import {
-	InternalFailure,
-	InvalidScoreFailure,
-	KTDataNotFoundFailure,
-} from "../../../framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
-import { IRUSCContext } from "./types";
-import { Lamps } from "tachi-common";
-import { ConverterFunction } from "../../common/types";
-import { DryScore } from "../../../framework/common/types";
+import db from "external/mongo/db";
 import {
 	USC_DEFAULT_HOLD,
 	USC_DEFAULT_MISS,
@@ -18,7 +6,19 @@ import {
 	USC_DEFAULT_PERFECT,
 	USC_DEFAULT_SLAM,
 } from "lib/constants/usc-ir";
-import db from "external/mongo/db";
+import { KtLogger } from "lib/logger/logger";
+import { USCClientScore } from "server/router/ir/usc/_playtype/types";
+import { Lamps } from "tachi-common";
+import { FindSongOnID } from "utils/queries/songs";
+import {
+	InternalFailure,
+	InvalidScoreFailure,
+	KTDataNotFoundFailure,
+} from "../../../framework/common/converter-failures";
+import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
+import { DryScore } from "../../../framework/common/types";
+import { ConverterFunction } from "../../common/types";
+import { IRUSCContext } from "./types";
 
 /**
  * Interprets the "note mod" used based on the USC score.
@@ -38,7 +38,10 @@ export function DeriveNoteMod(data: USCClientScore): "NORMAL" | "MIRROR" | "RAND
 /**
  * Determines the lamp of a USC score.
  */
-export function DeriveLamp(scoreDoc: USCClientScore, logger: KtLogger): Lamps["usc:Single"] {
+export function DeriveLamp(
+	scoreDoc: USCClientScore,
+	logger: KtLogger
+): Lamps["usc:Keyboard" | "usc:Controller"] {
 	if (scoreDoc.score === 10_000_000) {
 		return "PERFECT ULTIMATE CHAIN";
 	} else if (scoreDoc.error === 0) {
@@ -78,6 +81,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 
 	const chartDoc = await db.charts.usc.findOne({
 		"data.hashSHA1": context.chartHash,
+		playtype: context.playtype,
 	});
 
 	if (!chartDoc) {
@@ -98,7 +102,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 
 	const { grade, percent } = GenericGetGradeAndPercent("usc", data.score, chartDoc);
 
-	const dryScore: DryScore<"usc:Single"> = {
+	const dryScore: DryScore<"usc:Controller" | "usc:Keyboard"> = {
 		comment: null,
 		game: "usc",
 		importType,

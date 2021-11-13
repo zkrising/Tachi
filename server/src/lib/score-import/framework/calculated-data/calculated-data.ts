@@ -88,7 +88,8 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	// 	Single: CalculateDataJubeat,
 	// },
 	usc: {
-		Single: CalculateDataSDVXorUSC,
+		Controller: CalculateDataSDVXorUSC,
+		Keyboard: CalculateDataSDVXorUSC,
 	},
 };
 
@@ -187,9 +188,12 @@ function CalculateDataSDVXorUSC(
 	dryScore: DryScore,
 	chart: ChartDocument,
 	logger: KtLogger
-): CalculatedData<"sdvx:Single" | "usc:Single"> {
+): CalculatedData<"sdvx:Single" | "usc:Keyboard" | "usc:Controller"> {
 	// for usc, unofficial charts currently have no VF6 value.
-	if (dryScore.game === "usc" && !(chart as ChartDocument<"usc:Single">).data.isOfficial) {
+	if (
+		dryScore.game === "usc" &&
+		!(chart as ChartDocument<"usc:Controller" | "usc:Keyboard">).data.isOfficial
+	) {
 		return { VF6: null };
 	}
 

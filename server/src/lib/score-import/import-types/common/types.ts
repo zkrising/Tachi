@@ -20,10 +20,10 @@ import {
 import { ConverterFailure } from "../../framework/common/converter-failures";
 import { DryScore } from "../../framework/common/types";
 import { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
-import { USCClientScore } from "server/router/ir/usc/types";
 import { IRUSCContext } from "../ir/usc/types";
 import { ClassHandler } from "../../framework/user-game-stats/types";
 import { KsHookSV3CScore } from "../ir/kshook-sv3c/types";
+import { USCClientScore } from "server/router/ir/usc/_playtype/types";
 
 export interface ImportTypeDataMap {
 	"file/eamusement-iidx-csv": IIDXEamusementCSVData;

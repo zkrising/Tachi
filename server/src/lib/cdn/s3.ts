@@ -35,7 +35,7 @@ export function PushToS3(path: string, content: Buffer | string) {
 	return s3.send(
 		new PutObjectCommand({
 			Bucket: ServerConfig.CDN_CONFIG.SAVE_LOCATION.BUCKET,
-			Key: path,
+			Key: (ServerConfig.CDN_CONFIG.SAVE_LOCATION.KEY_PREFIX ?? "") + path,
 			Body: content,
 		})
 	);

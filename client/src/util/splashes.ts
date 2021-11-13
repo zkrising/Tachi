@@ -82,6 +82,7 @@ export const loggedInSplashes = [
 	"Who is the scrimbler bimbler?",
 	"You wish you know who the hibble gibble gobbler was.",
 	`The current day is ${FormatDate(Date.now())}, probably.`,
+	"I have always thought of myself as an ambassador for the dance game community.",
 ];
 
 // Stuff that's bad for the kids, you know?

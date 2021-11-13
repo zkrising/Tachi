@@ -137,5 +137,6 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 		sortMode,
 		changeSort,
 		reverseSort,
+		filteredDataset: dataset,
 	};
 }

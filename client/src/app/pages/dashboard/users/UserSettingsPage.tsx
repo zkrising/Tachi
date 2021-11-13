@@ -104,7 +104,7 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 					onChange={formik.handleChange}
 					label="Developer Mode"
 				/>
-				<Form.Text>Enable debug information.</Form.Text>
+				<Form.Text>Enable debug information and other useful debugging buttons.</Form.Text>
 			</Form.Group>
 			<Form.Group>
 				<Form.Check

@@ -478,8 +478,8 @@ function EditClientModal({
 	const [name, setName] = useState(client.name);
 	const [redirectUri, setRedirectUri] = useState(client.redirectUri ?? "");
 	const [webhookUri, setWebhookUri] = useState(client.webhookUri ?? "");
-	const [apiKeyFilename, setApiKeyFilename] = useState("");
-	const [apiKeyTemplate, setApiKeyTemplate] = useState("");
+	const [apiKeyFilename, setApiKeyFilename] = useState(client.apiKeyFilename ?? "");
+	const [apiKeyTemplate, setApiKeyTemplate] = useState(client.apiKeyTemplate ?? "");
 
 	return (
 		<Modal show={show} onHide={() => setShow(false)}>

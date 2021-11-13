@@ -50,6 +50,7 @@ specifiers:
   html-webpack-plugin: ^4.5.2
   humanize-duration: 3.27.0
   is-wsl: ^1.1.0
+  json-2-csv: ^3.14.4
   luxon: 2.0.1
   mini-css-extract-plugin: 0.8.0
   nanoid: 3.1.23
@@ -125,6 +126,7 @@ dependencies:
   hash.js: 1.1.7
   html-webpack-plugin: 4.5.2_webpack@4.41.0
   humanize-duration: 3.27.0
+  json-2-csv: 3.14.4
   luxon: 2.0.1
   mini-css-extract-plugin: 0.8.0_webpack@4.41.0
   nanoid: 3.1.23
@@ -5079,6 +5081,11 @@ packages:
     resolution: {integrity: sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=}
     engines: {node: '>=0.10'}
 
+  /deeks/2.5.1:
+    resolution: {integrity: sha512-fqrBeUz7f1UqaXDRzVB5RG2EfPk15HJRrb2pMZj8mLlSTtz4tRPsK5leFOskoHFPuyZ6+7aRM9j657fvXLkJ7Q==}
+    engines: {node: '>= 12'}
+    dev: false
+
   /deep-equal/1.1.1:
     resolution: {integrity: sha512-yd9c5AdiqVcR+JjcwUQb9DkhJc8ngNr0MahEBGvDiJw8puWab2yZlh+nkasOnZP+EGTAP6rRp2JzJhJZzvNF8g==}
     dependencies:
@@ -5243,6 +5250,11 @@ packages:
     dependencies:
       buffer-indexof: 1.1.1
     dev: true
+
+  /doc-path/3.0.2:
+    resolution: {integrity: sha512-VRlA2OKSjTbHWj6wmSanxJ338fE/YN8pqmZ0FIWK5JWkIJMFRc4KmD35JtOrnjvVG0WrzOtDDNHx1lN1tkb+lA==}
+    engines: {node: '>=12'}
+    dev: false
 
   /doctrine/2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
@@ -7253,6 +7265,14 @@ packages:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
     engines: {node: '>=4'}
     hasBin: true
+    dev: false
+
+  /json-2-csv/3.14.4:
+    resolution: {integrity: sha512-6Dg4ZJb5g1Lu6gVM2jJGpu1WUo0/b3xS1b35+dXAWmYzlu2AqTXSFrUzA3l5/aYptjhoiGxCN7CZbxBwrUmhig==}
+    engines: {node: '>= 12'}
+    dependencies:
+      deeks: 2.5.1
+      doc-path: 3.0.2
     dev: false
 
   /json-parse-better-errors/1.0.2:

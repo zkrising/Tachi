@@ -163,7 +163,10 @@ export function SelectRightChart(
 
 export function CopyToClipboard(data: unknown) {
 	toast.success("Copied data to clipboard.");
-	navigator.clipboard.writeText(JSON.stringify(data, null, "\t"));
+
+	const str = typeof data === "string" ? data : JSON.stringify(data, null, "\t");
+
+	navigator.clipboard.writeText(str);
 }
 
 export const allPermissions: APIPermissions[] = [

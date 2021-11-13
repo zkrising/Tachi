@@ -2,6 +2,7 @@ import BarbatosPage from "app/pages/dashboard/import/BarbatosPage";
 import BatchManualPage from "app/pages/dashboard/import/BatchManualPage";
 import BeatorajaDBPage from "app/pages/dashboard/import/BeatorajaDBPage";
 import BeatorajaIRPage from "app/pages/dashboard/import/BeatorajaIRPage";
+import ChunitachiPage from "app/pages/dashboard/import/ChunitachiPage";
 import FervidexPage from "app/pages/dashboard/import/FervidexPage";
 import IIDXEamCSVPage from "app/pages/dashboard/import/IIDXEamCSVPage";
 import ImportPage from "app/pages/dashboard/import/ImportPage";
@@ -91,6 +92,10 @@ export default function ImportRoutes() {
 							</Route>
 							<Route exact path="/dashboard/import/ks-hook">
 								<KsHookPage />
+							</Route>
+
+							<Route exact path="/dashboard/import/chunitachi">
+								<ChunitachiPage />
 							</Route>
 
 							<Route exact path="/dashboard/import/iidx-flo">

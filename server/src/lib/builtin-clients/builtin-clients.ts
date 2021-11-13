@@ -74,14 +74,37 @@ const KtchiDefaultClients: DefaultClients = [
 		webhookUri: null,
 		apiKeyFilename: "ChunItachi.ini",
 		apiKeyTemplate: `[general]
-showDebug = false
+; Show information for debugging. Useful incase things go wrong.
+showDebug = true
+
+; Set this to an extID if multiple people play on your setup
+; and you only want to import scores from a specific user.
+; You can find your extID inside your database...
+; ...or you can set it to junk like 123 and check the debug logs.
 extID = 0
+
+; The current version of the game you're playing on.
+; This should be any of the following:
+; game = amazon
+; game = amazonplus
+; game = crystal
+; game = paradise
+; game = paradiselost
+
 game = PUT_YOUR_GAME_HERE
-debug = true
-failOverLamp = true
+
+; If true, Fails will take more priority than things like FULL COMBOs.
+failOverLamp = false
+
 [kamaitachi]
+; What to use to check whether we're online or not.
 apiStatus = ${ServerConfig.OUR_URL}/api/v1/status
+
+; Where to POST scores to.
 apiEndpoint = ${ServerConfig.OUR_URL}/ir/direct-manual
+
+; This thing is secret! Keep it so. You can manage your API Keys at
+; ${ServerConfig.OUR_URL}/users/me -> Integrations -> API Keys!
 apikey = %%TACHI_KEY%%`,
 	},
 ];

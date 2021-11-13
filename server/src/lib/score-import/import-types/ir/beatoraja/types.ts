@@ -20,6 +20,7 @@ export interface BeatorajaChart {
 	judge: number;
 	notes: integer;
 	hasRandom: boolean;
+	hasUndefinedLN: boolean;
 }
 
 export interface BeatorajaScore {

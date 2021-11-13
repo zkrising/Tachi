@@ -58,8 +58,8 @@ const PR_BeatorajaChart = {
 	mode: p.isIn("BEAT_7K", "BEAT_14K"),
 	judge: p.isPositive,
 	notes: p.isPositiveInteger,
-	hasUndefinedLN: p.is(false),
-	hasRandom: p.is(false),
+	hasUndefinedLN: "boolean",
+	hasRandom: "boolean",
 };
 
 const SUPPORTED_BEATORAJA_CLIENTS = [

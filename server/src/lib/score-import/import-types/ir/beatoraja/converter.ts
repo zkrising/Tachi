@@ -101,6 +101,16 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		throw new InvalidScoreFailure("CN or HCN mode is not supported by this IR.");
 	}
 
+	if (context.chart.hasRandom) {
+		throw new InvalidScoreFailure(
+			"Charts with #RANDOM declarations are not supported by this IR."
+		);
+	}
+
+	if (context.chart.hasUndefinedLN) {
+		throw new InvalidScoreFailure("Charts with Undefined LN are not supported by this IR.");
+	}
+
 	let chart = (await FindChartOnSHA256("bms", data.sha256)) as ChartDocument<
 		"bms:7K" | "bms:14K"
 	> | null;

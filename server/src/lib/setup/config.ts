@@ -109,6 +109,7 @@ export interface TachiServerConfig {
 					SECRET_ACCESS_KEY: string;
 					BUCKET: string;
 					KEY_PREFIX?: string;
+					REGION?: string;
 			  };
 	};
 }
@@ -186,6 +187,7 @@ const err = p(config, {
 				SECRET_ACCESS_KEY: "string",
 				BUCKET: "string",
 				KEY_PREFIX: "*string",
+				REGION: "*string",
 			}
 		),
 	},

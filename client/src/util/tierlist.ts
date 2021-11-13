@@ -32,7 +32,8 @@ const ScaleNameAchievedFns: ScaleAchievedFns = {
 		"tachi-score": null,
 	},
 	"sdvx:Single": {},
-	"usc:Single": {},
+	"usc:Controller": {},
+	"usc:Keyboard": {},
 };
 
 export function GetScaleAchievedFn(

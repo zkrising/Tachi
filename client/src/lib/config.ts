@@ -31,7 +31,6 @@ if (mode === "ktchi") {
 			"ir/direct-manual",
 			"ir/fervidex",
 			"ir/fervidex-static",
-			"ir/chunitachi",
 			"file/eamusement-iidx-csv",
 			"file/solid-state-squad",
 			"file/mer-iidx",

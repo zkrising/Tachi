@@ -476,7 +476,7 @@ function EditClientModal({
 	setShow: SetState<boolean>;
 }) {
 	const [name, setName] = useState(client.name);
-	const [redirectUri, setRedirectUri] = useState(client.redirectUri);
+	const [redirectUri, setRedirectUri] = useState(client.redirectUri ?? "");
 	const [webhookUri, setWebhookUri] = useState(client.webhookUri ?? "");
 	const [apiKeyFilename, setApiKeyFilename] = useState("");
 	const [apiKeyTemplate, setApiKeyTemplate] = useState("");

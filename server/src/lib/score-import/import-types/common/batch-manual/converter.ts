@@ -201,9 +201,12 @@ export async function ResolveMatchTypeToKTData(
 			identifier = Number(data.identifier);
 		}
 
+		const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
+
 		const chart = await db.charts[game].findOne({
 			"data.inGameID": identifier,
 			playtype: context.playtype,
+			difficulty,
 		});
 
 		if (!chart) {

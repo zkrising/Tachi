@@ -120,13 +120,13 @@ if (
 			`Running LOCAL_FILESYSTEM OWN_CDN in production. Consider making a separate process handle your CDN for performance.`,
 			{ bootInfo: true }
 		);
-	} else if (Environment.nodeEnv !== "test") {
-		logger.info(`Running own CDN at ${ServerConfig.CDN_CONFIG.SAVE_LOCATION.LOCATION}.`, {
-			bootInfo: true,
-		});
 	}
 
-	app.use("/cdn", express.static("/home/zkldi/Repos/Projects/Tachi/tachi-server/test-cdn"));
+	logger.info(`Running own CDN at ${ServerConfig.CDN_CONFIG.SAVE_LOCATION.LOCATION}.`, {
+		bootInfo: true,
+	});
+
+	app.use("/cdn", express.static(ServerConfig.CDN_CONFIG.SAVE_LOCATION.LOCATION));
 	app.get("/cdn/*", (req, res) => res.status(404).send("No content here."));
 }
 

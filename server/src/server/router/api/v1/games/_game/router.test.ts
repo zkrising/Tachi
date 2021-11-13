@@ -1,6 +1,6 @@
+import { GetGameConfig } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
-import { GetGameConfig } from "tachi-common";
 
 t.test("GET /api/v1/games/:game", (t) => {
 	t.test("Should parse the game from the header", async (t) => {

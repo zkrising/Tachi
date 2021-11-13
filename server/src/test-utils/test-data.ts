@@ -1,16 +1,5 @@
-import fs from "fs";
-import {
-	ChartDocument,
-	PBScoreDocument,
-	ScoreDocument,
-	GoalDocument,
-	UserGoalDocument,
-	FolderDocument,
-	MilestoneDocument,
-	SongDocument,
-} from "tachi-common";
-import path from "path";
 import db from "external/mongo/db";
+import fs from "fs";
 import {
 	USC_DEFAULT_HOLD,
 	USC_DEFAULT_MISS,
@@ -21,7 +10,18 @@ import {
 import { DryScore } from "lib/score-import/framework/common/types";
 import { BarbatosScore } from "lib/score-import/import-types/ir/barbatos/types";
 import { KsHookSV3CScore } from "lib/score-import/import-types/ir/kshook-sv3c/types";
+import path from "path";
 import { USCClientScore } from "server/router/ir/usc/_playtype/types";
+import {
+	ChartDocument,
+	FolderDocument,
+	GoalDocument,
+	MilestoneDocument,
+	PBScoreDocument,
+	ScoreDocument,
+	SongDocument,
+	UserGoalDocument,
+} from "tachi-common";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
 

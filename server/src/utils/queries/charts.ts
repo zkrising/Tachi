@@ -1,14 +1,14 @@
-import {
-	Difficulties,
-	Game,
-	integer,
-	Playtypes,
-	IDStrings,
-	ChartDocument,
-	GPTSupportedVersions,
-} from "tachi-common";
 import db from "external/mongo/db";
 import { FilterQuery } from "mongodb";
+import {
+	ChartDocument,
+	Difficulties,
+	Game,
+	GPTSupportedVersions,
+	IDStrings,
+	integer,
+	Playtypes,
+} from "tachi-common";
 
 export function FindChartWithChartID(game: Game, chartID: string) {
 	return db.charts[game].findOne({ chartID });

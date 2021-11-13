@@ -1,10 +1,9 @@
-import t from "tap";
-import { CDNDelete, CDNRedirect, CDNRetrieve, CDNStoreOrOverwrite } from "./cdn";
+import expressRequestMock from "express-request-mock";
 import fs from "fs";
 import { Environment, ServerConfig } from "lib/setup/config";
 import path from "path";
-
-import expressRequestMock from "express-request-mock";
+import t from "tap";
+import { CDNDelete, CDNRedirect, CDNRetrieve, CDNStoreOrOverwrite } from "./cdn";
 
 if (ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE !== "LOCAL_FILESYSTEM") {
 	throw new Error(`Tests must run against LOCAL_FILESYSTEM.`);

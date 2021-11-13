@@ -1,7 +1,7 @@
-import { DecrementCounterValue, GetNextCounterValue } from "./db";
-import t from "tap";
 import db from "external/mongo/db";
+import t from "tap";
 import ResetDBState from "test-utils/resets";
+import { DecrementCounterValue, GetNextCounterValue } from "./db";
 
 t.test("#GetNextCounterValue", (t) => {
 	t.beforeEach(ResetDBState);

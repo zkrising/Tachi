@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { integer, PBScoreDocument, ScoreDocument, ChartDocument, SongDocument } from "tachi-common";
+import { ChartDocument, integer, PBScoreDocument, ScoreDocument, SongDocument } from "tachi-common";
 import { DedupeArr } from "./misc";
 
 export function GetPBOnChart(userID: integer, chartID: string) {

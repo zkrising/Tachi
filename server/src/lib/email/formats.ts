@@ -35,7 +35,11 @@ export function MainHTMLWrapper(innerHTML: string) {
 		<title>${TachiConfig.NAME}</title>
 	</head>
 	<body>
+		<img src="${ServerConfig.CDN_CONFIG.WEB_LOCATION}/logos/logo-wordmark.png" />
+		<hr />
+		<div style="text-align: left;">
 		${innerHTML}
+		</div>
 	</body>
 	</html>`;
 }

@@ -45,7 +45,8 @@ if (ServerConfig.EMAIL_CONFIG) {
 export function SendEmail(
 	to: string,
 	subject: string,
-	htmlContent: string
+	htmlContent: string,
+	textContent: string
 ): Promise<SentMessageInfo> | undefined {
 	if (Environment.nodeEnv === "test") {
 		logger.debug(`Stubbed out SendEmail as env was test.`);
@@ -64,6 +65,7 @@ export function SendEmail(
 		to,
 		subject,
 		html: htmlContent,
+		text: textContent,
 		dkim: ServerConfig.EMAIL_CONFIG?.DKIM,
 	});
 }

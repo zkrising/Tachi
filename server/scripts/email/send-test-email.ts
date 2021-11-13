@@ -21,7 +21,8 @@ if (require.main === module) {
 		await SendEmail(
 			options.email,
 			"Hello World",
-			MainHTMLWrapper("Hello world! This is a test email for doing things.")
+			MainHTMLWrapper("Hello world! This is a test email for doing things."),
+			"Hello world! This is a test email for doing things."
 		);
 		logger.info(`Done.`);
 		process.exit(0);

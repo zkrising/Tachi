@@ -280,11 +280,9 @@ router.post(
 				email: req.body.email,
 			});
 
-			SendEmail(
-				req.body.email,
-				"Email Verification",
-				EmailFormatVerifyEmail(user!.username, resetEmailCode)
-			);
+			const { text, html } = EmailFormatVerifyEmail(user!.username, resetEmailCode);
+
+			SendEmail(req.body.email, "Email Verification", html, text);
 
 			return res.status(200).json({
 				success: true,
@@ -387,11 +385,10 @@ router.post("/resend-verify-email", prValidate({ email: "string" }), async (req,
 	}
 
 	// Send the email again.
-	SendEmail(
-		req.body.email,
-		"Email Verification",
-		EmailFormatVerifyEmail(user!.username, verifyInfo.code)
-	);
+
+	const { text, html } = EmailFormatVerifyEmail(user!.username, verifyInfo.code);
+
+	SendEmail(req.body.email, "Email Verification", html, text);
 });
 
 /**
@@ -461,11 +458,9 @@ router.post("/forgot-password", prValidate({ email: "string" }), async (req, res
 			createdOn: Date.now(),
 		});
 
-		SendEmail(
-			userPrivateInfo.email,
-			"Reset Password",
-			EmailFormatResetPassword(user.username, code, req.ip)
-		);
+		const { html, text } = EmailFormatResetPassword(user.username, code, req.ip);
+
+		SendEmail(userPrivateInfo.email, "Reset Password", html, text);
 	} else {
 		logger.info(
 			`Silently rejected password reset request for ${req.body.email}, as no user has this email.`

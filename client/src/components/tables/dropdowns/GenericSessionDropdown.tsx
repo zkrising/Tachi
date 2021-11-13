@@ -1,40 +1,40 @@
-import React, { useEffect, useMemo, useState } from "react";
+import DebugContent from "components/util/DebugContent";
+import Divider from "components/util/Divider";
+import HasDevModeOn from "components/util/HasDevModeOn";
 import Icon from "components/util/Icon";
+import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
+import deepmerge from "deepmerge";
+import React, { useEffect, useMemo, useState } from "react";
+import { useQuery } from "react-query";
+import {
+	ChartDocument,
+	FolderDocument,
+	Game,
+	GamePTConfig,
+	GetGamePTConfig,
+	Grades,
+	IDStrings,
+	integer,
+	Lamps,
+	ScoreDocument,
+	SessionScoreInfo,
+	SongDocument,
+	TableDocument,
+} from "tachi-common";
+import { SpecificSessionReturns } from "types/api-returns";
+import { APIFetchV1 } from "util/api";
+import { ChangeOpacity } from "util/color-opacity";
+import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
+import { PartialArrayRecordAssign } from "util/misc";
+import BMSDifficultyCell from "../cells/BMSDifficultyCell";
+import DifficultyCell from "../cells/DifficultyCell";
+import LampCell from "../cells/LampCell";
+import ScoreCell from "../cells/ScoreCell";
+import TitleCell from "../cells/TitleCell";
+import MiniTable from "../components/MiniTable";
 import { SessionDataset } from "../sessions/GenericSessionTable";
 import DropdownStructure from "./components/DropdownStructure";
-import { useQuery } from "react-query";
-import { APIFetchV1 } from "util/api";
-import { SpecificSessionReturns } from "types/api-returns";
-import Loading from "components/util/Loading";
-import DebugContent from "components/util/DebugContent";
-import { CreateChartMap, CreateChartIDMap, CreateSongMap, CreateScoreIDMap } from "util/data";
-import {
-	Lamps,
-	Grades,
-	ScoreDocument,
-	IDStrings,
-	GetGamePTConfig,
-	GamePTConfig,
-	integer,
-	SongDocument,
-	ChartDocument,
-	Game,
-	FolderDocument,
-	TableDocument,
-	SessionScoreInfo,
-} from "tachi-common";
-import { PartialArrayRecordAssign } from "util/misc";
-import MiniTable from "../components/MiniTable";
-import { ChangeOpacity } from "util/color-opacity";
-import TitleCell from "../cells/TitleCell";
-import DifficultyCell from "../cells/DifficultyCell";
-import Divider from "components/util/Divider";
-import ScoreCell from "../cells/ScoreCell";
-import deepmerge from "deepmerge";
-import HasDevModeOn from "components/util/HasDevModeOn";
-import LampCell from "../cells/LampCell";
-import BMSDifficultyCell from "../cells/BMSDifficultyCell";
 
 export default function GenericSessionDropdown({ data }: { data: SessionDataset[0] }) {
 	const { isLoading, error, data: sessionData } = useQuery(

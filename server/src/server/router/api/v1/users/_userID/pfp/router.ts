@@ -86,6 +86,8 @@ router.put(
 router.get("/", (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
+	logger.debug("User Info for /:userID/pfp request is ", user);
+
 	if (!user.customPfp) {
 		res.setHeader("Content-Type", "image/png");
 		return CDNRedirect(res, "/users/default/pfp");

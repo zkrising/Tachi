@@ -64,6 +64,9 @@ router.put(
 		}
 
 		if (updatePfp) {
+			if (req.session.tachi?.user) {
+				req.session.tachi.user.customPfp = true;
+			}
 			await db.users.update({ id: user.id }, { $set: { customPfp: true } });
 		}
 

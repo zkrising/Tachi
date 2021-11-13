@@ -66,6 +66,9 @@ router.put(
 		}
 
 		if (updateBanner) {
+			if (req.session.tachi?.user) {
+				req.session.tachi.user.customBanner = true;
+			}
 			await db.users.update({ id: user.id }, { $set: { customBanner: true } });
 		}
 

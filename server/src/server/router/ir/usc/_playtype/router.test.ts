@@ -715,5 +715,145 @@ t.test("POST /scores", (t) => {
 		t.end();
 	});
 
+	t.test("Should maintain separate orphan queues for the separate playtypes.", async (t) => {
+		await db["api-tokens"].insert([
+			{
+				userID: 2,
+				identifier: "token2",
+				permissions: { submit_score: true },
+				token: "token2",
+				fromAPIClient: null,
+			},
+			{
+				userID: 3,
+				identifier: "token3",
+				permissions: { submit_score: true },
+				token: "token3",
+				fromAPIClient: null,
+			},
+			{
+				userID: 4,
+				identifier: "token4",
+				permissions: { submit_score: true },
+				token: "token4",
+				fromAPIClient: null,
+			},
+		]);
+
+		await db.users.insert([
+			{
+				id: 2,
+				username: "foo",
+				usernameLowercase: "foo",
+			},
+			{
+				id: 3,
+				username: "bar",
+				usernameLowercase: "bar",
+			},
+			{
+				id: 4,
+				username: "baz",
+				usernameLowercase: "baz",
+			},
+		] as PublicUserDocument[]);
+
+		const res = await mockApi
+			.post("/ir/usc/Controller/scores")
+			.set("Authorization", "Bearer token")
+			.send(
+				deepmerge(validRequest, {
+					chart: {
+						chartHash: "NEW_CHART",
+					},
+				})
+			);
+
+		t.equal(res.body.statusCode, 22);
+
+		const res2 = await mockApi
+			.post("/ir/usc/Controller/scores")
+			.set("Authorization", "Bearer token2")
+			.send(
+				deepmerge(validRequest, {
+					chart: {
+						chartHash: "NEW_CHART",
+					},
+				})
+			);
+
+		t.equal(res2.body.statusCode, 22);
+
+		const orphanData = await db["orphan-chart-queue"].findOne({
+			"chartDoc.data.hashSHA1": "NEW_CHART",
+			idString: "usc:Controller",
+		});
+
+		t.strictSame(orphanData?.userIDs, [1, 2]);
+
+		const res3 = await mockApi
+			.post("/ir/usc/Keyboard/scores")
+			.set("Authorization", "Bearer token3")
+			.send(
+				deepmerge(validRequest, {
+					chart: {
+						chartHash: "NEW_CHART",
+					},
+				})
+			);
+
+		t.equal(res3.body.statusCode, 22);
+
+		const orphanData2 = await db["orphan-chart-queue"].findOne({
+			"chartDoc.data.hashSHA1": "NEW_CHART",
+			idString: "usc:Controller",
+		});
+
+		t.strictSame(
+			orphanData2?.userIDs,
+			[1, 2],
+			"Should not have added userID 3 to the list of userIDs."
+		);
+
+		const res4 = await mockApi
+			.post("/ir/usc/Controller/scores")
+			.set("Authorization", "Bearer token4")
+			.send(
+				deepmerge(validRequest, {
+					chart: {
+						chartHash: "NEW_CHART",
+					},
+				})
+			);
+
+		t.equal(res4.body.statusCode, 20);
+
+		const orphanData3 = await db["orphan-chart-queue"].findOne({
+			"chartDoc.data.hashSHA1": "NEW_CHART",
+			idString: "usc:Controller",
+		});
+
+		t.equal(orphanData3, null, "Should have removed the orphan chart from the database.");
+
+		const score = await db.scores.findOne({
+			game: "usc",
+			userID: 4,
+		});
+
+		t.hasStrict(score, {
+			scoreData: {
+				score: 9_000_000,
+				percent: 90,
+				lamp: "FAILED",
+			},
+			scoreMeta: {
+				noteMod: "MIRROR",
+				gaugeMod: "NORMAL",
+			},
+		});
+
+		t.end();
+	});
+
 	t.end();
 });

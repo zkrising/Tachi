@@ -105,7 +105,7 @@ export interface TachiServerConfig {
 			| {
 					TYPE: "S3_BUCKET";
 					ENDPOINT: string;
-					ACCESS_KEY: string;
+					ACCESS_KEY_ID: string;
 					SECRET_ACCESS_KEY: string;
 					BUCKET: string;
 					KEY_PREFIX?: string;
@@ -182,7 +182,7 @@ const err = p(config, {
 			{
 				TYPE: p.is("S3_BUCKET"),
 				ENDPOINT: "string",
-				ACCESS_KEY: "string",
+				ACCESS_KEY_ID: "string",
 				SECRET_ACCESS_KEY: "string",
 				BUCKET: "string",
 				KEY_PREFIX: "*string",

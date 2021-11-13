@@ -12,7 +12,7 @@ if (ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE === "S3_BUCKET") {
 	s3 = new S3Client({
 		endpoint: data.ENDPOINT,
 		credentials: {
-			accessKeyId: data.ACCESS_KEY,
+			accessKeyId: data.ACCESS_KEY_ID,
 			secretAccessKey: data.SECRET_ACCESS_KEY,
 		},
 	});

@@ -66,6 +66,24 @@ const KtchiDefaultClients: DefaultClients = [
 			"\t"
 		),
 	},
+	{
+		clientID: "CXChunitachi",
+		requestedPermissions: ["submit_score"],
+		name: "ChunItachi",
+		redirectUri: null,
+		webhookUri: null,
+		apiKeyFilename: "ChunItachi.ini",
+		apiKeyTemplate: `[general]
+showDebug = false
+extID = 0
+game = PUT_YOUR_GAME_HERE
+debug = true
+failOverLamp = true
+[kamaitachi]
+apiStatus = ${ServerConfig.OUR_URL}/api/v1/status
+apiEndpoint = ${ServerConfig.OUR_URL}/ir/direct-manual
+apikey = %%TACHI_KEY%%`,
+	},
 ];
 
 const BtchiDefaultClients: DefaultClients = [

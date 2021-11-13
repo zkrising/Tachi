@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const DeterministicCollectionSort = require("./deterministic-collection-sort");
+const crypto = require("crypto");
 
 function IterateCollections(cb) {
 	const main = path.join(__dirname, "../collections");
@@ -24,7 +25,12 @@ function MutateCollection(name, cb) {
 	DeterministicCollectionSort();
 }
 
+function CreateChartID() {
+	return crypto.randomBytes(20).toString("hex");
+}
+
 module.exports = {
 	IterateCollections,
 	MutateCollection,
+	CreateChartID,
 }

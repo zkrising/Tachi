@@ -20,7 +20,8 @@ export type IDStrings =
 	| "iidx:DP"
 	// | "popn:9B"
 	| "sdvx:Single"
-	| "usc:Single"
+	| "usc:Keyboard"
+	| "usc:Controller"
 	| "ddr:SP"
 	| "ddr:DP"
 	| "maimai:Single"
@@ -37,7 +38,8 @@ export interface IDStringToPlaytype {
 	"iidx:DP": "DP";
 	"popn:9B": "9B";
 	"sdvx:Single": "Single";
-	"usc:Single": "Single";
+	"usc:Keyboard": "Keyboard";
+	"usc:Controller": "Controller";
 	"ddr:SP": "SP";
 	"ddr:DP": "DP";
 	"maimai:Single": "Single";
@@ -55,7 +57,8 @@ export interface IDStringToGame {
 	"iidx:DP": "iidx";
 	"popn:9B": "popn";
 	"sdvx:Single": "sdvx";
-	"usc:Single": "usc";
+	"usc:Keyboard": "usc";
+	"usc:Controller": "usc";
 	"ddr:SP": "ddr";
 	"ddr:DP": "ddr";
 	"maimai:Single": "maimai";
@@ -71,7 +74,7 @@ export interface IDStringToGame {
 export interface GameToIDStrings {
 	iidx: "iidx:SP" | "iidx:DP";
 	sdvx: "sdvx:Single";
-	usc: "usc:Single";
+	usc: "usc:Keyboard" | "usc:Controller";
 	ddr: "ddr:SP" | "ddr:DP";
 	maimai: "maimai:Single";
 	jubeat: "jubeat:Single";
@@ -145,7 +148,7 @@ export interface Playtypes {
 	iidx: "SP" | "DP";
 	popn: "9B";
 	sdvx: "Single";
-	usc: "Single";
+	usc: "Keyboard" | "Controller";
 	ddr: "SP" | "DP";
 	maimai: "Single";
 	jubeat: "Single";
@@ -181,7 +184,8 @@ export interface Grades {
 	"iidx:DP": IIDXGrades;
 	"popn:9B": "E" | "D" | "C" | "B" | "A" | "AA" | "AAA" | "S";
 	"sdvx:Single": SDVXGrades;
-	"usc:Single": SDVXGrades;
+	"usc:Keyboard": SDVXGrades;
+	"usc:Controller": SDVXGrades;
 	"ddr:SP": DDRGrades;
 	"ddr:DP": DDRGrades;
 	"maimai:Single":
@@ -242,7 +246,8 @@ export interface Lamps {
 	// THIS ONE IS WRONG!
 	"popn:9B": "FAILED" | "CLEAR" | "FULL COMBO" | "PERFECT";
 	"sdvx:Single": SDVXLamps;
-	"usc:Single": SDVXLamps;
+	"usc:Keyboard": SDVXLamps;
+	"usc:Controller": SDVXLamps;
 	"ddr:SP": DDRLamps;
 	"ddr:DP": DDRLamps;
 	"maimai:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "ALL PERFECT" | "ALL PERFECT+";
@@ -264,7 +269,8 @@ export interface Difficulties {
 	"iidx:DP": `${`${IIDX2DXTraSets} ` | ""}${IIDXDPDifficulties}`;
 	"popn:9B": "Easy" | "Normal" | "Hyper" | "EX";
 	"sdvx:Single": "NOV" | "ADV" | "EXH" | "MXM" | "INF" | "GRV" | "HVN" | "VVD";
-	"usc:Single": "NOV" | "ADV" | "EXH" | "INF";
+	"usc:Controller": "NOV" | "ADV" | "EXH" | "INF";
+	"usc:Keyboard": "NOV" | "ADV" | "EXH" | "INF";
 	"ddr:SP": "BEGINNER" | "BASIC" | "DIFFICULT" | "EXPERT" | "CHALLENGE";
 	"ddr:DP": "BASIC" | "DIFFICULT" | "EXPERT" | "CHALLENGE";
 	"maimai:Single": "Easy" | "Basic" | "Advanced" | "Expert" | "Master" | "Re:Master";
@@ -468,7 +474,8 @@ export interface SessionCalculatedDataLookup {
 	"iidx:DP": "BPI" | "ktRating" | "ktLampRating";
 	"popn:9B": never; // @todo
 	"sdvx:Single": "VF6" | "ProfileVF6";
-	"usc:Single": "VF6" | "ProfileVF6";
+	"usc:Keyboard": "VF6" | "ProfileVF6";
+	"usc:Controller": "VF6" | "ProfileVF6";
 	"ddr:SP": "MFCP" | "ktRating";
 	"ddr:DP": "MFCP" | "ktRating";
 	"maimai:Single": "ktRating";
@@ -699,7 +706,8 @@ export interface UGSRatingsLookup {
 	"iidx:DP": "BPI" | "ktRating" | "ktLampRating";
 	"popn:9B": never; // @todo
 	"sdvx:Single": "VF6";
-	"usc:Single": "VF6";
+	"usc:Keyboard": "VF6";
+	"usc:Controller": "VF6";
 	"ddr:SP": "MFCP" | "ktRating";
 	"ddr:DP": "MFCP" | "ktRating";
 	"maimai:Single": "ktRating";
@@ -764,7 +772,8 @@ export interface GPTSupportedVersions {
 	"iidx:DP": SupportedIIDXVersions;
 	"popn:9B": never;
 	"sdvx:Single": "booth" | "inf" | "gw" | "heaven" | "vivid" | "konaste";
-	"usc:Single": never;
+	"usc:Controller": never;
+	"usc:Keyboard": never;
 	"ddr:SP": "a20";
 	"ddr:DP": "a20";
 	"maimai:Single": "finale";
@@ -802,7 +811,8 @@ interface ChartDocumentData {
 	"iidx:DP": CDDataIIDXSP;
 	"popn:9B": Record<string, never>;
 	"sdvx:Single": { inGameID: integer; arcChartID: string | null };
-	"usc:Single": { hashSHA1: string | string[]; isOfficial: boolean };
+	"usc:Keyboard": { hashSHA1: string | string[]; isOfficial: boolean };
+	"usc:Controller": { hashSHA1: string | string[]; isOfficial: boolean };
 	"ddr:SP": CDDataDDRSP;
 	"ddr:DP": CDDataDDRSP;
 	"maimai:Single": { maxPercent: number; inGameID: number; inGameStrID: string };
@@ -822,7 +832,8 @@ export interface GPTTierlists {
 	"bms:14K": "sgl-HC" | "sgl-EC";
 	"popn:9B": never;
 	"sdvx:Single": never;
-	"usc:Single": never;
+	"usc:Keyboard": never;
+	"usc:Controller": never;
 	"ddr:SP": never;
 	"ddr:DP": never;
 	"maimai:Single": never;
@@ -946,15 +957,18 @@ interface BMS7KScoreMeta {
 	client: "LR2" | "lr2oraja" | null;
 }
 
+interface USCScoreMeta {
+	noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" | null;
+	gaugeMod: "NORMAL" | "HARD" | null;
+}
+
 interface ScoreMetaLookup {
 	"iidx:SP": IIDXSPScoreMeta;
 	"iidx:DP": IIDXSPScoreMeta & { random: { left: RanOptions; right: RanOptions } | null };
 	"popn:9B": Record<string, never>;
 	"sdvx:Single": { inSkillAnalyser: boolean | null };
-	"usc:Single": {
-		noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" | null;
-		gaugeMod: "NORMAL" | "HARD" | null;
-	};
+	"usc:Controller": USCScoreMeta;
+	"usc:Keyboard": USCScoreMeta;
 	"ddr:SP": Record<string, never>;
 	"ddr:DP": Record<string, never>;
 	"maimai:Single": Record<string, never>;
@@ -997,6 +1011,10 @@ type BMSHitMeta = BASE_VALID_HIT_META &
 		gauge: number | null;
 	};
 
+export type USCHitMeta = BASE_VALID_HIT_META & {
+	gauge: number | null;
+};
+
 export interface HitMetaLookup {
 	"iidx:SP": IIDXHitMeta;
 	"iidx:DP": IIDXHitMeta;
@@ -1004,9 +1022,8 @@ export interface HitMetaLookup {
 	"sdvx:Single": BASE_VALID_HIT_META & {
 		gauge: number | null;
 	};
-	"usc:Single": BASE_VALID_HIT_META & {
-		gauge: number | null;
-	};
+	"usc:Controller": USCHitMeta;
+	"usc:Keyboard": USCHitMeta;
 	"ddr:SP": BASE_VALID_HIT_META;
 	"ddr:DP": BASE_VALID_HIT_META;
 	"maimai:Single": BASE_VALID_HIT_META;
@@ -1031,7 +1048,8 @@ export interface JudgementLookup {
 	"iidx:DP": IIDXJudges;
 	"popn:9B": "cool" | "great" | "good" | "miss";
 	"sdvx:Single": SDVXJudges;
-	"usc:Single": SDVXJudges;
+	"usc:Controller": SDVXJudges;
+	"usc:Keyboard": SDVXJudges;
 	"ddr:SP": DDRJudges;
 	"ddr:DP": DDRJudges;
 	"maimai:Single": "perfect" | "great" | "good" | "miss";
@@ -1049,7 +1067,8 @@ export interface ScoreCalculatedDataLookup {
 	"iidx:DP": "BPI" | "ktRating" | "ktLampRating";
 	// "popn:9B": never; // @todo
 	"sdvx:Single": "VF6";
-	"usc:Single": "VF6";
+	"usc:Keyboard": "VF6";
+	"usc:Controller": "VF6";
 	"ddr:SP": "MFCP" | "ktRating";
 	"ddr:DP": "MFCP" | "ktRating";
 	"maimai:Single": "ktRating";
@@ -1288,7 +1307,8 @@ export interface UGPTSpecificPreferences {
 	"iidx:DP": { display2DXTra: boolean };
 	"popn:9B": Record<string, never>;
 	"sdvx:Single": Record<string, never>;
-	"usc:Single": Record<string, never>;
+	"usc:Controller": Record<string, never>;
+	"usc:Keyboard": Record<string, never>;
 	"ddr:SP": Record<string, never>;
 	"ddr:DP": Record<string, never>;
 	"maimai:Single": Record<string, never>;

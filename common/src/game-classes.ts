@@ -214,7 +214,8 @@ export interface GameClassSets {
 	"iidx:DP": "dan";
 	"popn:9B": never;
 	"sdvx:Single": "dan" | "vfClass";
-	"usc:Single": never;
+	"usc:Keyboard": never;
+	"usc:Controller": never;
 	"ddr:SP": "dan";
 	"ddr:DP": "dan";
 	"maimai:Single": never;

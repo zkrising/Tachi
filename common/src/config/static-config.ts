@@ -55,7 +55,8 @@ export const allIDStrings: IDStrings[] = [
 	"maimai:Single",
 	"museca:Single",
 	"sdvx:Single",
-	"usc:Single",
+	"usc:Controller",
+	"usc:Keyboard",
 ];
 
 export const allSupportedGames: Game[] = [
@@ -146,5 +147,6 @@ export const PrettyVersions: Versions = {
 		vivid: "VIVID WAVE",
 		konaste: "Konaste",
 	},
-	"usc:Single": {},
+	"usc:Keyboard": {},
+	"usc:Controller": {},
 };

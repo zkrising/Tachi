@@ -187,10 +187,10 @@ const GAME_CONFIGS: GameConfigs = {
 		validPlaytypes: ["Single"],
 	},
 	usc: {
-		defaultPlaytype: "Single",
+		defaultPlaytype: "Controller",
 		name: "USC",
 		internalName: "usc",
-		validPlaytypes: ["Single"],
+		validPlaytypes: ["Controller", "Keyboard"],
 	},
 };
 
@@ -705,8 +705,83 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		tierlists: [],
 		tierlistDescriptions: {},
 	},
-	"usc:Single": {
-		idString: "usc:Single",
+	"usc:Controller": {
+		idString: "usc:Controller",
+		percentMax: 100,
+
+		defaultScoreRatingAlg: "VF6",
+		defaultSessionRatingAlg: "ProfileVF6",
+		defaultProfileRatingAlg: "VF6",
+
+		scoreRatingAlgs: ["VF6"],
+		sessionRatingAlgs: ["ProfileVF6", "VF6"],
+		profileRatingAlgs: ["VF6"],
+
+		scoreRatingAlgFormatters: {
+			VF6: (v) => v.toFixed(3),
+		},
+		profileRatingAlgFormatters: {
+			VF6: (v) => v.toFixed(3),
+		},
+		sessionRatingAlgFormatters: {
+			VF6: (v) => v.toFixed(3),
+			ProfileVF6: (v) => v.toFixed(3),
+		},
+
+		difficulties: ["NOV", "ADV", "EXH", "INF"],
+		shortDifficulties: {}, // all fine
+		defaultDifficulty: "EXH",
+		difficultyColours: {
+			NOV: COLOUR_SET.purple, // colour set dark purple
+			ADV: COLOUR_SET.vibrantYellow,
+			EXH: COLOUR_SET.red,
+			INF: COLOUR_SET.vibrantPink,
+		},
+
+		grades: ["D", "C", "B", "A", "A+", "AA", "AA+", "AAA", "AAA+", "S", "PUC"],
+		gradeColours: {
+			D: COLOUR_SET.gray,
+			C: COLOUR_SET.red,
+			B: COLOUR_SET.maroon,
+			A: COLOUR_SET.paleBlue,
+			"A+": COLOUR_SET.blue,
+			AA: COLOUR_SET.paleGreen,
+			"AA+": COLOUR_SET.green,
+			AAA: COLOUR_SET.gold,
+			"AAA+": COLOUR_SET.vibrantYellow,
+			S: COLOUR_SET.teal,
+			PUC: COLOUR_SET.pink,
+		},
+		clearGrade: "A",
+		gradeBoundaries: [0, 70, 80, 87, 90, 93, 95, 97, 98, 99, 100],
+
+		lamps: ["FAILED", "CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"],
+		lampColours: {
+			FAILED: COLOUR_SET.red,
+			CLEAR: COLOUR_SET.green,
+			"EXCESSIVE CLEAR": COLOUR_SET.orange,
+			"ULTIMATE CHAIN": COLOUR_SET.teal,
+			"PERFECT ULTIMATE CHAIN": COLOUR_SET.gold,
+		},
+		clearLamp: "CLEAR",
+
+		classHumanisedFormat: {},
+
+		supportsESD: false,
+		judgements: ["critical", "near", "miss"],
+
+		scoreBucket: "grade",
+
+		currentLatestVersion: null,
+		currentLocalVersion: null,
+		currentGameOmniVersion: null,
+		supportedVersions: [],
+
+		tierlists: [],
+		tierlistDescriptions: {},
+	},
+	"usc:Keyboard": {
+		idString: "usc:Keyboard",
 		percentMax: 100,
 
 		defaultScoreRatingAlg: "VF6",

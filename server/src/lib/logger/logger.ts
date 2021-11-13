@@ -242,7 +242,10 @@ export function ChangeRootLogLevel(
 }
 
 export function GetLogLevel() {
-	return tports[0].level;
+	return (
+		tports.map((e) => e.level).find((e) => typeof e === "string") ??
+		ServerConfig.LOGGER_CONFIG.LOG_LEVEL
+	);
 }
 
 export const Transports = tports;

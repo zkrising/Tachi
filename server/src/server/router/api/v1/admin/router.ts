@@ -95,7 +95,7 @@ router.post(
 
 		return res.status(200).json({
 			success: true,
-			description: `Changed log level from ${logLevel} to ${req.body.level}.`,
+			description: `Changed log level from ${logLevel} to ${req.body.logLevel}.`,
 			body: {},
 		});
 	}

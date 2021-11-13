@@ -4,7 +4,7 @@
         "chartID": "USC_CHART_ID",
         "difficulty": "NOV",
         "songID": 1,
-        "playtype": "Single",
+        "playtype": "Controller",
         "levelNum": 1,
         "level": "1",
         "flags": {

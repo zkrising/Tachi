@@ -19,6 +19,7 @@ import {
 	ImportDocument,
 	PBScoreDocument,
 	SuccessfulAPIResponse,
+	Playtypes,
 } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
 import { GetBlacklist } from "utils/queries/blacklist";
@@ -30,7 +31,6 @@ import {
 	TachiScoreToServerScore,
 	USCChartIndexToDiff,
 } from "./usc";
-
 const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
@@ -81,6 +81,17 @@ const ValidateUSCRequest: RequestHandler = async (req, res, next) => {
 	return next();
 };
 
+router.use((req, res, next) => {
+	if (req.params.playtype !== "Keyboard" && req.params.playtype !== "Controller") {
+		return res.status(400).json({
+			success: false,
+			description: "Invalid playtype. Expected Keyboard or Controller.",
+		});
+	}
+
+	return next();
+});
+
 router.use(ValidateUSCRequest);
 // This is an implementation of the USCIR spec as per https://uscir.readthedocs.io.
 // This specification always returns 200 OK, regardless of whether the result was okay
@@ -105,10 +116,15 @@ router.get("/", (req, res) =>
 );
 
 const RetrieveChart: RequestHandler = async (req, res, next) => {
-	const chart = await db.charts.usc.findOne({ "data.hashSHA1": req.params.chartHash });
+	const chart = await db.charts.usc.findOne({
+		"data.hashSHA1": req.params.chartHash,
+		playtype: req.params.playtype as Playtypes["usc"],
+	});
 
 	AssignToReqTachiData(req, {
-		uscChartDoc: (chart ?? undefined) as ChartDocument<"usc:Single"> | undefined,
+		uscChartDoc: (chart ?? undefined) as
+			| ChartDocument<"usc:Controller" | "usc:Keyboard">
+			| undefined,
 	});
 
 	return next();
@@ -157,7 +173,7 @@ router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
 	const serverRecord = (await db["personal-bests"].findOne({
 		chartID: chart.chartID,
 		"rankingData.rank": 1,
-	})) as PBScoreDocument<"usc:Single"> | null;
+	})) as PBScoreDocument<"usc:Controller" | "usc:Keyboard"> | null;
 
 	if (!serverRecord) {
 		return res.status(200).json({
@@ -231,7 +247,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
 			},
 			limit: n,
 		}
-	)) as PBScoreDocument<"usc:Single">[];
+	)) as PBScoreDocument<"usc:Controller" | "usc:Keyboard">[];
 
 	const serverScores = await Promise.all(bestScores.map(TachiScoreToServerScore));
 
@@ -259,6 +275,8 @@ const PR_USCIRChartDoc = {
  * @name POST /ir/usc/:playtype/scores
  */
 router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
+	const playtype = req.params.playtype as Playtypes["usc"];
+
 	const chartErr = p(
 		req.body.chart,
 		PR_USCIRChartDoc,
@@ -280,21 +298,22 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 
 	let chartDoc = (await db.charts.usc.findOne({
 		"data.hashSHA1": uscChart.chartHash,
-	})) as ChartDocument<"usc:Single"> | null;
+		playtype,
+	})) as ChartDocument<"usc:Controller" | "usc:Keyboard"> | null;
 
 	// If the chart doesn't exist, call HandleOrphanQueue.
 	// If this chart has never been seen before, orphan it.
 	// If this chart is already orphaned, increase its unique player
 	// playcount.
 	if (!chartDoc) {
-		const { song, chart } = ConvertUSCChart(uscChart);
+		const { song, chart } = ConvertUSCChart(uscChart, playtype);
 
 		const uscChartName = `${uscChart.artist} - ${uscChart.title} (${USCChartIndexToDiff(
 			uscChart.difficulty
 		)})`;
 
 		chartDoc = await HandleOrphanQueue(
-			"usc:Single",
+			`usc:${playtype}` as const,
 			"usc",
 			chart,
 			song,
@@ -310,6 +329,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 			const blacklist = await GetBlacklist();
 			const scoresToDeorphan = await db["orphan-scores"].find({
 				"context.chartHash": chartDoc.data.hashSHA1,
+				"context.playtype": playtype,
 			});
 
 			await Promise.all(
@@ -323,6 +343,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	const importRes = await ExpressWrappedScoreImportMain(userID, false, "ir/usc", [
 		req.body,
 		uscChart.chartHash,
+		playtype,
 	]);
 
 	// If this was an orphan chart request, return ACCEPTED,
@@ -391,7 +412,6 @@ router.post(
 
 		const correspondingScore = await db.scores.findOne({
 			userID: req[SYMBOL_TachiAPIAuth]!.userID!,
-			game: "usc",
 			scoreID: req.body.identifier,
 		});
 

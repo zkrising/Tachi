@@ -10,6 +10,7 @@ t.test("#ParseIRUSC", (t) => {
 		const res = ParseIRUSC(
 			{ score: uscScore } as unknown as Record<string, unknown>,
 			uscChart.data.hashSHA1 as string,
+			"Controller",
 			logger
 		);
 
@@ -25,7 +26,7 @@ t.test("#ParseIRUSC", (t) => {
 	});
 
 	t.test("Should reject empty bodies", (t) => {
-		t.throws(() => ParseIRUSC({}, uscChart.data.hashSHA1 as string, logger), {
+		t.throws(() => ParseIRUSC({}, uscChart.data.hashSHA1 as string, "Controller", logger), {
 			statusCode: 400,
 			message: /invalid usc score/iu,
 		});

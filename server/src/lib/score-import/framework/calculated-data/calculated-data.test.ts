@@ -43,13 +43,26 @@ t.test("#CreateCalculatedData", async (t) => {
 	);
 
 	const uscRes = await CreateCalculatedData(
-		{ game: "usc", playtype: "Single" } as ScoreDocument,
-		{ data: { isOfficial: false }, playtype: "Single" } as ChartDocument,
+		{ game: "usc", playtype: "Controller" } as ScoreDocument,
+		{ data: { isOfficial: false }, playtype: "Controller" } as ChartDocument,
 		null,
 		logger
 	);
 
 	t.strictSame(uscRes, { VF6: null }, "Should return null if chart was not an official.");
+
+	const uscKbRes = await CreateCalculatedData(
+		{ game: "usc", playtype: "Keyboard" } as ScoreDocument,
+		{ data: { isOfficial: false }, playtype: "Keyboard" } as ChartDocument,
+		null,
+		logger
+	);
+
+	t.strictSame(
+		uscKbRes,
+		{ VF6: null },
+		"Should return null if chart was not an official (Keyboard)."
+	);
 
 	t.end();
 });
@@ -318,10 +331,10 @@ t.test("#CalculateDataForGamePT", (t) => {
 		t.end();
 	});
 
-	t.test("usc:Single", async (t) => {
+	t.test("usc:Controller", async (t) => {
 		const res = await CalculateDataForGamePT(
 			"usc",
-			"Single",
+			"Controller",
 			Testing511SPA,
 			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
 			null,
@@ -333,12 +346,32 @@ t.test("#CalculateDataForGamePT", (t) => {
 			{
 				VF6: "?number",
 			},
-			"Response should contain nulled keys for usc:Single"
+			"Response should contain nulled keys for usc:Controller"
 		);
 
 		t.end();
 	});
 
+	t.test("usc:Keyboard", async (t) => {
+		const res = await CalculateDataForGamePT(
+			"usc",
+			"Keyboard",
+			Testing511SPA,
+			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+			null,
+			logger
+		);
+
+		prAssert(
+			res,
+			{
+				VF6: "?number",
+			},
+			"Response should contain nulled keys for usc:Keyboard"
+		);
+
+		t.end();
+	});
 	// t.test("jubeat:Single", async (t) => {
 	// 	const res = await CalculateDataForGamePT(
 	// 		"jubeat",

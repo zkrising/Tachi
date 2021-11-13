@@ -20,8 +20,8 @@ import {
 } from "lib/constants/usc-ir";
 import { DryScore } from "lib/score-import/framework/common/types";
 import { BarbatosScore } from "lib/score-import/import-types/ir/barbatos/types";
-import { USCClientScore } from "../server/router/ir/usc/types";
 import { KsHookSV3CScore } from "lib/score-import/import-types/ir/kshook-sv3c/types";
+import { USCClientScore } from "server/router/ir/usc/_playtype/types";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
 
@@ -200,12 +200,12 @@ export const barbScore: BarbatosScore = {
 	song_id: 1,
 };
 
-export const uscChart: ChartDocument<"usc:Single"> = {
+export const uscChart: ChartDocument<"usc:Controller" | "usc:Keyboard"> = {
 	rgcID: null,
 	chartID: "USC_CHART_ID",
 	difficulty: "NOV",
 	songID: 1,
-	playtype: "Single",
+	playtype: "Keyboard",
 	levelNum: 1,
 	level: "1",
 	data: {

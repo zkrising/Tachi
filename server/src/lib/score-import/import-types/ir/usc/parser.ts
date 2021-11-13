@@ -1,10 +1,11 @@
 import { KtLogger } from "lib/logger/logger";
 import p, { PrudenceSchema } from "prudence";
-import { USCClientScore } from "server/router/ir/usc/types";
 import { FormatPrError } from "utils/prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturns } from "../../common/types";
 import { IRUSCContext } from "./types";
+import { Playtypes } from "tachi-common";
+import { USCClientScore } from "server/router/ir/usc/_playtype/types";
 
 const PR_USCIRScore: PrudenceSchema = {
 	score: p.isBoundedInteger(0, 10_000_000),
@@ -24,6 +25,7 @@ const PR_USCIRScore: PrudenceSchema = {
 export function ParseIRUSC(
 	body: Record<string, unknown>,
 	chartHash: string,
+	playtype: Playtypes["usc"],
 	logger: KtLogger
 ): ParserFunctionReturns<USCClientScore, IRUSCContext> {
 	const err = p(
@@ -40,6 +42,7 @@ export function ParseIRUSC(
 	return {
 		context: {
 			chartHash,
+			playtype,
 		},
 		game: "usc",
 		iterable: [body.score] as USCClientScore[],

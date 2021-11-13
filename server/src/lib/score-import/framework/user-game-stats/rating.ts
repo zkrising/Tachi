@@ -87,7 +87,10 @@ const RatingFunctions: RatingFunctions = {
 		}),
 	},
 	usc: {
-		Single: async (g, p, u) => ({
+		Keyboard: async (g, p, u) => ({
+			VF6: await LazySumN("VF6", 50)(g, p, u),
+		}),
+		Controller: async (g, p, u) => ({
 			VF6: await LazySumN("VF6", 50)(g, p, u),
 		}),
 	},

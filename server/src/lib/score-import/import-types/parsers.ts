@@ -5,7 +5,6 @@ import { ParseEagSDVX } from "./api/eag-sdvx/parser";
 import { ParseFloIIDX } from "./api/flo-iidx/parser";
 import { ParseFloSDVX } from "./api/flo-sdvx/parser";
 import { ParseMinSDVX } from "./api/min-sdvx/parser";
-import { ParseBatchManualFromObject } from "./common/batch-manual/parser";
 import ParseBatchManual from "./file/batch-manual/parser";
 import ParseEamusementIIDXCSV from "./file/eamusement-iidx-csv/parser";
 import { ParseMerIIDX } from "./file/mer-iidx/parser";

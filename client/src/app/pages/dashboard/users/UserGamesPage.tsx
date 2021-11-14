@@ -82,11 +82,11 @@ function GamesInfo({ ugs, reqUser }: { ugs: UserGameStats[]; reqUser: PublicUser
 				// to do sizing like [12] or [6][6] instead of [3][3][3]
 				let mdSize = "6";
 				let lgSize = "4";
-				if (ugs.length - i <= ugs.length % 3) {
+				if (ugs.length - i <= ugs.length % 3 && ugs.length > 3) {
 					lgSize = (12 / (ugs.length % 3)).toString();
 				}
 
-				if (ugs.length - i <= ugs.length % 2) {
+				if (ugs.length - i <= ugs.length % 2 && ugs.length > 2) {
 					mdSize = (12 / (ugs.length % 2)).toString();
 				}
 

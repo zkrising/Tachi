@@ -1926,7 +1926,9 @@
 			"genre": "HYPER EUROBEAT",
 			"displayVersion": "5"
 		},
-		"altTitles": [],
+		"altTitles": [
+			"LOVE AGAIN TONIGHT〜for Mellisa mix〜"
+		],
 		"searchTerms": [
 			"LOVE AGAIN TONIGHT"
 		]
@@ -12714,7 +12716,9 @@
 		},
 		"altTitles": [],
 		"searchTerms": [
-			"praludium"
+			"praludium",
+			"Praludium",
+			"Pr?ludium"
 		]
 	},
 	{
@@ -20101,20 +20105,6 @@
 		"searchTerms": []
 	},
 	{
-		"title": "Praludium",
-		"artist": "Yuko Takahashi",
-		"id": 1819,
-		"data": {
-			"genre": "CLASSICAL PIANO",
-			"displayVersion": "20"
-		},
-		"altTitles": [
-			"Präludium",
-			"Pr?ludium"
-		],
-		"searchTerms": []
-	},
-	{
 		"title": "Spinning Around",
 		"artist": "Dirty Androids",
 		"id": 1820,
@@ -22036,7 +22026,7 @@
 		"searchTerms": []
 	},
 	{
-		"title": "smooooch・∀・ (Snails House Remix) ",
+		"title": "smooooch・∀・ (Snails House Remix)",
 		"artist": "Remixed by Snails House",
 		"id": 1990,
 		"data": {
@@ -22044,7 +22034,9 @@
 			"displayVersion": "28"
 		},
 		"altTitles": [
-			"smooooch・∀・ (Snail's House Remix)"
+			"smooooch・∀・ (Snail's House Remix)",
+			"smooooch・∀・ (Snail's House Remix) ",
+			"smooooch・∀・ (Snails House Remix) "
 		],
 		"searchTerms": []
 	},

@@ -694,8 +694,8 @@ export interface PublicUserDocument extends MongoDBDocument {
 	lastSeen: integer;
 	about: string;
 	status: string | null;
-	customPfp: boolean;
-	customBanner: boolean;
+	customPfpLocation: string | null;
+	customBannerLocation: string | null;
 	clan: string | null; // todo
 	badges: UserBadges[];
 	authLevel: UserAuthLevels;

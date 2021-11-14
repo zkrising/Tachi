@@ -13401,7 +13401,7 @@
 		"type": "charts",
 		"data": {
 			"level": "1",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13414,7 +13414,7 @@
 		"type": "charts",
 		"data": {
 			"level": "1",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13427,7 +13427,7 @@
 		"type": "charts",
 		"data": {
 			"level": "2",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13440,7 +13440,7 @@
 		"type": "charts",
 		"data": {
 			"level": "2",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13453,7 +13453,7 @@
 		"type": "charts",
 		"data": {
 			"level": "3",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13466,7 +13466,7 @@
 		"type": "charts",
 		"data": {
 			"level": "3",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13479,7 +13479,7 @@
 		"type": "charts",
 		"data": {
 			"level": "4",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13492,7 +13492,7 @@
 		"type": "charts",
 		"data": {
 			"level": "4",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13505,7 +13505,7 @@
 		"type": "charts",
 		"data": {
 			"level": "5",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13518,7 +13518,7 @@
 		"type": "charts",
 		"data": {
 			"level": "5",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13531,7 +13531,7 @@
 		"type": "charts",
 		"data": {
 			"level": "6",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13544,7 +13544,7 @@
 		"type": "charts",
 		"data": {
 			"level": "6",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13557,7 +13557,7 @@
 		"type": "charts",
 		"data": {
 			"level": "7",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13570,7 +13570,7 @@
 		"type": "charts",
 		"data": {
 			"level": "7",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13583,7 +13583,7 @@
 		"type": "charts",
 		"data": {
 			"level": "8",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13596,7 +13596,7 @@
 		"type": "charts",
 		"data": {
 			"level": "8",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13609,7 +13609,7 @@
 		"type": "charts",
 		"data": {
 			"level": "9",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13622,7 +13622,7 @@
 		"type": "charts",
 		"data": {
 			"level": "9",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13635,7 +13635,7 @@
 		"type": "charts",
 		"data": {
 			"level": "10",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13648,7 +13648,7 @@
 		"type": "charts",
 		"data": {
 			"level": "10",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13661,7 +13661,7 @@
 		"type": "charts",
 		"data": {
 			"level": "11",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13674,7 +13674,7 @@
 		"type": "charts",
 		"data": {
 			"level": "11",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13687,7 +13687,7 @@
 		"type": "charts",
 		"data": {
 			"level": "12",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13700,7 +13700,7 @@
 		"type": "charts",
 		"data": {
 			"level": "12",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13713,7 +13713,7 @@
 		"type": "charts",
 		"data": {
 			"level": "13",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13726,7 +13726,7 @@
 		"type": "charts",
 		"data": {
 			"level": "13",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13739,7 +13739,7 @@
 		"type": "charts",
 		"data": {
 			"level": "14",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13752,7 +13752,7 @@
 		"type": "charts",
 		"data": {
 			"level": "14",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13765,7 +13765,7 @@
 		"type": "charts",
 		"data": {
 			"level": "15",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13778,7 +13778,7 @@
 		"type": "charts",
 		"data": {
 			"level": "15",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13791,7 +13791,7 @@
 		"type": "charts",
 		"data": {
 			"level": "16",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13804,7 +13804,7 @@
 		"type": "charts",
 		"data": {
 			"level": "16",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13817,7 +13817,7 @@
 		"type": "charts",
 		"data": {
 			"level": "17",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13830,7 +13830,7 @@
 		"type": "charts",
 		"data": {
 			"level": "17",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13843,7 +13843,7 @@
 		"type": "charts",
 		"data": {
 			"level": "18",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13856,7 +13856,7 @@
 		"type": "charts",
 		"data": {
 			"level": "18",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13869,7 +13869,7 @@
 		"type": "charts",
 		"data": {
 			"level": "19",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13882,7 +13882,7 @@
 		"type": "charts",
 		"data": {
 			"level": "19",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13895,7 +13895,7 @@
 		"type": "charts",
 		"data": {
 			"level": "20",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []
@@ -13908,7 +13908,7 @@
 		"type": "charts",
 		"data": {
 			"level": "20",
-			"data.isOfficial": true
+			"data¬isOfficial": true
 		},
 		"inactive": false,
 		"searchTerms": []

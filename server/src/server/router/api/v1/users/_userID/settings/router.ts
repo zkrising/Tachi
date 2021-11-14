@@ -42,6 +42,8 @@ router.get("/", async (req, res) => {
  *
  * @param invisible - Whether to set the user to invisible or not.
  * @param developerMode - Whether to display developer specific information in the WebUI.
+ * @param advancedMode - Whether to display more advanced options in the WebUI.
+ * @param contentiousContent - Whether to display slightly inappropriate splash messages.
  *
  * @name PATCH /api/v1/users/:userID/settings
  */
@@ -52,6 +54,7 @@ router.patch(
 		invisible: "*boolean",
 		developerMode: "*boolean",
 		contentiousContent: "*boolean",
+		advancedMode: "*boolean",
 	}),
 	async (req, res) => {
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
@@ -60,6 +63,7 @@ router.patch(
 			invisible: req.body.invisible,
 			developerMode: req.body.developerMode,
 			contentiousContent: req.body.contentiousContent,
+			advancedMode: req.body.advancedMode,
 		};
 
 		DeleteUndefinedProps(preferences);

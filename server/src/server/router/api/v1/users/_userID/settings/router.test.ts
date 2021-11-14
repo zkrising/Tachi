@@ -17,6 +17,8 @@ t.test("GET /api/v1/users/:userID/settings", (t) => {
 			preferences: {
 				invisible: false,
 				developerMode: true,
+				advancedMode: false,
+				contentiousContent: false,
 			},
 		});
 
@@ -42,6 +44,8 @@ t.test("PATCH /api/v1/users/:userID/settings", async (t) => {
 			preferences: {
 				invisible: true,
 				developerMode: false,
+				advancedMode: false,
+				contentiousContent: false,
 			},
 		});
 
@@ -52,6 +56,8 @@ t.test("PATCH /api/v1/users/:userID/settings", async (t) => {
 			preferences: {
 				invisible: true,
 				developerMode: false,
+				advancedMode: false,
+				contentiousContent: false,
 			},
 		});
 
@@ -72,6 +78,8 @@ t.test("PATCH /api/v1/users/:userID/settings", async (t) => {
 				preferences: {
 					invisible: false,
 					developerMode: true,
+					advancedMode: false,
+					contentiousContent: false,
 				},
 			},
 			"User Settings should be unmodified."

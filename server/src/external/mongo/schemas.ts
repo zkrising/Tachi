@@ -521,6 +521,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		preferences: {
 			invisible: "boolean",
 			developerMode: "boolean",
+			advancedMode: "boolean",
 			contentiousContent: "boolean",
 		},
 	}),

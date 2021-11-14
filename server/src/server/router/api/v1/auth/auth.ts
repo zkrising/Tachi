@@ -78,6 +78,7 @@ export async function AddNewInvite(user: PublicUserDocument) {
 
 export const DEFAULT_USER_SETTINGS: UserSettings["preferences"] = {
 	developerMode: false,
+	advancedMode: false,
 	invisible: false,
 	contentiousContent: false,
 };

@@ -219,7 +219,8 @@
 			"displayVersion": "sub"
 		},
 		"altTitles": [
-			"Paranoia Max (Dirty Mix)"
+			"Paranoia Max (Dirty Mix)",
+			"PARANOIA MAX〜DIRTY MIX〜"
 		],
 		"searchTerms": [
 			"PARANOIA MAX-DIRTY MIX-"
@@ -9813,7 +9814,8 @@
 			"Raison d'&ecirc;tre〜交差する宿命〜",
 			"Raison d'être～交差する宿命～",
 			"Raison d'etre～交差する宿命～",
-			"Raison d'?tre～交差する宿命～"
+			"Raison d'?tre～交差する宿命～",
+			"Raison d'être〜交差する宿命〜"
 		],
 		"searchTerms": [
 			"RAISON D'ETRE-MALCHUT AND L'ERISIA-"
@@ -10047,7 +10049,9 @@
 			"genre": "E-DANCE POP",
 			"displayVersion": "17"
 		},
-		"altTitles": [],
+		"altTitles": [
+			"beatchic☆仮面〜好き、でいさせて〜"
+		],
 		"searchTerms": [
 			"BEATCHIC KAMEN"
 		]
@@ -10584,7 +10588,9 @@
 			"genre": "IDM",
 			"displayVersion": "18"
 		},
-		"altTitles": [],
+		"altTitles": [
+			"ZETA〜素数の世界と超越者〜"
+		],
 		"searchTerms": [
 			"ZETA"
 		]
@@ -21448,7 +21454,9 @@
 			"genre": "CYBER PUNK",
 			"displayVersion": "28"
 		},
-		"altTitles": [],
+		"altTitles": [
+			"Breakin' Rules"
+		],
 		"searchTerms": []
 	},
 	{
@@ -21459,7 +21467,9 @@
 			"genre": "THE 4TH",
 			"displayVersion": "28"
 		},
-		"altTitles": [],
+		"altTitles": [
+			"Hands Up feat. kradness BEMANI Sound Team \"Sota Fujimori\" Remix"
+		],
 		"searchTerms": []
 	},
 	{
@@ -21705,14 +21715,16 @@
 		"searchTerms": []
 	},
 	{
-		"title": "Dont Stop The Music feat. Kanae Asaba",
+		"title": "Don't Stop The Music feat. Kanae Asaba",
 		"artist": "Nhato",
 		"id": 1961,
 		"data": {
 			"genre": "ELECTRO FUNK",
 			"displayVersion": "28"
 		},
-		"altTitles": [],
+		"altTitles": [
+			"Dont Stop The Music feat. Kanae Asaba"
+		],
 		"searchTerms": []
 	},
 	{
@@ -22031,7 +22043,9 @@
 			"genre": "CANDY RAVE BASS",
 			"displayVersion": "28"
 		},
-		"altTitles": [],
+		"altTitles": [
+			"smooooch・∀・ (Snail's House Remix)"
+		],
 		"searchTerms": []
 	},
 	{

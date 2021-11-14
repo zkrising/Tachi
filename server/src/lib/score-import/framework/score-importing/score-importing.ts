@@ -136,6 +136,8 @@ export async function ImportIterableDatapoint<D, C>(
 				hideFromConsole: ["cfnReturn"],
 			});
 
+			logger.debug("Inserting orphan...", { cfnReturn });
+
 			const insertOrphan = await OrphanScore(
 				cfnReturn.importType,
 				userID,
@@ -147,6 +149,7 @@ export async function ImportIterableDatapoint<D, C>(
 			);
 
 			if (insertOrphan.success) {
+				logger.debug("Orphan inserted successfully.", { orphanID: insertOrphan.orphanID });
 				return {
 					success: false,
 					type: "KTDataNotFound",
@@ -158,6 +161,8 @@ export async function ImportIterableDatapoint<D, C>(
 					},
 				};
 			}
+
+			logger.debug(`Orphan already exists.`, { orphanID: insertOrphan.orphanID });
 
 			return {
 				success: false,

@@ -58,6 +58,8 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
 		timeInserted: Date.now(),
 	};
 
+	logger.debug(`Inserting orphanScoreDoc...`, orphanScoreDoc);
+
 	await db["orphan-scores"].insert(orphanScoreDoc);
 
 	return { success: true, orphanID };

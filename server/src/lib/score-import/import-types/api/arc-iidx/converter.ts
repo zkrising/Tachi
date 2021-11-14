@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { EmptyObject } from "utils/types";
 import { ConverterFunction } from "../../common/types";
 import p, { PrudenceSchema } from "prudence";
@@ -45,6 +46,12 @@ export const ConvertAPIArcIIDX: ConverterFunction<unknown, EmptyObject> = async 
 	if (err) {
 		throw new InvalidScoreFailure(FormatPrError(err, "Invalid ARC Score: "));
 	}
+
+	// Remove internal properties.
+	delete (data as any)._links;
+	delete (data as any)._etag;
+	// Most importantly, this one will cause crashes.
+	delete (data as any)._id;
 
 	// confirmed by Prudence above.
 	const score = data as ARCIIDXScore;
@@ -109,8 +116,4 @@ export function ResolveARCIIDXLamp(lamp: ARCIIDXScore["lamp"]): Lamps["iidx:SP" 
 		case "FULL_COMBO":
 			return "FULL COMBO";
 	}
-
-	// theoretically impossible, but a failsafe regardless.
-	/* istanbul ignore next */
-	throw new InvalidScoreFailure(`Invalid lamp ${lamp} - Could not resolve.`);
 }

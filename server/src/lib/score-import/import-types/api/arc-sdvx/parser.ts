@@ -24,7 +24,8 @@ export async function ParseArcSDVX(
 		iterable: TraverseKaiAPI(
 			ServerConfig.ARC_API_URL,
 			// VIVID WAVE.
-			`/api/v1/sdvx/5/player_bests?profile_id=${authDoc.accountID}`,
+			// The trailing slash is critical! ARC only allows /? queries.
+			`/api/v1/sdvx/5/player_bests/?profile_id=${authDoc.accountID}`,
 			ServerConfig.ARC_AUTH_TOKEN,
 			logger,
 			null,

@@ -84,15 +84,18 @@ async function GetCharts() {
 
 			allCharts.push(charts);
 		} catch (err) {
-			logger.error(song);
-			logger.error(err);
+			logger.error(err.message, { song, err });
 			failed.push(err);
 		}
 	}
 
-	const promises = songs.map((s: any) => DoStuff(s));
+	for (const song of songs) {
+		await DoStuff(song);
+	}
 
-	await Promise.all(promises);
+	// fast, but ARCs server cant keep up.
+	// const promises = songs.map((s: any) => DoStuff(s));
+	// await Promise.all(promises);
 
 	logger.info(failed);
 
@@ -171,7 +174,7 @@ async function MergeIDs() {
 
 			if (!tachiChart) {
 				logger.error(
-					`Could not find chart ${songTitle} ${playtype} ${difficulty} ${version}.`
+					`Could not find chart ${songTitle} ${playtype} ${difficulty} ${version} (SongID ${song.id}).`
 				);
 				continue;
 			}

@@ -75,7 +75,7 @@ const tachiPrintf = format.printf(
 	({ level, message, context = "tachi-root", timestamp, ...meta }) =>
 		`${timestamp}${replicaInfo} [${
 			Array.isArray(context) ? context.join(" | ") : context
-		}] ${level}: ${message}${formatExcessProperties(meta, true)}`
+		}] ${level}: ${message}${formatExcessProperties(meta)}`
 );
 
 const tachiConsolePrintf = format.printf(

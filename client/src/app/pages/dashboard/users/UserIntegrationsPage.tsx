@@ -1,7 +1,6 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import ApiError from "components/util/ApiError";
-import DebugContent from "components/util/DebugContent";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import FormInput from "components/util/FormInput";
@@ -16,12 +15,13 @@ import { Alert, Button, Col, Form, Modal, Row } from "react-bootstrap";
 import {
 	APIPermissions,
 	APITokenDocument,
-	TachiAPIClientDocument,
 	PublicUserDocument,
+	TachiAPIClientDocument,
 } from "tachi-common";
 import { SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
 import { allPermissions, DelayedPageReload } from "util/misc";
+import ARCIntegrationPage from "./ARCIntegrationPage";
 import FervidexIntegrationPage from "./FervidexIntegrationPage";
 
 export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
@@ -41,7 +41,7 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserD
 						{mode !== "btchi" && (
 							<SelectButton value={page} setValue={setPage} id="services">
 								<Icon type="network-wired" />
-								Integrations
+								Service Configuration
 							</SelectButton>
 						)}
 						<SelectButton value={page} setValue={setPage} id="api-keys">
@@ -57,7 +57,7 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserD
 				</Col>
 				<Col xs={12}>
 					{page === "services" ? (
-						<IntegrationsPage reqUser={reqUser} />
+						<ServicesPage reqUser={reqUser} />
 					) : page === "api-keys" ? (
 						<APIKeysPage reqUser={reqUser} />
 					) : (
@@ -605,7 +605,7 @@ function EditClientModal({
 	);
 }
 
-function IntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
+function ServicesPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	if (mode === "btchi") {
 		return (
 			<Row className="text-center">
@@ -619,7 +619,7 @@ function IntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	return (
 		<Row className="text-center justify-content-center">
 			<Col xs={12}>
-				<h3>Services</h3>
+				<h3>Service Configuration</h3>
 				<Muted>
 					Some services have had their names truncated to their first three characters for
 					privacy reasons.
@@ -637,7 +637,11 @@ function IntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
 				</div>
 				<Divider />
 			</Col>
-			{page === "fervidex" ? <FervidexIntegrationPage reqUser={reqUser} /> : <></>}
+			{page === "fervidex" ? (
+				<FervidexIntegrationPage reqUser={reqUser} />
+			) : (
+				<ARCIntegrationPage reqUser={reqUser} />
+			)}
 		</Row>
 	);
 }

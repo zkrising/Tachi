@@ -83,6 +83,7 @@ export const loggedInSplashes = [
 	"You wish you know who the hibble gibble gobbler was.",
 	`The current day is ${FormatDate(Date.now())}, probably.`,
 	"I have always thought of myself as an ambassador for the dance game community.",
+	"When lava pours out near the sea surface, tremendous volcanic explosions sometimes occur.",
 ];
 
 // Stuff that's bad for the kids, you know?

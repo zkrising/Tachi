@@ -12,6 +12,7 @@ import MerJSONPage from "app/pages/dashboard/import/MerJSONPage";
 import SSSXMLPage from "app/pages/dashboard/import/SSSXMLPage";
 import USCDBPage from "app/pages/dashboard/import/USCDBPage";
 import USCIRPage from "app/pages/dashboard/import/USCIRPage";
+import ARCImportPage from "components/imports/ARCImportPage";
 import KAIIntegrationPage from "components/imports/KAIIntegrationPage";
 import Divider from "components/util/Divider";
 import { UserContext } from "context/UserContext";
@@ -96,6 +97,14 @@ export default function ImportRoutes() {
 
 							<Route exact path="/dashboard/import/chunitachi">
 								<ChunitachiPage />
+							</Route>
+
+							<Route exact path="/dashboard/import/iidx-arc">
+								<ARCImportPage game="iidx" />
+							</Route>
+
+							<Route exact path="/dashboard/import/sdvx-arc">
+								<ARCImportPage game="sdvx" />
 							</Route>
 
 							<Route exact path="/dashboard/import/iidx-flo">

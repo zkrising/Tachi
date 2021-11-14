@@ -1,4 +1,5 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
+import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Card from "components/layout/page/Card";
 import LampCell from "components/tables/cells/LampCell";
 import ScoreCell from "components/tables/cells/ScoreCell";
@@ -31,6 +32,7 @@ import { PBDataset } from "types/tables";
 import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
 import { CreateUserMap } from "util/data";
 import { SelectRightChart } from "util/misc";
+import { FormatDate, MillisToSince } from "util/time";
 
 // This component forms a wrapper around the Real GPT Chart Page
 // which handles the case where activeChart == null.
@@ -319,6 +321,13 @@ function PlayCard({
 							<LampCell score={pb} />
 						</tr>
 					</MiniTable>
+					<div className="text-center">
+						<Muted>
+							{pb.timeAchieved
+								? MillisToSince(pb.timeAchieved) ?? ""
+								: "No Timestamp Info"}
+						</Muted>
+					</div>
 				</Col>
 			</Row>
 		</Card>

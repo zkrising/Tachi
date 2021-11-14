@@ -14,7 +14,6 @@ import { Button, Form, InputGroup } from "react-bootstrap";
 import { APIImportTypes, GetGameConfig, ImportDocument } from "tachi-common";
 import { ImportStates, NotStartedState } from "types/import";
 import { APIFetchV1 } from "util/api";
-import ImportInfo from "./ImportInfo";
 import ImportStateRenderer from "./ImportStateRenderer";
 
 interface Props {

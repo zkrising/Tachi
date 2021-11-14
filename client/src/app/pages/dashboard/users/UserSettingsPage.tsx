@@ -76,6 +76,7 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 			developerMode: settings?.preferences.developerMode ?? false,
 			invisible: settings?.preferences.invisible ?? false,
 			contentiousContent: settings?.preferences.contentiousContent ?? false,
+			advancedMode: settings?.preferences.advancedMode ?? false,
 		},
 		onSubmit: async values => {
 			const res = await APIFetchV1<UserSettings>(
@@ -109,13 +110,25 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 			<Form.Group>
 				<Form.Check
 					type="checkbox"
+					id="advancedMode"
+					checked={formik.values.developerMode}
+					onChange={formik.handleChange}
+					label="Advanced Mode"
+				/>
+				<Form.Text>
+					Enable advanced stuff, like being able to copy a tables contents into a CSV.
+				</Form.Text>
+			</Form.Group>
+			{/* <Form.Group>
+				<Form.Check
+					type="checkbox"
 					id="invisible"
 					checked={formik.values.invisible}
 					onChange={formik.handleChange}
 					label="Invisible Mode"
 				/>
 				<Form.Text>Hide your last seen status.</Form.Text>
-			</Form.Group>
+			</Form.Group> */}
 			<Form.Group>
 				<Form.Check
 					type="checkbox"
@@ -320,7 +333,7 @@ function FileUploadController({
 						DelayedPageReload();
 					}
 				}}
-				disabled={!reqUser.customPfp}
+				disabled={!reqUser.customPfpLocation}
 				className="mr-auto"
 				variant="secondary"
 			>

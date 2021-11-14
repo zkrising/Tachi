@@ -165,27 +165,29 @@ export default function TachiTable<D>({
 				<div className="row">
 					<div className="col-lg-4 align-self-center">{displayStr}</div>
 					<div className="d-none d-lg-flex col-lg-4 justify-content-center align-items-center">
-						<Button
-							onClick={async () => {
-								let data = dataset;
-								if (search !== "") {
-									data = filteredDataset;
-								}
+						{settings?.preferences.advancedMode && (
+							<Button
+								onClick={async () => {
+									let data = dataset;
+									if (search !== "") {
+										data = filteredDataset;
+									}
 
-								CopyToClipboard(
-									// Faulty types with json2csv.
-									// eslint-disable-next-line @typescript-eslint/no-explicit-any
-									await json2csvAsync(data as any, {
-										sortHeader: true,
-									})
-								);
-							}}
-							variant="outline-info"
-							className="w-50"
-						>
-							<Icon type="table" />
-							Export {search !== "" ? "Filtered Data" : "Table"} (CSV)
-						</Button>
+									CopyToClipboard(
+										// Faulty types with json2csv.
+										// eslint-disable-next-line @typescript-eslint/no-explicit-any
+										await json2csvAsync(data as any, {
+											sortHeader: true,
+										})
+									);
+								}}
+								variant="outline-info"
+								className="w-50"
+							>
+								<Icon type="table" />
+								Export {search !== "" ? "Filtered Data" : "Table"} (CSV)
+							</Button>
+						)}
 						{settings?.preferences.developerMode && (
 							<Button
 								className="ml-4 w-50"

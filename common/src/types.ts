@@ -1383,6 +1383,7 @@ export interface UserSettings {
 	preferences: {
 		invisible: boolean;
 		developerMode: boolean;
+		advancedMode: boolean;
 		contentiousContent: boolean;
 	};
 }

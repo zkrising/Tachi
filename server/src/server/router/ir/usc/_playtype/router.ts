@@ -410,9 +410,15 @@ router.post(
 			});
 		}
 
+		// The userID and game thing here are VALIDATION!
+		// The score MUST belong to the requesting user and
+		// MUST also be for USC.
+		// Otherwise, anyone could overwrite anyone elses
+		// score replays!
 		const correspondingScore = await db.scores.findOne({
 			userID: req[SYMBOL_TachiAPIAuth]!.userID!,
 			scoreID: req.body.identifier,
+			game: "usc",
 		});
 
 		if (!correspondingScore) {

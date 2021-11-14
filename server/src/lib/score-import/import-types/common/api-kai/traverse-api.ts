@@ -78,7 +78,7 @@ export async function* TraverseKaiAPI(
 			logger.error(`Recieved invalid response from ${url}.`, { err });
 			throw new ScoreImportFatalError(
 				500,
-				`Recieved invalid response from ${url}. Are they down?`
+				`Recieved invalid response from their API. Are they down?`
 			);
 		}
 
@@ -118,7 +118,7 @@ export async function* TraverseKaiAPI(
 			);
 			throw new ScoreImportFatalError(
 				500,
-				`Recieved invalid response from ${url}. Are they down?`
+				`Recieved invalid response from their API. Are they down?`
 			);
 		}
 
@@ -127,7 +127,7 @@ export async function* TraverseKaiAPI(
 
 			throw new ScoreImportFatalError(
 				500,
-				`Recieved no _links prop from ${url}. This is not an error with ${TachiConfig.NAME}.`
+				`Recieved no _links prop from their API. This is not an error with ${TachiConfig.NAME}.`
 			);
 		}
 
@@ -153,7 +153,10 @@ export async function* TraverseKaiAPI(
 				body: json,
 			});
 
-			throw new ScoreImportFatalError(500, `Recieved invalid _links._next prop from ${url}.`);
+			throw new ScoreImportFatalError(
+				500,
+				`Recieved invalid _links._next prop from their API.`
+			);
 		}
 
 		if (!Array.isArray(json._items)) {
@@ -161,7 +164,7 @@ export async function* TraverseKaiAPI(
 				body: json,
 			});
 
-			throw new ScoreImportFatalError(500, `Recieved invalid _items from ${url}.`);
+			throw new ScoreImportFatalError(500, `Recieved invalid _items from their API.`);
 		}
 
 		// yield everything out of the score array

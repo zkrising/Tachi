@@ -7,6 +7,7 @@ import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
+import { HashSHA256 } from "utils/crypto";
 import { FormatUserDoc } from "utils/user";
 import { RequireAuthedAsUser } from "../middleware";
 
@@ -31,11 +32,8 @@ router.put(
 	async (req, res) => {
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-		let updateBanner = false;
-
-		if (!user.customBanner) {
+		if (!user.customBannerLocation) {
 			logger.verbose(`User ${FormatUserDoc(user)} set a custom profile banner.`);
-			updateBanner = true;
 		} else {
 			logger.verbose(`User ${FormatUserDoc(user)} updated their profile banner.`);
 		}
@@ -52,12 +50,14 @@ router.put(
 			});
 		}
 
+		const contentHash = HashSHA256(req.file.buffer);
+
 		if (
 			req.file.mimetype === "image/jpeg" ||
 			req.file.mimetype === "image/png" ||
 			req.file.mimetype === "image/gif"
 		) {
-			await CDNStoreOrOverwrite(GetProfileBannerURL(user.id), req.file.buffer);
+			await CDNStoreOrOverwrite(GetProfileBannerURL(user.id, contentHash), req.file.buffer);
 		} else {
 			return res.status(400).json({
 				success: false,
@@ -65,12 +65,11 @@ router.put(
 			});
 		}
 
-		if (updateBanner) {
-			if (req.session.tachi?.user) {
-				req.session.tachi.user.customBanner = true;
-			}
-			await db.users.update({ id: user.id }, { $set: { customBanner: true } });
+		if (req.session.tachi?.user) {
+			req.session.tachi.user.customBannerLocation = contentHash;
 		}
+
+		await db.users.update({ id: user.id }, { $set: { customBannerLocation: contentHash } });
 
 		return res.status(200).json({
 			success: true,
@@ -91,13 +90,13 @@ router.put(
 router.get("/", (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-	if (!user.customBanner) {
+	if (!user.customBannerLocation) {
 		res.setHeader("Content-Type", "image/png");
 		return CDNRedirect(res, "/users/default/banner");
 	}
 
 	// express sniffs whether this is a png or jpg **and** browsers dont care either.
-	return CDNRedirect(res, GetProfileBannerURL(user.id));
+	return CDNRedirect(res, GetProfileBannerURL(user.id, user.customBannerLocation));
 });
 
 /**
@@ -112,15 +111,15 @@ router.delete(
 	async (req, res) => {
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-		if (!user.customBanner) {
+		if (!user.customBannerLocation) {
 			return res.status(404).json({
 				success: false,
 				description: `You do not have a custom profile banner to delete.`,
 			});
 		}
 
-		await CDNDelete(GetProfileBannerURL(user.id));
-		await db.users.update({ id: user.id }, { $set: { customBanner: false } });
+		await CDNDelete(GetProfileBannerURL(user.id, user.customBannerLocation));
+		await db.users.update({ id: user.id }, { $set: { customBannerLocation: null } });
 
 		return res.status(200).json({
 			success: true,

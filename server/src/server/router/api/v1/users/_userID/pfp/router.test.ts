@@ -21,8 +21,8 @@ t.test("GET /api/v1/users/:userID/pfp", (t) => {
 	});
 
 	t.test("Should return a custom profile picture if one is set", async (t) => {
-		await CDNStoreOrOverwrite(GetProfilePictureURL(1), "foo");
-		await db.users.update({ id: 1 }, { $set: { customPfp: true } });
+		await CDNStoreOrOverwrite(GetProfilePictureURL(1, "checksum"), "foo");
+		await db.users.update({ id: 1 }, { $set: { customPfpLocation: "checksum" } });
 		const res = await mockApi.get("/api/v1/users/1/pfp").redirects(1);
 
 		t.equal(res.body.toString(), "foo");
@@ -54,7 +54,7 @@ t.test("PUT /api/v1/users/:userID/pfp", (t) => {
 	});
 
 	t.test("Should set a profile picture if user has custom pfp", async (t) => {
-		await db.users.update({ id: 1 }, { $set: { customPfp: true } });
+		await db.users.update({ id: 1 }, { $set: { customPfpLocation: "checksum" } });
 
 		const img = GetKTDataBuffer("/images/acorn.png");
 

@@ -22,8 +22,8 @@ t.test("GET /api/v1/users/:userID/banner", (t) => {
 	});
 
 	t.test("Should return a custom profile banner if one is set", async (t) => {
-		await CDNStoreOrOverwrite(GetProfileBannerURL(1), "foo");
-		await db.users.update({ id: 1 }, { $set: { customBanner: true } });
+		await CDNStoreOrOverwrite(GetProfileBannerURL(1, "checksum"), "foo");
+		await db.users.update({ id: 1 }, { $set: { customBannerLocation: "checksum" } });
 		const res = await mockApi.get("/api/v1/users/1/banner").redirects(1);
 
 		t.equal(res.statusCode, 200, "Should return 200.");
@@ -63,7 +63,7 @@ t.test("PUT /api/v1/users/:userID/banner", (t) => {
 	});
 
 	t.test("Should set a profile banner if user has custom banner", async (t) => {
-		await db.users.update({ id: 1 }, { $set: { customBanner: true } });
+		await db.users.update({ id: 1 }, { $set: { customBannerLocation: "checksum" } });
 
 		const img = GetKTDataBuffer("/images/acorn.png");
 

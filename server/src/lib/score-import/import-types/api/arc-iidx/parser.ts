@@ -24,8 +24,8 @@ export async function ParseArcIIDX(
 	return {
 		iterable: TraverseKaiAPI(
 			ServerConfig.ARC_API_URL,
-			// HEROIC VERSE
-			`/api/v1/iidx/27/player_bests?profile_id=${authDoc.accountID}`,
+			// BISTROVER
+			`/api/v1/iidx/28/player_bests?profile_id=${authDoc.accountID}`,
 			ServerConfig.ARC_AUTH_TOKEN,
 			logger,
 			null,

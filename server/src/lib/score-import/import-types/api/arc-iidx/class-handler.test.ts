@@ -13,7 +13,7 @@ t.test("#CreateArcIIDXClassHandler", (t) => {
 
 	t.test("Should return a working ClassHandler.", async (t) => {
 		const mockFetch = MockJSONFetch({
-			"https://arc.example.com/api/v1/iidx/27/profiles?_id=profile": {
+			"https://arc.example.com/api/v1/iidx/28/profiles?_id=profile": {
 				_items: [
 					{
 						sp: {
@@ -44,7 +44,7 @@ t.test("#CreateArcIIDXClassHandler", (t) => {
 
 	t.test("Should handle null.", async (t) => {
 		const mockFetch = MockJSONFetch({
-			"https://arc.example.com/api/v1/iidx/27/profiles?_id=profile": {
+			"https://arc.example.com/api/v1/iidx/28/profiles?_id=profile": {
 				_items: [
 					{
 						sp: {
@@ -74,7 +74,7 @@ t.test("#CreateArcIIDXClassHandler", (t) => {
 
 	t.test("Should handle undefined.", async (t) => {
 		const mockFetch = MockJSONFetch({
-			"https://arc.example.com/api/v1/iidx/27/profiles?_id=profile": {
+			"https://arc.example.com/api/v1/iidx/28/profiles?_id=profile": {
 				_items: [{}],
 			},
 		});
@@ -95,7 +95,7 @@ t.test("#CreateArcIIDXClassHandler", (t) => {
 
 	t.test("Should handle invalid classes.", async (t) => {
 		const mockFetch = MockJSONFetch({
-			"https://arc.example.com/api/v1/iidx/27/profiles?_id=profile": {
+			"https://arc.example.com/api/v1/iidx/28/profiles?_id=profile": {
 				_items: [
 					{
 						sp: {
@@ -119,7 +119,7 @@ t.test("#CreateArcIIDXClassHandler", (t) => {
 
 	t.test("Should trigger failsafe if invalid playtype is used.", async (t) => {
 		const mockFetch = MockJSONFetch({
-			"https://arc.example.com/api/v1/iidx/27/profiles?_id=profile": {
+			"https://arc.example.com/api/v1/iidx/28/profiles?_id=profile": {
 				_items: [
 					{
 						sp: {

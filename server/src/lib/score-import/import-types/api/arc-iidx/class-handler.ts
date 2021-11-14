@@ -17,7 +17,7 @@ export async function CreateArcIIDXClassHandler(
 	// SP and DP dans are located in the same place,
 	// fetch once, then return a function that traverses this data.
 	try {
-		const url = CreateURLWithParams(`${ServerConfig.ARC_API_URL}/api/v1/iidx/27/profiles`, {
+		const url = CreateURLWithParams(`${ServerConfig.ARC_API_URL}/api/v1/iidx/28/profiles`, {
 			_id: profileID,
 		});
 

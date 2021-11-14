@@ -8,8 +8,8 @@ function ConvertFn(c: any): PublicUserDocument {
 		usernameLowercase: c.username.toLowerCase(),
 		about: c.about,
 		clan: c.clan,
-		customBanner: c.custombanner,
-		customPfp: c.custompfp,
+		customBannerLocation: null,
+		customPfpLocation: null,
 		id: c.id,
 		lastSeen: c.lastSeen,
 		socialMedia: {

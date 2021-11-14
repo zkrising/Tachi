@@ -9,6 +9,7 @@ import { FormatUserDoc } from "utils/user";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import { RequireAuthedAsUser } from "../middleware";
+import { HashSHA256 } from "utils/crypto";
 
 const logger = CreateLogCtx(__filename);
 
@@ -29,11 +30,8 @@ router.put(
 	async (req, res) => {
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-		let updatePfp = false;
-
-		if (!user.customPfp) {
+		if (!user.customPfpLocation) {
 			logger.verbose(`User ${FormatUserDoc(user)} set a custom profile picture.`);
-			updatePfp = true;
 		} else {
 			logger.verbose(`User ${FormatUserDoc(user)} updated their profile picture.`);
 		}
@@ -50,12 +48,14 @@ router.put(
 			});
 		}
 
+		const contentHash = HashSHA256(req.file.buffer);
+
 		if (
 			req.file.mimetype === "image/jpeg" ||
 			req.file.mimetype === "image/png" ||
 			req.file.mimetype === "image/gif"
 		) {
-			await CDNStoreOrOverwrite(GetProfilePictureURL(user.id), req.file.buffer);
+			await CDNStoreOrOverwrite(GetProfilePictureURL(user.id, contentHash), req.file.buffer);
 		} else {
 			return res.status(400).json({
 				success: false,
@@ -63,12 +63,10 @@ router.put(
 			});
 		}
 
-		if (updatePfp) {
-			if (req.session.tachi?.user) {
-				req.session.tachi.user.customPfp = true;
-			}
-			await db.users.update({ id: user.id }, { $set: { customPfp: true } });
+		if (req.session.tachi?.user) {
+			req.session.tachi.user.customPfpLocation = contentHash;
 		}
+		await db.users.update({ id: user.id }, { $set: { customPfpLocation: contentHash } });
 
 		return res.status(200).json({
 			success: true,
@@ -91,12 +89,12 @@ router.get("/", (req, res) => {
 
 	logger.debug("User Info for /:userID/pfp request is ", user);
 
-	if (!user.customPfp) {
+	if (!user.customPfpLocation) {
 		res.setHeader("Content-Type", "image/png");
 		return CDNRedirect(res, "/users/default/pfp");
 	}
 
-	return CDNRedirect(res, GetProfilePictureURL(user.id));
+	return CDNRedirect(res, GetProfilePictureURL(user.id, user.customPfpLocation));
 });
 
 /**
@@ -111,16 +109,16 @@ router.delete(
 	async (req, res) => {
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-		if (!user.customPfp) {
+		if (!user.customPfpLocation) {
 			return res.status(404).json({
 				success: false,
 				description: `You do not have a custom profile picture to delete.`,
 			});
 		}
 
-		await CDNDelete(GetProfilePictureURL(user.id));
+		await CDNDelete(GetProfilePictureURL(user.id, user.customPfpLocation));
 
-		await db.users.update({ id: user.id }, { $set: { customPfp: false } });
+		await db.users.update({ id: user.id }, { $set: { customPfpLocation: null } });
 
 		return res.status(200).json({
 			success: true,

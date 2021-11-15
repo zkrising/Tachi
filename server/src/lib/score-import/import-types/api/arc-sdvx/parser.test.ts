@@ -11,13 +11,13 @@ const logger = CreateLogCtx(__filename);
 t.test("#ParseArcSDVX", (t) => {
 	t.beforeEach(ResetDBState);
 	const mockArcAPI = MockJSONFetch({
-		"https://arc.example.com/api/v1/sdvx/5/player_bests?profile_id=profile": {
+		"https://arc.example.com/api/v1/sdvx/5/player_bests/?profile_id=profile": {
 			_links: {
-				_next: "https://arc.example.com/api/v1/sdvx/5/player_bests?profile_id=profile&page=2",
+				_next: "https://arc.example.com/api/v1/sdvx/5/player_bests/?profile_id=profile&page=2",
 			},
 			_items: [1, 2, 3],
 		},
-		"https://arc.example.com/api/v1/sdvx/5/player_bests?profile_id=profile&page=2": {
+		"https://arc.example.com/api/v1/sdvx/5/player_bests/?profile_id=profile&page=2": {
 			_links: {
 				_next: null,
 			},

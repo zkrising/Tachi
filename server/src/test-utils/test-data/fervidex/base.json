@@ -1,35 +1,35 @@
 {
-    "bad": 0,
-    "chart": "spa",
-    "clear_type": 1,
-    "combo_break": 6,
-    "custom": false,
-    "chart_sha256": "asdfasdf",
-    "entry_id": 1000,
-    "ex_score": 68,
-    "fast": 0,
-    "gauge": [
-        100,
-        50
-    ],
-    "ghost": [
-        0,
-        2
-    ],
-    "good": 0,
-    "great": 0,
-    "max_combo": 34,
-    "option": {
-        "gauge": "HARD",
-        "range": "SUDDEN_PLUS",
-        "style": "RANDOM"
-    },
-    "pacemaker": {
-        "name": "",
-        "score": 363,
-        "type": "PACEMAKER_A"
-    },
-    "pgreat": 34,
-    "poor": 6,
-    "slow": 0
+	"bad": 0,
+	"chart": "spa",
+	"clear_type": 1,
+	"combo_break": 6,
+	"custom": false,
+	"chart_sha256": "asdfasdf",
+	"entry_id": 1000,
+	"ex_score": 68,
+	"fast": 0,
+	"gauge": [
+		100,
+		50
+	],
+	"ghost": [
+		0,
+		2
+	],
+	"good": 0,
+	"great": 0,
+	"max_combo": 34,
+	"option": {
+		"gauge": "HARD",
+		"range": "SUDDEN_PLUS",
+		"style": "RANDOM"
+	},
+	"pacemaker": {
+		"name": "",
+		"score": 363,
+		"type": "PACEMAKER_A"
+	},
+	"pgreat": 34,
+	"poor": 6,
+	"slow": 0
 }

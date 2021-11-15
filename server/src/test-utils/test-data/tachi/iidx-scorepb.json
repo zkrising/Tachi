@@ -1,38 +1,38 @@
 {
-    "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
-    "userID": 1,
-    "calculatedData": {
-        "ktRating": 0,
-        "ktLampRating": 0,
-        "BPI": 10.10
-    },
-    "composedFrom": {
-        "scorePB": "TESTING_SCORE_ID",
-        "lampPB": "TESTING_SCORE_ID"
-    },
-    "highlight": false,
-    "isPrimary": true,
-    "scoreData": {
-        "score": 1479,
-        "percent": 94.08396946564885,
-        "esd": 10.64453125,
-        "grade": "AAA",
-        "gradeIndex": 7,
-        "lamp": "EX HARD CLEAR",
-        "lampIndex": 6,
-        "judgements": {
-            "pgreat": 697,
-            "great": 85
-        },
-        "hitMeta": {
-            "bp": 2
-        }
-    },
-    "rankingData": {
-        "rank": 1,
-        "outOf": 2
-    },
-    "songID": 1,
-    "game": "iidx",
-    "playtype": "SP"
+	"chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
+	"userID": 1,
+	"calculatedData": {
+		"ktRating": 0,
+		"ktLampRating": 0,
+		"BPI": 10.10
+	},
+	"composedFrom": {
+		"scorePB": "TESTING_SCORE_ID",
+		"lampPB": "TESTING_SCORE_ID"
+	},
+	"highlight": false,
+	"isPrimary": true,
+	"scoreData": {
+		"score": 1479,
+		"percent": 94.08396946564885,
+		"esd": 10.64453125,
+		"grade": "AAA",
+		"gradeIndex": 7,
+		"lamp": "EX HARD CLEAR",
+		"lampIndex": 6,
+		"judgements": {
+			"pgreat": 697,
+			"great": 85
+		},
+		"hitMeta": {
+			"bp": 2
+		}
+	},
+	"rankingData": {
+		"rank": 1,
+		"outOf": 2
+	},
+	"songID": 1,
+	"game": "iidx",
+	"playtype": "SP"
 }

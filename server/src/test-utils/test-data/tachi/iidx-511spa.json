@@ -1,34 +1,34 @@
 {
-    "rgcID": null,
-    "chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
-    "difficulty": "ANOTHER",
-    "songID": 1,
-    "playtype": "SP",
-    "levelNum": 10,
-    "level": "10",
-    "flags": {
-        "IN BASE GAME": true,
-        "OMNIMIX": true,
-        "N-1": true,
-        "2dxtra": false
-    },
-    "data": {
-        "inGameID": 1000,
-        "notecount": 786,
-        "arcChartID": "CYjwAuz7Yq9"
-    },
-    "isPrimary": true,
-    "versions": [
-        "27-omni",
-        "26-omni",
-        "27",
-        "26",
-        "inf",
-        "16-cs",
-        "12-cs",
-        "10-cs",
-        "8-cs",
-        "7-cs",
-        "bmus"
-    ]
+	"rgcID": null,
+	"chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
+	"difficulty": "ANOTHER",
+	"songID": 1,
+	"playtype": "SP",
+	"levelNum": 10,
+	"level": "10",
+	"flags": {
+		"IN BASE GAME": true,
+		"OMNIMIX": true,
+		"N-1": true,
+		"2dxtra": false
+	},
+	"data": {
+		"inGameID": 1000,
+		"notecount": 786,
+		"arcChartID": "CYjwAuz7Yq9"
+	},
+	"isPrimary": true,
+	"versions": [
+		"27-omni",
+		"26-omni",
+		"27",
+		"26",
+		"inf",
+		"16-cs",
+		"12-cs",
+		"10-cs",
+		"8-cs",
+		"7-cs",
+		"bmus"
+	]
 }

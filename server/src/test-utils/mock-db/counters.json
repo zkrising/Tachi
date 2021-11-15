@@ -1,18 +1,18 @@
 [
-    {
-        "counterName": "real-counter",
-        "value": 2
-    },
-    {
-        "counterName": "users",
-        "value": 2
-    },
-    {
-        "counterName": "usc-song-id",
-        "value": 2
-    },
-    {
-        "counterName": "bms-song-id",
-        "value": 2
-    }
+	{
+		"counterName": "real-counter",
+		"value": 2
+	},
+	{
+		"counterName": "users",
+		"value": 2
+	},
+	{
+		"counterName": "usc-song-id",
+		"value": 2
+	},
+	{
+		"counterName": "bms-song-id",
+		"value": 2
+	}
 ]

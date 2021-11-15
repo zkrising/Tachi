@@ -1,19 +1,19 @@
 [
-    {
-        "rgcID": null,
-        "chartID": "USC_CHART_ID",
-        "difficulty": "NOV",
-        "songID": 1,
-        "playtype": "Controller",
-        "levelNum": 1,
-        "level": "1",
-        "flags": {
-            "CUSTOM": true
-        },
-        "data": {
-            "hashSHA1": "USC_CHART_HASH"
-        },
-        "isPrimary": true,
-        "versions": []
-    }
+	{
+		"rgcID": null,
+		"chartID": "USC_CHART_ID",
+		"difficulty": "NOV",
+		"songID": 1,
+		"playtype": "Controller",
+		"levelNum": 1,
+		"level": "1",
+		"flags": {
+			"CUSTOM": true
+		},
+		"data": {
+			"hashSHA1": "USC_CHART_HASH"
+		},
+		"isPrimary": true,
+		"versions": []
+	}
 ]

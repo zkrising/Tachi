@@ -90,6 +90,13 @@ export function ResolveHeaders(headers: string[], logger: KtLogger) {
 	);
 }
 
+/**
+ * Parse a "naive CSV". A Naive CSV is one that does not properly escape " or , characters.
+ * This also means that if konami ever have a song that has a comma, it will cause some serious problems.
+ *
+ * The reason we have a handrolled CSV parser instead of using an existing library is because eamusement CSVs are
+ * invalid -- due to their lack of escaping. We have to do very manual parsing to actually make this work!
+ */
 export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 	const csvString = csvBuffer.toString("utf-8");
 

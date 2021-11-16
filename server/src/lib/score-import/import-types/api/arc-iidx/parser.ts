@@ -1,12 +1,12 @@
 import { KtLogger } from "lib/logger/logger";
+import { ServerConfig } from "lib/setup/config";
+import { integer } from "tachi-common";
 import nodeFetch from "utils/fetch";
+import { GetArcAuthGuaranteed } from "utils/queries/auth";
+import { EmptyObject } from "utils/types";
 import { TraverseKaiAPI } from "../../common/api-kai/traverse-api";
 import { ParserFunctionReturns } from "../../common/types";
-import { EmptyObject } from "utils/types";
-import { ServerConfig } from "lib/setup/config";
 import { CreateArcIIDXClassHandler } from "./class-handler";
-import { GetArcAuthGuaranteed } from "utils/queries/auth";
-import { integer } from "tachi-common";
 
 export async function ParseArcIIDX(
 	userID: integer,

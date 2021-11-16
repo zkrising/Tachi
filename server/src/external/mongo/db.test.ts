@@ -1,5 +1,4 @@
 import t from "tap";
-
 import ResetDBState from "test-utils/resets";
 import db from "./db";
 

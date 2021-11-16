@@ -1,17 +1,16 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-
-import mockApi from "test-utils/mock-api";
-import ResetDBState from "test-utils/resets";
 import {
-	ScoreDocument,
-	UserGoalDocument,
 	GoalDocument,
 	MilestoneDocument,
+	ScoreDocument,
+	UserGoalDocument,
 	UserMilestoneDocument,
 } from "tachi-common";
+import t from "tap";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXSPScore, TestingIIDXSPScorePB } from "test-utils/test-data";
-import deepmerge from "deepmerge";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype", (t) => {
 	t.beforeEach(ResetDBState);

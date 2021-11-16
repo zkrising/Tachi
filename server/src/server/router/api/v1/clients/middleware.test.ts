@@ -1,8 +1,8 @@
-import t from "tap";
-import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
 import expMiddlewareMock from "express-request-mock";
-import ResetDBState from "test-utils/resets";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
+import t from "tap";
+import ResetDBState from "test-utils/resets";
+import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
 
 t.test("#GetClientFromID", (t) => {
 	t.beforeEach(ResetDBState);

@@ -1,9 +1,9 @@
-import { Lamps, ChartDocument } from "tachi-common";
+import { ChartDocument, Lamps } from "tachi-common";
 import { FindChartWithPTDFVersion } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
 import {
-	KTDataNotFoundFailure,
 	InvalidScoreFailure,
+	KTDataNotFoundFailure,
 	SkipScoreFailure,
 } from "../../../framework/common/converter-failures";
 import {
@@ -11,9 +11,9 @@ import {
 	ParseDateFromString,
 } from "../../../framework/common/score-utils";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
-import { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../types";
+import { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 
 const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new Map([
 	["NO PLAY", "NO PLAY"],

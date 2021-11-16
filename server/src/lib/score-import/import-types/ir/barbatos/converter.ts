@@ -1,15 +1,15 @@
+import { Lamps } from "tachi-common";
 import { FindSDVXChartOnInGameID } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import { EmptyObject } from "utils/types";
-import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
 	InternalFailure,
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { BarbatosScore } from "./types";
-import { Lamps } from "tachi-common";
+import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../../common/types";
+import { BarbatosScore } from "./types";
 
 const LAMP_LOOKUP = {
 	1: "FAILED",

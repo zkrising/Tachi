@@ -1,16 +1,9 @@
-import {
-	integer,
-	PublicUserDocument,
-	UserGameStats,
-	GetGamePTConfig,
-	Game,
-	Playtypes,
-	UGSRatingsLookup,
-	IDStrings,
-} from "tachi-common";
-import { FindOneResult } from "monk";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { FindOneResult } from "monk";
+import {
+    Game, GetGamePTConfig, IDStrings, integer, Playtypes, PublicUserDocument, UGSRatingsLookup, UserGameStats
+} from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

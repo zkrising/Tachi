@@ -1,8 +1,8 @@
-import t from "tap";
 import db from "external/mongo/db";
-
+import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetScoresFromSession } from "./session";
+
 
 t.test("#GetScoresFromSession", async (t) => {
 	t.beforeEach(ResetDBState);

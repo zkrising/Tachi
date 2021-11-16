@@ -1,11 +1,11 @@
 import db from "external/mongo/db";
-import { UserAuthLevels, APITokenDocument, TachiAPIClientDocument } from "tachi-common";
 import { ServerConfig } from "lib/setup/config";
-
+import { APITokenDocument, TachiAPIClientDocument } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
+
 
 const clientDataset: TachiAPIClientDocument[] = [
 	{

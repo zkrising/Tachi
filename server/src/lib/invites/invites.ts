@@ -1,5 +1,5 @@
 import { ONE_MONTH } from "lib/constants/time";
-import CreateLogCtx, { rootLogger } from "lib/logger/logger";
+import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import { PublicUserDocument } from "tachi-common";
 

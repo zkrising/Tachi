@@ -1,6 +1,17 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { FilterQuery } from "mongodb";
+import {
+	GetGamePTConfig,
+	integer,
+	PBScoreDocument,
+	UserGameStatsSnapshot,
+	UserGoalDocument,
+	UserMilestoneDocument,
+} from "tachi-common";
+import { IsString } from "utils/misc";
+import { CheckStrProfileAlg } from "utils/string-checks";
 import {
 	GetAllRankings,
 	GetUGPTPlaycount,
@@ -8,25 +19,14 @@ import {
 	GetUsersRankingAndOutOf,
 	GetUsersWithIDs,
 } from "utils/user";
-import { CheckUserPlayedGamePlaytype } from "./middleware";
-import { FilterQuery } from "mongodb";
-import {
-	UserGoalDocument,
-	UserMilestoneDocument,
-	GetGamePTConfig,
-	integer,
-	PBScoreDocument,
-	UserGameStatsSnapshot,
-} from "tachi-common";
-import { CheckStrProfileAlg } from "utils/string-checks";
-import { IsString } from "utils/misc";
-import pbsRouter from "./pbs/router";
-import sessionsRouter from "./sessions/router";
 import foldersRouter from "./folders/router";
-import tablesRouter from "./tables/router";
-import showcaseRouter from "./showcase/router";
-import settingsRouter from "./settings/router";
+import { CheckUserPlayedGamePlaytype } from "./middleware";
+import pbsRouter from "./pbs/router";
 import scoresRouter from "./scores/router";
+import sessionsRouter from "./sessions/router";
+import settingsRouter from "./settings/router";
+import showcaseRouter from "./showcase/router";
+import tablesRouter from "./tables/router";
 
 const router: Router = Router({ mergeParams: true });
 

@@ -1,26 +1,26 @@
-import { BatchManualContext } from "./types";
-import { ChartDocument, SongDocument, ImportTypes, BatchManualScore } from "tachi-common";
-import {
-	InternalFailure,
-	InvalidScoreFailure,
-	KTDataNotFoundFailure,
-} from "../../../framework/common/converter-failures";
-import { FindSongOnID, FindSongOnTitleInsensitive } from "utils/queries/songs";
+import db from "external/mongo/db";
+import { KtLogger } from "lib/logger/logger";
+import { BatchManualScore, ChartDocument, ImportTypes, SongDocument } from "tachi-common";
 import {
 	FindBMSChartOnHash,
 	FindChartWithPTDF,
 	FindChartWithPTDFVersion,
 	FindDDRChartOnSongHash,
 } from "utils/queries/charts";
+import { FindSongOnID, FindSongOnTitleInsensitive } from "utils/queries/songs";
+import {
+	InternalFailure,
+	InvalidScoreFailure,
+	KTDataNotFoundFailure,
+} from "../../../framework/common/converter-failures";
+import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
 	AssertStrAsDifficulty,
 	AssertStrAsPositiveInt,
 } from "../../../framework/common/string-asserts";
-import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
-import { KtLogger } from "lib/logger/logger";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../types";
-import db from "external/mongo/db";
+import { BatchManualContext } from "./types";
 
 /**
  * Creates a ConverterFn for the BatchManualScore format. This curries

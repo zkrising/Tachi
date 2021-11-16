@@ -1,11 +1,11 @@
-import { GetGamePTConfig } from "tachi-common";
 import { Router } from "express";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { RequirePermissions } from "server/middleware/auth";
-import p from "prudence";
-import { FormatPrError } from "utils/prudence";
 import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
+import p from "prudence";
+import { RequirePermissions } from "server/middleware/auth";
+import { GetGamePTConfig } from "tachi-common";
+import { FormatPrError } from "utils/prudence";
 import { FormatUserDoc } from "utils/user";
 import { RequireAuthedAsUser } from "../../../../middleware";
 

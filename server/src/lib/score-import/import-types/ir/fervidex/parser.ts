@@ -1,9 +1,3 @@
-import { KtLogger } from "lib/logger/logger";
-import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { FormatPrError, optNull } from "utils/prudence";
-import { FervidexContext, FervidexScore } from "./types";
-import { ParseEA3SoftID } from "utils/ea3id";
 import {
 	EXT_HEROIC_VERSE,
 	MODEL_IIDX,
@@ -11,7 +5,13 @@ import {
 	REV_2DXTRA,
 	REV_OMNIMIX,
 } from "lib/constants/ea3id";
+import { KtLogger } from "lib/logger/logger";
+import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
+import { ParseEA3SoftID } from "utils/ea3id";
+import { FormatPrError, optNull } from "utils/prudence";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturns } from "../../common/types";
+import { FervidexContext, FervidexScore } from "./types";
 
 const PR_Fervidex: PrudenceSchema = {
 	chart: p.isIn("spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"),

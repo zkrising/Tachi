@@ -1,15 +1,14 @@
 import { Router } from "express";
+import db from "external/mongo/db";
+import { SendEmail } from "lib/email/client";
+import { EmailFormatResetPassword, EmailFormatVerifyEmail } from "lib/email/formats";
+import CreateLogCtx from "lib/logger/logger";
+import { Environment, ServerConfig } from "lib/setup/config";
 import Prudence from "prudence";
-import {
-	AddNewUser,
-	PasswordCompare,
-	ReinstateInvite,
-	ValidatePassword,
-	ValidateCaptcha,
-	MountAuthCookie,
-	InsertDefaultUserSettings,
-	HashPassword,
-} from "./auth";
+import prValidate from "server/middleware/prudence-validate";
+import { integer } from "tachi-common";
+import { DecrementCounterValue, GetNextCounterValue } from "utils/db";
+import { Random20Hex } from "utils/misc";
 import {
 	CheckIfEmailInUse,
 	FormatUserDoc,
@@ -18,15 +17,16 @@ import {
 	GetUserPrivateInfo,
 	GetUserWithID,
 } from "utils/user";
-import db from "external/mongo/db";
-import CreateLogCtx from "lib/logger/logger";
-import prValidate from "server/middleware/prudence-validate";
-import { DecrementCounterValue, GetNextCounterValue } from "utils/db";
-import { SendEmail } from "lib/email/client";
-import { EmailFormatResetPassword, EmailFormatVerifyEmail } from "lib/email/formats";
-import { Random20Hex } from "utils/misc";
-import { Environment, ServerConfig } from "lib/setup/config";
-import { integer } from "tachi-common";
+import {
+	AddNewUser,
+	HashPassword,
+	InsertDefaultUserSettings,
+	MountAuthCookie,
+	PasswordCompare,
+	ReinstateInvite,
+	ValidateCaptcha,
+	ValidatePassword,
+} from "./auth";
 
 const logger = CreateLogCtx(__filename);
 

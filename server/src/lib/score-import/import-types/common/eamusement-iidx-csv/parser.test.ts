@@ -1,9 +1,9 @@
-import t from "tap";
 import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
+import { MockMulterFile } from "test-utils/mock-multer";
+import { TestingIIDXEamusementCSV26, TestingIIDXEamusementCSV27 } from "test-utils/test-data";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import GenericParseEamIIDXCSV, { NaiveCSVParse, ResolveHeaders } from "./parser";
-import { TestingIIDXEamusementCSV26, TestingIIDXEamusementCSV27 } from "test-utils/test-data";
-import { MockMulterFile } from "test-utils/mock-multer";
 
 const logger = CreateLogCtx(__filename);
 

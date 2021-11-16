@@ -1,9 +1,8 @@
-import t from "tap";
-
-import { MockJSONFetch } from "test-utils/mock-fetch";
-import ResetDBState from "test-utils/resets";
 import { IIDXDans } from "lib/constants/classes";
 import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
+import { MockJSONFetch } from "test-utils/mock-fetch";
+import ResetDBState from "test-utils/resets";
 import { CreateArcIIDXClassHandler } from "./class-handler";
 
 const logger = CreateLogCtx(__filename);

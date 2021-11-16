@@ -1,11 +1,11 @@
 /* eslint-disable no-await-in-loop */
-import monk, { IMonkManager } from "monk";
-import { IndexOptions } from "mongodb";
+import { ONE_DAY } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
-import { ONE_DAY } from "lib/constants/time";
-import db, { Databases, monkDB } from "./db";
+import { IndexOptions } from "mongodb";
+import monk, { IMonkManager } from "monk";
 import { Random20Hex } from "utils/misc";
+import db, { Databases, monkDB } from "./db";
 
 const logger = CreateLogCtx(__filename);
 

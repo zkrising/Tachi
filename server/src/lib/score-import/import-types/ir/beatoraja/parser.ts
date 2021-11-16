@@ -1,10 +1,10 @@
 import { KtLogger } from "lib/logger/logger";
 import p from "prudence";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { FormatPrError } from "utils/prudence";
-import { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
-import { ParserFunctionReturns } from "../../common/types";
 import { integer } from "tachi-common";
+import { FormatPrError } from "utils/prudence";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
+import { ParserFunctionReturns } from "../../common/types";
+import { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
 
 const PR_BeatorajaScore = {
 	sha256: "string",

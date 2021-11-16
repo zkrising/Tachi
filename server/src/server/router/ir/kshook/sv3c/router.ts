@@ -1,11 +1,9 @@
-import { Router, RequestHandler } from "express";
+import { RequestHandler, Router } from "express";
 import { MODEL_SDVX3_KONASTE } from "lib/constants/ea3id";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
-import { ParseKsHookSV3C } from "lib/score-import/import-types/ir/kshook-sv3c/parser";
 import { ParseEA3SoftID } from "utils/ea3id";
-import { GetUserWithIDGuaranteed } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
 

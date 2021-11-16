@@ -1,6 +1,6 @@
-import redis from "redis";
 import CreateLogCtx from "lib/logger/logger";
-import { ServerConfig, TachiConfig } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
+import redis from "redis";
 
 /**
  * This code has been stubbed out! It doesn't really have a use at the moment.

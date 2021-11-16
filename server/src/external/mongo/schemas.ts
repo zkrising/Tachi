@@ -1,18 +1,18 @@
+import { TachiConfig } from "lib/setup/config";
+import p, { PrudenceSchema } from "prudence";
+import { AllPermissions } from "server/middleware/auth";
 import {
 	Game,
+	GamePTConfig,
+	GetGameConfig,
 	GetGamePTConfig,
 	Playtypes,
 	UserAuthLevels,
-	GamePTConfig,
-	GetGameConfig,
 } from "tachi-common";
 import { allIDStrings, allImportTypes } from "tachi-common/js/config/static-config";
-import p, { PrudenceSchema } from "prudence";
-import { Databases } from "./db";
-import { AllPermissions } from "server/middleware/auth";
-import { TachiConfig } from "lib/setup/config";
 import { IsValidGame, IsValidPlaytype } from "utils/misc";
 import { optNull } from "utils/prudence";
+import { Databases } from "./db";
 
 // The idea of this file is to export a function for every database
 // that will validate that collection.

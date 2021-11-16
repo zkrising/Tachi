@@ -1,11 +1,10 @@
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
-
 import { agta } from "test-utils/misc";
 import { MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
-import CreateLogCtx from "lib/logger/logger";
 import { ParseArcIIDX } from "./parser";
-import db from "external/mongo/db";
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,8 +1,8 @@
+import { TachiConfig } from "lib/setup/config";
 import { GetGameConfig } from "tachi-common";
 import t from "tap";
-import { TachiConfig } from "lib/setup/config";
-
 import mockApi from "test-utils/mock-api";
+
 
 t.test("GET /api/v1/games", async (t) => {
 	// lets just run some basic tests that this contains all of our supported games

@@ -1,15 +1,15 @@
+import { Difficulties, Lamps, Playtypes } from "tachi-common";
+import { FindIIDXChartOnInGameIDVersion, FindIIDXChartWith2DXtraHash } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
-import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { FervidexContext, FervidexScore } from "./types";
-import { Lamps, Difficulties, Playtypes } from "tachi-common";
-import { FindIIDXChartOnInGameIDVersion, FindIIDXChartWith2DXtraHash } from "utils/queries/charts";
-import { ConverterFunction } from "../../common/types";
+import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { DryScore } from "../../../framework/common/types";
+import { ConverterFunction } from "../../common/types";
+import { FervidexContext, FervidexScore } from "./types";
 
 export const FERVIDEX_LAMP_LOOKUP = {
 	0: "NO PLAY",

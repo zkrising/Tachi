@@ -1,16 +1,16 @@
 import { Router } from "express";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import prValidate from "server/middleware/prudence-validate";
-import p from "prudence";
 import db from "external/mongo/db";
-import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
-import { DedupeArr, DeleteUndefinedProps, IsValidURL, Random20Hex } from "utils/misc";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
-import { APIPermissions, TachiAPIClientDocument, UserAuthLevels } from "tachi-common";
-import { AllPermissions } from "server/middleware/auth";
 import { ServerConfig } from "lib/setup/config";
-import { FormatUserDoc } from "utils/user";
+import p from "prudence";
+import { AllPermissions } from "server/middleware/auth";
+import prValidate from "server/middleware/prudence-validate";
+import { APIPermissions, TachiAPIClientDocument, UserAuthLevels } from "tachi-common";
+import { DedupeArr, DeleteUndefinedProps, IsValidURL, Random20Hex } from "utils/misc";
 import { optNull } from "utils/prudence";
+import { FormatUserDoc } from "utils/user";
+import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
 
 const logger = CreateLogCtx(__filename);
 

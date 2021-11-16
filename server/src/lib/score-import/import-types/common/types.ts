@@ -1,29 +1,29 @@
-import { EmptyObject } from "utils/types";
 import { KtLogger } from "lib/logger/logger";
+import { USCClientScore } from "server/router/ir/usc/_playtype/types";
+import {
+	BatchManualScore,
+	ChartDocument,
+	Game,
+	ImportTypes,
+	integer,
+	MongoDBDocument,
+	SongDocument,
+} from "tachi-common";
+import { EmptyObject } from "utils/types";
+import { ConverterFailure } from "../../framework/common/converter-failures";
+import { DryScore } from "../../framework/common/types";
+import { ClassHandler } from "../../framework/user-game-stats/types";
 import { MerScore } from "../file/mer-iidx/types";
 import { S3Score } from "../file/solid-state-squad/types";
 import { BarbatosScore } from "../ir/barbatos/types";
+import { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
 import { FervidexStaticContext, FervidexStaticScore } from "../ir/fervidex-static/types";
 import { FervidexContext, FervidexScore } from "../ir/fervidex/types";
+import { KsHookSV3CScore } from "../ir/kshook-sv3c/types";
+import { IRUSCContext } from "../ir/usc/types";
 import { KaiContext } from "./api-kai/types";
 import { BatchManualContext } from "./batch-manual/types";
 import { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./eamusement-iidx-csv/types";
-import {
-	ImportTypes,
-	Game,
-	ChartDocument,
-	SongDocument,
-	integer,
-	MongoDBDocument,
-	BatchManualScore,
-} from "tachi-common";
-import { ConverterFailure } from "../../framework/common/converter-failures";
-import { DryScore } from "../../framework/common/types";
-import { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
-import { IRUSCContext } from "../ir/usc/types";
-import { ClassHandler } from "../../framework/user-game-stats/types";
-import { KsHookSV3CScore } from "../ir/kshook-sv3c/types";
-import { USCClientScore } from "server/router/ir/usc/_playtype/types";
 
 export interface ImportTypeDataMap {
 	"file/eamusement-iidx-csv": IIDXEamusementCSVData;

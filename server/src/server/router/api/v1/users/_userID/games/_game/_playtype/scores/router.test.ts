@@ -1,14 +1,13 @@
 import db from "external/mongo/db";
 import { ScoreDocument } from "tachi-common";
 import t from "tap";
-
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
-	Testing511SPA,
-	Testing511Song,
-	LoadTachiIIDXData,
 	GetKTDataJSON,
+	LoadTachiIIDXData,
+	Testing511Song,
+	Testing511SPA,
 } from "test-utils/test-data";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/recent", (t) => {

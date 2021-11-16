@@ -1,7 +1,7 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { Game, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 const logger = CreateLogCtx(__filename);
-import { integer, Game, ScoreDocument, PBScoreDocument } from "tachi-common";
 
 export async function GetNextCounterValue(counterName: string): Promise<integer> {
 	const sequenceDoc = await db.counters.findOneAndUpdate(

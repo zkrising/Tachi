@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { EmptyObject } from "utils/types";
-import { ConverterFunction } from "../../common/types";
 import p, { PrudenceSchema } from "prudence";
+import { Lamps } from "tachi-common";
+import { FormatPrError } from "utils/prudence";
+import { FindChartOnARCID } from "utils/queries/charts";
+import { FindSongOnIDGuaranteed } from "utils/queries/songs";
+import { EmptyObject } from "utils/types";
 import {
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { FormatPrError } from "utils/prudence";
-import { ARCIIDXScore } from "./types";
-import { FindChartOnARCID } from "utils/queries/charts";
-import { FindSongOnIDGuaranteed } from "utils/queries/songs";
-import { DryScore } from "../../../framework/common/types";
 import {
 	GenericGetGradeAndPercent,
 	ParseDateFromString,
 } from "../../../framework/common/score-utils";
-import { Lamps } from "tachi-common";
+import { DryScore } from "../../../framework/common/types";
+import { ConverterFunction } from "../../common/types";
+import { ARCIIDXScore } from "./types";
 
 // There's a bunch of other useless fields but we don't care
 const PR_ArcIIDXScore: PrudenceSchema = {

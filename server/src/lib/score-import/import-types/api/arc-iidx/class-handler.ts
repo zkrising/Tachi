@@ -1,9 +1,9 @@
+import { IIDXDans } from "lib/constants/classes";
+import { ServerConfig } from "lib/setup/config";
 import nodeFetch from "utils/fetch";
 import { HasOwnProperty } from "utils/misc";
-import { IIDXDans } from "lib/constants/classes";
-import { ClassHandler } from "../../../framework/user-game-stats/types";
-import { ServerConfig } from "lib/setup/config";
 import { CreateURLWithParams } from "utils/url";
+import { ClassHandler } from "../../../framework/user-game-stats/types";
 
 export async function CreateArcIIDXClassHandler(
 	profileID: string,

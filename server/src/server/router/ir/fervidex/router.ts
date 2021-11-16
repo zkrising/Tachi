@@ -4,13 +4,10 @@ import { EXT_HEROIC_VERSE, MODEL_INFINITAS_2, REV_2DXBMS } from "lib/constants/e
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
-import { ParseFervidexStatic } from "lib/score-import/import-types/ir/fervidex-static/parser";
-import { ParseFervidexSingle } from "lib/score-import/import-types/ir/fervidex/parser";
 import { RequirePermissions } from "server/middleware/auth";
 import { integer, Playtypes } from "tachi-common";
 import { UpdateClassIfGreater } from "utils/class";
 import { ParseEA3SoftID } from "utils/ea3id";
-import { GetUserWithIDGuaranteed } from "utils/user";
 
 const logger = CreateLogCtx(__filename);
 

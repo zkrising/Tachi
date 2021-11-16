@@ -1,5 +1,5 @@
-import { TachiConfig } from "lib/setup/config";
 import { RequestHandler } from "express";
+import { TachiConfig } from "lib/setup/config";
 
 /**
  * Middleware that makes the route only available under Bokutachi.

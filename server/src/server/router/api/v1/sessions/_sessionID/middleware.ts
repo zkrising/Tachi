@@ -75,7 +75,7 @@ export const UpdateSessionViewcount: RequestHandler = async (req, res, next) => 
 		// increment locally so that the right state is shown to the end user.
 		session.views++;
 	} catch (err) {
-		logger.warn(
+		logger.debug(
 			`Race condition protection triggered in UpdateSessionViewcount for ${session.sessionID}. Ignoring.`
 		);
 	}

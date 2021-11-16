@@ -31,7 +31,7 @@
 				"singleQuote": false,
 				"trailingComma": "es5",
 				"bracketSpacing": true,
-				"endOfLine": "auto",
+				"endOfLine": "lf",
 				"useTabs": true
 			}
 		],

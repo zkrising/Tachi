@@ -55,7 +55,7 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 					logger
 				),
 			{
-				message: /Could not find chart with songID 0 \(ADV - Version vivid\)/u,
+				message: /Could not find chart with songID 0 \(ADV - Version heaven\)/u,
 			}
 		);
 

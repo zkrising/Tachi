@@ -7,7 +7,6 @@ specifiers:
   '@types/bull': ^3.15.5
   '@types/bunyan': ^1.8.7
   '@types/connect-redis': 0.0.16
-  '@types/deep-equal': ^1.0.1
   '@types/express': 4.17.12
   '@types/express-rate-limit': 5.1.2
   '@types/express-session': 1.17.3
@@ -75,9 +74,6 @@ specifiers:
 
 dependencies:
   '@aws-sdk/client-s3': 3.41.0
-  '@types/bull': 3.15.5
-  '@types/bunyan': 1.8.7
-  '@types/deep-equal': 1.0.1
   '@valuabletouch/winston-seq': 1.2.0
   bcryptjs: 2.4.3
   bull: 4.1.0
@@ -118,6 +114,8 @@ dependencies:
 devDependencies:
   '@types/bcrypt': 5.0.0
   '@types/bcryptjs': 2.4.2
+  '@types/bull': 3.15.5
+  '@types/bunyan': 1.8.7
   '@types/connect-redis': 0.0.16
   '@types/express': 4.17.12
   '@types/express-rate-limit': 5.1.2
@@ -1327,13 +1325,13 @@ packages:
     resolution: {integrity: sha512-XgJQWJ03jyKMfdoL8IAIoHIo7JkkL74kcxuujTONkSJswm0giIJ9kuVgDNHS0OvD+OiPNcFmbBl0H3scj2+A8A==}
     dependencies:
       '@types/ioredis': 4.26.7
-    dev: false
+    dev: true
 
   /@types/bunyan/1.8.7:
     resolution: {integrity: sha512-jaNt6xX5poSmXuDAkQrSqx2zkR66OrdRDuVnU8ldvn3k/Ci/7Sf5nooKspQWimDnw337Bzt/yirqSThTjvrHkg==}
     dependencies:
       '@types/node': 15.12.4
-    dev: false
+    dev: true
 
   /@types/connect-redis/0.0.16:
     resolution: {integrity: sha512-ToZRmwoeqRhzGIqMO9k8Hs1B9pFSGYCjHvMpPlgo+kQ4M7xaPwi2/5HjikJ0MOfPDFcAe9Qwl1SaULYCNE6jYg==}
@@ -1353,10 +1351,6 @@ packages:
   /@types/cookiejar/2.1.2:
     resolution: {integrity: sha512-t73xJJrvdTjXrn4jLS9VSGRbz0nUY3cl2DMGDU48lKl+HR9dbbjW2A9r3g40VA++mQpy6uuHg33gy7du2BKpog==}
     dev: true
-
-  /@types/deep-equal/1.0.1:
-    resolution: {integrity: sha512-mMUu4nWHLBlHtxXY17Fg6+ucS/MnndyOWyOe7MmwkoMYxvfQU2ajtRaEvqSUv+aVkMqH/C0NCI8UoVfRNQ10yg==}
-    dev: false
 
   /@types/express-rate-limit/5.1.2:
     resolution: {integrity: sha512-loN1dcr0WEKsbVtXNQKDef4Fmh25prfy+gESrwTDofIhAt17ngTxrsDiEZxLemmfHH279x206CdUB9XHXS9E6Q==}
@@ -1398,6 +1392,7 @@ packages:
     resolution: {integrity: sha512-TOGRR+e1to00CihjgPNygD7+G7ruVnMi62YdIvGUBRfj11k/aWq+Fv5Ea8St0Oy56NngTBfA8GvLn1uvHvhX6Q==}
     dependencies:
       '@types/node': 15.12.4
+    dev: true
 
   /@types/json-schema/7.0.9:
     resolution: {integrity: sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==}

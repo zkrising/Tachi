@@ -12,9 +12,11 @@ import SelectButton from "components/util/SelectButton";
 import { mode, TachiConfig } from "lib/config";
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Modal, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import {
 	APIPermissions,
 	APITokenDocument,
+	integer,
 	PublicUserDocument,
 	TachiAPIClientDocument,
 } from "tachi-common";
@@ -637,6 +639,15 @@ function ServicesPage({ reqUser }: { reqUser: PublicUserDocument }) {
 					<SelectButton value={page} setValue={setPage} id="arc">
 						ARC
 					</SelectButton>
+					<SelectButton value={page} setValue={setPage} id="flo">
+						FLO
+					</SelectButton>
+					<SelectButton value={page} setValue={setPage} id="eag">
+						EAG
+					</SelectButton>
+					<SelectButton value={page} setValue={setPage} id="min">
+						MIN
+					</SelectButton>
 				</div>
 				<Divider />
 			</Col>
@@ -645,13 +656,54 @@ function ServicesPage({ reqUser }: { reqUser: PublicUserDocument }) {
 			) : page === "arc" ? (
 				<ARCIntegrationPage reqUser={reqUser} />
 			) : page === "flo" ? (
-				<></>
+				<KAIIntegrationStatus userID={reqUser.id} kaiType="flo" />
 			) : page === "eag" ? (
-				<></>
+				<KAIIntegrationStatus userID={reqUser.id} kaiType="eag" />
 			) : (
-				<></>
+				<KAIIntegrationStatus userID={reqUser.id} kaiType="min" />
 			)}
 		</Row>
+	);
+}
+
+function KAIIntegrationStatus({
+	kaiType,
+	userID,
+}: {
+	kaiType: "flo" | "eag" | "min";
+	userID: integer;
+}) {
+	const { data, isLoading, error } = useApiQuery<{ authStatus: boolean }>(
+		`/users/${userID}/integrations/kai/${kaiType}`
+	);
+
+	if (error) {
+		return <ApiError error={error} />;
+	}
+
+	if (isLoading || !data) {
+		return <Loading />;
+	}
+
+	return (
+		<div className="row">
+			<div className="col-12">
+				<h3>
+					{data.authStatus
+						? `You are authenticated with ${kaiType.toUpperCase()}!`
+						: `You are not authenticated with ${kaiType.toUpperCase()}`}
+				</h3>
+				{data.authStatus ? (
+					<h4>There's no configuration to do here. You're all good!</h4>
+				) : (
+					<h4>
+						You should authenticate yourself by going to{" "}
+						<Link to="/dashboard/import">Import Scores</Link> for the thing you want to
+						import for!1
+					</h4>
+				)}
+			</div>
+		</div>
 	);
 }
 

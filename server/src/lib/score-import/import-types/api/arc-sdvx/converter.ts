@@ -107,5 +107,4 @@ export function ResolveARCSDVXLamp(lamp: ARCSDVXScore["lamp"]): Lamps["sdvx:Sing
 		case "PUC":
 			return "PERFECT ULTIMATE CHAIN";
 	}
-
 }

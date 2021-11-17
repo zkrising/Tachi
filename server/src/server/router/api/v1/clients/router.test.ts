@@ -6,7 +6,6 @@ import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 
-
 const clientDataset: TachiAPIClientDocument[] = [
 	{
 		author: 1,

@@ -47,8 +47,7 @@ t.test("#ParseEamusementCSV", (t) => {
 			() => IIDXCSVParse(buffer, logger),
 			new ScoreImportFatalError(400, "Row 1 has an invalid amount of cells (4, expected 27)")
 		);
-
-	})
+	});
 
 	t.test("Version Inference", (t) => {
 		const headerStr = `${"a,".repeat(26)}a`;
@@ -75,10 +74,7 @@ t.test("#ParseEamusementCSV", (t) => {
 
 		t.equal(version, "27", "Should pick the largest version from the list of scores.");
 
-		({ version } = IIDXCSVParse(
-			Buffer.from([headerStr, row17th, row27th].join("\n")),
-			logger
-		));
+		({ version } = IIDXCSVParse(Buffer.from([headerStr, row17th, row27th].join("\n")), logger));
 
 		// this is technically allowing invalid eam-csv, but, who cares?
 		t.equal(

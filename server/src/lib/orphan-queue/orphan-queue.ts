@@ -2,12 +2,12 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { FilterQuery } from "mongodb";
 import {
-    ChartDocument,
-    IDStrings,
-    IDStringToGame,
-    integer,
-    OrphanChart,
-    SongDocument
+	ChartDocument,
+	IDStrings,
+	IDStringToGame,
+	integer,
+	OrphanChart,
+	SongDocument,
 } from "tachi-common";
 import { GetNextCounterValue } from "utils/db";
 

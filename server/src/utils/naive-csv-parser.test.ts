@@ -14,7 +14,7 @@ t.test("#ParseCSV", (t) => {
 		];
 
 		const headersStr = headers.join(",");
-		const rowsStr = rows.map(r => r.join(",")).join("\n");
+		const rowsStr = rows.map((r) => r.join(",")).join("\n");
 
 		const csvBuffer = Buffer.from(`${headersStr}\n${rowsStr}`);
 
@@ -26,14 +26,14 @@ t.test("#ParseCSV", (t) => {
 	});
 
 	t.test("Valid Evil CSV", (t) => {
-		const headers = ["header1", "\"header2\"", "hea\"der3"];
+		const headers = ["header1", '"header2"', 'hea"der3'];
 		const rows = [
 			["a ", "bbbbbbbbbbbbbbbbbbbbbbbbbbb", ""],
-			["d", "\"", "冥"],
+			["d", '"', "冥"],
 		];
 
 		const headersStr = headers.join(",");
-		const rowsStr = rows.map(r => r.join(",")).join("\n");
+		const rowsStr = rows.map((r) => r.join(",")).join("\n");
 
 		const csvBuffer = Buffer.from(`${headersStr}\n${rowsStr}\n`);
 
@@ -45,10 +45,7 @@ t.test("#ParseCSV", (t) => {
 	});
 
 	t.test("IIDX CSV", (t) => {
-		const { rawHeaders, rawRows } = NaiveCSVParse(
-			TestingIIDXEamusementCSV27,
-			logger
-		);
+		const { rawHeaders, rawRows } = NaiveCSVParse(TestingIIDXEamusementCSV27, logger);
 
 		t.equal(rawHeaders.length, 41);
 		t.equal(rawRows.length, 1257);

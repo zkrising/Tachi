@@ -53,8 +53,10 @@ export default function ARCImportPage({ game }: { game: "sdvx" | "iidx" }) {
 				<br />
 				<h4>
 					Please go to the{" "}
-					<Link to={`/users/${user.id}/integrations`}>Service Settings for ARC</Link>, and
-					link your account.
+					<Link to={`/dashboard/users/${user.id}/integrations`}>
+						Service Settings for ARC
+					</Link>
+					, and link your account.
 				</h4>
 			</div>
 		);

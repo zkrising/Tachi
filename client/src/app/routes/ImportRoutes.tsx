@@ -145,7 +145,7 @@ export default function ImportRoutes() {
 							</Route>
 							<Route exact path="/dashboard/import/sdvx-eag">
 								<KAIIntegrationPage
-									hash="7745e8a7f20d9493d537df507124d8d719bf1d32afcd3cf4f94af53b3dcd7ac9"
+									hash="0451a33ffc7f8b0c089450d842efb8b7099e22a2df2251ae4e6d9ec1b3cb4a5f"
 									clientID={process.env.REACT_APP_EAG_CLIENT_ID ?? ""}
 									redirectUri={`${window.location.origin}/oauth2-callback/eag`}
 									kaiType="EAG"

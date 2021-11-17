@@ -614,12 +614,15 @@ function ServicesPage({ reqUser }: { reqUser: PublicUserDocument }) {
 		);
 	}
 
-	const [page, setPage] = useState<"fervidex" | "arc">("fervidex");
+	const [page, setPage] = useState<"fervidex" | "arc" | "flo" | "eag" | "min">("fervidex");
 
 	return (
 		<Row className="text-center justify-content-center">
 			<Col xs={12}>
 				<h3>Service Configuration</h3>
+				<span>
+					This is for <b>Configuring Integrations!</b>
+				</span>
 				<Muted>
 					Some services have had their names truncated to their first three characters for
 					privacy reasons.
@@ -639,8 +642,14 @@ function ServicesPage({ reqUser }: { reqUser: PublicUserDocument }) {
 			</Col>
 			{page === "fervidex" ? (
 				<FervidexIntegrationPage reqUser={reqUser} />
-			) : (
+			) : page === "arc" ? (
 				<ARCIntegrationPage reqUser={reqUser} />
+			) : page === "flo" ? (
+				<></>
+			) : page === "eag" ? (
+				<></>
+			) : (
+				<></>
 			)}
 		</Row>
 	);

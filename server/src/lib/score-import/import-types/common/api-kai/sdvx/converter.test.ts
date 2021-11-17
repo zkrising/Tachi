@@ -104,12 +104,13 @@ t.test("#ConvertDifficulty", (t) => {
 });
 
 t.test("#ConvertVersion", (t) => {
-	// t.equal(ConvertVersion(0), "booth");
-	// t.equal(ConvertVersion(1), "inf");
-	// t.equal(ConvertVersion(2), "gw");
-	t.equal(ConvertVersion(3), "heaven");
-	t.equal(ConvertVersion(4), "vivid");
-	t.throws(() => ConvertVersion(5));
+	t.equal(ConvertVersion(1), "booth");
+	t.equal(ConvertVersion(2), "inf");
+	t.equal(ConvertVersion(3), "gw");
+	t.equal(ConvertVersion(4), "heaven");
+	t.equal(ConvertVersion(5), "vivid");
+	t.throws(() => ConvertVersion(6));
+	t.throws(() => ConvertVersion(0));
 
 	t.end();
 });

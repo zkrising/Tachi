@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { Breadcrumbs } from "./components/Breadcrumbs";
-import { SubheaderContext } from "../../../context/SubheaderContext";
 import Divider from "components/util/Divider";
+import React, { useContext } from "react";
+import { SubheaderContext } from "../../../context/SubheaderContext";
+import { Breadcrumbs } from "./components/Breadcrumbs";
 
 export function SubHeader() {
 	const subheader = useContext(SubheaderContext);

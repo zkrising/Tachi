@@ -1,5 +1,5 @@
-import React, { CSSProperties } from "react";
 import Loading from "components/util/Loading";
+import React, { CSSProperties } from "react";
 import { UnsuccessfulAPIResponse } from "tachi-common";
 
 export default function LoadingWrapper({

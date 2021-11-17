@@ -1,6 +1,6 @@
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PublicUserDocument } from "tachi-common";
 import { JustChildren } from "types/react";
 import { APIFetchV1 } from "util/api";

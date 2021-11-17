@@ -1,5 +1,4 @@
 import MiniTable from "components/tables/components/MiniTable";
-import DebugContent from "components/util/DebugContent";
 import Divider from "components/util/Divider";
 import useImport from "components/util/import/useImport";
 import prettyBytes from "pretty-bytes";

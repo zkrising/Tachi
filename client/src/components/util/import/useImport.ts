@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import { useState } from "react";
-import { ImportDocument, integer, SuccessfulAPIResponse } from "tachi-common";
+import { ImportDocument, integer } from "tachi-common";
 import { ImportStates, NotStartedState } from "types/import";
 import { APIFetchV1 } from "util/api";
 import { Sleep } from "util/misc";

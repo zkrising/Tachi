@@ -6,15 +6,12 @@ import ExternalLink from "components/util/ExternalLink";
 import useImport from "components/util/import/useImport";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
-import UpdateUserGameStats from "components/util/UpdateUserGameStats";
 import { UserContext } from "context/UserContext";
 import { UserGameStatsContext } from "context/UserGameStatsContext";
 import hashjs from "hash.js";
 import React, { useContext, useMemo, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
-import { APIImportTypes, GetGameConfig, ImportDocument } from "tachi-common";
-import { ImportStates, NotStartedState } from "types/import";
-import { APIFetchV1 } from "util/api";
+import { APIImportTypes, GetGameConfig } from "tachi-common";
 import ImportStateRenderer from "./ImportStateRenderer";
 
 interface Props {

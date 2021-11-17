@@ -111,7 +111,7 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 				<Form.Check
 					type="checkbox"
 					id="advancedMode"
-					checked={formik.values.developerMode}
+					checked={formik.values.advancedMode}
 					onChange={formik.handleChange}
 					label="Advanced Mode"
 				/>

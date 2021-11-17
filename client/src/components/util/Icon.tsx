@@ -5,16 +5,20 @@ export default function Icon({
 	noPad,
 	brand,
 	onClick,
+	colour,
 }: {
 	type: string;
 	noPad?: boolean;
 	brand?: boolean;
 	onClick?: () => void;
+	colour?: "info" | "primary" | "danger" | "warning";
 }) {
 	return (
 		<i
 			onClick={onClick}
-			className={`fa${brand ? "b" : "s"} fa-${type} ${noPad ? "p-0" : ""}`}
+			className={`fa${brand ? "b" : "s"} fa-${type} ${noPad ? "p-0" : ""} ${
+				colour ? `text-${colour}` : ""
+			}`}
 		/>
 	);
 }

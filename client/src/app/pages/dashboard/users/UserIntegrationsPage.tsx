@@ -625,9 +625,10 @@ function ServicesPage({ reqUser }: { reqUser: PublicUserDocument }) {
 				<span>
 					This is for <b>Configuring Integrations!</b>
 				</span>
+				<br />
 				<Muted>
-					Some services have had their names truncated to their first three characters for
-					privacy reasons.
+					Note: Some services have had their names truncated to their first three
+					characters for privacy reasons.
 				</Muted>
 				<Divider />
 			</Col>

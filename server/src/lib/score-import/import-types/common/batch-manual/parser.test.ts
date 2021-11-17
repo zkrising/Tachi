@@ -379,7 +379,7 @@ t.test("#ParserFn", (t) => {
 				fn,
 				new ScoreImportFatalError(
 					400,
-					"Invalid BATCH-MANUAL: scores[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of millisecondss? | Received string [string]."
+					"Invalid BATCH-MANUAL: scores[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of milliseconds? | Received string [string]."
 				)
 			);
 
@@ -394,7 +394,7 @@ t.test("#ParserFn", (t) => {
 				fn2,
 				new ScoreImportFatalError(
 					400,
-					"Invalid BATCH-MANUAL: scores[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of millisecondss? | Received 1620768609.637 [number]."
+					"Invalid BATCH-MANUAL: scores[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of milliseconds? | Received 1620768609.637 [number]."
 				),
 				"Should throw if timeAchieved is less than 10_000_000_000."
 			);

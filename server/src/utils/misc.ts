@@ -18,7 +18,7 @@ export function EscapeStringRegexp(string: string) {
 }
 
 /**
- * Takes a process.hrtime.bigint(), and returns the millisecondss elapsed since it.
+ * Takes a process.hrtime.bigint(), and returns the milliseconds elapsed since it.
  * This function will not work if more than 100(ish) days have passed since the first reference.
  */
 export function GetMillisecondsSince(ref: bigint) {

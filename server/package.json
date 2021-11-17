@@ -10,7 +10,8 @@
 		"build": "tsc --project tsconfig.build.json",
 		"lint": "eslint ./src --ext .ts --fix",
 		"start": "tsc --project tsconfig.build.json && export NODE_PATH=js/ && node js/main.js",
-		"run": "export NODE_PATH=js/ && node js/main.js"
+		"run": "export NODE_PATH=js/ && node js/main.js",
+		"runscoreworker": "export NODE_PATH=js/ && node js/lib/score-import/worker/worker.js"
 	},
 	"author": "zkldi",
 	"license": "AGPL3",

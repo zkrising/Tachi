@@ -1,5 +1,6 @@
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
+import { ScoreImportJob, ScoreImportProgress } from "lib/score-import/worker/types";
 import {
 	Game,
 	IDStrings,
@@ -29,6 +30,8 @@ import { ImportAllIterableData } from "./score-importing";
 
 /**
  * Performs a Score Import.
+ *
+ * If a job is passed, progress will be set throughout the job.
  */
 export default async function ScoreImportMain<D, C>(
 	userID: integer,
@@ -36,7 +39,8 @@ export default async function ScoreImportMain<D, C>(
 	importType: ImportTypes,
 	InputParser: ImportInputParser<D, C>,
 	importID: string,
-	providedLogger?: KtLogger
+	providedLogger?: KtLogger,
+	job?: ScoreImportJob
 ) {
 	const user = await GetUserWithID(userID);
 
@@ -59,7 +63,7 @@ export default async function ScoreImportMain<D, C>(
 			//
 			// Under normal circumstances, there is no scenario where a user would have two ongoing
 			// imports at the same time - even if they were using single-score imports on a 5 second
-			// chart, as each score import takes only around ~10-15millisecondss.
+			// chart, as each score import takes only around ~10-15milliseconds.
 			throw new ScoreImportFatalError(409, "This user already has an ongoing import.");
 		}
 
@@ -77,6 +81,8 @@ export default async function ScoreImportMain<D, C>(
 			logger = providedLogger;
 		}
 
+		SetJobProgress(job, "Parsing score data.");
+
 		// --- 1. Parsing ---
 		// We get an iterable from the provided parser function, alongside some context and a converter function.
 		// This iterable does not have to be an array - it's anything that's iterable, like a generator.
@@ -85,7 +91,14 @@ export default async function ScoreImportMain<D, C>(
 
 		const parseTime = GetMillisecondsSince(parseTimeStart);
 
-		logger.debug(`Parsing took ${parseTime} millisecondss.`);
+		logger.debug(`Parsing took ${parseTime} milliseconds.`);
+
+		SetJobProgress(
+			job,
+			`Parsed Score Data. Took ${parseTime}ms. Importing ${
+				Array.isArray(iterable) ? iterable.length : "an unknown amount of"
+			} scores.`
+		);
 
 		// We have to cast here due to typescript generic confusions. This is guaranteed` to be correct.
 		const ConverterFunction = Converters[importType] as unknown as ConverterFunction<D, C>;
@@ -106,7 +119,9 @@ export default async function ScoreImportMain<D, C>(
 		const importTime = GetMillisecondsSince(importTimeStart);
 		const importTimeRel = importTime / importInfo.length;
 
-		logger.debug(`Importing took ${importTime} millisecondss. (${importTimeRel}ms/doc)`);
+		logger.debug(`Importing took ${importTime} milliseconds. (${importTimeRel}ms/doc)`);
+
+		SetJobProgress(job, `Imported scores, took ${importTime} milliseconds. `);
 
 		// Steps 3-8 are handled inside here.
 		// This was moved inside here so the score de-orphaning process
@@ -126,6 +141,8 @@ export default async function ScoreImportMain<D, C>(
 		const { importParseTimeRel, pbTimeRel, sessionTimeRel } = relativeTimes;
 		const { importParseTime, sessionTime, pbTime, ugsTime, goalTime, milestoneTime } =
 			absoluteTimes;
+
+		SetJobProgress(job, "Finalising Import...");
 
 		// --- 9. Finalise Import Document ---
 		// Create and Save an import document to the database, and finish everything up!
@@ -205,7 +222,8 @@ export async function HandlePostImportSteps(
 	importType: ImportTypes,
 	game: Game,
 	classHandler: ClassHandler | null,
-	logger: KtLogger
+	logger: KtLogger,
+	job: ScoreImportJob | undefined
 ) {
 	// --- 3. ParseImportInfo ---
 	// ImportInfo is a relatively complex structure. We need some information from it for subsequent steps
@@ -217,8 +235,10 @@ export async function HandlePostImportSteps(
 	const importParseTimeRel = importParseTime / importInfo.length;
 
 	logger.debug(
-		`Import Parsing took ${importParseTime} millisecondss. (${importParseTimeRel}ms/doc)`
+		`Import Parsing took ${importParseTime} milliseconds. (${importParseTimeRel}ms/doc)`
 	);
+
+	SetJobProgress(job, "Inserting Sessions.");
 
 	// --- 4. Sessions ---
 	// We create (or update existing) sessions here. This uses the aforementioned parsed import info
@@ -229,7 +249,9 @@ export async function HandlePostImportSteps(
 	const sessionTime = GetMillisecondsSince(sessionTimeStart);
 	const sessionTimeRel = sessionTime / sessionInfo.length;
 
-	logger.debug(`Session Processing took ${sessionTime} millisecondss (${sessionTimeRel}ms/doc).`);
+	logger.debug(`Session Processing took ${sessionTime} milliseconds (${sessionTimeRel}ms/doc).`);
+
+	SetJobProgress(job, "Processing scores and updating PBs.");
 
 	// --- 5. PersonalBests ---
 	// We want to keep an updated reference of a users best score on a given chart.
@@ -241,9 +263,11 @@ export async function HandlePostImportSteps(
 	const pbTime = GetMillisecondsSince(pbTimeStart);
 	const pbTimeRel = pbTime / chartIDs.size;
 
-	logger.debug(`PB Processing took ${pbTime} millisecondss (${pbTimeRel}ms/doc)`);
+	logger.debug(`PB Processing took ${pbTime} milliseconds (${pbTimeRel}ms/doc)`);
 
 	const playtypes = Object.keys(scorePlaytypeMap) as Playtypes[Game][];
+
+	SetJobProgress(job, "Updating profile statistics.");
 
 	// --- 6. Game Stats ---
 	// This function updates the users "stats" for this game - such as their profile rating or their classes.
@@ -252,7 +276,9 @@ export async function HandlePostImportSteps(
 
 	const ugsTime = GetMillisecondsSince(ugsTimeStart);
 
-	logger.debug(`UGS Processing took ${ugsTime} millisecondss.`);
+	logger.debug(`UGS Processing took ${ugsTime} milliseconds.`);
+
+	SetJobProgress(job, "Updating Goals.");
 
 	// --- 7. Goals ---
 	// Evaluate and update the users goals. This returns information about goals that have changed.
@@ -261,7 +287,9 @@ export async function HandlePostImportSteps(
 
 	const goalTime = GetMillisecondsSince(goalTimeStart);
 
-	logger.debug(`Goal Processing took ${goalTime} millisecondss.`);
+	logger.debug(`Goal Processing took ${goalTime} milliseconds.`);
+
+	SetJobProgress(job, "Updating Milestones.");
 
 	// --- 8. Milestones ---
 	// Evaluate and update the users milestones. This returns...
@@ -270,7 +298,7 @@ export async function HandlePostImportSteps(
 
 	const milestoneTime = GetMillisecondsSince(milestoneTimeStart);
 
-	logger.debug(`Milestone Processing took ${milestoneTime} millisecondss.`);
+	logger.debug(`Milestone Processing took ${milestoneTime} milliseconds.`);
 
 	return {
 		classDeltas,
@@ -347,4 +375,10 @@ function ParseImportInfo(importInfo: ImportProcessingInfo[]) {
 	}
 
 	return { scoreIDs, errors, scorePlaytypeMap, chartIDs };
+}
+
+function SetJobProgress(job: ScoreImportJob | undefined, description: string) {
+	if (job) {
+		job.progress({ description });
+	}
 }

@@ -146,7 +146,7 @@ export function CalculateESDForGame(
 
 /**
  * Parses and validates a date from a string.
- * @returns Millisecondss from the unix epoch, or null if the initial argument was null or undefined.
+ * @returns Milliseconds from the unix epoch, or null if the initial argument was null or undefined.
  */
 export function ParseDateFromString(str: string | undefined | null): number | null {
 	if (!str) {

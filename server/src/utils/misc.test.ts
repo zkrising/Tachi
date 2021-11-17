@@ -1,7 +1,7 @@
 import t from "tap";
 import { GetMillisecondsSince, IsValidURL } from "./misc";
 
-t.test("#GetMillisecondssSince", (t) => {
+t.test("#GetMillisecondsSince", (t) => {
 	const time = GetMillisecondsSince(10n);
 	t.ok(typeof time === "number" && time > 0, "Should return a number greater than 0.");
 

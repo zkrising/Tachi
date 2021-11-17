@@ -51,9 +51,15 @@ ScoreImportQueue.process(async <I extends ImportTypes>(job: ScoreImportJob<I>) =
 	// This helps us debug what score import did what!
 	const logger = CreateLogCtx(`Score Import ${job.id} ${FormatUserDoc(user)}`);
 
+	logger.debug(`Recieved score import job ${job.id}`);
+
 	const InputParser = GetInputParser(job.data);
 
 	logger.debug(`Starting import.`);
+
+	job.progress({
+		description: "Importing Scores...",
+	});
 
 	const importDocument = await ScoreImportMain(
 		user.id,

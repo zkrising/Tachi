@@ -166,6 +166,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Pull your SDVX scores from the MIN Network."
 				moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 				key="MIN Integration"
+			/>,
+			<ImportInfoCard
+				name="ARC Integration"
+				href="sdvx-arc"
+				desc="Pull your SDVX scores from the ARC Network."
+				moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons. ARC has a serious problem where it only stores one score per chart. This results in broken timestamps, and technically false score imports. I highly recommend using Barbatos instead, and only importing this once to synchronise things up."
+				key="ARC Integration"
 			/>
 		);
 	} else if (game === "chunithm") {

@@ -2,7 +2,11 @@ import { useQuery } from "react-query";
 import { SuccessfulAPIResponse } from "tachi-common";
 import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
 
-export default function useApiQuery<T>(url: string | string[], options?: RequestInit) {
+export default function useApiQuery<T>(
+	url: string | string[],
+	options?: RequestInit,
+	neverCache = false
+) {
 	return useQuery<T, UnsuccessfulAPIFetchResponse>(
 		url,
 		async () => {
@@ -25,7 +29,7 @@ export default function useApiQuery<T>(url: string | string[], options?: Request
 			return res.body;
 		},
 		{
-			retry: (options?.method ?? "GET") === "GET",
+			retry: (options?.method ?? "GET") === "GET" && !neverCache,
 		}
 	);
 }

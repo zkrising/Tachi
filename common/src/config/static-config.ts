@@ -10,6 +10,7 @@ import {
 
 export const fileImportTypes: FileUploadImportTypes[] = [
 	"file/eamusement-iidx-csv",
+	"file/eamusement-sdvx-csv",
 	"file/batch-manual",
 	"file/solid-state-squad",
 	"file/mer-iidx",

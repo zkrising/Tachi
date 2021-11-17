@@ -3,13 +3,13 @@ import t from "tap";
 import { MockMulterFile } from "test-utils/mock-multer";
 import { TestingIIDXEamusementCSV26, TestingIIDXEamusementCSV27 } from "test-utils/test-data";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import GenericParseEamIIDXCSV, { NaiveCSVParse, ResolveHeaders } from "./parser";
+import GenericParseEamIIDXCSV, { IIDXCSVParse, ResolveHeaders } from "./parser";
 
 const logger = CreateLogCtx(__filename);
 
 t.test("#ParseEamusementCSV", (t) => {
 	t.test("Valid Rootage-Type CSV", (t) => {
-		const { iterableData, hasBeginnerAndLegg, version } = NaiveCSVParse(
+		const { iterableData, hasBeginnerAndLegg, version } = IIDXCSVParse(
 			TestingIIDXEamusementCSV26,
 			logger
 		);
@@ -22,7 +22,7 @@ t.test("#ParseEamusementCSV", (t) => {
 	});
 
 	t.test("Valid HV CSV", (t) => {
-		const { iterableData, hasBeginnerAndLegg, version } = NaiveCSVParse(
+		const { iterableData, hasBeginnerAndLegg, version } = IIDXCSVParse(
 			TestingIIDXEamusementCSV27,
 			logger
 		);
@@ -38,45 +38,17 @@ t.test("#ParseEamusementCSV", (t) => {
 		t.end();
 	});
 
-	t.test("Malicious Headers", (t) => {
-		// these headers are valid, because we don't check the contents
-		// only that it has the right amt of headers
-		const headerStr = `${"a,".repeat(26)}a`;
-
-		const TooShort = Buffer.from(`${headerStr}\n${"a,".repeat(3)}a`);
+	t.test("Broken CSV", (t) => {
+		// This is mostly tested in the unit tests for NaiveCSVParse (the general one),
+		// but we make sure that the CSVParseErrors are converted to ScoreImportFatalErrors
+		const buffer = Buffer.from(`${"a,".repeat(26)}a\n${"a,".repeat(3)}a`);
 
 		t.throws(
-			() => NaiveCSVParse(TooShort, logger),
+			() => IIDXCSVParse(buffer, logger),
 			new ScoreImportFatalError(400, "Row 1 has an invalid amount of cells (4, expected 27)")
 		);
 
-		const TooLong = Buffer.from(`${headerStr}\n${"a,".repeat(50)}a`);
-
-		t.throws(
-			() => NaiveCSVParse(TooLong, logger),
-			new ScoreImportFatalError(400, "Row 1 has an invalid amount of cells (51, expected 27)")
-		);
-
-		t.end();
-	});
-
-	t.test("Misshaped Rows", (t) => {
-		const LongHeaders = Buffer.from(`${"a".repeat(1000)},a`);
-
-		t.throws(
-			() => NaiveCSVParse(LongHeaders, logger),
-			new ScoreImportFatalError(400, "Headers were longer than 1000 characters long.")
-		);
-
-		const TooManyHeaders = Buffer.from(`${"a,".repeat(50)}a`);
-
-		t.throws(
-			() => NaiveCSVParse(TooManyHeaders, logger),
-			new ScoreImportFatalError(400, "Too many CSV headers.")
-		);
-
-		t.end();
-	});
+	})
 
 	t.test("Version Inference", (t) => {
 		const headerStr = `${"a,".repeat(26)}a`;
@@ -86,7 +58,7 @@ t.test("#ParseEamusementCSV", (t) => {
 		const InvalidVersions = Buffer.from(`${headerStr}\n${row}`);
 
 		t.throws(
-			() => NaiveCSVParse(InvalidVersions, logger),
+			() => IIDXCSVParse(InvalidVersions, logger),
 			new ScoreImportFatalError(
 				400,
 				"Invalid/Unsupported Eamusement Version Name GARBAGE VERSION."
@@ -96,14 +68,14 @@ t.test("#ParseEamusementCSV", (t) => {
 		const row27th = `HEROIC VERSE,foo bar,${"a,".repeat(24)}a`;
 		const row17th = `SIRIUS,foo bar,${"a,".repeat(24)}a`;
 
-		let { version } = NaiveCSVParse(
+		let { version } = IIDXCSVParse(
 			Buffer.from([headerStr, row27th, row17th].join("\n")),
 			logger
 		);
 
 		t.equal(version, "27", "Should pick the largest version from the list of scores.");
 
-		({ version } = NaiveCSVParse(
+		({ version } = IIDXCSVParse(
 			Buffer.from([headerStr, row17th, row27th].join("\n")),
 			logger
 		));

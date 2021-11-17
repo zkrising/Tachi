@@ -39,7 +39,8 @@ t.test("#ParseEamusementCSV", (t) => {
 	});
 
 	t.test("Broken CSV", (t) => {
-		// This is mostly tested in the unit tests for NaiveCSVParse (the general one), but we make sure that the CSVParseErrors are converted to ScoreImportFatalErrors
+		// This is mostly tested in the unit tests for NaiveCSVParse (the general one),
+		// but we make sure that the CSVParseErrors are converted to ScoreImportFatalErrors
 		const buffer = Buffer.from(`${"a,".repeat(26)}a\n${"a,".repeat(3)}a`);
 
 		t.throws(

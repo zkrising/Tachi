@@ -4,6 +4,7 @@ import { GetInputParser } from "./common/get-input-parser";
 import ScoreImportMain from "./score-importing/score-import-main";
 import { ImportTypes, ImportDocument } from "tachi-common";
 import ScoreImportQueue from "../worker/queue";
+import ScoreImportFatalError from "./score-importing/score-import-error";
 
 /**
  * Makes a score import given ScoreImportJobData.
@@ -24,7 +25,13 @@ export async function MakeScoreImport<I extends ImportTypes>(
 			jobId: jobData.importID,
 		});
 
-		return job.finished();
+		const data = await job.finished();
+
+		if (data.success) {
+			return data.importDocument;
+		} else {
+			throw new ScoreImportFatalError(data.statusCode, data.description);
+		}
 	} else {
 		const InputParser = GetInputParser(jobData);
 

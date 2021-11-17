@@ -1,4 +1,5 @@
 import MiniTable from "components/tables/components/MiniTable";
+import DebugContent from "components/util/DebugContent";
 import Divider from "components/util/Divider";
 import prettyBytes from "pretty-bytes";
 import React, { useEffect, useMemo, useState } from "react";
@@ -130,10 +131,17 @@ export default function ImportFileInfo({
 						<div className="row justify-content-center mt-4">
 							{valid && moreInfoFulfilled ? (
 								<>
-									{importState.state === "waiting" ? (
+									{importState.state === "waiting_init" ? (
 										<Button className="btn-primary" disabled>
 											Processing...
 										</Button>
+									) : importState.state === "waiting_processing" ? (
+										<>
+											<Button className="btn-primary" disabled>
+												Processing...
+											</Button>
+											<DebugContent data={importState.progressInfo} />
+										</>
 									) : (
 										<Button
 											className="btn-primary"

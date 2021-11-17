@@ -12,13 +12,23 @@ export default function ImportStateRenderer({ state: s }: { state: ImportStates 
 				<Card header="Import Info" className="text-center">
 					{s.state === "not_started" ? (
 						<>Waiting for an import to start...</>
-					) : s.state === "waiting" ? (
+					) : s.state === "waiting_init" ? (
 						<>
 							<Loading />
 							<div className="mt-2">
 								We're processing your import. Depending on the amount of scores you
 								have, this might take a while.
 							</div>
+						</>
+					) : s.state === "waiting_processing" ? (
+						<>
+							<Loading />
+							<div className="mt-2">
+								We're processing your import. Depending on the amount of scores you
+								have, this might take a while.
+							</div>
+							<Divider />
+							<div>{s.progressInfo.description ?? "Importing."}..</div>
 						</>
 					) : s.state === "done" ? (
 						<>

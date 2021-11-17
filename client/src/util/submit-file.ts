@@ -17,7 +17,7 @@ export default async function SubmitFile(
 		formData.append(key, value);
 	}
 
-	setState({ state: "waiting" });
+	setState({ state: "waiting_init" });
 
 	const res = await APIFetchV1<ImportDocument>(
 		"/import/file",

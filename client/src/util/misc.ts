@@ -184,3 +184,7 @@ export function WrapError<T>(fn: () => T, errMsg: string) {
 		throw new Error(errMsg);
 	}
 }
+
+export function Sleep(ms: number) {
+	return new Promise<void>(resolve => setTimeout(() => resolve(), ms));
+}

@@ -3,6 +3,7 @@ import useSetSubheader from "components/layout/header/useSetSubheader";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
+import useImport from "components/util/import/useImport";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import UpdateUserGameStats from "components/util/UpdateUserGameStats";
@@ -70,7 +71,15 @@ function KAIImporter({ kaiType, game }: Pick<Props, "kaiType" | "game">) {
 		importType = game === "iidx" ? "api/eag-iidx" : "api/eag-sdvx";
 	}
 
-	const [importState, setImportState] = useState<ImportStates>(NotStartedState);
+	const { importState, runImport } = useImport("/import/from-api", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			importType,
+		}),
+	});
 
 	return (
 		<div>
@@ -80,34 +89,16 @@ function KAIImporter({ kaiType, game }: Pick<Props, "kaiType" | "game">) {
 				<Button
 					className="mx-auto"
 					variant="primary"
-					onClick={async () => {
-						setImportState({ state: "waiting" });
-
-						const res = await APIFetchV1<ImportDocument>(
-							"/import/from-api",
-							{
-								method: "POST",
-								headers: {
-									"Content-Type": "application/json",
-								},
-								body: JSON.stringify({
-									importType,
-								}),
-							},
-							true,
-							true
-						);
-
-						if (res.success) {
-							setImportState({ state: "done", import: res.body });
-							UpdateUserGameStats(setUGS);
-						} else {
-							setImportState({ state: "failed", error: res.description });
-						}
-					}}
-					disabled={importState.state === "waiting"}
+					onClick={runImport}
+					disabled={
+						importState.state === "waiting_init" ||
+						importState.state === "waiting_processing"
+					}
 				>
-					{importState.state === "waiting" ? "Syncing..." : "Click to Sync!"}
+					{importState.state === "waiting_init" ||
+					importState.state === "waiting_processing"
+						? "Syncing..."
+						: "Click to Sync!"}
 				</Button>
 			</div>
 			<Divider />

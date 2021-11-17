@@ -1,22 +1,15 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
+import useImport from "components/util/import/useImport";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
-import UpdateUserGameStats from "components/util/UpdateUserGameStats";
 import { UserContext } from "context/UserContext";
 import { UserGameStatsContext } from "context/UserGameStatsContext";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Alert, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import {
-	APIImportTypes,
-	ARCSavedProfileDocument,
-	GetGameConfig,
-	ImportDocument,
-} from "tachi-common";
-import { ImportStates, NotStartedState } from "types/import";
-import { APIFetchV1 } from "util/api";
+import { APIImportTypes, ARCSavedProfileDocument, GetGameConfig } from "tachi-common";
 import ImportStateRenderer from "./ImportStateRenderer";
 
 export default function ARCImportPage({ game }: { game: "sdvx" | "iidx" }) {
@@ -26,11 +19,19 @@ export default function ARCImportPage({ game }: { game: "sdvx" | "iidx" }) {
 
 	useSetSubheader(["Imports", `ARC ${GetGameConfig(game).name} Synchronisation`]);
 
+	const { importState, runImport } = useImport("/import/from-api", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			importType,
+		}),
+	});
+
 	if (!user) {
 		return <>No user? How did you get here!</>;
 	}
-
-	const [importState, setImportState] = useState<ImportStates>(NotStartedState);
 
 	const { data, isLoading, error } = useApiQuery<{
 		iidx: ARCSavedProfileDocument | null;
@@ -67,34 +68,16 @@ export default function ARCImportPage({ game }: { game: "sdvx" | "iidx" }) {
 				<Button
 					className="mx-auto"
 					variant="primary"
-					onClick={async () => {
-						setImportState({ state: "waiting" });
-
-						const res = await APIFetchV1<ImportDocument>(
-							"/import/from-api",
-							{
-								method: "POST",
-								headers: {
-									"Content-Type": "application/json",
-								},
-								body: JSON.stringify({
-									importType,
-								}),
-							},
-							true,
-							true
-						);
-
-						if (res.success) {
-							setImportState({ state: "done", import: res.body });
-							UpdateUserGameStats(setUGS);
-						} else {
-							setImportState({ state: "failed", error: res.description });
-						}
-					}}
-					disabled={importState.state === "waiting"}
+					onClick={runImport}
+					disabled={
+						importState.state === "waiting_init" ||
+						importState.state === "waiting_processing"
+					}
 				>
-					{importState.state === "waiting" ? "Syncing..." : "Click to Sync!"}
+					{importState.state === "waiting_init" ||
+					importState.state === "waiting_processing"
+						? "Syncing..."
+						: "Click to Sync!"}
 				</Button>
 			</div>
 			<Divider />

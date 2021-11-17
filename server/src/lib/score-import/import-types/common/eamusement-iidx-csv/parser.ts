@@ -99,9 +99,8 @@ export function IIDXCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 	} catch (e) {
 		if (e instanceof CSVParseError) {
 			throw new ScoreImportFatalError(400, e.message);
-		} else {
-			throw e;
 		}
+		throw e;
 	}
 
 	const { hasBeginnerAndLegg } = ResolveHeaders(rawHeaders, logger);

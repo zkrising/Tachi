@@ -158,7 +158,7 @@ const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, next) => {
 		});
 	}
 
-	logger.error(err, req.route);
+	logger.error("Fatal error propagated to server root? ", { err, route: req.route });
 	return res.status(500).json({
 		success: false,
 		description: "A fatal internal server error has occured.",

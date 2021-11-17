@@ -105,15 +105,15 @@ router.get("/:importID/poll-status", async (req, res) => {
 		});
 	}
 
+	// job.isFailed() actually means a critical error has occured.
+	// As in, an unhandled exception was thrown.
 	if (await job.isFailed()) {
-		const err = await job.finished();
-
-		if (err instanceof ScoreImportFatalError) {
-			logger.info(err.message);
-			return res.status(err.statusCode).json({
-				success: false,
-				description: err.message,
-			});
+		// What the hell? Is this really how you're meant to get errors?
+		let err;
+		try {
+			await job.finished();
+		} catch (e) {
+			err = e;
 		}
 
 		logger.error("Internal Server Error with job?", { err, job });
@@ -123,13 +123,30 @@ router.get("/:importID/poll-status", async (req, res) => {
 			description: `An internal service error has occured with this import. This has been reported!`,
 		});
 	} else if (await job.isCompleted()) {
-		return res.status(200).json({
-			success: true,
-			description: `Import was completed!`,
-			body: {
-				importStatus: "completed",
-			},
-		});
+		const content = await job.finished();
+
+		// Since job.isFailed() is for whether a job had a fatal exception
+		// or not. We still want to check whether a job failed from say,
+		// nonsense user input.
+		// As such, if content.success == true, then the import was
+		// successful.
+		// Else, it was a "score import fatal error", which means the user
+		// screwed something up and we had to bail on the import.
+		if (content.success) {
+			return res.status(200).json({
+				success: true,
+				description: `Import was completed!`,
+				body: {
+					importStatus: "completed",
+					import: content.importDocument,
+				},
+			});
+		} else {
+			return res.status(content.statusCode).json({
+				success: false,
+				description: content.message,
+			});
+		}
 	}
 
 	const progress = await job.progress();

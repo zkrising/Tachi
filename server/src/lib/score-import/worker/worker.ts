@@ -17,6 +17,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { ImportTypes } from "tachi-common";
 import { FormatUserDoc, GetUserWithID } from "utils/user";
 import { GetInputParser } from "../framework/common/get-input-parser";
+import ScoreImportFatalError from "../framework/score-importing/score-import-error";
 import ScoreImportMain from "../framework/score-importing/score-import-main";
 import ScoreImportQueue from "./queue";
 import { ScoreImportJob } from "./types";
@@ -51,7 +52,23 @@ ScoreImportQueue.process(async <I extends ImportTypes>(job: ScoreImportJob<I>) =
 	// This helps us debug what score import did what!
 	const logger = CreateLogCtx(`Score Import ${job.id} ${FormatUserDoc(user)}`);
 
-	logger.debug(`Recieved score import job ${job.id}`);
+	// Here's a hack. You cant pass buffers to bull workers, as content
+	// **must** be JSON serialisable. As such, all of our buffers get
+	// turned into nonsense objects. We need to "deJSONify" these buffers
+	// so lets do that now.
+
+	const processedArgs: any = [];
+	for (const arg of job.data.parserArguments as any[]) {
+		if (arg?.buffer?.type === "Buffer") {
+			processedArgs.push({ ...arg, buffer: Buffer.from(arg.buffer.data) });
+		} else {
+			processedArgs.push(arg);
+		}
+	}
+
+	job.data.parserArguments = processedArgs;
+
+	logger.debug(`Recieved score import job ${job.id}`, { job });
 
 	const InputParser = GetInputParser(job.data);
 
@@ -61,19 +78,31 @@ ScoreImportQueue.process(async <I extends ImportTypes>(job: ScoreImportJob<I>) =
 		description: "Importing Scores.",
 	});
 
-	const importDocument = await ScoreImportMain(
-		user.id,
-		job.data.userIntent,
-		job.data.importType,
-		InputParser,
-		job.data.importID,
-		logger,
-		job
-	);
+	try {
+		const importDocument = await ScoreImportMain(
+			user.id,
+			job.data.userIntent,
+			job.data.importType,
+			InputParser,
+			job.data.importID,
+			logger,
+			job
+		);
 
-	logger.debug(`Finished import.`);
+		logger.debug(`Finished import.`);
 
-	return importDocument;
+		return { success: true, importDocument };
+	} catch (err) {
+		if (err instanceof ScoreImportFatalError) {
+			logger.info(
+				`Job ${job.id} hit ScoreImportFatalError (User Fault) with message: ${err.message}`,
+				err
+			);
+			return { success: false, statusCode: err.statusCode, message: err.message };
+		}
+
+		throw err;
+	}
 });
 
 process.on("SIGTERM", HandleSIGTERMGracefully);

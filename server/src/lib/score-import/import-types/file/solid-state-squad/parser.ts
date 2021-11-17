@@ -60,13 +60,14 @@ export function ParseSolidStateXML(
 	try {
 		parsedXML = FastParseXML(fileData.buffer.toString("utf-8"));
 	} catch (err) {
-		logger.info(err);
+		logger.info("S3 XML Parse Error", err);
 
 		throw new ScoreImportFatalError(400, "Could not parse XML.");
 	}
 
 	if (!parsedXML?.s3data?.scoredata?.song) {
-		throw new ScoreImportFatalError(400, `Invalid S3 XML.`);
+		logger.crit("foo", { data: fileData.buffer });
+		throw new ScoreImportFatalError(400, `Invalid S3 XML, no s3data -> scoredata -> song?`);
 	}
 
 	// the XML parser can't understand this is meant to be an array

@@ -113,7 +113,8 @@ export default async function ScoreImportMain<D, C>(
 			ConverterFunction,
 			context,
 			game,
-			logger
+			logger,
+			job
 		);
 
 		const importTime = GetMillisecondsSince(importTimeStart);
@@ -136,13 +137,21 @@ export default async function ScoreImportMain<D, C>(
 			milestoneInfo,
 			relativeTimes,
 			absoluteTimes,
-		} = await HandlePostImportSteps(importInfo, user, importType, game, classHandler, logger);
+		} = await HandlePostImportSteps(
+			importInfo,
+			user,
+			importType,
+			game,
+			classHandler,
+			logger,
+			job
+		);
 
 		const { importParseTimeRel, pbTimeRel, sessionTimeRel } = relativeTimes;
 		const { importParseTime, sessionTime, pbTime, ugsTime, goalTime, milestoneTime } =
 			absoluteTimes;
 
-		SetJobProgress(job, "Finalising Import...");
+		SetJobProgress(job, "Finalising Import.");
 
 		// --- 9. Finalise Import Document ---
 		// Create and Save an import document to the database, and finish everything up!

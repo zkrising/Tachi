@@ -150,7 +150,8 @@ export async function ReprocessOrphan(
 		orphan.importType,
 		orphan.game,
 		null,
-		logger
+		logger,
+		undefined
 	);
 
 	return converterReturns;

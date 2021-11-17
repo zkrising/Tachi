@@ -58,7 +58,7 @@ ScoreImportQueue.process(async <I extends ImportTypes>(job: ScoreImportJob<I>) =
 	logger.debug(`Starting import.`);
 
 	job.progress({
-		description: "Importing Scores...",
+		description: "Importing Scores.",
 	});
 
 	const importDocument = await ScoreImportMain(
@@ -67,7 +67,8 @@ ScoreImportQueue.process(async <I extends ImportTypes>(job: ScoreImportJob<I>) =
 		job.data.importType,
 		InputParser,
 		job.data.importID,
-		logger
+		logger,
+		job
 	);
 
 	logger.debug(`Finished import.`);

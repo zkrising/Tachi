@@ -1,5 +1,6 @@
 import db from "external/mongo/db";
 import { AppendLogCtx, KtLogger } from "lib/logger/logger";
+import { ScoreImportJob } from "lib/score-import/worker/types";
 import {
 	ChartDocument,
 	Game,
@@ -43,7 +44,8 @@ export async function ImportAllIterableData<D, C>(
 	ConverterFunction: ConverterFunction<D, C>,
 	context: C,
 	game: Game,
-	logger: KtLogger
+	logger: KtLogger,
+	job: ScoreImportJob | undefined
 ): Promise<ImportProcessingInfo[]> {
 	logger.verbose("Getting Blacklist...");
 
@@ -58,6 +60,8 @@ export async function ImportAllIterableData<D, C>(
 	logger.verbose(`Starting Data Processing...`);
 
 	const processedResults = [];
+
+	let i = 0;
 
 	// for await is used here as iterableData may be an async iterable
 	// An example would be making an api request after exhausting
@@ -75,6 +79,12 @@ export async function ImportAllIterableData<D, C>(
 				logger
 			)
 		);
+
+		i++;
+
+		if (job) {
+			job.progress({ description: `Imported ${i} scores.` });
+		}
 	}
 
 	// We need to filter out nulls, which we don't care for (these are neither successes or failures)

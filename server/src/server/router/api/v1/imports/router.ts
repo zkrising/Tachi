@@ -105,7 +105,7 @@ router.get("/:importID/poll-status", async (req, res) => {
 		});
 	}
 
-	if (job.isFailed()) {
+	if (await job.isFailed()) {
 		const err = await job.finished();
 
 		if (err instanceof ScoreImportFatalError) {
@@ -116,11 +116,13 @@ router.get("/:importID/poll-status", async (req, res) => {
 			});
 		}
 
+		logger.error("Internal Server Error with job?", { err, job });
+
 		return res.status(500).json({
 			success: false,
 			description: `An internal service error has occured with this import. This has been reported!`,
 		});
-	} else if (job.isCompleted()) {
+	} else if (await job.isCompleted()) {
 		return res.status(200).json({
 			success: true,
 			description: `Import was completed!`,
@@ -137,7 +139,7 @@ router.get("/:importID/poll-status", async (req, res) => {
 		description: `Import is ongoing.`,
 		body: {
 			importStatus: "ongoing",
-			progress,
+			progress: progress === 0 ? { description: "Starting up import." } : progress,
 		},
 	});
 });

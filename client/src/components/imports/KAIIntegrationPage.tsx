@@ -89,7 +89,7 @@ function KAIImporter({ kaiType, game }: Pick<Props, "kaiType" | "game">) {
 				<Button
 					className="mx-auto"
 					variant="primary"
-					onClick={runImport}
+					onClick={() => runImport()}
 					disabled={
 						importState.state === "waiting_init" ||
 						importState.state === "waiting_processing"

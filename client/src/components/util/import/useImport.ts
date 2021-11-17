@@ -26,10 +26,13 @@ export type ImportPollStatus =
 export default function useImport(url: string, options: RequestInit) {
 	const [importState, setImportState] = useState<ImportStates>(NotStartedState);
 
-	const runImport = async () => {
+	const runImport = async (overrideOptions?: RequestInit) => {
 		setImportState({ state: "waiting_init" });
 
-		const initRes = await APIFetchV1<ImportDocument | ImportDeferred>(url, options);
+		const initRes = await APIFetchV1<ImportDocument | ImportDeferred>(
+			url,
+			overrideOptions ?? options
+		);
 
 		if (!initRes.success) {
 			setImportState({ state: "failed", error: initRes.description });

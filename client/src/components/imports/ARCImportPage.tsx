@@ -68,7 +68,7 @@ export default function ARCImportPage({ game }: { game: "sdvx" | "iidx" }) {
 				<Button
 					className="mx-auto"
 					variant="primary"
-					onClick={runImport}
+					onClick={() => runImport()}
 					disabled={
 						importState.state === "waiting_init" ||
 						importState.state === "waiting_processing"

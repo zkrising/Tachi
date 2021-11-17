@@ -19,8 +19,8 @@ t.test("#ParseCSV", (t) => {
 		const csvBuffer = Buffer.from(`${headersStr}\n${rowsStr}`);
 
 		const { rawHeaders, rawRows } = NaiveCSVParse(csvBuffer, logger);
-		t.same(rawHeaders, headers);
-		t.same(rawRows, rows);
+		t.strictSame(rawHeaders, headers);
+		t.strictSame(rawRows, rows);
 
 		t.end();
 	});
@@ -38,8 +38,8 @@ t.test("#ParseCSV", (t) => {
 		const csvBuffer = Buffer.from(`${headersStr}\n${rowsStr}\n`);
 
 		const { rawHeaders, rawRows } = NaiveCSVParse(csvBuffer, logger);
-		t.same(rawHeaders, headers);
-		t.same(rawRows, rows);
+		t.strictSame(rawHeaders, headers);
+		t.strictSame(rawRows, rows);
 
 		t.end();
 	});
@@ -49,9 +49,11 @@ t.test("#ParseCSV", (t) => {
 
 		t.equal(rawHeaders.length, 41);
 		t.equal(rawRows.length, 1257);
-		for (let i = 0; i < rawRows.length; i++) {
-			t.equal(rawRows[i].length, 41, `Row ${i} is the correct size`);
-		}
+
+		t.ok(
+			rawRows.every((e) => e.length === 41),
+			`All Rows are of the correct size (41)`
+		);
 
 		t.end();
 	});

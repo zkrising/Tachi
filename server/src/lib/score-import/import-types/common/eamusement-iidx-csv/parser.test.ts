@@ -47,6 +47,8 @@ t.test("#ParseEamusementCSV", (t) => {
 			() => IIDXCSVParse(buffer, logger),
 			new ScoreImportFatalError(400, "Row 1 has an invalid amount of cells (4, expected 27)")
 		);
+
+		t.end();
 	});
 
 	t.test("Version Inference", (t) => {

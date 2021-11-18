@@ -6,7 +6,7 @@ import BMSFolderTable from "./BMSFolderTable";
 import GenericFolderTable from "./GenericFolderTable";
 import IIDXFolderTable from "./IIDXFolderTable";
 import MusecaFolderTable from "./MusecaFolderTable";
-import SDVXFolderTable from "./SDVXFolderTable";
+import SDVXLikeFolderTable from "./SDVXLikeFolderTable";
 
 export default function FolderTable({
 	dataset,
@@ -34,7 +34,7 @@ export default function FolderTable({
 	} else if (game === "bms") {
 		return <BMSFolderTable {...props} />;
 	} else if (game === "sdvx" || game === "usc") {
-		return <SDVXFolderTable {...props} />;
+		return <SDVXLikeFolderTable {...props} />;
 	} else if (game === "maimai") {
 		return <GenericFolderTable {...props} game={game} playtype={playtype} showScore={false} />;
 	} else if (game === "museca") {

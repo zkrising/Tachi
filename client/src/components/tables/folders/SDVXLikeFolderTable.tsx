@@ -18,7 +18,7 @@ import BMSScoreCoreCells from "../game-core-cells/BMSScoreCoreCells";
 import SDVXScoreCoreCells from "../game-core-cells/SDVXCoreCells";
 import { FolderIndicatorHeader } from "../headers/IndicatorHeader";
 
-export default function SDVXFolderTable({
+export default function SDVXLikeFolderTable({
 	dataset,
 	reqUser,
 	game,

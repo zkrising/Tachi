@@ -53,7 +53,9 @@ export default function SDVXLikeScoreTable({
 			headers={headers}
 			entryName="Scores"
 			searchFunctions={CreateDefaultScoreSearchParams(game, playtype)}
-			rowFunction={sc => <Row key={sc.scoreID} sc={sc} reqUser={reqUser} userCol={userCol} />}
+			rowFunction={sc => (
+				<Row key={sc.scoreID} sc={sc} reqUser={reqUser} userCol={userCol} game={game} />
+			)}
 		/>
 	);
 }
@@ -62,10 +64,12 @@ function Row({
 	sc,
 	reqUser,
 	userCol,
+	game,
 }: {
 	sc: ScoreDataset<"sdvx:Single">[0];
 	reqUser: PublicUserDocument;
 	userCol: boolean;
+	game: "sdvx" | "usc";
 }) {
 	const scoreState = useScoreState(sc);
 
@@ -83,13 +87,13 @@ function Row({
 			}
 		>
 			{userCol && <UserCell game={sc.game} playtype={sc.playtype} user={sc.__related.user} />}
-			<DifficultyCell chart={sc.__related.chart} game="sdvx" />
+			<DifficultyCell chart={sc.__related.chart} game={game} />
 			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell
 				song={sc.__related.song}
 				comment={sc.comment}
 				chart={sc.__related.chart}
-				game="sdvx"
+				game={game}
 			/>
 			<SDVXScoreCoreCells sc={sc} />
 			<TimestampCell time={sc.timeAchieved} service={sc.service} />

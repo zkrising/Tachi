@@ -22,6 +22,10 @@ export default function DifficultyCell({
 }) {
 	const gptConfig = GetGamePTConfig(game, chart.playtype);
 
+	if (!gptConfig) {
+		throw new Error(`Was passed nonsense combination of ${game}, ${chart.playtype}`);
+	}
+
 	return (
 		<td
 			style={{

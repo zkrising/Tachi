@@ -1,4 +1,5 @@
 import {
+	EXT_BISTROVER,
 	EXT_HEROIC_VERSE,
 	MODEL_IIDX,
 	MODEL_INFINITAS_2,
@@ -75,14 +76,21 @@ export function SoftwareIDToVersion(model: string, logger: KtLogger) {
 		} else if (data.model === MODEL_IIDX) {
 			// only HV. everything else is disabled deliberately.
 			if (data.ext === EXT_HEROIC_VERSE) {
-				// @hack This is a hack workaround. For custom charts such as kichiku and kiraku
-				// they use a sha256 lookup which skips version lookups so we do not need a version
-				// for 2dxtra specifically.
-				if (data.rev === REV_OMNIMIX || data.rev === REV_2DXTRA) {
+				if (data.rev === REV_OMNIMIX) {
 					return "27-omni";
 				}
 
+				if (data.rev === REV_2DXTRA) {
+					return "27-2dxtra";
+				}
+
 				return "27";
+			} else if (data.ext === EXT_BISTROVER) {
+				if (data.rev === REV_OMNIMIX) {
+					return "28-omni";
+				}
+
+				return "28";
 			}
 		}
 

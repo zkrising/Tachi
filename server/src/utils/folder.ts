@@ -220,7 +220,7 @@ export function CalculateGradeDistribution(pbs: PBScoreDocument[]) {
 
 	return gradeDist;
 }
-export async function GetGradeDistributionForFolder(userID: integer, folder: FolderDocument) {
+export async function GetGradeLampDistributionForFolder(userID: integer, folder: FolderDocument) {
 	const pbData = await GetPBsOnFolder(userID, folder);
 
 	return {
@@ -231,8 +231,8 @@ export async function GetGradeDistributionForFolder(userID: integer, folder: Fol
 	};
 }
 
-export function GetGradeDistributionForFolders(userID: integer, folders: FolderDocument[]) {
-	return Promise.all(folders.map((f) => GetGradeDistributionForFolder(userID, f)));
+export function GetGradeLampDistributionForFolders(userID: integer, folders: FolderDocument[]) {
+	return Promise.all(folders.map((f) => GetGradeLampDistributionForFolder(userID, f)));
 }
 
 export function CreateFolderID(

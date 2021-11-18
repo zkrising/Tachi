@@ -2,7 +2,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { SearchCollection } from "lib/search/search";
-import { GetGradeDistributionForFolders, GetRecentlyViewedFolders } from "utils/folder";
+import { GetGradeLampDistributionForFolders, GetRecentlyViewedFolders } from "utils/folder";
 import { IsString } from "utils/misc";
 import folderIDRouter from "./_folderID/router";
 
@@ -39,7 +39,7 @@ router.get("/", async (req, res) => {
 		20
 	);
 
-	const stats = await GetGradeDistributionForFolders(user.id, folders);
+	const stats = await GetGradeLampDistributionForFolders(user.id, folders);
 
 	return res.status(200).json({
 		success: true,
@@ -66,12 +66,15 @@ router.get("/recent", async (req, res) => {
 
 	const { views, folders } = await GetRecentlyViewedFolders(user.id, game, playtype);
 
+	const stats = await GetGradeLampDistributionForFolders(user.id, folders);
+
 	return res.status(200).json({
 		success: true,
 		description: `Returned ${views.length} recently interacted with folders.`,
 		body: {
 			views,
 			folders,
+			stats,
 		},
 	});
 });

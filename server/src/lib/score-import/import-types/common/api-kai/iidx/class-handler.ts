@@ -19,6 +19,7 @@ export async function CreateKaiIIDXClassHandler(
 		const res = await fetch(`${baseUrl}/api/iidx/v2/player_profile`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
 			},
 		});
 

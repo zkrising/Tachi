@@ -16,7 +16,8 @@ import { usePBState } from "../components/UseScoreState";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
 import PBLeadingRows from "./PBLeadingRows";
 
-export default function SDVXPBTable({
+export default function SDVXLikePBTable({
+	game,
 	dataset,
 	indexCol = true,
 	showPlaycount = false,
@@ -24,6 +25,7 @@ export default function SDVXPBTable({
 	showUser = false,
 	showChart = true,
 }: {
+	game: "sdvx" | "usc";
 	dataset: PBDataset<"sdvx:Single">;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
@@ -31,6 +33,8 @@ export default function SDVXPBTable({
 	showUser?: boolean;
 	showChart?: boolean;
 }) {
+	console.log(playtype);
+
 	const headers: Header<PBDataset<"sdvx:Single">[0]>[] = [
 		...GetPBLeadingHeaders(showUser, showChart, [
 			"Chart",
@@ -58,7 +62,7 @@ export default function SDVXPBTable({
 			dataset={dataset}
 			headers={headers}
 			entryName="PBs"
-			searchFunctions={CreateDefaultPBSearchParams("sdvx", playtype)}
+			searchFunctions={CreateDefaultPBSearchParams(game, playtype)}
 			defaultSortMode={indexCol ? "#" : undefined}
 			rowFunction={pb => (
 				<Row

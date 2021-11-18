@@ -15,16 +15,19 @@ import GenericScoreDropdown from "../dropdowns/GenericScoreDropdown";
 import SDVXScoreCoreCells from "../game-core-cells/SDVXCoreCells";
 import IndicatorHeader from "../headers/IndicatorHeader";
 
-export default function SDVXScoreTable({
+export default function SDVXLikeScoreTable({
 	reqUser,
 	dataset,
 	pageLen,
 	userCol = false,
+	game,
+	playtype,
 }: {
 	reqUser: PublicUserDocument;
 	dataset: ScoreDataset<"sdvx:Single">;
 	pageLen?: integer;
-	playtype: Playtypes["sdvx"];
+	playtype: Playtypes["sdvx" | "usc"];
+	game: "sdvx" | "usc";
 	userCol?: boolean;
 }) {
 	const headers: Header<ScoreDataset<"sdvx:Single">[0]>[] = [
@@ -49,7 +52,7 @@ export default function SDVXScoreTable({
 			pageLen={pageLen}
 			headers={headers}
 			entryName="Scores"
-			searchFunctions={CreateDefaultScoreSearchParams("museca", "Single")}
+			searchFunctions={CreateDefaultScoreSearchParams(game, playtype)}
 			rowFunction={sc => <Row key={sc.scoreID} sc={sc} reqUser={reqUser} userCol={userCol} />}
 		/>
 	);

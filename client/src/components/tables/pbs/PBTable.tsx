@@ -6,7 +6,7 @@ import BMSPBTable from "./BMSPBTable";
 import GenericPBTable from "./GenericPBTable";
 import IIDXPBTable from "./IIDXPBTable";
 import MusecaPBTable from "./MusecaPBTable";
-import SDVXPBTable from "./SDVXPBTable";
+import SDVXLikePBTable from "./SDVXLikePBTable";
 
 export default function PBTable({
 	dataset,
@@ -29,14 +29,23 @@ export default function PBTable({
 	// and assume we just won't make a mistake.
 	// ever.
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const props = { dataset, indexCol, playtype, showPlaycount, alg, showChart, showUser } as any;
+	const props = {
+		dataset,
+		indexCol,
+		playtype,
+		showPlaycount,
+		alg,
+		showChart,
+		showUser,
+		game,
+	} as any;
 
 	if (game === "iidx") {
 		return <IIDXPBTable {...props} />;
 	} else if (game === "bms") {
 		return <BMSPBTable {...props} />;
 	} else if (game === "sdvx" || game === "usc") {
-		return <SDVXPBTable {...props} />;
+		return <SDVXLikePBTable {...props} />;
 	} else if (game === "maimai") {
 		return <GenericPBTable {...props} game={game} playtype={playtype} showScore={false} />;
 	} else if (game === "museca") {

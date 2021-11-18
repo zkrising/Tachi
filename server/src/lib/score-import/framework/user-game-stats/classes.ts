@@ -109,8 +109,8 @@ export async function UpdateUGSClasses(
  * Calculates the class "deltas" for this users classes.
  * This is for calculating scenarios where a users class has improved (i.e. they have gone from 9th dan to 10th dan).
  *
- * Knowing this information allows us to attach it onto the import, and also emit things on redis
- * s**This function emits webhook events and inserts classachieved documents into the DB!**
+ * Knowing this information allows us to attach it onto the import, and also emit things on webhooks.
+ * This function emits webhook events and inserts classachieved documents into the DB!**
  */
 export async function ProcessClassDeltas(
 	game: Game,
@@ -122,7 +122,7 @@ export async function ProcessClassDeltas(
 ): Promise<ClassDelta[]> {
 	const deltas: ClassDelta[] = [];
 
-	const updateOps = [];
+	const achievementOps = [];
 
 	for (const s in classes) {
 		const classSet = s as keyof GameClasses<IDStrings>;
@@ -160,7 +160,7 @@ export async function ProcessClassDeltas(
 
 				EmitWebhookEvent({ type: "class-update/v1", content: { userID, ...delta } });
 
-				updateOps.push({
+				achievementOps.push({
 					userID,
 					classSet: delta.set,
 					classOldValue: delta.old,
@@ -177,7 +177,7 @@ export async function ProcessClassDeltas(
 		}
 	}
 
-	await db["class-achievements"].insert(updateOps);
+	await db["class-achievements"].insert(achievementOps);
 
 	return deltas;
 }

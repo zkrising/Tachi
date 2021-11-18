@@ -2,13 +2,13 @@
 // Some games have dedicated methods to calculate statistics like these, other games do not.
 // That's about all there is to it!
 
-import { Game, Playtypes, integer, UserGameStats, ClassDelta } from "tachi-common";
+import { Game, Playtypes, gameClasses, integer, UserGameStats, ClassDelta } from "tachi-common";
 import db from "external/mongo/db";
 import { CreateGameSettings } from "lib/game-settings/create-game-settings";
 import { KtLogger } from "lib/logger/logger";
 import { ProcessClassDeltas, UpdateUGSClasses } from "./classes";
 import { CalculateRatings } from "./rating";
-import { ClassHandler } from "./types";
+import { ClassHandler, ScoreClasses } from "./types";
 
 export async function UpdateUsersGamePlaytypeStats(
 	game: Game,
@@ -41,6 +41,13 @@ export async function UpdateUsersGamePlaytypeStats(
 
 	if (userGameStats) {
 		logger.debug(`Updated player gamestats for ${game} (${playtype})`);
+
+		const updateClasses: Record<string, number> = {};
+
+		for (const delta of deltas) {
+			updateClasses[`classes.${delta.set}`] = delta.new;
+		}
+
 		await db["game-stats"].update(
 			{
 				game,
@@ -50,7 +57,7 @@ export async function UpdateUsersGamePlaytypeStats(
 			{
 				$set: {
 					ratings,
-					classes,
+					...updateClasses,
 				},
 			}
 		);

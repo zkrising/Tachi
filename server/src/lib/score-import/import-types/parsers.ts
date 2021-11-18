@@ -5,6 +5,7 @@ import { ParseEagSDVX } from "./api/eag-sdvx/parser";
 import { ParseFloIIDX } from "./api/flo-iidx/parser";
 import { ParseFloSDVX } from "./api/flo-sdvx/parser";
 import { ParseMinSDVX } from "./api/min-sdvx/parser";
+import { ParserFunction, ParserFunctionReturns } from "./common/types";
 import ParseBatchManual from "./file/batch-manual/parser";
 import ParseEamusementIIDXCSV from "./file/eamusement-iidx-csv/parser";
 import { ParseMerIIDX } from "./file/mer-iidx/parser";
@@ -24,6 +25,8 @@ export const Parsers = {
 	"file/mer-iidx": ParseMerIIDX,
 	"file/pli-iidx-csv": ParsePLIIIDXCSV,
 	"file/eamusement-iidx-csv": ParseEamusementIIDXCSV,
+	// @todo This is a stub! Proper support needs this to be well specified.
+	"file/eamusement-sdvx-csv": () => void 0 as unknown as ParserFunctionReturns<never, never>,
 
 	"api/eag-iidx": ParseEagIIDX,
 	"api/eag-sdvx": ParseEagSDVX,

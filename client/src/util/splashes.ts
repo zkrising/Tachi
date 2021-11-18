@@ -84,6 +84,7 @@ export const loggedInSplashes = [
 	`The current day is ${FormatDate(Date.now())}, probably.`,
 	"I have always thought of myself as an ambassador for the dance game community.",
 	"When lava pours out near the sea surface, tremendous volcanic explosions sometimes occur.",
+	"But thE MOOOOON JUST STAAARED BAACK AAAT MEE",
 ];
 
 // Stuff that's bad for the kids, you know?
@@ -96,4 +97,5 @@ export const contentiousSplashes = [
 	"Is this your IP? (178.62.116.150)",
 	"Bad faith just coincidentally happens to be something my enemies do...",
 	"...and good faith is when people agree with me",
+	"Anyone else at this party gay?",
 ];

@@ -78,7 +78,7 @@ export default function FoldersSearch({ reqUser, game, playtype }: Props) {
 	);
 }
 
-function FolderInfoComponent({
+export function FolderInfoComponent({
 	reqUser,
 	game,
 	playtype,

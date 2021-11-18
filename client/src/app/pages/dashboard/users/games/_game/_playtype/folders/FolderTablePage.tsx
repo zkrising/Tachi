@@ -22,6 +22,7 @@ import {
 } from "tachi-common";
 import { FolderStatsInfo, UGPTTableReturns } from "types/api-returns";
 import { Playtype } from "types/tachi";
+import { APIFetchV1 } from "util/api";
 import { DEFAULT_BAR_PROPS } from "util/charts";
 import { ChangeOpacity } from "util/color-opacity";
 import { Reverse } from "util/misc";
@@ -187,6 +188,12 @@ function TableFolderTable({
 					<td>
 						<LinkButton
 							to={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}/folders/${data.folder.folderID}`}
+							onClick={() => {
+								APIFetchV1(
+									`/users/${reqUser.id}/games/${game}/${playtype}/folders/${data.folder.folderID}/viewed`,
+									{ method: "POST" }
+								);
+							}}
 							className="btn-info"
 						>
 							View Breakdown

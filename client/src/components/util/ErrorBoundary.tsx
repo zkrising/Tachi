@@ -1,0 +1,42 @@
+import React from "react";
+import CenterLayoutPage from "../layout/CenterLayoutPage";
+import DebugContent from "./DebugContent";
+import Divider from "./Divider";
+import LinkButton from "./LinkButton";
+
+export default class ErrorBoundary extends React.Component<any, { error: any; info: any }> {
+	constructor(props: any) {
+		super(props);
+		this.state = { error: null, info: null };
+	}
+
+	componentDidCatch(error: any, info: any) {
+		console.error(error, info);
+		this.setState({ error, info });
+	}
+
+	render() {
+		if (this.state.error) {
+			return (
+				<CenterLayoutPage>
+					<h1>Whoops!</h1>
+					<br />
+					<h4>
+						A fatal error has occured in rendering this page. You should report this!
+					</h4>
+					<Divider />
+					<h3 className="mb-2">Error Log</h3>
+					<div style={{ fontSize: "1rem", width: "80vw", height: "400px" }}>
+						<DebugContent
+							data={{ error: this.state.error.message, info: this.state.info }}
+						/>
+					</div>
+					<Divider />
+					<LinkButton to="/">Go Home</LinkButton>
+				</CenterLayoutPage>
+			);
+		}
+
+		return this.props.children;
+	}
+}

@@ -13,7 +13,7 @@ import SelectButton from "components/util/SelectButton";
 import { useFormik } from "formik";
 import React, { useMemo, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
 	ChartTierlistInfo,
 	FormatDifficultyShort,
@@ -28,7 +28,7 @@ import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import { DEFAULT_BAR_PROPS } from "util/charts";
 import { ChangeOpacity } from "util/color-opacity";
-import { CreateChartIDMap, CreateSongMap } from "util/data";
+import { CreateChartIDMap, CreateChartLink, CreateSongMap } from "util/data";
 import { ComposeExpFn, ComposeInverseExpFn, IsNullish, NO_OP } from "util/misc";
 import { GetGradeChartExpScale } from "util/scales";
 import { NumericSOV, StrSOV } from "util/sorts";
@@ -302,9 +302,12 @@ function TierlistInfoLadder({
 									lg={3}
 									xl={2}
 								>
-									{data.__related.song.title} {FormatDifficultyShort(data, game)}
+									<Link className="gentle-link" to={CreateChartLink(data, game)}>
+										{data.__related.song.title}
+									</Link>{" "}
+									{FormatDifficultyShort(data, game)}
 									<Divider className="my-2" />
-									{tierlistInfo.key}{" "}
+									{tierlistInfo.key} ({tierlistInfo.data.text})
 									{tierlistInfo.data.individualDifference && (
 										<>
 											<br />

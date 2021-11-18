@@ -19,6 +19,7 @@ export async function CreateKaiSDVXClassHandler(
 		const res = await fetch(`${baseUrl}/api/sdvx/v1/player_profile`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
 			},
 		});
 

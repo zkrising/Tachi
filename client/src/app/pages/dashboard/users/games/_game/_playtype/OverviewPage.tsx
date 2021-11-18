@@ -367,7 +367,7 @@ function UserHistory({
 							</small>
 						</div>
 					)}
-					curve={"stepAfter"}
+					curve={"stepBefore"}
 					enableArea={true}
 					areaBaselineValue={Math.min(...data.map(e => e.playcount))}
 				/>

@@ -4,9 +4,9 @@ export interface FervidexScore {
 	chart: `${"sp" | "dp"}${"b" | "n" | "h" | "a" | "l"}`;
 
 	entry_id: integer;
-	chart_sha256: string;
+	chart_sha256?: string;
 	// whether or whether not this chart is from 2dxtra
-	custom: boolean;
+	custom?: boolean;
 
 	pgreat: integer;
 	great: integer;

@@ -136,6 +136,9 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 
 	let chart;
 	if (data.custom) {
+		if (!data.chart_sha256) {
+			throw new InvalidScoreFailure("Score has no chart_sha256 but is a custom?");
+		}
 		chart = await FindIIDXChartWith2DXtraHash(data.chart_sha256);
 	} else {
 		chart = await FindIIDXChartOnInGameIDVersion(

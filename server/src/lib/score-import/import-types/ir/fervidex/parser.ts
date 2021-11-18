@@ -17,8 +17,8 @@ import { FervidexContext, FervidexScore } from "./types";
 const PR_Fervidex: PrudenceSchema = {
 	chart: p.isIn("spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"),
 	entry_id: p.isPositiveInteger,
-	chart_sha256: "string",
-	custom: "boolean",
+	chart_sha256: "*string",
+	custom: "*boolean",
 
 	pgreat: p.isPositiveInteger,
 	great: p.isPositiveInteger,

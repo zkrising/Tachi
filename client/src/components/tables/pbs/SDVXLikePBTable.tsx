@@ -33,8 +33,6 @@ export default function SDVXLikePBTable({
 	showUser?: boolean;
 	showChart?: boolean;
 }) {
-	console.log(playtype);
-
 	const headers: Header<PBDataset<"sdvx:Single">[0]>[] = [
 		...GetPBLeadingHeaders(showUser, showChart, [
 			"Chart",

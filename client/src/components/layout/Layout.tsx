@@ -16,7 +16,7 @@ export function Layout({ children }: JustChildren) {
 
 			<HeaderMobile />
 
-			<div className="d-flex flex-column flex-root">
+			<div className="d-flex flex-column flex-root" style={{ overflowX: "hidden" }}>
 				<div className="d-flex flex-row flex-column-fluid page">
 					<div className="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 						<Header />

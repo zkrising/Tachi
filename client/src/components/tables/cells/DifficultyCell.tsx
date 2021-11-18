@@ -30,6 +30,7 @@ export default function DifficultyCell({
 		<td
 			style={{
 				backgroundColor: ChangeOpacity(gptConfig.difficultyColours[chart.difficulty]!, 0.2),
+				minWidth: "80px",
 			}}
 		>
 			{!alwaysShort && (

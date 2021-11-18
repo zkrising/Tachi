@@ -39,9 +39,9 @@ import {
 	UserGoalDocument,
 	UserMilestoneDocument,
 	UserSettings,
+	RecentlyViewedFolderDocument,
 } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
-
 const logger = CreateLogCtx(__filename);
 
 let dbName = ServerConfig.MONGO_DATABASE_NAME;
@@ -188,6 +188,7 @@ const db = {
 		monkDB.get<{ scoreID: string; userID: integer; score: ScoreDocument }>("score-blacklist"),
 	"verify-email-codes":
 		monkDB.get<{ userID: integer; code: string; email: string }>("verify-email-codes"),
+	"recent-folder-views": monkDB.get<RecentlyViewedFolderDocument>("recent-folder-views"),
 };
 
 export type StaticDatabases =
@@ -223,7 +224,8 @@ export type StaticDatabases =
 	| "counters"
 	| "score-blacklist"
 	| "verify-email-codes"
-	| "class-achievements";
+	| "class-achievements"
+	| "recent-folder-views";
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;
 

@@ -242,3 +242,33 @@ export function CreateFolderID(
 ) {
 	return `F${fjsh.hash(Object.assign({ game, playtype }, query), "SHA256")}`;
 }
+
+export async function GetRecentlyViewedFolders(
+	userID: integer,
+	game: Game,
+	playtype: Playtypes[Game]
+) {
+	const views = await db["recent-folder-views"].find(
+		{
+			userID,
+			game,
+			playtype,
+		},
+		{
+			sort: {
+				lastViewed: -1,
+			},
+			limit: 6,
+		}
+	);
+
+	if (views.length === 0) {
+		return { views, folders: [] };
+	}
+
+	const folders = await db.folders.find({
+		folderID: { $in: views.map((e) => e.folderID) },
+	});
+
+	return { views, folders };
+}

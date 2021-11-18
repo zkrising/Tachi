@@ -32,6 +32,10 @@ export function FormatDifficultyShort(chart: ChartDocument, game: Game): string 
 		return `${shortDiff} ${chart.level}`;
 	}
 
+	if (game === "usc") {
+		return `${chart.playtype === "Controller" ? "CON" : "KB"} ${shortDiff} ${chart.level}`;
+	}
+
 	return `${chart.playtype}${shortDiff} ${chart.level}`;
 }
 

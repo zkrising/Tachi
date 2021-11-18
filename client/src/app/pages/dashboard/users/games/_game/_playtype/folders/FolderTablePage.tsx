@@ -10,7 +10,8 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
-import React, { useEffect, useMemo, useState } from "react";
+import { UserContext } from "context/UserContext";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import {
 	FolderDocument,
@@ -166,6 +167,8 @@ function TableFolderTable({
 		return arr;
 	}, [dataMap, table]);
 
+	const { user } = useContext(UserContext);
+
 	return (
 		<TachiTable
 			dataset={dataset}
@@ -189,10 +192,12 @@ function TableFolderTable({
 						<LinkButton
 							to={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}/folders/${data.folder.folderID}`}
 							onClick={() => {
-								APIFetchV1(
-									`/users/${reqUser.id}/games/${game}/${playtype}/folders/${data.folder.folderID}/viewed`,
-									{ method: "POST" }
-								);
+								if (user?.id === reqUser.id) {
+									APIFetchV1(
+										`/users/${reqUser.id}/games/${game}/${playtype}/folders/${data.folder.folderID}/viewed`,
+										{ method: "POST" }
+									);
+								}
 							}}
 							className="btn-info"
 						>

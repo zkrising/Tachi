@@ -104,12 +104,12 @@ export function UserBottomNav({
 	if (isRequestedUser) {
 		navItems.push(
 			<NavItem key="settings" to={`${baseUrl}/settings`}>
-				Settings
+				Profile Settings
 			</NavItem>
 		);
 		navItems.push(
 			<NavItem key="integrations" to={`${baseUrl}/integrations`}>
-				Integrations
+				Service Integrations
 			</NavItem>
 		);
 	}

@@ -1,7 +1,8 @@
 import ApiError from "components/util/ApiError";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
-import React from "react";
+import { UserContext } from "context/UserContext";
+import React, { useContext } from "react";
 import { Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FolderDocument, PublicUserDocument, RecentlyViewedFolderDocument } from "tachi-common";
@@ -14,11 +15,17 @@ export default function RecentFoldersPage({
 	game,
 	playtype,
 }: { reqUser: PublicUserDocument } & GamePT) {
+	const { user } = useContext(UserContext);
+
+	if (!user) {
+		return <>Hey, you're not logged in. How did you get here!</>;
+	}
+
 	const { data, isLoading, error } = useApiQuery<{
 		folders: FolderDocument[];
 		views: RecentlyViewedFolderDocument[];
 		stats: FolderStatsInfo[];
-	}>(`/users/${reqUser.id}/games/${game}/${playtype}/folders/recent`);
+	}>(`/users/${user.id}/games/${game}/${playtype}/folders/recent`);
 
 	if (error) {
 		return <ApiError error={error} />;
@@ -32,7 +39,7 @@ export default function RecentFoldersPage({
 		return (
 			<div className="text-center">
 				Looks like you've not recently interacted with any folders.{" "}
-				<Link to={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}/folders`}>
+				<Link to={`/dashboard/users/${user.username}/games/${game}/${playtype}/folders`}>
 					Go do that!
 				</Link>
 			</div>

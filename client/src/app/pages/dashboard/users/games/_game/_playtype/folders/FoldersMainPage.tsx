@@ -3,7 +3,8 @@ import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import SelectLinkButton from "components/util/SelectLinkButton";
 import useUGPTBase from "components/util/useUGPTBase";
-import React from "react";
+import { UserContext } from "context/UserContext";
+import React, { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import { FormatGame, GetGameConfig, PublicUserDocument } from "tachi-common";
 import { GamePT } from "types/react";
@@ -17,6 +18,8 @@ type Props = { reqUser: PublicUserDocument } & GamePT;
 export default function FoldersMainPage({ reqUser, game, playtype }: Props) {
 	const gameConfig = GetGameConfig(game);
 
+	const { user } = useContext(UserContext);
+
 	useSetSubheader(
 		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Folders"],
 		[reqUser, game, playtype],
@@ -29,10 +32,15 @@ export default function FoldersMainPage({ reqUser, game, playtype }: Props) {
 		<div className="row">
 			<div className="col-12 text-center">
 				<div className="btn-group">
-					<SelectLinkButton to={`${base}/folders/recent`}>
-						<Icon type="clock" />
-						Recently Viewed
-					</SelectLinkButton>
+					{user && (
+						<SelectLinkButton to={`${base}/folders/recent`}>
+							<Icon type="clock" />
+							{user.id === reqUser.id
+								? "Recent Folders"
+								: "Your Recently Viewed Folders"}
+						</SelectLinkButton>
+					)}
+
 					<SelectLinkButton to={`${base}/folders`}>
 						<Icon type="table" />
 						Table Overview

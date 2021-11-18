@@ -4,6 +4,7 @@ import Icon from "components/util/Icon";
 import SelectLinkButton from "components/util/SelectLinkButton";
 import useUGPTBase from "components/util/useUGPTBase";
 import { UserContext } from "context/UserContext";
+import { UserGameStatsContext } from "context/UserGameStatsContext";
 import React, { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import { FormatGame, GetGameConfig, PublicUserDocument } from "tachi-common";
@@ -19,6 +20,7 @@ export default function FoldersMainPage({ reqUser, game, playtype }: Props) {
 	const gameConfig = GetGameConfig(game);
 
 	const { user } = useContext(UserContext);
+	const { ugs } = useContext(UserGameStatsContext);
 
 	useSetSubheader(
 		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Folders"],
@@ -32,7 +34,7 @@ export default function FoldersMainPage({ reqUser, game, playtype }: Props) {
 		<div className="row">
 			<div className="col-12 text-center">
 				<div className="btn-group">
-					{user && (
+					{user && ugs?.find(x => x.game === game && x.playtype === playtype) && (
 						<SelectLinkButton to={`${base}/folders/recent`}>
 							<Icon type="clock" />
 							{user.id === reqUser.id

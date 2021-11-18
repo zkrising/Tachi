@@ -20,7 +20,7 @@ import ScoreImportFatalError from "./score-importing/score-import-error";
 export async function MakeScoreImport<I extends ImportTypes>(
 	jobData: ScoreImportJobData<I>
 ): Promise<ImportDocument> {
-	if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER) {
+	if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER && process.env.IS_JOB === undefined) {
 		const job = await ScoreImportQueue.add(jobData, {
 			jobId: jobData.importID,
 		});

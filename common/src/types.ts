@@ -1423,3 +1423,11 @@ export interface ClassAchievementDocument<I extends IDStrings = IDStrings> exten
 	timeAchieved: number;
 	userID: integer;
 }
+
+export interface RecentlyViewedFolderDocument {
+	userID: integer;
+	game: Game;
+	playtype: Playtypes[Game];
+	folderID: string;
+	lastViewed: number;
+}

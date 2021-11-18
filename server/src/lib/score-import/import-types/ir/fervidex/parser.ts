@@ -28,7 +28,7 @@ const PR_Fervidex: PrudenceSchema = {
 
 	slow: p.isPositiveInteger,
 	fast: p.isPositiveInteger,
-	max_combo: p.isPositiveInteger,
+	max_combo: p.optional(p.isPositiveInteger),
 	combo_break: p.isPositiveInteger,
 
 	ex_score: p.isPositiveInteger,

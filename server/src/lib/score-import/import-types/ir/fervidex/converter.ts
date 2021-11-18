@@ -202,7 +202,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 			hitMeta: {
 				fast: data.fast,
 				slow: data.slow,
-				maxCombo: data.max_combo,
+				maxCombo: null,
 				gaugeHistory,
 				scoreHistory: data.ghost,
 				gauge,

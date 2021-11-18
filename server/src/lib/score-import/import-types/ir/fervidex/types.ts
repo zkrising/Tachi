@@ -16,7 +16,7 @@ export interface FervidexScore {
 
 	slow: integer;
 	fast: integer;
-	max_combo: integer;
+	max_combo?: integer;
 	combo_break: integer;
 
 	ex_score: integer;

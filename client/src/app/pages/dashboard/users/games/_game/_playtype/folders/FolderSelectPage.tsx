@@ -11,10 +11,12 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import useUGPTBase from "components/util/useUGPTBase";
-import React, { useMemo, useState } from "react";
+import { UserContext } from "context/UserContext";
+import React, { useContext, useMemo, useState } from "react";
 import { FolderDocument, GetGamePTConfig, integer, PublicUserDocument } from "tachi-common";
 import { FolderStatsInfo, UGPTFolderSearch } from "types/api-returns";
 import { GamePT } from "types/react";
+import { APIFetchV1 } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
 import { TACHI_CHART_THEME } from "util/constants/chart-theme";
 import { PercentFrom, Reverse, StepFromToMax } from "util/misc";
@@ -113,6 +115,8 @@ export function FolderInfoComponent({
 		);
 	}, [elements]);
 
+	const { user } = useContext(UserContext);
+
 	return (
 		<div className="col-12 col-lg-6 mb-4">
 			<Card
@@ -120,6 +124,14 @@ export function FolderInfoComponent({
 				footer={
 					<div className="w-100 d-flex justify-content-center">
 						<LinkButton
+							onClick={() => {
+								if (user?.id === reqUser.id) {
+									APIFetchV1(
+										`/users/${reqUser.id}/games/${game}/${playtype}/folders/${folder.folderID}/viewed`,
+										{ method: "POST" }
+									);
+								}
+							}}
 							to={`${base}/folders/${folder.folderID}`}
 							className="btn-outline-info"
 						>

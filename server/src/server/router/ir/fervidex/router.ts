@@ -1,6 +1,11 @@
 import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
-import { EXT_HEROIC_VERSE, MODEL_INFINITAS_2, REV_2DXBMS } from "lib/constants/ea3id";
+import {
+	EXT_BISTROVER,
+	EXT_HEROIC_VERSE,
+	MODEL_INFINITAS_2,
+	REV_2DXBMS,
+} from "lib/constants/ea3id";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
@@ -107,6 +112,8 @@ const RequireInf2ModelHeaderOrForceStatic: RequestHandler = async (req, res, nex
 	return next();
 };
 
+const supportedExts = [EXT_HEROIC_VERSE, EXT_BISTROVER];
+
 const ValidateModelHeader: RequestHandler = (req, res, next) => {
 	const swModel = req.header("X-Software-Model");
 
@@ -134,7 +141,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 			return next(); // allow anything for inf2.
 		}
 
-		if (softID.ext !== EXT_HEROIC_VERSE) {
+		if (!supportedExts.includes(softID.ext)) {
 			logger.info(
 				`Rejected invalid Software Model ${softID.ext} from user ${req[SYMBOL_TachiAPIAuth]
 					.userID!}.`

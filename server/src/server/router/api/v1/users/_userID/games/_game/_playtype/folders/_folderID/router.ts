@@ -6,6 +6,7 @@ import { GetGamePTConfig, ScoreDocument } from "tachi-common";
 import { GetFolderCharts, GetPBsOnFolder } from "utils/folder";
 import { ParseStrPositiveInt } from "utils/string-checks";
 import { GetFolderFromParam } from "../../../../../../../games/_game/_playtype/folders/middleware";
+import { RequireSelfRequestFromUser } from "../../../../../middleware";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -31,6 +32,41 @@ router.get("/", async (req, res) => {
 			pbs,
 			folder,
 		},
+	});
+});
+
+/**
+ * Add a folder to the list of recently-viewed folders. This can only
+ * be performed by a session-level token, to stop rogue API keys from causing
+ * trouble. Also, it's a post request, to avoid funny SSRF stuff.
+ *
+ * @name POST /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/viewed
+ */
+router.post("/viewed", RequireSelfRequestFromUser, async (req, res) => {
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const folder = req[SYMBOL_TachiData]!.folderDoc!;
+
+	await db["recent-folder-views"].update(
+		{
+			userID: user.id,
+			game: folder.game,
+			playtype: folder.playtype,
+			folderID: folder.folderID,
+		},
+		{
+			$set: {
+				lastViewed: Date.now(),
+			},
+		},
+		{
+			upsert: true,
+		}
+	);
+
+	return res.status(200).json({
+		success: true,
+		description: `Recorded a view on ${folder.title}.`,
+		body: {},
 	});
 });
 

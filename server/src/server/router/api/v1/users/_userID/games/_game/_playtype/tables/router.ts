@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { GetFoldersFromTable, GetGradeDistributionForFolders } from "utils/folder";
+import { GetFoldersFromTable, GetGradeLampDistributionForFolders } from "utils/folder";
 // @todo maybe refactor where middleware is stored to avoid paths this ugly.
 import { GetTableFromParam } from "../../../../../../games/_game/_playtype/tables/middleware";
 
@@ -19,7 +19,7 @@ router.get("/:tableID", GetTableFromParam, async (req, res) => {
 
 	// @optimisable - Requests a lot of charts we don't care about
 	// could be cached too, i guess.
-	const stats = await GetGradeDistributionForFolders(user.id, folders);
+	const stats = await GetGradeLampDistributionForFolders(user.id, folders);
 
 	return res.status(200).json({
 		success: true,

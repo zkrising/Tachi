@@ -25,6 +25,9 @@ export const Converters: ConverterMap = {
 	"file/mer-iidx": ConvertFileMerIIDX,
 	"file/pli-iidx-csv": ConvertEamIIDXCSV,
 	"file/eamusement-iidx-csv": ConvertEamIIDXCSV,
+	// @todo This is a stub definition! Proper eam sdvx csv support
+	// requires this to be properly defined.
+	"file/eamusement-sdvx-csv": () => void 0 as any,
 
 	"api/eag-iidx": ConvertAPIKaiIIDX,
 	"api/eag-sdvx": ConvertAPIKaiSDVX,

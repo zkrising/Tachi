@@ -940,4 +940,11 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		timeAchieved: p.nullable(p.isPositive),
 		progress: p.isInteger,
 	}),
+	"recent-folder-views": prSchemaify({
+		userID: p.isPositiveNonZeroInteger,
+		game: p.isIn(games),
+		playtype: isValidPlaytype,
+		folderID: "string",
+		lastViewed: "number",
+	}),
 };

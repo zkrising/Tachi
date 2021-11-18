@@ -220,7 +220,7 @@ export function CalculateGradeDistribution(pbs: PBScoreDocument[]) {
 
 	return gradeDist;
 }
-export async function GetGradeDistributionForFolder(userID: integer, folder: FolderDocument) {
+export async function GetGradeLampDistributionForFolder(userID: integer, folder: FolderDocument) {
 	const pbData = await GetPBsOnFolder(userID, folder);
 
 	return {
@@ -231,8 +231,8 @@ export async function GetGradeDistributionForFolder(userID: integer, folder: Fol
 	};
 }
 
-export function GetGradeDistributionForFolders(userID: integer, folders: FolderDocument[]) {
-	return Promise.all(folders.map((f) => GetGradeDistributionForFolder(userID, f)));
+export function GetGradeLampDistributionForFolders(userID: integer, folders: FolderDocument[]) {
+	return Promise.all(folders.map((f) => GetGradeLampDistributionForFolder(userID, f)));
 }
 
 export function CreateFolderID(
@@ -241,4 +241,34 @@ export function CreateFolderID(
 	playtype: Playtypes[Game]
 ) {
 	return `F${fjsh.hash(Object.assign({ game, playtype }, query), "SHA256")}`;
+}
+
+export async function GetRecentlyViewedFolders(
+	userID: integer,
+	game: Game,
+	playtype: Playtypes[Game]
+) {
+	const views = await db["recent-folder-views"].find(
+		{
+			userID,
+			game,
+			playtype,
+		},
+		{
+			sort: {
+				lastViewed: -1,
+			},
+			limit: 6,
+		}
+	);
+
+	if (views.length === 0) {
+		return { views, folders: [] };
+	}
+
+	const folders = await db.folders.find({
+		folderID: { $in: views.map((e) => e.folderID) },
+	});
+
+	return { views, folders };
 }

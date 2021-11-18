@@ -2,7 +2,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { SearchCollection } from "lib/search/search";
-import { GetGradeDistributionForFolders } from "utils/folder";
+import { GetGradeLampDistributionForFolders, GetRecentlyViewedFolders } from "utils/folder";
 import { IsString } from "utils/misc";
 import folderIDRouter from "./_folderID/router";
 
@@ -39,12 +39,40 @@ router.get("/", async (req, res) => {
 		20
 	);
 
-	const stats = await GetGradeDistributionForFolders(user.id, folders);
+	const stats = await GetGradeLampDistributionForFolders(user.id, folders);
 
 	return res.status(200).json({
 		success: true,
 		description: `Returned ${stats.length} folders.`,
 		body: {
+			folders,
+			stats,
+		},
+	});
+});
+
+/**
+ * Get a users most recently interacted with folders.
+ *
+ * A folder is interacted with if it is directly fetched using a session key.
+ * This - in UI terms - is when the user clicks on that folder.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/folders/recent
+ */
+router.get("/recent", async (req, res) => {
+	const game = req[SYMBOL_TachiData]!.game!;
+	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+
+	const { views, folders } = await GetRecentlyViewedFolders(user.id, game, playtype);
+
+	const stats = await GetGradeLampDistributionForFolders(user.id, folders);
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned ${views.length} recently interacted with folders.`,
+		body: {
+			views,
 			folders,
 			stats,
 		},

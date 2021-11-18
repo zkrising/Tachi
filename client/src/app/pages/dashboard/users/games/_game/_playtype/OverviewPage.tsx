@@ -122,7 +122,7 @@ function LastSession({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 																variant="primary"
 																className="mt-2"
 															>
-																Maybe Ongoing?
+																Ongoing!
 															</Badge>
 														</>
 													)}

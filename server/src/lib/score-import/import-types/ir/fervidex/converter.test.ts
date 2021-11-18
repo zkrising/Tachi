@@ -103,7 +103,7 @@ const baseDryScore = {
 		hitMeta: {
 			fast: 0,
 			slow: 0,
-			maxCombo: 34,
+			maxCombo: null,
 			gaugeHistory: [100, 50],
 			gauge: 50,
 			bp: 6,

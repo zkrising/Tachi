@@ -28,8 +28,7 @@ export default function RecentFoldersPage({
 		return <Loading />;
 	}
 
-	// @ts-expect-error lol
-	if (null.foo === 0) {
+	if (data.folders.length === 0) {
 		return (
 			<div className="text-center">
 				Looks like you've not recently interacted with any folders.{" "}

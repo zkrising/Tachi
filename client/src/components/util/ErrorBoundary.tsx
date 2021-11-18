@@ -2,7 +2,7 @@ import React from "react";
 import CenterLayoutPage from "../layout/CenterLayoutPage";
 import DebugContent from "./DebugContent";
 import Divider from "./Divider";
-import LinkButton from "./LinkButton";
+import ExternalLink from "./ExternalLink";
 
 export default class ErrorBoundary extends React.Component<any, { error: any; info: any }> {
 	constructor(props: any) {
@@ -32,7 +32,7 @@ export default class ErrorBoundary extends React.Component<any, { error: any; in
 						/>
 					</div>
 					<Divider />
-					<LinkButton to="/">Go Home</LinkButton>
+					<ExternalLink href="/">Go Home</ExternalLink>
 				</CenterLayoutPage>
 			);
 		}

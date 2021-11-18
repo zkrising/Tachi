@@ -4,7 +4,9 @@ import HasDevModeOn from "components/util/HasDevModeOn";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
+import { table } from "console";
 import deepmerge from "deepmerge";
+import { nanoid } from "nanoid";
 import React, { useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import {
@@ -234,6 +236,8 @@ function SessionScoreStatBreakdown({
 	chartIDs: string[] | null;
 	filter: "folder" | "all" | "highlighted";
 }) {
+	const [view, setView] = useState<"lamps" | "both" | "grades">("both");
+
 	const songMap = CreateSongMap(sessionData.songs);
 	const chartMap = CreateChartMap(sessionData.charts);
 	const scoreMap = CreateScoreIDMap(sessionData.scores);
@@ -282,11 +286,9 @@ function SessionScoreStatBreakdown({
 		}
 
 		return [newLamps, newGrades];
-	}, [chartIDs, filter]);
+	}, [chartIDs, filter, view]);
 
 	const gptConfig = GetGamePTConfig(sessionData.session.game, sessionData.session.playtype);
-
-	const [view, setView] = useState<"lamps" | "both" | "grades">("both");
 
 	return (
 		<>
@@ -359,7 +361,7 @@ function SessionScoreStatBreakdown({
 				</div>
 			) : (
 				<div className="col-12">
-					<MiniTable headers={["Grade", "New Lamps"]} colSpan={[1, 100]}>
+					<MiniTable headers={["Lamps", "New Lamps"]} colSpan={[1, 100]}>
 						<ElementStatTable
 							fullSize
 							chartMap={chartMap}
@@ -393,112 +395,57 @@ function ElementStatTable({
 	game: Game;
 	fullSize?: boolean;
 }) {
-	function BreakdownChartContents({
-		score,
-		scoreInfo,
-	}: {
-		score: ScoreDocument;
-		scoreInfo: SessionScoreInfo;
-	}) {
-		const chart = chartMap.get(score.chartID)!;
-		const song = songMap.get(score.songID)!;
+	const tableContents = useMemo(() => {
+		// relements.. haha
+		const relevantElements =
+			type === "lamp"
+				? gptConfig.lamps.slice(gptConfig.lamps.indexOf(gptConfig.clearLamp) - 1).reverse()
+				: gptConfig.grades
+						.slice(gptConfig.grades.indexOf(gptConfig.clearGrade) - 1)
+						.reverse();
 
-		if (fullSize) {
-			let preScoreCell = <td>No Play</td>;
+		const colours = type === "lamp" ? gptConfig.lampColours : gptConfig.gradeColours;
 
-			if (!scoreInfo.isNewScore) {
-				const oldGradeIndex = score.scoreData.gradeIndex - scoreInfo.gradeDelta;
-				const oldLampIndex = score.scoreData.lampIndex - scoreInfo.lampDelta;
-
-				const mockScore = deepmerge(score, {
-					scoreData: {
-						score: score.scoreData.score - scoreInfo.scoreDelta,
-						percent: score.scoreData.percent - scoreInfo.percentDelta,
-						grade: gptConfig.grades[oldGradeIndex],
-						gradeIndex: oldGradeIndex,
-						lamp: gptConfig.lamps[oldLampIndex],
-						lampIndex: oldLampIndex,
-					},
-				}) as ScoreDocument;
-
-				if (type === "grade") {
-					preScoreCell = <ScoreCell score={mockScore} />;
-				} else {
-					preScoreCell = <LampCell score={mockScore} />;
-				}
+		const tableContents = [];
+		for (const element of relevantElements) {
+			if (!counts[element] || !counts[element].length) {
+				continue;
 			}
 
-			if (score) {
-				return (
-					<>
-						<TitleCell chart={chart} game={game} song={song} />
-						{game !== "bms" ? (
-							<DifficultyCell chart={chart} game={game} />
-						) : (
-							<BMSDifficultyCell
-								chart={chart as ChartDocument<"bms:7K" | "bms:14K">}
-							/>
-						)}
-						{preScoreCell}
-						<td>⟶</td>
-						{type === "grade" ? (
-							<ScoreCell {...{ score, game, playtype: score.playtype }} />
-						) : (
-							<LampCell score={score} />
-						)}
-					</>
+			const firstData = counts[element][0];
+
+			tableContents.push(
+				<tr key={element}>
+					<td
+						style={{
+							// @ts-expect-error this is a hack due to the funky type of colours and element.
+							backgroundColor: ChangeOpacity(colours[element], 0.1),
+						}}
+						rowSpan={counts[element]!.length}
+					>
+						{element}
+					</td>
+					<BreakdownChartContents
+						{...firstData}
+						{...{ chartMap, songMap, fullSize, game, gptConfig, type }}
+					/>
+				</tr>
+			);
+
+			for (const data of counts[element]!.slice(1)) {
+				tableContents.push(
+					<tr key={nanoid()}>
+						<BreakdownChartContents
+							{...data}
+							{...{ chartMap, songMap, fullSize, game, gptConfig, type }}
+						/>
+					</tr>
 				);
 			}
 		}
 
-		return (
-			<>
-				<TitleCell noArtist chart={chart} game={game} song={song} />
-				<DifficultyCell alwaysShort chart={chart} game={game} />
-			</>
-		);
-	}
-
-	// relements.. haha
-	const relevantElements =
-		type === "lamp"
-			? gptConfig.lamps.slice(gptConfig.lamps.indexOf(gptConfig.clearLamp) - 1).reverse()
-			: gptConfig.grades.slice(gptConfig.grades.indexOf(gptConfig.clearGrade) - 1).reverse();
-
-	const tableContents = [];
-
-	const colours = type === "lamp" ? gptConfig.lampColours : gptConfig.gradeColours;
-
-	for (const element of relevantElements) {
-		if (!counts[element] || !counts[element].length) {
-			continue;
-		}
-
-		const firstData = counts[element][0];
-
-		tableContents.push(
-			<tr key={element}>
-				<td
-					style={{
-						// @ts-expect-error this is a hack due to the funky type of colours and element.
-						backgroundColor: ChangeOpacity(colours[element], 0.1),
-					}}
-					rowSpan={counts[element]!.length}
-				>
-					{element}
-				</td>
-				<BreakdownChartContents {...firstData} />
-			</tr>
-		);
-
-		for (const data of counts[element]!.slice(1)) {
-			tableContents.push(
-				<tr key={data.score.scoreID}>
-					<BreakdownChartContents {...data} />
-				</tr>
-			);
-		}
-	}
+		return tableContents;
+	}, [type, counts, fullSize, game]);
 
 	if (tableContents.length === 0) {
 		return (
@@ -509,4 +456,80 @@ function ElementStatTable({
 	}
 
 	return <>{tableContents}</>;
+}
+
+function BreakdownChartContents({
+	score,
+	scoreInfo,
+	game,
+	songMap,
+	chartMap,
+	fullSize,
+	gptConfig,
+	type,
+}: {
+	score: ScoreDocument;
+	scoreInfo: SessionScoreInfo;
+	fullSize: boolean;
+	game: Game;
+	songMap: Map<integer, SongDocument>;
+	chartMap: Map<string, ChartDocument>;
+	gptConfig: GamePTConfig;
+	type: "lamp" | "grade";
+}) {
+	const chart = chartMap.get(score.chartID)!;
+	const song = songMap.get(score.songID)!;
+
+	if (fullSize) {
+		let preScoreCell = <td>No Play</td>;
+
+		if (!scoreInfo.isNewScore) {
+			const oldGradeIndex = score.scoreData.gradeIndex - scoreInfo.gradeDelta;
+			const oldLampIndex = score.scoreData.lampIndex - scoreInfo.lampDelta;
+
+			const mockScore = deepmerge(score, {
+				scoreData: {
+					score: score.scoreData.score - scoreInfo.scoreDelta,
+					percent: score.scoreData.percent - scoreInfo.percentDelta,
+					grade: gptConfig.grades[oldGradeIndex],
+					gradeIndex: oldGradeIndex,
+					lamp: gptConfig.lamps[oldLampIndex],
+					lampIndex: oldLampIndex,
+				},
+			}) as ScoreDocument;
+
+			if (type === "grade") {
+				preScoreCell = <ScoreCell score={mockScore} />;
+			} else {
+				preScoreCell = <LampCell score={mockScore} />;
+			}
+		}
+
+		if (score) {
+			return (
+				<>
+					<TitleCell chart={chart} game={game} song={song} />
+					{game !== "bms" ? (
+						<DifficultyCell chart={chart} game={game} />
+					) : (
+						<BMSDifficultyCell chart={chart as ChartDocument<"bms:7K" | "bms:14K">} />
+					)}
+					{preScoreCell}
+					<td>⟶</td>
+					{type === "grade" ? (
+						<ScoreCell {...{ score, game, playtype: score.playtype }} />
+					) : (
+						<LampCell score={score} />
+					)}
+				</>
+			);
+		}
+	}
+
+	return (
+		<>
+			<TitleCell noArtist chart={chart} game={game} song={song} />
+			<DifficultyCell alwaysShort chart={chart} game={game} />
+		</>
+	);
 }

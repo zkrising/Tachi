@@ -37,9 +37,11 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
 	const orphan: Pick<OrphanScoreDocument, "importType" | "data" | "context" | "userID"> = {
 		importType,
 		data,
-		context: context,
+		context,
 		userID,
 	};
+
+	logger.debug("Orphaning document", orphan);
 
 	const orphanID = `O${fjsh.hash(orphan, "sha256")}`;
 

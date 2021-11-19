@@ -1,5 +1,4 @@
 import { Lamps } from "tachi-common";
-import { DeleteUndefinedProps } from "utils/misc";
 import { FindChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import {

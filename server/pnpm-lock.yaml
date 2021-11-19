@@ -42,7 +42,7 @@ specifiers:
   express-rate-limit: 5.2.6
   express-request-mock: 3.1.0
   express-session: 1.17.2
-  fast-json-stable-hash: 1.0.2
+  fast-json-stable-hash: 1.0.3
   fast-xml-parser: 3.19.0
   helmet: 4.6.0
   json5: 2.2.0
@@ -87,7 +87,7 @@ dependencies:
   express-async-errors: 3.1.1_express@4.17.1
   express-rate-limit: 5.2.6
   express-session: 1.17.2
-  fast-json-stable-hash: 1.0.2
+  fast-json-stable-hash: 1.0.3
   fast-xml-parser: 3.19.0
   helmet: 4.6.0
   json5: 2.2.0
@@ -2777,8 +2777,8 @@ packages:
       micromatch: 4.0.4
     dev: true
 
-  /fast-json-stable-hash/1.0.2:
-    resolution: {integrity: sha512-p7Sr7IjiqJkFuRx1P6tYVTDwBf+ZfXyU2l3bv5XkBhiey5G3fHzBUJiEnpIlAZjGedXpEJM/V2SV+hD0pOnmmg==}
+  /fast-json-stable-hash/1.0.3:
+    resolution: {integrity: sha512-iLK3Tq2J/KbiUn/5OHyhxikHqzwFXSM2e803Dp2JtBdQjsCVuZwWvL+WqWXPPRUEuDX4c0kqID1SU84RCfxs3A==}
     dev: false
 
   /fast-json-stable-stringify/2.1.0:

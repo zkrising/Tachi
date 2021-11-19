@@ -177,7 +177,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 }
 
 function ShowcaseForm({ reqUser, game, playtype }: Props) {
-	const { settings, setSettings } = useContext(UGPTSettingsContext);
+	const { settings } = useContext(UGPTSettingsContext);
 
 	const [stats, setStats] = useState(settings!.preferences.stats);
 	const [show, setShow] = useState(false);

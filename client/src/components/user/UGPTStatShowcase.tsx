@@ -204,7 +204,8 @@ export default function UGPTStatShowcase({
 							{data.reqUserData.length === 0 ? (
 								<div className="row">
 									<div className="col-12 text-center">
-										<ReferToUser reqUser={reqUser} /> no stats configured.
+										<ReferToUser reqUser={projectingStats ? user! : reqUser} />{" "}
+										no stats configured.
 									</div>
 									{userIsReqUser && (
 										<div className="col-12 mt-2 text-center">

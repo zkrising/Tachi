@@ -68,7 +68,7 @@ export function ParseFervidexStatic(
 				chart: chart as FervidexStaticScore["chart"],
 				clear_type: score.clear_type,
 				ex_score: score.ex_score,
-				miss_count: score.miss_count,
+				miss_count: score.miss_count === undefined ? null : score.miss_count,
 			});
 		}
 	}

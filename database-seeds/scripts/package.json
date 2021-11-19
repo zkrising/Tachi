@@ -24,8 +24,10 @@
 	"homepage": "https://github.com/TeamNewGuys/tachi-database-seeds#readme",
 	"dependencies": {
 		"commander": "^8.2.0",
+		"glob": "^7.2.0",
 		"mei-logger": "^1.0.1",
 		"monk": "^7.3.4",
-		"tachi-common": "0.2.43"
+		"tachi-common": "0.2.43",
+		"xml2js": "^0.4.23"
 	}
 }

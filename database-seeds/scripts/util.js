@@ -3,6 +3,7 @@ const path = require("path");
 const DeterministicCollectionSort = require("./deterministic-collection-sort");
 const crypto = require("crypto");
 const fjsh = require("fast-json-stable-hash");
+const glob = require("glob");
 
 function IterateCollections(cb) {
 	const main = path.join(__dirname, "../collections");
@@ -38,10 +39,9 @@ function CreateFolderID(
 	return `F${fjsh.hash(Object.assign({ game, playtype }, query), "SHA256")}`;
 }
 
-
 module.exports = {
 	IterateCollections,
 	MutateCollection,
 	CreateChartID,
-	CreateFolderID
+	CreateFolderID,
 }

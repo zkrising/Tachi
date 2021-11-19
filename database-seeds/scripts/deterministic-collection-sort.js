@@ -22,7 +22,7 @@ function ChartSort(a, b) {
 function DeterministicCollectionSort() {
 	for (const collection of collections) {
 		const collPath = path.join(__dirname, "../collections", collection);
-		const content = JSON.parse(fs.readFileSync(collPath));
+		let content = JSON.parse(fs.readFileSync(collPath));
 
 		if (collection.startsWith("charts-")) {
 			content.sort(ChartSort);
@@ -31,8 +31,26 @@ function DeterministicCollectionSort() {
 			content.sort((a, b) => a.id - b.id);
 		}
 
+		content = content.map(SortObjectKeys);
+
 		fs.writeFileSync(collPath, JSON.stringify(content, null, "\t"));
 	}
+}
+
+function SortObjectKeys(object) {
+	let newObject = {};
+
+	for (const key of Object.keys(object).sort()) {
+		let v = object[key];
+
+		if (typeof v === "object" && v && !Array.isArray(v)) {
+			v = SortObjectKeys(v);
+		}
+
+		newObject[key] = v;
+	}
+
+	return newObject;
 }
 
 if (require.main === module) {

@@ -481,7 +481,7 @@
 		],
 		"game": "iidx",
 		"playtype": "SP",
-		"inactive": false
+		"inactive": true
 	},
 	{
 		"tableID": "iidx-SP-28-levels",
@@ -547,7 +547,7 @@
 		],
 		"game": "iidx",
 		"playtype": "SP",
-		"inactive": false
+		"inactive": true
 	},
 	{
 		"tableID": "iidx-SP-27-2dxtra-levels",
@@ -1097,7 +1097,7 @@
 		],
 		"game": "iidx",
 		"playtype": "DP",
-		"inactive": false
+		"inactive": true
 	},
 	{
 		"tableID": "iidx-DP-28-levels",
@@ -1163,7 +1163,7 @@
 		],
 		"game": "iidx",
 		"playtype": "DP",
-		"inactive": false
+		"inactive": true
 	},
 	{
 		"tableID": "iidx-DP-27-2dxtra-levels",

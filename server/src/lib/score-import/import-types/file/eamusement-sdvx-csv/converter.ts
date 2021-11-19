@@ -100,7 +100,7 @@ const ConvertEamSDVXCSV: ConverterFunction<SDVXEamusementCSVData, EmptyObject> =
 		service: "e-amusement",
 		game: "sdvx",
 		scoreMeta: {},
-		// i cri
+		// No timestamp data :(
 		timeAchieved: null,
 		comment: null,
 		importType,
@@ -114,7 +114,7 @@ const ConvertEamSDVXCSV: ConverterFunction<SDVXEamusementCSVData, EmptyObject> =
 		},
 	};
 
-	logger.info(`Returning dryscore with ${dryScore.scoreData.score} for ${humanisedChartTitle}`)
+	logger.info(`Returning dryscore with ${dryScore.scoreData.score} for ${humanisedChartTitle}`);
 
 	return { chart, song, dryScore };
 };

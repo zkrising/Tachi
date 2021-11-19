@@ -33,8 +33,6 @@ export interface ImportTypeDataMap {
 	"file/solid-state-squad": S3Score;
 	"file/mer-iidx": MerScore;
 	"file/pli-iidx-csv": IIDXEamusementCSVData;
-	// This is stubbed out so our code still compiles.
-	"file/eamusement-sdvx-csv": never; // @todo Add proper support for this!
 
 	"ir/direct-manual": BatchManualScore;
 	"ir/barbatos": BarbatosScore;
@@ -62,8 +60,6 @@ export interface ImportTypeContextMap {
 	"file/solid-state-squad": EmptyObject;
 	"file/mer-iidx": EmptyObject;
 	"file/pli-iidx-csv": IIDXEamusementCSVContext;
-	// This is stubbed out so our code still compiles.
-	"file/eamusement-sdvx-csv": never; // @todo Add proper support for this!
 
 	"ir/direct-manual": BatchManualContext;
 	"ir/barbatos": EmptyObject;

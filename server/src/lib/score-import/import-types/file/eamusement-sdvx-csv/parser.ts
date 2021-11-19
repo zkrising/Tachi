@@ -41,7 +41,7 @@ export default function ParseEamusementSDVXCSV(
 		// It is 0 if the score was played without S-criticals.
 		exscore: cells[6],
 		// The other columns (grade, # of different clears) are essentially useless.
-		// There is no timestamp 😢
+		// There is no timestamp :(
 	}));
 
 	return {

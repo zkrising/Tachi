@@ -85,6 +85,7 @@ export const loggedInSplashes = [
 	"I have always thought of myself as an ambassador for the dance game community.",
 	"When lava pours out near the sea surface, tremendous volcanic explosions sometimes occur.",
 	"But thE MOOOOON JUST STAAARED BAACK AAAT MEE",
+	"However... I kinda feel like this one's in the bag.",
 ];
 
 // Stuff that's bad for the kids, you know?

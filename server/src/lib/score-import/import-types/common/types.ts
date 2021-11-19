@@ -13,6 +13,7 @@ import { EmptyObject } from "utils/types";
 import { ConverterFailure } from "../../framework/common/converter-failures";
 import { DryScore } from "../../framework/common/types";
 import { ClassHandler } from "../../framework/user-game-stats/types";
+import { SDVXEamusementCSVData } from "../file/eamusement-sdvx-csv/types";
 import { MerScore } from "../file/mer-iidx/types";
 import { S3Score } from "../file/solid-state-squad/types";
 import { BarbatosScore } from "../ir/barbatos/types";
@@ -27,6 +28,7 @@ import { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./eamusement-ii
 
 export interface ImportTypeDataMap {
 	"file/eamusement-iidx-csv": IIDXEamusementCSVData;
+	"file/eamusement-sdvx-csv": SDVXEamusementCSVData;
 	"file/batch-manual": BatchManualScore;
 	"file/solid-state-squad": S3Score;
 	"file/mer-iidx": MerScore;
@@ -55,6 +57,7 @@ export interface ImportTypeDataMap {
 
 export interface ImportTypeContextMap {
 	"file/eamusement-iidx-csv": IIDXEamusementCSVContext;
+	"file/eamusement-sdvx-csv": EmptyObject;
 	"file/batch-manual": BatchManualContext;
 	"file/solid-state-squad": EmptyObject;
 	"file/mer-iidx": EmptyObject;

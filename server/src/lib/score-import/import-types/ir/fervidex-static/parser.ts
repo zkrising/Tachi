@@ -10,7 +10,7 @@ import { FervidexStaticContext, FervidexStaticScore } from "./types";
 
 const PR_FervidexStatic: PrudenceSchema = {
 	ex_score: p.isPositiveInteger,
-	miss_count: p.nullable(p.or(p.isPositiveInteger, p.is(-1))),
+	miss_count: p.optional(p.nullable(p.or(p.isPositiveInteger, p.is(-1)))),
 	clear_type: p.isBoundedInteger(0, 7),
 };
 

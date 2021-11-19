@@ -1,4 +1,5 @@
 import { Lamps } from "tachi-common";
+import { DeleteUndefinedProps } from "utils/misc";
 import { FindChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import {
@@ -43,6 +44,12 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 
 	const { percent, grade } = GenericGetGradeAndPercent("iidx", data.ex_score, chart);
 
+	const hitMeta: { bp?: number | null } = {};
+
+	if (data.miss_count !== undefined) {
+		hitMeta.bp = data.miss_count === -1 ? null : data.miss_count;
+	}
+
 	const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
 		game: "iidx",
 		service: "Fervidex Static",
@@ -55,9 +62,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 			grade,
 			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:SP" | "iidx:DP"],
 			judgements: {},
-			hitMeta: {
-				bp: data.miss_count === -1 ? null : data.miss_count,
-			},
+			hitMeta,
 		},
 		scoreMeta: {},
 	};

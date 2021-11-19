@@ -6,6 +6,7 @@ import { ConvertAPIKaiSDVX } from "./common/api-kai/sdvx/converter";
 import { ConverterBatchManual } from "./common/batch-manual/converter";
 import ConvertEamIIDXCSV from "./common/eamusement-iidx-csv/converter";
 import { ConverterFunction, ImportTypeContextMap, ImportTypeDataMap } from "./common/types";
+import ConvertEamSDVXCSV from "./file/eamusement-sdvx-csv/converter";
 import { ConvertFileMerIIDX } from "./file/mer-iidx/converter";
 import { ConvertFileS3 } from "./file/solid-state-squad/converter";
 import { ConverterIRBarbatos } from "./ir/barbatos/converter";
@@ -25,9 +26,7 @@ export const Converters: ConverterMap = {
 	"file/mer-iidx": ConvertFileMerIIDX,
 	"file/pli-iidx-csv": ConvertEamIIDXCSV,
 	"file/eamusement-iidx-csv": ConvertEamIIDXCSV,
-	// @todo This is a stub definition! Proper eam sdvx csv support
-	// requires this to be properly defined.
-	"file/eamusement-sdvx-csv": () => void 0 as any,
+	"file/eamusement-sdvx-csv": ConvertEamSDVXCSV,
 
 	"api/eag-iidx": ConvertAPIKaiIIDX,
 	"api/eag-sdvx": ConvertAPIKaiSDVX,

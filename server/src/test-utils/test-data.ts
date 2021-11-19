@@ -72,6 +72,10 @@ export const TestingIIDXEamusementCSV27 = GetKTDataBuffer(
 	"./eamusement-iidx-csv/post-leggendaria.csv"
 );
 
+export const TestingSDVXEamusementCSV = GetKTDataBuffer(
+	"./eamusement-sdvx-csv/exceed-gear-score.csv"
+);
+
 export const TestingBarbatosScore: BarbatosScore = GetKTDataJSON("./barbatos/base.json");
 
 export const HC511Goal: GoalDocument = {

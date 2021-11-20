@@ -20,8 +20,8 @@ export interface USCClientScore {
 	crit: integer;
 	near: integer;
 	error: integer;
-	early: integer;
-	late: integer;
+	early: integer | null;
+	late: integer | null;
 	options: {
 		gaugeType: 0 | 1;
 		gaugeOpt: integer;

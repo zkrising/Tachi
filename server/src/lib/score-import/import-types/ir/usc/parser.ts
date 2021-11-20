@@ -14,8 +14,8 @@ const PR_USCIRScore: PrudenceSchema = {
 	crit: p.isPositiveInteger,
 	near: p.isPositiveInteger,
 	error: p.isPositiveInteger,
-	early: p.isPositiveInteger,
-	late: p.isPositiveInteger,
+	early: p.optional(p.isPositiveInteger),
+	late: p.optional(p.isPositiveInteger),
 	options: {
 		gaugeType: p.isIn(0, 1),
 		mirror: "boolean",
@@ -48,13 +48,19 @@ export function ParseIRUSC(
 		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid USC Score."));
 	}
 
+	const score = body.score as USCClientScore;
+
+	// Enforce null for this instead of undefined.
+	score.early ??= null;
+	score.late ??= null;
+
 	return {
 		context: {
 			chartHash,
 			playtype,
 		},
 		game: "usc",
-		iterable: [body.score] as USCClientScore[],
+		iterable: [score] as USCClientScore[],
 		classHandler: null,
 	};
 }

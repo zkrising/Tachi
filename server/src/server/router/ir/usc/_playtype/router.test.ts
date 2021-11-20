@@ -162,6 +162,8 @@ const USC_SCORE_PB: PBScoreDocument = {
 		},
 		hitMeta: {
 			gauge: 50,
+			fast: 50,
+			slow: 20,
 		},
 	},
 };
@@ -520,6 +522,8 @@ t.test("POST /scores", (t) => {
 			crit: 5,
 			near: 4,
 			error: 3,
+			early: 2,
+			late: 1,
 			options: {
 				gaugeType: 0,
 				gaugeOpt: 0,

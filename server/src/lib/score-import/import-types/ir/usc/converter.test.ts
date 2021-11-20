@@ -31,7 +31,7 @@ t.test("#DeriveLamp", (t) => {
 		"PERFECT ULTIMATE CHAIN"
 	);
 
-	// error: 0 should not take priority over score 10million
+	// error: 0 => ultimate chain should not take priority over score 10million
 	t.equal(
 		DeriveLamp(
 			d(uscScore, {

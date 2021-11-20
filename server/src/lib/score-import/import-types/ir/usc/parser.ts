@@ -14,11 +14,20 @@ const PR_USCIRScore: PrudenceSchema = {
 	crit: p.isPositiveInteger,
 	near: p.isPositiveInteger,
 	error: p.isPositiveInteger,
+	early: p.isPositiveInteger,
+	late: p.isPositiveInteger,
 	options: {
 		gaugeType: p.isIn(0, 1),
 		mirror: "boolean",
 		random: "boolean",
 		autoFlags: p.isInteger,
+	},
+	windows: {
+		perfect: p.isPositive,
+		good: p.isPositive,
+		hold: p.isPositive,
+		miss: p.isPositive,
+		slam: p.isPositive,
 	},
 };
 

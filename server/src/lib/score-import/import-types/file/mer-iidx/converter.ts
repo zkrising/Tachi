@@ -89,5 +89,5 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
  * As you can see, it has no timezone information, and is ambiguous.
  */
 function ConvertDateToJST(uselessDate: string) {
-	return `${uselessDate.replace(" ", "T")}Z+09:00`;
+	return `${uselessDate.replace(" ", "T")}+09:00`;
 }

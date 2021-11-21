@@ -52,7 +52,7 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
 
 	const lamp = ConvertMERLamp(data.clear_type);
 
-	const timeAchieved = ParseDateFromString(data.update_time);
+	const timeAchieved = ParseDateFromString(ConvertDateToJST(data.update_time));
 
 	const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
 		game: "iidx",
@@ -70,8 +70,7 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
 			},
 		},
 		scoreMeta: {},
-		// japan is GMT+9
-		timeAchieved: timeAchieved ? timeAchieved - NINE_HOURS : null,
+		timeAchieved: timeAchieved ? timeAchieved : null,
 	};
 
 	return {
@@ -81,4 +80,14 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
 	};
 };
 
-const NINE_HOURS = 1000 * 60 * 60 * 9;
+/**
+ * MER passes us a rather useless date without any timezone information.
+ * To ensure that this parses properly regardless of timezone, we need to
+ * assert thathere.
+ *
+ * @param uselessDate - A date string like 2021-03-24 07:15:22.
+ * As you can see, it has no timezone information, and is ambiguous.
+ */
+function ConvertDateToJST(uselessDate: string) {
+	return `${uselessDate.replace(" ", "T")}Z+09:00`;
+}

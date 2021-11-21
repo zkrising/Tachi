@@ -86,6 +86,8 @@ export const loggedInSplashes = [
 	"When lava pours out near the sea surface, tremendous volcanic explosions sometimes occur.",
 	"But thE MOOOOON JUST STAAARED BAACK AAAT MEE",
 	"However... I kinda feel like this one's in the bag.",
+	"Oh yeah? I can exit vim, buddy.",
+	"Discovered Colours",
 ];
 
 // Stuff that's bad for the kids, you know?

@@ -11,28 +11,36 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { useFormik } from "formik";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import {
+	ChartDocument,
 	ChartTierlistInfo,
+	FormatDifficulty,
 	FormatDifficultyShort,
 	Game,
 	GetGamePTConfig,
 	GPTTierlists,
 	IDStrings,
+	integer,
 	PublicUserDocument,
+	ScoreDocument,
+	SongDocument,
 } from "tachi-common";
 import { UGPTFolderReturns } from "types/api-returns";
+import { JustChildren } from "types/react";
 import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import { DEFAULT_BAR_PROPS } from "util/charts";
 import { ChangeOpacity } from "util/color-opacity";
+import { ONE_DAY } from "util/constants/time";
 import { CreateChartIDMap, CreateChartLink, CreateSongMap } from "util/data";
 import { ComposeExpFn, ComposeInverseExpFn, IsNullish, NO_OP } from "util/misc";
 import { GetGradeChartExpScale } from "util/scales";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { GetScaleAchievedFn } from "util/tierlist";
+import { FormatDate, FormatDuration, FormatTime } from "util/time";
 
 interface Props {
 	reqUser: PublicUserDocument;
@@ -47,7 +55,7 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 		`/users/${reqUser.id}/games/${game}/${playtype}/folders/${folderID}`
 	);
 
-	const [mode, setMode] = useState<"normal" | "ladder">("normal");
+	const [mode, setMode] = useState<"normal" | "ladder" | "timeline">("normal");
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
@@ -122,6 +130,10 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 							Tierlist View
 						</SelectButton>
 					)}
+					<SelectButton value={mode} setValue={setMode} id="timeline">
+						<Icon type="stream" />
+						Timeline View
+					</SelectButton>
 				</div>
 			</div>
 			<div className="col-12">
@@ -136,7 +148,7 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 						reqUser={reqUser}
 						indexCol={false}
 					/>
-				) : (
+				) : mode === "ladder" ? (
 					<TierlistBreakdown
 						folderDataset={folderDataset}
 						game={game}
@@ -144,7 +156,216 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 						reqUser={reqUser}
 						data={data}
 					/>
+				) : (
+					<TimelineView
+						game={game}
+						playtype={playtype}
+						reqUser={reqUser}
+						folderID={folderID}
+					/>
 				)}
+			</div>
+		</div>
+	);
+}
+
+function TimelineView({ game, playtype, reqUser, folderID }: Props & { folderID: string }) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+	const [type, setType] = useState<"lamp" | "grade">(gptConfig.scoreBucket);
+	const [value, setValue] = useState<integer>(
+		type === "grade" ? gptConfig.grades.length - 1 : gptConfig.lamps.length - 1
+	);
+
+	useEffect(() => {
+		setValue(type === "grade" ? gptConfig.grades.length - 1 : gptConfig.lamps.length - 1);
+	}, [type]);
+
+	return (
+		<>
+			<Card header="Timeline View">
+				<div className="row">
+					<div className="col-12">
+						<h5 className="text-center">
+							The timeline view shows the order in which you achieved something in a
+							folder! You can choose the criteria up here.
+						</h5>
+						<Divider />
+					</div>
+					<div className="col-12 col-lg-6">
+						<Form.Control
+							as="select"
+							value={type}
+							onChange={e => setType(e.target.value as "grade" | "lamp")}
+						>
+							<option value="grade">Grades</option>
+							<option value="lamp">Lamps</option>
+						</Form.Control>
+					</div>
+					<div className="col-12 col-lg-6">
+						<Form.Control
+							as="select"
+							value={value}
+							onChange={e => setValue(Number(e.target.value))}
+						>
+							{type === "grade"
+								? gptConfig.grades.map((e, i) => (
+										<option key={e} value={i}>
+											{e}
+										</option>
+								  ))
+								: gptConfig.lamps.map((e, i) => (
+										<option key={e} value={i}>
+											{e}
+										</option>
+								  ))}
+						</Form.Control>
+					</div>
+				</div>
+			</Card>
+			<Divider />
+			<TimelineMain {...{ reqUser, game, playtype, folderID, type, value }} />
+		</>
+	);
+}
+
+function TimelineMain({
+	reqUser,
+	game,
+	playtype,
+	folderID,
+	type,
+	value,
+}: Props & {
+	folderID: string;
+	type: "grade" | "lamp";
+	value: integer;
+}) {
+	const { data, isLoading, error } = useApiQuery<{
+		scores: ScoreDocument[];
+		songs: SongDocument[];
+		charts: ChartDocument[];
+	}>(
+		`/users/${reqUser.id}/games/${game}/${playtype}/folders/${folderID}/timeline?criteriaValue=${value}&criteriaType=${type}`
+	);
+
+	if (error) {
+		return <ApiError error={error} />;
+	}
+
+	if (isLoading || !data) {
+		return <Loading />;
+	}
+
+	const scoreDataset = [];
+
+	const songMap = CreateSongMap(data.songs);
+	const chartMap = CreateChartIDMap(data.charts);
+
+	for (const score of data.scores) {
+		scoreDataset.push({
+			...score,
+			__related: {
+				song: songMap.get(score.songID)!,
+				chart: chartMap.get(score.chartID)!,
+			},
+		});
+	}
+
+	scoreDataset.sort(NumericSOV(x => x.timeAchieved ?? Infinity));
+
+	const elements = [];
+
+	let lastDay = 0;
+	let index = 1;
+	let hasHitNulls = false;
+
+	for (const scoreData of scoreDataset) {
+		if (scoreData.timeAchieved !== null) {
+			// Insane hack to floor a date to the beginning of that
+			// day.
+			const dayNum = new Date(scoreData.timeAchieved).setHours(0, 0, 0, 0);
+
+			if (!lastDay || lastDay !== dayNum) {
+				lastDay = dayNum;
+				elements.push(
+					<TimelineDivider>{FormatDate(scoreData.timeAchieved)}</TimelineDivider>
+				);
+			}
+		} else if (!hasHitNulls) {
+			elements.push(<TimelineDivider>Unknown Time</TimelineDivider>);
+			hasHitNulls = true;
+		}
+
+		elements.push(
+			<TimelineElement index={index} scoreData={scoreData} key={scoreData.scoreID} />
+		);
+		index++;
+	}
+
+	return (
+		<>
+			<div className="timeline timeline-2">
+				<div className="timeline-bar"></div>
+				{elements}
+			</div>
+			<Divider />
+			<div className="text-center">
+				<h1 className="display-4">Total Progress</h1>
+				<h1 className="display-4">
+					{data.scores.length}
+					<span className="text-muted" style={{ fontSize: "1.1rem" }}>
+						/{data.charts.length}
+					</span>
+				</h1>
+			</div>
+		</>
+	);
+}
+
+function TimelineDivider({ children }: { children: string }) {
+	return (
+		<div className="w-100 text-center my-4">
+			<h4>{children}</h4>
+		</div>
+	);
+}
+
+function TimelineElement({
+	scoreData,
+	index,
+}: {
+	index: integer;
+	scoreData: ScoreDocument & {
+		__related: {
+			song: SongDocument;
+			chart: ChartDocument;
+		};
+	};
+}) {
+	return (
+		<div className="timeline-item">
+			<span className="timeline-badge bg-primary"></span>
+			<div className="timeline-content d-flex align-items-center justify-content-between">
+				<span className="mr-3" style={{ fontSize: "1.15rem" }}>
+					<b>#{index}</b>:{" "}
+					<Link
+						to={CreateChartLink(scoreData.__related.chart, scoreData.game)}
+						className="gentle-link"
+					>
+						{scoreData.__related.song.title}{" "}
+						{FormatDifficulty(scoreData.__related.chart, scoreData.game)}
+					</Link>
+					{Date.now() - scoreData.timeAdded < ONE_DAY && (
+						<span className="ml-2 label label-inline label-primary font-weight-bolder">
+							NEW!
+						</span>
+					)}
+				</span>
+				<span className="text-muted font-italic text-right">
+					{scoreData.timeAchieved === null
+						? "Unknown Time"
+						: FormatTime(scoreData.timeAchieved)}
+				</span>
 			</div>
 		</div>
 	);

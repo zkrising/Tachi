@@ -122,10 +122,11 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 				gauge: data.gauge,
 				fast: data.early,
 				slow: data.late,
+				combo: data.combo,
 			},
 		},
 		scoreMeta: {
-			gaugeMod: data.options.gaugeOpt === 0 ? "NORMAL" : "HARD",
+			gaugeMod: data.options.gaugeMod === 0 ? "NORMAL" : "HARD",
 			noteMod: DeriveNoteMod(data),
 		},
 	};

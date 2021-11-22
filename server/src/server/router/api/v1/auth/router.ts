@@ -366,42 +366,37 @@ router.post(
  *
  * @name POST /api/v1/auth/resend-verify-email
  */
-router.post(
-	"/resend-verify-email",
-	HyperAggressiveRateLimitMiddleware,
-	prValidate({ email: "string" }),
-	async (req, res) => {
-		// Immediately send a response so the existence of emails
-		// cannot be timing attacked out.
-		res.status(200).json({
-			success: true,
-			description: `Sent an email if the email address has not been verified.`,
-			body: {},
-		});
+router.post("/resend-verify-email", HyperAggressiveRateLimitMiddleware, async (req, res) => {
+	// Immediately send a response so the existence of emails
+	// cannot be timing attacked out.
+	res.status(200).json({
+		success: true,
+		description: `Sent an email if the email address has not been verified.`,
+		body: {},
+	});
 
-		const verifyInfo = await db["verify-email-codes"].findOne({ email: req.body.email });
-
-		if (!verifyInfo) {
-			logger.warn(
-				`Attempted to send reset email to ${req.body.email}, but no verifyInfo was set for them.`
-			);
-			return;
-		}
-
-		const user = await GetUserWithID(verifyInfo.userID);
-
-		if (!user) {
-			logger.severe(`Email verifyInfo belongs to user that no longer exists?`, verifyInfo);
-			return;
-		}
-
-		// Send the email again.
-
-		const { text, html } = EmailFormatVerifyEmail(user!.username, verifyInfo.code);
-
-		SendEmail(req.body.email, "Email Verification", html, text);
+	const user = req.session.tachi?.user;
+	if (!user) {
+		return;
 	}
-);
+
+	const userID = user.id;
+
+	const verifyInfo = await db["verify-email-codes"].findOne({ userID: userID });
+
+	if (!verifyInfo) {
+		logger.warn(
+			`Attempted to send reset email to ${userID}, but no verifyInfo was set for them.`
+		);
+		return;
+	}
+
+	// Send the email again.
+
+	const { text, html } = EmailFormatVerifyEmail(user.username, verifyInfo.code);
+
+	SendEmail(verifyInfo.email, "Email Verification", html, text);
+});
 
 /**
  * Logs out the requesting user.

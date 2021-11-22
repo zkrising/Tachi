@@ -80,7 +80,7 @@ export const loggedInSplashes = [
 	"bwhæhæhææhæhhææhæh",
 	"Maximal opinions and Minimal evidence",
 	"Who is the scrimbler bimbler?",
-	"You wish you know who the hibble gibble gobbler was.",
+	"You wish you knew who the hibble gibble gobbler was.",
 	`The current day is ${FormatDate(Date.now())}, probably.`,
 	"I have always thought of myself as an ambassador for the dance game community.",
 	"When lava pours out near the sea surface, tremendous volcanic explosions sometimes occur.",

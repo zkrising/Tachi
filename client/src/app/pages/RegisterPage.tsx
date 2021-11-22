@@ -143,7 +143,7 @@ export default function RegisterPage() {
 								</a>
 							</h4>
 
-							<h6>(Opens in a new tab.)</h6>
+							<h6>(This link opens in a new tab.)</h6>
 						</div>
 
 						<Divider />

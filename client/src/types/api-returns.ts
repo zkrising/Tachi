@@ -164,3 +164,9 @@ export interface UserLeaderboardReturns<I extends IDStrings = IDStrings> {
 	users: PublicUserDocument[];
 	gameStats: UserGameStats<I>[];
 }
+
+export interface UserRecentSummary {
+	recentPlaycount: integer;
+	recentSessions: SessionDocument[];
+	recentFolders: FolderDocument[];
+}

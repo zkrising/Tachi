@@ -77,49 +77,35 @@ function GamesInfo({ ugs, reqUser }: { ugs: UserGameStats[]; reqUser: PublicUser
 					return <></>;
 				}
 
-				// uses modulo to determine whether we're on the
-				// last row or not
-				// to do sizing like [12] or [6][6] instead of [3][3][3]
-				let mdSize = "6";
-				let lgSize = "4";
-				if (ugs.length - i <= ugs.length % 3 && ugs.length > 3) {
-					lgSize = (12 / (ugs.length % 3)).toString();
-				}
-
-				if (ugs.length - i <= ugs.length % 2 && ugs.length > 2) {
-					mdSize = (12 / (ugs.length % 2)).toString();
-				}
-
-				return (
-					<div
-						className={`col-12 col-md-${mdSize} col-lg-${lgSize}`}
-						key={`${e.game}:${e.playtype}`}
-					>
-						<GameStatContainer ugs={e} reqUser={reqUser} />
-					</div>
-				);
+				return <GameStatContainer key={`${game}:${playtype}`} ugs={e} reqUser={reqUser} />;
 			})}
 		</>
 	);
 }
 
-function GameStatContainer({ ugs, reqUser }: { ugs: UGSWithRankingData } & Props) {
+export function GameStatContainer({ ugs, reqUser }: { ugs: UGSWithRankingData } & Props) {
 	return (
-		<Card
-			className="mb-4"
-			footer={
-				<div className="d-flex justify-content-end">
-					<LinkButton
-						to={`/dashboard/users/${reqUser.username}/games/${ugs.game}/${ugs.playtype}`}
-					>
-						View Game Profile
-					</LinkButton>
-				</div>
-			}
-			header={FormatGame(ugs.game, ugs.playtype)}
-		>
-			<UGPTRatingsTable ugs={ugs} />
-			<RankingData game={ugs.game} playtype={ugs.playtype} rankingData={ugs.__rankingData} />
-		</Card>
+		<div className="col-12 col-lg-6">
+			<Card
+				className="mb-4"
+				footer={
+					<div className="d-flex justify-content-end">
+						<LinkButton
+							to={`/dashboard/users/${reqUser.username}/games/${ugs.game}/${ugs.playtype}`}
+						>
+							View Game Profile
+						</LinkButton>
+					</div>
+				}
+				header={FormatGame(ugs.game, ugs.playtype)}
+			>
+				<UGPTRatingsTable ugs={ugs} />
+				<RankingData
+					game={ugs.game}
+					playtype={ugs.playtype}
+					rankingData={ugs.__rankingData}
+				/>
+			</Card>
+		</div>
 	);
 }

@@ -14,7 +14,10 @@ export function FormatDate(ms: number) {
 }
 
 export function FormatDuration(ms: number) {
-	return humaniseDuration(ms);
+	return humaniseDuration(ms, {
+		units: ["d", "h", "m"],
+		maxDecimalPoints: 0,
+	});
 }
 
 export function FormatTimeSmall(ms: number) {

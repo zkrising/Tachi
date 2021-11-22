@@ -1,15 +1,23 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
+import SessionCard from "components/sessions/SessionCard";
+import ApiError from "components/util/ApiError";
+import AsyncLoader from "components/util/AsyncLoader";
 import Divider from "components/util/Divider";
 import LinkButton from "components/util/LinkButton";
-import SplashText from "components/util/SplashText";
+import Loading from "components/util/Loading";
+import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { UserGameStatsContext } from "context/UserGameStatsContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext } from "react";
+import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { PublicUserDocument } from "tachi-common";
-import { ToCDNURL } from "util/api";
+import { GetGameConfig, PublicUserDocument } from "tachi-common";
+import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
+import { APIFetchV1 } from "util/api";
+import { NumericSOV } from "util/sorts";
+import { GameStatContainer } from "./users/UserGamesPage";
 
 export function DashboardPage() {
 	const { settings } = useContext(UserSettingsContext);
@@ -21,17 +29,113 @@ export function DashboardPage() {
 
 	if (!user) {
 		return <DashboardNotLoggedIn />;
-	} else if (user && !ugs) {
-		return <DashboardLoggedInNoScores user={user} />;
 	}
 
-	return <DashboardLoggedIn user={user} />;
+	return (
+		<>
+			{ugs?.length ? (
+				<DashboardLoggedIn user={user} />
+			) : (
+				<DashboardLoggedInNoScores user={user} />
+			)}
+		</>
+	);
 }
 
 function DashboardLoggedIn({ user }: { user: PublicUserDocument }) {
 	return (
 		<div>
 			<span className="display-4">Welcome Back, {user.username}.</span>
+			<Divider />
+			<RecentInfo user={user} />
+			<h1>Here's all your profiles.</h1>
+			<Divider />
+
+			<UserGameStatsInfo user={user} />
+		</div>
+	);
+}
+
+function RecentInfo({ user }: { user: PublicUserDocument }) {
+	const { data, isLoading, error } = useApiQuery<UserRecentSummary>(
+		`/users/${user.id}/recent-summary`
+	);
+
+	if (error) {
+		return <ApiError error={error} />;
+	}
+
+	if (isLoading || !data) {
+		return <Loading />;
+	}
+
+	if (!data.recentSessions.length) {
+		return <></>;
+	}
+
+	return (
+		<>
+			<Alert
+				style={{
+					backgroundColor: TachiConfig.type === "ktchi" ? "#e61c6e44" : "#527acc44",
+					color: "white",
+				}}
+			>
+				<div className="text-center">
+					<h1>Today's Summary</h1>
+					You've gotten <b>{data.recentPlaycount}</b> new score
+					{data.recentPlaycount !== 1 ? "s" : ""} today!
+				</div>
+			</Alert>
+			<Divider />
+			<h1>New Sessions</h1>
+			You've had <b>{data.recentSessions.length}</b> session
+			{data.recentSessions.length !== 1 ? "s" : ""} today!
+			<Divider />
+			{data.recentSessions.sort(NumericSOV(x => x.timeEnded, true)).map(e => (
+				<SessionCard sessionID={e.sessionID} key={e.sessionID} />
+			))}
+			<Divider />
+		</>
+	);
+}
+
+function UserGameStatsInfo({ user }: { user: PublicUserDocument }) {
+	return (
+		<div className="row">
+			<AsyncLoader
+				promiseFn={async () => {
+					const res = await APIFetchV1<UGSWithRankingData[]>(
+						`/users/${user.id}/game-stats`
+					);
+
+					if (!res.success) {
+						throw new Error(res.description);
+					}
+
+					return res.body.sort((a, b) => {
+						if (a.game === b.game) {
+							const gameConfig = GetGameConfig(a.game);
+
+							return (
+								gameConfig.validPlaytypes.indexOf(a.playtype) -
+								gameConfig.validPlaytypes.indexOf(b.playtype)
+							);
+						}
+
+						const i1 = TachiConfig.supportedGames.indexOf(a.game);
+						const i2 = TachiConfig.supportedGames.indexOf(b.game);
+
+						return i1 - i2;
+					});
+				}}
+			>
+				{ugs =>
+					ugs.map(e => (
+						<GameStatContainer ugs={e} reqUser={user} key={`${e.game}:${e.playtype}`} />
+					))
+				}
+			</AsyncLoader>
 		</div>
 	);
 }
@@ -76,7 +180,7 @@ function DashboardNotLoggedIn() {
 
 function FeatureContainer({ tagline, description }: { tagline: string; description: string }) {
 	return (
-		<div className="row my-4" style={{ lineHeight: "1.3", fontSize: "1.15rem" }}>
+		<div className="row my-4 mb-16" style={{ lineHeight: "1.3", fontSize: "1.15rem" }}>
 			<div className="col-12 col-lg-6">
 				<h1 className="display-4">{tagline}</h1>
 				<span>{description}</span>
@@ -86,5 +190,21 @@ function FeatureContainer({ tagline, description }: { tagline: string; descripti
 }
 
 function DashboardLoggedInNoScores({ user }: { user: PublicUserDocument }) {
-	return <span>foo</span>;
+	return (
+		<div>
+			<span className="display-4">
+				Welcome to {TachiConfig.name}, {user.username}!
+			</span>
+			<h4 className="mt-4">It looks like you have no scores. Let's get you set up!</h4>
+			<Divider />
+			<h4 style={{ lineHeight: 2 }}>
+				Once you've got some scores imported, we'll analyse your scores.
+				<br />
+				You'll get a profile for that game, and a position on the leaderboards!
+			</h4>
+			<LinkButton className="btn-outline-primary" to="/dashboard/import">
+				Import some scores!
+			</LinkButton>
+		</div>
+	);
 }

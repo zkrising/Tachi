@@ -73,9 +73,10 @@ The valid input devices are listed below.
 
 | Game | Devices | Justifications |
 | :: | :: | :: |
-| unnamed_sdvx_clone | Same as SDVX | Keyboard play is not allowed, etc. |
+| unnamed_sdvx_clone (Controller) | Any Arcade Size Controller | The controller leaderboards are **exclusively** for Arcade **SIZE** controllers. **POCKET VOLTEXES DO NOT COUNT AS ARCADE SIZE CONTROLLERS.** |
+| unnamed_sdvx_clone (Keyboard) | Keyboard | The keyboard leaderboards are **exclusively** for keyboard players. You must not play on these leaderboards with a controller! |
 | BMS (7K) | Keyboard, any IIDX Controller | Keyboard play is allowed for BMS 7K. |
-| BMS (14K) | any two IIDX Controllers | Keyboard play is **NOT** allowed for BMS 14K. |
+| BMS (14K) | any two IIDX Controllers | Keyboard play is **NOT** allowed for BMS 14K, due to some ridiculous advantages. |
 
 !!! info
 	As always though, exercise some common sense. I'm not going to whitelist controllers on here, because that's asking for trouble. Use your head as for whether something is fair or not, and if you're not certain still, ask in the discord.
@@ -136,6 +137,11 @@ show it to your mother, it doesn't belong here.
 
 	Uploading illegal (under international common or EU law)
 	material will result in an immediate permanent ban.
+
+!!! warn
+	This rule **especially** applies to loli or shota stuff.
+
+	I don't want to see that garbage, don't upload it, you'll get in trouble.
 
 ## R7: Use Common Sense.
 

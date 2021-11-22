@@ -6,6 +6,13 @@ export function FormatInt(v: number): string {
 }
 
 export function FormatDifficulty(chart: ChartDocument, game: Game): string {
+	if (game === "bms") {
+		const bmsChart = chart as ChartDocument<"bms:7K" | "bms:14K">;
+		return (
+			bmsChart.data.tableFolders.map((e) => `${e.table}${e.level}`).join(", ") || "Unrated"
+		);
+	}
+
 	const gameConfig = GetGameConfig(game);
 
 	if (gameConfig.validPlaytypes.length > 1) {

@@ -24,7 +24,7 @@ t.test("#ConvertAPIArcIIDX", (t) => {
 				game: "iidx",
 				importType: "api/arc-iidx",
 				timeAchieved: 1604784681894,
-				service: "ARC IIDX27",
+				service: "ARC IIDX28",
 				scoreData: {
 					grade: "A",
 					score: 1200,

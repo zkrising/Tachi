@@ -1,21 +1,26 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { GetUserFromParam, RequireSelfRequestFromUser } from "./middleware";
-import gamePTRouter from "./games/_game/_playtype/router";
-import bannerRouter from "./banner/router";
-import pfpRouter from "./pfp/router";
-import integrationsRouter from "./integrations/router";
-import settingsRouter from "./settings/router";
-import prValidate from "server/middleware/prudence-validate";
-import p from "prudence";
-import { optNull, optNullFluffStrField } from "utils/prudence";
-import { DeleteUndefinedProps, StripUrl } from "utils/misc";
-import { FormatUserDoc, GetAllRankings, GetUserWithID } from "utils/user";
-import { UserGameStats } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
+import p from "prudence";
+import prValidate from "server/middleware/prudence-validate";
+import { UserGameStats } from "tachi-common";
+import { DeleteUndefinedProps, StripUrl } from "utils/misc";
+import { optNull, optNullFluffStrField } from "utils/prudence";
+import {
+	GetRecentlyViewedFoldersAnyGPT,
+	GetRecentPlaycount,
+	GetRecentSessions,
+} from "utils/queries/summary";
+import { FormatUserDoc, GetAllRankings, GetUserWithID } from "utils/user";
 import apiTokensRouter from "./api-tokens/router";
+import bannerRouter from "./banner/router";
+import gamePTRouter from "./games/_game/_playtype/router";
+import integrationsRouter from "./integrations/router";
 import invitesRouter from "./invites/router";
+import { GetUserFromParam, RequireSelfRequestFromUser } from "./middleware";
+import pfpRouter from "./pfp/router";
+import settingsRouter from "./settings/router";
 
 const logger = CreateLogCtx(__filename);
 
@@ -200,6 +205,33 @@ router.get("/game-stats", async (req, res) => {
 		success: true,
 		description: `Returned ${stats.length} stats objects.`,
 		body: stats,
+	});
+});
+
+/**
+ * Returns a summary of what the user has achieved in the past 24 hours.
+ * Used on the main dashboard page to give users quick links to sessions,
+ * alongside other information.
+ *
+ * @name GET /api/v1/users/:userID/recent-summary
+ */
+router.get("/recent-summary", async (req, res) => {
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+
+	const [recentPlaycount, recentSessions, recentFolders] = await Promise.all([
+		GetRecentPlaycount(user.id),
+		GetRecentSessions(user.id),
+		GetRecentlyViewedFoldersAnyGPT(user.id),
+	]);
+
+	return res.status(200).json({
+		success: true,
+		description: `Retrieved information about ${FormatUserDoc(user)}.`,
+		body: {
+			recentPlaycount,
+			recentSessions,
+			recentFolders,
+		},
 	});
 });
 

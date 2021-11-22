@@ -80,7 +80,7 @@ export const ConvertAPIArcIIDX: ConverterFunction<unknown, EmptyObject> = async 
 		game: "iidx",
 		importType,
 		timeAchieved,
-		service: "ARC IIDX27",
+		service: "ARC IIDX28",
 		scoreData: {
 			grade,
 			percent,

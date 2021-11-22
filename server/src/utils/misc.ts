@@ -1,6 +1,7 @@
 import crypto from "crypto";
+import { ONE_HOUR } from "lib/constants/time";
 import { TachiConfig } from "lib/setup/config";
-import { Game, GamePTConfig, GetGameConfig, Playtypes } from "tachi-common";
+import { Game, GamePTConfig, GetGameConfig, Playtypes, integer } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
 // the developer of this has migrated everything to Force ES6 style modules,
@@ -127,4 +128,8 @@ export function IsValidURL(string: string) {
 
 export function Sleep(ms: number) {
 	return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
+}
+
+export function GetTimeXHoursAgo(hours: integer) {
+	return Date.now() - ONE_HOUR * hours;
 }

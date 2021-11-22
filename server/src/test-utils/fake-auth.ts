@@ -3,11 +3,13 @@ import CreateLogCtx from "lib/logger/logger";
 import supertest from "supertest";
 import { AllPermissions } from "../server/middleware/auth";
 import db from "external/mongo/db";
+import { ClearTestingRateLimitCache } from "server/middleware/rate-limiter";
 
 const logger = CreateLogCtx(__filename);
 
 export async function CreateFakeAuthCookie(mockApi: supertest.SuperTest<supertest.Test>) {
 	await ResetDBState();
+	ClearTestingRateLimitCache();
 
 	// possible security issue, ask hazel
 	const res = await mockApi.post("/api/v1/auth/login").send({

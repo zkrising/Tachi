@@ -6,6 +6,10 @@ import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
 import Prudence from "prudence";
 import prValidate from "server/middleware/prudence-validate";
+import {
+	AggressiveRateLimitMiddleware,
+	HyperAggressiveRateLimitMiddleware,
+} from "server/middleware/rate-limiter";
 import { integer } from "tachi-common";
 import { DecrementCounterValue, GetNextCounterValue } from "utils/db";
 import { Random20Hex } from "utils/misc";
@@ -40,6 +44,7 @@ const LAZY_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
  */
 router.post(
 	"/login",
+	AggressiveRateLimitMiddleware,
 	prValidate(
 		{
 			username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
@@ -159,6 +164,7 @@ router.post(
  */
 router.post(
 	"/register",
+	AggressiveRateLimitMiddleware,
 	prValidate(
 		{
 			username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
@@ -324,6 +330,7 @@ router.post(
  */
 router.post(
 	"/verify-email",
+	AggressiveRateLimitMiddleware,
 	prValidate({
 		code: "string",
 	}),
@@ -359,37 +366,42 @@ router.post(
  *
  * @name POST /api/v1/auth/resend-verify-email
  */
-router.post("/resend-verify-email", prValidate({ email: "string" }), async (req, res) => {
-	// Immediately send a response so the existence of emails
-	// cannot be timing attacked out.
-	res.status(200).json({
-		success: true,
-		description: `Sent an email if the email address has not been verified.`,
-		body: {},
-	});
+router.post(
+	"/resend-verify-email",
+	HyperAggressiveRateLimitMiddleware,
+	prValidate({ email: "string" }),
+	async (req, res) => {
+		// Immediately send a response so the existence of emails
+		// cannot be timing attacked out.
+		res.status(200).json({
+			success: true,
+			description: `Sent an email if the email address has not been verified.`,
+			body: {},
+		});
 
-	const verifyInfo = await db["verify-email-codes"].findOne({ email: req.body.email });
+		const verifyInfo = await db["verify-email-codes"].findOne({ email: req.body.email });
 
-	if (!verifyInfo) {
-		logger.warn(
-			`Attempted to send reset email to ${req.body.email}, but no verifyInfo was set for them.`
-		);
-		return;
+		if (!verifyInfo) {
+			logger.warn(
+				`Attempted to send reset email to ${req.body.email}, but no verifyInfo was set for them.`
+			);
+			return;
+		}
+
+		const user = await GetUserWithID(verifyInfo.userID);
+
+		if (!user) {
+			logger.severe(`Email verifyInfo belongs to user that no longer exists?`, verifyInfo);
+			return;
+		}
+
+		// Send the email again.
+
+		const { text, html } = EmailFormatVerifyEmail(user!.username, verifyInfo.code);
+
+		SendEmail(req.body.email, "Email Verification", html, text);
 	}
-
-	const user = await GetUserWithID(verifyInfo.userID);
-
-	if (!user) {
-		logger.severe(`Email verifyInfo belongs to user that no longer exists?`, verifyInfo);
-		return;
-	}
-
-	// Send the email again.
-
-	const { text, html } = EmailFormatVerifyEmail(user!.username, verifyInfo.code);
-
-	SendEmail(req.body.email, "Email Verification", html, text);
-});
+);
 
 /**
  * Logs out the requesting user.
@@ -420,53 +432,60 @@ router.post("/logout", (req, res) => {
  *
  * @name POST /api/v1/auth/forgot-password
  */
-router.post("/forgot-password", prValidate({ email: "string" }), async (req, res) => {
-	if (!ServerConfig.EMAIL_CONFIG && Environment.nodeEnv !== "test") {
-		return res.status(501).json({
-			success: false,
-			description: `This server does not support password resets.`,
-		});
-	}
-
-	logger.debug(`Recieved password reset request for ${req.body.email}.`);
-	// For timing attack and infosec reasons, we can't do anything but **immediately** return here.
-	res.status(202).json({
-		success: true,
-		description: "A code has been sent to your email.",
-		body: {},
-	});
-
-	const userPrivateInfo = await db["user-private-information"].findOne({ email: req.body.email });
-
-	if (userPrivateInfo) {
-		const user = await db.users.findOne({ id: userPrivateInfo.userID });
-
-		if (!user) {
-			logger.severe(
-				`User ${userPrivateInfo.userID} has private information but no real account.`
-			);
-			return;
+router.post(
+	"/forgot-password",
+	HyperAggressiveRateLimitMiddleware,
+	prValidate({ email: "string" }),
+	async (req, res) => {
+		if (!ServerConfig.EMAIL_CONFIG && Environment.nodeEnv !== "test") {
+			return res.status(501).json({
+				success: false,
+				description: `This server does not support password resets.`,
+			});
 		}
 
-		const code = `M${Random20Hex()}`;
-
-		logger.verbose(`Created password reset code for ${FormatUserDoc(user)}.`);
-
-		await db["password-reset-codes"].insert({
-			code,
-			userID: user.id,
-			createdOn: Date.now(),
+		logger.debug(`Recieved password reset request for ${req.body.email}.`);
+		// For timing attack and infosec reasons, we can't do anything but **immediately** return here.
+		res.status(202).json({
+			success: true,
+			description: "A code has been sent to your email.",
+			body: {},
 		});
 
-		const { html, text } = EmailFormatResetPassword(user.username, code, req.ip);
+		const userPrivateInfo = await db["user-private-information"].findOne({
+			email: req.body.email,
+		});
 
-		SendEmail(userPrivateInfo.email, "Reset Password", html, text);
-	} else {
-		logger.info(
-			`Silently rejected password reset request for ${req.body.email}, as no user has this email.`
-		);
+		if (userPrivateInfo) {
+			const user = await db.users.findOne({ id: userPrivateInfo.userID });
+
+			if (!user) {
+				logger.severe(
+					`User ${userPrivateInfo.userID} has private information but no real account.`
+				);
+				return;
+			}
+
+			const code = `M${Random20Hex()}`;
+
+			logger.verbose(`Created password reset code for ${FormatUserDoc(user)}.`);
+
+			await db["password-reset-codes"].insert({
+				code,
+				userID: user.id,
+				createdOn: Date.now(),
+			});
+
+			const { html, text } = EmailFormatResetPassword(user.username, code, req.ip);
+
+			SendEmail(userPrivateInfo.email, "Reset Password", html, text);
+		} else {
+			logger.info(
+				`Silently rejected password reset request for ${req.body.email}, as no user has this email.`
+			);
+		}
 	}
-});
+);
 
 /**
  * Takes a code generated from /forgot-password, a new password,
@@ -479,6 +498,7 @@ router.post("/forgot-password", prValidate({ email: "string" }), async (req, res
  */
 router.post(
 	"/reset-password",
+	AggressiveRateLimitMiddleware,
 	prValidate({
 		code: "string",
 		password: ValidatePassword,

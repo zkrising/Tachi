@@ -1,4 +1,8 @@
 import { Router } from "express";
+import {
+	AggressiveRateLimitMiddleware,
+	NormalRateLimitMiddleware,
+} from "server/middleware/rate-limiter";
 import adminRouter from "./admin/router";
 import authRouter from "./auth/router";
 import clientsRouter from "./clients/router";
@@ -15,8 +19,14 @@ import usersRouter from "./users/router";
 
 const router: Router = Router({ mergeParams: true });
 
-router.use("/admin", adminRouter);
+// Auth is up here so it can have special rate limiting rules,
+// since it needs slightly harsher ones!
 router.use("/auth", authRouter);
+
+// Everything else can use the normal rate limiter!
+router.use(NormalRateLimitMiddleware);
+
+router.use("/admin", adminRouter);
 router.use("/status", statusRouter);
 router.use("/import", importRouter);
 router.use("/imports", importsRouter);

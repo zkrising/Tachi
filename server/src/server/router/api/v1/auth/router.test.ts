@@ -5,9 +5,11 @@ import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { Sleep } from "utils/misc";
 import { PasswordCompare } from "./auth";
+import { ClearTestingRateLimitCache } from "server/middleware/rate-limiter";
 
 t.test("POST /api/v1/auth/login", (t) => {
 	t.beforeEach(ResetDBState);
+	t.beforeEach(ClearTestingRateLimitCache);
 
 	t.test("Should log a user in with right credentials", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/login").send({
@@ -116,6 +118,8 @@ t.test("POST /api/v1/auth/login", (t) => {
 
 t.test("POST /api/v1/auth/register", (t) => {
 	t.beforeEach(ResetDBState);
+	t.beforeEach(ClearTestingRateLimitCache);
+
 	t.beforeEach(() =>
 		db.invites.insert({
 			code: "code",
@@ -279,6 +283,7 @@ t.test("POST /api/v1/auth/register", (t) => {
 
 t.test("POST /api/v1/auth/forgot-password", (t) => {
 	t.beforeEach(ResetDBState);
+	t.beforeEach(ClearTestingRateLimitCache);
 
 	t.test("Should create a code to reset a password with.", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/forgot-password").send({
@@ -329,8 +334,9 @@ t.test("POST /api/v1/auth/forgot-password", (t) => {
 	t.end();
 });
 
-t.test("POST /api/v1/auth/reset-password", async (t) => {
+t.test("POST /api/v1/auth/reset-password", (t) => {
 	t.beforeEach(ResetDBState);
+	t.beforeEach(ClearTestingRateLimitCache);
 
 	t.test("Should reset a users password if they have a valid code.", async (t) => {
 		await db["password-reset-codes"].insert({

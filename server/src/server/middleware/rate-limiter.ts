@@ -32,7 +32,9 @@ const CreateRateLimitOptions = (max: integer, windowMs?: number): rateLimit.Opti
 	store,
 	message: {
 		success: false,
-		description: `You have exceeded ${ServerConfig.RATE_LIMIT} requests per minute. Please wait.`,
+		description: `You have exceeded ${max} requests per ${
+			(windowMs ?? 60_000) / 1000
+		} seconds. Please wait.`,
 		status: 429,
 		message: "You're being rate limited.",
 	},

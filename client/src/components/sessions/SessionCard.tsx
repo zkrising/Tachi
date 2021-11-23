@@ -11,7 +11,7 @@ import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
 import { Button } from "react-bootstrap";
 import toast from "react-hot-toast";
-import { FormatGame, SessionDocument } from "tachi-common";
+import { SessionDocument } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 import { ScoreDataset } from "types/tables";
 import { APIFetchV1 } from "util/api";

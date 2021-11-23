@@ -29,7 +29,6 @@ import {
 	SongDocument,
 } from "tachi-common";
 import { UGPTFolderReturns } from "types/api-returns";
-import { JustChildren } from "types/react";
 import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import { DEFAULT_BAR_PROPS } from "util/charts";
@@ -40,7 +39,7 @@ import { ComposeExpFn, ComposeInverseExpFn, IsNullish, NO_OP } from "util/misc";
 import { GetGradeChartExpScale } from "util/scales";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { GetScaleAchievedFn } from "util/tierlist";
-import { FormatDate, FormatDuration, FormatTime } from "util/time";
+import { FormatDate, FormatTime } from "util/time";
 
 interface Props {
 	reqUser: PublicUserDocument;
@@ -376,7 +375,7 @@ type InfoProps = Props & {
 	data: UGPTFolderReturns;
 };
 
-function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps) {
+function TierlistBreakdown({ game, folderDataset, playtype }: InfoProps) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const formik = useFormik({
@@ -643,7 +642,7 @@ function FolderInfoHeader({ game, playtype, reqUser, folderDataset, data }: Info
 	);
 }
 
-function ScoreDistributionChart({ game, playtype, reqUser, folderDataset, data }: InfoProps) {
+function ScoreDistributionChart({ game, playtype, folderDataset }: InfoProps) {
 	const dataMap = CreateChartIDMap(folderDataset);
 	const gptConfig = GetGamePTConfig(game, playtype);
 

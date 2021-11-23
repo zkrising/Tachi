@@ -53,6 +53,7 @@ const PR_BeatorajaChart = {
 	artist: "string",
 	subartist: "string",
 	total: p.isPositive,
+	lntype: p.isIn(-1, 0, 1, 2),
 
 	// currently only accepted playtypes.
 	mode: p.isIn("BEAT_7K", "BEAT_14K"),

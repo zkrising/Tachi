@@ -21,6 +21,7 @@ export interface BeatorajaChart {
 	notes: integer;
 	hasRandom: boolean;
 	hasUndefinedLN: boolean;
+	lntype: -1 | 0 | 1 | 2;
 }
 
 export interface BeatorajaScore {

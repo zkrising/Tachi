@@ -97,7 +97,9 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 	importType,
 	logger
 ) => {
-	if (data.lntype !== 0) {
+	// ALWAYS USE CHART.LNTYPE, NOT DATA.LNTYPE!
+	// beatoraja has a bug where IRScore LNTypes are always set to 0.
+	if (context.chart.lntype !== 0) {
 		throw new InvalidScoreFailure("CN or HCN mode is not supported by this IR.");
 	}
 

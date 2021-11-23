@@ -16,6 +16,7 @@ const PR_USCIRScore: PrudenceSchema = {
 	error: p.isPositiveInteger,
 	early: p.optional(p.isPositiveInteger),
 	late: p.optional(p.isPositiveInteger),
+	combo: p.optional(p.isPositiveInteger),
 	options: {
 		gaugeType: p.isIn(0, 1),
 		mirror: "boolean",
@@ -51,8 +52,11 @@ export function ParseIRUSC(
 	const score = body.score as USCClientScore;
 
 	// Enforce null for this instead of undefined.
+	// This is because FJSH cannot handle undefined properly.
+	// Maybe fjsh should handle that, lol...
 	score.early ??= null;
 	score.late ??= null;
+	score.combo ??= null;
 
 	return {
 		context: {

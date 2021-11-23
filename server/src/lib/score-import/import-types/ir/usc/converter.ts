@@ -122,6 +122,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 				gauge: data.gauge,
 				fast: data.early,
 				slow: data.late,
+				maxCombo: data.combo,
 			},
 		},
 		scoreMeta: {

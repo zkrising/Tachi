@@ -2,10 +2,14 @@ import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useState } from "react";
-import { ScoreDocument } from "tachi-common";
+import { Game, ScoreDocument } from "tachi-common";
 import { Button, Modal, Form } from "react-bootstrap";
 import { SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
+import LinkButton from "components/util/LinkButton";
+import ExternalLink from "components/util/ExternalLink";
+
+const SUPPORTED_IMG_SCORES: Game[] = ["usc"];
 
 export default function ScoreEditButtons({
 	score,
@@ -79,6 +83,16 @@ export default function ScoreEditButtons({
 						>
 							<Icon noPad type="star" />
 						</Button>
+					</QuickTooltip>
+				)}
+				{SUPPORTED_IMG_SCORES.includes(score.game) && (
+					<QuickTooltip tooltipContent="Get an image for this score!">
+						<ExternalLink
+							className="btn btn-outline-secondary"
+							href={`${process.env.REACT_APP_IMGSCORE_URL}/${score.scoreID}`}
+						>
+							<Icon noPad type="camera" />
+						</ExternalLink>
 					</QuickTooltip>
 				)}
 			</div>

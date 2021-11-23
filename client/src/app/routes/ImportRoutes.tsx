@@ -9,6 +9,7 @@ import ImportPage from "app/pages/dashboard/import/ImportPage";
 import KsHookPage from "app/pages/dashboard/import/KsHookPage";
 import LR2DBPage from "app/pages/dashboard/import/LR2DBPage";
 import MerJSONPage from "app/pages/dashboard/import/MerJSONPage";
+import SDVXEamCSVPage from "app/pages/dashboard/import/SDVXEamCSVPage";
 import SSSXMLPage from "app/pages/dashboard/import/SSSXMLPage";
 import USCDBPage from "app/pages/dashboard/import/USCDBPage";
 import USCIRPage from "app/pages/dashboard/import/USCIRPage";
@@ -70,6 +71,12 @@ export default function ImportRoutes() {
 								<IIDXEamCSVPage
 									name="IIDX PLI CSV"
 									importType="file/pli-iidx-csv"
+								/>
+							</Route>
+							<Route exact path="/dashboard/import/sdvx-eam-csv">
+								<SDVXEamCSVPage
+									name="SDVX e-amusement CSV"
+									importType="file/eamusement-sdvx-csv"
 								/>
 							</Route>
 							<Route exact path="/dashboard/import/iidx-mer">

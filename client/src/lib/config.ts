@@ -32,10 +32,9 @@ if (mode === "ktchi") {
 			"ir/fervidex",
 			"ir/fervidex-static",
 			"file/eamusement-iidx-csv",
+			"file/eamusement-sdvx-csv",
 			"file/solid-state-squad",
-			"file/mer-iidx",
 			"file/pli-iidx-csv",
-			"ir/kshook-sv3c",
 		],
 	};
 	colourConf = {

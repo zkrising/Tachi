@@ -22,6 +22,7 @@ export interface USCClientScore {
 	error: integer;
 	early: integer | null;
 	late: integer | null;
+	combo: integer | null;
 	options: {
 		gaugeType: 0 | 1;
 		gaugeOpt: integer;

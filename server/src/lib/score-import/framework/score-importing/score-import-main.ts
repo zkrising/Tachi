@@ -1,6 +1,6 @@
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
-import { ScoreImportJob, ScoreImportProgress } from "lib/score-import/worker/types";
+import { ScoreImportJob } from "lib/score-import/worker/types";
 import {
 	Game,
 	IDStrings,

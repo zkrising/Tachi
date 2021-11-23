@@ -49,5 +49,5 @@ export const AggressiveRateLimitMiddleware = rateLimit(CreateRateLimitOptions(10
 
 // 2 requests every 20 minutes.
 export const HyperAggressiveRateLimitMiddleware = rateLimit(
-	CreateRateLimitOptions(2, ONE_MINUTE * 20)
+	CreateRateLimitOptions(2, ONE_MINUTE * 5)
 );

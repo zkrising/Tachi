@@ -3,6 +3,7 @@ import ForgotPasswordPage from "app/pages/ForgotPasswordPage";
 import LoginPage from "app/pages/LoginPage";
 import RegisterPage from "app/pages/RegisterPage";
 import ResetPasswordPage from "app/pages/ResetPasswordPage";
+import VerifyEmailPage from "app/pages/VerifyEmailPage";
 import CenterPage from "components/util/CenterPage";
 import ErrorBoundary from "components/util/ErrorBoundary";
 import MainPageTitleContainer from "components/util/MainPageTitleContainer";
@@ -36,6 +37,10 @@ export function Routes() {
 
 				<Route path="/michael">
 					<ErrorPage statusCode={999} customMessage="He has been summoned." />
+				</Route>
+
+				<Route path="/verify-email">
+					<VerifyEmailPage />
 				</Route>
 
 				<Route path="/dashboard">

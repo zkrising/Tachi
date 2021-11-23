@@ -1,3 +1,4 @@
+import SupportMePage from "app/pages/dashboard/misc/SupportMePage";
 import { ErrorPage } from "app/pages/ErrorPage";
 import { Layout } from "components/layout/Layout";
 import EmailVerify from "components/layout/misc/EmailVerify";
@@ -47,6 +48,10 @@ export default function DashboardRoutes() {
 
 				<Route exact path="/dashboard/credits">
 					<CreditsPage />
+				</Route>
+
+				<Route exact path="/dashboard/support">
+					<SupportMePage />
 				</Route>
 
 				<Route exact path="/dashboard/users">

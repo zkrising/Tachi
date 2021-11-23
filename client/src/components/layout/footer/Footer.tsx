@@ -24,6 +24,13 @@ export function Footer() {
 
 					<div className="nav nav-dark order-1 order-md-2 justify-content-center">
 						<Link
+							to="/dashboard/support"
+							className="nav-link px-3"
+							onClick={() => window.scrollTo(0, 0)}
+						>
+							Support / Patreon
+						</Link>
+						<Link
 							to="/dashboard/credits"
 							className="nav-link px-3"
 							onClick={() => window.scrollTo(0, 0)}

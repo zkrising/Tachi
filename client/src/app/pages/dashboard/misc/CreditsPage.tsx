@@ -6,6 +6,7 @@ import { TachiConfig } from "lib/config";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import { UserContext } from "context/UserContext";
 import Divider from "components/util/Divider";
+import { Link } from "react-router-dom";
 
 export default function CreditsPage() {
 	useSetSubheader("Credits");
@@ -41,10 +42,8 @@ export default function CreditsPage() {
 			</p>
 			<Divider />
 			<p>
-				If you want to support {TachiConfig.name} development, you can donate to the Lead
-				Dev's{" "}
-				<ExternalLink href="https://patreon.com/zkldi">Patreon (Subscription)</ExternalLink>{" "}
-				or <ExternalLink href="https://ko-fi.com/zkldi">Ko-Fi (One-Time)</ExternalLink>.
+				If you want to support {TachiConfig.name} development, see{" "}
+				<Link to="/dashboard/support">Support / Patreon</Link>.
 			</p>
 			<Divider />
 

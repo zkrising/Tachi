@@ -31,22 +31,11 @@ export default function ScoreEditButtons({
 	return (
 		<div className="mt-4 d-flex w-100 justify-content-center">
 			<div className="btn-group">
-				{!user ||
-					(user.id !== score.userID && (
-						<>
-							{comment ? (
-								<>
-									<QuickTooltip tooltipContent="Edit your comment on this score.">
-										<Button
-											variant="outline-secondary"
-											onClick={() => setShow(true)}
-										>
-											<Icon noPad type="file-signature" />
-										</Button>
-									</QuickTooltip>
-								</>
-							) : (
-								<QuickTooltip tooltipContent="Comment on this score.">
+				{user?.id === score.userID && (
+					<>
+						{comment ? (
+							<>
+								<QuickTooltip tooltipContent="Edit your comment on this score.">
 									<Button
 										variant="outline-secondary"
 										onClick={() => setShow(true)}
@@ -54,47 +43,50 @@ export default function ScoreEditButtons({
 										<Icon noPad type="file-signature" />
 									</Button>
 								</QuickTooltip>
-							)}
+							</>
+						) : (
+							<QuickTooltip tooltipContent="Comment on this score.">
+								<Button variant="outline-secondary" onClick={() => setShow(true)}>
+									<Icon noPad type="file-signature" />
+								</Button>
+							</QuickTooltip>
+						)}
 
-							{highlight ? (
-								<QuickTooltip tooltipContent="Unhighlight this score.">
-									<Button
-										variant="success"
-										onClick={() =>
-											ModifyScore(score.scoreID, { highlight: false }).then(
-												r => {
-													if (r) {
-														setHighlight(false);
-														score.highlight = false;
-													}
-												}
-											)
-										}
-									>
-										<Icon noPad type="star" />
-									</Button>
-								</QuickTooltip>
-							) : (
-								<QuickTooltip tooltipContent="Highlight this score.">
-									<Button
-										variant="outline-secondary"
-										onClick={() =>
-											ModifyScore(score.scoreID, { highlight: true }).then(
-												r => {
-													if (r) {
-														setHighlight(true);
-														score.highlight = true;
-													}
-												}
-											)
-										}
-									>
-										<Icon noPad type="star" />
-									</Button>
-								</QuickTooltip>
-							)}
-						</>
-					))}
+						{highlight ? (
+							<QuickTooltip tooltipContent="Unhighlight this score.">
+								<Button
+									variant="success"
+									onClick={() =>
+										ModifyScore(score.scoreID, { highlight: false }).then(r => {
+											if (r) {
+												setHighlight(false);
+												score.highlight = false;
+											}
+										})
+									}
+								>
+									<Icon noPad type="star" />
+								</Button>
+							</QuickTooltip>
+						) : (
+							<QuickTooltip tooltipContent="Highlight this score.">
+								<Button
+									variant="outline-secondary"
+									onClick={() =>
+										ModifyScore(score.scoreID, { highlight: true }).then(r => {
+											if (r) {
+												setHighlight(true);
+												score.highlight = true;
+											}
+										})
+									}
+								>
+									<Icon noPad type="star" />
+								</Button>
+							</QuickTooltip>
+						)}
+					</>
+				)}
 
 				<ImgScoreButton score={score} />
 			</div>

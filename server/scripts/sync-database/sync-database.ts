@@ -16,7 +16,7 @@ import { InitaliseFolderChartLookup } from "utils/folder";
 
 interface SyncInstructions {
 	pattern: RegExp;
-	handler: (c: any[], collection: ICollection<any>, logger: KtLogger) => Promise<void>;
+	handler: (c: any[], collection: ICollection<any>, logger: KtLogger) => Promise<unknown>;
 }
 
 async function RemoveNotPresent<T>(
@@ -96,6 +96,8 @@ async function GenericUpsert<T>(
 	if (remove) {
 		await RemoveNotPresent(documents, collection, field, logger);
 	}
+
+	return bwriteOps.length;
 }
 
 const syncInstructions: SyncInstructions[] = [
@@ -106,8 +108,17 @@ const syncInstructions: SyncInstructions[] = [
 	},
 	{
 		pattern: /^charts-/u,
-		handler: (charts: ChartDocument[], collection: ICollection<ChartDocument>, logger) =>
-			GenericUpsert(charts, collection, "chartID", logger, true),
+		handler: async (
+			charts: ChartDocument[],
+			collection: ICollection<ChartDocument>,
+			logger
+		) => {
+			const r = await GenericUpsert(charts, collection, "chartID", logger, true);
+
+			if (r) {
+				await InitaliseFolderChartLookup();
+			}
+		},
 	},
 	{
 		pattern: /^songs-/u,

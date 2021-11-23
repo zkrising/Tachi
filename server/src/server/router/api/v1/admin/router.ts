@@ -11,6 +11,7 @@ import { Game, UserAuthLevels } from "tachi-common";
 
 import db from "external/mongo/db";
 import { DeleteScore } from "lib/delete-scores/delete-scores";
+import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 
 const logger = CreateLogCtx(__filename);
 
@@ -96,6 +97,31 @@ router.post(
 		return res.status(200).json({
 			success: true,
 			description: `Changed log level from ${logLevel} to ${req.body.logLevel}.`,
+			body: {},
+		});
+	}
+);
+
+/**
+ * Resynchronises all PBs that match the given query or users.
+ *
+ * @param userIDs - Optionally, An array of integers of users to resync.
+ * @param filter - Optionally, the set of scores to resync.
+ *
+ * @name POST /api/v1/admin/resync-pbs
+ */
+router.post(
+	"/resync-pbs",
+	prValidate({
+		userIDs: p.optional([p.isPositiveInteger]),
+		filter: "*object",
+	}),
+	async (req, res) => {
+		await UpdateAllPBs(req.body.userIDs, req.body.filter);
+
+		return res.status(200).json({
+			success: true,
+			description: `Done.`,
 			body: {},
 		});
 	}

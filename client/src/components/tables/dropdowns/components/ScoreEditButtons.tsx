@@ -8,8 +8,7 @@ import { SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
 import LinkButton from "components/util/LinkButton";
 import ExternalLink from "components/util/ExternalLink";
-
-const SUPPORTED_IMG_SCORES: Game[] = ["usc"];
+import ImgScoreButton from "./ImgScoreButton";
 
 export default function ScoreEditButtons({
 	score,
@@ -25,10 +24,6 @@ export default function ScoreEditButtons({
 }) {
 	const { user } = useContext(UserContext);
 
-	if (!user || user.id !== score.userID) {
-		return null;
-	}
-
 	const { highlight, setHighlight, comment, setComment } = scoreState;
 
 	const [show, setShow] = useState(false);
@@ -36,65 +31,72 @@ export default function ScoreEditButtons({
 	return (
 		<div className="mt-4 d-flex w-100 justify-content-center">
 			<div className="btn-group">
-				{comment ? (
-					<>
-						<QuickTooltip tooltipContent="Edit your comment on this score.">
-							<Button variant="outline-secondary" onClick={() => setShow(true)}>
-								<Icon noPad type="file-signature" />
-							</Button>
-						</QuickTooltip>
-					</>
-				) : (
-					<QuickTooltip tooltipContent="Comment on this score.">
-						<Button variant="outline-secondary" onClick={() => setShow(true)}>
-							<Icon noPad type="file-signature" />
-						</Button>
-					</QuickTooltip>
-				)}
+				{!user ||
+					(user.id !== score.userID && (
+						<>
+							{comment ? (
+								<>
+									<QuickTooltip tooltipContent="Edit your comment on this score.">
+										<Button
+											variant="outline-secondary"
+											onClick={() => setShow(true)}
+										>
+											<Icon noPad type="file-signature" />
+										</Button>
+									</QuickTooltip>
+								</>
+							) : (
+								<QuickTooltip tooltipContent="Comment on this score.">
+									<Button
+										variant="outline-secondary"
+										onClick={() => setShow(true)}
+									>
+										<Icon noPad type="file-signature" />
+									</Button>
+								</QuickTooltip>
+							)}
 
-				{highlight ? (
-					<QuickTooltip tooltipContent="Unhighlight this score.">
-						<Button
-							variant="success"
-							onClick={() =>
-								ModifyScore(score.scoreID, { highlight: false }).then(r => {
-									if (r) {
-										setHighlight(false);
-										score.highlight = false;
-									}
-								})
-							}
-						>
-							<Icon noPad type="star" />
-						</Button>
-					</QuickTooltip>
-				) : (
-					<QuickTooltip tooltipContent="Highlight this score.">
-						<Button
-							variant="outline-secondary"
-							onClick={() =>
-								ModifyScore(score.scoreID, { highlight: true }).then(r => {
-									if (r) {
-										setHighlight(true);
-										score.highlight = true;
-									}
-								})
-							}
-						>
-							<Icon noPad type="star" />
-						</Button>
-					</QuickTooltip>
-				)}
-				{SUPPORTED_IMG_SCORES.includes(score.game) && (
-					<QuickTooltip tooltipContent="Get an image for this score!">
-						<ExternalLink
-							className="btn btn-outline-secondary"
-							href={`${process.env.REACT_APP_IMGSCORE_URL}/${score.scoreID}`}
-						>
-							<Icon noPad type="camera" />
-						</ExternalLink>
-					</QuickTooltip>
-				)}
+							{highlight ? (
+								<QuickTooltip tooltipContent="Unhighlight this score.">
+									<Button
+										variant="success"
+										onClick={() =>
+											ModifyScore(score.scoreID, { highlight: false }).then(
+												r => {
+													if (r) {
+														setHighlight(false);
+														score.highlight = false;
+													}
+												}
+											)
+										}
+									>
+										<Icon noPad type="star" />
+									</Button>
+								</QuickTooltip>
+							) : (
+								<QuickTooltip tooltipContent="Highlight this score.">
+									<Button
+										variant="outline-secondary"
+										onClick={() =>
+											ModifyScore(score.scoreID, { highlight: true }).then(
+												r => {
+													if (r) {
+														setHighlight(true);
+														score.highlight = true;
+													}
+												}
+											)
+										}
+									>
+										<Icon noPad type="star" />
+									</Button>
+								</QuickTooltip>
+							)}
+						</>
+					))}
+
+				<ImgScoreButton score={score} />
 			</div>
 			<CommentModal
 				show={show}

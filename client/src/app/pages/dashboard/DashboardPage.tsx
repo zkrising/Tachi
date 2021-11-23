@@ -16,7 +16,9 @@ import { Link } from "react-router-dom";
 import { GetGameConfig, PublicUserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
 import { APIFetchV1 } from "util/api";
+import { RFA } from "util/misc";
 import { NumericSOV } from "util/sorts";
+import { heySplashes } from "util/splashes";
 import { GameStatContainer } from "./users/UserGamesPage";
 
 export function DashboardPage() {
@@ -45,7 +47,9 @@ export function DashboardPage() {
 function DashboardLoggedIn({ user }: { user: PublicUserDocument }) {
 	return (
 		<div>
-			<span className="display-4">Welcome Back, {user.username}.</span>
+			<span className="display-4">
+				{RFA(heySplashes)}, {user.username}.
+			</span>
 			<Divider />
 			<RecentInfo user={user} />
 			<h1>Here's all your profiles.</h1>

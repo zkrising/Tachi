@@ -102,3 +102,21 @@ export const contentiousSplashes = [
 	"...and good faith is when people agree with me",
 	"Anyone else at this party gay?",
 ];
+
+export const heySplashes = [
+	"Welcome back",
+	"What's up",
+	"Hey",
+	"What's poppin",
+	"Good morning",
+	"Good afternoon",
+	"Good evening",
+	"Hello",
+	"Hewwo",
+	"How's it going",
+	"heyyy",
+	"Sup",
+	"Ahoy",
+	"What's crackin'",
+	"Howdy",
+];

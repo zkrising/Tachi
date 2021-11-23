@@ -39,6 +39,8 @@ export default function EmailVerify({
 			One last thing! You need to verify your email before you can use the site.
 			<br />
 			An email has been sent to the address you signed up with.
+			<br />
+			It might've ended up in your spam, so check there too!
 			<Divider />
 			<Button
 				onClick={async () => {

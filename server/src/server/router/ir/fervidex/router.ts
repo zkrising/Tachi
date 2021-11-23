@@ -92,15 +92,7 @@ const RequireInf2ModelHeaderOrForceStatic: RequestHandler = async (req, res, nex
 	}
 
 	try {
-		const softID = ParseEA3SoftID(swModel);
-
-		if (softID.model !== MODEL_INFINITAS_2) {
-			logger.debug(`Rejected non-inf2 model from user ${req[SYMBOL_TachiAPIAuth].userID!}.`);
-			return res.status(400).send({
-				success: false,
-				description: "This endpoint is only available for INF2 clients.",
-			});
-		}
+		ParseEA3SoftID(swModel);
 	} catch (err) {
 		logger.info(`Invalid softID from ${req[SYMBOL_TachiAPIAuth].userID!}.`, { err });
 		return res.status(400).json({

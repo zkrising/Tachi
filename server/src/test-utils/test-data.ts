@@ -228,6 +228,7 @@ export const uscScore: USCClientScore = {
 	gauge: 0.8,
 	early: 50,
 	late: 20,
+	combo: 5,
 	options: {
 		autoFlags: 0,
 		gaugeOpt: 0,

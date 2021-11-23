@@ -1778,5 +1778,47 @@
 		"inactive": false,
 		"playtype": "Controller",
 		"tableID": "usc-Controller-official-levels"
+	},
+	{
+		"description": "Levels for beatmania IIDX (SP) in BISTROVER Omnimix.",
+		"folders": [
+			"Fe131fe937e9e58b42a71a9b1a9a96ee80fb928dc4acc59e32a2ef8e9c5682488",
+			"F7203cf2e33b8c9bd57dee504c84723b1cd3a41d0f23eb9ca36f6a958a9878239",
+			"F92a4f4b906afe8a87cc9456ce68c113282bbd7dbe747fc628943d861a2763c6d",
+			"F7c160c0bfc49235886a368cd79614ade877608fb62c709cc80f47fd05cfdb1d7",
+			"Fc8db47a2ad9b339bae9d59db59a334e43f97883bb1cd33d66dc543078bbc0bac",
+			"F8fa7cbe386e05b2f419d8bfe4b8d912eb72aca446dccd719f2bf0dce4e5df7cd",
+			"F466a6032adb5caf89cda1d38f027135322b4b3c19088778f323db229db0564b2",
+			"F4fbdfaf8ac8f5c9bf4326296f7e44ec2039ed8e496977022f979ce148dc9ee3e",
+			"Fdeeb0e98aa34b38a2873e58dea3bbcbf9c3a5529f91760512dfda646fe9fead6",
+			"F3bf7193425494282e5b06b3152193dcb60d1911d356f6b7b30d9632d98e6ae7f",
+			"Fbb65c2422f52e8bd1889cb2cee5331c09816f85b650f6e26422e2e22f14a3e43",
+			"Fc1a389b0372564b5a776b31ea2eb0ebef233be51e66f379213f5a9467abe3aa2"
+		],
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"tableID": "iidx-SP-28-omni-levels"
+	},
+	{
+		"description": "Levels for beatmania IIDX (DP) in BISTROVER Omnimix.",
+		"folders": [
+			"F447f9872ffc845a8252209f951f5b740f7542ddce10ad79a4e91bedabd88f2fc",
+			"F112925789ec9ce1a35e28f0107b0028c3a7a10da92618f9234f5cb9aa3da8e56",
+			"Fee9097e10f16eb86292fbae4be12e33b6b112f067eda43f269193557b02bf894",
+			"F248ffab95b0f7b54de48ef81fb0695644a065b4c850cce43746566a914f2d66c",
+			"F50eb1350ace30a0f5dd3d0ff7b9fdb021ec77e65292687b413ee238018cd3d57",
+			"Fe612eb2d66eb2f77e6c55356c76f7d880e01fc249d6bce71b4562ab0059cb9d5",
+			"F136651ce116059a37427edb4fbf2b0de914c7dd7d55c8cbebd8c166d1cd493fd",
+			"Fe244e55ca60ff4f634b612bb23010f440facbb6f14f68c0634af4a594c9b57ec",
+			"Fc5af6c297a47d8c386f9b7cfe72b1b43d3acb5e943ec64edf36f7656811d0ecd",
+			"Ff6ad61edd764c499929587d905de73ca7b9342f2737755353af15956d499f53b",
+			"Fe432fcc5a4f05a11f66fd43987897e700f718be3f973e925bd2ce7849d5c53a1",
+			"Fd866771c400da15d7ff0735f9e41447d299da9eae0af931f8ce803e4f9151eb2"
+		],
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"tableID": "iidx-DP-28-omni-levels"
 	}
 ]

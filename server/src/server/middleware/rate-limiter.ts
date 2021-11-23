@@ -8,10 +8,11 @@ import { integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
-const store =
-	Environment.nodeEnv === "production" || Environment.nodeEnv === "staging"
-		? new RateLimitRedis({ prefix: `${TachiConfig.NAME}-RL:`, client: RedisClient })
+function CreateStore(name: string) {
+	return Environment.nodeEnv === "production" || Environment.nodeEnv === "staging"
+		? new RateLimitRedis({ prefix: `${TachiConfig.NAME}-RL:${name}`, client: RedisClient })
 		: undefined; // undefined forces a default to an in-memory store
+}
 
 export function ClearTestingRateLimitCache() {
 	// ???
@@ -20,7 +21,11 @@ export function ClearTestingRateLimitCache() {
 	HyperAggressiveRateLimitMiddleware.resetKey(`::ffff:127.0.0.1`);
 }
 
-const CreateRateLimitOptions = (max: integer, windowMs?: number): rateLimit.Options => ({
+const CreateRateLimitOptions = (
+	max: integer,
+	name: string,
+	windowMs?: number
+): rateLimit.Options => ({
 	max,
 	onLimitReached: (req) => {
 		logger.warn(`User ${req.ip} hit rate limit.`, {
@@ -29,7 +34,7 @@ const CreateRateLimitOptions = (max: integer, windowMs?: number): rateLimit.Opti
 			hideFromConsole: ["req"],
 		});
 	},
-	store,
+	store: CreateStore(name),
 	message: {
 		success: false,
 		description: `You have exceeded ${max} requests per ${
@@ -42,12 +47,16 @@ const CreateRateLimitOptions = (max: integer, windowMs?: number): rateLimit.Opti
 });
 
 // 100 requests / minute is the current cap
-export const NormalRateLimitMiddleware = rateLimit(CreateRateLimitOptions(ServerConfig.RATE_LIMIT));
+export const NormalRateLimitMiddleware = rateLimit(
+	CreateRateLimitOptions(ServerConfig.RATE_LIMIT, "Normal")
+);
 
 // 15 requests every 10 minutes.
-export const AggressiveRateLimitMiddleware = rateLimit(CreateRateLimitOptions(10, ONE_MINUTE * 10));
+export const AggressiveRateLimitMiddleware = rateLimit(
+	CreateRateLimitOptions(10, "Aggressive", ONE_MINUTE * 10)
+);
 
 // 2 requests every 20 minutes.
 export const HyperAggressiveRateLimitMiddleware = rateLimit(
-	CreateRateLimitOptions(2, ONE_MINUTE * 5)
+	CreateRateLimitOptions(2, "HyAgressive", ONE_MINUTE * 5)
 );

@@ -88,6 +88,7 @@ export const loggedInSplashes = [
 	"However... I kinda feel like this one's in the bag.",
 	"Oh yeah? I can exit vim, buddy.",
 	"Discovered Colours",
+	"Meeting People Is Easy",
 ];
 
 // Stuff that's bad for the kids, you know?

@@ -112,7 +112,7 @@ t.test("#PrudenceMiddleware", (t) => {
 			const json = res._getJSONData();
 			t.equal(
 				json.description,
-				"[password] invalid password (Received ****)",
+				"[!password] invalid password (Received ****)",
 				"Should return obscured error message"
 			);
 
@@ -134,7 +134,7 @@ t.test("#PrudenceMiddleware", (t) => {
 			const json = res._getJSONData();
 			t.equal(
 				json.description,
-				"[password] invalid password (Received nothing)",
+				"[!password] invalid password (Received nothing)",
 				"Should indicate if no data was sent in obscured error message"
 			);
 

@@ -1,7 +1,7 @@
 import { UserGameStats, UserGameStatsSnapshot } from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { GetUsersRanking } from "utils/user";
+import { GetAllRankings, GetUsersRanking } from "utils/user";
 import { GetMillisecondsSince } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
@@ -40,15 +40,15 @@ export async function UGSSnapshot() {
 
 				logger.debug(`Snapshotting ${ugs.userID} ${ugs.playtype} ${ugs.game}.`);
 
-				const [playcount, ranking] = await Promise.all([
+				const [playcount, rankings] = await Promise.all([
 					db.scores.count({ userID: ugs.userID, playtype: ugs.playtype, game: ugs.game }),
-					GetUsersRanking(ugs),
+					GetAllRankings(ugs),
 				]);
 
 				const ugsSnapshot: UserGameStatsSnapshot = {
 					...ugs,
 					playcount,
-					ranking,
+					rankings,
 					timestamp: currentTime,
 				};
 

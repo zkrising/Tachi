@@ -303,6 +303,16 @@ function TimelineMain({
 
 	return (
 		<>
+			<div className="text-center">
+				<h1 className="display-4">Total Progress</h1>
+				<h1 className="display-4">
+					{data.scores.length}
+					<span className="text-muted" style={{ fontSize: "1.1rem" }}>
+						/{data.charts.length}
+					</span>
+				</h1>
+			</div>
+			<Divider />
 			<div className="timeline timeline-2">
 				<div className="timeline-bar"></div>
 				{elements}

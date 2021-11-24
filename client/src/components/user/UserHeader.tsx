@@ -117,7 +117,7 @@ export function UserBottomNav({
 		// If mandates login, assume that we also use invite codes.
 		// I'm sure we could set up an elaborate way of doing this by
 		// querying the server, but I just don't care.
-		if (ClientConfig.MANDATE_LOGIN || true) {
+		if (ClientConfig.MANDATE_LOGIN) {
 			navItems.push(
 				<NavItem key="invites" to={`${baseUrl}/invites`}>
 					Invites

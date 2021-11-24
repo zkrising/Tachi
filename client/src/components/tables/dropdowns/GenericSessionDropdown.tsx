@@ -505,6 +505,8 @@ function BreakdownChartContents({
 			}
 		}
 
+		console.log(game);
+
 		if (score) {
 			return (
 				<>

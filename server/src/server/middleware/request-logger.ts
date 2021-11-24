@@ -23,9 +23,17 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 	// and both of those use `password` as a key.
 	// still, i don't like it.
 
-	const safeBody = Object.prototype.hasOwnProperty.call(req.body, "password")
-		? Object.assign({}, req.body, { password: "[OMITTED]" })
-		: req.body;
+	const safeBody: Record<string, unknown> = {};
+
+	for (const [k, v] of Object.entries(req.body)) {
+		// Keys that start with ! are private information,
+		// and should not ever be logged.
+		if (k.startsWith("!")) {
+			safeBody[k] = "[OMITTED]";
+		} else {
+			safeBody[k] = v;
+		}
+	}
 
 	logger.debug(`Received request ${req.method} ${req.originalUrl}.`, {
 		query: req.query,

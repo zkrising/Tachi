@@ -48,7 +48,7 @@ router.post(
 	prValidate(
 		{
 			username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
-			password: ValidatePassword,
+			"!password": ValidatePassword,
 			captcha: "string",
 		},
 		{
@@ -117,7 +117,7 @@ router.post(
 			});
 		}
 
-		const passwordMatch = await PasswordCompare(req.body.password, privateInfo.password);
+		const passwordMatch = await PasswordCompare(req.body["!password"], privateInfo.password);
 
 		if (!passwordMatch) {
 			logger.verbose("Invalid password provided.");
@@ -168,7 +168,7 @@ router.post(
 	prValidate(
 		{
 			username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
-			password: ValidatePassword,
+			"!password": ValidatePassword,
 			email: Prudence.regex(LAZY_EMAIL_REGEX),
 			inviteCode: "*string",
 			captcha: "string",
@@ -262,7 +262,7 @@ router.post(
 
 			const { newUser, newSettings } = await AddNewUser(
 				req.body.username,
-				req.body.password,
+				req.body["!password"],
 				req.body.email,
 				userID
 			);
@@ -496,7 +496,7 @@ router.post(
 	AggressiveRateLimitMiddleware,
 	prValidate({
 		code: "string",
-		password: ValidatePassword,
+		"!password": ValidatePassword,
 	}),
 	async (req, res) => {
 		const code = await db["password-reset-codes"].findOneAndDelete({
@@ -510,7 +510,7 @@ router.post(
 			});
 		}
 
-		const encryptedPassword = await HashPassword(req.body.password);
+		const encryptedPassword = await HashPassword(req.body["!password"]);
 
 		await db["user-private-information"].update(
 			{

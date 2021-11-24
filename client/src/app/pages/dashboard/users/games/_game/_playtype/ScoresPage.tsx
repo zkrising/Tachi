@@ -56,11 +56,11 @@ export default function ScoresPage({
 				<div className="btn-group mb-4">
 					<SelectLinkButton to={`${base}/scores`}>
 						<Icon type="trophy" />
-						Best PBs
+						Best 100 PBs
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/scores/history`}>
 						<Icon type="history" />
-						Recent Scores
+						Recent 100 Scores
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/scores/most-played`}>
 						<Icon type="mortar-pestle" />

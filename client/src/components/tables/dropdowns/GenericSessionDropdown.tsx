@@ -4,7 +4,6 @@ import HasDevModeOn from "components/util/HasDevModeOn";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
-import { table } from "console";
 import deepmerge from "deepmerge";
 import { nanoid } from "nanoid";
 import React, { useEffect, useMemo, useState } from "react";
@@ -29,7 +28,6 @@ import { APIFetchV1 } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
 import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
 import { PartialArrayRecordAssign } from "util/misc";
-import BMSDifficultyCell from "../cells/BMSDifficultyCell";
 import DifficultyCell from "../cells/DifficultyCell";
 import LampCell from "../cells/LampCell";
 import ScoreCell from "../cells/ScoreCell";
@@ -511,11 +509,7 @@ function BreakdownChartContents({
 			return (
 				<>
 					<TitleCell chart={chart} game={game} song={song} />
-					{game !== "bms" ? (
-						<DifficultyCell chart={chart} game={game} />
-					) : (
-						<BMSDifficultyCell chart={chart as ChartDocument<"bms:7K" | "bms:14K">} />
-					)}
+					<DifficultyCell chart={chart} game={game} />
 					{preScoreCell}
 					<td>⟶</td>
 					{type === "grade" ? (

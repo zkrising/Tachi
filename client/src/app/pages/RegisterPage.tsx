@@ -229,7 +229,7 @@ function RegisterForm({
 				<Form.Control
 					tabIndex={3}
 					type="password"
-					id="password"
+					id="!password"
 					value={formik.values["!password"]}
 					onChange={formik.handleChange}
 				/>

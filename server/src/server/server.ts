@@ -13,7 +13,7 @@ const logger = CreateLogCtx(__filename);
 let store;
 
 if (Environment.nodeEnv !== "test") {
-	logger.info("Connecting ExpressSession to Redis.");
+	logger.info("Connecting ExpressSession to Redis.", { bootInfo: true });
 	const RedisStore = connectRedis(expressSession);
 	store = new RedisStore({
 		host: "localhost",

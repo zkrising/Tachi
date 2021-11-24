@@ -29,7 +29,7 @@ if (ServerConfig.EMAIL_CONFIG) {
 				logger.crit(`Could not connect to email server.`, { err });
 				throw err;
 			} else {
-				logger.info(`Successfully connected to email server.`);
+				logger.info(`Successfully connected to email server.`, { bootInfo: true });
 			}
 		});
 	} catch (err) {

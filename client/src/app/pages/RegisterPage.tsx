@@ -37,14 +37,14 @@ export default function RegisterPage() {
 	const formik = useFormik({
 		initialValues: {
 			username: "",
-			password: "",
+			"!password": "",
 			confPassword: "",
 			inviteCode: urlParams.get("inviteCode") ?? "",
 			email: "",
 			captcha: "temp",
 		},
 		onSubmit: async values => {
-			if (values.password !== values.confPassword) {
+			if (values["!password"] !== values.confPassword) {
 				setErr("Password and confirm password do not match!");
 				return;
 			}
@@ -54,7 +54,7 @@ export default function RegisterPage() {
 				{
 					method: "POST",
 					body: JSON.stringify({
-						password: values.password,
+						"!password": values["!password"],
 						inviteCode: values.inviteCode,
 						username: values.username,
 						email: values.email,
@@ -187,7 +187,7 @@ function RegisterForm({
 }: {
 	formik: UseFormik<{
 		username: string;
-		password: string;
+		"!password": string;
 		confPassword: string;
 		inviteCode: string;
 		email: string;
@@ -230,7 +230,7 @@ function RegisterForm({
 					tabIndex={3}
 					type="password"
 					id="password"
-					value={formik.values.password}
+					value={formik.values["!password"]}
 					onChange={formik.handleChange}
 				/>
 			</Form.Group>

@@ -22,7 +22,7 @@ export default function LoginPage() {
 	const formik = useFormik({
 		initialValues: {
 			username: "",
-			password: "",
+			"!password": "",
 			captcha: "temp",
 		},
 		onSubmit: async values => {
@@ -93,7 +93,7 @@ export default function LoginPage() {
 							tabIndex={2}
 							type="password"
 							id="password"
-							value={formik.values.password}
+							value={formik.values["!password"]}
 							onChange={formik.handleChange}
 						/>
 					</Form.Group>

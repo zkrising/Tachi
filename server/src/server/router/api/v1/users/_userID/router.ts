@@ -13,6 +13,7 @@ import {
 	GetRecentSessions,
 } from "utils/queries/summary";
 import { FormatUserDoc, GetAllRankings, GetUserWithID } from "utils/user";
+import { HashPassword, PasswordCompare, ValidatePassword } from "../../auth/auth";
 import apiTokensRouter from "./api-tokens/router";
 import bannerRouter from "./banner/router";
 import gamePTRouter from "./games/_game/_playtype/router";
@@ -262,6 +263,83 @@ router.get("/is-email-verified", RequireSelfRequestFromUser, async (req, res) =>
 		body: true,
 	});
 });
+
+/**
+ * Changes the users password.
+ * Requires self-key level permissions.
+ *
+ * @param !password - The new password. Must pass password validation rules.
+ * @param !oldPassword - The old password.
+ *
+ * @name POST /api/v1/users/:userID/change-password
+ */
+router.post(
+	"/change-password",
+	RequireSelfRequestFromUser,
+	prValidate({
+		"!password": ValidatePassword,
+		"!oldPassword": ValidatePassword,
+	}),
+	async (req, res) => {
+		const user = req.session.tachi?.user;
+
+		/* istanbul ignore next */
+		if (!user) {
+			logger.severe(
+				`IP ${req.ip} got to /change-password without a user, but passed RequireSelfRequest?`
+			);
+			// this should be a 500, but lie to them.
+			return res.status(403).json({
+				success: false,
+				description: `You are not authorised to perform this action.`,
+			});
+		}
+
+		const privateInfo = await db["user-private-information"].findOne({
+			userID: user.id,
+		});
+
+		/* istanbul ignore next */
+		if (!privateInfo) {
+			logger.severe(`User ${FormatUserDoc(user)} has no private information?`, { user });
+			return res.status(500).json({
+				success: false,
+				description: `An internal server error has occured.`,
+			});
+		}
+
+		const isLastPasswordValid = await PasswordCompare(
+			req.body["!oldPassword"],
+			privateInfo.password
+		);
+
+		if (!isLastPasswordValid) {
+			return res.status(401).json({
+				success: false,
+				description: `Old Password doesn't match what we have in our records.`,
+			});
+		}
+
+		const newPasswordHash = await HashPassword(req.body["!password"]);
+
+		await db["user-private-information"].update(
+			{
+				userID: user.id,
+			},
+			{
+				$set: {
+					password: newPasswordHash,
+				},
+			}
+		);
+
+		return res.status(200).json({
+			success: true,
+			description: `Updated Password.`,
+			body: {},
+		});
+	}
+);
 
 router.use("/games/:game/:playtype", gamePTRouter);
 router.use("/pfp", pfpRouter);

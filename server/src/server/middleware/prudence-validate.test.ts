@@ -93,14 +93,17 @@ t.test("#PrudenceMiddleware", (t) => {
 		t.end();
 	});
 
-	const mwWithPassword = prValidate({ password: "string" }, { password: "invalid password" });
+	const mwWithPassword = prValidate(
+		{ "!password": "string" },
+		{ "!password": "invalid password" }
+	);
 
 	t.test(
-		"Should not return the contents of the error message if the field matches /password/",
+		"Should not return the contents of the error message if the field starts with !",
 		async (t) => {
 			const { res } = await expMiddlewareMock(mwWithPassword, {
 				query: {
-					password: 123,
+					"!password": 123,
 				},
 			});
 
@@ -118,11 +121,11 @@ t.test("#PrudenceMiddleware", (t) => {
 	);
 
 	t.test(
-		"Should not return the contents of the error message if the field matches /password/",
+		"Should not return the contents of the error message if the field starts with ! and is undefined.",
 		async (t) => {
 			const { res } = await expMiddlewareMock(mwWithPassword, {
 				query: {
-					password: undefined,
+					"!password": undefined,
 				},
 			});
 

@@ -14,7 +14,7 @@ t.test("POST /api/v1/auth/login", (t) => {
 	t.test("Should log a user in with right credentials", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/login").send({
 			username: "test_zkldi",
-			password: "password",
+			"!password": "password",
 			captcha: "foo",
 		});
 
@@ -36,7 +36,7 @@ t.test("POST /api/v1/auth/login", (t) => {
 	t.test("Should return 409 if user already logged in", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/login").send({
 			username: "test_zkldi",
-			password: "password",
+			"!password": "password",
 			captcha: "foo",
 		});
 
@@ -46,7 +46,7 @@ t.test("POST /api/v1/auth/login", (t) => {
 			.post("/api/v1/auth/login")
 			.send({
 				username: "test_zkldi",
-				password: "password",
+				"!password": "password",
 				captcha: "foo",
 			})
 			.set("Cookie", cookie);
@@ -59,7 +59,7 @@ t.test("POST /api/v1/auth/login", (t) => {
 	t.test("Should return 401 if password invalid", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/login").send({
 			username: "test_zkldi",
-			password: "invalid_password",
+			"!password": "invalid_password",
 			captcha: "foo",
 		});
 
@@ -71,7 +71,7 @@ t.test("POST /api/v1/auth/login", (t) => {
 	t.test("Should return 404 if user invalid", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/login").send({
 			username: "invalid_user",
-			password: "password",
+			"!password": "password",
 			captcha: "foo",
 		});
 
@@ -93,7 +93,7 @@ t.test("POST /api/v1/auth/login", (t) => {
 
 	t.test("Should return 400 if no username", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/login").send({
-			password: "password",
+			"!password": "password",
 			captcha: "foo",
 		});
 
@@ -104,7 +104,7 @@ t.test("POST /api/v1/auth/login", (t) => {
 
 	t.test("Should return 400 if no captcha", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/login").send({
-			password: "password",
+			"!password": "password",
 			username: "test_zkldi",
 		});
 
@@ -134,7 +134,7 @@ t.test("POST /api/v1/auth/register", (t) => {
 	t.test("Should register a new user.", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/register").send({
 			username: "foo",
-			password: "password",
+			"!password": "password",
 			email: "foo@bar.com",
 			captcha: "1",
 			inviteCode: "code",
@@ -154,7 +154,7 @@ t.test("POST /api/v1/auth/register", (t) => {
 	t.test("Should disallow users with matching names.", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/register").send({
 			username: "test_zkldi",
-			password: "password",
+			"!password": "password",
 			email: "foo@bar.com",
 			captcha: "1",
 			inviteCode: "code",
@@ -169,7 +169,7 @@ t.test("POST /api/v1/auth/register", (t) => {
 	t.test("Should disallow users with matching names case insensitively.", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/register").send({
 			username: "test_zKLdi",
-			password: "password",
+			"!password": "password",
 			email: "foo@bar.com",
 			captcha: "1",
 			inviteCode: "code",
@@ -184,7 +184,7 @@ t.test("POST /api/v1/auth/register", (t) => {
 	t.test("Should disallow email if it is already used.", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/register").send({
 			username: "foo",
-			password: "password",
+			"!password": "password",
 			email: "thepasswordis@password.com", // this is our test docs email, apparently.
 			captcha: "1",
 			inviteCode: "code",
@@ -199,7 +199,7 @@ t.test("POST /api/v1/auth/register", (t) => {
 	t.test("Should disallow invalid emails.", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/register").send({
 			username: "foo",
-			password: "password",
+			"!password": "password",
 			email: "nonsense+email",
 			captcha: "1",
 			inviteCode: "code",
@@ -214,7 +214,7 @@ t.test("POST /api/v1/auth/register", (t) => {
 	t.test("Should disallow short passwords.", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/register").send({
 			username: "foo",
-			password: "pass",
+			"!password": "pass",
 			email: "foo@bar.com",
 			captcha: "1",
 			inviteCode: "code",
@@ -229,7 +229,7 @@ t.test("POST /api/v1/auth/register", (t) => {
 	t.test("Should disallow invalid usernames.", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/register").send({
 			username: "3foo",
-			password: "password",
+			"!password": "password",
 			email: "foo@bar.com",
 			captcha: "1",
 			inviteCode: "code",
@@ -240,7 +240,7 @@ t.test("POST /api/v1/auth/register", (t) => {
 
 		const res2 = await mockApi.post("/api/v1/auth/register").send({
 			username: "f",
-			password: "password",
+			"!password": "password",
 			email: "foo@bar.com",
 			captcha: "1",
 			inviteCode: "code",
@@ -257,7 +257,7 @@ t.test("POST /api/v1/auth/register", (t) => {
 
 		const res = await mockApi.post("/api/v1/auth/register").send({
 			username: "foo",
-			password: "password",
+			"!password": "password",
 			email: "foo@bar.com",
 			captcha: "1",
 			inviteCode: "code",
@@ -347,7 +347,7 @@ t.test("POST /api/v1/auth/reset-password", (t) => {
 
 		const res = await mockApi.post("/api/v1/auth/reset-password").send({
 			code: "SECRET_CODE",
-			password: "newpassword",
+			"!password": "newpassword",
 		});
 
 		t.equal(res.statusCode, 200);

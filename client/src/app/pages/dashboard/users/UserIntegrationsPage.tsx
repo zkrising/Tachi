@@ -700,7 +700,7 @@ function KAIIntegrationStatus({
 					<h4>
 						You should authenticate yourself by going to{" "}
 						<Link to="/dashboard/import">Import Scores</Link> for the thing you want to
-						import for!1
+						import for!
 					</h4>
 				)}
 			</div>

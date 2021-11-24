@@ -5,6 +5,7 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { ARCSavedProfileDocument, PublicUserDocument } from "tachi-common";
 import { SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
@@ -61,16 +62,13 @@ export default function ARCIntegrationPage({ reqUser }: { reqUser: PublicUserDoc
 						Invalid IIDX ID, it should be 11 characters long.
 					</span>
 				)}
-
 				<IntegrationStatus name="SDVX" value={sdvxID} setValue={setSDVXID} />
 				{sdvxID && sdvxID.length !== 11 && (
 					<span className="text-danger">
 						Invalid SDVX ID, it should be 11 characters long.
 					</span>
 				)}
-
 				<Divider />
-
 				<Button
 					disabled={
 						!!(iidxID && iidxID.length !== 11) || !!(sdvxID && sdvxID.length !== 11)
@@ -95,6 +93,8 @@ export default function ARCIntegrationPage({ reqUser }: { reqUser: PublicUserDoc
 				>
 					Submit Settings
 				</Button>
+				<Divider />
+				After setting this, go to <Link to="/dashboard/import">Import Scores</Link>!
 			</Col>
 		</>
 	);

@@ -9,6 +9,7 @@ import {
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
+import { MakeScoreImport } from "lib/score-import/framework/score-import";
 import { RequirePermissions } from "server/middleware/auth";
 import { integer, Playtypes } from "tachi-common";
 import { UpdateClassIfGreater } from "utils/class";
@@ -196,28 +197,23 @@ router.use(
  *
  * @name POST /ir/fervidex/profile/submit
  */
-router.post("/profile/submit", RequireInf2ModelHeaderOrForceStatic, async (req, res) => {
+router.post("/profile/submit", RequireInf2ModelHeaderOrForceStatic, (req, res) => {
 	const headers = {
 		// guaranteed to exist because of RequireInf2ModelHeader
 		model: req.header("X-Software-Model")!,
 	};
 
-	const responseData = await ExpressWrappedScoreImportMain(
-		req[SYMBOL_TachiAPIAuth].userID!,
-		false,
-		"ir/fervidex-static",
-		[req.body, headers]
-	);
+	// Perform a fast return here to not allow fervidex to resend requests.
+	res.status(202).json({
+		success: true,
+		description: `Your import has been loaded for further processing.`,
+		body: {},
+	});
 
-	if (!responseData.body.success) {
-		// in-air rewrite description to error.
-		// @ts-expect-error Hack!
-		responseData.body.error = responseData.body.description;
-		// @ts-expect-error Hack!
-		delete responseData.body.description;
-	}
-
-	return res.status(responseData.statusCode).json(responseData.body);
+	ExpressWrappedScoreImportMain(req[SYMBOL_TachiAPIAuth].userID!, false, "ir/fervidex-static", [
+		req.body,
+		headers,
+	]);
 });
 
 /**

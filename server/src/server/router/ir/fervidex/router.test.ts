@@ -4,6 +4,7 @@ import { InsertFakeTokenWithAllPerms } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON } from "test-utils/test-data";
+import { Sleep } from "utils/misc";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function TestHeaders(url: string, data: any) {
@@ -359,23 +360,12 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 			.set("X-Software-Model", "P2D:J:B:A:2020092900")
 			.send(ferStaticBody);
 
-		t.equal(res.body.success, true, "Should be successful");
+		t.equal(res.statusCode, 202, "Should be deferred for later processing.");
 
-		t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
-
-		t.strictSame(
-			res.body.body.classDeltas,
-			[
-				{
-					game: "iidx",
-					set: "dan",
-					playtype: "SP",
-					old: null,
-					new: 15,
-				},
-			],
-			"Should return updated dan deltas."
-		);
+		// Not sure how long this import should take, but sleeping for 5 seconds
+		// seems like a very conservative estimate.
+		// Then we can check whether the database has properly updated.
+		await Sleep(5_000);
 
 		const scores = await db.scores.count({
 			service: "Fervidex Static",
@@ -408,23 +398,10 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
 			.send(ferStaticBody);
 
-		t.equal(res.body.success, true, "Should be successful");
+		t.equal(res.statusCode, 202, "Should be deferred for later processing.");
 
-		t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
-
-		t.strictSame(
-			res.body.body.classDeltas,
-			[
-				{
-					game: "iidx",
-					set: "dan",
-					playtype: "SP",
-					old: null,
-					new: 15,
-				},
-			],
-			"Should return updated dan deltas."
-		);
+		// See above.
+		await Sleep(5_000);
 
 		const scores = await db.scores.count({
 			service: "Fervidex Static",

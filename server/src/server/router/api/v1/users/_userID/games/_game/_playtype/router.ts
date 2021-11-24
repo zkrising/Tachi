@@ -125,7 +125,7 @@ router.get("/history", async (req, res) => {
 		ratings: stats.ratings,
 		timestamp: Date.now(), // lazy, should probably be this midnight
 		playcount: await GetUGPTPlaycount(user.id, game, playtype),
-		ranking: await GetUsersRanking(stats),
+		rankings: await GetAllRankings(stats),
 	};
 
 	return res.status(200).json({

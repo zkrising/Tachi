@@ -7,6 +7,7 @@ import SessionsPage from "app/pages/dashboard/users/games/_game/_playtype/Sessio
 import UGPTSettingsPage from "app/pages/dashboard/users/games/_game/_playtype/UGPTSettingsPage";
 import UserGamesPage from "app/pages/dashboard/users/UserGamesPage";
 import UserIntegrationsPage from "app/pages/dashboard/users/UserIntegrationsPage";
+import UserInvitesPage from "app/pages/dashboard/users/UserInvitesPage";
 import UserSettingsPage from "app/pages/dashboard/users/UserSettingsPage";
 import { ErrorPage } from "app/pages/ErrorPage";
 import RequireAuthAsUserParam from "components/auth/RequireAuthAsUserParam";
@@ -107,6 +108,11 @@ function UserProfileRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 			<Route exact path="/dashboard/users/:userID/integrations">
 				<RequireAuthAsUserParam>
 					<UserIntegrationsPage reqUser={reqUser} />
+				</RequireAuthAsUserParam>
+			</Route>
+			<Route exact path="/dashboard/users/:userID/invites">
+				<RequireAuthAsUserParam>
+					<UserInvitesPage reqUser={reqUser} />
 				</RequireAuthAsUserParam>
 			</Route>
 		</>

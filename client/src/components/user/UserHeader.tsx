@@ -5,6 +5,7 @@ import ExternalLink from "components/util/ExternalLink";
 import Icon from "components/util/Icon";
 import Muted from "components/util/Muted";
 import { UserContext } from "context/UserContext";
+import { ClientConfig, TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { PublicUserDocument } from "tachi-common";
@@ -112,6 +113,17 @@ export function UserBottomNav({
 				Service Integrations
 			</NavItem>
 		);
+
+		// If mandates login, assume that we also use invite codes.
+		// I'm sure we could set up an elaborate way of doing this by
+		// querying the server, but I just don't care.
+		if (ClientConfig.MANDATE_LOGIN || true) {
+			navItems.push(
+				<NavItem key="invites" to={`${baseUrl}/invites`}>
+					Invites
+				</NavItem>
+			);
+		}
 	}
 
 	return (

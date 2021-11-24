@@ -68,46 +68,48 @@ const InviteLocks = new Set();
 router.post("/create", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-	// race condition protection
-	// to avoid users double-creating invites.
-	if (InviteLocks.has(user.id)) {
-		return res.status(409).json({
-			success: false,
-			description: `You already have an outgoing invite creation request.`,
+	try {
+		// race condition protection
+		// to avoid users double-creating invites.
+		if (InviteLocks.has(user.id)) {
+			return res.status(409).json({
+				success: false,
+				description: `You already have an outgoing invite creation request.`,
+			});
+		}
+
+		InviteLocks.add(user.id);
+
+		const existingInvites = await db.invites.count({ createdBy: user.id });
+
+		if (existingInvites >= GetTotalAllowedInvites(user)) {
+			InviteLocks.delete(user.id);
+
+			return res.status(400).json({
+				success: false,
+				description: `You already have your maximum amount of outgoing invites.`,
+			});
+		}
+
+		const inviteDoc: InviteCodeDocument = {
+			code: Random20Hex(),
+			consumed: false,
+			consumedAt: null,
+			consumedBy: null,
+			createdAt: Date.now(),
+			createdBy: user.id,
+		};
+
+		await db.invites.insert(inviteDoc);
+
+		return res.status(200).json({
+			success: true,
+			description: `Created Invite.`,
+			body: inviteDoc,
 		});
-	}
-
-	InviteLocks.add(user.id);
-
-	const existingInvites = await db.invites.count({ createdBy: user.id });
-
-	if (existingInvites >= GetTotalAllowedInvites(user)) {
+	} finally {
 		InviteLocks.delete(user.id);
-
-		return res.status(400).json({
-			success: false,
-			description: `You already have your maximum amount of outgoing invites.`,
-		});
 	}
-
-	const inviteDoc: InviteCodeDocument = {
-		code: Random20Hex(),
-		consumed: false,
-		consumedAt: null,
-		consumedBy: null,
-		createdAt: Date.now(),
-		createdBy: user.id,
-	};
-
-	await db.invites.insert(inviteDoc);
-
-	InviteLocks.delete(user.id);
-
-	return res.status(200).json({
-		success: true,
-		description: `Created Invite.`,
-		body: inviteDoc,
-	});
 });
 
 export default router;

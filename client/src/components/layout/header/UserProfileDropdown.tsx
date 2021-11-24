@@ -88,7 +88,9 @@ export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 								<Icon type="wrench" colour="danger" />
 							</div>
 							<div className="navi-text">
-								<div className="font-weight-bold cursor-pointer">My Account</div>
+								<div className="font-weight-bold cursor-pointer">
+									My Integrations
+								</div>
 								<div className="text-muted">
 									Manage your API Keys and integrations with other services.
 								</div>

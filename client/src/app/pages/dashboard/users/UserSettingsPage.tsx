@@ -2,6 +2,7 @@ import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import ProfilePicture from "components/user/ProfilePicture";
 import Divider from "components/util/Divider";
+import FormInput from "components/util/FormInput";
 import Icon from "components/util/Icon";
 import Muted from "components/util/Muted";
 import SelectButton from "components/util/SelectButton";
@@ -9,7 +10,7 @@ import { UserSettingsContext } from "context/UserSettingsContext";
 import { useFormik } from "formik";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Button, Form, InputGroup } from "react-bootstrap";
 import { PublicUserDocument, UserSettings } from "tachi-common";
 import { APIFetchV1, ToAPIURL } from "util/api";
 import { DelayedPageReload, FetchJSONBody, UppercaseFirst } from "util/misc";
@@ -25,7 +26,7 @@ export default function UserSettingsPage({ reqUser }: Props) {
 		`${reqUser.username}'s Settings`
 	);
 
-	const [page, setPage] = useState<"image" | "socialMedia" | "preferences">("image");
+	const [page, setPage] = useState<"image" | "socialMedia" | "preferences" | "account">("image");
 
 	return (
 		<Card header="Settings" className="col-12 offset-lg-2 col-lg-8">
@@ -44,6 +45,10 @@ export default function UserSettingsPage({ reqUser }: Props) {
 							<Icon type="cogs" />
 							UI Preferences
 						</SelectButton>
+						<SelectButton value={page} setValue={setPage} id="account">
+							<Icon type="lock" />
+							Change Password
+						</SelectButton>
 					</div>
 				</div>
 				<div className="col-12">
@@ -52,6 +57,8 @@ export default function UserSettingsPage({ reqUser }: Props) {
 						<ImageForm reqUser={reqUser} />
 					) : page === "socialMedia" ? (
 						<SocialMediaForm reqUser={reqUser} />
+					) : page === "account" ? (
+						<AccountSettings reqUser={reqUser} />
 					) : (
 						<PreferencesForm reqUser={reqUser} />
 					)}
@@ -65,6 +72,62 @@ export default function UserSettingsPage({ reqUser }: Props) {
 				</div>
 			</div>
 		</Card>
+	);
+}
+
+function AccountSettings({ reqUser }: { reqUser: PublicUserDocument }) {
+	const formik = useFormik({
+		initialValues: {
+			"!oldPassword": "",
+			"!password": "",
+		},
+		onSubmit: async values => {
+			const r = await APIFetchV1<UserSettings>(
+				`/users/${reqUser.id}/change-password`,
+				{
+					method: "POST",
+					...FetchJSONBody(values),
+				},
+				true,
+				true
+			);
+
+			if (r.success) {
+				formik.setValues({
+					"!oldPassword": "",
+					"!password": "",
+				});
+			}
+		},
+	});
+
+	return (
+		<Form onSubmit={formik.handleSubmit}>
+			<Form.Group>
+				<Form.Label>Old Password</Form.Label>
+				<Form.Control
+					type="password"
+					id="!oldPassword"
+					value={formik.values["!oldPassword"]}
+					placeholder="Your Current Password"
+					onChange={formik.handleChange}
+				/>
+			</Form.Group>
+			<Form.Group>
+				<Form.Label>New Password</Form.Label>
+				<Form.Control
+					type="password"
+					id="!password"
+					value={formik.values["!password"]}
+					placeholder="New Password"
+					onChange={formik.handleChange}
+				/>
+				<Form.Text>Passwords have to be atleast 8 characters long.</Form.Text>
+			</Form.Group>
+			<Button className="mt-8" variant="danger" type="submit">
+				Change Password
+			</Button>
+		</Form>
 	);
 }
 

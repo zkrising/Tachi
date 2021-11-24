@@ -102,16 +102,46 @@ export default async function ScoreImportMain<D, C>(
 		// --- 2. Importing ---
 		// ImportAllIterableData iterates over the iterable, applying the converter function to each bit of data.
 		const importTimeStart = process.hrtime.bigint();
-		const importInfo = await ImportAllIterableData(
-			user.id,
-			importType,
-			iterable,
-			ConverterFunction,
-			context,
-			game,
-			logger,
-			job
-		);
+
+		let importInfo;
+		const startOfImportingScores = Date.now();
+
+		// Score imports are not transaction based. As such, if they fail midway through, corrupt state
+		// may occur. This sucks, but we can band-aid over some of the worse parts. Here, if our score
+		// import fails, we **know** that we might've inserted scores but not properly handled their
+		// state. If so, we should attempt to revert any of those scores.
+		//
+		// There are still places where Tachi can fail on importing scores and result in corrupt state,
+		// but this band-aid fix handles all known cases of a partial-import failure.
+		try {
+			importInfo = await ImportAllIterableData(
+				user.id,
+				importType,
+				iterable,
+				ConverterFunction,
+				context,
+				game,
+				logger,
+				job
+			);
+		} catch (err) {
+			logger.error(
+				`An error was thrown from ImportAllIterableData, which has resulted in a potential partial-score-import. Undoing scores inserted from this import.`,
+				{ err }
+			);
+
+			// Remove all scores from the database for this user which were imported after our timer started.
+			const r = await db.scores.remove({
+				userID: user.id,
+				timeAdded: { $gte: startOfImportingScores },
+			});
+
+			logger.error(
+				`Removed ${r.deletedCount} scores from the database to undo partial-import.`
+			);
+
+			throw err;
+		}
 
 		const importTime = GetMillisecondsSince(importTimeStart);
 		const importTimeRel = importTime / importInfo.length;

@@ -19,7 +19,7 @@ import { InternalFailure } from "../common/converter-failures";
 import { CreateScoreLogger } from "../common/import-logger";
 import { ScorePlaytypeMap } from "../common/types";
 import { GetAndUpdateUsersGoals } from "../goals/goals";
-import { GetOrSetUserLock, RemoveUserLock } from "../import-locks/lock";
+import { CheckAndSetOngoingImportLock, UnsetOngoingImportLock } from "../import-locks/lock";
 import { UpdateUsersMilestones } from "../milestones/milestones";
 import { ProcessPBs } from "../pb/process-pbs";
 import { CreateSessions } from "../sessions/sessions";
@@ -50,17 +50,13 @@ export default async function ScoreImportMain<D, C>(
 		);
 	}
 
-	// in the event of any error, we remove the user lock.
 	try {
-		const lock = await GetOrSetUserLock(user.id);
+		const hasNoOngoingImport = await CheckAndSetOngoingImportLock(user.id);
 
-		if (lock) {
+		if (hasNoOngoingImport) {
 			// @danger
 			// Throwing away an import if the user already has one outgoing is *bad*, as in the case
-			// of degraded performance we might just start throwing scores away. This is obviously
-			// not great, but any other solution involves making a queue, which can't be done because
-			// InputParser is a very dynamic function that cannot be stored in redis or something.
-			//
+			// of degraded performance we might just start throwing scores away.
 			// Under normal circumstances, there is no scenario where a user would have two ongoing
 			// imports at the same time - even if they were using single-score imports on a 5 second
 			// chart, as each score import takes only around ~10-15milliseconds.
@@ -216,7 +212,7 @@ export default async function ScoreImportMain<D, C>(
 
 		return ImportDocument;
 	} finally {
-		await RemoveUserLock(user.id);
+		await UnsetOngoingImportLock(user.id);
 	}
 }
 

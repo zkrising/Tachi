@@ -2,33 +2,49 @@ import db from "external/mongo/db";
 import { integer } from "tachi-common";
 
 /**
- * Gets a users "import lock" if one exists. If one does not exist, it is set.
+ * If a user has no ongoing import, enable the import lock and return true.
+ * If a user has an ongoing import, return false.
+ *
  * @param userID - The user this import lock is for.
- * @returns If no lock exists for this user (and one was created), undefined is returned
- * If a lock exists for the user, the lock is returned.
+ * @returns True if the lock was set successfully, false if the user already
+ * has a lock.
  */
-export function GetOrSetUserLock(userID: integer) {
-	return db["import-locks"].findOneAndUpdate(
+export async function CheckAndSetOngoingImportLock(userID: integer) {
+	const lockExists = await db["import-locks"].findOne({
+		userID,
+	});
+
+	if (!lockExists) {
+		await db["import-locks"].insert({
+			userID,
+			locked: false,
+		});
+	}
+
+	const lockWasSet = await db["import-locks"].findOneAndUpdate(
 		{
 			userID,
+			locked: false,
 		},
 		{
-			$set: { userID },
-		},
-		{
-			upsert: true,
-			// this is marked as deprecated, but it shouldn't be, as returnDocument: "before"
-			// does nothing.
-			returnOriginal: true,
+			$set: { locked: true },
 		}
 	);
+
+	return !lockWasSet;
 }
 
 /**
- * Removes a users import lock.
+ * Disable a users import lock.
  */
-export function RemoveUserLock(userID: integer) {
-	return db["import-locks"].remove({
-		userID,
-	});
+export function UnsetOngoingImportLock(userID: integer) {
+	return db["import-locks"].findOneAndUpdate(
+		{
+			userID,
+			locked: true,
+		},
+		{
+			$set: { locked: false },
+		}
+	);
 }

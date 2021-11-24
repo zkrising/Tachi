@@ -164,7 +164,7 @@ const db = {
 	"bms-course-lookup": monkDB.get<BMSCourseDocument>("bms-course-lookup"),
 	"api-tokens": monkDB.get<APITokenDocument>("api-tokens"),
 	"orphan-scores": monkDB.get<OrphanScoreDocument>("orphan-scores"),
-	"import-locks": monkDB.get<ImportLockDocument>("import-locks"),
+	"import-locks": monkDB.get<{ userID: integer; locked: boolean }>("import-locks"),
 	tables: monkDB.get<TableDocument>("tables"),
 	"game-settings": monkDB.get<UGPTSettings>("game-settings"),
 	"game-stats-snapshots": monkDB.get<UserGameStatsSnapshot>("game-stats-snapshots"),

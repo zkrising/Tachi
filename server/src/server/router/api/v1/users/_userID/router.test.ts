@@ -4,6 +4,7 @@ import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
+import { HashPassword, PasswordCompare } from "../../auth/auth";
 
 t.test("GET /api/v1/users/:userID", (t) => {
 	t.beforeEach(ResetDBState);
@@ -225,6 +226,79 @@ t.test("PATCH /api/v1/users/:userID", async (t) => {
 		const dbUser = await db.users.findOne({ id: 1 });
 
 		t.equal(dbUser?.socialMedia.steam, "zkldi");
+
+		t.end();
+	});
+
+	t.end();
+});
+
+t.test("POST /api/v1/users/:userID/change-password", async (t) => {
+	t.beforeEach(ResetDBState);
+	const cookie = await CreateFakeAuthCookie(mockApi);
+
+	function send(content: Record<string, unknown>) {
+		return mockApi.post("/api/v1/users/1/change-password").set("Cookie", cookie).send(content);
+	}
+
+	t.test("Must require !password and !oldPassword to be a valid password.", async (t) => {
+		const res = await send({
+			"!password": null,
+			"!oldPassword": "heres_my_old_password",
+		});
+
+		t.equal(res.statusCode, 400);
+		t.match(
+			res.body.description,
+			/!password/gu,
+			"Should be related to the invalid password field."
+		);
+
+		const res2 = await send({
+			"!password": "heres_my_new_password",
+			"!oldPassword": "short",
+		});
+
+		t.equal(res2.statusCode, 400);
+		t.match(
+			res2.body.description,
+			/!oldPassword/gu,
+			"Should be related to the invalid !oldPassword field."
+		);
+
+		t.end();
+	});
+
+	t.test("Must require !oldPassword to match.", async (t) => {
+		const res = await send({
+			"!password": "new_password",
+			"!oldPassword": "NOT_MY_PASSWORD",
+		});
+
+		t.equal(res.statusCode, 401);
+		t.match(res.body.description, /old password doesn't match/iu);
+
+		t.end();
+	});
+
+	t.test("Should update password if everything checks out.", async (t) => {
+		const res = await send({
+			"!password": "NEW_PASSWORD",
+			"!oldPassword": "password",
+		});
+
+		t.equal(res.statusCode, 200);
+
+		const newPrivateInfo = await db["user-private-information"].findOne({
+			userID: 1,
+		});
+
+		t.not(newPrivateInfo, null, "newPrivateInfo should not be null.");
+
+		t.ok(
+			PasswordCompare("NEW_PASSWORD", newPrivateInfo!.password),
+			"Should update the users password to the hash of NEW_PASSWORD."
+		);
 
 		t.end();
 	});

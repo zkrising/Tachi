@@ -15,6 +15,7 @@ import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
+import { BackgroundContext } from "context/BackgroundContext";
 import { UGPTSettingsContext, UGPTSettingsContextProvider } from "context/UGPTSettingsContext";
 import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
@@ -39,10 +40,13 @@ import { NumericSOV } from "util/sorts";
 
 export default function GameRoutes() {
 	const { game } = useParams<{ game: string }>();
+	const { setBackground } = useContext(BackgroundContext);
 
 	if (!IsSupportedGame(game)) {
 		return <ErrorPage statusCode={404} customMessage={`The game ${game} is not supported.`} />;
 	}
+
+	setBackground(ToCDNURL(`/game-banners/${game}`));
 
 	const gameConfig = GetGameConfig(game);
 

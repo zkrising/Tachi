@@ -125,7 +125,7 @@ function AlgSelector({
 	return (
 		<div className="row justify-content-center mb-4">
 			<div className="form-group">
-				<span className="form-group-prefix">Best 100 scores according to </span>
+				<span className="form-group-prefix">Best 100 PBs according to </span>
 				<select
 					className="form-control"
 					value={alg}

@@ -104,7 +104,7 @@ function LeaderboardsPageContent({
 	// hack - we aren't returned from this api call for some reason.
 	userMap.set(reqUser.id, reqUser);
 
-	const bestNearbyUser = stats.thisUsersRanking.ranking - stats.above.length;
+	const bestNearbyUser = stats.thisUsersRanking.ranking - stats.above.length - 1;
 
 	function LeaderboardRow({ s, i }: { s: UserGameStats; i: integer }) {
 		return (

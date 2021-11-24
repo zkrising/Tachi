@@ -1,4 +1,5 @@
 import toast from "react-hot-toast";
+import { useHistory } from "react-router-dom";
 import {
 	APIPermissions,
 	ChartDocument,
@@ -187,4 +188,12 @@ export function WrapError<T>(fn: () => T, errMsg: string) {
 
 export function Sleep(ms: number) {
 	return new Promise<void>(resolve => setTimeout(() => resolve(), ms));
+}
+
+export function HistorySafeGoBack(history: ReturnType<typeof useHistory>) {
+	if (history.length === 1) {
+		history.replace("/");
+	} else {
+		history.goBack();
+	}
 }

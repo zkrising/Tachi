@@ -10,6 +10,7 @@ import { Link, useHistory } from "react-router-dom";
 import { PublicUserDocument } from "tachi-common";
 import { APIFetchV1 } from "util/api";
 import { HumaniseError } from "util/humanise-error";
+import { HistorySafeGoBack } from "util/misc";
 
 export default function LoginPage() {
 	useSetSubheader("Login");
@@ -59,7 +60,7 @@ export default function LoginPage() {
 				setUser(userRJ.body);
 				localStorage.setItem("isLoggedIn", "true");
 
-				history.goBack();
+				HistorySafeGoBack(history);
 			}, 500);
 		},
 	});

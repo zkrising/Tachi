@@ -11,6 +11,7 @@ import { PublicUserDocument } from "tachi-common";
 import { UseFormik } from "types/react";
 import { APIFetchV1, ToCDNURL } from "util/api";
 import { HumaniseError } from "util/humanise-error";
+import { HistorySafeGoBack } from "util/misc";
 
 // seconds it takes for a user to actually read the rules.
 const RULES_READ_TIME = Number(process.env.REACT_APP_RULES_READ_TIME) || 30;
@@ -78,7 +79,7 @@ export default function RegisterPage() {
 				setUser(rj.body);
 				localStorage.setItem("isLoggedIn", "true");
 
-				history.goBack();
+				HistorySafeGoBack(history);
 			}, 500);
 		},
 	});

@@ -11,6 +11,7 @@ import { UserContext } from "context/UserContext";
 import { ClientConfig } from "lib/config";
 import React, { useContext } from "react";
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
+import { HistorySafeGoBack } from "util/misc";
 import ClientFileFlowRoutes from "./ClientFileFlowRoutes";
 import DashboardRoutes from "./DashboardRoutes";
 import OAuth2CallbackRoutes from "./OAuth2CallbackRoutes";
@@ -76,7 +77,7 @@ export function Routes() {
 								desc="If you signed up with a fake email, you're now locked out of this account. Nice one."
 							/>
 							<span
-								onClick={() => history.goBack()}
+								onClick={() => HistorySafeGoBack(history)}
 								tabIndex={4}
 								className="btn btn-outline-danger"
 							>

@@ -2,6 +2,7 @@ import useSetSubheader from "components/layout/header/useSetSubheader";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { ToCDNURL } from "util/api";
+import { HistorySafeGoBack } from "util/misc";
 
 export function ErrorPage({
 	statusCode,
@@ -72,12 +73,7 @@ export function ErrorPage({
 						{statusCode || "Completely Screwed."}
 					</h1>
 					<p className="font-size-h3 font-weight-light">{message}</p>
-					<a
-						className="text-primary"
-						onClick={() =>
-							history.length === 1 ? history.replace("/") : history.goBack()
-						}
-					>
+					<a className="text-primary" onClick={() => HistorySafeGoBack(history)}>
 						Go Back.
 					</a>
 				</div>

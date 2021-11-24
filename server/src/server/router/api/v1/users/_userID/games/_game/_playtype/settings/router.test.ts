@@ -1,7 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import t from "tap";
-
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 

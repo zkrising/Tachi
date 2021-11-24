@@ -1,11 +1,11 @@
-import t from "tap";
+import crypto from "crypto";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { UpdateUsersGamePlaytypeStats } from "./update-ugs";
-import deepmerge from "deepmerge";
-import crypto from "crypto";
 import { TestingIIDXSPScorePB } from "test-utils/test-data";
+import { UpdateUsersGamePlaytypeStats } from "./update-ugs";
 
 const logger = CreateLogCtx(__filename);
 

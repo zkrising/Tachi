@@ -1,9 +1,9 @@
-import { ChartDocument, PBScoreDocument } from "tachi-common";
-import { Router, RequestHandler } from "express";
+import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
+import { ChartDocument, PBScoreDocument } from "tachi-common";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
 
 const router: Router = Router({ mergeParams: true });
 

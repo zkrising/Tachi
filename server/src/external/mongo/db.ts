@@ -17,7 +17,6 @@ import {
 	GoalDocument,
 	IIDXBPIData,
 	ImportDocument,
-	ImportLockDocument,
 	ImportTimingsDocument,
 	integer,
 	InviteCodeDocument,
@@ -27,6 +26,7 @@ import {
 	PBScoreDocument,
 	PrivateUserInfoDocument,
 	PublicUserDocument,
+	RecentlyViewedFolderDocument,
 	ScoreDocument,
 	SessionDocument,
 	SessionViewDocument,
@@ -39,7 +39,6 @@ import {
 	UserGoalDocument,
 	UserMilestoneDocument,
 	UserSettings,
-	RecentlyViewedFolderDocument,
 } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
 const logger = CreateLogCtx(__filename);

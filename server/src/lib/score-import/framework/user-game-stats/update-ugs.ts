@@ -2,13 +2,13 @@
 // Some games have dedicated methods to calculate statistics like these, other games do not.
 // That's about all there is to it!
 
-import { Game, Playtypes, gameClasses, integer, UserGameStats, ClassDelta } from "tachi-common";
 import db from "external/mongo/db";
 import { CreateGameSettings } from "lib/game-settings/create-game-settings";
 import { KtLogger } from "lib/logger/logger";
+import { ClassDelta, Game, integer, Playtypes, UserGameStats } from "tachi-common";
 import { ProcessClassDeltas, UpdateUGSClasses } from "./classes";
 import { CalculateRatings } from "./rating";
-import { ClassHandler, ScoreClasses } from "./types";
+import { ClassHandler } from "./types";
 
 export async function UpdateUsersGamePlaytypeStats(
 	game: Game,

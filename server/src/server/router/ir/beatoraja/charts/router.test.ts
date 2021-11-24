@@ -1,9 +1,8 @@
-import t from "tap";
-
-import ResetDBState from "test-utils/resets";
-import mockApi from "test-utils/mock-api";
 import db from "external/mongo/db";
-import { ScoreDocument, PBScoreDocument } from "tachi-common";
+import { PBScoreDocument, ScoreDocument } from "tachi-common";
+import t from "tap";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
 
 t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 	t.beforeEach(ResetDBState);

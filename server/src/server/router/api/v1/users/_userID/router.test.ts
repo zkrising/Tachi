@@ -4,7 +4,7 @@ import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { HashPassword, PasswordCompare } from "../../auth/auth";
+import { PasswordCompare } from "../../auth/auth";
 
 t.test("GET /api/v1/users/:userID", (t) => {
 	t.beforeEach(ResetDBState);

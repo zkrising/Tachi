@@ -1,7 +1,7 @@
+import { PBScoreDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON } from "test-utils/test-data";
-import { PBScoreDocument } from "tachi-common";
 import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
 
 const gazerChart = GetKTDataJSON("./tachi/bms-gazer-chart.json");

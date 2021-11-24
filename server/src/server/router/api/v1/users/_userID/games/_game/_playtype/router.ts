@@ -15,7 +15,6 @@ import { CheckStrProfileAlg } from "utils/string-checks";
 import {
 	GetAllRankings,
 	GetUGPTPlaycount,
-	GetUsersRanking,
 	GetUsersRankingAndOutOf,
 	GetUsersWithIDs,
 } from "utils/user";

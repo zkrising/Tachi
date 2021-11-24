@@ -1,12 +1,15 @@
+import connectRedis from "connect-redis";
 import express, { Express } from "express";
 import "express-async-errors";
 import expressSession from "express-session";
-import { integer } from "tachi-common";
 import { RedisClient } from "external/redis/redis";
-import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
-import connectRedis from "connect-redis";
 import helmet from "helmet";
+import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
+import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
+import { integer } from "tachi-common";
+import { RequestLoggerMiddleware } from "./middleware/request-logger";
+import mainRouter from "./router/router";
 
 const logger = CreateLogCtx(__filename);
 
@@ -99,10 +102,6 @@ app.use((req, res, next) => {
 
 	return next();
 });
-
-import mainRouter from "./router/router";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
-import { RequestLoggerMiddleware } from "./middleware/request-logger";
 
 app.use(RequestLoggerMiddleware);
 

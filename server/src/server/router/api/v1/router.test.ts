@@ -1,7 +1,6 @@
-import t from "tap";
-
-import mockApi from "test-utils/mock-api";
 import { ClearTestingRateLimitCache } from "server/middleware/rate-limiter";
+import t from "tap";
+import mockApi from "test-utils/mock-api";
 
 // just a rudimentary test for rate-limiting. We fire 150 requests at GET /api/v1
 // (which does a server status check)

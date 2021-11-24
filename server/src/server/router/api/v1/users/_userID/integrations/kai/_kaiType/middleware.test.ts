@@ -1,5 +1,5 @@
-import t from "tap";
 import expMiddlewareMock from "express-request-mock";
+import t from "tap";
 import { ValidateKaiType } from "./middleware";
 
 t.test("#ValidateKaiType", (t) => {

@@ -1,8 +1,8 @@
-import { UserGameStats, UserGameStatsSnapshot } from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { GetAllRankings, GetUsersRanking } from "utils/user";
+import { UserGameStats, UserGameStatsSnapshot } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
+import { GetAllRankings } from "utils/user";
 
 const logger = CreateLogCtx(__filename);
 

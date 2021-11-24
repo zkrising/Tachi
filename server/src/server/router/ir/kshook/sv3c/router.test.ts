@@ -1,8 +1,8 @@
+import deepmerge from "deepmerge";
 import t from "tap";
 import { InsertFakeTokenWithAllPerms } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import deepmerge from "deepmerge";
 import { TestingKsHookSV3CScore } from "test-utils/test-data";
 
 t.test("POST /ir/kshook/sv3c/score/save", (t) => {

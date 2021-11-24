@@ -1,8 +1,6 @@
 import { Router } from "express";
-import { GetUserWithIDGuaranteed } from "utils/user";
-import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
-import ParseDirectManual from "lib/score-import/import-types/ir/direct-manual/parser";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { RequirePermissions } from "server/middleware/auth";
 
 const router: Router = Router({ mergeParams: true });

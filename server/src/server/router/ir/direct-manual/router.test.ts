@@ -1,5 +1,4 @@
 import db from "external/mongo/db";
-import { rootLogger } from "lib/logger/logger";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";

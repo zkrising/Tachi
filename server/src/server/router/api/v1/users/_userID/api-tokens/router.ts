@@ -6,7 +6,7 @@ import p from "prudence";
 import { AllPermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { APIPermissions, APITokenDocument } from "tachi-common";
-import { DeleteUndefinedProps, Random20Hex } from "utils/misc";
+import { Random20Hex } from "utils/misc";
 import { FormatUserDoc } from "utils/user";
 import { RequireSelfRequestFromUser } from "../middleware";
 

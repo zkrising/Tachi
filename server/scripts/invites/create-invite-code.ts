@@ -26,6 +26,6 @@ db.invites
 		consumedAt: null,
 	})
 	.then(() => {
-		logger.info(`Created invite ${options.code}.`);
+		console.log(options.code);
 		process.exit(0);
 	});

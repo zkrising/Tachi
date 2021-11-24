@@ -214,7 +214,7 @@ export default function SearchBar() {
 	}
 
 	return (
-		<div ref={ref} className="align-self-center">
+		<div ref={ref} className="align-self-center" style={{ flexGrow: 1 }}>
 			<div className="topbar-item mr-2">
 				<form className="quick-search-form" onSubmit={PREVENT_DEFAULT}>
 					<div className="input-group">

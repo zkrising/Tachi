@@ -8,7 +8,7 @@ export function Topbar() {
 	const { user } = useContext(UserContext);
 
 	return (
-		<div className="topbar">
+		<div className="topbar" style={{ minWidth: "35%" }}>
 			<SearchBar />
 
 			{user ? (

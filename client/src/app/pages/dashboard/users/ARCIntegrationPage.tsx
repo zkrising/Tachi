@@ -57,12 +57,22 @@ export default function ARCIntegrationPage({ reqUser }: { reqUser: PublicUserDoc
 			</Col>
 			<Col xs={12} className="mt-4">
 				<IntegrationStatus name="IIDX" value={iidxID} setValue={setIIDXID} />
+				<span className="text-warning">
+					This profile <b>MUST</b> be for BISTROVER! You need to have atleast one play on
+					BISTROVER for your scores to carry over.
+				</span>
+				<br />
 				{iidxID && iidxID.length !== 11 && (
 					<span className="text-danger">
 						Invalid IIDX ID, it should be 11 characters long.
 					</span>
 				)}
 				<IntegrationStatus name="SDVX" value={sdvxID} setValue={setSDVXID} />
+				<span className="text-warning">
+					This profile <b>MUST</b> be for VIVID WAVE! You need to have atleast one play on
+					VIVID WAVE for your scores to carry over.
+				</span>
+				<br />
 				{sdvxID && sdvxID.length !== 11 && (
 					<span className="text-danger">
 						Invalid SDVX ID, it should be 11 characters long.

@@ -163,7 +163,7 @@ function LeaderboardsPageContent({
 		>
 			<MiniTable className="text-center" headers={["Position", "User", alg, "Classes"]}>
 				<>
-					{bestNearbyUser > 1 &&
+					{bestNearbyUser >= 1 &&
 						leaderboard.gameStats
 							.slice(0, bestNearbyUser)
 							.map((s, i) => <LeaderboardRow key={s.userID} s={s} i={i + 1} />)}

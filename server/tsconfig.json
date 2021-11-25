@@ -28,7 +28,7 @@
 	},
 	"include": [
 		"src/**/*.ts",
-		"scripts/single-use/counters.ts",
+		"scripts/**/*.ts"
 	],
 	"exclude": [
 		"node_modules",

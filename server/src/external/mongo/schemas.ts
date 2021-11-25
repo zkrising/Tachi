@@ -397,7 +397,10 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		return prSchemaify(
 			Object.assign(PR_GameStats(game, playtype, gptConfig), {
 				rankings: Object.fromEntries(
-					gptConfig.profileRatingAlgs.map((e) => [e, p.isPositiveNonZeroInteger])
+					gptConfig.profileRatingAlgs.map((e) => [
+						e,
+						{ outOf: p.isPositiveNonZeroInteger, ranking: p.isPositiveNonZeroInteger },
+					])
 				),
 				playcount: p.isPositiveInteger,
 				timestamp: p.isPositive,

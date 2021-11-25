@@ -1844,7 +1844,8 @@
 		"game": "iidx",
 		"inactive": false,
 		"playtype": "SP",
-		"tableID": "iidx-SP-29-levels"
+		"tableID": "iidx-SP-29-levels",
+		"title": "beatmania IIDX (SP) (CastHour)"
 	},
 	{
 		"description": "Levels for beatmania IIDX (DP) in CastHour.",
@@ -1865,6 +1866,7 @@
 		"game": "iidx",
 		"inactive": false,
 		"playtype": "DP",
-		"tableID": "iidx-DP-29-levels"
+		"tableID": "iidx-DP-29-levels",
+		"title": "beatmania IIDX (DP) (CastHour)"
 	}
 ]

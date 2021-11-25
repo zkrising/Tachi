@@ -1748,7 +1748,8 @@
 		"game": "usc",
 		"inactive": false,
 		"playtype": "Keyboard",
-		"tableID": "usc-Keyboard-official-levels"
+		"tableID": "usc-Keyboard-official-levels",
+		"title": "SDVX Official Levels (Keyboard)"
 	},
 	{
 		"description": "Level Folders for SDVX converts inside USC.",
@@ -1777,7 +1778,8 @@
 		"game": "usc",
 		"inactive": false,
 		"playtype": "Controller",
-		"tableID": "usc-Controller-official-levels"
+		"tableID": "usc-Controller-official-levels",
+		"title": "SDVX Official Levels (Controller)"
 	},
 	{
 		"description": "Levels for beatmania IIDX (SP) in BISTROVER Omnimix.",
@@ -1798,7 +1800,8 @@
 		"game": "iidx",
 		"inactive": false,
 		"playtype": "SP",
-		"tableID": "iidx-SP-28-omni-levels"
+		"tableID": "iidx-SP-28-omni-levels",
+		"title": "beatmania IIDX (SP) (BISTROVER Omnimix)"
 	},
 	{
 		"description": "Levels for beatmania IIDX (DP) in BISTROVER Omnimix.",
@@ -1819,6 +1822,7 @@
 		"game": "iidx",
 		"inactive": false,
 		"playtype": "DP",
-		"tableID": "iidx-DP-28-omni-levels"
+		"tableID": "iidx-DP-28-omni-levels",
+		"title": "beatmania IIDX (DP) (BISTROVER Omnimix)"
 	}
 ]

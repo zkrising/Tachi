@@ -20,8 +20,8 @@ export default function KsHookPage() {
 			<h1 className="text-center my-4">Setup Instructions</h1>
 			<ol className="instructions-list">
 				<li>
-					Download <code>kshook.dll</code> from <ExternalLink href="#">here</ExternalLink>
-					.
+					Download <code>kshook.dll</code> from{" "}
+					<ExternalLink href="#">LINK TODO LOL</ExternalLink>.
 				</li>
 				<li>
 					Download your config file{" "}

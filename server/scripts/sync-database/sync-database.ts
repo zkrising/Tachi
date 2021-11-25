@@ -91,6 +91,7 @@ async function GenericUpsert<T>(
 	} else {
 		const result = await collection.bulkWrite(bwriteOps);
 		logger.info(`Performed bulkWrite.`, result);
+		await InitaliseFolderChartLookup();
 	}
 
 	if (remove) {

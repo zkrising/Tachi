@@ -104,8 +104,24 @@ async function GenericUpsert<T>(
 const syncInstructions: SyncInstructions[] = [
 	{
 		pattern: /^charts-(usc|bms)$/u,
-		handler: (charts: ChartDocument[], collection: ICollection<ChartDocument>, logger) =>
-			GenericUpsert(charts, collection, "chartID", logger, false),
+		handler: async (
+			charts: ChartDocument[],
+			collection: ICollection<ChartDocument>,
+			logger
+		) => {
+			// Since the USC and BMS databases are managed Bokutachi-side, we
+			// shouldn't be honoring any sort of updates from tachi-database-seeds
+			// aside from an initial one.
+			const isInitial = await collection.findOne();
+
+			if (isInitial) {
+				const r = await GenericUpsert(charts, collection, "chartID", logger, true);
+
+				if (r) {
+					await InitaliseFolderChartLookup();
+				}
+			}
+		},
 	},
 	{
 		pattern: /^charts-/u,

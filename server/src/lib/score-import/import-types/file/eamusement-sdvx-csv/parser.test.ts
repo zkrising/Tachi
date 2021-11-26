@@ -20,7 +20,7 @@ t.test("#ParseEamusementSDVXCSV", (t) => {
 		t.equal(iterableData.length, 204);
 
 		t.end();
-	})
+	});
 
 	t.test("Broken CSV", (t) => {
 		const buffer = Buffer.from(`${"a,".repeat(10)}a\n${"a,".repeat(3)}a`);
@@ -34,7 +34,6 @@ t.test("#ParseEamusementSDVXCSV", (t) => {
 
 		t.end();
 	});
-
 
 	t.test("Wrong number of headers", (t) => {
 		const buffer = Buffer.from(`${"a,".repeat(15)}a\n`.repeat(3));

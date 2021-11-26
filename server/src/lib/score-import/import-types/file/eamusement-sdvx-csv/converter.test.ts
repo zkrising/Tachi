@@ -44,7 +44,6 @@ t.test("#ConvertEamSDVXCSV", (t) => {
 		t.end();
 	});
 
-
 	t.test("Should reject invalid difficulty name", (t) => {
 		t.rejects(() => conv({ difficulty: "INVALID" }), {
 			message: /Invalid difficulty of INVALID\./u,

@@ -86,8 +86,6 @@ router.post("/score/save", async (req, res) => {
 		[req.body]
 	);
 
-	console.log(responseData.body);
-
 	if (!responseData.body.success) {
 		// in-air rewrite description to error.
 		// @ts-expect-error Hack!

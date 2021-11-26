@@ -23,7 +23,6 @@ async function UpdatePoyashiData() {
 	const rj = await fetch("https://proxy.poyashi.me/?type=bpi").then((r) => r.json());
 
 	logger.info("Fetched data.");
-	logger.info("Saved data to output.json.");
 
 	const data = rj;
 

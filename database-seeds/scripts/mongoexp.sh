@@ -4,10 +4,12 @@
 # folder.
 # Useful for backporting updates, or something.
 
-cd "$(dirname "${BASH_SOURCE[0]}")" || exit
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 if [ -z "$1" ] || [ -z "$2" ]; then
-	echo "Usage: mongoexp.sh <collection> <dbname>";
+	echo "Usage: mongoexp.sh <collection> <dbname>"
 	exit
 fi
 

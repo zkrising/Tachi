@@ -1,16 +1,15 @@
-import Queue from "bull";
+import { Queue, QueueEvents } from "bullmq";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, TachiConfig } from "lib/setup/config";
 import ScoreImportFatalError from "../framework/score-importing/score-import-error";
 
-const ScoreImportQueue = new Queue(
-	`${TachiConfig.NAME} Score Import Queue`,
-	`redis://${Environment.redisUrl}`
-);
+const ScoreImportQueue = new Queue(`${TachiConfig.NAME} Score Import Queue`, {
+	connection: { host: Environment.redisUrl, port: 6379 },
+});
 
 export default ScoreImportQueue;
 
-const logger = CreateLogCtx("Score Import Queue");
+const logger = CreateLogCtx("Score Import");
 
 // Log errors if and when they occur.
 ScoreImportQueue.on("failed", (job, err) => {
@@ -28,6 +27,11 @@ ScoreImportQueue.on("completed", (job, result) => {
 	logger.debug(`Job ${job.id} finished successfully.`, result);
 });
 
-export function CloseScoreImportQueue() {
+export const ScoreImportQueueEvents = new QueueEvents(ScoreImportQueue.name, {
+	connection: { host: Environment.redisUrl, port: 6379 },
+});
+
+export async function CloseScoreImportQueue() {
+	await ScoreImportQueueEvents.close();
 	return ScoreImportQueue.close();
 }

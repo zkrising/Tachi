@@ -83,7 +83,7 @@ export async function ImportAllIterableData<D, C>(
 		i++;
 
 		if (job) {
-			job.progress({ description: `Imported ${i} scores.` });
+			job.updateProgress({ description: `Imported ${i} scores.` });
 		}
 	}
 

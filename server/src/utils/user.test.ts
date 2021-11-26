@@ -1,10 +1,8 @@
-import t from "tap";
 import { DatabaseSchemas } from "external/mongo/schemas";
-import { prAssert } from "test-utils/asserts";
-import { GetUserCaseInsensitive, FormatUserDoc } from "./user";
 import { PublicUserDocument } from "tachi-common";
-
+import t from "tap";
 import ResetDBState from "test-utils/resets";
+import { FormatUserDoc, GetUserCaseInsensitive } from "./user";
 
 t.test("#GetUserCaseInsensitive", (t) => {
 	t.beforeEach(ResetDBState);

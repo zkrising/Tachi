@@ -1,7 +1,6 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
-import { rootLogger } from "lib/logger/logger";
 import { SearchGameSongs } from "lib/search/search";
 import { ChartDocument } from "tachi-common";
 import { IsString } from "utils/misc";

@@ -9,7 +9,6 @@ import {
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
-import { MakeScoreImport } from "lib/score-import/framework/score-import";
 import { RequirePermissions } from "server/middleware/auth";
 import { integer, Playtypes } from "tachi-common";
 import { UpdateClassIfGreater } from "utils/class";

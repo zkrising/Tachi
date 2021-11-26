@@ -43,6 +43,7 @@ t.test("GET /api/v1/users/:userID/api-tokens", async (t) => {
 
 		// sort these alphabetically so that strictsame can work properly
 		t.strictSame(
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			res.body.body.sort((a: any, b: any) => a.identifier - b.identifier),
 			[
 				{

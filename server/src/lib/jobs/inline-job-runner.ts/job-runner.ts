@@ -1,4 +1,4 @@
-import Queue from "bull";
+import { Queue, Worker } from "bullmq";
 import CreateLogCtx from "lib/logger/logger";
 import { DedupeArr } from "utils/misc";
 import { DeoprhanScores } from "../deorphan-scores";
@@ -46,11 +46,11 @@ export function InitialiseJobRunner() {
 	const jobNameMap = new Map<string, Job>();
 
 	for (const job of jobs) {
-		JobQueue.add({ jobName: job.name }, { repeat: { cron: job.cronFormat } });
+		JobQueue.add(job.name, { jobName: job.name }, { repeat: { cron: job.cronFormat } });
 		jobNameMap.set(job.name, job);
 	}
 
-	JobQueue.process(async (j) => {
+	new Worker("Job Runner", async (j) => {
 		const name = j.data.jobName;
 		logger.info(`Running job ${name}.`);
 

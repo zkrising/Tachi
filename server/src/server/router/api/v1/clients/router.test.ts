@@ -59,6 +59,7 @@ t.test("GET /api/v1/clients", async (t) => {
 		// note: force sort alphabetically so this isn't dependent on
 		// mongodb natural order.
 		t.strictSame(
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			res.body.body.sort((a: any, b: any) => a.name - b.name),
 			[
 				{

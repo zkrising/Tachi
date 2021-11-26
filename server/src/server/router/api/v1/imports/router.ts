@@ -1,8 +1,7 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
-import ScoreImportQueue from "lib/score-import/worker/queue";
+import ScoreImportQueue, { ScoreImportQueueEvents } from "lib/score-import/worker/queue";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { GetUserWithID } from "utils/user";
@@ -108,22 +107,14 @@ router.get("/:importID/poll-status", async (req, res) => {
 	// job.isFailed() actually means a critical error has occured.
 	// As in, an unhandled exception was thrown.
 	if (await job.isFailed()) {
-		// What the hell? Is this really how you're meant to get errors?
-		let err;
-		try {
-			await job.finished();
-		} catch (e) {
-			err = e;
-		}
-
-		logger.error("Internal Server Error with job?", { err, job });
+		logger.error("Internal Server Error with job?", { job });
 
 		return res.status(500).json({
 			success: false,
 			description: `An internal service error has occured with this import. This has been reported!`,
 		});
 	} else if (await job.isCompleted()) {
-		const content = await job.finished();
+		const content = await job.waitUntilFinished(ScoreImportQueueEvents);
 
 		// Since job.isFailed() is for whether a job had a fatal exception
 		// or not. We still want to check whether a job failed from say,
@@ -149,7 +140,7 @@ router.get("/:importID/poll-status", async (req, res) => {
 		}
 	}
 
-	const progress = await job.progress();
+	const progress = job.progress;
 
 	return res.status(200).json({
 		success: true,

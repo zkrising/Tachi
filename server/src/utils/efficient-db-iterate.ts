@@ -8,7 +8,8 @@ export async function EfficientDBIterate<T, R>(
 	collection: ICollection<T>,
 	callbackFn: (c: T) => Promise<R>,
 	saveOp: (c: R[]) => Promise<void>,
-	filter: any = {},
+	// eslint-disable-next-line @typescript-eslint/ban-types
+	filter: object = {},
 	bucketSize = 10_000
 ) {
 	let i = 0;

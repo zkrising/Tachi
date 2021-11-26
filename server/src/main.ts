@@ -3,23 +3,21 @@
 process.env.IS_SERVER = "true";
 
 import { spawn } from "child_process";
-import db, { monkDB } from "external/mongo/db";
+import db from "external/mongo/db";
 import { SetIndexesIfNoneSet } from "external/mongo/indexes";
 import { InitSequenceDocs } from "external/mongo/sequence-docs";
 import fs from "fs";
+import http from "http";
 import https from "https";
 import { LoadDefaultClients } from "lib/builtin-clients/builtin-clients";
+import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import path from "path";
 import server from "server/server";
+import fetch from "utils/fetch";
 import { InitaliseFolderChartLookup } from "utils/folder";
 import { FormatVersion } from "./lib/constants/version";
-import fetch from "utils/fetch";
-import http from "http";
-import { CloseRedisConnection } from "external/redis/redis";
-import { CloseScoreImportQueue } from "lib/score-import/worker/queue";
-import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,7 +1,6 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import ScoreImportQueue, { ScoreImportQueueEvents } from "lib/score-import/worker/queue";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { GetRelevantSongsAndCharts } from "utils/db";

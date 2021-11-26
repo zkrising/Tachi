@@ -1,8 +1,5 @@
 import { Router } from "express";
-import {
-	AggressiveRateLimitMiddleware,
-	NormalRateLimitMiddleware,
-} from "server/middleware/rate-limiter";
+import { NormalRateLimitMiddleware } from "server/middleware/rate-limiter";
 import adminRouter from "./admin/router";
 import authRouter from "./auth/router";
 import clientsRouter from "./clients/router";

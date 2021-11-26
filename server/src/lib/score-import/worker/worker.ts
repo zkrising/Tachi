@@ -61,7 +61,9 @@ export const worker = new Worker(
 		// turned into nonsense objects. We need to "deJSONify" these buffers
 		// so lets do that now.
 
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const processedArgs: any = [];
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		for (const arg of job.data.parserArguments as any[]) {
 			if (arg?.buffer?.type === "Buffer") {
 				processedArgs.push({ ...arg, buffer: Buffer.from(arg.buffer.data) });

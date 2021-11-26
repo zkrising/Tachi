@@ -239,6 +239,7 @@ router.get(
 
 		// @hack This is asserted above. We're just going to cast as any because we know what
 		// we're doing.
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const distribution = await GetClassDistribution(game, playtype, stat as any);
 
 		return res.status(200).json({

@@ -50,7 +50,7 @@ export function InitialiseJobRunner() {
 		jobNameMap.set(job.name, job);
 	}
 
-	const JobWorker = new Worker("Job Runner", async (j) => {
+	new Worker("Job Runner", async (j) => {
 		const name = j.data.jobName;
 		logger.info(`Running job ${name}.`);
 

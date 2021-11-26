@@ -1,4 +1,5 @@
 node_modules
 logs
+.pnpm-debug.log
 
 scripts/single-time

@@ -3,7 +3,7 @@ import { ScoreImportJobData } from "../worker/types";
 import { GetInputParser } from "./common/get-input-parser";
 import ScoreImportMain from "./score-importing/score-import-main";
 import { ImportTypes, ImportDocument } from "tachi-common";
-import ScoreImportQueue from "../worker/queue";
+import ScoreImportQueue, { ScoreImportQueueEvents } from "../worker/queue";
 import ScoreImportFatalError from "./score-importing/score-import-error";
 
 /**
@@ -21,11 +21,11 @@ export async function MakeScoreImport<I extends ImportTypes>(
 	jobData: ScoreImportJobData<I>
 ): Promise<ImportDocument> {
 	if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER && process.env.IS_JOB === undefined) {
-		const job = await ScoreImportQueue.add(jobData, {
+		const job = await ScoreImportQueue.add(`Import ${jobData.importID}`, jobData, {
 			jobId: jobData.importID,
 		});
 
-		const data = await job.finished();
+		const data = await job.waitUntilFinished(ScoreImportQueueEvents);
 
 		if (data.success) {
 			return data.importDocument;

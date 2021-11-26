@@ -19,8 +19,10 @@ import { FormatUserDoc, GetUserWithID } from "utils/user";
 import { GetInputParser } from "../framework/common/get-input-parser";
 import ScoreImportFatalError from "../framework/score-importing/score-import-error";
 import ScoreImportMain from "../framework/score-importing/score-import-main";
-import ScoreImportQueue from "./queue";
 import { ScoreImportJob } from "./types";
+import { Worker } from "bullmq";
+import ScoreImportQueue from "./queue";
+import { Environment, ServerConfig } from "lib/setup/config";
 
 const workerLogger = CreateLogCtx(`Import Worker`);
 
@@ -36,73 +38,83 @@ if (require.main !== module) {
  * When a job is fired, this code will actually process the given data
  * and import it into the codebase.
  */
-ScoreImportQueue.process(async <I extends ImportTypes>(job: ScoreImportJob<I>) => {
-	const user = await GetUserWithID(job.data.userID);
+export const worker = new Worker(
+	ScoreImportQueue.name,
+	async <I extends ImportTypes>(job: ScoreImportJob<I>) => {
+		const user = await GetUserWithID(job.data.userID);
 
-	if (!user) {
-		workerLogger.severe(
-			`Couldn't find user with ID ${job.data.userID}. Yet a score import from them was made? (Job ID ${job.id}).`
-		);
-		throw new Error(
-			`Couldn't find user with ID ${job.data.userID}. Yet a score import from them was made? (Job ID ${job.id}).`
-		);
-	}
-
-	// Create a logger that we can pass around for context.
-	// This helps us debug what score import did what!
-	const logger = CreateLogCtx(`Score Import ${job.id} ${FormatUserDoc(user)}`);
-
-	// Here's a hack. You cant pass buffers to bull workers, as content
-	// **must** be JSON serialisable. As such, all of our buffers get
-	// turned into nonsense objects. We need to "deJSONify" these buffers
-	// so lets do that now.
-
-	const processedArgs: any = [];
-	for (const arg of job.data.parserArguments as any[]) {
-		if (arg?.buffer?.type === "Buffer") {
-			processedArgs.push({ ...arg, buffer: Buffer.from(arg.buffer.data) });
-		} else {
-			processedArgs.push(arg);
-		}
-	}
-
-	job.data.parserArguments = processedArgs;
-
-	logger.debug(`Recieved score import job ${job.id}`, { job });
-
-	const InputParser = GetInputParser(job.data);
-
-	logger.debug(`Starting import.`);
-
-	job.progress({
-		description: "Importing Scores.",
-	});
-
-	try {
-		const importDocument = await ScoreImportMain(
-			user.id,
-			job.data.userIntent,
-			job.data.importType,
-			InputParser,
-			job.data.importID,
-			logger,
-			job
-		);
-
-		logger.debug(`Finished import.`);
-
-		return { success: true, importDocument };
-	} catch (err) {
-		if (err instanceof ScoreImportFatalError) {
-			logger.info(
-				`Job ${job.id} hit ScoreImportFatalError (User Fault) with message: ${err.message}`,
-				err
+		if (!user) {
+			workerLogger.severe(
+				`Couldn't find user with ID ${job.data.userID}. Yet a score import from them was made? (Job ID ${job.id}).`
 			);
-			return { success: false, statusCode: err.statusCode, message: err.message };
+			throw new Error(
+				`Couldn't find user with ID ${job.data.userID}. Yet a score import from them was made? (Job ID ${job.id}).`
+			);
 		}
 
-		throw err;
+		// Create a logger that we can pass around for context.
+		// This helps us debug what score import did what!
+		const logger = CreateLogCtx(`Score Import ${job.id} ${FormatUserDoc(user)}`);
+
+		// Here's a hack. You cant pass buffers to bull workers, as content
+		// **must** be JSON serialisable. As such, all of our buffers get
+		// turned into nonsense objects. We need to "deJSONify" these buffers
+		// so lets do that now.
+
+		const processedArgs: any = [];
+		for (const arg of job.data.parserArguments as any[]) {
+			if (arg?.buffer?.type === "Buffer") {
+				processedArgs.push({ ...arg, buffer: Buffer.from(arg.buffer.data) });
+			} else {
+				processedArgs.push(arg);
+			}
+		}
+
+		job.data.parserArguments = processedArgs;
+
+		logger.debug(`Recieved score import job ${job.id}`, { job });
+
+		const InputParser = GetInputParser(job.data);
+
+		logger.debug(`Starting import.`);
+
+		job.updateProgress({
+			description: "Importing Scores.",
+		});
+
+		try {
+			const importDocument = await ScoreImportMain(
+				user.id,
+				job.data.userIntent,
+				job.data.importType,
+				InputParser,
+				job.data.importID,
+				logger,
+				job
+			);
+
+			logger.debug(`Finished import.`);
+
+			return { success: true, importDocument };
+		} catch (err) {
+			if (err instanceof ScoreImportFatalError) {
+				logger.info(
+					`Job ${job.id} hit ScoreImportFatalError (User Fault) with message: ${err.message}`,
+					err
+				);
+				return { success: false, statusCode: err.statusCode, description: err.message };
+			}
+
+			throw err;
+		}
+	},
+	{
+		concurrency: ServerConfig.EXTERNAL_SCORE_IMPORT_WORKER_CONCURRENCY ?? 10,
+		connection: {
+			port: 6379,
+			host: Environment.redisUrl,
+		},
 	}
-});
+);
 
 process.on("SIGTERM", HandleSIGTERMGracefully);

@@ -414,6 +414,6 @@ function ParseImportInfo(importInfo: ImportProcessingInfo[]) {
 
 function SetJobProgress(job: ScoreImportJob | undefined, description: string) {
 	if (job) {
-		job.progress({ description });
+		job.updateProgress({ description });
 	}
 }

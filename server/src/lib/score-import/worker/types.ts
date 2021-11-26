@@ -1,4 +1,4 @@
-import { Job } from "bull";
+import { Job } from "bullmq";
 import { ImportTypes, integer } from "tachi-common";
 import { Parsers } from "../import-types/parsers";
 

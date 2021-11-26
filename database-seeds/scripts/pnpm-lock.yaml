@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   commander: ^8.2.0
+  fast-json-stable-hash: ^1.0.3
   glob: ^7.2.0
   mei-logger: ^1.0.1
   monk: ^7.3.4
@@ -10,6 +11,7 @@ specifiers:
 
 dependencies:
   commander: 8.2.0
+  fast-json-stable-hash: 1.0.3
   glob: 7.2.0
   mei-logger: 1.0.1
   monk: 7.3.4
@@ -839,6 +841,10 @@ packages:
 
   /fast-deep-equal/3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
+    dev: false
+
+  /fast-json-stable-hash/1.0.3:
+    resolution: {integrity: sha512-iLK3Tq2J/KbiUn/5OHyhxikHqzwFXSM2e803Dp2JtBdQjsCVuZwWvL+WqWXPPRUEuDX4c0kqID1SU84RCfxs3A==}
     dev: false
 
   /fast-json-stable-stringify/2.1.0:

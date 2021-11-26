@@ -31,6 +31,7 @@ export const ScoreImportQueueEvents = new QueueEvents(ScoreImportQueue.name, {
 	connection: { host: Environment.redisUrl, port: 6379 },
 });
 
-export function CloseScoreImportQueue() {
+export async function CloseScoreImportQueue() {
+	await ScoreImportQueueEvents.close();
 	return ScoreImportQueue.close();
 }

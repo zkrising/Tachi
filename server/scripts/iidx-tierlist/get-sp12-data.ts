@@ -90,7 +90,7 @@ async function FetchSP12Data() {
 					break;
 				case "exh":
 					const v3 = sh[key];
-					if (v3 >= 12) {
+					if (v3 >= 12 || v3 <= 0) {
 						continue;
 					}
 

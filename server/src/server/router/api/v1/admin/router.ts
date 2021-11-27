@@ -260,4 +260,75 @@ router.post("/delete-score", prValidate({ scoreID: "string" }), async (req, res)
 	});
 });
 
+/**
+ * Destroy a chart and all of its scores (and sessions).
+ *
+ * name @POST /api/v1/admin/destroy-chart
+ */
+router.post(
+	"/destroy-chart",
+	prValidate({ chartID: "string", game: p.isIn(TachiConfig.GAMES) }),
+	async (req, res) => {
+		const game: Game = req.body.game;
+		const chartID: string = req.body.chartID;
+		await db.charts[game].remove({
+			chartID,
+		});
+
+		const scores = await db.scores.find({
+			chartID,
+		});
+
+		const scoreIDs = scores.map((e) => e.scoreID);
+
+		await db.scores.remove({
+			scoreID: { $in: scoreIDs },
+		});
+
+		await db["personal-bests"].remove({
+			chartID,
+		});
+
+		const sessions = await db.sessions.find({
+			"scoreInfo.scoreID": { $in: scoreIDs },
+		});
+
+		for (const session of sessions) {
+			await db.sessions.update(
+				{
+					sessionID: session.sessionID,
+				},
+				{
+					$set: {
+						scoreInfo: session.scoreInfo.filter((e) => !scoreIDs.includes(e.scoreID)),
+					},
+				}
+			);
+		}
+
+		const imports = await db.imports.find({
+			scoreIDs: { $in: scoreIDs },
+		});
+
+		for (const imp of imports) {
+			await db.imports.update(
+				{
+					importID: imp.importID,
+				},
+				{
+					$set: {
+						scoreIDs: imp.scoreIDs.filter((e) => !scoreIDs.includes(e)),
+					},
+				}
+			);
+		}
+
+		return res.status(200).json({
+			success: true,
+			description: `Obliterated chart.`,
+			body: {},
+		});
+	}
+);
+
 export default router;

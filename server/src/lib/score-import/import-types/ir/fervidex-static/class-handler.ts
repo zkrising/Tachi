@@ -10,14 +10,18 @@ export function CreateFerStaticClassHandler(body: Record<string, unknown>): Clas
 		} else if (playtype === "DP") {
 			index = body.dp_dan;
 		} else {
-			logger.error(
+			logger.warn(
 				`Invalid playtype ${playtype} passed to FerStaticClassHandler. Attempting to continue.`
 			);
 			return;
 		}
 
+		if (index === undefined) {
+			return;
+		}
+
 		if (!Number.isInteger(index)) {
-			logger.info(`Recieved invalid fer-static class of ${index}.`);
+			logger.info(`Recieved invalid fer-static class of ${index} (${playtype}).`, { body });
 			return;
 		}
 

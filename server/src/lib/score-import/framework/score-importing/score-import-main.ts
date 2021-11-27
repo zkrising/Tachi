@@ -10,6 +10,7 @@ import {
 	integer,
 	Playtypes,
 	PublicUserDocument,
+	GetGameConfig,
 } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
 import { GetUserWithID } from "utils/user";
@@ -27,7 +28,6 @@ import { ClassHandler } from "../user-game-stats/types";
 import { UpdateUsersGamePlaytypeStats } from "../user-game-stats/update-ugs";
 import ScoreImportFatalError from "./score-import-error";
 import { ImportAllIterableData } from "./score-importing";
-
 /**
  * Performs a Score Import.
  *
@@ -365,12 +365,19 @@ export async function HandlePostImportSteps(
  */
 async function UpdateUsersGameStats(
 	game: Game,
-	playtypes: Playtypes[Game][],
+	modifiedPlaytypes: Playtypes[Game][],
 	userID: integer,
 	classHandler: ClassHandler | null,
 	logger: KtLogger
 ) {
 	const promises = [];
+
+	// Instead of using the provided playtypes, run the classHandler on all
+	// playtypes. This should only happen if a classHandler is provided, and is
+	// a hack fix for things like #480.
+	const allPlaytypes = GetGameConfig(game).validPlaytypes;
+
+	const playtypes = classHandler ? allPlaytypes : modifiedPlaytypes;
 
 	for (const pt of playtypes) {
 		promises.push(UpdateUsersGamePlaytypeStats(game, pt, userID, classHandler, logger));

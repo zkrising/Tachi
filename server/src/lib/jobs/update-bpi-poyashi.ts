@@ -88,6 +88,13 @@ async function UpdatePoyashiData() {
 
 		if (!oldData) {
 			updatedCharts.push(newData.chartID);
+
+			await db["iidx-bpi-data"].insert({
+				chartID: newData.chartID,
+				coef: newData.coef,
+				kavg: newData.kavg,
+				wr: newData.wr,
+			});
 		} else if (
 			oldData.wr !== newData.wr ||
 			oldData.kavg !== newData.kavg ||

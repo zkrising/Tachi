@@ -80,13 +80,17 @@ function AccountSettings({ reqUser }: { reqUser: PublicUserDocument }) {
 		initialValues: {
 			"!oldPassword": "",
 			"!password": "",
+			confPass: "",
 		},
 		onSubmit: async values => {
 			const r = await APIFetchV1<UserSettings>(
 				`/users/${reqUser.id}/change-password`,
 				{
 					method: "POST",
-					...FetchJSONBody(values),
+					...FetchJSONBody({
+						"!oldPassword": values["!oldPassword"],
+						"!password": values["!password"],
+					}),
 				},
 				true,
 				true
@@ -96,6 +100,7 @@ function AccountSettings({ reqUser }: { reqUser: PublicUserDocument }) {
 				formik.setValues({
 					"!oldPassword": "",
 					"!password": "",
+					confPass: "",
 				});
 			}
 		},
@@ -122,9 +127,36 @@ function AccountSettings({ reqUser }: { reqUser: PublicUserDocument }) {
 					placeholder="New Password"
 					onChange={formik.handleChange}
 				/>
-				<Form.Text>Passwords have to be atleast 8 characters long.</Form.Text>
+				{formik.values["!password"].length < 8 && (
+					<Form.Text className="text-warning">
+						Passwords have to be atleast 8 characters long.
+					</Form.Text>
+				)}
 			</Form.Group>
-			<Button className="mt-8" variant="danger" type="submit">
+			<Form.Group>
+				<Form.Label>Confirm New Password</Form.Label>
+				<Form.Control
+					type="password"
+					id="confPass"
+					value={formik.values.confPass}
+					placeholder="New Password"
+					onChange={formik.handleChange}
+				/>
+			</Form.Group>
+			{!(formik.values["!password"] === formik.values.confPass) && (
+				<Form.Text className="text-danger">Passwords don't match!</Form.Text>
+			)}
+			<Button
+				className="mt-8"
+				variant="danger"
+				type="submit"
+				disabled={
+					!(
+						formik.values["!password"] === formik.values.confPass &&
+						formik.values.confPass.length >= 8
+					)
+				}
+			>
 				Change Password
 			</Button>
 		</Form>

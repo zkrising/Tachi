@@ -5,6 +5,7 @@ import { UserGameStatsContext } from "context/UserGameStatsContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useLayoutEffect } from "react";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import { FormatGame, GetGameConfig, UserGameStats } from "tachi-common";
 import { APIFetchV1, ToCDNURL } from "util/api";
 import KTLayoutHeader from "_metronic/_assets/js/layout/base/header";
@@ -81,11 +82,14 @@ export function HeaderMenu() {
 				className="header-menu header-menu-left header-menu-mobile header-menu-layout-default header-menu-root-arrow"
 			>
 				<div className="d-lg-none">
-					<img
-						src={ToCDNURL("/logos/logo-wordmark.png")}
-						width="100%"
-						className="px-10 mt-4"
-					/>
+					<Link to="/">
+						<img
+							src={ToCDNURL("/logos/logo-wordmark.png")}
+							width="100%"
+							className="px-10 mt-4"
+						/>
+					</Link>
+
 					<div className="mt-4">
 						<Divider />
 					</div>

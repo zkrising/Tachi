@@ -97,12 +97,13 @@ export default function SessionsPage({
 						<GenericSessionTable
 							indexCol={sessionSet === "best"}
 							dataset={data!}
+							reqUser={reqUser}
 							game={game}
 							playtype={playtype}
 						/>
 					</LoadingWrapper>
 				) : (
-					<SearchSessionsTable {...{ game, playtype, baseUrl, search }} />
+					<SearchSessionsTable {...{ game, playtype, reqUser, baseUrl, search }} />
 				)}
 			</div>
 		</div>
@@ -113,8 +114,9 @@ function SearchSessionsTable({
 	search,
 	game,
 	playtype,
+	reqUser,
 	baseUrl,
-}: { search: string; baseUrl: string } & GamePT) {
+}: { search: string; baseUrl: string; reqUser: PublicUserDocument } & GamePT) {
 	const { isLoading, error, data } = useQuery<SessionDataset, UnsuccessfulAPIResponse>(
 		`${baseUrl}?search=${search}`,
 		async () => {
@@ -135,7 +137,12 @@ function SearchSessionsTable({
 
 	return (
 		<LoadingWrapper {...{ isLoading, error, dataset: data }}>
-			<GenericSessionTable dataset={data!} game={game} playtype={playtype} />
+			<GenericSessionTable
+				reqUser={reqUser}
+				dataset={data!}
+				game={game}
+				playtype={playtype}
+			/>
 		</LoadingWrapper>
 	);
 }

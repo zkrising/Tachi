@@ -4,6 +4,7 @@ import FoldersMainPage from "app/pages/dashboard/users/games/_game/_playtype/fol
 import LeaderboardsPage from "app/pages/dashboard/users/games/_game/_playtype/LeaderboardsPage";
 import OverviewPage from "app/pages/dashboard/users/games/_game/_playtype/OverviewPage";
 import SessionsPage from "app/pages/dashboard/users/games/_game/_playtype/SessionsPage";
+import SpecificSessionPage from "app/pages/dashboard/users/games/_game/_playtype/SpecificSessionPage";
 import UGPTSettingsPage from "app/pages/dashboard/users/games/_game/_playtype/UGPTSettingsPage";
 import UserGamesPage from "app/pages/dashboard/users/UserGamesPage";
 import UserIntegrationsPage from "app/pages/dashboard/users/UserIntegrationsPage";
@@ -246,6 +247,9 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 				</Route>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/sessions">
 					<SessionsPage reqUser={reqUser} game={game} playtype={playtype} />
+				</Route>
+				<Route path="/dashboard/users/:userID/games/:game/:playtype/sessions/:sessionID">
+					<SpecificSessionPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/achievables">
 					<AchievablesPage reqUser={reqUser} game={game} playtype={playtype} />

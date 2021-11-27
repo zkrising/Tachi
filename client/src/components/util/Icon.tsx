@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 
 export default function Icon({
 	type,
@@ -6,12 +6,14 @@ export default function Icon({
 	brand,
 	onClick,
 	colour,
+	style,
 }: {
 	type: string;
 	noPad?: boolean;
 	brand?: boolean;
 	onClick?: () => void;
 	colour?: "info" | "primary" | "danger" | "warning";
+	style?: CSSProperties;
 }) {
 	return (
 		<i
@@ -19,6 +21,7 @@ export default function Icon({
 			className={`fa${brand ? "b" : "s"} fa-${type} ${noPad ? "p-0" : ""} ${
 				colour ? `text-${colour}` : ""
 			}`}
+			style={style}
 		/>
 	);
 }

@@ -90,6 +90,7 @@ export const loggedInSplashes = [
 	"Discovered Colours",
 	"Meeting People Is Easy",
 	"See ya later, innovator",
+	"bou bou bounce",
 ];
 
 // Stuff that's bad for the kids, you know?

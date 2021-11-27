@@ -478,6 +478,11 @@ function BreakdownChartContents({
 	const chart = chartMap.get(score.chartID)!;
 	const song = songMap.get(score.songID)!;
 
+	if (!chart || !song) {
+		console.error(`No chart for ${score.chartID}/${score.songID}???`);
+		return null;
+	}
+
 	if (fullSize) {
 		let preScoreCell = <td>No Play</td>;
 

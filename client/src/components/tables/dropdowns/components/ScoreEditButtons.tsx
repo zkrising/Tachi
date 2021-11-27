@@ -40,14 +40,16 @@ export default function ScoreEditButtons({
 										variant="outline-secondary"
 										onClick={() => setShow(true)}
 									>
-										<Icon noPad type="file-signature" />
+										<Icon type="file-signature" />
+										Edit
 									</Button>
 								</QuickTooltip>
 							</>
 						) : (
 							<QuickTooltip tooltipContent="Comment on this score.">
 								<Button variant="outline-secondary" onClick={() => setShow(true)}>
-									<Icon noPad type="file-signature" />
+									<Icon type="file-signature" />
+									Edit
 								</Button>
 							</QuickTooltip>
 						)}
@@ -65,7 +67,8 @@ export default function ScoreEditButtons({
 										})
 									}
 								>
-									<Icon noPad type="star" />
+									<Icon type="star" />
+									Un-Highlight
 								</Button>
 							</QuickTooltip>
 						) : (
@@ -81,7 +84,8 @@ export default function ScoreEditButtons({
 										})
 									}
 								>
-									<Icon noPad type="star" />
+									<Icon type="star" />
+									Highlight
 								</Button>
 							</QuickTooltip>
 						)}

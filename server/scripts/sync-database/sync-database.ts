@@ -238,6 +238,9 @@ async function SynchroniseDBWithSeeds() {
 
 	fs.rmSync(seedsDir, { recursive: true, force: true });
 
+	// Wait for mongo to connect first.
+	await monkDB.then(() => void 0);
+
 	execSync(`git clone https://github.com/TNG-dev/tachi-database-seeds --depth=1 ${seedsDir}`, {
 		stdio: "inherit",
 	});

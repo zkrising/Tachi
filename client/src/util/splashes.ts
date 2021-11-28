@@ -95,6 +95,8 @@ export const loggedInSplashes = [
 	"Exactly where you're at",
 	"You Are Here -->",
 	"I'm thinking this one's brown.",
+	"My god is the sun!",
+	"...Like Clockwork",
 ];
 
 // Stuff that's bad for the kids, you know?
@@ -108,6 +110,7 @@ export const contentiousSplashes = [
 	"Bad faith just coincidentally happens to be something my enemies do...",
 	"...and good faith is when people agree with me",
 	"Anyone else at this party gay?",
+	"I have the transfeminine urge to pee.",
 ];
 
 export const heySplashes = [

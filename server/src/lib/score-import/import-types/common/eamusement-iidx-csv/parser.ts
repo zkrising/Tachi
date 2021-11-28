@@ -160,13 +160,13 @@ export function IIDXCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 		);
 	}
 
-	if (!["26", "27", "28"].includes(gameVersion.toString())) {
-		throw new ScoreImportFatalError(400, `Only versions 26, 27 and 28 are supported.`);
+	if (!["26", "27", "28", "29"].includes(gameVersion.toString())) {
+		throw new ScoreImportFatalError(400, `Only versions 26, 27, 28 and 29 are supported.`);
 	}
 
 	return {
 		iterableData,
-		version: gameVersion.toString() as "26" | "27" | "28",
+		version: gameVersion.toString() as "26" | "27" | "28" | "29",
 		hasBeginnerAndLegg,
 	};
 }

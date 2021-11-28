@@ -301,7 +301,8 @@ router.post("/class/submit", ValidateModelHeader, async (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: r === false ? "Dan unchanged." : "Dan changed!",
+		description:
+			r === false ? "Dan unchanged, was worse than your current dan." : "Dan changed!",
 	});
 });
 

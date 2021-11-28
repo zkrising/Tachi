@@ -33,6 +33,7 @@ enum EAM_VERSION_NAMES {
 	"Rootage",
 	"HEROIC VERSE",
 	"BISTROVER",
+	"CastHour",
 }
 
 const PRE_HV_HEADER_COUNT = 27;

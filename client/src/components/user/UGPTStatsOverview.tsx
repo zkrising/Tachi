@@ -16,7 +16,7 @@ export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 						<tr key={k}>
 							<td>{UppercaseFirst(k)}</td>
 							<td>
-								{ugs.classes[k] ? (
+								{ugs.classes[k] !== undefined ? (
 									<ClassBadge
 										showSetOnHover={false}
 										key={`${k}:${ugs.classes[k]}`}

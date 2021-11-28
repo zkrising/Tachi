@@ -91,6 +91,10 @@ export const loggedInSplashes = [
 	"Meeting People Is Easy",
 	"See ya later, innovator",
 	"bou bou bounce",
+	"I CAN'T PUT MY FINGER ON IT",
+	"Exactly where you're at",
+	"You Are Here -->",
+	"I'm thinking this one's brown.",
 ];
 
 // Stuff that's bad for the kids, you know?

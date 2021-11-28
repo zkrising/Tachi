@@ -125,7 +125,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 		if (softID.rev === REV_2DXBMS) {
 			return res.status(400).send({
 				success: false,
-				description: "2DX_BMS is not supported.",
+				error: "2DX_BMS is not supported.",
 			});
 		}
 
@@ -140,7 +140,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 			);
 			return res.status(400).json({
 				success: false,
-				description: `Invalid extension ${softID.ext}`,
+				error: `Invalid extension ${softID.ext}`,
 			});
 		}
 	} catch (err) {

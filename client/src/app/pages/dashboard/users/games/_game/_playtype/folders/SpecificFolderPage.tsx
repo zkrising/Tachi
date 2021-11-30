@@ -495,7 +495,7 @@ function TierlistInfoLadder({
 			{buckets.map(bucket => (
 				<React.Fragment key={bucket[0].data.value ?? nanoid()}>
 					<Col className="ladder-header" xs={12}>
-						{bucket[0].data.value}
+						{bucket[0].data.value} ({bucket[0].data.text})
 					</Col>
 
 					{bucket.map((tierlistInfo, i) => (

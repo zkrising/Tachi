@@ -1,5 +1,6 @@
 import CreateLogCtx from "lib/logger/logger";
 import { MigrateBMSScores } from "./bms";
+import { MigrateCHUNITHMScores } from "./chunithm";
 import { MigrateIIDXScores } from "./iidx";
 import { MigrateMusecaScores } from "./museca";
 import { MigrateSDVXScores } from "./sdvx";
@@ -12,7 +13,6 @@ const logger = CreateLogCtx(__filename);
 	await MigrateIIDXScores();
 
 	logger.info(`Migrating BMS Scores.`);
-
 	await MigrateBMSScores();
 
 	logger.info(`Migrating MUSECA Scores.`);
@@ -22,4 +22,12 @@ const logger = CreateLogCtx(__filename);
 	logger.info(`Migrating SDVX Scores.`);
 
 	await MigrateSDVXScores();
+
+	logger.info(`Migrating CHUNITHM Scores.`);
+
+	await MigrateCHUNITHMScores();
+
+	logger.info("Done.");
+
+	process.exit(0);
 })();

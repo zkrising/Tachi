@@ -31,7 +31,7 @@ async function ConvertScoreToScoreInfo(
 	});
 
 	if (!scoreIDs) {
-		logger.warn(`No score for ${score.scoreID}? Skipping.`);
+		logger.verbose(`No score for ${score.scoreID}? Skipping.`);
 		return null;
 	}
 

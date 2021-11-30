@@ -4,6 +4,7 @@ import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
 import { ChartDocument, Difficulties, IIDXBPIData } from "tachi-common";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
+import { RecalcSessions } from "utils/calculations/recalc-sessions";
 import { FindChartWithPTDFVersion } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
 
@@ -124,6 +125,8 @@ async function UpdatePoyashiData() {
 	logger.info(`Triggering IIDX Recalc for ${updatedCharts.length} charts.`);
 
 	await RecalcAllScores({ game: "iidx", chartID: { $in: updatedCharts } });
+	// @optimisable -- can be filtered to just scores that were recalced.
+	await RecalcSessions({ game: "iidx" });
 
 	logger.info(`Done.`);
 }

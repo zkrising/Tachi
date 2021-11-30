@@ -76,13 +76,13 @@ export default function ScoresPage({
 				<Switch>
 					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/scores">
 						<>
+							{gptConfig.scoreRatingAlgs.length > 1 && (
+								<AlgSelector {...{ alg, setAlg, gptConfig }} />
+							)}
 							<PBsOverview
 								url={`/users/${reqUser.id}/games/${game}/${playtype}/pbs/best?alg=${alg}`}
 								{...{ reqUser, game, playtype, alg }}
 							/>
-							{gptConfig.scoreRatingAlgs.length > 1 && (
-								<AlgSelector {...{ alg, setAlg, gptConfig }} />
-							)}
 						</>
 					</Route>
 					<Route path="/dashboard/users/:userID/games/:game/:playtype/scores/history">

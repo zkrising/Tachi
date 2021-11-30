@@ -273,7 +273,9 @@ function StatDelta({
 	playtype: Playtype;
 }) {
 	if (!v2) {
-		return null;
+		// @warn: This means things like BPI goals can go negative and spit nonsense
+		// eslint-disable-next-line no-param-reassign
+		v2 = 0;
 	}
 
 	let d: string | number = v2 - v1;

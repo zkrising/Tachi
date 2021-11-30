@@ -300,7 +300,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearGrade: "A",
 		// IIDX has some unhinged grade boundaries...
 		// prettier-ignore
-		gradeBoundaries: [0, 2/9, 3/9, 4/9, 5/9, 6/9, 7/9, 8/9, 17/18, 9/9],
+		gradeBoundaries: [0, 2/9, 3/9, 4/9, 5/9, 6/9, 7/9, 8/9, 17/18, 9/9].map(e => e * 100),
 
 		lamps: [
 			"NO PLAY",
@@ -472,7 +472,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearGrade: "A",
 		// prettier-ignore
-		gradeBoundaries: [0, 2/9, 3/9, 4/9, 5/9, 6/9, 7/9, 8/9, 17/18, 9/9],
+		gradeBoundaries: [0, 2/9, 3/9, 4/9, 5/9, 6/9, 7/9, 8/9, 17/18, 9/9].map(e => e * 100),
 
 		lamps: [
 			"NO PLAY",

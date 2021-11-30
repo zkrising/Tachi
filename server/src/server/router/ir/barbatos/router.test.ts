@@ -1,52 +1,63 @@
+import db from "external/mongo/db";
 import t from "tap";
-import { RequireNeutralAuthentication } from "../../../../test-utils/api-common";
-import { CloseAllConnections } from "../../../../test-utils/close-connections";
-import { CreateFakeAuthCookie } from "../../../../test-utils/fake-session";
-import ResetDBState from "../../../../test-utils/reset-db-state";
-import mockApi from "../../../../test-utils/mock-api";
-import { TestingBarbatosScore } from "../../../../test-utils/test-data";
-import db from "../../../../external/mongo/db";
+import { InsertFakeTokenWithAllPerms } from "test-utils/fake-auth";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
+import { TestingBarbatosScore } from "test-utils/test-data";
 
-t.test("POST /api/v1/ir/barbatos/score/submit", async (t) => {
-    const cookie = await CreateFakeAuthCookie(mockApi);
+t.test("POST /ir/barbatos/score/submit", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
 
-    t.beforeEach(ResetDBState);
+	t.test("Should import a valid score", async (t) => {
+		const res = await mockApi
+			.post("/ir/barbatos/score/submit")
+			.set("Authorization", "Bearer mock_token")
+			.send(TestingBarbatosScore);
 
-    // @TODO NEEDS TO USE PROPER AUTHENTICATION!!!
-    RequireNeutralAuthentication("/api/v1/ir/barbatos/score/submit", "POST");
+		t.equal(res.body.success, true, "Should be successful");
 
-    t.test("Should import a valid score", async (t) => {
-        const res = await mockApi
-            .post("/api/v1/ir/barbatos/score/submit")
-            .set("Cookie", cookie)
-            .send(TestingBarbatosScore);
+		t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
-        t.equal(res.body.success, true, "Should be successful");
+		const scores = await db.scores.count({
+			service: "Barbatos",
+		});
 
-        t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
+		t.equal(scores, 1, "Should import 1 score.");
 
-        const scores = await db.scores.count({
-            service: "Barbatos",
-        });
+		t.end();
+	});
 
-        t.equal(scores, 1, "Should import 1 score.");
+	t.test("Should reject an invalid body", async (t) => {
+		const res = await mockApi
+			.post("/ir/barbatos/score/submit")
+			.set("Authorization", "Bearer mock_token")
+			.send({});
 
-        t.end();
-    });
+		t.equal(res.body.success, false, "Should not be successful.");
+		t.equal(res.status, 400, "Should return 400.");
 
-    t.test("Should reject an invalid body", async (t) => {
-        const res = await mockApi
-            .post("/api/v1/ir/barbatos/score/submit")
-            .set("Cookie", cookie)
-            .send({});
+		t.end();
+	});
 
-        t.equal(res.body.success, false, "Should not be successful.");
-        t.equal(res.status, 400, "Should return 400.");
+	t.test("Should require authorisation.", async (t) => {
+		const res = await mockApi.post("/ir/barbatos/score/submit").send(TestingBarbatosScore);
 
-        t.end();
-    });
+		t.equal(res.statusCode, 401, "Should return 401 for no authorization header.");
 
-    t.end();
+		t.end();
+	});
+
+	t.test("Should require valid authorisation.", async (t) => {
+		const res = await mockApi
+			.post("/ir/barbatos/score/submit")
+			.set("Authorization", "Bearer invalid_token")
+			.send(TestingBarbatosScore);
+
+		t.equal(res.statusCode, 401, "Should return 401 for invalid authorization header.");
+
+		t.end();
+	});
+
+	t.end();
 });
-
-t.teardown(CloseAllConnections);

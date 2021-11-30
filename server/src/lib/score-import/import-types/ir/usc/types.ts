@@ -1,5 +1,6 @@
-import { ChartDocument } from "kamaitachi-common";
+import { Playtypes } from "tachi-common";
 
 export interface IRUSCContext {
-    chart: ChartDocument<"usc:Single">;
+	chartHash: string;
+	playtype: Playtypes["usc"];
 }

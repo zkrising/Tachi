@@ -1,7 +1,10 @@
-import { KtLogger } from "../../../../logger/logger";
+import { KtLogger } from "lib/logger/logger";
 import { ParseKaiIIDX } from "../../common/api-kai/iidx/parser";
-import { KaiAuthDocument } from "kamaitachi-common";
+import { integer } from "tachi-common";
+import { GetKaiAuthGuaranteed } from "utils/queries/auth";
 
-export function ParseFloIIDX(authDoc: KaiAuthDocument, logger: KtLogger) {
-    return ParseKaiIIDX("FLO", authDoc, logger);
+export async function ParseFloIIDX(userID: integer, logger: KtLogger) {
+	const authDoc = await GetKaiAuthGuaranteed(userID, "FLO", logger);
+
+	return ParseKaiIIDX("FLO", authDoc, logger);
 }

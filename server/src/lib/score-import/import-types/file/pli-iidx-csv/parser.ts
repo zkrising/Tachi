@@ -1,17 +1,17 @@
-import { KtLogger } from "../../../../logger/logger";
+import { KtLogger } from "lib/logger/logger";
 import GenericParseEamIIDXCSV from "../../common/eamusement-iidx-csv/parser";
 import {
-    IIDXEamusementCSVContext,
-    IIDXEamusementCSVData,
+	IIDXEamusementCSVContext,
+	IIDXEamusementCSVData,
 } from "../../common/eamusement-iidx-csv/types";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { ParserFunctionReturns } from "../../common/types";
 
 function ParsePLIIIDXCSV(
-    fileData: Express.Multer.File,
-    body: Record<string, unknown>,
-    logger: KtLogger
-): ParserFunctionReturnsSync<IIDXEamusementCSVData, IIDXEamusementCSVContext> {
-    return GenericParseEamIIDXCSV(fileData, body, "PLI", logger);
+	fileData: Express.Multer.File,
+	body: Record<string, unknown>,
+	logger: KtLogger
+): ParserFunctionReturns<IIDXEamusementCSVData, IIDXEamusementCSVContext> {
+	return GenericParseEamIIDXCSV(fileData, body, "PLI", logger);
 }
 
 export default ParsePLIIIDXCSV;

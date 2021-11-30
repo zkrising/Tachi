@@ -1,57 +1,39 @@
-import { ClassHandler } from "../../../framework/user-game-stats/classes";
-import { integer } from "kamaitachi-common";
+import { integer } from "tachi-common";
+import { ClassHandler } from "../../../framework/user-game-stats/types";
 
-export const FERVIDEX_COURSE_LOOKUP = [
-    "7kyu",
-    "6kyu",
-    "5kyu",
-    "4kyu",
-    "3kyu",
-    "2kyu",
-    "1kyu",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "chuuden",
-    "kaiden",
-];
+export function CreateFerStaticClassHandler(body: Record<string, unknown>): ClassHandler {
+	return (game, playtype, userID, ratings, logger) => {
+		let index;
 
-export function FerStaticClassHandler(body: Record<string, unknown>): ClassHandler {
-    return (game, playtype, userID, customRatings, logger) => {
-        let index;
+		if (playtype === "SP") {
+			index = body.sp_dan;
+		} else if (playtype === "DP") {
+			index = body.dp_dan;
+		} else {
+			logger.warn(
+				`Invalid playtype ${playtype} passed to FerStaticClassHandler. Attempting to continue.`
+			);
+			return;
+		}
 
-        if (playtype === "SP") {
-            index = body.sp_dan;
-        } else if (playtype === "DP") {
-            index = body.dp_dan;
-        } else {
-            logger.error(
-                `Invalid playtype ${playtype} passed to FerStaticClassHandler. Attempting to continue.`
-            );
-            return;
-        }
+		if (index === undefined) {
+			return;
+		}
 
-        if (!Number.isInteger(index)) {
-            logger.info(`Recieved invalid fer-static class of ${index}.`);
-            return;
-        }
+		if (!Number.isInteger(index)) {
+			logger.info(`Recieved invalid fer-static class of ${index} (${playtype}).`, { body });
+			return;
+		}
 
-        const classVal = FERVIDEX_COURSE_LOOKUP[index as integer];
+		const intIndex = index as integer;
 
-        if (!classVal) {
-            logger.info(`Recieved invalid fer-static class of ${index}.`);
-            return;
-        }
+		if (intIndex < 0 || intIndex > 18) {
+			logger.warn(`Invalid fer-static class of ${index}. Skipping.`);
+			return;
+		}
 
-        return {
-            dan: classVal,
-        };
-    };
+		return {
+			dan: intIndex,
+		};
+	};
 }

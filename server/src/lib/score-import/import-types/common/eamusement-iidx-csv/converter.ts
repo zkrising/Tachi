@@ -1,257 +1,178 @@
-import { Lamps, AnySongDocument, ChartDocument } from "kamaitachi-common";
-import { FindChartWithPTDFVersion } from "../../../../../utils/queries/charts";
-import { FindSongOnTitleInsensitive } from "../../../../../utils/queries/songs";
+import { ChartDocument, Lamps } from "tachi-common";
+import { FindChartWithPTDFVersion } from "utils/queries/charts";
+import { FindSongOnTitle } from "utils/queries/songs";
 import {
-    KTDataNotFoundFailure,
-    InternalFailure,
-    InvalidScoreFailure,
+	InvalidScoreFailure,
+	KTDataNotFoundFailure,
+	SkipScoreFailure,
 } from "../../../framework/common/converter-failures";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { GetGradeFromPercent } from "../../../framework/common/score-utils";
+import {
+	GenericGetGradeAndPercent,
+	ParseDateFromString,
+} from "../../../framework/common/score-utils";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
-import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
-import { KtLogger } from "../../../../logger/logger";
 import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction, ConverterFnReturn } from "../types";
+import { ConverterFunction } from "../types";
+import { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 
 const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new Map([
-    ["NO PLAY", "NO PLAY"],
-    ["FAILED", "FAILED"],
-    ["FULLCOMBO CLEAR", "FULL COMBO"],
-    ["EX HARD CLEAR", "EX HARD CLEAR"],
-    ["HARD CLEAR", "HARD CLEAR"],
-    ["CLEAR", "CLEAR"],
-    ["EASY CLEAR", "EASY CLEAR"],
-    ["ASSIST CLEAR", "ASSIST CLEAR"],
+	["NO PLAY", "NO PLAY"],
+	["FAILED", "FAILED"],
+	["FULLCOMBO CLEAR", "FULL COMBO"],
+	["EX HARD CLEAR", "EX HARD CLEAR"],
+	["HARD CLEAR", "HARD CLEAR"],
+	["CLEAR", "CLEAR"],
+	["EASY CLEAR", "EASY CLEAR"],
+	["ASSIST CLEAR", "ASSIST CLEAR"],
 ]);
 
-export async function EamScoreConverter(
-    eamScore: EamusementScoreData,
-    ktchiSong: AnySongDocument,
-    context: IIDXEamusementCSVContext,
-    data: IIDXEamusementCSVData,
-    isLegacyLeggendaria: boolean,
-    logger: KtLogger
-) {
-    const HUMANISED_CHART_TITLE = `${ktchiSong.title} (${context.playtype} ${eamScore.difficulty} [v${context.importVersion}])`;
-    if (!eamScore.level || eamScore.level === "0") {
-        // charts that dont exist in the format have a level of 0
-        return null;
-    }
+const NINE_HOURS = 1000 * 60 * 60 * 9;
 
-    if (isLegacyLeggendaria) {
-        eamScore.difficulty = "LEGGENDARIA";
-    }
+const ConvertEamIIDXCSV: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVContext> =
+	async (data, context, importType, logger) => {
+		const eamScore = data.score;
 
-    if (eamScore.exscore === "0") {
-        // skip scores with an exscore of 0
-        // This also skips things like score resets.
-        return null;
-    }
+		if (eamScore.exscore === "0") {
+			// skip scores with an exscore of 0
+			// This also skips things like score resets.
+			throw new SkipScoreFailure("Score has an exscore of 0.");
+		}
 
-    const ktchiChart = (await FindChartWithPTDFVersion(
-        "iidx",
-        ktchiSong.id,
-        context.playtype,
-        eamScore.difficulty,
-        context.importVersion
-    )) as ChartDocument<"iidx:SP" | "iidx:DP">;
+		if (!eamScore.level || eamScore.level === "0") {
+			// charts that dont exist in the format have a level of 0
+			throw new SkipScoreFailure("Chart has a level of 0.");
+		}
 
-    if (!ktchiChart) {
-        throw new KTDataNotFoundFailure(
-            `Could not find chart for ${HUMANISED_CHART_TITLE}`,
-            "file/eamusement-iidx-csv",
-            data,
-            context
-        );
-    }
+		let isLegacyLeggendaria = false;
 
-    const exscore = AssertStrAsPositiveInt(
-        eamScore.exscore,
-        `${HUMANISED_CHART_TITLE} - Invalid EX score of ${eamScore.exscore}`
-    );
+		// if pre-HV, leggendarias were stored in a wacky form.
+		if (!context.hasBeginnerAndLegg) {
+			// hack fix for legacy LEGGENDARIA titles
+			if (data.title.match(/(†|†LEGGENDARIA)$/u)) {
+				data.title = data.title.replace(/(†|†LEGGENDARIA)$/u, "").trimEnd();
+				isLegacyLeggendaria = true;
+			}
+		}
 
-    const MAX_EX = ktchiChart.data.notecount * 2;
+		// @optimisable - This is actually a multi-fetch. Since eam-csv scores
+		// are batched up into (song, chart1, chart2, chart3 ...) rows
+		// we actually already have fetched this song a second ago.
+		const tachiSong = await FindSongOnTitle("iidx", data.title);
 
-    if (exscore > MAX_EX) {
-        throw new InvalidScoreFailure(
-            `${HUMANISED_CHART_TITLE} - Invalid EX Score of ${eamScore.exscore} (Was greater than max chart ex of ${MAX_EX}).`
-        );
-    }
+		if (!tachiSong) {
+			throw new KTDataNotFoundFailure(
+				`Could not find song for ${data.title}.`,
+				importType,
+				data,
+				context
+			);
+		}
 
-    const pgreat = AssertStrAsPositiveInt(
-        eamScore.pgreat,
-        `${HUMANISED_CHART_TITLE} - Invalid PGreats of ${eamScore.pgreat}`
-    );
+		const HUMANISED_CHART_TITLE = `${tachiSong.title} (${context.playtype} ${eamScore.difficulty} [v${context.importVersion}])`;
 
-    const great = AssertStrAsPositiveInt(
-        eamScore.great,
-        `${HUMANISED_CHART_TITLE} - Invalid Greats of ${eamScore.pgreat}`
-    );
+		if (isLegacyLeggendaria) {
+			eamScore.difficulty = "LEGGENDARIA";
+		}
 
-    if (pgreat * 2 + great !== exscore) {
-        throw new InvalidScoreFailure(
-            `${HUMANISED_CHART_TITLE} - PGreats * 2 + Greats did not equal EXScore (${pgreat} * 2 + ${great} != ${exscore}).`
-        );
-    }
+		const tachiChart = (await FindChartWithPTDFVersion(
+			"iidx",
+			tachiSong.id,
+			context.playtype,
+			eamScore.difficulty,
+			context.importVersion
+		)) as ChartDocument<"iidx:SP" | "iidx:DP">;
 
-    const lamp = EAMUSEMENT_LAMP_RESOLVER.get(eamScore.lamp);
+		if (!tachiChart) {
+			throw new KTDataNotFoundFailure(
+				`Could not find chart for ${HUMANISED_CHART_TITLE}`,
+				"file/eamusement-iidx-csv",
+				data,
+				context
+			);
+		}
 
-    if (!lamp) {
-        logger.info(`Invalid lamp of ${eamScore.lamp} provided.`);
-        throw new InvalidScoreFailure(
-            `${HUMANISED_CHART_TITLE} - Invalid Lamp of ${eamScore.lamp}.`
-        );
-    }
+		const exscore = AssertStrAsPositiveInt(
+			eamScore.exscore,
+			`${HUMANISED_CHART_TITLE} - Invalid EX score of ${eamScore.exscore}`
+		);
 
-    const percent = (100 * exscore) / MAX_EX;
-    const grade = GetGradeFromPercent<"iidx:SP" | "iidx:DP">("iidx", percent);
+		const MAX_EX = tachiChart.data.notecount * 2;
 
-    if (!grade) {
-        logger.warn(`${HUMANISED_CHART_TITLE} - Could not resolve ${percent} into a grade?`);
-        throw new InternalFailure(
-            `${HUMANISED_CHART_TITLE} - Could not resolve ${percent} into a grade?`
-        );
-    }
+		if (exscore > MAX_EX) {
+			throw new InvalidScoreFailure(
+				`${HUMANISED_CHART_TITLE} - Invalid EX Score of ${eamScore.exscore} (Was greater than max chart ex of ${MAX_EX}).`
+			);
+		}
 
-    // Now we need to figure out the timestamp for this score.
-    // Under, well, normal circumstances, we could figure this out quite trivially
-    // But e-amusement provides us the timestamp for the *song*, not the score
-    //
-    // We're going to actually ignore this. Initial drafts of this assumed we could skip the
-    // "epochs" (when a score reset on eamusement happened), but it turns out those are
-    // generated when the user triggers a score migration, NOT (as initially thought) when
-    // KONAMI decides.
+		const pgreat = AssertStrAsPositiveInt(
+			eamScore.pgreat,
+			`${HUMANISED_CHART_TITLE} - Invalid PGreats of ${eamScore.pgreat}`
+		);
 
-    const timestamp = Date.parse(data.timestamp);
+		const great = AssertStrAsPositiveInt(
+			eamScore.great,
+			`${HUMANISED_CHART_TITLE} - Invalid Greats of ${eamScore.pgreat}`
+		);
 
-    const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
-        service: context.service,
-        comment: null,
-        game: "iidx",
-        importType: "file/eamusement-iidx-csv",
-        scoreData: {
-            score: exscore,
-            lamp,
-            hitData: {
-                pgreat,
-                great,
-            },
-            hitMeta: {},
-            percent,
-            grade,
-        },
-        scoreMeta: {},
-        timeAchieved: timestamp,
-    };
+		if (pgreat * 2 + great !== exscore) {
+			throw new InvalidScoreFailure(
+				`${HUMANISED_CHART_TITLE} - PGreats * 2 + Greats did not equal EXScore (${pgreat} * 2 + ${great} != ${exscore}).`
+			);
+		}
 
-    const numBP = Number(eamScore.bp);
+		const lamp = EAMUSEMENT_LAMP_RESOLVER.get(eamScore.lamp);
 
-    if (!Number.isNaN(numBP)) {
-        if (!Number.isInteger(numBP) || numBP < 0 || numBP > 9999) {
-            throw new InvalidScoreFailure(
-                `${HUMANISED_CHART_TITLE} - Invalid BP of ${eamScore.bp}.`
-            );
-        }
-        dryScore.scoreData.hitMeta.bp = numBP;
-    } else if (eamScore.bp === "---") {
-        logger.debug(
-            `Skipped assigning BP for score as it had expected null value of ${eamScore.bp}.`
-        );
-    } else {
-        logger.info(`Skipped assigning BP for score. Had unexpected value of ${eamScore.bp}.`);
-    }
+		if (!lamp) {
+			logger.info(`Invalid lamp of ${eamScore.lamp} provided.`);
+			throw new InvalidScoreFailure(
+				`${HUMANISED_CHART_TITLE} - Invalid Lamp of ${eamScore.lamp}.`
+			);
+		}
 
-    return { ktchiChart, dryScore };
-}
+		const { percent, grade } = GenericGetGradeAndPercent("iidx", exscore, tachiChart);
 
-/**
- * Thin wrapper around EamScoreConverter to ensure it returns the expected values
- * @param eamScore - The eamusement score data to convert.
- * @param song - The song this score is for.
- * @param context - Context the converter may need.
- * @param data - The parent data the eamScore derives from.
- * @returns ConverterFnReturn
- */
-export async function EamScoreConverterWrapper(
-    eamScore: EamusementScoreData,
-    song: AnySongDocument,
-    context: IIDXEamusementCSVContext,
-    data: IIDXEamusementCSVData,
-    isLegacyLeggendaria: boolean,
-    logger: KtLogger
-) {
-    try {
-        const results = await EamScoreConverter(
-            eamScore,
-            song!,
-            context,
-            data,
-            isLegacyLeggendaria,
-            logger
-        );
+		const timestamp = ParseDateFromString(data.timestamp);
 
-        if (!results) {
-            return null;
-        }
+		const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
+			service: context.service,
+			comment: null,
+			game: "iidx",
+			importType,
+			scoreData: {
+				score: exscore,
+				lamp,
+				judgements: {
+					pgreat,
+					great,
+				},
+				hitMeta: {},
+				percent,
+				grade,
+			},
+			scoreMeta: {},
+			// japan is gmt+9
+			timeAchieved: timestamp ? timestamp - NINE_HOURS : null,
+		};
 
-        return {
-            song,
-            chart: results.ktchiChart,
-            dryScore: results.dryScore,
-        };
-    } catch (err) {
-        if (
-            err instanceof KTDataNotFoundFailure ||
-            err instanceof InternalFailure ||
-            err instanceof InvalidScoreFailure
-        ) {
-            return err;
-        } else if (err instanceof ScoreImportFatalError) {
-            throw err; // throw it all the way up.
-        }
+		const numBP = Number(eamScore.bp);
 
-        logger.error(`Unknown error: `, { err });
-        return new InternalFailure("An unknown internal failure has occured.");
-    }
-}
+		if (!Number.isNaN(numBP)) {
+			if (!Number.isInteger(numBP) || numBP < 0 || numBP > 9999) {
+				throw new InvalidScoreFailure(
+					`${HUMANISED_CHART_TITLE} - Invalid BP of ${eamScore.bp}.`
+				);
+			}
+			dryScore.scoreData.hitMeta.bp = numBP;
+		} else if (eamScore.bp === "---") {
+			logger.debug(
+				`Skipped assigning BP for score as it had expected null value of ${eamScore.bp}.`
+			);
+		} else {
+			logger.info(`Skipped assigning BP for score. Had unexpected value of ${eamScore.bp}.`);
+		}
 
-const ConverterFn: ConverterFunction<IIDXEamusementCSVData, IIDXEamusementCSVContext> = async (
-    data,
-    context,
-    importType,
-    logger
-): Promise<ConverterFnReturn[] | ConverterFnReturn> => {
-    let isLegacyLeggendaria = false;
+		// ts thinks tachiSong might be null. It's not, though!
+		return { chart: tachiChart, dryScore, song: tachiSong };
+	};
 
-    // if pre-HV, leggendarias were stored in a wacky form.
-    if (!context.hasBeginnerAndLegg) {
-        // hack fix for legacy LEGGENDARIA titles
-        if (data.title.match(/(†|†LEGGENDARIA)$/u)) {
-            data.title = data.title.replace(/(†|†LEGGENDARIA)$/u, "").trimEnd();
-            isLegacyLeggendaria = true;
-        }
-    }
-
-    const ktchiSong = await FindSongOnTitleInsensitive("iidx", data.title);
-
-    if (!ktchiSong) {
-        return new KTDataNotFoundFailure(
-            `Could not find song for ${data.title}.`,
-            importType,
-            data,
-            context
-        );
-    }
-
-    // ts thinks ktchiSong might be null. It's not, though!
-    const results = await Promise.all(
-        data.scores.map((e) =>
-            EamScoreConverterWrapper(e, ktchiSong!, context, data, isLegacyLeggendaria, logger)
-        )
-    );
-
-    return results;
-};
-
-export default ConverterFn;
+export default ConvertEamIIDXCSV;

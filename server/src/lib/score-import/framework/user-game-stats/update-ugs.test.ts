@@ -1,215 +1,208 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import t from "tap";
-import db, { CloseMongoConnection } from "../../../../external/mongo/db";
-import CreateLogCtx from "../../../logger/logger";
-import ResetDBState from "../../../../test-utils/reset-db-state";
-import { UpdateUsersGamePlaytypeStats } from "./update-ugs";
-import deepmerge from "deepmerge";
 import crypto from "crypto";
-import { TestingIIDXSPScorePB } from "../../../../test-utils/test-data";
+import deepmerge from "deepmerge";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
+import ResetDBState from "test-utils/resets";
+import { TestingIIDXSPScorePB } from "test-utils/test-data";
+import { UpdateUsersGamePlaytypeStats } from "./update-ugs";
 
 const logger = CreateLogCtx(__filename);
 
 // more of an integration test
 t.test("#UpdateUsersGamePlaytypeStats", (t) => {
-    t.beforeEach(ResetDBState);
+	t.beforeEach(ResetDBState);
 
-    t.test("Should create new UserGameStats if the user has none", async (t) => {
-        await db["game-stats"].remove({});
+	t.test(
+		"Should create new UserGameStats and UserGameSettings if the user has none",
+		async (t) => {
+			await db["game-stats"].remove({});
+			await db["game-settings"].remove({});
 
-        const res = await UpdateUsersGamePlaytypeStats("iidx", "SP", 1, null, logger);
+			const res = await UpdateUsersGamePlaytypeStats("iidx", "SP", 1, null, logger);
 
-        t.strictSame(res, [], "Should return an empty object");
+			t.strictSame(res, [], "Should return an empty object");
 
-        const gs = await db["game-stats"].findOne();
+			const gs = await db["game-stats"].findOne();
 
-        t.hasStrict(
-            gs,
-            {
-                game: "iidx",
-                playtype: "SP",
-                userID: 1,
-                rating: 0,
-                lampRating: 0,
-                customRatings: { BPI: 0 },
-                classes: {},
-            } as any,
-            "Should insert an appropriate game-stats object"
-        );
+			t.hasStrict(
+				gs,
+				{
+					game: "iidx",
+					playtype: "SP",
+					userID: 1,
+					ratings: { ktRating: 0, ktLampRating: 0 },
+					classes: {},
+				},
+				"Should insert an appropriate game-stats object"
+			);
 
-        t.end();
-    });
+			const settings = await db["game-settings"].findOne();
 
-    t.test("Should update UserGameStats if the user has one", async (t) => {
-        await db["game-stats"].insert({
-            game: "iidx",
-            playtype: "SP",
-            userID: 1,
-            rating: 0,
-            lampRating: 0,
-            customRatings: {
-                BPI: 0,
-            },
-            classes: {},
-        });
+			t.hasStrict(settings, {
+				game: "iidx",
+				playtype: "SP",
+				userID: 1,
+				preferences: {},
+			});
 
-        // insert some mock scores
-        const ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+			t.end();
+		}
+	);
 
-        await db["score-pbs"].insert(
-            ratings.map((e) =>
-                deepmerge(TestingIIDXSPScorePB, {
-                    chartID: crypto.randomBytes(20).toString("hex"),
-                    calculatedData: {
-                        rating: e,
-                        lampRating: 0,
-                    },
-                })
-            )
-        );
+	t.test("Should update UserGameStats if the user has one", async (t) => {
+		await db["game-stats"].remove({});
 
-        const res = await UpdateUsersGamePlaytypeStats("iidx", "SP", 1, null, logger);
+		await db["game-stats"].insert({
+			game: "iidx",
+			playtype: "SP",
+			userID: 1,
+			ratings: { ktRating: 0, ktLampRating: 0 },
+			classes: {},
+		});
 
-        t.strictSame(res, [], "Should return an empty object");
+		// insert some mock scores
+		const ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-        const gs = await db["game-stats"].findOne();
+		await db["personal-bests"].insert(
+			ratings.map((e) =>
+				deepmerge(TestingIIDXSPScorePB, {
+					chartID: crypto.randomBytes(20).toString("hex"),
+					calculatedData: {
+						ktRating: e,
+						ktLampRating: 0,
+					},
+				})
+			)
+		);
 
-        t.hasStrict(
-            gs,
-            {
-                game: "iidx",
-                playtype: "SP",
-                userID: 1,
-                rating: ratings.reduce((a, r) => a + r, 0) / 20,
-                lampRating: 0,
-                customRatings: {
-                    // BPI: 5 -- 5.04999 but floating point testing lmao
-                },
-                classes: {},
-            } as any,
-            "Should update the game-stats object"
-        );
+		const res = await UpdateUsersGamePlaytypeStats("iidx", "SP", 1, null, logger);
 
-        t.end();
-    });
+		t.strictSame(res, [], "Should return an empty object");
 
-    t.test("Should return class deltas", async (t) => {
-        await db["game-stats"].insert({
-            game: "iidx",
-            playtype: "SP",
-            userID: 1,
-            rating: 0,
-            lampRating: 0,
-            customRatings: {
-                BPI: 0,
-            },
-            classes: {},
-        });
+		const gs = await db["game-stats"].findOne();
 
-        const res = await UpdateUsersGamePlaytypeStats(
-            "iidx",
-            "SP",
-            1,
-            () => ({ dan: "kaiden" }), // lmao
-            logger
-        );
+		t.hasStrict(
+			gs,
+			{
+				game: "iidx",
+				playtype: "SP",
+				userID: 1,
+				ratings: { ktRating: ratings.reduce((a, r) => a + r, 0) / 20, ktLampRating: 0 },
+				classes: {},
+			},
+			"Should update the game-stats object"
+		);
 
-        t.strictSame(
-            res,
-            [
-                {
-                    set: "dan",
-                    playtype: "SP",
-                    old: null,
-                    new: "kaiden",
-                },
-            ],
-            "Should return the class delta"
-        );
+		t.end();
+	});
 
-        const gs = await db["game-stats"].findOne();
+	t.test("Should return class deltas", async (t) => {
+		await db["game-stats"].remove({});
 
-        t.hasStrict(
-            gs,
-            {
-                game: "iidx",
-                playtype: "SP",
-                userID: 1,
-                rating: 0,
-                lampRating: 0,
-                customRatings: {
-                    BPI: 0,
-                },
-                classes: {
-                    dan: "kaiden",
-                },
-            } as any,
-            "Should update the game-stats object"
-        );
+		await db["game-stats"].insert({
+			game: "iidx",
+			playtype: "SP",
+			userID: 1,
+			ratings: { ktRating: 0, ktLampRating: 0 },
 
-        t.end();
-    });
+			classes: {},
+		});
 
-    t.test("Should return updated class deltas", async (t) => {
-        await db["game-stats"].insert({
-            game: "iidx",
-            playtype: "SP",
-            userID: 1,
-            rating: 0,
-            lampRating: 0,
-            customRatings: {
-                BPI: 0,
-            },
-            classes: {
-                dan: "chuuden",
-            },
-        });
+		const res = await UpdateUsersGamePlaytypeStats(
+			"iidx",
+			"SP",
+			1,
+			() => ({ dan: 18 }), // lmao
+			logger
+		);
 
-        const res = await UpdateUsersGamePlaytypeStats(
-            "iidx",
-            "SP",
-            1,
-            () => ({ dan: "kaiden" }), // lmao
-            logger
-        );
+		t.strictSame(
+			res,
+			[
+				{
+					game: "iidx",
+					set: "dan",
+					playtype: "SP",
+					old: null,
+					new: 18,
+				},
+			],
+			"Should return the class delta"
+		);
 
-        t.strictSame(
-            res,
-            [
-                {
-                    set: "dan",
-                    playtype: "SP",
-                    old: "chuuden",
-                    new: "kaiden",
-                },
-            ],
-            "Should return the updated class delta"
-        );
+		const gs = await db["game-stats"].findOne();
 
-        const gs = await db["game-stats"].findOne();
+		t.hasStrict(
+			gs,
+			{
+				game: "iidx",
+				playtype: "SP",
+				userID: 1,
+				ratings: { ktRating: 0, ktLampRating: 0 },
+				classes: {
+					dan: 18,
+				},
+			},
+			"Should update the game-stats object"
+		);
 
-        t.hasStrict(
-            gs,
-            {
-                game: "iidx",
-                playtype: "SP",
-                userID: 1,
-                rating: 0,
-                lampRating: 0,
-                customRatings: {
-                    BPI: 0,
-                },
-                classes: {
-                    dan: "kaiden",
-                },
-            } as any,
-            "Should update the game-stats object"
-        );
+		t.end();
+	});
 
-        t.end();
-    });
+	t.test("Should return updated class deltas", async (t) => {
+		await db["game-stats"].remove({});
 
-    t.end();
+		await db["game-stats"].insert({
+			game: "iidx",
+			playtype: "SP",
+			userID: 1,
+			ratings: { ktRating: 0, ktLampRating: 0 },
+			classes: {
+				dan: 17,
+			},
+		});
+
+		const res = await UpdateUsersGamePlaytypeStats(
+			"iidx",
+			"SP",
+			1,
+			() => ({ dan: 18 }), // lmao
+			logger
+		);
+
+		t.strictSame(
+			res,
+			[
+				{
+					game: "iidx",
+					set: "dan",
+					playtype: "SP",
+					old: 17,
+					new: 18,
+				},
+			],
+			"Should return the updated class delta"
+		);
+
+		const gs = await db["game-stats"].findOne();
+
+		t.hasStrict(
+			gs,
+			{
+				game: "iidx",
+				playtype: "SP",
+				userID: 1,
+				ratings: { ktRating: 0, ktLampRating: 0 },
+				classes: {
+					dan: 18,
+				},
+			},
+			"Should update the game-stats object"
+		);
+
+		t.end();
+	});
+
+	t.end();
 });
-
-t.teardown(CloseMongoConnection);

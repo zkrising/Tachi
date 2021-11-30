@@ -1,30 +1,30 @@
+import db from "external/mongo/db";
 import t from "tap";
-import db, { CloseMongoConnection } from "../external/mongo/db";
-import ResetDBState from "../test-utils/reset-db-state";
+import ResetDBState from "test-utils/resets";
 import { GetScoresFromSession } from "./session";
 
 t.test("#GetScoresFromSession", async (t) => {
-    t.beforeEach(ResetDBState);
+	t.beforeEach(ResetDBState);
 
-    const exampleSession = await db.sessions.findOne();
+	await ResetDBState();
 
-    const scores = await GetScoresFromSession(exampleSession!);
+	const exampleSession = await db.sessions.findOne();
 
-    t.equal(
-        scores.length,
-        exampleSession!.scoreInfo.length,
-        "Should return the same amount of scores as the session."
-    );
+	const scores = await GetScoresFromSession(exampleSession!);
 
-    for (let i = 0; i < exampleSession!.scoreInfo.length; i++) {
-        t.equal(
-            scores[i].scoreID,
-            exampleSession!.scoreInfo[i].scoreID,
-            "Should return the scores requested."
-        );
-    }
+	t.equal(
+		scores.length,
+		exampleSession!.scoreInfo.length,
+		"Should return the same amount of scores as the session."
+	);
 
-    t.end();
+	for (let i = 0; i < exampleSession!.scoreInfo.length; i++) {
+		t.equal(
+			scores[i].scoreID,
+			exampleSession!.scoreInfo[i].scoreID,
+			"Should return the scores requested."
+		);
+	}
+
+	t.end();
 });
-
-t.teardown(CloseMongoConnection);

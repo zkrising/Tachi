@@ -1,15 +1,14 @@
 [
-    {
-        "id": 27339,
-        "title": "gazer [MANIAQ]",
-        "artist": "scytheleg / obj.siokaze",
-        "firstVersion": null,
-        "data": {
-            "subtitle": null,
-            "subartist": null,
-            "genre": "ELECTRANCE"
-        },
-        "search-titles": [],
-        "alt-titles": []
-    }
+	{
+		"id": 27339,
+		"title": "gazer [MANIAQ]",
+		"artist": "scytheleg / obj.siokaze",
+		"data": {
+			"subtitle": null,
+			"subartist": null,
+			"genre": "ELECTRANCE"
+		},
+		"searchTerms": [],
+		"altTitles": []
+	}
 ]

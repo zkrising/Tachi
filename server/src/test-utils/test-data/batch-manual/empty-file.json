@@ -1,7 +1,8 @@
 {
-    "head": {
-        "game": "iidx",
-        "service": "foobar"
-    },
-    "body": []
+	"meta": {
+		"game": "iidx",
+		"playtype": "SP",
+		"service": "foobar"
+	},
+	"scores": []
 }

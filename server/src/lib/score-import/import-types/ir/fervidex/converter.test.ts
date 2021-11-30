@@ -1,228 +1,282 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import deepmerge from "deepmerge";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
-import db, { CloseMongoConnection } from "../../../../../external/mongo/db";
-import CreateLogCtx from "../../../../logger/logger";
-import ResetDBState from "../../../../../test-utils/reset-db-state";
-import { GetKTDataJSON, Testing511Song, Testing511SPA } from "../../../../../test-utils/test-data";
+import ResetDBState from "test-utils/resets";
+import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
 import { InternalFailure } from "../../../framework/common/converter-failures";
 import {
-    ConverterIRFervidex,
-    SplitFervidexChartRef,
-    KtchifyAssist,
-    KtchifyGauge,
-    KtchifyRandom,
-    KtchifyRange,
+	ConverterIRFervidex,
+	SplitFervidexChartRef,
+	TachifyAssist,
+	TachifyGauge,
+	TachifyRandom,
+	TachifyRange,
 } from "./converter";
 import { FervidexScore } from "./types";
-import deepmerge from "deepmerge";
 
 const logger = CreateLogCtx(__filename);
 
 t.test("#SplitFervidexChartRef", (t) => {
-    t.strictSame(SplitFervidexChartRef("spb"), { playtype: "SP", difficulty: "BEGINNER" });
-    t.strictSame(SplitFervidexChartRef("spn"), { playtype: "SP", difficulty: "NORMAL" });
-    t.strictSame(SplitFervidexChartRef("sph"), { playtype: "SP", difficulty: "HYPER" });
-    t.strictSame(SplitFervidexChartRef("spa"), { playtype: "SP", difficulty: "ANOTHER" });
-    t.strictSame(SplitFervidexChartRef("spl"), { playtype: "SP", difficulty: "LEGGENDARIA" });
-    t.strictSame(SplitFervidexChartRef("dpn"), { playtype: "DP", difficulty: "NORMAL" });
-    t.strictSame(SplitFervidexChartRef("dph"), { playtype: "DP", difficulty: "HYPER" });
-    t.strictSame(SplitFervidexChartRef("dpa"), { playtype: "DP", difficulty: "ANOTHER" });
-    t.strictSame(SplitFervidexChartRef("dpl"), { playtype: "DP", difficulty: "LEGGENDARIA" });
+	t.strictSame(SplitFervidexChartRef("spb"), { playtype: "SP", difficulty: "BEGINNER" });
+	t.strictSame(SplitFervidexChartRef("spn"), { playtype: "SP", difficulty: "NORMAL" });
+	t.strictSame(SplitFervidexChartRef("sph"), { playtype: "SP", difficulty: "HYPER" });
+	t.strictSame(SplitFervidexChartRef("spa"), { playtype: "SP", difficulty: "ANOTHER" });
+	t.strictSame(SplitFervidexChartRef("spl"), { playtype: "SP", difficulty: "LEGGENDARIA" });
+	t.strictSame(SplitFervidexChartRef("dpn"), { playtype: "DP", difficulty: "NORMAL" });
+	t.strictSame(SplitFervidexChartRef("dph"), { playtype: "DP", difficulty: "HYPER" });
+	t.strictSame(SplitFervidexChartRef("dpa"), { playtype: "DP", difficulty: "ANOTHER" });
+	t.strictSame(SplitFervidexChartRef("dpl"), { playtype: "DP", difficulty: "LEGGENDARIA" });
 
-    t.throws(
-        () => SplitFervidexChartRef("INVALID" as "spn"),
-        new InternalFailure(`Invalid fervidex difficulty of INVALID`) as any
-    );
+	t.throws(
+		() => SplitFervidexChartRef("INVALID" as "spn"),
+		new InternalFailure(`Invalid fervidex difficulty of INVALID`)
+	);
 
-    t.end();
+	t.end();
 });
 
-t.test("#KtchifyAssist", (t) => {
-    t.equal(KtchifyAssist("ASCR_LEGACY"), "FULL ASSIST");
-    t.equal(KtchifyAssist("AUTO_SCRATCH"), "AUTO SCRATCH");
-    t.equal(KtchifyAssist("FULL_ASSIST"), "FULL ASSIST");
-    t.equal(KtchifyAssist("LEGACY_NOTE"), "LEGACY NOTE");
-    t.equal(KtchifyAssist(null), "NO ASSIST");
-    t.equal(KtchifyAssist(undefined), "NO ASSIST");
+t.test("#TachifyAssist", (t) => {
+	t.equal(TachifyAssist("ASCR_LEGACY"), "FULL ASSIST");
+	t.equal(TachifyAssist("AUTO_SCRATCH"), "AUTO SCRATCH");
+	t.equal(TachifyAssist("FULL_ASSIST"), "FULL ASSIST");
+	t.equal(TachifyAssist("LEGACY_NOTE"), "LEGACY NOTE");
+	t.equal(TachifyAssist(null), "NO ASSIST");
+	t.equal(TachifyAssist(undefined), "NO ASSIST");
 
-    t.end();
+	t.end();
 });
 
-t.test("#KtchifyGauge", (t) => {
-    t.equal(KtchifyGauge("ASSISTED_EASY"), "ASSISTED EASY");
-    t.equal(KtchifyGauge("EASY"), "EASY");
-    t.equal(KtchifyGauge("HARD"), "HARD");
-    t.equal(KtchifyGauge("EX_HARD"), "EX HARD");
-    t.equal(KtchifyGauge(null), "NORMAL");
-    t.equal(KtchifyGauge(undefined), "NORMAL");
+t.test("#TachifyGauge", (t) => {
+	t.equal(TachifyGauge("ASSISTED_EASY"), "ASSISTED EASY");
+	t.equal(TachifyGauge("EASY"), "EASY");
+	t.equal(TachifyGauge("HARD"), "HARD");
+	t.equal(TachifyGauge("EX_HARD"), "EX-HARD");
+	t.equal(TachifyGauge(null), "NORMAL");
+	t.equal(TachifyGauge(undefined), "NORMAL");
 
-    t.end();
+	t.end();
 });
 
-t.test("#KtchifyRange", (t) => {
-    t.equal(KtchifyRange("HIDDEN_PLUS"), "HIDDEN+");
-    t.equal(KtchifyRange("LIFT"), "LIFT");
-    t.equal(KtchifyRange("LIFT_SUD_PLUS"), "LIFT SUD+");
-    t.equal(KtchifyRange("SUDDEN_PLUS"), "SUDDEN+");
-    t.equal(KtchifyRange("SUD_PLUS_HID_PLUS"), "SUD+ HID+");
-    t.equal(KtchifyRange(null), "NONE");
-    t.equal(KtchifyRange(undefined), "NONE");
+t.test("#TachifyRange", (t) => {
+	t.equal(TachifyRange("HIDDEN_PLUS"), "HIDDEN+");
+	t.equal(TachifyRange("LIFT"), "LIFT");
+	t.equal(TachifyRange("LIFT_SUD_PLUS"), "LIFT SUD+");
+	t.equal(TachifyRange("SUDDEN_PLUS"), "SUDDEN+");
+	t.equal(TachifyRange("SUD_PLUS_HID_PLUS"), "SUD+ HID+");
+	t.equal(TachifyRange(null), "NONE");
+	t.equal(TachifyRange(undefined), "NONE");
 
-    t.end();
+	t.end();
 });
 
-t.test("#KtchifyRandom", (t) => {
-    t.equal(KtchifyRandom("MIRROR"), "MIRROR");
-    t.equal(KtchifyRandom("R_RANDOM"), "R-RANDOM");
-    t.equal(KtchifyRandom("S_RANDOM"), "S-RANDOM");
-    t.equal(KtchifyRandom("RANDOM"), "RANDOM");
-    t.equal(KtchifyRandom(null), "NONRAN");
-    t.equal(KtchifyRandom(undefined), "NONRAN");
+t.test("#TachifyRandom", (t) => {
+	t.equal(TachifyRandom("MIRROR"), "MIRROR");
+	t.equal(TachifyRandom("R_RANDOM"), "R-RANDOM");
+	t.equal(TachifyRandom("S_RANDOM"), "S-RANDOM");
+	t.equal(TachifyRandom("RANDOM"), "RANDOM");
+	t.equal(TachifyRandom(null), "NONRAN");
+	t.equal(TachifyRandom(undefined), "NONRAN");
 
-    t.end();
+	t.end();
 });
 
 const baseFervidexScore: FervidexScore = GetKTDataJSON("./fervidex/base.json");
 
 const baseDryScore = {
-    game: "iidx",
-    service: "Fervidex",
-    comment: null,
-    importType: "ir/fervidex",
-    scoreData: {
-        score: 68,
-        percent: 4.325699745547074,
-        grade: "F",
-        lamp: "FAILED",
-        hitData: {
-            pgreat: 34,
-            great: 0,
-            good: 0,
-            bad: 0,
-            poor: 6,
-        },
-        hitMeta: {
-            fast: 0,
-            slow: 0,
-            maxCombo: 34,
-            gaugeHistory: [100, 50],
-            gauge: 50,
-            bp: 6,
-            comboBreak: 6,
-            gsm: undefined,
-        },
-    },
-    scoreMeta: {
-        assist: "NO ASSIST",
-        gauge: "HARD",
-        random: "RANDOM",
-        range: "SUDDEN+",
-    },
+	game: "iidx",
+	service: "Fervidex",
+	comment: null,
+	importType: "ir/fervidex",
+	scoreData: {
+		score: 68,
+		percent: 4.325699745547074,
+		grade: "F",
+		lamp: "FAILED",
+		judgements: {
+			pgreat: 34,
+			great: 0,
+			good: 0,
+			bad: 0,
+			poor: 6,
+		},
+		hitMeta: {
+			fast: 0,
+			slow: 0,
+			maxCombo: null,
+			gaugeHistory: [100, 50],
+			gauge: 50,
+			bp: 6,
+			comboBreak: 6,
+			gsm: undefined,
+		},
+	},
+	scoreMeta: {
+		assist: "NO ASSIST",
+		gauge: "HARD",
+		random: "RANDOM",
+		range: "SUDDEN+",
+	},
 };
 
 t.test("#ConverterIRFervidex", (t) => {
-    t.beforeEach(ResetDBState);
+	t.beforeEach(ResetDBState);
 
-    t.test("Should convert a valid fervidex score into a dry score.", async (t) => {
-        const res = await ConverterIRFervidex(
-            baseFervidexScore,
-            { version: "27" },
-            "ir/fervidex",
-            logger
-        );
+	t.test("Should convert a valid fervidex score into a dry score.", async (t) => {
+		const res = await ConverterIRFervidex(
+			baseFervidexScore,
+			{ version: "27" },
+			"ir/fervidex",
+			logger
+		);
 
-        t.hasStrict(
-            res,
-            {
-                song: Testing511Song,
-                chart: Testing511SPA,
-                dryScore: baseDryScore,
-            } as any, // broken
-            "Should return a dry score."
-        );
+		t.hasStrict(
+			res,
+			{
+				song: Testing511Song,
+				chart: Testing511SPA,
+				dryScore: baseDryScore,
+			},
+			"Should return a dry score."
+		);
 
-        t.end();
-    });
+		t.end();
+	});
 
-    t.test("Should reject scores on unknown charts", (t) => {
-        t.rejects(
-            ConverterIRFervidex(
-                deepmerge(baseFervidexScore, { chart: "spl" }),
-                { version: "27" },
-                "ir/fervidex",
-                logger
-            ),
-            { message: /could not find chart/giu } as any
-        );
+	t.test("Should turn DP randoms into tuples.", async (t) => {
+		// lazily clone the SPA as a DPA.
 
-        t.end();
-    });
+		const Testing511DPA = deepmerge(Testing511SPA, {
+			playtype: "DP",
+			chartID: "dp_test",
+			data: { arcChartID: "dp_test" },
+		});
 
-    t.test("Should throw internal failure on chart-song desync", async (t) => {
-        await db.songs.iidx.remove({}); // this forces desync
+		await db.charts.iidx.insert(Testing511DPA);
 
-        t.rejects(
-            ConverterIRFervidex(baseFervidexScore, { version: "27" }, "ir/fervidex", logger),
-            { message: /Song 1 \(iidx\) has no parent song/giu } as any
-        );
+		// @ts-expect-error apparantly this prop isnt optional. but i'm sure it is.
+		delete Testing511DPA._id;
 
-        t.end();
-    });
+		const res = await ConverterIRFervidex(
+			deepmerge(baseFervidexScore, { option: { style_2p: "R_RANDOM" }, chart: "dpa" }),
+			{ version: "27" },
+			"ir/fervidex",
+			logger
+		);
 
-    t.test("Should throw invalid score on percent > 100.", (t) => {
-        t.rejects(
-            ConverterIRFervidex(
-                // @ts-expect-error eternally broken deepmerge
-                deepmerge(baseFervidexScore, { ex_score: 9999 }),
-                { version: "27" },
-                "ir/fervidex",
-                logger
-            ),
-            { message: /Invalid percent/giu } as any
-        );
+		t.hasStrict(
+			res,
+			{
+				song: Testing511Song,
+				chart: Testing511DPA,
+				dryScore: deepmerge(baseDryScore, {
+					scoreMeta: { random: ["RANDOM", "R-RANDOM"] },
+				}),
+			},
+			"Should return a dry score."
+		);
 
-        t.end();
-    });
+		t.end();
+	});
 
-    t.test("Should throw invalid score on gauge > 100.", (t) => {
-        t.rejects(
-            ConverterIRFervidex(
-                // @ts-expect-error eternally broken deepmerge
-                deepmerge(baseFervidexScore, { gauge: [150] }),
-                { version: "27" },
-                "ir/fervidex",
-                logger
-            ),
-            { message: /Invalid value of gauge 150/giu } as any
-        );
+	t.test("Should null BP if the user died pre-emptively.", async (t) => {
+		const res = await ConverterIRFervidex(
+			deepmerge(baseFervidexScore, { dead: { measure: 1, note: 10 } }),
+			{ version: "27" },
+			"ir/fervidex",
+			logger
+		);
 
-        t.end();
-    });
+		t.hasStrict(
+			res,
+			{
+				song: Testing511Song,
+				chart: Testing511SPA,
+				dryScore: deepmerge(baseDryScore, { scoreData: { hitMeta: { bp: null } } }),
+			},
+			"Should return a dry score."
+		);
 
-    t.test("Should convert undeflow gauge to null.", async (t) => {
-        const res = await ConverterIRFervidex(
-            deepmerge(baseFervidexScore, { gauge: [10, 5, 249, 248] }),
-            { version: "27" },
-            "ir/fervidex",
-            logger
-        );
+		t.end();
+	});
 
-        t.hasStrict(
-            res,
-            {
-                song: Testing511Song,
-                chart: Testing511SPA,
-                dryScore: deepmerge(baseDryScore, {
-                    scoreData: { hitMeta: { gauge: null, gaugeHistory: [10, 5, null, null] } },
-                }),
-            } as any, // broken
-            "Should return a dry score."
-        );
+	t.test("Should reject scores on unknown charts", (t) => {
+		t.rejects(
+			ConverterIRFervidex(
+				deepmerge(baseFervidexScore, { chart: "spl" }),
+				{ version: "27" },
+				"ir/fervidex",
+				logger
+			),
+			{ message: /could not find chart/giu }
+		);
 
-        t.end();
-    });
+		t.end();
+	});
 
-    t.end();
+	t.test("Should throw internal failure on chart-song desync", async (t) => {
+		await db.songs.iidx.remove({}); // this forces desync
+
+		t.rejects(
+			ConverterIRFervidex(baseFervidexScore, { version: "27" }, "ir/fervidex", logger),
+			{ message: /Song 1 \(iidx\) has no parent song/giu }
+		);
+
+		t.end();
+	});
+
+	t.test("Should throw invalid score on percent > 100.", (t) => {
+		t.rejects(
+			ConverterIRFervidex(
+				// @ts-expect-error eternally broken deepmerge
+				deepmerge(baseFervidexScore, { ex_score: 9999 }),
+				{ version: "27" },
+				"ir/fervidex",
+				logger
+			),
+			{ message: /Invalid percent/giu }
+		);
+
+		t.end();
+	});
+
+	t.test("Should throw invalid score on gauge > 100.", (t) => {
+		t.rejects(
+			ConverterIRFervidex(
+				// @ts-expect-error eternally broken deepmerge
+				deepmerge(baseFervidexScore, { gauge: [150] }),
+				{ version: "27" },
+				"ir/fervidex",
+				logger
+			),
+			{ message: /Invalid value of gauge 150/giu }
+		);
+
+		t.end();
+	});
+
+	t.test("Should convert undeflow gauge to null.", async (t) => {
+		const res = await ConverterIRFervidex(
+			deepmerge(baseFervidexScore, { gauge: [10, 5, 249, 248] }),
+			{ version: "27" },
+			"ir/fervidex",
+			logger
+		);
+
+		t.hasStrict(
+			res,
+			{
+				song: Testing511Song,
+				chart: Testing511SPA,
+				dryScore: deepmerge(baseDryScore, {
+					scoreData: { hitMeta: { gauge: null, gaugeHistory: [10, 5, null, null] } },
+				}),
+			},
+			"Should return a dry score."
+		);
+
+		t.end();
+	});
+
+	t.end();
 });
-
-t.teardown(CloseMongoConnection);

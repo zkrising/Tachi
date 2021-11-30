@@ -3,6 +3,4 @@ https://github.com/TypeStrong/ts-node
 
 They have only been tested for ts-node.
 
-npm install -g ts-node
-
-it's probably installed on the machine you're seeing this on, winter(?). love ya.
+pnpm install -g ts-node

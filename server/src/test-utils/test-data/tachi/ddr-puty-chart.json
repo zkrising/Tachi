@@ -1,0 +1,18 @@
+{
+	"rgcID": null,
+	"chartID": "48024d36bbe76c9fed09c3ffdc19412925d1efd3",
+	"difficulty": "DIFFICULT",
+	"songID": 10,
+	"playtype": "SP",
+	"levelNum": 6,
+	"level": "6",
+	"data": {
+		"inGameID": "puty",
+		"songHash": "DQlQ1DlPbq900oqdOo8l0d6I1lIOl99l",
+		"arcChartID": "BD_uIVl5USj"
+	},
+	"isPrimary": true,
+	"versions": [
+		"a"
+	]
+}

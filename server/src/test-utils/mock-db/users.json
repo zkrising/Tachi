@@ -1,23 +1,17 @@
 [
-    {
-        "username": "test_zkldi",
-        "usernameLowercase": "test_zkldi",
-        "password": "$2b$12$QRFCAxvFoNI2spszFPgt/e.qLy55GvYWlSHioa0AujRbFpChLwHmu",
-        "email": "thepasswordis@password.com",
-        "id": 1,
-        "settings": {
-            "nsfwSplashes": true,
-            "invisible": false
-        },
-        "friends": [],
-        "socialMedia": {},
-        "lastSeen": null,
-        "about": "test_user_not_real",
-        "customPfp": true,
-        "customBanner": true,
-        "permissions": {
-            "admin": true
-        },
-        "clan": null
-    }
+	{
+		"username": "test_zkldi",
+		"usernameLowercase": "test_zkldi",
+		"id": 1,
+		"socialMedia": {},
+		"joinDate": 123,
+		"lastSeen": 123,
+		"about": "test_user_not_real",
+		"status": "default status",
+		"customPfpLocation": null,
+		"customBannerLocation": null,
+		"clan": null,
+		"badges": [],
+		"authLevel": 3
+	}
 ]

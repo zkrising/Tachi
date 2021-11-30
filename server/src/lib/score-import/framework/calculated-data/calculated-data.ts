@@ -1,214 +1,291 @@
-import { AnyChartDocument, Game, Playtypes, ScoreDocument } from "kamaitachi-common";
-import { ratingParameters, lamps, clearLamp } from "kamaitachi-common/js/config";
+import db from "external/mongo/db";
+import { KtLogger } from "lib/logger/logger";
 import {
-    GetAllTierlistDataOfType,
-    GetDefaultTierlist,
-    GetOneTierlistData,
-} from "../../../../utils/tierlist";
-import { KtLogger } from "../../../logger/logger";
+	ChartDocument,
+	Game,
+	Grades,
+	IDStrings,
+	Lamps,
+	Playtypes,
+	ScoreDocument,
+} from "tachi-common";
+import { HasOwnProperty } from "utils/misc";
 import { DryScore } from "../common/types";
-import { CreateGameSpecific } from "./game-specific";
-import { CalculateCHUNITHMRating, CalculateGITADORARating } from "./game-specific-stats";
+import {
+	CalculateBPI,
+	CalculateCHUNITHMRating,
+	CalculateGITADORASkill,
+	CalculateKTLampRating,
+	CalculateKTRating,
+	CalculateMFCP,
+	CalculateVF6,
+} from "./stats";
 
 export async function CreateCalculatedData(
-    dryScore: DryScore,
-    chart: AnyChartDocument,
-    esd: number | null,
-    logger: KtLogger
+	dryScore: DryScore,
+	chart: ChartDocument,
+	esd: number | null,
+	logger: KtLogger
 ): Promise<ScoreDocument["calculatedData"]> {
-    const game = dryScore.game;
-    const playtype = chart.playtype;
+	const game = dryScore.game;
+	const playtype = chart.playtype;
 
-    const defaultTierlist = await GetDefaultTierlist(game, playtype);
-    const defaultTierlistID = defaultTierlist?.tierlistID; // tierlistID | undefined
+	const calculatedData = await CalculateDataForGamePT(
+		game,
+		playtype,
+		chart,
+		dryScore,
+		esd,
+		logger
+	);
 
-    const [rating, lampRating, gameSpecific] = await Promise.all([
-        CalculateRating(dryScore, game, playtype, chart, logger, defaultTierlistID),
-        CalculateLampRating(dryScore, game, playtype, chart, defaultTierlistID),
-        CreateGameSpecific(game, playtype, chart, dryScore, esd, logger),
-    ]);
-
-    return {
-        rating,
-        lampRating,
-        gameSpecific,
-    };
+	return calculatedData;
 }
 
-/**
- * Override the default rating function for a game with
- * something else.
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const OVERRIDE_RATING_FUNCTIONS: Partial<Record<Game, any>> = {
-    gitadora: {
-        Gita: CalculateGITADORARating,
-        Dora: CalculateGITADORARating,
-    },
-    chunithm: {
-        Single: CalculateCHUNITHMRating,
-    },
+type CalculatedDataFunctions = {
+	[G in Game]: {
+		[P in Playtypes[G]]: (
+			dryScore: DryScore,
+			chart: ChartDocument,
+			logger: KtLogger
+		) => Promise<ScoreDocument["calculatedData"]> | ScoreDocument["calculatedData"];
+	};
 };
 
-interface RatingParameters {
-    failHarshnessMultiplier: number;
-    pivotPercent: number;
-    clearExpMultiplier: number;
+const CalculatedDataFunctions: CalculatedDataFunctions = {
+	iidx: {
+		SP: CalculateDataIIDXSP,
+		DP: CalculateDataIIDXDP,
+	},
+	sdvx: {
+		Single: CalculateDataSDVXorUSC,
+	},
+	// popn: {
+	// 	"9B": () => ({}),
+	// },
+	museca: {
+		Single: CalculateDataMuseca,
+	},
+	chunithm: {
+		Single: CalculateDataCHUNITHM,
+	},
+	maimai: {
+		Single: CalculateDataMaimai,
+	},
+	gitadora: {
+		Gita: CalculateDataGitadora,
+		Dora: CalculateDataGitadora,
+	},
+	bms: {
+		"7K": CalculateDataBMS7K,
+		"14K": CalculateDataBMS14K,
+	},
+	ddr: {
+		SP: CalculateDataDDR,
+		DP: CalculateDataDDR,
+	},
+	// jubeat: {
+	// 	Single: CalculateDataJubeat,
+	// },
+	usc: {
+		Controller: CalculateDataSDVXorUSC,
+		Keyboard: CalculateDataSDVXorUSC,
+	},
+};
+
+// Creates Game-Specific calculatedData for the provided game & playtype.
+// eslint-disable-next-line require-await
+export async function CalculateDataForGamePT<G extends Game>(
+	game: G,
+	playtype: Playtypes[G],
+	chart: ChartDocument,
+	dryScore: DryScore,
+	// ESD gets specially passed through because it's not part of the DryScore, but
+	// can be used for statistics anyway.
+	esd: number | null,
+	logger: KtLogger
+): Promise<ScoreDocument["calculatedData"]> {
+	const GameRatingFns = CalculatedDataFunctions[game];
+
+	if (!HasOwnProperty(GameRatingFns, playtype)) {
+		logger.error(
+			`Invalid playtype of ${playtype} given for game ${game} in CalculateDataForGamePT, returning an empty object.`
+		);
+		return {};
+	}
+
+	// @ts-expect-error standard game->pt stuff.
+	return GameRatingFns[playtype](dryScore, chart, logger);
 }
 
-/**
- * Calculates the rating for a score. Listens to the override functions declared above.
- */
-export async function CalculateRating(
-    dryScore: DryScore,
-    game: Game,
-    playtype: Playtypes[Game],
-    chart: AnyChartDocument,
-    logger: KtLogger,
-    defaultTierlistID?: string
-) {
-    // @todo
-    const OverrideFunction: OverrideRatingFunction | undefined =
-        OVERRIDE_RATING_FUNCTIONS[game]?.[playtype];
+type CalculatedData<I extends IDStrings> = Required<ScoreDocument<I>["calculatedData"]>;
 
-    // If this game doesn't have a specific rating function declared, fall back to the default "generic" rating function.
-    // This is just a function that is guaranteed to work for all input - and therefore not result in lower-skilled users
-    // always seeing 0.
-    if (!OverrideFunction) {
-        const parameters = ratingParameters[dryScore.game];
+async function CalculateDataIIDXSP(
+	dryScore: DryScore,
+	chart: ChartDocument,
+	logger: KtLogger
+): Promise<CalculatedData<"iidx:SP">> {
+	const BPIData = await db["iidx-bpi-data"].findOne({
+		chartID: chart.chartID,
+	});
 
-        let levelNum = chart.levelNum;
+	let bpi;
 
-        if (defaultTierlistID) {
-            const tierlistData = await GetOneTierlistData(
-                game,
-                chart,
-                "score",
-                null,
-                defaultTierlistID
-            );
+	if (BPIData) {
+		bpi = CalculateBPI(
+			BPIData.kavg,
+			BPIData.wr,
+			dryScore.scoreData.score,
+			(chart as ChartDocument<"iidx:DP" | "iidx:SP">).data.notecount * 2,
+			BPIData.coef
+		);
 
-            if (tierlistData) {
-                levelNum = tierlistData.data.value;
-            }
-        }
+		// kesdc = esd === null ? null : CalculateKESDC(BPIData.kesd, esd); disabled
+	} else {
+		bpi = null;
+	}
 
-        return RatingCalcV1(dryScore.scoreData.percent, levelNum, parameters, logger);
-    }
-
-    return OverrideFunction(dryScore, chart);
+	return {
+		BPI: bpi,
+		ktRating: await CalculateKTRating(dryScore, "iidx", "SP", chart, logger),
+		ktLampRating: await CalculateKTLampRating(dryScore, "iidx", "SP", chart),
+	};
 }
 
-// Generic Rating Calc that is guaranteed to work for everything. This is unspecialised, and not great.
-function RatingCalcV1(
-    percent: number,
-    levelNum: number,
-    parameters: RatingParameters,
-    logger: KtLogger
-) {
-    const percentDiv100 = percent / 100;
+async function CalculateDataIIDXDP(
+	dryScore: DryScore,
+	chart: ChartDocument,
+	logger: KtLogger
+): Promise<CalculatedData<"iidx:DP">> {
+	const BPIData = await db["iidx-bpi-data"].findOne({
+		chartID: chart.chartID,
+	});
 
-    if (percentDiv100 < parameters.pivotPercent) {
-        return RatingCalcV0Fail(percentDiv100, levelNum, parameters);
-    }
+	let bpi;
 
-    return RatingCalcV1Clear(percentDiv100, levelNum, parameters, logger);
+	if (BPIData) {
+		bpi = CalculateBPI(
+			BPIData.kavg,
+			BPIData.wr,
+			dryScore.scoreData.score,
+			(chart as ChartDocument<"iidx:DP" | "iidx:SP">).data.notecount * 2,
+			BPIData.coef
+		);
+
+		// kesdc = esd === null ? null : CalculateKESDC(BPIData.kesd, esd); disabled
+	} else {
+		bpi = null;
+	}
+
+	return {
+		BPI: bpi,
+		ktRating: await CalculateKTRating(dryScore, "iidx", "DP", chart, logger),
+		ktLampRating: await CalculateKTLampRating(dryScore, "iidx", "DP", chart),
+	};
 }
 
-function RatingCalcV1Clear(
-    percentDiv100: number,
-    levelNum: number,
-    parameters: RatingParameters,
-    logger: KtLogger
-) {
-    // https://www.desmos.com/calculator/hn7uxjmjkc
+function CalculateDataSDVXorUSC(
+	dryScore: DryScore,
+	chart: ChartDocument,
+	logger: KtLogger
+): CalculatedData<"sdvx:Single" | "usc:Keyboard" | "usc:Controller"> {
+	// for usc, unofficial charts currently have no VF6 value.
+	if (
+		dryScore.game === "usc" &&
+		!(chart as ChartDocument<"usc:Controller" | "usc:Keyboard">).data.isOfficial
+	) {
+		return { VF6: null };
+	}
 
-    const rating =
-        Math.cosh(
-            parameters.clearExpMultiplier * levelNum * (percentDiv100 - parameters.pivotPercent)
-        ) +
-        (levelNum - 1);
+	const VF6 = CalculateVF6(
+		dryScore.scoreData.grade as Grades["sdvx:Single"],
+		dryScore.scoreData.lamp as Lamps["sdvx:Single"],
+		dryScore.scoreData.percent,
+		chart.levelNum,
+		logger
+	);
 
-    // checks for Infinity or NaN. I'm not sure how this would happen, but it's a failsafe.
-    if (!Number.isFinite(rating)) {
-        logger.warn(
-            `Percent: ${percentDiv100}, Level: ${levelNum} resulted in rating of ${rating}, which is invalid. Defaulting to 0.`
-        );
-        return 0;
-    } else if (rating > 1000) {
-        logger.warn(
-            `Percent: ${percentDiv100}, Level: ${levelNum} resulted in rating of ${rating}, which is invalid (> 1000). Defaulting to 0.`
-        );
-        return 0;
-    }
-
-    return rating;
+	return {
+		VF6,
+	};
 }
 
-function RatingCalcV0Fail(percentDiv100: number, levelNum: number, parameters: RatingParameters) {
-    // https://www.desmos.com/calculator/ngjie5elto
-    return (
-        percentDiv100 ** (parameters.failHarshnessMultiplier * levelNum) *
-        (levelNum / parameters.pivotPercent ** (parameters.failHarshnessMultiplier * levelNum))
-    );
+async function CalculateDataMuseca(
+	dryScore: DryScore,
+	chart: ChartDocument,
+	logger: KtLogger
+): Promise<CalculatedData<"museca:Single">> {
+	return {
+		ktRating: await CalculateKTRating(dryScore, "museca", "Single", chart, logger),
+	};
 }
 
-export async function CalculateLampRating(
-    dryScore: DryScore,
-    game: Game,
-    playtype: Playtypes[Game],
-    chart: AnyChartDocument,
-    defaultTierlistID?: string
-) {
-    // if no tierlist data
-    if (!defaultTierlistID) {
-        return LampRatingNoTierlistInfo(dryScore, game, chart);
-    }
-
-    const lampTierlistInfo = await GetAllTierlistDataOfType(game, chart, "lamp", defaultTierlistID);
-
-    // if no tierlist info
-    if (lampTierlistInfo.length === 0) {
-        return LampRatingNoTierlistInfo(dryScore, game, chart);
-    }
-
-    const userLampIndex = lamps[game].indexOf(dryScore.scoreData.lamp);
-
-    // if this score is a clear, the lowest we should go is the levelNum of the chart.
-    // Else, the lowest we can go is 0.
-    let lampRating = userLampIndex >= lamps[game].indexOf(clearLamp[game]) ? chart.levelNum : 0;
-
-    // why is this like this and not a lookup table?
-    // Some charts have higher values for *lower* lamps, such as
-    // one more lovely in IIDX being harder to NC than it is to HC!
-    // this means we have to iterate over all tierlist data, in general.
-    for (const tierlistData of lampTierlistInfo) {
-        if (
-            // this tierlistData has higher value than the current lampRating
-            tierlistData.data.value > lampRating &&
-            // and your clear is better than the lamp its for
-            lamps[game].indexOf(tierlistData.key!) <= userLampIndex
-        ) {
-            lampRating = tierlistData.data.value;
-        }
-    }
-
-    return lampRating;
+function CalculateDataCHUNITHM(
+	dryScore: DryScore,
+	chart: ChartDocument
+): CalculatedData<"chunithm:Single"> {
+	return {
+		rating: CalculateCHUNITHMRating(dryScore, chart),
+	};
 }
 
-function LampRatingNoTierlistInfo(dryScore: DryScore, game: Game, chart: AnyChartDocument) {
-    const CLEAR_LAMP_INDEX = lamps[game].indexOf(clearLamp[game]);
-
-    // if this is a clear
-    if (lamps[game].indexOf(dryScore.scoreData.lamp) >= CLEAR_LAMP_INDEX) {
-        // return this chart's numeric level as the lamp rating
-        return chart.levelNum;
-    }
-
-    // else, this score is worth 0.
-    return 0;
+async function CalculateDataMaimai(
+	dryScore: DryScore,
+	chart: ChartDocument,
+	logger: KtLogger
+): Promise<CalculatedData<"maimai:Single">> {
+	// @todo #373 Add maimai rating algorithms.
+	return {
+		ktRating: 0,
+	};
 }
 
-interface OverrideRatingFunction {
-    (dryScore: DryScore, chartData: AnyChartDocument): number | Promise<number>;
+function CalculateDataGitadora(
+	dryScore: DryScore,
+	chart: ChartDocument
+): CalculatedData<"gitadora:Gita" | "gitadora:Dora"> {
+	return {
+		skill: CalculateGITADORASkill(dryScore, chart),
+	};
 }
+
+async function CalculateDataDDR(
+	dryScore: DryScore,
+	chart: ChartDocument,
+	logger: KtLogger
+): Promise<CalculatedData<"ddr:SP" | "ddr:DP">> {
+	return {
+		MFCP: CalculateMFCP(dryScore, chart, logger),
+		ktRating: await CalculateKTRating(dryScore, "ddr", chart.playtype, chart, logger),
+	};
+}
+
+export async function CalculateDataBMS14K(
+	dryScore: DryScore,
+	chart: ChartDocument,
+	logger: KtLogger
+): Promise<CalculatedData<"bms:14K">> {
+	return {
+		sieglinde: 0, // @todo #33
+	};
+}
+
+export async function CalculateDataBMS7K(
+	dryScore: DryScore,
+	chart: ChartDocument,
+	logger: KtLogger
+): Promise<CalculatedData<"bms:7K">> {
+	return {
+		sieglinde: 0, // @todo #33
+	};
+}
+
+// async function CalculateDataJubeat(
+// 	dryScore: DryScore,
+// 	chart: ChartDocument,
+// 	logger: KtLogger
+// ): Promise<CalculatedData<"jubeat:Single">> {
+// 	return {
+// 		jubility: 0, // @todo #163 Jubeat Jubility
+// 	};
+// }

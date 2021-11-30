@@ -6,11 +6,11 @@
  * process.
  */
 export default class ScoreImportFatalError extends Error {
-    statusCode: number;
+	statusCode: number;
 
-    constructor(statusCode: number, description: string) {
-        super(description);
+	constructor(statusCode: number, description: string) {
+		super(description);
 
-        this.statusCode = statusCode;
-    }
+		this.statusCode = statusCode;
+	}
 }

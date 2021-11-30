@@ -1,0 +1,19 @@
+{
+	"service": "e-amusement",
+	"game": "iidx",
+	"scoreData": {
+		"score": 786,
+		"lamp": "CLEAR",
+		"percent": 50,
+		"grade": "C",
+		"judgements": {
+			"pgreat": 50,
+			"great": 10
+		},
+		"hitMeta": {}
+	},
+	"scoreMeta": {},
+	"timeAchieved": null,
+	"comment": null,
+	"importType": "iidx:eamusement-csv"
+}

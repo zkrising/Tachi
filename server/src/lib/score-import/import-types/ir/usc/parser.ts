@@ -1,51 +1,70 @@
-import { KtLogger } from "../../../../logger/logger";
-import { ChartDocument } from "kamaitachi-common";
+import { KtLogger } from "lib/logger/logger";
 import p, { PrudenceSchema } from "prudence";
-import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
-import { FormatPrError } from "../../../../../utils/prudence";
-import { USCClientScore } from "../../../../../server/router/ir/usc/usc";
+import { FormatPrError } from "utils/prudence";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
+import { ParserFunctionReturns } from "../../common/types";
 import { IRUSCContext } from "./types";
-import { ConverterIRUSC } from "./converter";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { Playtypes } from "tachi-common";
+import { USCClientScore } from "server/router/ir/usc/_playtype/types";
 
 const PR_USCIRScore: PrudenceSchema = {
-    score: p.isBoundedInteger(0, 10_000_000),
-    gauge: p.isBetween(0, 100),
-    timestamp: p.isPositiveInteger,
-    crit: p.isPositiveInteger,
-    near: p.isPositiveInteger,
-    error: p.isPositiveInteger,
-    options: {
-        gaugeType: p.isIn(0, 1),
-        mirror: "boolean",
-        random: "boolean",
-        autoFlags: p.isInteger,
-    },
+	score: p.isBoundedInteger(0, 10_000_000),
+	gauge: p.isBetween(0, 1),
+	timestamp: p.isPositiveInteger,
+	crit: p.isPositiveInteger,
+	near: p.isPositiveInteger,
+	error: p.isPositiveInteger,
+	early: p.optional(p.isPositiveInteger),
+	late: p.optional(p.isPositiveInteger),
+	combo: p.optional(p.isPositiveInteger),
+	options: {
+		gaugeType: p.isIn(0, 1),
+		mirror: "boolean",
+		random: "boolean",
+		autoFlags: p.isInteger,
+	},
+	windows: {
+		perfect: p.isPositive,
+		good: p.isPositive,
+		hold: p.isPositive,
+		miss: p.isPositive,
+		slam: p.isPositive,
+	},
 };
 
 export function ParseIRUSC(
-    body: Record<string, unknown>,
-    chart: ChartDocument<"usc:Single">,
-    logger: KtLogger
-): ParserFunctionReturnsSync<USCClientScore, IRUSCContext> {
-    const err = p(
-        body.score,
-        PR_USCIRScore,
-        {},
-        { throwOnNonObject: false, allowExcessKeys: true }
-    );
+	body: Record<string, unknown>,
+	chartHash: string,
+	playtype: Playtypes["usc"],
+	logger: KtLogger
+): ParserFunctionReturns<USCClientScore, IRUSCContext> {
+	const err = p(
+		body.score,
+		PR_USCIRScore,
+		{},
+		{ throwOnNonObject: false, allowExcessKeys: true }
+	);
 
-    if (err) {
-        throw new InvalidScoreFailure(FormatPrError(err, "Invalid USC Score."));
-    }
+	if (err) {
+		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid USC Score."));
+	}
 
-    return {
-        context: {
-            chart,
-        },
-        game: "usc",
-        iterable: [body.score] as USCClientScore[],
-        classHandler: null,
-        ConverterFunction: ConverterIRUSC,
-    };
+	const score = body.score as USCClientScore;
+
+	// Enforce null for this instead of undefined.
+	// This is because FJSH cannot handle undefined properly.
+	// Maybe fjsh should handle that, lol...
+	score.early ??= null;
+	score.late ??= null;
+	score.combo ??= null;
+
+	return {
+		context: {
+			chartHash,
+			playtype,
+		},
+		game: "usc",
+		iterable: [score] as USCClientScore[],
+		classHandler: null,
+	};
 }

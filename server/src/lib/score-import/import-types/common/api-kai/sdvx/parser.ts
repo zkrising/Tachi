@@ -1,27 +1,34 @@
-import { KtLogger } from "../../../../../logger/logger";
-import nodeFetch from "../../../../../../utils/fetch";
-import { KaiAuthDocument } from "kamaitachi-common";
-import { KaiContext } from "../types";
-import { ConvertAPIKaiSDVX } from "./converter";
+import { KtLogger } from "lib/logger/logger";
+import { KaiAuthDocument } from "tachi-common";
+import nodeFetch from "utils/fetch";
+import { ParserFunctionReturns } from "../../types";
+import { CreateKaiReauthFunction } from "../reauth";
 import { TraverseKaiAPI } from "../traverse-api";
-import { ParserFunctionReturnsAsync } from "../../types";
-import { EAG_API_URL, FLO_API_URL } from "../../../../../env/env";
+import { KaiContext } from "../types";
+import { KaiTypeToBaseURL } from "../utils";
+import { CreateKaiSDVXClassHandler } from "./class-handler";
 
-export function ParseKaiSDVX(
-    service: "FLO" | "EAG",
-    authDoc: KaiAuthDocument,
-    logger: KtLogger,
-    fetch = nodeFetch
-): ParserFunctionReturnsAsync<unknown, KaiContext> {
-    const baseUrl = service === "FLO" ? FLO_API_URL : EAG_API_URL;
+export async function ParseKaiSDVX(
+	service: "FLO" | "EAG" | "MIN",
+	authDoc: KaiAuthDocument,
+	logger: KtLogger,
+	fetch = nodeFetch
+): Promise<ParserFunctionReturns<unknown, KaiContext>> {
+	const baseUrl = KaiTypeToBaseURL(service);
 
-    return {
-        iterable: TraverseKaiAPI(baseUrl, "/api/sdvx/v1/play_history", authDoc, logger, fetch),
-        context: {
-            service,
-        },
-        classHandler: null,
-        game: "iidx",
-        ConverterFunction: ConvertAPIKaiSDVX,
-    };
+	return {
+		iterable: TraverseKaiAPI(
+			baseUrl,
+			"/api/sdvx/v1/play_history",
+			authDoc.token,
+			logger,
+			CreateKaiReauthFunction(service, authDoc, logger, fetch),
+			fetch
+		),
+		context: {
+			service,
+		},
+		classHandler: await CreateKaiSDVXClassHandler(service, authDoc.token, fetch),
+		game: "sdvx",
+	};
 }

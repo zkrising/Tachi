@@ -1,0 +1,334 @@
+/* eslint-disable no-await-in-loop */
+import { RequestHandler, Router } from "express";
+import p from "prudence";
+import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger";
+import prValidate from "server/middleware/prudence-validate";
+import { GetUserWithID } from "utils/user";
+import { ONE_MINUTE } from "lib/constants/time";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
+import { Game, UserAuthLevels } from "tachi-common";
+
+import db from "external/mongo/db";
+import { DeleteScore } from "lib/delete-scores/delete-scores";
+import { UpdateAllPBs } from "utils/calculations/recalc-scores";
+
+const logger = CreateLogCtx(__filename);
+
+const router: Router = Router({ mergeParams: true });
+
+const RequireAdminLevel: RequestHandler = async (req, res, next) => {
+	if (!req[SYMBOL_TachiAPIAuth].userID) {
+		return res.status(401).json({
+			success: false,
+			description: `You are not authenticated.`,
+		});
+	}
+
+	const userDoc = await GetUserWithID(req[SYMBOL_TachiAPIAuth].userID!);
+
+	if (!userDoc) {
+		logger.severe(
+			`Api Token ${req[SYMBOL_TachiAPIAuth].token} is assigned to ${req[SYMBOL_TachiAPIAuth].userID}, who does not exist?`
+		);
+
+		return res.status(500).json({
+			success: false,
+			description: `An internal error has occured.`,
+		});
+	}
+
+	if (userDoc.authLevel !== UserAuthLevels.ADMIN) {
+		return res.status(403).json({
+			success: false,
+			description: `You are not authorised to perform this.`,
+		});
+	}
+
+	return next();
+};
+
+const LOG_LEVEL = ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
+
+router.use(RequireAdminLevel);
+
+let currentLogLevelTimer: NodeJS.Timeout | null = null;
+
+/**
+ * Changes the current server log level to the provided `logLevel` in the request body.
+ *
+ * @param logLevel - The log level to change to.
+ * @param duration - The amount of minutes to wait before changing the log level back to the default.
+ * Defaults to 60 minutes.
+ * @param noReset - If true, do not ever reset this decision.
+ *
+ * @name POST /api/v1/admin/change-log-level
+ */
+router.post(
+	"/change-log-level",
+	prValidate({
+		logLevel: p.isIn("crit", "severe", "error", "warn", "info", "verbose", "debug"),
+		duration: p.optional(p.isPositiveNonZero),
+		noReset: p.optional("boolean"),
+	}),
+	(req, res) => {
+		const logLevel = GetLogLevel();
+		ChangeRootLogLevel(req.body.logLevel);
+
+		const duration = req.body.duration ?? 60;
+
+		if (currentLogLevelTimer) {
+			logger.verbose(`Removing last timer to reset log level to ${LOG_LEVEL}.`);
+			clearTimeout(currentLogLevelTimer);
+		}
+
+		logger.info(`Log level has been changed to ${req.body.level}.`);
+
+		if (!req.body.noReset) {
+			logger.info(`This will reset to "${LOG_LEVEL}" level in ${duration} minutes.`);
+
+			currentLogLevelTimer = setTimeout(() => {
+				logger.verbose(`Changing log level back to ${LOG_LEVEL}.`);
+				ChangeRootLogLevel(LOG_LEVEL);
+				logger.info(`Reset log level back to ${LOG_LEVEL}.`);
+			}, duration * ONE_MINUTE);
+		}
+
+		return res.status(200).json({
+			success: true,
+			description: `Changed log level from ${logLevel} to ${req.body.logLevel}.`,
+			body: {},
+		});
+	}
+);
+
+/**
+ * Resynchronises all PBs that match the given query or users.
+ *
+ * @param userIDs - Optionally, An array of integers of users to resync.
+ * @param filter - Optionally, the set of scores to resync.
+ *
+ * @name POST /api/v1/admin/resync-pbs
+ */
+router.post(
+	"/resync-pbs",
+	prValidate({
+		userIDs: p.optional([p.isPositiveInteger]),
+		filter: "*object",
+	}),
+	async (req, res) => {
+		await UpdateAllPBs(req.body.userIDs, req.body.filter);
+
+		return res.status(200).json({
+			success: true,
+			description: `Done.`,
+			body: {},
+		});
+	}
+);
+
+/**
+ * Removes the isPrimary status from a chart, and uncalcs all of
+ * its score data.
+ *
+ * @param chartID - The chartID to deprimarify.
+ * @param game - The game this chart is on.
+ * @param songID - Alternatively, this will deprimarify all charts for this songID.
+ *
+ * @name POST /api/v1/admin/deprimarify
+ */
+router.post(
+	"/deprimarify",
+	prValidate({
+		chartID: "*string",
+		game: p.isIn(TachiConfig.GAMES),
+		songID: p.optional(p.isPositiveNonZeroInteger),
+	}),
+	async (req, res) => {
+		const coll = db.charts[req.body.game as Game];
+
+		if (!req.body.chartID && !req.body.songID) {
+			return res.status(400).json({
+				success: false,
+				description: `Invalid request - need either chartID or songID.`,
+			});
+		}
+
+		let charts = [];
+
+		if (req.body.chartID) {
+			charts.push(await coll.findOne({ chartID: req.body.chartID }));
+		} else {
+			charts = await coll.find({ songID: req.body.songID });
+		}
+
+		for (const chart of charts) {
+			if (!chart) {
+				return res.status(404).json({
+					success: false,
+					description: `The chart ${req.body.chartID} does not exist.`,
+				});
+			}
+
+			const song = await db.songs[req.body.game as Game].findOne({
+				id: chart.songID,
+			});
+
+			if (!song) {
+				logger.severe(`Song-chart desync on ${chart.songID}.`);
+				return res.status(500).json({
+					success: false,
+					description: `S-C Desync.`,
+				});
+			}
+
+			logger.info(`Deprimarifying ${song.title} (${chart.chartID}).`);
+
+			await coll.update(
+				{
+					chartID: chart.chartID,
+				},
+				{
+					$set: {
+						isPrimary: false,
+					},
+				}
+			);
+
+			logger.info(`Emptying all calculated data for this chart.`);
+
+			await db.scores.update(
+				{ chartID: chart.chartID },
+				{
+					$set: {
+						calculatedData: {},
+					},
+				},
+				{
+					multi: true,
+				}
+			);
+
+			await db["personal-bests"].update(
+				{
+					chartID: chart.chartID,
+				},
+				{
+					$set: {
+						calculatedData: {},
+					},
+				},
+				{
+					multi: true,
+				}
+			);
+		}
+
+		return res.status(200).json({
+			success: true,
+			description: `Deprimarified.`,
+			body: {
+				charts,
+			},
+		});
+	}
+);
+
+/**
+ * Force Delete anyones score.
+ *
+ * @param scoreID - The scoreID to delete.
+ *
+ * @name POST /api/v1/admin/delete-score
+ */
+router.post("/delete-score", prValidate({ scoreID: "string" }), async (req, res) => {
+	const score = await db.scores.findOne({ scoreID: req.body.scoreID });
+
+	if (!score) {
+		return res.status(404).json({
+			success: false,
+			description: `This score does not exist.`,
+		});
+	}
+
+	await DeleteScore(score);
+
+	return res.status(200).json({
+		success: true,
+		description: `Removed score.`,
+		body: {},
+	});
+});
+
+/**
+ * Destroy a chart and all of its scores (and sessions).
+ *
+ * name @POST /api/v1/admin/destroy-chart
+ */
+router.post(
+	"/destroy-chart",
+	prValidate({ chartID: "string", game: p.isIn(TachiConfig.GAMES) }),
+	async (req, res) => {
+		const game: Game = req.body.game;
+		const chartID: string = req.body.chartID;
+		await db.charts[game].remove({
+			chartID,
+		});
+
+		const scores = await db.scores.find({
+			chartID,
+		});
+
+		const scoreIDs = scores.map((e) => e.scoreID);
+
+		await db.scores.remove({
+			scoreID: { $in: scoreIDs },
+		});
+
+		await db["personal-bests"].remove({
+			chartID,
+		});
+
+		const sessions = await db.sessions.find({
+			"scoreInfo.scoreID": { $in: scoreIDs },
+		});
+
+		for (const session of sessions) {
+			await db.sessions.update(
+				{
+					sessionID: session.sessionID,
+				},
+				{
+					$set: {
+						scoreInfo: session.scoreInfo.filter((e) => !scoreIDs.includes(e.scoreID)),
+					},
+				}
+			);
+		}
+
+		const imports = await db.imports.find({
+			scoreIDs: { $in: scoreIDs },
+		});
+
+		for (const imp of imports) {
+			await db.imports.update(
+				{
+					importID: imp.importID,
+				},
+				{
+					$set: {
+						scoreIDs: imp.scoreIDs.filter((e) => !scoreIDs.includes(e)),
+					},
+				}
+			);
+		}
+
+		return res.status(200).json({
+			success: true,
+			description: `Obliterated chart.`,
+			body: {},
+		});
+	}
+);
+
+export default router;

@@ -1,7 +1,8 @@
-import { KtLogger } from "../../../../logger/logger";
+import { KtLogger } from "lib/logger/logger";
+import { BatchManualScore } from "tachi-common";
 import { ParseBatchManualFromObject } from "../../common/batch-manual/parser";
-import { BatchManualContext, BatchManualScore } from "../../common/batch-manual/types";
-import { ParserFunctionReturnsSync } from "../../common/types";
+import { BatchManualContext } from "../../common/batch-manual/types";
+import { ParserFunctionReturns } from "../../common/types";
 
 /**
  * Parses an object of BATCH-MANUAL data.
@@ -9,10 +10,10 @@ import { ParserFunctionReturnsSync } from "../../common/types";
  * @param body - The request body that made this file import request.
  */
 function ParseDirectManual(
-    body: Record<string, unknown>,
-    logger: KtLogger
-): ParserFunctionReturnsSync<BatchManualScore, BatchManualContext> {
-    return ParseBatchManualFromObject(body, "ir/direct-manual", logger);
+	body: Record<string, unknown>,
+	logger: KtLogger
+): ParserFunctionReturns<BatchManualScore, BatchManualContext> {
+	return ParseBatchManualFromObject(body, "ir/direct-manual", logger);
 }
 
 export default ParseDirectManual;

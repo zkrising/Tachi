@@ -1,40 +1,36 @@
-import { PrivateUserDocument } from "kamaitachi-common";
-import db from "../../src/db/db";
+import db from "external/mongo/db";
+import { PublicUserDocument, UserAuthLevels } from "tachi-common";
 import MigrateRecords from "./migrate";
 
-function ConvertFn(c: any): PrivateUserDocument {
-    const newUserDoc: PrivateUserDocument = {
-        username: c.username,
-        usernameLowercase: c.username.toLowerCase(),
-        about: c.about,
-        clan: c.clan,
-        customBanner: c.custombanner,
-        customPfp: c.custompfp,
-        email: c.email,
-        friends: c.friends,
-        id: c.id,
-        lastSeen: c.lastSeen,
-        password: c.password,
-        permissions: {},
-        settings: {
-            invisible: !!c.settings.invisible,
-            nsfwSplashes: !!c.settings.nsfwsplashes,
-        },
-        socialMedia: {
-            discord: c.socialmedia.discord || null,
-            twitter: c.socialmedia.twitter || null,
-            youtube: c.socialmedia.youtube || null,
-            twitch: c.socialmedia.twitch || null,
-            github: c.socialmedia.github || null,
-            steam: c.socialmedia.steam || null,
-        },
-    };
+function ConvertFn(c: any): PublicUserDocument {
+	const newUserDoc: PublicUserDocument = {
+		username: c.username,
+		usernameLowercase: c.username.toLowerCase(),
+		about: c.about,
+		clan: c.clan,
+		customBannerLocation: null,
+		customPfpLocation: null,
+		id: c.id,
+		lastSeen: c.lastSeen,
+		socialMedia: {
+			discord: c.socialmedia.discord || null,
+			twitter: c.socialmedia.twitter || null,
+			youtube: c.socialmedia.youtube || null,
+			twitch: c.socialmedia.twitch || null,
+			github: c.socialmedia.github || null,
+			steam: c.socialmedia.steam || null,
+		},
+		joinDate: 0,
+		authLevel: UserAuthLevels.USER,
+		status: null,
+		badges: ["beta"],
+	};
 
-    return newUserDoc;
+	return newUserDoc;
 }
 
 (async () => {
-    await MigrateRecords(db.users, "users", ConvertFn);
+	await MigrateRecords(db.users, "users", ConvertFn);
 
-    process.exit(0);
+	process.exit(0);
 })();

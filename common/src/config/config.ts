@@ -298,7 +298,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
-		gradeBoundaries: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
+		// IIDX has some unhinged grade boundaries...
+		// prettier-ignore
+		gradeBoundaries: [0, 2/9, 3/9, 4/9, 5/9, 6/9, 7/9, 8/9, 17/18, 9/9],
 
 		lamps: [
 			"NO PLAY",
@@ -469,7 +471,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
-		gradeBoundaries: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
+		// prettier-ignore
+		gradeBoundaries: [0, 2/9, 3/9, 4/9, 5/9, 6/9, 7/9, 8/9, 17/18, 9/9],
 
 		lamps: [
 			"NO PLAY",

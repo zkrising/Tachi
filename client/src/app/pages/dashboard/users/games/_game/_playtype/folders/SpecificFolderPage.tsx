@@ -11,6 +11,7 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { useFormik } from "formik";
+import { nanoid } from "nanoid";
 import React, { useEffect, useMemo, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
@@ -491,81 +492,101 @@ function TierlistInfoLadder({
 
 	return (
 		<Row className="text-center">
-			{buckets.map((bucket, i) => (
-				<React.Fragment key={i}>
+			{buckets.map(bucket => (
+				<React.Fragment key={bucket[0].data.value ?? nanoid()}>
 					<Col className="ladder-header" xs={12}>
 						{bucket[0].data.value}
 					</Col>
 
-					{bucket.map((tierlistInfo, i) => {
-						const data = dataMap.get(tierlistInfo.chartID)!;
-
-						const lastKey = bucket[i - 1];
-
-						let statusClass;
-
-						switch (tierlistInfo.achieved) {
-							case AchievedStatuses.ACHIEVED:
-								statusClass = "achieved";
-								break;
-							case AchievedStatuses.FAILED:
-								statusClass = "unachieved";
-								break;
-							case AchievedStatuses.NOT_PLAYED:
-							case AchievedStatuses.SCORE_BASED:
-								statusClass = "";
-						}
-
-						return (
-							<>
-								{lastKey && lastKey.key !== tierlistInfo.key && (
-									<Col xl={12} className="my-2" />
-								)}
-								<Col
-									className={`ladder-element ${
-										i % 12 < 6 ? "ladder-element-dark" : ""
-									} ladder-element-${statusClass}`}
-									key={tierlistInfo.chartID}
-									xs={6}
-									sm={6}
-									md={4}
-									lg={3}
-									xl={2}
-								>
-									<Link className="gentle-link" to={CreateChartLink(data, game)}>
-										{data.__related.song.title}
-									</Link>{" "}
-									{FormatDifficultyShort(data, game)}
-									<Divider className="my-2" />
-									{tierlistInfo.key} ({tierlistInfo.data.text})
-									{tierlistInfo.data.individualDifference && (
-										<>
-											<br />
-
-											<div className="mt-1">
-												<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
-													<span>
-														<Icon type="balance-scale-left" />
-													</span>
-												</QuickTooltip>
-											</div>
-										</>
-									)}
-									<Divider className="my-2" />
-									<Muted>
-										{tierlistInfo.achieved === AchievedStatuses.NOT_PLAYED
-											? "Not Played"
-											: tierlistInfo.achieved === AchievedStatuses.SCORE_BASED
-											? `You have: ${data.__related.pb!.scoreData.grade}`
-											: `You have: ${data.__related.pb!.scoreData.lamp}`}
-									</Muted>
-								</Col>
-							</>
-						);
-					})}
+					{bucket.map((tierlistInfo, i) => (
+						<TierlistInfoBucketValues
+							tierlistInfo={tierlistInfo}
+							key={`${tierlistInfo.chartID}-${tierlistInfo.key}`}
+							game={game}
+							dataMap={dataMap}
+							bucket={bucket}
+							i={i}
+						/>
+					))}
 				</React.Fragment>
 			))}
 		</Row>
+	);
+}
+
+function TierlistInfoBucketValues({
+	tierlistInfo,
+	game,
+	dataMap,
+	bucket,
+	i,
+}: {
+	tierlistInfo: TierlistInfo;
+	bucket: TierlistInfo[];
+	dataMap: Map<string, FolderDataset[0]>;
+	game: Game;
+	i: integer;
+}) {
+	const data = dataMap.get(tierlistInfo.chartID)!;
+
+	const lastKey = bucket[i - 1];
+
+	let statusClass;
+
+	switch (tierlistInfo.achieved) {
+		case AchievedStatuses.ACHIEVED:
+			statusClass = "achieved";
+			break;
+		case AchievedStatuses.FAILED:
+			statusClass = "unachieved";
+			break;
+		case AchievedStatuses.NOT_PLAYED:
+		case AchievedStatuses.SCORE_BASED:
+			statusClass = "";
+	}
+
+	return (
+		<>
+			{lastKey && lastKey.key !== tierlistInfo.key && <Col xl={12} className="my-2" />}
+			<Col
+				className={`ladder-element ${
+					i % 12 < 6 ? "ladder-element-dark" : ""
+				} ladder-element-${statusClass}`}
+				xs={6}
+				sm={6}
+				md={4}
+				lg={3}
+				xl={2}
+			>
+				<Link className="gentle-link" to={CreateChartLink(data, game)}>
+					{data.__related.song.title}
+				</Link>{" "}
+				{FormatDifficultyShort(data, game)}
+				<Divider className="my-2" />
+				{tierlistInfo.key} ({tierlistInfo.data.text})
+				{tierlistInfo.data.individualDifference && (
+					<>
+						<br />
+
+						<div className="mt-1">
+							<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
+								<span>
+									<Icon type="balance-scale-left" />
+								</span>
+							</QuickTooltip>
+						</div>
+					</>
+				)}
+				<Divider className="my-2" />
+				<Muted>
+					{tierlistInfo.achieved === AchievedStatuses.NOT_PLAYED
+						? "Not Played"
+						: tierlistInfo.achieved === AchievedStatuses.SCORE_BASED
+						? `You have: ${data.__related.pb!.scoreData.grade}`
+						: `You have: ${data.__related.pb!.scoreData.lamp}`}
+				</Muted>
+			</Col>
+		</>
 	);
 }
 

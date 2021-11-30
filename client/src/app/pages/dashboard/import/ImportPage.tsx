@@ -133,13 +133,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 		);
 	} else if (game === "sdvx") {
 		Content.unshift(
-			<ImportInfoCard
-				name="Barbatos"
-				href="barbatos"
-				desc="Automatically import scores, whenever you get them!"
-				moreInfo="This is the recommended way to import SDVX scores, as it provides high quality data in real-time."
-				key="Barbatos"
-			/>,
+			// <ImportInfoCard
+			// 	name="Barbatos"
+			// 	href="barbatos"
+			// 	desc="Automatically import scores, whenever you get them!"
+			// 	moreInfo="This is the recommended way to import SDVX scores, as it provides high quality data in real-time."
+			// 	key="Barbatos"
+			// />,
 			// <ImportInfoCard
 			// 	name="Konaste Hook"
 			// 	href="ks-hook"

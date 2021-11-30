@@ -91,7 +91,7 @@ export default function ARCImportPage({ game }: { game: "sdvx" | "iidx" }) {
 					</Link>
 				) : (
 					<Link style={{ color: "purple" }} to="/dashboard/import/barbatos">
-						Barbatos
+						Barbatos (Although it's not supported yet, sorry.)
 					</Link>
 				)}{" "}
 				instead.

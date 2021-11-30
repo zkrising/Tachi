@@ -21,7 +21,10 @@ export default function BarbatosPage() {
 			<ol className="instructions-list">
 				<li>
 					Download <code>barbatos.dll</code> from{" "}
-					<ExternalLink href="https://client.fervidex.net/latest.zip">here</ExternalLink>.
+					<ExternalLink href="#">
+						here (No download yet. Barbatos is not supported.)
+					</ExternalLink>
+					.
 				</li>
 				<li>
 					Download your config file{" "}

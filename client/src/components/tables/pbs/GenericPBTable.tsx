@@ -1,25 +1,21 @@
 import React from "react";
-import { Game, GetGamePTConfig, PublicUserDocument } from "tachi-common";
+import { Game, GetGamePTConfig } from "tachi-common";
 import { PBDataset } from "types/tables";
 import { Playtype } from "types/tachi";
-import { NumericSOV, StrSOV } from "util/sorts";
-import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
+import { UppercaseFirst } from "util/misc";
+import { NumericSOV } from "util/sorts";
 import { CreateDefaultPBSearchParams } from "util/tables/create-search";
 import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
-import DifficultyCell from "../cells/DifficultyCell";
 import IndexCell from "../cells/IndexCell";
-import IndicatorsCell from "../cells/IndicatorsCell";
 import LampCell from "../cells/LampCell";
 import RankingCell from "../cells/RankingCell";
 import RatingCell from "../cells/RatingCell";
 import ScoreCell from "../cells/ScoreCell";
 import TimestampCell from "../cells/TimestampCell";
-import TitleCell from "../cells/TitleCell";
 import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
-import IndicatorHeader from "../headers/IndicatorHeader";
 import PBLeadingRows from "./PBLeadingRows";
 
 export default function GenericPBTable({
@@ -52,8 +48,8 @@ export default function GenericPBTable({
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
 		[
-			gptConfig.defaultScoreRatingAlg,
-			gptConfig.defaultScoreRatingAlg,
+			UppercaseFirst(gptConfig.defaultScoreRatingAlg),
+			UppercaseFirst(gptConfig.defaultScoreRatingAlg),
 			NumericSOV(x => x.calculatedData[gptConfig.defaultScoreRatingAlg] ?? -Infinity),
 		],
 		["Site Ranking", "Site Rank", NumericSOV(x => x.rankingData.rank)],

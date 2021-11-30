@@ -4,6 +4,7 @@ import ExternalLink from "components/util/ExternalLink";
 import Muted from "components/util/Muted";
 import { TachiConfig } from "lib/config";
 import React from "react";
+import { Alert } from "react-bootstrap";
 import { ToServerURL } from "util/api";
 
 export default function USCIRPage() {
@@ -15,12 +16,30 @@ export default function USCIRPage() {
 			<ol className="instructions-list">
 				<li>Open USC.</li>
 				<li>Open Settings, and go to Online.</li>
+				<Divider />
+				<h3>
+					<b>If you play on an Arcade Size Controller</b>
+				</h3>
 				<li>
-					Fill out IR Base URL with <code>{ToServerURL("/ir/usc")}</code>.
+					Fill out IR Base URL with <code>{ToServerURL("/ir/usc/Controller")}</code>.
 				</li>
+				<h3 className="mt-4">
+					<b>If you play on Keyboard or Pocket Voltex</b>
+				</h3>
 				<li>
-					Grab an API Token from <ExternalLink>here</ExternalLink>, and place it in the
-					API Token field.
+					Fill out IR Base URL with <code>{ToServerURL("/ir/usc/Keyboard")}</code>.
+				</li>
+				<Alert variant="danger" className="mt-4">
+					You <b>MUST</b> select the right IR! These leaderboards are separated because it
+					is unfair to compare the two input devices.
+					<br />
+					<b>DELIBERATELY SELECTING THE WRONG IR WILL RESULT IN A PERMANENT BAN!</b>
+				</Alert>
+				<Divider />
+				<li>
+					Grab an API Token from{" "}
+					<ExternalLink href="/client-file-flow/CXUSCIR">here</ExternalLink>, and place it
+					in the API Token field.
 				</li>
 				<li>That's it! Your scores will now automatically upload to the server.</li>
 			</ol>

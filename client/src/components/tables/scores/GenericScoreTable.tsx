@@ -2,11 +2,13 @@ import React from "react";
 import { Game, GetGamePTConfig, integer, PublicUserDocument } from "tachi-common";
 import { ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
+import { UppercaseFirst } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { CreateDefaultScoreSearchParams } from "util/tables/create-search";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
 import TimestampCell from "../cells/TimestampCell";
+import TitleCell from "../cells/TitleCell";
 import UserCell from "../cells/UserCell";
 import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
@@ -41,8 +43,8 @@ export default function GenericScoreTable({
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
 		[
-			gptConfig.defaultScoreRatingAlg,
-			gptConfig.defaultScoreRatingAlg,
+			UppercaseFirst(gptConfig.defaultScoreRatingAlg),
+			UppercaseFirst(gptConfig.defaultScoreRatingAlg),
 			NumericSOV(x => x.calculatedData[gptConfig.defaultScoreRatingAlg] ?? 0),
 		],
 		["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
@@ -101,6 +103,12 @@ function Row({
 			{userCol && <UserCell game={sc.game} playtype={sc.playtype} user={sc.__related.user} />}
 			<DifficultyCell chart={sc.__related.chart} game={sc.game} />
 			<IndicatorsCell highlight={scoreState.highlight} />
+			<TitleCell
+				song={sc.__related.song}
+				comment={sc.comment}
+				chart={sc.__related.chart}
+				game={sc.game}
+			/>
 			<GenericScoreCoreCells sc={sc} showScore={showScore} />
 			<TimestampCell time={sc.timeAchieved} service={sc.service} />
 		</DropdownRow>

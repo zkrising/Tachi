@@ -15,6 +15,7 @@ import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
+import { BackgroundContext } from "context/BackgroundContext";
 import { UGPTSettingsContext, UGPTSettingsContextProvider } from "context/UGPTSettingsContext";
 import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
@@ -32,17 +33,20 @@ import {
 } from "tachi-common";
 import { SongsReturn } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
-import { APIFetchV1 } from "util/api";
+import { APIFetchV1, ToCDNURL } from "util/api";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
 import { ChangeOpacity } from "util/color-opacity";
 import { NumericSOV } from "util/sorts";
 
 export default function GameRoutes() {
 	const { game } = useParams<{ game: string }>();
+	const { setBackground } = useContext(BackgroundContext);
 
 	if (!IsSupportedGame(game)) {
 		return <ErrorPage statusCode={404} customMessage={`The game ${game} is not supported.`} />;
 	}
+
+	setBackground(ToCDNURL(`/game-banners/${game}`));
 
 	const gameConfig = GetGameConfig(game);
 
@@ -242,11 +246,11 @@ function SongInfoHeader({
 					justifyContent: "space-evenly",
 				}}
 			>
-				{imgShow && (
+				{imgShow && "displayVersion" in song.data && (
 					<Col xs={12} lg={3} className="text-center">
 						<img
-							src="https://kamaitachi.xyz/static/images/gameicons/iidx/18z.png"
-							onError={() => setImgShow(false)}
+							src={ToCDNURL(`/game-icons/${game}/${song.data.displayVersion}`)}
+							// onError={() => seetImgShow(false)}
 							className="w-100"
 						/>
 					</Col>

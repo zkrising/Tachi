@@ -1,12 +1,12 @@
 import {
-	IDStrings,
-	PBScoreDocument,
 	ChartDocument,
-	SongDocument,
+	IDStrings,
 	IDStringToGame,
 	integer,
-	ScoreDocument,
+	PBScoreDocument,
 	PublicUserDocument,
+	ScoreDocument,
+	SongDocument,
 	UserGameStats,
 } from "tachi-common";
 

@@ -1,6 +1,6 @@
+import deepmerge from "deepmerge";
 import { useMemo, useState } from "react";
 import { integer } from "tachi-common";
-import deepmerge from "deepmerge";
 
 export type ZTableSortFn<D> = (a: D, b: D) => integer;
 export type ZTableSearchFn<D> = (search: string, data: D) => boolean;
@@ -93,7 +93,7 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 		return `Displaying ${(page - 1) * pageLen + 1} to ${Math.min(
 			page * pageLen,
 			dataset.length
-		)} of ${dataset.length} ${entryName.toLowerCase()}${
+		)} of ${dataset.length} ${entryName}${
 			search !== "" ? ` (Filtered from ${originalDataset.length})` : ""
 		}.`;
 	}, [page, dataset]);
@@ -137,5 +137,6 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 		sortMode,
 		changeSort,
 		reverseSort,
+		filteredDataset: dataset,
 	};
 }

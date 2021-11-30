@@ -2,7 +2,7 @@ import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import DebugContent from "components/util/DebugContent";
 import React from "react";
-import { GetGameConfig, FormatGame, GetGamePTConfig } from "tachi-common";
+import { FormatGame, GetGameConfig, GetGamePTConfig } from "tachi-common";
 import { GamePT } from "types/react";
 
 export default function GPTDevInfo({ game, playtype }: GamePT) {

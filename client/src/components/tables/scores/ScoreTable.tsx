@@ -1,12 +1,12 @@
 import React from "react";
+import { integer } from "tachi-common";
 import { GamePT } from "types/react";
 import { ScoreDataset } from "types/tables";
-import { PublicUserDocument, integer } from "tachi-common";
-import IIDXScoreTable from "./IIDXScoreTable";
 import BMSScoreTable from "./BMSScoreTable";
-import SDVXScoreTable from "./SDVXScoreTable";
 import GenericScoreTable from "./GenericScoreTable";
+import IIDXScoreTable from "./IIDXScoreTable";
 import MusecaScoreTable from "./MusecaScoreTable";
+import SDVXLikeScoreTable from "./SDVXLikeScoreTable";
 
 export default function ScoreTable({
 	dataset,
@@ -25,13 +25,13 @@ export default function ScoreTable({
 	// and assume we just won't make a mistake.
 	// ever.
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const props = { dataset, indexCol, playtype, pageLen, userCol } as any;
+	const props = { dataset, indexCol, playtype, pageLen, userCol, game } as any;
 	if (game === "iidx") {
 		return <IIDXScoreTable {...props} />;
 	} else if (game === "bms") {
 		return <BMSScoreTable {...props} />;
 	} else if (game === "sdvx" || game === "usc") {
-		return <SDVXScoreTable {...props} />;
+		return <SDVXLikeScoreTable {...props} />;
 	} else if (game === "maimai") {
 		return <GenericScoreTable {...props} game={game} playtype={playtype} showScore={false} />;
 	} else if (game === "museca") {

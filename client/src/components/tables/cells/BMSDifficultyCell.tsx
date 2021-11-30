@@ -1,7 +1,7 @@
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import React from "react";
-import { ChartDocument, Game, COLOUR_SET } from "tachi-common";
+import { ChartDocument, COLOUR_SET } from "tachi-common";
 import { ChangeOpacity } from "util/color-opacity";
 import { FormatBMSTables } from "util/misc";
 import TierlistInfoPart from "./TierlistInfoPart";

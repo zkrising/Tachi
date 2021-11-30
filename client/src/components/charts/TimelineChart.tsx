@@ -64,7 +64,7 @@ export default function TimelineChart({
 			<div className="d-block d-md-none" style={{ height: mobileHeight, width: mobileWidth }}>
 				<ResponsiveLine
 					data={data}
-					margin={{ top: 30, bottom: 50, left: 30, right: 0 }}
+					margin={{ top: 30, bottom: 50, left: 40, right: 0 }}
 					xScale={{ type: "time", format: "%Q" }}
 					xFormat="time:%Q"
 					axisBottom={axisBottom}
@@ -86,7 +86,7 @@ export default function TimelineChart({
 			<div className="d-none d-md-block" style={{ height, width }}>
 				<ResponsiveLine
 					data={data}
-					margin={{ top: 30, bottom: 50, left: 50, right: 50 }}
+					margin={{ top: 30, bottom: 50, left: 60, right: 50 }}
 					xScale={{ type: "time", format: "%Q" }}
 					xFormat="time:%Q"
 					axisBottom={axisBottom}

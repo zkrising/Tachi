@@ -1,15 +1,16 @@
-import { Playtype } from "types/tachi";
+import toast from "react-hot-toast";
+import { useHistory } from "react-router-dom";
 import {
-	GetGamePTConfig,
+	APIPermissions,
+	ChartDocument,
 	Game,
-	ScoreCalculatedDataLookup,
+	GamePTConfig,
+	GetGamePTConfig,
 	IDStrings,
 	integer,
-	ChartDocument,
-	GamePTConfig,
-	APIPermissions,
+	ScoreCalculatedDataLookup,
 } from "tachi-common";
-import toast from "react-hot-toast";
+import { Playtype } from "types/tachi";
 
 export function RFA<T>(arr: T[]): T {
 	return arr[Math.floor(Math.random() * arr.length)];
@@ -163,7 +164,10 @@ export function SelectRightChart(
 
 export function CopyToClipboard(data: unknown) {
 	toast.success("Copied data to clipboard.");
-	navigator.clipboard.writeText(JSON.stringify(data, null, "\t"));
+
+	const str = typeof data === "string" ? data : JSON.stringify(data, null, "\t");
+
+	navigator.clipboard.writeText(str);
 }
 
 export const allPermissions: APIPermissions[] = [
@@ -179,5 +183,17 @@ export function WrapError<T>(fn: () => T, errMsg: string) {
 		return fn();
 	} catch (err) {
 		throw new Error(errMsg);
+	}
+}
+
+export function Sleep(ms: number) {
+	return new Promise<void>(resolve => setTimeout(() => resolve(), ms));
+}
+
+export function HistorySafeGoBack(history: ReturnType<typeof useHistory>) {
+	if (history.length === 1) {
+		history.replace("/");
+	} else {
+		history.goBack();
 	}
 }

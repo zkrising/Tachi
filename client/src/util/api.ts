@@ -1,4 +1,3 @@
-import toast from "react-hot-toast";
 import { SuccessfulAPIResponse, UnsuccessfulAPIResponse } from "tachi-common";
 import { HumaniseError } from "./humanise-error";
 import { SendErrorToast, SendSuccessToast } from "./toaster";

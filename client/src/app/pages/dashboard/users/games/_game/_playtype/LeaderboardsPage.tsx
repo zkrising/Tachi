@@ -12,7 +12,6 @@ import {
 	COLOUR_SET,
 	FormatGame,
 	GetGameConfig,
-	GetGamePTConfig,
 	IDStrings,
 	integer,
 	PublicUserDocument,
@@ -105,7 +104,7 @@ function LeaderboardsPageContent({
 	// hack - we aren't returned from this api call for some reason.
 	userMap.set(reqUser.id, reqUser);
 
-	const bestNearbyUser = stats.thisUsersRanking.ranking - stats.above.length;
+	const bestNearbyUser = stats.thisUsersRanking.ranking - stats.above.length - 1;
 
 	function LeaderboardRow({ s, i }: { s: UserGameStats; i: integer }) {
 		return (
@@ -164,7 +163,7 @@ function LeaderboardsPageContent({
 		>
 			<MiniTable className="text-center" headers={["Position", "User", alg, "Classes"]}>
 				<>
-					{bestNearbyUser > 1 &&
+					{bestNearbyUser >= 1 &&
 						leaderboard.gameStats
 							.slice(0, bestNearbyUser)
 							.map((s, i) => <LeaderboardRow key={s.userID} s={s} i={i + 1} />)}

@@ -1,11 +1,13 @@
 import { useSessionRatingAlg } from "components/util/useScoreRatingAlg";
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
 	Game,
 	GetGamePTConfig,
 	IDStrings,
 	integer,
+	PublicUserDocument,
 	SessionCalculatedDataLookup,
 	SessionDocument,
 } from "tachi-common";
@@ -25,11 +27,13 @@ export type SessionDataset = (SessionDocument & { __related: { index: integer } 
 export default function GenericSessionTable({
 	dataset,
 	indexCol = false,
+	reqUser,
 	game,
 	playtype,
 }: {
 	dataset: SessionDataset;
 	indexCol?: boolean;
+	reqUser: PublicUserDocument;
 	game: Game;
 	playtype: Playtype;
 }) {
@@ -84,7 +88,15 @@ export default function GenericSessionTable({
 				timestamp: x => x.timeStarted,
 				[alg]: x => x.calculatedData[alg] ?? 0,
 			}}
-			rowFunction={s => <Row data={s} key={s.sessionID} rating={alg} indexCol={indexCol} />}
+			rowFunction={s => (
+				<Row
+					reqUser={reqUser}
+					data={s}
+					key={s.sessionID}
+					rating={alg}
+					indexCol={indexCol}
+				/>
+			)}
 		/>
 	);
 }
@@ -92,12 +104,14 @@ export default function GenericSessionTable({
 function Row({
 	data,
 	rating,
+	reqUser,
 	indexCol = false,
 }: // reqUser,
 {
 	data: SessionDataset[0];
 	// reqUser: PublicUserDocument;
 	rating: SessionCalculatedDataLookup[IDStrings];
+	reqUser: PublicUserDocument;
 	indexCol?: boolean;
 }) {
 	const [highlight, setHighlight] = useState(data.highlight);
@@ -106,13 +120,18 @@ function Row({
 	const sessionState = { highlight, desc, setHighlight, setDesc };
 
 	return (
-		<DropdownRow
+		<tr
 			className={highlight ? "highlighted-row" : ""}
-			dropdown={<GenericSessionDropdown data={data} />}
+			// dropdown={<GenericSessionDropdown data={data} />}
 		>
 			{indexCol && <IndexCell index={data.__related.index} />}
 			<td style={{ minWidth: "140px" }}>
-				{data.name}
+				<Link
+					to={`/dashboard/users/${reqUser.username}/games/${data.game}/${data.playtype}/sessions/${data.sessionID}`}
+					className="gentle-link"
+				>
+					{data.name}
+				</Link>
 				<br />
 				<small className="text-muted">{desc}</small>
 			</td>
@@ -130,6 +149,6 @@ function Row({
 				<br />
 				<small className="text-muted">{FormatTime(data.timeStarted)}</small>
 			</td>
-		</DropdownRow>
+		</tr>
 	);
 }

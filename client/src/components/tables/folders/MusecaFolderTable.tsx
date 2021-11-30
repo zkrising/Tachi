@@ -4,7 +4,6 @@ import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { CreateDefaultFolderSearchParams } from "util/tables/create-search";
-import BMSDifficultyCell from "../cells/BMSDifficultyCell";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
 import RankingCell from "../cells/RankingCell";
@@ -14,9 +13,7 @@ import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
-import BMSScoreCoreCells from "../game-core-cells/BMSScoreCoreCells";
 import MusecaScoreCoreCells from "../game-core-cells/MusecaScoreCoreCells";
-import SDVXScoreCoreCells from "../game-core-cells/SDVXCoreCells";
 import { FolderIndicatorHeader } from "../headers/IndicatorHeader";
 
 export default function MusecaFolderTable({

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Nav } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { JustChildren, SetState } from "types/react";
 
 export default function SelectNav<T>({

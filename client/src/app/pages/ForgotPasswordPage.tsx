@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { APIFetchV1 } from "util/api";
 import MainPageTitleContainer from "components/util/MainPageTitleContainer";
+import { HistorySafeGoBack } from "util/misc";
 
 export default function ForgotPasswordPage() {
 	const [email, setEmail] = useState("");
@@ -59,7 +60,7 @@ export default function ForgotPasswordPage() {
 							</Form.Group>
 							<Form.Group className="justify-content-center d-flex pt-4">
 								<span
-									onClick={() => history.goBack()}
+									onClick={() => HistorySafeGoBack(history)}
 									tabIndex={4}
 									className="mr-auto btn btn-outline-danger"
 								>

@@ -1,7 +1,6 @@
 import { nanoid } from "nanoid";
 import React from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { JustChildren } from "types/react";
 
 export default function QuickTooltip({
 	children,

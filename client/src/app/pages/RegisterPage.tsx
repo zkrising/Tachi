@@ -11,9 +11,10 @@ import { PublicUserDocument } from "tachi-common";
 import { UseFormik } from "types/react";
 import { APIFetchV1, ToCDNURL } from "util/api";
 import { HumaniseError } from "util/humanise-error";
+import { HistorySafeGoBack } from "util/misc";
 
 // seconds it takes for a user to actually read the rules.
-const RULES_READ_TIME = 30;
+const RULES_READ_TIME = Number(process.env.REACT_APP_RULES_READ_TIME) || 30;
 
 export default function RegisterPage() {
 	useSetSubheader("Register");
@@ -36,14 +37,14 @@ export default function RegisterPage() {
 	const formik = useFormik({
 		initialValues: {
 			username: "",
-			password: "",
+			"!password": "",
 			confPassword: "",
 			inviteCode: urlParams.get("inviteCode") ?? "",
 			email: "",
 			captcha: "temp",
 		},
 		onSubmit: async values => {
-			if (values.password !== values.confPassword) {
+			if (values["!password"] !== values.confPassword) {
 				setErr("Password and confirm password do not match!");
 				return;
 			}
@@ -53,7 +54,7 @@ export default function RegisterPage() {
 				{
 					method: "POST",
 					body: JSON.stringify({
-						password: values.password,
+						"!password": values["!password"],
 						inviteCode: values.inviteCode,
 						username: values.username,
 						email: values.email,
@@ -78,7 +79,7 @@ export default function RegisterPage() {
 				setUser(rj.body);
 				localStorage.setItem("isLoggedIn", "true");
 
-				history.goBack();
+				HistorySafeGoBack(history);
 			}, 500);
 		},
 	});
@@ -143,7 +144,7 @@ export default function RegisterPage() {
 								</a>
 							</h4>
 
-							<h6>(Opens in a new tab.)</h6>
+							<h6>(This link opens in a new tab.)</h6>
 						</div>
 
 						<Divider />
@@ -186,7 +187,7 @@ function RegisterForm({
 }: {
 	formik: UseFormik<{
 		username: string;
-		password: string;
+		"!password": string;
 		confPassword: string;
 		inviteCode: string;
 		email: string;
@@ -228,8 +229,8 @@ function RegisterForm({
 				<Form.Control
 					tabIndex={3}
 					type="password"
-					id="password"
-					value={formik.values.password}
+					id="!password"
+					value={formik.values["!password"]}
 					onChange={formik.handleChange}
 				/>
 			</Form.Group>

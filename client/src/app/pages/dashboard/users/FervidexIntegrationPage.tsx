@@ -2,9 +2,9 @@ import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
-import { TachiConfig } from "lib/config";
 import React, { useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { FervidexSettingsDocument, PublicUserDocument } from "tachi-common";
 import { APIFetchV1 } from "util/api";
 
@@ -31,22 +31,8 @@ export default function FervidexIntegrationPage({ reqUser }: { reqUser: PublicUs
 				</span>
 			</Col>
 			<Col xs={12} className="mt-4">
-				<ol className="text-left mt-2">
-					<li>
-						Get Fervidex from <a href="https://client.fervidex.net/latest.zip">here</a>.
-					</li>
-					<li>
-						<a href="#">Get your {TachiConfig.name} Fervidex Config.</a>, and put both
-						files in the same folder as your game.
-					</li>
-					<li>
-						That's it! Your scores will now automatically import to {TachiConfig.name}.
-					</li>
-					<li>
-						(Optional) Configure the advanced settings below to restrict scores based on
-						CardID.
-					</li>
-				</ol>
+				Instructions on how to setup fervidex can be found{" "}
+				<Link to="/dashboard/import/fervidex">here</Link>.
 				<Divider />
 			</Col>
 			<Col xs={12} className="mt-4">

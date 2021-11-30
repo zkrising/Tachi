@@ -1,23 +1,23 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
-import LoadingWrapper from "components/util/LoadingWrapper";
 import GenericSessionTable, {
 	SessionDataset,
 } from "components/tables/sessions/GenericSessionTable";
 import DebounceSearch from "components/util/DebounceSearch";
+import Icon from "components/util/Icon";
+import LoadingWrapper from "components/util/LoadingWrapper";
+import SelectButton from "components/util/SelectButton";
+import { useSessionRatingAlg } from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import {
-	PublicUserDocument,
+	FormatGame,
 	GetGameConfig,
+	PublicUserDocument,
 	SessionDocument,
 	UnsuccessfulAPIResponse,
-	FormatGame,
 } from "tachi-common";
 import { GamePT } from "types/react";
 import { APIFetchV1 } from "util/api";
-import SelectButton from "components/util/SelectButton";
-import Icon from "components/util/Icon";
-import { useSessionRatingAlg } from "components/util/useScoreRatingAlg";
 import { NumericSOV } from "util/sorts";
 
 export default function SessionsPage({
@@ -52,7 +52,11 @@ export default function SessionsPage({
 			}
 
 			return res.body
-				.sort(NumericSOV(x => x.calculatedData[rating] ?? 0, true))
+				.sort(
+					sessionSet === "best"
+						? NumericSOV(x => x.calculatedData[rating] ?? 0, true)
+						: NumericSOV(x => x.timeEnded ?? 0, true)
+				)
 				.map((e, i) => ({
 					...e,
 					__related: {
@@ -93,12 +97,13 @@ export default function SessionsPage({
 						<GenericSessionTable
 							indexCol={sessionSet === "best"}
 							dataset={data!}
+							reqUser={reqUser}
 							game={game}
 							playtype={playtype}
 						/>
 					</LoadingWrapper>
 				) : (
-					<SearchSessionsTable {...{ game, playtype, baseUrl, search }} />
+					<SearchSessionsTable {...{ game, playtype, reqUser, baseUrl, search }} />
 				)}
 			</div>
 		</div>
@@ -109,8 +114,9 @@ function SearchSessionsTable({
 	search,
 	game,
 	playtype,
+	reqUser,
 	baseUrl,
-}: { search: string; baseUrl: string } & GamePT) {
+}: { search: string; baseUrl: string; reqUser: PublicUserDocument } & GamePT) {
 	const { isLoading, error, data } = useQuery<SessionDataset, UnsuccessfulAPIResponse>(
 		`${baseUrl}?search=${search}`,
 		async () => {
@@ -131,7 +137,12 @@ function SearchSessionsTable({
 
 	return (
 		<LoadingWrapper {...{ isLoading, error, dataset: data }}>
-			<GenericSessionTable dataset={data!} game={game} playtype={playtype} />
+			<GenericSessionTable
+				reqUser={reqUser}
+				dataset={data!}
+				game={game}
+				playtype={playtype}
+			/>
 		</LoadingWrapper>
 	);
 }

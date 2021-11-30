@@ -1,27 +1,23 @@
 import React from "react";
-import { PublicUserDocument } from "tachi-common";
 import { PBDataset } from "types/tables";
 import { IsNullish } from "util/misc";
-import { NumericSOV, StrSOV } from "util/sorts";
+import { NumericSOV } from "util/sorts";
 import { CreateDefaultPBSearchParams } from "util/tables/create-search";
 import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
-import DifficultyCell from "../cells/DifficultyCell";
 import IndexCell from "../cells/IndexCell";
-import IndicatorsCell from "../cells/IndicatorsCell";
 import LampCell from "../cells/LampCell";
 import MillionsScoreCell from "../cells/MillionsScoreCell";
 import RankingCell from "../cells/RankingCell";
 import SDVXJudgementCell from "../cells/SDVXJudgementCell";
 import TimestampCell from "../cells/TimestampCell";
-import TitleCell from "../cells/TitleCell";
 import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
-import IndicatorHeader from "../headers/IndicatorHeader";
 import PBLeadingRows from "./PBLeadingRows";
 
-export default function SDVXPBTable({
+export default function SDVXLikePBTable({
+	game,
 	dataset,
 	indexCol = true,
 	showPlaycount = false,
@@ -29,6 +25,7 @@ export default function SDVXPBTable({
 	showUser = false,
 	showChart = true,
 }: {
+	game: "sdvx" | "usc";
 	dataset: PBDataset<"sdvx:Single">;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
@@ -63,7 +60,7 @@ export default function SDVXPBTable({
 			dataset={dataset}
 			headers={headers}
 			entryName="PBs"
-			searchFunctions={CreateDefaultPBSearchParams("sdvx", playtype)}
+			searchFunctions={CreateDefaultPBSearchParams(game, playtype)}
 			defaultSortMode={indexCol ? "#" : undefined}
 			rowFunction={pb => (
 				<Row

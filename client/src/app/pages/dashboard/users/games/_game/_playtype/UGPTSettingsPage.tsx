@@ -4,6 +4,7 @@ import UGPTStatContainer from "components/user/UGPTStatContainer";
 import UGPTStatCreator from "components/user/UGPTStatCreator";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
+import Muted from "components/util/Muted";
 import SelectButton from "components/util/SelectButton";
 import { UGPTSettingsContext } from "context/UGPTSettingsContext";
 import deepmerge from "deepmerge";
@@ -176,7 +177,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 }
 
 function ShowcaseForm({ reqUser, game, playtype }: Props) {
-	const { settings, setSettings } = useContext(UGPTSettingsContext);
+	const { settings } = useContext(UGPTSettingsContext);
 
 	const [stats, setStats] = useState(settings!.preferences.stats);
 	const [show, setShow] = useState(false);
@@ -242,6 +243,14 @@ function RenderCurrentStats({
 } & Props) {
 	function RemoveStatAtIndex(index: number) {
 		setStats(stats.filter((e, i) => i !== index));
+	}
+
+	if (stats.length === 0) {
+		return (
+			<div className="w-100 text-center">
+				<Muted>You have no stats set, Why not set some?</Muted>
+			</div>
+		);
 	}
 
 	return (

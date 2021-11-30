@@ -1,16 +1,17 @@
+import Icon from "components/util/Icon";
 import SmallText from "components/util/SmallText";
 import { useZTable, ZTableSortFn } from "components/util/table/useZTable";
+import { UserSettingsContext } from "context/UserSettingsContext";
+import { json2csvAsync } from "json-2-csv";
 import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { integer } from "tachi-common";
+import { CopyToClipboard } from "util/misc";
+import { ComposeSearchFunction, ValueGetterOrHybrid } from "util/ztable/search";
+import FilterDirectivesIndicator from "./FilterDirectivesIndicator";
 import NoDataWrapper from "./NoDataWrapper";
 import PageSelector from "./PageSelector";
 import SortableTH from "./SortableTH";
-import FilterDirectivesIndicator from "./FilterDirectivesIndicator";
-import { ComposeSearchFunction, ValueGetterOrHybrid } from "util/ztable/search";
-import { UserSettingsContext } from "context/UserSettingsContext";
-import Icon from "components/util/Icon";
-import { CopyToClipboard } from "util/misc";
 
 export interface ZTableTHProps {
 	changeSort: (str: string) => void;
@@ -110,6 +111,7 @@ export default function TachiTable<D>({
 		sortMode,
 		reverseSort,
 		changeSort,
+		filteredDataset,
 	} = useZTable(dataset ?? [], {
 		search,
 		searchFunction,
@@ -162,14 +164,48 @@ export default function TachiTable<D>({
 			<div className="col-12 px-0">
 				<div className="row">
 					<div className="col-lg-4 align-self-center">{displayStr}</div>
-					{settings?.preferences.developerMode && (
-						<div className="d-none d-lg-flex col-lg-4 justify-content-center">
-							<Button onClick={() => CopyToClipboard(window)} variant="outline-info">
+					<div className="d-none d-lg-flex col-lg-4 justify-content-center align-items-center">
+						{settings?.preferences.advancedMode && (
+							<Button
+								onClick={async () => {
+									let data = dataset;
+									if (search !== "") {
+										data = filteredDataset;
+									}
+
+									CopyToClipboard(
+										// Faulty types with json2csv.
+										// eslint-disable-next-line @typescript-eslint/no-explicit-any
+										await json2csvAsync(data as any, {
+											sortHeader: true,
+										})
+									);
+								}}
+								variant="outline-info"
+								className="w-50"
+							>
 								<Icon type="table" />
-								Export Data
+								Export {search !== "" ? "Filtered Data" : "Table"} (CSV)
 							</Button>
-						</div>
-					)}
+						)}
+						{settings?.preferences.developerMode && (
+							<Button
+								className="ml-4 w-50"
+								onClick={() => {
+									let data = dataset;
+									if (search !== "") {
+										data = filteredDataset;
+									}
+
+									CopyToClipboard(data);
+								}}
+								variant="outline-info"
+							>
+								<Icon type="table" />
+								Export {search !== "" ? "Filtered Data" : "Table"} (JSON)
+							</Button>
+						)}
+					</div>
 					<div className="col-lg-4 ml-auto text-right">
 						<div className="btn-group">
 							<Button

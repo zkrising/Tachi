@@ -204,7 +204,8 @@ export default function UGPTStatShowcase({
 							{data.reqUserData.length === 0 ? (
 								<div className="row">
 									<div className="col-12 text-center">
-										<ReferToUser reqUser={reqUser} /> no stats configured.
+										<ReferToUser reqUser={projectingStats ? user! : reqUser} />{" "}
+										no stats configured.
 									</div>
 									{userIsReqUser && (
 										<div className="col-12 mt-2 text-center">
@@ -272,7 +273,9 @@ function StatDelta({
 	playtype: Playtype;
 }) {
 	if (!v2) {
-		return null;
+		// @warn: This means things like BPI goals can go negative and spit nonsense
+		// eslint-disable-next-line no-param-reassign
+		v2 = 0;
 	}
 
 	let d: string | number = v2 - v1;

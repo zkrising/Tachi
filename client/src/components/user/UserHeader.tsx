@@ -1,19 +1,19 @@
-import Divider from "components/util/Divider";
-import React, { useContext, useState } from "react";
-import { PublicUserDocument } from "tachi-common";
-import ProfilePicture from "./ProfilePicture";
 import Navbar from "components/nav/Navbar";
 import NavItem from "components/nav/NavItem";
-import ProfileBadges from "./ProfileBadges";
-import { UserContext } from "context/UserContext";
-import Muted from "components/util/Muted";
-import { FormatDate, FormatDuration, FormatTime, MillisToSince } from "util/time";
-import Icon from "components/util/Icon";
+import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
-import { NO_OP } from "util/misc";
+import Icon from "components/util/Icon";
+import Muted from "components/util/Muted";
+import { UserContext } from "context/UserContext";
+import { ClientConfig, TachiConfig } from "lib/config";
+import React, { useContext, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { APIFetchV1 } from "util/api";
+import { PublicUserDocument } from "tachi-common";
 import { SetState } from "types/react";
+import { APIFetchV1 } from "util/api";
+import { FormatDate } from "util/time";
+import ProfileBadges from "./ProfileBadges";
+import ProfilePicture from "./ProfilePicture";
 
 export function UserHeaderBody({ reqUser }: { reqUser: PublicUserDocument }) {
 	function ConditionalSocialMediaRender({
@@ -105,14 +105,25 @@ export function UserBottomNav({
 	if (isRequestedUser) {
 		navItems.push(
 			<NavItem key="settings" to={`${baseUrl}/settings`}>
-				Settings
+				Profile Settings
 			</NavItem>
 		);
 		navItems.push(
 			<NavItem key="integrations" to={`${baseUrl}/integrations`}>
-				Integrations
+				Service Integrations
 			</NavItem>
 		);
+
+		// If mandates login, assume that we also use invite codes.
+		// I'm sure we could set up an elaborate way of doing this by
+		// querying the server, but I just don't care.
+		if (ClientConfig.MANDATE_LOGIN) {
+			navItems.push(
+				<NavItem key="invites" to={`${baseUrl}/invites`}>
+					Invites
+				</NavItem>
+			);
+		}
 	}
 
 	return (

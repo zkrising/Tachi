@@ -1,5 +1,4 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
-import BMSDifficultyCell from "components/tables/cells/BMSDifficultyCell";
 import DifficultyCell from "components/tables/cells/DifficultyCell";
 import TitleCell from "components/tables/cells/TitleCell";
 import TachiTable from "components/tables/components/TachiTable";
@@ -115,13 +114,7 @@ function SearchSongsTable({ game, playtype, search }: { search: string } & GameP
 				}}
 				rowFunction={d => (
 					<tr>
-						{game === "bms" ? (
-							<BMSDifficultyCell
-								chart={(d as unknown) as ChartDocument<"bms:7K" | "bms:14K">}
-							/>
-						) : (
-							<DifficultyCell game={game} chart={d} />
-						)}
+						<DifficultyCell game={game} chart={d} />
 						<TitleCell chart={d} game={game} song={d.__related.song} />
 						<td>{d.__playcount}</td>
 					</tr>

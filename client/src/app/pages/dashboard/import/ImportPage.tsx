@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { Game, GetGameConfig } from "tachi-common";
 
 export default function ImportPage() {
-	useSetSubheader(["Dashboard", "Import Scores"]);
+	useSetSubheader(["Import Scores"]);
 
 	const [game, setGame] = useState<Game | null>(null);
 
@@ -109,13 +109,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons. ARC has a serious problem where it only stores one score per chart. This results in broken timestamps, and technically false score imports. I highly recommend using Fervidex instead, and only importing this once to synchronise things up."
 				key="ARC Integration"
 			/>,
-			<ImportInfoCard
-				name="MER .json"
-				href="iidx-mer"
-				desc="Use a MER-exported .json file to synchronise scores."
-				moreInfo="Note: Scores that do not match an existing song on the site will be orphaned, and anyone can see your orphaned scores. Don't be an idiot. I highly recommend using Fervidex instead."
-				key="MER .json"
-			/>,
+			// <ImportInfoCard
+			// 	name="MER .json"
+			// 	href="iidx-mer"
+			// 	desc="Use a MER-exported .json file to synchronise scores."
+			// 	moreInfo="Note: Scores that do not match an existing song on the site will be orphaned, and anyone can see your orphaned scores. Don't be an idiot. I highly recommend using Fervidex instead."
+			// 	key="MER .json"
+			// />,
 			<ImportInfoCard
 				name="SOLID STATE SQUAD .xml"
 				href="sss-xml"
@@ -140,26 +140,46 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				moreInfo="This is the recommended way to import SDVX scores, as it provides high quality data in real-time."
 				key="Barbatos"
 			/>,
+			// <ImportInfoCard
+			// 	name="Konaste Hook"
+			// 	href="ks-hook"
+			// 	desc="Automatically import scores from SDVX 3 Konaste!"
+			// 	key="Konaste Hook"
+			// />,
+			<ImportInfoCard
+				name="E-Amusement CSV"
+				href="sdvx-eam-csv"
+				desc="Use the official E-Amusement CSV to import scores."
+				moreInfo="Note: This format doesn't support timestamps, which means sessions cannot be generated from it."
+				key="SDVX E-Amusement CSV"
+			/>,
 			<ImportInfoCard
 				name="FLO Integration"
-				href="flo-sdvx"
+				href="sdvx-flo"
 				desc="Pull your SDVX scores from the FLO Network."
 				moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 				key="FLO Integration"
 			/>,
 			<ImportInfoCard
 				name="EAG Integration"
-				href="eag-sdvx"
+				href="sdvx-eag"
 				desc="Pull your SDVX scores from the EAG Network."
 				moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 				key="EAG Integration"
 			/>,
 			<ImportInfoCard
 				name="MIN Integration"
-				href="min-sdvx"
+				href="sdvx-min"
 				desc="Pull your SDVX scores from the MIN Network."
 				moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 				key="MIN Integration"
+			/>,
+			<ImportInfoCard
+				name="ARC Integration"
+				href="sdvx-arc"
+				desc="Pull your SDVX scores from the ARC Network."
+				moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons. ARC has a serious problem where it only stores one score per chart. This results in broken timestamps, and technically false score imports. I highly recommend using Barbatos instead, and only importing this once to synchronise things up."
+				key="ARC Integration"
 			/>
 		);
 	} else if (game === "chunithm") {

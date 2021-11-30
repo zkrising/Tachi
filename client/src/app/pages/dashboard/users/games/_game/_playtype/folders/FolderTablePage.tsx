@@ -10,9 +10,9 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
-import React, { useEffect, useMemo, useState } from "react";
+import { UserContext } from "context/UserContext";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import {
 	FolderDocument,
 	Game,
@@ -23,6 +23,7 @@ import {
 } from "tachi-common";
 import { FolderStatsInfo, UGPTTableReturns } from "types/api-returns";
 import { Playtype } from "types/tachi";
+import { APIFetchV1 } from "util/api";
 import { DEFAULT_BAR_PROPS } from "util/charts";
 import { ChangeOpacity } from "util/color-opacity";
 import { Reverse } from "util/misc";
@@ -166,6 +167,8 @@ function TableFolderTable({
 		return arr;
 	}, [dataMap, table]);
 
+	const { user } = useContext(UserContext);
+
 	return (
 		<TachiTable
 			dataset={dataset}
@@ -188,6 +191,14 @@ function TableFolderTable({
 					<td>
 						<LinkButton
 							to={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}/folders/${data.folder.folderID}`}
+							onClick={() => {
+								if (user?.id === reqUser.id) {
+									APIFetchV1(
+										`/users/${reqUser.id}/games/${game}/${playtype}/folders/${data.folder.folderID}/viewed`,
+										{ method: "POST" }
+									);
+								}
+							}}
 							className="btn-info"
 						>
 							View Breakdown

@@ -1,13 +1,10 @@
 import React from "react";
 import {
 	Game,
-	GamePTConfig,
 	GetGamePTConfig,
 	IDStrings,
 	Playtypes,
 	ScoreCalculatedDataLookup,
-	SessionCalculatedDataLookup,
-	UGSRatingsLookup,
 } from "tachi-common";
 import { SetState } from "types/react";
 import { ZTableTHProps } from "./TachiTable";

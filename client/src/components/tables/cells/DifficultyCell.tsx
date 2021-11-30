@@ -1,6 +1,5 @@
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
-import Muted from "components/util/Muted";
 import React from "react";
 import {
 	ChartDocument,
@@ -10,6 +9,7 @@ import {
 	GetGamePTConfig,
 } from "tachi-common";
 import { ChangeOpacity } from "util/color-opacity";
+import BMSDifficultyCell from "./BMSDifficultyCell";
 import TierlistInfoPart from "./TierlistInfoPart";
 
 export default function DifficultyCell({
@@ -23,10 +23,19 @@ export default function DifficultyCell({
 }) {
 	const gptConfig = GetGamePTConfig(game, chart.playtype);
 
+	if (!gptConfig) {
+		throw new Error(`Was passed nonsense combination of ${game}, ${chart.playtype}`);
+	}
+
+	if (game === "bms") {
+		return <BMSDifficultyCell chart={chart as ChartDocument<"bms:7K" | "bms:14K">} />;
+	}
+
 	return (
 		<td
 			style={{
 				backgroundColor: ChangeOpacity(gptConfig.difficultyColours[chart.difficulty]!, 0.2),
+				minWidth: "80px",
 			}}
 		>
 			{!alwaysShort && (

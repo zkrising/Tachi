@@ -1,16 +1,21 @@
 import Divider from "components/util/Divider";
 import DropdownToggleOverride from "components/util/DropdownToggleOverride";
+import Icon from "components/util/Icon";
 import { UserContext } from "context/UserContext";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { PublicUserDocument } from "tachi-common";
 import { APIFetchV1, ToAPIURL } from "util/api";
+import { RFA } from "util/misc";
+import { heySplashes } from "util/splashes";
 
 export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 	const { setUser } = useContext(UserContext);
+
+	const [heySplash] = useState(RFA(heySplashes));
 
 	return (
 		<Dropdown drop="down" alignRight>
@@ -21,7 +26,7 @@ export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 					}
 				>
 					<span className="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">
-						Welcome Back,
+						{heySplash},
 					</span>{" "}
 					<span className="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">
 						{user.username}
@@ -50,7 +55,7 @@ export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 					>
 						<div className="navi-link">
 							<div className="navi-icon mr-2">
-								<i className="flaticon2-calendar-3 text-success" />
+								<Icon type="user" colour="primary" />
 							</div>
 							<div className="navi-text">
 								<div className="font-weight-bold cursor-pointer">My Profile</div>
@@ -64,12 +69,30 @@ export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 					>
 						<div className="navi-link">
 							<div className="navi-icon mr-2">
-								<i className="flaticon2-settings text-info" />
+								<Icon type="cog" colour="info" />
 							</div>
 							<div className="navi-text">
 								<div className="font-weight-bold cursor-pointer">My Settings</div>
 								<div className="text-muted">
-									Manage your profile, service integrations, and more!
+									Manage your profile picture, status, and more!
+								</div>
+							</div>
+						</div>
+					</Link>
+					<Link
+						to={`/dashboard/users/${user.username}/integrations`}
+						className="navi-item px-8 cursor-pointer"
+					>
+						<div className="navi-link">
+							<div className="navi-icon mr-2">
+								<Icon type="wrench" colour="danger" />
+							</div>
+							<div className="navi-text">
+								<div className="font-weight-bold cursor-pointer">
+									My Integrations
+								</div>
+								<div className="text-muted">
+									Manage your API Keys and integrations with other services.
 								</div>
 							</div>
 						</div>

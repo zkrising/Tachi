@@ -1,7 +1,6 @@
 import {
 	ChartDocument,
 	ClassAchievementDocument,
-	ClassDelta,
 	FolderDocument,
 	GamePTConfig,
 	Grades,
@@ -83,14 +82,6 @@ export interface UGPTChartPBComposition<I extends IDStrings = IDStrings> {
 	pb: PBScoreDocument<I>;
 }
 
-export interface SpecificSessionReturns<I extends IDStrings = IDStrings> {
-	session: SessionDocument<I>;
-	scores: ScoreDocument<I>[];
-	songs: SongDocument<IDStringToGame[I]>[];
-	charts: ChartDocument<I>[];
-	user: PublicUserDocument;
-}
-
 export type UGSWithRankingData<I extends IDStrings = IDStrings> = UserGameStats<I> & {
 	__rankingData: Record<UGSRatingsLookup[I], { outOf: number; ranking: number }>;
 };
@@ -164,4 +155,10 @@ export interface ScoreLeaderboardReturns<I extends IDStrings = IDStrings> {
 export interface UserLeaderboardReturns<I extends IDStrings = IDStrings> {
 	users: PublicUserDocument[];
 	gameStats: UserGameStats<I>[];
+}
+
+export interface UserRecentSummary {
+	recentPlaycount: integer;
+	recentSessions: SessionDocument[];
+	recentFolders: FolderDocument[];
 }

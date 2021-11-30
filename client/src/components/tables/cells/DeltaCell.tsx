@@ -15,6 +15,10 @@ export default function DeltaCell({
 	percent: number;
 	grade: Grades[IDStrings];
 }) {
+	if (score === 0) {
+		return <td>N/A</td>;
+	}
+
 	const { lower, upper, closer } = GenericFormatGradeDelta(game, playtype, score, percent, grade);
 
 	let close = closer;

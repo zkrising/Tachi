@@ -1,12 +1,11 @@
 import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
+import useImport from "components/util/import/useImport";
 import prettyBytes from "pretty-bytes";
 import React, { useEffect, useMemo, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FileUploadImportTypes } from "tachi-common";
-import { ImportStates, NotStartedState } from "types/import";
 import { SetState } from "types/react";
-import SubmitFile from "util/submit-file";
 import ImportStateRenderer from "./ImportStateRenderer";
 
 type ParseFunctionReturn = { valid: boolean; info: Record<string, React.ReactChild> };
@@ -97,7 +96,7 @@ export default function ImportFileInfo({
 		);
 	}, [errMsg, data]);
 
-	const [importState, setImportState] = useState<ImportStates>(NotStartedState);
+	const { importState, runImport } = useImport("/import/file", {});
 
 	return (
 		<div>
@@ -130,21 +129,36 @@ export default function ImportFileInfo({
 						<div className="row justify-content-center mt-4">
 							{valid && moreInfoFulfilled ? (
 								<>
-									{importState.state === "waiting" ? (
+									{importState.state === "waiting_init" ? (
+										<Button className="btn-primary" disabled>
+											Processing...
+										</Button>
+									) : importState.state === "waiting_processing" ? (
 										<Button className="btn-primary" disabled>
 											Processing...
 										</Button>
 									) : (
 										<Button
 											className="btn-primary"
-											onClick={() =>
-												SubmitFile(
-													importType,
-													file,
-													setImportState,
+											onClick={() => {
+												const formData = new FormData();
+												formData.append("importType", importType);
+												formData.append("scoreData", file);
+
+												for (const [key, value] of Object.entries(
 													moreInfo
-												)
-											}
+												)) {
+													formData.append(key, value);
+												}
+
+												runImport({
+													method: "POST",
+													headers: {
+														"X-User-Intent": "true",
+													},
+													body: formData,
+												});
+											}}
 										>
 											Submit File
 										</Button>

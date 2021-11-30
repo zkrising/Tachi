@@ -6,7 +6,6 @@ import MiniTable from "components/tables/components/MiniTable";
 import PBTable from "components/tables/pbs/PBTable";
 import ProfilePicture from "components/user/ProfilePicture";
 import ApiError from "components/util/ApiError";
-import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
@@ -19,7 +18,6 @@ import { Link, useParams } from "react-router-dom";
 import {
 	ChartDocument,
 	FormatDifficulty,
-	GamePTConfig,
 	GetGameConfig,
 	GetGamePTConfig,
 	integer,
@@ -33,6 +31,7 @@ import { PBDataset } from "types/tables";
 import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
 import { CreateUserMap } from "util/data";
 import { SelectRightChart } from "util/misc";
+import { MillisToSince } from "util/time";
 
 // This component forms a wrapper around the Real GPT Chart Page
 // which handles the case where activeChart == null.
@@ -321,6 +320,13 @@ function PlayCard({
 							<LampCell score={pb} />
 						</tr>
 					</MiniTable>
+					<div className="text-center">
+						<Muted>
+							{pb.timeAchieved
+								? MillisToSince(pb.timeAchieved) ?? ""
+								: "No Timestamp Info"}
+						</Muted>
+					</div>
 				</Col>
 			</Row>
 		</Card>

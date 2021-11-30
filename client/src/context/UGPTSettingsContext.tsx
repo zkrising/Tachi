@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { PublicUserDocument, UGPTSettings } from "tachi-common";
+import { UGPTSettings } from "tachi-common";
 import { JustChildren, SetState } from "types/react";
 
 /**

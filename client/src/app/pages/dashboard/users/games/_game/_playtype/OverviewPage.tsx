@@ -1,36 +1,36 @@
+import TimelineChart from "components/charts/TimelineChart";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
+import MiniTable from "components/tables/components/MiniTable";
+import ScoreTable from "components/tables/scores/ScoreTable";
+import UGPTStatShowcase from "components/user/UGPTStatShowcase";
+import AsyncLoader from "components/util/AsyncLoader";
+import Divider from "components/util/Divider";
+import Icon from "components/util/Icon";
+import Muted from "components/util/Muted";
+import SelectButton from "components/util/SelectButton";
+import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
+import { DateTime } from "luxon";
 import React, { useMemo, useState } from "react";
 import { Badge } from "react-bootstrap";
 import {
 	FormatGame,
 	GetGameConfig,
-	PublicUserDocument,
-	UGPTSettings,
 	GetGamePTConfig,
-	UserGameStats,
-	SessionDocument,
+	PublicUserDocument,
 	ScoreDocument,
+	SessionDocument,
+	UserGameStats,
 } from "tachi-common";
 import { SessionReturns, UGPTHistory } from "types/api-returns";
 import { GamePT } from "types/react";
-import { APIFetchV1 } from "util/api";
-import AsyncLoader from "components/util/AsyncLoader";
-import TimelineChart from "components/charts/TimelineChart";
-import Divider from "components/util/Divider";
-import Icon from "components/util/Icon";
-import { DateTime } from "luxon";
-import { FormatDate, FormatDuration, FormatTime, MillisToSince } from "util/time";
-import SelectButton from "components/util/SelectButton";
-import { UppercaseFirst } from "util/misc";
-import { ONE_HOUR, ONE_MINUTE } from "util/constants/time";
-import MiniTable from "components/tables/components/MiniTable";
-import { GetPBs, CreateChartMap, CreateSongMap } from "util/data";
-
-import { NumericSOV } from "util/sorts";
 import { ScoreDataset } from "types/tables";
-import ScoreTable from "components/tables/scores/ScoreTable";
-import UGPTStatShowcase from "components/user/UGPTStatShowcase";
+import { APIFetchV1 } from "util/api";
+import { ONE_HOUR, ONE_MINUTE } from "util/constants/time";
+import { CreateChartMap, CreateSongMap, GetPBs } from "util/data";
+import { UppercaseFirst } from "util/misc";
+import { NumericSOV } from "util/sorts";
+import { FormatDate, FormatDuration, FormatTime, MillisToSince } from "util/time";
 
 export default function OverviewPage({
 	reqUser,
@@ -124,7 +124,7 @@ function LastSession({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 																variant="primary"
 																className="mt-2"
 															>
-																Maybe Ongoing?
+																Ongoing!
 															</Badge>
 														</>
 													)}
@@ -282,13 +282,16 @@ function UserHistory({
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const [mode, setMode] = useState<"ranking" | "playcount" | "rating">("ranking");
-	const [rating, setRating] = useState<keyof UserGameStats["ratings"]>(
-		gptConfig.defaultProfileRatingAlg
-	);
+
+	const preferredRating = useProfileRatingAlg(game, playtype);
+
+	const [rating, setRating] = useState<keyof UserGameStats["ratings"]>(preferredRating);
 
 	const propName = useMemo(() => {
 		if (mode === "rating" && rating) {
 			return UppercaseFirst(rating);
+		} else if (mode === "ranking") {
+			return `${UppercaseFirst(rating)} Ranking`;
 		}
 
 		return UppercaseFirst(mode);
@@ -298,7 +301,12 @@ function UserHistory({
 		if (mode === "rating" && rating) {
 			return data[0].ratings[rating] ? data[0].ratings[rating]!.toFixed(2) : "N/A";
 		} else if (mode === "ranking") {
-			return `#${data[0].ranking}`;
+			return (
+				<>
+					#{data[0].rankings[rating].ranking}
+					<Muted>/{data[0].rankings[rating].outOf}</Muted>
+				</>
+			);
 		}
 
 		return data[0].playcount;
@@ -339,7 +347,24 @@ function UserHistory({
 			</div>
 			<Divider className="mt-6 mb-2" />
 			{mode === "ranking" ? (
-				<RankingTimeline data={data} />
+				<>
+					<div className="col-12 offset-md-4 col-md-4 mt-4">
+						<select
+							className="form-control"
+							value={rating}
+							onChange={e =>
+								setRating(e.target.value as keyof UserGameStats["ratings"])
+							}
+						>
+							{gptConfig.profileRatingAlgs.map(e => (
+								<option key={e} value={e}>
+									{UppercaseFirst(e)}
+								</option>
+							))}
+						</select>
+					</div>
+					<RankingTimeline data={data} rating={rating} />
+				</>
 			) : mode === "playcount" ? (
 				<TimelineChart
 					height="30rem"
@@ -369,7 +394,7 @@ function UserHistory({
 							</small>
 						</div>
 					)}
-					curve={"stepAfter"}
+					curve={"stepBefore"}
 					enableArea={true}
 					areaBaselineValue={Math.min(...data.map(e => e.playcount))}
 				/>
@@ -435,7 +460,13 @@ function RatingTimeline({
 	);
 }
 
-function RankingTimeline({ data }: { data: UGPTHistory }) {
+function RankingTimeline({
+	data,
+	rating,
+}: {
+	data: UGPTHistory;
+	rating: keyof UserGameStats["ratings"];
+}) {
 	return (
 		<TimelineChart
 			height="30rem"
@@ -443,7 +474,7 @@ function RankingTimeline({ data }: { data: UGPTHistory }) {
 			data={[
 				{
 					id: "ranking",
-					data: data.map(d => ({ x: d.timestamp, y: d.ranking })),
+					data: data.map(d => ({ x: d.timestamp, y: d.rankings[rating].ranking })),
 				},
 			]}
 			axisBottom={{

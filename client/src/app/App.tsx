@@ -1,14 +1,14 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import { Routes } from "./routes/AppRoutes";
-import { MaterialThemeProvider } from "../_metronic/layout";
+import { LoadingScreen } from "components/layout/screens/LoadingScreen";
+import { SubheaderContextProvider } from "context/SubheaderContext";
 import { UserContextProvider } from "context/UserContext";
 import { UserGameStatsContextProvider } from "context/UserGameStatsContext";
-import { Toaster } from "react-hot-toast";
-import { SubheaderContextProvider } from "context/SubheaderContext";
-import { LoadingScreen } from "components/layout/screens/LoadingScreen";
-import { QueryClientProvider, QueryClient } from "react-query";
 import { UserSettingsContextProvider } from "context/UserSettingsContext";
+import React from "react";
+import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter } from "react-router-dom";
+import { MaterialThemeProvider } from "../_metronic/layout";
+import { Routes } from "./routes/AppRoutes";
 
 const queryClient = new QueryClient({
 	defaultOptions: { queries: { staleTime: 1000 * 60 * 5, retry: 0 } },

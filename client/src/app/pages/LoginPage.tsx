@@ -10,6 +10,7 @@ import { Link, useHistory } from "react-router-dom";
 import { PublicUserDocument } from "tachi-common";
 import { APIFetchV1 } from "util/api";
 import { HumaniseError } from "util/humanise-error";
+import { HistorySafeGoBack } from "util/misc";
 
 export default function LoginPage() {
 	useSetSubheader("Login");
@@ -21,7 +22,7 @@ export default function LoginPage() {
 	const formik = useFormik({
 		initialValues: {
 			username: "",
-			password: "",
+			"!password": "",
 			captcha: "temp",
 		},
 		onSubmit: async values => {
@@ -59,7 +60,7 @@ export default function LoginPage() {
 				setUser(userRJ.body);
 				localStorage.setItem("isLoggedIn", "true");
 
-				history.goBack();
+				HistorySafeGoBack(history);
 			}, 500);
 		},
 	});
@@ -91,8 +92,8 @@ export default function LoginPage() {
 						<Form.Control
 							tabIndex={2}
 							type="password"
-							id="password"
-							value={formik.values.password}
+							id="!password"
+							value={formik.values["!password"]}
 							onChange={formik.handleChange}
 						/>
 					</Form.Group>

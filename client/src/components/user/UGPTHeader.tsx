@@ -1,3 +1,5 @@
+import Navbar from "components/nav/Navbar";
+import NavItem from "components/nav/NavItem";
 import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
 import React from "react";
@@ -5,12 +7,10 @@ import { Game, GetGamePTConfig, PublicUserDocument } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import { Playtype } from "types/tachi";
 import { MillisToSince } from "util/time";
-import ProfilePicture from "./ProfilePicture";
-import Navbar from "components/nav/Navbar";
-import NavItem from "components/nav/NavItem";
 import ProfileBadges from "./ProfileBadges";
-import UGPTRatingsTable from "./UGPTStatsOverview";
+import ProfilePicture from "./ProfilePicture";
 import RankingData from "./UGPTRankingData";
+import UGPTRatingsTable from "./UGPTStatsOverview";
 
 export function UGPTHeaderBody({
 	reqUser,

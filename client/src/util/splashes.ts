@@ -1,3 +1,6 @@
+import { mode } from "lib/config";
+import { FormatDate } from "./time";
+
 export const neutralSplashes = ["A Rhythm Game Score Manager", "The Rhythm Game Score Manager"];
 
 export const loggedInSplashes = [
@@ -76,6 +79,24 @@ export const loggedInSplashes = [
 	"Brought by GameMasterAnthony",
 	"bwhæhæhææhæhhææhæh",
 	"Maximal opinions and Minimal evidence",
+	"Who is the scrimbler bimbler?",
+	"You wish you knew who the hibble gibble gobbler was.",
+	`The current day is ${FormatDate(Date.now())}, probably.`,
+	"I have always thought of myself as an ambassador for the dance game community.",
+	"When lava pours out near the sea surface, tremendous volcanic explosions sometimes occur.",
+	"But thE MOOOOON JUST STAAARED BAACK AAAT MEE",
+	"However... I kinda feel like this one's in the bag.",
+	"Oh yeah? I can exit vim, buddy.",
+	"Discovered Colours",
+	"Meeting People Is Easy",
+	"See ya later, innovator",
+	"bou bou bounce",
+	"I CAN'T PUT MY FINGER ON IT",
+	"Exactly where you're at",
+	"You Are Here -->",
+	"I'm thinking this one's brown.",
+	"My god is the sun!",
+	"...Like Clockwork",
 ];
 
 // Stuff that's bad for the kids, you know?
@@ -83,6 +104,29 @@ export const contentiousSplashes = [
 	"Formerly Chucks",
 	"Node.js Is Bad Ass Rock Star Tech",
 	"i'm obligated to ask for you to seek immediate psychological attention",
-	"Is IIDX still a good game or are you all basically stupid?",
+	`Is ${mode === "ktchi" ? "IIDX" : "BMS"} still a good game or are you all basically stupid?`,
 	"Please do not reply to or quote my posts in the future.",
+	"Is this your IP? (178.62.116.150)",
+	"Bad faith just coincidentally happens to be something my enemies do...",
+	"...and good faith is when people agree with me",
+	"Anyone else at this party gay?",
+	"I have the transfeminine urge to pee.",
+];
+
+export const heySplashes = [
+	"Welcome back",
+	"What's up",
+	"Hey",
+	"What's poppin",
+	"Good morning",
+	"Good afternoon",
+	"Good evening",
+	"Hello",
+	"Hewwo",
+	"How's it going",
+	"heyyy",
+	"Sup",
+	"Ahoy",
+	"What's crackin'",
+	"Howdy",
 ];

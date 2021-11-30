@@ -37,10 +37,13 @@ export default function BeatorajaIRPage() {
 				</li>
 				<li>Open the game options, and navigate to the IR section.</li>
 				<li>Select {TachiConfig.name} IR.</li>
-				<li>Get an API token for the IR by clicking this link.</li>
 				<li>
-					Place the API token in the password field. The username field is ignored - you
-					can leave it empty or fill it out for completeness' sake.
+					Get an API token for the IR by clicking{" "}
+					<ExternalLink href="/client-file-flow/CXBeatorajaIR">this link</ExternalLink>.
+				</li>
+				<li>
+					Place the API token in the password field. Put your username in as well! The IR
+					wont load if you don't have a username set.
 				</li>
 				<li>
 					That's it! Launch the game and start playing, your scores will automatically

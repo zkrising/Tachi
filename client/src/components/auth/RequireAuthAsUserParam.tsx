@@ -1,7 +1,7 @@
 import { ErrorPage } from "app/pages/ErrorPage";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
-import { useHistory, useParams, generatePath } from "react-router-dom";
+import { generatePath, useHistory, useParams } from "react-router-dom";
 import { JustChildren } from "types/react";
 
 export default function RequireAuthAsUserParam({ children }: JustChildren) {

@@ -7,7 +7,10 @@ import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
-import React, { useMemo, useState } from "react";
+import { UserContext } from "context/UserContext";
+import { UserGameStatsContext } from "context/UserGameStatsContext";
+import { UserSettingsContext } from "context/UserSettingsContext";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
 	ChartDocument,
@@ -17,9 +20,11 @@ import {
 	ScoreDocument,
 	SessionDocument,
 	SongDocument,
+	UserGameStats,
 } from "tachi-common";
 import { ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
+import { APIFetchV1 } from "util/api";
 import { CreateChartMap, CreateSongMap } from "util/data";
 
 interface Data {
@@ -33,6 +38,25 @@ interface Data {
 
 export default function ImportInfo({ importID }: { importID: string }) {
 	const { data, isLoading, error } = useApiQuery<Data>(`/imports/${importID}`);
+
+	const { setUGS } = useContext(UserGameStatsContext);
+	const { user } = useContext(UserContext);
+	const [hasUpdatedStats, setHasUpdatedStats] = useState(false);
+
+	useEffect(() => {
+		if (!data || hasUpdatedStats || !user) {
+			return;
+		}
+
+		APIFetchV1<UserGameStats[]>(`/users/${user!.id}/game-stats`).then(r => {
+			if (!r.success) {
+				console.warn(`Can't update user stats post-import. ${r.description}`);
+				return;
+			}
+			setUGS(r.body);
+			setHasUpdatedStats(true);
+		});
+	}, [data]);
 
 	const [tab, setTab] = useState<"scores" | "sessions" | "errors">("scores");
 
@@ -155,7 +179,7 @@ function SessionTab({ data }: { data: Data }) {
 				<tr>
 					<td>
 						<Link
-							to={`/dashboard/games/${r.session.game}/${r.session.playtype}/sessions/${r.session.sessionID}`}
+							to={`/dashboard/users/${r.session.userID}/games/${r.session.game}/${r.session.playtype}/sessions/${r.session.sessionID}`}
 							className="gentle-link"
 						>
 							{r.session.name}

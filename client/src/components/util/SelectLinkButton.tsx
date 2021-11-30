@@ -1,7 +1,6 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import { ButtonVariant } from "react-bootstrap/esm/types";
-import { JustChildren, SetState } from "types/react";
+import { JustChildren } from "types/react";
 import { DoesMatchRoute } from "util/routing";
 import LinkButton from "./LinkButton";
 

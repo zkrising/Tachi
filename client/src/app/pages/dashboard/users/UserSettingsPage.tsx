@@ -1,18 +1,19 @@
-import React, { useContext, useState } from "react";
-import { PublicUserDocument, UserSettings } from "tachi-common";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
-import SelectButton from "components/util/SelectButton";
-import Icon from "components/util/Icon";
-import Divider from "components/util/Divider";
-import { Alert, Button, Form } from "react-bootstrap";
-import { APIFetchV1, ToAPIURL } from "util/api";
 import ProfilePicture from "components/user/ProfilePicture";
-import { useFormik } from "formik";
-import { DelayedPageReload, FetchJSONBody, UppercaseFirst } from "util/misc";
-import { TachiConfig } from "lib/config";
-import { UserSettingsContext, UserSettingsContextProvider } from "context/UserSettingsContext";
+import Divider from "components/util/Divider";
+import FormInput from "components/util/FormInput";
+import Icon from "components/util/Icon";
 import Muted from "components/util/Muted";
+import SelectButton from "components/util/SelectButton";
+import { UserSettingsContext } from "context/UserSettingsContext";
+import { useFormik } from "formik";
+import { TachiConfig } from "lib/config";
+import React, { useContext, useState } from "react";
+import { Alert, Button, Form, InputGroup } from "react-bootstrap";
+import { PublicUserDocument, UserSettings } from "tachi-common";
+import { APIFetchV1, ToAPIURL } from "util/api";
+import { DelayedPageReload, FetchJSONBody, UppercaseFirst } from "util/misc";
 
 interface Props {
 	reqUser: PublicUserDocument;
@@ -25,7 +26,7 @@ export default function UserSettingsPage({ reqUser }: Props) {
 		`${reqUser.username}'s Settings`
 	);
 
-	const [page, setPage] = useState<"image" | "socialMedia" | "preferences">("image");
+	const [page, setPage] = useState<"image" | "socialMedia" | "preferences" | "account">("image");
 
 	return (
 		<Card header="Settings" className="col-12 offset-lg-2 col-lg-8">
@@ -44,6 +45,10 @@ export default function UserSettingsPage({ reqUser }: Props) {
 							<Icon type="cogs" />
 							UI Preferences
 						</SelectButton>
+						<SelectButton value={page} setValue={setPage} id="account">
+							<Icon type="lock" />
+							Change Password
+						</SelectButton>
 					</div>
 				</div>
 				<div className="col-12">
@@ -52,6 +57,8 @@ export default function UserSettingsPage({ reqUser }: Props) {
 						<ImageForm reqUser={reqUser} />
 					) : page === "socialMedia" ? (
 						<SocialMediaForm reqUser={reqUser} />
+					) : page === "account" ? (
+						<AccountSettings reqUser={reqUser} />
 					) : (
 						<PreferencesForm reqUser={reqUser} />
 					)}
@@ -68,6 +75,94 @@ export default function UserSettingsPage({ reqUser }: Props) {
 	);
 }
 
+function AccountSettings({ reqUser }: { reqUser: PublicUserDocument }) {
+	const formik = useFormik({
+		initialValues: {
+			"!oldPassword": "",
+			"!password": "",
+			confPass: "",
+		},
+		onSubmit: async values => {
+			const r = await APIFetchV1<UserSettings>(
+				`/users/${reqUser.id}/change-password`,
+				{
+					method: "POST",
+					...FetchJSONBody({
+						"!oldPassword": values["!oldPassword"],
+						"!password": values["!password"],
+					}),
+				},
+				true,
+				true
+			);
+
+			if (r.success) {
+				formik.setValues({
+					"!oldPassword": "",
+					"!password": "",
+					confPass: "",
+				});
+			}
+		},
+	});
+
+	return (
+		<Form onSubmit={formik.handleSubmit}>
+			<Form.Group>
+				<Form.Label>Old Password</Form.Label>
+				<Form.Control
+					type="password"
+					id="!oldPassword"
+					value={formik.values["!oldPassword"]}
+					placeholder="Your Current Password"
+					onChange={formik.handleChange}
+				/>
+			</Form.Group>
+			<Form.Group>
+				<Form.Label>New Password</Form.Label>
+				<Form.Control
+					type="password"
+					id="!password"
+					value={formik.values["!password"]}
+					placeholder="New Password"
+					onChange={formik.handleChange}
+				/>
+				{formik.values["!password"].length < 8 && (
+					<Form.Text className="text-warning">
+						Passwords have to be atleast 8 characters long.
+					</Form.Text>
+				)}
+			</Form.Group>
+			<Form.Group>
+				<Form.Label>Confirm New Password</Form.Label>
+				<Form.Control
+					type="password"
+					id="confPass"
+					value={formik.values.confPass}
+					placeholder="New Password"
+					onChange={formik.handleChange}
+				/>
+			</Form.Group>
+			{!(formik.values["!password"] === formik.values.confPass) && (
+				<Form.Text className="text-danger">Passwords don't match!</Form.Text>
+			)}
+			<Button
+				className="mt-8"
+				variant="danger"
+				type="submit"
+				disabled={
+					!(
+						formik.values["!password"] === formik.values.confPass &&
+						formik.values.confPass.length >= 8
+					)
+				}
+			>
+				Change Password
+			</Button>
+		</Form>
+	);
+}
+
 function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 	const { settings, setSettings } = useContext(UserSettingsContext);
 
@@ -76,6 +171,7 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 			developerMode: settings?.preferences.developerMode ?? false,
 			invisible: settings?.preferences.invisible ?? false,
 			contentiousContent: settings?.preferences.contentiousContent ?? false,
+			advancedMode: settings?.preferences.advancedMode ?? false,
 		},
 		onSubmit: async values => {
 			const res = await APIFetchV1<UserSettings>(
@@ -104,9 +200,21 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 					onChange={formik.handleChange}
 					label="Developer Mode"
 				/>
-				<Form.Text>Enable debug information.</Form.Text>
+				<Form.Text>Enable debug information and other useful debugging buttons.</Form.Text>
 			</Form.Group>
 			<Form.Group>
+				<Form.Check
+					type="checkbox"
+					id="advancedMode"
+					checked={formik.values.advancedMode}
+					onChange={formik.handleChange}
+					label="Advanced Mode"
+				/>
+				<Form.Text>
+					Enable advanced stuff, like being able to copy a tables contents into a CSV.
+				</Form.Text>
+			</Form.Group>
+			{/* <Form.Group>
 				<Form.Check
 					type="checkbox"
 					id="invisible"
@@ -115,7 +223,7 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 					label="Invisible Mode"
 				/>
 				<Form.Text>Hide your last seen status.</Form.Text>
-			</Form.Group>
+			</Form.Group> */}
 			<Form.Group>
 				<Form.Check
 					type="checkbox"
@@ -147,7 +255,7 @@ function ImageForm({ reqUser }: { reqUser: PublicUserDocument }) {
 				<Form.Label>Profile Picture</Form.Label>
 				<input
 					className="form-control"
-					accept="image/png,image/jpeg"
+					accept="image/png,image/jpeg,image/gif"
 					tabIndex={1}
 					type="file"
 					id="pfp"
@@ -166,28 +274,28 @@ function ImageForm({ reqUser }: { reqUser: PublicUserDocument }) {
 				<Form.Label>Profile Banner</Form.Label>
 				<input
 					className="form-control"
-					accept="image/png,image/jpeg"
+					accept="image/png,image/jpeg,image/gif"
 					tabIndex={2}
 					type="file"
 					id="banner"
 					multiple={false}
 					onChange={e => setBanner(e.target.files![0])}
 				/>
-				<div className="d-flex justify-content-center mt-4">
-					<img
-						className="rounded"
-						style={{
-							width: "57.6vw",
-							height: "32.4vh",
-							boxShadow: "0px 0px 10px 0px #000000",
-						}}
-						src={
+				<div
+					className="d-flex justify-content-center mt-4 rounded"
+					style={{
+						height: "200px",
+						boxShadow: "0px 0px 10px 0px #000000",
+						backgroundRepeat: "no-repeat",
+						backgroundSize: "cover",
+						backgroundPosition: "center",
+						backgroundImage: `url(${
 							banner
 								? URL.createObjectURL(banner)
 								: ToAPIURL(`/users/${reqUser.id}/banner`)
-						}
-					/>
-				</div>
+						})`,
+					}}
+				/>
 				<FileUploadController file={banner} reqUser={reqUser} type="banner" />
 			</Form.Group>
 		</div>
@@ -320,7 +428,7 @@ function FileUploadController({
 						DelayedPageReload();
 					}
 				}}
-				disabled={!reqUser.customPfp}
+				disabled={!reqUser.customPfpLocation}
 				className="mr-auto"
 				variant="secondary"
 			>

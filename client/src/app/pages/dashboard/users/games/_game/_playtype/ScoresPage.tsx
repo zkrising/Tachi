@@ -1,32 +1,32 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
+import PBTable from "components/tables/pbs/PBTable";
+import ScoreTable from "components/tables/scores/ScoreTable";
 import DebounceSearch from "components/util/DebounceSearch";
+import Icon from "components/util/Icon";
+import LoadingWrapper from "components/util/LoadingWrapper";
+import SelectLinkButton from "components/util/SelectLinkButton";
+import useScoreRatingAlg from "components/util/useScoreRatingAlg";
+import useUGPTBase from "components/util/useUGPTBase";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { Route, Switch } from "react-router-dom";
 import {
-	PBScoreDocument,
 	ChartDocument,
-	SongDocument,
-	PublicUserDocument,
-	GetGameConfig,
-	ScoreDocument,
-	IDStrings,
-	Game,
-	UnsuccessfulAPIResponse,
 	FormatGame,
-	GetGamePTConfig,
-	ScoreCalculatedDataLookup,
+	Game,
 	GamePTConfig,
+	GetGameConfig,
+	GetGamePTConfig,
+	IDStrings,
+	PBScoreDocument,
+	PublicUserDocument,
+	ScoreCalculatedDataLookup,
+	ScoreDocument,
+	SongDocument,
+	UnsuccessfulAPIResponse,
 } from "tachi-common";
 import { GamePT, SetState } from "types/react";
 import { APIFetchV1 } from "util/api";
-import LoadingWrapper from "components/util/LoadingWrapper";
-import Icon from "components/util/Icon";
-import SelectLinkButton from "components/util/SelectLinkButton";
-import PBTable from "components/tables/pbs/PBTable";
-import ScoreTable from "components/tables/scores/ScoreTable";
-import useScoreRatingAlg from "components/util/useScoreRatingAlg";
-import useUGPTBase from "components/util/useUGPTBase";
-import { Switch, Route } from "react-router-dom";
 
 export default function ScoresPage({
 	reqUser,
@@ -56,11 +56,11 @@ export default function ScoresPage({
 				<div className="btn-group mb-4">
 					<SelectLinkButton to={`${base}/scores`}>
 						<Icon type="trophy" />
-						Best PBs
+						Best 100 PBs
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/scores/history`}>
 						<Icon type="history" />
-						Recent Scores
+						Recent 100 Scores
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/scores/most-played`}>
 						<Icon type="mortar-pestle" />
@@ -76,13 +76,13 @@ export default function ScoresPage({
 				<Switch>
 					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/scores">
 						<>
+							{gptConfig.scoreRatingAlgs.length > 1 && (
+								<AlgSelector {...{ alg, setAlg, gptConfig }} />
+							)}
 							<PBsOverview
 								url={`/users/${reqUser.id}/games/${game}/${playtype}/pbs/best?alg=${alg}`}
 								{...{ reqUser, game, playtype, alg }}
 							/>
-							{gptConfig.scoreRatingAlgs.length > 1 && (
-								<AlgSelector {...{ alg, setAlg, gptConfig }} />
-							)}
 						</>
 					</Route>
 					<Route path="/dashboard/users/:userID/games/:game/:playtype/scores/history">
@@ -125,7 +125,7 @@ function AlgSelector({
 	return (
 		<div className="row justify-content-center mb-4">
 			<div className="form-group">
-				<span className="form-group-prefix">Best 100 scores according to </span>
+				<span className="form-group-prefix">Best 100 PBs according to </span>
 				<select
 					className="form-control"
 					value={alg}

@@ -3,8 +3,7 @@ import MiniTable from "components/tables/components/MiniTable";
 import React from "react";
 import { GetGamePTConfig, IDStrings, ScoreCalculatedDataLookup, UserGameStats } from "tachi-common";
 import { GameClassSets } from "tachi-common/js/game-classes";
-import { UppercaseFirst, FormatGPTRating } from "util/misc";
-import { MillisToSince } from "util/time";
+import { FormatGPTRating, UppercaseFirst } from "util/misc";
 
 export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 	const gptConfig = GetGamePTConfig(ugs.game, ugs.playtype);
@@ -17,7 +16,7 @@ export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 						<tr key={k}>
 							<td>{UppercaseFirst(k)}</td>
 							<td>
-								{ugs.classes[k] ? (
+								{ugs.classes[k] !== undefined ? (
 									<ClassBadge
 										showSetOnHover={false}
 										key={`${k}:${ugs.classes[k]}`}

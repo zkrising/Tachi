@@ -127,7 +127,10 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/history", (t) => {
 				playtype: "SP",
 				// @ts-expect-error Too lazy to sort this one out...
 				rankings: {
-					BPI: 5,
+					BPI: {
+						ranking: 2,
+						outOf: 4,
+					},
 				},
 				playcount: 100,
 				classes: {},
@@ -165,7 +168,10 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/history", (t) => {
 			},
 			{
 				rankings: {
-					BPI: 5,
+					BPI: {
+						ranking: 2,
+						outOf: 4,
+					},
 				},
 				playcount: 100,
 				classes: {},

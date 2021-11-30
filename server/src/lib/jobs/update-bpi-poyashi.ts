@@ -3,6 +3,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
 import { ChartDocument, Difficulties, IIDXBPIData } from "tachi-common";
+import { RecalcGameProfiles } from "utils/calculations/recalc-game-profiles";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { RecalcSessions } from "utils/calculations/recalc-sessions";
 import { FindChartWithPTDFVersion } from "utils/queries/charts";
@@ -127,6 +128,8 @@ async function UpdatePoyashiData() {
 	await RecalcAllScores({ game: "iidx", chartID: { $in: updatedCharts } });
 	// @optimisable -- can be filtered to just scores that were recalced.
 	await RecalcSessions({ game: "iidx" });
+
+	await RecalcGameProfiles({ game: "iidx" });
 
 	logger.info(`Done.`);
 }

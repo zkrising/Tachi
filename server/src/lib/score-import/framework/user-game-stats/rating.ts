@@ -110,10 +110,10 @@ const RatingFunctions: RatingFunctions = {
 	},
 	bms: {
 		"7K": async (g, p, u) => ({
-			ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
+			sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
 		}),
 		"14K": async (g, p, u) => ({
-			ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
+			sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
 		}),
 	},
 	chunithm: {

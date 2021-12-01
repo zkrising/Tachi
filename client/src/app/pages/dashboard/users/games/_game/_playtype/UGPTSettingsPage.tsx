@@ -6,6 +6,7 @@ import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Muted from "components/util/Muted";
 import SelectButton from "components/util/SelectButton";
+import useQueryString from "components/util/useQueryString";
 import { UGPTSettingsContext } from "context/UGPTSettingsContext";
 import deepmerge from "deepmerge";
 import { useFormik } from "formik";
@@ -25,7 +26,11 @@ import { APIFetchV1 } from "util/api";
 type Props = { reqUser: PublicUserDocument } & GamePT;
 
 export default function UGPTSettingsPage({ reqUser, game, playtype }: Props) {
-	const [page, setPage] = useState<"preferences" | "showcase">("preferences");
+	const query = useQueryString();
+
+	const [page, setPage] = useState<"preferences" | "showcase">(
+		query.get("showcase") ? "showcase" : "preferences"
+	);
 	const gameConfig = GetGameConfig(game);
 
 	useSetSubheader(

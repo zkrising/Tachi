@@ -228,6 +228,7 @@ export default function UGPTStatShowcase({
 											className="col-12 col-md-4 d-flex align-items-stretch mt-8"
 										>
 											<StatDisplay
+												reqUser={reqUser}
 												statData={e}
 												compareData={
 													data.thisUserData

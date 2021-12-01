@@ -100,7 +100,7 @@ failOverLamp = false
 apiStatus = ${ServerConfig.OUR_URL}/api/v1/status
 
 ; Where to POST scores to.
-apiEndpoint = ${ServerConfig.OUR_URL}/ir/direct-manual
+apiEndpoint = ${ServerConfig.OUR_URL}/ir/direct-manual/import
 
 ; This thing is secret! Keep it so. You can manage your API Keys at
 ; ${ServerConfig.OUR_URL}/users/me -> Integrations -> API Keys!

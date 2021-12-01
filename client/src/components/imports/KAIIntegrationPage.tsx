@@ -121,7 +121,7 @@ function KAINeedsIntegrate({ kaiType, hash, clientID, redirectUri }: Omit<Props,
 		scope: "settings_read",
 	});
 
-	const [url, setKey] = useState<string>("");
+	const [url, setUrl] = useState<string>("");
 
 	const valid = useMemo(() => {
 		if (!url) {
@@ -147,9 +147,25 @@ function KAINeedsIntegrate({ kaiType, hash, clientID, redirectUri }: Omit<Props,
 					<InputGroup.Prepend>
 						<InputGroup.Text>https://</InputGroup.Text>
 					</InputGroup.Prepend>
-					<Form.Control value={url} onChange={e => setKey(e.target.value)} />
+					<Form.Control value={url} onChange={e => setUrl(e.target.value)} />
 				</InputGroup>
 			</Form.Group>
+			{url.split(".").length >= 3 && (
+				<>
+					<br />
+					<span className="text-danger">
+						The URL should only have one <code>.</code> in it.
+					</span>
+				</>
+			)}
+			{url.includes("/") && (
+				<>
+					<br />
+					<span className="text-danger">
+						The URL should not need any <code>/</code> characters!
+					</span>
+				</>
+			)}
 			<Divider />
 			<div>You'll need to come back to this page after linking!</div>
 			<Divider />

@@ -28,8 +28,6 @@ const LAMP_MAP: Map<string, Lamps["sdvx:Single"]> = new Map([
 	["COMPLETE", "CLEAR"],
 	["EXCESSIVE COMPLETE", "EXCESSIVE CLEAR"],
 	["ULTIMATE CHAIN", "ULTIMATE CHAIN"],
-	// I am not sure which one is right because I haven't PUC'd anything on cab.
-	["PEFRECT ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"],
 	["PERFECT", "PERFECT ULTIMATE CHAIN"],
 ]);
 

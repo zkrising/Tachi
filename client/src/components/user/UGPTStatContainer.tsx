@@ -72,6 +72,7 @@ export default function UGPTStatContainer({
 
 	return (
 		<StatDisplay
+			reqUser={reqUser}
 			game={game}
 			playtype={playtype}
 			statData={data.data}

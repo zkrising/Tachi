@@ -191,9 +191,9 @@ export function Sleep(ms: number) {
 }
 
 export function HistorySafeGoBack(history: ReturnType<typeof useHistory>) {
-	if (history.length === 1) {
-		history.replace("/");
-	} else {
-		history.goBack();
-	}
+	// if (history.length === 1) {
+	history.replace("/");
+	// } else {
+	// history.goBack();
+	// }
 }

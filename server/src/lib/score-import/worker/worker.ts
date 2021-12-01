@@ -122,4 +122,4 @@ export const worker = new Worker(
 	}
 );
 
-process.on("SIGTERM", HandleSIGTERMGracefully);
+process.on("SIGTERM", () => HandleSIGTERMGracefully());

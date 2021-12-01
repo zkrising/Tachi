@@ -8,6 +8,8 @@ import {
 	Lamps,
 	Playtypes,
 	ScoreDocument,
+	GetGamePTConfig,
+	IIDX_LAMPS,
 } from "tachi-common";
 import { HasOwnProperty } from "utils/misc";
 import { DryScore } from "../common/types";
@@ -260,23 +262,40 @@ async function CalculateDataDDR(
 	};
 }
 
-export async function CalculateDataBMS14K(
+export function CalculateDataBMS14K(
 	dryScore: DryScore,
 	chart: ChartDocument,
 	logger: KtLogger
-): Promise<CalculatedData<"bms:14K">> {
+): CalculatedData<"bms:14K"> {
 	return {
 		sieglinde: 0, // @todo #33
 	};
 }
 
-export async function CalculateDataBMS7K(
+export function CalculateDataBMS7K(
 	dryScore: DryScore,
 	chart: ChartDocument,
 	logger: KtLogger
-): Promise<CalculatedData<"bms:7K">> {
+): CalculatedData<"bms:7K"> {
+	const ecValue = chart.tierlistInfo["sgl-EC"]?.value ?? 0;
+	const hcValue = chart.tierlistInfo["sgl-HC"]?.value ?? 0;
+
+	const gptConfig = GetGamePTConfig("bms", "7K");
+
+	const lampIndex = gptConfig.lamps.indexOf(dryScore.scoreData.lamp);
+
+	if (lampIndex >= IIDX_LAMPS.HARD_CLEAR) {
+		return {
+			sieglinde: Math.max(hcValue, ecValue), // @todo #33
+		};
+	} else if (lampIndex >= IIDX_LAMPS.EASY_CLEAR) {
+		return {
+			sieglinde: ecValue,
+		};
+	}
+
 	return {
-		sieglinde: 0, // @todo #33
+		sieglinde: 0,
 	};
 }
 

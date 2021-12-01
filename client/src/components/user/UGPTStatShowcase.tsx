@@ -368,11 +368,17 @@ export function GetStatName(
 
 export function StatDisplay({
 	statData,
+	reqUser,
 	compareData,
 	game,
 	playtype,
-}: { statData: UGPTPreferenceStatsReturn; compareData?: UGPTPreferenceStatsReturn } & GamePT) {
+}: {
+	statData: UGPTPreferenceStatsReturn;
+	compareData?: UGPTPreferenceStatsReturn;
+	reqUser: PublicUserDocument;
+} & GamePT) {
 	const { stat, result, related } = statData;
+	const { user } = useContext(UserContext);
 
 	if (stat.mode === "chart") {
 		const { song, chart } = related as { song: SongDocument; chart: ChartDocument };
@@ -388,14 +394,16 @@ export function StatDisplay({
 						{UppercaseFirst(stat.property)}:{" "}
 						{FormatPropertyGTE(game, playtype, stat.property, result.value)}
 					</h4>
-					<StatDelta
-						v1={statData.result.value}
-						v2={compareData?.result.value}
-						mode={stat.mode}
-						property={stat.property}
-						game={game}
-						playtype={playtype}
-					/>
+					{user && user.id !== reqUser.id && (
+						<StatDelta
+							v1={statData.result.value}
+							v2={compareData?.result.value}
+							mode={stat.mode}
+							property={stat.property}
+							game={game}
+							playtype={playtype}
+						/>
+					)}
 				</>
 			</Card>
 		);
@@ -426,14 +434,16 @@ export function StatDisplay({
 						<small className="text-muted">/{result.outOf}</small>
 					</h4>
 
-					<StatDelta
-						v1={statData.result.value}
-						v2={compareData?.result.value}
-						mode={stat.mode}
-						property={stat.property}
-						game={game}
-						playtype={playtype}
-					/>
+					{user && user.id !== reqUser.id && (
+						<StatDelta
+							v1={statData.result.value}
+							v2={compareData?.result.value}
+							mode={stat.mode}
+							property={stat.property}
+							game={game}
+							playtype={playtype}
+						/>
+					)}
 				</>
 			</Card>
 		);

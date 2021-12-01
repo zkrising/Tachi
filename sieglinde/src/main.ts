@@ -36,7 +36,7 @@ function WriteOut(data: string) {
 
 		const calcData = await Promise.all(tableInfo.map(SieglindeV0Calc));
 
-		WriteOut(JSON.stringify(calcData));
+		WriteOut(JSON.stringify(calcData.flat(1)));
 
 		logger.info(`Finished!`);
 	} else {

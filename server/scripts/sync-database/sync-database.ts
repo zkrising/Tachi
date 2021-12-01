@@ -112,7 +112,7 @@ const syncInstructions: SyncInstructions[] = [
 			// Since the USC and BMS databases are managed Bokutachi-side, we
 			// shouldn't be honoring any sort of updates from tachi-database-seeds
 			// aside from an initial one.
-			const isInitial = await collection.findOne();
+			const isInitial = (await collection.findOne()) === null;
 
 			if (isInitial) {
 				const r = await GenericUpsert(charts, collection, "chartID", logger, true);

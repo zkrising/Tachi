@@ -170,7 +170,7 @@ t.test("#CalculateKTLampRatingIIDx", (t) => {
 		"Should return 0 if the score was HC but no HC or NC was available."
 	);
 
-	tequal(
+	t.equal(
 		CalculateKTLampRatingIIDX(s("HARD CLEAR"), "SP", c(10.5, null, 10.7)),
 		10.5,
 		"Should return NC if the score was HC but no HC was available."

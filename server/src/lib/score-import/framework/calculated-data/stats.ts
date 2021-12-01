@@ -4,6 +4,7 @@ import {
 	Game,
 	GetGamePTConfig,
 	Grades,
+	IIDX_LAMPS,
 	integer,
 	Lamps,
 	Playtypes,
@@ -317,13 +318,34 @@ export function CalculateKTRating(
 	return KTRatingCalcV1(dryScore.scoreData.percent, levelNum, parameters, logger);
 }
 
-export function CalculateKTLampRating(
+export function CalculateKTLampRatingIIDX(
 	dryScore: DryScore,
-	game: Game,
 	playtype: Playtypes[Game],
-	chart: ChartDocument
+	chart: ChartDocument<"iidx:SP" | "iidx:DP">
 ) {
-	return LampRatingNoTierlistInfo(dryScore, game, playtype, chart);
+	const ncValue = chart.tierlistInfo["kt-NC"]?.value ?? 0;
+	const hcValue = Math.max(chart.tierlistInfo["kt-HC"]?.value ?? 0, ncValue);
+	const exhcValue = Math.max(chart.tierlistInfo["kt-EXHC"]?.value ?? 0, hcValue);
+
+	if (!exhcValue && !hcValue && !ncValue) {
+		return LampRatingNoTierlistInfo(dryScore, "iidx", playtype, chart);
+	}
+
+	const lamp = dryScore.scoreData.lamp;
+
+	const gptConfig = GetGamePTConfig("iidx", playtype);
+
+	const lampIndex = gptConfig.lamps.indexOf(lamp);
+
+	if (exhcValue && lampIndex >= IIDX_LAMPS.EX_HARD_CLEAR) {
+		return exhcValue;
+	} else if (hcValue && lampIndex >= IIDX_LAMPS.HARD_CLEAR) {
+		return hcValue;
+	} else if (ncValue && lampIndex >= IIDX_LAMPS.CLEAR) {
+		return ncValue;
+	}
+
+	return 0;
 }
 
 function LampRatingNoTierlistInfo(

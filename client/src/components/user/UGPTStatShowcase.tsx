@@ -61,7 +61,7 @@ export default function UGPTStatShowcase({
 									type="edit"
 									to={`/dashboard/users/${
 										user!.username
-									}/games/${game}/${playtype}/settings`}
+									}/games/${game}/${playtype}/settings?showcase=yea`}
 									hoverText="Modify your statistics showcase."
 								/>
 							) : null

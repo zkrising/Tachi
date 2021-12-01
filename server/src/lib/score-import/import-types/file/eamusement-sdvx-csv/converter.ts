@@ -30,7 +30,7 @@ const LAMP_MAP: Map<string, Lamps["sdvx:Single"]> = new Map([
 	["ULTIMATE CHAIN", "ULTIMATE CHAIN"],
 	// I am not sure which one is right because I haven't PUC'd anything on cab.
 	["PEFRECT ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"],
-	["PEFRECT", "PERFECT ULTIMATE CHAIN"],
+	["PERFECT", "PERFECT ULTIMATE CHAIN"],
 ]);
 
 const ConvertEamSDVXCSV: ConverterFunction<SDVXEamusementCSVData, EmptyObject> = async (

@@ -15,7 +15,7 @@ import {
 	CalculateBPI,
 	CalculateCHUNITHMRating,
 	CalculateGITADORASkill,
-	CalculateKTLampRating,
+	CalculateKTLampRatingIIDX,
 	CalculateKTRating,
 	CalculateMFCP,
 	CalculateVF6,
@@ -136,7 +136,7 @@ async function CalculateDataIIDXSP(
 			BPIData.kavg,
 			BPIData.wr,
 			dryScore.scoreData.score,
-			(chart as ChartDocument<"iidx:DP" | "iidx:SP">).data.notecount * 2,
+			(chart as ChartDocument<"iidx:SP">).data.notecount * 2,
 			BPIData.coef
 		);
 
@@ -147,8 +147,8 @@ async function CalculateDataIIDXSP(
 
 	return {
 		BPI: bpi,
-		ktRating: await CalculateKTRating(dryScore, "iidx", "SP", chart, logger),
-		ktLampRating: await CalculateKTLampRating(dryScore, "iidx", "SP", chart),
+		ktRating: CalculateKTRating(dryScore, "iidx", "SP", chart, logger),
+		ktLampRating: CalculateKTLampRatingIIDX(dryScore, "SP", chart as ChartDocument<"iidx:SP">),
 	};
 }
 
@@ -168,7 +168,7 @@ async function CalculateDataIIDXDP(
 			BPIData.kavg,
 			BPIData.wr,
 			dryScore.scoreData.score,
-			(chart as ChartDocument<"iidx:DP" | "iidx:SP">).data.notecount * 2,
+			(chart as ChartDocument<"iidx:DP">).data.notecount * 2,
 			BPIData.coef
 		);
 
@@ -179,8 +179,8 @@ async function CalculateDataIIDXDP(
 
 	return {
 		BPI: bpi,
-		ktRating: await CalculateKTRating(dryScore, "iidx", "DP", chart, logger),
-		ktLampRating: await CalculateKTLampRating(dryScore, "iidx", "DP", chart),
+		ktRating: CalculateKTRating(dryScore, "iidx", "DP", chart, logger),
+		ktLampRating: CalculateKTLampRatingIIDX(dryScore, "DP", chart as ChartDocument<"iidx:DP">),
 	};
 }
 

@@ -257,9 +257,11 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/leaderboard">
 					<LeaderboardsPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
-				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/settings">
-					<UGPTSettingsPage reqUser={reqUser} game={game} playtype={playtype} />
-				</Route>
+				<RequireAuthAsUserParam>
+					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/settings">
+						<UGPTSettingsPage reqUser={reqUser} game={game} playtype={playtype} />
+					</Route>
+				</RequireAuthAsUserParam>
 				<Route path="*">
 					<ErrorPage statusCode={404} />
 				</Route>

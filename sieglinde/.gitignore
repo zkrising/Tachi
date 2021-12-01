@@ -3,6 +3,8 @@
 .nyc_output
 coverage
 
+out.json
+
 /js
 
 .pnpm-debug

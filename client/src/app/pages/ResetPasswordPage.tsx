@@ -32,7 +32,7 @@ export default function ResetPasswordPage() {
 							headers: {
 								"Content-Type": "application/json",
 							},
-							body: JSON.stringify({ code, password }),
+							body: JSON.stringify({ code, "!password": password }),
 						},
 						true,
 						true

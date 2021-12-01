@@ -17921,7 +17921,8 @@
 	},
 	{
 		"altTitles": [
-			"ROCK女 feat. 大山愛未， Ken"
+			"ROCK女 feat. 大山愛未， Ken",
+			"ROCK女 feat. 大山愛未、 Ken"
 		],
 		"artist": "Y&Co.",
 		"data": {
@@ -21740,7 +21741,9 @@
 		"title": "Farewell to Marrakech"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"POLKAMAИIA"
+		],
 		"artist": "かめりあ feat. ななひら",
 		"data": {
 			"displayVersion": "28",
@@ -22223,7 +22226,9 @@
 		"title": "儚き恋の華"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"Parvati"
+		],
 		"artist": "BEMANI Sound Team \"U1 overground\"",
 		"data": {
 			"displayVersion": "28",
@@ -22443,7 +22448,9 @@
 		"title": "Sugarplum"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"Ignis†Irae"
+		],
 		"artist": "BEMANI Sound Team \"神\"",
 		"data": {
 			"displayVersion": "28",

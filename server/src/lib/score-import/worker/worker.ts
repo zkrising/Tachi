@@ -1,3 +1,6 @@
+import { EventEmitter } from "events";
+EventEmitter.defaultMaxListeners = 20;
+
 // For scaling performance, running score-importing in a separate worker is preferable
 // as that way, other API calls don't get halted by particularly expensive imports on
 // all cores. Parallelism can only get us so far in the same process.

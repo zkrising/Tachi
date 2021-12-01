@@ -134,7 +134,7 @@ export default function ImportRoutes() {
 							</Route>
 							<Route exact path="/dashboard/import/sdvx-min">
 								<KAIIntegrationPage
-									hash="5885d4123b6db3f0127111a587ea6549f533a1*78dc2e198d31f98bed4ffd0cad"
+									hash="5885d4123b6db3f0127111a587ea6549f533a178dc2e198d31f98bed4ffd0cad"
 									clientID={process.env.REACT_APP_MIN_CLIENT_ID ?? ""}
 									redirectUri={`${window.location.origin}/oauth2-callback/min`}
 									kaiType="MIN"

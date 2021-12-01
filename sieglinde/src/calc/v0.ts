@@ -16,7 +16,7 @@ export default async function SieglindeV0Calc(tableInfo: TableRes): Promise<Calc
 	const dataset = [];
 
 	for (const chart of tableInfo.charts) {
-		const scores = await GetScoresForMD5(chart.md5);
+		const scores = []; // await GetScoresForMD5(chart.md5);
 
 		const ecRate = 0;
 		const hcRate = 0;
@@ -63,23 +63,16 @@ export default async function SieglindeV0Calc(tableInfo: TableRes): Promise<Calc
 		const ecValue = Math.max(0, data.baseLine - ecDiff * confidence);
 		const hcValue = Math.max(0, data.baseLine - hcDiff * confidence);
 
-		const gutter = data.baseLine + data.nextBaseLine;
-
-		const ecLerp = gutter * 0.5 - (ecDiff * confidence) / gutter;
-		const hcLerp = gutter * 0.5 - (hcDiff * confidence) / gutter;
-
-		const ecStr = data.str + ecLerp.toFixed(2);
-		const hcStr = data.str + hcLerp.toFixed(2);
-
-		logger.verbose(`${data.title} | EC: ${ecStr}, HC: ${hcStr}`);
+		const ecPrefix = ecValue < 12 ? "☆" : "🟊";
+		const hcPrefix = hcValue < 12 ? "☆" : "🟊";
 
 		returns.push({
 			md5: data.md5,
 			title: data.title,
 			ec: ecValue,
-			ecStr,
+			ecStr: `${ecPrefix}${ecValue < 12 ? ecValue : ecValue - 12}`,
 			hc: hcValue,
-			hcStr,
+			hcStr: `${hcPrefix}${hcValue < 12 ? hcValue : hcValue - 12}`,
 		});
 	}
 

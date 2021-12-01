@@ -32,9 +32,13 @@ function WriteOut(data: string) {
 	if (version === 0) {
 		const tableInfo = await GetTableData();
 
+		logger.info(`Starting...`);
+
 		const calcData = await Promise.all(tableInfo.map(SieglindeV0Calc));
 
 		WriteOut(JSON.stringify(calcData));
+
+		logger.info(`Finished!`);
 	} else {
 		logger.error(`Unsupported/Unknown version ${version}.`);
 		process.exit(-1);

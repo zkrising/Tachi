@@ -21,6 +21,14 @@ const TableValueGetters: Record<
 		return n + 12;
 	},
 	Normal: (c) => {
+		if (c === "11+") {
+			return 11.5;
+		} else if (c === "12-") {
+			return 11.8;
+		} else if (c === "12+") {
+			return 12.5;
+		}
+
 		const n = Number(c);
 
 		if (Number.isNaN(n)) {

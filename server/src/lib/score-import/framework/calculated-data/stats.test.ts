@@ -9,6 +9,7 @@ import {
 	CalculateBPI,
 	CalculateCHUNITHMRating,
 	CalculateGITADORASkill,
+	CalculateKTLampRatingIIDX,
 	CalculateKTRating,
 	CalculateMFCP,
 	CalculateVF6,
@@ -106,6 +107,98 @@ t.test("#CalculateBPI", (t) => {
 
 		t.end();
 	});
+
+	t.end();
+});
+
+t.test("#CalculateKTLampRatingIIDx", (t) => {
+	function c(
+		nc: number | null,
+		hc: number | null,
+		exhc: number | null
+	): ChartDocument<"iidx:SP"> {
+		return Object.assign({}, Testing511SPA, {
+			tierlistInfo: {
+				"kt-EXHC": {
+					value: exhc,
+				},
+				"kt-HC": {
+					value: hc,
+				},
+				"kt-NC": {
+					value: nc,
+				},
+			},
+		});
+	}
+
+	function s(lamp: Lamps["iidx:SP" | "iidx:DP"]): DryScore<"iidx:SP" | "iidx:DP"> {
+		return Object.assign({}, TestingIIDXSPDryScore, {
+			scoreData: {
+				lamp,
+			},
+		});
+	}
+
+	t.equal(
+		CalculateKTLampRatingIIDX(s("CLEAR"), "SP", c(10.5, 10.6, 10.7)),
+		10.5,
+		"Should return NC if the score was NC."
+	);
+
+	t.equal(
+		CalculateKTLampRatingIIDX(s("HARD CLEAR"), "SP", c(10.5, 10.6, 10.7)),
+		10.6,
+		"Should return HC if the score was HC."
+	);
+
+	t.equal(
+		CalculateKTLampRatingIIDX(s("EX HARD CLEAR"), "SP", c(10.5, 10.6, 10.7)),
+		10.7,
+		"Should return EXHC if the score was EXHC."
+	);
+
+	t.equal(
+		CalculateKTLampRatingIIDX(s("CLEAR"), "SP", c(null, 10.6, 10.7)),
+		0,
+		"Should return 0 if the score was NC but no NC was available."
+	);
+
+	t.equal(
+		CalculateKTLampRatingIIDX(s("HARD CLEAR"), "SP", c(null, null, 10.7)),
+		0,
+		"Should return 0 if the score was HC but no HC or NC was available."
+	);
+
+	t.equal(
+		CalculateKTLampRatingIIDX(s("HARD CLEAR"), "SP", c(10.5, null, 10.7)),
+		10.5,
+		"Should return NC if the score was HC but no HC was available."
+	);
+
+	t.equal(
+		CalculateKTLampRatingIIDX(s("HARD CLEAR"), "SP", c(10.9, 10.5, 10.7)),
+		10.9,
+		"Should return NC if the score was HC but NC was worth more."
+	);
+
+	t.equal(
+		CalculateKTLampRatingIIDX(s("EX HARD CLEAR"), "SP", c(10.9, 10.5, 10.7)),
+		10.9,
+		"Should return NC if the score was EXHC but NC was worth more."
+	);
+
+	t.equal(
+		CalculateKTLampRatingIIDX(s("EX HARD CLEAR"), "SP", c(10.4, 10.9, 10.7)),
+		10.9,
+		"Should return HC if the score was EXHC but HC was worth more."
+	);
+
+	t.equal(
+		CalculateKTLampRatingIIDX(s("CLEAR"), "SP", c(null, null, null)),
+		10,
+		"Should return chart level if the chart has no tierlist data."
+	);
 
 	t.end();
 });

@@ -119,7 +119,6 @@ export const TestingIIDXFolderSP10: FolderDocument = {
 	folderID: "ed9d8c734447ce67d7135c0067441a98cc81aeaf",
 	data: {
 		level: "10",
-		"flags¬IN BASE GAME": true,
 	},
 	searchTerms: [],
 	inactive: false,

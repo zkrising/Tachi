@@ -7,12 +7,7 @@
 		"playtype": "SP",
 		"levelNum": 10,
 		"level": "10",
-		"flags": {
-			"IN BASE GAME": true,
-			"OMNIMIX": true,
-			"N-1": true,
-			"2dxtra": false
-		},
+		"tierlistInfo": {},
 		"data": {
 			"inGameID": 1000,
 			"notecount": 786,

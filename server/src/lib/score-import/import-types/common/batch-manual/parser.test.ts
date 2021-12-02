@@ -402,6 +402,32 @@ t.test("#ParserFn", (t) => {
 			t.end();
 		});
 
+		t.test("TimeAchieved of 0 should be legal.", (t) => {
+			const res = ParserFn(dm({ timeAchieved: 0 }), "file/batch-manual", logger);
+
+			t.hasStrict(res, {
+				game: "iidx",
+				context: {
+					service: "foo",
+					game: "iidx",
+					playtype: "SP",
+					version: null,
+				},
+				iterable: [
+					{
+						score: 1000,
+						lamp: "HARD CLEAR",
+						matchType: "tachiSongID",
+						identifier: "123",
+						difficulty: "ANOTHER",
+						timeAchieved: 0,
+					},
+				],
+			});
+
+			t.end();
+		});
+
 		t.test("Invalid Identifier", (t) => {
 			// this is not a valid playtype for IIDX
 			const fn = () => ParserFn(dm({ identifier: null }), "file/batch-manual", logger);

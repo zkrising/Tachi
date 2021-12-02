@@ -5,6 +5,7 @@ import { UserContext } from "context/UserContext";
 import { useFormik } from "formik";
 import React, { useContext, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
+import ReCAPTCHA from "react-google-recaptcha";
 import toast from "react-hot-toast";
 import { Link, useHistory } from "react-router-dom";
 import { PublicUserDocument } from "tachi-common";
@@ -23,7 +24,7 @@ export default function LoginPage() {
 		initialValues: {
 			username: "",
 			"!password": "",
-			captcha: "temp",
+			captcha: "",
 		},
 		onSubmit: async values => {
 			setErr("");
@@ -103,6 +104,17 @@ export default function LoginPage() {
 					>
 						{err}
 					</Form.Group>
+
+					<ReCAPTCHA
+						sitekey={
+							process.env.REACT_APP_RECAPTCHA_KEY ??
+							"6LdI2swUAAAAAArkM0ZQi4SnttilqgAwsJSFw3PX"
+						}
+						onChange={v => {
+							formik.setFieldValue("captcha", v);
+						}}
+					/>
+
 					<Form.Group className="justify-content-center d-flex pt-4">
 						<span
 							onClick={() => history.goBack()}

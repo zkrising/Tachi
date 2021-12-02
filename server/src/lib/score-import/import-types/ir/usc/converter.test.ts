@@ -16,6 +16,17 @@ t.test("#DeriveLamp", (t) => {
 
 	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 0 }, gauge: 0.7 }), logger), "CLEAR");
 
+	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 1 }), logger), "FAILED");
+	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 0 }), logger), "FAILED");
+	t.equal(
+		DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 1, score: 10_000_000 }), logger),
+		"PERFECT ULTIMATE CHAIN"
+	);
+	t.equal(
+		DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 1, error: 0 }), logger),
+		"ULTIMATE CHAIN"
+	);
+
 	t.equal(
 		DeriveLamp(d(uscScore, { options: { gaugeType: 1 }, gauge: 0.1 }), logger),
 		"EXCESSIVE CLEAR"
@@ -58,7 +69,7 @@ t.test("#DeriveLamp", (t) => {
 		"ULTIMATE CHAIN"
 	);
 
-	t.throws(() => DeriveLamp(d(uscScore, { options: { gaugeType: 2 } }), logger));
+	t.throws(() => DeriveLamp(d(uscScore, { options: { gaugeType: 3 } }), logger));
 
 	t.end();
 });

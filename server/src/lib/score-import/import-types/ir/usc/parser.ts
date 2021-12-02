@@ -18,7 +18,7 @@ const PR_USCIRScore: PrudenceSchema = {
 	late: p.optional(p.isPositiveInteger),
 	combo: p.optional(p.isPositiveInteger),
 	options: {
-		gaugeType: p.isIn(0, 1),
+		gaugeType: p.isIn(0, 1, 2),
 		mirror: "boolean",
 		random: "boolean",
 		autoFlags: p.isInteger,

@@ -358,6 +358,38 @@ t.test("#ConverterFn", (t) => {
 		t.end();
 	});
 
+	t.test("Should produce a with timeAchieved null if timeAchieved is 0", async (t) => {
+		const res = await ConverterBatchManual(
+			deepmerge(baseBatchManualScore, { timeAchieved: 0 }),
+			{ game: "iidx", service: "foo", playtype: "SP", version: null },
+			importType,
+			logger
+		);
+
+		t.hasStrict(res, {
+			chart: Testing511SPA,
+			song: { id: 1 },
+			dryScore: {
+				game: "iidx",
+				service: "foo (BATCH-MANUAL)",
+				comment: null,
+				importType: "file/batch-manual",
+				timeAchieved: null,
+				scoreData: {
+					lamp: "HARD CLEAR",
+					score: 500,
+					grade: "E",
+					// percent: 31.5, -- ish, FPA is hard.
+					judgements: {},
+					hitMeta: {},
+				},
+				scoreMeta: {},
+			},
+		});
+
+		t.end();
+	});
+
 	t.test("Should reject a score with > 100%", (t) => {
 		t.rejects(
 			() =>

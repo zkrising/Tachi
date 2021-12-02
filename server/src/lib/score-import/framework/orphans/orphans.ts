@@ -112,7 +112,7 @@ export async function ReprocessOrphan(
 		return false;
 	} else if (res instanceof ConverterFailure) {
 		logger.warn(
-			`Recieved ConverterFailure ${res.message} on orphan ${orphan.orphanID}. Removing orphan.`
+			`received ConverterFailure ${res.message} on orphan ${orphan.orphanID}. Removing orphan.`
 		);
 
 		// @danger - This could go terribly, if there's a mistake in the converterFN we might accidentally

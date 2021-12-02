@@ -40,7 +40,7 @@ const ValidateHeaders: RequestHandler = (req, res, next) => {
 
 	if (!softID) {
 		logger.debug(
-			`Recieved request without X-Software-Model from ${req[SYMBOL_TachiAPIAuth].userID!}.`
+			`received request without X-Software-Model from ${req[SYMBOL_TachiAPIAuth].userID!}.`
 		);
 		return res.status(400).json({
 			success: false,
@@ -53,7 +53,7 @@ const ValidateHeaders: RequestHandler = (req, res, next) => {
 
 		if (modelInfo.model !== MODEL_SDVX3_KONASTE) {
 			logger.info(
-				`Recieved unexpected softID ${softID}. Expected ${MODEL_SDVX3_KONASTE} as model.`
+				`received unexpected softID ${softID}. Expected ${MODEL_SDVX3_KONASTE} as model.`
 			);
 			return res.status(400).json({
 				success: false,

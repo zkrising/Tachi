@@ -370,6 +370,17 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 
 	const importDoc = (importRes.body as SuccessfulAPIResponse).body as ImportDocument;
 
+	if (!importDoc.scoreIDs[0]) {
+		logger.warn(`No scoreID, but import was successful?`, {
+			importDoc,
+			userID,
+		});
+		return res.status(200).json({
+			statusCode: STATUS_CODES.BAD_REQ,
+			description: "No score was imported.",
+		});
+	}
+
 	try {
 		const body = await CreatePOSTScoresResponseBody(userID, chartDoc, importDoc.scoreIDs[0]);
 

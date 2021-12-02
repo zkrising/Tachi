@@ -2,7 +2,7 @@ import { AddNewInvite, ReinstateInvite, ValidateCaptcha } from "./auth";
 import t from "tap";
 import db from "external/mongo/db";
 import ResetDBState from "test-utils/resets";
-import { MockBasicFetch } from "test-utils/mock-fetch";
+import { MockBasicFetch, MockJSONFetch } from "test-utils/mock-fetch";
 
 t.test("#ReinstateInvite", (t) => {
 	t.beforeEach(ResetDBState);
@@ -58,15 +58,15 @@ t.test("#AddNewInvite", (t) => {
 
 t.test("#ValidateCaptcha", async (t) => {
 	t.equal(
-		await ValidateCaptcha("200", "bar", MockBasicFetch({ status: 200 })),
+		await ValidateCaptcha("200", "bar", MockJSONFetch({ success: true })),
 		true,
-		"Validates captcha when status return is 200"
+		"Validates captcha when sucess return is true"
 	);
 
 	t.equal(
-		await ValidateCaptcha("400", "bar", MockBasicFetch({ status: 400 })),
+		await ValidateCaptcha("400", "bar", MockJSONFetch({ success: false })),
 		false,
-		"Invalidates captcha when status return is not 200"
+		"Invalidates captcha when success return is not true"
 	);
 
 	t.end();

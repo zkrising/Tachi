@@ -24,7 +24,7 @@ export interface USCClientScore {
 	late: integer | null;
 	combo: integer | null;
 	options: {
-		gaugeType: 0 | 1;
+		gaugeType: 0 | 1 | 2;
 		gaugeOpt: integer;
 		mirror: boolean;
 		random: boolean;

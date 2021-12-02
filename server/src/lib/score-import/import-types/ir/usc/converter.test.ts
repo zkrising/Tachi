@@ -16,6 +16,9 @@ t.test("#DeriveLamp", (t) => {
 
 	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 0 }, gauge: 0.7 }), logger), "CLEAR");
 
+	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 1 }), logger), "FAILED");
+	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 0 }), logger), "FAILED");
+
 	t.equal(
 		DeriveLamp(d(uscScore, { options: { gaugeType: 1 }, gauge: 0.1 }), logger),
 		"EXCESSIVE CLEAR"

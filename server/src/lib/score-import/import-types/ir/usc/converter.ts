@@ -50,6 +50,8 @@ export function DeriveLamp(
 		return scoreDoc.gauge >= 0.7 ? "CLEAR" : "FAILED";
 	} else if (scoreDoc.options.gaugeType === 1) {
 		return scoreDoc.gauge > 0 ? "EXCESSIVE CLEAR" : "FAILED";
+	} else if (scoreDoc.options.gaugeType === 2) {
+		return "FAILED";
 	}
 
 	logger.error(`Could not derive Lamp from Score Document`, { scoreDoc });

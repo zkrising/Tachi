@@ -22,7 +22,6 @@ export async function DeoprhanScores() {
 		// We have to await like this to avoid mid-air race conditions,
 		// where two orphans attempt to deorphan to the same scoreID
 		// at the same time.
-		//
 		// See #511.
 
 		// eslint-disable-next-line no-await-in-loop

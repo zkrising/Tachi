@@ -59,7 +59,7 @@ export async function ResolveFolderToCharts(
 		const folderDataTransposed: Record<string, unknown> = {};
 
 		for (const key in folder.data) {
-			folderDataTransposed[key.replace(/¬/gu, ".")] = folder.data[key];
+			folderDataTransposed[key.replace(/¬/gu, ".").replace("~", "$")] = folder.data[key];
 		}
 
 		const fx = deepmerge.all([filter, { playtype: folder.playtype }, folderDataTransposed]);

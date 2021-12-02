@@ -11,7 +11,13 @@ import { BulkWriteOperation } from "mongodb";
 import { ICollection } from "monk";
 import os from "os";
 import path from "path";
-import { ChartDocument, FolderDocument, SongDocument, TableDocument } from "tachi-common";
+import {
+	ChartDocument,
+	FolderDocument,
+	SongDocument,
+	TableDocument,
+	BMSCourseDocument,
+} from "tachi-common";
 import { InitaliseFolderChartLookup } from "utils/folder";
 
 interface SyncInstructions {
@@ -228,6 +234,14 @@ const syncInstructions: SyncInstructions[] = [
 				await collection.bulkWrite(bwriteOps);
 			}
 		},
+	},
+	{
+		pattern: /^bms-course-lookup$/u,
+		handler: (
+			bmsCourseDocuments: BMSCourseDocument[],
+			collection: ICollection<BMSCourseDocument>,
+			logger
+		) => GenericUpsert(bmsCourseDocuments, collection, "md5sums", logger),
 	},
 ];
 

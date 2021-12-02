@@ -18,19 +18,24 @@ export async function DeoprhanScores() {
 	let success = 0;
 	let removed = 0;
 
-	await Promise.all(
-		orphans.map((or) =>
-			ReprocessOrphan(or, blacklist, logger).then((r) => {
-				if (r === null) {
-					removed++;
-				} else if (r === false) {
-					failed++;
-				} else {
-					success++;
-				}
-			})
-		)
-	);
+	for (const or of orphans) {
+		// We have to await like this to avoid mid-air race conditions,
+		// where two orphans attempt to deorphan to the same scoreID
+		// at the same time.
+		//
+		// See #511.
+
+		// eslint-disable-next-line no-await-in-loop
+		const r = await ReprocessOrphan(or, blacklist, logger);
+
+		if (r === null) {
+			removed++;
+		} else if (r === false) {
+			failed++;
+		} else {
+			success++;
+		}
+	}
 
 	logger.info(`Finished attempting deorphaning.`);
 

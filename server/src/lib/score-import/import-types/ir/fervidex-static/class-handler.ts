@@ -21,7 +21,7 @@ export function CreateFerStaticClassHandler(body: Record<string, unknown>): Clas
 		}
 
 		if (!Number.isInteger(index)) {
-			logger.info(`Recieved invalid fer-static class of ${index} (${playtype}).`, { body });
+			logger.info(`received invalid fer-static class of ${index} (${playtype}).`, { body });
 			return;
 		}
 

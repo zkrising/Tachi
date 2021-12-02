@@ -6,9 +6,9 @@ import { ServerConfig, TachiConfig } from "lib/setup/config";
 export function EmailFormatResetPassword(username: string, resetCode: string, ipAddr: string) {
 	return {
 		html: MainHTMLWrapper(
-			`Hey ${username}, you've recieved a password reset request.<br/><a href="${ServerConfig.OUR_URL}/reset-password?code=${resetCode}">Click here</a> to perform the reset.<br/>If you did not request this reset, report this! This reset request was made by ${ipAddr}.`
+			`Hey ${username}, you've received a password reset request.<br/><a href="${ServerConfig.OUR_URL}/reset-password?code=${resetCode}">Click here</a> to perform the reset.<br/>If you did not request this reset, report this! This reset request was made by ${ipAddr}.`
 		),
-		text: `Hey ${username}, you've recieved a password reset request. This link
+		text: `Hey ${username}, you've received a password reset request. This link
 ${ServerConfig.OUR_URL}/reset-password?code=${resetCode} will perform the reset.
 If you did not request this reset, report this! This reset request was made by ${ipAddr}.`,
 	};

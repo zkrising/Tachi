@@ -197,7 +197,7 @@ export function ParseBatchManualFromObject(
 	if (typeof object !== "object" || object === null) {
 		throw new ScoreImportFatalError(
 			400,
-			`Invalid BATCH-MANUAL (Not an object, recieved ${
+			`Invalid BATCH-MANUAL (Not an object, received ${
 				object === null ? "null" : typeof object
 			}.)`
 		);

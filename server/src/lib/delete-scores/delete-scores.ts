@@ -110,7 +110,7 @@ export async function DeleteScore(score: ScoreDocument, blacklist = false) {
 }
 
 export async function DeleteMultipleScores(scores: ScoreDocument[], blacklist = false) {
-	logger.info(`Recieved request to delete ${scores.length} (Blacklist: ${blacklist}).`);
+	logger.info(`received request to delete ${scores.length} (Blacklist: ${blacklist}).`);
 
 	const scoreIDs = scores.map((e) => e.scoreID);
 

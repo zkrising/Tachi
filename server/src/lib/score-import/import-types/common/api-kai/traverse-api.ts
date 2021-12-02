@@ -75,10 +75,10 @@ export async function* TraverseKaiAPI(
 				},
 			});
 		} catch (err) {
-			logger.error(`Recieved invalid response from ${url}.`, { err });
+			logger.error(`received invalid response from ${url}.`, { err });
 			throw new ScoreImportFatalError(
 				500,
-				`Recieved invalid response from their API. Are they down?`
+				`received invalid response from their API. Are they down?`
 			);
 		}
 
@@ -113,21 +113,21 @@ export async function* TraverseKaiAPI(
 			json = await res.json();
 		} catch (err) {
 			logger.error(
-				`Recieved invalid (non-json) response from ${url}. Status code was ${res.status}.`,
+				`received invalid (non-json) response from ${url}. Status code was ${res.status}.`,
 				{ err }
 			);
 			throw new ScoreImportFatalError(
 				500,
-				`Recieved invalid response from their API. Are they down?`
+				`received invalid response from their API. Are they down?`
 			);
 		}
 
 		if (json._links === null || typeof json._links !== "object") {
-			logger.error(`Recieved invalid JSON from ${url}. Invalid _links.`, { body: json });
+			logger.error(`received invalid JSON from ${url}. Invalid _links.`, { body: json });
 
 			throw new ScoreImportFatalError(
 				500,
-				`Recieved no _links prop from their API. This is not an error with ${TachiConfig.NAME}.`
+				`received no _links prop from their API. This is not an error with ${TachiConfig.NAME}.`
 			);
 		}
 
@@ -149,22 +149,22 @@ export async function* TraverseKaiAPI(
 			// exit the loop after this, we're on the last page.
 			fetchMoreData = false;
 		} else {
-			logger.error(`Recieved invalid response from ${url}. Invalid _links._next.`, {
+			logger.error(`received invalid response from ${url}. Invalid _links._next.`, {
 				body: json,
 			});
 
 			throw new ScoreImportFatalError(
 				500,
-				`Recieved invalid _links._next prop from their API.`
+				`received invalid _links._next prop from their API.`
 			);
 		}
 
 		if (!Array.isArray(json._items)) {
-			logger.error(`Recieved invalid response from ${url}. Invalid _items.`, {
+			logger.error(`received invalid response from ${url}. Invalid _items.`, {
 				body: json,
 			});
 
-			throw new ScoreImportFatalError(500, `Recieved invalid _items from their API.`);
+			throw new ScoreImportFatalError(500, `received invalid _items from their API.`);
 		}
 
 		// yield everything out of the score array

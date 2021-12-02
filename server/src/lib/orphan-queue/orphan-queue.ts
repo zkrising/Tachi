@@ -35,7 +35,7 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 	userID: integer,
 	chartName: string
 ) {
-	logger.debug(`Recieved orphanqueue request for ${chartName}.`);
+	logger.debug(`received orphanqueue request for ${chartName}.`);
 
 	const orphanChart = await db["orphan-chart-queue"].findOne(
 		Object.assign({ idString }, orphanMatchCriteria),
@@ -45,7 +45,7 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 	);
 
 	if (!orphanChart) {
-		logger.verbose(`Recieved unknown chart ${chartName}, orphaning.`);
+		logger.verbose(`received unknown chart ${chartName}, orphaning.`);
 
 		await db["orphan-chart-queue"].insert({
 			idString,

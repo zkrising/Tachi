@@ -36,7 +36,7 @@ t.test("#PrudenceMiddleware", (t) => {
 		t.equal(
 			json.description,
 			"[foo] example error message (Received nothing)",
-			"Should return error message with recieved nothing"
+			"Should return error message with received nothing"
 		);
 
 		t.end();

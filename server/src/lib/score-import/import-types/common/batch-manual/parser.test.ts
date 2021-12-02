@@ -43,7 +43,7 @@ t.test("#ParserFn", (t) => {
 			() => ParserFn(false, "file/batch-manual", logger),
 			new ScoreImportFatalError(
 				400,
-				"Invalid BATCH-MANUAL (Not an object, recieved boolean.)"
+				"Invalid BATCH-MANUAL (Not an object, received boolean.)"
 			),
 			"Should throw an error."
 		);

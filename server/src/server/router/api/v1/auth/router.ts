@@ -68,7 +68,7 @@ router.post(
 			});
 		}
 
-		logger.verbose(`Recieved login request with username ${req.body.username} (${req.ip})`);
+		logger.verbose(`received login request with username ${req.body.username} (${req.ip})`);
 
 		/* istanbul ignore next */
 		if (Environment.nodeEnv === "production" || Environment.nodeEnv === "staging") {
@@ -181,7 +181,7 @@ router.post(
 		"verbose"
 	),
 	async (req, res) => {
-		logger.verbose(`Recieved register request with username ${req.body.username} (${req.ip})`);
+		logger.verbose(`received register request with username ${req.body.username} (${req.ip})`);
 
 		/* istanbul ignore next */
 		if (Environment.nodeEnv === "production" || Environment.nodeEnv === "staging") {
@@ -433,7 +433,7 @@ router.post(
 			});
 		}
 
-		logger.debug(`Recieved password reset request for ${req.body.email}.`);
+		logger.debug(`received password reset request for ${req.body.email}.`);
 		// For timing attack and infosec reasons, we can't do anything but **immediately** return here.
 		res.status(202).json({
 			success: true,

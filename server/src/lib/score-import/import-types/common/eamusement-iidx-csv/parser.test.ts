@@ -82,7 +82,7 @@ t.test("#ParseEamusementCSV", (t) => {
 		t.equal(
 			version,
 			"27",
-			"Should pick largest version regardless of order scores are recieved in."
+			"Should pick largest version regardless of order scores are received in."
 		);
 
 		t.end();

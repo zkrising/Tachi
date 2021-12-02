@@ -77,7 +77,7 @@ export const worker = new Worker(
 
 		job.data.parserArguments = processedArgs;
 
-		logger.debug(`Recieved score import job ${job.id}`, { job });
+		logger.debug(`received score import job ${job.id}`, { job });
 
 		const InputParser = GetInputParser(job.data);
 

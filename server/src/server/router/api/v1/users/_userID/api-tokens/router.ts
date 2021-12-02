@@ -152,7 +152,7 @@ router.delete("/:token", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
 	logger.info(
-		`Recieved request from ${FormatUserDoc(user)} to delete token ${req.params.token}.`
+		`received request from ${FormatUserDoc(user)} to delete token ${req.params.token}.`
 	);
 
 	const token = await db["api-tokens"].findOne({

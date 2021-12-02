@@ -153,14 +153,13 @@ export async function ValidateCaptcha(
 		remoteip: remoteAddr ?? "",
 	});
 
-	const r = await fetch(url.href);
+	const googleCaptchaRes = await fetch(url.href).then((r) => r.json());
 
-	if (r.status !== 200) {
-		logger.verbose(`Failed GCaptcha response ${r.status}, ${r.body}`);
-		return false;
+	if (!googleCaptchaRes.success) {
+		logger.verbose(`Failed GCaptcha response`, googleCaptchaRes);
 	}
 
-	return true;
+	return googleCaptchaRes.success;
 }
 
 export function MountAuthCookie(

@@ -29,7 +29,7 @@ t.test("GET /api/v1/users/:userID/banner", (t) => {
 		t.equal(res.statusCode, 200, "Should return 200.");
 
 		if (res.statusCode !== 200) {
-			rootLogger.info("Unexpected non-200 in CDN tests, Recieved this as a body.", {
+			rootLogger.info("Unexpected non-200 in CDN tests, received this as a body.", {
 				body: res.body,
 			});
 		}

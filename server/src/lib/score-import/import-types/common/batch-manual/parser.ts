@@ -138,6 +138,7 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 		timeAchieved: optNull(
 			(self) =>
 				(typeof self === "number" && self > 1_000_000_000_000) ||
+				self === 0 ||
 				"Expected a number greater than 1 Trillion - did you pass unix seconds instead of milliseconds?"
 		),
 		judgements: optNull((self) => {
@@ -196,7 +197,7 @@ export function ParseBatchManualFromObject(
 	if (typeof object !== "object" || object === null) {
 		throw new ScoreImportFatalError(
 			400,
-			`Invalid BATCH-MANUAL (Not an object, recieved ${
+			`Invalid BATCH-MANUAL (Not an object, received ${
 				object === null ? "null" : typeof object
 			}.)`
 		);

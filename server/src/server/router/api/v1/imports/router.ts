@@ -135,7 +135,7 @@ router.get("/:importID/poll-status", async (req, res) => {
 		} else {
 			return res.status(content.statusCode).json({
 				success: false,
-				description: content.message,
+				description: content.description,
 			});
 		}
 	}

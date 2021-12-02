@@ -43,7 +43,7 @@ t.test("#ParserFn", (t) => {
 			() => ParserFn(false, "file/batch-manual", logger),
 			new ScoreImportFatalError(
 				400,
-				"Invalid BATCH-MANUAL (Not an object, recieved boolean.)"
+				"Invalid BATCH-MANUAL (Not an object, received boolean.)"
 			),
 			"Should throw an error."
 		);
@@ -398,6 +398,32 @@ t.test("#ParserFn", (t) => {
 				),
 				"Should throw if timeAchieved is less than 10_000_000_000."
 			);
+
+			t.end();
+		});
+
+		t.test("TimeAchieved of 0 should be legal.", (t) => {
+			const res = ParserFn(dm({ timeAchieved: 0 }), "file/batch-manual", logger);
+
+			t.hasStrict(res, {
+				game: "iidx",
+				context: {
+					service: "foo",
+					game: "iidx",
+					playtype: "SP",
+					version: null,
+				},
+				iterable: [
+					{
+						score: 1000,
+						lamp: "HARD CLEAR",
+						matchType: "tachiSongID",
+						identifier: "123",
+						difficulty: "ANOTHER",
+						timeAchieved: 0,
+					},
+				],
+			});
 
 			t.end();
 		});

@@ -62,6 +62,21 @@ export async function UpdateUsersGamePlaytypeStats(
 			}
 		);
 	} else {
+		const hasAnyScores = await db.scores.findOne({
+			game,
+			playtype,
+			userID,
+		});
+
+		if (!hasAnyScores) {
+			logger.debug("Not creating new game stats for user with no scores.", {
+				userID,
+				game,
+				playtype,
+			});
+			return deltas;
+		}
+
 		const newStats: UserGameStats = {
 			game,
 			playtype,

@@ -53,7 +53,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 		service,
 		comment: data.comment ?? null,
 		importType,
-		timeAchieved: data.timeAchieved ?? null,
+		timeAchieved: data.timeAchieved || null,
 		scoreData: {
 			lamp: data.lamp,
 			score: data.score,

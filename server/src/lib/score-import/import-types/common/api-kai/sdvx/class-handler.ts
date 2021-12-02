@@ -36,7 +36,7 @@ export async function CreateKaiSDVXClassHandler(
 
 		const sdvxDan: number | null = json.skill_level - 1;
 
-		if (sdvxDan === null) {
+		if (sdvxDan === null || sdvxDan === undefined) {
 			return {};
 		}
 
@@ -49,6 +49,12 @@ export async function CreateKaiSDVXClassHandler(
 			logger.warn(
 				`${baseUrl} returned a dan of ${sdvxDan}, which was greater than INF (${SDVXDans.INF}.)`
 			);
+			return {};
+		}
+
+		// Kai APIs return -1 to indicate no dan. They also sometimes return undefined.
+		// I'm not too sure why.
+		if (sdvxDan === -1) {
 			return {};
 		}
 

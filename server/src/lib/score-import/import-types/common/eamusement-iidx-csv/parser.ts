@@ -74,12 +74,12 @@ const HV_HEADER_COUNT = 41;
 
 export function ResolveHeaders(headers: string[], logger: KtLogger) {
 	if (headers.length === PRE_HV_HEADER_COUNT) {
-		logger.verbose("PRE_HV csv recieved.");
+		logger.verbose("PRE_HV csv received.");
 		return {
 			hasBeginnerAndLegg: false,
 		};
 	} else if (headers.length === HV_HEADER_COUNT) {
-		logger.verbose("HV+ csv recieved.");
+		logger.verbose("HV+ csv received.");
 		return {
 			hasBeginnerAndLegg: true,
 		};

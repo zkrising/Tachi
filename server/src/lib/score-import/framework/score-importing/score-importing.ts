@@ -98,7 +98,7 @@ export async function ImportAllIterableData<D, C>(
 
 	logger.debug(`Removed null from results.`);
 
-	logger.verbose(`Recieved ${datapoints.length} returns, from ${processedResults.length} data.`);
+	logger.verbose(`received ${datapoints.length} returns, from ${processedResults.length} data.`);
 
 	// Flush the score queue out after finishing most of the import. This ensures no scores get left in the
 	// queue.

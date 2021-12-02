@@ -11,7 +11,13 @@ import { BulkWriteOperation } from "mongodb";
 import { ICollection } from "monk";
 import os from "os";
 import path from "path";
-import { ChartDocument, FolderDocument, SongDocument, TableDocument } from "tachi-common";
+import {
+	ChartDocument,
+	FolderDocument,
+	SongDocument,
+	TableDocument,
+	BMSCourseDocument,
+} from "tachi-common";
 import { InitaliseFolderChartLookup } from "utils/folder";
 
 interface SyncInstructions {
@@ -112,14 +118,16 @@ const syncInstructions: SyncInstructions[] = [
 			// Since the USC and BMS databases are managed Bokutachi-side, we
 			// shouldn't be honoring any sort of updates from tachi-database-seeds
 			// aside from an initial one.
-			const isInitial = (await collection.findOne()) === null;
+			//
+			// However, in practice, these syncs are the best way to actually update
+			// issues in the database.
+			// We're going to disable this anyway.
+			// const isInitial = (await collection.findOne()) === null;
 
-			if (isInitial) {
-				const r = await GenericUpsert(charts, collection, "chartID", logger, true);
+			const r = await GenericUpsert(charts, collection, "chartID", logger, false);
 
-				if (r) {
-					await InitaliseFolderChartLookup();
-				}
+			if (r) {
+				await InitaliseFolderChartLookup();
 			}
 		},
 	},
@@ -226,6 +234,14 @@ const syncInstructions: SyncInstructions[] = [
 				await collection.bulkWrite(bwriteOps);
 			}
 		},
+	},
+	{
+		pattern: /^bms-course-lookup$/u,
+		handler: (
+			bmsCourseDocuments: BMSCourseDocument[],
+			collection: ICollection<BMSCourseDocument>,
+			logger
+		) => GenericUpsert(bmsCourseDocuments, collection, "md5sums", logger),
 	},
 ];
 

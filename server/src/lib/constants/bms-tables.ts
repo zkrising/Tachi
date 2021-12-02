@@ -1,6 +1,6 @@
 export const BMS_TABLES = {
-	insane: "🟊",
-	overjoy: "🟊🟊",
+	insane: "★",
+	overjoy: "★★",
 	normal: "☆",
 	normal2: "▽",
 	insane2: "▼",

@@ -275,7 +275,7 @@ router.post(
 		const client = req[SYMBOL_TachiData]!.apiClientDoc!;
 		const clientName = `${client.name} (${client.clientID})`;
 
-		logger.info(`Recieved request to reset client secret for ${clientName}`);
+		logger.info(`received request to reset client secret for ${clientName}`);
 
 		const newSecret = Random20Hex();
 
@@ -308,7 +308,7 @@ router.delete("/:clientID", GetClientFromID, RequireOwnershipOfClient, async (re
 
 	const clientName = `${client.name} (${client.clientID})`;
 
-	logger.info(`Recieved request to destroy API Client ${client.name} (${client.clientID})`);
+	logger.info(`received request to destroy API Client ${client.name} (${client.clientID})`);
 
 	logger.verbose(`Removing API Client ${clientName}.`);
 	await db["api-clients"].remove({

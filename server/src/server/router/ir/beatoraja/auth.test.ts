@@ -34,7 +34,7 @@ t.test("#ValidateIRClientVersion", (t) => {
 	t.test("Should accept 2.0.0", async (t) => {
 		const { res } = await expMiddlewareMock(ValidateIRClientVersion, {
 			headers: {
-				"X-TachiIR-Version": "2.0.0",
+				"X-TachiIR-Version": "v2.0.0",
 			},
 		});
 

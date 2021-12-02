@@ -134,7 +134,7 @@ if (ServerConfig.LOGGER_CONFIG.FILE) {
 }
 
 // If this is a job, force stdout writing no matter what.
-if (ServerConfig.LOGGER_CONFIG.CONSOLE || process.env.IS_JOB) {
+if (ServerConfig.LOGGER_CONFIG.CONSOLE || process.env.IS_JOB || process.env.FORCE_CONSOLE_LOG) {
 	tports.push(
 		new transports.Console({
 			format: consoleFormatRoute,

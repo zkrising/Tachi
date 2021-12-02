@@ -204,9 +204,11 @@ export async function UpdateTable(table: BMSTablesDataset) {
 	for (const level of levels) {
 		const query = {
 			"data¬tableFolders": {
-				table: table.prefix,
-				// just incase some dude tries numbers
-				level: level.toString(),
+				"~elemMatch": {
+					table: table.prefix,
+					// just incase some dude tries numbers
+					level: level.toString(),
+				},
 			},
 		};
 

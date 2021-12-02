@@ -69,8 +69,6 @@ const ValidateUSCRequest: RequestHandler = async (req, res, next) => {
 		token: splitToken[1],
 	});
 
-	logger.severe(`TEMPORARY USC AUTH LOG TOKEN AS ${splitToken[1]}.`);
-
 	if (!uscAuthDoc) {
 		return res.status(200).json({
 			statusCode: STATUS_CODES.UNAUTH,

@@ -11,7 +11,7 @@ export async function GetScoresForMD5(md5: string) {
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded",
 		},
-		body: `songmd5=${md5}`,
+		body: `songmd5=${md5}&id=1`,
 	}).then((r) => r.text());
 
 	const data = parser.parse(scores);

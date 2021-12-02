@@ -73,10 +73,7 @@ router.post(
 		/* istanbul ignore next */
 		if (Environment.nodeEnv === "production" || Environment.nodeEnv === "staging") {
 			logger.verbose("Validating captcha...");
-			const validCaptcha = await ValidateCaptcha(
-				req.body.recaptcha,
-				req.socket.remoteAddress
-			);
+			const validCaptcha = await ValidateCaptcha(req.body.captcha, req.socket.remoteAddress);
 
 			if (!validCaptcha) {
 				logger.verbose("Captcha failed.");
@@ -189,10 +186,7 @@ router.post(
 		/* istanbul ignore next */
 		if (Environment.nodeEnv === "production" || Environment.nodeEnv === "staging") {
 			logger.verbose("Validating captcha...");
-			const validCaptcha = await ValidateCaptcha(
-				req.body.recaptcha,
-				req.socket.remoteAddress
-			);
+			const validCaptcha = await ValidateCaptcha(req.body.captcha, req.socket.remoteAddress);
 
 			if (!validCaptcha) {
 				logger.verbose("Captcha failed.");

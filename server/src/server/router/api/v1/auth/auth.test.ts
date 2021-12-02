@@ -58,13 +58,31 @@ t.test("#AddNewInvite", (t) => {
 
 t.test("#ValidateCaptcha", async (t) => {
 	t.equal(
-		await ValidateCaptcha("200", "bar", MockJSONFetch({ success: true })),
+		await ValidateCaptcha(
+			"200",
+			"bar",
+			MockJSONFetch({
+				"https://www.google.com/recaptcha/api/siteverify?secret=unused&response=200&remoteip=bar":
+					{
+						success: true,
+					},
+			})
+		),
 		true,
 		"Validates captcha when sucess return is true"
 	);
 
 	t.equal(
-		await ValidateCaptcha("400", "bar", MockJSONFetch({ success: false })),
+		await ValidateCaptcha(
+			"400",
+			"bar",
+			MockJSONFetch({
+				"https://www.google.com/recaptcha/api/siteverify?secret=unused&response=400&remoteip=bar":
+					{
+						success: false,
+					},
+			})
+		),
 		false,
 		"Invalidates captcha when success return is not true"
 	);

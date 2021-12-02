@@ -3,8 +3,8 @@ import { BMSTablesDataset, BMSTableChart } from "./types";
 import fetch from "node-fetch";
 
 export const BMS_TABLES = {
-	insane: "🟊",
-	overjoy: "🟊🟊",
+	insane: "★",
+	overjoy: "★★",
 	normal: "☆",
 	normal2: "▽",
 	insane2: "▼",

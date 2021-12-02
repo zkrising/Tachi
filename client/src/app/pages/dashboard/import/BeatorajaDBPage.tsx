@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 export default function BeatorajaDBPage() {
 	useSetSubheader(["Import Scores", "Beatoraja Database File"]);
+
 	return (
 		<>
 			<TISInfo name="Beatoraja Database" />

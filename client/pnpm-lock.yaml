@@ -19,6 +19,7 @@ specifiers:
   '@types/node': 16.0.0
   '@types/react': 17.0.13
   '@types/react-dom': 17.0.8
+  '@types/react-google-recaptcha': ^2.1.2
   '@types/react-router': 5.1.15
   '@types/react-router-dom': 5.1.7
   '@types/react-table': 7.7.2
@@ -69,6 +70,7 @@ specifiers:
   react-bootstrap: ^1.6.1
   react-dev-utils: ^9.1.0
   react-dom: 16.12.0
+  react-google-recaptcha: ^2.1.0
   react-hot-toast: 2.0.0
   react-markdown: ^7.0.1
   react-perfect-scrollbar: 1.5.8
@@ -109,6 +111,7 @@ dependencies:
   '@svgr/webpack': 4.3.2
   '@tanem/svg-injector': 8.0.50
   '@types/aes-js': 3.1.1
+  '@types/react-google-recaptcha': 2.1.2
   apexcharts: 3.19.2
   babel-loader: 8.0.6_webpack@4.41.0
   babel-plugin-named-asset-import: 0.3.7
@@ -143,6 +146,7 @@ dependencies:
   react-async: 10.0.1_react@17.0.2
   react-bootstrap: 1.6.1_react-dom@16.12.0+react@17.0.2
   react-dom: 16.12.0_react@17.0.2
+  react-google-recaptcha: 2.1.0_react@17.0.2
   react-hot-toast: 2.0.0_react-dom@16.12.0+react@17.0.2
   react-markdown: 7.0.1_43559efe81628b42e1e465743e6a3ffa
   react-perfect-scrollbar: 1.5.8_react-dom@16.12.0+react@17.0.2
@@ -3012,6 +3016,12 @@ packages:
     dependencies:
       '@types/react': 17.0.13
     dev: true
+
+  /@types/react-google-recaptcha/2.1.2:
+    resolution: {integrity: sha512-Zeb0pwDeXHYIQy5mNgewMr+jf4xtrjSHTdJW8wrubNB6sNEaxqo8yk02HVpwy7p7Hzh5y6iSz6gKoPonVBlswQ==}
+    dependencies:
+      '@types/react': 17.0.13
+    dev: false
 
   /@types/react-router-dom/5.1.7:
     resolution: {integrity: sha512-D5mHD6TbdV/DNHYsnwBTv+y73ei+mMjrkGrla86HthE4/PVvL1J94Bu3qABU+COXzpL23T1EZapVVpwHuBXiUg==}
@@ -9754,6 +9764,16 @@ packages:
       strip-json-comments: 2.0.1
     dev: true
 
+  /react-async-script/1.2.0_react@17.0.2:
+    resolution: {integrity: sha512-bCpkbm9JiAuMGhkqoAiC0lLkb40DJ0HOEJIku+9JDjxX3Rcs+ztEOG13wbrOskt3n2DTrjshhaQ/iay+SnGg5Q==}
+    peerDependencies:
+      react: '>=16.4.1'
+    dependencies:
+      hoist-non-react-statics: 3.3.2
+      prop-types: 15.7.2
+      react: 17.0.2
+    dev: false
+
   /react-async/10.0.1_react@17.0.2:
     resolution: {integrity: sha512-ORUz5ca0B57QgBIzEZM5SuhJ6xFjkvEEs0gylLNlWf06vuVcLZsjIw3wx58jJkZG38p+0nUAxRgFW2b7mnVZzA==}
     peerDependencies:
@@ -9838,6 +9858,16 @@ packages:
 
   /react-fast-compare/2.0.4:
     resolution: {integrity: sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==}
+    dev: false
+
+  /react-google-recaptcha/2.1.0_react@17.0.2:
+    resolution: {integrity: sha512-K9jr7e0CWFigi8KxC3WPvNqZZ47df2RrMAta6KmRoE4RUi7Ys6NmNjytpXpg4HI/svmQJLKR+PncEPaNJ98DqQ==}
+    peerDependencies:
+      react: '>=16.4.1'
+    dependencies:
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-async-script: 1.2.0_react@17.0.2
     dev: false
 
   /react-hot-toast/2.0.0_react-dom@16.12.0+react@17.0.2:

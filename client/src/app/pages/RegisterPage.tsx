@@ -2,9 +2,10 @@ import useSetSubheader from "components/layout/header/useSetSubheader";
 import Divider from "components/util/Divider";
 import { UserContext } from "context/UserContext";
 import { useFormik } from "formik";
-import { TachiConfig } from "lib/config";
+import { ClientConfig, TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
+import ReCAPTCHA from "react-google-recaptcha";
 import toast from "react-hot-toast";
 import { Link, useHistory } from "react-router-dom";
 import { PublicUserDocument } from "tachi-common";
@@ -244,16 +245,28 @@ function RegisterForm({
 					onChange={formik.handleChange}
 				/>
 			</Form.Group>
-			<Form.Group>
-				<Form.Label>Invite Code</Form.Label>
-				<Form.Control
-					tabIndex={5}
-					type="text"
-					id="inviteCode"
-					value={formik.values.inviteCode}
-					onChange={formik.handleChange}
-				/>
-			</Form.Group>
+			{ClientConfig.MANDATE_LOGIN && (
+				<Form.Group>
+					<Form.Label>Invite Code</Form.Label>
+					<Form.Control
+						tabIndex={5}
+						type="text"
+						id="inviteCode"
+						value={formik.values.inviteCode}
+						onChange={formik.handleChange}
+					/>
+				</Form.Group>
+			)}
+
+			<ReCAPTCHA
+				sitekey={
+					process.env.REACT_APP_RECAPTCHA_KEY ??
+					"6LdI2swUAAAAAArkM0ZQi4SnttilqgAwsJSFw3PX"
+				}
+				onChange={v => {
+					formik.setFieldValue("captcha", v);
+				}}
+			/>
 
 			<Form.Group style={{ display: err ? "" : "none" }} className="text-center text-danger">
 				{err}

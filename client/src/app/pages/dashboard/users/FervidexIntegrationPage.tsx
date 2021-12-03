@@ -136,8 +136,11 @@ function FervidexForm({
 								});
 							}}
 						/>
-						{formSettings.cards.some(x => x !== "" && x.length !== 16) && (
-							<div className="text-danger">CardIDs should be 16 characters!</div>
+						{formSettings.cards.some(c => !isCardIDValid(c)) && (
+							<div className="text-danger">
+								CardIDs should be 16 characters, or a <code>C</code> followed by 12
+								characters!
+							</div>
 						)}
 						{formSettings.cards.some(x => x.startsWith("E004")) && (
 							<div className="text-danger">
@@ -165,4 +168,16 @@ function FervidexForm({
 			</div>
 		</form>
 	);
+}
+
+function isCardIDValid(cardID: string) {
+	if (cardID.startsWith("E004")) {
+		return false;
+	}
+
+	if (cardID[0] === "C") {
+		return cardID.length === 13;
+	}
+
+	return cardID.length === 16;
 }

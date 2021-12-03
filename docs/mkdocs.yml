@@ -92,6 +92,7 @@ nav:
 
           - BATCH-MANUAL:
                 - "tachi-server/batch-manual/overview.md"
+                - "tachi-server/batch-manual/direct-manual.md"
 
           - Score Importing:
                 - "tachi-server/import/overview.md"

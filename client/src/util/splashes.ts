@@ -97,6 +97,7 @@ export const loggedInSplashes = [
 	"I'm thinking this one's brown.",
 	"My god is the sun!",
 	"...Like Clockwork",
+	"brooooyyddg",
 ];
 
 // Stuff that's bad for the kids, you know?

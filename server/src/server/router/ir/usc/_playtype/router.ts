@@ -362,7 +362,9 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 
 	const importDoc = (importRes.body as SuccessfulAPIResponse).body as ImportDocument;
 
-	if (importDoc.errors[0]) {
+	// If the import failed, AND the import failure WAS NOT that the chart didnt exist
+	// report that error instead.
+	if (importDoc.errors[0]?.type && importDoc.errors[0].type !== "KtDataNotFoundFailure") {
 		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {
 			importDoc,
 			userID,
@@ -398,6 +400,19 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 		return res.status(200).json({
 			statusCode: STATUS_CODES.ACCEPTED,
 			description: `This score has been accepted, but is waiting for more players before its parent chart is accepted. (${players.length}/${ServerConfig.USC_QUEUE_SIZE})`,
+		});
+	}
+
+	// If the chartDoc exists, any error is a failure here.
+	if (importDoc.errors[0]) {
+		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {
+			importDoc,
+			userID,
+		});
+
+		return res.status(200).json({
+			statusCode: STATUS_CODES.BAD_REQ,
+			description: `${importDoc.errors[0].type} ${importDoc.errors[0].message}`,
 		});
 	}
 

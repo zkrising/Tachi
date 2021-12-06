@@ -8,7 +8,7 @@ export interface USCServerScore {
 	near: integer;
 	error: integer;
 	ranking: integer;
-	gaugeMod: "NORMAL" | "HARD";
+	gaugeMod: "NORMAL" | "HARD" | "PERMISSIVE";
 	noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN";
 	username: string;
 }

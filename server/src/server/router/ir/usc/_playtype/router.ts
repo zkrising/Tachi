@@ -21,6 +21,7 @@ import {
 	Playtypes,
 	SuccessfulAPIResponse,
 } from "tachi-common";
+import { DedupeArr } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import { GetBlacklist } from "utils/queries/blacklist";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
@@ -319,6 +320,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 			song,
 			{
 				"chartDoc.data.hashSHA1": uscChart.chartHash,
+				"chartDoc.playtype": playtype,
 			},
 			ServerConfig.USC_QUEUE_SIZE,
 			req[SYMBOL_TachiAPIAuth].userID!,
@@ -349,10 +351,27 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	// If this was an orphan chart request, return ACCEPTED,
 	// since it may be unorphaned in the future
 	if (!chartDoc) {
+		const orphanChart = await db["orphan-chart-queue"].findOne({
+			"chartDoc.data.hashSHA1": uscChart.chartHash,
+			"chartDoc.playtype": playtype,
+		});
+
+		if (!orphanChart) {
+			logger.severe(
+				`No orphan chart for USC ${uscChart.chartHash} (${playtype})? One was expected.`,
+				{ uscChart, playtype }
+			);
+			return res.status(200).json({
+				statusCode: STATUS_CODES.SERVER_ERROR,
+				description: `An internal server error has occured.`,
+			});
+		}
+
+		const players = DedupeArr([...orphanChart.userIDs, userID]);
+
 		return res.status(200).json({
 			statusCode: STATUS_CODES.ACCEPTED,
-			description:
-				"This score has been accepted, but is waiting for more players before its parent chart is accepted.",
+			description: `This score has been accepted, but is waiting for more players before its parent chart is accepted. (${players.length}/${ServerConfig.USC_QUEUE_SIZE})`,
 		});
 	}
 

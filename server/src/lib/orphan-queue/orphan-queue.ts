@@ -10,6 +10,7 @@ import {
 	SongDocument,
 } from "tachi-common";
 import { GetNextCounterValue } from "utils/db";
+import { DedupeArr } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -35,7 +36,7 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 	userID: integer,
 	chartName: string
 ) {
-	logger.debug(`received orphanqueue request for ${chartName}.`);
+	logger.debug(`Received orphanqueue request for ${chartName}.`);
 
 	const orphanChart = await db["orphan-chart-queue"].findOne(
 		Object.assign({ idString }, orphanMatchCriteria),
@@ -45,7 +46,7 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 	);
 
 	if (!orphanChart) {
-		logger.verbose(`received unknown chart ${chartName}, orphaning.`);
+		logger.verbose(`Received unknown chart ${chartName}, orphaning.`);
 
 		await db["orphan-chart-queue"].insert({
 			idString,
@@ -59,7 +60,7 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 
 	orphanChart.userIDs.push(userID);
 
-	const uniqueUsersArr = [...new Set(orphanChart.userIDs)];
+	const uniqueUsersArr = DedupeArr(orphanChart.userIDs);
 
 	const playcount = uniqueUsersArr.length;
 	// If N or more people have played this chart while orphaned, unorphan

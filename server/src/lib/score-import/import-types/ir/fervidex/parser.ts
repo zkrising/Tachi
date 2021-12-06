@@ -2,6 +2,7 @@ import {
 	EXT_BISTROVER,
 	EXT_HEROIC_VERSE,
 	MODEL_IIDX,
+	MODEL_IIDX_LIGHTNING,
 	MODEL_INFINITAS_2,
 	REV_2DXTRA,
 	REV_NORMAL,
@@ -74,7 +75,7 @@ export function SoftwareIDToVersion(model: string, logger: KtLogger) {
 
 		if (data.model === MODEL_INFINITAS_2) {
 			return "inf";
-		} else if (data.model === MODEL_IIDX) {
+		} else if (data.model === MODEL_IIDX || data.model === MODEL_IIDX_LIGHTNING) {
 			// pretty icky yandere-dev tier if statements, but hey
 			// that's just how it works...
 			if (data.ext === EXT_HEROIC_VERSE) {

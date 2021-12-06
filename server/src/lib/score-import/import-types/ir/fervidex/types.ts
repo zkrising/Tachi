@@ -30,7 +30,7 @@ export interface FervidexScore {
 		note?: integer | null;
 	};
 
-	option: {
+	option?: {
 		gauge?: "ASSISTED_EASY" | "EASY" | "HARD" | "EX_HARD" | null;
 		range?:
 			| "SUDDEN_PLUS"

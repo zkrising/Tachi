@@ -23,7 +23,7 @@ export const FERVIDEX_LAMP_LOOKUP = {
 };
 
 export function TachifyAssist(
-	assist: FervidexScore["option"]["assist"]
+	assist: Required<FervidexScore>["option"]["assist"]
 ): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["assist"] {
 	switch (assist) {
 		case "FULL_ASSIST":
@@ -40,7 +40,7 @@ export function TachifyAssist(
 }
 
 export function TachifyGauge(
-	gauge: FervidexScore["option"]["gauge"]
+	gauge: Required<FervidexScore>["option"]["gauge"]
 ): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["gauge"] {
 	switch (gauge) {
 		case "ASSISTED_EASY":
@@ -58,7 +58,7 @@ export function TachifyGauge(
 }
 
 export function TachifyRange(
-	gauge: FervidexScore["option"]["range"]
+	gauge: Required<FervidexScore>["option"]["range"]
 ): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["range"] {
 	switch (gauge) {
 		case "HIDDEN_PLUS":
@@ -77,7 +77,7 @@ export function TachifyRange(
 	}
 }
 
-export function TachifyRandom(gauge: FervidexScore["option"]["style"]) {
+export function TachifyRandom(gauge: Required<FervidexScore>["option"]["style"]) {
 	switch (gauge) {
 		case "RANDOM":
 			return "RANDOM";
@@ -212,15 +212,15 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 			},
 		},
 		scoreMeta: {
-			assist: TachifyAssist(data.option.assist),
-			gauge: TachifyGauge(data.option.gauge),
+			assist: TachifyAssist(data.option?.assist),
+			gauge: TachifyGauge(data.option?.gauge),
 			// @ts-expect-error Awkward expansion of iidx:SP|DP strings here causes this
 			// to complain that [x,x] is not assignable to SP randoms. This is a lazy ignore!
 			random:
 				chart.playtype === "SP"
-					? TachifyRandom(data.option.style)
-					: [TachifyRandom(data.option.style), TachifyRandom(data.option.style_2p)],
-			range: TachifyRange(data.option.range),
+					? TachifyRandom(data.option?.style)
+					: [TachifyRandom(data.option?.style), TachifyRandom(data.option?.style_2p)],
+			range: TachifyRange(data.option?.range),
 		},
 	};
 

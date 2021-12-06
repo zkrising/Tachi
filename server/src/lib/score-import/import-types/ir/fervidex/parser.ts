@@ -44,7 +44,7 @@ const PR_Fervidex: PrudenceSchema = {
 		note: optNull(p.isPositiveInteger),
 	} as unknown as ValidSchemaValue),
 
-	option: {
+	option: p.optional({
 		gauge: optNull(p.isIn("ASSISTED_EASY", "EASY", "HARD", "EX_HARD")),
 		range: optNull(
 			p.isIn("SUDDEN_PLUS", "HIDDEN_PLUS", "SUD_PLUS_HID_PLUS", "LIFT", "LIFT_SUD_PLUS")
@@ -52,7 +52,7 @@ const PR_Fervidex: PrudenceSchema = {
 		style: optNull(p.isIn("RANDOM", "R_RANDOM", "S_RANDOM", "MIRROR")),
 		style_2p: optNull(p.isIn("RANDOM", "R_RANDOM", "S_RANDOM", "MIRROR")),
 		assist: optNull(p.isIn("AUTO_SCRATCH", "LEGACY_NOTE", "ASCR_LEGACY", "FULL_ASSIST")),
-	},
+	}),
 
 	// we dont use it and we dont care.
 	pacemaker: p.any,

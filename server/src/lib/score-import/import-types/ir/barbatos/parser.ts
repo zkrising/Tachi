@@ -21,7 +21,7 @@ const PR_Barbatos = {
 	did_fail: "boolean",
 	clear_type: p.isIn(1, 2, 3, 4, 5),
 	gauge_type: p.isIn(0, 1, 2, 3),
-	is_skill_analyser: "boolean",
+	is_skill_analyzer: "boolean",
 };
 
 export function ParseBarbatosSingle(

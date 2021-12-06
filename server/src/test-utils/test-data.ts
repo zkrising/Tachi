@@ -195,7 +195,7 @@ export const barbScore: BarbatosScore = {
 	near_fast: 40,
 	near_slow: 10,
 	gauge_type: 1,
-	is_skill_analyser: false,
+	is_skill_analyzer: false,
 	level: 10,
 	max_chain: 100,
 	percent: 90,

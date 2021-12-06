@@ -84,7 +84,7 @@ export const ConverterIRBarbatos: ConverterFunction<BarbatosScore, EmptyObject> 
 			},
 		},
 		scoreMeta: {
-			inSkillAnalyser: data.is_skill_analyser,
+			inSkillAnalyser: data.is_skill_analyzer,
 		},
 	};
 

@@ -4,6 +4,7 @@ import {
 	MODEL_IIDX,
 	MODEL_INFINITAS_2,
 	REV_2DXTRA,
+	REV_NORMAL,
 	REV_OMNIMIX,
 } from "lib/constants/ea3id";
 import { KtLogger } from "lib/logger/logger";
@@ -74,23 +75,24 @@ export function SoftwareIDToVersion(model: string, logger: KtLogger) {
 		if (data.model === MODEL_INFINITAS_2) {
 			return "inf";
 		} else if (data.model === MODEL_IIDX) {
-			// only HV. everything else is disabled deliberately.
+			// pretty icky yandere-dev tier if statements, but hey
+			// that's just how it works...
 			if (data.ext === EXT_HEROIC_VERSE) {
 				if (data.rev === REV_OMNIMIX) {
 					return "27-omni";
-				}
-
-				if (data.rev === REV_2DXTRA) {
+				} else if (data.rev === REV_2DXTRA) {
 					return "27-2dxtra";
+				} else if (data.rev === REV_NORMAL) {
+					return "27";
 				}
-
-				return "27";
 			} else if (data.ext === EXT_BISTROVER) {
 				if (data.rev === REV_OMNIMIX) {
 					return "28-omni";
+				} else if (data.rev === REV_2DXTRA) {
+					return "28-2dxtra";
+				} else if (data.rev === REV_NORMAL) {
+					return "28";
 				}
-
-				return "28";
 			}
 		}
 

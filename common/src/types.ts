@@ -750,6 +750,7 @@ type SupportedIIDXVersions =
 	| "20"
 	| "inf"
 	| "27-2dxtra"
+	| "28-2dxtra"
 	| "bmus"
 	| "26-omni"
 	| "16-cs"

@@ -960,7 +960,7 @@ interface BMS7KScoreMeta {
 
 interface USCScoreMeta {
 	noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" | null;
-	gaugeMod: "NORMAL" | "HARD" | null;
+	gaugeMod: "NORMAL" | "HARD" | "PERMISSIVE" | null;
 }
 
 interface ScoreMetaLookup {

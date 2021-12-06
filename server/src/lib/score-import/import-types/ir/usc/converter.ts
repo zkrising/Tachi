@@ -128,7 +128,12 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 			},
 		},
 		scoreMeta: {
-			gaugeMod: data.options.gaugeType === 0 ? "NORMAL" : "HARD",
+			gaugeMod:
+				data.options.gaugeType === 0
+					? "NORMAL"
+					: data.options.gaugeType === 1
+					? "HARD"
+					: "PERMISSIVE",
 			noteMod: DeriveNoteMod(data),
 		},
 	};

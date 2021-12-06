@@ -65,7 +65,7 @@ const PR_ScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => 
 	} else if (game === "usc") {
 		return {
 			noteMod: optNull(p.isIn("NORMAL", "MIRROR", "RANDOM", "MIR-RAN")),
-			gaugeMod: optNull(p.isIn("NORMAL", "HARD")),
+			gaugeMod: optNull(p.isIn("NORMAL", "HARD", "PERMISSIVE")),
 		};
 	} else if (game === "sdvx") {
 		return {

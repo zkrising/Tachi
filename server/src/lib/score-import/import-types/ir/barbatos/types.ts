@@ -15,5 +15,5 @@ export interface BarbatosScore {
 	did_fail: boolean;
 	clear_type: 1 | 2 | 3 | 4 | 5;
 	gauge_type: 1 | 2;
-	is_skill_analyser: boolean;
+	is_skill_analyzer: boolean;
 }

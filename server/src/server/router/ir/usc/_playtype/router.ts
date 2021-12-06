@@ -348,6 +348,34 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 		playtype,
 	]);
 
+	if (importRes.statusCode === 500) {
+		return res.status(200).json({
+			statusCode: STATUS_CODES.SERVER_ERROR,
+			description: importRes.body.description,
+		});
+	} else if (importRes.statusCode !== 200) {
+		return res.status(200).json({
+			statusCode: STATUS_CODES.BAD_REQ,
+			description: importRes.body.description,
+		});
+	}
+
+	const importDoc = (importRes.body as SuccessfulAPIResponse).body as ImportDocument;
+
+	// If the import failed, AND the import failure WAS NOT that the chart didnt exist
+	// report that error instead.
+	if (importDoc.errors[0]?.type && importDoc.errors[0].type !== "KTDataNotFound") {
+		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {
+			importDoc,
+			userID,
+		});
+
+		return res.status(200).json({
+			statusCode: STATUS_CODES.BAD_REQ,
+			description: `${importDoc.errors[0].type} ${importDoc.errors[0].message}`,
+		});
+	}
+
 	// If this was an orphan chart request, return ACCEPTED,
 	// since it may be unorphaned in the future
 	if (!chartDoc) {
@@ -375,20 +403,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 		});
 	}
 
-	if (importRes.statusCode === 500) {
-		return res.status(200).json({
-			statusCode: STATUS_CODES.SERVER_ERROR,
-			description: importRes.body.description,
-		});
-	} else if (importRes.statusCode !== 200) {
-		return res.status(200).json({
-			statusCode: STATUS_CODES.BAD_REQ,
-			description: importRes.body.description,
-		});
-	}
-
-	const importDoc = (importRes.body as SuccessfulAPIResponse).body as ImportDocument;
-
+	// If the chartDoc exists, any error is a failure here.
 	if (importDoc.errors[0]) {
 		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {
 			importDoc,

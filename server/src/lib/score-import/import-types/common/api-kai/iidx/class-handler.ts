@@ -45,7 +45,7 @@ export async function CreateKaiIIDXClassHandler(
 			return {};
 		}
 
-		if (iidxDan === null) {
+		if (iidxDan === null || iidxDan === undefined) {
 			return {};
 		}
 

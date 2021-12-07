@@ -1,6 +1,7 @@
 import { ErrorPage } from "app/pages/ErrorPage";
 import ForgotPasswordPage from "app/pages/ForgotPasswordPage";
 import LoginPage from "app/pages/LoginPage";
+import OAuthRequestAuthPage from "app/pages/OAuthRequestAuthPage";
 import RegisterPage from "app/pages/RegisterPage";
 import ResetPasswordPage from "app/pages/ResetPasswordPage";
 import VerifyEmailPage from "app/pages/VerifyEmailPage";
@@ -51,6 +52,10 @@ export function Routes() {
 				<Route path="/oauth2-callback">
 					<OAuth2CallbackRoutes />
 				</Route>
+				<Route path="/oauth/request-auth">
+					<OAuthRequestAuthPage />
+				</Route>
+
 				<Route path="/client-file-flow">
 					<ClientFileFlowRoutes />
 				</Route>

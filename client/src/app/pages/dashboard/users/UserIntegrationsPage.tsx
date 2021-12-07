@@ -358,6 +358,12 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 						{window.location.origin}/client-file-flow/{client.clientID}
 					</code>
 				</h6>
+				<h6>
+					OAuth Flow Link: <br />
+					<code>
+						{window.location.origin}/oauth/request-auth?clientID={client.clientID}
+					</code>
+				</h6>
 			</div>
 
 			<Divider />

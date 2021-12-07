@@ -23,6 +23,7 @@ import { GPTLeaderboard, UGPTLeaderboardAdjacent } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
+import { UppercaseFirst } from "util/misc";
 
 interface LeaderboardsData {
 	stats: UGPTLeaderboardAdjacent;
@@ -161,7 +162,10 @@ function LeaderboardsPageContent({
 				</Link>
 			}
 		>
-			<MiniTable className="text-center" headers={["Position", "User", alg, "Classes"]}>
+			<MiniTable
+				className="text-center"
+				headers={["Position", "User", UppercaseFirst(alg), "Classes"]}
+			>
 				<>
 					{bestNearbyUser >= 1 &&
 						leaderboard.gameStats

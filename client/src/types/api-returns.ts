@@ -1,4 +1,5 @@
 import {
+	APIPermissions,
 	ChartDocument,
 	ClassAchievementDocument,
 	FolderDocument,
@@ -161,4 +162,12 @@ export interface UserRecentSummary {
 	recentPlaycount: integer;
 	recentSessions: SessionDocument[];
 	recentFolders: FolderDocument[];
+}
+
+export interface ServerStatus {
+	serverTime: number;
+	startTime: number;
+	version: string;
+	whoami: integer | null;
+	permissions: APIPermissions[];
 }

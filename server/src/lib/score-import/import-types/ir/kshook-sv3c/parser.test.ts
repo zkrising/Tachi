@@ -38,6 +38,7 @@ t.test("#ParseKsHookSV3C", (t) => {
 			const res = ParseKsHookSV3C(data, logger);
 
 			t.equal(res.game, "sdvx");
+			t.type(res.context.timeReceived, "number");
 			t.strictSame(res.context, {});
 			t.ok(Array.isArray(res.iterable));
 			t.type(res.classHandler, "function");

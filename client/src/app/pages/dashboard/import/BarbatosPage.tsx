@@ -21,10 +21,7 @@ export default function BarbatosPage() {
 			<ol className="instructions-list">
 				<li>
 					Download <code>barbatos.dll</code> from{" "}
-					<ExternalLink href="#">
-						here (No download yet. Barbatos is not supported.)
-					</ExternalLink>
-					.
+					<ExternalLink href="https://f.wcal.xyz/vC3dW7cn">here</ExternalLink>.
 				</li>
 				<li>
 					Download your config file{" "}

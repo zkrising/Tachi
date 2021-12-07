@@ -5,6 +5,7 @@ import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON } from "test-utils/test-data";
 import { Sleep } from "utils/misc";
+import deepmerge from "deepmerge";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function TestHeaders(url: string, data: any) {
@@ -287,6 +288,27 @@ t.test("POST /ir/fervidex/score/submit", (t) => {
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
 			.send(GetKTDataJSON("./fervidex/base.json"));
+
+		t.equal(res.body.success, true, "Should be successful");
+
+		t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
+
+		const scores = await db.scores.count({
+			service: "Fervidex",
+		});
+
+		t.equal(scores, 1, "Should import 1 score.");
+
+		t.end();
+	});
+
+	t.test("Should import a valid score with undefined options", async (t) => {
+		const res = await mockApi
+			.post("/ir/fervidex/score/submit")
+			.set("Authorization", "Bearer mock_token")
+			.set("User-Agent", "fervidex/1.3.0")
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
+			.send(deepmerge(GetKTDataJSON("./fervidex/base.json"), { option: undefined }));
 
 		t.equal(res.body.success, true, "Should be successful");
 

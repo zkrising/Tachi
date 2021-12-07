@@ -36,7 +36,7 @@ export async function CreateKaiSDVXClassHandler(
 
 		const sdvxDan: number | null = json.skill_level - 1;
 
-		if (sdvxDan === null || sdvxDan === undefined) {
+		if (json.skill_level === null || json.skill_level === undefined) {
 			return {};
 		}
 

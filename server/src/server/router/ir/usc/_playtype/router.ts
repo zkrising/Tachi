@@ -21,6 +21,7 @@ import {
 	Playtypes,
 	SuccessfulAPIResponse,
 } from "tachi-common";
+import { DedupeArr } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import { GetBlacklist } from "utils/queries/blacklist";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
@@ -319,6 +320,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 			song,
 			{
 				"chartDoc.data.hashSHA1": uscChart.chartHash,
+				"chartDoc.playtype": playtype,
 			},
 			ServerConfig.USC_QUEUE_SIZE,
 			req[SYMBOL_TachiAPIAuth].userID!,
@@ -332,9 +334,12 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 				"context.playtype": playtype,
 			});
 
-			await Promise.all(
-				scoresToDeorphan.map((score) => ReprocessOrphan(score, blacklist, logger))
-			);
+			for (const score of scoresToDeorphan) {
+				// Has to be like this to avoid race conditions where two
+				// orphans resolve to the same scoreID and collide in mid-air!
+				// eslint-disable-next-line no-await-in-loop
+				await ReprocessOrphan(score, blacklist, logger);
+			}
 		}
 	}
 
@@ -345,16 +350,6 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 		uscChart.chartHash,
 		playtype,
 	]);
-
-	// If this was an orphan chart request, return ACCEPTED,
-	// since it may be unorphaned in the future
-	if (!chartDoc) {
-		return res.status(200).json({
-			statusCode: STATUS_CODES.ACCEPTED,
-			description:
-				"This score has been accepted, but is waiting for more players before its parent chart is accepted.",
-		});
-	}
 
 	if (importRes.statusCode === 500) {
 		return res.status(200).json({
@@ -369,6 +364,71 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	}
 
 	const importDoc = (importRes.body as SuccessfulAPIResponse).body as ImportDocument;
+
+	// If the import failed, AND the import failure WAS NOT that the chart didnt exist
+	// report that error instead.
+	if (importDoc.errors[0]?.type && importDoc.errors[0].type !== "KTDataNotFound") {
+		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {
+			importDoc,
+			userID,
+		});
+
+		return res.status(200).json({
+			statusCode: STATUS_CODES.BAD_REQ,
+			description: `${importDoc.errors[0].type} ${importDoc.errors[0].message}`,
+		});
+	}
+
+	// If this was an orphan chart request, return ACCEPTED,
+	// since it may be unorphaned in the future
+	if (!chartDoc) {
+		const orphanChart = await db["orphan-chart-queue"].findOne({
+			"chartDoc.data.hashSHA1": uscChart.chartHash,
+			"chartDoc.playtype": playtype,
+		});
+
+		if (!orphanChart) {
+			logger.severe(
+				`No orphan chart for USC ${uscChart.chartHash} (${playtype})? One was expected.`,
+				{ uscChart, playtype }
+			);
+			return res.status(200).json({
+				statusCode: STATUS_CODES.SERVER_ERROR,
+				description: `An internal server error has occured.`,
+			});
+		}
+
+		const players = DedupeArr([...orphanChart.userIDs, userID]);
+
+		return res.status(200).json({
+			statusCode: STATUS_CODES.ACCEPTED,
+			description: `This score has been accepted, but is waiting for more players before its parent chart is accepted. (${players.length}/${ServerConfig.USC_QUEUE_SIZE})`,
+		});
+	}
+
+	// If the chartDoc exists, any error is a failure here.
+	if (importDoc.errors[0]) {
+		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {
+			importDoc,
+			userID,
+		});
+
+		return res.status(200).json({
+			statusCode: STATUS_CODES.BAD_REQ,
+			description: `${importDoc.errors[0].type} ${importDoc.errors[0].message}`,
+		});
+	}
+
+	if (!importDoc.scoreIDs[0]) {
+		logger.warn(`No scoreID, but import was successful?`, {
+			importDoc,
+			userID,
+		});
+		return res.status(200).json({
+			statusCode: STATUS_CODES.BAD_REQ,
+			description: "No score was imported.",
+		});
+	}
 
 	if (importDoc.errors[0]) {
 		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {

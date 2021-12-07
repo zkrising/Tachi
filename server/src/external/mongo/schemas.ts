@@ -209,7 +209,7 @@ const GetScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => 
 	} else if (game === "usc") {
 		return {
 			noteMod: optNull(p.isIn("NORMAL", "MIRROR", "RANDOM", "MIR-RAN")),
-			gaugeMod: optNull(p.isIn("NORMAL", "HARD")),
+			gaugeMod: optNull(p.isIn("NORMAL", "HARD", "PERMISSIVE")),
 		};
 	} else if (game === "bms" && playtype === "7K") {
 		return {
@@ -771,7 +771,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		return prSchemaify(
 			PR_ChartDocument("iidx", playtype, {
 				notecount: p.isPositiveNonZeroInteger,
-				inGameID: p.isPositiveNonZeroInteger,
+				inGameID: p.or(p.isPositiveNonZeroInteger, [p.isPositiveNonZeroInteger]),
 				arcChartID: "?string",
 				hashSHA256: "?string",
 				"2dxtraSet": "?string",

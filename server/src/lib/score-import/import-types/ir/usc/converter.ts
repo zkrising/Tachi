@@ -50,6 +50,8 @@ export function DeriveLamp(
 		return scoreDoc.gauge >= 0.7 ? "CLEAR" : "FAILED";
 	} else if (scoreDoc.options.gaugeType === 1) {
 		return scoreDoc.gauge > 0 ? "EXCESSIVE CLEAR" : "FAILED";
+	} else if (scoreDoc.options.gaugeType === 2) {
+		return "FAILED";
 	}
 
 	logger.error(`Could not derive Lamp from Score Document`, { scoreDoc });
@@ -106,7 +108,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 		comment: null,
 		game: "usc",
 		importType,
-		timeAchieved: Date.now(),
+		timeAchieved: context.timeReceived,
 		service: "USC-IR",
 		scoreData: {
 			grade,
@@ -126,7 +128,12 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 			},
 		},
 		scoreMeta: {
-			gaugeMod: data.options.gaugeType === 0 ? "NORMAL" : "HARD",
+			gaugeMod:
+				data.options.gaugeType === 0
+					? "NORMAL"
+					: data.options.gaugeType === 1
+					? "HARD"
+					: "PERMISSIVE",
 			noteMod: DeriveNoteMod(data),
 		},
 	};

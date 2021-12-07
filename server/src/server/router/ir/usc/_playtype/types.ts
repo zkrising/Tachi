@@ -8,7 +8,7 @@ export interface USCServerScore {
 	near: integer;
 	error: integer;
 	ranking: integer;
-	gaugeMod: "NORMAL" | "HARD";
+	gaugeMod: "NORMAL" | "HARD" | "PERMISSIVE";
 	noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN";
 	username: string;
 }
@@ -24,7 +24,7 @@ export interface USCClientScore {
 	late: integer | null;
 	combo: integer | null;
 	options: {
-		gaugeType: 0 | 1;
+		gaugeType: 0 | 1 | 2;
 		gaugeOpt: integer;
 		mirror: boolean;
 		random: boolean;

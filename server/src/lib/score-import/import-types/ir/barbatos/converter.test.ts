@@ -40,7 +40,12 @@ t.test("#ConverterIRBarbatos", (t) => {
 	};
 
 	t.test("Should convert a BarbatosScore into a Dry Score", async (t) => {
-		const res = await ConverterIRBarbatos(barbScore, {}, "ir/barbatos", logger);
+		const res = await ConverterIRBarbatos(
+			barbScore,
+			{ timeReceived: 10 },
+			"ir/barbatos",
+			logger
+		);
 
 		t.hasStrict(res, {
 			song: albidaSong,
@@ -82,7 +87,7 @@ t.test("#ConverterIRBarbatos", (t) => {
 			() =>
 				ConverterIRBarbatos(
 					deepmerge(barbScore, { song_id: 1000 }) as BarbatosScore,
-					{},
+					{ timeReceived: 10 },
 					"ir/barbatos",
 					logger
 				),
@@ -97,9 +102,12 @@ t.test("#ConverterIRBarbatos", (t) => {
 	t.test("Should throw InternalFailure if song-chart desync.", async (t) => {
 		await db.songs.sdvx.remove({ id: 1 }); // force a song-chart desync
 
-		t.rejects(() => ConverterIRBarbatos(barbScore, {}, "ir/barbatos", logger), {
-			message: /Song 1 \(sdvx\) has no parent song/u,
-		});
+		t.rejects(
+			() => ConverterIRBarbatos(barbScore, { timeReceived: 10 }, "ir/barbatos", logger),
+			{
+				message: /Song 1 \(sdvx\) has no parent song/u,
+			}
+		);
 
 		t.end();
 	});

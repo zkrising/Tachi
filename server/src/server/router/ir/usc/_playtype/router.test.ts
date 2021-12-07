@@ -582,6 +582,12 @@ t.test("POST /scores", (t) => {
 
 		t.equal(res.body.statusCode, 22);
 
+		t.match(
+			res.body.description,
+			"(1/3)",
+			"Should contain (required/outOf) in the response description."
+		);
+
 		const dbScore = await db.scores.findOne({
 			game: "usc",
 		});

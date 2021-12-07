@@ -2,8 +2,10 @@ import {
 	EXT_BISTROVER,
 	EXT_HEROIC_VERSE,
 	MODEL_IIDX,
+	MODEL_IIDX_LIGHTNING,
 	MODEL_INFINITAS_2,
 	REV_2DXTRA,
+	REV_NORMAL,
 	REV_OMNIMIX,
 } from "lib/constants/ea3id";
 import { KtLogger } from "lib/logger/logger";
@@ -42,7 +44,7 @@ const PR_Fervidex: PrudenceSchema = {
 		note: optNull(p.isPositiveInteger),
 	} as unknown as ValidSchemaValue),
 
-	option: {
+	option: p.optional({
 		gauge: optNull(p.isIn("ASSISTED_EASY", "EASY", "HARD", "EX_HARD")),
 		range: optNull(
 			p.isIn("SUDDEN_PLUS", "HIDDEN_PLUS", "SUD_PLUS_HID_PLUS", "LIFT", "LIFT_SUD_PLUS")
@@ -50,7 +52,7 @@ const PR_Fervidex: PrudenceSchema = {
 		style: optNull(p.isIn("RANDOM", "R_RANDOM", "S_RANDOM", "MIRROR")),
 		style_2p: optNull(p.isIn("RANDOM", "R_RANDOM", "S_RANDOM", "MIRROR")),
 		assist: optNull(p.isIn("AUTO_SCRATCH", "LEGACY_NOTE", "ASCR_LEGACY", "FULL_ASSIST")),
-	},
+	}),
 
 	// we dont use it and we dont care.
 	pacemaker: p.any,
@@ -73,24 +75,25 @@ export function SoftwareIDToVersion(model: string, logger: KtLogger) {
 
 		if (data.model === MODEL_INFINITAS_2) {
 			return "inf";
-		} else if (data.model === MODEL_IIDX) {
-			// only HV. everything else is disabled deliberately.
+		} else if (data.model === MODEL_IIDX || data.model === MODEL_IIDX_LIGHTNING) {
+			// pretty icky yandere-dev tier if statements, but hey
+			// that's just how it works...
 			if (data.ext === EXT_HEROIC_VERSE) {
 				if (data.rev === REV_OMNIMIX) {
 					return "27-omni";
-				}
-
-				if (data.rev === REV_2DXTRA) {
+				} else if (data.rev === REV_2DXTRA) {
 					return "27-2dxtra";
+				} else if (data.rev === REV_NORMAL) {
+					return "27";
 				}
-
-				return "27";
 			} else if (data.ext === EXT_BISTROVER) {
 				if (data.rev === REV_OMNIMIX) {
 					return "28-omni";
+				} else if (data.rev === REV_2DXTRA) {
+					return "28-2dxtra";
+				} else if (data.rev === REV_NORMAL) {
+					return "28";
 				}
-
-				return "28";
 			}
 		}
 
@@ -122,7 +125,7 @@ export function ParseFervidexSingle(
 
 	// asserted using prudence.
 	return {
-		context: { version },
+		context: { version, timeReceived: Date.now() },
 		game: "iidx",
 		iterable: [body] as unknown as FervidexScore[],
 		classHandler: null,

@@ -7,11 +7,10 @@ import { DryScore } from "lib/score-import/framework/common/types";
 import { Lamps } from "tachi-common";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
-import { EmptyObject } from "utils/types";
 import { ConverterFunction } from "../../common/types";
-import { KsHookSV3CScore } from "./types";
+import { KsHookSV3CContext, KsHookSV3CScore } from "./types";
 
-export const ConverterIRKsHookSV3C: ConverterFunction<KsHookSV3CScore, EmptyObject> = async (
+export const ConverterIRKsHookSV3C: ConverterFunction<KsHookSV3CScore, KsHookSV3CContext> = async (
 	data,
 	context,
 	importType,
@@ -44,7 +43,7 @@ export const ConverterIRKsHookSV3C: ConverterFunction<KsHookSV3CScore, EmptyObje
 		service: "kshook SV3C",
 		comment: null,
 		importType: "ir/kshook-sv3c",
-		timeAchieved: Date.now(),
+		timeAchieved: context.timeReceived,
 		scoreData: {
 			score: data.score,
 			percent,

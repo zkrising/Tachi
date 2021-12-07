@@ -771,7 +771,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 		return prSchemaify(
 			PR_ChartDocument("iidx", playtype, {
 				notecount: p.isPositiveNonZeroInteger,
-				inGameID: p.isPositiveNonZeroInteger,
+				inGameID: p.or(p.isPositiveNonZeroInteger, [p.isPositiveNonZeroInteger]),
 				arcChartID: "?string",
 				hashSHA256: "?string",
 				"2dxtraSet": "?string",

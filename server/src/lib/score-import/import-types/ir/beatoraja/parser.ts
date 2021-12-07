@@ -110,12 +110,13 @@ export function ParseBeatorajaSingle(
 		throw new ScoreImportFatalError(400, `Unsupported client ${client}`);
 	}
 
-	// asserted using prudence.
 	return {
 		context: {
 			client: "lr2oraja",
+			// asserted using prudence.
 			chart: body.chart as BeatorajaChart,
 			userID,
+			timeReceived: Date.now(),
 		},
 		game: "bms",
 		iterable: [body.score] as unknown as BeatorajaScore[],

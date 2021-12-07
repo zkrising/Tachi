@@ -334,9 +334,12 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 				"context.playtype": playtype,
 			});
 
-			await Promise.all(
-				scoresToDeorphan.map((score) => ReprocessOrphan(score, blacklist, logger))
-			);
+			for (const score of scoresToDeorphan) {
+				// Has to be like this to avoid race conditions where two
+				// orphans resolve to the same scoreID and collide in mid-air!
+				// eslint-disable-next-line no-await-in-loop
+				await ReprocessOrphan(score, blacklist, logger);
+			}
 		}
 	}
 

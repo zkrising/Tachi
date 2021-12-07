@@ -108,7 +108,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 		comment: null,
 		game: "usc",
 		importType,
-		timeAchieved: Date.now(),
+		timeAchieved: context.timeReceived,
 		service: "USC-IR",
 		scoreData: {
 			grade,

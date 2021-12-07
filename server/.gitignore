@@ -30,7 +30,7 @@ local-cdn
 test-cdn
 
 # Weird Redis Dumps
-dump.rdb
+*.rdb
 
 scripts/quick-insert/insert.ts
 scripts/bpi-poyashi-data/output.json

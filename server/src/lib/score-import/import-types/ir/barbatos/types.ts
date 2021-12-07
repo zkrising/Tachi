@@ -17,3 +17,7 @@ export interface BarbatosScore {
 	gauge_type: 1 | 2;
 	is_skill_analyzer: boolean;
 }
+
+export interface BarbatosContext {
+	timeReceived: number;
+}

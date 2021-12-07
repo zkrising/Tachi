@@ -56,3 +56,7 @@ export interface KsHookSV3CScore {
 	skill_name: integer;
 	track_no: integer;
 }
+
+export interface KsHookSV3CContext {
+	timeReceived: number;
+}

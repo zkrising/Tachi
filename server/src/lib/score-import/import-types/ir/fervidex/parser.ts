@@ -125,7 +125,7 @@ export function ParseFervidexSingle(
 
 	// asserted using prudence.
 	return {
-		context: { version },
+		context: { version, timeReceived: Date.now() },
 		game: "iidx",
 		iterable: [body] as unknown as FervidexScore[],
 		classHandler: null,

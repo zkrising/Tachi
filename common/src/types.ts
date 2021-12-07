@@ -789,7 +789,7 @@ export interface GPTSupportedVersions {
 
 interface CDDataIIDXSP {
 	notecount: integer;
-	inGameID: integer;
+	inGameID: integer | integer[];
 	arcChartID: string | null;
 	hashSHA256: string | null;
 	"2dxtraSet": string | null;

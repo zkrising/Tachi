@@ -89,7 +89,7 @@ MutateCollection("charts-iidx.json", (charts) => {
 				chart.versions.push(options.version);
 				match = true;
 				break;
-			} else if (chart.data.inGameID === data.id) {
+			} else if (Array.isArray(chart.data.inGameID) ? chart.data.inGameID.includes(data.id) : chart.data.inGameID === data.id) {
 				existingReference = chart;
 			}
 		}

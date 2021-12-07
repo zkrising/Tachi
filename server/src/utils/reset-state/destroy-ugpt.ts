@@ -1,5 +1,6 @@
 import db from "external/mongo/db";
 import { integer, Game, Playtypes } from "tachi-common";
+import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 
 /**
  * Completely resets a UGPT profile.
@@ -23,10 +24,29 @@ export default async function DestroyUserGamePlaytypeData(
 		playtype,
 	});
 
+	const chartIDs = (
+		await db["personal-bests"].find(
+			{
+				userID,
+				game,
+				playtype,
+			},
+			{
+				projection: {
+					chartID: 1,
+				},
+			}
+		)
+	).map((e) => e.chartID);
+
 	await db["personal-bests"].remove({
 		userID,
 		game,
 		playtype,
+	});
+
+	await UpdateAllPBs(undefined, {
+		chartID: { $in: chartIDs },
 	});
 
 	const sessionIDs = (

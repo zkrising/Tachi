@@ -1,7 +1,6 @@
 import { Lamps } from "tachi-common";
 import { FindSDVXChartOnInGameID } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
-import { EmptyObject } from "utils/types";
 import {
 	InternalFailure,
 	KTDataNotFoundFailure,
@@ -9,7 +8,7 @@ import {
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../../common/types";
-import { BarbatosScore } from "./types";
+import { BarbatosContext, BarbatosScore } from "./types";
 
 const LAMP_LOOKUP = {
 	1: "FAILED",
@@ -27,7 +26,7 @@ const DIFFICULTY_LOOKUP = {
 	4: "MXM",
 };
 
-export const ConverterIRBarbatos: ConverterFunction<BarbatosScore, EmptyObject> = async (
+export const ConverterIRBarbatos: ConverterFunction<BarbatosScore, BarbatosContext> = async (
 	data,
 	context,
 	importType,
@@ -65,7 +64,7 @@ export const ConverterIRBarbatos: ConverterFunction<BarbatosScore, EmptyObject> 
 		service: "Barbatos",
 		comment: null,
 		importType: "ir/barbatos",
-		timeAchieved: Date.now(),
+		timeAchieved: context.timeReceived,
 		scoreData: {
 			score: data.score,
 			percent,

@@ -12,7 +12,7 @@ t.test("#ConverterIRKsHookSV3C", (t) => {
 	t.test("Should match a score with its song and chart.", async (t) => {
 		const res = await ConverterIRKsHookSV3C(
 			TestingKsHookSV3CScore,
-			{},
+			{ timeReceived: 10 },
 			"ir/kshook-sv3c",
 			logger
 		);
@@ -57,7 +57,7 @@ t.test("#ConverterIRKsHookSV3C", (t) => {
 			() =>
 				ConverterIRKsHookSV3C(
 					Object.assign({}, TestingKsHookSV3CScore, { music_id: 10000 }),
-					{},
+					{ timeReceived: 10 },
 					"ir/kshook-sv3c",
 					logger
 				),

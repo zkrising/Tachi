@@ -4,6 +4,7 @@ export interface BeatorajaContext {
 	client: "lr2oraja";
 	chart: BeatorajaChart;
 	userID: integer; // unexpectedly necessary for orphan code!
+	timeReceived: number;
 }
 
 export interface BeatorajaChart {

@@ -182,7 +182,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 			inputDevice: data.deviceType,
 			random,
 		},
-		timeAchieved: Date.now(),
+		timeAchieved: context.timeReceived,
 		service: "Beatoraja IR",
 	};
 

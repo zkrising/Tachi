@@ -125,7 +125,7 @@ t.test("#ConverterIRFervidex", (t) => {
 	t.test("Should convert a valid fervidex score into a dry score.", async (t) => {
 		const res = await ConverterIRFervidex(
 			baseFervidexScore,
-			{ version: "27" },
+			{ version: "27", timeReceived: 10 },
 			"ir/fervidex",
 			logger
 		);
@@ -159,7 +159,7 @@ t.test("#ConverterIRFervidex", (t) => {
 
 		const res = await ConverterIRFervidex(
 			deepmerge(baseFervidexScore, { option: { style_2p: "R_RANDOM" }, chart: "dpa" }),
-			{ version: "27" },
+			{ version: "27", timeReceived: 10 },
 			"ir/fervidex",
 			logger
 		);
@@ -182,7 +182,7 @@ t.test("#ConverterIRFervidex", (t) => {
 	t.test("Should null BP if the user died pre-emptively.", async (t) => {
 		const res = await ConverterIRFervidex(
 			deepmerge(baseFervidexScore, { dead: { measure: 1, note: 10 } }),
-			{ version: "27" },
+			{ version: "27", timeReceived: 10 },
 			"ir/fervidex",
 			logger
 		);
@@ -204,7 +204,7 @@ t.test("#ConverterIRFervidex", (t) => {
 		t.rejects(
 			ConverterIRFervidex(
 				deepmerge(baseFervidexScore, { chart: "spl" }),
-				{ version: "27" },
+				{ version: "27", timeReceived: 10 },
 				"ir/fervidex",
 				logger
 			),
@@ -218,7 +218,12 @@ t.test("#ConverterIRFervidex", (t) => {
 		await db.songs.iidx.remove({}); // this forces desync
 
 		t.rejects(
-			ConverterIRFervidex(baseFervidexScore, { version: "27" }, "ir/fervidex", logger),
+			ConverterIRFervidex(
+				baseFervidexScore,
+				{ version: "27", timeReceived: 10 },
+				"ir/fervidex",
+				logger
+			),
 			{ message: /Song 1 \(iidx\) has no parent song/giu }
 		);
 
@@ -258,7 +263,7 @@ t.test("#ConverterIRFervidex", (t) => {
 	t.test("Should convert undeflow gauge to null.", async (t) => {
 		const res = await ConverterIRFervidex(
 			deepmerge(baseFervidexScore, { gauge: [10, 5, 249, 248] }),
-			{ version: "27" },
+			{ version: "27", timeReceived: 10 },
 			"ir/fervidex",
 			logger
 		);

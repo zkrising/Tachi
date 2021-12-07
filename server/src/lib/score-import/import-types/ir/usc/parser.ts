@@ -62,6 +62,7 @@ export function ParseIRUSC(
 		context: {
 			chartHash,
 			playtype,
+			timeReceived: Date.now(),
 		},
 		game: "usc",
 		iterable: [score] as USCClientScore[],

@@ -3,9 +3,8 @@ import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import p, { PrudenceSchema } from "prudence";
 import { FormatPrError } from "utils/prudence";
-import { EmptyObject } from "utils/types";
 import { ParserFunctionReturns } from "../../common/types";
-import { KsHookSV3CScore } from "./types";
+import { KsHookSV3CContext, KsHookSV3CScore } from "./types";
 
 const PR_KsHookSV3C: PrudenceSchema = {
 	appeal_id: p.isPositiveInteger,
@@ -75,7 +74,7 @@ const PR_KsHookSV3C: PrudenceSchema = {
 export function ParseKsHookSV3C(
 	body: Record<string, unknown>,
 	logger: KtLogger
-): ParserFunctionReturns<KsHookSV3CScore, EmptyObject> {
+): ParserFunctionReturns<KsHookSV3CScore, KsHookSV3CContext> {
 	// Ignore excess keys, as SV3C might add more features in the future.
 	const err = p(body, PR_KsHookSV3C, undefined, { allowExcessKeys: true });
 
@@ -88,7 +87,9 @@ export function ParseKsHookSV3C(
 	return {
 		game: "sdvx",
 		iterable: [score],
-		context: {},
+		context: {
+			timeReceived: Date.now(),
+		},
 		classHandler: () => {
 			const skillLevel = ConvertSkillLevel(score.skill_level);
 

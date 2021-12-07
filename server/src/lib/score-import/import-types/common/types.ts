@@ -16,11 +16,11 @@ import { ClassHandler } from "../../framework/user-game-stats/types";
 import { SDVXEamusementCSVData } from "../file/eamusement-sdvx-csv/types";
 import { MerScore } from "../file/mer-iidx/types";
 import { S3Score } from "../file/solid-state-squad/types";
-import { BarbatosScore } from "../ir/barbatos/types";
+import { BarbatosContext, BarbatosScore } from "../ir/barbatos/types";
 import { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
 import { FervidexStaticContext, FervidexStaticScore } from "../ir/fervidex-static/types";
 import { FervidexContext, FervidexScore } from "../ir/fervidex/types";
-import { KsHookSV3CScore } from "../ir/kshook-sv3c/types";
+import { KsHookSV3CContext, KsHookSV3CScore } from "../ir/kshook-sv3c/types";
 import { IRUSCContext } from "../ir/usc/types";
 import { KaiContext } from "./api-kai/types";
 import { BatchManualContext } from "./batch-manual/types";
@@ -62,12 +62,12 @@ export interface ImportTypeContextMap {
 	"file/pli-iidx-csv": IIDXEamusementCSVContext;
 
 	"ir/direct-manual": BatchManualContext;
-	"ir/barbatos": EmptyObject;
+	"ir/barbatos": BarbatosContext;
 	"ir/fervidex": FervidexContext;
 	"ir/fervidex-static": FervidexStaticContext;
 	"ir/beatoraja": BeatorajaContext;
 	"ir/usc": IRUSCContext;
-	"ir/kshook-sv3c": EmptyObject;
+	"ir/kshook-sv3c": KsHookSV3CContext;
 
 	"api/arc-iidx": EmptyObject;
 	"api/arc-sdvx": EmptyObject;

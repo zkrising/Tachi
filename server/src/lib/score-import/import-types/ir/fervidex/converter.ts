@@ -186,7 +186,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 		service: "Fervidex",
 		comment: null,
 		importType: "ir/fervidex",
-		timeAchieved: Date.now(),
+		timeAchieved: context.timeReceived,
 		scoreData: {
 			score: data.ex_score,
 			percent,

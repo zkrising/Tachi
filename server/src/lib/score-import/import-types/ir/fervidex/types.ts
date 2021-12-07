@@ -60,4 +60,5 @@ export interface FervidexScore {
 
 export interface FervidexContext {
 	version: GPTSupportedVersions["iidx:SP" | "iidx:DP"];
+	timeReceived: number;
 }

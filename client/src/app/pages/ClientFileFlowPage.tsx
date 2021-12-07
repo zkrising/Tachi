@@ -1,6 +1,7 @@
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
+import OAuthMoreInfo from "components/util/OAuthMoreInfo";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
@@ -88,6 +89,10 @@ export default function ClientFileFlowPage() {
 						>
 							Create the key.
 						</button>
+					</div>
+					<div className="col-12" style={{ fontSize: "1.3rem" }}>
+						<Divider />
+						<OAuthMoreInfo client={data} />
 					</div>
 				</>
 			) : (

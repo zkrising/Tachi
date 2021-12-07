@@ -36,7 +36,14 @@ export default function BeatorajaIRPage() {
 					Place the IR <code>.jar</code> file in the <code>ir/</code> folder.
 				</li>
 				<li>Open the game options, and navigate to the IR section.</li>
-				<li>Select {TachiConfig.name} IR.</li>
+				<li>
+					Select {TachiConfig.name} IR.
+					<br />
+					<span className="text-warning">
+						If the IR isn't showing up, make sure you're launching the game with the{" "}
+						<code>beatoraja-config.bat</code> file. Otherwise, IRs will never load.
+					</span>
+				</li>
 				<li>
 					Get an API token for the IR by clicking{" "}
 					<ExternalLink href="/client-file-flow/CXBeatorajaIR">this link</ExternalLink>.

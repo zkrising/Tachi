@@ -1,10 +1,24 @@
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ServerStatus } from "types/api-returns";
+import { APIFetchV1 } from "util/api";
 import { FORMATTED_VERSION } from "util/constants/version";
 
 export function Footer() {
+	const [serverVersion, setServerVersion] = useState("Loading...");
+
+	useEffect(() => {
+		APIFetchV1<ServerStatus>("/status").then(r => {
+			if (!r.success) {
+				setServerVersion("Error Fetching data!");
+			} else {
+				setServerVersion(r.body.version);
+			}
+		});
+	}, []);
+
 	return (
 		<>
 			<Divider className="mt-8" />
@@ -14,11 +28,19 @@ export function Footer() {
 					<div className="order-2 order-md-1">
 						{/* is there a better way to do this? mt-md-3 is the intent */}
 						<div className="d-block d-lg-none mt-3"></div>
+						Client:{" "}
 						<ExternalLink
-							href="https://www.youtube.com/watch?v=JOb5f-TG6iI&list=PLGFFTE0Sw8tStwmuVsAoeOEdmWBLceK9b"
-							className="gentle-link px-3"
+							href="https://en.wikipedia.org/wiki/Disintegration_(The_Cure_album)"
+							className="gentle-link"
 						>
 							{FORMATTED_VERSION}
+						</ExternalLink>
+						, Server:{" "}
+						<ExternalLink
+							href="https://en.wikipedia.org/wiki/Dummy_(album)"
+							className="gentle-link"
+						>
+							{serverVersion}
 						</ExternalLink>
 					</div>
 

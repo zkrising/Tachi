@@ -1,6 +1,6 @@
 {
 	"name": "tachi-client",
-	"version": "2.0.0-prerelease",
+	"version": "2.0.1",
 	"private": true,
 	"scripts": {
 		"start": "node scripts/start.js -o",

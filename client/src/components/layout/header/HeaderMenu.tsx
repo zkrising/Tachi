@@ -14,6 +14,7 @@ import AllGames from "./AllGames";
 import ImportScoresLink from "./ImportScoresLink";
 import MenuDropdown from "./MenuDropdown";
 import MenuLink from "./MenuLink";
+import SearchBar from "./SearchBar";
 
 export function HeaderMenu() {
 	const { user } = useContext(UserContext);
@@ -95,6 +96,13 @@ export function HeaderMenu() {
 					</div>
 				</div>
 				<ul className="menu-nav">
+					<li className="menu-item d-block d-lg-none">
+						<div className="d-flex w-100 mb-8 px-4">
+							<SearchBar />
+						</div>
+						<Divider />
+					</li>
+
 					{user && ugs && ugs.length !== 0 && (
 						<MenuDropdown name="Your Profiles">{userProfileLinks}</MenuDropdown>
 					)}

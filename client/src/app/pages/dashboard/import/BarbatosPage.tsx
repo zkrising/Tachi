@@ -21,10 +21,7 @@ export default function BarbatosPage() {
 			<ol className="instructions-list">
 				<li>
 					Download <code>barbatos.dll</code> from{" "}
-					<ExternalLink href="#">
-						here (No download yet. Barbatos is not supported.)
-					</ExternalLink>
-					.
+					<ExternalLink href="https://f.wcal.xyz/vC3dW7cn">here</ExternalLink>.
 				</li>
 				<li>
 					Download your config file{" "}
@@ -32,8 +29,8 @@ export default function BarbatosPage() {
 					<b>This file contains an API Key, which is meant to be kept secret!</b>
 				</li>
 				<li>
-					Place all of these files inside your SDVX folder, next to your <code>.bat</code>{" "}
-					file.
+					Place <code>barbatos.dll</code> and the above config file inside your SDVX
+					folder, next to your <code>.bat</code> file.
 				</li>
 				<ul className="instructions-list">
 					<li>

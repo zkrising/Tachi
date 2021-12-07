@@ -66,7 +66,6 @@ export function ParseSolidStateXML(
 	}
 
 	if (!parsedXML?.s3data?.scoredata?.song) {
-		logger.crit("foo", { data: fileData.buffer });
 		throw new ScoreImportFatalError(400, `Invalid S3 XML, no s3data -> scoredata -> song?`);
 	}
 

@@ -12,6 +12,7 @@ import { Game, UserAuthLevels } from "tachi-common";
 import db from "external/mongo/db";
 import { DeleteScore } from "lib/delete-scores/delete-scores";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
+import DestroyUserGamePlaytypeData from "utils/reset-state/destroy-ugpt";
 
 const logger = CreateLogCtx(__filename);
 
@@ -259,6 +260,44 @@ router.post("/delete-score", prValidate({ scoreID: "string" }), async (req, res)
 		body: {},
 	});
 });
+
+/**
+ * Destroys a users UGPT profile and forces a site recalc.
+ *
+ * @POST /api/v1/admin/destroy-ugpt
+ */
+router.post(
+	"/destroy-ugpt",
+	prValidate({
+		userID: p.isInteger,
+		game: p.isIn(TachiConfig.GAMES),
+		playtype: "string", // lazy
+	}),
+	async (req, res) => {
+		const { userID, game, playtype } = req.body;
+
+		const ugpt = await db["game-stats"].findOne({
+			userID,
+			game,
+			playtype,
+		});
+
+		if (!ugpt) {
+			return res.status(404).json({
+				success: false,
+				description: `No stats for ${userID} (${game} ${playtype}) exist.`,
+			});
+		}
+
+		await DestroyUserGamePlaytypeData(userID, game, playtype);
+
+		return res.status(200).json({
+			success: true,
+			description: `Completely destroyed UGPT for ${userID} (${game} ${playtype}).`,
+			body: {},
+		});
+	}
+);
 
 /**
  * Destroy a chart and all of its scores (and sessions).

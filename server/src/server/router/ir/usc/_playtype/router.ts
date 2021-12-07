@@ -430,29 +430,6 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 		});
 	}
 
-	if (importDoc.errors[0]) {
-		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {
-			importDoc,
-			userID,
-		});
-
-		return res.status(200).json({
-			statusCode: STATUS_CODES.BAD_REQ,
-			description: `${importDoc.errors[0].type} ${importDoc.errors[0].message}`,
-		});
-	}
-
-	if (!importDoc.scoreIDs[0]) {
-		logger.warn(`No scoreID, but import was successful?`, {
-			importDoc,
-			userID,
-		});
-		return res.status(200).json({
-			statusCode: STATUS_CODES.BAD_REQ,
-			description: "No score was imported.",
-		});
-	}
-
 	try {
 		const body = await CreatePOSTScoresResponseBody(userID, chartDoc, importDoc.scoreIDs[0]);
 

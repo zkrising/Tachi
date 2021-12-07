@@ -158,6 +158,61 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		t.end();
 	});
 
+	t.test("Should resolve for the usc chartHash if the matchType is uscChartHash", async (t) => {
+		const chartHash = "USC_CHART_HASH";
+
+		const uscContext: BatchManualContext = deepmerge(context, {
+			game: "usc",
+			playtype: "Controller",
+		});
+
+		const res = await ResolveMatchTypeToKTData(
+			deepmerge(baseBatchManualScore, {
+				matchType: "uscChartHash",
+				identifier: chartHash,
+			}),
+			uscContext,
+			importType,
+			logger
+		);
+
+		t.hasStrict(
+			res,
+			{
+				song: { id: 1 },
+				chart: { songID: 1, chartID: "USC_CHART_ID", playtype: "Controller" },
+			},
+			"Should return the right song and chart."
+		);
+
+		t.end();
+	});
+
+	t.test("Should honor playtype in uscChartHash despite non-unique chartIDs.", async (t) => {
+		const chartHash = "USC_CHART_HASH";
+
+		const uscContext: BatchManualContext = deepmerge(context, {
+			game: "usc",
+			playtype: "Keyboard",
+		});
+
+		t.rejects(
+			() =>
+				ResolveMatchTypeToKTData(
+					deepmerge(baseBatchManualScore, {
+						matchType: "uscChartHash",
+						identifier: chartHash,
+					}),
+					uscContext,
+					importType,
+					logger
+				),
+			ktdWrap("Cannot find chart with hash USC_CHART_HASH", "usc")
+		);
+
+		t.end();
+	});
+
 	t.test("Should reject if ddrSongHash is called without game = ddr", (t) => {
 		t.rejects(
 			ResolveMatchTypeToKTData(

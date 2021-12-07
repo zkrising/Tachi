@@ -231,7 +231,10 @@ export async function ResolveMatchTypeToKTData(
 			throw new InvalidScoreFailure(`uscChartMash matchType can only be used on USC.`);
 		}
 
-		const chart = await db.charts.usc.findOne({ "data.hashSHA1": data.identifier });
+		const chart = await db.charts.usc.findOne({
+			"data.hashSHA1": data.identifier,
+			playtype: context.playtype,
+		});
 
 		if (!chart) {
 			throw new KTDataNotFoundFailure(

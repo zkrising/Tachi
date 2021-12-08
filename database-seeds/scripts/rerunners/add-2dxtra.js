@@ -86,7 +86,9 @@ MutateCollection("charts-iidx.json", (charts) => {
 		let existingReference = null;
 		for (const chart of charts) {
 			if (chart.data.hashSHA256 === data.hash) {
-				chart.versions.push(options.version);
+				if (!chart.versions.includes(options.version)) {
+					chart.versions.push(options.version);
+				}
 				match = true;
 				break;
 			} else if (Array.isArray(chart.data.inGameID) ? chart.data.inGameID.includes(data.id) : chart.data.inGameID === data.id) {

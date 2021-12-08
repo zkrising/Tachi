@@ -103,13 +103,13 @@ MutateCollection("charts-iidx.json", (charts) => {
 			charts.push({
 				"chartID": CreateChartID(),
 				"data": {
-					"2dxtraSet": options.set,
+					"2dxtraSet": options.name,
 					"arcChartID": null,
 					"hashSHA256": data.hash,
 					"inGameID": data.id,
 					"notecount": data.notes
 				},
-				"difficulty": `${options.set} ${data.difficulty}`,
+				"difficulty": `${options.name} ${data.difficulty}`,
 				"isPrimary": true,
 				"level": "?",
 				"levelNum": 0,

@@ -1,0 +1,5 @@
+get the data by going to https://iidx.insane.pe.kr/!/sp10/ and typing copy(tabledata_orig).
+
+parsers here handle the rest.
+
+the sp8h, 9 and 10 tierlists *suck*, so, we're ignoring them.

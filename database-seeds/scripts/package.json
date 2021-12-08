@@ -24,6 +24,7 @@
 	"homepage": "https://github.com/TeamNewGuys/tachi-database-seeds#readme",
 	"dependencies": {
 		"commander": "^8.2.0",
+		"deepmerge": "^4.2.2",
 		"fast-json-stable-hash": "^1.0.3",
 		"glob": "^7.2.0",
 		"mei-logger": "^1.0.1",

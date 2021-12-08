@@ -128,7 +128,7 @@ export const PrettyVersions: Versions = {
 	"bms:7K": {},
 	"bms:14K": {},
 	"chunithm:Single": {
-		paradise: "Paradise",
+		paradiselost: "Paradise Lost",
 	},
 	"ddr:SP": prettyDDRVersions,
 	"ddr:DP": prettyDDRVersions,

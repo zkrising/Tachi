@@ -620,10 +620,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		currentLatestVersion: "paradise",
-		currentLocalVersion: "paradise",
+		currentLatestVersion: "paradiselost",
+		currentLocalVersion: "paradiselost",
 		currentGameOmniVersion: null,
-		supportedVersions: ["paradise"],
+		supportedVersions: ["paradiselost"],
 
 		tierlists: [],
 		tierlistDescriptions: {},

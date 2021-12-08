@@ -782,7 +782,7 @@ export interface GPTSupportedVersions {
 	"museca:Single": "1.5" | "1.5-b";
 	"bms:7K": never;
 	"bms:14K": never;
-	"chunithm:Single": "paradise";
+	"chunithm:Single": "paradiselost";
 	"gitadora:Gita": "nextage";
 	"gitadora:Dora": "nextage";
 }

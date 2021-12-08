@@ -16,6 +16,10 @@ if (!options.file || !options.name || !options.version) {
 	throw new Error("Missing options --file, --name or --version.");
 }
 
+if (!["All Scratch", "Kichiku", "Kiraku"].includes(options.name)) {
+	throw new Error(`Unexpected value for --name ${options.name}.`);
+}
+
 const parser = new XMLParser({ ignoreAttributes: false });
 
 const data = parser.parse(fs.readFileSync(options.file));

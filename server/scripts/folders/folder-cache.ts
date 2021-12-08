@@ -1,3 +1,3 @@
 import { InitaliseFolderChartLookup } from "../../src/utils/folder";
 
-InitaliseFolderChartLookup().then(() => process.exit(1));
+InitaliseFolderChartLookup().then(() => process.exit(0));

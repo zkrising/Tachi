@@ -56,11 +56,9 @@ export async function ResolveFolderToCharts(
 			})
 		);
 	} else if (folder.type === "charts") {
-		const folderDataTransposed: Record<string, unknown> = {};
+		const folderDataTransposed = TransposeFolderData(folder.data);
 
-		for (const key in folder.data) {
-			folderDataTransposed[key.replace(/¬/gu, ".").replace(/~/gu, "$")] = folder.data[key];
-		}
+		logger.warn("a", folderDataTransposed);
 
 		const fx = deepmerge.all([filter, { playtype: folder.playtype }, folderDataTransposed]);
 
@@ -86,6 +84,27 @@ export async function ResolveFolderToCharts(
 	}
 
 	return { charts };
+}
+
+/**
+ * Replace all ¬'s in key names with ., and all ~'s with $.
+ * This is to get around the fact that you cannot store these values in mongo,
+ * and we are doing reflective querying.
+ */
+export function TransposeFolderData(obj: Record<string, unknown>) {
+	const transposedObj: Record<string, unknown> = {};
+
+	for (const key in obj) {
+		const transposedKey = key.replace(/~/u, "$").replace(/¬/u, ".");
+
+		if (typeof obj[key] === "object" && obj[key]) {
+			transposedObj[transposedKey] = TransposeFolderData(obj[key] as Record<string, unknown>);
+		} else {
+			transposedObj[transposedKey] = obj[key];
+		}
+	}
+
+	return transposedObj;
 }
 
 export async function GetFolderCharts(

@@ -10,7 +10,7 @@ import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { Game, UserAuthLevels } from "tachi-common";
 
 import db from "external/mongo/db";
-import { DeleteScore } from "lib/delete-scores/delete-scores";
+import { DeleteScore } from "lib/score-mutation/delete-scores";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import DestroyUserGamePlaytypeData from "utils/reset-state/destroy-ugpt";
 

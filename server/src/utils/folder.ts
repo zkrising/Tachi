@@ -58,8 +58,6 @@ export async function ResolveFolderToCharts(
 	} else if (folder.type === "charts") {
 		const folderDataTransposed = TransposeFolderData(folder.data);
 
-		logger.warn("a", folderDataTransposed);
-
 		const fx = deepmerge.all([filter, { playtype: folder.playtype }, folderDataTransposed]);
 
 		charts = await db.charts[folder.game].find(fx);

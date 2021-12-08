@@ -54,8 +54,6 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 
 	const logger = rootLogger.child({
 		context: ["Update Score", oldScore.scoreID, newScore.scoreID, FormatUserDoc(user)],
-		oldScore,
-		newScore,
 	}) as KtLogger;
 
 	logger.info("Received Update Score request.");

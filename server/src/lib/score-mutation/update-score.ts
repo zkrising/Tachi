@@ -41,14 +41,6 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 		);
 	}
 
-	const logger = rootLogger.child({
-		context: ["Update Score", oldScore.scoreID, newScore.scoreID, FormatUserDoc(user)],
-		oldScore,
-		newScore,
-	}) as KtLogger;
-
-	logger.info("Received Update Score request.");
-
 	const oldScoreID = oldScore.scoreID;
 
 	const newScoreID = CreateScoreID(newScore.userID, newScore, newScore.chartID);
@@ -59,6 +51,14 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 	// So hopefully, we wont have to use this much.
 
 	newScore.scoreID = newScoreID;
+
+	const logger = rootLogger.child({
+		context: ["Update Score", oldScore.scoreID, newScore.scoreID, FormatUserDoc(user)],
+		oldScore,
+		newScore,
+	}) as KtLogger;
+
+	logger.info("Received Update Score request.");
 
 	newScore.calculatedData = await CreateCalculatedData(
 		newScore,
@@ -95,10 +95,10 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 					const percentDiff = oldScore.scoreData.percent - newScore.scoreData.percent;
 					const scoreDiff = oldScore.scoreData.score - newScore.scoreData.score;
 
-					scoreInfo.gradeDelta += gradeDiff;
-					scoreInfo.lampDelta += lampDiff;
-					scoreInfo.scoreDelta += scoreDiff;
-					scoreInfo.percentDelta += percentDiff;
+					scoreInfo.gradeDelta -= gradeDiff;
+					scoreInfo.lampDelta -= lampDiff;
+					scoreInfo.scoreDelta -= scoreDiff;
+					scoreInfo.percentDelta -= percentDiff;
 				}
 			}
 		}

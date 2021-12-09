@@ -75,8 +75,11 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 		);
 	} catch (err) {
 		logger.warn(
-			`Score ID ${newScoreID} already existed -- this update caused a collision. Updating old references anyway.`
+			`Score ID ${newScoreID} already existed -- this update caused a collision. Removing old score and updating old references anyway.`
 		);
+		await db.scores.remove({
+			scoreID: oldScoreID,
+		});
 	}
 
 	const sessions = await db.sessions.find({

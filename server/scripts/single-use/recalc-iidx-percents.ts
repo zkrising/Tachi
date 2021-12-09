@@ -46,6 +46,9 @@ if (require.main === module) {
 
 				resume();
 			})
-			.then(() => logger.info(`Fixed ${i} bad scores.`));
+			.then(() => {
+				logger.info(`Fixed ${i} bad scores.`);
+				process.exit(0);
+			});
 	})();
 }

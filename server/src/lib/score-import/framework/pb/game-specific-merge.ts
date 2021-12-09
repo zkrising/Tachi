@@ -60,7 +60,37 @@ export async function IIDXMergeFn(
 }
 
 /**
- * This function recalculates and applies VF4 and VF5 to the PB document.
+ * This function recalculates and applies VF6 to the PB document.
+ *
+ * This is near-identical to the SDVXMergeFn. See that.
+ */
+export async function USCMergeFn(
+	pbDoc: PBScoreDocument<"usc:Keyboard" | "usc:Controller">,
+	scorePB: ScoreDocument<"usc:Keyboard" | "usc:Controller">,
+	lampPB: ScoreDocument<"usc:Keyboard" | "usc:Controller">,
+	logger: KtLogger
+) {
+	// @optimisable - see SDVXMergeFn
+	const chart = await FindChartWithChartID("usc", pbDoc.chartID);
+
+	if (!chart) {
+		logger.severe(`Chart ${pbDoc.chartID} disappeared underfoot?`);
+		throw new InternalFailure(`Chart ${pbDoc.chartID} disappeared underfoot?`);
+	}
+
+	pbDoc.calculatedData.VF6 = CalculateVF6(
+		pbDoc.scoreData.grade,
+		pbDoc.scoreData.lamp,
+		pbDoc.scoreData.percent,
+		chart.levelNum,
+		logger
+	);
+
+	return true;
+}
+
+/**
+ * This function recalculates and applies VF6 to the PB document.
  *
  * SDVX cannot just select the larger volforce - instead, volforce has to be
  * re-calculated for any different permutation of scorePB + lampPB.

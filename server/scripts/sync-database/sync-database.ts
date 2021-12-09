@@ -6,6 +6,7 @@ import { monkDB } from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import fs from "fs";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
+import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
 import { TachiConfig } from "lib/setup/config";
 import { BulkWriteOperation } from "mongodb";
 import { ICollection } from "monk";
@@ -128,6 +129,7 @@ const syncInstructions: SyncInstructions[] = [
 
 			if (r) {
 				await InitaliseFolderChartLookup();
+				await UpdateIsPrimaryStatus();
 			}
 		},
 	},
@@ -157,83 +159,17 @@ const syncInstructions: SyncInstructions[] = [
 			collection: ICollection<FolderDocument>,
 			logger
 		) => {
-			const bwriteOps: BulkWriteOperation<FolderDocument>[] = [];
+			const r = await GenericUpsert(folders, collection, "folderID", logger, true);
 
-			for (const folder of folders) {
-				if (!TachiConfig.GAMES.includes(folder.game)) {
-					continue; // Skip things for games we don't care about.
-				}
-
-				const exists = await collection.findOne({
-					folderID: folder.folderID,
-				});
-
-				if (!exists) {
-					bwriteOps.push({
-						// @ts-expect-error faulty monk types
-						insertOne: { document: folder },
-					});
-				} else if (fjsh.hash(folder, "sha256") !== fjsh.hash(exists, "sha256")) {
-					bwriteOps.push({
-						updateOne: {
-							filter: {
-								folderID: folder.folderID,
-							},
-							update: {
-								$set: folder,
-							},
-						},
-					});
-				}
-			}
-
-			if (bwriteOps.length) {
-				await collection.bulkWrite(bwriteOps);
+			if (r) {
 				await InitaliseFolderChartLookup();
 			}
 		},
 	},
 	{
 		pattern: /^tables$/u,
-		handler: async (
-			tables: TableDocument[],
-			collection: ICollection<TableDocument>,
-			logger
-		) => {
-			const bwriteOps: BulkWriteOperation<TableDocument>[] = [];
-
-			for (const table of tables) {
-				if (!TachiConfig.GAMES.includes(table.game)) {
-					continue; // Skip things for games we don't care about.
-				}
-
-				const exists = await collection.findOne({
-					tableID: table.tableID,
-				});
-
-				if (!exists) {
-					bwriteOps.push({
-						// @ts-expect-error faulty monk types
-						insertOne: { document: table },
-					});
-				} else if (fjsh.hash(table, "sha256") !== fjsh.hash(exists, "sha256")) {
-					bwriteOps.push({
-						updateOne: {
-							filter: {
-								tableID: table.tableID,
-							},
-							update: {
-								$set: table,
-							},
-						},
-					});
-				}
-			}
-
-			if (bwriteOps.length) {
-				await collection.bulkWrite(bwriteOps);
-			}
-		},
+		handler: (tables: TableDocument[], collection: ICollection<TableDocument>, logger) =>
+			GenericUpsert(tables, collection, "tableID", logger, true),
 	},
 	{
 		pattern: /^bms-course-lookup$/u,

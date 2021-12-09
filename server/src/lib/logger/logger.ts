@@ -195,7 +195,7 @@ export const rootLogger = winston.createLogger({
 		__Worker: !!process.env.IS_WORKER,
 		__ReplicaID: Environment.replicaIdentity,
 	},
-});
+}) as KtLogger;
 
 if (!!ServerConfig.LOGGER_CONFIG.SEQ_API_KEY !== !!Environment.seqUrl) {
 	rootLogger.warn(

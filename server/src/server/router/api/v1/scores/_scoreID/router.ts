@@ -1,7 +1,7 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { DeleteScore } from "lib/delete-scores/delete-scores";
+import { DeleteScore } from "lib/score-mutation/delete-scores";
 import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";

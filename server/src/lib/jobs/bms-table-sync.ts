@@ -84,6 +84,22 @@ const registeredTables: BMSTablesDataset[] = [
 		playtype: "14K",
 		url: "https://stellabms.xyz/dp/score.json",
 	},
+	{
+		name: "Scratch 3rd",
+		description: "The 7K Sara 3 table.",
+		humanisedPrefix: "scr",
+		prefix: BMS_TABLES.scratch,
+		playtype: "7K",
+		url: "http://minddnim.web.fc2.com/sara/3rd_hard/json/data.json",
+	},
+	{
+		name: "LN",
+		description: "The 7K LN table.",
+		humanisedPrefix: "ln",
+		prefix: BMS_TABLES.ln,
+		playtype: "7K",
+		url: "http://flowermaster.web.fc2.com/lrnanido/gla/score.json",
+	},
 ];
 
 /* eslint-disable no-await-in-loop */

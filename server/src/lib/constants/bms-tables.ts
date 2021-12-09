@@ -8,4 +8,6 @@ export const BMS_TABLES = {
 	satellite: "sl",
 	dpNormal: "δ",
 	dpInsane: "★",
+	scratch: "h◎",
+	ln: "◆",
 };

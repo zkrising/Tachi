@@ -50,8 +50,9 @@ if (options.all) {
 		await ExportCollection(collection);
 	}
 
-	DeterministicCollectionSort();
 	RemoveUnderscoreID();
+
+	DeterministicCollectionSort();
 
 	logger.info(`Done!`);
 

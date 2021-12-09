@@ -27,9 +27,16 @@ function DeterministicCollectionSort() {
 		if (collection.startsWith("charts-")) {
 			content.sort(ChartSort);
 		}
-		if (collection.startsWith("songs-")) {
+		else if (collection.startsWith("songs-")) {
 			content.sort((a, b) => a.id - b.id);
 		}
+		else if (collection.startsWith("folders")) {
+			content.sort((a, b) => a.folderID.localeCompare(b.folderID));
+		}
+		else if (collection.startsWith("folders")) {
+			content.sort((a, b) => a.tableID.localeCompare(b.tableID));
+		}
+
 
 		content = content.map(SortObjectKeys);
 

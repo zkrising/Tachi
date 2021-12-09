@@ -2,6 +2,7 @@
 import db from "external/mongo/db";
 import { KtLogger, rootLogger } from "lib/logger/logger";
 import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
+import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import { ScoreDocument } from "tachi-common";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
@@ -123,12 +124,15 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 	// We run updateAllPbs on just the modified chart -- the reason
 	// for this is to update ranking info incase that might fall out of
 	// sync as a result.
-	await UpdateAllPBs(undefined, {
+	await UpdateAllPBs([userID], {
 		chartID: newScore.chartID,
 	});
-	await UpdateAllPBs(undefined, {
+	await UpdateAllPBs([userID], {
 		chartID: oldScore.chartID,
 	});
+
+	await UpdateChartRanking(newScore.chartID);
+	await UpdateChartRanking(oldScore.chartID);
 
 	const imports = await db.imports.find({
 		scoreIDs: oldScoreID,

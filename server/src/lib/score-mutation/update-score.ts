@@ -57,7 +57,7 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 		context: ["Update Score", oldScore.scoreID, newScore.scoreID, FormatUserDoc(user)],
 	}) as KtLogger;
 
-	logger.info("Received Update Score request.");
+	logger.verbose("Received Update Score request.");
 
 	newScore.calculatedData = await CreateCalculatedData(
 		newScore,
@@ -83,7 +83,7 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 		"scoreInfo.scoreID": oldScoreID,
 	});
 
-	logger.info(`Updating ${sessions.length} sessions.`);
+	logger.verbose(`Updating ${sessions.length} sessions.`);
 
 	// For every session that interacts with this score ID (there should only ever be one)
 	for (const session of sessions) {
@@ -118,7 +118,7 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 		);
 	}
 
-	logger.info(`Updating PBs.`);
+	logger.verbose(`Updating PBs.`);
 
 	// Update the PBs to reference properly.
 	// We run updateAllPbs on just the modified chart -- the reason
@@ -138,7 +138,7 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 		scoreIDs: oldScoreID,
 	});
 
-	logger.info(`Updating ${imports.length} imports.`);
+	logger.verbose(`Updating ${imports.length} imports.`);
 
 	for (const importDoc of imports) {
 		await db.imports.update(
@@ -153,5 +153,5 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 		);
 	}
 
-	logger.info(`Done updating score.`);
+	logger.verbose(`Done updating score.`);
 }

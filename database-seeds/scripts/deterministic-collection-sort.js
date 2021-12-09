@@ -33,7 +33,7 @@ function DeterministicCollectionSort() {
 		else if (collection.startsWith("folders")) {
 			content.sort((a, b) => a.folderID.localeCompare(b.folderID));
 		}
-		else if (collection.startsWith("folders")) {
+		else if (collection.startsWith("tables")) {
 			content.sort((a, b) => a.tableID.localeCompare(b.tableID));
 		}
 

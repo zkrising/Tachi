@@ -65,12 +65,18 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 		logger
 	);
 
-	await db.scores.update(
-		{
-			scoreID: oldScoreID,
-		},
-		{ $set: newScore }
-	);
+	try {
+		await db.scores.update(
+			{
+				scoreID: oldScoreID,
+			},
+			{ $set: newScore }
+		);
+	} catch (err) {
+		logger.warn(
+			`Score ID ${newScoreID} already existed -- this update caused a collision. Updating old references anyway.`
+		);
+	}
 
 	const sessions = await db.sessions.find({
 		"scoreInfo.scoreID": oldScoreID,

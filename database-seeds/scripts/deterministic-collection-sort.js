@@ -19,6 +19,30 @@ function ChartSort(a, b) {
 	return 0;
 }
 
+function FolderSort(a, b) {
+	if (a.game !== b.game) {
+		return a.game.localeCompare(b.game);
+	}
+
+	if (a.playtype !== b.playtype) {
+		return a.playtype.localeCompare(b.playtype);
+	}
+
+	return a.title.localeCompare(b.title);
+}
+
+function TableSort(a, b) {
+	if (a.game !== b.game) {
+		return a.game.localeCompare(b.game);
+	}
+
+	if (a.playtype !== b.playtype) {
+		return a.playtype.localeCompare(b.playtype);
+	}
+
+	return a.title.localeCompare(b.title);
+}
+
 function DeterministicCollectionSort() {
 	for (const collection of collections) {
 		const collPath = path.join(__dirname, "../collections", collection);
@@ -31,10 +55,10 @@ function DeterministicCollectionSort() {
 			content.sort((a, b) => a.id - b.id);
 		}
 		else if (collection.startsWith("folders")) {
-			content.sort((a, b) => a.folderID.localeCompare(b.folderID));
+			content.sort(FolderSort);
 		}
 		else if (collection.startsWith("tables")) {
-			content.sort((a, b) => a.tableID.localeCompare(b.tableID));
+			content.sort(TableSort);
 		}
 
 

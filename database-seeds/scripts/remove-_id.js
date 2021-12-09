@@ -1,9 +1,19 @@
 const { IterateCollections } = require("./util");
 
-IterateCollections((data) => {
-	for (const d of data) {
-		delete d._id;
-	}
+function RemoveUnderscoreID() {
+	IterateCollections((data) => {
+		for (const d of data) {
+			delete d._id;
+		}
 
-	return data;
-});
+		return data;
+	});
+}
+
+if (require.main === module) {
+	RemoveUnderscoreID();
+}
+
+module.exports = {
+	RemoveUnderscoreID
+}

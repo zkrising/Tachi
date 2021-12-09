@@ -44,5 +44,7 @@ if (require.main === module) {
 				await UpdateScore(badScore, newScore);
 			}
 		}
+
+		process.exit(0);
 	})();
 }

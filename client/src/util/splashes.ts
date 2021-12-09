@@ -112,6 +112,8 @@ export const contentiousSplashes = [
 	"...and good faith is when people agree with me",
 	"Anyone else at this party gay?",
 	"I have the transfeminine urge to pee.",
+	"I HAVE TO LIE IN THE MIDDLE OF THE FLOOR",
+	"COMPLETELY MOTIONLESS NOT DARING TO BREATHE",
 ];
 
 export const heySplashes = [

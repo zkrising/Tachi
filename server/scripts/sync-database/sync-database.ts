@@ -6,6 +6,7 @@ import { monkDB } from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import fs from "fs";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
+import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
 import { TachiConfig } from "lib/setup/config";
 import { BulkWriteOperation } from "mongodb";
 import { ICollection } from "monk";
@@ -128,6 +129,7 @@ const syncInstructions: SyncInstructions[] = [
 
 			if (r) {
 				await InitaliseFolderChartLookup();
+				await UpdateIsPrimaryStatus();
 			}
 		},
 	},

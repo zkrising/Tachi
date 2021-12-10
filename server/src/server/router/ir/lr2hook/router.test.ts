@@ -32,7 +32,7 @@ t.test("POST /ir/lr2hook/import", (t) => {
 			token: "bar",
 			permissions: { submit_score: false },
 			fromAPIClient: null,
-			identifier: "foo",
+			identifier: "bar",
 			userID: 1,
 		});
 

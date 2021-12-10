@@ -37,7 +37,7 @@ export function MStoS(ms: number) {
 /**
  * Random From Array - Selects a random value from an array.
  */
-export function RFA(arr: unknown[]) {
+export function RFA<T>(arr: T[]): T {
 	return arr[Math.floor(Math.random() * arr.length)];
 }
 
@@ -132,4 +132,13 @@ export function Sleep(ms: number) {
 
 export function GetTimeXHoursAgo(hours: integer) {
 	return Date.now() - ONE_HOUR * hours;
+}
+
+export function ApplyNTimes<T>(n: integer, fn: (i: integer) => T): T[] {
+	const arr = [];
+	for (let i = 0; i < n; i++) {
+		arr.push(fn(i));
+	}
+
+	return arr;
 }

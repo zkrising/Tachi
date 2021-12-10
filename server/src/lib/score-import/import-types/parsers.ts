@@ -17,6 +17,7 @@ import ParseDirectManual from "./ir/direct-manual/parser";
 import { ParseFervidexStatic } from "./ir/fervidex-static/parser";
 import { ParseFervidexSingle } from "./ir/fervidex/parser";
 import { ParseKsHookSV3C } from "./ir/kshook-sv3c/parser";
+import { ParseLR2Hook } from "./ir/lr2hook/parser";
 import { ParseIRUSC } from "./ir/usc/parser";
 
 export const Parsers = {
@@ -42,4 +43,5 @@ export const Parsers = {
 	"ir/direct-manual": ParseDirectManual,
 	"ir/usc": ParseIRUSC,
 	"ir/kshook-sv3c": ParseKsHookSV3C,
+	"ir/lr2hook": ParseLR2Hook,
 };

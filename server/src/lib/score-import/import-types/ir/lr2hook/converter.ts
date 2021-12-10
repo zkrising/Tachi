@@ -1,4 +1,4 @@
-import { Lamps } from ".pnpm/tachi-common@0.3.16/node_modules/tachi-common";
+import { Lamps } from "tachi-common";
 import {
 	InternalFailure,
 	KTDataNotFoundFailure,

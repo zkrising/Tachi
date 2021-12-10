@@ -599,7 +599,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			SSS: COLOUR_SET.teal,
 		},
 		clearGrade: "A",
-		gradeBoundaries: [0, 50, 60, 70, 80, 90, 92.5, 95.0, 97.5, 100, 107.5, 101],
+		gradeBoundaries: [0, 50, 60, 70, 80, 90, 92.5, 95.0, 97.5, 100, 100.75, 101],
 
 		lamps: ["FAILED", "CLEAR", "FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"],
 		lampColours: {

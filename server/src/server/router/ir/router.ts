@@ -12,6 +12,7 @@ import directManualIR from "./direct-manual/router";
 import fervidexIR from "./fervidex/router";
 import ksHookIR from "./kshook/router";
 import uscIR from "./usc/router";
+import lr2hookIR from "./lr2hook/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -24,8 +25,9 @@ router.use("/direct-manual", SetRequestPermissions, RequireNotGuest, directManua
 // note: this is the only IR that cannot use SetRequestPermissions for its
 // auth, because the USCIR spec requires a different set of response
 // codes for auth.
-router.use("/usc", RequireBokutachi, uscIR);
-router.use("/beatoraja", SetRequestPermissions, RequireBokutachi, beatorajaIR);
+router.use("/usc", RequireNotGuest, RequireBokutachi, uscIR);
+router.use("/beatoraja", SetRequestPermissions, RequireNotGuest, RequireBokutachi, beatorajaIR);
+router.use("/lr2hook", SetRequestPermissions, RequireNotGuest, RequireBokutachi, lr2hookIR);
 
 // Kamaitachi IRs
 

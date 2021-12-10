@@ -8,11 +8,11 @@ import { GetUserWithID } from "utils/user";
 import { ONE_MINUTE } from "lib/constants/time";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { Game, UserAuthLevels } from "tachi-common";
-
 import db from "external/mongo/db";
 import { DeleteScore } from "lib/score-mutation/delete-scores";
-import { UpdateAllPBs } from "utils/calculations/recalc-scores";
+import { RecalcAllScores, UpdateAllPBs } from "utils/calculations/recalc-scores";
 import DestroyUserGamePlaytypeData from "utils/reset-state/destroy-ugpt";
+import { RecalcSessions } from "utils/calculations/recalc-sessions";
 
 const logger = CreateLogCtx(__filename);
 
@@ -264,7 +264,7 @@ router.post("/delete-score", prValidate({ scoreID: "string" }), async (req, res)
 /**
  * Destroys a users UGPT profile and forces a site recalc.
  *
- * @POST /api/v1/admin/destroy-ugpt
+ * @name POST /api/v1/admin/destroy-ugpt
  */
 router.post(
 	"/destroy-ugpt",
@@ -302,7 +302,7 @@ router.post(
 /**
  * Destroy a chart and all of its scores (and sessions).
  *
- * name @POST /api/v1/admin/destroy-chart
+ * @name POST /api/v1/admin/destroy-chart
  */
 router.post(
 	"/destroy-chart",
@@ -369,5 +369,22 @@ router.post(
 		});
 	}
 );
+
+/**
+ * Perform a site recalc on this set of scores.
+ *
+ * @name POST /api/v1/admin/recalc
+ */
+router.post("/recalc", async (req, res) => {
+	const filter = req.body ?? {};
+	await RecalcAllScores(filter);
+	await RecalcSessions(filter);
+
+	return res.status(200).json({
+		success: true,
+		description: `Recalced scores.`,
+		body: {},
+	});
+});
 
 export default router;

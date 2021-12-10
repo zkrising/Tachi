@@ -10,6 +10,7 @@ import {
 import { DryScore } from "lib/score-import/framework/common/types";
 import { BarbatosScore } from "lib/score-import/import-types/ir/barbatos/types";
 import { KsHookSV3CScore } from "lib/score-import/import-types/ir/kshook-sv3c/types";
+import { LR2HookScore } from "lib/score-import/import-types/ir/lr2hook/types";
 import path from "path";
 import { USCClientScore } from "server/router/ir/usc/_playtype/types";
 import {
@@ -22,6 +23,7 @@ import {
 	SongDocument,
 	UserGoalDocument,
 } from "tachi-common";
+import { ApplyNTimes, RFA } from "utils/misc";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
 
@@ -40,6 +42,24 @@ export const TestingIIDXSPScore = GetKTDataJSON(
 ) as ScoreDocument<"iidx:SP">;
 
 export const TestingKsHookSV3CScore = GetKTDataJSON("./kshook-sv3c/base.json") as KsHookSV3CScore;
+
+export const TestingLR2HookScore: LR2HookScore = {
+	md5: "38616b85332037cc12924f2ae2840262",
+	scoreData: {
+		pgreat: 1000,
+		great: 500,
+		good: 100,
+		bad: 50,
+		poor: 25,
+		exScore: 2500,
+		maxCombo: 50,
+		moneyScore: 150_000,
+		notesTotal: 2256,
+		notesPlayed: 2256,
+		lamp: "HARD",
+		hpGraph: ApplyNTimes(1000, () => RFA([100, 50, 80, 0])),
+	},
+};
 
 export const Testing511SPA = GetKTDataJSON("./tachi/iidx-511spa.json") as ChartDocument<"iidx:SP">;
 

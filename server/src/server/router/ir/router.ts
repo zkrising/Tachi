@@ -12,13 +12,13 @@ import directManualIR from "./direct-manual/router";
 import fervidexIR from "./fervidex/router";
 import ksHookIR from "./kshook/router";
 import uscIR from "./usc/router";
+import lr2hookIR from "./lr2hook/router";
 
 const router: Router = Router({ mergeParams: true });
 
 // Common IRs
 
 router.use("/direct-manual", SetRequestPermissions, RequireNotGuest, directManualIR);
-router.use("/kshook", SetFervidexStyleRequestPermissions, FervidexStyleRequireNotGuest, ksHookIR);
 
 // Bokutachi IRs
 
@@ -26,10 +26,18 @@ router.use("/kshook", SetFervidexStyleRequestPermissions, FervidexStyleRequireNo
 // auth, because the USCIR spec requires a different set of response
 // codes for auth.
 router.use("/usc", RequireBokutachi, uscIR);
-router.use("/beatoraja", SetRequestPermissions, RequireBokutachi, beatorajaIR);
+router.use("/beatoraja", SetRequestPermissions, RequireNotGuest, RequireBokutachi, beatorajaIR);
+router.use("/lr2hook", SetRequestPermissions, RequireNotGuest, RequireBokutachi, lr2hookIR);
 
 // Kamaitachi IRs
 
+router.use(
+	"/kshook",
+	RequireKamaitachi,
+	SetFervidexStyleRequestPermissions,
+	FervidexStyleRequireNotGuest,
+	ksHookIR
+);
 router.use("/barbatos", SetRequestPermissions, RequireNotGuest, RequireKamaitachi, barbatosIR);
 router.use(
 	"/fervidex",

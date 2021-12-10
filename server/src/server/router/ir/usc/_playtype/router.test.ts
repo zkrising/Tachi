@@ -71,17 +71,18 @@ t.test("GET /ir/usc/Keyboard", async (t) => {
 });
 
 t.test("GET /ir/usc/Controller", async (t) => {
-	await db["api-tokens"].insert({
-		userID: 1,
-		identifier: "USC Token",
-		permissions: {
-			submit_score: true,
-		},
-		token: "foo",
-		fromAPIClient: null,
-	});
-
 	t.beforeEach(ResetDBState);
+	t.beforeEach(async () => {
+		await db["api-tokens"].insert({
+			userID: 1,
+			identifier: "USC Token",
+			permissions: {
+				submit_score: true,
+			},
+			token: "foo",
+			fromAPIClient: null,
+		});
+	});
 
 	TestAuth("/ir/usc/Controller");
 

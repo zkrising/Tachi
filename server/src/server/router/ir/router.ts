@@ -25,7 +25,7 @@ router.use("/direct-manual", SetRequestPermissions, RequireNotGuest, directManua
 // note: this is the only IR that cannot use SetRequestPermissions for its
 // auth, because the USCIR spec requires a different set of response
 // codes for auth.
-router.use("/usc", RequireNotGuest, RequireBokutachi, uscIR);
+router.use("/usc", RequireBokutachi, uscIR);
 router.use("/beatoraja", SetRequestPermissions, RequireNotGuest, RequireBokutachi, beatorajaIR);
 router.use("/lr2hook", SetRequestPermissions, RequireNotGuest, RequireBokutachi, lr2hookIR);
 

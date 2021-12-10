@@ -1010,6 +1010,7 @@ type BMSHitMeta = BASE_VALID_HIT_META &
 	} & {
 		bp: integer | null;
 		gauge: number | null;
+		gaugeHistory: number[] | null;
 	};
 
 export type USCHitMeta = BASE_VALID_HIT_META & {

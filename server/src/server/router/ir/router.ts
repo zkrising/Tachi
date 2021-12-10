@@ -18,7 +18,6 @@ const router: Router = Router({ mergeParams: true });
 // Common IRs
 
 router.use("/direct-manual", SetRequestPermissions, RequireNotGuest, directManualIR);
-router.use("/kshook", SetFervidexStyleRequestPermissions, FervidexStyleRequireNotGuest, ksHookIR);
 
 // Bokutachi IRs
 
@@ -30,6 +29,13 @@ router.use("/beatoraja", SetRequestPermissions, RequireBokutachi, beatorajaIR);
 
 // Kamaitachi IRs
 
+router.use(
+	"/kshook",
+	RequireKamaitachi,
+	SetFervidexStyleRequestPermissions,
+	FervidexStyleRequireNotGuest,
+	ksHookIR
+);
 router.use("/barbatos", SetRequestPermissions, RequireNotGuest, RequireKamaitachi, barbatosIR);
 router.use(
 	"/fervidex",

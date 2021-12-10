@@ -1172,7 +1172,8 @@ export type IRImportTypes =
 	| "ir/usc"
 	| "ir/beatoraja"
 	| "ir/fervidex-static"
-	| "ir/kshook-sv3c";
+	| "ir/kshook-sv3c"
+	| "ir/lr2hook";
 
 export type ImportTypes = FileUploadImportTypes | IRImportTypes | APIImportTypes;
 

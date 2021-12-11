@@ -1,6 +1,7 @@
-import { Lamps } from "tachi-common";
+import { Lamps, ScoreDocument } from "tachi-common";
 import {
 	InternalFailure,
+	InvalidScoreFailure,
 	KTDataNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
@@ -61,12 +62,28 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 			},
 		},
 		scoreMeta: {
+			random: chart.playtype === "7K" ? ConvertRandom(data.playerData.random) : null,
 			client: "LR2",
 		},
 	};
 
 	return { song, chart, dryScore };
 };
+
+function ConvertRandom(
+	random: LR2HookScore["playerData"]["random"]
+): ScoreDocument<"bms:7K">["scoreMeta"]["random"] {
+	switch (random) {
+		case "NONRAN":
+			return "NONRAN";
+		case "MIRROR":
+			return "MIRROR";
+		case "RAN":
+			return "RANDOM";
+		case "S-RAN":
+			return "S-RANDOM";
+	}
+}
 
 function ConvertLamp(lamp: LR2HookScore["scoreData"]["lamp"]): Lamps["bms:7K" | "bms:14K"] {
 	switch (lamp) {

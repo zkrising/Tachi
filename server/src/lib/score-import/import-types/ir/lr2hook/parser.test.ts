@@ -46,6 +46,23 @@ t.test("#ParseLR2Hook", (t) => {
 		dm({ scoreData: { unexpectedField: "foo" } }),
 		"Should allow excess keys inside scoreData that we do not recognise."
 	);
+	assertSuccess(
+		dm({ playerData: { unexpectedField: "foo" } }),
+		"Should allow excess keys inside playerData that we do not recognise."
+	);
+
+	assertFail(
+		dm({ playerData: { autoScr: true } }),
+		"Should reject scores where autoScr is set to true."
+	);
+	assertFail(
+		dm({ playerData: { random: "H-RAN" } }),
+		"Should reject scores where random is set to H-RAN."
+	);
+	assertFail(
+		dm({ playerData: { random: "ALLSCR" } }),
+		"Should reject scores where random is set to ALLSCR"
+	);
 
 	assertFail({}, "Should reject an empty object");
 

@@ -5,8 +5,18 @@ import p, { PrudenceSchema } from "prudence";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import { FormatPrError } from "utils/prudence";
 
+const SUPPORTED_RANDOMS = ["NONRAN", "MIRROR", "RAN", "S-RAN"];
+
 const PR_LR2Hook: PrudenceSchema = {
 	md5: "string",
+	playerData: {
+		autoScr: p.is(false),
+		// don't really need this, but it's
+		// { "ALL", "SINGLE", "7K", "5K", "DOUBLE", "14K", "10K", "9K" };
+		gameMode: p.any,
+		// ALLSCR and H-RAN may also be sent, but we don't support them.
+		random: p.isIn(SUPPORTED_RANDOMS),
+	},
 	scoreData: {
 		pgreat: p.isPositiveInteger,
 		great: p.isPositiveInteger,
@@ -40,7 +50,20 @@ export function ParseLR2Hook(
 	logger: KtLogger
 ): ParserFunctionReturns<LR2HookScore, LR2HookContext> {
 	// Ignore excess keys, as lr2hook is likely to add more features in the future.
-	const err = p(body, PR_LR2Hook, undefined, { allowExcessKeys: true });
+	const err = p(
+		body,
+		PR_LR2Hook,
+		{
+			playerData: {
+				autoScr:
+					"Auto Scratch cannot be turned on, as it is treated as an EASY CLEAR by LR2.",
+				random: `Expected any of ${SUPPORTED_RANDOMS.join(
+					", "
+				)}. Note that ALLSCR and H-RAN are not supported!`,
+			},
+		},
+		{ allowExcessKeys: true }
+	);
 
 	if (err) {
 		throw new ScoreImportFatalError(400, FormatPrError(err));

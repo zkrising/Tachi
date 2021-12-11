@@ -2,6 +2,11 @@ import { integer } from "tachi-common";
 
 export interface LR2HookScore {
 	md5: string;
+	playerData: {
+		autoScr: boolean;
+		gameMode: unknown;
+		random: "NONRAN" | "MIRROR" | "RAN" | "S-RAN";
+	};
 	scoreData: {
 		pgreat: integer;
 		great: integer;

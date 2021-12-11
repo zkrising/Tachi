@@ -45,6 +45,11 @@ export const TestingKsHookSV3CScore = GetKTDataJSON("./kshook-sv3c/base.json") a
 
 export const TestingLR2HookScore: LR2HookScore = {
 	md5: "38616b85332037cc12924f2ae2840262",
+	playerData: {
+		autoScr: false,
+		gameMode: "7K",
+		random: "RAN",
+	},
 	scoreData: {
 		pgreat: 1000,
 		great: 500,

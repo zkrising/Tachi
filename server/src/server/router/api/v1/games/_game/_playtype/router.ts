@@ -76,11 +76,11 @@ router.get("/", async (req, res) => {
 });
 
 /**
- * Returns user-game-stats for this game in batches of 100.
+ * Returns user-game-stats for this game in batches of 500.
  * This is sorted by the games default-sorting-statistic.
  *
  * @param alg - An alternative algorithm to use instead of the gpts default.
- * @param limit - How many users to return at most. Defaults (and is limited to) 50.
+ * @param limit - How many users to return at most. Defaults (and is limited to) 500.
  *
  * @name GET /api/v1/games/:game/:playtype/leaderboard
  */
@@ -89,12 +89,12 @@ router.get("/leaderboard", async (req, res) => {
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const limit = ParseStrPositiveNonZeroInt(req.query.limit) ?? 50;
+	const limit = ParseStrPositiveNonZeroInt(req.query.limit) ?? 100;
 
-	if (limit > 50) {
+	if (limit > 500) {
 		return res.status(400).json({
 			success: false,
-			description: `Invalid limit. Limit is capped at 50.`,
+			description: `Invalid limit. Limit is capped at 500.`,
 		});
 	}
 

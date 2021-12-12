@@ -2,9 +2,10 @@ import DeltaCell from "components/tables/cells/DeltaCell";
 import LampCell from "components/tables/cells/LampCell";
 import ScoreCell from "components/tables/cells/ScoreCell";
 import TimestampCell from "components/tables/cells/TimestampCell";
+import ScoreCoreCells from "components/tables/game-core-cells/ScoreCoreCells";
 import ExternalLink from "components/util/ExternalLink";
 import React, { useEffect, useState } from "react";
-import { PBScoreDocument, ScoreDocument } from "tachi-common";
+import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
 import { SetState } from "types/react";
 import { IsScore } from "util/asserts";
@@ -24,15 +25,13 @@ export function ScoreInfo({ score }: { score: ScoreDocument | PBScoreDocument })
 				</thead>
 				<tbody>
 					<tr>
-						<ScoreCell score={score} />
-						<DeltaCell
+						<ScoreCoreCells
 							game={score.game}
-							playtype={score.playtype}
-							score={score.scoreData.score}
-							percent={score.scoreData.percent}
-							grade={score.scoreData.grade}
+							score={score}
+							rating={
+								GetGamePTConfig(score.game, score.playtype).defaultScoreRatingAlg
+							}
 						/>
-						<LampCell score={score} />
 						{/* @ts-expect-error yeah we know service doesnt necessarily exist */}
 						<TimestampCell time={score.timeAchieved} service={score?.service} />
 					</tr>

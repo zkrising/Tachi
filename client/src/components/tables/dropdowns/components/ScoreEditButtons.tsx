@@ -41,7 +41,7 @@ export default function ScoreEditButtons({
 										onClick={() => setShow(true)}
 									>
 										<Icon type="file-signature" />
-										Edit
+										Comment
 									</Button>
 								</QuickTooltip>
 							</>
@@ -49,7 +49,7 @@ export default function ScoreEditButtons({
 							<QuickTooltip tooltipContent="Comment on this score.">
 								<Button variant="outline-secondary" onClick={() => setShow(true)}>
 									<Icon type="file-signature" />
-									Edit
+									Comment
 								</Button>
 							</QuickTooltip>
 						)}

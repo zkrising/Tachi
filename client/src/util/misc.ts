@@ -197,3 +197,6 @@ export function HistorySafeGoBack(history: ReturnType<typeof useHistory>) {
 	// history.goBack();
 	// }
 }
+export function ToPercent(n1: number, n2: number) {
+	return `${((100 * n1) / n2).toFixed(2)}%`;
+}

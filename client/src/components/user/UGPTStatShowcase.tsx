@@ -25,7 +25,7 @@ import { UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
 import { Playtype } from "types/tachi";
 import { APIFetchV1 } from "util/api";
-import { UppercaseFirst } from "util/misc";
+import { ToPercent, UppercaseFirst } from "util/misc";
 import UGPTStatContainer from "./UGPTStatContainer";
 import UGPTStatCreator from "./UGPTStatCreator";
 
@@ -431,8 +431,10 @@ export function StatDisplay({
 					</h5>
 					<h4>
 						{result.value}
-						{/* @ts-expect-error temp */}
-						<small className="text-muted">/{result.outOf}</small>
+						<small className="text-muted">
+							{/* @ts-expect-error This property definitely exists.*/}
+							{/* */}/{result.outOf} ({ToPercent(result.value, result.outOf)})
+						</small>
 					</h4>
 
 					{user && user.id !== reqUser.id && (

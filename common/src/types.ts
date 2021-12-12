@@ -1334,6 +1334,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 		preferredSessionAlg: SessionCalculatedDataLookup[I] | null;
 		preferredProfileAlg: UGSRatingsLookup[I] | null;
 		stats: ShowcaseStatDetails[];
+		scoreBucket: "grade" | "lamp" | null;
 		gameSpecific: UGPTSpecificPreferences[I];
 	};
 }

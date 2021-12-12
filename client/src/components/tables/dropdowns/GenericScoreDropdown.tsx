@@ -22,6 +22,7 @@ import useApiQuery from "components/util/query/useApiQuery";
 import HasDevModeOn from "components/util/HasDevModeOn";
 import PBCompare from "./components/PBCompare";
 import { UserSettingsContext } from "context/UserSettingsContext";
+import ManageScore from "./components/ManageScore";
 
 export interface ScoreState {
 	highlight: boolean;
@@ -46,7 +47,7 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 	user: PublicUserDocument;
 	chart: ChartDocument;
 	scoreState: ScoreState;
-	defaultView?: "vsPB" | "moreInfo" | "history" | "debug";
+	defaultView?: "vsPB" | "moreInfo" | "history" | "debug" | "manage";
 	thisScore: ScoreDocument;
 	DocComponent?: (props: {
 		score: ScoreDocument<I> | PBScoreDocument<I>;
@@ -55,6 +56,8 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 	}) => JSX.Element;
 } & GamePT) {
 	const [view, setView] = useState(defaultView);
+	const { user: currentUser } = useContext(UserContext);
+	const { settings } = useContext(UserSettingsContext);
 
 	const { isLoading, error, data } = useApiQuery<UGPTChartPBComposition<I>>(
 		`/users/${user.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
@@ -94,6 +97,8 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 		body = <DocComponent score={thisScore as any} scoreState={scoreState} pbData={data} />;
 	} else if (view === "vsPB") {
 		body = <PBCompare data={data} DocComponent={DocComponent} scoreState={scoreState} />;
+	} else if (view === "manage") {
+		body = <ManageScore score={thisScore} />;
 	}
 
 	return (
@@ -112,6 +117,12 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 						<Icon type="history" />
 						Play History
 					</SelectButton>
+					{currentUser?.id === user.id && settings?.preferences.deletableScores && (
+						<SelectButton setValue={setView} value={view} id="manage">
+							<Icon type="trash" />
+							Manage Score
+						</SelectButton>
+					)}
 					<HasDevModeOn>
 						<SelectButton setValue={setView} value={view} id="debug">
 							<Icon type="bug" />

@@ -172,6 +172,7 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 			invisible: settings?.preferences.invisible ?? false,
 			contentiousContent: settings?.preferences.contentiousContent ?? false,
 			advancedMode: settings?.preferences.advancedMode ?? false,
+			deletableScores: settings?.preferences.deletableScores ?? false,
 		},
 		onSubmit: async values => {
 			const res = await APIFetchV1<UserSettings>(
@@ -224,6 +225,19 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 				/>
 				<Form.Text>Hide your last seen status.</Form.Text>
 			</Form.Group> */}
+			<Form.Group>
+				<Form.Check
+					type="checkbox"
+					id="deletableScores"
+					checked={formik.values.deletableScores}
+					onChange={formik.handleChange}
+					label="Deletable Scores"
+				/>
+				<Form.Text>
+					Enables the option to delete scores. Turn this off if the thought of deleting a
+					score gives you anxiety.
+				</Form.Text>
+			</Form.Group>
 			<Form.Group>
 				<Form.Check
 					type="checkbox"

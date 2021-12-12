@@ -1,8 +1,10 @@
+import { TachiConfig } from "lib/config";
 import React from "react";
 import CenterLayoutPage from "../layout/CenterLayoutPage";
 import DebugContent from "./DebugContent";
 import Divider from "./Divider";
 import ExternalLink from "./ExternalLink";
+import Muted from "./Muted";
 
 export default class ErrorBoundary extends React.Component<any, { error: any; info: any }> {
 	constructor(props: any) {
@@ -31,6 +33,8 @@ export default class ErrorBoundary extends React.Component<any, { error: any; in
 							data={{ error: this.state.error.message, info: this.state.info }}
 						/>
 					</div>
+					<Divider />
+					<Muted>This error is not recoverable. :/</Muted>
 					<Divider />
 					<ExternalLink href="/">Go Home</ExternalLink>
 				</CenterLayoutPage>

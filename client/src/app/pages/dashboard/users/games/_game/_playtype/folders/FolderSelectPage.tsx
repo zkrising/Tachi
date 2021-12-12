@@ -10,6 +10,7 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
+import { useBucket } from "components/util/useBucket";
 import useUGPTBase from "components/util/useUGPTBase";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
@@ -89,7 +90,9 @@ export function FolderInfoComponent({
 }: Props & { folder: FolderDocument; folderStats: FolderStatsInfo }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const [elements, setElements] = useState<"grade" | "lamp">(gptConfig.scoreBucket);
+	const scoreBucket = useBucket(game, playtype);
+
+	const [elements, setElements] = useState<"grade" | "lamp">(scoreBucket);
 
 	const base = useUGPTBase({ reqUser, game, playtype });
 

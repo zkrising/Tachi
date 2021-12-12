@@ -10,6 +10,7 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
+import { useBucket } from "components/util/useBucket";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
@@ -218,10 +219,9 @@ function TableBarChart({
 	dataMap: Map<string, UGPTFolderStats>;
 }) {
 	const gptConfig = GetGamePTConfig(table.game, table.playtype);
+	const bucket = useBucket(table.game, table.playtype);
 
-	const [mode, setMode] = useState<"grades" | "lamps">(
-		gptConfig.scoreBucket === "grade" ? "grades" : "lamps"
-	);
+	const [mode, setMode] = useState<"grades" | "lamps">(bucket === "grade" ? "grades" : "lamps");
 
 	const colours = useMemo(() => {
 		if (mode === "grades") {

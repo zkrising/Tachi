@@ -10,6 +10,7 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
+import { useBucket } from "components/util/useBucket";
 import { useFormik } from "formik";
 import { nanoid } from "nanoid";
 import React, { useEffect, useMemo, useState } from "react";
@@ -111,9 +112,6 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 
 	return (
 		<div className="row">
-			<div className="col-12">
-				<Divider className="mb-4" />
-			</div>
 			<div className="col-12">{folderInfoHeader}</div>
 			<div className="col-12">
 				<Divider />
@@ -660,15 +658,38 @@ function FolderDatasetToTierlistInfo(
 }
 
 function FolderInfoHeader({ game, playtype, reqUser, folderDataset, data }: InfoProps) {
+	const scoreBucket = useBucket(game, playtype);
+	const [view, setView] = useState<"grade" | "lamp">(scoreBucket);
+
 	return (
 		<Card header={`${reqUser.username}'s ${data.folder.title} Breakdown`}>
-			<ScoreDistributionChart
-				game={game}
-				data={data}
-				folderDataset={folderDataset}
-				playtype={playtype}
-				reqUser={reqUser}
-			/>
+			<div className="col-12 d-flex justify-content-center">
+				<div className="btn-group">
+					<SelectButton value={view} setValue={setView} id="grade">
+						<Icon type="chart-area" />
+						Score Info
+					</SelectButton>
+					<SelectButton value={view} setValue={setView} id="lamp">
+						<Icon type="lightbulb" />
+						Lamp Info
+					</SelectButton>
+				</div>
+			</div>
+			<div className="col-12">
+				<Divider />
+			</div>
+
+			{view === "grade" ? (
+				<ScoreDistributionChart
+					game={game}
+					data={data}
+					folderDataset={folderDataset}
+					playtype={playtype}
+					reqUser={reqUser}
+				/>
+			) : (
+				<></>
+			)}
 		</Card>
 	);
 }

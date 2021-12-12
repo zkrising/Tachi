@@ -81,6 +81,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings["preferences"] = {
 	advancedMode: false,
 	invisible: false,
 	contentiousContent: false,
+	deletableScores: false,
 };
 
 export function HashPassword(plaintext: string) {

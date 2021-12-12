@@ -5,7 +5,8 @@
 			"developerMode": true,
 			"invisible": false,
 			"advancedMode": false,
-			"contentiousContent": false
+			"contentiousContent": false,
+			"deletableScores": false
 		}
 	}
 ]

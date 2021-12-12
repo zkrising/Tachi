@@ -528,6 +528,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 			developerMode: "boolean",
 			advancedMode: "boolean",
 			contentiousContent: "boolean",
+			deletableScores: "boolean",
 		},
 	}),
 	sessions: (self) => {

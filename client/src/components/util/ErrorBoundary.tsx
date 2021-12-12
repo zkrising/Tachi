@@ -36,6 +36,9 @@ export default class ErrorBoundary extends React.Component<any, { error: any; in
 					<Divider />
 					<Muted>This error is not recoverable. :/</Muted>
 					<Divider />
+					<a href="#" onClick={() => window.location.reload()}>
+						Attempt Page Reload
+					</a>
 					<ExternalLink href="/">Go Home</ExternalLink>
 				</CenterLayoutPage>
 			);

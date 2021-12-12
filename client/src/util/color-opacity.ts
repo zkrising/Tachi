@@ -3,6 +3,10 @@
  * @param opacity A value between 0 and 1.
  */
 export function ChangeOpacity(str: string, opacity: number) {
+	if (!str) {
+		throw new Error(`Str given to ChangeOpacity was undefined.`);
+	}
+
 	if (str.startsWith("#")) {
 		if (str.length === 7) {
 			return str + Math.floor(opacity * 255).toString(16);

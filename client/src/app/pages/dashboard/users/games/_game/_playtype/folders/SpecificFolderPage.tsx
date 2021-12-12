@@ -1,5 +1,6 @@
 import { ResponsiveBar } from "@nivo/bar";
 import { BarChartTooltip } from "components/charts/ChartTooltip";
+import FolderInfoHeader from "components/game/folder/FolderInfoHeader";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Card from "components/layout/page/Card";
 import FolderTable from "components/tables/folders/FolderTable";
@@ -94,7 +95,7 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 		return (
 			<FolderInfoHeader
 				folderDataset={folderDataset}
-				data={data}
+				folderTitle={data.folder.title}
 				game={game}
 				playtype={playtype}
 				reqUser={reqUser}
@@ -655,131 +656,4 @@ function FolderDatasetToTierlistInfo(
 	}
 
 	return tierlistInfo.sort(NumericSOV(x => x.data.value, true));
-}
-
-function FolderInfoHeader({ game, playtype, reqUser, folderDataset, data }: InfoProps) {
-	const scoreBucket = useBucket(game, playtype);
-	const [view, setView] = useState<"grade" | "lamp">(scoreBucket);
-
-	return (
-		<Card header={`${reqUser.username}'s ${data.folder.title} Breakdown`}>
-			<div className="col-12 d-flex justify-content-center">
-				<div className="btn-group">
-					<SelectButton value={view} setValue={setView} id="grade">
-						<Icon type="chart-area" />
-						Score Info
-					</SelectButton>
-					<SelectButton value={view} setValue={setView} id="lamp">
-						<Icon type="lightbulb" />
-						Lamp Info
-					</SelectButton>
-				</div>
-			</div>
-			<div className="col-12">
-				<Divider />
-			</div>
-
-			{view === "grade" ? (
-				<ScoreDistributionChart
-					game={game}
-					data={data}
-					folderDataset={folderDataset}
-					playtype={playtype}
-					reqUser={reqUser}
-				/>
-			) : (
-				<></>
-			)}
-		</Card>
-	);
-}
-
-function ScoreDistributionChart({ game, playtype, folderDataset }: InfoProps) {
-	const dataMap = CreateChartIDMap(folderDataset);
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	const dataset = [];
-
-	const expScale = GetGradeChartExpScale(game);
-
-	const expFn = ComposeExpFn(expScale);
-	const invExpFn = ComposeInverseExpFn(expScale);
-
-	for (const data of folderDataset) {
-		const value = data.__related.pb ? expFn(data.__related.pb.scoreData.percent) : 0;
-		dataset.push({
-			chartID: data.chartID,
-			expValue: expFn(value),
-			value,
-			grade: data.__related.pb?.scoreData.grade,
-		});
-	}
-
-	dataset.sort(NumericSOV(x => x.expValue));
-
-	return (
-		<div style={{ height: 400 }}>
-			<ResponsiveBar
-				indexBy="chartID"
-				tooltip={d => (
-					<BarChartTooltip
-						point={d}
-						renderFn={d => {
-							const data = dataMap.get(d.indexValue as string)!;
-
-							return (
-								<div className="w-100 text-center">
-									{data.__related.song.title}
-									<br />
-									{data.__related.pb?.scoreData.percent.toFixed(2)}%
-								</div>
-							);
-						}}
-					/>
-				)}
-				key={"value"}
-				colors={k => {
-					if (!k.data.grade) {
-						return "black";
-					}
-					// @ts-expect-error temp
-					return ChangeOpacity(gptConfig.gradeColours[k.data.grade], 0.5);
-				}}
-				// @ts-expect-error temp
-				borderColor={k => gptConfig.gradeColours[k.data.grade]}
-				borderWidth={1}
-				padding={0.2}
-				// @ts-expect-error temp
-				data={dataset}
-				minValue={0}
-				maxValue={expFn(100)}
-				margin={{ left: 50, top: 20, bottom: 20 }}
-				valueFormat={e => `${invExpFn(e).toFixed(2)}%`}
-				axisLeft={{
-					tickValues: gptConfig.gradeBoundaries.map(e => (e === 0 ? 0 : expFn(e))),
-					format: x => {
-						let nearest;
-
-						const lgv = invExpFn(x);
-
-						for (const [i, gradeBnd] of gptConfig.gradeBoundaries.entries()) {
-							if (Math.abs(gradeBnd - lgv) < 0.00005) {
-								nearest = i;
-								break;
-							}
-						}
-
-						if (nearest === undefined) {
-							return null;
-						}
-
-						return gptConfig.grades[nearest];
-					},
-				}}
-				axisBottom={null}
-				{...DEFAULT_BAR_PROPS}
-				labelSkipWidth={40}
-			/>
-		</div>
-	);
 }

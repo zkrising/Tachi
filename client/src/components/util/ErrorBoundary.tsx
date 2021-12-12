@@ -1,4 +1,3 @@
-import { TachiConfig } from "lib/config";
 import React from "react";
 import CenterLayoutPage from "../layout/CenterLayoutPage";
 import DebugContent from "./DebugContent";

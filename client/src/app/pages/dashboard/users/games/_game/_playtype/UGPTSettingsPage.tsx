@@ -182,13 +182,13 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 }
 
 function ShowcaseForm({ reqUser, game, playtype }: Props) {
-	const { settings } = useContext(UGPTSettingsContext);
+	const { settings, setSettings } = useContext(UGPTSettingsContext);
 
 	const [stats, setStats] = useState(settings!.preferences.stats);
 	const [show, setShow] = useState(false);
 
 	const SaveChanges = async () => {
-		await APIFetchV1(
+		const r = await APIFetchV1<UGPTSettings>(
 			`/users/${reqUser.id}/games/${game}/${playtype}/showcase`,
 			{
 				method: "PUT",
@@ -198,6 +198,10 @@ function ShowcaseForm({ reqUser, game, playtype }: Props) {
 			true,
 			true
 		);
+
+		if (r.success) {
+			setSettings(r.body);
+		}
 	};
 
 	const [isFirstPaint, setIsFirstPaint] = useState(true);

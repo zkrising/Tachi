@@ -164,12 +164,21 @@ function SongChartRoutes({ game, playtype }: GamePT) {
 	useEffect(() => {
 		setActiveChart(null);
 	}, [game, playtype]);
+
 	if (error) {
 		return <ErrorPage statusCode={error.statusCode} customMessage={error.description} />;
 	}
 
 	if (!data || isLoading) {
 		return <Loading />;
+	}
+
+	if (data.charts.every(c => c.playtype !== playtype)) {
+		return (
+			<Redirect
+				to={`/dashboard/games/${game}/${data.charts[0].playtype}/songs/${data.song.id}`}
+			/>
+		);
 	}
 
 	return (

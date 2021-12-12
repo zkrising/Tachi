@@ -1389,6 +1389,7 @@ export interface UserSettings {
 		developerMode: boolean;
 		advancedMode: boolean;
 		contentiousContent: boolean;
+		deletableScores: boolean;
 	};
 }
 

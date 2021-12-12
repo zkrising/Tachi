@@ -79,7 +79,7 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 		) : null;
 
 	const { data, isLoading, error } = useApiQuery<UserLeaderboardReturns>(
-		`/games/${game}/${playtype}/leaderboard?alg=${alg}`
+		`/games/${game}/${playtype}/leaderboard?alg=${alg}&limit=500`
 	);
 
 	if (error) {

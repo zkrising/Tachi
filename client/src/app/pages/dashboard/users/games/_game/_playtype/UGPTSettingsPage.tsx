@@ -10,6 +10,7 @@ import useQueryString from "components/util/useQueryString";
 import { UGPTSettingsContext } from "context/UGPTSettingsContext";
 import deepmerge from "deepmerge";
 import { useFormik } from "formik";
+import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import {
@@ -83,6 +84,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 			preferredSessionAlg:
 				settings!.preferences.preferredSessionAlg || gptConfig.defaultSessionRatingAlg,
 			gameSpecific: settings!.preferences.gameSpecific,
+			scoreBucket: settings!.preferences.scoreBucket ?? gptConfig.scoreBucket,
 		},
 		onSubmit: async values => {
 			const rj = await APIFetchV1<PublicUserDocument>(
@@ -157,6 +159,24 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 					used for things like leaderboards.
 				</Form.Text>
 			</Form.Group>
+			<Form.Group>
+				<Form.Label>Preferred Score Info</Form.Label>
+				<Form.Control
+					as="select"
+					id="scoreBucket"
+					value={formik.values.scoreBucket}
+					onChange={formik.handleChange}
+				>
+					<option value="grade">Score</option>
+					<option value="lamp">Lamp</option>
+				</Form.Control>
+				<Form.Text className="text-muted">
+					What should {TachiConfig.name} prefer to show you about scores?
+					<br />
+					Note: This will only affect defaults, such as what graph is shown in the folder
+					breakdown. You can still view all the same stats!
+				</Form.Text>
+			</Form.Group>
 			{game === "iidx" && (
 				<Form.Group>
 					<Form.Check
@@ -182,13 +202,13 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 }
 
 function ShowcaseForm({ reqUser, game, playtype }: Props) {
-	const { settings } = useContext(UGPTSettingsContext);
+	const { settings, setSettings } = useContext(UGPTSettingsContext);
 
 	const [stats, setStats] = useState(settings!.preferences.stats);
 	const [show, setShow] = useState(false);
 
 	const SaveChanges = async () => {
-		await APIFetchV1(
+		const r = await APIFetchV1<UGPTSettings>(
 			`/users/${reqUser.id}/games/${game}/${playtype}/showcase`,
 			{
 				method: "PUT",
@@ -198,6 +218,10 @@ function ShowcaseForm({ reqUser, game, playtype }: Props) {
 			true,
 			true
 		);
+
+		if (r.success) {
+			setSettings(r.body);
+		}
 	};
 
 	const [isFirstPaint, setIsFirstPaint] = useState(true);

@@ -197,3 +197,26 @@ export function HistorySafeGoBack(history: ReturnType<typeof useHistory>) {
 	// history.goBack();
 	// }
 }
+export function ToPercent(n1: number, n2: number) {
+	return `${((100 * n1) / n2).toFixed(2)}%`;
+}
+
+export function CountElements<T>(data: T[], collector: (element: T) => string | null) {
+	const counts: Record<string, number> = {};
+
+	for (const element of data) {
+		const key = collector(element);
+
+		if (key === null) {
+			continue;
+		}
+
+		if (!counts[key]) {
+			counts[key] = 1;
+		} else {
+			counts[key]++;
+		}
+	}
+
+	return counts;
+}

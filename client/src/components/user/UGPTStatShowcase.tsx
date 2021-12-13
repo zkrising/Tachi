@@ -25,7 +25,7 @@ import { UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
 import { Playtype } from "types/tachi";
 import { APIFetchV1 } from "util/api";
-import { UppercaseFirst } from "util/misc";
+import { ToPercent, UppercaseFirst } from "util/misc";
 import UGPTStatContainer from "./UGPTStatContainer";
 import UGPTStatCreator from "./UGPTStatCreator";
 
@@ -424,15 +424,22 @@ export function StatDisplay({
 				header={<h5 className="text-muted mb-0">Folder</h5>}
 			>
 				<>
-					<h4>{headerStr}</h4>
+					<Link
+						className="gentle-link"
+						to={`/dashboard/users/${reqUser.id}/games/${game}/${playtype}/folders/${folders[0].folderID}`}
+					>
+						<h4>{headerStr}</h4>
+					</Link>
 					<h5>
 						{UppercaseFirst(stat.property)} &gt;={" "}
 						{FormatPropertyGTE(game, playtype, stat.property, stat.gte)}
 					</h5>
 					<h4>
 						{result.value}
-						{/* @ts-expect-error temp */}
-						<small className="text-muted">/{result.outOf}</small>
+						<small className="text-muted">
+							{/* @ts-expect-error This property definitely exists.*/}
+							{/* */}/{result.outOf} ({ToPercent(result.value, result.outOf)})
+						</small>
 					</h4>
 
 					{user && user.id !== reqUser.id && (

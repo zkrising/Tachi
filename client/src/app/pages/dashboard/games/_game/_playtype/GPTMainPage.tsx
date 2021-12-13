@@ -175,7 +175,7 @@ function AchievedClassRow({
 				playtype={playtype}
 				classValue={classInfo.classValue}
 			/>
-			{classInfo.classOldValue && (
+			{classInfo.classOldValue !== null && (
 				<>
 					{" "}
 					(Raised from{" "}

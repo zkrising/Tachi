@@ -12,6 +12,7 @@ import {
 	COLOUR_SET,
 	FormatGame,
 	GetGameConfig,
+	GetGamePTConfig,
 	IDStrings,
 	integer,
 	PublicUserDocument,
@@ -92,6 +93,8 @@ function LeaderboardsPageContent({
 } & GamePT) {
 	const { stats, leaderboard } = data;
 
+	const gptConfig = GetGamePTConfig(game, playtype);
+
 	const userMap = new Map<integer, PublicUserDocument>();
 
 	for (const u of stats.users) {
@@ -131,7 +134,13 @@ function LeaderboardsPageContent({
 						{userMap.get(s.userID)?.username}
 					</GentleLink>
 				</td>
-				<td>{(s.ratings[alg] ?? 0).toFixed(2)}</td>
+				<td>
+					{s.ratings[alg]
+						? gptConfig.profileRatingAlgFormatters[alg]
+							? gptConfig.profileRatingAlgFormatters[alg]!(s.ratings[alg]!)
+							: s.ratings[alg]!.toFixed(2)
+						: "No Data."}
+				</td>
 				{/* temp */}
 				<td>
 					{Object.entries(s.classes).length

@@ -1,5 +1,6 @@
 import { ResponsiveBar } from "@nivo/bar";
 import { BarChartTooltip } from "components/charts/ChartTooltip";
+import DistributionTable from "components/game/folder/FolderDistributionTable";
 import Card from "components/layout/page/Card";
 import MiniTable from "components/tables/components/MiniTable";
 import DebounceSearch from "components/util/DebounceSearch";
@@ -10,6 +11,7 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
+import { useBucket } from "components/util/useBucket";
 import useUGPTBase from "components/util/useUGPTBase";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
@@ -89,7 +91,9 @@ export function FolderInfoComponent({
 }: Props & { folder: FolderDocument; folderStats: FolderStatsInfo }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const [elements, setElements] = useState<"grade" | "lamp">(gptConfig.scoreBucket);
+	const scoreBucket = useBucket(game, playtype);
+
+	const [elements, setElements] = useState<"grade" | "lamp">(scoreBucket);
 
 	const base = useUGPTBase({ reqUser, game, playtype });
 
@@ -158,96 +162,5 @@ export function FolderInfoComponent({
 				</div>
 			</Card>
 		</div>
-	);
-}
-
-function DistributionTable<T extends string>({
-	keys,
-	values,
-	colours,
-	max,
-}: {
-	keys: T[];
-	values: Record<T, integer>;
-	colours: Record<T, string>;
-	max: integer;
-}) {
-	const cumulativeValues: Record<T, integer> = {} as Record<T, integer>;
-
-	let total = 0;
-	for (const k of keys) {
-		total += values[k] ?? 0;
-		cumulativeValues[k] = total;
-	}
-
-	return (
-		<MiniTable headers={["Value", "Count (Total)", "Thermometer"]}>
-			{keys.map((k, i) => (
-				<tr key={k}>
-					<td style={{ backgroundColor: ChangeOpacity(colours[k], 0.15) }}>{k}</td>
-					<td>
-						{values[k] ?? 0} <Muted>({cumulativeValues[k]})</Muted>
-					</td>
-					{i === 0 && (
-						<FolderThermometer
-							keys={keys}
-							values={values}
-							max={max}
-							colours={colours}
-						/>
-					)}
-				</tr>
-			))}
-		</MiniTable>
-	);
-}
-
-function FolderThermometer<T extends string>({
-	keys,
-	values,
-	max,
-	colours,
-}: {
-	keys: T[];
-	values: Record<T, integer>;
-	colours: Record<T, string>;
-	max: integer;
-}) {
-	return (
-		<td rowSpan={keys.length} style={{ width: 200, height: 40 * keys.length }}>
-			<ResponsiveBar
-				keys={Reverse(keys)}
-				data={[Object.assign({ id: "" }, values)]}
-				theme={Object.assign({}, TACHI_CHART_THEME, { background: "#1c1c1c" })}
-				// @ts-expect-error temp
-				colors={k => ChangeOpacity(colours[k.id], 0.5)}
-				// @ts-expect-error Keys are appended with "." for some reason.
-				borderColor={k => colours[k.data.id]}
-				labelTextColor="black"
-				labelSkipHeight={12}
-				maxValue={max}
-				padding={0.33}
-				borderWidth={1}
-				valueScale={{ type: "linear" }}
-				axisRight={{
-					tickSize: 5,
-					tickPadding: 5,
-					tickValues: StepFromToMax(max),
-				}}
-				margin={{ right: 50, bottom: 10, top: 20 }}
-				tooltip={d => (
-					<BarChartTooltip
-						point={d}
-						renderFn={d => (
-							<div className="w-100 text-center">
-								{d.label}
-								{d.value} ({PercentFrom(d.value, max)})
-							</div>
-						)}
-					/>
-				)}
-				motionConfig="stiff"
-			/>
-		</td>
 	);
 }

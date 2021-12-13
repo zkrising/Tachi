@@ -1,38 +1,33 @@
-import DeltaCell from "components/tables/cells/DeltaCell";
-import LampCell from "components/tables/cells/LampCell";
-import ScoreCell from "components/tables/cells/ScoreCell";
 import TimestampCell from "components/tables/cells/TimestampCell";
-import ExternalLink from "components/util/ExternalLink";
+import ScoreCoreCells from "components/tables/game-core-cells/ScoreCoreCells";
+import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useEffect, useState } from "react";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
 import { SetState } from "types/react";
 import { IsScore } from "util/asserts";
+import { UppercaseFirst } from "util/misc";
 import CommentContainer from "./CommentContainer";
 import JudgementTable from "./JudgementTable";
 import PBNote from "./PBNote";
 import ScoreEditButtons from "./ScoreEditButtons";
 
 export function ScoreInfo({ score }: { score: ScoreDocument | PBScoreDocument }) {
+	const rating = useScoreRatingAlg(score.game, score.playtype);
+
 	return (
 		<div className="col-12">
 			<table className="table">
 				<thead>
 					<tr>
-						<td colSpan={100}>Score Info</td>
+						<td colSpan={3}>Score Info</td>
+						<td>{UppercaseFirst(rating)}</td>
+						<td>Timestamp</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<ScoreCell score={score} />
-						<DeltaCell
-							game={score.game}
-							playtype={score.playtype}
-							score={score.scoreData.score}
-							percent={score.scoreData.percent}
-							grade={score.scoreData.grade}
-						/>
-						<LampCell score={score} />
+						<ScoreCoreCells game={score.game} score={score} rating={rating} />
 						{/* @ts-expect-error yeah we know service doesnt necessarily exist */}
 						<TimestampCell time={score.timeAchieved} service={score?.service} />
 					</tr>

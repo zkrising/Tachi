@@ -3,6 +3,7 @@ import CenterLayoutPage from "../layout/CenterLayoutPage";
 import DebugContent from "./DebugContent";
 import Divider from "./Divider";
 import ExternalLink from "./ExternalLink";
+import Muted from "./Muted";
 
 export default class ErrorBoundary extends React.Component<any, { error: any; info: any }> {
 	constructor(props: any) {
@@ -32,6 +33,11 @@ export default class ErrorBoundary extends React.Component<any, { error: any; in
 						/>
 					</div>
 					<Divider />
+					<Muted>This error is not recoverable. :/</Muted>
+					<Divider />
+					<a href="#" onClick={() => window.location.reload()}>
+						Attempt Page Reload
+					</a>
 					<ExternalLink href="/">Go Home</ExternalLink>
 				</CenterLayoutPage>
 			);

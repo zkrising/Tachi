@@ -1,6 +1,6 @@
 {
 	"name": "tachi-client",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"private": true,
 	"scripts": {
 		"start": "node scripts/start.js -o",
@@ -82,7 +82,7 @@
 		"resolve": "1.12.0",
 		"resolve-url-loader": "3.1.0",
 		"socicon": "3.0.5",
-		"tachi-common": "0.3.10"
+		"tachi-common": "0.3.19"
 	},
 	"devDependencies": {
 		"@types/humanize-duration": "3.25.1",

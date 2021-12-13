@@ -62,6 +62,7 @@ export default function FolderInfoHeader({
 				/>
 			) : (
 				<FolderMinimap
+					reqUser={reqUser}
 					game={game}
 					playtype={playtype}
 					folderDataset={folderDataset}

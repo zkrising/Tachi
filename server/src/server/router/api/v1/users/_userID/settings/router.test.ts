@@ -19,6 +19,7 @@ t.test("GET /api/v1/users/:userID/settings", (t) => {
 				developerMode: true,
 				advancedMode: false,
 				contentiousContent: false,
+				deletableScores: false,
 			},
 		});
 
@@ -46,6 +47,7 @@ t.test("PATCH /api/v1/users/:userID/settings", async (t) => {
 				developerMode: false,
 				advancedMode: false,
 				contentiousContent: false,
+				deletableScores: false,
 			},
 		});
 
@@ -58,6 +60,7 @@ t.test("PATCH /api/v1/users/:userID/settings", async (t) => {
 				developerMode: false,
 				advancedMode: false,
 				contentiousContent: false,
+				deletableScores: false,
 			},
 		});
 
@@ -80,6 +83,7 @@ t.test("PATCH /api/v1/users/:userID/settings", async (t) => {
 					developerMode: true,
 					advancedMode: false,
 					contentiousContent: false,
+					deletableScores: false,
 				},
 			},
 			"User Settings should be unmodified."

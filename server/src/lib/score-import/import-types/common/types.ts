@@ -21,6 +21,7 @@ import { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
 import { FervidexStaticContext, FervidexStaticScore } from "../ir/fervidex-static/types";
 import { FervidexContext, FervidexScore } from "../ir/fervidex/types";
 import { KsHookSV3CContext, KsHookSV3CScore } from "../ir/kshook-sv3c/types";
+import { LR2HookContext, LR2HookScore } from "../ir/lr2hook/types";
 import { IRUSCContext } from "../ir/usc/types";
 import { KaiContext } from "./api-kai/types";
 import { BatchManualContext } from "./batch-manual/types";
@@ -41,6 +42,7 @@ export interface ImportTypeDataMap {
 	"ir/beatoraja": BeatorajaScore;
 	"ir/usc": USCClientScore;
 	"ir/kshook-sv3c": KsHookSV3CScore;
+	"ir/lr2hook": LR2HookScore;
 
 	// These aren't placeholder values - the data is yielded in a way that
 	// the value of these is legitimately unknown at convert time.
@@ -68,6 +70,7 @@ export interface ImportTypeContextMap {
 	"ir/beatoraja": BeatorajaContext;
 	"ir/usc": IRUSCContext;
 	"ir/kshook-sv3c": KsHookSV3CContext;
+	"ir/lr2hook": LR2HookContext;
 
 	"api/arc-iidx": EmptyObject;
 	"api/arc-sdvx": EmptyObject;

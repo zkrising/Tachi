@@ -55,6 +55,7 @@ router.patch(
 		developerMode: "*boolean",
 		contentiousContent: "*boolean",
 		advancedMode: "*boolean",
+		deletableScores: "*boolean",
 	}),
 	async (req, res) => {
 		const user = req[SYMBOL_TachiData]!.requestedUser!;
@@ -64,6 +65,7 @@ router.patch(
 			developerMode: req.body.developerMode,
 			contentiousContent: req.body.contentiousContent,
 			advancedMode: req.body.advancedMode,
+			deletableScores: req.body.deletableScores,
 		};
 
 		DeleteUndefinedProps(preferences);

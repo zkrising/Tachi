@@ -8,7 +8,7 @@ import path from "path";
 import { ChartDocument, Difficulties, IIDXBPIData } from "tachi-common";
 import { FindChartWithPTDFVersion } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
-import { RecalcAllScores } from "../__KT_DATABASE_MIGRATION/state-sync/recalc-all-scores";
+import { RecalcAllScores } from "../state-sync/recalc-all-scores";
 
 const program = new Command();
 

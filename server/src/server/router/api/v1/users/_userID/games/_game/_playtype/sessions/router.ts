@@ -114,7 +114,7 @@ router.get("/recent", async (req, res) => {
 /**
  * Returns a user's most recent session.
  *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions/last
  */
 router.get("/last", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;

@@ -7,6 +7,7 @@
 			"preferredScoreAlg": null,
 			"preferredSessionAlg": null,
 			"preferredProfileAlg": null,
+			"scoreBucket": null,
 			"stats": [],
 			"gameSpecific": {
 				"display2DXTra": false

@@ -3326,6 +3326,94 @@
 	},
 	{
 		"data": {
+			"data¬tableFolders¬table": "★"
+		},
+		"folderID": "F82996484fd82762462ce01bc8aa1cc7f613ab2d1f8e20ff595b5de0ab7f95660",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"title": "Insane",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "▼"
+		},
+		"folderID": "Fdff8862b7962907978887ab56f59d15ca1e2b6f8278421c6008401da48f576b3",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"title": "Insane 2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "◆"
+		},
+		"folderID": "Fffe3af5600bd7e3e5c78df671c11e8137070531ddee2d612f1c6ddc9c2944b0a",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"title": "LN",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "☆"
+		},
+		"folderID": "F53b43bdcf131b45d76a85f6045657d2623a18e78b2fd8bf2cd4953384bbc0c2d",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"title": "Normal",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "▽"
+		},
+		"folderID": "F5d044aaf45bbde4ec0213088ee69117bca78db6265004b5d353b1a39107e3a66",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"title": "Normal 2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "★★"
+		},
+		"folderID": "Fcb411975c6439dac3d16b5894956033a20522aa26d5d4da355cba9fbeff339c9",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"title": "Overjoy",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "sl"
+		},
+		"folderID": "F9147dcbf43425ad1f48b0c1e35536a667d97e7ac93bcff1656a0321694d1f406",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"title": "Satellite",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "h◎"
+		},
+		"folderID": "Fd8f69f38e6e033a41fa5a24d87060561ed5e1da4c6c81dc32bf24931a27359dc",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"title": "Scratch 3rd",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"data¬tableFolders": {
 				"~elemMatch": {
 					"level": "0",
@@ -3816,6 +3904,17 @@
 			"Stella 9"
 		],
 		"title": "st9",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "st"
+		},
+		"folderID": "F592f40c2a6fe1d9e6576af59d2a767f2a8298656b492e8598ff44a89880f0015",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"title": "Stella",
 		"type": "charts"
 	},
 	{

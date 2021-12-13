@@ -178,6 +178,25 @@
 		"title": "LN"
 	},
 	{
+		"description": "Meta tables that present existing tables as if they were single folders.",
+		"folders": [
+			"F82996484fd82762462ce01bc8aa1cc7f613ab2d1f8e20ff595b5de0ab7f95660",
+			"Fcb411975c6439dac3d16b5894956033a20522aa26d5d4da355cba9fbeff339c9",
+			"F53b43bdcf131b45d76a85f6045657d2623a18e78b2fd8bf2cd4953384bbc0c2d",
+			"F5d044aaf45bbde4ec0213088ee69117bca78db6265004b5d353b1a39107e3a66",
+			"Fdff8862b7962907978887ab56f59d15ca1e2b6f8278421c6008401da48f576b3",
+			"F592f40c2a6fe1d9e6576af59d2a767f2a8298656b492e8598ff44a89880f0015",
+			"F9147dcbf43425ad1f48b0c1e35536a667d97e7ac93bcff1656a0321694d1f406",
+			"Fffe3af5600bd7e3e5c78df671c11e8137070531ddee2d612f1c6ddc9c2944b0a",
+			"Fd8f69f38e6e033a41fa5a24d87060561ed5e1da4c6c81dc32bf24931a27359dc"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"tableID": "bms-7K-meta",
+		"title": "Meta Table"
+	},
+	{
 		"description": "The 7K GENOSIDE normal table.",
 		"folders": [
 			"Fccca26c54f38f5d07b1de00d6f5e07e50ac36b9f0a2dcb967a849abc7e7faf54",

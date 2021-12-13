@@ -254,7 +254,10 @@ function TableBarChart({
 			}
 
 			arr.push({
-				folder: data.folder.title,
+				folder:
+					data.folder.title.length > 10
+						? `${data.folder.title.slice(0, 10)}...`
+						: data.folder.title,
 				...realData,
 			});
 		}
@@ -327,7 +330,11 @@ function OverviewBarChart({
 }) {
 	const longestTitle = useMemo(
 		() =>
-			dataset.map((e: any) => e.folder).sort(NumericSOV<string>(x => x.length, true))[0] ?? 0,
+			Math.min(
+				dataset.map((e: any) => e.folder).sort(NumericSOV<string>(x => x.length, true))[0]
+					?.length ?? 0,
+				10
+			),
 		[dataset]
 	);
 
@@ -360,7 +367,7 @@ function OverviewBarChart({
 			minValue={0}
 			maxValue={100}
 			valueFormat={v => `${v.toFixed(2)}%`}
-			margin={{ left: 10 + longestTitle.length * 7, bottom: 50, top: 20, right: 20 }}
+			margin={{ left: 10 + longestTitle * 8, bottom: 50, top: 20, right: 20 }}
 			layout="horizontal"
 			axisBottom={{
 				tickSize: 5,

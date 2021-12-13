@@ -8,6 +8,7 @@ import IIDXEamCSVPage from "app/pages/dashboard/import/IIDXEamCSVPage";
 import ImportPage from "app/pages/dashboard/import/ImportPage";
 import KsHookPage from "app/pages/dashboard/import/KsHookPage";
 import LR2DBPage from "app/pages/dashboard/import/LR2DBPage";
+import LR2HookPage from "app/pages/dashboard/import/LR2HookPage";
 import MerJSONPage from "app/pages/dashboard/import/MerJSONPage";
 import SDVXEamCSVPage from "app/pages/dashboard/import/SDVXEamCSVPage";
 import SSSXMLPage from "app/pages/dashboard/import/SSSXMLPage";
@@ -49,6 +50,9 @@ export default function ImportRoutes() {
 						<>
 							<Route exact path="/dashboard/import/beatoraja-ir">
 								<BeatorajaIRPage />
+							</Route>
+							<Route exact path="/dashboard/import/lr2hook">
+								<LR2HookPage />
 							</Route>
 							<Route exact path="/dashboard/import/usc-ir">
 								<USCIRPage />

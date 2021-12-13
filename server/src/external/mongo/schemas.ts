@@ -373,6 +373,7 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 					],
 					(self) => Array.isArray(self) && self.length <= 6
 				),
+				scoreBucket: p.isIn(null, "grade", "lamp"),
 				gameSpecific:
 					game === "iidx"
 						? {

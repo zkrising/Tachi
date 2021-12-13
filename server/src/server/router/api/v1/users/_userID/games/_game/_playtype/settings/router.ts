@@ -5,7 +5,7 @@ import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { GetGamePTConfig } from "tachi-common";
-import { FormatPrError } from "utils/prudence";
+import { FormatPrError, optNull } from "utils/prudence";
 import { FormatUserDoc } from "utils/user";
 import { RequireAuthedAsUser } from "../../../../middleware";
 
@@ -37,6 +37,7 @@ router.patch(
 			preferredProfileAlg: p.optional(p.nullable(p.isIn(gptConfig.profileRatingAlgs))),
 			// This is a pretty stupid IIFE level hack, ah well.
 			gameSpecific: p.any,
+			scoreBucket: optNull(p.isIn("grade", "lamp")),
 		});
 
 		if (err) {
@@ -78,6 +79,10 @@ router.patch(
 			if (req.body[k] !== undefined) {
 				updateQuery[`preferences.${k}`] = req.body[k];
 			}
+		}
+
+		if (req.body.scoreBucket !== undefined) {
+			updateQuery[`preferences.scoreBucket`] = req.body.scoreBucket;
 		}
 
 		if (req.body.gameSpecific) {

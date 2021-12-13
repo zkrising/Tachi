@@ -18,6 +18,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				preferredScoreAlg: null,
 				preferredSessionAlg: null,
 				preferredProfileAlg: null,
+				scoreBucket: null,
 				stats: [],
 				gameSpecific: {
 					display2DXTra: false,
@@ -62,6 +63,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					preferredScoreAlg: "ktRating",
 					preferredSessionAlg: null,
 					preferredProfileAlg: null,
+					scoreBucket: null,
 					stats: [],
 					gameSpecific: {
 						display2DXTra: false,
@@ -113,6 +115,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					preferredScoreAlg: "ktRating",
 					preferredSessionAlg: null,
 					preferredProfileAlg: null,
+					scoreBucket: null,
 					stats: [],
 					gameSpecific: {
 						display2DXTra: true,

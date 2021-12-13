@@ -220,7 +220,7 @@ t.test("#TransposeFolderData", (t) => {
 		{
 			"foo.bar": 1,
 			"foo.baz": 2,
-			foo$baz: 2,
+			foo$bar: 2,
 			foo$baz: 2,
 		},
 		"Should transpose multiple keys."

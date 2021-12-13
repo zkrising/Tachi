@@ -26,6 +26,7 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 				preferredProfileAlg: null,
 				preferredScoreAlg: null,
 				preferredSessionAlg: null,
+				scoreBucket: null,
 				stats: [
 					{
 						folderID: TestingIIDXFolderSP10.folderID,

@@ -21,6 +21,7 @@ const SetFolders = async () => {
 			preferredProfileAlg: null,
 			preferredScoreAlg: null,
 			preferredSessionAlg: null,
+			scoreBucket: null,
 			stats: [
 				{
 					folderID: TestingIIDXFolderSP10.folderID,
@@ -82,6 +83,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 				preferredProfileAlg: null,
 				preferredScoreAlg: null,
 				preferredSessionAlg: null,
+				scoreBucket: null,
 				stats: [
 					{
 						mode: "folder",

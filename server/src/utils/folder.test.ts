@@ -4,7 +4,7 @@ import { ChartDocument, FolderDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA } from "test-utils/test-data";
-import { GetFolderChartIDs, ResolveFolderToCharts } from "./folder";
+import { GetFolderChartIDs, ResolveFolderToCharts, TransposeFolderData } from "./folder";
 
 t.todo("#CreateFolderChartLookup");
 t.todo("#GetFolderCharts");
@@ -195,6 +195,50 @@ t.test("#GetFolderChartIDs", (t) => {
 
 		t.end();
 	});
+
+	t.end();
+});
+
+t.test("#TransposeFolderData", (t) => {
+	t.strictSame(
+		TransposeFolderData({
+			"foo¬bar": 1,
+		}),
+		{
+			"foo.bar": 1,
+		},
+		"Should transpose single keys."
+	);
+
+	t.strictSame(
+		TransposeFolderData({
+			"foo¬bar": 1,
+			"foo¬baz": 2,
+			"foo~bar": 2,
+			"foo~baz": 2,
+		}),
+		{
+			"foo.bar": 1,
+			"foo.baz": 2,
+			foo$baz: 2,
+			foo$baz: 2,
+		},
+		"Should transpose multiple keys."
+	);
+
+	t.strictSame(
+		TransposeFolderData({
+			"foo¬bar¬baz": 1,
+			"foo¬bar~baz": 1,
+			"foo~bar~baz": 1,
+		}),
+		{
+			"foo.bar$baz": 1,
+			"foo.bar.baz": 1,
+			foo$bar$baz: 1,
+		},
+		"Should transpose multiple items in one key."
+	);
 
 	t.end();
 });

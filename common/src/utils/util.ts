@@ -62,7 +62,13 @@ export function FormatChart(
 	chart: ChartDocument<IDStrings>
 ): string {
 	if (game === "bms") {
-		return song.title;
+		const tables = (chart as ChartDocument<"bms:7K" | "bms:14K">).data.tableFolders;
+
+		if (tables.length === 0) {
+			return song.title;
+		}
+
+		return `${song.title} (${tables.map((e) => `${e.table}${e.level}`).join(", ")})`;
 	}
 
 	const gameConfig = GetGameConfig(game);

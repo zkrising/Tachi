@@ -134,10 +134,14 @@ const BtchiDefaultClients: DefaultClients = [
 		requestedPermissions: ["submit_score"],
 		clientID: "CXLR2Hook",
 		apiKeyFilename: "BokutachiAuth.json",
-		apiKeyTemplate: JSON.stringify({
-			url: `${ServerConfig.OUR_URL}/ir/lr2hook/import`,
-			apiKey: "%%TACHI_KEY%%",
-		}),
+		apiKeyTemplate: JSON.stringify(
+			{
+				url: `${ServerConfig.OUR_URL}/ir/lr2hook/import`,
+				apiKey: "%%TACHI_KEY%%",
+			},
+			null,
+			"\t"
+		),
 	},
 ];
 

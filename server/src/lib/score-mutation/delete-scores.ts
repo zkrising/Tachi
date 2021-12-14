@@ -76,7 +76,7 @@ export async function DeleteScore(score: ScoreDocument, blacklist = false) {
 
 	const userHasOtherScores = await db.scores.findOne({
 		userID: score.userID,
-		chart: score.chartID,
+		chartID: score.chartID,
 	});
 
 	if (userHasOtherScores) {

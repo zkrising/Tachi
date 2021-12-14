@@ -6,6 +6,7 @@ export interface LR2HookScore {
 		autoScr: boolean;
 		gameMode: unknown;
 		random: "NONRAN" | "MIRROR" | "RAN" | "S-RAN";
+		gauge: "GROOVE" | "HAZARD" | "HARD" | "EASY" | "P-ATTACK" | "G-ATTACK";
 	};
 	scoreData: {
 		pgreat: integer;

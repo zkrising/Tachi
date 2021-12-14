@@ -62,6 +62,7 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 			},
 		},
 		scoreMeta: {
+			gauge: ConvertGauge(data.playerData.gauge),
 			random: chart.playtype === "7K" ? ConvertRandom(data.playerData.random) : null,
 			client: "LR2",
 		},
@@ -69,6 +70,22 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 
 	return { song, chart, dryScore };
 };
+
+function ConvertGauge(
+	gauge: LR2HookScore["playerData"]["gauge"]
+): ScoreDocument<"bms:7K" | "bms:14K">["scoreMeta"]["gauge"] {
+	switch (gauge) {
+		case "EASY":
+			return "EASY";
+		case "GROOVE":
+			return "NORMAL";
+		case "HARD":
+		case "G-ATTACK":
+		case "HAZARD":
+		case "P-ATTACK":
+			return "HARD";
+	}
+}
 
 function ConvertRandom(
 	random: LR2HookScore["playerData"]["random"]

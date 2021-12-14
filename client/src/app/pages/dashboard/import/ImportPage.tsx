@@ -202,6 +202,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				key="Beatoraja IR"
 			/>,
 			<ImportInfoCard
+				name="LR2 Hook"
+				href="lr2hook"
+				desc="Automatically import scores, whenever you get them (in LR2)!"
+				moreInfo="This is the recommended way to import LR2 BMS scores, as it provides high quality data in real-time."
+				key="LR2 IR"
+			/>,
+			<ImportInfoCard
 				name="Beatoraja Database Import"
 				href="beatoraja-db"
 				desc="Import scores from a beatoraja score database file."
@@ -212,7 +219,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				name="LR2 Database Import"
 				href="lr2-db"
 				desc="Import scores from a LR2 score database file."
-				moreInfo="Since there's currently no way to rewire the LR2IR, this is the only way to import scores from LR2."
+				moreInfo="This should be done once initially to sync scores up, but not all the time, as it provides worse quality data."
 				key="LR2 Database Import"
 			/>
 		);

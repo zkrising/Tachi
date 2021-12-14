@@ -274,6 +274,16 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
 		t.end();
 	});
 
+	t.test("Should return 44 if chart does not exist.", async (t) => {
+		const res = await mockApi
+			.get("/ir/usc/Controller/charts/UNKNOWN_HASH/leaderboard?mode=best")
+			.set("Authorization", "Bearer foo");
+
+		t.equal(res.body.statusCode, 44);
+
+		t.end();
+	});
+
 	t.test("Should return empty arr for mode = best if no scores", async (t) => {
 		const res = await mockApi
 			.get("/ir/usc/Controller/charts/USC_CHART_HASH/leaderboard?mode=best&n=5")

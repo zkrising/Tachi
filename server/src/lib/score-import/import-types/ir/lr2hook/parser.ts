@@ -10,7 +10,7 @@ const SUPPORTED_RANDOMS = ["NONRAN", "MIRROR", "RAN", "S-RAN"];
 const PR_LR2Hook: PrudenceSchema = {
 	md5: "string",
 	playerData: {
-		autoScr: p.is(false),
+		autoScr: p.is(0),
 		// don't really need this, but it's
 		// { "ALL", "SINGLE", "7K", "5K", "DOUBLE", "14K", "10K", "9K" };
 		gameMode: p.any,

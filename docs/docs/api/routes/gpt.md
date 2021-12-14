@@ -444,7 +444,7 @@ GET /api/v1/games/iidx/SP/folders?search=12
 
 ## Retrieve information on a specific folderID
 
-`GET /api/v1/games/:game/folders/:folderID`
+`GET /api/v1/games/:game/:playtype/folders/:folderID`
 
 ### Parameters
 

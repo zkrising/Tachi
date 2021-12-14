@@ -16,6 +16,7 @@ const PR_LR2Hook: PrudenceSchema = {
 		gameMode: p.any,
 		// ALLSCR and H-RAN may also be sent, but we don't support them.
 		random: p.isIn(SUPPORTED_RANDOMS),
+		gauge: p.isIn("GROOVE", "HARD", "HAZARD", "EASY", "P-ATTACK", "G-ATTACK"),
 	},
 	scoreData: {
 		pgreat: p.isPositiveInteger,

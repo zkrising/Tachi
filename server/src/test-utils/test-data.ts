@@ -49,6 +49,7 @@ export const TestingLR2HookScore: LR2HookScore = {
 		autoScr: false,
 		gameMode: "7K",
 		random: "RAN",
+		gauge: "GROOVE",
 	},
 	scoreData: {
 		pgreat: 1000,

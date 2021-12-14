@@ -3,7 +3,7 @@ import { integer } from "tachi-common";
 export interface LR2HookScore {
 	md5: string;
 	playerData: {
-		autoScr: boolean;
+		autoScr: 0;
 		gameMode: unknown;
 		random: "NONRAN" | "MIRROR" | "RAN" | "S-RAN";
 		gauge: "GROOVE" | "HAZARD" | "HARD" | "EASY" | "P-ATTACK" | "G-ATTACK";

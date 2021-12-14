@@ -127,6 +127,18 @@ const BtchiDefaultClients: DefaultClients = [
 		apiKeyTemplate: null,
 		apiKeyFilename: null,
 	},
+	{
+		name: "LR2 Hook",
+		webhookUri: null,
+		redirectUri: null,
+		requestedPermissions: ["submit_score"],
+		clientID: "CXLR2Hook",
+		apiKeyFilename: "BokutachiAuth.json",
+		apiKeyTemplate: JSON.stringify({
+			url: `${ServerConfig.OUR_URL}/ir/lr2hook/import`,
+			apiKey: "%%TACHI_KEY%%",
+		}),
+	},
 ];
 
 export async function LoadDefaultClients() {

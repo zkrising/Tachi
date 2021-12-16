@@ -278,7 +278,7 @@ export interface Difficulties {
 	"museca:Single": "Green" | "Yellow" | "Red";
 	"bms:7K": "CHART";
 	"bms:14K": "CHART";
-	"chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER" | "WORLD'S END";
+	"chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER";
 	"gitadora:Gita":
 		| "BASIC"
 		| "ADVANCED"
@@ -496,7 +496,7 @@ export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoD
 	desc: string | null;
 	game: Game;
 	playtype: AnyPlaytype;
-	// For compatibility with kamaitachi1 sessions, where import types didn't exist.
+	// This field is allowed to be null for compatibility with kamaitachi1 sessions, where import types didn't exist.
 	importType: ImportTypes | null;
 	timeInserted: integer;
 	timeEnded: integer;
@@ -839,7 +839,7 @@ export interface GPTTierlists {
 	"ddr:DP": never;
 	"maimai:Single": never;
 	"jubeat:Single": never;
-	"museca:Single": "tachi-score";
+	"museca:Single": never;
 	"chunithm:Single": never;
 	"gitadora:Gita": never;
 	"gitadora:Dora": never;

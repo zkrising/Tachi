@@ -3,6 +3,7 @@ import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON } from "test-utils/test-data";
 import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
+import deepmerge from "deepmerge";
 
 const gazerChart = GetKTDataJSON("./tachi/bms-gazer-chart.json");
 
@@ -48,6 +49,61 @@ t.test("#TachiScoreDataToBeatorajaFormat", (t) => {
 				passnotes: 0,
 				minbp: 0,
 				notes: 2256,
+				epg: 617,
+				lpg: 0,
+				egr: 0,
+				lgr: 0,
+				egd: 0,
+				lgd: 0,
+				ebd: 0,
+				lbd: 0,
+				epr: 0,
+				lpr: 0,
+				ems: 0,
+				lms: 0,
+			},
+			"Should return the beatoraja score format."
+		);
+
+		t.end();
+	});
+
+	t.test("Should fake epg/egr data if the score doesn't have it..", (t) => {
+		const res = TachiScoreDataToBeatorajaFormat(
+			deepmerge(pbScore, { scoreData: { score: 999 } }),
+			gazerChart.data.hashSHA256,
+			"",
+			gazerChart.data.notecount,
+			0
+		);
+
+		t.strictSame(
+			res,
+			{
+				sha256: "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d",
+				player: "",
+				playcount: 0,
+				clear: 5,
+				date: 0,
+				maxcombo: 0,
+				deviceType: null,
+				gauge: 0,
+				random: null,
+				passnotes: 0,
+				minbp: 0,
+				notes: 2256,
+				epg: Math.floor(999 / 2),
+				lpg: 0,
+				egr: 1,
+				lgr: 0,
+				egd: 0,
+				lgd: 0,
+				ebd: 0,
+				lbd: 0,
+				epr: 0,
+				lpr: 0,
+				ems: 0,
+				lms: 0,
 			},
 			"Should return the beatoraja score format."
 		);
@@ -79,6 +135,18 @@ t.test("#TachiScoreDataToBeatorajaFormat", (t) => {
 				passnotes: 0,
 				minbp: 0,
 				notes: 2256,
+				epg: 617,
+				lpg: 0,
+				egr: 0,
+				lgr: 0,
+				egd: 0,
+				lgd: 0,
+				ebd: 0,
+				lbd: 0,
+				epr: 0,
+				lpr: 0,
+				ems: 0,
+				lms: 0,
 			},
 			"Should return the beatoraja score format."
 		);

@@ -387,7 +387,7 @@ t.test("POST /api/v1/import/orphans", async (t) => {
 		t.equal(res.statusCode, 200, "Should return 200.");
 
 		t.equal(res.body.body.success, 1, "Should successfully reprocess one orphan.");
-		t.equal(res.body.body.done, 2, "Should reprocess two orphans.");
+		t.equal(res.body.body.processed, 2, "Should reprocess two orphans.");
 		t.equal(res.body.body.failed, 1, "Should fail in de-orphaning one orphan.");
 
 		const dbCount = await db["orphan-scores"].count({});

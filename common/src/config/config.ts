@@ -567,13 +567,12 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgFormatters: {},
 		sessionRatingAlgFormatters: {},
 
-		difficulties: ["BASIC", "ADVANCED", "EXPERT", "MASTER", "WORLD'S END"],
+		difficulties: ["BASIC", "ADVANCED", "EXPERT", "MASTER"],
 		shortDifficulties: {
 			BASIC: "B",
 			ADVANCED: "A",
 			EXPERT: "E",
 			MASTER: "M",
-			"WORLD'S END": "W",
 		},
 		defaultDifficulty: "MASTER",
 		difficultyColours: {
@@ -581,7 +580,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			ADVANCED: COLOUR_SET.orange,
 			EXPERT: COLOUR_SET.red,
 			MASTER: COLOUR_SET.purple,
-			"WORLD'S END": COLOUR_SET.vibrantYellow,
 		},
 
 		grades: ["D", "C", "B", "BB", "BBB", "A", "AA", "AAA", "S", "SS", "SSS"],
@@ -599,7 +597,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			SSS: COLOUR_SET.teal,
 		},
 		clearGrade: "A",
-		gradeBoundaries: [0, 50, 60, 70, 80, 90, 92.5, 95.0, 97.5, 100, 100.75, 101],
+		gradeBoundaries: [0, 50, 60, 70, 80, 90, 92.5, 95.0, 97.5, 100, 100.75],
 
 		lamps: ["FAILED", "CLEAR", "FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"],
 		lampColours: {
@@ -925,8 +923,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentLocalVersion: "1.5",
 		supportedVersions: ["1.5", "1.5-b"],
 
-		tierlists: ["tachi-score"],
-		tierlistDescriptions: { "tachi-score": "MUSECA chart ratings based on timing difficulty." },
+		tierlists: [],
+		tierlistDescriptions: {},
 	},
 	"bms:7K": {
 		idString: "bms:7K",

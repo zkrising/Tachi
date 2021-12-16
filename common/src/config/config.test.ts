@@ -17,7 +17,17 @@ t.test("#GetGamePTConfig", (t) => {
 		const gameConfig = GetGameConfig(game);
 
 		for (const playtype of gameConfig.validPlaytypes) {
-			t.equal(GetGamePTConfig(game, playtype).idString, `${game}:${playtype}`);
+			const conf = GetGamePTConfig(game, playtype);
+			t.equal(
+				conf.idString,
+				`${game}:${playtype}`,
+				`Should return the right GamePTConfig (${game} ${playtype})`
+			);
+			t.equal(
+				conf.gradeBoundaries.length,
+				conf.grades.length,
+				`Should have the same amount of grades as grade boundaries. (${game} ${playtype})`
+			);
 		}
 	}
 

@@ -155,7 +155,11 @@ router.post("/delete-score", prValidate({ scoreID: "string" }), async (req, res)
 });
 
 /**
- * Destroys a users UGPT profile and forces a site recalc.
+ * Destroys a users UGPT profile and forces a leaderboard recalc.
+ *
+ * @param userID - The U...
+ * @param game - The G...
+ * @param playtype - And the PT to delete.
  *
  * @name POST /api/v1/admin/destroy-ugpt
  */
@@ -194,6 +198,9 @@ router.post(
 
 /**
  * Destroy a chart and all of its scores (and sessions).
+ *
+ * @param chartID - The chartID to delete.
+ * @param game - The game this chart is for. Necessary for doing lookups.
  *
  * @name POST /api/v1/admin/destroy-chart
  */
@@ -271,7 +278,18 @@ router.post(
 router.post("/recalc", async (req, res) => {
 	const filter = req.body ?? {};
 	await RecalcAllScores(filter);
-	await RecalcSessions(filter);
+
+	const scoreIDs = (
+		await db.scores.find(filter, {
+			projection: {
+				scoreID: 1,
+			},
+		})
+	).map((e) => e.scoreID);
+
+	await RecalcSessions({
+		"scoreInfo.scoreID": { $in: scoreIDs },
+	});
 
 	return res.status(200).json({
 		success: true,

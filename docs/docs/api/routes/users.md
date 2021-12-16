@@ -19,7 +19,7 @@ These endpoints are related to users in general.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | Array&lt;[UserDocument](/tachi-server/documents/user)gt; | The array of up to 100 users returned. |
+| `<body>` | Array&lt;[UserDocument](/tachi-server/documents/user)&gt; | The array of up to 100 users returned. |
 
 !!! note
 	Users are guaranteeably returned in order of when they were `lastSeen`.
@@ -66,7 +66,7 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | [UserDocument](/tachi-server/documents/user)| The user this ID/username corresponds to. |
+| `<body>` | [UserDocument](/tachi-server/documents/user) | The user this ID/username corresponds to. |
 
 ### Example
 
@@ -119,7 +119,7 @@ GET /api/v1/users/me IF authenticated as userID 1.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | [UserDocument](/tachi-server/documents/user)| The user document with all of those changes applied. |
+| `<body>` | [UserDocument](/tachi-server/documents/user) | The user document with all of those changes applied. |
 
 ### Example
 

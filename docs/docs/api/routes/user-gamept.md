@@ -19,8 +19,8 @@ None.
 | Property | Type | Description |
 | :: | :: | :: |
 | `gameStats` | UserGameStatsDocument | The User's GameStats for this game + playtype. |
-| `firstScore` | ScoreDocument or Null | The user's first score for this game + playtype. This is null if the user has no scores with timestamps. |
-| `mostRecentScore` | ScoreDocument or Null | The user's most recent score. This is null if the user has no scores with timestamps. |
+| `firstScore` | [ScoreDocument](/tachi-server/documents/score) or Null | The user's first score for this game + playtype. This is null if the user has no scores with timestamps. |
+| `mostRecentScore` | [ScoreDocument](/tachi-server/documents/score) or Null | The user's most recent score. This is null if the user has no scores with timestamps. |
 | `totalScores` | Integer | The total amount of scores this user has. |
 | `rankingData` | Record&lt;Rating Algorithm, { ranking: integer, outOf: integer }&gt; | The position of this player on the default leaderboards for this game, and how many players it is out of. |
 
@@ -366,7 +366,7 @@ GET /api/v1/users/zkldi/games/iidx/SP/pbs/all
 | :: | :: | :: |
 | `pb` | PBDocument | The user's PB for this chart. |
 | `chart` | ChartDocument | The chart this PB is on. |
-| `scores` (Conditional) | Array&lt;ScoreDocument&gt; | If `getComposition` is present, then this field contains the array of score documents that composed this PB. | 
+| `scores` (Conditional) | Array&lt;[ScoreDocument](/tachi-server/documents/score)&gt; | If `getComposition` is present, then this field contains the array of score documents that composed this PB. | 
 
 ### Example
 
@@ -409,7 +409,7 @@ GET /api/v1/users/1/games/iidx/SP/pbs/some_chart_id
 | :: | :: | :: |
 | `songs` | Array&lt;SongDocument with __textScore&gt; | The array of songs this search returned. |
 | `charts` | Array&lt;ChartDocument&gt; | The array of charts this search returned. |
-| `scores` | Array&lt;ScoreDocument&gt; | The array of scores this search returned. This is limited to 30 returns. |
+| `scores` | Array&lt;[ScoreDocument](/tachi-server/documents/score)&gt; | The array of scores this search returned. This is limited to 30 returns. |
 
 !!! info
 	All `songs` returned also have the `__textScore`
@@ -469,7 +469,7 @@ None.
 | :: | :: | :: |
 | `songs` | Array&lt;SongDocument&gt; | The array of songs this search returned. |
 | `charts` | Array&lt;ChartDocument&gt; | The array of charts this search returned. |
-| `scores` | Array&lt;ScoreDocument&gt; | The array of scores this search returned. This is limited to 30 returns. |
+| `scores` | Array&lt;[ScoreDocument](/tachi-server/documents/score)&gt; | The array of scores this search returned. This is limited to 30 returns. |
 
 ### Example
 
@@ -790,7 +790,7 @@ GET /api/v1/users/zkldi/games/iidx/SP/most-played
 | :: | :: | :: |
 | `above` | Array&lt;UserGameStats&gt; | Up to 5 users' game stats better than this user. |
 | `below` | Array&lt;UserGameStats&gt; | Same as above, but below the user. |
-| `users` | Array&lt;[UserDocument](/tachi-server/documents/user)gt; | The user documents related to the above statistics. |
+| `users` | Array&lt;[UserDocument](/tachi-server/documents/user)&gt; | The user documents related to the above statistics. |
 | `thisUsersStats` | UserGameStats | The requested user's stats for this GPT. |
 | `thisUsersRanking` | {outOf: integer, ranking: integer} | The requested user's ranking for this GPT. |
 

@@ -15,10 +15,10 @@ None.
 | Property | Type | Description |
 | :: | :: | :: |
 | `session` | SessionDocument | The session document at this ID. |
-| `scores` | ScoreDocument[] | The score documents involved in this session. |
-| `songs` | SongDocument[] | The songs these score documents belong to. |
-| `charts` | ChartDocument[] | The charts these score documents belong to. |
-| `user` | [UserDocument](/tachi-server/documents/user)| The user that made this session. |
+| `scores` | Array&lt;[ScoreDocument](/tachi-server/documents/score)&gt; | The score documents involved in this session. |
+| `songs` | Array&lt;SongDocument&gt; | The songs these score documents belong to. |
+| `charts` | Array&lt;ChartDocument&gt; | The charts these score documents belong to. |
+| `user` | [UserDocument](/tachi-server/documents/user) | The user that made this session. |
 
 ### Example
 

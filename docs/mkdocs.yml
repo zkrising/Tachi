@@ -124,9 +124,12 @@ nav:
           - Documents:
                 - "tachi-server/documents/overview.md"
                 - "tachi-server/documents/user.md"
+                - "tachi-server/documents/session.md"
                 - "tachi-server/documents/score.md"
-                - "tachi-server/documents/goal.md"
-                - "tachi-server/documents/user-goal.md"
+                - "tachi-server/documents/song.md"
+                - "tachi-server/documents/chart.md"
+            #     - "tachi-server/documents/goal.md"
+            #     - "tachi-server/documents/user-goal.md"
 
     - Tachi Bot Reference:
           - "tachi-bot/overview.md"

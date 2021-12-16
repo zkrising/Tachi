@@ -66,7 +66,7 @@ GET /api/v1/games/iidx/SP
 | Property | Type | Description |
 | :: | :: | :: |
 | `gameStats` | Array&lt;GameStats&gt; | The sorted statistics for the leaderboards. |
-| `users` | Array&lt;[UserDocument](/tachi-server/documents/user)gt; | All of the related users for the above statistics. |
+| `users` | Array&lt;[UserDocument](/tachi-server/documents/user)&gt; | All of the related users for the above statistics. |
 
 ### Example
 
@@ -592,7 +592,7 @@ GET /api/v1/games/bms/7K/tableID/insane
 | `pbs` | Array&lt;PBDocument&gt; | The array of pbs part of the score leaderboard. |
 | `songs` | Array&lt;SongDocument&gt; | The array of songs part of the PBs. |
 | `charts` | Array&lt;ChartDocument&gt; | The array of charts part of the PBs. |
-| `users` | Array&lt;[UserDocument](/tachi-server/documents/user)gt; | The array of users part of the PBs. |
+| `users` | Array&lt;[UserDocument](/tachi-server/documents/user)&gt; | The array of users part of the PBs. |
 
 *****
 
@@ -655,7 +655,7 @@ GET /api/v1/games/bms/7K/player-distribution?class=stslDan
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `users` | Array&lt;[UserDocument](/tachi-server/documents/user)gt; | Array of the users who achieved the courses. |
+| `users` | Array&lt;[UserDocument](/tachi-server/documents/user)&gt; | Array of the users who achieved the courses. |
 | `classes` | Array&lt;ClassAchievementDocument&gt; | Data about the recently achieved classes. |
 
 *****
@@ -675,6 +675,6 @@ GET /api/v1/games/bms/7K/player-distribution?class=stslDan
 | Property | Type | Description |
 | :: | :: | :: |
 | `scores` | Array&lt;[ScoreDocument](/tachi-server/documents/score)&gt; | The highlighted scores. |
-| `users` | Array&lt;[UserDocument](/tachi-server/documents/user)gt; | The users who own the scores. |
+| `users` | Array&lt;[UserDocument](/tachi-server/documents/user)&gt; | The users who own the scores. |
 | `songs` | Array&lt;SongDocument&gt; | The songs the scores are on. |
 | `charts` | Array&lt;ChartDocument&gt; | The charts the scores are on. |

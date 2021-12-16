@@ -15,24 +15,24 @@
 ## Definition
 
 ```ts
-interface Public[UserDocument](/tachi-server/documents/user){
+interface ScoreDocument {
 	service: string;
 	game: "iidx" | "bms" // ...etc;
 	playtype: __GameSpecific;
 	userID: integer;
 	scoreData: {
 		score: number;
-		lamp: __GameSpecific;
+		lamp: __GPTSpecific;
 		percent: number;
-		grade: __GameSpecific;
+		grade: __GPTSpecific;
 		lampIndex: integer;
 		gradeIndex: integer;
 		esd: number | null;
-		judgements: __GameSpecific;
-		hitMeta: __GameSpecific;
+		judgements: __GPTSpecific;
+		hitMeta: __GPTSpecific;
 	};
-	scoreMeta: __GameSpecific;
-	calculatedData: __GameSpecific;
+	scoreMeta: __GPTSpecific;
+	calculatedData: __GPTSpecific;
 	timeAchieved: Integer | null;
 	songID: integer;
 	chartID: string;
@@ -46,7 +46,7 @@ interface Public[UserDocument](/tachi-server/documents/user){
 ```
 
 !!! note
-	All fields marked with __GameSpecific change
+	All fields marked with __GPTSpecific or __GameSpecific change
 	depending on the game and playtype this score
 	is for. We'll go over all of those in a bit.
 
@@ -313,7 +313,7 @@ interface ScoreMeta {
 | :: | :: |
 | `random` | The random option this user selected. |
 | `inputDevice` | Whether this score was achieved on a keyboard or a beatmania controller. If null, this is not known. |
-| `client` | What client this score was performed on. |
+| `client` | What client this score was performed on. Scores achieved on beatoraja have a warning next to them indicating differences in their gauge implementation. |
 
 ### DDR, maimai, MÚSECA, CHUNITHM
 

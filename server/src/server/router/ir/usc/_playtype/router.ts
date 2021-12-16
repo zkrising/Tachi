@@ -255,7 +255,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
 		},
 		{
 			sort: {
-				"scoreData.perecent": -1,
+				"scoreData.percent": -1,
 			},
 			limit: n,
 		}

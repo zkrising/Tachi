@@ -162,7 +162,7 @@ router.post(
  * @name POST /api/v1/import/orphans
  */
 router.post("/orphans", RequirePermissions("submit_score"), async (req, res) => {
-	const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.user.id);
+	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
 
 	logger.info(`User ${FormatUserDoc(userDoc)} forced an orphan sync.`);
 

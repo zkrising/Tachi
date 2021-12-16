@@ -15,7 +15,7 @@
 ## Definition
 
 ```ts
-interface PublicUserDocument {
+interface Public[UserDocument](/tachi-server/documents/user){
 	service: string;
 	game: "iidx" | "bms" // ...etc;
 	playtype: __GameSpecific;
@@ -33,12 +33,12 @@ interface PublicUserDocument {
 	};
 	scoreMeta: __GameSpecific;
 	calculatedData: __GameSpecific;
-	timeAchieved: integer | null;
+	timeAchieved: Integer | null;
 	songID: integer;
 	chartID: string;
 	isPrimary: boolean;
 	highlight: boolean;
-	comment: string | null;
+	comment: String | null;
 	timeAdded: integer;
 	scoreID: string;
 	importType: ImportTypes | null;
@@ -57,8 +57,8 @@ The base score document is structured as follows:
 | `game` | This is the game this score is for. |
 | `service` | This is a humanised string for representing the place this score came from. This is primarily used by [Batch-Manual](../batch-manual/overview.md) formats to declare where the scores are coming from. |
 | `userID` | The user that got this score. |
-| `timeAchieved` | This is the time this score was actually achieved. This is **NOT NECESSARILY** the time this score was inserted into the database. If this is not known, it can be set to null. |
-| `timeAdded` | This is the time the score was added to the Tachi database. This is **NOT NECESSARILY** the time the score was achieved. |
+| `timeAchieved` | This is the time this score was actually achieved. This is **NOT** the time this score was inserted into the database. If this is not known, it can be set to null. |
+| `timeAdded` | This is the time the score was added to the Tachi database. This is **NOT** the time the score was achieved by the player. |
 | `songID` | The song this score is on. Even though this can be derived from `chartID`, it's kept next to the score for certain query optimisations. You can read on the difference between charts and songs [here](../implementation-details/songs-charts.md). |
 | `chartID` | The chart this score was achieved on. |
 | `isPrimary` | Whether this score is was achieved on a "primary" chart or not. You can read more on what a primary chart is [here](../implementation-details/songs-charts.md#isPrimary). |
@@ -88,7 +88,7 @@ sub-document.
 | `lampIndex`, `gradeIndex` | While `lamp` and `grade` are both strings, these are the raw enum values for those fields. This can be used for filters (select scores where lampIndex > lamps.HARD_CLEAR), or other query methods. |
 | `esd` | Some games support ESD. This field contains the ESD for that score. For more information on what ESD is, see [What is ESD?](../../user/stats/esd.md)
 | `judgements` | A record of Judgement->Integer values. The keys for this property depend on the game the score is for. |
-| `hitMeta` | 'Meta' information about the user's *hits*. That is, things that aren't *literally* about the score, but are related to how well the user played. This contains properties such as `maxCombo` and `fast` and `slow` counts. All the fields here are optional and nullable. Some games extend this to provide things like `gauge`. |
+| `hitMeta` | 'Meta' information about the user's *hits*. That is, things that aren't *literally* about the score, but are related to how the user played. This contains properties such as `maxCombo` and `fast` and `slow` counts. All the fields here are optional and nullable. Some games extend this to provide things like `gauge`. |
 
 ### `scoreMeta`
 
@@ -107,6 +107,11 @@ about how the play was achieved.
 	`scoreMeta` is for completely meta information
 	about the **PLAY** the user made, such as the
 	mods and options they had on when playing.
+
+	A better name for `scoreMeta` would perhaps have been
+	`playMeta`, since it is meta information about the play, not the score.
+
+	This is too late to change now, though.
 
 Since `scoreMeta`'s properties are entirely game-specific,
 they will be covered in more detail in the below section.
@@ -144,7 +149,6 @@ The below document is an example IIDX - SP score.
 	"userID": 1,
 	"calculatedData": {
 		"BPI": null,
-		"K%": null,
 		"ktRating": 9.110264135494702,
 		"ktLampRating": 8
 	},
@@ -171,7 +175,7 @@ For all games, the following changes are applied:
 
 !!! info
 	All games implicitly have `fast`, `slow` and `maxCombo`
-	as `integer | null` in their hitMeta.
+	as `Integer | null` in their hitMeta.
 
 !!! warning
 	As mentioned above, all properties inside ScoreMeta
@@ -181,11 +185,11 @@ For all games, the following changes are applied:
 
 ```ts
 interface HitMeta {
-	bp: integer | null;
+	bp: Integer | null;
 	gauge: number | null;
 	gaugeHistory: (number | null)[] | null;
 	scoreHistory: number[] | null;
-	comboBreak: integer | null;
+	comboBreak: Integer | null;
 	gsm: {
 		EASY: (number | null)[];
 		NORMAL: (number | null)[];
@@ -233,16 +237,12 @@ Same as IIDX:SP, but with the following changes to Hit Meta:
 ```ts
 interface HitMeta {
 	gauge: number | null;
-	btnRate: number | null;
-	holdRate: number | null;
-	laserRate: number | null;
 }
 ```
 
 | Property | Description |
 | :: | :: |
 | `gauge` | The gauge the user had when the chart finished. |
-| `btnRate`, `holdRate`, `laserRate` | The values the user had for the "rate" bars. These are not of much interest to anyone. |
 
 ```ts
 interface ScoreMeta {
@@ -254,26 +254,25 @@ interface ScoreMeta {
 | :: | :: |
 | `inSkillAnalyser` | Whether or whether not this score was achieved inside the skill analyser mode. |
 
+!!! warning
+	The british spelling of the word `analyser` is used here.
+
 ### USC
 
 ```ts
 interface HitMeta {
 	gauge: number | null;
-	btnRate: number | null;
-	holdRate: number | null;
-	laserRate: number | null;
 }
 ```
 
 | Property | Description |
 | :: | :: |
 | `gauge` | The gauge the user had when the chart finished. |
-| `btnRate`, `holdRate`, `laserRate` | The values the user had for the "rate" bars. These are not of much interest to anyone. |
 
 ```ts
 interface ScoreMeta {
 	noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" | null;
-	gaugeMod: "NORMAL" | "HARD" | null;
+	gaugeMod: "NORMAL" | "HARD" | "PERMISSIVE" | null;
 }
 ```
 
@@ -291,7 +290,7 @@ type BMSHitMeta = BASE_VALID_HIT_META &
 	{
 		[K in BMSJudgePermutations]: integer;
 	} & {
-		bp: integer | null;
+		bp: Integer | null;
 		gauge: number | null;
 	};
 ```
@@ -306,8 +305,7 @@ type BMSHitMeta = BASE_VALID_HIT_META &
 interface ScoreMeta {
 	random: "NONRAN" | "RANDOM" | "R-RANDOM" | "S-RANDOM" | "MIRROR" | null;
 	inputDevice: "KEYBOARD" | "BM_CONTROLLER" | null;
-	client: "LR2" | "beatoraja" | "lr2oraja";
-	lntype: null | "LN" | "CN";
+	client: "LR2" | "lr2oraja";
 }
 ```
 
@@ -315,8 +313,7 @@ interface ScoreMeta {
 | :: | :: |
 | `random` | The random option this user selected. |
 | `inputDevice` | Whether this score was achieved on a keyboard or a beatmania controller. If null, this is not known. |
-| `client` | What client this score was performed on. Scores achieved on beatoraja have a warning next to them indicating differences in their gauge implementation. |
-| `lnType` | What type of LNs this user was using. This only applies to beatoraja and lr2oraja, where CNs are an option. |
+| `client` | What client this score was performed on. |
 
 ### DDR, maimai, MÚSECA, CHUNITHM
 

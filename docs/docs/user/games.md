@@ -44,13 +44,13 @@ The following games are supported on [Kamaitachi](https://kamaitachi.xyz).
 | :: | :: | :: |
 | beatmania IIDX | `iidx` | `SP`, `DP` |
 | MÚSECA | `museca` | `Single` |
-| maimai | `maimai` | `Single` |
 | SOUND VOLTEX | `sdvx` | `Single` |
-| Dance Dance Revolution | `ddr` | `SP`, `DP` |
 | CHUNITHM | `chunithm` | `Single` |
-| GITADORA | `gitadora` | `Gita`, `Dora` |
-| jubeat | `jubeat` | `Single` |
-| pop'n music | `popn` | `9B`[^1] |
+| jubeat (In Development) | `jubeat` | `Single` |
+| pop'n music (In Development) | `popn` | `9B`[^1] |
+<!-- | Dance Dance Revolution | `ddr` | `SP`, `DP` | -->
+<!-- | GITADORA | `gitadora` | `Gita`, `Dora` | -->
+<!-- | maimai | `maimai` | `Single` | -->
 
 ### Bokutachi
 
@@ -59,8 +59,9 @@ The following games are supported on [Bokutachi](https://bokutachi.xyz).
 | Name | Internal Name | Playtypes |
 | :: | :: | :: |
 | BMS | `bms` | `7K`, `14K` |
-| unnamed_sdvx_clone | `usc` | `Single` |
+| unnamed_sdvx_clone | `usc` | `Controller` `Keyboard`[^2] |
 
 
 
 [^1]: Pop'n *had* some other playtypes, namely a 5-Button mode, but it seems to be removed now. 9B is used instead of single here for futureproofing.
+[^2]: This use of playtypes is a small hack to make separate leaderboards for keyboard and controller players. The split is necessary because the two input mechanisms are *very* different at high levels, but there are still a lot of keyboard players. It's a compromise!

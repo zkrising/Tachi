@@ -20,6 +20,10 @@ you search for `AA`, You will get a list of all the scores that were on a song
 that contains `AA` (such as `AA -rebuild-`) and all of the scores that have the grade
 `AA` (OR `AAA`, as it's a loose match!).
 
+!!! example
+	![](../images/basic-search.png)
+	Note the inclusion of AAAs and AAs? That's because it tries to match with as much as it can, as loosely as it can!
+
 This isn't always what we want, though! What if I wanted to see only scores
 on the song `AA`?
 
@@ -30,6 +34,10 @@ title:AA
 ```
 
 Simple enough, right!
+
+!!! example
+	![](../images/title-search.png)
+	Now, it only loosely matches on the title!
 
 Now, depending on *where* you actually are, different filter directives are
 available. The above example makes sense for filtering scores, but makes *no*
@@ -56,13 +64,15 @@ change that behaviour!
 | Less Than Equal | `percent:<=50` | Matches any percent that is less than or equal to 50. |
 | Greater Than | `percent:>50` | Matches any percent that is greater than 50. |
 | Greater Than Equal | `percent:>=50` | Matches any percent that is greater than or equal to 50. |
-| Regex | `title:~^[a-z]*$` | Matches any title that matches the regex `^[a-z]*$` |
-
+<!-- | Regex | `title:~^[a-z]*$` | Matches any title that matches the regex `^[a-z]*$` | -->
+<!-- 
+	Undocumented the regex stuff as, although its supported, it's completely pointless
+	to ever document for end users. Honestly just an easter egg at this point.
 !!! note
 	Regex Mode refers to [Regular Expressions](https://en.wikipedia.org/wiki/Regular_expression).
 
 	If you aren't familiar, don't worry! This specific mode is barely useful
-	and for nerds.
+	and for nerds. -->
 
 ## Other Things
 
@@ -70,15 +80,25 @@ You can use multiple directives in one filter!
 
 `title:$AA percent:>50` - Find all scores on AA where the percent is greater than 50.
 
+!!! example
+	![](../images/advanced-search.png)
+	Here's me combining a lot of directives to find all the charts where I have:
+
+	- A server ranking lower than 10
+	- A BPI that is non-zero
+	- On a chart who's level is greater than 10.
+
+	Pretty powerful stuff!
+
 Multiple directives are separated by spaces. However, if you need to use a
 space inside a value, you should quote it, like this:
 
-`title:$"FREEDOM DiVE" percent:>50`.
+`title:"FREEDOM DiVE" percent:>50`.
 
 !!! tip
 	If you need quotes *inside* that, you should escape them, like this:
 
-	`artist:!"A Tribe Called \"Quest\"" percent:>50`
+	`artist:"A Tribe Called \"Quest\"" percent:>50`
 
 	However, it is likely you will never need to use this.
 

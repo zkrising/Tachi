@@ -81,7 +81,7 @@ None.
 | `userID` | Integer | The user this code belongs to. |
 | `createdOn` | Number | The time in unix milliseconds that this code was created. |
 
-!!! warn
+!!! warning
 	These codes expire around 30 minutes from their creation.
 
 ### Example

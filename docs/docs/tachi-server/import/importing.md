@@ -30,7 +30,7 @@ As a rough outline:
 	// ScoreImported implies success: true, and all others imply success: false.
 	type: "ScoreImported" | "KTDataNotFound" // ... and more;
 	// An error message.
-	message: string | null;
+	message: String | null;
 	// Some errors return some data about the error, or things like scoreImported returns the score that was imported.
 	content: see_implementation
 }

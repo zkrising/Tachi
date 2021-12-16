@@ -29,6 +29,6 @@ I am trying to keep the codebase well organised and tidy.
 		This only works on git 2.23 or greater. Your package manager may not have a version
 		this recent. See [Git Installation for Linux](https://git-scm.com/download/linux).
 
-!!! warn
+!!! warning
 	Your code should follow the branching setup we have.
 	You can read about it [here](../infrastructure/branches).

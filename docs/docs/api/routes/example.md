@@ -1,6 +1,6 @@
 # Example Endpoint
 
-*Endpoints will be formatted like this.*
+*Endpoints will be formatted like this. - These are not real endpoints!*
 
 *****
 
@@ -27,8 +27,8 @@ This endpoint greets the user.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `name` | string | The name of the user to greet. |
-| `birthday` (optional) | presence | Whether it is the user's birthday or not. |
+| `name` | String | The name of the user to greet. |
+| `birthday` (optional) | Presence | Whether it is the user's birthday or not. |
 
 Not providing required parameters will result in a 400 error.
 
@@ -55,8 +55,8 @@ Not providing required parameters will result in a 400 error.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `greeting` | string | A greeting for the user. |
-| `wasBirthday` | boolean | Whether today is the users birthday or not. |
+| `greeting` | String | A greeting for the user. |
+| `wasBirthday` | Boolean | Whether today is the users birthday or not. |
 
 !!! info
 	Since the above table corresponds to keys in the `body`
@@ -67,7 +67,7 @@ Not providing required parameters will result in a 400 error.
 
 	| Property | Type | Description |
 	| :: | :: | :: |
-	| `<body>` | string | The greeting. |
+	| `<body>` | String | The greeting. |
 
 	Corresponds to:
 	```json
@@ -110,4 +110,5 @@ GET /greet?name=zkldi
 	}
 	```
 
-	This is omitted, because it's redundant all of the time.
+	This is omitted, because it's redundant all of the time. -- That is to say,
+	You should never depend on parsing the content of `description`.

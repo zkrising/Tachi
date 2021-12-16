@@ -46,3 +46,34 @@ ARC will send
 HARD CLEAR, 88%
 and Tachi will have to assume that is a single score.
 ```
+
+## E-Amusement IIDX Resets (0EX Lamps)
+
+E-Amusement resets scores for IIDX every version. This would be fine under a normal interpretation of 'resets score', but the emphasis here is on the word *score*, not *reset*.
+
+E-Amusement IIDX Score Resets only reset your EX Score, you actually get to keep your lamp.
+For exported E-Amusement CSVs, this means that you submit scores with 0EX, but with lamps.
+For sanities sake, scores with 0EX are rejected so that you don't accidentally flood the server with fake scores because...
+
+## E-Amusement IIDX Resets (Timestamps)
+
+The timestamp for all your scores is also changed to the point when you first carded in on
+the new version of the game, meaning that if you were to import all those 0EX scores, you
+would create a session of every single chart you've ever lamped at that exact moment.
+
+## E-Amusement IIDX Timestamps
+
+Timestamps in E-Amusement IIDX CSVs are also only on a per-song basis, rather than a per-chart basis.
+If you play V (Another) and V (Hyper) in the same session, the data in the CSV says that you
+played both of those charts at the same time (since all charts of V have to share a timestamp).
+
+## Legacy LEGGENDARIA Formats (IIDX)
+
+From IIDX 21 to IIDX 26, Leggendarias were not their own difficulty. Instead they were
+just anothers with the special quantifier that the song title ended in † or †LEGGENDARIA exactly.
+To handle this, Tachi will automatically convert song titles ending in † or †LEGGENDARIA
+into their original form, changing the difficulty from ANOTHER to LEGGENDARIA.
+
+!!! note
+	This only applies to legacy imports -- This has been fixed since IIDX 27 (2019).
+

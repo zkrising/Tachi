@@ -10,7 +10,7 @@
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `search` | string | What to search for. |
+| `search` | String | What to search for. |
 
 ### Response
 

@@ -63,6 +63,7 @@ nav:
                 - "api/routes/api-tokens.md"
                 - "api/routes/oauth2.md"
                 - "api/routes/clients.md"
+                - "api/routes/config.md"
 
           - Webhooks:
                 - "api/webhooks/main.md"

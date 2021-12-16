@@ -19,7 +19,10 @@ These endpoints are related to users in general.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | Array&lt;UserDocument&gt; | The array of up to 100 users returned. |
+| `<body>` | Array&lt;[UserDocument](/tachi-server/documents/user)gt; | The array of up to 100 users returned. |
+
+!!! note
+	Users are guaranteeably returned in order of when they were `lastSeen`.
 
 ### Example
 
@@ -45,28 +48,25 @@ GET /api/v1/users
 
 `GET /api/v1/users/:userID`
 
-### Parameters
-
-| Property | Type | Description |
-| :: | :: | :: |
-
-
 !!! note
 	The :userID param has some special functionality,
 	and any time you see it in these docs, that
 	functionality is supported.
 
 	You may pass the integer userID for this user - 1.
-	You may also pass the username - zkldi.
+	You may also pass the username - zkldi (This is also case-insensitive, so you could pass ZkLDi).
 	You may also pass the special string - `me` - which
-	will select whatever user this authentication token
-	is for.
+	will select whatever user you are authenticated as.
+
+### Parameters
+
+None.
 
 ### Response
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | UserDocument | The user this ID/username corresponds to. |
+| `<body>` | [UserDocument](/tachi-server/documents/user)| The user this ID/username corresponds to. |
 
 ### Example
 
@@ -82,7 +82,9 @@ GET /api/v1/users/zkldi
 OR
 GET /api/v1/users/1
 OR
-GET /api/v1/users/me WHEN authenticated as userID 1.
+GET /api/v1/users/zkLDI (It's case insensitive!)
+OR
+GET /api/v1/users/me IF authenticated as userID 1.
 ```
 
 #### Response
@@ -92,6 +94,61 @@ GET /api/v1/users/me WHEN authenticated as userID 1.
 	id: 1,
 	username: "zkldi",
 	// ... so on
+}
+```
+
+*****
+
+## Modify this user document.
+
+`PATCH /api/v1/users/:userID`
+
+### Permissions
+
+- Self-Key level authentication as this user.
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `about` | String | An about me. This is rendered as markdown. |
+| `status` | String \| Null | The users status. If null, this will be unset. |
+| `discord`, `twitter`, `github`, `steam`, `youtube`, `twitch` | String \| Null | Information about this users social media. If null, this field will be unset. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | [UserDocument](/tachi-server/documents/user)| The user document with all of those changes applied. |
+
+### Example
+
+#### Request
+```js
+{
+	"about": "#Hello!**I'm zkldi**",
+	"status": "I'm cool!",
+	"twitter": null,
+	"steam": "zkldi"
+}
+```
+
+#### Response
+
+```js
+{
+	"id": 1,
+	"username": "zkldi",
+	"usernameLowercase": "zkldi",
+	"socialMedia": {
+		"twitter": null,
+		"steam": "zkldi",
+		// this property was already here, and not modified by the request.
+		"discord": "zkldi#2965",
+	},
+	"about": "#Hello!**I'm zkldi**",
+	"status": "I'm cool!",
+	// and other user props...
 }
 ```
 
@@ -228,7 +285,7 @@ None.
 
 ### Response
 
-Not JSON. This returns the actual JPG or PNG stored for
+**Not JSON**. This returns the actual JPG or PNG stored for
 this user.
 
 ### Example
@@ -237,14 +294,12 @@ N/A
 
 *****
 
-*****
-
 ## Unset your profile picture.
 
 `DELETE /api/v1/users/:userID/pfp`
 
 !!! note
-	If you do not have a profile picture set, this is
+	If you do not have a profile picture set, this will be
 	a 404 error.
 
 ### Permissions

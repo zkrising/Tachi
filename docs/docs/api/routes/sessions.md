@@ -18,7 +18,7 @@ None.
 | `scores` | ScoreDocument[] | The score documents involved in this session. |
 | `songs` | SongDocument[] | The songs these score documents belong to. |
 | `charts` | ChartDocument[] | The charts these score documents belong to. |
-| `user` | UserDocument | The user that made this session. |
+| `user` | [UserDocument](/tachi-server/documents/user)| The user that made this session. |
 
 ### Example
 

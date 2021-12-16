@@ -6,7 +6,7 @@ For a detailed explaination on how to use the OAuth2 flow, you can check [Using 
 
 *****
 
-!!! warn
+!!! warning
 	All endpoints on this list require [Self Key](./user-integrations.md) level authentication.
 
 	That is to say, it cannot be performed using Bearer tokens, and must be done by the user themselves.
@@ -198,7 +198,7 @@ PATCH /api/v1/clients/some_client_id
 
 `POST /api/v1/clients/:clientID/reset-secret`
 
-!!! warn
+!!! warning
 	This does **NOT** reset api keys created by this client as per OAuth2 spec.
 	
 	If you need that functionality, you will need to delete

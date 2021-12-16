@@ -23,8 +23,8 @@ Where API_KEY is the api key you wish to use.
 
 The other way to authorise a request is with your session cookie. This **MUST NOT** be used by code, and is instead a way for logged-in users to interact with the API as themselves.
 
-To use authentication in this way, simply make a request with your `ktchi_production_session` or
-`btchi_production_session` cookie.
+To use authentication in this way, simply make a request with your `Kamaitachi_SESSION` or
+`Bokutachi_SESSION` cookie.
 
 The reason for this second authentication method is so that, when a user logs in, they can use
 the cookie they were set to also interact with the API.

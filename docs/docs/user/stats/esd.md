@@ -5,6 +5,10 @@ ESD is short for "Estimated Standard Deviation".
 Standard deviation is a way of measuring how *dispersed*
 data is. [Wikipedia](https://en.wikipedia.org/wiki/Standard_deviation) explains what this is and why it works.
 
+!!! warning
+	ESD is not publically displayed on Tachi at the moment for any game.
+	This page is technically redundant.
+
 *****
 
 ## Motivation

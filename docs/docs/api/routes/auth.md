@@ -9,7 +9,11 @@ These endpoints relate to internal authentication methods. Read the warning belo
 	Furthermore, interacting with this programmatically
 	is near-impossible because you need to complete a CAPTCHA.
 
-	This is documented for completeness' sake.
+	Nevertheless, This is documented for completeness' sake.
+
+!!! warning
+	All of these endpoints are aggressively rate limited. If you fire a bot at this, you will probably get
+	your IP blacklisted. Don't do that.
 
 *****
 
@@ -23,15 +27,21 @@ Logs a user in and returns a session cookie.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `username` | string | The user's username. This is compared case-insensitively.
-| `password` | string | The user's password. |
-| `captcha` | string | |
+| `username` | String | The user's username. This is compared case-insensitively.
+| `!password` | String | The user's password. |
+| `captcha` | String | Information about the captcha filled out by the user. We use a Google ReCaptcha instance. |
+
+!!! info
+	The `!` prefix is special in that anything with it is assumed to be private and is **always**
+	ignored by our request logger.
+
+	Without it, we would log passwords!
 
 ### Response
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `userID` | integer | The ID of the user you authenticated as. |
+| `userID` | Integer | The ID of the user you authenticated as. |
 
 | HTTP Header | Description |
 | :: | :: |
@@ -48,7 +58,7 @@ POST /api/v1/auth/login
 ```json
 {
 	"username": "zkldi",
-	"password": "my_password",
+	"!password": "my_password",
 	"captcha": "herebedragons"
 }
 ```
@@ -70,19 +80,18 @@ POST /api/v1/auth/login
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `username` | string | A string between 3 and 20 characters. The first character must be A-Z, _ or -. The other 19 may be A-Z, 0-9, _ or -. |
-| `password` | string | An 8 character or longer string. |
-| `email` | string | |
-| `inviteCode` (Kamaitachi Only) | string | If on Kamaitachi, this is the user's invitation code. |
-| `captcha` | string | |
+| `username` | String | A string between 3 and 20 characters. The first character must be A-Z, _ or -. The other 19 may be A-Z, 0-9, _ or -. |
+| `!password` | String | An 8 character or longer string. |
+| `email` | String | |
+| `inviteCode` (Kamaitachi Only) | String (Undefined/Unused on Bokutachi) | If on Kamaitachi, this is the user's invitation code. |
+| `captcha` | String | |
 
 
 ### Response
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `id` | integer | The newly-created user's ID. |
-| `username` | string | The newly-created user's name. |
+| `<body>` | [UserDocument](/tachi-server/documents/user)| The newly-created user's User Document. |
 
 ### Example
 
@@ -93,8 +102,8 @@ POST /api/v1/auth/register
 
 ```json
 {
-	"username": "newguy",
-	"password": "my_password",
+	"username": "newGuy",
+	"!password": "my_password",
 	"captcha": "herebedragons",
 	"email": "test@example.com"
 }
@@ -105,9 +114,77 @@ POST /api/v1/auth/register
 ```json
 {
 	"id": 2,
-	"username": "newguy"
+	"username": "newGuy",
+	"usernameLowercase": "newguy",
+	"socialMedia": {
+		"discord": null,
+		"twitter": null,
+		"github": null,
+		"steam": null,
+		"youtube": null,
+		"twitch": null
+	},
+	"joinDate": 1639628634978,
+	"lastSeen": 1639628634978,
+	"about": "I'm a fairly nondescript person.",
+	"status": null,
+	"customPfpLocation": null,
+	"customBannerLocation": null,
+	"clan": null,
+	"badges": [],
+	"authLevel": 1
 }
 ```
+
+*****
+
+## Verify an email from the code that was sent to it.
+
+`POST /api/v1/auth/verify-email`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `code` | String | The Code that was sent to the users mailbox. |
+
+### Response
+
+Empty Object
+
+### Example
+
+#### Request
+```
+{
+	"code": "abcdef1234567890"
+}
+```
+
+#### Response
+
+Empty Object.
+
+*****
+
+## Resend a verification email to the requesting user's email address.
+
+`POST /api/v1/auth/resend-verify-email`
+
+**Requires Self-Key Level Auth**
+
+### Parameters
+
+None, This endpoint reads the requesting user from their session.
+
+### Response
+
+Empty object.
+
+### Example
+
+N/A
+
 
 *****
 
@@ -135,3 +212,68 @@ POST /api/v1/auth/logout
 #### Response
 
 Nothing.
+
+*****
+
+## Create a password reset code and send it to the provided email.
+
+`POST /api/v1/auth/forgot-password`
+
+!!! note
+	This endpoint sends the password reset code pretty-printed to the email, and is **NOT**
+	returned as part of the HTTP request.
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `email` | String | A user's email. If the email does not correspond to any accounts, 202 is returned anyway as a security measure. |
+
+### Response
+
+Empty Object. The endpoint immediately returns 202 to avoid giving away information about registered emails.
+
+### Example
+
+#### Request
+```js
+{
+	"email": "zkldi.dev@gmail.com"
+}
+```
+
+#### Response
+
+Although the request body returns nothing, `zkldi.dev@gmail.com` will have recieved an email with
+a URL containing the password reset code.
+
+*****
+
+## Reset a user's password with a password reset code.
+
+`POST /api/v1/auth/reset-password`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `code` | String | A password reset code. This is provided in a password reset email. |
+| `!password` | String | The password to change to. |
+
+### Response
+
+Empty Object.
+
+### Example
+
+#### Request
+```js
+{
+	"code": "1234567890abcdef",
+	"!password": "zkldi_is_so_cool",
+}
+```
+
+#### Response
+
+Empty Object.

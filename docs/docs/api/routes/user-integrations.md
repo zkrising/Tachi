@@ -46,6 +46,8 @@ GET /api/v1/users/1/integrations/kai/flo
 
 `POST /api/v1/users/:userID/integrations/kai/:kaiType/oauth2callback`
 
+**Kamaitachi Only**
+
 !!! info
 	This is used as part of an [OAuth2 Flow](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2).
 
@@ -60,7 +62,7 @@ GET /api/v1/users/1/integrations/kai/flo
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `code` | string | The intermediate code to use to get the access_token and refresh_token. |
+| `code` | String | The intermediate code to use to get the access_token and refresh_token. |
 
 ### Response
 
@@ -174,7 +176,7 @@ PATCH /api/v1/users/1/integrations/arc
 }
 ```
 
-!!! warn
+!!! warning
 	This endpoint doesn't do any checking on the `accountID` parameter to check whether it actually
 	works with ARC. There is also no checking to see whether you're the owner of this account.
 

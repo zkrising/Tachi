@@ -60,5 +60,5 @@ The hack part here is **not** an understatement, and it is genuinely rather dirt
 
 As a downside, this makes error messages *way* more cryptic, but for a 20x performance gain, it can be lived with.
 
-!!! warn
+!!! warning
 	If you are getting failures like "Child test left in suite", one of your test files is *crashing* the entire process, leaving all other tests just dangling.

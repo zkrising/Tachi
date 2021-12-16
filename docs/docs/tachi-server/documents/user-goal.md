@@ -19,8 +19,8 @@ interface UserGoalDocument {
 	playtype: Playtypes[Game];
 	achieved: boolean;
 	timeSet: integer;
-	timeAchieved: integer | null;
-	lastInteraction: integer | null;
+	timeAchieved: Integer | null;
+	lastInteraction: Integer | null;
 	progress: number | null;
 	progressHuman: string;
 	outOf: number;

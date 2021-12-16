@@ -16,18 +16,19 @@ It's a good way of sanity checking whether your code works.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `echo` | string | A string to echo. This is useful for checking whether parameters are sending over properly. |
+| `echo` | String | A string to echo. This is useful for checking whether parameters are sending over properly. |
 
 
 ### Response
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `serverTime` | integer | The current time of the server in Unix Milliseconds. |
-| `whoami` | integer \| null | The userID you are authenticated as. If you are not authenticated, this is null. |
-| `version` | string | The current version of Tachi-Server running. |
+| `serverTime` | Integer | The current time of the server in Unix Milliseconds. |
+| `startTime` | Integer | The time this server was booted in Unix Milliseconds. |
+| `whoami` | Integer \| null | The userID you are authenticated as. If you are not authenticated, this is null. |
+| `version` | String | The current version of Tachi-Server running. |
 | `permissions` | Array&lt;string&gt; | The permissions this request had. |
-| `echo` (Conditional) | string | If an `echo` parameter was provided, this is that exact parameter. |
+| `echo` (Conditional) | String | If an `echo` parameter was provided, this is that exact parameter. |
 
 ### Example
 
@@ -57,8 +58,9 @@ bodies properly.
 ### Example
 
 ```json
-POST /status
----
+POST /api/v1/status
+```
+```
 {
 	"echo": "hello world"
 }

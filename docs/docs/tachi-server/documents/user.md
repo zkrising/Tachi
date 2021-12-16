@@ -7,25 +7,25 @@
 ## Definition
 
 ```ts
-interface PublicUserDocument {
+interface Public[UserDocument](/tachi-server/documents/user){
 	username: string;
 	usernameLowercase: string;
 	id: integer;
 	socialMedia: {
-		discord?: string | null;
-		twitter?: string | null;
-		github?: string | null;
-		steam?: string | null;
-		youtube?: string | null;
-		twitch?: string | null;
+		discord?: String | null;
+		twitter?: String | null;
+		github?: String | null;
+		steam?: String | null;
+		youtube?: String | null;
+		twitch?: String | null;
 	};
 	joinDate: integer;
 	lastSeen: integer;
 	about: string;
-	status: string | null;
+	status: String | null;
 	customPfp: boolean;
 	customBanner: boolean;
-	clan: string | null; // todo
+	clan: String | null; // Clans are not implemented yet, so this field is null for everyone.
 	badges: UserBadges[];
 	authLevel: UserAuthLevels;
 }
@@ -44,7 +44,7 @@ interface PublicUserDocument {
 | `customPfp`, `customBanner` | Whether this user has a custom profile picture and banner. |
 | `clan` | Currently unused. This will store a users clan tag if they are in a clan. |
 | `badges` | An array of badges for this user. This contains things like "beta" and "alpha" tester indicators. |
-| `authLevel` | This users auth level. This is an enum stored inside tachi-common, where 0 states the user is banned. |
+| `authLevel` | This users auth level. This is an enum stored inside tachi-common. 0 = Banned, 1 = Normal User, 2 = Moderator, 3 = Admin. |
 
 ## Example
 

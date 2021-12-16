@@ -34,10 +34,10 @@ The below statistics apply to individual scores.
 	Every game needs to have a default rating algorithm. A default rating
 	algorithm needs to work well on all scores from all skill levels.
 
-	This means that some more 'pro' oriented statistics cannot be the default.
+	This means that some more 'top player' oriented statistics cannot be the default.
 
 	Some games might not have *any* rating algorithms. If we dont have
-	a good built-in contender for a default rating algorithm, we have to invent our own.
+	a good built-in contender for a default rating algorithm, we will have to invent our own.
 
 *****
 
@@ -54,24 +54,26 @@ Pros:
 Cons:
 
 - Has a poor understanding of high acc levels (MAX- and beyond).
+- Generally terrible for high level play. Boils down to getting the best score on easy 12s.
 
 KtRating (Kamaitachi Rating) is our custom rolled rating algorithm for IIDX.
 The issue we have is that IIDX doesn't have any metrics that are a good contender
 for our default rating algorithm.
 
-DJ Points is worthless because it depends on the notecount of the chart instead of its level
-and BPI only really has any meaning to kaidens, so we're stuck having to roll our own statistic.
+BPI only really has any meaning to kaidens, so we're stuck having to roll our own statistic.
 
-KtRating was designed to be a generic **timing** rating algorithm for IIDX. It isn't perfect
-by any means, and is generally worse than BPI at 12s. It also struggles with things like
+KtRating was designed to be a generic **timing** rating algorithm for IIDX. It isn't good
+by any means, and is significantly worse than BPI at 12s, 11s and 10s. It also struggles with things like
 MAX- and stronger scores.
 
-Regardless, it works decently for most charts and most players. It uses a curve such that
+Regardless, it works decently for lower level players. It uses a curve such that
 an AA on a chart rated X will be worth X points.
 
 !!! note
-	X will be influenced by the tierlist. For example, mosaic SPA is rated a 12 internally,
-	but has a lower tierlist timing rating value of around 10.5.
+	This is slated to be replaced with DJ Points. An in-built metric in IIDX.
+	Although that metric is broken for many reasons, it is more immediately understandable, and saves us having to maintain a broken metric.
+
+	See [This GitHub Issue](https://github.com/TNG-dev/tachi-server/issues/597)
 
 *****
 
@@ -85,7 +87,7 @@ Pros:
 Cons:
 
 - Depends on Kaiden Average and World Record, which can be highly fluctuative.
-- Not able to accurately cross-compare values (i.e. 20BPI on one song is often not equivalent in 'skill' to 20BPI on another.)
+- Not able to accurately cross-compare values (i.e. 20BPI on one song is often not equivalent in 'skill'[^1] to 20BPI on another.)
 - Only practically works on 12s. It can be extended to 11s, but it doesn't work as well. It does not work at all below 11.
 
 There are two implementations of BPI - We'll call them Nori BPI and Poyashi BPI, Tachi uses the
@@ -99,7 +101,7 @@ more recent Poyashi BPI.
 	Namely, reducing the impact of high WRs on average BPI.
 
 	As a consequence, Poyashi BPI is significantly easier than Nori BPI in every circumstance.
-	Whether this is an issue or not is up to you, and I think most players enjoy seeing the
+	Whether this is an issue or not is up to you, but I think most players enjoy seeing the
 	larger number.
 
 BPI looks at the kaiden average and world record for a chart, and constructs an exponential
@@ -108,7 +110,7 @@ equivalent to the world record.
 
 !!! info
 	For scores less than the Kaiden Average, Poyashi BPI uses a negative extension that caps
-	at -15. This appears to be arbitrary.
+	at -15. This capping decision appears to be arbitrary.
 
 	For Nori BPI, scores less than the Kaiden Average become [Complex Numbers](https://en.wikipedia.org/wiki/Complex_number).
 
@@ -117,7 +119,8 @@ decently. As mentioned above in the cons, BPI is not very cross-comparable. 20BP
 is not necessarily as good as 20BPI on another.
 
 !!! example
-	20BPI on Verflucht Leggendaria is AAA+66. 20BPI on FAKE TIME is also AAA+66.
+	At the time of writing, 20BPI on Verflucht Leggendaria is AAA+66. 20BPI on FAKE TIME is also AAA+66.
+	Experienced players will notice a problem here.
 
 *****
 
@@ -142,6 +145,8 @@ BP is not taken into account, and the only lamps that give rating are Normal, Ha
 
 !!! note
 	In the scenario where, say, a NC is worth more than a HC, HCing the chart will give the NC rating.
+
+	This also applies to EXHCs.
 
 *****
 
@@ -174,11 +179,8 @@ given score, which made the function painfully discrete.
 	VF4 is deprecated because it's 4 years old at this
 	point, and its flaws make it incredibly abusable.
 
-	An implementation of them is still in the
-	codebase, but is unused and commented out.
-
 *****
-
+<!-- 
 ### ktRating (DDR)
 
 - **Default for DDR SP and DDR DP**
@@ -226,8 +228,8 @@ level 8.
 As such, it only applies to a rather small subset of
 players and an even smaller subset of their scores.
 
-*****
-
+***** -->
+<!-- 
 ### KtRating (maimai)
 
 - **Default for maimai**
@@ -255,7 +257,7 @@ for maimai. Since maimai is a very accuracy oriented game,
 it punishes low-accuracy scores heavily.
 
 Scores below 90% are heavily nerfed. Timing is rewarded
-significantly. Clear type is ignored.
+significantly. Clear type is ignored. -->
 
 ### KtRating (MÚSECA)
 
@@ -328,11 +330,7 @@ respectively.
 	- Stella
 	- Overjoy
 
-	For 14K, the currently supported tables are:
-
-	- Normal
-	- Insane
-	- Satellite
+	For 14K, no tables are currently supported.
 
 ### Rating (CHUNITHM)
 
@@ -355,9 +353,6 @@ at the accuracy of the provided score.
 	I don't play CHUNITHM, so I don't really know the
 	implementation flaws of this algorithm for individual
 	scores.
-
-	I imagine it probably overrates fails on high level
-	charts.
 
 ### Skill (Gitadora)
 
@@ -429,7 +424,7 @@ of making VF6 not a small decimal, and is generally how
 people talk about their volforce.
 
 *****
-
+<!-- 
 ### DDR
 
 The below statistics apply to both SP and DP.
@@ -442,9 +437,9 @@ The below statistics apply to both SP and DP.
 
 The average of your highest 20 ktRatings.
 
-*****
+***** -->
 
-### maimai, museca
+### MUSECA
 
 The below statistics apply to maimai and museca.
 
@@ -498,7 +493,7 @@ These are almost always derived from individual score
 statistics as listed above.
 
 If a session has less than 10 scores, all of the below
-statistics are marked as N/A[^1] except for MFCP.
+statistics are marked as N/A except for MFCP.
 
 *****
 
@@ -582,4 +577,4 @@ The average of the highest 10 skills achieved that session.
 	free to report it as an issue if you think it
 	should be added.
 
-[^1]: Internally, they are marked as `null`.
+[^1]: Skill is obviously very loosely used here. If there was a consensus on what "skill" something was, we would already have a perfect rating algorithm.

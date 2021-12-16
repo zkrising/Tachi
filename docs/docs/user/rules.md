@@ -138,7 +138,7 @@ show it to your mother, it doesn't belong here.
 	Uploading illegal (under international common or EU law)
 	material will result in an immediate permanent ban.
 
-!!! warn
+!!! warning
 	This rule **especially** applies to loli or shota stuff.
 
 	I don't want to see that garbage, don't upload it, you'll get in trouble.

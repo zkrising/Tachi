@@ -21,7 +21,7 @@ None.
 | `gameStats` | UserGameStatsDocument | The User's GameStats for this game + playtype. |
 | `firstScore` | ScoreDocument or Null | The user's first score for this game + playtype. This is null if the user has no scores with timestamps. |
 | `mostRecentScore` | ScoreDocument or Null | The user's most recent score. This is null if the user has no scores with timestamps. |
-| `totalScores` | integer | The total amount of scores this user has. |
+| `totalScores` | Integer | The total amount of scores this user has. |
 | `rankingData` | Record&lt;Rating Algorithm, { ranking: integer, outOf: integer }&gt; | The position of this player on the default leaderboards for this game, and how many players it is out of. |
 
 ### Example
@@ -297,6 +297,59 @@ GET /api/v1/users/zkldi/games/iidx/SP/pbs/best?alg=BPI
 
 *****
 
+## Returns all of a users personal bests.
+
+`GET /api/v1/users/:userID/games/:game/:playtype/pbs/all`
+
+### Parameters
+
+None.
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `pbs` | Array&lt;PBDocument&gt; | All of the users PB Documents |
+| `songs` | Array&lt;SongDocument&gt; | All of the relevant songs. |
+| `charts` | Array&lt;ChartDocument&gt; | All of the relevant charts. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/users/zkldi/games/iidx/SP/pbs/all
+```
+
+#### Response
+
+```js
+{
+	pbs: [{
+		userID: 1,
+		scoreData: {
+			score: 123,
+			// ...
+		}
+	}],
+	songs: [{
+		title: "Verflucht",
+		// ...
+	}],
+	charts: [{
+		songID: 123,
+		playtype: "SP",
+		difficulty: "ANOTHER",
+		// ...
+	}, {
+		songID: 123,
+		playtype: "SP",
+		difficulty: "HYPER",
+	}]
+}
+```
+
+*****
+
 ## Get A User's PB for a given chart.
 
 `GET /api/v1/users/:userID/games/:game/:playtype/pbs/:chartID`
@@ -467,7 +520,7 @@ song titles of played songs inside sessions.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `search` | string | The session name to search for. |
+| `search` | String | The session name to search for. |
 
 ### Response
 
@@ -510,7 +563,7 @@ These are returned in descending order.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `alg` (Optional) | string | The name of the algorithm to use instead of the default. |
+| `alg` (Optional) | String | The name of the algorithm to use instead of the default. |
 
 ### Response
 
@@ -572,6 +625,44 @@ None.
 | :: | :: | :: |
 | `<body>` | Array&lt;SessionDocument&gt; | The array of the users sessions. |
 
+*****
+
+## Get a user's most recent session.
+
+`GET /api/v1/users/:userID/games/:game/:playtype/sessions/last`
+
+!!! info
+	This endpoint will return 404 if the user has never had a
+	session for this game.
+
+### Parameters
+
+None.
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | SessionDocument | The user's most recent session. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/users/zkldi/games/iidx/SP/sessions/last
+```
+
+#### Response
+
+```js
+{
+	"name": "foo",
+	"desc": "My most recent session",
+	// ...
+}
+```
+
+
 ## Get a user's most recent 100 highlighted sessions.
 
 `GET /api/v1/users/:userID/games/:game/:playtype/sessions/highlighted`
@@ -609,7 +700,8 @@ GET /api/v1/users/zkldi/games/iidx/SP/sessions/highlighted
 			ktRating: 14,
 			bpi: 3
 		}
-		highlight: true
+		highlight: true,
+		// ... more props
 	},
 ]
 ```
@@ -698,7 +790,7 @@ GET /api/v1/users/zkldi/games/iidx/SP/most-played
 | :: | :: | :: |
 | `above` | Array&lt;UserGameStats&gt; | Up to 5 users' game stats better than this user. |
 | `below` | Array&lt;UserGameStats&gt; | Same as above, but below the user. |
-| `users` | Array&lt;UserDocument&gt; | The user documents related to the above statistics. |
+| `users` | Array&lt;[UserDocument](/tachi-server/documents/user)gt; | The user documents related to the above statistics. |
 | `thisUsersStats` | UserGameStats | The requested user's stats for this GPT. |
 | `thisUsersRanking` | {outOf: integer, ranking: integer} | The requested user's ranking for this GPT. |
 
@@ -810,7 +902,7 @@ GET /api/v1/users/1/games/iidx/SP/history
 
 `GET /api/v1/users/:userID/games/:game/:playtype/settings`
 
-!!! warn
+!!! warning
 	Unlike most other applications, your settings are completely public. GPT Settings only concern
 	cosmetic things, like what rating algorithms to prefer.
 

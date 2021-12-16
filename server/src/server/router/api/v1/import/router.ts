@@ -175,7 +175,7 @@ router.post("/orphans", RequirePermissions("submit_score"), async (req, res) => 
 		(e) => e.scoreID
 	);
 
-	let done = 0;
+	let processed = 0;
 	let failed = 0;
 	let success = 0;
 	let removed = 0;
@@ -183,7 +183,7 @@ router.post("/orphans", RequirePermissions("submit_score"), async (req, res) => 
 	await Promise.all(
 		orphans.map((or) =>
 			ReprocessOrphan(or, blacklist, logger).then((r) => {
-				done++;
+				processed++;
 				if (r === null) {
 					removed++;
 				} else if (r === false) {
@@ -201,9 +201,9 @@ router.post("/orphans", RequirePermissions("submit_score"), async (req, res) => 
 
 	return res.status(200).json({
 		success: true,
-		description: `Reprocessed ${done} orphan scores.`,
+		description: `Reprocessed ${processed} orphan scores.`,
 		body: {
-			done,
+			processed,
 			failed,
 			success,
 			removed,

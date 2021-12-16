@@ -294,7 +294,9 @@ router.post("/recalc", async (req, res) => {
 	return res.status(200).json({
 		success: true,
 		description: `Recalced scores.`,
-		body: {},
+		body: {
+			scoresRecalced: scoreIDs.length,
+		},
 	});
 });
 

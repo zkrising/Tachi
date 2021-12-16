@@ -21,8 +21,8 @@
 | Property | Type | Description |
 | :: | :: | :: |
 | `score` | [ScoreDocument](/tachi-server/documents/score) | The score document with this scoreID. |
-| `song` (Conditional) | SongDocument | If `getRelated` is set, then this is the song the score belongs to. |
-| `chart` (Conditional) | ChartDocument | Same as above, but for the chart document. |
+| `song` (Conditional) | [SongDocument](/tachi-server/documents/song) | If `getRelated` is set, then this is the song the score belongs to. |
+| `chart` (Conditional) | [ChartDocument](/tachi-server/documents/chart) | Same as above, but for the chart document. |
 
 ### Example
 

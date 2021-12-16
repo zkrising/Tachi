@@ -14,10 +14,10 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `session` | SessionDocument | The session document at this ID. |
+| `session` | [SessionDocument](/tachi-server/documents/session) | The session document at this ID. |
 | `scores` | Array&lt;[ScoreDocument](/tachi-server/documents/score)&gt; | The score documents involved in this session. |
-| `songs` | Array&lt;SongDocument&gt; | The songs these score documents belong to. |
-| `charts` | Array&lt;ChartDocument&gt; | The charts these score documents belong to. |
+| `songs` | Array&lt;[SongDocument](/tachi-server/documents/song)&gt; | The songs these score documents belong to. |
+| `charts` | Array&lt;[ChartDocument](/tachi-server/documents/chart)&gt; | The charts these score documents belong to. |
 | `user` | [UserDocument](/tachi-server/documents/user) | The user that made this session. |
 
 ### Example
@@ -89,7 +89,7 @@ GET /api/v1/sessions/Qe7b00261b1d3ba8e5c9ee4e76e77ea9f07d9493b
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | SessionDocument | The new session document, after modifications. |
+| `<body>` | [SessionDocument](/tachi-server/documents/session) | The new session document, after modifications. |
 
 ### Example
 

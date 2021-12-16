@@ -180,8 +180,8 @@ GET /api/v1/users/zkldi/games/iidx/SP/milestones
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `songs` | Array&lt;SongDocument&gt; | The array of songs this search returned. |
-| `charts` | Array&lt;ChartDocument&gt; | The array of charts this search returned. |
+| `songs` | Array&lt;[SongDocument](/tachi-server/documents/song)&gt; | The array of songs this search returned. |
+| `charts` | Array&lt;[ChartDocument](/tachi-server/documents/chart)&gt; | The array of charts this search returned. |
 | `pbs` | Array&lt;PBDocument&gt; | The array of personal bests this search returned. This is limited to 30 returns. |
 
 ### Example
@@ -241,8 +241,8 @@ different rating algorithm to sort under.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `songs` | Array&lt;SongDocument&gt; | The array of songs this search returned. |
-| `charts` | Array&lt;ChartDocument&gt; | The array of charts this search returned. |
+| `songs` | Array&lt;[SongDocument](/tachi-server/documents/song)&gt; | The array of songs this search returned. |
+| `charts` | Array&lt;[ChartDocument](/tachi-server/documents/chart)&gt; | The array of charts this search returned. |
 | `pbs` | Array&lt;PBDocument&gt; | The array of personal bests this search returned. |
 
 ### Example
@@ -310,8 +310,8 @@ None.
 | Property | Type | Description |
 | :: | :: | :: |
 | `pbs` | Array&lt;PBDocument&gt; | All of the users PB Documents |
-| `songs` | Array&lt;SongDocument&gt; | All of the relevant songs. |
-| `charts` | Array&lt;ChartDocument&gt; | All of the relevant charts. |
+| `songs` | Array&lt;[SongDocument](/tachi-server/documents/song)&gt; | All of the relevant songs. |
+| `charts` | Array&lt;[ChartDocument](/tachi-server/documents/chart)&gt; | All of the relevant charts. |
 
 ### Example
 
@@ -365,7 +365,7 @@ GET /api/v1/users/zkldi/games/iidx/SP/pbs/all
 | Property | Type | Description |
 | :: | :: | :: |
 | `pb` | PBDocument | The user's PB for this chart. |
-| `chart` | ChartDocument | The chart this PB is on. |
+| `chart` | [ChartDocument](/tachi-server/documents/chart) | The chart this PB is on. |
 | `scores` (Conditional) | Array&lt;[ScoreDocument](/tachi-server/documents/score)&gt; | If `getComposition` is present, then this field contains the array of score documents that composed this PB. | 
 
 ### Example
@@ -407,8 +407,8 @@ GET /api/v1/users/1/games/iidx/SP/pbs/some_chart_id
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `songs` | Array&lt;SongDocument with __textScore&gt; | The array of songs this search returned. |
-| `charts` | Array&lt;ChartDocument&gt; | The array of charts this search returned. |
+| `songs` | Array&lt;[SongDocument](/tachi-server/documents/song) with __textScore&gt; | The array of songs this search returned. |
+| `charts` | Array&lt;[ChartDocument](/tachi-server/documents/chart)&gt; | The array of charts this search returned. |
 | `scores` | Array&lt;[ScoreDocument](/tachi-server/documents/score)&gt; | The array of scores this search returned. This is limited to 30 returns. |
 
 !!! info
@@ -467,8 +467,8 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `songs` | Array&lt;SongDocument&gt; | The array of songs this search returned. |
-| `charts` | Array&lt;ChartDocument&gt; | The array of charts this search returned. |
+| `songs` | Array&lt;[SongDocument](/tachi-server/documents/song)&gt; | The array of songs this search returned. |
+| `charts` | Array&lt;[ChartDocument](/tachi-server/documents/chart)&gt; | The array of charts this search returned. |
 | `scores` | Array&lt;[ScoreDocument](/tachi-server/documents/score)&gt; | The array of scores this search returned. This is limited to 30 returns. |
 
 ### Example
@@ -526,7 +526,7 @@ song titles of played songs inside sessions.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | Array&lt;SessionDocument&gt; | The array of sessions that matched this query. |
+| `<body>` | Array&lt;[SessionDocument](/tachi-server/documents/session)&gt; | The array of sessions that matched this query. |
 
 ### Example
 
@@ -569,7 +569,7 @@ These are returned in descending order.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | Array&lt;SessionDocument&gt; | The array of the users best sessions. |
+| `<body>` | Array&lt;[SessionDocument](/tachi-server/documents/session)&gt; | The array of the users best sessions. |
 
 ### Example
 
@@ -623,7 +623,7 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | Array&lt;SessionDocument&gt; | The array of the users sessions. |
+| `<body>` | Array&lt;[SessionDocument](/tachi-server/documents/session)&gt; | The array of the users sessions. |
 
 *****
 
@@ -643,7 +643,7 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | SessionDocument | The user's most recent session. |
+| `<body>` | [SessionDocument](/tachi-server/documents/session) | The user's most recent session. |
 
 ### Example
 
@@ -679,7 +679,7 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | Array&lt;SessionDocument&gt; | The array of the users highlighted sessions. |
+| `<body>` | Array&lt;[SessionDocument](/tachi-server/documents/session)&gt; | The array of the users highlighted sessions. |
 
 ### Example
 
@@ -720,8 +720,8 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `songs` | Array&lt;SongDocument&gt; | The array of songs related to the pbs. |
-| `charts` | Array&lt;ChartDocument&gt; | The array of charts related to the pbs. |
+| `songs` | Array&lt;[SongDocument](/tachi-server/documents/song)&gt; | The array of songs related to the pbs. |
+| `charts` | Array&lt;[ChartDocument](/tachi-server/documents/chart)&gt; | The array of charts related to the pbs. |
 | `pbs` | Array&lt;(PBDocument & {__playcount: integer})&gt; | An array of PB documents with the `__playcount` property attached. This property dictates how many times the user has played this chart. |
 
 ### Example

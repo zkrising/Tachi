@@ -89,5 +89,12 @@ export function TachiScoreDataToBeatorajaFormat(
 		judgements[key] = scoreData.hitMeta[key] ?? 0;
 	}
 
-	return beatorajaScore;
+	// If we have no epg/egr data, we can't calculate EX score on the beatoraja client.
+	// We have to fake some data for LR2 scores/other scores.
+	if (!judgements.epg && !judgements.lpg && !judgements.egr && !judgements.lgr) {
+		judgements.epg = Math.floor(pbScore.scoreData.score / 2);
+		judgements.egr = pbScore.scoreData.score % 2;
+	}
+
+	return { ...beatorajaScore, ...judgements };
 }

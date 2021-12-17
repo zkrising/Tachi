@@ -7,7 +7,7 @@
 ## Definition
 
 ```ts
-interface Public[UserDocument](/tachi-server/documents/user){
+interface Public[UserDocument](../../tachi-server/documents/user){
 	username: string;
 	usernameLowercase: string;
 	id: integer;

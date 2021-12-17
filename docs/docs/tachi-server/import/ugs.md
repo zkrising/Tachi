@@ -87,7 +87,7 @@ We could return a classHandler from our parser function
 that encloses this updated information, such as:
 ```ts
 function CreateClassHandler(spClass: number): ClassHandler {
-	return (/* classHandlers have some args but we dont need them for this example */) => {
+	return (../../* classHandlers have some args but we dont need them for this example */) => {
 		return {
 			dan: spClass
 		}

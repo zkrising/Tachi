@@ -11,7 +11,7 @@ This function can be found at `src/lib/score-import/framework/score-import-main.
 
 | Argument | Type | Description |
 | :: | :: | :: |
-| `user` | [UserDocument](/tachi-server/documents/user) | The user that is making this import request. |
+| `user` | [UserDocument](../../tachi-server/documents/user) | The user that is making this import request. |
 | `userIntent` | boolean | Whether this import was performed with User Intent - See [Import Types](./import-types.md#user-intent) |
 | `importType` | ImportType | What kind of import "type" this is. For more on this, see [Import Types](./import-types.md)
 | `InputParser` | Function | The parser function to call. For more info, see [Parsing and Converting](./parse-conv.md)

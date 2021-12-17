@@ -1,7 +1,7 @@
 # Admin Endpoints
 
 These endpoints are for adminstrator use. As such, they all
-require an `authLevel` of atleast 3. For more information, see the [UserDocument](/tachi-server/documents/user).
+require an `authLevel` of atleast 3. For more information, see the [UserDocument](../../tachi-server/documents/user.md).
 
 *****
 

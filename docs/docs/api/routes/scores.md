@@ -20,9 +20,9 @@
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `score` | [ScoreDocument](/tachi-server/documents/score) | The score document with this scoreID. |
-| `song` (Conditional) | [SongDocument](/tachi-server/documents/song) | If `getRelated` is set, then this is the song the score belongs to. |
-| `chart` (Conditional) | [ChartDocument](/tachi-server/documents/chart) | Same as above, but for the chart document. |
+| `score` | [ScoreDocument](../../tachi-server/documents/score) | The score document with this scoreID. |
+| `song` (Conditional) | [SongDocument](../../tachi-server/documents/song) | If `getRelated` is set, then this is the song the score belongs to. |
+| `chart` (Conditional) | [ChartDocument](../../tachi-server/documents/chart) | Same as above, but for the chart document. |
 
 ### Example
 
@@ -77,7 +77,7 @@ GET /api/v1/scores/Re7b00261b1d3ba8e5c9ee4e76e77ea9f07d9493b
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | [ScoreDocument](/tachi-server/documents/score) | The new score document.
+| `<body>` | [ScoreDocument](../../tachi-server/documents/score) | The new score document.
 
 ### Example
 

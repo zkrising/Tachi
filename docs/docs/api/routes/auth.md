@@ -91,7 +91,7 @@ POST /api/v1/auth/login
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `<body>` | [UserDocument](/tachi-server/documents/user) | The newly-created user's User Document. |
+| `<body>` | [UserDocument](../../tachi-server/documents/user) | The newly-created user's User Document. |
 
 ### Example
 

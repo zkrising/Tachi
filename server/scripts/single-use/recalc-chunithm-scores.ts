@@ -9,7 +9,7 @@ const logger = CreateLogCtx(__filename);
 if (require.main === module) {
 	let i = 0;
 	db.scores
-		.find({ game: "chunithm", "scoreData.grade": "SS" })
+		.find({ game: "chunithm", "scoreData.grade": null })
 		// @ts-expect-error dumb
 		.each(async (oldScore, { pause, resume }) => {
 			pause();

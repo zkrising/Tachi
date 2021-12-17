@@ -223,7 +223,7 @@ function MinimapElement({
 						wasRecent ? "scoreinfo-grid-minimap-element-recent" : ""
 					}`}
 					style={{
-						backgroundColor: colour ? ChangeOpacity(colour, 0.3) : undefined,
+						backgroundColor: colour ? ChangeOpacity(colour, 0.4) : undefined,
 					}}
 				>
 					{wasRecent && (

@@ -112,7 +112,9 @@ const ConvertEamSDVXCSV: ConverterFunction<SDVXEamusementCSVData, EmptyObject> =
 		},
 	};
 
-	logger.info(`Returning dryscore with ${dryScore.scoreData.score} for ${humanisedChartTitle}`);
+	logger.verbose(
+		`Returning dryscore with ${dryScore.scoreData.score} for ${humanisedChartTitle}`
+	);
 
 	return { chart, song, dryScore };
 };

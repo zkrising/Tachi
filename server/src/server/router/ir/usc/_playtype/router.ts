@@ -111,7 +111,7 @@ router.get("/", (req, res) =>
 		body: {
 			serverTime: Math.floor(Date.now() / 1000),
 			serverName: TachiConfig.NAME,
-			irVersion: "0.3.3-a",
+			irVersion: "0.4.0-a",
 		},
 	})
 );

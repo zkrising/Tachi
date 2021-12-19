@@ -72,16 +72,15 @@ t.test("GET /ir/usc/Keyboard", async (t) => {
 
 t.test("GET /ir/usc/Controller", async (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(async () => {
-		await db["api-tokens"].insert({
-			userID: 1,
-			identifier: "USC Token",
-			permissions: {
-				submit_score: true,
-			},
-			token: "foo",
-			fromAPIClient: null,
-		});
+
+	await db["api-tokens"].insert({
+		userID: 1,
+		identifier: "USC Token",
+		permissions: {
+			submit_score: true,
+		},
+		token: "foo",
+		fromAPIClient: null,
 	});
 
 	TestAuth("/ir/usc/Controller");
@@ -416,7 +415,7 @@ t.test("POST /replays", (t) => {
 		t.strictSame(res.body, {
 			statusCode: 20,
 			description: "Saved replay.",
-			body: null,
+			body: {},
 		});
 
 		const stored = await CDNRetrieve("/uscir/replays/MOCK_IDENTIFIER");

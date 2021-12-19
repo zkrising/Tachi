@@ -72,21 +72,20 @@ t.test("GET /ir/usc/Keyboard", async (t) => {
 
 t.test("GET /ir/usc/Controller", async (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(async () => {
-		await db["api-tokens"].insert({
-			userID: 1,
-			identifier: "USC Token",
-			permissions: {
-				submit_score: true,
-			},
-			token: "foo",
-			fromAPIClient: null,
-		});
+
+	await db["api-tokens"].insert({
+		userID: 1,
+		identifier: "USC Token",
+		permissions: {
+			submit_score: true,
+		},
+		token: "fee",
+		fromAPIClient: null,
 	});
 
 	TestAuth("/ir/usc/Controller");
 
-	const res = await mockApi.get("/ir/usc/Controller").set("Authorization", "Bearer foo");
+	const res = await mockApi.get("/ir/usc/Controller").set("Authorization", "Bearer fee");
 
 	t.equal(res.body.statusCode, 20, "Should return 20");
 	t.match(
@@ -416,7 +415,7 @@ t.test("POST /replays", (t) => {
 		t.strictSame(res.body, {
 			statusCode: 20,
 			description: "Saved replay.",
-			body: null,
+			body: {},
 		});
 
 		const stored = await CDNRetrieve("/uscir/replays/MOCK_IDENTIFIER");

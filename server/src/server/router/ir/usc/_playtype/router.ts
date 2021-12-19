@@ -149,6 +149,7 @@ router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
 	return res.status(200).json({
 		statusCode: STATUS_CODES.SUCCESS,
 		description: "This chart is tracked by the IR.",
+		body: {},
 	});
 });
 
@@ -414,6 +415,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 		return res.status(200).json({
 			statusCode: STATUS_CODES.ACCEPTED,
 			description: `This score has been accepted, but is waiting for more players before its parent chart is accepted. (${players.length}/${ServerConfig.USC_QUEUE_SIZE})`,
+			body: {},
 		});
 	}
 
@@ -508,7 +510,7 @@ router.post(
 			return res.status(200).json({
 				statusCode: STATUS_CODES.SUCCESS,
 				description: "Saved replay.",
-				body: null,
+				body: {},
 			});
 		} catch (err) {
 			// impossible to test pretty much.

@@ -79,13 +79,13 @@ t.test("GET /ir/usc/Controller", async (t) => {
 		permissions: {
 			submit_score: true,
 		},
-		token: "foo",
+		token: "fee",
 		fromAPIClient: null,
 	});
 
 	TestAuth("/ir/usc/Controller");
 
-	const res = await mockApi.get("/ir/usc/Controller").set("Authorization", "Bearer foo");
+	const res = await mockApi.get("/ir/usc/Controller").set("Authorization", "Bearer fee");
 
 	t.equal(res.body.statusCode, 20, "Should return 20");
 	t.match(

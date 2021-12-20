@@ -64,11 +64,23 @@ export function FormatChart(
 	if (game === "bms") {
 		const tables = (chart as ChartDocument<"bms:7K" | "bms:14K">).data.tableFolders;
 
-		if (tables.length === 0) {
-			return song.title;
+		const bmsSong = song as SongDocument<"bms">;
+
+		let realTitle = bmsSong.title;
+
+		if (bmsSong.data.subtitle) {
+			realTitle += ` - ${bmsSong.data.subtitle}`;
 		}
 
-		return `${song.title} (${tables.map((e) => `${e.table}${e.level}`).join(", ")})`;
+		if (bmsSong.data.genre) {
+			realTitle += ` [${bmsSong.data.genre}]`;
+		}
+
+		if (tables.length === 0) {
+			return realTitle;
+		}
+
+		return `${realTitle} (${tables.map((e) => `${e.table}${e.level}`).join(", ")})`;
 	}
 
 	const gameConfig = GetGameConfig(game);

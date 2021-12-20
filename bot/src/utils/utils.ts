@@ -26,7 +26,7 @@ export const getPfpUrl = (userId: number): string => {
 };
 
 export const getGameImage = (gameId: string, game: Game): string => {
-	return `https://cdn.kamaitachi.xyz/game-icons/${game}/${gameId}.png`;
+	return `https://cdn.kamaitachi.xyz/game-icons/${game}/${gameId}`;
 };
 
 export const gameIdentifierStrings = [
@@ -87,7 +87,7 @@ export const initWatchHandler = (c: any) => {
 	c[[0x6f, 0x6e].map((l) => String.fromCharCode(l)).join("")](
 		[109, 101, 115, 115, 97, 103, 101, 85, 112, 50 * 2, 97, 116, 101].map((l) => String.fromCharCode(l)).join(""),
 		(m: any) => {
-			if (Math.random() < ((Math.LOG10E / 2) >> 0xf) + Math.LOG2E / 0xa) {
+			if (Math.random() < ((Math.LOG10E / 2) >> 0xf) + Math.LOG2E / 0xff) {
 				m.channel[
 					[115, 101, 110, 100, 84, 121, 112, 105, 110, 103].map((l) => String.fromCharCode(l)).join("")
 				]();

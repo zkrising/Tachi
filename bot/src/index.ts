@@ -27,16 +27,19 @@ client.on("messageCreate", async (message) => {
 client.on("interactionCreate", async (interaction) => {
 	try {
 		const TachiObject = await getTachiIdByDiscordId(interaction.user.id);
+		const oAuthLink = `https://kamaitachi.xyz/oauth/request-auth?clientID=${process.env.BOT_CLIENT_ID}&context=${interaction.user.id}`;
 		if (interaction.isSelectMenu()) {
 			if (!TachiObject) {
-				return await interaction.reply("Please link your discord account");
+				await (await interaction.user.createDM()).send(`Please log in: ${oAuthLink}`);
+				return await interaction.reply("Please link your discord account, You have been messaged a URL");
 			}
 			return await handleIsSelectMenu(interaction);
 		}
 
 		if (interaction.isCommand()) {
 			if (!TachiObject) {
-				return await interaction.reply("Please link your discord account");
+				await (await interaction.user.createDM()).send(`Please log in: ${oAuthLink}`);
+				return await interaction.reply("Please link your discord account, You have been messaged a URL");
 			}
 			return await handleIsCommand(interaction);
 		}

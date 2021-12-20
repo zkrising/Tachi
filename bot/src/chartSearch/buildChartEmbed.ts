@@ -104,6 +104,7 @@ export const buildChartEmbed = async <T extends Game, I extends IDStrings = IDSt
 
 			const sortedCharts = filteredCharts.sort((a, b) => a.levelNum - b.levelNum);
 
+			logger.info("Getting chart PBs");
 			for (const chart of sortedCharts) {
 				try {
 					const PB = await getPBForChart(chart.chartID, chart.playtype, game, discordUserId);
@@ -126,8 +127,11 @@ export const buildChartEmbed = async <T extends Game, I extends IDStrings = IDSt
 					);
 				} catch {
 					embed.addField(`${chart.difficulty} (${chart.level})`, "No Scores Available!");
+				} finally {
+					logger.verbose(`Fetched PBs for ${chart.chartID}`);
 				}
 			}
+			logger.info("Got chart PBs");
 
 			return { embeds: [embed] };
 		} else {

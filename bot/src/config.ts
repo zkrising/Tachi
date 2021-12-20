@@ -13,7 +13,7 @@ export enum LoggerLayers {
 	buildProfileEmbed = "buildProfileEmbed",
 	chartSearch = "chartSearch",
 	buildChartEmbed = "buildChartEmbed",
-	tachiLinker = "tachiLinker"
+	tachiAuth = "tachiAuth"
 }
 
 export const theFunny = [

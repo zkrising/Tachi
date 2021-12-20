@@ -87,12 +87,18 @@ app.get("/oauth/callback", async (req, res) => {
 		return res.status(400).send("Bad Request.");
 	}
 
-	const tokenRes = await TachiServerV1Request<APITokenDocument>(RequestTypes.POST, "/oauth/token", null, {
-		code: req.query.code,
-		client_id: ProcessEnv.BOT_CLIENT_ID,
-		client_secret: ProcessEnv.BOT_CLIENT_SECRET,
-		redirect_uri: `${BotConfig.OUR_URL}/oauth/callback`
-	});
+	const tokenRes = await TachiServerV1Request<APITokenDocument>(
+		RequestTypes.POST,
+		"/oauth/token",
+		"2e94ea15768d93d6621e60e58c94d351464ab71f",
+		{
+			code: req.query.code,
+			client_id: ProcessEnv.BOT_CLIENT_ID,
+			client_secret: ProcessEnv.BOT_CLIENT_SECRET,
+			grant_type: "authorization_code",
+			redirect_uri: "http://localhost:3001/oauth/callback"
+		}
+	);
 
 	if (!tokenRes.success) {
 		logger.error(`Failed to convert code ${req.query.code} to a token. ${tokenRes.description}, cannot auth.`);
@@ -105,7 +111,7 @@ app.get("/oauth/callback", async (req, res) => {
 	const discordID = req.query.context;
 	const apiToken = tokenRes.body.token!;
 
-	const whoamiRes = await TachiServerV1Get<PublicUserDocument>("/api/v1/users/me", {}, { token: apiToken });
+	const whoamiRes = await TachiServerV1Get<PublicUserDocument>("/users/me", {}, { token: apiToken });
 
 	if (!whoamiRes.success) {
 		logger.error("Failed to request user with token we just got?", { discordID });
@@ -123,7 +129,7 @@ app.get("/oauth/callback", async (req, res) => {
 		userID: user.id
 	});
 
-	return res.sendFile("../pages/account-linked.html");
+	return res.sendFile(__dirname + "/../pages/account-linked.html");
 });
 
 /**

@@ -89,10 +89,14 @@ export async function TachiServerV1Get<T = unknown>(
 
 		const realUrl = `${PrependTachiUrl(url, "1")}?${urlParams.toString()}`;
 
+		logger.verbose(`GET ${realUrl}`);
+
 		const res = await axios(realUrl, {
 			method: RequestTypes.GET,
 			headers: {
-				Authorization: token ? `Bearer ${token}` : (await getTachiIdByDiscordId(discordId!))?.tachiApiToken
+				Authorization: token
+					? `Bearer ${token}`
+					: `Bearer ${(await getTachiIdByDiscordId(discordId!))?.tachiApiToken}`
 			}
 		});
 		const json = (await res.data) as APIResponse<T>;

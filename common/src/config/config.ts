@@ -1617,7 +1617,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultDifficulty: "EXPERT",
 		difficultyColours: {
 			NORMAL: COLOUR_SET.blue,
-			HARD: COLOUR_SET.orange,
+			HARD: COLOUR_SET.gold,
 			EXPERT: COLOUR_SET.pink,
 			INFERNO: COLOUR_SET.purple,
 		},
@@ -1647,7 +1647,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			FAILED: COLOUR_SET.red,
 			CLEAR: COLOUR_SET.blue,
 			MISSLESS: COLOUR_SET.orange,
-			"FULL COMBO": COLOUR_SET.teal,
+			"FULL COMBO": COLOUR_SET.pink,
 			"ALL MARVELOUS": COLOUR_SET.gold,
 		},
 		clearLamp: "CLEAR",

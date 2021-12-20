@@ -10,6 +10,7 @@ import {
 	IIDXDans,
 	SDVXDans,
 	SDVXVFClasses,
+	WaccaColours,
 	WaccaStageUps,
 } from "../game-classes";
 import { ESDJudgementFormat } from "../lib/esd";
@@ -1653,6 +1654,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		classHumanisedFormat: {
 			stageUp: WaccaStageUps,
+			colour: WaccaColours,
 		},
 
 		supportsESD: false,

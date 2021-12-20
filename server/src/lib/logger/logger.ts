@@ -161,7 +161,7 @@ if (ServerConfig.LOGGER_CONFIG.SEQ_API_KEY && Environment.seqUrl) {
 		info: "Information",
 		// Note that Seq interprets these in reverse,
 		// however, it's easier to read this code if I just
-		// use the same levels, instead of the right onesQ.
+		// use the same levels, instead of the right ones.
 		verbose: "Verbose",
 		debug: "Debug",
 	};

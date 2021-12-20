@@ -1,7 +1,7 @@
 # Configuration Info
 
 The codebase uses a file called `conf.json5` to handle
-various configurable options.
+various configurable options. It also reads some things from the process environment.
 
 ## What is JSON5?
 
@@ -19,29 +19,79 @@ the main benefits for us are as follows:
 
 ```js
 {
-	MONGO_CONNECTION_URL: "localhost:27017",
-	MONGO_DATABASE_NAME: "tachidb",
-	LOG_LEVEL: "info",
-	CAPTCHA_SECRET_KEY: "secret_key",
-	SESSION_SECRET: "other_secret_key",
+	MONGO_DATABASE_NAME: "testingdb",
+	CAPTCHA_SECRET_KEY: "something_secret",
+	SESSION_SECRET: "something_secret",
 	FLO_API_URL: "https://flo.example.com",
 	EAG_API_URL: "https://eag.example.com",
 	MIN_API_URL: "https://min.example.com",
 	ARC_API_URL: "https://arc.example.com",
 	FLO_OAUTH2_INFO: {
-		CLIENT_ID: "OUR_CLIENT_ID",
-		CLIENT_SECRET: "OUR_CLIENT_SECRET",
-		REDIRECT_URI: "https://tachi.example.com/callback"
+		CLIENT_ID: "DUMMY_CLIENT_ID",
+		CLIENT_SECRET: "DUMMY_CLIENT_SECRET",
+		REDIRECT_URI: "https://example.com",
 	},
-	// FLO_OAUTH2_INFO, EAG_OAUTH2_INFO and MIN_OAUTH2_INFO are all optional.
+	EAG_OAUTH2_INFO: {
+		CLIENT_ID: "DUMMY_CLIENT_ID",
+		CLIENT_SECRET: "DUMMY_CLIENT_SECRET",
+		REDIRECT_URI: "https://example.com",
+	},
 	ARC_AUTH_TOKEN: "unused",
-	CDN_FILE_ROOT: "../tachi-cdn",
-	PORT: 8080,
-	CLIENT_INDEX_HTML_PATH: "./index.html",
-	ENABLE_SERVER_HTTPS: true,
-	TYPE: "omni",
-	RUN_OWN_CDN: true,
-	CLIENT_DEV_SERVER: null
+	ENABLE_SERVER_HTTPS: false,
+	OUR_URL: "https://example.com",
+	INVITE_CODE_CONFIG: {
+		BATCH_SIZE: 2,
+		INVITE_CAP: 100,
+		BETA_USER_BONUS: 5,
+	},
+	CDN_CONFIG: {
+		WEB_LOCATION: "/cdn",
+		SAVE_LOCATION: {
+			TYPE: "LOCAL_FILESYSTEM",
+			LOCATION: "./test-cdn",
+			SERVE_OWN_CDN: true,
+		},
+	},
+	TACHI_CONFIG: {
+		TYPE: "omni",
+		NAME: "Tachi Example Config",
+		GAMES: [
+			"iidx",
+			"museca",
+			"maimai",
+			"sdvx",
+			"ddr",
+			"bms",
+			"chunithm",
+			"usc",
+		],
+		IMPORT_TYPES: [
+			"file/eamusement-iidx-csv",
+			"file/batch-manual",
+			"file/solid-state-squad",
+			"file/mer-iidx",
+			"file/pli-iidx-csv",
+			"ir/direct-manual",
+			"ir/barbatos",
+			"ir/fervidex",
+			"ir/fervidex-static",
+			"ir/beatoraja",
+			"ir/usc",
+			"ir/kshook-sv3c",
+			"api/arc-iidx",
+			"api/arc-sdvx",
+			"api/eag-iidx",
+			"api/eag-sdvx",
+			"api/flo-iidx",
+			"api/flo-sdvx",
+			"api/min-sdvx",
+		],
+	},
+	LOGGER_CONFIG: {
+		FILE: false,
+		CONSOLE: true,
+		LOG_LEVEL: "info",
+	},
 }
 ```
 
@@ -51,33 +101,15 @@ the main benefits for us are as follows:
 	Seriously, The `SESSION_SECRET` token MUST not be
 	public.
 
-## Properties
+## JSON5 Properties
 
-All properties are required.
-
-### MONGO_CONNECTION_URL
-
-- Type: String
-
-Where your MongoDB server is located. For most cases, this
-is `127.0.0.1:27017` or `localhost:27017`.
-
-For more creative scenarios such as running through WSL, you
-might need to change this.
+All properties are required unless called optional or they have a default.
 
 ### MONGO_DATABASE_NAME
 
 - Type: String
 
 What collection to use for your database.
-
-### LOG_LEVEL
-
-- Type: Log Level
-
-Sets the level at which logs will be saved to disk/logged to console.
-
-By default, this is `"info"`. The valid values can be found at [Logging Info](../infrastructure/logging.md).
 
 ### CAPTCHA_SECRET_KEY
 
@@ -103,87 +135,18 @@ This key is used to encrypt Session Cookies.
 	You can generate secure random strings with something 
 	like [KeePass](https://keepass.info/).
 
-### FLO_API_URL, EAG_API_URL and ARC_API_URL
+### FLO_API_URL, EAG_API_URL, MIN_API_URL, and ARC_API_URL
 
 - Type: String
 
-The URL for the `FLO, EAG or ARC` services. This is used for integration
+The URL for the `FLO, EAG, MIN or ARC` services. This is used for integration
 with the Kamaitachi version of Tachi.
-
-### ARC_AUTH_TOKEN
-
-- Type: String
-
-We use an ARC session token in order to pull scores from `ARC`. The session token is stored here.
-
-### CDN_FILE_ROOT
-
-- Type: File Path
-
-`tachi-server` expects a CDN to store things like replays
-and profile pictures. This is a folder somewhere on the
-system (presumably using nginx serve-static).
-
-### PORT
-
-- Type: Port (1-65536)
-
-What port to run the server on.
-
-!!! note
-	Ports below 1024 are subject to strange UNIX rules - typically we run on 8080 and use
-	an nginx reverse proxy.
-
-### TYPE
-
-- Type: "btchi" | "ktchi" | "omni"
-
-What 'type' the instance of the server is.
-
-"btchi" will run the server under Bokutachi mode, which
-will disable Kamaitachi-only routes and change the names of various things.
-
-"ktchi" will run the server under Kamaitachi mode, which
-will disable Bokutachi-only routes and change various
-names.
-
-"omni" will run the server without any route restrictions.
-This is used for testing.
-
-### ENABLE_SERVER_HTTPS
-
-- Type: Boolean
-
-Whether to use HTTPS. If this is set to true, the files `cert/key.pem` and `cert/cert.pem` will be
-used as the privateKey and the certificate, respectively.
-
-!!! note
-	In production, we use an Nginx reverse proxy which handles this.
-	A warning will be emitted if you are using HTTPS mode, as it's not generally meant to be used
-	at this level.
-
-### RUN_OWN_CDN
-
-- Type: Boolean
-
-Whether to host the CDN using the same express process and and an `express.static()` call.
-This is generally used for testing, or for simple local setups.
-
-This uses `CDN_FILE_ROOT` to determine where the CDN's content should be.
-
-### CLIENT_DEV_SERVER
-
-- Type: String | NULL (Optional)
-
-If present, and a string, this points to the webpack dev server for a react app. Having this
-option set results in CORS being enabled for *that* specific URL. This is useful for local
-development, but should not be used in production.
 
 ### FLO/MIN/EAG_OAUTH2_INFO
 
-- Type: OAuth2Info | undefined
+- Type: OAuth2Info (Optional)
 
-If present, these define our OAuth2 Client data for interacting with these services. These look like this:
+If present, these define our OAuth2 Client data for interacting with these services. These are like this like this:
 ```js
 {
 	FLO_OAUTH2_INFO: {
@@ -193,6 +156,39 @@ If present, these define our OAuth2 Client data for interacting with these servi
 	}
 }
 ```
+
+!!! warning
+	The server will throw a fatal error if you have OAUTH2_INFO set for one service, but not an API_URL.
+
+	Maybe a better solution would be to have the API_URL inside the OAUTH2_INFO. Ah well.
+
+### ARC_AUTH_TOKEN
+
+- Type: String
+
+We use an ARC session token in order to pull scores from `ARC`. The session token is stored here.
+
+### ENABLE_SERVER_HTTPS
+
+- Type: Boolean (optional)
+
+Whether to use HTTPS. If this is set to true, the files `cert/key.pem` and `cert/cert.pem` will be
+used as the privateKey and the certificate, respectively.
+
+!!! note
+	In production, we use an Nginx reverse proxy which handles this.
+	A warning will be emitted if you are using HTTPS mode, as it's not generally meant to be used
+	at this level.
+
+### CLIENT_DEV_SERVER
+
+- Type: String
+- Default: Null
+
+If present, and a string, this points to the webpack dev server for a react app. Having this
+option set results in CORS being enabled for *that* specific URL. This is useful for local
+development, but should not be used in production.
+
 
 ### RATE_LIMIT
 
@@ -217,36 +213,45 @@ The amount of OAuth2Clients one user can create at any one time. Defaults to 15.
 
 If true, all `OPTIONS` requests to the server will return `200`, no matter what. This is a hack used for development CORS.
 
-### NO_CONSOLE
+### USE_EXTERNAL_SCORE_IMPORT_WORKER
 
 - Type: Boolean
 - Default: false
 
-If true, logging to the console will be disabled, and only filesystem logging will be on.
+If true, an external worker process will be used to handle score imports.
 
-### OAUTH_CLIENT_CAP
+!!! warning
+	You have to run this worker yourself. The entry point is `src/lib/score-import/worker/worker.ts`.
+
+### EXTERNAL_SCORE_IMPORT_WORKER_CONCURRENCY
 
 - Type: Integer
-- Default: 15
+- Default: 10
 
-Determines the maximum amount of OAuth Clients one user
-can make.
+How many score imports one worker should be allowed to work on at a time. This improves parallelisation of score imports.
 
 ### USC_QUEUE_SIZE
 
 - Type: Integer
 - Default: 3
 
-Determines the amount of unique players that must have
-played a chart for it to be available in the
-database. This is to stop IR Flooding.
+How many unique players have to have a score on a chart for it to be de-orphaned.
+
+!!! warning
+	The lowest legal value for this field is 2.
 
 ### BEATORAJA_QUEUE_SIZE
 
 - Type: Integer
 - Default: 3
 
-See above, but for the beatorajaIR.
+How many unique players have to have played a chart on the beatoraja IR for it to be de-orphaned.
+
+!!! note
+	Note that LR2 scores or database imports do not count towards this total.
+
+!!! warning
+	The lowest legal value for this field is 2.
 
 ### OUR_URL
 
@@ -255,6 +260,7 @@ See above, but for the beatorajaIR.
 Where *this* server is hosted. This is used to
 provide callback URLs inside emails. You may stub
 it out if emails are unsupported.
+
 
 ### EMAIL_CONFIG
 
@@ -270,29 +276,182 @@ will be disabled.
 binary. Defaults to `/usr/bin/sendmail`, but some distros
 may have it in `sbin`.
 
+`TRANSPORT_OPS` Passes a set of options to the email transport. For more
+information, see the nodemailer documentation for SMTPTransport.Options.
+
 ```ts
 interface EMAIL_CONFIG {
 	FROM: string;
 	SENDMAIL_BIN?: string
+	TRANSPORT_OPS: any;
 }
 ```
 
-### LOGGER_DISCORD_WEBHOOK
+### INVITE_CODE_CONFIG
 
-- Type: String | undefined
+- Type: INVITE_CODE_CONFIG (Optional)
 
-If present, uses the URL as a discord webhook to POST to.
-This endpoint will have logs sent to it that are either warn or above in severity.
+Configures how invites are created by Tachi.
+If not present, the site will not require invite codes at all.
+
+`BATCH_SIZE` determines how many invites to create every month,
+`INVITE_CAP` determines how many invites a user can have -- ever.
+`BETA_USER_BONUS` determines how many additional invites users of Kamaitachi 1 have out of the box.
+
+```ts
+interface INVITE_CODE_CONFIG: {
+	BATCH_SIZE: integer;
+	INVITE_CAP: integer;
+	BETA_USER_BONUS: integer;
+};
+```
+
+### TACHI_CONFIG
+
+- Type: TACHI_CONFIG
+
+Configures what the Tachi Server instance supports, and what it's generally doing.
+
+```ts
+interface TACHI_CONFIG: {
+	NAME: string;
+	TYPE: "ktchi" | "btchi" | "omni";
+	GAMES: Game[];
+	IMPORT_TYPES: ImportTypes[];
+}
+```
+
+#### NAME
+
+The name of the server. This is reported at `/api/v1/status`.
+
+#### TYPE
+
+What type of tachi-server this is. `ktchi` will enable Kamaitachi Only routes, `btchi` will enable
+Bokutachi only routes, and `omni` will enable both.
+
+#### GAMES
+
+What games are supported by this server. For more information, see [Games](../../user/games.md).
+
+#### IMPORT_TYPES
+
+What importTypes are legal for this server. For more information, see [Import Types](../import/import-types.md).
+
+### LOGGER_CONFIG
+
+- Type: LOGGER_CONFIG (Optional)
+
+Configures how logs are sent around in Tachi.
+
+```ts
+interface LOGGER_CONFIG: {
+	LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
+	CONSOLE: boolean;
+	FILE: boolean;
+	SEQ_API_KEY: string | undefined;
+	DISCORD?: {
+		WEBHOOK_URL: string;
+		WHO_TO_TAG: string[];
+	};
+}
+```
+
+#### LOG_LEVEL
+
+What log level to use out of the box. If no LOGGER_CONFIG is provided, defaults to "info".
+
+#### CONSOLE
+
+Whether to log to the console or not. If no LOGGER_CONFIG is provided, defaults to true.
+
+#### FILE
+
+Whether to log to a log file or not. If no LOGGER_CONFIG is provided, defaults to false.
+
+#### SEQ_API_KEY
+
+(Optional)
+
+If present, this is an API Key for logging to a Seq server, which is set in the process environment.
+
+If no LOGGER_CONFIG is provided, this is not set.
+
+#### DISCORD
+
+(Optional)
+
+If present, this configures a discord `WEBHOOK_URL` to log info or higher messages to.
+`WHO_TO_TAG` is an array of userIDs to tag in the case of a `severe` or `fatal` error.
+
+If no LOGGER_CONFIG is provided, this is not set.
+
+### CDN_CONFIG
+
+- Type: CDN_CONFIG
+
+Configures the CDN for the Tachi Server. For local development it's recommended you use a local filesystem share,
+for production usage it's recommended you're behind a CDN.
+
+```ts
+interface CDN_CONFIG: {
+	WEB_LOCATION: string;
+	SAVE_LOCATION:
+		| { TYPE: "LOCAL_FILESYSTEM"; LOCATION: string; SERVE_OWN_CDN?: boolean }
+		| {
+				TYPE: "S3_BUCKET";
+				ENDPOINT: string;
+				ACCESS_KEY_ID: string;
+				SECRET_ACCESS_KEY: string;
+				BUCKET: string;
+				KEY_PREFIX?: string;
+				REGION?: string;
+		  };
+}
+```
+
+#### WEB_LOCATION
+
+Configures a URL to redirect users to when returning CDN contents. This could be something like `cdn.bokutachi.xyz`.
+
+#### SAVE_LOCATION
+
+Configures where files are actually saved to. If TYPE is "LOCAL_FILESYSTEM", it will save to `SAVE_LOCATION.LOCATION` on the servers drive.
+
+If TYPE is "S3_BUCKET", it will save files to an S3-API compatible bucket, like S3 itself or Backblaze.
+
+!!! note
+	LOCAL_FILESYSTEM's `SERVE_OWN_CDN` option is useful for local development, it will mount your cdn as an express endpoint under `/cdn`.
+	
+	This saves you having to set up your own NGINX box for serving local files.
+
+## Process Environment
+
+The process environment also contains necessary things for functional Tachi Server running.
 
 !!! info
-	The channel this is posted to should be private!
+	These variables are put into the process environment instead of the conf.json5 file because
+	they're easier to change between docker instances. Helps us scale and deploy.
 
-### DISCORD_WHO_TO_TAG
+### PORT
 
-- Type: Array&lt;string&gt; | undefined
+The PORT environment variable specifies what port our express server should listen to.
+If not set, this will log a warning and default to 8080.
 
-If present, this should be an array of discord IDs to tag in the event of a `severe`
-or `crit` level log.
+### MONGO_URL
 
-This is so those specific people can *immediately* know when something is up, and should
-be notified quickly.
+Where our mongoDB instance is. This would be `127.0.0.1:27017` if hosting on the same box.
+If not set, this will terminate the process with a critical error.
+
+### SEQ_URL
+
+Where a Seq instance is. If no `LOGGER_CONFIG.SEQ_API_KEY` was defined, this is fine. If it was,
+this will log a warning, and nothing will be sent to Seq.
+
+### NODE_ENV
+
+Expected to be either "dev", "production", "staging" or "test". If not set, this will terminate the process.
+
+### REPLICA_IDENTITY
+
+Optional. If present, this declares the identity of this server as a replica.

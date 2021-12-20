@@ -230,6 +230,8 @@ if (Number.isNaN(port) && process.env.IS_SERVER) {
 
 const redisUrl = process.env.REDIS_URL;
 if (!redisUrl) {
+	// n.b. These logs should be critical level, but the logger cant actually instantiate
+	// itself in this file, because this file also controlls the logger. Ouch!
 	logger.error(`No REDIS_URL specified in environment. Terminating.`);
 	process.exit(1);
 }

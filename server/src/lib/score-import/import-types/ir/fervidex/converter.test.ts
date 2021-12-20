@@ -262,7 +262,7 @@ t.test("#ConverterIRFervidex", (t) => {
 
 	t.test("Should convert undeflow gauge to null.", async (t) => {
 		const res = await ConverterIRFervidex(
-			deepmerge(baseFervidexScore, { gauge: [10, 5, 249, 248] }),
+			deepmerge(baseFervidexScore, { gauge: [10, 5, 249, 248] }) as FervidexScore,
 			{ version: "27", timeReceived: 10 },
 			"ir/fervidex",
 			logger

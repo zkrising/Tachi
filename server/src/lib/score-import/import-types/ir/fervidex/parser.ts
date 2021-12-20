@@ -37,7 +37,8 @@ const PR_Fervidex: PrudenceSchema = {
 	clear_type: p.isBoundedInteger(0, 7),
 
 	gauge: [p.isBoundedInteger(0, 255)],
-	ghost: [p.isBoundedInteger(0, 100)],
+	// no idea what this actually represents. array of ints.
+	ghost: p.any,
 
 	dead: p.optional({
 		measure: optNull(p.isPositiveInteger),

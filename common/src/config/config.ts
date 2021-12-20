@@ -10,6 +10,7 @@ import {
 	IIDXDans,
 	SDVXDans,
 	SDVXVFClasses,
+	WaccaStageUps,
 } from "../game-classes";
 import { ESDJudgementFormat } from "../lib/esd";
 import {
@@ -191,6 +192,12 @@ const GAME_CONFIGS: GameConfigs = {
 		name: "USC",
 		internalName: "usc",
 		validPlaytypes: ["Controller", "Keyboard"],
+	},
+	wacca: {
+		defaultPlaytype: "Single",
+		name: "WACCA",
+		internalName: "wacca",
+		validPlaytypes: ["Single"],
 	},
 };
 
@@ -1578,6 +1585,85 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentGameOmniVersion: null,
 		currentLocalVersion: "nextage",
 		supportedVersions: ["nextage"],
+
+		tierlists: [],
+		tierlistDescriptions: {},
+	},
+	"wacca:Single": {
+		idString: "wacca:Single",
+
+		percentMax: 100,
+
+		defaultScoreRatingAlg: "rate",
+		defaultSessionRatingAlg: "naiveRate",
+		defaultProfileRatingAlg: "naiveRate",
+
+		scoreRatingAlgs: ["rate"],
+		sessionRatingAlgs: ["naiveRate"],
+		profileRatingAlgs: ["naiveRate"],
+
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
+		difficulties: ["NORMAL", "HARD", "EXPERT", "INFERNO"],
+		shortDifficulties: {
+			NORMAL: "NRM",
+			HARD: "HRD",
+			EXPERT: "EXP",
+			INFERNO: "INF",
+		},
+		defaultDifficulty: "EXPERT",
+		difficultyColours: {
+			NORMAL: COLOUR_SET.blue,
+			HARD: COLOUR_SET.orange,
+			EXPERT: COLOUR_SET.pink,
+			INFERNO: COLOUR_SET.purple,
+		},
+
+		grades: ["D", "C", "B", "A", "AA", "AAA", "S", "S+", "SS", "SS+", "SSS", "SSS+", "MASTER"],
+		gradeColours: {
+			D: COLOUR_SET.gray,
+			C: COLOUR_SET.maroon,
+			B: COLOUR_SET.red,
+			A: COLOUR_SET.paleGreen,
+			AA: COLOUR_SET.green,
+			AAA: COLOUR_SET.vibrantGreen,
+			S: COLOUR_SET.gold,
+			"S+": COLOUR_SET.vibrantYellow,
+			SS: COLOUR_SET.paleOrange,
+			"SS+": COLOUR_SET.orange,
+			SSS: COLOUR_SET.pink,
+			"SSS+": COLOUR_SET.vibrantPink,
+			MASTER: COLOUR_SET.white,
+		},
+		clearGrade: "S",
+		// i'm pretty sure the first grade is below the limit of reliable FPA accuracy
+		gradeBoundaries: [0, 0.0001, 3.0001, 70, 80, 85, 90, 93, 95, 97, 98, 99, 100],
+
+		lamps: ["FAILED", "CLEAR", "MISSLESS", "FULL COMBO", "ALL MARVELOUS"],
+		lampColours: {
+			FAILED: COLOUR_SET.red,
+			CLEAR: COLOUR_SET.blue,
+			MISSLESS: COLOUR_SET.orange,
+			"FULL COMBO": COLOUR_SET.teal,
+			"ALL MARVELOUS": COLOUR_SET.gold,
+		},
+		clearLamp: "CLEAR",
+
+		classHumanisedFormat: {
+			stageUp: WaccaStageUps,
+		},
+
+		supportsESD: false,
+		judgements: ["marvelous", "great", "good", "miss"],
+
+		scoreBucket: "grade",
+
+		currentLatestVersion: "reverse",
+		currentGameOmniVersion: null,
+		currentLocalVersion: "reverse",
+		supportedVersions: ["reverse"],
 
 		tierlists: [],
 		tierlistDescriptions: {},

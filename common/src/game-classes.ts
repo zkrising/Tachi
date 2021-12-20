@@ -209,6 +209,24 @@ export const CHUNITHMColours = [
 	v("虹", "Rainbow", "success"),
 ];
 
+// todo: #6 Add colours to the wacca stage ups.
+export const WaccaStageUps = [
+	n("I"),
+	n("II"),
+	n("III"),
+	n("IV"),
+	n("V"),
+	n("VI"),
+	n("VII"),
+	n("VIII"),
+	n("IX"),
+	n("X"),
+	n("XI"),
+	n("XII"),
+	n("XIII"),
+	n("XIV"),
+];
+
 export interface GameClassSets {
 	"iidx:SP": "dan";
 	"iidx:DP": "dan";
@@ -226,6 +244,7 @@ export interface GameClassSets {
 	"chunithm:Single": "colour";
 	"gitadora:Gita": "colour";
 	"gitadora:Dora": "colour";
+	"wacca:Single": "stageUp";
 }
 
 export type AllClassSets = GameClassSets[IDStrings];

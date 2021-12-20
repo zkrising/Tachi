@@ -7,7 +7,7 @@ import { BotConfig, ProcessEnv } from "../setup";
 import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "../utils/fetch-tachi";
 import db from "../database/mongo";
 
-const app: Express = express();
+export const app: Express = express();
 
 const logger = createLayeredLogger(LoggerLayers.server);
 
@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 		success: true,
 		description: "Bot is online!",
 		body: {
-			time: Date.now(),
+			time: Date.now()
 			// @todo Versioning information, put it here?
 		}
 	});
@@ -52,14 +52,14 @@ app.post("/webhook", ValidateWebhookRequest, (req, res) => {
 		case "class-update/v1":
 		case "goal-achieved/v1":
 		case "milestone-achieved/v1":
-		// @TODO add actual webhook handlers.
-		// These will set the value of statusCode.
+			// @TODO add actual webhook handlers.
+			// These will set the value of statusCode.
 			break;
 		default:
-		// According to the types, this should never happen.
-		// However, tachi-server/common may recieve an update
-		// to define new webhooks, and the bot might not
-		// get around to updating in time.
+			// According to the types, this should never happen.
+			// However, tachi-server/common may recieve an update
+			// to define new webhooks, and the bot might not
+			// get around to updating in time.
 			return res.status(501).json({
 				success: false,
 				description: `The type ${(webhookEvent as WebhookEvents).type} is unsupported.`
@@ -105,7 +105,7 @@ app.get("/oauth/callback", async (req, res) => {
 	const discordID = req.query.context;
 	const apiToken = tokenRes.body.token!;
 
-	const whoamiRes = await TachiServerV1Get<PublicUserDocument>("/api/v1/users/me", apiToken);
+	const whoamiRes = await TachiServerV1Get<PublicUserDocument>("/api/v1/users/me", {}, { token: apiToken });
 
 	if (!whoamiRes.success) {
 		logger.error("Failed to request user with token we just got?", { discordID });
@@ -126,7 +126,6 @@ app.get("/oauth/callback", async (req, res) => {
 	return res.sendFile("../pages/account-linked.html");
 });
 
-
 /**
  * 404 Handler. If something gets to this point, they haven't matched with anything.
  *
@@ -138,7 +137,6 @@ app.all("*", (req, res) => {
 		description: "Nothing found here."
 	});
 });
-
 
 interface ExpressJSONErr extends SyntaxError {
 	status: number;
@@ -160,7 +158,7 @@ const MainExpressErrorHandler: express.ErrorRequestHandler = (err, req, res, _ne
 		const expErr: ExpressJSONErr = err as ExpressJSONErr;
 		if (expErr.status === 400 && "body" in expErr) {
 			logger.info(`Error in parsing JSON in request body from ${req.url}`, {
-				url: req.originalUrl,
+				url: req.originalUrl
 			});
 			return res.status(400).send({ success: false, description: err.message });
 		}
@@ -171,12 +169,10 @@ const MainExpressErrorHandler: express.ErrorRequestHandler = (err, req, res, _ne
 	logger.error(err, req.route);
 	return res.status(500).json({
 		success: false,
-		description: "A fatal internal server error has occured.",
+		description: "A fatal internal server error has occured."
 	});
 };
 
 app.use(MainExpressErrorHandler);
 
 logger.info(`Starting express server on ${BotConfig.SERVER_PORT}.`);
-
-app.listen(BotConfig.SERVER_PORT);

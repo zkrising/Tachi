@@ -1,10 +1,21 @@
 import { LoggerLayers } from "../config";
 import { createLayeredLogger } from "./logger";
+import db, { DiscordUserMapDocument } from "../mongo/mongo";
+
 const logger = createLayeredLogger(LoggerLayers.tachiLinker);
 
-/** @TODO Stub */
-export const getTachiIdByDiscordId = (discordId: string): string => {
-	/** @TODO Hit an internal database to grab user id */
+export const getTachiIdByDiscordId = async (discordId: string): Promise<DiscordUserMapDocument | undefined> => {
 	logger.info(`Fetching linked ID for ${discordId}`);
-	return "0";
+	try {
+		const document = await db.discordUserMap.findOne({ discordID: discordId });
+		if (document) {
+			return document;
+		} else {
+			logger.error("Failed to find document for user");
+		}
+	} catch (e) {
+		logger.error(e);
+	}
+
+	return undefined;
 };

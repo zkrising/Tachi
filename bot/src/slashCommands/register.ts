@@ -32,7 +32,7 @@ export const slashCommands: SlashCommand[] = [
 			.setName("profile")
 			.setDescription("Displays a Kamaitachi Profile")
 			/** @TODO Make this optional once we have a fallback */
-			.addStringOption((option) => option.setName("user").setDescription("The users id").setRequired(true))
+			.addIntegerOption((option) => option.setName("user").setDescription("The users id").setRequired(true))
 			.addStringOption((option) =>
 				option.setName("game").setDescription("The Game").setRequired(false).addChoices(gamesToChoicesObject())
 			)

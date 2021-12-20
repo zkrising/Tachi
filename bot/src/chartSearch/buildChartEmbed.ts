@@ -36,10 +36,15 @@ interface SimplePBDocument extends PBScoreDocument, Partial<PublicUserDocument> 
 export const getPBForChart = async <T extends Game>(
 	chartId: string,
 	playtype: Playtypes[T],
-	game: Game
+	game: Game,
+	discordUserId: string
 ): Promise<SimplePBDocument> => {
 	try {
-		const data = await TachiServerV1Get<PBResponse>(`/games/${game}/${playtype}/charts/${chartId}/pbs`);
+		const data = await TachiServerV1Get<PBResponse>(
+			`/games/${game}/${playtype}/charts/${chartId}/pbs`,
+			{},
+			{ discordId: discordUserId }
+		);
 		if (data.success) {
 			const pbs = data.body.pbs;
 			const users = data.body.users;
@@ -67,22 +72,22 @@ export const buildChartEmbed = async <T extends Game, I extends IDStrings = IDSt
 	songId?: string;
 	playtype: Playtypes[T];
 	game: Game;
+	discordUserId: string;
 	/** @TODO Let users Toggle showing 2dExtra charts */
 	IIDExtra?: boolean;
 }): Promise<InteractionReplyOptions | MessagePayload> => {
 	try {
-		const { searchResults, songId, playtype, game, IIDExtra } = args;
+		const { searchResults, songId, playtype, game, IIDExtra, discordUserId } = args;
 		const embed = new MessageEmbed().setColor("#cc527a");
 
 		if (!songId && searchResults) {
 			embed.addField(`${searchResults.length} potential results found`, "Select from the dropdown");
 			return { embeds: [embed], components: [buildSongSelect(searchResults, playtype, game)] };
 		} else if (songId) {
-			const details = await getDetailedSongData(songId, playtype, game);
+			const details = await getDetailedSongData(songId, playtype, game, discordUserId);
 			embed.addField(details.song.title || "Song", details.song.artist || "Artist");
-			
-			if ("firstVersion" in details.song.data) {
-				embed.setThumbnail(getGameImage(details.song.data?.firstVersion, game));
+			if (details.song.data && "displayVersion" in details.song.data) {
+				embed.setThumbnail(getGameImage(details.song.data?.displayVersion || "0", game));
 			}
 
 			const filteredCharts = details.charts.filter((chart) => {
@@ -101,7 +106,7 @@ export const buildChartEmbed = async <T extends Game, I extends IDStrings = IDSt
 
 			for (const chart of sortedCharts) {
 				try {
-					const PB = await getPBForChart(chart.chartID, chart.playtype, game);
+					const PB = await getPBForChart(chart.chartID, chart.playtype, game, discordUserId);
 					embed.addField(
 						`${chart.difficulty} (${chart.level})`,
 						`Server Top: **[${PB.username}](https://kamaitachi.xyz/dashboard/users/${

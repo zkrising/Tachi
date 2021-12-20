@@ -16,8 +16,10 @@ export enum validSelectCustomIdPrefaces {
 export type SelectHandlersType = Record<validSelectCustomIdPrefaces, (interaction: SelectMenuInteraction) => void>;
 export const selectHandlers: SelectHandlersType = {
 	[validSelectCustomIdPrefaces.SelectGameForProfile]: async (interaction: SelectMenuInteraction): Promise<void> => {
-		const userId = interaction.customId.split(":")[1];
-		await interaction.update(await buildProfileIntractable(userId, stringToSimpleGameType(interaction.values[0])));
+		const userId = parseInt(interaction.customId.split(":")[1]);
+		await interaction.update(
+			await buildProfileIntractable(userId, interaction.user.id, stringToSimpleGameType(interaction.values[0]))
+		);
 	},
 	[validSelectCustomIdPrefaces.selectSongForSearch]: async <T extends Game>(
 		interaction: SelectMenuInteraction
@@ -27,7 +29,8 @@ export const selectHandlers: SelectHandlersType = {
 			await buildChartEmbed({
 				songId: interactionValues[0],
 				playtype: <Playtypes[T]>interactionValues[1],
-				game: <T>interactionValues[2]
+				game: <T>interactionValues[2],
+				discordUserId: interaction.user.id
 			})
 		);
 	}

@@ -31,10 +31,11 @@ const pullRatings = <I extends IDStrings = IDStrings>(
 	return allRatings;
 };
 
-export const fetchUserDetails = async (userId: number): Promise<PublicUserDocument> => {
+export const fetchUserDetails = async (userId: number, discordUserId: string): Promise<PublicUserDocument> => {
 	try {
 		logger.info(`Fetching public user document for ${userId}`);
-		const data = (await TachiServerV1Get<PublicUserDocument>(`/users/${userId}`)).body;
+		const data = (await TachiServerV1Get<PublicUserDocument>(`/users/${userId}`, {}, { discordId: discordUserId }))
+			.body;
 		if (data) {
 			return data;
 		} else {
@@ -46,7 +47,11 @@ export const fetchUserDetails = async (userId: number): Promise<PublicUserDocume
 	}
 };
 
-export const buildProfileEmbed = async (data: UserGameStats[], game?: SimpleGameType<Game>): Promise<MessageEmbed> => {
+export const buildProfileEmbed = async (
+	data: UserGameStats[],
+	discordUserId: string,
+	game?: SimpleGameType<Game>
+): Promise<MessageEmbed> => {
 	try {
 		logger.info(`Building profile embed${game ? `for ${formatGameWrapper(game)}` : ""}`);
 		const embed = new MessageEmbed().setColor("#cc527a");
@@ -87,11 +92,14 @@ export const buildProfileEmbed = async (data: UserGameStats[], game?: SimpleGame
 };
 
 export const buildProfileIntractable = async (
-	userId: string,
+	userId: number,
+	discordUserId: string,
 	game?: SimpleGameType<Game>
 ): Promise<InteractionReplyOptions | MessagePayload> => {
 	try {
-		const data = (await TachiServerV1Get<UserGameStats[]>(`/users/${userId}/game-stats`))?.body;
+		const data = (
+			await TachiServerV1Get<UserGameStats[]>(`/users/${userId}/game-stats`, {}, { discordId: discordUserId })
+		)?.body;
 		logger.verbose(data);
 
 		/** @TODO Verify we got valid data here! */
@@ -110,7 +118,7 @@ export const buildProfileIntractable = async (
 					)
 			);
 
-			return { embeds: [await buildProfileEmbed(data, game)], components: [dropdown] };
+			return { embeds: [await buildProfileEmbed(data, discordUserId, game)], components: [dropdown] };
 		}
 
 		throw new Error(`No data found for user ${userId}`);

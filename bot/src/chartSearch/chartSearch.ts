@@ -24,7 +24,7 @@ export interface DetailedSongResponse {
 	charts: ChartDocument[];
 }
 
-export const getSongMeta = async (songName: string): Promise<SongSearchResult[]> => {
+export const getSongMeta = async (songName: string, discordUserId: string): Promise<SongSearchResult[]> => {
 	try {
 		logger.info(`Searching for ${songName}`);
 		const songResponse = (
@@ -46,9 +46,13 @@ export const getSongMeta = async (songName: string): Promise<SongSearchResult[]>
 	}
 };
 
-export const getSongMetaFiltered = async (chartName: string, game: Game): Promise<SongSearchResult[]> => {
+export const getSongMetaFiltered = async (
+	chartName: string,
+	game: Game,
+	discordUserId: string
+): Promise<SongSearchResult[]> => {
 	try {
-		const songMeta = await getSongMeta(chartName);
+		const songMeta = await getSongMeta(chartName, discordUserId);
 		const songMetaFiltered = songMeta.filter((chart) => chart.game === game);
 		if (songMetaFiltered.length === 0) {
 			throw new Error("No songs found");
@@ -65,11 +69,16 @@ export const getSongMetaFiltered = async (chartName: string, game: Game): Promis
 export const getDetailedSongData = async <T extends Game>(
 	songId: string,
 	playtype: Playtypes[T],
-	game: Game
+	game: Game,
+	discordUserId: string
 ): Promise<DetailedSongResponse> => {
 	try {
 		logger.info(`Getting detailed info for ${songId} (${game}:${playtype})`);
-		const data = await TachiServerV1Get<DetailedSongResponse>(`/games/${game}/${playtype}/songs/${songId}`);
+		const data = await TachiServerV1Get<DetailedSongResponse>(
+			`/games/${game}/${playtype}/songs/${songId}`,
+			{},
+			{ discordId: discordUserId }
+		);
 		if (data.success) {
 			return data.body;
 		} else {
@@ -91,9 +100,16 @@ export const searchForSong = async (interaction: CommandInteraction): Promise<vo
 	try {
 		logger.info(`Requested ${songName} in ${game}`);
 
-		const songMetaFiltered = await getSongMetaFiltered(songName, game);
+		const songMetaFiltered = await getSongMetaFiltered(songName, game, interaction.user.id);
 
-		await interaction.reply(await buildChartEmbed({ searchResults: songMetaFiltered, playtype, game }));
+		await interaction.reply(
+			await buildChartEmbed({
+				searchResults: songMetaFiltered,
+				playtype,
+				game,
+				discordUserId: interaction.user.id
+			})
+		);
 	} catch (e) {
 		await interaction.reply(`No results found for ${songName}`);
 		logger.error(e);

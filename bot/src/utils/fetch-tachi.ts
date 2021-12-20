@@ -2,6 +2,7 @@ import axios from "axios";
 import { LoggerLayers } from "../config";
 import { BotConfig } from "../setup";
 import { integer, SuccessfulAPIResponse, UnsuccessfulAPIResponse } from "tachi-common";
+import { getTachiIdByDiscordId } from "./discord-to-tachi";
 import { createLayeredLogger } from "./logger";
 
 const logger = createLayeredLogger(LoggerLayers.tachiFetch);
@@ -43,7 +44,7 @@ export async function TachiServerV1Request<T>(
 			method,
 			headers: {
 				"Content-Type": "application/json",
-				Authorization: token ? `Bearer ${token}` : undefined,
+				Authorization: token ? `Bearer ${token}` : undefined
 			},
 			data: JSON.stringify(body)
 		});
@@ -67,21 +68,33 @@ export async function TachiServerV1Request<T>(
  *
  * @param url - The URL to request.
  * @param params - Any URL params for this request.
- * @param T - A generic that asserts the type of the response contents. Defaults to unknown.
+ * @param auth - Used to auth the requests against the API
  */
 export async function TachiServerV1Get<T = unknown>(
 	url: string,
-	token?: string,
-	params: Record<string, string> = {}
+	params: Record<string, string> = {},
+	auth: {
+		token?: string;
+		discordId?: string;
+	}
 ): Promise<APIResponse<T>> {
 	try {
+		const { token, discordId } = auth;
+
+		if (!token && !discordId) {
+			throw new Error("No way to auth user");
+		}
+
 		const urlParams = new URLSearchParams(params);
 
 		const realUrl = `${PrependTachiUrl(url, "1")}?${urlParams.toString()}`;
 
-		const res = await axios(realUrl, { method: RequestTypes.GET, headers: {
-			Authorization: token ? `Bearer ${token}` : undefined,
-		} });
+		const res = await axios(realUrl, {
+			method: RequestTypes.GET,
+			headers: {
+				Authorization: token ? `Bearer ${token}` : (await getTachiIdByDiscordId(discordId!))?.tachiApiToken
+			}
+		});
 		const json = (await res.data) as APIResponse<T>;
 		const contents = { ...json, statusCode: res.status };
 
@@ -89,7 +102,7 @@ export async function TachiServerV1Get<T = unknown>(
 
 		return contents;
 	} catch (err) {
-		logger.error(`Failed while requesting GET ${url}.`, { err });
+		logger.error(`Failed while requesting GET ${url}.\n\n${err}\n`);
 
 		throw err;
 	}

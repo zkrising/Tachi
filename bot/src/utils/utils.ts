@@ -1,6 +1,4 @@
 import { FormatGame, Game, Playtypes, IDStrings, UGSRatingsLookup, GetGamePTConfig, GetGameConfig } from "tachi-common";
-import { ProcessEnv } from "../setup";
-import { PrependTachiUrl } from "./fetch-tachi";
 
 export interface SimpleGameType<T extends Game> {
 	game: T;
@@ -24,18 +22,11 @@ export const prettyRatingString = <I extends IDStrings = IDStrings>(rating: UGSR
 };
 
 export const getPfpUrl = (userId: number): string => {
-	if (ProcessEnv.ENV !== "prod") {
-		return `https://kamaitachi.xyz/static/images/users/${userId}-pfp.png`;
-	}
-	return PrependTachiUrl(`/users/${userId}/pfp`);
+	return `https://kamaitachi.xyz/api/v1/users/${userId}-pfp`;
 };
 
 export const getGameImage = (gameId: string, game: Game): string => {
-	if (ProcessEnv.ENV !== "prod") {
-		return `https://kamaitachi.xyz/static/images/gameicons/${game}/${gameId}.png`;
-	}
-	/** @TODO Prod CDN for game images */
-	return PrependTachiUrl(`/users/${gameId}/pfp`);
+	return `https://cdn.kamaitachi.xyz/game-icons/${game}/${gameId}.png`;
 };
 
 export const gameIdentifierStrings = [

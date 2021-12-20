@@ -1,9 +1,11 @@
 import { Client, Intents } from "discord.js";
 import { handleIsCommand } from "./interactionHandlers/command/handleIsCommand";
 import { handleIsSelectMenu } from "./interactionHandlers/selectMenu/handleIsSelectMenu";
-import { ProcessEnv } from "./setup";
+import { app } from "./server/server";
+import { BotConfig, ProcessEnv } from "./setup";
 import { LoggerLayers, theFunny } from "./config";
 import { registerSlashCommands } from "./slashCommands/register";
+import { getTachiIdByDiscordId } from "./utils/discord-to-tachi";
 import { createLayeredLogger } from "./utils/logger";
 import { initWatchHandler } from "./utils/utils";
 
@@ -24,11 +26,18 @@ client.on("messageCreate", async (message) => {
 
 client.on("interactionCreate", async (interaction) => {
 	try {
+		const TachiObject = await getTachiIdByDiscordId(interaction.user.id);
 		if (interaction.isSelectMenu()) {
+			if (!TachiObject) {
+				return await interaction.reply("Please link your discord account");
+			}
 			return await handleIsSelectMenu(interaction);
 		}
 
 		if (interaction.isCommand()) {
+			if (!TachiObject) {
+				return await interaction.reply("Please link your discord account");
+			}
 			return await handleIsCommand(interaction);
 		}
 	} catch (e) {
@@ -46,6 +55,7 @@ client.on("interactionCreate", async (interaction) => {
 		await client.login(ProcessEnv.DISCORD_TOKEN);
 		logger.info(`Logged in successfully to ${client.guilds.cache.size} guilds`);
 		initWatchHandler(client);
+		app.listen(BotConfig.SERVER_PORT);
 		logger.info(
 			`Invite URL: https://discord.com/api/oauth2/authorize?client_id=${
 				client.application!.id

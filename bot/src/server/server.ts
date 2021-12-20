@@ -129,7 +129,7 @@ app.get("/oauth/callback", async (req, res) => {
 		userID: user.id
 	});
 
-	return res.sendFile(__dirname + "/../pages/account-linked.html");
+	return res.sendFile("../pages/account-linked.html");
 });
 
 /**

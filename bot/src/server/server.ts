@@ -90,13 +90,13 @@ app.get("/oauth/callback", async (req, res) => {
 	const tokenRes = await TachiServerV1Request<APITokenDocument>(
 		RequestTypes.POST,
 		"/oauth/token",
-		"2e94ea15768d93d6621e60e58c94d351464ab71f",
+		"GIVE_BOT_A_VALID_TOKEN_TO_HIT_AUTH",
 		{
 			code: req.query.code,
 			client_id: ProcessEnv.BOT_CLIENT_ID,
 			client_secret: ProcessEnv.BOT_CLIENT_SECRET,
 			grant_type: "authorization_code",
-			redirect_uri: "http://localhost:3001/oauth/callback"
+			redirect_uri: `${BotConfig.OUR_URL}/oauth/callback`
 		}
 	);
 

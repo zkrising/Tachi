@@ -5,7 +5,7 @@ import ExternalLink from "components/util/ExternalLink";
 import Icon from "components/util/Icon";
 import Muted from "components/util/Muted";
 import { UserContext } from "context/UserContext";
-import { ClientConfig, TachiConfig } from "lib/config";
+import { ClientConfig } from "lib/config";
 import React, { useContext, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { PublicUserDocument } from "tachi-common";

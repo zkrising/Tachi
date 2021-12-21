@@ -820,6 +820,7 @@ interface CDDataIIDXSP {
 	"2dxtraSet": string | null;
 	kaidenAverage: integer | null;
 	worldRecord: integer | null;
+	bpiCoefficient: integer | null;
 }
 
 interface CDDataDDRSP {
@@ -1267,13 +1268,6 @@ export type ImportProcessingInfo<I extends IDStrings = IDStrings> =
 	| ImportProcessInfoScoreImported<I>
 	| ImportProcessInfoInvalidDatapoint
 	| ImportProcessInfoInternalError;
-
-export interface IIDXBPIData {
-	chartID: string;
-	kavg: integer;
-	wr: integer;
-	coef: number | null;
-}
 
 export interface ImportStatistics {
 	scoreCount: integer;

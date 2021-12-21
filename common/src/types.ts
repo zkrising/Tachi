@@ -31,7 +31,8 @@ export type IDStrings =
 	| "bms:14K"
 	| "chunithm:Single"
 	| "gitadora:Gita"
-	| "gitadora:Dora";
+	| "gitadora:Dora"
+	| "wacca:Single";
 
 export interface IDStringToPlaytype {
 	"iidx:SP": "SP";
@@ -50,6 +51,7 @@ export interface IDStringToPlaytype {
 	"chunithm:Single": "Single";
 	"gitadora:Gita": "Gita";
 	"gitadora:Dora": "Dora";
+	"wacca:Single": "Single";
 }
 
 export interface IDStringToGame {
@@ -69,6 +71,7 @@ export interface IDStringToGame {
 	"chunithm:Single": "chunithm";
 	"gitadora:Gita": "gitadora";
 	"gitadora:Dora": "gitadora";
+	"wacca:Single": "wacca";
 }
 
 export interface GameToIDStrings {
@@ -83,6 +86,7 @@ export interface GameToIDStrings {
 	chunithm: "chunithm:Single";
 	gitadora: "gitadora:Gita" | "gitadora:Dora";
 	popn: "popn:9B";
+	wacca: "wacca:Single";
 }
 
 /**
@@ -114,7 +118,8 @@ export type Game =
 	| "bms"
 	| "chunithm"
 	| "gitadora"
-	| "usc";
+	| "usc"
+	| "wacca";
 
 /**
  * This is the generic response from the Kamaitachi API in event of a failure.
@@ -156,6 +161,7 @@ export interface Playtypes {
 	chunithm: "Single";
 	bms: "7K" | "14K";
 	gitadora: "Gita" | "Dora";
+	wacca: "Single";
 }
 
 type IIDXGrades = "F" | "E" | "D" | "C" | "B" | "A" | "AA" | "AAA" | "MAX-" | "MAX";
@@ -210,6 +216,20 @@ export interface Grades {
 	"chunithm:Single": "D" | "C" | "B" | "BB" | "BBB" | "A" | "AA" | "AAA" | "S" | "SS" | "SSS";
 	"gitadora:Gita": GitadoraGrades;
 	"gitadora:Dora": GitadoraGrades;
+	"wacca:Single":
+		| "D"
+		| "C"
+		| "B"
+		| "A"
+		| "AA"
+		| "AAA"
+		| "S"
+		| "S+"
+		| "SS"
+		| "SS+"
+		| "SSS"
+		| "SSS+"
+		| "MASTER";
 }
 
 type IIDXLamps =
@@ -258,6 +278,7 @@ export interface Lamps {
 	"chunithm:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "ALL JUSTICE" | "ALL JUSTICE CRITICAL";
 	"gitadora:Gita": GitadoraLamps;
 	"gitadora:Dora": GitadoraLamps;
+	"wacca:Single": "FAILED" | "CLEAR" | "MISSLESS" | "FULL COMBO" | "ALL MARVELOUS";
 }
 
 export type IIDX2DXTraSets = "Kichiku" | "Kiraku" | "All Scratch";
@@ -289,6 +310,7 @@ export interface Difficulties {
 		| "BASS EXTREME"
 		| "BASS MASTER";
 	"gitadora:Dora": "BASIC" | "ADVANCED" | "EXTREME" | "MASTER";
+	"wacca:Single": "NORMAL" | "HARD" | "EXPERT" | "INFERNO";
 }
 
 /**
@@ -486,6 +508,7 @@ export interface SessionCalculatedDataLookup {
 	"chunithm:Single": "naiveRating";
 	"gitadora:Gita": "skill";
 	"gitadora:Dora": "skill";
+	"wacca:Single": "naiveRate";
 }
 
 export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
@@ -718,6 +741,7 @@ export interface UGSRatingsLookup {
 	"chunithm:Single": "naiveRating";
 	"gitadora:Gita": "skill";
 	"gitadora:Dora": "skill";
+	"wacca:Single": "naiveRate";
 }
 
 export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBDocument {
@@ -785,6 +809,7 @@ export interface GPTSupportedVersions {
 	"chunithm:Single": "paradiselost";
 	"gitadora:Gita": "nextage";
 	"gitadora:Dora": "nextage";
+	"wacca:Single": "reverse";
 }
 
 interface CDDataIIDXSP {
@@ -807,6 +832,9 @@ interface CDDataBMS {
 	tableFolders: { table: string; level: string }[];
 }
 
+// not necessarily stuff we're supporting
+type WaccaAllVersions = "wacca" | "s" | "lily" | "lily-r" | "reverse";
+
 interface ChartDocumentData {
 	"iidx:SP": CDDataIIDXSP;
 	"iidx:DP": CDDataIIDXSP;
@@ -824,6 +852,7 @@ interface ChartDocumentData {
 	"chunithm:Single": { inGameID: integer };
 	"gitadora:Gita": { inGameID: integer };
 	"gitadora:Dora": { inGameID: integer };
+	"wacca:Single": { releaseVersion: WaccaAllVersions };
 }
 
 export interface GPTTierlists {
@@ -843,6 +872,7 @@ export interface GPTTierlists {
 	"chunithm:Single": never;
 	"gitadora:Gita": never;
 	"gitadora:Dora": never;
+	"wacca:Single": never;
 }
 
 export interface ChartTierlistInfo {
@@ -876,6 +906,7 @@ interface SongDocumentData {
 	bms: { genre: string | null; subtitle: string | null; subartist: string | null };
 	chunithm: { genre: string; displayVersion: string };
 	gitadora: { isHot: boolean; displayVersion: string };
+	wacca: { genre: string; displayVersion: string | null };
 }
 
 export interface SongDocument<G extends Game = Game> extends MongoDBDocument {
@@ -981,6 +1012,7 @@ interface ScoreMetaLookup {
 	"chunithm:Single": Record<string, never>;
 	"gitadora:Gita": Record<string, never>;
 	"gitadora:Dora": Record<string, never>;
+	"wacca:Single": { mirror: boolean | null };
 }
 
 interface BASE_VALID_HIT_META {
@@ -1037,6 +1069,7 @@ export interface HitMetaLookup {
 	"chunithm:Single": BASE_VALID_HIT_META;
 	"gitadora:Gita": BASE_VALID_HIT_META;
 	"gitadora:Dora": BASE_VALID_HIT_META;
+	"wacca:Single": BASE_VALID_HIT_META;
 }
 
 type IIDXJudges = "pgreat" | "great" | "good" | "bad" | "poor";
@@ -1063,6 +1096,7 @@ export interface JudgementLookup {
 	"chunithm:Single": "jcrit" | "justice" | "attack" | "miss";
 	"gitadora:Gita": GitadoraJudges;
 	"gitadora:Dora": GitadoraJudges;
+	"wacca:Single": "marvelous" | "great" | "good" | "miss";
 }
 
 export interface ScoreCalculatedDataLookup {
@@ -1082,6 +1116,7 @@ export interface ScoreCalculatedDataLookup {
 	"chunithm:Single": "rating";
 	"gitadora:Gita": "skill";
 	"gitadora:Dora": "skill";
+	"wacca:Single": "rate";
 }
 
 export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
@@ -1324,6 +1359,7 @@ export interface UGPTSpecificPreferences {
 	"chunithm:Single": Record<string, never>;
 	"gitadora:Gita": Record<string, never>;
 	"gitadora:Dora": Record<string, never>;
+	"wacca:Single": Record<string, never>;
 }
 
 export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDocument {

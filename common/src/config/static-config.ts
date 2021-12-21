@@ -58,6 +58,7 @@ export const allIDStrings: IDStrings[] = [
 	"sdvx:Single",
 	"usc:Controller",
 	"usc:Keyboard",
+	"wacca:Single",
 ];
 
 export const allSupportedGames: Game[] = [
@@ -72,6 +73,7 @@ export const allSupportedGames: Game[] = [
 	"chunithm",
 	// "gitadora",
 	"usc",
+	"wacca",
 ];
 
 export type Versions = {
@@ -151,4 +153,7 @@ export const PrettyVersions: Versions = {
 	},
 	"usc:Keyboard": {},
 	"usc:Controller": {},
+	"wacca:Single": {
+		reverse: "REVERSE",
+	},
 };

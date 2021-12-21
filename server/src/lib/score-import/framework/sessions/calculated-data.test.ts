@@ -4,7 +4,7 @@ import { CreateSessionCalcData } from "./calculated-data";
 function ratingwrap(ratings: [number, number][]) {
 	return ratings.map((e) => ({
 		calculatedData: {
-			ktRating: e[0],
+			BPI: e[0],
 			ktLampRating: e[1],
 		},
 	}));
@@ -23,13 +23,13 @@ t.test("#CreateSessionCalcData", (t) => {
 	t.test("Should return null if less than 10 scores", (t) => {
 		const res = CreateSessionCalcData("iidx", "SP", ratingwrap([[1, 2]]));
 
-		t.strictSame(res, { BPI: null, ktRating: null, ktLampRating: null });
+		t.strictSame(res, { BPI: null, ktLampRating: null });
 
 		t.end();
 	});
 
 	t.test("Should calculate session performance", (t) => {
-		const { BPI, ktRating, ktLampRating } = CreateSessionCalcData(
+		const { BPI, ktLampRating } = CreateSessionCalcData(
 			"iidx",
 			"SP",
 			ratingwrap([
@@ -55,12 +55,10 @@ t.test("#CreateSessionCalcData", (t) => {
 		);
 
 		t.equal(
-			ktRating,
+			BPI,
 			avgbest10([1, 2, 3, 4, 6, 1, 1, 2, 3, 4, 6, 1]),
-			"Should correctly calculate score performance"
+			"Should correctly calculate BPI performance"
 		);
-
-		t.equal(BPI, null);
 
 		t.end();
 	});

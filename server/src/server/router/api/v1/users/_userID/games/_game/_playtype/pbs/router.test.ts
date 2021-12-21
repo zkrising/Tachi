@@ -14,7 +14,7 @@ import {
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/best", (t) => {
 	t.beforeEach(ResetDBState);
 
-	t.test("Should return a users best 100 personal bests.", async (t) => {
+	t.test("Should return a user's best 100 personal bests.", async (t) => {
 		const mockPBs: PBScoreDocument[] = [];
 
 		for (let i = 0; i < 200; i++) {
@@ -26,7 +26,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/best", (t) => {
 				chartID: i.toString(), // hack to generate some random chartIDs
 				songID: Testing511Song.id,
 				calculatedData: {
-					ktRating: i,
+					ktLampRating: i,
 				},
 			} as PBScoreDocument);
 		}
@@ -100,7 +100,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs", (t) => {
 				chartID: charts[i].chartID,
 				songID: charts[i].songID,
 				calculatedData: {
-					ktRating: i,
+					ktLampRating: i,
 				},
 			} as PBScoreDocument);
 		}

@@ -31,7 +31,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 					game: "iidx",
 					playtype: "SP",
 					userID: 1,
-					ratings: { ktRating: 0, ktLampRating: 0 },
+					ratings: { ktLampRating: 0 },
 					classes: {},
 				},
 				"Should insert an appropriate game-stats object"
@@ -57,7 +57,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 			game: "iidx",
 			playtype: "SP",
 			userID: 1,
-			ratings: { ktRating: 0, ktLampRating: 0 },
+			ratings: { ktLampRating: 0 },
 			classes: {},
 		});
 
@@ -69,8 +69,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 				deepmerge(TestingIIDXSPScorePB, {
 					chartID: crypto.randomBytes(20).toString("hex"),
 					calculatedData: {
-						ktRating: e,
-						ktLampRating: 0,
+						ktLampRating: e,
 					},
 				})
 			)
@@ -88,7 +87,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 				game: "iidx",
 				playtype: "SP",
 				userID: 1,
-				ratings: { ktRating: ratings.reduce((a, r) => a + r, 0) / 20, ktLampRating: 0 },
+				ratings: { ktLampRating: ratings.reduce((a, r) => a + r, 0) / 20 },
 				classes: {},
 			},
 			"Should update the game-stats object"
@@ -104,7 +103,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 			game: "iidx",
 			playtype: "SP",
 			userID: 1,
-			ratings: { ktRating: 0, ktLampRating: 0 },
+			ratings: { ktLampRating: 0 },
 
 			classes: {},
 		});
@@ -139,7 +138,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 				game: "iidx",
 				playtype: "SP",
 				userID: 1,
-				ratings: { ktRating: 0, ktLampRating: 0 },
+				ratings: { ktLampRating: 0 },
 				classes: {
 					dan: 18,
 				},
@@ -157,7 +156,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 			game: "iidx",
 			playtype: "SP",
 			userID: 1,
-			ratings: { ktRating: 0, ktLampRating: 0 },
+			ratings: { ktLampRating: 0 },
 			classes: {
 				dan: 17,
 			},
@@ -193,7 +192,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 				game: "iidx",
 				playtype: "SP",
 				userID: 1,
-				ratings: { ktRating: 0, ktLampRating: 0 },
+				ratings: { ktLampRating: 0 },
 				classes: {
 					dan: 18,
 				},

@@ -20,7 +20,6 @@ t.test("#CreateCalculatedData", async (t) => {
 	prAssert(
 		res,
 		{
-			ktRating: p.aprx(2.65),
 			ktLampRating: p.equalTo(10),
 			BPI: "?number",
 		},
@@ -85,7 +84,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 		prAssert(
 			res,
 			{
-				ktRating: "?number",
 				ktLampRating: "?number",
 				BPI: "?number",
 			},
@@ -109,7 +107,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 		prAssert(
 			res,
 			{
-				ktRating: "?number",
 				ktLampRating: "?number",
 				BPI: "?number",
 			},

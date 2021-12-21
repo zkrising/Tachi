@@ -7,7 +7,7 @@ import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON, Testing511SPA, TestingIIDXSPScore } from "test-utils/test-data";
 import { CreatePBDoc } from "./create-pb-doc";
 
-let IIDXScore = TestingIIDXSPScore;
+const IIDXScore = TestingIIDXSPScore;
 
 const logger = CreateLogCtx(__filename);
 
@@ -15,10 +15,6 @@ const lamps = GetGamePTConfig("iidx", "SP").lamps;
 
 t.test("#CreatePBDoc", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(() => {
-		// monk adds _id onto the file when you import it, so lets try and avoid that
-		IIDXScore = GetKTDataJSON("./tachi/iidx-score.json");
-	});
 
 	const chartID = Testing511SPA.chartID;
 
@@ -48,7 +44,6 @@ t.test("#CreatePBDoc", (t) => {
 			hitMeta: { bp: 1 },
 		},
 		calculatedData: {
-			ktRating: IIDXScore.calculatedData.ktRating,
 			ktLampRating: 12,
 		},
 	};

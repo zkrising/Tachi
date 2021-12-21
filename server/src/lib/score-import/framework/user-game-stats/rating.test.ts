@@ -11,19 +11,11 @@ t.test("#CalculateRatings", (t) => {
 	t.test("Should return BPI for IIDX", async (t) => {
 		const res = await CalculateRatings("iidx", "SP", 1, logger);
 
-		t.strictSame(
-			res,
-			{ BPI: 0, ktRating: 0, ktLampRating: 0 },
-			"Should return BPI as a custom key."
-		);
+		t.strictSame(res, { BPI: 0, ktLampRating: 0 }, "Should return BPI as a custom key.");
 
 		const resDP = await CalculateRatings("iidx", "DP", 1, logger);
 
-		t.strictSame(
-			resDP,
-			{ BPI: 0, ktRating: 0, ktLampRating: 0 },
-			"Should return BPI as a custom key."
-		);
+		t.strictSame(resDP, { BPI: 0, ktLampRating: 0 }, "Should return BPI as a custom key.");
 
 		t.end();
 	});

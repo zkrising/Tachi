@@ -81,7 +81,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/best", (t) => {
 				playtype: "SP",
 				userID: 1,
 				calculatedData: {
-					ktRating: i,
+					ktLampRating: i,
 				},
 			} as SessionDocument);
 		}

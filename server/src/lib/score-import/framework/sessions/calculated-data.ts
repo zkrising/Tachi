@@ -45,12 +45,10 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	iidx: {
 		SP: (scd) => ({
 			BPI: AvgBest10Map(scd, "BPI"),
-			ktRating: AvgBest10Map(scd, "ktRating"),
 			ktLampRating: AvgBest10Map(scd, "ktLampRating"),
 		}),
 		DP: (scd) => ({
 			BPI: AvgBest10Map(scd, "BPI"),
-			ktRating: AvgBest10Map(scd, "ktRating"),
 			ktLampRating: AvgBest10Map(scd, "ktLampRating"),
 		}),
 	},

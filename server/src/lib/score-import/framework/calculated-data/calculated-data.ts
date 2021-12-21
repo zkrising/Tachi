@@ -149,7 +149,6 @@ async function CalculateDataIIDXSP(
 
 	return {
 		BPI: bpi,
-		ktRating: CalculateKTRating(dryScore, "iidx", "SP", chart, logger),
 		ktLampRating: CalculateKTLampRatingIIDX(dryScore, "SP", chart as ChartDocument<"iidx:SP">),
 	};
 }
@@ -181,7 +180,6 @@ async function CalculateDataIIDXDP(
 
 	return {
 		BPI: bpi,
-		ktRating: CalculateKTRating(dryScore, "iidx", "DP", chart, logger),
 		ktLampRating: CalculateKTLampRatingIIDX(dryScore, "DP", chart as ChartDocument<"iidx:DP">),
 	};
 }
@@ -267,8 +265,25 @@ export function CalculateDataBMS14K(
 	chart: ChartDocument,
 	logger: KtLogger
 ): CalculatedData<"bms:14K"> {
+	const ecValue = chart.tierlistInfo["sgl-EC"]?.value ?? 0;
+	const hcValue = chart.tierlistInfo["sgl-HC"]?.value ?? 0;
+
+	const gptConfig = GetGamePTConfig("bms", "7K");
+
+	const lampIndex = gptConfig.lamps.indexOf(dryScore.scoreData.lamp);
+
+	if (lampIndex >= IIDX_LAMPS.HARD_CLEAR) {
+		return {
+			sieglinde: Math.max(hcValue, ecValue),
+		};
+	} else if (lampIndex >= IIDX_LAMPS.EASY_CLEAR) {
+		return {
+			sieglinde: ecValue,
+		};
+	}
+
 	return {
-		sieglinde: 0, // @todo #33
+		sieglinde: 0,
 	};
 }
 
@@ -286,7 +301,7 @@ export function CalculateDataBMS7K(
 
 	if (lampIndex >= IIDX_LAMPS.HARD_CLEAR) {
 		return {
-			sieglinde: Math.max(hcValue, ecValue), // @todo #33
+			sieglinde: Math.max(hcValue, ecValue),
 		};
 	} else if (lampIndex >= IIDX_LAMPS.EASY_CLEAR) {
 		return {

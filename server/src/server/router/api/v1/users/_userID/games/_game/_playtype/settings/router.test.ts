@@ -50,7 +50,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 			.patch("/api/v1/users/1/games/iidx/SP/settings")
 			.set("Authorization", "Bearer api_token")
 			.send({
-				preferredScoreAlg: "ktRating",
+				preferredScoreAlg: "ktLampRating",
 			});
 
 		t.strictSame(
@@ -60,7 +60,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				game: "iidx",
 				playtype: "SP",
 				preferences: {
-					preferredScoreAlg: "ktRating",
+					preferredScoreAlg: "ktLampRating",
 					preferredSessionAlg: null,
 					preferredProfileAlg: null,
 					scoreBucket: null,
@@ -79,7 +79,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 			playtype: "SP",
 		});
 
-		t.equal(data?.preferences.preferredScoreAlg, "ktRating");
+		t.equal(data?.preferences.preferredScoreAlg, "ktLampRating");
 
 		t.end();
 	});
@@ -99,7 +99,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 			.patch("/api/v1/users/1/games/iidx/SP/settings")
 			.set("Authorization", "Bearer api_token")
 			.send({
-				preferredScoreAlg: "ktRating",
+				preferredScoreAlg: "ktLampRating",
 				gameSpecific: {
 					display2DXTra: true,
 				},
@@ -112,7 +112,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				game: "iidx",
 				playtype: "SP",
 				preferences: {
-					preferredScoreAlg: "ktRating",
+					preferredScoreAlg: "ktLampRating",
 					preferredSessionAlg: null,
 					preferredProfileAlg: null,
 					scoreBucket: null,
@@ -131,7 +131,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 			playtype: "SP",
 		});
 
-		t.equal(data?.preferences.preferredScoreAlg, "ktRating");
+		t.equal(data?.preferences.preferredScoreAlg, "ktLampRating");
 
 		t.end();
 	});

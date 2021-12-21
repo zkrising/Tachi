@@ -6,6 +6,7 @@ import db from "external/mongo/db";
 import UpdateScore from "./update-score";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import ResetDBState from "test-utils/resets";
+import { rootLogger } from "lib/logger/logger";
 
 const mockImportDocument: ImportDocument = {
 	userID: 1,
@@ -18,7 +19,7 @@ const mockImportDocument: ImportDocument = {
 	importID: "mockImportID",
 	importType: "file/batch-manual",
 	milestoneInfo: [],
-	scoreIDs: ["scoreid_1", "scoreid_2"],
+	scoreIDs: ["TESTING_SCORE_ID", "scoreid_2"],
 	timeFinished: 1000,
 	timeStarted: 0,
 	game: "iidx",
@@ -37,7 +38,7 @@ const mockSessionDocument: SessionDocument = {
 	scoreInfo: [
 		{
 			isNewScore: true,
-			scoreID: "scoreid_1",
+			scoreID: "TESTING_SCORE_ID",
 		},
 		{
 			isNewScore: true,
@@ -55,7 +56,9 @@ t.test("#UpdateScore", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should update a score and everything pertaining to it", async (t) => {
-		TestingIIDXSPScore.scoreID = "scoreid_1";
+		// n.b. this must be here!! otherwise we get nonsense errors due to _id bson
+		// errors.
+		delete TestingIIDXSPScore._id;
 
 		const score = deepmerge<ScoreDocument>(TestingIIDXSPScore, {
 			scoreData: { score: 1020 },
@@ -65,8 +68,6 @@ t.test("#UpdateScore", (t) => {
 
 		await db.imports.insert(mockImportDocument);
 		await db.sessions.insert(mockSessionDocument);
-
-		await db.scores.insert(TestingIIDXSPScore);
 
 		// This function doesn't return anything, instead,
 		// we need to check external state.
@@ -82,6 +83,8 @@ t.test("#UpdateScore", (t) => {
 			scoreID: newScoreID,
 		});
 
+		rootLogger.crit("foo", await db.scores.find({}));
+
 		t.hasStrict(
 			dbNewScore?.scoreData,
 			score.scoreData,
@@ -95,7 +98,7 @@ t.test("#UpdateScore", (t) => {
 		t.strictSame(
 			dbImport?.scoreIDs,
 			[newScoreID, "scoreid_2"],
-			"Should update scoreid_1 to the new hash."
+			"Should update TESTING_SCORE_ID to the new hash."
 		);
 
 		const dbSession = await db.sessions.findOne({
@@ -114,7 +117,7 @@ t.test("#UpdateScore", (t) => {
 					scoreID: "scoreid_2",
 				},
 			],
-			"Should update scoreid_1 to the new hash."
+			"Should update TESTING_SCORE_ID to the new hash."
 		);
 
 		t.end();

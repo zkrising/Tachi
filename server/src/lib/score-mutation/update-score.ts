@@ -74,6 +74,7 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 			{ $set: newScore }
 		);
 	} catch (err) {
+		logger.error(err);
 		logger.warn(
 			`Score ID ${newScoreID} already existed -- this update caused a collision. Removing old score and updating old references anyway.`
 		);

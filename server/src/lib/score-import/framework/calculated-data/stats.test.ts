@@ -3,7 +3,12 @@ import CreateLogCtx from "lib/logger/logger";
 import { ChartDocument, Difficulties, Lamps, ScoreDocument } from "tachi-common";
 import t from "tap";
 import { isApproximately } from "test-utils/asserts";
-import { GetKTDataJSON, Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
+import {
+	CHUNITHMBBKKChart,
+	GetKTDataJSON,
+	Testing511SPA,
+	TestingIIDXSPDryScore,
+} from "test-utils/test-data";
 import { DryScore } from "../common/types";
 import {
 	CalculateBPI,
@@ -339,7 +344,7 @@ t.test("#CalculateMFCP", (t) => {
 	t.end();
 });
 
-const bbkk = GetKTDataJSON("./tachi/chunithm-bbkk-chart.json");
+const bbkk = CHUNITHMBBKKChart;
 
 // unit testing a mathematical function is a square-round-hole problem.
 t.test("#CalculateCHUNITHMRating", (t) => {

@@ -212,13 +212,13 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		percentMax: 100,
 
-		defaultScoreRatingAlg: "ktRating",
-		defaultSessionRatingAlg: "ktRating",
-		defaultProfileRatingAlg: "ktRating",
+		defaultScoreRatingAlg: "ktLampRating",
+		defaultSessionRatingAlg: "ktLampRating",
+		defaultProfileRatingAlg: "ktLampRating",
 
-		scoreRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
-		sessionRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
-		profileRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
+		scoreRatingAlgs: ["ktLampRating", "BPI"],
+		sessionRatingAlgs: ["ktLampRating", "BPI"],
+		profileRatingAlgs: ["ktLampRating", "BPI"],
 
 		scoreRatingAlgFormatters: {},
 		profileRatingAlgFormatters: {},
@@ -398,13 +398,13 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		percentMax: 100,
 
-		defaultScoreRatingAlg: "ktRating",
-		defaultSessionRatingAlg: "ktRating",
-		defaultProfileRatingAlg: "ktRating",
+		defaultScoreRatingAlg: "ktLampRating",
+		defaultSessionRatingAlg: "ktLampRating",
+		defaultProfileRatingAlg: "ktLampRating",
 
-		scoreRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
-		sessionRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
-		profileRatingAlgs: ["ktRating", "ktLampRating", "BPI"],
+		scoreRatingAlgs: ["ktLampRating", "BPI"],
+		sessionRatingAlgs: ["ktLampRating", "BPI"],
+		profileRatingAlgs: ["ktLampRating", "BPI"],
 
 		scoreRatingAlgFormatters: {},
 		profileRatingAlgFormatters: {},

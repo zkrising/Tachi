@@ -492,8 +492,8 @@ interface SessionScoreNewInfo {
 export type SessionScoreInfo = SessionScorePBInfo | SessionScoreNewInfo;
 
 export interface SessionCalculatedDataLookup {
-	"iidx:SP": "BPI" | "ktRating" | "ktLampRating";
-	"iidx:DP": "BPI" | "ktRating" | "ktLampRating";
+	"iidx:SP": "BPI" | "ktLampRating";
+	"iidx:DP": "BPI" | "ktLampRating";
 	"popn:9B": never; // @todo
 	"sdvx:Single": "VF6" | "ProfileVF6";
 	"usc:Keyboard": "VF6" | "ProfileVF6";
@@ -725,8 +725,8 @@ export interface PublicUserDocument extends MongoDBDocument {
 }
 
 export interface UGSRatingsLookup {
-	"iidx:SP": "BPI" | "ktRating" | "ktLampRating";
-	"iidx:DP": "BPI" | "ktRating" | "ktLampRating";
+	"iidx:SP": "BPI" | "ktLampRating";
+	"iidx:DP": "BPI" | "ktLampRating";
 	"popn:9B": never; // @todo
 	"sdvx:Single": "VF6";
 	"usc:Keyboard": "VF6";
@@ -1100,8 +1100,8 @@ export interface JudgementLookup {
 }
 
 export interface ScoreCalculatedDataLookup {
-	"iidx:SP": "BPI" | "ktRating" | "ktLampRating";
-	"iidx:DP": "BPI" | "ktRating" | "ktLampRating";
+	"iidx:SP": "BPI" | "ktLampRating";
+	"iidx:DP": "BPI" | "ktLampRating";
 	// "popn:9B": never; // @todo
 	"sdvx:Single": "VF6";
 	"usc:Keyboard": "VF6";

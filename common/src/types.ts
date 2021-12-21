@@ -741,7 +741,7 @@ export interface UGSRatingsLookup {
 	"chunithm:Single": "naiveRating";
 	"gitadora:Gita": "skill";
 	"gitadora:Dora": "skill";
-	"wacca:Single": "naiveRate";
+	"wacca:Single": "naiveRate" | "rate";
 }
 
 export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBDocument {

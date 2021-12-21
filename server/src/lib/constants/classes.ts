@@ -172,3 +172,15 @@ export enum CHUNITHM_COLOURS {
 	PLATINUM,
 	RAINBOW,
 }
+
+export enum WACCA_COLOURS {
+	ASH,
+	NAVY,
+	YELLOW,
+	RED,
+	PURPLE,
+	BLUE,
+	SILVER,
+	GOLD,
+	RAINBOW,
+}

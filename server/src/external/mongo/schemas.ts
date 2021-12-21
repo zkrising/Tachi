@@ -767,6 +767,12 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 			displayVersion: "string",
 		})
 	),
+	"songs-wacca": prSchemaify(
+		PR_SongDocument({
+			genre: "string",
+			displayVersion: "?string",
+		})
+	),
 	"charts-iidx": (self) => {
 		const playtype = getPlaytype("iidx", self);
 
@@ -849,6 +855,11 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 			})
 		)(self);
 	},
+	"charts-wacca": prSchemaify(
+		PR_ChartDocument("wacca", "Single", {
+			releaseVersion: p.isIn("wacca", "s", "lily", "lily-r", "reverse"),
+		})
+	),
 	goals: prSchemaify({
 		game: p.isIn(games),
 		playtype: isValidPlaytype,

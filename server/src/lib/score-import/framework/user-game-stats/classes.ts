@@ -9,6 +9,7 @@ import {
 	CalculateChunithmColour,
 	CalculateGitadoraColour,
 	CalculateSDVXClass,
+	CalculateWACCAColour,
 } from "./builtin-class-handlers";
 import { ClassHandler, ScoreClasses } from "./types";
 
@@ -50,6 +51,9 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 		Single: CalculateSDVXClass,
 	},
 	usc: null,
+	wacca: {
+		Single: CalculateWACCAColour,
+	},
 };
 
 /**

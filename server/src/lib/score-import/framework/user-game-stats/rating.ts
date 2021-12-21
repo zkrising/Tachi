@@ -132,6 +132,12 @@ const RatingFunctions: RatingFunctions = {
 			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
 		}),
 	},
+	wacca: {
+		Single: async (g, p, u, l) => ({
+			naiveRate: await LazySumN("rate", 50)(g, p, u),
+			rate: await CalculateWACCARate(g, p, u, l),
+		}),
+	},
 	// jubeat: {
 	// 	Single: async (g, p, u, l) => ({
 	// 		jubility: await CalculateJubility(g, p, u, l),
@@ -147,6 +153,71 @@ export function CalculateRatings(
 ): Promise<Partial<Record<CustomCalcNames, number>>> {
 	// @ts-expect-error too lazy to type this properly
 	return RatingFunctions[game][playtype](game, playtype, userID, logger);
+}
+
+// Wacca has a funny algorithm for rate involving gitadora-style latest chart bonuses,
+async function CalculateWACCARate(
+	game: Game,
+	playtype: Playtypes[Game],
+	userID: integer,
+	logger: KtLogger
+) {
+	const hotChartIDs = (
+		await db.charts.wacca.find(
+			{ "data.releaseVersion": "reverse" },
+			{ projection: { chartID: 1 } }
+		)
+	).map((e) => e.chartID);
+
+	const coldChartIDs = (
+		await db.charts.wacca.find(
+			{ "data.releaseVersion": { $ne: "reverse" } },
+			{ projection: { chartID: 1 } }
+		)
+	).map((e) => e.chartID);
+
+	const best15Hot = await db["personal-bests"].find(
+		{
+			game,
+			playtype,
+			userID,
+			chartID: { $in: hotChartIDs },
+			"calculatedData.rate": { $type: "number" },
+		},
+		{
+			sort: {
+				"calculatedData.rate": -1,
+			},
+			limit: 15,
+			projection: {
+				"calculatedData.rate": 1,
+			},
+		}
+	);
+
+	const best35Cold = await db["personal-bests"].find(
+		{
+			game,
+			playtype,
+			userID,
+			chartID: { $in: coldChartIDs },
+			"calculatedData.rate": { $type: "number" },
+		},
+		{
+			sort: {
+				"calculatedData.rate": -1,
+			},
+			limit: 35,
+			projection: {
+				"calculatedData.rate": 1,
+			},
+		}
+	);
+
+	return (
+		best15Hot.reduce((a, r) => a + r.calculatedData.rate!, 0) +
+		best35Cold.reduce((a, r) => a + r.calculatedData.rate!, 0)
+	);
 }
 
 async function CalculateGitadoraSkill(

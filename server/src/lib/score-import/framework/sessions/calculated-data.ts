@@ -127,6 +127,11 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 			};
 		},
 	},
+	wacca: {
+		Single: (scd) => ({
+			naiveRate: AvgBest10Map(scd, "rate"),
+		}),
+	},
 };
 
 export function CreateSessionCalcData(

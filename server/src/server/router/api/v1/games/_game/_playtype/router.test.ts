@@ -74,7 +74,6 @@ t.test("GET /api/v1/games/:game/:playtype/leaderboard", (t) => {
 				playtype: "SP",
 				ratings: {
 					BPI: 100,
-					ktRating: 50,
 				},
 			},
 			{
@@ -83,7 +82,6 @@ t.test("GET /api/v1/games/:game/:playtype/leaderboard", (t) => {
 				playtype: "SP",
 				ratings: {
 					BPI: 50,
-					ktRating: 100,
 				},
 			},
 		] as UserGameStats[]);

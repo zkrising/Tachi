@@ -216,7 +216,7 @@ async function CalculateDataMuseca(
 	logger: KtLogger
 ): Promise<CalculatedData<"museca:Single">> {
 	return {
-		ktRating: await CalculateKTRating(dryScore, "museca", "Single", chart, logger),
+		ktRating: CalculateKTRating(dryScore, "museca", "Single", chart, logger),
 	};
 }
 
@@ -249,14 +249,14 @@ function CalculateDataGitadora(
 	};
 }
 
-async function CalculateDataDDR(
+function CalculateDataDDR(
 	dryScore: DryScore,
 	chart: ChartDocument,
 	logger: KtLogger
-): Promise<CalculatedData<"ddr:SP" | "ddr:DP">> {
+): CalculatedData<"ddr:SP" | "ddr:DP"> {
 	return {
 		MFCP: CalculateMFCP(dryScore, chart, logger),
-		ktRating: await CalculateKTRating(dryScore, "ddr", chart.playtype, chart, logger),
+		ktRating: CalculateKTRating(dryScore, "ddr", chart.playtype, chart, logger),
 	};
 }
 

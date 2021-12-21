@@ -379,81 +379,81 @@ t.test("#CalculateVF6", (t) => {
 	t.end();
 });
 
-t.test("#CalculateRating", (t) => {
-	t.test("Should call the success calculator if percent > pivotPercent", async (t) => {
-		const r = await CalculateKTRating(
-			deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 80 } }),
-			"iidx",
-			"SP",
-			Testing511SPA,
-			logger
-		);
+t.skip("#CalculateKTRating", (t) => {
+	// t.test("Should call the success calculator if percent > pivotPercent", async (t) => {
+	// 	const r = await CalculateKTRating(
+	// 		deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 80 } }),
+	// 		"iidx",
+	// 		"SP",
+	// 		Testing511SPA,
+	// 		logger
+	// 	);
 
-		t.ok(r > 10, "Should return rating greater than the levelNum of the chart.");
+	// 	t.ok(r > 10, "Should return rating greater than the levelNum of the chart.");
 
-		t.end();
-	});
+	// 	t.end();
+	// });
 
-	t.test("Should call the fail calculator if percent > pivotPercent", async (t) => {
-		const r = await CalculateKTRating(
-			TestingIIDXSPDryScore,
-			"iidx",
-			"SP",
-			Testing511SPA,
-			logger
-		);
+	// t.test("Should call the fail calculator if percent > pivotPercent", async (t) => {
+	// 	const r = await CalculateKTRating(
+	// 		TestingIIDXSPDryScore,
+	// 		"iidx",
+	// 		"SP",
+	// 		Testing511SPA,
+	// 		logger
+	// 	);
 
-		t.ok(r < 10, "Should return rating less than the levelNum of the chart.");
+	// 	t.ok(r < 10, "Should return rating less than the levelNum of the chart.");
 
-		t.end();
-	});
+	// 	t.end();
+	// });
 
-	t.test("Should call levelNum if percent === pivotPercent", async (t) => {
-		const r = await CalculateKTRating(
-			deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 77.7777 } }),
-			"iidx",
-			"SP",
-			Testing511SPA,
-			logger
-		);
+	// t.test("Should call levelNum if percent === pivotPercent", async (t) => {
+	// 	const r = await CalculateKTRating(
+	// 		deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 77.7777 } }),
+	// 		"iidx",
+	// 		"SP",
+	// 		Testing511SPA,
+	// 		logger
+	// 	);
 
-		t.equal(
-			// hack for approximate tests
-			parseFloat(r.toFixed(2)),
-			10,
-			"Should return rating exactly that of the levelNum of the chart."
-		);
+	// 	t.equal(
+	// 		// hack for approximate tests
+	// 		parseFloat(r.toFixed(2)),
+	// 		10,
+	// 		"Should return rating exactly that of the levelNum of the chart."
+	// 	);
 
-		t.end();
-	});
+	// 	t.end();
+	// });
 
-	t.test(
-		"Should trigger safety if completely invalid percent somehow gets through",
-		async (t) => {
-			let r = await CalculateKTRating(
-				deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 1000000000 } }),
-				"iidx",
-				"SP",
-				Testing511SPA,
-				logger
-			);
+	// t.test(
+	// 	"Should trigger safety if completely invalid percent somehow gets through",
+	// 	async (t) => {
+	// 		let r = await CalculateKTRating(
+	// 			deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 1000000000 } }),
+	// 			"iidx",
+	// 			"SP",
+	// 			Testing511SPA,
+	// 			logger
+	// 		);
 
-			t.equal(r, 0, "Should safely return 0 and log a warning.");
+	// 		t.equal(r, 0, "Should safely return 0 and log a warning.");
 
-			r = await CalculateKTRating(
-				// not high enough to be non-finite but high enough to be > 1000
-				deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 200 } }),
-				"iidx",
-				"SP",
-				Testing511SPA,
-				logger
-			);
+	// 		r = await CalculateKTRating(
+	// 			// not high enough to be non-finite but high enough to be > 1000
+	// 			deepmerge(TestingIIDXSPDryScore, { scoreData: { percent: 200 } }),
+	// 			"iidx",
+	// 			"SP",
+	// 			Testing511SPA,
+	// 			logger
+	// 		);
 
-			t.equal(r, 0, "Should safely return 0 and log a warning.");
+	// 		t.equal(r, 0, "Should safely return 0 and log a warning.");
 
-			t.end();
-		}
-	);
+	// 		t.end();
+	// 	}
+	// );
 
 	t.end();
 });

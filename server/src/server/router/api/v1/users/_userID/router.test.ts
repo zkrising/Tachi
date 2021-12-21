@@ -319,7 +319,7 @@ t.test("GET /api/v1/users/:userID/game-stats", (t) => {
 				playtype: "SP",
 				classes: {},
 				ratings: {
-					ktRating: 12,
+					ktLampRating: 12,
 				},
 			},
 			{
@@ -328,7 +328,7 @@ t.test("GET /api/v1/users/:userID/game-stats", (t) => {
 				playtype: "DP",
 				classes: {},
 				ratings: {
-					ktRating: 11,
+					ktLampRating: 11,
 				},
 			},
 			{

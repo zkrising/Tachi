@@ -100,7 +100,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs", (t) => {
 				chartID: charts[i].chartID,
 				songID: charts[i].songID,
 				calculatedData: {
-					ktRating: i,
+					ktLampRating: i,
 				},
 			} as PBScoreDocument);
 		}

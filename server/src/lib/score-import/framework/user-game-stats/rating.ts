@@ -72,12 +72,10 @@ const RatingFunctions: RatingFunctions = {
 	iidx: {
 		SP: async (g, p, u) => ({
 			BPI: await LazyMeanN("BPI", 20)(g, p, u),
-			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
 			ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
 		}),
 		DP: async (g, p, u) => ({
 			BPI: await LazyMeanN("BPI", 20)(g, p, u),
-			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
 			ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
 		}),
 	},

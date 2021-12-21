@@ -818,6 +818,8 @@ interface CDDataIIDXSP {
 	arcChartID: string | null;
 	hashSHA256: string | null;
 	"2dxtraSet": string | null;
+	kaidenAverage: integer | null;
+	worldRecord: integer | null;
 }
 
 interface CDDataDDRSP {

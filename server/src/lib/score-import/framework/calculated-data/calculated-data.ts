@@ -3,13 +3,13 @@ import { KtLogger } from "lib/logger/logger";
 import {
 	ChartDocument,
 	Game,
+	GetGamePTConfig,
 	Grades,
 	IDStrings,
+	IIDX_LAMPS,
 	Lamps,
 	Playtypes,
 	ScoreDocument,
-	GetGamePTConfig,
-	IIDX_LAMPS,
 } from "tachi-common";
 import { HasOwnProperty } from "utils/misc";
 import { DryScore } from "../common/types";
@@ -92,6 +92,9 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	usc: {
 		Controller: CalculateDataSDVXorUSC,
 		Keyboard: CalculateDataSDVXorUSC,
+	},
+	wacca: {
+		Single: CalculateDataWACCA,
 	},
 };
 
@@ -323,3 +326,37 @@ export function CalculateDataBMS7K(
 // 		jubility: 0, // @todo #163 Jubeat Jubility
 // 	};
 // }
+
+function CalculateDataWACCA(
+	dryScore: DryScore,
+	chart: ChartDocument,
+	logger: KtLogger
+): CalculatedData<"wacca:Single"> {
+	let scoreCoef = 1;
+
+	// See https://github.com/TNG-dev/tachi-server/issues/598.
+	// This is genuinely how the game works.
+	if (scoreCoef >= 990_000) {
+		scoreCoef = 4;
+	} else if (scoreCoef >= 980_000) {
+		scoreCoef = 3.75;
+	} else if (scoreCoef >= 970_000) {
+		scoreCoef = 3.5;
+	} else if (scoreCoef >= 960_000) {
+		scoreCoef = 3.25;
+	} else if (scoreCoef >= 950_000) {
+		scoreCoef = 3;
+	} else if (scoreCoef >= 940_000) {
+		scoreCoef = 2.75;
+	} else if (scoreCoef >= 920_000) {
+		scoreCoef = 2.5;
+	} else if (scoreCoef >= 900_000) {
+		scoreCoef = 2;
+	} else if (scoreCoef >= 850_000) {
+		scoreCoef = 1.5;
+	}
+
+	// That's... it??
+	// How discrete. How boring!
+	return { rate: scoreCoef * chart.levelNum };
+}

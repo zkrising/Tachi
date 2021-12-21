@@ -1,4 +1,9 @@
-import { CHUNITHM_COLOURS, GitadoraColours, SDVXVFClasses } from "lib/constants/classes";
+import {
+	CHUNITHM_COLOURS,
+	GitadoraColours,
+	SDVXVFClasses,
+	WACCA_COLOURS,
+} from "lib/constants/classes";
 import { KtLogger } from "lib/logger/logger";
 import { Game, integer, Playtypes, ScoreCalculatedDataLookup } from "tachi-common";
 import { GameClasses } from "tachi-common/js/game-classes";
@@ -92,6 +97,39 @@ export function GitadoraSkillToColour(sk: number) {
 	}
 
 	return GitadoraColours.WHITE;
+}
+
+export function CalculateWACCAColour(
+	game: Game,
+	playtype: Playtypes[Game],
+	userID: integer,
+	ratings: Record<string, number>
+) {
+	const colour = WACCARateToColour(ratings.naiveRate);
+
+	return { colour };
+}
+
+function WACCARateToColour(rate: number) {
+	if (rate >= 2500) {
+		return WACCA_COLOURS.RAINBOW;
+	} else if (rate >= 2200) {
+		return WACCA_COLOURS.GOLD;
+	} else if (rate >= 1900) {
+		return WACCA_COLOURS.SILVER;
+	} else if (rate >= 1600) {
+		return WACCA_COLOURS.BLUE;
+	} else if (rate >= 1300) {
+		return WACCA_COLOURS.PURPLE;
+	} else if (rate >= 1000) {
+		return WACCA_COLOURS.RED;
+	} else if (rate >= 600) {
+		return WACCA_COLOURS.YELLOW;
+	} else if (rate >= 300) {
+		return WACCA_COLOURS.NAVY;
+	}
+
+	return WACCA_COLOURS.ASH;
 }
 
 export function CalculateChunithmColour(

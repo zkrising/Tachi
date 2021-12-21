@@ -46,6 +46,7 @@
 			"bms",
 			"chunithm",
 			"usc",
+			"wacca",
 		],
 		IMPORT_TYPES: [
 			"file/eamusement-iidx-csv",

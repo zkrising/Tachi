@@ -122,6 +122,7 @@ const songs = {
 	popn: monkDB.get<SongDocument>(`songs-popn`),
 	sdvx: monkDB.get<SongDocument>(`songs-sdvx`),
 	usc: monkDB.get<SongDocument>(`songs-usc`),
+	wacca: monkDB.get<SongDocument>(`songs-wacca`),
 };
 
 const charts = {
@@ -136,6 +137,7 @@ const charts = {
 	popn: monkDB.get<ChartDocument>(`charts-popn`),
 	sdvx: monkDB.get<ChartDocument>(`charts-sdvx`),
 	usc: monkDB.get<ChartDocument>(`charts-usc`),
+	wacca: monkDB.get<ChartDocument>(`charts-wacca`),
 };
 
 const db = {

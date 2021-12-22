@@ -493,7 +493,7 @@ export type SessionScoreInfo = SessionScorePBInfo | SessionScoreNewInfo;
 export interface SessionCalculatedDataLookup {
 	"iidx:SP": "BPI" | "ktLampRating";
 	"iidx:DP": "BPI" | "ktLampRating";
-	"popn:9B": "classPoints";
+	"popn:9B": "naiveClassPoints";
 	"sdvx:Single": "VF6" | "ProfileVF6";
 	"usc:Keyboard": "VF6" | "ProfileVF6";
 	"usc:Controller": "VF6" | "ProfileVF6";
@@ -726,7 +726,7 @@ export interface PublicUserDocument extends MongoDBDocument {
 export interface UGSRatingsLookup {
 	"iidx:SP": "BPI" | "ktLampRating";
 	"iidx:DP": "BPI" | "ktLampRating";
-	"popn:9B": "classPoints";
+	"popn:9B": "naiveClassPoints";
 	"sdvx:Single": "VF6";
 	"usc:Keyboard": "VF6";
 	"usc:Controller": "VF6";
@@ -1104,7 +1104,7 @@ export interface JudgementLookup {
 export interface ScoreCalculatedDataLookup {
 	"iidx:SP": "BPI" | "ktLampRating";
 	"iidx:DP": "BPI" | "ktLampRating";
-	"popn:9B": "classPoints";
+	"popn:9B": "naiveClassPoints";
 	"sdvx:Single": "VF6";
 	"usc:Keyboard": "VF6";
 	"usc:Controller": "VF6";

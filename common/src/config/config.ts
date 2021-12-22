@@ -1676,12 +1676,12 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		percentMax: 100,
 
-		defaultScoreRatingAlg: "naiveClassPoints",
-		defaultSessionRatingAlg: "naiveClassPoints",
+		defaultScoreRatingAlg: "classPoints",
+		defaultSessionRatingAlg: "classPoints",
 		defaultProfileRatingAlg: "naiveClassPoints",
 
-		scoreRatingAlgs: ["naiveClassPoints"],
-		sessionRatingAlgs: ["naiveClassPoints"],
+		scoreRatingAlgs: ["classPoints"],
+		sessionRatingAlgs: ["classPoints"],
 		profileRatingAlgs: ["naiveClassPoints"],
 
 		scoreRatingAlgFormatters: {},

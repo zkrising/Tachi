@@ -1,23 +1,17 @@
-import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
 import { ChartDocument, Difficulties, Lamps, ScoreDocument } from "tachi-common";
 import t from "tap";
 import { isApproximately } from "test-utils/asserts";
-import {
-	CHUNITHMBBKKChart,
-	GetKTDataJSON,
-	Testing511SPA,
-	TestingIIDXSPDryScore,
-} from "test-utils/test-data";
+import { CHUNITHMBBKKChart, Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
 import { DryScore } from "../common/types";
 import {
 	CalculateBPI,
 	CalculateCHUNITHMRating,
 	CalculateGITADORASkill,
 	CalculateKTLampRatingIIDX,
-	CalculateKTRating,
 	CalculateMFCP,
 	CalculateVF6,
+	CalculateWACCARate,
 } from "./stats";
 
 t.test("#CalculateBPI", (t) => {
@@ -116,7 +110,7 @@ t.test("#CalculateBPI", (t) => {
 	t.end();
 });
 
-t.test("#CalculateKTLampRatingIIDx", (t) => {
+t.test("#CalculateKTLampRatingIIDX", (t) => {
 	function c(
 		nc: number | null,
 		hc: number | null,
@@ -230,6 +224,8 @@ t.test("#CalculateGITADORARating", (t) => {
 
 	t.end();
 });
+
+t.test;
 
 const logger = CreateLogCtx(__filename);
 
@@ -375,6 +371,33 @@ t.test("#CalculateVF6", (t) => {
 	t.equal(CalculateVF6("S", "PERFECT ULTIMATE CHAIN", 100, 18, logger), 0.415);
 	t.equal(CalculateVF6("S", "PERFECT ULTIMATE CHAIN", 100, 19, logger), 0.438);
 	t.equal(CalculateVF6("S", "PERFECT ULTIMATE CHAIN", 100, 20, logger), 0.462);
+
+	t.end();
+});
+
+t.test("#CalculateWACCARate", (t) => {
+	t.equal(CalculateWACCARate(1_000_000, 10.2), 40.8);
+	t.equal(CalculateWACCARate(990_000, 10.2), 40.8, "990K and 1M should give the same rate.");
+	t.equal(CalculateWACCARate(980_000, 10.7), 40.125);
+	t.equal(
+		CalculateWACCARate(1_000_000, 0),
+		0,
+		"A chart with level of 0 should always be worth 0."
+	);
+	t.equal(
+		CalculateWACCARate(975_000, 10),
+		CalculateWACCARate(970_000, 10),
+		"Should be no difference between 975k and 970k."
+	);
+	t.equal(CalculateWACCARate(960_000, 9), 29.25);
+	t.equal(CalculateWACCARate(950_000, 8), 24);
+	t.equal(CalculateWACCARate(940_000, 8), 22);
+	t.equal(CalculateWACCARate(920_000, 8), 20);
+	t.equal(CalculateWACCARate(900_000, 8), 16);
+	t.equal(CalculateWACCARate(850_000, 8), 12);
+	t.equal(CalculateWACCARate(500, 10), 10);
+	t.equal(CalculateWACCARate(0, 10), 10);
+	t.equal(CalculateWACCARate(849_999, 10), 10);
 
 	t.end();
 });

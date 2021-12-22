@@ -105,7 +105,7 @@ export function CalculateWACCAColour(
 	userID: integer,
 	ratings: Record<string, number>
 ) {
-	const colour = WACCARateToColour(ratings.naiveRate);
+	const colour = WACCARateToColour(ratings.rate);
 
 	return { colour };
 }

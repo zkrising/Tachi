@@ -39,6 +39,36 @@ export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: ChartDocu
 	return Math.max(Math.floor(val) / 100, 0);
 }
 
+export function CalculateWACCARate(score: number, levelNum: number) {
+	let scoreCoef = 1;
+
+	// See https://github.com/TNG-dev/tachi-server/issues/598.
+	// This is genuinely how the game works.
+	if (score >= 990_000) {
+		scoreCoef = 4;
+	} else if (score >= 980_000) {
+		scoreCoef = 3.75;
+	} else if (score >= 970_000) {
+		scoreCoef = 3.5;
+	} else if (score >= 960_000) {
+		scoreCoef = 3.25;
+	} else if (score >= 950_000) {
+		scoreCoef = 3;
+	} else if (score >= 940_000) {
+		scoreCoef = 2.75;
+	} else if (score >= 920_000) {
+		scoreCoef = 2.5;
+	} else if (score >= 900_000) {
+		scoreCoef = 2;
+	} else if (score >= 850_000) {
+		scoreCoef = 1.5;
+	}
+
+	// That's... it??
+	// How discrete. How boring!
+	return scoreCoef * levelNum;
+}
+
 /**
  * Calculates the in-game GITADORA rating for a score.
  */

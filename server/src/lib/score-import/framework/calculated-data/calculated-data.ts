@@ -21,6 +21,7 @@ import {
 	CalculateKTRating,
 	CalculateMFCP,
 	CalculateVF6,
+	CalculateWACCARate,
 } from "./stats";
 
 export async function CreateCalculatedData(
@@ -332,31 +333,7 @@ function CalculateDataWACCA(
 	chart: ChartDocument,
 	logger: KtLogger
 ): CalculatedData<"wacca:Single"> {
-	let scoreCoef = 1;
+	const rate = CalculateWACCARate(dryScore.scoreData.score, chart.levelNum);
 
-	// See https://github.com/TNG-dev/tachi-server/issues/598.
-	// This is genuinely how the game works.
-	if (scoreCoef >= 990_000) {
-		scoreCoef = 4;
-	} else if (scoreCoef >= 980_000) {
-		scoreCoef = 3.75;
-	} else if (scoreCoef >= 970_000) {
-		scoreCoef = 3.5;
-	} else if (scoreCoef >= 960_000) {
-		scoreCoef = 3.25;
-	} else if (scoreCoef >= 950_000) {
-		scoreCoef = 3;
-	} else if (scoreCoef >= 940_000) {
-		scoreCoef = 2.75;
-	} else if (scoreCoef >= 920_000) {
-		scoreCoef = 2.5;
-	} else if (scoreCoef >= 900_000) {
-		scoreCoef = 2;
-	} else if (scoreCoef >= 850_000) {
-		scoreCoef = 1.5;
-	}
-
-	// That's... it??
-	// How discrete. How boring!
-	return { rate: scoreCoef * chart.levelNum };
+	return { rate };
 }

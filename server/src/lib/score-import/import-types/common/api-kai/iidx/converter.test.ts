@@ -3,12 +3,34 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
+import {
+	GetKTDataJSON,
+	LoadTachiIIDXData,
+	Testing511Song,
+	Testing511SPA,
+} from "test-utils/test-data";
+import { KaiIIDXScore } from "../types";
 import { ConvertAPIKaiIIDX } from "./converter";
 
 const logger = CreateLogCtx(__filename);
 
-const iidxScore = GetKTDataJSON("./api-kai/iidx-score.json");
+const iidxScore = {
+	chart_id: 3848,
+	music_id: 1000,
+	music_difficulty: 2,
+	play_style: "SINGLE",
+	difficulty: "ANOTHER",
+	iidx_id: 35247879,
+	version_played: 26,
+	lamp: 5,
+	ex_score: 1570,
+	grade: "AA",
+	miss_count: 24,
+	fast_count: null,
+	slow_count: null,
+	timestamp: "2020-10-31T19:10:50Z",
+	_id: 189232,
+};
 
 t.test("#ConvertAPIKaiIIDX", (t) => {
 	t.beforeEach(ResetDBState);
@@ -28,6 +50,50 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 				scoreData: {
 					grade: "MAX-",
 					// percent: 99.87277353689568 floating point,
+					score: 1570,
+					lamp: "HARD CLEAR",
+					judgements: {},
+					hitMeta: {
+						fast: null,
+						slow: null,
+						bp: 24,
+					},
+				},
+				scoreMeta: {},
+			},
+		});
+
+		t.end();
+	});
+
+	t.test("Should convert a legacy leggendaria songID.", async (t) => {
+		await LoadTachiIIDXData();
+
+		const res = await ConvertAPIKaiIIDX(
+			deepmerge(iidxScore, { music_id: 24101 }),
+			{ service: "FLO" },
+			"api/flo-iidx",
+			logger
+		);
+
+		t.hasStrict(res, {
+			song: {
+				title: "冬椿 ft. Kanae Asaba",
+			},
+			chart: {
+				difficulty: "LEGGENDARIA",
+				data: {
+					inGameID: 24011,
+				},
+			},
+			dryScore: {
+				comment: null,
+				game: "iidx",
+				importType: "api/flo-iidx",
+				timeAchieved: 1604171450000,
+				service: "FLO",
+				scoreData: {
+					grade: "C",
 					score: 1570,
 					lamp: "HARD CLEAR",
 					judgements: {},

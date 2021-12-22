@@ -898,7 +898,7 @@ interface SongDocumentData {
 	museca: { titleJP: string; artistJP: string; displayVersion: string };
 	maimai: { titleJP: string; artistJP: string; displayVersion: string };
 	jubeat: { displayVersion: string };
-	popn: { displayVersion: string; genre: string };
+	popn: { displayVersion: string | null; genre: string };
 	sdvx: { displayVersion: string };
 	usc: Record<string, never>;
 	ddr: { displayVersion: string };
@@ -1054,7 +1054,7 @@ export interface HitMetaLookup {
 	"iidx:DP": IIDXHitMeta;
 	"popn:9B": BASE_VALID_HIT_META & {
 		gauge: number | null;
-		clearShape: "circle" | "diamond" | "star" | null;
+		clearShape: "circle" | "diamond" | "star" | "n/a";
 	};
 	"sdvx:Single": BASE_VALID_HIT_META & {
 		gauge: number | null;

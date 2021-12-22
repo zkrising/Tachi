@@ -45,6 +45,7 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 		case "ddr":
 		case "museca":
 		case "chunithm":
+		case "wacca":
 			return (score / 1_000_000) * 100;
 		case "sdvx":
 		case "usc":

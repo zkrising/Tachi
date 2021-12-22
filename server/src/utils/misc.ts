@@ -142,3 +142,7 @@ export function ApplyNTimes<T>(n: integer, fn: (i: integer) => T): T[] {
 
 	return arr;
 }
+
+export function RoundToNDecimalPlaces(value: number, n: integer) {
+	return Number(value.toFixed(n));
+}

@@ -376,6 +376,7 @@ t.test("#CalculateVF6", (t) => {
 });
 
 t.test("#CalculateWACCARate", (t) => {
+	// General Tests
 	t.equal(CalculateWACCARate(1_000_000, 10.2), 40.8);
 	t.equal(CalculateWACCARate(990_000, 10.2), 40.8, "990K and 1M should give the same rate.");
 	t.equal(CalculateWACCARate(980_000, 10.7), 40.125);
@@ -398,6 +399,13 @@ t.test("#CalculateWACCARate", (t) => {
 	t.equal(CalculateWACCARate(500, 10), 10);
 	t.equal(CalculateWACCARate(0, 10), 10);
 	t.equal(CalculateWACCARate(849_999, 10), 10);
+
+	// A bunch of assertions from cg505's account
+	t.equal(CalculateWACCARate(990_084, 13.2), 52.8);
+	t.equal(CalculateWACCARate(984_040, 12.9), 48.375);
+	t.equal(CalculateWACCARate(950_326, 12.2), 36.6);
+	t.equal(CalculateWACCARate(997_719, 4), 16);
+	t.equal(CalculateWACCARate(906440, 13.8), 27.6);
 
 	t.end();
 });

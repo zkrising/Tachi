@@ -9,6 +9,7 @@ import {
 	Lamps,
 	Playtypes,
 } from "tachi-common";
+import { RoundToNDecimalPlaces } from "utils/misc";
 import { DryScore } from "../common/types";
 
 /**
@@ -66,7 +67,7 @@ export function CalculateWACCARate(score: number, levelNum: number) {
 
 	// That's... it??
 	// How discrete. How boring!
-	return scoreCoef * levelNum;
+	return RoundToNDecimalPlaces(scoreCoef * levelNum, 3);
 }
 
 /**

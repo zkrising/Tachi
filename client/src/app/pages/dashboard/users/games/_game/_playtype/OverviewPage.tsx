@@ -303,8 +303,8 @@ function UserHistory({
 		} else if (mode === "ranking") {
 			return (
 				<>
-					#{data[0].rankings[rating].ranking}
-					<Muted>/{data[0].rankings[rating].outOf}</Muted>
+					#{data[0].rankings[rating]?.ranking ?? "ERR!"}
+					<Muted>/{data[0].rankings[rating]?.outOf ?? "ERR!"}</Muted>
 				</>
 			);
 		}

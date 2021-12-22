@@ -246,10 +246,21 @@ export const WaccaColours = [
 	noMouseoverVariant("Rainbow", "success"),
 ];
 
+export const PopnClasses = [
+	mouseoverCSS("にゃんこ", "Kitty", "brown"),
+	mouseoverCSS("小学生", "Grade School Student", "green"),
+	mouseoverCSS("番長", "Delinquent", "lime", "black"),
+	mouseoverCSS("刑事", "Detective", "purple"),
+	mouseoverVariant("アイドル", "Idol", "danger"),
+	mouseoverCSS("将軍", "General", "darkgoldenrod"),
+	mouseoverVariant("仙人", "Hermit", "success"),
+	mouseoverVariant("神", "God", "warning"),
+];
+
 export interface GameClassSets {
 	"iidx:SP": "dan";
 	"iidx:DP": "dan";
-	"popn:9B": never;
+	"popn:9B": "class";
 	"sdvx:Single": "dan" | "vfClass";
 	"usc:Keyboard": never;
 	"usc:Controller": never;

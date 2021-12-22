@@ -18,7 +18,7 @@ export type AnyPlaytype = Playtypes[Game];
 export type IDStrings =
 	| "iidx:SP"
 	| "iidx:DP"
-	// | "popn:9B"
+	| "popn:9B"
 	| "sdvx:Single"
 	| "usc:Keyboard"
 	| "usc:Controller"
@@ -112,7 +112,7 @@ export type Game =
 	| "museca"
 	| "maimai"
 	// | "jubeat"
-	// | "popn"
+	| "popn"
 	| "sdvx"
 	| "ddr"
 	| "bms"
@@ -263,8 +263,7 @@ type DDRLamps =
 export interface Lamps {
 	"iidx:SP": IIDXLamps;
 	"iidx:DP": IIDXLamps;
-	// THIS ONE IS WRONG!
-	"popn:9B": "FAILED" | "CLEAR" | "FULL COMBO" | "PERFECT";
+	"popn:9B": "FAILED" | "EASY CLEAR" | "CLEAR" | "FULL COMBO" | "PERFECT";
 	"sdvx:Single": SDVXLamps;
 	"usc:Keyboard": SDVXLamps;
 	"usc:Controller": SDVXLamps;
@@ -494,7 +493,7 @@ export type SessionScoreInfo = SessionScorePBInfo | SessionScoreNewInfo;
 export interface SessionCalculatedDataLookup {
 	"iidx:SP": "BPI" | "ktLampRating";
 	"iidx:DP": "BPI" | "ktLampRating";
-	"popn:9B": never; // @todo
+	"popn:9B": "classPoints";
 	"sdvx:Single": "VF6" | "ProfileVF6";
 	"usc:Keyboard": "VF6" | "ProfileVF6";
 	"usc:Controller": "VF6" | "ProfileVF6";
@@ -727,7 +726,7 @@ export interface PublicUserDocument extends MongoDBDocument {
 export interface UGSRatingsLookup {
 	"iidx:SP": "BPI" | "ktLampRating";
 	"iidx:DP": "BPI" | "ktLampRating";
-	"popn:9B": never; // @todo
+	"popn:9B": "classPoints";
 	"sdvx:Single": "VF6";
 	"usc:Keyboard": "VF6";
 	"usc:Controller": "VF6";
@@ -795,7 +794,7 @@ type SupportedIIDXVersions =
 export interface GPTSupportedVersions {
 	"iidx:SP": SupportedIIDXVersions;
 	"iidx:DP": SupportedIIDXVersions;
-	"popn:9B": never;
+	"popn:9B": "peace";
 	"sdvx:Single": "booth" | "inf" | "gw" | "heaven" | "vivid" | "konaste";
 	"usc:Controller": never;
 	"usc:Keyboard": never;
@@ -838,7 +837,7 @@ interface CDDataBMS {
 interface ChartDocumentData {
 	"iidx:SP": CDDataIIDXSP;
 	"iidx:DP": CDDataIIDXSP;
-	"popn:9B": Record<string, never>;
+	"popn:9B": { hashSHA256: string | null };
 	"sdvx:Single": { inGameID: integer; arcChartID: string | null };
 	"usc:Keyboard": { hashSHA1: string | string[]; isOfficial: boolean };
 	"usc:Controller": { hashSHA1: string | string[]; isOfficial: boolean };
@@ -899,7 +898,7 @@ interface SongDocumentData {
 	museca: { titleJP: string; artistJP: string; displayVersion: string };
 	maimai: { titleJP: string; artistJP: string; displayVersion: string };
 	jubeat: { displayVersion: string };
-	popn: { displayVersion: string };
+	popn: { displayVersion: string; genre: string };
 	sdvx: { displayVersion: string };
 	usc: Record<string, never>;
 	ddr: { displayVersion: string };
@@ -1053,7 +1052,10 @@ export type USCHitMeta = BASE_VALID_HIT_META & {
 export interface HitMetaLookup {
 	"iidx:SP": IIDXHitMeta;
 	"iidx:DP": IIDXHitMeta;
-	"popn:9B": BASE_VALID_HIT_META & { gauge: number | null };
+	"popn:9B": BASE_VALID_HIT_META & {
+		gauge: number | null;
+		clearShape: "circle" | "diamond" | "star" | null;
+	};
 	"sdvx:Single": BASE_VALID_HIT_META & {
 		gauge: number | null;
 	};
@@ -1102,7 +1104,7 @@ export interface JudgementLookup {
 export interface ScoreCalculatedDataLookup {
 	"iidx:SP": "BPI" | "ktLampRating";
 	"iidx:DP": "BPI" | "ktLampRating";
-	// "popn:9B": never; // @todo
+	"popn:9B": "classPoints";
 	"sdvx:Single": "VF6";
 	"usc:Keyboard": "VF6";
 	"usc:Controller": "VF6";

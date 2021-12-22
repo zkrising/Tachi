@@ -8,6 +8,7 @@ import {
 	GameClassSets,
 	GitadoraColours,
 	IIDXDans,
+	PopnClasses,
 	SDVXDans,
 	SDVXVFClasses,
 	WaccaColours,
@@ -176,12 +177,12 @@ const GAME_CONFIGS: GameConfigs = {
 		internalName: "maimai",
 		validPlaytypes: ["Single"],
 	},
-	// popn: {
-	//     defaultPlaytype: "9B",
-	//     name: "pop'n music",
-	//     internalName: "popn", // note: KAI servers use pnm as a name.
-	//     validPlaytypes: ["9B"],
-	// },
+	popn: {
+		defaultPlaytype: "9B",
+		name: "pop'n music",
+		internalName: "popn", // note: KAI servers use pnm as a name.
+		validPlaytypes: ["9B"],
+	},
 	sdvx: {
 		defaultPlaytype: "Single",
 		name: "SOUND VOLTEX",
@@ -1666,6 +1667,80 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentGameOmniVersion: null,
 		currentLocalVersion: "reverse",
 		supportedVersions: ["reverse"],
+
+		tierlists: [],
+		tierlistDescriptions: {},
+	},
+	"popn:9B": {
+		idString: "popn:9B",
+
+		percentMax: 100,
+
+		defaultScoreRatingAlg: "classPoints",
+		defaultSessionRatingAlg: "classPoints",
+		defaultProfileRatingAlg: "classPoints",
+
+		scoreRatingAlgs: ["classPoints"],
+		sessionRatingAlgs: ["classPoints"],
+		profileRatingAlgs: ["classPoints"],
+
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
+		difficulties: ["Easy", "Normal", "Hyper", "EX"],
+		shortDifficulties: {
+			Easy: "E",
+			Normal: "N",
+			Hyper: "H",
+			EX: "EX",
+		},
+		defaultDifficulty: "EX",
+		difficultyColours: {
+			Easy: COLOUR_SET.green,
+			Normal: COLOUR_SET.blue,
+			Hyper: COLOUR_SET.orange,
+			EX: COLOUR_SET.red,
+		},
+
+		grades: ["E", "D", "C", "B", "A", "AA", "AAA", "S"],
+		gradeColours: {
+			E: COLOUR_SET.gray,
+			D: COLOUR_SET.maroon,
+			C: COLOUR_SET.red,
+			B: COLOUR_SET.blue,
+			A: COLOUR_SET.green,
+			AA: COLOUR_SET.orange,
+			AAA: COLOUR_SET.gold,
+			S: COLOUR_SET.teal,
+		},
+		clearGrade: "S",
+		// i'm pretty sure the first grade is below the limit of reliable FPA accuracy
+		gradeBoundaries: [0, 0.0001, 3.0001, 70, 80, 85, 90, 93, 95, 97, 98, 99, 100],
+
+		lamps: ["FAILED", "EASY CLEAR", "CLEAR", "FULL COMBO", "PERFECT"],
+		lampColours: {
+			FAILED: COLOUR_SET.red,
+			"EASY CLEAR": COLOUR_SET.green,
+			CLEAR: COLOUR_SET.blue,
+			"FULL COMBO": COLOUR_SET.teal,
+			PERFECT: COLOUR_SET.gold,
+		},
+		clearLamp: "CLEAR",
+
+		classHumanisedFormat: {
+			class: PopnClasses,
+		},
+
+		supportsESD: false,
+		judgements: ["cool", "great", "good", "miss"],
+
+		scoreBucket: "lamp",
+
+		currentLatestVersion: "peace",
+		currentGameOmniVersion: null,
+		currentLocalVersion: "peace",
+		supportedVersions: ["peace"],
 
 		tierlists: [],
 		tierlistDescriptions: {},

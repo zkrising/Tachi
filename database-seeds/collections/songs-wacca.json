@@ -1,0 +1,4435 @@
+[
+	{
+		"id": 1,
+		"title": "ヒトガタ",
+		"artist": "HIMEHINA",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ヒトガタ",
+			"artistJP": "ヒトガタ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 2,
+		"title": "叩ケ 叩ケ 手ェ叩ケ",
+		"artist": "SIRO",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "タタケ タタケ テェタタケ",
+			"artistJP": "タタケ タタケ テェタタケ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 3,
+		"title": "うっせぇわ",
+		"artist": "Ado",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ウッセェワ",
+			"artistJP": "ウッセェワ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 4,
+		"title": "花たちに希望を",
+		"artist": "Sound piercer feat.DAZBEE",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ハナタチニキボウヲ",
+			"artistJP": "ハナタチニキボウヲ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 5,
+		"title": "NightTheater",
+		"artist": "わかどり",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ナイトシアター",
+			"artistJP": "ナイトシアター",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 6,
+		"title": "恋のMoonlight",
+		"artist": "REDALiCE feat. 犬山たまき",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "コイノムーンライト",
+			"artistJP": "コイノムーンライト",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 7,
+		"title": "Comet Coaster",
+		"artist": "DJ Noriken & aran",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "コメットコースター",
+			"artistJP": "コメットコースター",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 8,
+		"title": "XODUS",
+		"artist": "DJ Myosuke & Gram",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "エクソダス",
+			"artistJP": "エクソダス",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 9,
+		"title": "Lights of Muse",
+		"artist": "Ayatsugu_Otowa",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ライツオブミューズ",
+			"artistJP": "ライツオブミューズ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 10,
+		"title": "The 90's Decision",
+		"artist": "MYUKKE.",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ザナインティーンズディシジョン",
+			"artistJP": "ザナインティーンズディシジョン",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 11,
+		"title": "粉骨砕身カジノゥ",
+		"artist": "モリモリあつし",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "フンコツサイシンカジノゥ",
+			"artistJP": "フンコツサイシンカジノゥ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 12,
+		"title": "炉心融解",
+		"artist": "iroha",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ロシンユウカイ",
+			"artistJP": "ロシンユウカイ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 13,
+		"title": "ワールズエンド・ダンスホール",
+		"artist": "wowaka",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ワールズエンド・ダンスホール",
+			"artistJP": "ワールズエンド・ダンスホール",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 14,
+		"title": "∞(2018Remake)",
+		"artist": "cosMo＠暴走P feat.初音ミク",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "インフィニティ",
+			"artistJP": "インフィニティ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 15,
+		"title": "ちがう!!!",
+		"artist": "ダイナミック自演ズ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "チガウ!!!",
+			"artistJP": "チガウ!!!",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 16,
+		"title": "怪盗Fの台本（シナリオ）〜消えたダイヤの謎〜",
+		"artist": "ひとしずく×やま△",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "カイトウエフノシナリオ キエタダイヤノナゾ",
+			"artistJP": "カイトウエフノシナリオ キエタダイヤノナゾ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 17,
+		"title": "おねがいダーリン",
+		"artist": "OИE (song by ナナホシ管弦楽団)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "オネガイダーリン",
+			"artistJP": "オネガイダーリン",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 18,
+		"title": "メニメニマニマニ",
+		"artist": "高宮なすの(鳴海杏子)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "メニメニマニマニ",
+			"artistJP": "メニメニマニマニ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 19,
+		"title": "青空のラプソディ",
+		"artist": "fhána",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アオゾラノラプソディ",
+			"artistJP": "アオゾラノラプソディ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 20,
+		"title": "回レ！雪月花",
+		"artist": "歌組雪月花(夜々(原田ひとみ)・いろり(茅野愛衣)・小紫(小倉唯))",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "マワレ！セツゲツカ",
+			"artistJP": "マワレ！セツゲツカ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 21,
+		"title": "Break Through Myself feat. Risa Yuzuki",
+		"artist": "DJ Myosuke & Laur",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ブレイクスルーマイセルフフィーチャリングリサユヅキ",
+			"artistJP": "ブレイクスルーマイセルフフィーチャリングリサユヅキ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 22,
+		"title": "Chobit Flavor",
+		"artist": "aran & t+pazolite",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "チョビットフレーバー",
+			"artistJP": "チョビットフレーバー",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 23,
+		"title": "D3LTA QOMPLEX",
+		"artist": "Getty & Srav3R & DJ Noriken",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "デルタコンプレックス",
+			"artistJP": "デルタコンプレックス",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 24,
+		"title": "透明声彩",
+		"artist": "YuNi",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "トウメイセイサイ",
+			"artistJP": "トウメイセイサイ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 25,
+		"title": "Fly to NEW WORLD",
+		"artist": "ミライアカリ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "フライ トゥ ニューワールド",
+			"artistJP": "フライ トゥ ニューワールド",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 26,
+		"title": "Fam☆Fam☆Time!",
+		"artist": "ド葛本社",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ファンファンタイム",
+			"artistJP": "ファンファンタイム",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 27,
+		"title": "トリノコシティ",
+		"artist": "40mP",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "トリノコシティ",
+			"artistJP": "トリノコシティ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 28,
+		"title": "KING",
+		"artist": "Kanaria",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "キング",
+			"artistJP": "キング",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 29,
+		"title": "ダーリンダンス",
+		"artist": "かいりきベア",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ダーリンダンス",
+			"artistJP": "ダーリンダンス",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 30,
+		"title": "サマータイムレコード",
+		"artist": "じん",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "サマータイムレコード",
+			"artistJP": "サマータイムレコード",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 31,
+		"title": "Crime Wave",
+		"artist": "REDALiCE feat. 野宮あゆみ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "クライムウェーブ",
+			"artistJP": "クライムウェーブ",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 32,
+		"title": "Avant Raze",
+		"artist": "Sampling Masters MEGA",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 33,
+		"title": "#1f1e33",
+		"artist": "かめりあ(EDP)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 34,
+		"title": "Arcahv",
+		"artist": "Feryquitous",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 35,
+		"title": "最強STRONGER",
+		"artist": "REDALiCE vs USAO",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 36,
+		"title": "Sheriruth (Laur Remix)",
+		"artist": "Laur",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シェリダー ラウルリミックス",
+			"artistJP": "シェリダー ラウルリミックス",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 37,
+		"title": "Let you DIVE! (nitro rmx)",
+		"artist": "nitro (lowiro)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "レット　ユー　ダイヴ（ニトロ リミックス）",
+			"artistJP": "レット　ユー　ダイヴ（ニトロ リミックス）",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 38,
+		"title": "Machinery of Avoid",
+		"artist": "Noizenecio",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "マシナリー　オブ　アヴォイド",
+			"artistJP": "マシナリー　オブ　アヴォイド",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 39,
+		"title": "Datamania (tpz Overheat Remix)",
+		"artist": "t+pazolite",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "データマニアティーピーゼットオーバーヒートリミックス",
+			"artistJP": "データマニアティーピーゼットオーバーヒートリミックス",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 40,
+		"title": "Ouvertüre",
+		"artist": "USAO & DJ Genki feat. ルーン(CV:河瀬茉希)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "オバーチュア",
+			"artistJP": "オバーチュア",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 41,
+		"title": "Love Kills U",
+		"artist": "EmoCosine",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ラブキルズユー",
+			"artistJP": "ラブキルズユー",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 42,
+		"title": "YOG",
+		"artist": "モリモリあつし",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 43,
+		"title": "Kira☆Kira☆Night",
+		"artist": "KO3 & Relect",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "キラキラナイト",
+			"artistJP": "キラキラナイト",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 44,
+		"title": "超MANJIラッシュ",
+		"artist": "Massive New Krew",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "チョウマンジラッシュ",
+			"artistJP": "チョウマンジラッシュ",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 45,
+		"title": "Meta-Mysteria",
+		"artist": "DJ Noriken",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "メタ・ミステリア",
+			"artistJP": "メタ・ミステリア",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 46,
+		"title": "さんさーら！",
+		"artist": "ARuFa",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "サンサーラ！",
+			"artistJP": "サンサーラ！",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 47,
+		"title": "EVE",
+		"artist": "P*Light",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "イヴ",
+			"artistJP": "イヴ",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 48,
+		"title": "Eternal Ending",
+		"artist": "Kobaryo",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "エターナル　エンディング",
+			"artistJP": "エターナル　エンディング",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 49,
+		"title": "Lost Illusion",
+		"artist": "Yooh",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ロスト　イリュージョン ",
+			"artistJP": "ロスト　イリュージョン ",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 50,
+		"title": "eden",
+		"artist": "\"漆黒\"の堕天使《Gram》†Versus† \"聖刻\"の熾天使《Gram》",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "エデン",
+			"artistJP": "エデン",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 51,
+		"title": "Silentphobia",
+		"artist": "t+pazolite VS 削除",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "サイレントフォビア",
+			"artistJP": "サイレントフォビア",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 52,
+		"title": "ソロモン・ナイト",
+		"artist": "「アズールレーン」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 53,
+		"title": "cœur",
+		"artist": "Polaris「アズールレーン」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 54,
+		"title": "私はNo 1！",
+		"artist": "サンディエゴ（CV:伊藤あすか）「アズールレーン」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 55,
+		"title": "Night Club Junkie",
+		"artist": "YUC'e",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ナイトクラブジャンキー",
+			"artistJP": "ナイトクラブジャンキー",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 56,
+		"title": "Cauliflower",
+		"artist": "HiTECH NINJA",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "カリフラワー",
+			"artistJP": "カリフラワー",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 57,
+		"title": "Purple Skies",
+		"artist": "Mameyudoufu",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "パープルスカイズ",
+			"artistJP": "パープルスカイズ",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 58,
+		"title": "やけにインザレイン feat. 小林私",
+		"artist": "t+pazolite",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ヤケニインザレイン フィーチャリング　コバヤシワタシ",
+			"artistJP": "ヤケニインザレイン フィーチャリング　コバヤシワタシ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 59,
+		"title": "Traveller feat.moimoi",
+		"artist": "かめりあ vs DJ Genki",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "トラベラーフィーチャリングモイモイ",
+			"artistJP": "トラベラーフィーチャリングモイモイ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 60,
+		"title": "FLVSH OUT",
+		"artist": "Getty",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "フラッシュアウト",
+			"artistJP": "フラッシュアウト",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 61,
+		"title": "BSCS",
+		"artist": "Massive New Krew",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ビーエスシーエス",
+			"artistJP": "ビーエスシーエス",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 62,
+		"title": "LOVE!HUG!GROOVY!!",
+		"artist": "Happy Around!＆Peaky P-key 「D4DJ Groovy Mix」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 63,
+		"title": "ぐるぐるDJ TURN!!",
+		"artist": "Happy Around! feat. KYOKO & SAKI 「D4DJ Groovy Mix」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 64,
+		"title": "Dig Delight!",
+		"artist": "Happy Around! 「D4DJ Groovy Mix」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 65,
+		"title": "電乱★カウントダウン",
+		"artist": "Peaky P-key 「D4DJ Groovy Mix」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 66,
+		"title": "Photon Melodies",
+		"artist": "Photon Maiden 「D4DJ Groovy Mix」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 67,
+		"title": "エピクロスの虹はもう見えない",
+		"artist": "SYNC.ART'S feat. 美里",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "エピクロスノニジハモウミエナイ",
+			"artistJP": "エピクロスノニジハモウミエナイ",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 68,
+		"title": "チルノは覚醒サマーデイズ！",
+		"artist": "森羅万象",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "チルノハカクセイサマーデイズ！",
+			"artistJP": "チルノハカクセイサマーデイズ！",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 69,
+		"title": "四次元跳躍機関",
+		"artist": "koutaq",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ヨジゲンチョウヤクキカン",
+			"artistJP": "ヨジゲンチョウヤクキカン",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 70,
+		"title": "ARROW RAIN feat.ayame",
+		"artist": "Masayoshi Minoshima(Alstroemeria Records)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アローレイン フィーチャリング アヤメ",
+			"artistJP": "アローレイン フィーチャリング アヤメ",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 71,
+		"title": "Destructive Little Sister",
+		"artist": "Kobaryo",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ディストラクティブ　リトル　シスター",
+			"artistJP": "ディストラクティブ　リトル　シスター",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 72,
+		"title": "Madwing",
+		"artist": "DJ Myosuke & aran",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "マッドウィング",
+			"artistJP": "マッドウィング",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 73,
+		"title": "TRICKL4SH 220",
+		"artist": "Lite Show Magic",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "トリックラッシュトゥーゼロゼロ",
+			"artistJP": "トリックラッシュトゥーゼロゼロ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 74,
+		"title": "Popping Happiness!",
+		"artist": "DJ Genki & P*Light",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ポッピングハピネス",
+			"artistJP": "ポッピングハピネス",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 75,
+		"title": "Destr0yer",
+		"artist": "削除 feat Nikki Simmons",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "デストロイヤー",
+			"artistJP": "デストロイヤー",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 76,
+		"title": "もぺもぺ",
+		"artist": "LeaF",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "モペモペ",
+			"artistJP": "モペモペ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 77,
+		"title": "PUPA",
+		"artist": "モリモリあつし",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ピューパ",
+			"artistJP": "ピューパ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 78,
+		"title": "物凄い勢いでけーねが物凄いうた",
+		"artist": "Halozy",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "モノスゴイイキオイデケーネガモノスゴイウタ",
+			"artistJP": "モノスゴイイキオイデケーネガモノスゴイウタ",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 79,
+		"title": "患部で止まってすぐ溶ける ～ 狂気の優曇華院",
+		"artist": "ARM＋夕野ヨシミ (IOSYS) feat. miko",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "カンブデトマッテスグトケル キョウキノウドンゲイン",
+			"artistJP": "カンブデトマッテスグトケル キョウキノウドンゲイン",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 80,
+		"title": "バレリーコ",
+		"artist": "みきとP",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "バレリーコ",
+			"artistJP": "バレリーコ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 81,
+		"title": "フィクサー",
+		"artist": "ぬゆり",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "フィクサー",
+			"artistJP": "フィクサー",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 82,
+		"title": "テレキャスタービーボーイ",
+		"artist": "すりぃ feat.鏡音レン",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "テレキャスタービーボーイ",
+			"artistJP": "テレキャスタービーボーイ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 83,
+		"title": "だれかの心臓になれたなら",
+		"artist": "ユリイ・カノン feat.GUMI",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ダレカノシンゾウニナレタナラ",
+			"artistJP": "ダレカノシンゾウニナレタナラ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 84,
+		"title": "非実在系女子たちはどうすりゃいいですか？",
+		"artist": "綾瀬理恵",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ヒジツザイケイジョシタチハドウスリャイイデスカ？",
+			"artistJP": "ヒジツザイケイジョシタチハドウスリャイイデスカ？",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 85,
+		"title": "なだめスかし Negotiation",
+		"artist": "鹿乃と宇崎ちゃん",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ナダメスカシ ネゴシエーション",
+			"artistJP": "ナダメスカシ ネゴシエーション",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 86,
+		"title": "sister's noise",
+		"artist": "fripSide",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シスターズ ノイズ",
+			"artistJP": "シスターズ ノイズ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 87,
+		"title": "サクリファイス",
+		"artist": "まふまふ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "サクリファイス",
+			"artistJP": "サクリファイス",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 88,
+		"title": "六兆年と一夜物語",
+		"artist": "kemu",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ロクチョウネントイチヤモノガタリ",
+			"artistJP": "ロクチョウネントイチヤモノガタリ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 89,
+		"title": "Scream out!",
+		"artist": "A-One",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "スクリームアウト!",
+			"artistJP": "スクリームアウト!",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 90,
+		"title": "ホイホイ☆幻想ホロイズム",
+		"artist": "宝鐘マリン with ホロイズムファンタジー",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ホイホイ ゲンソウホロイズム",
+			"artistJP": "ホイホイ ゲンソウホロイズム",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 91,
+		"title": "Stasis",
+		"artist": "Maozon ｢Lanota｣より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 92,
+		"title": "You are the Miserable",
+		"artist": "t+pazolite ｢Lanota｣より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 93,
+		"title": "Rainmaker",
+		"artist": "Kamome sano ｢Lanota｣より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 94,
+		"title": "Apocalypse",
+		"artist": "アリスシャッハと魔法の楽団 ｢Lanota｣より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 95,
+		"title": "Weg",
+		"artist": "ユアミトス ｢Lanota｣より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "",
+			"artistJP": "",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 96,
+		"title": "MAGENTA POTION",
+		"artist": "EmoCosine",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "マゼンダポーション",
+			"artistJP": "マゼンダポーション",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 97,
+		"title": "進捗WARS feat．ビートまりお",
+		"artist": "ARM(IOSYS)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シンチョクウォーズ フィーチャリング ビートマリオ",
+			"artistJP": "シンチョクウォーズ フィーチャリング ビートマリオ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 98,
+		"title": "ATAMA WARUI",
+		"artist": "Laur",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アタマワルイ",
+			"artistJP": "アタマワルイ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 99,
+		"title": "Megaton Killer",
+		"artist": "DJ Myosuke",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "メガトンキラー",
+			"artistJP": "メガトンキラー",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 100,
+		"title": "Lhaksha",
+		"artist": "Feryquitous",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ラクシャ",
+			"artistJP": "ラクシャ",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 101,
+		"title": "LIN NE KRO NE feat. lasah",
+		"artist": "sasakure.UK",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "LIN NE KRO NE feat. lasah",
+			"artistJP": "LIN NE KRO NE feat. lasah",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 102,
+		"title": "SHAKE!",
+		"artist": "REDALiCE",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シェイク！",
+			"artistJP": "シェイク！",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 103,
+		"title": "DUAL BREAKER XX",
+		"artist": "Srav3R vs Getty",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "デュアル ブレイカー ダブルエックス",
+			"artistJP": "デュアル ブレイカー ダブルエックス",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 104,
+		"title": "フリーフォール",
+		"artist": "Zekk",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "フリーフォール",
+			"artistJP": "フリーフォール",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 105,
+		"title": "猫娘",
+		"artist": "かねこちはる",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ネコムスメ",
+			"artistJP": "ネコムスメ",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 106,
+		"title": "Animosity",
+		"artist": "Laur",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アニモシティ",
+			"artistJP": "アニモシティ",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 107,
+		"title": "Liberate",
+		"artist": "USAO",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "リバレイト",
+			"artistJP": "リバレイト",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 108,
+		"title": "Big Bang",
+		"artist": "Massive New Krew",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ビッグバン",
+			"artistJP": "ビッグバン",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 109,
+		"title": "Future Cαndy",
+		"artist": "YUC'e",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "フューチャーキャンディ",
+			"artistJP": "フューチャーキャンディ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 110,
+		"title": "From Zero feat. 利香",
+		"artist": "Neko Hacker",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "フロムゼロ フィーチャリング リカ",
+			"artistJP": "フロムゼロ フィーチャリング リカ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 111,
+		"title": "PRESS START!",
+		"artist": "KOTONOHOUSE",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "プレス スタート",
+			"artistJP": "プレス スタート",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 112,
+		"title": "TWISTSTEP",
+		"artist": "Pa's Lam System",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ツイストステップ",
+			"artistJP": "ツイストステップ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 113,
+		"title": "ぼくらの16bit戦争",
+		"artist": "sasakure. UK",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ボクラノシックスティーンビットウォーズ",
+			"artistJP": "ボクラノシックスティーンビットウォーズ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 114,
+		"title": "ワールドイズマイン",
+		"artist": "supercell",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ワールドイズマイン",
+			"artistJP": "ワールドイズマイン",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 115,
+		"title": "進捗どうですか！",
+		"artist": "オワタP",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シンチョクドウデスカ！",
+			"artistJP": "シンチョクドウデスカ！",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 116,
+		"title": "隔絶≡タナトス",
+		"artist": "ろひ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "カクゼツタナトス",
+			"artistJP": "カクゼツタナトス",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 117,
+		"title": "はげしこの夜 -Psylent Crazy Night-",
+		"artist": "aran & Kobaryo",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ハゲシコノヨル　サイレントクレイジーナイト",
+			"artistJP": "ハゲシコノヨル　サイレントクレイジーナイト",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 118,
+		"title": "恋メタル",
+		"artist": "P*Light",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "コイメタル",
+			"artistJP": "コイメタル",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 119,
+		"title": "THERAPY",
+		"artist": "group_inou",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "セラピー",
+			"artistJP": "セラピー",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 120,
+		"title": "シャカリキ・ファイト・ブンブン",
+		"artist": "ミュージカル『テニスの王子様』3rdシーズン",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シャカリキ・ファイト・ブンブン",
+			"artistJP": "シャカリキ・ファイト・ブンブン",
+			"genre": "2.5次元",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 121,
+		"title": "Fish Fight!",
+		"artist": "野猿",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "フィッシュ ファイト",
+			"artistJP": "フィッシュ ファイト",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 122,
+		"title": "QiXiN MAdN3ss 2153",
+		"artist": "DJ Noriken vs MASAKI",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "キシンマッドネス 2153",
+			"artistJP": "キシンマッドネス 2153",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 123,
+		"title": "Got more raves?",
+		"artist": "E.G.G. 「グルーヴコースター」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ゴットモアリーヴス?",
+			"artistJP": "ゴットモアリーヴス?",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 124,
+		"title": "Good Night, Bad Luck.",
+		"artist": "t+pazolite 「グルーヴコースター」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "グッドナイトバッドラック",
+			"artistJP": "グッドナイトバッドラック",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 125,
+		"title": "グルーヴ・ザ・ハート",
+		"artist": "ビートまりお＋あまね 「グルーヴコースター」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "グルーヴ・ザ・ハート",
+			"artistJP": "グルーヴ・ザ・ハート",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 126,
+		"title": "パニックポップ☆フェスティバル!!!",
+		"artist": "DJ Genki",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "パニックポップ☆フェスティバル!!!",
+			"artistJP": "パニックポップ☆フェスティバル!!!",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 127,
+		"title": "KALACAKLA",
+		"artist": "aran & lapix",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "カラカクラ",
+			"artistJP": "カラカクラ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 128,
+		"title": "RAV#GIRL",
+		"artist": "Srav3R",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "レイブガール",
+			"artistJP": "レイブガール",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 129,
+		"title": "Stasis feat.motoko -WACCA EDiT-",
+		"artist": "源屋",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ステイシス フィーチャリング モトコ ワッカエディット",
+			"artistJP": "ステイシス フィーチャリング モトコ ワッカエディット",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 130,
+		"title": "ぺこみこ大戦争！！",
+		"artist": "REDALiCE feat. 兎田ぺこら&さくらみこ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ペコミコダイセンソウ",
+			"artistJP": "ペコミコダイセンソウ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 131,
+		"title": "Say!ファンファーレ!",
+		"artist": "白上フブキ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "セイ！ファンファーレ",
+			"artistJP": "セイ！ファンファーレ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 132,
+		"title": "NEXT COLOR PLANET",
+		"artist": "星街すいせい",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ネクストカラープラネット",
+			"artistJP": "ネクストカラープラネット",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 133,
+		"title": "夢見る空へ",
+		"artist": "hololive IDOL PROJECT",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ユメミルソラヘ",
+			"artistJP": "ユメミルソラヘ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 134,
+		"title": "お願いマッスル",
+		"artist": "紗倉ひびき(CV：ファイルーズあい)＆街雄鳴造(CV：石川界人)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "オネガイマッスル",
+			"artistJP": "オネガイマッスル",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 135,
+		"title": "マッチョアネーム？",
+		"artist": "街雄鳴造（ＣＶ：石川界人）",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "マッチョアネーム",
+			"artistJP": "マッチョアネーム",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 136,
+		"title": "HELLO to DREAM",
+		"artist": "井口裕香",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ハロートゥードリーム",
+			"artistJP": "ハロートゥードリーム",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 137,
+		"title": "over and over",
+		"artist": "井口裕香",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "オーバーアンドオーバー",
+			"artistJP": "オーバーアンドオーバー",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 138,
+		"title": "トロピカッ☆バケーション",
+		"artist": "アイズ・ヴァレンシュタイン（cv.大西沙織）",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "トロピカッ　バケーション",
+			"artistJP": "トロピカッ　バケーション",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 139,
+		"title": "Sweet Requiem",
+		"artist": "REDALiCE & aran",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "スウィートレクイエム",
+			"artistJP": "スウィートレクイエム",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 140,
+		"title": "Help me, ERINNNNNN!!",
+		"artist": "ビートまりお（COOL&CREATE）",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ヘルプミーエーリン",
+			"artistJP": "ヘルプミーエーリン",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 141,
+		"title": "進捗どうですか？",
+		"artist": "sumijun(Halozy) feat. ななひら(Confetto)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シンチョクドウデスカ？",
+			"artistJP": "シンチョクドウデスカ？",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 142,
+		"title": "ARTEMiS",
+		"artist": "BlackY",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": " アルテミス",
+			"artistJP": " アルテミス",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 143,
+		"title": "Grayed Out-Antifront-",
+		"artist": "Getty vs. DJ DiA",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "グレイドアウトアンチフロント",
+			"artistJP": "グレイドアウトアンチフロント",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 144,
+		"title": "Poppin' Shower",
+		"artist": "P*Light",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ポッピンシャワー",
+			"artistJP": "ポッピンシャワー",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 145,
+		"title": "アスノヨゾラ哨戒班",
+		"artist": "Orangestar feat.IA",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": " アスノヨゾラショウカイハン",
+			"artistJP": " アスノヨゾラショウカイハン",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 146,
+		"title": "ヒビカセ",
+		"artist": "GigaReol",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ヒビカセ",
+			"artistJP": "ヒビカセ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 147,
+		"title": "脳漿炸裂ガール",
+		"artist": "れるりり",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ノウショウサクレツガール",
+			"artistJP": "ノウショウサクレツガール",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 148,
+		"title": "with U",
+		"artist": "t+pazolite & Massive New Krew feat. リリィ(CV:青木志貴)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ウィズユー",
+			"artistJP": "ウィズユー",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 149,
+		"title": "秒針を噛む",
+		"artist": "ずっと真夜中でいいのに。",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ビョウシンヲカム",
+			"artistJP": "ビョウシンヲカム",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 150,
+		"title": "ないものねだり",
+		"artist": "KANA-BOON",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ナイモノネダリ",
+			"artistJP": "ナイモノネダリ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 151,
+		"title": "HOT LIMIT",
+		"artist": "T.M.Revolution",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ホットリミット",
+			"artistJP": "ホットリミット",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 152,
+		"title": "RAGE OF DUST",
+		"artist": "ＳＰＹＡＩＲ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "レイジ・オブ・ダスト",
+			"artistJP": "レイジ・オブ・ダスト",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 153,
+		"title": "ガヴリールドロップキック",
+		"artist": "ガヴリール(CV:富田美憂)、ヴィーネ(CV:大西沙織)、サターニャ(CV:大空直美)、ラフィエル(CV:花澤香菜)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ガヴリールドロップキック",
+			"artistJP": "ガヴリールドロップキック",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 154,
+		"title": "This game",
+		"artist": "鈴木このみ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ディス ゲーム",
+			"artistJP": "ディス ゲーム",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 155,
+		"title": "キラメキライダー☆",
+		"artist": "hololive IDOL PROJECT",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "キラメキライダー",
+			"artistJP": "キラメキライダー",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 156,
+		"title": "Make it！ (DJ Genki Remix)",
+		"artist": "i☆Ris",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "メイクイット！ディージェーゲンキ リミックス",
+			"artistJP": "メイクイット！ディージェーゲンキ リミックス",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 157,
+		"title": "Make it！",
+		"artist": "i☆Ris",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "メイクイット！",
+			"artistJP": "メイクイット！",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 158,
+		"title": "キラッとスタート (USAO Remix)",
+		"artist": "Run Girls, Run！",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "キラットスタート ウサオリミックス",
+			"artistJP": "キラットスタート ウサオリミックス",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 159,
+		"title": "キラッとスタート",
+		"artist": "Run Girls, Run！",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "キラットスタート",
+			"artistJP": "キラットスタート",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 160,
+		"title": "ハート♥イロ♥トリドリ〜ム",
+		"artist": "彩瀬なる（CV.加藤英美里）",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ハート イロ トリドリ～ム",
+			"artistJP": "ハート イロ トリドリ～ム",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 161,
+		"title": "39みゅーじっく！",
+		"artist": "みきとP",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "サンキューミュージック",
+			"artistJP": "サンキューミュージック",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 162,
+		"title": "ポジティブ☆ダンスタイム",
+		"artist": "キノシタ(kinoshita) feat.音街ウナ・鏡音リン",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ポジティブダンスタイム",
+			"artistJP": "ポジティブダンスタイム",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 163,
+		"title": "Gimme×Gimme feat. 初音ミク・鏡音リン",
+		"artist": "八王子P × Giga",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ギミギミ フィーチャリング ハツネミク カガミネリン",
+			"artistJP": "ギミギミ フィーチャリング ハツネミク カガミネリン",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 164,
+		"title": "ブリキノダンス",
+		"artist": "日向電工",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ブリキノダンス",
+			"artistJP": "ブリキノダンス",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 165,
+		"title": "明星ロケット",
+		"artist": "岸田教団&THE明星ロケッツ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アケボシロケット",
+			"artistJP": "アケボシロケット",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 166,
+		"title": "ゆけむり魂温泉 II",
+		"artist": "魂音泉",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ユケムリタマオンセン ツー",
+			"artistJP": "ユケムリタマオンセン ツー",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 167,
+		"title": "Calamity Fortune",
+		"artist": "LeaF",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "カラミティ フォーチューン",
+			"artistJP": "カラミティ フォーチューン",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 168,
+		"title": "インドア系ならトラックメイカー",
+		"artist": "Yunomi",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "インドアケイナラトラックメイカー",
+			"artistJP": "インドアケイナラトラックメイカー",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 169,
+		"title": "ニュー・ウェーブ",
+		"artist": "ミュージカル『テニスの王子様』3rdシーズン",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ニュー・ウェーブ",
+			"artistJP": "ニュー・ウェーブ",
+			"genre": "2.5次元",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 170,
+		"title": "ALiVE",
+		"artist": "REDALiCE",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アライブ",
+			"artistJP": "アライブ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 171,
+		"title": "While Shining feat.Yukacco",
+		"artist": "aran & Kobaryo",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ホワイルシャイニング フィーチャリング ユカッコ",
+			"artistJP": "ホワイルシャイニング フィーチャリング ユカッコ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 172,
+		"title": "Tell Me",
+		"artist": "RiraN",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "テルミー",
+			"artistJP": "テルミー",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 173,
+		"title": "LETHAL;WEAPON",
+		"artist": "NOMA w/ Apo11o program ft. Yuyoyuppe",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "リーサルウェポン",
+			"artistJP": "リーサルウェポン",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 174,
+		"title": "THE MUZZLE FACING",
+		"artist": "かめりあ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ザマズルフェイシング",
+			"artistJP": "ザマズルフェイシング",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 175,
+		"title": "ONOMATO Pairing!!!",
+		"artist": "t+pazolite feat. ななひら",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "オノマトペアリング",
+			"artistJP": "オノマトペアリング",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 176,
+		"title": "SUPER REACTOR",
+		"artist": "Kobaryo feat. HiTNEX-X",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "スーパー　リアクター",
+			"artistJP": "スーパー　リアクター",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 177,
+		"title": "GENOCIDER",
+		"artist": "DJ Myosuke",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ジェノサイダー",
+			"artistJP": "ジェノサイダー",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 178,
+		"title": "WHITE",
+		"artist": "超魂團（ウルトラソウルズ）",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ホワイト",
+			"artistJP": "ホワイト",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 179,
+		"title": "ダンシング☆サムライ",
+		"artist": "崎山つばさ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ダンシング サムライ",
+			"artistJP": "ダンシング サムライ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 180,
+		"title": "ダダダダ天使",
+		"artist": "ナナヲアカリ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ダダダダテンシ",
+			"artistJP": "ダダダダテンシ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 181,
+		"title": "Bravely You",
+		"artist": "Lia",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ブレイブリー ユー",
+			"artistJP": "ブレイブリー ユー",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 182,
+		"title": "MAGiC4LG1RL M3GA S7R1KE!",
+		"artist": "DJ Noriken",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "マジカルガール・メガ・ストライク！",
+			"artistJP": "マジカルガール・メガ・ストライク！",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 183,
+		"title": "Metamorphose",
+		"artist": "Laur",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "メタモルフォーゼ",
+			"artistJP": "メタモルフォーゼ",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 184,
+		"title": "METEOR BURST",
+		"artist": "Getty",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "メテオバースト",
+			"artistJP": "メテオバースト",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 185,
+		"title": "天使光輪",
+		"artist": "REDALiCE & cosMo＠暴走P",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "テンシコウリン",
+			"artistJP": "テンシコウリン",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 186,
+		"title": "XTREME",
+		"artist": "USAO",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "エクストリーム",
+			"artistJP": "エクストリーム",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 187,
+		"title": "ツアー・ファイナル",
+		"artist": "C-Show",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ツアー・ファイナル",
+			"artistJP": "ツアー・ファイナル",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 188,
+		"title": "リアル初音ミクの消失",
+		"artist": "cosMo@暴走P",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "リアルハツネミクノショウシツ",
+			"artistJP": "リアルハツネミクノショウシツ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 189,
+		"title": "ベノム",
+		"artist": "かいりきベア",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ベノム",
+			"artistJP": "ベノム",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 190,
+		"title": "おばけのウケねらい",
+		"artist": "ピノキオピー",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "オバケノウケネライ",
+			"artistJP": "オバケノウケネライ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 191,
+		"title": "チュルリラ・チュルリラ・ダッダッダ！",
+		"artist": "和田たけあき(くらげP)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "チュルリラ・チュルリラ・ダッダッダ！",
+			"artistJP": "チュルリラ・チュルリラ・ダッダッダ！",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 192,
+		"title": "デタラメなマイナスとプラスにおけるブレンド考",
+		"artist": "ブレンド・A",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "デタラメナマイナストプラスニオケルブレンドコウ",
+			"artistJP": "デタラメナマイナストプラスニオケルブレンドコウ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 193,
+		"title": "ぼなぺてぃーと♡S",
+		"artist": "ブレンド・A",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ボナペティートエス",
+			"artistJP": "ボナペティートエス",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 194,
+		"title": "STILL HOT IN MY HEART",
+		"artist": "ミュージカル『テニスの王子様』3rdシーズン",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "スティルホットインマイハート",
+			"artistJP": "スティルホットインマイハート",
+			"genre": "2.5次元",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 195,
+		"title": "スマイル・アンド・ティアズ",
+		"artist": "ミュージカル『テニスの王子様』3rdシーズン",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "スマイル・アンド・ティアズ",
+			"artistJP": "スマイル・アンド・ティアズ",
+			"genre": "2.5次元",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 196,
+		"title": "ガンガン・ドンドン",
+		"artist": "ミュージカル『テニスの王子様』3rdシーズン",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ガンガン・ドンドン",
+			"artistJP": "ガンガン・ドンドン",
+			"genre": "2.5次元",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 197,
+		"title": "Brain Power",
+		"artist": "NOMA",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ブレインパワー",
+			"artistJP": "ブレインパワー",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 198,
+		"title": "Ultra Red",
+		"artist": "REDALiCE & Hommarju",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ウルトラレッド",
+			"artistJP": "ウルトラレッド",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 199,
+		"title": "サイクルヒット",
+		"artist": "葛西ハーコーズ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "サイクルヒット",
+			"artistJP": "サイクルヒット",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 200,
+		"title": "聖者の鼓動",
+		"artist": "世阿弥 「グルーヴコースター」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "セイジャノコドウ",
+			"artistJP": "セイジャノコドウ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 201,
+		"title": "BUCHiGiRE Berserker",
+		"artist": "REDALiCE vs MASAKI 「グルーヴコースター」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ブチギレバーサーカー",
+			"artistJP": "ブチギレバーサーカー",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 202,
+		"title": "FUJIN Rumble",
+		"artist": "COSIO (ZUNTATA) 「グルーヴコースター」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "フウジンランブル",
+			"artistJP": "フウジンランブル",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 203,
+		"title": "君のStarlight Road",
+		"artist": "セイネ (CV: 河上英里子) 「グルーヴコースター」より",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "キミノスターライトロード",
+			"artistJP": "キミノスターライトロード",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 204,
+		"title": "Eyes on me feat. Such",
+		"artist": "PSYQUI",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アイズオンミー フィーチャリング サッチ",
+			"artistJP": "アイズオンミー フィーチャリング サッチ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 205,
+		"title": "GOODWORLD",
+		"artist": "EBIMAYO",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "グッドワールド",
+			"artistJP": "グッドワールド",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 206,
+		"title": "Altale",
+		"artist": "削除",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アルテール",
+			"artistJP": "アルテール",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 207,
+		"title": "輪廻転生",
+		"artist": "まふまふ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "リンネテンセイ",
+			"artistJP": "リンネテンセイ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 208,
+		"title": "ストライク・ザ・ブラッド",
+		"artist": "岸田教団&THE明星ロケッツ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ストライク・ザ・ブラッド",
+			"artistJP": "ストライク・ザ・ブラッド",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 209,
+		"title": "Strange Bar",
+		"artist": "Laur",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ストレンジバー",
+			"artistJP": "ストレンジバー",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 210,
+		"title": "GASHATT",
+		"artist": "onoken",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ガシャット",
+			"artistJP": "ガシャット",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 211,
+		"title": "風に乗せた願い",
+		"artist": "豚乙女",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "カゼニノセタネガイ",
+			"artistJP": "カゼニノセタネガイ",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 212,
+		"title": "LOVE EAST",
+		"artist": "暁Records",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ラブイースト",
+			"artistJP": "ラブイースト",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 213,
+		"title": "ケロ⑨Destiny",
+		"artist": "Silver Forest",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ケロキュウディスティニー",
+			"artistJP": "ケロキュウディスティニー",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 214,
+		"title": "天狗の落とし文 feat. ytr",
+		"artist": "魂音泉",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "テングノオトシブミ フィーチャリング ユトリ",
+			"artistJP": "テングノオトシブミ フィーチャリング ユトリ",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 215,
+		"title": "神寂",
+		"artist": "t+pazolite",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "カンサビ",
+			"artistJP": "カンサビ",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 216,
+		"title": "天ノ弱",
+		"artist": "164",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アマノジャク",
+			"artistJP": "アマノジャク",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 217,
+		"title": "セツナトリップ",
+		"artist": "Last Note.",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "セツナトリップ",
+			"artistJP": "セツナトリップ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 218,
+		"title": "カゲロウデイズ",
+		"artist": "じん(自然の敵P)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "カゲロウデイズ",
+			"artistJP": "カゲロウデイズ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 219,
+		"title": "新宝島",
+		"artist": "サカナクション",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シンタカラジマ",
+			"artistJP": "シンタカラジマ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 220,
+		"title": "U.S.A.",
+		"artist": "DA PUMP",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ユーエスエー",
+			"artistJP": "ユーエスエー",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 221,
+		"title": "without U",
+		"artist": "AZKi",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ウィズアウトユー",
+			"artistJP": "ウィズアウトユー",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 222,
+		"title": "Dream☆Story",
+		"artist": "ときのそら",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ドリームストーリー",
+			"artistJP": "ドリームストーリー",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 223,
+		"title": "Shiny Smily Story",
+		"artist": "hololive IDOL PROJECT",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シャイニースマイリーストーリー",
+			"artistJP": "シャイニースマイリーストーリー",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 224,
+		"title": "ベースラインやってる？笑",
+		"artist": "かめりあ feat. ななひら",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ベースラインヤッテル?",
+			"artistJP": "ベースラインヤッテル?",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 225,
+		"title": "EU over Progress",
+		"artist": "E.G.G. a.k.a. COSIO",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "イーユーオーバープログレス",
+			"artistJP": "イーユーオーバープログレス",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 226,
+		"title": "シャルル",
+		"artist": "バルーン",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シャルル",
+			"artistJP": "シャルル",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 227,
+		"title": "Mazy Metroplex",
+		"artist": "aran",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "メイジー・メトロプレックス",
+			"artistJP": "メイジー・メトロプレックス",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 228,
+		"title": "†DOOF†SENC†",
+		"artist": "Kobaryo",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ドゥーフセンシ",
+			"artistJP": "ドゥーフセンシ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 229,
+		"title": "ドラマツルギー",
+		"artist": "Eve",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ドラマツルギー",
+			"artistJP": "ドラマツルギー",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 230,
+		"title": "ゴーストルール",
+		"artist": "DECO*27",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ゴーストルール",
+			"artistJP": "ゴーストルール",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 231,
+		"title": "悪戯センセーション",
+		"artist": "森羅万象",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "イラズラセンセーション",
+			"artistJP": "イラズラセンセーション",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 232,
+		"title": "オドループ",
+		"artist": "フレデリック",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "オドループ",
+			"artistJP": "オドループ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 233,
+		"title": "いーあるふぁんくらぶ",
+		"artist": "みきとP",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "イーアルファンクラブ",
+			"artistJP": "イーアルファンクラブ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 234,
+		"title": "Mami Mami Zone",
+		"artist": "REDALiCE feat. 野宮あゆみ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "マミマミゾーン",
+			"artistJP": "マミマミゾーン",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 235,
+		"title": "Shiny Memory feat.Yukacco",
+		"artist": "USAO & DJ Genki",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シャイニーメモリー フィーチャリングユカッコ",
+			"artistJP": "シャイニーメモリー フィーチャリングユカッコ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 236,
+		"title": "ナイト・オブ・ナイツ (かめりあ's\"ワンス・アポン・ア・ナイト\"Remix)",
+		"artist": "かめりあ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ナイト・オブ・ナイツ (カメリア&#039;ズ“ワンス・アポン・ア・ナイト”リミックス)",
+			"artistJP": "ナイト・オブ・ナイツ (カメリア&#039;ズ“ワンス・アポン・ア・ナイト”リミックス)",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 237,
+		"title": "燐廻",
+		"artist": "飛鳥(原田ひとみ)&焔(喜多村英梨)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "リンネ",
+			"artistJP": "リンネ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 238,
+		"title": "only my railgun",
+		"artist": "fripSide",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "オンリーマイレールガン",
+			"artistJP": "オンリーマイレールガン",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 239,
+		"title": "Murasaki",
+		"artist": "Srav3R",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ムラサキ",
+			"artistJP": "ムラサキ",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 240,
+		"title": "Demon's Rave",
+		"artist": "Hommarju",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "デーモンズレイヴ",
+			"artistJP": "デーモンズレイヴ",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 241,
+		"title": "ロストワンの号哭",
+		"artist": "Neru",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ロストワンノゴウコク",
+			"artistJP": "ロストワンノゴウコク",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 242,
+		"title": "LOSE CONTROL",
+		"artist": "Massive New Krew",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ルーズコントロール",
+			"artistJP": "ルーズコントロール",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 243,
+		"title": "jacaranda",
+		"artist": "西村 隆文",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ハカランダ",
+			"artistJP": "ハカランダ",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 244,
+		"title": "BLVST BEVT",
+		"artist": "Getty",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ブラストビート",
+			"artistJP": "ブラストビート",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 245,
+		"title": "CHECKER FLAG",
+		"artist": "COSIO",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "チェッカーフラッグ",
+			"artistJP": "チェッカーフラッグ",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 246,
+		"title": "Jägermeister",
+		"artist": "Da Tweekaz",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "イェーガーマイスター",
+			"artistJP": "イェーガーマイスター",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 247,
+		"title": "Over the sweat and tears",
+		"artist": "舞台『弱虫ペダル』キャスト",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "オーバー ザ スウェット アンド ティアーズ",
+			"artistJP": "オーバー ザ スウェット アンド ティアーズ",
+			"genre": "2.5次元",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 248,
+		"title": "What's this?",
+		"artist": "超魂團（ウルトラソウルズ）",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ワッツ ディス",
+			"artistJP": "ワッツ ディス",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 249,
+		"title": "『エキセントリック少年ボウイ』のテーマ",
+		"artist": "エキセントリック少年ボウイ　オールスターズ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "エキセントリックショウネンボウイノテーマ",
+			"artistJP": "エキセントリックショウネンボウイノテーマ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 250,
+		"title": "JINGLE DEATH",
+		"artist": "DJ Myosuke & Gram",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ジングルデス",
+			"artistJP": "ジングルデス",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 251,
+		"title": "Invisible Frenzy",
+		"artist": "Kobaryo",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "インビジブル フレンジー",
+			"artistJP": "インビジブル フレンジー",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 252,
+		"title": "初音ミクの消失",
+		"artist": "cosMo@暴走P",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ハツネミクノショウシツ",
+			"artistJP": "ハツネミクノショウシツ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 253,
+		"title": "FREEDOM DiVE↓",
+		"artist": "xi",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "フリーダム ダイブ",
+			"artistJP": "フリーダム ダイブ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 254,
+		"title": "劣等上等",
+		"artist": "Giga feat. 鏡音リン・レン",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "レットウジョウトウ",
+			"artistJP": "レットウジョウトウ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 255,
+		"title": "Stratoliner",
+		"artist": "C-Show",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ストラトライナー",
+			"artistJP": "ストラトライナー",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 256,
+		"title": "Honey Panic!",
+		"artist": "KO3&Relect",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ハニー パニック",
+			"artistJP": "ハニー パニック",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 257,
+		"title": "You Only Live Once",
+		"artist": "YURI!!! on ICE feat. w.hatano",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ユー オンリー ライブ ワンス",
+			"artistJP": "ユー オンリー ライブ ワンス",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 258,
+		"title": "Utopia feat. shully",
+		"artist": "HiTECH NINJA",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ユートピア　フィーチャリング　シュリー",
+			"artistJP": "ユートピア　フィーチャリング　シュリー",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 259,
+		"title": "ただ君に晴れ",
+		"artist": "ヨルシカ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "タダキミニハレ",
+			"artistJP": "タダキミニハレ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 260,
+		"title": "残酷な天使のテーゼ",
+		"artist": "高橋洋子",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ザンコクナテンシノテーゼ",
+			"artistJP": "ザンコクナテンシノテーゼ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 261,
+		"title": "Pixel Galaxy",
+		"artist": "Snail's House",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ピクセル ギャラクシー",
+			"artistJP": "ピクセル ギャラクシー",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 262,
+		"title": "VOX Diamond",
+		"artist": "t+pazolite",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ヴォックスダイアモンド",
+			"artistJP": "ヴォックスダイアモンド",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 263,
+		"title": "Hello, Morning",
+		"artist": "Kizuna AI",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ハロー　モーニング",
+			"artistJP": "ハロー　モーニング",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 264,
+		"title": "Chariot",
+		"artist": "USAO",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "チャリオット",
+			"artistJP": "チャリオット",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 265,
+		"title": "AIAIAI (feat. 中田ヤスタカ)",
+		"artist": "Kizuna AI",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アイアイアイ フィーチャリング ナカタヤスタカ",
+			"artistJP": "アイアイアイ フィーチャリング ナカタヤスタカ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 266,
+		"title": "The Light",
+		"artist": "W&W ft. Kizuna AI",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ザ ライト",
+			"artistJP": "ザ ライト",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 267,
+		"title": "待チ人ハ来ズ。",
+		"artist": "豚乙女",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "マチビトハコズ",
+			"artistJP": "マチビトハコズ",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 268,
+		"title": "集結の華々",
+		"artist": "飛鳥(原田ひとみ)・焔(喜多村英梨)・雅緋(平田宏美)・雪泉(原由実)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シュウケツノハナバナ",
+			"artistJP": "シュウケツノハナバナ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 269,
+		"title": "チルノのパーフェクトさんすう教室",
+		"artist": "ARM＋夕野ヨシミ (IOSYS) feat. miko",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "チルノノパーフェクトサンスウキョウシツ",
+			"artistJP": "チルノノパーフェクトサンスウキョウシツ",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 270,
+		"title": "taboo tears you up 2017",
+		"artist": "REDALiCE",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "タブーティアーズユーアップ 2017",
+			"artistJP": "タブーティアーズユーアップ 2017",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 271,
+		"title": "Bad Apple!! feat. nomico",
+		"artist": "Masayoshi Minoshima",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "バッドアップル フィーチャリング ノミコ",
+			"artistJP": "バッドアップル フィーチャリング ノミコ",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 272,
+		"title": "SHINY DAYS",
+		"artist": "亜咲花",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シャイニー デイズ",
+			"artistJP": "シャイニー デイズ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 273,
+		"title": "ナイト・オブ・ナイツ",
+		"artist": "ビートまりお（COOL&CREATE）",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ナイト・オブ・ナイツ",
+			"artistJP": "ナイト・オブ・ナイツ",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 274,
+		"title": "Raise Your Heart!!",
+		"artist": "亜咲花",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "レイズ ユア ハート",
+			"artistJP": "レイズ ユア ハート",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 275,
+		"title": "WARNING×WARNING×WARNING",
+		"artist": "暁Records",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ワーニング ワーニング ワーニング",
+			"artistJP": "ワーニング ワーニング ワーニング",
+			"genre": "東方アレンジ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 276,
+		"title": "アカリがやってきたぞっ",
+		"artist": "GYARI(ココアシガレットP)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アカリガヤッテキタゾッ",
+			"artistJP": "アカリガヤッテキタゾッ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 277,
+		"title": "Akareram",
+		"artist": "Srav3R",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アカレラム",
+			"artistJP": "アカレラム",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 278,
+		"title": "気まぐれメルシィ feat. 初音ミク",
+		"artist": "八王子P",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "キマグレメルシィフィーチャリングハツネミク",
+			"artistJP": "キマグレメルシィフィーチャリングハツネミク",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 279,
+		"title": "太陽系デスコ",
+		"artist": "ナユタン星人",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "タイヨウケイデスコ",
+			"artistJP": "タイヨウケイデスコ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 280,
+		"title": "Galaxy Friends",
+		"artist": "Kobaryo",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ギャラクシーフレンズ",
+			"artistJP": "ギャラクシーフレンズ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 281,
+		"title": "13 Donkeys",
+		"artist": "Massive New Krew",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "サーティーンドンキーズ",
+			"artistJP": "サーティーンドンキーズ",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 282,
+		"title": "ATARAX1A",
+		"artist": "DJ Genki",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アタラクシア",
+			"artistJP": "アタラクシア",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 283,
+		"title": "ADAM",
+		"artist": "P*Light",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アダム",
+			"artistJP": "アダム",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 284,
+		"title": "HiGHER",
+		"artist": "REDALiCE",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ハイヤー",
+			"artistJP": "ハイヤー",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 285,
+		"title": "Source of Creation",
+		"artist": "DJ Myosuke",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ソースオブクリエイション",
+			"artistJP": "ソースオブクリエイション",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 286,
+		"title": "Blaze",
+		"artist": "Getty",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ブレイズ",
+			"artistJP": "ブレイズ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 287,
+		"title": "幸せになれる隠しコマンドがあるらしい",
+		"artist": "うたたP",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シアワセニナレルカクシコマンドガアルラシイ",
+			"artistJP": "シアワセニナレルカクシコマンドガアルラシイ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 288,
+		"title": "EXCITE",
+		"artist": "三浦大知",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "エキサイト",
+			"artistJP": "エキサイト",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 289,
+		"title": "Exitium",
+		"artist": "Laur",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "エクシティウム",
+			"artistJP": "エクシティウム",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 290,
+		"title": "ぼくの夢、メチャクソ無限湧き",
+		"artist": "ARuFa & t+pazolite & かめりあ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ボクノユメ メチャクソムゲンワキ",
+			"artistJP": "ボクノユメ メチャクソムゲンワキ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 291,
+		"title": "こんにちは、ARuFaです。",
+		"artist": "ARuFa",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "コンニチハ アルファデス",
+			"artistJP": "コンニチハ アルファデス",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 292,
+		"title": "conflict",
+		"artist": "siromaru + cranky",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "コンフリクト",
+			"artistJP": "コンフリクト",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 293,
+		"title": "BATTLE NO.1",
+		"artist": "TANO*C Sound Team",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "バトル ナンバーワン",
+			"artistJP": "バトル ナンバーワン",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 294,
+		"title": "GRiDGALAXY",
+		"artist": "aran",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "グリッドギャラクシー",
+			"artistJP": "グリッドギャラクシー",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 295,
+		"title": "Jingle",
+		"artist": "DJ Noriken",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ジングル",
+			"artistJP": "ジングル",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 296,
+		"title": "Shining Harmony",
+		"artist": "Harmonies(P*Light & Massive New Krew)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "シャイニングハーモニー",
+			"artistJP": "シャイニングハーモニー",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 297,
+		"title": "スクランブル交際",
+		"artist": "DECO*27",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "スクランブルコウサイ",
+			"artistJP": "スクランブルコウサイ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 298,
+		"title": "乙女解剖",
+		"artist": "DECO*27",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "オトメカイボウ",
+			"artistJP": "オトメカイボウ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 299,
+		"title": "ファッとして桃源郷",
+		"artist": "新庄かなえ（三森すずこ）",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ファットシテトウゲンキョウ",
+			"artistJP": "ファットシテトウゲンキョウ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 300,
+		"title": "ゲームオーバー (feat. TORIENA)",
+		"artist": "Yunomi",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ゲームオーバー(フィーチャリング トリエナ)",
+			"artistJP": "ゲームオーバー(フィーチャリング トリエナ)",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 301,
+		"title": "五等分の気持ち",
+		"artist": "中野家の五つ子（花澤香菜・竹達彩奈・伊藤美来・佐倉綾音・水瀬いのり）",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ゴトウブンノキモチ",
+			"artistJP": "ゴトウブンノキモチ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 302,
+		"title": "TOMORROW",
+		"artist": "Machico",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "トゥモロー",
+			"artistJP": "トゥモロー",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 303,
+		"title": "Nameless Story",
+		"artist": "寺島拓篤",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ネームレスストーリー",
+			"artistJP": "ネームレスストーリー",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 304,
+		"title": "Sound Chimera",
+		"artist": "Laur",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "サウンド キメラ",
+			"artistJP": "サウンド キメラ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 305,
+		"title": "BLUE SKY feat. 野宮あゆみ",
+		"artist": "源屋",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ブルースカイ フィーチャリング ノミヤアユミ",
+			"artistJP": "ブルースカイ フィーチャリング ノミヤアユミ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 306,
+		"title": "BOOM! BOOM!! BOOM!!!",
+		"artist": "P*Light feat. mow*2",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ブンブンブン",
+			"artistJP": "ブンブンブン",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 307,
+		"title": "Ever Free(Raw Edit)",
+		"artist": "Massive New Krew",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "エバーフリー(ロウエディット)",
+			"artistJP": "エバーフリー(ロウエディット)",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 308,
+		"title": "Try again",
+		"artist": "USAO",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "トライアゲイン",
+			"artistJP": "トライアゲイン",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 309,
+		"title": "Sunshine",
+		"artist": "DJ Genki VS かめりあ (feat. moimoi)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "サンシャイン",
+			"artistJP": "サンシャイン",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 310,
+		"title": "Over My Hand",
+		"artist": "Srav3R",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "オーバーマイハンド",
+			"artistJP": "オーバーマイハンド",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 311,
+		"title": "Are You Ready",
+		"artist": "Getty",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アーユーレディー",
+			"artistJP": "アーユーレディー",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 312,
+		"title": "Gate One",
+		"artist": "aran",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ゲートワン",
+			"artistJP": "ゲートワン",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 313,
+		"title": "HELL FLAME",
+		"artist": "DJ Myosuke",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ヘルフレイム",
+			"artistJP": "ヘルフレイム",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 314,
+		"title": "Quon",
+		"artist": "DJ Noriken",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "クオン",
+			"artistJP": "クオン",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 315,
+		"title": "BIG HEAD BANGING",
+		"artist": "t+pazolite",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ビッグ　ヘッド　バンギング",
+			"artistJP": "ビッグ　ヘッド　バンギング",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 316,
+		"title": "LEVATEiN feat. 野宮あゆみ",
+		"artist": "REDALiCE",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "レーヴァテイン　フィーチャリング　ノミヤアユミ",
+			"artistJP": "レーヴァテイン　フィーチャリング　ノミヤアユミ",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 317,
+		"title": "ルーンファクトリー４スペシャルより「この想いを乗せて」",
+		"artist": "ジョー・リノイエ with 安西美貴",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ルーンファクトリーフォースペシャルヨリ コノオモイヲノセテ",
+			"artistJP": "ルーンファクトリーフォースペシャルヨリ コノオモイヲノセテ",
+			"genre": "バラエティ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 318,
+		"title": "フラジール",
+		"artist": "ぬゆり",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "フラジール",
+			"artistJP": "フラジール",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 319,
+		"title": "Seyana. ～何でも言うことを聞いてくれるアカネチャン～",
+		"artist": "GYARI(ココアシガレットP)",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "セヤナ ナンデモイウコトヲキイテクレルアカネチャン",
+			"artistJP": "セヤナ ナンデモイウコトヲキイテクレルアカネチャン",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 320,
+		"title": "ウミユリ海底譚",
+		"artist": "n-buna",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ウミユリカイテイタン",
+			"artistJP": "ウミユリカイテイタン",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 321,
+		"title": "ギミチョコ!!",
+		"artist": "BABYMETAL",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ギミチョコ",
+			"artistJP": "ギミチョコ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 322,
+		"title": "ウマーベラス",
+		"artist": "MONKEY MAJIK × サンドウィッチマン",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ウマーベラス",
+			"artistJP": "ウマーベラス",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 323,
+		"title": "ロキ",
+		"artist": "みきとP",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ロキ",
+			"artistJP": "ロキ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 324,
+		"title": "ようこそジャパリパークへ",
+		"artist": "どうぶつビスケッツ×PPP",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ヨウコソジャパリパークヘ",
+			"artistJP": "ヨウコソジャパリパークヘ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 325,
+		"title": "POP TEAM EPIC",
+		"artist": "上坂すみれ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ポップチームエピック",
+			"artistJP": "ポップチームエピック",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 326,
+		"title": "徒花ネクロマンシー",
+		"artist": "フランシュシュ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "アダバナネクロマンシー",
+			"artistJP": "アダバナネクロマンシー",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 327,
+		"title": "Let you DIVE!",
+		"artist": "HARDCORE TANO*C & エリザベス（CV:大西沙織）",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "レット ユー ダイブ",
+			"artistJP": "レット ユー ダイブ",
+			"genre": "オリジナル",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 328,
+		"title": "マトリョシカ",
+		"artist": "ハチ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "マトリョシカ",
+			"artistJP": "マトリョシカ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 329,
+		"title": "砂の惑星 feat. 初音ミク",
+		"artist": "ハチ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "スナノワクセイ フィーチャリング ハツネミク",
+			"artistJP": "スナノワクセイ フィーチャリング ハツネミク",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 330,
+		"title": "エイリアンエイリアン",
+		"artist": "ナユタン星人 feat. 初音ミク",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "エイリアンエイリアン",
+			"artistJP": "エイリアンエイリアン",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 331,
+		"title": "Fight for the CORE feat. Daisuke",
+		"artist": "DJ Myosuke",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ファイトフォー ザ コア フィーチャリング ダイスケ",
+			"artistJP": "ファイトフォー ザ コア フィーチャリング ダイスケ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 332,
+		"title": "Soldiers",
+		"artist": "DJ Noriken",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ソルジャーズ",
+			"artistJP": "ソルジャーズ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 333,
+		"title": "ファティマ",
+		"artist": "いとうかなこ",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ファティマ",
+			"artistJP": "ファティマ",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 334,
+		"title": "illanai-assorted",
+		"artist": "t+pazolite",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "イラナイアソーテッド",
+			"artistJP": "イラナイアソーテッド",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 335,
+		"title": "MEMORiZE",
+		"artist": "REDALiCE feat. Ayumi Nomiya",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "メモライズ",
+			"artistJP": "メモライズ",
+			"genre": "TANO*C",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 336,
+		"title": "ピースサイン",
+		"artist": "米津玄師",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ピースサイン",
+			"artistJP": "ピースサイン",
+			"genre": "アニメ／ＰＯＰ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 337,
+		"title": "千本桜",
+		"artist": "黒うさP feat. 初音ミク",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "センボンザクラ",
+			"artistJP": "センボンザクラ",
+			"genre": "ボカロ",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 338,
+		"title": "PARALLEL★PRISM",
+		"artist": "P*Light",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "パラレルプリズム",
+			"artistJP": "パラレルプリズム",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 339,
+		"title": "Poseidon",
+		"artist": "Massive New Krew",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ポセイドン",
+			"artistJP": "ポセイドン",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 340,
+		"title": "Knight Rider",
+		"artist": "USAO",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "ナイト ライダー",
+			"artistJP": "ナイト ライダー",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	},
+	{
+		"id": 341,
+		"title": "Rainbow Dream",
+		"artist": "DJ Genki feat. Yukacco",
+		"searchTerms": [],
+		"altTitles": [],
+		"data": {
+			"titleJP": "レインボードリーム",
+			"artistJP": "レインボードリーム",
+			"genre": "TANO*C（オリジナル）",
+			"displayVersion": null
+		}
+	}
+]

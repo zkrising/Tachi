@@ -225,8 +225,6 @@ t.test("#CalculateGITADORARating", (t) => {
 	t.end();
 });
 
-t.test;
-
 const logger = CreateLogCtx(__filename);
 
 t.test("#CalculateMFCP", (t) => {

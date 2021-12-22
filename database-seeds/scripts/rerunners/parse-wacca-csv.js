@@ -75,7 +75,7 @@ for (const record of dirtyRecords.slice(1)) {
 			altTitles: [],
 			data: {
 				titleJP: data.title.ruby,
-				artistJP: data.title.ruby,
+				artistJP: data.artist.ruby,
 				genre: data.category,
 				displayVersion: null
 			}

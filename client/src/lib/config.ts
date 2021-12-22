@@ -19,7 +19,9 @@ if (mode === "ktchi") {
 	conf = {
 		name: "Kamaitachi",
 		type: "ktchi",
-		supportedGames: ["iidx", "chunithm", "museca", "sdvx"],
+		// TODO: #78 This should inherit in some way from the server config. Can we reflect
+		// this out somehow?
+		supportedGames: ["iidx", "chunithm", "museca", "sdvx", "wacca"],
 		importTypes: [
 			"api/arc-iidx",
 			"api/arc-sdvx",

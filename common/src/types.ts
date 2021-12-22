@@ -835,9 +835,6 @@ interface CDDataBMS {
 	tableFolders: { table: string; level: string }[];
 }
 
-// not necessarily stuff we're supporting
-type WaccaAllVersions = "wacca" | "s" | "lily" | "lily-r" | "reverse";
-
 interface ChartDocumentData {
 	"iidx:SP": CDDataIIDXSP;
 	"iidx:DP": CDDataIIDXSP;
@@ -855,7 +852,7 @@ interface ChartDocumentData {
 	"chunithm:Single": { inGameID: integer };
 	"gitadora:Gita": { inGameID: integer };
 	"gitadora:Dora": { inGameID: integer };
-	"wacca:Single": { releaseVersion: WaccaAllVersions };
+	"wacca:Single": { isHot: boolean };
 }
 
 export interface GPTTierlists {
@@ -909,7 +906,7 @@ interface SongDocumentData {
 	bms: { genre: string | null; subtitle: string | null; subartist: string | null };
 	chunithm: { genre: string; displayVersion: string };
 	gitadora: { isHot: boolean; displayVersion: string };
-	wacca: { genre: string; displayVersion: string | null };
+	wacca: { titleJP: string; artistJP: string; genre: string; displayVersion: string | null };
 }
 
 export interface SongDocument<G extends Game = Game> extends MongoDBDocument {

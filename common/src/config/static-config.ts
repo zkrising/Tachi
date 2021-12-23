@@ -66,7 +66,7 @@ export const allSupportedGames: Game[] = [
 	"museca",
 	"maimai",
 	// "jubeat",
-	// "popn",
+	"popn",
 	"sdvx",
 	"ddr",
 	"bms",

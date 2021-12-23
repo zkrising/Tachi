@@ -45,57 +45,30 @@ export async function CreateCalculatedData(
 }
 
 type CalculatedDataFunctions = {
-	[G in Game]: {
-		[P in Playtypes[G]]: (
-			dryScore: DryScore,
-			chart: ChartDocument,
-			logger: KtLogger
-		) => Promise<ScoreDocument["calculatedData"]> | ScoreDocument["calculatedData"];
-	};
+	[I in IDStrings]: (
+		dryScore: DryScore<I>,
+		chart: ChartDocument<I>,
+		logger: KtLogger
+	) => Promise<ScoreDocument<I>["calculatedData"]> | ScoreDocument<I>["calculatedData"];
 };
 
 const CalculatedDataFunctions: CalculatedDataFunctions = {
-	iidx: {
-		SP: CalculateDataIIDXSP,
-		DP: CalculateDataIIDXDP,
-	},
-	sdvx: {
-		Single: CalculateDataSDVXorUSC,
-	},
-	// popn: {
-	// 	"9B": () => ({}),
-	// },
-	museca: {
-		Single: CalculateDataMuseca,
-	},
-	chunithm: {
-		Single: CalculateDataCHUNITHM,
-	},
-	maimai: {
-		Single: CalculateDataMaimai,
-	},
-	gitadora: {
-		Gita: CalculateDataGitadora,
-		Dora: CalculateDataGitadora,
-	},
-	bms: {
-		"7K": CalculateDataBMS7K,
-		"14K": CalculateDataBMS14K,
-	},
-	ddr: {
-		SP: CalculateDataDDR,
-		DP: CalculateDataDDR,
-	},
-	// jubeat: {
-	// 	Single: CalculateDataJubeat,
-	// },
-	usc: {
-		Controller: CalculateDataSDVXorUSC,
-		Keyboard: CalculateDataSDVXorUSC,
-	},
-	wacca: {
-		Single: CalculateDataWACCA,
-	},
+	"iidx:SP": CalculateDataIIDXSP,
+	"iidx:DP": CalculateDataIIDXDP,
+	"sdvx:Single": CalculateDataSDVXorUSC,
+	"popn:9B": CalculateDataPopn,
+	"museca:Single": CalculateDataMuseca,
+	"chunithm:Single": CalculateDataCHUNITHM,
+	"maimai:Single": CalculateDataMaimai,
+	"gitadora:Gita": CalculateDataGitadora,
+	"gitadora:Dora": CalculateDataGitadora,
+	"bms:7K": CalculateDataBMS7K,
+	"bms:14K": CalculateDataBMS14K,
+	"ddr:SP": CalculateDataDDR,
+	"ddr:DP": CalculateDataDDR,
+	"usc:Controller": CalculateDataSDVXorUSC,
+	"usc:Keyboard": CalculateDataSDVXorUSC,
+	"wacca:Single": CalculateDataWACCA,
 };
 
 // Creates Game-Specific calculatedData for the provided game & playtype.
@@ -110,39 +83,26 @@ export async function CalculateDataForGamePT<G extends Game>(
 	esd: number | null,
 	logger: KtLogger
 ): Promise<ScoreDocument["calculatedData"]> {
-	const GameRatingFns = CalculatedDataFunctions[game];
-
-	if (!HasOwnProperty(GameRatingFns, playtype)) {
-		logger.error(
-			`Invalid playtype of ${playtype} given for game ${game} in CalculateDataForGamePT, returning an empty object.`
-		);
-		return {};
-	}
-
-	// @ts-expect-error standard game->pt stuff.
-	return GameRatingFns[playtype](dryScore, chart, logger);
+	// @ts-expect-error too many minor complains here...
+	return CalculatedDataFunctions[`${game}:${playtype}` as IDStrings](dryScore, chart, logger);
 }
 
 type CalculatedData<I extends IDStrings> = Required<ScoreDocument<I>["calculatedData"]>;
 
-async function CalculateDataIIDXSP(
+function CalculateDataIIDXSP(
 	dryScore: DryScore,
-	chart: ChartDocument,
+	chart: ChartDocument<"iidx:SP">,
 	logger: KtLogger
-): Promise<CalculatedData<"iidx:SP">> {
-	const BPIData = await db["iidx-bpi-data"].findOne({
-		chartID: chart.chartID,
-	});
-
+): CalculatedData<"iidx:SP"> {
 	let bpi;
 
-	if (BPIData) {
+	if (chart.data.kaidenAverage && chart.data.worldRecord) {
 		bpi = CalculateBPI(
-			BPIData.kavg,
-			BPIData.wr,
+			chart.data.kaidenAverage,
+			chart.data.worldRecord,
 			dryScore.scoreData.score,
 			(chart as ChartDocument<"iidx:SP">).data.notecount * 2,
-			BPIData.coef
+			chart.data.bpiCoefficient
 		);
 
 		// kesdc = esd === null ? null : CalculateKESDC(BPIData.kesd, esd); disabled
@@ -156,24 +116,20 @@ async function CalculateDataIIDXSP(
 	};
 }
 
-async function CalculateDataIIDXDP(
+function CalculateDataIIDXDP(
 	dryScore: DryScore,
-	chart: ChartDocument,
+	chart: ChartDocument<"iidx:SP" | "iidx:DP">,
 	logger: KtLogger
-): Promise<CalculatedData<"iidx:DP">> {
-	const BPIData = await db["iidx-bpi-data"].findOne({
-		chartID: chart.chartID,
-	});
-
+): CalculatedData<"iidx:DP"> {
 	let bpi;
 
-	if (BPIData) {
+	if (chart.data.kaidenAverage && chart.data.worldRecord) {
 		bpi = CalculateBPI(
-			BPIData.kavg,
-			BPIData.wr,
+			chart.data.kaidenAverage,
+			chart.data.worldRecord,
 			dryScore.scoreData.score,
 			(chart as ChartDocument<"iidx:DP">).data.notecount * 2,
-			BPIData.coef
+			chart.data.bpiCoefficient
 		);
 
 		// kesdc = esd === null ? null : CalculateKESDC(BPIData.kesd, esd); disabled
@@ -213,11 +169,11 @@ function CalculateDataSDVXorUSC(
 	};
 }
 
-async function CalculateDataMuseca(
+function CalculateDataMuseca(
 	dryScore: DryScore,
 	chart: ChartDocument,
 	logger: KtLogger
-): Promise<CalculatedData<"museca:Single">> {
+): CalculatedData<"museca:Single"> {
 	return {
 		ktRating: CalculateKTRating(dryScore, "museca", "Single", chart, logger),
 	};
@@ -232,11 +188,11 @@ function CalculateDataCHUNITHM(
 	};
 }
 
-async function CalculateDataMaimai(
+function CalculateDataMaimai(
 	dryScore: DryScore,
 	chart: ChartDocument,
 	logger: KtLogger
-): Promise<CalculatedData<"maimai:Single">> {
+): CalculatedData<"maimai:Single"> {
 	// @todo #373 Add maimai rating algorithms.
 	return {
 		ktRating: 0,
@@ -359,4 +315,29 @@ function CalculateDataWACCA(
 	// That's... it??
 	// How discrete. How boring!
 	return { rate: scoreCoef * chart.levelNum };
+}
+
+function CalculateDataPopn(
+	dryScore: DryScore,
+	chart: ChartDocument,
+	logger: KtLogger
+): CalculatedData<"popn:9B"> {
+	const score = dryScore.scoreData.score;
+	const lamp = dryScore.scoreData.lamp;
+
+	if (score <= 50000) {
+		return { classPoints: 0 };
+	}
+
+	let clearBonus = 0;
+
+	if (lamp === "CLEAR" || lamp === "EASY CLEAR") {
+		clearBonus = 3000;
+	} else if (lamp === "FULL COMBO" || lamp === "PERFECT") {
+		clearBonus = 5000;
+	}
+
+	return {
+		classPoints: (10_000 * chart.levelNum + score - 50_000 + clearBonus) / 5440,
+	};
 }

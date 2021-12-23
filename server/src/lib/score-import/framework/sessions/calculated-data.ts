@@ -62,9 +62,11 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 			};
 		},
 	},
-	// popn: {
-	// 	"9B": () => ({}),
-	// },
+	popn: {
+		"9B": (scd) => ({
+			classPoints: AvgBest10Map(scd, "classPoints"),
+		}),
+	},
 	museca: {
 		Single: (scd) => ({
 			ktRating: AvgBest10Map(scd, "ktRating"),

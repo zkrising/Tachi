@@ -119,9 +119,11 @@ const RatingFunctions: RatingFunctions = {
 			naiveRating: await LazyMeanN("rating", 20)(g, p, u),
 		}),
 	},
-	// popn: {
-	// 	"9B": async () => ({}),
-	// },
+	popn: {
+		"9B": async (g, p, u) => ({
+			naiveClassPoints: await LazyMeanN("classPoints", 20)(g, p, u),
+		}),
+	},
 	museca: {
 		Single: async (g, p, u) => ({
 			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),

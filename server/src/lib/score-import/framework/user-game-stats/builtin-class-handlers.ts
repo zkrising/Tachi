@@ -1,6 +1,7 @@
 import {
 	CHUNITHM_COLOURS,
 	GitadoraColours,
+	POPN_CLASSES,
 	SDVXVFClasses,
 	WACCA_COLOURS,
 } from "lib/constants/classes";
@@ -130,6 +131,37 @@ function WACCARateToColour(rate: number) {
 	}
 
 	return WACCA_COLOURS.ASH;
+}
+
+export function CalculatePopnClass(
+	game: Game,
+	playtype: Playtypes[Game],
+	userID: integer,
+	ratings: Record<string, number>
+) {
+	const cls = PopnClassPointsToClass(ratings.naiveClassPoints);
+
+	return { class: cls };
+}
+
+function PopnClassPointsToClass(points: number) {
+	if (points < 21) {
+		return POPN_CLASSES.KITTY;
+	} else if (points < 34) {
+		return POPN_CLASSES.GRADE_SCHOOL;
+	} else if (points < 46) {
+		return POPN_CLASSES.DELINQUENT;
+	} else if (points < 59) {
+		return POPN_CLASSES.DETECTIVE;
+	} else if (points < 68) {
+		return POPN_CLASSES.IDOL;
+	} else if (points < 79) {
+		return POPN_CLASSES.GENERAL;
+	} else if (points < 91) {
+		return POPN_CLASSES.HERMIT;
+	}
+
+	return POPN_CLASSES.GOD;
 }
 
 export function CalculateChunithmColour(

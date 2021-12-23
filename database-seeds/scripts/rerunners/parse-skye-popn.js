@@ -52,7 +52,8 @@ for (const song of data) {
 		charts.push({
 			songID,
 			chartID: CreateChartID(),
-			difficulty: chart.difficulty,
+			// Turns HYPER into Hyper, but keeps EX the same.
+			difficulty: chart.difficulty === "EX" ? "EX" : chart.difficulty[0] + chart.difficulty.slice(1).toLowerCase(),
 			playtype: "9B",
 			level: chart.level.toString(),
 			levelNum: chart.level,

@@ -4,7 +4,7 @@ import { FormatPrError } from "utils/prudence";
 import { EmptyObject } from "utils/types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturns } from "../../common/types";
-import { BarbatosScore } from "./types";
+import { BarbatosContext, BarbatosScore } from "./types";
 
 const PR_Barbatos = {
 	difficulty: p.isIn(1, 2, 3, 4),
@@ -27,7 +27,7 @@ const PR_Barbatos = {
 export function ParseBarbatosSingle(
 	body: Record<string, unknown>,
 	logger: KtLogger
-): ParserFunctionReturns<BarbatosScore, EmptyObject> {
+): ParserFunctionReturns<BarbatosScore, BarbatosContext> {
 	const err = p(body, PR_Barbatos);
 
 	if (err) {
@@ -36,7 +36,7 @@ export function ParseBarbatosSingle(
 
 	// asserted using prudence.
 	return {
-		context: {},
+		context: { timeReceived: Date.now() },
 		game: "sdvx",
 		iterable: [body] as unknown as BarbatosScore[],
 		classHandler: null,

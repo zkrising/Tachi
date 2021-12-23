@@ -163,17 +163,11 @@ async function CalculateWACCARate(
 	logger: KtLogger
 ) {
 	const hotChartIDs = (
-		await db.charts.wacca.find(
-			{ "data.releaseVersion": "reverse" },
-			{ projection: { chartID: 1 } }
-		)
+		await db.charts.wacca.find({ "data.isHot": true }, { projection: { chartID: 1 } })
 	).map((e) => e.chartID);
 
 	const coldChartIDs = (
-		await db.charts.wacca.find(
-			{ "data.releaseVersion": { $ne: "reverse" } },
-			{ projection: { chartID: 1 } }
-		)
+		await db.charts.wacca.find({ "data.isHot": false }, { projection: { chartID: 1 } })
 	).map((e) => e.chartID);
 
 	const best15Hot = await db["personal-bests"].find(

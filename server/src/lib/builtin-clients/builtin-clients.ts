@@ -106,6 +106,22 @@ apiEndpoint = ${ServerConfig.OUR_URL}/ir/direct-manual/import
 ; ${ServerConfig.OUR_URL}/users/me -> Integrations -> API Keys!
 apikey = %%TACHI_KEY%%`,
 	},
+	{
+		name: "SilentHook",
+		apiKeyFilename: "silent-config.json",
+		apiKeyTemplate: JSON.stringify(
+			{
+				key: "%%TACHI_KEY%%",
+				url: `${ServerConfig.OUR_URL}/ir/direct-manual/import`,
+			},
+			null,
+			"\t"
+		),
+		clientID: "CXSilentHook",
+		redirectUri: null,
+		requestedPermissions: ["submit_score"],
+		webhookUri: null,
+	},
 ];
 
 const BtchiDefaultClients: DefaultClients = [

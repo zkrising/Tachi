@@ -12,7 +12,7 @@ import { MaterialThemeProvider } from "../_metronic/layout";
 import { Routes } from "./routes/AppRoutes";
 
 const queryClient = new QueryClient({
-	defaultOptions: { queries: { staleTime: 1000 * 60 * 5, retry: 0 } },
+	defaultOptions: { queries: { staleTime: 1000 * 60 * 5, retry: false } },
 });
 
 export default function App({ basename }: { basename: string }) {

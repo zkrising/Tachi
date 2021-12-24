@@ -90,27 +90,27 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 	if (game === "iidx") {
 		return {
 			bp: optNull(p.isPositiveInteger),
-			gauge: optNull(p.isBoundedInteger(0, 100)),
-			gaugeHistory: optNull([p.isBoundedInteger(0, 100)]),
+			gauge: optNull(p.isBetween(0, 100)),
+			gaugeHistory: optNull([p.isBetween(0, 100)]),
 			scoreHistory: optNull([p.isPositiveInteger]),
 			comboBreak: optNull(p.isPositiveInteger),
 			gsm: optNull({
-				EASY: [p.nullable(p.isBoundedInteger(0, 100))],
-				NORMAL: [p.nullable(p.isBoundedInteger(0, 100))],
-				HARD: [p.nullable(p.isBoundedInteger(0, 100))],
-				EX_HARD: [p.nullable(p.isBoundedInteger(0, 100))],
+				EASY: [p.nullable(p.isBetween(0, 100))],
+				NORMAL: [p.nullable(p.isBetween(0, 100))],
+				HARD: [p.nullable(p.isBetween(0, 100))],
+				EX_HARD: [p.nullable(p.isBetween(0, 100))],
 			}),
 		};
 	} else if (game === "sdvx") {
 		return {
-			gauge: optNull(p.isBoundedInteger(0, 100)),
+			gauge: optNull(p.isBetween(0, 100)),
 		};
 	} else if (game === "usc") {
 		return { gauge: optNull(p.isBetween(0, 1)) };
 	} else if (game === "bms") {
 		return {
 			bp: optNull(p.isPositiveInteger),
-			gauge: optNull(p.isBoundedInteger(0, 100)),
+			gauge: optNull(p.isBetween(0, 100)),
 			lbd: optNull(p.isPositiveInteger),
 			ebd: optNull(p.isPositiveInteger),
 			lpr: optNull(p.isPositiveInteger),
@@ -124,7 +124,7 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 		};
 	} else if (game === "popn") {
 		return {
-			gauge: optNull(p.isBoundedInteger(0, 100)),
+			gauge: optNull(p.isBetween(0, 100)),
 			specificClearType: optNull(
 				p.isIn(
 					"failedUnknown",

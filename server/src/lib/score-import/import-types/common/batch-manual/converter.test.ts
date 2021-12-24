@@ -158,6 +158,58 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		t.end();
 	});
 
+	t.test("Should resolve for the popn chartHash if the matchType is popnChartHash", async (t) => {
+		const chartHash = "2c26d666fa7c907e85115dbb279c267c14a263d47b2d46a93f99eae49d779119";
+
+		const popnContext: BatchManualContext = deepmerge(context, {
+			game: "popn",
+			playtype: "9B",
+		});
+
+		const res = await ResolveMatchTypeToKTData(
+			deepmerge(baseBatchManualScore, {
+				matchType: "popnChartHash",
+				identifier: chartHash,
+			}),
+			popnContext,
+			importType,
+			logger
+		);
+
+		t.hasStrict(
+			res,
+			{
+				song: { id: 1 },
+				chart: {
+					songID: 1,
+					data: { hashSHA256: chartHash },
+					playtype: "9B",
+				},
+			},
+			"Should return the right song and chart."
+		);
+
+		t.end();
+	});
+
+	t.test("Should reject if popnChartHash is used while game is not popn", async (t) => {
+		const chartHash = "2c26d666fa7c907e85115dbb279c267c14a263d47b2d46a93f99eae49d779119";
+
+		t.rejects(() =>
+			ResolveMatchTypeToKTData(
+				deepmerge(baseBatchManualScore, {
+					matchType: "popnChartHash",
+					identifier: chartHash,
+				}),
+				context,
+				importType,
+				logger
+			)
+		);
+
+		t.end();
+	});
+
 	t.test("Should resolve for the usc chartHash if the matchType is uscChartHash", async (t) => {
 		const chartHash = "USC_CHART_HASH";
 

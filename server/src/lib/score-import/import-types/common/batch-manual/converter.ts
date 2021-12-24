@@ -142,6 +142,35 @@ export async function ResolveMatchTypeToKTData(
 		}
 
 		return { song, chart };
+	} else if (data.matchType === "popnChartHash") {
+		if (game !== "popn") {
+			throw new InvalidScoreFailure(`Cannot use popnChartHash lookup on ${game}.`);
+		}
+
+		const chart = await db.charts.popn.findOne({
+			playtype: context.playtype,
+			"data.hashSHA256": data.identifier,
+		});
+
+		if (!chart) {
+			throw new KTDataNotFoundFailure(
+				`Cannot find chart for popnChartHash ${data.identifier} (${context.playtype}).`,
+				importType,
+				data,
+				context
+			);
+		}
+
+		const song = await FindSongOnID(game, chart.songID);
+
+		if (!song) {
+			logger.severe(`Pop'n songID ${chart.songID} has charts but no parent song.`);
+			throw new InternalFailure(
+				`Pop'n songID ${chart.songID} has charts but no parent song.`
+			);
+		}
+
+		return { song, chart };
 	} else if (data.matchType === "tachiSongID") {
 		const songID = AssertStrAsPositiveInt(
 			data.identifier,

@@ -158,7 +158,8 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 			"tachiSongID",
 			"bmsChartHash",
 			"inGameID",
-			"uscChartHash"
+			"uscChartHash",
+			"popnChartHash"
 		),
 		identifier: "string",
 		comment: optNull(p.isBoundedString(3, 240)),

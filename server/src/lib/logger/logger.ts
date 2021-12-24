@@ -170,6 +170,10 @@ if (ServerConfig.LOGGER_CONFIG.SEQ_API_KEY && Environment.seqUrl) {
 		new SeqTransport({
 			apiKey: ServerConfig.LOGGER_CONFIG.SEQ_API_KEY,
 			serverUrl: Environment.seqUrl,
+			onError: (err) => {
+				// eslint-disable-next-line no-console
+				console.error(`Failed to send seq message: ${err.message}.`);
+			},
 			levelMapper(level = "") {
 				return levelMap[level] ?? "information";
 			},

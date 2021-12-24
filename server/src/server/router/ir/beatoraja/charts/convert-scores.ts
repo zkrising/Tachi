@@ -70,8 +70,8 @@ export function TachiScoreDataToBeatorajaFormat(
 
 	const judgements: Partial<BeatorajaScoreJudgements> = {};
 
-	// Not everything exports these properties. If they're not there, they should default to 0.
-	// For cases like LR2/manual - this will just result in a set of 0s.
+	// // Not everything exports these properties. If they're not there, they should default to 0.
+	// // For cases like LR2/manual - this will just result in a set of 0s.
 	for (const key of [
 		"epg",
 		"lpg",
@@ -89,12 +89,17 @@ export function TachiScoreDataToBeatorajaFormat(
 		judgements[key] = scoreData.hitMeta[key] ?? 0;
 	}
 
-	// If we have no epg/egr data, we can't calculate EX score on the beatoraja client.
-	// We have to fake some data for LR2 scores/other scores.
-	if (!judgements.epg && !judgements.lpg && !judgements.egr && !judgements.lgr) {
-		judgements.epg = Math.floor(pbScore.scoreData.score / 2);
-		judgements.egr = pbScore.scoreData.score % 2;
-	}
+	// // If we have no epg/egr data, we can't calculate EX score on the beatoraja client.
+	// // We have to fake some data for LR2 scores/other scores.
+	// if (!judgements.epg && !judgements.lpg && !judgements.egr && !judgements.lgr) {
+
+	// As a temporary measure, we are going to always enable this hack.
+	// It seems like there are a lot of old CN scores that have completely
+	// invalid values for these judgement fields.
+	// truly fun.
+	judgements.epg = Math.floor(pbScore.scoreData.score / 2);
+	judgements.egr = pbScore.scoreData.score % 2;
+	// }
 
 	return { ...beatorajaScore, ...judgements };
 }

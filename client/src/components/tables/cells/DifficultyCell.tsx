@@ -1,5 +1,6 @@
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
+import Muted from "components/util/Muted";
 import React from "react";
 import {
 	ChartDocument,
@@ -29,7 +30,6 @@ export default function DifficultyCell({
 
 	if (game === "bms") {
 		return <BMSDifficultyCell chart={chart as ChartDocument<"bms:7K" | "bms:14K">} />;
-	} else if (game === "wacca") {
 	}
 
 	return (
@@ -45,6 +45,9 @@ export default function DifficultyCell({
 			<span className={!alwaysShort ? "d-lg-none" : ""}>
 				{FormatDifficultyShort(chart, game)}
 			</span>
+			{chart.levelNum.toString() !== chart.level && (
+				<Muted>{chart.levelNum.toFixed(2)}</Muted>
+			)}
 			{Object.keys(chart.tierlistInfo).length > 0 && (
 				<TierlistInfoPart chart={chart} game={game} />
 			)}

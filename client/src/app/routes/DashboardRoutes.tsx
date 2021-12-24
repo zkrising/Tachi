@@ -3,6 +3,7 @@ import { ErrorPage } from "app/pages/ErrorPage";
 import { Layout } from "components/layout/Layout";
 import EmailVerify from "components/layout/misc/EmailVerify";
 import { BannedContext } from "context/BannedContext";
+import DashboardErrorBoundary from "components/util/DashboardErrorBoundary";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
@@ -47,43 +48,45 @@ export default function DashboardRoutes() {
 
 	return (
 		<Layout>
-			<Switch>
-				<Route exact path="/dashboard">
-					<DashboardPage />
-				</Route>
+			<DashboardErrorBoundary>
+				<Switch>
+					<Route exact path="/dashboard">
+						<DashboardPage />
+					</Route>
 
-				<Route exact path="/dashboard/credits">
-					<CreditsPage />
-				</Route>
+					<Route exact path="/dashboard/credits">
+						<CreditsPage />
+					</Route>
 
-				<Route exact path="/dashboard/support">
-					<SupportMePage />
-				</Route>
+					<Route exact path="/dashboard/support">
+						<SupportMePage />
+					</Route>
 
-				<Route exact path="/dashboard/users">
-					<Redirect to="/dashboard" />
-				</Route>
+					<Route exact path="/dashboard/users">
+						<Redirect to="/dashboard" />
+					</Route>
 
-				<Route exact path="/dashboard/games">
-					<Redirect to="/dashboard" />
-				</Route>
+					<Route exact path="/dashboard/games">
+						<Redirect to="/dashboard" />
+					</Route>
 
-				<Route path="/dashboard/users/:userID">
-					<UserRoutes />
-				</Route>
+					<Route path="/dashboard/users/:userID">
+						<UserRoutes />
+					</Route>
 
-				<Route path="/dashboard/games/:game">
-					<GameRoutes />
-				</Route>
+					<Route path="/dashboard/games/:game">
+						<GameRoutes />
+					</Route>
 
-				<Route path="/dashboard/import">
-					<ImportRoutes />
-				</Route>
+					<Route path="/dashboard/import">
+						<ImportRoutes />
+					</Route>
 
-				<Route path="*">
-					<ErrorPage statusCode={404} />
-				</Route>
-			</Switch>
+					<Route path="*">
+						<ErrorPage statusCode={404} />
+					</Route>
+				</Switch>
+			</DashboardErrorBoundary>
 		</Layout>
 	);
 }

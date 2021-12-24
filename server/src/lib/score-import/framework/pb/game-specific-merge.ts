@@ -59,6 +59,17 @@ export async function IIDXMergeFn(
 	return true;
 }
 
+export async function PopnMergeFn(
+	pbDoc: PBScoreDocument<"popn:9B">,
+	scorePB: ScoreDocument<"popn:9B">,
+	lampPB: ScoreDocument<"popn:9B">,
+	logger: KtLogger
+) {
+	pbDoc.scoreData.hitMeta.specificClearType = lampPB.scoreData.hitMeta.specificClearType;
+
+	return true;
+}
+
 /**
  * This function recalculates and applies VF6 to the PB document.
  *

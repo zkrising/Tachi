@@ -2044,5 +2044,38 @@
 		"playtype": "Keyboard",
 		"tableID": "usc-Keyboard-official-levels",
 		"title": "SDVX Official Levels (Keyboard)"
+	},
+	{
+		"description": "Levels for WACCA's Reverse version.",
+		"folders": [
+			"F8aeb3d7ad32ceb71da28d6d1a14840063cdb0c6e44ea42ec4452cd8a82bf631d",
+			"Fdb034510c09c3c823f859f4f293c7bcd66f4cfb440a80f976a5fd1c0ec0629f1",
+			"F1f5755b2b402e55b60cf8bc6bdedf78c81d3f8448b01e634880d15b0fc893b85",
+			"F8c9b6a6935a19aef1963d946c77095d6f45f892e8e74033c53f488e2c4befac2",
+			"F4ec0b5ae74cb213d3a04102742f73ea03dc487e36f4d38a4c3015cd9c6ba93b8",
+			"F5214217b5fec7d24c28f2ea7ca8f7f1c6ea764986e928cf497dc121341fce0a2",
+			"F778b4a27d947039d1ff100f32d61f45084e7572dd6a2aa0c319c32644fe082d8",
+			"Fe24cf5be470a561c470cecb5c670a9abf41584d94d6fca483a4e6583e685bc86",
+			"Ffdf1ed3c801a0070b14a435248eb662a46916618d842fbb1206b0381613b3bf1",
+			"Fef11cad79e289a244a6a24fb12c073649de6c95c5147b1b154a0cf057eb758eb",
+			"Fea798eda8dddc669eac1e37f1ed7d7e53ff405128559894dc1e8b03efe40ee8c",
+			"Fef28d3d9bd72cf25bddcf5918f50b66e46d3d8f511161612e9a73d364a1c0268",
+			"Fbf908742ada0ccaf6f1f8cc7c0552a28e35184e73ea93cee018e828c51dfde4d",
+			"F7bf691f79175d375b8c237232e973404994947e37297375a39a950c15d163d79",
+			"F3e6fbac38bc9adffdd311a2f48ee462d2335e036f932866eeb88ddab3068a081",
+			"Fde9fe05041c82439cf8d69c89b1a22ae6515711f3f7a9e6d385ede613e237350",
+			"F6ba84462792092ca94dc512ffb9db599c32c3d200cfc5664304c696223b76208",
+			"Fb8d9e28453ce0f925c043afd8debb9de99fe0a79c77ff68ebea6dee5da414687",
+			"F8398e01ff026bceb5ce8db4593ac23fb1debdb6a42396f277bde2164a7141dc8",
+			"F6c447417ca4140d4ef60ec936d0e9a0ba7e652dc2fc27f3558579c2600deff1d",
+			"Fa12e4e2a6803ee48877e63904ffa515a3702b403da003ce51fb868c9d2e466d0",
+			"F3ff0b54889ddb11a52cba3f3298cfed39b720dc4e4547e8ca0b749d137457b85",
+			"F69b2c032fc5ee0ab865352dd5825e2a56dda591e03553fa21519399c65cec667"
+		],
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "wacca-Single-reverse-levels",
+		"title": "WACCA Reverse Levels"
 	}
 ]

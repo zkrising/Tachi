@@ -53,7 +53,14 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 				newMap.set(table.tableID, table);
 			}
 			setTableMap(newMap);
-			setTableID(data[0].tableID);
+
+			// todo make an actual engine for picking a good default
+
+			if (data[0]?.title === "Pop'n Music peace Levels (All)" && data[1]) {
+				setTableID(data[1].tableID);
+			} else {
+				setTableID(data[0].tableID);
+			}
 		}
 	}, [data]);
 

@@ -1697,8 +1697,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		defaultDifficulty: "EX",
 		difficultyColours: {
-			Easy: COLOUR_SET.green,
-			Normal: COLOUR_SET.blue,
+			Easy: COLOUR_SET.blue,
+			Normal: COLOUR_SET.green,
 			Hyper: COLOUR_SET.orange,
 			EX: COLOUR_SET.red,
 		},
@@ -1714,9 +1714,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			AAA: COLOUR_SET.gold,
 			S: COLOUR_SET.teal,
 		},
-		clearGrade: "S",
-		// i'm pretty sure the first grade is below the limit of reliable FPA accuracy
-		gradeBoundaries: [0, 0.0001, 3.0001, 70, 80, 85, 90, 93, 95, 97, 98, 99, 100],
+		clearGrade: "A",
+		// TECHNICALLY THIS IS NOT CORRECT
+		// A Fail is capped at A rank (82%), no matter what!
+		gradeBoundaries: [0, 50, 62, 72, 82, 90, 95, 98],
 
 		lamps: ["FAILED", "EASY CLEAR", "CLEAR", "FULL COMBO", "PERFECT"],
 		lampColours: {

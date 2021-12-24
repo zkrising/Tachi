@@ -998,7 +998,7 @@ interface ScoreMetaLookup {
 	"iidx:SP": IIDXSPScoreMeta;
 	"iidx:DP": IIDXSPScoreMeta & { random: { left: RanOptions; right: RanOptions } | null };
 	"popn:9B": {
-		hiSpeed: number;
+		hiSpeed: number | null;
 		hidden: integer | null;
 		sudden: integer | null;
 		random: "NONRAN" | "MIRROR" | "RANDOM" | "S-RANDOM" | null;

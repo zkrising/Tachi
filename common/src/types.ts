@@ -1103,7 +1103,7 @@ type SDVXJudges = "critical" | "near" | "miss";
 export interface JudgementLookup {
 	"iidx:SP": IIDXJudges;
 	"iidx:DP": IIDXJudges;
-	"popn:9B": "cool" | "great" | "good" | "miss";
+	"popn:9B": "cool" | "great" | "good" | "bad";
 	"sdvx:Single": SDVXJudges;
 	"usc:Controller": SDVXJudges;
 	"usc:Keyboard": SDVXJudges;

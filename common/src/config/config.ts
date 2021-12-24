@@ -1734,7 +1734,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 
 		supportsESD: false,
-		judgements: ["cool", "great", "good", "miss"],
+		judgements: ["cool", "great", "good", "bad"],
 
 		scoreBucket: "lamp",
 

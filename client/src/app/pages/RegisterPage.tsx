@@ -4,7 +4,7 @@ import { UserContext } from "context/UserContext";
 import { useFormik } from "formik";
 import { ClientConfig, TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
-import { Button, Col, Form } from "react-bootstrap";
+import { Alert, Button, Col, Form } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import toast from "react-hot-toast";
 import { Link, useHistory } from "react-router-dom";
@@ -130,6 +130,12 @@ export default function RegisterPage() {
 				) : (
 					<div className="text-center">
 						<div className="mb-8">
+							<Alert variant="warning">
+								<b>
+									If you already have an account. DO NOT MAKE ANOTHER ONE! That
+									will get both accounts banned.
+								</b>
+							</Alert>
 							<h4>
 								Hey! Before you make an account, please read the{" "}
 								<a

@@ -59,7 +59,7 @@ export async function IIDXMergeFn(
 	return true;
 }
 
-export async function PopnMergeFn(
+export function PopnMergeFn(
 	pbDoc: PBScoreDocument<"popn:9B">,
 	scorePB: ScoreDocument<"popn:9B">,
 	lampPB: ScoreDocument<"popn:9B">,

@@ -11,6 +11,7 @@ const scales: Record<Game, number> = {
 	sdvx: 5,
 	usc: 5,
 	wacca: 5,
+	popn: 4,
 };
 
 export function GetGradeChartExpScale(game: Game) {

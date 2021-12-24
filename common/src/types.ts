@@ -997,7 +997,13 @@ interface USCScoreMeta {
 interface ScoreMetaLookup {
 	"iidx:SP": IIDXSPScoreMeta;
 	"iidx:DP": IIDXSPScoreMeta & { random: { left: RanOptions; right: RanOptions } | null };
-	"popn:9B": Record<string, never>;
+	"popn:9B": {
+		hiSpeed: number;
+		hidden: integer | null;
+		sudden: integer | null;
+		random: "NONRAN" | "MIRROR" | "RANDOM" | "S-RANDOM" | null;
+		gauge: "NORMAL" | "EASY" | "HARD" | "DANGER" | null;
+	};
 	"sdvx:Single": { inSkillAnalyser: boolean | null };
 	"usc:Controller": USCScoreMeta;
 	"usc:Keyboard": USCScoreMeta;
@@ -1054,7 +1060,20 @@ export interface HitMetaLookup {
 	"iidx:DP": IIDXHitMeta;
 	"popn:9B": BASE_VALID_HIT_META & {
 		gauge: number | null;
-		clearShape: "circle" | "diamond" | "star" | "n/a";
+		specificClearType:
+			| "failedUnknown"
+			| "failedCircle"
+			| "failedDiamond"
+			| "failedStar"
+			| "easyClear"
+			| "clearCircle"
+			| "clearDiamond"
+			| "clearStar"
+			| "fullComboCircle"
+			| "fullComboDiamond"
+			| "fullComboStar"
+			| "perfect"
+			| null;
 	};
 	"sdvx:Single": BASE_VALID_HIT_META & {
 		gauge: number | null;

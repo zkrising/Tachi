@@ -50,8 +50,8 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 		case "sdvx":
 		case "usc":
 			return (score / 10_000_000) * 100;
-		// case "popn":
-		// 	return (score / 100_000) * 100;
+		case "popn":
+			return (score / 100_000) * 100;
 		case "gitadora":
 		case "maimai":
 			return score;

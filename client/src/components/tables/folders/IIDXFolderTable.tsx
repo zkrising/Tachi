@@ -16,7 +16,7 @@ import SelectableRating from "../components/SelectableRating";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
 import IIDXPBDropdown from "../dropdowns/IIDXPBDropdown";
-import IIDXScoreCoreCells from "../game-core-cells/IIDXScoreCoreCells";
+import IIDXCoreCells from "../game-core-cells/IIDXCoreCells";
 import { FolderIndicatorHeader } from "../headers/IndicatorHeader";
 
 export default function IIDXFolderTable({
@@ -127,7 +127,7 @@ function Row({
 			<DifficultyCell game={game} chart={data} />
 			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell song={data.__related.song} chart={data} game={game} />
-			<IIDXScoreCoreCells sc={score} rating={rating} />
+			<IIDXCoreCells sc={score} rating={rating} />
 			<RankingCell rankingData={score.rankingData} />
 			<TimestampCell time={score.timeAchieved} />
 		</DropdownRow>

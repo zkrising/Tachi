@@ -5,7 +5,7 @@ import MillionsScoreCell from "../cells/MillionsScoreCell";
 import MusecaJudgementCell from "../cells/MusecaJudgementCell";
 import RatingCell from "../cells/RatingCell";
 
-export default function MusecaScoreCoreCells({
+export default function MusecaCoreCells({
 	sc,
 }: {
 	sc: ScoreDocument<"museca:Single"> | PBScoreDocument<"museca:Single">;

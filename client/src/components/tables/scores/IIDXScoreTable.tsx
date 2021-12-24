@@ -16,7 +16,7 @@ import SelectableRating from "../components/SelectableRating";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
 import { useScoreState } from "../components/UseScoreState";
 import IIDXScoreDropdown from "../dropdowns/IIDXScoreDropdown";
-import IIDXScoreCoreCells from "../game-core-cells/IIDXScoreCoreCells";
+import IIDXCoreCells from "../game-core-cells/IIDXCoreCells";
 import IndicatorHeader from "../headers/IndicatorHeader";
 
 export default function IIDXScoreTable({
@@ -128,7 +128,7 @@ function Row({
 				chart={sc.__related.chart}
 				game="iidx"
 			/>
-			<IIDXScoreCoreCells sc={sc} rating={rating} />
+			<IIDXCoreCells sc={sc} rating={rating} />
 			<TimestampCell time={sc.timeAchieved} service={sc.service} />
 		</DropdownRow>
 	);

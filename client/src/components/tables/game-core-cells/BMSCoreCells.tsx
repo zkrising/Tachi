@@ -6,7 +6,7 @@ import LampCell from "../cells/LampCell";
 import RatingCell from "../cells/RatingCell";
 import ScoreCell from "../cells/ScoreCell";
 
-export default function BMSScoreCoreCells({
+export default function BMSCoreCells({
 	sc,
 }: {
 	sc: PBScoreDocument<"bms:7K" | "bms:14K"> | ScoreDocument<"bms:7K" | "bms:14K">;

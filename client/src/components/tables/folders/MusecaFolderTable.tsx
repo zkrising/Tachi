@@ -13,7 +13,7 @@ import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
-import MusecaScoreCoreCells from "../game-core-cells/MusecaScoreCoreCells";
+import MusecaCoreCells from "../game-core-cells/MusecaCoreCells";
 import { FolderIndicatorHeader } from "../headers/IndicatorHeader";
 
 export default function MusecaFolderTable({
@@ -96,7 +96,7 @@ function Row({
 			<DifficultyCell chart={data} game={game} />
 			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell song={data.__related.song} chart={data} game={game} />
-			<MusecaScoreCoreCells sc={score} />
+			<MusecaCoreCells sc={score} />
 			<RankingCell rankingData={score.rankingData} />
 			<TimestampCell time={score.timeAchieved} />
 		</DropdownRow>

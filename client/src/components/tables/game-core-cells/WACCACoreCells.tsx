@@ -11,13 +11,13 @@ export default function WACCACoreCells({
 	sc: ScoreDocument<"wacca:Single"> | PBScoreDocument<"wacca:Single">;
 }) {
 	return (
-		<div>
+		<>
 			<MillionsScoreCell score={sc} />
 			<WaccaJudgementCell score={sc} />
 			<LampCell score={sc} />
 			<td>
 				{!IsNullish(sc.calculatedData.rate) ? sc.calculatedData.rate!.toFixed(3) : "N/A"}
 			</td>
-		</div>
+		</>
 	);
 }

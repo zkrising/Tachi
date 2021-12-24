@@ -6,7 +6,9 @@ import BMSPBTable from "./BMSPBTable";
 import GenericPBTable from "./GenericPBTable";
 import IIDXPBTable from "./IIDXPBTable";
 import MusecaPBTable from "./MusecaPBTable";
+import PopnPBTable from "./PopnPBTable";
 import SDVXLikePBTable from "./SDVXLikePBTable";
+import WACCAPBTable from "./WaccaPBTable";
 
 export default function PBTable({
 	dataset,
@@ -50,6 +52,10 @@ export default function PBTable({
 		return <GenericPBTable {...props} game={game} playtype={playtype} showScore={false} />;
 	} else if (game === "museca") {
 		return <MusecaPBTable {...props} />;
+	} else if (game === "wacca") {
+		return <WACCAPBTable {...props} />;
+	} else if (game === "popn") {
+		return <PopnPBTable {...props} />;
 	}
 
 	return <GenericPBTable {...props} game={game} playtype={playtype} />;

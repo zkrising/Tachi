@@ -5,7 +5,7 @@ import DeltaCell from "../cells/DeltaCell";
 import IIDXLampCell from "../cells/IIDXLampCell";
 import ScoreCell from "../cells/ScoreCell";
 
-export default function IIDXScoreCoreCells({
+export default function IIDXCoreCells({
 	sc,
 	rating,
 }: {

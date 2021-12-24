@@ -4,7 +4,7 @@ import LampCell from "../cells/LampCell";
 import RatingCell from "../cells/RatingCell";
 import ScoreCell from "../cells/ScoreCell";
 
-export default function GenericScoreCoreCells({
+export default function GenericCoreCells({
 	sc,
 	showScore,
 }: {

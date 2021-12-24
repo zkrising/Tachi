@@ -29,6 +29,7 @@ export default function DifficultyCell({
 
 	if (game === "bms") {
 		return <BMSDifficultyCell chart={chart as ChartDocument<"bms:7K" | "bms:14K">} />;
+	} else if (game === "wacca") {
 	}
 
 	return (

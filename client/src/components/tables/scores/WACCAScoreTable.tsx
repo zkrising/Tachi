@@ -12,29 +12,29 @@ import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
 import { useScoreState } from "../components/UseScoreState";
 import GenericScoreDropdown from "../dropdowns/GenericScoreDropdown";
-import MusecaCoreCells from "../game-core-cells/MusecaCoreCells";
+import WACCACoreCells from "../game-core-cells/WACCACoreCells";
 import IndicatorHeader from "../headers/IndicatorHeader";
 
-export default function MusecaScoreTable({
+export default function WACCAScoreTable({
 	reqUser,
 	dataset,
 	pageLen,
 	userCol = false,
 }: {
 	reqUser: PublicUserDocument;
-	dataset: ScoreDataset<"museca:Single">;
+	dataset: ScoreDataset<"wacca:Single">;
 	pageLen?: integer;
-	playtype: Playtypes["museca"];
+	playtype: Playtypes["wacca"];
 	userCol: boolean;
 }) {
-	const headers: Header<ScoreDataset<"museca:Single">[0]>[] = [
+	const headers: Header<ScoreDataset<"wacca:Single">[0]>[] = [
 		["Chart", "Chart", NumericSOV(x => x.__related.chart.levelNum)],
 		IndicatorHeader,
 		["Song", "Song", StrSOV(x => x.__related.song.title)],
 		["Score", "Score", NumericSOV(x => x.scoreData.percent)],
-		["Near-Miss", "Nr. Ms.", NumericSOV(x => x.scoreData.percent)],
+		["Judgements", "Judgements", NumericSOV(x => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
-		["KtRating", "KtRating", NumericSOV(x => x.calculatedData.ktRating ?? 0)],
+		["Rate", "Rate", NumericSOV(x => x.calculatedData.rate ?? 0)],
 
 		["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
 	];
@@ -49,7 +49,7 @@ export default function MusecaScoreTable({
 			pageLen={pageLen}
 			headers={headers}
 			entryName="Scores"
-			searchFunctions={CreateDefaultScoreSearchParams("museca", "Single")}
+			searchFunctions={CreateDefaultScoreSearchParams("wacca", "Single")}
 			rowFunction={sc => <Row key={sc.scoreID} sc={sc} reqUser={reqUser} userCol={userCol} />}
 		/>
 	);
@@ -57,10 +57,9 @@ export default function MusecaScoreTable({
 
 function Row({
 	sc,
-	reqUser,
 	userCol,
 }: {
-	sc: ScoreDataset<"museca:Single">[0];
+	sc: ScoreDataset<"wacca:Single">[0];
 	reqUser: PublicUserDocument;
 	userCol: boolean;
 }) {
@@ -80,15 +79,15 @@ function Row({
 			}
 		>
 			{userCol && <UserCell game={sc.game} playtype={sc.playtype} user={sc.__related.user} />}
-			<DifficultyCell chart={sc.__related.chart} game="museca" />
+			<DifficultyCell chart={sc.__related.chart} game="wacca" />
 			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell
 				song={sc.__related.song}
 				comment={sc.comment}
 				chart={sc.__related.chart}
-				game="museca"
+				game="wacca"
 			/>
-			<MusecaCoreCells sc={sc} />
+			<WACCACoreCells sc={sc} />
 			<TimestampCell time={sc.timeAchieved} service={sc.service} />
 		</DropdownRow>
 	);

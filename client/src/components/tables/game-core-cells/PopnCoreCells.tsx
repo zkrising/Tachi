@@ -12,7 +12,7 @@ export default function PopnCoreCells({
 	sc: ScoreDocument<"popn:9B"> | PBScoreDocument<"popn:9B">;
 }) {
 	return (
-		<div>
+		<>
 			<MillionsScoreCell score={sc} />
 			<PopnJudgementCell score={sc} />
 			<LampCell score={sc} />
@@ -21,6 +21,6 @@ export default function PopnCoreCells({
 					? sc.calculatedData.classPoints!.toFixed(3)
 					: "N/A"}
 			</td>
-		</div>
+		</>
 	);
 }

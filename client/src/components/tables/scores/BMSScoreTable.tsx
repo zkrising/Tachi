@@ -13,7 +13,7 @@ import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
 import { useScoreState } from "../components/UseScoreState";
 import GenericScoreDropdown from "../dropdowns/GenericScoreDropdown";
-import BMSScoreCoreCells from "../game-core-cells/BMSScoreCoreCells";
+import BMSCoreCells from "../game-core-cells/BMSCoreCells";
 import IndicatorHeader from "../headers/IndicatorHeader";
 
 export default function BMSScoreTable({
@@ -98,7 +98,7 @@ function Row({
 				game="bms"
 				comment={sc.comment}
 			/>
-			<BMSScoreCoreCells sc={sc} />
+			<BMSCoreCells sc={sc} />
 			<TimestampCell time={sc.timeAchieved} service={sc.scoreMeta.client} />
 		</DropdownRow>
 	);

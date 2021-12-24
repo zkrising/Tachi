@@ -13,7 +13,7 @@ import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
 import GenericPBDropdown from "../dropdowns/GenericPBDropdown";
-import BMSScoreCoreCells from "../game-core-cells/BMSScoreCoreCells";
+import BMSCoreCells from "../game-core-cells/BMSCoreCells";
 import { FolderIndicatorHeader } from "../headers/IndicatorHeader";
 
 export default function BMSFolderTable({
@@ -103,7 +103,7 @@ function Row({
 			<BMSDifficultyCell chart={data} />
 			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell song={data.__related.song} chart={data} game={game} />
-			<BMSScoreCoreCells sc={score} />
+			<BMSCoreCells sc={score} />
 			<RankingCell rankingData={score.rankingData} />
 			<TimestampCell time={score.timeAchieved} />
 		</DropdownRow>

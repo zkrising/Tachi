@@ -14,7 +14,7 @@ import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
 import { useScoreState } from "../components/UseScoreState";
 import GenericScoreDropdown from "../dropdowns/GenericScoreDropdown";
-import GenericScoreCoreCells from "../game-core-cells/GenericScoreCoreCells";
+import GenericCoreCells from "../game-core-cells/GenericCoreCells";
 import IndicatorHeader from "../headers/IndicatorHeader";
 
 export default function GenericScoreTable({
@@ -109,7 +109,7 @@ function Row({
 				chart={sc.__related.chart}
 				game={sc.game}
 			/>
-			<GenericScoreCoreCells sc={sc} showScore={showScore} />
+			<GenericCoreCells sc={sc} showScore={showScore} />
 			<TimestampCell time={sc.timeAchieved} service={sc.service} />
 		</DropdownRow>
 	);

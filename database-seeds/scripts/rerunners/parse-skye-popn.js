@@ -25,8 +25,10 @@ const charts = [];
 let songID = 1;
 for (const song of data) {
 	const isUpper = song.charts.some(k => k !== null && k.filename.startsWith("exx"));
+	const isUra = song.charts.some(k => k !== null && k.filename.endsWith("_ura2"));
 
 	let title = isUpper ? `${song.title} (UPPER)` : song.title;
+	title = isUra ? `${title} (URA)` : title;
 
 	songs.push({
 		id: songID,
@@ -70,5 +72,5 @@ for (const song of data) {
 	songID++;
 }
 
-fs.writeFileSync(path.join(__dirname, "../../collections/charts-popn.json"), JSON.stringify(charts, null, "\t"));
+// fs.writeFileSync(path.join(__dirname, "../../collections/charts-popn.json"), JSON.stringify(charts, null, "\t"));
 fs.writeFileSync(path.join(__dirname, "../../collections/songs-popn.json"), JSON.stringify(songs, null, "\t"));

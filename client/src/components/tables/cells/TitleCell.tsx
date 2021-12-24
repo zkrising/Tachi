@@ -21,7 +21,8 @@ export default function TitleCell({
 		<td style={{ textAlign: "left", minWidth: "140px", maxWidth: "300px" }}>
 			{game === "popn" && (
 				<>
-					{(song as SongDocument<"popn">).data.genre === song.title ? (
+					{(song as SongDocument<"popn">).data.genre === song.title ||
+					(song as SongDocument<"popn">).data.genre === null ? (
 						<Muted>Unknown Genre</Muted>
 					) : (
 						(song as SongDocument<"popn">).data.genre

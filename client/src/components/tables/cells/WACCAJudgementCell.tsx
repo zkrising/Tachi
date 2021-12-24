@@ -35,7 +35,7 @@ export default function WaccaJudgementCell({
 		<td>
 			<strong>
 				<span style={{ color: COLOUR_SET.vibrantYellow }}>{judgements.great}</span>-
-				<span style={{ color: COLOUR_SET.blue }}>{judgements.good}</span>
+				<span style={{ color: COLOUR_SET.blue }}>{judgements.good}</span>-
 				<span style={{ color: COLOUR_SET.red }}>{judgements.miss}</span>
 			</strong>
 		</td>

@@ -108,7 +108,7 @@ apikey = %%TACHI_KEY%%`,
 	},
 	{
 		name: "SilentHook",
-		apiKeyFilename: "file.json",
+		apiKeyFilename: "silent-config.json",
 		apiKeyTemplate: JSON.stringify(
 			{
 				key: "%%TACHI_KEY%%",

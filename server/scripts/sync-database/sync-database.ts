@@ -96,8 +96,16 @@ async function GenericUpsert<T>(
 	if (bwriteOps.length === 0) {
 		logger.verbose(`No differences. Not performing any update.`);
 	} else {
-		const result = await collection.bulkWrite(bwriteOps);
-		logger.info(`Performed bulkWrite.`, result);
+		const { deletedCount, insertedCount, matchedCount, upsertedCount, modifiedCount } =
+			await collection.bulkWrite(bwriteOps);
+
+		logger.info(`Performed bulkWrite.`, {
+			deletedCount,
+			insertedCount,
+			matchedCount,
+			upsertedCount,
+			modifiedCount,
+		});
 		await InitaliseFolderChartLookup();
 	}
 

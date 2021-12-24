@@ -465,6 +465,80 @@ t.test("#ConverterFn", (t) => {
 		t.end();
 	});
 
+	t.test("Should cap pop'n grades at A if they failed.", async (t) => {
+		const res = await ConverterBatchManual(
+			{
+				score: 99_000,
+				lamp: "FAILED",
+				difficulty: "Easy",
+				matchType: "tachiSongID",
+				identifier: "1",
+			},
+			{ game: "popn", service: "foo", playtype: "9B", version: null },
+			importType,
+			logger
+		);
+
+		t.hasStrict(res, {
+			chart: { songID: 1, difficulty: "Easy" },
+			song: { id: 1 },
+			dryScore: {
+				game: "popn",
+				service: "foo (BATCH-MANUAL)",
+				comment: null,
+				importType: "file/batch-manual",
+				timeAchieved: null,
+				scoreData: {
+					lamp: "FAILED",
+					score: 99_000,
+					grade: "A",
+					judgements: {},
+					hitMeta: {},
+				},
+				scoreMeta: {},
+			},
+		});
+
+		t.end();
+	});
+
+	t.test("Should cap pop'n grades at A if they bordered AA.", async (t) => {
+		const res = await ConverterBatchManual(
+			{
+				score: 90_000,
+				lamp: "FAILED",
+				difficulty: "Easy",
+				matchType: "tachiSongID",
+				identifier: "1",
+			},
+			{ game: "popn", service: "foo", playtype: "9B", version: null },
+			importType,
+			logger
+		);
+
+		t.hasStrict(res, {
+			chart: { songID: 1, difficulty: "Easy" },
+			song: { id: 1 },
+			dryScore: {
+				game: "popn",
+				service: "foo (BATCH-MANUAL)",
+				comment: null,
+				importType: "file/batch-manual",
+				timeAchieved: null,
+				scoreData: {
+					lamp: "FAILED",
+					score: 90_000,
+					grade: "A",
+					judgements: {},
+					hitMeta: {},
+				},
+				scoreMeta: {},
+			},
+		});
+
+		t.end();
+	});
+
 	t.test("Should produce a with timeAchieved null if timeAchieved is 0", async (t) => {
 		const res = await ConverterBatchManual(
 			deepmerge(baseBatchManualScore, { timeAchieved: 0 }),

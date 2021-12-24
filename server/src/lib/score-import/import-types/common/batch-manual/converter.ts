@@ -38,7 +38,14 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 
 	const { song, chart } = await ResolveMatchTypeToKTData(data, context, importType, logger);
 
-	const { percent, grade } = GenericGetGradeAndPercent(context.game, data.score, chart);
+	// eslint-disable-next-line prefer-const
+	let { percent, grade } = GenericGetGradeAndPercent(context.game, data.score, chart);
+
+	// Temporary hack -- Pop'n upper bounds grades like this. We need to tuck this
+	// away further inside genericgetgradeandpercent or something.
+	if (game === "popn" && data.lamp === "FAILED" && percent >= 90) {
+		grade = "A";
+	}
 
 	let service = context.service;
 
@@ -62,7 +69,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 			judgements: data.judgements ?? {},
 			hitMeta: data.hitMeta ?? {},
 		},
-		scoreMeta: {}, // @todo #74
+		scoreMeta: data.scoreMeta ?? {},
 	};
 
 	return {

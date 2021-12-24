@@ -1,6 +1,7 @@
 import Muted from "components/util/Muted";
 import React from "react";
 import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { ToCDNURL } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
 
 export default function PopnLampCell({
@@ -18,9 +19,14 @@ export default function PopnLampCell({
 		>
 			<strong>{score.scoreData.lamp}</strong>
 			<br />
-			<Muted>
-				TEMPORARY SCT STUFF: {score.scoreData.hitMeta.specificClearType ?? "Unknown"}
-			</Muted>
+			{score.scoreData.hitMeta.specificClearType && (
+				<img
+					style={{
+						maxWidth: "32px",
+					}}
+					src={ToCDNURL(`/misc/popn/${score.scoreData.hitMeta.specificClearType}.png`)}
+				/>
+			)}
 		</td>
 	);
 }

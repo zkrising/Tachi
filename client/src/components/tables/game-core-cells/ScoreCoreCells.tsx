@@ -10,7 +10,9 @@ import BMSScoreCoreCells from "./BMSScoreCoreCells";
 import GenericScoreCoreCells from "./GenericScoreCoreCells";
 import IIDXScoreCoreCells from "./IIDXScoreCoreCells";
 import MusecaScoreCoreCells from "./MusecaScoreCoreCells";
+import PopnCoreCells from "./PopnCoreCells";
 import SDVXScoreCoreCells from "./SDVXCoreCells";
+import WACCACoreCells from "./WACCACoreCells";
 
 export default function ScoreCoreCells({
 	game,
@@ -38,6 +40,10 @@ export default function ScoreCoreCells({
 		return <GenericScoreCoreCells showScore={false} sc={sc} />;
 	} else if (game === "museca") {
 		return <MusecaScoreCoreCells sc={sc} />;
+	} else if (game === "wacca") {
+		return <WACCACoreCells sc={sc} />;
+	} else if (game === "popn") {
+		return <PopnCoreCells sc={sc} />;
 	}
 
 	return <GenericScoreCoreCells sc={sc} />;

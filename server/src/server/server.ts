@@ -37,7 +37,7 @@ const userSessionMiddleware = expressSession({
 	saveUninitialized: false,
 	cookie: {
 		secure: Environment.nodeEnv === "production" || ServerConfig.ENABLE_SERVER_HTTPS,
-		sameSite: "lax", // Very important. Without this, we're vulnerable to CSRF!
+		sameSite: "strict", // Very important. Without this, we're vulnerable to CSRF!
 	},
 });
 

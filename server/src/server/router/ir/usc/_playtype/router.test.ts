@@ -626,8 +626,8 @@ t.test("POST /scores", (t) => {
 				hashSHA1: "NEW_CHART",
 			},
 			isPrimary: true,
-			level: "?",
-			levelNum: 0,
+			level: "5",
+			levelNum: 5,
 		});
 
 		t.end();

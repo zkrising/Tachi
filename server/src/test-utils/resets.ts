@@ -43,6 +43,12 @@ function GetAndCache(filename: string, fileLoc: string) {
 		collection = db[filename];
 	}
 
+	if (!collection) {
+		throw new Error(
+			`Panicked when trying to get collection for ${filename}. Does this collection exist?`
+		);
+	}
+
 	if (CACHE[filename]) {
 		return { data: CACHE[filename], collection };
 	}

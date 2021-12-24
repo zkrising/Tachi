@@ -71,6 +71,16 @@ const PR_ScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => 
 		return {
 			inSkillAnalyser: "*?boolean",
 		};
+	} else if (game === "wacca") {
+		return { mirror: "*?boolean" };
+	} else if (game === "popn") {
+		return {
+			hiSpeed: optNull(p.isPositive),
+			hidden: optNull(p.isInteger),
+			sudden: optNull(p.isInteger),
+			random: optNull(p.isIn("NONRAN", "MIRROR", "RANDOM", "S-RANDOM")),
+			gauge: optNull(p.isIn("NORMAL", "EASY", "HARD", "DANGER")),
+		};
 	}
 
 	return {};
@@ -91,7 +101,7 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 				EX_HARD: [p.nullable(p.isBoundedInteger(0, 100))],
 			}),
 		};
-	} else if (/* game === "popn" || */ game === "sdvx") {
+	} else if (game === "sdvx") {
 		return {
 			gauge: optNull(p.isBoundedInteger(0, 100)),
 		};
@@ -111,6 +121,26 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 			egr: optNull(p.isPositiveInteger),
 			lpg: optNull(p.isPositiveInteger),
 			epg: optNull(p.isPositiveInteger),
+		};
+	} else if (game === "popn") {
+		return {
+			gauge: optNull(p.isBoundedInteger(0, 100)),
+			specificClearType: optNull(
+				p.isIn(
+					"failedUnknown",
+					"failedCircle",
+					"failedDiamond",
+					"failedStar",
+					"easyClear",
+					"clearCircle",
+					"clearDiamond",
+					"clearStar",
+					"fullComboCircle",
+					"fullComboDiamond",
+					"fullComboStar",
+					"perfect"
+				)
+			),
 		};
 	}
 
@@ -165,8 +195,6 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 			deepmerge(BaseValidHitMeta, PR_HitMeta(game)) as unknown as ValidSchemaValue
 		),
 		scoreMeta: optNull(PR_ScoreMeta(game, playtype)),
-		// scoreMeta: @todo #74
-		// more game specific props, maybe?
 	};
 };
 

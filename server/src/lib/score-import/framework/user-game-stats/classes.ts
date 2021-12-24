@@ -8,6 +8,7 @@ import { ReturnClassIfGreater } from "utils/class";
 import {
 	CalculateChunithmColour,
 	CalculateGitadoraColour,
+	CalculatePopnClass,
 	CalculateSDVXClass,
 	CalculateWACCAColour,
 } from "./builtin-class-handlers";
@@ -46,7 +47,9 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 	// },
 	maimai: null,
 	museca: null,
-	// popn: null,
+	popn: {
+		"9B": CalculatePopnClass,
+	},
 	sdvx: {
 		Single: CalculateSDVXClass,
 	},

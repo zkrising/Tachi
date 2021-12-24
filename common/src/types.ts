@@ -1419,7 +1419,7 @@ export type BatchManualScore<I extends IDStrings = IDStrings> = {
 			difficulty: Difficulties[I];
 	  }
 	| {
-			matchType: "bmsChartHash" | "uscChartHash";
+			matchType: "bmsChartHash" | "uscChartHash" | "popnChartHash";
 			difficulty?: undefined; // hack to stop ts from screaming when this is accessed sometimes
 	  }
 );

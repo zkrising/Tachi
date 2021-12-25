@@ -16,6 +16,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { FilterQuery } from "mongodb";
 import deepmerge from "deepmerge";
 import fjsh from "fast-json-stable-hash";
+import { TachiConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -171,7 +172,12 @@ export async function InitaliseFolderChartLookup() {
 	await db["folder-chart-lookup"].remove({});
 	logger.info(`Flushed Cache.`);
 
-	const folders = await db.folders.find({});
+	// temporary hack -- this will still break if we introduce a new
+	// playtype on staging or something.
+	// We need to have separate seeds for staging and prod! todo #609.
+	const folders = await db.folders.find({
+		game: { $in: TachiConfig.GAMES },
+	});
 	logger.info(`Reloading ${folders.length} folders.`);
 
 	await Promise.all(folders.map(CreateFolderChartLookup));

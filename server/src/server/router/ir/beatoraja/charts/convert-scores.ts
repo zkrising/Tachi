@@ -73,10 +73,6 @@ export function TachiScoreDataToBeatorajaFormat(
 	// // Not everything exports these properties. If they're not there, they should default to 0.
 	// // For cases like LR2/manual - this will just result in a set of 0s.
 	for (const key of [
-		"epg",
-		"lpg",
-		"egr",
-		"lgr",
 		"egd",
 		"lgd",
 		"ebd",
@@ -99,6 +95,8 @@ export function TachiScoreDataToBeatorajaFormat(
 	// truly fun.
 	judgements.epg = Math.floor(pbScore.scoreData.score / 2);
 	judgements.egr = pbScore.scoreData.score % 2;
+	judgements.lpg = 0;
+	judgements.lgr = 0;
 	// }
 
 	return { ...beatorajaScore, ...judgements };

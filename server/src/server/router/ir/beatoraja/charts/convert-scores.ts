@@ -73,10 +73,6 @@ export function TachiScoreDataToBeatorajaFormat(
 	// // Not everything exports these properties. If they're not there, they should default to 0.
 	// // For cases like LR2/manual - this will just result in a set of 0s.
 	for (const key of [
-		"epg",
-		"lpg",
-		"egr",
-		"lgr",
 		"egd",
 		"lgd",
 		"ebd",

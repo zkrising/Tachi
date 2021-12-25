@@ -95,6 +95,8 @@ export function TachiScoreDataToBeatorajaFormat(
 	// truly fun.
 	judgements.epg = Math.floor(pbScore.scoreData.score / 2);
 	judgements.egr = pbScore.scoreData.score % 2;
+	judgements.lpg = 0;
+	judgements.lgr = 0;
 	// }
 
 	return { ...beatorajaScore, ...judgements };

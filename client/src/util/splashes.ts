@@ -98,6 +98,10 @@ export const loggedInSplashes = [
 	"My god is the sun!",
 	"...Like Clockwork",
 	"brooooyyddg",
+	"The coffee isn't even bitter...",
+	"...because, what's the difference.",
+	"go ahead, ctrl+f the source for the splashes, ruin the fun for yourself.",
+	"I'm playing bedwars!",
 ];
 
 // Stuff that's bad for the kids, you know?
@@ -114,6 +118,7 @@ export const contentiousSplashes = [
 	"I have the transfeminine urge to pee.",
 	"I HAVE TO LIE IN THE MIDDLE OF THE FLOOR",
 	"COMPLETELY MOTIONLESS NOT DARING TO BREATHE",
+	"I wouldn't trade one stupid decision<<for another 5 years of life",
 ];
 
 export const heySplashes = [

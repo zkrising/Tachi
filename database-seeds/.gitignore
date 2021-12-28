@@ -3,3 +3,5 @@ logs
 .pnpm-debug.log
 
 scripts/single-time
+
+.vs

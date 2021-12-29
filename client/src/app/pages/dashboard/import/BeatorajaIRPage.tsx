@@ -51,6 +51,12 @@ export default function BeatorajaIRPage() {
 				<li>
 					Place the API token in the password field. Put your username in as well! The IR
 					wont load if you don't have a username set.
+					<br />
+					<span className="text-warning">
+						<b>DO NOT PUT YOUR PASSWORD IN THE PASSWORD FIELD!</b>
+						<br />
+						For security reasons, you must put the API Key in that field, instead.
+					</span>
 				</li>
 				<li>
 					That's it! Launch the game and start playing, your scores will automatically

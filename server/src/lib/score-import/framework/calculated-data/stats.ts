@@ -25,7 +25,7 @@ export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: ChartDocu
 	} else if (score >= 1_005_000) {
 		val = levelBase + 150 + ((score - 1_005_000) * 10) / 500;
 	} else if (score >= 1_000_000) {
-		val = levelBase + 100 + ((score - 1_000_000) * 5) / 100;
+		val = levelBase + 100 + ((score - 1_000_000) * 5) / 500;
 	} else if (score >= 975_000) {
 		val = levelBase + ((score - 975_000) * 2) / 500;
 	} else if (score >= 925_000) {

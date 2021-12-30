@@ -1401,7 +1401,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>
 	extends MongoDBDocument,
 		UserGameStats<I> {
-	rankings: Record<UGSRatingsLookup[I], { ranking: integer; outOf: integer }>;
+	rankings: Record<UGSRatingsLookup[I], { ranking: integer | null; outOf: integer }>;
 	playcount: integer;
 	timestamp: integer;
 }

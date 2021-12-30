@@ -12,6 +12,10 @@ const logger = CreateLogCtx(__filename);
 // more of an integration test
 t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 	t.beforeEach(ResetDBState);
+	t.beforeEach(async () => {
+		delete TestingIIDXSPScorePB._id;
+		await db["personal-bests"].insert(TestingIIDXSPScorePB);
+	});
 
 	t.test(
 		"Should create new UserGameStats and UserGameSettings if the user has none",

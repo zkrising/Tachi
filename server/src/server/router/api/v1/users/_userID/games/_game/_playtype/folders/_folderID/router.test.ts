@@ -4,7 +4,13 @@ import { FolderDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
+import {
+	GetKTDataJSON,
+	Testing511SPA,
+	TestingIIDXFolderSP10,
+	TestingIIDXSPScore,
+	TestingIIDXSPScorePB,
+} from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID", (t) => {
@@ -43,25 +49,59 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID", (t) 
 });
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeline", (t) => {
+	const folder = deepmerge(TestingIIDXFolderSP10, {
+		folderID: "testing_folder",
+	}) as FolderDocument;
+
 	t.beforeEach(ResetDBState);
 	t.beforeEach(async () => {
-		const folder = deepmerge(TestingIIDXFolderSP10, {
-			folderID: "testing_folder",
-		}) as FolderDocument;
 		await db.folders.insert(folder);
 		await CreateFolderChartLookup(folder);
 		await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}));
 	});
 
 	t.test("Should return the users scores on this folder in timeline order", async (t) => {
+		// set up a more realistic scenario so we can fire more data at it.
+		await db.songs.iidx.remove({});
+		await db.charts.iidx.remove({});
+		await db["folder-chart-lookup"].remove({});
+		await db.songs.iidx.insert(GetKTDataJSON("./tachi/tachi-songs-iidx.json"));
+		await db.charts.iidx.insert(GetKTDataJSON("./tachi/tachi-charts-iidx.json"));
+
+		await CreateFolderChartLookup(folder);
+
+		await db.scores.insert([
+			deepmerge(TestingIIDXSPScore, {
+				scoreID: "OTHER_SCORE_ID",
+				timeAchieved: 500,
+				songID: 5,
+				chartID: "f3e7f84103d68f9f27193f037f35d0bca8c6d607",
+			}),
+			deepmerge(TestingIIDXSPScore, {
+				scoreID: "OTHER_SCORE_ID_2",
+				timeAchieved: 100,
+				songID: 5,
+				chartID: "f3e7f84103d68f9f27193f037f35d0bca8c6d607",
+			}),
+			deepmerge(TestingIIDXSPScore, {
+				scoreData: {
+					lampIndex: 3,
+					lamp: "CLEAR",
+				},
+				scoreID: "OTHER_SCORE_ID_3",
+				timeAchieved: 50,
+				songID: 5,
+				chartID: "f3e7f84103d68f9f27193f037f35d0bca8c6d607",
+			}),
+		]);
+
 		const res = await mockApi.get(
 			"/api/v1/users/1/games/iidx/SP/folders/testing_folder/timeline?criteriaType=lamp&criteriaValue=4"
 		);
 
-		t.equal(res.body.body.songs.length, 1);
-		t.equal(res.body.body.charts.length, 1);
-		t.equal(res.body.body.scores.length, 1);
-		t.equal(res.body.body.scores[0].scoreID, "TESTING_SCORE_ID");
+		t.equal(res.body.body.scores.length, 2);
+		t.equal(res.body.body.scores[0].scoreID, "OTHER_SCORE_ID_2");
+		t.equal(res.body.body.scores[1].scoreID, "TESTING_SCORE_ID");
 
 		t.end();
 	});

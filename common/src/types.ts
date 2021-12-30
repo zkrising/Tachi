@@ -819,7 +819,7 @@ interface CDDataIIDXSP {
 	"2dxtraSet": string | null;
 	kaidenAverage: integer | null;
 	worldRecord: integer | null;
-	bpiCoefficient: integer | null;
+	bpiCoefficient: number | null;
 }
 
 interface CDDataDDRSP {

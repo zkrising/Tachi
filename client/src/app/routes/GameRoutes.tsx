@@ -13,6 +13,7 @@ import DebugContent from "components/util/DebugContent";
 import Divider from "components/util/Divider";
 import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
+import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { BackgroundContext } from "context/BackgroundContext";
@@ -36,6 +37,7 @@ import { GamePT, SetState } from "types/react";
 import { APIFetchV1, ToCDNURL } from "util/api";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
 import { ChangeOpacity } from "util/color-opacity";
+import { CreateChartLink } from "util/data";
 import { NumericSOV } from "util/sorts";
 
 export default function GameRoutes() {
@@ -238,8 +240,6 @@ function SongInfoHeader({
 	setActiveChart,
 }: { activeChart: ChartDocument | null; setActiveChart: SetState<ChartDocument | null> } & GamePT &
 	SongsReturn) {
-	const [imgShow, setImgShow] = useState(true);
-
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	// accidentally O(n^2) but this is a short list so who cares
@@ -255,7 +255,7 @@ function SongInfoHeader({
 					justifyContent: "space-evenly",
 				}}
 			>
-				{imgShow && "displayVersion" in song.data && (
+				{"displayVersion" in song.data && (
 					<Col xs={12} lg={3} className="text-center">
 						<img
 							src={ToCDNURL(`/game-icons/${game}/${song.data.displayVersion}`)}
@@ -316,7 +316,6 @@ type Props = { song: SongDocument } & {
 
 function DifficultyButton({
 	chart,
-	song,
 	game,
 	playtype,
 	setActiveChart,
@@ -329,7 +328,7 @@ function DifficultyButton({
 			onClick={() => setActiveChart(chart)}
 			className="btn-secondary"
 			key={chart.chartID}
-			to={`/dashboard/games/${game}/${playtype}/songs/${song.id}/${chart.difficulty}`}
+			to={CreateChartLink(chart, game)}
 			style={{
 				backgroundColor: gptConfig.difficultyColours[chart.difficulty]
 					? ChangeOpacity(
@@ -340,9 +339,29 @@ function DifficultyButton({
 			}}
 		>
 			{activeChart?.chartID === chart.chartID ? (
-				<strong>{FormatDifficulty(chart, game)}</strong>
+				<strong>
+					{FormatDifficulty(chart, game)}
+					{chart.isPrimary ? (
+						""
+					) : (
+						<>
+							{" "}
+							<Muted>{chart.versions.join("/")}</Muted>
+						</>
+					)}
+				</strong>
 			) : (
-				FormatDifficulty(chart, game)
+				<>
+					{FormatDifficulty(chart, game)}
+					{chart.isPrimary ? (
+						""
+					) : (
+						<>
+							{" "}
+							<Muted>{chart.versions.join("/")}</Muted>
+						</>
+					)}
+				</>
 			)}
 		</LinkButton>
 	);

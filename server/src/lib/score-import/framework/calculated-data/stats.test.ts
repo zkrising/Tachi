@@ -342,19 +342,46 @@ t.test("#CalculateMFCP", (t) => {
 const bbkk = GetKTDataJSON("./tachi/chunithm-bbkk-chart.json");
 
 // unit testing a mathematical function is a square-round-hole problem.
+// that said, we can blast some stuff at it we know to be correct,
+// and just hope we're right.
 t.test("#CalculateCHUNITHMRating", (t) => {
+	const chart = deepmerge<ChartDocument>(bbkk, { levelNum: 12.5 });
+
 	// cutoffs
-	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 1_010_000 } } as DryScore, bbkk), 5.0);
-	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 1_005_000 } } as DryScore, bbkk), 4.5);
-	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 1_000_000 } } as DryScore, bbkk), 4);
-	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 975_000 } } as DryScore, bbkk), 3);
-	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 925_000 } } as DryScore, bbkk), 0);
-	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 900_000 } } as DryScore, bbkk), 0);
-	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 800_000 } } as DryScore, bbkk), 0);
-	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 0 } } as DryScore, bbkk), 0);
+	t.equal(
+		CalculateCHUNITHMRating({ scoreData: { score: 1_010_000 } } as DryScore, chart),
+		12.5 + 2
+	);
+	t.equal(
+		CalculateCHUNITHMRating({ scoreData: { score: 1_005_000 } } as DryScore, chart),
+		12.5 + 1.5
+	);
+	t.equal(
+		CalculateCHUNITHMRating({ scoreData: { score: 1_000_000 } } as DryScore, chart),
+		12.5 + 1
+	);
+	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 975_000 } } as DryScore, chart), 12.5);
+	t.equal(
+		CalculateCHUNITHMRating({ scoreData: { score: 925_000 } } as DryScore, chart),
+		12.5 - 3
+	);
+	t.equal(
+		CalculateCHUNITHMRating({ scoreData: { score: 900_000 } } as DryScore, chart),
+		12.5 - 5
+	);
+	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 800_000 } } as DryScore, chart), 3.75);
+	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 0 } } as DryScore, chart), 0);
 
 	// inbetweens
-	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 987_000 } } as DryScore, bbkk), 3.48);
+	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 987_000 } } as DryScore, chart), 12.98);
+	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 1_008_000 } } as DryScore, chart), 14.5);
+	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 1_003_000 } } as DryScore, chart), 13.8);
+	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 999_000 } } as DryScore, chart), 13.46);
+	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 980_000 } } as DryScore, chart), 12.7);
+	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 950_000 } } as DryScore, chart), 11);
+	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 920_000 } } as DryScore, chart), 9.1);
+	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 810_000 } } as DryScore, chart), 4.12);
+	t.equal(CalculateCHUNITHMRating({ scoreData: { score: 50_000 } } as DryScore, chart), 0);
 
 	t.end();
 });

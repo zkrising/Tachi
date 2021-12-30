@@ -578,7 +578,7 @@ t.test("POST /scores", (t) => {
 		t.end();
 	});
 
-	t.test("Should orphan a score and return 22 if chart has never been seen.", async (t) => {
+	t.skip("Should orphan a score and return 22 if chart has never been seen.", async (t) => {
 		const res = await mockApi
 			.post("/ir/usc/Controller/scores")
 			.set("Authorization", "Bearer token")
@@ -633,7 +633,7 @@ t.test("POST /scores", (t) => {
 		t.end();
 	});
 
-	t.test("Should unorphan charts on their Nth unique user.", async (t) => {
+	t.skip("Should unorphan charts on their Nth unique user.", async (t) => {
 		await db["api-tokens"].insert([
 			{
 				userID: 2,
@@ -735,7 +735,7 @@ t.test("POST /scores", (t) => {
 		t.end();
 	});
 
-	t.test("Should maintain separate orphan queues for the separate playtypes.", async (t) => {
+	t.skip("Should maintain separate orphan queues for the separate playtypes.", async (t) => {
 		await db["api-tokens"].insert([
 			{
 				userID: 2,

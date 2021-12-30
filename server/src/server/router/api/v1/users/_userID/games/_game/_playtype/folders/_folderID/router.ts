@@ -148,8 +148,12 @@ router.get("/timeline", async (req, res) => {
 				},
 			},
 		])
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		.then((r) => r.map((e: any) => e.doc));
+		.then((r) =>
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			(r.map((e: any) => e.doc) as ScoreDocument[]).sort(
+				(a, b) => (a.timeAchieved ?? 0) - (b.timeAchieved ?? 0)
+			)
+		);
 
 	return res.status(200).json({
 		success: true,

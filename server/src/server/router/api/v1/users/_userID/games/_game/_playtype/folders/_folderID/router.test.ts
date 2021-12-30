@@ -1,5 +1,6 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { rootLogger } from "lib/logger/logger";
 import { FolderDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
@@ -93,15 +94,35 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeli
 				songID: 5,
 				chartID: "f3e7f84103d68f9f27193f037f35d0bca8c6d607",
 			}),
+			deepmerge(TestingIIDXSPScore, {
+				scoreID: "OTHER_SCORE_ID_4",
+				timeAchieved: 200,
+				songID: 6,
+				chartID: "3b5fa295d243c131752e2f1ad835998f6dad2e97",
+			}),
 		]);
 
 		const res = await mockApi.get(
 			"/api/v1/users/1/games/iidx/SP/folders/testing_folder/timeline?criteriaType=lamp&criteriaValue=4"
 		);
 
-		t.equal(res.body.body.scores.length, 2);
-		t.equal(res.body.body.scores[0].scoreID, "OTHER_SCORE_ID_2");
-		t.equal(res.body.body.scores[1].scoreID, "TESTING_SCORE_ID");
+		t.equal(res.body.body.scores.length, 3);
+
+		t.equal(
+			res.body.body.scores[0].scoreID,
+			"TESTING_SCORE_ID",
+			"First score should be TESTING_SCORE_ID, as it has a timeAchieved of null."
+		);
+		t.equal(
+			res.body.body.scores[1].scoreID,
+			"OTHER_SCORE_ID_2",
+			"Second score returned should be OTHER_SCORE_ID_2"
+		);
+		t.equal(
+			res.body.body.scores[2].scoreID,
+			"OTHER_SCORE_ID_4",
+			"Third score should be OTHER_SCORE_ID_4, as it was achieved later."
+		);
 
 		t.end();
 	});

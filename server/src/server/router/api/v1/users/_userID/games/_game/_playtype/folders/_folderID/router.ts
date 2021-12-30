@@ -138,7 +138,7 @@ router.get("/timeline", async (req, res) => {
 			},
 			{
 				$sort: {
-					timeAchieved: -1,
+					timeAchieved: 1,
 				},
 			},
 			{

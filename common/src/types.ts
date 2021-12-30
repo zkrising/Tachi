@@ -834,13 +834,21 @@ interface CDDataBMS {
 	tableFolders: { table: string; level: string }[];
 }
 
+interface CDDataUSC {
+	hashSHA1: string | string[];
+	isOfficial: boolean;
+	effector: string;
+	illustrator: string;
+	bpm: string;
+}
+
 interface ChartDocumentData {
 	"iidx:SP": CDDataIIDXSP;
 	"iidx:DP": CDDataIIDXSP;
 	"popn:9B": { hashSHA256: string | null };
 	"sdvx:Single": { inGameID: integer; arcChartID: string | null };
-	"usc:Keyboard": { hashSHA1: string | string[]; isOfficial: boolean };
-	"usc:Controller": { hashSHA1: string | string[]; isOfficial: boolean };
+	"usc:Keyboard": CDDataUSC;
+	"usc:Controller": CDDataUSC;
 	"ddr:SP": CDDataDDRSP;
 	"ddr:DP": CDDataDDRSP;
 	"maimai:Single": { maxPercent: number; inGameID: number; inGameStrID: string };

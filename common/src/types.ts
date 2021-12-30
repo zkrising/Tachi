@@ -747,7 +747,7 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
 	userID: integer;
 	game: IDStringToGame[I];
 	playtype: IDStringToPlaytype[I];
-	ratings: Partial<Record<UGSRatingsLookup[I], number>>;
+	ratings: Partial<Record<UGSRatingsLookup[I], number | null>>;
 	classes: Partial<GameClasses<I>>;
 }
 

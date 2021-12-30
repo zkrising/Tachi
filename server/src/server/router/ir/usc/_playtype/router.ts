@@ -314,6 +314,14 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 		playtype,
 	})) as ChartDocument<"usc:Controller" | "usc:Keyboard"> | null;
 
+	if (!chartDoc) {
+		return res.status(200).json({
+			statusCode: STATUS_CODES.CHART_REFUSE,
+			description:
+				"The IR doesn't recognise this chart, and automatic chart uploading has been turned off.",
+		});
+	}
+
 	// If the chart doesn't exist, call HandleOrphanQueue.
 	// If this chart has never been seen before, orphan it.
 	// If this chart is already orphaned, increase its unique player

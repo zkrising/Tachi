@@ -502,6 +502,9 @@ export const uscChart: ChartDocument<"usc:Controller" | "usc:Keyboard"> = {
 	data: {
 		hashSHA1: "USC_CHART_HASH",
 		isOfficial: false,
+		bpm: "128",
+		effector: "foo",
+		illustrator: "bar",
 	},
 	tierlistInfo: {},
 	isPrimary: true,

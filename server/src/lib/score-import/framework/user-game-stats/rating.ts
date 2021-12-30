@@ -19,8 +19,12 @@ function LazySumAll(key: CustomCalcNames) {
 			playtype: playtype,
 			userID: userID,
 			isPrimary: true,
-			[`calculatedData.${key}`]: { $gt: 0 },
+			[`calculatedData.${key}`]: { $type: "number" },
 		});
+
+		if (sc.length === 0) {
+			return null;
+		}
 
 		const result = sc.reduce((a, b) => a + b.calculatedData[key]!, 0);
 
@@ -28,6 +32,16 @@ function LazySumAll(key: CustomCalcNames) {
 	};
 }
 
+/**
+ * Curries a function that returns the sum of N best ratings on `key`.
+ *
+ * @param key - What rating value to sum.
+ * @param n - The amount of rating values to pull.
+ * @param returnMean - Optionally, if true, return the sum of these values divided by N.
+ *
+ * @returns - Number if the user has scores with that rating algorithm, null if they have
+ * no scores with this rating algorithm that are non-null.
+ */
 function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
 	return async (game: Game, playtype: Playtypes[Game], userID: integer) => {
 		const sc = await db["personal-bests"].find(
@@ -36,13 +50,17 @@ function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
 				playtype: playtype,
 				userID: userID,
 				isPrimary: true,
-				[`calculatedData.${key}`]: { $gt: 0 },
+				[`calculatedData.${key}`]: { $type: "number" },
 			},
 			{
 				limit: n,
 				sort: { [`calculatedData.${key}`]: -1 },
 			}
 		);
+
+		if (sc.length === 0) {
+			return null;
+		}
 
 		let result = sc.reduce((a, b) => a + b.calculatedData[key]!, 0);
 
@@ -210,6 +228,10 @@ async function CalculateWACCARate(
 		}
 	);
 
+	if (best15Hot.length + best35Cold.length === 0) {
+		return null;
+	}
+
 	return (
 		best15Hot.reduce((a, r) => a + r.calculatedData.rate!, 0) +
 		best35Cold.reduce((a, r) => a + r.calculatedData.rate!, 0)
@@ -235,6 +257,10 @@ async function CalculateGitadoraSkill(
 		GetBestRatingOnSongs(hotSongIDs, userID, game, playtype, "skill"),
 		GetBestRatingOnSongs(coldSongIDs, userID, game, playtype, "skill"),
 	]);
+
+	if (bestHotScores.length + bestScores.length === 0) {
+		return null;
+	}
 
 	let skill = 0;
 	skill += bestHotScores.reduce((a, r) => a + r.calculatedData.skill!, 0);

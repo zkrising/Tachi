@@ -222,6 +222,9 @@ export function ConvertUSCChart(uscChartDoc: USCClientChart, playtype: Playtypes
 		data: {
 			hashSHA1: uscChartDoc.chartHash,
 			isOfficial: false,
+			bpm: uscChartDoc.bpm,
+			effector: uscChartDoc.effector,
+			illustrator: uscChartDoc.illustrator,
 		},
 	};
 

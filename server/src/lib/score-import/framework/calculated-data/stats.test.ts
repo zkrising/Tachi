@@ -13,6 +13,7 @@ import {
 	CalculateVF6,
 	CalculateWACCARate,
 } from "./stats";
+import deepmerge from "deepmerge";
 
 t.test("#CalculateBPI", (t) => {
 	t.test("AA BPI tests", (t) => {

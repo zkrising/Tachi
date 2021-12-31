@@ -14762,12 +14762,12 @@
 	{
 		"data": {
 			"levelNum": {
-				"~gt": 1,
-				"~lt": 9
+				"~gte": 1,
+				"~lte": 9
 			},
 			"versions": "peace"
 		},
-		"folderID": "Fef02823f752087ba553563dc0cba7dc2e14cfa38cf657098f2e7b354ee1886f6",
+		"folderID": "F0eba4509733294349b3d9140e943f33c80cc545050a61f87b62ebd9980916f0a",
 		"game": "popn",
 		"inactive": false,
 		"playtype": "9B",
@@ -14791,12 +14791,12 @@
 	{
 		"data": {
 			"levelNum": {
-				"~gt": 10,
-				"~lt": 19
+				"~gte": 10,
+				"~lte": 19
 			},
 			"versions": "peace"
 		},
-		"folderID": "F50d7a723770801693c15d2584cce3cbf8d1494127626ef6edcc3b4a37e604ad3",
+		"folderID": "Fa30199d64c0e5c0962bd1a341a0da7c44a923e893d2746eb2d0d996cb1586c7b",
 		"game": "popn",
 		"inactive": false,
 		"playtype": "9B",
@@ -14950,12 +14950,12 @@
 	{
 		"data": {
 			"levelNum": {
-				"~gt": 20,
-				"~lt": 29
+				"~gte": 20,
+				"~lte": 29
 			},
 			"versions": "peace"
 		},
-		"folderID": "F1c6fe86afeaaec12bb9f43eed2527b52aa113a51009450e1ce50a0f6f32b5f2f",
+		"folderID": "Fb429c7dd6ccb37a4fdab99947c9af2532ac08342bd17acfd2e62898be2488310",
 		"game": "popn",
 		"inactive": false,
 		"playtype": "9B",

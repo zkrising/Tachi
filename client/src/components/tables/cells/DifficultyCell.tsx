@@ -48,6 +48,13 @@ export default function DifficultyCell({
 			{chart.levelNum.toString() !== chart.level && (
 				<Muted>{chart.levelNum.toFixed(2)}</Muted>
 			)}
+			{"isHot" in chart.data && chart.data.isHot && (
+				<QuickTooltip tooltipContent="This chart is from the latest version of the game!">
+					<div>
+						<Icon type="fire" />
+					</div>
+				</QuickTooltip>
+			)}
 			{Object.keys(chart.tierlistInfo).length > 0 && (
 				<TierlistInfoPart chart={chart} game={game} />
 			)}

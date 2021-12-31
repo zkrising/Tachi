@@ -5,8 +5,11 @@ const { Command } = require("commander");
 const { CreateChartID } = require("../util");
 const path = require("path");
 const { decode } = require("html-entities");
+const logger = require("../logger");
 
 const program = new Command();
+
+// https://github.com/shimmand/waccaSupportTools/blob/main/analyzePlayData/chartsTable.csv
 program
 	.option("-f, --file <wacca.csv>")
 
@@ -41,6 +44,13 @@ for (const record of dirtyRecords.slice(1)) {
 	dataMap.set(record[0].replace(/”|“/g, '"').replace(/’/g, "'"), record);
 }
 
+const STARTS = {
+	s: Date.parse("2020-1-22"),
+	lily: Date.parse("2020-9-17"),
+	lilyr: Date.parse("2021-3-11"),
+	reverse: Date.parse("2021-8-10"),
+};
+
 
 (async () => {
 	const datum = await fetch("https://wacca.marv.jp/music/search.php", {
@@ -57,14 +67,38 @@ for (const record of dirtyRecords.slice(1)) {
 	let songID = 1;
 
 	for (const data of datum) {
-		console.log(data);
-
 		let prettiedTitle = decode(data.title.display.replace(/　/g, " ")).trim();
 
 		// This song got its title changed.
 		// No, I don't know why.
 		if (prettiedTitle === "13 DONKEYS") {
 			prettiedTitle = "13 Donkeys";
+		}
+
+		let time = Date.parse(data.release_date);
+		let ver;
+
+		if (time < STARTS.s) {
+			ver = "wacca";
+		} else if (time < STARTS.lily) {
+			ver = "s";
+		} else if (time < STARTS.lilyr) {
+			ver = "lily";
+		} else if (time < STARTS.reverse) {
+			ver = "lilyr";
+		} else {
+			ver = "reverse";
+		}
+
+		logger.verbose(`Parsed as ${ver}.`);
+
+		// re-screw "'s to their shift-jis equivalent, because it seems like decoding
+		// &quot; is locale specific. Thanks.
+		const record = dataMap.get(prettiedTitle);
+
+		if (!record) {
+			logger.warn(`Can't find record with title ${prettiedTitle}. Dumping potentially similar titles.\n${[...dataMap.keys()].filter(e => e.startsWith(prettiedTitle[0])).join("\n")}`);
+			continue;
 		}
 
 		songs.push({
@@ -77,17 +111,9 @@ for (const record of dirtyRecords.slice(1)) {
 				titleJP: data.title.ruby,
 				artistJP: data.artist.ruby,
 				genre: data.category,
-				displayVersion: null
+				displayVersion: ver
 			}
 		});
-
-		// re-screw "'s to their shift-jis equivalent, because it seems like decoding
-		// &quot; is locale specific. Thanks.
-		const record = dataMap.get(prettiedTitle);
-
-		if (!record) {
-			throw new Error(`Can't find record with title ${prettiedTitle}. Dumping.\n${[...dataMap.keys()].filter(e => e.startsWith(prettiedTitle[0])).join("\n")}`);
-		}
 
 		for (let i = 0; i < 4; i++) {
 			let diff = record[1 + i * 3];

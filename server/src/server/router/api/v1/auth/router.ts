@@ -61,9 +61,7 @@ router.post(
 	),
 	async (req, res) => {
 		if (req.session.tachi?.user.id) {
-			// @ts-expect-error Type error with the @types/express-session library,
-			// i think.
-			req.session.destroy();
+			req.session.tachi = undefined;
 		}
 
 		logger.verbose(`Received login request with username ${req.body.username} (${req.ip})`);

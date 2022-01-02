@@ -33,7 +33,7 @@ t.test("POST /api/v1/auth/login", (t) => {
 		t.end();
 	});
 
-	t.test("Should return 409 if user already logged in", async (t) => {
+	t.test("Should return 200 if user already logged in", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/login").send({
 			username: "test_zkldi",
 			"!password": "password",
@@ -51,7 +51,8 @@ t.test("POST /api/v1/auth/login", (t) => {
 			})
 			.set("Cookie", cookie);
 
-		t.equal(res2.status, 409);
+		// even if they have a login already going, just let them log in.
+		t.equal(res2.status, 200);
 
 		t.end();
 	});

@@ -61,14 +61,12 @@ router.post(
 	),
 	async (req, res) => {
 		if (req.session.tachi?.user.id) {
-			logger.info(`Dual log-in attempted from ${req.session.tachi.user.id}`);
-			return res.status(409).json({
-				success: false,
-				description: `You are already logged in as someone.`,
-			});
+			// @ts-expect-error Type error with the @types/express-session library,
+			// i think.
+			req.session.destroy();
 		}
 
-		logger.verbose(`received login request with username ${req.body.username} (${req.ip})`);
+		logger.verbose(`Received login request with username ${req.body.username} (${req.ip})`);
 
 		/* istanbul ignore next */
 		if (Environment.nodeEnv === "production" || Environment.nodeEnv === "staging") {
@@ -85,7 +83,7 @@ router.post(
 
 			logger.verbose("Captcha validated!");
 		} else {
-			logger.verbose("Skipped captcha check because not in production.");
+			logger.warn("Skipped captcha check because not in production.");
 		}
 
 		const requestedUser = await GetUserCaseInsensitive(req.body.username);

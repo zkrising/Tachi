@@ -789,6 +789,9 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 				arcChartID: "?string",
 				hashSHA256: "?string",
 				"2dxtraSet": "?string",
+				kaidenAverage: "?number",
+				worldRecord: "?number",
+				bpiCoefficient: "?number",
 			})
 		)(self);
 	},

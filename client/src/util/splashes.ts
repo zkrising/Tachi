@@ -102,6 +102,7 @@ export const loggedInSplashes = [
 	"...because, what's the difference.",
 	"go ahead, ctrl+f the source for the splashes, ruin the fun for yourself.",
 	"I'm playing bedwars!",
+	"Just tryna t-take it easy and... chill out afterwards",
 ];
 
 // Stuff that's bad for the kids, you know?

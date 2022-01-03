@@ -257,6 +257,35 @@ export const PopnClasses = [
 	mouseoverVariant("神", "God", "warning"),
 ];
 
+export const PMSDans = [
+	mouseoverVariant("●1", "Insane 1st Dan", "info"),
+	mouseoverVariant("●2", "Insane 2nd Dan", "info"),
+	mouseoverVariant("●3", "Insane 3rd Dan", "info"),
+	mouseoverVariant("●4", "Insane 4th Dan", "info"),
+	mouseoverVariant("●5", "Insane 5th Dan", "info"),
+	mouseoverVariant("●6", "Insane 6th Dan", "info"),
+	mouseoverVariant("●7", "Insane 7th Dan", "info"),
+	mouseoverVariant("●8", "Insane 8th Dan", "info"),
+	mouseoverCSS("●9", "Insane 9th Dan", "red"),
+	mouseoverCSS("●10", "Insane 10th Dan", "red"),
+	mouseoverCSS("●●", "Insane Kaiden", "teal"),
+	noMouseoverCSS("●OJ", "Overjoy", "purple"),
+	mouseoverVariant("●UNDF", "Undefined (Post-Overjoy)", "warning"),
+];
+
+export const JubeatColours = [
+	noMouseoverVariant("Black", "secondary"),
+	noMouseoverCSS("Yellow-Green", "yellowgreen", "black"),
+	noMouseoverCSS("Green", "green"),
+	noMouseoverCSS("Light Blue", "cyan", "black"),
+	noMouseoverVariant("Blue", "info"),
+	noMouseoverCSS("Violet", "violet"),
+	noMouseoverCSS("Purple", "purple"),
+	noMouseoverCSS("Pink", "pink"),
+	noMouseoverCSS("Orange", "orange"),
+	noMouseoverVariant("Gold", "warning"),
+];
+
 export interface GameClassSets {
 	"iidx:SP": "dan";
 	"iidx:DP": "dan";
@@ -275,6 +304,8 @@ export interface GameClassSets {
 	"gitadora:Gita": "colour";
 	"gitadora:Dora": "colour";
 	"wacca:Single": "stageUp" | "colour";
+	"pms:Controller": "dan";
+	"pms:Keyboard": "dan";
 }
 
 export type AllClassSets = GameClassSets[IDStrings];

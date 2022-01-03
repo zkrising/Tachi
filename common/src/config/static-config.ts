@@ -59,19 +59,22 @@ export const allIDStrings: IDStrings[] = [
 	"usc:Controller",
 	"usc:Keyboard",
 	"wacca:Single",
+	"pms:Controller",
+	"pms:Keyboard",
+	"jubeat:Single",
 ];
 
 export const allSupportedGames: Game[] = [
 	"iidx",
 	"museca",
 	"maimai",
-	// "jubeat",
+	"jubeat",
 	"popn",
 	"sdvx",
 	"ddr",
 	"bms",
 	"chunithm",
-	// "gitadora",
+	"gitadora",
 	"usc",
 	"wacca",
 ];
@@ -157,4 +160,9 @@ export const PrettyVersions: Versions = {
 	"wacca:Single": {
 		reverse: "REVERSE",
 	},
+	"jubeat:Single": {
+		festo: "festo",
+	},
+	"pms:Controller": {},
+	"pms:Keyboard": {},
 };

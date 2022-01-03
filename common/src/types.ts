@@ -26,13 +26,15 @@ export type IDStrings =
 	| "ddr:DP"
 	| "maimai:Single"
 	| "museca:Single"
-	// | "jubeat:Single"
+	| "jubeat:Single"
 	| "bms:7K"
 	| "bms:14K"
 	| "chunithm:Single"
 	| "gitadora:Gita"
 	| "gitadora:Dora"
-	| "wacca:Single";
+	| "wacca:Single"
+	| "pms:Keyboard"
+	| "pms:Controller";
 
 export interface IDStringToPlaytype {
 	"iidx:SP": "SP";
@@ -52,6 +54,8 @@ export interface IDStringToPlaytype {
 	"gitadora:Gita": "Gita";
 	"gitadora:Dora": "Dora";
 	"wacca:Single": "Single";
+	"pms:Keyboard": "Keyboard";
+	"pms:Controller": "Controller";
 }
 
 export interface IDStringToGame {
@@ -72,6 +76,8 @@ export interface IDStringToGame {
 	"gitadora:Gita": "gitadora";
 	"gitadora:Dora": "gitadora";
 	"wacca:Single": "wacca";
+	"pms:Keyboard": "pms";
+	"pms:Controller": "pms";
 }
 
 export interface GameToIDStrings {
@@ -87,6 +93,7 @@ export interface GameToIDStrings {
 	gitadora: "gitadora:Gita" | "gitadora:Dora";
 	popn: "popn:9B";
 	wacca: "wacca:Single";
+	pms: "pms:Keyboard" | "pms:Controller";
 }
 
 /**
@@ -111,7 +118,7 @@ export type Game =
 	| "iidx"
 	| "museca"
 	| "maimai"
-	// | "jubeat"
+	| "jubeat"
 	| "popn"
 	| "sdvx"
 	| "ddr"
@@ -119,7 +126,8 @@ export type Game =
 	| "chunithm"
 	| "gitadora"
 	| "usc"
-	| "wacca";
+	| "wacca"
+	| "pms";
 
 /**
  * This is the generic response from the Kamaitachi API in event of a failure.
@@ -162,6 +170,7 @@ export interface Playtypes {
 	bms: "7K" | "14K";
 	gitadora: "Gita" | "Dora";
 	wacca: "Single";
+	pms: "Keyboard" | "Controller";
 }
 
 type IIDXGrades = "F" | "E" | "D" | "C" | "B" | "A" | "AA" | "AAA" | "MAX-" | "MAX";
@@ -230,6 +239,8 @@ export interface Grades {
 		| "SSS"
 		| "SSS+"
 		| "MASTER";
+	"pms:Controller": IIDXGrades;
+	"pms:Keyboard": IIDXGrades;
 }
 
 type IIDXLamps =
@@ -278,6 +289,8 @@ export interface Lamps {
 	"gitadora:Gita": GitadoraLamps;
 	"gitadora:Dora": GitadoraLamps;
 	"wacca:Single": "FAILED" | "CLEAR" | "MISSLESS" | "FULL COMBO" | "ALL MARVELOUS";
+	"pms:Controller": IIDXLamps;
+	"pms:Keyboard": IIDXLamps;
 }
 
 export type IIDX2DXTraSets = "Kichiku" | "Kiraku" | "All Scratch";
@@ -294,7 +307,7 @@ export interface Difficulties {
 	"ddr:SP": "BEGINNER" | "BASIC" | "DIFFICULT" | "EXPERT" | "CHALLENGE";
 	"ddr:DP": "BASIC" | "DIFFICULT" | "EXPERT" | "CHALLENGE";
 	"maimai:Single": "Easy" | "Basic" | "Advanced" | "Expert" | "Master" | "Re:Master";
-	"jubeat:Single": "BSC" | "ADV" | "EXT";
+	"jubeat:Single": "BSC" | "ADV" | "EXT" | "HARD BSC" | "HARD ADV" | "HARD EXT";
 	"museca:Single": "Green" | "Yellow" | "Red";
 	"bms:7K": "CHART";
 	"bms:14K": "CHART";
@@ -310,6 +323,8 @@ export interface Difficulties {
 		| "BASS MASTER";
 	"gitadora:Dora": "BASIC" | "ADVANCED" | "EXTREME" | "MASTER";
 	"wacca:Single": "NORMAL" | "HARD" | "EXPERT" | "INFERNO";
+	"pms:Controller": "CHART";
+	"pms:Keyboard": "CHART";
 }
 
 /**
@@ -508,6 +523,8 @@ export interface SessionCalculatedDataLookup {
 	"gitadora:Gita": "skill";
 	"gitadora:Dora": "skill";
 	"wacca:Single": "naiveRate";
+	"pms:Controller": "sieglinde";
+	"pms:Keyboard": "sieglinde";
 }
 
 export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
@@ -733,7 +750,7 @@ export interface UGSRatingsLookup {
 	"ddr:SP": "MFCP" | "ktRating";
 	"ddr:DP": "MFCP" | "ktRating";
 	"maimai:Single": "ktRating";
-	"jubeat:Single": "jubility";
+	"jubeat:Single": "jubility" | "naiveJubility";
 	"museca:Single": "ktRating";
 	"bms:7K": "sieglinde";
 	"bms:14K": "sieglinde";
@@ -741,6 +758,8 @@ export interface UGSRatingsLookup {
 	"gitadora:Gita": "skill";
 	"gitadora:Dora": "skill";
 	"wacca:Single": "naiveRate" | "rate";
+	"pms:Controller": "sieglinde";
+	"pms:Keyboard": "sieglinde";
 }
 
 export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBDocument {
@@ -801,7 +820,7 @@ export interface GPTSupportedVersions {
 	"ddr:SP": "a20";
 	"ddr:DP": "a20";
 	"maimai:Single": "finale";
-	"jubeat:Single": never;
+	"jubeat:Single": "festo";
 	"museca:Single": "1.5" | "1.5-b";
 	"bms:7K": never;
 	"bms:14K": never;
@@ -809,6 +828,8 @@ export interface GPTSupportedVersions {
 	"gitadora:Gita": "nextage";
 	"gitadora:Dora": "nextage";
 	"wacca:Single": "reverse";
+	"pms:Controller": never;
+	"pms:Keyboard": never;
 }
 
 interface CDDataIIDXSP {
@@ -852,7 +873,7 @@ interface ChartDocumentData {
 	"ddr:SP": CDDataDDRSP;
 	"ddr:DP": CDDataDDRSP;
 	"maimai:Single": { maxPercent: number; inGameID: number; inGameStrID: string };
-	"jubeat:Single": { arcChartID: string | null };
+	"jubeat:Single": { inGameID: integer };
 	"museca:Single": { inGameID: integer };
 	"bms:7K": CDDataBMS;
 	"bms:14K": CDDataBMS;
@@ -860,6 +881,8 @@ interface ChartDocumentData {
 	"gitadora:Gita": { inGameID: integer };
 	"gitadora:Dora": { inGameID: integer };
 	"wacca:Single": { isHot: boolean };
+	"pms:Controller": CDDataBMS;
+	"pms:Keyboard": CDDataBMS;
 }
 
 export interface GPTTierlists {
@@ -880,6 +903,8 @@ export interface GPTTierlists {
 	"gitadora:Gita": never;
 	"gitadora:Dora": never;
 	"wacca:Single": never;
+	"pms:Controller": "sgl-HC" | "sgl-EC";
+	"pms:Keyboard": "sgl-HC" | "sgl-EC";
 }
 
 export interface ChartTierlistInfo {
@@ -901,6 +926,7 @@ export interface ChartDocument<I extends IDStrings = IDStrings> extends MongoDBD
 	tierlistInfo: Partial<Record<GPTTierlists[I], ChartTierlistInfo>>;
 	versions: GPTSupportedVersions[I][];
 }
+
 interface SongDocumentData {
 	iidx: { genre: string; displayVersion: string | null };
 	museca: { titleJP: string; artistJP: string; displayVersion: string };
@@ -914,6 +940,7 @@ interface SongDocumentData {
 	chunithm: { genre: string; displayVersion: string };
 	gitadora: { isHot: boolean; displayVersion: string };
 	wacca: { titleJP: string; artistJP: string; genre: string; displayVersion: string | null };
+	pms: { genre: string | null; subtitle: string | null; subartist: string | null };
 }
 
 export interface SongDocument<G extends Game = Game> extends MongoDBDocument {
@@ -997,6 +1024,12 @@ interface BMS7KScoreMeta {
 	gauge: "NORMAL" | "EASY" | "HARD" | "EX-HARD" | null;
 }
 
+interface PMSScoreMeta {
+	random: RanOptions | null;
+	client: "beatoraja" | null;
+	gauge: "NORMAL" | "EASY" | "HARD" | "EX-HARD" | null;
+}
+
 interface USCScoreMeta {
 	noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" | null;
 	gaugeMod: "NORMAL" | "HARD" | "PERMISSIVE" | null;
@@ -1026,6 +1059,8 @@ interface ScoreMetaLookup {
 	"gitadora:Gita": Record<string, never>;
 	"gitadora:Dora": Record<string, never>;
 	"wacca:Single": { mirror: boolean | null };
+	"pms:Controller": PMSScoreMeta;
+	"pms:Keyboard": PMSScoreMeta;
 }
 
 interface BASE_VALID_HIT_META {
@@ -1099,6 +1134,8 @@ export interface HitMetaLookup {
 	"gitadora:Gita": BASE_VALID_HIT_META;
 	"gitadora:Dora": BASE_VALID_HIT_META;
 	"wacca:Single": BASE_VALID_HIT_META;
+	"pms:Controller": BMSHitMeta;
+	"pms:Keyboard": BMSHitMeta;
 }
 
 type IIDXJudges = "pgreat" | "great" | "good" | "bad" | "poor";
@@ -1126,6 +1163,8 @@ export interface JudgementLookup {
 	"gitadora:Gita": GitadoraJudges;
 	"gitadora:Dora": GitadoraJudges;
 	"wacca:Single": "marvelous" | "great" | "good" | "miss";
+	"pms:Controller": "cool" | "great" | "good" | "bad" | "poor";
+	"pms:Keyboard": "cool" | "great" | "good" | "bad" | "poor";
 }
 
 export interface ScoreCalculatedDataLookup {
@@ -1138,7 +1177,7 @@ export interface ScoreCalculatedDataLookup {
 	"ddr:SP": "MFCP" | "ktRating";
 	"ddr:DP": "MFCP" | "ktRating";
 	"maimai:Single": "ktRating";
-	// "jubeat:Single": "jubility";
+	"jubeat:Single": "jubility";
 	"museca:Single": "ktRating";
 	"bms:7K": "sieglinde";
 	"bms:14K": "sieglinde";
@@ -1146,6 +1185,8 @@ export interface ScoreCalculatedDataLookup {
 	"gitadora:Gita": "skill";
 	"gitadora:Dora": "skill";
 	"wacca:Single": "rate";
+	"pms:Controller": "sieglinde";
+	"pms:Keyboard": "sieglinde";
 }
 
 export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
@@ -1382,6 +1423,8 @@ export interface UGPTSpecificPreferences {
 	"gitadora:Gita": Record<string, never>;
 	"gitadora:Dora": Record<string, never>;
 	"wacca:Single": Record<string, never>;
+	"pms:Controller": Record<string, never>;
+	"pms:Keyboard": Record<string, never>;
 }
 
 export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDocument {

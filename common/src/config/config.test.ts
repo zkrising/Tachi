@@ -23,6 +23,11 @@ t.test("#GetGamePTConfig", (t) => {
 				`${game}:${playtype}`,
 				`Should return the right GamePTConfig (${game} ${playtype})`
 			);
+
+			if (conf.gradeBoundaries === null) {
+				continue;
+			}
+
 			t.equal(
 				conf.gradeBoundaries.length,
 				conf.grades.length,

@@ -8,6 +8,8 @@ import {
 	GameClassSets,
 	GitadoraColours,
 	IIDXDans,
+	JubeatColours,
+	PMSDans,
 	PopnClasses,
 	SDVXDans,
 	SDVXVFClasses,
@@ -63,7 +65,7 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	grades: Grades[I][];
 	gradeColours: Record<Grades[I], string>;
 	clearGrade: Grades[I];
-	gradeBoundaries: number[];
+	gradeBoundaries: number[] | null;
 
 	lamps: Lamps[I][];
 	lampColours: Record<Lamps[I], string>;
@@ -107,6 +109,7 @@ export const COLOUR_SET = {
 	paleGreen: "rgba(142,174,79, 1)",
 	paleBlue: "rgba(92, 97, 153, 1)",
 	green: "rgba(50, 205, 50, 1)",
+	darkGreen: "rgba(30, 130, 76, 1)",
 	blue: "rgba(70, 130, 180, 1)",
 	gold: "rgba(255, 215, 0, 1)",
 	vibrantYellow: "rgba(245, 229, 27, 1)",
@@ -165,12 +168,12 @@ const GAME_CONFIGS: GameConfigs = {
 		internalName: "gitadora",
 		validPlaytypes: ["Gita", "Dora"],
 	},
-	// jubeat: {
-	//     defaultPlaytype: "Single",
-	//     name: "jubeat",
-	//     internalName: "jubeat",
-	//     validPlaytypes: ["Single"],
-	// },
+	jubeat: {
+		defaultPlaytype: "Single",
+		name: "jubeat",
+		internalName: "jubeat",
+		validPlaytypes: ["Single"],
+	},
 	maimai: {
 		defaultPlaytype: "Single",
 		name: "maimai",
@@ -200,6 +203,12 @@ const GAME_CONFIGS: GameConfigs = {
 		name: "WACCA",
 		internalName: "wacca",
 		validPlaytypes: ["Single"],
+	},
+	pms: {
+		defaultPlaytype: "Controller",
+		internalName: "pms",
+		name: "PMS",
+		validPlaytypes: ["Controller", "Keyboard"],
 	},
 };
 
@@ -1745,6 +1754,245 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
+	},
+	"jubeat:Single": {
+		idString: "jubeat:Single",
+
+		percentMax: 120,
+
+		defaultScoreRatingAlg: "jubility",
+		defaultSessionRatingAlg: "jubility",
+		defaultProfileRatingAlg: "jubility",
+
+		scoreRatingAlgs: ["jubility"],
+		sessionRatingAlgs: ["jubility"],
+		profileRatingAlgs: ["jubility", "naiveJubility"],
+
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
+		difficulties: ["BSC", "ADV", "EXT", "HARD BSC", "HARD ADV", "HARD EXT"],
+		shortDifficulties: {
+			BSC: "BSC",
+			ADV: "ADV",
+			EXT: "EXT",
+			"HARD BSC": "H. BSC",
+			"HARD ADV": "H. ADV",
+			"HARD EXT": "H. EXT",
+		},
+		defaultDifficulty: "EXT",
+		difficultyColours: {
+			BSC: COLOUR_SET.green,
+			ADV: COLOUR_SET.gold,
+			EXT: COLOUR_SET.red,
+			"HARD BSC": COLOUR_SET.darkGreen,
+			"HARD ADV": COLOUR_SET.orange,
+			"HARD EXT": COLOUR_SET.maroon,
+		},
+
+		grades: ["E", "D", "C", "B", "A", "S", "SS", "SSS", "EXC"],
+		gradeColours: {
+			E: COLOUR_SET.gray,
+			D: COLOUR_SET.maroon,
+			C: COLOUR_SET.red,
+			B: COLOUR_SET.blue,
+			A: COLOUR_SET.green,
+			S: COLOUR_SET.gold,
+			SS: COLOUR_SET.orange,
+			SSS: COLOUR_SET.teal,
+			EXC: COLOUR_SET.white,
+		},
+		clearGrade: "A",
+		gradeBoundaries: null,
+
+		lamps: ["FAILED", "CLEAR", "FULL COMBO", "EXCELLENT"],
+		lampColours: {
+			FAILED: COLOUR_SET.red,
+			CLEAR: COLOUR_SET.blue,
+			"FULL COMBO": COLOUR_SET.teal,
+			EXCELLENT: COLOUR_SET.white,
+		},
+		clearLamp: "CLEAR",
+
+		classHumanisedFormat: {
+			colour: JubeatColours,
+		},
+
+		supportsESD: false,
+		judgements: ["perfect", "great", "good", "bad", "miss"],
+
+		scoreBucket: "grade",
+
+		currentLatestVersion: "festo",
+		currentGameOmniVersion: null,
+		currentLocalVersion: "festo",
+		supportedVersions: ["festo"],
+
+		tierlists: [],
+		tierlistDescriptions: {},
+	},
+	"pms:Controller": {
+		idString: "pms:Controller",
+		percentMax: 100,
+
+		defaultScoreRatingAlg: "sieglinde",
+		defaultSessionRatingAlg: "sieglinde",
+		defaultProfileRatingAlg: "sieglinde",
+
+		scoreRatingAlgs: ["sieglinde"],
+		sessionRatingAlgs: ["sieglinde"],
+		profileRatingAlgs: ["sieglinde"],
+
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
+		difficulties: ["CHART"],
+		shortDifficulties: {},
+		defaultDifficulty: "CHART",
+		difficultyColours: {
+			CHART: null,
+		},
+
+		grades: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
+		gradeColours: {
+			F: COLOUR_SET.gray,
+			E: COLOUR_SET.red,
+			D: COLOUR_SET.maroon,
+			C: COLOUR_SET.purple,
+			B: COLOUR_SET.paleBlue,
+			A: COLOUR_SET.green,
+			AA: COLOUR_SET.blue,
+			AAA: COLOUR_SET.gold,
+			"MAX-": COLOUR_SET.teal,
+			MAX: COLOUR_SET.white,
+		},
+		clearGrade: "A",
+		gradeBoundaries: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
+
+		lamps: [
+			"NO PLAY",
+			"FAILED",
+			"ASSIST CLEAR",
+			"EASY CLEAR",
+			"CLEAR",
+			"HARD CLEAR",
+			"EX HARD CLEAR",
+			"FULL COMBO",
+		],
+		lampColours: {
+			"NO PLAY": COLOUR_SET.gray,
+			FAILED: COLOUR_SET.red,
+			"ASSIST CLEAR": COLOUR_SET.purple,
+			"EASY CLEAR": COLOUR_SET.green,
+			CLEAR: COLOUR_SET.blue,
+			"HARD CLEAR": COLOUR_SET.orange,
+			"EX HARD CLEAR": COLOUR_SET.gold,
+			"FULL COMBO": COLOUR_SET.teal,
+		},
+		clearLamp: "CLEAR",
+
+		classHumanisedFormat: {
+			dan: PMSDans,
+		},
+
+		supportsESD: false,
+		judgements: ["cool", "great", "good", "bad", "poor"],
+
+		scoreBucket: "lamp",
+
+		currentLatestVersion: null,
+		currentGameOmniVersion: null,
+		currentLocalVersion: null,
+		supportedVersions: [],
+
+		tierlists: ["sgl-EC", "sgl-HC"],
+		tierlistDescriptions: {
+			"sgl-EC": "Sieglinde Easy Clear ratings.",
+			"sgl-HC": "Sieglinde Hard Clear ratings.",
+		},
+	},
+	"pms:Keyboard": {
+		idString: "pms:Keyboard",
+		percentMax: 100,
+
+		defaultScoreRatingAlg: "sieglinde",
+		defaultSessionRatingAlg: "sieglinde",
+		defaultProfileRatingAlg: "sieglinde",
+
+		scoreRatingAlgs: ["sieglinde"],
+		sessionRatingAlgs: ["sieglinde"],
+		profileRatingAlgs: ["sieglinde"],
+
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
+		difficulties: ["CHART"],
+		shortDifficulties: {},
+		defaultDifficulty: "CHART",
+		difficultyColours: {
+			CHART: null,
+		},
+
+		grades: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
+		gradeColours: {
+			F: COLOUR_SET.gray,
+			E: COLOUR_SET.red,
+			D: COLOUR_SET.maroon,
+			C: COLOUR_SET.purple,
+			B: COLOUR_SET.paleBlue,
+			A: COLOUR_SET.green,
+			AA: COLOUR_SET.blue,
+			AAA: COLOUR_SET.gold,
+			"MAX-": COLOUR_SET.teal,
+			MAX: COLOUR_SET.white,
+		},
+		clearGrade: "A",
+		gradeBoundaries: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
+
+		lamps: [
+			"NO PLAY",
+			"FAILED",
+			"ASSIST CLEAR",
+			"EASY CLEAR",
+			"CLEAR",
+			"HARD CLEAR",
+			"EX HARD CLEAR",
+			"FULL COMBO",
+		],
+		lampColours: {
+			"NO PLAY": COLOUR_SET.gray,
+			FAILED: COLOUR_SET.red,
+			"ASSIST CLEAR": COLOUR_SET.purple,
+			"EASY CLEAR": COLOUR_SET.green,
+			CLEAR: COLOUR_SET.blue,
+			"HARD CLEAR": COLOUR_SET.orange,
+			"EX HARD CLEAR": COLOUR_SET.gold,
+			"FULL COMBO": COLOUR_SET.teal,
+		},
+		clearLamp: "CLEAR",
+
+		classHumanisedFormat: {
+			dan: PMSDans,
+		},
+
+		supportsESD: false,
+		judgements: ["cool", "great", "good", "bad", "poor"],
+
+		scoreBucket: "lamp",
+
+		currentLatestVersion: null,
+		currentGameOmniVersion: null,
+		currentLocalVersion: null,
+		supportedVersions: [],
+
+		tierlists: ["sgl-EC", "sgl-HC"],
+		tierlistDescriptions: {
+			"sgl-EC": "Sieglinde Easy Clear ratings.",
+			"sgl-HC": "Sieglinde Hard Clear ratings.",
+		},
 	},
 };
 

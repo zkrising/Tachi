@@ -43,6 +43,22 @@ function TableSort(a, b) {
 	return a.title.localeCompare(b.title);
 }
 
+function BMSCourseSort(a, b) {
+	if (a.playtype !== b.playtype) {
+		return a.playtype.localeCompare(b.playtype);
+	}
+
+	if (a.set !== b.set) {
+		return a.set.localeCompare(b.set);
+	}
+
+	if (a.value !== b.value) {
+		return a.value - b.value;
+	}
+
+	return a.md5sums.localeCompare(b.md5sums);
+}
+
 function DeterministicCollectionSort() {
 	for (const collection of collections) {
 		const collPath = path.join(__dirname, "../collections", collection);
@@ -59,6 +75,8 @@ function DeterministicCollectionSort() {
 		}
 		else if (collection.startsWith("tables")) {
 			content.sort(TableSort);
+		} else if (collection.startsWith("bms-course-lookup.json")) {
+			content.sort(BMSCourseSort);
 		}
 
 

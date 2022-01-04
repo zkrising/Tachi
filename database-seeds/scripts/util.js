@@ -18,7 +18,13 @@ function IterateCollections(cb) {
 const COLLECTIONS_DIR = path.join(__dirname, "../collections");
 
 function ReadCollection(name) {
-	return JSON.parse(fs.readFileSync(path.join(COLLECTIONS_DIR, name)));
+	const p = path.join(COLLECTIONS_DIR, name);
+	if (!fs.existsSync(p)) {
+		fs.writeFileSync(p, JSON.stringify([]));
+		return [];
+	}
+
+	return JSON.parse(fs.readFileSync(p));
 }
 
 function MutateCollection(name, cb) {
@@ -54,11 +60,60 @@ function EfficientInPlaceDeepmerge(ref, apply) {
 	}
 }
 
+function AddSupportForBMSTable(header, game, playtype, tableName, tableID, tableDescription) {
+	const folders = [];
+	const symbol = header.symbol;
+
+	for (const level of header.level_order) {
+		const f = {
+			title: `${symbol}${level}`,
+			playtype,
+			game,
+			searchTerms: [],
+			type: "charts",
+			"data": {
+				"data¬tableFolders": {
+					"~elemMatch": {
+						"level": level.toString(),
+						"table": symbol
+					}
+				}
+			},
+			inactive: false,
+		}
+
+		const folderID = CreateFolderID(f);
+
+		f.folderID = folderID;
+
+		folders.push(f);
+	}
+
+	MutateCollection("folders.json", (f) => {
+		f.push(...folders);
+		return f;
+	});
+
+	MutateCollection("tables.json", (t) => {
+		t.push({
+			folders: folders.map(e => e.folderID),
+			game,
+			playtype,
+			inactive: false,
+			description: tableDescription,
+			title: tableName,
+			tableID: tableID
+		});
+		return t;
+	})
+}
+
 module.exports = {
 	IterateCollections,
 	MutateCollection,
 	CreateChartID,
 	CreateFolderID,
 	ReadCollection,
-	EfficientInPlaceDeepmerge
+	EfficientInPlaceDeepmerge,
+	AddSupportForBMSTable
 }

@@ -71,6 +71,7 @@ The properties are described as this:
 | :: | :: | :: |
 | `score` | Number | The score for this, well, score. This should use the default scoring algorithm for this game. |
 | `lamp` | Lamp | The lamp for this score. This should be one of the lamps as described in the config for your game + playtype. |
+| `percent` (Conditional) | Number | Only appears for `jubeat`. This should be set to the Percent for this score. In jubeat's case, this is your Music Rate. |
 | `matchType` | "songTitle" \| "ddrSongHash" \| "tachiSongID" \| "bmsChartHash" \| "inGameID" \| "uscChartHash" | This determines how `identifier` will be used to match your scores' chart with Tachi's database of songs and charts. |
 | `identifier` | String | A string that Tachi uses to identify what chart this is for. How this is used depends on the `matchType`. |
 | `difficulty` (Conditional) | String | If `matchType` is "tachiSongID", "inGameID", "ddrSongHash" or "songTitle", this field must be present, and describe the difficulty of the chart this score is for. |

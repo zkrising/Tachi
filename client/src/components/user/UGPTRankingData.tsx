@@ -2,6 +2,7 @@ import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 import React from "react";
 import { IDStrings, integer, UGSRatingsLookup } from "tachi-common";
 import { GamePT } from "types/react";
+import { UppercaseFirst } from "util/misc";
 
 export default function RankingData({
 	rankingData,
@@ -21,7 +22,7 @@ export default function RankingData({
 			extendData.push(
 				<div key={key} className="col-12">
 					<small className="text-muted">
-						{key}: #{rankingData[key].ranking}/{rankingData[key].outOf}
+						{UppercaseFirst(key)}: #{rankingData[key].ranking}/{rankingData[key].outOf}
 					</small>
 				</div>
 			);
@@ -31,7 +32,7 @@ export default function RankingData({
 	return (
 		<div className="row text-center">
 			<div className="col-12">
-				<h4>Ranking{extendData.length ? ` (${alg})` : ""}</h4>
+				<h4>Ranking{extendData.length ? ` (${UppercaseFirst(alg)})` : ""}</h4>
 			</div>
 			<div className="col-12">
 				<strong className="display-4">#{rankingData[alg].ranking}</strong>

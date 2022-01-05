@@ -106,11 +106,11 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 			ktRating: AvgBest10Map(scd, "ktRating"),
 		}),
 	},
-	// jubeat: {
-	// 	Single: (scd) => ({
-	// 		jubility: AvgBest10Map(scd, "jubility"),
-	// 	}),
-	// },
+	jubeat: {
+		Single: (scd) => ({
+			jubility: AvgBest10Map(scd, "jubility"),
+		}),
+	},
 	usc: {
 		Controller: (scd) => {
 			const VF6 = AvgBest10Map(scd, "VF6");

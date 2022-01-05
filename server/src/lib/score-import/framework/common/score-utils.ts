@@ -25,6 +25,12 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 	const boundaries = gptConfig.gradeBoundaries;
 	const grades = gptConfig.grades;
 
+	if (!boundaries) {
+		throw new Error(
+			`Invalid call to GetGradeFromPercent! GPT ${game}:${playtype} does not use grade boundaries.`
+		);
+	}
+
 	// (hey, this for loop is backwards!)
 	for (let i = boundaries.length; i >= 0; i--) {
 		if (percent >= boundaries[i]) {
@@ -125,6 +131,28 @@ export function GenericGetGradeAndPercent<G extends Game>(
 	const grade = GetGradeFromPercent(game, chart.playtype, percent) as Grades[GameToIDStrings[G]];
 
 	return { percent, grade };
+}
+
+export function JubeatGetGrade(score: number): Grades["jubeat:Single"] {
+	if (score === 1_000_000) {
+		return "EXC";
+	} else if (score >= 980_000) {
+		return "SSS";
+	} else if (score >= 950_000) {
+		return "SS";
+	} else if (score >= 900_000) {
+		return "S";
+	} else if (score >= 850_000) {
+		return "A";
+	} else if (score >= 800_000) {
+		return "B";
+	} else if (score >= 700_000) {
+		return "C";
+	} else if (score >= 500_000) {
+		return "D";
+	}
+
+	return "E";
 }
 
 /**

@@ -779,6 +779,11 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 			displayVersion: "?string",
 		})
 	),
+	"songs-jubeat": prSchemaify(
+		PR_SongDocument({
+			displayVersion: "string",
+		})
+	),
 	"charts-iidx": (self) => {
 		const playtype = getPlaytype("iidx", self);
 
@@ -815,6 +820,12 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 	"charts-chunithm": prSchemaify(
 		PR_ChartDocument("chunithm", "Single", {
 			inGameID: p.isPositiveInteger,
+		})
+	),
+	"charts-jubeat": prSchemaify(
+		PR_ChartDocument("jubeat", "Single", {
+			inGameID: p.isPositiveInteger,
+			isHardMode: "boolean",
 		})
 	),
 	"charts-gitadora": (self) => {

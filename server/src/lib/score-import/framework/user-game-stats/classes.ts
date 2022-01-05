@@ -57,6 +57,7 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 	wacca: {
 		Single: CalculateWACCAColour,
 	},
+	jubeat: null,
 };
 
 /**

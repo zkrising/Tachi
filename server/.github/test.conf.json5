@@ -48,6 +48,7 @@
 			"usc",
 			"wacca",
 			"popn",
+			"jubeat",
 		],
 		IMPORT_TYPES: [
 			"file/eamusement-iidx-csv",

@@ -59,99 +59,99 @@ export default function FolderScoreDistributionChart({
 	);
 }
 
-function ScoreDistributionChart({ game, folderDataset, playtype, view }: Props) {
-	if (view === "grade") {
-		return <ScoreBarChart game={game} playtype={playtype} folderDataset={folderDataset} />;
-	}
+// function ScoreDistributionChart({ game, folderDataset, playtype, view }: Props) {
+// 	if (view === "grade") {
+// 		return <ScoreBarChart game={game} playtype={playtype} folderDataset={folderDataset} />;
+// 	}
 
-	return <>LAMP TODO</>;
-}
+// 	return <>LAMP TODO</>;
+// }
 
-function ScoreBarChart({ game, playtype, folderDataset }: Omit<Props, "view">) {
-	const dataMap = CreateChartIDMap(folderDataset);
-	const gptConfig = GetGamePTConfig(game, playtype);
+// function ScoreBarChart({ game, playtype, folderDataset }: Omit<Props, "view">) {
+// 	const dataMap = CreateChartIDMap(folderDataset);
+// 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const expScale = GetGradeChartExpScale(game);
-	const expFn = ComposeExpFn(expScale);
-	const invExpFn = ComposeInverseExpFn(expScale);
+// 	const expScale = GetGradeChartExpScale(game);
+// 	const expFn = ComposeExpFn(expScale);
+// 	const invExpFn = ComposeInverseExpFn(expScale);
 
-	const dataset = [];
+// 	const dataset = [];
 
-	for (const data of folderDataset) {
-		const value = data.__related.pb ? expFn(data.__related.pb.scoreData.percent) : 0;
-		dataset.push({
-			chartID: data.chartID,
-			expValue: expFn(value),
-			value,
-			grade: data.__related.pb?.scoreData.grade,
-		});
-	}
+// 	for (const data of folderDataset) {
+// 		const value = data.__related.pb ? expFn(data.__related.pb.scoreData.percent) : 0;
+// 		dataset.push({
+// 			chartID: data.chartID,
+// 			expValue: expFn(value),
+// 			value,
+// 			grade: data.__related.pb?.scoreData.grade,
+// 		});
+// 	}
 
-	dataset.sort(NumericSOV(x => x.expValue));
+// 	dataset.sort(NumericSOV(x => x.expValue));
 
-	return (
-		<div style={{ height: 400 }}>
-			<ResponsiveBar
-				indexBy="chartID"
-				tooltip={d => (
-					<BarChartTooltip
-						point={d}
-						renderFn={d => {
-							const data = dataMap.get(d.indexValue as string)!;
+// 	return (
+// 		<div style={{ height: 400 }}>
+// 			<ResponsiveBar
+// 				indexBy="chartID"
+// 				tooltip={d => (
+// 					<BarChartTooltip
+// 						point={d}
+// 						renderFn={d => {
+// 							const data = dataMap.get(d.indexValue as string)!;
 
-							return (
-								<div className="w-100 text-center">
-									{data.__related.song.title}
-									<br />
-									{data.__related.pb?.scoreData.percent.toFixed(2)}%
-								</div>
-							);
-						}}
-					/>
-				)}
-				key={"value"}
-				colors={k => {
-					if (!k.data.grade) {
-						return "black";
-					}
-					// @ts-expect-error temp
-					return ChangeOpacity(gptConfig.gradeColours[k.data.grade], 0.5);
-				}}
-				// @ts-expect-error temp
-				borderColor={k => gptConfig.gradeColours[k.data.grade]}
-				borderWidth={1}
-				padding={0.2}
-				// @ts-expect-error temp
-				data={dataset}
-				minValue={0}
-				maxValue={expFn(100)}
-				margin={{ left: 50, top: 20, bottom: 20 }}
-				valueFormat={e => `${invExpFn(e).toFixed(2)}%`}
-				axisLeft={{
-					tickValues: gptConfig.gradeBoundaries.map(e => (e === 0 ? 0 : expFn(e))),
-					format: x => {
-						let nearest;
+// 							return (
+// 								<div className="w-100 text-center">
+// 									{data.__related.song.title}
+// 									<br />
+// 									{data.__related.pb?.scoreData.percent.toFixed(2)}%
+// 								</div>
+// 							);
+// 						}}
+// 					/>
+// 				)}
+// 				key={"value"}
+// 				colors={k => {
+// 					if (!k.data.grade) {
+// 						return "black";
+// 					}
+// 					// @ts-expect-error temp
+// 					return ChangeOpacity(gptConfig.gradeColours[k.data.grade], 0.5);
+// 				}}
+// 				// @ts-expect-error temp
+// 				borderColor={k => gptConfig.gradeColours[k.data.grade]}
+// 				borderWidth={1}
+// 				padding={0.2}
+// 				// @ts-expect-error temp
+// 				data={dataset}
+// 				minValue={0}
+// 				maxValue={expFn(100)}
+// 				margin={{ left: 50, top: 20, bottom: 20 }}
+// 				valueFormat={e => `${invExpFn(e).toFixed(2)}%`}
+// 				axisLeft={{
+// 					tickValues: gptConfig.gradeBoundaries.map(e => (e === 0 ? 0 : expFn(e))),
+// 					format: x => {
+// 						let nearest;
 
-						const lgv = invExpFn(x);
+// 						const lgv = invExpFn(x);
 
-						for (const [i, gradeBnd] of gptConfig.gradeBoundaries.entries()) {
-							if (Math.abs(gradeBnd - lgv) < 0.00005) {
-								nearest = i;
-								break;
-							}
-						}
+// 						for (const [i, gradeBnd] of gptConfig.gradeBoundaries.entries()) {
+// 							if (Math.abs(gradeBnd - lgv) < 0.00005) {
+// 								nearest = i;
+// 								break;
+// 							}
+// 						}
 
-						if (nearest === undefined) {
-							return null;
-						}
+// 						if (nearest === undefined) {
+// 							return null;
+// 						}
 
-						return gptConfig.grades[nearest];
-					},
-				}}
-				axisBottom={null}
-				{...DEFAULT_BAR_PROPS}
-				labelSkipWidth={40}
-			/>
-		</div>
-	);
-}
+// 						return gptConfig.grades[nearest];
+// 					},
+// 				}}
+// 				axisBottom={null}
+// 				{...DEFAULT_BAR_PROPS}
+// 				labelSkipWidth={40}
+// 			/>
+// 		</div>
+// 	);
+// }

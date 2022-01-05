@@ -5,6 +5,7 @@ import { PBDataset } from "types/tables";
 import BMSPBTable from "./BMSPBTable";
 import GenericPBTable from "./GenericPBTable";
 import IIDXPBTable from "./IIDXPBTable";
+import JubeatPBTable from "./JubeatPBTable";
 import MusecaPBTable from "./MusecaPBTable";
 import PopnPBTable from "./PopnPBTable";
 import SDVXLikePBTable from "./SDVXLikePBTable";
@@ -56,6 +57,8 @@ export default function PBTable({
 		return <WACCAPBTable {...props} />;
 	} else if (game === "popn") {
 		return <PopnPBTable {...props} />;
+	} else if (game === "jubeat") {
+		return <JubeatPBTable {...props} />;
 	}
 
 	return <GenericPBTable {...props} game={game} playtype={playtype} />;

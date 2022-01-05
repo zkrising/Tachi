@@ -5,6 +5,7 @@ import { ScoreDataset } from "types/tables";
 import BMSScoreTable from "./BMSScoreTable";
 import GenericScoreTable from "./GenericScoreTable";
 import IIDXScoreTable from "./IIDXScoreTable";
+import JubeatScoreTable from "./JubeatScoreTable";
 import MusecaScoreTable from "./MusecaScoreTable";
 import SDVXLikeScoreTable from "./SDVXLikeScoreTable";
 
@@ -36,6 +37,8 @@ export default function ScoreTable({
 		return <GenericScoreTable {...props} game={game} playtype={playtype} showScore={false} />;
 	} else if (game === "museca") {
 		return <MusecaScoreTable {...props} />;
+	} else if (game === "jubeat") {
+		return <JubeatScoreTable {...props} />;
 	}
 
 	return <GenericScoreTable {...props} game={game} playtype={playtype} />;

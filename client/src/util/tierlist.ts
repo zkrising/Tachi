@@ -36,6 +36,7 @@ const ScaleNameAchievedFns: ScaleAchievedFns = {
 	"usc:Keyboard": {},
 	"wacca:Single": {},
 	"popn:9B": {},
+	"jubeat:Single": {},
 };
 
 export function GetScaleAchievedFn(

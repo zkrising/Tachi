@@ -21,7 +21,7 @@ if (mode === "ktchi") {
 		type: "ktchi",
 		// TODO: #78 This should inherit in some way from the server config. Can we reflect
 		// this out somehow?
-		supportedGames: ["iidx", "chunithm", "museca", "sdvx", "wacca", "popn"],
+		supportedGames: ["iidx", "chunithm", "museca", "sdvx", "wacca", "popn", "jubeat"],
 		importTypes: [
 			"api/arc-iidx",
 			"api/arc-sdvx",

@@ -52,8 +52,12 @@ export function FormatGPTRating(
 	game: Game,
 	playtype: Playtype,
 	key: ScoreCalculatedDataLookup[IDStrings],
-	value: number
+	value: number | null
 ) {
+	if (value === null) {
+		return "No Data.";
+	}
+
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	if (gptConfig.scoreRatingAlgFormatters[key]) {

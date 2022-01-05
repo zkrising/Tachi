@@ -1788,7 +1788,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			EXT: COLOUR_SET.red,
 			"HARD BSC": COLOUR_SET.darkGreen,
 			"HARD ADV": COLOUR_SET.orange,
-			"HARD EXT": COLOUR_SET.maroon,
+			"HARD EXT": COLOUR_SET.vibrantRed,
 		},
 
 		grades: ["E", "D", "C", "B", "A", "S", "SS", "SSS", "EXC"],

@@ -46,8 +46,9 @@ The following games are supported on [Kamaitachi](https://kamaitachi.xyz).
 | MÚSECA | `museca` | `Single` |
 | SOUND VOLTEX | `sdvx` | `Single` |
 | CHUNITHM | `chunithm` | `Single` |
-| jubeat (In Development) | `jubeat` | `Single` |
-| pop'n music (In Development) | `popn` | `9B`[^1] |
+| jubeat | `jubeat` | `Single` |
+| WACCA | `wacca` | `Single` |
+| pop'n music | `popn` | `9B`[^1] |
 <!-- | Dance Dance Revolution | `ddr` | `SP`, `DP` | -->
 <!-- | GITADORA | `gitadora` | `Gita`, `Dora` | -->
 <!-- | maimai | `maimai` | `Single` | -->
@@ -59,6 +60,7 @@ The following games are supported on [Bokutachi](https://bokutachi.xyz).
 | Name | Internal Name | Playtypes |
 | :: | :: | :: |
 | BMS | `bms` | `7K`, `14K` |
+| PMS | `pms` | `Controller`, `Keyboard`[^2] |
 | unnamed_sdvx_clone | `usc` | `Controller` `Keyboard`[^2] |
 
 

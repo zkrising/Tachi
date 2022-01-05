@@ -52,7 +52,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 	let grade: Grades[IDStrings];
 
 	if (game === "jubeat") {
-		if (!data.percent) {
+		if (!data.percent && data.percent !== 0) {
 			throw new InvalidScoreFailure(
 				`The percent field must be filled out for jubeat scores.`
 			);

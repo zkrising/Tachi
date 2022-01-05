@@ -1458,6 +1458,7 @@ export interface ARCSavedProfileDocument extends MongoDBDocument {
 export type BatchManualScore<I extends IDStrings = IDStrings> = {
 	score: number;
 	lamp: Lamps[I];
+	percent?: number;
 	identifier: string;
 	comment?: string | null;
 	judgements?: Record<JudgementLookup[I], integer>;

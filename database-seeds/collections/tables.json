@@ -1752,6 +1752,54 @@
 		"title": "beatmania IIDX (SP) (tricoro)"
 	},
 	{
+		"description": "Decimal Level Folders for jubeat.",
+		"folders": [
+			"F4a33358b6123f164ed8f56bc6a6abb25bf919ee9e57c3f441804b864c6b2a108",
+			"Fe213da3964d9936e0f6d08ea3b7958522a8d940aca325f2018ec7b065f1ef5e4",
+			"Fe857b2b0e1fc895e9f693e6dc18a87c29ceb99fd3a05492272c74e3c631c7ef0",
+			"F6e75be3b16c5b5e76ed9c0a807efd88d40b9a16270944dd3ba017d86abf8c6d2",
+			"F3d0d71b9bf4450c58a771e0893c8c987dfa04b382517ddbf5ef7c52bf55834f6",
+			"F2d32eff9aca8f4a48cdff5670b00c351f5e599a308b30c4b4c87cbdb8ef027d0",
+			"F1f35d3893656a41d883978691c463ca90c128d57386827d540b51d47e3ac333f",
+			"F30508cac50dfa9b63ba6b9ce946e2d7b1f4536943c9d58a0a16b445bc7901433",
+			"F5b279548dbb59ba4a4b0f3ab1437a9db73f5761d26dc98e6e19a93444f9ccbe6",
+			"F71685763b8e7bca3a103935b7c3b871819c7988e0e6f228e5b2ef21280181ed9",
+			"F7e0684ce99b069674f4ec06a9080d71fe00b4662ebab435a4c48fce4cbf034d5",
+			"F65377a82039b7198e8a028414c96f01b267abfaed2f8e73ac9b1adeed6d4ac9e",
+			"F6d3ecbe93e1d2f778ccd858ea94dee3fcb9b476dae3a900f174a64285e01cf92",
+			"F2adb23dac79e60d2a615bf3921b03193ed334717ca928dbe4ad6fd15de6e2a29",
+			"F8459c8fb310a2f701ddb2af32fec5442c0ae1efb663555302e6b899c102ae4ba",
+			"F1f0ef379f2f8fb10a0c6a2c90c67b088007f73415f935375e3a627ee9edfa470",
+			"Fb034164cf13047cb86aa7c5b97f8a5096cbf6a22e9ba8d2c3ef9a97d512e1afb",
+			"F2db578bde50a435484da2715b5cc861d1f032c59ee3044a8286811a1d525a9e6",
+			"F588037018205420ff7068b44c799d706f64d21f7de429d89364f28fa8cc8564a",
+			"Fe3c4402453dd729ae5dde3a0f644b935d1ffe7296e83ff5f1a0f351e17f963c5"
+		],
+		"game": "jubeat",
+		"inactive": false,
+		"tableID": "jubeat-Single-declv",
+		"title": "Decimal Level Folders (festo)"
+	},
+	{
+		"description": "Level Folders for jubeat. This table does not have separate folders for each decimal.",
+		"folders": [
+			"F95de9186fe093d0bcbf21dc7c9c53c01d48d39bc47cf0b412dc60e7c778b8de1",
+			"Ffcd6172af6cae1a5df4a1630f1d7bfd28ba13f5a90f2ec918093c5247ba32e2f",
+			"F742a15b358dd33ed5bed301eb981810d5eeaa7eaca8d0fef07ccf59b8ddec1b9",
+			"Fe52fe0a12b9cf67c25dcef6731bc99d8fd7e4c2b61712944189ab92d71e1c076",
+			"Faa7db7dce52b6c990cf2673bac2f419f67472c2498d5e0a3ce0d72ac5f85ba69",
+			"F67507a9d8068128d545a5e50fb77bc134fada69d05d78265b75de58b70250e36",
+			"F4b27451c7317473f29dd334d7294a9e178a58c7b3db2e208474bd8ab907e9ab0",
+			"Fad14c1146043b44789a8bc61decfb614a0205f5c3143c2907f5ea035ec35839f",
+			"Fa9fb178b5717132eb61a673caf6bafed03538bd0c55d677e6bd6a04610c1fbfb",
+			"F66a01ffc2770d931d7634b6a6181954cf31e8d54dbd2fe5e16822d59b9db2fb3"
+		],
+		"game": "jubeat",
+		"inactive": false,
+		"tableID": "jubeat-Single-lv",
+		"title": "Level Folders (festo)"
+	},
+	{
 		"description": "Levels for maimai in FiNALE.",
 		"folders": [
 			"F1a0c0e32b477738519b1a69e167b4c6f87fa5ffd704b2a47759b414a7da4b8c4",

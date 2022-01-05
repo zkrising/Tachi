@@ -1820,7 +1820,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 
 		supportsESD: false,
-		judgements: ["perfect", "great", "good", "bad", "miss"],
+		judgements: ["perfect", "great", "good", "poor", "miss"],
 
 		scoreBucket: "grade",
 

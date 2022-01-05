@@ -873,7 +873,7 @@ interface ChartDocumentData {
 	"ddr:SP": CDDataDDRSP;
 	"ddr:DP": CDDataDDRSP;
 	"maimai:Single": { maxPercent: number; inGameID: number; inGameStrID: string };
-	"jubeat:Single": { inGameID: integer };
+	"jubeat:Single": { inGameID: integer; isHardMode: boolean };
 	"museca:Single": { inGameID: integer };
 	"bms:7K": CDDataBMS;
 	"bms:14K": CDDataBMS;

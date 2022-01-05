@@ -1155,7 +1155,7 @@ export interface JudgementLookup {
 	"ddr:SP": DDRJudges;
 	"ddr:DP": DDRJudges;
 	"maimai:Single": "perfect" | "great" | "good" | "miss";
-	"jubeat:Single": "perfect" | "great" | "good" | "bad" | "miss";
+	"jubeat:Single": "perfect" | "great" | "good" | "poor" | "miss";
 	"museca:Single": "critical" | "near" | "miss";
 	"bms:7K": IIDXJudges;
 	"bms:14K": IIDXJudges;

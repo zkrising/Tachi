@@ -17,6 +17,7 @@ import {
 	CalculateBPI,
 	CalculateCHUNITHMRating,
 	CalculateGITADORASkill,
+	CalculateJubility,
 	CalculateKTLampRatingIIDX,
 	CalculateKTRating,
 	CalculateMFCP,
@@ -70,6 +71,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	"usc:Controller": CalculateDataSDVXorUSC,
 	"usc:Keyboard": CalculateDataSDVXorUSC,
 	"wacca:Single": CalculateDataWACCA,
+	"jubeat:Single": CalculateDataJubeat,
 };
 
 // Creates Game-Specific calculatedData for the provided game & playtype.
@@ -180,6 +182,20 @@ function CalculateDataMuseca(
 	};
 }
 
+function CalculateDataJubeat(
+	dryScore: DryScore,
+	chart: ChartDocument,
+	logger: KtLogger
+): CalculatedData<"jubeat:Single"> {
+	return {
+		jubility: CalculateJubility(
+			dryScore.scoreData.score,
+			dryScore.scoreData.percent,
+			chart.levelNum
+		),
+	};
+}
+
 function CalculateDataCHUNITHM(
 	dryScore: DryScore,
 	chart: ChartDocument
@@ -273,16 +289,6 @@ export function CalculateDataBMS7K(
 		sieglinde: 0,
 	};
 }
-
-// async function CalculateDataJubeat(
-// 	dryScore: DryScore,
-// 	chart: ChartDocument,
-// 	logger: KtLogger
-// ): Promise<CalculatedData<"jubeat:Single">> {
-// 	return {
-// 		jubility: 0, // @todo #163 Jubeat Jubility
-// 	};
-// }
 
 function CalculateDataWACCA(
 	dryScore: DryScore,

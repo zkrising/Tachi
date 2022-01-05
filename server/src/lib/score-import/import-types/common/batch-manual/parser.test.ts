@@ -365,7 +365,7 @@ t.test("#ParserFn", (t) => {
 				fn,
 				new ScoreImportFatalError(
 					400,
-					"Invalid BATCH-MANUAL: scores[0].score | Expected number. | Received 123 [string]."
+					"Invalid BATCH-MANUAL: scores[0].score | Expected a positive integer. | Received 123 [string]."
 				)
 			);
 

@@ -158,11 +158,11 @@ const RatingFunctions: RatingFunctions = {
 			rate: await CalculateWACCARate(g, p, u, l),
 		}),
 	},
-	// jubeat: {
-	// 	Single: async (g, p, u, l) => ({
-	// 		jubility: await CalculateJubility(g, p, u, l),
-	// 	}),
-	// },
+	jubeat: {
+		Single: async (g, p, u, l) => ({
+			jubility: await CalculateJubility(g, p, u, l),
+		}),
+	},
 };
 
 export function CalculateRatings(
@@ -305,43 +305,50 @@ export async function GetBestRatingOnSongs(
 	return r.map((e: { _id: integer; doc: PBScoreDocument }) => e.doc);
 }
 
-// async function CalculateJubility(
-// 	game: Game,
-// 	playtype: Playtypes[Game],
-// 	userID: integer,
-// 	logger: KtLogger
-// ): Promise<number> {
-// 	const hotCharts = await db.charts.jubeat.find(
-// 		{ "flags.HOT N-1": true },
-// 		{ projection: { chartID: 1 } }
-// 	);
+async function CalculateJubility(
+	game: Game,
+	playtype: Playtypes[Game],
+	userID: integer,
+	logger: KtLogger
+): Promise<number> {
+	const hotCharts = await db.charts.jubeat.find(
+		{ versions: "festo" },
+		{ projection: { chartID: 1 } }
+	);
 
-// 	const hotChartIDs = hotCharts.map((e) => e.chartID);
+	const hotChartIDs = hotCharts.map((e) => e.chartID);
 
-// 	const [bestHotScores, bestScores] = await Promise.all([
-// 		db["personal-bests"].find(
-// 			{ userID, chartID: { $in: hotChartIDs } },
-// 			{
-// 				sort: { "calculatedData.jubility": -1 },
-// 				limit: 25,
-// 				projection: { "calculatedData.jubility": 1 },
-// 			}
-// 		),
-// 		// @inefficient
-// 		// see gitadoraskillcalc
-// 		db["personal-bests"].find(
-// 			{ userID, chartID: { $nin: hotChartIDs } },
-// 			{
-// 				sort: { "calculatedData.jubility": -1 },
-// 				limit: 25,
-// 				projection: { "calculatedData.jubility": 1 },
-// 			}
-// 		),
-// 	]);
+	const coldCharts = await db.charts.jubeat.find(
+		{ versions: { $ne: "festo" } },
+		{ projection: { chartID: 1 } }
+	);
 
-// 	let skill = 0;
-// 	skill += bestHotScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
-// 	skill += bestScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
+	const coldChartIDs = coldCharts.map((e) => e.chartID);
 
-// 	return skill;
-// }
+	const [bestHotScores, bestScores] = await Promise.all([
+		db["personal-bests"].find(
+			{ userID, chartID: { $in: hotChartIDs } },
+			{
+				sort: { "calculatedData.jubility": -1 },
+				limit: 30,
+				projection: { "calculatedData.jubility": 1 },
+			}
+		),
+		// @inefficient
+		// see gitadoraskillcalc
+		db["personal-bests"].find(
+			{ userID, chartID: { $in: coldChartIDs } },
+			{
+				sort: { "calculatedData.jubility": -1 },
+				limit: 30,
+				projection: { "calculatedData.jubility": 1 },
+			}
+		),
+	]);
+
+	let skill = 0;
+	skill += bestHotScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
+	skill += bestScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
+
+	return skill;
+}

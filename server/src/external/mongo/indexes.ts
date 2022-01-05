@@ -86,16 +86,17 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	"api-clients": [index({ clientID: 1 }, UNIQUE)],
 	"charts-bms": [index({ "data.hashMD5": 1 }, UNIQUE), index({ "data.hashSHA256": 1 }, UNIQUE)],
 	"charts-popn": [index({ "data.hashSHA256": 1 }, UNIQUE)],
-	"charts-sdvx": [index({ "data.inGameID": 1 }, UNIQUE)],
+	"charts-sdvx": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],
 	"charts-maimai": [
-		index({ "data.inGameID": 1 }, UNIQUE),
-		index({ "data.inGameStrID": 1 }, UNIQUE),
+		index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE),
+		index({ "data.inGameStrID": 1, difficulty: 1 }, UNIQUE),
 	],
-	"charts-museca": [index({ "data.inGameID": 1 }, UNIQUE)],
-	"charts-chunithm": [index({ "data.inGameID": 1 }, UNIQUE)],
-	"charts-gitadora": [index({ "data.inGameID": 1 }, UNIQUE)],
+	"charts-museca": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],
+	"charts-chunithm": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],
+	"charts-gitadora": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],
 	"charts-wacca": [index({ isHot: 1 })],
 	"charts-usc": [index({ "data.hashSHA1": 1, playtype: 1 }, UNIQUE)],
+	"charts-jubeat": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],
 };
 
 const indexes: Partial<Record<Databases, Index[]>> = staticIndexes;

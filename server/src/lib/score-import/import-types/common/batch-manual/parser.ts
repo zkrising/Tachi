@@ -150,7 +150,7 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => {
 	const gptConfig = GetGamePTConfig(game, playtype);
 	return {
-		score: "number",
+		score: p.isPositiveInteger,
 		lamp: p.isIn(gptConfig.lamps),
 		matchType: p.isIn(
 			"songTitle",
@@ -162,10 +162,11 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 			"popnChartHash"
 		),
 		identifier: "string",
+		percent: game === "jubeat" ? p.isBetween(0, 120) : p.is(undefined),
 		comment: optNull(p.isBoundedString(3, 240)),
 		difficulty: "*?string", // this is checked in converting instead
-		// september 9th 2001 - this saves people not
-		// reading the documentation.
+		// september 9th 2001 - this saves people who dont
+		// read any documentation.
 		timeAchieved: optNull(
 			(self) =>
 				(typeof self === "number" && self > 1_000_000_000_000) ||

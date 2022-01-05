@@ -172,6 +172,23 @@ export const TestingLR2HookScore: LR2HookScore = {
 	},
 };
 
+export const TestingJubeatChart: ChartDocument<"jubeat:Single"> = {
+	chartID: "b90a319f18d1a746b330b8f4cd6f74874f664421",
+	rgcID: null,
+	songID: 1,
+	level: "6",
+	levelNum: 6,
+	difficulty: "ADV",
+	isPrimary: true,
+	playtype: "Single",
+	data: {
+		inGameID: 10000001,
+		isHardMode: false,
+	},
+	tierlistInfo: {},
+	versions: ["festo"],
+};
+
 export const Testing511SPA: ChartDocument<"iidx:SP"> = {
 	rgcID: null,
 	chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",

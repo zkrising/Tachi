@@ -1,6 +1,6 @@
 import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
-import { Game } from "tachi-common";
+import { Game, BatchManualScore } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
@@ -535,6 +535,95 @@ t.test("#ConverterFn", (t) => {
 				scoreMeta: {},
 			},
 		});
+
+		t.end();
+	});
+
+	const baseJubeatScore: BatchManualScore = {
+		percent: 10,
+		score: 920_000,
+		identifier: "1",
+		lamp: "CLEAR",
+		matchType: "tachiSongID",
+		difficulty: "ADV",
+	};
+
+	t.test("Should use the provided percent parameter for jubeat", async (t) => {
+		const res = await ConverterBatchManual(
+			baseJubeatScore,
+			{ game: "jubeat", service: "foo", playtype: "Single", version: null },
+			importType,
+			logger
+		);
+
+		t.hasStrict(res, {
+			chart: { songID: 1, difficulty: "ADV", playtype: "Single" },
+			song: { id: 1 },
+			dryScore: {
+				game: "jubeat",
+				service: "foo (BATCH-MANUAL)",
+				comment: null,
+				importType: "file/batch-manual",
+				timeAchieved: null,
+				scoreData: {
+					lamp: "CLEAR",
+					score: 920_000,
+					grade: "S",
+					percent: 10,
+					judgements: {},
+					hitMeta: {},
+				},
+				scoreMeta: {},
+			},
+		});
+
+		t.end();
+	});
+
+	t.test("Should throw if the percent parameter is not given for jubeat", (t) => {
+		t.rejects(
+			() =>
+				ConverterBatchManual(
+					deepmerge(baseJubeatScore, { percent: null }),
+					{ game: "jubeat", service: "foo", playtype: "Single", version: null },
+					importType,
+					logger
+				),
+			{ message: /The percent field must be filled out/u }
+		);
+
+		t.end();
+	});
+
+	t.test(
+		"Should throw if the percent parameter is over 100 but the chart is not hard mode (for jubeat)",
+		(t) => {
+			t.rejects(
+				() =>
+					ConverterBatchManual(
+						deepmerge<BatchManualScore>(baseJubeatScore, { percent: 110 }),
+						{ game: "jubeat", service: "foo", playtype: "Single", version: null },
+						importType,
+						logger
+					),
+				{ message: /The percent field must be <= 100 for normal mode./u }
+			);
+
+			t.end();
+		}
+	);
+
+	t.test("Should throw if the score parameter is invalid for jubeat", (t) => {
+		t.rejects(
+			() =>
+				ConverterBatchManual(
+					deepmerge<BatchManualScore>(baseJubeatScore, { score: 2_000_000 }),
+					{ game: "jubeat", service: "foo", playtype: "Single", version: null },
+					importType,
+					logger
+				),
+			{ message: /The score field must be a positive integer/u }
+		);
 
 		t.end();
 	});

@@ -40,6 +40,14 @@ export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: ChartDocu
 	return Math.max(Math.floor(val) / 100, 0);
 }
 
+export function CalculateJubility(score: number, musicRate: number, level: number) {
+	if (score < 700_000) {
+		return 0;
+	}
+
+	return level * 12.5 * (musicRate / 99);
+}
+
 export function CalculateWACCARate(score: number, levelNum: number) {
 	let scoreCoef = 1;
 
@@ -238,14 +246,6 @@ export function CalculateVF6(
 
 	return FloorToNDP(realVF6, 3);
 }
-
-// function CalculateJubility(
-//     dryScore: DryScore<"jubeat:Single">,
-//     chartData: ChartDocument,
-//     logger: KtLogger
-// ) {
-//     let rate = dryScore.calculatedData.musicRate; eurgh, this is hard.
-// }
 
 interface RatingParameters {
 	failHarshnessMultiplier: number;

@@ -126,8 +126,8 @@ export type Game =
 	| "chunithm"
 	| "gitadora"
 	| "usc"
-	| "wacca"
-	| "pms";
+	| "wacca";
+// | "pms";
 
 /**
  * This is the generic response from the Kamaitachi API in event of a failure.

@@ -9,7 +9,7 @@ import {
 	GitadoraColours,
 	IIDXDans,
 	JubeatColours,
-	PMSDans,
+	// PMSDans,
 	PopnClasses,
 	SDVXDans,
 	SDVXVFClasses,
@@ -204,12 +204,12 @@ const GAME_CONFIGS: GameConfigs = {
 		internalName: "wacca",
 		validPlaytypes: ["Single"],
 	},
-	pms: {
-		defaultPlaytype: "Controller",
-		internalName: "pms",
-		name: "PMS",
-		validPlaytypes: ["Controller", "Keyboard"],
-	},
+	// pms: {
+	// 	defaultPlaytype: "Controller",
+	// 	internalName: "pms",
+	// 	name: "PMS",
+	// 	validPlaytypes: ["Controller", "Keyboard"],
+	// },
 };
 
 type GamePTConfigs = {

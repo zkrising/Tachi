@@ -32,9 +32,9 @@ export type IDStrings =
 	| "chunithm:Single"
 	| "gitadora:Gita"
 	| "gitadora:Dora"
-	| "wacca:Single"
-	| "pms:Keyboard"
-	| "pms:Controller";
+	| "wacca:Single";
+// | "pms:Keyboard"
+// | "pms:Controller";
 
 export interface IDStringToPlaytype {
 	"iidx:SP": "SP";

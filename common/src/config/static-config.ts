@@ -59,8 +59,8 @@ export const allIDStrings: IDStrings[] = [
 	"usc:Controller",
 	"usc:Keyboard",
 	"wacca:Single",
-	"pms:Controller",
-	"pms:Keyboard",
+	// "pms:Controller",
+	// "pms:Keyboard",
 	"jubeat:Single",
 ];
 
@@ -163,6 +163,6 @@ export const PrettyVersions: Versions = {
 	"jubeat:Single": {
 		festo: "festo",
 	},
-	"pms:Controller": {},
-	"pms:Keyboard": {},
+	// "pms:Controller": {},
+	// "pms:Keyboard": {},
 };

@@ -65,7 +65,7 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	grades: Grades[I][];
 	gradeColours: Record<Grades[I], string>;
 	clearGrade: Grades[I];
-	gradeBoundaries: number[] |;
+	gradeBoundaries: number[] | null;
 
 	lamps: Lamps[I][];
 	lampColours: Record<Lamps[I], string>;

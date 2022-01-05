@@ -323,3 +323,126 @@ interface BMSChartData {
 | `sgl-EC` | Sieglinde Easy Clear -- The sieglinde value you'd get for easy clearing this chart. |
 | `sgl-HC` | Sieglinde Hard Clear -- The sieglinde value you'd get for hard clearing this chart. |
 
+### WACCA
+
+#### Difficulties
+
+- NORMAL
+- HARD
+- EXPERT
+- INFERNO
+
+#### Data
+
+```ts
+interface WACCAChartData {
+	isHot: boolean;
+}
+```
+
+| Property | Description |
+| :: | :: |
+| `isHot` | Whether this chart is hot or not. Used for profile rating calculations. |
+
+#### Tierlists
+
+None.
+
+### Pop'n
+
+#### Difficulties
+
+- Easy
+- Normal
+- Hyper
+- EX
+
+#### Data
+
+```ts
+interface PopnChartData {
+	hashSHA256: string | null;
+}
+```
+
+| Property | Description |
+| :: | :: |
+| `hashSHA256` | A SHA256 checksum of the chart file. |
+
+#### Tierlists
+
+None.
+
+### jubeat
+
+#### Difficulties
+
+- BSC
+- ADV
+- EXT
+- HARD BSC
+- HARD ADV
+- HARD EXT
+
+!!! note
+	We handle hard mode charts by treating them as completely separate charts. Not a mod or anything.
+	
+	This has the advantage of separating leaderboards and generally meshing better with the flow of the site.
+
+#### Data
+
+```ts
+interface JubeatChartData {
+	inGameID: integer;
+	isHardMode: boolean;
+}
+```
+
+| Property | Description |
+| :: | :: |
+| `inGameID` | The integer ID used by the game to identify this chart. |
+| `isHardMode` | Whether this chart is a hard mode chart or not. Equivalent to difficulty.startsWith("HARD ") |
+
+#### Tierlists
+
+None.
+
+### PMS
+
+!!! note
+	PMS is near identical to BMS. Most clients are just a thin layer over BMS with 9 buttons.
+
+#### Difficulties
+
+- CHART
+
+!!! info
+	This is weird. PMS, like BMS, actually only ever has one chart per song, as in BMS the only thing that actually matters is the charts MD5Sum. This redundant difficulty name -- CHART, is not displayed anywhere on the UI, nor does it really matter.
+
+#### Data
+
+```ts
+interface BMSChartData {
+	notecount: integer;
+	hashMD5: string;
+	hashSHA256: string;
+	tableFolders: { table: string; level: string }[];
+}
+```
+
+| Property | Description |
+| :: | :: |
+| `notecount` | The amount of notes in this chart. Note that charts with #RANDOM declarations are not supported by Tachi, and therefore this is guaranteed to be correct. |
+| `hashMD5` | The MD5Sum for this chart. |
+| `hashSHA256` | The SHA256Sum for this chart. |
+| `tableFolders` | What table this chart is in. |
+
+!!! example
+	For an example of how the above properties work, see the BMS description above (the two games are incredibly similar.)
+
+#### Tierlists
+
+| Tierlist | Description |
+| :: | :: |
+| `sgl-EC` | Sieglinde Easy Clear -- The sieglinde value you'd get for easy clearing this chart. |
+| `sgl-HC` | Sieglinde Hard Clear -- The sieglinde value you'd get for hard clearing this chart. |

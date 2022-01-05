@@ -313,9 +313,72 @@ interface ScoreMeta {
 | :: | :: |
 | `random` | The random option this user selected. |
 | `inputDevice` | Whether this score was achieved on a keyboard or a beatmania controller. If null, this is not known. |
-| `client` | What client this score was performed on. Scores achieved on beatoraja have a warning next to them indicating differences in their gauge implementation. |
+| `client` | What client this score was performed on. |
 
-### DDR, maimai, MÚSECA, CHUNITHM
+### WACCA
+
+(No Unique `hitMeta`)
+
+```ts
+interface ScoreMeta {
+	mirror: boolean | null;
+}
+```
+
+| Property | Description |
+| :: | :: |
+| `mirror` | Whether the score was achieved on mirror or not. |
+
+### Pop'n
+
+```ts
+type HitMeta = BASE_VALID_HIT_META & {
+	gauge: number | null;
+	specificClearType:
+		| "failedUnknown"
+		| "failedCircle"
+		| "failedDiamond"
+		| "failedStar"
+		| "easyClear"
+		| "clearCircle"
+		| "clearDiamond"
+		| "clearStar"
+		| "fullComboCircle"
+		| "fullComboDiamond"
+		| "fullComboStar"
+		| "perfect"
+		| null;
+}
+```
+
+| Property | Description |
+| :: | :: |
+| `gauge` | The gauge the user had when the chart finished. |
+| `specificClearType` | What kind of clearType this score had. This is more specific than a lamp, and is displayed in the UI if known. |
+
+```ts
+interface ScoreMeta {
+	hiSpeed: number | null;
+	hidden: integer | null;
+	sudden: integer | null;
+	random: "NONRAN" | "MIRROR" | "RANDOM" | "S-RANDOM" | null;
+	gauge: "NORMAL" | "EASY" | "HARD" | "DANGER" | null;
+}
+```
+
+| Property | Description |
+| :: | :: |
+| `hiSpeed` | What hiSpeed the user was using. |
+| `hidden` | What level of hidden the user was using. |
+| `sudden` | What level of sudden the user was using. |
+| `random` | What kind of random the user was using. Null if unknown, NONRAN if known to be nonran. |
+| `gauge` | What gauge mod this player had on. |
+
+### PMS
+
+PMS is identical to BMS, but without an `inputDevice` field in `scoreMeta`.
+
+### DDR, maimai, MÚSECA, CHUNITHM, jubeat
 
 These games have no extended properties on its `hitMeta` object.
 

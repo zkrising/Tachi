@@ -121,3 +121,58 @@ type GITADORASongData = { isHot: boolean; displayVersion: string }
 | :: | :: |
 | `isHot` | Whether this song is marked as HOT by GITADORA or not. |
 | `displayVersion` | What version folder this song is in in game. |
+
+### WACCA
+
+```ts
+type WACCASongData = {
+	titleJP: string;
+	artistJP: string;
+	genre: string;
+	displayVersion: string | null
+}
+```
+
+| Property | Description |
+| :: | :: |
+| `titleJP` | The japanese title for this song. |
+| `artistJP` | The japanese artist for this song. |
+| `genre` | The genre this song is under. |
+| `displayVersion` | What version of the game this appeared in. Null if unknown. |
+
+### Pop'n
+
+```ts
+type PopnSongData = { displayVersion: string | null; genre: string };
+```
+
+| Property | Description |
+| :: | :: |
+| `genre` | The genre this song is under. |
+| `displayVersion` | What version of the game this appeared in. Null if unknown. |
+
+### jubeat
+
+```ts
+type JubeatSongData = { displayVersion: string };
+```
+
+| Property | Description |
+| :: | :: |
+| `displayVersion` | What version of the game this appeared in. |
+
+### PMS
+
+```ts
+type PMSSongData = {
+	genre: string | null;
+	subtitle: string | null;
+	subartist: string | null
+};
+```
+
+| Property | Description |
+| :: | :: |
+| `genre` | What genre this song is. Null if one is not set in the pms file. |
+| `subtitle` | What the subtitle for this song is. Null if one is not set in the pms file. |
+| `subartist` | What the subartist for this song is. Null if one is not set in the pms file. |

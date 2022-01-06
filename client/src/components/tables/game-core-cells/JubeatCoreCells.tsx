@@ -1,18 +1,30 @@
 import React from "react";
-import { PBScoreDocument, ScoreDocument } from "tachi-common";
-import { IsNullish } from "util/misc";
-import LampCell from "../cells/LampCell";
-import MillionsScoreCell from "../cells/MillionsScoreCell";
+import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { ChangeOpacity } from "util/color-opacity";
+import { FormatMillions, IsNullish } from "util/misc";
 import JubeatJudgementCell from "../cells/JubeatJudgementCell";
+import LampCell from "../cells/LampCell";
 
 export default function JubeatCoreCells({
 	sc,
 }: {
 	sc: ScoreDocument<"jubeat:Single"> | PBScoreDocument<"jubeat:Single">;
 }) {
+	const gptConfig = GetGamePTConfig(sc.game, sc.playtype);
+
 	return (
 		<>
-			<MillionsScoreCell score={sc} />
+			<td
+				style={{
+					backgroundColor: ChangeOpacity(gptConfig.gradeColours[sc.scoreData.grade], 0.2),
+				}}
+			>
+				<strong>{sc.scoreData.grade}</strong>
+				<br />
+				{sc.scoreData.percent.toFixed(2)}%
+				<br />
+				{FormatMillions(sc.scoreData.score)}
+			</td>
 			<JubeatJudgementCell score={sc} />
 			<LampCell score={sc} />
 			<td>

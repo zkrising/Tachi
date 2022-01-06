@@ -11,6 +11,7 @@ import {
 import { SetState } from "types/react";
 import { FolderDataset, PBDataset, ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
+import { UppercaseFirst } from "util/misc";
 import { NumericSOV } from "util/sorts";
 import SelectableRating from "../components/SelectableRating";
 import { Header, ZTableTHProps } from "../components/TachiTable";
@@ -34,24 +35,35 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 		NumericSOV(x => kMapToScoreOrPB(x)?.scoreData.lampIndex ?? -Infinity),
 	];
 
-	// @ts-expect-error it doesnt like undefined vs empty cell.
-	const RatingHeader: Header<Dataset[0]> = [
-		"Rating",
-		"Rating",
-		NumericSOV(x => kMapToScoreOrPB(x)?.calculatedData[rating] ?? 0),
-		GetGamePTConfig(game, playtype).scoreRatingAlgs.length > 1
-			? (thProps: ZTableTHProps) => (
-					<SelectableRating
-						key={nanoid()}
-						game={game}
-						playtype={playtype}
-						rating={rating}
-						setRating={setRating}
-						{...thProps}
-					/>
-			  )
-			: undefined,
-	];
+	let RatingHeader: Header<Dataset[0]>;
+
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	if (gptConfig.scoreRatingAlgs.length === 1) {
+		const alg = gptConfig.scoreRatingAlgs[0];
+
+		RatingHeader = [
+			UppercaseFirst(alg),
+			UppercaseFirst(alg),
+			NumericSOV(x => kMapToScoreOrPB(x)?.calculatedData[alg] ?? -Infinity),
+		];
+	} else {
+		RatingHeader = [
+			"Rating",
+			"Rating",
+			NumericSOV(x => kMapToScoreOrPB(x)?.calculatedData[rating] ?? -Infinity),
+			(thProps: ZTableTHProps) => (
+				<SelectableRating
+					key={nanoid()}
+					game={game}
+					playtype={playtype}
+					rating={rating}
+					setRating={setRating}
+					{...thProps}
+				/>
+			),
+		];
+	}
 
 	switch (game) {
 		case "sdvx":

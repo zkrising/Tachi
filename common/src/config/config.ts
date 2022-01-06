@@ -1788,7 +1788,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			rate: "Rating as it's implemented in game, taking 25 hot charts and 25 not-hot charts.",
 		},
 		sessionRatingAlgDescriptions: {
-			naiveRate: "The average of your best 10 ratings this session.",
+			rate: "The average of your best 10 ratings this session.",
 		},
 
 		scoreRatingAlgFormatters: {},

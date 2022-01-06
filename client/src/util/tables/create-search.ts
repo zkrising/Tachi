@@ -75,7 +75,7 @@ export function CreateDefaultPBSearchParams<I extends IDStrings = IDStrings>(
 	};
 
 	if (game === "bms") {
-		HandleBMSNonsense(searchFunctions, playtype, k => k);
+		HandleBMSNonsense(searchFunctions, playtype, k => k.__related.chart);
 	}
 
 	return searchFunctions;

@@ -146,7 +146,10 @@ function HandleBMSNonsense(
 	const appendSearches: Record<string, ValueGetterOrHybrid<any>> =
 		playtype === "7K"
 			? {
-					insane: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.insane),
+					insane: x => {
+						console.log(x, chartGetter(x));
+						return GetBMSTableVal(chartGetter(x), BMS_TABLES.insane);
+					},
 					overjoy: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.overjoy),
 					insane2: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.insane2),
 					normal: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.normal),

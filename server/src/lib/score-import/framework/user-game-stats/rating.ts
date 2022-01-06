@@ -161,6 +161,7 @@ const RatingFunctions: RatingFunctions = {
 	jubeat: {
 		Single: async (g, p, u, l) => ({
 			jubility: await CalculateJubility(g, p, u, l),
+			naiveJubility: await LazySumN("jubility", 60)(g, p, u),
 		}),
 	},
 };

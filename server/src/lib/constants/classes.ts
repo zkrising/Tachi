@@ -195,3 +195,16 @@ export enum POPN_CLASSES {
 	HERMIT,
 	GOD,
 }
+
+export enum JUBEAT_COLOURS {
+	BLACK,
+	YELLOW_GREEN,
+	GREEN,
+	LIGHT_BLUE,
+	BLUE,
+	VIOLET,
+	PURPLE,
+	PINK,
+	ORANGE,
+	GOLD,
+}

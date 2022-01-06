@@ -1,6 +1,7 @@
 import {
 	CHUNITHM_COLOURS,
 	GitadoraColours,
+	JUBEAT_COLOURS,
 	POPN_CLASSES,
 	SDVXVFClasses,
 	WACCA_COLOURS,
@@ -199,13 +200,37 @@ function ChuniRatingToColour(rating: number) {
 	return CHUNITHM_COLOURS.BLUE;
 }
 
-// export function CalculateJubeatColour(
-// 	game: Game,
-// 	playtype: Playtypes[Game],
-// 	userID: integer,
-// 	ratings: Record<string, number>
-// ): GameClasses<"jubeat:Single"> {
-// 	throw new Error("Not implemented.");
-// }
+export function CalculateJubeatColour(
+	game: Game,
+	playtype: Playtypes[Game],
+	userID: integer,
+	ratings: Record<string, number>
+) {
+	const colour = JubilityToColour(ratings.jubility);
 
-// function JubilityToColour(jb: number) {}
+	return { colour };
+}
+
+function JubilityToColour(jubility: number) {
+	if (jubility >= 9500) {
+		return JUBEAT_COLOURS.GOLD;
+	} else if (jubility >= 8500) {
+		return JUBEAT_COLOURS.ORANGE;
+	} else if (jubility >= 7000) {
+		return JUBEAT_COLOURS.PINK;
+	} else if (jubility >= 5500) {
+		return JUBEAT_COLOURS.PURPLE;
+	} else if (jubility >= 4000) {
+		return JUBEAT_COLOURS.VIOLET;
+	} else if (jubility >= 2500) {
+		return JUBEAT_COLOURS.BLUE;
+	} else if (jubility >= 1500) {
+		return JUBEAT_COLOURS.LIGHT_BLUE;
+	} else if (jubility >= 750) {
+		return JUBEAT_COLOURS.GREEN;
+	} else if (jubility >= 250) {
+		return JUBEAT_COLOURS.YELLOW_GREEN;
+	}
+
+	return JUBEAT_COLOURS.BLACK;
+}

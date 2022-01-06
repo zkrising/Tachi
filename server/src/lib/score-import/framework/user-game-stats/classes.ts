@@ -8,6 +8,7 @@ import { ReturnClassIfGreater } from "utils/class";
 import {
 	CalculateChunithmColour,
 	CalculateGitadoraColour,
+	CalculateJubeatColour,
 	CalculatePopnClass,
 	CalculateSDVXClass,
 	CalculateWACCAColour,
@@ -57,7 +58,9 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 	wacca: {
 		Single: CalculateWACCAColour,
 	},
-	jubeat: null,
+	jubeat: {
+		Single: CalculateJubeatColour,
+	},
 };
 
 /**

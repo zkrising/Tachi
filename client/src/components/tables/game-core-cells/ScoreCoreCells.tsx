@@ -9,6 +9,7 @@ import {
 import BMSCoreCells from "./BMSCoreCells";
 import GenericCoreCells from "./GenericCoreCells";
 import IIDXCoreCells from "./IIDXCoreCells";
+import JubeatCoreCells from "./JubeatCoreCells";
 import MusecaCoreCells from "./MusecaCoreCells";
 import PopnCoreCells from "./PopnCoreCells";
 import SDVXScoreCoreCells from "./SDVXCoreCells";
@@ -44,6 +45,14 @@ export default function ScoreCoreCells({
 		return <WACCACoreCells sc={sc} />;
 	} else if (game === "popn") {
 		return <PopnCoreCells sc={sc} />;
+	} else if (game === "jubeat") {
+		return <JubeatCoreCells sc={sc} />;
+	} else if (game === "chunithm") {
+		return <GenericCoreCells sc={sc} />;
+	} else if (game === "ddr") {
+		return <GenericCoreCells sc={sc} />;
+	} else if (game === "gitadora") {
+		return <GenericCoreCells sc={sc} />;
 	}
 
 	return <GenericCoreCells sc={sc} />;

@@ -51,6 +51,10 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	sessionRatingAlgs: SessionCalculatedDataLookup[I][];
 	profileRatingAlgs: UGSRatingsLookup[I][];
 
+	scoreRatingAlgDescriptions: Record<ScoreCalculatedDataLookup[I], string>;
+	sessionRatingAlgDescriptions: Record<SessionCalculatedDataLookup[I], string>;
+	profileRatingAlgDescriptions: Record<UGSRatingsLookup[I], string>;
+
 	scoreRatingAlgFormatters: Partial<Record<ScoreCalculatedDataLookup[I], (v: number) => string>>;
 	sessionRatingAlgFormatters: Partial<
 		Record<SessionCalculatedDataLookup[I], (v: number) => string>
@@ -229,6 +233,19 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgs: ["ktLampRating", "BPI"],
 		sessionRatingAlgs: ["ktLampRating", "BPI"],
 		profileRatingAlgs: ["ktLampRating", "BPI"],
+
+		scoreRatingAlgDescriptions: {
+			ktLampRating: `A rating system that values your clear lamps on charts. Tierlist information is taken into account.`,
+			BPI: `A rating system for Kaiden level play. Only applies to 11s and 12s. A BPI of 0 states the score is equal to the Kaiden Average for that chart. A BPI of 100 is equal to the world record.`,
+		},
+		profileRatingAlgDescriptions: {
+			ktLampRating: `An average of your best 20 ktLampRatings.`,
+			BPI: `An average of your best 20 BPIs.`,
+		},
+		sessionRatingAlgDescriptions: {
+			ktLampRating: `An average of the best 10 ktLampRatings this session.`,
+			BPI: `An average of the best 10 BPIs this session.`,
+		},
 
 		scoreRatingAlgFormatters: {},
 		profileRatingAlgFormatters: {},
@@ -416,6 +433,19 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["ktLampRating", "BPI"],
 		profileRatingAlgs: ["ktLampRating", "BPI"],
 
+		scoreRatingAlgDescriptions: {
+			ktLampRating: `A rating system that values your clear lamps on charts. Tierlist information is taken into account.`,
+			BPI: `A rating system for Kaiden level play. Only applies to 11s and 12s. A BPI of 0 states the score is equal to the Kaiden Average for that chart. A BPI of 100 is equal to the world record.`,
+		},
+		profileRatingAlgDescriptions: {
+			ktLampRating: `An average of your best 20 ktLampRatings.`,
+			BPI: `An average of your best 20 BPIs.`,
+		},
+		sessionRatingAlgDescriptions: {
+			ktLampRating: `An average of the best 10 ktLampRatings this session.`,
+			BPI: `An average of the best 10 BPIs this session.`,
+		},
+
 		scoreRatingAlgFormatters: {},
 		profileRatingAlgFormatters: {},
 		sessionRatingAlgFormatters: {},
@@ -581,6 +611,17 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["naiveRating"],
 		profileRatingAlgs: ["naiveRating"],
 
+		scoreRatingAlgDescriptions: {
+			rating: "The rating value of this score. This is identical to the system used in game.",
+		},
+		profileRatingAlgDescriptions: {
+			naiveRating:
+				"The average of your best 20 ratings. This is different to in-game, as it does not take into account your recent scores in any way.",
+		},
+		sessionRatingAlgDescriptions: {
+			naiveRating: "The average of your best 10 ratings this session.",
+		},
+
 		scoreRatingAlgFormatters: {},
 		profileRatingAlgFormatters: {},
 		sessionRatingAlgFormatters: {},
@@ -655,6 +696,18 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgs: ["VF6"],
 		sessionRatingAlgs: ["ProfileVF6", "VF6"],
 		profileRatingAlgs: ["VF6"],
+
+		scoreRatingAlgDescriptions: {
+			VF6: "VOLFORCE as it is implemented in SDVX6.",
+		},
+		profileRatingAlgDescriptions: {
+			VF6: "Your best 50 VF6 values added together.",
+		},
+		sessionRatingAlgDescriptions: {
+			VF6: "The average of your best 10 VF6s this session.",
+			ProfileVF6:
+				"The average of your best 10 VF6s this session, multiplied to be on the same scale as profile VOLFORCE.",
+		},
 
 		scoreRatingAlgFormatters: {
 			VF6: (v) => v.toFixed(3),
@@ -738,6 +791,18 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["ProfileVF6", "VF6"],
 		profileRatingAlgs: ["VF6"],
 
+		scoreRatingAlgDescriptions: {
+			VF6: "VOLFORCE as it is implemented in SDVX6.",
+		},
+		profileRatingAlgDescriptions: {
+			VF6: "Your best 50 VF6 values added together.",
+		},
+		sessionRatingAlgDescriptions: {
+			VF6: "The average of your best 10 VF6s this session.",
+			ProfileVF6:
+				"The average of your best 10 VF6s this session, multiplied to be on the same scale as profile VOLFORCE.",
+		},
+
 		scoreRatingAlgFormatters: {
 			VF6: (v) => v.toFixed(3),
 		},
@@ -812,6 +877,18 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgs: ["VF6"],
 		sessionRatingAlgs: ["ProfileVF6", "VF6"],
 		profileRatingAlgs: ["VF6"],
+
+		scoreRatingAlgDescriptions: {
+			VF6: "VOLFORCE as it is implemented in SDVX6.",
+		},
+		profileRatingAlgDescriptions: {
+			VF6: "Your best 50 VF6 values added together.",
+		},
+		sessionRatingAlgDescriptions: {
+			VF6: "The average of your best 10 VF6s this session.",
+			ProfileVF6:
+				"The average of your best 10 VF6s this session, multiplied to be on the same scale as profile VOLFORCE.",
+		},
 
 		scoreRatingAlgFormatters: {
 			VF6: (v) => v.toFixed(3),
@@ -888,6 +965,16 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["ktRating"],
 		profileRatingAlgs: ["ktRating"],
 
+		scoreRatingAlgDescriptions: {
+			ktRating: "A custom rating system that combines score and the chart level.",
+		},
+		profileRatingAlgDescriptions: {
+			ktRating: "The average of your best 20 ktRatings.",
+		},
+		sessionRatingAlgDescriptions: {
+			ktRating: "The average of your best 10 ktRatings this session.",
+		},
+
 		scoreRatingAlgFormatters: {},
 		profileRatingAlgFormatters: {},
 		sessionRatingAlgFormatters: {},
@@ -955,6 +1042,17 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgs: ["sieglinde"],
 		sessionRatingAlgs: ["sieglinde"],
 		profileRatingAlgs: ["sieglinde"],
+
+		scoreRatingAlgDescriptions: {
+			sieglinde:
+				"A clearing algorithm that rewards you points based on how difficult an easy clear or hard clear was.",
+		},
+		profileRatingAlgDescriptions: {
+			sieglinde: "The average of your best 20 sieglinde ratings.",
+		},
+		sessionRatingAlgDescriptions: {
+			sieglinde: "The average of your best 10 sieglinde ratings this session.",
+		},
 
 		scoreRatingAlgFormatters: {},
 		profileRatingAlgFormatters: {},
@@ -1039,6 +1137,17 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["sieglinde"],
 		profileRatingAlgs: ["sieglinde"],
 
+		scoreRatingAlgDescriptions: {
+			sieglinde:
+				"A clearing algorithm that rewards you points based on how difficult an easy clear or hard clear was.",
+		},
+		profileRatingAlgDescriptions: {
+			sieglinde: "The average of your best 20 sieglinde ratings.",
+		},
+		sessionRatingAlgDescriptions: {
+			sieglinde: "The average of your best 10 sieglinde ratings this session.",
+		},
+
 		scoreRatingAlgFormatters: {},
 		profileRatingAlgFormatters: {},
 		sessionRatingAlgFormatters: {},
@@ -1120,6 +1229,20 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgs: ["MFCP", "ktRating"],
 		sessionRatingAlgs: ["MFCP", "ktRating"],
 		profileRatingAlgs: ["MFCP", "ktRating"],
+
+		scoreRatingAlgDescriptions: {
+			MFCP:
+				"Marvelous Full Combo Points. An algorithm used in LIFE4 that rewards players for getting MFCs.",
+			ktRating: "TODO REMOVE ME",
+		},
+		profileRatingAlgDescriptions: {
+			MFCP: "All of your MFC points added together.",
+			ktRating: "TODO REMOVE ME",
+		},
+		sessionRatingAlgDescriptions: {
+			MFCP: "All of your MFC points achieved this session added together.",
+			ktRating: "TODO REMOVE ME",
+		},
 
 		scoreRatingAlgFormatters: {
 			MFCP: FormatInt,
@@ -1242,6 +1365,20 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["MFCP", "ktRating"],
 		profileRatingAlgs: ["MFCP", "ktRating"],
 
+		scoreRatingAlgDescriptions: {
+			MFCP:
+				"Marvelous Full Combo Points. An algorithm used in LIFE4 that rewards players for getting MFCs.",
+			ktRating: "TODO REMOVE ME",
+		},
+		profileRatingAlgDescriptions: {
+			MFCP: "All of your MFC points added together.",
+			ktRating: "TODO REMOVE ME",
+		},
+		sessionRatingAlgDescriptions: {
+			MFCP: "All of your MFC points achieved this session added together.",
+			ktRating: "TODO REMOVE ME",
+		},
+
 		scoreRatingAlgFormatters: {
 			MFCP: FormatInt,
 		},
@@ -1361,6 +1498,16 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["ktRating"],
 		profileRatingAlgs: ["ktRating"],
 
+		scoreRatingAlgDescriptions: {
+			ktRating: "TODO REMOVE ME",
+		},
+		profileRatingAlgDescriptions: {
+			ktRating: "TODO REMOVE ME",
+		},
+		sessionRatingAlgDescriptions: {
+			ktRating: "TODO REMOVE ME",
+		},
+
 		scoreRatingAlgFormatters: {},
 		profileRatingAlgFormatters: {},
 		sessionRatingAlgFormatters: {},
@@ -1443,6 +1590,16 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgs: ["skill"],
 		sessionRatingAlgs: ["skill"],
 		profileRatingAlgs: ["skill"],
+
+		scoreRatingAlgDescriptions: {
+			skill: "Skill Rating as it's implemented in game.",
+		},
+		profileRatingAlgDescriptions: {
+			skill: "Your profile skill as it's implemented in game.",
+		},
+		sessionRatingAlgDescriptions: {
+			skill: "The average of your best 10 skill ratings this session.",
+		},
 
 		scoreRatingAlgFormatters: {
 			skill: FormatInt,
@@ -1537,6 +1694,16 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["skill"],
 		profileRatingAlgs: ["skill"],
 
+		scoreRatingAlgDescriptions: {
+			skill: "Skill Rating as it's implemented in game.",
+		},
+		profileRatingAlgDescriptions: {
+			skill: "Your profile skill as it's implemented in game.",
+		},
+		sessionRatingAlgDescriptions: {
+			skill: "The average of your best 10 skill ratings this session.",
+		},
+
 		scoreRatingAlgFormatters: {
 			skill: FormatInt,
 		},
@@ -1606,12 +1773,23 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		percentMax: 100,
 
 		defaultScoreRatingAlg: "rate",
-		defaultSessionRatingAlg: "naiveRate",
+		defaultSessionRatingAlg: "rate",
 		defaultProfileRatingAlg: "naiveRate",
 
 		scoreRatingAlgs: ["rate"],
-		sessionRatingAlgs: ["naiveRate"],
-		profileRatingAlgs: ["naiveRate"],
+		sessionRatingAlgs: ["rate"],
+		profileRatingAlgs: ["naiveRate", "rate"],
+
+		scoreRatingAlgDescriptions: {
+			rate: "Rating as it's implemented in game.",
+		},
+		profileRatingAlgDescriptions: {
+			naiveRate: "A naive rating algorithm that just averages your 50 best scores.",
+			rate: "Rating as it's implemented in game, taking 25 hot charts and 25 not-hot charts.",
+		},
+		sessionRatingAlgDescriptions: {
+			naiveRate: "The average of your best 10 ratings this session.",
+		},
 
 		scoreRatingAlgFormatters: {},
 		profileRatingAlgFormatters: {},
@@ -1693,6 +1871,17 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["classPoints"],
 		profileRatingAlgs: ["naiveClassPoints"],
 
+		scoreRatingAlgDescriptions: {
+			classPoints: "Class Points as they're implemented in game.",
+		},
+		profileRatingAlgDescriptions: {
+			naiveClassPoints:
+				"A naive average of your best 20 scores. This is different to in game class points, as that is affected by recent scores, and not just your best scores.",
+		},
+		sessionRatingAlgDescriptions: {
+			classPoints: "The average of your best 10 class points this session.",
+		},
+
 		scoreRatingAlgFormatters: {},
 		profileRatingAlgFormatters: {},
 		sessionRatingAlgFormatters: {},
@@ -1767,6 +1956,19 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgs: ["jubility"],
 		sessionRatingAlgs: ["jubility"],
 		profileRatingAlgs: ["jubility", "naiveJubility"],
+
+		scoreRatingAlgDescriptions: {
+			jubility: "Jubility as it's implemented in game.",
+		},
+		profileRatingAlgDescriptions: {
+			jubility:
+				"Your profile jubility. This takes your best 30 scores on PICK UP songs, and your best 30 elsewhere.",
+			naiveJubility:
+				"A naive version of jubility which just adds together your best 60 scores.",
+		},
+		sessionRatingAlgDescriptions: {
+			jubility: "The average of your best 10 jubilities this session.",
+		},
 
 		scoreRatingAlgFormatters: {},
 		profileRatingAlgFormatters: {},

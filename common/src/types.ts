@@ -522,7 +522,7 @@ export interface SessionCalculatedDataLookup {
 	"chunithm:Single": "naiveRating";
 	"gitadora:Gita": "skill";
 	"gitadora:Dora": "skill";
-	"wacca:Single": "naiveRate";
+	"wacca:Single": "rate";
 	"pms:Controller": "sieglinde";
 	"pms:Keyboard": "sieglinde";
 }

@@ -131,7 +131,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	},
 	wacca: {
 		Single: (scd) => ({
-			naiveRate: AvgBest10Map(scd, "rate"),
+			rate: AvgBest10Map(scd, "rate"),
 		}),
 	},
 };

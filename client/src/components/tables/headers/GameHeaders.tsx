@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import React from "react";
 import {
 	Game,
+	GetGamePTConfig,
 	IDStrings,
 	PBScoreDocument,
 	ScoreCalculatedDataLookup,
@@ -33,20 +34,23 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 		NumericSOV(x => kMapToScoreOrPB(x)?.scoreData.lampIndex ?? -Infinity),
 	];
 
+	// @ts-expect-error it doesnt like undefined vs empty cell.
 	const RatingHeader: Header<Dataset[0]> = [
 		"Rating",
 		"Rating",
 		NumericSOV(x => kMapToScoreOrPB(x)?.calculatedData[rating] ?? 0),
-		(thProps: ZTableTHProps) => (
-			<SelectableRating
-				key={nanoid()}
-				game={game}
-				playtype={playtype}
-				rating={rating}
-				setRating={setRating}
-				{...thProps}
-			/>
-		),
+		GetGamePTConfig(game, playtype).scoreRatingAlgs.length > 1
+			? (thProps: ZTableTHProps) => (
+					<SelectableRating
+						key={nanoid()}
+						game={game}
+						playtype={playtype}
+						rating={rating}
+						setRating={setRating}
+						{...thProps}
+					/>
+			  )
+			: undefined,
 	];
 
 	switch (game) {

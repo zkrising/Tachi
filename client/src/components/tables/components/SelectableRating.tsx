@@ -7,6 +7,7 @@ import {
 	ScoreCalculatedDataLookup,
 } from "tachi-common";
 import { SetState } from "types/react";
+import { UppercaseFirst } from "util/misc";
 import { ZTableTHProps } from "./TachiTable";
 
 // type AllRatings<I extends IDStrings> =
@@ -59,7 +60,7 @@ export default function SelectableRating<I extends IDStrings>({
 				}}
 			>
 				{gptConfig[key].map(s => (
-					<option key={s}>{s}</option>
+					<option key={s}>{UppercaseFirst(s)}</option>
 				))}
 			</select>
 			<br />

@@ -21,7 +21,7 @@ export default function JubeatCoreCells({
 			>
 				<strong>{sc.scoreData.grade}</strong>
 				<br />
-				{sc.scoreData.percent.toFixed(2)}%
+				<b>{sc.scoreData.percent.toFixed(2)}%</b>
 				<br />
 				{FormatMillions(sc.scoreData.score)}
 			</td>

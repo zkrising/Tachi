@@ -1,4 +1,3 @@
-import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
 import {
 	ChartDocument,
@@ -11,7 +10,6 @@ import {
 	Playtypes,
 	ScoreDocument,
 } from "tachi-common";
-import { HasOwnProperty } from "utils/misc";
 import { DryScore } from "../common/types";
 import {
 	CalculateBPI,

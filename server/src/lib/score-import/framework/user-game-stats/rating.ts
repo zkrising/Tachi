@@ -311,33 +311,31 @@ async function CalculateJubility(
 	userID: integer,
 	logger: KtLogger
 ): Promise<number> {
-	const hotCharts = await db.charts.jubeat.find(
-		{ versions: "festo" },
-		{ projection: { chartID: 1 } }
+	const hotSongs = await db.songs.jubeat.find(
+		{ "data.displayVersion": "festo" },
+		{ projection: { id: 1 } }
 	);
 
-	const hotChartIDs = hotCharts.map((e) => e.chartID);
+	const hotSongIDs = hotSongs.map((e) => e.id);
 
-	const coldCharts = await db.charts.jubeat.find(
-		{ versions: { $ne: "festo" } },
-		{ projection: { chartID: 1 } }
+	const coldSongs = await db.songs.jubeat.find(
+		{ "data.displayVersion": { $ne: "festo" } },
+		{ projection: { id: 1 } }
 	);
 
-	const coldChartIDs = coldCharts.map((e) => e.chartID);
+	const coldSongIDs = coldSongs.map((e) => e.id);
 
 	const [bestHotScores, bestScores] = await Promise.all([
 		db["personal-bests"].find(
-			{ userID, chartID: { $in: hotChartIDs } },
+			{ userID, songID: { $in: hotSongIDs } },
 			{
 				sort: { "calculatedData.jubility": -1 },
 				limit: 30,
 				projection: { "calculatedData.jubility": 1 },
 			}
 		),
-		// @inefficient
-		// see gitadoraskillcalc
 		db["personal-bests"].find(
-			{ userID, chartID: { $in: coldChartIDs } },
+			{ userID, songID: { $in: coldSongIDs } },
 			{
 				sort: { "calculatedData.jubility": -1 },
 				limit: 30,

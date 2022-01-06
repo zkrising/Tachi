@@ -281,7 +281,7 @@ export const JubeatColours = [
 	noMouseoverVariant("Blue", "info"),
 	noMouseoverCSS("Violet", "violet"),
 	noMouseoverCSS("Purple", "purple"),
-	noMouseoverCSS("Pink", "pink"),
+	noMouseoverCSS("Pink", "pink", "black"),
 	noMouseoverCSS("Orange", "orange"),
 	noMouseoverVariant("Gold", "warning"),
 ];

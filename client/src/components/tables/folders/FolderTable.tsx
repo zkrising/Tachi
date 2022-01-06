@@ -15,6 +15,7 @@ import TachiTable, { Header } from "../components/TachiTable";
 import { usePBState } from "../components/UseScoreState";
 import PBDropdown from "../dropdowns/PBDropdown";
 import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
+import ChartHeader from "../headers/ChartHeader";
 import { GetGPTCoreHeaders } from "../headers/GameHeaders";
 import { FolderIndicatorHeader } from "../headers/IndicatorHeader";
 
@@ -32,7 +33,7 @@ export default function FolderTable<I extends IDStrings = IDStrings>({
 	const [rating, setRating] = useState(defaultRating);
 
 	const headers: Header<FolderDataset[0]>[] = [
-		["Chart", "Chart", NumericSOV(x => x.levelNum)],
+		ChartHeader<FolderDataset>(game, playtype, k => k),
 		FolderIndicatorHeader,
 		["Song", "Song", StrSOV(x => x.__related.song.title)],
 		...GetGPTCoreHeaders<FolderDataset>(game, playtype, rating, setRating, x => x.__related.pb),

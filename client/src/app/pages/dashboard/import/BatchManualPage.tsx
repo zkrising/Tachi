@@ -1,25 +1,9 @@
+import ImportFileInfo from "components/imports/ImportFileInfo";
 import useSetSubheader from "components/layout/header/useSetSubheader";
-import MiniTable from "components/tables/components/MiniTable";
-import Loading from "components/util/Loading";
 import { TachiConfig } from "lib/config";
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
-import {
-	BatchManual,
-	FileUploadImportTypes,
-	FormatGame,
-	GetGameConfig,
-	GetGamePTConfig,
-	ImportDocument,
-} from "tachi-common";
-import prettyBytes from "pretty-bytes";
-import { SetState } from "types/react";
-import Divider from "components/util/Divider";
-import { APIFetchV1 } from "util/api";
+import { BatchManual, FormatGame, GetGameConfig, GetGamePTConfig } from "tachi-common";
 import { ImportStates, NotStartedState } from "types/import";
-import ImportStateRenderer from "components/imports/ImportStateRenderer";
-import SubmitFile from "util/submit-file";
-import ImportFileInfo from "components/imports/ImportFileInfo";
 
 export default function BatchManualPage() {
 	useSetSubheader(["Dashboard", "Import Scores", "Batch Manual"]);

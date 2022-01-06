@@ -1,20 +1,15 @@
-import React from "react";
-import { FormatGame, PublicUserDocument, UserGameStats } from "tachi-common";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
-import ReactMarkdown from "react-markdown";
-import { UserContext } from "context/UserContext";
-import { Button } from "react-bootstrap";
-import { APIFetchV1 } from "util/api";
-import Divider from "components/util/Divider";
-import Muted from "components/util/Muted";
-import ExternalLink from "components/util/ExternalLink";
-import AsyncLoader from "components/util/AsyncLoader";
+import RankingData from "components/user/UGPTRankingData";
 import UGPTRatingsTable from "components/user/UGPTStatsOverview";
+import AsyncLoader from "components/util/AsyncLoader";
 import LinkButton from "components/util/LinkButton";
-import { UGSWithRankingData } from "types/api-returns";
-import RankingData, { LazyRankingData } from "components/user/UGPTRankingData";
+import Muted from "components/util/Muted";
 import ReferToUser from "components/util/ReferToUser";
+import React from "react";
+import { FormatGame, PublicUserDocument, UserGameStats } from "tachi-common";
+import { UGSWithRankingData } from "types/api-returns";
+import { APIFetchV1 } from "util/api";
 import { GetSortedGPTs } from "util/site";
 
 interface Props {

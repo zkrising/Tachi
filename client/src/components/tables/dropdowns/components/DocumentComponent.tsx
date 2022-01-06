@@ -37,7 +37,14 @@ export function ScoreInfo({ score }: { score: ScoreDocument | PBScoreDocument })
 	);
 }
 
-export default function GenericScoreContentDropdown({
+export interface ScoreState {
+	highlight: boolean;
+	setHighlight: SetState<boolean>;
+}
+
+export type DocumentComponentType = typeof DocumentComponent;
+
+export default function DocumentComponent({
 	score,
 	scoreState,
 	renderScoreInfo = true,

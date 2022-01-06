@@ -1,69 +1,36 @@
-import DeltaCell from "components/tables/cells/DeltaCell";
-import IIDXLampCell from "components/tables/cells/IIDXLampCell";
-import ScoreCell from "components/tables/cells/ScoreCell";
-import TimestampCell from "components/tables/cells/TimestampCell";
+import IIDXLampChart from "components/charts/IIDXLampChart";
 import SelectNav from "components/util/SelectNav";
 import React, { useEffect, useState } from "react";
-import { ScoreDocument, PBScoreDocument } from "tachi-common";
 import { Nav } from "react-bootstrap";
-import IIDXLampChart from "components/charts/IIDXLampChart";
-import MiniTable from "components/tables/components/MiniTable";
+import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import { IsScore } from "util/asserts";
 
-export function ScoreInfo({ score }: { score: ScoreDocument<"iidx:SP" | "iidx:DP"> }) {
-	return (
-		<div className="col-12">
-			<table className="table">
-				<thead>
-					<tr>
-						<td colSpan={100}>Score Info</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<ScoreCell score={score} />
-						<DeltaCell
-							game="iidx"
-							playtype={score.playtype}
-							score={score.scoreData.score}
-							percent={score.scoreData.percent}
-							grade={score.scoreData.grade}
-						/>
-						<IIDXLampCell sc={score} />
-						<TimestampCell time={score.timeAchieved} />
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	);
-}
+// export function ModsTable({ score }: { score: ScoreDocument<"iidx:SP" | "iidx:DP"> }) {
+// 	if (!score.scoreMeta.assist && !score.scoreMeta.random) {
+// 		return null;
+// 	}
 
-export function ModsTable({ score }: { score: ScoreDocument<"iidx:SP" | "iidx:DP"> }) {
-	if (!score.scoreMeta.assist && !score.scoreMeta.random) {
-		return null;
-	}
-
-	return (
-		<MiniTable className="text-center table-sm" headers={["Mods"]} colSpan={2}>
-			{score.scoreMeta.random && (
-				<tr>
-					<td>Note</td>
-					<td>
-						{Array.isArray(score.scoreMeta.random)
-							? score.scoreMeta.random.join(" | ")
-							: score.scoreMeta.random}
-					</td>
-				</tr>
-			)}
-			{score.scoreMeta.assist && (
-				<tr>
-					<td>Assist</td>
-					<td>{score.scoreMeta.assist}</td>
-				</tr>
-			)}
-		</MiniTable>
-	);
-}
+// 	return (
+// 		<MiniTable className="text-center table-sm" headers={["Mods"]} colSpan={2}>
+// 			{score.scoreMeta.random && (
+// 				<tr>
+// 					<td>Note</td>
+// 					<td>
+// 						{Array.isArray(score.scoreMeta.random)
+// 							? score.scoreMeta.random.join(" | ")
+// 							: score.scoreMeta.random}
+// 					</td>
+// 				</tr>
+// 			)}
+// 			{score.scoreMeta.assist && (
+// 				<tr>
+// 					<td>Assist</td>
+// 					<td>{score.scoreMeta.assist}</td>
+// 				</tr>
+// 			)}
+// 		</MiniTable>
+// 	);
+// }
 
 type LampTypes = "NORMAL" | "EASY" | "HARD" | "EX_HARD";
 

@@ -1,28 +1,27 @@
 import DebugContent from "components/util/DebugContent";
-import Icon from "components/util/Icon";
-import SelectButton from "components/util/SelectButton";
-import React, { useContext, useState } from "react";
-import DropdownStructure from "./components/DropdownStructure";
-import {
-	PublicUserDocument,
-	ChartDocument,
-	ScoreDocument,
-	PBScoreDocument,
-	IDStrings,
-} from "tachi-common";
-import { GamePT, SetState } from "types/react";
-import { useQuery } from "react-query";
-import { APIFetchV1 } from "util/api";
-import { UGPTChartPBComposition } from "types/api-returns";
-import Loading from "components/util/Loading";
-import { UserContext } from "context/UserContext";
-import GenericScoreContentDropdown from "./components/GenericScoreContentDropdown";
-import PlayHistory from "./components/PlayHistory";
-import useApiQuery from "components/util/query/useApiQuery";
 import HasDevModeOn from "components/util/HasDevModeOn";
-import PBCompare from "./components/PBCompare";
+import Icon from "components/util/Icon";
+import Loading from "components/util/Loading";
+import useApiQuery from "components/util/query/useApiQuery";
+import SelectButton from "components/util/SelectButton";
+import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
+import React, { useContext, useState } from "react";
+import {
+	ChartDocument,
+	IDStrings,
+	PBScoreDocument,
+	PublicUserDocument,
+	ScoreDocument,
+} from "tachi-common";
+import { UGPTChartPBComposition } from "types/api-returns";
+import { GamePT, SetState } from "types/react";
+import DocComponentCreator, { DocumentComponentType } from "./components/DocumentComponent";
+import DropdownStructure from "./components/DropdownStructure";
 import ManageScore from "./components/ManageScore";
+import PBCompare from "./components/PBCompare";
+import PlayHistory from "./components/PlayHistory";
+import { GPTDropdownSettings } from "./GPTDropdownSettings";
 
 export interface ScoreState {
 	highlight: boolean;
@@ -34,7 +33,7 @@ export interface ScoreDropdownProps<I extends IDStrings = IDStrings> {
 	scoreState: ScoreState;
 }
 
-export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
+export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 	game,
 	playtype,
 	user,
@@ -42,19 +41,20 @@ export default function GenericScoreDropdown<I extends IDStrings = IDStrings>({
 	scoreState,
 	thisScore,
 	defaultView = "moreInfo",
-	DocComponent = props => GenericScoreContentDropdown({ renderScoreInfo: false, ...props }),
 }: {
 	user: PublicUserDocument;
 	chart: ChartDocument;
 	scoreState: ScoreState;
 	defaultView?: "vsPB" | "moreInfo" | "history" | "debug" | "manage";
 	thisScore: ScoreDocument;
-	DocComponent?: (props: {
-		score: ScoreDocument<I> | PBScoreDocument<I>;
-		scoreState: ScoreState;
-		pbData: UGPTChartPBComposition;
-	}) => JSX.Element;
 } & GamePT) {
+	const DocComponent: DocumentComponentType = props =>
+		DocComponentCreator({
+			renderScoreInfo: false,
+			...props,
+			...GPTDropdownSettings(game, playtype),
+		});
+
 	const [view, setView] = useState(defaultView);
 	const { user: currentUser } = useContext(UserContext);
 	const { settings } = useContext(UserSettingsContext);

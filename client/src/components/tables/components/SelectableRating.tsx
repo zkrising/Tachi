@@ -47,7 +47,7 @@ export default function SelectableRating<I extends IDStrings>({
 	return (
 		<th>
 			<select
-				onChange={v => setRating(v.target.value as ScoreCalculatedDataLookup[I])}
+				onChange={v => setRating(v.target.value as AllRatings<I>)}
 				value={rating}
 				style={{
 					backgroundColor: "#131313",

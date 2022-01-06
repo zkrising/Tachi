@@ -1,27 +1,21 @@
-import { ResponsiveBar } from "@nivo/bar";
-import { BarChartTooltip } from "components/charts/ChartTooltip";
 import DistributionTable from "components/game/folder/FolderDistributionTable";
 import Card from "components/layout/page/Card";
-import MiniTable from "components/tables/components/MiniTable";
 import DebounceSearch from "components/util/DebounceSearch";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
-import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { useBucket } from "components/util/useBucket";
 import useUGPTBase from "components/util/useUGPTBase";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
-import { FolderDocument, GetGamePTConfig, integer, PublicUserDocument } from "tachi-common";
+import { FolderDocument, GetGamePTConfig, PublicUserDocument } from "tachi-common";
 import { FolderStatsInfo, UGPTFolderSearch } from "types/api-returns";
 import { GamePT } from "types/react";
 import { APIFetchV1 } from "util/api";
-import { ChangeOpacity } from "util/color-opacity";
-import { TACHI_CHART_THEME } from "util/constants/chart-theme";
-import { PercentFrom, Reverse, StepFromToMax } from "util/misc";
+import { Reverse } from "util/misc";
 
 type Props = { reqUser: PublicUserDocument } & GamePT;
 

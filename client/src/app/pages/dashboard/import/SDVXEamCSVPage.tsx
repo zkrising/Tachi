@@ -1,7 +1,6 @@
-import ImportFileInfo, { MoreDataForm } from "components/imports/ImportFileInfo";
+import ImportFileInfo from "components/imports/ImportFileInfo";
 import useSetSubheader from "components/layout/header/useSetSubheader";
-import React, { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
+import React from "react";
 import { FileUploadImportTypes } from "tachi-common";
 
 export default function SDVXEamCSVPage({

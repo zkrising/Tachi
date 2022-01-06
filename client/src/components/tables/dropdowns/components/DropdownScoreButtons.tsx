@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { IsScore } from "util/asserts";
-import { ScoreDropdownProps } from "../GenericPBDropdown";
+import { ScoreDropdownProps } from "../PBDropdown";
 import CommentContainer from "./CommentContainer";
-import { ScoreInfo } from "./GenericScoreContentDropdown";
+import { ScoreInfo } from "./DocumentComponent";
 import PBNote from "./PBNote";
 import ScoreEditButtons from "./ScoreEditButtons";
 

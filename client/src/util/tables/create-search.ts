@@ -1,8 +1,19 @@
-import { Game, GamePTConfig, GetGamePTConfig, IDStrings } from "tachi-common";
+import { ChartDocument, Game, GamePTConfig, GetGamePTConfig, IDStrings } from "tachi-common";
 import { FolderDataset, PBDataset, ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
+import { BMS_TABLES } from "util/constants/bms-tables";
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { ValueGetterOrHybrid } from "util/ztable/search";
+
+function GetBMSTableVal(chart: ChartDocument<"bms:7K" | "bms:14K">, key: string) {
+	for (const table of chart.data.tableFolders) {
+		if (table.table === key) {
+			return Number(table.level);
+		}
+	}
+
+	return null;
+}
 
 export function CreateDefaultScoreSearchParams<I extends IDStrings = IDStrings>(
 	game: Game,
@@ -28,6 +39,10 @@ export function CreateDefaultScoreSearchParams<I extends IDStrings = IDStrings>(
 		},
 		...CreateCalcDataSearchFns(gptConfig),
 	};
+
+	if (game === "bms") {
+		HandleBMSNonsense(searchFunctions, playtype, k => k.__related.chart);
+	}
 
 	return searchFunctions;
 }
@@ -58,6 +73,10 @@ export function CreateDefaultPBSearchParams<I extends IDStrings = IDStrings>(
 		},
 		...CreateCalcDataSearchFns(gptConfig),
 	};
+
+	if (game === "bms") {
+		HandleBMSNonsense(searchFunctions, playtype, k => k);
+	}
 
 	return searchFunctions;
 }
@@ -95,6 +114,10 @@ export function CreateDefaultFolderSearchParams<I extends IDStrings = IDStrings>
 		...CreateFolderCalcDataSearchFns(gptConfig),
 	};
 
+	if (game === "bms") {
+		HandleBMSNonsense(searchFunctions, playtype, k => k);
+	}
+
 	return searchFunctions;
 }
 
@@ -113,4 +136,32 @@ function CreateCalcDataSearchFns(gptConfig: GamePTConfig) {
 			e => [e.toLowerCase(), (x: PBDataset[0]) => x.calculatedData[e]] ?? null
 		)
 	);
+}
+
+function HandleBMSNonsense(
+	searchFunctions: Record<string, any>,
+	playtype: Playtype,
+	chartGetter: (u: any) => ChartDocument<"bms:7K" | "bms:14K">
+) {
+	const appendSearches: Record<string, ValueGetterOrHybrid<any>> =
+		playtype === "7K"
+			? {
+					insane: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.insane),
+					overjoy: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.overjoy),
+					insane2: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.insane2),
+					normal: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.normal),
+					normal2: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.normal2),
+					st: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.stella),
+					sl: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.satellite),
+					satellite: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.satellite),
+					stella: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.stella),
+			  }
+			: {
+					insane: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.dpInsane),
+					normal: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.dpNormal),
+					sl: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.satellite),
+					satellite: x => GetBMSTableVal(chartGetter(x), BMS_TABLES.satellite),
+			  };
+
+	Object.assign(searchFunctions, appendSearches);
 }

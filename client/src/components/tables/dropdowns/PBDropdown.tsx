@@ -5,19 +5,17 @@ import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
-import { UserSettingsContext } from "context/UserSettingsContext";
-import React, { useContext, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { ChartDocument, IDStrings, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
-import { GamePT, SetState } from "types/react";
+import { GamePT } from "types/react";
+import DocComponentCreator, {
+	DocumentComponentType,
+	ScoreState,
+} from "./components/DocumentComponent";
 import DropdownStructure from "./components/DropdownStructure";
-import GenericScoreContentDropdown from "./components/GenericScoreContentDropdown";
 import PlayHistory from "./components/PlayHistory";
-
-export interface ScoreState {
-	highlight: boolean;
-	setHighlight: SetState<boolean>;
-}
+import { GPTDropdownSettings } from "./GPTDropdownSettings";
 
 export interface ScoreDropdownProps<I extends IDStrings = IDStrings> {
 	score: ScoreDocument<I> | PBScoreDocument<I>;
@@ -25,27 +23,23 @@ export interface ScoreDropdownProps<I extends IDStrings = IDStrings> {
 	pbData: UGPTChartPBComposition<I>;
 }
 
-export default function GenericPBDropdown<I extends IDStrings = IDStrings>({
+export default function PBDropdown<I extends IDStrings = IDStrings>({
 	game,
 	playtype,
 	chart,
 	scoreState,
 	defaultView = "pb",
 	userID,
-	DocComponent = GenericScoreContentDropdown,
 }: {
 	userID: integer;
 	chart: ChartDocument;
 	scoreState: ScoreState;
 	defaultView?: "pb" | "scorePB" | "lampPB" | "history" | "debug";
-	DocComponent?: (props: {
-		score: ScoreDocument<I> | PBScoreDocument<I>;
-		scoreState: ScoreState;
-		showSingleScoreNote?: boolean;
-		pbData: UGPTChartPBComposition<I>;
-	}) => JSX.Element;
 } & GamePT) {
-	const { settings } = useContext(UserSettingsContext);
+	const DocComponent: DocumentComponentType = props =>
+		DocComponentCreator({ ...props, ...GPTDropdownSettings(game, playtype) });
+
+	// const { settings } = useContext(UserSettingsContext);
 
 	const [view, setView] = useState(defaultView);
 

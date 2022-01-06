@@ -1,5 +1,3 @@
-import { ResponsiveBar } from "@nivo/bar";
-import { BarChartTooltip } from "components/charts/ChartTooltip";
 import FolderInfoHeader from "components/game/folder/FolderInfoHeader";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Card from "components/layout/page/Card";
@@ -11,7 +9,6 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
-import { useBucket } from "components/util/useBucket";
 import { useFormik } from "formik";
 import { nanoid } from "nanoid";
 import React, { useEffect, useMemo, useState } from "react";
@@ -34,12 +31,9 @@ import {
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
-import { DEFAULT_BAR_PROPS } from "util/charts";
-import { ChangeOpacity } from "util/color-opacity";
 import { ONE_DAY } from "util/constants/time";
 import { CreateChartIDMap, CreateChartLink, CreateSongMap } from "util/data";
-import { ComposeExpFn, ComposeInverseExpFn, IsNullish, NO_OP } from "util/misc";
-import { GetGradeChartExpScale } from "util/scales";
+import { IsNullish, NO_OP } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { GetScaleAchievedFn } from "util/tierlist";
 import { FormatDate, FormatTime } from "util/time";
@@ -140,13 +134,7 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 			</div>
 			<div className="col-12">
 				{mode === "normal" ? (
-					<FolderTable
-						dataset={folderDataset}
-						game={game}
-						playtype={playtype}
-						reqUser={reqUser}
-						indexCol={false}
-					/>
+					<FolderTable dataset={folderDataset} game={game} playtype={playtype} />
 				) : mode === "ladder" ? (
 					<TierlistBreakdown
 						folderDataset={folderDataset}

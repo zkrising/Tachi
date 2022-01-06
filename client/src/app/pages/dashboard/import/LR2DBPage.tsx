@@ -4,7 +4,6 @@ import Divider from "components/util/Divider";
 import Muted from "components/util/Muted";
 import { TachiConfig } from "lib/config";
 import React from "react";
-import { Link } from "react-router-dom";
 
 export default function LR2DBPage() {
 	useSetSubheader(["Import Scores", "LR2 Database File"]);

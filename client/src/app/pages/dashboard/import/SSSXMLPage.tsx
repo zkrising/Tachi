@@ -1,7 +1,6 @@
 import ImportFileInfo from "components/imports/ImportFileInfo";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import React from "react";
-import { WrapError } from "util/misc";
 
 export default function SSSXMLPage() {
 	useSetSubheader(["Import Scores", "SSS .xml"]);

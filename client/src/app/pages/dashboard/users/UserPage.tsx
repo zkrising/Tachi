@@ -1,14 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
-import { PublicUserDocument } from "tachi-common";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
-import ReactMarkdown from "react-markdown";
-import { UserContext } from "context/UserContext";
-import { Button } from "react-bootstrap";
-import { APIFetchV1 } from "util/api";
 import Divider from "components/util/Divider";
-import Muted from "components/util/Muted";
 import ExternalLink from "components/util/ExternalLink";
+import Muted from "components/util/Muted";
+import { UserContext } from "context/UserContext";
+import React, { useContext, useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import ReactMarkdown from "react-markdown";
+import { PublicUserDocument } from "tachi-common";
+import { APIFetchV1 } from "util/api";
 
 interface Props {
 	reqUser: PublicUserDocument;

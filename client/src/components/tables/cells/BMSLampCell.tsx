@@ -21,7 +21,7 @@ export default function BMSLampCell({
 			{IsNotNullish(score.scoreData.hitMeta.bp) && (
 				<>
 					<br />
-					<small>[bp: {score.scoreData.hitMeta.bp}]</small>
+					<small>[BP: {score.scoreData.hitMeta.bp}]</small>
 				</>
 			)}
 		</td>

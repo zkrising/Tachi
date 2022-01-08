@@ -103,6 +103,7 @@ export const loggedInSplashes = [
 	"go ahead, ctrl+f the source for the splashes, ruin the fun for yourself.",
 	"I'm playing bedwars!",
 	"Just tryna t-take it easy and... chill out afterwards",
+	"you weren't theerrreee",
 ];
 
 // Stuff that's bad for the kids, you know?
@@ -120,6 +121,7 @@ export const contentiousSplashes = [
 	"I HAVE TO LIE IN THE MIDDLE OF THE FLOOR",
 	"COMPLETELY MOTIONLESS NOT DARING TO BREATHE",
 	"I wouldn't trade one stupid decision<<for another 5 years of life",
+	"TRACKED.com",
 ];
 
 export const heySplashes = [

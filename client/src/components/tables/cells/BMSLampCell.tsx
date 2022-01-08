@@ -19,7 +19,10 @@ export default function BMSLampCell({
 		>
 			<strong>{score.scoreData.lamp}</strong>
 			{IsNotNullish(score.scoreData.hitMeta.bp) && (
-				<Muted>[bp: {score.scoreData.hitMeta.bp}]</Muted>
+				<>
+					<br />
+					<Muted>[bp: {score.scoreData.hitMeta.bp}]</Muted>
+				</>
 			)}
 		</td>
 	);

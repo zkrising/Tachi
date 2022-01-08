@@ -8,6 +8,7 @@ import { CreateDefaultPBSearchParams } from "util/tables/create-search";
 import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
 import { ValueGetterOrHybrid } from "util/ztable/search";
 import BMSDifficultyCell from "../cells/BMSDifficultyCell";
+import BMSLampCell from "../cells/BMSLampCell";
 import DeltaCell from "../cells/DeltaCell";
 import IndexCell from "../cells/IndexCell";
 import LampCell from "../cells/LampCell";
@@ -161,7 +162,7 @@ function Row({
 				percent={pb.scoreData.percent}
 				grade={pb.scoreData.grade}
 			/>
-			<LampCell score={pb} />
+			<BMSLampCell score={pb} />
 			<td>
 				{!IsNullish(pb.calculatedData.sieglinde)
 					? pb.calculatedData.sieglinde!.toFixed(2)

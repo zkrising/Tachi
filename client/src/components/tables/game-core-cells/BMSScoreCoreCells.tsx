@@ -1,5 +1,6 @@
 import React from "react";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
+import BMSLampCell from "../cells/BMSLampCell";
 import DeltaCell from "../cells/DeltaCell";
 import LampCell from "../cells/LampCell";
 import RatingCell from "../cells/RatingCell";
@@ -20,7 +21,7 @@ export default function BMSScoreCoreCells({
 				percent={sc.scoreData.percent}
 				grade={sc.scoreData.grade}
 			/>
-			<LampCell score={sc} />
+			<BMSLampCell score={sc} />
 			<RatingCell score={sc} />
 		</>
 	);

@@ -309,59 +309,59 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 
 	const uscChart = req.body.chart as USCClientChart;
 
-	let chartDoc = (await db.charts.usc.findOne({
+	const chartDoc = (await db.charts.usc.findOne({
 		"data.hashSHA1": uscChart.chartHash,
 		playtype,
 	})) as ChartDocument<"usc:Controller" | "usc:Keyboard"> | null;
 
-	if (!chartDoc) {
-		return res.status(200).json({
-			statusCode: STATUS_CODES.CHART_REFUSE,
-			description:
-				"The IR doesn't recognise this chart, and automatic chart uploading has been turned off.",
-		});
-	}
+	// if (!chartDoc) {
+	// 	return res.status(200).json({
+	// 		statusCode: STATUS_CODES.CHART_REFUSE,
+	// 		description:
+	// 			"The IR doesn't recognise this chart, and automatic chart uploading has been turned off.",
+	// 	});
+	// }
 
 	// If the chart doesn't exist, call HandleOrphanQueue.
 	// If this chart has never been seen before, orphan it.
 	// If this chart is already orphaned, increase its unique player
 	// playcount.
-	if (!chartDoc) {
-		const { song, chart } = ConvertUSCChart(uscChart, playtype);
+	// if (!chartDoc) {
+	// 	const { song, chart } = ConvertUSCChart(uscChart, playtype);
 
-		const uscChartName = `${uscChart.artist} - ${uscChart.title} (${USCChartIndexToDiff(
-			uscChart.difficulty
-		)})`;
+	// 	const uscChartName = `${uscChart.artist} - ${uscChart.title} (${USCChartIndexToDiff(
+	// 		uscChart.difficulty
+	// 	)})`;
 
-		chartDoc = await HandleOrphanQueue(
-			`usc:${playtype}` as const,
-			"usc",
-			chart,
-			song,
-			{
-				"chartDoc.data.hashSHA1": uscChart.chartHash,
-				"chartDoc.playtype": playtype,
-			},
-			ServerConfig.USC_QUEUE_SIZE,
-			req[SYMBOL_TachiAPIAuth].userID!,
-			uscChartName
-		);
+	// 	chartDoc = await HandleOrphanQueue(
+	// 		`usc:${playtype}` as const,
+	// 		"usc",
+	// 		chart,
+	// 		song,
+	// 		{
+	// 			"chartDoc.data.hashSHA1": uscChart.chartHash,
+	// 			"chartDoc.playtype": playtype,
+	// 		},
+	// 		ServerConfig.USC_QUEUE_SIZE,
+	// 		req[SYMBOL_TachiAPIAuth].userID!,
+	// 		uscChartName
+	// 	);
 
-		if (chartDoc) {
-			const blacklist = await GetBlacklist();
-			const scoresToDeorphan = await db["orphan-scores"].find({
-				"context.chartHash": chartDoc.data.hashSHA1,
-				"context.playtype": playtype,
-			});
+	// 	if (chartDoc) {
+	// 		const blacklist = await GetBlacklist();
+	// 		const scoresToDeorphan = await db["orphan-scores"].find({
+	// 			"context.chartHash": chartDoc.data.hashSHA1,
+	// 			"context.playtype": playtype,
+	// 		});
 
-			for (const score of scoresToDeorphan) {
-				// Has to be like this to avoid race conditions where two
-				// orphans resolve to the same scoreID and collide in mid-air!
-				// eslint-disable-next-line no-await-in-loop
-				await ReprocessOrphan(score, blacklist, logger);
-			}
-		}
-	}
+	// 		for (const score of scoresToDeorphan) {
+	// 			// Has to be like this to avoid race conditions where two
+	// 			// orphans resolve to the same scoreID and collide in mid-air!
+	// 			// eslint-disable-next-line no-await-in-loop
+	// 			await ReprocessOrphan(score, blacklist, logger);
+	// 		}
+	// 	}
+	// }
 
 	const userID = req[SYMBOL_TachiAPIAuth]!.userID!;
 
@@ -402,27 +402,9 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	// If this was an orphan chart request, return ACCEPTED,
 	// since it may be unorphaned in the future
 	if (!chartDoc) {
-		const orphanChart = await db["orphan-chart-queue"].findOne({
-			"chartDoc.data.hashSHA1": uscChart.chartHash,
-			"chartDoc.playtype": playtype,
-		});
-
-		if (!orphanChart) {
-			logger.severe(
-				`No orphan chart for USC ${uscChart.chartHash} (${playtype})? One was expected.`,
-				{ uscChart, playtype }
-			);
-			return res.status(200).json({
-				statusCode: STATUS_CODES.SERVER_ERROR,
-				description: `An internal server error has occured.`,
-			});
-		}
-
-		const players = DedupeArr([...orphanChart.userIDs, userID]);
-
 		return res.status(200).json({
 			statusCode: STATUS_CODES.ACCEPTED,
-			description: `This score has been accepted, but is waiting for more players before its parent chart is accepted. (${players.length}/${ServerConfig.USC_QUEUE_SIZE})`,
+			description: `This score has been accepted, but the chart is unavailable right now.`,
 			body: {},
 		});
 	}

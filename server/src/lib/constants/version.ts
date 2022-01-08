@@ -4,7 +4,7 @@
 
 const MAJOR = 2;
 const MINOR = 0;
-const PATCH = 28;
+const PATCH = 29;
 
 // As is with all front-facing zkldi projects, the version names for tachi-server
 // are from an album I like. In this case, the album is Portishead - Dummy.

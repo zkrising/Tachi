@@ -180,6 +180,21 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 
 		t.equal(ugs?.classes.dan, 18);
 
+		const recentAchievement = await db["class-achievements"].findOne({
+			userID: 1,
+			game: "iidx",
+			playtype: "SP",
+		});
+
+		t.hasStrict(recentAchievement, {
+			userID: 1,
+			game: "iidx",
+			playtype: "SP",
+			classValue: 18,
+			classSet: "dan",
+			classOldValue: null,
+		});
+
 		t.end();
 	});
 

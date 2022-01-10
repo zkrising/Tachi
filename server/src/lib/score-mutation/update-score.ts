@@ -67,6 +67,14 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 	);
 
 	try {
+		if (newScore._id) {
+			logger.warn(
+				`Passed a score with _id to UpdateScore. This property should not be set. Deleting this property and continuing anyway.`
+			);
+			// This property shouldn't be defined.
+			delete newScore._id;
+		}
+
 		await db.scores.update(
 			{
 				scoreID: oldScoreID,

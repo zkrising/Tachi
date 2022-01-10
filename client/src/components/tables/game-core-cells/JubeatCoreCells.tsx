@@ -1,14 +1,17 @@
 import React from "react";
 import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { ChangeOpacity } from "util/color-opacity";
-import { FormatMillions, IsNullish } from "util/misc";
+import { FormatMillions } from "util/misc";
 import JubeatJudgementCell from "../cells/JubeatJudgementCell";
 import LampCell from "../cells/LampCell";
+import RatingCell from "../cells/RatingCell";
 
 export default function JubeatCoreCells({
 	sc,
+	rating,
 }: {
 	sc: ScoreDocument<"jubeat:Single"> | PBScoreDocument<"jubeat:Single">;
+	rating: keyof ScoreDocument["calculatedData"];
 }) {
 	const gptConfig = GetGamePTConfig(sc.game, sc.playtype);
 
@@ -27,11 +30,7 @@ export default function JubeatCoreCells({
 			</td>
 			<JubeatJudgementCell score={sc} />
 			<LampCell score={sc} />
-			<td>
-				{!IsNullish(sc.calculatedData.jubility)
-					? sc.calculatedData.jubility!.toFixed(2)
-					: "N/A"}
-			</td>
+			<RatingCell score={sc} rating={rating} />
 		</>
 	);
 }

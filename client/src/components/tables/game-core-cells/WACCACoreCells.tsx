@@ -3,21 +3,22 @@ import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import { IsNullish } from "util/misc";
 import LampCell from "../cells/LampCell";
 import MillionsScoreCell from "../cells/MillionsScoreCell";
+import RatingCell from "../cells/RatingCell";
 import WaccaJudgementCell from "../cells/WACCAJudgementCell";
 
 export default function WACCACoreCells({
 	sc,
+	rating,
 }: {
 	sc: ScoreDocument<"wacca:Single"> | PBScoreDocument<"wacca:Single">;
+	rating: keyof ScoreDocument["calculatedData"];
 }) {
 	return (
 		<>
 			<MillionsScoreCell score={sc} />
 			<WaccaJudgementCell score={sc} />
 			<LampCell score={sc} />
-			<td>
-				{!IsNullish(sc.calculatedData.rate) ? sc.calculatedData.rate!.toFixed(3) : "N/A"}
-			</td>
+			<RatingCell score={sc} rating={rating} />
 		</>
 	);
 }

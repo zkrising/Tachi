@@ -9,6 +9,7 @@ import {
 	IDStrings,
 	integer,
 	ScoreCalculatedDataLookup,
+	ScoreDocument,
 } from "tachi-common";
 import { Playtype } from "types/tachi";
 
@@ -223,4 +224,23 @@ export function CountElements<T>(data: T[], collector: (element: T) => string | 
 	}
 
 	return counts;
+}
+
+export function FormatScoreRating(
+	game: Game,
+	playtype: Playtype,
+	rating: keyof ScoreDocument["calculatedData"],
+	value: number | null | undefined
+) {
+	if (value === null || value === undefined) {
+		return "No Data.";
+	}
+
+	const formatter = GetGamePTConfig(game, playtype).scoreRatingAlgFormatters[rating];
+
+	if (!formatter) {
+		return value.toFixed(2);
+	}
+
+	return formatter(value);
 }

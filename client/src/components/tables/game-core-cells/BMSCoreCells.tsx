@@ -1,5 +1,5 @@
 import React from "react";
-import { PBScoreDocument, ScoreDocument } from "tachi-common";
+import { IDStrings, PBScoreDocument, ScoreCalculatedDataLookup, ScoreDocument } from "tachi-common";
 import BMSLampCell from "../cells/BMSLampCell";
 import DeltaCell from "../cells/DeltaCell";
 import LampCell from "../cells/LampCell";
@@ -8,8 +8,10 @@ import ScoreCell from "../cells/ScoreCell";
 
 export default function BMSCoreCells({
 	sc,
+	rating,
 }: {
 	sc: PBScoreDocument<"bms:7K" | "bms:14K"> | ScoreDocument<"bms:7K" | "bms:14K">;
+	rating: ScoreCalculatedDataLookup[IDStrings];
 }) {
 	return (
 		<>
@@ -22,7 +24,7 @@ export default function BMSCoreCells({
 				grade={sc.scoreData.grade}
 			/>
 			<BMSLampCell score={sc} />
-			<RatingCell score={sc} />
+			<RatingCell score={sc} rating={rating} />
 		</>
 	);
 }

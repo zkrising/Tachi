@@ -34,26 +34,26 @@ export default function ScoreCoreCells({
 			/>
 		);
 	} else if (game === "bms") {
-		return <BMSCoreCells sc={sc} />;
+		return <BMSCoreCells sc={sc} rating={rating} />;
 	} else if (game === "sdvx" || game === "usc") {
 		return <SDVXScoreCoreCells sc={sc} />;
 	} else if (game === "maimai") {
-		return <GenericCoreCells showScore={false} sc={sc} />;
+		return <GenericCoreCells showScore={false} sc={sc} rating={rating} />;
 	} else if (game === "museca") {
-		return <MusecaCoreCells sc={sc} />;
+		return <MusecaCoreCells sc={sc} rating={rating} />;
 	} else if (game === "wacca") {
-		return <WACCACoreCells sc={sc} />;
+		return <WACCACoreCells sc={sc} rating={rating} />;
 	} else if (game === "popn") {
-		return <PopnCoreCells sc={sc} />;
+		return <PopnCoreCells sc={sc} rating={rating} />;
 	} else if (game === "jubeat") {
-		return <JubeatCoreCells sc={sc} />;
+		return <JubeatCoreCells sc={sc} rating={rating} />;
 	} else if (game === "chunithm") {
-		return <GenericCoreCells sc={sc} />;
+		return <GenericCoreCells sc={sc} rating={rating} />;
 	} else if (game === "ddr") {
-		return <GenericCoreCells sc={sc} />;
+		return <GenericCoreCells sc={sc} rating={rating} />;
 	} else if (game === "gitadora") {
-		return <GenericCoreCells sc={sc} />;
+		return <GenericCoreCells sc={sc} rating={rating} />;
 	}
 
-	return <GenericCoreCells sc={sc} />;
+	return <GenericCoreCells sc={sc} rating={rating} />;
 }

@@ -1,11 +1,15 @@
 import React from "react";
 import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { IsNotNullish } from "util/misc";
+import { FormatScoreRating, IsNotNullish } from "util/misc";
 
-export default function RatingCell({ score }: { score: ScoreDocument | PBScoreDocument }) {
-	const gptConfig = GetGamePTConfig(score.game, score.playtype);
+export default function RatingCell({
+	score,
+	rating,
+}: {
+	score: ScoreDocument | PBScoreDocument;
+	rating: keyof ScoreDocument["calculatedData"];
+}) {
+	const value = score.calculatedData[rating];
 
-	const v = score.calculatedData[gptConfig.defaultScoreRatingAlg];
-
-	return <td>{IsNotNullish(v) ? v!.toFixed(2) : "No Data"}</td>;
+	return <td>{FormatScoreRating(score.game, score.playtype, rating, value)}</td>;
 }

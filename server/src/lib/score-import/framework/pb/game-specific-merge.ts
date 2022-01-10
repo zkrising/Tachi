@@ -59,6 +59,17 @@ export async function IIDXMergeFn(
 	return true;
 }
 
+export function BMSMergeFn(
+	pbDoc: PBScoreDocument<"bms:7K" | "bms:14K">,
+	scorePB: ScoreDocument<"bms:7K" | "bms:14K">,
+	lampPB: ScoreDocument<"bms:7K" | "bms:14K">,
+	logger: KtLogger
+) {
+	pbDoc.calculatedData.sieglinde = lampPB.calculatedData.sieglinde;
+
+	return true;
+}
+
 /**
  * This function recalculates and applies VF6 to the PB document.
  *

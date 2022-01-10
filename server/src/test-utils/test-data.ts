@@ -41,6 +41,37 @@ export const TestingIIDXSPScore = GetKTDataJSON(
 	"./tachi/iidx-score.json"
 ) as ScoreDocument<"iidx:SP">;
 
+export const TestingBMS7KScore: ScoreDocument<"bms:7K"> = {
+	calculatedData: {
+		sieglinde: 20,
+	},
+	chartID: "88eb6cc5683e2740cbd07f588a5f3db1db8d467b",
+	songID: 27339,
+	comment: null,
+	game: "bms",
+	highlight: false,
+	importType: "ir/beatoraja",
+	isPrimary: true,
+	playtype: "7K",
+	scoreData: {
+		esd: null,
+		grade: "A",
+		gradeIndex: 5,
+		hitMeta: {},
+		judgements: {},
+		lamp: "HARD CLEAR",
+		lampIndex: 4,
+		percent: 40,
+		score: 1030,
+	},
+	scoreID: "test_bms_score",
+	scoreMeta: {},
+	service: "foo",
+	timeAchieved: null,
+	timeAdded: 100,
+	userID: 1,
+};
+
 export const TestingKsHookSV3CScore = GetKTDataJSON("./kshook-sv3c/base.json") as KsHookSV3CScore;
 
 export const TestingLR2HookScore: LR2HookScore = {

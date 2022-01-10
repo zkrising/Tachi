@@ -4,10 +4,10 @@ import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import { GetGamePTConfig } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { GetKTDataJSON, Testing511SPA, TestingIIDXSPScore } from "test-utils/test-data";
-import { CreatePBDoc } from "./create-pb-doc";
+import { Testing511SPA, TestingBMS7KScore, TestingIIDXSPScore } from "test-utils/test-data";
+import { CreatePBDoc, PBScoreDocumentNoRank } from "./create-pb-doc";
 
-let IIDXScore = TestingIIDXSPScore;
+const IIDXScore = TestingIIDXSPScore;
 
 const logger = CreateLogCtx(__filename);
 
@@ -15,10 +15,6 @@ const lamps = GetGamePTConfig("iidx", "SP").lamps;
 
 t.test("#CreatePBDoc", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(() => {
-		// monk adds _id onto the file when you import it, so lets try and avoid that
-		IIDXScore = GetKTDataJSON("./tachi/iidx-score.json");
-	});
 
 	const chartID = Testing511SPA.chartID;
 
@@ -50,6 +46,36 @@ t.test("#CreatePBDoc", (t) => {
 		calculatedData: {
 			ktRating: IIDXScore.calculatedData.ktRating,
 			ktLampRating: 12,
+		},
+	};
+
+	const ExamplePBDocBMS: PBScoreDocumentNoRank = {
+		chartID,
+		userID: 1,
+		songID: 1,
+		// rankingData -- is not present because it is not added until post-processing.
+		highlight: false,
+		isPrimary: true,
+		timeAchieved: 1619454485988,
+		game: "iidx",
+		playtype: "SP",
+		composedFrom: {
+			scorePB: IIDXScore.scoreID,
+			lampPB: "LAMP_PB_ID",
+		},
+		scoreData: {
+			score: IIDXScore.scoreData.score,
+			percent: IIDXScore.scoreData.percent,
+			esd: IIDXScore.scoreData.esd,
+			grade: IIDXScore.scoreData.grade,
+			gradeIndex: IIDXScore.scoreData.gradeIndex,
+			judgements: IIDXScore.scoreData.judgements,
+			lamp: "FULL COMBO",
+			lampIndex: lamps.indexOf("FULL COMBO"),
+			hitMeta: { bp: 1 },
+		},
+		calculatedData: {
+			sieglinde: 30,
 		},
 	};
 
@@ -161,6 +187,40 @@ t.test("#CreatePBDoc", (t) => {
 		t.equal(res, undefined, "Should return nothing (and emit a warning)");
 
 		t.equal(severeCalled, true, "Severe logging should have been called.");
+
+		t.end();
+	});
+
+	t.test("(BMS) Should inherit sieglinde from the higher rated score.", async (t) => {
+		await db.scores.remove({});
+		await db.scores.insert([
+			TestingBMS7KScore,
+			deepmerge(TestingBMS7KScore, {
+				scoreData: {
+					lamp: "FULL COMBO",
+					lampIndex: lamps.indexOf("FULL COMBO"),
+					score: 0,
+					percent: 0,
+					hitMeta: {
+						bp: 15,
+					},
+				},
+				calculatedData: {
+					sieglinde: 500,
+				},
+				scoreID: "LAMP_PB_ID",
+			}),
+		]);
+
+		const res = await CreatePBDoc(1, TestingBMS7KScore.chartID, logger);
+
+		t.not(res, undefined, "Should actually return something.");
+
+		t.equal(
+			res?.calculatedData.sieglinde,
+			500,
+			"Should select the lampPBs sieglinde and not the score PBs."
+		);
 
 		t.end();
 	});

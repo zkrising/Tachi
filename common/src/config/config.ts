@@ -9,6 +9,7 @@ import {
 	GitadoraColours,
 	IIDXDans,
 	JubeatColours,
+	PMSDans,
 	// PMSDans,
 	PopnClasses,
 	SDVXDans,
@@ -208,12 +209,12 @@ const GAME_CONFIGS: GameConfigs = {
 		internalName: "wacca",
 		validPlaytypes: ["Single"],
 	},
-	// pms: {
-	// 	defaultPlaytype: "Controller",
-	// 	internalName: "pms",
-	// 	name: "PMS",
-	// 	validPlaytypes: ["Controller", "Keyboard"],
-	// },
+	pms: {
+		defaultPlaytype: "Controller",
+		internalName: "pms",
+		name: "PMS",
+		validPlaytypes: ["Controller", "Keyboard"],
+	},
 };
 
 type GamePTConfigs = {
@@ -2034,168 +2035,190 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		tierlists: [],
 		tierlistDescriptions: {},
 	},
-	// "pms:Controller": {
-	// 	idString: "pms:Controller",
-	// 	percentMax: 100,
+	"pms:Controller": {
+		idString: "pms:Controller",
+		percentMax: 100,
 
-	// 	defaultScoreRatingAlg: "sieglinde",
-	// 	defaultSessionRatingAlg: "sieglinde",
-	// 	defaultProfileRatingAlg: "sieglinde",
+		defaultScoreRatingAlg: "sieglinde",
+		defaultSessionRatingAlg: "sieglinde",
+		defaultProfileRatingAlg: "sieglinde",
 
-	// 	scoreRatingAlgs: ["sieglinde"],
-	// 	sessionRatingAlgs: ["sieglinde"],
-	// 	profileRatingAlgs: ["sieglinde"],
+		scoreRatingAlgs: ["sieglinde"],
+		sessionRatingAlgs: ["sieglinde"],
+		profileRatingAlgs: ["sieglinde"],
 
-	// 	scoreRatingAlgFormatters: {},
-	// 	profileRatingAlgFormatters: {},
-	// 	sessionRatingAlgFormatters: {},
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
 
-	// 	difficulties: ["CHART"],
-	// 	shortDifficulties: {},
-	// 	defaultDifficulty: "CHART",
-	// 	difficultyColours: {
-	// 		CHART: null,
-	// 	},
+		scoreRatingAlgDescriptions: {
+			sieglinde:
+				"A clearing algorithm that rewards you points based on how difficult an easy clear or hard clear was.",
+		},
+		profileRatingAlgDescriptions: {
+			sieglinde: "The average of your best 20 sieglinde ratings.",
+		},
+		sessionRatingAlgDescriptions: {
+			sieglinde: "The average of your best 10 sieglinde ratings this session.",
+		},
 
-	// 	grades: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
-	// 	gradeColours: {
-	// 		F: COLOUR_SET.gray,
-	// 		E: COLOUR_SET.red,
-	// 		D: COLOUR_SET.maroon,
-	// 		C: COLOUR_SET.purple,
-	// 		B: COLOUR_SET.paleBlue,
-	// 		A: COLOUR_SET.green,
-	// 		AA: COLOUR_SET.blue,
-	// 		AAA: COLOUR_SET.gold,
-	// 		"MAX-": COLOUR_SET.teal,
-	// 		MAX: COLOUR_SET.white,
-	// 	},
-	// 	clearGrade: "A",
-	// 	gradeBoundaries: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
+		difficulties: ["CHART"],
+		shortDifficulties: {},
+		defaultDifficulty: "CHART",
+		difficultyColours: {
+			CHART: null,
+		},
 
-	// 	lamps: [
-	// 		"NO PLAY",
-	// 		"FAILED",
-	// 		"ASSIST CLEAR",
-	// 		"EASY CLEAR",
-	// 		"CLEAR",
-	// 		"HARD CLEAR",
-	// 		"EX HARD CLEAR",
-	// 		"FULL COMBO",
-	// 	],
-	// 	lampColours: {
-	// 		"NO PLAY": COLOUR_SET.gray,
-	// 		FAILED: COLOUR_SET.red,
-	// 		"ASSIST CLEAR": COLOUR_SET.purple,
-	// 		"EASY CLEAR": COLOUR_SET.green,
-	// 		CLEAR: COLOUR_SET.blue,
-	// 		"HARD CLEAR": COLOUR_SET.orange,
-	// 		"EX HARD CLEAR": COLOUR_SET.gold,
-	// 		"FULL COMBO": COLOUR_SET.teal,
-	// 	},
-	// 	clearLamp: "CLEAR",
+		grades: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
+		gradeColours: {
+			F: COLOUR_SET.gray,
+			E: COLOUR_SET.red,
+			D: COLOUR_SET.maroon,
+			C: COLOUR_SET.purple,
+			B: COLOUR_SET.paleBlue,
+			A: COLOUR_SET.green,
+			AA: COLOUR_SET.blue,
+			AAA: COLOUR_SET.gold,
+			"MAX-": COLOUR_SET.teal,
+			MAX: COLOUR_SET.white,
+		},
+		clearGrade: "A",
+		gradeBoundaries: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
 
-	// 	classHumanisedFormat: {
-	// 		dan: PMSDans,
-	// 	},
+		lamps: [
+			"NO PLAY",
+			"FAILED",
+			"ASSIST CLEAR",
+			"EASY CLEAR",
+			"CLEAR",
+			"HARD CLEAR",
+			"EX HARD CLEAR",
+			"FULL COMBO",
+		],
+		lampColours: {
+			"NO PLAY": COLOUR_SET.gray,
+			FAILED: COLOUR_SET.red,
+			"ASSIST CLEAR": COLOUR_SET.purple,
+			"EASY CLEAR": COLOUR_SET.green,
+			CLEAR: COLOUR_SET.blue,
+			"HARD CLEAR": COLOUR_SET.orange,
+			"EX HARD CLEAR": COLOUR_SET.gold,
+			"FULL COMBO": COLOUR_SET.teal,
+		},
+		clearLamp: "CLEAR",
 
-	// 	supportsESD: false,
-	// 	judgements: ["cool", "great", "good", "bad", "poor"],
+		classHumanisedFormat: {
+			dan: PMSDans,
+		},
 
-	// 	scoreBucket: "lamp",
+		supportsESD: false,
+		judgements: ["cool", "great", "good", "bad", "poor"],
 
-	// 	currentLatestVersion: null,
-	// 	currentGameOmniVersion: null,
-	// 	currentLocalVersion: null,
-	// 	supportedVersions: [],
+		scoreBucket: "lamp",
 
-	// 	tierlists: ["sgl-EC", "sgl-HC"],
-	// 	tierlistDescriptions: {
-	// 		"sgl-EC": "Sieglinde Easy Clear ratings.",
-	// 		"sgl-HC": "Sieglinde Hard Clear ratings.",
-	// 	},
-	// },
-	// "pms:Keyboard": {
-	// 	idString: "pms:Keyboard",
-	// 	percentMax: 100,
+		currentLatestVersion: null,
+		currentGameOmniVersion: null,
+		currentLocalVersion: null,
+		supportedVersions: [],
 
-	// 	defaultScoreRatingAlg: "sieglinde",
-	// 	defaultSessionRatingAlg: "sieglinde",
-	// 	defaultProfileRatingAlg: "sieglinde",
+		tierlists: ["sgl-EC", "sgl-HC"],
+		tierlistDescriptions: {
+			"sgl-EC": "Sieglinde Easy Clear ratings.",
+			"sgl-HC": "Sieglinde Hard Clear ratings.",
+		},
+	},
+	"pms:Keyboard": {
+		idString: "pms:Keyboard",
+		percentMax: 100,
 
-	// 	scoreRatingAlgs: ["sieglinde"],
-	// 	sessionRatingAlgs: ["sieglinde"],
-	// 	profileRatingAlgs: ["sieglinde"],
+		defaultScoreRatingAlg: "sieglinde",
+		defaultSessionRatingAlg: "sieglinde",
+		defaultProfileRatingAlg: "sieglinde",
 
-	// 	scoreRatingAlgFormatters: {},
-	// 	profileRatingAlgFormatters: {},
-	// 	sessionRatingAlgFormatters: {},
+		scoreRatingAlgs: ["sieglinde"],
+		sessionRatingAlgs: ["sieglinde"],
+		profileRatingAlgs: ["sieglinde"],
 
-	// 	difficulties: ["CHART"],
-	// 	shortDifficulties: {},
-	// 	defaultDifficulty: "CHART",
-	// 	difficultyColours: {
-	// 		CHART: null,
-	// 	},
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
 
-	// 	grades: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
-	// 	gradeColours: {
-	// 		F: COLOUR_SET.gray,
-	// 		E: COLOUR_SET.red,
-	// 		D: COLOUR_SET.maroon,
-	// 		C: COLOUR_SET.purple,
-	// 		B: COLOUR_SET.paleBlue,
-	// 		A: COLOUR_SET.green,
-	// 		AA: COLOUR_SET.blue,
-	// 		AAA: COLOUR_SET.gold,
-	// 		"MAX-": COLOUR_SET.teal,
-	// 		MAX: COLOUR_SET.white,
-	// 	},
-	// 	clearGrade: "A",
-	// 	gradeBoundaries: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
+		scoreRatingAlgDescriptions: {
+			sieglinde:
+				"A clearing algorithm that rewards you points based on how difficult an easy clear or hard clear was.",
+		},
+		profileRatingAlgDescriptions: {
+			sieglinde: "The average of your best 20 sieglinde ratings.",
+		},
+		sessionRatingAlgDescriptions: {
+			sieglinde: "The average of your best 10 sieglinde ratings this session.",
+		},
 
-	// 	lamps: [
-	// 		"NO PLAY",
-	// 		"FAILED",
-	// 		"ASSIST CLEAR",
-	// 		"EASY CLEAR",
-	// 		"CLEAR",
-	// 		"HARD CLEAR",
-	// 		"EX HARD CLEAR",
-	// 		"FULL COMBO",
-	// 	],
-	// 	lampColours: {
-	// 		"NO PLAY": COLOUR_SET.gray,
-	// 		FAILED: COLOUR_SET.red,
-	// 		"ASSIST CLEAR": COLOUR_SET.purple,
-	// 		"EASY CLEAR": COLOUR_SET.green,
-	// 		CLEAR: COLOUR_SET.blue,
-	// 		"HARD CLEAR": COLOUR_SET.orange,
-	// 		"EX HARD CLEAR": COLOUR_SET.gold,
-	// 		"FULL COMBO": COLOUR_SET.teal,
-	// 	},
-	// 	clearLamp: "CLEAR",
+		difficulties: ["CHART"],
+		shortDifficulties: {},
+		defaultDifficulty: "CHART",
+		difficultyColours: {
+			CHART: null,
+		},
 
-	// 	classHumanisedFormat: {
-	// 		dan: PMSDans,
-	// 	},
+		grades: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
+		gradeColours: {
+			F: COLOUR_SET.gray,
+			E: COLOUR_SET.red,
+			D: COLOUR_SET.maroon,
+			C: COLOUR_SET.purple,
+			B: COLOUR_SET.paleBlue,
+			A: COLOUR_SET.green,
+			AA: COLOUR_SET.blue,
+			AAA: COLOUR_SET.gold,
+			"MAX-": COLOUR_SET.teal,
+			MAX: COLOUR_SET.white,
+		},
+		clearGrade: "A",
+		gradeBoundaries: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
 
-	// 	supportsESD: false,
-	// 	judgements: ["cool", "great", "good", "bad", "poor"],
+		lamps: [
+			"NO PLAY",
+			"FAILED",
+			"ASSIST CLEAR",
+			"EASY CLEAR",
+			"CLEAR",
+			"HARD CLEAR",
+			"EX HARD CLEAR",
+			"FULL COMBO",
+		],
+		lampColours: {
+			"NO PLAY": COLOUR_SET.gray,
+			FAILED: COLOUR_SET.red,
+			"ASSIST CLEAR": COLOUR_SET.purple,
+			"EASY CLEAR": COLOUR_SET.green,
+			CLEAR: COLOUR_SET.blue,
+			"HARD CLEAR": COLOUR_SET.orange,
+			"EX HARD CLEAR": COLOUR_SET.gold,
+			"FULL COMBO": COLOUR_SET.teal,
+		},
+		clearLamp: "CLEAR",
 
-	// 	scoreBucket: "lamp",
+		classHumanisedFormat: {
+			dan: PMSDans,
+		},
 
-	// 	currentLatestVersion: null,
-	// 	currentGameOmniVersion: null,
-	// 	currentLocalVersion: null,
-	// 	supportedVersions: [],
+		supportsESD: false,
+		judgements: ["cool", "great", "good", "bad", "poor"],
 
-	// 	tierlists: ["sgl-EC", "sgl-HC"],
-	// 	tierlistDescriptions: {
-	// 		"sgl-EC": "Sieglinde Easy Clear ratings.",
-	// 		"sgl-HC": "Sieglinde Hard Clear ratings.",
-	// 	},
-	// },
+		scoreBucket: "lamp",
+
+		currentLatestVersion: null,
+		currentGameOmniVersion: null,
+		currentLocalVersion: null,
+		supportedVersions: [],
+
+		tierlists: ["sgl-EC", "sgl-HC"],
+		tierlistDescriptions: {
+			"sgl-EC": "Sieglinde Easy Clear ratings.",
+			"sgl-HC": "Sieglinde Hard Clear ratings.",
+		},
+	},
 };
 
 /**

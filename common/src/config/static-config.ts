@@ -163,6 +163,6 @@ export const PrettyVersions: Versions = {
 	"jubeat:Single": {
 		festo: "festo",
 	},
-	// "pms:Controller": {},
-	// "pms:Keyboard": {},
+	"pms:Controller": {},
+	"pms:Keyboard": {},
 };

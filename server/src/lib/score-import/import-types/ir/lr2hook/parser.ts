@@ -5,7 +5,7 @@ import p, { PrudenceSchema } from "prudence";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import { FormatPrError } from "utils/prudence";
 
-const SUPPORTED_RANDOMS = ["NONRAN", "MIRROR", "RAN", "S-RAN"];
+const SUPPORTED_RANDOMS = ["NORAN", "MIRROR", "RAN", "S-RAN"];
 
 const PR_LR2Hook: PrudenceSchema = {
 	md5: "string",

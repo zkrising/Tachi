@@ -5,7 +5,7 @@ export interface LR2HookScore {
 	playerData: {
 		autoScr: 0;
 		gameMode: unknown;
-		random: "NONRAN" | "MIRROR" | "RAN" | "S-RAN";
+		random: "NORAN" | "MIRROR" | "RAN" | "S-RAN";
 		gauge: "GROOVE" | "HAZARD" | "HARD" | "EASY" | "P-ATTACK" | "G-ATTACK";
 	};
 	scoreData: {

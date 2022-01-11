@@ -64,7 +64,11 @@ t.test("#UpdateScore", (t) => {
 			scoreData: { score: 1020 },
 		} as any);
 
+		delete score._id;
+
 		const newScoreID = CreateScoreID(score.userID, score, score.chartID);
+
+		rootLogger.crit(newScoreID);
 
 		await db.imports.insert(mockImportDocument);
 		await db.sessions.insert(mockSessionDocument);

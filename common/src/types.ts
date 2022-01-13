@@ -1104,7 +1104,6 @@ export interface HitMetaLookup {
 	"popn:9B": BASE_VALID_HIT_META & {
 		gauge: number | null;
 		specificClearType:
-			| "failedUnknown"
 			| "failedCircle"
 			| "failedDiamond"
 			| "failedStar"

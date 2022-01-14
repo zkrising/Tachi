@@ -64,10 +64,12 @@ const PR_BeatorajaChart = {
 };
 
 const SUPPORTED_BEATORAJA_CLIENTS = [
+	"LR2oraja 0.8.4",
 	"LR2oraja 0.8.3",
 	"LR2oraja 0.8.2",
 	"LR2oraja 0.8.1",
 	"LR2oraja 0.8.0",
+	"LR2oraja(rekidai.info) 0.8.4",
 	"LR2oraja(rekidai.info) 0.8.3",
 	"LR2oraja(rekidai.info) 0.8.2",
 	"LR2oraja(rekidai.info) 0.8.1",

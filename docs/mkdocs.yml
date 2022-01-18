@@ -38,7 +38,7 @@ nav:
 
           - Statistics:
                 - "user/stats/tachi.md"
-                - "user/stats/esd.md"
+            #     - "user/stats/esd.md"
 
     - API Reference:
           - "api/overview.md"

@@ -104,6 +104,7 @@ export const loggedInSplashes = [
 	"I'm playing bedwars!",
 	"Just tryna t-take it easy and... chill out afterwards",
 	"you weren't theerrreee",
+	"Is this really happening?",
 ];
 
 // Stuff that's bad for the kids, you know?

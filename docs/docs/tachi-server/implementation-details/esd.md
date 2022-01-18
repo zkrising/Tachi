@@ -1,5 +1,9 @@
 # ESD Implementation
 
+!!! info
+	ESD is not currently displayed or used anywhere in the site. In the future, it will
+	likely be used for rival comparisons, as it was in Kamaitachi v1.
+
 ESD uses the fact that [A binomial distribution can approximate a normal one](https://en.wikipedia.org/wiki/Central_limit_theorem) in order to derive an estimate for standard deviations.
 
 *****

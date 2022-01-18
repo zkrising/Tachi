@@ -42,3 +42,11 @@ Percent may not correlate with score. This was in anticipation
 to support BMS's `#RANDOM` instruction - where charts may
 have a dynamic amount of notes - but I've decided it
 wasn't worth it. Still, this is left in for futureproofing.
+
+!!! warning
+	An open issue exists to refactor how score IDs work.
+
+	It would make significantly more sense for every game to get its own scoreID algorithm,
+	since not all games have the same significant properties.
+
+	This would also let us support things like SDVX6's EX Score.

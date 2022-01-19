@@ -49,6 +49,7 @@
 			"wacca",
 			"popn",
 			"jubeat",
+			"pms",
 		],
 		IMPORT_TYPES: [
 			"file/eamusement-iidx-csv",

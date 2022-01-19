@@ -56,14 +56,15 @@ const PR_BeatorajaChart = {
 	lntype: p.isIn(-1, 0, 1, 2),
 
 	// currently only accepted playtypes.
-	mode: p.isIn("BEAT_7K", "BEAT_14K"),
+	mode: p.isIn("BEAT_7K", "BEAT_14K", "POPN_9K"),
 	judge: p.isPositive,
 	notes: p.isPositiveInteger,
 	hasUndefinedLN: "boolean",
 	hasRandom: "boolean",
 };
 
-const SUPPORTED_BEATORAJA_CLIENTS = [
+const SUPPORTED_BMS_CLIENTS = [
+	"LR2oraja 0.8.4",
 	"LR2oraja 0.8.3",
 	"LR2oraja 0.8.2",
 	"LR2oraja 0.8.1",
@@ -72,6 +73,14 @@ const SUPPORTED_BEATORAJA_CLIENTS = [
 	"LR2oraja(rekidai.info) 0.8.2",
 	"LR2oraja(rekidai.info) 0.8.1",
 	"LR2oraja(rekidai.info) 0.8.0",
+];
+
+const SUPPORTED_PMS_CLIENTS = [
+	"Beatoraja 0.8.4",
+	"Beatoraja 0.8.3",
+	"Beatoraja 0.8.2",
+	"Beatoraja 0.8.1",
+	"Beatoraja 0.8.0",
 ];
 
 export function ParseBeatorajaSingle(
@@ -110,20 +119,31 @@ export function ParseBeatorajaSingle(
 	// Force stringify this, since it's not validated by prudence.
 	const client = `${body.client}`;
 
-	if (!SUPPORTED_BEATORAJA_CLIENTS.includes(client)) {
-		throw new ScoreImportFatalError(400, `Unsupported client ${client}`);
+	const score = body.score as BeatorajaScore;
+	const chart = body.chart as BeatorajaChart;
+
+	if (chart.mode === "BEAT_14K" || chart.mode === "BEAT_7K") {
+		if (!SUPPORTED_BMS_CLIENTS.includes(client)) {
+			throw new ScoreImportFatalError(400, `Unsupported BMS client ${client}`);
+		}
+	} else if (chart.mode === "POPN_9K") {
+		if (!SUPPORTED_PMS_CLIENTS.includes(client)) {
+			throw new ScoreImportFatalError(400, `Unsupported PMS client ${client}`);
+		}
 	}
+
+	const isPMS = chart.mode === "POPN_9K";
 
 	return {
 		context: {
-			client: "lr2oraja",
+			client: isPMS ? "beatoraja" : "lr2oraja",
 			// asserted using prudence.
-			chart: body.chart as BeatorajaChart,
+			chart,
 			userID,
 			timeReceived: Date.now(),
 		},
-		game: "bms",
-		iterable: [body.score] as unknown as BeatorajaScore[],
+		game: isPMS ? "pms" : "bms",
+		iterable: [score],
 		classHandler: null,
 	};
 }

@@ -262,6 +262,14 @@ if (!["dev", "production", "staging", "test"].includes(nodeEnv)) {
 	process.exit(1);
 }
 
+// if (bms XOR popn) is enabled
+if (TachiConfig.GAMES.includes("bms") !== TachiConfig.GAMES.includes("pms")) {
+	logger.error(
+		`BMS and PMS MUST be enabled at the same time, due to how the beatoraja IR works.`
+	);
+	process.exit(1);
+}
+
 const replicaIdentity = process.env.REPLICA_IDENTITY;
 
 export const Environment = {

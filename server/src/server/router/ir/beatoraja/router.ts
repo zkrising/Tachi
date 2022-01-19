@@ -7,7 +7,7 @@ import { ServerConfig } from "lib/setup/config";
 import { RequireNotGuest } from "server/middleware/auth";
 import { UpdateClassIfGreater } from "utils/class";
 import { ValidateIRClientVersion } from "./auth";
-import chartsRouter from "./charts/router";
+import chartsRouter from "./charts/_chartSHA256/router";
 
 const logger = CreateLogCtx(__filename);
 

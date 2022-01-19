@@ -1,7 +1,7 @@
 import { integer } from "tachi-common";
 
 export interface BeatorajaContext {
-	client: "lr2oraja";
+	client: "lr2oraja" | "beatoraja";
 	chart: BeatorajaChart;
 	userID: integer; // unexpectedly necessary for orphan code!
 	timeReceived: number;
@@ -17,7 +17,7 @@ export interface BeatorajaChart {
 	subartist: string;
 	total: integer;
 
-	mode: "BEAT_7K" | "BEAT_14K";
+	mode: "BEAT_7K" | "BEAT_14K" | "POPN_9K";
 	judge: number;
 	notes: integer;
 	hasRandom: boolean;

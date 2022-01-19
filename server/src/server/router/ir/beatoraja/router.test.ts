@@ -69,7 +69,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 		t.equal(res.status, 400);
 
 		t.equal(res.body.success, false);
-		t.match(res.body.description, /Unsupported client/u);
+		t.match(res.body.description, /Unsupported BMS client/u);
 
 		t.end();
 	});

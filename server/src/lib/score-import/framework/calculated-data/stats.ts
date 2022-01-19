@@ -401,6 +401,19 @@ function LampRatingNoTierlistInfo(
 	return 0;
 }
 
+export function CalculateSieglinde(chart: ChartDocument, lampIndex: integer) {
+	const ecValue = chart.tierlistInfo["sgl-EC"]?.value ?? 0;
+	const hcValue = chart.tierlistInfo["sgl-HC"]?.value ?? 0;
+
+	if (lampIndex >= IIDX_LAMPS.HARD_CLEAR) {
+		return Math.max(hcValue, ecValue);
+	} else if (lampIndex >= IIDX_LAMPS.EASY_CLEAR) {
+		return ecValue;
+	}
+
+	return 0;
+}
+
 // deprecated calcs
 
 // const VF4GradeCoefficients = {

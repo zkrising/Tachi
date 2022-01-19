@@ -773,6 +773,13 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 			displayVersion: "?string",
 		})
 	),
+	"songs-pms": prSchemaify(
+		PR_SongDocument({
+			genre: "?string",
+			subtitle: "?string",
+			subartist: "?string",
+		})
+	),
 	"songs-popn": prSchemaify(
 		PR_SongDocument({
 			genre: "string",
@@ -880,6 +887,23 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 			isHot: "boolean",
 		})
 	),
+	"charts-pms": (self) => {
+		const playtype = getPlaytype("pms", self);
+
+		return prSchemaify(
+			PR_ChartDocument("pms", playtype, {
+				notecount: p.isPositiveNonZeroInteger,
+				hashSHA256: "?string",
+				hashMD5: "?string",
+				tableFolders: [
+					{
+						table: "string",
+						level: "string",
+					},
+				],
+			})
+		)(self);
+	},
 	"charts-popn": prSchemaify(
 		PR_ChartDocument("popn", "9B", {
 			hashSHA256: "?string",

@@ -43,9 +43,6 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 		Gita: CalculateGitadoraColour,
 		Dora: CalculateGitadoraColour,
 	},
-	// jubeat: {
-	// 	Single: CalculateJubeatColour,
-	// },
 	maimai: null,
 	museca: null,
 	popn: {
@@ -61,6 +58,7 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 	jubeat: {
 		Single: CalculateJubeatColour,
 	},
+	pms: null,
 };
 
 /**

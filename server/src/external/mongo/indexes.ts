@@ -97,6 +97,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	"charts-wacca": [index({ isHot: 1 })],
 	"charts-usc": [index({ "data.hashSHA1": 1, playtype: 1 }, UNIQUE)],
 	"charts-jubeat": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],
+	"charts-pms": [index({ "data.hashSHA256": 1 }, UNIQUE), index({ "data.hashMD5": 1 }, UNIQUE)],
 };
 
 const indexes: Partial<Record<Databases, Index[]>> = staticIndexes;

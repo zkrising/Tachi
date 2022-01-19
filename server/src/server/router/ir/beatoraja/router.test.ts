@@ -20,20 +20,22 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 		})
 	);
 
-	const scoreReq = GetKTDataJSON("./beatoraja/base.json");
+	const bmsScoreReq = GetKTDataJSON("./beatoraja/base.json");
+	const pmsScoreReq = GetKTDataJSON("./beatoraja/pms-base.json");
 
-	t.test("Should import a valid score.", async (t) => {
+	t.test("Should import a valid BMS score.", async (t) => {
 		const res = await mockApi
 			.post("/ir/beatoraja/submit-score")
 			.set("X-TachiIR-Version", "v2.0.0")
 			.set("Authorization", "Bearer mock_token")
-			.send(scoreReq);
+			.send(bmsScoreReq);
 
 		t.equal(res.status, 200);
 
 		t.equal(res.body.success, true);
 		t.hasStrict(res.body.body, {
 			score: {
+				game: "bms",
 				scoreData: {
 					score: 1004,
 				},
@@ -55,6 +57,85 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 		t.not(score, null);
 
 		t.hasStrict(res.body.body.score, score);
+		t.hasStrict(res.body.body.score, score);
+
+		t.end();
+	});
+
+	t.test("Should import a valid PMS score.", async (t) => {
+		const res = await mockApi
+			.post("/ir/beatoraja/submit-score")
+			.set("X-TachiIR-Version", "v2.0.0")
+			.set("Authorization", "Bearer mock_token")
+			.send(pmsScoreReq);
+
+		t.equal(res.status, 200);
+
+		t.equal(res.body.success, true);
+		t.hasStrict(res.body.body, {
+			score: {
+				game: "pms",
+				playtype: "Controller",
+				scoreData: {
+					score: 1004,
+				},
+				importType: "ir/beatoraja",
+			},
+			chart: {
+				chartID: "0446f1b54e90d631ff9fe98419ebaea9481fab1f",
+			},
+			song: {
+				id: 1,
+			},
+		});
+
+		const score = await db.scores.findOne(
+			{ scoreID: res.body.body.score.scoreID },
+			{ projection: { _id: 0 } }
+		);
+
+		t.not(score, null);
+
+		t.hasStrict(res.body.body.score, score);
+
+		t.end();
+	});
+
+	t.test("Should infer playtype from the PMS score.", async (t) => {
+		const res = await mockApi
+			.post("/ir/beatoraja/submit-score")
+			.set("X-TachiIR-Version", "v2.0.0")
+			.set("Authorization", "Bearer mock_token")
+			.send(deepmerge(pmsScoreReq, { score: { deviceType: "KEYBOARD" } }));
+
+		t.equal(res.status, 200);
+
+		t.equal(res.body.success, true);
+		t.hasStrict(res.body.body, {
+			score: {
+				game: "pms",
+				playtype: "Keyboard",
+				scoreData: {
+					score: 1004,
+				},
+				importType: "ir/beatoraja",
+			},
+			chart: {
+				chartID: "ca553d77cbf8b3e9e7709dad6123ffed1695a1dd",
+			},
+			song: {
+				id: 1,
+			},
+		});
+
+		const score = await db.scores.findOne(
+			{ scoreID: res.body.body.score.scoreID },
+			{ projection: { _id: 0 } }
+		);
+
+		t.not(score, null);
+
+		t.hasStrict(res.body.body.score, score);
 
 		t.end();
 	});
@@ -64,12 +145,42 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.post("/ir/beatoraja/submit-score")
 			.set("X-TachiIR-Version", "v2.0.0")
 			.set("Authorization", "Bearer mock_token")
-			.send(deepmerge(scoreReq, { client: "INVALID" }));
+			.send(deepmerge(bmsScoreReq, { client: "INVALID" }));
 
 		t.equal(res.status, 400);
 
 		t.equal(res.body.success, false);
-		t.match(res.body.description, /Unsupported client/u);
+		t.match(res.body.description, /Unsupported BMS client/u);
+
+		t.end();
+	});
+
+	t.test("Should return an error if BMS scores try to use beatoraja.", async (t) => {
+		const res = await mockApi
+			.post("/ir/beatoraja/submit-score")
+			.set("X-TachiIR-Version", "v2.0.0")
+			.set("Authorization", "Bearer mock_token")
+			.send(deepmerge(bmsScoreReq, { client: "beatoraja 0.8.0" }));
+
+		t.equal(res.status, 400);
+
+		t.equal(res.body.success, false);
+		t.match(res.body.description, /Unsupported BMS client/u);
+
+		t.end();
+	});
+
+	t.test("Should return an error if PMS scores try to use lr2oraja.", async (t) => {
+		const res = await mockApi
+			.post("/ir/beatoraja/submit-score")
+			.set("X-TachiIR-Version", "v2.0.0")
+			.set("Authorization", "Bearer mock_token")
+			.send(deepmerge(pmsScoreReq, { client: "LR2oraja 0.8.0" }));
+
+		t.equal(res.status, 400);
+
+		t.equal(res.body.success, false);
+		t.match(res.body.description, /Unsupported PMS client/u);
 
 		t.end();
 	});
@@ -79,7 +190,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.post("/ir/beatoraja/submit-score")
 			.set("X-TachiIR-Version", "v2.0.0")
 			.set("Authorization", "Bearer mock_token")
-			.send(deepmerge(scoreReq, { score: { exscore: -1 } }));
+			.send(deepmerge(bmsScoreReq, { score: { exscore: -1 } }));
 
 		t.equal(res.status, 400);
 
@@ -94,7 +205,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.post("/ir/beatoraja/submit-score")
 			.set("X-TachiIR-Version", "v2.0.0")
 			.set("Authorization", "Bearer mock_token")
-			.send(deepmerge(scoreReq, { chart: { title: null } }));
+			.send(deepmerge(bmsScoreReq, { chart: { title: null } }));
 
 		t.equal(res.status, 400);
 
@@ -110,7 +221,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.set("X-TachiIR-Version", "v2.0.0")
 			.set("Authorization", "Bearer mock_token")
 			.send(
-				deepmerge(scoreReq, {
+				deepmerge(bmsScoreReq, {
 					chart: { sha256: "new_chart", md5: "new_md5" },
 					score: { sha256: "new_chart", md5: "new_md5" },
 				})
@@ -171,7 +282,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.set("X-TachiIR-Version", "v2.0.0")
 			.set("Authorization", "Bearer mock_token")
 			.send(
-				deepmerge(scoreReq, {
+				deepmerge(bmsScoreReq, {
 					chart: { sha256: "new_chart", md5: "new_md5" },
 					score: { sha256: "new_chart", md5: "new_md5" },
 				})
@@ -184,7 +295,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.set("X-TachiIR-Version", "v2.0.0")
 			.set("Authorization", "Bearer token2")
 			.send(
-				deepmerge(scoreReq, {
+				deepmerge(bmsScoreReq, {
 					chart: { sha256: "new_chart", md5: "new_md5" },
 					score: { sha256: "new_chart", md5: "new_md5" },
 				})
@@ -203,7 +314,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.set("X-TachiIR-Version", "v2.0.0")
 			.set("Authorization", "Bearer token3")
 			.send(
-				deepmerge(scoreReq, {
+				deepmerge(bmsScoreReq, {
 					chart: { sha256: "new_chart", md5: "new_md5" },
 					score: { sha256: "new_chart", md5: "new_md5" },
 				})
@@ -236,7 +347,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 		const res = await mockApi
 			.post("/ir/beatoraja/submit-score")
 			.set("X-TachiIR-Version", "v2.0.0")
-			.send(scoreReq);
+			.send(bmsScoreReq);
 
 		t.equal(res.status, 401);
 
@@ -249,7 +360,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.set("X-TachiIR-Version", "v2.0.0")
 			.set("Authorization", "Bearer invalid_token")
 
-			.send(scoreReq);
+			.send(bmsScoreReq);
 
 		t.equal(res.status, 401);
 

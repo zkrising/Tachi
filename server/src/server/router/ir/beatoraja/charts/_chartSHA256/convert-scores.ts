@@ -45,7 +45,7 @@ export type BeatorajaIRScoreFormat = BeatorajaPartialScoreFormat & BeatorajaScor
  * @returns A Beatoraja Score Document.
  */
 export function TachiScoreDataToBeatorajaFormat(
-	pbScore: PBScoreDocument<"bms:7K" | "bms:14K">,
+	pbScore: PBScoreDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">,
 	sha256: string,
 	username: string,
 	notecount: integer,

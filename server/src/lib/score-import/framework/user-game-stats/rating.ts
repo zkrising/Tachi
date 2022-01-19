@@ -132,6 +132,14 @@ const RatingFunctions: RatingFunctions = {
 			sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
 		}),
 	},
+	pms: {
+		Controller: async (g, p, u) => ({
+			sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
+		}),
+		Keyboard: async (g, p, u) => ({
+			sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
+		}),
+	},
 	chunithm: {
 		Single: async (g, p, u) => ({
 			naiveRating: await LazyMeanN("rating", 20)(g, p, u),

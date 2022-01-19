@@ -96,6 +96,14 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 			sieglinde: AvgBest10Map(scd, "sieglinde"),
 		}),
 	},
+	pms: {
+		Controller: (scd) => ({
+			sieglinde: AvgBest10Map(scd, "sieglinde"),
+		}),
+		Keyboard: (scd) => ({
+			sieglinde: AvgBest10Map(scd, "sieglinde"),
+		}),
+	},
 	ddr: {
 		SP: (scd) => ({
 			MFCP: SumAll(scd, "MFCP"),

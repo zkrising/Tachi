@@ -3,10 +3,10 @@ import { KtLogger } from "lib/logger/logger";
 import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
 import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
-import { ChartDocument, SongDocument } from "tachi-common";
+import { ChartDocument, SongDocument, Playtypes } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { GetBlacklist } from "utils/queries/blacklist";
-import { FindChartOnSHA256 } from "utils/queries/charts";
+import { FindChartOnSHA256, FindChartOnSHA256Playtype } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import {
 	InternalFailure,
@@ -17,7 +17,6 @@ import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../../common/types";
 import { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
-
 const LAMP_LOOKUP = {
 	NoPlay: "NO PLAY",
 	Failed: "FAILED",
@@ -39,6 +38,7 @@ const RANDOM_LOOKUP = {
 } as const;
 
 async function HandleOrphanChartProcess(
+	game: "bms" | "pms",
 	data: BeatorajaScore,
 	context: BeatorajaContext,
 	logger: KtLogger
@@ -53,22 +53,54 @@ async function HandleOrphanChartProcess(
 		throw new InvalidScoreFailure(`${TachiConfig.NAME} will not support #RANDOM charts.`);
 	}
 
-	const idString = context.chart.mode === "BEAT_7K" ? "bms:7K" : "bms:14K";
+	let chart;
+	let criteria;
 
-	const { chartDoc, songDoc } = ConvertBeatorajaChartToTachi(context.chart);
-
-	const chart = await HandleOrphanQueue(
-		idString,
-		"bms",
-		chartDoc,
-		songDoc,
-		{
+	if (game === "bms") {
+		criteria = {
 			"chartDoc.data.hashSHA256": context.chart.sha256,
-		},
-		ServerConfig.BEATORAJA_QUEUE_SIZE,
-		context.userID,
-		chartName
-	);
+		};
+
+		const idString = context.chart.mode === "BEAT_7K" ? "bms:7K" : "bms:14K";
+
+		const { chartDoc, songDoc } = ConvertBeatorajaChartToTachi(
+			context.chart,
+			context.chart.mode === "BEAT_7K" ? "7K" : "14K"
+		);
+
+		chart = await HandleOrphanQueue(
+			idString,
+			"bms",
+			chartDoc,
+			songDoc,
+			criteria,
+			ServerConfig.BEATORAJA_QUEUE_SIZE,
+			context.userID,
+			chartName
+		);
+	} else {
+		const playtype = data.deviceType === "BM_CONTROLLER" ? "Controller" : "Keyboard";
+
+		criteria = {
+			"chartDoc.data.hashSHA256": context.chart.sha256,
+			playtype,
+		};
+
+		const idString = playtype === "Controller" ? "pms:Controller" : "pms:Keyboard";
+
+		const { chartDoc, songDoc } = ConvertBeatorajaChartToTachi(context.chart, playtype);
+
+		chart = await HandleOrphanQueue(
+			idString,
+			"pms",
+			chartDoc,
+			songDoc,
+			criteria,
+			ServerConfig.BEATORAJA_QUEUE_SIZE,
+			context.userID,
+			chartName
+		);
+	}
 
 	// If chart wasn't unorphaned as a result of this request
 	// orphan this score and return ktdnf
@@ -82,15 +114,16 @@ async function HandleOrphanChartProcess(
 	}
 
 	const blacklist = await GetBlacklist();
-	const scoresToDeorphan = await db["orphan-scores"].find({
-		"data.sha256": chartDoc.data.hashSHA256,
-	});
+	const scoresToDeorphan = await db["orphan-scores"].find(criteria);
 
 	await Promise.all(scoresToDeorphan.map((e) => ReprocessOrphan(e, blacklist, logger)));
 
 	return chart;
 }
 
+// NOTE: This converter handles both PMS and BMS scores. The two are very similar,
+// infact, beatoraja barely does anything different between the two. PMS is essentially
+// BMS but with the columns set to 9.
 export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaContext> = async (
 	data,
 	context,
@@ -109,24 +142,39 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		);
 	}
 
-	let chart = (await FindChartOnSHA256("bms", data.sha256)) as ChartDocument<
-		"bms:7K" | "bms:14K"
-	> | null;
+	const game = context.chart.mode === "POPN_9K" ? "pms" : "bms";
+
+	let chart: ChartDocument<"bms:14K" | "bms:7K" | "pms:Controller" | "pms:Keyboard"> | null;
+
+	if (game === "bms") {
+		chart = (await FindChartOnSHA256(game, data.sha256)) as ChartDocument<
+			"bms:7K" | "bms:14K"
+		> | null;
+	} else {
+		// It's still called BM_CONTROLLER even though its popn!
+		const playtype = data.deviceType === "BM_CONTROLLER" ? "Controller" : "Keyboard";
+
+		chart = (await FindChartOnSHA256Playtype(game, data.sha256, playtype)) as ChartDocument<
+			"pms:Controller" | "pms:Keyboard"
+		> | null;
+	}
 
 	if (!chart) {
-		chart = await HandleOrphanChartProcess(data, context, logger);
+		chart = await HandleOrphanChartProcess(game, data, context, logger);
 	}
 
-	const song = await FindSongOnID("bms", chart.songID);
+	const song = await FindSongOnID(game, chart.songID);
 
 	if (!song) {
-		logger.severe(`Song-Chart Desync with BMS ${chart.chartID}.`);
-		throw new InternalFailure(`Song-Chart Desync with BMS ${chart.chartID}.`);
+		logger.severe(`Song-Chart Desync with ${game} ${chart.chartID}.`);
+		throw new InternalFailure(`Song-Chart Desync with ${game} ${chart.chartID}.`);
 	}
 
-	const { grade, percent } = GenericGetGradeAndPercent("bms", data.exscore, chart);
+	const { grade, percent } = GenericGetGradeAndPercent(game, data.exscore, chart);
 
-	const hitMeta: DryScore<"bms:7K" | "bms:14K">["scoreData"]["hitMeta"] = {
+	const hitMeta: DryScore<
+		"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard"
+	>["scoreData"]["hitMeta"] = {
 		bp: data.minbp === -1 ? null : data.minbp,
 		gauge: data.gauge === -1 ? null : data.gauge,
 	};
@@ -159,15 +207,17 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 
 	let random = null;
 
-	if (chart.playtype === "7K") {
+	// pms and bms are fine using this randomlookup, except for 14k, which is
+	// broken in beatoraja.
+	if (chart.playtype !== "14K") {
 		random = RANDOM_LOOKUP[data.option];
 	}
 
 	const lamp = LAMP_LOOKUP[data.clear];
 
-	const dryScore: DryScore<"bms:7K" | "bms:14K"> = {
+	const dryScore: DryScore<"bms:7K" | "bms:14K" | "pms:Keyboard" | "pms:Controller"> = {
 		comment: null,
-		game: "bms",
+		game,
 		importType,
 		scoreData: {
 			grade,
@@ -189,14 +239,14 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 	return { song, chart, dryScore };
 };
 
-function ConvertBeatorajaChartToTachi(chart: BeatorajaChart) {
-	const chartDoc: ChartDocument<"bms:14K" | "bms:7K"> = {
+function ConvertBeatorajaChartToTachi(chart: BeatorajaChart, playtype: Playtypes["bms" | "pms"]) {
+	const chartDoc: ChartDocument<"bms:14K" | "bms:7K" | "pms:Controller" | "pms:Keyboard"> = {
 		chartID: Random20Hex(),
 		difficulty: "CHART",
 		isPrimary: true,
 		level: "?",
 		levelNum: 0,
-		playtype: chart.mode === "BEAT_7K" ? "7K" : "14K",
+		playtype,
 		rgcID: null,
 		songID: 0,
 		versions: [],
@@ -209,7 +259,7 @@ function ConvertBeatorajaChartToTachi(chart: BeatorajaChart) {
 		},
 	};
 
-	const songDoc: SongDocument<"bms"> = {
+	const songDoc: SongDocument<"bms" | "pms"> = {
 		artist: chart.artist,
 		title: chart.title,
 		id: 0,

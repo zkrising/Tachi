@@ -1,18 +1,26 @@
-import { rootLogger } from "lib/logger/logger";
 import Prudence, { PrudenceSchema } from "prudence";
-import t from "tap";
-
-export function isApproximately(number: number, target: number, message?: string, lenience = 0.01) {
-	const result = t.ok(Math.abs(number - target) < lenience, message);
+export function isApproximately(
+	t: Tap.Test,
+	number: number,
+	target: number,
+	message?: string,
+	lenience = 0.01
+) {
+	const result = Math.abs(number - target) < lenience;
 
 	if (!result) {
-		rootLogger.error(`${number} was not close enough to ${target}`);
+		return t.fail(`${number} was not close enough to ${target}`, {
+			errmsg: `${number} was not close enough to ${target}`,
+		});
 	}
+
+	t.pass(message);
 
 	// return true;
 }
 
 export function prAssert(
+	t: Tap.Test,
 	obj: Record<string, unknown> | unknown,
 	schema: PrudenceSchema,
 	message = "Unnamed Prudence Assertion"

@@ -5,7 +5,6 @@ import {
 	GetGamePTConfig,
 	Grades,
 	IDStrings,
-	IIDX_LAMPS,
 	Lamps,
 	Playtypes,
 	ScoreDocument,
@@ -19,6 +18,7 @@ import {
 	CalculateKTLampRatingIIDX,
 	CalculateKTRating,
 	CalculateMFCP,
+	CalculateSieglinde,
 	CalculateVF6,
 	CalculateWACCARate,
 } from "./stats";
@@ -62,14 +62,16 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	"maimai:Single": CalculateDataMaimai,
 	"gitadora:Gita": CalculateDataGitadora,
 	"gitadora:Dora": CalculateDataGitadora,
-	"bms:7K": CalculateDataBMS7K,
-	"bms:14K": CalculateDataBMS14K,
+	"bms:7K": CalculateDataPMSorBMS,
+	"bms:14K": CalculateDataPMSorBMS,
 	"ddr:SP": CalculateDataDDR,
 	"ddr:DP": CalculateDataDDR,
 	"usc:Controller": CalculateDataSDVXorUSC,
 	"usc:Keyboard": CalculateDataSDVXorUSC,
 	"wacca:Single": CalculateDataWACCA,
 	"jubeat:Single": CalculateDataJubeat,
+	"pms:Keyboard": CalculateDataPMSorBMS,
+	"pms:Controller": CalculateDataPMSorBMS,
 };
 
 // Creates Game-Specific calculatedData for the provided game & playtype.
@@ -234,57 +236,17 @@ function CalculateDataDDR(
 	};
 }
 
-export function CalculateDataBMS14K(
+export function CalculateDataPMSorBMS(
 	dryScore: DryScore,
 	chart: ChartDocument,
 	logger: KtLogger
-): CalculatedData<"bms:14K"> {
-	const ecValue = chart.tierlistInfo["sgl-EC"]?.value ?? 0;
-	const hcValue = chart.tierlistInfo["sgl-HC"]?.value ?? 0;
-
-	const gptConfig = GetGamePTConfig("bms", "7K");
+): CalculatedData<"pms:Controller" | "pms:Keyboard"> {
+	const gptConfig = GetGamePTConfig(dryScore.game, chart.playtype);
 
 	const lampIndex = gptConfig.lamps.indexOf(dryScore.scoreData.lamp);
 
-	if (lampIndex >= IIDX_LAMPS.HARD_CLEAR) {
-		return {
-			sieglinde: Math.max(hcValue, ecValue),
-		};
-	} else if (lampIndex >= IIDX_LAMPS.EASY_CLEAR) {
-		return {
-			sieglinde: ecValue,
-		};
-	}
-
 	return {
-		sieglinde: 0,
-	};
-}
-
-export function CalculateDataBMS7K(
-	dryScore: DryScore,
-	chart: ChartDocument,
-	logger: KtLogger
-): CalculatedData<"bms:7K"> {
-	const ecValue = chart.tierlistInfo["sgl-EC"]?.value ?? 0;
-	const hcValue = chart.tierlistInfo["sgl-HC"]?.value ?? 0;
-
-	const gptConfig = GetGamePTConfig("bms", "7K");
-
-	const lampIndex = gptConfig.lamps.indexOf(dryScore.scoreData.lamp);
-
-	if (lampIndex >= IIDX_LAMPS.HARD_CLEAR) {
-		return {
-			sieglinde: Math.max(hcValue, ecValue),
-		};
-	} else if (lampIndex >= IIDX_LAMPS.EASY_CLEAR) {
-		return {
-			sieglinde: ecValue,
-		};
-	}
-
-	return {
-		sieglinde: 0,
+		sieglinde: CalculateSieglinde(chart, lampIndex),
 	};
 }
 

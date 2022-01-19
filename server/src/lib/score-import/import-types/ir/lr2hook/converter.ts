@@ -91,7 +91,7 @@ function ConvertRandom(
 	random: LR2HookScore["playerData"]["random"]
 ): ScoreDocument<"bms:7K">["scoreMeta"]["random"] {
 	switch (random) {
-		case "NONRAN":
+		case "NORAN":
 			return "NONRAN";
 		case "MIRROR":
 			return "MIRROR";

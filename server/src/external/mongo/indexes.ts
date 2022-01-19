@@ -63,13 +63,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 		index({ title: "text", searchTerms: "text" }),
 	],
 	"kai-auth-tokens": [index({ userID: 1, service: 1 }, UNIQUE)],
-	"charts-iidx": [
-		index(
-			{ "data.arcChartID": 1 },
-			{ unique: true, partialFilterExpression: { "data.arcChartID": { $type: "string" } } }
-		),
-		index({ "data.hashSHA256": 1 }),
-	],
+
 	"bms-course-lookup": [index({ md5sums: 1 }, UNIQUE)],
 	"api-tokens": [index({ token: 1 }, UNIQUE), index({ userID: 1 })],
 	tables: [index({ tableID: 1, game: 1, playtype: 1 }, UNIQUE)],
@@ -84,6 +78,14 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	counters: [index({ counterName: 1 }, UNIQUE)],
 	"class-achievements": [index({ game: 1, playtype: 1, timeAchieved: 1 })],
 	"api-clients": [index({ clientID: 1 }, UNIQUE)],
+	"charts-iidx": [
+		index(
+			{ "data.arcChartID": 1 },
+			{ unique: true, partialFilterExpression: { "data.arcChartID": { $type: "string" } } }
+		),
+		index({ "data.hashSHA256": 1 }),
+		index({ "data.inGameID": 1, playtype: 1, difficulty: 1 }),
+	],
 	"charts-bms": [index({ "data.hashMD5": 1 }, UNIQUE), index({ "data.hashSHA256": 1 }, UNIQUE)],
 	"charts-popn": [index({ "data.hashSHA256": 1 }, UNIQUE)],
 	"charts-sdvx": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],

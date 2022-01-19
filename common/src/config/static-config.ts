@@ -59,8 +59,8 @@ export const allIDStrings: IDStrings[] = [
 	"usc:Controller",
 	"usc:Keyboard",
 	"wacca:Single",
-	// "pms:Controller",
-	// "pms:Keyboard",
+	"pms:Controller",
+	"pms:Keyboard",
 	"jubeat:Single",
 ];
 
@@ -77,6 +77,7 @@ export const allSupportedGames: Game[] = [
 	"gitadora",
 	"usc",
 	"wacca",
+	"pms",
 ];
 
 export type Versions = {

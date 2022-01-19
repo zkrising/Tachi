@@ -144,7 +144,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 
 	const game = context.chart.mode === "POPN_9K" ? "pms" : "bms";
 
-	let chart;
+	let chart: ChartDocument<"bms:14K" | "bms:7K" | "pms:Controller" | "pms:Keyboard"> | null;
 
 	if (game === "bms") {
 		chart = (await FindChartOnSHA256(game, data.sha256)) as ChartDocument<

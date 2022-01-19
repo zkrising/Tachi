@@ -76,11 +76,11 @@ const SUPPORTED_BMS_CLIENTS = [
 ];
 
 const SUPPORTED_PMS_CLIENTS = [
-	"Beatoraja 0.8.4",
-	"Beatoraja 0.8.3",
-	"Beatoraja 0.8.2",
-	"Beatoraja 0.8.1",
-	"Beatoraja 0.8.0",
+	"beatoraja 0.8.4",
+	"beatoraja 0.8.3",
+	"beatoraja 0.8.2",
+	"beatoraja 0.8.1",
+	"beatoraja 0.8.0",
 ];
 
 export function ParseBeatorajaSingle(

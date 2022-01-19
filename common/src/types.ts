@@ -1277,7 +1277,6 @@ export type IRImportTypes =
 	| "ir/fervidex"
 	| "ir/usc"
 	| "ir/beatoraja"
-	| "ir/beatoraja-pms"
 	| "ir/fervidex-static"
 	| "ir/kshook-sv3c"
 	| "ir/lr2hook";

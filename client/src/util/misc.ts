@@ -6,6 +6,7 @@ import {
 	Game,
 	GamePTConfig,
 	GetGamePTConfig,
+	Grades,
 	IDStrings,
 	integer,
 	ScoreCalculatedDataLookup,
@@ -243,4 +244,76 @@ export function FormatScoreRating(
 	}
 
 	return formatter(value);
+}
+
+export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
+	game: Game,
+	playtype: Playtype,
+	percent: number
+): Grades[I] {
+	const gptConfig = GetGamePTConfig(game, playtype);
+	const boundaries = gptConfig.gradeBoundaries;
+	const grades = gptConfig.grades;
+
+	if (!boundaries) {
+		throw new Error(
+			`Invalid call to GetGradeFromPercent! GPT ${game}:${playtype} does not use grade boundaries.`
+		);
+	}
+
+	// (hey, this for loop is backwards!)
+	for (let i = boundaries.length; i >= 0; i--) {
+		if (percent >= boundaries[i]) {
+			return grades[i] as Grades[I];
+		}
+	}
+
+	throw new Error(`Could not resolve grade for percent ${percent} on game ${game}`);
+}
+
+/**
+ * Calculates the PikaGreatFunction, used in BPI. I have no idea what this does.
+ */
+function BPIPikaGreatFn(score: integer, max: integer) {
+	return score === max ? max * 0.8 : 1 + (score / max - 0.5) / (1 - score / max);
+}
+
+export function CalculateBPI(
+	kaidenEx: integer,
+	wrEx: integer,
+	yourEx: integer,
+	max: integer,
+	pc: number | null
+) {
+	let powCoef = pc ?? 1.175;
+	if (powCoef === -1) {
+		powCoef = 1.175;
+	}
+
+	const yourPGF = BPIPikaGreatFn(yourEx, max);
+	const kaidenPGF = BPIPikaGreatFn(kaidenEx, max);
+	const wrPGF = BPIPikaGreatFn(wrEx, max);
+
+	// no idea what these var names are
+	const _s_ = yourPGF / kaidenPGF;
+	const _z_ = wrPGF / kaidenPGF;
+
+	const isBetterThanKavg = yourEx >= kaidenEx;
+
+	// this line of code isn't mine, and that's why it's *really* bad here.
+	const bpi =
+		Math.round(
+			(isBetterThanKavg ? 100 : -100) *
+				Math.pow(
+					(isBetterThanKavg ? Math.log(_s_) : -Math.log(_s_)) / Math.log(_z_),
+					powCoef
+				) *
+				100
+		) / 100;
+
+	if (bpi < -15) {
+		return -15;
+	}
+
+	return bpi;
 }

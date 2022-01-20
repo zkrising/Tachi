@@ -1,16 +1,25 @@
 import React from "react";
-import { PBScoreDocument, ScoreCalculatedDataLookup, ScoreDocument } from "tachi-common";
+import {
+	ChartDocument,
+	PBScoreDocument,
+	ScoreCalculatedDataLookup,
+	ScoreDocument,
+} from "tachi-common";
 import { IsNullish } from "util/misc";
+import BPICell from "../cells/BPICell";
 import DeltaCell from "../cells/DeltaCell";
 import IIDXLampCell from "../cells/IIDXLampCell";
+import RatingCell from "../cells/RatingCell";
 import ScoreCell from "../cells/ScoreCell";
 
 export default function IIDXCoreCells({
 	sc,
 	rating,
+	chart,
 }: {
 	sc: PBScoreDocument<"iidx:SP" | "iidx:DP"> | ScoreDocument<"iidx:SP" | "iidx:DP">;
 	rating: ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"];
+	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
 }) {
 	return (
 		<>
@@ -23,11 +32,11 @@ export default function IIDXCoreCells({
 				grade={sc.scoreData.grade}
 			/>
 			<IIDXLampCell sc={sc} />
-			<td>
-				{!IsNullish(sc.calculatedData[rating])
-					? sc.calculatedData[rating]!.toFixed(2)
-					: "No Data."}
-			</td>
+			{rating === "BPI" ? (
+				<BPICell chart={chart} score={sc} />
+			) : (
+				<RatingCell rating={rating} score={sc} />
+			)}
 		</>
 	);
 }

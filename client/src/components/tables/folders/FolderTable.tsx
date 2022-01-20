@@ -96,7 +96,7 @@ function Row<I extends IDStrings = IDStrings>({
 			<DifficultyCell chart={data} game={game} />
 			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell song={data.__related.song} chart={data} game={game} />
-			<ScoreCoreCells score={score} game={game} rating={rating} />
+			<ScoreCoreCells score={score} game={game} rating={rating} chart={data} />
 			<RankingCell rankingData={score.rankingData} />
 			<TimestampCell time={score.timeAchieved} />
 		</DropdownRow>

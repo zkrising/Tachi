@@ -1,5 +1,5 @@
 import React from "react";
-import { ScoreDocument, PBScoreDocument, IDStrings } from "tachi-common";
+import { ScoreDocument, PBScoreDocument, IDStrings, ChartDocument } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
 import { ScoreState } from "../ScoreDropdown";
 
@@ -15,7 +15,16 @@ export default function PBCompare<I extends IDStrings>({
 		scoreState: ScoreState;
 		pbData: UGPTChartPBComposition;
 		forceScoreData: boolean;
+		chart: ChartDocument<I>;
 	}) => JSX.Element;
 }) {
-	return <DocComponent score={data.pb} pbData={data} scoreState={scoreState} forceScoreData />;
+	return (
+		<DocComponent
+			score={data.pb}
+			pbData={data}
+			scoreState={scoreState}
+			forceScoreData
+			chart={data.chart}
+		/>
+	);
 }

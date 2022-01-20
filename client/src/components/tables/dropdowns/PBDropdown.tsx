@@ -21,6 +21,7 @@ export interface ScoreDropdownProps<I extends IDStrings = IDStrings> {
 	score: ScoreDocument<I> | PBScoreDocument<I>;
 	scoreState: ScoreState;
 	pbData: UGPTChartPBComposition<I>;
+	chart: ChartDocument<I>;
 }
 
 export default function PBDropdown<I extends IDStrings = IDStrings>({
@@ -102,6 +103,7 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 				isLoading={histIsLoading}
 				game={game}
 				playtype={playtype}
+				chart={chart}
 			/>
 		);
 	} else if (view === "debug") {
@@ -113,6 +115,7 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 				showSingleScoreNote={isComposedFromSingleScore}
 				pbData={data}
 				scoreState={scoreState}
+				chart={chart}
 			/>
 		);
 	}

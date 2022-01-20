@@ -119,7 +119,7 @@ function Row<I extends IDStrings = IDStrings>({
 		>
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<PBLeadingRows {...{ showUser, showChart, pb, scoreState }} />
-			<ScoreCoreCells score={pb} game={game} rating={rating} />
+			<ScoreCoreCells score={pb} game={game} rating={rating} chart={pb.__related.chart} />
 			<RankingCell rankingData={pb.rankingData} />
 			<TimestampCell time={pb.timeAchieved} />
 			{showPlaycount && <td>{pb.__playcount ?? 0}</td>}

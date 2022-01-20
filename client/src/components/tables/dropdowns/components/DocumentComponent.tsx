@@ -2,7 +2,7 @@ import TimestampCell from "components/tables/cells/TimestampCell";
 import ScoreCoreCells from "components/tables/game-core-cells/ScoreCoreCells";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useEffect, useState } from "react";
-import { PBScoreDocument, ScoreDocument } from "tachi-common";
+import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
 import { SetState } from "types/react";
 import { IsScore } from "util/asserts";
@@ -12,7 +12,13 @@ import JudgementTable from "./JudgementTable";
 import PBNote from "./PBNote";
 import ScoreEditButtons from "./ScoreEditButtons";
 
-export function ScoreInfo({ score }: { score: ScoreDocument | PBScoreDocument }) {
+export function ScoreInfo({
+	score,
+	chart,
+}: {
+	score: ScoreDocument | PBScoreDocument;
+	chart: ChartDocument;
+}) {
 	const rating = useScoreRatingAlg(score.game, score.playtype);
 
 	return (
@@ -27,7 +33,12 @@ export function ScoreInfo({ score }: { score: ScoreDocument | PBScoreDocument })
 				</thead>
 				<tbody>
 					<tr>
-						<ScoreCoreCells game={score.game} score={score} rating={rating} />
+						<ScoreCoreCells
+							game={score.game}
+							score={score}
+							rating={rating}
+							chart={chart}
+						/>
 						{/* @ts-expect-error yeah we know service doesnt necessarily exist */}
 						<TimestampCell time={score.timeAchieved} service={score?.service} />
 					</tr>
@@ -52,6 +63,7 @@ export default function DocumentComponent({
 	GraphComponent = null,
 	forceScoreData = false,
 	pbData,
+	chart,
 }: {
 	score: ScoreDocument | PBScoreDocument;
 	scoreState: { highlight: boolean; setHighlight: SetState<boolean> };
@@ -59,8 +71,15 @@ export default function DocumentComponent({
 	showSingleScoreNote?: boolean;
 	pbData: UGPTChartPBComposition;
 	forceScoreData?: boolean;
+	chart: ChartDocument;
 	GraphComponent?:
-		| (({ score }: { score: ScoreDocument | PBScoreDocument }) => JSX.Element)
+		| (({
+				score,
+				chart,
+		  }: {
+				score: ScoreDocument | PBScoreDocument;
+				chart: ChartDocument;
+		  }) => JSX.Element)
 		| null;
 }) {
 	const [comment, setComment] = useState(IsScore(score) ? score.comment : null);
@@ -74,7 +93,7 @@ export default function DocumentComponent({
 			<div className="col-9">
 				<div className="row h-100 justify-content-center">
 					{GraphComponent ? (
-						<GraphComponent score={score} />
+						<GraphComponent chart={chart} score={score} />
 					) : (
 						<div className="d-flex align-items-center" style={{ height: "200px" }}>
 							<span className="text-muted">No graphs available :(</span>
@@ -83,7 +102,9 @@ export default function DocumentComponent({
 
 					{IsScore(score) ? (
 						<>
-							{renderScoreInfo && !showSingleScoreNote && <ScoreInfo score={score} />}
+							{renderScoreInfo && !showSingleScoreNote && (
+								<ScoreInfo score={score} chart={chart} />
+							)}
 							<CommentContainer comment={comment} />
 							{showSingleScoreNote && (
 								<div className="col-12">
@@ -102,7 +123,9 @@ export default function DocumentComponent({
 						</>
 					) : (
 						<div className="col-12 align-self-end">
-							{forceScoreData && !showSingleScoreNote && <ScoreInfo score={score} />}
+							{forceScoreData && !showSingleScoreNote && (
+								<ScoreInfo score={score} chart={chart} />
+							)}
 							<CommentContainer
 								comment={pbData.scores
 									.map(e => e.comment)

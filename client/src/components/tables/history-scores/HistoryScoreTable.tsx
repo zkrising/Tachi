@@ -1,7 +1,14 @@
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
-import { Game, IDStrings, integer, ScoreCalculatedDataLookup, ScoreDocument } from "tachi-common";
+import {
+	ChartDocument,
+	Game,
+	IDStrings,
+	integer,
+	ScoreCalculatedDataLookup,
+	ScoreDocument,
+} from "tachi-common";
 import { Playtype } from "types/tachi";
 import { NumericSOV } from "util/sorts";
 import TimestampCell from "../cells/TimestampCell";
@@ -14,11 +21,13 @@ export default function HistoryScoreTable({
 	pageLen = 5,
 	playtype,
 	game,
+	chart,
 }: {
 	dataset: ScoreDocument[];
 	pageLen?: integer;
 	playtype: Playtype;
 	game: Game;
+	chart: ChartDocument;
 }) {
 	const defaultRating = useScoreRatingAlg(game, playtype);
 
@@ -55,23 +64,27 @@ export default function HistoryScoreTable({
 			]}
 			defaultSortMode="Timestamp"
 			defaultReverseSort
-			rowFunction={sc => <Row key={sc.scoreID} sc={sc} game={game} rating={rating} />}
+			rowFunction={sc => (
+				<Row chart={chart} key={sc.scoreID} sc={sc} game={game} rating={rating} />
+			)}
 		/>
 	);
 }
 
 function Row({
 	sc,
+	chart,
 	rating,
 	game,
 }: {
 	sc: ScoreDocument;
 	rating: ScoreCalculatedDataLookup[IDStrings];
 	game: Game;
+	chart: ChartDocument;
 }) {
 	return (
 		<tr>
-			<ScoreCoreCells score={sc} game={game} rating={rating as any} />
+			<ScoreCoreCells score={sc} game={game} rating={rating as any} chart={chart} />
 			<TimestampCell time={sc.timeAchieved} service={sc.service} />
 		</tr>
 	);

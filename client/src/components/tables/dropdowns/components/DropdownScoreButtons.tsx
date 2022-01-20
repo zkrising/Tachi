@@ -6,7 +6,12 @@ import { ScoreInfo } from "./DocumentComponent";
 import PBNote from "./PBNote";
 import ScoreEditButtons from "./ScoreEditButtons";
 
-export default function DropdownScoreButtons({ score, scoreState, pbData }: ScoreDropdownProps) {
+export default function DropdownScoreButtons({
+	score,
+	scoreState,
+	pbData,
+	chart,
+}: ScoreDropdownProps) {
 	const [comment, setComment] = useState(IsScore(score) ? score.comment : null);
 
 	useEffect(() => {
@@ -17,7 +22,7 @@ export default function DropdownScoreButtons({ score, scoreState, pbData }: Scor
 		<>
 			{IsScore(score) ? (
 				<>
-					<ScoreInfo score={score} />
+					<ScoreInfo score={score} chart={chart} />
 					<CommentContainer comment={comment} />
 					<ScoreEditButtons
 						score={score}

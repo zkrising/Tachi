@@ -107,7 +107,7 @@ function Row<I extends IDStrings = IDStrings>({
 				chart={sc.__related.chart}
 				game={game}
 			/>
-			<ScoreCoreCells score={sc} rating={rating} game={game} />
+			<ScoreCoreCells score={sc} rating={rating} game={game} chart={sc.__related.chart} />
 			<TimestampCell time={sc.timeAchieved} service={sc.service} />
 		</DropdownRow>
 	);

@@ -1,5 +1,6 @@
 import React from "react";
 import {
+	ChartDocument,
 	Game,
 	IDStrings,
 	PBScoreDocument,
@@ -19,8 +20,10 @@ export default function ScoreCoreCells({
 	game,
 	score,
 	rating,
+	chart,
 }: {
 	score: ScoreDocument | PBScoreDocument;
+	chart: ChartDocument;
 	rating: ScoreCalculatedDataLookup[IDStrings];
 	game: Game;
 }) {
@@ -30,6 +33,7 @@ export default function ScoreCoreCells({
 		return (
 			<IIDXCoreCells
 				rating={rating as ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"]}
+				chart={chart as ChartDocument<"iidx:SP" | "iidx:DP">}
 				sc={sc}
 			/>
 		);

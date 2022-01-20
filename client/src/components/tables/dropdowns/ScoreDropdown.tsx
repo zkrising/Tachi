@@ -89,12 +89,20 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 				game={game}
 				playtype={playtype}
 				data={histData}
+				chart={chart}
 			/>
 		);
 	} else if (view === "debug") {
 		body = <DebugContent data={data} />;
 	} else if (view === "moreInfo") {
-		body = <DocComponent score={thisScore as any} scoreState={scoreState} pbData={data} />;
+		body = (
+			<DocComponent
+				score={thisScore as any}
+				scoreState={scoreState}
+				pbData={data}
+				chart={chart}
+			/>
+		);
 	} else if (view === "vsPB") {
 		body = <PBCompare data={data} DocComponent={DocComponent} scoreState={scoreState} />;
 	} else if (view === "manage") {

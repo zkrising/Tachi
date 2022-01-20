@@ -1,9 +1,12 @@
+import IIDXBPIChart from "components/charts/IIDXBPIChart";
 import IIDXLampChart from "components/charts/IIDXLampChart";
+import DebugContent from "components/util/DebugContent";
 import SelectNav from "components/util/SelectNav";
 import React, { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
-import { PBScoreDocument, ScoreDocument } from "tachi-common";
+import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { IsScore } from "util/asserts";
+import { IsNotNullish, IsNullish } from "util/misc";
 
 // export function ModsTable({ score }: { score: ScoreDocument<"iidx:SP" | "iidx:DP"> }) {
 // 	if (!score.scoreMeta.assist && !score.scoreMeta.random) {
@@ -36,10 +39,12 @@ type LampTypes = "NORMAL" | "EASY" | "HARD" | "EX_HARD";
 
 export function IIDXGraphsComponent({
 	score,
+	chart,
 }: {
 	score: ScoreDocument<"iidx:SP" | "iidx:DP"> | PBScoreDocument<"iidx:SP" | "iidx:DP">;
+	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
 }) {
-	const [lamp, setLamp] = useState(LampToKey(score));
+	const [lamp, setLamp] = useState<LampTypes | "BPI">(LampToKey(score));
 
 	let gaugeStatus: "none" | "single" | "gsm" = "none";
 
@@ -47,6 +52,8 @@ export function IIDXGraphsComponent({
 		gaugeStatus = "gsm";
 	} else if (score.scoreData.hitMeta.gaugeHistory) {
 		gaugeStatus = "single";
+	} else if (IsNotNullish(score.calculatedData.BPI) && lamp !== "BPI") {
+		setLamp("BPI");
 	}
 
 	const shouldDisable = (r: LampTypes) => {
@@ -99,10 +106,20 @@ export function IIDXGraphsComponent({
 					>
 						Ex Hard
 					</SelectNav>
+					<SelectNav
+						id="BPI"
+						value={lamp}
+						setValue={setLamp}
+						disabled={IsNullish(score.calculatedData.BPI)}
+					>
+						BPI
+					</SelectNav>
 				</Nav>
 			</div>
 			<div className="col-12">
-				{gaugeStatus === "gsm" ? (
+				{lamp === "BPI" ? (
+					<IIDXBPIChart chart={chart} score={score} />
+				) : gaugeStatus === "gsm" ? (
 					<GraphComponent type={lamp} values={score.scoreData.hitMeta.gsm![lamp]} />
 				) : gaugeStatus === "single" ? (
 					<GraphComponent type={lamp} values={score.scoreData.hitMeta.gaugeHistory!} />

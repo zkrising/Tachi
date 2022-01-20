@@ -93,7 +93,7 @@ if (require.main === module) {
 
 			songs.push(song);
 			charts.push(chart);
-			charts.push(Object.assign({}, chart, { playtype: "Keyboard" }))
+			charts.push(Object.assign({}, chart, { chartID: CreateChartID(), playtype: "Keyboard" }))
 		}
 
 		MutateCollection("songs-pms.json", () => {

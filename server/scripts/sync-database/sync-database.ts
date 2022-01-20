@@ -19,6 +19,7 @@ import {
 	TableDocument,
 	BMSCourseDocument,
 } from "tachi-common";
+import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { InitaliseFolderChartLookup } from "utils/folder";
 
 interface SyncInstructions {
@@ -63,6 +64,8 @@ async function GenericUpsert<T>(
 		map.set(doc[field], doc);
 	}
 
+	const changedFields = [];
+
 	let i = 0;
 	for (const document of documents) {
 		i++;
@@ -87,6 +90,8 @@ async function GenericUpsert<T>(
 					replacement: document,
 				},
 			});
+
+			changedFields.push(field);
 		}
 
 		// free some memory.
@@ -106,14 +111,16 @@ async function GenericUpsert<T>(
 			upsertedCount,
 			modifiedCount,
 		});
-		await InitaliseFolderChartLookup();
 	}
 
 	if (remove) {
 		await RemoveNotPresent(documents, collection, field, logger);
 	}
 
-	return bwriteOps.length;
+	return {
+		thingsChanged: bwriteOps.length,
+		changedFields,
+	};
 }
 
 const syncInstructions: SyncInstructions[] = [
@@ -135,7 +142,7 @@ const syncInstructions: SyncInstructions[] = [
 
 			const r = await GenericUpsert(charts, collection, "chartID", logger, false);
 
-			if (r) {
+			if (r.thingsChanged) {
 				await InitaliseFolderChartLookup();
 				await UpdateIsPrimaryStatus();
 			}
@@ -150,15 +157,27 @@ const syncInstructions: SyncInstructions[] = [
 		) => {
 			const r = await GenericUpsert(charts, collection, "chartID", logger, true);
 
-			if (r) {
+			if (r.thingsChanged) {
 				await InitaliseFolderChartLookup();
+				await UpdateIsPrimaryStatus();
+
+				await RecalcAllScores({
+					chartID: { $in: r.changedFields },
+				});
 			}
 		},
 	},
 	{
 		pattern: /^songs-/u,
-		handler: (songs: SongDocument[], collection: ICollection<SongDocument>, logger) =>
-			GenericUpsert(songs, collection, "id", logger),
+		handler: async (songs: SongDocument[], collection: ICollection<SongDocument>, logger) => {
+			const r = await GenericUpsert(songs, collection, "id", logger);
+
+			if (r.thingsChanged) {
+				await RecalcAllScores({
+					songID: { $in: r.changedFields },
+				});
+			}
+		},
 	},
 	{
 		pattern: /^folders$/u,

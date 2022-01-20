@@ -18,6 +18,7 @@
 - [FEAT] Added Pop'n Music Support. (#69)
 - [FEAT] Added WACCA Support. (#598)
 - [FEAT] Added support for Skye's pop'n hook. (#563)
+- [FEAT] Added PMS Support (#45)
 
 *****
 

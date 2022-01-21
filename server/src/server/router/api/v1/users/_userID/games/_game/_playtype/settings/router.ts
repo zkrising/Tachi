@@ -55,12 +55,10 @@ router.patch(
 					display2DXTra: "boolean",
 				};
 			}
-			const err = p(
-				req.body,
-				{ gameSpecific: p.optional(schema) },
-				{},
-				{ allowExcessKeys: true }
-			);
+			// A limitation in prudence means that validating top-level properties like this isn't
+			// possible.
+			// A prudence v1.0. should fix this!
+			const err = p({ __: req.body.gameSpecific }, { __: p.optional(schema) }, {});
 
 			if (err) {
 				return res.status(400).json({

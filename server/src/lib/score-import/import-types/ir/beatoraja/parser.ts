@@ -63,30 +63,6 @@ const PR_BeatorajaChart = {
 	hasRandom: "boolean",
 };
 
-const SUPPORTED_BMS_CLIENTS = [
-	"LR2oraja 0.8.4",
-	"LR2oraja 0.8.3",
-	"LR2oraja 0.8.2",
-	"LR2oraja 0.8.1",
-	"LR2oraja 0.8.0",
-	// LITONE9 comes with its own fork of lr2oraja with a different name
-	"LR2oraja 0.8.4c",
-	// Rekidai maintains a custom fork of lr2oraja too...
-	"LR2oraja(rekidai.info) 0.8.4",
-	"LR2oraja(rekidai.info) 0.8.3",
-	"LR2oraja(rekidai.info) 0.8.2",
-	"LR2oraja(rekidai.info) 0.8.1",
-	"LR2oraja(rekidai.info) 0.8.0",
-];
-
-const SUPPORTED_PMS_CLIENTS = [
-	"beatoraja 0.8.4",
-	"beatoraja 0.8.3",
-	"beatoraja 0.8.2",
-	"beatoraja 0.8.1",
-	"beatoraja 0.8.0",
-];
-
 export function ParseBeatorajaSingle(
 	body: Record<string, unknown>,
 	userID: integer,

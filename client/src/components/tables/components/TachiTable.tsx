@@ -165,7 +165,7 @@ export default function TachiTable<D>({
 				<div className="row">
 					<div className="col-lg-4 align-self-center">{displayStr}</div>
 					<div className="d-none d-lg-flex col-lg-4 justify-content-center align-items-center">
-						{settings?.preferences.advancedMode && (
+						{/* {settings?.preferences.advancedMode && (
 							<Button
 								onClick={async () => {
 									let data = dataset;
@@ -187,7 +187,7 @@ export default function TachiTable<D>({
 								<Icon type="table" />
 								Export {search !== "" ? "Filtered Data" : "Table"} (CSV)
 							</Button>
-						)}
+						)} */}
 						{settings?.preferences.developerMode && (
 							<Button
 								className="ml-4 w-50"

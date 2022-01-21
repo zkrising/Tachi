@@ -102,6 +102,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				preferredScoreAlg: "ktLampRating",
 				gameSpecific: {
 					display2DXTra: true,
+					bpiTarget: 50,
 				},
 			});
 
@@ -119,6 +120,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					stats: [],
 					gameSpecific: {
 						display2DXTra: true,
+						bpiTarget: 50,
 					},
 				},
 			},

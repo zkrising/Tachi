@@ -1405,8 +1405,8 @@ export interface ShowcaseStatChart {
 }
 
 export interface UGPTSpecificPreferences {
-	"iidx:SP": { display2DXTra: boolean };
-	"iidx:DP": { display2DXTra: boolean };
+	"iidx:SP": { display2DXTra: boolean; bpiTarget: number };
+	"iidx:DP": { display2DXTra: boolean; bpiTarget: number };
 	"popn:9B": Record<string, never>;
 	"sdvx:Single": Record<string, never>;
 	"usc:Controller": Record<string, never>;

@@ -176,6 +176,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 						scoreBucket: null,
 						stats: [],
 						gameSpecific: {
+							display2DXTra: false,
 							bpiTarget: target,
 						},
 					},

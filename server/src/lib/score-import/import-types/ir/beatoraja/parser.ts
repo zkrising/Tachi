@@ -126,17 +126,16 @@ export function ParseBeatorajaSingle(
 	const score = body.score as BeatorajaScore;
 	const chart = body.chart as BeatorajaChart;
 
-	if (chart.mode === "BEAT_14K" || chart.mode === "BEAT_7K") {
-		if (!SUPPORTED_BMS_CLIENTS.includes(client)) {
-			throw new ScoreImportFatalError(400, `Unsupported BMS client ${client}`);
-		}
-	} else if (chart.mode === "POPN_9K") {
-		if (!SUPPORTED_PMS_CLIENTS.includes(client)) {
-			throw new ScoreImportFatalError(400, `Unsupported PMS client ${client}`);
-		}
-	}
-
 	const isPMS = chart.mode === "POPN_9K";
+
+	const expectedClient = isPMS ? "beatoraja" : "LR2oraja";
+
+	if (!client.startsWith(expectedClient)) {
+		throw new ScoreImportFatalError(
+			400,
+			`Unsupported client ${client} -- Expected a variant of ${expectedClient}.`
+		);
+	}
 
 	return {
 		context: {

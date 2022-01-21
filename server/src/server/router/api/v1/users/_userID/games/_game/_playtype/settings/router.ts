@@ -53,6 +53,7 @@ router.patch(
 			if (game === "iidx") {
 				schema = {
 					display2DXTra: "boolean",
+					bpiTarget: p.isBoundedInteger(0, 100),
 				};
 			}
 			// A limitation in prudence means that validating top-level properties like this isn't

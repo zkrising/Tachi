@@ -212,6 +212,8 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				});
 
 			t.equal(res.statusCode, 400);
+
+			t.end();
 		});
 
 		t.test("Should reject negative BPI targets", async (t) => {

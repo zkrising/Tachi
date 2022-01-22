@@ -42,6 +42,7 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 				],
 				gameSpecific: {
 					display2DXTra: false,
+					bpiTarget: 0,
 				},
 			},
 		});

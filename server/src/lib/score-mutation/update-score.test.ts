@@ -68,8 +68,6 @@ t.test("#UpdateScore", (t) => {
 
 		const newScoreID = CreateScoreID(score.userID, score, score.chartID);
 
-		rootLogger.crit(newScoreID);
-
 		await db.imports.insert(mockImportDocument);
 		await db.sessions.insert(mockSessionDocument);
 
@@ -86,8 +84,6 @@ t.test("#UpdateScore", (t) => {
 		const dbNewScore = await db.scores.findOne({
 			scoreID: newScoreID,
 		});
-
-		rootLogger.crit("foo", await db.scores.find({}));
 
 		t.hasStrict(
 			dbNewScore?.scoreData,

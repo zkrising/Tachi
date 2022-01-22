@@ -30,6 +30,7 @@ export async function CreateGameSettings(userID: integer, game: Game, playtype: 
 	if (game === "iidx") {
 		gameSpecific = {
 			display2DXTra: false,
+			bpiTarget: 0,
 		};
 	}
 

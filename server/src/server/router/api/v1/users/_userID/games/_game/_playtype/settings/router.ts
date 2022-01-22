@@ -52,13 +52,12 @@ router.patch(
 
 			if (game === "iidx") {
 				schema = {
-					display2DXTra: "boolean",
+					display2DXTra: p.optional("boolean"),
+					bpiTarget: p.optional(p.isBoundedInteger(0, 100)),
 				};
 			}
-			// A limitation in prudence means that validating top-level properties like this isn't
-			// possible.
-			// A prudence v1.0. should fix this!
-			const err = p({ __: req.body.gameSpecific }, { __: p.optional(schema) }, {});
+
+			const err = p(req.body.gameSpecific, schema);
 
 			if (err) {
 				return res.status(400).json({

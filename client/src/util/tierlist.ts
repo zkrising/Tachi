@@ -16,6 +16,14 @@ const ScaleNameAchievedFns: ScaleAchievedFns = {
 		"sgl-EC": k => k.scoreData.lampIndex >= IIDX_LAMPS.EASY_CLEAR,
 		"sgl-HC": k => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
 	},
+	"pms:Controller": {
+		"sgl-EC": k => k.scoreData.lampIndex >= IIDX_LAMPS.EASY_CLEAR,
+		"sgl-HC": k => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
+	},
+	"pms:Keyboard": {
+		"sgl-EC": k => k.scoreData.lampIndex >= IIDX_LAMPS.EASY_CLEAR,
+		"sgl-HC": k => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
+	},
 	"chunithm:Single": {},
 	"ddr:DP": {},
 	"ddr:SP": {},

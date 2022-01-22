@@ -81,6 +81,7 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 			];
 		case "iidx":
 		case "bms":
+		case "pms":
 			return [
 				ScoreHeader,
 				[

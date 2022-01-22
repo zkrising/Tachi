@@ -178,19 +178,38 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 				</Form.Text>
 			</Form.Group>
 			{game === "iidx" && (
-				<Form.Group>
-					<Form.Check
-						type="checkbox"
-						id="gameSpecific.display2DXTra"
-						name="gameSpecific.display2DXTra"
-						checked={formik.values.gameSpecific.display2DXTra}
-						onChange={formik.handleChange}
-						label="Display 2DX-tra Charts"
-					/>
-					<Form.Text className="text-muted">
-						Display 2DX-tra charts on the song page.
-					</Form.Text>
-				</Form.Group>
+				<>
+					<Form.Group>
+						<Form.Check
+							type="checkbox"
+							id="gameSpecific.display2DXTra"
+							name="gameSpecific.display2DXTra"
+							checked={formik.values.gameSpecific.display2DXTra}
+							onChange={formik.handleChange}
+							label="Display 2DX-tra Charts"
+						/>
+						<Form.Text className="text-muted">
+							Display 2DX-tra charts on the song page.
+						</Form.Text>
+					</Form.Group>
+					<Form.Group>
+						<Form.Label>BPI Target</Form.Label>
+						<Form.Control
+							type="number"
+							id="gameSpecific.bpiTarget"
+							name="gameSpecific.bpiTarget"
+							value={formik.values.gameSpecific.bpiTarget}
+							min={0}
+							max={100}
+							step={10}
+							onChange={formik.handleChange}
+						/>
+						<Form.Text className="text-muted">
+							Set yourself a BPI target. {TachiConfig.name} will show how far away you
+							are from it in the UI!
+						</Form.Text>
+					</Form.Group>
+				</>
 			)}
 			<div className="row justify-content-center">
 				<Button type="submit" variant="success">

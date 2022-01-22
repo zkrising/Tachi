@@ -3,6 +3,7 @@ import { Game } from "tachi-common";
 const scales: Record<Game, number> = {
 	iidx: 2,
 	bms: 2,
+	pms: 2,
 	chunithm: 5,
 	ddr: 1,
 	gitadora: 1,

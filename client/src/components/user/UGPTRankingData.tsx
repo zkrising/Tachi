@@ -1,5 +1,6 @@
 import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 import React from "react";
+import { Link } from "react-router-dom";
 import { IDStrings, integer, UGSRatingsLookup } from "tachi-common";
 import { GamePT } from "types/react";
 import { UppercaseFirst } from "util/misc";
@@ -35,7 +36,12 @@ export default function RankingData({
 				<h4>Ranking{extendData.length ? ` (${UppercaseFirst(alg)})` : ""}</h4>
 			</div>
 			<div className="col-12">
-				<strong className="display-4">#{rankingData[alg].ranking}</strong>
+				<Link
+					to={`/dashboard/games/${game}/${playtype}/leaderboards`}
+					className="gentle-link"
+				>
+					<strong className="display-4">#{rankingData[alg].ranking}</strong>
+				</Link>
 				<span className="text-muted">/{rankingData[alg].outOf}</span>
 			</div>
 			{extendData}

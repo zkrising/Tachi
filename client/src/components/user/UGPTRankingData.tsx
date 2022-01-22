@@ -8,9 +8,11 @@ import { UppercaseFirst } from "util/misc";
 export default function RankingData({
 	rankingData,
 	game,
+	userID,
 	playtype,
 }: {
 	rankingData: Record<UGSRatingsLookup[IDStrings], { ranking: number; outOf: integer }>;
+	userID: integer;
 } & GamePT) {
 	const alg = useProfileRatingAlg(game, playtype);
 
@@ -37,7 +39,7 @@ export default function RankingData({
 			</div>
 			<div className="col-12">
 				<Link
-					to={`/dashboard/games/${game}/${playtype}/leaderboards`}
+					to={`/dashboard/users/${userID}/games/${game}/${playtype}/leaderboards`}
 					className="gentle-link"
 				>
 					<strong className="display-4">#{rankingData[alg].ranking}</strong>

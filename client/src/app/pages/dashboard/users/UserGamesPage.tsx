@@ -99,6 +99,7 @@ export function GameStatContainer({ ugs, reqUser }: { ugs: UGSWithRankingData } 
 					game={ugs.game}
 					playtype={ugs.playtype}
 					rankingData={ugs.__rankingData}
+					userID={ugs.userID}
 				/>
 			</Card>
 		</div>

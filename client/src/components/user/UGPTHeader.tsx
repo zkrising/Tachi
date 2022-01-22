@@ -68,7 +68,12 @@ export function UGPTHeaderBody({
 				<UGPTRatingsTable ugs={stats.gameStats} />
 			</div>
 			<div className="col-12 col-lg-3">
-				<RankingData rankingData={stats.rankingData} game={game} playtype={playtype} />
+				<RankingData
+					rankingData={stats.rankingData}
+					game={game}
+					playtype={playtype}
+					userID={reqUser.id}
+				/>
 			</div>
 		</>
 	);

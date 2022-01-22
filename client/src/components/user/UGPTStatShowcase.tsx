@@ -25,6 +25,7 @@ import { UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
 import { Playtype } from "types/tachi";
 import { APIFetchV1 } from "util/api";
+import { CreateChartLink } from "util/data";
 import { ToPercent, UppercaseFirst } from "util/misc";
 import UGPTStatContainer from "./UGPTStatContainer";
 import UGPTStatCreator from "./UGPTStatCreator";
@@ -390,7 +391,9 @@ export function StatDisplay({
 				header={<h5 className="text-muted mb-0">Chart</h5>}
 			>
 				<>
-					<h4>{FormatChart(game, song, chart)}</h4>
+					<Link className="gentle-link" to={CreateChartLink(chart, game)}>
+						<h4>{FormatChart(game, song, chart)}</h4>
+					</Link>
 					<h4>
 						{UppercaseFirst(stat.property)}:{" "}
 						{FormatPropertyGTE(game, playtype, stat.property, result.value)}

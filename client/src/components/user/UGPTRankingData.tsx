@@ -39,7 +39,7 @@ export default function RankingData({
 			</div>
 			<div className="col-12">
 				<Link
-					to={`/dashboard/users/${userID}/games/${game}/${playtype}/leaderboards`}
+					to={`/dashboard/users/${userID}/games/${game}/${playtype}/leaderboard`}
 					className="gentle-link"
 				>
 					<strong className="display-4">#{rankingData[alg].ranking}</strong>

@@ -12,6 +12,7 @@ specifiers:
   '@nivo/calendar': 0.73.0
   '@nivo/core': 0.73.0
   '@nivo/line': 0.73.0
+  '@nivo/tooltip': ^0.79.0
   '@svgr/webpack': 4.3.2
   '@tanem/svg-injector': 8.0.50
   '@types/aes-js': 3.1.1
@@ -83,6 +84,7 @@ specifiers:
   react-router-dom: 5.1.2
   resolve: 1.12.0
   resolve-url-loader: 3.1.0
+  rg-stats: ^0.2.0
   sass: 1.32.8
   sass-loader: 7.2.0
   serve: 11.2.0
@@ -111,8 +113,9 @@ dependencies:
   '@material-ui/styles': 4.9.14_47cbb7f80549068c6fc0f244709343f3
   '@nivo/bar': 0.73.1_af70e2f24ecb678379eaf1fecde74095
   '@nivo/calendar': 0.73.0_af70e2f24ecb678379eaf1fecde74095
-  '@nivo/core': 0.73.0_daa63591b4887679d91d5052abc47fab
+  '@nivo/core': 0.73.0_9dba1abd5f395818f6d69a6bab1b2875
   '@nivo/line': 0.73.0_af70e2f24ecb678379eaf1fecde74095
+  '@nivo/tooltip': 0.79.0_959e4c52067596a24a1566afe9b21267
   '@svgr/webpack': 4.3.2
   '@tanem/svg-injector': 8.0.50
   '@types/aes-js': 3.1.1
@@ -163,6 +166,7 @@ dependencies:
   react-router-dom: 5.1.2_react@17.0.2
   resolve: 1.12.0
   resolve-url-loader: 3.1.0
+  rg-stats: 0.2.0
   socicon: 3.0.5
   tachi-common: 0.5.5
 
@@ -2605,7 +2609,7 @@ packages:
       react: '>= 16.14.0 < 18.0.0'
     dependencies:
       '@nivo/colors': 0.73.0_1e2530932e723fe077eff6796ecbba5b
-      '@nivo/core': 0.73.0_daa63591b4887679d91d5052abc47fab
+      '@nivo/core': 0.73.0_9dba1abd5f395818f6d69a6bab1b2875
       '@react-spring/web': 9.2.4_react-dom@16.12.0+react@17.0.2
       lodash: 4.17.21
       react: 17.0.2
@@ -2621,7 +2625,7 @@ packages:
       prop-types: '>= 15.5.10 < 16.0.0'
       react: '>= 16.14.0 < 18.0.0'
     dependencies:
-      '@nivo/core': 0.73.0_daa63591b4887679d91d5052abc47fab
+      '@nivo/core': 0.73.0_9dba1abd5f395818f6d69a6bab1b2875
       '@nivo/scales': 0.73.0
       '@react-spring/web': 9.2.4_react-dom@16.12.0+react@17.0.2
       d3-format: 1.4.5
@@ -2642,7 +2646,7 @@ packages:
       '@nivo/annotations': 0.73.0_af70e2f24ecb678379eaf1fecde74095
       '@nivo/axes': 0.73.0_af70e2f24ecb678379eaf1fecde74095
       '@nivo/colors': 0.73.0_1e2530932e723fe077eff6796ecbba5b
-      '@nivo/core': 0.73.0_daa63591b4887679d91d5052abc47fab
+      '@nivo/core': 0.73.0_9dba1abd5f395818f6d69a6bab1b2875
       '@nivo/legends': 0.73.0_1e2530932e723fe077eff6796ecbba5b
       '@nivo/recompose': 0.73.0_react@17.0.2
       '@nivo/scales': 0.73.0
@@ -2663,7 +2667,7 @@ packages:
       '@nivo/core': 0.73.0
       react: '>= 16.14.0 < 18.0.0'
     dependencies:
-      '@nivo/core': 0.73.0_daa63591b4887679d91d5052abc47fab
+      '@nivo/core': 0.73.0_9dba1abd5f395818f6d69a6bab1b2875
       '@nivo/legends': 0.73.0_1e2530932e723fe077eff6796ecbba5b
       '@nivo/tooltip': 0.73.0_959e4c52067596a24a1566afe9b21267
       d3-scale: 3.3.0
@@ -2683,7 +2687,7 @@ packages:
       prop-types: '>= 15.5.10 < 16.0.0'
       react: '>= 16.14.0 < 18.0.0'
     dependencies:
-      '@nivo/core': 0.73.0_daa63591b4887679d91d5052abc47fab
+      '@nivo/core': 0.73.0_9dba1abd5f395818f6d69a6bab1b2875
       d3-color: 2.0.0
       d3-scale: 3.3.0
       d3-scale-chromatic: 2.0.0
@@ -2693,7 +2697,7 @@ packages:
       react-motion: 0.5.2_react@17.0.2
     dev: false
 
-  /@nivo/core/0.73.0_daa63591b4887679d91d5052abc47fab:
+  /@nivo/core/0.73.0_9dba1abd5f395818f6d69a6bab1b2875:
     resolution: {integrity: sha512-NFKSk5NQgC2NB3olG8hltN4b4Ri0rB0vt3q1yGmQj+RdGRS4f82Dtwt5Ratxu6QeZD8lt0DhqN9Q7TJ+j/kt0g==}
     peerDependencies:
       '@nivo/tooltip': 0.73.0
@@ -2701,6 +2705,7 @@ packages:
       react: '>= 16.14.0 < 18.0.0'
     dependencies:
       '@nivo/recompose': 0.73.0_react@17.0.2
+      '@nivo/tooltip': 0.79.0_959e4c52067596a24a1566afe9b21267
       '@react-spring/web': 9.2.4_react-dom@16.12.0+react@17.0.2
       d3-color: 2.0.0
       d3-format: 1.4.5
@@ -2725,7 +2730,7 @@ packages:
       prop-types: '>= 15.5.10 < 16.0.0'
       react: '>= 16.14.0 < 18.0.0'
     dependencies:
-      '@nivo/core': 0.73.0_daa63591b4887679d91d5052abc47fab
+      '@nivo/core': 0.73.0_9dba1abd5f395818f6d69a6bab1b2875
       prop-types: 15.6.0
       react: 17.0.2
     dev: false
@@ -2740,7 +2745,7 @@ packages:
       '@nivo/annotations': 0.73.0_af70e2f24ecb678379eaf1fecde74095
       '@nivo/axes': 0.73.0_af70e2f24ecb678379eaf1fecde74095
       '@nivo/colors': 0.73.0_1e2530932e723fe077eff6796ecbba5b
-      '@nivo/core': 0.73.0_daa63591b4887679d91d5052abc47fab
+      '@nivo/core': 0.73.0_9dba1abd5f395818f6d69a6bab1b2875
       '@nivo/legends': 0.73.0_1e2530932e723fe077eff6796ecbba5b
       '@nivo/scales': 0.73.0
       '@nivo/tooltip': 0.73.0_959e4c52067596a24a1566afe9b21267
@@ -2776,8 +2781,20 @@ packages:
     peerDependencies:
       '@nivo/core': 0.73.0
     dependencies:
-      '@nivo/core': 0.73.0_daa63591b4887679d91d5052abc47fab
+      '@nivo/core': 0.73.0_9dba1abd5f395818f6d69a6bab1b2875
       '@react-spring/web': 9.2.4_react-dom@16.12.0+react@17.0.2
+    transitivePeerDependencies:
+      - react
+      - react-dom
+    dev: false
+
+  /@nivo/tooltip/0.79.0_959e4c52067596a24a1566afe9b21267:
+    resolution: {integrity: sha512-hsJsvhDVR9P/QqIEDIttaA6aslR3tU9So1s/k2jMdppL7J9ZH/IrVx9TbIP7jDKmnU5AMIP5uSstXj9JiKLhQA==}
+    peerDependencies:
+      '@nivo/core': 0.79.0
+    dependencies:
+      '@nivo/core': 0.73.0_9dba1abd5f395818f6d69a6bab1b2875
+      '@react-spring/web': 9.3.1_react-dom@16.12.0+react@17.0.2
     transitivePeerDependencies:
       - react
       - react-dom
@@ -2789,7 +2806,7 @@ packages:
       '@nivo/core': 0.73.0
       react: '>= 16.14.0 < 18.0.0'
     dependencies:
-      '@nivo/core': 0.73.0_daa63591b4887679d91d5052abc47fab
+      '@nivo/core': 0.73.0_9dba1abd5f395818f6d69a6bab1b2875
       d3-delaunay: 5.3.0
       d3-scale: 3.3.0
       react: 17.0.2
@@ -2835,6 +2852,16 @@ packages:
       react: 17.0.2
     dev: false
 
+  /@react-spring/animated/9.3.2_react@17.0.2:
+    resolution: {integrity: sha512-pBvKydRHbTzuyaeHtxGIOvnskZxGo/S5/YK1rtYm88b9NQZuZa95Rgd3O0muFL+99nvBMBL8cvQGD0UJmsqQsg==}
+    peerDependencies:
+      react: ^16.8.0  || ^17.0.0
+    dependencies:
+      '@react-spring/shared': 9.3.2_react@17.0.2
+      '@react-spring/types': 9.3.2
+      react: 17.0.2
+    dev: false
+
   /@react-spring/core/9.2.4_react@17.0.2:
     resolution: {integrity: sha512-R+PwyfsjiuYCWqaTTfCpYpRmsP0h87RNm7uxC1Uxy7QAHUfHEm2sAHn+AdHPwq/MbVwDssVT8C5yf2WGcqiXGg==}
     requiresBuild: true
@@ -2847,8 +2874,23 @@ packages:
       react: 17.0.2
     dev: false
 
+  /@react-spring/core/9.3.2_react@17.0.2:
+    resolution: {integrity: sha512-kMRjkgdQ6LJ0lmb/wQlONpghaMT83UxglXHJC6m9kZS/GKVmN//TYMEK85xN1rC5Gg+BmjG61DtLCSkkLDTfNw==}
+    peerDependencies:
+      react: ^16.8.0  || ^17.0.0
+    dependencies:
+      '@react-spring/animated': 9.3.2_react@17.0.2
+      '@react-spring/shared': 9.3.2_react@17.0.2
+      '@react-spring/types': 9.3.2
+      react: 17.0.2
+    dev: false
+
   /@react-spring/rafz/9.2.4:
     resolution: {integrity: sha512-SOKf9eue+vAX+DGo7kWYNl9i9J3gPUlQjifIcV9Bzw9h3i30wPOOP0TjS7iMG/kLp2cdHQYDNFte6nt23VAZkQ==}
+    dev: false
+
+  /@react-spring/rafz/9.3.2:
+    resolution: {integrity: sha512-YtqNnAYp5bl6NdnDOD5TcYS40VJmB+Civ4LPtcWuRPKDAOa/XAf3nep48r0wPTmkK936mpX8aIm7h+luW59u5A==}
     dev: false
 
   /@react-spring/shared/9.2.4_react@17.0.2:
@@ -2861,8 +2903,22 @@ packages:
       react: 17.0.2
     dev: false
 
+  /@react-spring/shared/9.3.2_react@17.0.2:
+    resolution: {integrity: sha512-ypGQQ8w7mWnrELLon4h6mBCBxdd8j1pgLzmHXLpTC/f4ya2wdP+0WIKBWXJymIf+5NiTsXgSJra5SnHP5FBY+A==}
+    peerDependencies:
+      react: ^16.8.0  || ^17.0.0
+    dependencies:
+      '@react-spring/rafz': 9.3.2
+      '@react-spring/types': 9.3.2
+      react: 17.0.2
+    dev: false
+
   /@react-spring/types/9.2.4:
     resolution: {integrity: sha512-zHUXrWO8nweUN/ISjrjqU7GgXXvoEbFca1CgiE0TY0H/dqJb3l+Rhx8ecPVNYimzFg3ZZ1/T0egpLop8SOv4aA==}
+    dev: false
+
+  /@react-spring/types/9.3.2:
+    resolution: {integrity: sha512-u+IK9z9Re4hjNkBYKebZr7xVDYTai2RNBsI4UPL/k0B6lCNSwuqWIXfKZUDVlMOeZHtDqayJn4xz6HcSkTj3FQ==}
     dev: false
 
   /@react-spring/web/9.2.4_react-dom@16.12.0+react@17.0.2:
@@ -2875,6 +2931,20 @@ packages:
       '@react-spring/core': 9.2.4_react@17.0.2
       '@react-spring/shared': 9.2.4_react@17.0.2
       '@react-spring/types': 9.2.4
+      react: 17.0.2
+      react-dom: 16.12.0_react@17.0.2
+    dev: false
+
+  /@react-spring/web/9.3.1_react-dom@16.12.0+react@17.0.2:
+    resolution: {integrity: sha512-sisZIgFGva/Z+xKWPSfXpukF0AP3kR9ALTxlHL87fVotMUCJX5vtH/YlVcywToEFwTHKt3MpI5Wy2M+vgVEeaw==}
+    peerDependencies:
+      react: ^16.8.0  || ^17.0.0
+      react-dom: ^16.8.0  || ^17.0.0
+    dependencies:
+      '@react-spring/animated': 9.3.2_react@17.0.2
+      '@react-spring/core': 9.3.2_react@17.0.2
+      '@react-spring/shared': 9.3.2_react@17.0.2
+      '@react-spring/types': 9.3.2
       react: 17.0.2
       react-dom: 16.12.0_react@17.0.2
     dev: false
@@ -10629,6 +10699,10 @@ packages:
     dependencies:
       convert-source-map: 0.3.5
       css: 2.2.4
+    dev: false
+
+  /rg-stats/0.2.0:
+    resolution: {integrity: sha512-d+IFYlryQMZjMYVJgL0vIZCdUpkYhUC9vzfMHOs/HNEeM5jjlVLDyuiru4UJlc67XoqGgby2Mp6IkcFoRXz4Gw==}
     dev: false
 
   /rgb-regex/1.0.1:

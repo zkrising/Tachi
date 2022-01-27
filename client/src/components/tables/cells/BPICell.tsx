@@ -1,7 +1,10 @@
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Divider from "components/util/Divider";
 import Muted from "components/util/Muted";
-import React, { useState } from "react";
+import useUGPTSettings from "components/util/useUGPTSettings";
+import { UGPTSettingsContext } from "context/UGPTSettingsContext";
+import React, { useContext, useState } from "react";
+import { PoyashiBPI } from "rg-stats";
 import { ChartDocument, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { GetGradeFromPercent, IsNullish } from "util/misc";
 import MiniTable from "../components/MiniTable";
@@ -61,11 +64,32 @@ export default function BPICell({
 	score: ScoreDocument<"iidx:SP" | "iidx:DP"> | PBScoreDocument<"iidx:SP" | "iidx:DP">;
 	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
 }) {
+	const { settings } = useUGPTSettings<"iidx:SP" | "iidx:DP">();
+
 	const bpi = score.calculatedData.BPI;
-	const { kaidenAverage, worldRecord } = chart.data;
+	const { kaidenAverage, worldRecord, notecount, bpiCoefficient } = chart.data;
 
 	if (IsNullish(score.calculatedData.BPI) || IsNullish(kaidenAverage) || IsNullish(worldRecord)) {
 		return <td>N/A</td>;
+	}
+
+	const bpiTarget = settings.preferences.gameSpecific.bpiTarget;
+	let bpiTargetScore = 0;
+	let targetDelta: number | null = 0;
+
+	try {
+		bpiTargetScore = PoyashiBPI.inverse(
+			bpiTarget,
+			kaidenAverage!,
+			worldRecord!,
+			notecount * 2,
+			bpiCoefficient
+		);
+
+		targetDelta = score.scoreData.score - bpiTargetScore;
+	} catch (err) {
+		console.warn(err);
+		// Wasn't possible to get this BPI!
 	}
 
 	const kavgDelta = score.scoreData.score - kaidenAverage!;
@@ -83,19 +107,32 @@ export default function BPICell({
 		chart.data.notecount
 	);
 
-	const [show, setShow] = useState(false);
+	const { score: TGAverageCell, delta: TGDeltaCell } = FormatAverage(
+		bpiTargetScore,
+		chart.playtype,
+		chart.data.notecount
+	);
 
 	return (
 		<>
 			<QuickTooltip
+				wide
 				tooltipContent={
 					<>
-						<MiniTable headers={["皆伝 Average", "World Record"]}>
+						<MiniTable
+							headers={[
+								`Your Target (BPI ${bpiTarget})`,
+								"皆伝 Average",
+								"World Record",
+							]}
+						>
 							<tr>
+								{TGAverageCell}
 								{KDAverageCell}
 								{WRAverageCell}
 							</tr>
 							<tr>
+								{TGDeltaCell}
 								{KDDeltaCell}
 								{WRDeltaCell}
 							</tr>
@@ -103,7 +140,8 @@ export default function BPICell({
 						<Divider />
 						<Muted>
 							BPI Coefficient:{" "}
-							{IsNullish(chart.data.bpiCoefficient) || chart.data.bpiCoefficient === 1
+							{IsNullish(chart.data.bpiCoefficient) ||
+							chart.data.bpiCoefficient === -1
 								? 1.175
 								: chart.data.bpiCoefficient}
 							<br />
@@ -113,15 +151,23 @@ export default function BPICell({
 				}
 			>
 				<td>
-					<strong className="underline-on-hover" onClick={() => setShow(true)}>
-						{bpi}
-					</strong>
+					<strong className="underline-on-hover">{bpi}</strong>
 					<br />
 
 					<div>
-						<Muted>皆伝{kavgDelta < 0 ? kavgDelta : `+${kavgDelta}`}</Muted>
-						<br />
-						<Muted>WR{wrDelta < 0 ? wrDelta : `+${wrDelta}`}</Muted>
+						<BPITargetCell bpiTarget={bpiTarget} targetDelta={targetDelta} />
+						{bpiTarget !== 0 && (
+							<>
+								<br />
+								<Muted>皆伝{kavgDelta < 0 ? kavgDelta : `+${kavgDelta}`}</Muted>
+							</>
+						)}
+						{/* {bpiTarget !== 100 && (
+							<>
+								<br />
+								<Muted>WR{wrDelta < 0 ? wrDelta : `+${wrDelta}`}</Muted>
+							</>
+						)} */}
 					</div>
 				</td>
 			</QuickTooltip>
@@ -160,4 +206,39 @@ function FormatAverage(score: integer, playtype: "SP" | "DP", notecount: integer
 			/>
 		),
 	};
+}
+
+function BPITargetCell({
+	targetDelta,
+	bpiTarget,
+}: {
+	targetDelta: number | null;
+	bpiTarget: number;
+}) {
+	if (targetDelta === null) {
+		return <small>BPI{bpiTarget} Not Possible</small>;
+	}
+
+	let tag = `${bpiTarget}BPI `;
+
+	if (bpiTarget === 0) {
+		tag = "皆伝";
+	} else if (bpiTarget === 100) {
+		tag = "WR";
+	}
+
+	return (
+		<small
+			className={
+				targetDelta < 0
+					? "text-danger"
+					: targetDelta === 0
+					? "text-warning"
+					: "text-success"
+			}
+		>
+			{tag}
+			{targetDelta < 0 ? targetDelta : `+${targetDelta}`}
+		</small>
+	);
 }

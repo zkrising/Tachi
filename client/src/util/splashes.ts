@@ -105,6 +105,7 @@ export const loggedInSplashes = [
 	"Just tryna t-take it easy and... chill out afterwards",
 	"you weren't theerrreee",
 	"Is this really happening?",
+	"Let's see Paul Allen's score tracker.",
 ];
 
 // Stuff that's bad for the kids, you know?

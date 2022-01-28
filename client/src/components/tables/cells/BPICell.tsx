@@ -2,8 +2,7 @@ import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Divider from "components/util/Divider";
 import Muted from "components/util/Muted";
 import useUGPTSettings from "components/util/useUGPTSettings";
-import { UGPTSettingsContext } from "context/UGPTSettingsContext";
-import React, { useContext, useState } from "react";
+import React from "react";
 import { PoyashiBPI } from "rg-stats";
 import { ChartDocument, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { GetGradeFromPercent, IsNullish } from "util/misc";
@@ -73,7 +72,7 @@ export default function BPICell({
 		return <td>N/A</td>;
 	}
 
-	const bpiTarget = settings.preferences.gameSpecific.bpiTarget;
+	const bpiTarget = settings?.preferences.gameSpecific.bpiTarget ?? 0;
 	let bpiTargetScore = 0;
 	let targetDelta: number | null = 0;
 

@@ -40,7 +40,12 @@ export default function ScoreCoreCells({
 	} else if (game === "bms") {
 		return <BMSCoreCells sc={sc} rating={rating} />;
 	} else if (game === "sdvx" || game === "usc") {
-		return <SDVXScoreCoreCells sc={sc} />;
+		return (
+			<SDVXScoreCoreCells
+				sc={sc}
+				chart={chart as ChartDocument<"sdvx:Single" | "usc:Controller" | "usc:Keyboard">}
+			/>
+		);
 	} else if (game === "maimai") {
 		return <GenericCoreCells showScore={false} sc={sc} rating={rating} />;
 	} else if (game === "museca") {

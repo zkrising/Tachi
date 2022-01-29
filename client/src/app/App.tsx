@@ -1,5 +1,6 @@
 import { LoadingScreen } from "components/layout/screens/LoadingScreen";
 import { BannedContextProvider } from "context/BannedContext";
+import ErrorBoundary from "components/util/ErrorBoundary";
 import { SubheaderContextProvider } from "context/SubheaderContext";
 import { UserContextProvider } from "context/UserContext";
 import { UserGameStatsContextProvider } from "context/UserGameStatsContext";

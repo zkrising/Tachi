@@ -25,6 +25,7 @@ try {
 		throw new Error(`Failed to fetch config -- ${configRes.description}.`);
 	}
 } catch (err) {
+	alert(`Fatal Error: Site is (probably) down. Sorry. (${(err as Error).message})`);
 	throw new Error(`Site is (probably) down. Sorry. (${(err as Error).message})`);
 }
 

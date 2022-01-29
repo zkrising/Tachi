@@ -201,7 +201,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 							value={formik.values.gameSpecific.bpiTarget}
 							min={0}
 							max={100}
-							step={10}
+							step={5}
 							onChange={formik.handleChange}
 						/>
 						<Form.Text className="text-muted">

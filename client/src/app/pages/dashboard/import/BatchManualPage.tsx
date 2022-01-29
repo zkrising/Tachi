@@ -24,7 +24,7 @@ export default function BatchManualPage() {
 
 				if (!gameConfig) {
 					throw new Error(
-						`Invalid game ${data.meta.game}. Expected any of ${TachiConfig.supportedGames}.`
+						`Invalid game ${data.meta.game}. Expected any of ${TachiConfig.games}.`
 					);
 				}
 

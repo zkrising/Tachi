@@ -81,7 +81,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 	const params = useLocation<{ game?: Game; playtype?: Playtype }>();
 
 	const { game, playtype } = useMemo(() => {
-		const regexp = `/games/(${TachiConfig.supportedGames.join("|")})/[^/]*/?`;
+		const regexp = `/games/(${TachiConfig.games.join("|")})/[^/]*/?`;
 
 		if (params.pathname.match(new RegExp(regexp, "u"))) {
 			const hack = params.pathname.split("/games/")[1].split("/");

@@ -9,7 +9,7 @@ import {
 } from "tachi-common";
 
 export function IsSupportedGame(str: string): str is Game {
-	return TachiConfig.supportedGames.includes((str as unknown) as Game);
+	return TachiConfig.games.includes((str as unknown) as Game);
 }
 
 export function IsSupportedPlaytype<G extends Game = Game>(

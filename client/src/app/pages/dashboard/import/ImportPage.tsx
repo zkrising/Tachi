@@ -35,7 +35,7 @@ export default function ImportPage() {
 				onChange={e => setGame(e.target.value === "" ? null : (e.target.value as Game))}
 			>
 				<option value="">Please select a game.</option>
-				{TachiConfig.supportedGames.map(e => (
+				{TachiConfig.games.map(e => (
 					<option value={e} key={e}>
 						{GetGameConfig(e).name}
 					</option>

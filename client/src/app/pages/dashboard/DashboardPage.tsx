@@ -127,8 +127,8 @@ function UserGameStatsInfo({ user }: { user: PublicUserDocument }) {
 							);
 						}
 
-						const i1 = TachiConfig.supportedGames.indexOf(a.game);
-						const i2 = TachiConfig.supportedGames.indexOf(b.game);
+						const i1 = TachiConfig.games.indexOf(a.game);
+						const i2 = TachiConfig.games.indexOf(b.game);
 
 						return i1 - i2;
 					});

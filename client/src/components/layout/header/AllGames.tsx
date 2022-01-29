@@ -7,7 +7,7 @@ import MenuLink from "./MenuLink";
 export default function AllGames() {
 	const links = [];
 
-	for (const game of TachiConfig.supportedGames) {
+	for (const game of TachiConfig.games) {
 		const gameConfig = GetGameConfig(game);
 
 		for (const playtype of gameConfig.validPlaytypes) {

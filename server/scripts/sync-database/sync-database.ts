@@ -7,7 +7,7 @@ import fjsh from "fast-json-stable-hash";
 import fs from "fs";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
-import { TachiConfig } from "lib/setup/config";
+import { Environment, TachiConfig } from "lib/setup/config";
 import { BulkWriteOperation } from "mongodb";
 import { ICollection } from "monk";
 import os from "os";
@@ -220,9 +220,14 @@ async function SynchroniseDBWithSeeds() {
 	// Wait for mongo to connect first.
 	await monkDB.then(() => void 0);
 
-	execSync(`git clone https://github.com/TNG-dev/tachi-database-seeds --depth=1 ${seedsDir}`, {
-		stdio: "inherit",
-	});
+	execSync(
+		`git clone https://github.com/TNG-dev/tachi-database-seeds -b "${
+			Environment.nodeEnv === "production" ? "master" : "develop"
+		}" --depth=1 "${seedsDir}"`,
+		{
+			stdio: "inherit",
+		}
+	);
 
 	const collections = fs.readdirSync(path.join(seedsDir, "collections"));
 

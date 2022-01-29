@@ -13,11 +13,11 @@ import { ICollection } from "monk";
 import os from "os";
 import path from "path";
 import {
+	BMSCourseDocument,
 	ChartDocument,
 	FolderDocument,
 	SongDocument,
 	TableDocument,
-	BMSCourseDocument,
 } from "tachi-common";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { InitaliseFolderChartLookup } from "utils/folder";

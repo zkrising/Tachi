@@ -19,7 +19,6 @@ export default function SDVXScoreCoreCells({
 			<SDVXJudgementCell score={sc} />
 			<LampCell score={sc} />
 			<VF6Cell score={sc} chart={chart} />
-			<td>{!IsNullish(sc.calculatedData.VF6) ? sc.calculatedData.VF6!.toFixed(3) : "N/A"}</td>
 		</>
 	);
 }

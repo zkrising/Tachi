@@ -3,9 +3,9 @@ import BPICell from "components/tables/cells/BPICell";
 import DeltaCell from "components/tables/cells/DeltaCell";
 import ScoreCell from "components/tables/cells/ScoreCell";
 import MiniTable from "components/tables/components/MiniTable";
-import DebugContent from "components/util/DebugContent";
 import Divider from "components/util/Divider";
 import React, { useMemo } from "react";
+import { PoyashiBPI } from "rg-stats";
 import {
 	ChartDocument,
 	COLOUR_SET,
@@ -16,7 +16,7 @@ import {
 	PBScoreDocument,
 	ScoreDocument,
 } from "tachi-common";
-import { CalculateBPI, GetGradeFromPercent } from "util/misc";
+import { GetGradeFromPercent } from "util/misc";
 import ChartTooltip from "./ChartTooltip";
 
 interface BPIValue {
@@ -50,10 +50,10 @@ export default function IIDXBPIChart({
 		for (let exScore = 0; exScore <= MAX; exScore++) {
 			const percent = (100 * exScore) / MAX;
 
-			const bpi = CalculateBPI(
+			const bpi = PoyashiBPI.calculate(
+				exScore,
 				chart.data.kaidenAverage!,
 				chart.data.worldRecord!,
-				exScore,
 				MAX,
 				chart.data.bpiCoefficient
 			);

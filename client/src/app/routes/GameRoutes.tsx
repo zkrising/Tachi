@@ -16,6 +16,7 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
+import useUGPTSettings from "components/util/useUGPTSettings";
 import { BackgroundContext } from "context/BackgroundContext";
 import { UGPTSettingsContext, UGPTSettingsContextProvider } from "context/UGPTSettingsContext";
 import { UserContext } from "context/UserContext";
@@ -408,7 +409,7 @@ function IIDXDifficultyList({
 }: {
 	charts: ChartDocument[];
 } & Props) {
-	const { settings } = useContext(UGPTSettingsContext);
+	const { settings } = useUGPTSettings<"iidx:SP" | "iidx:DP">();
 
 	const [set, setSet] = useState<null | "All Scratch" | "Kichiku" | "Kiraku">(null);
 

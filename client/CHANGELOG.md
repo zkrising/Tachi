@@ -21,5 +21,9 @@
 - [ENH] Massively improved the display of BPI related stuff. (#82)
 - [ENH] Showcase stats on charts now link to the chart in question.
 - [ENH] Ranking info is now clickable to go to the leaderboard.
+- [ENH] You can now set a BPI target.
+- [ENH] You can now set a VOLFORCE target.
+- [ENH] Song search now displays the table for the chart for BMS.
+- [ENH] Song search now displays the effector for BMS.
 
 *****

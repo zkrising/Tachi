@@ -27,7 +27,7 @@ export default function VF6Cell({
 		return <td>N/A</td>;
 	}
 
-	const vf6Target = settings?.preferences.gameSpecific.vf6Target ?? 0.3;
+	const vf6Target = settings?.preferences.gameSpecific.vf6Target;
 
 	const gptConfig = GetGamePTConfig(score.game, score.playtype);
 
@@ -41,14 +41,12 @@ export default function VF6Cell({
 				if (expectedScore === null) {
 					targets[SHORT_LAMPS[lamp]] = null;
 				} else {
-					targets[SHORT_LAMPS[lamp]] = expectedScore - score.scoreData.score;
+					targets[SHORT_LAMPS[lamp]] = expectedScore;
 					break;
 				}
 			}
 		}
 	}
-
-	console.log(targets);
 
 	return (
 		<>
@@ -67,25 +65,32 @@ export default function VF6Cell({
 					<strong className="underline-on-hover">{score.calculatedData.VF6}</strong>
 					<br />
 
-					<div>
-						{score.calculatedData.VF6! >= vf6Target ? (
-							<small className="text-success">{vf6Target}VF Target Achieved!</small>
-						) : Object.values(targets).every(k => k === null) ? (
-							<small className="text-muted">{vf6Target}VF Not Possible</small>
-						) : (
-							Object.entries(targets).map(([k, v], i) => (
-								<React.Fragment key={k}>
-									<VF6TargetCell
-										vf6Target={vf6Target!}
-										targetDelta={v}
-										clearType={k}
-										showClearType={i !== 0}
-									/>
-									<br />
-								</React.Fragment>
-							))
-						)}
-					</div>
+					{vf6Target !== 0 && vf6Target && (
+						<div>
+							{score.calculatedData.VF6! >= vf6Target ? (
+								<small className="text-success">
+									{vf6Target}VF Target Achieved!
+								</small>
+							) : Object.values(targets).every(k => k === null) ? (
+								<small className="text-muted">{vf6Target}VF Not Possible</small>
+							) : (
+								Object.entries(targets).map(([k, v], i) => (
+									<React.Fragment key={k}>
+										<VF6TargetCell
+											vf6Target={vf6Target!}
+											targetScore={v}
+											targetDelta={
+												v === null ? null : v - score.scoreData.score
+											}
+											clearType={k}
+											showClearType={i !== 0}
+										/>
+										<br />
+									</React.Fragment>
+								))
+							)}
+						</div>
+					)}
 				</td>
 			</QuickTooltip>
 		</>
@@ -106,16 +111,18 @@ function InverseVF6(
 
 function VF6TargetCell({
 	targetDelta,
+	targetScore,
 	vf6Target,
 	clearType,
 	showClearType,
 }: {
 	targetDelta: number | null;
+	targetScore: number | null;
 	vf6Target: number;
 	clearType: string;
 	showClearType: boolean;
 }) {
-	if (targetDelta === null) {
+	if (targetDelta === null || targetScore === null) {
 		return (
 			<small className="text-muted">
 				{vf6Target}VF w/ {clearType}: Not Possible
@@ -131,18 +138,15 @@ function VF6TargetCell({
 		);
 	}
 
-	const div = targetDelta / 1_000;
+	const div = targetDelta / 1_000_000;
 
-	let fmt;
-	if (div >= 1_000) {
-		fmt = `${(div / 1_000).toFixed(3)}m`;
-	} else {
-		fmt = `${div.toFixed(2)}k`;
-	}
+	const fmt = `${div.toFixed(3)}m`;
 
 	return (
 		<small className="text-danger">
-			{vf6Target}VF{showClearType ? ` w/ ${clearType}` : ""}: +{fmt}
+			{vf6Target}VF{showClearType ? ` w/ ${clearType}` : ""}: +{fmt} (
+			{(targetScore / 1_000_000).toFixed(3)}
+			m)
 		</small>
 	);
 }

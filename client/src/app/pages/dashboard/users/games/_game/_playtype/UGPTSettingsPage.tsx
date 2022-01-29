@@ -83,7 +83,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 				settings!.preferences.preferredProfileAlg || gptConfig.defaultProfileRatingAlg,
 			preferredSessionAlg:
 				settings!.preferences.preferredSessionAlg || gptConfig.defaultSessionRatingAlg,
-			gameSpecific: settings!.preferences.gameSpecific,
+			gameSpecific: settings!.preferences.gameSpecific as any,
 			scoreBucket: settings!.preferences.scoreBucket ?? gptConfig.scoreBucket,
 		},
 		onSubmit: async values => {
@@ -210,6 +210,27 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 						</Form.Text>
 					</Form.Group>
 				</>
+			)}
+			{(game === "sdvx" || game === "usc") && (
+				<Form.Group>
+					<Form.Label>VF6 Target</Form.Label>
+					<Form.Control
+						type="number"
+						id="gameSpecific.vf6Target"
+						name="gameSpecific.vf6Target"
+						value={formik.values.gameSpecific.vf6Target}
+						min={0}
+						max={0.5}
+						step={0.001}
+						onChange={formik.handleChange}
+					/>
+					<Form.Text className="text-muted">
+						Set yourself a VF6 target. {TachiConfig.name} will show how far away you are
+						from it in the UI!
+						<br />
+						Set this to 0 to disable the target.
+					</Form.Text>
+				</Form.Group>
 			)}
 			<div className="row justify-content-center">
 				<Button type="submit" variant="success">

@@ -8,7 +8,7 @@ import { Game, GetGameConfig, integer, PublicUserDocument, SongDocument } from "
 import { GamePT, JustChildren } from "types/react";
 import { Playtype } from "types/tachi";
 import { APIFetchV1 } from "util/api";
-import { PREVENT_DEFAULT } from "util/misc";
+import { ConditionalLeadingSpace, PREVENT_DEFAULT } from "util/misc";
 import QuickTooltip from "../misc/QuickTooltip";
 
 interface SearchReturns {
@@ -142,7 +142,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 								}/songs/${s.id}`}
 								tabIndex={0}
 							>
-								<strong>{s.title}</strong>
+								<strong>{FormatSongTitle(s.game, s)}</strong>
 								<span className="font-size-sm font-weight-bold text-muted">
 									{GetGameConfig(s.game).name}
 								</span>
@@ -155,6 +155,20 @@ function SearchResults({ results }: { results: SearchReturns }) {
 			)}
 		</div>
 	);
+}
+
+function FormatSongTitle(game: Game, song: SongDocument) {
+	if (game === "usc") {
+		const s = song as SongDocument<"usc">;
+		return `${song.title} (${s.data.effector})`;
+	} else if (game === "bms") {
+		const s = song as SongDocument<"bms">;
+		return `${song.title}${ConditionalLeadingSpace(s.data.subtitle)}${ConditionalLeadingSpace(
+			s.data.tableString
+		)}`;
+	}
+
+	return song.title;
 }
 
 export default function SearchBar() {

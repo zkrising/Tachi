@@ -1,6 +1,23 @@
-import { ServerConfig } from "lib/setup/config";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
+
+t.test("GET /api/v1/config", async (t) => {
+	const res = await mockApi.get("/api/v1/config");
+
+	t.strictSame(
+		res.body.body,
+		{
+			games: TachiConfig.GAMES,
+			importTypes: TachiConfig.IMPORT_TYPES,
+			name: TachiConfig.NAME,
+			type: TachiConfig.TYPE,
+		},
+		"Should return TachiConfig info"
+	);
+
+	t.end();
+});
 
 t.test("GET /api/v1/config/beatoraja-queue-size", async (t) => {
 	const res = await mockApi.get("/api/v1/config/beatoraja-queue-size");

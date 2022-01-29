@@ -86,6 +86,7 @@ if (require.main === module) {
 				level: "?",
 				levelNum: 0,
 				playtype: "Controller",
+				difficulty: "CHART",
 				isPrimary: true,
 				tierlistInfo,
 				data: {

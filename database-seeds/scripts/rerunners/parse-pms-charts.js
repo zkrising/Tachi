@@ -116,7 +116,7 @@ function MakeTierlistStuff(l) {
 
 	return {
 		value,
-		text: value <= 50 ? "○" + value.toString() : "●" + l,
+		text: value <= 45 ? "○" + value.toString() : "●" + l,
 		individualDifference: false,
 	}
 }

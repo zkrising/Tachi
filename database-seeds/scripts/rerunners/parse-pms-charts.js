@@ -66,16 +66,8 @@ if (require.main === module) {
 			let l = Number(d.level);
 
 			let tierlistInfo = Number.isNaN(l) ? {} : {
-				"sgl-EC": {
-					value: ConvertLevel(l),
-					text: ConvertLevel(l).toString(),
-					individualDifference: false,
-				},
-				"sgl-HC": {
-					value: ConvertLevel(l),
-					text: ConvertLevel(l).toString(),
-					individualDifference: false,
-				}
+				"sgl-EC": MakeTierlistStuff(l),
+				"sgl-HC": MakeTierlistStuff(l),
 			}
 
 			const chart = {
@@ -117,6 +109,16 @@ if (require.main === module) {
 			return charts;
 		})
 	})();
+}
+
+function MakeTierlistStuff(l) {
+	const value = ConvertLevel(l);
+
+	return {
+		value,
+		text: value <= 50 ? "○" + value.toString() : "●" + l,
+		individualDifference: false,
+	}
 }
 
 function ConvertLevel(i) {

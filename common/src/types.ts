@@ -936,11 +936,21 @@ interface SongDocumentData {
 	sdvx: { displayVersion: string };
 	usc: Record<string, never>;
 	ddr: { displayVersion: string };
-	bms: { genre: string | null; subtitle: string | null; subartist: string | null };
+	bms: {
+		genre: string | null;
+		subtitle: string | null;
+		subartist: string | null;
+		tableString: string | null;
+	};
 	chunithm: { genre: string; displayVersion: string };
 	gitadora: { isHot: boolean; displayVersion: string };
 	wacca: { titleJP: string; artistJP: string; genre: string; displayVersion: string | null };
-	pms: { genre: string | null; subtitle: string | null; subartist: string | null };
+	pms: {
+		genre: string | null;
+		subtitle: string | null;
+		subartist: string | null;
+		tableString: string | null;
+	};
 }
 
 export interface SongDocument<G extends Game = Game> extends MongoDBDocument {

@@ -63,7 +63,6 @@ if (require.main === module) {
 				},
 			}
 
-
 			let l = Number(d.level);
 
 			let tierlistInfo = Number.isNaN(l) ? {} : {

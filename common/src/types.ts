@@ -204,20 +204,20 @@ export interface Grades {
 	"ddr:SP": DDRGrades;
 	"ddr:DP": DDRGrades;
 	"maimai:Single":
-		| "F"
-		| "E"
-		| "D"
-		| "C"
-		| "B"
-		| "A"
-		| "AA"
-		| "AAA"
-		| "S"
-		| "S+"
-		| "SS"
-		| "SS+"
-		| "SSS"
-		| "SSS+";
+	| "F"
+	| "E"
+	| "D"
+	| "C"
+	| "B"
+	| "A"
+	| "AA"
+	| "AAA"
+	| "S"
+	| "S+"
+	| "SS"
+	| "SS+"
+	| "SSS"
+	| "SSS+";
 	"jubeat:Single": "E" | "D" | "C" | "B" | "A" | "S" | "SS" | "SSS" | "EXC";
 	"museca:Single": "没" | "拙" | "凡" | "佳" | "良" | "優" | "秀" | "傑" | "傑G";
 	"bms:7K": IIDXGrades;
@@ -226,19 +226,19 @@ export interface Grades {
 	"gitadora:Gita": GitadoraGrades;
 	"gitadora:Dora": GitadoraGrades;
 	"wacca:Single":
-		| "D"
-		| "C"
-		| "B"
-		| "A"
-		| "AA"
-		| "AAA"
-		| "S"
-		| "S+"
-		| "SS"
-		| "SS+"
-		| "SSS"
-		| "SSS+"
-		| "MASTER";
+	| "D"
+	| "C"
+	| "B"
+	| "A"
+	| "AA"
+	| "AAA"
+	| "S"
+	| "S+"
+	| "SS"
+	| "SS+"
+	| "SSS"
+	| "SSS+"
+	| "MASTER";
 	"pms:Controller": IIDXGrades;
 	"pms:Keyboard": IIDXGrades;
 }
@@ -313,14 +313,14 @@ export interface Difficulties {
 	"bms:14K": "CHART";
 	"chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER";
 	"gitadora:Gita":
-		| "BASIC"
-		| "ADVANCED"
-		| "EXTREME"
-		| "MASTER"
-		| "BASS BASIC"
-		| "BASS ADVANCED"
-		| "BASS EXTREME"
-		| "BASS MASTER";
+	| "BASIC"
+	| "ADVANCED"
+	| "EXTREME"
+	| "MASTER"
+	| "BASS BASIC"
+	| "BASS ADVANCED"
+	| "BASS EXTREME"
+	| "BASS MASTER";
 	"gitadora:Dora": "BASIC" | "ADVANCED" | "EXTREME" | "MASTER";
 	"wacca:Single": "NORMAL" | "HARD" | "EXPERT" | "INFERNO";
 	"pms:Controller": "CHART";
@@ -1104,18 +1104,18 @@ export interface HitMetaLookup {
 	"popn:9B": BASE_VALID_HIT_META & {
 		gauge: number | null;
 		specificClearType:
-			| "failedCircle"
-			| "failedDiamond"
-			| "failedStar"
-			| "easyClear"
-			| "clearCircle"
-			| "clearDiamond"
-			| "clearStar"
-			| "fullComboCircle"
-			| "fullComboDiamond"
-			| "fullComboStar"
-			| "perfect"
-			| null;
+		| "failedCircle"
+		| "failedDiamond"
+		| "failedStar"
+		| "easyClear"
+		| "clearCircle"
+		| "clearDiamond"
+		| "clearStar"
+		| "fullComboCircle"
+		| "fullComboDiamond"
+		| "fullComboStar"
+		| "perfect"
+		| null;
 	};
 	"sdvx:Single": BASE_VALID_HIT_META & {
 		gauge: number | null;
@@ -1408,9 +1408,9 @@ export interface UGPTSpecificPreferences {
 	"iidx:SP": { display2DXTra: boolean; bpiTarget: number };
 	"iidx:DP": { display2DXTra: boolean; bpiTarget: number };
 	"popn:9B": Record<string, never>;
-	"sdvx:Single": Record<string, never>;
-	"usc:Controller": Record<string, never>;
-	"usc:Keyboard": Record<string, never>;
+	"sdvx:Single": { vf6Target: number };
+	"usc:Controller": { vf6Target: number };
+	"usc:Keyboard": { vf6Target: number };
 	"ddr:SP": Record<string, never>;
 	"ddr:DP": Record<string, never>;
 	"maimai:Single": Record<string, never>;
@@ -1442,7 +1442,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 
 export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>
 	extends MongoDBDocument,
-		UserGameStats<I> {
+	UserGameStats<I> {
 	rankings: Record<UGSRatingsLookup[I], { ranking: integer | null; outOf: integer }>;
 	playcount: integer;
 	timestamp: integer;
@@ -1465,15 +1465,15 @@ export type BatchManualScore<I extends IDStrings = IDStrings> = {
 	hitMeta?: Partial<HitMetaLookup[I]>;
 	scoreMeta?: Partial<ScoreMetaLookup[I]>;
 } & (
-	| {
+		| {
 			matchType: "tachiSongID" | "inGameID" | "songTitle" | "ddrSongHash";
 			difficulty: Difficulties[I];
-	  }
-	| {
+		}
+		| {
 			matchType: "bmsChartHash" | "uscChartHash" | "popnChartHash";
 			difficulty?: undefined; // hack to stop ts from screaming when this is accessed sometimes
-	  }
-);
+		}
+	);
 
 export interface BatchManual<I extends IDStrings = IDStrings> {
 	meta: {

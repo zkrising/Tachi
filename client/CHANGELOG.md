@@ -11,7 +11,7 @@
 | REWORK |             An existing feature was reworked/changed.             |
 
 Anything prefixed with `INTERNAL_` has absolutely no bearing on end users, and should
-not generally be said to end users.
+not generally be shown to end users.
 
 # Changelog
 

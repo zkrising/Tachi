@@ -107,7 +107,6 @@ app.use((req, res, next) => {
 });
 
 app.use(RequestLoggerMiddleware);
-app.use(RejectIfBanned);
 
 app.use("/", mainRouter);
 

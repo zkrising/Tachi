@@ -189,9 +189,9 @@ export const RequireNotGuest: RequestHandler = CreateRequireNotGuest("descriptio
 export const FervidexStyleRequireNotGuest: RequestHandler = CreateRequireNotGuest("error");
 
 export const RejectIfBanned: RequestHandler = async (req, res, next) => {
-	if (req.session?.tachi?.user.id) {
+	if (req[SYMBOL_TachiAPIAuth].userID) {
 		const isBanned = await db.users.findOne({
-			id: req.session.tachi.user.id,
+			id: req[SYMBOL_TachiAPIAuth].userID!,
 			authLevel: UserAuthLevels.BANNED,
 		});
 

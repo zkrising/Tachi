@@ -61,7 +61,7 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 			return;
 		}
 
-		if (contents.body.description === `You are banned from ${TachiConfig.NAME}.`) {
+		if (contents.body?.description === `You are banned from ${TachiConfig.NAME}.`) {
 			return;
 		}
 

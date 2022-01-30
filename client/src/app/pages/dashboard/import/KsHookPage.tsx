@@ -27,7 +27,7 @@ export default function KsHookPage() {
 					<ExternalLink href="/client-file-flow/CXKsHook">here</ExternalLink>. <br />
 					<b>This file contains an API Key, which is meant to be kept secret!</b>
 				</li>
-				<li>I don't know what you do now. TODO!!!</li>
+				<li>Place both of these files inside your SDVX6 (EAC) folder.</li>
 				<li>Your scores now automatically upload to {TachiConfig.name}!</li>
 			</ol>
 		</div>

@@ -140,12 +140,12 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				moreInfo="This is the recommended way to import SDVX scores, as it provides high quality data in real-time."
 				key="Barbatos"
 			/>,
-			// <ImportInfoCard
-			// 	name="Konaste Hook"
-			// 	href="ks-hook"
-			// 	desc="Automatically import scores from SDVX 3 Konaste!"
-			// 	key="Konaste Hook"
-			// />,
+			<ImportInfoCard
+				name="Konaste Hook"
+				href="ks-hook"
+				desc="Automatically import scores from SDVX 6 Konaste!"
+				key="Konaste Hook"
+			/>,
 			<ImportInfoCard
 				name="E-Amusement CSV"
 				href="sdvx-eam-csv"

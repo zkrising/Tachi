@@ -39,6 +39,7 @@ not generally be shown to end users.
 - [ENH] Ratings are nullable now. (#611)
 - [ENH] Pre-HV Leggendaria songIDs are now properly resolved. (#487)
 - [ENH] IIDX Imports are now significantly faster.
+- [ENH] GITADORA now supports `naiveSkill` -- Although GITADORA support isn't actually on yet. (#624)
 
 *****
 

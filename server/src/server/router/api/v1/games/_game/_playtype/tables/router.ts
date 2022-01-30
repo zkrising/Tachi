@@ -1,10 +1,10 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { GetTableFromParam } from "./middleware";
-import { GetFoldersFromTable } from "utils/folder";
 import { FilterQuery } from "mongodb";
 import { TableDocument } from "tachi-common";
+import { GetFoldersFromTable } from "utils/folder";
+import { GetTableFromParam } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });
 

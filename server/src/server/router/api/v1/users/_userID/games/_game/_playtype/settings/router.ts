@@ -35,6 +35,7 @@ router.patch(
 			preferredScoreAlg: p.optional(p.nullable(p.isIn(gptConfig.scoreRatingAlgs))),
 			preferredSessionAlg: p.optional(p.nullable(p.isIn(gptConfig.sessionRatingAlgs))),
 			preferredProfileAlg: p.optional(p.nullable(p.isIn(gptConfig.profileRatingAlgs))),
+			defaultTable: "*?string",
 			// This is a pretty stupid IIFE level hack, ah well.
 			gameSpecific: p.any,
 			scoreBucket: optNull(p.isIn("grade", "lamp")),
@@ -67,6 +68,21 @@ router.patch(
 				return res.status(400).json({
 					success: false,
 					description: FormatPrError(err, "Invalid game-settings."),
+				});
+			}
+		}
+
+		if (typeof req.body.preferredTable === "string") {
+			const table = await db.tables.findOne({
+				game,
+				playtype,
+				tableID: req.body.preferredTable,
+			});
+
+			if (!table) {
+				return res.status(400).json({
+					success: false,
+					description: `The requested table (${req.body.preferredTable}) does not exist.`,
 				});
 			}
 		}

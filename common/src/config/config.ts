@@ -2145,9 +2145,15 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["sieglinde"],
 		profileRatingAlgs: ["sieglinde"],
 
-		scoreRatingAlgFormatters: {},
-		profileRatingAlgFormatters: {},
-		sessionRatingAlgFormatters: {},
+		scoreRatingAlgFormatters: {
+			sieglinde: (v) => (v <= 12 ? `☆${v}` : `★${v}`),
+		},
+		profileRatingAlgFormatters: {
+			sieglinde: (v) => (v <= 12 ? `☆${v}` : `★${v}`),
+		},
+		sessionRatingAlgFormatters: {
+			sieglinde: (v) => (v <= 12 ? `☆${v}` : `★${v}`),
+		},
 
 		scoreRatingAlgDescriptions: {
 			sieglinde:

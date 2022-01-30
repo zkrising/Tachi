@@ -10,11 +10,15 @@
 |  FEAT  |                          A new feature.                           |
 | REWORK |             An existing feature was reworked/changed.             |
 
+Anything prefixed with `INTERNAL_` has absolutely no bearing on end users, and should
+not generally be said to end users.
+
 # Changelog
 
 ## 2.1.0 (Ongoing Development)
 
 - [FEAT] Added UI support for Jubeat, Pop'n, WACCA and PMS.
+- [INTERNAL_FEAT] Config is now served from the server instead of being cloned to the client.
 
 *****
 

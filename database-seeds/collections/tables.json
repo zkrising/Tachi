@@ -1,6 +1,6 @@
 [
 	{
-		"default": false,
+		"default": true,
 		"description": "The 14K Insane table.",
 		"folders": [
 			"F70fb59d662e76d446536c586c21bf424c267a4d532a537c3618b64b6094cfc6e",
@@ -72,7 +72,7 @@
 		"title": "DP Satellite"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "The 7K GENOSIDE insane table.",
 		"folders": [
 			"F19e837c7f0c1561f88a0dc1fff276e624bcb67f52a8165b8f2772a73ab2dee45",
@@ -353,7 +353,7 @@
 		"title": "Stella"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for CHUNITHM in Paradise Lost.",
 		"folders": [
 			"F7ab54c2dff3a2bcd7fa5129aae7e03d6c9b1998cfc06bf360cbcd9ac05653c71",
@@ -386,7 +386,7 @@
 		"title": "CHUNITHM (Paradise Lost)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for DDR (DP) in A20.",
 		"folders": [
 			"F9cfb5fc3b40592366d252c9c52a66bb965076cf14905ae48c2d2868a2850cc12",
@@ -417,7 +417,7 @@
 		"title": "DDR (DP) (A20)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for DDR (SP) in A20.",
 		"folders": [
 			"Fbd426239e8fd94b9ed6d54b50ac1fe2d1f39f26926b27d91ebc5b76cb0b1dc87",
@@ -655,7 +655,7 @@
 		"title": "beatmania IIDX (DP) (BEATMANIA US)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for beatmania IIDX (DP) in BISTROVER Omnimix.",
 		"folders": [
 			"F447f9872ffc845a8252209f951f5b740f7542ddce10ad79a4e91bedabd88f2fc",
@@ -1345,7 +1345,7 @@
 		"title": "beatmania IIDX (SP) (BEATMANIA US)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for beatmania IIDX (SP) in BISTROVER Omnimix.",
 		"folders": [
 			"Fe131fe937e9e58b42a71a9b1a9a96ee80fb928dc4acc59e32a2ef8e9c5682488",
@@ -1911,7 +1911,7 @@
 		"title": "Hard Mode Level Folders (festo)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Level Folders for jubeat. This table does not have separate folders for each decimal.",
 		"folders": [
 			"F5f6adeef04e166e32163c3418965dfdc7b5375c4faae1bdf38a82175b01e26cc",
@@ -1932,7 +1932,7 @@
 		"title": "Level Folders (festo)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for maimai in FiNALE.",
 		"folders": [
 			"F1a0c0e32b477738519b1a69e167b4c6f87fa5ffd704b2a47759b414a7da4b8c4",
@@ -1964,7 +1964,7 @@
 		"title": "maimai (FiNALE)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for MÚSECA in 1 + 1/2 Rev. B.",
 		"folders": [
 			"Fa6dd05737a2f54494e81b1fd59b4a6b8885f7cfc673dba6f62797db7135c5993",
@@ -2016,7 +2016,7 @@
 		"title": "MÚSECA (1 + 1/2)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "The Insane PMS Table.",
 		"folders": [
 			"Fac2554d1c71c6e398704e3f0883490603002ba7edeea1fe158aa4c897ca7236c",
@@ -2082,7 +2082,7 @@
 		"title": "Insane PMS Database"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "The Insane PMS Table.",
 		"folders": [
 			"F715c7dae0b4984039d955ff6e911d765cc2b56a5b7bd6c952e64ced9e438ca1d",
@@ -2148,7 +2148,7 @@
 		"title": "Insane PMS Database"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "All pop'n peace levels, with some folders joined together.",
 		"folders": [
 			"F0eba4509733294349b3d9140e943f33c80cc545050a61f87b62ebd9980916f0a",
@@ -2274,7 +2274,7 @@
 		"title": "SOUND VOLTEX (HEAVENLY HAVEN)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for SOUND VOLTEX in VIVID WAVE.",
 		"folders": [
 			"F6f759af83ab316bde12f923433945a025c0782a77ed0d2c27aedfa4ba6db9a43",
@@ -2305,7 +2305,7 @@
 		"title": "SOUND VOLTEX (VIVID WAVE)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Level Folders for SDVX converts inside USC.",
 		"folders": [
 			"F8f236af03296c72961bf09217aa931c3b00665c270e1524bc11c3fe1166ca5e1",
@@ -2336,7 +2336,7 @@
 		"title": "SDVX Official Levels (Controller)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Level Folders for SDVX converts inside USC.",
 		"folders": [
 			"Fce2392c1910851aa790e4c700972382539ad32670698520cac25cfd7df5bb795",
@@ -2367,7 +2367,7 @@
 		"title": "SDVX Official Levels (Keyboard)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for WACCA's Reverse version.",
 		"folders": [
 			"F8aeb3d7ad32ceb71da28d6d1a14840063cdb0c6e44ea42ec4452cd8a82bf631d",

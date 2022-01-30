@@ -198,12 +198,15 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 	hitMeta.lpr! += data.lms;
 
 	const judgements = {
-		pgreat: data.epg + data.lpg,
+		[game === "pms" ? "cool" : "pgreat"]: data.epg + data.lpg,
 		great: data.egr + data.lgr,
 		good: data.egd + data.lgd,
 		bad: data.ebd + data.lbd,
 		poor: data.epr + data.lpr + data.ems + data.lms,
 	};
+
+	hitMeta.fast = (["ebd", "egr", "epg", "epr", "ems"] as const).reduce((a, e) => a + data[e], 0);
+	hitMeta.slow = (["lbd", "lgr", "lpg", "lpr", "lms"] as const).reduce((a, e) => a + data[e], 0);
 
 	let random = null;
 

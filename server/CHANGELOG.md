@@ -19,6 +19,8 @@
 - [FEAT] Added WACCA Support. (#598)
 - [FEAT] Added support for Skye's pop'n hook. (#563)
 - [FEAT] Added PMS Support (#45)
+- [INTERNAL_FEAT] Config is now served from the server instead of being cloned to the client.
+- [FEAT] Users can now be banned (#640)
 
 *****
 
@@ -31,8 +33,9 @@
 - [ENH] Add support for jubility. (#163)
 - [ENH] Move BPI related data (Kaiden Average and BPI) to IIDX charts, instead of being in a separate collection. This lets us display more stats on the UI. (#599)
 - [ENH] Add game specific indexes. (#606)
-- [ENH] Ratings are nullable now (#611)
+- [ENH] Ratings are nullable now. (#611)
 - [ENH] Pre-HV Leggendaria songIDs are now properly resolved. (#487)
+- [ENH] IIDX Imports are now significantly faster.
 
 *****
 

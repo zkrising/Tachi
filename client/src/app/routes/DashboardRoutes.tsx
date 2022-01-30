@@ -4,6 +4,7 @@ import { Layout } from "components/layout/Layout";
 import EmailVerify from "components/layout/misc/EmailVerify";
 import { BannedContext } from "context/BannedContext";
 import DashboardErrorBoundary from "components/util/DashboardErrorBoundary";
+import { BannedContext } from "context/BannedContext";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";

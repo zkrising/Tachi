@@ -6,10 +6,12 @@ import { ChangeOpacity } from "util/color-opacity";
 import { FormatBMSTables } from "util/misc";
 import TierlistInfoPart from "./TierlistInfoPart";
 
-export default function BMSDifficultyCell({
+export default function BMSPMSDifficultyCell({
 	chart,
+	game,
 }: {
-	chart: ChartDocument<"bms:7K" | "bms:14K">;
+	chart: ChartDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">;
+	game: "bms" | "pms";
 }) {
 	const hasLevel = chart.data.tableFolders.length > 0;
 
@@ -21,7 +23,7 @@ export default function BMSDifficultyCell({
 			}}
 		>
 			<span>{levelText}</span>
-			<TierlistInfoPart chart={chart} game="bms" />
+			<TierlistInfoPart chart={chart} game={game} />
 			{!chart.isPrimary && (
 				<QuickTooltip tooltipContent="This chart is an alternate, old chart.">
 					<div>

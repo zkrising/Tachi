@@ -1446,6 +1446,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 		preferredProfileAlg: UGSRatingsLookup[I] | null;
 		stats: ShowcaseStatDetails[];
 		scoreBucket: "grade" | "lamp" | null;
+		defaultTable: string | null;
 		gameSpecific: UGPTSpecificPreferences[I];
 	};
 }

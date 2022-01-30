@@ -1,8 +1,8 @@
 import { Router } from "express";
-import sv3cRouter from "./sv3c/router";
+import SV6CRouter from "./sv6c/router";
 
 const router: Router = Router({ mergeParams: true });
 
-router.use("/sv3c", sv3cRouter);
+router.use("/sv6c", SV6CRouter);
 
 export default router;

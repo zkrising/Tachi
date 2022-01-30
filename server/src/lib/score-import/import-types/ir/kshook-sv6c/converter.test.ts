@@ -1,19 +1,19 @@
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { TestingKsHookSV3CScore } from "test-utils/test-data";
-import { ConverterIRKsHookSV3C } from "./converter";
+import { TestingKsHookSV6CScore } from "test-utils/test-data";
+import { ConverterIRKsHookSV6C } from "./converter";
 
 const logger = CreateLogCtx(__filename);
 
-t.test("#ConverterIRKsHookSV3C", (t) => {
+t.test("#ConverterIRKsHookSV6C", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should match a score with its song and chart.", async (t) => {
-		const res = await ConverterIRKsHookSV3C(
-			TestingKsHookSV3CScore,
+		const res = await ConverterIRKsHookSV6C(
+			TestingKsHookSV6CScore,
 			{ timeReceived: 10 },
-			"ir/kshook-sv3c",
+			"ir/kshook-sv6c",
 			logger
 		);
 
@@ -38,13 +38,11 @@ t.test("#ConverterIRKsHookSV3C", (t) => {
 						miss: 30,
 					},
 					hitMeta: {
-						slow: 10,
-						fast: 36,
 						maxCombo: 158,
 					},
 				},
 				game: "sdvx",
-				importType: "ir/kshook-sv3c",
+				importType: "ir/kshook-sv6c",
 				scoreMeta: {},
 			},
 		});
@@ -55,10 +53,10 @@ t.test("#ConverterIRKsHookSV3C", (t) => {
 	t.test("Should throw an error if song or chart can't be found.", (t) => {
 		t.rejects(
 			() =>
-				ConverterIRKsHookSV3C(
-					Object.assign({}, TestingKsHookSV3CScore, { music_id: 10000 }),
+				ConverterIRKsHookSV6C(
+					Object.assign({}, TestingKsHookSV6CScore, { music_id: 10000 }),
 					{ timeReceived: 10 },
-					"ir/kshook-sv3c",
+					"ir/kshook-sv6c",
 					logger
 				),
 			"Should throw a KTDataNotFoundError if chart can't be found."

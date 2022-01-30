@@ -72,17 +72,17 @@ router.patch(
 			}
 		}
 
-		if (typeof req.body.preferredTable === "string") {
+		if (typeof req.body.defaultTable === "string") {
 			const table = await db.tables.findOne({
 				game,
 				playtype,
-				tableID: req.body.preferredTable,
+				tableID: req.body.defaultTable,
 			});
 
 			if (!table) {
 				return res.status(400).json({
 					success: false,
-					description: `The requested table (${req.body.preferredTable}) does not exist.`,
+					description: `The table (${req.body.defaultTable}) does not exist (and therefore cannot be set as a default).`,
 				});
 			}
 		}
@@ -100,6 +100,10 @@ router.patch(
 
 		if (req.body.scoreBucket !== undefined) {
 			updateQuery[`preferences.scoreBucket`] = req.body.scoreBucket;
+		}
+
+		if (req.body.defaultTable !== undefined) {
+			updateQuery[`preferences.defaultTable`] = req.body.defaultTable;
 		}
 
 		if (req.body.gameSpecific) {

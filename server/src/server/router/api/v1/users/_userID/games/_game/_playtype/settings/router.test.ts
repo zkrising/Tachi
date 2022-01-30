@@ -20,9 +20,11 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				preferredSessionAlg: null,
 				preferredProfileAlg: null,
 				scoreBucket: null,
+				defaultTable: null,
 				stats: [],
 				gameSpecific: {
 					display2DXTra: false,
+					bpiTarget: 0,
 				},
 			},
 		});
@@ -65,9 +67,11 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					preferredSessionAlg: null,
 					preferredProfileAlg: null,
 					scoreBucket: null,
+					defaultTable: null,
 					stats: [],
 					gameSpecific: {
 						display2DXTra: false,
+						bpiTarget: 0,
 					},
 				},
 			},
@@ -118,6 +122,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					preferredSessionAlg: null,
 					preferredProfileAlg: null,
 					scoreBucket: null,
+					defaultTable: null,
 					stats: [],
 					gameSpecific: {
 						display2DXTra: true,
@@ -176,6 +181,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 							preferredSessionAlg: null,
 							preferredProfileAlg: null,
 							scoreBucket: null,
+							defaultTable: null,
 							stats: [],
 							gameSpecific: {
 								display2DXTra: false,
@@ -346,6 +352,88 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 
 			t.equal(data?.preferences[key], null, "Should be unmodified.");
 		}
+
+		t.end();
+	});
+
+	t.test("Should update a user's default table.", async (t) => {
+		await db["api-tokens"].insert({
+			userID: 1,
+			identifier: "api_token",
+			permissions: {
+				customise_profile: true,
+			},
+			token: "api_token",
+			fromAPIClient: null,
+		});
+
+		const res = await mockApi
+			.patch("/api/v1/users/1/games/iidx/SP/settings")
+			.set("Authorization", "Bearer api_token")
+			.send({
+				defaultTable: "mock_table",
+			});
+
+		t.strictSame(
+			res.body.body,
+			{
+				userID: 1,
+				game: "iidx",
+				playtype: "SP",
+				preferences: {
+					preferredScoreAlg: null,
+					preferredSessionAlg: null,
+					preferredProfileAlg: null,
+					scoreBucket: null,
+					defaultTable: "mock_table",
+					stats: [],
+					gameSpecific: {
+						display2DXTra: false,
+						bpiTarget: 0,
+					},
+				},
+			},
+			"Should only update the mutated properties."
+		);
+
+		const data = await db["game-settings"].findOne({
+			userID: 1,
+			game: "iidx",
+			playtype: "SP",
+		});
+
+		t.equal(data?.preferences.defaultTable, "mock_table");
+
+		t.end();
+	});
+
+	t.test("Should not allow updating to a table that doesn't exist.", async (t) => {
+		await db["api-tokens"].insert({
+			userID: 1,
+			identifier: "api_token",
+			permissions: {
+				customise_profile: true,
+			},
+			token: "api_token",
+			fromAPIClient: null,
+		});
+
+		const res = await mockApi
+			.patch("/api/v1/users/1/games/iidx/SP/settings")
+			.set("Authorization", "Bearer api_token")
+			.send({
+				defaultTable: "fake_table",
+			});
+
+		t.equal(res.statusCode, 400);
+
+		const data = await db["game-settings"].findOne({
+			userID: 1,
+			game: "iidx",
+			playtype: "SP",
+		});
+
+		t.equal(data?.preferences.defaultTable, null);
 
 		t.end();
 	});

@@ -14,6 +14,8 @@
 
 ## 2.1.0 (Ongoing Development)
 
+- [FEAT] Added UI support for Jubeat, Pop'n, WACCA and PMS.
+
 *****
 
 - [ENH] Added a CHANGELOG.md file. (#81)
@@ -25,5 +27,6 @@
 - [ENH] You can now set a VOLFORCE target.
 - [ENH] Song search now displays the table for the chart for BMS.
 - [ENH] Song search now displays the effector for BMS.
+- [ENH] Banned users now know that they're banned.
 
 *****

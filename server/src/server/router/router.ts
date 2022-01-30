@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { UpdateLastSeen } from "server/middleware/update-last-seen";
-import { SetRequestPermissions } from "../middleware/auth";
+import { RejectIfBanned, SetRequestPermissions } from "../middleware/auth";
 import { NormalRateLimitMiddleware } from "../middleware/rate-limiter";
 import apiRouterV1 from "./api/v1/router";
 import irRouter from "./ir/router";
@@ -13,6 +13,7 @@ router.use("/ir", NormalRateLimitMiddleware, irRouter);
 // but also may require custom authentication.
 router.use(SetRequestPermissions);
 router.use(UpdateLastSeen);
+router.use(RejectIfBanned);
 
 router.use("/api/v1", apiRouterV1);
 

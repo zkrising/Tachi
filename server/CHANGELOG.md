@@ -18,9 +18,9 @@
 - [FEAT] Added Pop'n Music Support. (#69)
 - [FEAT] Added WACCA Support. (#598)
 - [FEAT] Added support for Skye's pop'n hook. (#563)
-- [FEAT] Added PMS Support (#45)
+- [FEAT] Added PMS Support. (#45)
 - [INTERNAL_FEAT] Config is now served from the server instead of being cloned to the client.
-- [FEAT] Users can now be banned (#640)
+- [FEAT] Users can now be banned. (#640)
 
 *****
 

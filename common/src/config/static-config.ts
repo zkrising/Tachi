@@ -24,7 +24,7 @@ export const irImportTypes: IRImportTypes[] = [
 	"ir/fervidex-static",
 	"ir/beatoraja",
 	"ir/usc",
-	"ir/kshook-sv3c",
+	"ir/kshook-sv6c",
 ];
 
 export const apiImportTypes: APIImportTypes[] = [

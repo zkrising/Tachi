@@ -9,7 +9,7 @@ import {
 	GetGamePTConfig,
 } from "tachi-common";
 import { ChangeOpacity } from "util/color-opacity";
-import BMSDifficultyCell from "./BMSDifficultyCell";
+import BMSPMSDifficultyCell from "./BMSDifficultyCell";
 import TierlistInfoPart from "./TierlistInfoPart";
 
 export default function DifficultyCell({
@@ -27,8 +27,15 @@ export default function DifficultyCell({
 		throw new Error(`Was passed nonsense combination of ${game}, ${chart.playtype}`);
 	}
 
-	if (game === "bms") {
-		return <BMSDifficultyCell chart={chart as ChartDocument<"bms:7K" | "bms:14K">} />;
+	if (game === "bms" || game === "pms") {
+		return (
+			<BMSPMSDifficultyCell
+				chart={
+					chart as ChartDocument<"bms:7K" | "bms:14K" | "pms:Keyboard" | "pms:Controller">
+				}
+				game={game}
+			/>
+		);
 	}
 
 	return (

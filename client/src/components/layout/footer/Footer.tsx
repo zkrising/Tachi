@@ -1,6 +1,7 @@
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
-import React, { useEffect, useState } from "react";
+import { BannedContext } from "context/BannedContext";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ServerStatus } from "types/api-returns";
 import { APIFetchV1 } from "util/api";
@@ -8,9 +9,14 @@ import { FORMATTED_VERSION } from "util/constants/version";
 
 export function Footer() {
 	const [serverVersion, setServerVersion] = useState("Loading...");
+	const { setBanned } = useContext(BannedContext);
 
 	useEffect(() => {
 		APIFetchV1<ServerStatus>("/status").then(r => {
+			if (r.statusCode === 403) {
+				setBanned(true);
+			}
+
 			if (!r.success) {
 				setServerVersion("Error Fetching data!");
 			} else {

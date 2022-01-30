@@ -2,6 +2,7 @@ import SupportMePage from "app/pages/dashboard/misc/SupportMePage";
 import { ErrorPage } from "app/pages/ErrorPage";
 import { Layout } from "components/layout/Layout";
 import EmailVerify from "components/layout/misc/EmailVerify";
+import { BannedContext } from "context/BannedContext";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
@@ -14,6 +15,7 @@ import UserRoutes from "./UserRoutes";
 
 export default function DashboardRoutes() {
 	const { user } = useContext(UserContext);
+	const { banned } = useContext(BannedContext);
 
 	const [hasVerifiedEmail, setHasVerifiedEmail] = useState<boolean | null>(null);
 
@@ -37,6 +39,10 @@ export default function DashboardRoutes() {
 				<EmailVerify setHasVerifiedEmail={setHasVerifiedEmail} />
 			</Layout>
 		);
+	}
+
+	if (banned) {
+		return <ErrorPage statusCode={403} customMessage="You are banned." />;
 	}
 
 	return (

@@ -49,6 +49,11 @@ export default function LoginPage() {
 
 			const userRJ = await APIFetchV1<PublicUserDocument>("/users/me");
 
+			if (userRJ.statusCode === 403) {
+				setErr("You are banned.");
+				return;
+			}
+
 			if (!userRJ.success) {
 				console.error("Error retrieving own user?");
 				setErr("An internal server error has occured.");

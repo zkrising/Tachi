@@ -268,7 +268,7 @@ function SongInfoHeader({
 				<Col xs={12} lg={4} className="text-center">
 					<SongInfoFormat {...{ game, song, chart: activeChart }} />
 				</Col>
-				{game !== "bms" && (
+				{game !== "bms" && game !== "pms" && (
 					<Col xs={12} lg={3} className="text-center">
 						<h5>Charts</h5>
 						<hr />

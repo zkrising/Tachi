@@ -12,6 +12,7 @@ import GenericCoreCells from "./GenericCoreCells";
 import IIDXCoreCells from "./IIDXCoreCells";
 import JubeatCoreCells from "./JubeatCoreCells";
 import MusecaCoreCells from "./MusecaCoreCells";
+import PMSCoreCells from "./PMSCoreCells";
 import PopnCoreCells from "./PopnCoreCells";
 import SDVXScoreCoreCells from "./SDVXCoreCells";
 import WACCACoreCells from "./WACCACoreCells";
@@ -62,6 +63,8 @@ export default function ScoreCoreCells({
 		return <GenericCoreCells sc={sc} rating={rating} />;
 	} else if (game === "gitadora") {
 		return <GenericCoreCells sc={sc} rating={rating} />;
+	} else if (game === "pms") {
+		return <PMSCoreCells sc={sc} rating={rating} />;
 	}
 
 	return <GenericCoreCells sc={sc} rating={rating} />;

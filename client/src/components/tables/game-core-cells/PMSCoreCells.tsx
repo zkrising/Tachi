@@ -6,18 +6,20 @@ import LampCell from "../cells/LampCell";
 import RatingCell from "../cells/RatingCell";
 import ScoreCell from "../cells/ScoreCell";
 
-export default function BMSCoreCells({
+export default function PMSCoreCells({
 	sc,
 	rating,
 }: {
-	sc: PBScoreDocument<"bms:7K" | "bms:14K"> | ScoreDocument<"bms:7K" | "bms:14K">;
+	sc:
+		| PBScoreDocument<"pms:Controller" | "pms:Keyboard">
+		| ScoreDocument<"pms:Controller" | "pms:Keyboard">;
 	rating: ScoreCalculatedDataLookup[IDStrings];
 }) {
 	return (
 		<>
 			<ScoreCell score={sc} />
 			<DeltaCell
-				game="bms"
+				game="pms"
 				playtype={sc.playtype}
 				score={sc.scoreData.score}
 				percent={sc.scoreData.percent}

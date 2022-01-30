@@ -16,7 +16,7 @@ export default function SongChartInfoFormat({
 	const props = { song: tempSong, chart: tempChart, game } as any;
 	const { song, chart } = props;
 
-	if (game === "bms") {
+	if (game === "bms" || game === "pms") {
 		if (!chart) {
 			return (
 				<>

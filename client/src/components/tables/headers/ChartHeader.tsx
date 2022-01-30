@@ -27,7 +27,7 @@ export default function ChartHeader<D extends ScoreDataset | FolderDataset | PBD
 
 	if (game === "iidx") {
 		sortFn = k => CascadingTierlistValue(chartGetter(k), "kt-HC", "kt-NC");
-	} else if (game === "bms" /* || game === "pms" */) {
+	} else if (game === "bms" || game === "pms") {
 		sortFn = k => CascadingTierlistValue(chartGetter(k), "sgl-HC", "sgl-EC");
 	}
 

@@ -272,6 +272,7 @@ function ConvertBeatorajaChartToTachi(chart: BeatorajaChart, playtype: Playtypes
 			genre: chart.genre,
 			subartist: chart.subartist,
 			subtitle: chart.subtitle,
+			tableString: null,
 		},
 	};
 

@@ -9,7 +9,7 @@ import {
 } from "lib/constants/usc-ir";
 import { DryScore } from "lib/score-import/framework/common/types";
 import { BarbatosScore } from "lib/score-import/import-types/ir/barbatos/types";
-import { KsHookSV3CScore } from "lib/score-import/import-types/ir/kshook-sv3c/types";
+import { KsHookSV6CScore } from "lib/score-import/import-types/ir/kshook-sv6c/types";
 import { LR2HookScore } from "lib/score-import/import-types/ir/lr2hook/types";
 import path from "path";
 import { USCClientScore } from "server/router/ir/usc/_playtype/types";
@@ -123,29 +123,23 @@ export const TestingIIDXSPScore: ScoreDocument<"iidx:SP"> = {
 	importType: "ir/direct-manual",
 };
 
-export const TestingKsHookSV3CScore: KsHookSV3CScore = {
-	appeal_id: 2001,
+export const TestingKsHookSV6CScore: KsHookSV6CScore = {
 	btn_rate: 182,
 	clear: "CLEAR_EXCESSIVE",
 	critical: 1184,
 	difficulty: "DIFFICULTY_ADVANCED",
-	early: 36,
 	error: 30,
 	gauge: 71,
 	grade: "GRADE_AA_PLUS",
-	late: 10,
 	long_rate: 195,
 	max_chain: 158,
 	music_id: 1,
 	near: 46,
-	player_name: "EE",
 	rate: "RATE_EXCESSIVE",
 	score: 9579365,
-	skill_frame: "SKILL_FRAME_NONE",
-	skill_level: "SKILL_LEVEL_NONE",
-	skill_name: 5,
 	track_no: 0,
 	vol_rate: 193,
+	ex_score: 1334,
 };
 export const TestingBMS7KScore: ScoreDocument<"bms:7K"> = {
 	calculatedData: {

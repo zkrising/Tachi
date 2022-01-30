@@ -8,9 +8,9 @@ import { Lamps } from "tachi-common";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import { ConverterFunction } from "../../common/types";
-import { KsHookSV3CContext, KsHookSV3CScore } from "./types";
+import { KsHookSV6CContext, KsHookSV6CScore } from "./types";
 
-export const ConverterIRKsHookSV3C: ConverterFunction<KsHookSV3CScore, KsHookSV3CContext> = async (
+export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6CContext> = async (
 	data,
 	context,
 	importType,
@@ -40,9 +40,9 @@ export const ConverterIRKsHookSV3C: ConverterFunction<KsHookSV3CScore, KsHookSV3
 
 	const dryScore: DryScore<"sdvx:Single"> = {
 		game: "sdvx",
-		service: "kshook SV3C",
+		service: "kshook SV6C",
 		comment: null,
-		importType: "ir/kshook-sv3c",
+		importType: "ir/kshook-sv6c",
 		timeAchieved: context.timeReceived,
 		scoreData: {
 			score: data.score,
@@ -55,9 +55,7 @@ export const ConverterIRKsHookSV3C: ConverterFunction<KsHookSV3CScore, KsHookSV3
 				miss: data.error,
 			},
 			hitMeta: {
-				fast: data.early,
-				slow: data.late,
-				gauge: data.gauge,
+				gauge: data.gauge / 100,
 				maxCombo: data.max_chain,
 			},
 		},
@@ -67,7 +65,7 @@ export const ConverterIRKsHookSV3C: ConverterFunction<KsHookSV3CScore, KsHookSV3
 	return { song, chart, dryScore };
 };
 
-function ConvertLamp(clear: KsHookSV3CScore["clear"]): Lamps["sdvx:Single"] {
+function ConvertLamp(clear: KsHookSV6CScore["clear"]): Lamps["sdvx:Single"] {
 	if (clear === "CLEAR_PLAYED") {
 		return "FAILED";
 	} else if (clear === "CLEAR_EFFECTIVE") {
@@ -82,7 +80,7 @@ function ConvertLamp(clear: KsHookSV3CScore["clear"]): Lamps["sdvx:Single"] {
 }
 
 function ConvertDifficulty(
-	diff: KsHookSV3CScore["difficulty"]
+	diff: KsHookSV6CScore["difficulty"]
 ): "NOV" | "ADV" | "EXH" | "ANY_INF" | "MXM" {
 	if (diff === "DIFFICULTY_NOVICE") {
 		return "NOV";

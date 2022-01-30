@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
+import { UGPTSettings } from "tachi-common";
 import t from "tap";
-import { CloseAllConnections } from "test-utils/close-connections";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 
@@ -186,11 +186,11 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					"Should only update the mutated properties."
 				);
 
-				const data = await db["game-settings"].findOne({
+				const data = (await db["game-settings"].findOne({
 					userID: 1,
 					game: "iidx",
 					playtype: "SP",
-				});
+				})) as UGPTSettings<"iidx:SP" | "iidx:DP"> | null;
 
 				t.equal(data?.preferences.gameSpecific.bpiTarget, target);
 

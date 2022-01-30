@@ -59,7 +59,7 @@ const KtchiDefaultClients: DefaultClients = [
 			{
 				url: `${ServerConfig.OUR_URL}/ir/kshook`,
 				token: "%%TACHI_KEY%%",
-				games: ["sv3c"],
+				games: ["sv6c"],
 			},
 			null,
 			"\t"

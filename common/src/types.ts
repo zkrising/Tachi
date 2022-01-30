@@ -755,8 +755,8 @@ export interface UGSRatingsLookup {
 	"bms:7K": "sieglinde";
 	"bms:14K": "sieglinde";
 	"chunithm:Single": "naiveRating";
-	"gitadora:Gita": "skill";
-	"gitadora:Dora": "skill";
+	"gitadora:Gita": "skill" | "naiveSkill";
+	"gitadora:Dora": "skill" | "naiveSkill";
 	"wacca:Single": "naiveRate" | "rate";
 	"pms:Controller": "sieglinde";
 	"pms:Keyboard": "sieglinde";

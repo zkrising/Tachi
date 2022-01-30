@@ -1596,7 +1596,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			skill: "Skill Rating as it's implemented in game.",
 		},
 		profileRatingAlgDescriptions: {
-			skill: "Your profile skill as it's implemented in game.",
+			skill: "Your profile skill as it's implemented in game -- 25 HOT and 25 not HOT.",
+			naiveSkill:
+				"Your best 50 skill levels added together, regardless of whether the chart is HOT or not.",
 		},
 		sessionRatingAlgDescriptions: {
 			skill: "The average of your best 10 skill ratings this session.",
@@ -1607,6 +1609,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		profileRatingAlgFormatters: {
 			skill: FormatInt,
+			naiveSkill: FormatInt,
 		},
 		sessionRatingAlgFormatters: {
 			skill: FormatInt,
@@ -1699,7 +1702,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			skill: "Skill Rating as it's implemented in game.",
 		},
 		profileRatingAlgDescriptions: {
-			skill: "Your profile skill as it's implemented in game.",
+			skill: "Your profile skill as it's implemented in game -- 25 HOT and 25 not HOT.",
+			naiveSkill:
+				"Your best 50 skill levels added together, regardless of whether the chart is HOT or not.",
 		},
 		sessionRatingAlgDescriptions: {
 			skill: "The average of your best 10 skill ratings this session.",
@@ -1710,6 +1715,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		profileRatingAlgFormatters: {
 			skill: FormatInt,
+			naiveSkill: FormatInt,
 		},
 		sessionRatingAlgFormatters: {
 			skill: FormatInt,

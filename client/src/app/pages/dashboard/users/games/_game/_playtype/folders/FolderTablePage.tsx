@@ -11,6 +11,7 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { useBucket } from "components/util/useBucket";
+import useUGPTSettings from "components/util/useUGPTSettings";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
@@ -38,8 +39,10 @@ interface Props {
 
 export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 	const { data, isLoading, error } = useApiQuery<TableDocument[]>(
-		`/games/${game}/${playtype}/tables`
+		`/games/${game}/${playtype}/tables?showInactive=true`
 	);
+
+	const { settings } = useUGPTSettings();
 
 	const [tableID, setTableID] = useState("");
 	const [tableMap, setTableMap] = useState(new Map());
@@ -49,16 +52,27 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 	useEffect(() => {
 		if (data) {
 			const newMap = new Map();
+			let foundDefault = false;
+
 			for (const table of data) {
 				newMap.set(table.tableID, table);
+
+				// If the user has a preference
+				if (settings?.preferences.defaultTable) {
+					if (settings.preferences.defaultTable === table.tableID) {
+						setTableID(table.tableID);
+						foundDefault = true;
+					}
+					// Otherwise just use the provided default.
+				} else if (table.default) {
+					setTableID(table.tableID);
+					foundDefault = true;
+				}
 			}
 			setTableMap(newMap);
 
-			// todo make an actual engine for picking a good default
-
-			if (data[0]?.title === "Pop'n Music peace Levels (All)" && data[1]) {
-				setTableID(data[1].tableID);
-			} else {
+			if (!foundDefault) {
+				console.warn(`No default table returned? Falling back to the first thing we saw.`);
 				setTableID(data[0].tableID);
 			}
 		}
@@ -72,6 +86,12 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 		return <Loading />;
 	}
 
+	const displayableTables = data.filter(
+		e =>
+			!e.inactive ||
+			(settings?.preferences.defaultTable && settings.preferences.defaultTable === e.tableID)
+	);
+
 	return (
 		<>
 			<InputGroup>
@@ -84,7 +104,7 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 					value={tableID}
 					onChange={e => setTableID(e.target.value)}
 				>
-					{data.map(e => (
+					{displayableTables.map(e => (
 						<option key={e.tableID} value={e.tableID}>
 							{e.title}
 						</option>

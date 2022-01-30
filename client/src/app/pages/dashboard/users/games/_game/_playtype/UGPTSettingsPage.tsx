@@ -2,9 +2,12 @@ import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import UGPTStatContainer from "components/user/UGPTStatContainer";
 import UGPTStatCreator from "components/user/UGPTStatCreator";
+import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
+import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
+import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import useQueryString from "components/util/useQueryString";
 import { UGPTSettingsContext } from "context/UGPTSettingsContext";
@@ -19,6 +22,7 @@ import {
 	GetGamePTConfig,
 	PublicUserDocument,
 	ShowcaseStatDetails,
+	TableDocument,
 	UGPTSettings,
 } from "tachi-common";
 import { GamePT, SetState } from "types/react";
@@ -84,6 +88,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 			preferredSessionAlg:
 				settings!.preferences.preferredSessionAlg || gptConfig.defaultSessionRatingAlg,
 			gameSpecific: settings!.preferences.gameSpecific as any,
+			defaultTable: settings!.preferences.defaultTable,
 			scoreBucket: settings!.preferences.scoreBucket ?? gptConfig.scoreBucket,
 		},
 		onSubmit: async values => {
@@ -105,6 +110,22 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 			}
 		},
 	});
+
+	const { data: tables, isLoading, error } = useApiQuery<TableDocument[]>(
+		`/games/${game}/${playtype}/tables?showInactive=true`
+	);
+
+	if (error) {
+		return <ApiError error={error} />;
+	}
+
+	if (isLoading || !tables) {
+		return <Loading />;
+	}
+
+	const displayableTables = tables.filter(
+		e => !e.inactive || settings?.preferences.defaultTable === e.tableID
+	);
 
 	return (
 		<Form onSubmit={formik.handleSubmit}>
@@ -175,6 +196,28 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 					<br />
 					Note: This will only affect defaults, such as what graph is shown in the folder
 					breakdown. You can still view all the same stats!
+				</Form.Text>
+			</Form.Group>
+			<Form.Group>
+				<Form.Label>Preferred Table</Form.Label>
+				<Form.Control
+					as="select"
+					id="defaultTable"
+					value={
+						formik.values.defaultTable ??
+						tables.find(x => x.default)?.tableID ??
+						displayableTables[0].tableID
+					}
+					onChange={formik.handleChange}
+				>
+					{displayableTables.map(table => (
+						<option key={table.tableID} value={table.tableID}>
+							{table.title}
+						</option>
+					))}
+				</Form.Control>
+				<Form.Text className="text-muted">
+					What folders would you like to see when you go to the folders page by default?
 				</Form.Text>
 			</Form.Group>
 			{game === "iidx" && (

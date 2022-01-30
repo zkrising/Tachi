@@ -51,7 +51,6 @@
 		"deepmerge": "4.2.2",
 		"dotenv": "6.2.0",
 		"dotenv-expand": "5.1.0",
-		"eslint-config-react-app": "6.0.0",
 		"eslint-plugin-jsx-a11y": "6.3.1",
 		"file-loader": "3.0.1",
 		"formik": "2.2.9",
@@ -89,7 +88,7 @@
 		"rg-stats": "^0.2.0",
 		"socicon": "3.0.5",
 		"sync-fetch": "^0.3.1",
-		"tachi-common": "0.5.8"
+		"tachi-common": "0.5.9"
 	},
 	"devDependencies": {
 		"@types/humanize-duration": "3.25.1",

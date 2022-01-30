@@ -42,7 +42,6 @@ specifiers:
   esbuild-loader: 2.13.1
   eslint: 7.30.0
   eslint-config-prettier: 8.3.0
-  eslint-config-react-app: 6.0.0
   eslint-plugin-import: 2.23.4
   eslint-plugin-jsx-a11y: 6.3.1
   eslint-plugin-prettier: 3.4.0
@@ -91,7 +90,7 @@ specifiers:
   socicon: 3.0.5
   style-loader: 1.0.0
   sync-fetch: ^0.3.1
-  tachi-common: 0.5.8
+  tachi-common: 0.5.9
   terser-webpack-plugin: 1.4.1
   ts-pnp: 1.1.4
   typescript: 4.3.5
@@ -132,7 +131,6 @@ dependencies:
   deepmerge: 4.2.2
   dotenv: 6.2.0
   dotenv-expand: 5.1.0
-  eslint-config-react-app: 6.0.0_8710e27e9f4a42c673e957d23f62d9cd
   eslint-plugin-jsx-a11y: 6.3.1_eslint@7.30.0
   file-loader: 3.0.1_webpack@4.41.0
   formik: 2.2.9_react@17.0.2
@@ -170,7 +168,7 @@ dependencies:
   rg-stats: 0.2.0
   socicon: 3.0.5
   sync-fetch: 0.3.1
-  tachi-common: 0.5.8
+  tachi-common: 0.5.9
 
 devDependencies:
   '@types/humanize-duration': 3.25.1
@@ -4722,10 +4720,6 @@ packages:
       typedarray: 0.0.6
     dev: true
 
-  /confusing-browser-globals/1.0.10:
-    resolution: {integrity: sha512-gNld/3lySHwuhaVluJUKLePYirM3QNCKzVxqAdhJII9/WXKVX5PURzMVJspS1jTslSqjeuG4KMVTSouit5YPHA==}
-    dev: false
-
   /connect-history-api-fallback/1.6.0:
     resolution: {integrity: sha512-e54B99q/OUoH64zYYRf3HBP5z24G38h5D3qXu23JGRoigpX5Ss4r9ZnDk3g0Z8uQC2x2lPaJ+UlWBc1ZWBWdLg==}
     engines: {node: '>=0.8'}
@@ -5773,37 +5767,6 @@ packages:
     dependencies:
       eslint: 7.30.0
     dev: true
-
-  /eslint-config-react-app/6.0.0_8710e27e9f4a42c673e957d23f62d9cd:
-    resolution: {integrity: sha512-bpoAAC+YRfzq0dsTk+6v9aHm/uqnDwayNAXleMypGl6CpxI9oXXscVHo4fk3eJPIn+rsbtNetB4r/ZIidFIE8A==}
-    engines: {node: ^10.12.0 || >=12.0.0}
-    peerDependencies:
-      '@typescript-eslint/eslint-plugin': ^4.0.0
-      '@typescript-eslint/parser': ^4.0.0
-      babel-eslint: ^10.0.0
-      eslint: ^7.5.0
-      eslint-plugin-flowtype: ^5.2.0
-      eslint-plugin-import: ^2.22.0
-      eslint-plugin-jest: ^24.0.0
-      eslint-plugin-jsx-a11y: ^6.3.1
-      eslint-plugin-react: ^7.20.3
-      eslint-plugin-react-hooks: ^4.0.8
-      eslint-plugin-testing-library: ^3.9.0
-    peerDependenciesMeta:
-      eslint-plugin-jest:
-        optional: true
-      eslint-plugin-testing-library:
-        optional: true
-    dependencies:
-      '@typescript-eslint/eslint-plugin': 4.28.3_8da3816a7c3fb8ebc9f4c4b3e4b2e38f
-      '@typescript-eslint/parser': 4.28.3_eslint@7.30.0+typescript@4.3.5
-      confusing-browser-globals: 1.0.10
-      eslint: 7.30.0
-      eslint-plugin-import: 2.23.4_eslint@7.30.0
-      eslint-plugin-jsx-a11y: 6.3.1_eslint@7.30.0
-      eslint-plugin-react: 7.14.3_eslint@7.30.0
-      eslint-plugin-react-hooks: 1.7.0_eslint@7.30.0
-    dev: false
 
   /eslint-import-resolver-node/0.3.6:
     resolution: {integrity: sha512-0En0w03NRVMn9Uiyn8YRPDKvWjxCWkslUEhGNTdGx15RvPJYQ+lbOlqrlNI2vEAs4pDYK4f/HN2TbDmk5TP0iw==}
@@ -11589,8 +11552,8 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tachi-common/0.5.8:
-    resolution: {integrity: sha512-+sruDjU+ClJoxJ5YWhIx1L0kSyMRY7Xcyw69MFrv6KOh5eWlcUsfum1vDuZLASE83Of9Gdvhlc5U+JuiIvNWBQ==}
+  /tachi-common/0.5.9:
+    resolution: {integrity: sha512-KFRpRyW1A9Koi8slPEbWtWCqWQMw7rDb0j7ZIb7NMnoaO+AL8kt/Yb4E8ff5HoQYwewWLgtJ1KC4x2opIjqXgg==}
     dependencies:
       monk: 7.3.4
     transitivePeerDependencies:

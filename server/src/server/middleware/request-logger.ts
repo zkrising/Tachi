@@ -1,6 +1,7 @@
 import CreateLogCtx from "lib/logger/logger";
 import { RequestHandler, Response } from "express-serve-static-core";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { TachiConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -57,6 +58,10 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 		// special overrides
 		// This stuff is spam, so we'll just not log it.
 		if (res.statusCode === 429) {
+			return;
+		}
+
+		if (contents.body?.description === `You are banned from ${TachiConfig.NAME}.`) {
 			return;
 		}
 

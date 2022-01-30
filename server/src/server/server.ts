@@ -8,6 +8,7 @@ import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import { integer } from "tachi-common";
+import { RejectIfBanned } from "./middleware/auth";
 import { RequestLoggerMiddleware } from "./middleware/request-logger";
 import mainRouter from "./router/router";
 
@@ -96,6 +97,8 @@ process.on("unhandledRejection", (reason, promise) => {
 app.use(express.json({ limit: "4mb" }));
 
 app.use((req, res, next) => {
+	// Always mount an empty req body. We operate under the assumption that req.body is
+	// always defined.
 	if (req.method !== "GET" && !req.body) {
 		req.body = {};
 	}

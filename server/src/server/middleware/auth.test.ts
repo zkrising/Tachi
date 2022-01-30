@@ -2,6 +2,7 @@ import expMiddlewareMock from "express-request-mock";
 import db from "external/mongo/db";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import t from "tap";
+import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { AllPermissions, SetRequestPermissions } from "./auth";
 
@@ -114,6 +115,30 @@ t.test("#SetRequestPermissions", (t) => {
 			permissions: AllPermissions,
 			fromAPIClient: null,
 		});
+		t.end();
+	});
+
+	t.end();
+});
+
+t.test("#RejectIfBanned", (t) => {
+	t.test("Should stop banned users from doing anything.", async (t) => {
+		await db.users.update({ id: 1 }, { $set: { authLevel: 0 } });
+
+		await db["api-tokens"].insert({
+			userID: 1,
+			identifier: "Mock API Token",
+			permissions: {
+				customise_profile: true,
+			},
+			token: "mock_token",
+			fromAPIClient: null,
+		});
+
+		const res = await mockApi.get("/api/v1/status").set("Authorization", "Bearer mock_token");
+
+		t.equal(res.statusCode, 403, "Should return 403 on benign endpoints.");
+
 		t.end();
 	});
 

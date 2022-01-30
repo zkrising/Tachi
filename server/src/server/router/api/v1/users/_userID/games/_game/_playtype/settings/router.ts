@@ -35,6 +35,7 @@ router.patch(
 			preferredScoreAlg: p.optional(p.nullable(p.isIn(gptConfig.scoreRatingAlgs))),
 			preferredSessionAlg: p.optional(p.nullable(p.isIn(gptConfig.sessionRatingAlgs))),
 			preferredProfileAlg: p.optional(p.nullable(p.isIn(gptConfig.profileRatingAlgs))),
+			defaultTable: "*?string",
 			// This is a pretty stupid IIFE level hack, ah well.
 			gameSpecific: p.any,
 			scoreBucket: optNull(p.isIn("grade", "lamp")),
@@ -71,6 +72,21 @@ router.patch(
 			}
 		}
 
+		if (typeof req.body.defaultTable === "string") {
+			const table = await db.tables.findOne({
+				game,
+				playtype,
+				tableID: req.body.defaultTable,
+			});
+
+			if (!table) {
+				return res.status(400).json({
+					success: false,
+					description: `The table (${req.body.defaultTable}) does not exist (and therefore cannot be set as a default).`,
+				});
+			}
+		}
+
 		const updateQuery: Record<string, string> = {};
 
 		// @warning Slightly icky dynamic prop assignment instead of copypasta.
@@ -84,6 +100,10 @@ router.patch(
 
 		if (req.body.scoreBucket !== undefined) {
 			updateQuery[`preferences.scoreBucket`] = req.body.scoreBucket;
+		}
+
+		if (req.body.defaultTable !== undefined) {
+			updateQuery[`preferences.defaultTable`] = req.body.defaultTable;
 		}
 
 		if (req.body.gameSpecific) {

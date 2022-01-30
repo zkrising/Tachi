@@ -2,8 +2,9 @@ import { RequestHandler } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import { SplitAuthorizationHeader } from "utils/misc";
-import { APITokenDocument, APIPermissions } from "tachi-common";
+import { APITokenDocument, APIPermissions, UserAuthLevels } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
+import { TachiConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);
 
@@ -186,3 +187,21 @@ const CreateRequireNotGuest =
 export const RequireNotGuest: RequestHandler = CreateRequireNotGuest("description");
 
 export const FervidexStyleRequireNotGuest: RequestHandler = CreateRequireNotGuest("error");
+
+export const RejectIfBanned: RequestHandler = async (req, res, next) => {
+	if (req.session?.tachi?.user.id) {
+		const isBanned = await db.users.findOne({
+			id: req.session.tachi.user.id,
+			authLevel: UserAuthLevels.BANNED,
+		});
+
+		if (isBanned) {
+			return res.status(403).json({
+				success: false,
+				description: `You are banned from ${TachiConfig.NAME}`,
+			});
+		}
+	}
+
+	next();
+};

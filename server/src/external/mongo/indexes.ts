@@ -54,6 +54,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	],
 	users: [
 		index({ id: 1 }, UNIQUE),
+		index({ id: 1, authLevel: 1 }, UNIQUE),
 		index({ username: 1 }, UNIQUE),
 		index({ usernameLowercase: 1 }, UNIQUE),
 	],

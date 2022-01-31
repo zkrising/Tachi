@@ -866,7 +866,7 @@ interface CDDataUSC {
 interface ChartDocumentData {
 	"iidx:SP": CDDataIIDXSP;
 	"iidx:DP": CDDataIIDXSP;
-	"popn:9B": { hashSHA256: string | null };
+	"popn:9B": { hashSHA256: string | null; inGameID: integer };
 	"sdvx:Single": { inGameID: integer; arcChartID: string | null };
 	"usc:Keyboard": CDDataUSC;
 	"usc:Controller": CDDataUSC;

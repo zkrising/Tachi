@@ -42,7 +42,7 @@ for (const song of data) {
 		},
 	})
 
-	for (const chart of song.charts) {
+	for (const [index, chart] of Object.entries(song.charts)) {
 		if (chart === null) {
 			continue;
 		}
@@ -63,6 +63,7 @@ for (const song of data) {
 			isPrimary: true,
 			data: {
 				hashSHA256: chart.hash,
+				inGameID: index,
 			},
 			tierlistInfo: {},
 			versions: ["peace"]

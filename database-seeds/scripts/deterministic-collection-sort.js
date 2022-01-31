@@ -66,19 +66,15 @@ function DeterministicCollectionSort() {
 
 		if (collection.startsWith("charts-")) {
 			content.sort(ChartSort);
-		}
-		else if (collection.startsWith("songs-")) {
+		} else if (collection.startsWith("songs-")) {
 			content.sort((a, b) => a.id - b.id);
-		}
-		else if (collection.startsWith("folders")) {
+		} else if (collection.startsWith("folders")) {
 			content.sort(FolderSort);
-		}
-		else if (collection.startsWith("tables")) {
+		} else if (collection.startsWith("tables")) {
 			content.sort(TableSort);
 		} else if (collection.startsWith("bms-course-lookup.json")) {
 			content.sort(BMSCourseSort);
 		}
-
 
 		content = content.map(SortObjectKeys);
 
@@ -87,7 +83,7 @@ function DeterministicCollectionSort() {
 }
 
 function SortObjectKeys(object) {
-	let newObject = {};
+	const newObject = {};
 
 	for (const key of Object.keys(object).sort()) {
 		let v = object[key];
@@ -106,4 +102,4 @@ if (require.main === module) {
 	DeterministicCollectionSort();
 }
 
-module.exports = DeterministicCollectionSort
+module.exports = DeterministicCollectionSort;

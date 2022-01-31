@@ -14,7 +14,12 @@ program
 program.parse(process.argv);
 const options = program.opts();
 
-if (!options.course || !["7K", "14K"].includes(options.playtype) || !options.set || Number.isNaN(Number(options.index))) {
+if (
+	!options.course ||
+	!["7K", "14K"].includes(options.playtype) ||
+	!options.set ||
+	Number.isNaN(Number(options.index))
+) {
 	throw new Error(`Missing parameters.`);
 }
 
@@ -23,7 +28,7 @@ const parser = new XMLParser();
 const data = parser.parse(fs.readFileSync(options.course));
 
 MutateCollection("bms-course-lookup.json", (courses) => {
-	let existingCourses = new Set(courses.map(e => e.md5sums));
+	const existingCourses = new Set(courses.map((e) => e.md5sums));
 
 	let i = 0;
 	for (const d of data.courselist.course) {
@@ -37,7 +42,7 @@ MutateCollection("bms-course-lookup.json", (courses) => {
 			md5sums,
 			set: options.set,
 			playtype: options.playtype,
-			value: Number(options.index) + i
+			value: Number(options.index) + i,
 		});
 
 		i++;

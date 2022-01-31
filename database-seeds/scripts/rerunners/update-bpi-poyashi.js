@@ -56,12 +56,7 @@ async function UpdatePoyashiData() {
 			continue;
 		}
 
-		const tachiChart = (await FindChartWithPTDFVersion(
-			tachiSong.id,
-			playtype,
-			diff,
-			"29"
-		));
+		const tachiChart = await FindChartWithPTDFVersion(tachiSong.id, playtype, diff, "29");
 
 		if (!tachiChart) {
 			logger.warn(
@@ -89,9 +84,7 @@ async function UpdatePoyashiData() {
 		tachiChart.data.worldRecord = Number(d.wr);
 	}
 
-	MutateCollection("charts-iidx.json", () => {
-		return chartData;
-	});
+	MutateCollection("charts-iidx.json", () => chartData);
 
 	logger.info(`Done.`);
 }
@@ -111,7 +104,12 @@ function FindSongOnTitle(title) {
 
 function FindChartWithPTDFVersion(songID, playtype, diff, version) {
 	for (const chart of chartData) {
-		if (chart.songID === songID && chart.playtype === playtype && chart.difficulty === diff && chart.versions.includes(version)) {
+		if (
+			chart.songID === songID &&
+			chart.playtype === playtype &&
+			chart.difficulty === diff &&
+			chart.versions.includes(version)
+		) {
 			return chart;
 		}
 	}

@@ -1,5 +1,4 @@
 const { MutateCollection, EfficientInPlaceDeepmerge } = require("./util");
-const deepmerge = require("deepmerge");
 
 function DoesMatchCriteria(element, mutation) {
 	for (const [key, value] of Object.entries(mutation.match)) {
@@ -26,5 +25,5 @@ function ApplyMutations(name, mutations) {
 }
 
 module.exports = {
-	ApplyMutations
-}
+	ApplyMutations,
+};

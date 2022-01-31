@@ -31,15 +31,13 @@ const collections = [];
 
 if (options.all) {
 	collections.push("folders", "tables");
-	collections.push(...StaticConfig.allSupportedGames.map(e => `songs-${e}`));
-	collections.push(...StaticConfig.allSupportedGames.map(e => `charts-${e}`));
+	collections.push(...StaticConfig.allSupportedGames.map((e) => `songs-${e}`));
+	collections.push(...StaticConfig.allSupportedGames.map((e) => `charts-${e}`));
 } else if (program.args[0]) {
 	collections.push(program.args[0]);
 }
 
 // Add the songs-{game} and charts-{game} collections.
-
-
 
 (async () => {
 	logger.info(`Exporting ${collections.length} collections.`);

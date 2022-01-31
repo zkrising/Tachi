@@ -1,0 +1,27 @@
+// NOT A REAL TSCONFIG FILE
+// THIS IS USED FOR VSCODE SO IT INTEGRATES NICELY
+// IF YOU USE THIS TO BUILD, IT WILL ALSO BUILD THE TEST FILES!!
+// SO, DONT DO THAT, USE TSCONFIG.BUILD.JSON FOR THE BUILD.
+{
+	"compilerOptions": {
+		"target": "ES2020",
+		"module": "CommonJS",
+		"lib": [
+			"ES2019"
+		],
+		"declaration": true,
+		"strict": false,
+		"allowJs": true,
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"outDir": "./js",
+		"baseUrl": "src",
+		"typeRoots": [
+			"@types",
+			"node_modules/@types"
+		],
+	},
+	"exclude": [
+		"node_modules",
+	]
+}

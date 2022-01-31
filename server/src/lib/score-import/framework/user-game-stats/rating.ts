@@ -121,8 +121,14 @@ const RatingFunctions: RatingFunctions = {
 		}),
 	},
 	gitadora: {
-		Gita: async (g, p, u, l) => ({ skill: await CalculateGitadoraSkill(g, p, u, l) }),
-		Dora: async (g, p, u, l) => ({ skill: await CalculateGitadoraSkill(g, p, u, l) }),
+		Gita: async (g, p, u, l) => ({
+			skill: await CalculateGitadoraSkill(g, p, u, l),
+			naiveSkill: await LazySumN("skill", 50)(g, p, u),
+		}),
+		Dora: async (g, p, u, l) => ({
+			skill: await CalculateGitadoraSkill(g, p, u, l),
+			naiveSkill: await LazySumN("skill", 50)(g, p, u),
+		}),
 	},
 	bms: {
 		"7K": async (g, p, u) => ({

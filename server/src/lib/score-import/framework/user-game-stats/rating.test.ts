@@ -63,11 +63,11 @@ t.test("#CalculateRatings", (t) => {
 	t.test("Should return skill for Gitadora", async (t) => {
 		const res = await CalculateRatings("gitadora", "Dora", 1, logger);
 
-		t.strictSame(res, { skill: null }, "Should return skill keys.");
+		t.strictSame(res, { skill: null, naiveSkill: null }, "Should return skill keys.");
 
 		const resDP = await CalculateRatings("gitadora", "Gita", 1, logger);
 
-		t.strictSame(resDP, { skill: null }, "Should return skill keys.");
+		t.strictSame(resDP, { skill: null, naiveSkill: null }, "Should return skill keys.");
 
 		t.end();
 	});

@@ -12,11 +12,11 @@ module.exports = function AddLevelVersionFolders(name, game, playtypes, version,
 				type: "charts",
 				data: {
 					level,
-					versions: version
+					versions: version,
 				},
 				inactive: false,
 				searchTerms: [],
-			}
+			};
 
 			for (const playtype of playtypes) {
 				const folderID = CreateFolderID(folder.data, folder.game, playtype);
@@ -42,19 +42,16 @@ module.exports = function AddLevelVersionFolders(name, game, playtypes, version,
 				tableID: `${game}-${playtype}-${version}-levels`,
 				name: `${FormatGame(game, playtype)} (${name})`,
 				description: `Levels for ${FormatGame(game, playtype)} in ${name}.`,
-				folders: ptFolders[playtype].map(e => e.folderID),
+				folders: ptFolders[playtype].map((e) => e.folderID),
 				game,
 				playtype,
 				inactive: false,
 			});
 		}
 
-
 		return tables;
 	});
-}
-
-
+};
 
 // usage:
 

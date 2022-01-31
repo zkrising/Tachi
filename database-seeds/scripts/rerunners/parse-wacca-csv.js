@@ -10,8 +10,7 @@ const logger = require("../logger");
 const program = new Command();
 
 // https://github.com/shimmand/waccaSupportTools/blob/main/analyzePlayData/chartsTable.csv
-program
-	.option("-f, --file <wacca.csv>")
+program.option("-f, --file <wacca.csv>");
 
 program.parse(process.argv);
 const options = program.opts();
@@ -51,7 +50,6 @@ const STARTS = {
 	reverse: Date.parse("2021-8-10"),
 };
 
-
 (async () => {
 	const datum = await fetch("https://wacca.marv.jp/music/search.php", {
 		method: "POST",
@@ -59,7 +57,7 @@ const STARTS = {
 			"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
 		},
 		body: "cat=all",
-	}).then(r => r.json());
+	}).then((r) => r.json());
 
 	const songs = [];
 	const charts = [];
@@ -75,7 +73,7 @@ const STARTS = {
 			prettiedTitle = "13 Donkeys";
 		}
 
-		let time = Date.parse(data.release_date);
+		const time = Date.parse(data.release_date);
 		let ver;
 
 		if (time < STARTS.s) {
@@ -97,7 +95,13 @@ const STARTS = {
 		const record = dataMap.get(prettiedTitle);
 
 		if (!record) {
-			logger.warn(`Can't find record with title ${prettiedTitle}. Dumping potentially similar titles.\n${[...dataMap.keys()].filter(e => e.startsWith(prettiedTitle[0])).join("\n")}`);
+			logger.warn(
+				`Can't find record with title ${prettiedTitle}. Dumping potentially similar titles.\n${[
+					...dataMap.keys(),
+				]
+					.filter((e) => e.startsWith(prettiedTitle[0]))
+					.join("\n")}`
+			);
 			continue;
 		}
 
@@ -111,15 +115,15 @@ const STARTS = {
 				titleJP: data.title.ruby,
 				artistJP: data.artist.ruby,
 				genre: data.category,
-				displayVersion: ver
-			}
+				displayVersion: ver,
+			},
 		});
 
 		for (let i = 0; i < 4; i++) {
-			let diff = record[1 + i * 3];
-			let [diffName, level] = diff.split(" ");
-			let levelNum = Number(record[2 + i * 3]);
-			let isNew = record[3 + i * 3];
+			const diff = record[1 + i * 3];
+			const [diffName, level] = diff.split(" ");
+			const levelNum = Number(record[2 + i * 3]);
+			const isNew = record[3 + i * 3];
 
 			if (!levelNum) {
 				continue;
@@ -135,17 +139,22 @@ const STARTS = {
 				difficulty: diffName,
 				playtype: "Single",
 				data: {
-					isHot: isNew === "true"
+					isHot: isNew === "true",
 				},
 				tierlistInfo: {},
-				versions: ["reverse"]
+				versions: ["reverse"],
 			});
 		}
 
 		songID++;
 	}
 
-	fs.writeFileSync(path.resolve(__dirname, "../../collections/charts-wacca.json"), JSON.stringify(charts, null, "\t"));
-	fs.writeFileSync(path.resolve(__dirname, "../../collections/songs-wacca.json"), JSON.stringify(songs, null, "\t"));
-
+	fs.writeFileSync(
+		path.resolve(__dirname, "../../collections/charts-wacca.json"),
+		JSON.stringify(charts, null, "\t")
+	);
+	fs.writeFileSync(
+		path.resolve(__dirname, "../../collections/songs-wacca.json"),
+		JSON.stringify(songs, null, "\t")
+	);
 })();

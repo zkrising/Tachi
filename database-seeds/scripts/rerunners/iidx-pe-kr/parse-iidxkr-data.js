@@ -7,12 +7,8 @@ const { ReadCollection } = require("../../util");
 
 const songs = ReadCollection("songs-iidx.json");
 
-async function parseKr(
-	file,
-	mode,
-	catVals
-) {
-	let charts = ReadCollection("charts-iidx.json");
+async function parseKr(file, mode, catVals) {
+	const charts = ReadCollection("charts-iidx.json");
 
 	const krdata = JSON.parse(fs.readFileSync(path.join(__dirname, file), "utf-8"));
 	const mutations = [];
@@ -73,10 +69,10 @@ async function parseKr(
 							text: cv.text,
 							value: cv.value,
 							individualDifference: cv.idv,
-						}
-					}
-				}
-			})
+						},
+					},
+				},
+			});
 
 			console.log(`Updated ${chart.chartID} to value ${cv.value}.`);
 		}

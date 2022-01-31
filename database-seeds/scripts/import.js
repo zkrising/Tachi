@@ -14,8 +14,7 @@ const logger = require("./logger");
 
 const program = new Command();
 
-program
-	.option("-d, --db <Database Name>")
+program.option("-d, --db <Database Name>");
 
 program.parse(process.argv);
 const options = program.opts();

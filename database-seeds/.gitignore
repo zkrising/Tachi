@@ -7,3 +7,5 @@ scripts/single-time
 .vs
 
 scripts/rerunners/bpi-output.json
+
+failed-tests.log

@@ -79,8 +79,8 @@ for (const info of data.entries.music) {
 			hash,
 			notes,
 			playtype,
-			difficulty
-		})
+			difficulty,
+		});
 	}
 }
 
@@ -95,7 +95,11 @@ MutateCollection("charts-iidx.json", (charts) => {
 				}
 				match = true;
 				break;
-			} else if (Array.isArray(chart.data.inGameID) ? chart.data.inGameID.includes(data.id) : chart.data.inGameID === data.id) {
+			} else if (
+				Array.isArray(chart.data.inGameID)
+					? chart.data.inGameID.includes(data.id)
+					: chart.data.inGameID === data.id
+			) {
 				existingReference = chart;
 			}
 		}
@@ -107,25 +111,23 @@ MutateCollection("charts-iidx.json", (charts) => {
 			}
 
 			charts.push({
-				"chartID": CreateChartID(),
-				"data": {
+				chartID: CreateChartID(),
+				data: {
 					"2dxtraSet": options.name,
-					"arcChartID": null,
-					"hashSHA256": data.hash,
-					"inGameID": data.id,
-					"notecount": data.notes
+					arcChartID: null,
+					hashSHA256: data.hash,
+					inGameID: data.id,
+					notecount: data.notes,
 				},
-				"difficulty": `${options.name} ${data.difficulty}`,
-				"isPrimary": true,
-				"level": "?",
-				"levelNum": 0,
+				difficulty: `${options.name} ${data.difficulty}`,
+				isPrimary: true,
+				level: "?",
+				levelNum: 0,
 				playtype: data.playtype,
-				"rgcID": null,
-				"songID": existingReference.songID,
-				"tierlistInfo": {},
-				"versions": [
-					options.version
-				]
+				rgcID: null,
+				songID: existingReference.songID,
+				tierlistInfo: {},
+				versions: [options.version],
 			});
 		}
 	}

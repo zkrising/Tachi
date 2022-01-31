@@ -348,7 +348,7 @@ export const TestingSDVXSingleDryScore: DryScore<"sdvx:Single"> = {
 	service: "e-amusement",
 	game: "sdvx",
 	scoreData: {
-		score: 95000000,
+		score: 9_500_000,
 		lamp: "EXCESSIVE CLEAR",
 		percent: 95,
 		grade: "AA+",

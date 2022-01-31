@@ -11,17 +11,20 @@ import {
 } from "tachi-common";
 import { DryScore } from "../common/types";
 import {
-	CalculateBPI,
-	CalculateCHUNITHMRating,
-	CalculateGITADORASkill,
-	CalculateJubility,
 	CalculateKTLampRatingIIDX,
 	CalculateKTRating,
 	CalculateMFCP,
 	CalculateSieglinde,
-	CalculateVF6,
-	CalculateWACCARate,
 } from "./stats";
+import {
+	PoyashiBPI,
+	Volforce,
+	CHUNITHMRating,
+	GITADORASkill,
+	Jubility,
+	PopnClassPoints,
+	WACCARate,
+} from "rg-stats";
 
 export async function CreateCalculatedData(
 	dryScore: DryScore,
@@ -53,8 +56,8 @@ type CalculatedDataFunctions = {
 };
 
 const CalculatedDataFunctions: CalculatedDataFunctions = {
-	"iidx:SP": CalculateDataIIDXSP,
-	"iidx:DP": CalculateDataIIDXDP,
+	"iidx:SP": CalculateDataIIDX,
+	"iidx:DP": CalculateDataIIDX,
 	"sdvx:Single": CalculateDataSDVXorUSC,
 	"popn:9B": CalculateDataPopn,
 	"museca:Single": CalculateDataMuseca,
@@ -92,18 +95,18 @@ export async function CalculateDataForGamePT<G extends Game>(
 
 type CalculatedData<I extends IDStrings> = Required<ScoreDocument<I>["calculatedData"]>;
 
-function CalculateDataIIDXSP(
+function CalculateDataIIDX(
 	dryScore: DryScore,
-	chart: ChartDocument<"iidx:SP">,
+	chart: ChartDocument<"iidx:SP" | "iidx:DP">,
 	logger: KtLogger
 ): CalculatedData<"iidx:SP"> {
 	let bpi;
 
 	if (chart.data.kaidenAverage && chart.data.worldRecord) {
-		bpi = CalculateBPI(
+		bpi = PoyashiBPI.calculate(
+			dryScore.scoreData.score,
 			chart.data.kaidenAverage,
 			chart.data.worldRecord,
-			dryScore.scoreData.score,
 			(chart as ChartDocument<"iidx:SP">).data.notecount * 2,
 			chart.data.bpiCoefficient
 		);
@@ -115,34 +118,10 @@ function CalculateDataIIDXSP(
 
 	return {
 		BPI: bpi,
-		ktLampRating: CalculateKTLampRatingIIDX(dryScore, "SP", chart as ChartDocument<"iidx:SP">),
-	};
-}
-
-function CalculateDataIIDXDP(
-	dryScore: DryScore,
-	chart: ChartDocument<"iidx:SP" | "iidx:DP">,
-	logger: KtLogger
-): CalculatedData<"iidx:DP"> {
-	let bpi;
-
-	if (chart.data.kaidenAverage && chart.data.worldRecord) {
-		bpi = CalculateBPI(
-			chart.data.kaidenAverage,
-			chart.data.worldRecord,
-			dryScore.scoreData.score,
-			(chart as ChartDocument<"iidx:DP">).data.notecount * 2,
-			chart.data.bpiCoefficient
-		);
-
-		// kesdc = esd === null ? null : CalculateKESDC(BPIData.kesd, esd); disabled
-	} else {
-		bpi = null;
-	}
-
-	return {
-		BPI: bpi,
-		ktLampRating: CalculateKTLampRatingIIDX(dryScore, "DP", chart as ChartDocument<"iidx:DP">),
+		ktLampRating: CalculateKTLampRatingIIDX(
+			dryScore,
+			chart as ChartDocument<"iidx:SP" | "iidx:DP">
+		),
 	};
 }
 
@@ -159,17 +138,13 @@ function CalculateDataSDVXorUSC(
 		return { VF6: null };
 	}
 
-	const VF6 = CalculateVF6(
-		dryScore.scoreData.grade as Grades["sdvx:Single"],
+	const VF6 = Volforce.calculateVF6(
+		dryScore.scoreData.score,
 		dryScore.scoreData.lamp as Lamps["sdvx:Single"],
-		dryScore.scoreData.percent,
-		chart.levelNum,
-		logger
+		chart.levelNum
 	);
 
-	return {
-		VF6,
-	};
+	return { VF6 };
 }
 
 function CalculateDataMuseca(
@@ -188,7 +163,7 @@ function CalculateDataJubeat(
 	logger: KtLogger
 ): CalculatedData<"jubeat:Single"> {
 	return {
-		jubility: CalculateJubility(
+		jubility: Jubility.calculate(
 			dryScore.scoreData.score,
 			dryScore.scoreData.percent,
 			chart.levelNum
@@ -201,7 +176,7 @@ function CalculateDataCHUNITHM(
 	chart: ChartDocument
 ): CalculatedData<"chunithm:Single"> {
 	return {
-		rating: CalculateCHUNITHMRating(dryScore, chart),
+		rating: CHUNITHMRating.calculate(dryScore.scoreData.score, chart.levelNum),
 	};
 }
 
@@ -221,7 +196,7 @@ function CalculateDataGitadora(
 	chart: ChartDocument
 ): CalculatedData<"gitadora:Gita" | "gitadora:Dora"> {
 	return {
-		skill: CalculateGITADORASkill(dryScore, chart),
+		skill: GITADORASkill.calculate(dryScore.scoreData.percent, chart.levelNum),
 	};
 }
 
@@ -255,32 +230,21 @@ function CalculateDataWACCA(
 	chart: ChartDocument,
 	logger: KtLogger
 ): CalculatedData<"wacca:Single"> {
-	const rate = CalculateWACCARate(dryScore.scoreData.score, chart.levelNum);
+	const rate = WACCARate.calculate(dryScore.scoreData.score, chart.levelNum);
 
 	return { rate };
 }
 
 function CalculateDataPopn(
-	dryScore: DryScore,
-	chart: ChartDocument,
+	dryScore: DryScore<"popn:9B">,
+	chart: ChartDocument<"popn:9B">,
 	logger: KtLogger
 ): CalculatedData<"popn:9B"> {
-	const score = dryScore.scoreData.score;
-	const lamp = dryScore.scoreData.lamp;
-
-	if (score <= 50000) {
-		return { classPoints: 0 };
-	}
-
-	let clearBonus = 0;
-
-	if (lamp === "CLEAR" || lamp === "EASY CLEAR") {
-		clearBonus = 3000;
-	} else if (lamp === "FULL COMBO" || lamp === "PERFECT") {
-		clearBonus = 5000;
-	}
-
 	return {
-		classPoints: (10_000 * chart.levelNum + score - 50_000 + clearBonus) / 5440,
+		classPoints: PopnClassPoints.calculate(
+			dryScore.scoreData.score,
+			dryScore.scoreData.lamp,
+			chart.levelNum
+		),
 	};
 }

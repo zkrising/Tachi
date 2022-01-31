@@ -2,8 +2,8 @@ import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import { FindChartWithChartID } from "utils/queries/charts";
-import { CalculateVF6 } from "../calculated-data/stats";
 import { InternalFailure } from "../common/converter-failures";
+import { Volforce } from "rg-stats";
 
 export async function IIDXMergeFn(
 	pbDoc: PBScoreDocument<"iidx:SP" | "iidx:DP">,
@@ -100,12 +100,10 @@ export async function USCMergeFn(
 		throw new InternalFailure(`Chart ${pbDoc.chartID} disappeared underfoot?`);
 	}
 
-	pbDoc.calculatedData.VF6 = CalculateVF6(
-		pbDoc.scoreData.grade,
+	pbDoc.calculatedData.VF6 = Volforce.calculateVF6(
+		pbDoc.scoreData.score,
 		pbDoc.scoreData.lamp,
-		pbDoc.scoreData.percent,
-		chart.levelNum,
-		logger
+		chart.levelNum
 	);
 
 	return true;
@@ -133,12 +131,10 @@ export async function SDVXMergeFn(
 		throw new InternalFailure(`Chart ${pbDoc.chartID} disappeared underfoot?`);
 	}
 
-	pbDoc.calculatedData.VF6 = CalculateVF6(
-		pbDoc.scoreData.grade,
+	pbDoc.calculatedData.VF6 = Volforce.calculateVF6(
+		pbDoc.scoreData.score,
 		pbDoc.scoreData.lamp,
-		pbDoc.scoreData.percent,
-		chart.levelNum,
-		logger
+		chart.levelNum
 	);
 
 	return true;

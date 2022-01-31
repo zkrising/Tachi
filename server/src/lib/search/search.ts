@@ -47,7 +47,7 @@ export function SearchCollection<T>(
 			// sort by quality of match
 			{ $sort: { __textScore: -1 } },
 			// hide nonsense
-			{ $match: { __textScore: { $gt: 0.25 } } },
+			{ $match: { __textScore: { $gt: 0.05 } } },
 			{ $limit: limit },
 		])
 		.catch((err) => {

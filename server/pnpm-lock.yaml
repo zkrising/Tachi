@@ -59,6 +59,7 @@ specifiers:
   prudence: 0.9.7
   rate-limit-redis: 2.1.0
   redis: 3.1.2
+  rg-stats: ^0.2.0
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
   seq-logging: 1.1.1
@@ -104,6 +105,7 @@ dependencies:
   prudence: 0.9.7
   rate-limit-redis: 2.1.0
   redis: 3.1.2
+  rg-stats: 0.2.0
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
   seq-logging: 1.1.1
@@ -4975,6 +4977,10 @@ packages:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
     dev: true
+
+  /rg-stats/0.2.0:
+    resolution: {integrity: sha512-d+IFYlryQMZjMYVJgL0vIZCdUpkYhUC9vzfMHOs/HNEeM5jjlVLDyuiru4UJlc67XoqGgby2Mp6IkcFoRXz4Gw==}
+    dev: false
 
   /rimraf/2.4.5:
     resolution: {integrity: sha1-7nEM5dk6j9uFb7Xqj/Di11k0sto=}

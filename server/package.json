@@ -79,6 +79,7 @@
 		"prudence": "0.9.7",
 		"rate-limit-redis": "2.1.0",
 		"redis": "3.1.2",
+		"rg-stats": "^0.2.0",
 		"rimraf": "3.0.2",
 		"safe-json-stringify": "1.2.0",
 		"seq-logging": "1.1.1",

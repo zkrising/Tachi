@@ -32,8 +32,6 @@ export async function CheckAndSetOngoingImportLock(userID: integer) {
 		}
 	);
 
-	rootLogger.crit("", lockWasSet);
-
 	return !lockWasSet;
 }
 

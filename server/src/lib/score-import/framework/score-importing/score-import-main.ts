@@ -42,8 +42,6 @@ export default async function ScoreImportMain<D, C>(
 	providedLogger?: KtLogger,
 	job?: ScoreImportJob
 ) {
-	rootLogger.crit(`HIT from ${userID} ${importID}.`);
-
 	const user = await GetUserWithID(userID);
 
 	if (!user) {
@@ -244,8 +242,6 @@ export default async function ScoreImportMain<D, C>(
 				milestone: milestoneTime,
 			},
 		});
-
-		rootLogger.crit(`END ${importID}.`);
 
 		return ImportDocument;
 	} finally {

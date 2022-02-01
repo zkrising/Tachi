@@ -28,9 +28,9 @@ export async function MakeScoreImport<I extends ImportTypes>(
 	if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER && process.env.IS_JOB === undefined) {
 		let timesAttempted = 1;
 
-		// There's no chance this thing goes on 10 times.
-		// if it does, this import has been trying for the past 2 days or so.
-		while (timesAttempted < 10) {
+		// There's no chance this thing goes on 7 times.
+		// if it does, this import has been trying for the past 6 hours or so.
+		while (timesAttempted <= 7) {
 			const job = await ScoreImportQueue.add(
 				`Import ${jobData.importID}${timesAttempted > 0 ? ` (TRY${timesAttempted})` : ""}`,
 				jobData,
@@ -64,7 +64,15 @@ export async function MakeScoreImport<I extends ImportTypes>(
 			timesAttempted++;
 		}
 
-		throw new ScoreImportFatalError(409, "Couldn't get an import at all.");
+		logger.error(
+			`User ${jobData.userID} didn't get an import through in around 6 hours. Has their lock gotten stuck?`,
+			jobData
+		);
+
+		throw new ScoreImportFatalError(
+			409,
+			"Couldn't get an import through in the past 6 hours, at all."
+		);
 	} else {
 		const InputParser = GetInputParser(jobData);
 
@@ -85,6 +93,8 @@ function ExponentialBackoff(exponent: integer) {
 	// 2 | 64 Seconds
 	// 3 | 256 Seconds
 	// 4 | 1024 Seconds
+	// ...
+	// ends at 7, which is around 4 hours.
 
 	return 1000 * 4 ** exponent;
 }

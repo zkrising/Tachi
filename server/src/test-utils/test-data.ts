@@ -124,22 +124,20 @@ export const TestingIIDXSPScore: ScoreDocument<"iidx:SP"> = {
 };
 
 export const TestingKsHookSV6CScore: KsHookSV6CScore = {
-	btn_rate: 182,
 	clear: "CLEAR_EXCESSIVE",
 	critical: 1184,
 	difficulty: "DIFFICULTY_ADVANCED",
 	error: 30,
 	gauge: 71,
 	grade: "GRADE_AA_PLUS",
-	long_rate: 195,
 	max_chain: 158,
 	music_id: 1,
 	near: 46,
 	rate: "RATE_EXCESSIVE",
 	score: 9579365,
 	track_no: 0,
-	vol_rate: 193,
 	ex_score: 1334,
+	retry_count: 0,
 };
 export const TestingBMS7KScore: ScoreDocument<"bms:7K"> = {
 	calculatedData: {

@@ -371,7 +371,7 @@ t.test("GET /api/v1/users/:userID/game-stats", (t) => {
 	t.end();
 });
 
-t.test("GET /api/v1/users/:userID/recent-imports", async (t) => {
+t.test("GET /api/v1/users/:userID/recent-imports", (t) => {
 	t.beforeEach(ResetDBState);
 
 	function mkImport(

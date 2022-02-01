@@ -36,15 +36,17 @@ const PR_KsHookSV6C: PrudenceSchema = {
 	max_chain: p.isPositiveInteger,
 	music_id: p.isPositiveInteger,
 
-	btn_rate: p.isBetween(0, 200),
-	long_rate: p.isBetween(0, 200),
-	vol_rate: p.isBetween(0, 200),
-
+	score: p.isBoundedInteger(0, 10_000_000),
 	ex_score: p.isPositiveInteger,
+
+	critical: p.isPositiveInteger,
+	near: p.isPositiveInteger,
+	error: p.isPositiveInteger,
 
 	rate: p.isIn("RATE_EFFECTIVE", "RATE_PERMISSIVE", "RATE_EXCESSIVE", "RATE_BLASTIVE"),
 
 	track_no: p.isPositiveInteger,
+	retry_count: p.any,
 };
 
 export function ParseKsHookSV6C(

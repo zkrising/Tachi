@@ -23,10 +23,6 @@ export interface KsHookSV6CScore {
 	max_chain: integer;
 	music_id: integer;
 
-	btn_rate: integer;
-	long_rate: integer;
-	vol_rate: integer;
-
 	critical: integer;
 	near: integer;
 	error: integer;
@@ -36,6 +32,7 @@ export interface KsHookSV6CScore {
 	ex_score: integer;
 
 	track_no: integer;
+	retry_count: unknown;
 }
 
 export interface KsHookSV6CContext {

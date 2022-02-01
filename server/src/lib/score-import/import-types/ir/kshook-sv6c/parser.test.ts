@@ -48,18 +48,10 @@ t.test("#ParseKsHookSV6C", (t) => {
 	assertFail(dm({ max_chain: -1 }), "Should reject negative max_chains.");
 	assertFail(dm({ max_chain: 100.5 }), "Should reject non-integer max_chains.");
 
-	assertFail(dm({ btn_rate: -1 }), "Should reject negative btn_rates.");
-	assertFail(dm({ btn_rate: 200.1 }), "Should reject btn_rates over 200.");
-	assertSuccess(dm({ btn_rate: 0 }), "Should allow btn_rate values of 0.");
-	assertSuccess(dm({ btn_rate: 200 }), "Should allow btn_rate values of 200.");
-	assertFail(dm({ vol_rate: -1 }), "Should reject negative vol_rates.");
-	assertFail(dm({ vol_rate: 200.1 }), "Should reject vol_rates over 200.");
-	assertSuccess(dm({ vol_rate: 0 }), "Should allow vol_rate values of 0.");
-	assertSuccess(dm({ vol_rate: 200 }), "Should allow vol_rate values of 200.");
-	assertFail(dm({ long_rate: -1 }), "Should reject negative long_rates.");
-	assertFail(dm({ long_rate: 200.1 }), "Should reject long_rates over 200.");
-	assertSuccess(dm({ long_rate: 0 }), "Should allow long_rate values of 0.");
-	assertSuccess(dm({ long_rate: 200 }), "Should allow long_rate values of 200.");
+	assertFail(dm({ score: -1 }), "Should reject negative scores.");
+	assertFail(dm({ score: 10_000_001 }), "Should reject > 10m scores.");
+	assertSuccess(dm({ score: 10_000_000 }), "Should allow scores of 10m.");
+	assertSuccess(dm({ score: 0 }), "Should allow scores of 0.");
 
 	assertFail(dm({ rate: "invalid_rate" }), "Should reject invalid rates.");
 

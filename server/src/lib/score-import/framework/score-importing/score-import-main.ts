@@ -1,8 +1,9 @@
 import db from "external/mongo/db";
-import { KtLogger, rootLogger } from "lib/logger/logger";
+import { KtLogger } from "lib/logger/logger";
 import { ScoreImportJob } from "lib/score-import/worker/types";
 import {
 	Game,
+	GetGameConfig,
 	IDStrings,
 	ImportDocument,
 	ImportProcessingInfo,
@@ -10,9 +11,8 @@ import {
 	integer,
 	Playtypes,
 	PublicUserDocument,
-	GetGameConfig,
 } from "tachi-common";
-import { GetMillisecondsSince, Sleep } from "utils/misc";
+import { GetMillisecondsSince } from "utils/misc";
 import { GetUserWithID } from "utils/user";
 import { ConverterFunction, ImportInputParser } from "../../import-types/common/types";
 import { Converters } from "../../import-types/converters";
@@ -28,6 +28,7 @@ import { ClassHandler } from "../user-game-stats/types";
 import { UpdateUsersGamePlaytypeStats } from "../user-game-stats/update-ugs";
 import ScoreImportFatalError from "./score-import-error";
 import { ImportAllIterableData } from "./score-importing";
+
 /**
  * Performs a Score Import.
  *

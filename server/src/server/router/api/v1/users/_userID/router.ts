@@ -1,12 +1,13 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { ONE_MONTH } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import { UserGameStats } from "tachi-common";
+import { ImportTypes, integer, UserGameStats } from "tachi-common";
 import { DeleteUndefinedProps, StripUrl } from "utils/misc";
-import { optNull, optNullFluffStrField } from "utils/prudence";
+import { optNullFluffStrField } from "utils/prudence";
 import {
 	GetRecentlyViewedFoldersAnyGPT,
 	GetRecentPlaycount,
@@ -340,6 +341,38 @@ router.post(
 		});
 	}
 );
+
+/**
+ * Get the recent import types this user has used.
+ */
+router.get("/recent-imports", async (req, res) => {
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+
+	const recentImports = (await db.imports.aggregate([
+		{
+			$match: {
+				userID: user.id,
+				timeFinished: { $gt: Date.now() - ONE_MONTH },
+				userIntent: true,
+			},
+		},
+		{
+			$group: {
+				_id: "$importType",
+				count: { $sum: 1 },
+			},
+		},
+	])) as { _id: ImportTypes; count: integer }[];
+
+	// rename _id to importType.
+	const imports = recentImports.map((e) => ({ importType: e._id, count: e.count }));
+
+	return res.status(200).json({
+		success: true,
+		description: `Found ${recentImports.length} imports.`,
+		body: imports.sort((a, b) => b.count - a.count),
+	});
+});
 
 router.use("/games/:game/:playtype", gamePTRouter);
 router.use("/pfp", pfpRouter);

@@ -81,7 +81,6 @@ export default async function ScoreImportMain<D, C>(
 
 		SetJobProgress(job, "Parsing score data.");
 
-		await Sleep(10_000);
 		// --- 1. Parsing ---
 		// We get an iterable from the provided parser function, alongside some context and a converter function.
 		// This iterable does not have to be an array - it's anything that's iterable, like a generator.

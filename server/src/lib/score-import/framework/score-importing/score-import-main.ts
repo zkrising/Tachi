@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
+import { KtLogger, rootLogger } from "lib/logger/logger";
 import { ScoreImportJob } from "lib/score-import/worker/types";
 import {
 	Game,
@@ -12,7 +12,7 @@ import {
 	PublicUserDocument,
 	GetGameConfig,
 } from "tachi-common";
-import { GetMillisecondsSince } from "utils/misc";
+import { GetMillisecondsSince, Sleep } from "utils/misc";
 import { GetUserWithID } from "utils/user";
 import { ConverterFunction, ImportInputParser } from "../../import-types/common/types";
 import { Converters } from "../../import-types/converters";
@@ -50,32 +50,34 @@ export default async function ScoreImportMain<D, C>(
 		);
 	}
 
+	let logger;
+
+	if (!providedLogger) {
+		// If they weren't given to us -
+		// we create an "import logger".
+		// this holds a reference to the user's name, ID, and type
+		// of score import for any future debugging.
+		logger = CreateScoreLogger(user, importID, importType);
+		logger.debug("Received import request.");
+	} else {
+		logger = providedLogger;
+	}
+
+	const hasNoOngoingImport = await CheckAndSetOngoingImportLock(user.id);
+
+	if (hasNoOngoingImport) {
+		logger.info(`User ${userID} made an import while they had one ongoing.`);
+		// @danger
+		// Throwing away an import if the user already has one outgoing is *bad*, as in the case
+		// of degraded performance we might just start throwing scores away.
+		// Under normal circumstances, there is no scenario where a user would have two ongoing
+		// imports at the same time - even if they were using single-score imports on a 5 second
+		// chart, as each score import takes only around ~10-15milliseconds.
+		throw new ScoreImportFatalError(409, "This user already has an ongoing import.");
+	}
+
 	try {
-		const hasNoOngoingImport = await CheckAndSetOngoingImportLock(user.id);
-
-		if (hasNoOngoingImport) {
-			// @danger
-			// Throwing away an import if the user already has one outgoing is *bad*, as in the case
-			// of degraded performance we might just start throwing scores away.
-			// Under normal circumstances, there is no scenario where a user would have two ongoing
-			// imports at the same time - even if they were using single-score imports on a 5 second
-			// chart, as each score import takes only around ~10-15milliseconds.
-			throw new ScoreImportFatalError(409, "This user already has an ongoing import.");
-		}
-
 		const timeStarted = Date.now();
-		let logger;
-
-		if (!providedLogger) {
-			// If they weren't given to us -
-			// we create an "import logger".
-			// this holds a reference to the user's name, ID, and type
-			// of score import for any future debugging.
-			logger = CreateScoreLogger(user, importID, importType);
-			logger.debug("Received import request.");
-		} else {
-			logger = providedLogger;
-		}
 
 		SetJobProgress(job, "Parsing score data.");
 

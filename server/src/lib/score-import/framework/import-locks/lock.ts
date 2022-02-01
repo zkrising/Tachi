@@ -1,4 +1,5 @@
 import db from "external/mongo/db";
+import { rootLogger } from "lib/logger/logger";
 import { integer } from "tachi-common";
 
 /**

@@ -1,4 +1,5 @@
 import db from "external/mongo/db";
+import { rootLogger } from "lib/logger/logger";
 import { integer } from "tachi-common";
 
 /**
@@ -30,6 +31,8 @@ export async function CheckAndSetOngoingImportLock(userID: integer) {
 			$set: { locked: true },
 		}
 	);
+
+	rootLogger.crit("", lockWasSet);
 
 	return !lockWasSet;
 }

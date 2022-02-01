@@ -1,10 +1,15 @@
+/* eslint-disable no-await-in-loop */
 import { ServerConfig } from "lib/setup/config";
 import { ScoreImportJobData } from "../worker/types";
 import { GetInputParser } from "./common/get-input-parser";
 import ScoreImportMain from "./score-importing/score-import-main";
-import { ImportTypes, ImportDocument } from "tachi-common";
+import { ImportTypes, ImportDocument, integer } from "tachi-common";
 import ScoreImportQueue, { ScoreImportQueueEvents } from "../worker/queue";
 import ScoreImportFatalError from "./score-importing/score-import-error";
+import { Sleep } from "utils/misc";
+import CreateLogCtx from "lib/logger/logger";
+
+const logger = CreateLogCtx(__filename);
 
 /**
  * Makes a score import given ScoreImportJobData.
@@ -21,17 +26,45 @@ export async function MakeScoreImport<I extends ImportTypes>(
 	jobData: ScoreImportJobData<I>
 ): Promise<ImportDocument> {
 	if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER && process.env.IS_JOB === undefined) {
-		const job = await ScoreImportQueue.add(`Import ${jobData.importID}`, jobData, {
-			jobId: jobData.importID,
-		});
+		let timesAttempted = 1;
 
-		const data = await job.waitUntilFinished(ScoreImportQueueEvents);
+		// There's no chance this thing goes on 10 times.
+		// if it does, this import has been trying for the past 2 days or so.
+		while (timesAttempted < 10) {
+			const job = await ScoreImportQueue.add(
+				`Import ${jobData.importID}${timesAttempted > 0 ? ` (TRY${timesAttempted})` : ""}`,
+				jobData,
+				{
+					jobId: `${jobData.importID}:TRY${timesAttempted}`,
+				}
+			);
 
-		if (data.success) {
-			return data.importDocument;
-		} else {
-			throw new ScoreImportFatalError(data.statusCode, data.description);
+			const data = await job.waitUntilFinished(ScoreImportQueueEvents);
+
+			if (data.success) {
+				return data.importDocument;
+			} else if (data.statusCode !== 409) {
+				throw new ScoreImportFatalError(data.statusCode, data.description);
+			}
+
+			const backoff = ExponentialBackoff(timesAttempted - 1);
+
+			logger.info(
+				`User ${jobData.userID} already had an import ongoing. (${
+					jobData.importID
+				}) Backing off for ${(backoff / 1_000).toFixed(2)} seconds.`
+			);
+
+			// If we get here, we were 409'd and the user already has an ongoing
+			// import.
+			// In the interest of not just throwing scores away, we'll back off a bit
+			// and then restart the job.
+			await Sleep(backoff);
+
+			timesAttempted++;
 		}
+
+		throw new ScoreImportFatalError(409, "Couldn't get an import at all.");
 	} else {
 		const InputParser = GetInputParser(jobData);
 
@@ -43,4 +76,15 @@ export async function MakeScoreImport<I extends ImportTypes>(
 			jobData.importID
 		);
 	}
+}
+
+function ExponentialBackoff(exponent: integer) {
+	// n | backoff
+	// 0 | 4 Seconds
+	// 1 | 16 Seconds
+	// 2 | 64 Seconds
+	// 3 | 256 Seconds
+	// 4 | 1024 Seconds
+
+	return 1000 * 4 ** exponent;
 }

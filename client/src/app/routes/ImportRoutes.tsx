@@ -11,6 +11,7 @@ import LR2DBPage from "app/pages/dashboard/import/LR2DBPage";
 import LR2HookPage from "app/pages/dashboard/import/LR2HookPage";
 import MerJSONPage from "app/pages/dashboard/import/MerJSONPage";
 import SDVXEamCSVPage from "app/pages/dashboard/import/SDVXEamCSVPage";
+import SilentHookPage from "app/pages/dashboard/import/SilentHookPage";
 import SSSXMLPage from "app/pages/dashboard/import/SSSXMLPage";
 import USCDBPage from "app/pages/dashboard/import/USCDBPage";
 import USCIRPage from "app/pages/dashboard/import/USCIRPage";
@@ -110,6 +111,9 @@ export default function ImportRoutes() {
 							</Route>
 							<Route exact path="/dashboard/import/ks-hook">
 								<KsHookPage />
+							</Route>
+							<Route exact path="/dashboard/import/silent-hook">
+								<SilentHookPage />
 							</Route>
 
 							<Route exact path="/dashboard/import/chunitachi">

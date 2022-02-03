@@ -144,6 +144,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				name="Konaste Hook"
 				href="ks-hook"
 				desc="Automatically import scores from SDVX 6 Konaste!"
+				moreInfo="Yep, it's that simple."
 				key="Konaste Hook"
 			/>,
 			<ImportInfoCard
@@ -238,6 +239,16 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Import scores from a USC score database file."
 				moreInfo="This should be done once initially to sync scores up, but not all the time, as it provides worse quality data."
 				key="USC Database Import"
+			/>
+		);
+	} else if (game === "popn") {
+		Content.unshift(
+			<ImportInfoCard
+				name="Silent Hook"
+				href="silent-hook"
+				desc={`Automatically upload Pop'n scores to ${TachiConfig.name}!`}
+				moreInfo="Yep, it's that simple."
+				key="Silent Hook"
 			/>
 		);
 	}

@@ -21,7 +21,7 @@ export default function TitleCell({
 	const backgroundImage =
 		game !== "popn"
 			? undefined
-			: `linear-gradient(to left, rgba(19, 19, 19, 0.1), rgba(19, 19, 19, 1)), url(${ToCDNURL(
+			: `linear-gradient(to left, rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 1)), url(${ToCDNURL(
 					`/misc/popn/banners/${(chart as any).data.inGameID}.png`
 			  )})`;
 

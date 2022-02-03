@@ -248,6 +248,28 @@ function SongInfoHeader({
 		.slice(0)
 		.sort(NumericSOV(x => gptConfig.difficulties.indexOf(x.difficulty)));
 
+	let ImageCell = null;
+
+	if (game === "popn") {
+		ImageCell = (
+			<img
+				src={ToCDNURL(
+					`/misc/popn/banners/${
+						(charts[0] as ChartDocument<"popn:9B">).data.inGameID
+					}.png`
+				)}
+				className="w-100"
+			/>
+		);
+	} else if ("displayVersion" in song.data) {
+		ImageCell = (
+			<img
+				src={ToCDNURL(`/game-icons/${game}/${song.data.displayVersion}`)}
+				className="w-100"
+			/>
+		);
+	}
+
 	return (
 		<Card header="Song Info">
 			<Row
@@ -256,13 +278,9 @@ function SongInfoHeader({
 					justifyContent: "space-evenly",
 				}}
 			>
-				{"displayVersion" in song.data && (
+				{ImageCell && (
 					<Col xs={12} lg={3} className="text-center">
-						<img
-							src={ToCDNURL(`/game-icons/${game}/${song.data.displayVersion}`)}
-							// onError={() => seetImgShow(false)}
-							className="w-100"
-						/>
+						{ImageCell}
 					</Col>
 				)}
 				<Col xs={12} lg={4} className="text-center">

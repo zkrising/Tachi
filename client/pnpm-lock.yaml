@@ -90,7 +90,7 @@ specifiers:
   socicon: 3.0.5
   style-loader: 1.0.0
   sync-fetch: ^0.3.1
-  tachi-common: 0.5.9
+  tachi-common: 0.5.13
   terser-webpack-plugin: 1.4.1
   ts-pnp: 1.1.4
   typescript: 4.3.5
@@ -168,7 +168,7 @@ dependencies:
   rg-stats: 0.2.0
   socicon: 3.0.5
   sync-fetch: 0.3.1
-  tachi-common: 0.5.9
+  tachi-common: 0.5.13
 
 devDependencies:
   '@types/humanize-duration': 3.25.1
@@ -11552,8 +11552,8 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tachi-common/0.5.9:
-    resolution: {integrity: sha512-KFRpRyW1A9Koi8slPEbWtWCqWQMw7rDb0j7ZIb7NMnoaO+AL8kt/Yb4E8ff5HoQYwewWLgtJ1KC4x2opIjqXgg==}
+  /tachi-common/0.5.13:
+    resolution: {integrity: sha512-yxUuwQf5w17X7d0WCqBYoW5vjxSrIdeLHAX2xJXvFhyu7zV0S7ejyPzZHHvh3mvl9dnoJhZuDEw7A7U3sVE1oQ==}
     dependencies:
       monk: 7.3.4
     transitivePeerDependencies:

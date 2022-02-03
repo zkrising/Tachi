@@ -38,7 +38,7 @@ export default function SongChartInfoFormat({
 				{chart && <h5>({levelText})</h5>}
 			</>
 		);
-	} else if (game === "iidx") {
+	} else if (game === "iidx" || game === "popn") {
 		return (
 			<>
 				<h4>{song.data.genre}</h4>

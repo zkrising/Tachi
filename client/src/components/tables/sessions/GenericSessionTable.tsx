@@ -114,16 +114,8 @@ function Row({
 	reqUser: PublicUserDocument;
 	indexCol?: boolean;
 }) {
-	const [highlight, setHighlight] = useState(data.highlight);
-	const [desc, setDesc] = useState(data.desc);
-
-	const sessionState = { highlight, desc, setHighlight, setDesc };
-
 	return (
-		<tr
-			className={highlight ? "highlighted-row" : ""}
-			// dropdown={<GenericSessionDropdown data={data} />}
-		>
+		<tr className={data.highlight ? "highlighted-row" : ""}>
 			{indexCol && <IndexCell index={data.__related.index} />}
 			<td style={{ minWidth: "140px" }}>
 				<Link
@@ -133,7 +125,7 @@ function Row({
 					{data.name}
 				</Link>
 				<br />
-				<small className="text-muted">{desc}</small>
+				<small className="text-muted">{data.desc}</small>
 			</td>
 			<td>
 				{data.scoreInfo.length}

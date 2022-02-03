@@ -65,6 +65,12 @@ export default function UGPTStatCreator({
 		},
 	});
 
+	useEffect(() => {
+		if (formik.values.mode === "folder" && formik.values.property === "playcount") {
+			formik.setValues({ ...formik.values, property: "lamp" });
+		}
+	}, [formik.values.mode]);
+
 	const [chartData, setChartData] = useState<{ chartID: string; name: string }[]>([]);
 	const [chartSearch, setChartSearch] = useState("");
 
@@ -269,7 +275,7 @@ function FolderGTESelect({
 				))}
 			</select>
 		);
-	} else if (property === "lamp") {
+	} else if (property === "lamp" || property === "playcount") {
 		return (
 			<select className="form-control" {...props}>
 				{gptConfig.lamps.map((e, i) => (

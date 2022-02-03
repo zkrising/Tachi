@@ -10,7 +10,7 @@ import {
 } from "tachi-common";
 
 export function GetPBs(scoreInfo: SessionScoreInfo[]) {
-	return scoreInfo.map(e => e.isNewScore === true || e.lampDelta > 0 || e.scoreDelta > 0);
+	return scoreInfo.filter(e => e.isNewScore === true || e.lampDelta > 0 || e.scoreDelta > 0);
 }
 
 export function CreateSongMap<G extends Game = Game>(songs: SongDocument<G>[]) {

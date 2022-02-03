@@ -434,13 +434,18 @@ function TierlistBreakdown({ game, folderDataset, playtype }: InfoProps) {
 	);
 }
 
+const NO_TIERLIST_DATA_VALUE = {
+	text: "No Tierlist Info",
+	value: 0,
+};
+
 function TierlistInfoLadder({
 	tierlistInfo,
 	dataMap,
 	game,
 	playtype,
 }: {
-	tierlistInfo: TierlistInfo[];
+	tierlistInfo: NullableTierlistInfo[];
 	dataMap: Map<string, FolderDataset[0]>;
 	game: Game;
 	playtype: Playtype;
@@ -448,21 +453,37 @@ function TierlistInfoLadder({
 	const buckets: TierlistInfo[][] = useMemo(() => {
 		const buckets: TierlistInfo[][] = [];
 		let currentBucket: TierlistInfo[] = [];
+		const noDataBucket: TierlistInfo[] = [];
 
 		let lastValue;
 		for (const tl of tierlistInfo) {
-			if (lastValue && tl.data.value !== lastValue) {
-				buckets.push(currentBucket);
-				currentBucket = [tl];
-			} else {
-				currentBucket.push(tl);
+			if (tl.data === null) {
+				noDataBucket.push({
+					achieved: tl.achieved,
+					chartID: tl.chartID,
+					data: NO_TIERLIST_DATA_VALUE,
+					key: tl.key,
+				});
+				continue;
 			}
-			lastValue = tl.data.value;
+
+			// no longer nullable
+			const tlx = tl as TierlistInfo;
+
+			if (lastValue && tlx.data.value !== lastValue) {
+				buckets.push(currentBucket);
+				currentBucket = [tlx];
+			} else {
+				currentBucket.push(tlx);
+			}
+			lastValue = tlx.data.value;
 		}
 
 		if (currentBucket.length) {
 			buckets.push(currentBucket);
 		}
+
+		buckets.push(noDataBucket);
 
 		return buckets;
 	}, tierlistInfo);
@@ -480,9 +501,9 @@ function TierlistInfoLadder({
 	return (
 		<Row className="text-center">
 			{buckets.map(bucket => (
-				<React.Fragment key={bucket[0].data.value ?? nanoid()}>
+				<React.Fragment key={bucket[0].data!.value ?? nanoid()}>
 					<Col className="ladder-header" xs={12}>
-						{bucket[0].data.value} ({bucket[0].data.text})
+						{bucket[0].data!.value} ({bucket[0].data!.text})
 					</Col>
 
 					{bucket.map((tierlistInfo, i) => (
@@ -577,6 +598,13 @@ function TierlistInfoBucketValues({
 	);
 }
 
+interface NullableTierlistInfo {
+	chartID: string;
+	key: GPTTierlists[IDStrings];
+	data: ChartTierlistInfo | null;
+	achieved: AchievedStatuses;
+}
+
 interface TierlistInfo {
 	chartID: string;
 	key: GPTTierlists[IDStrings];
@@ -597,7 +625,7 @@ function FolderDatasetToTierlistInfo(
 	playtype: Playtype,
 	options: Partial<Record<GPTTierlists[IDStrings], boolean>> & { __hideAchieved: boolean }
 ) {
-	const tierlistInfo: TierlistInfo[] = [];
+	const tierlistInfo: NullableTierlistInfo[] = [];
 
 	const tierlistKeys: GPTTierlists[IDStrings][] = [];
 
@@ -610,10 +638,6 @@ function FolderDatasetToTierlistInfo(
 
 	for (const data of folderDataset) {
 		for (const key of tierlistKeys) {
-			if (IsNullish(data.tierlistInfo[key])) {
-				continue;
-			}
-
 			let achieved: AchievedStatuses;
 
 			if (!data.__related.pb) {
@@ -637,11 +661,11 @@ function FolderDatasetToTierlistInfo(
 			tierlistInfo.push({
 				chartID: data.chartID,
 				key,
-				data: data.tierlistInfo[key]!,
+				data: data.tierlistInfo[key] ?? null,
 				achieved,
 			});
 		}
 	}
 
-	return tierlistInfo.sort(NumericSOV(x => x.data.value, true));
+	return tierlistInfo.sort(NumericSOV(x => (x.data ? x.data.value : -Infinity), true));
 }

@@ -184,6 +184,9 @@ function LampToKey(
 			return "EX_HARD";
 		}
 		return "NORMAL";
+	} else if (lamp === "NO PLAY") {
+		// dan gauge looks like this
+		return "HARD";
 	}
 
 	return "NORMAL";

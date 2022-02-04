@@ -51,53 +51,33 @@ export default function VF6Cell({
 	const maxVF = Volforce.calculateVF6(10_000_000, "PERFECT ULTIMATE CHAIN", chart.levelNum);
 
 	return (
-		<>
-			<QuickTooltip
-				wide
-				tooltipContent={
-					<>
-						<MiniTable headers={[`Your Target`]}>
-							<tr></tr>
-							<tr></tr>
-						</MiniTable>
-					</>
-				}
-			>
-				<td>
-					<strong className="underline-on-hover">{score.calculatedData.VF6}</strong>
-					<br />
+		<td>
+			<strong className="underline-on-hover">{score.calculatedData.VF6}</strong>
+			<br />
 
-					{vf6Target !== 0 && vf6Target && (
-						<div>
-							{score.calculatedData.VF6! >= vf6Target ? (
-								<small className="text-success">
-									{vf6Target}VF Target Achieved!
-								</small>
-							) : vf6Target > maxVF ? (
-								<small className="text-muted">{vf6Target}VF Not Possible</small>
-							) : (
-								Object.entries(targets).map(([k, v], i) => (
-									<React.Fragment key={k}>
-										<VF6TargetCell
-											vf6Target={vf6Target!}
-											targetScore={v}
-											targetDelta={
-												v === null ? null : v - score.scoreData.score
-											}
-											clearType={k}
-											showClearType={
-												i !== 0 || score.scoreData.lamp === "FAILED"
-											}
-										/>
-										<br />
-									</React.Fragment>
-								))
-							)}
-						</div>
+			{vf6Target !== 0 && vf6Target && (
+				<div>
+					{score.calculatedData.VF6! >= vf6Target ? (
+						<small className="text-success">{vf6Target}VF Target Achieved!</small>
+					) : vf6Target > maxVF ? (
+						<small className="text-muted">{vf6Target}VF Not Possible</small>
+					) : (
+						Object.entries(targets).map(([k, v], i) => (
+							<React.Fragment key={k}>
+								<VF6TargetCell
+									vf6Target={vf6Target!}
+									targetScore={v}
+									targetDelta={v === null ? null : v - score.scoreData.score}
+									clearType={k}
+									showClearType={i !== 0 || score.scoreData.lamp === "FAILED"}
+								/>
+								<br />
+							</React.Fragment>
+						))
 					)}
-				</td>
-			</QuickTooltip>
-		</>
+				</div>
+			)}
+		</td>
 	);
 }
 

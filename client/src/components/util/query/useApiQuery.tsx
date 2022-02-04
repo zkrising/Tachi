@@ -23,13 +23,14 @@ export default function useApiQuery<T>(
 			const res = await APIFetchV1<T>(url, options);
 
 			if (!res.success) {
+				console.log(`Threw res`, res);
 				throw res;
 			}
 
 			return res.body;
 		},
 		{
-			retry: (options?.method ?? "GET") === "GET" && !neverCache,
+			retry: false,
 		}
 	);
 }

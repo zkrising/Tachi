@@ -3,7 +3,7 @@
 BATCH-MANUAL is a JSON format that Tachi accepts.
 This format can be submitted as [a file](../../api/routes/import.md#import-scores-from-a-file)
 using the `file/batch-manual` [Import Type](../import/import-types.md), or it can be submitted as a
-[HTTP request body](todo).
+[HTTP request body](./direct-manual.md).
 
 *****
 

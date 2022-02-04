@@ -22,7 +22,7 @@ import { UGPTSettingsContext, UGPTSettingsContextProvider } from "context/UGPTSe
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect } from "react";
 import { useQuery } from "react-query";
-import { Redirect, Route, Switch, useParams } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory, useParams } from "react-router-dom";
 import {
 	FormatGame,
 	Game,
@@ -39,6 +39,8 @@ import UserPage from "../pages/dashboard/users/UserPage";
 
 export default function UserRoutes() {
 	const params = useParams<{ userID: string }>();
+	const { userID } = useParams<{ userID: string }>();
+	const history = useHistory();
 
 	const { data: reqUser, isLoading, error } = useApiQuery<PublicUserDocument>(
 		`/users/${params.userID}`
@@ -65,6 +67,24 @@ export default function UserRoutes() {
 
 	if (isLoading || !reqUser) {
 		return null;
+	}
+
+	// redirect to the users actual name.
+	if (userID.match(/^[0-9]+$/u)) {
+		const split = history.location.pathname.match(/^(\/dashboard\/users)\/([0-9]+)(.*)$/u);
+
+		if (!split) {
+			return (
+				<ErrorPage
+					statusCode={404}
+					customMessage="I mean, this might be my fault. It might be yours. How the hell did you get here? (REPORT THIS!)"
+				/>
+			);
+		}
+
+		const newPath = `${split[1]}/${reqUser.username}${split[3]}`;
+
+		return <Redirect to={newPath} />;
 	}
 
 	return (

@@ -5,7 +5,6 @@ import useImport from "components/util/import/useImport";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
-import { UserGameStatsContext } from "context/UserGameStatsContext";
 import React, { useContext } from "react";
 import { Alert, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -14,7 +13,6 @@ import ImportStateRenderer from "./ImportStateRenderer";
 
 export default function ARCImportPage({ game }: { game: "sdvx" | "iidx" }) {
 	const importType: APIImportTypes = game === "iidx" ? "api/arc-iidx" : "api/arc-sdvx";
-	const { setUGS } = useContext(UserGameStatsContext);
 	const { user } = useContext(UserContext);
 
 	useSetSubheader(["Imports", `ARC ${GetGameConfig(game).name} Synchronisation`]);

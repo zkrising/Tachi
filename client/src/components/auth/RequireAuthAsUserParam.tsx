@@ -1,7 +1,7 @@
 import { ErrorPage } from "app/pages/ErrorPage";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
-import { generatePath, useHistory, useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { JustChildren } from "types/react";
 
 export default function RequireAuthAsUserParam({ children }: JustChildren) {
@@ -15,12 +15,6 @@ export default function RequireAuthAsUserParam({ children }: JustChildren) {
 
 	if (userID !== user.id.toString() && userID.toLowerCase() !== user.usernameLowercase) {
 		return <ErrorPage statusCode={403} customMessage="You are not authorised to view this." />;
-	}
-
-	// redirect to the users actual name.
-	if (userID !== user.username) {
-		history.push(generatePath(history.location.pathname, { userID: user.username }));
-		return null;
 	}
 
 	return <>{children}</>;

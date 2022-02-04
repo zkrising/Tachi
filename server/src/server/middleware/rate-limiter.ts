@@ -60,3 +60,11 @@ export const AggressiveRateLimitMiddleware = rateLimit(
 export const HyperAggressiveRateLimitMiddleware = rateLimit(
 	CreateRateLimitOptions(2, "HyAgressive", ONE_MINUTE * 5)
 );
+
+// 5 requests every minute. This one has a tighter window, so it is less
+// vulnerable to bursting down the server.
+export const ScoreImportRateLimiter =
+	// if we're in testing, disable this rate limit!
+	Environment.nodeEnv === "test"
+		? rateLimit(CreateRateLimitOptions(Infinity, "ScImport", ONE_MINUTE))
+		: rateLimit(CreateRateLimitOptions(5, "ScImport", ONE_MINUTE));

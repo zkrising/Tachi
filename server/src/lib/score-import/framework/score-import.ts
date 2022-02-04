@@ -97,5 +97,5 @@ function ExponentialBackoff(exponent: integer) {
 	// ...
 	// ends at 7, which is around 4 hours.
 
-	return 1000 * 4 ** exponent;
+	return 1000 * 4 ** (exponent + 1);
 }

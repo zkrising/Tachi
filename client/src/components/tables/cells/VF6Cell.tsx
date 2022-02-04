@@ -48,6 +48,8 @@ export default function VF6Cell({
 		}
 	}
 
+	const maxVF = Volforce.calculateVF6(10_000_000, "PERFECT ULTIMATE CHAIN", chart.levelNum);
+
 	return (
 		<>
 			<QuickTooltip
@@ -71,7 +73,7 @@ export default function VF6Cell({
 								<small className="text-success">
 									{vf6Target}VF Target Achieved!
 								</small>
-							) : Object.values(targets).every(k => k === null) ? (
+							) : vf6Target > maxVF ? (
 								<small className="text-muted">{vf6Target}VF Not Possible</small>
 							) : (
 								Object.entries(targets).map(([k, v], i) => (
@@ -83,7 +85,9 @@ export default function VF6Cell({
 												v === null ? null : v - score.scoreData.score
 											}
 											clearType={k}
-											showClearType={i !== 0}
+											showClearType={
+												i !== 0 || score.scoreData.lamp === "FAILED"
+											}
 										/>
 										<br />
 									</React.Fragment>

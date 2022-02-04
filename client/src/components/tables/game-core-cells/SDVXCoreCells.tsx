@@ -1,9 +1,8 @@
 import React from "react";
 import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { IsNullish } from "util/misc";
-import LampCell from "../cells/LampCell";
 import MillionsScoreCell from "../cells/MillionsScoreCell";
 import SDVXJudgementCell from "../cells/SDVXJudgementCell";
+import SDVXLampCell from "../cells/SDVXLampCell";
 import VF6Cell from "../cells/VF6Cell";
 
 export default function SDVXScoreCoreCells({
@@ -17,7 +16,7 @@ export default function SDVXScoreCoreCells({
 		<>
 			<MillionsScoreCell score={sc} />
 			<SDVXJudgementCell score={sc} />
-			<LampCell score={sc} />
+			<SDVXLampCell score={sc} />
 			<VF6Cell score={sc} chart={chart} />
 		</>
 	);

@@ -30,7 +30,7 @@ type Props = {
 
 export default function FolderMinimap(props: Props) {
 	const { data, isLoading, error } = useApiQuery<SessionDocument>(
-		`/users/${props.reqUser.id}/games/${props.game}/${props.playtype}/sessions/lastx`
+		`/users/${props.reqUser.id}/games/${props.game}/${props.playtype}/sessions/last`
 	);
 
 	const session = useMemo(() => {

@@ -61,6 +61,18 @@ router.get("/:importID", async (req, res) => {
 	});
 });
 
+async function FindImportJob(importID: string) {
+	const allJobs = await ScoreImportQueue.getJobs(["active", "waiting"]);
+
+	for (const job of allJobs) {
+		if (job.id?.startsWith(importID)) {
+			return job;
+		}
+	}
+
+	return null;
+}
+
 /**
  * Retrieve the status of an ongoing import.
  * If the import has been finalised and was successful, return 200.
@@ -95,7 +107,7 @@ router.get("/:importID/poll-status", async (req, res) => {
 		});
 	}
 
-	const job = await ScoreImportQueue.getJob(req.params.importID);
+	const job = await FindImportJob(req.params.importID);
 
 	if (!job) {
 		return res.status(404).json({

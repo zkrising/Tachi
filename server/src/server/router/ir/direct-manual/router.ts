@@ -10,7 +10,7 @@ import { Random20Hex } from "utils/misc";
 const router: Router = Router({ mergeParams: true });
 
 /**
- * Imports scores in ir/json:direct-manual form.
+ * Imports scores in ir/direct-manual form.
  * @name POST /ir/direct-manual/import
  */
 router.post("/import", RequirePermissions("submit_score"), async (req, res) => {

@@ -28,8 +28,10 @@
 		"deepmerge": "^4.2.2",
 		"fast-json-stable-hash": "^1.0.3",
 		"glob": "^7.2.0",
+		"html-entities": "^2.3.2",
 		"mei-logger": "^1.0.1",
 		"monk": "^7.3.4",
+		"node-fetch": "2",
 		"tachi-common": "0.2.43",
 		"xml2js": "^0.4.23"
 	}

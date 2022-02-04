@@ -88,6 +88,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 				settings!.preferences.preferredProfileAlg || gptConfig.defaultProfileRatingAlg,
 			preferredSessionAlg:
 				settings!.preferences.preferredSessionAlg || gptConfig.defaultSessionRatingAlg,
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			gameSpecific: settings!.preferences.gameSpecific as any,
 			defaultTable: settings!.preferences.defaultTable,
 			scoreBucket: settings!.preferences.scoreBucket ?? gptConfig.scoreBucket,

@@ -35,7 +35,8 @@ not generally be shown to end users.
 - [ENH] Beatoraja IR instructions now include example `.bat` and `.sh` files for properly booting the IR.
 - [ENH] Add a GDPR page.
 - [ENH] Renamed "All Games" to "Global Info", should be clearer.
-- [ENH] FAILED scores for SDVX and USC now visually display as "PLAYED" instead. Note that this is **PURELY** visual. 
+- [ENH] FAILED scores for SDVX and USC now visually display as "PLAYED" instead. Note that this is **PURELY** visual.
+- [ENH] Import Scores now shows recently used import methods if no game is selected.
 
 *****
 

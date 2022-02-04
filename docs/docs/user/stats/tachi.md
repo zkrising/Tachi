@@ -180,7 +180,7 @@ given score, which made the function painfully discrete.
 	point, and its flaws make it incredibly abusable.
 
 *****
-<!-- 
+<!--
 ### ktRating (DDR)
 
 - **Default for DDR SP and DDR DP**
@@ -229,7 +229,7 @@ As such, it only applies to a rather small subset of
 players and an even smaller subset of their scores.
 
 ***** -->
-<!-- 
+<!--
 ### KtRating (maimai)
 
 - **Default for maimai**
@@ -257,7 +257,9 @@ for maimai. Since maimai is a very accuracy oriented game,
 it punishes low-accuracy scores heavily.
 
 Scores below 90% are heavily nerfed. Timing is rewarded
-significantly. Clear type is ignored. -->
+significantly. Clear type is ignored.
+
+***** -->
 
 ### KtRating (MÚSECA)
 
@@ -286,6 +288,8 @@ algorithm (again!), with parameters tuned for MÚSECA.
 
 Scores below 900k are heavily nerfed. Timing is rewarded
 significantly. Clear type is ignored.
+
+*****
 
 ### Sieglinde (BMS)
 
@@ -321,7 +325,7 @@ respectively.
 
 !!! info
 	For 7K, the currently supported tables are:
-	
+
 	- Insane1
 	- Insane2
 	- Normal1
@@ -331,6 +335,8 @@ respectively.
 	- Overjoy
 
 	For 14K, no tables are currently supported.
+
+*****
 
 ### Rating (CHUNITHM)
 
@@ -353,6 +359,8 @@ at the accuracy of the provided score.
 	I don't play CHUNITHM, so I don't really know the
 	implementation flaws of this algorithm for individual
 	scores.
+
+*****
 
 ### Skill (Gitadora)
 
@@ -384,6 +392,28 @@ decently for what it is.
 
 	Where P is the users percent, and L is the level
 	of the chart.
+
+*****
+
+### Rate (WACCA)
+
+- **Default for WACCA**
+
+Pros:
+
+- Built-in to the game.
+- Generally well-understood by players.
+- Uses the game's internal precise chart rating.
+
+Cons:
+
+- Significant favors good performance on charts released in
+  the most recent version of the game.
+- Uses wide cutoffs that don't reward AMs over SSS+.
+
+Although a better score statistic could be implemented, Rate
+is preferred since it is well-understood and can get the job
+done.
 
 *****
 
@@ -424,7 +454,7 @@ of making VF6 not a small decimal, and is generally how
 people talk about their volforce.
 
 *****
-<!-- 
+<!--
 ### DDR
 
 The below statistics apply to both SP and DP.
@@ -483,6 +513,29 @@ songs.
 	This might be slightly different to your in-game
 	skill. This may be due to rerates or things like
 	certain songs no longer being hot.
+
+*****
+
+### WACCA
+
+- Rate
+
+The sum of your best 15 Rate scores from the most recent
+version of the game, and your best 35 Rate scores from
+previous versions of the game.
+
+- Naive Rate **(Default)**
+
+The sum of your best 50 Rate scores.
+
+!!! info
+	Your Rate should pretty much match what you see
+	in-game. However, the in-game Rate advantages players on
+	the newest version of the game by weighting those charts
+	much more heavily, which is kind of dumb. NaiveRate
+	should eliminate this bias. In practice, for active
+	players on the newest version of the game, these values
+	are usually quite similar.
 
 *****
 
@@ -549,6 +602,8 @@ The average of the highest 10 KtRatings that session.
 
 The average of the highest 10 KtRatings that session.
 
+*****
+
 ### BMS
 
 The below information applies to both 7K and 14K.
@@ -557,11 +612,15 @@ The below information applies to both 7K and 14K.
 
 The average of the highest 10 Sieglinde ratings that session.
 
+*****
+
 ### CHUNITHM
 
 - Naive Rating **(Default)**
 
 The average of the highest 10 ratings that session.
+
+*****
 
 ### GITADORA
 
@@ -576,5 +635,13 @@ The average of the highest 10 skills achieved that session.
 	If people want it, it can be added! Feel
 	free to report it as an issue if you think it
 	should be added.
+
+*****
+
+### WACCA
+
+- Rate **(Default)**
+
+The average of the highest 10 Rates achieved that session.
 
 [^1]: Skill is obviously very loosely used here. If there was a consensus on what "skill" something was, we would already have a perfect rating algorithm.

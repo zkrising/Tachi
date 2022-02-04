@@ -8,10 +8,6 @@ import { ImportStates, NotStartedState } from "types/import";
 export default function BatchManualPage() {
 	useSetSubheader(["Dashboard", "Import Scores", "Batch Manual"]);
 
-	const [file, setFile] = useState<File | null>(null);
-	const [valid, setValid] = useState(false);
-	const [importState, setImportState] = useState<ImportStates>(NotStartedState);
-
 	return (
 		<ImportFileInfo
 			acceptMime="application/json"
@@ -39,8 +35,8 @@ export default function BatchManualPage() {
 				return {
 					valid: true,
 					info: {
-						game: FormatGame(data.meta.game, data.meta.playtype),
-						scores: data.scores.length,
+						Game: FormatGame(data.meta.game, data.meta.playtype),
+						Scores: data.scores.length,
 					},
 				};
 			}}

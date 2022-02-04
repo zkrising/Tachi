@@ -2,7 +2,7 @@ const { parse } = require("csv-parse/sync");
 const fs = require("fs");
 const fetch = require("node-fetch");
 const { Command } = require("commander");
-const { CreateChartID } = require("../util");
+const { CreateChartID, ReadCollection } = require("../util");
 const path = require("path");
 const { decode } = require("html-entities");
 const logger = require("../logger");
@@ -51,6 +51,13 @@ const STARTS = {
 };
 
 (async () => {
+	const existingSongs = new Map(ReadCollection("songs-wacca.json").map(e =>
+		[e.title, e.id]));
+	const existingCharts = new Map(ReadCollection("charts-wacca.json").map(e =>
+		// We need to combine songID and difficulty for the key,
+		// this seems like the simplest way.
+		[`${e.songID} ${e.difficulty}`, e.chartID]));
+
 	const datum = await fetch("https://wacca.marv.jp/music/search.php", {
 		method: "POST",
 		headers: {
@@ -62,7 +69,7 @@ const STARTS = {
 	const songs = [];
 	const charts = [];
 
-	let songID = 1;
+	let songID = Math.max(...existingSongs.values()) + 1;
 
 	for (const data of datum) {
 		let prettiedTitle = decode(data.title.display.replace(/　/g, " ")).trim();
@@ -105,8 +112,14 @@ const STARTS = {
 			continue;
 		}
 
+		let thisSongID = songID;
+		if (existingSongs.has(prettiedTitle)) {
+			thisSongID = existingSongs.get(prettiedTitle);
+		} else {
+			songID++;
+		}
 		songs.push({
-			id: songID,
+			id: thisSongID,
 			title: prettiedTitle,
 			artist: decode(data.artist.display).trim(),
 			searchTerms: [],
@@ -129,9 +142,11 @@ const STARTS = {
 				continue;
 			}
 
+			const chartID = existingCharts.get(`${thisSongID} ${diffName}`) || CreateChartID();
+
 			charts.push({
-				songID,
-				chartID: CreateChartID(),
+				songID: thisSongID,
+				chartID: chartID,
 				rgcID: null,
 				level,
 				levelNum,
@@ -145,16 +160,9 @@ const STARTS = {
 				versions: ["reverse"],
 			});
 		}
-
-		songID++;
 	}
 
-	fs.writeFileSync(
-		path.resolve(__dirname, "../../collections/charts-wacca.json"),
-		JSON.stringify(charts, null, "\t")
-	);
-	fs.writeFileSync(
-		path.resolve(__dirname, "../../collections/songs-wacca.json"),
-		JSON.stringify(songs, null, "\t")
-	);
+	fs.writeFileSync(path.resolve(__dirname, "../../collections/charts-wacca.json"), JSON.stringify(charts, null, "\t"));
+	fs.writeFileSync(path.resolve(__dirname, "../../collections/songs-wacca.json"), JSON.stringify(songs, null, "\t"));
+
 })();

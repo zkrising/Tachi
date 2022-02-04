@@ -4431,5 +4431,122 @@
 		"id": 341,
 		"searchTerms": [],
 		"title": "Rainbow Dream"
+	},
+	{
+		"altTitles": [],
+		"artist": "ギルガメッシュ（CV：大塚剛央）、千極兆司（CV：立花慎之介）、緋野天魔（CV：小野賢章）、神水鶴久遠（CV：広瀬裕也）、皇麗夢（CV：豊永利行）",
+		"data": {
+			"artistJP": "ギルガメッシュ（オオツカタケオ）、センゴクチョウジ（タチバナシンノスケ）、ヒノテンマ（オノケンショウ）、カミツルクオン（ヒロセユウヤ）、スメラキレイム（トヨナガトシユキ）",
+			"displayVersion": "reverse",
+			"genre": "バラエティ",
+			"titleJP": "ファムファタール"
+		},
+		"id": 342,
+		"searchTerms": [],
+		"title": "ファムファタール"
+	},
+	{
+		"altTitles": [],
+		"artist": "餓鬼レンジャー feat. 梅田サイファー",
+		"data": {
+			"artistJP": "ガキレンジャーフィートウメダサイファー",
+			"displayVersion": "reverse",
+			"genre": "バラエティ",
+			"titleJP": "アゲナゲン"
+		},
+		"id": 343,
+		"searchTerms": [],
+		"title": "アゲナゲン"
+	},
+	{
+		"altTitles": [],
+		"artist": "ゆうゆ",
+		"data": {
+			"artistJP": "ユウユ",
+			"displayVersion": "reverse",
+			"genre": "ボカロ",
+			"titleJP": "テンガク"
+		},
+		"id": 344,
+		"searchTerms": [],
+		"title": "天樂"
+	},
+	{
+		"altTitles": [],
+		"artist": "supercell",
+		"data": {
+			"artistJP": "スーパーセル",
+			"displayVersion": "reverse",
+			"genre": "ボカロ",
+			"titleJP": "メルト"
+		},
+		"id": 345,
+		"searchTerms": [],
+		"title": "メルト"
+	},
+	{
+		"altTitles": [],
+		"artist": "亜沙",
+		"data": {
+			"artistJP": "アサ",
+			"displayVersion": "reverse",
+			"genre": "ボカロ",
+			"titleJP": "ヨシワララメント"
+		},
+		"id": 346,
+		"searchTerms": [],
+		"title": "吉原ラメント"
+	},
+	{
+		"altTitles": [],
+		"artist": "REDALiCE",
+		"data": {
+			"artistJP": "レッドアリス",
+			"displayVersion": "reverse",
+			"genre": "TANO*C（オリジナル）",
+			"titleJP": "クリムゾンテイオウ"
+		},
+		"id": 347,
+		"searchTerms": [],
+		"title": "クリムゾン帝王"
+	},
+	{
+		"altTitles": [],
+		"artist": "aran",
+		"data": {
+			"artistJP": "アラン",
+			"displayVersion": "reverse",
+			"genre": "TANO*C（オリジナル）",
+			"titleJP": "エフェメラ"
+		},
+		"id": 348,
+		"searchTerms": [],
+		"title": "EPHMR"
+	},
+	{
+		"altTitles": [],
+		"artist": "Laur",
+		"data": {
+			"artistJP": "ラウル",
+			"displayVersion": "reverse",
+			"genre": "TANO*C（オリジナル）",
+			"titleJP": "デンジャラアアアアス　ジャングル"
+		},
+		"id": 349,
+		"searchTerms": [],
+		"title": "DANGEROOOOUS JUNGLE"
+	},
+	{
+		"altTitles": [],
+		"artist": "Kobaryo",
+		"data": {
+			"artistJP": "コバリョー",
+			"displayVersion": "reverse",
+			"genre": "TANO*C（オリジナル）",
+			"titleJP": "ディメンション　ハッカー"
+		},
+		"id": 350,
+		"searchTerms": [],
+		"title": "Dimension Hacker"
 	}
 ]

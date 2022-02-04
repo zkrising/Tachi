@@ -19,9 +19,9 @@ export default function KsHookPage() {
 			<h1 className="text-center my-4">Setup Instructions</h1>
 			<ol className="instructions-list">
 				<li>
-					Download <code>kshook.dll</code> from{" "}
+					Download the latest version of <code>kshook.dll</code> from{" "}
 					<ExternalLink href="https://djtrackers.com/kshook/latest.zip">
-						Here
+						here
 					</ExternalLink>
 					.
 				</li>
@@ -30,7 +30,16 @@ export default function KsHookPage() {
 					<ExternalLink href="/client-file-flow/CXKsHook">here</ExternalLink>. <br />
 					<b>This file contains an API Key, which is meant to be kept secret!</b>
 				</li>
-				<li>Place both of these files inside your SDVX6 (EAC) folder.</li>
+				<li>Place all of these files inside your SDVX6 (EAC) folder.</li>
+				<li>
+					Use <b>kshook.exe</b> to launch the game. It will open the usual login page, but
+					when the game is launched the hook will be loaded.
+					<br />
+					It is recommended you replace your existing shortcuts with <b>
+						kshook.exe
+					</b>{" "}
+					instead.
+				</li>
 				<li>Your scores now automatically upload to {TachiConfig.name}!</li>
 			</ol>
 		</div>

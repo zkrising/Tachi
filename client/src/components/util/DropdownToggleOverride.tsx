@@ -15,12 +15,10 @@ const DropdownTopbarItemToggler = forwardRef((props, ref) => (
 			props.onClick(e);
 		}}
 	>
-		{/* @ts-expect-error see todo */}
 		{props.children}
 	</div>
 ));
 
-/* @ts-expect-error see todo */
 DropdownTopbarItemToggler.displayName = "DropdownTopbarItemToggler";
 
 export default DropdownTopbarItemToggler;

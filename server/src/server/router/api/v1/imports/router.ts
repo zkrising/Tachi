@@ -1,5 +1,6 @@
 import { Router } from "express";
 import db from "external/mongo/db";
+import { JOB_RETRY_COUNT } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import ScoreImportQueue, { ScoreImportQueueEvents } from "lib/score-import/worker/queue";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
@@ -61,16 +62,22 @@ router.get("/:importID", async (req, res) => {
 	});
 });
 
+// Finding jobs is slightly harder than just doing a key lookup, because of
 async function FindImportJob(importID: string) {
-	const allJobs = await ScoreImportQueue.getJobs(["active", "waiting"]);
+	const possibleImportIDs = [];
 
-	for (const job of allJobs) {
-		if (job.id?.startsWith(importID)) {
-			return job;
-		}
+	for (let i = 0; i <= JOB_RETRY_COUNT; i++) {
+		possibleImportIDs.push(`${importID}:TRY${i}`);
 	}
 
-	return null;
+	// Note that instead of the cleaner await-inside-for here, we parallelise this
+	// for performance.
+	// Just for scalings sake.
+	const maybeJob = (
+		await Promise.all(possibleImportIDs.map((i) => ScoreImportQueue.getJob(i)))
+	).find((k) => k !== null);
+
+	return maybeJob;
 }
 
 /**

@@ -8,6 +8,7 @@ import ScoreImportQueue, { ScoreImportQueueEvents } from "../worker/queue";
 import ScoreImportFatalError from "./score-importing/score-import-error";
 import { Sleep } from "utils/misc";
 import CreateLogCtx from "lib/logger/logger";
+import { JOB_RETRY_COUNT } from "lib/constants/tachi";
 
 const logger = CreateLogCtx(__filename);
 
@@ -30,7 +31,7 @@ export async function MakeScoreImport<I extends ImportTypes>(
 
 		// There's no chance this thing goes on 7 times.
 		// if it does, this import has been trying for the past 6 hours or so.
-		while (timesAttempted <= 7) {
+		while (timesAttempted <= JOB_RETRY_COUNT) {
 			const job = await ScoreImportQueue.add(
 				`Import ${jobData.importID}${timesAttempted > 0 ? ` (TRY${timesAttempted})` : ""}`,
 				jobData,

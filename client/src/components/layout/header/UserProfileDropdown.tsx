@@ -72,7 +72,9 @@ export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 								<Icon type="cog" colour="info" />
 							</div>
 							<div className="navi-text">
-								<div className="font-weight-bold cursor-pointer">My Settings</div>
+								<div className="font-weight-bold cursor-pointer">
+									Profile Settings
+								</div>
 								<div className="text-muted">
 									Manage your profile picture, status, and more!
 								</div>

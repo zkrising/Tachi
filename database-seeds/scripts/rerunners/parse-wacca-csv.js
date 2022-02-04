@@ -162,12 +162,7 @@ const STARTS = {
 		}
 	}
 
-	fs.writeFileSync(
-		path.resolve(__dirname, "../../collections/charts-wacca.json"),
-		JSON.stringify(charts, null, "\t")
-	);
-	fs.writeFileSync(
-		path.resolve(__dirname, "../../collections/songs-wacca.json"),
-		JSON.stringify(songs, null, "\t")
-	);
+	fs.writeFileSync(path.resolve(__dirname, "../../collections/charts-wacca.json"), JSON.stringify(charts, null, "\t"));
+	fs.writeFileSync(path.resolve(__dirname, "../../collections/songs-wacca.json"), JSON.stringify(songs, null, "\t"));
+
 })();

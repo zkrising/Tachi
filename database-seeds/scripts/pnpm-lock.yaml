@@ -18,6 +18,7 @@ specifiers:
   html-entities: ^2.3.2
   mei-logger: ^1.0.1
   monk: ^7.3.4
+  node-fetch: 2.6.7
   prettier: ^2.5.1
   prudence: ^0.9.7
   tachi-common: 0.5.12
@@ -35,8 +36,10 @@ dependencies:
   fast-json-stable-hash: 1.0.3
   fast-xml-parser: 4.0.2
   glob: 7.2.0
+  html-entities: 2.3.2
   mei-logger: 1.0.1_ts-node@10.4.0
   monk: 7.3.4
+  node-fetch: 2.6.7
   prudence: 0.9.7
   tachi-common: 0.5.12
   ts-node: 10.4.0_40146b36d18138e3202fbb722e5f65e4
@@ -2203,6 +2206,18 @@ packages:
     resolution: {integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=}
     dev: true
 
+  /node-fetch/2.6.7:
+    resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
+    engines: {node: 4.x || >=6.0.0}
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
+    dependencies:
+      whatwg-url: 5.0.0
+    dev: false
+
   /node-preload/0.2.1:
     resolution: {integrity: sha512-RM5oyBy45cLEoHqCeh+MNuFAxO0vTFBLskvQbOKnEE7YTTSN4tbN8QWDIPQ6L+WvKsB/qLEGpYe2ZZ9d4W9OIQ==}
     engines: {node: '>=8'}
@@ -3114,6 +3129,17 @@ packages:
       assert-plus: 1.0.0
       core-util-is: 1.0.2
       extsprintf: 1.3.0
+    dev: false
+
+  /webidl-conversions/3.0.1:
+    resolution: {integrity: sha1-JFNCdeKnvGvnvIZhHMFq4KVlSHE=}
+    dev: false
+
+  /whatwg-url/5.0.0:
+    resolution: {integrity: sha1-lmRU6HZUYuN2RNNib2dCzotwll0=}
+    dependencies:
+      tr46: 0.0.3
+      webidl-conversions: 3.0.1
     dev: false
 
   /which-boxed-primitive/1.0.2:

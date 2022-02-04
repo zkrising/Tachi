@@ -5,6 +5,20 @@ import Muted from "components/util/Muted";
 import { TachiConfig } from "lib/config";
 import React from "react";
 
+const WIN_BAT = `
+REM *** Set system-wide "_JAVA_OPTIONS" environment variable to use OpenGL pipeline (improved performance of > 30% potentially. Also use anti-aliasing for non-LR2 fonts, and finally allow Swing framework to utilize AA and GTKLookAndFeel for config window. ***
+set _JAVA_OPTIONS='-Dsun.java2d.opengl=true -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel' -Dfile.encoding="UTF-8"
+pushd %~dp0
+java -Xms1g -Xmx4g -cp beatoraja.jar;ir/* bms.player.beatoraja.MainLoader
+popd
+`;
+
+const LINUX_SH = `
+#!/bin/bash
+export _JAVA_OPTIONS='-Dsun.java2d.opengl=true -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dfile.encoding="UTF-8"'
+java -Xms1g -Xmx4g -cp 'beatoraja.jar;ir/*' bms.player.beatoraja.MainLoader
+`;
+
 export default function BeatorajaIRPage() {
 	useSetSubheader(["Import Scores", "Beatoraja IR"]);
 
@@ -42,6 +56,28 @@ export default function BeatorajaIRPage() {
 					<span className="text-warning">
 						If the IR isn't showing up, make sure you're launching the game with the{" "}
 						<code>beatoraja-config.bat</code> file. Otherwise, IRs will never load.
+						<br />
+						If this is still not working, you may not have a{" "}
+						<code>beatoraja-config.bat</code> file that supports custom IRs. Here are
+						working ones.
+						<ul>
+							<li>
+								<a
+									download="beatoraja-config.bat"
+									href={`data:text/plain;base64,${window.btoa(WIN_BAT)}`}
+								>
+									Windows
+								</a>
+							</li>
+							<li>
+								<a
+									download="beatoraja-config.sh"
+									href={`data:text/plain;base64,${window.btoa(LINUX_SH)}`}
+								>
+									Linux
+								</a>
+							</li>
+						</ul>
 					</span>
 				</li>
 				<li>

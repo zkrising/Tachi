@@ -20,7 +20,10 @@ export default function KsHookPage() {
 			<ol className="instructions-list">
 				<li>
 					Download <code>kshook.dll</code> from{" "}
-					<ExternalLink href="#">LINK TODO LOL</ExternalLink>.
+					<ExternalLink href="https://djtrackers.com/kshook/latest.zip">
+						Here
+					</ExternalLink>
+					.
 				</li>
 				<li>
 					Download your config file{" "}

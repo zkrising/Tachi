@@ -17,10 +17,8 @@ import { UppercaseFirst } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { FormatDuration, FormatTime, MillisToSince } from "util/time";
 import IndexCell from "../cells/IndexCell";
-import DropdownRow from "../components/DropdownRow";
 import SelectableRating from "../components/SelectableRating";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
-import GenericSessionDropdown from "../dropdowns/GenericSessionDropdown";
 
 export type SessionDataset = (SessionDocument & { __related: { index: integer } })[];
 

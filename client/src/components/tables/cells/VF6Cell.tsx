@@ -1,10 +1,8 @@
-import QuickTooltip from "components/layout/misc/QuickTooltip";
 import useUGPTSettings from "components/util/useUGPTSettings";
 import React from "react";
 import { Volforce } from "rg-stats";
 import { ChartDocument, GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { IsNullish } from "util/misc";
-import MiniTable from "../components/MiniTable";
 
 type VF6IDStrings = "sdvx:Single" | "usc:Keyboard" | "usc:Controller";
 
@@ -60,7 +58,9 @@ export default function VF6Cell({
 					{score.calculatedData.VF6! >= vf6Target ? (
 						<small className="text-success">{vf6Target}VF Target Achieved!</small>
 					) : vf6Target > maxVF ? (
-						<small className="text-muted">{vf6Target}VF Not Possible</small>
+						<small className="text-muted">
+							{vf6Target}VF Not Possible (Max {maxVF})
+						</small>
 					) : (
 						Object.entries(targets).map(([k, v], i) => (
 							<React.Fragment key={k}>

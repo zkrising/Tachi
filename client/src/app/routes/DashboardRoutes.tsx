@@ -1,5 +1,6 @@
 import SupportMePage from "app/pages/dashboard/misc/SupportMePage";
 import { ErrorPage } from "app/pages/ErrorPage";
+import PrivacyPolicyPage from "app/pages/PrivacyPolicyPage";
 import { Layout } from "components/layout/Layout";
 import EmailVerify from "components/layout/misc/EmailVerify";
 import { BannedContext } from "context/BannedContext";
@@ -53,6 +54,10 @@ export default function DashboardRoutes() {
 				<Switch>
 					<Route exact path="/dashboard">
 						<DashboardPage />
+					</Route>
+
+					<Route path="/dashboard/privacy">
+						<PrivacyPolicyPage />
 					</Route>
 
 					<Route exact path="/dashboard/credits">

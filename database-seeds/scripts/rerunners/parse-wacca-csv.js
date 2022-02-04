@@ -40,7 +40,7 @@ const dataMap = new Map();
 // we have to skip the first record because its the headers,
 // and there's literally no way to change this behaviour.
 for (const record of dirtyRecords.slice(1)) {
-	dataMap.set(record[0].replace(/”|“/g, '"').replace(/’/g, "'"), record);
+	dataMap.set(record[0].replace(/”|“/gu, '"').replace(/’/gu, "'"), record);
 }
 
 const STARTS = {
@@ -51,12 +51,14 @@ const STARTS = {
 };
 
 (async () => {
-	const existingSongs = new Map(ReadCollection("songs-wacca.json").map(e =>
-		[e.title, e.id]));
-	const existingCharts = new Map(ReadCollection("charts-wacca.json").map(e =>
-		// We need to combine songID and difficulty for the key,
-		// this seems like the simplest way.
-		[`${e.songID} ${e.difficulty}`, e.chartID]));
+	const existingSongs = new Map(ReadCollection("songs-wacca.json").map((e) => [e.title, e.id]));
+	const existingCharts = new Map(
+		ReadCollection("charts-wacca.json").map((e) =>
+			// We need to combine songID and difficulty for the key,
+			// this seems like the simplest way.
+			[`${e.songID} ${e.difficulty}`, e.chartID]
+		)
+	);
 
 	const datum = await fetch("https://wacca.marv.jp/music/search.php", {
 		method: "POST",
@@ -162,7 +164,12 @@ const STARTS = {
 		}
 	}
 
-	fs.writeFileSync(path.resolve(__dirname, "../../collections/charts-wacca.json"), JSON.stringify(charts, null, "\t"));
-	fs.writeFileSync(path.resolve(__dirname, "../../collections/songs-wacca.json"), JSON.stringify(songs, null, "\t"));
-
+	fs.writeFileSync(
+		path.resolve(__dirname, "../../collections/charts-wacca.json"),
+		JSON.stringify(charts, null, "\t")
+	);
+	fs.writeFileSync(
+		path.resolve(__dirname, "../../collections/songs-wacca.json"),
+		JSON.stringify(songs, null, "\t")
+	);
 })();

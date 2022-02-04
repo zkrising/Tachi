@@ -32,5 +32,17 @@ not generally be shown to end users.
 - [ENH] Song search now displays the table for the chart for BMS.
 - [ENH] Song search now displays the effector for BMS.
 - [ENH] Banned users now know that they're banned.
+- [ENH] Beatoraja IR instructions now include example `.bat` and `.sh` files for properly booting the IR.
+- [ENH] Add a GDPR page.
+- [ENH] Renamed "All Games" to "Global Info", should be clearer.
+- [ENH] FAILED scores for SDVX and USC now visually display as "PLAYED" instead. Note that this is **PURELY** visual. 
 
 *****
+
+- [BUG] Going from the ARC page to your profile no longer crashes the client.
+- [BUG] Using userIDs instead of usernames in the URL no longer crashes the client.
+- [BUG] Nivo Tooltips now render, and nivo has been updated.
+- [BUG] The Switchboard graph now loads even if you have no sessions on the game.
+- [BUG] Charts without tierlist information now still render at the bottom of tierlist view.
+- [BUG] The PBs indicator underneath a session is now correct, and not just the amount of scores you had.
+- 

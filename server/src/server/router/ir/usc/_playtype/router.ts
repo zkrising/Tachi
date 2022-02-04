@@ -6,10 +6,8 @@ import { ONE_MEGABYTE } from "lib/constants/filesize";
 import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
 import { USCIR_MAX_LEADERBOARD_N } from "lib/constants/usc-ir";
 import CreateLogCtx from "lib/logger/logger";
-import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
 import { AssertStrAsPositiveNonZeroInt } from "lib/score-import/framework/common/string-asserts";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
-import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
@@ -21,17 +19,10 @@ import {
 	Playtypes,
 	SuccessfulAPIResponse,
 } from "tachi-common";
-import { DedupeArr } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
-import { GetBlacklist } from "utils/queries/blacklist";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 import { USCClientChart } from "./types";
-import {
-	ConvertUSCChart,
-	CreatePOSTScoresResponseBody,
-	TachiScoreToServerScore,
-	USCChartIndexToDiff,
-} from "./usc";
+import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
 const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });

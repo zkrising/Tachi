@@ -3,9 +3,9 @@ import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
-import { RequireSelfRequestFromUser } from "../../middleware";
-import { optNull } from "utils/prudence";
 import { DeleteUndefinedProps } from "utils/misc";
+import { optNull } from "utils/prudence";
+import { RequireSelfRequestFromUser } from "../../middleware";
 
 const router: Router = Router({ mergeParams: true });
 

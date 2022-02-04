@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { EvaluateUsersStatsShowcase } from "lib/showcase/get-stats";
-import { ResolveUser } from "utils/user";
-import p from "prudence";
-import { FormatPrError } from "utils/prudence";
-import { ShowcaseStatDetails, GetGamePTConfig } from "tachi-common";
-import { EvaluateShowcaseStat } from "lib/showcase/evaluator";
 import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { EvaluateShowcaseStat } from "lib/showcase/evaluator";
+import { GetRelatedStatDocuments } from "lib/showcase/get-related";
+import { EvaluateUsersStatsShowcase } from "lib/showcase/get-stats";
+import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { RequireAuthedAsUser } from "server/router/api/v1/users/_userID/middleware";
-import { GetRelatedStatDocuments } from "lib/showcase/get-related";
+import { GetGamePTConfig, ShowcaseStatDetails } from "tachi-common";
+import { FormatPrError } from "utils/prudence";
+import { ResolveUser } from "utils/user";
 const router: Router = Router({ mergeParams: true });
 
 /**

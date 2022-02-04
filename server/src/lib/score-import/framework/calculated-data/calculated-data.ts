@@ -1,9 +1,17 @@
 import { KtLogger } from "lib/logger/logger";
 import {
+	CHUNITHMRating,
+	GITADORASkill,
+	Jubility,
+	PopnClassPoints,
+	PoyashiBPI,
+	Volforce,
+	WACCARate,
+} from "rg-stats";
+import {
 	ChartDocument,
 	Game,
 	GetGamePTConfig,
-	Grades,
 	IDStrings,
 	Lamps,
 	Playtypes,
@@ -16,15 +24,6 @@ import {
 	CalculateMFCP,
 	CalculateSieglinde,
 } from "./stats";
-import {
-	PoyashiBPI,
-	Volforce,
-	CHUNITHMRating,
-	GITADORASkill,
-	Jubility,
-	PopnClassPoints,
-	WACCARate,
-} from "rg-stats";
 
 export async function CreateCalculatedData(
 	dryScore: DryScore,

@@ -1,4 +1,15 @@
+import { Worker } from "bullmq";
 import { EventEmitter } from "events";
+import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
+import CreateLogCtx from "lib/logger/logger";
+import { Environment, ServerConfig } from "lib/setup/config";
+import { ImportTypes } from "tachi-common";
+import { FormatUserDoc, GetUserWithID } from "utils/user";
+import { GetInputParser } from "../framework/common/get-input-parser";
+import ScoreImportFatalError from "../framework/score-importing/score-import-error";
+import ScoreImportMain from "../framework/score-importing/score-import-main";
+import ScoreImportQueue from "./queue";
+import { ScoreImportJob } from "./types";
 EventEmitter.defaultMaxListeners = 20;
 
 // For scaling performance, running score-importing in a separate worker is preferable
@@ -14,18 +25,6 @@ EventEmitter.defaultMaxListeners = 20;
 
 // Explicitly set this before importing anything!
 process.env.IS_SCORE_WORKER_SERVER = "true";
-
-import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
-import CreateLogCtx from "lib/logger/logger";
-import { ImportTypes } from "tachi-common";
-import { FormatUserDoc, GetUserWithID } from "utils/user";
-import { GetInputParser } from "../framework/common/get-input-parser";
-import ScoreImportFatalError from "../framework/score-importing/score-import-error";
-import ScoreImportMain from "../framework/score-importing/score-import-main";
-import { ScoreImportJob } from "./types";
-import { Worker } from "bullmq";
-import ScoreImportQueue from "./queue";
-import { Environment, ServerConfig } from "lib/setup/config";
 
 const workerLogger = CreateLogCtx(`Import Worker`);
 

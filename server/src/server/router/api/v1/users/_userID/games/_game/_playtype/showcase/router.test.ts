@@ -1,11 +1,11 @@
-import { ChartDocument, PublicUserDocument, IIDX_LAMPS, IIDX_GRADES } from "tachi-common";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { ChartDocument, IIDX_GRADES, IIDX_LAMPS, PublicUserDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { TestingIIDXFolderSP10, Testing511SPA, TestingIIDXSPScorePB } from "test-utils/test-data";
+import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
-import deepmerge from "deepmerge";
 
 const SetFolders = async () => {
 	await db.folders.insert(TestingIIDXFolderSP10);

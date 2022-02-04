@@ -1,11 +1,11 @@
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { BatchManual, BatchManualScore } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON } from "test-utils/test-data";
-import { BatchManual, BatchManualScore } from "tachi-common";
-import deepmerge from "deepmerge";
 
 t.test("POST /ir/direct-manual/import", async (t) => {
 	const cookie = await CreateFakeAuthCookie(mockApi);

@@ -12,7 +12,7 @@ import Prudence from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import prValidate from "server/middleware/prudence-validate";
-import { NormalRateLimitMiddleware, ScoreImportRateLimiter } from "server/middleware/rate-limiter";
+import { ScoreImportRateLimiter } from "server/middleware/rate-limiter";
 import { APIImportTypes, FileUploadImportTypes } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { FormatUserDoc, GetUserWithIDGuaranteed } from "utils/user";

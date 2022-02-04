@@ -1,9 +1,9 @@
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
+import { Volforce } from "rg-stats";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import { FindChartWithChartID } from "utils/queries/charts";
 import { InternalFailure } from "../common/converter-failures";
-import { Volforce } from "rg-stats";
 
 export async function IIDXMergeFn(
 	pbDoc: PBScoreDocument<"iidx:SP" | "iidx:DP">,

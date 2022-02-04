@@ -66,7 +66,7 @@ router.get("/:importID", async (req, res) => {
 async function FindImportJob(importID: string) {
 	const possibleImportIDs = [];
 
-	for (let i = 1; i <= JOB_RETRY_COUNT; i++) {
+	for (let i = 0; i <= JOB_RETRY_COUNT; i++) {
 		possibleImportIDs.push(`${importID}:TRY${i}`);
 	}
 
@@ -75,7 +75,7 @@ async function FindImportJob(importID: string) {
 	// Just for scalings sake.
 	const maybeJob = (
 		await Promise.all(possibleImportIDs.map((i) => ScoreImportQueue.getJob(i)))
-	).find((k) => k !== null);
+	).find((k) => k);
 
 	return maybeJob;
 }

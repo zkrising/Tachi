@@ -859,8 +859,6 @@ interface CDDataUSC {
 	hashSHA1: string | string[];
 	isOfficial: boolean;
 	effector: string;
-	illustrator: string;
-	bpm: string;
 }
 
 interface ChartDocumentData {

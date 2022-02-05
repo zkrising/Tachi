@@ -107,6 +107,7 @@ export const loggedInSplashes = [
 	"Is this really happening?",
 	"Let's see Paul Allen's score tracker.",
 	"You know there's more to shoegaze than just listening to loveless, right?",
+	"ok deraadt miod",
 ];
 
 // Stuff that's bad for the kids, you know?

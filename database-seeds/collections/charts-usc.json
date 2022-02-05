@@ -54607,24 +54607,10 @@
 		"chartID": "59a17598807c90ac77e13dde21f9c60603f1efb6",
 		"data": {
 			"effector": "I'm alive～PH～",
-			"hashSHA1": "ad67e67eb56a895bd75b5014f8fc3c64ae5d28ea",
-			"isOfficial": true
-		},
-		"difficulty": "INF",
-		"isPrimary": true,
-		"level": "17",
-		"levelNum": 17,
-		"playtype": "Controller",
-		"rgcID": null,
-		"songID": 796,
-		"tierlistInfo": {},
-		"versions": []
-	},
-	{
-		"chartID": "c2cbdcca0fa0139f45a64ffc58c17fe9970ef6c0",
-		"data": {
-			"effector": "I'm alive～PH～",
-			"hashSHA1": "1d6d955b01edb19311509ba0d7cc146895e7f029",
+			"hashSHA1": [
+				"ad67e67eb56a895bd75b5014f8fc3c64ae5d28ea",
+				"1d6d955b01edb19311509ba0d7cc146895e7f029"
+			],
 			"isOfficial": true
 		},
 		"difficulty": "INF",
@@ -54641,24 +54627,10 @@
 		"chartID": "7e818b8776ea6b75fd03be88033b58049e3fb604",
 		"data": {
 			"effector": "I'm alive～PH～",
-			"hashSHA1": "ad67e67eb56a895bd75b5014f8fc3c64ae5d28ea",
-			"isOfficial": true
-		},
-		"difficulty": "INF",
-		"isPrimary": true,
-		"level": "17",
-		"levelNum": 17,
-		"playtype": "Keyboard",
-		"rgcID": null,
-		"songID": 796,
-		"tierlistInfo": {},
-		"versions": []
-	},
-	{
-		"chartID": "8f68c9f9739ee815ec27616875ca54df49f26704",
-		"data": {
-			"effector": "I'm alive～PH～",
-			"hashSHA1": "1d6d955b01edb19311509ba0d7cc146895e7f029",
+			"hashSHA1": [
+				"ad67e67eb56a895bd75b5014f8fc3c64ae5d28ea",
+				"1d6d955b01edb19311509ba0d7cc146895e7f029"
+			],
 			"isOfficial": true
 		},
 		"difficulty": "INF",

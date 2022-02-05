@@ -312,6 +312,7 @@ export const SCHEMAS = {
 			PR_ChartDocument("usc", playtype, {
 				hashSHA1: p.or("string", ["string"]),
 				isOfficial: "boolean",
+				effector: "string",
 			})
 		)(self);
 	},

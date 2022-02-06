@@ -34,14 +34,14 @@ export async function CreateKaiSDVXClassHandler(
 			return {};
 		}
 
-		const sdvxDan: number | null = json.skill_level - 1;
-
 		if (json.skill_level === null || json.skill_level === undefined) {
 			return {};
 		}
 
+		const sdvxDan: number | null = json.skill_level - 1;
+
 		if (!Number.isInteger(sdvxDan)) {
-			logger.warn(`${baseUrl} returned a dan of ${sdvxDan}, which was not a number.`);
+			logger.warn(`${baseUrl} returned a dan of ${sdvxDan}, which was not an integer.`);
 			return {};
 		}
 

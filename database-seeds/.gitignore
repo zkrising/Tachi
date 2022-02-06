@@ -9,3 +9,5 @@ scripts/single-time
 scripts/rerunners/bpi-output.json
 
 failed-tests.log
+
+*.rdb

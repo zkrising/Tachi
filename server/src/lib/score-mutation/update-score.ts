@@ -14,7 +14,11 @@ import { FormatUserDoc, GetUserWithID } from "utils/user";
  *
  * @note You don't need to recalc the scoreID for newScore, it's done for you.
  */
-export default async function UpdateScore(oldScore: ScoreDocument, newScore: ScoreDocument) {
+export default async function UpdateScore(
+	oldScore: ScoreDocument,
+	newScore: ScoreDocument,
+	updateOldChart = true
+) {
 	const userID = oldScore.userID;
 	const user = await GetUserWithID(userID);
 
@@ -141,12 +145,15 @@ export default async function UpdateScore(oldScore: ScoreDocument, newScore: Sco
 	await UpdateAllPBs([userID], {
 		chartID: newScore.chartID,
 	});
-	await UpdateAllPBs([userID], {
-		chartID: oldScore.chartID,
-	});
 
 	await UpdateChartRanking(newScore.chartID);
-	await UpdateChartRanking(oldScore.chartID);
+
+	if (updateOldChart) {
+		await UpdateAllPBs([userID], {
+			chartID: oldScore.chartID,
+		});
+		await UpdateChartRanking(oldScore.chartID);
+	}
 
 	const imports = await db.imports.find({
 		scoreIDs: oldScoreID,

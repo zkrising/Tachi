@@ -43,7 +43,13 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
 
 	logger.debug("Orphaning document", orphan);
 
-	const orphanID = `O${fjsh.hash(orphan, "sha256")}`;
+	let orphanID;
+	try {
+		orphanID = `O${fjsh.hash(orphan, "sha256")}`;
+	} catch (err) {
+		logger.error(`Failed to orphan chart -- `, { err, orphan });
+		throw new Error(`Failed to orphan chart. ${err.message}`);
+	}
 
 	const exists = await db["orphan-scores"].findOne({ orphanID });
 

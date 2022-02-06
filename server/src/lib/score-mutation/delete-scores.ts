@@ -12,7 +12,11 @@ const logger = CreateLogCtx(__filename);
  * Deletes the provided score. This needs a dedicated helper method due to
  * needing to unset things like sessions and recalcs.
  */
-export async function DeleteScore(score: ScoreDocument, blacklist = false) {
+export async function DeleteScore(
+	score: ScoreDocument,
+	blacklist = false,
+	attemptPBReprocess = true
+) {
 	await db.scores.remove({
 		scoreID: score.scoreID,
 	});
@@ -79,7 +83,7 @@ export async function DeleteScore(score: ScoreDocument, blacklist = false) {
 		chartID: score.chartID,
 	});
 
-	if (userHasOtherScores) {
+	if (userHasOtherScores && attemptPBReprocess) {
 		await ProcessPBs(score.userID, new Set([score.chartID]), logger);
 	} else {
 		await db["personal-bests"].remove({

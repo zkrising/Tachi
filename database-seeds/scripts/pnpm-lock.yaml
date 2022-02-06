@@ -4,7 +4,9 @@ specifiers:
   commander: ^8.2.0
   csv-parse: ^5.0.3
   deepmerge: ^4.2.2
+  encoding-japanese: ^1.0.30
   fast-json-stable-hash: ^1.0.3
+  fast-xml-parser: ^4.0.2
   glob: ^7.2.0
   html-entities: ^2.3.2
   mei-logger: ^1.0.1
@@ -17,7 +19,9 @@ dependencies:
   commander: 8.2.0
   csv-parse: 5.0.3
   deepmerge: 4.2.2
+  encoding-japanese: 1.0.30
   fast-json-stable-hash: 1.0.3
+  fast-xml-parser: 4.0.2
   glob: 7.2.0
   html-entities: 2.3.2
   mei-logger: 1.0.1
@@ -818,6 +822,10 @@ packages:
     resolution: {integrity: sha512-AKrN98kuwOzMIdAizXGI86UFBoo26CL21UM763y1h/GMSJ4/OHU9k2YlsmBpyScFo/wbLzWQJBMCW4+IO3/+OQ==}
     dev: false
 
+  /encoding-japanese/1.0.30:
+    resolution: {integrity: sha512-bd/DFLAoJetvv7ar/KIpE3CNO8wEuyrt9Xuw6nSMiZ+Vrz/Q21BPsMHvARL2Wz6IKHKXgb+DWZqtRg1vql9cBg==}
+    dev: false
+
   /es6-error/4.1.1:
     resolution: {integrity: sha512-Um/+FxMr9CISWh0bi5Zv0iOD+4cFh5qLeks1qhAopKVAJw3drgKbKySikp7wGhDL0HPeaja0P5ULZrxLkniUVg==}
     dev: false
@@ -866,6 +874,13 @@ packages:
 
   /fast-json-stable-stringify/2.1.0:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
+    dev: false
+
+  /fast-xml-parser/4.0.2:
+    resolution: {integrity: sha512-3GOSbMTZxxrPPQ+aURM7Wia10bi71HBbiG/3mOEEkRSAkRtg4m7UhMSnB2rzOhBeRHyJUWsllOfyNnjTT1b85w==}
+    hasBin: true
+    dependencies:
+      strnum: 1.0.5
     dev: false
 
   /fecha/4.2.1:
@@ -1993,6 +2008,10 @@ packages:
   /strip-bom/4.0.0:
     resolution: {integrity: sha512-3xurFv5tEgii33Zi8Jtp55wEIILR9eh34FAW00PZf+JnSsTmV/ioewSgQl97JHvgjoRGwPShsWm+IdrxB35d0w==}
     engines: {node: '>=8'}
+    dev: false
+
+  /strnum/1.0.5:
+    resolution: {integrity: sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==}
     dev: false
 
   /supports-color/5.5.0:

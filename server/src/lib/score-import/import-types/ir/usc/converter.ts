@@ -88,7 +88,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 
 	if (!chartDoc) {
 		throw new KTDataNotFoundFailure(
-			`Chart ${context.chartHash} is orphaned.`,
+			`Chart ${context.chartHash} is not on the IR.`,
 			"ir/usc",
 			data,
 			context

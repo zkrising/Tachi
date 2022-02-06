@@ -8,11 +8,13 @@ specifiers:
   commander: ^8.2.0
   csv-parse: ^5.0.3
   deepmerge: ^4.2.2
+  encoding-japanese: ^1.0.30
   eslint: ^8.8.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-import: ^2.25.4
   eslint-plugin-prettier: ^4.0.0
   fast-json-stable-hash: ^1.0.3
+  fast-xml-parser: ^4.0.2
   glob: ^7.2.0
   html-entities: ^2.3.2
   mei-logger: ^1.0.1
@@ -31,7 +33,9 @@ dependencies:
   commander: 8.2.0
   csv-parse: 5.0.3
   deepmerge: 4.2.2
+  encoding-japanese: 1.0.30
   fast-json-stable-hash: 1.0.3
+  fast-xml-parser: 4.0.2
   glob: 7.2.0
   html-entities: 2.3.2
   mei-logger: 1.0.1_ts-node@10.4.0
@@ -1058,6 +1062,10 @@ packages:
     resolution: {integrity: sha512-AKrN98kuwOzMIdAizXGI86UFBoo26CL21UM763y1h/GMSJ4/OHU9k2YlsmBpyScFo/wbLzWQJBMCW4+IO3/+OQ==}
     dev: false
 
+  /encoding-japanese/1.0.30:
+    resolution: {integrity: sha512-bd/DFLAoJetvv7ar/KIpE3CNO8wEuyrt9Xuw6nSMiZ+Vrz/Q21BPsMHvARL2Wz6IKHKXgb+DWZqtRg1vql9cBg==}
+    dev: false
+
   /es-abstract/1.19.1:
     resolution: {integrity: sha512-2vJ6tjA/UfqLm2MPs7jxVybLoB8i1t1Jd9R3kISld20sIxPcTbLuggQOUxeWeAvIUkduv/CfMjuh4WmiXr2v9w==}
     engines: {node: '>= 0.4'}
@@ -1345,6 +1353,13 @@ packages:
   /fast-levenshtein/2.0.6:
     resolution: {integrity: sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=}
     dev: true
+
+  /fast-xml-parser/4.0.2:
+    resolution: {integrity: sha512-3GOSbMTZxxrPPQ+aURM7Wia10bi71HBbiG/3mOEEkRSAkRtg4m7UhMSnB2rzOhBeRHyJUWsllOfyNnjTT1b85w==}
+    hasBin: true
+    dependencies:
+      strnum: 1.0.5
+    dev: false
 
   /fastq/1.13.0:
     resolution: {integrity: sha512-YpkpUnK8od0o1hmeSc7UUs/eB/vIPWJYjKck2QKIzAf71Vm1AAQ3EbuZB3g2JIy+pg+ERD0vqI79KyZiB2e2Nw==}
@@ -2815,6 +2830,10 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
     dev: true
+
+  /strnum/1.0.5:
+    resolution: {integrity: sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==}
+    dev: false
 
   /supports-color/5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}

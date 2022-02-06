@@ -34,12 +34,16 @@ function ReadCollection(name, throwIfNotFound = false) {
 	return JSON.parse(fs.readFileSync(p));
 }
 
-function MutateCollection(name, cb) {
-	const data = cb(ReadCollection(name));
-
+function WriteCollection(name, data) {
 	fs.writeFileSync(path.join(COLLECTIONS_DIR, name), JSON.stringify(data, null, "\t"));
 
 	DeterministicCollectionSort();
+}
+
+function MutateCollection(name, cb) {
+	const data = cb(ReadCollection(name));
+
+	WriteCollection(name, data);
 }
 
 function CreateChartID() {
@@ -116,6 +120,7 @@ module.exports = {
 	CreateChartID,
 	CreateFolderID,
 	ReadCollection,
+	WriteCollection,
 	EfficientInPlaceDeepmerge,
 	AddSupportForBMSTable,
 };

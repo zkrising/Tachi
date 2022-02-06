@@ -109,5 +109,5 @@ export async function UpdateAllPBs(userIDs?: integer[], filter = {}) {
 		await ProcessPBs(user.id, new Set(scores.map((e) => e.chartID)), logger);
 	}
 
-	logger.info(`Done!`);
+	logger.verbose(`Done!`);
 }

@@ -32,8 +32,10 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 		index({ userID: 1, game: 1, playtype: 1 }),
 	],
 	sessions: [
-		// lol
 		index({ userID: 1, game: 1, playtype: 1, timeStarted: 1, timeEnded: 1 }),
+		// Optimises score modification, since sessions need to be repointed.
+		// also, just generally useful.
+		index({ "scoreInfo.scoreID": 1 }),
 		index({ name: "text" }),
 	],
 	"game-stats": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],

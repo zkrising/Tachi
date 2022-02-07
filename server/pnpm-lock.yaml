@@ -29,7 +29,7 @@ specifiers:
   bullmq: 1.68.4
   bunyan: 1.8.15
   commander: 9.0.0
-  connect-redis: 6.1.0
+  connect-redis: 6.1.1
   csv-parse: 5.0.4
   deepmerge: 4.2.2
   dotenv: 16.0.0
@@ -82,7 +82,7 @@ dependencies:
   bullmq: 1.68.4
   bunyan: 1.8.15
   commander: 9.0.0
-  connect-redis: 6.1.0
+  connect-redis: 6.1.1
   csv-parse: 5.0.4
   deepmerge: 4.2.2
   dotenv: 16.0.0
@@ -2313,8 +2313,8 @@ packages:
       typedarray: 0.0.6
     dev: false
 
-  /connect-redis/6.1.0:
-    resolution: {integrity: sha512-QLhd/xUkmyvK5qO7oQHiUScIBtVFXBkmvj+vuPbBhbP7OKerj6z2bbjgnP+x46DZLZlZpOzmtUdM43+jVl/U1Q==}
+  /connect-redis/6.1.1:
+    resolution: {integrity: sha512-4on27NmUz1hVCVsrUFUOe06YkgCx88ZZ29Wi7D5mXg22alN/Xx+Y+iPrJ1Cc7coUKAe5SP3W2LF/zo6WXSJFFg==}
     engines: {node: '>=12'}
     dev: false
 

@@ -1,18 +1,57 @@
 name: update
 
 on:
-  push:
-    branches: [master]
-  workflow_dispatch:
-  
+    push:
+        branches: [master, develop]
+    pull_request:
+        branches: [master, develop]
+    workflow_dispatch:
+
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run database sync on server
-        uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
-        with:
-          host: ${{ secrets.TACHI_HOST }}
-          username: tachi
-          key: ${{ secrets.TACHI_KEY }}
-          script: tachi-database-sync
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Install Node.js 16
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 16.x
+
+            - name: Install PNPM
+              uses: pnpm/action-setup@v2.0.1
+              with:
+                  version: 6.0.2
+
+            - name: Move into scripts directory
+              run: cd scripts
+
+            - name: Install Dependencies
+              run: pnpm i
+
+            - name: Run Tests
+              run: pnpm test
+              env:
+                  NODE_ENV: "test"
+    deploy:
+        runs-on: ubuntu-latest
+        needs: [test]
+        if: github.event_name == 'push'
+        steps:
+            # - name: Sync Staging Database
+            #   if: github.ref == 'refs/heads/develop'
+            #   uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
+            #   with:
+            #       host: ${{ secrets.TACHI_HOST }}
+            #       username: tachi
+            #       key: ${{ secrets.TACHI_KEY }}
+            #       script: tachi-database-sync
+            - name: Sync Live Database
+              if: github.ref == 'refs/heads/master'
+              uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
+              with:
+                  host: ${{ secrets.TACHI_HOST }}
+                  username: tachi
+                  key: ${{ secrets.TACHI_KEY }}
+                  script: tachi-database-sync

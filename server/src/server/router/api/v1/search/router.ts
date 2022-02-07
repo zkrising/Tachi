@@ -54,7 +54,7 @@ router.get("/chart-hash", RequireBokutachi, async (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: `Searched BMS, PMS and USC for ${req.query.search}().`,
+		description: `Searched BMS, PMS and USC for ${req.query.search}.`,
 		body: {
 			songs,
 			charts,

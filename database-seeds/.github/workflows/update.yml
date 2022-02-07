@@ -24,13 +24,12 @@ jobs:
               with:
                   version: 6.0.2
 
-            - name: Move into scripts directory
-              run: cd scripts
-
             - name: Install Dependencies
+              working-directory: ./scripts
               run: pnpm i
 
             - name: Run Tests
+              working-directory: ./scripts
               run: pnpm test
               env:
                   NODE_ENV: "test"

@@ -20620,6 +20620,19 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "EastNewSound",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1651,
+		"searchTerms": [
+			"hiirogekka_ens",
+			"ﾋｲﾛｹﾞｯｶｷｮｳｼｮｳﾉｾﾞﾂ"
+		],
+		"title": "緋色月下、狂咲ノ絶 (nayuta 2017 ver)"
+	},
+	{
+		"altTitles": [],
 		"artist": "暁Records",
 		"data": {
 			"displayVersion": "exceed"
@@ -20643,6 +20656,19 @@
 			"ﾄﾗﾝｽﾀﾞﾝｽｱﾅｰｷｰ"
 		],
 		"title": "トランスダンスアナーキー"
+	},
+	{
+		"altTitles": [],
+		"artist": "Lime",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1659,
+		"searchTerms": [
+			"chronomia_lime",
+			"ｸﾛﾉﾐｱ"
+		],
+		"title": "Chronomia"
 	},
 	{
 		"altTitles": [],
@@ -21111,5 +21137,161 @@
 			"ﾀｹ"
 		],
 		"title": "竹"
+	},
+	{
+		"altTitles": [],
+		"artist": "mazuka153",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1823,
+		"searchTerms": [
+			"snowikon_mazuka153",
+			"ｽﾉｳｲｺﾝ"
+		],
+		"title": "スノウイコン"
+	},
+	{
+		"altTitles": [],
+		"artist": "PandaBoY feat.ななひら",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1824,
+		"searchTerms": [
+			"starbeat_pandaboy",
+			"ｽﾀｰﾋﾞｰﾄ"
+		],
+		"title": "Star☆Beat"
+	},
+	{
+		"altTitles": [],
+		"artist": "こすも８ｂｉｔ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1825,
+		"searchTerms": [
+			"redwhitekawaii_cosmo",
+			"ﾚｯﾄﾞﾌﾟﾗｽﾎﾜｲﾄｲｺｰﾙｶﾜｲｲ"
+		],
+		"title": "Red＋White＝Kawaii"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yunomi",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1826,
+		"searchTerms": [
+			"mitarashi_yunomi",
+			"ﾐﾀﾗｼﾌﾟﾗﾄﾆｯｸﾌｨｰﾁｬﾘﾝｸﾞﾆｶﾓｷｭ"
+		],
+		"title": "みたらしプラトニック (feat. nicamoq)"
+	},
+	{
+		"altTitles": [],
+		"artist": "unatra×Nego_tiator",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1827,
+		"searchTerms": [
+			"extridia_unatranego",
+			"ｴｸｽﾄﾗｲﾃﾞｨｱ"
+		],
+		"title": "eXtridia"
+	},
+	{
+		"altTitles": [],
+		"artist": "SOUND HOLIC feat. Nana Takahashi",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1838,
+		"searchTerms": [
+			"planisphere_soundholic",
+			"ﾌﾟﾗﾆｽﾌｨｱ"
+		],
+		"title": "PLANISPHERE"
+	},
+	{
+		"altTitles": [],
+		"artist": "lapix",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1839,
+		"searchTerms": [
+			"foolishagain_lapix",
+			"ﾌｰﾘｯｼｭｱｹﾞｲﾝ"
+		],
+		"title": "Foolish Again"
+	},
+	{
+		"altTitles": [],
+		"artist": "TAKU1175 ft.駄々子",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1840,
+		"searchTerms": [
+			"yumenoowari_taku1175",
+			"ﾕﾒﾉｵﾜﾘｾｶｲﾉﾊｼﾞﾏﾘ"
+		],
+		"title": "夢の終わり、世界のはじまり。"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ feat. ななひら",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1841,
+		"searchTerms": [
+			"volmix_kameria",
+			"ｳﾞｫﾙﾐｯｸｽ"
+		],
+		"title": "鑷ぉるみっくす!!!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "kamome sano",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1842,
+		"searchTerms": [
+			"sparkyspark_kamomesano",
+			"ｽﾊﾟｰｷｰｽﾊﾟｰｸ"
+		],
+		"title": "sparky spark"
+	},
+	{
+		"altTitles": [],
+		"artist": "黒魔",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1843,
+		"searchTerms": [
+			"testflight_kuroma",
+			"ﾃｽﾄﾌﾗｲﾄ"
+		],
+		"title": "Test Flight"
+	},
+	{
+		"altTitles": [],
+		"artist": "2時間でPUCされたかぼちゃ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1844,
+		"searchTerms": [
+			"puc_kabocha",
+			"ﾊﾟｰﾌｪｸﾄｱﾙﾃｨﾒｯﾄｾﾚﾌﾞﾚｰｼｮﾝ"
+		],
+		"title": "Perfect Ultimate Celebration!!"
 	}
 ]

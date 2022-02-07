@@ -172,3 +172,58 @@ export async function SearchAllGamesSongs(search: string) {
 
 	return res.flat(1).sort((a, b) => b.__textScore - a.__textScore);
 }
+
+export async function SearchForChartHash(search: string) {
+	const results = (await Promise.all([
+		db.charts.bms.findOne({ $or: [{ "data.hashMD5": search }, { "data.hashSHA256": search }] }),
+		db.charts.pms.findOne({ $or: [{ "data.hashMD5": search }, { "data.hashSHA256": search }] }),
+		db.charts.usc.findOne({ "data.hashSHA1": search }),
+	])) as [ChartDocument, ChartDocument, ChartDocument];
+
+	const [bmsChart, pmsChart, uscChart] = results;
+
+	const songs = [];
+	const charts = results.filter((e) => e !== null);
+
+	if (bmsChart) {
+		songs.push(
+			AddGamePropToSong(
+				(await db.songs.bms.findOne({
+					id: bmsChart.songID,
+				}))!,
+				"bms"
+			)
+		);
+	}
+
+	if (pmsChart) {
+		songs.push(
+			AddGamePropToSong(
+				(await db.songs.pms.findOne({
+					id: pmsChart.songID,
+				}))!,
+				"pms"
+			)
+		);
+	}
+
+	if (uscChart) {
+		songs.push(
+			AddGamePropToSong(
+				(await db.songs.usc.findOne({
+					id: uscChart.songID,
+				}))!,
+				"usc"
+			)
+		);
+	}
+
+	return { songs, charts };
+}
+
+function AddGamePropToSong(songDocument: SongDocument, game: Game): SongDocument & { game: Game } {
+	// @ts-expect-error Yep, that's intentional.
+	songDocument.game = game;
+
+	return songDocument as SongDocument & { game: Game };
+}

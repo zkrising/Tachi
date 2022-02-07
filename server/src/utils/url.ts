@@ -1,3 +1,5 @@
+import { URL } from "url";
+
 export function CreateURLWithParams(url: string, params: Record<string, string>) {
 	const u = new URL(url);
 

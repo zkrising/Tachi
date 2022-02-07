@@ -7,10 +7,8 @@
 		"playtype": "Controller",
 		"levelNum": 1,
 		"level": "1",
-		"flags": {
-			"CUSTOM": true
-		},
 		"data": {
+			"isOfficial": true,
 			"hashSHA1": "USC_CHART_HASH"
 		},
 		"isPrimary": true,

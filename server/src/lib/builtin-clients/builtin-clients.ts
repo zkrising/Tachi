@@ -4,6 +4,7 @@ import { DatabaseSchemas } from "external/mongo/schemas";
 import fjsh from "fast-json-stable-hash";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
+import { PrudenceError } from "prudence";
 import { TachiAPIClientDocument, UserAuthLevels } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
@@ -211,7 +212,9 @@ async function LoadClients(clients: DefaultClients) {
 		try {
 			DatabaseSchemas["api-clients"](realClient);
 		} catch (err) {
-			logger.error(`Invalid API Client ${client.name}: ${FormatPrError(err)}.`);
+			logger.error(
+				`Invalid API Client ${client.name}: ${FormatPrError(err as PrudenceError)}.`
+			);
 			continue;
 		}
 

@@ -35,7 +35,7 @@ export function ParseMerIIDX(
 	try {
 		jsonData = JSON.parse(fileData.buffer.toString("utf-8"));
 	} catch (err) {
-		logger.info(err.message);
+		logger.info((err as Error).message);
 		throw new ScoreImportFatalError(400, "Invalid JSON.");
 	}
 

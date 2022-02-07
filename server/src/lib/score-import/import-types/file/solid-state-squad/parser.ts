@@ -1,4 +1,4 @@
-import { parse as FastParseXML } from "fast-xml-parser";
+import { XMLParser } from "fast-xml-parser";
 import { KtLogger } from "lib/logger/logger";
 import p, { PrudenceSchema } from "prudence";
 import { FormatPrError } from "utils/prudence";
@@ -50,6 +50,8 @@ const PR_SolidState: PrudenceSchema = {
 	},
 };
 
+const xmlParser = new XMLParser();
+
 export function ParseSolidStateXML(
 	fileData: Express.Multer.File,
 	body: Record<string, unknown>,
@@ -58,7 +60,7 @@ export function ParseSolidStateXML(
 	let parsedXML;
 
 	try {
-		parsedXML = FastParseXML(fileData.buffer.toString("utf-8"));
+		parsedXML = xmlParser.parse(fileData.buffer.toString("utf-8"));
 	} catch (err) {
 		logger.info("S3 XML Parse Error", err);
 

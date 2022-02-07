@@ -22,7 +22,7 @@ t.test("#ParseKsHookSV6C", (t) => {
 			t.type(res.context.timeReceived, "number");
 			t.ok(Array.isArray(res.iterable));
 		} catch (err) {
-			t.fail(`[${message}] ${err.message}`);
+			t.fail(`[${message}] ${(err as Error).message}`);
 		}
 	};
 

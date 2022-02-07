@@ -6,6 +6,7 @@ import JSON5 from "json5";
 import { SendMailOptions } from "nodemailer";
 import p from "prudence";
 import { Game, ImportTypes, integer, StaticConfig } from "tachi-common";
+import { URL } from "url";
 import { FormatPrError } from "utils/prudence";
 
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.

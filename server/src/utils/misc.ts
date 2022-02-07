@@ -2,6 +2,7 @@ import crypto from "crypto";
 import { ONE_HOUR } from "lib/constants/time";
 import { TachiConfig } from "lib/setup/config";
 import { Game, GamePTConfig, GetGameConfig, integer, Playtypes } from "tachi-common";
+import { URL } from "url";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
 // the developer of this has migrated everything to Force ES6 style modules,
@@ -145,4 +146,18 @@ export function ApplyNTimes<T>(n: integer, fn: (i: integer) => T): T[] {
 
 export function RoundToNDecimalPlaces(value: number, n: integer) {
 	return Number(value.toFixed(n));
+}
+
+export function OmitUndefinedKeys<T>(obj: Partial<T>): Partial<T> {
+	const omittedObj: Partial<T> = {};
+
+	for (const k of Object.keys(obj)) {
+		const key = k as keyof T;
+
+		if (obj[key] !== undefined) {
+			omittedObj[key] = obj[key];
+		}
+	}
+
+	return omittedObj;
 }

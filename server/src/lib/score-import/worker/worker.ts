@@ -121,4 +121,21 @@ export const worker = new Worker(
 	}
 );
 
+const logger = CreateLogCtx("Score Import Worker");
+
+worker.on("failed", (job, err) => {
+	if (err instanceof ScoreImportFatalError) {
+		logger.info(
+			`Job ${job.id} hit ScoreImportFatalError (User Fault) with message: ${err.message}`,
+			err
+		);
+	} else {
+		logger.error(`Job ${job.id} failed unexpectedly with message: ${err.message}`, err);
+	}
+});
+
+worker.on("completed", (job, result) => {
+	logger.debug(`Job ${job.id} finished successfully.`, result);
+});
+
 process.on("SIGTERM", () => HandleSIGTERMGracefully());

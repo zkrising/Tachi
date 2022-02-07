@@ -1,10 +1,12 @@
-import rateLimit from "express-rate-limit";
+import { Request } from "express";
+import rateLimit, { Options } from "express-rate-limit";
 import { RedisClient } from "external/redis/redis";
 import { ONE_MINUTE } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import RateLimitRedis from "rate-limit-redis";
 import { integer } from "tachi-common";
+import { OmitUndefinedKeys } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -21,30 +23,27 @@ export function ClearTestingRateLimitCache() {
 	HyperAggressiveRateLimitMiddleware.resetKey(`::ffff:127.0.0.1`);
 }
 
-const CreateRateLimitOptions = (
-	max: integer,
-	name: string,
-	windowMs?: number
-): rateLimit.Options => ({
-	max,
-	onLimitReached: (req) => {
-		logger.warn(`User ${req.ip} hit rate limit.`, {
-			url: req.url,
-			method: req.method,
-			hideFromConsole: ["req"],
-		});
-	},
-	store: CreateStore(name),
-	message: {
-		success: false,
-		description: `You have exceeded ${max} requests per ${
-			(windowMs ?? 60_000) / 1000
-		} seconds. Please wait.`,
-		status: 429,
-		message: "You're being rate limited.",
-	},
-	windowMs,
-});
+const CreateRateLimitOptions = (max: integer, name: string, windowMs?: number): Partial<Options> =>
+	OmitUndefinedKeys({
+		max,
+		onLimitReached: (req: Request) => {
+			logger.warn(`User ${req.ip} hit rate limit.`, {
+				url: req.url,
+				method: req.method,
+				hideFromConsole: ["req"],
+			});
+		},
+		store: CreateStore(name),
+		message: {
+			success: false,
+			description: `You have exceeded ${max} requests per ${
+				(windowMs ?? 60_000) / 1000
+			} seconds. Please wait.`,
+			status: 429,
+			message: "You're being rate limited.",
+		},
+		windowMs,
+	});
 
 // 100 requests / minute is the current cap
 export const NormalRateLimitMiddleware = rateLimit(

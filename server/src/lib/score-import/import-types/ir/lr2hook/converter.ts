@@ -1,11 +1,10 @@
-import { Lamps, ScoreDocument } from "tachi-common";
 import {
 	InternalFailure,
-	InvalidScoreFailure,
 	KTDataNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { DryScore } from "lib/score-import/framework/common/types";
+import { Lamps, ScoreDocument } from "tachi-common";
 import { FindBMSChartOnHash } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import { ConverterFunction } from "../../common/types";

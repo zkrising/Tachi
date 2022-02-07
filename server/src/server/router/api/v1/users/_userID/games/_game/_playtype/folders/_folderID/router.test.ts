@@ -1,6 +1,5 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { rootLogger } from "lib/logger/logger";
 import { FolderDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";

@@ -139,7 +139,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 		t.end();
 	});
 
-	t.test("End To End Tests", async (t) => {
+	t.test("End To End Tests", (t) => {
 		const baseBatchManual: BatchManual = {
 			meta: {
 				game: "iidx",
@@ -147,23 +147,6 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 				service: "Foo",
 			},
 			scores: [],
-		};
-
-		const batchManual: BatchManual = {
-			meta: {
-				game: "iidx",
-				playtype: "SP",
-				service: "Foo",
-			},
-			scores: [
-				{
-					identifier: "1",
-					lamp: "CLEAR",
-					matchType: "tachiSongID",
-					difficulty: "ANOTHER",
-					score: 123,
-				},
-			],
 		};
 
 		t.test("Should reject decimal values for score.", async (t) => {

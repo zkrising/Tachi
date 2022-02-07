@@ -8,7 +8,6 @@ import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import { integer } from "tachi-common";
-import { RejectIfBanned } from "./middleware/auth";
 import { RequestLoggerMiddleware } from "./middleware/request-logger";
 import mainRouter from "./router/router";
 

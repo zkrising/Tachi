@@ -78,7 +78,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 		}),
 	},
 	maimai: {
-		Single: (scd) => ({}),
+		Single: () => ({}),
 	},
 	gitadora: {
 		Gita: (scd) => ({

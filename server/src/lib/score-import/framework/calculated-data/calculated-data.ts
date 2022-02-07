@@ -61,7 +61,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	"popn:9B": CalculateDataPopn,
 	"museca:Single": CalculateDataMuseca,
 	"chunithm:Single": CalculateDataCHUNITHM,
-	"maimai:Single": CalculateDataMaimai,
+	"maimai:Single": () => ({ ktRating: null }),
 	"gitadora:Gita": CalculateDataGitadora,
 	"gitadora:Dora": CalculateDataGitadora,
 	"bms:7K": CalculateDataPMSorBMS,
@@ -176,17 +176,6 @@ function CalculateDataCHUNITHM(
 ): CalculatedData<"chunithm:Single"> {
 	return {
 		rating: CHUNITHMRating.calculate(dryScore.scoreData.score, chart.levelNum),
-	};
-}
-
-function CalculateDataMaimai(
-	dryScore: DryScore,
-	chart: ChartDocument,
-	logger: KtLogger
-): CalculatedData<"maimai:Single"> {
-	// @todo #373 Add maimai rating algorithms.
-	return {
-		ktRating: 0,
 	};
 }
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { ParseLR2Hook } from "./parser";

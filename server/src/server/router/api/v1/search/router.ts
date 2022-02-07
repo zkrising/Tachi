@@ -1,5 +1,4 @@
 import { Router } from "express";
-import db from "external/mongo/db";
 import { SearchAllGamesSongs, SearchForChartHash, SearchUsersRegExp } from "lib/search/search";
 import { RequireBokutachi } from "server/middleware/type-require";
 import { IsString } from "utils/misc";

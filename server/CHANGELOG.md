@@ -46,6 +46,7 @@ not generally be shown to end users.
 - [ENH] IIDX Imports are now significantly faster.
 - [ENH] GITADORA now supports `naiveSkill` -- Although GITADORA support isn't actually on yet. (#624)
 - [ENH] Emails now go to spam significantly less often, and are more likely to actually go to your mailbox. (#460)
+- [INTERNAL_ENH] Most dependencies have been updated.
 
 *****
 

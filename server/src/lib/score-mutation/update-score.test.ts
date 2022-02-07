@@ -61,7 +61,7 @@ t.test("#UpdateScore", (t) => {
 
 		const score = deepmerge<ScoreDocument>(TestingIIDXSPScore, {
 			scoreData: { score: 1020 },
-		} as any);
+		} as ScoreDocument);
 
 		delete score._id;
 

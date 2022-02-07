@@ -25,8 +25,7 @@ type RawPropKeys = `${"beginner" | "normal" | "hyper" | "another" | "leggendaria
 
 export type RawIIDXEamusementCSVData = {
 	[K in RawPropKeys]: unknown;
-} &
-	BaseProps & { [index: string]: unknown };
+} & BaseProps & { [index: string]: unknown };
 
 export interface IIDXEamusementCSVContext {
 	playtype: "SP" | "DP";

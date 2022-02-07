@@ -1,17 +1,10 @@
 import db from "external/mongo/db";
 import { USCIR_ADJACENT_SCORE_N } from "lib/constants/usc-ir";
 import CreateLogCtx from "lib/logger/logger";
-import {
-	ChartDocument,
-	integer,
-	PBScoreDocument,
-	Playtypes,
-	ScoreDocument,
-	SongDocument,
-} from "tachi-common";
-import { MStoS, Random20Hex } from "utils/misc";
+import { ChartDocument, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { MStoS } from "utils/misc";
 import { GetPBOnChart, GetServerRecordOnChart } from "utils/scores";
-import { USCClientChart, USCServerScore } from "./types";
+import { USCServerScore } from "./types";
 const logger = CreateLogCtx(__filename);
 
 export const TACHI_LAMP_TO_USC: Record<

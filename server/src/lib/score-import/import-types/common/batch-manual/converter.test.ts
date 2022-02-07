@@ -192,7 +192,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		t.end();
 	});
 
-	t.test("Should reject if popnChartHash is used while game is not popn", async (t) => {
+	t.test("Should reject if popnChartHash is used while game is not popn", (t) => {
 		const chartHash = "2c26d666fa7c907e85115dbb279c267c14a263d47b2d46a93f99eae49d779119";
 
 		t.rejects(() =>
@@ -240,7 +240,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		t.end();
 	});
 
-	t.test("Should honor playtype in uscChartHash despite non-unique chartIDs.", async (t) => {
+	t.test("Should honor playtype in uscChartHash despite non-unique chartIDs.", (t) => {
 		const chartHash = "USC_CHART_HASH";
 
 		const uscContext: BatchManualContext = deepmerge(context, {

@@ -1,9 +1,8 @@
+import { SongDocument } from "tachi-common";
 import t from "tap";
-
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { BMSGazerChart, LoadTachiIIDXData } from "test-utils/test-data";
-import { SongDocument } from "tachi-common";
+import { LoadTachiIIDXData } from "test-utils/test-data";
 
 t.test("GET /api/v1/search", (t) => {
 	t.beforeEach(ResetDBState);

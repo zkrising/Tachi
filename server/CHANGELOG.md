@@ -22,12 +22,17 @@ not generally be shown to end users.
 - [FEAT] Added WACCA Support. (#598)
 - [FEAT] Added support for Skye's pop'n hook. (#563)
 - [FEAT] Added PMS Support. (#45)
-- [INTERNAL_FEAT] Config is now served from the server instead of being cloned to the client.
 - [FEAT] Users can now be banned. (#640)
+- [FEAT] A new endpoint has been added for searching on BMS, PMS and USC chart hashes. (#630)
+- [FEAT] A new endpoint has been added for seeing your recently used imports. (#642)
+- [FEAT] Added support for the SDVX EXCEED GEAR Cloud hook. (#636)
+- [INTERNAL_FEAT] Config is now served from the server instead of being cloned to the client.
+- [INTERNAL_FEAT] Database seeds is now split for staging and production usage.
 
 *****
 
 - [REWORK] KtRating is no longer the default rating algorithm for IIDX. It has been removed, and the new default is ktLampRating. (#597)
+- [REWORK] USC no longer applies 3-person Automatic Score Reification. Charts must now be manually whitelisted. Note that scores are still saved for charts that might not be in the database at that time.
 
 *****
 
@@ -40,6 +45,7 @@ not generally be shown to end users.
 - [ENH] Pre-HV Leggendaria songIDs are now properly resolved. (#487)
 - [ENH] IIDX Imports are now significantly faster.
 - [ENH] GITADORA now supports `naiveSkill` -- Although GITADORA support isn't actually on yet. (#624)
+- [ENH] Emails now go to spam significantly less often, and are more likely to actually go to your mailbox. (#460)
 
 *****
 

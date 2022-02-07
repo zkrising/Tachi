@@ -15,8 +15,10 @@ popd
 
 const LINUX_SH = `
 #!/bin/bash
-export _JAVA_OPTIONS='-Dsun.java2d.opengl=true -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dfile.encoding="UTF-8"'
-java -Xms1g -Xmx4g -cp 'beatoraja.jar;ir/*' bms.player.beatoraja.MainLoader
+export _JAVA_OPTIONS='-Dsun.java2d.opengl=true -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+cd "$(dirname "$0")"
+exec java -Xms1g -Xmx4g -cp beatoraja.jar:ir/* bms.player.beatoraja.MainLoader
+
 `;
 
 export default function BeatorajaIRPage() {

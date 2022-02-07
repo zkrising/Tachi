@@ -1,8 +1,9 @@
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
+import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Game, GetGameConfig, integer, PublicUserDocument, SongDocument } from "tachi-common";
 import { GamePT, JustChildren } from "types/react";
@@ -12,7 +13,7 @@ import { ConditionalLeadingSpace, PREVENT_DEFAULT } from "util/misc";
 import QuickTooltip from "../misc/QuickTooltip";
 
 interface SearchReturns {
-	users: PublicUserDocument[];
+	users?: PublicUserDocument[];
 	songs: (SongDocument & { __textScore: number; game: Game })[];
 }
 
@@ -68,7 +69,7 @@ function GPTSearchResult({
 }
 
 function SearchResults({ results }: { results: SearchReturns }) {
-	if (!results.users.length && !results.songs.length) {
+	if (!results.users?.length && !results.songs.length) {
 		return (
 			<div className="font-size-sm font-weight-bolder text-uppercase mb-2 text-center">
 				Found nothing :(
@@ -80,13 +81,17 @@ function SearchResults({ results }: { results: SearchReturns }) {
 	// here's a hack.
 	const params = useLocation<{ game?: Game; playtype?: Playtype }>();
 
-	const { game, playtype } = useMemo(() => {
+	const { game, playtype, user } = useMemo(() => {
 		const regexp = `/games/(${TachiConfig.games.join("|")})/[^/]*/?`;
 
 		if (params.pathname.match(new RegExp(regexp, "u"))) {
 			const hack = params.pathname.split("/games/")[1].split("/");
 
-			return { game: hack[0] as Game, playtype: hack[1] as Playtype };
+			return {
+				game: hack[0] as Game,
+				playtype: hack[1] as Playtype,
+				user: params.pathname.match(/\/dashboard\/users\/(.*?)\//u)?.[1],
+			};
 		}
 
 		return { game: null, playtype: null };
@@ -94,14 +99,14 @@ function SearchResults({ results }: { results: SearchReturns }) {
 
 	return (
 		<div className="quick-search-result">
-			{results?.users.length ? (
+			{results?.users?.length ? (
 				<>
 					<div className="font-size-sm text-primary font-weight-bolder text-uppercase mb-2">
 						Users
 					</div>
 					<div>
 						{results.users.map(u =>
-							game && playtype ? (
+							game && playtype && user ? (
 								<GPTSearchResult
 									key={u.id}
 									game={game}
@@ -212,16 +217,38 @@ export default function SearchBar() {
 		// compatibility note - we use window here to specify to typescript
 		// that this is NOT the node version of setTimeout() (which does not return a number).
 		const handle = window.setTimeout(() => {
-			APIFetchV1<SearchReturns>(`/search?search=${encodeURIComponent(closureSearch)}`).then(
-				r => {
-					if (r.success === false) {
-						console.error(r);
+			const searches = [];
+
+			searches.push(
+				APIFetchV1<SearchReturns>(`/search?search=${encodeURIComponent(closureSearch)}`)
+			);
+
+			if (TachiConfig.type !== "ktchi") {
+				searches.push(
+					APIFetchV1<SearchReturns>(
+						`/search/chart-hash?search=${encodeURIComponent(closureSearch)}`
+					)
+				);
+			}
+
+			Promise.all(searches).then(results => {
+				const setValue: SearchReturns = {
+					users: [],
+					songs: [],
+				};
+
+				for (const result of results) {
+					if (result.success === false) {
+						console.error(result);
 						return;
 					}
 
-					setResults(r.body);
+					setValue.songs.push(...result.body.songs);
+					setValue.users!.push(...(result.body.users ?? []));
 				}
-			);
+
+				setResults(setValue);
+			});
 		}, 250);
 
 		setLastTimeout(handle);

@@ -41,7 +41,9 @@ async function RemoveNotPresent<T>(
 		[field]: { $nin: documents.map((e) => e[field]) },
 	});
 
+	// @ts-expect-error These types are broken!
 	if (r.deletedCount) {
+		// @ts-expect-error These types are broken!
 		logger.info(`Removed ${r.deletedCount} documents.`);
 	}
 }

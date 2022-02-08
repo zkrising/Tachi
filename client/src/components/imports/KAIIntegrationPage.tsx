@@ -7,7 +7,6 @@ import useImport from "components/util/import/useImport";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
-import { UserGameStatsContext } from "context/UserGameStatsContext";
 import hashjs from "hash.js";
 import React, { useContext, useMemo, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
@@ -58,7 +57,6 @@ export default function KAIIntegrationPage({ clientID, hash, kaiType, redirectUr
 
 function KAIImporter({ kaiType, game }: Pick<Props, "kaiType" | "game">) {
 	let importType: APIImportTypes;
-	const { setUGS } = useContext(UserGameStatsContext);
 
 	if (kaiType === "MIN") {
 		importType = "api/min-sdvx";

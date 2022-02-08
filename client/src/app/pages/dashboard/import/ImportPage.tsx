@@ -6,7 +6,6 @@ import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
-import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";

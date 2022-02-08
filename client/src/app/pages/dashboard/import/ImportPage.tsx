@@ -6,6 +6,7 @@ import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
+import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
@@ -81,6 +82,10 @@ function InnerShowRecentImports({ user }: { user: PublicUserDocument }) {
 
 	if (isLoading || !data) {
 		return <Loading />;
+	}
+
+	if (data.length === 0) {
+		return null;
 	}
 
 	return (
@@ -162,11 +167,11 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 	} else if (game === "bms") {
 		Content.unshift(
 			<ImportInfoCard
-				name="Beatoraja IR"
+				name="LR2oraja IR"
 				href="beatoraja-ir"
 				desc="Automatically import scores, whenever you get them!"
 				moreInfo="This is the recommended way to import BMS scores, as it provides high quality data in real-time."
-				key="Beatoraja IR"
+				key="LR2oraja IR"
 			/>,
 			<ImportInfoCard
 				name="LR2 Hook"
@@ -215,6 +220,16 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc={`Automatically upload Pop'n scores to ${TachiConfig.name}!`}
 				moreInfo="Yep, it's that simple."
 				key="Silent Hook"
+			/>
+		);
+	} else if (game === "pms") {
+		Content.unshift(
+			<ImportInfoCard
+				name="Beatoraja IR"
+				href="beatoraja-ir-pms"
+				desc="Automatically import scores, whenever you get them!"
+				moreInfo="This is the recommended way to import PMS scores, as it provides high quality data in real-time."
+				key="Beatoraja IR"
 			/>
 		);
 	}

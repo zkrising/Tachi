@@ -50,7 +50,10 @@ export default function ImportRoutes() {
 					{mode !== "ktchi" && (
 						<>
 							<Route exact path="/dashboard/import/beatoraja-ir">
-								<BeatorajaIRPage />
+								<BeatorajaIRPage game="bms" />
+							</Route>
+							<Route exact path="/dashboard/import/beatoraja-ir-pms">
+								<BeatorajaIRPage game="pms" />
 							</Route>
 							<Route exact path="/dashboard/import/lr2hook">
 								<LR2HookPage />

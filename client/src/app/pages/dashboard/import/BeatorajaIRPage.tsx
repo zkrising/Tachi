@@ -21,7 +21,7 @@ exec java -Xms1g -Xmx4g -cp beatoraja.jar:ir/* bms.player.beatoraja.MainLoader
 
 `;
 
-export default function BeatorajaIRPage() {
+export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 	useSetSubheader(["Import Scores", "Beatoraja IR"]);
 
 	return (
@@ -36,17 +36,28 @@ export default function BeatorajaIRPage() {
 					.
 				</li>
 				<li>
-					Make sure you're running <b>LR2oraja</b>. {TachiConfig.name} does <b>NOT</b>{" "}
-					support beatoraja, and will not accept scores from the client.
-					<br />
-					<ExternalLink href="https://github.com/wcko87/lr2oraja/releases">
-						LR2oraja
-					</ExternalLink>{" "}
-					is a one-file change for beatoraja that changes the settings to match LR2, which
-					is the standard for players.
-					<br />
-					Beatoraja has significantly different gauge implementations, which means
-					cross-comparing scores is unfair.
+					{game === "bms" ? (
+						<>
+							Make sure you're running <b>LR2oraja</b>. {TachiConfig.name} does{" "}
+							<b>NOT</b> support BMS scores achieved on beatoraja, and will not accept
+							scores from the client.
+							<br />
+							<ExternalLink href="https://github.com/wcko87/lr2oraja/releases">
+								LR2oraja
+							</ExternalLink>{" "}
+							is a one-file change for beatoraja that changes the settings to match
+							LR2, which is the standard for players.
+							<br />
+							Beatoraja has significantly different gauge implementations, which means
+							cross-comparing scores is unfair.
+						</>
+					) : (
+						<>
+							Make sure you're running <b>beatoraja</b>. {TachiConfig.name} does{" "}
+							<b>NOT</b> support PMS scores achieved on LR2oraja, and will not accept
+							scores from the client.
+						</>
+					)}
 				</li>
 				<li>
 					Place the IR <code>.jar</code> file in the <code>ir/</code> folder.

@@ -231,6 +231,15 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				key="Beatoraja IR"
 			/>
 		);
+	} else if (game === "wacca") {
+		Content.unshift(
+			<ImportInfoCard
+				name="WACCA Site Importer"
+				href="wacca-site"
+				desc="Scrape your scores from the WACCA website."
+				key="WACCA Site Importer"
+			/>
+		);
 	}
 
 	return (

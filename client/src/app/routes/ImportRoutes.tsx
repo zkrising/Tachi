@@ -15,6 +15,7 @@ import SilentHookPage from "app/pages/dashboard/import/SilentHookPage";
 import SSSXMLPage from "app/pages/dashboard/import/SSSXMLPage";
 import USCDBPage from "app/pages/dashboard/import/USCDBPage";
 import USCIRPage from "app/pages/dashboard/import/USCIRPage";
+import WACCASiteImportPage from "app/pages/dashboard/import/WACCASiteImportPage";
 import ARCImportPage from "components/imports/ARCImportPage";
 import KAIIntegrationPage from "components/imports/KAIIntegrationPage";
 import Divider from "components/util/Divider";
@@ -100,12 +101,6 @@ export default function ImportRoutes() {
 								<SSSXMLPage />
 							</Route>
 
-							<Route exact path="/dashboard/import/beatoraja-db">
-								<BeatorajaDBPage />
-							</Route>
-							<Route exact path="/dashboard/import/lr2-db">
-								<LR2DBPage />
-							</Route>
 							<Route exact path="/dashboard/import/fervidex">
 								<FervidexPage />
 							</Route>
@@ -175,6 +170,10 @@ export default function ImportRoutes() {
 									kaiType="EAG"
 									game="sdvx"
 								/>
+							</Route>
+
+							<Route exact path="/dashboard/import/wacca-site">
+								<WACCASiteImportPage />
 							</Route>
 						</>
 					)}

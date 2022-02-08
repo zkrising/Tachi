@@ -2274,6 +2274,36 @@
 		"title": "SOUND VOLTEX (HEAVENLY HAVEN)"
 	},
 	{
+		"description": "Levels for SOUND VOLTEX in Konaste.",
+		"folders": [
+			"Fa8d297fd062c7de085f629559f18572ad0549413f325e28d598cbb533c68f7f1",
+			"F112030d5e9478707c5adfb53dd03298d8b30d81fe4e81b7a7c341b417ff5b507",
+			"Fd5682c7ee76404985d87c37b5d2b0086dad0c2c8689ba4acf1fda24c5cb135e1",
+			"F557dc9cecadfbcb3a9797d327d538d5d7cee84768e47e3bf855491f4109c2ab1",
+			"F22aa46c768fd1ad2199ac7c7c4a90dd9ebe00d5e051828e512730ae8256ebe3b",
+			"F6b7ad87de041913351f7e372f0885818de4c1aeeb9d81298992d1dd3e49e481b",
+			"Ffc6495fb7e8789dcca49afca5191aa8fb48d54b0c9db36fc1f3aa3b07ad40b13",
+			"Fc4d63859cc77e7b082e48e6f967ba52829140a8d483361f3e1f5a08296a18704",
+			"F6aeb739080424e4d99cf16381c43d70221f0c6e345027e77d944c844009fb1ba",
+			"Fee30d6a607f173e637321fe276d4f5c82405b6c70d324345c0c8d459a5904315",
+			"Fdf8afce7b688357104cabb89301146d56c9ff2b42fb1e9437970a20adf736602",
+			"F68eda5d1e0a970b696e71c20d7def31af635134c0adfd394d22796f7a85ae500",
+			"F88351f92f3ddabc21b21dc299e6c89be4f753b6db06f6a56d43131075a440e7e",
+			"F0e3ed0599656a4c5b537a99287d975abf9ae2b227dd988fc938ebc36310bb4ab",
+			"Fc26d6e93dc362926a5f5953f17bd0428bc5c4e26fd49e1b563d4f43ffbdeb2d5",
+			"F8675a2672bb58eb851146bd0fee6fd149a6ad155d44b4bedb2cb54a5d3cf5137",
+			"F5ca4ed6a276e132bdc24f4f1e1f5b2c71fbf83445a959a9a0b6892b039a0df98",
+			"F66f2837b8666be2b28c043e98bd8aff73792218302d7ae9cd8468e5e266ed744",
+			"Fbee840240ba3594c606193fccb56a62602992073da1809a348a29bae56569481",
+			"Fa8910e1da2f7a11e7a4cd6a8dda9071ca8158174c8494f52c6efdc85ae43c6bd"
+		],
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "sdvx-Single-konaste-levels",
+		"title": "SOUND VOLTEX (Konaste)"
+	},
+	{
 		"default": true,
 		"description": "Levels for SOUND VOLTEX in VIVID WAVE.",
 		"folders": [

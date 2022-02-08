@@ -142,9 +142,8 @@ function SearchResults({ results }: { results: SearchReturns }) {
 						{results.songs.map(s => (
 							<SearchResult
 								key={s.id + s.game}
-								link={`/dashboard/games/${s.game}/${
-									GetGameConfig(s.game).defaultPlaytype
-								}/songs/${s.id}`}
+								link={`/dashboard/games/${s.game}/${playtype ??
+									GetGameConfig(s.game).defaultPlaytype}/songs/${s.id}`}
 								tabIndex={0}
 							>
 								<strong>{FormatSongTitle(s.game, s)}</strong>

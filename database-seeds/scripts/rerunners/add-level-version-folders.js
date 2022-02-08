@@ -40,7 +40,7 @@ module.exports = function AddLevelVersionFolders(name, game, playtypes, version,
 		for (const playtype of playtypes) {
 			tables.push({
 				tableID: `${game}-${playtype}-${version}-levels`,
-				name: `${FormatGame(game, playtype)} (${name})`,
+				title: `${FormatGame(game, playtype)} (${name})`,
 				description: `Levels for ${FormatGame(game, playtype)} in ${name}.`,
 				folders: ptFolders[playtype].map((e) => e.folderID),
 				game,

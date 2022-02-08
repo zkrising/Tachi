@@ -4107,39 +4107,6 @@ packages:
       saslprep: 1.0.3
     dev: false
 
-  /mongodb/3.7.3:
-    resolution: {integrity: sha512-Psm+g3/wHXhjBEktkxXsFMZvd3nemI0r3IPsE0bU+4//PnvNWKkzhZcEsbPcYiWqe8XqXJJEg4Tgtr7Raw67Yw==}
-    engines: {node: '>=4'}
-    peerDependencies:
-      aws4: '*'
-      bson-ext: '*'
-      kerberos: '*'
-      mongodb-client-encryption: '*'
-      mongodb-extjson: '*'
-      snappy: '*'
-    peerDependenciesMeta:
-      aws4:
-        optional: true
-      bson-ext:
-        optional: true
-      kerberos:
-        optional: true
-      mongodb-client-encryption:
-        optional: true
-      mongodb-extjson:
-        optional: true
-      snappy:
-        optional: true
-    dependencies:
-      bl: 2.2.1
-      bson: 1.1.6
-      denque: 1.5.1
-      optional-require: 1.1.8
-      safe-buffer: 5.2.1
-    optionalDependencies:
-      saslprep: 1.0.3
-    dev: false
-
   /monk-middleware-cast-ids/0.2.1:
     resolution: {integrity: sha1-QMQOWmyzPM7cKJIglDJ17ohhxSk=}
     dev: false
@@ -4169,7 +4136,7 @@ packages:
     dependencies:
       '@types/mongodb': 3.6.20
       debug: 4.3.3
-      mongodb: 3.7.3
+      mongodb: 3.6.3
       monk-middleware-cast-ids: 0.2.1
       monk-middleware-fields: 0.2.0
       monk-middleware-handle-callback: 0.2.2

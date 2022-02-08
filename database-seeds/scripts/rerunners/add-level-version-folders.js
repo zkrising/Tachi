@@ -46,6 +46,7 @@ module.exports = function AddLevelVersionFolders(name, game, playtypes, version,
 				game,
 				playtype,
 				inactive: false,
+				default: false,
 			});
 		}
 

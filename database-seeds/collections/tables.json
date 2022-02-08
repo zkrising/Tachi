@@ -2274,6 +2274,7 @@
 		"title": "SOUND VOLTEX (HEAVENLY HAVEN)"
 	},
 	{
+		"default": false,
 		"description": "Levels for SOUND VOLTEX in Konaste.",
 		"folders": [
 			"Fa8d297fd062c7de085f629559f18572ad0549413f325e28d598cbb533c68f7f1",

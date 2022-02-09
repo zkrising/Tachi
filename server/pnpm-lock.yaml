@@ -63,7 +63,7 @@ specifiers:
   safe-json-stringify: 1.2.0
   seq-logging: 1.1.1
   supertest: 6.2.2
-  tachi-common: 0.5.14
+  tachi-common: 0.5.15
   tap: 15.1.6
   ts-node: 10.4.0
   tsconfig-paths: 3.12.0
@@ -108,7 +108,7 @@ dependencies:
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
   seq-logging: 1.1.1
-  tachi-common: 0.5.14
+  tachi-common: 0.5.15
   ts-node: 10.4.0_2615db9039ce432b4abf2fc39ef336ec
   tsconfig-paths: 3.12.0
   typescript: 4.5.5
@@ -4449,13 +4449,6 @@ packages:
     hasBin: true
     dev: true
 
-  /optional-require/1.1.8:
-    resolution: {integrity: sha512-jq83qaUb0wNg9Krv1c5OQ+58EK+vHde6aBPzLvPPqJm89UQWsvSuFy9X/OSNJnFeSOKo7btE0n8Nl2+nE+z5nA==}
-    engines: {node: '>=4'}
-    dependencies:
-      require-at: 1.0.6
-    dev: false
-
   /optionator/0.9.1:
     resolution: {integrity: sha512-74RlY5FCnhq4jRxVUPKDaRwrVNXMqsGsiW6AJw4XK8hmtm10wC0ypZBLw5IIp85NZMr91+qd1RvvENwg7jjRFw==}
     engines: {node: '>= 0.8.0'}
@@ -4856,11 +4849,6 @@ packages:
       tunnel-agent: 0.6.0
       uuid: 3.4.0
     dev: true
-
-  /require-at/1.0.6:
-    resolution: {integrity: sha512-7i1auJbMUrXEAZCOQ0VNJgmcT2VOKPRl2YGJwgpHpC9CE91Mv4/4UYIUm4chGJaI381ZDq1JUicFii64Hapd8g==}
-    engines: {node: '>=4'}
-    dev: false
 
   /require-directory/2.1.1:
     resolution: {integrity: sha1-jGStX9MNqxyXbiNE/+f3kqam30I=}
@@ -5296,8 +5284,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /tachi-common/0.5.14:
-    resolution: {integrity: sha512-jpElo2fvAAdRCDGnlKAP7uuyag7QEP0QlyoVSh8HdM0tCOr6Nov9jJ50adcER+HfEfBvnFIE5V8DRow5LWhQJw==}
+  /tachi-common/0.5.15:
+    resolution: {integrity: sha512-7pBspD/7TduoJu1OdguRRxg5LyWwodhbZi5NU4y6aviJmHRetTwWXksCi4QBc72NbKlwqGwnbGrxdKFKdKQNhQ==}
     dependencies:
       monk: 7.3.4
     transitivePeerDependencies:

@@ -6,7 +6,7 @@ export function FormatInt(v: number): string {
 }
 
 export function FormatDifficulty(chart: ChartDocument, game: Game): string {
-	if (game === "bms") {
+	if (game === "bms" || game === "pms") {
 		const bmsChart = chart as ChartDocument<"bms:7K" | "bms:14K">;
 		return (
 			bmsChart.data.tableFolders.map((e) => `${e.table}${e.level}`).join(", ") || "Unrated"

@@ -15,7 +15,7 @@ not generally be shown to end users.
 
 # Changelog
 
-## 2.1.0 (Ongoing Development)
+## 2.1.0
 
 - [FEAT] Added Jubeat Support. (#169)
 - [FEAT] Added Pop'n Music Support. (#69)

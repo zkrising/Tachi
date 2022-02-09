@@ -66,16 +66,10 @@ const OldLeggendariaConversionTable: Record<integer, integer> = {
 	11100: 11032,
 	// spiral galaxy† -> spiral galaxy
 	11101: 11012,
-	// SigSig -> SigSig
-	12028: 12028,
 	// Little Little Princess† -> Little Little Princess
 	12100: 12002,
 	// CONTRACT† -> CONTRACT
 	13100: 13010,
-	// GOLD RUSH -> GOLD RUSH
-	14007: 14007,
-	// 零 - ZERO - -> 零 - ZERO -
-	14012: 14012,
 	// VANESSA† -> VANESSA
 	14100: 14009,
 	// KAMAITACHI† -> KAMAITACHI

@@ -2,7 +2,13 @@ import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
 import { BulkWriteUpdateOneOperation } from "mongodb";
 import { integer, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { BMSMergeFn, IIDXMergeFn, SDVXMergeFn, USCMergeFn } from "./game-specific-merge";
+import {
+	BMSMergeFn,
+	IIDXMergeFn,
+	PopnMergeFn,
+	SDVXMergeFn,
+	USCMergeFn,
+} from "./game-specific-merge";
 
 export type PBScoreDocumentNoRank = Omit<PBScoreDocument, "rankingData">;
 
@@ -109,6 +115,7 @@ const GAME_SPECIFIC_MERGE_FNS: Record<string, any> = {
 	iidx: IIDXMergeFn,
 	sdvx: SDVXMergeFn,
 	usc: USCMergeFn,
+	popn: PopnMergeFn,
 	bms: BMSMergeFn,
 };
 

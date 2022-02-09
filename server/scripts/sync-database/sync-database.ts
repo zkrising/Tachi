@@ -7,18 +7,19 @@ import fjsh from "fast-json-stable-hash";
 import fs from "fs";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
-import { TachiConfig } from "lib/setup/config";
+import { Environment, TachiConfig } from "lib/setup/config";
 import { BulkWriteOperation } from "mongodb";
 import { ICollection } from "monk";
 import os from "os";
 import path from "path";
 import {
+	BMSCourseDocument,
 	ChartDocument,
 	FolderDocument,
 	SongDocument,
 	TableDocument,
-	BMSCourseDocument,
 } from "tachi-common";
+import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { InitaliseFolderChartLookup } from "utils/folder";
 
 interface SyncInstructions {
@@ -40,7 +41,9 @@ async function RemoveNotPresent<T>(
 		[field]: { $nin: documents.map((e) => e[field]) },
 	});
 
+	// @ts-expect-error These types are broken!
 	if (r.deletedCount) {
+		// @ts-expect-error These types are broken!
 		logger.info(`Removed ${r.deletedCount} documents.`);
 	}
 }
@@ -62,6 +65,8 @@ async function GenericUpsert<T>(
 	for (const doc of allExistingDocs) {
 		map.set(doc[field], doc);
 	}
+
+	const changedFields = [];
 
 	let i = 0;
 	for (const document of documents) {
@@ -87,6 +92,8 @@ async function GenericUpsert<T>(
 					replacement: document,
 				},
 			});
+
+			changedFields.push(field);
 		}
 
 		// free some memory.
@@ -96,16 +103,26 @@ async function GenericUpsert<T>(
 	if (bwriteOps.length === 0) {
 		logger.verbose(`No differences. Not performing any update.`);
 	} else {
-		const result = await collection.bulkWrite(bwriteOps);
-		logger.info(`Performed bulkWrite.`, result);
-		await InitaliseFolderChartLookup();
+		const { deletedCount, insertedCount, matchedCount, upsertedCount, modifiedCount } =
+			await collection.bulkWrite(bwriteOps);
+
+		logger.info(`Performed bulkWrite.`, {
+			deletedCount,
+			insertedCount,
+			matchedCount,
+			upsertedCount,
+			modifiedCount,
+		});
 	}
 
 	if (remove) {
 		await RemoveNotPresent(documents, collection, field, logger);
 	}
 
-	return bwriteOps.length;
+	return {
+		thingsChanged: bwriteOps.length,
+		changedFields,
+	};
 }
 
 const syncInstructions: SyncInstructions[] = [
@@ -127,7 +144,7 @@ const syncInstructions: SyncInstructions[] = [
 
 			const r = await GenericUpsert(charts, collection, "chartID", logger, false);
 
-			if (r) {
+			if (r.thingsChanged) {
 				await InitaliseFolderChartLookup();
 				await UpdateIsPrimaryStatus();
 			}
@@ -142,15 +159,27 @@ const syncInstructions: SyncInstructions[] = [
 		) => {
 			const r = await GenericUpsert(charts, collection, "chartID", logger, true);
 
-			if (r) {
+			if (r.thingsChanged) {
 				await InitaliseFolderChartLookup();
+				await UpdateIsPrimaryStatus();
+
+				await RecalcAllScores({
+					chartID: { $in: r.changedFields },
+				});
 			}
 		},
 	},
 	{
 		pattern: /^songs-/u,
-		handler: (songs: SongDocument[], collection: ICollection<SongDocument>, logger) =>
-			GenericUpsert(songs, collection, "id", logger),
+		handler: async (songs: SongDocument[], collection: ICollection<SongDocument>, logger) => {
+			const r = await GenericUpsert(songs, collection, "id", logger);
+
+			if (r.thingsChanged) {
+				await RecalcAllScores({
+					songID: { $in: r.changedFields },
+				});
+			}
+		},
 	},
 	{
 		pattern: /^folders$/u,
@@ -193,9 +222,14 @@ async function SynchroniseDBWithSeeds() {
 	// Wait for mongo to connect first.
 	await monkDB.then(() => void 0);
 
-	execSync(`git clone https://github.com/TNG-dev/tachi-database-seeds --depth=1 ${seedsDir}`, {
-		stdio: "inherit",
-	});
+	execSync(
+		`git clone https://github.com/TNG-dev/tachi-database-seeds -b "${
+			Environment.nodeEnv === "production" ? "master" : "develop"
+		}" --depth=1 "${seedsDir}"`,
+		{
+			stdio: "inherit",
+		}
+	);
 
 	const collections = fs.readdirSync(path.join(seedsDir, "collections"));
 

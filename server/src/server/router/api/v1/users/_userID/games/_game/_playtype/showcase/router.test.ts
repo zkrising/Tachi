@@ -1,11 +1,11 @@
-import { ChartDocument, PublicUserDocument, IIDX_LAMPS, IIDX_GRADES } from "tachi-common";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { ChartDocument, IIDX_GRADES, IIDX_LAMPS, PublicUserDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { TestingIIDXFolderSP10, Testing511SPA, TestingIIDXSPScorePB } from "test-utils/test-data";
+import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
-import deepmerge from "deepmerge";
 
 const SetFolders = async () => {
 	await db.folders.insert(TestingIIDXFolderSP10);
@@ -22,6 +22,7 @@ const SetFolders = async () => {
 			preferredScoreAlg: null,
 			preferredSessionAlg: null,
 			scoreBucket: null,
+			defaultTable: null,
 			stats: [
 				{
 					folderID: TestingIIDXFolderSP10.folderID,
@@ -37,6 +38,7 @@ const SetFolders = async () => {
 			],
 			gameSpecific: {
 				display2DXTra: false,
+				bpiTarget: 0,
 			},
 		},
 	});
@@ -84,6 +86,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 				preferredScoreAlg: null,
 				preferredSessionAlg: null,
 				scoreBucket: null,
+				defaultTable: null,
 				stats: [
 					{
 						mode: "folder",
@@ -94,6 +97,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 				],
 				gameSpecific: {
 					display2DXTra: false,
+					bpiTarget: 0,
 				},
 			},
 		});

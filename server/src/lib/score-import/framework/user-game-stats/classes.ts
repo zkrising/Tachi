@@ -8,7 +8,10 @@ import { ReturnClassIfGreater } from "utils/class";
 import {
 	CalculateChunithmColour,
 	CalculateGitadoraColour,
+	CalculateJubeatColour,
+	CalculatePopnClass,
 	CalculateSDVXClass,
+	CalculateWACCAColour,
 } from "./builtin-class-handlers";
 import { ClassHandler, ScoreClasses } from "./types";
 
@@ -40,16 +43,22 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 		Gita: CalculateGitadoraColour,
 		Dora: CalculateGitadoraColour,
 	},
-	// jubeat: {
-	// 	Single: CalculateJubeatColour,
-	// },
 	maimai: null,
 	museca: null,
-	// popn: null,
+	popn: {
+		"9B": CalculatePopnClass,
+	},
 	sdvx: {
 		Single: CalculateSDVXClass,
 	},
 	usc: null,
+	wacca: {
+		Single: CalculateWACCAColour,
+	},
+	jubeat: {
+		Single: CalculateJubeatColour,
+	},
+	pms: null,
 };
 
 /**

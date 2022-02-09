@@ -11,17 +11,13 @@ t.test("#CalculateRatings", (t) => {
 	t.test("Should return BPI for IIDX", async (t) => {
 		const res = await CalculateRatings("iidx", "SP", 1, logger);
 
-		t.strictSame(
-			res,
-			{ BPI: 0, ktRating: 0, ktLampRating: 0 },
-			"Should return BPI as a custom key."
-		);
+		t.strictSame(res, { BPI: null, ktLampRating: null }, "Should return BPI as a custom key.");
 
 		const resDP = await CalculateRatings("iidx", "DP", 1, logger);
 
 		t.strictSame(
 			resDP,
-			{ BPI: 0, ktRating: 0, ktLampRating: 0 },
+			{ BPI: null, ktLampRating: null },
 			"Should return BPI as a custom key."
 		);
 
@@ -31,7 +27,7 @@ t.test("#CalculateRatings", (t) => {
 	t.test("Should return VF6 for SDVX", async (t) => {
 		const res = await CalculateRatings("sdvx", "Single", 1, logger);
 
-		t.strictSame(res, { VF6: 0 }, "Should return VF6 keys.");
+		t.strictSame(res, { VF6: null }, "Should return VF6 keys.");
 
 		t.end();
 	});
@@ -39,7 +35,7 @@ t.test("#CalculateRatings", (t) => {
 	t.test("Should return VF6 for USC:Keyboard", async (t) => {
 		const res = await CalculateRatings("usc", "Keyboard", 1, logger);
 
-		t.strictSame(res, { VF6: 0 }, "Should return VF6 keys.");
+		t.strictSame(res, { VF6: null }, "Should return VF6 keys.");
 
 		t.end();
 	});
@@ -47,7 +43,7 @@ t.test("#CalculateRatings", (t) => {
 	t.test("Should return VF6 for USC:Controller", async (t) => {
 		const res = await CalculateRatings("usc", "Controller", 1, logger);
 
-		t.strictSame(res, { VF6: 0 }, "Should return VF6 keys.");
+		t.strictSame(res, { VF6: null }, "Should return VF6 keys.");
 
 		t.end();
 	});
@@ -55,11 +51,11 @@ t.test("#CalculateRatings", (t) => {
 	t.test("Should return MFCP for DDR", async (t) => {
 		const res = await CalculateRatings("ddr", "SP", 1, logger);
 
-		t.strictSame(res, { MFCP: 0, ktRating: 0 }, "Should return MFCP keys.");
+		t.strictSame(res, { MFCP: null, ktRating: null }, "Should return MFCP keys.");
 
 		const resDP = await CalculateRatings("ddr", "DP", 1, logger);
 
-		t.strictSame(resDP, { MFCP: 0, ktRating: 0 }, "Should return MFCP keys.");
+		t.strictSame(resDP, { MFCP: null, ktRating: null }, "Should return MFCP keys.");
 
 		t.end();
 	});
@@ -67,11 +63,11 @@ t.test("#CalculateRatings", (t) => {
 	t.test("Should return skill for Gitadora", async (t) => {
 		const res = await CalculateRatings("gitadora", "Dora", 1, logger);
 
-		t.strictSame(res, { skill: 0 }, "Should return skill keys.");
+		t.strictSame(res, { skill: null, naiveSkill: null }, "Should return skill keys.");
 
 		const resDP = await CalculateRatings("gitadora", "Gita", 1, logger);
 
-		t.strictSame(resDP, { skill: 0 }, "Should return skill keys.");
+		t.strictSame(resDP, { skill: null, naiveSkill: null }, "Should return skill keys.");
 
 		t.end();
 	});

@@ -7,7 +7,11 @@
 		"target": "ES2020",
 		"module": "CommonJS",
 		"lib": [
-			"ES2019"
+			"ES2019",
+			// this is absolutely stupid, and only needed because the AWS SDK
+			// DEPENDS ON A DOM TYPE???
+			// do people even run the aws sdk on the dom?
+			"DOM"
 		],
 		"declaration": true,
 		"strict": true,
@@ -18,8 +22,8 @@
 		"baseUrl": "src",
 		"typeRoots": [
 			"@types",
-			"node_modules/@types"
-		],
+			"node_modules/@types",
+		]
 	},
 	"ts-node": {
 		"require": [

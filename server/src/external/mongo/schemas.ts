@@ -767,6 +767,30 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 			displayVersion: "string",
 		})
 	),
+	"songs-wacca": prSchemaify(
+		PR_SongDocument({
+			genre: "string",
+			displayVersion: "?string",
+		})
+	),
+	"songs-pms": prSchemaify(
+		PR_SongDocument({
+			genre: "?string",
+			subtitle: "?string",
+			subartist: "?string",
+		})
+	),
+	"songs-popn": prSchemaify(
+		PR_SongDocument({
+			genre: "string",
+			displayVersion: "?string",
+		})
+	),
+	"songs-jubeat": prSchemaify(
+		PR_SongDocument({
+			displayVersion: "string",
+		})
+	),
 	"charts-iidx": (self) => {
 		const playtype = getPlaytype("iidx", self);
 
@@ -777,6 +801,9 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 				arcChartID: "?string",
 				hashSHA256: "?string",
 				"2dxtraSet": "?string",
+				kaidenAverage: "?number",
+				worldRecord: "?number",
+				bpiCoefficient: "?number",
 			})
 		)(self);
 	},
@@ -800,6 +827,12 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 	"charts-chunithm": prSchemaify(
 		PR_ChartDocument("chunithm", "Single", {
 			inGameID: p.isPositiveInteger,
+		})
+	),
+	"charts-jubeat": prSchemaify(
+		PR_ChartDocument("jubeat", "Single", {
+			inGameID: p.isPositiveInteger,
+			isHardMode: "boolean",
 		})
 	),
 	"charts-gitadora": (self) => {
@@ -849,6 +882,33 @@ export const DatabaseSchemas: Record<Databases, ValidatorFunction> = {
 			})
 		)(self);
 	},
+	"charts-wacca": prSchemaify(
+		PR_ChartDocument("wacca", "Single", {
+			isHot: "boolean",
+		})
+	),
+	"charts-pms": (self) => {
+		const playtype = getPlaytype("pms", self);
+
+		return prSchemaify(
+			PR_ChartDocument("pms", playtype, {
+				notecount: p.isPositiveNonZeroInteger,
+				hashSHA256: "?string",
+				hashMD5: "?string",
+				tableFolders: [
+					{
+						table: "string",
+						level: "string",
+					},
+				],
+			})
+		)(self);
+	},
+	"charts-popn": prSchemaify(
+		PR_ChartDocument("popn", "9B", {
+			hashSHA256: "?string",
+		})
+	),
 	goals: prSchemaify({
 		game: p.isIn(games),
 		playtype: isValidPlaytype,

@@ -76,13 +76,13 @@ router.use(ValidateHeaders);
 /**
  * Saves a SDVX Konaste score.
  *
- * @name POST /ir/kshook/sv3c/score/save
+ * @name POST /ir/kshook/sv6c/score/save
  */
 router.post("/score/save", async (req, res) => {
 	const responseData = await ExpressWrappedScoreImportMain(
 		req[SYMBOL_TachiAPIAuth].userID!,
 		true,
-		"ir/kshook-sv3c",
+		"ir/kshook-sv6c",
 		[req.body]
 	);
 

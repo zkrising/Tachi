@@ -25,6 +25,12 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 	const boundaries = gptConfig.gradeBoundaries;
 	const grades = gptConfig.grades;
 
+	if (!boundaries) {
+		throw new Error(
+			`Invalid call to GetGradeFromPercent! GPT ${game}:${playtype} does not use grade boundaries.`
+		);
+	}
+
 	// (hey, this for loop is backwards!)
 	for (let i = boundaries.length; i >= 0; i--) {
 		if (percent >= boundaries[i]) {
@@ -45,29 +51,40 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 		case "ddr":
 		case "museca":
 		case "chunithm":
+		case "wacca":
 			return (score / 1_000_000) * 100;
 		case "sdvx":
 		case "usc":
 			return (score / 10_000_000) * 100;
-		// case "popn":
-		// 	return (score / 100_000) * 100;
-		case "gitadora":
+		case "popn":
+			return (score / 100_000) * 100;
 		case "maimai":
+			// score in maimai is actually just your percent, since nobody cares about
+			// money score.
 			return score;
 		case "bms":
+		case "pms":
 		case "iidx":
 			if (!chart) {
-				logger.severe("No Chart passed to GenericCalcPercent but game was iidx/bms.");
+				logger.severe("No Chart passed to GenericCalcPercent but game was iidx/bms/pms.");
 				throw new InternalFailure(
-					"No Chart passed to GenericCalcPercent but game was iidx/bms."
+					"No Chart passed to GenericCalcPercent but game was iidx/bms/pms."
 				);
 			}
 
 			// Yeah, we declare it like this so the below return is actually clear.
 			// eslint-disable-next-line no-case-declarations
 			const MAX =
-				(chart as ChartDocument<"iidx:SP" | "bms:7K" | "bms:14K" | "iidx:DP">).data
-					.notecount * 2;
+				(
+					chart as ChartDocument<
+						| "iidx:SP"
+						| "bms:7K"
+						| "bms:14K"
+						| "pms:Controller"
+						| "pms:Keyboard"
+						| "iidx:DP"
+					>
+				).data.notecount * 2;
 
 			return (100 * score) / MAX;
 		default:
@@ -93,16 +110,22 @@ export function ValidatePercent(
 		const mmChart = chart as ChartDocument<"maimai:Single">;
 		if (percent > mmChart.data.maxPercent) {
 			throw new InvalidScoreFailure(
-				`Invalid percent - expected less than ${mmChart.data.maxPercent}.`
+				`Invalid percent - expected a number less than ${mmChart.data.maxPercent}.`
+			);
+		}
+	} else {
+		const gptConfig = GetGamePTConfig(game, playtype);
+
+		if (percent > gptConfig.percentMax) {
+			throw new InvalidScoreFailure(
+				`Invalid percent of ${percent} - expected a value less than ${gptConfig.percentMax}% (${chart.songID} ${chart.playtype} ${chart.difficulty}).`
 			);
 		}
 	}
 
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	if (percent > gptConfig.percentMax) {
+	if (percent < 0) {
 		throw new InvalidScoreFailure(
-			`Invalid percent of ${percent} - expected a value less than ${gptConfig.percentMax}% (${chart.songID} ${chart.playtype} ${chart.difficulty}).`
+			`Invalid percent of ${percent} - Expected a positive number? (${chart.songID} ${chart.playtype} ${chart.difficulty})`
 		);
 	}
 }
@@ -124,6 +147,28 @@ export function GenericGetGradeAndPercent<G extends Game>(
 	const grade = GetGradeFromPercent(game, chart.playtype, percent) as Grades[GameToIDStrings[G]];
 
 	return { percent, grade };
+}
+
+export function JubeatGetGrade(score: number): Grades["jubeat:Single"] {
+	if (score === 1_000_000) {
+		return "EXC";
+	} else if (score >= 980_000) {
+		return "SSS";
+	} else if (score >= 950_000) {
+		return "SS";
+	} else if (score >= 900_000) {
+		return "S";
+	} else if (score >= 850_000) {
+		return "A";
+	} else if (score >= 800_000) {
+		return "B";
+	} else if (score >= 700_000) {
+		return "C";
+	} else if (score >= 500_000) {
+		return "D";
+	}
+
+	return "E";
 }
 
 /**

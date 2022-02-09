@@ -101,6 +101,22 @@ export enum BMSStSlDans {
 	ST_12,
 }
 
+export enum PMSInsaneDans {
+	DAN_1,
+	DAN_2,
+	DAN_3,
+	DAN_4,
+	DAN_5,
+	DAN_6,
+	DAN_7,
+	DAN_8,
+	DAN_9,
+	DAN_10,
+	KAIDEN,
+	OVERJOY,
+	UNDEFINED,
+}
+
 export enum SDVXDans {
 	DAN_1,
 	DAN_2,
@@ -171,4 +187,40 @@ export enum CHUNITHM_COLOURS {
 	GOLD,
 	PLATINUM,
 	RAINBOW,
+}
+
+export enum WACCA_COLOURS {
+	ASH,
+	NAVY,
+	YELLOW,
+	RED,
+	PURPLE,
+	BLUE,
+	SILVER,
+	GOLD,
+	RAINBOW,
+}
+
+export enum POPN_CLASSES {
+	KITTY,
+	GRADE_SCHOOL,
+	DELINQUENT,
+	DETECTIVE,
+	IDOL,
+	GENERAL,
+	HERMIT,
+	GOD,
+}
+
+export enum JUBEAT_COLOURS {
+	BLACK,
+	YELLOW_GREEN,
+	GREEN,
+	LIGHT_BLUE,
+	BLUE,
+	VIOLET,
+	PURPLE,
+	PINK,
+	ORANGE,
+	GOLD,
 }

@@ -1,4 +1,15 @@
+import { Worker } from "bullmq";
 import { EventEmitter } from "events";
+import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
+import CreateLogCtx from "lib/logger/logger";
+import { Environment, ServerConfig } from "lib/setup/config";
+import { ImportTypes } from "tachi-common";
+import { FormatUserDoc, GetUserWithID } from "utils/user";
+import { GetInputParser } from "../framework/common/get-input-parser";
+import ScoreImportFatalError from "../framework/score-importing/score-import-error";
+import ScoreImportMain from "../framework/score-importing/score-import-main";
+import ScoreImportQueue from "./queue";
+import { ScoreImportJob } from "./types";
 EventEmitter.defaultMaxListeners = 20;
 
 // For scaling performance, running score-importing in a separate worker is preferable
@@ -14,18 +25,6 @@ EventEmitter.defaultMaxListeners = 20;
 
 // Explicitly set this before importing anything!
 process.env.IS_SCORE_WORKER_SERVER = "true";
-
-import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
-import CreateLogCtx from "lib/logger/logger";
-import { ImportTypes } from "tachi-common";
-import { FormatUserDoc, GetUserWithID } from "utils/user";
-import { GetInputParser } from "../framework/common/get-input-parser";
-import ScoreImportFatalError from "../framework/score-importing/score-import-error";
-import ScoreImportMain from "../framework/score-importing/score-import-main";
-import { ScoreImportJob } from "./types";
-import { Worker } from "bullmq";
-import ScoreImportQueue from "./queue";
-import { Environment, ServerConfig } from "lib/setup/config";
 
 const workerLogger = CreateLogCtx(`Import Worker`);
 
@@ -121,5 +120,22 @@ export const worker = new Worker(
 		},
 	}
 );
+
+const logger = CreateLogCtx("Score Import Worker");
+
+worker.on("failed", (job, err) => {
+	if (err instanceof ScoreImportFatalError) {
+		logger.info(
+			`Job ${job.id} hit ScoreImportFatalError (User Fault) with message: ${err.message}`,
+			err
+		);
+	} else {
+		logger.error(`Job ${job.id} failed unexpectedly with message: ${err.message}`, err);
+	}
+});
+
+worker.on("completed", (job, result) => {
+	logger.debug(`Job ${job.id} finished successfully.`, result);
+});
 
 process.on("SIGTERM", () => HandleSIGTERMGracefully());

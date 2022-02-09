@@ -48,7 +48,7 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
 		orphanID = `O${fjsh.hash(orphan, "sha256")}`;
 	} catch (err) {
 		logger.error(`Failed to orphan chart -- `, { err, orphan });
-		throw new Error(`Failed to orphan chart. ${err.message}`);
+		throw new Error(`Failed to orphan chart. ${(err as Error).message}`);
 	}
 
 	const exists = await db["orphan-scores"].findOne({ orphanID });

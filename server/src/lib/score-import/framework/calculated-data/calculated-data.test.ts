@@ -18,9 +18,9 @@ t.test("#CreateCalculatedData", async (t) => {
 	const res = await CreateCalculatedData(TestingIIDXSPDryScore, Testing511SPA, 30, logger);
 
 	prAssert(
+		t,
 		res,
 		{
-			ktRating: p.aprx(2.65),
 			ktLampRating: p.equalTo(10),
 			BPI: "?number",
 		},
@@ -35,6 +35,7 @@ t.test("#CreateCalculatedData", async (t) => {
 	);
 
 	prAssert(
+		t,
 		gitadoraRes,
 		{
 			skill: p.isPositiveNonZero,
@@ -83,9 +84,9 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
-				ktRating: "?number",
 				ktLampRating: "?number",
 				BPI: "?number",
 			},
@@ -107,9 +108,9 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
-				ktRating: "?number",
 				ktLampRating: "?number",
 				BPI: "?number",
 			},
@@ -130,6 +131,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
 				VF6: p.nullable(p.isPositive),
@@ -151,6 +153,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
 				MFCP: p.nullable(p.isPositiveInteger),
@@ -173,6 +176,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
 				MFCP: "null",
@@ -195,6 +199,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
 				rating: "?number",
@@ -216,6 +221,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
 				ktRating: "?number",
@@ -237,6 +243,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
 				ktRating: "?number",
@@ -258,6 +265,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
 				sieglinde: "?number",
@@ -279,6 +287,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
 				sieglinde: "?number",
@@ -300,6 +309,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
 				skill: "?number",
@@ -321,6 +331,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
 				skill: "?number",
@@ -342,6 +353,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
 				VF6: "?number",
@@ -363,6 +375,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 		);
 
 		prAssert(
+			t,
 			res,
 			{
 				VF6: "?number",
@@ -372,43 +385,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 
 		t.end();
 	});
-	// t.test("jubeat:Single", async (t) => {
-	// 	const res = await CalculateDataForGamePT(
-	// 		"jubeat",
-	// 		"Single",
-	// 		Testing511SPA,
-	// 		TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
-	// 		null,
-	//
-	// 		logger
-	// 	);
-
-	// 	prAssert(
-	// 		res,
-	// 		{
-	// 			jubility: "?number",
-	// 		},
-	// 		"Response should contain nulled keys for jubeat:Single"
-	// 	);
-
-	// 	t.end();
-	// });
-
-	// t.test("popn:9B", async (t) => {
-	// 	const res = await CalculateDataForGamePT(
-	// 		"popn",
-	// 		"9B",
-	// 		Testing511SPA,
-	// 		TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
-	// 		null,
-	//
-	// 		logger
-	// 	);
-
-	// 	prAssert(res, {}, "Response should contain nulled keys for popn:9B");
-
-	// 	t.end();
-	// });
 
 	t.end();
 });

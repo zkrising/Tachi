@@ -1,9 +1,9 @@
+import deepmerge from "deepmerge";
 import { PBScoreDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON } from "test-utils/test-data";
 import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
-import deepmerge from "deepmerge";
 
 const gazerChart = GetKTDataJSON("./tachi/bms-gazer-chart.json");
 

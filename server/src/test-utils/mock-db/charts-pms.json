@@ -1,0 +1,58 @@
+[
+	{
+		"chartID": "0446f1b54e90d631ff9fe98419ebaea9481fab1f",
+		"data": {
+			"hashMD5": "d1253dd56bb2087d0b0d474f0d562aae",
+			"hashSHA256": "a10193f7ae05ce839292dc716f182fda0b1cc6ac5382c2056f37e22ffba87b7d",
+			"notecount": 1065,
+			"tableFolders": [
+				{
+					"table": "P●",
+					"level": "1"
+				}
+			]
+		},
+		"level": "?",
+		"levelNum": 0,
+		"playtype": "Controller",
+		"rgcID": null,
+		"songID": 1,
+		"tierlistInfo": {
+			"sgl-EC": {
+				"value": 46
+			},
+			"sgl-HC": {
+				"value": 46
+			}
+		},
+		"versions": []
+	},
+	{
+		"chartID": "ca553d77cbf8b3e9e7709dad6123ffed1695a1dd",
+		"data": {
+			"hashMD5": "d1253dd56bb2087d0b0d474f0d562aae",
+			"hashSHA256": "a10193f7ae05ce839292dc716f182fda0b1cc6ac5382c2056f37e22ffba87b7d",
+			"notecount": 1065,
+			"tableFolders": [
+				{
+					"table": "P●",
+					"level": "1"
+				}
+			]
+		},
+		"level": "?",
+		"levelNum": 0,
+		"playtype": "Keyboard",
+		"rgcID": null,
+		"songID": 1,
+		"tierlistInfo": {
+			"sgl-EC": {
+				"value": 46
+			},
+			"sgl-HC": {
+				"value": 46
+			}
+		},
+		"versions": []
+	}
+]

@@ -1,9 +1,11 @@
 import db from "external/mongo/db";
-import { UserGameStats } from "tachi-common";
+import { ONE_DAY, ONE_YEAR } from "lib/constants/time";
+import { UserGameStats, ImportTypes, ImportDocument, Game } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
+import { Random20Hex } from "utils/misc";
 import { PasswordCompare } from "../../auth/auth";
 
 t.test("GET /api/v1/users/:userID", (t) => {
@@ -319,7 +321,7 @@ t.test("GET /api/v1/users/:userID/game-stats", (t) => {
 				playtype: "SP",
 				classes: {},
 				ratings: {
-					ktRating: 12,
+					ktLampRating: 12,
 				},
 			},
 			{
@@ -328,7 +330,7 @@ t.test("GET /api/v1/users/:userID/game-stats", (t) => {
 				playtype: "DP",
 				classes: {},
 				ratings: {
-					ktRating: 11,
+					ktLampRating: 11,
 				},
 			},
 			{
@@ -362,6 +364,93 @@ t.test("GET /api/v1/users/:userID/game-stats", (t) => {
 		t.ok(returns.includes("iidx-SP"));
 		t.ok(returns.includes("iidx-DP"));
 		t.ok(returns.includes("gitadora-Dora"));
+
+		t.end();
+	});
+
+	t.end();
+});
+
+t.test("GET /api/v1/users/:userID/recent-imports", (t) => {
+	t.beforeEach(ResetDBState);
+
+	function mkImport(
+		game: Game,
+		importType: ImportTypes,
+		timeFinished: number,
+		userIntent: boolean
+	): ImportDocument {
+		return {
+			classDeltas: [],
+			createdSessions: [],
+			errors: [],
+			game,
+			importType,
+			importID: Random20Hex(),
+			goalInfo: [],
+			idStrings: [],
+			milestoneInfo: [],
+			playtypes: [],
+			scoreIDs: [],
+			timeFinished,
+			timeStarted: 0,
+			userID: 1,
+			userIntent,
+		};
+	}
+
+	t.test("Should work cross game and ignore imports without userIntent.", async (t) => {
+		await db.imports.insert([
+			mkImport("iidx", "api/arc-iidx", Date.now() - ONE_DAY, true),
+			mkImport("iidx", "api/arc-iidx", Date.now() - ONE_DAY, true),
+			mkImport("sdvx", "api/arc-sdvx", Date.now() - ONE_DAY, false),
+			mkImport("iidx", "api/arc-iidx", Date.now() - ONE_DAY, false),
+			mkImport("sdvx", "api/arc-sdvx", Date.now() - ONE_DAY, true),
+		]);
+
+		const res = await mockApi.get("/api/v1/users/1/recent-imports");
+
+		t.equal(res.statusCode, 200);
+
+		t.strictSame(res.body.body, [
+			{
+				importType: "api/arc-iidx",
+				count: 2,
+			},
+			{
+				importType: "api/arc-sdvx",
+				count: 1,
+			},
+		]);
+
+		t.end();
+	});
+
+	t.test("Should ignore imports that were too long ago.", async (t) => {
+		await db.imports.insert([
+			mkImport("iidx", "api/arc-iidx", Date.now() - ONE_DAY, true),
+			mkImport("iidx", "ir/fervidex", Date.now() - ONE_YEAR, true),
+			mkImport("iidx", "ir/fervidex", Date.now() - ONE_YEAR, true),
+			mkImport("iidx", "ir/fervidex", Date.now() - ONE_YEAR, true),
+			mkImport("iidx", "ir/fervidex", Date.now() - ONE_YEAR, true),
+			mkImport("sdvx", "api/arc-sdvx", Date.now() - ONE_DAY, true),
+			mkImport("sdvx", "api/arc-sdvx", Date.now() - ONE_DAY, true),
+		]);
+
+		const res = await mockApi.get("/api/v1/users/1/recent-imports");
+
+		t.equal(res.statusCode, 200);
+
+		t.strictSame(res.body.body, [
+			{
+				importType: "api/arc-sdvx",
+				count: 2,
+			},
+			{
+				importType: "api/arc-iidx",
+				count: 1,
+			},
+		]);
 
 		t.end();
 	});

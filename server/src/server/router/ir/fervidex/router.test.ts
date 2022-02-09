@@ -1,3 +1,4 @@
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import t from "tap";
 import { InsertFakeTokenWithAllPerms } from "test-utils/fake-auth";
@@ -5,7 +6,6 @@ import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON } from "test-utils/test-data";
 import { Sleep } from "utils/misc";
-import deepmerge from "deepmerge";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function TestHeaders(url: string, data: any) {
@@ -179,6 +179,21 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 		const ugs = await db["game-stats"].findOne({ userID: 1, game: "iidx", playtype: "SP" });
 
 		t.equal(ugs?.classes.dan, 18);
+
+		const recentAchievement = await db["class-achievements"].findOne({
+			userID: 1,
+			game: "iidx",
+			playtype: "SP",
+		});
+
+		t.hasStrict(recentAchievement, {
+			userID: 1,
+			game: "iidx",
+			playtype: "SP",
+			classValue: 18,
+			classSet: "dan",
+			classOldValue: null,
+		});
 
 		t.end();
 	});

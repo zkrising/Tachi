@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { ParseLR2Hook } from "./parser";
@@ -23,7 +24,7 @@ t.test("#ParseLR2Hook", (t) => {
 			t.ok(Array.isArray(res.iterable));
 			t.equal(res.classHandler, null);
 		} catch (err) {
-			t.fail(`[${message}] ${err.message}`);
+			t.fail(`[${message}] ${(err as Error).message}`);
 		}
 	};
 

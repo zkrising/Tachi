@@ -4,6 +4,7 @@ import { DatabaseSchemas } from "external/mongo/schemas";
 import fjsh from "fast-json-stable-hash";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
+import { PrudenceError } from "prudence";
 import { TachiAPIClientDocument, UserAuthLevels } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
@@ -59,7 +60,7 @@ const KtchiDefaultClients: DefaultClients = [
 			{
 				url: `${ServerConfig.OUR_URL}/ir/kshook`,
 				token: "%%TACHI_KEY%%",
-				games: ["sv3c"],
+				games: ["sv6c"],
 			},
 			null,
 			"\t"
@@ -106,6 +107,22 @@ apiEndpoint = ${ServerConfig.OUR_URL}/ir/direct-manual/import
 ; ${ServerConfig.OUR_URL}/users/me -> Integrations -> API Keys!
 apikey = %%TACHI_KEY%%`,
 	},
+	{
+		name: "SilentHook",
+		apiKeyFilename: "silent-config.json",
+		apiKeyTemplate: JSON.stringify(
+			{
+				key: "%%TACHI_KEY%%",
+				url: `${ServerConfig.OUR_URL}/ir/direct-manual/import`,
+			},
+			null,
+			"\t"
+		),
+		clientID: "CXSilentHook",
+		redirectUri: null,
+		requestedPermissions: ["submit_score"],
+		webhookUri: null,
+	},
 ];
 
 const BtchiDefaultClients: DefaultClients = [
@@ -134,10 +151,14 @@ const BtchiDefaultClients: DefaultClients = [
 		requestedPermissions: ["submit_score"],
 		clientID: "CXLR2Hook",
 		apiKeyFilename: "BokutachiAuth.json",
-		apiKeyTemplate: JSON.stringify({
-			url: `${ServerConfig.OUR_URL}/ir/lr2hook/import`,
-			apiKey: "%%TACHI_KEY%%",
-		}),
+		apiKeyTemplate: JSON.stringify(
+			{
+				url: `${ServerConfig.OUR_URL}/ir/lr2hook/import`,
+				apiKey: "%%TACHI_KEY%%",
+			},
+			null,
+			"\t"
+		),
 	},
 ];
 
@@ -191,7 +212,9 @@ async function LoadClients(clients: DefaultClients) {
 		try {
 			DatabaseSchemas["api-clients"](realClient);
 		} catch (err) {
-			logger.error(`Invalid API Client ${client.name}: ${FormatPrError(err)}.`);
+			logger.error(
+				`Invalid API Client ${client.name}: ${FormatPrError(err as PrudenceError)}.`
+			);
 			continue;
 		}
 

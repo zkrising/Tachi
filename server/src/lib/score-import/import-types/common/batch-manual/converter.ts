@@ -1,6 +1,13 @@
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
-import { BatchManualScore, ChartDocument, ImportTypes, SongDocument } from "tachi-common";
+import {
+	BatchManualScore,
+	ChartDocument,
+	ImportTypes,
+	SongDocument,
+	Grades,
+	IDStrings,
+} from "tachi-common";
 import {
 	FindBMSChartOnHash,
 	FindChartWithPTDF,
@@ -13,7 +20,7 @@ import {
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
+import { GenericGetGradeAndPercent, JubeatGetGrade } from "../../../framework/common/score-utils";
 import {
 	AssertStrAsDifficulty,
 	AssertStrAsPositiveInt,
@@ -21,7 +28,6 @@ import {
 import { DryScore } from "../../../framework/common/types";
 import { ConverterFunction } from "../types";
 import { BatchManualContext } from "./types";
-
 /**
  * Creates a ConverterFn for the BatchManualScore format. This curries
  * the importType into the function, so the right failures can be
@@ -38,7 +44,47 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 
 	const { song, chart } = await ResolveMatchTypeToKTData(data, context, importType, logger);
 
-	const { percent, grade } = GenericGetGradeAndPercent(context.game, data.score, chart);
+	// yet another temporary hack, jubeat's percent is not a function of score,
+	// it's actually an entirely separate metric. We need to support this, so we'll
+	// run like this.
+
+	let percent: number;
+	let grade: Grades[IDStrings];
+
+	if (game === "jubeat") {
+		if (!data.percent && data.percent !== 0) {
+			throw new InvalidScoreFailure(
+				`The percent field must be filled out for jubeat scores.`
+			);
+		}
+
+		if (
+			data.percent > 100 &&
+			(chart as ChartDocument<"jubeat:Single">).data.isHardMode === false
+		) {
+			throw new InvalidScoreFailure(`The percent field must be <= 100 for normal mode.`);
+		}
+
+		// Since GenericGetGradeAndPercent also handles validating percent, we need
+		// to handle validating percent here.
+		if (data.score > 1_000_000) {
+			throw new InvalidScoreFailure(
+				`The score field must be a positive integer between 0 and 1 million.`
+			);
+		}
+
+		percent = data.percent;
+
+		grade = JubeatGetGrade(data.score);
+	} else {
+		({ percent, grade } = GenericGetGradeAndPercent(context.game, data.score, chart));
+
+		// Temporary hack -- Pop'n upper bounds grades like this. We need to tuck this
+		// away further inside genericgetgradeandpercent or something.
+		if (game === "popn" && data.lamp === "FAILED" && percent >= 90) {
+			grade = "A";
+		}
+	}
 
 	let service = context.service;
 
@@ -62,7 +108,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 			judgements: data.judgements ?? {},
 			hitMeta: data.hitMeta ?? {},
 		},
-		scoreMeta: {}, // @todo #74
+		scoreMeta: data.scoreMeta ?? {},
 	};
 
 	return {
@@ -139,6 +185,35 @@ export async function ResolveMatchTypeToKTData(
 		if (!song) {
 			logger.severe(`DDR songID ${chart.songID} has charts but no parent song.`);
 			throw new InternalFailure(`DDR songID ${chart.songID} has charts but no parent song.`);
+		}
+
+		return { song, chart };
+	} else if (data.matchType === "popnChartHash") {
+		if (game !== "popn") {
+			throw new InvalidScoreFailure(`Cannot use popnChartHash lookup on ${game}.`);
+		}
+
+		const chart = await db.charts.popn.findOne({
+			playtype: context.playtype,
+			"data.hashSHA256": data.identifier,
+		});
+
+		if (!chart) {
+			throw new KTDataNotFoundFailure(
+				`Cannot find chart for popnChartHash ${data.identifier} (${context.playtype}).`,
+				importType,
+				data,
+				context
+			);
+		}
+
+		const song = await FindSongOnID(game, chart.songID);
+
+		if (!song) {
+			logger.severe(`Pop'n songID ${chart.songID} has charts but no parent song.`);
+			throw new InternalFailure(
+				`Pop'n songID ${chart.songID} has charts but no parent song.`
+			);
 		}
 
 		return { song, chart };

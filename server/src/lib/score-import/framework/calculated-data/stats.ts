@@ -1,115 +1,6 @@
 import { KtLogger } from "lib/logger/logger";
-import {
-	ChartDocument,
-	Game,
-	GetGamePTConfig,
-	Grades,
-	IIDX_LAMPS,
-	integer,
-	Lamps,
-	Playtypes,
-} from "tachi-common";
+import { ChartDocument, Game, GetGamePTConfig, IIDX_LAMPS, integer, Playtypes } from "tachi-common";
 import { DryScore } from "../common/types";
-
-/**
- * Calculates the in-game CHUNITHM rating for a score.
- */
-export function CalculateCHUNITHMRating(dryScore: DryScore, chartData: ChartDocument) {
-	const score = dryScore.scoreData.score;
-	const levelBase = chartData.levelNum * 100;
-
-	let val = 0;
-
-	if (score >= 1_007_500) {
-		val = levelBase + 200;
-	} else if (score >= 1_005_000) {
-		val = levelBase + 150 + ((score - 1_005_000) * 10) / 500;
-	} else if (score >= 1_000_000) {
-		val = levelBase + 100 + ((score - 1_000_000) * 5) / 500;
-	} else if (score >= 975_000) {
-		val = levelBase + ((score - 975_000) * 2) / 500;
-	} else if (score >= 925_000) {
-		val = levelBase - 300 + ((score - 925_000) * 3) / 500;
-	} else if (score >= 900_000) {
-		val = levelBase - 500 + ((score - 900_000) * 4) / 500;
-	} else if (score >= 800_000) {
-		val = (levelBase - 500) / 2 + ((score - 800_000) * ((levelBase - 500) / 2)) / 100_000;
-	}
-
-	return Math.max(Math.floor(val) / 100, 0);
-}
-
-/**
- * Calculates the in-game GITADORA rating for a score.
- */
-export function CalculateGITADORASkill(dryScore: DryScore, chartData: ChartDocument) {
-	const trueRating = (dryScore.scoreData.percent / 100) * chartData.levelNum * 20;
-	const flooredRating = Math.floor(trueRating * 100) / 100;
-	return flooredRating;
-}
-
-/**
- * Calculates the PikaGreatFunction, used in BPI. I have no idea what this does.
- * @returns
- */
-function BPIPikaGreatFn(score: integer, max: integer) {
-	return score === max ? max * 0.8 : 1 + (score / max - 0.5) / (1 - score / max);
-}
-
-/**
- * Oh boy.
- *
- * Calculates the "Beat Performance Index" of an IIDX score. This algorithm has many issues,
- * but is a direct port of Poyashi's implementation for consistencies sake.
- * https://github.com/potakusan/iidx_score_manager/blob/f21ba6b85fcc0bf8b7ca888fa2239a3951a9c9c2/src/components/bpi/index.tsx#L120
- *
- * @param kaidenEx The kaiden average EX score.
- * @param wrEx The world record's EX score.
- * @param yourEx Your EX score.
- * @param max The maximum amount of EX achievable on this chart.
- * @param powCoef What power the BPI should be raised to. This is arbitrary, and assigned on a per-song basis. Defaults to 1.175.
- * @returns A number between -15 and 100. Unless your score is better than the world record, in which case
- * returns can be above 100.
- */
-export function CalculateBPI(
-	kaidenEx: integer,
-	wrEx: integer,
-	yourEx: integer,
-	max: integer,
-	pc: number | null
-) {
-	let powCoef = pc ?? 1.175;
-	if (powCoef === -1) {
-		powCoef = 1.175;
-	}
-
-	const yourPGF = BPIPikaGreatFn(yourEx, max);
-	const kaidenPGF = BPIPikaGreatFn(kaidenEx, max);
-	const wrPGF = BPIPikaGreatFn(wrEx, max);
-
-	// no idea what these var names are
-	const _s_ = yourPGF / kaidenPGF;
-	const _z_ = wrPGF / kaidenPGF;
-
-	const isBetterThanKavg = yourEx >= kaidenEx;
-
-	// this line of code isn't mine, and that's why it's *really* bad here.
-	const bpi =
-		Math.round(
-			(isBetterThanKavg ? 100 : -100) *
-				Math.pow(
-					(isBetterThanKavg ? Math.log(_s_) : -Math.log(_s_)) / Math.log(_z_),
-					powCoef
-				) *
-				100
-		) / 100;
-
-	if (bpi < -15) {
-		return -15;
-	}
-
-	return bpi;
-}
 
 /**
  * Calculate Marvelous Full Combo Points. This algorithm
@@ -150,71 +41,6 @@ export function CalculateMFCP(dryScore: DryScore, chartData: ChartDocument, logg
 	// failsafe
 	return null;
 }
-
-const VF5GradeCoefficients = {
-	PUC: 1.05,
-	S: 1.05,
-	"AAA+": 1.02,
-	AAA: 1.0,
-	"AA+": 0.97,
-	AA: 0.94,
-	"A+": 0.91, // everything below this point (incl. this) is marked with a (?) in bemaniwiki.
-	A: 0.88,
-	B: 0.85,
-	C: 0.82,
-	D: 0.8,
-};
-
-const VF5LampCoefficients = {
-	"PERFECT ULTIMATE CHAIN": 1.1,
-	"ULTIMATE CHAIN": 1.05,
-	"EXCESSIVE CLEAR": 1.02,
-	CLEAR: 1.0,
-	FAILED: 0.5,
-};
-
-function FloorToNDP(number: number, dp: integer) {
-	const mul = 10 ** dp;
-	return Math.floor(number * mul) / mul;
-}
-
-export function CalculateVF6(
-	grade: Grades["sdvx:Single"],
-	lamp: Lamps["sdvx:Single"],
-	per: number,
-	levelNum: number,
-	logger: KtLogger
-) {
-	const gradeCoefficient = VF5GradeCoefficients[grade];
-	const lampCoefficient = VF5LampCoefficients[lamp];
-
-	if (!lampCoefficient) {
-		logger.warn(`Invalid lamp of ${lamp} passed to CalculateVF5. Returning null.`);
-		return null;
-	}
-
-	if (!gradeCoefficient) {
-		logger.warn(`Invalid grade of ${grade} passed to CalculateVF5. Returning null.`);
-		return null;
-	}
-
-	const percent = per / 100;
-	if (!levelNum || !percent) {
-		return 0;
-	}
-
-	const realVF6 = (levelNum * 2 * percent * gradeCoefficient * lampCoefficient) / 100;
-
-	return FloorToNDP(realVF6, 3);
-}
-
-// function CalculateJubility(
-//     dryScore: DryScore<"jubeat:Single">,
-//     chartData: ChartDocument,
-//     logger: KtLogger
-// ) {
-//     let rate = dryScore.calculatedData.musicRate; eurgh, this is hard.
-// }
 
 interface RatingParameters {
 	failHarshnessMultiplier: number;
@@ -306,7 +132,7 @@ const ratingParameters = {
 
 export function CalculateKTRating(
 	dryScore: DryScore,
-	game: "iidx" | "ddr" | "museca",
+	game: "ddr" | "museca",
 	playtype: Playtypes[Game],
 	chart: ChartDocument,
 	logger: KtLogger
@@ -320,7 +146,6 @@ export function CalculateKTRating(
 
 export function CalculateKTLampRatingIIDX(
 	dryScore: DryScore,
-	playtype: Playtypes[Game],
 	chart: ChartDocument<"iidx:SP" | "iidx:DP">
 ) {
 	const ncValue = chart.tierlistInfo["kt-NC"]?.value ?? 0;
@@ -328,12 +153,12 @@ export function CalculateKTLampRatingIIDX(
 	const exhcValue = Math.max(chart.tierlistInfo["kt-EXHC"]?.value ?? 0, hcValue);
 
 	if (!exhcValue && !hcValue && !ncValue) {
-		return LampRatingNoTierlistInfo(dryScore, "iidx", playtype, chart);
+		return LampRatingNoTierlistInfo(dryScore, "iidx", chart.playtype, chart);
 	}
 
 	const lamp = dryScore.scoreData.lamp;
 
-	const gptConfig = GetGamePTConfig("iidx", playtype);
+	const gptConfig = GetGamePTConfig("iidx", chart.playtype);
 
 	const lampIndex = gptConfig.lamps.indexOf(lamp);
 
@@ -370,57 +195,15 @@ function LampRatingNoTierlistInfo(
 	return 0;
 }
 
-// deprecated calcs
+export function CalculateSieglinde(chart: ChartDocument, lampIndex: integer) {
+	const ecValue = chart.tierlistInfo["sgl-EC"]?.value ?? 0;
+	const hcValue = chart.tierlistInfo["sgl-HC"]?.value ?? 0;
 
-// const VF4GradeCoefficients = {
-// 	S: 1.0,
-// 	"AAA+": 0.99,
-// 	AAA: 0.98,
-// 	"AA+": 0.97,
-// 	AA: 0.96,
-// 	"A+": 0.95,
-// 	A: 0.94,
-// 	B: 0.93,
-// 	C: 0.92,
-// 	D: 0.91,
-// };
+	if (lampIndex >= IIDX_LAMPS.HARD_CLEAR) {
+		return Math.max(hcValue, ecValue);
+	} else if (lampIndex >= IIDX_LAMPS.EASY_CLEAR) {
+		return ecValue;
+	}
 
-// export function CalculateVF4(
-//     grade: Grades["sdvx:Single"],
-//     per: number,
-//     levelNum: number,
-//     logger: KtLogger
-// ) {
-//     const multiplier = 25;
-
-//     const gradeCoefficient = VF4GradeCoefficients[grade];
-
-//     if (!gradeCoefficient) {
-//         logger.warn(`Invalid grade of ${grade} passed to CalculateVF4. Returning null.`);
-//         return null;
-//     }
-
-//     const percent = per / 100;
-//     if (!levelNum || !percent) {
-//         return 0;
-//     }
-
-//     return Math.floor(multiplier * (levelNum + 1) * percent * gradeCoefficient);
-// }
-
-// // VF5 is just VF6 but to three decimal places instead of four.
-// export function CalculateVF5(
-//     grade: Grades["sdvx:Single"],
-//     lamp: Lamps["sdvx:Single"],
-//     per: number,
-//     levelNum: number,
-//     logger: KtLogger
-// ) {
-//     const vf6 = CalculateVF6(grade, lamp, per, levelNum, logger);
-
-//     if (vf6 === null) {
-//         return null;
-//     }
-
-//     return FloorToNDP(vf6, 2);
-// }
+	return 0;
+}

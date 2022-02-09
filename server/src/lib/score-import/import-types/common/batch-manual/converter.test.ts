@@ -1,6 +1,6 @@
 import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
-import { Game } from "tachi-common";
+import { Game, BatchManualScore } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
@@ -158,6 +158,58 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		t.end();
 	});
 
+	t.test("Should resolve for the popn chartHash if the matchType is popnChartHash", async (t) => {
+		const chartHash = "2c26d666fa7c907e85115dbb279c267c14a263d47b2d46a93f99eae49d779119";
+
+		const popnContext: BatchManualContext = deepmerge(context, {
+			game: "popn",
+			playtype: "9B",
+		});
+
+		const res = await ResolveMatchTypeToKTData(
+			deepmerge(baseBatchManualScore, {
+				matchType: "popnChartHash",
+				identifier: chartHash,
+			}),
+			popnContext,
+			importType,
+			logger
+		);
+
+		t.hasStrict(
+			res,
+			{
+				song: { id: 1 },
+				chart: {
+					songID: 1,
+					data: { hashSHA256: chartHash },
+					playtype: "9B",
+				},
+			},
+			"Should return the right song and chart."
+		);
+
+		t.end();
+	});
+
+	t.test("Should reject if popnChartHash is used while game is not popn", (t) => {
+		const chartHash = "2c26d666fa7c907e85115dbb279c267c14a263d47b2d46a93f99eae49d779119";
+
+		t.rejects(() =>
+			ResolveMatchTypeToKTData(
+				deepmerge(baseBatchManualScore, {
+					matchType: "popnChartHash",
+					identifier: chartHash,
+				}),
+				context,
+				importType,
+				logger
+			)
+		);
+
+		t.end();
+	});
+
 	t.test("Should resolve for the usc chartHash if the matchType is uscChartHash", async (t) => {
 		const chartHash = "USC_CHART_HASH";
 
@@ -188,7 +240,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		t.end();
 	});
 
-	t.test("Should honor playtype in uscChartHash despite non-unique chartIDs.", async (t) => {
+	t.test("Should honor playtype in uscChartHash despite non-unique chartIDs.", (t) => {
 		const chartHash = "USC_CHART_HASH";
 
 		const uscContext: BatchManualContext = deepmerge(context, {
@@ -409,6 +461,169 @@ t.test("#ConverterFn", (t) => {
 				scoreMeta: {},
 			},
 		});
+
+		t.end();
+	});
+
+	t.test("Should cap pop'n grades at A if they failed.", async (t) => {
+		const res = await ConverterBatchManual(
+			{
+				score: 99_000,
+				lamp: "FAILED",
+				difficulty: "Easy",
+				matchType: "tachiSongID",
+				identifier: "1",
+			},
+			{ game: "popn", service: "foo", playtype: "9B", version: null },
+			importType,
+			logger
+		);
+
+		t.hasStrict(res, {
+			chart: { songID: 1, difficulty: "Easy" },
+			song: { id: 1 },
+			dryScore: {
+				game: "popn",
+				service: "foo (BATCH-MANUAL)",
+				comment: null,
+				importType: "file/batch-manual",
+				timeAchieved: null,
+				scoreData: {
+					lamp: "FAILED",
+					score: 99_000,
+					grade: "A",
+					judgements: {},
+					hitMeta: {},
+				},
+				scoreMeta: {},
+			},
+		});
+
+		t.end();
+	});
+
+	t.test("Should cap pop'n grades at A if they bordered AA.", async (t) => {
+		const res = await ConverterBatchManual(
+			{
+				score: 90_000,
+				lamp: "FAILED",
+				difficulty: "Easy",
+				matchType: "tachiSongID",
+				identifier: "1",
+			},
+			{ game: "popn", service: "foo", playtype: "9B", version: null },
+			importType,
+			logger
+		);
+
+		t.hasStrict(res, {
+			chart: { songID: 1, difficulty: "Easy" },
+			song: { id: 1 },
+			dryScore: {
+				game: "popn",
+				service: "foo (BATCH-MANUAL)",
+				comment: null,
+				importType: "file/batch-manual",
+				timeAchieved: null,
+				scoreData: {
+					lamp: "FAILED",
+					score: 90_000,
+					grade: "A",
+					judgements: {},
+					hitMeta: {},
+				},
+				scoreMeta: {},
+			},
+		});
+
+		t.end();
+	});
+
+	const baseJubeatScore: BatchManualScore = {
+		percent: 10,
+		score: 920_000,
+		identifier: "1",
+		lamp: "CLEAR",
+		matchType: "tachiSongID",
+		difficulty: "ADV",
+	};
+
+	t.test("Should use the provided percent parameter for jubeat", async (t) => {
+		const res = await ConverterBatchManual(
+			baseJubeatScore,
+			{ game: "jubeat", service: "foo", playtype: "Single", version: null },
+			importType,
+			logger
+		);
+
+		t.hasStrict(res, {
+			chart: { songID: 1, difficulty: "ADV", playtype: "Single" },
+			song: { id: 1 },
+			dryScore: {
+				game: "jubeat",
+				service: "foo (BATCH-MANUAL)",
+				comment: null,
+				importType: "file/batch-manual",
+				timeAchieved: null,
+				scoreData: {
+					lamp: "CLEAR",
+					score: 920_000,
+					grade: "S",
+					percent: 10,
+					judgements: {},
+					hitMeta: {},
+				},
+				scoreMeta: {},
+			},
+		});
+
+		t.end();
+	});
+
+	t.test("Should throw if the percent parameter is not given for jubeat", (t) => {
+		t.rejects(
+			() =>
+				ConverterBatchManual(
+					deepmerge(baseJubeatScore, { percent: null }),
+					{ game: "jubeat", service: "foo", playtype: "Single", version: null },
+					importType,
+					logger
+				),
+			{ message: /The percent field must be filled out/u }
+		);
+
+		t.end();
+	});
+
+	t.test(
+		"Should throw if the percent parameter is over 100 but the chart is not hard mode (for jubeat)",
+		(t) => {
+			t.rejects(
+				() =>
+					ConverterBatchManual(
+						deepmerge<BatchManualScore>(baseJubeatScore, { percent: 110 }),
+						{ game: "jubeat", service: "foo", playtype: "Single", version: null },
+						importType,
+						logger
+					),
+				{ message: /The percent field must be <= 100 for normal mode./u }
+			);
+
+			t.end();
+		}
+	);
+
+	t.test("Should throw if the score parameter is invalid for jubeat", (t) => {
+		t.rejects(
+			() =>
+				ConverterBatchManual(
+					deepmerge<BatchManualScore>(baseJubeatScore, { score: 2_000_000 }),
+					{ game: "jubeat", service: "foo", playtype: "Single", version: null },
+					importType,
+					logger
+				),
+			{ message: /The score field must be a positive integer/u }
+		);
 
 		t.end();
 	});

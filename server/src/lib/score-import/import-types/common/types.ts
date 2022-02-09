@@ -20,7 +20,7 @@ import { BarbatosContext, BarbatosScore } from "../ir/barbatos/types";
 import { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
 import { FervidexStaticContext, FervidexStaticScore } from "../ir/fervidex-static/types";
 import { FervidexContext, FervidexScore } from "../ir/fervidex/types";
-import { KsHookSV3CContext, KsHookSV3CScore } from "../ir/kshook-sv3c/types";
+import { KsHookSV6CContext, KsHookSV6CScore } from "../ir/kshook-sv6c/types";
 import { LR2HookContext, LR2HookScore } from "../ir/lr2hook/types";
 import { IRUSCContext } from "../ir/usc/types";
 import { KaiContext } from "./api-kai/types";
@@ -41,7 +41,7 @@ export interface ImportTypeDataMap {
 	"ir/fervidex-static": FervidexStaticScore;
 	"ir/beatoraja": BeatorajaScore;
 	"ir/usc": USCClientScore;
-	"ir/kshook-sv3c": KsHookSV3CScore;
+	"ir/kshook-sv6c": KsHookSV6CScore;
 	"ir/lr2hook": LR2HookScore;
 
 	// These aren't placeholder values - the data is yielded in a way that
@@ -69,7 +69,7 @@ export interface ImportTypeContextMap {
 	"ir/fervidex-static": FervidexStaticContext;
 	"ir/beatoraja": BeatorajaContext;
 	"ir/usc": IRUSCContext;
-	"ir/kshook-sv3c": KsHookSV3CContext;
+	"ir/kshook-sv6c": KsHookSV6CContext;
 	"ir/lr2hook": LR2HookContext;
 
 	"api/arc-iidx": EmptyObject;

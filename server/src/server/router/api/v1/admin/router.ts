@@ -129,113 +129,6 @@ router.post(
 );
 
 /**
- * Removes the isPrimary status from a chart, and uncalcs all of
- * its score data.
- *
- * @param chartID - The chartID to deprimarify.
- * @param game - The game this chart is on.
- * @param songID - Alternatively, this will deprimarify all charts for this songID.
- *
- * @name POST /api/v1/admin/deprimarify
- */
-router.post(
-	"/deprimarify",
-	prValidate({
-		chartID: "*string",
-		game: p.isIn(TachiConfig.GAMES),
-		songID: p.optional(p.isPositiveNonZeroInteger),
-	}),
-	async (req, res) => {
-		const coll = db.charts[req.body.game as Game];
-
-		if (!req.body.chartID && !req.body.songID) {
-			return res.status(400).json({
-				success: false,
-				description: `Invalid request - need either chartID or songID.`,
-			});
-		}
-
-		let charts = [];
-
-		if (req.body.chartID) {
-			charts.push(await coll.findOne({ chartID: req.body.chartID }));
-		} else {
-			charts = await coll.find({ songID: req.body.songID });
-		}
-
-		for (const chart of charts) {
-			if (!chart) {
-				return res.status(404).json({
-					success: false,
-					description: `The chart ${req.body.chartID} does not exist.`,
-				});
-			}
-
-			const song = await db.songs[req.body.game as Game].findOne({
-				id: chart.songID,
-			});
-
-			if (!song) {
-				logger.severe(`Song-chart desync on ${chart.songID}.`);
-				return res.status(500).json({
-					success: false,
-					description: `S-C Desync.`,
-				});
-			}
-
-			logger.info(`Deprimarifying ${song.title} (${chart.chartID}).`);
-
-			await coll.update(
-				{
-					chartID: chart.chartID,
-				},
-				{
-					$set: {
-						isPrimary: false,
-					},
-				}
-			);
-
-			logger.info(`Emptying all calculated data for this chart.`);
-
-			await db.scores.update(
-				{ chartID: chart.chartID },
-				{
-					$set: {
-						calculatedData: {},
-					},
-				},
-				{
-					multi: true,
-				}
-			);
-
-			await db["personal-bests"].update(
-				{
-					chartID: chart.chartID,
-				},
-				{
-					$set: {
-						calculatedData: {},
-					},
-				},
-				{
-					multi: true,
-				}
-			);
-		}
-
-		return res.status(200).json({
-			success: true,
-			description: `Deprimarified.`,
-			body: {
-				charts,
-			},
-		});
-	}
-);
-
-/**
  * Force Delete anyones score.
  *
  * @param scoreID - The scoreID to delete.
@@ -262,7 +155,11 @@ router.post("/delete-score", prValidate({ scoreID: "string" }), async (req, res)
 });
 
 /**
- * Destroys a users UGPT profile and forces a site recalc.
+ * Destroys a users UGPT profile and forces a leaderboard recalc.
+ *
+ * @param userID - The U...
+ * @param game - The G...
+ * @param playtype - And the PT to delete.
  *
  * @name POST /api/v1/admin/destroy-ugpt
  */
@@ -301,6 +198,9 @@ router.post(
 
 /**
  * Destroy a chart and all of its scores (and sessions).
+ *
+ * @param chartID - The chartID to delete.
+ * @param game - The game this chart is for. Necessary for doing lookups.
  *
  * @name POST /api/v1/admin/destroy-chart
  */
@@ -378,12 +278,25 @@ router.post(
 router.post("/recalc", async (req, res) => {
 	const filter = req.body ?? {};
 	await RecalcAllScores(filter);
-	await RecalcSessions(filter);
+
+	const scoreIDs = (
+		await db.scores.find(filter, {
+			projection: {
+				scoreID: 1,
+			},
+		})
+	).map((e) => e.scoreID);
+
+	await RecalcSessions({
+		"scoreInfo.scoreID": { $in: scoreIDs },
+	});
 
 	return res.status(200).json({
 		success: true,
 		description: `Recalced scores.`,
-		body: {},
+		body: {
+			scoresRecalced: scoreIDs.length,
+		},
 	});
 });
 

@@ -1,8 +1,8 @@
-import { AddNewInvite, ReinstateInvite, ValidateCaptcha } from "./auth";
-import t from "tap";
 import db from "external/mongo/db";
+import t from "tap";
+import { MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
-import { MockBasicFetch, MockJSONFetch } from "test-utils/mock-fetch";
+import { AddNewInvite, ReinstateInvite, ValidateCaptcha } from "./auth";
 
 t.test("#ReinstateInvite", (t) => {
 	t.beforeEach(ResetDBState);

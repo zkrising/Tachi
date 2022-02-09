@@ -49,7 +49,7 @@ export type EmptyObject = Record<string, never>;
 export interface TachiRequestData {
 	uscChartDoc?: ChartDocument<"usc:Controller" | "usc:Keyboard">;
 
-	beatorajaChartDoc?: ChartDocument<"bms:7K" | "bms:14K">;
+	beatorajaChartDoc?: ChartDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">;
 
 	requestedUser?: PublicUserDocument;
 	requestedUserGameStats?: UserGameStats;

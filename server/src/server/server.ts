@@ -96,6 +96,8 @@ process.on("unhandledRejection", (reason, promise) => {
 app.use(express.json({ limit: "4mb" }));
 
 app.use((req, res, next) => {
+	// Always mount an empty req body. We operate under the assumption that req.body is
+	// always defined.
 	if (req.method !== "GET" && !req.body) {
 		req.body = {};
 	}

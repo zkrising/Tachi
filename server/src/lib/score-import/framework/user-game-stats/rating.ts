@@ -19,8 +19,12 @@ function LazySumAll(key: CustomCalcNames) {
 			playtype: playtype,
 			userID: userID,
 			isPrimary: true,
-			[`calculatedData.${key}`]: { $gt: 0 },
+			[`calculatedData.${key}`]: { $type: "number" },
 		});
+
+		if (sc.length === 0) {
+			return null;
+		}
 
 		const result = sc.reduce((a, b) => a + b.calculatedData[key]!, 0);
 
@@ -28,6 +32,16 @@ function LazySumAll(key: CustomCalcNames) {
 	};
 }
 
+/**
+ * Curries a function that returns the sum of N best ratings on `key`.
+ *
+ * @param key - What rating value to sum.
+ * @param n - The amount of rating values to pull.
+ * @param returnMean - Optionally, if true, return the sum of these values divided by N.
+ *
+ * @returns - Number if the user has scores with that rating algorithm, null if they have
+ * no scores with this rating algorithm that are non-null.
+ */
 function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
 	return async (game: Game, playtype: Playtypes[Game], userID: integer) => {
 		const sc = await db["personal-bests"].find(
@@ -36,13 +50,17 @@ function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
 				playtype: playtype,
 				userID: userID,
 				isPrimary: true,
-				[`calculatedData.${key}`]: { $gt: 0 },
+				[`calculatedData.${key}`]: { $type: "number" },
 			},
 			{
 				limit: n,
 				sort: { [`calculatedData.${key}`]: -1 },
 			}
 		);
+
+		if (sc.length === 0) {
+			return null;
+		}
 
 		let result = sc.reduce((a, b) => a + b.calculatedData[key]!, 0);
 
@@ -72,12 +90,10 @@ const RatingFunctions: RatingFunctions = {
 	iidx: {
 		SP: async (g, p, u) => ({
 			BPI: await LazyMeanN("BPI", 20)(g, p, u),
-			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
 			ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
 		}),
 		DP: async (g, p, u) => ({
 			BPI: await LazyMeanN("BPI", 20)(g, p, u),
-			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
 			ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
 		}),
 	},
@@ -105,8 +121,14 @@ const RatingFunctions: RatingFunctions = {
 		}),
 	},
 	gitadora: {
-		Gita: async (g, p, u, l) => ({ skill: await CalculateGitadoraSkill(g, p, u, l) }),
-		Dora: async (g, p, u, l) => ({ skill: await CalculateGitadoraSkill(g, p, u, l) }),
+		Gita: async (g, p, u, l) => ({
+			skill: await CalculateGitadoraSkill(g, p, u, l),
+			naiveSkill: await LazySumN("skill", 50)(g, p, u),
+		}),
+		Dora: async (g, p, u, l) => ({
+			skill: await CalculateGitadoraSkill(g, p, u, l),
+			naiveSkill: await LazySumN("skill", 50)(g, p, u),
+		}),
 	},
 	bms: {
 		"7K": async (g, p, u) => ({
@@ -116,14 +138,24 @@ const RatingFunctions: RatingFunctions = {
 			sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
 		}),
 	},
+	pms: {
+		Controller: async (g, p, u) => ({
+			sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
+		}),
+		Keyboard: async (g, p, u) => ({
+			sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
+		}),
+	},
 	chunithm: {
 		Single: async (g, p, u) => ({
 			naiveRating: await LazyMeanN("rating", 20)(g, p, u),
 		}),
 	},
-	// popn: {
-	// 	"9B": async () => ({}),
-	// },
+	popn: {
+		"9B": async (g, p, u) => ({
+			naiveClassPoints: await LazyMeanN("classPoints", 20)(g, p, u),
+		}),
+	},
 	museca: {
 		Single: async (g, p, u) => ({
 			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
@@ -134,11 +166,18 @@ const RatingFunctions: RatingFunctions = {
 			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
 		}),
 	},
-	// jubeat: {
-	// 	Single: async (g, p, u, l) => ({
-	// 		jubility: await CalculateJubility(g, p, u, l),
-	// 	}),
-	// },
+	wacca: {
+		Single: async (g, p, u, l) => ({
+			naiveRate: await LazySumN("rate", 50)(g, p, u),
+			rate: await CalculateWACCARate(g, p, u, l),
+		}),
+	},
+	jubeat: {
+		Single: async (g, p, u, l) => ({
+			jubility: await CalculateJubility(g, p, u, l),
+			naiveJubility: await LazySumN("jubility", 60)(g, p, u),
+		}),
+	},
 };
 
 export function CalculateRatings(
@@ -149,6 +188,69 @@ export function CalculateRatings(
 ): Promise<Partial<Record<CustomCalcNames, number>>> {
 	// @ts-expect-error too lazy to type this properly
 	return RatingFunctions[game][playtype](game, playtype, userID, logger);
+}
+
+// Wacca has a funny algorithm for rate involving gitadora-style latest chart bonuses,
+async function CalculateWACCARate(
+	game: Game,
+	playtype: Playtypes[Game],
+	userID: integer,
+	logger: KtLogger
+) {
+	const hotChartIDs = (
+		await db.charts.wacca.find({ "data.isHot": true }, { projection: { chartID: 1 } })
+	).map((e) => e.chartID);
+
+	const coldChartIDs = (
+		await db.charts.wacca.find({ "data.isHot": false }, { projection: { chartID: 1 } })
+	).map((e) => e.chartID);
+
+	const best15Hot = await db["personal-bests"].find(
+		{
+			game,
+			playtype,
+			userID,
+			chartID: { $in: hotChartIDs },
+			"calculatedData.rate": { $type: "number" },
+		},
+		{
+			sort: {
+				"calculatedData.rate": -1,
+			},
+			limit: 15,
+			projection: {
+				"calculatedData.rate": 1,
+			},
+		}
+	);
+
+	const best35Cold = await db["personal-bests"].find(
+		{
+			game,
+			playtype,
+			userID,
+			chartID: { $in: coldChartIDs },
+			"calculatedData.rate": { $type: "number" },
+		},
+		{
+			sort: {
+				"calculatedData.rate": -1,
+			},
+			limit: 35,
+			projection: {
+				"calculatedData.rate": 1,
+			},
+		}
+	);
+
+	if (best15Hot.length + best35Cold.length === 0) {
+		return null;
+	}
+
+	return (
+		best15Hot.reduce((a, r) => a + r.calculatedData.rate!, 0) +
+		best35Cold.reduce((a, r) => a + r.calculatedData.rate!, 0)
+	);
 }
 
 async function CalculateGitadoraSkill(
@@ -170,6 +272,10 @@ async function CalculateGitadoraSkill(
 		GetBestRatingOnSongs(hotSongIDs, userID, game, playtype, "skill"),
 		GetBestRatingOnSongs(coldSongIDs, userID, game, playtype, "skill"),
 	]);
+
+	if (bestHotScores.length + bestScores.length === 0) {
+		return null;
+	}
 
 	let skill = 0;
 	skill += bestHotScores.reduce((a, r) => a + r.calculatedData.skill!, 0);
@@ -214,43 +320,48 @@ export async function GetBestRatingOnSongs(
 	return r.map((e: { _id: integer; doc: PBScoreDocument }) => e.doc);
 }
 
-// async function CalculateJubility(
-// 	game: Game,
-// 	playtype: Playtypes[Game],
-// 	userID: integer,
-// 	logger: KtLogger
-// ): Promise<number> {
-// 	const hotCharts = await db.charts.jubeat.find(
-// 		{ "flags.HOT N-1": true },
-// 		{ projection: { chartID: 1 } }
-// 	);
+async function CalculateJubility(
+	game: Game,
+	playtype: Playtypes[Game],
+	userID: integer,
+	logger: KtLogger
+): Promise<number> {
+	const hotSongs = await db.songs.jubeat.find(
+		{ "data.displayVersion": "festo" },
+		{ projection: { id: 1 } }
+	);
 
-// 	const hotChartIDs = hotCharts.map((e) => e.chartID);
+	const hotSongIDs = hotSongs.map((e) => e.id);
 
-// 	const [bestHotScores, bestScores] = await Promise.all([
-// 		db["personal-bests"].find(
-// 			{ userID, chartID: { $in: hotChartIDs } },
-// 			{
-// 				sort: { "calculatedData.jubility": -1 },
-// 				limit: 25,
-// 				projection: { "calculatedData.jubility": 1 },
-// 			}
-// 		),
-// 		// @inefficient
-// 		// see gitadoraskillcalc
-// 		db["personal-bests"].find(
-// 			{ userID, chartID: { $nin: hotChartIDs } },
-// 			{
-// 				sort: { "calculatedData.jubility": -1 },
-// 				limit: 25,
-// 				projection: { "calculatedData.jubility": 1 },
-// 			}
-// 		),
-// 	]);
+	const coldSongs = await db.songs.jubeat.find(
+		{ "data.displayVersion": { $ne: "festo" } },
+		{ projection: { id: 1 } }
+	);
 
-// 	let skill = 0;
-// 	skill += bestHotScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
-// 	skill += bestScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
+	const coldSongIDs = coldSongs.map((e) => e.id);
 
-// 	return skill;
-// }
+	const [bestHotScores, bestScores] = await Promise.all([
+		db["personal-bests"].find(
+			{ userID, songID: { $in: hotSongIDs } },
+			{
+				sort: { "calculatedData.jubility": -1 },
+				limit: 30,
+				projection: { "calculatedData.jubility": 1 },
+			}
+		),
+		db["personal-bests"].find(
+			{ userID, songID: { $in: coldSongIDs } },
+			{
+				sort: { "calculatedData.jubility": -1 },
+				limit: 30,
+				projection: { "calculatedData.jubility": 1 },
+			}
+		),
+	]);
+
+	let skill = 0;
+	skill += bestHotScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
+	skill += bestScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
+
+	return skill;
+}

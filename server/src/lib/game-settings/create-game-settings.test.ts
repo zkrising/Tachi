@@ -1,6 +1,5 @@
-import t from "tap";
 import db from "external/mongo/db";
-
+import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { CreateGameSettings } from "./create-game-settings";
 

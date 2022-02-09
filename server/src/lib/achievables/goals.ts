@@ -1,16 +1,16 @@
+import db from "external/mongo/db";
+import fjsh from "fast-json-stable-hash";
+import { KtLogger } from "lib/logger/logger";
+import { FilterQuery } from "mongodb";
 import {
+	Game,
+	GetGamePTConfig,
 	GoalDocument,
 	integer,
 	PBScoreDocument,
-	Game,
-	GetGamePTConfig,
 	Playtypes,
 } from "tachi-common";
-import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
 import { GetFolderChartIDs } from "utils/folder";
-import { FilterQuery } from "mongodb";
-import fjsh from "fast-json-stable-hash";
 
 export interface EvaluatedGoalReturn {
 	achieved: boolean;

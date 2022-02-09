@@ -35,6 +35,7 @@ router.patch(
 			preferredScoreAlg: p.optional(p.nullable(p.isIn(gptConfig.scoreRatingAlgs))),
 			preferredSessionAlg: p.optional(p.nullable(p.isIn(gptConfig.sessionRatingAlgs))),
 			preferredProfileAlg: p.optional(p.nullable(p.isIn(gptConfig.profileRatingAlgs))),
+			defaultTable: "*?string",
 			// This is a pretty stupid IIFE level hack, ah well.
 			gameSpecific: p.any,
 			scoreBucket: optNull(p.isIn("grade", "lamp")),
@@ -52,18 +53,36 @@ router.patch(
 
 			if (game === "iidx") {
 				schema = {
-					display2DXTra: "boolean",
+					display2DXTra: p.optional("boolean"),
+					bpiTarget: p.optional(p.isBoundedInteger(0, 100)),
+				};
+			} else if (game === "sdvx") {
+				schema = {
+					vf6Target: p.optional(p.isBetween(0, 0.5)),
 				};
 			}
-			// A limitation in prudence means that validating top-level properties like this isn't
-			// possible.
-			// A prudence v1.0. should fix this!
-			const err = p({ __: req.body.gameSpecific }, { __: p.optional(schema) }, {});
+
+			const err = p(req.body.gameSpecific, schema);
 
 			if (err) {
 				return res.status(400).json({
 					success: false,
 					description: FormatPrError(err, "Invalid game-settings."),
+				});
+			}
+		}
+
+		if (typeof req.body.defaultTable === "string") {
+			const table = await db.tables.findOne({
+				game,
+				playtype,
+				tableID: req.body.defaultTable,
+			});
+
+			if (!table) {
+				return res.status(400).json({
+					success: false,
+					description: `The table (${req.body.defaultTable}) does not exist (and therefore cannot be set as a default).`,
 				});
 			}
 		}
@@ -81,6 +100,10 @@ router.patch(
 
 		if (req.body.scoreBucket !== undefined) {
 			updateQuery[`preferences.scoreBucket`] = req.body.scoreBucket;
+		}
+
+		if (req.body.defaultTable !== undefined) {
+			updateQuery[`preferences.defaultTable`] = req.body.defaultTable;
 		}
 
 		if (req.body.gameSpecific) {

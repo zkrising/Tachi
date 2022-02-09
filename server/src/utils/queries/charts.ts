@@ -234,12 +234,23 @@ export function FindSDVXChartOnDFVersion(
 }
 
 export function FindChartOnSHA256(game: Game, hash: string) {
-	if (game !== "bms" && game !== "usc" && game !== "iidx") {
+	if (game !== "bms" && game !== "usc" && game !== "iidx" && game !== "pms") {
 		throw new Error(`Cannot call FindChartOnSHA256 for game ${game}.`);
 	}
 
 	return db.charts[game].findOne({
 		"data.hashSHA256": hash,
+	});
+}
+
+export function FindChartOnSHA256Playtype(game: Game, hash: string, playtype: Playtypes[Game]) {
+	if (game !== "bms" && game !== "usc" && game !== "iidx" && game !== "pms") {
+		throw new Error(`Cannot call FindChartOnSHA256 for game ${game}.`);
+	}
+
+	return db.charts[game].findOne({
+		"data.hashSHA256": hash,
+		playtype,
 	});
 }
 

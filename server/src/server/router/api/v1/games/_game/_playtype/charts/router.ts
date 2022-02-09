@@ -2,7 +2,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
 import { SearchGameSongs } from "lib/search/search";
-import { ChartDocument } from "tachi-common";
+import { ChartDocument, UGPTSettings } from "tachi-common";
 import { IsString } from "utils/misc";
 import { FindChartsOnPopularity } from "utils/queries/charts";
 import chartIDRouter from "./_chartID/router";
@@ -51,7 +51,7 @@ router.get("/", async (req, res) => {
 
 	// Edge case.
 	// If the game is IIDX and the player does not want
-	// to see 2dxtra charts, we need to remve them from the
+	// to see 2dxtra charts, we need to remove them from the
 	// result of a search.
 	//
 	// Since most players will have this off, this is not a significant
@@ -62,11 +62,11 @@ router.get("/", async (req, res) => {
 				(e) => (e as ChartDocument<"iidx:SP" | "iidx:DP">).data["2dxtraSet"] === null
 			);
 		} else {
-			const iidxSettings = await db["game-settings"].findOne({
+			const iidxSettings = (await db["game-settings"].findOne({
 				userID: req[SYMBOL_TachiAPIAuth].userID!,
 				game,
 				playtype,
-			});
+			})) as UGPTSettings<"iidx:SP" | "iidx:DP"> | null;
 
 			if (!iidxSettings || !iidxSettings.preferences.gameSpecific.display2DXTra) {
 				charts = charts.filter(

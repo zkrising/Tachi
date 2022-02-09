@@ -12,6 +12,7 @@ import Prudence from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import prValidate from "server/middleware/prudence-validate";
+import { ScoreImportRateLimiter } from "server/middleware/rate-limiter";
 import { APIImportTypes, FileUploadImportTypes } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { FormatUserDoc, GetUserWithIDGuaranteed } from "utils/user";
@@ -40,6 +41,7 @@ const apiImportTypes = TachiConfig.IMPORT_TYPES.filter((e) => e.startsWith("api/
 router.post(
 	"/file",
 	RequirePermissions("submit_score"),
+	ScoreImportRateLimiter,
 	ParseMultipartScoredata,
 	prValidate(
 		{
@@ -162,7 +164,7 @@ router.post(
  * @name POST /api/v1/import/orphans
  */
 router.post("/orphans", RequirePermissions("submit_score"), async (req, res) => {
-	const userDoc = await GetUserWithIDGuaranteed(req.session.tachi!.user.id);
+	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
 
 	logger.info(`User ${FormatUserDoc(userDoc)} forced an orphan sync.`);
 
@@ -175,7 +177,7 @@ router.post("/orphans", RequirePermissions("submit_score"), async (req, res) => 
 		(e) => e.scoreID
 	);
 
-	let done = 0;
+	let processed = 0;
 	let failed = 0;
 	let success = 0;
 	let removed = 0;
@@ -183,7 +185,7 @@ router.post("/orphans", RequirePermissions("submit_score"), async (req, res) => 
 	await Promise.all(
 		orphans.map((or) =>
 			ReprocessOrphan(or, blacklist, logger).then((r) => {
-				done++;
+				processed++;
 				if (r === null) {
 					removed++;
 				} else if (r === false) {
@@ -201,9 +203,9 @@ router.post("/orphans", RequirePermissions("submit_score"), async (req, res) => 
 
 	return res.status(200).json({
 		success: true,
-		description: `Reprocessed ${done} orphan scores.`,
+		description: `Reprocessed ${processed} orphan scores.`,
 		body: {
-			done,
+			processed,
 			failed,
 			success,
 			removed,

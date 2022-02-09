@@ -7,7 +7,7 @@ import { ServerConfig } from "lib/setup/config";
 import { RequireNotGuest } from "server/middleware/auth";
 import { UpdateClassIfGreater } from "utils/class";
 import { ValidateIRClientVersion } from "./auth";
-import chartsRouter from "./charts/router";
+import chartsRouter from "./charts/_chartSHA256/router";
 
 const logger = CreateLogCtx(__filename);
 
@@ -74,13 +74,26 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 		});
 	}
 
-	const chart = await db.charts.bms.findOne({
-		chartID: scoreDoc.chartID,
-	});
+	let song;
+	let chart;
 
-	const song = await db.songs.bms.findOne({
-		id: chart!.songID,
-	});
+	if (importRes.body.body.game === "bms") {
+		chart = await db.charts.bms.findOne({
+			chartID: scoreDoc.chartID,
+		});
+
+		song = await db.songs.bms.findOne({
+			id: chart!.songID,
+		});
+	} else {
+		chart = await db.charts.pms.findOne({
+			chartID: scoreDoc.chartID,
+		});
+
+		song = await db.songs.pms.findOne({
+			id: chart!.songID,
+		});
+	}
 
 	return res.status(importRes.statusCode).json({
 		success: true,

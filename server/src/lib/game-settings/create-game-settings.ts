@@ -1,7 +1,6 @@
-import { integer, Game, Playtypes } from "tachi-common";
-
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { Game, integer, Playtypes } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -30,6 +29,7 @@ export async function CreateGameSettings(userID: integer, game: Game, playtype: 
 	if (game === "iidx") {
 		gameSpecific = {
 			display2DXTra: false,
+			bpiTarget: 0,
 		};
 	}
 
@@ -42,6 +42,7 @@ export async function CreateGameSettings(userID: integer, game: Game, playtype: 
 			preferredSessionAlg: null,
 			preferredScoreAlg: null,
 			scoreBucket: null,
+			defaultTable: null,
 			stats: [],
 			gameSpecific,
 		},

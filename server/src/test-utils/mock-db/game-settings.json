@@ -8,9 +8,11 @@
 			"preferredSessionAlg": null,
 			"preferredProfileAlg": null,
 			"scoreBucket": null,
+			"defaultTable": null,
 			"stats": [],
 			"gameSpecific": {
-				"display2DXTra": false
+				"display2DXTra": false,
+				"bpiTarget": 0
 			}
 		}
 	}

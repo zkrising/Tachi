@@ -11,7 +11,12 @@
 		"data": {
 			"inGameID": 1000,
 			"notecount": 786,
-			"arcChartID": "CYjwAuz7Yq9"
+			"arcChartID": "CYjwAuz7Yq9",
+			"2dxtraSet": null,
+			"hashSHA256": null,
+			"bpiCoefficient": null,
+			"kaidenAverage": null,
+			"worldRecord": null
 		},
 		"isPrimary": true,
 		"versions": [

@@ -4,7 +4,11 @@ import { IsString } from "utils/misc";
 import { GetGamePTConfig, UserGameStats, FormatGame, Game, Playtypes, integer } from "tachi-common";
 import { FindOptions } from "monk";
 import db from "external/mongo/db";
-import { CheckStrProfileAlg, ParseStrPositiveNonZeroInt } from "utils/string-checks";
+import {
+	CheckStrProfileAlg,
+	CheckStrScoreAlg,
+	ParseStrPositiveNonZeroInt,
+} from "utils/string-checks";
 import { GetUsersWithIDs } from "utils/user";
 import chartsRouter from "./charts/router";
 import songIDRouter from "./songs/_songID/router";
@@ -163,9 +167,9 @@ router.get("/score-leaderboard", async (req, res) => {
 		});
 	}
 
-	let alg = gptConfig.defaultProfileRatingAlg;
+	let alg = gptConfig.defaultScoreRatingAlg;
 	if (IsString(req.query.alg)) {
-		const temp = CheckStrProfileAlg(game, playtype, req.query.alg);
+		const temp = CheckStrScoreAlg(game, playtype, req.query.alg);
 
 		if (temp === null) {
 			return res.status(400).json({

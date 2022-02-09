@@ -69,6 +69,16 @@ export async function UpdateClassIfGreater(
 		await CreateGameSettings(userID, game, playtype);
 	}
 
+	await db["class-achievements"].insert({
+		game,
+		playtype,
+		userID,
+		classOldValue: isGreater === null ? null : userGameStats!.classes[classSet]!,
+		classSet,
+		classValue: classVal,
+		timeAchieved: Date.now(),
+	});
+
 	if (isGreater === null) {
 		EmitWebhookEvent({
 			type: "class-update/v1",

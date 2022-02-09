@@ -5,7 +5,7 @@ import { GetGamePTConfig } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingBMS7KScore, TestingIIDXSPScore } from "test-utils/test-data";
-import { CreatePBDoc, PBScoreDocumentNoRank } from "./create-pb-doc";
+import { CreatePBDoc } from "./create-pb-doc";
 
 const IIDXScore = TestingIIDXSPScore;
 
@@ -44,38 +44,7 @@ t.test("#CreatePBDoc", (t) => {
 			hitMeta: { bp: 1 },
 		},
 		calculatedData: {
-			ktRating: IIDXScore.calculatedData.ktRating,
 			ktLampRating: 12,
-		},
-	};
-
-	const ExamplePBDocBMS: PBScoreDocumentNoRank = {
-		chartID,
-		userID: 1,
-		songID: 1,
-		// rankingData -- is not present because it is not added until post-processing.
-		highlight: false,
-		isPrimary: true,
-		timeAchieved: 1619454485988,
-		game: "iidx",
-		playtype: "SP",
-		composedFrom: {
-			scorePB: IIDXScore.scoreID,
-			lampPB: "LAMP_PB_ID",
-		},
-		scoreData: {
-			score: IIDXScore.scoreData.score,
-			percent: IIDXScore.scoreData.percent,
-			esd: IIDXScore.scoreData.esd,
-			grade: IIDXScore.scoreData.grade,
-			gradeIndex: IIDXScore.scoreData.gradeIndex,
-			judgements: IIDXScore.scoreData.judgements,
-			lamp: "FULL COMBO",
-			lampIndex: lamps.indexOf("FULL COMBO"),
-			hitMeta: { bp: 1 },
-		},
-		calculatedData: {
-			sieglinde: 30,
 		},
 	};
 

@@ -4,7 +4,6 @@ import { KtLogger, rootLogger } from "lib/logger/logger";
 import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
 import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
-import { id } from "monk";
 import { ScoreDocument } from "tachi-common";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import { FormatUserDoc, GetUserWithID } from "utils/user";
@@ -81,6 +80,7 @@ export default async function UpdateScore(
 			// This property shouldn't be defined.
 			delete newScore._id;
 		}
+
 		await db.scores.update(
 			{
 				scoreID: oldScoreID,
@@ -88,6 +88,7 @@ export default async function UpdateScore(
 			{ $set: newScore }
 		);
 	} catch (err) {
+		logger.error(err);
 		logger.warn(
 			`Score ID ${newScoreID} already existed -- this update caused a collision. Removing old score and updating old references anyway.`
 		);

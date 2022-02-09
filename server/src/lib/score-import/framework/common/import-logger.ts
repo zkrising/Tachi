@@ -1,6 +1,5 @@
 import { KtLogger, rootLogger } from "lib/logger/logger";
 import { ImportTypes, PublicUserDocument } from "tachi-common";
-import { Random20Hex } from "utils/misc";
 import { FormatUserDoc } from "utils/user";
 
 export function CreateScoreLogger(

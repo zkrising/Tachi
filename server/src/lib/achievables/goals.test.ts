@@ -1,10 +1,9 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import ResetDBState from "test-utils/resets";
-import { EvaluateGoalForUser, HumaniseGoalProgress } from "./goals";
 import { GoalDocument } from "tachi-common";
-import deepmerge from "deepmerge";
+import t from "tap";
+import ResetDBState from "test-utils/resets";
 import {
 	HC511Goal,
 	Testing511SPA,
@@ -12,8 +11,8 @@ import {
 	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
-
 import { Random20Hex } from "utils/misc";
+import { EvaluateGoalForUser, HumaniseGoalProgress } from "./goals";
 
 const logger = CreateLogCtx(__filename);
 

@@ -1,6 +1,7 @@
 import { VERSION_STR } from "lib/constants/version";
 import { KtLogger } from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
+import { URL } from "url";
 import nodeFetch from "utils/fetch";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 

@@ -9,7 +9,7 @@ import {
 } from "lib/constants/usc-ir";
 import { DryScore } from "lib/score-import/framework/common/types";
 import { BarbatosScore } from "lib/score-import/import-types/ir/barbatos/types";
-import { KsHookSV3CScore } from "lib/score-import/import-types/ir/kshook-sv3c/types";
+import { KsHookSV6CScore } from "lib/score-import/import-types/ir/kshook-sv6c/types";
 import { LR2HookScore } from "lib/score-import/import-types/ir/lr2hook/types";
 import path from "path";
 import { USCClientScore } from "server/router/ir/usc/_playtype/types";
@@ -30,17 +30,115 @@ const file = (name: string) => path.join(__dirname, "/test-data", name);
 export const GetKTDataJSON = (name: string) => JSON.parse(fs.readFileSync(file(name), "utf-8"));
 export const GetKTDataBuffer = (name: string) => fs.readFileSync(file(name));
 
-export const TestingIIDXSPDryScore = GetKTDataJSON(
-	"./tachi/iidx-dryscore.json"
-) as DryScore<"iidx:SP">;
+export const TestingIIDXSPDryScore: DryScore<"iidx:SP"> = {
+	service: "e-amusement",
+	game: "iidx",
+	scoreData: {
+		score: 786,
+		lamp: "CLEAR",
+		percent: 50,
+		grade: "C",
+		judgements: {
+			pgreat: 50,
+			great: 10,
+		},
+		hitMeta: {},
+	},
+	scoreMeta: {},
+	timeAchieved: null,
+	comment: null,
+	importType: "file/eamusement-iidx-csv",
+};
 
-export const TestingIIDXSPScorePB = GetKTDataJSON(
-	"./tachi/iidx-scorepb.json"
-) as PBScoreDocument<"iidx:SP">;
-export const TestingIIDXSPScore = GetKTDataJSON(
-	"./tachi/iidx-score.json"
-) as ScoreDocument<"iidx:SP">;
+export const TestingIIDXSPScorePB: PBScoreDocument<"iidx:SP"> = {
+	chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",
+	userID: 1,
+	calculatedData: {
+		ktLampRating: 0,
+		BPI: 10.1,
+	},
+	composedFrom: {
+		scorePB: "TESTING_SCORE_ID",
+		lampPB: "TESTING_SCORE_ID",
+	},
+	highlight: false,
+	isPrimary: true,
+	scoreData: {
+		score: 1479,
+		percent: 94.08396946564885,
+		esd: 10.64453125,
+		grade: "AAA",
+		gradeIndex: 7,
+		lamp: "EX HARD CLEAR",
+		lampIndex: 6,
+		judgements: {
+			pgreat: 697,
+			great: 85,
+		},
+		hitMeta: {
+			bp: 2,
+		},
+	},
+	rankingData: {
+		rank: 1,
+		outOf: 2,
+	},
+	songID: 1,
+	game: "iidx",
+	playtype: "SP",
+	timeAchieved: 10000,
+};
 
+export const TestingIIDXSPScore: ScoreDocument<"iidx:SP"> = {
+	service: "foo (DIRECT-MANUAL)",
+	game: "iidx",
+	playtype: "SP",
+	userID: 1,
+	scoreData: {
+		score: 786,
+		lamp: "CLEAR",
+		percent: 50,
+		grade: "C",
+		esd: 30,
+		gradeIndex: 3,
+		lampIndex: 4,
+		judgements: {
+			pgreat: 50,
+			great: 10,
+		},
+		hitMeta: {},
+	},
+	scoreMeta: {},
+	calculatedData: {
+		ktLampRating: 5,
+	},
+	timeAchieved: 1619454485988,
+	songID: 1,
+	chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",
+	highlight: false,
+	isPrimary: true,
+	comment: null,
+	timeAdded: 1,
+	scoreID: "TESTING_SCORE_ID",
+	importType: "ir/direct-manual",
+};
+
+export const TestingKsHookSV6CScore: KsHookSV6CScore = {
+	clear: "CLEAR_EXCESSIVE",
+	critical: 1184,
+	difficulty: "DIFFICULTY_ADVANCED",
+	error: 30,
+	gauge: 71,
+	grade: "GRADE_AA_PLUS",
+	max_chain: 158,
+	music_id: 1,
+	near: 46,
+	rate: "RATE_EXCESSIVE",
+	score: 9579365,
+	track_no: 0,
+	ex_score: 1334,
+	retry_count: 0,
+};
 export const TestingBMS7KScore: ScoreDocument<"bms:7K"> = {
 	calculatedData: {
 		sieglinde: 20,
@@ -72,8 +170,6 @@ export const TestingBMS7KScore: ScoreDocument<"bms:7K"> = {
 	userID: 1,
 };
 
-export const TestingKsHookSV3CScore = GetKTDataJSON("./kshook-sv3c/base.json") as KsHookSV3CScore;
-
 export const TestingLR2HookScore: LR2HookScore = {
 	md5: "38616b85332037cc12924f2ae2840262",
 	playerData: {
@@ -98,29 +194,187 @@ export const TestingLR2HookScore: LR2HookScore = {
 	},
 };
 
-export const Testing511SPA = GetKTDataJSON("./tachi/iidx-511spa.json") as ChartDocument<"iidx:SP">;
+export const TestingJubeatChart: ChartDocument<"jubeat:Single"> = {
+	chartID: "b90a319f18d1a746b330b8f4cd6f74874f664421",
+	rgcID: null,
+	songID: 1,
+	level: "6",
+	levelNum: 6,
+	difficulty: "ADV",
+	isPrimary: true,
+	playtype: "Single",
+	data: {
+		inGameID: 10000001,
+		isHardMode: false,
+	},
+	tierlistInfo: {},
+	versions: ["festo"],
+};
 
-export const Testing511Song = GetKTDataJSON("./tachi/iidx-511-song.json") as SongDocument<"iidx">;
+export const Testing511SPA: ChartDocument<"iidx:SP"> = {
+	rgcID: null,
+	chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",
+	difficulty: "ANOTHER",
+	songID: 1,
+	playtype: "SP",
+	levelNum: 10,
+	level: "10",
+	data: {
+		inGameID: 1000,
+		notecount: 786,
+		arcChartID: "CYjwAuz7Yq9",
+		"2dxtraSet": null,
+		hashSHA256: null,
+		bpiCoefficient: null,
+		kaidenAverage: null,
+		worldRecord: null,
+	},
+	tierlistInfo: {},
+	isPrimary: true,
+	versions: [
+		"27-omni",
+		"26-omni",
+		"27",
+		"26",
+		"inf",
+		"16-cs",
+		"12-cs",
+		"10-cs",
+		"8-cs",
+		"7-cs",
+		"bmus",
+	],
+};
 
-export const TestingAlbidaADV = GetKTDataJSON(
-	"./tachi/sdvx-albida-chart.json"
-) as ChartDocument<"sdvx:Single">;
+export const Testing511Song: SongDocument<"iidx"> = {
+	title: "5.1.1.",
+	artist: "dj nagureo",
+	id: 1,
+	altTitles: [],
+	searchTerms: [],
+	data: {
+		genre: "PIANO AMBIENT",
+		displayVersion: "1",
+	},
+};
 
-export const TestingSDVXAlbidaSong = GetKTDataJSON(
-	"./tachi/sdvx-albida-song.json"
-) as SongDocument<"sdvx">;
+export const TestingAlbidaADV: ChartDocument<"sdvx:Single"> = {
+	rgcID: null,
+	chartID: "5088a4d0e1ee9d0cc2f625934306e45b1a60699b",
+	difficulty: "ADV",
+	songID: 1,
+	playtype: "Single",
+	levelNum: 10,
+	level: "10",
+	data: {
+		inGameID: 1,
+		arcChartID: "EOZ7FixCDpv",
+	},
+	isPrimary: true,
+	versions: ["booth", "inf", "gw", "heaven", "vivid", "konaste"],
+	tierlistInfo: {},
+};
 
-export const TestingDoraChart = GetKTDataJSON(
-	"./tachi/gitadora-ithinkabtyou.json"
-) as ChartDocument<"gitadora:Dora">;
+export const BMSGazerChart: ChartDocument<"bms:7K"> = {
+	songID: 27339,
+	chartID: "88eb6cc5683e2740cbd07f588a5f3db1db8d467b",
+	rgcID: null,
+	data: {
+		notecount: 2256,
+		hashMD5: "38616b85332037cc12924f2ae2840262",
+		hashSHA256: "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d",
+		tableFolders: [
+			{
+				level: "17",
+				table: "★",
+			},
+		],
+	},
+	level: "?",
+	levelNum: 0,
+	difficulty: "CHART",
+	playtype: "7K",
+	isPrimary: true,
+	versions: [],
+	tierlistInfo: {},
+};
 
-export const TestingSDVXSingleDryScore = GetKTDataJSON(
-	"./tachi/sdvx-dryscore.json"
-) as DryScore<"sdvx:Single">;
+export const CHUNITHMBBKKChart: ChartDocument<"chunithm:Single"> = {
+	rgcID: null,
+	chartID: "192b96bdb6150f80ba6412ce02df1249e16c0cb0",
+	difficulty: "BASIC",
+	songID: 3,
+	playtype: "Single",
+	levelNum: 3,
+	level: "3",
+	data: {
+		inGameID: 3,
+	},
+	tierlistInfo: {},
+	isPrimary: true,
+	versions: ["paradiselost"],
+};
 
-export const TestingGITADORADoraDryScore = GetKTDataJSON(
-	"./tachi/gitadora-dryscore.json"
-) as DryScore<"gitadora:Dora">;
+export const TestingSDVXAlbidaSong: SongDocument<"sdvx"> = {
+	title: "ALBIDA Powerless Mix",
+	artist: "無力P",
+	id: 1,
+	altTitles: [],
+	searchTerms: ["albida_muryoku", "ｱﾙﾋﾞﾀﾞﾊﾟﾜｰﾚｽﾐｯｸｽ"],
+	data: {
+		displayVersion: "booth",
+	},
+};
+
+export const TestingDoraChart: ChartDocument<"gitadora:Dora"> = {
+	songID: 0,
+	chartID: "29f0bfab357ba54e3fd0176fb3cbc578c9ec8df5",
+	difficulty: "BASIC",
+	playtype: "Dora",
+	levelNum: 1.6,
+	level: "1.60",
+	data: {
+		inGameID: 0,
+	},
+	isPrimary: true,
+	rgcID: null,
+	tierlistInfo: {},
+	versions: ["nextage"],
+};
+
+export const TestingSDVXSingleDryScore: DryScore<"sdvx:Single"> = {
+	service: "e-amusement",
+	game: "sdvx",
+	scoreData: {
+		score: 9_500_000,
+		lamp: "EXCESSIVE CLEAR",
+		percent: 95,
+		grade: "AA+",
+		judgements: {},
+		hitMeta: {},
+	},
+	scoreMeta: {},
+	timeAchieved: null,
+	comment: null,
+	importType: "file/batch-manual",
+};
+
+export const TestingGITADORADoraDryScore: DryScore<"gitadora:Dora"> = {
+	service: "fake-service",
+	game: "gitadora",
+	scoreData: {
+		score: 70.76,
+		lamp: "CLEAR",
+		percent: 70.76,
+		grade: "B",
+		judgements: {},
+		hitMeta: {},
+	},
+	scoreMeta: {},
+	timeAchieved: null,
+	comment: null,
+	importType: "file/batch-manual",
+};
 
 export const TestingIIDXEamusementCSV26 = GetKTDataBuffer(
 	"./eamusement-iidx-csv/pre-leggendaria.csv"
@@ -133,7 +387,23 @@ export const TestingSDVXEamusementCSV = GetKTDataBuffer(
 	"./eamusement-sdvx-csv/exceed-gear-score.csv"
 );
 
-export const TestingBarbatosScore: BarbatosScore = GetKTDataJSON("./barbatos/base.json");
+export const TestingBarbatosScore: BarbatosScore = {
+	difficulty: 1,
+	level: 10,
+	song_id: 1,
+	max_chain: 50,
+	critical: 50,
+	near_total: 30,
+	near_fast: 20,
+	near_slow: 10,
+	score: 9500000,
+	error: 5,
+	percent: 81,
+	did_fail: false,
+	clear_type: 2,
+	gauge_type: 1,
+	is_skill_analyzer: false,
+};
 
 export const HC511Goal: GoalDocument = {
 	charts: {
@@ -271,6 +541,7 @@ export const uscChart: ChartDocument<"usc:Controller" | "usc:Keyboard"> = {
 	data: {
 		hashSHA1: "USC_CHART_HASH",
 		isOfficial: false,
+		effector: "foo",
 	},
 	tierlistInfo: {},
 	isPrimary: true,

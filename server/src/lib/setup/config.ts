@@ -6,6 +6,7 @@ import JSON5 from "json5";
 import { SendMailOptions } from "nodemailer";
 import p from "prudence";
 import { Game, ImportTypes, integer, StaticConfig } from "tachi-common";
+import { URL } from "url";
 import { FormatPrError } from "utils/prudence";
 
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
@@ -230,6 +231,8 @@ if (Number.isNaN(port) && process.env.IS_SERVER) {
 
 const redisUrl = process.env.REDIS_URL;
 if (!redisUrl) {
+	// n.b. These logs should be critical level, but the logger cant actually instantiate
+	// itself in this file, because this file also controlls the logger. Ouch!
 	logger.error(`No REDIS_URL specified in environment. Terminating.`);
 	process.exit(1);
 }
@@ -256,6 +259,14 @@ if (!nodeEnv) {
 if (!["dev", "production", "staging", "test"].includes(nodeEnv)) {
 	logger.error(
 		`Invalid NODE_ENV set in environment. Expected dev, production, test or staging. Got ${nodeEnv}.`
+	);
+	process.exit(1);
+}
+
+// if (bms XOR popn) is enabled
+if (TachiConfig.GAMES.includes("bms") !== TachiConfig.GAMES.includes("pms")) {
+	logger.error(
+		`BMS and PMS MUST be enabled at the same time, due to how the beatoraja IR works.`
 	);
 	process.exit(1);
 }

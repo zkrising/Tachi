@@ -8,10 +8,20 @@ import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
 const router: Router = Router({ mergeParams: true });
 
 const GetChartDocument: RequestHandler = async (req, res, next) => {
-	const chart = (await db.charts.bms.findOne({
-		"data.hashSHA256": req.params.chartSHA256,
-	})) as ChartDocument<"bms:7K" | "bms:14K"> | null;
+	let chart: ChartDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard"> | null =
+		(await db.charts.bms.findOne({
+			"data.hashSHA256": req.params.chartSHA256,
+		})) as ChartDocument<"bms:7K" | "bms:14K"> | null;
 
+	// if we dont find the chart in bms,
+	// it's probably a pms chart.
+	if (!chart) {
+		chart = (await db.charts.pms.findOne({
+			"data.hashSHA256": req.params.chartSHA256,
+		})) as ChartDocument<"pms:Controller" | "pms:Keyboard"> | null;
+	}
+
+	// if we still haven't found it, we've got nothin.
 	if (!chart) {
 		return res.status(404).json({
 			success: false,
@@ -36,7 +46,7 @@ router.get("/scores", async (req, res) => {
 
 	const scores = (await db["personal-bests"].find({
 		chartID: chart.chartID,
-	})) as PBScoreDocument<"bms:7K" | "bms:14K">[];
+	})) as PBScoreDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">[];
 
 	const userDocs = await db.users.find(
 		{

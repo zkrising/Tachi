@@ -56,28 +56,12 @@ const PR_BeatorajaChart = {
 	lntype: p.isIn(-1, 0, 1, 2),
 
 	// currently only accepted playtypes.
-	mode: p.isIn("BEAT_7K", "BEAT_14K"),
+	mode: p.isIn("BEAT_7K", "BEAT_14K", "POPN_9K"),
 	judge: p.isPositive,
 	notes: p.isPositiveInteger,
 	hasUndefinedLN: "boolean",
 	hasRandom: "boolean",
 };
-
-const SUPPORTED_BEATORAJA_CLIENTS = [
-	"LR2oraja 0.8.4",
-	"LR2oraja 0.8.3",
-	"LR2oraja 0.8.2",
-	"LR2oraja 0.8.1",
-	"LR2oraja 0.8.0",
-	// LITONE9 comes with its own fork of lr2oraja with a different name
-	"LR2oraja 0.8.4c",
-	// Rekidai maintains a custom fork of lr2oraja too...
-	"LR2oraja(rekidai.info) 0.8.4",
-	"LR2oraja(rekidai.info) 0.8.3",
-	"LR2oraja(rekidai.info) 0.8.2",
-	"LR2oraja(rekidai.info) 0.8.1",
-	"LR2oraja(rekidai.info) 0.8.0",
-];
 
 export function ParseBeatorajaSingle(
 	body: Record<string, unknown>,
@@ -115,20 +99,30 @@ export function ParseBeatorajaSingle(
 	// Force stringify this, since it's not validated by prudence.
 	const client = `${body.client}`;
 
-	if (!SUPPORTED_BEATORAJA_CLIENTS.includes(client)) {
-		throw new ScoreImportFatalError(400, `Unsupported client ${client}`);
+	const score = body.score as BeatorajaScore;
+	const chart = body.chart as BeatorajaChart;
+
+	const isPMS = chart.mode === "POPN_9K";
+
+	const expectedClient = isPMS ? "beatoraja" : "LR2oraja";
+
+	if (!client.startsWith(expectedClient)) {
+		throw new ScoreImportFatalError(
+			400,
+			`Unsupported client ${client} -- Expected a variant of ${expectedClient}.`
+		);
 	}
 
 	return {
 		context: {
-			client: "lr2oraja",
+			client: isPMS ? "beatoraja" : "lr2oraja",
 			// asserted using prudence.
-			chart: body.chart as BeatorajaChart,
+			chart,
 			userID,
 			timeReceived: Date.now(),
 		},
-		game: "bms",
-		iterable: [body.score] as unknown as BeatorajaScore[],
+		game: isPMS ? "pms" : "bms",
+		iterable: [score],
 		classHandler: null,
 	};
 }

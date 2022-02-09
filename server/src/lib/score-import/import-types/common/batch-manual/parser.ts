@@ -71,6 +71,16 @@ const PR_ScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => 
 		return {
 			inSkillAnalyser: "*?boolean",
 		};
+	} else if (game === "wacca") {
+		return { mirror: "*?boolean" };
+	} else if (game === "popn") {
+		return {
+			hiSpeed: optNull(p.isPositive),
+			hidden: optNull(p.isInteger),
+			sudden: optNull(p.isInteger),
+			random: optNull(p.isIn("NONRAN", "MIRROR", "RANDOM", "S-RANDOM")),
+			gauge: optNull(p.isIn("NORMAL", "EASY", "HARD", "DANGER")),
+		};
 	}
 
 	return {};
@@ -80,27 +90,27 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 	if (game === "iidx") {
 		return {
 			bp: optNull(p.isPositiveInteger),
-			gauge: optNull(p.isBoundedInteger(0, 100)),
-			gaugeHistory: optNull([p.isBoundedInteger(0, 100)]),
+			gauge: optNull(p.isBetween(0, 100)),
+			gaugeHistory: optNull([p.isBetween(0, 100)]),
 			scoreHistory: optNull([p.isPositiveInteger]),
 			comboBreak: optNull(p.isPositiveInteger),
 			gsm: optNull({
-				EASY: [p.nullable(p.isBoundedInteger(0, 100))],
-				NORMAL: [p.nullable(p.isBoundedInteger(0, 100))],
-				HARD: [p.nullable(p.isBoundedInteger(0, 100))],
-				EX_HARD: [p.nullable(p.isBoundedInteger(0, 100))],
+				EASY: [p.nullable(p.isBetween(0, 100))],
+				NORMAL: [p.nullable(p.isBetween(0, 100))],
+				HARD: [p.nullable(p.isBetween(0, 100))],
+				EX_HARD: [p.nullable(p.isBetween(0, 100))],
 			}),
 		};
-	} else if (/* game === "popn" || */ game === "sdvx") {
+	} else if (game === "sdvx") {
 		return {
-			gauge: optNull(p.isBoundedInteger(0, 100)),
+			gauge: optNull(p.isBetween(0, 100)),
 		};
 	} else if (game === "usc") {
 		return { gauge: optNull(p.isBetween(0, 1)) };
 	} else if (game === "bms") {
 		return {
 			bp: optNull(p.isPositiveInteger),
-			gauge: optNull(p.isBoundedInteger(0, 100)),
+			gauge: optNull(p.isBetween(0, 100)),
 			lbd: optNull(p.isPositiveInteger),
 			ebd: optNull(p.isPositiveInteger),
 			lpr: optNull(p.isPositiveInteger),
@@ -112,6 +122,26 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 			lpg: optNull(p.isPositiveInteger),
 			epg: optNull(p.isPositiveInteger),
 		};
+	} else if (game === "popn") {
+		return {
+			gauge: optNull(p.isBetween(0, 100)),
+			specificClearType: optNull(
+				p.isIn(
+					"failedUnknown",
+					"failedCircle",
+					"failedDiamond",
+					"failedStar",
+					"easyClear",
+					"clearCircle",
+					"clearDiamond",
+					"clearStar",
+					"fullComboCircle",
+					"fullComboDiamond",
+					"fullComboStar",
+					"perfect"
+				)
+			),
+		};
 	}
 
 	return {};
@@ -120,7 +150,7 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => {
 	const gptConfig = GetGamePTConfig(game, playtype);
 	return {
-		score: "number",
+		score: p.isPositiveInteger,
 		lamp: p.isIn(gptConfig.lamps),
 		matchType: p.isIn(
 			"songTitle",
@@ -128,13 +158,15 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 			"tachiSongID",
 			"bmsChartHash",
 			"inGameID",
-			"uscChartHash"
+			"uscChartHash",
+			"popnChartHash"
 		),
 		identifier: "string",
+		percent: game === "jubeat" ? p.isBetween(0, 120) : p.is(undefined),
 		comment: optNull(p.isBoundedString(3, 240)),
 		difficulty: "*?string", // this is checked in converting instead
-		// september 9th 2001 - this saves people not
-		// reading the documentation.
+		// september 9th 2001 - this saves people who dont
+		// read any documentation.
 		timeAchieved: optNull(
 			(self) =>
 				(typeof self === "number" && self > 1_000_000_000_000) ||
@@ -165,8 +197,6 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 			deepmerge(BaseValidHitMeta, PR_HitMeta(game)) as unknown as ValidSchemaValue
 		),
 		scoreMeta: optNull(PR_ScoreMeta(game, playtype)),
-		// scoreMeta: @todo #74
-		// more game specific props, maybe?
 	};
 };
 

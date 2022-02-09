@@ -27,6 +27,7 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 				preferredScoreAlg: null,
 				preferredSessionAlg: null,
 				scoreBucket: null,
+				defaultTable: null,
 				stats: [
 					{
 						folderID: TestingIIDXFolderSP10.folderID,
@@ -42,6 +43,7 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 				],
 				gameSpecific: {
 					display2DXTra: false,
+					bpiTarget: 0,
 				},
 			},
 		});

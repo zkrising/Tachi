@@ -2,7 +2,6 @@
 
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { CreateSessionCalcData } from "lib/score-import/framework/sessions/calculated-data";
 import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
 import { FormatUserDoc } from "utils/user";
 

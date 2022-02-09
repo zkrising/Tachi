@@ -45,12 +45,10 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 	iidx: {
 		SP: (scd) => ({
 			BPI: AvgBest10Map(scd, "BPI"),
-			ktRating: AvgBest10Map(scd, "ktRating"),
 			ktLampRating: AvgBest10Map(scd, "ktLampRating"),
 		}),
 		DP: (scd) => ({
 			BPI: AvgBest10Map(scd, "BPI"),
-			ktRating: AvgBest10Map(scd, "ktRating"),
 			ktLampRating: AvgBest10Map(scd, "ktLampRating"),
 		}),
 	},
@@ -64,9 +62,11 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 			};
 		},
 	},
-	// popn: {
-	// 	"9B": () => ({}),
-	// },
+	popn: {
+		"9B": (scd) => ({
+			classPoints: AvgBest10Map(scd, "classPoints"),
+		}),
+	},
 	museca: {
 		Single: (scd) => ({
 			ktRating: AvgBest10Map(scd, "ktRating"),
@@ -78,7 +78,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 		}),
 	},
 	maimai: {
-		Single: (scd) => ({}),
+		Single: () => ({}),
 	},
 	gitadora: {
 		Gita: (scd) => ({
@@ -96,6 +96,14 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 			sieglinde: AvgBest10Map(scd, "sieglinde"),
 		}),
 	},
+	pms: {
+		Controller: (scd) => ({
+			sieglinde: AvgBest10Map(scd, "sieglinde"),
+		}),
+		Keyboard: (scd) => ({
+			sieglinde: AvgBest10Map(scd, "sieglinde"),
+		}),
+	},
 	ddr: {
 		SP: (scd) => ({
 			MFCP: SumAll(scd, "MFCP"),
@@ -106,11 +114,11 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 			ktRating: AvgBest10Map(scd, "ktRating"),
 		}),
 	},
-	// jubeat: {
-	// 	Single: (scd) => ({
-	// 		jubility: AvgBest10Map(scd, "jubility"),
-	// 	}),
-	// },
+	jubeat: {
+		Single: (scd) => ({
+			jubility: AvgBest10Map(scd, "jubility"),
+		}),
+	},
 	usc: {
 		Controller: (scd) => {
 			const VF6 = AvgBest10Map(scd, "VF6");
@@ -128,6 +136,11 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 				ProfileVF6: VF6 === null ? null : VF6 * 50,
 			};
 		},
+	},
+	wacca: {
+		Single: (scd) => ({
+			rate: AvgBest10Map(scd, "rate"),
+		}),
 	},
 };
 

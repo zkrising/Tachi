@@ -6,10 +6,8 @@ import { ONE_MEGABYTE } from "lib/constants/filesize";
 import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
 import { USCIR_MAX_LEADERBOARD_N } from "lib/constants/usc-ir";
 import CreateLogCtx from "lib/logger/logger";
-import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
 import { AssertStrAsPositiveNonZeroInt } from "lib/score-import/framework/common/string-asserts";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
-import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
@@ -21,17 +19,10 @@ import {
 	Playtypes,
 	SuccessfulAPIResponse,
 } from "tachi-common";
-import { DedupeArr } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
-import { GetBlacklist } from "utils/queries/blacklist";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 import { USCClientChart } from "./types";
-import {
-	ConvertUSCChart,
-	CreatePOSTScoresResponseBody,
-	TachiScoreToServerScore,
-	USCChartIndexToDiff,
-} from "./usc";
+import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
 const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
@@ -314,55 +305,6 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 		playtype,
 	})) as ChartDocument<"usc:Controller" | "usc:Keyboard"> | null;
 
-	// if (!chartDoc) {
-	// 	return res.status(200).json({
-	// 		statusCode: STATUS_CODES.CHART_REFUSE,
-	// 		description:
-	// 			"The IR doesn't recognise this chart, and automatic chart uploading has been turned off.",
-	// 	});
-	// }
-
-	// If the chart doesn't exist, call HandleOrphanQueue.
-	// If this chart has never been seen before, orphan it.
-	// If this chart is already orphaned, increase its unique player
-	// playcount.
-	// if (!chartDoc) {
-	// 	const { song, chart } = ConvertUSCChart(uscChart, playtype);
-
-	// 	const uscChartName = `${uscChart.artist} - ${uscChart.title} (${USCChartIndexToDiff(
-	// 		uscChart.difficulty
-	// 	)})`;
-
-	// 	chartDoc = await HandleOrphanQueue(
-	// 		`usc:${playtype}` as const,
-	// 		"usc",
-	// 		chart,
-	// 		song,
-	// 		{
-	// 			"chartDoc.data.hashSHA1": uscChart.chartHash,
-	// 			"chartDoc.playtype": playtype,
-	// 		},
-	// 		ServerConfig.USC_QUEUE_SIZE,
-	// 		req[SYMBOL_TachiAPIAuth].userID!,
-	// 		uscChartName
-	// 	);
-
-	// 	if (chartDoc) {
-	// 		const blacklist = await GetBlacklist();
-	// 		const scoresToDeorphan = await db["orphan-scores"].find({
-	// 			"context.chartHash": chartDoc.data.hashSHA1,
-	// 			"context.playtype": playtype,
-	// 		});
-
-	// 		for (const score of scoresToDeorphan) {
-	// 			// Has to be like this to avoid race conditions where two
-	// 			// orphans resolve to the same scoreID and collide in mid-air!
-	// 			// eslint-disable-next-line no-await-in-loop
-	// 			await ReprocessOrphan(score, blacklist, logger);
-	// 		}
-	// 	}
-	// }
-
 	const userID = req[SYMBOL_TachiAPIAuth]!.userID!;
 
 	const importRes = await ExpressWrappedScoreImportMain(userID, false, "ir/usc", [
@@ -404,7 +346,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	if (!chartDoc) {
 		return res.status(200).json({
 			statusCode: STATUS_CODES.ACCEPTED,
-			description: `This score has been accepted, but the chart is unavailable right now.`,
+			description: `This score has been saved, but the chart is not currently on the IR.`,
 			body: {},
 		});
 	}
@@ -423,13 +365,9 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	}
 
 	if (!importDoc.scoreIDs[0]) {
-		logger.warn(`No scoreID, but import was successful?`, {
-			importDoc,
-			userID,
-		});
 		return res.status(200).json({
-			statusCode: STATUS_CODES.BAD_REQ,
-			description: "No score was imported.",
+			statusCode: STATUS_CODES.SUCCESS,
+			description: "Score was identical to another score you already have.",
 		});
 	}
 

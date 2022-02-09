@@ -142,7 +142,7 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 			await InsertQueue(1);
 			t.pass("Did not throw when inserting an empty queue.");
 		} catch (err) {
-			t.fail(err);
+			t.fail((err as Error).message);
 		}
 
 		t.end();

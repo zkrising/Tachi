@@ -1,8 +1,25 @@
 import { Router } from "express";
-import { ServerConfig } from "lib/setup/config";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { RequireBokutachi } from "server/middleware/type-require";
 
 const router: Router = Router({ mergeParams: true });
+
+/**
+ * Returns Tachi Configuration info, such as server name, type, supported games
+ * and more.
+ */
+router.get("/", (req, res) =>
+	res.status(200).json({
+		success: true,
+		description: `Returned configuration info.`,
+		body: {
+			games: TachiConfig.GAMES,
+			importTypes: TachiConfig.IMPORT_TYPES,
+			name: TachiConfig.NAME,
+			type: TachiConfig.TYPE,
+		},
+	})
+);
 
 /**
  * Returns the value of the BEATORAJA_QUEUE_SIZE.

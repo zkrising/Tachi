@@ -4,6 +4,7 @@ import { Command } from "commander";
 import { Databases, monkDB } from "external/mongo/db";
 import { DatabaseSchemas } from "external/mongo/schemas";
 import CreateLogCtx from "lib/logger/logger";
+import { PrudenceError } from "prudence";
 import { FormatPrError } from "utils/prudence";
 
 const program = new Command();
@@ -33,7 +34,7 @@ export async function ValidateCollection(collectionName: Databases): Promise<voi
 				schemaRunner(c);
 				success++;
 			} catch (err) {
-				logger.error(`[${collectionName}]: ${FormatPrError(err)}`, c);
+				logger.error(`[${collectionName}]: ${FormatPrError(err as PrudenceError)}`, c);
 				fails++;
 			}
 		});

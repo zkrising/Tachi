@@ -30,7 +30,7 @@ not generally be shown to end users.
 - [ENH] You can now set a BPI target.
 - [ENH] You can now set a VOLFORCE target.
 - [ENH] Song search now displays the table for the chart for BMS.
-- [ENH] Song search now displays the effector for BMS.
+- [ENH] Song search now displays the effector for USC.
 - [ENH] Banned users now know that they're banned.
 - [ENH] Beatoraja IR instructions now include example `.bat` and `.sh` files for properly booting the IR.
 - [ENH] Add a GDPR page.
@@ -46,4 +46,3 @@ not generally be shown to end users.
 - [BUG] The Switchboard graph now loads even if you have no sessions on the game.
 - [BUG] Charts without tierlist information now still render at the bottom of tierlist view.
 - [BUG] The PBs indicator underneath a session is now correct, and not just the amount of scores you had.
-- 

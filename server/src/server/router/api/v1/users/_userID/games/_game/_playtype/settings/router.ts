@@ -56,7 +56,7 @@ router.patch(
 					display2DXTra: p.optional("boolean"),
 					bpiTarget: p.optional(p.isBoundedInteger(0, 100)),
 				};
-			} else if (game === "sdvx") {
+			} else if (game === "sdvx" || game === "usc") {
 				schema = {
 					vf6Target: p.optional(p.isBetween(0, 0.5)),
 				};

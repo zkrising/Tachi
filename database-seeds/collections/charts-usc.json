@@ -1605,7 +1605,7 @@
 			"hashSHA1": "fbd416eec828e35b5aa8cb29ab6f698c948dd729",
 			"isOfficial": true
 		},
-		"difficulty": "INF",
+		"difficulty": "NOV",
 		"isPrimary": true,
 		"level": "6",
 		"levelNum": 6,
@@ -1809,7 +1809,7 @@
 			"hashSHA1": "6ee70df81c6ddebbfa9b1716dbf5926bf8a18ca5",
 			"isOfficial": true
 		},
-		"difficulty": "INF",
+		"difficulty": "NOV",
 		"isPrimary": true,
 		"level": "3",
 		"levelNum": 3,
@@ -20212,7 +20212,7 @@
 			"hashSHA1": "81a6445fec569c3b41ccb7d3e35cd2649b1e0bfa",
 			"isOfficial": true
 		},
-		"difficulty": "INF",
+		"difficulty": "EXH",
 		"isPrimary": true,
 		"level": "17",
 		"levelNum": 17,
@@ -20246,7 +20246,7 @@
 			"hashSHA1": "81a6445fec569c3b41ccb7d3e35cd2649b1e0bfa",
 			"isOfficial": true
 		},
-		"difficulty": "INF",
+		"difficulty": "EXH",
 		"isPrimary": true,
 		"level": "17",
 		"levelNum": 17,
@@ -22252,7 +22252,7 @@
 			"hashSHA1": "3fd701ccb6e8654a6574a708add0f1c2fbaf1117",
 			"isOfficial": true
 		},
-		"difficulty": "INF",
+		"difficulty": "EXH",
 		"isPrimary": true,
 		"level": "17",
 		"levelNum": 17,
@@ -22354,7 +22354,7 @@
 			"hashSHA1": "3bd78b09731e2015fad859cf6114b64aff54a57c",
 			"isOfficial": true
 		},
-		"difficulty": "INF",
+		"difficulty": "EXH",
 		"isPrimary": true,
 		"level": "16",
 		"levelNum": 16,
@@ -48542,7 +48542,7 @@
 		"levelNum": 17,
 		"playtype": "Keyboard",
 		"rgcID": null,
-		"songID": 659,
+		"songID": 658,
 		"tierlistInfo": {},
 		"versions": []
 	},
@@ -53486,23 +53486,6 @@
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
-		"level": "12",
-		"levelNum": 12,
-		"playtype": "Keyboard",
-		"rgcID": null,
-		"songID": 726,
-		"tierlistInfo": {},
-		"versions": []
-	},
-	{
-		"chartID": "bed9241ba82f233324b71188324a8f4514b3d48c",
-		"data": {
-			"effector": "電撃ロブスター",
-			"hashSHA1": "4d2e730bcc051ced51c58eb31228f5535ea63184",
-			"isOfficial": true
-		},
-		"difficulty": "INF",
-		"isPrimary": true,
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Keyboard",
@@ -55764,8 +55747,8 @@
 		},
 		"difficulty": "INF",
 		"isPrimary": true,
-		"level": "20",
-		"levelNum": 20,
+		"level": "17",
+		"levelNum": 17,
 		"playtype": "Keyboard",
 		"rgcID": null,
 		"songID": 756,
@@ -58613,7 +58596,7 @@
 		"levelNum": 18,
 		"playtype": "Controller",
 		"rgcID": null,
-		"songID": 804,
+		"songID": 805,
 		"tierlistInfo": {},
 		"versions": []
 	},
@@ -58629,23 +58612,6 @@
 		"level": "18",
 		"levelNum": 18,
 		"playtype": "Keyboard",
-		"rgcID": null,
-		"songID": 804,
-		"tierlistInfo": {},
-		"versions": []
-	},
-	{
-		"chartID": "ff3cc46f347a9ad5c04685909a08690668654f0b",
-		"data": {
-			"effector": "",
-			"hashSHA1": "7f99dbabf5493b00a8c722731b252d6a934f5807",
-			"isOfficial": true
-		},
-		"difficulty": "INF",
-		"isPrimary": true,
-		"level": "18",
-		"levelNum": 18,
-		"playtype": "Controller",
 		"rgcID": null,
 		"songID": 805,
 		"tierlistInfo": {},
@@ -59577,40 +59543,6 @@
 			"isOfficial": true
 		},
 		"difficulty": "EXH",
-		"isPrimary": true,
-		"level": "15",
-		"levelNum": 15,
-		"playtype": "Controller",
-		"rgcID": null,
-		"songID": 820,
-		"tierlistInfo": {},
-		"versions": []
-	},
-	{
-		"chartID": "3f7567e43d4f889e912686e48a72bd32fc144349",
-		"data": {
-			"effector": "ひとくちピエロ",
-			"hashSHA1": "be060db70f857e045361a9151b9eb3968b3b9d3c",
-			"isOfficial": true
-		},
-		"difficulty": "INF",
-		"isPrimary": true,
-		"level": "17",
-		"levelNum": 17,
-		"playtype": "Controller",
-		"rgcID": null,
-		"songID": 820,
-		"tierlistInfo": {},
-		"versions": []
-	},
-	{
-		"chartID": "d5881f74b9df72ad050a7cc42f58c154242ccbf5",
-		"data": {
-			"effector": "ひとくちピエロ",
-			"hashSHA1": "be976ec937f2422ff89c0c374cd969f19b54ed65",
-			"isOfficial": true
-		},
-		"difficulty": "ADV",
 		"isPrimary": true,
 		"level": "13",
 		"levelNum": 13,
@@ -62891,7 +62823,7 @@
 			"hashSHA1": "a3a7c2cb01396e5be0f130aa2fa587ddd41469b7",
 			"isOfficial": true
 		},
-		"difficulty": "EXH",
+		"difficulty": "INF",
 		"isPrimary": true,
 		"level": "18",
 		"levelNum": 18,
@@ -69844,7 +69776,7 @@
 			"hashSHA1": "ec88db1c9bf0d7a3bd524f5e007f0045ac51256e",
 			"isOfficial": true
 		},
-		"difficulty": "NOV",
+		"difficulty": "INF",
 		"isPrimary": true,
 		"level": "17",
 		"levelNum": 17,
@@ -72413,59 +72345,8 @@
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
-		"level": "17",
-		"levelNum": 17,
-		"playtype": "Keyboard",
-		"rgcID": null,
-		"songID": 1003,
-		"tierlistInfo": {},
-		"versions": []
-	},
-	{
-		"chartID": "f8641a9e47389d7cb600bc7ba84095daa9f3a36d",
-		"data": {
-			"effector": "MAD CHILD VX",
-			"hashSHA1": "e1933c01880fcdaf9765ce057cc048e3da7ed9f4",
-			"isOfficial": true
-		},
-		"difficulty": "INF",
-		"isPrimary": true,
-		"level": "19",
-		"levelNum": 19,
-		"playtype": "Keyboard",
-		"rgcID": null,
-		"songID": 1003,
-		"tierlistInfo": {},
-		"versions": []
-	},
-	{
-		"chartID": "a910a915dead1eeeeac42816c8cf710bb9c58393",
-		"data": {
-			"effector": "MAD CHILD VX",
-			"hashSHA1": "4306972af932d92f0f6fa71af173e8b2937ddfa8",
-			"isOfficial": true
-		},
-		"difficulty": "NOV",
-		"isPrimary": true,
-		"level": "7",
-		"levelNum": 7,
-		"playtype": "Keyboard",
-		"rgcID": null,
-		"songID": 1003,
-		"tierlistInfo": {},
-		"versions": []
-	},
-	{
-		"chartID": "2942bc47e661d3a3721c6c1b6780d24afd632d80",
-		"data": {
-			"effector": "MAD CHILD & Megacycle",
-			"hashSHA1": "fd4bbd9054e50f114b2fc1bd3f3e9d08ee9441e5",
-			"isOfficial": true
-		},
-		"difficulty": "EXH",
-		"isPrimary": true,
-		"level": "16",
-		"levelNum": 16,
+		"level": "14",
+		"levelNum": 14,
 		"playtype": "Controller",
 		"rgcID": null,
 		"songID": 1009,
@@ -76865,7 +76746,7 @@
 			"hashSHA1": "f8108e66eb84237d0b735779f58c96b1b651b0dc",
 			"isOfficial": true
 		},
-		"difficulty": "NOV",
+		"difficulty": "INF",
 		"isPrimary": true,
 		"level": "17",
 		"levelNum": 17,
@@ -114384,7 +114265,7 @@
 			"hashSHA1": "87bc08d138e215ef817db7a4608a367b324ace38",
 			"isOfficial": true
 		},
-		"difficulty": "ADV",
+		"difficulty": "INF",
 		"isPrimary": true,
 		"level": "18",
 		"levelNum": 18,
@@ -114435,7 +114316,7 @@
 			"hashSHA1": "1463025864809fe8bcf02fc1999a2efe3c2acb4e",
 			"isOfficial": true
 		},
-		"difficulty": "EXH",
+		"difficulty": "INF",
 		"isPrimary": true,
 		"level": "18",
 		"levelNum": 18,
@@ -114560,7 +114441,7 @@
 		"levelNum": 17,
 		"playtype": "Controller",
 		"rgcID": null,
-		"songID": 1515,
+		"songID": 1516,
 		"tierlistInfo": {},
 		"versions": []
 	},
@@ -114627,40 +114508,6 @@
 		"level": "17",
 		"levelNum": 17,
 		"playtype": "Keyboard",
-		"rgcID": null,
-		"songID": 1515,
-		"tierlistInfo": {},
-		"versions": []
-	},
-	{
-		"chartID": "a48d0ffc761e021353f9c8bfb134a7575608030a",
-		"data": {
-			"effector": "月刊ミズタニ",
-			"hashSHA1": "99da393867db43febead039f3576d9ae5f652e6a",
-			"isOfficial": true
-		},
-		"difficulty": "NOV",
-		"isPrimary": true,
-		"level": "6",
-		"levelNum": 6,
-		"playtype": "Keyboard",
-		"rgcID": null,
-		"songID": 1515,
-		"tierlistInfo": {},
-		"versions": []
-	},
-	{
-		"chartID": "5f5c310e35adf9dc1caceb622f09eba4278b233c",
-		"data": {
-			"effector": "レッドホットスクリューズ",
-			"hashSHA1": "710b6b0b4d0aefff1bcef34f8baa1e4e5815c051",
-			"isOfficial": true
-		},
-		"difficulty": "ADV",
-		"isPrimary": true,
-		"level": "14",
-		"levelNum": 14,
-		"playtype": "Controller",
 		"rgcID": null,
 		"songID": 1516,
 		"tierlistInfo": {},

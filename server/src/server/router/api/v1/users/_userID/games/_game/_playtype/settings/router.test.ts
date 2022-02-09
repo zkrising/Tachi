@@ -279,6 +279,33 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 		t.end();
 	});
 
+	t.test("Should reject a arbitrary things on game specific settings.", async (t) => {
+		await db["api-tokens"].insert({
+			userID: 1,
+			identifier: "api_token",
+			permissions: {
+				customise_profile: true,
+			},
+			token: "api_token",
+			fromAPIClient: null,
+		});
+
+		const res = await mockApi
+			.patch("/api/v1/users/1/games/iidx/SP/settings")
+			.set("Authorization", "Bearer api_token")
+			.send({
+				preferredScoreAlg: "ktRating",
+				gameSpecific: {
+					display2DXTra: true,
+					arbitraryValue: {},
+				},
+			});
+
+		t.equal(res.statusCode, 400);
+
+		t.end();
+	});
+
 	t.test("Requires the user to be authed as the requested user.", async (t) => {
 		await db["api-tokens"].insert({
 			userID: 2,

@@ -1792,7 +1792,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		profileRatingAlgDescriptions: {
 			naiveRate: "A naive rating algorithm that just averages your 50 best scores.",
-			rate: "Rating as it's implemented in game, taking 25 hot charts and 25 not-hot charts.",
+			rate: "Rating as it's implemented in game, taking 15 scores from the latest version and 35 from all old versions.",
 		},
 		sessionRatingAlgDescriptions: {
 			rate: "The average of your best 10 ratings this session.",

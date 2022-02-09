@@ -74,8 +74,6 @@ const OldLeggendariaConversionTable: Record<integer, integer> = {
 	14100: 14009,
 	// KAMAITACHI† -> KAMAITACHI
 	14101: 14046,
-	// 華爛漫 -Flowers- -> 華爛漫 -Flowers-
-	15054: 15054,
 	// ICARUS† -> ICARUS
 	15101: 15023,
 	// THE DEEP STRIKER† -> THE DEEP STRIKER

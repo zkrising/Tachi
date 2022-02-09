@@ -15,7 +15,7 @@ not generally be shown to end users.
 
 # Changelog
 
-## 2.1.0 (Ongoing Development)
+## 2.1.0
 
 - [FEAT] Added UI support for Jubeat, Pop'n, WACCA and PMS.
 - [INTERNAL_FEAT] Config is now served from the server instead of being cloned to the client.

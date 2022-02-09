@@ -3,7 +3,6 @@ import { ErrorPage } from "app/pages/ErrorPage";
 import PrivacyPolicyPage from "app/pages/PrivacyPolicyPage";
 import { Layout } from "components/layout/Layout";
 import EmailVerify from "components/layout/misc/EmailVerify";
-import { BannedContext } from "context/BannedContext";
 import DashboardErrorBoundary from "components/util/DashboardErrorBoundary";
 import { BannedContext } from "context/BannedContext";
 import { UserContext } from "context/UserContext";

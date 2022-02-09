@@ -177,7 +177,7 @@ export default function IIDXBPIChart({
 											You {score.scoreData.score}{" "}
 											<FormatDiff diff={exScoreDiff} />
 											{" | "}
-											{score.calculatedData.BPI!}{" "}
+											{score.calculatedData.BPI!.toFixed(2)}{" "}
 											<FormatDiff diff={bpiDiff} />
 										</strong>
 									</div>

@@ -189,6 +189,7 @@ const MANUAL_TITLE_MAP = {
 	"Elemental Creation(Kamome mix)": "Elemental Creation (kamome sano Remix)",
 	"Engraved Mark -Gow's ill!-": "Engraved Mark-Gow's ill! RMX-",
 	"Make Majic": "Make Magic", // asdf
+	"PHYCHO+HEROES": "PSYCHO+HEROES",
 	"夏色DIARY -SD'VmiX-": "夏色DIARY -Summer Dazzlin' Vacation miX-",
 	"ユニバーページ(i-word Mix)": "ユニバーページ（i-world Mix）",
 	// In their defence I make this typo all the time
@@ -258,7 +259,14 @@ const MANUAL_TITLE_MAP = {
 	// 19s
 	// See Blue Forest
 	"Cross Fire[MXM": "Cross Fire",
-}
+};
+
+const AUTOMATION_PARADISE_SONGS = [
+	1259,
+	1438,
+	1490,
+	1491,
+];
 
 function validTiers(levelNum) {
 	return Object.keys(TIERS[levelNum]) + [SUPER_INDIV_DIFFERENCE];
@@ -277,7 +285,7 @@ function normalizeTitle(title) {
 		.replace(/？/g, "?")
 		.replace(/`/g, "'")
 		.replace(/’/g, "'")
-		.replace(/～/g, "~")
+		.replace(/～/g, "~");
 }
 
 function findSong(songs, title) {
@@ -291,7 +299,7 @@ function findSong(songs, title) {
 		normalizeTitle(song.title) === normalizeTitle(title) ||
 		song.title === MANUAL_TITLE_MAP[title]);
 	if (song) {
-		return song
+		return song;
 	}
 
 	// Only do prefix match _after_ trying normal match, since there are some
@@ -347,15 +355,15 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 				const tier = {
 					...baseTier,
 					individualDifference: superDiff,
-				}
+				};
 
 				// A few overrides.
 				// 【Believe (y)our Wings{V:VID RAYS}】[MXM]
-				chartString = chartString.replace(/^【(.+)】(\[[A-Z]{3}\])$/, "【$1$2】")
+				chartString = chartString.replace(/^【(.+)】(\[[A-Z]{3}\])$/, "【$1$2】");
 				// Star is outside brackets bc fuck you
 				if (chartString === "※【Opium and Purple haze[GRV]】") {
 					tier.individualDifference = true;
-					chartString = "Opium and Purple haze[GRV]"
+					chartString = "Opium and Purple haze[GRV]";
 				}
 
 				if (superDiff) {
@@ -370,10 +378,10 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 
 					// 16s don't have ranges, so if we can't find it, no sweat.
 					if (rangeMatch) {
-						chartString = rangeMatch[1]
+						chartString = rangeMatch[1];
 						tier.text = rangeMatch[2] + " - " + rangeMatch[3];
 					} else {
-						console.log(`No range found for individual difference chart ${chartString}.`)
+						console.log(`No range found for individual difference chart ${chartString}.`);
 					}
 				}
 
@@ -398,7 +406,7 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 
 				const song = findSong(songs, title);
 				if (!song) {
-					console.log(`Unable to find song matching ${title}`)
+					console.log(`Unable to find song matching ${title}`);
 					continue;
 				}
 
@@ -416,8 +424,8 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 				}
 				if ("clear" in chart.tierlistInfo && chart.tierlistInfo["clear"].value !== tier.value) {
 					console.log(`Overwriting tier for ${song.title} [${chart.difficulty}]`);
-					console.log(`Old tier ${chart.tierlistInfo["clear"].text} (${chart.tierlistInfo["clear"].value})`)
-					console.log(`New tier ${tier.text} (${tier.value})`)
+					console.log(`Old tier ${chart.tierlistInfo["clear"].text} (${chart.tierlistInfo["clear"].value})`);
+					console.log(`New tier ${tier.text} (${tier.value})`);
 				}
 				chart.tierlistInfo["clear"] = tier;
 			}
@@ -439,7 +447,7 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 			}
 
 			// If we get here, we have found something at the bottom of the column.
-			const cell = csvData[row][col]
+			const cell = csvData[row][col];
 			if (cell === tierName) {
 				// This signifies the end of the column.
 				row = headerRow;
@@ -457,13 +465,25 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 			col++;
 		}
 
+		const missingTiers = charts.filter(chart =>
+			chart.levelNum === levelNum &&
+			!("clear" in chart.tierlistInfo) &&
+			!AUTOMATION_PARADISE_SONGS.includes(chart.songID));
+		if (missingTiers.length > 0) {
+			console.log(`The following lv${levelNum} charts are still missing a tier:`);
+			for (const chart of missingTiers) {
+				const song = songs.find(song => song.id === chart.songID);
+				console.log(`${song.id}: ${song.title} [${chart.difficulty}] (displayVersion: ${song.data.displayVersion})`);
+			}
+		}
+
 		return charts;
 	});
 }
 
 
 const program = new Command();
-program.option("-f, --file <CSV File>")
+program.option("-f, --file <CSV File>");
 program.parse(process.argv);
 const options = program.opts();
 
@@ -495,7 +515,7 @@ switch (levelIndicator[1]) {
 			}
 		}
 
-		addTiers(19, csvData, header19, 1, true)
+		addTiers(19, csvData, header19, 1, true);
 		break;
 	default:
 		console.log("Unrecognized level");

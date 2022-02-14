@@ -13,7 +13,9 @@
 		"title": "ヒトガタ"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"叩ケ　叩ケ　手ェ叩ケ"
+		],
 		"artist": "SIRO",
 		"data": {
 			"artistJP": "シロ",
@@ -3056,18 +3058,18 @@
 	},
 	{
 		"altTitles": [
-			"ナイト・オブ・ナイツ (かめりあ’s“ワンス・アポン・ア・ナイト”Remix)"
+			"ナイト・オブ・ナイツ (かめりあ's\"ワンス・アポン・ア・ナイト\"Remix)"
 		],
 		"artist": "かめりあ",
 		"data": {
 			"artistJP": "カメリア",
 			"displayVersion": "s",
 			"genre": "東方アレンジ",
-			"titleJP": "ナイト・オブ・ナイツ (カメリア&#039;ズ“ワンス・アポン・ア・ナイト”リミックス)"
+			"titleJP": "ナイト・オブ・ナイツ (カメリア'ズ“ワンス・アポン・ア・ナイト”リミックス)"
 		},
 		"id": 236,
 		"searchTerms": [],
-		"title": "ナイト・オブ・ナイツ (かめりあ's\"ワンス・アポン・ア・ナイト\"Remix)"
+		"title": "ナイト・オブ・ナイツ (かめりあ’s“ワンス・アポン・ア・ナイト”Remix)"
 	},
 	{
 		"altTitles": [],
@@ -3642,7 +3644,9 @@
 		"title": "Galaxy Friends"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"13 DONKEYS"
+		],
 		"artist": "Massive New Krew",
 		"data": {
 			"artistJP": "マッシブニュークルー",
@@ -4550,5 +4554,20 @@
 		"id": 350,
 		"searchTerms": [],
 		"title": "Dimension Hacker"
+	},
+	{
+		"altTitles": [
+			"cloud Ⅸ"
+		],
+		"artist": "NOMA",
+		"data": {
+			"artistJP": "ノマ",
+			"displayVersion": "reverse",
+			"genre": "オリジナル",
+			"titleJP": "クラウドナイン"
+		},
+		"id": 351,
+		"searchTerms": [],
+		"title": "cloud IX"
 	}
 ]

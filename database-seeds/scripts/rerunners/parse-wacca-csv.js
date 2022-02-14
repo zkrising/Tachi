@@ -2,8 +2,7 @@ const { parse } = require("csv-parse/sync");
 const fs = require("fs");
 const fetch = require("node-fetch");
 const { Command } = require("commander");
-const { CreateChartID, ReadCollection } = require("../util");
-const path = require("path");
+const { CreateChartID, ReadCollection, WriteCollection } = require("../util");
 const { decode } = require("html-entities");
 const logger = require("../logger");
 
@@ -37,10 +36,34 @@ const dirtyRecords = parse(fs.readFileSync(options.file), {});
 
 const dataMap = new Map();
 
+const titleMap = {
+	"13 DONKEYS": "13 Donkeys",
+	"cloud Ⅸ": "cloud IX",
+};
+
+// Converts the title on the site to a noramlized version that we
+// can match against the CSV.
+function siteTitleNormalize(siteTitle) {
+	let normalized = decode(siteTitle.replace(/　/g, " ")).trim();
+
+	if (normalized in titleMap) {
+		normalized = titleMap[normalized];
+	}
+
+	return normalized;
+}
+
+// Note that the title in the CSV is the one we want - it's what's
+// used on the actual site. However, this normalizes it so we can
+// match against the broken titles on the music search site.
+function csvTitleNormalize(csvTitle) {
+	return csvTitle.replace(/”|“/gu, '"').replace(/’/gu, "'");
+}
+
 // we have to skip the first record because its the headers,
 // and there's literally no way to change this behaviour.
 for (const record of dirtyRecords.slice(1)) {
-	dataMap.set(record[0].replace(/”|“/gu, '"').replace(/’/gu, "'"), record);
+	dataMap.set(csvTitleNormalize(record[0]), record);
 }
 
 const STARTS = {
@@ -74,13 +97,7 @@ const STARTS = {
 	let songID = Math.max(...existingSongs.values()) + 1;
 
 	for (const data of datum) {
-		let prettiedTitle = decode(data.title.display.replace(/　/g, " ")).trim();
-
-		// This song got its title changed.
-		// No, I don't know why.
-		if (prettiedTitle === "13 DONKEYS") {
-			prettiedTitle = "13 Donkeys";
-		}
+		let siteTitleNormalized = siteTitleNormalize(data.title.display);
 
 		const time = Date.parse(data.release_date);
 		let ver;
@@ -101,35 +118,44 @@ const STARTS = {
 
 		// re-screw "'s to their shift-jis equivalent, because it seems like decoding
 		// &quot; is locale specific. Thanks.
-		const record = dataMap.get(prettiedTitle);
+		const record = dataMap.get(siteTitleNormalized);
 
 		if (!record) {
 			logger.warn(
-				`Can't find record with title ${prettiedTitle}. Dumping potentially similar titles.\n${[
+				`Can't find record with title ${siteTitleNormalized}. Dumping potentially similar titles.\n${[
 					...dataMap.keys(),
 				]
-					.filter((e) => e.startsWith(prettiedTitle[0]))
+					.filter((e) => e.startsWith(siteTitleNormalized[0]))
 					.join("\n")}`
 			);
 			continue;
 		}
 
+		// Use the CSV title.
+		const title = record[0];
+		const siteTitle = decode(data.title.display).trim();
+		const altTitles = [];
+		if (title !== siteTitle) {
+			// Include the title on the music site just in case.
+			altTitles.push(siteTitle);
+		}
+
 		let thisSongID = songID;
-		if (existingSongs.has(prettiedTitle)) {
-			thisSongID = existingSongs.get(prettiedTitle);
+		if (existingSongs.has(title)) {
+			thisSongID = existingSongs.get(title);
 		} else {
 			songID++;
 		}
 		songs.push({
 			id: thisSongID,
-			title: prettiedTitle,
+			title,
 			artist: decode(data.artist.display).trim(),
 			searchTerms: [],
-			altTitles: [],
+			altTitles,
 			data: {
-				titleJP: data.title.ruby,
-				artistJP: data.artist.ruby,
-				genre: data.category,
+				titleJP: decode(data.title.ruby),
+				artistJP: decode(data.artist.ruby),
+				genre: decode(data.category),
 				displayVersion: ver,
 			},
 		});
@@ -164,12 +190,6 @@ const STARTS = {
 		}
 	}
 
-	fs.writeFileSync(
-		path.resolve(__dirname, "../../collections/charts-wacca.json"),
-		JSON.stringify(charts, null, "\t")
-	);
-	fs.writeFileSync(
-		path.resolve(__dirname, "../../collections/songs-wacca.json"),
-		JSON.stringify(songs, null, "\t")
-	);
+	WriteCollection("charts-wacca.json", charts);
+	WriteCollection("songs-wacca.json", songs);
 })();

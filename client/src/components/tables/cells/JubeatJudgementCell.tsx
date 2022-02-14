@@ -12,6 +12,7 @@ export default function JubeatJudgementCell({
 		return (
 			<td>
 				<strong>
+					<span style={{ color: COLOUR_SET.pink }}>0</span>-
 					<span style={{ color: COLOUR_SET.gold }}>0</span>-
 					<span style={{ color: COLOUR_SET.blue }}>0</span>-
 					<span style={{ color: COLOUR_SET.purple }}>0</span>-
@@ -32,7 +33,8 @@ export default function JubeatJudgementCell({
 		IsNullish(judgements.miss) ||
 		IsNullish(judgements.great) ||
 		IsNullish(judgements.good) ||
-		IsNullish(judgements.poor)
+		IsNullish(judgements.poor) ||
+		IsNullish(judgements.perfect)
 	) {
 		return <td>No Data.</td>;
 	}
@@ -40,6 +42,7 @@ export default function JubeatJudgementCell({
 	return (
 		<td>
 			<strong>
+				<span style={{ color: COLOUR_SET.pink }}>{judgements.perfect}</span>-
 				<span style={{ color: COLOUR_SET.gold }}>{judgements.great}</span>-
 				<span style={{ color: COLOUR_SET.blue }}>{judgements.good}</span>-
 				<span style={{ color: COLOUR_SET.purple }}>{judgements.poor}</span>-

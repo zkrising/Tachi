@@ -97,7 +97,6 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 		case "jubeat":
 		case "wacca":
 		case "chunithm":
-		case "popn":
 		case "maimai":
 			return [
 				ScoreHeader,
@@ -109,5 +108,61 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 				LampHeader,
 				RatingHeader,
 			];
+		case "popn":
+			return [
+				ScoreHeader,
+				[
+					"Judgements",
+					"Hits",
+					NumericSOV(x => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
+				],
+				[
+					"Lamp",
+					"Lamp",
+					(a, b) => {
+						const aSc = kMapToScoreOrPB(a) as
+							| ScoreDocument<"popn:9B">
+							| PBScoreDocument<"popn:9B">;
+						const bSc = kMapToScoreOrPB(b) as
+							| ScoreDocument<"popn:9B">
+							| PBScoreDocument<"popn:9B">;
+
+						if (!aSc || !bSc) {
+							return -Infinity;
+						}
+
+						if (aSc.scoreData.lampIndex === bSc.scoreData.lampIndex) {
+							if (
+								!aSc.scoreData.hitMeta.specificClearType ||
+								!bSc.scoreData.hitMeta.specificClearType
+							) {
+								return -Infinity;
+							}
+
+							return (
+								popnClearTypeToInt[aSc.scoreData.hitMeta.specificClearType] -
+								popnClearTypeToInt[bSc.scoreData.hitMeta.specificClearType]
+							);
+						}
+
+						return aSc.scoreData.lampIndex - bSc.scoreData.lampIndex;
+					},
+				],
+				RatingHeader,
+			];
 	}
 }
+
+const popnClearTypeToInt = {
+	failedCircle: 0,
+	failedDiamond: 1,
+	failedStar: 2,
+	easyClear: 3,
+	clearCircle: 4,
+	clearDiamond: 5,
+	clearStar: 6,
+	fullComboCircle: 7,
+	fullComboDiamond: 8,
+	fullComboStar: 9,
+	perfect: 10,
+} as const;

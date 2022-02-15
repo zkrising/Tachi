@@ -2,59 +2,14 @@ import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Divider from "components/util/Divider";
 import Muted from "components/util/Muted";
 import useUGPTSettings from "components/util/useUGPTSettings";
-import React from "react";
+import { UserContext } from "context/UserContext";
+import React, { useContext } from "react";
 import { PoyashiBPI } from "rg-stats";
 import { ChartDocument, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { GetGradeFromPercent, IsNullish } from "util/misc";
 import MiniTable from "../components/MiniTable";
 import DeltaCell from "./DeltaCell";
 import ScoreCell from "./ScoreCell";
-// import { BPI_COLOURS } from "util/constants/colours";
-
-// tried it - doesn't look good. - zkldi
-// import colorInterpolate from "color-interpolate";
-
-// const scale = colorInterpolate([
-// 	BPI_COLOURS.ZERO,
-// 	BPI_COLOURS.TEN,
-// 	BPI_COLOURS.TWENTY,
-// 	BPI_COLOURS.THIRTY,
-// 	BPI_COLOURS.FOURTY,
-// 	BPI_COLOURS.FIFTY,
-// 	BPI_COLOURS.SIXTY,
-// 	BPI_COLOURS.SEVENTY,
-// 	BPI_COLOURS.EIGHTY,
-// 	BPI_COLOURS.NINETY,
-// 	BPI_COLOURS.MAX,
-// ]);
-
-// function GetColor(bpi: number) {
-// 	if (bpi < 0) {
-// 		return BPI_COLOURS.NEGATIVE;
-// 	} else if (bpi < 10) {
-// 		return BPI_COLOURS.ZERO;
-// 	} else if (bpi < 20) {
-// 		return BPI_COLOURS.TEN;
-// 	} else if (bpi < 30) {
-// 		return BPI_COLOURS.TWENTY;
-// 	} else if (bpi < 40) {
-// 		return BPI_COLOURS.THIRTY;
-// 	} else if (bpi < 50) {
-// 		return BPI_COLOURS.FOURTY;
-// 	} else if (bpi < 60) {
-// 		return BPI_COLOURS.FIFTY;
-// 	} else if (bpi < 70) {
-// 		return BPI_COLOURS.SIXTY;
-// 	} else if (bpi < 80) {
-// 		return BPI_COLOURS.SEVENTY;
-// 	} else if (bpi < 90) {
-// 		return BPI_COLOURS.EIGHTY;
-// 	} else if (bpi < 100) {
-// 		return BPI_COLOURS.NINETY;
-// 	} else {
-// 		return BPI_COLOURS.MAX;
-// 	}
-// }
 
 export default function BPICell({
 	score,
@@ -63,6 +18,7 @@ export default function BPICell({
 	score: ScoreDocument<"iidx:SP" | "iidx:DP"> | PBScoreDocument<"iidx:SP" | "iidx:DP">;
 	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
 }) {
+	const { user } = useContext(UserContext);
 	const { settings } = useUGPTSettings<"iidx:SP" | "iidx:DP">();
 
 	const bpi = score.calculatedData.BPI;
@@ -72,6 +28,7 @@ export default function BPICell({
 		return <td>N/A</td>;
 	}
 
+	const isRequestingUser = user?.id === score.userID;
 	const bpiTarget = settings?.preferences.gameSpecific.bpiTarget ?? 0;
 	let bpiTargetScore = 0;
 	let targetDelta: number | null = 0;
@@ -92,7 +49,6 @@ export default function BPICell({
 	}
 
 	const kavgDelta = score.scoreData.score - kaidenAverage!;
-	const wrDelta = score.scoreData.score - worldRecord!;
 
 	const { score: WRAverageCell, delta: WRDeltaCell } = FormatAverage(
 		worldRecord!,
@@ -126,12 +82,12 @@ export default function BPICell({
 							]}
 						>
 							<tr>
-								{TGAverageCell}
+								{isRequestingUser ? TGAverageCell : null}
 								{KDAverageCell}
 								{WRAverageCell}
 							</tr>
 							<tr>
-								{TGDeltaCell}
+								{isRequestingUser ? TGDeltaCell : null}
 								{KDDeltaCell}
 								{WRDeltaCell}
 							</tr>
@@ -154,19 +110,23 @@ export default function BPICell({
 					<br />
 
 					<div>
-						<BPITargetCell bpiTarget={bpiTarget} targetDelta={targetDelta} />
-						{bpiTarget !== 0 && (
+						{isRequestingUser ? (
 							<>
-								<br />
+								<BPITargetCell bpiTarget={bpiTarget} targetDelta={targetDelta} />
+								{bpiTarget !== 0 && (
+									<>
+										<br />
+										<Muted>
+											皆伝{kavgDelta < 0 ? kavgDelta : `+${kavgDelta}`}
+										</Muted>
+									</>
+								)}
+							</>
+						) : (
+							<>
 								<Muted>皆伝{kavgDelta < 0 ? kavgDelta : `+${kavgDelta}`}</Muted>
 							</>
 						)}
-						{/* {bpiTarget !== 100 && (
-							<>
-								<br />
-								<Muted>WR{wrDelta < 0 ? wrDelta : `+${wrDelta}`}</Muted>
-							</>
-						)} */}
 					</div>
 				</td>
 			</QuickTooltip>

@@ -1,5 +1,6 @@
 import useUGPTSettings from "components/util/useUGPTSettings";
-import React from "react";
+import { UserContext } from "context/UserContext";
+import React, { useContext } from "react";
 import { Volforce } from "rg-stats";
 import { ChartDocument, GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { IsNullish } from "util/misc";
@@ -19,6 +20,7 @@ export default function VF6Cell({
 	score: ScoreDocument<VF6IDStrings> | PBScoreDocument<VF6IDStrings>;
 	chart: ChartDocument<VF6IDStrings>;
 }) {
+	const { user } = useContext(UserContext);
 	const { settings } = useUGPTSettings<VF6IDStrings>();
 
 	if (IsNullish(score.calculatedData.VF6)) {
@@ -31,7 +33,7 @@ export default function VF6Cell({
 
 	const targets: Record<string, number | null> = {};
 
-	if (vf6Target) {
+	if (vf6Target && score.userID === user?.id) {
 		for (const lamp of ["CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN"] as const) {
 			if (score.scoreData.lampIndex <= gptConfig.lamps.indexOf(lamp)) {
 				const expectedScore = InverseVF6(vf6Target, lamp, chart.levelNum);

@@ -22,11 +22,6 @@ export default function JubeatJudgementCell({
 		);
 	}
 
-	// safety
-	if (score.scoreData.lamp === "FULL COMBO") {
-		score.scoreData.judgements.miss = 0;
-	}
-
 	const judgements = score.scoreData.judgements;
 
 	if (

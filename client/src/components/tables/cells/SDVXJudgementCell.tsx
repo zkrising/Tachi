@@ -19,11 +19,6 @@ export default function SDVXJudgementCell({
 		);
 	}
 
-	// safety
-	if (score.scoreData.lamp === "ULTIMATE CHAIN") {
-		score.scoreData.judgements.miss = 0;
-	}
-
 	const judgements = score.scoreData.judgements;
 
 	if (IsNullish(judgements.miss) || IsNullish(judgements.near)) {

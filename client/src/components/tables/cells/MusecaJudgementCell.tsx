@@ -19,11 +19,6 @@ export default function MusecaJudgementCell({
 		);
 	}
 
-	// safety
-	if (score.scoreData.lamp === "CONNECT ALL") {
-		score.scoreData.judgements.miss = 0;
-	}
-
 	const judgements = score.scoreData.judgements;
 
 	if (IsNullish(judgements.miss) || IsNullish(judgements.near)) {

@@ -36,7 +36,7 @@ GET /api/v1/users/1/api-tokens
 	"token": "foobar",
 	"permissions": {"submit_score": true},
 	"userID": 1,
-	"fromOAuth2Client": "FERVIDEX_OA2_CLIENT_ID"
+	"fromAPIClient": "FERVIDEX_OA2_CLIENT_ID"
 }]
 ```
 
@@ -82,7 +82,7 @@ DELETE /api/v1/users/1/api-token/foobar
 
 !!! info
 	If using ClientID for permissions, the clientID will be pinned to the
-	token you've created as `fromOAuth2Client`. You can only have one
+	token you've created as `fromAPIClient`. You can only have one
 	API Token per OAuth2 client, and will get a 409 if you repeat the request.
 
 ### Response

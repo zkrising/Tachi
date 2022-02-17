@@ -53,7 +53,7 @@ POST /api/v1/oauth/token
 	"permissions": {
 		"customise_profile": true
 	},
-	"fromOAuth2Client": "my_client_id"
+	"fromAPIClient": "my_client_id"
 }
 ```
 

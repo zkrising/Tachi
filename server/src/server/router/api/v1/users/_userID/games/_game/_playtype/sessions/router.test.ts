@@ -107,6 +107,48 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/best", (t) => {
 		t.end();
 	});
 
+	t.test(
+		"Should return a user's best 100 sessions according to the provided rating alg.",
+		async (t) => {
+			const sessions: SessionDocument[] = [];
+
+			for (let i = 0; i < 200; i++) {
+				sessions.push({
+					sessionID: i.toString(),
+					game: "iidx",
+					playtype: "SP",
+					userID: 1,
+					calculatedData: {
+						ktLampRating: 200 - i,
+						BPI: i,
+					},
+				} as SessionDocument);
+			}
+
+			await db.sessions.remove({});
+			await db.sessions.insert(sessions);
+
+			const res = await mockApi.get(
+				"/api/v1/users/test_zkldi/games/iidx/SP/sessions/best?alg=BPI"
+			);
+
+			t.hasStrict(res.body, {
+				success: true,
+				description: "Retrieved 100 sessions.",
+			});
+
+			t.strictSame(
+				res.body.body.map((e: SessionDocument) => e.sessionID),
+				sessions
+					.slice(100)
+					.reverse()
+					.map((e) => e.sessionID)
+			);
+
+			t.end();
+		}
+	);
+
 	t.end();
 });
 

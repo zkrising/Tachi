@@ -1,6 +1,5 @@
 import React from "react";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
-import { IsNullish } from "util/misc";
 import LampCell from "../cells/LampCell";
 import MillionsScoreCell from "../cells/MillionsScoreCell";
 import RatingCell from "../cells/RatingCell";

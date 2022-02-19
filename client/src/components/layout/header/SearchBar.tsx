@@ -162,10 +162,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 }
 
 function FormatSongTitle(game: Game, song: SongDocument) {
-	if (game === "usc") {
-		const s = song as SongDocument<"usc">;
-		return `${song.title} (${s.data.effector})`;
-	} else if (game === "bms" || game === "pms") {
+	if (game === "bms" || game === "pms") {
 		const s = song as SongDocument<"bms" | "pms">;
 		return `${song.title}${ConditionalLeadingSpace(s.data.subtitle)}${ConditionalLeadingSpace(
 			s.data.tableString

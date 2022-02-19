@@ -106,7 +106,7 @@ export default function BPICell({
 				}
 			>
 				<td>
-					<strong className="underline-on-hover">{bpi}</strong>
+					<strong className="underline-on-hover">{bpi?.toFixed(2)}</strong>
 					<br />
 
 					<div>

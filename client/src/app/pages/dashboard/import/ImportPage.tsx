@@ -301,11 +301,11 @@ function ImportTypeInfoCard({
 		case "api/flo-sdvx":
 			return (
 				<ImportInfoCard
-					name="EAG Integration"
-					href="sdvx-eag"
-					desc="Pull your SDVX scores from the EAG Network."
+					name="FLO Integration"
+					href="sdvx-flo"
+					desc="Pull your SDVX scores from the FLO Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
-					key="EAG Integration"
+					key="FLO Integration"
 				/>
 			);
 		case "api/eag-sdvx":

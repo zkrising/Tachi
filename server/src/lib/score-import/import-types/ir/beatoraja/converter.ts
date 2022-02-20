@@ -27,6 +27,7 @@ const LAMP_LOOKUP = {
 	ExHard: "EX HARD CLEAR",
 	FullCombo: "FULL COMBO",
 	Perfect: "FULL COMBO",
+	Max: "FULL COMBO",
 } as const;
 
 const RANDOM_LOOKUP = {

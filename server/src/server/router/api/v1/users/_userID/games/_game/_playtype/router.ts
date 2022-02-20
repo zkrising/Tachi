@@ -115,7 +115,7 @@ router.get("/history", async (req, res) => {
 				game: 0,
 				playtype: 0,
 			},
-			limit: 90,
+			limit: 30,
 		}
 	)) as Omit<UserGameStatsSnapshot, "userID" | "game" | "playtype">[];
 

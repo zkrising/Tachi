@@ -255,6 +255,7 @@ export async function ResolveMatchTypeToKTData(
 	} else if (data.matchType === "inGameID") {
 		const gamesWithInGameIDSupport = [
 			"iidx",
+			"popn",
 			"ddr",
 			"sdvx",
 			"jubeat",

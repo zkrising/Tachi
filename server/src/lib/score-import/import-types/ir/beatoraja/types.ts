@@ -44,7 +44,8 @@ export interface BeatorajaScore {
 		| "Hard"
 		| "ExHard"
 		| "FullCombo"
-		| "Perfect";
+		| "Perfect"
+		| "Max";
 	assist: 0;
 	maxcombo: integer;
 

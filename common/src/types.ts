@@ -411,25 +411,6 @@ export type GoalDocument =
 	| GoalDocumentSingle
 	| GoalDocumentAny;
 
-export interface RivalGroupDocument extends MongoDBDocument {
-	name: string;
-	desc: string;
-	founderID: integer;
-	members: integer[];
-	mutualGroup: boolean;
-	isDefault: boolean;
-	game: Game;
-	playtype: AnyPlaytype;
-	settings: {
-		scoreCompareMode: "relevant" | "folder";
-		strictness: number;
-		boundary: number;
-		scoreCompareFolderID: string | null;
-		cellShading: "grade" | "lamp";
-	};
-	rivalGroupID: string;
-}
-
 export type MRGChallengeModes = "goal" | "lamp" | "score";
 export interface MutualRivalGroupChallenge extends MongoDBDocument {
 	challengeID: string;
@@ -634,20 +615,39 @@ export interface MilestoneImportInfo {
 	new: MilestoneImportStat;
 }
 
-export interface UserGoalDocument extends MongoDBDocument {
+export type GoalOrigin = {
+	// The user set this goal by hand
+	origin: "manual";
+} & {
+	// This goal was set for the user by part of a milestone.
+	// If a goal in a milestone was already set for whatever reason
+	// that origin takes priority.
+	origin: "milestone";
+	milestoneID: string;
+};
+
+export type UserGoalDocument = MongoDBDocument & {
 	goalID: string;
 	userID: integer;
 	game: Game;
 	playtype: AnyPlaytype;
-	achieved: boolean;
 	timeSet: integer;
-	timeAchieved: integer | null;
 	lastInteraction: integer | null;
 	progress: number | null;
 	progressHuman: string;
 	outOf: number;
 	outOfHuman: string;
-}
+	from: GoalOrigin;
+} & (
+		| {
+				achieved: true;
+				timeAchieved: integer;
+		  }
+		| {
+				achieved: false;
+				timeAchieved: null;
+		  }
+	);
 
 interface MilestoneGoalReference {
 	goalID: string;
@@ -669,13 +669,10 @@ export interface MilestoneDocument extends MongoDBDocument {
 	 * proportion: Goals achieved must be greater than or equal to criteria.value * total_goals.
 	 */
 	criteria: MilestoneAllCriteria | MilestoneAbsPropCriteria;
-	createdBy: integer;
 	name: string;
 	desc: string;
 	milestoneData: MilestoneSection[];
 	milestoneID: string;
-	group: string | null;
-	groupIndex: number | null;
 }
 
 interface MilestoneAllCriteria {
@@ -697,6 +694,13 @@ export interface MilestoneGroupDocument extends MongoDBDocument {
 	desc: string;
 }
 
+export interface MilestoneSetDocument extends MongoDBDocument {
+	setID: string;
+	game: Game;
+	playtype: AnyPlaytype;
+	milestones: string[];
+}
+
 export interface FunFactDocument extends MongoDBDocument {
 	text: string;
 	nsfw: boolean;
@@ -714,9 +718,7 @@ export enum UserAuthLevels {
 	MOD,
 	ADMIN,
 }
-/**
- * PublicUserDocument: These are the public values returned from GetUser functions.
- */
+
 export interface PublicUserDocument extends MongoDBDocument {
 	username: string;
 	usernameLowercase: string;
@@ -1006,7 +1008,7 @@ export interface FolderChartLookup extends MongoDBDocument {
 	folderID: string;
 }
 
-export interface UserMilestoneDocument extends MongoDBDocument {
+export type UserMilestoneDocument = MongoDBDocument & {
 	milestoneID: string;
 	userID: integer;
 	game: Game;
@@ -1015,7 +1017,16 @@ export interface UserMilestoneDocument extends MongoDBDocument {
 	achieved: boolean;
 	timeAchieved: integer | null;
 	progress: integer;
-}
+} & (
+		| {
+				achieved: true;
+				timeAchieved: integer;
+		  }
+		| {
+				achieved: false;
+				timeAchieved: null;
+		  }
+	);
 
 type RanOptions = "NONRAN" | "RANDOM" | "R-RANDOM" | "S-RANDOM" | "MIRROR";
 
@@ -1316,9 +1327,7 @@ export interface ImportProcessInfoInvalidDatapoint {
 	success: false;
 	type: "InvalidDatapoint";
 	message: string | null;
-	content: {
-		field?: string; // optional, and probably temp
-	};
+	content: Record<string, never>;
 }
 
 export interface ImportProcessInfoScoreImported<I extends IDStrings = IDStrings> {

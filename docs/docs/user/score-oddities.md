@@ -77,3 +77,31 @@ into their original form, changing the difficulty from ANOTHER to LEGGENDARIA.
 !!! note
 	This only applies to legacy imports -- This has been fixed since IIDX 27 (2019).
 
+## Deduplication False Positives (All Games)
+
+Tachi identifies scores using a `scoreID`. This is calculated from some properties on the score, such as who got it (`userID`), their `score`, `percent` and `lamp`.
+
+`scoreID`s are *unique* across all of Tachi. The motivation for this is to avoid score duplication.
+
+!!! example
+	Let's say you imported your local score database, which has some scores in it.
+	You then get some more scores, and import your local score database.
+	
+	What you *want* to happen here is that your new scores get imported and the old ones are just ignored.
+
+	Therefore, we need a way of recognising that a score has already been imported, and ignore
+	it.
+
+To deduplicate scores, we compare scoreIDs. This works in all scenarios, and avoiding score duplication is a good thing. *However*, it has a false positive in exactly one scenario.
+
+**If you get the same score twice, only one of them will be imported**.
+
+There is no way to distinguish between a user getting a score twice, and a user getting a score once and importing it twice (therefore being deduplicated).
+
+### Why not simply check the timestamp?
+
+You can't check the score timestamp. Games like LR2 do not store timestamps, games like E-Amusement lie about their timestamps and generally clobber them. PLI infamously lied about almost all their timestamps to hide what players were playing, etc.
+
+Similarly, scores are sometimes duplicated across services -- someone might import their ARC scores to PLI using their integration. Those timestamps also get clobbered.
+
+It is safer to be right all the time on deduplication and sacrifice this case.

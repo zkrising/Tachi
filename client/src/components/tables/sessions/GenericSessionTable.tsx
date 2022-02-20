@@ -1,5 +1,4 @@
 import { useSessionRatingAlg } from "components/util/useScoreRatingAlg";
-import { nanoid } from "nanoid";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {

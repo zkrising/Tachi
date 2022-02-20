@@ -1,4 +1,3 @@
-import Muted from "components/util/Muted";
 import React from "react";
 import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { ToCDNURL } from "util/api";

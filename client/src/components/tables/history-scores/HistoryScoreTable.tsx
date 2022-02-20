@@ -1,5 +1,4 @@
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
-import { nanoid } from "nanoid";
 import React, { useState } from "react";
 import {
 	ChartDocument,
@@ -13,8 +12,7 @@ import { ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import { NumericSOV } from "util/sorts";
 import TimestampCell from "../cells/TimestampCell";
-import SelectableRating from "../components/SelectableRating";
-import TachiTable, { ZTableTHProps } from "../components/TachiTable";
+import TachiTable from "../components/TachiTable";
 import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 import { GetGPTCoreHeaders } from "../headers/GameHeaders";
 

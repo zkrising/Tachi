@@ -12,14 +12,14 @@ import React, { useContext, useState } from "react";
 import { Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
-	PublicUserDocument,
+	ChartDocument,
+	FolderDocument,
+	FormatChart,
 	Game,
 	GetGamePTConfig,
-	SongDocument,
-	ChartDocument,
-	FormatChart,
-	FolderDocument,
+	PublicUserDocument,
 	ShowcaseStatDetails,
+	SongDocument,
 } from "tachi-common";
 import { UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";

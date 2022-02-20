@@ -25,7 +25,8 @@ const PR_BeatorajaScore = {
 		"Hard",
 		"ExHard",
 		"FullCombo",
-		"Perfect"
+		"Perfect",
+		"Max"
 	),
 	assist: p.is(0),
 	maxcombo: p.isPositiveInteger,

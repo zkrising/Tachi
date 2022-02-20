@@ -16,7 +16,13 @@ const options = program.opts();
 const logger = CreateLogCtx(__filename);
 
 export async function ValidateCollection(collectionName: Databases): Promise<void> {
-	const schemaRunner = DatabaseSchemas[collectionName];
+	if (!(collectionName in DatabaseSchemas)) {
+		logger.verbose(`Skipping ${collectionName} as it has no schema.`);
+		return;
+	}
+
+	// collectionName is in database schemas.
+	const schemaRunner = DatabaseSchemas[collectionName as keyof typeof DatabaseSchemas];
 
 	const documents = await monkDB.get(collectionName).count({});
 

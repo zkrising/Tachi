@@ -15,6 +15,18 @@ not generally be shown to end users.
 
 # Changelog
 
+# 2.1.2
+
+- [INTERNAL_ENH] Keys no longer *ever* use random ids. This was a fundamental misunderstanding of react on my part.
+
+*****
+
+- [BUG] The tierlist viewer no longer crashes if a change causes a bucket to be empty.
+
+# 2.1.1
+
+- [BUG] USC Searches no longer display (undefined) next to them.
+
 ## 2.1.0
 
 - [FEAT] Added UI support for Jubeat, Pop'n, WACCA and PMS.

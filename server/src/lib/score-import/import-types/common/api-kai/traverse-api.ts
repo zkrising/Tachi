@@ -124,11 +124,11 @@ export async function* TraverseKaiAPI(
 		}
 
 		if (json._links === null || typeof json._links !== "object") {
-			logger.error(`received invalid JSON from ${url}. Invalid _links.`, { body: json });
+			logger.error(`Received invalid JSON from ${url}. Invalid _links.`, { body: json });
 
 			throw new ScoreImportFatalError(
 				500,
-				`received no _links prop from their API. This is not an error with ${TachiConfig.NAME}.`
+				`Received no _links prop from their API. This is not an error with ${TachiConfig.NAME}.`
 			);
 		}
 

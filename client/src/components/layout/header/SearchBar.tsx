@@ -1,9 +1,8 @@
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
-import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Game, GetGameConfig, integer, PublicUserDocument, SongDocument } from "tachi-common";
 import { GamePT, JustChildren } from "types/react";

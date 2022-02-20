@@ -56,7 +56,7 @@ export default function GenericSessionTable({
 			NumericSOV(x => x.calculatedData[alg] ?? 0),
 			(thProps: ZTableTHProps) => (
 				<SelectableRating
-					key={nanoid()}
+					key={`${game}-${playtype}`}
 					game={game}
 					playtype={playtype}
 					rating={alg}

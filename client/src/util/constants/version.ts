@@ -1,6 +1,6 @@
 const MAJOR = 2;
 const MINOR = 1;
-const PATCH = 1;
+const PATCH = 2;
 
 // As is with all front-facing zkldi projects, the version names for tachi-client
 // are from an album I like. In this case, the album is The Cure - Disintegration.

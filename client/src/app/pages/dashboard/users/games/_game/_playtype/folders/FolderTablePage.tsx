@@ -64,7 +64,9 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 						foundDefault = true;
 					}
 					// Otherwise just use the provided default.
-				} else if (table.default) {
+				}
+
+				if (table.default && !foundDefault) {
 					setTableID(table.tableID);
 					foundDefault = true;
 				}

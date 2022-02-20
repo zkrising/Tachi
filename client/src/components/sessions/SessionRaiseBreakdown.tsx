@@ -3,34 +3,34 @@ import LampCell from "components/tables/cells/LampCell";
 import ScoreCell from "components/tables/cells/ScoreCell";
 import TitleCell from "components/tables/cells/TitleCell";
 import MiniTable from "components/tables/components/MiniTable";
+import Divider from "components/util/Divider";
+import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
 import deepmerge from "deepmerge";
 import { nanoid } from "nanoid";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
-import Divider from "components/util/Divider";
-import Icon from "components/util/Icon";
 import {
+	ChartDocument,
 	FolderDocument,
-	TableDocument,
-	Lamps,
+	Game,
+	GamePTConfig,
+	GetGamePTConfig,
+	Grades,
 	IDStrings,
+	integer,
+	Lamps,
 	ScoreDocument,
 	SessionScoreInfo,
-	Grades,
-	GetGamePTConfig,
-	GamePTConfig,
-	integer,
 	SongDocument,
-	Game,
-	ChartDocument,
+	TableDocument,
 } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 import { APIFetchV1 } from "util/api";
-import { CreateSongMap, CreateChartMap, CreateScoreIDMap } from "util/data";
-import { PartialArrayRecordAssign } from "util/misc";
 import { ChangeOpacity } from "util/color-opacity";
+import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
+import { PartialArrayRecordAssign } from "util/misc";
 
 export default function SessionRaiseBreakdown({ sessionData }: { sessionData: SessionReturns }) {
 	const game = sessionData.session.game;
@@ -372,7 +372,7 @@ function ElementStatTable({
 
 			for (const data of counts[element]!.slice(1)) {
 				tableContents.push(
-					<tr key={nanoid()}>
+					<tr key={data.score.scoreID}>
 						<BreakdownChartContents
 							{...data}
 							{...{ chartMap, songMap, fullSize, game, gptConfig, type }}

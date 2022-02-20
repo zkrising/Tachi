@@ -2,7 +2,6 @@ import React from "react";
 import { IDStrings, PBScoreDocument, ScoreCalculatedDataLookup, ScoreDocument } from "tachi-common";
 import BMSOrPMSLampCell from "../cells/BMSOrPMSLampCell";
 import DeltaCell from "../cells/DeltaCell";
-import LampCell from "../cells/LampCell";
 import RatingCell from "../cells/RatingCell";
 import ScoreCell from "../cells/ScoreCell";
 

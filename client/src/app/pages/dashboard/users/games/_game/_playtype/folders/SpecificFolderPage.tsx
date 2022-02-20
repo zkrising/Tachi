@@ -500,24 +500,26 @@ function TierlistInfoLadder({
 
 	return (
 		<Row className="text-center">
-			{buckets.map(bucket => (
-				<React.Fragment key={bucket[0].data!.value ?? nanoid()}>
-					<Col className="ladder-header" xs={12}>
-						{bucket[0].data!.value} ({bucket[0].data!.text})
-					</Col>
+			{buckets
+				.filter(e => e.length > 0)
+				.map(bucket => (
+					<React.Fragment key={bucket[0].data!.value}>
+						<Col className="ladder-header" xs={12}>
+							{bucket[0].data!.value} ({bucket[0].data!.text})
+						</Col>
 
-					{bucket.map((tierlistInfo, i) => (
-						<TierlistInfoBucketValues
-							tierlistInfo={tierlistInfo}
-							key={`${tierlistInfo.chartID}-${tierlistInfo.key}`}
-							game={game}
-							dataMap={dataMap}
-							bucket={bucket}
-							i={i}
-						/>
-					))}
-				</React.Fragment>
-			))}
+						{bucket.map((tierlistInfo, i) => (
+							<TierlistInfoBucketValues
+								tierlistInfo={tierlistInfo}
+								key={`${tierlistInfo.chartID}-${tierlistInfo.key}`}
+								game={game}
+								dataMap={dataMap}
+								bucket={bucket}
+								i={i}
+							/>
+						))}
+					</React.Fragment>
+				))}
 		</Row>
 	);
 }

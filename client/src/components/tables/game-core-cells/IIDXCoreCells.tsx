@@ -5,7 +5,6 @@ import {
 	ScoreCalculatedDataLookup,
 	ScoreDocument,
 } from "tachi-common";
-import { IsNullish } from "util/misc";
 import BPICell from "../cells/BPICell";
 import DeltaCell from "../cells/DeltaCell";
 import IIDXLampCell from "../cells/IIDXLampCell";

@@ -7,6 +7,7 @@ scripts/single-time
 .vs
 
 scripts/rerunners/bpi-output.json
+scripts/rerunners/aix-inf/*.json
 
 failed-tests.log
 

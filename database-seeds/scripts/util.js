@@ -114,6 +114,18 @@ function AddSupportForBMSTable(header, game, playtype, tableName, tableID, table
 	});
 }
 
+/**
+ * Given a game, reads the songs-${game}.json collection, gets the largest song ID, and
+ * returns a generator that will give an unused songID when called.
+ *
+ * Not thread safe.
+ */
+function GetFreshScoreIDGenerator(game) {
+	let maxSongID = ReadCollection(`songs-${game}.json`).sort((a, b) => b.id - a.id)[0].id;
+
+	return () => ++maxSongID;
+}
+
 module.exports = {
 	IterateCollections,
 	MutateCollection,
@@ -123,4 +135,5 @@ module.exports = {
 	WriteCollection,
 	EfficientInPlaceDeepmerge,
 	AddSupportForBMSTable,
+	GetFreshScoreIDGenerator,
 };

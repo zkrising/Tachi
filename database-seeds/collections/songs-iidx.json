@@ -23076,5 +23076,97 @@
 		"id": 2084,
 		"searchTerms": [],
 		"title": "Triple Cross"
+	},
+	{
+		"altTitles": [],
+		"artist": "L.E.D.",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "DRUMSTEP"
+		},
+		"id": 2085,
+		"searchTerms": [],
+		"title": "TSAR BOMBA"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"Dustup\"",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "BREAKBEATS"
+		},
+		"id": 2086,
+		"searchTerms": [],
+		"title": "1116"
+	},
+	{
+		"altTitles": [],
+		"artist": "猫叉Master+",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "DRUM'N'BASS"
+		},
+		"id": 2087,
+		"searchTerms": [],
+		"title": "squall"
+	},
+	{
+		"altTitles": [],
+		"artist": "S-C-U",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "HARD ELECTRIC POP"
+		},
+		"id": 2088,
+		"searchTerms": [],
+		"title": "concon"
+	},
+	{
+		"altTitles": [],
+		"artist": "常盤ゆう",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "EMOCTRO"
+		},
+		"id": 2089,
+		"searchTerms": [
+			"KID R"
+		],
+		"title": "少年リップルズ"
+	},
+	{
+		"altTitles": [],
+		"artist": "kors k",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "EDM"
+		},
+		"id": 2090,
+		"searchTerms": [],
+		"title": "Gimme a Big Beat"
+	},
+	{
+		"altTitles": [],
+		"artist": "movies (moimoi × Xceon × Dai.)",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "J-DANCE POP"
+		},
+		"id": 2091,
+		"searchTerms": [],
+		"title": "Too Late Snow"
+	},
+	{
+		"altTitles": [],
+		"artist": "onoken",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "ARTCORE"
+		},
+		"id": 2092,
+		"searchTerms": [
+			"Romi & Robo's Space Flight"
+		],
+		"title": "ロミとロボの宇宙飛行"
 	}
 ]

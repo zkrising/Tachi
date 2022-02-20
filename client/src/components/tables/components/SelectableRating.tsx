@@ -60,7 +60,9 @@ export default function SelectableRating<I extends IDStrings>({
 				}}
 			>
 				{gptConfig[key].map(s => (
-					<option key={s}>{UppercaseFirst(s)}</option>
+					<option key={s} value={s}>
+						{UppercaseFirst(s)}
+					</option>
 				))}
 			</select>
 			<br />

@@ -372,7 +372,7 @@ function ElementStatTable({
 
 			for (const data of counts[element]!.slice(1)) {
 				tableContents.push(
-					<tr key={nanoid()}>
+					<tr key={data.score.scoreID}>
 						<BreakdownChartContents
 							{...data}
 							{...{ chartMap, songMap, fullSize, game, gptConfig, type }}

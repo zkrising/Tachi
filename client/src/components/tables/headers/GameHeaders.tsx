@@ -54,7 +54,7 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 			NumericSOV(x => kMapToScoreOrPB(x)?.calculatedData[rating] ?? -Infinity),
 			(thProps: ZTableTHProps) => (
 				<SelectableRating
-					key={nanoid()}
+					key={`${game}-${playtype}`}
 					game={game}
 					playtype={playtype}
 					rating={rating}

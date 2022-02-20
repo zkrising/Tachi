@@ -9,12 +9,14 @@ import {
 	ScoreCalculatedDataLookup,
 	ScoreDocument,
 } from "tachi-common";
+import { ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import { NumericSOV } from "util/sorts";
 import TimestampCell from "../cells/TimestampCell";
 import SelectableRating from "../components/SelectableRating";
 import TachiTable, { ZTableTHProps } from "../components/TachiTable";
 import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
+import { GetGPTCoreHeaders } from "../headers/GameHeaders";
 
 export default function HistoryScoreTable({
 	dataset,
@@ -33,35 +35,15 @@ export default function HistoryScoreTable({
 
 	const [rating, setRating] = useState(defaultRating);
 
+	const headers = GetGPTCoreHeaders<ScoreDataset>(game, playtype, rating, setRating, k => k);
+
 	return (
 		<TachiTable
-			dataset={dataset}
+			dataset={dataset as ScoreDataset}
 			pageLen={pageLen}
 			noTopDisplayStr
 			entryName="Scores"
-			headers={[
-				["Score", "Score", NumericSOV(x => x.scoreData.percent)],
-				["Info", "Info", NumericSOV(x => x.scoreData.percent)],
-				["Lamp", "Lamp", NumericSOV(x => x.scoreData.lampIndex)],
-				game === "iidx"
-					? [
-							"Rating",
-							"Rating",
-							NumericSOV(x => x.calculatedData[rating] ?? 0),
-							(thProps: ZTableTHProps) => (
-								<SelectableRating
-									key={nanoid()}
-									game="iidx"
-									playtype={playtype}
-									rating={rating}
-									setRating={setRating}
-									{...thProps}
-								/>
-							),
-					  ]
-					: ["Rating", "Rating", NumericSOV(x => x.calculatedData[rating] ?? 0)],
-				["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
-			]}
+			headers={[...headers, ["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)]]}
 			defaultSortMode="Timestamp"
 			defaultReverseSort
 			rowFunction={sc => (

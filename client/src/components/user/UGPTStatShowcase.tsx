@@ -225,7 +225,7 @@ export default function UGPTStatShowcase({
 								<div className="row justify-content-center">
 									{data.reqUserData.map((e, i) => (
 										<div
-											key={nanoid()}
+											key={i}
 											className="col-12 col-md-4 d-flex align-items-stretch mt-8"
 										>
 											<StatDisplay

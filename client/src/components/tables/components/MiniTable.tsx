@@ -17,10 +17,7 @@ export default function MiniTable({
 				<thead>
 					<tr>
 						{headers.map((e, i) => (
-							<th
-								colSpan={Array.isArray(colSpan) ? colSpan[i] : colSpan}
-								key={nanoid()}
-							>
+							<th colSpan={Array.isArray(colSpan) ? colSpan[i] : colSpan} key={i}>
 								{e}
 							</th>
 						))}

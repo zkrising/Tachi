@@ -14,6 +14,7 @@
 	"author": "zkldi",
 	"license": "MIT",
 	"devDependencies": {
+		"@types/node": "^17.0.8",
 		"@types/tap": "15.0.3",
 		"@typescript-eslint/eslint-plugin": "4.19.0",
 		"@typescript-eslint/parser": "4.19.0",
@@ -23,11 +24,11 @@
 		"prettier": "2.2.1",
 		"tap": "15.0.9",
 		"ts-node": "10.0.0",
-		"typescript": "4.3.4",
-		"@types/node": "^17.0.8",
-		"monk": "7.3.4"
+		"typescript": "4.3.4"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"@types/mongodb": "3.6.18"
+	},
 	"nyc": {
 		"reporter": [
 			"html",

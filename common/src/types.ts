@@ -1,4 +1,9 @@
-import { IObjectID } from "monk";
+// Monk type-stub to avoid pulling the whole dep in
+interface IObjectID {
+	readonly toHexString: () => string;
+	readonly toString: () => string;
+}
+
 import { FilterQuery } from "mongodb";
 import { AllClassSets, GameClasses } from "./game-classes";
 

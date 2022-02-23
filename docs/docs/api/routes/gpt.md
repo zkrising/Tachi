@@ -66,7 +66,7 @@ GET /api/v1/games/iidx/SP
 | Property | Type | Description |
 | :: | :: | :: |
 | `gameStats` | Array&lt;GameStats&gt; | The sorted statistics for the leaderboards. |
-| `users` | Array&lt;[UserDocument](../../tachi-server/documents/user)&gt; | All of the related users for the above statistics. |
+| `users` | Array&lt;[UserDocument](../../tachi-server/documents/user.md)&gt; | All of the related users for the above statistics. |
 
 ### Example
 
@@ -108,8 +108,8 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `song` | [SongDocument](../../tachi-server/documents/song) |The requested song document. |
-| `charts` | [ChartDocument](../../tachi-server/documents/chart)[] | All of the charts that belong to this song for this playtype. |
+| `song` | [SongDocument](../../tachi-server/documents/song.md) |The requested song document. |
+| `charts` | [ChartDocument](../../tachi-server/documents/chart.md)[] | All of the charts that belong to this song for this playtype. |
 
 ### Example
 
@@ -164,8 +164,8 @@ GET /api/v1/games/iidx/SP/songs/1
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `charts` | Array&lt;[ChartDocument](../../tachi-server/documents/chart) with `__playcount`&gt; | The chart documents that matched this search, or the most popular 100 charts for this game. |
-| `songs` | Array&lt;[SongDocument](../../tachi-server/documents/song)&gt; | The associated song documents for the charts. |
+| `charts` | Array&lt;[ChartDocument](../../tachi-server/documents/chart.md) with `__playcount`&gt; | The chart documents that matched this search, or the most popular 100 charts for this game. |
+| `songs` | Array&lt;[SongDocument](../../tachi-server/documents/song.md)&gt; | The associated song documents for the charts. |
 
 !!! info
 	The `__playcount` property is patched onto the chart
@@ -221,8 +221,8 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `song` | [SongDocument](../../tachi-server/documents/song) | The parent song for this chart. |
-| `chart` | [ChartDocument](../../tachi-server/documents/chart) | The requested chart document. |
+| `song` | [SongDocument](../../tachi-server/documents/song.md) | The parent song for this chart. |
+| `chart` | [ChartDocument](../../tachi-server/documents/chart.md) | The requested chart document. |
 
 ### Example
 
@@ -387,8 +387,8 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `songs` | Array&lt;[SongDocument](../../tachi-server/documents/song)&gt; | The related song documents for this folder. |
-| `charts` | Array&lt;[ChartDocument](../../tachi-server/documents/chart)&gt; | The related chart documents for this folder. |
+| `songs` | Array&lt;[SongDocument](../../tachi-server/documents/song.md)&gt; | The related song documents for this folder. |
+| `charts` | Array&lt;[ChartDocument](../../tachi-server/documents/chart.md)&gt; | The related chart documents for this folder. |
 | `folder` | FolderDocument | The folder document at this ID. |
 
 ### Example
@@ -523,9 +523,9 @@ GET /api/v1/games/bms/7K/tableID/insane
 | Property | Type | Description |
 | :: | :: | :: |
 | `pbs` | Array&lt;PBDocument&gt; | The array of pbs part of the score leaderboard. |
-| `songs` | Array&lt;[SongDocument](../../tachi-server/documents/song)&gt; | The array of songs part of the PBs. |
-| `charts` | Array&lt;[ChartDocument](../../tachi-server/documents/chart)&gt; | The array of charts part of the PBs. |
-| `users` | Array&lt;[UserDocument](../../tachi-server/documents/user)&gt; | The array of users part of the PBs. |
+| `songs` | Array&lt;[SongDocument](../../tachi-server/documents/song.md)&gt; | The array of songs part of the PBs. |
+| `charts` | Array&lt;[ChartDocument](../../tachi-server/documents/chart.md)&gt; | The array of charts part of the PBs. |
+| `users` | Array&lt;[UserDocument](../../tachi-server/documents/user.md)&gt; | The array of users part of the PBs. |
 
 *****
 
@@ -588,7 +588,7 @@ GET /api/v1/games/bms/7K/player-distribution?class=stslDan
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `users` | Array&lt;[UserDocument](../../tachi-server/documents/user)&gt; | Array of the users who achieved the courses. |
+| `users` | Array&lt;[UserDocument](../../tachi-server/documents/user.md)&gt; | Array of the users who achieved the courses. |
 | `classes` | Array&lt;ClassAchievementDocument&gt; | Data about the recently achieved classes. |
 
 *****
@@ -607,7 +607,7 @@ GET /api/v1/games/bms/7K/player-distribution?class=stslDan
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `scores` | Array&lt;[ScoreDocument](../../tachi-server/documents/score)&gt; | The highlighted scores. |
-| `users` | Array&lt;[UserDocument](../../tachi-server/documents/user)&gt; | The users who own the scores. |
-| `songs` | Array&lt;[SongDocument](../../tachi-server/documents/song)&gt; | The songs the scores are on. |
-| `charts` | Array&lt;[ChartDocument](../../tachi-server/documents/chart)&gt; | The charts the scores are on. |
+| `scores` | Array&lt;[ScoreDocument](../../tachi-server/documents/score.md)&gt; | The highlighted scores. |
+| `users` | Array&lt;[UserDocument](../../tachi-server/documents/user.md)&gt; | The users who own the scores. |
+| `songs` | Array&lt;[SongDocument](../../tachi-server/documents/song.md)&gt; | The songs the scores are on. |
+| `charts` | Array&lt;[ChartDocument](../../tachi-server/documents/chart.md)&gt; | The charts the scores are on. |

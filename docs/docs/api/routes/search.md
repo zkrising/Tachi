@@ -16,8 +16,8 @@
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `users` | Array&lt;[UserDocument](../../tachi-server/documents/user)&gt; | The array of users whose usernames look like the search criterion. |
-| `songs` | ([SongDocument](../../tachi-server/documents/song) With [__textScore](../../tachi-server/implementation-details/search.md) and `game`.)[] | An array of songs from all games, with `__textScore` and `game` properties attached. |
+| `users` | Array&lt;[UserDocument](../../tachi-server/documents/user.md)&gt; | The array of users whose usernames look like the search criterion. |
+| `songs` | ([SongDocument](../../tachi-server/documents/song.md) With [__textScore](../../tachi-server/implementation-details/search.md) and `game`.)[] | An array of songs from all games, with `__textScore` and `game` properties attached. |
 
 ### Example
 

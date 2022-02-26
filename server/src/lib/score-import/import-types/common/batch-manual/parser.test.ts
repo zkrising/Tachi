@@ -3,6 +3,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { BatchManual } from "tachi-common";
 import t from "tap";
 import { EscapeStringRegexp } from "utils/misc";
+import { IIDXDans, WACCA_STAGEUPS } from "lib/constants/classes";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParseBatchManualFromObject as ParserFn } from "./parser";
 
@@ -324,6 +325,27 @@ t.test("#ParserFn", (t) => {
 			t.end();
 		});
 
+		t.test("With class", (t) => {
+			const res = ParserFn(
+				{
+					meta: baseBatchManual.meta,
+					scores: [baseBatchManualScore],
+					classes: { dan: 18 },
+				} as BatchManual,
+				"file/batch-manual",
+				logger
+			);
+
+			t.not(res.classHandler, null);
+
+			t.same(
+				res.classHandler!("iidx", "SP", 1, {}, logger),
+				{ dan: IIDXDans.KAIDEN },
+			);
+
+			t.end();
+		});
+
 		t.end();
 	});
 
@@ -478,6 +500,36 @@ t.test("#ParserFn", (t) => {
 			const fn2 = () => ParserFn(dm({ hitMeta: { bp: -1 } }), "file/batch-manual", logger);
 
 			t.throws(fn2, mockErr("scores[0].hitMeta.bp | Expected a positive integer"));
+
+			t.end();
+		});
+
+		t.test("Invalid class", (t) => {
+			// Out of bounds. (18 is kaiden)
+			const fn = () => ParserFn(
+				{
+					meta: baseBatchManual.meta,
+					scores: [baseBatchManualScore],
+					classes: { dan: 19 },
+				} as BatchManual,
+				"file/batch-manual",
+				logger
+			);
+
+			t.throws(fn, mockErr("classes.dan | Expected a number between 0 and 18. | Received 19 [number]"));
+
+			// Wrong game.
+			const fn2 = () => ParserFn(
+				{
+					meta: baseBatchManual.meta,
+					scores: [baseBatchManualScore],
+					classes: { stageUp: 9 },
+				} as BatchManual,
+				"file/batch-manual",
+				logger
+			);
+
+			t.throws(fn2, mockErr("classes | Unexpected properties inside object: stageUp"));
 
 			t.end();
 		});

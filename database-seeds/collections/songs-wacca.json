@@ -4569,5 +4569,31 @@
 		"id": 351,
 		"searchTerms": [],
 		"title": "cloud IX"
+	},
+	{
+		"altTitles": [],
+		"artist": "SOUND HOLIC feat. Nana Takahashi",
+		"data": {
+			"artistJP": "サウンドホリック フィーチャリング ナナタカハシ",
+			"displayVersion": "reverse",
+			"genre": "東方アレンジ",
+			"titleJP": "グリップ アンド ブレイクダウン"
+		},
+		"id": 352,
+		"searchTerms": [],
+		"title": "Grip & Break down !!"
+	},
+	{
+		"altTitles": [],
+		"artist": "t+pazolite",
+		"data": {
+			"artistJP": "トパゾライト",
+			"displayVersion": "reverse",
+			"genre": "東方アレンジ",
+			"titleJP": "センサード"
+		},
+		"id": 353,
+		"searchTerms": [],
+		"title": "CENSORED!!"
 	}
 ]

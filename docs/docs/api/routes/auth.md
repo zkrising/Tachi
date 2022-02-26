@@ -19,7 +19,7 @@ These endpoints relate to internal authentication methods. Read the warning belo
 
 ## Login with username and password.
 
-```POST /api/v1/login```
+```POST /api/v1/auth/login```
 
 Logs a user in and returns a session cookie.
 

@@ -937,7 +937,7 @@ interface SongDocumentData {
 	museca: { titleJP: string; artistJP: string; displayVersion: string };
 	maimai: { titleJP: string; artistJP: string; displayVersion: string };
 	jubeat: { displayVersion: string };
-	popn: { displayVersion: string | null; genre: string };
+	popn: { displayVersion: string | null; genre: string; genreEN: string | null };
 	sdvx: { displayVersion: string };
 	usc: Record<string, never>;
 	ddr: { displayVersion: string };

@@ -620,16 +620,18 @@ export interface MilestoneImportInfo {
 	new: MilestoneImportStat;
 }
 
-export type GoalOrigin = {
-	// The user set this goal by hand
-	origin: "manual";
-} & {
-	// This goal was set for the user by part of a milestone.
-	// If a goal in a milestone was already set for whatever reason
-	// that origin takes priority.
-	origin: "milestone";
-	milestoneID: string;
-};
+export type GoalOrigin =
+	| {
+			// The user set this goal by hand
+			origin: "manual";
+	  }
+	| {
+			// This goal was set for the user by part of a milestone.
+			// If a goal in a milestone was already set for whatever reason
+			// that origin takes priority.
+			origin: "milestone";
+			milestoneID: string;
+	  };
 
 export type UserGoalDocument = MongoDBDocument & {
 	goalID: string;

@@ -3,7 +3,6 @@ import { EvaluateGoalForUser } from "lib/achievables/goals";
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
-import { IObjectID } from "monk";
 
 /**
  * Update a user's progress on all of their set goals.

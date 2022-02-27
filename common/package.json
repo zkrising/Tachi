@@ -1,6 +1,6 @@
 {
 	"name": "tachi-common",
-	"version": "0.6.4",
+	"version": "0.6.5",
 	"description": "Common Types & Utilities for Tachi",
 	"main": "js/index.js",
 	"files": [

@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import React from "react";
 import {
 	Game,
@@ -127,8 +126,12 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 							| ScoreDocument<"popn:9B">
 							| PBScoreDocument<"popn:9B">;
 
-						if (!aSc || !bSc) {
+						if (!aSc && bSc) {
 							return -Infinity;
+						}
+
+						if (aSc && !bSc) {
+							return Infinity;
 						}
 
 						if (aSc.scoreData.lampIndex === bSc.scoreData.lampIndex) {

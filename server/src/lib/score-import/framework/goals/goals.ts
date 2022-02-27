@@ -3,6 +3,7 @@ import { EvaluateGoalForUser } from "lib/achievables/goals";
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
+import { IObjectID } from "monk";
 
 /**
  * Update a user's progress on all of their set goals.
@@ -135,7 +136,7 @@ export async function ProcessGoal(
 					// that haven't changed return nothing instead of
 					// getting to this point.
 					lastInteraction: Date.now(),
-				},
+				} as Partial<GoalDocument>,
 			},
 		},
 	};

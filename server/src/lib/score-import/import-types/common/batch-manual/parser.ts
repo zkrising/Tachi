@@ -12,13 +12,8 @@ import {
 	Playtypes,
 } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
-import {
-	IIDXDans,
-	SDVXDans,
-	WACCA_STAGEUPS,
-} from "lib/constants/classes";
+import { IIDXDans, SDVXDans, WACCA_STAGEUPS } from "lib/constants/classes";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ScoreClasses } from "../../../framework/user-game-stats/types";
 import { ParserFunctionReturns } from "../types";
 import { BatchManualContext } from "./types";
 
@@ -208,18 +203,18 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 
 const PR_BatchManualClasses = (game: Game): PrudenceSchema => {
 	switch (game) {
-			// This can be implemented for any non-static class (i.e. dans).
+		// This can be implemented for any non-static class (i.e. dans).
 		case "iidx":
 			return {
-				dan: optNull(p.isBetween(IIDXDans.KYU_7, IIDXDans.KAIDEN))
+				dan: optNull(p.isBoundedInteger(IIDXDans.KYU_7, IIDXDans.KAIDEN)),
 			};
 		case "sdvx":
 			return {
-				dan: optNull(p.isBetween(SDVXDans.DAN_1, SDVXDans.INF))
+				dan: optNull(p.isBoundedInteger(SDVXDans.DAN_1, SDVXDans.INF)),
 			};
 		case "wacca":
 			return {
-				stageUp: optNull(p.isBetween(WACCA_STAGEUPS.I, WACCA_STAGEUPS.XIV))
+				stageUp: optNull(p.isBoundedInteger(WACCA_STAGEUPS.I, WACCA_STAGEUPS.XIV)),
 			};
 		default:
 			return {};
@@ -313,7 +308,7 @@ export function ParseBatchManualFromObject(
 		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid BATCH-MANUAL"));
 	}
 
-	const batchManual = object as BatchManual & {classes: ScoreClasses};
+	const batchManual = object as BatchManual;
 
 	return {
 		game,
@@ -324,6 +319,8 @@ export function ParseBatchManualFromObject(
 			version: batchManual.meta.version ?? null,
 		},
 		iterable: batchManual.scores,
-		classHandler: (..._) => batchManual.classes,
+		// if classes are provided, use those as a class handler. Otherwise, we
+		// don't care.
+		classHandler: batchManual.classes ? () => batchManual.classes! : null,
 	};
 }

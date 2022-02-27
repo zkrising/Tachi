@@ -26,7 +26,7 @@ function LazySumAll(key: CustomCalcNames) {
 			return null;
 		}
 
-		const result = sc.reduce((a, b) => a + b.calculatedData[key]!, 0);
+		const result = sc.reduce((a, e) => a + e.calculatedData[key]!, 0);
 
 		return result;
 	};
@@ -62,7 +62,7 @@ function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
 			return null;
 		}
 
-		let result = sc.reduce((a, b) => a + b.calculatedData[key]!, 0);
+		let result = sc.reduce((a, e) => a + e.calculatedData[key]!, 0);
 
 		if (returnMean) {
 			result = result / n;
@@ -248,8 +248,8 @@ async function CalculateWACCARate(
 	}
 
 	return (
-		best15Hot.reduce((a, r) => a + r.calculatedData.rate!, 0) +
-		best35Cold.reduce((a, r) => a + r.calculatedData.rate!, 0)
+		best15Hot.reduce((a, e) => a + e.calculatedData.rate!, 0) +
+		best35Cold.reduce((a, e) => a + e.calculatedData.rate!, 0)
 	);
 }
 
@@ -278,8 +278,8 @@ async function CalculateGitadoraSkill(
 	}
 
 	let skill = 0;
-	skill += bestHotScores.reduce((a, r) => a + r.calculatedData.skill!, 0);
-	skill += bestScores.reduce((a, r) => a + r.calculatedData.skill!, 0);
+	skill += bestHotScores.reduce((a, e) => a + e.calculatedData.skill!, 0);
+	skill += bestScores.reduce((a, e) => a + e.calculatedData.skill!, 0);
 
 	return skill;
 }
@@ -360,8 +360,8 @@ async function CalculateJubility(
 	]);
 
 	let skill = 0;
-	skill += bestHotScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
-	skill += bestScores.reduce((a, r) => a + r.calculatedData.jubility!, 0);
+	skill += bestHotScores.reduce((a, e) => a + e.calculatedData.jubility!, 0);
+	skill += bestScores.reduce((a, e) => a + e.calculatedData.jubility!, 0);
 
 	return skill;
 }

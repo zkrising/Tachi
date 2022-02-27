@@ -1507,6 +1507,7 @@ export interface BatchManual<I extends IDStrings = IDStrings> {
 		version?: GPTSupportedVersions[I];
 	};
 	scores: BatchManualScore<I>[];
+	classes?: GameClasses<I> | null;
 }
 
 export interface UserSettings {

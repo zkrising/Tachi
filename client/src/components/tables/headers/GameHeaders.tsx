@@ -126,7 +126,7 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 							| ScoreDocument<"popn:9B">
 							| PBScoreDocument<"popn:9B">;
 
-						if (!aSc && bSc) {
+						if (!aSc) {
 							return -Infinity;
 						}
 

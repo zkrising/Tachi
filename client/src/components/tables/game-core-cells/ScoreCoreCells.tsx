@@ -8,6 +8,7 @@ import {
 	ScoreDocument,
 } from "tachi-common";
 import BMSCoreCells from "./BMSCoreCells";
+import CHUNITHMCoreCells from "./CHUNITHMCoreCells";
 import GenericCoreCells from "./GenericCoreCells";
 import IIDXCoreCells from "./IIDXCoreCells";
 import JubeatCoreCells from "./JubeatCoreCells";
@@ -58,7 +59,7 @@ export default function ScoreCoreCells({
 	} else if (game === "jubeat") {
 		return <JubeatCoreCells sc={sc} rating={rating} />;
 	} else if (game === "chunithm") {
-		return <GenericCoreCells sc={sc} rating={rating} />;
+		return <CHUNITHMCoreCells sc={sc} rating={rating} />;
 	} else if (game === "ddr") {
 		return <GenericCoreCells sc={sc} rating={rating} />;
 	} else if (game === "gitadora") {

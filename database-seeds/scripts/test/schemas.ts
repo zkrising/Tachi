@@ -216,6 +216,7 @@ export const SCHEMAS = {
 	"songs-popn": prSchemaify(
 		PR_SongDocument({
 			genre: "string",
+			genreEN: "?string",
 			displayVersion: "?string",
 		})
 	),

@@ -1,5 +1,5 @@
 // Monk type-stub to avoid pulling the whole dep in
-interface IObjectID {
+export interface IObjectID {
 	readonly toHexString: () => string;
 	readonly toString: () => string;
 }

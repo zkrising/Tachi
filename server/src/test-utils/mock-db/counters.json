@@ -8,11 +8,11 @@
 		"value": 2
 	},
 	{
-		"counterName": "usc-song-id",
+		"counterName": "bms-song-id",
 		"value": 2
 	},
 	{
-		"counterName": "bms-song-id",
+		"counterName": "pms-song-id",
 		"value": 2
 	}
 ]

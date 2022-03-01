@@ -183,3 +183,11 @@ export function asyncExec(command: string) {
 		});
 	});
 }
+
+export function FormatBMSTables(bmsTables: { table: string; level: string }[]) {
+	if (bmsTables.length === 0) {
+		return null;
+	}
+
+	return bmsTables.map((e) => `${e.table}${e.level}`).join(", ");
+}

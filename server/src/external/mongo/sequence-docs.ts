@@ -24,6 +24,15 @@ export async function InitSequenceDocs() {
 		}
 	);
 
+	const largestPMSSongID = await db.songs.pms.findOne(
+		{},
+		{
+			sort: {
+				id: -1,
+			},
+		}
+	);
+
 	const Counters = [
 		{
 			counterName: "users",
@@ -32,6 +41,10 @@ export async function InitSequenceDocs() {
 		{
 			counterName: "bms-song-id",
 			value: largestBMSSongID ? largestBMSSongID.id + 1 : 1,
+		},
+		{
+			counterName: "pms-song-id",
+			value: largestPMSSongID ? largestPMSSongID.id + 1 : 1,
 		},
 	];
 

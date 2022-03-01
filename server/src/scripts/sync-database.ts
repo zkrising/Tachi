@@ -18,11 +18,17 @@ import {
 	TableDocument,
 } from "tachi-common";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
+import { UpdateGameSongIDCounter } from "utils/db";
 import { InitaliseFolderChartLookup } from "utils/folder";
 
 interface SyncInstructions {
 	pattern: RegExp;
-	handler: (c: any[], collection: ICollection<any>, logger: KtLogger) => Promise<unknown>;
+	handler: (
+		c: any[],
+		collection: ICollection<any>,
+		logger: KtLogger,
+		collectionName: string
+	) => Promise<unknown>;
 }
 
 async function RemoveNotPresent<T>(
@@ -125,11 +131,12 @@ async function GenericUpsert<T>(
 
 const syncInstructions: SyncInstructions[] = [
 	{
-		pattern: /^charts-bms$/u,
+		pattern: /^charts-(b|p)ms/u,
 		handler: async (
 			charts: ChartDocument[],
 			collection: ICollection<ChartDocument>,
-			logger
+			logger,
+			collectionName
 		) => {
 			const r = await GenericUpsert(charts, collection, "chartID", logger, false);
 
@@ -137,33 +144,7 @@ const syncInstructions: SyncInstructions[] = [
 				await InitaliseFolderChartLookup();
 				await UpdateIsPrimaryStatus();
 
-				const largestBMSSongID = await db.songs.bms.findOne(
-					{},
-					{
-						sort: {
-							id: -1,
-						},
-					}
-				);
-
-				if (!largestBMSSongID) {
-					logger.severe(
-						`No BMS charts loaded, yet BMS sync was attempted? Lost state on bms-song-id counter. Panicking.`,
-						r
-					);
-					throw new Error(`No BMS charts loaded, yet BMS sync was attempted.`);
-				}
-
-				await db.counters.update(
-					{
-						counterName: "bms-song-id",
-					},
-					{
-						$set: {
-							value: largestBMSSongID.id + 1,
-						},
-					}
-				);
+				await UpdateGameSongIDCounter(collectionName.includes("bms") ? "bms" : "pms");
 
 				await RecalcAllScores({
 					chartID: { $in: r.changedFields },
@@ -259,7 +240,12 @@ async function SynchroniseDBWithSeeds() {
 		for (const syncInst of syncInstructions) {
 			if (collectionName.match(syncInst.pattern)) {
 				spawnLogger.verbose(`Starting handler...`);
-				await syncInst.handler(data, monkDB.get(collectionName), spawnLogger);
+				await syncInst.handler(
+					data,
+					monkDB.get(collectionName),
+					spawnLogger,
+					collectionName
+				);
 				matchedSomething = true;
 				break;
 			}

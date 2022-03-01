@@ -41,42 +41,6 @@ The below statistics apply to individual scores.
 
 *****
 
-### ktRating (IIDX)
-
-- **Default for IIDX SP and IIDX DP**
-
-Pros:
-
-- Works on all scores.
-- Takes tierlists into account.
-- Accuracy Based.
-
-Cons:
-
-- Has a poor understanding of high acc levels (MAX- and beyond).
-- Generally terrible for high level play. Boils down to getting the best score on easy 12s.
-
-KtRating (Kamaitachi Rating) is our custom rolled rating algorithm for IIDX.
-The issue we have is that IIDX doesn't have any metrics that are a good contender
-for our default rating algorithm.
-
-BPI only really has any meaning to kaidens, so we're stuck having to roll our own statistic.
-
-KtRating was designed to be a generic **timing** rating algorithm for IIDX. It isn't good
-by any means, and is significantly worse than BPI at 12s, 11s and 10s. It also struggles with things like
-MAX- and stronger scores.
-
-Regardless, it works decently for lower level players. It uses a curve such that
-an AA on a chart rated X will be worth X points.
-
-!!! note
-	This is slated to be replaced with DJ Points. An in-built metric in IIDX.
-	Although that metric is broken for many reasons, it is more immediately understandable, and saves us having to maintain a broken metric.
-
-	See [This GitHub Issue](https://github.com/TNG-dev/tachi-server/issues/597)
-
-*****
-
 ### BPI (IIDX)
 
 Pros:
@@ -125,6 +89,8 @@ is not necessarily as good as 20BPI on another.
 *****
 
 ### ktLampRating (IIDX)
+
+- **Default for IIDX SP and IIDX DP**
 
 Pros:
 
@@ -275,29 +241,27 @@ Cons:
 
 - Not well understood by players.
 
-In a similar vein to [IIDX's KTRating](#ktrating-iidx),
-we need a generic rating algorithm for MÚSECA's scores.
+We need a generic rating algorithm for MÚSECA's scores.
 
 MÚSECA's built-in CURATOR RANK is built in a similar
 vein to Volforce, but is broken by some
 questionable chart rating decisions. This makes it
 undesirable for score comparison.
 
-This is an adapted version of the IIDX KTRating
-algorithm (again!), with parameters tuned for MÚSECA.
+This is the KTRating algorithm, with parameters tuned for MÚSECA.
 
 Scores below 900k are heavily nerfed. Timing is rewarded
 significantly. Clear type is ignored.
 
 *****
 
-### Sieglinde (BMS)
+### Sieglinde (BMS, PMS)
 
-- **Default for BMS 7K and BMS 14K**
+- **Default for BMS 7K, BMS 14K, and PMS**
 
 Pros:
 
-- Derives how difficult a lamp is to get by scores on LR2IR and Mocha IR.
+- Derives how difficult a lamp is to get by scores on LR2IR.
 - An update to walkure without certain vulnerabilities.
 - Only gives rating for popular tables.
 
@@ -433,11 +397,7 @@ The below statistics apply to SP and DP.
 
 The average of your highest 20 BPIs.
 
-- KtRating **(Default)**
-
-The average of your highest 20 ktRatings.
-
-- KtLampRating
+- KtLampRating **(Default)**
 
 The average of your highest 20 ktLampRatings.
 
@@ -479,7 +439,7 @@ The average of your highest 20 ktRatings.
 
 *****
 
-### BMS
+### BMS, PMS
 
 - Sieglinde **(Default)**
 
@@ -554,7 +514,7 @@ statistics are marked as N/A except for MFCP.
 
 The below information applies to SP and DP.
 
-- BPI, KtRating, KtLampRating
+- BPI, KtLampRating
 
 The average of your highest 10 values for that statistic.
 
@@ -575,7 +535,7 @@ The reason for this multiplication is that, generally,
 people don't like dealing with decimals. Furthermore,
 SDVX players generally talk about their profile volforce,
 rather than their individual volforce.
-
+<!-- 
 *****
 
 ### DDR
@@ -592,7 +552,7 @@ The total MFCP you achieved this session.
 
 - KtRating **(Default)**
 
-The average of the highest 10 KtRatings that session.
+The average of the highest 10 KtRatings that session. -->
 
 *****
 
@@ -604,9 +564,9 @@ The average of the highest 10 KtRatings that session.
 
 *****
 
-### BMS
+### BMS, PMS
 
-The below information applies to both 7K and 14K.
+The below information applies to both 7K and 14K (and all of PMS).
 
 - Sieglinde **(Default)**
 

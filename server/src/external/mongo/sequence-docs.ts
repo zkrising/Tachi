@@ -15,14 +15,6 @@ export async function InitSequenceDocs() {
 		}
 	);
 
-	const largestUSCSongID = await db.songs.usc.findOne(
-		{},
-		{
-			sort: {
-				id: -1,
-			},
-		}
-	);
 	const largestBMSSongID = await db.songs.bms.findOne(
 		{},
 		{
@@ -36,10 +28,6 @@ export async function InitSequenceDocs() {
 		{
 			counterName: "users",
 			value: userWithLargestID ? userWithLargestID.id + 1 : 1,
-		},
-		{
-			counterName: "usc-song-id",
-			value: largestUSCSongID ? largestUSCSongID.id + 1 : 1,
 		},
 		{
 			counterName: "bms-song-id",

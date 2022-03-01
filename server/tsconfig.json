@@ -31,11 +31,10 @@
 		]
 	},
 	"include": [
-		"src/**/*.ts"
+		"src/**/*.ts",
+		"src/lib/jobs/inline-job-runner"
 	],
 	"exclude": [
-		"node_modules",
-		// "src/test-utils",
-		// "src/**/*.test.ts"
+		"node_modules"
 	]
 }

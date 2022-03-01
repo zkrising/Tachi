@@ -1,3 +1,4 @@
+import { exec } from "child_process";
 import crypto from "crypto";
 import { ONE_HOUR } from "lib/constants/time";
 import { TachiConfig } from "lib/setup/config";
@@ -160,4 +161,25 @@ export function OmitUndefinedKeys<T>(obj: Partial<T>): Partial<T> {
 	}
 
 	return omittedObj;
+}
+
+/**
+ * Exec shellcode asynchronously.
+ *
+ * **DO NOT PASS USER INPUT INTO THIS FUNCTION!**
+ * **THIS EVALS A STRING AS BASH!**
+ * @param command A bash command to execute on the system.
+ * @returns stdout and stderr as strings.
+ */
+export function asyncExec(command: string) {
+	return new Promise<{ stdout: string; stderr: string }>((resolve, reject) => {
+		exec(command, (err, stdout, stderr) => {
+			if (err) {
+				// eslint-disable-next-line prefer-promise-reject-errors
+				return reject({ stdout, stderr, err });
+			}
+
+			return resolve({ stdout, stderr });
+		});
+	});
 }

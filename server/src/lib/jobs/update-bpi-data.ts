@@ -8,6 +8,7 @@ import {
 	Playtypes,
 	SongDocument,
 } from "tachi-common";
+import fetch from "utils/fetch";
 
 const logger = CreateLogCtx(__filename);
 

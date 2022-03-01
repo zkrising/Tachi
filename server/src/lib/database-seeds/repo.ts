@@ -108,7 +108,7 @@ export class DatabaseSeedsRepo {
 
 			this.logger.info(`Changes. Committing changes back.`);
 
-			const { stdout: commitOut, stderr: commitErr } = await asyncExec(
+			const { stdout: commitOut } = await asyncExec(
 				`cd "${this.baseDir}" || exit 2;
 				git add . || exit 3;
 				git commit -am "${commitMsg}" || exit 4;
@@ -116,10 +116,6 @@ export class DatabaseSeedsRepo {
 			);
 
 			this.logger.info(`Commit: ${commitOut}.`);
-
-			if (commitErr) {
-				this.logger.error(`Commit Err?: ${commitErr}`);
-			}
 
 			return true;
 		} catch (err) {

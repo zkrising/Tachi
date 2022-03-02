@@ -76,7 +76,7 @@ for (const music of xmlData.mdb.music) {
 			},
 			altTitles: [],
 			searchTerms: [
-				music.info.ascii,
+				music.info.ascii.replaceAll("_", " "),
 				music.info.title_yomigana,
 			],
 		});

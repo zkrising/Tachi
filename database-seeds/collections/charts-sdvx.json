@@ -128045,7 +128045,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1828,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128099,7 +128105,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1829,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128117,7 +128129,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1829,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128189,7 +128207,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1830,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128261,7 +128285,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1831,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128333,7 +128363,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1832,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			}
+		},
 		"versions": [
 			"konaste"
 		]

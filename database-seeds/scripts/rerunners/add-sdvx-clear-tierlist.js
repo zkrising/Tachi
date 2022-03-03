@@ -88,32 +88,32 @@ const TIERS = {
 		},
 		"D": {
 			text: "18D",
-			value: 18.2,
+			value: 18.3,
 		},
 		"C": {
 			text: "18C",
-			value: 18.3,
+			value: 18.5,
 		},
 		"B": {
 			text: "18B",
-			value: 18.4,
+			value: 18.6,
 		},
 		"A": {
 			text: "18A",
-			value: 18.5,
+			value: 18.7,
 		},
 		"A+": {
 			text: "18A+",
-			value: 18.6,
+			value: 18.8,
 		},
 		"S": {
 			text: "18S",
-			value: 18.7,
+			value: 18.9,
 		},
 		"SS": {
 			// Literally just Joyeuse lmao
 			text: "18SS",
-			value: 18.9,
+			value: 19.5, //if this were a score tier list this would be in the 20s
 		},
 	},
 	19: {
@@ -127,45 +127,45 @@ const TIERS = {
 		},
 		"D": {
 			text: "19D",
-			value: 19.2,
+			value: 19.3,
 		},
 		"C": {
 			text: "19C",
-			value: 19.3,
+			value: 19.4,
 		},
 		"B": {
 			text: "19B",
-			value: 19.4,
+			value: 19.5,
 		},
 		"A": {
 			text: "19A",
-			value: 19.5,
+			value: 19.7,
 		},
 		"A+": {
 			text: "19A+",
-			value: 19.6,
+			value: 19.9,
 		},
 		"S": {
 			text: "19S",
-			value: 19.7,
+			value: 20.0,
 		},
 	},
 	20: {
 		"B": {
 			text: "20B",
-			value: 20.4,
+			value: 20.1,
 		},
 		"A": {
 			text: "20A",
-			value: 20.6,
+			value: 20.3,
 		},
 		"A+": {
 			text: "20A+",
-			value: 20.7,
+			value: 20.5,
 		},
 		"S": {
 			text: "20S",
-			value: 20.8,
+			value: 20.5, //666 is the only S and it's literally no harder than anything in A+ clear wise
 		},
 	},
 };

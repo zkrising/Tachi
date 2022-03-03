@@ -436,6 +436,9 @@ export const HC511UserGoal: UserGoalDocument = {
 	progressHuman: "NO DATA",
 	timeSet: 0,
 	userID: 1,
+	from: {
+		origin: "manual",
+	},
 };
 
 export const TestingIIDXFolderSP10: FolderDocument = {
@@ -452,15 +455,12 @@ export const TestingIIDXFolderSP10: FolderDocument = {
 };
 
 export const TestingIIDXSPMilestone: MilestoneDocument = {
-	createdBy: 1,
 	criteria: {
 		type: "all",
 	},
 	desc: "testing milestone",
 	game: "iidx",
 	playtype: "SP",
-	group: "ExampleGroup",
-	groupIndex: 1,
 	milestoneID: "example_milestone_id",
 	name: "Example Milestone",
 	milestoneData: [

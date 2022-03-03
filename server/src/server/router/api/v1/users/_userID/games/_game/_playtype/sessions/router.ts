@@ -3,6 +3,7 @@ import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { SearchSessions } from "lib/search/search";
 import { GetGamePTConfig } from "tachi-common";
+import { CheckStrSessionAlg } from "utils/string-checks";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -37,7 +38,6 @@ router.get("/", async (req, res) => {
  * for that game.
  *
  * @param alg - An override to specify a different algorithm for that game.
- * UNIMPLEMENTED!!!
  * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions/best
  */
 router.get("/best", async (req, res) => {
@@ -45,6 +45,22 @@ router.get("/best", async (req, res) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 	const gptConfig = GetGamePTConfig(game, playtype);
+
+	let alg = gptConfig.defaultSessionRatingAlg;
+	if (typeof req.query.alg === "string") {
+		const userAlg = CheckStrSessionAlg(game, playtype, req.query.alg);
+
+		if (userAlg === null) {
+			return res.status(400).json({
+				success: false,
+				description: `Invalid algorithm '${
+					req.query.alg
+				}' provided. Expected any of ${gptConfig.sessionRatingAlgs.join(", ")}.`,
+			});
+		}
+
+		alg = userAlg;
+	}
 
 	const sessions = await db.sessions.find(
 		{
@@ -55,7 +71,7 @@ router.get("/best", async (req, res) => {
 		{
 			limit: 100,
 			sort: {
-				[`calculatedData.${gptConfig.defaultSessionRatingAlg}`]: -1,
+				[`calculatedData.${alg}`]: -1,
 			},
 		}
 	);

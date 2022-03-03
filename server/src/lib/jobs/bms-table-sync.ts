@@ -108,6 +108,7 @@ import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
 import { ChartDocument } from "tachi-common";
 import { CreateFolderID } from "utils/folder";
+import { FormatBMSTables } from "utils/misc";
 
 // this seems to be all we care about
 interface TableJSONDoc {
@@ -147,6 +148,17 @@ async function ImportTableLevels(tableJSON: TableJSONDoc[], prefix: string) {
 			{
 				$set: {
 					"data.tableFolders": tableFolders,
+				},
+			}
+		);
+
+		await db.songs.bms.update(
+			{
+				id: chart.songID,
+			},
+			{
+				$set: {
+					"data.tableString": FormatBMSTables(tableFolders),
 				},
 			}
 		);

@@ -15,7 +15,7 @@ function avgbest10(arr: number[]) {
 		arr
 			.sort((a, b) => b - a)
 			.slice(0, 10)
-			.reduce((a, r) => a + r, 0) / 10
+			.reduce((a, e) => a + e, 0) / 10
 	);
 }
 

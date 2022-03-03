@@ -12,6 +12,7 @@ import {
 	Playtypes,
 } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
+import { IIDXDans, SDVXDans, WACCA_STAGEUPS } from "lib/constants/classes";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturns } from "../types";
 import { BatchManualContext } from "./types";
@@ -200,6 +201,26 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 	};
 };
 
+const PR_BatchManualClasses = (game: Game): PrudenceSchema => {
+	switch (game) {
+		// This can be implemented for any non-static class (i.e. dans).
+		case "iidx":
+			return {
+				dan: optNull(p.isBoundedInteger(IIDXDans.KYU_7, IIDXDans.KAIDEN)),
+			};
+		case "sdvx":
+			return {
+				dan: optNull(p.isBoundedInteger(SDVXDans.DAN_1, SDVXDans.INF)),
+			};
+		case "wacca":
+			return {
+				stageUp: optNull(p.isBoundedInteger(WACCA_STAGEUPS.I, WACCA_STAGEUPS.XIV)),
+			};
+		default:
+			return {};
+	}
+};
+
 const PR_BatchManual = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => ({
 	meta: {
 		service: p.isBoundedString(3, 15),
@@ -208,6 +229,7 @@ const PR_BatchManual = (game: Game, playtype: Playtypes[Game]): PrudenceSchema =
 		version: "*?string",
 	},
 	scores: [PR_BatchManualScore(game, playtype)],
+	classes: optNull(PR_BatchManualClasses(game)),
 });
 
 /**
@@ -297,6 +319,8 @@ export function ParseBatchManualFromObject(
 			version: batchManual.meta.version ?? null,
 		},
 		iterable: batchManual.scores,
-		classHandler: null,
+		// if classes are provided, use those as a class handler. Otherwise, we
+		// don't care.
+		classHandler: batchManual.classes ? () => batchManual.classes! : null,
 	};
 }

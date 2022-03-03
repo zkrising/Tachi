@@ -1,30 +1,34 @@
 /* eslint-disable no-await-in-loop */
 // This script syncs this tachi instances database up with the tachi-database-seeds.
 
-import { execSync } from "child_process";
-import { monkDB } from "external/mongo/db";
+import db, { monkDB } from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
-import fs from "fs";
+import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
-import { Environment, TachiConfig } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 import { BulkWriteOperation } from "mongodb";
 import { ICollection } from "monk";
-import os from "os";
-import path from "path";
 import {
 	BMSCourseDocument,
 	ChartDocument,
 	FolderDocument,
+	Game,
 	SongDocument,
 	TableDocument,
 } from "tachi-common";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
+import { UpdateGameSongIDCounter } from "utils/db";
 import { InitaliseFolderChartLookup } from "utils/folder";
 
 interface SyncInstructions {
 	pattern: RegExp;
-	handler: (c: any[], collection: ICollection<any>, logger: KtLogger) => Promise<unknown>;
+	handler: (
+		c: any[],
+		collection: ICollection<any>,
+		logger: KtLogger,
+		collectionName: string
+	) => Promise<unknown>;
 }
 
 async function RemoveNotPresent<T>(
@@ -127,26 +131,24 @@ async function GenericUpsert<T>(
 
 const syncInstructions: SyncInstructions[] = [
 	{
-		pattern: /^charts-(usc|bms)$/u,
+		pattern: /^charts-(b|p)ms/u,
 		handler: async (
 			charts: ChartDocument[],
 			collection: ICollection<ChartDocument>,
-			logger
+			logger,
+			collectionName
 		) => {
-			// Since the USC and BMS databases are managed Bokutachi-side, we
-			// shouldn't be honoring any sort of updates from tachi-database-seeds
-			// aside from an initial one.
-			//
-			// However, in practice, these syncs are the best way to actually update
-			// issues in the database.
-			// We're going to disable this anyway.
-			// const isInitial = (await collection.findOne()) === null;
-
 			const r = await GenericUpsert(charts, collection, "chartID", logger, false);
 
 			if (r.thingsChanged) {
 				await InitaliseFolderChartLookup();
 				await UpdateIsPrimaryStatus();
+
+				await UpdateGameSongIDCounter(collectionName.includes("bms") ? "bms" : "pms");
+
+				await RecalcAllScores({
+					chartID: { $in: r.changedFields },
+				});
 			}
 		},
 	},
@@ -172,7 +174,7 @@ const syncInstructions: SyncInstructions[] = [
 	{
 		pattern: /^songs-/u,
 		handler: async (songs: SongDocument[], collection: ICollection<SongDocument>, logger) => {
-			const r = await GenericUpsert(songs, collection, "id", logger);
+			const r = await GenericUpsert(songs, collection, "id", logger, true);
 
 			if (r.thingsChanged) {
 				await RecalcAllScores({
@@ -213,34 +215,18 @@ const syncInstructions: SyncInstructions[] = [
 const logger = CreateLogCtx("Database Sync");
 
 async function SynchroniseDBWithSeeds() {
-	const seedsDir = fs.mkdtempSync(path.join(os.tmpdir(), "tachi-database-seeds-"));
-
-	logger.info(`Cloning data to ${seedsDir}.`);
-
-	fs.rmSync(seedsDir, { recursive: true, force: true });
-
 	// Wait for mongo to connect first.
 	await monkDB.then(() => void 0);
 
-	execSync(
-		`git clone https://github.com/TNG-dev/tachi-database-seeds -b "${
-			Environment.nodeEnv === "production" ? "master" : "develop"
-		}" --depth=1 "${seedsDir}"`,
-		{
-			stdio: "inherit",
-		}
-	);
+	const databaseSeedsRepo = await PullDatabaseSeeds();
 
-	const collections = fs.readdirSync(path.join(seedsDir, "collections"));
-
-	for (const jsonName of collections) {
-		const collectionName = path.parse(jsonName).name;
+	for await (const { collectionName, data } of databaseSeedsRepo.IterateCollections()) {
 		const spawnLogger = CreateLogCtx(`${collectionName} Sync`);
 
 		if (collectionName.startsWith("songs-") || collectionName.startsWith("charts-")) {
 			const game = collectionName.split("-")[1];
 
-			if (!TachiConfig.GAMES.includes(game as any)) {
+			if (!TachiConfig.GAMES.includes(game as Game)) {
 				spawnLogger.verbose(
 					`Skipping ${collectionName} (${game}) as it isn't for ${TachiConfig.NAME}.`
 				);
@@ -248,26 +234,22 @@ async function SynchroniseDBWithSeeds() {
 			}
 		}
 
-		spawnLogger.verbose(`Getting data.`);
-
-		let data = JSON.parse(
-			fs.readFileSync(path.join(seedsDir, "collections", jsonName), "utf-8")
-		);
-
 		spawnLogger.verbose(`Found ${data.length} documents.`);
 
 		let matchedSomething = false;
 		for (const syncInst of syncInstructions) {
 			if (collectionName.match(syncInst.pattern)) {
 				spawnLogger.verbose(`Starting handler...`);
-				await syncInst.handler(data, monkDB.get(collectionName), spawnLogger);
+				await syncInst.handler(
+					data,
+					monkDB.get(collectionName),
+					spawnLogger,
+					collectionName
+				);
 				matchedSomething = true;
 				break;
 			}
 		}
-
-		// free memory forcefully
-		data = null;
 
 		if (!matchedSomething) {
 			spawnLogger.warn(

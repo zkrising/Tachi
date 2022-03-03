@@ -3,6 +3,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { BatchManual } from "tachi-common";
 import t from "tap";
 import { EscapeStringRegexp } from "utils/misc";
+import { IIDXDans } from "lib/constants/classes";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParseBatchManualFromObject as ParserFn } from "./parser";
 
@@ -324,6 +325,40 @@ t.test("#ParserFn", (t) => {
 			t.end();
 		});
 
+		t.test("With class", (t) => {
+			const res = ParserFn(
+				{
+					meta: baseBatchManual.meta,
+					scores: [baseBatchManualScore],
+					classes: { dan: 18 },
+				} as BatchManual,
+				"file/batch-manual",
+				logger
+			);
+
+			t.not(res.classHandler, null);
+
+			t.strictSame(res.classHandler!("iidx", "SP", 1, {}, logger), { dan: IIDXDans.KAIDEN });
+
+			t.end();
+		});
+
+		t.test("With class set to null.", (t) => {
+			const res = ParserFn(
+				{
+					meta: baseBatchManual.meta,
+					scores: [baseBatchManualScore],
+					classes: null,
+				} as BatchManual,
+				"file/batch-manual",
+				logger
+			);
+
+			t.equal(res.classHandler, null);
+
+			t.end();
+		});
+
 		t.end();
 	});
 
@@ -478,6 +513,106 @@ t.test("#ParserFn", (t) => {
 			const fn2 = () => ParserFn(dm({ hitMeta: { bp: -1 } }), "file/batch-manual", logger);
 
 			t.throws(fn2, mockErr("scores[0].hitMeta.bp | Expected a positive integer"));
+
+			t.end();
+		});
+
+		t.test("Invalid class", (t) => {
+			// Out of bounds. (18 is kaiden)
+
+			t.test("Should throw if class is out of bounds.", (t) => {
+				t.throws(
+					() =>
+						ParserFn(
+							{
+								meta: baseBatchManual.meta,
+								scores: [baseBatchManualScore],
+								classes: { dan: 19 },
+							} as BatchManual,
+							"file/batch-manual",
+							logger
+						),
+					mockErr(
+						"classes.dan | Expected an integer between 0 and 18. | Received 19 [number]"
+					)
+				);
+
+				t.end();
+			});
+
+			t.test("Should throw if dans for different games are passed.", (t) => {
+				t.throws(
+					() =>
+						ParserFn(
+							{
+								meta: baseBatchManual.meta,
+								scores: [baseBatchManualScore],
+								classes: { stageUp: 9 },
+							} as BatchManual,
+							"file/batch-manual",
+							logger
+						),
+					mockErr("classes | Unexpected properties inside object: stageUp")
+				);
+
+				t.end();
+			});
+
+			t.test("Should throw if dan is a non-integer.", (t) => {
+				t.throws(
+					() =>
+						ParserFn(
+							{
+								meta: baseBatchManual.meta,
+								scores: [baseBatchManualScore],
+								classes: { dan: 9.5 },
+							} as BatchManual,
+							"file/batch-manual",
+							logger
+						),
+					mockErr(
+						"classes.dan | Expected an integer between 0 and 18. | Received 9.5 [number]."
+					)
+				);
+
+				t.end();
+			});
+
+			t.test("Should throw if unknown classes are present.", (t) => {
+				t.throws(
+					() =>
+						ParserFn(
+							{
+								meta: baseBatchManual.meta,
+								scores: [baseBatchManualScore],
+								classes: { dan: 14, unknownDan: 4 },
+							} as unknown,
+							"file/batch-manual",
+							logger
+						),
+					mockErr("classes | Unexpected properties inside object: unknownDan.")
+				);
+
+				// should also throw if classes from a valid game and invalid game
+				// are passed.
+				t.throws(
+					() =>
+						ParserFn(
+							{
+								meta: baseBatchManual.meta,
+								scores: [baseBatchManualScore],
+								classes: { dan: 14, stageUp: 4 },
+							} as unknown,
+							"file/batch-manual",
+							logger
+						),
+					mockErr(
+						"Invalid BATCH-MANUAL: classes | Unexpected properties inside object: stageUp."
+					)
+				);
+
+				t.end();
+			});
 
 			t.end();
 		});

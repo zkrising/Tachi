@@ -103,7 +103,7 @@ export async function EvaluateGoalForUser(
 		}
 
 		// if we weren't successful, we have to get the users next best score and put it up here
-		// this is made infinitely easier by the existance of personal-bests.
+		// this is made infinitely easier by the existence of personal-bests.
 		const nextBestQuery: FilterQuery<PBScoreDocument> = {
 			userID,
 		};
@@ -203,7 +203,6 @@ type GoalKeys = GoalDocument["criteria"]["key"];
 
 type IIDXOrBMSPB = PBScoreDocument<"iidx:SP" | "iidx:DP" | "bms:7K" | "bms:14K">;
 
-// @todo, #100 improve this (add things like BP for iidx, maybe, percents for scores?)
 export function HumaniseGoalProgress(
 	game: Game,
 	playtype: Playtypes[Game],

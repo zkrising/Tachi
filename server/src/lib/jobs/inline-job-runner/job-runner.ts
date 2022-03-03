@@ -1,8 +1,11 @@
 import { Queue, Worker } from "bullmq";
 import CreateLogCtx from "lib/logger/logger";
+import { TachiConfig } from "lib/setup/config";
 import { DedupeArr } from "utils/misc";
+import { BacksyncBMSSongsAndCharts } from "../backsync-bms-data";
 import { DeoprhanScores } from "../deorphan-scores";
 import { UGSSnapshot } from "../ugs-snapshot";
+import { UpdatePoyashiData } from "../update-bpi-data";
 
 interface Job {
 	name: string;
@@ -24,6 +27,24 @@ const jobs: Job[] = [
 		run: DeoprhanScores,
 	},
 ];
+
+// if kamaitachi or omnitachi
+if (TachiConfig.TYPE !== "btchi") {
+	jobs.push({
+		name: "Update BPI",
+		cronFormat: "2 0 * * *",
+		run: UpdatePoyashiData,
+	});
+}
+
+// if bokutachi or omnimitachi
+if (TachiConfig.TYPE !== "ktchi") {
+	jobs.push({
+		name: "Backsync BMS",
+		cronFormat: "2 0 * * *",
+		run: BacksyncBMSSongsAndCharts,
+	});
+}
 
 const logger = CreateLogCtx("JOB_RUNNER");
 

@@ -68,3 +68,31 @@ export async function GetRelevantSongsAndCharts(
 
 	return { songs, charts };
 }
+
+export async function UpdateGameSongIDCounter(game: "bms" | "pms") {
+	const largestSongID = await db.songs[game].findOne(
+		{},
+		{
+			sort: { id: -1 },
+			projection: { id: 1 },
+		}
+	);
+
+	if (!largestSongID) {
+		logger.severe(
+			`No ${game} charts loaded, yet BMS sync was attempted? Lost state on ${game}-song-id counter. Panicking.`
+		);
+		throw new Error(`No BMS charts loaded, yet BMS sync was attempted.`);
+	}
+
+	await db.counters.update(
+		{
+			counterName: `${game}-song-id`,
+		},
+		{
+			$set: {
+				value: largestSongID.id + 1,
+			},
+		}
+	);
+}

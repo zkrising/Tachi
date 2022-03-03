@@ -133,6 +133,9 @@ t.test("#GetRelevantGoals", (t) => {
 				progressHuman: "NO DATA",
 				timeSet: Date.now(),
 				userID: 1,
+				from: {
+					origin: "manual",
+				},
 			}))
 		);
 	});
@@ -195,6 +198,9 @@ t.test("#UpdateGoalsForUser", (t) => {
 		timeAchieved: null,
 		timeSet: 0,
 		userID: 1,
+		from: {
+			origin: "manual",
+		},
 	};
 
 	t.test("Should correctly update goals when user achieves goal.", async (t) => {

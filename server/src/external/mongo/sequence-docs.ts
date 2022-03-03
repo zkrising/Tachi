@@ -15,7 +15,7 @@ export async function InitSequenceDocs() {
 		}
 	);
 
-	const largestUSCSongID = await db.songs.usc.findOne(
+	const largestBMSSongID = await db.songs.bms.findOne(
 		{},
 		{
 			sort: {
@@ -23,7 +23,8 @@ export async function InitSequenceDocs() {
 			},
 		}
 	);
-	const largestBMSSongID = await db.songs.bms.findOne(
+
+	const largestPMSSongID = await db.songs.pms.findOne(
 		{},
 		{
 			sort: {
@@ -38,12 +39,12 @@ export async function InitSequenceDocs() {
 			value: userWithLargestID ? userWithLargestID.id + 1 : 1,
 		},
 		{
-			counterName: "usc-song-id",
-			value: largestUSCSongID ? largestUSCSongID.id + 1 : 1,
-		},
-		{
 			counterName: "bms-song-id",
 			value: largestBMSSongID ? largestBMSSongID.id + 1 : 1,
+		},
+		{
+			counterName: "pms-song-id",
+			value: largestPMSSongID ? largestPMSSongID.id + 1 : 1,
 		},
 	];
 

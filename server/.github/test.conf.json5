@@ -21,6 +21,7 @@
 	ARC_AUTH_TOKEN: "unused",
 	ENABLE_SERVER_HTTPS: false,
 	OUR_URL: "https://example.com",
+	SEEDS_URL: null,
 	INVITE_CODE_CONFIG: {
 		BATCH_SIZE: 2,
 		INVITE_CAP: 100,

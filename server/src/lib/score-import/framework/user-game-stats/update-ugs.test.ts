@@ -91,7 +91,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 				game: "iidx",
 				playtype: "SP",
 				userID: 1,
-				ratings: { ktLampRating: ratings.reduce((a, r) => a + r, 0) / 20 },
+				ratings: { ktLampRating: ratings.reduce((a, e) => a + e, 0) / 20 },
 				classes: {},
 			},
 			"Should update the game-stats object"

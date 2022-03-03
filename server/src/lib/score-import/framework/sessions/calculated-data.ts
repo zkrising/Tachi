@@ -15,14 +15,14 @@ function AverageBest10(vals: (number | null | undefined)[]) {
 		numbers
 			.sort((a, b) => b - a)
 			.slice(0, RELEVANT_SCORES)
-			.reduce((a, r) => a + r, 0) / RELEVANT_SCORES
+			.reduce((a, e) => a + e, 0) / RELEVANT_SCORES
 	);
 }
 
 function SumAll(arr: ScoreCalculatedDataOnly[], prop: keyof ScoreDocument["calculatedData"]) {
-	return arr.reduce((a, r) => {
-		if (typeof r.calculatedData[prop] === "number") {
-			return a + (r.calculatedData[prop] as number);
+	return arr.reduce((a, e) => {
+		if (typeof e.calculatedData[prop] === "number") {
+			return a + (e.calculatedData[prop] as number);
 		}
 
 		return a;

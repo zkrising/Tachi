@@ -15,6 +15,26 @@ not generally be shown to end users.
 
 # Changelog
 
+## 2.1.3
+
+- [INTERNAL_FEAT] Database seeds can now be automatically updated from a controlling server (#658, et. al.).
+
+*****
+
+- [ENH] Batch Manual can now update your game classes (Thanks, cg505).
+
+*****
+
+- [BUG] PMS charts now automatically insert themselves into the database instead of crashing.
+
+# 2.1.2
+
+- [ENH] Properly capitalise some improperly capitalised error messages.
+
+# 2.1.1
+
+- [INTERNAL_REWORK] Scripts are now included inside `src/` instead of outside it.
+
 ## 2.1.0
 
 - [FEAT] Added Jubeat Support. (#169)

@@ -189,6 +189,23 @@ export enum CHUNITHM_COLOURS {
 	RAINBOW,
 }
 
+export enum WACCA_STAGEUPS {
+	I,
+	II,
+	III,
+	IV,
+	V,
+	VI,
+	VII,
+	VIII,
+	IX,
+	X,
+	XI,
+	XII,
+	XIII,
+	XIV,
+}
+
 export enum WACCA_COLOURS {
 	ASH,
 	NAVY,

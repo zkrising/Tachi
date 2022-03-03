@@ -106,6 +106,20 @@ export class DatabaseSeedsRepo {
 				return false;
 			}
 
+			// Ok, Testing this is actually a bad idea. Hear me out.
+			// It's exceptionally difficult to actually store and look at the test output. (potentially huge)
+			// especially when filesystem size is our biggest constraint at the moment.
+			//
+			// It's better for us to commit straight away, and have the tests on our github CI fail
+			// (and subsequently yell at us.)
+			//
+			// try {
+			// 	await asyncExec(`cd "${this.baseDir}/scripts" || exit 2; pnpm install; pnpm test`);
+			// } catch ({ err, stdout, stderr }) {
+			// 	logger.error(`Testing the changes failed. ${err}. Not committing back!`, { err });
+			// 	throw err;
+			// }
+
 			this.logger.info(`Changes. Committing changes back.`);
 
 			const { stdout: commitOut } = await asyncExec(

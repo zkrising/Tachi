@@ -176,7 +176,7 @@ export function asyncExec(command: string) {
 		exec(command, (err, stdout, stderr) => {
 			if (err) {
 				// eslint-disable-next-line prefer-promise-reject-errors
-				return reject({ stdout, stderr, err });
+				return reject({ err, stdout, stderr });
 			}
 
 			return resolve({ stdout, stderr });

@@ -2,7 +2,7 @@ import { Queue, Worker } from "bullmq";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
 import { DedupeArr } from "utils/misc";
-import { BacksyncBMSSongsAndCharts } from "../backsync-bms-data";
+import { BacksyncBMSPMSSongsAndCharts } from "../backsync-bms-pms-data";
 import { DeoprhanScores } from "../deorphan-scores";
 import { UGSSnapshot } from "../ugs-snapshot";
 import { UpdatePoyashiData } from "../update-bpi-data";
@@ -40,9 +40,9 @@ if (TachiConfig.TYPE !== "btchi") {
 // if bokutachi or omnimitachi
 if (TachiConfig.TYPE !== "ktchi") {
 	jobs.push({
-		name: "Backsync BMS",
+		name: "Backsync BMS + PMS",
 		cronFormat: "2 0 * * *",
-		run: BacksyncBMSSongsAndCharts,
+		run: BacksyncBMSPMSSongsAndCharts,
 	});
 }
 

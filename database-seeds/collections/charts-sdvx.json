@@ -160,7 +160,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -1115,7 +1115,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -2358,7 +2358,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -2761,7 +2761,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -3481,7 +3481,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -4715,7 +4715,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -4820,7 +4820,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -4986,7 +4986,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -5084,7 +5084,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -5251,7 +5251,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -5447,7 +5447,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -5718,7 +5718,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -6144,7 +6144,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -7198,7 +7198,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -7934,7 +7934,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -8316,7 +8316,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -8480,7 +8480,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -8655,7 +8655,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -9094,7 +9094,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -9303,7 +9303,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -9909,7 +9909,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -10087,7 +10087,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -10117,7 +10117,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -10284,7 +10284,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -11129,7 +11129,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -11756,7 +11756,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -11786,7 +11786,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -12094,7 +12094,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -12277,7 +12277,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -12834,7 +12834,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -13347,7 +13347,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -13711,7 +13711,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -14003,7 +14003,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -15400,7 +15400,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -15649,7 +15649,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -15809,7 +15809,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -15858,7 +15858,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -16075,7 +16075,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -16394,8 +16394,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17E",
-				"value": 17.2
+				"text": "17D",
+				"value": 17.3
 			}
 		},
 		"versions": [
@@ -16953,7 +16953,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -17053,7 +17053,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -18105,7 +18105,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18SS",
-				"value": 18.9
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -18249,7 +18249,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -18348,7 +18348,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -18449,7 +18449,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -18878,7 +18878,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -18907,7 +18907,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -18978,7 +18978,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -19007,7 +19007,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A+",
-				"value": 19.6
+				"value": 19.9
 			}
 		},
 		"versions": [
@@ -19568,7 +19568,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -19785,7 +19785,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -20612,7 +20612,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -21026,7 +21026,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -21485,7 +21485,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -21783,7 +21783,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -22153,7 +22153,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -23775,7 +23775,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -24051,7 +24051,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -24102,7 +24102,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -24481,7 +24481,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -24532,7 +24532,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -24675,7 +24675,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -24747,7 +24747,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -25863,7 +25863,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -25936,7 +25936,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -25964,7 +25964,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -26057,7 +26057,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -26158,7 +26158,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -26229,7 +26229,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -26258,7 +26258,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -26329,7 +26329,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -26358,7 +26358,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -26429,7 +26429,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -26458,7 +26458,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -26530,7 +26530,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -26558,7 +26558,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -26630,7 +26630,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -26658,7 +26658,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -26751,7 +26751,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -26945,7 +26945,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -27139,7 +27139,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -27212,7 +27212,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -27405,7 +27405,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -27434,7 +27434,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -27809,7 +27809,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -28628,7 +28628,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -28679,7 +28679,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -29607,7 +29607,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -29679,7 +29679,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -29955,7 +29955,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -30298,7 +30298,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -31797,7 +31797,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -32023,7 +32023,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -32095,7 +32095,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -32124,7 +32124,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -32194,7 +32194,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -32222,7 +32222,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -32628,7 +32628,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -33166,7 +33166,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -33933,7 +33933,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -34063,7 +34063,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -35688,7 +35688,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -35716,7 +35716,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -35786,7 +35786,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -35925,7 +35925,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -35997,7 +35997,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -36066,7 +36066,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -36137,7 +36137,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -36486,7 +36486,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -36557,7 +36557,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -36770,8 +36770,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17E",
-				"value": 17.2
+				"text": "17D",
+				"value": 17.3
 			}
 		},
 		"versions": [
@@ -37585,7 +37585,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -37781,7 +37781,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -38074,8 +38074,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17E",
-				"value": 17.2
+				"text": "17D",
+				"value": 17.3
 			}
 		},
 		"versions": [
@@ -38282,7 +38282,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -38330,7 +38330,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -38647,7 +38647,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -38884,7 +38884,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -39053,7 +39053,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -39124,7 +39124,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -39387,7 +39387,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -39485,7 +39485,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -39858,7 +39858,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -41533,7 +41533,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -41998,7 +41998,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -42401,7 +42401,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -42665,7 +42665,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -42872,7 +42872,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -43261,7 +43261,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -43532,7 +43532,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -43600,7 +43600,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -44323,7 +44323,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -44574,7 +44574,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -44775,7 +44775,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -44844,7 +44844,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -44980,7 +44980,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -45118,7 +45118,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -45187,7 +45187,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -45255,7 +45255,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -45283,7 +45283,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -45558,7 +45558,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -45697,7 +45697,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -45904,7 +45904,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -46104,7 +46104,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -46381,7 +46381,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -46450,7 +46450,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -46519,7 +46519,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -46726,7 +46726,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -46951,7 +46951,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -47018,7 +47018,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -47046,7 +47046,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18S",
-				"value": 18.7
+				"value": 18.9
 			}
 		},
 		"versions": [
@@ -48234,7 +48234,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -48605,7 +48605,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -48674,7 +48674,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -48944,7 +48944,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -49076,7 +49076,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -49173,7 +49173,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -49200,7 +49200,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -49269,7 +49269,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -49296,7 +49296,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -49365,7 +49365,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -49392,7 +49392,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -49488,7 +49488,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -49626,7 +49626,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -49763,7 +49763,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -50097,7 +50097,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -50124,7 +50124,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -50191,7 +50191,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -50284,7 +50284,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -50310,7 +50310,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -50402,7 +50402,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -50469,7 +50469,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -50538,7 +50538,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -50759,7 +50759,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -50981,8 +50981,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "18D",
-				"value": 18.2
+				"text": "18C",
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -51050,7 +51050,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -51120,7 +51120,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -51189,7 +51189,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -51327,7 +51327,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -51458,7 +51458,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -51654,7 +51654,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -51998,7 +51998,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -52068,7 +52068,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -52337,7 +52337,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -52664,7 +52664,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -52733,7 +52733,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -53072,7 +53072,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -53859,7 +53859,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -55207,7 +55207,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -55700,7 +55700,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -55839,7 +55839,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -55977,7 +55977,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -56046,7 +56046,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -56073,7 +56073,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20B",
-				"value": 20.4
+				"value": 20.1
 			}
 		},
 		"versions": [
@@ -56349,7 +56349,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -56486,7 +56486,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -56555,7 +56555,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -56889,7 +56889,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -57027,7 +57027,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -57165,7 +57165,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -57234,7 +57234,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -57303,7 +57303,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -57372,7 +57372,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -57440,7 +57440,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -57642,7 +57642,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -57774,7 +57774,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -57912,7 +57912,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -57981,7 +57981,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -58288,7 +58288,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -58358,7 +58358,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -58385,7 +58385,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A+",
-				"value": 19.6
+				"value": 19.9
 			}
 		},
 		"versions": [
@@ -58473,7 +58473,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -58815,7 +58815,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -59008,7 +59008,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -59076,7 +59076,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -59300,7 +59300,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -59369,7 +59369,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -59438,7 +59438,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -59576,7 +59576,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -60062,7 +60062,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -60131,7 +60131,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -60820,7 +60820,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -61160,7 +61160,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -61673,7 +61673,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -61811,7 +61811,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -62094,7 +62094,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -62346,7 +62346,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -62432,7 +62432,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -63011,7 +63011,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -63098,7 +63098,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -63422,7 +63422,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -64147,7 +64147,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -64486,7 +64486,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -64679,7 +64679,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -64775,7 +64775,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -64871,7 +64871,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -64967,7 +64967,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -65131,7 +65131,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -65228,7 +65228,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -65255,7 +65255,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -65414,7 +65414,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -65876,7 +65876,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -66034,7 +66034,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -66101,7 +66101,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -66233,7 +66233,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -66440,7 +66440,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -66947,7 +66947,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -67892,7 +67892,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -68273,7 +68273,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -68342,7 +68342,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -68594,7 +68594,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -68926,7 +68926,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -69010,7 +69010,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -69096,7 +69096,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -69182,7 +69182,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -69275,7 +69275,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -69361,7 +69361,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -69618,7 +69618,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -69790,7 +69790,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -69883,7 +69883,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -70221,7 +70221,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -70565,7 +70565,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -70657,7 +70657,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -70742,7 +70742,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -70829,7 +70829,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -71080,7 +71080,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -71166,7 +71166,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -71418,7 +71418,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -71842,7 +71842,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -71929,7 +71929,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -72955,7 +72955,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -73040,7 +73040,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -73127,7 +73127,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -73299,7 +73299,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -73384,7 +73384,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -73471,7 +73471,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -73808,7 +73808,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -73895,7 +73895,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -74238,7 +74238,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -74417,7 +74417,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -74509,7 +74509,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -74680,7 +74680,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -74773,7 +74773,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20B",
-				"value": 20.4
+				"value": 20.1
 			}
 		},
 		"versions": [
@@ -74858,7 +74858,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -74951,7 +74951,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -75043,7 +75043,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -75200,7 +75200,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -75312,7 +75312,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -75405,7 +75405,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -75470,7 +75470,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -75497,7 +75497,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20B",
-				"value": 20.4
+				"value": 20.1
 			}
 		},
 		"versions": [
@@ -75589,7 +75589,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -75654,7 +75654,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -75681,7 +75681,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -75853,7 +75853,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -75938,7 +75938,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -76025,7 +76025,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -76117,7 +76117,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -76380,7 +76380,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -76645,7 +76645,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -76817,7 +76817,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -76903,7 +76903,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -76989,7 +76989,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -77134,7 +77134,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -77161,7 +77161,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -77411,7 +77411,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -77503,7 +77503,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -77767,7 +77767,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -78107,7 +78107,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -78437,7 +78437,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -79112,7 +79112,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -80037,7 +80037,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -80207,7 +80207,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -80465,7 +80465,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -80637,7 +80637,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -80809,7 +80809,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -80875,7 +80875,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -80901,7 +80901,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20A",
-				"value": 20.6
+				"value": 20.3
 			}
 		},
 		"versions": [
@@ -80967,7 +80967,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -80993,7 +80993,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20A",
-				"value": 20.6
+				"value": 20.3
 			}
 		},
 		"versions": [
@@ -81085,7 +81085,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -81177,7 +81177,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -81269,7 +81269,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19S",
-				"value": 19.7
+				"value": 20
 			}
 		},
 		"versions": [
@@ -81334,7 +81334,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -81361,7 +81361,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -81453,7 +81453,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -81545,7 +81545,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -81637,7 +81637,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -81729,7 +81729,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -82238,7 +82238,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -82503,7 +82503,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -82587,7 +82587,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -82669,7 +82669,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -82751,7 +82751,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -82841,7 +82841,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -83516,7 +83516,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -83597,7 +83597,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -83754,7 +83754,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -84002,7 +84002,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -84068,7 +84068,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -84095,7 +84095,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -84261,7 +84261,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -84427,7 +84427,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -84685,7 +84685,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -84777,7 +84777,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -84869,7 +84869,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -84954,7 +84954,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -85106,7 +85106,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -85133,7 +85133,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -85219,7 +85219,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -85285,7 +85285,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -85311,7 +85311,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A+",
-				"value": 19.6
+				"value": 19.9
 			}
 		},
 		"versions": [
@@ -85396,7 +85396,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -85483,7 +85483,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -85912,7 +85912,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -86428,7 +86428,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -86514,7 +86514,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -86693,7 +86693,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -87208,7 +87208,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -87381,7 +87381,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -87473,7 +87473,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -87538,7 +87538,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -87565,7 +87565,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -87657,7 +87657,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -87749,7 +87749,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -87841,7 +87841,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -87927,7 +87927,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -88012,7 +88012,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -88184,7 +88184,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -88251,7 +88251,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -88277,7 +88277,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20A+",
-				"value": 20.7
+				"value": 20.5
 			}
 		},
 		"versions": [
@@ -88363,7 +88363,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -88448,7 +88448,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -88514,7 +88514,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -88541,7 +88541,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -88633,7 +88633,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -88817,7 +88817,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -88909,7 +88909,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -89000,8 +89000,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "18B",
-				"value": 18.4
+				"text": "18C",
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -89086,7 +89086,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -89179,7 +89179,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -89271,7 +89271,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -89363,7 +89363,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -89449,7 +89449,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "17B",
-				"value": 17.6
+				"value": 17.5
 			}
 		},
 		"versions": [
@@ -89541,7 +89541,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -89633,7 +89633,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -89719,7 +89719,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -89805,7 +89805,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -89976,7 +89976,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -90062,7 +90062,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -90149,7 +90149,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -90234,7 +90234,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -90406,7 +90406,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -90585,7 +90585,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -90670,7 +90670,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -90842,7 +90842,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -90929,7 +90929,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -91021,7 +91021,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -91106,7 +91106,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -91193,7 +91193,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -91305,7 +91305,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -91370,7 +91370,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -91462,8 +91462,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "16A/B",
-				"value": 16.5
+				"text": "16A+",
+				"value": 16.7
 			}
 		},
 		"versions": [
@@ -91489,7 +91489,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -91572,7 +91572,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -91657,7 +91657,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -91743,7 +91743,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -92000,7 +92000,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -92172,7 +92172,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -92688,7 +92688,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -92867,7 +92867,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -92959,7 +92959,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -93309,7 +93309,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -93481,7 +93481,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -93567,7 +93567,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -93910,7 +93910,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -93996,7 +93996,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -94089,7 +94089,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -94433,7 +94433,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -94525,7 +94525,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -94617,7 +94617,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -94703,7 +94703,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -94875,7 +94875,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -95047,7 +95047,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -95225,7 +95225,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -95310,7 +95310,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -95463,7 +95463,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -95489,7 +95489,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20A",
-				"value": 20.6
+				"value": 20.3
 			}
 		},
 		"versions": [
@@ -95554,7 +95554,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -95581,7 +95581,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -95646,7 +95646,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -95673,7 +95673,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -95738,7 +95738,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -95765,7 +95765,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -95851,7 +95851,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -95943,7 +95943,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -96035,7 +96035,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -96127,7 +96127,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -96298,7 +96298,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -96385,7 +96385,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -96470,7 +96470,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -96728,7 +96728,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -96898,7 +96898,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -96980,7 +96980,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -97147,7 +97147,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -97228,7 +97228,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -97392,7 +97392,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -97889,7 +97889,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -97966,7 +97966,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -98227,7 +98227,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -98310,7 +98310,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -98559,7 +98559,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -98729,7 +98729,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -98817,7 +98817,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -98903,7 +98903,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -98982,7 +98982,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -99142,7 +99142,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -99224,7 +99224,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -99370,7 +99370,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -99397,7 +99397,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -99482,7 +99482,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -99661,7 +99661,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -99833,7 +99833,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -100177,7 +100177,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -100267,7 +100267,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18S",
-				"value": 18.7
+				"value": 18.9
 			}
 		},
 		"versions": [
@@ -100355,7 +100355,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -100443,7 +100443,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -100506,7 +100506,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -100789,7 +100789,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -100875,7 +100875,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -100961,7 +100961,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -101053,7 +101053,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -101139,7 +101139,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -101538,7 +101538,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -101618,7 +101618,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -101703,7 +101703,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -101949,7 +101949,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -102031,7 +102031,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -102113,7 +102113,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -102434,7 +102434,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -102746,7 +102746,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -102902,7 +102902,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -103067,7 +103067,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -103131,7 +103131,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -103157,7 +103157,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20B",
-				"value": 20.4
+				"value": 20.1
 			}
 		},
 		"versions": [
@@ -103223,7 +103223,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -103249,7 +103249,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20A+",
-				"value": 20.7
+				"value": 20.5
 			}
 		},
 		"versions": [
@@ -103314,7 +103314,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -103341,7 +103341,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -103406,7 +103406,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -103433,7 +103433,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -103519,7 +103519,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -103611,7 +103611,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -103697,7 +103697,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -103789,7 +103789,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -103879,7 +103879,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -103967,7 +103967,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -104219,7 +104219,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -104307,7 +104307,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -104477,7 +104477,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -104565,7 +104565,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -104735,7 +104735,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -104823,7 +104823,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -104904,7 +104904,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -104987,7 +104987,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -105075,7 +105075,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -105157,7 +105157,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -105239,7 +105239,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -105327,7 +105327,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -105579,7 +105579,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -105742,7 +105742,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -105825,7 +105825,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -105907,7 +105907,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -106153,7 +106153,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18S",
-				"value": 18.7
+				"value": 18.9
 			}
 		},
 		"versions": [
@@ -106241,7 +106241,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -106322,7 +106322,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -106404,7 +106404,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -106656,7 +106656,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -106738,7 +106738,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -106820,7 +106820,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -106902,7 +106902,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -106984,7 +106984,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -107073,7 +107073,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -107154,7 +107154,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -107646,7 +107646,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -107729,7 +107729,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -107810,7 +107810,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -108063,7 +108063,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -108144,7 +108144,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -108226,7 +108226,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -108308,7 +108308,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -108390,7 +108390,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -108554,7 +108554,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -108636,7 +108636,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -108800,7 +108800,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -109147,7 +109147,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -109217,7 +109217,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -109305,7 +109305,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -109475,7 +109475,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -109563,7 +109563,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -109726,7 +109726,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -109808,7 +109808,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -110136,7 +110136,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -110372,7 +110372,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -110450,7 +110450,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -111074,7 +111074,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -111239,7 +111239,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -111327,7 +111327,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -111415,7 +111415,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -111478,7 +111478,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -111503,7 +111503,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20A",
-				"value": 20.6
+				"value": 20.3
 			}
 		},
 		"versions": [
@@ -111591,7 +111591,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -111653,7 +111653,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -111679,7 +111679,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -111767,7 +111767,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -111937,7 +111937,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A+",
-				"value": 19.6
+				"value": 19.9
 			}
 		},
 		"versions": [
@@ -112019,7 +112019,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -112178,7 +112178,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -112260,7 +112260,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -112349,7 +112349,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -112437,7 +112437,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -112605,7 +112605,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -112691,7 +112691,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -112777,7 +112777,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -112861,7 +112861,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -112920,8 +112920,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17E",
-				"value": 17.2
+				"text": "17D",
+				"value": 17.3
 			}
 		},
 		"versions": [
@@ -112945,7 +112945,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -113184,7 +113184,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -113262,7 +113262,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -113340,7 +113340,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -113418,7 +113418,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -113498,7 +113498,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18S",
-				"value": 18.7
+				"value": 18.9
 			}
 		},
 		"versions": [
@@ -113523,7 +113523,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20A+",
-				"value": 20.7
+				"value": 20.5
 			}
 		},
 		"versions": [
@@ -113611,7 +113611,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -113693,7 +113693,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -113781,7 +113781,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -113863,7 +113863,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -113951,7 +113951,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -114039,7 +114039,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -114125,7 +114125,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -114209,7 +114209,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -114367,7 +114367,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -114448,7 +114448,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -114530,7 +114530,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -114612,7 +114612,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -114693,7 +114693,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -114943,7 +114943,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -115031,7 +115031,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -115117,7 +115117,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -115285,7 +115285,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -115453,7 +115453,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -115537,7 +115537,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -115698,7 +115698,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -115787,7 +115787,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -116024,7 +116024,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -116193,7 +116193,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -116441,7 +116441,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19A+",
-				"value": 19.6
+				"value": 19.9
 			}
 		},
 		"versions": [
@@ -116500,7 +116500,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -116525,7 +116525,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19A+",
-				"value": 19.6
+				"value": 19.9
 			}
 		},
 		"versions": [
@@ -116706,7 +116706,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -116791,7 +116791,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -116871,7 +116871,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -117042,7 +117042,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -117124,7 +117124,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -117376,7 +117376,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -117457,7 +117457,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -117540,7 +117540,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -117625,7 +117625,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -117712,7 +117712,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -117875,7 +117875,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -117954,7 +117954,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -118042,7 +118042,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -118123,7 +118123,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -118366,7 +118366,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -118454,7 +118454,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -118695,7 +118695,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -118778,7 +118778,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -118859,7 +118859,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -118948,7 +118948,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -119187,7 +119187,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20S",
-				"value": 20.8
+				"value": 20.5
 			}
 		},
 		"versions": [
@@ -119249,7 +119249,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -119275,7 +119275,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -119363,7 +119363,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -119451,7 +119451,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -119514,7 +119514,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -119539,7 +119539,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20A+",
-				"value": 20.7
+				"value": 20.5
 			}
 		},
 		"versions": [
@@ -119627,7 +119627,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -119715,7 +119715,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -119803,7 +119803,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -119865,7 +119865,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -119891,7 +119891,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -119973,7 +119973,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -120061,7 +120061,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -120123,7 +120123,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -120149,7 +120149,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -120237,7 +120237,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -120299,7 +120299,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -120325,7 +120325,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -120407,7 +120407,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -120488,7 +120488,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -120741,7 +120741,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -120910,7 +120910,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -120993,7 +120993,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -121081,7 +121081,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -121163,7 +121163,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -121244,7 +121244,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -121326,7 +121326,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -121408,7 +121408,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -121497,7 +121497,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -121579,7 +121579,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -121660,7 +121660,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -121749,7 +121749,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -121837,7 +121837,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -121898,7 +121898,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -121923,7 +121923,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A+",
-				"value": 19.6
+				"value": 19.9
 			}
 		},
 		"versions": [
@@ -122007,7 +122007,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -122085,7 +122085,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -122411,7 +122411,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -122499,7 +122499,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A+",
-				"value": 18.6
+				"value": 18.8
 			}
 		},
 		"versions": [
@@ -122587,7 +122587,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -122822,7 +122822,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -122900,7 +122900,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -123387,7 +123387,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -123473,7 +123473,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -123557,7 +123557,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -123634,7 +123634,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -123712,7 +123712,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -123797,7 +123797,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19D",
-				"value": 19.2
+				"value": 19.3
 			}
 		},
 		"versions": [
@@ -123875,7 +123875,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -124037,7 +124037,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -124121,7 +124121,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -124198,7 +124198,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -124355,7 +124355,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -124433,7 +124433,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -124510,7 +124510,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -124595,7 +124595,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -124656,7 +124656,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -124681,7 +124681,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20B",
-				"value": 20.4
+				"value": 20.1
 			}
 		},
 		"versions": [
@@ -124743,7 +124743,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -124769,7 +124769,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -124831,7 +124831,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -124857,7 +124857,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -124919,7 +124919,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -125007,7 +125007,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -125033,7 +125033,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -125121,7 +125121,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -125209,7 +125209,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -125289,7 +125289,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -125445,7 +125445,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -125529,7 +125529,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -125691,7 +125691,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -125768,7 +125768,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -125937,7 +125937,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -126021,7 +126021,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -126254,7 +126254,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -126410,7 +126410,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -126470,7 +126470,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -126495,7 +126495,7 @@
 			"clear": {
 				"individualDifference": true,
 				"text": "19A+",
-				"value": 19.6
+				"value": 19.9
 			}
 		},
 		"versions": [
@@ -126579,7 +126579,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18B",
-				"value": 18.4
+				"value": 18.6
 			}
 		},
 		"versions": [
@@ -126657,7 +126657,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -126734,7 +126734,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B",
+				"text": "17B+",
 				"value": 17.6
 			}
 		},
@@ -127046,7 +127046,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -127106,7 +127106,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -127131,7 +127131,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A",
-				"value": 19.5
+				"value": 19.7
 			}
 		},
 		"versions": [
@@ -127190,7 +127190,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -127215,7 +127215,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -127299,7 +127299,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19A+",
-				"value": 19.6
+				"value": 19.9
 			}
 		},
 		"versions": [
@@ -127358,7 +127358,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D+",
+				"text": "17C",
 				"value": 17.4
 			}
 		},
@@ -127383,7 +127383,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19B",
-				"value": 19.4
+				"value": 19.5
 			}
 		},
 		"versions": [
@@ -127443,7 +127443,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18A",
-				"value": 18.5
+				"value": 18.7
 			}
 		},
 		"versions": [
@@ -127467,7 +127467,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "20A",
-				"value": 20.6
+				"value": 20.3
 			}
 		},
 		"versions": [
@@ -127551,7 +127551,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "19C",
-				"value": 19.3
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -127713,7 +127713,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18D",
-				"value": 18.2
+				"value": 18.3
 			}
 		},
 		"versions": [
@@ -127797,7 +127797,7 @@
 			"clear": {
 				"individualDifference": false,
 				"text": "18C",
-				"value": 18.3
+				"value": 18.5
 			}
 		},
 		"versions": [
@@ -127952,7 +127952,7 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
+				"text": "17B",
 				"value": 17.5
 			}
 		},
@@ -128027,7 +128027,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1838,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "17F",
+				"value": 17.1
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128099,7 +128105,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1839,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128171,7 +128183,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1840,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128225,7 +128243,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1841,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128243,7 +128267,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1841,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128315,7 +128345,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1842,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128387,7 +128423,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1843,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128441,7 +128483,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1844,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -128459,7 +128507,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1844,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			}
+		},
 		"versions": [
 			"konaste"
 		]

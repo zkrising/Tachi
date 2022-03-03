@@ -55,16 +55,16 @@ const TIERS = {
 			text: "17D",
 			value: 17.3,
 		},
-		"D+": {
-			text: "17D+",
-			value: 17.4,
-		},
-		"C": {
+		"C(新難易度枠)": {
 			text: "17C",
-			value: 17.5,
+			value: 17.4,
 		},
 		"B": {
 			text: "17B",
+			value: 17.5,
+		},
+		"B+": {
+			text: "17B+",
 			value: 17.6,
 		},
 		"A": {
@@ -261,15 +261,8 @@ const MANUAL_TITLE_MAP = {
 	"Cross Fire[MXM": "Cross Fire",
 };
 
-const AUTOMATION_PARADISE_SONGS = [
-	1259,
-	1438,
-	1490,
-	1491,
-];
-
 function validTiers(levelNum) {
-	return Object.keys(TIERS[levelNum]) + [SUPER_INDIV_DIFFERENCE];
+	return Object.keys(TIERS[levelNum]).concat([SUPER_INDIV_DIFFERENCE]);
 }
 
 function normalizeTitle(title) {
@@ -335,8 +328,10 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 			}
 			if (!validTiers(levelNum).includes(tierName)) {
 				// We're probably just done.
+				console.log(`"${tierName}" does not match a known tier, so we should be finished.`)
 				break;
 			}
+			console.log(`Processing tier ${tierName} at [${row}, ${col}]`);
 			row++;
 
 			const superDiff = tierName === SUPER_INDIV_DIFFERENCE;
@@ -467,8 +462,8 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 
 		const missingTiers = charts.filter(chart =>
 			chart.levelNum === levelNum &&
-			!("clear" in chart.tierlistInfo) &&
-			!AUTOMATION_PARADISE_SONGS.includes(chart.songID));
+			!("clear" in chart.tierlistInfo)
+		);
 		if (missingTiers.length > 0) {
 			console.log(`The following lv${levelNum} charts are still missing a tier:`);
 			for (const chart of missingTiers) {

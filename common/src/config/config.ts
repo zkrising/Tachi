@@ -777,8 +777,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		currentGameOmniVersion: null,
 		supportedVersions: ["booth", "inf", "gw", "heaven", "vivid", "konaste"],
 
-		tierlists: [],
-		tierlistDescriptions: {},
+		tierlists: ["clear"],
+		tierlistDescriptions: {
+			clear: "Clearing values taken from the unofficial SDVX spreadsheet tierlists.",
+		},
 	},
 	"usc:Controller": {
 		idString: "usc:Controller",

@@ -898,7 +898,7 @@ export interface GPTTierlists {
 	"bms:7K": "sgl-HC" | "sgl-EC";
 	"bms:14K": "sgl-HC" | "sgl-EC";
 	"popn:9B": never;
-	"sdvx:Single": never;
+	"sdvx:Single": "clear";
 	"usc:Keyboard": never;
 	"usc:Controller": never;
 	"ddr:SP": never;

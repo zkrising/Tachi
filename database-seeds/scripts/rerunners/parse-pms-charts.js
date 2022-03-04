@@ -229,7 +229,7 @@ if (require.main === module) {
 		// This is illegal JSON. How do people keep messing up such a simple format?
 		const text = await fetch(tableInfo.data_url).then((r) => r.text());
 
-		const data = JSON.parse(text.split(/^\uFEFF/)[1]);
+		const data = JSON.parse(text.split(/^\uFEFF/u)[1]);
 
 		const charts = [];
 		const songs = [];

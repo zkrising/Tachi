@@ -43,15 +43,15 @@ const TIERS = {
 			text: "17F-",
 			value: 17.0,
 		},
-		"F": {
+		F: {
 			text: "17F",
 			value: 17.1,
 		},
-		"E": {
+		E: {
 			text: "17E",
 			value: 17.2,
 		},
-		"D": {
+		D: {
 			text: "17D",
 			value: 17.3,
 		},
@@ -59,7 +59,7 @@ const TIERS = {
 			text: "17C",
 			value: 17.4,
 		},
-		"B": {
+		B: {
 			text: "17B",
 			value: 17.5,
 		},
@@ -67,7 +67,7 @@ const TIERS = {
 			text: "17B+",
 			value: 17.6,
 		},
-		"A": {
+		A: {
 			text: "17A",
 			value: 17.7,
 		},
@@ -78,27 +78,27 @@ const TIERS = {
 		// There is no S, don't ask me why.
 	},
 	18: {
-		"F": {
+		F: {
 			text: "18F",
 			value: 18.0,
 		},
-		"E": {
+		E: {
 			text: "18E",
 			value: 18.1,
 		},
-		"D": {
+		D: {
 			text: "18D",
 			value: 18.3,
 		},
-		"C": {
+		C: {
 			text: "18C",
 			value: 18.5,
 		},
-		"B": {
+		B: {
 			text: "18B",
 			value: 18.6,
 		},
-		"A": {
+		A: {
 			text: "18A",
 			value: 18.7,
 		},
@@ -106,38 +106,38 @@ const TIERS = {
 			text: "18A+",
 			value: 18.8,
 		},
-		"S": {
+		S: {
 			text: "18S",
 			value: 18.9,
 		},
-		"SS": {
+		SS: {
 			// Literally just Joyeuse lmao
 			text: "18SS",
 			value: 19.5, //if this were a score tier list this would be in the 20s
 		},
 	},
 	19: {
-		"F": {
+		F: {
 			text: "19F",
 			value: 19.0,
 		},
-		"E": {
+		E: {
 			text: "19E",
 			value: 19.1,
 		},
-		"D": {
+		D: {
 			text: "19D",
 			value: 19.3,
 		},
-		"C": {
+		C: {
 			text: "19C",
 			value: 19.4,
 		},
-		"B": {
+		B: {
 			text: "19B",
 			value: 19.5,
 		},
-		"A": {
+		A: {
 			text: "19A",
 			value: 19.7,
 		},
@@ -145,17 +145,17 @@ const TIERS = {
 			text: "19A+",
 			value: 19.9,
 		},
-		"S": {
+		S: {
 			text: "19S",
 			value: 20.0,
 		},
 	},
 	20: {
-		"B": {
+		B: {
 			text: "20B",
 			value: 20.1,
 		},
-		"A": {
+		A: {
 			text: "20A",
 			value: 20.3,
 		},
@@ -163,7 +163,7 @@ const TIERS = {
 			text: "20A+",
 			value: 20.5,
 		},
-		"S": {
+		S: {
 			text: "20S",
 			value: 20.5, //666 is the only S and it's literally no harder than anything in A+ clear wise
 		},
@@ -177,14 +177,14 @@ const MANUAL_TITLE_MAP = {
 	// "Help me, CODYYYYYY!!" is a special title that only applies to the GRV... why, sdvx, why
 	"Help me,CODYYYYYY!!": "Help me, ERINNNNNN!! - SH Style -",
 	"Togather Going My Way": "Together Going My Way", // lol
-	"コンベア速度Maxしゃいにん☆廻転ズシ": "コンベア速度Max!? しゃいにん☆廻転ズシ\"Sushi&Peace\"",
+	"コンベア速度Maxしゃいにん☆廻転ズシ": 'コンベア速度Max!? しゃいにん☆廻転ズシ"Sushi&Peace"',
 	"Venomous Firefry": "Venomous Firefly", // you fry them up real good
 	"Genesis At Oasis(Matsudo)": "Genesis At Oasis (Hirayasu Matsudo Remix)",
 	"FIRST:DREAM": "FIRST：DREAMS",
 	"Flaa Behaivor": "Flaa Behavior",
-	"FlwoerNation": "FlowerNation",
+	FlwoerNation: "FlowerNation",
 	"けもののおうじゃ めうめう": "けもののおうじゃ🐾めうめう",
-	"すきなことでいいです": "すきなことだけでいいです",
+	すきなことでいいです: "すきなことだけでいいです",
 	"U.N.オーエンは彼女なのか(TO-HOlic)": "U.N.オーエンは彼女なのか？(TO-HOlic mix)",
 	"Elemental Creation(Kamome mix)": "Elemental Creation (kamome sano Remix)",
 	"Engraved Mark -Gow's ill!-": "Engraved Mark-Gow's ill! RMX-",
@@ -201,13 +201,13 @@ const MANUAL_TITLE_MAP = {
 	"POSSESSION (Aoi Q.E.DRMX)": "POSSESSION (Aoi Q.E.D. RMX)",
 	"Narcissus At Oasis (Freezer)": "Narcissus At Oasis (Freezer Remix)",
 	// There are two prefix-matches for this, so we need to be explicit.
-	"RPG": "RPG／アニメ「映画クレヨンしんちゃん バカうまっ！B級グルメサバイバル！！」より",
-	"Applique": "Appliqué",
+	RPG: "RPG／アニメ「映画クレヨンしんちゃん バカうまっ！B級グルメサバイバル！！」より",
+	Applique: "Appliqué",
 	"Daydream Cafê(Euro Hopping Mix)": "Daydream café (Euro Hopping Mix)",
 	"Thank you for playing music": "Thank you for your playing music", // LMFAOOO
 	"赤より紅い夢-Aya2g Tech Dance Rmx-": "赤より紅い夢-Aya2g Tech Dance Remix-",
-	"動く、動く(Electro Remix)": "動く、動く（\"A&M Chillin' \" Electro Remix）",
-	"幻想郷DENPASTICグリーティング": "幻想郷DEMPASTICグリーティング",
+	"動く、動く(Electro Remix)": '動く、動く（"A&M Chillin\' " Electro Remix）',
+	幻想郷DENPASTICグリーティング: "幻想郷DEMPASTICグリーティング",
 	"雪月花 (Shiron)": "雪月花 (Shiron & Sound Artz Remix)",
 	"闇夜舞踏会 -緋碧と蝶のための-masquerade-": "闇夜舞踏会 -緋碧と蝶のためのmasquerade-",
 	"少年は空を辿る Prog Piano Rmx": "少年は空を辿る Prog Piano Remix",
@@ -221,33 +221,35 @@ const MANUAL_TITLE_MAP = {
 	"TENKAICHI ULTIMATE MEDLEY": "TENKAICHI ULTIMATE BOSSRUSH MEDLEY",
 	"Believe (y)our Wings{V:VID RAYS}": "Believe (y)our Wings {V:IVID RAYS}",
 	"Help me ERINNNNNN!! -Cranky remix-": "Help me, ERINNNNNN!! -Cranky remix-",
-	"おーまい！らぶりー！すうぃーてぃー！だーりん！": "おーまい！らぶりー！すうぃーてぃ！だーりん！",
+	"おーまい！らぶりー！すうぃーてぃー！だーりん！":
+		"おーまい！らぶりー！すうぃーてぃ！だーりん！",
 	"サヨナラ・ヘヴン(かめりあ`sRMX)": "サヨナラ・ヘヴン （かめりあ's NEKOMATAelectroRMX）",
-	"超超光速スピードスターかなで": "超☆超☆光☆速☆出☆前☆最☆速!!! スピード★スター★かなで", // understandable
-	"熱情のザパデアート": "熱情のサパデアード",
+	超超光速スピードスターかなで: "超☆超☆光☆速☆出☆前☆最☆速!!! スピード★スター★かなで", // understandable
+	熱情のザパデアート: "熱情のサパデアード",
 	"ゆりゆらららゆるゆり大事件 (yuzenリミ)": "ゆりゆららららゆるゆり大事件（yuzen remix）",
 	// I am not changing the parser to account for missing brackets, and this would
 	// need an override anyways. Included the second one in case they fix it later.
 	"Bule Forest (Prog Key Remix)[MXM": "Blue Forest (Prog Keys Remix)",
 	"Bule Forest (Prog Key Remix)": "Blue Forest (Prog Keys Remix)",
-	"チルノとまりおのパーフェクト算数教室": "チルノとまりおのパーフェクトさんすう教室", // I guess???
-	"物凄いｽﾍﾟｰｽｼｬﾄﾙでこいしが物凄いうた": "物凄いスペースシャトルでこいしが物凄いうた", // also not 100% sure
+	チルノとまりおのパーフェクト算数教室: "チルノとまりおのパーフェクトさんすう教室", // I guess???
+	物凄いｽﾍﾟｰｽｼｬﾄﾙでこいしが物凄いうた: "物凄いスペースシャトルでこいしが物凄いうた", // also not 100% sure
 	"Iridescent Crouds": "Iridescent Clouds", // there's so many people I can't see!
 	"感情の摩天楼～Arr.Demetori": "感情の魔天楼 ～ Arr.Demetori",
 	".59 -BOOTH REMIX-": ".59 -BOOTH BOOST REMIX-",
 	"One In A Billion(Hedonist Rimix)": "One In A Billion（Hedonist Remix）",
 	"cloche(といぼっくすうぃんぐ　りみっくす)": "cloche(といぼっくすうぃんぐ　みっくす)",
-	"Sacrifce Escape: 不条理の模倣による感情と代償": "Sacrifice Escape: 不条理の模倣による感情と代償",
+	"Sacrifce Escape: 不条理の模倣による感情と代償":
+		"Sacrifice Escape: 不条理の模倣による感情と代償",
 	"The Sampling Paradise(P*Light)": "The Sampling Paradise (P*Light Remix)",
 	"イゴモヨスのブヨブヨ・スケッチ": "イゴモヨス＝オムルのテーマによるブヨブヨ・スケッチの試み",
 
 	// 18s
 	"*Erm,～ ShockWAVE Syndrome...?": "* Erm, could it be a Spatiotemporal ShockWAVE Syndrome...?",
-	"Idora": "Idola", // I should just normalize out R/L...
+	Idora: "Idola", // I should just normalize out R/L...
 	"KAC 2013 MEDLEY Empress Side": "KAC 2013 ULTIMATE MEDLEY -HISTORIA SOUND VOLTEX- Empress Side",
 	"KAC 2013 MEDLEY Emperor Side": "KAC 2013 ULTIMATE MEDLEY -HISTORIA SOUND VOLTEX- Emperor Side",
 	"She is my wife ミツル子Remixちゃん": "She is my wife すーぱーアイドル☆ミツル子Remixちゃん",
-	"AΩ": "ΑΩ", // they use latin A instead of alpha
+	AΩ: "ΑΩ", // they use latin A instead of alpha
 	"Electric Injuly": "Electric Injury", // holy shit dude
 	"Unicorn tail Dustnoxxxx RMX": "Unicorn tail Dustboxxxx RMX",
 	"混乱少女そふらんちゃん!!": "混乱少女♥そふらんちゃん!!",
@@ -285,12 +287,14 @@ function findSong(songs, title) {
 	// There are two songs called "Life is [Bb]eautiful". Yes, really.
 	// I CANNOT be assed to search both songs by level or case-sensitive.
 	if (title === "Life is beautiful") {
-		return songs.find(song => song.id === 1264);
+		return songs.find((song) => song.id === 1264);
 	}
 
-	const song = songs.find(song =>
-		normalizeTitle(song.title) === normalizeTitle(title) ||
-		song.title === MANUAL_TITLE_MAP[title]);
+	const song = songs.find(
+		(song) =>
+			normalizeTitle(song.title) === normalizeTitle(title) ||
+			song.title === MANUAL_TITLE_MAP[title]
+	);
 	if (song) {
 		return song;
 	}
@@ -299,7 +303,9 @@ function findSong(songs, title) {
 	// correct song titles that are also prefixes of other song titles
 	// (e.g. チルノのパーフェクトさんすう教室 and チルノのパーフェクトさんすう教室　⑨周年バージョン
 	// or Elemental Creation and Elemental Creation (kamome sano Remix)).
-	const prefixSong = songs.find(song => normalizeTitle(song.title).startsWith(normalizeTitle(title)));
+	const prefixSong = songs.find((song) =>
+		normalizeTitle(song.title).startsWith(normalizeTitle(title))
+	);
 	if (prefixSong) {
 		console.log(`Prefix-matched ${title} to ${prefixSong.title}.`);
 	}
@@ -318,8 +324,7 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 		let col = leftOffset;
 		let row = headerRow;
 
-		tierLoop:
-		while (col < csvData[headerRow].length) {
+		tierLoop: while (col < csvData[headerRow].length) {
 			let tierName = csvData[row][col];
 			if (tierName === "" && col > leftOffset) {
 				// This might be a double column (two columns for the same tier),
@@ -328,7 +333,7 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 			}
 			if (!validTiers(levelNum).includes(tierName)) {
 				// We're probably just done.
-				console.log(`"${tierName}" does not match a known tier, so we should be finished.`)
+				console.log(`"${tierName}" does not match a known tier, so we should be finished.`);
 				break;
 			}
 			console.log(`Processing tier ${tierName} at [${row}, ${col}]`);
@@ -336,10 +341,12 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 
 			const superDiff = tierName === SUPER_INDIV_DIFFERENCE;
 
-			const baseTier = !superDiff ? TIERS[levelNum][tierName] : {
-				text: SUPER_INDIV_DIFFERENCE,
-				value: levelNum,
-			};
+			const baseTier = !superDiff
+				? TIERS[levelNum][tierName]
+				: {
+						text: SUPER_INDIV_DIFFERENCE,
+						value: levelNum,
+				  };
 
 			while (row < csvData.length) {
 				let chartString = csvData[row++][col].trim();
@@ -374,9 +381,11 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 					// 16s don't have ranges, so if we can't find it, no sweat.
 					if (rangeMatch) {
 						chartString = rangeMatch[1];
-						tier.text = rangeMatch[2] + " - " + rangeMatch[3];
+						tier.text = `${rangeMatch[2]} - ${rangeMatch[3]}`;
 					} else {
-						console.log(`No range found for individual difference chart ${chartString}.`);
+						console.log(
+							`No range found for individual difference chart ${chartString}.`
+						);
 					}
 				}
 
@@ -395,7 +404,10 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 				// Not every entry has the diff, but we need it to distinguish between a few charts
 				// (e.g. KHAMEN BREAK) that have two diffs at the same level.
 				const [_, title, difficulty] = chartString.match(/^(.*?)(?:\[([A-Z]{3})\])?$/);
-				if (difficulty && !["NOV", "ADV", "EXH", "MXM", "INF", "GRV", "HVN", "VVD"].includes(difficulty)) {
+				if (
+					difficulty &&
+					!["NOV", "ADV", "EXH", "MXM", "INF", "GRV", "HVN", "VVD"].includes(difficulty)
+				) {
 					console.log(`Unknown difficulty ${difficulty} for ${title}.`);
 				}
 
@@ -405,10 +417,17 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 					continue;
 				}
 
-				let chart = charts.find(chart => chart.songID === song.id && chart.levelNum === levelNum && chart.difficulty === difficulty);
+				let chart = charts.find(
+					(chart) =>
+						chart.songID === song.id &&
+						chart.levelNum === levelNum &&
+						chart.difficulty === difficulty
+				);
 				if (!chart) {
 					// Sometimes the difficulty is missing, or straight up wrong (e.g. MXM instead of VVD) so just try without.
-					chart = charts.find(chart => chart.songID === song.id && chart.levelNum === levelNum);
+					chart = charts.find(
+						(chart) => chart.songID === song.id && chart.levelNum === levelNum
+					);
 				}
 
 				if (!chart) {
@@ -417,12 +436,17 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 					console.log(`at [${difficulty}] ${levelNum}`);
 					continue;
 				}
-				if ("clear" in chart.tierlistInfo && chart.tierlistInfo["clear"].value !== tier.value) {
+				if (
+					"clear" in chart.tierlistInfo &&
+					chart.tierlistInfo.clear.value !== tier.value
+				) {
 					console.log(`Overwriting tier for ${song.title} [${chart.difficulty}]`);
-					console.log(`Old tier ${chart.tierlistInfo["clear"].text} (${chart.tierlistInfo["clear"].value})`);
+					console.log(
+						`Old tier ${chart.tierlistInfo.clear.text} (${chart.tierlistInfo.clear.value})`
+					);
 					console.log(`New tier ${tier.text} (${tier.value})`);
 				}
-				chart.tierlistInfo["clear"] = tier;
+				chart.tierlistInfo.clear = tier;
 			}
 
 			if (simple || row >= csvData.length) {
@@ -460,22 +484,22 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 			col++;
 		}
 
-		const missingTiers = charts.filter(chart =>
-			chart.levelNum === levelNum &&
-			!("clear" in chart.tierlistInfo)
+		const missingTiers = charts.filter(
+			(chart) => chart.levelNum === levelNum && !("clear" in chart.tierlistInfo)
 		);
 		if (missingTiers.length > 0) {
 			console.log(`The following lv${levelNum} charts are still missing a tier:`);
 			for (const chart of missingTiers) {
-				const song = songs.find(song => song.id === chart.songID);
-				console.log(`${song.id}: ${song.title} [${chart.difficulty}] (displayVersion: ${song.data.displayVersion})`);
+				const song = songs.find((song) => song.id === chart.songID);
+				console.log(
+					`${song.id}: ${song.title} [${chart.difficulty}] (displayVersion: ${song.data.displayVersion})`
+				);
 			}
 		}
 
 		return charts;
 	});
 }
-
 
 const program = new Command();
 program.option("-f, --file <CSV File>");

@@ -21,15 +21,15 @@ const VERSION_DIFFICULTIES = {
 };
 
 const DIFFICULTIES = {
-	"novice": "NOV",
-	"advanced": "ADV",
-	"exhaust": "EXH",
-	"maximum": "MXM",
+	novice: "NOV",
+	advanced: "ADV",
+	exhaust: "EXH",
+	maximum: "MXM",
 };
 
 const SHITTY_SJIS_OVERRIDE_TITLES = {
 	1724: "Verstärkt Killer",
-}
+};
 
 function getDifficulty(diffKey, version) {
 	if (diffKey === "infinite") {
@@ -44,7 +44,7 @@ function getTitle(id, title) {
 }
 
 const program = new Command();
-program.option("-f, --file <XML File>")
+program.option("-f, --file <XML File>");
 program.parse(process.argv);
 const options = program.opts();
 
@@ -52,7 +52,7 @@ const parser = new XMLParser({ ignoreAttributes: false });
 const fileString = Encoding.convert(fs.readFileSync(options.file), {
 	to: "UNICODE",
 	from: "SJIS",
-	type: "string"
+	type: "string",
 });
 const xmlData = parser.parse(fileString);
 
@@ -65,7 +65,7 @@ let newChartCount = 0;
 for (const music of xmlData.mdb.music) {
 	const id = Number(music["@_id"]);
 
-	const newSong = !songs.find(song => song.id === id);
+	const newSong = !songs.find((song) => song.id === id);
 	if (newSong) {
 		songs.push({
 			id,
@@ -75,10 +75,7 @@ for (const music of xmlData.mdb.music) {
 				displayVersion: VERSIONS[music.info.version["#text"]],
 			},
 			altTitles: [],
-			searchTerms: [
-				music.info.ascii.replaceAll("_", " "),
-				music.info.title_yomigana,
-			],
+			searchTerms: [music.info.ascii.replaceAll("_", " "), music.info.title_yomigana],
 		});
 	}
 
@@ -91,8 +88,9 @@ for (const music of xmlData.mdb.music) {
 
 		const difficulty = getDifficulty(diffKey, music.info.inf_ver["#text"]);
 
-		const chartIndex = charts.findIndex(chart =>
-			chart.songID === id && chart.difficulty === difficulty);
+		const chartIndex = charts.findIndex(
+			(chart) => chart.songID === id && chart.difficulty === difficulty
+		);
 		if (chartIndex === -1) {
 			charts.push({
 				chartID: CreateChartID(),

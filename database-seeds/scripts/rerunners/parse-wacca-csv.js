@@ -97,7 +97,7 @@ const STARTS = {
 	let songID = Math.max(...existingSongs.values()) + 1;
 
 	for (const data of datum) {
-		let siteTitleNormalized = siteTitleNormalize(data.title.display);
+		const siteTitleNormalized = siteTitleNormalize(data.title.display);
 
 		const time = Date.parse(data.release_date);
 		let ver;

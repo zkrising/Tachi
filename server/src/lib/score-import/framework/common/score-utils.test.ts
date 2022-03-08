@@ -20,6 +20,16 @@ t.test("#GetGradeForPercent", (t) => {
 		"MAX",
 		"Should return SSS for the edge case of 100% == MAX (iidx DP)."
 	);
+	t.equal(
+		GetGradeFromPercent("iidx", "SP", 100 * (1932 / 2484)),
+		"AA",
+		"Should return AA for the edge case of 77.77...% (iidx SP)."
+	);
+	t.equal(
+		GetGradeFromPercent("iidx", "SP", 100 * (7 / 9)),
+		"AA",
+		"Should return AA for the edge case of 77.77...% (iidx SP)."
+	);
 
 	t.equal(
 		GetGradeFromPercent("iidx", "SP", 0),

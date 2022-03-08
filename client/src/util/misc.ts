@@ -278,3 +278,15 @@ export function ConditionalLeadingSpace(maybeStr: string | null) {
 
 	return ` ${maybeStr}`;
 }
+
+export function DistinctArr<T>(arr: T[]): T[] {
+	return [...new Set(arr)];
+}
+
+export function TruncateString(string: string, len = 30) {
+	if (string.length < len) {
+		return string;
+	}
+
+	return `${string.slice(len - 3)}...`;
+}

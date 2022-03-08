@@ -1,4 +1,4 @@
-import { Game, GPTTierlists, IDStrings, IIDX_LAMPS, ScoreDocument } from "tachi-common";
+import { Game, GPTTierlists, IDStrings, IIDX_LAMPS, ScoreDocument, SDVX_LAMPS } from "tachi-common";
 import { Playtype } from "types/tachi";
 
 type ScaleAchievedFns = {
@@ -39,7 +39,9 @@ const ScaleNameAchievedFns: ScaleAchievedFns = {
 	"museca:Single": {
 		"tachi-score": null,
 	},
-	"sdvx:Single": {},
+	"sdvx:Single": {
+		clear: k => k.scoreData.lampIndex >= SDVX_LAMPS.CLEAR,
+	},
 	"usc:Controller": {},
 	"usc:Keyboard": {},
 	"wacca:Single": {},

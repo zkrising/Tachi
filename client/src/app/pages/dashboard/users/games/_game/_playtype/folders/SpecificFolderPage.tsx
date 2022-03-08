@@ -32,7 +32,7 @@ import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import { ONE_DAY } from "util/constants/time";
 import { CreateChartIDMap, CreateChartLink, CreateSongMap } from "util/data";
-import { NO_OP } from "util/misc";
+import { DistinctArr, NO_OP } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { GetScaleAchievedFn } from "util/tierlist";
 import { FormatDate, FormatTime } from "util/time";
@@ -504,7 +504,15 @@ function TierlistInfoLadder({
 				.map(bucket => (
 					<React.Fragment key={bucket[0].data!.value}>
 						<Col className="ladder-header" xs={12}>
-							{bucket[0].data!.value} ({bucket[0].data!.text})
+							{bucket[0].data!.value} (
+							{DistinctArr(
+								bucket.map(e =>
+									gptConfig.tierlists.length === 1
+										? e.data.text
+										: `${e.key}: ${e.data.text}`
+								)
+							).join(", ")}
+							)
 						</Col>
 
 						{bucket.map((tierlistInfo, i) => (

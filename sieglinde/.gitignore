@@ -3,9 +3,12 @@
 .nyc_output
 coverage
 
-out.json
+out.*
+.vscode
 
 /js
 
 .pnpm-debug
 logs
+
+src/cache

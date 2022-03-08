@@ -5,22 +5,12 @@ import { CalcReturns } from "../types";
 import { GetBaseline, GetFString, GetScoresForMD5, GetSigmoidalValue, Mean } from "../util";
 
 /**
- * Sieglinde V0 calc. This is an incredibly naive implementation of a difficulty
- * engine.
- *
- * The idea is simple - given a base level, check how much the clear rate deviates
- * for the norm for that base level, and adjust the level accordingly. There isn't
- * much complex going on. Just basic maths.
+ * Sieglinde V0 calc. This just reads out hardcoded values for each table, with no fuzzing.
  */
-export default async function SieglindeV0Calc(tableInfo: TableRes): Promise<CalcReturns[]> {
+export default function SieglindeV0Calc(tableInfo: TableRes): CalcReturns[] {
 	const dataset = [];
 
 	for (const chart of tableInfo.charts) {
-		const scores = []; // await GetScoresForMD5(chart.md5);
-
-		const ecRate = 0;
-		const hcRate = 0;
-
 		const baseLine = GetBaseline(tableInfo.table, chart.level);
 
 		if (baseLine === null) {
@@ -28,37 +18,26 @@ export default async function SieglindeV0Calc(tableInfo: TableRes): Promise<Calc
 			continue;
 		}
 
-		let nextBaseLine = GetBaseline(tableInfo.table, `${Number(chart.level) + 1}`);
-
-		if (nextBaseLine === null) {
-			logger.info(`No next baseline -- assuming +1.`);
-			nextBaseLine = baseLine + 1;
-		}
-
 		const str = GetFString(tableInfo.table, chart);
 
 		dataset.push({
 			title: chart.title,
 			md5: chart.md5,
-			ecRate,
-			hcRate,
-			scoreCount: scores.length,
+			ecRate: 0,
+			hcRate: 0,
+			scoreCount: 0,
 			baseLine,
-			nextBaseLine,
 			str,
 		});
 	}
-
-	const groupAverageECRate = Mean(dataset.map((e) => e.ecRate));
-	const groupAverageHCRate = Mean(dataset.map((e) => e.hcRate));
 
 	const returns = [];
 
 	for (const data of dataset) {
 		const confidence = GetSigmoidalValue(data.scoreCount / 100);
 
-		const ecDiff = groupAverageECRate - data.ecRate;
-		const hcDiff = groupAverageHCRate - data.hcRate;
+		const ecDiff = 0; // groupAverageECRate - data.ecRate;
+		const hcDiff = 0; // groupAverageHCRate - data.hcRate;
 
 		const ecValue = Math.max(0, data.baseLine - ecDiff * confidence);
 		const hcValue = Math.max(0, data.baseLine - hcDiff * confidence);

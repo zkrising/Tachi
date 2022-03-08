@@ -30,11 +30,20 @@ function WriteOut(data: string) {
 
 (async () => {
 	if (version === 0) {
+		fs.mkdirSync(`${__dirname}/cache`, { recursive: true });
+
 		const tableInfo = await GetTableData();
 
 		logger.info(`Starting...`);
 
-		const calcData = await Promise.all(tableInfo.map(SieglindeV0Calc));
+		const calcData = [];
+		for (const table of tableInfo) {
+			// literally all the parallelism in this codebase has to be turned off because
+			// the lr2ir runs off of a toaster which attempts to gut you if you make more than one
+			// request a second.
+			// eslint-disable-next-line no-await-in-loop
+			calcData.push(await SieglindeV0Calc(table));
+		}
 
 		WriteOut(JSON.stringify(calcData.flat(1)));
 

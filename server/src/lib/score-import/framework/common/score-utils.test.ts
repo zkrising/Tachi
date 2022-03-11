@@ -30,6 +30,11 @@ t.test("#GetGradeForPercent", (t) => {
 		"AA",
 		"Should return AA for the edge case of 77.77...% (iidx SP)."
 	);
+	t.equal(
+		GetGradeFromPercent("iidx", "SP", 77.77777777777777),
+		"AA",
+		"Should return AA for the edge case of 77.77...% (iidx SP)."
+	);
 
 	t.equal(
 		GetGradeFromPercent("iidx", "SP", 0),

@@ -7,21 +7,6 @@ export default function JubeatJudgementCell({
 }: {
 	score: ScoreDocument<"jubeat:Single"> | PBScoreDocument<"jubeat:Single">;
 }) {
-	// even if we dont have judgement data, we know what they got.
-	if (score.scoreData.lamp === "EXCELLENT") {
-		return (
-			<td>
-				<strong>
-					<span style={{ color: COLOUR_SET.pink }}>0</span>-
-					<span style={{ color: COLOUR_SET.gold }}>0</span>-
-					<span style={{ color: COLOUR_SET.blue }}>0</span>-
-					<span style={{ color: COLOUR_SET.purple }}>0</span>-
-					<span style={{ color: COLOUR_SET.red }}>0</span>
-				</strong>
-			</td>
-		);
-	}
-
 	const judgements = score.scoreData.judgements;
 
 	if (

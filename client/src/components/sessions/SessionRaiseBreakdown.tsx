@@ -8,7 +8,6 @@ import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
 import deepmerge from "deepmerge";
-import { nanoid } from "nanoid";
 import React, { useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import {

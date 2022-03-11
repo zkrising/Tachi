@@ -7,20 +7,6 @@ export default function CHUNITHMJudgementCell({
 }: {
 	score: ScoreDocument<"chunithm:Single"> | PBScoreDocument<"chunithm:Single">;
 }) {
-	// even if we dont have judgement data, we know what they got.
-	if (score.scoreData.lamp === "ALL JUSTICE CRITICAL") {
-		return (
-			<td>
-				<strong>
-					<span style={{ color: COLOUR_SET.gold }}>0</span>-
-					<span style={{ color: COLOUR_SET.orange }}>0</span>-
-					<span style={{ color: COLOUR_SET.green }}>0</span>-
-					<span style={{ color: COLOUR_SET.gray }}>0</span>
-				</strong>
-			</td>
-		);
-	}
-
 	const judgements = score.scoreData.judgements;
 
 	if (

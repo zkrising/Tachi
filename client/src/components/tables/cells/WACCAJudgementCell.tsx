@@ -7,20 +7,6 @@ export default function WaccaJudgementCell({
 }: {
 	score: ScoreDocument<"wacca:Single"> | PBScoreDocument<"wacca:Single">;
 }) {
-	// even if we dont have judgement data, we know what they got.
-	if (score.scoreData.lamp === "ALL MARVELOUS") {
-		return (
-			<td>
-				<strong>
-					<span style={{ color: COLOUR_SET.vibrantPink }}>0</span>-
-					<span style={{ color: COLOUR_SET.gold }}>0</span>-
-					<span style={{ color: COLOUR_SET.blue }}>0</span>-
-					<span style={{ color: COLOUR_SET.red }}>0</span>
-				</strong>
-			</td>
-		);
-	}
-
 	const judgements = score.scoreData.judgements;
 
 	if (

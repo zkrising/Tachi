@@ -15,7 +15,11 @@ not generally be shown to end users.
 
 # Changelog
 
-## 2.1.3
+# 2.1.4
+
+- [BUG] IIDX, BMS and PMS scores can no longer get an invalid grade if they are exactly 77.7777...%
+
+# 2.1.3
 
 - [INTERNAL_FEAT] Database seeds can now be automatically updated from a controlling server (#658, et. al.).
 
@@ -27,11 +31,11 @@ not generally be shown to end users.
 
 - [BUG] PMS charts now automatically insert themselves into the database instead of crashing.
 
-# 2.1.2
+## 2.1.2
 
 - [ENH] Properly capitalise some improperly capitalised error messages.
 
-# 2.1.1
+## 2.1.1
 
 - [INTERNAL_REWORK] Scripts are now included inside `src/` instead of outside it.
 

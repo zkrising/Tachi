@@ -15,6 +15,10 @@ not generally be shown to end users.
 
 # Changelog
 
+# 2.1.4
+
+- [BUG] IIDX, BMS and PMS scores can no longer get an invalid grade if they are exactly 77.7777...%
+
 # 2.1.3
 
 - [INTERNAL_FEAT] Database seeds can now be automatically updated from a controlling server (#658, et. al.).

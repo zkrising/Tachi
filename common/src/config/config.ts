@@ -335,8 +335,21 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		clearGrade: "A",
 		// IIDX has some unhinged grade boundaries...
-		// prettier-ignore
-		gradeBoundaries: [0, 2/9, 3/9, 4/9, 5/9, 6/9, 7/9, 8/9, 17/18, 9/9].map(e => e * 100),
+		// You might think these two lines are identical, but they are not. The order of operations affects
+		// floating point math at this point.
+		// gradeBoundaries: [0, 2/9, 3/9, 4/9, 5/9, 6/9, 7/9, 8/9, 17/18, 9/9].map(e => e * 100),
+		gradeBoundaries: [
+			0,
+			(100 * 2) / 9,
+			(100 * 3) / 9,
+			(100 * 4) / 9,
+			(100 * 5) / 9,
+			(100 * 6) / 9,
+			(100 * 7) / 9,
+			(100 * 8) / 9,
+			(100 * 17) / 18,
+			(100 * 9) / 9,
+		],
 
 		lamps: [
 			"NO PLAY",
@@ -521,8 +534,19 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
-		// prettier-ignore
-		gradeBoundaries: [0, 2/9, 3/9, 4/9, 5/9, 6/9, 7/9, 8/9, 17/18, 9/9].map(e => e * 100),
+		// see iidx:SP for an explaination of why this is wrote like this.
+		gradeBoundaries: [
+			0,
+			(100 * 2) / 9,
+			(100 * 3) / 9,
+			(100 * 4) / 9,
+			(100 * 5) / 9,
+			(100 * 6) / 9,
+			(100 * 7) / 9,
+			(100 * 8) / 9,
+			(100 * 17) / 18,
+			(100 * 9) / 9,
+		],
 
 		lamps: [
 			"NO PLAY",
@@ -1082,7 +1106,19 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
-		gradeBoundaries: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
+		// see iidx:SP for an explaination of why this is wrote like this.
+		gradeBoundaries: [
+			0,
+			(100 * 2) / 9,
+			(100 * 3) / 9,
+			(100 * 4) / 9,
+			(100 * 5) / 9,
+			(100 * 6) / 9,
+			(100 * 7) / 9,
+			(100 * 8) / 9,
+			(100 * 17) / 18,
+			(100 * 9) / 9,
+		],
 
 		lamps: [
 			"NO PLAY",
@@ -1176,7 +1212,19 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
-		gradeBoundaries: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
+		// see iidx:SP for an explaination of why this is wrote like this.
+		gradeBoundaries: [
+			0,
+			(100 * 2) / 9,
+			(100 * 3) / 9,
+			(100 * 4) / 9,
+			(100 * 5) / 9,
+			(100 * 6) / 9,
+			(100 * 7) / 9,
+			(100 * 8) / 9,
+			(100 * 17) / 18,
+			(100 * 9) / 9,
+		],
 
 		lamps: [
 			"NO PLAY",
@@ -2092,7 +2140,19 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
-		gradeBoundaries: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
+		// see iidx:SP for an explaination of why this is wrote like this.
+		gradeBoundaries: [
+			0,
+			(100 * 2) / 9,
+			(100 * 3) / 9,
+			(100 * 4) / 9,
+			(100 * 5) / 9,
+			(100 * 6) / 9,
+			(100 * 7) / 9,
+			(100 * 8) / 9,
+			(100 * 17) / 18,
+			(100 * 9) / 9,
+		],
 
 		lamps: [
 			"NO PLAY",
@@ -2190,7 +2250,19 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
-		gradeBoundaries: [0, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 94.44, 100.0],
+		// see iidx:SP for an explaination of why this is wrote like this.
+		gradeBoundaries: [
+			0,
+			(100 * 2) / 9,
+			(100 * 3) / 9,
+			(100 * 4) / 9,
+			(100 * 5) / 9,
+			(100 * 6) / 9,
+			(100 * 7) / 9,
+			(100 * 8) / 9,
+			(100 * 17) / 18,
+			(100 * 9) / 9,
+		],
 
 		lamps: [
 			"NO PLAY",

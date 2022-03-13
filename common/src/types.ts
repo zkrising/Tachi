@@ -345,7 +345,6 @@ export interface BaseGoalDocument extends MongoDBDocument {
 	game: Game;
 	playtype: AnyPlaytype;
 	timeAdded: integer;
-	createdBy: integer;
 	title: string;
 	goalID: string;
 	criteria: GoalSingleCriteria | GoalCountCriteria;

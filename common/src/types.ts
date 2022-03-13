@@ -1394,7 +1394,9 @@ export type APIPermissions =
 	| "customise_profile"
 	| "customise_session"
 	| "customise_score"
-	| "delete_score";
+	| "delete_score"
+	| "set_goals"
+	| "unset_goals";
 
 /**
  * Information about the API Token used to make this request.

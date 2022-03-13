@@ -7,6 +7,8 @@ const logger = require("../logger");
 
 const program = new Command();
 
+logger.warn(`Rating-dataset.js is evaluated. Please make sure you've read the file before you run it.`);
+
 // https://github.com/shimmand/waccaSupportTools/blob/main/analyzePlayData/rating-dataset.js
 // Please look at the file before running, it is eval'd and can execute arbitrary code.
 program.requiredOption("-r, --rating-js <rating-dataset.js>");

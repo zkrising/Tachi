@@ -2,9 +2,9 @@ name: update
 
 on:
     push:
-        branches: [master, develop]
+        branches: [production, develop]
     pull_request:
-        branches: [master, develop]
+        branches: [production, develop]
     workflow_dispatch:
 
 jobs:
@@ -47,7 +47,7 @@ jobs:
             #       key: ${{ secrets.TACHI_KEY }}
             #       script: tachi-database-sync
             - name: Sync Live Database
-              if: github.ref == 'refs/heads/master'
+              if: github.ref == 'refs/heads/production'
               uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
               with:
                   host: ${{ secrets.TACHI_HOST }}

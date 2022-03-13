@@ -2091,6 +2091,23 @@
 		]
 	},
 	{
+		"chartID": "cc384f7ac347b46d1b046851c11db6a65476311a",
+		"data": {
+			"isHot": true
+		},
+		"difficulty": "INFERNO",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 40,
+		"tierlistInfo": {},
+		"versions": [
+			"reverse"
+		]
+	},
+	{
 		"chartID": "1aaf04c98b8a276e38acba1645ef04fd0288d94a",
 		"data": {
 			"isHot": true
@@ -15130,6 +15147,23 @@
 		]
 	},
 	{
+		"chartID": "bb12f97e462971858fd9960c020c31d1bf15d27e",
+		"data": {
+			"isHot": true
+		},
+		"difficulty": "INFERNO",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14.1,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 293,
+		"tierlistInfo": {},
+		"versions": [
+			"reverse"
+		]
+	},
+	{
 		"chartID": "6997c63907fd1f49cf5b24992fe5b356d72d9270",
 		"data": {
 			"isHot": false
@@ -18337,6 +18371,74 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 353,
+		"tierlistInfo": {},
+		"versions": [
+			"reverse"
+		]
+	},
+	{
+		"chartID": "5443c455fc0088c2f274cd718016bf0aa3fab697",
+		"data": {
+			"isHot": true
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 354,
+		"tierlistInfo": {},
+		"versions": [
+			"reverse"
+		]
+	},
+	{
+		"chartID": "c6e2513a32200f34871478d4d0739291c5f852cd",
+		"data": {
+			"isHot": true
+		},
+		"difficulty": "HARD",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.9,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 354,
+		"tierlistInfo": {},
+		"versions": [
+			"reverse"
+		]
+	},
+	{
+		"chartID": "60517ead875ef3d3a42c600ef78a4c0841a633e5",
+		"data": {
+			"isHot": true
+		},
+		"difficulty": "INFERNO",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14.1,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 354,
+		"tierlistInfo": {},
+		"versions": [
+			"reverse"
+		]
+	},
+	{
+		"chartID": "47c66e40c4a2b8393f805a403990c3245d084d83",
+		"data": {
+			"isHot": true
+		},
+		"difficulty": "NORMAL",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 354,
 		"tierlistInfo": {},
 		"versions": [
 			"reverse"

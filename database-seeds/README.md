@@ -5,12 +5,19 @@ This repository contains some base "seed" files for the Tachi Database.
 They are intended to be used with MongoDB, but since these are just a JSON export, you can
 really do anything you want with them.
 
+## Contribution Info
+
+All work should be merged into `develop`. That branch is synced with the staging deploys of Tachi.
+
+Changes will then be merged and cherry picked into `production` whenever is best. Production will
+be reset as a branch every once in a while, and lose its history. This is fine. Don't worry about it.
+
 ## What Databases Are Here?
 
 Nothing private, nothing pertaining to an instance of Tachi. These are backbone files, such
 as songs, charts, and folders.
 
-You can read more about what all these documents mean in [tachi-common](https://github.com/TeamNewGuys/tachi-common).
+You can read more about what all these documents mean in [tachi-common](https://github.com/TNG-dev/tachi-common).
 
 - `songs-{game}`
 
@@ -27,6 +34,10 @@ This contains the set folders for all games.
 - `tables`
 
 This contains the set tables for all games.
+
+- `bms-course-lookup`
+
+BMS Dans that should be registered by the IR.
 
 ## How do I use this?
 
@@ -58,5 +69,6 @@ Coming soon...
 
 ## Oddities
 
-`git diff` on this repo will likely be horrifically broken. There's not much we can do
-about that, since git absolutely was not designed for this. Ah well.
+Yes. I force sync `production` to `develop` from time to time. This is because `git cherry-pick` 
+result in a diverging history. Some repositories do this by making a `release-vX.x.x` branch and
+updating that, but I really don't need the archiving.

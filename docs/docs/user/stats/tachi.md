@@ -371,8 +371,6 @@ Pros:
 
 Cons:
 
-- Significant favors good performance on charts released in
-  the most recent version of the game.
 - Uses wide cutoffs that don't reward AMs over SSS+.
 
 Although a better score statistic could be implemented, Rate

@@ -5,7 +5,7 @@ import { IIDXGraphsComponent } from "./components/IIDXScoreDropdownParts";
 export function GPTDropdownSettings(game: Game, playtype: Playtype): any {
 	if (game === "iidx") {
 		return {
-			renderScoreInfo: false,
+			renderScoreInfo: true,
 			// let the record show that i tried fixing this
 			// for a while, but gave up.
 			GraphComponent: IIDXGraphsComponent as any,

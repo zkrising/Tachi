@@ -206,7 +206,7 @@ export async function LoadScoresIntoSessions(
 		// A bug exists here where if a session is created
 		// backwards in time, this will grab your PBs
 		// from the future.
-		// @todo #179
+		// this is marked as wontfix under #179
 		const pbs = await db["personal-bests"].find({
 			chartID: { $in: groupScores.map((e) => e.chartID) },
 			userID,
@@ -223,7 +223,7 @@ export async function LoadScoresIntoSessions(
 
 		// Find any sessions with +/-2hrs of this group. This is rather exhaustive, and could result in some issues
 		// if this query returns more than one session. We should account for that by smushing sessions together.
-		// As of now, we dont currently do it. @TODO #148.
+		// This is not possible however, so this is now just a known tachi oddity.
 		const nearbySession = await db.sessions.findOne({
 			userID,
 			game,

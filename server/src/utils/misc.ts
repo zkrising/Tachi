@@ -191,3 +191,11 @@ export function FormatBMSTables(bmsTables: { table: string; level: string }[]) {
 
 	return bmsTables.map((e) => `${e.table}${e.level}`).join(", ");
 }
+
+export function HumanisedJoinArray(arr: string[], lastJoiner = "or") {
+	return `${arr.slice(0, arr.length - 1).join(", ")} ${lastJoiner} ${arr[arr.length - 1]}`;
+}
+
+export function FormatMaxDP(num: number, points = 2) {
+	return parseFloat(num.toFixed(points)).toString();
+}

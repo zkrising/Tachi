@@ -9,6 +9,7 @@ import { ImportTypes, integer, UserGameStats } from "tachi-common";
 import { DeleteUndefinedProps, StripUrl } from "utils/misc";
 import { optNullFluffStrField } from "utils/prudence";
 import {
+	GetRecentlyAchievedGoals,
 	GetRecentlyViewedFoldersAnyGPT,
 	GetRecentPlaycount,
 	GetRecentSessions,
@@ -211,7 +212,7 @@ router.get("/game-stats", async (req, res) => {
 });
 
 /**
- * Returns a summary of what the user has achieved in the past 24 hours.
+ * Returns a summary of what the user has achieved in the past 16 hours.
  * Used on the main dashboard page to give users quick links to sessions,
  * alongside other information.
  *
@@ -220,10 +221,16 @@ router.get("/game-stats", async (req, res) => {
 router.get("/recent-summary", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-	const [recentPlaycount, recentSessions, recentFolders] = await Promise.all([
+	const [
+		recentPlaycount,
+		recentSessions,
+		{ folders: recentFolders, stats: recentFolderStats },
+		{ achievedGoals, goals, improvedGoals },
+	] = await Promise.all([
 		GetRecentPlaycount(user.id),
 		GetRecentSessions(user.id),
 		GetRecentlyViewedFoldersAnyGPT(user.id),
+		GetRecentlyAchievedGoals(user.id),
 	]);
 
 	return res.status(200).json({
@@ -233,6 +240,10 @@ router.get("/recent-summary", async (req, res) => {
 			recentPlaycount,
 			recentSessions,
 			recentFolders,
+			recentFolderStats,
+			recentAchievedGoals: achievedGoals,
+			recentGoals: goals,
+			recentImprovedGoals: improvedGoals,
 		},
 	});
 });

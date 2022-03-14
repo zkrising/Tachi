@@ -158,7 +158,7 @@ router.post(
 );
 
 /**
- * Force Tachi to reprocess your orphanned scores. This is automatically done
+ * Force Tachi to reprocess your orphaned scores. This is automatically done
  * daily, but this endpoint allows users to speed that up.
  *
  * @name POST /api/v1/import/orphans

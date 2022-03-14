@@ -1,6 +1,6 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { Game, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { FormatChart, Game, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 const logger = CreateLogCtx(__filename);
 
 export async function GetNextCounterValue(counterName: string): Promise<integer> {
@@ -95,4 +95,61 @@ export async function UpdateGameSongIDCounter(game: "bms" | "pms") {
 			},
 		}
 	);
+}
+
+export async function GetChartForIDGuaranteed(game: Game, chartID: string) {
+	const chart = await db.charts[game].findOne({ chartID });
+
+	if (!chart) {
+		throw new Error(`Couldn't find chart with ID ${chartID} (${game}).`);
+	}
+
+	return chart;
+}
+
+export async function GetSongForIDGuaranteed(game: Game, songID: integer) {
+	const song = await db.songs[game].findOne({ id: songID });
+
+	if (!song) {
+		throw new Error(`Couldn't find song with ID ${songID} (${game}).`);
+	}
+
+	return song;
+}
+
+export async function GetFolderForIDGuaranteed(folderID: string) {
+	const folder = await db.folders.findOne({ folderID });
+
+	if (!folder) {
+		throw new Error(`Couldn't find folder with ID ${folderID}.`);
+	}
+
+	return folder;
+}
+
+export async function GetGoalForIDGuaranteed(goalID: string) {
+	const goal = await db.goals.findOne({ goalID });
+
+	if (!goal) {
+		throw new Error(`Couldn't find goal with ID ${goalID}`);
+	}
+
+	return goal;
+}
+
+export async function GetMilestoneForIDGuaranteed(milestoneID: string) {
+	const milestone = await db.milestones.findOne({ milestoneID });
+
+	if (!milestone) {
+		throw new Error(`Couldn't find milestone with ID ${milestoneID}`);
+	}
+
+	return milestone;
+}
+
+export async function HumaniseChartID(game: Game, chartID: string) {
+	const chart = await GetChartForIDGuaranteed(game, chartID);
+	const song = await GetSongForIDGuaranteed(game, chart.songID);
+
+	return FormatChart(game, song, chart);
 }

@@ -410,7 +410,6 @@ export const HC511Goal: GoalDocument = {
 		type: "single",
 		data: Testing511SPA.chartID,
 	},
-	createdBy: 1,
 	game: "iidx",
 	goalID: "mock_goalID",
 	playtype: "SP",
@@ -425,6 +424,7 @@ export const HC511Goal: GoalDocument = {
 
 export const HC511UserGoal: UserGoalDocument = {
 	achieved: false,
+	wasInstantlyAchieved: false,
 	timeAchieved: null,
 	game: "iidx",
 	playtype: "SP",

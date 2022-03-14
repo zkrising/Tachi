@@ -1,16 +1,21 @@
 import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
-import { KtLogger } from "lib/logger/logger";
+import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import { FilterQuery } from "mongodb";
 import {
 	Game,
 	GetGamePTConfig,
 	GoalDocument,
+	GoalOrigin,
 	integer,
 	PBScoreDocument,
 	Playtypes,
+	UserGoalDocument,
 } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
+import { CreateGoalTitle, ValidateGoalChartsAndCriteria } from "./goal-utils";
+
+const logger = CreateLogCtx(__filename);
 
 export interface EvaluatedGoalReturn {
 	achieved: boolean;
@@ -59,6 +64,8 @@ export async function EvaluateGoalForUser(
 	// lets configure a "base" query for our requests.
 	const scoreQuery: FilterQuery<PBScoreDocument> = {
 		userID,
+		game: goal.game,
+		playtype: goal.playtype,
 		// normally, this would be a VERY WORRYING line of code, but goal.criteria.key is guaranteed to be
 		// within a specific set of fields.
 		[goal.criteria.key]: { $gte: goal.criteria.value },
@@ -106,6 +113,8 @@ export async function EvaluateGoalForUser(
 		// this is made infinitely easier by the existence of personal-bests.
 		const nextBestQuery: FilterQuery<PBScoreDocument> = {
 			userID,
+			game: goal.game,
+			playtype: goal.playtype,
 		};
 
 		if (chartIDs) {
@@ -171,7 +180,7 @@ export async function EvaluateGoalForUser(
 			progress: userCount,
 			outOf: count,
 			progressHuman: userCount.toString(),
-			outOfHuman: userCount.toString(),
+			outOfHuman: count.toString(),
 		};
 	}
 
@@ -184,7 +193,7 @@ export async function EvaluateGoalForUser(
 
 /**
  * Resolves the set of charts involved with this goal.
- * @param goal
+ *
  * @returns An array of chartIDs, except if the goal chart type is "any", in which case, it returns null.
  */
 function ResolveGoalCharts(goal: GoalDocument): Promise<string[]> | string[] | null | undefined {
@@ -201,7 +210,9 @@ function ResolveGoalCharts(goal: GoalDocument): Promise<string[]> | string[] | n
 
 type GoalKeys = GoalDocument["criteria"]["key"];
 
-type IIDXOrBMSPB = PBScoreDocument<"iidx:SP" | "iidx:DP" | "bms:7K" | "bms:14K">;
+type PBWithBadPoor = PBScoreDocument<
+	"iidx:SP" | "iidx:DP" | "bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard"
+>;
 
 export function HumaniseGoalProgress(
 	game: Game,
@@ -211,15 +222,17 @@ export function HumaniseGoalProgress(
 	userPB: PBScoreDocument | null
 ): string {
 	const gptConfig = GetGamePTConfig(game, playtype);
+
 	switch (key) {
 		case "scoreData.gradeIndex":
-			return gptConfig.grades[value];
+			return `${gptConfig.grades[value]} (${userPB?.scoreData.percent ?? "0"}%)`;
 		case "scoreData.lampIndex":
-			if (userPB && (game === "iidx" || game === "bms")) {
+			if (userPB && (game === "iidx" || game === "bms" || game === "pms")) {
 				return `${gptConfig.lamps[value]} (BP: ${
-					(userPB as IIDXOrBMSPB).scoreData.hitMeta.bp ?? "N/A"
+					(userPB as PBWithBadPoor).scoreData.hitMeta.bp ?? "N/A"
 				})`;
 			}
+
 			return gptConfig.lamps[value];
 		case "scoreData.percent":
 			return `${value.toFixed(2)}%`;
@@ -228,4 +241,102 @@ export function HumaniseGoalProgress(
 		default:
 			throw new Error(`Broken goal - invalid key ${key}.`);
 	}
+}
+
+/**
+ * Given some data about a goal, create a full Goal Document from it. This returns
+ * the goal document on success, and throws/panics on error.
+ *
+ * @param criteria - The criteria for this goal.
+ * @param charts - The set of charts relevant to this goal.
+ */
+export async function ConstructGoal(
+	charts: GoalDocument["charts"],
+	criteria: GoalDocument["criteria"],
+	game: Game,
+	playtype: Playtypes[Game]
+): Promise<GoalDocument> {
+	// Throws if the charts or criteria are invalid somehow.
+	await ValidateGoalChartsAndCriteria(charts, criteria, game, playtype);
+
+	return {
+		game,
+		playtype,
+		timeAdded: Date.now(),
+		criteria,
+		charts,
+		goalID: CreateGoalID(charts, criteria, game, playtype),
+		title: await CreateGoalTitle(charts, criteria, game, playtype),
+	} as GoalDocument;
+}
+
+export enum SubscribeFailReasons {
+	ALREADY_SUBSCRIBED,
+	ALREADY_ACHIEVED,
+}
+
+/**
+ * Subscribes a user to the provided goal document. Handles deduping goals naturally
+ * and general good stuff.
+ *
+ * @param cancelIfAchieved - Don't subscribe to the goal if subscribing would cause
+ * the user to immediately achieve the goal. This is disabled for milestone subscriptions,
+ * but enabled for manual assignment.
+ *
+ * Returns null if the user is already subscribed to this goal.
+ */
+export async function SubscribeToGoal(
+	userID: integer,
+	goalDocument: GoalDocument,
+	origin: GoalOrigin,
+	cancelIfAchieved = true
+) {
+	const goalExists = await db.goals.findOne({ goalID: goalDocument.goalID });
+
+	if (!goalExists) {
+		await db.goals.insert(goalDocument);
+		logger.info(`Inserting new goal ${goalDocument.title}.`);
+	}
+
+	const userAlreadySubscribed = await db["user-goals"].findOne({
+		userID,
+		goalID: goalDocument.goalID,
+	});
+
+	if (userAlreadySubscribed) {
+		return SubscribeFailReasons.ALREADY_SUBSCRIBED;
+	}
+
+	const result = await EvaluateGoalForUser(goalDocument, userID, logger);
+
+	if (!result) {
+		throw new Error(`Couldn't evaluate goal? See previous logs.`);
+	}
+
+	if (result.achieved && cancelIfAchieved) {
+		return SubscribeFailReasons.ALREADY_ACHIEVED;
+	}
+
+	const userGoal: UserGoalDocument = {
+		outOf: result.outOf,
+		outOfHuman: result.outOfHuman,
+		progress: result.progress,
+		progressHuman: result.progressHuman,
+		userID,
+		lastInteraction: Date.now(),
+		timeAchieved: result.achieved ? Date.now() : null,
+		timeSet: Date.now(),
+		from: origin,
+		game: goalDocument.game,
+		playtype: goalDocument.playtype,
+		goalID: goalDocument.goalID,
+		// Typescript gets pretty irritated at this because it can't explode out
+		// the types. That's whatever.
+		achieved: result.achieved as any,
+		wasInstantlyAchieved: result.achieved,
+	};
+
+	await db["user-goals"].insert(userGoal);
+
+	return userGoal;
 }

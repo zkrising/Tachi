@@ -23,6 +23,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 	t.beforeEach(() =>
 		db["user-milestones"].insert({
 			achieved: false,
+			wasInstantlyAchieved: false,
 			game: "iidx",
 			milestoneID: TestingIIDXSPMilestone.milestoneID,
 			playtype: "SP",
@@ -154,6 +155,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 		);
 		await db["user-milestones"].insert({
 			achieved: false,
+			wasInstantlyAchieved: false,
 			game: "iidx",
 			milestoneID: "some_other_milestone_with_mutual_goals",
 			playtype: "SP",
@@ -263,6 +265,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 		await db["user-milestones"].insert([
 			{
 				achieved: false,
+				wasInstantlyAchieved: false,
 				game: "iidx",
 				milestoneID: "some_other_milestone_with_mutual_goals",
 				playtype: "SP",
@@ -273,6 +276,8 @@ t.test("#UpdateUsersMilestones", (t) => {
 			},
 			{
 				achieved: false,
+				wasInstantlyAchieved: false,
+
 				game: "iidx",
 				milestoneID: "dp_milestone",
 				playtype: "DP",
@@ -283,6 +288,8 @@ t.test("#UpdateUsersMilestones", (t) => {
 			},
 			{
 				achieved: false,
+				wasInstantlyAchieved: false,
+
 				game: "museca",
 				milestoneID: "other_game_milestone",
 				playtype: "Single",
@@ -293,6 +300,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 			},
 			{
 				achieved: false,
+				wasInstantlyAchieved: false,
 				game: "iidx",
 				milestoneID: "iidx_with_not_goal",
 				playtype: "SP",

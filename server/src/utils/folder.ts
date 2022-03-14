@@ -44,7 +44,7 @@ export async function ResolveFolderToCharts(
 		charts = await db.charts[folder.game].find(
 			deepmerge(filter, {
 				playtype: folder.playtype, // mandatory
-				chartID: { $in: folder.data }, // @todo
+				chartID: { $in: folder.data },
 			})
 		);
 	} else if (folder.type === "songs") {

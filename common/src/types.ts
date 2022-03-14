@@ -644,6 +644,7 @@ export type UserGoalDocument = MongoDBDocument & {
 	outOf: number;
 	outOfHuman: string;
 	from: GoalOrigin;
+	wasInstantlyAchieved: boolean;
 } & (
 		| {
 				achieved: true;
@@ -1020,9 +1021,8 @@ export type UserMilestoneDocument = MongoDBDocument & {
 	game: Game;
 	playtype: AnyPlaytype;
 	timeSet: integer;
-	achieved: boolean;
-	timeAchieved: integer | null;
 	progress: integer;
+	wasInstantlyAchieved: boolean;
 } & (
 		| {
 				achieved: true;

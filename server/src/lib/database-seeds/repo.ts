@@ -159,7 +159,7 @@ export async function PullDatabaseSeeds() {
 		// there were expletives below this comment, but I have removed them.
 		const { stdout } = await asyncExec(
 			`git clone "${ServerConfig.SEEDS_URL}" -b "${
-				Environment.nodeEnv === "production" ? "master" : "develop"
+				Environment.nodeEnv === "production" ? "production" : "develop"
 			}" --depth=1 '${seedsDir}'`
 		);
 

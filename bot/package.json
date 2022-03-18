@@ -35,6 +35,7 @@
 		"express": "4.17.1",
 		"json5": "2.2.0",
 		"lodash": "4.17.21",
+		"monk": "^7.3.4",
 		"node-fetch": "3.2.0",
 		"prudence": "0.9.6",
 		"tachi-common": "0.6.11",

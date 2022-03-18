@@ -10,6 +10,7 @@ import { LoggerLayers } from "../config";
 import { help } from "../commands/help/help";
 import { createLayeredLogger } from "../utils/logger";
 import { gamesToChoicesObject } from "../utils/utils";
+import { Command } from "./types";
 
 const logger = createLayeredLogger(LoggerLayers.slashCommands);
 
@@ -19,7 +20,7 @@ export interface SlashCommand {
 		description: string;
 		options: APIApplicationCommandOption[];
 	};
-	exec(interaction: CommandInteraction): Promise<void>;
+	exec: Command;
 }
 
 export const slashCommands: SlashCommand[] = [

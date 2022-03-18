@@ -14,6 +14,8 @@ export enum LoggerLayers {
 	chartSearch = "chartSearch",
 	buildChartEmbed = "buildChartEmbed",
 	tachiAuth = "tachiAuth",
+	database = "database",
+	databaseQuery = "databaseQuery",
 }
 
 export const theFunny = [

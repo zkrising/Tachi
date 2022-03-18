@@ -1,9 +1,26 @@
 import { Snowflake } from "discord.js/typings/index.js";
-// import monk from "monk";
+import monk from "monk";
 import { integer } from "tachi-common";
-// import { ProcessEnv } from "../setup";
+import { LoggerLayers } from "../config";
+import { ProcessEnv } from "../setup";
+import { createLayeredLogger } from "../utils/logger";
 
-// const monkDB = monk(ProcessEnv.MONGO_URL);
+const logger = createLayeredLogger(LoggerLayers.database);
+
+logger.info(`Connecting to ${ProcessEnv.MONGO_URL}...`);
+
+const monkDB = monk(ProcessEnv.MONGO_URL);
+
+monkDB
+	.then(() => {
+		logger.info(`Database connection successful.`, {
+			bootInfo: true,
+		});
+	})
+	.catch((err) => {
+		logger.crit(err);
+		process.exit(1);
+	});
 
 export interface DiscordUserMapDocument {
 	userID: integer;
@@ -12,10 +29,7 @@ export interface DiscordUserMapDocument {
 }
 
 const db = {
-	discordUserMap: (() => {
-		console.error("DATABASE HAS BEEN STUBBED OUT TEMPORARILY. SIGTERMING.");
-		process.exit(1);
-	}) as any, // monkDB.get<DiscordUserMapDocument>("discordUserMap")
+	discordUserMap: monkDB.get<DiscordUserMapDocument>("discord-user-map"),
 };
 
 export default db;

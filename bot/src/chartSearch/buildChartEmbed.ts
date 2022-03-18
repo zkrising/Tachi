@@ -15,7 +15,7 @@ export interface PBResponse {
 	pbs: PBScoreDocument[];
 }
 
-export const buildSongSelect = <T extends Game>(songs: SongSearchResult[], playtype: Playtypes[T], game: Game) => {
+export const buildSongSelect = <T extends Game>(songs: SongSearchResult[], playtype: Playtypes[T], game: Game): MessageActionRow => {
 	return new MessageActionRow().addComponents(
 		new MessageSelectMenu()
 			.setCustomId(validSelectCustomIdPrefaces.selectSongForSearch)
@@ -80,7 +80,10 @@ export const buildChartEmbed = async <T extends Game, I extends IDStrings = IDSt
 		} else if (songId) {
 			const details = await getDetailedSongData(songId, playtype, game);
 			embed.addField(details.song.title || "Song", details.song.artist || "Artist");
-			embed.setThumbnail(getGameImage(details.song.firstVersion || "0", game));
+			
+			if ("firstVersion" in details.song.data) {
+				embed.setThumbnail(getGameImage(details.song.data?.firstVersion, game));
+			}
 
 			const filteredCharts = details.charts.filter((chart) => {
 				if (IIDExtra) {
@@ -93,6 +96,7 @@ export const buildChartEmbed = async <T extends Game, I extends IDStrings = IDSt
 
 				return false;
 			});
+
 			const sortedCharts = filteredCharts.sort((a, b) => a.levelNum - b.levelNum);
 
 			for (const chart of sortedCharts) {

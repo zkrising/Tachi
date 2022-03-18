@@ -20,7 +20,7 @@ export interface SearchResult {
 }
 
 export interface DetailedSongResponse {
-	song: Partial<SongDocument>;
+	song: SongDocument;
 	charts: ChartDocument[];
 }
 
@@ -28,7 +28,7 @@ export const getSongMeta = async (songName: string): Promise<SongSearchResult[]>
 	try {
 		logger.info(`Searching for ${songName}`);
 		const songResponse = (
-			await TachiServerV1Get<SearchResult>("/search", {
+			await TachiServerV1Get<SearchResult>("/search", "TEMP_MUST_REFACTOR_THIS", {
 				search: songName
 			})
 		).body?.songs;

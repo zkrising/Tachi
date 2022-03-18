@@ -18,7 +18,7 @@ const logger = createLayeredLogger(LoggerLayers.buildProfileEmbed);
 
 const pullRatings = <I extends IDStrings = IDStrings>(
 	gpt: SimpleGameType<Game>,
-	ratings: Partial<Record<UGSRatingsLookup[I], number>>
+	ratings: Partial<Record<UGSRatingsLookup[I], number | null>>
 ): string[] => {
 	const allRatings: string[] = [];
 	const RatingKeys = <UGSRatingsLookup[I][]>Object.keys(ratings);
@@ -53,7 +53,7 @@ export const buildProfileEmbed = async (data: UserGameStats[], game?: SimpleGame
 
 		const userId = data[0].userID;
 		const userDetails = await fetchUserDetails(userId);
-		const pfp = userDetails.customPfp
+		const pfp = userDetails.customPfpLocation
 			? getPfpUrl(userId)
 			: "https://cdn.mos.cms.futurecdn.net/mrArzwHcNuQbRwbEmuiwdJ.jpg";
 		embed.setTitle(`${userDetails.username}'s Profile`);

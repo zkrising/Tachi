@@ -5,7 +5,7 @@ import { ValidateWebhookRequest } from "./middleware";
 import { WebhookEvents, APITokenDocument, PublicUserDocument } from "tachi-common";
 import { BotConfig, ProcessEnv } from "../setup";
 import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "../utils/fetch-tachi";
-import db from "../mongo/mongo";
+import db from "../database/mongo";
 
 const app: Express = express();
 

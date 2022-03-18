@@ -7,7 +7,10 @@ import { createLayeredLogger } from "./logger";
 
 const logger = createLayeredLogger(LoggerLayers.tachiFetch);
 
-export type APIResponse<T> = (SuccessfulAPIResponse<T> | (UnsuccessfulAPIResponse & { body: null })) & {
+export type APIResponse<T> = (
+	| SuccessfulAPIResponse<T>
+	| (UnsuccessfulAPIResponse & { body: null })
+) & {
 	statusCode: integer;
 };
 
@@ -16,7 +19,7 @@ export enum RequestTypes {
 	POST = "POST",
 	PATCH = "PATCH",
 	PUT = "PUT",
-	DELETE = "DELETE"
+	DELETE = "DELETE",
 	// HEAD, OPTIONS not used by tachi-server anywhere.
 }
 
@@ -44,9 +47,9 @@ export async function TachiServerV1Request<T>(
 			method,
 			headers: {
 				"Content-Type": "application/json",
-				Authorization: token ? `Bearer ${token}` : undefined
+				Authorization: token ? `Bearer ${token}` : undefined,
 			},
-			data: JSON.stringify(body)
+			data: JSON.stringify(body),
 		});
 
 		const json = (await res.data) as APIResponse<T>;
@@ -82,7 +85,7 @@ export async function TachiServerV1Get<T = unknown>(
 		const { token, discordId } = auth;
 
 		if (!token && !discordId) {
-			throw new Error("No way to auth user");
+			throw new Error("No authentication provided. Cannot send request.");
 		}
 
 		const urlParams = new URLSearchParams(params);
@@ -96,9 +99,10 @@ export async function TachiServerV1Get<T = unknown>(
 			headers: {
 				Authorization: token
 					? `Bearer ${token}`
-					: `Bearer ${(await getTachiIdByDiscordId(discordId!))?.tachiApiToken}`
-			}
+					: `Bearer ${(await getTachiIdByDiscordId(discordId!))?.tachiApiToken}`,
+			},
 		});
+
 		const json = (await res.data) as APIResponse<T>;
 		const contents = { ...json, statusCode: res.status };
 
@@ -117,7 +121,7 @@ export async function TachiServerV1Get<T = unknown>(
  */
 export function PrependTachiUrl(url: string, version: "1" = "1"): string {
 	if (url[0] !== "/") {
-		url = "/" + url;
+		url = `/${url}`;
 	}
 
 	return `${BotConfig.TACHI_SERVER_LOCATION}/api/v${version}${url}`;
@@ -129,7 +133,9 @@ export function PrependTachiUrl(url: string, version: "1" = "1"): string {
  */
 function LogRequestResult(loggerUrl: string, res: APIResponse<unknown>): void {
 	if (!res.success) {
-		logger.warn(`Request ${loggerUrl} was unsuccessful: ${res.description} (${res.statusCode})`);
+		logger.warn(
+			`Request ${loggerUrl} was unsuccessful: ${res.description} (${res.statusCode})`
+		);
 	} else {
 		logger.debug(`Request ${loggerUrl} was successful: ${res.description} (${res.statusCode})`);
 	}

@@ -9,9 +9,11 @@ export const handleIsCommand = async (interaction: Interaction): Promise<void> =
 	try {
 		/** Rechecking required to enforce types */
 		if (interaction.isCommand()) {
-			const command = slashCommands.find((command: SlashCommand) => {
-				return command.info.name === interaction.commandName;
-			});
+			const command = slashCommands.find(
+				(command: SlashCommand) => command.info.name === interaction.commandName
+			);
+
+			const requestingUserInfo = GetRequestingUserInfo(interaction);
 
 			if (command && command.exec) {
 				logger.info(`Running ${command.info.name} interaction`);

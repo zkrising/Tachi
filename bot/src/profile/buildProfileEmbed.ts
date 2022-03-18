@@ -1,4 +1,10 @@
-import { InteractionReplyOptions, MessageActionRow, MessageEmbed, MessagePayload, MessageSelectMenu } from "discord.js";
+import {
+	InteractionReplyOptions,
+	MessageActionRow,
+	MessageEmbed,
+	MessagePayload,
+	MessageSelectMenu,
+} from "discord.js";
 import { Game, UserGameStats, IDStrings, PublicUserDocument, UGSRatingsLookup } from "tachi-common";
 import { find } from "lodash";
 import { LoggerLayers } from "../config";
@@ -11,7 +17,7 @@ import {
 	getPfpUrl,
 	prettyRatingString,
 	SimpleGameType,
-	simpleGameTypeToString
+	simpleGameTypeToString,
 } from "../utils/utils";
 
 const logger = createLayeredLogger(LoggerLayers.buildProfileEmbed);
@@ -31,11 +37,19 @@ const pullRatings = <I extends IDStrings = IDStrings>(
 	return allRatings;
 };
 
-export const fetchUserDetails = async (userId: number, discordUserId: string): Promise<PublicUserDocument> => {
+export const fetchUserDetails = async (
+	userId: number,
+	discordUserId: string
+): Promise<PublicUserDocument> => {
 	try {
 		logger.info(`Fetching public user document for ${userId}`);
-		const data = (await TachiServerV1Get<PublicUserDocument>(`/users/${userId}`, {}, { discordId: discordUserId }))
-			.body;
+		const data = (
+			await TachiServerV1Get<PublicUserDocument>(
+				`/users/${userId}`,
+				{},
+				{ discordId: discordUserId }
+			)
+		).body;
 		if (data) {
 			return data;
 		} else {
@@ -58,9 +72,8 @@ export const buildProfileEmbed = async (
 
 		const userId = data[0].userID;
 		const userDetails = await fetchUserDetails(userId);
-		const pfp = userDetails.customPfpLocation
-			? getPfpUrl(userId)
-			: "https://cdn.mos.cms.futurecdn.net/mrArzwHcNuQbRwbEmuiwdJ.jpg";
+		const pfp = getPfpUrl(userDetails);
+
 		embed.setTitle(`${userDetails.username}'s Profile`);
 		embed.setThumbnail(pfp);
 		embed.setAuthor(`@${userDetails.username}`, pfp);
@@ -78,7 +91,10 @@ export const buildProfileEmbed = async (
 					`${pullRatings(game, specificData.ratings).join("\n")}`
 				);
 			} else {
-				embed.addField("Select a game to see stats", `No stats for ${formatGameWrapper(game)}`);
+				embed.addField(
+					"Select a game to see stats",
+					`No stats for ${formatGameWrapper(game)}`
+				);
 			}
 		} else {
 			embed.addField("Select a game to see stats", "\u200B");
@@ -98,7 +114,11 @@ export const buildProfileIntractable = async (
 ): Promise<InteractionReplyOptions | MessagePayload> => {
 	try {
 		const data = (
-			await TachiServerV1Get<UserGameStats[]>(`/users/${userId}/game-stats`, {}, { discordId: discordUserId })
+			await TachiServerV1Get<UserGameStats[]>(
+				`/users/${userId}/game-stats`,
+				{},
+				{ discordId: discordUserId }
+			)
 		)?.body;
 		logger.verbose(data);
 
@@ -109,16 +129,17 @@ export const buildProfileIntractable = async (
 					.setCustomId(`${validSelectCustomIdPrefaces.SelectGameForProfile}:${userId}`)
 					.setPlaceholder("Browse By Game")
 					.addOptions(
-						data.map((_game) => {
-							return {
-								label: `${formatGameWrapper(_game)}`,
-								value: `${_game.game}:${_game.playtype}`
-							};
-						})
+						data.map((_game) => ({
+							label: `${formatGameWrapper(_game)}`,
+							value: `${_game.game}:${_game.playtype}`,
+						}))
 					)
 			);
 
-			return { embeds: [await buildProfileEmbed(data, discordUserId, game)], components: [dropdown] };
+			return {
+				embeds: [await buildProfileEmbed(data, discordUserId, game)],
+				components: [dropdown],
+			};
 		}
 
 		throw new Error(`No data found for user ${userId}`);

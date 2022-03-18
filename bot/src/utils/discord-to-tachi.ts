@@ -1,19 +1,16 @@
 import { LoggerLayers } from "../config";
 import { createLayeredLogger } from "./logger";
 import db, { DiscordUserMapDocument } from "../mongo/mongo";
+import { Interaction } from "discord.js";
 
 const logger = createLayeredLogger(LoggerLayers.tachiAuth);
 
-export const getTachiIdByDiscordId = async (discordId: string): Promise<DiscordUserMapDocument | undefined> => {
-	logger.verbose(`Fetching linked ID for ${discordId}`);
-	try {
-		const document = await db.discordUserMap.findOne({ discordID: discordId });
-		if (document) {
-			return document;
-		}
-	} catch (e) {
-		logger.error(e);
-	}
+export async function GetRequestingUserInfo(
+	interaction: Interaction
+): Promise<DiscordUserMapDocument | null> {
+	const discordID = interaction.id;
 
-	return undefined;
-};
+	logger.verbose(`Fetching linked ID for ${discordID}`);
+
+	return db.discordUserMap.findOne({ discordID: discordID });
+}

@@ -19,7 +19,7 @@ export const ValidateWebhookRequest: RequestHandler = (req, res, next) => {
 		logger.info(`Received unauthed request from ${req.ip}.`);
 		return res.status(401).json({
 			success: false,
-			description: "No authorization provided."
+			description: "No authorization provided.",
 		});
 	}
 
@@ -29,15 +29,17 @@ export const ValidateWebhookRequest: RequestHandler = (req, res, next) => {
 		logger.info(`Received invalid auth type request from ${req.ip}, got auth type ${type}.`);
 		return res.status(400).json({
 			success: false,
-			description: "Invalid authorization type. Expected Bearer."
+			description: "Invalid authorization type. Expected Bearer.",
 		});
 	}
 
 	if (value !== ProcessEnv.BOT_CLIENT_SECRET) {
-		logger.warn(`Recieved invalid auth value from ${req.ip}. Has the client secret been changed?`);
+		logger.warn(
+			`Recieved invalid auth value from ${req.ip}. Has the client secret been changed?`
+		);
 		return res.status(403).json({
 			success: false,
-			description: "Unauthorised."
+			description: "Unauthorised.",
 		});
 	}
 

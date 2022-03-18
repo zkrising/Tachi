@@ -13,7 +13,7 @@ export enum LoggerLayers {
 	buildProfileEmbed = "buildProfileEmbed",
 	chartSearch = "chartSearch",
 	buildChartEmbed = "buildChartEmbed",
-	tachiAuth = "tachiAuth"
+	tachiAuth = "tachiAuth",
 }
 
 export const theFunny = [
@@ -90,5 +90,5 @@ export const theFunny = [
 	"i'm obligated to ask for you to seek immediate psychological attention",
 	"Is IIDX still a good game or are you all basically stupid?",
 	"A point in the horizon, a melting scene from your childhood. Your mortality is showing a frantic drift towards nothing, biology doomed to an infinite recursive loop. Teeth with teeth with teeth. Take a bite. Serene scene of a coastal town, warmth of the sun. Bitter tears. Lust for power. This is where you abandoned your dreams. You are a high net worth individual, an expanding vortex of pathetic trauma. Finally a beautiful fucking nerve ape. A pure soul is born, its neurotransactions stutter into being. 30583750937509353 operations per nanosecond. Beauty eludes your porous mind.\n\nThe value of Life is negative. The balance of being is rotated by 38 degrees. The surface is full of cracks, a turgid light shines through. Fleshy primordial bodies sluggishly roll down the slope. Only you slide upwards, with a celestial step. You become beautified, a saintly figure. Your pristine idiocy reveals a safe path through the impenetrable fog of life. Your dull sword cuts through the weak tendons and membranes of the garden of corruption. Sit on the throne of contentment and ferment. Inspect the eternal blue skies of your kingdom. You come to a realization. You pick up and onion and begin peeling.\n\nOnion layer one. Onion layer two. Onion layer three ... Onion layer n^n. Aeons have passed and the onion is fully peeled. Nothing remains. It's perfect. You get lost in the point that remains where the onion used to be. Synaptic cascade, neurological catastrophe. The point becomes infinitely dense, the universe condenses into a unicellular being. It screams sin. It craves happiness. It's done with this world. It tries to commit suicide but it fails. Sad pathetic mess. You feel pity and disgust but in a way only a being of pure grace can. In your violent mercy you terminate the worldlife.",
-	"Please do not reply to or quote my posts in the future."
+	"Please do not reply to or quote my posts in the future.",
 ];

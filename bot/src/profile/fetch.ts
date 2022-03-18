@@ -13,14 +13,19 @@ export const getProfileByName = async (interaction: CommandInteraction): Promise
 	try {
 		/** @TODO this can be an @User, userId or userName!!! Handle this at some point */
 		const userId =
-			interaction.options.getInteger("user", false) || (await getTachiIdByDiscordId(interaction.user.id))?.userID;
+			interaction.options.getInteger("user", false) ||
+			(await getTachiIdByDiscordId(interaction.user.id))?.userID;
 		logger.info(`Fetching user ${userId}`);
 
-		const optionalGameOption = <IDStrings | undefined>interaction.options.getString("game", false);
+		const optionalGameOption = <IDStrings | undefined>(
+			interaction.options.getString("game", false)
+		);
 		const game = optionalGameOption ? stringToSimpleGameType(optionalGameOption) : undefined;
 
 		if (userId) {
-			await interaction.reply(await buildProfileIntractable(userId, interaction.user.id, game));
+			await interaction.reply(
+				await buildProfileIntractable(userId, interaction.user.id, game)
+			);
 		} else {
 			await interaction.reply("No user data found for user");
 		}

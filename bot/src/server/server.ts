@@ -25,16 +25,16 @@ app.set("query parser", "simple");
  *
  * @name GET /
  */
-app.get("/", (req, res) => {
-	return res.status(200).json({
+app.get("/", (req, res) =>
+	res.status(200).json({
 		success: true,
 		description: "Bot is online!",
 		body: {
-			time: Date.now()
+			time: Date.now(),
 			// @todo Versioning information, put it here?
-		}
-	});
-});
+		},
+	})
+);
 
 /**
  * Listens for tachi-server style webhook calls.
@@ -62,7 +62,7 @@ app.post("/webhook", ValidateWebhookRequest, (req, res) => {
 			// get around to updating in time.
 			return res.status(501).json({
 				success: false,
-				description: `The type ${(webhookEvent as WebhookEvents).type} is unsupported.`
+				description: `The type ${(webhookEvent as WebhookEvents).type} is unsupported.`,
 			});
 	}
 
@@ -96,22 +96,28 @@ app.get("/oauth/callback", async (req, res) => {
 			client_id: ProcessEnv.BOT_CLIENT_ID,
 			client_secret: ProcessEnv.BOT_CLIENT_SECRET,
 			grant_type: "authorization_code",
-			redirect_uri: `${BotConfig.OUR_URL}/oauth/callback`
+			redirect_uri: `${BotConfig.OUR_URL}/oauth/callback`,
 		}
 	);
 
 	if (!tokenRes.success) {
-		logger.error(`Failed to convert code ${req.query.code} to a token. ${tokenRes.description}, cannot auth.`);
+		logger.error(
+			`Failed to convert code ${req.query.code} to a token. ${tokenRes.description}, cannot auth.`
+		);
 		return res.status(401).json({
 			success: false,
-			description: "Failed to authenticate."
+			description: "Failed to authenticate.",
 		});
 	}
 
 	const discordID = req.query.context;
 	const apiToken = tokenRes.body.token!;
 
-	const whoamiRes = await TachiServerV1Get<PublicUserDocument>("/users/me", {}, { token: apiToken });
+	const whoamiRes = await TachiServerV1Get<PublicUserDocument>(
+		"/users/me",
+		{},
+		{ token: apiToken }
+	);
 
 	if (!whoamiRes.success) {
 		logger.error("Failed to request user with token we just got?", { discordID });
@@ -126,7 +132,7 @@ app.get("/oauth/callback", async (req, res) => {
 	await db.discordUserMap.insert({
 		discordID,
 		tachiApiToken: apiToken,
-		userID: user.id
+		userID: user.id,
 	});
 
 	return res.sendFile("../pages/account-linked.html");
@@ -137,12 +143,12 @@ app.get("/oauth/callback", async (req, res) => {
  *
  * @name ALL *
  */
-app.all("*", (req, res) => {
-	return res.status(404).json({
+app.all("*", (req, res) =>
+	res.status(404).json({
 		success: false,
-		description: "Nothing found here."
-	});
-});
+		description: "Nothing found here.",
+	})
+);
 
 interface ExpressJSONErr extends SyntaxError {
 	status: number;
@@ -164,7 +170,7 @@ const MainExpressErrorHandler: express.ErrorRequestHandler = (err, req, res, _ne
 		const expErr: ExpressJSONErr = err as ExpressJSONErr;
 		if (expErr.status === 400 && "body" in expErr) {
 			logger.info(`Error in parsing JSON in request body from ${req.url}`, {
-				url: req.originalUrl
+				url: req.originalUrl,
 			});
 			return res.status(400).send({ success: false, description: err.message });
 		}
@@ -175,7 +181,7 @@ const MainExpressErrorHandler: express.ErrorRequestHandler = (err, req, res, _ne
 	logger.error(err, req.route);
 	return res.status(500).json({
 		success: false,
-		description: "A fatal internal server error has occured."
+		description: "A fatal internal server error has occured.",
 	});
 };
 

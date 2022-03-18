@@ -1,11 +1,17 @@
-import { InteractionReplyOptions, MessageActionRow, MessageEmbed, MessagePayload, MessageSelectMenu } from "discord.js";
+import {
+	InteractionReplyOptions,
+	MessageActionRow,
+	MessageEmbed,
+	MessagePayload,
+	MessageSelectMenu,
+} from "discord.js";
 import { Game, IDStrings, Playtypes, PublicUserDocument, UGSRatingsLookup } from "tachi-common";
 import { PBScoreDocument } from "tachi-common/js/types";
-import { LoggerLayers } from "../config";
-import { validSelectCustomIdPrefaces } from "../interactionHandlers/selectMenu/handleIsSelectMenu";
-import { TachiServerV1Get } from "../utils/fetch-tachi";
-import { createLayeredLogger } from "../utils/logger";
-import { formatGameScoreRating, getGameImage } from "../utils/utils";
+import { LoggerLayers } from "../../config";
+import { validSelectCustomIdPrefaces } from "../../interactionHandlers/selectMenu/handleIsSelectMenu";
+import { TachiServerV1Get } from "../../utils/fetch-tachi";
+import { createLayeredLogger } from "../../utils/logger";
+import { formatGameScoreRating, getGameImage } from "../../utils/utils";
 import { getDetailedSongData, SongSearchResult } from "./chartSearch";
 
 const logger = createLayeredLogger(LoggerLayers.buildChartEmbed);
@@ -15,21 +21,22 @@ export interface PBResponse {
 	pbs: PBScoreDocument[];
 }
 
-export const buildSongSelect = <T extends Game>(songs: SongSearchResult[], playtype: Playtypes[T], game: Game): MessageActionRow => {
-	return new MessageActionRow().addComponents(
+export const buildSongSelect = <T extends Game>(
+	songs: SongSearchResult[],
+	playtype: Playtypes[T],
+	game: Game
+): MessageActionRow =>
+	new MessageActionRow().addComponents(
 		new MessageSelectMenu()
 			.setCustomId(validSelectCustomIdPrefaces.selectSongForSearch)
 			.setPlaceholder("Select Song")
 			.addOptions(
-				songs.map((chart) => {
-					return {
-						label: `${chart.title} - ${chart.artist}`,
-						value: `${chart.id}:${playtype}:${game}`
-					};
-				})
+				songs.map((chart) => ({
+					label: `${chart.title} - ${chart.artist}`,
+					value: `${chart.id}:${playtype}:${game}`,
+				}))
 			)
 	);
-};
 
 interface SimplePBDocument extends PBScoreDocument, Partial<PublicUserDocument> {}
 
@@ -54,7 +61,7 @@ export const getPBForChart = async <T extends Game>(
 
 			return {
 				...topPb,
-				...topUser
+				...topUser,
 			};
 		} else {
 			logger.error(data.description);
@@ -81,8 +88,14 @@ export const buildChartEmbed = async <T extends Game, I extends IDStrings = IDSt
 		const embed = new MessageEmbed().setColor("#cc527a");
 
 		if (!songId && searchResults) {
-			embed.addField(`${searchResults.length} potential results found`, "Select from the dropdown");
-			return { embeds: [embed], components: [buildSongSelect(searchResults, playtype, game)] };
+			embed.addField(
+				`${searchResults.length} potential results found`,
+				"Select from the dropdown"
+			);
+			return {
+				embeds: [embed],
+				components: [buildSongSelect(searchResults, playtype, game)],
+			};
 		} else if (songId) {
 			const details = await getDetailedSongData(songId, playtype, game, discordUserId);
 			embed.addField(details.song.title || "Song", details.song.artist || "Artist");
@@ -107,21 +120,29 @@ export const buildChartEmbed = async <T extends Game, I extends IDStrings = IDSt
 			logger.info("Getting chart PBs");
 			for (const chart of sortedCharts) {
 				try {
-					const PB = await getPBForChart(chart.chartID, chart.playtype, game, discordUserId);
+					const PB = await getPBForChart(
+						chart.chartID,
+						chart.playtype,
+						game,
+						discordUserId
+					);
 					embed.addField(
 						`${chart.difficulty} (${chart.level})`,
 						`Server Top: **[${PB.username}](https://kamaitachi.xyz/dashboard/users/${
 							PB.id
-						}/games/${game}/${playtype})**\n${PB.scoreData.percent.toFixed(2)}% [${PB.scoreData.score}]\n${
-							PB.scoreData.grade
-						} [${PB.scoreData.lamp}]\n${Object.keys(PB.calculatedData)
-							.map((item) => {
-								return `${item}: ${formatGameScoreRating(
-									{ game, playtype },
-									<UGSRatingsLookup[I]>item,
-									PB.calculatedData[item as never] || 0
-								)}`;
-							})
+						}/games/${game}/${playtype})**\n${PB.scoreData.percent.toFixed(2)}% [${
+							PB.scoreData.score
+						}]\n${PB.scoreData.grade} [${PB.scoreData.lamp}]\n${Object.keys(
+							PB.calculatedData
+						)
+							.map(
+								(item) =>
+									`${item}: ${formatGameScoreRating(
+										{ game, playtype },
+										<UGSRatingsLookup[I]>item,
+										PB.calculatedData[item as never] || 0
+									)}`
+							)
 							.join("\n")}`,
 						false
 					);

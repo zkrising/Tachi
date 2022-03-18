@@ -12,7 +12,10 @@ export interface DiscordUserMapDocument {
 }
 
 const db = {
-	discordUserMap: (() => { console.error("DATABASE HAS BEEN STUBBED OUT TEMPORARILY. SIGTERMING."); process.exit(1); } ) as any // monkDB.get<DiscordUserMapDocument>("discordUserMap")
+	discordUserMap: (() => {
+		console.error("DATABASE HAS BEEN STUBBED OUT TEMPORARILY. SIGTERMING.");
+		process.exit(1);
+	}) as any, // monkDB.get<DiscordUserMapDocument>("discordUserMap")
 };
 
 export default db;

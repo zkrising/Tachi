@@ -1,10 +1,10 @@
 import { CommandInteraction } from "discord.js";
 import { Playtypes, PublicUserDocument, SongDocument } from "tachi-common";
 import { ChartDocument, Game } from "tachi-common/js/types";
-import { LoggerLayers } from "../config";
-import { TachiServerV1Get } from "../utils/fetch-tachi";
-import { createLayeredLogger } from "../utils/logger";
-import { stringToSimpleGameType } from "../utils/utils";
+import { LoggerLayers } from "../../config";
+import { TachiServerV1Get } from "../../utils/fetch-tachi";
+import { createLayeredLogger } from "../../utils/logger";
+import { stringToSimpleGameType } from "../../utils/utils";
 import { buildChartEmbed } from "./buildChartEmbed";
 
 const logger = createLayeredLogger(LoggerLayers.chartSearch);
@@ -24,12 +24,15 @@ export interface DetailedSongResponse {
 	charts: ChartDocument[];
 }
 
-export const getSongMeta = async (songName: string, discordUserId: string): Promise<SongSearchResult[]> => {
+export const getSongMeta = async (
+	songName: string,
+	discordUserId: string
+): Promise<SongSearchResult[]> => {
 	try {
 		logger.info(`Searching for ${songName}`);
 		const songResponse = (
-			await TachiServerV1Get<SearchResult>("/search", "TEMP_MUST_REFACTOR_THIS", {
-				search: songName
+			await TachiServerV1Get<SearchResult>("/search", {
+				search: songName,
 			})
 		).body?.songs;
 
@@ -107,7 +110,7 @@ export const searchForSong = async (interaction: CommandInteraction): Promise<vo
 				searchResults: songMetaFiltered,
 				playtype,
 				game,
-				discordUserId: interaction.user.id
+				discordUserId: interaction.user.id,
 			})
 		);
 	} catch (e) {

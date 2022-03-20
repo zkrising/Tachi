@@ -1,5 +1,4 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
-import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import { TachiConfig } from "lib/config";
 import React from "react";
@@ -16,13 +15,7 @@ export default function SupportMePage() {
 			</p>
 			<p>
 				If you want to support {TachiConfig.name} development, you can donate to my{" "}
-				<ExternalLink href="https://patreon.com/zkldi">Patreon (Subscription)</ExternalLink>{" "}
-				or <ExternalLink href="https://ko-fi.com/zkldi">Ko-Fi (One-Time)</ExternalLink>.
-			</p>
-			<Divider />
-			<p>
-				I'm also interested in employment opportunities. You can reach me at{" "}
-				<code>zkldi (dot) dev [at] gmail |dot| com</code>.
+				<ExternalLink href="https://ko-fi.com/zkldi">Ko-Fi</ExternalLink>.
 			</p>
 		</div>
 	);

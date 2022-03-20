@@ -457,5 +457,20 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 		t.end();
 	});
 
+	t.test("Should disallow requests from non INF2 if forceStaticImport is false.", async (t) => {
+		await db["fer-settings"].update({ userID: 1 }, { $set: { forceStaticImport: false } });
+
+		const res = await mockApi
+			.post("/ir/fervidex/profile/submit")
+			.set("Authorization", "Bearer mock_token")
+			.set("User-Agent", "fervidex/1.3.0")
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
+			.send(ferStaticBody);
+
+		t.equal(res.statusCode, 400, "Should be rejected, as FSI is not set.");
+
+		t.end();
+	});
+
 	t.end();
 });

@@ -1,11 +1,11 @@
 import { Client, CommandInteraction, Intents, SelectMenuInteraction } from "discord.js";
 import { LoggerLayers, METALLIC_MIND_SPLASHES } from "./data/data";
 import { GetUserForDiscordID } from "./database/queries";
-import { handleIsCommand } from "./interactionHandlers/command/handleIsCommand";
-import { handleIsSelectMenu } from "./interactionHandlers/selectMenu/handleIsSelectMenu";
+import { handleIsCommand } from "./interactionHandlers/handleIsCommand";
+import { handleIsSelectMenu } from "./interactionHandlers/handleIsSelectMenu";
 import { app } from "./server/server";
 import { BotConfig, ProcessEnv } from "./setup";
-import { registerSlashCommands } from "./slashCommands/register";
+import { RegisterSlashCommands } from "./slashCommands/register";
 import { createLayeredLogger } from "./utils/logger";
 import { RFA, TruncateString } from "./utils/misc";
 import { initWatchHandler } from "./utils/utils";
@@ -84,7 +84,7 @@ We've sent you a DM with instructions on how to link your account.`
 			}&permissions=8&scope=applications.commands%20bot`
 		);
 
-		await registerSlashCommands(client);
+		await RegisterSlashCommands(client);
 	} catch (e) {
 		logger.crit("Log in Failed:", e);
 		process.exit(1); // screwed.

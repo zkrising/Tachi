@@ -1,36 +1,25 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { REST } from "@discordjs/rest";
-import { APIApplicationCommandOption } from "discord-api-types";
 import { Routes } from "discord-api-types/v9";
 import { Client, CommandInteraction } from "discord.js";
 import { searchForSong } from "../commands/chartSearch/chartSearch";
-import { getProfileByName } from "../profile/fetch";
-import { ProcessEnv } from "../setup";
+import { HelpCommand } from "../commands/help/help";
 import { LoggerLayers } from "../data/data";
-import { help } from "../commands/help/help";
+import { getProfileByName } from "../profile/fetch";
+import { BotConfig, ProcessEnv } from "../setup";
 import { createLayeredLogger } from "../utils/logger";
 import { gamesToChoicesObject } from "../utils/utils";
-import { Command } from "./types";
+import { SlashCommand } from "./types";
 
 const logger = createLayeredLogger(LoggerLayers.slashCommands);
 
-export interface SlashCommand {
-	info: {
-		name: string;
-		description: string;
-		options: APIApplicationCommandOption[];
-	};
-	exec: Command;
-}
+export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
+	Object.entries({
+		help: HelpCommand,
+	})
+);
 
-export const slashCommands: SlashCommand[] = [
-	{
-		info: new SlashCommandBuilder()
-			.setName("help")
-			.setDescription("Shows information about this bot")
-			.toJSON(),
-		exec:  ,
-	},
+const unused = [
 	{
 		info: new SlashCommandBuilder()
 			.setName("profile")
@@ -70,20 +59,27 @@ export const slashCommands: SlashCommand[] = [
 
 const rest = new REST({
 	version: "9",
-}).setToken(ProcessEnv.DISCORD_TOKEN);
+}).setToken(BotConfig.DISCORD_TOKEN);
 
-export const registerSlashCommands = async (client: Client): Promise<void> => {
+/**
+ * Register our slash commands. If in prod, these
+ * @param client
+ */
+export async function RegisterSlashCommands(client: Client): Promise<void> {
 	try {
-		if (ProcessEnv.NODE_ENV === "production") {
-			logger.info("Registering global slash commands");
+		const commandsArray = Object.values(SLASH_COMMANDS);
+
+		if (ProcessEnv.nodeEnv === "production") {
+			logger.info("Registering global slash commands.");
 
 			await rest.put(Routes.applicationCommands(client.application!.id), {
-				body: slashCommands.map((command) => command.info),
+				body: commandsArray.map((command) => command.info),
 			});
 		} else {
-			logger.info("Registering guild slash commands");
+			logger.info("Registering guild slash commands.");
 
-			await tidyOldGuildCommands(client);
+			UnregisterAllCommands(client);
+
 			if (process.env.DEV_SERVER_ID) {
 				await rest.put(
 					Routes.applicationGuildCommands(
@@ -91,32 +87,47 @@ export const registerSlashCommands = async (client: Client): Promise<void> => {
 						process.env.DEV_SERVER_ID
 					),
 					{
-						body: slashCommands.map((command) => command.info),
+						body: commandsArray.map((command) => command.info),
 					}
 				);
 			}
 		}
 
-		logger.info("Successfully registered slash commands");
-	} catch (e) {
-		logger.error("Failed to register slash commands", e);
+		logger.info("Successfully registered slash commands.");
+	} catch (err) {
+		logger.error("Failed to register slash commands.", err);
+		throw err;
 	}
-};
+}
 
-export const tidyOldGuildCommands = async (client: Client): Promise<void> => {
+/**
+ * Unregister all the commmands we have.
+ */
+export async function UnregisterAllCommands(client: Client): Promise<void> {
 	try {
-		logger.info("Tidying old guild slash commands");
+		logger.info("Tidying old guild slash commands.");
 		const guilds = client.guilds.cache;
 
-		guilds.forEach((guild) => {
-			const commands = guild.commands.cache;
-			commands.forEach((command) => {
-				command.delete();
-			});
-		});
+		// discord.js doesn't use arrays because those aren't cool anymore
+		// so we have to discard the left side of this.
+		// They use collections, which inherit from ES6's Map. Ah well.
 
-		logger.info("Successfully tidied old guild slash commands");
-	} catch (e) {
-		logger.error("Failed to tidy old guild slash commands");
+		const promises = [];
+		for (const [, guild] of guilds) {
+			const commands = guild.commands.cache;
+
+			for (const [, command] of commands) {
+				promises.push(command.delete());
+			}
+		}
+
+		// parallelise waiting for these to be deleted.
+		await Promise.all(promises);
+
+		logger.info("Successfully tidied old guild slash commands.");
+	} catch (err) {
+		logger.error("Failed to tidy old guild slash commands.", err);
+
+		throw err;
 	}
-};
+}

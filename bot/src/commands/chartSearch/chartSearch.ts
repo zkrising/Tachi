@@ -1,7 +1,7 @@
 import { CommandInteraction } from "discord.js";
 import { Playtypes, PublicUserDocument, SongDocument } from "tachi-common";
 import { ChartDocument, Game } from "tachi-common/js/types";
-import { LoggerLayers } from "../../config";
+import { LoggerLayers } from "../../data/data";
 import { TachiServerV1Get } from "../../utils/fetch-tachi";
 import { createLayeredLogger } from "../../utils/logger";
 import { stringToSimpleGameType } from "../../utils/utils";

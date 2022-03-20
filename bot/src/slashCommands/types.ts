@@ -3,5 +3,5 @@ import { DiscordUserMapDocument } from "../database/mongo";
 
 export type Command = (
 	interaction: CommandInteraction,
-	requestingUser: DiscordUserMapDocument | null
+	requestingUser: DiscordUserMapDocument
 ) => Promise<void>;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LoggerLayers } from "../config";
+import { LoggerLayers } from "../data/data";
 import { BotConfig } from "../setup";
 import { integer, SuccessfulAPIResponse, UnsuccessfulAPIResponse } from "tachi-common";
 import { getTachiIdByDiscordId } from "./discord-to-tachi";

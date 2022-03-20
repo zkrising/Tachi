@@ -6,7 +6,7 @@ import { Client, CommandInteraction } from "discord.js";
 import { searchForSong } from "../commands/chartSearch/chartSearch";
 import { getProfileByName } from "../profile/fetch";
 import { ProcessEnv } from "../setup";
-import { LoggerLayers } from "../config";
+import { LoggerLayers } from "../data/data";
 import { help } from "../commands/help/help";
 import { createLayeredLogger } from "../utils/logger";
 import { gamesToChoicesObject } from "../utils/utils";
@@ -29,7 +29,7 @@ export const slashCommands: SlashCommand[] = [
 			.setName("help")
 			.setDescription("Shows information about this bot")
 			.toJSON(),
-		exec: async (interaction: CommandInteraction) => await help(interaction),
+		exec:  ,
 	},
 	{
 		info: new SlashCommandBuilder()
@@ -74,7 +74,7 @@ const rest = new REST({
 
 export const registerSlashCommands = async (client: Client): Promise<void> => {
 	try {
-		if (process.env.ENV === "PROD") {
+		if (ProcessEnv.NODE_ENV === "production") {
 			logger.info("Registering global slash commands");
 
 			await rest.put(Routes.applicationCommands(client.application!.id), {

@@ -1,7 +1,7 @@
 import { Snowflake } from "discord.js/typings/index.js";
 import monk from "monk";
 import { integer } from "tachi-common";
-import { LoggerLayers } from "../config";
+import { LoggerLayers } from "../data/data";
 import { ProcessEnv } from "../setup";
 import { createLayeredLogger } from "../utils/logger";
 

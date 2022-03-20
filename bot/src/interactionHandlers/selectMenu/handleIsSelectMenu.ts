@@ -1,7 +1,7 @@
 import { Interaction, SelectMenuInteraction } from "discord.js";
 import { Game, Playtypes } from "tachi-common";
 import { buildChartEmbed } from "../../commands/chartSearch/buildChartEmbed";
-import { LoggerLayers } from "../../config";
+import { LoggerLayers } from "../../data/data";
 import { buildProfileIntractable } from "../../profile/buildProfileEmbed";
 import { createLayeredLogger } from "../../utils/logger";
 import { stringToSimpleGameType } from "../../utils/utils";

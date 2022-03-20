@@ -1,5 +1,5 @@
 import express, { Express } from "express";
-import { LoggerLayers } from "../config";
+import { LoggerLayers } from "../data/data";
 import { createLayeredLogger } from "../utils/logger";
 import { ValidateWebhookRequest } from "./middleware";
 import { WebhookEvents, APITokenDocument, PublicUserDocument } from "tachi-common";
@@ -31,7 +31,6 @@ app.get("/", (req, res) =>
 		description: "Bot is online!",
 		body: {
 			time: Date.now(),
-			// @todo Versioning information, put it here?
 		},
 	})
 );
@@ -60,6 +59,11 @@ app.post("/webhook", ValidateWebhookRequest, (req, res) => {
 			// However, tachi-server/common may recieve an update
 			// to define new webhooks, and the bot might not
 			// get around to updating in time.
+			logger.warn(
+				`Received unknown webhook event ${
+					(webhookEvent as WebhookEvents).type
+				}. Have we got support for this?`
+			);
 			return res.status(501).json({
 				success: false,
 				description: `The type ${(webhookEvent as WebhookEvents).type} is unsupported.`,
@@ -90,11 +94,11 @@ app.get("/oauth/callback", async (req, res) => {
 	const tokenRes = await TachiServerV1Request<APITokenDocument>(
 		RequestTypes.POST,
 		"/oauth/token",
-		"GIVE_BOT_A_VALID_TOKEN_TO_HIT_AUTH",
+		null,
 		{
 			code: req.query.code,
-			client_id: ProcessEnv.BOT_CLIENT_ID,
-			client_secret: ProcessEnv.BOT_CLIENT_SECRET,
+			client_id: BotConfig.BOT_CLIENT_ID,
+			client_secret: BotConfig.BOT_CLIENT_SECRET,
 			grant_type: "authorization_code",
 			redirect_uri: `${BotConfig.OUR_URL}/oauth/callback`,
 		}
@@ -122,7 +126,7 @@ app.get("/oauth/callback", async (req, res) => {
 	if (!whoamiRes.success) {
 		logger.error("Failed to request user with token we just got?", { discordID });
 		// @todo actually make this html file
-		return res.sendFile("../pages/account-link-failed.html");
+		return res.sendFile("./pages/account-link-failed.html");
 	}
 
 	const user = whoamiRes.body;
@@ -135,7 +139,7 @@ app.get("/oauth/callback", async (req, res) => {
 		userID: user.id,
 	});
 
-	return res.sendFile("../pages/account-linked.html");
+	return res.sendFile("./pages/account-linked.html");
 });
 
 /**

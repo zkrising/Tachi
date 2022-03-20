@@ -1,5 +1,5 @@
 import { createLogger, transports, format, Logger } from "winston";
-import { LoggerLayers } from "../config";
+import { LoggerLayers } from "../data/data";
 const { combine, timestamp, label, printf, align, colorize } = format;
 
 const loggerFormat = printf(

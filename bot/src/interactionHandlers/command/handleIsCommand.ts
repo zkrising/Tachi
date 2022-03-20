@@ -1,5 +1,6 @@
-import { Interaction } from "discord.js";
-import { LoggerLayers } from "../../config";
+import { CommandInteraction, Interaction } from "discord.js";
+import { LoggerLayers } from "../../data/data";
+import { DiscordUserMapDocument } from "../../database/mongo";
 import { GetUserForDiscordID } from "../../database/queries";
 import { slashCommands } from "../../slashCommands/register";
 import { createLayeredLogger } from "../../utils/logger";
@@ -14,25 +15,31 @@ for (const command of slashCommands) {
 	COMMAND_LOOKUP_TABLE.set(command.info.name, command);
 }
 
-export async function handleIsCommand(interaction: Interaction) {
+/**
+ * Handles incoming command requests by resolving the interaction to the command
+ * it refers to, and calling it.
+ *
+ * @param interaction - The interaction the user made. This contains things like what
+ * command they called and with what arguments.
+ * @param requestingUser - The user who interacted with this command.
+ */
+export function handleIsCommand(
+	interaction: CommandInteraction,
+	requestingUser: DiscordUserMapDocument
+) {
 	try {
-		if (!interaction.isCommand()) {
-			throw new Error(`Can't handle command -- interaction was not a command?`);
-		}
-
 		const command = COMMAND_LOOKUP_TABLE.get(interaction.commandName);
 
 		if (!command) {
 			throw new Error(`A command was requested that does not exist.`);
 		}
 
-		const requestingUser = await GetUserForDiscordID(interaction.id);
-
 		if (command) {
-			logger.info(`Running ${command.info.name} interaction.`);
+			logger.verbose(`Running ${command.info.name} interaction.`);
 			command.exec(interaction, requestingUser);
 		}
 	} catch (e) {
 		logger.error("Failed to handle isCommand interaction", { error: e });
+		throw e;
 	}
 }

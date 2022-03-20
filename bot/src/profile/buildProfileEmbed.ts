@@ -7,7 +7,7 @@ import {
 } from "discord.js";
 import { Game, UserGameStats, IDStrings, PublicUserDocument, UGSRatingsLookup } from "tachi-common";
 import { find } from "lodash";
-import { LoggerLayers } from "../config";
+import { LoggerLayers } from "../data/data";
 import { validSelectCustomIdPrefaces } from "../interactionHandlers/selectMenu/handleIsSelectMenu";
 import { TachiServerV1Get } from "../utils/fetch-tachi";
 import { createLayeredLogger } from "../utils/logger";

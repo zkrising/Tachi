@@ -1,4 +1,4 @@
-import { LoggerLayers } from "../config";
+import { LoggerLayers } from "../data/data";
 import { createLayeredLogger } from "../utils/logger";
 import db, { DiscordUserMapDocument } from "./mongo";
 

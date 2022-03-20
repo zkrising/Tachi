@@ -1,4 +1,4 @@
-import { LoggerLayers } from "./config";
+import { LoggerLayers } from "./data/data";
 import { createLayeredLogger } from "./utils/logger";
 import { FormatPrError } from "./utils/prudence";
 import JSON5 from "json5";
@@ -15,10 +15,17 @@ config();
 const logger = createLayeredLogger(LoggerLayers.botConfigSetup);
 
 export interface BotConfig {
+	SERVER_NAME: string;
 	SERVER_PORT: number;
 	TACHI_SERVER_LOCATION: string;
 	OUR_URL: string;
 	GENERIC_ERROR_MESSAGE: string;
+	TACHI_NAME: string;
+	SERVER_ID: string;
+	BOT_CLIENT_SECRET: string;
+	BOT_CLIENT_ID: string;
+	MONGO_URL: string;
+	DISCORD_TOKEN: string;
 }
 
 function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
@@ -38,6 +45,7 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 		TACHI_SERVER_LOCATION: "string",
 		OUR_URL: "string",
 		GENERIC_ERROR_MESSAGE: "string",
+		SERVER_NAME: "string",
 	});
 
 	if (err) {
@@ -50,22 +58,14 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 }
 
 export interface ProcessEnvironment {
-	ENV: string;
-	DISCORD_TOKEN: string;
-	BOT_CLIENT_SECRET: string;
-	BOT_CLIENT_ID: string;
-	MONGO_URL: string;
+	nodeEnv: "production" | "dev" | "staging" | "test";
 }
 
 function ParseEnvVars() {
 	const err = Prudence(
 		process.env,
 		{
-			ENV: "string",
-			DISCORD_TOKEN: "string",
-			BOT_CLIENT_SECRET: "string",
-			BOT_CLIENT_ID: "string",
-			MONGO_URL: "string",
+			NODE_ENV: Prudence.isIn("production", "dev", "staging", "test"),
 		},
 		{},
 		{ allowExcessKeys: true }
@@ -77,7 +77,9 @@ function ParseEnvVars() {
 		throw err;
 	}
 
-	return process.env as unknown as ProcessEnvironment;
+	return {
+		nodeEnv: process.env.NODE_ENV,
+	} as ProcessEnvironment;
 }
 
 export const BotConfig: BotConfig = ParseBotConfig(process.env.CONF_JSON5_LOCATION);

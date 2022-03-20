@@ -92,7 +92,14 @@ const RequireInf2ModelHeaderOrForceStatic: RequestHandler = async (req, res, nex
 	}
 
 	try {
-		ParseEA3SoftID(swModel);
+		const { model } = ParseEA3SoftID(swModel);
+
+		if (model !== MODEL_INFINITAS_2) {
+			return res.status(400).json({
+				success: false,
+				error: `Refusing to perform static import from non-infinitas client. To do this anyway, enable Force Static Import.`,
+			});
+		}
 	} catch (err) {
 		logger.info(`Invalid softID from ${req[SYMBOL_TachiAPIAuth].userID!}.`, { err });
 		return res.status(400).json({

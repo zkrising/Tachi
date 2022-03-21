@@ -21,14 +21,16 @@ export interface WebhookEventClassUpdateV1 {
  * An event fired when a goal is achieved.
  */
 export interface WebhookEventGoalAchievedV1 {
-	type: "goal-achieved/v1";
+	type: "goals-achieved/v1";
 	content: {
 		userID: integer;
-		goalID: string;
-		old: GoalImportStat;
-		new: GoalImportStat;
-		game: Game;
-		playtype: Playtypes[Game];
+		goals: {
+			goalID: string;
+			old: GoalImportStat;
+			new: GoalImportStat;
+			game: Game;
+			playtype: Playtypes[Game];
+		}[];
 	};
 }
 

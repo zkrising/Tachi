@@ -2,7 +2,7 @@ import { Snowflake } from "discord.js/typings/index.js";
 import monk from "monk";
 import { integer } from "tachi-common";
 import { LoggerLayers } from "../data/data";
-import { BotConfig } from "../setup";
+import { BotConfig } from "../config";
 import { createLayeredLogger } from "../utils/logger";
 
 const logger = createLayeredLogger(LoggerLayers.database);
@@ -13,9 +13,7 @@ const monkDB = monk(BotConfig.MONGO_URL);
 
 monkDB
 	.then(() => {
-		logger.info(`Database connection successful.`, {
-			bootInfo: true,
-		});
+		logger.info(`Database connection successful.`);
 	})
 	.catch((err) => {
 		logger.crit(err);
@@ -31,5 +29,18 @@ export interface DiscordUserMapDocument {
 const db = {
 	discordUserMap: monkDB.get<DiscordUserMapDocument>("discord-user-map"),
 };
+
+export async function SetIndexes(hardReset = false) {
+	logger.info(`Recieved request to set indexes.`);
+
+	if (hardReset) {
+		logger.warn(`Hard resetting indexes!`);
+		await db.discordUserMap.dropIndexes();
+	}
+
+	await db.discordUserMap.createIndex({ discordID: 1 }, { unique: true });
+
+	logger.info(`Indexes have been set.`);
+}
 
 export default db;

@@ -2,8 +2,6 @@ root = true
 
 [*]
 insert_final_newline = true
-
-[*.{ts,test.ts}]
 charset = utf-8
 indent_style = tab
 indent_size = 4

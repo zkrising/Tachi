@@ -1,8 +1,7 @@
-import axios from "axios";
+import fetch from "node-fetch";
 import { LoggerLayers } from "../data/data";
-import { BotConfig } from "../setup";
+import { BotConfig } from "../config";
 import { integer, SuccessfulAPIResponse, UnsuccessfulAPIResponse } from "tachi-common";
-import { getTachiIdByDiscordId } from "./discord-to-tachi";
 import { createLayeredLogger } from "./logger";
 
 const logger = createLayeredLogger(LoggerLayers.tachiFetch);
@@ -43,16 +42,17 @@ export async function TachiServerV1Request<T>(
 	logger.debug(`Making a request to ${loggerUrl}.`);
 
 	try {
-		const res = await axios(realUrl, {
+		const res = await fetch(realUrl, {
 			method,
 			headers: {
 				"Content-Type": "application/json",
-				Authorization: token ? `Bearer ${token}` : undefined,
+				Authorization: token ? `Bearer ${token}` : "",
 			},
-			data: JSON.stringify(body),
+			body: JSON.stringify(body),
 		});
 
-		const json = (await res.data) as APIResponse<T>;
+		const json: APIResponse<T> = await res.json();
+
 		const contents = { ...json, statusCode: res.status };
 
 		LogRequestResult(loggerUrl, contents);
@@ -75,17 +75,13 @@ export async function TachiServerV1Request<T>(
  */
 export async function TachiServerV1Get<T = unknown>(
 	url: string,
-	params: Record<string, string> = {},
-	auth: {
-		token?: string;
-		discordId?: string;
-	}
+	authToken: string | null,
+	params: Record<string, string> = {}
 ): Promise<APIResponse<T>> {
 	try {
-		const { token, discordId } = auth;
-
-		if (!token && !discordId) {
-			throw new Error("No authentication provided. Cannot send request.");
+		let authHeader = "";
+		if (authToken) {
+			authHeader = `Bearer ${authToken}`;
 		}
 
 		const urlParams = new URLSearchParams(params);
@@ -94,16 +90,14 @@ export async function TachiServerV1Get<T = unknown>(
 
 		logger.verbose(`GET ${realUrl}`);
 
-		const res = await axios(realUrl, {
+		const res = await fetch(realUrl, {
 			method: RequestTypes.GET,
 			headers: {
-				Authorization: token
-					? `Bearer ${token}`
-					: `Bearer ${(await getTachiIdByDiscordId(discordId!))?.tachiApiToken}`,
+				Authorization: authHeader,
 			},
 		});
 
-		const json = (await res.data) as APIResponse<T>;
+		const json: APIResponse<T> = await res.json();
 		const contents = { ...json, statusCode: res.status };
 
 		LogRequestResult(`GET ${realUrl}`, contents);
@@ -121,6 +115,7 @@ export async function TachiServerV1Get<T = unknown>(
  */
 export function PrependTachiUrl(url: string, version: "1" = "1"): string {
 	if (url[0] !== "/") {
+		// eslint-disable-next-line no-param-reassign
 		url = `/${url}`;
 	}
 

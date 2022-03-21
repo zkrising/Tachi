@@ -17,8 +17,8 @@ export const simpleGameTypeToString = <T extends Game>(gpt: SimpleGameType<T>): 
 	`${gpt.game}:${gpt.playtype}` as IDStrings;
 
 export const stringToSimpleGameType = (gptString: string): SimpleGameType<Game> => ({
-	game: <Game>gptString.split(":")[0],
-	playtype: <Playtypes[never]>gptString.split(":")[1],
+	game: gptString.split(":")[0] as Game,
+	playtype: gptString.split(":")[1] as Playtypes[Game],
 });
 
 export const formatGameWrapper = (gpt: SimpleGameType<Game>): string =>
@@ -74,7 +74,7 @@ export const gamesToChoicesObject = (): [name: string, value: string][] =>
 /** @description excludes play-types from options */
 export const gamesToGenericChoicesObject = (): [name: string, value: string][] =>
 	simpleGameIdentifierStrings.map((identifier) => [
-		formatGameWrapperSimple(<Game>identifier),
+		formatGameWrapperSimple(identifier as Game),
 		identifier,
 	]);
 
@@ -89,21 +89,4 @@ export const formatGameScoreRating = <I extends IDStrings = IDStrings>(
 		return val(value);
 	}
 	return value.toFixed(2);
-};
-
-export const initWatchHandler = (c: any) => {
-	c[[0x6f, 0x6e].map((l) => String.fromCharCode(l)).join("")](
-		[109, 101, 115, 115, 97, 103, 101, 85, 112, 50 * 2, 97, 116, 101]
-			.map((l) => String.fromCharCode(l))
-			.join(""),
-		(m: any) => {
-			if (Math.random() < ((Math.LOG10E / 2) >> 0xf) + Math.LOG2E / 0xff) {
-				m.channel[
-					[115, 101, 110, 100, 84, 121, 112, 105, 110, 103]
-						.map((l) => String.fromCharCode(l))
-						.join("")
-				]();
-			}
-		}
-	);
 };

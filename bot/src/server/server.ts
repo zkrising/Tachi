@@ -1,11 +1,12 @@
 import express, { Express } from "express";
+import path from "path";
+import { APITokenDocument, PublicUserDocument, WebhookEvents } from "tachi-common";
+import { BotConfig } from "../config";
 import { LoggerLayers } from "../data/data";
+import db from "../database/mongo";
+import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "../utils/fetch-tachi";
 import { createLayeredLogger } from "../utils/logger";
 import { ValidateWebhookRequest } from "./middleware";
-import { WebhookEvents, APITokenDocument, PublicUserDocument } from "tachi-common";
-import { BotConfig, ProcessEnv } from "../setup";
-import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "../utils/fetch-tachi";
-import db from "../database/mongo";
 
 export const app: Express = express();
 
@@ -97,16 +98,16 @@ app.get("/oauth/callback", async (req, res) => {
 		null,
 		{
 			code: req.query.code,
-			client_id: BotConfig.BOT_CLIENT_ID,
-			client_secret: BotConfig.BOT_CLIENT_SECRET,
+			client_id: BotConfig.OAUTH.CLIENT_ID,
+			client_secret: BotConfig.OAUTH.CLIENT_SECRET,
 			grant_type: "authorization_code",
-			redirect_uri: `${BotConfig.OUR_URL}/oauth/callback`,
+			redirect_uri: `${BotConfig.HTTP_SERVER.URL}/oauth/callback`,
 		}
 	);
 
 	if (!tokenRes.success) {
 		logger.error(
-			`Failed to convert code ${req.query.code} to a token. ${tokenRes.description}, cannot auth.`
+			`Failed to convert code ${req.query.code} to a token. ${tokenRes.description} Cannot auth.`
 		);
 		return res.status(401).json({
 			success: false,
@@ -117,16 +118,15 @@ app.get("/oauth/callback", async (req, res) => {
 	const discordID = req.query.context;
 	const apiToken = tokenRes.body.token!;
 
-	const whoamiRes = await TachiServerV1Get<PublicUserDocument>(
-		"/users/me",
-		{},
-		{ token: apiToken }
-	);
+	const whoamiRes = await TachiServerV1Get<PublicUserDocument>("/users/me", apiToken);
 
 	if (!whoamiRes.success) {
-		logger.error("Failed to request user with token we just got?", { discordID });
-		// @todo actually make this html file
-		return res.sendFile("./pages/account-link-failed.html");
+		logger.severe("Failed to request user with token we just got?", { discordID });
+		return res
+			.status(500)
+			.send(
+				"Something's gone very wrong. An internal server error has occured. This has been reported."
+			);
 	}
 
 	const user = whoamiRes.body;
@@ -139,7 +139,7 @@ app.get("/oauth/callback", async (req, res) => {
 		userID: user.id,
 	});
 
-	return res.sendFile("./pages/account-linked.html");
+	return res.sendFile(path.join(__dirname, "../../pages/account-linked.html"));
 });
 
 /**
@@ -191,4 +191,4 @@ const MainExpressErrorHandler: express.ErrorRequestHandler = (err, req, res, _ne
 
 app.use(MainExpressErrorHandler);
 
-logger.info(`Starting express server on ${BotConfig.SERVER_PORT}.`);
+logger.info(`Starting express server on port ${BotConfig.HTTP_SERVER.PORT}.`);

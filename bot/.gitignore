@@ -2,6 +2,16 @@ node_modules
 .idea
 .vscode
 yarn-error.log
+.pnpm-debug.log
 .env
-conf.json5
 js
+
+conf.json5
+*.conf.json5
+
+!example/conf.json5
+
+# Weird Redis Dumps
+*.rdb
+
+logs

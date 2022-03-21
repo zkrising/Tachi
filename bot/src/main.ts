@@ -1,14 +1,13 @@
 import { Client, CommandInteraction, Intents, SelectMenuInteraction } from "discord.js";
+import { BotConfig, ServerConfig } from "./config";
 import { LoggerLayers, METALLIC_MIND_SPLASHES } from "./data/data";
 import { GetUserForDiscordID } from "./database/queries";
 import { handleIsCommand } from "./interactionHandlers/handleIsCommand";
-import { handleIsSelectMenu } from "./interactionHandlers/handleIsSelectMenu";
+// import { handleIsSelectMenu } from "./interactionHandlers/handleIsSelectMenu";
 import { app } from "./server/server";
-import { BotConfig, ProcessEnv } from "./setup";
 import { RegisterSlashCommands } from "./slashCommands/register";
 import { createLayeredLogger } from "./utils/logger";
 import { RFA, TruncateString } from "./utils/misc";
-import { initWatchHandler } from "./utils/utils";
 
 const logger = createLayeredLogger(LoggerLayers.client);
 
@@ -31,14 +30,14 @@ client.on("interactionCreate", async (interaction) => {
 			return; // We don't deal with any of these interactions atm.
 		}
 
-		const requestingUser = await GetUserForDiscordID(interaction.id);
+		const requestingUser = await GetUserForDiscordID(interaction.user.id);
 
 		if (!requestingUser) {
 			return RequireUserAuth(interaction);
 		}
 
 		if (interaction.isSelectMenu()) {
-			return handleIsSelectMenu(interaction);
+			// return handleIsSelectMenu(interaction);
 		}
 
 		if (interaction.isCommand()) {
@@ -53,30 +52,25 @@ client.on("interactionCreate", async (interaction) => {
  * If a user tries to do anything without auth, Tell them to authenticate.
  */
 async function RequireUserAuth(interaction: CommandInteraction | SelectMenuInteraction) {
-	const oAuthLink = `${BotConfig.TACHI_SERVER_LOCATION}/oauth/request-auth?clientID=${process.env.BOT_CLIENT_ID}&context=${interaction.user.id}`;
+	const oAuthLink = `${BotConfig.TACHI_SERVER_LOCATION}/oauth/request-auth?clientID=${BotConfig.OAUTH.CLIENT_ID}&context=${interaction.user.id}`;
 
 	const dmChannel = await interaction.user.createDM();
-	await dmChannel.send(
-		`Click this link to authenticate with ${BotConfig.SERVER_NAME}: ${oAuthLink}`
-	);
+	await dmChannel.send(`Click this link to authenticate with ${ServerConfig.name}: ${oAuthLink}`);
 	return interaction.reply(
-		`To use the bot, your discord account must be linked to ${BotConfig.SERVER_NAME}.
+		`To use the bot, your discord account must be linked to ${ServerConfig.name}.
 We've sent you a DM with instructions on how to link your account.`
 	);
 }
 
 (async () => {
 	try {
-		logger.info(`Booting Tachi-Bot with NODE_ENV '${ProcessEnv.nodeEnv}'.`);
+		// Login to discord.
+		await client.login(BotConfig.DISCORD.TOKEN);
 
-		await client.login(BotConfig.DISCORD_TOKEN);
+		logger.info(`Logged in successfully to ${client.guilds.cache.size} guilds.`);
 
-		logger.info(`Logged in successfully to ${client.guilds.cache.size} guilds`);
-
-		initWatchHandler(client);
-
-		// Mount
-		app.listen(BotConfig.SERVER_PORT);
+		// Mount our express server.
+		app.listen(BotConfig.HTTP_SERVER.PORT);
 
 		logger.info(
 			`Invite URL: https://discord.com/api/oauth2/authorize?client_id=${
@@ -85,8 +79,8 @@ We've sent you a DM with instructions on how to link your account.`
 		);
 
 		await RegisterSlashCommands(client);
-	} catch (e) {
-		logger.crit("Log in Failed:", e);
-		process.exit(1); // screwed.
+	} catch (err) {
+		logger.crit("Failed to properly boot.", err);
+		process.exit(1);
 	}
 })();

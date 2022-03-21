@@ -63,6 +63,12 @@
 				"argsIgnorePattern": "logger"
 			}
 		],
+		"@typescript-eslint/consistent-type-assertions": [
+			"error",
+			{
+				"assertionStyle": "as"
+			}
+		],
 		// breaks with baseUrl
 		"import/no-unresolved": "off",
 		"require-await": "warn",

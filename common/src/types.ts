@@ -1566,3 +1566,5 @@ export interface RecentlyViewedFolderDocument {
 	folderID: string;
 	lastViewed: number;
 }
+
+export type Playtype = Playtypes[Game];

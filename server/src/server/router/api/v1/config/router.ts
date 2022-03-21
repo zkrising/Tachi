@@ -7,6 +7,8 @@ const router: Router = Router({ mergeParams: true });
 /**
  * Returns Tachi Configuration info, such as server name, type, supported games
  * and more.
+ *
+ * @name GET /api/v1/config
  */
 router.get("/", (req, res) =>
 	res.status(200).json({

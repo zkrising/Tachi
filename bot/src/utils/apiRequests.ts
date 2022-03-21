@@ -1,9 +1,9 @@
 import { CommandInteraction } from "discord.js";
 import { ImportDocument, integer, PublicUserDocument } from "tachi-common";
-import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "./fetch-tachi";
+import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "./fetchTachi";
 import logger from "./logger";
 import { Sleep } from "./misc";
-import { ImportDeferred, ImportPollStatus } from "./return-types";
+import { ImportDeferred, ImportPollStatus } from "./returnTypes";
 
 export async function GetUserInfo(userID: integer) {
 	const res = await TachiServerV1Get<PublicUserDocument>(`/users/${userID}`, null);

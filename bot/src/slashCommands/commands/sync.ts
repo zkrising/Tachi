@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { BotConfig } from "../../config";
-import { PerformScoreImport } from "../../utils/api-requests";
+import { PerformScoreImport } from "../../utils/apiRequests";
 import { CreateEmbed } from "../../utils/embeds";
 import { Pluralise } from "../../utils/misc";
 import { SlashCommand } from "../types";

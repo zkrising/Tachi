@@ -1,7 +1,7 @@
-import ping from "./ping/ping";
-import quote from "./quote/quote";
-import faq from "./faq/faq";
-import sync from "./sync/sync";
+import ping from "./commands/ping";
+import quote from "./commands/quote";
+import faq from "./commands/faq";
+import sync from "./commands/sync";
 import { SlashCommand } from "./types";
 import { ServerConfig } from "../config";
 

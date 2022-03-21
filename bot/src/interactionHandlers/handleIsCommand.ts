@@ -1,7 +1,7 @@
 import { CommandInteraction, MessageEmbed } from "discord.js";
-import { SLASH_COMMANDS } from "../commands/commands";
 import { LoggerLayers } from "../data/data";
 import { DiscordUserMapDocument } from "../database/documents";
+import { SLASH_COMMANDS } from "../slashCommands/commands";
 import { CreateLayeredLogger } from "../utils/logger";
 
 const logger = CreateLayeredLogger(LoggerLayers.slashCommands);

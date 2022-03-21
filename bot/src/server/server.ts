@@ -4,7 +4,7 @@ import { APITokenDocument, PublicUserDocument, WebhookEvents } from "tachi-commo
 import { BotConfig } from "../config";
 import { LoggerLayers } from "../data/data";
 import db from "../database/mongo";
-import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "../utils/fetch-tachi";
+import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "../utils/fetchTachi";
 import { CreateLayeredLogger } from "../utils/logger";
 import { VERSION_PRETTY, VERSION_STR } from "../version";
 import { ValidateWebhookRequest } from "./middleware";

@@ -3,6 +3,7 @@ import { LoggerLayers } from "../data/data";
 import { BotConfig } from "../config";
 import { integer, SuccessfulAPIResponse, UnsuccessfulAPIResponse } from "tachi-common";
 import { CreateLayeredLogger } from "./logger";
+import { VERSION_STR } from "../version";
 
 const logger = CreateLayeredLogger(LoggerLayers.tachiFetch);
 
@@ -21,6 +22,8 @@ export enum RequestTypes {
 	DELETE = "DELETE",
 	// HEAD, OPTIONS not used by tachi-server anywhere.
 }
+
+const USER_AGENT = `Tachi-bot v${VERSION_STR}`;
 
 /**
  * Performs a request against the Tachi server.
@@ -47,6 +50,7 @@ export async function TachiServerV1Request<T>(
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: token ? `Bearer ${token}` : "",
+				"User-Agent": USER_AGENT,
 			},
 			body: JSON.stringify(body),
 		});
@@ -64,7 +68,7 @@ export async function TachiServerV1Request<T>(
 		// Throw the error upwards for it to be caught be a higher handler.
 		throw err;
 	}
-}
+} 
 
 /**
  * Performs a GET request against the Tachi server.
@@ -94,6 +98,7 @@ export async function TachiServerV1Get<T = unknown>(
 			method: RequestTypes.GET,
 			headers: {
 				Authorization: authHeader,
+				"User-Agent": USER_AGENT,
 			},
 		});
 

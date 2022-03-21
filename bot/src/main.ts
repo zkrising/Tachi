@@ -8,6 +8,7 @@ import { app } from "./server/server";
 import { RegisterSlashCommands } from "./slashCommands/register";
 import { CreateLayeredLogger } from "./utils/logger";
 import { RFA, TruncateString } from "./utils/misc";
+import { VERSION_STR } from "./version";
 
 const logger = CreateLayeredLogger(LoggerLayers.client);
 
@@ -64,6 +65,8 @@ We've sent you a DM with instructions on how to link your account.`
 
 (async () => {
 	try {
+		logger.info(`Booting Tachi Bot v${VERSION_STR}.`);
+		
 		// Login to discord.
 		await client.login(BotConfig.DISCORD.TOKEN);
 

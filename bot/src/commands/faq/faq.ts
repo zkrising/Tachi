@@ -17,6 +17,10 @@ ${ServerConfig.name} is an Open Source project. Feel free to read our [contribut
 // Server specific FAQ stuff.
 const KTCHI_FAQ_ENTRIES: Record<string, string> = {
 	kai_support: `Support for KAI based networks (FLO, EAG, MIN) is available, but we are waiting on APIs for more games on their end. At the moment, only IIDX and SDVX are supported.`,
+	bokutachi: `Bokutachi is our public sister website for home games and simulators. Feel free to check out [the discord](${
+		// Note: obfuscating this for obvious reasons so we don't get garbage bot spam.
+		Buffer.from("aHR0cHM6Ly9kaXNjb3JkLmdnL3N3VkJUanhtUFk=", "base64")
+	})`,
 };
 
 const BTCHI_FAQ_ENTRIES: Record<string, string> = {

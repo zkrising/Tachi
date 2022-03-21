@@ -34,6 +34,4 @@ export const VERSION_INFO = {
 
 export const VERSION_STR = `${MAJOR}.${MINOR}.${PATCH}`;
 
-export function FormatVersion() {
-	return `v${VERSION_STR} (${VERSION_INFO.name})`;
-}
+export const VERSION_PRETTY = `v${VERSION_STR} (${VERSION_INFO.name})`;

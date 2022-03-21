@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
-import { FormatVersion } from "lib/constants/version";
+import { VERSION_PRETTY } from "lib/constants/version";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
 		body: {
 			serverTime: Date.now(),
 			startTime,
-			version: FormatVersion(),
+			version: VERSION_PRETTY,
 			whoami: req[SYMBOL_TachiAPIAuth].userID,
 			// converts {foo: true, bar: false, baz: true} into [foo, baz]
 			permissions: Object.entries(req[SYMBOL_TachiAPIAuth].permissions)
@@ -52,7 +52,7 @@ router.post("/", (req, res) => {
 		body: {
 			serverTime: Date.now(),
 			startTime,
-			version: FormatVersion(),
+			version: VERSION_PRETTY,
 			whoami: req[SYMBOL_TachiAPIAuth].userID,
 			// converts {foo: true, bar: false, baz: true} into [foo, baz]
 			permissions: Object.entries(req[SYMBOL_TachiAPIAuth].permissions)

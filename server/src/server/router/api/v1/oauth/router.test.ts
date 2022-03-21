@@ -32,6 +32,10 @@ t.test("POST /api/v1/oauth/token", (t) => {
 			"Should assign the permissions this client has configured."
 		);
 
+		const exists = await db["oauth2-auth-codes"].findOne({ code: "AUTH_CODE" });
+
+		t.equal(exists, null, "Should remove the code from the database after being used.");
+
 		t.end();
 	});
 

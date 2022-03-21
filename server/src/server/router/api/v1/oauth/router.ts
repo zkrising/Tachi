@@ -67,6 +67,9 @@ router.post(
 			});
 		}
 
+		// don't let people auth with the same code multiple times.
+		await db["oauth2-auth-codes"].remove({ code: req.body.code });
+
 		const apiDoc = {
 			userID: codeDoc.userID,
 			token: Random20Hex(),

@@ -1,0 +1,63 @@
+import { SlashCommandBuilder } from "@discordjs/builders";
+import deepmerge from "deepmerge";
+import { ServerConfig } from "../../config";
+import { SlashCommand } from "../types";
+
+const NEUTRAL_FAQ_ENTRIES: Record<string, string> = {
+	duplicates: `Scores on ${ServerConfig.name} are deduplicated based on your score and lamp (and some other things).
+If you happen to get the exact same score twice, ${ServerConfig.name} will **ignore** the second one!
+There are legitimate reasons for this -- it's very common for people to import the same scores twice through file uploads or import scripts.
+For more info on why this is a fundamental limitation of ${ServerConfig.name}, check [the documentation](https://tachi.readthedocs.io/en/latest/user/score-oddities/#deduplication-false-positives-all-games).`,
+	contribute: `Contributing to ${ServerConfig.name} in any way will get you the Contributor role, and a cool green name.\n
+Contributors who save us hours (or more) of dev time, or are just generally really supportive will get the Significant Contributor role, and an even cooler orange name.
+${ServerConfig.name} is an Open Source project. Feel free to read our [contribution guide](https://tachi.readthedocs.io/en/latest/contributing/), or just generally ask for stuff to help out with!`,
+	docs: `Documentation for ${ServerConfig.name} is stored at https://tachi.rtfd.io.`,
+};
+
+// Server specific FAQ stuff.
+const KTCHI_FAQ_ENTRIES: Record<string, string> = {
+	kai_support: `Support for KAI based networks (FLO, EAG, MIN) is available, but we are waiting on APIs for more games on their end. At the moment, only IIDX and SDVX are supported.`,
+};
+
+const BTCHI_FAQ_ENTRIES: Record<string, string> = {
+	usc_hard_mode: `Hard Mode windows are not supported on ${ServerConfig.name}. Your scores **will be ignored** if they are played on non-standard windows.`,
+};
+
+let faqEntries = NEUTRAL_FAQ_ENTRIES;
+
+if (ServerConfig.type !== "btchi") {
+	faqEntries = deepmerge(faqEntries, KTCHI_FAQ_ENTRIES);
+}
+
+if (ServerConfig.type !== "ktchi") {
+	faqEntries = deepmerge(faqEntries, BTCHI_FAQ_ENTRIES);
+}
+
+const choiceMap = new Map(Object.entries(faqEntries));
+
+const command: SlashCommand = {
+	info: new SlashCommandBuilder()
+		.setName("faq")
+		.setDescription("Retrieve various little bits of info.")
+		.addStringOption((s) =>
+			s
+				.setName("entry")
+				.setDescription("The FAQ entry to retrieve.")
+				.setRequired(true)
+				.addChoices(Object.keys(faqEntries).map((e) => [e, e]))
+		)
+		.toJSON(),
+	exec: (interaction) => {
+		const entry = interaction.options.getString("entry", true);
+
+		const data = choiceMap.get(entry);
+
+		if (!data) {
+			return `This FAQ entry does not exist.`;
+		}
+
+		return data;
+	},
+};
+
+export default command;

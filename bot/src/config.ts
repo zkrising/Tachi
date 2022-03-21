@@ -33,6 +33,7 @@ export interface BotConfig {
 		TOKEN: string;
 		SERVER_ID: string;
 		GAME_CHANNELS: Partial<Record<Game, string>>;
+		ADMIN_USERS: string[];
 	};
 }
 
@@ -58,7 +59,6 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 			CLIENT_SECRET: "string",
 			CLIENT_ID: "string",
 		},
-		MONGO_URL: "string",
 		DISCORD: {
 			TOKEN: "string",
 			SERVER_ID: "string",
@@ -78,6 +78,8 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 
 				return true;
 			},
+			// A list of users that are allowed to do powerful stuff.
+			ADMIN_USERS: ["string"],
 		},
 	});
 

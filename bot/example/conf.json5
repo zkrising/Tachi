@@ -19,5 +19,7 @@
 			usc: "1235",
 			// ... add more incase needed.
 		},
+		// A list of user IDs for users who should be allowed to do more stuff.
+		ADMIN_USERS: [],
 	},
 }

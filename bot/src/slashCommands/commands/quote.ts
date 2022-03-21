@@ -3,9 +3,9 @@ import { Util } from "discord.js";
 import { escapeRegExp } from "lodash";
 import db from "../../database/mongo";
 import { GetQuoteWithID } from "../../database/queries";
-import { GetUserInfo } from "../../utils/api-requests";
+import { GetUserInfo } from "../../utils/apiRequests";
 import { CreateEmbed } from "../../utils/embeds";
-import { FormatDate, IsAdmin, TruncateString } from "../../utils/misc";
+import { FormatDate, IsAdmin, Pluralise, TruncateString } from "../../utils/misc";
 import { SlashCommand } from "../types";
 
 const command: SlashCommand = {
@@ -104,7 +104,7 @@ const command: SlashCommand = {
 
 			return CreateEmbed()
 				.setTitle(`Searched quotes for '${query}'`)
-				.setDescription(`Found ${quotes.length} quote${quotes.length === 1 ? "" : "s"}.`)
+				.setDescription(`Found ${quotes.length} ${Pluralise(quotes.length, "quote")}.`)
 				.addFields(
 					quotes.map((q) => ({
 						name: q.quoteID,

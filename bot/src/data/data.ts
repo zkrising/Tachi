@@ -13,6 +13,7 @@ export enum LoggerLayers {
 	tachiAuth = "tachiAuth",
 	database = "database",
 	databaseQuery = "databaseQuery",
+	apiRequests = "apiRequests",
 }
 
 export const METALLIC_MIND_SPLASHES = [

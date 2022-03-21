@@ -9,7 +9,7 @@ import { LoggerLayers } from "./data/data";
 import { CreateLayeredLogger } from "./utils/logger";
 import { IsRecord } from "./utils/predicates";
 import { FormatPrError } from "./utils/prudence";
-import { ServerConfig as ServerConfigType } from "./utils/return-types";
+import { ServerConfig as ServerConfigType } from "./utils/returnTypes";
 
 // Initialise .env.
 config();

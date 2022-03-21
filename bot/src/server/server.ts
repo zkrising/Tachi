@@ -1,12 +1,11 @@
 import express, { Express } from "express";
-import path from "path";
-import { APITokenDocument, PublicUserDocument, WebhookEvents } from "tachi-common";
+import { WebhookEvents } from "tachi-common";
 import { BotConfig } from "../config";
 import { LoggerLayers } from "../data/data";
-import db from "../database/mongo";
-import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "../utils/fetch-tachi";
 import { CreateLayeredLogger } from "../utils/logger";
-import { VERSION_PRETTY, VERSION_STR } from "../version";
+import { VERSION_PRETTY } from "../version";
+import { HandleClassUpdateV1 } from "../webhookHandlers/classUpdate";
+import { HandleGoalAchievedV1 } from "../webhookHandlers/goalAchieved";
 import { ValidateWebhookRequest } from "./middleware";
 
 export const app: Express = express();
@@ -43,23 +42,24 @@ app.get("/", (req, res) =>
  *
  * @name POST /webhook
  */
-app.post("/webhook", ValidateWebhookRequest, (req, res) => {
+app.post("/webhook", ValidateWebhookRequest, async (req, res) => {
 	// We can be reasonably assured that the request body will be
 	// in this form. If it isn't, there are bigger problems!
 	const webhookEvent = req.body as WebhookEvents;
 
-	const statusCode = 200;
+	let statusCode = 200;
 
 	switch (webhookEvent.type) {
 		case "class-update/v1":
-		case "goal-achieved/v1":
-		case "milestone-achieved/v1":
-			// @TODO add actual webhook handlers.
-			// These will set the value of statusCode.
+			statusCode = await HandleClassUpdateV1(webhookEvent.content);
 			break;
+		case "goals-achieved/v1":
+			statusCode = await HandleGoalAchievedV1(webhookEvent.content);
+			break;
+		case "milestone-achieved/v1":
 		default:
 			// According to the types, this should never happen.
-			// However, tachi-server/common may recieve an update
+			// However, tachi-(server/common) may recieve an update
 			// to define new webhooks, and the bot might not
 			// get around to updating in time.
 			logger.warn(
@@ -74,74 +74,6 @@ app.post("/webhook", ValidateWebhookRequest, (req, res) => {
 	}
 
 	return res.sendStatus(statusCode);
-});
-
-/**
- * Our OAuth2 Callback handler. Note that this is a GET request, as per
- * OAuth spec, but does perform *real* mutations on data. It's awkward.
- *
- * @param code - The intermediate code for us to send back.
- * @param context - The discordID we fired this auth request with.
- *
- * @name GET /oauth/callback
- */
-app.get("/oauth/callback", async (req, res) => {
-	if (typeof req.query.code !== "string") {
-		return res.status(400).send("Bad Request.");
-	}
-
-	if (typeof req.query.context !== "string") {
-		return res.status(400).send("Bad Request.");
-	}
-
-	const tokenRes = await TachiServerV1Request<APITokenDocument>(
-		RequestTypes.POST,
-		"/oauth/token",
-		null,
-		{
-			code: req.query.code,
-			client_id: BotConfig.OAUTH.CLIENT_ID,
-			client_secret: BotConfig.OAUTH.CLIENT_SECRET,
-			grant_type: "authorization_code",
-			redirect_uri: `${BotConfig.HTTP_SERVER.URL}/oauth/callback`,
-		}
-	);
-
-	if (!tokenRes.success) {
-		logger.error(
-			`Failed to convert code ${req.query.code} to a token. ${tokenRes.description} Cannot auth.`
-		);
-		return res.status(401).json({
-			success: false,
-			description: "Failed to authenticate.",
-		});
-	}
-
-	const discordID = req.query.context;
-	const apiToken = tokenRes.body.token!;
-
-	const whoamiRes = await TachiServerV1Get<PublicUserDocument>("/users/me", apiToken);
-
-	if (!whoamiRes.success) {
-		logger.severe("Failed to request user with token we just got?", { discordID });
-		return res
-			.status(500)
-			.send(
-				"Something's gone very wrong. An internal server error has occured. This has been reported."
-			);
-	}
-
-	const user = whoamiRes.body;
-
-	logger.info(`Saving user-discord-link for ${user.username} (#${user.id}).`);
-
-	await db.discordUserMap.insert({
-		discordID,
-		tachiApiToken: apiToken,
-		userID: user.id,
-	});
-
-	return res.sendFile(path.join(__dirname, "../../pages/account-linked.html"));
 });
 
 /**

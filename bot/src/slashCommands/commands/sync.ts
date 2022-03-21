@@ -1,8 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { BotConfig } from "../../config";
 import { PerformScoreImport } from "../../utils/apiRequests";
-import { CreateEmbed } from "../../utils/embeds";
-import { Pluralise } from "../../utils/misc";
+import { CreateImportEmbed } from "../../utils/embeds";
 import { SlashCommand } from "../types";
 
 const command: SlashCommand = {
@@ -39,21 +37,7 @@ const command: SlashCommand = {
 			interaction
 		);
 
-		return CreateEmbed()
-			.setTitle(
-				`Imported ${importDoc.scoreIDs.length} ${Pluralise(
-					importDoc.scoreIDs.length,
-					"score"
-				)}!`
-			)
-			.addField("Created Sessions", importDoc.createdSessions.length.toString(), true)
-			.addField("Errors", importDoc.errors.length.toString(), true)
-			.addField(
-				"Your Profile",
-				`${BotConfig.TACHI_SERVER_LOCATION}/dashboard/users/${importDoc.userID}/games/${importDoc.game}`
-			)
-
-			.setTimestamp();
+		return CreateImportEmbed(importDoc);
 	},
 };
 

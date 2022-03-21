@@ -1,15 +1,19 @@
-import ping from "./commands/ping";
-import quote from "./commands/quote";
-import faq from "./commands/faq";
-import sync from "./commands/sync";
-import { SlashCommand } from "./types";
 import { ServerConfig } from "../config";
+import faq from "./commands/faq";
+import ping from "./commands/ping";
+import profile from "./commands/profile";
+import quote from "./commands/quote";
+import sync from "./commands/sync";
+import whois from "./commands/whois";
+import { SlashCommand } from "./types";
 
 export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
 	Object.entries({
 		ping,
 		quote,
 		faq,
+		whois,
+		profile,
 	})
 );
 

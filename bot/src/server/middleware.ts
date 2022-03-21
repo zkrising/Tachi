@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
-import { LoggerLayers } from "../data/data";
 import { BotConfig } from "../config";
+import { LoggerLayers } from "../data/data";
 import { CreateLayeredLogger } from "../utils/logger";
 
 const logger = CreateLayeredLogger(LoggerLayers.serverAuth);

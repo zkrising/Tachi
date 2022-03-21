@@ -1,15 +1,28 @@
 import { CommandInteraction } from "discord.js";
-import { ImportDocument, integer, PublicUserDocument } from "tachi-common";
+import { Game, ImportDocument, integer, Playtype, PublicUserDocument } from "tachi-common";
 import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "./fetchTachi";
 import logger from "./logger";
 import { Sleep } from "./misc";
-import { ImportDeferred, ImportPollStatus } from "./returnTypes";
+import { ImportDeferred, ImportPollStatus, UGPTStats } from "./returnTypes";
 
-export async function GetUserInfo(userID: integer) {
+export async function GetUserInfo(userID: integer | string) {
 	const res = await TachiServerV1Get<PublicUserDocument>(`/users/${userID}`, null);
 
 	if (!res.success) {
 		throw new Error(`Failed to fetch user with userID ${userID}.`);
+	}
+
+	return res.body;
+}
+
+export async function GetUGPTStats(userID: integer | string, game: Game, playtype: Playtype) {
+	const res = await TachiServerV1Get<UGPTStats>(
+		`/users/${userID}/games/${game}/${playtype}`,
+		null
+	);
+
+	if (!res.success) {
+		throw new Error(`Failed to fetch UGPT stats for userID ${userID}, ${game}, ${playtype}.`);
 	}
 
 	return res.body;

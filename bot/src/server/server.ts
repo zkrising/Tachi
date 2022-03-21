@@ -6,7 +6,7 @@ import { LoggerLayers } from "../data/data";
 import db from "../database/mongo";
 import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "../utils/fetchTachi";
 import { CreateLayeredLogger } from "../utils/logger";
-import { VERSION_PRETTY, VERSION_STR } from "../version";
+import { VERSION_PRETTY } from "../version";
 import { ValidateWebhookRequest } from "./middleware";
 
 export const app: Express = express();

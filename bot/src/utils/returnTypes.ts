@@ -1,4 +1,14 @@
-import { APIPermissions, Game, ImportDocument, ImportTypes, integer } from "tachi-common";
+import {
+	APIPermissions,
+	Game,
+	IDStrings,
+	ImportDocument,
+	ImportTypes,
+	integer,
+	ScoreDocument,
+	UGSRatingsLookup,
+	UserGameStats,
+} from "tachi-common";
 
 export interface ServerConfig {
 	games: Game[];
@@ -32,3 +42,11 @@ export type ImportPollStatus =
 				value: integer;
 			};
 	  };
+
+export interface UGPTStats<I extends IDStrings = IDStrings> {
+	gameStats: UserGameStats;
+	firstScore: ScoreDocument;
+	mostRecentScore: ScoreDocument;
+	totalScores: integer;
+	rankingData: Record<UGSRatingsLookup[I], { ranking: integer; outOf: integer }>;
+}

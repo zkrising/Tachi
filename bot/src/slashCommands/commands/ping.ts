@@ -1,8 +1,8 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { ServerConfig } from "../../config";
-import { SlashCommand } from "../types";
 import { TachiServerV1Get } from "../../utils/fetchTachi";
 import { ServerStatus } from "../../utils/returnTypes";
+import { SlashCommand } from "../types";
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()

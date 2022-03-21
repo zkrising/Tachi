@@ -1,7 +1,7 @@
 import { Client, CommandInteraction, Intents, SelectMenuInteraction } from "discord.js";
 import { BotConfig, ServerConfig } from "./config";
 import { LoggerLayers, METALLIC_MIND_SPLASHES } from "./data/data";
-import { GetUserForDiscordID } from "./database/queries";
+import { GetUserAndTokenForDiscordID } from "./database/queries";
 import { handleIsCommand } from "./interactionHandlers/handleIsCommand";
 // import { handleIsSelectMenu } from "./interactionHandlers/handleIsSelectMenu";
 import { app } from "./server/server";
@@ -31,7 +31,7 @@ client.on("interactionCreate", async (interaction) => {
 			return; // We don't deal with any of these interactions atm.
 		}
 
-		const requestingUser = await GetUserForDiscordID(interaction.user.id);
+		const requestingUser = await GetUserAndTokenForDiscordID(interaction.user.id);
 
 		if (!requestingUser) {
 			return RequireUserAuth(interaction);

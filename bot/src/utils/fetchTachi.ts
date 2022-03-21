@@ -1,9 +1,9 @@
 import fetch from "node-fetch";
-import { LoggerLayers } from "../data/data";
-import { BotConfig } from "../config";
 import { integer, SuccessfulAPIResponse, UnsuccessfulAPIResponse } from "tachi-common";
-import { CreateLayeredLogger } from "./logger";
+import { BotConfig } from "../config";
+import { LoggerLayers } from "../data/data";
 import { VERSION_STR } from "../version";
+import { CreateLayeredLogger } from "./logger";
 
 const logger = CreateLayeredLogger(LoggerLayers.tachiFetch);
 

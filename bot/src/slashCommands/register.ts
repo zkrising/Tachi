@@ -1,10 +1,10 @@
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
 import { Client } from "discord.js";
-import { SLASH_COMMANDS } from "./commands";
 import { BotConfig } from "../config";
 import { LoggerLayers } from "../data/data";
 import { CreateLayeredLogger } from "../utils/logger";
+import { SLASH_COMMANDS } from "./commands";
 
 const logger = CreateLayeredLogger(LoggerLayers.slashCommands);
 

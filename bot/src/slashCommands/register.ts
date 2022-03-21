@@ -1,121 +1,71 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
 import { REST } from "@discordjs/rest";
-import { APIApplicationCommandOption } from "discord-api-types";
 import { Routes } from "discord-api-types/v9";
-import { Client, CommandInteraction } from "discord.js";
-import { searchForSong } from "../commands/chartSearch/chartSearch";
-import { getProfileByName } from "../profile/fetch";
-import { ProcessEnv } from "../setup";
-import { LoggerLayers } from "../config";
-import { help } from "../commands/help/help";
-import { createLayeredLogger } from "../utils/logger";
-import { gamesToChoicesObject } from "../utils/utils";
+import { Client } from "discord.js";
+import { SLASH_COMMANDS } from "../commands/commands";
+import { BotConfig } from "../config";
+import { LoggerLayers } from "../data/data";
+import { CreateLayeredLogger } from "../utils/logger";
 
-const logger = createLayeredLogger(LoggerLayers.slashCommands);
-
-export interface SlashCommand {
-	info: {
-		name: string;
-		description: string;
-		options: APIApplicationCommandOption[];
-	};
-	exec(interaction: CommandInteraction): Promise<void>;
-}
-
-export const slashCommands: SlashCommand[] = [
-	{
-		info: new SlashCommandBuilder()
-			.setName("help")
-			.setDescription("Shows information about this bot")
-			.toJSON(),
-		exec: async (interaction: CommandInteraction) => await help(interaction),
-	},
-	{
-		info: new SlashCommandBuilder()
-			.setName("profile")
-			.setDescription("Displays a Kamaitachi Profile")
-			/** @TODO Make this optional once we have a fallback */
-			.addIntegerOption((option) =>
-				option.setName("user").setDescription("The users id").setRequired(true)
-			)
-			.addStringOption((option) =>
-				option
-					.setName("game")
-					.setDescription("The Game")
-					.setRequired(false)
-					.addChoices(gamesToChoicesObject())
-			)
-			.toJSON(),
-		exec: async (interaction: CommandInteraction) => await getProfileByName(interaction),
-	},
-	{
-		info: new SlashCommandBuilder()
-			.setName("search")
-			.setDescription("Search for a song")
-			.addStringOption((option) =>
-				option
-					.setName("game")
-					.setDescription("The Game")
-					.setRequired(true)
-					.addChoices(gamesToChoicesObject())
-			)
-			.addStringOption((option) =>
-				option.setName("song").setDescription("The song name").setRequired(true)
-			)
-			.toJSON(),
-		exec: async (interaction: CommandInteraction) => await searchForSong(interaction),
-	},
-];
+const logger = CreateLayeredLogger(LoggerLayers.slashCommands);
 
 const rest = new REST({
 	version: "9",
-}).setToken(ProcessEnv.DISCORD_TOKEN);
+}).setToken(BotConfig.DISCORD.TOKEN);
 
-export const registerSlashCommands = async (client: Client): Promise<void> => {
+/**
+ * Register our slash commands. If in prod, these
+ * @param client
+ */
+export async function RegisterSlashCommands(client: Client): Promise<void> {
 	try {
-		if (process.env.ENV === "PROD") {
-			logger.info("Registering global slash commands");
+		const commandsArray = [...SLASH_COMMANDS.values()];
 
-			await rest.put(Routes.applicationCommands(client.application!.id), {
-				body: slashCommands.map((command) => command.info),
-			});
-		} else {
-			logger.info("Registering guild slash commands");
+		await UnregisterAllCommands(client);
 
-			await tidyOldGuildCommands(client);
-			if (process.env.DEV_SERVER_ID) {
-				await rest.put(
-					Routes.applicationGuildCommands(
-						client.application!.id,
-						process.env.DEV_SERVER_ID
-					),
-					{
-						body: slashCommands.map((command) => command.info),
-					}
-				);
+		logger.info("Registering guild slash commands.");
+
+		await rest.put(
+			Routes.applicationGuildCommands(client.application!.id, BotConfig.DISCORD.SERVER_ID),
+			{
+				body: commandsArray.map((command) => command.info),
+			}
+		);
+
+		logger.info("Successfully registered guild slash commands.");
+	} catch (err) {
+		logger.error("Failed to register guild slash commands.", err);
+		throw err;
+	}
+}
+
+/**
+ * Unregister all the commmands we have.
+ */
+export async function UnregisterAllCommands(client: Client): Promise<void> {
+	try {
+		logger.info("Tidying old guild slash commands.");
+		const guilds = client.guilds.cache;
+
+		// discord.js doesn't use arrays because those aren't cool anymore
+		// so we have to discard the left side of this.
+		// They use collections, which inherit from ES6's Map. Ah well.
+
+		const promises = [];
+		for (const [, guild] of guilds) {
+			const commands = guild.commands.cache;
+
+			for (const [, command] of commands) {
+				promises.push(command.delete());
 			}
 		}
 
-		logger.info("Successfully registered slash commands");
-	} catch (e) {
-		logger.error("Failed to register slash commands", e);
+		// parallelise waiting for these to be deleted.
+		await Promise.all(promises);
+
+		logger.info("Successfully tidied old guild slash commands.");
+	} catch (err) {
+		logger.error("Failed to tidy old guild slash commands.", err);
+
+		throw err;
 	}
-};
-
-export const tidyOldGuildCommands = async (client: Client): Promise<void> => {
-	try {
-		logger.info("Tidying old guild slash commands");
-		const guilds = client.guilds.cache;
-
-		guilds.forEach((guild) => {
-			const commands = guild.commands.cache;
-			commands.forEach((command) => {
-				command.delete();
-			});
-		});
-
-		logger.info("Successfully tidied old guild slash commands");
-	} catch (e) {
-		logger.error("Failed to tidy old guild slash commands");
-	}
-};
+}

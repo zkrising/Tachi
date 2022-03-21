@@ -1,21 +1,18 @@
-import { createLogger, transports, format, Logger } from "winston";
-import { LoggerLayers } from "../config";
-const { combine, timestamp, label, printf, align, colorize } = format;
+import { CreateLogger, MeiLogger } from "mei-logger";
+import { LoggerLayers } from "../data/data";
 
-const loggerFormat = printf(
-	({ level, message, label, timestamp }) => `${timestamp} [${label}] ${level} ${message}`
-);
+const logger = CreateLogger(`tachi-bot`);
 
-export const createLayeredLogger = (layer: LoggerLayers): Logger =>
-	createLogger({
-		transports: [new transports.Console()],
-		format: combine(
-			label({
-				label: layer,
-			}),
-			colorize(),
-			timestamp(),
-			align(),
-			loggerFormat
-		),
+export default logger;
+
+export function CreateLayeredLogger(layerName: LoggerLayers) {
+	const lg = logger.child({
+		context: [layerName],
 	});
+
+	lg.defaultMeta = Object.assign({}, lg.defaultMeta ?? {}, {
+		context: [layerName],
+	});
+
+	return lg as MeiLogger;
+}

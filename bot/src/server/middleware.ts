@@ -1,9 +1,9 @@
-import { LoggerLayers } from "../config";
 import { RequestHandler } from "express";
-import { ProcessEnv } from "../setup";
-import { createLayeredLogger } from "../utils/logger";
+import { LoggerLayers } from "../data/data";
+import { BotConfig } from "../config";
+import { CreateLayeredLogger } from "../utils/logger";
 
-const logger = createLayeredLogger(LoggerLayers.serverAuth);
+const logger = CreateLayeredLogger(LoggerLayers.serverAuth);
 
 /**
  * Middleware that checks that a webhook request has Authorization set to
@@ -33,7 +33,7 @@ export const ValidateWebhookRequest: RequestHandler = (req, res, next) => {
 		});
 	}
 
-	if (value !== ProcessEnv.BOT_CLIENT_SECRET) {
+	if (value !== BotConfig.OAUTH.CLIENT_SECRET) {
 		logger.warn(
 			`Recieved invalid auth value from ${req.ip}. Has the client secret been changed?`
 		);

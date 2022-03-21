@@ -24,11 +24,11 @@ export interface WebhookEventGoalAchievedV1 {
 	type: "goals-achieved/v1";
 	content: {
 		userID: integer;
+		game: Game;
 		goals: {
 			goalID: string;
 			old: GoalImportStat;
 			new: GoalImportStat;
-			game: Game;
 			playtype: Playtypes[Game];
 		}[];
 	};

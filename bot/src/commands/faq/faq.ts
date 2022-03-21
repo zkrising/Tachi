@@ -16,6 +16,9 @@ ${ServerConfig.name} is an Open Source project. Feel free to read our [contribut
 	pbs: `A PB is all of yhour best scores on that specific chart joined together.
 For most games, this means joining your best score with your best lamp.
 Read more about this [here](https://tachi.readthedocs.io/en/latest/user/pbs-scores/)`,
+	filter_directives: `Filter Directives are a fancy way of *filtering* rows inside a table.
+They provide an advanced toolkit for users to perform complex queries on their data.
+Read more about them [here](https://tachi.readthedocs.io/en/latest/user/filter-directives/)`,
 };
 
 // Server specific FAQ stuff.

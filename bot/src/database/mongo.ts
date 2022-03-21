@@ -1,15 +1,15 @@
 import { Snowflake } from "discord.js/typings/index.js";
 import monk from "monk";
 import { integer } from "tachi-common";
+import { ProcessEnv } from "../config";
 import { LoggerLayers } from "../data/data";
-import { BotConfig } from "../config";
 import { CreateLayeredLogger } from "../utils/logger";
 
 const logger = CreateLayeredLogger(LoggerLayers.database);
 
-logger.info(`Connecting to ${BotConfig.MONGO_URL}...`);
+logger.info(`Connecting to ${ProcessEnv.mongoUrl}...`);
 
-const monkDB = monk(BotConfig.MONGO_URL);
+const monkDB = monk(ProcessEnv.mongoUrl);
 
 monkDB
 	.then(() => {

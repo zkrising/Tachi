@@ -1,7 +1,7 @@
 import { CommandInteraction } from "discord.js";
+import { SLASH_COMMANDS } from "../commands/commands";
 import { LoggerLayers } from "../data/data";
 import { DiscordUserMapDocument } from "../database/mongo";
-import { SLASH_COMMANDS } from "../slashCommands/register";
 import { CreateLayeredLogger } from "../utils/logger";
 
 const logger = CreateLayeredLogger(LoggerLayers.slashCommands);

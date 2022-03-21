@@ -29,7 +29,6 @@ export interface BotConfig {
 		CLIENT_SECRET: string;
 		CLIENT_ID: string;
 	};
-	MONGO_URL: string;
 	DISCORD: {
 		TOKEN: string;
 		SERVER_ID: string;
@@ -93,6 +92,7 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 
 export interface ProcessEnvironment {
 	nodeEnv: "production" | "dev" | "staging" | "test";
+	mongoUrl: string;
 }
 
 function ParseEnvVars() {
@@ -100,9 +100,11 @@ function ParseEnvVars() {
 		process.env,
 		{
 			NODE_ENV: p.isIn("production", "dev", "staging", "test"),
+			// mei implicitly reads this.
 			LOG_LEVEL: p.optional(
 				p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit")
 			),
+			MONGO_URL: "string",
 		},
 		{},
 		{ allowExcessKeys: true }
@@ -116,6 +118,7 @@ function ParseEnvVars() {
 
 	return {
 		nodeEnv: process.env.NODE_ENV,
+		mongoUrl: process.env.MONGO_URL,
 	} as ProcessEnvironment;
 }
 

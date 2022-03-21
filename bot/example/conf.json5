@@ -11,7 +11,6 @@
 		CLIENT_SECRET: "CSfoobar",
 		CLIENT_ID: "CIfoobar",
 	},
-	MONGO_URL: "mongodb://127.0.0.1:27017",
 	DISCORD: {
 		TOKEN: "foobar",
 		SERVER_ID: "123123123",

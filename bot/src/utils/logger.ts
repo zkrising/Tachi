@@ -5,7 +5,7 @@ const logger = CreateLogger(`tachi-bot`);
 
 export default logger;
 
-export function createLayeredLogger(layerName: LoggerLayers) {
+export function CreateLayeredLogger(layerName: LoggerLayers) {
 	const lg = logger.child({
 		context: [layerName],
 	});

@@ -3,9 +3,9 @@ import monk from "monk";
 import { integer } from "tachi-common";
 import { LoggerLayers } from "../data/data";
 import { BotConfig } from "../config";
-import { createLayeredLogger } from "../utils/logger";
+import { CreateLayeredLogger } from "../utils/logger";
 
-const logger = createLayeredLogger(LoggerLayers.database);
+const logger = CreateLayeredLogger(LoggerLayers.database);
 
 logger.info(`Connecting to ${BotConfig.MONGO_URL}...`);
 

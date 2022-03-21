@@ -5,12 +5,12 @@ import { BotConfig } from "../config";
 import { LoggerLayers } from "../data/data";
 import db from "../database/mongo";
 import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "../utils/fetch-tachi";
-import { createLayeredLogger } from "../utils/logger";
+import { CreateLayeredLogger } from "../utils/logger";
 import { ValidateWebhookRequest } from "./middleware";
 
 export const app: Express = express();
 
-const logger = createLayeredLogger(LoggerLayers.server);
+const logger = CreateLayeredLogger(LoggerLayers.server);
 
 app.use(express.json());
 

@@ -6,10 +6,10 @@ import { handleIsCommand } from "./interactionHandlers/handleIsCommand";
 // import { handleIsSelectMenu } from "./interactionHandlers/handleIsSelectMenu";
 import { app } from "./server/server";
 import { RegisterSlashCommands } from "./slashCommands/register";
-import { createLayeredLogger } from "./utils/logger";
+import { CreateLayeredLogger } from "./utils/logger";
 import { RFA, TruncateString } from "./utils/misc";
 
-const logger = createLayeredLogger(LoggerLayers.client);
+const logger = CreateLayeredLogger(LoggerLayers.client);
 
 const client = new Client({
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGES],

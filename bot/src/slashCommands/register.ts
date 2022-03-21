@@ -1,57 +1,12 @@
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
 import { Client } from "discord.js";
-import { PingCommand } from "../commands/ping/ping";
+import { SLASH_COMMANDS } from "../commands/commands";
 import { BotConfig } from "../config";
 import { LoggerLayers } from "../data/data";
-import { createLayeredLogger } from "../utils/logger";
-import { SlashCommand } from "./types";
+import { CreateLayeredLogger } from "../utils/logger";
 
-const logger = createLayeredLogger(LoggerLayers.slashCommands);
-
-export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
-	Object.entries({
-		ping: PingCommand,
-	})
-);
-
-const unused = [
-	// {
-	// 	info: new SlashCommandBuilder()
-	// 		.setName("profile")
-	// 		.setDescription("Displays a Kamaitachi Profile")
-	// 		/** @TODO Make this optional once we have a fallback */
-	// 		.addIntegerOption((option) =>
-	// 			option.setName("user").setDescription("The users id").setRequired(true)
-	// 		)
-	// 		.addStringOption((option) =>
-	// 			option
-	// 				.setName("game")
-	// 				.setDescription("The Game")
-	// 				.setRequired(false)
-	// 				.addChoices(gamesToChoicesObject())
-	// 		)
-	// 		.toJSON(),
-	// 	exec: async (interaction: CommandInteraction) => await getProfileByName(interaction),
-	// },
-	// {
-	// 	info: new SlashCommandBuilder()
-	// 		.setName("search")
-	// 		.setDescription("Search for a song")
-	// 		.addStringOption((option) =>
-	// 			option
-	// 				.setName("game")
-	// 				.setDescription("The Game")
-	// 				.setRequired(true)
-	// 				.addChoices(gamesToChoicesObject())
-	// 		)
-	// 		.addStringOption((option) =>
-	// 			option.setName("song").setDescription("The song name").setRequired(true)
-	// 		)
-	// 		.toJSON(),
-	// 	exec: async (interaction: CommandInteraction) => await searchForSong(interaction),
-	// },
-];
+const logger = CreateLayeredLogger(LoggerLayers.slashCommands);
 
 const rest = new REST({
 	version: "9",

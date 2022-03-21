@@ -6,7 +6,7 @@ import p from "prudence";
 import fetchSync from "sync-fetch";
 import { Game, integer } from "tachi-common";
 import { LoggerLayers } from "./data/data";
-import { createLayeredLogger } from "./utils/logger";
+import { CreateLayeredLogger } from "./utils/logger";
 import { IsRecord } from "./utils/predicates";
 import { FormatPrError } from "./utils/prudence";
 import { ServerConfig as ServerConfigType } from "./utils/return-types";
@@ -17,7 +17,7 @@ config();
 // Reads the bots config file from $pwd/conf.json5.
 // Validates it using prudence.
 
-const logger = createLayeredLogger(LoggerLayers.botConfigSetup);
+const logger = CreateLayeredLogger(LoggerLayers.botConfigSetup);
 
 export interface BotConfig {
 	TACHI_SERVER_LOCATION: string;

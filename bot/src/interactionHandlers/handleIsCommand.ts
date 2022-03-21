@@ -2,9 +2,9 @@ import { CommandInteraction } from "discord.js";
 import { LoggerLayers } from "../data/data";
 import { DiscordUserMapDocument } from "../database/mongo";
 import { SLASH_COMMANDS } from "../slashCommands/register";
-import { createLayeredLogger } from "../utils/logger";
+import { CreateLayeredLogger } from "../utils/logger";
 
-const logger = createLayeredLogger(LoggerLayers.slashCommands);
+const logger = CreateLayeredLogger(LoggerLayers.slashCommands);
 
 /**
  * Handles incoming command requests by resolving the interaction to the command

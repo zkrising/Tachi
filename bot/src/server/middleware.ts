@@ -1,9 +1,9 @@
 import { RequestHandler } from "express";
 import { LoggerLayers } from "../data/data";
 import { BotConfig } from "../config";
-import { createLayeredLogger } from "../utils/logger";
+import { CreateLayeredLogger } from "../utils/logger";
 
-const logger = createLayeredLogger(LoggerLayers.serverAuth);
+const logger = CreateLayeredLogger(LoggerLayers.serverAuth);
 
 /**
  * Middleware that checks that a webhook request has Authorization set to

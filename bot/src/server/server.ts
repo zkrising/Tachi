@@ -6,6 +6,7 @@ import { LoggerLayers } from "../data/data";
 import db from "../database/mongo";
 import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "../utils/fetch-tachi";
 import { CreateLayeredLogger } from "../utils/logger";
+import { VERSION_STR } from "../version";
 import { ValidateWebhookRequest } from "./middleware";
 
 export const app: Express = express();
@@ -32,6 +33,7 @@ app.get("/", (req, res) =>
 		description: "Bot is online!",
 		body: {
 			time: Date.now(),
+			version: VERSION_STR,
 		},
 	})
 );

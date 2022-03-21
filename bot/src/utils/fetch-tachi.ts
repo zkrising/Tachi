@@ -68,7 +68,7 @@ export async function TachiServerV1Request<T>(
 		// Throw the error upwards for it to be caught be a higher handler.
 		throw err;
 	}
-} 
+}
 
 /**
  * Performs a GET request against the Tachi server.

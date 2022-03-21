@@ -66,7 +66,7 @@ We've sent you a DM with instructions on how to link your account.`
 (async () => {
 	try {
 		logger.info(`Booting Tachi Bot v${VERSION_STR}.`);
-		
+
 		// Login to discord.
 		await client.login(BotConfig.DISCORD.TOKEN);
 

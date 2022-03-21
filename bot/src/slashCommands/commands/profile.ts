@@ -25,7 +25,12 @@ const command: SlashCommand = {
 			return `Invalid userID. Can't query this!`;
 		}
 
-		const userDoc = await GetUserInfo(userID);
+		let userDoc;
+		try {
+			userDoc = await GetUserInfo(userID);
+		} catch (err) {
+			return `This user does not exist.`;
+		}
 
 		const { game, playtype } = ParseGPT(interaction.options.getString("game", true));
 

@@ -2,6 +2,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { BotConfig } from "../../config";
 import { PerformScoreImport } from "../../utils/api-requests";
 import { CreateEmbed } from "../../utils/embeds";
+import { Pluralise } from "../../utils/misc";
 import { SlashCommand } from "../types";
 
 const command: SlashCommand = {
@@ -25,7 +26,7 @@ const command: SlashCommand = {
 		)
 		.toJSON(),
 	exec: async (interaction, requestingUser) => {
-		interaction.reply(`Importing scores...`);
+		await interaction.reply(`Importing scores...`);
 
 		const importType = interaction.options.getString("service", true);
 
@@ -39,13 +40,17 @@ const command: SlashCommand = {
 		);
 
 		return CreateEmbed()
-			.setTitle(`Imported ${importDoc.scoreIDs.length} scores!`)
+			.setTitle(
+				`Imported ${importDoc.scoreIDs.length} ${Pluralise(
+					importDoc.scoreIDs.length,
+					"score"
+				)}!`
+			)
 			.addField("Created Sessions", importDoc.createdSessions.length.toString(), true)
 			.addField("Errors", importDoc.errors.length.toString(), true)
 			.addField(
 				"Your Profile",
-				`${BotConfig.TACHI_SERVER_LOCATION}/dashboard/users/${importDoc.userID}/games/${importDoc.game}`,
-				true
+				`${BotConfig.TACHI_SERVER_LOCATION}/dashboard/users/${importDoc.userID}/games/${importDoc.game}`
 			)
 
 			.setTimestamp();

@@ -45,7 +45,7 @@ client.on("interactionCreate", async (interaction) => {
 			return handleIsCommand(interaction, requestingUser);
 		}
 	} catch (e) {
-		logger.error("Failed to run interaction");
+		logger.error("Failed to run interaction.", { interaction });
 	}
 });
 

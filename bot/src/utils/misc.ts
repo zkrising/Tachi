@@ -1,5 +1,6 @@
 import { BotConfig } from "../config";
 import { DateTime } from "luxon";
+import { integer } from "tachi-common";
 
 /**
  * Random From Array - Selects a random value from an array.
@@ -30,4 +31,12 @@ export function FormatDate(ms: number) {
 
 export function Sleep(ms: number) {
 	return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
+}
+
+export function Pluralise(int: integer, str: string) {
+	if (int === 1) {
+		return str;
+	}
+
+	return `${str}s`;
 }

@@ -30,20 +30,24 @@ export async function handleIsCommand(
 			try {
 				const response = await command.exec(interaction, requestingUser);
 
+				const method = interaction.replied ? "followUp" : "reply";
+
 				if (response instanceof MessageEmbed) {
-					await interaction.reply({ embeds: [response] });
+					await interaction[method]({ embeds: [response] });
 				} else {
-					await interaction.reply(response);
+					await interaction[method](response);
 				}
 			} catch (err) {
 				logger.error(`An error occured while executing a command.`, { command, err });
-				interaction.reply(
+
+				const method = interaction.replied ? "followUp" : "reply";
+
+				interaction[method](
 					`An error has occured while executing this command. This has been reported.`
 				);
 			}
 		}
 	} catch (e) {
 		logger.error("Failed to handle isCommand interaction", { error: e });
-		throw e;
 	}
 }

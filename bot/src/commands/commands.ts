@@ -1,6 +1,7 @@
 import ping from "./ping/ping";
 import quote from "./quote/quote";
 import faq from "./faq/faq";
+import sync from "./sync/sync";
 import { SlashCommand } from "./types";
 import { ServerConfig } from "../config";
 
@@ -19,4 +20,5 @@ if (ServerConfig.type !== "btchi") {
 
 // btchi or omni specific commands
 if (ServerConfig.type !== "ktchi") {
+	// None. Yet!
 }

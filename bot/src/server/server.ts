@@ -135,11 +135,29 @@ app.get("/oauth/callback", async (req, res) => {
 
 	logger.info(`Saving user-discord-link for ${user.username} (#${user.id}).`);
 
-	await db.discordUserMap.insert({
-		discordID,
-		tachiApiToken: apiToken,
-		userID: user.id,
-	});
+	const existingLink = await db.discordUserMap.findOne({ userID: user.id });
+
+	if (existingLink) {
+		logger.info(`Updating user-discord-link for ${user.username} (#${user.id})`);
+
+		await db.discordUserMap.update(
+			{
+				userID: user.id,
+			},
+			{
+				$set: {
+					discordID,
+					tachiApiToken: apiToken,
+				},
+			}
+		);
+	} else {
+		await db.discordUserMap.insert({
+			discordID,
+			tachiApiToken: apiToken,
+			userID: user.id,
+		});
+	}
 
 	return res.sendFile(path.join(__dirname, "../../pages/account-linked.html"));
 });

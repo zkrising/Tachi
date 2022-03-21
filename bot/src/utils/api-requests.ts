@@ -41,9 +41,9 @@ export async function PerformScoreImport(
 	} else if (initRes.statusCode === 202) {
 		// this server defers imports.
 
-		let isImportFinished = false;
-
-		while (!isImportFinished) {
+		// eslint-disable-next-line no-constant-condition
+		while (true) {
+			// eslint-disable-next-line no-await-in-loop
 			const pollRes = await TachiServerV1Get<ImportPollStatus>(
 				`/imports/${initRes.body.importID}/poll-status`,
 				authToken
@@ -51,11 +51,12 @@ export async function PerformScoreImport(
 
 			if (pollRes.success) {
 				if (pollRes.body.importStatus === "completed") {
-					isImportFinished = true;
+					if (interaction) {
+						interaction.editReply(`Import finished!`);
+					}
+
 					return pollRes.body.import;
 				} else {
-					// UPDATE REFERENCE MESSAGE WITH PROGRESS
-
 					if (interaction) {
 						interaction.editReply(
 							`Importing Scores: ${
@@ -64,6 +65,7 @@ export async function PerformScoreImport(
 						);
 					}
 
+					// eslint-disable-next-line no-await-in-loop
 					await Sleep(1000);
 				}
 			} else {

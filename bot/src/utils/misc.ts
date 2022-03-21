@@ -27,3 +27,7 @@ export function IsAdmin(discordID: string) {
 export function FormatDate(ms: number) {
 	return DateTime.fromMillis(ms).toLocaleString(DateTime.DATE_HUGE);
 }
+
+export function Sleep(ms: number) {
+	return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
+}

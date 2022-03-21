@@ -1,4 +1,4 @@
-import { APIPermissions, Game, ImportTypes, integer } from "tachi-common";
+import { APIPermissions, Game, ImportDocument, ImportTypes, integer } from "tachi-common";
 
 export interface ServerConfig {
 	games: Game[];
@@ -14,3 +14,21 @@ export interface ServerStatus {
 	whoami: integer | null;
 	permissions: APIPermissions[];
 }
+
+export interface ImportDeferred {
+	url: string;
+	importID: string;
+}
+
+export type ImportPollStatus =
+	| {
+			importStatus: "completed";
+			import: ImportDocument;
+	  }
+	| {
+			importStatus: "ongoing";
+			progress: {
+				description: string;
+				value: integer;
+			};
+	  };

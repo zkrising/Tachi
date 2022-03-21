@@ -1,3 +1,4 @@
+import { Client } from "discord.js";
 import humaniseDuration from "humanize-duration";
 import { DateTime } from "luxon";
 import {
@@ -9,6 +10,7 @@ import {
 	Playtype,
 	UGSRatingsLookup,
 } from "tachi-common";
+import { GameClassSets } from "tachi-common/js/game-classes";
 import { BotConfig } from "../config";
 
 /**
@@ -112,4 +114,39 @@ export function FormatDuration(ms: number) {
 
 export function FormatTimeSmall(ms: number) {
 	return DateTime.fromMillis(ms).toLocaleString(DateTime.DATE_SHORT);
+}
+
+export function FormatClass(
+	game: Game,
+	playtype: Playtype,
+	classSet: GameClassSets[IDStrings],
+	classValue: integer
+) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	return gptConfig.classHumanisedFormat[classSet][classValue].display;
+}
+
+export function GetGameChannel(client: Client, game: Game) {
+	const gameChannelID = BotConfig.DISCORD.GAME_CHANNELS[game];
+
+	if (!gameChannelID) {
+		throw new Error(
+			`Attempted to get channel for ${game}, but no GAME_CHANNEL was registered.`
+		);
+	}
+
+	const channel = client.channels.cache.find((c) => c.id === gameChannelID);
+
+	if (!channel) {
+		throw new Error(`No channel with ID ${gameChannelID} is in the cache for this bot.`);
+	}
+
+	if (!channel.isText()) {
+		throw new Error(
+			`Channel ${gameChannelID} (${game}) is not a text channel. Can't send message.`
+		);
+	}
+
+	return channel;
 }

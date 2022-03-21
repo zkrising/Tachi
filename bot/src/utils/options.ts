@@ -22,3 +22,6 @@ export const GPTOptions = (str: SlashCommandStringOption) =>
 export function MakeRequired(fn: (str: SlashCommandStringOption) => SlashCommandStringOption) {
 	return (str: SlashCommandStringOption) => fn(str).setRequired(true);
 }
+
+export const OtherUserOption = (str: SlashCommandStringOption) =>
+	str.setName("other_user").setDescription("Optionally, check this info out for another user.");

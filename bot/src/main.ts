@@ -12,7 +12,7 @@ import { VERSION_PRETTY } from "./version";
 
 const logger = CreateLayeredLogger(LoggerLayers.client);
 
-const client = new Client({
+export const client = new Client({
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGES],
 });
 

@@ -1,9 +1,19 @@
 import { CommandInteraction } from "discord.js";
-import { Game, ImportDocument, integer, Playtype, PublicUserDocument } from "tachi-common";
+import {
+	Game,
+	GoalDocument,
+	ImportDocument,
+	integer,
+	Playtype,
+	PublicUserDocument,
+} from "tachi-common";
+import { LoggerLayers } from "../data/data";
 import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "./fetchTachi";
-import logger from "./logger";
+import { CreateLayeredLogger } from "./logger";
 import { Sleep } from "./misc";
 import { ImportDeferred, ImportPollStatus, UGPTStats } from "./returnTypes";
+
+const logger = CreateLayeredLogger(LoggerLayers.apiRequests);
 
 export async function GetUserInfo(userID: integer | string) {
 	const res = await TachiServerV1Get<PublicUserDocument>(`/users/${userID}`, null);
@@ -23,6 +33,19 @@ export async function GetUGPTStats(userID: integer | string, game: Game, playtyp
 
 	if (!res.success) {
 		throw new Error(`Failed to fetch UGPT stats for userID ${userID}, ${game}, ${playtype}.`);
+	}
+
+	return res.body;
+}
+
+export async function GetGoalWithID(goalID: string, game: Game, playtype: Playtype) {
+	const res = await TachiServerV1Get<GoalDocument>(
+		`/games/${game}/${playtype}/goals/${goalID}`,
+		null
+	);
+
+	if (!res.success) {
+		throw new Error(`Failed to fetch goal with ID ${goalID}. '${res.description}'.`);
 	}
 
 	return res.body;

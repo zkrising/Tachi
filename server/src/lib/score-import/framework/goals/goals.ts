@@ -72,7 +72,7 @@ export async function UpdateGoalsForUser(
 	if (webhookEventContent.length !== 0) {
 		await EmitWebhookEvent({
 			type: "goals-achieved/v1",
-			content: { goals: webhookEventContent, userID },
+			content: { goals: webhookEventContent, userID, game: goals[0].game },
 		});
 	}
 
@@ -128,7 +128,6 @@ export async function ProcessGoal(
 			goalID: goal.goalID,
 			old: oldData,
 			new: newData,
-			game: goal.game,
 			playtype: goal.playtype,
 		};
 	}

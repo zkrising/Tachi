@@ -183,6 +183,7 @@ router.get("/timeline", async (req, res) => {
 			songs,
 			charts,
 			scores,
+			folder,
 		},
 	});
 });

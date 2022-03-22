@@ -1,8 +1,8 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { GetUGPTStats } from "../../utils/apiRequests";
 import { GetGPTAndUser } from "../../utils/argParsers";
-import { GPTOptions, MakeRequired, OtherUserOption } from "../../utils/options";
 import { CreateGameProfileEmbed } from "../../utils/embeds";
+import { GPTOptions, MakeRequired, OtherUserOption } from "../../utils/options";
 import { SlashCommand } from "../types";
 
 const command: SlashCommand = {

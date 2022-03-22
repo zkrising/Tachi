@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import { integer, SuccessfulAPIResponse, UnsuccessfulAPIResponse } from "tachi-common";
+import { SuccessfulAPIResponse, UnsuccessfulAPIResponse, integer } from "tachi-common";
 import { BotConfig } from "../config";
 import { LoggerLayers } from "../data/data";
 import { VERSION_STR } from "../version";

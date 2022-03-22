@@ -3,9 +3,9 @@ import {
 	Game,
 	GoalDocument,
 	ImportDocument,
-	integer,
 	Playtype,
 	PublicUserDocument,
+	integer,
 } from "tachi-common";
 import { LoggerLayers } from "../data/data";
 import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "./fetchTachi";

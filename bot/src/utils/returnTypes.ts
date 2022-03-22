@@ -4,10 +4,10 @@ import {
 	IDStrings,
 	ImportDocument,
 	ImportTypes,
-	integer,
 	ScoreDocument,
 	UGSRatingsLookup,
 	UserGameStats,
+	integer,
 } from "tachi-common";
 
 export interface ServerConfig {

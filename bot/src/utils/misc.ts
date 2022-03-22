@@ -6,9 +6,9 @@ import {
 	GetGameConfig,
 	GetGamePTConfig,
 	IDStrings,
-	integer,
 	Playtype,
 	UGSRatingsLookup,
+	integer,
 } from "tachi-common";
 import { GameClassSets } from "tachi-common/js/game-classes";
 import { BotConfig } from "../config";

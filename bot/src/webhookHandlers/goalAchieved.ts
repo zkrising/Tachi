@@ -1,4 +1,4 @@
-import { GetGameConfig, GoalDocument, integer, WebhookEventGoalAchievedV1 } from "tachi-common";
+import { GetGameConfig, GoalDocument, WebhookEventGoalAchievedV1, integer } from "tachi-common";
 import { client } from "../main";
 import { GetGoalWithID, GetUserInfo } from "../utils/apiRequests";
 import { CreateEmbed } from "../utils/embeds";

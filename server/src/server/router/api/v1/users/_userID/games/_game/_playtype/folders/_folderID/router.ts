@@ -3,7 +3,7 @@ import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { FilterQuery } from "mongodb";
 import { GetGamePTConfig, ScoreDocument } from "tachi-common";
-import { GetFolderCharts, GetPBsOnFolder } from "utils/folder";
+import { GetFolderCharts, GetGradeLampDistributionForFolder, GetPBsOnFolder } from "utils/folder";
 import { ParseStrPositiveInt } from "utils/string-checks";
 import { GetFolderFromParam } from "../../../../../../../games/_game/_playtype/folders/middleware";
 import { RequireSelfRequestFromUser } from "../../../../../middleware";
@@ -31,6 +31,27 @@ router.get("/", async (req, res) => {
 			charts,
 			pbs,
 			folder,
+		},
+	});
+});
+
+/**
+ * Returns a users stats on this folder.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/stats
+ */
+router.get("/stats", async (req, res) => {
+	const folder = req[SYMBOL_TachiData]!.folderDoc!;
+	const user = req[SYMBOL_TachiData]!.requestedUser!;
+
+	const stats = await GetGradeLampDistributionForFolder(user.id, folder);
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned statistics for ${folder.title}.`,
+		body: {
+			folder,
+			stats,
 		},
 	});
 });

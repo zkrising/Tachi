@@ -14,6 +14,7 @@ import { PrependTachiUrl } from "./fetchTachi";
 import {
 	CreateChartLink,
 	Entries,
+	FormatChartTierlistInfo,
 	FormatDate,
 	FormatProfileRating,
 	FormatScoreData,
@@ -130,8 +131,6 @@ export async function CreateChartScoresEmbed(
 	} else {
 		const { scoreStr, lampStr } = FormatScoreData(pb);
 
-		const pertinentInfo = GetChartPertinentInfo(game, chart);
-
 		embed
 			.addField("Score", scoreStr, true)
 			.addField("Lamp", lampStr, true)
@@ -158,8 +157,15 @@ export async function CreateChartScoresEmbed(
 			)
 			.addField("Ranking", `#**${pb.rankingData.rank}**/${pb.rankingData.outOf}`);
 
+		const pertinentInfo = GetChartPertinentInfo(game, chart);
+
+		const tierlistInfo = FormatChartTierlistInfo(game, chart);
 		if (pertinentInfo) {
-			embed.addField("Related", pertinentInfo);
+			embed.addField("Related", pertinentInfo, !!tierlistInfo);
+		}
+
+		if (tierlistInfo) {
+			embed.addField("Tierlist Info", tierlistInfo, !!pertinentInfo);
 		}
 	}
 

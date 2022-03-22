@@ -292,3 +292,30 @@ e-amusement WR: ${FormatIIDXEXScore(ch.data.worldRecord, ch.data.notecount, ch.p
 
 	return null;
 }
+
+export function FormatChartTierlistInfo(game: Game, chart: ChartDocument) {
+	const gptConfig = GetGamePTConfig(game, chart.playtype);
+
+	if (gptConfig.tierlists.length === 0) {
+		return null;
+	}
+
+	const fmts = [];
+	for (const tierlist of gptConfig.tierlists) {
+		const data = chart.tierlistInfo[tierlist];
+
+		if (!data) {
+			continue;
+		}
+
+		fmts.push(
+			`${tierlist}: ${data.text} (${data.value}${data.individualDifference ? " ⚖️" : ""})`
+		);
+	}
+
+	if (fmts.length === 0) {
+		return null;
+	}
+
+	return fmts.join("\n");
+}

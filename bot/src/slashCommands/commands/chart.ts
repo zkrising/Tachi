@@ -10,8 +10,8 @@ import { SlashCommand } from "../types";
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()
-		.setName("chart_pb")
-		.setDescription("Retrieve your personal best on a given chart.")
+		.setName("chart")
+		.setDescription("Retrieve info about a chart, including a users PB on it.")
 		.addStringOption(MakeRequired(GPTOptions))
 		.addStringOption((str) =>
 			str

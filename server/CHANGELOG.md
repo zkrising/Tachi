@@ -15,6 +15,16 @@ not generally be shown to end users.
 
 # Changelog
 
+# 2.1.9
+
+- [ENH] Add an endpoint on UGPT/folder/:folderID/stats. This returns lamp and grade distributions for this ugpt:folder combo.
+- [ENH] The UGPT Folder timeline endpoint now also returns the folder it worked on.
+
+*****
+
+- [BUG] OAuth2 tokens are now properly expired.
+- [BUG] ForceStaticImport is no longer always on, even if off.
+
 # 2.1.4
 
 - [BUG] IIDX, BMS and PMS scores can no longer get an invalid grade if they are exactly 77.7777...%

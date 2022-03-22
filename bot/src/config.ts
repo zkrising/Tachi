@@ -1,5 +1,5 @@
-import { config } from "dotenv";
 import fs from "fs";
+import { config } from "dotenv";
 import JSON5 from "json5";
 import p from "prudence";
 // @ts-expect-error No types available...

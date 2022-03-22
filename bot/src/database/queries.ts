@@ -1,7 +1,7 @@
-import { DiscordUserMapDocument, QuoteDocument } from "./documents";
+import { integer } from "tachi-common";
 import { CreateLayeredLogger } from "../utils/logger";
 import { LoggerLayers } from "../data/data";
-import { integer } from "tachi-common";
+import { DiscordUserMapDocument, QuoteDocument } from "./documents";
 import db from "./mongo";
 
 const logger = CreateLayeredLogger(LoggerLayers.databaseQuery);

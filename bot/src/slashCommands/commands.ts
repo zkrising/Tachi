@@ -1,11 +1,12 @@
 import { ServerConfig } from "../config";
+import chart from "./commands/chart";
 import faq from "./commands/faq";
+import folder from "./commands/folder";
 import ping from "./commands/ping";
 import profile from "./commands/profile";
 import quote from "./commands/quote";
 import sync from "./commands/sync";
 import whois from "./commands/whois";
-import chart from "./commands/chart";
 import { SlashCommand } from "./types";
 
 export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
@@ -16,6 +17,7 @@ export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
 		whois,
 		profile,
 		chart,
+		folder,
 	})
 );
 

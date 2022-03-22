@@ -3,7 +3,11 @@ import { Game, Playtype } from "tachi-common";
 import { LoggerLayers } from "../data/data";
 import { DiscordUserMapDocument } from "../database/documents";
 import { GetUserInfo } from "../utils/apiRequests";
-import { CreateChartScoresEmbed } from "../utils/embeds";
+import {
+	CreateChartScoresEmbed,
+	CreateFolderStatsEmbed,
+	CreateFolderTimelineEmbed,
+} from "../utils/embeds";
 import { CreateLayeredLogger } from "../utils/logger";
 
 const logger = CreateLayeredLogger(LoggerLayers.slashCommands);
@@ -28,7 +32,7 @@ export async function handleIsSelectMenu(
 			});
 		}
 
-		if (interaction.customId.startsWith("chart-select")) {
+		if (interaction.customId.startsWith("chart!")) {
 			// horrendous hackery, but we only have 100 chars to store selector metadata.
 			const [, game, playtype, userID] = interaction.customId.match(
 				/!(.*):(.*):(.*)$/u
@@ -41,6 +45,40 @@ export async function handleIsSelectMenu(
 				game,
 				playtype,
 				interaction.values[0]
+			);
+
+			await interaction.update({ embeds: [embed] });
+		} else if (interaction.customId.startsWith("folder!")) {
+			const [, game, playtype, username] = interaction.customId.match(
+				/!(.*):(.*):(.*)$/u
+			) as unknown as [string, Game, Playtype, string];
+
+			const embed = await CreateFolderStatsEmbed(
+				game,
+				playtype,
+				username,
+				interaction.values[0]
+			);
+
+			await interaction.update({ embeds: [embed] });
+		} else if (interaction.customId.startsWith("ftl!")) {
+			const [, game, playtype, username, formatMethod, rawTarget] =
+				interaction.customId.match(/!(.*):(.*):(.*):(.*):(.*)$/u) as unknown as [
+					string,
+					Game,
+					Playtype,
+					string,
+					"recent" | "first",
+					string
+				];
+
+			const embed = await CreateFolderTimelineEmbed(
+				game,
+				playtype,
+				username,
+				interaction.values[0],
+				formatMethod,
+				rawTarget
 			);
 
 			await interaction.update({ embeds: [embed] });

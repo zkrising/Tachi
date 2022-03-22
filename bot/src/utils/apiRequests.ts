@@ -1,17 +1,17 @@
 import { CommandInteraction } from "discord.js";
 import {
+	ChartDocument,
+	FolderDocument,
 	Game,
 	GoalDocument,
 	ImportDocument,
+	integer,
+	PBScoreDocument,
 	Playtype,
 	PublicUserDocument,
-	integer,
-	ChartDocument,
 	SongDocument,
-	PBScoreDocument,
 } from "tachi-common";
 import { LoggerLayers } from "../data/data";
-import db from "../database/mongo";
 import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "./fetchTachi";
 import { CreateLayeredLogger } from "./logger";
 import { Sleep } from "./misc";
@@ -146,4 +146,20 @@ export async function PerformScoreImport(
 	logger.error(`Unexpected status code ${initRes.statusCode} returned from ${url}.`, { body });
 
 	throw new Error(`Unexpected status code ${initRes.statusCode} returned from ${url}.`);
+}
+
+export async function FindFolders(game: Game, playtype: Playtype, folderName: string) {
+	const res = await TachiServerV1Get<FolderDocument[]>(
+		`/games/${game}/${playtype}/folders`,
+		null,
+		{
+			search: folderName,
+		}
+	);
+
+	if (!res.success) {
+		throw new Error(res.description);
+	}
+
+	return res.body;
 }

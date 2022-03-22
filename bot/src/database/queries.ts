@@ -1,6 +1,6 @@
 import { integer } from "tachi-common";
-import { CreateLayeredLogger } from "../utils/logger";
 import { LoggerLayers } from "../data/data";
+import { CreateLayeredLogger } from "../utils/logger";
 import { DiscordUserMapDocument, QuoteDocument } from "./documents";
 import db from "./mongo";
 

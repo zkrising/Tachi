@@ -1,4 +1,4 @@
-import { WebhookEventClassUpdateV1, integer } from "tachi-common";
+import { integer, WebhookEventClassUpdateV1 } from "tachi-common";
 import { client } from "../main";
 import { GetUserInfo } from "../utils/apiRequests";
 import { CreateEmbed } from "../utils/embeds";

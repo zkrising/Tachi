@@ -1,15 +1,19 @@
 import {
 	APIPermissions,
+	ChartDocument,
+	FolderDocument,
 	Game,
+	Grades,
 	IDStrings,
+	IDStringToGame,
 	ImportDocument,
 	ImportTypes,
+	integer,
+	Lamps,
 	ScoreDocument,
+	SongDocument,
 	UGSRatingsLookup,
 	UserGameStats,
-	integer,
-	ChartDocument,
-	SongDocument,
 } from "tachi-common";
 
 export interface ServerConfig {
@@ -56,4 +60,18 @@ export interface UGPTStats<I extends IDStrings = IDStrings> {
 export interface ChartQueryReturns {
 	charts: (ChartDocument & { __playcount: integer })[];
 	songs: SongDocument[];
+}
+
+export interface UGPTFolderStat<I extends IDStrings = IDStrings> {
+	folderID: string;
+	grades: Record<Grades[I], integer>;
+	lamps: Record<Lamps[I], integer>;
+	chartCount: integer;
+}
+
+export interface UGPTFolderTimeline<I extends IDStrings = IDStrings> {
+	songs: SongDocument<IDStringToGame[I]>[];
+	charts: ChartDocument<I>[];
+	scores: ScoreDocument<I>[];
+	folder: FolderDocument;
 }

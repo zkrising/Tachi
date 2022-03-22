@@ -2,6 +2,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { ServerConfig } from "../../config";
 import { TachiServerV1Get } from "../../utils/fetchTachi";
 import { ServerStatus } from "../../utils/returnTypes";
+import { VERSION_PRETTY } from "../../version";
 import { SlashCommand } from "../types";
 
 const command: SlashCommand = {
@@ -19,7 +20,8 @@ const command: SlashCommand = {
 			return `Failed to reach ${ServerConfig.name}. (${serverStatus.description})`;
 		}
 
-		return `Pong! ${ServerConfig.name} is up, and running ${serverStatus.body.version}.`;
+		return `Pong! We're live, and runnig ${VERSION_PRETTY}.
+${ServerConfig.name} is up, and running ${serverStatus.body.version}.`;
 	},
 };
 

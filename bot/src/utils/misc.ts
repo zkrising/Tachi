@@ -1,5 +1,6 @@
 import { Client } from "discord.js";
 import humaniseDuration from "humanize-duration";
+import _ from "lodash";
 import { DateTime } from "luxon";
 import {
 	ChartDocument,
@@ -318,4 +319,17 @@ export function FormatChartTierlistInfo(game: Game, chart: ChartDocument) {
 	}
 
 	return fmts.join("\n");
+}
+
+export function ConvertInputIntoGenerousRegex(input: string) {
+	const inputSafeRegex = _.escapeRegExp(input);
+
+	// for any non-ascii input, replace them with a ".?", representing maybe. This
+	// is so users can say things like "Re Master" or "Remaster" for "Re:Master".
+	// It also generally gives lenience.
+	// We match based on what the string starts with case-insensitively.
+	// "A" will match "ANOTHER", but not "NORMAL".
+	const regex = new RegExp(`^${inputSafeRegex.replace(/[^a-zA-Z]/gu, ".?")}`, "iu");
+
+	return regex;
 }

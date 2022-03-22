@@ -91,14 +91,14 @@ const command: SlashCommand = {
 
 		const embed = await CreateChartScoresEmbed(userDoc, game, playtype, firstChart.chartID);
 
-		// don't bother with a selector if the user gets it right.
+		// don't bother with showing a selector if the user gets it right.
 		if (chartsRes.body.charts.length === 1) {
 			return { embeds: [embed] };
 		}
 
 		const select = new MessageActionRow().addComponents(
 			new MessageSelectMenu()
-				.setCustomId(`chart-select!${game}:${playtype}:${userDoc.id}`)
+				.setCustomId(`chart!${game}:${playtype}:${userDoc.id}`)
 				.setPlaceholder("Select a different chart.")
 				.addOptions(
 					chartsRes.body.charts.map((chart) => ({

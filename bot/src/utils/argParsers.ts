@@ -1,5 +1,4 @@
 import { CommandInteraction } from "discord.js";
-import _ from "lodash";
 import {
 	Difficulties,
 	Game,
@@ -11,7 +10,7 @@ import {
 import { DiscordUserMapDocument } from "../database/documents";
 import { Emittable } from "../slashCommands/types";
 import { GetUserInfo } from "./apiRequests";
-import { ParseGPT } from "./misc";
+import { ConvertInputIntoGenerousRegex, ParseGPT } from "./misc";
 
 /**
  * Utility parser for getting the game, playtype and requesting user, since this is
@@ -56,14 +55,7 @@ export function ParseDifficulty(
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const inputSafeRegex = _.escapeRegExp(input);
-
-	// for any non-ascii charts, replace them with a ".?", representing maybe. This
-	// is so users can say things like "Re Master" or "Remaster" for "Re:Master".
-	// It also generally gives lenience.
-	// We match based on what the string starts with case-insensitively.
-	// "A" will match "ANOTHER", but not "NORMAL".
-	const regex = new RegExp(`^${inputSafeRegex.replace(/[^a-zA-Z]/gu, ".?")}`, "iu");
+	const regex = ConvertInputIntoGenerousRegex(input);
 
 	for (const diff of gptConfig.difficulties) {
 		if (diff.match(regex)) {
@@ -72,4 +64,27 @@ export function ParseDifficulty(
 	}
 
 	throw new Error(`The difficulty '${input}' was invalid for this game.`);
+}
+
+/**
+ * Converts arbitrary user input into a lamp or grade for this GPT.
+ */
+export function ParseTimelineTarget(game: Game, playtype: Playtype, input: string) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	const regex = ConvertInputIntoGenerousRegex(input);
+
+	for (const [index, grade] of Object.entries(gptConfig.grades)) {
+		if (grade.match(regex)) {
+			return { type: "grade", value: Number(index) };
+		}
+	}
+
+	for (const [index, lamp] of Object.entries(gptConfig.lamps)) {
+		if (lamp.match(regex)) {
+			return { type: "lamp", value: Number(index) };
+		}
+	}
+
+	throw new Error(`The target '${input}' was invalid for this game.`);
 }

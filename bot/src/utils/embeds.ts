@@ -1,16 +1,22 @@
-import { MessageEmbed } from "discord.js";
+import { EmbedFieldData, MessageEmbed, Util } from "discord.js";
 import {
+	ChartDocument,
+	FolderDocument,
 	FormatChart,
 	FormatGame,
 	Game,
 	GetGamePTConfig,
 	ImportDocument,
+	integer,
 	Playtype,
 	PublicUserDocument,
+	ScoreDocument,
+	SongDocument,
 } from "tachi-common";
 import { BotConfig, ServerConfig } from "../config";
 import { GetChartInfoForUser } from "./apiRequests";
-import { PrependTachiUrl } from "./fetchTachi";
+import { ParseTimelineTarget } from "./argParsers";
+import { PrependTachiUrl, TachiServerV1Get } from "./fetchTachi";
 import {
 	CreateChartLink,
 	Entries,
@@ -24,7 +30,7 @@ import {
 	Pluralise,
 	UppercaseFirst,
 } from "./misc";
-import { UGPTStats } from "./returnTypes";
+import { UGPTFolderStat, UGPTFolderTimeline, UGPTStats } from "./returnTypes";
 
 export function CreateEmbed() {
 	return new MessageEmbed()
@@ -170,4 +176,137 @@ export async function CreateChartScoresEmbed(
 	}
 
 	return embed;
+}
+
+export async function CreateFolderStatsEmbed(
+	game: Game,
+	playtype: Playtype,
+	username: string,
+	folderID: string
+) {
+	const statsRes = await TachiServerV1Get<{ folder: FolderDocument; stats: UGPTFolderStat }>(
+		`/users/${username}/games/${game}/${playtype}/folders/${folderID}/stats`,
+		null
+	);
+
+	if (!statsRes.success) {
+		throw new Error(`Failed to fetch stats on ${folderID} for ${username}.`);
+	}
+
+	const { folder, stats } = statsRes.body;
+
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	return CreateEmbed()
+		.setTitle(`${username}: ${folder.title}`)
+		.setURL(
+			`${BotConfig.TACHI_SERVER_LOCATION}/dashboard/users/${username}/games/${game}/${playtype}/folders/${folderID}`
+		)
+		.addField(
+			"Lamp Distribution",
+			gptConfig.lamps
+				.slice()
+				.reverse()
+				.map((l) => `${l}: ${stats.lamps[l] ?? 0}`)
+				.join("\n"),
+			true
+		)
+		.addField(
+			"Grade Distribution",
+			gptConfig.grades
+				.slice()
+				.reverse()
+				.map((g) => `${g}: ${stats.grades[g] ?? 0}`)
+				.join("\n"),
+			true
+		)
+
+		.addField("Total Charts", stats.chartCount.toString());
+}
+
+export async function CreateFolderTimelineEmbed(
+	game: Game,
+	playtype: Playtype,
+	username: string,
+	folderID: string,
+	formatMethod: "recent" | "first",
+	rawTarget: string
+) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	const { type, value } = ParseTimelineTarget(game, playtype, rawTarget);
+
+	const prettyValue = gptConfig[type === "grade" ? "grades" : "lamps"][value];
+
+	const timelineRes = await TachiServerV1Get<UGPTFolderTimeline>(
+		`/users/${username}/games/${game}/${playtype}/folders/${folderID}/timeline`,
+		null,
+		{
+			criteriaType: type,
+			criteriaValue: value.toString(),
+		}
+	);
+
+	if (!timelineRes.success) {
+		throw new Error(
+			`Failed to retrieve timeline info for ${username} on folderID: ${folderID}.`
+		);
+	}
+
+	const { folder, songs, charts, scores } = timelineRes.body;
+
+	const songMap = new Map<integer, SongDocument>();
+	const chartMap = new Map<string, ChartDocument>();
+	const scoreMap = new Map<string, ScoreDocument>();
+
+	for (const song of songs) {
+		songMap.set(song.id, song);
+	}
+
+	for (const chart of charts) {
+		chartMap.set(chart.chartID, chart);
+	}
+
+	for (const score of scores) {
+		scoreMap.set(score.scoreID, score);
+	}
+
+	let fields: EmbedFieldData[] = [];
+
+	fields = scores
+		.filter((e) => e.timeAchieved !== null)
+		.sort((a, b) =>
+			formatMethod === "first"
+				? a.timeAchieved! - b.timeAchieved!
+				: b.timeAchieved! - a.timeAchieved!
+		)
+		.slice(0, 5)
+		.map((sc) => {
+			const { scoreStr, lampStr } = FormatScoreData(sc);
+
+			return {
+				name: Util.escapeMarkdown(
+					FormatChart(game, songMap.get(sc.songID)!, chartMap.get(sc.chartID)!)
+				),
+				value: `${scoreStr}
+${lampStr}
+${FormatDate(sc.timeAchieved!)} (${MillisToSince(sc.timeAchieved!)})`,
+			};
+		});
+
+	const embed = CreateEmbed()
+		.setTitle(
+			`${username}: ${folder.title} (${
+				formatMethod === "first" ? "First" : "Most Recent"
+			} ${prettyValue}s)`
+		)
+		.setURL(
+			`${BotConfig.TACHI_SERVER_LOCATION}/dashboard/users/${username}/games/${game}/${playtype}/folders/${folderID}`
+		);
+
+	if (fields.length === 0) {
+		return embed.addField("N/A", "This user has never achieved this target in this folder.");
+	}
+
+	return embed.addFields(fields);
 }

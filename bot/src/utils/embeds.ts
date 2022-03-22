@@ -16,7 +16,9 @@ import {
 	Entries,
 	FormatDate,
 	FormatProfileRating,
+	FormatScoreData,
 	FormatScoreRating,
+	GetChartPertinentInfo,
 	MillisToSince,
 	Pluralise,
 	UppercaseFirst,
@@ -124,17 +126,15 @@ export async function CreateChartScoresEmbed(
 		.setURL(CreateChartLink(chart, game));
 
 	if (pb === null) {
-		embed.setDescription("You have not played this chart.");
+		embed.setDescription(`${userDoc.username} has not played this chart.`);
 	} else {
+		const { scoreStr, lampStr } = FormatScoreData(pb);
+
+		const pertinentInfo = GetChartPertinentInfo(game, chart);
+
 		embed
-			.addField(
-				"Score",
-				`${pb.scoreData.score} (${pb.scoreData.grade}, ${pb.scoreData.percent.toFixed(
-					2
-				)}%)`,
-				true
-			)
-			.addField("Lamp", pb.scoreData.lamp, true)
+			.addField("Score", scoreStr, true)
+			.addField("Lamp", lampStr, true)
 			.addField(
 				"Ratings",
 				Entries(pb.calculatedData)
@@ -157,6 +157,10 @@ export async function CreateChartScoresEmbed(
 				true
 			)
 			.addField("Ranking", `#**${pb.rankingData.rank}**/${pb.rankingData.outOf}`);
+
+		if (pertinentInfo) {
+			embed.addField("Related", pertinentInfo);
+		}
 	}
 
 	return embed;

@@ -2,15 +2,20 @@ import { Client } from "discord.js";
 import humaniseDuration from "humanize-duration";
 import { DateTime } from "luxon";
 import {
+	ChartDocument,
 	Game,
+	GenericFormatGradeDelta,
 	GetGameConfig,
 	GetGamePTConfig,
+	Grades,
 	IDStrings,
-	Playtype,
-	UGSRatingsLookup,
 	integer,
-	ChartDocument,
+	PBScoreDocument,
+	Playtype,
+	Playtypes,
 	ScoreCalculatedDataLookup,
+	ScoreDocument,
+	UGSRatingsLookup,
 } from "tachi-common";
 import { GameClassSets } from "tachi-common/js/game-classes";
 import { BotConfig } from "../config";
@@ -186,4 +191,104 @@ export function CreateChartLink(chart: ChartDocument, game: Game) {
 	}
 
 	return `${BotConfig.TACHI_SERVER_LOCATION}/dashboard/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
+}
+
+type ScOrPBDoc<I extends IDStrings> = ScoreDocument<I> | PBScoreDocument<I>;
+
+export function FormatScoreData<I extends IDStrings = IDStrings>(score: ScOrPBDoc<I>) {
+	const game = score.game;
+
+	let lampStr: string = score.scoreData.lamp;
+	let scoreStr = `${score.scoreData.score.toLocaleString()} (${
+		score.scoreData.grade
+	}, ${score.scoreData.percent.toFixed(2)}%)`;
+
+	if (game === "iidx" || game === "bms" || game === "pms") {
+		const bp = (
+			score as ScOrPBDoc<
+				"iidx:SP" | "iidx:DP" | "pms:Controller" | "pms:Keyboard" | "bms:14K" | "bms:7K"
+			>
+		).scoreData.hitMeta.bp;
+
+		lampStr = `${score.scoreData.lamp} (BP: ${bp ?? "No Data"})`;
+
+		const { lower, upper, closer } = GenericFormatGradeDelta(
+			game,
+			score.playtype,
+			score.scoreData.score,
+			score.scoreData.percent,
+			score.scoreData.grade
+		);
+
+		scoreStr = `${closer === "lower" ? lower : upper} (${
+			score.scoreData.score
+		}, ${score.scoreData.percent.toFixed(2)}%)`;
+	}
+
+	return { lampStr, scoreStr };
+}
+
+/**
+ * Util for getting a games' grade for a given percent.
+ */
+export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
+	game: Game,
+	playtype: Playtype,
+	percent: number
+): Grades[I] {
+	const gptConfig = GetGamePTConfig(game, playtype);
+	const boundaries = gptConfig.gradeBoundaries;
+	const grades = gptConfig.grades;
+
+	if (!boundaries) {
+		throw new Error(
+			`Invalid call to GetGradeFromPercent! GPT ${game}:${playtype} does not use grade boundaries.`
+		);
+	}
+
+	// (hey, this for loop is backwards!)
+	for (let i = boundaries.length; i >= 0; i--) {
+		if (percent + Number.EPSILON >= boundaries[i]) {
+			return grades[i] as Grades[I];
+		}
+	}
+
+	throw new Error(`Couldn't find grade for ${game}:${playtype} (${percent}%)`);
+}
+
+export function FormatIIDXEXScore(
+	exscore: integer,
+	notecount: integer,
+	playtype: Playtypes["iidx"]
+) {
+	const percent = (exscore * 100) / (notecount * 2);
+
+	const { closer, upper, lower } = GenericFormatGradeDelta(
+		"iidx",
+		playtype,
+		exscore,
+		percent,
+		GetGradeFromPercent("iidx", playtype, percent)
+	);
+
+	return `${closer === "lower" ? lower : upper} (${exscore}, ${percent.toFixed(2)}%)`;
+}
+
+export function GetChartPertinentInfo<I extends IDStrings>(game: Game, chart: ChartDocument<I>) {
+	if (game === "iidx") {
+		const ch = chart as ChartDocument<"iidx:DP" | "iidx:SP">;
+
+		if (!ch.data.kaidenAverage || !ch.data.worldRecord) {
+			return null;
+		}
+
+		return `皆伝 Average: ${FormatIIDXEXScore(
+			ch.data.kaidenAverage,
+			ch.data.notecount,
+			ch.playtype
+		)}
+e-amusement WR: ${FormatIIDXEXScore(ch.data.worldRecord, ch.data.notecount, ch.playtype)}`;
+	}
+
+	return null;
 }

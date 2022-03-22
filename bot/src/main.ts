@@ -1,5 +1,5 @@
 import { Client, CommandInteraction, Intents, SelectMenuInteraction } from "discord.js";
-import { BotConfig, ServerConfig } from "./config";
+import { BotConfig, ProcessEnv, ServerConfig } from "./config";
 import { LoggerLayers, METALLIC_MIND_SPLASHES } from "./data/data";
 import { GetUserAndTokenForDiscordID } from "./database/queries";
 import { handleIsCommand } from "./interactionHandlers/handleIsCommand";
@@ -74,7 +74,7 @@ We've sent you a DM with instructions on how to link your account.`
 		logger.info(`Logged in successfully to ${client.guilds.cache.size} guilds.`);
 
 		// Mount our express server.
-		app.listen(BotConfig.HTTP_SERVER.PORT);
+		app.listen(ProcessEnv.port);
 
 		logger.info(
 			`Invite URL: https://discord.com/api/oauth2/authorize?client_id=${

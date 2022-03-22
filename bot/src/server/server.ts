@@ -1,7 +1,7 @@
 import path from "path";
 import express, { Express } from "express";
 import { APITokenDocument, PublicUserDocument, WebhookEvents } from "tachi-common";
-import { BotConfig } from "../config";
+import { BotConfig, ProcessEnv } from "../config";
 import { LoggerLayers } from "../data/data";
 import db from "../database/mongo";
 import { TachiServerV1Request, RequestTypes, TachiServerV1Get } from "../utils/fetchTachi";
@@ -214,4 +214,4 @@ const MainExpressErrorHandler: express.ErrorRequestHandler = (err, req, res, _ne
 
 app.use(MainExpressErrorHandler);
 
-logger.info(`Starting express server on port ${BotConfig.HTTP_SERVER.PORT}.`);
+logger.info(`Starting express server on port ${ProcessEnv.port}.`);

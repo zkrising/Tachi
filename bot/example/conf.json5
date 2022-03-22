@@ -5,7 +5,6 @@
 	TACHI_SERVER_LOCATION: "https://tachi.example.com",
 	HTTP_SERVER: {
 		URL: "https://tachi-bot.example.com",
-		PORT: 8000,
 	},
 	OAUTH: {
 		CLIENT_SECRET: "CSfoobar",

@@ -23,7 +23,6 @@ export interface BotConfig {
 	TACHI_SERVER_LOCATION: string;
 	HTTP_SERVER: {
 		URL: string;
-		PORT: integer;
 	};
 	OAUTH: {
 		CLIENT_SECRET: string;
@@ -53,7 +52,6 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 		TACHI_SERVER_LOCATION: "string",
 		HTTP_SERVER: {
 			URL: "string",
-			PORT: p.isPositiveNonZeroInteger,
 		},
 		OAUTH: {
 			CLIENT_SECRET: "string",
@@ -95,6 +93,7 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 export interface ProcessEnvironment {
 	nodeEnv: "production" | "dev" | "staging" | "test";
 	mongoUrl: string;
+	port: integer;
 }
 
 function ParseEnvVars() {
@@ -107,6 +106,9 @@ function ParseEnvVars() {
 				p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit")
 			),
 			MONGO_URL: "string",
+			PORT: (self) =>
+				p.isPositiveInteger(Number(self)) ||
+				"Should be a string representing a whole integer port.",
 		},
 		{},
 		{ allowExcessKeys: true }
@@ -121,6 +123,7 @@ function ParseEnvVars() {
 	return {
 		nodeEnv: process.env.NODE_ENV,
 		mongoUrl: process.env.MONGO_URL,
+		port: Number(process.env.PORT),
 	} as ProcessEnvironment;
 }
 

@@ -19,6 +19,9 @@ Read more about this [here](https://tachi.readthedocs.io/en/latest/user/pbs-scor
 	filter_directives: `Filter Directives are a fancy way of *filtering* rows inside a table.
 They provide an advanced toolkit for users to perform complex queries on their data.
 Read more about them [here](https://tachi.readthedocs.io/en/latest/user/filter-directives/)`,
+	dans: `Dans are good as a milestone for your skill. However, focusing too much on dans can be massively detrimental to your skill as a player.\n
+Playing a fixed set of charts all the time will not expose you to more things, and will generally slow down your improvement as a player. Furthermore, they're stressful, and designed to be played *just* at the cusp of what you can play.\n
+In short. Don't play dans too much.`,
 };
 
 // Server specific FAQ stuff.

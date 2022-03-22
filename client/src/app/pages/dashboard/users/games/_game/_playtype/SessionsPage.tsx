@@ -1,3 +1,5 @@
+import { APIFetchV1 } from "util/api";
+import { NumericSOV } from "util/sorts";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import GenericSessionTable, {
 	SessionDataset,
@@ -17,8 +19,6 @@ import {
 	UnsuccessfulAPIResponse,
 } from "tachi-common";
 import { GamePT } from "types/react";
-import { APIFetchV1 } from "util/api";
-import { NumericSOV } from "util/sorts";
 
 export default function SessionsPage({
 	reqUser,

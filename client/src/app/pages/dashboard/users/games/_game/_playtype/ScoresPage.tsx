@@ -1,3 +1,4 @@
+import { APIFetchV1 } from "util/api";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import PBTable from "components/tables/pbs/PBTable";
 import ScoreTable from "components/tables/scores/ScoreTable";
@@ -26,7 +27,6 @@ import {
 	UnsuccessfulAPIResponse,
 } from "tachi-common";
 import { GamePT, SetState } from "types/react";
-import { APIFetchV1 } from "util/api";
 
 export default function ScoresPage({
 	reqUser,

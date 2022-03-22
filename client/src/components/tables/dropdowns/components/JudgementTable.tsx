@@ -1,8 +1,8 @@
+import { ChangeOpacity } from "util/color-opacity";
 import MiniTable from "components/tables/components/MiniTable";
 import React from "react";
 import { COLOUR_SET, GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { GamePT } from "types/react";
-import { ChangeOpacity } from "util/color-opacity";
 
 export default function JudgementTable({ score }: { score: ScoreDocument | PBScoreDocument }) {
 	const gptConfig = GetGamePTConfig(score.game, score.playtype);

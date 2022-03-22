@@ -1,3 +1,4 @@
+import { UppercaseFirst } from "util/misc";
 import React from "react";
 import {
 	Game,
@@ -7,7 +8,6 @@ import {
 	ScoreCalculatedDataLookup,
 } from "tachi-common";
 import { SetState } from "types/react";
-import { UppercaseFirst } from "util/misc";
 import { ZTableTHProps } from "./TachiTable";
 
 // type AllRatings<I extends IDStrings> =

@@ -1,9 +1,9 @@
+import { APIFetchV1 } from "util/api";
+import { ShortDelayify } from "util/misc";
 import CenterPage from "components/util/CenterPage";
 import MainPageTitleContainer from "components/util/MainPageTitleContainer";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { APIFetchV1 } from "util/api";
-import { ShortDelayify } from "util/misc";
 import { ErrorPage } from "./ErrorPage";
 
 export default function ResetPasswordPage() {

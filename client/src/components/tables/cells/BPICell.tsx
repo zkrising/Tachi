@@ -1,3 +1,4 @@
+import { GetGradeFromPercent, IsNullish } from "util/misc";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Divider from "components/util/Divider";
 import Muted from "components/util/Muted";
@@ -6,7 +7,6 @@ import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { PoyashiBPI } from "rg-stats";
 import { ChartDocument, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { GetGradeFromPercent, IsNullish } from "util/misc";
 import MiniTable from "../components/MiniTable";
 import DeltaCell from "./DeltaCell";
 import ScoreCell from "./ScoreCell";

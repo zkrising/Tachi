@@ -1,3 +1,6 @@
+import { CreateChartMap, CreateSongMap, CreateUserMap } from "util/data";
+import { UppercaseFirst } from "util/misc";
+import { NumericSOV, StrSOV } from "util/sorts";
 import ClassBadge from "components/game/ClassBadge";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import IndexCell from "components/tables/cells/IndexCell";
@@ -19,9 +22,6 @@ import { FormatGame, GetGameConfig, GetGamePTConfig } from "tachi-common";
 import { ScoreLeaderboardReturns, UserLeaderboardReturns } from "types/api-returns";
 import { GamePT } from "types/react";
 import { PBDataset, UGSDataset } from "types/tables";
-import { CreateChartMap, CreateSongMap, CreateUserMap } from "util/data";
-import { UppercaseFirst } from "util/misc";
-import { NumericSOV, StrSOV } from "util/sorts";
 
 export default function GPTLeaderboardsPage({ game, playtype }: GamePT) {
 	useSetSubheader(

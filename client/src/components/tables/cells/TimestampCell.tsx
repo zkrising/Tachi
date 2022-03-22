@@ -1,6 +1,6 @@
+import { FormatTime, MillisToSince } from "util/time";
 import React from "react";
 import { integer } from "tachi-common";
-import { FormatTime, MillisToSince } from "util/time";
 
 export default function TimestampCell({
 	time,

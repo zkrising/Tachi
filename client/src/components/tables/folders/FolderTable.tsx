@@ -1,10 +1,10 @@
+import { NumericSOV, StrSOV } from "util/sorts";
+import { CreateDefaultFolderSearchParams } from "util/tables/create-search";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
 import { Game, IDStrings, ScoreCalculatedDataLookup } from "tachi-common";
 import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
-import { NumericSOV, StrSOV } from "util/sorts";
-import { CreateDefaultFolderSearchParams } from "util/tables/create-search";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
 import RankingCell from "../cells/RankingCell";

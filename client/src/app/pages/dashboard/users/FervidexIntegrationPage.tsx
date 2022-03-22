@@ -1,3 +1,4 @@
+import { APIFetchV1 } from "util/api";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
@@ -6,7 +7,6 @@ import React, { useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FervidexSettingsDocument, PublicUserDocument } from "tachi-common";
-import { APIFetchV1 } from "util/api";
 
 export default function FervidexIntegrationPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	const { data: settings, isLoading, error } = useApiQuery<FervidexSettingsDocument | null>(

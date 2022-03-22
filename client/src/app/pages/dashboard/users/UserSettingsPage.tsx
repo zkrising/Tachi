@@ -1,3 +1,5 @@
+import { APIFetchV1, ToAPIURL } from "util/api";
+import { DelayedPageReload, FetchJSONBody, UppercaseFirst } from "util/misc";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import ProfilePicture from "components/user/ProfilePicture";
@@ -11,8 +13,6 @@ import { TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import { PublicUserDocument, UserSettings } from "tachi-common";
-import { APIFetchV1, ToAPIURL } from "util/api";
-import { DelayedPageReload, FetchJSONBody, UppercaseFirst } from "util/misc";
 
 interface Props {
 	reqUser: PublicUserDocument;

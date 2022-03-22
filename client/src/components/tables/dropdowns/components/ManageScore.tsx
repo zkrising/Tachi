@@ -1,7 +1,7 @@
-import React, { useMemo, useReducer, useState } from "react";
-import { ScoreDocument } from "tachi-common";
 import { APIFetchV1 } from "util/api";
 import { DelayedPageReload } from "util/misc";
+import React, { useMemo, useReducer, useState } from "react";
+import { ScoreDocument } from "tachi-common";
 
 export default function ManageScore({ score }: { score: ScoreDocument }) {
 	const [warn, upgWarn] = useReducer(r => r + 1, 0);

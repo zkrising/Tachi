@@ -1,7 +1,7 @@
+import { APIFetchV1 } from "util/api";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { UserSettings } from "tachi-common";
 import { JustChildren, SetState } from "types/react";
-import { APIFetchV1 } from "util/api";
 import { UserContext } from "./UserContext";
 
 /**

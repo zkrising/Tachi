@@ -1,3 +1,5 @@
+import { IsScore } from "util/asserts";
+import { UppercaseFirst } from "util/misc";
 import TimestampCell from "components/tables/cells/TimestampCell";
 import ScoreCoreCells from "components/tables/game-core-cells/ScoreCoreCells";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
@@ -5,8 +7,6 @@ import React, { useEffect, useState } from "react";
 import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
 import { SetState } from "types/react";
-import { IsScore } from "util/asserts";
-import { UppercaseFirst } from "util/misc";
 import CommentContainer from "./CommentContainer";
 import JudgementTable from "./JudgementTable";
 import PBNote from "./PBNote";

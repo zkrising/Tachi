@@ -1,3 +1,8 @@
+import { APIFetchV1, ToCDNURL } from "util/api";
+import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
+import { ChangeOpacity } from "util/color-opacity";
+import { CreateChartLink } from "util/data";
+import { NumericSOV } from "util/sorts";
 import PlaytypeSelect from "app/pages/dashboard/games/_game/PlaytypeSelect";
 import GPTChartPage from "app/pages/dashboard/games/_game/_playtype/GPTChartPage";
 import GPTDevInfo from "app/pages/dashboard/games/_game/_playtype/GPTDevInfo";
@@ -35,11 +40,6 @@ import {
 } from "tachi-common";
 import { SongsReturn } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
-import { APIFetchV1, ToCDNURL } from "util/api";
-import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
-import { ChangeOpacity } from "util/color-opacity";
-import { CreateChartLink } from "util/data";
-import { NumericSOV } from "util/sorts";
 
 export default function GameRoutes() {
 	const { game } = useParams<{ game: string }>();

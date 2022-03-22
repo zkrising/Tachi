@@ -1,9 +1,9 @@
 /* eslint-disable no-await-in-loop */
+import { APIFetchV1 } from "util/api";
+import { Sleep } from "util/misc";
 import { useState } from "react";
 import { ImportDocument, integer } from "tachi-common";
 import { ImportStates, NotStartedState } from "types/import";
-import { APIFetchV1 } from "util/api";
-import { Sleep } from "util/misc";
 
 export interface ImportDeferred {
 	url: string;

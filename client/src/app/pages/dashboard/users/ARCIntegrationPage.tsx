@@ -1,3 +1,4 @@
+import { APIFetchV1 } from "util/api";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
@@ -8,7 +9,6 @@ import { Button, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ARCSavedProfileDocument, PublicUserDocument } from "tachi-common";
 import { SetState } from "types/react";
-import { APIFetchV1 } from "util/api";
 
 export default function ARCIntegrationPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	const [iidxID, setIIDXID] = useState("");

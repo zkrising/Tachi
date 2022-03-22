@@ -1,3 +1,7 @@
+import { APIFetchV1 } from "util/api";
+import { RFA } from "util/misc";
+import { NumericSOV } from "util/sorts";
+import { heySplashes } from "util/splashes";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import SessionCard from "components/sessions/SessionCard";
 import ApiError from "components/util/ApiError";
@@ -15,10 +19,6 @@ import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { GetGameConfig, PublicUserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
-import { APIFetchV1 } from "util/api";
-import { RFA } from "util/misc";
-import { NumericSOV } from "util/sorts";
-import { heySplashes } from "util/splashes";
 import { GameStatContainer } from "./users/UserGamesPage";
 
 export function DashboardPage() {

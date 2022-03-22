@@ -1,3 +1,7 @@
+import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
+import { CreateUserMap } from "util/data";
+import { SelectRightChart } from "util/misc";
+import { MillisToSince } from "util/time";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import LampCell from "components/tables/cells/LampCell";
@@ -28,10 +32,6 @@ import {
 import { ChartPBLeaderboardReturn, UGPTChartLeaderboardAdjacent } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import { PBDataset } from "types/tables";
-import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
-import { CreateUserMap } from "util/data";
-import { SelectRightChart } from "util/misc";
-import { MillisToSince } from "util/time";
 
 // This component forms a wrapper around the Real GPT Chart Page
 // which handles the case where activeChart == null.

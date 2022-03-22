@@ -1,3 +1,4 @@
+import { ToCDNURL } from "util/api";
 import { Footer } from "components/layout/footer/Footer";
 import { Header } from "components/layout/header/Header";
 import { HeaderMobile } from "components/layout/header/HeaderMobile";
@@ -5,7 +6,6 @@ import Divider from "components/util/Divider";
 import LinkButton from "components/util/LinkButton";
 import { TachiConfig } from "lib/config";
 import React from "react";
-import { ToCDNURL } from "util/api";
 
 // This page is currently unused,
 // It's alright, but hey, we could do more.

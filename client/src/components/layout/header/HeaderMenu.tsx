@@ -1,3 +1,4 @@
+import { APIFetchV1, ToCDNURL } from "util/api";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import { UserContext } from "context/UserContext";
@@ -7,7 +8,6 @@ import React, { useContext, useLayoutEffect } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { FormatGame, GetGameConfig, UserGameStats } from "tachi-common";
-import { APIFetchV1, ToCDNURL } from "util/api";
 import KTLayoutHeader from "_metronic/_assets/js/layout/base/header";
 import KTLayoutHeaderMenu from "_metronic/_assets/js/layout/base/header-menu";
 import AllGames from "./AllGames";

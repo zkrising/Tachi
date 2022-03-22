@@ -1,8 +1,8 @@
+import { ToCDNURL } from "util/api";
+import { HistorySafeGoBack } from "util/misc";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { ToCDNURL } from "util/api";
-import { HistorySafeGoBack } from "util/misc";
 
 export function ErrorPage({
 	statusCode,

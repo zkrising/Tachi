@@ -288,5 +288,5 @@ export function TruncateString(string: string, len = 30) {
 		return string;
 	}
 
-	return `${string.slice(len - 3)}...`;
+	return `${string.substring(0, len - 3)}...`;
 }

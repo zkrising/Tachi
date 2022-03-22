@@ -1,7 +1,7 @@
-import React from "react";
-import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { ChangeOpacity } from "util/color-opacity";
 import { IsNotNullish } from "util/misc";
+import React from "react";
+import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 
 export default function BMSOrPMSLampCell({
 	score,

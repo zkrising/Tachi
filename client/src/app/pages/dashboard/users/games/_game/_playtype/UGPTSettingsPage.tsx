@@ -1,3 +1,4 @@
+import { APIFetchV1 } from "util/api";
 import ClassBadge from "components/game/ClassBadge";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
@@ -27,7 +28,6 @@ import {
 	UGPTSettings,
 } from "tachi-common";
 import { GamePT, SetState } from "types/react";
-import { APIFetchV1 } from "util/api";
 
 type Props = { reqUser: PublicUserDocument } & GamePT;
 

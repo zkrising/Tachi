@@ -1,11 +1,11 @@
+import { NumericSOV } from "util/sorts";
+import { CreateDefaultPBSearchParams } from "util/tables/create-search";
+import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
 import { Game, IDStrings, ScoreCalculatedDataLookup } from "tachi-common";
 import { PBDataset } from "types/tables";
 import { Playtype } from "types/tachi";
-import { NumericSOV } from "util/sorts";
-import { CreateDefaultPBSearchParams } from "util/tables/create-search";
-import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
 import IndexCell from "../cells/IndexCell";
 import RankingCell from "../cells/RankingCell";
 import TimestampCell from "../cells/TimestampCell";

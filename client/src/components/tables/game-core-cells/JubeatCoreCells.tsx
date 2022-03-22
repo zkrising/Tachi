@@ -1,7 +1,7 @@
-import React from "react";
-import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { ChangeOpacity } from "util/color-opacity";
 import { FormatMillions } from "util/misc";
+import React from "react";
+import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import JubeatJudgementCell from "../cells/JubeatJudgementCell";
 import LampCell from "../cells/LampCell";
 import RatingCell from "../cells/RatingCell";

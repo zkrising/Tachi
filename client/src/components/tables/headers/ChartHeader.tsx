@@ -1,8 +1,8 @@
+import { IsNotNullish } from "util/misc";
+import { NumericSOV } from "util/sorts";
 import { ChartDocument, Game } from "tachi-common";
 import { FolderDataset, PBDataset, ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
-import { IsNotNullish } from "util/misc";
-import { NumericSOV } from "util/sorts";
 import { Header } from "../components/TachiTable";
 
 function CascadingTierlistValue(

@@ -1,7 +1,7 @@
+import { StrSOV } from "util/sorts";
 import { Header } from "components/tables/components/TachiTable";
 import IndicatorHeader from "components/tables/headers/IndicatorHeader";
 import { PBDataset } from "types/tables";
-import { StrSOV } from "util/sorts";
 
 type PBHeader = Header<PBDataset[0]>;
 

@@ -1,3 +1,4 @@
+import { APIFetchV1 } from "util/api";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
@@ -6,7 +7,6 @@ import { useQuery } from "react-query";
 import { integer, PublicUserDocument, ShowcaseStatDetails } from "tachi-common";
 import { UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
-import { APIFetchV1 } from "util/api";
 import { StatDisplay } from "./UGPTStatShowcase";
 
 type Props = { reqUser: PublicUserDocument } & GamePT;

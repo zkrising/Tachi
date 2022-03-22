@@ -1,3 +1,5 @@
+import { APIFetchV1 } from "util/api";
+import { CreateChartMap, CreateSongMap } from "util/data";
 import MiniTable from "components/tables/components/MiniTable";
 import TachiTable from "components/tables/components/TachiTable";
 import ScoreTable from "components/tables/scores/ScoreTable";
@@ -24,8 +26,6 @@ import {
 } from "tachi-common";
 import { ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
-import { APIFetchV1 } from "util/api";
-import { CreateChartMap, CreateSongMap } from "util/data";
 
 interface Data {
 	import: ImportDocument;

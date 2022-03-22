@@ -1,5 +1,5 @@
-import { ZTableSearchFn } from "components/util/table/useZTable";
 import { SEARCH_DIRECTIVES } from "util/constants/search-directives";
+import { ZTableSearchFn } from "components/util/table/useZTable";
 
 export interface SearchDirective {
 	key: string;

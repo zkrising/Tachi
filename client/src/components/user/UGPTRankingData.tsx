@@ -1,9 +1,9 @@
+import { UppercaseFirst } from "util/misc";
 import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 import React from "react";
 import { Link } from "react-router-dom";
 import { IDStrings, integer, UGSRatingsLookup } from "tachi-common";
 import { GamePT } from "types/react";
-import { UppercaseFirst } from "util/misc";
 
 export default function RankingData({
 	rankingData,

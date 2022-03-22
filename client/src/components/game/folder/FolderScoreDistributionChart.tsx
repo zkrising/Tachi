@@ -1,15 +1,15 @@
-import { ResponsiveBar } from "@nivo/bar";
-import { BarChartTooltip } from "components/charts/ChartTooltip";
-import React, { useMemo } from "react";
-import { GetGamePTConfig } from "tachi-common";
-import { GamePT } from "types/react";
-import { FolderDataset } from "types/tables";
 import { DEFAULT_BAR_PROPS } from "util/charts";
 import { ChangeOpacity } from "util/color-opacity";
 import { CreateChartIDMap } from "util/data";
 import { ComposeExpFn, ComposeInverseExpFn, CountElements, Reverse } from "util/misc";
 import { GetGradeChartExpScale } from "util/scales";
 import { NumericSOV } from "util/sorts";
+import { ResponsiveBar } from "@nivo/bar";
+import { BarChartTooltip } from "components/charts/ChartTooltip";
+import React, { useMemo } from "react";
+import { GetGamePTConfig } from "tachi-common";
+import { GamePT } from "types/react";
+import { FolderDataset } from "types/tables";
 import FolderDistributionTable from "./FolderDistributionTable";
 
 type Props = {

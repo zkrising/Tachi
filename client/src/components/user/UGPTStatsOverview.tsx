@@ -1,3 +1,4 @@
+import { FormatGPTRating, UppercaseFirst } from "util/misc";
 import ClassBadge from "components/game/ClassBadge";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import MiniTable from "components/tables/components/MiniTable";
@@ -12,7 +13,6 @@ import {
 	UserGameStats,
 } from "tachi-common";
 import { GameClassSets } from "tachi-common/js/game-classes";
-import { FormatGPTRating, UppercaseFirst } from "util/misc";
 
 export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 	const gptConfig = GetGamePTConfig(ugs.game, ugs.playtype);

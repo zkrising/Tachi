@@ -1,3 +1,4 @@
+import { APIFetchV1 } from "util/api";
 import SessionRaiseBreakdown from "components/sessions/SessionRaiseBreakdown";
 import DebugContent from "components/util/DebugContent";
 import HasDevModeOn from "components/util/HasDevModeOn";
@@ -7,7 +8,6 @@ import SelectButton from "components/util/SelectButton";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { SessionReturns } from "types/api-returns";
-import { APIFetchV1 } from "util/api";
 import { SessionDataset } from "../sessions/GenericSessionTable";
 import DropdownStructure from "./components/DropdownStructure";
 

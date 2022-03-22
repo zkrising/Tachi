@@ -1,3 +1,5 @@
+import { APIFetchV1, APIFetchV1Return, ToAPIURL } from "util/api";
+import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
 import PlaytypeSelect from "app/pages/dashboard/games/_game/PlaytypeSelect";
 import AchievablesPage from "app/pages/dashboard/users/games/_game/_playtype/AchievablesPage";
 import FoldersMainPage from "app/pages/dashboard/users/games/_game/_playtype/folders/FoldersMainPage";
@@ -32,8 +34,6 @@ import {
 	UserGameStats,
 } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
-import { APIFetchV1, APIFetchV1Return, ToAPIURL } from "util/api";
-import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
 import ScoresPage from "../pages/dashboard/users/games/_game/_playtype/ScoresPage";
 import UserPage from "../pages/dashboard/users/UserPage";
 

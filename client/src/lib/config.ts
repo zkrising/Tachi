@@ -1,8 +1,7 @@
+import { ToAPIURL } from "util/api";
 import { Game, ImportTypes } from "tachi-common";
-import { allImportTypes, allSupportedGames } from "tachi-common/js/config/static-config";
 // @ts-expect-error No types available...
 import syncFetch from "sync-fetch";
-import { ToAPIURL } from "util/api";
 
 export const mode = process.env.REACT_APP_TCHIC_MODE;
 

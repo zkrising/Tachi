@@ -1,3 +1,5 @@
+import { APIFetchV1 } from "util/api";
+import { Reverse } from "util/misc";
 import DistributionTable from "components/game/folder/FolderDistributionTable";
 import Card from "components/layout/page/Card";
 import DebounceSearch from "components/util/DebounceSearch";
@@ -14,8 +16,6 @@ import React, { useContext, useMemo, useState } from "react";
 import { FolderDocument, GetGamePTConfig, PublicUserDocument } from "tachi-common";
 import { FolderStatsInfo, UGPTFolderSearch } from "types/api-returns";
 import { GamePT } from "types/react";
-import { APIFetchV1 } from "util/api";
-import { Reverse } from "util/misc";
 
 type Props = { reqUser: PublicUserDocument } & GamePT;
 

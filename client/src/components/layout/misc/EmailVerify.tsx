@@ -1,3 +1,5 @@
+import { APIFetchV1 } from "util/api";
+import { ONE_MINUTE } from "util/constants/time";
 import Divider from "components/util/Divider";
 import Muted from "components/util/Muted";
 import { UserContext } from "context/UserContext";
@@ -5,8 +7,6 @@ import React, { useContext, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { SetState } from "types/react";
-import { APIFetchV1 } from "util/api";
-import { ONE_MINUTE } from "util/constants/time";
 import useSetSubheader from "../header/useSetSubheader";
 
 export default function EmailVerify({

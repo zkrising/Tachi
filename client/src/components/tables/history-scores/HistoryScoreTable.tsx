@@ -1,3 +1,4 @@
+import { NumericSOV } from "util/sorts";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
 import {
@@ -10,7 +11,6 @@ import {
 } from "tachi-common";
 import { ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
-import { NumericSOV } from "util/sorts";
 import TimestampCell from "../cells/TimestampCell";
 import TachiTable from "../components/TachiTable";
 import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";

@@ -11,7 +11,10 @@
 		"@typescript-eslint",
 		"import"
 	],
-	"ignorePatterns": ["**/*.js", "react-app-env.d.ts"],
+	"ignorePatterns": [
+		"**/*.js",
+		"react-app-env.d.ts"
+	],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"sourceType": "module",
@@ -49,8 +52,17 @@
 			}
 		],
 		"@typescript-eslint/explicit-function-return-type": "off",
-		"react/no-unescaped-entities": ["error", {"forbid": [">", "}"]}],
+		"react/no-unescaped-entities": [
+			"error",
+			{
+				"forbid": [
+					">",
+					"}"
+				]
+			}
+		],
 		"react/display-name": "off",
+		"import/order": "error",
 		"import/no-unresolved": "off",
 		"import/no-named-as-default": "off",
 		"react/prop-types": "off",

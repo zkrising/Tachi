@@ -1,3 +1,4 @@
+import { ToServerURL } from "util/api";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
@@ -5,7 +6,6 @@ import Muted from "components/util/Muted";
 import { TachiConfig } from "lib/config";
 import React from "react";
 import { Alert } from "react-bootstrap";
-import { ToServerURL } from "util/api";
 
 export default function USCIRPage() {
 	useSetSubheader(["Import Scores", "USC IR"]);

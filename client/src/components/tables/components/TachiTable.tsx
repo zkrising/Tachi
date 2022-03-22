@@ -1,3 +1,5 @@
+import { CopyToClipboard } from "util/misc";
+import { ComposeSearchFunction, ValueGetterOrHybrid } from "util/ztable/search";
 import Icon from "components/util/Icon";
 import SmallText from "components/util/SmallText";
 import { useZTable, ZTableSortFn } from "components/util/table/useZTable";
@@ -6,8 +8,6 @@ import { json2csvAsync } from "json-2-csv";
 import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { integer } from "tachi-common";
-import { CopyToClipboard } from "util/misc";
-import { ComposeSearchFunction, ValueGetterOrHybrid } from "util/ztable/search";
 import FilterDirectivesIndicator from "./FilterDirectivesIndicator";
 import NoDataWrapper from "./NoDataWrapper";
 import PageSelector from "./PageSelector";

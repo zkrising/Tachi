@@ -1,3 +1,5 @@
+import { CreateSongMap } from "util/data";
+import { NumericSOV, StrSOV } from "util/sorts";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import DifficultyCell from "components/tables/cells/DifficultyCell";
 import TitleCell from "components/tables/cells/TitleCell";
@@ -18,8 +20,6 @@ import {
 	SongDocument,
 } from "tachi-common";
 import { GamePT } from "types/react";
-import { CreateSongMap } from "util/data";
-import { NumericSOV, StrSOV } from "util/sorts";
 
 export default function GPTSongsPage({ game, playtype }: GamePT) {
 	useSetSubheader(

@@ -1,3 +1,6 @@
+import { APIFetchV1, ToAPIURL } from "util/api";
+import { RFA } from "util/misc";
+import { heySplashes } from "util/splashes";
 import Divider from "components/util/Divider";
 import DropdownToggleOverride from "components/util/DropdownToggleOverride";
 import Icon from "components/util/Icon";
@@ -8,9 +11,6 @@ import Dropdown from "react-bootstrap/Dropdown";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { PublicUserDocument } from "tachi-common";
-import { APIFetchV1, ToAPIURL } from "util/api";
-import { RFA } from "util/misc";
-import { heySplashes } from "util/splashes";
 
 export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 	const { setUser } = useContext(UserContext);

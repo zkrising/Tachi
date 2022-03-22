@@ -1,5 +1,5 @@
-import React from "react";
 import { ChangeOpacity } from "util/color-opacity";
+import React from "react";
 
 export default function IndicatorsCell({ highlight }: { highlight: boolean }) {
 	return (

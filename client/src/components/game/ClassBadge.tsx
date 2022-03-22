@@ -1,10 +1,10 @@
+import { UppercaseFirst } from "util/misc";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import React from "react";
 import { Badge } from "react-bootstrap";
 import { GetGamePTConfig, IDStrings, integer } from "tachi-common";
 import { GameClassSets } from "tachi-common/js/game-classes";
 import { GamePT } from "types/react";
-import { UppercaseFirst } from "util/misc";
 
 export default function ClassBadge<I extends IDStrings = IDStrings>({
 	game,

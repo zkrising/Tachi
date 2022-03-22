@@ -1,3 +1,4 @@
+import { APIFetchV1 } from "util/api";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import { UserContext } from "context/UserContext";
@@ -5,7 +6,6 @@ import React, { useContext, useState } from "react";
 import { Game, ScoreDocument } from "tachi-common";
 import { Button, Modal, Form } from "react-bootstrap";
 import { SetState } from "types/react";
-import { APIFetchV1 } from "util/api";
 import LinkButton from "components/util/LinkButton";
 import ExternalLink from "components/util/ExternalLink";
 import ImgScoreButton from "./ImgScoreButton";

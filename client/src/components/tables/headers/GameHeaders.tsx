@@ -1,3 +1,5 @@
+import { UppercaseFirst } from "util/misc";
+import { NumericSOV } from "util/sorts";
 import React from "react";
 import {
 	Game,
@@ -10,8 +12,6 @@ import {
 import { SetState } from "types/react";
 import { FolderDataset, PBDataset, ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
-import { UppercaseFirst } from "util/misc";
-import { NumericSOV } from "util/sorts";
 import SelectableRating from "../components/SelectableRating";
 import { Header, ZTableTHProps } from "../components/TachiTable";
 

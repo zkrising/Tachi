@@ -1,3 +1,4 @@
+import { GetValueGetter, ValueGetterOrHybrid } from "util/ztable/search";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import HoverText from "components/util/HoverText";
@@ -6,7 +7,6 @@ import StickyPopover from "components/util/StickyPopover";
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
 import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { GetValueGetter, ValueGetterOrHybrid } from "util/ztable/search";
 
 function AdditionalTableProps({
 	value,

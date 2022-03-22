@@ -1,8 +1,8 @@
-import React from "react";
-import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { IsScore } from "util/asserts";
 import { ChangeOpacity } from "util/color-opacity";
 import { IsNotNullish } from "util/misc";
+import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
+import React from "react";
 
 export default function IIDXLampCell({
 	sc,

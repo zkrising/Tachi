@@ -1,3 +1,5 @@
+import { APIFetchV1 } from "util/api";
+import { CreateSongMap } from "util/data";
 import { useFormik } from "formik";
 import React, { ChangeEventHandler, useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
@@ -11,9 +13,7 @@ import {
 } from "tachi-common";
 import { GamePT, SetState } from "types/react";
 import { Playtype } from "types/tachi";
-import { APIFetchV1 } from "util/api";
 import { SongChartsSearch } from "types/api-returns";
-import { CreateSongMap } from "util/data";
 import DebounceSearch from "components/util/DebounceSearch";
 
 interface Props {

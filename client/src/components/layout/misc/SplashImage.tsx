@@ -1,6 +1,6 @@
+import { ToCDNURL } from "util/api";
 import { TachiConfig } from "lib/config";
 import React from "react";
-import { ToCDNURL } from "util/api";
 
 export default function SplashImage() {
 	return (

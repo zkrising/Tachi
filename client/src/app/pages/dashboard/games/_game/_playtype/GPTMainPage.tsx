@@ -1,3 +1,8 @@
+import { APIFetchV1 } from "util/api";
+import { DEFAULT_BAR_PROPS } from "util/charts";
+import { CreateChartMap, CreateSongMap, CreateUserMap } from "util/data";
+import { UppercaseFirst } from "util/misc";
+import { MillisToSince } from "util/time";
 import { ResponsiveBar } from "@nivo/bar";
 import { BarChartTooltip } from "components/charts/ChartTooltip";
 import ClassBadge from "components/game/ClassBadge";
@@ -30,11 +35,6 @@ import {
 import { RecentClassesReturn } from "types/api-returns";
 import { GamePT } from "types/react";
 import { ScoreDataset } from "types/tables";
-import { APIFetchV1 } from "util/api";
-import { DEFAULT_BAR_PROPS } from "util/charts";
-import { CreateChartMap, CreateSongMap, CreateUserMap } from "util/data";
-import { UppercaseFirst } from "util/misc";
-import { MillisToSince } from "util/time";
 
 export default function GPTMainPage({ game, playtype }: GamePT) {
 	useSetSubheader(

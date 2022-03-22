@@ -1,3 +1,8 @@
+import { APIFetchV1 } from "util/api";
+import { DEFAULT_BAR_PROPS } from "util/charts";
+import { ChangeOpacity } from "util/color-opacity";
+import { Reverse } from "util/misc";
+import { NumericSOV, StrSOV } from "util/sorts";
 import { ResponsiveBar } from "@nivo/bar";
 import { BarChartTooltip } from "components/charts/ChartTooltip";
 import Card from "components/layout/page/Card";
@@ -25,11 +30,6 @@ import {
 } from "tachi-common";
 import { FolderStatsInfo, UGPTTableReturns } from "types/api-returns";
 import { Playtype } from "types/tachi";
-import { APIFetchV1 } from "util/api";
-import { DEFAULT_BAR_PROPS } from "util/charts";
-import { ChangeOpacity } from "util/color-opacity";
-import { Reverse } from "util/misc";
-import { NumericSOV, StrSOV } from "util/sorts";
 
 interface Props {
 	reqUser: PublicUserDocument;

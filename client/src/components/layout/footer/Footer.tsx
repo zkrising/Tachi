@@ -1,11 +1,11 @@
+import { APIFetchV1 } from "util/api";
+import { FORMATTED_VERSION } from "util/constants/version";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import { BannedContext } from "context/BannedContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ServerStatus } from "types/api-returns";
-import { APIFetchV1 } from "util/api";
-import { FORMATTED_VERSION } from "util/constants/version";
 
 export function Footer() {
 	const [serverVersion, setServerVersion] = useState("Loading...");

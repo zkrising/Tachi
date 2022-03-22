@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import { IsScore } from "util/asserts";
+import React, { useEffect, useState } from "react";
 import { ScoreDropdownProps } from "../PBDropdown";
 import CommentContainer from "./CommentContainer";
 import { ScoreInfo } from "./DocumentComponent";

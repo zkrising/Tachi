@@ -1,3 +1,9 @@
+import { ONE_DAY } from "util/constants/time";
+import { CreateChartIDMap, CreateChartLink, CreateSongMap } from "util/data";
+import { DistinctArr, NO_OP } from "util/misc";
+import { NumericSOV, StrSOV } from "util/sorts";
+import { GetScaleAchievedFn } from "util/tierlist";
+import { FormatDate, FormatTime } from "util/time";
 import FolderInfoHeader from "components/game/folder/FolderInfoHeader";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Card from "components/layout/page/Card";
@@ -30,12 +36,6 @@ import {
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
-import { ONE_DAY } from "util/constants/time";
-import { CreateChartIDMap, CreateChartLink, CreateSongMap } from "util/data";
-import { DistinctArr, NO_OP } from "util/misc";
-import { NumericSOV, StrSOV } from "util/sorts";
-import { GetScaleAchievedFn } from "util/tierlist";
-import { FormatDate, FormatTime } from "util/time";
 
 interface Props {
 	reqUser: PublicUserDocument;

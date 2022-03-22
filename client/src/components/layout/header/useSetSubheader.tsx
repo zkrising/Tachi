@@ -1,7 +1,7 @@
+import { UpdateSubheader } from "util/subheader";
 import useSplashText from "components/util/useSplashText";
 import { SubheaderContext } from "context/SubheaderContext";
 import { useContext, useEffect } from "react";
-import { UpdateSubheader } from "util/subheader";
 
 export default function useSetSubheader(
 	content: string[] | string,

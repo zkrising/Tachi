@@ -1,6 +1,6 @@
+import { ToAPIURL } from "util/api";
 import React from "react";
 import { PublicUserDocument } from "tachi-common";
-import { ToAPIURL } from "util/api";
 
 export default function ProfilePicture({ user, src }: { user: PublicUserDocument; src?: string }) {
 	return (

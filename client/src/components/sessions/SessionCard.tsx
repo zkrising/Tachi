@@ -1,3 +1,7 @@
+import { APIFetchV1 } from "util/api";
+import { CreateChartMap, CreateSongMap } from "util/data";
+import { NumericSOV } from "util/sorts";
+import { FormatDuration } from "util/time";
 import Card from "components/layout/page/Card";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import ApiError from "components/util/ApiError";
@@ -14,10 +18,6 @@ import toast from "react-hot-toast";
 import { SessionDocument } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 import { ScoreDataset } from "types/tables";
-import { APIFetchV1 } from "util/api";
-import { CreateChartMap, CreateSongMap } from "util/data";
-import { NumericSOV } from "util/sorts";
-import { FormatDuration } from "util/time";
 
 export default function SessionCard({ sessionID }: { sessionID: string }) {
 	const { user } = useContext(UserContext);

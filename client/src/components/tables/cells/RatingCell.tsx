@@ -1,6 +1,6 @@
+import { FormatScoreRating, IsNotNullish } from "util/misc";
 import React from "react";
 import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { FormatScoreRating, IsNotNullish } from "util/misc";
 
 export default function RatingCell({
 	score,

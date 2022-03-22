@@ -1,3 +1,4 @@
+import { GetGradeFromPercent } from "util/misc";
 import { ResponsiveLine } from "@nivo/line";
 import BPICell from "components/tables/cells/BPICell";
 import DeltaCell from "components/tables/cells/DeltaCell";
@@ -16,7 +17,6 @@ import {
 	PBScoreDocument,
 	ScoreDocument,
 } from "tachi-common";
-import { GetGradeFromPercent } from "util/misc";
 import ChartTooltip from "./ChartTooltip";
 
 interface BPIValue {

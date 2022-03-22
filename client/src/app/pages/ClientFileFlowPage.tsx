@@ -1,3 +1,4 @@
+import { APIFetchV1 } from "util/api";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
@@ -8,7 +9,6 @@ import { TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { APITokenDocument, TachiAPIClientDocument } from "tachi-common";
-import { APIFetchV1 } from "util/api";
 
 export default function ClientFileFlowPage() {
 	const { clientID } = useParams<{ clientID: string }>();

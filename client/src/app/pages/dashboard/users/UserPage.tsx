@@ -1,3 +1,4 @@
+import { APIFetchV1 } from "util/api";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import Divider from "components/util/Divider";
@@ -8,7 +9,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import { PublicUserDocument } from "tachi-common";
-import { APIFetchV1 } from "util/api";
 
 interface Props {
 	reqUser: PublicUserDocument;

@@ -1,3 +1,4 @@
+import { APIFetchV1 } from "util/api";
 import CenterLayoutPage from "components/layout/CenterLayoutPage";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
@@ -8,7 +9,6 @@ import useQueryString from "components/util/useQueryString";
 import React from "react";
 import { Link } from "react-router-dom";
 import { integer, TachiAPIClientDocument } from "tachi-common";
-import { APIFetchV1 } from "util/api";
 
 export default function OAuthRequestAuthPage() {
 	const params = useQueryString();

@@ -1,3 +1,6 @@
+import { ChangeOpacity } from "util/color-opacity";
+import { CreateChartLink } from "util/data";
+import { NumericSOV } from "util/sorts";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
@@ -18,9 +21,6 @@ import {
 } from "tachi-common";
 import { GamePT } from "types/react";
 import { FolderDataset } from "types/tables";
-import { ChangeOpacity } from "util/color-opacity";
-import { CreateChartLink } from "util/data";
-import { NumericSOV } from "util/sorts";
 
 type Props = {
 	folderDataset: FolderDataset;

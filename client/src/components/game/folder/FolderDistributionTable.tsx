@@ -1,12 +1,12 @@
+import { ChangeOpacity } from "util/color-opacity";
+import { TACHI_CHART_THEME } from "util/constants/chart-theme";
+import { Reverse, StepFromToMax, PercentFrom } from "util/misc";
 import { ResponsiveBar } from "@nivo/bar";
 import { BarChartTooltip } from "components/charts/ChartTooltip";
 import MiniTable from "components/tables/components/MiniTable";
 import Muted from "components/util/Muted";
 import React from "react";
 import { integer } from "tachi-common";
-import { ChangeOpacity } from "util/color-opacity";
-import { TACHI_CHART_THEME } from "util/constants/chart-theme";
-import { Reverse, StepFromToMax, PercentFrom } from "util/misc";
 
 export default function FolderDistributionTable<T extends string>({
 	keys,

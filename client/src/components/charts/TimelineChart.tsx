@@ -1,8 +1,8 @@
+import { TACHI_CHART_THEME } from "util/constants/chart-theme";
 import React from "react";
 import { ResponsiveLine, Serie, PointTooltipProps } from "@nivo/line";
-import { TACHI_CHART_THEME } from "util/constants/chart-theme";
-import ChartTooltip from "./ChartTooltip";
 import { ColourConfig } from "lib/config";
+import ChartTooltip from "./ChartTooltip";
 
 export default function TimelineChart({
 	width = "100%",

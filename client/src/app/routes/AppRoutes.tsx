@@ -1,3 +1,4 @@
+import { HistorySafeGoBack } from "util/misc";
 import { ErrorPage } from "app/pages/ErrorPage";
 import ForgotPasswordPage from "app/pages/ForgotPasswordPage";
 import LoginPage from "app/pages/LoginPage";
@@ -12,7 +13,6 @@ import { UserContext } from "context/UserContext";
 import { ClientConfig } from "lib/config";
 import React, { useContext } from "react";
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
-import { HistorySafeGoBack } from "util/misc";
 import ClientFileFlowRoutes from "./ClientFileFlowRoutes";
 import DashboardRoutes from "./DashboardRoutes";
 import OAuth2CallbackRoutes from "./OAuth2CallbackRoutes";

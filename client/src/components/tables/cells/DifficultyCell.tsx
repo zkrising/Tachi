@@ -1,3 +1,4 @@
+import { ChangeOpacity } from "util/color-opacity";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import Muted from "components/util/Muted";
@@ -9,7 +10,6 @@ import {
 	Game,
 	GetGamePTConfig,
 } from "tachi-common";
-import { ChangeOpacity } from "util/color-opacity";
 import BMSPMSDifficultyCell from "./BMSDifficultyCell";
 import TierlistInfoPart from "./TierlistInfoPart";
 

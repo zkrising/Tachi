@@ -1,9 +1,9 @@
+import { IsNullish } from "util/misc";
 import useUGPTSettings from "components/util/useUGPTSettings";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { Volforce } from "rg-stats";
 import { ChartDocument, GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { IsNullish } from "util/misc";
 
 type VF6IDStrings = "sdvx:Single" | "usc:Keyboard" | "usc:Controller";
 

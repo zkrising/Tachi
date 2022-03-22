@@ -1,8 +1,8 @@
+import { NumericSOV } from "util/sorts";
 import { nanoid } from "nanoid";
 import React from "react";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import { FolderDataset, PBDataset, ScoreDataset } from "types/tables";
-import { NumericSOV } from "util/sorts";
 import { Header } from "../components/TachiTable";
 
 const IndicatorHeader: Header<PBDataset[0] | ScoreDataset[0]> = [

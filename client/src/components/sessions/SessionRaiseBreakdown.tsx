@@ -1,3 +1,7 @@
+import { APIFetchV1 } from "util/api";
+import { ChangeOpacity } from "util/color-opacity";
+import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
+import { PartialArrayRecordAssign } from "util/misc";
 import DifficultyCell from "components/tables/cells/DifficultyCell";
 import LampCell from "components/tables/cells/LampCell";
 import ScoreCell from "components/tables/cells/ScoreCell";
@@ -26,10 +30,6 @@ import {
 	TableDocument,
 } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
-import { APIFetchV1 } from "util/api";
-import { ChangeOpacity } from "util/color-opacity";
-import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
-import { PartialArrayRecordAssign } from "util/misc";
 
 export default function SessionRaiseBreakdown({ sessionData }: { sessionData: SessionReturns }) {
 	const game = sessionData.session.game;

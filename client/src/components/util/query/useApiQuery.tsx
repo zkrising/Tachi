@@ -1,6 +1,6 @@
+import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
 import { useQuery } from "react-query";
 import { SuccessfulAPIResponse } from "tachi-common";
-import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
 
 export default function useApiQuery<T>(
 	url: string | string[],

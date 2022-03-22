@@ -1,6 +1,6 @@
+import { GenericFormatGradeDelta } from "util/grade-deltas";
 import React from "react";
 import { Game, Grades, IDStrings, Playtypes } from "tachi-common";
-import { GenericFormatGradeDelta } from "util/grade-deltas";
 
 export default function DeltaCell({
 	game,

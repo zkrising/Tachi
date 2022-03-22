@@ -1,3 +1,5 @@
+import { APIFetchV1 } from "util/api";
+import { GetSortedGPTs } from "util/site";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import RankingData from "components/user/UGPTRankingData";
@@ -9,8 +11,6 @@ import ReferToUser from "components/util/ReferToUser";
 import React from "react";
 import { FormatGame, PublicUserDocument, UserGameStats } from "tachi-common";
 import { UGSWithRankingData } from "types/api-returns";
-import { APIFetchV1 } from "util/api";
-import { GetSortedGPTs } from "util/site";
 
 interface Props {
 	reqUser: PublicUserDocument;

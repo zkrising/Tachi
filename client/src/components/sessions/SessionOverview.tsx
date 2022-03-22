@@ -1,3 +1,7 @@
+import { TACHI_CHART_THEME } from "util/constants/chart-theme";
+import { UppercaseFirst } from "util/misc";
+import { NumericSOV } from "util/sorts";
+import { FormatDuration } from "util/time";
 import { ResponsiveLine } from "@nivo/line";
 import ChartTooltip from "components/charts/ChartTooltip";
 import Card from "components/layout/page/Card";
@@ -12,10 +16,6 @@ import { ChartDocument, GetGamePTConfig, ScoreDocument, SongDocument } from "tac
 import { SessionReturns } from "types/api-returns";
 import { GamePT } from "types/react";
 import { ScoreDataset } from "types/tables";
-import { TACHI_CHART_THEME } from "util/constants/chart-theme";
-import { UppercaseFirst } from "util/misc";
-import { NumericSOV } from "util/sorts";
-import { FormatDuration } from "util/time";
 
 export default function SessionOverview({
 	sessionData,

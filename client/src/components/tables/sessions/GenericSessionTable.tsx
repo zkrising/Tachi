@@ -1,3 +1,7 @@
+import { GetPBs } from "util/data";
+import { UppercaseFirst } from "util/misc";
+import { NumericSOV, StrSOV } from "util/sorts";
+import { FormatDuration, FormatTime, MillisToSince } from "util/time";
 import { useSessionRatingAlg } from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -11,10 +15,6 @@ import {
 	SessionDocument,
 } from "tachi-common";
 import { Playtype } from "types/tachi";
-import { GetPBs } from "util/data";
-import { UppercaseFirst } from "util/misc";
-import { NumericSOV, StrSOV } from "util/sorts";
-import { FormatDuration, FormatTime, MillisToSince } from "util/time";
 import IndexCell from "../cells/IndexCell";
 import SelectableRating from "../components/SelectableRating";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";

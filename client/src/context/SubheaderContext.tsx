@@ -1,6 +1,6 @@
+import { NO_OP } from "util/misc";
 import React, { createContext, useState } from "react";
 import { JustChildren, SetState } from "types/react";
-import { NO_OP } from "util/misc";
 
 export const SubheaderContext = createContext({
 	title: "",

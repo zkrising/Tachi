@@ -1,6 +1,6 @@
+import { ChangeOpacity } from "util/color-opacity";
 import React from "react";
 import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { ChangeOpacity } from "util/color-opacity";
 
 // Lamp cell, but if the lamp is FAILED, display it slightly differently.
 export default function SDVXLampCell({

@@ -1,9 +1,9 @@
-import { ChartDocument, Game, GamePTConfig, GetGamePTConfig, IDStrings } from "tachi-common";
-import { FolderDataset, PBDataset, ScoreDataset } from "types/tables";
-import { Playtype } from "types/tachi";
 import { BMS_TABLES } from "util/constants/bms-tables";
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { ValueGetterOrHybrid } from "util/ztable/search";
+import { ChartDocument, Game, GamePTConfig, GetGamePTConfig, IDStrings } from "tachi-common";
+import { FolderDataset, PBDataset, ScoreDataset } from "types/tables";
+import { Playtype } from "types/tachi";
 
 function GetBMSTableVal(chart: ChartDocument<"bms:7K" | "bms:14K">, key: string) {
 	for (const table of chart.data.tableFolders) {

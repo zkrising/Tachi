@@ -1,3 +1,6 @@
+import { APIFetchV1 } from "util/api";
+import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
+import { DelayedPageReload } from "util/misc";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import SessionOverview from "components/sessions/SessionOverview";
 import SessionRaiseBreakdown from "components/sessions/SessionRaiseBreakdown";
@@ -16,9 +19,6 @@ import { Redirect, useParams } from "react-router-dom";
 import { GetGameConfig, PublicUserDocument, SessionDocument } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
-import { APIFetchV1 } from "util/api";
-import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
-import { DelayedPageReload } from "util/misc";
 
 type Props = { reqUser: PublicUserDocument } & GamePT;
 

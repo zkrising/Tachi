@@ -1,3 +1,5 @@
+import { IsScore } from "util/asserts";
+import { IsNotNullish, IsNullish } from "util/misc";
 import IIDXBPIChart from "components/charts/IIDXBPIChart";
 import IIDXLampChart from "components/charts/IIDXLampChart";
 import DebugContent from "components/util/DebugContent";
@@ -5,8 +7,6 @@ import SelectNav from "components/util/SelectNav";
 import React, { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
 import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { IsScore } from "util/asserts";
-import { IsNotNullish, IsNullish } from "util/misc";
 
 // export function ModsTable({ score }: { score: ScoreDocument<"iidx:SP" | "iidx:DP"> }) {
 // 	if (!score.scoreMeta.assist && !score.scoreMeta.random) {

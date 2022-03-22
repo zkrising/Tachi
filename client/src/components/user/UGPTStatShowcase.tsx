@@ -1,3 +1,6 @@
+import { APIFetchV1 } from "util/api";
+import { CreateChartLink } from "util/data";
+import { ToPercent, UppercaseFirst } from "util/misc";
 import Card from "components/layout/page/Card";
 import CardHeader from "components/layout/page/CardHeader";
 import CardNavButton from "components/layout/page/CardNavButton";
@@ -24,9 +27,6 @@ import {
 import { UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
 import { Playtype } from "types/tachi";
-import { APIFetchV1 } from "util/api";
-import { CreateChartLink } from "util/data";
-import { ToPercent, UppercaseFirst } from "util/misc";
 import UGPTStatContainer from "./UGPTStatContainer";
 import UGPTStatCreator from "./UGPTStatCreator";
 

@@ -1,9 +1,9 @@
+import { ToCDNURL } from "util/api";
+import { CreateChartLink } from "util/data";
 import GentleLink from "components/util/GentleLink";
 import Muted from "components/util/Muted";
 import React from "react";
 import { ChartDocument, Game, SongDocument } from "tachi-common";
-import { ToCDNURL } from "util/api";
-import { CreateChartLink } from "util/data";
 
 export default function TitleCell({
 	game,

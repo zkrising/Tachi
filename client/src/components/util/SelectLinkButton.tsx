@@ -1,7 +1,7 @@
+import { DoesMatchRoute } from "util/routing";
 import React from "react";
 import { ButtonVariant } from "react-bootstrap/esm/types";
 import { JustChildren } from "types/react";
-import { DoesMatchRoute } from "util/routing";
 import LinkButton from "./LinkButton";
 
 export default function SelectLinkButton({

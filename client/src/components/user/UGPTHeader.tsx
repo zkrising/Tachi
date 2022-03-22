@@ -1,3 +1,4 @@
+import { MillisToSince } from "util/time";
 import Navbar from "components/nav/Navbar";
 import NavItem from "components/nav/NavItem";
 import MiniTable from "components/tables/components/MiniTable";
@@ -6,7 +7,6 @@ import React from "react";
 import { Game, GetGamePTConfig, PublicUserDocument } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import { Playtype } from "types/tachi";
-import { MillisToSince } from "util/time";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 import RankingData from "./UGPTRankingData";

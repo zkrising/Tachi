@@ -1,7 +1,7 @@
-import React from "react";
-import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { ToCDNURL } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
+import React from "react";
+import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 
 export default function PopnLampCell({
 	score,

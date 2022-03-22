@@ -1,6 +1,6 @@
+import { UnsuccessfulAPIFetchResponse } from "util/api";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext } from "react";
-import { UnsuccessfulAPIFetchResponse } from "util/api";
 
 export default function ApiError({ error }: { error: UnsuccessfulAPIFetchResponse }) {
 	const { settings } = useContext(UserSettingsContext);

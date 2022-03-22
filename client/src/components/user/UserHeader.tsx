@@ -1,3 +1,5 @@
+import { APIFetchV1 } from "util/api";
+import { FormatDate } from "util/time";
 import Navbar from "components/nav/Navbar";
 import NavItem from "components/nav/NavItem";
 import Divider from "components/util/Divider";
@@ -10,8 +12,6 @@ import React, { useContext, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { PublicUserDocument } from "tachi-common";
 import { SetState } from "types/react";
-import { APIFetchV1 } from "util/api";
-import { FormatDate } from "util/time";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 

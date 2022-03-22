@@ -1,3 +1,5 @@
+import { APIFetchV1 } from "util/api";
+import { ConditionalLeadingSpace, PREVENT_DEFAULT } from "util/misc";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
@@ -7,8 +9,6 @@ import { Link, useLocation } from "react-router-dom";
 import { Game, GetGameConfig, integer, PublicUserDocument, SongDocument } from "tachi-common";
 import { GamePT, JustChildren } from "types/react";
 import { Playtype } from "types/tachi";
-import { APIFetchV1 } from "util/api";
-import { ConditionalLeadingSpace, PREVENT_DEFAULT } from "util/misc";
 import QuickTooltip from "../misc/QuickTooltip";
 
 interface SearchReturns {

@@ -1,7 +1,7 @@
-import { UserSettingsContext } from "context/UserSettingsContext";
-import { useContext } from "react";
 import { RFA } from "util/misc";
 import { contentiousSplashes, loggedInSplashes, neutralSplashes } from "util/splashes";
+import { UserSettingsContext } from "context/UserSettingsContext";
+import { useContext } from "react";
 
 export default function useSplashText() {
 	const { settings } = useContext(UserSettingsContext);

@@ -1,6 +1,6 @@
+import { FormatBMSTables } from "util/misc";
 import React from "react";
 import { ChartDocument, FormatDifficulty, Game, SongDocument } from "tachi-common";
-import { FormatBMSTables } from "util/misc";
 import DefaultSongChartInfoFormat from "./DefaultSongInfoFormat";
 
 export default function SongChartInfoFormat({

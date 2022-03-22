@@ -1,11 +1,11 @@
+import { APIFetchV1 } from "util/api";
+import { HistorySafeGoBack } from "util/misc";
 import CenterPage from "components/util/CenterPage";
 import SiteWordmark from "components/util/SiteWordmark";
 import { Form, Col, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { APIFetchV1 } from "util/api";
 import MainPageTitleContainer from "components/util/MainPageTitleContainer";
-import { HistorySafeGoBack } from "util/misc";
 
 export default function ForgotPasswordPage() {
 	const [email, setEmail] = useState("");

@@ -1,7 +1,7 @@
-import React from "react";
-import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { ChangeOpacity } from "util/color-opacity";
 import { FormatMillions } from "util/misc";
+import React from "react";
+import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 
 export default function MillionsScoreCell({ score }: { score: PBScoreDocument | ScoreDocument }) {
 	const gptConfig = GetGamePTConfig(score.game, score.playtype);

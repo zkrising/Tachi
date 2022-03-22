@@ -1,6 +1,6 @@
+import { IsNullish } from "util/misc";
 import React from "react";
 import { COLOUR_SET, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { IsNullish } from "util/misc";
 
 export default function PopnJudgementCell({
 	score,

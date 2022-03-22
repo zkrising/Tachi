@@ -1,3 +1,6 @@
+import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
+import { ChangeOpacity } from "util/color-opacity";
+import { UppercaseFirst } from "util/misc";
 import ClassBadge from "components/game/ClassBadge";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
@@ -22,9 +25,6 @@ import {
 import { GameClassSets } from "tachi-common/js/game-classes";
 import { GPTLeaderboard, UGPTLeaderboardAdjacent } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
-import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
-import { ChangeOpacity } from "util/color-opacity";
-import { UppercaseFirst } from "util/misc";
 
 interface LeaderboardsData {
 	stats: UGPTLeaderboardAdjacent;

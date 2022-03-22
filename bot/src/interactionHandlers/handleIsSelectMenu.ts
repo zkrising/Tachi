@@ -2,7 +2,6 @@ import { SelectMenuInteraction } from "discord.js";
 import { Game, Playtype } from "tachi-common";
 import { LoggerLayers } from "../data/data";
 import { DiscordUserMapDocument } from "../database/documents";
-import { GetUserAndTokenForDiscordID } from "../database/queries";
 import { GetUserInfo } from "../utils/apiRequests";
 import { CreateChartScoresEmbed } from "../utils/embeds";
 import { CreateLayeredLogger } from "../utils/logger";

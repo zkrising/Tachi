@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageActionRow, MessageSelectMenu, Util } from "discord.js";
-import { FormatChart, integer, SongDocument } from "tachi-common";
-import { GetGPTAndUser } from "../../utils/argParsers";
+import { Difficulties, FormatChart, IDStrings, integer, SongDocument } from "tachi-common";
+import { GetGPTAndUser, ParseDifficulty } from "../../utils/argParsers";
 import { CreateChartScoresEmbed } from "../../utils/embeds";
 import { TachiServerV1Get } from "../../utils/fetchTachi";
 import { GPTOptions, MakeRequired, OtherUserOption } from "../../utils/options";
@@ -19,6 +19,12 @@ const command: SlashCommand = {
 				.setDescription("The name of the song to fetch info on.")
 				.setRequired(true)
 		)
+		.addStringOption((str) =>
+			str
+				.setName("difficulty")
+				.setDescription("The difficulty of chart to return.")
+				.setRequired(true)
+		)
 		.addStringOption(OtherUserOption)
 		.toJSON(),
 	exec: async (interaction, requestingUser) => {
@@ -28,9 +34,21 @@ const command: SlashCommand = {
 			return gptUserInfo.error;
 		}
 
-		const search = interaction.options.getString("song_name", true);
-
 		const { userDoc, game, playtype } = gptUserInfo.content;
+
+		let difficulty: Difficulties[IDStrings] | null;
+
+		try {
+			difficulty = ParseDifficulty(
+				game,
+				playtype,
+				interaction.options.getString("difficulty")
+			);
+		} catch (err) {
+			return (err as Error).message;
+		}
+
+		const search = interaction.options.getString("song_name", true);
 
 		const chartsRes = await TachiServerV1Get<ChartQueryReturns>(
 			`/games/${game}/${playtype}/charts`,
@@ -44,6 +62,12 @@ const command: SlashCommand = {
 
 		if (chartsRes.body.charts.length === 0) {
 			return `Found no charts for the query '${Util.escapeMarkdown(search)}'.`;
+		}
+
+		if (difficulty) {
+			chartsRes.body.charts = chartsRes.body.charts.filter(
+				(e) => e.difficulty === difficulty
+			);
 		}
 
 		// discord caps selects at 25 ... :(
@@ -66,6 +90,11 @@ const command: SlashCommand = {
 		}
 
 		const embed = await CreateChartScoresEmbed(userDoc, game, playtype, firstChart.chartID);
+
+		// don't bother with a selector if the user gets it right.
+		if (chartsRes.body.charts.length === 1) {
+			return { embeds: [embed] };
+		}
 
 		const select = new MessageActionRow().addComponents(
 			new MessageSelectMenu()

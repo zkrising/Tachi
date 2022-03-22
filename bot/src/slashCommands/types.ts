@@ -1,8 +1,13 @@
 import { APIApplicationCommandOption } from "discord-api-types";
-import { CommandInteraction, MessageEmbed, MessagePayload } from "discord.js";
+import {
+	CommandInteraction,
+	InteractionReplyOptions,
+	MessageEmbed,
+	MessagePayload,
+} from "discord.js";
 import { DiscordUserMapDocument } from "../database/documents";
 
-export type Emittable = MessagePayload | string | MessageEmbed;
+export type Emittable = MessagePayload | string | MessageEmbed | InteractionReplyOptions;
 
 export type Command = (
 	interaction: CommandInteraction,

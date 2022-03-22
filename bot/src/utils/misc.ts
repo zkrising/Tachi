@@ -9,6 +9,8 @@ import {
 	Playtype,
 	UGSRatingsLookup,
 	integer,
+	ChartDocument,
+	ScoreCalculatedDataLookup,
 } from "tachi-common";
 import { GameClassSets } from "tachi-common/js/game-classes";
 import { BotConfig } from "../config";
@@ -59,6 +61,25 @@ export function FormatProfileRating(
 	}
 
 	const formatter = GetGamePTConfig(game, playtype).profileRatingAlgFormatters[rating];
+
+	if (!formatter) {
+		return value.toFixed(2);
+	}
+
+	return formatter(value);
+}
+
+export function FormatScoreRating(
+	game: Game,
+	playtype: Playtype,
+	rating: ScoreCalculatedDataLookup[IDStrings],
+	value: number | null | undefined
+) {
+	if (value === null || value === undefined) {
+		return "No Data.";
+	}
+
+	const formatter = GetGamePTConfig(game, playtype).scoreRatingAlgFormatters[rating];
 
 	if (!formatter) {
 		return value.toFixed(2);
@@ -127,6 +148,9 @@ export function FormatClass(
 	return gptConfig.classHumanisedFormat[classSet][classValue].display;
 }
 
+/**
+ * Given a game, return the discord channel it's associated with.
+ */
 export function GetGameChannel(client: Client, game: Game) {
 	const gameChannelID = BotConfig.DISCORD.GAME_CHANNELS[game];
 
@@ -149,4 +173,17 @@ export function GetGameChannel(client: Client, game: Game) {
 	}
 
 	return channel;
+}
+
+/**
+ * Given a chart and a game, return a link to the site for that chart.
+ */
+export function CreateChartLink(chart: ChartDocument, game: Game) {
+	if (chart.isPrimary) {
+		return `${BotConfig.TACHI_SERVER_LOCATION}/dashboard/games/${game}/${
+			chart.playtype
+		}/songs/${chart.songID}/${encodeURIComponent(chart.difficulty)}`;
+	}
+
+	return `${BotConfig.TACHI_SERVER_LOCATION}/dashboard/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
 }

@@ -3,6 +3,7 @@ import { BotConfig, ServerConfig } from "./config";
 import { LoggerLayers, METALLIC_MIND_SPLASHES } from "./data/data";
 import { GetUserAndTokenForDiscordID } from "./database/queries";
 import { handleIsCommand } from "./interactionHandlers/handleIsCommand";
+import { handleIsSelectMenu } from "./interactionHandlers/handleIsSelectMenu";
 // import { handleIsSelectMenu } from "./interactionHandlers/handleIsSelectMenu";
 import { app } from "./server/server";
 import { RegisterSlashCommands } from "./slashCommands/register";
@@ -38,7 +39,7 @@ client.on("interactionCreate", async (interaction) => {
 		}
 
 		if (interaction.isSelectMenu()) {
-			// return handleIsSelectMenu(interaction);
+			return handleIsSelectMenu(interaction, requestingUser);
 		}
 
 		if (interaction.isCommand()) {

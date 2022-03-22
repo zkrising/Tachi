@@ -8,6 +8,8 @@ import {
 	UGSRatingsLookup,
 	UserGameStats,
 	integer,
+	ChartDocument,
+	SongDocument,
 } from "tachi-common";
 
 export interface ServerConfig {
@@ -49,4 +51,9 @@ export interface UGPTStats<I extends IDStrings = IDStrings> {
 	mostRecentScore: ScoreDocument;
 	totalScores: integer;
 	rankingData: Record<UGSRatingsLookup[I], { ranking: integer; outOf: integer }>;
+}
+
+export interface ChartQueryReturns {
+	charts: (ChartDocument & { __playcount: integer })[];
+	songs: SongDocument[];
 }

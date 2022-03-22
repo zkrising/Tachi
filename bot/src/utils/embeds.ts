@@ -1,11 +1,22 @@
 import { MessageEmbed } from "discord.js";
-import { FormatGame, GetGamePTConfig, ImportDocument, PublicUserDocument } from "tachi-common";
+import {
+	FormatChart,
+	FormatGame,
+	Game,
+	GetGamePTConfig,
+	ImportDocument,
+	Playtype,
+	PublicUserDocument,
+} from "tachi-common";
 import { BotConfig, ServerConfig } from "../config";
+import { GetChartInfoForUser } from "./apiRequests";
 import { PrependTachiUrl } from "./fetchTachi";
 import {
+	CreateChartLink,
 	Entries,
 	FormatDate,
 	FormatProfileRating,
+	FormatScoreRating,
 	MillisToSince,
 	Pluralise,
 	UppercaseFirst,
@@ -97,4 +108,56 @@ export function CreateGameProfileEmbed(userDoc: PublicUserDocument, ugptStats: U
 		.setURL(
 			`${BotConfig.TACHI_SERVER_LOCATION}/dashboard/users/${userDoc.username}/games/${game}/${playtype}`
 		);
+}
+
+export async function CreateChartScoresEmbed(
+	userDoc: PublicUserDocument,
+	game: Game,
+	playtype: Playtype,
+	chartID: string
+) {
+	const { song, chart, pb } = await GetChartInfoForUser(userDoc.id, chartID, game, playtype);
+
+	const embed = CreateEmbed()
+		.setTitle(`${userDoc.username}: ${FormatChart(game, song, chart)}`)
+		.setThumbnail(PrependTachiUrl(`/users/${userDoc.id}/pfp`))
+		.setURL(CreateChartLink(chart, game));
+
+	if (pb === null) {
+		embed.setDescription("You have not played this chart.");
+	} else {
+		embed
+			.addField(
+				"Score",
+				`${pb.scoreData.score} (${pb.scoreData.grade}, ${pb.scoreData.percent.toFixed(
+					2
+				)}%)`,
+				true
+			)
+			.addField("Lamp", pb.scoreData.lamp, true)
+			.addField(
+				"Ratings",
+				Entries(pb.calculatedData)
+					.map(
+						([key, value]) =>
+							`${UppercaseFirst(key)}: ${FormatScoreRating(
+								game,
+								playtype,
+								key,
+								value
+							)}`
+					)
+					.join("\n")
+			)
+			.addField(
+				"Last Raised",
+				pb.timeAchieved
+					? `${FormatDate(pb.timeAchieved)} (${MillisToSince(pb.timeAchieved)})`
+					: "N/A",
+				true
+			)
+			.addField("Ranking", `#**${pb.rankingData.rank}**/${pb.rankingData.outOf}`);
+	}
+
+	return embed;
 }

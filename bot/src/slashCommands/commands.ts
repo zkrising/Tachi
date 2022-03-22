@@ -5,6 +5,7 @@ import profile from "./commands/profile";
 import quote from "./commands/quote";
 import sync from "./commands/sync";
 import whois from "./commands/whois";
+import chart_pb from "./commands/chart_pb";
 import { SlashCommand } from "./types";
 
 export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
@@ -14,6 +15,7 @@ export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
 		faq,
 		whois,
 		profile,
+		chart_pb,
 	})
 );
 

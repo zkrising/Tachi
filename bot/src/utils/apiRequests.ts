@@ -6,8 +6,12 @@ import {
 	Playtype,
 	PublicUserDocument,
 	integer,
+	ChartDocument,
+	SongDocument,
+	PBScoreDocument,
 } from "tachi-common";
 import { LoggerLayers } from "../data/data";
+import db from "../database/mongo";
 import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "./fetchTachi";
 import { CreateLayeredLogger } from "./logger";
 import { Sleep } from "./misc";
@@ -49,6 +53,35 @@ export async function GetGoalWithID(goalID: string, game: Game, playtype: Playty
 	}
 
 	return res.body;
+}
+
+export async function GetChartInfoForUser(
+	userID: integer | string,
+	chartID: string,
+	game: Game,
+	playtype: Playtype
+) {
+	const res = await TachiServerV1Get<{ song: SongDocument; chart: ChartDocument }>(
+		`/games/${game}/${playtype}/charts/${chartID}`,
+		null
+	);
+
+	if (!res.success) {
+		throw new Error(`Failed to fetch song/chart with chartID ${chartID}.`);
+	}
+
+	const pbRes = await TachiServerV1Get<{ chart: ChartDocument; pb: PBScoreDocument }>(
+		`/users/${userID}/games/${game}/${playtype}/pbs/${chartID}`,
+		null
+	);
+
+	const pb = pbRes.success ? pbRes.body.pb : null;
+
+	if (pb === null && pbRes.statusCode !== 404) {
+		throw new Error(`Failed to fetch score info for userID ${userID} on chart ${chartID}.`);
+	}
+
+	return { song: res.body.song, chart: res.body.chart, pb };
 }
 
 export async function PerformScoreImport(

@@ -1,70 +1,54 @@
-// import { Interaction, SelectMenuInteraction } from "discord.js";
-// import { Game, Playtypes } from "tachi-common";
-// import { buildChartEmbed } from "../commands/chartSearch/buildChartEmbed";
-// import { LoggerLayers } from "../data/data";
-// import { buildProfileIntractable } from "../profile/buildProfileEmbed";
-// import { createLayeredLogger } from "../utils/logger";
-// import { stringToSimpleGameType } from "../utils/utils";
+import { SelectMenuInteraction } from "discord.js";
+import { Game, Playtype } from "tachi-common";
+import { LoggerLayers } from "../data/data";
+import { DiscordUserMapDocument } from "../database/documents";
+import { GetUserAndTokenForDiscordID } from "../database/queries";
+import { GetUserInfo } from "../utils/apiRequests";
+import { CreateChartScoresEmbed } from "../utils/embeds";
+import { CreateLayeredLogger } from "../utils/logger";
 
-// const logger = createLayeredLogger(LoggerLayers.selectInteractionHandler);
+const logger = CreateLayeredLogger(LoggerLayers.slashCommands);
 
-// export enum validSelectCustomIdPrefaces {
-// 	selectSongForSearch = "selectSongForSearch",
-// 	SelectGameForProfile = "SelectGameForProfile",
-// }
+/**
+ * Handles incoming command requests by resolving the interaction to the command
+ * it refers to, and calling it.
+ *
+ * @param interaction - The interaction the user made. This contains things like what
+ * command they called and with what arguments.
+ * @param requestingUser - The user who interacted with this command.
+ */
+export async function handleIsSelectMenu(
+	interaction: SelectMenuInteraction,
+	requestingUser: DiscordUserMapDocument
+) {
+	try {
+		if (interaction.user.id !== requestingUser.discordID) {
+			await interaction.reply({
+				ephemeral: true,
+				content: "You can't interact with other peoples select boxes, get your own!",
+			});
+		}
 
-// export type SelectHandlersType = Record<
-// 	validSelectCustomIdPrefaces,
-// 	(interaction: SelectMenuInteraction) => void
-// >;
-// export const selectHandlers: SelectHandlersType = {
-// 	[validSelectCustomIdPrefaces.SelectGameForProfile]: async (
-// 		interaction: SelectMenuInteraction
-// 	): Promise<void> => {
-// 		const userId = parseInt(interaction.customId.split(":")[1]);
-// 		await interaction.editReply(
-// 			await buildProfileIntractable(
-// 				userId,
-// 				interaction.user.id,
-// 				stringToSimpleGameType(interaction.values[0])
-// 			)
-// 		);
-// 	},
-// 	[validSelectCustomIdPrefaces.selectSongForSearch]: async <T extends Game>(
-// 		interaction: SelectMenuInteraction
-// 	): Promise<void> => {
-// 		try {
-// 			const interactionValues = interaction.values[0].split(":");
-// 			const embed = await buildChartEmbed({
-// 				songId: interactionValues[0],
-// 				playtype: <Playtypes[T]>interactionValues[1],
-// 				game: <T>interactionValues[2],
-// 				discordUserId: interaction.user.id,
-// 			});
-// 			logger.info("Built new embed");
-// 			await interaction.editReply(embed);
-// 		} catch (e) {
-// 			logger.error(e);
-// 		}
-// 	},
-// };
+		if (interaction.customId.startsWith("chart-select")) {
+			// horrendous hackery, but we only have 100 chars to store selector metadata.
+			const [, game, playtype, userID] = interaction.customId.match(
+				/!(.*):(.*):(.*)$/u
+			) as unknown as [string, Game, Playtype, string];
 
-// export const handleIsSelectMenu = async (interaction: Interaction): Promise<void> => {
-// 	try {
-// 		/** Rechecking required to enforce types */
-// 		if (interaction.isSelectMenu()) {
-// 			await interaction.deferUpdate();
-// 			const customIdPrefix = <validSelectCustomIdPrefaces>interaction.customId.split(":")[0];
-// 			logger.info(`customIdPrefix: ${customIdPrefix}`);
-// 			if (Object.values(validSelectCustomIdPrefaces).includes(customIdPrefix)) {
-// 				await selectHandlers[customIdPrefix](interaction);
-// 			} else {
-// 				logger.info(`Unknown select handler: ${customIdPrefix}`);
-// 			}
-// 		}
-// 		return;
-// 	} catch (e) {
-// 		logger.error(e);
-// 		logger.error("Failed to handle isSelectMenu interaction");
-// 	}
-// };
+			const userDoc = await GetUserInfo(userID);
+
+			const embed = await CreateChartScoresEmbed(
+				userDoc,
+				game,
+				playtype,
+				interaction.values[0]
+			);
+
+			await interaction.update({ embeds: [embed] });
+		} else {
+			logger.warn(`Unknown selector triggered: ${interaction.customId}.`);
+		}
+	} catch (e) {
+		logger.error("Failed to handle isSelectMenu interaction", { error: e });
+	}
+}

@@ -4,7 +4,7 @@
 
 const MAJOR = 2;
 const MINOR = 1;
-const PATCH = 8;
+const PATCH = 9;
 
 // As is with all front-facing zkldi projects, the version names for tachi-server
 // are from an album I like. In this case, the album is Portishead - Dummy.
@@ -34,6 +34,4 @@ export const VERSION_INFO = {
 
 export const VERSION_STR = `${MAJOR}.${MINOR}.${PATCH}`;
 
-export function FormatVersion() {
-	return `v${VERSION_STR} (${VERSION_INFO.name})`;
-}
+export const VERSION_PRETTY = `v${VERSION_STR} (${VERSION_INFO.name})`;

@@ -10,6 +10,7 @@ import fs from "fs";
 import http from "http";
 import https from "https";
 import { LoadDefaultClients } from "lib/builtin-clients/builtin-clients";
+import { VERSION_PRETTY } from "lib/constants/version";
 import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
@@ -17,11 +18,10 @@ import path from "path";
 import server from "server/server";
 import fetch from "utils/fetch";
 import { InitaliseFolderChartLookup } from "utils/folder";
-import { FormatVersion } from "./lib/constants/version";
 
 const logger = CreateLogCtx(__filename);
 
-logger.info(`Booting ${TachiConfig.NAME} - ${FormatVersion()} [ENV: ${Environment.nodeEnv}]`, {
+logger.info(`Booting ${TachiConfig.NAME} - ${VERSION_PRETTY} [ENV: ${Environment.nodeEnv}]`, {
 	bootInfo: true,
 });
 logger.info(`Log level is set to ${ServerConfig.LOGGER_CONFIG.LOG_LEVEL}.`, { bootInfo: true });

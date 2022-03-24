@@ -107,7 +107,7 @@ function ParseEnvVars() {
 			),
 			MONGO_URL: "string",
 			PORT: (self) =>
-				p.isPositiveInteger(Number(self)) ||
+				p.isPositiveInteger(Number(self)) &&
 				"Should be a string representing a whole integer port.",
 		},
 		{},

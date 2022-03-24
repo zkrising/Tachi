@@ -64,20 +64,20 @@ export default async function ScoreImportMain<D, C>(
 		logger = providedLogger;
 	}
 
-	const hasNoOngoingImport = await CheckAndSetOngoingImportLock(user.id);
-
-	if (hasNoOngoingImport) {
-		logger.info(`User ${userID} made an import while they had one ongoing.`);
-		// @danger
-		// Throwing away an import if the user already has one outgoing is *bad*, as in the case
-		// of degraded performance we might just start throwing scores away.
-		// Under normal circumstances, there is no scenario where a user would have two ongoing
-		// imports at the same time - even if they were using single-score imports on a 5 second
-		// chart, as each score import takes only around ~10-15milliseconds.
-		throw new ScoreImportFatalError(409, "This user already has an ongoing import.");
-	}
-
 	try {
+		const hasNoOngoingImport = await CheckAndSetOngoingImportLock(user.id);
+
+		if (hasNoOngoingImport) {
+			logger.info(`User ${userID} made an import while they had one ongoing.`);
+			// @danger
+			// Throwing away an import if the user already has one outgoing is *bad*, as in the case
+			// of degraded performance we might just start throwing scores away.
+			// Under normal circumstances, there is no scenario where a user would have two ongoing
+			// imports at the same time - even if they were using single-score imports on a 5 second
+			// chart, as each score import takes only around ~10-15milliseconds.
+			throw new ScoreImportFatalError(409, "This user already has an ongoing import.");
+		}
+
 		const timeStarted = Date.now();
 
 		SetJobProgress(job, "Parsing score data.");

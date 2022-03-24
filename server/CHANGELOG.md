@@ -15,6 +15,10 @@ not generally be shown to end users.
 
 # Changelog
 
+# 2.1.10
+
+- [BUG] Users can no longer permanently lock themselves out of an import by making an import while one is ongoing.
+
 # 2.1.9
 
 - [ENH] Add an endpoint on UGPT/folder/:folderID/stats. This returns lamp and grade distributions for this ugpt:folder combo.

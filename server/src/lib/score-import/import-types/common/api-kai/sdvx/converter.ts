@@ -88,7 +88,7 @@ export const ConvertAPIKaiSDVX: ConverterFunction<unknown, KaiContext> = async (
 			judgements: {
 				critical: score.critical,
 				near: score.near,
-				miss: score.error
+				miss: score.error,
 			},
 			hitMeta: {
 				fast: score.early,

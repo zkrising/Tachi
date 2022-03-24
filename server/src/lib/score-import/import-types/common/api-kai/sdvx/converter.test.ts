@@ -33,7 +33,7 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 					judgements: {
 						critical: 1754,
 						near: 112,
-						miss: 78
+						miss: 78,
 					},
 					hitMeta: {
 						fast: 70,

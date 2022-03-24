@@ -31,6 +31,7 @@ const KTCHI_FAQ_ENTRIES: Record<string, string> = {
 		// Note: obfuscating this for obvious reasons so we don't get garbage bot spam.
 		Buffer.from("aHR0cHM6Ly9kaXNjb3JkLmdnL3N3VkJUanhtUFk=", "base64")
 	})`,
+	sdvx_1259: `Automation Paradise is song ID 1259. It is not a real song, and it is not supported by ${ServerConfig.name}. Related autopara-only songs are not supported, either.`,
 };
 
 const BTCHI_FAQ_ENTRIES: Record<string, string> = {

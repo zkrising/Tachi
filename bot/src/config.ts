@@ -21,6 +21,13 @@ const logger = CreateLayeredLogger(LoggerLayers.botConfigSetup);
 
 export interface BotConfig {
 	TACHI_SERVER_LOCATION: string;
+	// our docker setup is ruined and means we can't pass "bokutachi.xyz" as the
+	// server location, because docker reads /etc/hosts from another container and
+	// decides that should resolve to some random internal IP.
+	// this is stupid.
+	// i want to remove this hack.
+	// if you provide this URL, that will be used instead for lookups.
+	TACHI_SERVER_STUPID_INTERNAL_DOCKER_HACK_LOCATION: string;
 	HTTP_SERVER: {
 		URL: string;
 	};
@@ -50,6 +57,7 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 
 	const err = p(data, {
 		TACHI_SERVER_LOCATION: "string",
+		TACHI_SERVER_STUPID_INTERNAL_DOCKER_HACK_LOCATION: "*string",
 		HTTP_SERVER: {
 			URL: "string",
 		},
@@ -85,6 +93,11 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 		logger.error(FormatPrError(err, "Invalid conf.json5 file. Cannot safely boot."));
 
 		throw err;
+	}
+
+	// if no stupid hack docker location is set, use tachi_server_location instead.
+	if (!data.TACHI_SERVER_STUPID_INTERNAL_DOCKER_HACK_LOCATION) {
+		data.TACHI_SERVER_STUPID_INTERNAL_DOCKER_HACK_LOCATION = data.TACHI_SERVER_LOCATION;
 	}
 
 	return data;

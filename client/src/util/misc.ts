@@ -11,6 +11,7 @@ import {
 	integer,
 	ScoreCalculatedDataLookup,
 	ScoreDocument,
+	SessionDocument,
 } from "tachi-common";
 import { Playtype } from "types/tachi";
 
@@ -238,6 +239,25 @@ export function FormatScoreRating(
 	}
 
 	const formatter = GetGamePTConfig(game, playtype).scoreRatingAlgFormatters[rating];
+
+	if (!formatter) {
+		return value.toFixed(2);
+	}
+
+	return formatter(value);
+}
+
+export function FormatSessionRating(
+	game: Game,
+	playtype: Playtype,
+	rating: keyof SessionDocument["calculatedData"],
+	value: number | null | undefined
+) {
+	if (value === null || value === undefined) {
+		return "No Data.";
+	}
+
+	const formatter = GetGamePTConfig(game, playtype).sessionRatingAlgFormatters[rating];
 
 	if (!formatter) {
 		return value.toFixed(2);

@@ -1,4 +1,5 @@
 import { FormatDuration } from "util/time";
+import { FormatSessionRating, UppercaseFirst } from "util/misc";
 import Card from "components/layout/page/Card";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import Divider from "components/util/Divider";
@@ -7,6 +8,7 @@ import React, { useContext } from "react";
 import { Col } from "react-bootstrap";
 import { SessionReturns } from "types/api-returns";
 import { ScoreDataset } from "types/tables";
+import { GetGamePTConfig } from "tachi-common";
 
 export default function SessionOverview({
 	sessionData,
@@ -18,6 +20,8 @@ export default function SessionOverview({
 	const { scores, session } = sessionData;
 	const { user } = useContext(UserContext);
 
+	const gptConfig = GetGamePTConfig(session.game, session.playtype);
+
 	return (
 		<>
 			<StatThing name="Scores" value={session.scoreInfo.length} />
@@ -26,6 +30,33 @@ export default function SessionOverview({
 				value={FormatDuration(session.timeEnded - session.timeStarted)}
 			/>
 			<StatThing md12 name="Highlights" value={scores.filter(e => e.highlight).length} />
+			<Col xs={12}>
+				<Divider />
+				<div className="card">
+					<div className="card-body">
+						<div className="display-4 text-center">Ratings</div>
+						<Divider />
+						<div
+							className="d-flex text-center"
+							style={{ justifyContent: "space-evenly" }}
+						>
+							{gptConfig.sessionRatingAlgs.map(e => (
+								<div key={e}>
+									<div className="display-4">{UppercaseFirst(e)}</div>
+									<div style={{ fontSize: "1.2rem" }}>
+										{FormatSessionRating(
+											session.game,
+											session.playtype,
+											e,
+											session.calculatedData[e]
+										)}
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			</Col>
 			<Col xs={12}>
 				<Divider />
 				<Card header="Highlights">

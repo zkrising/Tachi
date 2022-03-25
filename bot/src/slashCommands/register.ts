@@ -1,7 +1,7 @@
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
 import { Client } from "discord.js";
-import { BotConfig } from "../config";
+import { BotConfig, ProcessEnv } from "../config";
 import { LoggerLayers } from "../data/data";
 import { CreateLayeredLogger } from "../utils/logger";
 import { SLASH_COMMANDS } from "./commands";
@@ -20,16 +20,29 @@ export async function RegisterSlashCommands(client: Client): Promise<void> {
 	try {
 		const commandsArray = [...SLASH_COMMANDS.values()];
 
-		await UnregisterAllCommands(client);
+		if (ProcessEnv.nodeEnv === "production") {
+			logger.info(`Updating global commands.`);
 
-		logger.info("Registering guild slash commands.");
-
-		await rest.put(
-			Routes.applicationGuildCommands(client.application!.id, BotConfig.DISCORD.SERVER_ID),
-			{
+			await rest.put(Routes.applicationCommands(client.application!.id), {
 				body: commandsArray.map((command) => command.info),
-			}
-		);
+			});
+		} else {
+			logger.info(`Unregistering guild slash commands.`);
+
+			await UnregisterAllCommands(client);
+
+			logger.info("Registering guild slash commands.");
+
+			await rest.put(
+				Routes.applicationGuildCommands(
+					client.application!.id,
+					BotConfig.DISCORD.SERVER_ID
+				),
+				{
+					body: commandsArray.map((command) => command.info),
+				}
+			);
+		}
 
 		logger.info("Successfully registered guild slash commands.");
 	} catch (err) {

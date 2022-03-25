@@ -124,7 +124,7 @@ export function PrependTachiUrl(url: string, version: "1" = "1"): string {
 		url = `/${url}`;
 	}
 
-	return `${BotConfig.TACHI_SERVER_STUPID_INTERNAL_DOCKER_HACK_LOCATION}/api/v${version}${url}`;
+	return `${BotConfig.TACHI_SERVER_LOCATION}/api/v${version}${url}`;
 }
 
 /**

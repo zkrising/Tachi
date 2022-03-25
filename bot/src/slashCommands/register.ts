@@ -20,6 +20,11 @@ export async function RegisterSlashCommands(client: Client): Promise<void> {
 	try {
 		const commandsArray = [...SLASH_COMMANDS.values()];
 
+		// always unregister guild slash commands, just in case.
+		logger.info(`Unregistering guild slash commands.`);
+
+		await UnregisterAllCommands(client);
+
 		if (ProcessEnv.nodeEnv === "production") {
 			logger.info(`Updating global commands.`);
 
@@ -27,10 +32,6 @@ export async function RegisterSlashCommands(client: Client): Promise<void> {
 				body: commandsArray.map((command) => command.info),
 			});
 		} else {
-			logger.info(`Unregistering guild slash commands.`);
-
-			await UnregisterAllCommands(client);
-
 			logger.info("Registering guild slash commands.");
 
 			await rest.put(

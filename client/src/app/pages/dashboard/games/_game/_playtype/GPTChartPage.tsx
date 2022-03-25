@@ -226,7 +226,16 @@ function ChartLeaderboardTable({
 		return ds;
 	}, [data, mode, user]);
 
-	return <PBTable dataset={dataset} game={game} playtype={playtype} showChart={false} showUser />;
+	return (
+		<PBTable
+			key={mode}
+			dataset={dataset}
+			game={game}
+			playtype={playtype}
+			showChart={false}
+			showUser
+		/>
+	);
 }
 
 function TopShowcase({

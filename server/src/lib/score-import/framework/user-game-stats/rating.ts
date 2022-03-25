@@ -38,11 +38,17 @@ function LazySumAll(key: CustomCalcNames) {
  * @param key - What rating value to sum.
  * @param n - The amount of rating values to pull.
  * @param returnMean - Optionally, if true, return the sum of these values divided by N.
+ * @param nullIfNotEnoughScores - If true, return null if the total scores this user has is less than N.
  *
  * @returns - Number if the user has scores with that rating algorithm, null if they have
  * no scores with this rating algorithm that are non-null.
  */
-function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
+function LazyCalcN(
+	key: CustomCalcNames,
+	n: integer,
+	returnMean = false,
+	nullIfNotEnoughScores = false
+) {
 	return async (game: Game, playtype: Playtypes[Game], userID: integer) => {
 		const sc = await db["personal-bests"].find(
 			{
@@ -62,6 +68,10 @@ function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
 			return null;
 		}
 
+		if (nullIfNotEnoughScores && sc.length < n) {
+			return null;
+		}
+
 		let result = sc.reduce((a, e) => a + e.calculatedData[key]!, 0);
 
 		if (returnMean) {
@@ -72,8 +82,10 @@ function LazyCalcN(key: CustomCalcNames, n: integer, returnMean?: boolean) {
 	};
 }
 
-const LazySumN = (key: CustomCalcNames, n: integer) => LazyCalcN(key, n, false);
-const LazyMeanN = (key: CustomCalcNames, n: integer) => LazyCalcN(key, n, true);
+const LazySumN = (key: CustomCalcNames, n: integer, nullIfNotEnoughScores = false) =>
+	LazyCalcN(key, n, false, nullIfNotEnoughScores);
+const LazyMeanN = (key: CustomCalcNames, n: integer, nullIfNotEnoughScores = false) =>
+	LazyCalcN(key, n, true, nullIfNotEnoughScores);
 
 type RatingFunctions = {
 	[G in Game]: {
@@ -89,11 +101,11 @@ type RatingFunctions = {
 const RatingFunctions: RatingFunctions = {
 	iidx: {
 		SP: async (g, p, u) => ({
-			BPI: await LazyMeanN("BPI", 20)(g, p, u),
+			BPI: await LazyMeanN("BPI", 20, true)(g, p, u),
 			ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
 		}),
 		DP: async (g, p, u) => ({
-			BPI: await LazyMeanN("BPI", 20)(g, p, u),
+			BPI: await LazyMeanN("BPI", 20, true)(g, p, u),
 			ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
 		}),
 	},

@@ -1,6 +1,6 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { FolderDocument } from "tachi-common";
+import { FolderDocument, ScoreDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
@@ -84,6 +84,12 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeli
 				chartID: "f3e7f84103d68f9f27193f037f35d0bca8c6d607",
 			}),
 			deepmerge(TestingIIDXSPScore, {
+				scoreID: "OTHER_SCORE_ID_NULL",
+				timeAchieved: null,
+				songID: 5,
+				chartID: "f3e7f84103d68f9f27193f037f35d0bca8c6d607",
+			}),
+			deepmerge(TestingIIDXSPScore, {
 				scoreData: {
 					lampIndex: 3,
 					lamp: "CLEAR",
@@ -121,6 +127,10 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeli
 			res.body.body.scores[2].scoreID,
 			"OTHER_SCORE_ID_4",
 			"Third score should be OTHER_SCORE_ID_4, as it was achieved later."
+		);
+		t.notOk(
+			res.body.body.scores.some((k: ScoreDocument) => k.scoreID === "OTHER_SCORE_ID_NULL"),
+			"OTHER_SCORE_ID_NULL should never appear, as it is a null timestamp for a score that has a real timestamp."
 		);
 
 		t.end();

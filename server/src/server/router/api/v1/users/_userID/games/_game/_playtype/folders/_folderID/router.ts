@@ -158,8 +158,13 @@ router.get("/timeline", async (req, res) => {
 				$match: matchCriteria,
 			},
 			{
+				$addFields: {
+					__sortTime: { $ifNull: ["$timeAchieved", Infinity, "$timeAchieved"] },
+				},
+			},
+			{
 				$sort: {
-					timeAchieved: 1,
+					__sortTime: 1,
 				},
 			},
 			{
@@ -167,6 +172,9 @@ router.get("/timeline", async (req, res) => {
 					_id: "$chartID",
 					doc: { $first: "$$ROOT" },
 				},
+			},
+			{
+				$unset: ["doc.__sortTime"],
 			},
 		])
 		.then((r) =>

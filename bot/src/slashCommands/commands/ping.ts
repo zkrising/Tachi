@@ -20,7 +20,7 @@ const command: SlashCommand = {
 			return `Failed to reach ${ServerConfig.name}. (${serverStatus.description})`;
 		}
 
-		return `Pong! We're live, and runnig ${VERSION_PRETTY}.
+		return `Pong! We're live, and running ${VERSION_PRETTY}.
 ${ServerConfig.name} is up, and running ${serverStatus.body.version}.`;
 	},
 };

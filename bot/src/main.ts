@@ -58,10 +58,11 @@ async function RequireUserAuth(interaction: CommandInteraction | SelectMenuInter
 
 	const dmChannel = await interaction.user.createDM();
 	await dmChannel.send(`Click this link to authenticate with ${ServerConfig.name}: ${oAuthLink}`);
-	return interaction.reply(
-		`To use the bot, your discord account must be linked to ${ServerConfig.name}.
-We've sent you a DM with instructions on how to link your account.`
-	);
+	return interaction.reply({
+		content: `To use the bot, your discord account must be linked to ${ServerConfig.name}.
+We've sent you a DM with instructions on how to link your account.`,
+		ephemeral: true,
+	});
 }
 
 (async () => {

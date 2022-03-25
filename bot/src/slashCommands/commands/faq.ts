@@ -13,7 +13,7 @@ For more info on why this is a fundamental limitation of ${ServerConfig.name}, c
 Contributors who save us hours (or more) of dev time, or are just generally really supportive will get the Significant Contributor role, and an even cooler orange name.
 ${ServerConfig.name} is an Open Source project. Feel free to read our [contribution guide](https://tachi.readthedocs.io/en/latest/contributing/), or just generally ask for stuff to help out with!`,
 	docs: `Documentation for ${ServerConfig.name} is stored at https://tachi.rtfd.io.`,
-	pbs: `A PB is all of yhour best scores on that specific chart joined together.
+	pbs: `A PB is all of your best scores on that specific chart joined together.
 For most games, this means joining your best score with your best lamp.
 Read more about this [here](https://tachi.readthedocs.io/en/latest/user/pbs-scores/)`,
 	filter_directives: `Filter Directives are a fancy way of *filtering* rows inside a table.

@@ -621,8 +621,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"inf",
 		],
 
-		tierlists: [],
-		tierlistDescriptions: {},
+		tierlists: ["dp-tier"],
+		tierlistDescriptions: {
+			"dp-tier": "The unofficial DP tiers, taken from https://zasa.sakura.ne.jp/dp/run.php.",
+		},
 	},
 	"chunithm:Single": {
 		idString: "chunithm:Single",

@@ -1,6 +1,6 @@
 {
 	"name": "tachi-common",
-	"version": "0.7.2",
+	"version": "0.7.3",
 	"description": "Common Types & Utilities for Tachi",
 	"main": "js/index.js",
 	"files": [
@@ -14,7 +14,7 @@
 	"author": "zkldi",
 	"license": "MIT",
 	"devDependencies": {
-		"@types/node": "^17.0.8",
+		"@types/node": "17.0.8",
 		"@types/tap": "15.0.3",
 		"@typescript-eslint/eslint-plugin": "4.19.0",
 		"@typescript-eslint/parser": "4.19.0",

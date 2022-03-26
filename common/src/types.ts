@@ -894,7 +894,7 @@ interface ChartDocumentData {
 
 export interface GPTTierlists {
 	"iidx:SP": "kt-HC" | "kt-NC" | "kt-EXHC";
-	"iidx:DP": never;
+	"iidx:DP": "dp-tier";
 	"bms:7K": "sgl-HC" | "sgl-EC";
 	"bms:14K": "sgl-HC" | "sgl-EC";
 	"popn:9B": never;

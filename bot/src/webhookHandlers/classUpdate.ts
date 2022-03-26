@@ -1,4 +1,4 @@
-import { integer, WebhookEventClassUpdateV1 } from "tachi-common";
+import { FormatGame, integer, WebhookEventClassUpdateV1 } from "tachi-common";
 import { client } from "../main";
 import { GetUserInfo } from "../utils/apiRequests";
 import { CreateEmbed } from "../utils/embeds";
@@ -25,11 +25,13 @@ export async function HandleClassUpdateV1(
 	const newClass = FormatClass(game, playtype, event.set, event.new);
 
 	const embed = CreateEmbed()
-		.setTitle(`${userDoc.username} just achieved ${newClass}.`)
+		.setTitle(`${userDoc.username} just achieved ${newClass} in ${FormatGame(game, playtype)}!`)
 		.setThumbnail(PrependTachiUrl(`/users/${userDoc.id}/pfp`));
 
 	if (event.old !== null) {
-		embed.setDescription(`Raised from ${FormatClass(game, playtype, event.set, event.old)}`);
+		embed.setDescription(
+			`(This was raised from ${FormatClass(game, playtype, event.set, event.old)}.)`
+		);
 	}
 
 	await channel.send({ embeds: [embed] });

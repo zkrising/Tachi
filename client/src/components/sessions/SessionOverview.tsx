@@ -1,14 +1,13 @@
-import { FormatDuration } from "util/time";
 import { FormatSessionRating, UppercaseFirst } from "util/misc";
+import { FormatDuration } from "util/time";
 import Card from "components/layout/page/Card";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import Divider from "components/util/Divider";
-import { UserContext } from "context/UserContext";
-import React, { useContext } from "react";
+import React from "react";
 import { Col } from "react-bootstrap";
+import { GetGamePTConfig } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 import { ScoreDataset } from "types/tables";
-import { GetGamePTConfig } from "tachi-common";
 
 export default function SessionOverview({
 	sessionData,
@@ -18,7 +17,6 @@ export default function SessionOverview({
 	scoreDataset: ScoreDataset;
 }) {
 	const { scores, session } = sessionData;
-	const { user } = useContext(UserContext);
 
 	const gptConfig = GetGamePTConfig(session.game, session.playtype);
 

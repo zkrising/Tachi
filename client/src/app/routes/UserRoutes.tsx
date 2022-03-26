@@ -1,7 +1,7 @@
 import { APIFetchV1, APIFetchV1Return, ToAPIURL } from "util/api";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
 import PlaytypeSelect from "app/pages/dashboard/games/_game/PlaytypeSelect";
-import AchievablesPage from "app/pages/dashboard/users/games/_game/_playtype/AchievablesPage";
+import TargetsPage from "app/pages/dashboard/users/games/_game/_playtype/targets/TargetsPage";
 import FoldersMainPage from "app/pages/dashboard/users/games/_game/_playtype/folders/FoldersMainPage";
 import LeaderboardsPage from "app/pages/dashboard/users/games/_game/_playtype/LeaderboardsPage";
 import OverviewPage from "app/pages/dashboard/users/games/_game/_playtype/OverviewPage";
@@ -271,8 +271,8 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 				<Route path="/dashboard/users/:userID/games/:game/:playtype/sessions/:sessionID">
 					<SpecificSessionPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
-				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/achievables">
-					<AchievablesPage reqUser={reqUser} game={game} playtype={playtype} />
+				<Route path="/dashboard/users/:userID/games/:game/:playtype/targets">
+					<TargetsPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
 				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/leaderboard">
 					<LeaderboardsPage reqUser={reqUser} game={game} playtype={playtype} />

@@ -57,6 +57,14 @@ export function BMSGraphsComponent({
 					>
 						Hard
 					</SelectNav>
+					<SelectNav
+						id="HARD"
+						value={lamp}
+						setValue={setLamp}
+						disabled={shouldDisable("EX_HARD")}
+					>
+						Hard
+					</SelectNav>
 				</Nav>
 			</div>
 			<div className="col-12">

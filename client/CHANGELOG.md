@@ -15,6 +15,13 @@ not generally be shown to end users.
 
 # Changelog
 
+# 2.1.7
+
+I haven't been keeping this dilligently up to date.
+
+- [ENH] Sessions now display their ratings.
+- [ENH] BMS scores submitted by the LR2Hook now include graph data.
+
 # 2.1.2
 
 - [INTERNAL_ENH] Keys no longer *ever* use random ids. This was a fundamental misunderstanding of react on my part.

@@ -153,7 +153,7 @@ const BtchiDefaultClients: DefaultClients = [
 		apiKeyFilename: "BokutachiAuth.json",
 		apiKeyTemplate: JSON.stringify(
 			{
-				url: `${ServerConfig.OUR_URL}/ir/lr2hook/import`,
+				url: `${ServerConfig.OUR_URL}/ir/lr2hook`,
 				apiKey: "%%TACHI_KEY%%",
 			},
 			null,

@@ -17,6 +17,11 @@ not generally be shown to end users.
 
 # CURRENT
 
+- [ENH] The LR2Hook now saves courses.
+- [ENH] The LR2Hook now saves gauge information.
+
+*****
+
 - [BUG] Having less than 20 valid scores for BPI is no longer advantageous due to regression to 0 profile BPI.
 - [BUG] Timelines now prefer scores with timestamps if present, instead of preferring scores with null timestamps.
 

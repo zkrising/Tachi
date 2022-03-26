@@ -58,6 +58,7 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 				bp: data.scoreData.bad + data.scoreData.poor,
 				maxCombo: data.scoreData.maxCombo,
 				gauge: data.scoreData.hpGraph[999] ?? 0,
+				gaugeHistory: data.scoreData.hpGraph,
 			},
 		},
 		scoreMeta: {

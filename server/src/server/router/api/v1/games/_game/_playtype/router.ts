@@ -18,7 +18,7 @@ import {
 import { GetUsersWithIDs } from "utils/user";
 import chartsRouter from "./charts/router";
 import foldersRouter from "./folders/router";
-import goalsRouter from "./goals/router";
+import goalsRouter from "./targets/goals/router";
 import { ValidatePlaytypeFromParam } from "./middleware";
 import scoresRouter from "./scores/router";
 import songIDRouter from "./songs/_songID/router";

@@ -15,7 +15,7 @@ const router: Router = Router({ mergeParams: true });
 /**
  * Retrieve goals that have been recently achieved for this game.
  *
- * @name GET /api/v1/games/:game/:playtype/goals/recently-achieved
+ * @name GET /api/v1/games/:game/:playtype/targets/goals/recently-achieved
  */
 router.get("/recently-achieved", async (req, res) => {
 	const game = req[SYMBOL_TachiData]!.game!;
@@ -81,7 +81,7 @@ const ResolveGoalID: RequestHandler = async (req, res, next) => {
 /**
  * Retrieve information about this goal and who is subscribed to it.
  *
- * @name GET /api/v1/games/:game/:playtype/goals/:goalID
+ * @name GET /api/v1/games/:game/:playtype/targets/goals/:goalID
  */
 router.get("/:goalID", ResolveGoalID, async (req, res) => {
 	const goal = req[SYMBOL_TachiData]!.goalDoc!;
@@ -108,7 +108,7 @@ router.get("/:goalID", ResolveGoalID, async (req, res) => {
  *
  * @param userID - The userID to evaluate this goal against. Must be a player of this GPT.
  *
- * @name GET /api/v1/games/:game/:playtype/goals/:goalID/evaluate
+ * @name GET /api/v1/games/:game/:playtype/targets/goals/:goalID/evaluate
  */
 router.get(
 	"/:goalID/evaluate-for",

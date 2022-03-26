@@ -1,6 +1,7 @@
 import {
 	ChartDocument,
 	Game,
+	GoalDocument,
 	IDStrings,
 	integer,
 	PublicUserDocument,
@@ -31,6 +32,16 @@ export function CreateUserMap(users: PublicUserDocument[]) {
 	}
 
 	return userMap;
+}
+
+export function CreateGoalMap(goals: GoalDocument[]) {
+	const goalMap = new Map<string, GoalDocument>();
+
+	for (const goal of goals) {
+		goalMap.set(goal.goalID, goal);
+	}
+
+	return goalMap;
 }
 
 export function CreateChartIDMap<T extends { chartID: string }>(arr: T[]): Map<string, T> {

@@ -6,6 +6,7 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
+import { UserGameStatsContext } from "context/UserGameStatsContext";
 import React, { useContext } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -26,6 +27,7 @@ export default function ChartInfoFormat({
 	);
 
 	const { user } = useContext(UserContext);
+	const { ugs } = useContext(UserGameStatsContext);
 
 	if (error) {
 		<ApiError error={error} />;
@@ -48,7 +50,7 @@ export default function ChartInfoFormat({
 				{data.length !== 0 ? (
 					data.map(e => (
 						<li key={e.folderID}>
-							{user ? (
+							{user && ugs ? (
 								<Link
 									className="gentle-link"
 									to={`/dashboard/users/${user.username}/games/${game}/${playtype}/folders/${e.folderID}`}

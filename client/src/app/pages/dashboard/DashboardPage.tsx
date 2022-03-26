@@ -2,11 +2,14 @@ import { APIFetchV1 } from "util/api";
 import { RFA } from "util/misc";
 import { NumericSOV } from "util/sorts";
 import { heySplashes } from "util/splashes";
+import { ChangeOpacity } from "util/color-opacity";
+import { CreateGoalMap } from "util/data";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import SessionCard from "components/sessions/SessionCard";
 import ApiError from "components/util/ApiError";
 import AsyncLoader from "components/util/AsyncLoader";
 import Divider from "components/util/Divider";
+import GentleLink from "components/util/GentleLink";
 import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
@@ -17,8 +20,9 @@ import { TachiConfig } from "lib/config";
 import React, { useContext } from "react";
 import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { GetGameConfig, PublicUserDocument } from "tachi-common";
+import { COLOUR_SET, GetGameConfig, PublicUserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
+import { FolderInfoComponent } from "./users/games/_game/_playtype/folders/FolderSelectPage";
 import { GameStatContainer } from "./users/UserGamesPage";
 
 export function DashboardPage() {
@@ -73,33 +77,100 @@ function RecentInfo({ user }: { user: PublicUserDocument }) {
 		return <Loading />;
 	}
 
-	if (!data.recentSessions.length) {
-		return <></>;
+	const folderInfoMap = new Map();
+	for (const folderInfo of data.recentFolderStats) {
+		folderInfoMap.set(folderInfo.folderID, folderInfo);
 	}
+
+	const goalMap = CreateGoalMap(data.recentGoals);
 
 	return (
 		<>
-			<Alert
-				style={{
-					backgroundColor: TachiConfig.type === "ktchi" ? "#e61c6e44" : "#527acc44",
-					color: "white",
-				}}
-			>
-				<div className="text-center">
-					<h1>Today's Summary</h1>
-					You've gotten <b>{data.recentPlaycount}</b> new score
-					{data.recentPlaycount !== 1 ? "s" : ""} today!
-				</div>
-			</Alert>
-			<Divider />
-			<h1>New Sessions</h1>
-			You've had <b>{data.recentSessions.length}</b> session
-			{data.recentSessions.length !== 1 ? "s" : ""} today!
-			<Divider />
-			{data.recentSessions.sort(NumericSOV(x => x.timeEnded, true)).map(e => (
-				<SessionCard sessionID={e.sessionID} key={e.sessionID} />
-			))}
-			<Divider />
+			{data.recentSessions.length !== 0 && (
+				<>
+					<Alert
+						style={{
+							backgroundColor:
+								TachiConfig.type === "ktchi" ? "#e61c6e44" : "#527acc44",
+							color: "white",
+						}}
+					>
+						<div className="text-center">
+							<h1>Today's Summary</h1>
+							You've gotten <b>{data.recentPlaycount}</b> new score
+							{data.recentPlaycount !== 1 ? "s" : ""} today!
+						</div>
+					</Alert>
+					<Divider />
+					<h1>New Sessions</h1>
+					You've had <b>{data.recentSessions.length}</b> session
+					{data.recentSessions.length !== 1 ? "s" : ""} today!
+					<Divider />
+					{data.recentSessions.sort(NumericSOV(x => x.timeEnded, true)).map(e => (
+						<SessionCard sessionID={e.sessionID} key={e.sessionID} />
+					))}
+					<Divider />
+				</>
+			)}
+			{data.recentAchievedGoals.length !== 0 && (
+				<>
+					<Alert
+						style={{
+							backgroundColor: ChangeOpacity(COLOUR_SET.gold, 0.2),
+						}}
+					>
+						<div className="text-center text-white">
+							<h1>
+								{RFA([
+									"Sweet!",
+									"Nice!",
+									"Lookin' good!",
+									"Good Stuff!",
+									"owo",
+									"Cool!",
+									"Awesome!",
+									"Epic!",
+								])}
+							</h1>
+							You've achieved <b>{data.recentAchievedGoals.length}</b> new goal
+							{data.recentAchievedGoals.length !== 1 ? "s" : ""} today!
+						</div>
+						<Divider />
+						<div className="text-white">
+							<ul>
+								{data.recentAchievedGoals.map(e => (
+									<GentleLink
+										to={`/dashboard/games/${e.game}/${e.playtype}/goals/${e.goalID}`}
+										key={e.goalID}
+									>
+										<li>{goalMap.get(e.goalID)?.title}</li>
+									</GentleLink>
+								))}
+							</ul>
+						</div>
+					</Alert>
+					<Divider />
+				</>
+			)}
+			{data.recentFolders.length !== 0 && (
+				<>
+					<h1>Here's some folders you checked out recently.</h1>
+					<Divider />
+					<div className="row">
+						{data.recentFolders.map(e => (
+							<FolderInfoComponent
+								key={e.folderID}
+								folder={e}
+								game={e.game}
+								playtype={e.playtype}
+								reqUser={user}
+								folderStats={folderInfoMap.get(e.folderID)!}
+							/>
+						))}
+					</div>
+					<Divider />
+				</>
+			)}
 		</>
 	);
 }

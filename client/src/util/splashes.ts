@@ -110,6 +110,13 @@ export const loggedInSplashes = [
 	"ok deraadt miod",
 	"What good are notebooks?",
 	"Ladies and Gentlemen We Are...",
+	"Source: It came to me in a dream.",
+	"It's called solidarity, you wouldn't get it.",
+	"Come to my house and play BMS.",
+	"There is a leviathan in play.",
+	"Touch Grass.",
+	"arch btw",
+	"Upon Such Great Heights",
 ];
 
 // Stuff that's bad for the kids, you know?
@@ -126,8 +133,9 @@ export const contentiousSplashes = [
 	"I have the transfeminine urge to pee.",
 	"I HAVE TO LIE IN THE MIDDLE OF THE FLOOR",
 	"COMPLETELY MOTIONLESS NOT DARING TO BREATHE",
-	"I wouldn't trade one stupid decision<<for another 5 years of life",
+	"I wouldn't trade one stupid decision for another 5 years of life",
 	"TRACKED.com",
+	"and you'll never believe what JK Rowling just said!",
 ];
 
 export const heySplashes = [

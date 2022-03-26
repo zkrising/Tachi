@@ -48,6 +48,7 @@ export async function UpdateGoalsForUser(
 
 	const importInfo = [];
 	const bulkWrite = [];
+	const webhookEventContent = [];
 
 	for (const ret of returns) {
 		if (!ret) {
@@ -56,12 +57,23 @@ export async function UpdateGoalsForUser(
 
 		importInfo.push(ret.import);
 		bulkWrite.push(ret.bwrite);
+
+		if (ret.webhookEvent) {
+			webhookEventContent.push(ret.webhookEvent);
+		}
 	}
 
 	if (bulkWrite.length === 0) {
 		// bulkwrite cannot be an empty array -- this means there's nothing to update or return, then.
 		// i.e. goals was non empty but returns was entirely [undefined, undefined...].
 		return [];
+	}
+
+	if (webhookEventContent.length !== 0) {
+		await EmitWebhookEvent({
+			type: "goals-achieved/v1",
+			content: { goals: webhookEventContent, userID, game: goals[0].game },
+		});
 	}
 
 	await db["user-goals"].bulkWrite(bulkWrite, { ordered: false });
@@ -109,19 +121,15 @@ export async function ProcessGoal(
 		achieved: userGoal.achieved,
 	};
 
+	let webhookEvent = null;
 	// if this is a newly-achieved goal
 	if (res.achieved && !userGoal.achieved) {
-		EmitWebhookEvent({
-			type: "goal-achieved/v1",
-			content: {
-				userID,
-				goalID: goal.goalID,
-				old: oldData,
-				new: newData,
-				game: goal.game,
-				playtype: goal.playtype,
-			},
-		});
+		webhookEvent = {
+			goalID: goal.goalID,
+			old: oldData,
+			new: newData,
+			playtype: goal.playtype,
+		};
 	}
 
 	const bulkWrite = {
@@ -147,6 +155,7 @@ export async function ProcessGoal(
 			old: oldData,
 			new: newData,
 		},
+		webhookEvent,
 	};
 }
 
@@ -164,7 +173,7 @@ export async function GetRelevantGoals(
 	chartIDs: Set<string>,
 	logger: KtLogger
 ): Promise<{ goals: GoalDocument[]; userGoalsMap: Map<string, UserGoalDocument> }> {
-	const userGoals = await db["user-goals"].find({ game, userID });
+	const userGoals = await db["user-goals"].find({ game, userID }, { projectID: true });
 
 	logger.verbose(`Found user has ${userGoals.length} goals.`);
 

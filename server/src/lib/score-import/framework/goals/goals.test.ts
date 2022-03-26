@@ -26,7 +26,6 @@ t.test("#GetRelevantFolderGoals", (t) => {
 			type: "folder",
 			data: "ed9d8c734447ce67d7135c0067441a98cc81aeaf",
 		},
-		createdBy: 1,
 		game: "iidx",
 		goalID: "fake_goal_id",
 		playtype: "SP",
@@ -44,7 +43,6 @@ t.test("#GetRelevantFolderGoals", (t) => {
 			type: "folder",
 			data: "some_fake_folder_id",
 		},
-		createdBy: 1,
 		game: "iidx",
 		goalID: "fake_bad_goal_id",
 		playtype: "SP",
@@ -104,7 +102,6 @@ t.test("#GetRelevantGoals", (t) => {
 				type: "single",
 				data: e.chartID,
 			},
-			createdBy: 1,
 			game: "iidx",
 			goalID: crypto.randomBytes(20).toString("hex"),
 			playtype: "SP",
@@ -122,6 +119,7 @@ t.test("#GetRelevantGoals", (t) => {
 		await db["user-goals"].insert(
 			goals.map((e) => ({
 				achieved: false,
+				wasInstantlyAchieved: false,
 				timeAchieved: null,
 				game: "iidx",
 				playtype: "SP",
@@ -172,7 +170,6 @@ t.test("#UpdateGoalsForUser", (t) => {
 			type: "single" as const,
 			data: Testing511SPA.chartID,
 		},
-		createdBy: 1,
 		game: "iidx",
 		goalID: "FAKE_GOAL_ID",
 		playtype: "SP",
@@ -187,6 +184,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 
 	const baseUserGoalDocument: UserGoalDocument = {
 		achieved: false,
+		wasInstantlyAchieved: false,
 		game: "iidx",
 		playtype: "SP",
 		goalID: "FAKE_GOAL_ID",

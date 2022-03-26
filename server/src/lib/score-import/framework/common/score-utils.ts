@@ -78,11 +78,11 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 				(
 					chart as ChartDocument<
 						| "iidx:SP"
+						| "iidx:DP"
 						| "bms:7K"
 						| "bms:14K"
 						| "pms:Controller"
 						| "pms:Keyboard"
-						| "iidx:DP"
 					>
 				).data.notecount * 2;
 

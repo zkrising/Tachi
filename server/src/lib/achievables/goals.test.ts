@@ -302,7 +302,7 @@ t.test("#EvaluateGoalForUser", (t) => {
 });
 
 t.test("#HumaniseGoalProgress", (t) => {
-	t.equal(HumaniseGoalProgress("iidx", "SP", "scoreData.gradeIndex", 4, null), "B");
+	t.equal(HumaniseGoalProgress("iidx", "SP", "scoreData.gradeIndex", 4, null), "B (0%)");
 	t.equal(HumaniseGoalProgress("iidx", "SP", "scoreData.lampIndex", 4, null), "CLEAR");
 	t.equal(HumaniseGoalProgress("iidx", "SP", "scoreData.percent", 90.1142, null), "90.11%");
 	t.equal(HumaniseGoalProgress("iidx", "SP", "scoreData.score", 2240, null), "2240");

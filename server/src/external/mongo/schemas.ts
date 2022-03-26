@@ -620,7 +620,6 @@ export const DatabaseSchemas: Record<
 		game: p.isIn(games),
 		playtype: isValidPlaytype,
 		timeAdded: p.isPositive,
-		createdBy: p.isPositiveNonZeroInteger,
 		title: "string",
 		goalID: "string",
 		criteria: p.or(
@@ -667,7 +666,6 @@ export const DatabaseSchemas: Record<
 	milestones: prSchemaify({
 		game: p.isIn(games),
 		playtype: isValidPlaytype,
-		createdBy: p.isPositiveNonZeroInteger,
 		name: "string",
 		desc: "string",
 		milestoneID: "string",

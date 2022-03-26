@@ -26,6 +26,7 @@ import sessionsRouter from "./sessions/router";
 import settingsRouter from "./settings/router";
 import showcaseRouter from "./showcase/router";
 import tablesRouter from "./tables/router";
+import goalsRouter from "./goals/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -377,5 +378,6 @@ router.use("/tables", tablesRouter);
 router.use("/showcase", showcaseRouter);
 router.use("/settings", settingsRouter);
 router.use("/folders", foldersRouter);
+router.use("/goals", goalsRouter);
 
 export default router;

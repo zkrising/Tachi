@@ -1,9 +1,15 @@
 import { Router } from "express";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { IsString } from "utils/misc";
-import { GetGamePTConfig, UserGameStats, FormatGame, Game, Playtypes, integer } from "tachi-common";
-import { FindOptions } from "monk";
 import db from "external/mongo/db";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { ONE_HOUR } from "lib/constants/time";
+import { FindOptions } from "monk";
+import NodeCache from "node-cache";
+import p from "prudence";
+import prValidate from "server/middleware/prudence-validate";
+import { FormatGame, Game, GetGamePTConfig, integer, Playtypes, UserGameStats } from "tachi-common";
+import { GetRelevantSongsAndCharts } from "utils/db";
+import { IsString } from "utils/misc";
+import { GetClassDistribution } from "utils/queries/stats";
 import {
 	CheckStrProfileAlg,
 	CheckStrScoreAlg,
@@ -11,17 +17,12 @@ import {
 } from "utils/string-checks";
 import { GetUsersWithIDs } from "utils/user";
 import chartsRouter from "./charts/router";
-import songIDRouter from "./songs/_songID/router";
-import { ValidatePlaytypeFromParam } from "./middleware";
 import foldersRouter from "./folders/router";
-import tablesRouter from "./tables/router";
-import NodeCache from "node-cache";
-import { ONE_HOUR } from "lib/constants/time";
-import prValidate from "server/middleware/prudence-validate";
-import p from "prudence";
-import { GetClassDistribution } from "utils/queries/stats";
+import goalsRouter from "./goals/router";
+import { ValidatePlaytypeFromParam } from "./middleware";
 import scoresRouter from "./scores/router";
-import { GetRelevantSongsAndCharts } from "utils/db";
+import songIDRouter from "./songs/_songID/router";
+import tablesRouter from "./tables/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -293,12 +294,11 @@ router.get(
 	}
 );
 
-// @todo #196 Country Leaderboards?
-
 router.use("/charts", chartsRouter);
 router.use("/songs/:songID", songIDRouter);
 router.use("/folders", foldersRouter);
 router.use("/tables", tablesRouter);
 router.use("/scores", scoresRouter);
+router.use("/goals", goalsRouter);
 
 export default router;

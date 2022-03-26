@@ -26,7 +26,7 @@ import sessionsRouter from "./sessions/router";
 import settingsRouter from "./settings/router";
 import showcaseRouter from "./showcase/router";
 import tablesRouter from "./tables/router";
-import goalsRouter from "./goals/router";
+import goalsRouter from "./targets/goals/router";
 
 const router: Router = Router({ mergeParams: true });
 

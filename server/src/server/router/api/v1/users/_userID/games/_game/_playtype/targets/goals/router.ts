@@ -9,7 +9,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { RequirePermissions } from "server/middleware/auth";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 import { GetGoalForIDGuaranteed, GetMilestoneForIDGuaranteed } from "utils/db";
-import { RequireAuthedAsUser } from "../../../../middleware";
+import { RequireAuthedAsUser } from "../../../../../middleware";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -18,7 +18,7 @@ const logger = CreateLogCtx(__filename);
 /**
  * Retrieves this users' set goals.
  *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/goals
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/goals
  */
 router.get("/", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
@@ -63,7 +63,7 @@ type GoalCreationBody = Pick<GoalDocument, "charts" | "criteria">;
  * supplied here. For single, this is a chartID. For multi, this is an array of chartIDs.
  * For folder, this is a folderID. For any, no data should be supplied.
  *
- * @name POST /api/v1/users/:userID/games/:game/:playtype/goals/add-goal
+ * @name POST /api/v1/users/:userID/games/:game/:playtype/targets/goals/add-goal
  */
 router.post(
 	"/add-goal",
@@ -211,7 +211,7 @@ const GetGoalSubscription: RequestHandler = async (req, res, next) => {
 /**
  * Reads information about the users subscription to this goal ID.
  *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/goals/:goalID
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID
  */
 router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
@@ -240,7 +240,7 @@ router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 /**
  * Removes a goal from your profile.
  *
- * @name DELETE /api/v1/users/:userID/games/:game/:playtype/goals/:goalID
+ * @name DELETE /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID
  */
 router.delete(
 	"/:goalID",

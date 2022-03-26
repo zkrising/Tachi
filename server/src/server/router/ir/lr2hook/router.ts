@@ -31,9 +31,9 @@ router.post("/import", async (req, res) => {
 /**
  * Import a course in the LR2Hook format.
  *
- * @name POST /ir/lr2hook/import-course
+ * @name POST /ir/lr2hook/import/course
  */
-router.post("/import-course", prValidate(PR_LR2Hook), async (req, res) => {
+router.post("/import/course", prValidate(PR_LR2Hook), async (req, res) => {
 	// notably, courses in LR2 are actually identical to scores. They have all
 	// the same fields in all the same ways. The only significant difference is that
 	// the md5 field is 4 fields conjoined, rather than just one.

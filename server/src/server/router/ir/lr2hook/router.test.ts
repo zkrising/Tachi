@@ -63,7 +63,7 @@ t.test("POST /ir/lr2hook/import", (t) => {
 	t.end();
 });
 
-t.test("POST /ir/lr2hook/import-course", (t) => {
+t.test("POST /ir/lr2hook/import/course", (t) => {
 	t.beforeEach(ResetDBState);
 
 	const classBody: LR2HookScore = {
@@ -92,7 +92,7 @@ t.test("POST /ir/lr2hook/import-course", (t) => {
 
 	t.test("Should update a user's class if necessary.", async (t) => {
 		const res = await mockApi
-			.post("/ir/lr2hook/import-course")
+			.post("/ir/lr2hook/import/course")
 			.set("Authorization", "Bearer fake_api_token")
 			.send(classBody);
 
@@ -113,7 +113,7 @@ t.test("POST /ir/lr2hook/import-course", (t) => {
 
 	t.test("Should not update a user's class if they didn't clear the course.", async (t) => {
 		const res = await mockApi
-			.post("/ir/lr2hook/import-course")
+			.post("/ir/lr2hook/import/course")
 			.set("Authorization", "Bearer fake_api_token")
 			.send(deepmerge(classBody, { scoreData: { notesPlayed: 1 } }));
 
@@ -133,7 +133,7 @@ t.test("POST /ir/lr2hook/import-course", (t) => {
 
 	t.test("Should 404 if the course doesn't exist.", async (t) => {
 		const res = await mockApi
-			.post("/ir/lr2hook/import-course")
+			.post("/ir/lr2hook/import/course")
 			.set("Authorization", "Bearer fake_api_token")
 			.send(deepmerge(classBody, { md5: "some nonsense" }));
 

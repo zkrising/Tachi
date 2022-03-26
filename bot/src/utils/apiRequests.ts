@@ -44,7 +44,7 @@ export async function GetUGPTStats(userID: integer | string, game: Game, playtyp
 
 export async function GetGoalWithID(goalID: string, game: Game, playtype: Playtype) {
 	const res = await TachiServerV1Get<GoalDocument>(
-		`/games/${game}/${playtype}/goals/${goalID}`,
+		`/games/${game}/${playtype}/targets/goals/${goalID}`,
 		null
 	);
 

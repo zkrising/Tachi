@@ -43,7 +43,7 @@ export default function CreditsPage() {
 			<Divider />
 			<p>
 				If you want to support {TachiConfig.name} development, see{" "}
-				<Link to="/dashboard/support">Support / Patreon</Link>.
+				<Link to="/dashboard/support">Support</Link>.
 			</p>
 			<Divider />
 

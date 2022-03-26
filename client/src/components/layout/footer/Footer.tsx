@@ -56,7 +56,7 @@ export function Footer() {
 							className="nav-link px-3"
 							onClick={() => window.scrollTo(0, 0)}
 						>
-							Support / Patreon
+							Support
 						</Link>
 						<Link
 							to="/dashboard/privacy"

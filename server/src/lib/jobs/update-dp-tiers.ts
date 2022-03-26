@@ -1,15 +1,16 @@
 /* eslint-disable no-await-in-loop */
-import fetch from "utils/fetch";
-import { parse } from "node-html-parser";
-import CreateLogCtx from "lib/logger/logger";
-import { FindSongOnTitle } from "utils/queries/songs";
 import db from "external/mongo/db";
-import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { decode } from "html-entities";
+import { PullDatabaseSeeds } from "lib/database-seeds/repo";
+import CreateLogCtx from "lib/logger/logger";
+import { parse } from "node-html-parser";
+import { RecalcAllScores } from "utils/calculations/recalc-scores";
+import fetch from "utils/fetch";
+import { FindSongOnTitle } from "utils/queries/songs";
 
 const logger = CreateLogCtx(__filename);
 
-async function UpdateDPTiers() {
+export async function UpdateDPTiers() {
 	const rawHTML = await fetch("https://zasa.sakura.ne.jp/dp/run.php").then((r) => r.text());
 
 	// time for some fun html parsing.
@@ -91,6 +92,17 @@ async function UpdateDPTiers() {
 		});
 
 		logger.info(`Recalced those scores.`);
+
+		const repo = await PullDatabaseSeeds();
+
+		let charts = await db.charts.iidx.find({});
+
+		await repo.WriteCollection("charts-iidx", charts);
+
+		// @ts-expect-error Force node to free the memory.
+		charts = null;
+
+		await repo.CommitChangesBack(`Update DP Tierlist ${new Date().toISOString()}`);
 	}
 
 	logger.info("Done.");

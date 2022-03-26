@@ -6,6 +6,7 @@ import { BacksyncBMSPMSSongsAndCharts } from "../backsync-bms-pms-data";
 import { DeoprhanScores } from "../deorphan-scores";
 import { UGSSnapshot } from "../ugs-snapshot";
 import { UpdatePoyashiData } from "../update-bpi-data";
+import { UpdateDPTiers } from "../update-dp-tiers";
 
 interface Job {
 	name: string;
@@ -34,6 +35,11 @@ if (TachiConfig.TYPE !== "btchi") {
 		name: "Update BPI",
 		cronFormat: "2 0 * * *",
 		run: UpdatePoyashiData,
+	});
+	jobs.push({
+		name: "Update DP Tiers",
+		cronFormat: "3 0 * * *",
+		run: UpdateDPTiers,
 	});
 }
 

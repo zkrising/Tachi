@@ -15,6 +15,16 @@ not generally be shown to end users.
 
 # Changelog
 
+# 2.1.11
+
+- [ENH] The LR2Hook now saves courses.
+- [ENH] The LR2Hook now saves gauge information.
+
+*****
+
+- [BUG] Having less than 20 valid scores for BPI is no longer advantageous due to regression to 0 profile BPI.
+- [BUG] Timelines now prefer scores with timestamps if present, instead of preferring scores with null timestamps.
+
 # 2.1.10
 
 - [BUG] Users can no longer permanently lock themselves out of an import by making an import while one is ongoing.

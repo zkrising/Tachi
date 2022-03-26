@@ -8,6 +8,7 @@ import {
 	Playtypes,
 	SongDocument,
 } from "tachi-common";
+import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import fetch from "utils/fetch";
 
 const logger = CreateLogCtx(__filename);
@@ -94,6 +95,8 @@ export async function UpdatePoyashiData() {
 		return null;
 	}
 
+	const updatedChartIDs = [];
+
 	// The actual mutation.
 	for (const d of data.body) {
 		const res = difficultyResolve[d.difficulty];
@@ -135,18 +138,42 @@ export async function UpdatePoyashiData() {
 			continue;
 		}
 
-		tachiChart.data.bpiCoefficient = d.coef === -1 || d.coef === undefined ? null : d.coef;
-		tachiChart.data.kaidenAverage = Number(d.avg);
-		tachiChart.data.worldRecord = Number(d.wr);
+		const newCoef = d.coef === -1 || d.coef === undefined ? null : d.coef;
+		const newKavg = Number(d.avg);
+		const newWR = Number(d.wr);
+
+		if (
+			tachiChart.data.bpiCoefficient !== newCoef ||
+			tachiChart.data.kaidenAverage !== newKavg ||
+			tachiChart.data.worldRecord !== newWR
+		) {
+			updatedChartIDs.push(tachiChart.chartID);
+
+			tachiChart.data.bpiCoefficient = newCoef;
+			tachiChart.data.kaidenAverage = newKavg;
+			tachiChart.data.worldRecord = newWR;
+		}
 	}
 
 	await repo.WriteCollection("charts-iidx", iidxCharts);
 
-	logger.info(`Finished applying BPI changes. Writing back.`);
+	if (updatedChartIDs.length !== 0) {
+		logger.info(`Finished applying BPI changes. Writing back.`);
 
-	await repo.CommitChangesBack(`BPI Update ${new Date().toISOString()}`);
+		await repo.CommitChangesBack(`BPI Update ${new Date().toISOString()}`);
+
+		logger.info(`Recalcing scores.`);
+		await RecalcAllScores({
+			game: "iidx",
+			chartID: { $in: updatedChartIDs },
+		});
+
+		logger.info(`Finished recalcing scores.`);
+	}
 }
 
 if (require.main === module) {
-	UpdatePoyashiData();
+	UpdatePoyashiData().then(() => {
+		process.exit(0);
+	});
 }

@@ -7,7 +7,7 @@ import { FormatPrError } from "utils/prudence";
 
 const SUPPORTED_RANDOMS = ["NORAN", "MIRROR", "RAN", "S-RAN"];
 
-const PR_LR2Hook: PrudenceSchema = {
+export const PR_LR2Hook: PrudenceSchema = {
 	md5: "string",
 	playerData: {
 		autoScr: p.is(0),

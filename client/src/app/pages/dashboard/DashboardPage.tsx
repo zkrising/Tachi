@@ -140,7 +140,7 @@ function RecentInfo({ user }: { user: PublicUserDocument }) {
 							<ul>
 								{data.recentAchievedGoals.map(e => (
 									<GentleLink
-										to={`/dashboard/games/${e.game}/${e.playtype}/goals/${e.goalID}`}
+										to={`/dashboard/games/${e.game}/${e.playtype}/targets/goals/${e.goalID}`}
 										key={e.goalID}
 									>
 										<li>{goalMap.get(e.goalID)?.title}</li>

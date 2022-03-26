@@ -45,7 +45,9 @@ export default function UserGoalTable({
 				<tr>
 					<UserCell game={game} playtype={playtype} user={d.__related.user} />
 					<td>
-						<GentleLink to={`/dashboard/games/${game}/${playtype}/goals/${d.goalID}`}>
+						<GentleLink
+							to={`/dashboard/games/${game}/${playtype}/targets/goals/${d.goalID}`}
+						>
 							{d.__related.goal.title}
 						</GentleLink>
 					</td>

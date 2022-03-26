@@ -19,7 +19,8 @@ import {
 } from "tachi-common";
 import { DryScore } from "../common/types";
 import {
-	CalculateKTLampRatingIIDX,
+	CalculateKTLampRatingIIDXDP,
+	CalculateKTLampRatingIIDXSP,
 	CalculateKTRating,
 	CalculateMFCP,
 	CalculateSieglinde,
@@ -115,12 +116,14 @@ function CalculateDataIIDX(
 		bpi = null;
 	}
 
+	const ktLampRating =
+		chart.playtype === "SP"
+			? CalculateKTLampRatingIIDXSP(dryScore, chart as ChartDocument<"iidx:SP">)
+			: CalculateKTLampRatingIIDXDP(dryScore, chart as ChartDocument<"iidx:DP">);
+
 	return {
 		BPI: bpi,
-		ktLampRating: CalculateKTLampRatingIIDX(
-			dryScore,
-			chart as ChartDocument<"iidx:SP" | "iidx:DP">
-		),
+		ktLampRating,
 	};
 }
 

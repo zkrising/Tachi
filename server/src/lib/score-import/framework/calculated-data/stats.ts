@@ -144,10 +144,7 @@ export function CalculateKTRating(
 	return KTRatingCalcV1(dryScore.scoreData.percent, levelNum, parameters, logger);
 }
 
-export function CalculateKTLampRatingIIDX(
-	dryScore: DryScore,
-	chart: ChartDocument<"iidx:SP" | "iidx:DP">
-) {
+export function CalculateKTLampRatingIIDXSP(dryScore: DryScore, chart: ChartDocument<"iidx:SP">) {
 	const ncValue = chart.tierlistInfo["kt-NC"]?.value ?? 0;
 	const hcValue = Math.max(chart.tierlistInfo["kt-HC"]?.value ?? 0, ncValue);
 	const exhcValue = Math.max(chart.tierlistInfo["kt-EXHC"]?.value ?? 0, hcValue);
@@ -168,6 +165,26 @@ export function CalculateKTLampRatingIIDX(
 		return hcValue;
 	} else if (ncValue && lampIndex >= IIDX_LAMPS.CLEAR) {
 		return ncValue;
+	}
+
+	return 0;
+}
+
+export function CalculateKTLampRatingIIDXDP(dryScore: DryScore, chart: ChartDocument<"iidx:DP">) {
+	const tierlistValue = chart.tierlistInfo["dp-tier"]?.value ?? 0;
+
+	if (!tierlistValue) {
+		return LampRatingNoTierlistInfo(dryScore, "iidx", chart.playtype, chart);
+	}
+
+	const lamp = dryScore.scoreData.lamp;
+
+	const gptConfig = GetGamePTConfig("iidx", chart.playtype);
+
+	const lampIndex = gptConfig.lamps.indexOf(lamp);
+
+	if (lampIndex >= IIDX_LAMPS.CLEAR) {
+		return tierlistValue;
 	}
 
 	return 0;

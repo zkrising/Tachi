@@ -173,5 +173,7 @@ export async function UpdatePoyashiData() {
 }
 
 if (require.main === module) {
-	UpdatePoyashiData();
+	UpdatePoyashiData().then(() => {
+		process.exit(0);
+	});
 }

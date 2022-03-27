@@ -1,6 +1,6 @@
 import { APIFetchV1 } from "util/api";
 import { DEFAULT_BAR_PROPS } from "util/charts";
-import { CreateChartMap, CreateSongMap, CreateUserMap } from "util/data";
+import { CreateChartMap, CreateGoalMap, CreateSongMap, CreateUserMap } from "util/data";
 import { UppercaseFirst } from "util/misc";
 import { MillisToSince } from "util/time";
 import { ResponsiveBar } from "@nivo/bar";
@@ -8,7 +8,9 @@ import { BarChartTooltip } from "components/charts/ChartTooltip";
 import ClassBadge from "components/game/ClassBadge";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
+import UserGoalTable from "components/tables/goals/UserGoalTable";
 import ScoreTable from "components/tables/scores/ScoreTable";
+
 import ApiError from "components/util/ApiError";
 import AsyncLoader from "components/util/AsyncLoader";
 import Divider from "components/util/Divider";
@@ -27,10 +29,12 @@ import {
 	GamePTConfig,
 	GetGameConfig,
 	GetGamePTConfig,
+	GoalDocument,
 	integer,
 	PublicUserDocument,
 	ScoreDocument,
 	SongDocument,
+	UserGoalDocument,
 } from "tachi-common";
 import { RecentClassesReturn } from "types/api-returns";
 import { GamePT } from "types/react";
@@ -50,6 +54,10 @@ export default function GPTMainPage({ game, playtype }: GamePT) {
 			<Card header="Recent Highlighted Scores">
 				<RecentHighlightedScoresComponent game={game} playtype={playtype} />
 			</Card>
+			<Divider />
+			<Card header="Recent Achieved Goals">
+				<RecentAchievedGoalsComponent game={game} playtype={playtype} />
+			</Card>
 			{Object.keys(gptConfig.classHumanisedFormat).length !== 0 && (
 				<>
 					<Divider />
@@ -63,6 +71,61 @@ export default function GPTMainPage({ game, playtype }: GamePT) {
 				</>
 			)}
 		</>
+	);
+}
+
+function RecentAchievedGoalsComponent({ game, playtype }: GamePT) {
+	const { data, isLoading, error } = useApiQuery<{
+		users: PublicUserDocument[];
+		goals: GoalDocument[];
+		userGoals: UserGoalDocument[];
+	}>(`/games/${game}/${playtype}/goals/recently-achieved`);
+
+	if (error) {
+		return <ApiError error={error} />;
+	}
+
+	if (!data || isLoading) {
+		return <Loading />;
+	}
+
+	const dataset = [];
+
+	const userMap = CreateUserMap(data.users);
+	const goalMap = CreateGoalMap(data.goals);
+
+	for (const userGoal of data.userGoals) {
+		const user = userMap.get(userGoal.userID);
+		const goal = goalMap.get(userGoal.goalID);
+
+		if (!user || !goal) {
+			console.warn(
+				`Couldn't find goal or user for ${userGoal.userID}, ${userGoal.goalID}? Skipping.`
+			);
+			continue;
+		}
+
+		dataset.push({
+			...userGoal,
+			__related: {
+				user,
+				goal,
+			},
+		});
+	}
+
+	return (
+		<Row>
+			<Col className="text-center" xs={12}>
+				Here's what goals players have recently achieved!
+			</Col>
+			<Col xs={12}>
+				<Divider />
+			</Col>
+			<Col xs={12}>
+				<UserGoalTable dataset={dataset} game={game} playtype={playtype} />
+			</Col>
+		</Row>
 	);
 }
 

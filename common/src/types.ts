@@ -415,48 +415,6 @@ export type GoalDocument =
 	| GoalDocumentSingle
 	| GoalDocumentAny;
 
-export type MRGChallengeModes = "goal" | "lamp" | "score";
-export interface MutualRivalGroupChallenge extends MongoDBDocument {
-	challengeID: string;
-	derivedScoreID: string | null;
-	mode: MRGChallengeModes;
-	name: string;
-	postedBy: integer;
-	goalID: string;
-	mrgID: string;
-	postedAt: integer;
-}
-
-export type MRGFolderTargetFieldNames =
-	| "scoreData.percent"
-	| "scoreData.gradeIndex"
-	| "scoreData.lampIndex"
-	| "calculatedData.gameSpecific.BPI";
-
-export interface MRGFolderTarget {
-	field: MRGFolderTargetFieldNames;
-	target: number;
-}
-
-export interface MRGFolderInformation<I extends IDStrings = IDStrings> {
-	folderID: string;
-	difficulty: Difficulties[I][] | null;
-	datapoints: MRGFolderTarget[];
-}
-
-export interface MutualRivalGroupDocument extends MongoDBDocument {
-	name: string;
-	about: string;
-	founderID: integer;
-	members: integer[];
-	outgoingInvites: integer[];
-	game: Game;
-	playtype: AnyPlaytype;
-	folders: MRGFolderInformation[];
-	settings: Record<string, never>;
-	mrgID: string;
-}
-
 interface BaseInviteCodeDocument extends MongoDBDocument {
 	createdBy: integer;
 	code: string;

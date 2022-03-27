@@ -35,3 +35,14 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [docker-push]
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
+        with:
+          host: ${{ secrets.TACHI_HOST }}
+          username: tachi
+          key: ${{ secrets.TACHI_KEY }}
+          script: tachi-bot-deploy

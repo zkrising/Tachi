@@ -317,6 +317,8 @@ export async function SubscribeToGoal(
 		return SubscribeFailReasons.ALREADY_ACHIEVED;
 	}
 
+	// @ts-expect-error TS can't resolve this.
+	// because it can't explode out the types.
 	const userGoal: UserGoalDocument = {
 		outOf: result.outOf,
 		outOfHuman: result.outOfHuman,
@@ -330,9 +332,8 @@ export async function SubscribeToGoal(
 		game: goalDocument.game,
 		playtype: goalDocument.playtype,
 		goalID: goalDocument.goalID,
-		// Typescript gets pretty irritated at this because it can't explode out
-		// the types. That's whatever.
-		achieved: result.achieved as any,
+
+		achieved: result.achieved,
 		wasInstantlyAchieved: result.achieved,
 	};
 

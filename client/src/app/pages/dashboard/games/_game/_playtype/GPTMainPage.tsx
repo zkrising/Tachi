@@ -10,7 +10,6 @@ import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import UserGoalTable from "components/tables/goals/UserGoalTable";
 import ScoreTable from "components/tables/scores/ScoreTable";
-
 import ApiError from "components/util/ApiError";
 import AsyncLoader from "components/util/AsyncLoader";
 import Divider from "components/util/Divider";

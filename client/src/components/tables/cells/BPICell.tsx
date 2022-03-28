@@ -68,19 +68,19 @@ export default function BPICell({
 		chart.data.notecount
 	);
 
+	const headers = ["皆伝 Average", "World Record"];
+
+	if (isRequestingUser) {
+		headers.unshift(`Your Target (BPI ${bpiTarget})`);
+	}
+
 	return (
 		<>
 			<QuickTooltip
 				wide
 				tooltipContent={
 					<>
-						<MiniTable
-							headers={[
-								`Your Target (BPI ${bpiTarget})`,
-								"皆伝 Average",
-								"World Record",
-							]}
-						>
+						<MiniTable headers={headers}>
 							<tr>
 								{isRequestingUser ? TGAverageCell : null}
 								{KDAverageCell}

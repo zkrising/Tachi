@@ -4,7 +4,7 @@ import { SYMBOL_TachiData } from "lib/constants/tachi";
 import prValidate from "server/middleware/prudence-validate";
 import p from "prudence";
 import { GoalDocument } from "tachi-common";
-import { ConstructGoal, SubscribeFailReasons, SubscribeToGoal } from "lib/achievables/goals";
+import { ConstructGoal, SubscribeFailReasons, SubscribeToGoal } from "lib/targets/goals";
 import CreateLogCtx from "lib/logger/logger";
 import { RequirePermissions } from "server/middleware/auth";
 import { AssignToReqTachiData } from "utils/req-tachi-data";

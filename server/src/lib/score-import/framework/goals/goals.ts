@@ -1,5 +1,5 @@
 import { integer, Game, GoalDocument, UserGoalDocument } from "tachi-common";
-import { EvaluateGoalForUser } from "lib/achievables/goals";
+import { EvaluateGoalForUser } from "lib/targets/goals";
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";

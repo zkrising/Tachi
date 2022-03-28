@@ -1,6 +1,6 @@
 import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
-import { EvaluatedGoalReturn, EvaluateGoalForUser } from "lib/achievables/goals";
+import { EvaluatedGoalReturn, EvaluateGoalForUser } from "lib/targets/goals";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import prValidate from "server/middleware/prudence-validate";

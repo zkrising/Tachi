@@ -24,8 +24,7 @@ import { InitaliseFolderChartLookup } from "utils/folder";
 interface SyncInstructions {
 	pattern: RegExp;
 	handler: (
-		// These 'any's are necessary due to what I think might be a bug in typescript?
-		// see: https://github.com/microsoft/TypeScript/issues/48461
+		// These 'any's are necessary because generifying here kinda sucks.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		c: any[],
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any

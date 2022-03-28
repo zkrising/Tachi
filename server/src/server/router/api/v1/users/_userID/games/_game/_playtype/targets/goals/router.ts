@@ -194,6 +194,7 @@ const GetGoalSubscription: RequestHandler = async (req, res, next) => {
 		userID: user.id,
 		game,
 		playtype,
+		goalID: req.params.goalID,
 	});
 
 	if (!userGoal) {

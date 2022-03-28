@@ -20,10 +20,7 @@ const command: SlashCommand = {
 				.setRequired(true)
 		)
 		.addStringOption((str) =>
-			str
-				.setName("difficulty")
-				.setDescription("The difficulty of chart to return.")
-				.setRequired(true)
+			str.setName("difficulty").setDescription("The difficulty of chart to return.")
 		)
 		.addStringOption(OtherUserOption)
 		.toJSON(),

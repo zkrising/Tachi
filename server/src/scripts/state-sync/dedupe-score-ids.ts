@@ -26,6 +26,7 @@ async function DedupeScoreIDs() {
 
 	for (const dup of dups) {
 		dup.dups.shift();
+		// eslint-disable-next-line no-await-in-loop
 		await db.scores.remove({ _id: { $in: dup.dups } });
 	}
 

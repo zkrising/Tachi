@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 // This script syncs this tachi instances database up with the tachi-database-seeds.
 
-import db, { monkDB } from "external/mongo/db";
+import { monkDB } from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
@@ -24,7 +24,11 @@ import { InitaliseFolderChartLookup } from "utils/folder";
 interface SyncInstructions {
 	pattern: RegExp;
 	handler: (
+		// These 'any's are necessary due to what I think might be a bug in typescript?
+		// see: https://github.com/microsoft/TypeScript/issues/48461
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		c: any[],
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		collection: ICollection<any>,
 		logger: KtLogger,
 		collectionName: string

@@ -1,9 +1,6 @@
 import db from "external/mongo/db";
 import { integer } from "tachi-common";
-import {
-	GetGradeLampDistributionForFolder,
-	GetGradeLampDistributionForFolders,
-} from "utils/folder";
+import { GetGradeLampDistributionForFolders } from "utils/folder";
 import { GetTimeXHoursAgo } from "utils/misc";
 
 // Various utils related to the player summary endpoint.

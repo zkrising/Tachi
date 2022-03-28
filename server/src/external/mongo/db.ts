@@ -21,6 +21,7 @@ import {
 	InviteCodeDocument,
 	KaiAuthDocument,
 	MilestoneDocument,
+	MilestoneSetDocument,
 	OrphanChart,
 	PBScoreDocument,
 	PrivateUserInfoDocument,
@@ -190,6 +191,7 @@ const db = {
 	"verify-email-codes":
 		monkDB.get<{ userID: integer; code: string; email: string }>("verify-email-codes"),
 	"recent-folder-views": monkDB.get<RecentlyViewedFolderDocument>("recent-folder-views"),
+	"milestone-sets": monkDB.get<MilestoneSetDocument>("milestone-sets"),
 };
 
 export type StaticDatabases =
@@ -226,7 +228,8 @@ export type StaticDatabases =
 	| "score-blacklist"
 	| "verify-email-codes"
 	| "class-achievements"
-	| "recent-folder-views";
+	| "recent-folder-views"
+	| "milestone-sets";
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;
 

@@ -49,7 +49,7 @@ export function ParseDifficulty(
 	playtype: Playtype,
 	input: string | null
 ): Difficulties[IDStrings] | null {
-	if (input === null) {
+	if (input === null || game === "bms" || game === "pms") {
 		return null;
 	}
 

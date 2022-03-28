@@ -48,7 +48,15 @@ const command: SlashCommand = {
 			return (err as Error).message;
 		}
 
-		const search = interaction.options.getString("song_name", true);
+		let search = interaction.options.getString("song_name", true);
+
+		// bms and pms don't deal with 'difficulties' the way you would expect
+		// them to.
+		// As such, we just treat a difficulty (if it exists) as being part of the
+		// song title.
+		if ((game === "bms" || game === "pms") && difficulty) {
+			search += ` ${difficulty}`;
+		}
 
 		const chartsRes = await TachiServerV1Get<ChartQueryReturns>(
 			`/games/${game}/${playtype}/charts`,

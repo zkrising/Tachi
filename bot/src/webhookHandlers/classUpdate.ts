@@ -1,4 +1,5 @@
 import { FormatGame, integer, WebhookEventClassUpdateV1 } from "tachi-common";
+import { BotConfig } from "../config";
 import { client } from "../main";
 import { GetUserInfo } from "../utils/apiRequests";
 import { CreateEmbed } from "../utils/embeds";
@@ -26,6 +27,9 @@ export async function HandleClassUpdateV1(
 
 	const embed = CreateEmbed()
 		.setTitle(`${userDoc.username} just achieved ${newClass} in ${FormatGame(game, playtype)}!`)
+		.setURL(
+			`${BotConfig.TACHI_SERVER_LOCATION}/dashboard/users/${userDoc.username}/games/${game}/${playtype}`
+		)
 		.setThumbnail(PrependTachiUrl(`/users/${userDoc.id}/pfp`));
 
 	if (event.old !== null) {

@@ -332,7 +332,6 @@ export async function SubscribeToGoal(
 		game: goalDocument.game,
 		playtype: goalDocument.playtype,
 		goalID: goalDocument.goalID,
-
 		achieved: result.achieved,
 		wasInstantlyAchieved: result.achieved,
 	};

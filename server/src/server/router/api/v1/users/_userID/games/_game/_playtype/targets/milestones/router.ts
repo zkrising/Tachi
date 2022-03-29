@@ -80,7 +80,11 @@ router.get("/:milestoneID", GetMilestoneSubscription, async (req, res) => {
 
 	const milestone = await GetMilestoneForIDGuaranteed(milestoneSub.milestoneID);
 
-	const { progress, results, goals } = await EvaluateMilestoneProgress(user.id, milestone);
+	const {
+		progress,
+		goalResults: results,
+		goals,
+	} = await EvaluateMilestoneProgress(user.id, milestone);
 
 	return res.status(200).json({
 		success: true,

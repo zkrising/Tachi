@@ -1,7 +1,12 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { GoalSubscriptionDocument, integer, MilestoneDocument } from "tachi-common";
-import { EvaluatedGoalReturn, EvaluateGoalForUser } from "./goals";
+import {
+	GoalSubscriptionDocument,
+	integer,
+	MilestoneDocument,
+	MilestoneSubscriptionDocument,
+} from "tachi-common";
+import { EvaluatedGoalReturn, EvaluateGoalForUser, SubscribeToGoal } from "./goals";
 
 const logger = CreateLogCtx(__filename);
 
@@ -107,7 +112,7 @@ export async function EvaluateMilestoneProgress(userID: integer, milestone: Mile
 		}
 	}
 
-	const results: EvaluatedGoalResult[] = await Promise.all(
+	const goalResults: EvaluatedGoalResult[] = await Promise.all(
 		goals.map(async (goal) => {
 			if (isSubscribedToMilestone) {
 				const goalSub = goalSubMap.get(goal.goalID);
@@ -154,16 +159,79 @@ export async function EvaluateMilestoneProgress(userID: integer, milestone: Mile
 		})
 	);
 
-	const progress = results.filter((e) => e.achieved).length;
+	const progress = goalResults.filter((e) => e.achieved).length;
 	const outOf = CalculateMilestoneOutOf(milestone);
 
 	const achieved = progress >= outOf;
 
 	return {
 		goals,
-		results,
+		goalResults,
 		achieved,
 		progress,
 		outOf,
 	};
+}
+
+/**
+ * Subscribes the given user to a provided milestone. If the user is already subscribed,
+ * null is returned.
+ *
+ * @param cancelIfAchieved - Don't subscribe to the milestone if subscribing would cause
+ * the user to immediately achieve it.
+ */
+export async function SubscribeToMilestone(
+	userID: integer,
+	milestone: MilestoneDocument,
+	cancelIfAchieved = true
+) {
+	const isSubscribedToMilestone = await db["milestone-subs"].findOne({
+		userID,
+		milestoneID: milestone.milestoneID,
+	});
+
+	if (isSubscribedToMilestone) {
+		return null;
+	}
+
+	const result = await EvaluateMilestoneProgress(userID, milestone);
+
+	if (result.achieved && cancelIfAchieved) {
+		return null;
+	}
+
+	// @ts-expect-error TS can't resolve this.
+	// because it can't explode out the types.
+	const milestoneSub: MilestoneSubscriptionDocument = {
+		progress: result.progress,
+		userID,
+		milestoneID: milestone.milestoneID,
+		wasInstantlyAchieved: result.achieved,
+		timeSet: Date.now(),
+		game: milestone.game,
+		playtype: milestone.playtype,
+		achieved: result.achieved,
+		timeAchieved: result.achieved ? Date.now() : null,
+	};
+
+	// @optimisable, EvaluateMilestoneProgress calculates the users progress
+	// on each goal. We could probably shorten this by directly inserting the records
+	// from result.goalResults ourselves.
+	// evaluating goals is fairly cheap though.
+	await Promise.all(
+		result.goals.map((goal) =>
+			SubscribeToGoal(
+				userID,
+				goal,
+				{ milestoneID: milestone.milestoneID, origin: "milestone" },
+				false
+			)
+		)
+	);
+
+	await db["milestone-subs"].insert(milestoneSub);
+
+	logger.info(`User ${userID} subscribed to '${milestone.name}'.`);
+
+	return { milestoneSub, goals: result.goals, goalResults: result.goalResults };
 }

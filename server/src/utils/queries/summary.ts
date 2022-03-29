@@ -52,12 +52,12 @@ export async function GetRecentlyViewedFoldersAnyGPT(userID: integer) {
 export async function GetRecentlyAchievedGoals(userID: integer) {
 	const time = GetTimeXHoursAgo(REASONABLE_HOURS_AGO);
 
-	const achievedGoals = await db["user-goals"].find({
+	const achievedGoals = await db["goal-subs"].find({
 		timeAchieved: { $gte: time },
 		userID,
 	});
 
-	const improvedGoals = await db["user-goals"].find({
+	const improvedGoals = await db["goal-subs"].find({
 		lastInteraction: { $gte: time },
 		achieved: false,
 		userID,

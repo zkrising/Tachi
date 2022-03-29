@@ -21,7 +21,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(() => db.milestones.insert(TestingIIDXSPMilestone));
 	t.beforeEach(() =>
-		db["user-milestones"].insert({
+		db["milestone-subs"].insert({
 			achieved: false,
 			wasInstantlyAchieved: false,
 			game: "iidx",
@@ -153,7 +153,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 				milestoneID: "some_other_milestone_with_mutual_goals",
 			})
 		);
-		await db["user-milestones"].insert({
+		await db["milestone-subs"].insert({
 			achieved: false,
 			wasInstantlyAchieved: false,
 			game: "iidx",
@@ -262,7 +262,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 			),
 		]);
 
-		await db["user-milestones"].insert([
+		await db["milestone-subs"].insert([
 			{
 				achieved: false,
 				wasInstantlyAchieved: false,

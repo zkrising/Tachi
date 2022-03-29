@@ -298,7 +298,7 @@ export async function SubscribeToGoal(
 		logger.info(`Inserting new goal ${goalDocument.title}.`);
 	}
 
-	const userAlreadySubscribed = await db["user-goals"].findOne({
+	const userAlreadySubscribed = await db["goal-subs"].findOne({
 		userID,
 		goalID: goalDocument.goalID,
 	});
@@ -337,7 +337,7 @@ export async function SubscribeToGoal(
 		wasInstantlyAchieved: result.achieved,
 	};
 
-	await db["user-goals"].insert(userGoal);
+	await db["goal-subs"].insert(userGoal);
 
 	return userGoal;
 }

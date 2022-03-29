@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-	const userGoals = await db["user-goals"].find({
+	const userGoals = await db["goal-subs"].find({
 		userID: user.id,
 		game,
 		playtype,
@@ -129,7 +129,7 @@ router.post(
 		const game = req[SYMBOL_TachiData]!.game!;
 		const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-		const existingGoalsCount = await db["user-goals"].count({
+		const existingGoalsCount = await db["goal-subs"].count({
 			userID: user.id,
 			game,
 			playtype,
@@ -190,7 +190,7 @@ const GetGoalSubscription: RequestHandler = async (req, res, next) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-	const userGoal = await db["user-goals"].findOne({
+	const userGoal = await db["goal-subs"].findOne({
 		userID: user.id,
 		game,
 		playtype,
@@ -255,7 +255,7 @@ router.delete(
 		const game = req[SYMBOL_TachiData]!.game!;
 		const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-		const userGoal = await db["user-goals"].findOne({
+		const userGoal = await db["goal-subs"].findOne({
 			goalID,
 			userID: user.id,
 			game,
@@ -276,7 +276,7 @@ router.delete(
 			});
 		}
 
-		await db["user-goals"].remove({
+		await db["goal-subs"].remove({
 			userID: user.id,
 			goalID,
 			game,

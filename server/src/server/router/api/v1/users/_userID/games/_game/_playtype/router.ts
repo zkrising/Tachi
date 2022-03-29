@@ -156,7 +156,7 @@ router.get("/goals", async (req, res) => {
 		query.achieved = false;
 	}
 
-	const userGoals = await db["user-goals"].find(query);
+	const userGoals = await db["goal-subs"].find(query);
 
 	const goals = await db.goals.find({
 		goalID: { $in: userGoals.map((e) => e.goalID) },
@@ -193,7 +193,7 @@ router.get("/milestones", async (req, res) => {
 		query.achieved = false;
 	}
 
-	const userMilestones = await db["user-milestones"].find(query);
+	const userMilestones = await db["milestone-subs"].find(query);
 
 	const milestones = await db.milestones.find({
 		milestoneID: { $in: userMilestones.map((e) => e.milestoneID) },

@@ -152,9 +152,9 @@ const db = {
 	folders: monkDB.get<FolderDocument>("folders"),
 	"folder-chart-lookup": monkDB.get<FolderChartLookup>("folder-chart-lookup"),
 	goals: monkDB.get<GoalDocument>("goals"),
-	"user-goals": monkDB.get<UserGoalDocument>("user-goals"),
+	"goal-subs": monkDB.get<UserGoalDocument>("goal-subs"),
 	milestones: monkDB.get<MilestoneDocument>("milestones"),
-	"user-milestones": monkDB.get<UserMilestoneDocument>("user-milestones"),
+	"milestone-subs": monkDB.get<UserMilestoneDocument>("milestone-subs"),
 	users: monkDB.get<PublicUserDocument>("users"),
 	imports: monkDB.get<ImportDocument>("imports"),
 	"import-timings": monkDB.get<ImportTimingsDocument>("import-timings"),
@@ -204,8 +204,8 @@ export type StaticDatabases =
 	| "imports"
 	| "import-timings"
 	| "goals"
-	| "user-goals"
-	| "user-milestones"
+	| "goal-subs"
+	| "milestone-subs"
 	| "milestones"
 	| "game-stats"
 	| "game-settings"

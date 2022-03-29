@@ -21,7 +21,7 @@ router.get("/recently-achieved", async (req, res) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-	const recentlyAchievedUserGoals = await db["user-goals"].find(
+	const recentlyAchievedUserGoals = await db["goal-subs"].find(
 		{
 			game,
 			playtype,
@@ -86,7 +86,7 @@ const ResolveGoalID: RequestHandler = async (req, res, next) => {
 router.get("/:goalID", ResolveGoalID, async (req, res) => {
 	const goal = req[SYMBOL_TachiData]!.goalDoc!;
 
-	const userGoals = await db["user-goals"].find({
+	const userGoals = await db["goal-subs"].find({
 		goalID: goal.goalID,
 	});
 
@@ -150,7 +150,7 @@ router.get(
 		const goal = req[SYMBOL_TachiData]!.goalDoc!;
 		const goalID = goal.goalID;
 
-		const userGoal = await db["user-goals"].findOne({
+		const userGoal = await db["goal-subs"].findOne({
 			userID: user.id,
 			goalID,
 		});

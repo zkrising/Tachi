@@ -186,7 +186,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/goals", (t) => {
 	t.test(
 		"Should return all of a users goals, and only unachieved goals if the argument is set.",
 		async (t) => {
-			await db["user-goals"].insert([
+			await db["goal-subs"].insert([
 				{
 					goalID: "foo",
 					userID: 1,
@@ -256,7 +256,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/milestones", (t) => {
 	t.test(
 		"Should return all of a users milestones, and only unachieved milestones if the argument is set.",
 		async (t) => {
-			await db["user-milestones"].insert([
+			await db["milestone-subs"].insert([
 				{
 					milestoneID: "foo",
 					userID: 1,

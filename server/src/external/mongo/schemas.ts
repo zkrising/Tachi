@@ -688,7 +688,7 @@ export const DatabaseSchemas: Record<
 			}
 		),
 	}),
-	"user-goals": prSchemaify({
+	"goal-subs": prSchemaify({
 		goalID: "string",
 		userID: p.isPositiveNonZeroInteger,
 		game: p.isIn(games),
@@ -702,7 +702,7 @@ export const DatabaseSchemas: Record<
 		outOf: "number",
 		outOfHuman: "string",
 	}),
-	"user-milestones": prSchemaify({
+	"milestone-subs": prSchemaify({
 		milestoneID: "string",
 		userID: p.isPositiveNonZeroInteger,
 		game: p.isIn(games),

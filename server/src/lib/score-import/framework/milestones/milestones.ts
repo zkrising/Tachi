@@ -144,7 +144,7 @@ export async function UpdateUsersMilestones(
 	}
 
 	if (bwrite.length !== 0) {
-		await db["user-milestones"].bulkWrite(bwrite, { ordered: false });
+		await db["milestone-subs"].bulkWrite(bwrite, { ordered: false });
 	}
 
 	return importMilestoneInfo;
@@ -157,13 +157,13 @@ async function GetRelevantMilestones(
 	userID: integer,
 	logger: KtLogger
 ) {
-	const userMilestones = await db["user-milestones"].find({
+	const userMilestones = await db["milestone-subs"].find({
 		game,
 		playtype: { $in: playtypes },
 		userID,
 	});
 
-	logger.debug(`Found ${userMilestones.length} user-milestones.`);
+	logger.debug(`Found ${userMilestones.length} milestone-subs.`);
 
 	const milestones = await db.milestones.find({
 		milestoneID: { $in: userMilestones.map((e) => e.milestoneID) },

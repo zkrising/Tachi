@@ -76,7 +76,7 @@ export async function UpdateGoalsForUser(
 		});
 	}
 
-	await db["user-goals"].bulkWrite(bulkWrite, { ordered: false });
+	await db["goal-subs"].bulkWrite(bulkWrite, { ordered: false });
 
 	return importInfo;
 }
@@ -173,7 +173,7 @@ export async function GetRelevantGoals(
 	chartIDs: Set<string>,
 	logger: KtLogger
 ): Promise<{ goals: GoalDocument[]; userGoalsMap: Map<string, UserGoalDocument> }> {
-	const userGoals = await db["user-goals"].find({ game, userID }, { projectID: true });
+	const userGoals = await db["goal-subs"].find({ game, userID }, { projectID: true });
 
 	logger.verbose(`Found user has ${userGoals.length} goals.`);
 

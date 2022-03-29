@@ -116,7 +116,7 @@ t.test("#GetRelevantGoals", (t) => {
 
 		await db.goals.insert(goals);
 
-		await db["user-goals"].insert(
+		await db["goal-subs"].insert(
 			goals.map((e) => ({
 				achieved: false,
 				wasInstantlyAchieved: false,
@@ -205,7 +205,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 		await db.goals.insert(baseGoalDocument);
 		delete baseGoalDocument._id;
 
-		await db["user-goals"].insert(baseUserGoalDocument);
+		await db["goal-subs"].insert(baseUserGoalDocument);
 		// we dont delete _id here because updategoalsforuser
 		// depends on usergoal _id
 
@@ -236,7 +236,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 			},
 		]);
 
-		const r = await db["user-goals"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
+		const r = await db["goal-subs"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
 
 		t.hasStrict(
 			r,
@@ -264,7 +264,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 			outOfHuman: "2",
 		}) as unknown as UserGoalDocument;
 
-		await db["user-goals"].insert(userGoal);
+		await db["goal-subs"].insert(userGoal);
 		// we dont delete _id here because updategoalsforuser
 		// depends on usergoal _id
 
@@ -296,7 +296,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 			},
 		]);
 
-		const r = await db["user-goals"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
+		const r = await db["goal-subs"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
 
 		t.hasStrict(
 			r,
@@ -360,7 +360,7 @@ t.test("#ProcessGoal", (t) => {
 	});
 
 	t.test("Should process the users goal if a score has changed.", async (t) => {
-		await db["user-goals"].insert(HC511UserGoal);
+		await db["goal-subs"].insert(HC511UserGoal);
 		await db["personal-bests"].insert(TestingIIDXSPScorePB); // score is EX HARD CLEAR by default.
 
 		const res = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
@@ -393,7 +393,7 @@ t.test("#ProcessGoal", (t) => {
 	});
 
 	t.test("Should return undefined if there's no score.", async (t) => {
-		await db["user-goals"].insert(HC511UserGoal);
+		await db["goal-subs"].insert(HC511UserGoal);
 
 		const res = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
 
@@ -403,7 +403,7 @@ t.test("#ProcessGoal", (t) => {
 	});
 
 	t.test("Should return undefined if the progress has not changed.", async (t) => {
-		await db["user-goals"].insert(HC511UserGoal);
+		await db["goal-subs"].insert(HC511UserGoal);
 		await db["personal-bests"].insert(TestingIIDXSPScorePB);
 
 		const firstUpdate = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
@@ -411,9 +411,9 @@ t.test("#ProcessGoal", (t) => {
 		// ignore this one
 		t.not(firstUpdate, undefined, "Should NOT return undefined.");
 
-		await db["user-goals"].bulkWrite([firstUpdate!.bwrite]);
+		await db["goal-subs"].bulkWrite([firstUpdate!.bwrite]);
 
-		const userGoal = await db["user-goals"].findOne({ userID: 1, goalID: HC511Goal.goalID });
+		const userGoal = await db["goal-subs"].findOne({ userID: 1, goalID: HC511Goal.goalID });
 
 		const secondUpdate = await ProcessGoal(HC511Goal, userGoal!, 1, logger);
 

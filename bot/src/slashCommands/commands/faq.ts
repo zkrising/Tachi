@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import deepmerge from "deepmerge";
-import { ServerConfig } from "../../config";
+import { BotConfig, ServerConfig } from "../../config";
 import { CreateEmbed } from "../../utils/embeds";
 import { SlashCommand } from "../types";
 
@@ -36,6 +36,8 @@ const KTCHI_FAQ_ENTRIES: Record<string, string> = {
 
 const BTCHI_FAQ_ENTRIES: Record<string, string> = {
 	usc_hard_mode: `Hard Mode windows are not supported on ${ServerConfig.name}. Your scores **will be ignored** if they are played on non-standard windows.`,
+	ir_login: `You **must** put your API Key in the password field for the Bokutachi IR, **NOT your real password!**. See instructions here: ${BotConfig.TACHI_SERVER_LOCATION}/dashboard/import/beatoraja-ir.
+(This is because putting your real password in there is a security nightmare.)`,
 };
 
 let faqEntries = NEUTRAL_FAQ_ENTRIES;

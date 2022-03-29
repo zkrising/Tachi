@@ -22,8 +22,7 @@ export const AllPermissions: Record<APIPermissions, true> = {
 	customise_session: true,
 	customise_score: true,
 	delete_score: true,
-	set_goals: true,
-	unset_goals: true,
+	manage_targets: true,
 };
 
 export const SetRequestPermissions: RequestHandler = CreateSetRequestPermissions("description");

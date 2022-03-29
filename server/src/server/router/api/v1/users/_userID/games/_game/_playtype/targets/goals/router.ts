@@ -68,7 +68,7 @@ type GoalCreationBody = Pick<GoalDocument, "charts" | "criteria">;
 router.post(
 	"/add-goal",
 	RequireAuthedAsUser,
-	RequirePermissions("set_goals"),
+	RequirePermissions("manage_targets"),
 	prValidate({
 		criteria: {
 			key: p.isIn(
@@ -247,7 +247,7 @@ router.delete(
 	"/:goalID",
 	RequireAuthedAsUser,
 	GetGoalSubscription,
-	RequirePermissions("unset_goals"),
+	RequirePermissions("manage_targets"),
 	prValidate({ goalID: "string" }),
 	async (req, res) => {
 		const goalID = req.params.goalID;

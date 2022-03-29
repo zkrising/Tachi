@@ -13,7 +13,7 @@ import {
 	GoalSubscriptionDocument,
 } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
-import { CreateGoalTitle, ValidateGoalChartsAndCriteria } from "./goal-utils";
+import { CreateGoalTitle as CreateGoalName, ValidateGoalChartsAndCriteria } from "./goal-utils";
 
 const logger = CreateLogCtx(__filename);
 
@@ -266,7 +266,7 @@ export async function ConstructGoal(
 		criteria,
 		charts,
 		goalID: CreateGoalID(charts, criteria, game, playtype),
-		title: await CreateGoalTitle(charts, criteria, game, playtype),
+		name: await CreateGoalName(charts, criteria, game, playtype),
 	} as GoalDocument;
 }
 
@@ -295,7 +295,7 @@ export async function SubscribeToGoal(
 
 	if (!goalExists) {
 		await db.goals.insert(goalDocument);
-		logger.info(`Inserting new goal ${goalDocument.title}.`);
+		logger.info(`Inserting new goal '${goalDocument.name}'.`);
 	}
 
 	const userAlreadySubscribed = await db["goal-subs"].findOne({

@@ -30,7 +30,7 @@ t.test("#GetRelevantFolderGoals", (t) => {
 		goalID: "fake_goal_id",
 		playtype: "SP",
 		timeAdded: 0,
-		title: "get > 1 ex score on any level 10.",
+		name: "get > 1 ex score on any level 10.",
 		criteria: {
 			mode: "single",
 			value: 1,
@@ -47,7 +47,7 @@ t.test("#GetRelevantFolderGoals", (t) => {
 		goalID: "fake_bad_goal_id",
 		playtype: "SP",
 		timeAdded: 0,
-		title: "get > 1 ex score on some other folder.",
+		name: "get > 1 ex score on some other folder.",
 		criteria: {
 			mode: "single",
 			value: 1,
@@ -106,7 +106,7 @@ t.test("#GetRelevantGoals", (t) => {
 			goalID: crypto.randomBytes(20).toString("hex"),
 			playtype: "SP",
 			timeAdded: 0,
-			title: "get > 1 ex score on some other folder.",
+			name: "get > 1 ex score on some other folder.",
 			criteria: {
 				mode: "single",
 				value: 1,
@@ -174,7 +174,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 		goalID: "FAKE_GOAL_ID",
 		playtype: "SP",
 		timeAdded: 0,
-		title: "get > 1 ex score on some other folder.",
+		name: "get > 1 ex score on some other folder.",
 		criteria: {
 			mode: "single",
 			value: 1,

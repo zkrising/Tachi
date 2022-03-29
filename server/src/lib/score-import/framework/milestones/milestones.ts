@@ -39,7 +39,7 @@ export function ProcessMilestoneFromGII(
 		progress++;
 	}
 
-	const outOf = CalculateMilestoneOutOf(milestone, goalIDs);
+	const outOf = CalculateMilestoneOutOf(milestone);
 
 	// milestone achieved!
 	if (progress >= outOf) {

@@ -719,4 +719,10 @@ export const DatabaseSchemas: Record<
 		folderID: "string",
 		lastViewed: "number",
 	}),
+	"milestone-sets": prSchemaify({
+		setID: "string",
+		game: p.isIn(games),
+		playtype: isValidPlaytype,
+		milestones: ["string"],
+	}),
 };

@@ -153,7 +153,7 @@ t.test("#GetRelevantGoals", (t) => {
 			const res = await GetRelevantGoals("iidx", 1, chartIDs, logger);
 
 			t.equal(res.goals.length, 5, "Should correctly resolve to 5 goals.");
-			t.equal(res.userGoalsMap.size, 5, "Should also return 5 userGoals.");
+			t.equal(res.goalSubsMap.size, 5, "Should also return 5 goalSubs.");
 
 			t.end();
 		}
@@ -259,12 +259,12 @@ t.test("#UpdateGoalsForUser", (t) => {
 		const goal = deepmerge(baseGoalDocument, { criteria: { value: 2 } });
 		await db.goals.insert(goal);
 
-		const userGoal = deepmerge(baseUserGoalDocument, {
+		const goalSub = deepmerge(baseUserGoalDocument, {
 			outOf: 2,
 			outOfHuman: "2",
 		}) as unknown as UserGoalDocument;
 
-		await db["goal-subs"].insert(userGoal);
+		await db["goal-subs"].insert(goalSub);
 		// we dont delete _id here because updategoalsforuser
 		// depends on usergoal _id
 
@@ -272,7 +272,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 			deepmerge(TestingIIDXSPScorePB, { scoreData: { score: 1 } })
 		);
 
-		const ugMap = new Map([["FAKE_GOAL_ID", userGoal]]);
+		const ugMap = new Map([["FAKE_GOAL_ID", goalSub]]);
 
 		const res = await UpdateGoalsForUser([goal], ugMap, 1, logger);
 
@@ -413,9 +413,9 @@ t.test("#ProcessGoal", (t) => {
 
 		await db["goal-subs"].bulkWrite([firstUpdate!.bwrite]);
 
-		const userGoal = await db["goal-subs"].findOne({ userID: 1, goalID: HC511Goal.goalID });
+		const goalSub = await db["goal-subs"].findOne({ userID: 1, goalID: HC511Goal.goalID });
 
-		const secondUpdate = await ProcessGoal(HC511Goal, userGoal!, 1, logger);
+		const secondUpdate = await ProcessGoal(HC511Goal, goalSub!, 1, logger);
 
 		t.equal(secondUpdate, undefined, "Should return undefined.");
 

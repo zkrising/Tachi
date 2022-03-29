@@ -319,7 +319,7 @@ export async function SubscribeToGoal(
 
 	// @ts-expect-error TS can't resolve this.
 	// because it can't explode out the types.
-	const userGoal: UserGoalDocument = {
+	const goalSub: UserGoalDocument = {
 		outOf: result.outOf,
 		outOfHuman: result.outOfHuman,
 		progress: result.progress,
@@ -337,7 +337,7 @@ export async function SubscribeToGoal(
 		wasInstantlyAchieved: result.achieved,
 	};
 
-	await db["goal-subs"].insert(userGoal);
+	await db["goal-subs"].insert(goalSub);
 
-	return userGoal;
+	return goalSub;
 }

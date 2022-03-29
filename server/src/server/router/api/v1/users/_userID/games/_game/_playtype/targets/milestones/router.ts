@@ -24,22 +24,22 @@ router.get("/", async (req, res) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-	const userMilestones = await db["milestone-subs"].find({
+	const milestoneSubs = await db["milestone-subs"].find({
 		userID: user.id,
 		game,
 		playtype,
 	});
 
 	const milestones = await db.milestones.find({
-		milestoneID: { $in: userMilestones.map((e) => e.milestoneID) },
+		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
 	});
 
 	return res.status(200).json({
 		success: true,
-		description: `Retrieved ${userMilestones.length} milestone(s)`,
+		description: `Retrieved ${milestoneSubs.length} milestone(s)`,
 		body: {
 			milestones,
-			userMilestones,
+			milestoneSubs,
 		},
 	});
 });
@@ -49,21 +49,21 @@ const GetMilestoneSubscription: RequestHandler = async (req, res, next) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-	const userMilestone = await db["milestone-subs"].findOne({
+	const milestoneSub = await db["milestone-subs"].findOne({
 		userID: user.id,
 		game,
 		playtype,
 		milestoneID: req.params.milestoneID,
 	});
 
-	if (!userMilestone) {
+	if (!milestoneSub) {
 		return res.status(404).json({
 			success: false,
 			description: `${user.username} is not subscribed to this milestone.`,
 		});
 	}
 
-	AssignToReqTachiData(req, { userMilestoneDoc: userMilestone });
+	AssignToReqTachiData(req, { milestoneSubDoc: milestoneSub });
 
 	return next();
 };
@@ -76,9 +76,9 @@ const GetMilestoneSubscription: RequestHandler = async (req, res, next) => {
  */
 router.get("/:milestoneID", GetMilestoneSubscription, async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const userMilestone = req[SYMBOL_TachiData]!.userMilestoneDoc!;
+	const milestoneSub = req[SYMBOL_TachiData]!.milestoneSubDoc!;
 
-	const milestone = await GetMilestoneForIDGuaranteed(userMilestone.milestoneID);
+	const milestone = await GetMilestoneForIDGuaranteed(milestoneSub.milestoneID);
 
 	const { progress, results, goals } = await EvaluateMilestoneProgress(user.id, milestone);
 
@@ -88,7 +88,7 @@ router.get("/:milestoneID", GetMilestoneSubscription, async (req, res) => {
 			milestone.name
 		}.`,
 		body: {
-			userMilestone,
+			milestoneSub,
 			results,
 			goals,
 		},
@@ -152,7 +152,7 @@ router.put("/:milestoneID", RequirePermissions(""), async (req, res) => {
 		});
 	}
 
-	const userMilestone: UserMilestoneDocument = {
+	const milestoneSub: UserMilestoneDocument = {
 		achieved,
 		game,
 	};

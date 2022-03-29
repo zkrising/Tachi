@@ -48,7 +48,7 @@ router.get("/recently-achieved", async (req, res) => {
 		success: true,
 		description: `Retrieved ${recentlyAchievedUserGoals.length} recently achieved goals.`,
 		body: {
-			userGoals: recentlyAchievedUserGoals,
+			goalSubs: recentlyAchievedUserGoals,
 			goals,
 			users,
 		},
@@ -86,18 +86,18 @@ const ResolveGoalID: RequestHandler = async (req, res, next) => {
 router.get("/:goalID", ResolveGoalID, async (req, res) => {
 	const goal = req[SYMBOL_TachiData]!.goalDoc!;
 
-	const userGoals = await db["goal-subs"].find({
+	const goalSubs = await db["goal-subs"].find({
 		goalID: goal.goalID,
 	});
 
-	const users = await GetUsersWithIDs(userGoals.map((e) => e.userID));
+	const users = await GetUsersWithIDs(goalSubs.map((e) => e.userID));
 
 	return res.status(200).json({
 		success: true,
 		description: `Retrieved information about ${goal.title}.`,
 		body: {
 			goal,
-			userGoals,
+			goalSubs,
 			users,
 		},
 	});
@@ -150,20 +150,20 @@ router.get(
 		const goal = req[SYMBOL_TachiData]!.goalDoc!;
 		const goalID = goal.goalID;
 
-		const userGoal = await db["goal-subs"].findOne({
+		const goalSub = await db["goal-subs"].findOne({
 			userID: user.id,
 			goalID,
 		});
 
 		let goalResults: EvaluatedGoalReturn;
 		// shortcut evaluation by using the user goal
-		if (userGoal) {
+		if (goalSub) {
 			goalResults = {
-				achieved: userGoal.achieved,
-				outOf: userGoal.outOf,
-				outOfHuman: userGoal.outOfHuman,
-				progress: userGoal.progress,
-				progressHuman: userGoal.progressHuman,
+				achieved: goalSub.achieved,
+				outOf: goalSub.outOf,
+				outOfHuman: goalSub.outOfHuman,
+				progress: goalSub.progress,
+				progressHuman: goalSub.progressHuman,
 			};
 		} else {
 			const results = await EvaluateGoalForUser(goal, user.id, logger);

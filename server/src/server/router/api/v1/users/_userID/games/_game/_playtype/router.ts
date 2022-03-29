@@ -156,17 +156,17 @@ router.get("/goals", async (req, res) => {
 		query.achieved = false;
 	}
 
-	const userGoals = await db["goal-subs"].find(query);
+	const goalSubs = await db["goal-subs"].find(query);
 
 	const goals = await db.goals.find({
-		goalID: { $in: userGoals.map((e) => e.goalID) },
+		goalID: { $in: goalSubs.map((e) => e.goalID) },
 	});
 
 	return res.status(200).json({
 		success: true,
-		description: `Successfully returned ${userGoals.length} goal(s).`,
+		description: `Successfully returned ${goalSubs.length} goal(s).`,
 		body: {
-			userGoals,
+			goalSubs,
 			goals,
 		},
 	});
@@ -193,17 +193,17 @@ router.get("/milestones", async (req, res) => {
 		query.achieved = false;
 	}
 
-	const userMilestones = await db["milestone-subs"].find(query);
+	const milestoneSubs = await db["milestone-subs"].find(query);
 
 	const milestones = await db.milestones.find({
-		milestoneID: { $in: userMilestones.map((e) => e.milestoneID) },
+		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
 	});
 
 	return res.status(200).json({
 		success: true,
-		description: `Successfully returned ${userMilestones.length} milestone(s).`,
+		description: `Successfully returned ${milestoneSubs.length} milestone(s).`,
 		body: {
-			userMilestones,
+			milestoneSubs,
 			milestones,
 		},
 	});

@@ -25,22 +25,22 @@ router.get("/", async (req, res) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-	const userGoals = await db["goal-subs"].find({
+	const goalSubs = await db["goal-subs"].find({
 		userID: user.id,
 		game,
 		playtype,
 	});
 
 	const goals = await db.goals.find({
-		goalID: { $in: userGoals.map((e) => e.goalID) },
+		goalID: { $in: goalSubs.map((e) => e.goalID) },
 	});
 
 	return res.status(200).json({
 		success: true,
-		description: `Retrieved ${userGoals.length} goal(s).`,
+		description: `Retrieved ${goalSubs.length} goal(s).`,
 		body: {
 			goals,
-			userGoals,
+			goalSubs,
 		},
 	});
 });
@@ -158,16 +158,16 @@ router.post(
 			});
 		}
 
-		const userGoal = await SubscribeToGoal(user.id, goal, { origin: "manual" });
+		const goalSub = await SubscribeToGoal(user.id, goal, { origin: "manual" });
 
-		if (userGoal === SubscribeFailReasons.ALREADY_SUBSCRIBED) {
+		if (goalSub === SubscribeFailReasons.ALREADY_SUBSCRIBED) {
 			return res.status(409).json({
 				success: false,
 				description: `You are already subscribed to this goal.`,
 			});
 		}
 
-		if (userGoal === SubscribeFailReasons.ALREADY_ACHIEVED) {
+		if (goalSub === SubscribeFailReasons.ALREADY_ACHIEVED) {
 			return res.status(400).json({
 				success: false,
 				description: `You can't directly assign goals that you would immediately achieve.`,
@@ -179,7 +179,7 @@ router.post(
 			description: `Subscribed to ${goal.title}.`,
 			body: {
 				goal,
-				userGoal,
+				goalSub,
 			},
 		});
 	}
@@ -190,21 +190,21 @@ const GetGoalSubscription: RequestHandler = async (req, res, next) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-	const userGoal = await db["goal-subs"].findOne({
+	const goalSub = await db["goal-subs"].findOne({
 		userID: user.id,
 		game,
 		playtype,
 		goalID: req.params.goalID,
 	});
 
-	if (!userGoal) {
+	if (!goalSub) {
 		return res.status(404).json({
 			success: false,
 			description: `${user.username} is not subscribed to this goal.`,
 		});
 	}
 
-	AssignToReqTachiData(req, { userGoalDoc: userGoal });
+	AssignToReqTachiData(req, { goalSubDoc: goalSub });
 
 	return next();
 };
@@ -216,22 +216,22 @@ const GetGoalSubscription: RequestHandler = async (req, res, next) => {
  */
 router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const userGoal = req[SYMBOL_TachiData]!.userGoalDoc!;
+	const goalSub = req[SYMBOL_TachiData]!.goalSubDoc!;
 
 	let milestone = null;
 
-	if (userGoal.from.origin === "milestone") {
-		milestone = await GetMilestoneForIDGuaranteed(userGoal.from.milestoneID);
+	if (goalSub.from.origin === "milestone") {
+		milestone = await GetMilestoneForIDGuaranteed(goalSub.from.milestoneID);
 	}
 
-	const goal = await GetGoalForIDGuaranteed(userGoal.goalID);
+	const goal = await GetGoalForIDGuaranteed(goalSub.goalID);
 
 	return res.status(200).json({
 		success: true,
 		description: `Returned information about goal ${goal.title}.`,
 		body: {
 			goal,
-			userGoal,
+			goalSub,
 			milestone,
 			user,
 		},
@@ -255,21 +255,21 @@ router.delete(
 		const game = req[SYMBOL_TachiData]!.game!;
 		const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-		const userGoal = await db["goal-subs"].findOne({
+		const goalSub = await db["goal-subs"].findOne({
 			goalID,
 			userID: user.id,
 			game,
 			playtype,
 		});
 
-		if (!userGoal) {
+		if (!goalSub) {
 			return res.status(400).json({
 				success: false,
 				description: `You aren't subscribed to this goal.`,
 			});
 		}
 
-		if (userGoal.from.origin === "milestone") {
+		if (goalSub.from.origin === "milestone") {
 			return res.status(400).json({
 				success: false,
 				description: `This goal is from a milestone. You can't remove it directly, only by removing the parent milestone.`,

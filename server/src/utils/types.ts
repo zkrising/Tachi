@@ -11,8 +11,9 @@ import {
 	SongDocument,
 	UserSettings,
 	TachiAPIClientDocument,
-	UserGoalDocument,
 	GoalDocument,
+	MilestoneSubscriptionDocument,
+	GoalSubscriptionDocument,
 } from "tachi-common";
 
 declare module "express-session" {
@@ -65,7 +66,8 @@ export interface TachiRequestData {
 	tableDoc?: TableDocument;
 	folderDoc?: FolderDocument;
 	goalDoc?: GoalDocument;
-	userGoalDoc?: UserGoalDocument;
+	goalSubDoc?: GoalSubscriptionDocument;
+	milestoneSubDoc?: MilestoneSubscriptionDocument;
 
 	apiClientDoc: Omit<TachiAPIClientDocument, "clientSecret">;
 }

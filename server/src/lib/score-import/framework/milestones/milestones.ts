@@ -56,15 +56,15 @@ export async function UpdateUsersMilestones(
 	userID: integer,
 	logger: KtLogger
 ) {
-	const userGoalInfoMap: Map<string, GoalImportInfo["new"]> = new Map();
+	const goalSubInfoMap: Map<string, GoalImportInfo["new"]> = new Map();
 
 	const goalIDs = [];
 	for (const e of importGoalInfo) {
-		userGoalInfoMap.set(e.goalID, e.new);
+		goalSubInfoMap.set(e.goalID, e.new);
 		goalIDs.push(e.goalID);
 	}
 
-	const { milestones, userMilestones } = await GetRelevantMilestones(
+	const { milestones, milestoneSubs } = await GetRelevantMilestones(
 		goalIDs,
 		game,
 		playtypes,
@@ -74,9 +74,9 @@ export async function UpdateUsersMilestones(
 
 	// create a map here to avoid linear searching when
 	// co-iterating
-	const userMilestoneMap = new Map();
-	for (const um of userMilestones) {
-		userMilestoneMap.set(um.milestoneID, um);
+	const milestoneSubMap = new Map();
+	for (const um of milestoneSubs) {
+		milestoneSubMap.set(um.milestoneID, um);
 	}
 
 	const importGoalMap = new Map();
@@ -92,9 +92,9 @@ export async function UpdateUsersMilestones(
 	for (const milestone of milestones) {
 		const { achieved, progress } = ProcessMilestoneFromGII(milestone, importGoalMap);
 
-		const userMilestone = userMilestoneMap.get(milestone.milestoneID);
+		const milestoneSub = milestoneSubMap.get(milestone.milestoneID);
 
-		if (!userMilestone) {
+		if (!milestoneSub) {
 			logger.severe(
 				`Invalid state achieved in milestone processing - processed milestone that user did not have? ${milestone.milestoneID}`
 			);
@@ -115,10 +115,10 @@ export async function UpdateUsersMilestones(
 		});
 
 		const milestoneInfo = {
-			milestoneID: userMilestone.milestoneID,
+			milestoneID: milestoneSub.milestoneID,
 			old: {
-				progress: userMilestone.progress,
-				achieved: userMilestone.achieved,
+				progress: milestoneSub.progress,
+				achieved: milestoneSub.achieved,
 			},
 			new: {
 				progress,
@@ -126,11 +126,11 @@ export async function UpdateUsersMilestones(
 			},
 		};
 
-		if (progress !== userMilestone.progress) {
+		if (progress !== milestoneSub.progress) {
 			importMilestoneInfo.push(milestoneInfo);
 		}
 
-		if (achieved && !userMilestone.achieved) {
+		if (achieved && !milestoneSub.achieved) {
 			EmitWebhookEvent({
 				type: "milestone-achieved/v1",
 				content: {
@@ -157,20 +157,20 @@ async function GetRelevantMilestones(
 	userID: integer,
 	logger: KtLogger
 ) {
-	const userMilestones = await db["milestone-subs"].find({
+	const milestoneSubs = await db["milestone-subs"].find({
 		game,
 		playtype: { $in: playtypes },
 		userID,
 	});
 
-	logger.debug(`Found ${userMilestones.length} milestone-subs.`);
+	logger.debug(`Found ${milestoneSubs.length} milestone-subs.`);
 
 	const milestones = await db.milestones.find({
-		milestoneID: { $in: userMilestones.map((e) => e.milestoneID) },
+		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
 		"milestoneData.goals.goalID": { $in: goalIDs },
 	});
 
 	logger.debug(`Found ${milestones.length} relevant milestones.`);
 
-	return { userMilestones, milestones };
+	return { milestoneSubs, milestones };
 }

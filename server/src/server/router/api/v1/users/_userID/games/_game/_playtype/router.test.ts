@@ -211,7 +211,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/goals", (t) => {
 				success: true,
 				description: "Successfully returned 2 goal(s).",
 				body: {
-					userGoals: [
+					goalSubs: [
 						{
 							goalID: "foo",
 							achieved: false,
@@ -233,7 +233,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/goals", (t) => {
 				success: true,
 				description: "Successfully returned 1 goal(s).",
 				body: {
-					userGoals: [
+					goalSubs: [
 						{
 							goalID: "foo",
 							achieved: false,
@@ -284,7 +284,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/milestones", (t) => {
 				success: true,
 				description: "Successfully returned 2 milestone(s).",
 				body: {
-					userMilestones: [
+					milestoneSubs: [
 						{
 							milestoneID: "foo",
 							achieved: false,
@@ -306,7 +306,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/milestones", (t) => {
 				success: true,
 				description: "Successfully returned 1 milestone(s).",
 				body: {
-					userMilestones: [
+					milestoneSubs: [
 						{
 							milestoneID: "foo",
 							achieved: false,

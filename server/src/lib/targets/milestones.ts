@@ -141,7 +141,7 @@ export async function EvaluateMilestoneProgress(userID: integer, milestone: Mile
 
 			if (!result) {
 				logger.error(
-					`Failed to calculate ${userID} result for goal '${goal.title}'. Is the goal valid?`,
+					`Failed to calculate ${userID} result for goal '${goal.name}'. Is the goal valid?`,
 					{ goal, milestone }
 				);
 

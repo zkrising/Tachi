@@ -176,7 +176,7 @@ router.post(
 
 		return res.status(200).json({
 			success: true,
-			description: `Subscribed to ${goal.title}.`,
+			description: `Subscribed to ${goal.name}.`,
 			body: {
 				goal,
 				goalSub,
@@ -228,7 +228,7 @@ router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: `Returned information about goal ${goal.title}.`,
+		description: `Returned information about goal ${goal.name}.`,
 		body: {
 			goal,
 			goalSub,

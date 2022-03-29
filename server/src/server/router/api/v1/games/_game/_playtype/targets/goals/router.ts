@@ -94,7 +94,7 @@ router.get("/:goalID", ResolveGoalID, async (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: `Retrieved information about ${goal.title}.`,
+		description: `Retrieved information about ${goal.name}.`,
 		body: {
 			goal,
 			goalSubs,
@@ -170,7 +170,7 @@ router.get(
 
 			if (!results) {
 				throw new Error(
-					`Failed to evaluate goal ${goal.title} (${goal.goalID}) for user ${user.id}. More information above.`
+					`Failed to evaluate goal ${goal.name} (${goal.goalID}) for user ${user.id}. More information above.`
 				);
 			}
 
@@ -179,7 +179,7 @@ router.get(
 
 		return res.status(200).json({
 			success: true,
-			description: `Evaluated ${goal.title} for ${user.username}.`,
+			description: `Evaluated ${goal.name} for ${user.username}.`,
 			body: goalResults,
 		});
 	}

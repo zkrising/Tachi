@@ -2,15 +2,14 @@ import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import {
-	CalculateMilestoneOutOf,
 	EvaluateMilestoneProgress,
-	GetGoalsInMilestone,
+	SubscribeToMilestone,
 } from "lib/targets/milestones";
 import { RequirePermissions } from "server/middleware/auth";
 import { MilestoneSubscriptionDocument } from "tachi-common";
 import { GetMilestoneForIDGuaranteed } from "utils/db";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
-import { FormatUserDoc } from "utils/user";
+import { FormatUserDoc, GetUserWithID } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -104,7 +103,7 @@ router.get("/:milestoneID", GetMilestoneSubscription, async (req, res) => {
  *
  * @name PUT /api/v1/users/:userID/games/:game/:playtype/targets/milestones/:milestoneID
  */
-router.put("/:milestoneID", RequirePermissions(""), async (req, res) => {
+router.put("/:milestoneID", RequirePermissions("manage_targets"), async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
@@ -147,7 +146,7 @@ router.put("/:milestoneID", RequirePermissions(""), async (req, res) => {
 		});
 	}
 
-	const { progress, achieved } = await EvaluateMilestoneProgress(user.id, milestone);
+	const x = await SubscribeToMilestone(user.id, milestone);
 
 	if (achieved) {
 		return res.status(400).json({
@@ -156,17 +155,11 @@ router.put("/:milestoneID", RequirePermissions(""), async (req, res) => {
 		});
 	}
 
-	const milestoneSub: MilestoneSubscriptionDocument = {
-		achieved,
-		game,
-		milestoneID: milestone.milestoneID,
-		playtype,
-		progress,
-		timeAchieved: null,
-		timeSet: Date.now(),
-		userID: user.id,
-		wasInstantlyAchieved: false,
-	};
+	return res.status(200).json({
+		success: true,
+		description: `Subscribed to milestone '${milestone.name}'.`,
+		body: 
+	});
 });
 
 export default router;

@@ -143,7 +143,7 @@ router.put("/:milestoneID", RequirePermissions(""), async (req, res) => {
 		});
 	}
 
-	const { progress, outOf, achieved } = await EvaluateMilestoneProgress(user.id, milestone);
+	const { progress, achieved } = await EvaluateMilestoneProgress(user.id, milestone);
 
 	if (achieved) {
 		return res.status(400).json({
@@ -155,6 +155,13 @@ router.put("/:milestoneID", RequirePermissions(""), async (req, res) => {
 	const milestoneSub: MilestoneSubscriptionDocument = {
 		achieved,
 		game,
+		milestoneID: milestone.milestoneID,
+		playtype,
+		progress,
+		timeAchieved: null,
+		timeSet: Date.now(),
+		userID: user.id,
+		wasInstantlyAchieved: false,
 	};
 });
 

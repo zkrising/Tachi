@@ -11,7 +11,7 @@ import {
 	Playtypes,
 	MilestoneSubscriptionDocument,
 } from "tachi-common";
-import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "utils/milestone";
+import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "lib/targets/milestones";
 
 /**
  * Processes and updates a user's milestones from their Goal Import Info (i.e. what is returned

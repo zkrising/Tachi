@@ -21,7 +21,7 @@ import {
 	PBScoreDocument,
 	ScoreDocument,
 	SongDocument,
-	UserGoalDocument,
+	GoalSubscriptionDocument,
 } from "tachi-common";
 import { ApplyNTimes, RFA } from "utils/misc";
 
@@ -422,7 +422,7 @@ export const HC511Goal: GoalDocument = {
 	},
 };
 
-export const HC511UserGoal: UserGoalDocument = {
+export const HC511UserGoal: GoalSubscriptionDocument = {
 	achieved: false,
 	wasInstantlyAchieved: false,
 	timeAchieved: null,

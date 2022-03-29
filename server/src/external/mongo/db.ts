@@ -36,8 +36,8 @@ import {
 	UGPTSettings,
 	UserGameStats,
 	UserGameStatsSnapshot,
-	UserGoalDocument,
-	UserMilestoneDocument,
+	GoalSubscriptionDocument,
+	MilestoneSubscriptionDocument,
 	UserSettings,
 } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
@@ -152,9 +152,9 @@ const db = {
 	folders: monkDB.get<FolderDocument>("folders"),
 	"folder-chart-lookup": monkDB.get<FolderChartLookup>("folder-chart-lookup"),
 	goals: monkDB.get<GoalDocument>("goals"),
-	"goal-subs": monkDB.get<UserGoalDocument>("goal-subs"),
+	"goal-subs": monkDB.get<GoalSubscriptionDocument>("goal-subs"),
 	milestones: monkDB.get<MilestoneDocument>("milestones"),
-	"milestone-subs": monkDB.get<UserMilestoneDocument>("milestone-subs"),
+	"milestone-subs": monkDB.get<MilestoneSubscriptionDocument>("milestone-subs"),
 	users: monkDB.get<PublicUserDocument>("users"),
 	imports: monkDB.get<ImportDocument>("imports"),
 	"import-timings": monkDB.get<ImportTimingsDocument>("import-timings"),

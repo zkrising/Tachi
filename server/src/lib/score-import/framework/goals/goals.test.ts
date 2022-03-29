@@ -2,7 +2,7 @@ import t from "tap";
 import db from "external/mongo/db";
 import ResetDBState from "test-utils/resets";
 import { GetRelevantFolderGoals, GetRelevantGoals, UpdateGoalsForUser, ProcessGoal } from "./goals";
-import { GoalDocument, UserGoalDocument } from "tachi-common";
+import { GoalDocument, GoalSubscriptionDocument } from "tachi-common";
 import { CreateFolderChartLookup } from "utils/folder";
 import {
 	GetKTDataJSON,
@@ -182,7 +182,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 		},
 	};
 
-	const baseUserGoalDocument: UserGoalDocument = {
+	const baseGoalSubscriptionDocument: GoalSubscriptionDocument = {
 		achieved: false,
 		wasInstantlyAchieved: false,
 		game: "iidx",
@@ -205,14 +205,14 @@ t.test("#UpdateGoalsForUser", (t) => {
 		await db.goals.insert(baseGoalDocument);
 		delete baseGoalDocument._id;
 
-		await db["goal-subs"].insert(baseUserGoalDocument);
+		await db["goal-subs"].insert(baseGoalSubscriptionDocument);
 		// we dont delete _id here because updategoalsforuser
 		// depends on usergoal _id
 
 		await db["personal-bests"].insert(TestingIIDXSPScorePB);
 		delete TestingIIDXSPScorePB._id;
 
-		const ugMap = new Map([["FAKE_GOAL_ID", baseUserGoalDocument]]);
+		const ugMap = new Map([["FAKE_GOAL_ID", baseGoalSubscriptionDocument]]);
 
 		const res = await UpdateGoalsForUser([baseGoalDocument], ugMap, 1, logger);
 
@@ -250,7 +250,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 			"Should update goals in the database."
 		);
 
-		delete baseUserGoalDocument._id;
+		delete baseGoalSubscriptionDocument._id;
 
 		t.end();
 	});
@@ -259,10 +259,10 @@ t.test("#UpdateGoalsForUser", (t) => {
 		const goal = deepmerge(baseGoalDocument, { criteria: { value: 2 } });
 		await db.goals.insert(goal);
 
-		const goalSub = deepmerge(baseUserGoalDocument, {
+		const goalSub = deepmerge(baseGoalSubscriptionDocument, {
 			outOf: 2,
 			outOfHuman: "2",
-		}) as unknown as UserGoalDocument;
+		}) as unknown as GoalSubscriptionDocument;
 
 		await db["goal-subs"].insert(goalSub);
 		// we dont delete _id here because updategoalsforuser
@@ -310,7 +310,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 			"Should update goals in the database."
 		);
 
-		delete baseUserGoalDocument._id;
+		delete baseGoalSubscriptionDocument._id;
 
 		t.end();
 	});
@@ -334,7 +334,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 	t.test("Should handle (skip) invalid goals.", async (t) => {
 		const res = await UpdateGoalsForUser(
 			[deepmerge(baseGoalDocument, { charts: { type: "INVALID" } })],
-			new Map([["FAKE_GOAL_ID", baseUserGoalDocument]]),
+			new Map([["FAKE_GOAL_ID", baseGoalSubscriptionDocument]]),
 			1,
 			logger
 		);

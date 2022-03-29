@@ -7,7 +7,7 @@ import {
 	GetGoalsInMilestone,
 } from "lib/targets/milestones";
 import { RequirePermissions } from "server/middleware/auth";
-import { UserMilestoneDocument } from "tachi-common";
+import { MilestoneSubscriptionDocument } from "tachi-common";
 import { GetMilestoneForIDGuaranteed } from "utils/db";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
@@ -152,7 +152,7 @@ router.put("/:milestoneID", RequirePermissions(""), async (req, res) => {
 		});
 	}
 
-	const milestoneSub: UserMilestoneDocument = {
+	const milestoneSub: MilestoneSubscriptionDocument = {
 		achieved,
 		game,
 	};

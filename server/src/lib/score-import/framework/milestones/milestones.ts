@@ -9,7 +9,7 @@ import {
 	MilestoneDocument,
 	MilestoneImportInfo,
 	Playtypes,
-	UserMilestoneDocument,
+	MilestoneSubscriptionDocument,
 } from "tachi-common";
 import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "utils/milestone";
 
@@ -85,7 +85,7 @@ export async function UpdateUsersMilestones(
 		importGoalMap.set(ig.goalID, ig.new);
 	}
 
-	const bwrite: BulkWriteUpdateOneOperation<UserMilestoneDocument>[] = [];
+	const bwrite: BulkWriteUpdateOneOperation<MilestoneSubscriptionDocument>[] = [];
 
 	const importMilestoneInfo: MilestoneImportInfo[] = [];
 

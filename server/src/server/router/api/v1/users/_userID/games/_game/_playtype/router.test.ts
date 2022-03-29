@@ -4,8 +4,8 @@ import {
 	GoalDocument,
 	MilestoneDocument,
 	ScoreDocument,
-	UserGoalDocument,
-	UserMilestoneDocument,
+	GoalSubscriptionDocument,
+	MilestoneSubscriptionDocument,
 } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
@@ -201,7 +201,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/goals", (t) => {
 					playtype: "SP",
 					achieved: true,
 				},
-			] as UserGoalDocument[]);
+			] as GoalSubscriptionDocument[]);
 
 			await db.goals.insert([{ goalID: "foo" }, { goalID: "bar" }] as GoalDocument[]);
 
@@ -271,7 +271,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/milestones", (t) => {
 					playtype: "SP",
 					achieved: true,
 				},
-			] as UserMilestoneDocument[]);
+			] as MilestoneSubscriptionDocument[]);
 
 			await db.milestones.insert([
 				{ milestoneID: "foo" },

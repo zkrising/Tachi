@@ -7,8 +7,8 @@ import {
 	integer,
 	PBScoreDocument,
 	UserGameStatsSnapshot,
-	UserGoalDocument,
-	UserMilestoneDocument,
+	GoalSubscriptionDocument,
+	MilestoneSubscriptionDocument,
 } from "tachi-common";
 import { IsString } from "utils/misc";
 import { CheckStrProfileAlg } from "utils/string-checks";
@@ -146,7 +146,7 @@ router.get("/goals", async (req, res) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-	const query: FilterQuery<UserGoalDocument> = {
+	const query: FilterQuery<GoalSubscriptionDocument> = {
 		userID: user.id,
 		game,
 		playtype,
@@ -183,7 +183,7 @@ router.get("/milestones", async (req, res) => {
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
-	const query: FilterQuery<UserMilestoneDocument> = {
+	const query: FilterQuery<MilestoneSubscriptionDocument> = {
 		userID: user.id,
 		game,
 		playtype,

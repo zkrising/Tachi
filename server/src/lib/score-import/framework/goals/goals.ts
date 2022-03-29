@@ -1,4 +1,4 @@
-import { integer, Game, GoalDocument, UserGoalDocument } from "tachi-common";
+import { integer, Game, GoalDocument, GoalSubscriptionDocument } from "tachi-common";
 import { EvaluateGoalForUser } from "lib/targets/goals";
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
@@ -27,7 +27,7 @@ export async function GetAndUpdateUsersGoals(
 
 export async function UpdateGoalsForUser(
 	goals: GoalDocument[],
-	goalSubsMap: Map<string, UserGoalDocument>,
+	goalSubsMap: Map<string, GoalSubscriptionDocument>,
 	userID: integer,
 	logger: KtLogger
 ) {
@@ -89,7 +89,7 @@ export async function UpdateGoalsForUser(
  */
 export async function ProcessGoal(
 	goal: GoalDocument,
-	goalSub: UserGoalDocument,
+	goalSub: GoalSubscriptionDocument,
 	userID: integer,
 	logger: KtLogger
 ) {
@@ -172,7 +172,7 @@ export async function GetRelevantGoals(
 	userID: integer,
 	chartIDs: Set<string>,
 	logger: KtLogger
-): Promise<{ goals: GoalDocument[]; goalSubsMap: Map<string, UserGoalDocument> }> {
+): Promise<{ goals: GoalDocument[]; goalSubsMap: Map<string, GoalSubscriptionDocument> }> {
 	const goalSubs = await db["goal-subs"].find({ game, userID }, { projectID: true });
 
 	logger.verbose(`Found user has ${goalSubs.length} goals.`);
@@ -204,7 +204,7 @@ export async function GetRelevantGoals(
 
 	const goalSet = new Set(goals.map((e) => e.goalID));
 
-	const goalSubsMap: Map<string, UserGoalDocument> = new Map();
+	const goalSubsMap: Map<string, GoalSubscriptionDocument> = new Map();
 
 	for (const goalSub of goalSubs) {
 		if (!goalSet.has(goalSub.goalID)) {

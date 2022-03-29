@@ -10,7 +10,7 @@ import {
 	integer,
 	PBScoreDocument,
 	Playtypes,
-	UserGoalDocument,
+	GoalSubscriptionDocument,
 } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
 import { CreateGoalTitle, ValidateGoalChartsAndCriteria } from "./goal-utils";
@@ -319,7 +319,7 @@ export async function SubscribeToGoal(
 
 	// @ts-expect-error TS can't resolve this.
 	// because it can't explode out the types.
-	const goalSub: UserGoalDocument = {
+	const goalSub: GoalSubscriptionDocument = {
 		outOf: result.outOf,
 		outOfHuman: result.outOfHuman,
 		progress: result.progress,

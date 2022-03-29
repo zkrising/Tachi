@@ -559,7 +559,7 @@ interface ImportTimingSections {
 }
 
 export type GoalImportStat = Pick<
-	UserGoalDocument,
+	GoalSubscriptionDocument,
 	"progress" | "progressHuman" | "outOf" | "outOfHuman" | "achieved"
 >;
 
@@ -569,7 +569,7 @@ export interface GoalImportInfo {
 	new: GoalImportStat;
 }
 
-export type MilestoneImportStat = Pick<UserMilestoneDocument, "progress" | "achieved">;
+export type MilestoneImportStat = Pick<MilestoneSubscriptionDocument, "progress" | "achieved">;
 
 export interface MilestoneImportInfo {
 	milestoneID: string;
@@ -590,7 +590,7 @@ export type GoalOrigin =
 			milestoneID: string;
 	  };
 
-export type UserGoalDocument = MongoDBDocument & {
+export type GoalSubscriptionDocument = MongoDBDocument & {
 	goalID: string;
 	userID: integer;
 	game: Game;
@@ -973,7 +973,7 @@ export interface FolderChartLookup extends MongoDBDocument {
 	folderID: string;
 }
 
-export type UserMilestoneDocument = MongoDBDocument & {
+export type MilestoneSubscriptionDocument = MongoDBDocument & {
 	milestoneID: string;
 	userID: integer;
 	game: Game;

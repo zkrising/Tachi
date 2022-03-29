@@ -197,7 +197,7 @@
 		},
 		"id": 14,
 		"searchTerms": [
-			"[Infinity (2018Remake)]"
+			"Infinity (2018Remake)"
 		],
 		"title": "∞(2018Remake)"
 	},
@@ -328,7 +328,7 @@
 		},
 		"id": 23,
 		"searchTerms": [
-			"[DELTA COMPLEX]"
+			"DELTA COMPLEX"
 		],
 		"title": "D3LTA QOMPLEX"
 	},
@@ -468,7 +468,7 @@
 		},
 		"id": 33,
 		"searchTerms": [
-			"[Color Code]"
+			"Color Code"
 		],
 		"title": "#1f1e33"
 	},
@@ -563,7 +563,7 @@
 		},
 		"id": 40,
 		"searchTerms": [
-			"[Ouverture]"
+			"Ouverture"
 		],
 		"title": "Ouvertüre"
 	},
@@ -837,7 +837,7 @@
 		},
 		"id": 60,
 		"searchTerms": [
-			"[FLASH OUT]"
+			"FLASH OUT"
 		],
 		"title": "FLVSH OUT"
 	},
@@ -1018,7 +1018,7 @@
 		},
 		"id": 73,
 		"searchTerms": [
-			"[TRICKLASH 220]"
+			"TRICKLASH 220"
 		],
 		"title": "TRICKL4SH 220"
 	},
@@ -1397,7 +1397,7 @@
 		},
 		"id": 100,
 		"searchTerms": [
-			"[Laksha/Laksa]"
+			"Laksha/Laksa"
 		],
 		"title": "Lhaksha"
 	},
@@ -1520,7 +1520,7 @@
 		},
 		"id": 109,
 		"searchTerms": [
-			"[Future Candy]"
+			"Future Candy"
 		],
 		"title": "Future Cαndy"
 	},
@@ -1705,7 +1705,7 @@
 		},
 		"id": 122,
 		"searchTerms": [
-			"[KISHIN MADNESS 2153]"
+			"KISHIN MADNESS 2153"
 		],
 		"title": "QiXiN MAdN3ss 2153"
 	},
@@ -1776,7 +1776,7 @@
 		},
 		"id": 127,
 		"searchTerms": [
-			"[KALACAKRA]"
+			"KALACAKRA"
 		],
 		"title": "KALACAKLA"
 	},
@@ -1791,7 +1791,7 @@
 		},
 		"id": 128,
 		"searchTerms": [
-			"[RAVEGIRL]"
+			"RAVEGIRL"
 		],
 		"title": "RAV#GIRL"
 	},
@@ -2316,7 +2316,7 @@
 		},
 		"id": 165,
 		"searchTerms": [
-			"Myoujyou Rocket"
+			"Akeboshi Rocket"
 		],
 		"title": "明星ロケット"
 	},
@@ -2549,7 +2549,7 @@
 		},
 		"id": 182,
 		"searchTerms": [
-			"[MAGiCALGiRL MEGA STRiKE!]"
+			"MAGiCALGiRL MEGA STRiKE!"
 		],
 		"title": "MAGiC4LG1RL M3GA S7R1KE!"
 	},
@@ -3315,7 +3315,7 @@
 		},
 		"id": 236,
 		"searchTerms": [
-			"Night/Knight of Nights/Knights (Kameria's Once-Upon-A-Night Remix)"
+			"Night/Knight of Nights/Knights (Camellia's Once-Upon-A-Night Remix)"
 		],
 		"title": "ナイト・オブ・ナイツ (かめりあ’s“ワンス・アポン・ア・ナイト”Remix)"
 	},
@@ -3425,7 +3425,7 @@
 		},
 		"id": 244,
 		"searchTerms": [
-			"[BLAST BEAT]"
+			"BLAST BEAT"
 		],
 		"title": "BLVST BEVT"
 	},
@@ -3453,7 +3453,7 @@
 		},
 		"id": 246,
 		"searchTerms": [
-			"[Jagermeister]"
+			"Jagermeister"
 		],
 		"title": "Jägermeister"
 	},
@@ -3951,7 +3951,7 @@
 		},
 		"id": 282,
 		"searchTerms": [
-			"[ATARAXiA]"
+			"ATARAXiA"
 		],
 		"title": "ATARAX1A"
 	},
@@ -4873,7 +4873,7 @@
 		},
 		"id": 348,
 		"searchTerms": [
-			"[EPHEMERA]"
+			"EPHEMERA"
 		],
 		"title": "EPHMR"
 	},
@@ -4958,5 +4958,31 @@
 			"Kami"
 		],
 		"title": "神"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ Genki feat. yukacco",
+		"data": {
+			"artistJP": "ディージェーゲンキ　フューチャリング　ユカッコ",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "キャンディスター"
+		},
+		"id": 355,
+		"searchTerms": [],
+		"title": "Candy Star"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ Noriken",
+		"data": {
+			"artistJP": "ディージェーノリケン",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "オニガミ"
+		},
+		"id": 356,
+		"searchTerms": [],
+		"title": "Onigami"
 	}
 ]

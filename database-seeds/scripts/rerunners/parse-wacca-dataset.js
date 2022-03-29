@@ -1,3 +1,4 @@
+const { parse } = require("csv-parse/sync");
 const fs = require("fs");
 const fetch = require("node-fetch");
 const { Command } = require("commander");
@@ -7,37 +8,22 @@ const logger = require("../logger");
 
 const program = new Command();
 
-logger.warn(`Rating-dataset.js is evaluated. Please make sure you've read the file before you run it.`);
-
-// https://github.com/shimmand/waccaSupportTools/blob/main/analyzePlayData/rating-dataset.js
-// Please look at the file before running, it is eval'd and can execute arbitrary code.
-program.requiredOption("-r, --rating-js <rating-dataset.js>");
+// https://github.com/shimmand/wacca-rating-analyzer/blob/main/assets/dataset.csv
+program.requiredOption("-f, --file <dataset.csv>");
 
 program.parse(process.argv);
 const options = program.opts();
 
-const dirtyRecords = Function(
-	'"use strict";' +
-	// Should define functions getChartTable and getLastUpdate.
-	fs.readFileSync(options.ratingJs).toString() +
-	'return getChartTable()'
-)();
+const dirtyRecords = parse(fs.readFileSync(options.file), {});
 
-// 0-song-title
-// 1-song-title-eng
-// 2-genre-name
-// 3-normal-level
-// 4-normal-const
-// 5-normal-is-newer
-// 6-hard-level
-// 7-hard-const
-// 8-hard-is-newer
-// 9-expert-level
-// 10-expert-const
-// 11-expert-is-newer
-// 12-inferno-level
-// 13-inferno-const
-// 14-inferno-is-newer
+const headers = dirtyRecords[0];
+const songTitleCol = headers.indexOf("@song-title");
+const songTitleEngCol = headers.indexOf("@song-title-english");
+const difficultyCols = ["normal", "hard", "expert", "inferno"].map(diffname => ({
+	levelCol: headers.indexOf(`@${diffname}-level`),
+	constantCol: headers.indexOf(`@${diffname}-constant`),
+	newerCol: headers.indexOf(`@${diffname}-newer`),
+}));
 
 const dataMap = new Map();
 
@@ -65,9 +51,9 @@ function datasetTitleNormalize(datasetTitle) {
 	return datasetTitle.replace(/”|“/gu, '"').replace(/’/gu, "'");
 }
 
-// We have to skip the first record because its the headers.
+// We have to skip the first record because it's the headers.
 for (const record of dirtyRecords.slice(1)) {
-	dataMap.set(datasetTitleNormalize(record[0]), record);
+	dataMap.set(datasetTitleNormalize(record[songTitleCol]), record);
 }
 
 const STARTS = {
@@ -136,7 +122,7 @@ const STARTS = {
 		}
 
 		// Use the dataset title.
-		const title = record[0];
+		const title = record[songTitleCol];
 		const siteTitle = decode(data.title.display).trim();
 		const altTitles = [];
 		if (title !== siteTitle) {
@@ -144,9 +130,9 @@ const STARTS = {
 			altTitles.push(siteTitle);
 		}
 		const searchTerms = [];
-		if (record[1] !== "") {
+		if (record[songTitleEngCol] !== "") {
 			// This is the english title.
-			searchTerms.push(record[1]);
+			searchTerms.push(record[songTitleEngCol]);
 		}
 
 		let thisSongID = songID;
@@ -169,11 +155,11 @@ const STARTS = {
 			},
 		});
 
-		for (let i = 0; i < 4; i++) {
-			const diff = record[3 + i * 3];
+		for (const cols of difficultyCols) {
+			const diff = record[cols.levelCol];
 			const [diffName, level] = diff.split(" ");
-			const levelNum = record[4 + i * 3];
-			const isNew = record[5 + i * 3];
+			const levelNum = Number(record[cols.constantCol]);
+			const isHot = record[cols.newerCol] === "true";
 
 			if (!levelNum) {
 				continue;
@@ -191,7 +177,7 @@ const STARTS = {
 				difficulty: diffName,
 				playtype: "Single",
 				data: {
-					isHot: isNew,
+					isHot,
 				},
 				tierlistInfo: {},
 				versions: ["reverse"],

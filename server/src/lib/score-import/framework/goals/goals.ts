@@ -132,18 +132,33 @@ export async function ProcessGoal(
 		};
 	}
 
+	const setData = {
+		...newData,
+		timeAchieved: newData.achieved ? Date.now() : null,
+		// we're guaranteed that this works, because things
+		// that haven't changed return nothing instead of
+		// getting to this point.
+		lastInteraction: Date.now(),
+	} as Partial<GoalSubscriptionDocument>;
+
+	// If this goal was achieved, and is now *not* achieved, we need to unset
+	// some things.
+	if (goalSub.achieved && !res.achieved) {
+		logger.info(`User ${userID} lost their achieved status on ${goal.name}.`, {
+			goal,
+			res,
+			goalSub,
+		});
+
+		// This goal can't be marked as instantly achieved, since it was lost.
+		setData.wasInstantlyAchieved = false;
+	}
+
 	const bulkWrite = {
 		updateOne: {
 			filter: { _id: goalSub._id! },
 			update: {
-				$set: {
-					...newData,
-					timeAchieved: newData.achieved ? Date.now() : null,
-					// we're guaranteed that this works, because things
-					// that haven't changed return nothing instead of
-					// getting to this point.
-					lastInteraction: Date.now(),
-				} as Partial<GoalDocument>,
+				$set: setData,
 			},
 		},
 	};

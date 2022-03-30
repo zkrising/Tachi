@@ -1,7 +1,9 @@
-# User Goal Document
+# Goal Subscription Document
 
-The user goal document represents a user's subscription
-to a goal.
+Goal Subscriptions are stored in `goal-subs`.
+
+The goal subscription document represents a user's subscription
+to a goal. Truly, this is a surprising description.
 
 !!! warning
 	This does not describe the goal or its criteria,
@@ -12,20 +14,31 @@ to a goal.
 ## Definition
 
 ```ts
-interface UserGoalDocument {
+type GoalSubscriptionDocument = MongoDBDocument & {
 	goalID: string;
 	userID: integer;
 	game: Game;
-	playtype: Playtypes[Game];
-	achieved: boolean;
+	playtype: Playtype;
 	timeSet: integer;
-	timeAchieved: Integer | null;
-	lastInteraction: Integer | null;
+	lastInteraction: integer | null;
 	progress: number | null;
 	progressHuman: string;
 	outOf: number;
 	outOfHuman: string;
-}
+	// An array of milestoneIDs that this goal has came from. If empty, the goal is
+	// a manually assigned one (or orphaned).
+	parentMilestones: string[];
+	wasInstantlyAchieved: boolean;
+} & (
+		| {
+				achieved: true;
+				timeAchieved: integer;
+		  }
+		| {
+				achieved: false;
+				timeAchieved: null;
+		  }
+	);
 ```
 
 | Property | Description |
@@ -36,6 +49,9 @@ interface UserGoalDocument {
 | `achieved` | Whether this goal has been achieved or not. |
 | `timeSet` | The time the user set this goal. |
 | `timeAchieved` | The time this user achieved this goal. If the user has not achieved this goal, it is set as `null`. |
+| `lastInteraction` | The last time this user did something that shifted their progress/outOf on this goal. This is initialised to null. |
 | `progress` | The user's raw progress towards this goal. This is a number, and should not be displayed to the user. |
 | `outOf` | The value this goal is out of - this is a number, and should not be displayed to the user. |
 | `progressHuman`, `outOfHuman` | These are humanised, stringified versions of the above two fields. These convert things like the enum value of lamps to their string equivalents. |
+| `wasInstantlyAchieved` | Whether this goal was instantly achieved or not. Instantly achieved goals are excluded from some parts of the UI, and from being emitted as webhook events. [Read more here](). |
+| `parentMilestones` | A list of milestoneIDs the user is subscribed to that contain this goal. This is used to determine whether a user can safely remove a goal or not. [Read more here](). |

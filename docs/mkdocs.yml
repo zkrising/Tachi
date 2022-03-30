@@ -128,8 +128,8 @@ nav:
                 - "tachi-server/documents/score.md"
                 - "tachi-server/documents/song.md"
                 - "tachi-server/documents/chart.md"
-            #     - "tachi-server/documents/goal.md"
-            #     - "tachi-server/documents/user-goal.md"
+                - "tachi-server/documents/goal.md"
+                - "tachi-server/documents/goal-sub.md"
 
     - Tachi Bot Reference:
           - "tachi-bot/overview.md"

@@ -18,7 +18,6 @@ interface BaseGoalDocument {
 	game: Game;
 	playtype: Playtypes[Game];
 	timeAdded: integer;
-	createdBy: integer;
 	title: string;
 	goalID: string;
 	criteria: GoalSingleCriteria | GoalCountCriteria;
@@ -30,7 +29,6 @@ interface BaseGoalDocument {
 | `game` | The game this goal is for. |
 | `playtype` | The playtype this goal is for. Must be a valid playtype for the above game. |
 | `timeAdded` | The time this goal was added to the database. |
-| `createdBy` | The ID of the user that originally made this goal. |
 | `title` | A humanised name for this goal. |
 | `goalID` | A hash of the criteria and chart set for this goal. Used to de-dupe goals. |
 

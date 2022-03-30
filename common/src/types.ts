@@ -634,7 +634,7 @@ interface MilestoneAllCriteria {
 }
 
 interface MilestoneAbsPropCriteria {
-	type: "abs" | "proportion";
+	type: "total";
 	value: number;
 }
 

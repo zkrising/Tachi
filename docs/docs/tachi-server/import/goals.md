@@ -7,7 +7,7 @@ progress on those goals as a result of this import.
 
 ## Getting Relevant Goals
 
-In V1 of (Kamai)tachi, we fetched *all* goals for a user,
+In V1 of Tachi, we fetched *all* goals for a user,
 and recalculated all of them.
 
 This was fine for users with some goals, but for users with

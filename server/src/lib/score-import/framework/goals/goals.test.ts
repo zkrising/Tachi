@@ -388,6 +388,57 @@ t.test("#ProcessGoal", (t) => {
 		t.end();
 	});
 
+	t.test("Should unset wasInstantlyAchieved if the goal became unachieved.", async (t) => {
+		const achievedGoalSub: GoalSubscriptionDocument = {
+			achieved: true,
+			game: "iidx",
+			goalID: "mock_goalID",
+			lastInteraction: null,
+			outOf: 5,
+			outOfHuman: "HARD CLEAR",
+			parentMilestones: [],
+			playtype: "SP",
+			progress: 6,
+			progressHuman: "EX HARD CLEAR",
+			timeAchieved: 1000,
+			timeSet: 1000,
+			wasInstantlyAchieved: true,
+			userID: 1,
+		};
+
+		await db["goal-subs"].insert(achievedGoalSub);
+
+		const res = await ProcessGoal(HC511Goal, achievedGoalSub, 1, logger);
+
+		t.not(res, undefined, "Should NOT return undefined.");
+
+		t.hasStrict(
+			res?.import,
+			{
+				goalID: "mock_goalID",
+				old: {
+					progress: 6,
+					outOf: 5,
+					achieved: true,
+				},
+				new: {
+					progress: null,
+					outOf: 5,
+					achieved: false,
+				},
+			},
+			"Should unachieve the goal."
+		);
+
+		t.equal(
+			res?.bwrite.updateOne.update.$set.wasInstantlyAchieved,
+			false,
+			"Goal is to be set as not instantly achieved."
+		);
+
+		t.end();
+	});
+
 	t.test("Should return undefined if there's no score.", async (t) => {
 		await db["goal-subs"].insert(HC511UserGoal);
 

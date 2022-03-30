@@ -11,6 +11,7 @@ import { AssignToReqTachiData } from "utils/req-tachi-data";
 import { GetGoalForIDGuaranteed, GetMilestoneForIDGuaranteed } from "utils/db";
 import { RequireAuthedAsUser } from "../../../../../middleware";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
+import { ServerConfig } from "lib/setup/config";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -136,10 +137,10 @@ router.post(
 			playtype,
 		});
 
-		if (existingGoalsCount > 1_000) {
+		if (existingGoalsCount > ServerConfig.MAX_GOAL_SUBSCRIPTIONS) {
 			return res.status(400).json({
 				success: false,
-				description: `You already have 1000 goals. You cannot have anymore.`,
+				description: `You already have ${ServerConfig.MAX_GOAL_SUBSCRIPTIONS} goals. You cannot have anymore.`,
 			});
 		}
 

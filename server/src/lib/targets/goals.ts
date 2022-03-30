@@ -320,7 +320,7 @@ export async function SubscribeToGoal(
 		progress: result.progress,
 		progressHuman: result.progressHuman,
 		userID,
-		lastInteraction: Date.now(),
+		lastInteraction: null,
 		timeAchieved: result.achieved ? Date.now() : null,
 		timeSet: Date.now(),
 		// if this goal subscription came from a milestone, add the milestone to

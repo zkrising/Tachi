@@ -3,15 +3,16 @@ import db from "external/mongo/db";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
+import { ServerConfig } from "lib/setup/config";
 import {
 	EvaluateMilestoneProgress,
 	SubscribeToMilestone,
 	UnsubscribeFromMilestone,
 } from "lib/targets/milestones";
 import { RequirePermissions } from "server/middleware/auth";
-import { GetMilestoneForIDGuaranteed } from "utils/db";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
+import { RequireAuthedAsUser } from "../../../../../middleware";
 
 const logger = CreateLogCtx(__filename);
 
@@ -72,7 +73,6 @@ const GetMilestoneSubscription: RequestHandler = async (req, res, next) => {
 };
 
 const GetMilestone: RequestHandler = async (req, res, next) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
 	const game = req[SYMBOL_TachiData]!.game!;
 	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
@@ -130,6 +130,7 @@ router.get("/:milestoneID", GetMilestone, GetMilestoneSubscription, async (req, 
  */
 router.put(
 	"/:milestoneID",
+	RequireAuthedAsUser,
 	GetMilestone,
 	RequirePermissions("manage_targets"),
 	async (req, res) => {
@@ -143,10 +144,10 @@ router.put(
 			playtype,
 		});
 
-		if (existingMilestonesCount > 100) {
+		if (existingMilestonesCount > ServerConfig.MAX_MILESTONE_SUBSCRIPTIONS) {
 			return res.status(400).json({
 				success: false,
-				description: `You already have 100 milestones. You cannot have anymore for this game.`,
+				description: `You already have ${ServerConfig.MAX_MILESTONE_SUBSCRIPTIONS} milestones. You cannot have anymore for this game.`,
 			});
 		}
 
@@ -195,6 +196,7 @@ router.put(
  */
 router.delete(
 	"/:milestoneID",
+	RequireAuthedAsUser,
 	GetMilestone,
 	RequirePermissions("manage_targets"),
 	async (req, res) => {

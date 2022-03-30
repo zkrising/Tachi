@@ -12,7 +12,7 @@ export interface CounterDocument {
 	value: integer;
 }
 
-export type AnyPlaytype = Playtypes[Game];
+export type Playtype = Playtypes[Game];
 
 /**
  * IDStrings are an internal (ish) identifier used to identify
@@ -339,11 +339,11 @@ export interface Difficulties {
  */
 export type integer = number;
 
-export type Ratings = Record<Game, Record<AnyPlaytype, number>>;
+export type Ratings = Record<Game, Record<Playtype, number>>;
 
 export interface BaseGoalDocument extends MongoDBDocument {
 	game: Game;
-	playtype: AnyPlaytype;
+	playtype: Playtype;
 	timeAdded: integer;
 	name: string;
 	goalID: string;
@@ -477,7 +477,7 @@ export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoD
 	name: string;
 	desc: string | null;
 	game: Game;
-	playtype: AnyPlaytype;
+	playtype: Playtype;
 	// This field is allowed to be null for compatibility with kamaitachi1 sessions, where import types didn't exist.
 	importType: ImportTypes | null;
 	timeInserted: integer;
@@ -502,7 +502,7 @@ interface ImportErrContent {
 export interface ClassDelta {
 	game: Game;
 	set: AllClassSets;
-	playtype: AnyPlaytype;
+	playtype: Playtype;
 	old: integer | null;
 	new: integer;
 }
@@ -594,7 +594,7 @@ export type GoalSubscriptionDocument = MongoDBDocument & {
 	goalID: string;
 	userID: integer;
 	game: Game;
-	playtype: AnyPlaytype;
+	playtype: Playtype;
 	timeSet: integer;
 	lastInteraction: integer | null;
 	progress: number | null;
@@ -627,7 +627,7 @@ interface MilestoneSection {
 
 export interface MilestoneDocument extends MongoDBDocument {
 	game: Game;
-	playtype: AnyPlaytype;
+	playtype: Playtype;
 	/**
 	 * all: All goals must be achieved in order for the milestone to be complete
 	 * abs: Goals achieved must be greater than or equal to criteria.value.
@@ -651,7 +651,7 @@ interface MilestoneAbsPropCriteria {
 
 export interface MilestoneGroupDocument extends MongoDBDocument {
 	game: Game;
-	playtype: AnyPlaytype;
+	playtype: Playtype;
 	isDefault: boolean;
 	createdBy: integer;
 	groupName: string;
@@ -662,7 +662,7 @@ export interface MilestoneGroupDocument extends MongoDBDocument {
 export interface MilestoneSetDocument extends MongoDBDocument {
 	setID: string;
 	game: Game;
-	playtype: AnyPlaytype;
+	playtype: Playtype;
 	milestones: string[];
 }
 
@@ -930,7 +930,7 @@ export interface SongDocument<G extends Game = Game> extends MongoDBDocument {
 export interface TableDocument extends MongoDBDocument {
 	tableID: string;
 	game: Game;
-	playtype: AnyPlaytype;
+	playtype: Playtype;
 	title: string;
 	description: string;
 	folders: string[];
@@ -941,7 +941,7 @@ export interface TableDocument extends MongoDBDocument {
 export interface BaseFolderDocument extends MongoDBDocument {
 	title: string;
 	game: Game;
-	playtype: AnyPlaytype;
+	playtype: Playtype;
 	folderID: string;
 	/**
 	 * This folder has been superceded by another folder,
@@ -977,7 +977,7 @@ export type MilestoneSubscriptionDocument = MongoDBDocument & {
 	milestoneID: string;
 	userID: integer;
 	game: Game;
-	playtype: AnyPlaytype;
+	playtype: Playtype;
 	timeSet: integer;
 	progress: integer;
 	wasInstantlyAchieved: boolean;
@@ -1219,7 +1219,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
 	userID: integer;
 	chartID: string;
 	game: Game;
-	playtype: AnyPlaytype;
+	playtype: Playtype;
 	songID: integer;
 	highlight: boolean;
 	isPrimary: boolean;
@@ -1523,5 +1523,3 @@ export interface RecentlyViewedFolderDocument {
 	folderID: string;
 	lastViewed: number;
 }
-
-export type Playtype = Playtypes[Game];

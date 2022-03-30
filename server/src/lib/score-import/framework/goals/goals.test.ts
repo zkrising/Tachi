@@ -364,7 +364,7 @@ t.test("#ProcessGoal", (t) => {
 		t.not(res, undefined, "Should NOT return undefined.");
 
 		t.strictSame(
-			res!.import,
+			res?.import,
 			{
 				goalID: "mock_goalID",
 				old: {

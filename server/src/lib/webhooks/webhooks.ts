@@ -12,7 +12,7 @@ export async function GetWebhookUrlInfo() {
 		{ projection: { webhookUri: 1, clientSecret: 1 } }
 	);
 
-	return urls;
+	return urls as { webhookUri: string; clientSecret: string }[];
 }
 
 /**
@@ -26,7 +26,7 @@ export async function EmitWebhookEvent(content: WebhookEvents) {
 	// We don't actually care about the response of these. Just fire them and forget.
 	for (const client of webhookUrls) {
 		// we know this to be non-null because of GetWebhookUrlInfo.
-		fetch(client.webhookUri!, {
+		fetch(client.webhookUri, {
 			method: "POST",
 			body: JSON.stringify(content),
 			headers: {

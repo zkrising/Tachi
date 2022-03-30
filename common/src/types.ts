@@ -577,19 +577,6 @@ export interface MilestoneImportInfo {
 	new: MilestoneImportStat;
 }
 
-export type GoalOrigin =
-	| {
-			// The user set this goal by hand
-			origin: "manual";
-	  }
-	| {
-			// This goal was set for the user by part of a milestone.
-			// If a goal in a milestone was already set for whatever reason
-			// that origin takes priority.
-			origin: "milestone";
-			milestoneID: string;
-	  };
-
 export type GoalSubscriptionDocument = MongoDBDocument & {
 	goalID: string;
 	userID: integer;
@@ -601,7 +588,9 @@ export type GoalSubscriptionDocument = MongoDBDocument & {
 	progressHuman: string;
 	outOf: number;
 	outOfHuman: string;
-	from: GoalOrigin;
+	// An array of milestoneIDs that this goal has came from. If empty, the goal is
+	// a manually assigned one (or orphaned).
+	parentMilestones: string[];
 	wasInstantlyAchieved: boolean;
 } & (
 		| {

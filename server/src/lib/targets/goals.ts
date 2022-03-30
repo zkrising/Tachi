@@ -1,5 +1,6 @@
 import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
+import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import { FilterQuery } from "mongodb";
 import {
@@ -268,11 +269,6 @@ export async function ConstructGoal(
 		goalID: CreateGoalID(charts, criteria, game, playtype),
 		name: await CreateGoalName(charts, criteria, game, playtype),
 	} as GoalDocument;
-}
-
-export enum SubscribeFailReasons {
-	ALREADY_SUBSCRIBED,
-	ALREADY_ACHIEVED,
 }
 
 /**

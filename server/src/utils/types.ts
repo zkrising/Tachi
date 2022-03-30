@@ -14,6 +14,7 @@ import {
 	GoalDocument,
 	MilestoneSubscriptionDocument,
 	GoalSubscriptionDocument,
+	MilestoneDocument,
 } from "tachi-common";
 
 declare module "express-session" {
@@ -66,6 +67,7 @@ export interface TachiRequestData {
 	tableDoc?: TableDocument;
 	folderDoc?: FolderDocument;
 	goalDoc?: GoalDocument;
+	milestoneDoc?: MilestoneDocument;
 	goalSubDoc?: GoalSubscriptionDocument;
 	milestoneSubDoc?: MilestoneSubscriptionDocument;
 

@@ -228,7 +228,7 @@ router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: `Returned information about goal ${goal.name}.`,
+		description: `Returned information about goal '${goal.name}'.`,
 		body: {
 			goal,
 			goalSub,
@@ -239,7 +239,7 @@ router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 });
 
 /**
- * Removes a goal from your profile.
+ * Unsubscribe from a goal.
  *
  * @name DELETE /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID
  */

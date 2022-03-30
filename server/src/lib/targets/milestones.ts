@@ -1,4 +1,5 @@
 import db from "external/mongo/db";
+import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
 import {
 	GoalSubscriptionDocument,
@@ -191,13 +192,13 @@ export async function SubscribeToMilestone(
 	});
 
 	if (isSubscribedToMilestone) {
-		return null;
+		return SubscribeFailReasons.ALREADY_SUBSCRIBED;
 	}
 
 	const result = await EvaluateMilestoneProgress(userID, milestone);
 
 	if (result.achieved && cancelIfAchieved) {
-		return null;
+		return SubscribeFailReasons.ALREADY_ACHIEVED;
 	}
 
 	// @ts-expect-error TS can't resolve this.
@@ -219,14 +220,30 @@ export async function SubscribeToMilestone(
 	// from result.goalResults ourselves.
 	// evaluating goals is fairly cheap though.
 	await Promise.all(
-		result.goals.map((goal) =>
-			SubscribeToGoal(
+		result.goals.map(async (goal) => {
+			const res = await SubscribeToGoal(
 				userID,
 				goal,
 				{ milestoneID: milestone.milestoneID, origin: "milestone" },
 				false
-			)
-		)
+			);
+
+			// If the user is already subscribed to this goal, maybe manually
+			if (res === SubscribeFailReasons.ALREADY_SUBSCRIBED) {
+				await db["goal-subs"].update(
+					{
+						userID,
+						milestoneID: milestone.milestoneID,
+					},
+					{
+						$set: {
+							origin: "milestone",
+							milestoneID: milestone.milestoneID,
+						},
+					}
+				);
+			}
+		})
 	);
 
 	await db["milestone-subs"].insert(milestoneSub);
@@ -234,4 +251,23 @@ export async function SubscribeToMilestone(
 	logger.info(`User ${userID} subscribed to '${milestone.name}'.`);
 
 	return { milestoneSub, goals: result.goals, goalResults: result.goalResults };
+}
+
+export async function UnsubscribeFromMilestone(userID: integer, milestone: MilestoneDocument) {
+	const goalIDs = GetGoalIDsFromMilestone(milestone);
+
+	// Remove all attached goals subs to this milestone.
+	// This is a bit of a pain, since it means users can remove goals they legitimately
+	// have assigned on their own by subscribing to a milestone that also has that goal
+	// then unsubscribing.
+	// ah well.
+	await db["goal-subs"].remove({
+		goalID: { $in: goalIDs },
+		userID,
+	});
+
+	await db["milestone-subs"].remove({
+		userID,
+		milestoneID: milestone.milestoneID,
+	});
 }

@@ -1,15 +1,7 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { FilterQuery } from "mongodb";
-import {
-	GetGamePTConfig,
-	integer,
-	PBScoreDocument,
-	UserGameStatsSnapshot,
-	GoalSubscriptionDocument,
-	MilestoneSubscriptionDocument,
-} from "tachi-common";
+import { GetGamePTConfig, integer, PBScoreDocument, UserGameStatsSnapshot } from "tachi-common";
 import { IsString } from "utils/misc";
 import { CheckStrProfileAlg } from "utils/string-checks";
 import {
@@ -26,7 +18,7 @@ import sessionsRouter from "./sessions/router";
 import settingsRouter from "./settings/router";
 import showcaseRouter from "./showcase/router";
 import tablesRouter from "./tables/router";
-import goalsRouter from "./targets/goals/router";
+import targetsRouter from "./targets/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -132,80 +124,6 @@ router.get("/history", async (req, res) => {
 		success: true,
 		description: `Successfully returned history for the past ${snapshots.length} days.`,
 		body: [currentSnapshot, ...snapshots],
-	});
-});
-
-/**
- * Returns a user's set goals for this game.
- * @param unachieved - If set, achieved goals will be hidden.
- *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/goals
- */
-router.get("/goals", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
-
-	const query: FilterQuery<GoalSubscriptionDocument> = {
-		userID: user.id,
-		game,
-		playtype,
-	};
-
-	if (req.query.unachieved) {
-		query.achieved = false;
-	}
-
-	const goalSubs = await db["goal-subs"].find(query);
-
-	const goals = await db.goals.find({
-		goalID: { $in: goalSubs.map((e) => e.goalID) },
-	});
-
-	return res.status(200).json({
-		success: true,
-		description: `Successfully returned ${goalSubs.length} goal(s).`,
-		body: {
-			goalSubs,
-			goals,
-		},
-	});
-});
-
-/**
- * Returns a user's set milestones for this game.
- * @param unachieved - If set, achieved milestones will be hidden.
- *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/milestones
- */
-router.get("/milestones", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
-
-	const query: FilterQuery<MilestoneSubscriptionDocument> = {
-		userID: user.id,
-		game,
-		playtype,
-	};
-
-	if (req.query.unachieved) {
-		query.achieved = false;
-	}
-
-	const milestoneSubs = await db["milestone-subs"].find(query);
-
-	const milestones = await db.milestones.find({
-		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
-	});
-
-	return res.status(200).json({
-		success: true,
-		description: `Successfully returned ${milestoneSubs.length} milestone(s).`,
-		body: {
-			milestoneSubs,
-			milestones,
-		},
 	});
 });
 
@@ -378,6 +296,6 @@ router.use("/tables", tablesRouter);
 router.use("/showcase", showcaseRouter);
 router.use("/settings", settingsRouter);
 router.use("/folders", foldersRouter);
-router.use("/goals", goalsRouter);
+router.use("/targets", targetsRouter);
 
 export default router;

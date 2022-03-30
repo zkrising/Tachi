@@ -1,12 +1,6 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import {
-	GoalDocument,
-	MilestoneDocument,
-	ScoreDocument,
-	GoalSubscriptionDocument,
-	MilestoneSubscriptionDocument,
-} from "tachi-common";
+import { ScoreDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";

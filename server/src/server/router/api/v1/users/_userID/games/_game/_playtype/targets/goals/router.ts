@@ -3,13 +3,14 @@ import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import prValidate from "server/middleware/prudence-validate";
 import p from "prudence";
-import { GoalDocument } from "tachi-common";
-import { ConstructGoal, SubscribeFailReasons, SubscribeToGoal } from "lib/targets/goals";
+import { GoalDocument, MilestoneDocument } from "tachi-common";
+import { ConstructGoal, SubscribeToGoal } from "lib/targets/goals";
 import CreateLogCtx from "lib/logger/logger";
 import { RequirePermissions } from "server/middleware/auth";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 import { GetGoalForIDGuaranteed, GetMilestoneForIDGuaranteed } from "utils/db";
 import { RequireAuthedAsUser } from "../../../../../middleware";
+import { SubscribeFailReasons } from "lib/constants/err-codes";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -158,7 +159,7 @@ router.post(
 			});
 		}
 
-		const goalSub = await SubscribeToGoal(user.id, goal, { origin: "manual" });
+		const goalSub = await SubscribeToGoal(user.id, goal);
 
 		if (goalSub === SubscribeFailReasons.ALREADY_SUBSCRIBED) {
 			return res.status(409).json({
@@ -218,10 +219,12 @@ router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 	const goalSub = req[SYMBOL_TachiData]!.goalSubDoc!;
 
-	let milestone = null;
+	let milestones: MilestoneDocument[] = [];
 
-	if (goalSub.from.origin === "milestone") {
-		milestone = await GetMilestoneForIDGuaranteed(goalSub.from.milestoneID);
+	if (goalSub.parentMilestones.length !== 0) {
+		milestones = await Promise.all(
+			goalSub.parentMilestones.map((e) => GetMilestoneForIDGuaranteed(e))
+		);
 	}
 
 	const goal = await GetGoalForIDGuaranteed(goalSub.goalID);
@@ -232,7 +235,7 @@ router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 		body: {
 			goal,
 			goalSub,
-			milestone,
+			milestones,
 			user,
 		},
 	});
@@ -269,10 +272,10 @@ router.delete(
 			});
 		}
 
-		if (goalSub.from.origin === "milestone") {
+		if (goalSub.parentMilestones.length) {
 			return res.status(400).json({
 				success: false,
-				description: `This goal is from a milestone. You can't remove it directly, only by removing the parent milestone.`,
+				description: `This goal is part of a milestone you are subscribed to. It can only be removed by unsubscribing from the relevant milestones.`,
 			});
 		}
 

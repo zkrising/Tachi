@@ -221,14 +221,11 @@ export async function SubscribeToMilestone(
 	// evaluating goals is fairly cheap though.
 	await Promise.all(
 		result.goals.map(async (goal) => {
-			const res = await SubscribeToGoal(
-				userID,
-				goal,
-				{ milestoneID: milestone.milestoneID, origin: "milestone" },
-				false
-			);
+			const res = await SubscribeToGoal(userID, goal, milestone.milestoneID, false);
 
-			// If the user is already subscribed to this goal, maybe manually
+			// If the user is already subscribed to this goal -- i.e. manually or as part
+			// of another milestone
+			// add this milestoneID to the list of parents instead.
 			if (res === SubscribeFailReasons.ALREADY_SUBSCRIBED) {
 				await db["goal-subs"].update(
 					{
@@ -236,9 +233,8 @@ export async function SubscribeToMilestone(
 						milestoneID: milestone.milestoneID,
 					},
 					{
-						$set: {
-							origin: "milestone",
-							milestoneID: milestone.milestoneID,
+						$push: {
+							parentMilestones: milestone.milestoneID,
 						},
 					}
 				);
@@ -256,16 +252,30 @@ export async function SubscribeToMilestone(
 export async function UnsubscribeFromMilestone(userID: integer, milestone: MilestoneDocument) {
 	const goalIDs = GetGoalIDsFromMilestone(milestone);
 
-	// Remove all attached goals subs to this milestone.
-	// This is a bit of a pain, since it means users can remove goals they legitimately
-	// have assigned on their own by subscribing to a milestone that also has that goal
-	// then unsubscribing.
-	// ah well.
+	// Pull this milestone ID from all of the goalSubscriptions that have it.
+	// since it's no longer going to be their parent.
+	await db["goal-subs"].update(
+		{
+			goalID: { $in: goalIDs },
+			userID,
+			parentMilestones: milestone.milestoneID,
+		},
+		{
+			$pull: {
+				parentMilestones: milestone.milestoneID,
+			},
+		}
+	);
+
+	// then, remove all of the ones that now have no parent blocking their demise.
+	// that's pretty morbid, jesus christ.
 	await db["goal-subs"].remove({
 		goalID: { $in: goalIDs },
 		userID,
+		parentMilestones: { $size: 0 },
 	});
 
+	// remove the user's milestone sub, aswell.
 	await db["milestone-subs"].remove({
 		userID,
 		milestoneID: milestone.milestoneID,

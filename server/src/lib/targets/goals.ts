@@ -7,7 +7,6 @@ import {
 	Game,
 	GetGamePTConfig,
 	GoalDocument,
-	GoalOrigin,
 	integer,
 	PBScoreDocument,
 	Playtypes,
@@ -284,7 +283,7 @@ export async function ConstructGoal(
 export async function SubscribeToGoal(
 	userID: integer,
 	goalDocument: GoalDocument,
-	origin: GoalOrigin,
+	parentMilestone?: string,
 	cancelIfAchieved = true
 ) {
 	const goalExists = await db.goals.findOne({ goalID: goalDocument.goalID });
@@ -324,7 +323,9 @@ export async function SubscribeToGoal(
 		lastInteraction: Date.now(),
 		timeAchieved: result.achieved ? Date.now() : null,
 		timeSet: Date.now(),
-		from: origin,
+		// if this goal subscription came from a milestone, add the milestone to
+		// the list of parents.
+		parentMilestones: parentMilestone ? [parentMilestone] : [],
 		game: goalDocument.game,
 		playtype: goalDocument.playtype,
 		goalID: goalDocument.goalID,

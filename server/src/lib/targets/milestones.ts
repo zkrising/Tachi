@@ -59,7 +59,7 @@ export function CalculateMilestoneOutOf(milestone: MilestoneDocument) {
 
 	if (milestone.criteria.type === "all") {
 		return goalIDs.length;
-	} else if (milestone.criteria.type === "abs") {
+	} else if (milestone.criteria.type === "total") {
 		if (milestone.criteria.value === null) {
 			throw new Error(
 				`Invalid milestone ${milestone.milestoneID} - abs and null are not compatible.`
@@ -67,17 +67,10 @@ export function CalculateMilestoneOutOf(milestone: MilestoneDocument) {
 		}
 
 		return milestone.criteria.value!;
-	} else if (milestone.criteria.type === "proportion") {
-		if (milestone.criteria.value === null) {
-			throw new Error(
-				`Invalid milestone ${milestone.milestoneID} - proportion and null are not compatible.`
-			);
-		}
-
-		return Math.floor(milestone.criteria.value * goalIDs.length);
 	}
 
 	throw new Error(
+		// @ts-expect-error Yeah obviously this shouldn't happen. Mayaswell throw though.
 		`Invalid milestone.criteria.type of ${milestone.criteria.type} -- milestoneID ${milestone.milestoneID}`
 	);
 }

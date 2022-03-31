@@ -18,7 +18,7 @@ const router: Router = Router({ mergeParams: true });
 const logger = CreateLogCtx(__filename);
 
 /**
- * Retrieves this users' set goals.
+ * Retrieves this users' set goals for this GPT.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/goals
  */

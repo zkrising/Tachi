@@ -108,7 +108,7 @@ router.get("/:goalID", ResolveGoalID, async (req, res) => {
  *
  * @param userID - The userID to evaluate this goal against. Must be a player of this GPT.
  *
- * @name GET /api/v1/games/:game/:playtype/targets/goals/:goalID/evaluate
+ * @name GET /api/v1/games/:game/:playtype/targets/goals/:goalID/evaluate-for
  */
 router.get(
 	"/:goalID/evaluate-for",

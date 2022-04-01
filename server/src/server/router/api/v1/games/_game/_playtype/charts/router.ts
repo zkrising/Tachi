@@ -1,10 +1,11 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import { SearchGameSongs } from "lib/search/search";
 import { ChartDocument, UGPTSettings } from "tachi-common";
 import { IsString } from "utils/misc";
 import { FindChartsOnPopularity } from "utils/queries/charts";
+import { GetGPT } from "utils/req-tachi-data";
 import chartIDRouter from "./_chartID/router";
 
 const router: Router = Router({ mergeParams: true });
@@ -20,8 +21,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/games/:game/:playtype/charts
  */
 router.get("/", async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype } = GetGPT(req);
 
 	let songIDs = undefined;
 

@@ -1,9 +1,9 @@
-import t from "tap";
 import db from "external/mongo/db";
+import { PBScoreDocument } from "tachi-common";
+import t from "tap";
+import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { LoadTachiIIDXData, Testing511SPA } from "test-utils/test-data";
-import { PBScoreDocument } from "tachi-common";
-import mockApi from "test-utils/mock-api";
 
 t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 	t.beforeEach(ResetDBState);

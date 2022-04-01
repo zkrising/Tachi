@@ -1,6 +1,5 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { ONE_HOUR } from "lib/constants/time";
 import { FindOptions } from "monk";
 import NodeCache from "node-cache";
@@ -10,6 +9,7 @@ import { FormatGame, Game, GetGamePTConfig, integer, Playtypes, UserGameStats } 
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { IsString } from "utils/misc";
 import { GetClassDistribution } from "utils/queries/stats";
+import { GetGPT } from "utils/req-tachi-data";
 import {
 	CheckStrProfileAlg,
 	CheckStrScoreAlg,
@@ -18,11 +18,11 @@ import {
 import { GetUsersWithIDs } from "utils/user";
 import chartsRouter from "./charts/router";
 import foldersRouter from "./folders/router";
-import goalsRouter from "./targets/goals/router";
 import { ValidatePlaytypeFromParam } from "./middleware";
 import scoresRouter from "./scores/router";
 import songIDRouter from "./songs/_songID/router";
 import tablesRouter from "./tables/router";
+import goalsRouter from "./targets/goals/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -63,8 +63,7 @@ async function GetGameStats(
  * @name GET /api/v1/games/:game/:playtype
  */
 router.get("/", async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype } = GetGPT(req);
 
 	const { scoreCount, playerCount, chartCount } = await GetGameStats(game, playtype);
 
@@ -90,8 +89,7 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/games/:game/:playtype/leaderboard
  */
 router.get("/leaderboard", async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype } = GetGPT(req);
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const limit = ParseStrPositiveNonZeroInt(req.query.limit) ?? 100;
@@ -155,8 +153,7 @@ router.get("/leaderboard", async (req, res) => {
  * @name GET /api/v1/games/:game/:playtype/score-leaderboard
  */
 router.get("/score-leaderboard", async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype } = GetGPT(req);
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const limit = ParseStrPositiveNonZeroInt(req.query.limit) ?? 50;
@@ -226,8 +223,7 @@ router.get(
 		class: "string",
 	}),
 	async (req, res) => {
-		const game = req[SYMBOL_TachiData]!.game!;
-		const playtype = req[SYMBOL_TachiData]!.playtype!;
+		const { game, playtype } = GetGPT(req);
 		const gptConfig = GetGamePTConfig(game, playtype);
 
 		const stat = req.query.class as string;
@@ -268,8 +264,7 @@ router.get(
 		limit: p.optional((self) => p.isBoundedInteger(1, 50)(Number(self))),
 	}),
 	async (req, res) => {
-		const game = req[SYMBOL_TachiData]!.game!;
-		const playtype = req[SYMBOL_TachiData]!.playtype!;
+		const { game, playtype } = GetGPT(req);
 
 		const limit = req.query.limit ? Number(req.query.limit) : 10;
 

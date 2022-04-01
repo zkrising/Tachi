@@ -1,6 +1,5 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { SearchCollection } from "lib/search/search";
 import { GetGradeLampDistributionForFolders, GetRecentlyViewedFolders } from "utils/folder";
 import { IsString } from "utils/misc";

@@ -10,7 +10,7 @@ import {
 	UnsubscribeFromMilestone,
 } from "lib/targets/milestones";
 import { RequirePermissions } from "server/middleware/auth";
-import { AssignToReqTachiData, GetUGPT } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetGPT, GetUGPT } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
 import { RequireAuthedAsUser } from "../../../../../middleware";
 
@@ -69,8 +69,7 @@ const GetMilestoneSubscription: RequestHandler = async (req, res, next) => {
 };
 
 const GetMilestone: RequestHandler = async (req, res, next) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype } = GetGPT(req);
 
 	const milestone = await db.milestones.findOne({
 		game,

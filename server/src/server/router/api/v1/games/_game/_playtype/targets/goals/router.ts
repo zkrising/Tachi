@@ -1,11 +1,11 @@
 import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
-import { EvaluatedGoalReturn, EvaluateGoalForUser } from "lib/targets/goals";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
+import { EvaluatedGoalReturn, EvaluateGoalForUser } from "lib/targets/goals";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame } from "tachi-common";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
 import { GetUsersWithIDs, ResolveUser } from "utils/user";
 
 const logger = CreateLogCtx(__filename);
@@ -18,8 +18,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/games/:game/:playtype/targets/goals/recently-achieved
  */
 router.get("/recently-achieved", async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype } = GetGPT(req);
 
 	const recentlyAchievedUserGoals = await db["goal-subs"].find(
 		{
@@ -54,8 +53,7 @@ router.get("/recently-achieved", async (req, res) => {
 });
 
 const ResolveGoalID: RequestHandler = async (req, res, next) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype } = GetGPT(req);
 	const goalID = req.params.goalID;
 
 	const goal = await db.goals.findOne({
@@ -115,8 +113,7 @@ router.get(
 		userID: "string",
 	}),
 	async (req, res) => {
-		const game = req[SYMBOL_TachiData]!.game!;
-		const playtype = req[SYMBOL_TachiData]!.playtype!;
+		const { game, playtype } = GetGPT(req);
 
 		const userID = req.query.userID as string;
 

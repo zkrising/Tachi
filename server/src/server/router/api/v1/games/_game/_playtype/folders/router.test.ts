@@ -1,10 +1,9 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { FolderDocument } from "tachi-common";
+import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import deepmerge from "deepmerge";
-import { FolderDocument } from "tachi-common";
-
 import { Testing511SPA } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
 

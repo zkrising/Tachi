@@ -1,15 +1,15 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { CDNStoreOrOverwrite, CDNRedirect, CDNDelete } from "lib/cdn/cdn";
+import { CDNDelete, CDNRedirect, CDNStoreOrOverwrite } from "lib/cdn/cdn";
 import { GetProfilePictureURL } from "lib/cdn/url-format";
 import { ONE_MEGABYTE } from "lib/constants/filesize";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
-import { FormatUserDoc } from "utils/user";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
-import { RequireAuthedAsUser } from "../middleware";
 import { HashSHA256 } from "utils/crypto";
+import { FormatUserDoc } from "utils/user";
+import { RequireAuthedAsUser } from "../middleware";
 
 const logger = CreateLogCtx(__filename);
 

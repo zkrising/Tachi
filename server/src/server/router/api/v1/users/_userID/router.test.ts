@@ -1,6 +1,6 @@
 import db from "external/mongo/db";
 import { ONE_DAY, ONE_YEAR } from "lib/constants/time";
-import { UserGameStats, ImportTypes, ImportDocument, Game } from "tachi-common";
+import { Game, ImportDocument, ImportTypes, UserGameStats } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";

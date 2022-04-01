@@ -1,17 +1,16 @@
 import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { EvaluateMilestoneProgress, GetGoalsInMilestone } from "lib/targets/milestones";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame } from "tachi-common";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
 import { GetUsersWithIDs, ResolveUser } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
 
 const ResolveMilestoneID: RequestHandler = async (req, res, next) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype } = GetGPT(req);
 	const milestoneID = req.params.milestoneID;
 
 	const milestone = await db.milestones.findOne({
@@ -72,8 +71,7 @@ router.get(
 	ResolveMilestoneID,
 	prValidate({ userID: "string" }),
 	async (req, res) => {
-		const game = req[SYMBOL_TachiData]!.game!;
-		const playtype = req[SYMBOL_TachiData]!.playtype!;
+		const { game, playtype } = GetGPT(req);
 
 		const userID = req.query.userID as string;
 

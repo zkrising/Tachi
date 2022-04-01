@@ -51,12 +51,14 @@ t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 
 		t.equal(res.status, 200);
 
-		t.hasStrict(res.body.body, {
-			player: "",
-			clear: 5,
-			epg: 617,
-			lpg: 0,
-		});
+		t.hasStrict(res.body.body, [
+			{
+				player: "",
+				clear: 5,
+				epg: 617,
+				lpg: 0,
+			},
+		]);
 
 		t.end();
 	});

@@ -206,6 +206,7 @@ export async function SubscribeToMilestone(
 		playtype: milestone.playtype,
 		achieved: result.achieved,
 		timeAchieved: result.achieved ? Date.now() : null,
+		lastInteraction: null,
 	};
 
 	// @optimisable, EvaluateMilestoneProgress calculates the users progress

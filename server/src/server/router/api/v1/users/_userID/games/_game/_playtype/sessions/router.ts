@@ -3,6 +3,7 @@ import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { SearchSessions } from "lib/search/search";
 import { GetGamePTConfig } from "tachi-common";
+import { GetUGPT } from "utils/req-tachi-data";
 import { CheckStrSessionAlg } from "utils/string-checks";
 
 const router: Router = Router({ mergeParams: true });

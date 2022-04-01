@@ -102,7 +102,7 @@ export async function UpdateUsersMilestones(
 			throw new Error("Invalid state achieved in milestone processing.");
 		}
 
-		bwrite.push({
+		const bwriteOp: BulkWriteUpdateOneOperation<MilestoneSubscriptionDocument> = {
 			updateOne: {
 				filter: { milestoneID: milestone.milestoneID },
 				update: {
@@ -112,7 +112,7 @@ export async function UpdateUsersMilestones(
 					},
 				},
 			},
-		});
+		};
 
 		const milestoneInfo = {
 			milestoneID: milestoneSub.milestoneID,
@@ -128,7 +128,11 @@ export async function UpdateUsersMilestones(
 
 		if (progress !== milestoneSub.progress) {
 			importMilestoneInfo.push(milestoneInfo);
+			// @ts-expect-error This property isn't read only, because I said so.
+			bwriteOp.updateOne.update.$set!.lastInteraction = Date.now();
 		}
+
+		bwrite.push(bwriteOp);
 
 		if (achieved && !milestoneSub.achieved) {
 			EmitWebhookEvent({

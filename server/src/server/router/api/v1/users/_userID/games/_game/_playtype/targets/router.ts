@@ -101,6 +101,7 @@ router.get("/recently-interacted", async (req, res) => {
 			playtype,
 			wasInstantlyAchieved: false,
 			userID,
+			lastInteraction: { $ne: null },
 		},
 		{
 			sort: {

@@ -1,6 +1,15 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { FormatChart, Game, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { FilterQuery } from "mongodb";
+import {
+	FormatChart,
+	Game,
+	GoalSubscriptionDocument,
+	integer,
+	MilestoneSubscriptionDocument,
+	PBScoreDocument,
+	ScoreDocument,
+} from "tachi-common";
 const logger = CreateLogCtx(__filename);
 
 export async function GetNextCounterValue(counterName: string): Promise<integer> {
@@ -152,4 +161,134 @@ export async function HumaniseChartID(game: Game, chartID: string) {
 	const song = await GetSongForIDGuaranteed(game, chart.songID);
 
 	return FormatChart(game, song, chart);
+}
+
+/**
+ * Get recently achieved goals for this query.
+ *
+ * @param baseQuery - A base query, used to limit results on GPTs or UGPTs.
+ * @param limit - How many recently achieved goals to search for.
+ * @returns - The goals and their subs.
+ */
+export async function GetRecentlyAchievedGoals(
+	baseQuery: FilterQuery<GoalSubscriptionDocument>,
+	limit = 50
+) {
+	const query = Object.assign(
+		{
+			wasInstantlyAchieved: false,
+			achieved: true,
+		},
+		baseQuery
+	);
+
+	const goalSubs = await db["goal-subs"].find(query, {
+		sort: {
+			timeAchieved: -1,
+		},
+		limit,
+	});
+
+	const goals = await db.goals.find({
+		goalID: { $in: goalSubs.map((e) => e.goalID) },
+	});
+
+	return { goals, goalSubs };
+}
+
+/**
+ * Get recently interacted-with goals for this query.
+ *
+ * @param baseQuery - A base query, used to limit results on GPTs or UGPTs.
+ * @param limit - How many recently achieved goals to search for.
+ * @returns - The goals and their subs.
+ */
+export async function GetRecentlyInteractedGoals(
+	baseQuery: FilterQuery<GoalSubscriptionDocument>,
+	limit = 50
+) {
+	const query = Object.assign(
+		{
+			lastInteraction: { $ne: null },
+		},
+		baseQuery
+	);
+
+	const goalSubs = await db["goal-subs"].find(query, {
+		sort: {
+			lastInteraction: -1,
+		},
+		limit,
+	});
+
+	const goals = await db.goals.find({
+		goalID: { $in: goalSubs.map((e) => e.goalID) },
+	});
+
+	return { goals, goalSubs };
+}
+
+/**
+ * Get recently achieved goals for this query.
+ *
+ * @param baseQuery - A base query, used to limit results on GPTs or UGPTs.
+ * @param limit - How many recently achieved goals to search for.
+ * @returns - The goals and their subs.
+ */
+export async function GetRecentlyAchievedMilestones(
+	baseQuery: FilterQuery<MilestoneSubscriptionDocument>,
+	limit = 50
+) {
+	const query = Object.assign(
+		{
+			wasInstantlyAchieved: false,
+			achieved: true,
+		},
+		baseQuery
+	);
+
+	const milestoneSubs = await db["milestone-subs"].find(query, {
+		sort: {
+			timeAchieved: -1,
+		},
+		limit,
+	});
+
+	const milestones = await db.goals.find({
+		goalID: { $in: milestoneSubs.map((e) => e.milestoneID) },
+	});
+
+	return { milestones, milestoneSubs };
+}
+
+/**
+ * Get recently interacted-with milestones for this query.
+ *
+ * @param baseQuery - A base query, used to limit results on GPTs or UGPTs.
+ * @param limit - How many recently achieved milestones to search for.
+ * @returns - The milestones and their subs.
+ */
+export async function GetRecentlyInteractedMilestones(
+	baseQuery: FilterQuery<MilestoneSubscriptionDocument>,
+	limit = 50
+) {
+	const query = Object.assign(
+		{
+			lastInteraction: { $ne: null },
+		},
+		baseQuery
+	);
+
+	const milestoneSubs = await db["milestone-subs"].find(query, {
+		sort: {
+			lastInteraction: -1,
+		},
+		limit,
+	});
+
+	const milestones = await db.goals.find({
+		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
+	});
+
+	return { milestones, milestoneSubs };
 }

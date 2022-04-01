@@ -1,5 +1,10 @@
 import { Router } from "express";
-import db from "external/mongo/db";
+import {
+	GetRecentlyAchievedGoals,
+	GetRecentlyAchievedMilestones,
+	GetRecentlyInteractedGoals,
+	GetRecentlyInteractedMilestones,
+} from "utils/db";
 import { GetUGPT } from "utils/req-tachi-data";
 import goalsRouter from "./goals/router";
 import milestonesRouter from "./milestones/router";
@@ -16,45 +21,10 @@ router.get("/recently-achieved", async (req, res) => {
 
 	const userID = user.id;
 
-	const recentlyAchievedGoalSubs = await db["goal-subs"].find(
-		{
-			game,
-			playtype,
-			achieved: true,
-			wasInstantlyAchieved: false,
-			userID,
-		},
-		{
-			sort: {
-				timeAchieved: -1,
-			},
-			limit: 50,
-		}
-	);
-
-	const recentlyAchievedMilestoneSubs = await db["milestone-subs"].find(
-		{
-			game,
-			playtype,
-			achieved: true,
-			wasInstantlyAchieved: false,
-			userID,
-		},
-		{
-			sort: {
-				timeAchieved: -1,
-			},
-			limit: 10,
-		}
-	);
-
-	const goals = await db.goals.find({
-		goalID: { $in: recentlyAchievedGoalSubs.map((e) => e.goalID) },
-	});
-
-	const milestones = await db.milestones.find({
-		milestoneID: { $in: recentlyAchievedMilestoneSubs.map((e) => e.milestoneID) },
-	});
+	const [{ goals, goalSubs }, { milestones, milestoneSubs }] = await Promise.all([
+		GetRecentlyAchievedGoals({ userID, game, playtype }),
+		GetRecentlyAchievedMilestones({ userID, game, playtype }),
+	]);
 
 	return res.status(200).json({
 		success: true,
@@ -62,8 +32,8 @@ router.get("/recently-achieved", async (req, res) => {
 		body: {
 			goals,
 			milestones,
-			goalSubs: recentlyAchievedGoalSubs,
-			milestoneSubs: recentlyAchievedMilestoneSubs,
+			goalSubs,
+			milestoneSubs,
 			user,
 		},
 	});
@@ -79,45 +49,10 @@ router.get("/recently-interacted", async (req, res) => {
 
 	const userID = user.id;
 
-	const recentlyAchievedGoalSubs = await db["goal-subs"].find(
-		{
-			game,
-			playtype,
-			wasInstantlyAchieved: false,
-			userID,
-			lastInteraction: { $ne: null },
-		},
-		{
-			sort: {
-				lastInteraction: -1,
-			},
-			limit: 50,
-		}
-	);
-
-	const recentlyAchievedMilestoneSubs = await db["milestone-subs"].find(
-		{
-			game,
-			playtype,
-			wasInstantlyAchieved: false,
-			userID,
-			lastInteraction: { $ne: null },
-		},
-		{
-			sort: {
-				lastInteraction: -1,
-			},
-			limit: 10,
-		}
-	);
-
-	const goals = await db.goals.find({
-		goalID: { $in: recentlyAchievedGoalSubs.map((e) => e.goalID) },
-	});
-
-	const milestones = await db.milestones.find({
-		milestoneID: { $in: recentlyAchievedMilestoneSubs.map((e) => e.milestoneID) },
-	});
+	const [{ goals, goalSubs }, { milestones, milestoneSubs }] = await Promise.all([
+		GetRecentlyInteractedGoals({ userID, game, playtype }),
+		GetRecentlyInteractedMilestones({ userID, game, playtype }),
+	]);
 
 	return res.status(200).json({
 		success: true,
@@ -125,8 +60,8 @@ router.get("/recently-interacted", async (req, res) => {
 		body: {
 			goals,
 			milestones,
-			goalSubs: recentlyAchievedGoalSubs,
-			milestoneSubs: recentlyAchievedMilestoneSubs,
+			goalSubs,
+			milestoneSubs,
 			user,
 		},
 	});

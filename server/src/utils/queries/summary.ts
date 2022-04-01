@@ -49,7 +49,7 @@ export async function GetRecentlyViewedFoldersAnyGPT(userID: integer) {
 	return { folders, stats };
 }
 
-export async function GetRecentlyAchievedGoals(userID: integer) {
+export async function GetGoalSummary(userID: integer) {
 	const time = GetTimeXHoursAgo(REASONABLE_HOURS_AGO);
 
 	const achievedGoals = await db["goal-subs"].find({

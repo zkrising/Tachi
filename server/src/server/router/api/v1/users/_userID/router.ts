@@ -9,7 +9,7 @@ import { ImportTypes, integer, UserGameStats } from "tachi-common";
 import { DeleteUndefinedProps, StripUrl } from "utils/misc";
 import { optNullFluffStrField } from "utils/prudence";
 import {
-	GetRecentlyAchievedGoals,
+	GetGoalSummary,
 	GetRecentlyViewedFoldersAnyGPT,
 	GetRecentPlaycount,
 	GetRecentSessions,
@@ -230,7 +230,7 @@ router.get("/recent-summary", async (req, res) => {
 		GetRecentPlaycount(user.id),
 		GetRecentSessions(user.id),
 		GetRecentlyViewedFoldersAnyGPT(user.id),
-		GetRecentlyAchievedGoals(user.id),
+		GetGoalSummary(user.id),
 	]);
 
 	return res.status(200).json({

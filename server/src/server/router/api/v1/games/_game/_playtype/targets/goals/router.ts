@@ -26,9 +26,7 @@ router.get("/recently-achieved", async (req, res) => {
 			game,
 			playtype,
 			achieved: true,
-			// exclude stuff where timeAchieved == timeSet, as they're not really
-			// goals but rather consequences of milestone assignment.
-			$expr: { $ne: ["$timeAchieved", "$timeSet"] },
+			wasInstantlyAchieved: false,
 		},
 		{
 			sort: {

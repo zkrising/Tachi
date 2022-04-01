@@ -3,6 +3,7 @@ import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { GetGamePTConfig, integer, PBScoreDocument, UserGameStatsSnapshot } from "tachi-common";
 import { IsString } from "utils/misc";
+import { GetUGPT } from "utils/req-tachi-data";
 import { CheckStrProfileAlg } from "utils/string-checks";
 import {
 	GetAllRankings,
@@ -29,10 +30,9 @@ router.use(CheckUserPlayedGamePlaytype);
  * @name GET /api/v1/users/:userID/games/:game/:playtype
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const { game, playtype, user } = GetUGPT(req);
+
 	const stats = req[SYMBOL_TachiData]!.requestedUserGameStats!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
 	const [totalScores, firstScore, mostRecentScore, rankingData] = await Promise.all([
 		db.scores.count({
@@ -87,10 +87,9 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/history
  */
 router.get("/history", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const { game, playtype, user } = GetUGPT(req);
+
 	const stats = req[SYMBOL_TachiData]!.requestedUserGameStats!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
 	const snapshots = (await db["game-stats-snapshots"].find(
 		{
@@ -133,9 +132,7 @@ router.get("/history", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/most-played
  */
 router.get("/most-played", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype, user } = GetUGPT(req);
 
 	const mostPlayed: { playcount: integer; songID: integer; _id: string }[] =
 		await db.scores.aggregate([
@@ -208,10 +205,9 @@ router.get("/most-played", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/leaderboard-adjacent
  */
 router.get("/leaderboard-adjacent", async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype, user } = GetUGPT(req);
+
 	const gptConfig = GetGamePTConfig(game, playtype);
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
 	let alg = gptConfig.defaultProfileRatingAlg;
 	if (IsString(req.query.alg)) {

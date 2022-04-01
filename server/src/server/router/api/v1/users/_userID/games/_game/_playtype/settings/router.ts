@@ -6,6 +6,7 @@ import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { GetGamePTConfig } from "tachi-common";
 import { FormatPrError, optNull } from "utils/prudence";
+import { GetUGPT } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
 import { RequireAuthedAsUser } from "../../../../middleware";
 
@@ -25,9 +26,7 @@ router.patch(
 	RequireAuthedAsUser,
 	RequirePermissions("customise_profile"),
 	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
-		const game = req[SYMBOL_TachiData]!.game!;
-		const playtype = req[SYMBOL_TachiData]!.playtype!;
+		const { user, game, playtype } = GetUGPT(req);
 
 		const gptConfig = GetGamePTConfig(game, playtype);
 
@@ -170,9 +169,7 @@ router.patch(
  * @name GET /api/v1/users/:userID/games/:game/:playtype/settings
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	const settings = await db["game-settings"].findOne({
 		userID: user.id,

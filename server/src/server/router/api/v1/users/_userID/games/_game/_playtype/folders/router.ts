@@ -4,6 +4,7 @@ import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { SearchCollection } from "lib/search/search";
 import { GetGradeLampDistributionForFolders, GetRecentlyViewedFolders } from "utils/folder";
 import { IsString } from "utils/misc";
+import { GetUGPT } from "utils/req-tachi-data";
 import folderIDRouter from "./_folderID/router";
 
 const router: Router = Router({ mergeParams: true });
@@ -21,9 +22,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users/:userID/games/:game/:playtype/folders
  */
 router.get("/", async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const { game, playtype, user } = GetUGPT(req);
 
 	if (!IsString(req.query.search)) {
 		return res.status(400).json({
@@ -60,9 +59,7 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/folders/recent
  */
 router.get("/recent", async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const { game, playtype, user } = GetUGPT(req);
 
 	const { views, folders } = await GetRecentlyViewedFolders(user.id, game, playtype);
 

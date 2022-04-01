@@ -10,7 +10,7 @@ import {
 	UnsubscribeFromMilestone,
 } from "lib/targets/milestones";
 import { RequirePermissions } from "server/middleware/auth";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetUGPT } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
 import { RequireAuthedAsUser } from "../../../../../middleware";
 
@@ -24,9 +24,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/milestones
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	const milestoneSubs = await db["milestone-subs"].find({
 		userID: user.id,
@@ -49,9 +47,7 @@ router.get("/", async (req, res) => {
 });
 
 const GetMilestoneSubscription: RequestHandler = async (req, res, next) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	const milestoneSub = await db["milestone-subs"].findOne({
 		userID: user.id,
@@ -101,7 +97,8 @@ const GetMilestone: RequestHandler = async (req, res, next) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/milestones/:milestoneID
  */
 router.get("/:milestoneID", GetMilestone, GetMilestoneSubscription, async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const { user } = GetUGPT(req);
+
 	const milestoneSub = req[SYMBOL_TachiData]!.milestoneSubDoc!;
 	const milestone = req[SYMBOL_TachiData]!.milestoneDoc!;
 
@@ -134,9 +131,7 @@ router.put(
 	GetMilestone,
 	RequirePermissions("manage_targets"),
 	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
-		const game = req[SYMBOL_TachiData]!.game!;
-		const playtype = req[SYMBOL_TachiData]!.playtype!;
+		const { user, game, playtype } = GetUGPT(req);
 
 		const existingMilestonesCount = await db["milestone-subs"].count({
 			userID: user.id,
@@ -200,7 +195,7 @@ router.delete(
 	GetMilestone,
 	RequirePermissions("manage_targets"),
 	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
+		const { user } = GetUGPT(req);
 		const milestone = req[SYMBOL_TachiData]!.milestoneDoc!;
 
 		logger.info(

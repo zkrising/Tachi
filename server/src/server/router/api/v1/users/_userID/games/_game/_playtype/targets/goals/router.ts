@@ -7,7 +7,7 @@ import { GoalDocument, MilestoneDocument } from "tachi-common";
 import { ConstructGoal, SubscribeToGoal } from "lib/targets/goals";
 import CreateLogCtx from "lib/logger/logger";
 import { RequirePermissions } from "server/middleware/auth";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetUGPT } from "utils/req-tachi-data";
 import { GetGoalForIDGuaranteed, GetMilestoneForIDGuaranteed } from "utils/db";
 import { RequireAuthedAsUser } from "../../../../../middleware";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
@@ -23,9 +23,7 @@ const logger = CreateLogCtx(__filename);
  * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/goals
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	const goalSubs = await db["goal-subs"].find({
 		userID: user.id,
@@ -127,9 +125,7 @@ router.post(
 		},
 	}),
 	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
-		const game = req[SYMBOL_TachiData]!.game!;
-		const playtype = req[SYMBOL_TachiData]!.playtype!;
+		const { user, game, playtype } = GetUGPT(req);
 
 		const existingGoalsCount = await db["goal-subs"].count({
 			userID: user.id,
@@ -188,9 +184,7 @@ router.post(
 );
 
 const GetGoalSubscription: RequestHandler = async (req, res, next) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	const goalSub = await db["goal-subs"].findOne({
 		userID: user.id,
@@ -217,7 +211,8 @@ const GetGoalSubscription: RequestHandler = async (req, res, next) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID
  */
 router.get("/:goalID", GetGoalSubscription, async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const { user } = GetUGPT(req);
+
 	const goalSub = req[SYMBOL_TachiData]!.goalSubDoc!;
 
 	let milestones: MilestoneDocument[] = [];
@@ -255,9 +250,7 @@ router.delete(
 	prValidate({ goalID: "string" }),
 	async (req, res) => {
 		const goalID = req.params.goalID;
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
-		const game = req[SYMBOL_TachiData]!.game!;
-		const playtype = req[SYMBOL_TachiData]!.playtype!;
+		const { user, game, playtype } = GetUGPT(req);
 
 		const goalSub = await db["goal-subs"].findOne({
 			goalID,

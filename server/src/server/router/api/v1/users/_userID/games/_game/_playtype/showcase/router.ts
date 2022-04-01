@@ -9,6 +9,7 @@ import { RequirePermissions } from "server/middleware/auth";
 import { RequireAuthedAsUser } from "server/router/api/v1/users/_userID/middleware";
 import { GetGamePTConfig, ShowcaseStatDetails } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
+import { GetUGPT } from "utils/req-tachi-data";
 import { ResolveUser } from "utils/user";
 const router: Router = Router({ mergeParams: true });
 
@@ -20,9 +21,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users/:userID/games/:game/:playtype/showcase
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	let projectUser;
 
@@ -60,9 +59,7 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom
  */
 router.get("/custom", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	let stat: ShowcaseStatDetails;
 
@@ -164,9 +161,7 @@ router.get("/custom", async (req, res) => {
  * @name PUT /api/v1/users/:userID/games/:game/:playtype/showcase
  */
 router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 

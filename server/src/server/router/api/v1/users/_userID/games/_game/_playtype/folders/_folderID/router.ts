@@ -4,6 +4,7 @@ import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { FilterQuery } from "mongodb";
 import { GetGamePTConfig, ScoreDocument } from "tachi-common";
 import { GetFolderCharts, GetGradeLampDistributionForFolder, GetPBsOnFolder } from "utils/folder";
+import { GetUGPT } from "utils/req-tachi-data";
 import { ParseStrPositiveInt } from "utils/string-checks";
 import { GetFolderFromParam } from "../../../../../../../games/_game/_playtype/folders/middleware";
 import { RequireSelfRequestFromUser } from "../../../../../middleware";
@@ -18,7 +19,8 @@ router.use(GetFolderFromParam);
  * @name GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const { user } = GetUGPT(req);
+
 	const folder = req[SYMBOL_TachiData]!.folderDoc!;
 
 	const { songs, charts, pbs } = await GetPBsOnFolder(user.id, folder);
@@ -41,8 +43,9 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/stats
  */
 router.get("/stats", async (req, res) => {
+	const { user } = GetUGPT(req);
+
 	const folder = req[SYMBOL_TachiData]!.folderDoc!;
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
 	const stats = await GetGradeLampDistributionForFolder(user.id, folder);
 
@@ -64,7 +67,8 @@ router.get("/stats", async (req, res) => {
  * @name POST /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/viewed
  */
 router.post("/viewed", RequireSelfRequestFromUser, async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const { user } = GetUGPT(req);
+
 	const folder = req[SYMBOL_TachiData]!.folderDoc!;
 
 	await db["recent-folder-views"].update(
@@ -101,10 +105,9 @@ router.post("/viewed", RequireSelfRequestFromUser, async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeline
  */
 router.get("/timeline", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const { user, game, playtype } = GetUGPT(req);
+
 	const folder = req[SYMBOL_TachiData]!.folderDoc!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const intIndex = ParseStrPositiveInt(req.query.criteriaValue);

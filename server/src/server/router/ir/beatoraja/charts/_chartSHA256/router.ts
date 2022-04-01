@@ -60,7 +60,6 @@ router.get("/scores", async (req, res) => {
 			},
 		}
 	);
-
 	const userMap = new Map();
 	for (const user of userDocs) {
 		userMap.set(user.id, user);

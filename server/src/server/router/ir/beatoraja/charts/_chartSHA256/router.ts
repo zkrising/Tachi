@@ -1,6 +1,6 @@
 import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
 import { ChartDocument, PBScoreDocument } from "tachi-common";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
@@ -43,6 +43,7 @@ router.use(GetChartDocument);
  */
 router.get("/scores", async (req, res) => {
 	const chart = req[SYMBOL_TachiData]!.beatorajaChartDoc!;
+	const requestingUserID = req[SYMBOL_TachiAPIAuth].userID;
 
 	const scores = (await db["personal-bests"].find({
 		chartID: chart.chartID,
@@ -72,7 +73,7 @@ router.get("/scores", async (req, res) => {
 			TachiScoreDataToBeatorajaFormat(
 				score,
 				chart.data.hashSHA256,
-				userMap.get(score.userID).username,
+				score.userID === requestingUserID ? "" : userMap.get(score.userID).username,
 				chart.data.notecount,
 				0 // Playcount is always 0 at the moment due to performance concerns.
 			)

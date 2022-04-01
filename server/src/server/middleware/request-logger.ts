@@ -1,6 +1,6 @@
-import CreateLogCtx from "lib/logger/logger";
 import { RequestHandler, Response } from "express-serve-static-core";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx(__filename);

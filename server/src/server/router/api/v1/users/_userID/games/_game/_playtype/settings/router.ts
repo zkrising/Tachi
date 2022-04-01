@@ -1,6 +1,5 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";

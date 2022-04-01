@@ -1,6 +1,6 @@
 import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
-import { Game, BatchManualScore } from "tachi-common";
+import { BatchManualScore, Game } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";

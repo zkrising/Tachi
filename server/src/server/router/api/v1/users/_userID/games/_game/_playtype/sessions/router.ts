@@ -13,8 +13,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions
  */
 router.get("/", async (req, res) => {
-		const { user, game, playtype } = GetUGPT(req);
-
+	const { user, game, playtype } = GetUGPT(req);
 
 	if (typeof req.query.search !== "string") {
 		return res.status(400).json({
@@ -40,7 +39,7 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions/best
  */
 router.get("/best", async (req, res) => {
-		const { user, game, playtype } = GetUGPT(req);
+	const { user, game, playtype } = GetUGPT(req);
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
@@ -87,8 +86,7 @@ router.get("/best", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions/highlighted
  */
 router.get("/highlighted", async (req, res) => {
-		const { user, game, playtype } = GetUGPT(req);
-
+	const { user, game, playtype } = GetUGPT(req);
 
 	const sessions = await db.sessions.find(
 		{ userID: user.id, game, playtype, highlight: true },
@@ -108,8 +106,7 @@ router.get("/highlighted", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent
  */
 router.get("/recent", async (req, res) => {
-		const { user, game, playtype } = GetUGPT(req);
-
+	const { user, game, playtype } = GetUGPT(req);
 
 	const sessions = await db.sessions.find(
 		{ userID: user.id, game, playtype },
@@ -129,8 +126,7 @@ router.get("/recent", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions/last
  */
 router.get("/last", async (req, res) => {
-		const { user, game, playtype } = GetUGPT(req);
-
+	const { user, game, playtype } = GetUGPT(req);
 
 	const session = await db.sessions.findOne(
 		{ userID: user.id, game, playtype },

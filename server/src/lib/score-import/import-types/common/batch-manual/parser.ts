@@ -1,4 +1,5 @@
 import deepmerge from "deepmerge";
+import { IIDXDans, SDVXDans, WACCA_STAGEUPS } from "lib/constants/classes";
 import { KtLogger } from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
@@ -12,7 +13,6 @@ import {
 	Playtypes,
 } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
-import { IIDXDans, SDVXDans, WACCA_STAGEUPS } from "lib/constants/classes";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturns } from "../types";
 import { BatchManualContext } from "./types";

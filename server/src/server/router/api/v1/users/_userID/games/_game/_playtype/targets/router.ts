@@ -1,6 +1,5 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { GetUGPT } from "utils/req-tachi-data";
 import goalsRouter from "./goals/router";
 import milestonesRouter from "./milestones/router";
@@ -133,5 +132,6 @@ router.get("/recently-interacted", async (req, res) => {
 });
 
 router.use("/goals", goalsRouter);
+router.use("/milestones", milestonesRouter);
 
 export default router;

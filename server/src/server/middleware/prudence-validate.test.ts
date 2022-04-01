@@ -1,7 +1,7 @@
-import t from "tap";
 import expMiddlewareMock from "express-request-mock";
-import prValidate from "./prudence-validate";
 import Prudence from "prudence";
+import t from "tap";
+import prValidate from "./prudence-validate";
 
 t.test("#PrudenceMiddleware", (t) => {
 	const mw = prValidate({ foo: Prudence.regex(/^baz$/u) }, { foo: "example error message" });

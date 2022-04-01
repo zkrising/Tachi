@@ -969,6 +969,7 @@ export type MilestoneSubscriptionDocument = MongoDBDocument & {
 	playtype: Playtype;
 	timeSet: integer;
 	progress: integer;
+	lastInteraction: integer | null;
 	wasInstantlyAchieved: boolean;
 } & (
 		| {

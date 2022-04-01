@@ -209,6 +209,7 @@ export async function GetRecentlyInteractedGoals(
 ) {
 	const query = Object.assign(
 		{
+			wasInstantlyAchieved: false,
 			lastInteraction: { $ne: null },
 		},
 		baseQuery
@@ -275,6 +276,7 @@ export async function GetRecentlyInteractedMilestones(
 	const query = Object.assign(
 		{
 			lastInteraction: { $ne: null },
+			wasInstantlyAchieved: false,
 		},
 		baseQuery
 	);

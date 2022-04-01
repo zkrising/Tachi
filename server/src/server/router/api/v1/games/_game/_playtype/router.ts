@@ -22,7 +22,7 @@ import { ValidatePlaytypeFromParam } from "./middleware";
 import scoresRouter from "./scores/router";
 import songIDRouter from "./songs/_songID/router";
 import tablesRouter from "./tables/router";
-import goalsRouter from "./targets/goals/router";
+import targetsRouter from "./targets/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -294,6 +294,6 @@ router.use("/songs/:songID", songIDRouter);
 router.use("/folders", foldersRouter);
 router.use("/tables", tablesRouter);
 router.use("/scores", scoresRouter);
-router.use("/goals", goalsRouter);
+router.use("/targets", targetsRouter);
 
 export default router;

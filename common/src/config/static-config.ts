@@ -154,6 +154,7 @@ export const PrettyVersions: Versions = {
 		gw: "GRAVITY WARS",
 		heaven: "HEAVENLY HAVEN",
 		vivid: "VIVID WAVE",
+		exceed: "EXCEED GEAR",
 		konaste: "Konaste",
 	},
 	"usc:Keyboard": {},

@@ -770,7 +770,7 @@ export interface GPTSupportedVersions {
 	"iidx:SP": SupportedIIDXVersions;
 	"iidx:DP": SupportedIIDXVersions;
 	"popn:9B": "peace";
-	"sdvx:Single": "booth" | "inf" | "gw" | "heaven" | "vivid" | "konaste";
+	"sdvx:Single": "booth" | "inf" | "gw" | "heaven" | "vivid" | "exceed" | "konaste";
 	"usc:Controller": never;
 	"usc:Keyboard": never;
 	"ddr:SP": "a20";

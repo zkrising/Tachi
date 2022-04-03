@@ -798,10 +798,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		currentLatestVersion: "vivid",
-		currentLocalVersion: "vivid",
+		currentLatestVersion: "exceed",
+		currentLocalVersion: "exceed",
 		currentGameOmniVersion: null,
-		supportedVersions: ["booth", "inf", "gw", "heaven", "vivid", "konaste"],
+		supportedVersions: ["booth", "inf", "gw", "heaven", "vivid", "exceed", "konaste"],
 
 		tierlists: ["clear"],
 		tierlistDescriptions: {

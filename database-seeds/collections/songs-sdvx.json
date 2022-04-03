@@ -18660,6 +18660,19 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "sasakure.UK",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1471,
+		"searchTerms": [
+			"helloplanet sasakure",
+			"ﾊﾛｰﾌﾟﾗﾈｯﾄ"
+		],
+		"title": "*ハロー、プラネット。"
+	},
+	{
+		"altTitles": [],
 		"artist": "LeaF",
 		"data": {
 			"displayVersion": "vivid"
@@ -18735,6 +18748,19 @@
 			"ﾃﾞｨｽﾃｨﾝﾄﾞ ﾏﾘｵﾈｯﾄ"
 		],
 		"title": "Destined Marionette"
+	},
+	{
+		"altTitles": [],
+		"artist": "Street",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1478,
+		"searchTerms": [
+			"sakurafubuki street",
+			"ｻｸﾗﾌﾌﾞｷ"
+		],
+		"title": "Sakura Fubuki"
 	},
 	{
 		"altTitles": [],
@@ -19037,6 +19063,45 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "あさり(saminun)",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1511,
+		"searchTerms": [
+			"absolutermx asari",
+			"ｱﾌﾞｿﾘｭｰﾄｻﾐﾇﾝﾐｯｸｽ"
+		],
+		"title": "ABSOLUTE (saminun mix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "ismK",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1512,
+		"searchTerms": [
+			"absolutermx ismk",
+			"ｱﾌﾞｿﾘｭｰﾄｲｽﾞﾐｹｲﾊﾟｯｼｮﾈｲﾄﾘﾐｯｸｽ"
+		],
+		"title": "ABSOLUTE(ismK passionate remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "kanone",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1513,
+		"searchTerms": [
+			"blueforestrmx kanone",
+			"ﾌﾞﾙｰﾌｫﾚｽﾄﾅｲﾄﾊﾞｳﾝｽﾘﾐｯｸｽ"
+		],
+		"title": "Blue Forest(NightBounce Remix)"
+	},
+	{
+		"altTitles": [],
 		"artist": "とろまる",
 		"data": {
 			"displayVersion": "vivid"
@@ -19076,6 +19141,19 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "Ange;art",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1517,
+		"searchTerms": [
+			"egoismrmx angeart",
+			"ｴｺﾞｲｽﾞﾑﾌｫｰﾌｫｰﾃｨｰｱﾝｼﾞｪｱｰﾄﾘﾐｯｸｽ"
+		],
+		"title": "EGOISM 440 (Ange;art remix)"
+	},
+	{
+		"altTitles": [],
 		"artist": "HAMA topground",
 		"data": {
 			"displayVersion": "vivid"
@@ -19099,6 +19177,19 @@
 			"ｴﾚﾒﾝﾀﾙｸﾘｴｲｼｮﾝｶﾓﾒｻﾉﾘﾐｯｸｽ"
 		],
 		"title": "Elemental Creation (kamome sano Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "xi",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1520,
+		"searchTerms": [
+			"elecrermx xi",
+			"ｴﾚﾒﾝﾀﾙｸﾘｴｲｼｮﾝｻｲﾘﾐｯｸｽ"
+		],
+		"title": "Elemental Creation -xiRemix-"
 	},
 	{
 		"altTitles": [],
@@ -19141,6 +19232,32 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "siqlo",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1524,
+		"searchTerms": [
+			"impressrmx siqlo",
+			"ｲﾝﾌﾟﾚｽｻｲｸﾛｽﾞﾊｲﾃｯｸﾋﾞｰﾂ"
+		],
+		"title": "Impress(siqlo's Hi-Tech Veats)"
+	},
+	{
+		"altTitles": [],
+		"artist": "technoplanet",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1525,
+		"searchTerms": [
+			"macuilrmx technoplanet",
+			"ﾏｸｲﾙｼｮﾁﾄﾙﾗﾃﾝｼﾞｬｽﾞﾐｯｸｽ"
+		],
+		"title": "Macuilxochitl (Latin Jazz Mix)"
+	},
+	{
+		"altTitles": [],
 		"artist": "Akizuki Nagomu feat. fu-ko",
 		"data": {
 			"displayVersion": "vivid"
@@ -19151,6 +19268,32 @@
 			"ﾏｲﾅﾙｺﾅｺﾞﾑﾂｰｽﾃｯﾌﾟ ﾘﾐｯｸｽ"
 		],
 		"title": "Mynarco(Nagomu 2Step Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Se-U-Ra + しーけー",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1527,
+		"searchTerms": [
+			"nostosrmx ck seura",
+			"ﾉｽﾄｽｱｰｸﾘﾐｯｸｽ"
+		],
+		"title": "nostos -ark remix-"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1528,
+		"searchTerms": [
+			"onslaughtrmx kameria",
+			"ｵﾝｽﾛｰﾄﾘﾀﾘｴｲｼｮﾝｵﾌﾞﾊﾞﾊﾑｰﾄ"
+		],
+		"title": "onslaught -Retaliation of Baham彜t-"
 	},
 	{
 		"altTitles": [],
@@ -19206,6 +19349,19 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "BlackY feat. Risa Yuzuki",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1533,
+		"searchTerms": [
+			"shionrmx blacky",
+			"ｼｵﾝｻﾌﾞﾘﾒｲｼｮﾝﾐｯｸｽ"
+		],
+		"title": "SHION -sublimation mix-"
+	},
+	{
+		"altTitles": [],
 		"artist": "影虎。",
 		"data": {
 			"displayVersion": "vivid"
@@ -19216,6 +19372,19 @@
 			"ﾃﾞｨｰﾌﾟｻｲｹﾃﾞﾘｯｸｽﾄﾗｲｶｰ"
 		],
 		"title": "DEEP PSYCHEDELIC STRIKER"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ feat. ななひら",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1535,
+		"searchTerms": [
+			"valangarmx kameria",
+			"ﾊﾞﾗﾝｶﾞ"
+		],
+		"title": "ばらんが!!!!"
 	},
 	{
 		"altTitles": [],
@@ -19255,6 +19424,19 @@
 			"ﾅﾅﾎｼﾗﾌﾞﾘｰﾊﾞﾌﾞﾘｰﾊﾟｰﾃｨｰﾐｯｸｽ"
 		],
 		"title": "ナナホシ(lovely bubbly party mix!)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Retropolitaliens(Ms.+駄々子)",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1539,
+		"searchTerms": [
+			"nanahoshirmx retropolitaliens",
+			"ﾅﾅﾎｼﾉｳﾀ"
+		],
+		"title": "ナナホシのうた"
 	},
 	{
 		"altTitles": [],
@@ -20464,6 +20646,58 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "Blanc Bunny Bandit",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1634,
+		"searchTerms": [
+			"tsuiokunoaria bbb",
+			"ﾂｲｵｸﾉｱﾘｱ"
+		],
+		"title": "追憶のアリア"
+	},
+	{
+		"altTitles": [],
+		"artist": "Vanitas Lacrimosa",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1635,
+		"searchTerms": [
+			"hangyakunodis vanitas",
+			"ﾊﾝｷﾞｬｸﾉﾃﾞｨｽﾊﾟﾚｰﾄ"
+		],
+		"title": "叛逆のディスパレート"
+	},
+	{
+		"altTitles": [],
+		"artist": "夜叉姫神楽",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1636,
+		"searchTerms": [
+			"hanawaoritashi yashahime",
+			"ﾊﾅﾊｵﾘﾀｼｺｽﾞｴﾊﾀｶｼ"
+		],
+		"title": "花は折りたし梢は高し"
+	},
+	{
+		"altTitles": [],
+		"artist": "メリー・バッド・メルヘン",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1637,
+		"searchTerms": [
+			"aliceside merrybad",
+			"ｱﾘｽｻｲﾄﾞｷｬｽﾘﾝｸﾞ"
+		],
+		"title": "アリスサイド・キャスリング"
+	},
+	{
+		"altTitles": [],
 		"artist": "ARM(IOSYS) feat. 普透明度",
 		"data": {
 			"displayVersion": "vivid"
@@ -20513,6 +20747,45 @@
 			"ﾒﾀﾄﾛﾝ"
 		],
 		"title": "METATRON"
+	},
+	{
+		"altTitles": [],
+		"artist": "SHIKI",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1642,
+		"searchTerms": [
+			"air shiki",
+			"ｴｱｰ"
+		],
+		"title": "Air"
+	},
+	{
+		"altTitles": [],
+		"artist": "SHIKI",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1644,
+		"searchTerms": [
+			"jupiter shiki",
+			"ｼﾞｭﾋﾟﾀｰ"
+		],
+		"title": "- Jupiter -"
+	},
+	{
+		"altTitles": [],
+		"artist": "SHIKI",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1646,
+		"searchTerms": [
+			"pureruby shiki",
+			"ﾋﾟｭｱﾙﾋﾞｰ"
+		],
+		"title": "Pure Ruby"
 	},
 	{
 		"altTitles": [],
@@ -20604,6 +20877,58 @@
 			"ﾄﾗﾝｽﾀﾞﾝｽｱﾅｰｷｰ"
 		],
 		"title": "トランスダンスアナーキー"
+	},
+	{
+		"altTitles": [],
+		"artist": "少女フラクタル",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1654,
+		"searchTerms": [
+			"fukasokuteki syoujyo",
+			"ﾌｶｿｸﾃｷﾒﾄﾛﾎﾟﾘｽ"
+		],
+		"title": "不可測的メトロポリス"
+	},
+	{
+		"altTitles": [],
+		"artist": "幽閉サテライト",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1655,
+		"searchTerms": [
+			"kegarenaki yuuhei",
+			"ｹｶﾞﾚﾅｷﾕｰﾌｫﾘｱ"
+		],
+		"title": "穢れなきユーフォリア"
+	},
+	{
+		"altTitles": [],
+		"artist": "Misumi",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1657,
+		"searchTerms": [
+			"alterego misumi",
+			"ｵﾙﾀｰｴｺﾞ"
+		],
+		"title": "オルターエゴ"
+	},
+	{
+		"altTitles": [],
+		"artist": "Ayase",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1658,
+		"searchTerms": [
+			"rasutorizooto ayase",
+			"ﾗｽﾄﾘｿﾞｰﾄ"
+		],
+		"title": "ラストリゾート"
 	},
 	{
 		"altTitles": [],
@@ -20763,6 +21088,32 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "BEMANI Sound Team \"SYUNN\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1672,
+		"searchTerms": [
+			"valkyrieassault syunn",
+			"ﾊﾞﾙｷﾘｰｱｻﾙﾄ"
+		],
+		"title": "VALKYRIE ASSAULT"
+	},
+	{
+		"altTitles": [],
+		"artist": "影虎。",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1673,
+		"searchTerms": [
+			"continuous kagetora",
+			"ｺﾝﾃｨﾆｭｱｽﾓｰﾒﾝﾄ"
+		],
+		"title": "Continuous Moment"
+	},
+	{
+		"altTitles": [],
 		"artist": "nonomori feat. 亜沙美",
 		"data": {
 			"displayVersion": "exceed"
@@ -20773,6 +21124,32 @@
 			"ﾌﾂﾞｷ"
 		],
 		"title": "文月"
+	},
+	{
+		"altTitles": [],
+		"artist": "凛々咲",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1677,
+		"searchTerms": [
+			"aqualunarium ririsha",
+			"ｱｸｱﾙﾅﾘｳﾑ"
+		],
+		"title": "Aqua,Luna-rium"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ as \"まいたけラヴ\" feat. ななひら as \"エリンギ大好き\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1679,
+		"searchTerms": [
+			"mamimumemarutto kameria",
+			"ﾏﾐﾑﾒﾏﾙｯﾄﾏｯｼｭﾙｰﾑ"
+		],
+		"title": "まみむめ釁まるっと釁まっしゅるーむ釁釁"
 	},
 	{
 		"altTitles": [],
@@ -20789,6 +21166,45 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "brz1128",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1682,
+		"searchTerms": [
+			"feeltheforce brz1128",
+			"ﾌｨｰﾙｻﾞﾌｫｰｽ"
+		],
+		"title": "FEEL THE FORCE"
+	},
+	{
+		"altTitles": [],
+		"artist": "ろひ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1683,
+		"searchTerms": [
+			"vallasotiena rohi",
+			"ｳﾞｧﾗｿﾃｨｴｰﾅ"
+		],
+		"title": "Vallasotiena"
+	},
+	{
+		"altTitles": [],
+		"artist": "榮田一貴 feat.冬乃桜＆永久毎日",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1685,
+		"searchTerms": [
+			"koiwakimino eidakazuki",
+			"ｺｲﾊｷﾐﾉｿﾊﾞﾃﾞｻｸﾗｻｸ"
+		],
+		"title": "恋は君のそばでサクラサク"
+	},
+	{
+		"altTitles": [],
 		"artist": "Yooh",
 		"data": {
 			"displayVersion": "exceed"
@@ -20799,6 +21215,266 @@
 			"ｴﾝﾀｰｻﾞﾌｧｲﾔｰ"
 		],
 		"title": "Enter The Fire"
+	},
+	{
+		"altTitles": [],
+		"artist": "U-ske feat.花柚",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1687,
+		"searchTerms": [
+			"charmyou uske",
+			"ﾁｬｰﾑﾕｰ"
+		],
+		"title": "charm齶you"
+	},
+	{
+		"altTitles": [],
+		"artist": "winddrums",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1689,
+		"searchTerms": [
+			"restlesswaitress winddrums",
+			"ﾚｽﾄﾚｽｳｪｲﾄﾚｽ"
+		],
+		"title": "Restless Waitress"
+	},
+	{
+		"altTitles": [],
+		"artist": "がるる",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1690,
+		"searchTerms": [
+			"wildfire garuru",
+			"ﾜｲﾙﾄﾞﾌｧｲｱ"
+		],
+		"title": "WILD FIRE"
+	},
+	{
+		"altTitles": [],
+		"artist": "u-z feat.紫咲ほたる",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1692,
+		"searchTerms": [
+			"morfine uz",
+			"ﾓﾙﾌｨﾈ"
+		],
+		"title": "M-O-R-F-I-N-E"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yuta Imai vs Blacklolita",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1694,
+		"searchTerms": [
+			"2094 yutablack",
+			"ﾆｰｾﾞﾛｷｭｳﾖﾝ"
+		],
+		"title": 2094
+	},
+	{
+		"altTitles": [],
+		"artist": "kanone",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1695,
+		"searchTerms": [
+			"endofguilty kanone",
+			"ｴﾝﾄﾞｵﾌﾞｷﾞﾙﾃｨ"
+		],
+		"title": "End of Guilty"
+	},
+	{
+		"altTitles": [],
+		"artist": "#EmoCosine",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1696,
+		"searchTerms": [
+			"goingmyfuture emocosine",
+			"ｺﾞｰｲﾝｸﾞﾏｲﾌｭｰﾁｬｰ"
+		],
+		"title": "Going My Future!"
+	},
+	{
+		"altTitles": [],
+		"artist": "nora2r",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1697,
+		"searchTerms": [
+			"cappucino nora2r",
+			"ｶﾌﾟﾁｰﾉﾊｰﾂ"
+		],
+		"title": "Cappuccino Hearts"
+	},
+	{
+		"altTitles": [],
+		"artist": "みーに＠メルヘン風紀委員会書記",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1698,
+		"searchTerms": [
+			"fairytaillovers miini",
+			"ﾌｪｱﾘｰﾃｲﾙﾗｳﾞｧｰｽﾞ"
+		],
+		"title": "フェアリーテイル・ラヴァーズ"
+	},
+	{
+		"altTitles": [],
+		"artist": "DecisionS (kanone + nora2r)",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1699,
+		"searchTerms": [
+			"unleashed decisions",
+			"ｱﾝﾘｰｼｭﾄﾞﾚｯﾄﾞﾈｽ"
+		],
+		"title": "Unleashed Redness"
+	},
+	{
+		"altTitles": [],
+		"artist": "uma",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1700,
+		"searchTerms": [
+			"chakra uma",
+			"ﾁｬｸﾗ"
+		],
+		"title": "Chakra"
+	},
+	{
+		"altTitles": [],
+		"artist": "かゆき",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1701,
+		"searchTerms": [
+			"partystage kayuki",
+			"ﾊﾟｰﾃｨｰｽﾃｰｼﾞ"
+		],
+		"title": "party:stage"
+	},
+	{
+		"altTitles": [],
+		"artist": "xi",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1702,
+		"searchTerms": [
+			"rapsodiadamore xi",
+			"ﾗﾌﾟｿﾃﾞｨｱﾀﾞﾓｰﾚ"
+		],
+		"title": "Rapsodia d'amore"
+	},
+	{
+		"altTitles": [],
+		"artist": "概念",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1703,
+		"searchTerms": [
+			"xxanaduclimaxx gainen",
+			"ｻﾞﾅﾄﾞｩｰｸﾗｲﾏｯｸｽ"
+		],
+		"title": "XXanadu#climaXX"
+	},
+	{
+		"altTitles": [],
+		"artist": "Takenoko boy feat. metyao",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1704,
+		"searchTerms": [
+			"gameover takenoko",
+			"ｹﾞｰﾑｵｰﾊﾞｰ"
+		],
+		"title": "G4ME 驩VEЯ"
+	},
+	{
+		"altTitles": [],
+		"artist": "BlackY",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1705,
+		"searchTerms": [
+			"bigbangfaker blacky",
+			"ﾋﾞｯｸﾞﾊﾞﾝﾌｪｲｶｰ"
+		],
+		"title": "Bigbang Faker"
+	},
+	{
+		"altTitles": [],
+		"artist": "MasKaleido feat. ぁゅ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1707,
+		"searchTerms": [
+			"xymaticscope maskaleido",
+			"ｻｲﾏﾃｨｯｸｽｺｰﾌﾟ"
+		],
+		"title": "Xymatic Scope"
+	},
+	{
+		"altTitles": [],
+		"artist": "Juggernaut.",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1708,
+		"searchTerms": [
+			"archangelio juggernaut",
+			"ｱｰｸｴﾝｼﾞｪﾘｵ"
+		],
+		"title": "Archangelio"
+	},
+	{
+		"altTitles": [],
+		"artist": "Hommarju",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1710,
+		"searchTerms": [
+			"thekingofred hommarju",
+			"ｻﾞｷﾝｸﾞｵﾌﾞﾚｯﾄﾞ"
+		],
+		"title": "The King Of Red"
+	},
+	{
+		"altTitles": [],
+		"artist": "Rigel Theatre",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1711,
+		"searchTerms": [
+			"lemerlenoir rigeltheatre",
+			"ﾙﾒﾙﾙﾉﾜｰﾙ"
+		],
+		"title": "Le Merle Noir"
 	},
 	{
 		"altTitles": [],
@@ -20828,6 +21504,58 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "めと（Metomate）",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1714,
+		"searchTerms": [
+			"vanishingeidos meto",
+			"ｳﾞｧﾆｼﾝｸﾞｴｲﾄﾞｽ"
+		],
+		"title": "Vanishing Eidos"
+	},
+	{
+		"altTitles": [],
+		"artist": "RoughSketch vs MAD CHILD",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1715,
+		"searchTerms": [
+			"metagame roughchild",
+			"ﾒﾀｹﾞｰﾑﾏﾀﾄﾞｰﾙ"
+		],
+		"title": "Metagame Matador"
+	},
+	{
+		"altTitles": [],
+		"artist": "seatrus feat.杠葉えりか",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1716,
+		"searchTerms": [
+			"komorebinisaku seatrus",
+			"ｺﾓﾚﾋﾞﾆｻｸ"
+		],
+		"title": "木洩れ日に咲く"
+	},
+	{
+		"altTitles": [],
+		"artist": "あるふぁ＋凜々",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1717,
+		"searchTerms": [
+			"rengokutaijin alfa",
+			"ﾚﾝｺﾞｸﾀｲｼﾞﾝ"
+		],
+		"title": "恋獄対刃"
+	},
+	{
+		"altTitles": [],
 		"artist": "Ponchi♪ feat.はぁち",
 		"data": {
 			"displayVersion": "exceed"
@@ -20838,6 +21566,19 @@
 			"ﾗｳﾞﾁｬﾝｽ"
 		],
 		"title": "ラヴ♡チャンス!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "上村香月",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1719,
+		"searchTerms": [
+			"kaminishita uemurakatsuki",
+			"ｶﾐﾆｼﾀｶﾉｼﾞｮｶﾞｼﾒｽｾｶｲｾﾝ"
+		],
+		"title": "神にした彼女が示す世界線"
 	},
 	{
 		"altTitles": [],
@@ -20867,6 +21608,19 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "fnylsp",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1722,
+		"searchTerms": [
+			"supermiracle fnylsp",
+			"ｽｰﾊﾟｰﾐﾗｸﾙｱﾝｻﾝﾌﾞﾙ"
+		],
+		"title": "SuperMiracleEnsemble"
+	},
+	{
+		"altTitles": [],
 		"artist": "pan+テヅカ feat.桃雛なの",
 		"data": {
 			"displayVersion": "exceed"
@@ -20893,6 +21647,58 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "立秋 feat.ちょこ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1725,
+		"searchTerms": [
+			"rimmmmmm risshu",
+			"ﾘﾑﾑﾑﾑﾑﾑ"
+		],
+		"title": "りむむむむむむ"
+	},
+	{
+		"altTitles": [],
+		"artist": "テヅカ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1726,
+		"searchTerms": [
+			"hibikuseijaku teduka",
+			"ﾋﾋﾞｸｾｲｼﾞｬｸ"
+		],
+		"title": "響く静寂"
+	},
+	{
+		"altTitles": [],
+		"artist": "さわわ feat.杠葉えりか＆凜々",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1727,
+		"searchTerms": [
+			"lovelovetrick sawawa",
+			"ﾗﾌﾞﾗﾌﾞﾄﾘｯｸﾏｼﾞｶﾙﾊﾟﾌｭｰﾑ"
+		],
+		"title": "恋愛齶悪戯！？まじかる☆ぱふゅ～む！！"
+	},
+	{
+		"altTitles": [],
+		"artist": "#Namescapes",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1728,
+		"searchTerms": [
+			"namescapes namescapes",
+			"ﾈｰﾑｽｹｰﾌﾟ"
+		],
+		"title": "#Namescapes"
+	},
+	{
+		"altTitles": [],
 		"artist": "Enterskip",
 		"data": {
 			"displayVersion": "exceed"
@@ -20903,6 +21709,45 @@
 			"ﾌｧﾝｳｫｰｸ"
 		],
 		"title": "Fun walk!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "Aoi feat. Gra+yanshu",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1730,
+		"searchTerms": [
+			"unmeichouka aoi",
+			"ｳﾝﾒｲﾁｮｳｶﾉﾒｸﾞﾘｱｲ"
+		],
+		"title": "運命超過乃巡合"
+	},
+	{
+		"altTitles": [],
+		"artist": "TAKU1175 ft.駄々子",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1731,
+		"searchTerms": [
+			"reimeinojou taku1175",
+			"ﾚｲﾒｲﾉｼﾞｮｳ"
+		],
+		"title": "黎明の情"
+	},
+	{
+		"altTitles": [],
+		"artist": "あの日字数制限に負けて追い出された「ゃ」",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1732,
+		"searchTerms": [
+			"ileftformyright kabocha",
+			"ｱｲﾚﾌﾄﾌｫｰﾏｲﾗｲﾄ"
+		],
+		"title": "I Left for my Right"
 	},
 	{
 		"altTitles": [],
@@ -20929,6 +21774,162 @@
 			"ﾌﾟﾅｲﾌﾟﾅｲﾀｲｿｳ"
 		],
 		"title": "プナイプナイたいそう"
+	},
+	{
+		"altTitles": [],
+		"artist": "ぺのれり vs. BEMANI Sound Team \"HuΣeR\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1736,
+		"searchTerms": [
+			"discordia penorerihumer",
+			"ﾃﾞｨｽｺﾙﾃﾞｨｱ"
+		],
+		"title": "ディスコルディア"
+	},
+	{
+		"altTitles": [],
+		"artist": "TORIENA",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1737,
+		"searchTerms": [
+			"chewingood toriena",
+			"ﾁｭｰｲﾝｸﾞｯﾄﾞ"
+		],
+		"title": "Chewingood!!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "Tyrfing",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1738,
+		"searchTerms": [
+			"verflucht tirfing",
+			"ﾌｧﾌﾙｰﾌﾄ"
+		],
+		"title": "Verflucht"
+	},
+	{
+		"altTitles": [],
+		"artist": "HIMEHINA",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1739,
+		"searchTerms": [
+			"hitogata himehina",
+			"ﾋﾄｶﾞﾀ"
+		],
+		"title": "ヒトガタ"
+	},
+	{
+		"altTitles": [],
+		"artist": "HIMEHINA",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1740,
+		"searchTerms": [
+			"mrvirtualizer himehina",
+			"ﾐｽﾀｰﾊﾞｰﾁｬﾗｲｻﾞｰ"
+		],
+		"title": "Mr.VIRTUALIZER"
+	},
+	{
+		"altTitles": [],
+		"artist": "HIMEHINA",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1741,
+		"searchTerms": [
+			"ainohana himehina",
+			"ｱｲﾉﾊﾅ"
+		],
+		"title": "藍の華"
+	},
+	{
+		"altTitles": [],
+		"artist": "MARON (IOSYS)",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1744,
+		"searchTerms": [
+			"punipuniparade maron",
+			"ﾌﾟﾆﾌﾟﾆﾊﾟﾚｰﾄﾞ"
+		],
+		"title": "Puni Puni Parade"
+	},
+	{
+		"altTitles": [],
+		"artist": "Hommarju feat. かぼちゃ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1746,
+		"searchTerms": [
+			"jailbreaker hommarju",
+			"ｼﾞｪｲﾙﾌﾞﾚｲｶｰ"
+		],
+		"title": "Jailbreaker"
+	},
+	{
+		"altTitles": [],
+		"artist": "まろん vs. モリモリあつし feat. ビートまりお",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1747,
+		"searchTerms": [
+			"genkaitoppa maronmoriatsu",
+			"ｹﾞﾝｶｲﾄｯﾊﾟﾘｻﾞﾚｸｼｮﾝ"
+		],
+		"title": "限界突破リザレクション"
+	},
+	{
+		"altTitles": [],
+		"artist": "ランコ feat. Eurobeat Union",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1748,
+		"searchTerms": [
+			"beatmagic ranko",
+			"ﾋﾞｰﾄﾏｼﾞｯｸ"
+		],
+		"title": "BEAT MAGIC"
+	},
+	{
+		"altTitles": [],
+		"artist": "森羅万象",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1749,
+		"searchTerms": [
+			"emptybackdoor sinrabansyou",
+			"ｴﾝﾌﾟﾃｨﾊﾞｯｸﾄﾞｱ"
+		],
+		"title": "Empty Backdoor"
+	},
+	{
+		"altTitles": [],
+		"artist": "ARM × 狐夢想 feat.ななひら",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1750,
+		"searchTerms": [
+			"kurokomasaki arm",
+			"ｸﾛｺﾏｻｷﾊｳﾏﾅﾐﾌﾟﾛﾃｲﾝ"
+		],
+		"title": "驪駒早鬼は馬並み☆プロテイン"
 	},
 	{
 		"altTitles": [],
@@ -21023,6 +22024,45 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "ツユ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1759,
+		"searchTerms": [
+			"kuraberarekko tsuyu",
+			"ｸﾗﾍﾞﾗﾚｯｺ"
+		],
+		"title": "くらべられっ子"
+	},
+	{
+		"altTitles": [],
+		"artist": "ツユ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1760,
+		"searchTerms": [
+			"doronobunzai tsuyu",
+			"ﾄﾞﾛﾉﾌﾞﾝｻﾞｲﾃﾞﾜﾀｼﾀﾞｹﾉﾀｲｾﾂｦｳﾊﾞｵｳﾀﾞﾅﾝﾃ"
+		],
+		"title": "泥の分際で私だけの大切を奪おうだなんて"
+	},
+	{
+		"altTitles": [],
+		"artist": "ツユ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1761,
+		"searchTerms": [
+			"namikare tsuyu",
+			"ﾅﾐｶﾚ"
+		],
+		"title": "ナミカレ"
+	},
+	{
+		"altTitles": [],
 		"artist": "cosMo＠暴走P",
 		"data": {
 			"displayVersion": "exceed"
@@ -21075,6 +22115,123 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "かなたん,アマギセーラ,ぁゅ by BEMANI Sound Team \"藤森崇多\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1802,
+		"searchTerms": [
+			"matsuri sota",
+			"ﾏﾂﾘ"
+		],
+		"title": "MA・TSU・RI"
+	},
+	{
+		"altTitles": [],
+		"artist": "Jonny Dynamite!,Lisa - paint with stars -,Rio Hiiragi by BEMANI Sound Team \"U1-ASAMi\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1803,
+		"searchTerms": [
+			"move u1",
+			"ﾑｰｳﾞｳｨｰｷｰﾌﾟｲｯﾄﾑｰｳﾞｨﾝ"
+		],
+		"title": "MOVE! (We Keep It Movin')"
+	},
+	{
+		"altTitles": [],
+		"artist": "koyomi,星野奏子 by BEMANI Sound Team \"TAKA\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1804,
+		"searchTerms": [
+			"likeavampire taka",
+			"ﾗｲｸｱｳﾞｧﾝﾊﾟｲｱ"
+		],
+		"title": "LIKE A VAMPIRE"
+	},
+	{
+		"altTitles": [],
+		"artist": "すわひでお,秋成,かぼちゃ,藍月なくる,NU-KO by BEMANI Sound Team \"八戸亀生羅\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1805,
+		"searchTerms": [
+			"supersentou yatto",
+			"ｽｰﾊﾟｰｾﾝﾄｳﾊﾞﾊﾞﾝﾊﾞｰﾝ"
+		],
+		"title": "スーパー戦湯ババンバーン"
+	},
+	{
+		"altTitles": [],
+		"artist": "mami,駄々子 by BEMANI Sound Team \"Akhuta Works\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1806,
+		"searchTerms": [
+			"murasakibana akhuta",
+			"ﾑﾗｻｷﾊﾞﾅ"
+		],
+		"title": "斑咲花"
+	},
+	{
+		"altTitles": [],
+		"artist": "紫崎 雪,Risa Yuzuki,709sec. by BEMANI Sound Team \"PHQUASE & SYUNN\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1807,
+		"searchTerms": [
+			"yumebuki phquasesyunn",
+			"ﾕﾒﾌﾞｷ"
+		],
+		"title": "ユメブキ"
+	},
+	{
+		"altTitles": [],
+		"artist": "ARM feat. 山本椛 + Brasscapsule",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1808,
+		"searchTerms": [
+			"casinofirekotomi arm",
+			"ｶｼﾞﾉﾌｧｲﾔｰｺﾄﾐﾁｬﾝ"
+		],
+		"title": "カジノファイヤーことみちゃん"
+	},
+	{
+		"altTitles": [],
+		"artist": "Scorpion",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1809,
+		"searchTerms": [
+			"steelneedle scorpion",
+			"ｽﾃｨｰﾙﾆｰﾄﾞﾙ"
+		],
+		"title": "STEEL NEEDLE"
+	},
+	{
+		"altTitles": [],
+		"artist": "cosMo＠暴走P",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1810,
+		"searchTerms": [
+			"ripgossipnoumi cosmo",
+			"ｱｰﾙｱｲﾋﾟｰｺﾞｼｯﾌﾟﾉｳﾐ"
+		],
+		"title": "R.I.P.ゴシップの海"
+	},
+	{
+		"altTitles": [],
 		"artist": "かねこちはる",
 		"data": {
 			"displayVersion": "exceed"
@@ -21098,6 +22255,123 @@
 			"ﾀｹ"
 		],
 		"title": "竹"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"dj TAKA & DJ YOSHITAKA & SYUNN\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1813,
+		"searchTerms": [
+			"triplecross red",
+			"ﾄﾘﾌﾟﾙｸﾛｽ"
+		],
+		"title": "Triple Cross"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"猫叉Master & あさき & Yvya\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1814,
+		"searchTerms": [
+			"aftermath blue",
+			"ｱﾌﾀｰﾏｽ"
+		],
+		"title": "Aftermath"
+	},
+	{
+		"altTitles": [],
+		"artist": "イノライfeat.怜花",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1815,
+		"searchTerms": [
+			"lovelovescarlet inorai",
+			"ﾗﾌﾞﾗﾌﾞｽｶｰﾚｯﾄ"
+		],
+		"title": "Love Love Scarlet"
+	},
+	{
+		"altTitles": [],
+		"artist": "SOUND HOLIC feat. Nana Takahashi",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1816,
+		"searchTerms": [
+			"preservedvamp soundholic",
+			"ﾌﾟﾘｻﾞｰﾌﾞﾄﾞｳﾞｧﾝﾊﾟｲｱ"
+		],
+		"title": "PRESERVED VAMPIRE"
+	},
+	{
+		"altTitles": [],
+		"artist": "森羅万象",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1817,
+		"searchTerms": [
+			"dendera sinrabansyou",
+			"ﾃﾞﾝﾃﾞﾗﾊﾟｰﾃｨｰﾅｲﾄ"
+		],
+		"title": "デンデラパーティーナイト"
+	},
+	{
+		"altTitles": [],
+		"artist": "ちょこふぁん",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1818,
+		"searchTerms": [
+			"luckycat chocofan",
+			"ﾗｯｷｰｷｬｯﾄ"
+		],
+		"title": "LUCKY CAT"
+	},
+	{
+		"altTitles": [],
+		"artist": "七条レタスグループ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1819,
+		"searchTerms": [
+			"scarletpatrol retasu",
+			"ｽｶｰﾚｯﾄｹｲｻﾂﾉｹﾞｯﾄｰﾊﾟﾄﾛｰﾙﾆｼﾞｭｳﾖｼﾞ"
+		],
+		"title": "スカーレット警察のゲットーパトロール24時"
+	},
+	{
+		"altTitles": [],
+		"artist": "ビートまりおとまろん",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1820,
+		"searchTerms": [
+			"tenkyutenge beatmario",
+			"ﾃﾝｷｭｳﾃﾝｹﾞｵﾄﾊﾅﾋﾞ"
+		],
+		"title": "天弓天華オトハナビ"
+	},
+	{
+		"altTitles": [],
+		"artist": "RoughSketch feat.北小路ヒスイ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 1822,
+		"searchTerms": [
+			"halloweenis roughsketch",
+			"ﾊﾛｳｨﾝｲｽﾞｹｲｵｽ"
+		],
+		"title": "Halloween Is Chaos"
 	},
 	{
 		"altTitles": [],

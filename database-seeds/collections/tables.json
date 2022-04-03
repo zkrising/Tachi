@@ -2244,6 +2244,37 @@
 	},
 	{
 		"default": false,
+		"description": "Levels for SOUND VOLTEX in EXCEED GEAR.",
+		"folders": [
+			"Fc87850208f0703651560980d04bc5e0c4f326c2f5dbe688d51029a63abdd4c5f",
+			"F097d8f1d7740b405b8ba55b9ceba88b5acb04f069158f194d47d0873d7641a6f",
+			"Ff698a4dec5a41b3aba3a8a91e26d0abfbf0242ae7d0c5d3a28062b53df7335d1",
+			"F87a288a234fb85918b99ef9e0bbe44489fd014fdf6e80977bdb0c7a6767f9c29",
+			"F1afb5a5e1ef7cbed1b1369773f2b265959c38dcf96d159936bdd5db0bd4c609e",
+			"F9cb89bb280d284b273802a7567092707a4eea776f5fd2e59bea60ae66103b944",
+			"F148e2bf0bc39bdb715fa8e5f55c0047b991ca454e778cd70e86b01fdc5fa8369",
+			"Fe7eaa5c7b32ffd3f14a4cf1af5e03fa7a87d1cc6fafd4623b970ede656498c5f",
+			"F3e5fe3ee9dd61f50fd89926be57f26b60ab4b6d5f6c92044bea460dc18dce225",
+			"F371094048c01518a4610810d9bb5d2104e998ec2761c40cb95d889f8fc1fb191",
+			"F6676706e63d95add349e57d6fc65a81bb4f36495198b762f12edae5db167f9bc",
+			"F2960665f35094664fac9d61b030c51c0e22eaa83efb3461bf44ab7baf5a8fd41",
+			"F366713bbe56a09b513e571c86c97dcb71455c770f700611099e5d69974b04a01",
+			"F21e35fbe0718c2db51ab633ae43d53945012fb86f740ef81a2d4ba75b425d384",
+			"Fb6d41e93c52dd1cf72b05a8fbfa979ecb88fe9c6675180e2d8cbd2d5a6e9476c",
+			"Fbfa65f45a9f5436a5dbc55a7f90d116b50ac748d5e881b56451ed4b40531a53a",
+			"F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+			"F587912aa1af1c26daf085428f3f3ae420cbe905775782f9e2506108d3ff03a5a"
+		],
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "sdvx-Single-exceed-levels",
+		"title": "SOUND VOLTEX (EXCEED GEAR)"
+	},
+	{
+		"default": false,
 		"description": "Levels for SOUND VOLTEX in HEAVENLY HAVEN.",
 		"folders": [
 			"F5c71548c82d436d6c3a811f1f6e6f267cecdc0ed40736aff2d10c43895e164bd",

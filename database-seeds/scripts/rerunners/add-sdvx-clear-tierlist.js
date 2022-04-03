@@ -55,7 +55,7 @@ const TIERS = {
 			text: "17D",
 			value: 17.3,
 		},
-		"C(新難易度枠)": {
+		"C": {
 			text: "17C",
 			value: 17.4,
 		},
@@ -215,6 +215,9 @@ const MANUAL_TITLE_MAP = {
 	"Now Loading...": "Now loading…",
 	"しゅわスパ大作戦☆(カシオれ！くーにゃん)": "しゅわスパ大作戦☆ (カシオれ！くーにゃんリミックス)",
 	"双翼 Black Wings - SDVX Edit. -": "双翼 - Black Wings - SDVX Edit. -",
+	"VALKYRIE ASAULT": "VALKYRIE ASSAULT",
+	"SuperMiracleEmsemble": "SuperMiracleEnsemble",
+	"仔羊のナヴァラン・クリシェを添えて": "～仔羊のナヴァラン・クリシェを添えて～",
 
 	// 17s
 	"Emperors divide": "Emperor's Divide",
@@ -242,6 +245,8 @@ const MANUAL_TITLE_MAP = {
 		"Sacrifice Escape: 不条理の模倣による感情と代償",
 	"The Sampling Paradise(P*Light)": "The Sampling Paradise (P*Light Remix)",
 	"イゴモヨスのブヨブヨ・スケッチ": "イゴモヨス＝オムルのテーマによるブヨブヨ・スケッチの試み",
+	"ABSOLUTE(ismk passionate mix)": "ABSOLUTE(ismK passionate remix)",
+	"泥の分際で私だけの大切を奪おうなんて" : "泥の分際で私だけの大切を奪おうだなんて",
 
 	// 18s
 	"*Erm,～ ShockWAVE Syndrome...?": "* Erm, could it be a Spatiotemporal ShockWAVE Syndrome...?",
@@ -257,6 +262,7 @@ const MANUAL_TITLE_MAP = {
 	"Sakura Reflection(P*Light Remix)": "Sakura Reflection (P*Light Slayer Remix)",
 	"怪盗Fの台本 ～消えたダイヤの謎～": "怪盗Ｆの台本～消えたダイヤの謎～", // F
 	"アルティメットトゥルース_-Phantasm-": "アルティメットトゥルース -Phantasm-",
+	"G4ME OVEЯ": "G4ME ØVEЯ", // This is also in 16s spelled differently :////
 
 	// 19s
 	// See Blue Forest
@@ -326,6 +332,12 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 
 		tierLoop: while (col < csvData[headerRow].length) {
 			let tierName = csvData[row][col];
+			if (levelNum === 17 && tierName.match(/ +曲数:[0-9]+/)) {
+				// For 17, apparently they include the number of songs in each tier.
+				// e.g. "A                         曲数:54"
+				// So we cut this out.
+				tierName = tierName.split(" ")[0]
+			}
 			if (tierName === "" && col > leftOffset) {
 				// This might be a double column (two columns for the same tier),
 				// so check the cell to the left.
@@ -514,7 +526,7 @@ if (!levelIndicator) {
 }
 switch (levelIndicator[1]) {
 	case "Lv16":
-		addTiers(16, csvData, 1, 1, false);
+		addTiers(16, csvData, 2, 1, false);
 		break;
 	case "Lv17":
 		addTiers(17, csvData, 2, 0, false);

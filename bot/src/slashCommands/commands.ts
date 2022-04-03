@@ -7,6 +7,7 @@ import profile from "./commands/profile";
 import quote from "./commands/quote";
 import sync from "./commands/sync";
 import whois from "./commands/whois";
+import invite from "./commands/invite";
 import { SlashCommand } from "./types";
 
 export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
@@ -28,5 +29,6 @@ if (ServerConfig.type !== "btchi") {
 
 // btchi or omni specific commands
 if (ServerConfig.type !== "ktchi") {
+	SLASH_COMMANDS.set("invite", invite);
 	// None. Yet!
 }

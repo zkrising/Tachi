@@ -196,7 +196,7 @@ const syncInstructions: SyncInstructions[] = [
 		},
 	},
 	{
-		pattern: /^folders$/u,
+		pattern: /^folders/u,
 		handler: async (
 			folders: FolderDocument[],
 			collection: ICollection<FolderDocument>,
@@ -210,12 +210,12 @@ const syncInstructions: SyncInstructions[] = [
 		},
 	},
 	{
-		pattern: /^tables$/u,
+		pattern: /^tables/u,
 		handler: (tables: TableDocument[], collection: ICollection<TableDocument>, logger) =>
 			GenericUpsert(tables, collection, "tableID", logger, true),
 	},
 	{
-		pattern: /^bms-course-lookup$/u,
+		pattern: /^bms-course-lookup/u,
 		handler: (
 			bmsCourseDocuments: BMSCourseDocument[],
 			collection: ICollection<BMSCourseDocument>,

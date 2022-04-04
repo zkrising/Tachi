@@ -113,7 +113,8 @@ t.test("#ConvertVersion", (t) => {
 	t.equal(ConvertVersion(3), "gw");
 	t.equal(ConvertVersion(4), "heaven");
 	t.equal(ConvertVersion(5), "vivid");
-	t.throws(() => ConvertVersion(6));
+	t.equal(ConvertVersion(6), "exceed");
+	t.throws(() => ConvertVersion(7));
 	t.throws(() => ConvertVersion(0));
 
 	t.end();

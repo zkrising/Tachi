@@ -1,6 +1,7 @@
 import { ChangeOpacity } from "util/color-opacity";
 import { CreateChartLink } from "util/data";
 import { NumericSOV } from "util/sorts";
+import { ONE_WEEK } from "util/constants/time";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
@@ -102,7 +103,7 @@ function FolderMinimapMain({
 	);
 
 	const recentlyTouched = useMemo(() => {
-		if (!recentSession) {
+		if (!recentSession || Date.now() - recentSession.timeEnded > ONE_WEEK) {
 			return [];
 		}
 

@@ -17869,6 +17869,19 @@
 	{
 		"data": {
 			"level": "10",
+			"versions": "exceed"
+		},
+		"folderID": "F371094048c01518a4610810d9bb5d2104e998ec2761c40cb95d889f8fc1fb191",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (EXCEED GEAR)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
 			"versions": "heaven"
 		},
 		"folderID": "F1c51a6095dffd6f8fcc24c413c8913d46fa671cc0061c0fd209b336d1d176f38",
@@ -17903,6 +17916,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10 (VIVID WAVE)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "exceed"
+		},
+		"folderID": "F6676706e63d95add349e57d6fc65a81bb4f36495198b762f12edae5db167f9bc",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (EXCEED GEAR)",
 		"type": "charts"
 	},
 	{
@@ -17973,6 +17999,19 @@
 	{
 		"data": {
 			"level": "12",
+			"versions": "exceed"
+		},
+		"folderID": "F2960665f35094664fac9d61b030c51c0e22eaa83efb3461bf44ab7baf5a8fd41",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (EXCEED GEAR)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
 			"versions": "heaven"
 		},
 		"folderID": "F96f81e8a364a1d0becc19523f9f9a55257913c2ec9f560fdbc2290ef3852c53c",
@@ -18007,6 +18046,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 12 (VIVID WAVE)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "exceed"
+		},
+		"folderID": "F366713bbe56a09b513e571c86c97dcb71455c770f700611099e5d69974b04a01",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (EXCEED GEAR)",
 		"type": "charts"
 	},
 	{
@@ -18077,6 +18129,19 @@
 	{
 		"data": {
 			"level": "14",
+			"versions": "exceed"
+		},
+		"folderID": "F21e35fbe0718c2db51ab633ae43d53945012fb86f740ef81a2d4ba75b425d384",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (EXCEED GEAR)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
 			"versions": "heaven"
 		},
 		"folderID": "F8619c537e1f62940e86db88dbaf9e7348ab86d5465332adc8d7e55cdccba3529",
@@ -18111,6 +18176,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 14 (VIVID WAVE)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "exceed"
+		},
+		"folderID": "Fb6d41e93c52dd1cf72b05a8fbfa979ecb88fe9c6675180e2d8cbd2d5a6e9476c",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (EXCEED GEAR)",
 		"type": "charts"
 	},
 	{
@@ -18181,6 +18259,19 @@
 	{
 		"data": {
 			"level": "16",
+			"versions": "exceed"
+		},
+		"folderID": "Fbfa65f45a9f5436a5dbc55a7f90d116b50ac748d5e881b56451ed4b40531a53a",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 16 (EXCEED GEAR)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "16",
 			"versions": "heaven"
 		},
 		"folderID": "Ff39d5d34fe62955057df28678bd11a9ed382293d82eb42d8a5f498ede6f880ae",
@@ -18215,6 +18306,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 16 (VIVID WAVE)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
+			"versions": "exceed"
+		},
+		"folderID": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 17 (EXCEED GEAR)",
 		"type": "charts"
 	},
 	{
@@ -18285,6 +18389,19 @@
 	{
 		"data": {
 			"level": "18",
+			"versions": "exceed"
+		},
+		"folderID": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 18 (EXCEED GEAR)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
 			"versions": "heaven"
 		},
 		"folderID": "F6510cfbb5b5efa66cc034c84fc3874aaf8f45fc886a3cb7f45fd10f367930d64",
@@ -18319,6 +18436,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 18 (VIVID WAVE)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
+			"versions": "exceed"
+		},
+		"folderID": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 19 (EXCEED GEAR)",
 		"type": "charts"
 	},
 	{
@@ -18389,6 +18519,19 @@
 	{
 		"data": {
 			"level": "2",
+			"versions": "exceed"
+		},
+		"folderID": "F097d8f1d7740b405b8ba55b9ceba88b5acb04f069158f194d47d0873d7641a6f",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (EXCEED GEAR)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
 			"versions": "heaven"
 		},
 		"folderID": "F4c1dd44e6db251bd185724295a5b29f30021ab94f4acbe12f670e3cd34651f18",
@@ -18423,6 +18566,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 2 (VIVID WAVE)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "20",
+			"versions": "exceed"
+		},
+		"folderID": "F587912aa1af1c26daf085428f3f3ae420cbe905775782f9e2506108d3ff03a5a",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 20 (EXCEED GEAR)",
 		"type": "charts"
 	},
 	{
@@ -18493,6 +18649,19 @@
 	{
 		"data": {
 			"level": "3",
+			"versions": "exceed"
+		},
+		"folderID": "Ff698a4dec5a41b3aba3a8a91e26d0abfbf0242ae7d0c5d3a28062b53df7335d1",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (EXCEED GEAR)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
 			"versions": "heaven"
 		},
 		"folderID": "F4e94d05ea70d98a5ed6f60924d92b9e5692868addb64db479dd46460f18e5faa",
@@ -18527,6 +18696,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 3 (VIVID WAVE)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "exceed"
+		},
+		"folderID": "F87a288a234fb85918b99ef9e0bbe44489fd014fdf6e80977bdb0c7a6767f9c29",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (EXCEED GEAR)",
 		"type": "charts"
 	},
 	{
@@ -18597,6 +18779,19 @@
 	{
 		"data": {
 			"level": "5",
+			"versions": "exceed"
+		},
+		"folderID": "F1afb5a5e1ef7cbed1b1369773f2b265959c38dcf96d159936bdd5db0bd4c609e",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (EXCEED GEAR)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
 			"versions": "heaven"
 		},
 		"folderID": "Fe897de5f73b11bb9b7ac1460f9987bd329470b12bf147d4e70f18191594d18e0",
@@ -18631,6 +18826,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 5 (VIVID WAVE)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "exceed"
+		},
+		"folderID": "F9cb89bb280d284b273802a7567092707a4eea776f5fd2e59bea60ae66103b944",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (EXCEED GEAR)",
 		"type": "charts"
 	},
 	{
@@ -18701,6 +18909,19 @@
 	{
 		"data": {
 			"level": "7",
+			"versions": "exceed"
+		},
+		"folderID": "F148e2bf0bc39bdb715fa8e5f55c0047b991ca454e778cd70e86b01fdc5fa8369",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (EXCEED GEAR)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
 			"versions": "heaven"
 		},
 		"folderID": "F56f5f56487739c972c9536d89575e3508af235b3bdae5caf7e89f0bf663d1e17",
@@ -18753,6 +18974,19 @@
 	{
 		"data": {
 			"level": "8",
+			"versions": "exceed"
+		},
+		"folderID": "Fe7eaa5c7b32ffd3f14a4cf1af5e03fa7a87d1cc6fafd4623b970ede656498c5f",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (EXCEED GEAR)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
 			"versions": "heaven"
 		},
 		"folderID": "F374027b23a18f0321d1a90796bf9f1719a3541ea5fcc703282f81041d8652dc6",
@@ -18787,6 +19021,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 8 (VIVID WAVE)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "exceed"
+		},
+		"folderID": "F3e5fe3ee9dd61f50fd89926be57f26b60ab4b6d5f6c92044bea460dc18dce225",
+		"game": "sdvx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (EXCEED GEAR)",
 		"type": "charts"
 	},
 	{
@@ -19659,265 +19906,5 @@
 		"searchTerms": [],
 		"title": "Level 9+ (Reverse)",
 		"type": "charts"
-	},
-	{
-		"playtype": "Single",
-		"folderID": "Fc87850208f0703651560980d04bc5e0c4f326c2f5dbe688d51029a63abdd4c5f",
-		"title": "Level 1 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "1",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F097d8f1d7740b405b8ba55b9ceba88b5acb04f069158f194d47d0873d7641a6f",
-		"title": "Level 2 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "2",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "Ff698a4dec5a41b3aba3a8a91e26d0abfbf0242ae7d0c5d3a28062b53df7335d1",
-		"title": "Level 3 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "3",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F87a288a234fb85918b99ef9e0bbe44489fd014fdf6e80977bdb0c7a6767f9c29",
-		"title": "Level 4 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "4",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F1afb5a5e1ef7cbed1b1369773f2b265959c38dcf96d159936bdd5db0bd4c609e",
-		"title": "Level 5 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "5",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F9cb89bb280d284b273802a7567092707a4eea776f5fd2e59bea60ae66103b944",
-		"title": "Level 6 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "6",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F148e2bf0bc39bdb715fa8e5f55c0047b991ca454e778cd70e86b01fdc5fa8369",
-		"title": "Level 7 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "7",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "Fe7eaa5c7b32ffd3f14a4cf1af5e03fa7a87d1cc6fafd4623b970ede656498c5f",
-		"title": "Level 8 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "8",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F3e5fe3ee9dd61f50fd89926be57f26b60ab4b6d5f6c92044bea460dc18dce225",
-		"title": "Level 9 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "9",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F371094048c01518a4610810d9bb5d2104e998ec2761c40cb95d889f8fc1fb191",
-		"title": "Level 10 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "10",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F6676706e63d95add349e57d6fc65a81bb4f36495198b762f12edae5db167f9bc",
-		"title": "Level 11 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "11",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F2960665f35094664fac9d61b030c51c0e22eaa83efb3461bf44ab7baf5a8fd41",
-		"title": "Level 12 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "12",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F366713bbe56a09b513e571c86c97dcb71455c770f700611099e5d69974b04a01",
-		"title": "Level 13 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "13",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F21e35fbe0718c2db51ab633ae43d53945012fb86f740ef81a2d4ba75b425d384",
-		"title": "Level 14 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "14",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "Fb6d41e93c52dd1cf72b05a8fbfa979ecb88fe9c6675180e2d8cbd2d5a6e9476c",
-		"title": "Level 15 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "15",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "Fbfa65f45a9f5436a5dbc55a7f90d116b50ac748d5e881b56451ed4b40531a53a",
-		"title": "Level 16 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "16",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
-		"title": "Level 17 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "17",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
-		"title": "Level 18 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "18",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
-		"title": "Level 19 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "19",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
-	},
-	{
-		"playtype": "Single",
-		"folderID": "F587912aa1af1c26daf085428f3f3ae420cbe905775782f9e2506108d3ff03a5a",
-		"title": "Level 20 (EXCEED GEAR)",
-		"game": "sdvx",
-		"type": "charts",
-		"data": {
-			"level": "20",
-			"versions": "exceed"
-		},
-		"inactive": false,
-		"searchTerms": []
 	}
 ]

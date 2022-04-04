@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 // This script syncs this tachi instances database up with the tachi-database-seeds.
 
-import db, { monkDB } from "external/mongo/db";
+import { monkDB } from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
@@ -202,7 +202,13 @@ const syncInstructions: SyncInstructions[] = [
 			collection: ICollection<FolderDocument>,
 			logger
 		) => {
-			const r = await GenericUpsert(folders, collection, "folderID", logger, true);
+			const r = await GenericUpsert(
+				folders.filter((e) => TachiConfig.GAMES.includes(e.game)),
+				collection,
+				"folderID",
+				logger,
+				true
+			);
 
 			if (r) {
 				await InitaliseFolderChartLookup();
@@ -212,15 +218,27 @@ const syncInstructions: SyncInstructions[] = [
 	{
 		pattern: /^tables/u,
 		handler: (tables: TableDocument[], collection: ICollection<TableDocument>, logger) =>
-			GenericUpsert(tables, collection, "tableID", logger, true),
+			GenericUpsert(
+				tables.filter((e) => TachiConfig.GAMES.includes(e.game)),
+				collection,
+				"tableID",
+				logger,
+				true
+			),
 	},
 	{
 		pattern: /^bms-course-lookup/u,
-		handler: (
+		handler: async (
 			bmsCourseDocuments: BMSCourseDocument[],
 			collection: ICollection<BMSCourseDocument>,
 			logger
-		) => GenericUpsert(bmsCourseDocuments, collection, "md5sums", logger),
+		) => {
+			if (TachiConfig.TYPE === "ktchi") {
+				return;
+			}
+
+			await GenericUpsert(bmsCourseDocuments, collection, "md5sums", logger);
+		},
 	},
 ];
 

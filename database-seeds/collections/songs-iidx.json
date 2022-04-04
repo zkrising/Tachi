@@ -23168,5 +23168,73 @@
 			"Romi & Robo's Space Flight"
 		],
 		"title": "ロミとロボの宇宙飛行"
+	},
+	{
+		"altTitles": [],
+		"artist": "Blacklolita",
+		"data": {
+			"displayVersion": "29",
+			"genre": "TRIUMPH"
+		},
+		"id": 2093,
+		"searchTerms": [
+			"Grandmaster"
+		],
+		"title": "《GRANDMASTER》"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yuta Imai",
+		"data": {
+			"displayVersion": "29",
+			"genre": "HARD MIXTURE"
+		},
+		"id": 2094,
+		"searchTerms": [],
+		"title": "Game Changers"
+	},
+	{
+		"altTitles": [],
+		"artist": "Hommarju",
+		"data": {
+			"displayVersion": "29",
+			"genre": "UK HARDCORE"
+		},
+		"id": 2095,
+		"searchTerms": [],
+		"title": "Hat Surprise"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ",
+		"data": {
+			"displayVersion": "29",
+			"genre": "SUPER HARDCORE NOVA"
+		},
+		"id": 2096,
+		"searchTerms": [],
+		"title": "TOMAHAWK"
+	},
+	{
+		"altTitles": [],
+		"artist": "RoughSketch",
+		"data": {
+			"displayVersion": "29",
+			"genre": "EUPHORIC FRENCHCORE"
+		},
+		"id": 2097,
+		"searchTerms": [],
+		"title": "One for All"
+	},
+	{
+		"altTitles": [],
+		"artist": "MK",
+		"data": {
+			"displayVersion": "29",
+			"genre": "MELODIC RIDDIM"
+		},
+		"id": 2098,
+		"searchTerms": [],
+		"title": "Brave Spirits"
 	}
 ]

@@ -15,6 +15,10 @@ not generally be shown to end users.
 
 # Changelog
 
+# 2.1.12
+
+- [ENH] EXCEED GEAR scores can now be imported.
+
 # 2.1.11
 
 - [ENH] The LR2Hook now saves courses.

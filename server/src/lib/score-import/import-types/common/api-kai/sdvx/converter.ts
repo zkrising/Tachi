@@ -132,6 +132,8 @@ export function ConvertVersion(ver: number) {
 			return "heaven";
 		case 5:
 			return "vivid";
+		case 6:
+			return "exceed";
 	}
 
 	throw new InvalidScoreFailure(`Unknown Game Version ${ver}.`);

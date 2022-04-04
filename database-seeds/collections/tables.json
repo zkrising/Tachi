@@ -2243,7 +2243,7 @@
 		"title": "Pop'n Music peace Levels (All)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for SOUND VOLTEX in EXCEED GEAR.",
 		"folders": [
 			"Fc87850208f0703651560980d04bc5e0c4f326c2f5dbe688d51029a63abdd4c5f",
@@ -2336,7 +2336,7 @@
 		"title": "SOUND VOLTEX (Konaste)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for SOUND VOLTEX in VIVID WAVE.",
 		"folders": [
 			"F6f759af83ab316bde12f923433945a025c0782a77ed0d2c27aedfa4ba6db9a43",

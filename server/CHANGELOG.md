@@ -15,7 +15,7 @@ not generally be shown to end users.
 
 # Changelog
 
-# CURRENT
+# 2.1.11
 
 - [ENH] The LR2Hook now saves courses.
 - [ENH] The LR2Hook now saves gauge information.

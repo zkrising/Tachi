@@ -95,7 +95,7 @@ dependencies:
   fast-json-stable-hash: 1.0.3
   fast-xml-parser: 4.0.2
   helmet: 5.0.2
-  html-entities: 2.3.2
+  html-entities: 2.3.3
   json5: 2.2.0
   mkdirp: 1.0.4
   mongodb: 3.6.3
@@ -3166,23 +3166,23 @@ packages:
       }
     dev: false
 
-  /css-select/4.2.1:
+  /css-select/4.3.0:
     resolution:
       {
-        integrity: sha512-/aUslKhzkTNCQUB2qTX84lVmfia9NyjP3WpDGtj/WxhwBzWBYUV3DgUpurHTme8UTPcPlAD1DJ+b0nN/t50zDQ==,
+        integrity: sha512-wPpOYtnsVontu2mODhA19JrqWxNsfdatRKd64kmpRbQgh1KtItko5sTnEpPdpSaJszTOhEMlF/RPz28qj4HqhQ==,
       }
     dependencies:
       boolbase: 1.0.0
-      css-what: 5.1.0
+      css-what: 6.1.0
       domhandler: 4.3.1
       domutils: 2.8.0
       nth-check: 2.0.1
     dev: false
 
-  /css-what/5.1.0:
+  /css-what/6.1.0:
     resolution:
       {
-        integrity: sha512-arSMRWIIFY0hV8pIxZMEfmMI47Wj3R/aWpZDDxWYCPEiOMv6tfOrnpDtgxBYPEQD4V0Y/958+1TdC3iWTFcUPw==,
+        integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==,
       }
     engines: { node: ">= 6" }
     dev: false
@@ -4574,10 +4574,10 @@ packages:
     engines: { node: ">=8" }
     dev: true
 
-  /html-entities/2.3.2:
+  /html-entities/2.3.3:
     resolution:
       {
-        integrity: sha512-c3Ab/url5ksaT0WyleslpBEthOzWhrjQbg75y7XUsfSzi3Dgzt0l8w5e7DylRn15MTlMMD58dTfzddNS2kcAjQ==,
+        integrity: sha512-DV5Ln36z34NNTDgnz0EWGBLZENelNAtkiFA4kyNOG2tDI6Mz1uSWiq1wAKdyjnJwyDiDO7Fa2SO1CTxPXL8VxA==,
       }
     dev: false
 
@@ -5760,7 +5760,7 @@ packages:
         integrity: sha512-ncg1033CaX9UexbyA7e1N0aAoAYRDiV8jkTvzEnfd1GDvzFdrsXLzR4p4ik8mwLgnaKP/jyUFWDy9q3jvRT2Jw==,
       }
     dependencies:
-      css-select: 4.2.1
+      css-select: 4.3.0
       he: 1.2.0
     dev: false
 

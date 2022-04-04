@@ -172,6 +172,18 @@ const syncInstructions: SyncInstructions[] = [
 		},
 	},
 	{
+		pattern: /^songs-(b|p)ms/u,
+		handler: async (songs: SongDocument[], collection: ICollection<SongDocument>, logger) => {
+			const r = await GenericUpsert(songs, collection, "id", logger, false);
+
+			if (r.thingsChanged) {
+				await RecalcAllScores({
+					songID: { $in: r.changedFields },
+				});
+			}
+		},
+	},
+	{
 		pattern: /^songs-/u,
 		handler: async (songs: SongDocument[], collection: ICollection<SongDocument>, logger) => {
 			const r = await GenericUpsert(songs, collection, "id", logger, true);

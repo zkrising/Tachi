@@ -22,6 +22,8 @@ Read more about them [here](https://tachi.readthedocs.io/en/latest/user/filter-d
 	dans: `Dans are good as a milestone for your skill. However, focusing too much on dans can be massively detrimental to your skill as a player.\n
 Playing a fixed set of charts all the time will not expose you to more things, and will generally slow down your improvement as a player. Furthermore, they're stressful, and designed to be played *just* at the cusp of what you can play.\n
 In short. Don't play dans too much.`,
+	orphans: `Importing scores for songs/charts we don't have in the database yet results in them becoming orphaned.
+Orphaned scores stay in limbo until they find their 'parent' song or chart. When that's found, they're imported *exactly* as you had them originally! That way, you never lose scores.`,
 };
 
 // Server specific FAQ stuff.

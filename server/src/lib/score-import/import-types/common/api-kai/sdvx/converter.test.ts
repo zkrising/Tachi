@@ -3,12 +3,29 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { GetKTDataJSON, TestingAlbidaADV, TestingSDVXAlbidaSong } from "test-utils/test-data";
+import { TestingAlbidaADV, TestingSDVXAlbidaSong } from "test-utils/test-data";
 import { ConvertAPIKaiSDVX, ConvertDifficulty, ConvertVersion, ResolveKaiLamp } from "./converter";
 
 const logger = CreateLogCtx(__filename);
 
-const sdvxScore = GetKTDataJSON("./api-kai/sdvx-score.json");
+const sdvxScore = {
+	sdvx_id: 32157055,
+	music_id: 1,
+	music_difficulty: 1,
+	played_version: 6, // exg
+	clear_type: 2,
+	max_chain: 179,
+	score: 9310699,
+	critical: 1754,
+	near: 112,
+	error: 78,
+	early: 70,
+	late: 42,
+	gauge_type: 0,
+	gauge_rate: 90,
+	timestamp: "2020-08-30T13:08:11Z",
+	_id: 127108,
+};
 
 t.test("#ConvertAPIKaiSDVX", (t) => {
 	t.beforeEach(ResetDBState);
@@ -59,7 +76,7 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 					logger
 				),
 			{
-				message: /Could not find chart with songID 0 \(ADV - Version heaven\)/u,
+				message: /Could not find chart with songID 0 \(ADV - Version exceed\)/u,
 			}
 		);
 

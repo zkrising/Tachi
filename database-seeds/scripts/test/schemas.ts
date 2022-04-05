@@ -172,13 +172,13 @@ export const SCHEMAS = {
 		})
 	),
 	"songs-usc": prSchemaify(PR_SongDocument({})),
-	// "songs-maimai": prSchemaify(
-	// 	PR_SongDocument({
-	// 		titleJP: "string",
-	// 		artistJP: "string",
-	// 		displayVersion: "string",
-	// 	})
-	// ),
+	"songs-maimai": prSchemaify(
+		PR_SongDocument({
+			titleJP: "string",
+			artistJP: "string",
+			displayVersion: "string",
+		})
+	),
 	"songs-museca": prSchemaify(
 		PR_SongDocument({
 			titleJP: "string",
@@ -288,13 +288,13 @@ export const SCHEMAS = {
 	// 		})
 	// 	)(self);
 	// },
-	// "charts-maimai": prSchemaify(
-	// 	PR_ChartDocument("maimai", "Single", {
-	// 		maxPercent: p.gt(0),
-	// 		inGameID: p.isPositiveInteger,
-	// 		inGameStrID: "string",
-	// 	})
-	// ),
+	"charts-maimai": prSchemaify(
+		PR_ChartDocument("maimai", "Single", {
+			maxPercent: p.gt(0),
+			inGameID: p.isPositiveInteger,
+			inGameStrID: "string",
+		})
+	),
 	"charts-museca": prSchemaify(
 		PR_ChartDocument("museca", "Single", {
 			inGameID: p.isPositiveInteger,

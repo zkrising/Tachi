@@ -95,10 +95,10 @@ export function FormatChart(
 	// return the most recent version this chart appeared in if it
 	// is not primary.
 	if (!chart.isPrimary) {
-		return `${song.title} (${playtypeStr}${chart.difficulty} ${chart.versions[0]})`;
+		return `${song.title} (${playtypeStr}${chart.difficulty} ${chart.level} ${chart.versions[0]})`;
 	}
 
-	return `${song.title} (${playtypeStr}${chart.difficulty})`;
+	return `${song.title} (${playtypeStr}${chart.difficulty} ${chart.level})`;
 }
 
 export function AbsoluteGradeDelta<I extends IDStrings = IDStrings>(

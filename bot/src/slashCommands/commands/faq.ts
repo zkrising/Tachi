@@ -32,6 +32,8 @@ const KTCHI_FAQ_ENTRIES: Record<string, string> = {
 		Buffer.from("aHR0cHM6Ly9kaXNjb3JkLmdnL3N3VkJUanhtUFk=", "base64")
 	})`,
 	sdvx_1259: `Automation Paradise is song ID 1259. It is not a real song, and it is not supported by ${ServerConfig.name}. Related autopara-only songs are not supported, either.`,
+	invites: `To invite your friends, go to your profile and select 'Invites'. From there, you can create an invite code.
+Your friend can then go to ${BotConfig.TACHI_SERVER_LOCATION} and sign up with the code! You can also invite them to the discord.`,
 };
 
 const BTCHI_FAQ_ENTRIES: Record<string, string> = {

@@ -28,7 +28,7 @@ const PR_KaiSDVXScore = {
 	error: p.nullable(p.isPositiveInteger),
 	early: p.nullable(p.isPositiveInteger),
 	late: p.nullable(p.isPositiveInteger),
-	gauge_rate: p.isBoundedInteger(0, 100),
+	gauge_rate: p.isBetween(0, 100),
 	timestamp: "string",
 };
 

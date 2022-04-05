@@ -22,7 +22,7 @@ const sdvxScore = {
 	early: 70,
 	late: 42,
 	gauge_type: 0,
-	gauge_rate: 90,
+	gauge_rate: 90.01,
 	timestamp: "2020-08-30T13:08:11Z",
 	_id: 127108,
 };
@@ -55,7 +55,7 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 					hitMeta: {
 						fast: 70,
 						slow: 42,
-						gauge: 90,
+						gauge: 90.01,
 						maxCombo: 179,
 					},
 				},

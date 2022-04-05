@@ -35,6 +35,7 @@ export async function CreateKaiSDVXClassHandler(
 		}
 
 		if (json.skill_level === null || json.skill_level === undefined) {
+			logger.info(`User has no skill_level. Not updating anything.`);
 			return {};
 		}
 

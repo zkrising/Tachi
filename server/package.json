@@ -1,6 +1,6 @@
 {
 	"name": "tachi-server",
-	"version": "2.1.14",
+	"version": "2.1.15",
 	"description": "A score tracking server.",
 	"main": "js/index.js",
 	"private": true,

@@ -271,7 +271,7 @@ export const TestingAlbidaADV: ChartDocument<"sdvx:Single"> = {
 		arcChartID: "EOZ7FixCDpv",
 	},
 	isPrimary: true,
-	versions: ["booth", "inf", "gw", "heaven", "vivid", "konaste"],
+	versions: ["booth", "inf", "gw", "heaven", "vivid", "exceed", "konaste"],
 	tierlistInfo: {},
 };
 

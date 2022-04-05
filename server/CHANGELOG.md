@@ -15,6 +15,18 @@ not generally be shown to end users.
 
 # Changelog
 
+# 2.1.15
+
+- [BUG] EXCEED GEAR scores can now be imported for real.
+
+# 2.1.14
+
+- [BUG] Fixed bug where folders/tables wouldn't sync automatically from the seeds, again.
+
+# 2.1.13
+
+- [BUG] Fixed bug where folders/tables wouldn't sync automatically from the seeds.
+
 # 2.1.12
 
 - [ENH] EXCEED GEAR scores can now be imported.

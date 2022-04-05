@@ -19,7 +19,7 @@ import { KaiContext, KaiSDVXScore } from "../types";
 const PR_KaiSDVXScore = {
 	music_id: p.isPositiveInteger,
 	music_difficulty: p.isBoundedInteger(0, 4),
-	played_version: p.isBoundedInteger(1, 5),
+	played_version: p.isBoundedInteger(1, 6),
 	clear_type: p.isBoundedInteger(1, 5),
 	max_chain: p.isPositiveInteger,
 	score: p.isBoundedInteger(0, 10_000_000),

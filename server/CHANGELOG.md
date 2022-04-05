@@ -15,6 +15,10 @@ not generally be shown to end users.
 
 # Changelog
 
+# 2.1.16
+
+- [BUG] EXCEED GEAR scores can now be imported for real for real.
+
 # 2.1.15
 
 - [BUG] EXCEED GEAR scores can now be imported for real.

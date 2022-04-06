@@ -57,6 +57,13 @@ export function ParseDifficulty(
 
 	const regex = ConvertInputIntoGenerousRegex(input);
 
+	if (game === "iidx" && (input.startsWith("SP") || input.startsWith("DP"))) {
+		// some users like to prefix their input with SP -> SPA or SPL, as examples.
+		// strip that out if they try to do it, since no IIDX difficulty starts with SP.
+		// eslint-disable-next-line no-param-reassign
+		input = input.slice(2);
+	}
+
 	for (const diff of gptConfig.difficulties) {
 		if (diff.match(regex)) {
 			return diff;

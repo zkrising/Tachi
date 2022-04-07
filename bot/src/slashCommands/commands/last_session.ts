@@ -4,7 +4,7 @@ import { GetMostRecentSession } from "../../utils/apiRequests";
 import { GetGPTAndUser } from "../../utils/argParsers";
 import { CreateSessionEmbed } from "../../utils/embeds";
 import logger from "../../utils/logger";
-import { GPTOptions, MakeRequired } from "../../utils/options";
+import { GPTOptions, MakeRequired, OtherUserOption } from "../../utils/options";
 import { SlashCommand } from "../types";
 
 const command: SlashCommand = {
@@ -12,6 +12,7 @@ const command: SlashCommand = {
 		.setName("last_session")
 		.setDescription("Retrieve your most recent session (even if ongoing).")
 		.addStringOption(MakeRequired(GPTOptions))
+		.addStringOption(OtherUserOption)
 		.toJSON(),
 	exec: async (interaction, requestingUser) => {
 		const gptUserInfo = await GetGPTAndUser(interaction, requestingUser);

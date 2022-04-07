@@ -4,7 +4,7 @@ import { GetUGPTStats } from "../../utils/apiRequests";
 import { GetGPTAndUser } from "../../utils/argParsers";
 import { CreateChartScoresEmbed } from "../../utils/embeds";
 import logger from "../../utils/logger";
-import { GPTOptions, MakeRequired } from "../../utils/options";
+import { GPTOptions, MakeRequired, OtherUserOption } from "../../utils/options";
 import { SlashCommand } from "../types";
 
 const command: SlashCommand = {
@@ -12,6 +12,7 @@ const command: SlashCommand = {
 		.setName("last_score")
 		.setDescription("Retrieve your most recent score.")
 		.addStringOption(MakeRequired(GPTOptions))
+		.addStringOption(OtherUserOption)
 		.toJSON(),
 	exec: async (interaction, requestingUser) => {
 		const gptUserInfo = await GetGPTAndUser(interaction, requestingUser);

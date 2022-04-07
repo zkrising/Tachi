@@ -78,14 +78,14 @@ export function CreateGameProfileEmbed(userDoc: PublicUserDocument, ugptStats: U
 			Entries(ugptStats.rankingData)
 				.map(
 					([k, v]) =>
-						`**${k}**: #${v.ranking}/${v.outOf} (${FormatProfileRating(
+						`**${UppercaseFirst(k)}**: #${v.ranking}/${v.outOf} (${FormatProfileRating(
 							game,
 							playtype,
 							k,
 							ugptStats.gameStats.ratings[k]
 						)})`
 				)
-				.join("\n"),
+				.join("\n") || "No Rankings",
 			true
 		)
 		.addField(
@@ -95,7 +95,7 @@ export function CreateGameProfileEmbed(userDoc: PublicUserDocument, ugptStats: U
 					([k, v]) =>
 						`**${UppercaseFirst(k)}**: ${gptConfig.classHumanisedFormat[k][v].display}`
 				)
-				.join("\n"),
+				.join("\n") || "No Classes",
 			true
 		)
 		.addField("Playcount", ugptStats.totalScores.toString())

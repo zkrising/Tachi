@@ -94,7 +94,13 @@ const command: SlashCommand = {
 			throw new Error(`No firstSong for equivalent firstChart ${firstChart.chartID}?`);
 		}
 
-		const embed = await CreateChartScoresEmbed(userDoc, game, playtype, firstChart.chartID);
+		const embed = await CreateChartScoresEmbed(
+			userDoc,
+			game,
+			playtype,
+			firstChart.chartID,
+			null
+		);
 
 		// don't bother with showing a selector if the user gets it right.
 		if (chartsRes.body.charts.length === 1) {

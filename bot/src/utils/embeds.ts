@@ -8,6 +8,7 @@ import {
 	GetGamePTConfig,
 	ImportDocument,
 	integer,
+	PBScoreDocument,
 	Playtype,
 	PublicUserDocument,
 	ScoreDocument,
@@ -123,26 +124,36 @@ export async function CreateChartScoresEmbed(
 	userDoc: PublicUserDocument,
 	game: Game,
 	playtype: Playtype,
-	chartID: string
+	chartID: string,
+	renderThisScore: ScoreDocument | null
 ) {
 	const { song, chart, pb } = await GetChartInfoForUser(userDoc.id, chartID, game, playtype);
+
+	let score: ScoreDocument | PBScoreDocument | null = renderThisScore;
+
+	// if the user didn't pass a score to be rendered, render their PB.
+	if (renderThisScore === null) {
+		// eslint-disable-next-line no-param-reassign
+		score = pb;
+	}
 
 	const embed = CreateEmbed()
 		.setTitle(`${userDoc.username}: ${FormatChart(game, song, chart)}`)
 		.setThumbnail(PrependTachiUrl(`/users/${userDoc.id}/pfp`))
 		.setURL(CreateChartLink(chart, game));
 
-	if (pb === null) {
+	// unecessary OR here to assert to TS that this implies PB can't be null either.
+	if (score === null || pb === null) {
 		embed.setDescription(`${userDoc.username} has not played this chart.`);
 	} else {
-		const { scoreStr, lampStr } = FormatScoreData(pb);
+		const { scoreStr, lampStr } = FormatScoreData(score);
 
 		embed
 			.addField("Score", scoreStr, true)
 			.addField("Lamp", lampStr, true)
 			.addField(
 				"Ratings",
-				Entries(pb.calculatedData)
+				Entries(score.calculatedData)
 					.map(
 						([key, value]) =>
 							`${UppercaseFirst(key)}: ${FormatScoreRating(
@@ -156,16 +167,30 @@ export async function CreateChartScoresEmbed(
 			)
 			.addField(
 				"Last Raised",
-				pb.timeAchieved
-					? `${FormatDate(pb.timeAchieved)} (${MillisToSince(pb.timeAchieved)})`
+				score.timeAchieved
+					? `${FormatDate(score.timeAchieved)} (${MillisToSince(score.timeAchieved)})`
 					: "N/A",
 				true
-			)
-			.addField("Ranking", `#**${pb.rankingData.rank}**/${pb.rankingData.outOf}`);
+			);
+
+		// if score is a PB
+		if ("rankingData" in score) {
+			embed.addField("Ranking", `#**${score.rankingData.rank}**/${score.rankingData.outOf}`);
+		} else if (pb) {
+			const { scoreStr, lampStr } = FormatScoreData(pb);
+
+			if (pb.scoreData.score !== score.scoreData.score) {
+				embed.addField("PB Score", scoreStr, true);
+			}
+
+			if (pb.scoreData.lamp !== score.scoreData.lamp) {
+				embed.addField("PB Lamp", lampStr, true);
+			}
+		}
 
 		const pertinentInfo = GetChartPertinentInfo(game, chart);
-
 		const tierlistInfo = FormatChartTierlistInfo(game, chart);
+
 		if (pertinentInfo) {
 			embed.addField("Related", pertinentInfo, !!tierlistInfo);
 		}

@@ -163,3 +163,16 @@ export async function FindFolders(game: Game, playtype: Playtype, folderName: st
 
 	return res.body;
 }
+
+export async function GetChartInfo(game: Game, playtype: Playtype, chartID: string) {
+	const res = await TachiServerV1Get<{ chart: ChartDocument; song: SongDocument }>(
+		`/games/${game}/${playtype}/charts/${chartID}`,
+		null
+	);
+
+	if (!res.success) {
+		throw new Error(res.description);
+	}
+
+	return res.body;
+}

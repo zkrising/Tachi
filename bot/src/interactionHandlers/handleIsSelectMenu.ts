@@ -44,7 +44,8 @@ export async function handleIsSelectMenu(
 				userDoc,
 				game,
 				playtype,
-				interaction.values[0]
+				interaction.values[0],
+				null
 			);
 
 			await interaction.update({ embeds: [embed] });

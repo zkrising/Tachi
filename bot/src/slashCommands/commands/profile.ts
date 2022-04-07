@@ -1,4 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
+import { FormatGame } from "tachi-common";
 import { GetUGPTStats } from "../../utils/apiRequests";
 import { GetGPTAndUser } from "../../utils/argParsers";
 import { CreateGameProfileEmbed } from "../../utils/embeds";
@@ -25,7 +26,7 @@ const command: SlashCommand = {
 		try {
 			ugptStats = await GetUGPTStats(userDoc.id, game, playtype);
 		} catch (err) {
-			return `This user has not played this game.`;
+			return `This user has not played ${FormatGame(game, playtype)}.`;
 		}
 
 		return CreateGameProfileEmbed(userDoc, ugptStats);

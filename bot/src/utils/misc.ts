@@ -416,6 +416,19 @@ export function StrSOV<T>(getValueFn: (data: T) => string) {
 	return (a: T, b: T) => getValueFn(a).localeCompare(getValueFn(b));
 }
 
+export function UniqueOnKey<T>(prop: keyof T) {
+	const seenBefore = new Set<T[keyof T]>();
+
+	return (item: T) => {
+		if (seenBefore.has(item[prop])) {
+			return false;
+		}
+		seenBefore.add(item[prop]);
+
+		return true;
+	};
+}
+
 export const ONE_SECOND = 1000;
 export const ONE_MINUTE = ONE_SECOND * 60;
 export const ONE_HOUR = ONE_MINUTE * 60;

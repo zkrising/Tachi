@@ -34,6 +34,7 @@ import {
 	NumericSOV,
 	ONE_HOUR,
 	Pluralise,
+	UniqueOnKey,
 	UppercaseFirst,
 } from "./misc";
 import { UGPTFolderStat, UGPTFolderTimeline, UGPTStats } from "./returnTypes";
@@ -362,6 +363,7 @@ export async function CreateSessionEmbed(session: SessionDocument) {
 					true
 				)
 			)
+			.filter(UniqueOnKey("chartID"))
 			// pick best 5
 			.slice(0, 5)
 			.map((sc) => ScoreToEmbed(sc, songMap, chartMap))

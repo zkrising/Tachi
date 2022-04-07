@@ -4,9 +4,9 @@ A discord bot that interacts with an instance of the [Tachi Server](https://gith
 
 ## Setup
 
-- Install dependencies with `yarn install`.
+- Install dependencies with `pnpm install`.
 - Create the relevant `conf.json5` and `.env` files. At the moment, you'll have to read the codebase for information about them.
-- Run `yarn start`.
+- Run `pnpm start`.
 
 ## Contributions
 

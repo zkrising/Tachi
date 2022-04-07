@@ -22,6 +22,8 @@ Read more about them [here](https://tachi.readthedocs.io/en/latest/user/filter-d
 	dans: `Dans are good as a milestone for your skill. However, focusing too much on dans can be massively detrimental to your skill as a player.\n
 Playing a fixed set of charts all the time will not expose you to more things, and will generally slow down your improvement as a player. Furthermore, they're stressful, and designed to be played *just* at the cusp of what you can play.\n
 In short. Don't play dans too much.`,
+	orphans: `Importing scores for songs/charts we don't have in the database yet results in them becoming orphaned.
+Orphaned scores stay in limbo until they find their 'parent' song or chart. When that's found, they're imported *exactly* as you had them originally! That way, you never lose scores.`,
 };
 
 // Server specific FAQ stuff.
@@ -32,6 +34,8 @@ const KTCHI_FAQ_ENTRIES: Record<string, string> = {
 		Buffer.from("aHR0cHM6Ly9kaXNjb3JkLmdnL3N3VkJUanhtUFk=", "base64")
 	})`,
 	sdvx_1259: `Automation Paradise is song ID 1259. It is not a real song, and it is not supported by ${ServerConfig.name}. Related autopara-only songs are not supported, either.`,
+	invites: `To invite your friends, go to your profile and select 'Invites'. From there, you can create an invite code.
+Your friend can then go to ${BotConfig.TACHI_SERVER_LOCATION} and sign up with the code! You can also invite them to the discord.`,
 };
 
 const BTCHI_FAQ_ENTRIES: Record<string, string> = {

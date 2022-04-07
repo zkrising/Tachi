@@ -7,6 +7,9 @@ import profile from "./commands/profile";
 import quote from "./commands/quote";
 import sync from "./commands/sync";
 import whois from "./commands/whois";
+import invite from "./commands/invite";
+import last_score from "./commands/last_score";
+import last_session from "./commands/last_session";
 import { SlashCommand } from "./types";
 
 export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
@@ -18,6 +21,8 @@ export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
 		profile,
 		chart,
 		folder,
+		last_score,
+		last_session,
 	})
 );
 
@@ -28,5 +33,6 @@ if (ServerConfig.type !== "btchi") {
 
 // btchi or omni specific commands
 if (ServerConfig.type !== "ktchi") {
+	SLASH_COMMANDS.set("invite", invite);
 	// None. Yet!
 }

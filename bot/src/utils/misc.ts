@@ -8,14 +8,17 @@ import {
 	GenericFormatGradeDelta,
 	GetGameConfig,
 	GetGamePTConfig,
+	GoalDocument,
 	Grades,
 	IDStrings,
 	integer,
 	PBScoreDocument,
 	Playtype,
 	Playtypes,
+	PublicUserDocument,
 	ScoreCalculatedDataLookup,
 	ScoreDocument,
+	SongDocument,
 	UGSRatingsLookup,
 } from "tachi-common";
 import { GameClassSets } from "tachi-common/js/game-classes";
@@ -333,3 +336,88 @@ export function ConvertInputIntoGenerousRegex(input: string) {
 
 	return regex;
 }
+
+export function CreateSongMap<G extends Game = Game>(songs: SongDocument<G>[]) {
+	const songMap = new Map<integer, SongDocument<G>>();
+
+	for (const song of songs) {
+		songMap.set(song.id, song);
+	}
+
+	return songMap;
+}
+
+export function CreateUserMap(users: PublicUserDocument[]) {
+	const userMap = new Map<integer, PublicUserDocument>();
+
+	for (const user of users) {
+		userMap.set(user.id, user);
+	}
+
+	return userMap;
+}
+
+export function CreateGoalMap(goals: GoalDocument[]) {
+	const goalMap = new Map<string, GoalDocument>();
+
+	for (const goal of goals) {
+		goalMap.set(goal.goalID, goal);
+	}
+
+	return goalMap;
+}
+
+export function CreateChartIDMap<T extends { chartID: string }>(arr: T[]): Map<string, T> {
+	const map = new Map();
+
+	for (const t of arr) {
+		map.set(t.chartID, t);
+	}
+
+	return map;
+}
+
+export function CreateChartMap<I extends IDStrings = IDStrings>(charts: ChartDocument<I>[]) {
+	const chartMap = new Map<string, ChartDocument<I>>();
+
+	for (const chart of charts) {
+		chartMap.set(chart.chartID, chart);
+	}
+
+	return chartMap;
+}
+
+export function CreateScoreIDMap<I extends IDStrings = IDStrings>(scores: ScoreDocument<I>[]) {
+	const scoreMap = new Map<string, ScoreDocument<I>>();
+
+	for (const score of scores) {
+		scoreMap.set(score.scoreID, score);
+	}
+
+	return scoreMap;
+}
+
+/**
+ * Sorts On Value numerically.
+ * @returns A sorting function
+ */
+export function NumericSOV<T>(getValueFn: (data: T) => number, reverse = false) {
+	if (reverse) {
+		return (a: T, b: T) => getValueFn(b) - getValueFn(a);
+	}
+	return (a: T, b: T) => getValueFn(a) - getValueFn(b);
+}
+
+/**
+ * Sorts On Value using locale compare.
+ * @returns A sorting function
+ */
+export function StrSOV<T>(getValueFn: (data: T) => string) {
+	return (a: T, b: T) => getValueFn(a).localeCompare(getValueFn(b));
+}
+
+export const ONE_SECOND = 1000;
+export const ONE_MINUTE = ONE_SECOND * 60;
+export const ONE_HOUR = ONE_MINUTE * 60;
+export const ONE_DAY = ONE_HOUR * 24;
+export const ONE_WEEK = ONE_DAY * 7;

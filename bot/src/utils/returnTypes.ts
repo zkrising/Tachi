@@ -10,7 +10,9 @@ import {
 	ImportTypes,
 	integer,
 	Lamps,
+	PublicUserDocument,
 	ScoreDocument,
+	SessionDocument,
 	SongDocument,
 	UGSRatingsLookup,
 	UserGameStats,
@@ -74,4 +76,12 @@ export interface UGPTFolderTimeline<I extends IDStrings = IDStrings> {
 	charts: ChartDocument<I>[];
 	scores: ScoreDocument<I>[];
 	folder: FolderDocument;
+}
+
+export interface SessionInfo {
+	session: SessionDocument;
+	songs: SongDocument[];
+	charts: ChartDocument[];
+	scores: ScoreDocument[];
+	user: PublicUserDocument;
 }

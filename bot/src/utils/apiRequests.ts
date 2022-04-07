@@ -9,13 +9,15 @@ import {
 	PBScoreDocument,
 	Playtype,
 	PublicUserDocument,
+	ScoreDocument,
+	SessionDocument,
 	SongDocument,
 } from "tachi-common";
 import { LoggerLayers } from "../data/data";
 import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "./fetchTachi";
 import { CreateLayeredLogger } from "./logger";
 import { Sleep } from "./misc";
-import { ImportDeferred, ImportPollStatus, UGPTStats } from "./returnTypes";
+import { ImportDeferred, ImportPollStatus, SessionInfo, UGPTStats } from "./returnTypes";
 
 const logger = CreateLayeredLogger(LoggerLayers.apiRequests);
 
@@ -156,6 +158,42 @@ export async function FindFolders(game: Game, playtype: Playtype, folderName: st
 			search: folderName,
 		}
 	);
+
+	if (!res.success) {
+		throw new Error(res.description);
+	}
+
+	return res.body;
+}
+
+export async function GetChartInfo(game: Game, playtype: Playtype, chartID: string) {
+	const res = await TachiServerV1Get<{ chart: ChartDocument; song: SongDocument }>(
+		`/games/${game}/${playtype}/charts/${chartID}`,
+		null
+	);
+
+	if (!res.success) {
+		throw new Error(res.description);
+	}
+
+	return res.body;
+}
+
+export async function GetMostRecentSession(userID: integer, game: Game, playtype: Playtype) {
+	const res = await TachiServerV1Get<SessionDocument>(
+		`/users/${userID}/games/${game}/${playtype}/sessions/last`,
+		null
+	);
+
+	if (!res.success) {
+		throw new Error(res.description);
+	}
+
+	return res.body;
+}
+
+export async function GetSessionInfo(sessionID: string) {
+	const res = await TachiServerV1Get<SessionInfo>(`/sessions/${sessionID}`, null);
 
 	if (!res.success) {
 		throw new Error(res.description);

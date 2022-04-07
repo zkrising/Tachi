@@ -1,15 +1,16 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { FormatGame } from "tachi-common";
-import { GetUGPTStats } from "../../utils/apiRequests";
+import { GetMostRecentSession } from "../../utils/apiRequests";
 import { GetGPTAndUser } from "../../utils/argParsers";
-import { CreateGameProfileEmbed } from "../../utils/embeds";
+import { CreateSessionEmbed } from "../../utils/embeds";
+import logger from "../../utils/logger";
 import { GPTOptions, MakeRequired, OtherUserOption } from "../../utils/options";
 import { SlashCommand } from "../types";
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()
-		.setName("profile")
-		.setDescription("Retrieve information about a user on a game.")
+		.setName("last_session")
+		.setDescription("Retrieve your most recent session (even if ongoing).")
 		.addStringOption(MakeRequired(GPTOptions))
 		.addStringOption(OtherUserOption)
 		.toJSON(),
@@ -22,14 +23,15 @@ const command: SlashCommand = {
 
 		const { userDoc, game, playtype } = gptUserInfo.content;
 
-		let ugptStats;
+		let session;
 		try {
-			ugptStats = await GetUGPTStats(userDoc.id, game, playtype);
+			session = await GetMostRecentSession(userDoc.id, game, playtype);
 		} catch (err) {
-			return `This user has not played ${FormatGame(game, playtype)}.`;
+			logger.info(err);
+			return `You haven't got any sessions for ${FormatGame(game, playtype)}.`;
 		}
 
-		return CreateGameProfileEmbed(userDoc, ugptStats);
+		return CreateSessionEmbed(session);
 	},
 };
 

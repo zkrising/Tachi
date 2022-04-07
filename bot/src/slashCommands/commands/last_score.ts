@@ -1,7 +1,9 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
+import { FormatGame } from "tachi-common";
 import { GetUGPTStats } from "../../utils/apiRequests";
 import { GetGPTAndUser } from "../../utils/argParsers";
 import { CreateChartScoresEmbed } from "../../utils/embeds";
+import logger from "../../utils/logger";
 import { GPTOptions, MakeRequired } from "../../utils/options";
 import { SlashCommand } from "../types";
 
@@ -20,7 +22,13 @@ const command: SlashCommand = {
 
 		const { userDoc, game, playtype } = gptUserInfo.content;
 
-		const { mostRecentScore } = await GetUGPTStats(userDoc.id, game, playtype);
+		let mostRecentScore;
+		try {
+			({ mostRecentScore } = await GetUGPTStats(userDoc.id, game, playtype));
+		} catch (err) {
+			logger.info(err);
+			return `You haven't played ${FormatGame(game, playtype)}.`;
+		}
 
 		return CreateChartScoresEmbed(
 			userDoc,

@@ -12,14 +12,17 @@ import {
 	Playtype,
 	PublicUserDocument,
 	ScoreDocument,
+	SessionDocument,
 	SongDocument,
 } from "tachi-common";
 import { BotConfig, ServerConfig } from "../config";
-import { GetChartInfoForUser } from "./apiRequests";
+import { GetChartInfoForUser, GetSessionInfo } from "./apiRequests";
 import { ParseTimelineTarget } from "./argParsers";
 import { PrependTachiUrl, TachiServerV1Get } from "./fetchTachi";
 import {
 	CreateChartLink,
+	CreateChartMap,
+	CreateSongMap,
 	Entries,
 	FormatChartTierlistInfo,
 	FormatDate,
@@ -28,6 +31,8 @@ import {
 	FormatScoreRating,
 	GetChartPertinentInfo,
 	MillisToSince,
+	NumericSOV,
+	ONE_HOUR,
 	Pluralise,
 	UppercaseFirst,
 } from "./misc";
@@ -280,21 +285,8 @@ export async function CreateFolderTimelineEmbed(
 
 	const { folder, songs, charts, scores } = timelineRes.body;
 
-	const songMap = new Map<integer, SongDocument>();
-	const chartMap = new Map<string, ChartDocument>();
-	const scoreMap = new Map<string, ScoreDocument>();
-
-	for (const song of songs) {
-		songMap.set(song.id, song);
-	}
-
-	for (const chart of charts) {
-		chartMap.set(chart.chartID, chart);
-	}
-
-	for (const score of scores) {
-		scoreMap.set(score.scoreID, score);
-	}
+	const songMap = CreateSongMap(songs);
+	const chartMap = CreateChartMap(charts);
 
 	let fields: EmbedFieldData[] = [];
 
@@ -306,18 +298,7 @@ export async function CreateFolderTimelineEmbed(
 				: b.timeAchieved! - a.timeAchieved!
 		)
 		.slice(0, 5)
-		.map((sc) => {
-			const { scoreStr, lampStr } = FormatScoreData(sc);
-
-			return {
-				name: Util.escapeMarkdown(
-					FormatChart(game, songMap.get(sc.songID)!, chartMap.get(sc.chartID)!)
-				),
-				value: `${scoreStr}
-${lampStr}
-${FormatDate(sc.timeAchieved!)} (${MillisToSince(sc.timeAchieved!)})`,
-			};
-		});
+		.map((sc) => ScoreToEmbed(sc, songMap, chartMap));
 
 	const embed = CreateEmbed()
 		.setTitle(
@@ -334,4 +315,78 @@ ${FormatDate(sc.timeAchieved!)} (${MillisToSince(sc.timeAchieved!)})`,
 	}
 
 	return embed.addFields(fields);
+}
+
+export async function CreateSessionEmbed(session: SessionDocument) {
+	const { game, playtype } = session;
+
+	const { charts, scores, songs, user } = await GetSessionInfo(session.sessionID);
+
+	const embed = CreateEmbed()
+		.setTitle(
+			`${user.username}: ${session.name}${
+				session.timeEnded < ONE_HOUR * 2 ? " (Ongoing!)" : ""
+			}`
+		)
+		.setDescription(session.desc ?? "This session has no description")
+		.setURL(
+			`${BotConfig.TACHI_SERVER_LOCATION}/dashboard/users/${user.username}/games/${game}/${playtype}/sessions/${session.sessionID}`
+		);
+
+	const songMap = CreateSongMap(songs);
+	const chartMap = CreateChartMap(charts);
+
+	embed
+		.addField(
+			"Total Lamp Raises",
+			session.scoreInfo.filter((e) => !e.isNewScore && e.lampDelta > 0).length.toString(),
+			true
+		)
+		.addField(
+			"Total Grade Raises",
+			session.scoreInfo.filter((e) => !e.isNewScore && e.gradeDelta > 0).length.toString(),
+			true
+		);
+
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	embed.addFields(
+		scores
+			// don't mutate original array
+			.slice(0)
+			// sort on default rating alg
+			// @todo Honour the user's preferred rating alg?
+			.sort(
+				NumericSOV(
+					(k) => k.calculatedData[gptConfig.defaultScoreRatingAlg] ?? -Infinity,
+					true
+				)
+			)
+			// pick best 5
+			.slice(0, 5)
+			.map((sc) => ScoreToEmbed(sc, songMap, chartMap))
+	);
+
+	embed.setFooter({
+		text: "Note: Discord doesn't give me enough room to express everything about the session properly. Click the blue link to go to the session and see it properly.",
+	});
+
+	return embed;
+}
+
+function ScoreToEmbed(
+	sc: ScoreDocument,
+	songMap: Map<integer, SongDocument>,
+	chartMap: Map<string, ChartDocument>
+): EmbedFieldData {
+	const { scoreStr, lampStr } = FormatScoreData(sc);
+
+	return {
+		name: Util.escapeMarkdown(
+			FormatChart(sc.game, songMap.get(sc.songID)!, chartMap.get(sc.chartID)!)
+		),
+		value: `${scoreStr}
+${lampStr}
+${FormatDate(sc.timeAchieved!)} (${MillisToSince(sc.timeAchieved!)})`,
+	};
 }

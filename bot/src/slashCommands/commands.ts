@@ -9,6 +9,7 @@ import sync from "./commands/sync";
 import whois from "./commands/whois";
 import invite from "./commands/invite";
 import last_score from "./commands/last_score";
+import last_session from "./commands/last_session";
 import { SlashCommand } from "./types";
 
 export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
@@ -21,6 +22,7 @@ export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
 		chart,
 		folder,
 		last_score,
+		last_session,
 	})
 );
 

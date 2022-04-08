@@ -10,3 +10,11 @@ Refers to "Game + Playtype" - a combination of a game and its playtype (i.e. IID
 ## UGPT
 
 Refers to "User on Game + Playtype" - A user's "something" on a game and that playtype.
+
+## Targets
+
+Targets are a bucket term for things a user might set as targets to aim for. This term subsumes the following features:
+
+- Goals
+- Milestones
+- Sets

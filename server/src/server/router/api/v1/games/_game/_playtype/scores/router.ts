@@ -23,7 +23,7 @@ router.get(
 	async (req, res) => {
 		const { game, playtype } = GetGPT(req);
 
-		const limit = req.query.limit ? Number(req.query.limit) : 10;
+		const limit = req.query.limit ? Number(req.query.limit) : 100;
 
 		const scores = await db.scores.find(
 			{

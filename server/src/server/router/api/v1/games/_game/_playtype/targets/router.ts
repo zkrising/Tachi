@@ -27,7 +27,7 @@ router.get("/recently-achieved", async (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: `Retrieved some recently achieved goals for ${FormatGame(game, playtype)}`,
+		description: `Retrieved some recently achieved targets for ${FormatGame(game, playtype)}`,
 		body: {
 			goals,
 			goalSubs,
@@ -52,7 +52,7 @@ router.get("/recently-interacted", async (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: `Retrieved some recently interacted-with goals for ${FormatGame(
+		description: `Retrieved some recently interacted-with targets for ${FormatGame(
 			game,
 			playtype
 		)}`,

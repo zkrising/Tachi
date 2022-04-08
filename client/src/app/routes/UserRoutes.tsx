@@ -34,6 +34,7 @@ import {
 	UserGameStats,
 } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
+import { UserSettingsContext } from "context/UserSettingsContext";
 import ScoresPage from "../pages/dashboard/users/games/_game/_playtype/ScoresPage";
 import UserPage from "../pages/dashboard/users/UserPage";
 
@@ -102,10 +103,16 @@ export default function UserRoutes() {
 }
 
 function UserProfileRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
+	const { settings } = useContext(UserSettingsContext);
+
 	return (
 		<>
 			<LayoutHeaderContainer
-				header={`${reqUser.username}'s Profile`}
+				header={
+					settings?.preferences.developerMode
+						? `${reqUser.username} (UID: ${reqUser.id})`
+						: `${reqUser.username}'s Profile`
+				}
 				footer={
 					<UserBottomNav
 						reqUser={reqUser}

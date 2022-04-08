@@ -159,14 +159,17 @@ router.put(
 			});
 		}
 
-		const subResult = await SubscribeToMilestone(user.id, milestone);
+		const subResult = await SubscribeToMilestone(user.id, milestone, false);
 
-		if (subResult === SubscribeFailReasons.ALREADY_ACHIEVED) {
-			return res.status(400).json({
-				success: false,
-				description: `You cannot assign a milestone that would be immediately achieved.`,
-			});
-		}
+		// Users should be able to subscribe to milestones EVEN IF they would instantly
+		// achieve them.
+
+		// if (subResult === SubscribeFailReasons.ALREADY_ACHIEVED) {
+		// 	return res.status(400).json({
+		// 		success: false,
+		// 		description: `You cannot assign a milestone that would be immediately achieved.`,
+		// 	});
+		// }
 
 		if (subResult === SubscribeFailReasons.ALREADY_SUBSCRIBED) {
 			return res.status(409).json({

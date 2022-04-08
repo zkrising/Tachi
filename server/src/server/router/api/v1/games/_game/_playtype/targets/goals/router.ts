@@ -30,46 +30,6 @@ router.get("/popular", async (req, res) => {
 	});
 });
 
-/**
- * Retrieve goals that have been recently achieved for this GPT.
- *
- * @name GET /api/v1/games/:game/:playtype/targets/goals/recently-achieved
- */
-router.get("/recently-achieved", async (req, res) => {
-	const { game, playtype } = GetGPT(req);
-
-	const recentlyAchievedUserGoals = await db["goal-subs"].find(
-		{
-			game,
-			playtype,
-			achieved: true,
-			wasInstantlyAchieved: false,
-		},
-		{
-			sort: {
-				timeAchieved: -1,
-			},
-			limit: 100,
-		}
-	);
-
-	const goals = await db.goals.find({
-		goalID: { $in: recentlyAchievedUserGoals.map((e) => e.goalID) },
-	});
-
-	const users = await GetUsersWithIDs(recentlyAchievedUserGoals.map((e) => e.userID));
-
-	return res.status(200).json({
-		success: true,
-		description: `Retrieved ${recentlyAchievedUserGoals.length} recently achieved goals.`,
-		body: {
-			goalSubs: recentlyAchievedUserGoals,
-			goals,
-			users,
-		},
-	});
-});
-
 const ResolveGoalID: RequestHandler = async (req, res, next) => {
 	const { game, playtype } = GetGPT(req);
 	const goalID = req.params.goalID;

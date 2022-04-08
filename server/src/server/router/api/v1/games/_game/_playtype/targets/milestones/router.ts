@@ -1,9 +1,11 @@
 import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SearchCollection } from "lib/search/search";
 import { EvaluateMilestoneProgress, GetGoalsInMilestone } from "lib/targets/milestones";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame } from "tachi-common";
+import { IsString } from "utils/misc";
 import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
 import { GetUsersWithIDs, ResolveUser } from "utils/user";
 
@@ -30,6 +32,37 @@ const ResolveMilestoneID: RequestHandler = async (req, res, next) => {
 
 	return next();
 };
+
+/**
+ * Search milestones for this GPT.
+ *
+ * @param search - The query to search for.
+ *
+ * @name GET /api/v1/games/:game/:playtype/targets/milestones
+ */
+router.get("/", async (req, res) => {
+	const { game, playtype } = GetGPT(req);
+
+	if (!IsString(req.query.search)) {
+		return res.status(400).json({
+			success: false,
+			description: `Invalid value for search.`,
+		});
+	}
+
+	const milestones = await SearchCollection(
+		db.milestones,
+		req.query.search,
+		{ game, playtype },
+		50
+	);
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned ${milestones.length} milestones.`,
+		body: milestones,
+	});
+});
 
 /**
  * Retrieve information about this milestone and who is subscribed to it.

@@ -10,7 +10,7 @@ import { GetFolderFromParam } from "./middleware";
 const router: Router = Router({ mergeParams: true });
 
 /**
- * Search the folders for this game.
+ * Search the folders for this GPT.
  *
  * @param search - The query to search for.
  * @param inactive - Also show inactive folders, such as those on old versions.

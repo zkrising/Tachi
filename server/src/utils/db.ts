@@ -4,6 +4,7 @@ import { FilterQuery } from "mongodb";
 import {
 	FormatChart,
 	Game,
+	GoalDocument,
 	GoalSubscriptionDocument,
 	integer,
 	MilestoneSubscriptionDocument,
@@ -172,7 +173,7 @@ export async function HumaniseChartID(game: Game, chartID: string) {
  */
 export async function GetRecentlyAchievedGoals(
 	baseQuery: FilterQuery<GoalSubscriptionDocument>,
-	limit = 50
+	limit = 100
 ) {
 	const query = Object.assign(
 		{
@@ -205,7 +206,7 @@ export async function GetRecentlyAchievedGoals(
  */
 export async function GetRecentlyInteractedGoals(
 	baseQuery: FilterQuery<GoalSubscriptionDocument>,
-	limit = 50
+	limit = 100
 ) {
 	const query = Object.assign(
 		{
@@ -239,7 +240,7 @@ export async function GetRecentlyInteractedGoals(
  */
 export async function GetRecentlyAchievedMilestones(
 	baseQuery: FilterQuery<MilestoneSubscriptionDocument>,
-	limit = 50
+	limit = 100
 ) {
 	const query = Object.assign(
 		{
@@ -272,7 +273,7 @@ export async function GetRecentlyAchievedMilestones(
  */
 export async function GetRecentlyInteractedMilestones(
 	baseQuery: FilterQuery<MilestoneSubscriptionDocument>,
-	limit = 50
+	limit = 100
 ) {
 	const query = Object.assign(
 		{
@@ -295,4 +296,42 @@ export async function GetRecentlyInteractedMilestones(
 	});
 
 	return { milestones, milestoneSubs };
+}
+
+export async function GetMostSubscribedGoals(
+	query: FilterQuery<GoalSubscriptionDocument>,
+	limit = 100
+): Promise<(GoalDocument & { __subscriptions: integer })[]> {
+	const mostSubscribedGoals = (await db["goal-subs"].aggregate([
+		{
+			$match: query,
+		},
+		{
+			$group: {
+				_id: "$goalID",
+				subscriptions: { $sum: 1 },
+			},
+		},
+		{
+			$sort: {
+				subscriptions: -1,
+			},
+		},
+		{
+			$limit: limit,
+		},
+		{
+			$lookup: {
+				from: "goals",
+				localField: "_id",
+				foreignField: "goalID",
+				as: "goal",
+			},
+		},
+	])) as { goal: GoalDocument; subscriptions: integer }[];
+
+	return mostSubscribedGoals.map((e) => ({
+		__subscriptions: e.subscriptions,
+		...e.goal,
+	}));
 }

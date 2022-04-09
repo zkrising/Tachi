@@ -30,7 +30,7 @@ interface ChartDocument {
 | `songID` | The corresponding parent [Song Document](./song.md)'s ID. |
 | `level` | A string representing the level for this chart. This is a string because games use identifiers like '12+'. |
 | `levelNum` | A number representing the level for this chart. This may be a decimal. |
-| `isPrimary` | Whether this chart is primary or not. For more information on this, see [isPrimary](songs-../implementation-details/songs-charts.md#isPrimary)
+| `isPrimary` | Whether this chart is primary or not. For more information on this, see [isPrimary](../implementation-details/songs-charts.md#isPrimary)
 `difficulty` | A string representing what difficulty this chart is for. The valid values for this field depend on the GPT. |
 | `playtype` | What playtype this chart is for. |
 | `data` | Additional GPT Specific data about this chart, such as inGameIDs or SHA hashes. |

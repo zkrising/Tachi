@@ -4,8 +4,8 @@ Goals are stored in `goals`.
 
 !!! warning
 	This document describes a goal, but does not describe
-	a user's "subscription" to that goal. For that, see
-	[User Goal Document](./user-goal.md).
+	a user's "subscription" to that goal. For that, see the
+	[Goal Subscription Document](./goal-sub.md).
 
 *****
 

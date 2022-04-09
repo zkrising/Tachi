@@ -601,7 +601,7 @@ GET /api/v1/games/bms/7K/player-distribution?class=stslDan
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `limit` | Optional Integer | Optionally, provide an integer between 1 and 100 to return this amount of scores. Defaults to 10. |
+| `limit` | Optional Integer | Optionally, provide an integer between 1 and 100 to return this amount of scores. Defaults to 100. |
 
 ### Response
 

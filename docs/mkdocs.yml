@@ -64,6 +64,7 @@ nav:
                 - "api/routes/oauth2.md"
                 - "api/routes/clients.md"
                 - "api/routes/config.md"
+                - "api/routes/gpt-targets.md"
 
           - Webhooks:
                 - "api/webhooks/main.md"
@@ -85,6 +86,7 @@ nav:
                 - "tachi-server/infrastructure/api-clients.md"
                 - "tachi-server/infrastructure/oauth2.md"
                 - "tachi-server/infrastructure/file-flow.md"
+                - "tachi-server/infrastructure/database-seeds.md"
 
           - Structure:
                 - "tachi-server/structure/style.md"
@@ -120,6 +122,7 @@ nav:
                 - "tachi-server/implementation-details/esd.md"
                 - "tachi-server/implementation-details/score-id.md"
                 - "tachi-server/implementation-details/goal-id.md"
+                - "tachi-server/implementation-details/goals-milestones.md"
 
           - Documents:
                 - "tachi-server/documents/overview.md"

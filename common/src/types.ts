@@ -815,6 +815,7 @@ interface CDDataUSC {
 	hashSHA1: string | string[];
 	isOfficial: boolean;
 	effector: string;
+	tableFolders: { table: string; level: string }[];
 }
 
 interface ChartDocumentData {

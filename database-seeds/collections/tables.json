@@ -2367,6 +2367,32 @@
 		"title": "SOUND VOLTEX (VIVID WAVE)"
 	},
 	{
+		"default": false,
+		"description": "The insane KSM difficulty table, based on scoring difficulty.",
+		"folders": [
+			"F097bdef47a3a0a2d7a5704dbbd355db9801b9b6c89955619097706c0afd90306",
+			"Fab20b9c40310ae238bfadba48e84803702f869f6238e89d9dc0127b488b1d9e1",
+			"F916899cd11e9298ee2a938f9b5a894224ac4ecae239333e0608aa322e3493d1c",
+			"F0d21c2895351d97e1863e2915002a83aa92f077c0a8bd281b530de5ea2bbcc58",
+			"F48d6ba3f1f2156ca630165945be877c77115beca9f7486dda740abd7a57a3b7e",
+			"F6109291fab8721632f6d536b3afcea8fe776a3494fe14e2af1b0fd9549d255fc",
+			"F1a0f8561dbcd646f0edbf295f8c8e904fe45cce82a1e82743afb92b0951f874e",
+			"F4e656435042cec23f8e8af1464b1630e8ca6abe89677f8fd7a6f2659f75ee653",
+			"F054baae5749ba38208d294fc0fac9cb7f1c3590d92afb8a5991d322d938ef96b",
+			"F4b15814e427ef7b3b33e7faef50cebf8fab317ef05334b03fbe16981e2e47e89",
+			"F2e3fecb1fc3d6907a88adedb72a249d0005693afae23d581979c9a18a875d4fe",
+			"F276f8847e6ea5f256b9ec9b81c8e9a98b833ae6420aa3c4dc10dce8ea711123e",
+			"F8ffe4bc2b4eecd8953d883993099846431f12677bd8a533a214e424246a27eac",
+			"F9be9d53e88719aad19d3a7f79039b0dbcd631f8960cbde016ee864c136b37b41",
+			"Ff5cd23185d2145945215839ce43812452a6c13be7f050b8ae2d108ace095a31b"
+		],
+		"game": "usc",
+		"inactive": false,
+		"playtype": "Controller",
+		"tableID": "usc-Controller-os",
+		"title": "os"
+	},
+	{
 		"default": true,
 		"description": "Level Folders for SDVX converts inside USC.",
 		"folders": [
@@ -2398,6 +2424,64 @@
 		"title": "SDVX Official Levels (Controller)"
 	},
 	{
+		"default": false,
+		"description": "The normal KSM difficulty table, based on scoring difficulty.",
+		"folders": [
+			"F1fca8f47b3cf9aec897f3c0d6e461d739121a796f132a239d6cfe4e860d3da65",
+			"Fa84fa6d42217dacbbec98ee9c038f0905ea636d89cca27e1b0491713bbd79603",
+			"Ff98c69cb7b136450be2ea58156489add8b5bdde2c7ab14c7171d5c27453512e2",
+			"F9c9186eabbf33785fa9c36fb0e0949b830dc6ddd247d276aaf2b983d9e0bfb80",
+			"F3bed69cd80b42f9d863f06bcb7b05d52377c3c6d39264538976c931b5879842c",
+			"F461058117d55163632029e3b21c135f49252128e352bd1329065f86268883d0d",
+			"F5602910e262e50fe26a8f488863d3d4c0293021065dd116d9d30bffe9215e403",
+			"F63fb2048b7c0e258a90b6a96e8462e623a201cf0e4c301501ef87dd57af16480",
+			"F663b1a497fe20e7132c1d2337d2358f4f2b4b69476a7e0a15d5e975397fab5f9",
+			"F542afb14f20282ab7eff792bb36059d645481530bd2008a4ac7e1868e2c3ef8c",
+			"Fd75d6a2dd1a59ca49f29b085119eb954c34d7e08d9f5443b657346c0e5d5939b",
+			"Ff99304779cd8bfe66eb12dad9702d801fe8a1cbf248bb75e4697da4cb8ad983f",
+			"Fb8380fd4133b5deeefe5bacedf23590ce9a512c662a28661ca7d442faa4041f5",
+			"F8e33babef5871d1d37267a43f9dbebfcf882c539d31eaabda49e17f5d41e5d92",
+			"Fe734131d4cdf868f4f758a99f100aa00e834dc3dda4a131e93b75cfca2848efc",
+			"F07a3d5e00da9b6f600ef6ac65dcd03a27009a4a2d5fadc5deaeb523476a610b4",
+			"F7c4be3ed7d2dd6d1f1bfed9d05aaf0395c425d3bc7f4de7b822d77ccc32ee059",
+			"F11768b3b611b84dc7f69e6f59185dd6a6cd654543bce47c079e9d3f994e4a72b",
+			"Fb77cbc535a2a4f0204d20df78fea06f6779f21c996a2e1e44c3350afee19f98c",
+			"F5f740d4d61b2d6bfc06b0bd16ef83bc22fbb513de7be669d3c5914f3e4ac551a",
+			"F219c989840b1e0f52267e44a995729ed243f7a0959b266df79e62cd43946a784"
+		],
+		"game": "usc",
+		"inactive": false,
+		"playtype": "Controller",
+		"tableID": "usc-Controller-us",
+		"title": "us"
+	},
+	{
+		"default": false,
+		"description": "The insane KSM difficulty table, based on scoring difficulty.",
+		"folders": [
+			"F35a8d42f8518b6a3f80decf68e505ede3cac425029125d594a7641f9a27bd570",
+			"Fb26d5c322f6eeec3d64178c36b6909e8c10da95439274e1284f39a9e8e1e36d2",
+			"Ff96e67bbcd3ca8e35a3446a5b66c7bf68cffea434cea91a08418d37eac4f5f85",
+			"F22585dd4ff3bae43a1151b42f958548858dc68605cd44c2d959e9c40aa0c06ad",
+			"F74a8c703246d40d5714753e13f1b751bb245ee702b43cec457fcb262f092d5e2",
+			"F723df54e30cd3607e8b652982a604f62a454d5a0c2291b649657399dd0270ead",
+			"F9b1ba6bbc65edbb816d8cd57d6c255efa2ba021fbf4e0390e1990347281e963b",
+			"F3f4547a92bfe0b97c5b152d1cc3d4970009f6fde1c310e49ff3faf5f12e05c5b",
+			"F05e67e8905d5ced6ab9ec089878aac379aa05e810626365c0b1bafb644ff6b70",
+			"F4acb11b2f052319867c9c1dc77cfe4a9a4f93cbb68104a3af9683c16204e64f7",
+			"F84ee2a3ae28477eb978241e546fc5a1a96f6e9f6d4dc677c7dac67e401a6a852",
+			"Fbbce753830cbc8a036602f130c08a8a6ce515668ef732aa38d8d2cb485be8410",
+			"Fbef5841c1537dd792189c29bbf92a99d0a28befd6f4c31d82fab5bb800832911",
+			"F06cbf2b792d188f935757c8324b2a2ca47491c0dd85dae0761b2af3a44cabb4e",
+			"Fafc3082171961d27bd78b803af18b8f1effd20bec7bcb0a65f86d9631873a7df"
+		],
+		"game": "usc",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"tableID": "usc-Keyboard-os",
+		"title": "os"
+	},
+	{
 		"default": true,
 		"description": "Level Folders for SDVX converts inside USC.",
 		"folders": [
@@ -2427,6 +2511,38 @@
 		"playtype": "Keyboard",
 		"tableID": "usc-Keyboard-official-levels",
 		"title": "SDVX Official Levels (Keyboard)"
+	},
+	{
+		"default": false,
+		"description": "The normal KSM difficulty table, based on scoring difficulty.",
+		"folders": [
+			"F3e2d3b7738b3720d1b5f12409713cc429c5eee629f70d146b897527b8868540f",
+			"F1235e8aabdeed900475218363b708c780a87350a6f725c44d8754496e6480b8d",
+			"F03c6840c56049cbb6dae62db6b762f62ba0ee897083ea0e972348ed71348e4cc",
+			"F93f2d028b2c7b39de080956bd376cfe3a6264173c9b16684662b9f697b51c48b",
+			"F5fa444c55e99b89344f4da24d530eafd8f71b39bfe435475c7a093a204f279c7",
+			"Fd78c132e1c080af094e4443d298aad26b605d685733bec1f7d9ead3029b20820",
+			"F2ba65483eb0785bb2c39ea0cffd46d06e290d84f73fc7a94a3791b1fbb5d96fd",
+			"Fba96371b76db981eb7674566e50ca33ee5f37c34e9ec0e3391ec3d88e26ac82f",
+			"Ff2b599759376a0544f552096f113f60bb8e0c4f4e89cecb119e273d528f7ff18",
+			"F4534a28f9a3f67ba89fc945d45f7fdc0f4b0adb7cdd514359f2485ba8cda655b",
+			"F251514ed915bcbb51346cfd9c94d374bf16a4ab042c60c9bc0b78f147b49d36d",
+			"Fbe7d153c2d7ecb63fdd22b4177ddcaeb11dab4c122e2c97b96dc730650ece048",
+			"F613bd980a7766413cc03f22080b1dd0e43109aee3bfb31dc01682534edd0451c",
+			"Fc84fb4e38b05cc68f3b4dbb4ff7a86874dd8a71d5ca88091daeaecf90db715a2",
+			"F32dcd87b756a50384c72c942d117717a65a69d67633f7b28f12c7a8ba8441573",
+			"Fe594eff2547df63b4323f1f16b86af417f63bd85fd72ffecb3f2061cec48bb1b",
+			"F25d2db896295f62c4a41e76921f99a915e872f51667739e866993a3c2e59390b",
+			"Fcc3f92c3435d012959578162cc79a50a5b6cfdb3b753df36ed38d210461d4202",
+			"Fcd94e34f9b299d909865571c3534e52c37946dbc102babe882a869e977f5b6ee",
+			"Febd2d0f46bfb653df5989b05c2212a568c16508579ba4cc2958dcf5d1031321a",
+			"F84c4efd5d5eafeba91ce9550cbdbd27f74ca08449f9b0ad7fd08f084b7fedff6"
+		],
+		"game": "usc",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"tableID": "usc-Keyboard-us",
+		"title": "us"
 	},
 	{
 		"default": true,

@@ -314,6 +314,12 @@ export const SCHEMAS = {
 				hashSHA1: p.or("string", ["string"]),
 				isOfficial: "boolean",
 				effector: "string",
+				tableFolders: [
+					{
+						table: "string",
+						level: "string",
+					},
+				],
 			})
 		)(self);
 	},

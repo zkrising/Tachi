@@ -24,6 +24,7 @@
 	"homepage": "https://github.com/TeamNewGuys/tachi-database-seeds#readme",
 	"dependencies": {
 		"@types/node": "^17.0.13",
+		"better-sqlite3": "^7.5.0",
 		"chalk": "4",
 		"commander": "^8.2.0",
 		"csv-parse": "^5.0.3",

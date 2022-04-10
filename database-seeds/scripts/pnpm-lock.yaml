@@ -23,7 +23,7 @@ specifiers:
   node-fetch: 2.6.7
   prettier: ^2.5.1
   prudence: ^0.9.7
-  tachi-common: 0.6.8-exceed
+  tachi-common: 0.7.11
   ts-node: ^10.4.0
   typescript: ^4.5.5
   xml2js: ^0.4.23
@@ -44,7 +44,7 @@ dependencies:
   monk: 7.3.4
   node-fetch: 2.6.7
   prudence: 0.9.7
-  tachi-common: 0.6.8-exceed
+  tachi-common: 0.7.11
   ts-node: 10.4.0_40146b36d18138e3202fbb722e5f65e4
   xml2js: 0.4.23
 
@@ -3075,8 +3075,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /tachi-common/0.6.8-exceed:
-    resolution: {integrity: sha512-WZNQBUlKTkmOmSnReGhC3Vc5t5Z7cvSmlghfsgG2+xlVqXUgfVLIZNHinheBS0N8mKi75IlhS8JT+FaHazn/XA==}
+  /tachi-common/0.7.11:
+    resolution: {integrity: sha512-rUApEoAFae2lKFIDhxtCRqXIDixMeQwKjID9/BW07DqPj5PhB9SdvqPZFs8X6RxJ07G72khzAbYcAktlMBHLcQ==}
     dependencies:
       '@types/mongodb': 3.6.18
     dev: false

@@ -82,6 +82,28 @@ export function FormatChart(
 		}
 
 		return `${realTitle} (${tables.map((e) => `${e.table}${e.level}`).join(", ")})`;
+	} else if (game === "usc") {
+		const uscChart = chart as ChartDocument<"usc:Keyboard" | "usc:Controller">;
+
+		const tables = Object.entries(uscChart.data.tableFolders);
+
+		// If this chart isn't an official, render it differently
+		if (!uscChart.data.isOfficial) {
+			// Same as BMS. turn this into SongTitle (Keyboard MXM normal1, insane2)
+			return `${song.title} (${chart.playtype} ${chart.difficulty} ${tables
+				.map((e) => `${e[0]}${e[1]}`)
+				.join(", ")})`;
+		} else if (uscChart.data.isOfficial && tables.length !== 0) {
+			// if this chart is an official **AND** is on tables (unlikely), render
+			// it as so:
+
+			// SongTitle (Keyboard MXM 17, normal1, insane2)
+			return `${song.title} (${chart.playtype} ${chart.difficulty} ${
+				chart.level
+			}, ${tables.map((e) => `${e[0]}${e[1]}`).join(", ")})`;
+		}
+
+		// otherwise, it's just an official and should be rendered like any other game.
 	}
 
 	const gameConfig = GetGameConfig(game);

@@ -5,6 +5,7 @@ import { SearchCollection } from "lib/search/search";
 import { EvaluateMilestoneProgress, GetGoalsInMilestone } from "lib/targets/milestones";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame } from "tachi-common";
+import { GetMostSubscribedGoals, GetMostSubscribedMilestones } from "utils/db";
 import { IsString } from "utils/misc";
 import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
 import { GetUsersWithIDs, ResolveUser } from "utils/user";
@@ -60,6 +61,18 @@ router.get("/", async (req, res) => {
 	return res.status(200).json({
 		success: true,
 		description: `Returned ${milestones.length} milestones.`,
+		body: milestones,
+	});
+});
+
+router.get("/popular", async (req, res) => {
+	const { game, playtype } = GetGPT(req);
+
+	const milestones = await GetMostSubscribedMilestones({ game, playtype });
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned ${milestones.length} popular milestones.`,
 		body: milestones,
 	});
 });

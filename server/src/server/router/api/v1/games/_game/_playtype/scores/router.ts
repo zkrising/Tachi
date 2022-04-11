@@ -11,14 +11,14 @@ const router: Router = Router({ mergeParams: true });
 /**
  * Return the most recent highlighted scores for this game.
  *
- * @param limit - Return up to this amount. Caps at 100, defaults to 10.
+ * @param limit - Return up to this amount. Caps at 100, defaults to 100.
  *
  * @name GET /api/v1/games/:game/:playtype/scores/highlighted
  */
 router.get(
 	"/highlighted",
 	prValidate({
-		limit: p.optional((self) => p.isBoundedInteger(1, 500)(Number(self))),
+		limit: p.optional((self) => p.isBoundedInteger(1, 100)(Number(self))),
 	}),
 	async (req, res) => {
 		const { game, playtype } = GetGPT(req);

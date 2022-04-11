@@ -7,6 +7,7 @@ import {
 	GoalDocument,
 	GoalSubscriptionDocument,
 	integer,
+	MilestoneDocument,
 	MilestoneSubscriptionDocument,
 	PBScoreDocument,
 	ScoreDocument,
@@ -333,5 +334,43 @@ export async function GetMostSubscribedGoals(
 	return mostSubscribedGoals.map((e) => ({
 		__subscriptions: e.subscriptions,
 		...e.goal,
+	}));
+}
+
+export async function GetMostSubscribedMilestones(
+	query: FilterQuery<MilestoneSubscriptionDocument>,
+	limit = 100
+): Promise<(MilestoneDocument & { __subscriptions: integer })[]> {
+	const mostSubscribedMilesones = (await db["milestone-subs"].aggregate([
+		{
+			$match: query,
+		},
+		{
+			$group: {
+				_id: "$milestoneID",
+				subscriptions: { $sum: 1 },
+			},
+		},
+		{
+			$sort: {
+				subscriptions: -1,
+			},
+		},
+		{
+			$limit: limit,
+		},
+		{
+			$lookup: {
+				from: "milestones",
+				localField: "_id",
+				foreignField: "milestoneID",
+				as: "milestone",
+			},
+		},
+	])) as { milestone: MilestoneDocument; subscriptions: integer }[];
+
+	return mostSubscribedMilesones.map((e) => ({
+		__subscriptions: e.subscriptions,
+		...e.milestone,
 	}));
 }

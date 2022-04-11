@@ -650,6 +650,8 @@ export interface MilestoneGroupDocument extends MongoDBDocument {
 
 export interface MilestoneSetDocument extends MongoDBDocument {
 	setID: string;
+	name: string;
+	desc: string;
 	game: Game;
 	playtype: Playtype;
 	milestones: string[];

@@ -117,7 +117,7 @@ export interface MongoDBDocument {
 }
 
 /**
- * Supported games by Kamaitachi.
+ * All supported games by Tachi.
  */
 export type Game =
 	| "iidx"
@@ -153,7 +153,6 @@ export interface SuccessfulAPIResponse<T = unknown> {
 	// this to only objects - Record<string, unknown>
 	// mandates indexability of the type, which makes
 	// it unusable for known objects.
-	// eslint-disable-next-line @typescript-eslint/ban-types
 	body: T;
 }
 
@@ -638,16 +637,6 @@ interface MilestoneAbsPropCriteria {
 	value: number;
 }
 
-export interface MilestoneGroupDocument extends MongoDBDocument {
-	game: Game;
-	playtype: Playtype;
-	isDefault: boolean;
-	createdBy: integer;
-	groupName: string;
-	name: string;
-	desc: string;
-}
-
 export interface MilestoneSetDocument extends MongoDBDocument {
 	setID: string;
 	name: string;
@@ -655,15 +644,6 @@ export interface MilestoneSetDocument extends MongoDBDocument {
 	game: Game;
 	playtype: Playtype;
 	milestones: string[];
-}
-
-export interface FunFactDocument extends MongoDBDocument {
-	text: string;
-	nsfw: boolean;
-	anonymous: boolean;
-	userID: integer;
-	funfactID: string;
-	timestamp: integer;
 }
 
 export type UserBadges = "alpha" | "beta" | "dev-team" | "contributor" | "significant-contributor";
@@ -726,12 +706,6 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
 	playtype: IDStringToPlaytype[I];
 	ratings: Partial<Record<UGSRatingsLookup[I], number | null>>;
 	classes: Partial<GameClasses<I>>;
-}
-
-export interface PrivateUserInfoDocument {
-	userID: integer;
-	password: string;
-	email: string;
 }
 
 type SupportedIIDXVersions =
@@ -1119,6 +1093,7 @@ type DDRJudges = "marvelous" | "perfect" | "great" | "good" | "boo" | "miss" | "
 type GitadoraJudges = "perfect" | "great" | "good" | "ok" | "miss";
 
 // judges might need to be changed here...
+// @bug Known that sdvx calls misses errors. I, however, don't care.
 type SDVXJudges = "critical" | "near" | "miss";
 
 export interface JudgementLookup {
@@ -1266,7 +1241,7 @@ export interface ImportProcessInfoKTDataNotFound {
 	message: string | null;
 	content: {
 		data: unknown;
-		context: unknown; // TEMP
+		context: unknown; // @TODO Type these properly.
 		orphanID: string;
 	};
 }

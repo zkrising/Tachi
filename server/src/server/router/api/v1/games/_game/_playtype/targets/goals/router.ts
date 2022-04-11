@@ -66,6 +66,10 @@ router.get("/:goalID", ResolveGoalID, async (req, res) => {
 
 	const users = await GetUsersWithIDs(goalSubs.map((e) => e.userID));
 
+	const parentMilestones = await db.milestones.find({
+		"milestoneData.goalID": goal.goalID,
+	});
+
 	return res.status(200).json({
 		success: true,
 		description: `Retrieved information about ${goal.name}.`,
@@ -73,6 +77,7 @@ router.get("/:goalID", ResolveGoalID, async (req, res) => {
 			goal,
 			goalSubs,
 			users,
+			parentMilestones,
 		},
 	});
 });

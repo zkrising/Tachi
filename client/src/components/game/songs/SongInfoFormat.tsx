@@ -1,4 +1,4 @@
-import { FormatBMSTables } from "util/misc";
+import { FormatTables } from "util/misc";
 import React from "react";
 import { ChartDocument, FormatDifficulty, Game, SongDocument } from "tachi-common";
 import DefaultSongChartInfoFormat from "./DefaultSongInfoFormat";
@@ -28,7 +28,7 @@ export default function SongChartInfoFormat({
 		}
 		const hasLevel = chart.data.tableFolders.length > 0;
 
-		const levelText = hasLevel ? FormatBMSTables(chart.data.tableFolders) : "No Level";
+		const levelText = hasLevel ? FormatTables(chart.data.tableFolders) : "No Level";
 
 		return (
 			<>

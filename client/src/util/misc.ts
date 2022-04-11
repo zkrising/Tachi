@@ -47,8 +47,8 @@ export function PartialArrayRecordAssign<K extends string | number | symbol, T>(
 	}
 }
 
-export function FormatBMSTables(bmsTables: { table: string; level: string }[]) {
-	return bmsTables.map(e => `${e.table}${e.level}`).join(", ");
+export function FormatTables(tables: { table: string; level: string }[]) {
+	return tables.map(e => `${e.table}${e.level}`).join(", ");
 }
 
 export function FormatGPTRating(

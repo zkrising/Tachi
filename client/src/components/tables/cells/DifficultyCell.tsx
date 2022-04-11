@@ -12,6 +12,7 @@ import {
 } from "tachi-common";
 import BMSPMSDifficultyCell from "./BMSDifficultyCell";
 import TierlistInfoPart from "./TierlistInfoPart";
+import USCDifficultyCell from "./USCDifficultyCell";
 
 export default function DifficultyCell({
 	game,
@@ -36,6 +37,10 @@ export default function DifficultyCell({
 				}
 				game={game}
 			/>
+		);
+	} else if (game === "usc") {
+		return (
+			<USCDifficultyCell chart={chart as ChartDocument<"usc:Controller" | "usc:Keyboard">} />
 		);
 	}
 

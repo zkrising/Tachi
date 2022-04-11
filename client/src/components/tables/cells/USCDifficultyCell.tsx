@@ -3,27 +3,28 @@ import { FormatTables } from "util/misc";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import React from "react";
-import { ChartDocument, COLOUR_SET } from "tachi-common";
+import { ChartDocument, GetGamePTConfig } from "tachi-common";
 import TierlistInfoPart from "./TierlistInfoPart";
 
-export default function BMSPMSDifficultyCell({
+export default function USCDifficultyCell({
 	chart,
-	game,
 }: {
-	chart: ChartDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">;
-	game: "bms" | "pms";
+	chart: ChartDocument<"usc:Controller" | "usc:Keyboard">;
 }) {
-	const hasLevel = chart.data.tableFolders.length > 0;
+	const levelText = chart.data.isOfficial ? FormatTables(chart.data.tableFolders) : chart.level;
 
-	const levelText = hasLevel ? FormatTables(chart.data.tableFolders) : "No Level";
+	const gptConfig = GetGamePTConfig("usc", chart.playtype);
+
 	return (
 		<td
 			style={{
-				backgroundColor: ChangeOpacity(hasLevel ? COLOUR_SET.red : COLOUR_SET.gray, 0.2),
+				backgroundColor: ChangeOpacity(gptConfig.difficultyColours[chart.difficulty]!, 0.2),
 			}}
 		>
-			<span>{levelText}</span>
-			<TierlistInfoPart chart={chart} game={game} />
+			<span>
+				{chart.difficulty} {levelText}
+			</span>
+			<TierlistInfoPart chart={chart} game="usc" />
 			{!chart.isPrimary && (
 				<QuickTooltip tooltipContent="This chart is an alternate, old chart.">
 					<div>

@@ -149,7 +149,7 @@ N/A
 
 #### Request
 ```
-GET /api/v1/games/:game/:playtype/targets/goals?search=foo
+GET /api/v1/games/:game/:playtype/targets/goals/popular
 ```
 
 #### Response
@@ -247,7 +247,81 @@ GET /api/v1/games/iidx/SP/targets/goals/some_goal_id/evaluate-for?userID=zkldi
 }
 ```
 
-!!! info
+*****
+
+## Search milestones for this GPT.
+
+`GET /api/v1/games/:game/:playtype/targets/milestones`
+
+!!! note
+	You might notice that there's no equivalent endpoint for goals.
+
 	Searching goals for a GPT isn't very interesting, since they can be created by anyone at any time. The only reason goals are stored separately to subscriptions are for deduplication purposes and milestones.
 
 	As such, searching goals for a GPT is pointless, since technically it should search the set of all possible goals.
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `search` | String | The query to search for. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | Array&lt;MilestoneDocument&gt; | All of the milestones that matched this search criteria. |
+
+*****
+
+## Retrieve information about a specific milestone, and who is subscribed to it.
+
+`GET /api/v1/games/:game/:playtype/targets/milestones/:milestoneID`
+
+### Parameters
+
+N/A
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `milestone` | MilestoneDocument | The milestone with this milestoneID. |
+| `milestoneSubs` | Array&lt;MilestoneSubDocument&gt; | All of the subscriptions to this milestone. |
+| `users` | Array&lt;UserDocument&gt; | All of the user's with subscriptions to this milestone. |
+| `goals` | Array&lt;GoalDocument&gt; | All of the goals in this milestone. |
+
+*****
+
+## Evaluate a milestone for a user, even if they aren't subscribed to it.
+
+`GET /api/v1/games/:game/:playtype/targets/milestones/:milestoneID/evaluate-for`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `userID` | String | The user you wish to evaluate this milestone upon. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `goals` | Array&lt;GoalDocument&gt; | All of the goals in this milestone. |
+| `goalResults` | Array&lt;EvaluatedGoalResult&gt; | This user's progress on each individual goal in this milestone. |
+| `achieved` | Boolean | Whether this user has this milestone achieved or not. |
+| `progress` | Integer | How many goals this user has achieved in this milestone. |
+| `outOf` | Integer | How many goals need to be achieved in this milestone for it to be marked as achieved. |
+
+#### EvaluatedGoalResult
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `goalID` | String | The goal ID that these results are for. |
+| `achieved` | Boolean | Whether this goal was achieved or not. |
+| `progress` | Number \| Null | How much progress this user made on this goal. Null if no progress was made. |
+| `outOf` | Number | What `progress` needs to be greater than or equal to for this goal to count as achieved. |
+| `progressHuman` | String | A humanised, pretty-printed progress indicator for this goal. |
+| `outOfHuman` | String | A humanised, pretty-printed outOf indicator for this goal. |
+
+

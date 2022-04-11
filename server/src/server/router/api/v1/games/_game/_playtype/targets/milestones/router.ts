@@ -5,7 +5,7 @@ import { SearchCollection } from "lib/search/search";
 import { EvaluateMilestoneProgress, GetGoalsInMilestone } from "lib/targets/milestones";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame } from "tachi-common";
-import { GetMostSubscribedGoals, GetMostSubscribedMilestones } from "utils/db";
+import { GetMostSubscribedMilestones } from "utils/db";
 import { IsString } from "utils/misc";
 import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
 import { GetUsersWithIDs, ResolveUser } from "utils/user";
@@ -65,6 +65,11 @@ router.get("/", async (req, res) => {
 	});
 });
 
+/**
+ * Find the most subscribed-to milestones for this GPT.
+ *
+ * @name GET /api/v1/games/:game/:playtype/targets/milestones/popular
+ */
 router.get("/popular", async (req, res) => {
 	const { game, playtype } = GetGPT(req);
 

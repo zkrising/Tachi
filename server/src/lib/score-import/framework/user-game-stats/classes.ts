@@ -62,13 +62,13 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 };
 
 /**
- * Calculates a Users' Game Stats Classes. This function is rather complex, because the reality is rather complex.
+ * Calculates a User's Game Stats Classes. This function is rather complex, because the reality is rather complex.
  *
  * A class is simply a hard bounded division dependent on a user. Such as a Dan or a skill level dependent on a statistic.
  * Not all services expose this information in the same way, so this function takes an async resolve function,
  * which is allowed to return its own classes. These will be merged with the classes that *we* can calculate.
  *
- * As an example, we are always able to calculate things like Gitadora's colours. We know the users' skill statistic,
+ * As an example, we are always able to calculate things like Gitadora's colours. We know the user's skill statistic,
  * and a colour is just between X-Y skill. However, we cannot always calculate something like IIDX's dans. Infact,
  * there's no calculation involved. We need to instead request this information from a service. For things like ARC
  * they expose this on a dedicated endpoint.

@@ -62,7 +62,7 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
 }
 
 /**
- * Updates users' rankings on a given chart.
+ * Updates user's rankings on a given chart.
  */
 export async function UpdateChartRanking(chartID: string) {
 	const scores = await db["personal-bests"].find(

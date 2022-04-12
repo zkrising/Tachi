@@ -19,7 +19,7 @@ const logger = CreateLogCtx(__filename);
 const router: Router = Router({ mergeParams: true });
 
 /**
- * Retrieves this users' set milestones.
+ * Retrieves this user's set milestones.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/milestones
  */

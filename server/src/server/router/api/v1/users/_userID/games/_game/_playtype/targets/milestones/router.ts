@@ -113,6 +113,7 @@ router.get("/:milestoneID", GetMilestone, GetMilestoneSubscription, async (req, 
 		}.`,
 		body: {
 			milestoneSub,
+			milestone,
 			results,
 			goals,
 		},
@@ -164,6 +165,7 @@ router.put(
 		// Users should be able to subscribe to milestones EVEN IF they would instantly
 		// achieve them.
 
+		// This is impossible, as the third argument to the above function is false!
 		// if (subResult === SubscribeFailReasons.ALREADY_ACHIEVED) {
 		// 	return res.status(400).json({
 		// 		success: false,
@@ -181,7 +183,7 @@ router.put(
 		return res.status(200).json({
 			success: true,
 			description: `Subscribed to milestone '${milestone.name}'.`,
-			body: subResult,
+			body: { ...subResult, milestone },
 		});
 	}
 );

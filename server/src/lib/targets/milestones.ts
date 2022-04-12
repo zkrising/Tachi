@@ -2,6 +2,7 @@ import db from "external/mongo/db";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
 import {
+	GoalDocument,
 	GoalSubscriptionDocument,
 	integer,
 	MilestoneDocument,
@@ -167,6 +168,12 @@ export async function EvaluateMilestoneProgress(userID: integer, milestone: Mile
 	};
 }
 
+interface MilestoneSubscriptionReturns {
+	milestoneSub: MilestoneSubscriptionDocument;
+	goals: GoalDocument[];
+	goalResults: EvaluatedGoalResult[];
+}
+
 /**
  * Subscribes the given user to a provided milestone. If the user is already subscribed,
  * null is returned.
@@ -177,8 +184,17 @@ export async function EvaluateMilestoneProgress(userID: integer, milestone: Mile
 export async function SubscribeToMilestone(
 	userID: integer,
 	milestone: MilestoneDocument,
+	cancelIfAchieved: false
+): Promise<MilestoneSubscriptionReturns | SubscribeFailReasons.ALREADY_SUBSCRIBED>;
+export async function SubscribeToMilestone(
+	userID: integer,
+	milestone: MilestoneDocument,
 	cancelIfAchieved = true
-) {
+): Promise<
+	| MilestoneSubscriptionReturns
+	| SubscribeFailReasons.ALREADY_SUBSCRIBED
+	| SubscribeFailReasons.ALREADY_ACHIEVED
+> {
 	const isSubscribedToMilestone = await db["milestone-subs"].findOne({
 		userID,
 		milestoneID: milestone.milestoneID,

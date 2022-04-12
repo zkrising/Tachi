@@ -98,6 +98,10 @@ router.get("/:milestoneID", ResolveMilestoneID, async (req, res) => {
 
 	const goals = await GetGoalsInMilestone(milestone);
 
+	const parentMilestoneSets = await db["milestone-sets"].find({
+		milestones: milestone.milestoneID,
+	});
+
 	return res.status(200).json({
 		success: true,
 		description: `Retrieved information about ${milestone.name}.`,
@@ -106,6 +110,7 @@ router.get("/:milestoneID", ResolveMilestoneID, async (req, res) => {
 			milestoneSubs,
 			users,
 			goals,
+			parentMilestoneSets,
 		},
 	});
 });

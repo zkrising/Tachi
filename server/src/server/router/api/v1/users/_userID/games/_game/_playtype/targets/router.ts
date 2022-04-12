@@ -41,10 +41,11 @@ router.get("/recently-achieved", async (req, res) => {
 
 /**
  * Returns a user's recently interacted with (raised, etc.) goals and milestones.
+ * Note that this does not include recently achieved.
  *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/recently-interacted
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/recently-raised
  */
-router.get("/recently-interacted", async (req, res) => {
+router.get("/recently-raised", async (req, res) => {
 	const { game, playtype, user } = GetUGPT(req);
 
 	const userID = user.id;

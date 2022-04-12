@@ -68,7 +68,7 @@ GET /api/v1/games/iidx/SP/targets/recently-achieved
 
 ## Retrieve this game's recently interacted-with targets
 
-`GET /api/v1/games/:game/:playtype/targets/recently-interacted`
+`GET /api/v1/games/:game/:playtype/targets/recently-raised`
 
 !!! info
 	This endpoint returns the 100 most recently interacted-with goal subscriptions, and 50 most recently interacted-with milestone subscriptions.
@@ -95,7 +95,7 @@ None.
 
 #### Request
 ```
-GET /api/v1/games/iidx/SP/targets/recently-interacted
+GET /api/v1/games/iidx/SP/targets/recently-raised
 ```
 
 #### Response
@@ -166,7 +166,7 @@ GET /api/v1/games/:game/:playtype/targets/goals/popular
 
 *****
 
-## Retrieve information about a specific goal and its subscribers
+## Retrieve information about a specific goal and its subscribers.
 
 `GET /api/v1/games/:game/:playtype/targets/goals/:goalID`
 
@@ -181,6 +181,7 @@ None.
 | `goal` | GoalDocument | The goal document at this ID. |
 | `goalSubs` | Array&lt;GoalSubDocument&gt; | All of the subscriptions to this goal. |
 | `users` | Array&lt;UserDocument&gt; | All of the users subscribed to this goal. |
+| `parentMilestones` | Array&lt;MilestoneDocument&gt; | All of the milestones that include this goal. |
 
 *****
 
@@ -324,4 +325,38 @@ N/A
 | `progressHuman` | String | A humanised, pretty-printed progress indicator for this goal. |
 | `outOfHuman` | String | A humanised, pretty-printed outOf indicator for this goal. |
 
+*****
+
+## Search Milestone Sets
+
+`GET /api/v1/games/:game/:playtype/targets/milestone-sets`
+
+### Parameters
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `search` | String | A name of a milestone set to search for. |
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | Array&lt;MilestoneSetDocument&gt; | An array of MilestoneSetDocuments, based on the search parameter. | 
+
+*****
+
+## Retrieve a milestone set with a specific ID.
+
+`GET /api/v1/games/:game/:playtype/targets/milestone-sets/:setID`
+
+### Parameters
+
+N/A
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `milestoneSet` | MilestoneSetDocument | The milestone set document at this ID. |
+| `milestones` | Array&lt;MilestoneDocument&gt; | All of the milestone documents that belong to this set. |
 

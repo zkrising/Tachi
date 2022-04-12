@@ -8,6 +8,7 @@ import {
 	GoalSubscriptionDocument,
 	integer,
 	MilestoneDocument,
+	MilestoneSetDocument,
 	MilestoneSubscriptionDocument,
 	PBScoreDocument,
 	ScoreDocument,
@@ -373,4 +374,20 @@ export async function GetMostSubscribedMilestones(
 		__subscriptions: e.subscriptions,
 		...e.milestone,
 	}));
+}
+
+export async function GetChildMilestones(milestoneSet: MilestoneSetDocument) {
+	const milestones = await db.milestones.find({
+		milestoneID: { $in: milestoneSet.milestones },
+	});
+
+	if (milestones.length !== milestoneSet.milestones.length) {
+		logger.error(
+			`Expected to find ${milestoneSet.milestones.length} milestones in the database, but only found ${milestones.length}.`,
+			{ milestoneSet }
+		);
+		throw new Error(`Failed to retrieve milestone sets' children.`);
+	}
+
+	return milestones;
 }

@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: `Retrieved ${milestoneSubs.length} milestone(s)`,
+		description: `Retrieved ${milestoneSubs.length} milestone(s).`,
 		body: {
 			milestones,
 			milestoneSubs,

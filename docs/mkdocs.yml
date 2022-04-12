@@ -65,6 +65,7 @@ nav:
                 - "api/routes/clients.md"
                 - "api/routes/config.md"
                 - "api/routes/gpt-targets.md"
+                - "api/routes/ugpt-targets.md"
 
           - Webhooks:
                 - "api/webhooks/main.md"

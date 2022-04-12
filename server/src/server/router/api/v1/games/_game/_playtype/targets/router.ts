@@ -9,6 +9,7 @@ import {
 import { GetGPT } from "utils/req-tachi-data";
 import goalsRouter from "./goals/router";
 import milestonesRouter from "./milestones/router";
+import milestoneSetsRouter from "./milestone-sets/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -40,9 +41,9 @@ router.get("/recently-achieved", async (req, res) => {
 /**
  * Retrieve all of this game's recently interacted-with goals and milestones.
  *
- * @name GET /api/v1/games/:game/:playtype/targets/recently-interacted
+ * @name GET /api/v1/games/:game/:playtype/targets/recently-raised
  */
-router.get("/recently-interacted", async (req, res) => {
+router.get("/recently-raised", async (req, res) => {
 	const { game, playtype } = GetGPT(req);
 
 	const [{ goals, goalSubs }, { milestones, milestoneSubs }] = await Promise.all([
@@ -67,5 +68,6 @@ router.get("/recently-interacted", async (req, res) => {
 
 router.use("/goals", goalsRouter);
 router.use("/milestones", milestonesRouter);
+router.use("/milestone-sets", milestoneSetsRouter);
 
 export default router;

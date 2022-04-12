@@ -45,7 +45,7 @@ t.test("GET /api/v1/games/:game/:playtype/targets/recently-achieved", (t) => {
 	t.end();
 });
 
-t.test("GET /api/v1/games/:game/:playtype/targets/recently-interacted", (t) => {
+t.test("GET /api/v1/games/:game/:playtype/targets/recently-raised", (t) => {
 	t.beforeEach(ResetDBState);
 
 	// mutate
@@ -58,7 +58,14 @@ t.test("GET /api/v1/games/:game/:playtype/targets/recently-interacted", (t) => {
 			// not achieved
 			HC511UserGoal,
 			m({ goalID: "interacted", achieved: false, lastInteraction: 1000 }),
-			m({ goalID: "interacted_more_recently", achieved: true, lastInteraction: 2000 }),
+			// happened more recently
+			m({ goalID: "interacted_more_recently", achieved: false, lastInteraction: 2000 }),
+			// shouldnt be included -- just recently-raised.
+			m({
+				goalID: "achieved",
+				achieved: true,
+				lastInteraction: 1000,
+			}),
 			m({
 				goalID: "achieved_instantly",
 				achieved: true,
@@ -67,7 +74,7 @@ t.test("GET /api/v1/games/:game/:playtype/targets/recently-interacted", (t) => {
 			}),
 		]);
 
-		const res = await mockApi.get("/api/v1/games/iidx/SP/targets/recently-interacted");
+		const res = await mockApi.get("/api/v1/games/iidx/SP/targets/recently-raised");
 
 		t.equal(res.statusCode, 200);
 

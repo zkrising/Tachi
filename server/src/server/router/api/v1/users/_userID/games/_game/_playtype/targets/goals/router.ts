@@ -247,7 +247,6 @@ router.delete(
 	RequireAuthedAsUser,
 	GetGoalSubscription,
 	RequirePermissions("manage_targets"),
-	prValidate({ goalID: "string" }),
 	async (req, res) => {
 		const goalID = req.params.goalID;
 		const { user, game, playtype } = GetUGPT(req);

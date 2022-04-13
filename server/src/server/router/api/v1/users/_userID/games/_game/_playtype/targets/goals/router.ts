@@ -9,7 +9,7 @@ import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { GoalDocument, MilestoneDocument } from "tachi-common";
-import { GetGoalForIDGuaranteed } from "utils/db";
+import { GetGoalForIDGuaranteed, GetMilestoneForIDGuaranteed } from "utils/db";
 import { AssignToReqTachiData, GetUGPT } from "utils/req-tachi-data";
 import { RequireAuthedAsUser } from "../../../../../middleware";
 
@@ -88,7 +88,7 @@ router.post(
 					);
 				}
 
-				// proper valid/ation later.
+				// proper validation later.
 				return p.gte(0)(self);
 			},
 		},
@@ -120,8 +120,6 @@ router.post(
 					);
 				}
 
-				// technically impossible, so let's ignore it.
-				/* istanbul ignore next */
 				return "Unknown charts.type.";
 			},
 		},
@@ -220,19 +218,9 @@ router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 	let milestones: MilestoneDocument[] = [];
 
 	if (goalSub.parentMilestones.length !== 0) {
-		milestones = await db.milestones.find({
-			milestoneID: { $in: goalSub.parentMilestones },
-		});
-
-		if (milestones.length !== goalSub.parentMilestones.length) {
-			logger.error(
-				`Goal '${goalSub.goalID} (uid:${goalSub.userID})' refers to parent milestones that don't exist?`
-			);
-			return res.status(500).json({
-				success: false,
-				description: `Something went wrong when fetching parent milestones. This has been reported.`,
-			});
-		}
+		milestones = await Promise.all(
+			goalSub.parentMilestones.map((e) => GetMilestoneForIDGuaranteed(e))
+		);
 	}
 
 	const goal = await GetGoalForIDGuaranteed(goalSub.goalID);
@@ -259,6 +247,7 @@ router.delete(
 	RequireAuthedAsUser,
 	GetGoalSubscription,
 	RequirePermissions("manage_targets"),
+	prValidate({ goalID: "string" }),
 	async (req, res) => {
 		const goalID = req.params.goalID;
 		const { user, game, playtype } = GetUGPT(req);
@@ -271,7 +260,7 @@ router.delete(
 		});
 
 		if (!goalSub) {
-			return res.status(404).json({
+			return res.status(400).json({
 				success: false,
 				description: `You aren't subscribed to this goal.`,
 			});

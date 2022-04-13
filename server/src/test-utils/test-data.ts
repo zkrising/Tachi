@@ -540,7 +540,6 @@ export const uscChart: ChartDocument<"usc:Controller" | "usc:Keyboard"> = {
 		hashSHA1: "USC_CHART_HASH",
 		isOfficial: false,
 		effector: "foo",
-		tableFolders: [],
 	},
 	tierlistInfo: {},
 	isPrimary: true,

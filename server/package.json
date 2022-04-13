@@ -6,7 +6,6 @@
 	"private": true,
 	"scripts": {
 		"test": "tap",
-		"snap": "tap",
 		"watchtest": "tap --watch",
 		"build": "tsc --project tsconfig.build.json",
 		"lint": "eslint ./src --ext .ts --fix",

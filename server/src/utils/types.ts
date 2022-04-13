@@ -16,7 +16,6 @@ import {
 	GoalSubscriptionDocument,
 	MilestoneDocument,
 	MilestoneSetDocument,
-	integer,
 } from "tachi-common";
 
 declare module "express-session" {
@@ -75,12 +74,4 @@ export interface TachiRequestData {
 	milestoneSetDoc?: MilestoneSetDocument;
 
 	apiClientDoc: Omit<TachiAPIClientDocument, "clientSecret">;
-}
-
-// This is only used on tachi-server, and isn't exposed -- so shouldn't be a part
-// of common.
-export interface PrivateUserInfoDocument {
-	userID: integer;
-	password: string;
-	email: string;
 }

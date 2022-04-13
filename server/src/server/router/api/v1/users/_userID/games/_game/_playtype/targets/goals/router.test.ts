@@ -213,7 +213,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 					"Should return 200"
 				);
 
-				// don't bother doing circular db checks if this is good.
+				// don't bother doing db checks if this is good.
 				if (res.statusCode !== 200) {
 					return;
 				}

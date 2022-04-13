@@ -24,7 +24,6 @@ import {
 	MilestoneSetDocument,
 	OrphanChart,
 	PBScoreDocument,
-	PrivateUserInfoDocument,
 	PublicUserDocument,
 	RecentlyViewedFolderDocument,
 	ScoreDocument,
@@ -41,6 +40,7 @@ import {
 	UserSettings,
 } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
+import { PrivateUserInfoDocument } from "utils/types";
 const logger = CreateLogCtx(__filename);
 
 let dbName = ServerConfig.MONGO_DATABASE_NAME;

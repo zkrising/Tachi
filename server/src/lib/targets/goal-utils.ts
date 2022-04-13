@@ -159,7 +159,8 @@ export async function ValidateGoalChartsAndCriteria(
 		}
 
 		chartCount = multiCharts.length;
-	} else if (charts.type === "any") {
+	} else {
+		// (charts.type === "any")
 		chartCount = await db.charts[game].count({ playtype });
 	}
 

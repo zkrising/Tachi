@@ -114,12 +114,15 @@ router.post(
 						"Expected an array of 2 to 5 strings in charts.data due to charts.type being 'multi'."
 					);
 				} else if (parent.type === "folder") {
+					/* istanbul ignore previous */
 					return (
 						typeof self === "string" ||
 						"Expected a string in charts.data due to charts.type being 'folder'."
 					);
 				}
 
+				// impossible to reach, so doesn't count for coverage.
+				/* istanbul ignore next */
 				return "Unknown charts.type.";
 			},
 		},

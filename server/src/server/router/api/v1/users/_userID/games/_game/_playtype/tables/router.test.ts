@@ -16,7 +16,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/tables/:tableID", (t) =>
 		}) as FolderDocument;
 		await db.folders.insert(folder);
 
-		await CreateFolderChartLookup(folder);
+		await CreateFolderChartLookup(folder, true);
 
 		await db["personal-bests"].insert(TestingIIDXSPScorePB);
 

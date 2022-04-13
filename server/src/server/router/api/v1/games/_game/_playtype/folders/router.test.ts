@@ -54,7 +54,7 @@ t.test("GET /api/v1/games/:game/:playtype/folders/:folderID", (t) => {
 
 	t.test("Should return the folder at this ID.", async (t) => {
 		await db.folders.insert(deepmerge(mockFolder, {}));
-		await CreateFolderChartLookup(mockFolder);
+		await CreateFolderChartLookup(mockFolder, true);
 
 		const res = await mockApi.get("/api/v1/games/iidx/SP/folders/foo");
 

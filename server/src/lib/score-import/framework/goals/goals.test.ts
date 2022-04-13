@@ -65,8 +65,8 @@ t.test("#GetRelevantFolderGoals", (t) => {
 		await db.folders.insert(sp11folder);
 		await db.goals.insert(fakeFolderGoalDocument);
 		await db.goals.insert(notFolderGoalDocument);
-		await CreateFolderChartLookup(TestingIIDXFolderSP10);
-		await CreateFolderChartLookup(sp11folder);
+		await CreateFolderChartLookup(TestingIIDXFolderSP10, true);
+		await CreateFolderChartLookup(sp11folder, true);
 	});
 
 	t.test("Should correctly find the goals on this folder.", async (t) => {

@@ -101,6 +101,16 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 		data: TestingIIDXFolderSP10.folderID,
 	};
 
+	const absModeCriteria = {
+		mode: "abs",
+		countNum: 2,
+	};
+
+	const proportionModeCriteria = {
+		mode: "proportion",
+		countNum: 1,
+	};
+
 	t.test("Should set valid goals.", async (t) => {
 		const validInput = [
 			mkInput("Percent:Single Case", {}),
@@ -125,6 +135,14 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			mkInput("Percent:Multi Case", {
 				charts: multiCharts,
 			}),
+			mkInput("Percent:Multi:Abs Case", {
+				criteria: absModeCriteria,
+				charts: multiCharts,
+			}),
+			mkInput("Percent:Multi:Abs Case", {
+				criteria: proportionModeCriteria,
+				charts: multiCharts,
+			}),
 			// NOT LEGAL FOR IIDX, due to being nonsense! NEEDS SPECIFIC TESTING.
 			// mkInput("Score:Multi Case", {
 			// 	criteria: {
@@ -140,6 +158,22 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 				},
 				charts: multiCharts,
 			}),
+			mkInput("LampIndex:Multi:Abs Case", {
+				criteria: {
+					key: "scoreData.lampIndex",
+					value: IIDX_LAMPS.HARD_CLEAR,
+					...absModeCriteria,
+				},
+				charts: multiCharts,
+			}),
+			mkInput("LampIndex:Multi:Proportion Case", {
+				criteria: {
+					key: "scoreData.lampIndex",
+					value: IIDX_LAMPS.HARD_CLEAR,
+					...proportionModeCriteria,
+				},
+				charts: multiCharts,
+			}),
 			mkInput("GradeIndex:Multi Case", {
 				criteria: {
 					key: "scoreData.gradeIndex",
@@ -147,7 +181,31 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 				},
 				charts: multiCharts,
 			}),
+			mkInput("GradeIndex:Multi:Abs Case", {
+				criteria: {
+					key: "scoreData.gradeIndex",
+					value: IIDX_GRADES.AAA,
+					...absModeCriteria,
+				},
+				charts: multiCharts,
+			}),
+			mkInput("GradeIndex:Multi:Proportion Case", {
+				criteria: {
+					key: "scoreData.gradeIndex",
+					value: IIDX_GRADES.AAA,
+					...proportionModeCriteria,
+				},
+				charts: multiCharts,
+			}),
 			mkInput("Percent:Any Case", {
+				charts: anyCharts,
+			}),
+			mkInput("Percent:Any:Abs Case", {
+				criteria: absModeCriteria,
+				charts: anyCharts,
+			}),
+			mkInput("Percent:Any:Proportion Case", {
+				criteria: proportionModeCriteria,
 				charts: anyCharts,
 			}),
 			// also illegal in iidx, bms and pms.
@@ -165,6 +223,22 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 				},
 				charts: anyCharts,
 			}),
+			mkInput("LampIndex:Any:Abs Case", {
+				criteria: {
+					key: "scoreData.lampIndex",
+					value: IIDX_LAMPS.HARD_CLEAR,
+					...absModeCriteria,
+				},
+				charts: anyCharts,
+			}),
+			mkInput("LampIndex:Any:Proportion Case", {
+				criteria: {
+					key: "scoreData.lampIndex",
+					value: IIDX_LAMPS.HARD_CLEAR,
+					...proportionModeCriteria,
+				},
+				charts: anyCharts,
+			}),
 			mkInput("GradeIndex:Any Case", {
 				criteria: {
 					key: "scoreData.gradeIndex",
@@ -172,7 +246,31 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 				},
 				charts: anyCharts,
 			}),
+			mkInput("GradeIndex:Any:Abs Case", {
+				criteria: {
+					key: "scoreData.gradeIndex",
+					value: IIDX_GRADES.AAA,
+					...absModeCriteria,
+				},
+				charts: anyCharts,
+			}),
+			mkInput("GradeIndex:Any:Proportion Case", {
+				criteria: {
+					key: "scoreData.gradeIndex",
+					value: IIDX_GRADES.AAA,
+					...proportionModeCriteria,
+				},
+				charts: anyCharts,
+			}),
 			mkInput("Percent:Folder Case", {
+				charts: folderCharts,
+			}),
+			mkInput("Percent:Folder:Abs Case", {
+				criteria: absModeCriteria,
+				charts: folderCharts,
+			}),
+			mkInput("Percent:Folder:Proportion Case", {
+				criteria: proportionModeCriteria,
 				charts: folderCharts,
 			}),
 			// also illegal in iidx, bms and pms.
@@ -190,10 +288,42 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 				},
 				charts: folderCharts,
 			}),
+			mkInput("LampIndex:Folder:Abs Case", {
+				criteria: {
+					key: "scoreData.lampIndex",
+					value: IIDX_LAMPS.HARD_CLEAR,
+					...absModeCriteria,
+				},
+				charts: folderCharts,
+			}),
+			mkInput("LampIndex:Folder:Proportion Case", {
+				criteria: {
+					key: "scoreData.lampIndex",
+					value: IIDX_LAMPS.HARD_CLEAR,
+					...proportionModeCriteria,
+				},
+				charts: folderCharts,
+			}),
 			mkInput("GradeIndex:Folder Case", {
 				criteria: {
 					key: "scoreData.gradeIndex",
 					value: IIDX_GRADES.AAA,
+				},
+				charts: folderCharts,
+			}),
+			mkInput("GradeIndex:Folder:Abs Case", {
+				criteria: {
+					key: "scoreData.gradeIndex",
+					value: IIDX_GRADES.AAA,
+					...absModeCriteria,
+				},
+				charts: folderCharts,
+			}),
+			mkInput("GradeIndex:Folder:Proportion Case", {
+				criteria: {
+					key: "scoreData.gradeIndex",
+					value: IIDX_GRADES.AAA,
+					...proportionModeCriteria,
 				},
 				charts: folderCharts,
 			}),

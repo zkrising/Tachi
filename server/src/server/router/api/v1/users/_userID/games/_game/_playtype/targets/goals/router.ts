@@ -53,7 +53,7 @@ type GoalCreationBody = Pick<GoalDocument, "charts" | "criteria">;
  *
  * @param criteria.key - The key for the goal to be on. This is stuff like scoreData.percent.
  * @param criteria.value - The value the key must be greater than for it to count as achieved.
- * @param criteria.mode - "single", "abs" or "proportion". If abs or proportion, countNum
+ * @param criteria.mode - "single", "absolute" or "proportion". If abs or proportion, countNum
  * must be supplied.
  * @param criteria.countNum - For abs/proportion mode. Atleast N scores must achieve the
  * key:value condition.
@@ -79,7 +79,7 @@ router.post(
 			),
 			// we do proper validation on this later.
 			value: p.gte(0),
-			mode: p.isIn("single", "abs", "proportion"),
+			mode: p.isIn("single", "absolute", "proportion"),
 			countNum: (self, parent) => {
 				if (parent.mode === "single") {
 					return (

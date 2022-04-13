@@ -35,7 +35,7 @@ export async function CreateGoalTitle(
 					return `${formattedCriteria} any chart in ${datasetName}`;
 			}
 		// eslint-disable-next-line no-fallthrough
-		case "abs":
+		case "absolute":
 			switch (charts.type) {
 				case "any":
 					return `${formattedCriteria} ${criteria.countNum} charts`;
@@ -178,7 +178,7 @@ export async function ValidateGoalChartsAndCriteria(
 			);
 		}
 	} else if (
-		criteria.mode === "abs" &&
+		criteria.mode === "absolute" &&
 		(criteria.countNum > chartCount ||
 			!Number.isInteger(criteria.countNum) ||
 			criteria.countNum < 2)

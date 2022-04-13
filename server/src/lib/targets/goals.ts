@@ -148,11 +148,11 @@ export async function EvaluateGoalForUser(
 				nextBestScore
 			),
 		};
-	} else if (goal.criteria.mode === "abs" || goal.criteria.mode === "proportion") {
+	} else if (goal.criteria.mode === "absolute" || goal.criteria.mode === "proportion") {
 		let count;
 
 		// abs -> Absolute mode, such as clear 10 charts.
-		if (goal.criteria.mode === "abs") {
+		if (goal.criteria.mode === "absolute") {
 			count = goal.criteria.countNum;
 		} else {
 			// proportion -> Proportional mode, the value

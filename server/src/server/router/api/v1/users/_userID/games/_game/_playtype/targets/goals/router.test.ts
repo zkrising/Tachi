@@ -102,7 +102,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 	};
 
 	const absModeCriteria = {
-		mode: "abs",
+		mode: "absolute",
 		countNum: 2,
 	};
 
@@ -422,7 +422,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			}),
 			mkInput("abs without countNum", {
 				criteria: {
-					mode: "abs",
+					mode: "absolute",
 				},
 				charts: multiCharts,
 			}),
@@ -466,7 +466,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			}),
 			mkInput("abs with countNum but charts.type == single", {
 				criteria: {
-					mode: "abs",
+					mode: "absolute",
 					countNum: 1,
 				},
 				charts: {
@@ -542,7 +542,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			}),
 			mkInput("charts single but criteria not.", {
 				criteria: {
-					mode: "abs",
+					mode: "absolute",
 					countNum: 2,
 				},
 			}),

@@ -634,7 +634,7 @@ export const DatabaseSchemas: Record<
 				value: "number",
 			},
 			{
-				mode: p.isIn("abs", "proportion"),
+				mode: p.isIn("absolute", "proportion"),
 				countNum: p.isPositive,
 				key: p.isIn(
 					"scoreData.percent",
@@ -683,7 +683,7 @@ export const DatabaseSchemas: Record<
 				type: "all",
 			},
 			{
-				type: p.isIn("abs", "proportion"),
+				type: p.isIn("absolute", "proportion"),
 				value: p.isPositive,
 			}
 		),

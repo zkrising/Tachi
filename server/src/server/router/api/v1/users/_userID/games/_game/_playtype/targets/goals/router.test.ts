@@ -43,6 +43,10 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals", (t) => {
 
 		t.equal(res.statusCode, 200);
 
+		// due to poor design decisions, these props may be set anyway.
+		delete HC511Goal._id;
+		delete HC511UserGoal._id;
+
 		t.strictSame(res.body.body, {
 			goals: [HC511Goal],
 			goalSubs: [HC511UserGoal],
@@ -663,6 +667,9 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID", 
 		);
 
 		t.equal(res.statusCode, 200);
+
+		delete HC511Goal._id;
+		delete HC511UserGoal._id;
 
 		t.hasStrict(res.body.body, {
 			goal: HC511Goal,

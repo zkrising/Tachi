@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import dm from "deepmerge";
 import db from "external/mongo/db";
-import { ChartDocument, IIDX_GRADES, IIDX_LAMPS } from "tachi-common";
+import { ChartDocument, IIDX_GRADES, IIDX_LAMPS, PBScoreDocument } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
@@ -13,6 +13,8 @@ import {
 	Testing511SPA,
 	TestingIIDXFolderSP10,
 	TestingIIDXSPMilestone,
+	TestingIIDXSPScore,
+	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
 
@@ -54,6 +56,15 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals", (t) => {
 
 t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", async (t) => {
 	t.beforeEach(ResetDBState);
+
+	const customScorePB = dm(TestingIIDXSPScorePB, {
+		scoreData: TestingIIDXSPScore.scoreData,
+	}) as PBScoreDocument;
+
+	t.beforeEach(async () => {
+		await db["personal-bests"].remove({});
+		await db["personal-bests"].insert(customScorePB);
+	});
 
 	const cookie = await CreateFakeAuthCookie(mockApi);
 

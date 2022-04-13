@@ -2,7 +2,7 @@ import "external/mongo/db";
 import glob from "glob";
 import path from "path";
 import t from "tap";
-import { CloseAllConnections } from "./close-connections";
+import { CleanUpAfterTests } from "./cleanup";
 
 const files = glob.sync(path.join(__dirname, "../../", "**/*.test.ts"));
 
@@ -12,4 +12,4 @@ for (const file of files) {
 	require(file);
 }
 
-t.teardown(CloseAllConnections);
+t.teardown(CleanUpAfterTests);

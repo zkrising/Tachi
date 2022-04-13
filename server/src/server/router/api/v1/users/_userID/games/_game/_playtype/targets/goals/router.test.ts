@@ -5,6 +5,7 @@ import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
+import { TestSnapshot } from "test-utils/single-process-snapshot";
 import {
 	HC511Goal,
 	HC511UserGoal,
@@ -203,7 +204,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 
 			t.equal(res.statusCode, 400);
 
-			t.matchSnapshot(res.body.description, `Invalid Goal: ${input.caseName}`);
+			TestSnapshot(t, res.body.description, `Invalid Goal: ${input.caseName}`);
 		}
 
 		t.end();

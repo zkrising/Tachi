@@ -5,8 +5,8 @@
 	"Invalid Goal: abs without countNum": "[criteria.countNum] Expected number to be greater than or equal to 0. (Received nothing)",
 	"Invalid Goal: proportion without countNum": "[criteria.countNum] Expected number to be greater than or equal to 0. (Received nothing)",
 	"Invalid Goal: single with countNum": "[criteria.countNum] Invalid countNum for mode 'single'. Must not have one! (Received 123)",
-	"Invalid Goal: nonsense mode": "[criteria.mode] Expected any of single, abs, proportion. (Received nonsense)",
-	"Invalid Goal: abs with countNum but charts.type == single": "Invalid countNum for goal with criteria.mode of 'abs'. Expected a whole number less than the total amount of charts available and greater than 1.",
+	"Invalid Goal: nonsense mode": "[criteria.mode] Expected any of single, absolute, proportion. (Received nonsense)",
+	"Invalid Goal: abs with countNum but charts.type == single": "Invalid countNum for goal with criteria.mode of 'absolute'. Expected a whole number less than the total amount of charts available and greater than 1. (Got 1, while total charts was 1.)",
 	"Invalid Goal: nonsense charts.type": "[charts.type] Expected any of single, multi, folder, any. (Received nonsense)",
 	"Invalid Goal: charts.data when type == any": "[charts.data] Invalid charts.data for type 'any'. Must not have any data! (Received foo)",
 	"Invalid Goal: charts.data array when type == single": "[charts.data] Expected a string in charts.data due to charts.type being 'single'. (Received c2311194e3897ddb5745b1760d2c0141f933e683,another_chart)",
@@ -20,12 +20,12 @@
 	"Invalid Goal: invalid grade": "Invalid value of 0.5 for grade goal. No such grade exists at that index.",
 	"Invalid Goal: too big lamp": "Invalid value of 8 for lamp goal. No such lamp exists at that index.",
 	"Invalid Goal: invalid lamp": "Invalid value of 0.5 for lamp goal. No such lamp exists at that index.",
-	"Invalid Goal: too big score": "Invalid value of 9000 for grade goal. No such grade exists at that index.",
 	"Invalid Goal: proportion with negative countNum": "[criteria.countNum] Expected number to be greater than or equal to 0. (Received -0.5)",
 	"Invalid Goal: proportion with greater than 1 countNum": "Invalid countNum for goal with criteria.mode of 'proportion'. Expected a decimal in (0, 1]",
-	"Invalid Goal: proportion which results in countNum of 0": "countNum is too small for goal. Would result in requiring 0 charts to achieve the goal.",
+	"Invalid Goal: proportion which results in countNum of 0": "countNum (0.05) is too small for a goal with 2 charts. Would result in requiring 0 charts to achieve the goal.",
 	"Invalid Goal: charts.data array of chartIDs where some don't exist": "Expected charts.data to match 2 charts. Instead, it only matched 1. Are all of these chartIDs valid?",
 	"Invalid Goal: folder-score for iidx is illegal": "Invalid key for iidx with multiple charts. Creating score goals on multiple charts where score is relative to notecount is a terrible idea, and has been disabled.",
 	"Invalid Goal: any-score for iidx is illegal": "Invalid key for iidx with multiple charts. Creating score goals on multiple charts where score is relative to notecount is a terrible idea, and has been disabled.",
-	"Invalid Goal: charts single but criteria not.": "Invalid countNum for goal with criteria.mode of 'abs'. Expected a whole number less than the total amount of charts available and greater than 1."
+	"Invalid Goal: charts single but criteria not.": "Invalid countNum for goal with criteria.mode of 'absolute'. Expected a whole number less than the total amount of charts available and greater than 1. (Got 2, while total charts was 1.)",
+	"Invalid Goal: too big score": "Invalid value of 9000 for goal. Maximum score possible on this chart is 1572."
 }

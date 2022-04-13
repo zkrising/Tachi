@@ -14,6 +14,7 @@ import {
 	TestingIIDXFolderSP10,
 	TestingIIDXSPMilestone,
 } from "test-utils/test-data";
+import { CreateFolderChartLookup } from "utils/folder";
 
 // @ts-expect-error Not sure why the types break here, but they do.
 const dupedGoal = dm({}, HC511Goal);
@@ -85,6 +86,8 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 	t.beforeEach(() => db.charts.iidx.insert(anotherFakeChart));
 	// @ts-expect-error weird type issues
 	t.beforeEach(() => db.folders.insert(dm(TestingIIDXFolderSP10, {})));
+
+	t.beforeEach(() => CreateFolderChartLookup(TestingIIDXFolderSP10, true));
 
 	const multiCharts = {
 		type: "multi",
@@ -416,7 +419,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			}),
 			mkInput("too big score", {
 				criteria: {
-					key: "scoreData.gradeIndex",
+					key: "scoreData.score",
 					value: 9_000,
 				},
 			}),

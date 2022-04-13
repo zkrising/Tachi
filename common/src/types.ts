@@ -363,7 +363,7 @@ export interface GoalSingleCriteria extends GoalCriteria {
  * atleast N scores have to match this criteria. This is for things like folders.
  */
 export interface GoalCountCriteria extends GoalCriteria {
-	mode: "abs" | "proportion";
+	mode: "absolute" | "proportion";
 	countNum: number;
 }
 

@@ -174,7 +174,7 @@ export async function ValidateGoalChartsAndCriteria(
 
 		if (Math.floor(chartCount * criteria.countNum) === 0) {
 			throw new Error(
-				`countNum is too small for goal. Would result in requiring 0 charts to achieve the goal.`
+				`countNum (${criteria.countNum}) is too small for a goal with ${chartCount} charts. Would result in requiring 0 charts to achieve the goal.`
 			);
 		}
 	} else if (
@@ -184,7 +184,7 @@ export async function ValidateGoalChartsAndCriteria(
 			criteria.countNum < 2)
 	) {
 		throw new Error(
-			`Invalid countNum for goal with criteria.mode of 'abs'. Expected a whole number less than the total amount of charts available and greater than 1.`
+			`Invalid countNum for goal with criteria.mode of 'absolute'. Expected a whole number less than the total amount of charts available and greater than 1. (Got ${criteria.countNum}, while total charts was ${chartCount}.)`
 		);
 	}
 

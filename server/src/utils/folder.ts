@@ -152,8 +152,14 @@ export async function GetFolderChartIDs(folderID: string) {
 
 	return chartIDs.map((e) => e.chartID);
 }
-export async function CreateFolderChartLookup(folder: FolderDocument) {
+export async function CreateFolderChartLookup(folder: FolderDocument, flush = false) {
 	const { charts } = await ResolveFolderToCharts(folder, {}, false);
+
+	if (flush) {
+		await db["folder-chart-lookup"].remove({
+			folderID: folder.folderID,
+		});
+	}
 
 	await db["folder-chart-lookup"].insert(
 		charts.map((c) => ({
@@ -180,7 +186,7 @@ export async function InitaliseFolderChartLookup() {
 	});
 	logger.info(`Reloading ${folders.length} folders.`);
 
-	await Promise.all(folders.map(CreateFolderChartLookup));
+	await Promise.all(folders.map((folder) => CreateFolderChartLookup(folder)));
 
 	logger.info(`Completed InitialiseFolderChartLookup.`);
 }

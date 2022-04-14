@@ -338,7 +338,7 @@ export async function SubscribeToGoal(
 
 export function GetMilestonesThatContainGoal(goalID: string) {
 	return db.milestones.find({
-		"milestoneData.goalID": goalID,
+		"milestoneData.goals.goalID": goalID,
 	});
 }
 
@@ -381,7 +381,7 @@ export async function GetBlockingParentMilestoneSubs(
 		{
 			// then finally, filter to only milestones that pertain to this goal.
 			$match: {
-				"$milestone.milestoneData.goalID": goalSub.goalID,
+				"milestone.milestoneData.goals.goalID": goalSub.goalID,
 			},
 		},
 	]);

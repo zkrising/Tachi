@@ -1,7 +1,13 @@
 /* eslint-disable no-await-in-loop */
 import dm from "deepmerge";
 import db from "external/mongo/db";
-import { ChartDocument, IIDX_GRADES, IIDX_LAMPS, PBScoreDocument } from "tachi-common";
+import {
+	ChartDocument,
+	GoalSubscriptionDocument,
+	IIDX_GRADES,
+	IIDX_LAMPS,
+	PBScoreDocument,
+} from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
@@ -10,9 +16,12 @@ import { TestSnapshot } from "test-utils/single-process-snapshot";
 import {
 	HC511Goal,
 	HC511UserGoal,
+	IIDXSPMilestoneGoals,
+	IIDXSPMilestoneGoalSubs,
 	Testing511SPA,
 	TestingIIDXFolderSP10,
 	TestingIIDXSPMilestone,
+	TestingIIDXSPMilestoneSub,
 	TestingIIDXSPScore,
 	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
@@ -653,48 +662,28 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID", 
 	});
 
 	t.test("Should return parent milestones if goal has any.", async (t) => {
-		await db.goals.insert(dupedGoal);
-		await db["goal-subs"].insert(
-			// @ts-expect-error Not sure why the types break here, but they do.
-			dm(HC511UserGoal)
-		);
-		await db.milestones.insert(dm(TestingIIDXSPMilestone, {}));
+		await db.goals.insert(IIDXSPMilestoneGoals);
+		await db["goal-subs"].insert(IIDXSPMilestoneGoalSubs);
+		await db.milestones.insert(TestingIIDXSPMilestone);
 
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/targets/goals/${HC511Goal.goalID}`
+			`/api/v1/users/1/games/iidx/SP/targets/goals/${IIDXSPMilestoneGoalSubs[0].goalID}`
 		);
 
 		t.equal(res.statusCode, 200);
 
-		delete HC511Goal._id;
-		delete HC511UserGoal._id;
+		delete IIDXSPMilestoneGoals[0]._id;
+		delete IIDXSPMilestoneGoalSubs[0]._id;
+		delete TestingIIDXSPMilestone._id;
 
 		t.hasStrict(res.body.body, {
-			goal: HC511Goal,
-			goalSub: HC511UserGoal,
+			goal: IIDXSPMilestoneGoals[0],
+			goalSub: IIDXSPMilestoneGoalSubs[0],
 			milestones: [TestingIIDXSPMilestone],
 			user: {
 				id: 1,
 			},
 		});
-
-		t.end();
-	});
-
-	t.test("Should panic if goal refers to a parent milestone that doesn't exist.", async (t) => {
-		await db.goals.insert(dupedGoal);
-		await db["goal-subs"].insert(
-			// @ts-expect-error Not sure why the types break here, but they do.
-			dm(HC511UserGoal, {
-				parentMilestones: [TestingIIDXSPMilestone.milestoneID],
-			})
-		);
-
-		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/targets/goals/${HC511Goal.goalID}`
-		);
-
-		t.equal(res.statusCode, 500);
 
 		t.end();
 	});
@@ -736,22 +725,26 @@ t.test("DELETE /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID
 	});
 
 	t.test("Should reject a goal deletion if goal has parent milestones.", async (t) => {
-		await db.goals.insert(dupedGoal);
-		await db["goal-subs"].insert(dm(dupedGoalSub, {}));
+		await db.milestones.insert(TestingIIDXSPMilestone);
+		await db["milestone-subs"].insert(TestingIIDXSPMilestoneSub);
+		await db.goals.insert(IIDXSPMilestoneGoals);
+		await db["goal-subs"].insert(
+			dm(dupedGoalSub, { goalID: "eg_goal_1" }) as GoalSubscriptionDocument
+		);
 
 		const res = await mockApi
-			.delete(`/api/v1/users/1/games/iidx/SP/targets/goals/${dupedGoalSub.goalID}`)
+			.delete(`/api/v1/users/1/games/iidx/SP/targets/goals/eg_goal_1`)
 			.set("Cookie", cookie);
 
 		t.equal(res.statusCode, 400);
 		t.equal(
 			res.body.description,
-			"This goal is part of a milestone you are subscribed to. It can only be removed by unsubscribing from the relevant milestones."
+			`This goal is part of a milestone you are subscribed to. It can only be removed by unsubscribing from the relevant milestones: '${TestingIIDXSPMilestone.name}'.`
 		);
 
 		const dbRes = await db["goal-subs"].findOne({
 			userID: 1,
-			goalID: dupedGoal.goalID,
+			goalID: "eg_goal_1",
 		});
 
 		t.not(dbRes, null, "Should NOT delete the goal sub from the database.");

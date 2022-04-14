@@ -656,9 +656,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID", 
 		await db.goals.insert(dupedGoal);
 		await db["goal-subs"].insert(
 			// @ts-expect-error Not sure why the types break here, but they do.
-			dm(HC511UserGoal, {
-				parentMilestones: [TestingIIDXSPMilestone.milestoneID],
-			})
+			dm(HC511UserGoal)
 		);
 		await db.milestones.insert(dm(TestingIIDXSPMilestone, {}));
 
@@ -739,12 +737,7 @@ t.test("DELETE /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID
 
 	t.test("Should reject a goal deletion if goal has parent milestones.", async (t) => {
 		await db.goals.insert(dupedGoal);
-		await db["goal-subs"].insert(
-			// @ts-expect-error deepmerge type error
-			dm(dupedGoalSub, {
-				parentMilestones: [TestingIIDXSPMilestone.milestoneID],
-			})
-		);
+		await db["goal-subs"].insert(dm(dupedGoalSub, {}));
 
 		const res = await mockApi
 			.delete(`/api/v1/users/1/games/iidx/SP/targets/goals/${dupedGoalSub.goalID}`)

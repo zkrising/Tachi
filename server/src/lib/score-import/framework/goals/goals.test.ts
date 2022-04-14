@@ -131,7 +131,6 @@ t.test("#GetRelevantGoals", (t) => {
 				progressHuman: "NO DATA",
 				timeSet: Date.now(),
 				userID: 1,
-				parentMilestones: [],
 			}))
 		);
 	});
@@ -194,7 +193,6 @@ t.test("#UpdateGoalsForUser", (t) => {
 		timeAchieved: null,
 		timeSet: 0,
 		userID: 1,
-		parentMilestones: [],
 	};
 
 	t.test("Should correctly update goals when user achieves goal.", async (t) => {
@@ -396,7 +394,6 @@ t.test("#ProcessGoal", (t) => {
 			lastInteraction: null,
 			outOf: 5,
 			outOfHuman: "HARD CLEAR",
-			parentMilestones: [],
 			playtype: "SP",
 			progress: 6,
 			progressHuman: "EX HARD CLEAR",

@@ -230,25 +230,8 @@ export async function SubscribeToMilestone(
 	// from result.goalResults ourselves.
 	// evaluating goals is fairly cheap though.
 	await Promise.all(
-		result.goals.map(async (goal) => {
-			const res = await SubscribeToGoal(userID, goal, milestone.milestoneID, false);
-
-			// If the user is already subscribed to this goal -- i.e. manually or as part
-			// of another milestone
-			// add this milestoneID to the list of parents instead.
-			if (res === SubscribeFailReasons.ALREADY_SUBSCRIBED) {
-				await db["goal-subs"].update(
-					{
-						userID,
-						milestoneID: milestone.milestoneID,
-					},
-					{
-						$push: {
-							parentMilestones: milestone.milestoneID,
-						},
-					}
-				);
-			}
+		result.goals.map((goal) => {
+			SubscribeToGoal(userID, goal, milestone.milestoneID, false);
 		})
 	);
 
@@ -262,20 +245,7 @@ export async function SubscribeToMilestone(
 export async function UnsubscribeFromMilestone(userID: integer, milestone: MilestoneDocument) {
 	const goalIDs = GetGoalIDsFromMilestone(milestone);
 
-	// Pull this milestone ID from all of the goalSubscriptions that have it.
-	// since it's no longer going to be their parent.
-	await db["goal-subs"].update(
-		{
-			goalID: { $in: goalIDs },
-			userID,
-			parentMilestones: milestone.milestoneID,
-		},
-		{
-			$pull: {
-				parentMilestones: milestone.milestoneID,
-			},
-		}
-	);
+	// TODO COME BACK HERE
 
 	// then, remove all of the ones that now have no parent blocking their demise.
 	// that's pretty morbid, jesus christ.

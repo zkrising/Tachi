@@ -11,6 +11,8 @@ import {
 	PBScoreDocument,
 	Playtypes,
 	GoalSubscriptionDocument,
+	MilestoneSubscriptionDocument,
+	MilestoneDocument,
 } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
 import { CreateGoalTitle as CreateGoalName, ValidateGoalChartsAndCriteria } from "./goal-utils";
@@ -283,7 +285,6 @@ export async function ConstructGoal(
 export async function SubscribeToGoal(
 	userID: integer,
 	goalDocument: GoalDocument,
-	parentMilestone?: string,
 	cancelIfAchieved = true
 ) {
 	const goalExists = await db.goals.findOne({ goalID: goalDocument.goalID });
@@ -323,9 +324,6 @@ export async function SubscribeToGoal(
 		lastInteraction: null,
 		timeAchieved: result.achieved ? Date.now() : null,
 		timeSet: Date.now(),
-		// if this goal subscription came from a milestone, add the milestone to
-		// the list of parents.
-		parentMilestones: parentMilestone ? [parentMilestone] : [],
 		game: goalDocument.game,
 		playtype: goalDocument.playtype,
 		goalID: goalDocument.goalID,
@@ -336,4 +334,57 @@ export async function SubscribeToGoal(
 	await db["goal-subs"].insert(goalSub);
 
 	return goalSub;
+}
+
+export function GetMilestonesThatContainGoal(goalID: string) {
+	return db.milestones.find({
+		"milestoneData.goalID": goalID,
+	});
+}
+
+/**
+ * Unsubscribing from a goal may not be legal, because the goal might be part of
+ * a milestone the user is subscribed to. This function returns all milestones
+ * and milestoneSubs that a goal is attached to.
+ *
+ * If this query matches none, an empty array is returned.
+ */
+export async function GetBlockingParentMilestoneSubs(
+	goalSub: GoalSubscriptionDocument
+): Promise<(MilestoneSubscriptionDocument & { milestone: MilestoneDocument })[]> {
+	const blockers = await db["milestone-subs"].aggregate([
+		{
+			// find all milestones that this user is subscribed to
+			$match: {
+				userID: goalSub.userID,
+				game: goalSub.game,
+				playtype: goalSub.playtype,
+			},
+		},
+		{
+			// look up the parent milestones
+			$lookup: {
+				from: "milestones",
+				localField: "milestoneID",
+				foreignField: "milestoneID",
+				as: "parentMilestoneSubs",
+			},
+		},
+		{
+			// then project it onto the $milestone field. This will be null
+			// if the milestone has no parent, which we hopefully won't have
+			// to consider (illegal)
+			$set: {
+				milestone: { $arrayElemAt: ["$parentMilestoneSubs", 0] },
+			},
+		},
+		{
+			// then finally, filter to only milestones that pertain to this goal.
+			$match: {
+				"$milestone.milestoneData.goalID": goalSub.goalID,
+			},
+		},
+	]);
+
+	return blockers;
 }

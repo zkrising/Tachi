@@ -2,7 +2,11 @@ import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
-import { EvaluatedGoalReturn, EvaluateGoalForUser } from "lib/targets/goals";
+import {
+	EvaluatedGoalReturn,
+	EvaluateGoalForUser,
+	GetMilestonesThatContainGoal,
+} from "lib/targets/goals";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame } from "tachi-common";
 import { GetMostSubscribedGoals } from "utils/db";
@@ -66,9 +70,7 @@ router.get("/:goalID", ResolveGoalID, async (req, res) => {
 
 	const users = await GetUsersWithIDs(goalSubs.map((e) => e.userID));
 
-	const parentMilestones = await db.milestones.find({
-		"milestoneData.goalID": goal.goalID,
-	});
+	const parentMilestones = await GetMilestonesThatContainGoal(goal.goalID);
 
 	return res.status(200).json({
 		success: true,

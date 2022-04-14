@@ -438,7 +438,6 @@ export const HC511UserGoal: GoalSubscriptionDocument = {
 	progressHuman: "NO DATA",
 	timeSet: 0,
 	userID: 1,
-	parentMilestones: [],
 };
 
 export const TestingIIDXFolderSP10: FolderDocument = {

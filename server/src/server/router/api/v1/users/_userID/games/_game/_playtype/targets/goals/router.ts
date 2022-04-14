@@ -4,7 +4,7 @@ import { SubscribeFailReasons } from "lib/constants/err-codes";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
-import { ConstructGoal, SubscribeToGoal } from "lib/targets/goals";
+import { ConstructGoal, GetBlockingParentMilestoneSubs, SubscribeToGoal } from "lib/targets/goals";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
@@ -256,10 +256,14 @@ router.delete(
 
 		const goalSub = req[SYMBOL_TachiData]!.goalSubDoc!;
 
-		if (goalSub.parentMilestones.length) {
+		const parentMilestones = await GetBlockingParentMilestoneSubs(goalSub);
+
+		if (parentMilestones.length) {
 			return res.status(400).json({
 				success: false,
-				description: `This goal is part of a milestone you are subscribed to. It can only be removed by unsubscribing from the relevant milestones.`,
+				description: `This goal is part of a milestone you are subscribed to. It can only be removed by unsubscribing from the relevant milestones: ${parentMilestones
+					.map((e) => `'${e.milestone.name}'`)
+					.join(", ")}.`,
 			});
 		}
 

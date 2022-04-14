@@ -231,7 +231,7 @@ export async function SubscribeToMilestone(
 	// evaluating goals is fairly cheap though.
 	await Promise.all(
 		result.goals.map((goal) => {
-			SubscribeToGoal(userID, goal, milestone.milestoneID, false);
+			SubscribeToGoal(userID, goal, false);
 		})
 	);
 

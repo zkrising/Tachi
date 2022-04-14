@@ -88,20 +88,11 @@ Similarly, the `achieved` status on milestones is identical to `progress` being 
 
 When a milestone is subscribed to, all the goals in the milestone are also subscribed to.
 
-The `parentMilestones` property on a [Goal Subscription Document](../documents/goal-sub.md) is an array of `milestoneID`s that "parent" that subscription.
-
-!!! example
-	If you subscribe to milestone "FOO", and that involves goal "BAR", then your subscription
-	to goal "BAR" will have a `parentMilestones` of `["FOO"]`.
-
-	If you subscribe to goal "BAR" on its own, `parentMilestones` will be empty. If you then
-	subscribe to milestone "FOO", "FOO" will get added to that array.
-
 When a user is subscribed to a milestone, they *must* also be subscribed to all the goals in
 that milestone. If they aren't, they've desynced with the milestone, and that's an awful
 user experience.
 
-As such, this array keeps track of all the milestones that care about this goal subscription, and users are *prevented from unsubscribing from this goal* while the array is not empty.
+As such, Tachi keeps track of all the milestones that care about this goal subscription, and users are *prevented from unsubscribing from this goal* while any of their milestone subscriptions parent the goal.
 
 ### Instant Indirect Achievements
 

@@ -113,8 +113,8 @@ router.post(
 							self.length > 1) ||
 						"Expected an array of 2 to 5 strings in charts.data due to charts.type being 'multi'."
 					);
+					/* istanbul ignore next */
 				} else if (parent.type === "folder") {
-					/* istanbul ignore previous */
 					return (
 						typeof self === "string" ||
 						"Expected a string in charts.data due to charts.type being 'folder'."
@@ -254,19 +254,7 @@ router.delete(
 		const goalID = req.params.goalID;
 		const { user, game, playtype } = GetUGPT(req);
 
-		const goalSub = await db["goal-subs"].findOne({
-			goalID,
-			userID: user.id,
-			game,
-			playtype,
-		});
-
-		if (!goalSub) {
-			return res.status(400).json({
-				success: false,
-				description: `You aren't subscribed to this goal.`,
-			});
-		}
+		const goalSub = req[SYMBOL_TachiData]!.goalSubDoc!;
 
 		if (goalSub.parentMilestones.length) {
 			return res.status(400).json({

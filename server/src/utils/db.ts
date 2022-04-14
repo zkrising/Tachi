@@ -196,6 +196,14 @@ export async function GetRecentlyAchievedGoals(
 		goalID: { $in: goalSubs.map((e) => e.goalID) },
 	});
 
+	if (goals.length !== goals.length) {
+		logger.error(
+			`Found ${goals.length} goals when looking for parents of ${goalSubs.length} subscriptions. This mismatch implies a state desync.`
+		);
+
+		throw new Error("Failed to fetch goals.");
+	}
+
 	return { goals, goalSubs };
 }
 
@@ -230,6 +238,14 @@ export async function GetRecentlyInteractedGoals(
 		goalID: { $in: goalSubs.map((e) => e.goalID) },
 	});
 
+	if (goals.length !== goals.length) {
+		logger.error(
+			`Found ${goals.length} goals when looking for parents of ${goalSubs.length} subscriptions. This mismatch implies a state desync.`
+		);
+
+		throw new Error("Failed to fetch goals.");
+	}
+
 	return { goals, goalSubs };
 }
 
@@ -259,9 +275,17 @@ export async function GetRecentlyAchievedMilestones(
 		limit,
 	});
 
-	const milestones = await db.goals.find({
-		goalID: { $in: milestoneSubs.map((e) => e.milestoneID) },
+	const milestones = await db.milestones.find({
+		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
 	});
+
+	if (milestones.length !== milestoneSubs.length) {
+		logger.error(
+			`Found ${milestones.length} milestones when looking for parents of ${milestoneSubs.length} subscriptions. This mismatch implies a state desync.`
+		);
+
+		throw new Error("Failed to fetch milestones.");
+	}
 
 	return { milestones, milestoneSubs };
 }
@@ -293,9 +317,17 @@ export async function GetRecentlyInteractedMilestones(
 		limit,
 	});
 
-	const milestones = await db.goals.find({
+	const milestones = await db.milestones.find({
 		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
 	});
+
+	if (milestones.length !== milestoneSubs.length) {
+		logger.error(
+			`Found ${milestones.length} milestones when looking for parents of ${milestoneSubs.length} subscriptions. This mismatch implies a state desync.`
+		);
+
+		throw new Error("Failed to fetch milestones.");
+	}
 
 	return { milestones, milestoneSubs };
 }

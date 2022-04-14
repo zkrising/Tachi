@@ -22,6 +22,7 @@ import {
 	ScoreDocument,
 	SongDocument,
 	GoalSubscriptionDocument,
+	MilestoneSubscriptionDocument,
 } from "tachi-common";
 import { ApplyNTimes, RFA } from "utils/misc";
 
@@ -487,6 +488,19 @@ export const TestingIIDXSPMilestone: MilestoneDocument = {
 			],
 		},
 	],
+};
+
+export const TestingIIDXSPMilestoneSub: MilestoneSubscriptionDocument = {
+	userID: 1,
+	achieved: false,
+	game: "iidx",
+	playtype: "SP",
+	lastInteraction: null,
+	milestoneID: "example_milestone_id",
+	progress: 4,
+	timeAchieved: null,
+	timeSet: 1900,
+	wasInstantlyAchieved: false,
 };
 
 let KTDATA_CACHE: { songs: unknown[]; charts: unknown[] } | undefined;

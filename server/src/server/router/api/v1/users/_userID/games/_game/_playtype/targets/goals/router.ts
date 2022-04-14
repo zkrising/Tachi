@@ -4,7 +4,12 @@ import { SubscribeFailReasons } from "lib/constants/err-codes";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
-import { ConstructGoal, GetBlockingParentMilestoneSubs, SubscribeToGoal } from "lib/targets/goals";
+import {
+	ConstructGoal,
+	GetBlockingParentMilestoneSubs,
+	GetMilestonesThatContainGoal,
+	SubscribeToGoal,
+} from "lib/targets/goals";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
@@ -218,13 +223,7 @@ router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 
 	const goalSub = req[SYMBOL_TachiData]!.goalSubDoc!;
 
-	let milestones: MilestoneDocument[] = [];
-
-	if (goalSub.parentMilestones.length !== 0) {
-		milestones = await Promise.all(
-			goalSub.parentMilestones.map((e) => GetMilestoneForIDGuaranteed(e))
-		);
-	}
+	const milestones: MilestoneDocument[] = await GetMilestonesThatContainGoal(goalSub.goalID);
 
 	const goal = await GetGoalForIDGuaranteed(goalSub.goalID);
 

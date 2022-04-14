@@ -291,6 +291,7 @@ N/A
 | `milestoneSubs` | Array&lt;MilestoneSubDocument&gt; | All of the subscriptions to this milestone. |
 | `users` | Array&lt;UserDocument&gt; | All of the user's with subscriptions to this milestone. |
 | `goals` | Array&lt;GoalDocument&gt; | All of the goals in this milestone. |
+| `parentMilestoneSets` | Array&lt;MilestoneSetDocument&gt; | Any milestone sets that contain this milestone. |
 
 *****
 

@@ -1,3 +1,4 @@
+import dm from "deepmerge";
 import db from "external/mongo/db";
 import fs from "fs";
 import {
@@ -489,6 +490,20 @@ export const TestingIIDXSPMilestone: MilestoneDocument = {
 		},
 	],
 };
+
+export const IIDXSPMilestoneGoals: GoalDocument[] = [
+	dm(HC511Goal, { goalID: "eg_goal_1" }) as GoalDocument,
+	dm(HC511Goal, { goalID: "eg_goal_2", criteria: { value: 2 } }),
+	dm(HC511Goal, { goalID: "eg_goal_3", criteria: { value: 300 } }),
+	dm(HC511Goal, { goalID: "eg_goal_4", criteria: { value: 1100 } }),
+];
+
+export const IIDXSPMilestoneGoalSubs: GoalSubscriptionDocument[] = [
+	dm(HC511UserGoal, { goalID: "eg_goal_1" }) as GoalSubscriptionDocument,
+	dm(HC511UserGoal, { goalID: "eg_goal_2" }) as GoalSubscriptionDocument,
+	dm(HC511UserGoal, { goalID: "eg_goal_3" }) as GoalSubscriptionDocument,
+	dm(HC511UserGoal, { goalID: "eg_goal_4" }) as GoalSubscriptionDocument,
+];
 
 export const TestingIIDXSPMilestoneSub: MilestoneSubscriptionDocument = {
 	userID: 1,

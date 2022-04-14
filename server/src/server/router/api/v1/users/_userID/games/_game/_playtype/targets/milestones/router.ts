@@ -19,7 +19,7 @@ const logger = CreateLogCtx(__filename);
 const router: Router = Router({ mergeParams: true });
 
 /**
- * Retrieves this user's set milestones.
+ * Retrieves this user's subscribed milestones.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/milestones
  */
@@ -35,6 +35,13 @@ router.get("/", async (req, res) => {
 	const milestones = await db.milestones.find({
 		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
 	});
+
+	if (milestones.length !== milestoneSubs.length) {
+		logger.error(
+			`Found ${milestoneSubs.length} subscriptions, but got ${milestones.length} parents. This is a state desync.`
+		);
+		throw new Error("Failed to fetch milestones");
+	}
 
 	return res.status(200).json({
 		success: true,
@@ -165,7 +172,6 @@ router.put(
 		// Users should be able to subscribe to milestones EVEN IF they would instantly
 		// achieve them.
 
-		// This is impossible, as the third argument to the above function is false!
 		// if (subResult === SubscribeFailReasons.ALREADY_ACHIEVED) {
 		// 	return res.status(400).json({
 		// 		success: false,

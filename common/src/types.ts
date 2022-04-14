@@ -587,9 +587,6 @@ export type GoalSubscriptionDocument = MongoDBDocument & {
 	progressHuman: string;
 	outOf: number;
 	outOfHuman: string;
-	// An array of milestoneIDs that this goal has came from. If empty, the goal is
-	// a manually assigned one (or orphaned).
-	parentMilestones: string[];
 	wasInstantlyAchieved: boolean;
 } & (
 		| {

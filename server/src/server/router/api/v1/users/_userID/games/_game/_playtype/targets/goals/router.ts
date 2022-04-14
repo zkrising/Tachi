@@ -14,7 +14,7 @@ import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { GoalDocument, MilestoneDocument } from "tachi-common";
-import { GetGoalForIDGuaranteed, GetMilestoneForIDGuaranteed } from "utils/db";
+import { GetGoalForIDGuaranteed } from "utils/db";
 import { AssignToReqTachiData, GetUGPT } from "utils/req-tachi-data";
 import { RequireAuthedAsUser } from "../../../../../middleware";
 

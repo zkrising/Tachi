@@ -31,7 +31,7 @@ import {
 	JudgementLookup,
 	GPTSupportedVersions,
 } from "../types";
-import { FormatSieglinde } from "../utils/util";
+import { FormatSieglindeBMS, FormatSieglindePMS } from "../utils/util";
 
 export interface GameConfig<G extends Game = Game> {
 	internalName: string;
@@ -1085,13 +1085,13 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 
 		scoreRatingAlgFormatters: {
-			sieglinde: FormatSieglinde,
+			sieglinde: FormatSieglindeBMS,
 		},
 		profileRatingAlgFormatters: {
-			sieglinde: FormatSieglinde,
+			sieglinde: FormatSieglindeBMS,
 		},
 		sessionRatingAlgFormatters: {
-			sieglinde: FormatSieglinde,
+			sieglinde: FormatSieglindeBMS,
 		},
 
 		difficulties: ["CHART"],
@@ -1197,13 +1197,13 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 
 		scoreRatingAlgFormatters: {
-			sieglinde: FormatSieglinde,
+			sieglinde: FormatSieglindeBMS,
 		},
 		profileRatingAlgFormatters: {
-			sieglinde: FormatSieglinde,
+			sieglinde: FormatSieglindeBMS,
 		},
 		sessionRatingAlgFormatters: {
-			sieglinde: FormatSieglinde,
+			sieglinde: FormatSieglindeBMS,
 		},
 
 		difficulties: ["CHART"],
@@ -2120,13 +2120,13 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["sieglinde"],
 
 		scoreRatingAlgFormatters: {
-			sieglinde: FormatSieglinde,
+			sieglinde: FormatSieglindePMS,
 		},
 		profileRatingAlgFormatters: {
-			sieglinde: FormatSieglinde,
+			sieglinde: FormatSieglindePMS,
 		},
 		sessionRatingAlgFormatters: {
-			sieglinde: FormatSieglinde,
+			sieglinde: FormatSieglindePMS,
 		},
 
 		scoreRatingAlgDescriptions: {
@@ -2230,13 +2230,13 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["sieglinde"],
 
 		scoreRatingAlgFormatters: {
-			sieglinde: FormatSieglinde,
+			sieglinde: FormatSieglindePMS,
 		},
 		profileRatingAlgFormatters: {
-			sieglinde: FormatSieglinde,
+			sieglinde: FormatSieglindePMS,
 		},
 		sessionRatingAlgFormatters: {
-			sieglinde: FormatSieglinde,
+			sieglinde: FormatSieglindePMS,
 		},
 
 		scoreRatingAlgDescriptions: {

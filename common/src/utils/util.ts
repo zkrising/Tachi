@@ -209,11 +209,20 @@ export function GenericFormatGradeDelta<I extends IDStrings = IDStrings>(
 	};
 }
 
-export function FormatSieglinde(sgl: number) {
+export function FormatSieglindeBMS(sgl: number): string {
 	const fixedSgl = sgl.toFixed(2);
 	if (sgl < 13) {
 		return `${fixedSgl} (☆${fixedSgl})`;
 	}
 
 	return `${fixedSgl} (🟊${(sgl - 12).toFixed(2)})`;
+}
+
+export function FormatSieglindePMS(sgl: number): string {
+	const fixedSgl = sgl.toFixed(2);
+	if (sgl < 13) {
+		return `${fixedSgl} (○${fixedSgl})`;
+	}
+
+	return `${fixedSgl} (●${(sgl - 12).toFixed(2)})`;
 }

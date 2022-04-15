@@ -31,6 +31,7 @@ import {
 	JudgementLookup,
 	GPTSupportedVersions,
 } from "../types";
+import { FormatSieglinde } from "../utils/util";
 
 export interface GameConfig<G extends Game = Game> {
 	internalName: string;
@@ -1083,9 +1084,15 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			sieglinde: "The average of your best 10 sieglinde ratings this session.",
 		},
 
-		scoreRatingAlgFormatters: {},
-		profileRatingAlgFormatters: {},
-		sessionRatingAlgFormatters: {},
+		scoreRatingAlgFormatters: {
+			sieglinde: FormatSieglinde,
+		},
+		profileRatingAlgFormatters: {
+			sieglinde: FormatSieglinde,
+		},
+		sessionRatingAlgFormatters: {
+			sieglinde: FormatSieglinde,
+		},
 
 		difficulties: ["CHART"],
 		shortDifficulties: {}, // not real
@@ -1189,9 +1196,15 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			sieglinde: "The average of your best 10 sieglinde ratings this session.",
 		},
 
-		scoreRatingAlgFormatters: {},
-		profileRatingAlgFormatters: {},
-		sessionRatingAlgFormatters: {},
+		scoreRatingAlgFormatters: {
+			sieglinde: FormatSieglinde,
+		},
+		profileRatingAlgFormatters: {
+			sieglinde: FormatSieglinde,
+		},
+		sessionRatingAlgFormatters: {
+			sieglinde: FormatSieglinde,
+		},
 
 		difficulties: ["CHART"],
 		shortDifficulties: {}, // not real
@@ -2106,9 +2119,15 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		sessionRatingAlgs: ["sieglinde"],
 		profileRatingAlgs: ["sieglinde"],
 
-		scoreRatingAlgFormatters: {},
-		profileRatingAlgFormatters: {},
-		sessionRatingAlgFormatters: {},
+		scoreRatingAlgFormatters: {
+			sieglinde: FormatSieglinde,
+		},
+		profileRatingAlgFormatters: {
+			sieglinde: FormatSieglinde,
+		},
+		sessionRatingAlgFormatters: {
+			sieglinde: FormatSieglinde,
+		},
 
 		scoreRatingAlgDescriptions: {
 			sieglinde:
@@ -2211,13 +2230,13 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["sieglinde"],
 
 		scoreRatingAlgFormatters: {
-			sieglinde: (v) => (v <= 12 ? `☆${v}` : `★${v}`),
+			sieglinde: FormatSieglinde,
 		},
 		profileRatingAlgFormatters: {
-			sieglinde: (v) => (v <= 12 ? `☆${v}` : `★${v}`),
+			sieglinde: FormatSieglinde,
 		},
 		sessionRatingAlgFormatters: {
-			sieglinde: (v) => (v <= 12 ? `☆${v}` : `★${v}`),
+			sieglinde: FormatSieglinde,
 		},
 
 		scoreRatingAlgDescriptions: {

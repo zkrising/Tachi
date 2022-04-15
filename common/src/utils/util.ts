@@ -208,3 +208,12 @@ export function GenericFormatGradeDelta<I extends IDStrings = IDStrings>(
 		closer: upper.delta + lower < 0 ? "lower" : "upper",
 	};
 }
+
+export function FormatSieglinde(sgl: number) {
+	const fixedSgl = sgl.toFixed(2);
+	if (sgl < 13) {
+		return `${fixedSgl} (☆${fixedSgl})`;
+	}
+
+	return `${fixedSgl} (🟊${(sgl - 12).toFixed(2)})`;
+}

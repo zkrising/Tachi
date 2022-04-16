@@ -24,6 +24,7 @@ import {
 	SongDocument,
 	GoalSubscriptionDocument,
 	MilestoneSubscriptionDocument,
+	PublicUserDocument,
 } from "tachi-common";
 import { ApplyNTimes, RFA } from "utils/misc";
 
@@ -599,4 +600,20 @@ export const uscScore: USCClientScore = {
 		miss: USC_DEFAULT_MISS,
 		slam: USC_DEFAULT_SLAM,
 	},
+};
+
+export const FakeOtherUser: PublicUserDocument = {
+	id: 2,
+	username: "other_user",
+	about: "",
+	authLevel: 0,
+	badges: [],
+	clan: null,
+	customBannerLocation: null,
+	customPfpLocation: null,
+	joinDate: 0,
+	lastSeen: 0,
+	socialMedia: {},
+	status: null,
+	usernameLowercase: "other_user",
 };

@@ -408,6 +408,14 @@ export async function GetMostSubscribedMilestones(
 				as: "milestone",
 			},
 		},
+		{
+			$set: {
+				milestone: { $arrayElemAt: ["$milestone", 0] },
+			},
+		},
+		{
+			$unset: "milestone._id",
+		},
 	])) as { milestone: MilestoneDocument; subscriptions: integer }[];
 
 	return mostSubscribedMilesones.map((e) => ({

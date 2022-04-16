@@ -56,6 +56,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 		index({ setID: 1 }, UNIQUE),
 		index({ game: 1, playtype: 1 }),
 		index({ milestones: 1 }),
+		index({ name: "text" }),
 	],
 	imports: [index({ importID: 1 }, UNIQUE)],
 	"import-timings": [

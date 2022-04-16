@@ -96,3 +96,52 @@ t.test("GET /api/v1/games/:game/:playtype/targets/goals/:goalID", (t) => {
 
 	t.end();
 });
+
+t.test("GET /api/v1/games/:game/:playtype/targets/goals/:goalID/evaluate-for", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(LoadLazySampleData);
+
+	t.test("Should evaluate a goal upon a user that exists.", async (t) => {
+		const res = await mockApi.get(
+			"/api/v1/games/iidx/SP/targets/goals/eg_goal_1/evaluate-for?userID=1"
+		);
+
+		t.equal(res.statusCode, 200, "Should return a status code of 200.");
+
+		t.strictSame(
+			res.body.body,
+			{
+				achieved: false,
+				outOf: 5,
+				outOfHuman: "HARD CLEAR",
+				progress: null,
+				progressHuman: "NO DATA",
+			},
+			"Should evaluate the goal for the user."
+		);
+
+		t.end();
+	});
+
+	t.test("Should return 404 if the user doesn't exist.", async (t) => {
+		const res = await mockApi.get(
+			"/api/v1/games/iidx/SP/targets/goals/eg_goal_1/evaluate-for?userID=unknown"
+		);
+
+		t.equal(res.statusCode, 404);
+
+		t.end();
+	});
+
+	t.test("Should return 400 if the user exists but hasn't played this game.", async (t) => {
+		const res = await mockApi.get(
+			"/api/v1/games/iidx/SP/targets/goals/eg_goal_1/evaluate-for?userID=2"
+		);
+
+		t.equal(res.statusCode, 400);
+
+		t.end();
+	});
+
+	t.end();
+});

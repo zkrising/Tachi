@@ -1,10 +1,16 @@
-import { MilestoneDocument, MilestoneSubscriptionDocument } from "tachi-common";
+import {
+	MilestoneDocument,
+	MilestoneSetDocument,
+	MilestoneSubscriptionDocument,
+} from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import dm from "deepmerge";
 import {
 	FakeOtherUser,
+	IIDXSPMilestoneGoals,
+	IIDXSPMilestoneGoalSubs,
 	TestingIIDXSPMilestone,
 	TestingIIDXSPMilestoneSub,
 } from "test-utils/test-data";
@@ -77,6 +83,62 @@ t.test("GET /api/v1/games/:game/:playtype/targets/milestones/popular", (t) => {
 				{ milestoneID: "other_milestone", __subscriptions: 1 },
 			]
 		);
+
+		t.end();
+	});
+
+	t.end();
+});
+
+t.test("GET /api/v1/games/:game/:playtype/targets/milestones/:milestoneID", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(async () => {
+		await Promise.all([
+			db.goals.insert(IIDXSPMilestoneGoals),
+			db["goal-subs"].insert(IIDXSPMilestoneGoalSubs),
+			db["milestone-sets"].insert({
+				setID: "set_id",
+				milestones: [TestingIIDXSPMilestone.milestoneID],
+			} as MilestoneSetDocument),
+		]);
+	});
+	t.beforeEach(LoadLazySampleData);
+
+	t.test("Should return the milestone and its goals.", async (t) => {
+		const res = await mockApi.get(
+			`/api/v1/games/iidx/SP/targets/milestones/${TestingIIDXSPMilestone.milestoneID}`
+		);
+
+		t.hasStrict(res.body.body, {
+			milestone: { milestoneID: TestingIIDXSPMilestone.milestoneID },
+			milestoneSubs: [{ userID: 1, milestoneID: TestingIIDXSPMilestone.milestoneID }],
+			users: [{ id: 1 }, { id: 2 }],
+			goals: [
+				{ goalID: "eg_goal_1" },
+				{ goalID: "eg_goal_2" },
+				{ goalID: "eg_goal_3" },
+				{ goalID: "eg_goal_4" },
+			],
+			parentMilestoneSets: [{ setID: "set_id" }],
+		});
+
+		t.end();
+	});
+
+	t.test("Should return 404 if the requested milestone doesn't exist.", async (t) => {
+		const res = await mockApi.get("/api/v1/games/iidx/SP/targets/milestones/fake_milestone");
+
+		t.equal(res.statusCode, 404);
+
+		t.end();
+	});
+
+	t.test("Should return 404 if the milestone exists but for a different GPT.", async (t) => {
+		const res = await mockApi.get(
+			`/api/v1/games/iidx/DP/targets/milestones/${TestingIIDXSPMilestone.milestoneID}`
+		);
+
+		t.equal(res.statusCode, 404);
 
 		t.end();
 	});

@@ -367,6 +367,9 @@ export async function GetMostSubscribedGoals(
 				goal: { $arrayElemAt: ["$goal", 0] },
 			},
 		},
+		{
+			$unset: "goal._id",
+		},
 	])) as { goal: GoalDocument; subscriptions: integer }[];
 
 	return mostSubscribedGoals.map((e) => ({

@@ -13,6 +13,7 @@ import {
 	IIDXSPMilestoneGoalSubs,
 	TestingIIDXSPMilestone,
 	TestingIIDXSPMilestoneSub,
+	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
 import db from "external/mongo/db";
 
@@ -157,113 +158,65 @@ t.test("GET /api/v1/games/:game/:playtype/targets/milestones/:milestoneID/evalua
 		// this will force a live calc.
 		await db["milestone-subs"].remove({});
 
+		await db["personal-bests"].insert(TestingIIDXSPScorePB);
+
 		const res = await mockApi.get(
 			`/api/v1/games/iidx/SP/targets/milestones/${TestingIIDXSPMilestone.milestoneID}/evaluate-for?userID=1`
 		);
 
 		t.equal(res.statusCode, 200);
 
-		t.strictSame(res.body.body, {
+		t.hasStrict(res.body.body, {
 			goals: [
 				{
-					charts: {
-						type: "single",
-						data: "c2311194e3897ddb5745b1760d2c0141f933e683",
-					},
-					game: "iidx",
 					goalID: "eg_goal_1",
-					playtype: "SP",
-					timeAdded: 0,
-					name: "HC 5.1.1. SPA",
-					criteria: {
-						mode: "single",
-						value: 5,
-						key: "scoreData.lampIndex",
-					},
 				},
 				{
-					charts: {
-						type: "single",
-						data: "c2311194e3897ddb5745b1760d2c0141f933e683",
-					},
-					game: "iidx",
 					goalID: "eg_goal_2",
-					playtype: "SP",
-					timeAdded: 0,
-					name: "HC 5.1.1. SPA",
-					criteria: {
-						mode: "single",
-						value: 2,
-						key: "scoreData.lampIndex",
-					},
 				},
 				{
-					charts: {
-						type: "single",
-						data: "c2311194e3897ddb5745b1760d2c0141f933e683",
-					},
-					game: "iidx",
 					goalID: "eg_goal_3",
-					playtype: "SP",
-					timeAdded: 0,
-					name: "HC 5.1.1. SPA",
-					criteria: {
-						mode: "single",
-						value: 300,
-						key: "scoreData.lampIndex",
-					},
 				},
 				{
-					charts: {
-						type: "single",
-						data: "c2311194e3897ddb5745b1760d2c0141f933e683",
-					},
-					game: "iidx",
 					goalID: "eg_goal_4",
-					playtype: "SP",
-					timeAdded: 0,
-					name: "HC 5.1.1. SPA",
-					criteria: {
-						mode: "single",
-						value: 1100,
-						key: "scoreData.lampIndex",
-					},
 				},
 			],
 			goalResults: [
 				{
-					achieved: false,
-					progress: null,
+					achieved: true,
+					progress: 6,
 					outOf: 5,
-					progressHuman: "NO DATA",
+					progressHuman: "EX HARD CLEAR (BP: 2)",
 					outOfHuman: "HARD CLEAR",
 					goalID: "eg_goal_1",
 				},
 				{
-					achieved: false,
-					progress: null,
+					achieved: true,
+					progress: 6,
 					outOf: 2,
-					progressHuman: "NO DATA",
+					progressHuman: "EX HARD CLEAR (BP: 2)",
 					outOfHuman: "ASSIST CLEAR",
 					goalID: "eg_goal_2",
 				},
 				{
-					achieved: false,
-					progress: null,
+					achieved: true,
+					progress: 1479,
 					outOf: 300,
-					progressHuman: "NO DATA",
+					outOfHuman: "300",
+					progressHuman: "1479",
 					goalID: "eg_goal_3",
 				},
 				{
-					achieved: false,
-					progress: null,
+					achieved: true,
+					progress: 1479,
 					outOf: 1100,
-					progressHuman: "NO DATA",
+					outOfHuman: "1100",
+					progressHuman: "1479",
 					goalID: "eg_goal_4",
 				},
 			],
-			achieved: false,
-			progress: 0,
+			achieved: true,
+			progress: 4,
 			outOf: 4,
 		});
 

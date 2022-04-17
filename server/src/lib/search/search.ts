@@ -49,6 +49,7 @@ export function SearchCollection<T>(
 			// hide nonsense
 			{ $match: { __textScore: { $gt: 0.25 } } },
 			{ $limit: limit },
+			{ $unset: "_id" },
 		])
 		.catch((err) => {
 			logger.error(

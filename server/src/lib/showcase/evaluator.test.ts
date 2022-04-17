@@ -13,7 +13,7 @@ import { IIDX_LAMPS } from "tachi-common";
 
 t.test("#EvaluateShowcaseStat", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(async () => await CreateFolderChartLookup(TestingIIDXFolderSP10));
+	t.beforeEach(async () => await CreateFolderChartLookup(TestingIIDXFolderSP10, true));
 	t.beforeEach(
 		async () => await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}))
 	);

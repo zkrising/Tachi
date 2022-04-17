@@ -20,7 +20,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID", (t) 
 			folderID: "testing_folder",
 		}) as FolderDocument;
 		await db.folders.insert(folder);
-		await CreateFolderChartLookup(folder);
+		await CreateFolderChartLookup(folder, true);
 		await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}));
 	});
 
@@ -56,7 +56,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeli
 	t.beforeEach(ResetDBState);
 	t.beforeEach(async () => {
 		await db.folders.insert(folder);
-		await CreateFolderChartLookup(folder);
+		await CreateFolderChartLookup(folder, true);
 		await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}));
 	});
 
@@ -68,7 +68,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeli
 		await db.songs.iidx.insert(GetKTDataJSON("./tachi/tachi-songs-iidx.json"));
 		await db.charts.iidx.insert(GetKTDataJSON("./tachi/tachi-charts-iidx.json"));
 
-		await CreateFolderChartLookup(folder);
+		await CreateFolderChartLookup(folder, true);
 
 		await db.scores.insert([
 			deepmerge(TestingIIDXSPScore, {

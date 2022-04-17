@@ -1,18 +1,13 @@
 import bcrypt from "bcryptjs";
-import {
-	integer,
-	PrivateUserInfoDocument,
-	PublicUserDocument,
-	UserAuthLevels,
-	UserSettings,
-} from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { FormatUserDoc } from "utils/user";
+import { Environment, ServerConfig } from "lib/setup/config";
+import { integer, PublicUserDocument, UserAuthLevels, UserSettings } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { Random20Hex } from "utils/misc";
-import { Environment, ServerConfig } from "lib/setup/config";
+import { PrivateUserInfoDocument } from "utils/types";
 import { CreateURLWithParams } from "utils/url";
+import { FormatUserDoc } from "utils/user";
 
 const logger = CreateLogCtx(__filename);
 

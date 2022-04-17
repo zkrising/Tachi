@@ -1,11 +1,9 @@
 import { RequestHandler } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
 
 export const GetFolderFromParam: RequestHandler = async (req, res, next) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype } = GetGPT(req);
 
 	const folder = await db.folders.findOne({ folderID: req.params.folderID, game, playtype });
 

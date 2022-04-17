@@ -1,19 +1,21 @@
 import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
+import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import { FilterQuery } from "mongodb";
 import {
 	Game,
 	GetGamePTConfig,
 	GoalDocument,
-	GoalOrigin,
 	integer,
 	PBScoreDocument,
 	Playtypes,
-	UserGoalDocument,
+	GoalSubscriptionDocument,
+	MilestoneSubscriptionDocument,
+	MilestoneDocument,
 } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
-import { CreateGoalTitle, ValidateGoalChartsAndCriteria } from "./goal-utils";
+import { CreateGoalTitle as CreateGoalName, ValidateGoalChartsAndCriteria } from "./goal-utils";
 
 const logger = CreateLogCtx(__filename);
 
@@ -148,11 +150,11 @@ export async function EvaluateGoalForUser(
 				nextBestScore
 			),
 		};
-	} else if (goal.criteria.mode === "abs" || goal.criteria.mode === "proportion") {
+	} else if (goal.criteria.mode === "absolute" || goal.criteria.mode === "proportion") {
 		let count;
 
 		// abs -> Absolute mode, such as clear 10 charts.
-		if (goal.criteria.mode === "abs") {
+		if (goal.criteria.mode === "absolute") {
 			count = goal.criteria.countNum;
 		} else {
 			// proportion -> Proportional mode, the value
@@ -225,8 +227,20 @@ export function HumaniseGoalProgress(
 
 	switch (key) {
 		case "scoreData.gradeIndex":
-			return `${gptConfig.grades[value]} (${userPB?.scoreData.percent ?? "0"}%)`;
+			if (!gptConfig.grades[value]) {
+				throw new Error(
+					`Corrupt goal -- requested a grade of ${value}, which doesn't exist for this game.`
+				);
+			}
+
+			return `${gptConfig.grades[value]} (${userPB?.scoreData.percent.toFixed(2) ?? "0"}%)`;
 		case "scoreData.lampIndex":
+			if (!gptConfig.lamps[value]) {
+				throw new Error(
+					`Corrupt goal -- requested a lamp of ${value}, which doesn't exist for this game.`
+				);
+			}
+
 			if (userPB && (game === "iidx" || game === "bms" || game === "pms")) {
 				return `${gptConfig.lamps[value]} (BP: ${
 					(userPB as PBWithBadPoor).scoreData.hitMeta.bp ?? "N/A"
@@ -266,13 +280,8 @@ export async function ConstructGoal(
 		criteria,
 		charts,
 		goalID: CreateGoalID(charts, criteria, game, playtype),
-		title: await CreateGoalTitle(charts, criteria, game, playtype),
+		name: await CreateGoalName(charts, criteria, game, playtype),
 	} as GoalDocument;
-}
-
-export enum SubscribeFailReasons {
-	ALREADY_SUBSCRIBED,
-	ALREADY_ACHIEVED,
 }
 
 /**
@@ -288,17 +297,16 @@ export enum SubscribeFailReasons {
 export async function SubscribeToGoal(
 	userID: integer,
 	goalDocument: GoalDocument,
-	origin: GoalOrigin,
 	cancelIfAchieved = true
 ) {
 	const goalExists = await db.goals.findOne({ goalID: goalDocument.goalID });
 
 	if (!goalExists) {
 		await db.goals.insert(goalDocument);
-		logger.info(`Inserting new goal ${goalDocument.title}.`);
+		logger.info(`Inserting new goal '${goalDocument.name}'.`);
 	}
 
-	const userAlreadySubscribed = await db["user-goals"].findOne({
+	const userAlreadySubscribed = await db["goal-subs"].findOne({
 		userID,
 		goalID: goalDocument.goalID,
 	});
@@ -317,26 +325,78 @@ export async function SubscribeToGoal(
 		return SubscribeFailReasons.ALREADY_ACHIEVED;
 	}
 
-	const userGoal: UserGoalDocument = {
+	// @ts-expect-error TS can't resolve this.
+	// because it can't explode out the types.
+	const goalSub: GoalSubscriptionDocument = {
 		outOf: result.outOf,
 		outOfHuman: result.outOfHuman,
 		progress: result.progress,
 		progressHuman: result.progressHuman,
 		userID,
-		lastInteraction: Date.now(),
+		lastInteraction: null,
 		timeAchieved: result.achieved ? Date.now() : null,
 		timeSet: Date.now(),
-		from: origin,
 		game: goalDocument.game,
 		playtype: goalDocument.playtype,
 		goalID: goalDocument.goalID,
-		// Typescript gets pretty irritated at this because it can't explode out
-		// the types. That's whatever.
-		achieved: result.achieved as any,
+		achieved: result.achieved,
 		wasInstantlyAchieved: result.achieved,
 	};
 
-	await db["user-goals"].insert(userGoal);
+	await db["goal-subs"].insert(goalSub);
 
-	return userGoal;
+	return goalSub;
+}
+
+export function GetMilestonesThatContainGoal(goalID: string) {
+	return db.milestones.find({
+		"milestoneData.goals.goalID": goalID,
+	});
+}
+
+/**
+ * Unsubscribing from a goal may not be legal, because the goal might be part of
+ * a milestone the user is subscribed to. This function returns all milestones
+ * and milestoneSubs that a goal is attached to.
+ *
+ * If this query matches none, an empty array is returned.
+ */
+export async function GetBlockingParentMilestoneSubs(
+	goalSub: GoalSubscriptionDocument
+): Promise<(MilestoneSubscriptionDocument & { milestone: MilestoneDocument })[]> {
+	const blockers = await db["milestone-subs"].aggregate([
+		{
+			// find all milestones that this user is subscribed to
+			$match: {
+				userID: goalSub.userID,
+				game: goalSub.game,
+				playtype: goalSub.playtype,
+			},
+		},
+		{
+			// look up the parent milestones
+			$lookup: {
+				from: "milestones",
+				localField: "milestoneID",
+				foreignField: "milestoneID",
+				as: "parentMilestoneSubs",
+			},
+		},
+		{
+			// then project it onto the $milestone field. This will be null
+			// if the milestone has no parent, which we hopefully won't have
+			// to consider (illegal)
+			$set: {
+				milestone: { $arrayElemAt: ["$parentMilestoneSubs", 0] },
+			},
+		},
+		{
+			// then finally, filter to only milestones that pertain to this goal.
+			$match: {
+				"milestone.milestoneData.goals.goalID": goalSub.goalID,
+			},
+		},
+	]);
+
+	return blockers;
 }

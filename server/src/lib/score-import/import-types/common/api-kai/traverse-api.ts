@@ -32,7 +32,7 @@ const MAX_ITERATIONS = 500;
  * Traverses a Kai-like personal_bests api.
  * @param baseUrl The base URL to fetch requests from. - like https://google.com
  * @param subUrl The endpoint for the scores - /api/v1/personal_bests
- * @param authDoc The users' authentication document.
+ * @param authDoc The user's authentication document.
  * @param fetch This is so `fetch` can be mocked with something
  * that wont make http requests during tests.
  */

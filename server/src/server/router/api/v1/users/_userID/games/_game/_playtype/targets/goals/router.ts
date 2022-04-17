@@ -1,14 +1,21 @@
 import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
+import { SubscribeFailReasons } from "lib/constants/err-codes";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
-import prValidate from "server/middleware/prudence-validate";
-import p from "prudence";
-import { GoalDocument } from "tachi-common";
-import { ConstructGoal, SubscribeFailReasons, SubscribeToGoal } from "lib/achievables/goals";
 import CreateLogCtx from "lib/logger/logger";
+import { ServerConfig } from "lib/setup/config";
+import {
+	ConstructGoal,
+	GetBlockingParentMilestoneSubs,
+	GetMilestonesThatContainGoal,
+	SubscribeToGoal,
+} from "lib/targets/goals";
+import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
-import { GetGoalForIDGuaranteed, GetMilestoneForIDGuaranteed } from "utils/db";
+import prValidate from "server/middleware/prudence-validate";
+import { GoalDocument, MilestoneDocument } from "tachi-common";
+import { GetGoalForIDGuaranteed } from "utils/db";
+import { AssignToReqTachiData, GetUGPT } from "utils/req-tachi-data";
 import { RequireAuthedAsUser } from "../../../../../middleware";
 
 const router: Router = Router({ mergeParams: true });
@@ -16,31 +23,29 @@ const router: Router = Router({ mergeParams: true });
 const logger = CreateLogCtx(__filename);
 
 /**
- * Retrieves this users' set goals.
+ * Retrieves this user's set goals for this GPT.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/goals
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
-	const userGoals = await db["user-goals"].find({
+	const goalSubs = await db["goal-subs"].find({
 		userID: user.id,
 		game,
 		playtype,
 	});
 
 	const goals = await db.goals.find({
-		goalID: { $in: userGoals.map((e) => e.goalID) },
+		goalID: { $in: goalSubs.map((e) => e.goalID) },
 	});
 
 	return res.status(200).json({
 		success: true,
-		description: `Retrieved ${userGoals.length} goal(s).`,
+		description: `Retrieved ${goalSubs.length} goal(s).`,
 		body: {
 			goals,
-			userGoals,
+			goalSubs,
 		},
 	});
 });
@@ -53,7 +58,7 @@ type GoalCreationBody = Pick<GoalDocument, "charts" | "criteria">;
  *
  * @param criteria.key - The key for the goal to be on. This is stuff like scoreData.percent.
  * @param criteria.value - The value the key must be greater than for it to count as achieved.
- * @param criteria.mode - "single", "abs" or "proportion". If abs or proportion, countNum
+ * @param criteria.mode - "single", "absolute" or "proportion". If abs or proportion, countNum
  * must be supplied.
  * @param criteria.countNum - For abs/proportion mode. Atleast N scores must achieve the
  * key:value condition.
@@ -68,7 +73,7 @@ type GoalCreationBody = Pick<GoalDocument, "charts" | "criteria">;
 router.post(
 	"/add-goal",
 	RequireAuthedAsUser,
-	RequirePermissions("set_goals"),
+	RequirePermissions("manage_targets"),
 	prValidate({
 		criteria: {
 			key: p.isIn(
@@ -79,7 +84,7 @@ router.post(
 			),
 			// we do proper validation on this later.
 			value: p.gte(0),
-			mode: p.isIn("single", "abs", "proportion"),
+			mode: p.isIn("single", "absolute", "proportion"),
 			countNum: (self, parent) => {
 				if (parent.mode === "single") {
 					return (
@@ -113,6 +118,7 @@ router.post(
 							self.length > 1) ||
 						"Expected an array of 2 to 5 strings in charts.data due to charts.type being 'multi'."
 					);
+					/* istanbul ignore next */
 				} else if (parent.type === "folder") {
 					return (
 						typeof self === "string" ||
@@ -120,25 +126,25 @@ router.post(
 					);
 				}
 
+				// impossible to reach, so doesn't count for coverage.
+				/* istanbul ignore next */
 				return "Unknown charts.type.";
 			},
 		},
 	}),
 	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
-		const game = req[SYMBOL_TachiData]!.game!;
-		const playtype = req[SYMBOL_TachiData]!.playtype!;
+		const { user, game, playtype } = GetUGPT(req);
 
-		const existingGoalsCount = await db["user-goals"].count({
+		const existingGoalsCount = await db["goal-subs"].count({
 			userID: user.id,
 			game,
 			playtype,
 		});
 
-		if (existingGoalsCount > 1_000) {
+		if (existingGoalsCount > ServerConfig.MAX_GOAL_SUBSCRIPTIONS) {
 			return res.status(400).json({
 				success: false,
-				description: `You already have 1000 goals. You cannot have anymore.`,
+				description: `You already have ${ServerConfig.MAX_GOAL_SUBSCRIPTIONS} goals. You cannot have anymore.`,
 			});
 		}
 
@@ -158,16 +164,16 @@ router.post(
 			});
 		}
 
-		const userGoal = await SubscribeToGoal(user.id, goal, { origin: "manual" });
+		const goalSub = await SubscribeToGoal(user.id, goal);
 
-		if (userGoal === SubscribeFailReasons.ALREADY_SUBSCRIBED) {
+		if (goalSub === SubscribeFailReasons.ALREADY_SUBSCRIBED) {
 			return res.status(409).json({
 				success: false,
 				description: `You are already subscribed to this goal.`,
 			});
 		}
 
-		if (userGoal === SubscribeFailReasons.ALREADY_ACHIEVED) {
+		if (goalSub === SubscribeFailReasons.ALREADY_ACHIEVED) {
 			return res.status(400).json({
 				success: false,
 				description: `You can't directly assign goals that you would immediately achieve.`,
@@ -176,34 +182,33 @@ router.post(
 
 		return res.status(200).json({
 			success: true,
-			description: `Subscribed to ${goal.title}.`,
+			description: `Subscribed to ${goal.name}.`,
 			body: {
 				goal,
-				userGoal,
+				goalSub,
 			},
 		});
 	}
 );
 
 const GetGoalSubscription: RequestHandler = async (req, res, next) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
-	const userGoal = await db["user-goals"].findOne({
+	const goalSub = await db["goal-subs"].findOne({
 		userID: user.id,
 		game,
 		playtype,
+		goalID: req.params.goalID,
 	});
 
-	if (!userGoal) {
+	if (!goalSub) {
 		return res.status(404).json({
 			success: false,
 			description: `${user.username} is not subscribed to this goal.`,
 		});
 	}
 
-	AssignToReqTachiData(req, { userGoalDoc: userGoal });
+	AssignToReqTachiData(req, { goalSubDoc: goalSub });
 
 	return next();
 };
@@ -214,31 +219,28 @@ const GetGoalSubscription: RequestHandler = async (req, res, next) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID
  */
 router.get("/:goalID", GetGoalSubscription, async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const userGoal = req[SYMBOL_TachiData]!.userGoalDoc!;
+	const { user } = GetUGPT(req);
 
-	let milestone = null;
+	const goalSub = req[SYMBOL_TachiData]!.goalSubDoc!;
 
-	if (userGoal.from.origin === "milestone") {
-		milestone = await GetMilestoneForIDGuaranteed(userGoal.from.milestoneID);
-	}
+	const milestones: MilestoneDocument[] = await GetMilestonesThatContainGoal(goalSub.goalID);
 
-	const goal = await GetGoalForIDGuaranteed(userGoal.goalID);
+	const goal = await GetGoalForIDGuaranteed(goalSub.goalID);
 
 	return res.status(200).json({
 		success: true,
-		description: `Returned information about goal ${goal.title}.`,
+		description: `Returned information about goal '${goal.name}'.`,
 		body: {
 			goal,
-			userGoal,
-			milestone,
+			goalSub,
+			milestones,
 			user,
 		},
 	});
 });
 
 /**
- * Removes a goal from your profile.
+ * Unsubscribe from a goal.
  *
  * @name DELETE /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID
  */
@@ -246,36 +248,25 @@ router.delete(
 	"/:goalID",
 	RequireAuthedAsUser,
 	GetGoalSubscription,
-	RequirePermissions("unset_goals"),
-	prValidate({ goalID: "string" }),
+	RequirePermissions("manage_targets"),
 	async (req, res) => {
 		const goalID = req.params.goalID;
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
-		const game = req[SYMBOL_TachiData]!.game!;
-		const playtype = req[SYMBOL_TachiData]!.playtype!;
+		const { user, game, playtype } = GetUGPT(req);
 
-		const userGoal = await db["user-goals"].findOne({
-			goalID,
-			userID: user.id,
-			game,
-			playtype,
-		});
+		const goalSub = req[SYMBOL_TachiData]!.goalSubDoc!;
 
-		if (!userGoal) {
+		const parentMilestones = await GetBlockingParentMilestoneSubs(goalSub);
+
+		if (parentMilestones.length) {
 			return res.status(400).json({
 				success: false,
-				description: `You aren't subscribed to this goal.`,
+				description: `This goal is part of a milestone you are subscribed to. It can only be removed by unsubscribing from the relevant milestones: ${parentMilestones
+					.map((e) => `'${e.milestone.name}'`)
+					.join(", ")}.`,
 			});
 		}
 
-		if (userGoal.from.origin === "milestone") {
-			return res.status(400).json({
-				success: false,
-				description: `This goal is from a milestone. You can't remove it directly, only by removing the parent milestone.`,
-			});
-		}
-
-		await db["user-goals"].remove({
+		await db["goal-subs"].remove({
 			userID: user.id,
 			goalID,
 			game,

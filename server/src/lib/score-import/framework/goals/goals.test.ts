@@ -2,7 +2,7 @@ import t from "tap";
 import db from "external/mongo/db";
 import ResetDBState from "test-utils/resets";
 import { GetRelevantFolderGoals, GetRelevantGoals, UpdateGoalsForUser, ProcessGoal } from "./goals";
-import { GoalDocument, UserGoalDocument } from "tachi-common";
+import { GoalDocument, GoalSubscriptionDocument } from "tachi-common";
 import { CreateFolderChartLookup } from "utils/folder";
 import {
 	GetKTDataJSON,
@@ -30,7 +30,7 @@ t.test("#GetRelevantFolderGoals", (t) => {
 		goalID: "fake_goal_id",
 		playtype: "SP",
 		timeAdded: 0,
-		title: "get > 1 ex score on any level 10.",
+		name: "get > 1 ex score on any level 10.",
 		criteria: {
 			mode: "single",
 			value: 1,
@@ -47,7 +47,7 @@ t.test("#GetRelevantFolderGoals", (t) => {
 		goalID: "fake_bad_goal_id",
 		playtype: "SP",
 		timeAdded: 0,
-		title: "get > 1 ex score on some other folder.",
+		name: "get > 1 ex score on some other folder.",
 		criteria: {
 			mode: "single",
 			value: 1,
@@ -65,8 +65,8 @@ t.test("#GetRelevantFolderGoals", (t) => {
 		await db.folders.insert(sp11folder);
 		await db.goals.insert(fakeFolderGoalDocument);
 		await db.goals.insert(notFolderGoalDocument);
-		await CreateFolderChartLookup(TestingIIDXFolderSP10);
-		await CreateFolderChartLookup(sp11folder);
+		await CreateFolderChartLookup(TestingIIDXFolderSP10, true);
+		await CreateFolderChartLookup(sp11folder, true);
 	});
 
 	t.test("Should correctly find the goals on this folder.", async (t) => {
@@ -106,7 +106,7 @@ t.test("#GetRelevantGoals", (t) => {
 			goalID: crypto.randomBytes(20).toString("hex"),
 			playtype: "SP",
 			timeAdded: 0,
-			title: "get > 1 ex score on some other folder.",
+			name: "get > 1 ex score on some other folder.",
 			criteria: {
 				mode: "single",
 				value: 1,
@@ -116,7 +116,7 @@ t.test("#GetRelevantGoals", (t) => {
 
 		await db.goals.insert(goals);
 
-		await db["user-goals"].insert(
+		await db["goal-subs"].insert(
 			goals.map((e) => ({
 				achieved: false,
 				wasInstantlyAchieved: false,
@@ -131,9 +131,6 @@ t.test("#GetRelevantGoals", (t) => {
 				progressHuman: "NO DATA",
 				timeSet: Date.now(),
 				userID: 1,
-				from: {
-					origin: "manual",
-				},
 			}))
 		);
 	});
@@ -153,7 +150,7 @@ t.test("#GetRelevantGoals", (t) => {
 			const res = await GetRelevantGoals("iidx", 1, chartIDs, logger);
 
 			t.equal(res.goals.length, 5, "Should correctly resolve to 5 goals.");
-			t.equal(res.userGoalsMap.size, 5, "Should also return 5 userGoals.");
+			t.equal(res.goalSubsMap.size, 5, "Should also return 5 goalSubs.");
 
 			t.end();
 		}
@@ -174,7 +171,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 		goalID: "FAKE_GOAL_ID",
 		playtype: "SP",
 		timeAdded: 0,
-		title: "get > 1 ex score on some other folder.",
+		name: "get > 1 ex score on some other folder.",
 		criteria: {
 			mode: "single",
 			value: 1,
@@ -182,7 +179,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 		},
 	};
 
-	const baseUserGoalDocument: UserGoalDocument = {
+	const baseGoalSubscriptionDocument: GoalSubscriptionDocument = {
 		achieved: false,
 		wasInstantlyAchieved: false,
 		game: "iidx",
@@ -196,23 +193,20 @@ t.test("#UpdateGoalsForUser", (t) => {
 		timeAchieved: null,
 		timeSet: 0,
 		userID: 1,
-		from: {
-			origin: "manual",
-		},
 	};
 
 	t.test("Should correctly update goals when user achieves goal.", async (t) => {
 		await db.goals.insert(baseGoalDocument);
 		delete baseGoalDocument._id;
 
-		await db["user-goals"].insert(baseUserGoalDocument);
+		await db["goal-subs"].insert(baseGoalSubscriptionDocument);
 		// we dont delete _id here because updategoalsforuser
 		// depends on usergoal _id
 
 		await db["personal-bests"].insert(TestingIIDXSPScorePB);
 		delete TestingIIDXSPScorePB._id;
 
-		const ugMap = new Map([["FAKE_GOAL_ID", baseUserGoalDocument]]);
+		const ugMap = new Map([["FAKE_GOAL_ID", baseGoalSubscriptionDocument]]);
 
 		const res = await UpdateGoalsForUser([baseGoalDocument], ugMap, 1, logger);
 
@@ -236,7 +230,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 			},
 		]);
 
-		const r = await db["user-goals"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
+		const r = await db["goal-subs"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
 
 		t.hasStrict(
 			r,
@@ -250,7 +244,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 			"Should update goals in the database."
 		);
 
-		delete baseUserGoalDocument._id;
+		delete baseGoalSubscriptionDocument._id;
 
 		t.end();
 	});
@@ -259,12 +253,12 @@ t.test("#UpdateGoalsForUser", (t) => {
 		const goal = deepmerge(baseGoalDocument, { criteria: { value: 2 } });
 		await db.goals.insert(goal);
 
-		const userGoal = deepmerge(baseUserGoalDocument, {
+		const goalSub = deepmerge(baseGoalSubscriptionDocument, {
 			outOf: 2,
 			outOfHuman: "2",
-		}) as unknown as UserGoalDocument;
+		}) as unknown as GoalSubscriptionDocument;
 
-		await db["user-goals"].insert(userGoal);
+		await db["goal-subs"].insert(goalSub);
 		// we dont delete _id here because updategoalsforuser
 		// depends on usergoal _id
 
@@ -272,7 +266,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 			deepmerge(TestingIIDXSPScorePB, { scoreData: { score: 1 } })
 		);
 
-		const ugMap = new Map([["FAKE_GOAL_ID", userGoal]]);
+		const ugMap = new Map([["FAKE_GOAL_ID", goalSub]]);
 
 		const res = await UpdateGoalsForUser([goal], ugMap, 1, logger);
 
@@ -296,7 +290,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 			},
 		]);
 
-		const r = await db["user-goals"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
+		const r = await db["goal-subs"].findOne({ goalID: "FAKE_GOAL_ID", userID: 1 });
 
 		t.hasStrict(
 			r,
@@ -310,7 +304,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 			"Should update goals in the database."
 		);
 
-		delete baseUserGoalDocument._id;
+		delete baseGoalSubscriptionDocument._id;
 
 		t.end();
 	});
@@ -334,7 +328,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 	t.test("Should handle (skip) invalid goals.", async (t) => {
 		const res = await UpdateGoalsForUser(
 			[deepmerge(baseGoalDocument, { charts: { type: "INVALID" } })],
-			new Map([["FAKE_GOAL_ID", baseUserGoalDocument]]),
+			new Map([["FAKE_GOAL_ID", baseGoalSubscriptionDocument]]),
 			1,
 			logger
 		);
@@ -360,7 +354,7 @@ t.test("#ProcessGoal", (t) => {
 	});
 
 	t.test("Should process the users goal if a score has changed.", async (t) => {
-		await db["user-goals"].insert(HC511UserGoal);
+		await db["goal-subs"].insert(HC511UserGoal);
 		await db["personal-bests"].insert(TestingIIDXSPScorePB); // score is EX HARD CLEAR by default.
 
 		const res = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
@@ -368,7 +362,7 @@ t.test("#ProcessGoal", (t) => {
 		t.not(res, undefined, "Should NOT return undefined.");
 
 		t.strictSame(
-			res!.import,
+			res?.import,
 			{
 				goalID: "mock_goalID",
 				old: {
@@ -392,8 +386,58 @@ t.test("#ProcessGoal", (t) => {
 		t.end();
 	});
 
+	t.test("Should unset wasInstantlyAchieved if the goal became unachieved.", async (t) => {
+		const achievedGoalSub: GoalSubscriptionDocument = {
+			achieved: true,
+			game: "iidx",
+			goalID: "mock_goalID",
+			lastInteraction: null,
+			outOf: 5,
+			outOfHuman: "HARD CLEAR",
+			playtype: "SP",
+			progress: 6,
+			progressHuman: "EX HARD CLEAR",
+			timeAchieved: 1000,
+			timeSet: 1000,
+			wasInstantlyAchieved: true,
+			userID: 1,
+		};
+
+		await db["goal-subs"].insert(achievedGoalSub);
+
+		const res = await ProcessGoal(HC511Goal, achievedGoalSub, 1, logger);
+
+		t.not(res, undefined, "Should NOT return undefined.");
+
+		t.hasStrict(
+			res?.import,
+			{
+				goalID: "mock_goalID",
+				old: {
+					progress: 6,
+					outOf: 5,
+					achieved: true,
+				},
+				new: {
+					progress: null,
+					outOf: 5,
+					achieved: false,
+				},
+			},
+			"Should unachieve the goal."
+		);
+
+		t.equal(
+			res?.bwrite.updateOne.update.$set.wasInstantlyAchieved,
+			false,
+			"Goal is to be set as not instantly achieved."
+		);
+
+		t.end();
+	});
+
 	t.test("Should return undefined if there's no score.", async (t) => {
-		await db["user-goals"].insert(HC511UserGoal);
+		await db["goal-subs"].insert(HC511UserGoal);
 
 		const res = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
 
@@ -403,7 +447,7 @@ t.test("#ProcessGoal", (t) => {
 	});
 
 	t.test("Should return undefined if the progress has not changed.", async (t) => {
-		await db["user-goals"].insert(HC511UserGoal);
+		await db["goal-subs"].insert(HC511UserGoal);
 		await db["personal-bests"].insert(TestingIIDXSPScorePB);
 
 		const firstUpdate = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
@@ -411,11 +455,11 @@ t.test("#ProcessGoal", (t) => {
 		// ignore this one
 		t.not(firstUpdate, undefined, "Should NOT return undefined.");
 
-		await db["user-goals"].bulkWrite([firstUpdate!.bwrite]);
+		await db["goal-subs"].bulkWrite([firstUpdate!.bwrite]);
 
-		const userGoal = await db["user-goals"].findOne({ userID: 1, goalID: HC511Goal.goalID });
+		const goalSub = await db["goal-subs"].findOne({ userID: 1, goalID: HC511Goal.goalID });
 
-		const secondUpdate = await ProcessGoal(HC511Goal, userGoal!, 1, logger);
+		const secondUpdate = await ProcessGoal(HC511Goal, goalSub!, 1, logger);
 
 		t.equal(secondUpdate, undefined, "Should return undefined.");
 

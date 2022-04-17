@@ -1,30 +1,29 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import prValidate from "server/middleware/prudence-validate";
 import p from "prudence";
-import { GetUsersWithIDs } from "utils/user";
+import prValidate from "server/middleware/prudence-validate";
 import { GetRelevantSongsAndCharts } from "utils/db";
+import { GetGPT } from "utils/req-tachi-data";
+import { GetUsersWithIDs } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
 
 /**
  * Return the most recent highlighted scores for this game.
  *
- * @param limit - Return up to this amount. Caps at 100, defaults to 10.
+ * @param limit - Return up to this amount. Caps at 100, defaults to 100.
  *
  * @name GET /api/v1/games/:game/:playtype/scores/highlighted
  */
 router.get(
 	"/highlighted",
 	prValidate({
-		limit: p.optional((self) => p.isBoundedInteger(1, 500)(Number(self))),
+		limit: p.optional((self) => p.isBoundedInteger(1, 100)(Number(self))),
 	}),
 	async (req, res) => {
-		const game = req[SYMBOL_TachiData]!.game!;
-		const playtype = req[SYMBOL_TachiData]!.playtype!;
+		const { game, playtype } = GetGPT(req);
 
-		const limit = req.query.limit ? Number(req.query.limit) : 10;
+		const limit = req.query.limit ? Number(req.query.limit) : 100;
 
 		const scores = await db.scores.find(
 			{

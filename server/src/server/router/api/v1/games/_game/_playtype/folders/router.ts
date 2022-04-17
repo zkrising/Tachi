@@ -4,12 +4,13 @@ import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { SearchCollection } from "lib/search/search";
 import { GetFolderCharts } from "utils/folder";
 import { IsString } from "utils/misc";
+import { GetGPT } from "utils/req-tachi-data";
 import { GetFolderFromParam } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });
 
 /**
- * Search the folders for this game.
+ * Search the folders for this GPT.
  *
  * @param search - The query to search for.
  * @param inactive - Also show inactive folders, such as those on old versions.
@@ -17,8 +18,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/games/:game/:playtype/folders
  */
 router.get("/", async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype } = GetGPT(req);
 
 	if (!IsString(req.query.search)) {
 		return res.status(400).json({

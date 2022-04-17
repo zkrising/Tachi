@@ -41,12 +41,22 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	"game-stats": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
 	"game-settings": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
 	"folder-chart-lookup": [index({ chartID: 1, folderID: 1 }, UNIQUE)],
-	goals: [index({ goalID: 1 }, UNIQUE)],
-	"user-goals": [index({ goalID: 1, userID: 1 }, UNIQUE), index({ goalID: 1 })],
-	milestones: [index({ milestoneID: 1 }, UNIQUE), index({ group: 1, game: 1, playtype: 1 })],
-	"user-milestones": [
+	goals: [index({ goalID: 1 }, UNIQUE), index({ game: 1, playtype: 1 }), index({ name: "text" })],
+	"goal-subs": [index({ goalID: 1, userID: 1 }, UNIQUE), index({ goalID: 1 })],
+	milestones: [
+		index({ milestoneID: 1 }, UNIQUE),
+		index({ game: 1, playtype: 1 }),
+		index({ name: "text" }),
+	],
+	"milestone-subs": [
 		index({ milestoneID: 1, userID: 1 }, UNIQUE),
 		index({ userID: 1, game: 1, playtype: 1 }),
+	],
+	"milestone-sets": [
+		index({ setID: 1 }, UNIQUE),
+		index({ game: 1, playtype: 1 }),
+		index({ milestones: 1 }),
+		index({ name: "text" }),
 	],
 	imports: [index({ importID: 1 }, UNIQUE)],
 	"import-timings": [
@@ -66,7 +76,6 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 		index({ title: "text", searchTerms: "text" }),
 	],
 	"kai-auth-tokens": [index({ userID: 1, service: 1 }, UNIQUE)],
-
 	"bms-course-lookup": [index({ md5sums: 1 }, UNIQUE)],
 	"api-tokens": [index({ token: 1 }, UNIQUE), index({ userID: 1 })],
 	tables: [index({ tableID: 1, game: 1, playtype: 1 }, UNIQUE)],
@@ -193,7 +202,9 @@ export function SetIndexesIfNoneSet() {
 			// This means that there are likely to be no indexes
 			// configured in the database.
 			if (Object.keys(r).length === 1) {
-				logger.info(`First-time Mongo startup detected. Running SetIndexes.`);
+				logger.info(
+					`No indexes on users, First-time Tachi-Server startup assumed. Running SetIndexes.`
+				);
 				SetIndexesWithDB(monkDB, true);
 			}
 		})

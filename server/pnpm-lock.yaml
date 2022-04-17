@@ -65,7 +65,7 @@ specifiers:
   safe-json-stringify: 1.2.0
   seq-logging: 1.1.1
   supertest: 6.2.2
-  tachi-common: 0.7.3-real-exceed
+  tachi-common: 0.7.15
   tap: 15.1.6
   ts-node: 10.4.0
   tsconfig-paths: 3.12.0
@@ -95,7 +95,7 @@ dependencies:
   fast-json-stable-hash: 1.0.3
   fast-xml-parser: 4.0.2
   helmet: 5.0.2
-  html-entities: 2.3.3
+  html-entities: 2.3.2
   json5: 2.2.0
   mkdirp: 1.0.4
   mongodb: 3.6.3
@@ -112,7 +112,7 @@ dependencies:
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
   seq-logging: 1.1.1
-  tachi-common: 0.7.3-real-exceed
+  tachi-common: 0.7.15
   ts-node: 10.4.0_2615db9039ce432b4abf2fc39ef336ec
   tsconfig-paths: 3.12.0
   typescript: 4.5.5
@@ -2408,18 +2408,18 @@ packages:
     resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
     dev: false
 
-  /css-select/4.3.0:
-    resolution: {integrity: sha512-wPpOYtnsVontu2mODhA19JrqWxNsfdatRKd64kmpRbQgh1KtItko5sTnEpPdpSaJszTOhEMlF/RPz28qj4HqhQ==}
+  /css-select/4.2.1:
+    resolution: {integrity: sha512-/aUslKhzkTNCQUB2qTX84lVmfia9NyjP3WpDGtj/WxhwBzWBYUV3DgUpurHTme8UTPcPlAD1DJ+b0nN/t50zDQ==}
     dependencies:
       boolbase: 1.0.0
-      css-what: 6.1.0
+      css-what: 5.1.0
       domhandler: 4.3.1
       domutils: 2.8.0
       nth-check: 2.0.1
     dev: false
 
-  /css-what/6.1.0:
-    resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
+  /css-what/5.1.0:
+    resolution: {integrity: sha512-arSMRWIIFY0hV8pIxZMEfmMI47Wj3R/aWpZDDxWYCPEiOMv6tfOrnpDtgxBYPEQD4V0Y/958+1TdC3iWTFcUPw==}
     engines: {node: '>= 6'}
     dev: false
 
@@ -3459,8 +3459,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /html-entities/2.3.3:
-    resolution: {integrity: sha512-DV5Ln36z34NNTDgnz0EWGBLZENelNAtkiFA4kyNOG2tDI6Mz1uSWiq1wAKdyjnJwyDiDO7Fa2SO1CTxPXL8VxA==}
+  /html-entities/2.3.2:
+    resolution: {integrity: sha512-c3Ab/url5ksaT0WyleslpBEthOzWhrjQbg75y7XUsfSzi3Dgzt0l8w5e7DylRn15MTlMMD58dTfzddNS2kcAjQ==}
     dev: false
 
   /html-escaper/2.0.2:
@@ -4354,7 +4354,7 @@ packages:
   /node-html-parser/5.3.3:
     resolution: {integrity: sha512-ncg1033CaX9UexbyA7e1N0aAoAYRDiV8jkTvzEnfd1GDvzFdrsXLzR4p4ik8mwLgnaKP/jyUFWDy9q3jvRT2Jw==}
     dependencies:
-      css-select: 4.3.0
+      css-select: 4.2.1
       he: 1.2.0
     dev: false
 
@@ -5363,8 +5363,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /tachi-common/0.7.3-real-exceed:
-    resolution: {integrity: sha512-rwIRnK3vr7Mq/YqDIZjQOYM5iJl47ssjBS8xLWQMpXjf36RPPqUSFbi0jJenMgMV3n/Le/KUZR62+iP34qptfQ==}
+  /tachi-common/0.7.15:
+    resolution: {integrity: sha512-rZNTYZFmDVUDcqaVJZAwLhH3Sskoks6Votc62JAOIrxVKEGu9JwGClEpU7YXtD4Uq2Qwt9ZesMtRatQ9rgcMcg==}
     dependencies:
       '@types/mongodb': 3.6.18
     dev: false

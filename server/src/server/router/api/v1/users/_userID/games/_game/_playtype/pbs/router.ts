@@ -1,11 +1,11 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { SearchGameSongsAndCharts } from "lib/search/search";
 import { GetGamePTConfig } from "tachi-common";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { IsValidScoreAlg } from "utils/misc";
 import { GetAdjacentAbove, GetAdjacentBelow } from "utils/queries/pbs";
+import { GetUGPT } from "utils/req-tachi-data";
 import { FilterChartsAndSongs, GetScoreIDsFromComposed } from "utils/scores";
 import { GetUsersWithIDs } from "utils/user";
 
@@ -19,9 +19,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	if (typeof req.query.search !== "string") {
 		return res.status(400).json({
@@ -71,9 +69,7 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/all
  */
 router.get("/all", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	const pbs = await db["personal-bests"].find({
 		userID: user.id,
@@ -99,9 +95,8 @@ router.get("/all", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/best
  */
 router.get("/best", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
+
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	if (req.query.alg && !IsValidScoreAlg(gptConfig, req.query.alg)) {
@@ -152,9 +147,7 @@ router.get("/best", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/:chartID
  */
 router.get("/:chartID", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	const chart = await db.charts[game].findOne({
 		chartID: req.params.chartID,
@@ -215,9 +208,7 @@ router.get("/:chartID", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/:chartID/leaderboard-adjacent
  */
 router.get("/:chartID/leaderboard-adjacent", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	const chart = await db.charts[game].findOne({
 		chartID: req.params.chartID,

@@ -1,11 +1,16 @@
 import { RequestHandler, Router } from "express";
 import db from "external/mongo/db";
-import { EvaluatedGoalReturn, EvaluateGoalForUser } from "lib/achievables/goals";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
+import {
+	EvaluatedGoalReturn,
+	EvaluateGoalForUser,
+	GetMilestonesThatContainGoal,
+} from "lib/targets/goals";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame } from "tachi-common";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { GetMostSubscribedGoals } from "utils/db";
+import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
 import { GetUsersWithIDs, ResolveUser } from "utils/user";
 
 const logger = CreateLogCtx(__filename);
@@ -13,51 +18,24 @@ const logger = CreateLogCtx(__filename);
 const router: Router = Router({ mergeParams: true });
 
 /**
- * Retrieve goals that have been recently achieved for this game.
+ * Get the most popular goals for this GPT.
  *
- * @name GET /api/v1/games/:game/:playtype/targets/goals/recently-achieved
+ * @name GET /api/v1/games/:game/:playtype/targets/goals/popular
  */
-router.get("/recently-achieved", async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+router.get("/popular", async (req, res) => {
+	const { game, playtype } = GetGPT(req);
 
-	const recentlyAchievedUserGoals = await db["user-goals"].find(
-		{
-			game,
-			playtype,
-			achieved: true,
-			// exclude stuff where timeAchieved == timeSet, as they're not really
-			// goals but rather consequences of milestone assignment.
-			$expr: { $ne: ["$timeAchieved", "$timeSet"] },
-		},
-		{
-			sort: {
-				timeAchieved: -1,
-			},
-			limit: 10,
-		}
-	);
-
-	const goals = await db.goals.find({
-		goalID: { $in: recentlyAchievedUserGoals.map((e) => e.goalID) },
-	});
-
-	const users = await GetUsersWithIDs(recentlyAchievedUserGoals.map((e) => e.userID));
+	const goals = await GetMostSubscribedGoals({ game, playtype });
 
 	return res.status(200).json({
 		success: true,
-		description: `Retrieved ${recentlyAchievedUserGoals.length} recently achieved goals.`,
-		body: {
-			userGoals: recentlyAchievedUserGoals,
-			goals,
-			users,
-		},
+		description: `Returned ${goals.length} goals.`,
+		body: goals,
 	});
 });
 
 const ResolveGoalID: RequestHandler = async (req, res, next) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype } = GetGPT(req);
 	const goalID = req.params.goalID;
 
 	const goal = await db.goals.findOne({
@@ -86,19 +64,22 @@ const ResolveGoalID: RequestHandler = async (req, res, next) => {
 router.get("/:goalID", ResolveGoalID, async (req, res) => {
 	const goal = req[SYMBOL_TachiData]!.goalDoc!;
 
-	const userGoals = await db["user-goals"].find({
+	const goalSubs = await db["goal-subs"].find({
 		goalID: goal.goalID,
 	});
 
-	const users = await GetUsersWithIDs(userGoals.map((e) => e.userID));
+	const users = await GetUsersWithIDs(goalSubs.map((e) => e.userID));
+
+	const parentMilestones = await GetMilestonesThatContainGoal(goal.goalID);
 
 	return res.status(200).json({
 		success: true,
-		description: `Retrieved information about ${goal.title}.`,
+		description: `Retrieved information about ${goal.name}.`,
 		body: {
 			goal,
-			userGoals,
+			goalSubs,
 			users,
+			parentMilestones,
 		},
 	});
 });
@@ -108,7 +89,7 @@ router.get("/:goalID", ResolveGoalID, async (req, res) => {
  *
  * @param userID - The userID to evaluate this goal against. Must be a player of this GPT.
  *
- * @name GET /api/v1/games/:game/:playtype/targets/goals/:goalID/evaluate
+ * @name GET /api/v1/games/:game/:playtype/targets/goals/:goalID/evaluate-for
  */
 router.get(
 	"/:goalID/evaluate-for",
@@ -117,8 +98,7 @@ router.get(
 		userID: "string",
 	}),
 	async (req, res) => {
-		const game = req[SYMBOL_TachiData]!.game!;
-		const playtype = req[SYMBOL_TachiData]!.playtype!;
+		const { game, playtype } = GetGPT(req);
 
 		const userID = req.query.userID as string;
 
@@ -150,27 +130,27 @@ router.get(
 		const goal = req[SYMBOL_TachiData]!.goalDoc!;
 		const goalID = goal.goalID;
 
-		const userGoal = await db["user-goals"].findOne({
+		const goalSub = await db["goal-subs"].findOne({
 			userID: user.id,
 			goalID,
 		});
 
 		let goalResults: EvaluatedGoalReturn;
 		// shortcut evaluation by using the user goal
-		if (userGoal) {
+		if (goalSub) {
 			goalResults = {
-				achieved: userGoal.achieved,
-				outOf: userGoal.outOf,
-				outOfHuman: userGoal.outOfHuman,
-				progress: userGoal.progress,
-				progressHuman: userGoal.progressHuman,
+				achieved: goalSub.achieved,
+				outOf: goalSub.outOf,
+				outOfHuman: goalSub.outOfHuman,
+				progress: goalSub.progress,
+				progressHuman: goalSub.progressHuman,
 			};
 		} else {
 			const results = await EvaluateGoalForUser(goal, user.id, logger);
 
 			if (!results) {
 				throw new Error(
-					`Failed to evaluate goal ${goal.title} (${goal.goalID}) for user ${user.id}. More information above.`
+					`Failed to evaluate goal ${goal.name} (${goal.goalID}) for user ${user.id}. More information above.`
 				);
 			}
 
@@ -179,7 +159,7 @@ router.get(
 
 		return res.status(200).json({
 			success: true,
-			description: `Evaluated ${goal.title} for ${user.username}.`,
+			description: `Evaluated ${goal.name} for ${user.username}.`,
 			body: goalResults,
 		});
 	}

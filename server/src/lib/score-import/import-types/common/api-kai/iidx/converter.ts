@@ -1,5 +1,5 @@
 import p from "prudence";
-import { Lamps, integer } from "tachi-common";
+import { integer, Lamps } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
 import { FindIIDXChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";

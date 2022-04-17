@@ -1,6 +1,18 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { FormatChart, Game, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { FilterQuery } from "mongodb";
+import {
+	FormatChart,
+	Game,
+	GoalDocument,
+	GoalSubscriptionDocument,
+	integer,
+	MilestoneDocument,
+	MilestoneSetDocument,
+	MilestoneSubscriptionDocument,
+	PBScoreDocument,
+	ScoreDocument,
+} from "tachi-common";
 const logger = CreateLogCtx(__filename);
 
 export async function GetNextCounterValue(counterName: string): Promise<integer> {
@@ -152,4 +164,278 @@ export async function HumaniseChartID(game: Game, chartID: string) {
 	const song = await GetSongForIDGuaranteed(game, chart.songID);
 
 	return FormatChart(game, song, chart);
+}
+
+/**
+ * Get recently achieved goals for this query.
+ *
+ * @param baseQuery - A base query, used to limit results on GPTs or UGPTs.
+ * @param limit - How many recently achieved goals to search for.
+ * @returns - The goals and their subs.
+ */
+export async function GetRecentlyAchievedGoals(
+	baseQuery: FilterQuery<GoalSubscriptionDocument>,
+	limit = 100
+) {
+	const query = Object.assign(
+		{
+			wasInstantlyAchieved: false,
+			achieved: true,
+		},
+		baseQuery
+	);
+
+	const goalSubs = await db["goal-subs"].find(query, {
+		sort: {
+			timeAchieved: -1,
+		},
+		limit,
+	});
+
+	const goals = await db.goals.find({
+		goalID: { $in: goalSubs.map((e) => e.goalID) },
+	});
+
+	if (goals.length !== goals.length) {
+		logger.error(
+			`Found ${goals.length} goals when looking for parents of ${goalSubs.length} subscriptions. This mismatch implies a state desync.`
+		);
+
+		throw new Error("Failed to fetch goals.");
+	}
+
+	return { goals, goalSubs };
+}
+
+/**
+ * Get recently interacted-with goals for this query.
+ *
+ * @param baseQuery - A base query, used to limit results on GPTs or UGPTs.
+ * @param limit - How many recently achieved goals to search for.
+ * @returns - The goals and their subs.
+ */
+export async function GetRecentlyInteractedGoals(
+	baseQuery: FilterQuery<GoalSubscriptionDocument>,
+	limit = 100
+) {
+	const query = Object.assign(
+		{
+			wasInstantlyAchieved: false,
+			achieved: false,
+			lastInteraction: { $ne: null },
+		},
+		baseQuery
+	);
+
+	const goalSubs = await db["goal-subs"].find(query, {
+		sort: {
+			lastInteraction: -1,
+		},
+		limit,
+	});
+
+	const goals = await db.goals.find({
+		goalID: { $in: goalSubs.map((e) => e.goalID) },
+	});
+
+	if (goals.length !== goals.length) {
+		logger.error(
+			`Found ${goals.length} goals when looking for parents of ${goalSubs.length} subscriptions. This mismatch implies a state desync.`
+		);
+
+		throw new Error("Failed to fetch goals.");
+	}
+
+	return { goals, goalSubs };
+}
+
+/**
+ * Get recently achieved goals for this query.
+ *
+ * @param baseQuery - A base query, used to limit results on GPTs or UGPTs.
+ * @param limit - How many recently achieved goals to search for.
+ * @returns - The goals and their subs.
+ */
+export async function GetRecentlyAchievedMilestones(
+	baseQuery: FilterQuery<MilestoneSubscriptionDocument>,
+	limit = 100
+) {
+	const query = Object.assign(
+		{
+			wasInstantlyAchieved: false,
+			achieved: true,
+		},
+		baseQuery
+	);
+
+	const milestoneSubs = await db["milestone-subs"].find(query, {
+		sort: {
+			timeAchieved: -1,
+		},
+		limit,
+	});
+
+	const milestones = await db.milestones.find({
+		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
+	});
+
+	if (milestones.length !== milestoneSubs.length) {
+		logger.error(
+			`Found ${milestones.length} milestones when looking for parents of ${milestoneSubs.length} subscriptions. This mismatch implies a state desync.`
+		);
+
+		throw new Error("Failed to fetch milestones.");
+	}
+
+	return { milestones, milestoneSubs };
+}
+
+/**
+ * Get recently interacted-with milestones for this query.
+ *
+ * @param baseQuery - A base query, used to limit results on GPTs or UGPTs.
+ * @param limit - How many recently achieved milestones to search for.
+ * @returns - The milestones and their subs.
+ */
+export async function GetRecentlyInteractedMilestones(
+	baseQuery: FilterQuery<MilestoneSubscriptionDocument>,
+	limit = 100
+) {
+	const query = Object.assign(
+		{
+			lastInteraction: { $ne: null },
+			achieved: false,
+			wasInstantlyAchieved: false,
+		},
+		baseQuery
+	);
+
+	const milestoneSubs = await db["milestone-subs"].find(query, {
+		sort: {
+			lastInteraction: -1,
+		},
+		limit,
+	});
+
+	const milestones = await db.milestones.find({
+		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
+	});
+
+	if (milestones.length !== milestoneSubs.length) {
+		logger.error(
+			`Found ${milestones.length} milestones when looking for parents of ${milestoneSubs.length} subscriptions. This mismatch implies a state desync.`
+		);
+
+		throw new Error("Failed to fetch milestones.");
+	}
+
+	return { milestones, milestoneSubs };
+}
+
+export async function GetMostSubscribedGoals(
+	query: FilterQuery<GoalSubscriptionDocument>,
+	limit = 100
+): Promise<(GoalDocument & { __subscriptions: integer })[]> {
+	const mostSubscribedGoals = (await db["goal-subs"].aggregate([
+		{
+			$match: query,
+		},
+		{
+			$group: {
+				_id: "$goalID",
+				subscriptions: { $sum: 1 },
+			},
+		},
+		{
+			$sort: {
+				subscriptions: -1,
+			},
+		},
+		{
+			$limit: limit,
+		},
+		{
+			$lookup: {
+				from: "goals",
+				localField: "_id",
+				foreignField: "goalID",
+				as: "goal",
+			},
+		},
+		{
+			$set: {
+				goal: { $arrayElemAt: ["$goal", 0] },
+			},
+		},
+		{
+			$unset: "goal._id",
+		},
+	])) as { goal: GoalDocument; subscriptions: integer }[];
+
+	return mostSubscribedGoals.map((e) => ({
+		__subscriptions: e.subscriptions,
+		...e.goal,
+	}));
+}
+
+export async function GetMostSubscribedMilestones(
+	query: FilterQuery<MilestoneSubscriptionDocument>,
+	limit = 100
+): Promise<(MilestoneDocument & { __subscriptions: integer })[]> {
+	const mostSubscribedMilesones = (await db["milestone-subs"].aggregate([
+		{
+			$match: query,
+		},
+		{
+			$group: {
+				_id: "$milestoneID",
+				subscriptions: { $sum: 1 },
+			},
+		},
+		{
+			$sort: {
+				subscriptions: -1,
+			},
+		},
+		{
+			$limit: limit,
+		},
+		{
+			$lookup: {
+				from: "milestones",
+				localField: "_id",
+				foreignField: "milestoneID",
+				as: "milestone",
+			},
+		},
+		{
+			$set: {
+				milestone: { $arrayElemAt: ["$milestone", 0] },
+			},
+		},
+		{
+			$unset: "milestone._id",
+		},
+	])) as { milestone: MilestoneDocument; subscriptions: integer }[];
+
+	return mostSubscribedMilesones.map((e) => ({
+		__subscriptions: e.subscriptions,
+		...e.milestone,
+	}));
+}
+
+export async function GetChildMilestones(milestoneSet: MilestoneSetDocument) {
+	const milestones = await db.milestones.find({
+		milestoneID: { $in: milestoneSet.milestones },
+	});
+
+	if (milestones.length !== milestoneSet.milestones.length) {
+		logger.error(
+			`Expected to find ${milestoneSet.milestones.length} milestones in the database, but only found ${milestones.length}.`,
+			{ milestoneSet }
+		);
+		throw new Error(`Failed to retrieve milestone sets' children.`);
+	}
+
+	return milestones;
 }

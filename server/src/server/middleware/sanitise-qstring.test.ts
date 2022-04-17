@@ -1,6 +1,6 @@
-import SanitiseQString from "./sanitise-qstring";
-import t from "tap";
 import expMiddlewareMock from "express-request-mock";
+import t from "tap";
+import SanitiseQString from "./sanitise-qstring";
 
 t.test("#SanitiseQString", (t) => {
 	t.test("Should allow GET requests with valid data.", async (t) => {

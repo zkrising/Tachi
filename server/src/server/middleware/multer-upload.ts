@@ -1,10 +1,10 @@
 // @todo #118
 
 import { RequestHandler } from "express";
-import multer, { MulterError } from "multer";
-import CreateLogCtx from "lib/logger/logger";
-import { integer } from "tachi-common";
 import { SIXTEEN_MEGABTYES } from "lib/constants/filesize";
+import CreateLogCtx from "lib/logger/logger";
+import multer, { MulterError } from "multer";
+import { integer } from "tachi-common";
 
 const defaultLogger = CreateLogCtx(__filename);
 

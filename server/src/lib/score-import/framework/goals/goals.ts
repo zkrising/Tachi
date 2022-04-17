@@ -1,5 +1,5 @@
-import { integer, Game, GoalDocument, UserGoalDocument } from "tachi-common";
-import { EvaluateGoalForUser } from "lib/achievables/goals";
+import { integer, Game, GoalDocument, GoalSubscriptionDocument } from "tachi-common";
+import { EvaluateGoalForUser } from "lib/targets/goals";
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
@@ -13,7 +13,7 @@ export async function GetAndUpdateUsersGoals(
 	chartIDs: Set<string>,
 	logger: KtLogger
 ) {
-	const { goals, userGoalsMap } = await GetRelevantGoals(game, userID, chartIDs, logger);
+	const { goals, goalSubsMap } = await GetRelevantGoals(game, userID, chartIDs, logger);
 
 	if (!goals.length) {
 		// if we hit the below code with an empty array mongodb will flip out on the bulkwrite op
@@ -22,27 +22,27 @@ export async function GetAndUpdateUsersGoals(
 
 	logger.verbose(`Found ${goals.length} relevant goals.`);
 
-	return UpdateGoalsForUser(goals, userGoalsMap, userID, logger);
+	return UpdateGoalsForUser(goals, goalSubsMap, userID, logger);
 }
 
 export async function UpdateGoalsForUser(
 	goals: GoalDocument[],
-	userGoalsMap: Map<string, UserGoalDocument>,
+	goalSubsMap: Map<string, GoalSubscriptionDocument>,
 	userID: integer,
 	logger: KtLogger
 ) {
 	const returns = await Promise.all(
 		goals.map((goal: GoalDocument) => {
-			const userGoal = userGoalsMap.get(goal.goalID);
+			const goalSub = goalSubsMap.get(goal.goalID);
 
-			if (!userGoal) {
+			if (!goalSub) {
 				logger.error(
-					`UserGoal:GoalID mismatch ${goal.goalID} - this user has no userGoal for this, yet it is set.`
+					`UserGoal:GoalID mismatch ${goal.goalID} - this user has no goalSub for this, yet it is set.`
 				);
 				return;
 			}
 
-			return ProcessGoal(goal, userGoal, userID, logger);
+			return ProcessGoal(goal, goalSub, userID, logger);
 		})
 	);
 
@@ -76,7 +76,7 @@ export async function UpdateGoalsForUser(
 		});
 	}
 
-	await db["user-goals"].bulkWrite(bulkWrite, { ordered: false });
+	await db["goal-subs"].bulkWrite(bulkWrite, { ordered: false });
 
 	return importInfo;
 }
@@ -89,7 +89,7 @@ export async function UpdateGoalsForUser(
  */
 export async function ProcessGoal(
 	goal: GoalDocument,
-	userGoal: UserGoalDocument,
+	goalSub: GoalSubscriptionDocument,
 	userID: integer,
 	logger: KtLogger
 ) {
@@ -101,7 +101,7 @@ export async function ProcessGoal(
 	}
 
 	// nothing has changed
-	if (userGoal.progress === res.progress && userGoal.outOf === res.outOf) {
+	if (goalSub.progress === res.progress && goalSub.outOf === res.outOf) {
 		return;
 	}
 
@@ -114,16 +114,16 @@ export async function ProcessGoal(
 	};
 
 	const oldData = {
-		progress: userGoal.progress,
-		progressHuman: userGoal.progressHuman,
-		outOf: userGoal.outOf,
-		outOfHuman: userGoal.outOfHuman,
-		achieved: userGoal.achieved,
+		progress: goalSub.progress,
+		progressHuman: goalSub.progressHuman,
+		outOf: goalSub.outOf,
+		outOfHuman: goalSub.outOfHuman,
+		achieved: goalSub.achieved,
 	};
 
 	let webhookEvent = null;
 	// if this is a newly-achieved goal
-	if (res.achieved && !userGoal.achieved) {
+	if (res.achieved && !goalSub.achieved) {
 		webhookEvent = {
 			goalID: goal.goalID,
 			old: oldData,
@@ -132,18 +132,33 @@ export async function ProcessGoal(
 		};
 	}
 
+	const setData = {
+		...newData,
+		timeAchieved: newData.achieved ? Date.now() : null,
+		// we're guaranteed that this works, because things
+		// that haven't changed return nothing instead of
+		// getting to this point.
+		lastInteraction: Date.now(),
+	} as Partial<GoalSubscriptionDocument>;
+
+	// If this goal was achieved, and is now *not* achieved, we need to unset
+	// some things.
+	if (goalSub.achieved && !res.achieved) {
+		logger.info(`User ${userID} lost their achieved status on ${goal.name}.`, {
+			goal,
+			res,
+			goalSub,
+		});
+
+		// This goal can't be marked as instantly achieved, since it was lost.
+		setData.wasInstantlyAchieved = false;
+	}
+
 	const bulkWrite = {
 		updateOne: {
-			filter: { _id: userGoal._id! },
+			filter: { _id: goalSub._id! },
 			update: {
-				$set: {
-					...newData,
-					timeAchieved: newData.achieved ? Date.now() : null,
-					// we're guaranteed that this works, because things
-					// that haven't changed return nothing instead of
-					// getting to this point.
-					lastInteraction: Date.now(),
-				} as Partial<GoalDocument>,
+				$set: setData,
 			},
 		},
 	};
@@ -165,23 +180,23 @@ export async function ProcessGoal(
  *
  * This optimisation allows users to have *lots* of goals, but only ever
  * evaluate the ones we need to.
- * @returns An array of Goals, and an array of userGoals.
+ * @returns An array of Goals, and an array of goalSubs.
  */
 export async function GetRelevantGoals(
 	game: Game,
 	userID: integer,
 	chartIDs: Set<string>,
 	logger: KtLogger
-): Promise<{ goals: GoalDocument[]; userGoalsMap: Map<string, UserGoalDocument> }> {
-	const userGoals = await db["user-goals"].find({ game, userID }, { projectID: true });
+): Promise<{ goals: GoalDocument[]; goalSubsMap: Map<string, GoalSubscriptionDocument> }> {
+	const goalSubs = await db["goal-subs"].find({ game, userID }, { projectID: true });
 
-	logger.verbose(`Found user has ${userGoals.length} goals.`);
+	logger.verbose(`Found user has ${goalSubs.length} goals.`);
 
-	if (!userGoals.length) {
-		return { goals: [], userGoalsMap: new Map() };
+	if (!goalSubs.length) {
+		return { goals: [], goalSubsMap: new Map() };
 	}
 
-	const goalIDs = userGoals.map((e) => e.goalID);
+	const goalIDs = goalSubs.map((e) => e.goalID);
 
 	const chartIDsArr: string[] = [];
 	for (const c of chartIDs) {
@@ -204,20 +219,20 @@ export async function GetRelevantGoals(
 
 	const goalSet = new Set(goals.map((e) => e.goalID));
 
-	const userGoalsMap: Map<string, UserGoalDocument> = new Map();
+	const goalSubsMap: Map<string, GoalSubscriptionDocument> = new Map();
 
-	for (const userGoal of userGoals) {
-		if (!goalSet.has(userGoal.goalID)) {
+	for (const goalSub of goalSubs) {
+		if (!goalSet.has(goalSub.goalID)) {
 			continue;
 		}
-		// since these are guaranteed to be unique, lets make a hot map of goalID -> userGoalDocument, so we can
-		// pull them in for post-processing and filter out the userGoalDocuments that aren't relevant.
-		userGoalsMap.set(userGoal.goalID, userGoal);
+		// since these are guaranteed to be unique, lets make a hot map of goalID -> goalSubDocument, so we can
+		// pull them in for post-processing and filter out the goalSubDocuments that aren't relevant.
+		goalSubsMap.set(goalSub.goalID, goalSub);
 	}
 
 	return {
 		goals,
-		userGoalsMap,
+		goalSubsMap,
 	};
 }
 

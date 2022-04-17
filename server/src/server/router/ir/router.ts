@@ -11,8 +11,8 @@ import beatorajaIR from "./beatoraja/router";
 import directManualIR from "./direct-manual/router";
 import fervidexIR from "./fervidex/router";
 import ksHookIR from "./kshook/router";
-import uscIR from "./usc/router";
 import lr2hookIR from "./lr2hook/router";
+import uscIR from "./usc/router";
 
 const router: Router = Router({ mergeParams: true });
 

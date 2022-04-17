@@ -1,3 +1,4 @@
+import dm from "deepmerge";
 import db from "external/mongo/db";
 import fs from "fs";
 import {
@@ -21,7 +22,9 @@ import {
 	PBScoreDocument,
 	ScoreDocument,
 	SongDocument,
-	UserGoalDocument,
+	GoalSubscriptionDocument,
+	MilestoneSubscriptionDocument,
+	PublicUserDocument,
 } from "tachi-common";
 import { ApplyNTimes, RFA } from "utils/misc";
 
@@ -414,7 +417,7 @@ export const HC511Goal: GoalDocument = {
 	goalID: "mock_goalID",
 	playtype: "SP",
 	timeAdded: 0,
-	title: "HC 5.1.1. SPA",
+	name: "HC 5.1.1. SPA",
 	criteria: {
 		mode: "single",
 		value: 5,
@@ -422,7 +425,7 @@ export const HC511Goal: GoalDocument = {
 	},
 };
 
-export const HC511UserGoal: UserGoalDocument = {
+export const HC511UserGoal: GoalSubscriptionDocument = {
 	achieved: false,
 	wasInstantlyAchieved: false,
 	timeAchieved: null,
@@ -436,9 +439,6 @@ export const HC511UserGoal: UserGoalDocument = {
 	progressHuman: "NO DATA",
 	timeSet: 0,
 	userID: 1,
-	from: {
-		origin: "manual",
-	},
 };
 
 export const TestingIIDXFolderSP10: FolderDocument = {
@@ -489,6 +489,33 @@ export const TestingIIDXSPMilestone: MilestoneDocument = {
 			],
 		},
 	],
+};
+
+export const IIDXSPMilestoneGoals: GoalDocument[] = [
+	dm(HC511Goal, { goalID: "eg_goal_1" }) as GoalDocument,
+	dm(HC511Goal, { goalID: "eg_goal_2", criteria: { value: 2 } }),
+	dm(HC511Goal, { goalID: "eg_goal_3", criteria: { key: "scoreData.score", value: 300 } }),
+	dm(HC511Goal, { goalID: "eg_goal_4", criteria: { key: "scoreData.score", value: 1100 } }),
+];
+
+export const IIDXSPMilestoneGoalSubs: GoalSubscriptionDocument[] = [
+	dm(HC511UserGoal, { goalID: "eg_goal_1" }) as GoalSubscriptionDocument,
+	dm(HC511UserGoal, { goalID: "eg_goal_2" }) as GoalSubscriptionDocument,
+	dm(HC511UserGoal, { goalID: "eg_goal_3" }) as GoalSubscriptionDocument,
+	dm(HC511UserGoal, { goalID: "eg_goal_4" }) as GoalSubscriptionDocument,
+];
+
+export const TestingIIDXSPMilestoneSub: MilestoneSubscriptionDocument = {
+	userID: 1,
+	achieved: false,
+	game: "iidx",
+	playtype: "SP",
+	lastInteraction: null,
+	milestoneID: "example_milestone_id",
+	progress: 4,
+	timeAchieved: null,
+	timeSet: 1900,
+	wasInstantlyAchieved: false,
 };
 
 let KTDATA_CACHE: { songs: unknown[]; charts: unknown[] } | undefined;
@@ -542,6 +569,7 @@ export const uscChart: ChartDocument<"usc:Controller" | "usc:Keyboard"> = {
 		hashSHA1: "USC_CHART_HASH",
 		isOfficial: false,
 		effector: "foo",
+		tableFolders: [],
 	},
 	tierlistInfo: {},
 	isPrimary: true,
@@ -572,4 +600,20 @@ export const uscScore: USCClientScore = {
 		miss: USC_DEFAULT_MISS,
 		slam: USC_DEFAULT_SLAM,
 	},
+};
+
+export const FakeOtherUser: PublicUserDocument = {
+	id: 2,
+	username: "other_user",
+	about: "",
+	authLevel: 0,
+	badges: [],
+	clan: null,
+	customBannerLocation: null,
+	customPfpLocation: null,
+	joinDate: 0,
+	lastSeen: 0,
+	socialMedia: {},
+	status: null,
+	usernameLowercase: "other_user",
 };

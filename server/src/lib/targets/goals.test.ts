@@ -226,7 +226,7 @@ t.test("#EvaluateGoalForUser", (t) => {
 				}),
 			]);
 
-			await CreateFolderChartLookup(TestingIIDXFolderSP10);
+			await CreateFolderChartLookup(TestingIIDXFolderSP10, true);
 		});
 
 		t.test("Should work if 511 is >= HARD CLEAR", async (t) => {

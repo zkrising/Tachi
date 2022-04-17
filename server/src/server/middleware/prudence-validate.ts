@@ -1,11 +1,11 @@
-import Prudence, {
-	MiddlewareErrorHandler,
-	PrudenceSchema,
-	ErrorMessages,
-	PrudenceOptions,
-} from "prudence";
 import { RequestHandler } from "express-serve-static-core";
 import CreateLogCtx from "lib/logger/logger";
+import Prudence, {
+	ErrorMessages,
+	MiddlewareErrorHandler,
+	PrudenceOptions,
+	PrudenceSchema,
+} from "prudence";
 
 const logger = CreateLogCtx(__filename);
 

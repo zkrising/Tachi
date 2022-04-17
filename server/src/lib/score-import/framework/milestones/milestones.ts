@@ -9,9 +9,9 @@ import {
 	MilestoneDocument,
 	MilestoneImportInfo,
 	Playtypes,
-	UserMilestoneDocument,
+	MilestoneSubscriptionDocument,
 } from "tachi-common";
-import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "utils/milestone";
+import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "lib/targets/milestones";
 
 /**
  * Processes and updates a user's milestones from their Goal Import Info (i.e. what is returned
@@ -39,7 +39,7 @@ export function ProcessMilestoneFromGII(
 		progress++;
 	}
 
-	const outOf = CalculateMilestoneOutOf(milestone, goalIDs);
+	const outOf = CalculateMilestoneOutOf(milestone);
 
 	// milestone achieved!
 	if (progress >= outOf) {
@@ -56,15 +56,15 @@ export async function UpdateUsersMilestones(
 	userID: integer,
 	logger: KtLogger
 ) {
-	const userGoalInfoMap: Map<string, GoalImportInfo["new"]> = new Map();
+	const goalSubInfoMap: Map<string, GoalImportInfo["new"]> = new Map();
 
 	const goalIDs = [];
 	for (const e of importGoalInfo) {
-		userGoalInfoMap.set(e.goalID, e.new);
+		goalSubInfoMap.set(e.goalID, e.new);
 		goalIDs.push(e.goalID);
 	}
 
-	const { milestones, userMilestones } = await GetRelevantMilestones(
+	const { milestones, milestoneSubs } = await GetRelevantMilestones(
 		goalIDs,
 		game,
 		playtypes,
@@ -74,9 +74,9 @@ export async function UpdateUsersMilestones(
 
 	// create a map here to avoid linear searching when
 	// co-iterating
-	const userMilestoneMap = new Map();
-	for (const um of userMilestones) {
-		userMilestoneMap.set(um.milestoneID, um);
+	const milestoneSubMap = new Map();
+	for (const um of milestoneSubs) {
+		milestoneSubMap.set(um.milestoneID, um);
 	}
 
 	const importGoalMap = new Map();
@@ -85,16 +85,16 @@ export async function UpdateUsersMilestones(
 		importGoalMap.set(ig.goalID, ig.new);
 	}
 
-	const bwrite: BulkWriteUpdateOneOperation<UserMilestoneDocument>[] = [];
+	const bwrite: BulkWriteUpdateOneOperation<MilestoneSubscriptionDocument>[] = [];
 
 	const importMilestoneInfo: MilestoneImportInfo[] = [];
 
 	for (const milestone of milestones) {
 		const { achieved, progress } = ProcessMilestoneFromGII(milestone, importGoalMap);
 
-		const userMilestone = userMilestoneMap.get(milestone.milestoneID);
+		const milestoneSub = milestoneSubMap.get(milestone.milestoneID);
 
-		if (!userMilestone) {
+		if (!milestoneSub) {
 			logger.severe(
 				`Invalid state achieved in milestone processing - processed milestone that user did not have? ${milestone.milestoneID}`
 			);
@@ -102,7 +102,7 @@ export async function UpdateUsersMilestones(
 			throw new Error("Invalid state achieved in milestone processing.");
 		}
 
-		bwrite.push({
+		const bwriteOp: BulkWriteUpdateOneOperation<MilestoneSubscriptionDocument> = {
 			updateOne: {
 				filter: { milestoneID: milestone.milestoneID },
 				update: {
@@ -112,13 +112,13 @@ export async function UpdateUsersMilestones(
 					},
 				},
 			},
-		});
+		};
 
 		const milestoneInfo = {
-			milestoneID: userMilestone.milestoneID,
+			milestoneID: milestoneSub.milestoneID,
 			old: {
-				progress: userMilestone.progress,
-				achieved: userMilestone.achieved,
+				progress: milestoneSub.progress,
+				achieved: milestoneSub.achieved,
 			},
 			new: {
 				progress,
@@ -126,11 +126,15 @@ export async function UpdateUsersMilestones(
 			},
 		};
 
-		if (progress !== userMilestone.progress) {
+		if (progress !== milestoneSub.progress) {
 			importMilestoneInfo.push(milestoneInfo);
+			// @ts-expect-error This property isn't read only, because I said so.
+			bwriteOp.updateOne.update.$set!.lastInteraction = Date.now();
 		}
 
-		if (achieved && !userMilestone.achieved) {
+		bwrite.push(bwriteOp);
+
+		if (achieved && !milestoneSub.achieved) {
 			EmitWebhookEvent({
 				type: "milestone-achieved/v1",
 				content: {
@@ -144,7 +148,7 @@ export async function UpdateUsersMilestones(
 	}
 
 	if (bwrite.length !== 0) {
-		await db["user-milestones"].bulkWrite(bwrite, { ordered: false });
+		await db["milestone-subs"].bulkWrite(bwrite, { ordered: false });
 	}
 
 	return importMilestoneInfo;
@@ -157,20 +161,20 @@ async function GetRelevantMilestones(
 	userID: integer,
 	logger: KtLogger
 ) {
-	const userMilestones = await db["user-milestones"].find({
+	const milestoneSubs = await db["milestone-subs"].find({
 		game,
 		playtype: { $in: playtypes },
 		userID,
 	});
 
-	logger.debug(`Found ${userMilestones.length} user-milestones.`);
+	logger.debug(`Found ${milestoneSubs.length} milestone-subs.`);
 
 	const milestones = await db.milestones.find({
-		milestoneID: { $in: userMilestones.map((e) => e.milestoneID) },
+		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
 		"milestoneData.goals.goalID": { $in: goalIDs },
 	});
 
 	logger.debug(`Found ${milestones.length} relevant milestones.`);
 
-	return { userMilestones, milestones };
+	return { milestoneSubs, milestones };
 }

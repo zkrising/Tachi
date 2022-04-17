@@ -1,9 +1,6 @@
 import db from "external/mongo/db";
 import { integer } from "tachi-common";
-import {
-	GetGradeLampDistributionForFolder,
-	GetGradeLampDistributionForFolders,
-} from "utils/folder";
+import { GetGradeLampDistributionForFolders } from "utils/folder";
 import { GetTimeXHoursAgo } from "utils/misc";
 
 // Various utils related to the player summary endpoint.
@@ -52,15 +49,15 @@ export async function GetRecentlyViewedFoldersAnyGPT(userID: integer) {
 	return { folders, stats };
 }
 
-export async function GetRecentlyAchievedGoals(userID: integer) {
+export async function GetGoalSummary(userID: integer) {
 	const time = GetTimeXHoursAgo(REASONABLE_HOURS_AGO);
 
-	const achievedGoals = await db["user-goals"].find({
+	const achievedGoals = await db["goal-subs"].find({
 		timeAchieved: { $gte: time },
 		userID,
 	});
 
-	const improvedGoals = await db["user-goals"].find({
+	const improvedGoals = await db["goal-subs"].find({
 		lastInteraction: { $gte: time },
 		achieved: false,
 		userID,

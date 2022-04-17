@@ -14,7 +14,7 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 
 	t.beforeEach(async () => {
 		await db.folders.insert(TestingIIDXFolderSP10);
-		await CreateFolderChartLookup(TestingIIDXFolderSP10);
+		await CreateFolderChartLookup(TestingIIDXFolderSP10, true);
 
 		await db["game-settings"].remove({});
 

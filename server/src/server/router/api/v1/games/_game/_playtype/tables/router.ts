@@ -4,6 +4,7 @@ import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { FilterQuery } from "mongodb";
 import { TableDocument } from "tachi-common";
 import { GetFoldersFromTable } from "utils/folder";
+import { GetGPT } from "utils/req-tachi-data";
 import { GetTableFromParam } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });
@@ -16,8 +17,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/games/:game/:playtype/tables
  */
 router.get("/", async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype } = GetGPT(req);
 
 	const query: FilterQuery<TableDocument> = { game, playtype };
 

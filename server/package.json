@@ -6,6 +6,7 @@
 	"private": true,
 	"scripts": {
 		"test": "tap",
+		"snap": "TAP_SNAPSHOT=1 tap",
 		"watchtest": "tap --watch",
 		"build": "tsc --project tsconfig.build.json",
 		"lint": "eslint ./src --ext .ts --fix",
@@ -84,7 +85,7 @@
 		"rimraf": "3.0.2",
 		"safe-json-stringify": "1.2.0",
 		"seq-logging": "1.1.1",
-		"tachi-common": "0.7.3-real-exceed",
+		"tachi-common": "0.7.15",
 		"ts-node": "10.4.0",
 		"tsconfig-paths": "3.12.0",
 		"typescript": "4.5.5",

@@ -21,9 +21,9 @@ import {
 	InviteCodeDocument,
 	KaiAuthDocument,
 	MilestoneDocument,
+	MilestoneSetDocument,
 	OrphanChart,
 	PBScoreDocument,
-	PrivateUserInfoDocument,
 	PublicUserDocument,
 	RecentlyViewedFolderDocument,
 	ScoreDocument,
@@ -35,11 +35,12 @@ import {
 	UGPTSettings,
 	UserGameStats,
 	UserGameStatsSnapshot,
-	UserGoalDocument,
-	UserMilestoneDocument,
+	GoalSubscriptionDocument,
+	MilestoneSubscriptionDocument,
 	UserSettings,
 } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
+import { PrivateUserInfoDocument } from "utils/types";
 const logger = CreateLogCtx(__filename);
 
 let dbName = ServerConfig.MONGO_DATABASE_NAME;
@@ -151,9 +152,9 @@ const db = {
 	folders: monkDB.get<FolderDocument>("folders"),
 	"folder-chart-lookup": monkDB.get<FolderChartLookup>("folder-chart-lookup"),
 	goals: monkDB.get<GoalDocument>("goals"),
-	"user-goals": monkDB.get<UserGoalDocument>("user-goals"),
+	"goal-subs": monkDB.get<GoalSubscriptionDocument>("goal-subs"),
 	milestones: monkDB.get<MilestoneDocument>("milestones"),
-	"user-milestones": monkDB.get<UserMilestoneDocument>("user-milestones"),
+	"milestone-subs": monkDB.get<MilestoneSubscriptionDocument>("milestone-subs"),
 	users: monkDB.get<PublicUserDocument>("users"),
 	imports: monkDB.get<ImportDocument>("imports"),
 	"import-timings": monkDB.get<ImportTimingsDocument>("import-timings"),
@@ -190,6 +191,7 @@ const db = {
 	"verify-email-codes":
 		monkDB.get<{ userID: integer; code: string; email: string }>("verify-email-codes"),
 	"recent-folder-views": monkDB.get<RecentlyViewedFolderDocument>("recent-folder-views"),
+	"milestone-sets": monkDB.get<MilestoneSetDocument>("milestone-sets"),
 };
 
 export type StaticDatabases =
@@ -202,8 +204,8 @@ export type StaticDatabases =
 	| "imports"
 	| "import-timings"
 	| "goals"
-	| "user-goals"
-	| "user-milestones"
+	| "goal-subs"
+	| "milestone-subs"
 	| "milestones"
 	| "game-stats"
 	| "game-settings"
@@ -226,7 +228,8 @@ export type StaticDatabases =
 	| "score-blacklist"
 	| "verify-email-codes"
 	| "class-achievements"
-	| "recent-folder-views";
+	| "recent-folder-views"
+	| "milestone-sets";
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;
 

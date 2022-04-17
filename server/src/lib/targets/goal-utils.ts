@@ -35,7 +35,7 @@ export async function CreateGoalTitle(
 					return `${formattedCriteria} any chart in ${datasetName}`;
 			}
 		// eslint-disable-next-line no-fallthrough
-		case "abs":
+		case "absolute":
 			switch (charts.type) {
 				case "any":
 					return `${formattedCriteria} ${criteria.countNum} charts`;
@@ -159,7 +159,8 @@ export async function ValidateGoalChartsAndCriteria(
 		}
 
 		chartCount = multiCharts.length;
-	} else if (charts.type === "any") {
+	} else {
+		// (charts.type === "any")
 		chartCount = await db.charts[game].count({ playtype });
 	}
 
@@ -173,17 +174,17 @@ export async function ValidateGoalChartsAndCriteria(
 
 		if (Math.floor(chartCount * criteria.countNum) === 0) {
 			throw new Error(
-				`countNum is too small for goal. Would result in requiring 0 charts to achieve the goal.`
+				`countNum (${criteria.countNum}) is too small for a goal with ${chartCount} charts. Would result in requiring 0 charts to achieve the goal.`
 			);
 		}
 	} else if (
-		criteria.mode === "abs" &&
+		criteria.mode === "absolute" &&
 		(criteria.countNum > chartCount ||
 			!Number.isInteger(criteria.countNum) ||
 			criteria.countNum < 2)
 	) {
 		throw new Error(
-			`Invalid countNum for goal with criteria.mode of 'abs'. Expected a whole number less than the total amount of charts available and greater than 1.`
+			`Invalid countNum for goal with criteria.mode of 'absolute'. Expected a whole number less than the total amount of charts available and greater than 1. (Got ${criteria.countNum}, while total charts was ${chartCount}.)`
 		);
 	}
 

@@ -1,10 +1,9 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { FolderDocument } from "tachi-common";
+import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import deepmerge from "deepmerge";
-import { FolderDocument } from "tachi-common";
-
 import { Testing511SPA } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
 
@@ -55,7 +54,7 @@ t.test("GET /api/v1/games/:game/:playtype/folders/:folderID", (t) => {
 
 	t.test("Should return the folder at this ID.", async (t) => {
 		await db.folders.insert(deepmerge(mockFolder, {}));
-		await CreateFolderChartLookup(mockFolder);
+		await CreateFolderChartLookup(mockFolder, true);
 
 		const res = await mockApi.get("/api/v1/games/iidx/SP/folders/foo");
 

@@ -1,16 +1,9 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { FilterQuery } from "mongodb";
-import {
-	GetGamePTConfig,
-	integer,
-	PBScoreDocument,
-	UserGameStatsSnapshot,
-	UserGoalDocument,
-	UserMilestoneDocument,
-} from "tachi-common";
+import { GetGamePTConfig, integer, PBScoreDocument, UserGameStatsSnapshot } from "tachi-common";
 import { IsString } from "utils/misc";
+import { GetUGPT } from "utils/req-tachi-data";
 import { CheckStrProfileAlg } from "utils/string-checks";
 import {
 	GetAllRankings,
@@ -26,7 +19,7 @@ import sessionsRouter from "./sessions/router";
 import settingsRouter from "./settings/router";
 import showcaseRouter from "./showcase/router";
 import tablesRouter from "./tables/router";
-import goalsRouter from "./targets/goals/router";
+import targetsRouter from "./targets/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -37,10 +30,9 @@ router.use(CheckUserPlayedGamePlaytype);
  * @name GET /api/v1/users/:userID/games/:game/:playtype
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const { game, playtype, user } = GetUGPT(req);
+
 	const stats = req[SYMBOL_TachiData]!.requestedUserGameStats!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
 	const [totalScores, firstScore, mostRecentScore, rankingData] = await Promise.all([
 		db.scores.count({
@@ -95,10 +87,9 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/history
  */
 router.get("/history", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const { game, playtype, user } = GetUGPT(req);
+
 	const stats = req[SYMBOL_TachiData]!.requestedUserGameStats!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
 
 	const snapshots = (await db["game-stats-snapshots"].find(
 		{
@@ -136,88 +127,12 @@ router.get("/history", async (req, res) => {
 });
 
 /**
- * Returns a user's set goals for this game.
- * @param unachieved - If set, achieved goals will be hidden.
- *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/goals
- */
-router.get("/goals", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
-
-	const query: FilterQuery<UserGoalDocument> = {
-		userID: user.id,
-		game,
-		playtype,
-	};
-
-	if (req.query.unachieved) {
-		query.achieved = false;
-	}
-
-	const userGoals = await db["user-goals"].find(query);
-
-	const goals = await db.goals.find({
-		goalID: { $in: userGoals.map((e) => e.goalID) },
-	});
-
-	return res.status(200).json({
-		success: true,
-		description: `Successfully returned ${userGoals.length} goal(s).`,
-		body: {
-			userGoals,
-			goals,
-		},
-	});
-});
-
-/**
- * Returns a user's set milestones for this game.
- * @param unachieved - If set, achieved milestones will be hidden.
- *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/milestones
- */
-router.get("/milestones", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
-
-	const query: FilterQuery<UserMilestoneDocument> = {
-		userID: user.id,
-		game,
-		playtype,
-	};
-
-	if (req.query.unachieved) {
-		query.achieved = false;
-	}
-
-	const userMilestones = await db["user-milestones"].find(query);
-
-	const milestones = await db.milestones.find({
-		milestoneID: { $in: userMilestones.map((e) => e.milestoneID) },
-	});
-
-	return res.status(200).json({
-		success: true,
-		description: `Successfully returned ${userMilestones.length} milestone(s).`,
-		body: {
-			userMilestones,
-			milestones,
-		},
-	});
-});
-
-/**
  * Returns the users most played charts by playcount.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/most-played
  */
 router.get("/most-played", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype, user } = GetUGPT(req);
 
 	const mostPlayed: { playcount: integer; songID: integer; _id: string }[] =
 		await db.scores.aggregate([
@@ -290,10 +205,9 @@ router.get("/most-played", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/leaderboard-adjacent
  */
 router.get("/leaderboard-adjacent", async (req, res) => {
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { game, playtype, user } = GetUGPT(req);
+
 	const gptConfig = GetGamePTConfig(game, playtype);
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
 	let alg = gptConfig.defaultProfileRatingAlg;
 	if (IsString(req.query.alg)) {
@@ -378,6 +292,6 @@ router.use("/tables", tablesRouter);
 router.use("/showcase", showcaseRouter);
 router.use("/settings", settingsRouter);
 router.use("/folders", foldersRouter);
-router.use("/goals", goalsRouter);
+router.use("/targets", targetsRouter);
 
 export default router;

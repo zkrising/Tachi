@@ -1,8 +1,8 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { SearchGameSongsAndCharts } from "lib/search/search";
 import { GetRelevantSongsAndCharts } from "utils/db";
+import { GetUGPT } from "utils/req-tachi-data";
 import { FilterChartsAndSongs } from "utils/scores";
 
 const router: Router = Router({ mergeParams: true });
@@ -13,9 +13,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users/:userID/games/:game/:playtype/scores
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	if (typeof req.query.search !== "string") {
 		return res.status(400).json({
@@ -62,9 +60,7 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/scores/recent
  */
 router.get("/recent", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	const recentScores = await db.scores.find(
 		{
@@ -99,9 +95,7 @@ router.get("/recent", async (req, res) => {
  * @name GET /api/v1/users/:userID/games/:game/:playtype/scores/:chartID
  */
 router.get("/:chartID", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const game = req[SYMBOL_TachiData]!.game!;
-	const playtype = req[SYMBOL_TachiData]!.playtype!;
+	const { user, game, playtype } = GetUGPT(req);
 
 	const chart = await db.charts[game].findOne({
 		chartID: req.params.chartID,

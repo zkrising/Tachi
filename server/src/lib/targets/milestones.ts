@@ -243,10 +243,10 @@ export async function SubscribeToMilestone(
 	return { milestoneSub, goals: result.goals, goalResults: result.goalResults };
 }
 
-export async function UnsubscribeFromMilestone(userID: integer, milestone: MilestoneDocument) {
+export async function UnsubscribeFromMilestone(userID: integer, milestoneID: string) {
 	await db["milestone-subs"].remove({
 		userID,
-		milestoneID: milestone.milestoneID,
+		milestoneID,
 	});
 }
 
@@ -264,8 +264,19 @@ export async function UpdateMilestoneSubscriptions(milestoneID: string) {
 
 	const subscriptions = await db["milestone-subs"].find({ milestoneID });
 
-	const milestone = await GetMilestoneForIDGuaranteed(milestoneID);
-	const goals = await GetGoalsInMilestone(milestone);
+	const maybeMilestone = await db.milestones.findOne({ milestoneID });
+
+	if (!maybeMilestone) {
+		logger.info(
+			`Milestone ${milestoneID} has been deleted. Unsubscribing ${subscriptions.length} users.`
+		);
+
+		return Promise.all(
+			subscriptions.map((e) => UnsubscribeFromMilestone(e.userID, e.milestoneID))
+		);
+	}
+
+	const goals = await GetGoalsInMilestone(maybeMilestone);
 
 	const goalSubscriptionPromises = [];
 
@@ -287,7 +298,7 @@ export async function UpdateMilestoneSubscriptions(milestoneID: string) {
 
 	if (newStuff !== 0) {
 		logger.info(
-			`Updating subscriptions for '${milestone.name}' resulted in ${newStuff} updates.`
+			`Updating subscriptions for '${maybeMilestone.name}' resulted in ${newStuff} updates.`
 		);
 	}
 

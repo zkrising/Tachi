@@ -291,7 +291,8 @@ const syncInstructions: SyncInstructions[] = [
 				milestones.filter((e) => IsSupported(e.game)),
 				collection,
 				"milestoneID",
-				logger
+				logger,
+				true
 			);
 
 			if (r.thingsChanged) {

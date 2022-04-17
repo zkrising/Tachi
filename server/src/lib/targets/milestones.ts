@@ -8,6 +8,7 @@ import {
 	MilestoneDocument,
 	MilestoneSubscriptionDocument,
 } from "tachi-common";
+import { GetMilestoneForIDGuaranteed } from "utils/db";
 import { EvaluatedGoalReturn, EvaluateGoalForUser, SubscribeToGoal } from "./goals";
 
 const logger = CreateLogCtx(__filename);
@@ -260,4 +261,48 @@ export async function UnsubscribeFromMilestone(userID: integer, milestone: Miles
 		userID,
 		milestoneID: milestone.milestoneID,
 	});
+}
+
+/**
+ * Given a milestoneID, update all of its subscriptions to potentially subscribe to any
+ * new goals added to it.
+ *
+ * @note Updating milestone subscriptions just means ensuring that any subscribing
+ * users are also subscribed to all goals in that milestone. Nothing more.
+ *
+ * A milestone that removes goals will not result in those users having goal subs removed.
+ */
+export async function UpdateMilestoneSubscriptions(milestoneID: string) {
+	logger.info(`Recieved update-subscribe call to milestone ${milestoneID}.`);
+
+	const subscriptions = await db["milestone-subs"].find({ milestoneID });
+
+	const milestone = await GetMilestoneForIDGuaranteed(milestoneID);
+	const goals = await GetGoalsInMilestone(milestone);
+
+	const goalSubscriptionPromises = [];
+
+	for (const sub of subscriptions) {
+		for (const goal of goals) {
+			// attempt to subscribe to all goals in this milestone.
+			// even if they're already subscribed, it's not a problem -- will just fail fast.
+			const goalSubPromise = SubscribeToGoal(sub.userID, goal, false);
+
+			goalSubscriptionPromises.push(goalSubPromise);
+		}
+	}
+
+	const subscriptionResults = await Promise.all(goalSubscriptionPromises);
+
+	const newStuff = subscriptionResults.filter(
+		(e) => e !== SubscribeFailReasons.ALREADY_SUBSCRIBED
+	).length;
+
+	if (newStuff !== 0) {
+		logger.info(
+			`Updating subscriptions for '${milestone.name}' resulted in ${newStuff} updates.`
+		);
+	}
+
+	return subscriptionResults;
 }

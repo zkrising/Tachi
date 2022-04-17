@@ -95,7 +95,7 @@ dependencies:
   fast-json-stable-hash: 1.0.3
   fast-xml-parser: 4.0.2
   helmet: 5.0.2
-  html-entities: 2.3.3
+  html-entities: 2.3.2
   json5: 2.2.0
   mkdirp: 1.0.4
   mongodb: 3.6.3
@@ -2412,7 +2412,7 @@ packages:
     resolution: {integrity: sha512-/aUslKhzkTNCQUB2qTX84lVmfia9NyjP3WpDGtj/WxhwBzWBYUV3DgUpurHTme8UTPcPlAD1DJ+b0nN/t50zDQ==}
     dependencies:
       boolbase: 1.0.0
-      css-what: 6.1.0
+      css-what: 5.1.0
       domhandler: 4.3.1
       domutils: 2.8.0
       nth-check: 2.0.1
@@ -4354,7 +4354,7 @@ packages:
   /node-html-parser/5.3.3:
     resolution: {integrity: sha512-ncg1033CaX9UexbyA7e1N0aAoAYRDiV8jkTvzEnfd1GDvzFdrsXLzR4p4ik8mwLgnaKP/jyUFWDy9q3jvRT2Jw==}
     dependencies:
-      css-select: 4.3.0
+      css-select: 4.2.1
       he: 1.2.0
     dev: false
 

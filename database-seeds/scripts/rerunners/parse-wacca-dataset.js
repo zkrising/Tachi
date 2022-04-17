@@ -19,7 +19,7 @@ const dirtyRecords = parse(fs.readFileSync(options.file), {});
 const headers = dirtyRecords[0];
 const songTitleCol = headers.indexOf("@song-title");
 const songTitleEngCol = headers.indexOf("@song-title-english");
-const difficultyCols = ["normal", "hard", "expert", "inferno"].map(diffname => ({
+const difficultyCols = ["normal", "hard", "expert", "inferno"].map((diffname) => ({
 	levelCol: headers.indexOf(`@${diffname}-level`),
 	constantCol: headers.indexOf(`@${diffname}-constant`),
 	newerCol: headers.indexOf(`@${diffname}-newer`),
@@ -32,7 +32,7 @@ const titleMap = {
 	"cloud Ⅸ": "cloud IX",
 };
 
-// Converts the title on the site to a noramlized version that we
+// Converts the title on the site to a normalized version that we
 // can match against the dataset.
 function siteTitleNormalize(siteTitle) {
 	let normalized = decode(siteTitle.replace(/　/g, " ")).trim();

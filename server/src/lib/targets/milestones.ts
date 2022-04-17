@@ -244,19 +244,6 @@ export async function SubscribeToMilestone(
 }
 
 export async function UnsubscribeFromMilestone(userID: integer, milestone: MilestoneDocument) {
-	const goalIDs = GetGoalIDsFromMilestone(milestone);
-
-	// TODO COME BACK HERE
-
-	// then, remove all of the ones that now have no parent blocking their demise.
-	// that's pretty morbid, jesus christ.
-	await db["goal-subs"].remove({
-		goalID: { $in: goalIDs },
-		userID,
-		parentMilestones: { $size: 0 },
-	});
-
-	// remove the user's milestone sub, aswell.
 	await db["milestone-subs"].remove({
 		userID,
 		milestoneID: milestone.milestoneID,

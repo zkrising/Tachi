@@ -227,7 +227,7 @@ export function HumaniseGoalProgress(
 
 	switch (key) {
 		case "scoreData.gradeIndex":
-			return `${gptConfig.grades[value]} (${userPB?.scoreData.percent ?? "0"}%)`;
+			return `${gptConfig.grades[value]} (${userPB?.scoreData.percent.toFixed(2) ?? "0"}%)`;
 		case "scoreData.lampIndex":
 			if (userPB && (game === "iidx" || game === "bms" || game === "pms")) {
 				return `${gptConfig.lamps[value]} (BP: ${

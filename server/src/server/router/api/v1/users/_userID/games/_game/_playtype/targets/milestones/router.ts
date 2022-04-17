@@ -216,7 +216,7 @@ router.delete(
 			}
 		);
 
-		await UnsubscribeFromMilestone(user.id, milestone);
+		await UnsubscribeFromMilestone(user.id, milestone.milestoneID);
 
 		return res.status(200).json({
 			success: true,

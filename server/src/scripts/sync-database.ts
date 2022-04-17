@@ -7,6 +7,7 @@ import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
 import { TachiConfig } from "lib/setup/config";
+import { UpdateMilestoneSubscriptions } from "lib/targets/milestones";
 import { BulkWriteOperation } from "mongodb";
 import { ICollection } from "monk";
 import {
@@ -14,12 +15,16 @@ import {
 	ChartDocument,
 	FolderDocument,
 	Game,
+	GoalDocument,
+	MilestoneDocument,
+	MilestoneSetDocument,
 	SongDocument,
 	TableDocument,
 } from "tachi-common";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { UpdateGameSongIDCounter } from "utils/db";
 import { InitaliseFolderChartLookup } from "utils/folder";
+import { IsSupported } from "utils/misc";
 
 interface SyncInstructions {
 	pattern: RegExp;
@@ -60,7 +65,8 @@ async function GenericUpsert<T>(
 	collection: ICollection<T>,
 	field: keyof T,
 	logger: KtLogger,
-	remove = false
+	remove = false,
+	update = true
 ) {
 	logger.verbose(`Running bulkwrite.`);
 
@@ -89,7 +95,7 @@ async function GenericUpsert<T>(
 				// @ts-expect-error Actually, T is assignable to OptionalId<T>.
 				insertOne: { document },
 			});
-		} else if (fjsh.hash(document, "sha256") !== fjsh.hash(exists, "sha256")) {
+		} else if (update && fjsh.hash(document, "sha256") !== fjsh.hash(exists, "sha256")) {
 			bwriteOps.push({
 				replaceOne: {
 					// @ts-expect-error Known X->Y generic issue.
@@ -241,6 +247,59 @@ const syncInstructions: SyncInstructions[] = [
 			}
 
 			await GenericUpsert(bmsCourseDocuments, collection, "md5sums", logger);
+		},
+	},
+	{
+		pattern: /^goals/u,
+		handler: async (goals: GoalDocument[], collection: ICollection<GoalDocument>, logger) => {
+			// never remove goals. Never update goals either. Only insert new ones as
+			// they come in.
+			await GenericUpsert(
+				goals.filter((e) => IsSupported(e.game)),
+				collection,
+				"goalID",
+				logger,
+				false,
+				false
+			);
+		},
+	},
+	{
+		pattern: /^milestone-sets/u,
+		handler: async (
+			milestoneSets: MilestoneSetDocument[],
+			collection: ICollection<MilestoneSetDocument>,
+			logger
+		) => {
+			// removing and updating these is fine. Users cannot subscibe to sets.
+			await GenericUpsert(
+				milestoneSets.filter((e) => IsSupported(e.game)),
+				collection,
+				"setID",
+				logger
+			);
+		},
+	},
+	{
+		pattern: /^milestones/u,
+		handler: async (
+			milestones: MilestoneDocument[],
+			collection: ICollection<MilestoneDocument>,
+			logger
+		) => {
+			const r = await GenericUpsert(
+				milestones.filter((e) => IsSupported(e.game)),
+				collection,
+				"milestoneID",
+				logger,
+				true
+			);
+
+			if (r.thingsChanged) {
+				const affectedMilestoneIDs = r.changedFields as string[];
+
+				await Promise.all(affectedMilestoneIDs.map((e) => UpdateMilestoneSubscriptions(e)));
+			}
 		},
 	},
 ];

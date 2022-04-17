@@ -8,6 +8,7 @@ import {
 	MilestoneDocument,
 	MilestoneSubscriptionDocument,
 } from "tachi-common";
+import { GetMilestoneForIDGuaranteed } from "utils/db";
 import { EvaluatedGoalReturn, EvaluateGoalForUser, SubscribeToGoal } from "./goals";
 
 const logger = CreateLogCtx(__filename);
@@ -242,22 +243,64 @@ export async function SubscribeToMilestone(
 	return { milestoneSub, goals: result.goals, goalResults: result.goalResults };
 }
 
-export async function UnsubscribeFromMilestone(userID: integer, milestone: MilestoneDocument) {
-	const goalIDs = GetGoalIDsFromMilestone(milestone);
-
-	// TODO COME BACK HERE
-
-	// then, remove all of the ones that now have no parent blocking their demise.
-	// that's pretty morbid, jesus christ.
-	await db["goal-subs"].remove({
-		goalID: { $in: goalIDs },
-		userID,
-		parentMilestones: { $size: 0 },
-	});
-
-	// remove the user's milestone sub, aswell.
+export async function UnsubscribeFromMilestone(userID: integer, milestoneID: string) {
 	await db["milestone-subs"].remove({
 		userID,
-		milestoneID: milestone.milestoneID,
+		milestoneID,
 	});
+}
+
+/**
+ * Given a milestoneID, update all of its subscriptions to potentially subscribe to any
+ * new goals added to it.
+ *
+ * @note Updating milestone subscriptions just means ensuring that any subscribing
+ * users are also subscribed to all goals in that milestone. Nothing more.
+ *
+ * A milestone that removes goals will not result in those users having goal subs removed.
+ */
+export async function UpdateMilestoneSubscriptions(milestoneID: string) {
+	logger.info(`Recieved update-subscribe call to milestone ${milestoneID}.`);
+
+	const subscriptions = await db["milestone-subs"].find({ milestoneID });
+
+	const maybeMilestone = await db.milestones.findOne({ milestoneID });
+
+	if (!maybeMilestone) {
+		logger.info(
+			`Milestone ${milestoneID} has been deleted. Unsubscribing ${subscriptions.length} users.`
+		);
+
+		return Promise.all(
+			subscriptions.map((e) => UnsubscribeFromMilestone(e.userID, e.milestoneID))
+		);
+	}
+
+	const goals = await GetGoalsInMilestone(maybeMilestone);
+
+	const goalSubscriptionPromises = [];
+
+	for (const sub of subscriptions) {
+		for (const goal of goals) {
+			// attempt to subscribe to all goals in this milestone.
+			// even if they're already subscribed, it's not a problem -- will just fail fast.
+			const goalSubPromise = SubscribeToGoal(sub.userID, goal, false);
+
+			goalSubscriptionPromises.push(goalSubPromise);
+		}
+	}
+
+	const subscriptionResults = await Promise.all(goalSubscriptionPromises);
+
+	const newStuff = subscriptionResults.filter(
+		(e) => e !== SubscribeFailReasons.ALREADY_SUBSCRIBED
+	).length;
+
+	if (newStuff !== 0) {
+		logger.info(
+			`Updating subscriptions for '${maybeMilestone.name}' resulted in ${newStuff} updates.`
+		);
+	}
+
+	return subscriptionResults;
 }

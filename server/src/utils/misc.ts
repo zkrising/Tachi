@@ -2,7 +2,7 @@ import { exec } from "child_process";
 import crypto from "crypto";
 import { ONE_HOUR } from "lib/constants/time";
 import { TachiConfig } from "lib/setup/config";
-import { Game, GamePTConfig, GetGameConfig, integer, Playtypes } from "tachi-common";
+import { Game, GamePTConfig, GetGameConfig, integer, Playtype, Playtypes } from "tachi-common";
 import { URL } from "url";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
@@ -198,4 +198,11 @@ export function HumanisedJoinArray(arr: string[], lastJoiner = "or") {
 
 export function FormatMaxDP(num: number, points = 2) {
 	return parseFloat(num.toFixed(points)).toString();
+}
+
+/**
+ * Returns whether this game is supported by this instance of tachi or not.
+ */
+export function IsSupported(game: Game) {
+	return TachiConfig.GAMES.includes(game);
 }

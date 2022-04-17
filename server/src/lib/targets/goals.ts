@@ -227,8 +227,20 @@ export function HumaniseGoalProgress(
 
 	switch (key) {
 		case "scoreData.gradeIndex":
+			if (!gptConfig.grades[value]) {
+				throw new Error(
+					`Corrupt goal -- requested a grade of ${value}, which doesn't exist for this game.`
+				);
+			}
+
 			return `${gptConfig.grades[value]} (${userPB?.scoreData.percent.toFixed(2) ?? "0"}%)`;
 		case "scoreData.lampIndex":
+			if (!gptConfig.lamps[value]) {
+				throw new Error(
+					`Corrupt goal -- requested a lamp of ${value}, which doesn't exist for this game.`
+				);
+			}
+
 			if (userPB && (game === "iidx" || game === "bms" || game === "pms")) {
 				return `${gptConfig.lamps[value]} (BP: ${
 					(userPB as PBWithBadPoor).scoreData.hitMeta.bp ?? "N/A"

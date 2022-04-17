@@ -115,6 +115,9 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 		index({ "data.hashSHA256": 1, playtype: 1 }, UNIQUE),
 		index({ "data.hashMD5": 1, playtype: 1 }, UNIQUE),
 	],
+	"import-locks": [index({ userID: 1 }, UNIQUE)],
+	"arc-saved-profiles": [index({ userID: 1, forImportType: 1 }, UNIQUE)],
+	"score-blacklist": [index({ scoreID: 1 }, UNIQUE)],
 };
 
 const indexes: Partial<Record<Databases, Index[]>> = staticIndexes;

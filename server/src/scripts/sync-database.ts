@@ -175,6 +175,18 @@ const syncInstructions: SyncInstructions[] = [
 		},
 	},
 	{
+		pattern: /^songs-(b|p)ms/u,
+		handler: async (songs: SongDocument[], collection: ICollection<SongDocument>, logger) => {
+			const r = await GenericUpsert(songs, collection, "id", logger, false);
+
+			if (r.thingsChanged) {
+				await RecalcAllScores({
+					songID: { $in: r.changedFields },
+				});
+			}
+		},
+	},
+	{
 		pattern: /^songs-/u,
 		handler: async (songs: SongDocument[], collection: ICollection<SongDocument>, logger) => {
 			const r = await GenericUpsert(songs, collection, "id", logger, true);
@@ -187,13 +199,19 @@ const syncInstructions: SyncInstructions[] = [
 		},
 	},
 	{
-		pattern: /^folders$/u,
+		pattern: /^folders/u,
 		handler: async (
 			folders: FolderDocument[],
 			collection: ICollection<FolderDocument>,
 			logger
 		) => {
-			const r = await GenericUpsert(folders, collection, "folderID", logger, true);
+			const r = await GenericUpsert(
+				folders.filter((e) => TachiConfig.GAMES.includes(e.game)),
+				collection,
+				"folderID",
+				logger,
+				true
+			);
 
 			if (r) {
 				await InitaliseFolderChartLookup();
@@ -201,17 +219,29 @@ const syncInstructions: SyncInstructions[] = [
 		},
 	},
 	{
-		pattern: /^tables$/u,
+		pattern: /^tables/u,
 		handler: (tables: TableDocument[], collection: ICollection<TableDocument>, logger) =>
-			GenericUpsert(tables, collection, "tableID", logger, true),
+			GenericUpsert(
+				tables.filter((e) => TachiConfig.GAMES.includes(e.game)),
+				collection,
+				"tableID",
+				logger,
+				true
+			),
 	},
 	{
-		pattern: /^bms-course-lookup$/u,
-		handler: (
+		pattern: /^bms-course-lookup/u,
+		handler: async (
 			bmsCourseDocuments: BMSCourseDocument[],
 			collection: ICollection<BMSCourseDocument>,
 			logger
-		) => GenericUpsert(bmsCourseDocuments, collection, "md5sums", logger),
+		) => {
+			if (TachiConfig.TYPE === "ktchi") {
+				return;
+			}
+
+			await GenericUpsert(bmsCourseDocuments, collection, "md5sums", logger);
+		},
 	},
 ];
 

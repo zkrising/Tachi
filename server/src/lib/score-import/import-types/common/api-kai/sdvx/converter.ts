@@ -19,7 +19,7 @@ import { KaiContext, KaiSDVXScore } from "../types";
 const PR_KaiSDVXScore = {
 	music_id: p.isPositiveInteger,
 	music_difficulty: p.isBoundedInteger(0, 4),
-	played_version: p.isBoundedInteger(1, 5),
+	played_version: p.isBoundedInteger(1, 6),
 	clear_type: p.isBoundedInteger(1, 5),
 	max_chain: p.isPositiveInteger,
 	score: p.isBoundedInteger(0, 10_000_000),
@@ -28,7 +28,7 @@ const PR_KaiSDVXScore = {
 	error: p.nullable(p.isPositiveInteger),
 	early: p.nullable(p.isPositiveInteger),
 	late: p.nullable(p.isPositiveInteger),
-	gauge_rate: p.isBoundedInteger(0, 100),
+	gauge_rate: p.isBetween(0, 100),
 	timestamp: "string",
 };
 
@@ -132,6 +132,8 @@ export function ConvertVersion(ver: number) {
 			return "heaven";
 		case 5:
 			return "vivid";
+		case 6:
+			return "exceed";
 	}
 
 	throw new InvalidScoreFailure(`Unknown Game Version ${ver}.`);

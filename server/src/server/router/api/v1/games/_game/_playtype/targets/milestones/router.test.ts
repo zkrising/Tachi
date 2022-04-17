@@ -1,3 +1,5 @@
+import dm from "deepmerge";
+import db from "external/mongo/db";
 import {
 	MilestoneDocument,
 	MilestoneSetDocument,
@@ -6,7 +8,6 @@ import {
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import dm from "deepmerge";
 import {
 	FakeOtherUser,
 	IIDXSPMilestoneGoals,
@@ -15,7 +16,6 @@ import {
 	TestingIIDXSPMilestoneSub,
 	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
-import db from "external/mongo/db";
 
 t.test("GET /api/v1/games/:game/:playtype/targets/milestones", (t) => {
 	t.beforeEach(ResetDBState);

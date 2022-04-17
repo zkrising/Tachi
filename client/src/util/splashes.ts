@@ -1,7 +1,11 @@
 import { mode } from "lib/config";
 import { FormatDate } from "./time";
 
-export const neutralSplashes = ["A Rhythm Game Score Manager", "The Rhythm Game Score Manager"];
+export const neutralSplashes = [
+	"A Rhythm Game Score Manager",
+	"The Rhythm Game Score Manager",
+	"I sure hope the employer looking at this thinks I'm cool.",
+];
 
 export const loggedInSplashes = [
 	"Splash Text Has The Right To Humour",

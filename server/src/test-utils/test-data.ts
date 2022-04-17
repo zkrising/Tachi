@@ -494,8 +494,8 @@ export const TestingIIDXSPMilestone: MilestoneDocument = {
 export const IIDXSPMilestoneGoals: GoalDocument[] = [
 	dm(HC511Goal, { goalID: "eg_goal_1" }) as GoalDocument,
 	dm(HC511Goal, { goalID: "eg_goal_2", criteria: { value: 2 } }),
-	dm(HC511Goal, { goalID: "eg_goal_3", criteria: { value: 300 } }),
-	dm(HC511Goal, { goalID: "eg_goal_4", criteria: { value: 1100 } }),
+	dm(HC511Goal, { goalID: "eg_goal_3", criteria: { key: "scoreData.score", value: 300 } }),
+	dm(HC511Goal, { goalID: "eg_goal_4", criteria: { key: "scoreData.score", value: 1100 } }),
 ];
 
 export const IIDXSPMilestoneGoalSubs: GoalSubscriptionDocument[] = [

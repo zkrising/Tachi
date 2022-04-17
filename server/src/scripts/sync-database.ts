@@ -7,6 +7,7 @@ import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
 import { TachiConfig } from "lib/setup/config";
+import { UpdateMilestoneSubscriptions } from "lib/targets/milestones";
 import { BulkWriteOperation } from "mongodb";
 import { ICollection } from "monk";
 import {
@@ -261,6 +262,43 @@ const syncInstructions: SyncInstructions[] = [
 				false,
 				false
 			);
+		},
+	},
+	{
+		pattern: /^milestone-sets/u,
+		handler: async (
+			milestoneSets: MilestoneSetDocument[],
+			collection: ICollection<MilestoneSetDocument>,
+			logger
+		) => {
+			// removing and updating these is fine. Users cannot subscibe to sets.
+			await GenericUpsert(
+				milestoneSets.filter((e) => IsSupported(e.game)),
+				collection,
+				"setID",
+				logger
+			);
+		},
+	},
+	{
+		pattern: /^milestones/u,
+		handler: async (
+			milestones: MilestoneDocument[],
+			collection: ICollection<MilestoneDocument>,
+			logger
+		) => {
+			const r = await GenericUpsert(
+				milestones.filter((e) => IsSupported(e.game)),
+				collection,
+				"milestoneID",
+				logger
+			);
+
+			if (r.thingsChanged) {
+				const affectedMilestoneIDs = r.changedFields as string[];
+
+				await Promise.all(affectedMilestoneIDs.map((e) => UpdateMilestoneSubscriptions(e)));
+			}
 		},
 	},
 ];

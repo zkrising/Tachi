@@ -24,6 +24,87 @@ Playing a fixed set of charts all the time will not expose you to more things, a
 In short. Don't play dans too much.`,
 	orphans: `Importing scores for songs/charts we don't have in the database yet results in them becoming orphaned.
 Orphaned scores stay in limbo until they find their 'parent' song or chart. When that's found, they're imported *exactly* as you had them originally! That way, you never lose scores.`,
+	whatare_goals: `Goals are simple challenges a player can set. Players may subscribe to goals, and they will automatically be tracked for them!
+
+When creating a goal, you can control the following things:
+
+**Criteria**: Is this a lamp, score, grade or percent goal?
+**Value**: Do you need to get an EASY CLEAR? HARD CLEAR? 95%? etc.
+**Charts**: A specific chart, a specific set of charts, any charts in a specific folder, or the set of all charts.
+**Mode**: If you've picked multiple charts, you can also specify how many charts need to be cleared -- Clear 10 of the charts, Clear 5% of the charts, etc.
+
+**Example Goals**
+\`\`\`
+- HARD CLEAR Freedom Dive.
+- EASY CLEAR Freedom Dive or Blastix Riotz.
+- HARD CLEAR 10 Charts in the level 12 folder.
+- AAA 30% of the charts in the level 10 folder.
+- Get 9,234,567 or better on any chart.
+\`\`\`
+`,
+	whatare_milestones: `Milestones are structured groups of goals. Players can subscribe to milestones, and that will automatically subscribe them to all of the goals inside it.
+
+**Milestones are very similar in functionality to things like bingo cards.** You group a bunch of goals that share a common incentive (Breaking into level 12s, maybe?), and slowly check them off.
+
+Milestones can group their goals into subsections -- this doesn't affect the milestone, but can visually break up different types of goals, such as timing goals vs. clearing goals. Milestone creators can also add notes to goals, to express why a goal is in the milestone.
+
+**Example Milestone**
+\`\`\`
+Name: Breaking Into Level 17s (SDVX)
+Description: These goals are for players aiming to break the 17 wall in SDVX. They focus on all skill sets you should be aiming for around this level.
+
+--- Clearing ---
+-- These goals are focused on your clearing ability! --
+
+Clear 20 unique 16s (NOTE: pattern diversity test)
+Clear lEyl [EXH] (NOTE: just a good generic mid/high 16)
+Clear 蟲の棲む処 [MXM] (NOTE: Good, easy 17)
+
+--- Timing ---
+-- These goals are focused on your timing ability! Good timing improves your technical ability as a player, so don't neglect it! --
+
+AAA 3 Level 16s (NOTE: Just a generic accuracy test)
+AA 10 Level 16s
+\`\`\`
+
+[Here's an example milestone screenshot from Tachi v1, if the above explanation isn't clear enough!](https://cdn.discordapp.com/attachments/795824903906394142/965662379654393976/unknown.png)
+`,
+	whatare_sets: `Milestones themselves can be grouped up into ordered sets. This allows users to make a 'scale' of milestones that go up in difficulty.
+
+For a real world example, [LIFE4](https://life4ddr.com/rank-requirements/) would be considered a milestone set:
+
+\`\`\`
+Milestone Set: LIFE4
+
+Copper I
+Copper II
+Copper III
+Copper IV
+Copper V
+Bronze I
+Bronze II
+Bronze III
+Bronze IV
+Bronze V
+Silver I
+Silver II
+Silver III
+... (LIFE4 has like 50 separate milestones, so I can't fit them all here, but you get the idea)
+\`\`\`
+`,
+	creating_milestones: `At the moment, there is no UI for users to create milestones. In the future, there will be a way to do this!
+
+For now, all milestones are built-in to Tachi. Ideally, we want the built-in Tachi milestones to be interesting for players -- they should be effective targets for an improving player!`,
+	good_milestones: `A good milestone should never make the player feel like they're wasting their time.
+
+You shouldn't make goals like playing everything in a large folder, since those are more tests of endurance than skill. They're just going to be wasting their time!
+
+You should also avoid redundant goals -- all the goals in the milestone should ideally be around the same difficulty! Something like Clear 10 18s and Clear 25 18s are obviously redundant, but this also applies to goals like AAA Easy_Chart and Way_harder_chart. Every goal and part of a goal in a milestone should be something a player can reasonably have last to achieve.`,
+	builtin_milestone_set: `I want every game on Tachi to have atleast one fairly comprehensive milestone set (see \`/faq whatare_sets\`). These should be useful for players of all skill levels, so that they have some good ideas for goals to set around their level.
+
+I'm ideally looking for something that the average player can just set and have fun checking off. The set itself should have the milestones fairly distinguished, players shouldn't be pushing multiple milestones in the same set at the same time.
+	
+Since I don't play a lot of the the games that ${ServerConfig.name} supports, we need your help to come up with some good drafts! Your game might have a dedicated \`-milestones\` channel. Check it out and discuss with others!`,
 };
 
 // Server specific FAQ stuff.

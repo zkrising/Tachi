@@ -1,6 +1,6 @@
 const MAJOR = 2;
 const MINOR = 1;
-const PATCH = 1;
+const PATCH = 2;
 
 const TOKYO_SHOEGAZER_MOONDIVER = [
 	"Into the Deep Sky",

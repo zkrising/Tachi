@@ -1,13 +1,14 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { Migration } from "utils/types";
+import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 
 const logger = CreateLogCtx(__filename);
 
 // Migrations are stored in an array because they have some concept of order
 // That is, migrations should ideally be applied in a fixed order just to avoid
 // any potential unsavoury interactions.
-const REGISTERED_MIGRATIONS: Migration[] = [];
+const REGISTERED_MIGRATIONS: Migration[] = [UGPTRivalsMigration];
 
 function CreateMigrationLookupMap(migrations: Migration[]) {
 	const map = new Map<string, Migration>();

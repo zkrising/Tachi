@@ -50,6 +50,13 @@ router.put(
 			});
 		}
 
+		if (rivalIDs.some((e) => e === user.id)) {
+			return res.status(400).json({
+				success: false,
+				description: `You cannot rival yourself.`,
+			});
+		}
+
 		await SetRivals(user.id, game, playtype, rivalIDs);
 
 		return res.status(200).json({

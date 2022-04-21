@@ -59,6 +59,10 @@ export async function SetRivals(
 		throw new Error(`Cannot set more than 5 rivals.`);
 	}
 
+	if (newRivals.some((e) => e === userID)) {
+		throw new Error(`You cannot rival yourself.`);
+	}
+
 	const playedGPTCount = await db["game-settings"].count({
 		userID: { $in: newRivals },
 		game,

@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { GetChallengerUsers, GetRivalUsers, SetRivals } from "lib/rivals/rivals";
-import prValidate from "server/middleware/prudence-validate";
-import { GetUGPT } from "utils/req-tachi-data";
-import { RequireAuthedAsUser, RequireSelfRequestFromUser } from "../../../../middleware";
 import p from "prudence";
-import { integer } from "tachi-common";
 import { RequirePermissions } from "server/middleware/auth";
+import prValidate from "server/middleware/prudence-validate";
+import { integer } from "tachi-common";
+import { GetUGPT } from "utils/req-tachi-data";
+import { RequireAuthedAsUser } from "../../../../middleware";
 
 const router: Router = Router({ mergeParams: true });
 

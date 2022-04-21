@@ -118,6 +118,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	"import-locks": [index({ userID: 1 }, UNIQUE)],
 	"arc-saved-profiles": [index({ userID: 1, forImportType: 1 }, UNIQUE)],
 	"score-blacklist": [index({ scoreID: 1 }, UNIQUE)],
+	migrations: [index({ migrationID: 1 }, UNIQUE)],
 };
 
 const indexes: Partial<Record<Databases, Index[]>> = staticIndexes;

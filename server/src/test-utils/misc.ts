@@ -1,5 +1,5 @@
 import deepmerge from "deepmerge";
-import { Game, integer, Playtype } from "tachi-common";
+import { Game, integer, Playtype, PublicUserDocument, UGPTSettings } from "tachi-common";
 import { FakeGameSettings, FakeOtherUser } from "./test-data";
 
 /**
@@ -27,18 +27,35 @@ export function dmf<T extends object>(base: T, modifant: Partial<T>): T {
  *
  * @param userID - The userID this fake user should have.
  */
-export function mkFakeUser(userID: integer) {
-	return dmf(FakeOtherUser, {
-		id: userID,
-		username: `user${userID}`,
-		usernameLowercase: `user${userID}`,
-	});
+export function mkFakeUser(userID: integer, modifant: Partial<PublicUserDocument> = {}) {
+	return dmf(
+		FakeOtherUser,
+		Object.assign(
+			{
+				id: userID,
+				username: `user${userID}`,
+				usernameLowercase: `user${userID}`,
+			},
+			modifant
+		)
+	);
 }
 
-export function mkFakeGameSettings(userID: integer, game: Game, playtype: Playtype) {
-	return dmf(FakeGameSettings, {
-		userID,
-		game,
-		playtype,
-	});
+export function mkFakeGameSettings(
+	userID: integer,
+	game: Game,
+	playtype: Playtype,
+	modifant: Partial<UGPTSettings> = {}
+) {
+	return dmf(
+		FakeGameSettings,
+		Object.assign(
+			{
+				userID,
+				game,
+				playtype,
+			},
+			modifant
+		)
+	);
 }

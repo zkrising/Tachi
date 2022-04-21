@@ -16,7 +16,7 @@ const router: Router = Router({ mergeParams: true });
 /**
  * Update your settings.
  *
- * @param - See the prudence middleware.
+ * @param - See the prudence validation.
  *
  * @name PATCH /api/v1/users/:userID/games/:game/:playtype/settings
  */

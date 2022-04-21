@@ -166,6 +166,9 @@ export async function ApplyMigration(migrationID: string) {
 			);
 		}
 
+		// remove the stale migration so it can be re-ran in the future.
+		await db.migrations.findOneAndDelete({ migrationID });
+
 		process.exit(1);
 	}
 }

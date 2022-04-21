@@ -5,6 +5,7 @@ import { GetUGPT } from "utils/req-tachi-data";
 import { RequireAuthedAsUser, RequireSelfRequestFromUser } from "../../../../middleware";
 import p from "prudence";
 import { integer } from "tachi-common";
+import { RequirePermissions } from "server/middleware/auth";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -35,7 +36,7 @@ router.get("/", async (req, res) => {
 router.put(
 	"/",
 	RequireAuthedAsUser,
-	RequireSelfRequestFromUser,
+	RequirePermissions("manage_rivals"),
 	prValidate({
 		rivalIDs: [p.isPositiveNonZeroInteger],
 	}),

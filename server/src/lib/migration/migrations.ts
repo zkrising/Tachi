@@ -74,6 +74,8 @@ export async function ApplyUnappliedMigrations() {
 
 	for (const migrationID of unapplied) {
 		// These things need to apply in lockstep.
+		// Note that if any migration fails, this will exit at CRIT level
+		// and not continue.
 		// eslint-disable-next-line no-await-in-loop
 		await ApplyMigration(migrationID);
 	}

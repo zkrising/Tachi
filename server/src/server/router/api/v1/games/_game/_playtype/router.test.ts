@@ -1,9 +1,10 @@
 import t from "tap";
 import mockApi from "test-utils/mock-api";
-import { GetGamePTConfig, UserGameStats } from "tachi-common";
-
+import { GetGamePTConfig, PublicUserDocument, UserGameStats } from "tachi-common";
+import dm from "deepmerge";
 import ResetDBState from "test-utils/resets";
 import db from "external/mongo/db";
+import { FakeOtherUser } from "test-utils/test-data";
 
 t.test("GET /api/v1/games/:game/:playtype", (t) => {
 	t.test("Should return information about the game:playtype.", async (t) => {
@@ -85,6 +86,15 @@ t.test("GET /api/v1/games/:game/:playtype/leaderboard", (t) => {
 				},
 			},
 		] as UserGameStats[]);
+
+		await db.users.insert([
+			FakeOtherUser,
+			dm(FakeOtherUser, {
+				username: "foo",
+				usernameLowercase: "foo",
+				id: 3,
+			}) as PublicUserDocument,
+		]);
 
 		const res = await mockApi.get("/api/v1/games/iidx/SP/leaderboard?alg=BPI");
 

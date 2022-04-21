@@ -41,6 +41,7 @@ const SetFolders = async () => {
 				bpiTarget: 0,
 			},
 		},
+		rivals: [],
 	});
 
 	await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}));
@@ -100,6 +101,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 					bpiTarget: 0,
 				},
 			},
+			rivals: [],
 		});
 
 		// hack

@@ -1318,7 +1318,8 @@ export type APIPermissions =
 	| "customise_session"
 	| "customise_score"
 	| "delete_score"
-	| "manage_targets";
+	| "manage_targets"
+	| "manage_rivals";
 
 /**
  * Information about the API Token used to make this request.

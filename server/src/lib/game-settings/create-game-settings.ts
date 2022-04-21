@@ -46,6 +46,7 @@ export async function CreateGameSettings(userID: integer, game: Game, playtype: 
 			stats: [],
 			gameSpecific,
 		},
+		rivals: [],
 	});
 
 	logger.info(`Created game settings for ${userID} (${game} ${playtype}).`);

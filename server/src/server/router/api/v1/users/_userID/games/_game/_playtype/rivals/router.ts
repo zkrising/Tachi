@@ -1,9 +1,10 @@
 import { Router } from "express";
+import { SetRivalsFailReasons } from "lib/constants/err-codes";
 import { GetChallengerUsers, GetRivalUsers, SetRivals } from "lib/rivals/rivals";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
-import { integer } from "tachi-common";
+import { FormatGame, integer } from "tachi-common";
 import { GetUGPT } from "utils/req-tachi-data";
 import { RequireAuthedAsUser } from "../../../../middleware";
 
@@ -44,21 +45,27 @@ router.put(
 		const rivalIDs: integer[] = req.body.rivalIDs;
 		const { user, game, playtype } = GetUGPT(req);
 
-		if (rivalIDs.length > 5) {
-			return res.status(400).json({
-				success: false,
-				description: `You can only set up to 5 rivals.`,
-			});
-		}
+		const result = await SetRivals(user.id, game, playtype, rivalIDs);
 
-		if (rivalIDs.some((e) => e === user.id)) {
+		if (result === SetRivalsFailReasons.RIVALED_SELF) {
 			return res.status(400).json({
 				success: false,
 				description: `You cannot rival yourself.`,
 			});
+		} else if (result === SetRivalsFailReasons.RIVALS_HAVENT_PLAYED_GPT) {
+			return res.status(400).json({
+				success: false,
+				description: `Not all of the rivals you specified have played ${FormatGame(
+					game,
+					playtype
+				)}.`,
+			});
+		} else if (result === SetRivalsFailReasons.TOO_MANY) {
+			return res.status(400).json({
+				success: false,
+				description: `You can't set more than 5 rivals.`,
+			});
 		}
-
-		await SetRivals(user.id, game, playtype, rivalIDs);
 
 		return res.status(200).json({
 			success: true,

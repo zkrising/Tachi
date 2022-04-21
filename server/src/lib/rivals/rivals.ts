@@ -1,4 +1,5 @@
 import db from "external/mongo/db";
+import { SetRivalsFailReasons } from "lib/constants/err-codes";
 import { FormatGame, Game, integer, Playtype } from "tachi-common";
 import { GetUsersWithIDs } from "utils/user";
 
@@ -22,10 +23,7 @@ export async function GetRivalIDs(userID: integer, game: Game, playtype: Playtyp
 
 	if (!gameSettings) {
 		throw new Error(
-			`User ${userID} has not got game-settings for ${FormatGame(
-				game,
-				playtype
-			)}. Cannot retrieve rivals.`
+			`User ${userID} has not played ${FormatGame(game, playtype)}. Cannot retrieve rivals.`
 		);
 	}
 
@@ -56,11 +54,11 @@ export async function SetRivals(
 	newRivals: integer[]
 ) {
 	if (newRivals.length > 5) {
-		throw new Error(`Cannot set more than 5 rivals.`);
+		return SetRivalsFailReasons.TOO_MANY;
 	}
 
 	if (newRivals.some((e) => e === userID)) {
-		throw new Error(`You cannot rival yourself.`);
+		return SetRivalsFailReasons.RIVALED_SELF;
 	}
 
 	const playedGPTCount = await db["game-settings"].count({
@@ -71,7 +69,7 @@ export async function SetRivals(
 
 	// note: this check also checks that nothing provided is a duplicate.
 	if (playedGPTCount !== newRivals.length) {
-		throw new Error(`Not all of the rivals specified play ${FormatGame(game, playtype)}.`);
+		return SetRivalsFailReasons.RIVALS_HAVENT_PLAYED_GPT;
 	}
 
 	return db["game-settings"].update(

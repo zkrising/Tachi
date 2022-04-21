@@ -25,6 +25,7 @@ import {
 	GoalSubscriptionDocument,
 	MilestoneSubscriptionDocument,
 	PublicUserDocument,
+	UGPTSettings,
 } from "tachi-common";
 import { ApplyNTimes, RFA } from "utils/misc";
 
@@ -616,4 +617,23 @@ export const FakeOtherUser: PublicUserDocument = {
 	socialMedia: {},
 	status: null,
 	usernameLowercase: "other_user",
+};
+
+export const FakeGameSettings: UGPTSettings = {
+	game: "iidx",
+	playtype: "SP",
+	preferences: {
+		defaultTable: null,
+		gameSpecific: {
+			bpiTarget: 0,
+			display2DXTra: false,
+		},
+		preferredProfileAlg: null,
+		preferredScoreAlg: null,
+		preferredSessionAlg: null,
+		scoreBucket: null,
+		stats: [],
+	},
+	rivals: [],
+	userID: 1,
 };

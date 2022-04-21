@@ -1,3 +1,7 @@
+import deepmerge from "deepmerge";
+import { Game, integer, Playtype, PublicUserDocument, UGPTSettings } from "tachi-common";
+import { FakeGameSettings, FakeOtherUser } from "./test-data";
+
 /**
  * Async Generator To Array
  */
@@ -8,4 +12,50 @@ export async function agta(ag: AsyncIterable<unknown> | Iterable<unknown>) {
 	}
 
 	return a;
+}
+
+/**
+ * Deep-modify an object. This is a wrapper around deepmerge that returns proper types.
+ */
+export function dmf<T extends object>(base: T, modifant: Partial<T>): T {
+	return deepmerge(base, modifant) as T;
+}
+
+/**
+ * Make a fake user for testing. This automatically sets the username to something
+ * unique (to avoid index collisions)
+ *
+ * @param userID - The userID this fake user should have.
+ */
+export function mkFakeUser(userID: integer, modifant: Partial<PublicUserDocument> = {}) {
+	return dmf(
+		FakeOtherUser,
+		Object.assign(
+			{
+				id: userID,
+				username: `user${userID}`,
+				usernameLowercase: `user${userID}`,
+			},
+			modifant
+		)
+	);
+}
+
+export function mkFakeGameSettings(
+	userID: integer,
+	game: Game,
+	playtype: Playtype,
+	modifant: Partial<UGPTSettings> = {}
+) {
+	return dmf(
+		FakeGameSettings,
+		Object.assign(
+			{
+				userID,
+				game,
+				playtype,
+			},
+			modifant
+		)
+	);
 }

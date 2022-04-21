@@ -46,6 +46,7 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 					bpiTarget: 0,
 				},
 			},
+			rivals: [],
 		});
 
 		await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}));

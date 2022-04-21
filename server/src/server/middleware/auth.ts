@@ -23,6 +23,7 @@ export const AllPermissions: Record<APIPermissions, true> = {
 	customise_score: true,
 	delete_score: true,
 	manage_targets: true,
+	manage_rivals: true,
 };
 
 export const SetRequestPermissions: RequestHandler = CreateSetRequestPermissions("description");

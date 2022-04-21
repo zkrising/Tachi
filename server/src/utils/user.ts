@@ -75,10 +75,22 @@ export function GetSettingsForUser(userID: integer) {
 /**
  * Gets the users for these user IDs.
  */
-export function GetUsersWithIDs(userIDs: integer[]) {
-	return db.users.find({
+export async function GetUsersWithIDs(userIDs: integer[]) {
+	const users = await db.users.find({
 		id: { $in: userIDs },
 	});
+
+	if (users.length !== userIDs.length) {
+		logger.severe(
+			`GetUsersWithIDs was given ${userIDs.length} userIDs, but only matched ${users.length} -- state desync likely.`,
+			{ userIDs, users }
+		);
+		throw new Error(
+			`GetUsersWithIDs was given ${userIDs.length} userIDs, but only matched ${users.length}.`
+		);
+	}
+
+	return users;
 }
 
 /**

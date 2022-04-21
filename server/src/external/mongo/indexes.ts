@@ -39,7 +39,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 		index({ name: "text" }),
 	],
 	"game-stats": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
-	"game-settings": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
+	"game-settings": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE), index({ rivals: 1 })],
 	"folder-chart-lookup": [index({ chartID: 1, folderID: 1 }, UNIQUE)],
 	goals: [index({ goalID: 1 }, UNIQUE), index({ game: 1, playtype: 1 }), index({ name: "text" })],
 	"goal-subs": [index({ goalID: 1, userID: 1 }, UNIQUE), index({ goalID: 1 })],

@@ -27,6 +27,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					bpiTarget: 0,
 				},
 			},
+			rivals: [],
 		});
 
 		t.end();
@@ -74,6 +75,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 						bpiTarget: 0,
 					},
 				},
+				rivals: [],
 			},
 			"Should only update the mutated properties."
 		);
@@ -129,6 +131,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 						bpiTarget: 50,
 					},
 				},
+				rivals: [],
 			},
 			"Should only update the mutated properties."
 		);
@@ -188,6 +191,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 								bpiTarget: target,
 							},
 						},
+						rivals: [],
 					},
 					"Should only update the mutated properties."
 				);
@@ -419,6 +423,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 						bpiTarget: 0,
 					},
 				},
+				rivals: [],
 			},
 			"Should only update the mutated properties."
 		);

@@ -20,6 +20,7 @@ import settingsRouter from "./settings/router";
 import showcaseRouter from "./showcase/router";
 import tablesRouter from "./tables/router";
 import targetsRouter from "./targets/router";
+import rivalsRouter from "./rivals/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -293,5 +294,6 @@ router.use("/showcase", showcaseRouter);
 router.use("/settings", settingsRouter);
 router.use("/folders", foldersRouter);
 router.use("/targets", targetsRouter);
+router.use("/rivals", rivalsRouter);
 
 export default router;

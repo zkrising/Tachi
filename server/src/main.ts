@@ -13,6 +13,7 @@ import { LoadDefaultClients } from "lib/builtin-clients/builtin-clients";
 import { VERSION_PRETTY } from "lib/constants/version";
 import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
 import CreateLogCtx from "lib/logger/logger";
+import { ApplyUnappliedMigrations } from "lib/migration/migrations";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import path from "path";
 import server from "server/server";
@@ -31,6 +32,8 @@ logger.info(`Loading sequence documents...`, { bootInfo: true });
 async function RunOnInit() {
 	await InitSequenceDocs();
 	await SetIndexesIfNoneSet();
+
+	await ApplyUnappliedMigrations();
 
 	await db["folder-chart-lookup"].findOne().then((r) => {
 		// If there are no folder chart lookups, initialise them.

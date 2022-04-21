@@ -57,6 +57,28 @@ export async function FindUnappliedMigrations() {
 	return notApplied;
 }
 
+export async function ApplyUnappliedMigrations() {
+	const unapplied = await FindUnappliedMigrations();
+
+	if (unapplied.length === 0) {
+		logger.verbose(`Found no migrations to apply. Not bothering.`);
+		return;
+	}
+
+	logger.info(
+		`Found ${
+			unapplied.length
+		} migration(s) that have not been applied yet. These are '${unapplied.join("', '")}'.`,
+		{ unapplied }
+	);
+
+	for (const migrationID of unapplied) {
+		// These things need to apply in lockstep.
+		// eslint-disable-next-line no-await-in-loop
+		await ApplyMigration(migrationID);
+	}
+}
+
 /**
  * Applies a migration. Will **EXIT TACHI** if a migration fails to apply, as this implies
  * database level inconsistencies which could cause severe problems.

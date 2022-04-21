@@ -61,6 +61,8 @@ export async function FindUnappliedMigrations() {
  * database level inconsistencies which could cause severe problems.
  */
 export async function ApplyMigration(migrationID: string) {
+	logger.info(`Recieved request to apply migration '${migrationID}'.`);
+
 	// Lock the migration here:
 	// If the migration is already applied (i.e. migrationID is set and pending/applied)
 	// don't bother applying again
@@ -99,6 +101,8 @@ export async function ApplyMigration(migrationID: string) {
 	try {
 		await migration.up();
 
+		logger.info(`Successfully applied migration '${migrationID}'.`);
+
 		await db.migrations.update(
 			{
 				migrationID,
@@ -110,6 +114,8 @@ export async function ApplyMigration(migrationID: string) {
 				},
 			}
 		);
+
+		logger.info(`Successfully set migration state for '${migrationID}' to applied.`);
 	} catch (err) {
 		logger.severe(
 			`Failed to apply migration '${migrationID}'. Attempting to revert migration. Tachi will exit after attempting to revert this migration.`,

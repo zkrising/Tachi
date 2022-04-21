@@ -1387,6 +1387,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 		defaultTable: string | null;
 		gameSpecific: UGPTSpecificPreferences[I];
 	};
+	rivals: integer[];
 }
 
 export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>

@@ -84,3 +84,21 @@ export interface PrivateUserInfoDocument {
 	password: string;
 	email: string;
 }
+
+export interface Migration {
+	id: string;
+	up: () => Promise<unknown>;
+	down: () => Promise<unknown>;
+}
+
+export type MigrationDocument = {
+	migrationID: string;
+} & (
+	| {
+			status: "applied";
+			appliedOn: integer;
+	  }
+	| {
+			status: "pending";
+	  }
+);

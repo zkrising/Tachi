@@ -123,3 +123,32 @@ export async function RemoveRival(
 
 	return SetRivals(userID, game, playtype, rivalIDs);
 }
+
+/**
+ * Get all of the userIDs of people who rival the userID for this GPT.
+ */
+export async function GetChallengerIDs(userID: integer, game: Game, playtype: Playtype) {
+	const result = await db["game-settings"].find(
+		{
+			game,
+			playtype,
+			rivals: userID,
+		},
+		{
+			projection: {
+				rivals: 1,
+			},
+		}
+	);
+
+	return result.map((e) => e.rivals).flat();
+}
+
+/**
+ * Get the user documents of everyone who is rivalling this userID for this GPT.
+ */
+export async function GetChallengerUsers(userID: integer, game: Game, playtype: Playtype) {
+	const challengerIDs = await GetChallengerIDs(userID, game, playtype);
+
+	return GetUsersWithIDs(challengerIDs);
+}

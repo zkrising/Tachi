@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { GetRivalUsers, SetRivals } from "lib/rivals/rivals";
+import { GetChallengerUsers, GetRivalUsers, SetRivals } from "lib/rivals/rivals";
 import prValidate from "server/middleware/prudence-validate";
 import { GetUGPT } from "utils/req-tachi-data";
 import { RequireAuthedAsUser, RequireSelfRequestFromUser } from "../../../../middleware";
@@ -66,5 +66,22 @@ router.put(
 		});
 	}
 );
+
+/**
+ * Return all of the users that are rivalling this user for this GPT.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/rivals/challengers
+ */
+router.get("/challengers", async (req, res) => {
+	const { user, game, playtype } = GetUGPT(req);
+
+	const challengers = await GetChallengerUsers(user.id, game, playtype);
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned ${challengers.length} challengers.`,
+		body: challengers,
+	});
+});
 
 export default router;

@@ -134,12 +134,12 @@ export async function GetChallengerIDs(userID: integer, game: Game, playtype: Pl
 		},
 		{
 			projection: {
-				rivals: 1,
+				userID: 1,
 			},
 		}
 	);
 
-	return result.map((e) => e.rivals).flat();
+	return result.map((e) => e.userID);
 }
 
 /**

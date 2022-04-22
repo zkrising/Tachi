@@ -1,5 +1,7 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { Environment } from "lib/setup/config";
+import { FAKE_MIGRATION } from "test-utils/test-data";
 import { Migration } from "utils/types";
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 
@@ -8,7 +10,10 @@ const logger = CreateLogCtx(__filename);
 // Migrations are stored in an array because they have some concept of order
 // That is, migrations should ideally be applied in a fixed order just to avoid
 // any potential unsavoury interactions.
-const REGISTERED_MIGRATIONS: Migration[] = [UGPTRivalsMigration];
+const REGISTERED_MIGRATIONS: Migration[] =
+	// If we're testing, we should pull fake migrations instead to ensure the tests
+	// stay consistent
+	Environment.nodeEnv === "test" ? [FAKE_MIGRATION] : [UGPTRivalsMigration];
 
 function CreateMigrationLookupMap(migrations: Migration[]) {
 	const map = new Map<string, Migration>();
@@ -18,6 +23,8 @@ function CreateMigrationLookupMap(migrations: Migration[]) {
 			logger.crit(
 				`Multiple migrations are registered for ${mig.id}. Cannot safely apply migrations.`
 			);
+
+			// note, we want to exit in testing here, this is fine.
 			process.exit(1);
 		}
 
@@ -77,15 +84,32 @@ export async function ApplyUnappliedMigrations() {
 		// Note that if any migration fails, this will exit at CRIT level
 		// and not continue.
 		// eslint-disable-next-line no-await-in-loop
-		await ApplyMigration(migrationID);
+		await ApplyMigrationByID(migrationID);
 	}
+}
+
+export function ApplyMigrationByID(migrationID: string) {
+	const migration = MIGRATION_LOOKUP.get(migrationID);
+
+	if (!migration) {
+		logger.error(
+			`Attempted to apply migration ${migrationID}, but that migration doesn't exist?`
+		);
+		throw new Error(
+			`Attempted to apply migration ${migrationID}, but that migration doesn't exist?`
+		);
+	}
+
+	return ApplyMigration(migration);
 }
 
 /**
  * Applies a migration. Will **EXIT TACHI** if a migration fails to apply, as this implies
  * database level inconsistencies which could cause severe problems.
  */
-export async function ApplyMigration(migrationID: string) {
+export async function ApplyMigration(migration: Migration) {
+	const migrationID = migration.id;
+
 	logger.info(`Recieved request to apply migration '${migrationID}'.`);
 
 	// Lock the migration here:
@@ -110,17 +134,6 @@ export async function ApplyMigration(migrationID: string) {
 	if (wasApplied) {
 		logger.error(`Tried to apply migration ${migrationID}, but it was already applied.`);
 		throw new Error(`Tried to apply migration ${migrationID}, but it was already applied.`);
-	}
-
-	const migration = MIGRATION_LOOKUP.get(migrationID);
-
-	if (!migration) {
-		logger.error(
-			`Attempted to apply migration ${migrationID}, but that migration doesn't exist?`
-		);
-		throw new Error(
-			`Attempted to apply migration ${migrationID}, but that migration doesn't exist?`
-		);
 	}
 
 	try {
@@ -168,6 +181,10 @@ export async function ApplyMigration(migrationID: string) {
 
 		// remove the stale migration so it can be re-ran in the future.
 		await db.migrations.findOneAndDelete({ migrationID });
+
+		if (Environment.nodeEnv === "test") {
+			throw new Error("Was going to exit with statusCode 1, but we're in testing.");
+		}
 
 		process.exit(1);
 	}

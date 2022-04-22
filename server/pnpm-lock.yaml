@@ -65,7 +65,7 @@ specifiers:
   safe-json-stringify: 1.2.0
   seq-logging: 1.1.1
   supertest: 6.2.2
-  tachi-common: 0.8.1
+  tachi-common: 0.9.1
   tap: 15.1.6
   ts-node: 10.4.0
   tsconfig-paths: 3.12.0
@@ -112,7 +112,7 @@ dependencies:
   rimraf: 3.0.2
   safe-json-stringify: 1.2.0
   seq-logging: 1.1.1
-  tachi-common: 0.8.1
+  tachi-common: 0.9.1
   ts-node: 10.4.0_2615db9039ce432b4abf2fc39ef336ec
   tsconfig-paths: 3.12.0
   typescript: 4.5.5
@@ -1381,7 +1381,6 @@ packages:
       '@types/node': 17.0.15
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
-    dev: true
 
   /@types/express-session/1.17.4:
     resolution: {integrity: sha512-7cNlSI8+oOBUHTfPXMwDxF/Lchx5aJ3ho7+p9jJZYVg9dVDJFh3qdMXmJtRsysnvS+C6x46k9DRYmrmCkE+MVg==}
@@ -1474,11 +1473,9 @@ packages:
 
   /@types/qs/6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
-    dev: true
 
   /@types/range-parser/1.2.4:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
-    dev: true
 
   /@types/rate-limit-redis/1.7.4:
     resolution: {integrity: sha512-TDsh9CJHHhx+sGHlqF6MI+PgEv91o/wQ67e2IR02ebYPzWQ8Rk0pcVY+WBy2pjxa+cAkPwjcOFDd21VToKaOzQ==}
@@ -4725,6 +4722,10 @@ packages:
     resolution: {integrity: sha512-7214GHTBThBI/PGlKWXUSJ++ca0ld54VpF4k98U1EDAFXai5mnvWbb4speVOnWkilqfN25x8biWUAj4gHNu5Og==}
     dev: false
 
+  /prudence/0.9.8:
+    resolution: {integrity: sha512-my6HEhcTW3aKKjAx8j6jgUj3x5Kc71NEv3DySRXun2Zspw6Fdo5zDnbpXv/j4tyk9f9XXrpu1grWVBX4WU+1Tg==}
+    dev: false
+
   /psl/1.8.0:
     resolution: {integrity: sha512-RIdOzyoavK+hA18OGGWDqUTsCLhtA7IcZ/6NCs4fFJaHBDab+pDDmDIByWFRQJq2Cd7r1OoQxBGKOaztq+hjIQ==}
     dev: true
@@ -5363,10 +5364,12 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /tachi-common/0.8.1:
-    resolution: {integrity: sha512-YDVxlxdli9u7MI9rhN76CUkfA/VoiXJKGyhg22uUAxMfENu9nxHWxFM3Iw20Gg+gZ8lPl3Yhvxq+qi7fD0SiNA==}
+  /tachi-common/0.9.1:
+    resolution: {integrity: sha512-wctqYSb+xbbbR+TRae3go8UNOUcRcRobZafCwhussI1HngirUKylofxHCy4yEsXt+G00xMdLCFgOafn+E8pIVw==}
     dependencies:
+      '@types/express-serve-static-core': 4.17.28
       '@types/mongodb': 3.6.18
+      prudence: 0.9.8
     dev: false
 
   /tap-mocha-reporter/5.0.1:

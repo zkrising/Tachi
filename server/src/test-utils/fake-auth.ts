@@ -2,7 +2,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { ClearTestingRateLimitCache } from "server/middleware/rate-limiter";
 import supertest from "supertest";
-import { AllPermissions } from "../server/middleware/auth";
+import { ALL_PERMISSIONS } from "tachi-common";
 import ResetDBState from "./resets";
 
 const logger = CreateLogCtx(__filename);
@@ -33,7 +33,7 @@ export function InsertFakeTokenWithAllPerms(token: string): () => any {
 		await db["api-tokens"].insert({
 			userID: 1,
 			identifier: "Mock API Token",
-			permissions: AllPermissions,
+			permissions: ALL_PERMISSIONS,
 			token,
 			fromAPIClient: null,
 		});

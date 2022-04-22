@@ -3,7 +3,7 @@ import db from "external/mongo/db";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
-import { APIPermissions, APITokenDocument, UserAuthLevels } from "tachi-common";
+import { APIPermissions, APITokenDocument, UserAuthLevels, ALL_PERMISSIONS } from "tachi-common";
 import { SplitAuthorizationHeader } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
@@ -14,16 +14,6 @@ const GuestToken: APITokenDocument = {
 	identifier: "Guest Token",
 	permissions: {},
 	fromAPIClient: null,
-};
-
-export const AllPermissions: Record<APIPermissions, true> = {
-	customise_profile: true,
-	submit_score: true,
-	customise_session: true,
-	customise_score: true,
-	delete_score: true,
-	manage_targets: true,
-	manage_rivals: true,
 };
 
 export const SetRequestPermissions: RequestHandler = CreateSetRequestPermissions("description");
@@ -49,7 +39,7 @@ function CreateSetRequestPermissions(errorKeyName: string): RequestHandler {
 				userID: req.session.tachi.user.id,
 				identifier: `Session-Key ${req.session.tachi.user.id}`,
 				token: null,
-				permissions: AllPermissions,
+				permissions: ALL_PERMISSIONS,
 				fromAPIClient: null,
 			};
 			return next();

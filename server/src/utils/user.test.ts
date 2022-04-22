@@ -1,8 +1,10 @@
+import db from "external/mongo/db";
 import { DatabaseSchemas } from "external/mongo/schemas";
 import { PublicUserDocument } from "tachi-common";
 import t from "tap";
+import { mkFakeUser } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import { FormatUserDoc, GetUserCaseInsensitive } from "./user";
+import { FormatUserDoc, GetUserCaseInsensitive, GetUsersWithIDs } from "./user";
 
 t.test("#GetUserCaseInsensitive", (t) => {
 	t.beforeEach(ResetDBState);
@@ -41,6 +43,50 @@ t.test("#GetUserCaseInsensitive", (t) => {
 		const result = await GetUserCaseInsensitive("foobar");
 
 		t.equal(result, null, "Should return null");
+	});
+
+	t.end();
+});
+
+t.test("#GetUsersWithIDs", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(() => db.users.insert([mkFakeUser(2), mkFakeUser(3), mkFakeUser(4)]));
+
+	t.test("Should return users with these IDs.", async (t) => {
+		const res = await GetUsersWithIDs([2, 3]);
+
+		t.strictSame(
+			res,
+			[mkFakeUser(2), mkFakeUser(3)],
+			"Should return the user documents at these IDs."
+		);
+
+		t.end();
+	});
+
+	t.test("Shouldn't reject for duplicate userIDs", async (t) => {
+		try {
+			const res = await GetUsersWithIDs([1, 2, 1]);
+
+			t.hasStrict(
+				res.map((e) => e.id),
+				[1, 2],
+				"Should have the requested user IDs."
+			);
+			t.pass();
+		} catch (e) {
+			const err = e as Error;
+
+			t.fail(err.message);
+		}
+
+		t.end();
+	});
+
+	t.test("Shouldn't reject for userID length mismatch", (t) => {
+		t.rejects(() => GetUsersWithIDs([1, 2, 1, 5]));
+
+		t.end();
 	});
 
 	t.end();

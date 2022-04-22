@@ -55,11 +55,15 @@ t.test("#GetUsersWithIDs", (t) => {
 	t.test("Should return users with these IDs.", async (t) => {
 		const res = await GetUsersWithIDs([2, 3]);
 
-		t.strictSame(
-			res,
-			[mkFakeUser(2), mkFakeUser(3)],
-			"Should return the user documents at these IDs."
-		);
+		const expected = [mkFakeUser(2), mkFakeUser(3)];
+
+		for (const e of expected) {
+			// workaround for monk mutating our state. I know this is bad.
+			// I'll fix it at some point.
+			delete e._id;
+		}
+
+		t.strictSame(res, expected, "Should return the user documents at these IDs.");
 
 		t.end();
 	});

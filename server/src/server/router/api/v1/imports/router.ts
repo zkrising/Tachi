@@ -5,6 +5,7 @@ import { RevertImport } from "lib/imports/imports";
 import CreateLogCtx from "lib/logger/logger";
 import ScoreImportQueue, { ScoreImportQueueEvents } from "lib/score-import/worker/queue";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
+import { RequirePermissions } from "server/middleware/auth";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { GetUserWithID } from "utils/user";
 import { GetImportFromParam, RequireOwnershipOfImport } from "./middleware";
@@ -61,19 +62,28 @@ router.get("/:importID", GetImportFromParam, async (req, res) => {
  *
  * Must be a request from the owner of this import.
  *
+ * Counterintuitively, this endpoint requires the "delete_score" permission. This is
+ * because reverting an import is actually just deleting all of its scores.
+ *
  * @name POST /api/v1/imports/:importID/revert
  */
-router.post("/:importID/revert", GetImportFromParam, RequireOwnershipOfImport, async (req, res) => {
-	const importDoc = req[SYMBOL_TachiData]!.importDoc!;
+router.post(
+	"/:importID/revert",
+	GetImportFromParam,
+	RequireOwnershipOfImport,
+	RequirePermissions("delete_score"),
+	async (req, res) => {
+		const importDoc = req[SYMBOL_TachiData]!.importDoc!;
 
-	await RevertImport(importDoc);
+		await RevertImport(importDoc);
 
-	return res.status(200).json({
-		success: true,
-		description: `Reverted import.`,
-		body: {},
-	});
-});
+		return res.status(200).json({
+			success: true,
+			description: `Reverted import.`,
+			body: {},
+		});
+	}
+);
 
 // Finding jobs is slightly harder than just doing a key lookup, because of retrying.
 async function FindImportJob(importID: string) {

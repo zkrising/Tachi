@@ -20,7 +20,14 @@ export const GetImportFromParam: RequestHandler = async (req, res, next) => {
 
 export const RequireOwnershipOfImport: RequestHandler = (req, res, next) => {
 	const importDoc = req[SYMBOL_TachiData]!.importDoc!;
-	const userID = req[SYMBOL_TachiAPIAuth].userID!;
+	const userID = req[SYMBOL_TachiAPIAuth].userID;
+
+	if (userID === null) {
+		return res.status(401).json({
+			success: false,
+			description: `You are not authorised as anyone, and this endpoint requires us to know who you are.`,
+		});
+	}
 
 	if (importDoc.userID !== userID) {
 		return res.status(403).json({

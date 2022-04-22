@@ -20,7 +20,14 @@ export const GetScoreFromParam: RequestHandler = async (req, res, next) => {
 
 export const RequireOwnershipOfScore: RequestHandler = (req, res, next) => {
 	const score = req[SYMBOL_TachiData]!.scoreDoc!;
-	const userID = req[SYMBOL_TachiAPIAuth].userID!;
+	const userID = req[SYMBOL_TachiAPIAuth].userID;
+
+	if (userID === null) {
+		return res.status(401).json({
+			success: false,
+			description: `You are not authorised as anyone, and this endpoint requires us to know who you are.`,
+		});
+	}
 
 	if (score.userID !== userID) {
 		return res.status(403).json({

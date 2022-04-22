@@ -1,5 +1,4 @@
 import db from "external/mongo/db";
-import { ImportDocument } from "tachi-common";
 import t from "tap";
 import { dmf, mkFakeImport } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";

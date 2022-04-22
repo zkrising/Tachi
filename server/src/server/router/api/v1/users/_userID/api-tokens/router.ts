@@ -3,9 +3,8 @@ import db from "external/mongo/db";
 import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
-import { AllPermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
-import { APIPermissions, APITokenDocument } from "tachi-common";
+import { ALL_PERMISSIONS, APIPermissions, APITokenDocument } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { FormatUserDoc } from "utils/user";
 import { RequireSelfRequestFromUser } from "../middleware";
@@ -49,7 +48,7 @@ router.get("/", async (req, res) => {
 router.post(
 	"/create",
 	prValidate({
-		permissions: p.optional([p.isIn(Object.keys(AllPermissions))]),
+		permissions: p.optional([p.isIn(Object.keys(ALL_PERMISSIONS))]),
 		identifier: "*string",
 		clientID: "*string",
 	}),

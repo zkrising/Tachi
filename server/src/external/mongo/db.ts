@@ -195,43 +195,7 @@ const db = {
 	migrations: monkDB.get<MigrationDocument>("migrations"),
 };
 
-export type StaticDatabases =
-	| "sessions"
-	| "session-view-cache"
-	| "folders"
-	| "folder-chart-lookup"
-	| "scores"
-	| "personal-bests"
-	| "imports"
-	| "import-timings"
-	| "goals"
-	| "goal-subs"
-	| "milestone-subs"
-	| "milestones"
-	| "game-stats"
-	| "game-settings"
-	| "users"
-	| "kai-auth-tokens"
-	| "bms-course-lookup"
-	| "api-tokens"
-	| "import-locks"
-	| "tables"
-	| "game-stats-snapshots"
-	| "arc-saved-profiles"
-	| "user-private-information"
-	| "api-clients"
-	| "oauth2-auth-codes"
-	| "fer-settings"
-	| "orphan-chart-queue"
-	| "password-reset-codes"
-	| "user-settings"
-	| "counters"
-	| "score-blacklist"
-	| "verify-email-codes"
-	| "class-achievements"
-	| "recent-folder-views"
-	| "milestone-sets"
-	| "migrations";
+export type StaticDatabases = Exclude<keyof typeof db, "songs" | "charts">;
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;
 

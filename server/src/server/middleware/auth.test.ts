@@ -1,10 +1,11 @@
 import expMiddlewareMock from "express-request-mock";
 import db from "external/mongo/db";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { ALL_PERMISSIONS } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { AllPermissions, SetRequestPermissions } from "./auth";
+import { SetRequestPermissions } from "./auth";
 
 t.test("#SetRequestPermissions", (t) => {
 	t.beforeEach(ResetDBState);
@@ -112,7 +113,7 @@ t.test("#SetRequestPermissions", (t) => {
 			userID: 1,
 			identifier: `Session-Key 1`,
 			token: null,
-			permissions: AllPermissions,
+			permissions: ALL_PERMISSIONS,
 			fromAPIClient: null,
 		});
 		t.end();

@@ -4,9 +4,13 @@ import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import p from "prudence";
-import { AllPermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
-import { APIPermissions, TachiAPIClientDocument, UserAuthLevels } from "tachi-common";
+import {
+	ALL_PERMISSIONS,
+	APIPermissions,
+	TachiAPIClientDocument,
+	UserAuthLevels,
+} from "tachi-common";
 import { DedupeArr, DeleteUndefinedProps, IsValidURL, Random20Hex } from "utils/misc";
 import { optNull } from "utils/prudence";
 import { FormatUserDoc } from "utils/user";
@@ -79,7 +83,7 @@ router.post(
 			return true;
 		},
 		apiKeyFilename: "?string",
-		permissions: [p.isIn(Object.keys(AllPermissions))],
+		permissions: [p.isIn(Object.keys(ALL_PERMISSIONS))],
 	}),
 	async (req, res) => {
 		if (!req.session.tachi?.user) {

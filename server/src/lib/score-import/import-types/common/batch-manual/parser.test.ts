@@ -330,7 +330,7 @@ t.test("#ParserFn", (t) => {
 				{
 					meta: baseBatchManual.meta,
 					scores: [baseBatchManualScore],
-					classes: { dan: 18 },
+					classes: { dan: "KAIDEN" },
 				} as BatchManual,
 				"file/batch-manual",
 				logger
@@ -527,13 +527,13 @@ t.test("#ParserFn", (t) => {
 							{
 								meta: baseBatchManual.meta,
 								scores: [baseBatchManualScore],
-								classes: { dan: 19 },
+								classes: { dan: "UNKNOWN" },
 							} as BatchManual,
 							"file/batch-manual",
 							logger
 						),
 					mockErr(
-						"classes.dan | Expected an integer between 0 and 18. | Received 19 [number]"
+						"Invalid BATCH-MANUAL: classes.dan | Expected any of KYU_7, KYU_6, KYU_5, KYU_4, KYU_3, KYU_2, KYU_1, DAN_1, DAN_2, DAN_3, DAN_4, DAN_5, DAN_6, DAN_7, DAN_8, DAN_9, DAN_10, CHUUDEN, KAIDEN. | Received UNKNOWN [string]"
 					)
 				);
 
@@ -547,7 +547,7 @@ t.test("#ParserFn", (t) => {
 							{
 								meta: baseBatchManual.meta,
 								scores: [baseBatchManualScore],
-								classes: { stageUp: 9 },
+								classes: { stageUp: "XII" },
 							} as BatchManual,
 							"file/batch-manual",
 							logger
@@ -558,20 +558,20 @@ t.test("#ParserFn", (t) => {
 				t.end();
 			});
 
-			t.test("Should throw if dan is a non-integer.", (t) => {
+			t.test("Should throw if dan is a non-string.", (t) => {
 				t.throws(
 					() =>
 						ParserFn(
 							{
 								meta: baseBatchManual.meta,
 								scores: [baseBatchManualScore],
-								classes: { dan: 9.5 },
-							} as BatchManual,
+								classes: { dan: 9 },
+							} as unknown as BatchManual,
 							"file/batch-manual",
 							logger
 						),
 					mockErr(
-						"classes.dan | Expected an integer between 0 and 18. | Received 9.5 [number]."
+						"Invalid BATCH-MANUAL: classes.dan | Expected any of KYU_7, KYU_6, KYU_5, KYU_4, KYU_3, KYU_2, KYU_1, DAN_1, DAN_2, DAN_3, DAN_4, DAN_5, DAN_6, DAN_7, DAN_8, DAN_9, DAN_10, CHUUDEN, KAIDEN. | Received 9 [number]."
 					)
 				);
 
@@ -585,7 +585,7 @@ t.test("#ParserFn", (t) => {
 							{
 								meta: baseBatchManual.meta,
 								scores: [baseBatchManualScore],
-								classes: { dan: 14, unknownDan: 4 },
+								classes: { dan: "DAN_9", unknownDan: "FIRST" },
 							} as unknown,
 							"file/batch-manual",
 							logger
@@ -601,7 +601,7 @@ t.test("#ParserFn", (t) => {
 							{
 								meta: baseBatchManual.meta,
 								scores: [baseBatchManualScore],
-								classes: { dan: 14, stageUp: 4 },
+								classes: { dan: "KAIDEN", stageUp: "XII" },
 							} as unknown,
 							"file/batch-manual",
 							logger

@@ -1,5 +1,4 @@
 import deepmerge from "deepmerge";
-import { IIDXDans, SDVXDans, WACCA_STAGEUPS } from "lib/constants/classes";
 import { KtLogger } from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
 import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
@@ -15,6 +14,7 @@ import {
 import { FormatPrError } from "utils/prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParserFunctionReturns } from "../types";
+import { CreateBatchManualClassHandler } from "./class-handler";
 import { BatchManualContext } from "./types";
 
 const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));
@@ -201,20 +201,27 @@ const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSch
 	};
 };
 
+// both iidx sp and dp share dans.
+const IIDXStringDans = GetGamePTConfig("iidx", "SP").classHumanisedFormat.dan.map((e) => e.id);
+const SDVXStringDans = GetGamePTConfig("sdvx", "Single").classHumanisedFormat.dan.map((e) => e.id);
+const WaccaStringStageUps = GetGamePTConfig("wacca", "Single").classHumanisedFormat.stageUp.map(
+	(e) => e.id
+);
+
 const PR_BatchManualClasses = (game: Game): PrudenceSchema => {
 	switch (game) {
 		// This can be implemented for any non-static class (i.e. dans).
 		case "iidx":
 			return {
-				dan: optNull(p.isBoundedInteger(IIDXDans.KYU_7, IIDXDans.KAIDEN)),
+				dan: optNull(p.isIn(IIDXStringDans)),
 			};
 		case "sdvx":
 			return {
-				dan: optNull(p.isBoundedInteger(SDVXDans.DAN_1, SDVXDans.INF)),
+				dan: optNull(p.isIn(SDVXStringDans)),
 			};
 		case "wacca":
 			return {
-				stageUp: optNull(p.isBoundedInteger(WACCA_STAGEUPS.I, WACCA_STAGEUPS.XIV)),
+				stageUp: optNull(p.isIn(WaccaStringStageUps)),
 			};
 		default:
 			return {};
@@ -321,6 +328,8 @@ export function ParseBatchManualFromObject(
 		iterable: batchManual.scores,
 		// if classes are provided, use those as a class handler. Otherwise, we
 		// don't care.
-		classHandler: batchManual.classes ? () => batchManual.classes! : null,
+		classHandler: batchManual.classes
+			? CreateBatchManualClassHandler(batchManual.classes!)
+			: null,
 	};
 }

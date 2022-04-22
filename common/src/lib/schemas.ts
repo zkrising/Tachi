@@ -1039,6 +1039,26 @@ const PRE_SCHEMAS = {
 		accountID: "string",
 		forImportType: p.isIn("api/arc-iidx", "api/arc-sdvx"),
 	}),
+	invites: prSchemaFnWrap({
+		createdBy: p.isPositiveInteger,
+		code: "string",
+		createdAt: p.isPositive,
+		consumed: "boolean",
+		consumedBy: (self, parent) => {
+			if (parent.consumed) {
+				return self === null;
+			}
+
+			return p.isPositiveInteger(self);
+		},
+		consumedAt: (self, parent) => {
+			if (parent.consumed) {
+				return self === null;
+			}
+
+			return p.isPositive(self);
+		},
+	}),
 } as const;
 
 export const SCHEMAS: Record<keyof typeof PRE_SCHEMAS, SchemaValidatorFunction> = PRE_SCHEMAS;

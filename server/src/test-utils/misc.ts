@@ -1,6 +1,13 @@
 import deepmerge from "deepmerge";
-import { Game, integer, Playtype, PublicUserDocument, UGPTSettings } from "tachi-common";
-import { FakeGameSettings, FakeOtherUser } from "./test-data";
+import {
+	Game,
+	ImportDocument,
+	integer,
+	Playtype,
+	PublicUserDocument,
+	UGPTSettings,
+} from "tachi-common";
+import { FakeGameSettings, FakeImport, FakeOtherUser } from "./test-data";
 
 /**
  * Async Generator To Array
@@ -18,7 +25,10 @@ export async function agta(ag: AsyncIterable<unknown> | Iterable<unknown>) {
  * Deep-modify an object. This is a wrapper around deepmerge that returns proper types.
  */
 export function dmf<T extends object>(base: T, modifant: Partial<T>): T {
-	return deepmerge(base, modifant) as T;
+	return deepmerge(base, modifant, {
+		// The new array should replace the former one, instead of joining them together.
+		arrayMerge: (originalArray, newArray) => newArray,
+	}) as T;
 }
 
 /**
@@ -58,4 +68,8 @@ export function mkFakeGameSettings(
 			modifant
 		)
 	);
+}
+
+export function mkFakeImport(modifant: Partial<ImportDocument> = {}) {
+	return dmf(FakeImport, modifant);
 }

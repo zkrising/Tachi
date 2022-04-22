@@ -19,6 +19,7 @@ import {
 	FolderDocument,
 	GoalDocument,
 	GoalSubscriptionDocument,
+	ImportDocument,
 	MilestoneDocument,
 	MilestoneSubscriptionDocument,
 	PBScoreDocument,
@@ -636,4 +637,22 @@ export const FakeGameSettings: UGPTSettings = {
 	},
 	rivals: [],
 	userID: 1,
+};
+
+export const FakeImport: ImportDocument = {
+	classDeltas: [],
+	createdSessions: [],
+	errors: [],
+	game: "iidx",
+	goalInfo: [],
+	idStrings: ["iidx:SP"],
+	importID: "fake_import",
+	importType: "ir/direct-manual",
+	milestoneInfo: [],
+	playtypes: ["SP"],
+	scoreIDs: [TestingIIDXSPScore.scoreID],
+	timeFinished: 1000,
+	timeStarted: 100,
+	userID: 1,
+	userIntent: false,
 };

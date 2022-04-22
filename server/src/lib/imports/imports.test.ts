@@ -1,7 +1,7 @@
 import db from "external/mongo/db";
 import { ImportDocument } from "tachi-common";
 import t from "tap";
-import { dmf } from "test-utils/misc";
+import { dmf, mkFakeImport } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScore } from "test-utils/test-data";
 import { RevertImport } from "./imports";
@@ -17,23 +17,9 @@ t.test("#RevertImport", (t) => {
 	);
 
 	t.test("Should revert an import and all of its contained scores.", async (t) => {
-		const importDoc: ImportDocument = {
-			classDeltas: [],
-			createdSessions: [],
-			errors: [],
-			game: "iidx",
-			goalInfo: [],
-			idStrings: ["iidx:SP"],
-			importID: "fake_import",
-			importType: "ir/direct-manual",
-			milestoneInfo: [],
-			playtypes: ["SP"],
+		const importDoc = mkFakeImport({
 			scoreIDs: ["score_1", "score_2"],
-			timeFinished: 1000,
-			timeStarted: 100,
-			userID: 1,
-			userIntent: false,
-		};
+		});
 
 		await db.imports.insert(importDoc);
 

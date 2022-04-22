@@ -1,11 +1,19 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment } from "lib/setup/config";
-import { FAKE_MIGRATION } from "test-utils/test-data";
 import { Migration } from "utils/types";
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 
 const logger = CreateLogCtx(__filename);
+
+// NOTE: This is declared here, and NOT in test-utils. If any runtime file attempts to depend
+// on test-utils, the server will not boot.
+
+export const FAKE_MIGRATION: Migration = {
+	id: "fake-migration",
+	up: () => db.users.update({}, { $set: { __wasMigrated: true } }, { multi: true }),
+	down: () => db.users.update({}, { $unset: { __wasMigrated: 1 } }, { multi: true }),
+};
 
 // Migrations are stored in an array because they have some concept of order
 // That is, migrations should ideally be applied in a fixed order just to avoid

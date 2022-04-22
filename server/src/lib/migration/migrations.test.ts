@@ -1,8 +1,7 @@
 import db from "external/mongo/db";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { FAKE_MIGRATION } from "test-utils/test-data";
-import { ApplyMigration, FindUnappliedMigrations } from "./migrations";
+import { ApplyMigration, FAKE_MIGRATION, FindUnappliedMigrations } from "./migrations";
 
 t.test("#FindUnappliedMigrations", (t) => {
 	t.beforeEach(ResetDBState);

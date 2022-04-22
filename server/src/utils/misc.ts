@@ -1,9 +1,8 @@
 import { exec } from "child_process";
 import crypto from "crypto";
 import { ONE_HOUR } from "lib/constants/time";
-import { Environment, TachiConfig } from "lib/setup/config";
-import { exit } from "process";
-import { Game, GamePTConfig, GetGameConfig, integer, Playtype, Playtypes } from "tachi-common";
+import { TachiConfig } from "lib/setup/config";
+import { Game, GamePTConfig, GetGameConfig, integer, Playtypes } from "tachi-common";
 import { URL } from "url";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js

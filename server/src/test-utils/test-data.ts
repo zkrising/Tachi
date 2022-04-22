@@ -28,6 +28,7 @@ import {
 	UGPTSettings,
 } from "tachi-common";
 import { ApplyNTimes, RFA } from "utils/misc";
+import { Migration } from "utils/types";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
 
@@ -636,4 +637,10 @@ export const FakeGameSettings: UGPTSettings = {
 	},
 	rivals: [],
 	userID: 1,
+};
+
+export const FAKE_MIGRATION: Migration = {
+	id: "fake-migration",
+	up: () => db.users.update({}, { $set: { __wasMigrated: true } }, { multi: true }),
+	down: () => db.users.update({}, { $unset: { __wasMigrated: 1 } }, { multi: true }),
 };

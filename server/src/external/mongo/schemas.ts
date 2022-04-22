@@ -725,4 +725,18 @@ export const DatabaseSchemas: Record<
 		playtype: isValidPlaytype,
 		milestones: ["string"],
 	}),
+	migrations: prSchemaify({
+		migrationID: "string",
+		status: p.isIn("applied", "pending"),
+		appliedOn: (self, parent) => {
+			if (parent.status === "pending") {
+				return (
+					self === undefined ||
+					`Expected appliedOn to be undefined since status was pending.`
+				);
+			}
+
+			return p.isPositiveInteger(self);
+		},
+	}),
 };

@@ -40,7 +40,7 @@ import {
 	UserSettings,
 } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
-import { PrivateUserInfoDocument } from "utils/types";
+import { MigrationDocument, PrivateUserInfoDocument } from "utils/types";
 const logger = CreateLogCtx(__filename);
 
 let dbName = ServerConfig.MONGO_DATABASE_NAME;
@@ -192,6 +192,7 @@ const db = {
 		monkDB.get<{ userID: integer; code: string; email: string }>("verify-email-codes"),
 	"recent-folder-views": monkDB.get<RecentlyViewedFolderDocument>("recent-folder-views"),
 	"milestone-sets": monkDB.get<MilestoneSetDocument>("milestone-sets"),
+	migrations: monkDB.get<MigrationDocument>("migrations"),
 };
 
 export type StaticDatabases =
@@ -229,7 +230,8 @@ export type StaticDatabases =
 	| "verify-email-codes"
 	| "class-achievements"
 	| "recent-folder-views"
-	| "milestone-sets";
+	| "milestone-sets"
+	| "migrations";
 
 export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;
 

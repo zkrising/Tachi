@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@types/mongodb': 3.6.18
-  '@types/node': ^17.0.8
+  '@types/node': 17.0.8
   '@types/tap': 15.0.3
   '@typescript-eslint/eslint-plugin': 4.19.0
   '@typescript-eslint/parser': 4.19.0
@@ -10,12 +10,14 @@ specifiers:
   eslint-config-prettier: 8.1.0
   eslint-plugin-prettier: 3.3.1
   prettier: 2.2.1
+  prudence: ^0.9.7
   tap: 15.0.9
   ts-node: 10.0.0
   typescript: 4.3.4
 
 dependencies:
   '@types/mongodb': 3.6.18
+  prudence: 0.9.7
 
 devDependencies:
   '@types/node': 17.0.8
@@ -1280,6 +1282,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -2022,6 +2025,10 @@ packages:
       object-assign: 4.1.1
       react-is: 16.13.1
     dev: true
+
+  /prudence/0.9.7:
+    resolution: {integrity: sha512-7214GHTBThBI/PGlKWXUSJ++ca0ld54VpF4k98U1EDAFXai5mnvWbb4speVOnWkilqfN25x8biWUAj4gHNu5Og==}
+    dev: false
 
   /psl/1.8.0:
     resolution: {integrity: sha512-RIdOzyoavK+hA18OGGWDqUTsCLhtA7IcZ/6NCs4fFJaHBDab+pDDmDIByWFRQJq2Cd7r1OoQxBGKOaztq+hjIQ==}

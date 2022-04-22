@@ -1,6 +1,6 @@
 {
 	"name": "tachi-common",
-	"version": "0.8.1",
+	"version": "0.9.0",
 	"description": "Common Types & Utilities for Tachi",
 	"main": "js/index.js",
 	"files": [
@@ -27,7 +27,8 @@
 		"typescript": "4.3.4"
 	},
 	"dependencies": {
-		"@types/mongodb": "3.6.18"
+		"@types/mongodb": "3.6.18",
+		"prudence": "^0.9.7"
 	},
 	"nyc": {
 		"reporter": [

@@ -80,7 +80,9 @@ export async function GetUsersWithIDs(userIDs: integer[]) {
 		id: { $in: userIDs },
 	});
 
-	if (users.length !== userIDs.length) {
+	// Note that we should dedupe this by making a set
+	// as passing [1, 1, 1] is perfectly legal to this function.
+	if (users.length !== new Set(userIDs).size) {
 		logger.severe(
 			`GetUsersWithIDs was given ${userIDs.length} userIDs, but only matched ${users.length} -- state desync likely.`,
 			{ userIDs, users }

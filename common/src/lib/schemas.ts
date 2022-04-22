@@ -431,6 +431,22 @@ const PR_ChartDocument = (game: Game) => (self: unknown) => {
 // Returns true on success, throws on failure.
 export type SchemaValidatorFunction = (self: unknown) => true;
 
+type GameSchemas = Record<`${"songs" | "charts"}-${Game}`, SchemaValidatorFunction>;
+
+function CreateGameSchemas() {
+	const obj: Partial<GameSchemas> = {};
+
+	for (const game of games) {
+		obj[`songs-${game}`] = prSchemaFnWrap(PR_SongDocument(game));
+		obj[`charts-${game}`] = PR_ChartDocument(game);
+	}
+
+	// guaranteed to no longer be partial
+	return obj as GameSchemas;
+}
+
+const GAME_SCHEMAS = CreateGameSchemas();
+
 // OK, here's an insane hack.
 // We want schemas to be a a record of key -> SchemaValidatorFunction, but it can't
 // be naively done with Record<string, SchemaValidatorFunction>, because that results
@@ -493,33 +509,7 @@ const PRE_SCHEMAS = {
 		folders: ["string"],
 		inactive: "boolean",
 	}),
-	"songs-bms": prSchemaFnWrap(PR_SongDocument("bms")),
-	"songs-chunithm": prSchemaFnWrap(PR_SongDocument("chunithm")),
-	// "songs-ddr": prSchemaFnWrap(
-	// 	PR_SongDocument({
-	// 		displayVersion: "string",
-	// 	})
-	// ),
-	"songs-sdvx": prSchemaFnWrap(PR_SongDocument("sdvx")),
-	"songs-usc": prSchemaFnWrap(PR_SongDocument("usc")),
-	// "songs-maimai": prSchemaFnWrap(PR_SongDocument("maimai")),
-	"songs-museca": prSchemaFnWrap(PR_SongDocument("museca")),
-	"songs-iidx": prSchemaFnWrap(PR_SongDocument("iidx")),
-	"songs-wacca": prSchemaFnWrap(PR_SongDocument("wacca")),
-	"songs-pms": prSchemaFnWrap(PR_SongDocument("pms")),
-	"songs-popn": prSchemaFnWrap(PR_SongDocument("popn")),
-	"songs-jubeat": prSchemaFnWrap(PR_SongDocument("jubeat")),
-	"charts-iidx": PR_ChartDocument("iidx"),
-	"charts-bms": PR_ChartDocument("bms"),
-	"charts-chunithm": PR_ChartDocument("chunithm"),
-	"charts-jubeat": PR_ChartDocument("jubeat"),
-	"charts-maimai": PR_ChartDocument("maimai"),
-	"charts-museca": PR_ChartDocument("museca"),
-	"charts-sdvx": PR_ChartDocument("sdvx"),
-	"charts-usc": PR_ChartDocument("usc"),
-	"charts-wacca": PR_ChartDocument("wacca"),
-	"charts-pms": PR_ChartDocument("pms"),
-	"charts-popn": PR_ChartDocument("popn"),
+	...GAME_SCHEMAS,
 	"milestone-sets": prSchemaFnWrap({
 		setID: "string",
 		game: p.isIn(games),

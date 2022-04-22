@@ -42,6 +42,8 @@ const MIGRATION_LOOKUP = CreateMigrationLookupMap(REGISTERED_MIGRATIONS);
  * Return the migrationID of all migrations that have not been applied.
  */
 export async function FindUnappliedMigrations() {
+	// An unapplied migration is one that is acknowledged in the codebase
+	// (see REGISTERED_MIGRATIONS), but not stored inside the mongodb instance.
 	const migrations = await db.migrations.find(
 		{},
 		{

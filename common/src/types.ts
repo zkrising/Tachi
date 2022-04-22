@@ -5,7 +5,7 @@ export interface IObjectID {
 }
 
 import { FilterQuery } from "mongodb";
-import { AllClassSets, GameClasses } from "./game-classes";
+import { AllClassSets, GameClasses, GameClassSets } from "./game-classes";
 
 export interface CounterDocument {
 	counterName: string;
@@ -1434,7 +1434,7 @@ export interface BatchManual<I extends IDStrings = IDStrings> {
 		version?: GPTSupportedVersions[I];
 	};
 	scores: BatchManualScore<I>[];
-	classes?: GameClasses<I> | null;
+	classes?: Record<GameClassSets[I], string> | null;
 }
 
 export interface UserSettings {

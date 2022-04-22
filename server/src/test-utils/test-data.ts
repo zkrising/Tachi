@@ -18,17 +18,16 @@ import {
 	ChartDocument,
 	FolderDocument,
 	GoalDocument,
+	GoalSubscriptionDocument,
 	MilestoneDocument,
+	MilestoneSubscriptionDocument,
 	PBScoreDocument,
+	PublicUserDocument,
 	ScoreDocument,
 	SongDocument,
-	GoalSubscriptionDocument,
-	MilestoneSubscriptionDocument,
-	PublicUserDocument,
 	UGPTSettings,
 } from "tachi-common";
 import { ApplyNTimes, RFA } from "utils/misc";
-import { Migration } from "utils/types";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
 

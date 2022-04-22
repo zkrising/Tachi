@@ -1,11 +1,13 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { JOB_RETRY_COUNT } from "lib/constants/tachi";
+import { JOB_RETRY_COUNT, SYMBOL_TachiData } from "lib/constants/tachi";
+import { RevertImport } from "lib/imports/imports";
 import CreateLogCtx from "lib/logger/logger";
 import ScoreImportQueue, { ScoreImportQueueEvents } from "lib/score-import/worker/queue";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { GetUserWithID } from "utils/user";
+import { GetImportFromParam, RequireOwnershipOfImport } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -16,17 +18,8 @@ const logger = CreateLogCtx(__filename);
  *
  * @name GET /api/v1/imports/:importID
  */
-router.get("/:importID", async (req, res) => {
-	const importDoc = await db.imports.findOne({
-		importID: req.params.importID,
-	});
-
-	if (!importDoc) {
-		return res.status(404).json({
-			success: false,
-			description: `This import does not exist.`,
-		});
-	}
+router.get("/:importID", GetImportFromParam, async (req, res) => {
+	const importDoc = req[SYMBOL_TachiData]!.importDoc!;
 
 	const scores = await db.scores.find({
 		scoreID: { $in: importDoc.scoreIDs },
@@ -62,7 +55,27 @@ router.get("/:importID", async (req, res) => {
 	});
 });
 
-// Finding jobs is slightly harder than just doing a key lookup, because of
+/**
+ * Delete this import and revert it from having ever happened. This un-imports all
+ * of the scores that were imported.
+ *
+ * Must be a request from the owner of this import.
+ *
+ * @name POST /api/v1/imports/:importID/revert
+ */
+router.post("/:importID/revert", GetImportFromParam, RequireOwnershipOfImport, async (req, res) => {
+	const importDoc = req[SYMBOL_TachiData]!.importDoc!;
+
+	await RevertImport(importDoc);
+
+	return res.status(200).json({
+		success: true,
+		description: `Reverted import.`,
+		body: {},
+	});
+});
+
+// Finding jobs is slightly harder than just doing a key lookup, because of retrying.
 async function FindImportJob(importID: string) {
 	const possibleImportIDs = [];
 

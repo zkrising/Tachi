@@ -10,7 +10,8 @@ const migration: Migration = {
 				$set: {
 					rivals: [],
 				},
-			}
+			},
+			{ multi: true }
 		);
 	},
 	down: async () => {
@@ -18,7 +19,8 @@ const migration: Migration = {
 			{},
 			{
 				$unset: { rivals: 1 },
-			}
+			},
+			{ multi: true }
 		);
 	},
 };

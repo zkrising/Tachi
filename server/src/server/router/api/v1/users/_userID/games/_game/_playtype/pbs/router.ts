@@ -203,7 +203,7 @@ router.get("/:chartID", async (req, res) => {
 });
 
 /**
- * Return this users PB on this chart, and N nearby players on the
+ * Return this users PB on this chart, and 5 nearby players on the
  * leaderboard.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/:chartID/leaderboard-adjacent

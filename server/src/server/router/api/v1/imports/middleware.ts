@@ -3,7 +3,7 @@ import db from "external/mongo/db";
 import { SYMBOL_TachiData, SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
-import { IsUserIDAdmin } from "utils/user";
+import { IsRequesterAdmin } from "utils/user";
 
 const logger = CreateLogCtx(__filename);
 
@@ -34,7 +34,7 @@ export const RequireOwnershipOfImportOrAdmin: RequestHandler = async (req, res, 
 	}
 
 	if (importDoc.userID !== userID) {
-		if (await IsUserIDAdmin(userID)) {
+		if (await IsRequesterAdmin(req[SYMBOL_TachiAPIAuth])) {
 			logger.info(`Admin ${userID} interacted with someone elses import.`);
 			return next();
 		}

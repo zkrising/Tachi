@@ -242,7 +242,7 @@ export function GetOnlineCutoff() {
 /**
  * Returns whether a given userID is an administrator or not.
  */
-export async function IsUserIDAdmin(request: APITokenDocument) {
+export async function IsRequesterAdmin(request: APITokenDocument) {
 	// API Tokens created on the behalf of an admin do NOT inherit admin permissions.
 	if (request.token !== null) {
 		return false;

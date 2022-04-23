@@ -8,7 +8,7 @@ import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { RequirePermissions } from "server/middleware/auth";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { GetUserWithID } from "utils/user";
-import { GetImportFromParam, RequireOwnershipOfImport } from "./middleware";
+import { GetImportFromParam, RequireOwnershipOfImportOrAdmin } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -70,7 +70,7 @@ router.get("/:importID", GetImportFromParam, async (req, res) => {
 router.post(
 	"/:importID/revert",
 	GetImportFromParam,
-	RequireOwnershipOfImport,
+	RequireOwnershipOfImportOrAdmin,
 	RequirePermissions("delete_score"),
 	async (req, res) => {
 		const importDoc = req[SYMBOL_TachiData]!.importDoc!;

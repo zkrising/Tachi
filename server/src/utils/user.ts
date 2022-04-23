@@ -9,6 +9,7 @@ import {
 	Playtype,
 	PublicUserDocument,
 	UGSRatingsLookup,
+	UserAuthLevels,
 	UserGameStats,
 } from "tachi-common";
 
@@ -235,4 +236,13 @@ const FIVE_MINUTES = 1000 * 60 * 5;
  */
 export function GetOnlineCutoff() {
 	return Date.now() - FIVE_MINUTES;
+}
+
+/**
+ * Returns whether a given userID is an administrator or not.
+ */
+export async function IsUserIDAdmin(userID: integer) {
+	const user = await GetUserWithIDGuaranteed(userID);
+
+	return user.authLevel === UserAuthLevels.ADMIN;
 }

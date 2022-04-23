@@ -1,5 +1,8 @@
 import db from "external/mongo/db";
+import { UserAuthLevels } from "tachi-common";
 import t from "tap";
+import { CreateFakeAuthCookie } from "test-utils/fake-auth";
+import { mkFakeScoreIIDXSP } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA } from "test-utils/test-data";
@@ -248,6 +251,39 @@ t.test("DELETE /api/v1/scores/:scoreID", (t) => {
 		t.equal(res.statusCode, 403);
 
 		t.match(res.body.description, /delete_score/u);
+
+		t.end();
+	});
+
+	t.test("Should allow admins to delete other's scores", async (t) => {
+		const cookie = await CreateFakeAuthCookie(mockApi);
+
+		await db.users.update(
+			{
+				id: 1,
+			},
+			{
+				$set: { authLevel: UserAuthLevels.ADMIN },
+			}
+		);
+
+		const someoneElsesScore = mkFakeScoreIIDXSP({ userID: 2, scoreID: "someone_elses" });
+		await db.scores.insert(someoneElsesScore);
+
+		const res = await mockApi
+			.delete(`/api/v1/scores/${someoneElsesScore.scoreID}`)
+			.set("Cookie", cookie);
+
+		t.equal(res.statusCode, 200, "Should return 200.");
+
+		t.strictSame(res.body.body, {}, "The response body should be empty.");
+
+		t.resolveMatch(
+			db.scores.findOne({ scoreID: someoneElsesScore.scoreID }),
+			// @ts-expect-error https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60020
+			null,
+			"The score should be deleted."
+		);
 
 		t.end();
 	});

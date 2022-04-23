@@ -9,7 +9,7 @@ import {
 	ImportProcessingInfo,
 	ImportTypes,
 	integer,
-	Playtypes,
+	Playtype,
 	PublicUserDocument,
 } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
@@ -303,7 +303,7 @@ export async function HandlePostImportSteps(
 
 	logger.debug(`PB Processing took ${pbTime} milliseconds (${pbTimeRel}ms/doc)`);
 
-	const playtypes = Object.keys(scorePlaytypeMap) as Playtypes[Game][];
+	const playtypes = Object.keys(scorePlaytypeMap) as Playtype[];
 
 	SetJobProgress(job, "Updating profile statistics.");
 
@@ -368,7 +368,7 @@ export async function HandlePostImportSteps(
  */
 async function UpdateUsersGameStats(
 	game: Game,
-	modifiedPlaytypes: Playtypes[Game][],
+	modifiedPlaytypes: Playtype[],
 	userID: integer,
 	classHandler: ClassHandler | null,
 	logger: KtLogger

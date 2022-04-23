@@ -53,7 +53,7 @@ t.test("#FerStaticClassHandler", (t) => {
 
 	t.test("Should skip if playtype is invalid", (t) => {
 		const fn = CreateFerStaticClassHandler({ sp_dan: 5, dp_dan: 7 });
-		const res = fn("iidx", "INVALID" as Playtypes[Game], 1, {}, logger);
+		const res = fn("iidx", "INVALID" as Playtype, 1, {}, logger);
 
 		t.equal(res, undefined, "Should skip over as a failsafe.");
 

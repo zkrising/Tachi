@@ -7,6 +7,7 @@ import {
 	GPTSupportedVersions,
 	IDStrings,
 	integer,
+	Playtype,
 	Playtypes,
 } from "tachi-common";
 
@@ -69,7 +70,7 @@ export function FindChartWithPTDFVersion<
 export function FindDDRChartOnSongHash(
 	songHash: string,
 	// Technically both of these should be "ddr" instead of Game, but it proves hard to work with.
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	difficulty: Difficulties[IDStrings]
 ) {
 	// note: this only works on accident because monk
@@ -99,7 +100,7 @@ export function FindBMSChartOnHash(hash: string) {
 export function FindChartOnInGameID(
 	game: Game,
 	inGameID: number,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	difficulty: Difficulties[IDStrings]
 ) {
 	if (game === "bms" || game === "usc") {
@@ -119,7 +120,7 @@ export function FindChartOnInGameID(
  */
 export function FindIIDXChartOnInGameID(
 	inGameID: number,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	difficulty: Difficulties[IDStrings]
 ) {
 	return db.charts.iidx.findOne({
@@ -137,7 +138,7 @@ export function FindIIDXChartOnInGameID(
  */
 export function FindIIDXChartOnInGameIDVersion(
 	inGameID: number,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	difficulty: Difficulties[IDStrings],
 	version: GPTSupportedVersions[IDStrings]
 ) {
@@ -156,7 +157,7 @@ export function FindIIDXChartOnInGameIDVersion(
 export function FindChartOnInGameIDVersion<I extends IDStrings = IDStrings>(
 	game: Game,
 	inGameID: number,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	difficulty: Difficulties[I],
 	version: GPTSupportedVersions[I]
 ) {
@@ -243,7 +244,7 @@ export function FindChartOnSHA256(game: Game, hash: string) {
 	});
 }
 
-export function FindChartOnSHA256Playtype(game: Game, hash: string, playtype: Playtypes[Game]) {
+export function FindChartOnSHA256Playtype(game: Game, hash: string, playtype: Playtype) {
 	if (game !== "bms" && game !== "usc" && game !== "iidx" && game !== "pms") {
 		throw new Error(`Cannot call FindChartOnSHA256 for game ${game}.`);
 	}
@@ -267,7 +268,7 @@ export function FindChartOnARCID(game: "iidx" | "ddr" | "jubeat" | "sdvx", arcID
  */
 export async function FindChartsOnPopularity(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	songIDs?: integer[],
 	skip = 0,
 	limit = 100,

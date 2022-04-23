@@ -5,7 +5,15 @@ import { FindOptions } from "monk";
 import NodeCache from "node-cache";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import { FormatGame, Game, GetGamePTConfig, integer, Playtypes, UserGameStats } from "tachi-common";
+import {
+	FormatGame,
+	Game,
+	GetGamePTConfig,
+	integer,
+	Playtype,
+	Playtypes,
+	UserGameStats,
+} from "tachi-common";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { IsString } from "utils/misc";
 import { GetClassDistribution } from "utils/queries/stats";
@@ -32,7 +40,7 @@ const gptStatCache = new NodeCache();
 
 async function GetGameStats(
 	game: Game,
-	playtype: Playtypes[Game]
+	playtype: Playtype
 ): Promise<{ scoreCount: integer; playerCount: integer; chartCount: integer }> {
 	const cacheRes = gptStatCache.get(`${game}:${playtype}`);
 

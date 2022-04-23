@@ -6,7 +6,7 @@ import {
 	ImportTypes,
 	integer,
 	PBScoreDocument,
-	Playtypes,
+	Playtype,
 	ScoreDocument,
 	SessionDocument,
 	SessionInfoReturn,
@@ -38,7 +38,7 @@ export async function CreateSessions(
 			importType,
 			scores,
 			game,
-			playtype as Playtypes[Game],
+			playtype as Playtype,
 			logger
 		);
 
@@ -112,7 +112,7 @@ function CreateSession(
 	groupInfo: SessionScoreInfo[],
 	groupScores: ScoreDocument[],
 	game: Game,
-	playtype: Playtypes[Game]
+	playtype: Playtype
 ): SessionDocument {
 	const name = GenerateRandomSessionName();
 
@@ -141,7 +141,7 @@ export async function LoadScoresIntoSessions(
 	importType: ImportTypes,
 	importScores: ScoreDocument[],
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	baseLogger: KtLogger
 ): Promise<SessionInfoReturn[]> {
 	const logger = AppendLogCtx("Session Generation", baseLogger);

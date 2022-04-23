@@ -5,14 +5,14 @@
 import db from "external/mongo/db";
 import { CreateGameSettings } from "lib/game-settings/create-game-settings";
 import { KtLogger } from "lib/logger/logger";
-import { ClassDelta, Game, integer, Playtypes, UserGameStats } from "tachi-common";
+import { ClassDelta, Game, integer, Playtype, UserGameStats } from "tachi-common";
 import { ProcessClassDeltas, UpdateUGSClasses } from "./classes";
 import { CalculateRatings } from "./rating";
 import { ClassHandler } from "./types";
 
 export async function UpdateUsersGamePlaytypeStats(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	userID: integer,
 	classHandler: ClassHandler | null,
 	logger: KtLogger

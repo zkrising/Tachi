@@ -1,13 +1,13 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { Game, integer, Playtypes } from "tachi-common";
+import { Game, integer, Playtype, Playtypes } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
 /**
  * Create GameSettings for a UGPT (which contains their preferences).
  */
-export async function CreateGameSettings(userID: integer, game: Game, playtype: Playtypes[Game]) {
+export async function CreateGameSettings(userID: integer, game: Game, playtype: Playtype) {
 	const exists = await db["game-settings"].findOne({
 		userID,
 		game,

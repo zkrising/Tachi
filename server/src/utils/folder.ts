@@ -10,6 +10,7 @@ import {
 	FolderDocument,
 	Playtypes,
 	Game,
+	Playtype,
 } from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
@@ -264,19 +265,11 @@ export function GetGradeLampDistributionForFolders(userID: integer, folders: Fol
 	return Promise.all(folders.map((f) => GetGradeLampDistributionForFolder(userID, f)));
 }
 
-export function CreateFolderID(
-	query: Record<string, unknown>,
-	game: Game,
-	playtype: Playtypes[Game]
-) {
+export function CreateFolderID(query: Record<string, unknown>, game: Game, playtype: Playtype) {
 	return `F${fjsh.hash(Object.assign({ game, playtype }, query), "SHA256")}`;
 }
 
-export async function GetRecentlyViewedFolders(
-	userID: integer,
-	game: Game,
-	playtype: Playtypes[Game]
-) {
+export async function GetRecentlyViewedFolders(userID: integer, game: Game, playtype: Playtype) {
 	const views = await db["recent-folder-views"].find(
 		{
 			userID,

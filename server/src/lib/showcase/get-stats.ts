@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { integer, Game, Playtypes, ShowcaseStatDetails } from "tachi-common";
+import { integer, Game, Playtype, ShowcaseStatDetails } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
 import { EvaluateShowcaseStat } from "./evaluator";
 import { GetRelatedStatDocuments } from "./get-related";
@@ -14,7 +14,7 @@ const logger = CreateLogCtx(__filename);
 export async function EvaluateUsersStatsShowcase(
 	userID: integer,
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	projectUserStats?: integer
 ) {
 	const getSettingsID = projectUserStats ?? userID;

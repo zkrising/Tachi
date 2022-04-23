@@ -1,5 +1,13 @@
 import { KtLogger } from "lib/logger/logger";
-import { ChartDocument, Game, GetGamePTConfig, IIDX_LAMPS, integer, Playtypes } from "tachi-common";
+import {
+	ChartDocument,
+	Game,
+	GetGamePTConfig,
+	IIDX_LAMPS,
+	integer,
+	Playtype,
+	Playtypes,
+} from "tachi-common";
 import { DryScore } from "../common/types";
 
 /**
@@ -133,7 +141,7 @@ const ratingParameters = {
 export function CalculateKTRating(
 	dryScore: DryScore,
 	game: "ddr" | "museca",
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	chart: ChartDocument,
 	logger: KtLogger
 ) {
@@ -193,7 +201,7 @@ export function CalculateKTLampRatingIIDXDP(dryScore: DryScore, chart: ChartDocu
 function LampRatingNoTierlistInfo(
 	dryScore: DryScore,
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	chart: ChartDocument
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);

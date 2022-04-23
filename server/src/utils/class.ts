@@ -2,7 +2,7 @@ import db from "external/mongo/db";
 import { CreateGameSettings } from "lib/game-settings/create-game-settings";
 import CreateLogCtx from "lib/logger/logger";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
-import { Game, IDStrings, integer, Playtypes, UserGameStats } from "tachi-common";
+import { Game, IDStrings, integer, Playtype, UserGameStats } from "tachi-common";
 import { GameClassSets } from "tachi-common/js/game-classes";
 
 const logger = CreateLogCtx(__filename);
@@ -35,7 +35,7 @@ export function ReturnClassIfGreater(
 export async function UpdateClassIfGreater(
 	userID: integer,
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	classSet: GameClassSets[IDStrings],
 	classVal: integer
 ) {

@@ -1,4 +1,4 @@
-import { Game, Playtypes, ScoreDocument, SessionDocument } from "tachi-common";
+import { Game, Playtype, Playtypes, ScoreDocument, SessionDocument } from "tachi-common";
 
 type ScoreCalculatedDataOnly = Pick<ScoreDocument, "calculatedData">;
 
@@ -146,7 +146,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 
 export function CreateSessionCalcData(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	scoreCalcData: ScoreCalculatedDataOnly[]
 ): SessionDocument["calculatedData"] {
 	// @ts-expect-error standard game->pt stuff.

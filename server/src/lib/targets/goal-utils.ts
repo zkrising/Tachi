@@ -6,6 +6,7 @@ import {
 	Game,
 	GetGamePTConfig,
 	GoalDocument,
+	Playtype,
 	Playtypes,
 } from "tachi-common";
 import { GetFolderForIDGuaranteed, HumaniseChartID } from "utils/db";
@@ -16,7 +17,7 @@ export async function CreateGoalTitle(
 	charts: GoalDocument["charts"],
 	criteria: GoalDocument["criteria"],
 	game: Game,
-	playtype: Playtypes[Game]
+	playtype: Playtype
 ) {
 	const formattedCriteria = FormatCriteria(criteria, game, playtype);
 
@@ -83,7 +84,7 @@ async function FormatCharts(charts: GoalDocument["charts"], game: Game) {
 	}
 }
 
-function FormatCriteria(criteria: GoalDocument["criteria"], game: Game, playtype: Playtypes[Game]) {
+function FormatCriteria(criteria: GoalDocument["criteria"], game: Game, playtype: Playtype) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	switch (criteria.key) {
@@ -109,7 +110,7 @@ export async function ValidateGoalChartsAndCriteria(
 	charts: GoalDocument["charts"],
 	criteria: GoalDocument["criteria"],
 	game: Game,
-	playtype: Playtypes[Game]
+	playtype: Playtype
 ) {
 	let chartCount = 0;
 	// Validating the charts supplied

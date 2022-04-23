@@ -8,6 +8,7 @@ import {
 	ChartDocument,
 	Game,
 	integer,
+	Playtype,
 	Playtypes,
 	PublicUserDocument,
 	SessionDocument,
@@ -77,7 +78,7 @@ export function SearchGameSongs(
 export async function SearchGameSongsAndCharts(
 	game: Game,
 	search: string,
-	playtype?: Playtypes[Game],
+	playtype?: Playtype,
 	limit = 100
 ) {
 	const songs = await SearchGameSongs(game, search, limit);
@@ -98,7 +99,7 @@ export async function SearchGameSongsAndCharts(
 export function SearchSessions(
 	search: string,
 	game?: Game,
-	playtype?: Playtypes[Game],
+	playtype?: Playtype,
 	userID?: integer,
 	limit = 100
 ) {

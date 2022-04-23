@@ -1,13 +1,13 @@
 import db from "external/mongo/db";
 import { ONE_HOUR } from "lib/constants/time";
 import NodeCache from "node-cache";
-import { Game, gameClasses, IDStrings, integer, Playtypes } from "tachi-common";
+import { Game, gameClasses, IDStrings, integer, Playtype, Playtypes } from "tachi-common";
 
 const classDistCache = new NodeCache();
 
 export async function GetClassDistribution(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	className: gameClasses.GameClassSets[IDStrings]
 ) {
 	const cacheKey = `${game}:${playtype}:${className}`;

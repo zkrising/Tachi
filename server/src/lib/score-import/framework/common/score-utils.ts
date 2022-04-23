@@ -7,7 +7,7 @@ import {
 	GetGamePTConfig,
 	Grades,
 	IDStrings,
-	Playtypes,
+	Playtype,
 } from "tachi-common";
 import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 
@@ -18,7 +18,7 @@ const logger = CreateLogCtx(__filename);
  */
 export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	percent: number
 ): Grades[I] {
 	const gptConfig = GetGamePTConfig(game, playtype);
@@ -101,7 +101,7 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
  */
 export function ValidatePercent(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	percent: number,
 	chart: ChartDocument
 ) {
@@ -177,7 +177,7 @@ export function JubeatGetGrade(score: number): Grades["jubeat:Single"] {
  */
 export function CalculateESDForGame(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	percent: number
 ): number | null {
 	const gptConfig = GetGamePTConfig(game, playtype);

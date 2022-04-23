@@ -2,7 +2,15 @@ import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
-import { ClassDelta, Game, IDStrings, integer, Playtypes, UserGameStats } from "tachi-common";
+import {
+	ClassDelta,
+	Game,
+	IDStrings,
+	integer,
+	Playtype,
+	Playtypes,
+	UserGameStats,
+} from "tachi-common";
 import { GameClasses } from "tachi-common/js/game-classes";
 import { ReturnClassIfGreater } from "utils/class";
 import {
@@ -84,7 +92,7 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
  */
 export async function UpdateUGSClasses(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	userID: integer,
 	ratings: Record<string, number>,
 	ClassHandler: ClassHandler | null,
@@ -123,7 +131,7 @@ export async function UpdateUGSClasses(
  */
 export async function ProcessClassDeltas(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	classes: ScoreClasses,
 	userGameStats: UserGameStats | null,
 	userID: integer,

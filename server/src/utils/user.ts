@@ -6,7 +6,7 @@ import {
 	GetGamePTConfig,
 	IDStrings,
 	integer,
-	Playtypes,
+	Playtype,
 	PublicUserDocument,
 	UGSRatingsLookup,
 	UserGameStats,
@@ -171,7 +171,7 @@ export async function GetUsersRanking(stats: UserGameStats) {
 	return (aggRes[0].ranking + 1) as integer;
 }
 
-export function GetUGPTPlaycount(userID: integer, game: Game, playtype: Playtypes[Game]) {
+export function GetUGPTPlaycount(userID: integer, game: Game, playtype: Playtype) {
 	return db.scores.count({ userID, game, playtype });
 }
 

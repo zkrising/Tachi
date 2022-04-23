@@ -1,8 +1,8 @@
-import { Game, GPTSupportedVersions, IDStrings, Playtypes } from "tachi-common";
+import { Game, GPTSupportedVersions, IDStrings, Playtype, Playtypes } from "tachi-common";
 
 export interface BatchManualContext {
 	game: Game;
-	playtype: Playtypes[Game];
+	playtype: Playtype;
 	service: string;
 	version: GPTSupportedVersions[IDStrings] | null;
 }

@@ -8,7 +8,7 @@ import {
 	integer,
 	MilestoneDocument,
 	MilestoneImportInfo,
-	Playtypes,
+	Playtype,
 	MilestoneSubscriptionDocument,
 } from "tachi-common";
 import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "lib/targets/milestones";
@@ -52,7 +52,7 @@ export function ProcessMilestoneFromGII(
 export async function UpdateUsersMilestones(
 	importGoalInfo: GoalImportInfo[],
 	game: Game,
-	playtypes: Playtypes[Game][],
+	playtypes: Playtype[],
 	userID: integer,
 	logger: KtLogger
 ) {
@@ -157,7 +157,7 @@ export async function UpdateUsersMilestones(
 async function GetRelevantMilestones(
 	goalIDs: string[],
 	game: Game,
-	playtypes: Playtypes[Game][],
+	playtypes: Playtype[],
 	userID: integer,
 	logger: KtLogger
 ) {

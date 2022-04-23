@@ -6,6 +6,7 @@ import {
 	IDStrings,
 	UserGameStats,
 	PBScoreDocument,
+	Playtype,
 } from "tachi-common";
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
@@ -13,7 +14,7 @@ import { KtLogger } from "lib/logger/logger";
 type CustomCalcNames = ScoreCalculatedDataLookup[IDStrings];
 
 function LazySumAll(key: CustomCalcNames) {
-	return async (game: Game, playtype: Playtypes[Game], userID: integer) => {
+	return async (game: Game, playtype: Playtype, userID: integer) => {
 		const sc = await db["personal-bests"].find({
 			game: game,
 			playtype: playtype,
@@ -49,7 +50,7 @@ function LazyCalcN(
 	returnMean = false,
 	nullIfNotEnoughScores = false
 ) {
-	return async (game: Game, playtype: Playtypes[Game], userID: integer) => {
+	return async (game: Game, playtype: Playtype, userID: integer) => {
 		const sc = await db["personal-bests"].find(
 			{
 				game: game,
@@ -91,7 +92,7 @@ type RatingFunctions = {
 	[G in Game]: {
 		[P in Playtypes[G]]: (
 			game: Game,
-			playtype: Playtypes[Game],
+			playtype: Playtype,
 			userID: integer,
 			logger: KtLogger
 		) => Promise<UserGameStats["ratings"]>;
@@ -194,7 +195,7 @@ const RatingFunctions: RatingFunctions = {
 
 export function CalculateRatings(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	userID: integer,
 	logger: KtLogger
 ): Promise<Partial<Record<CustomCalcNames, number>>> {
@@ -205,7 +206,7 @@ export function CalculateRatings(
 // Wacca has a funny algorithm for rate involving gitadora-style latest chart bonuses,
 async function CalculateWACCARate(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	userID: integer,
 	logger: KtLogger
 ) {
@@ -267,7 +268,7 @@ async function CalculateWACCARate(
 
 async function CalculateGitadoraSkill(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	userID: integer,
 	logger: KtLogger
 ) {
@@ -300,7 +301,7 @@ export async function GetBestRatingOnSongs(
 	songIDs: integer[],
 	userID: integer,
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	ratingProp: "skill",
 	limit = 25
 ): Promise<PBScoreDocument[]> {
@@ -334,7 +335,7 @@ export async function GetBestRatingOnSongs(
 
 async function CalculateJubility(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	userID: integer,
 	logger: KtLogger
 ): Promise<number> {

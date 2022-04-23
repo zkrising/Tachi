@@ -7,7 +7,7 @@ import {
 	PublicUserDocument,
 	UserGameStats,
 	Game,
-	Playtypes,
+	Playtype,
 	SongDocument,
 	UserSettings,
 	TachiAPIClientDocument,
@@ -61,7 +61,7 @@ export interface TachiRequestData {
 	requestedUser?: PublicUserDocument;
 	requestedUserGameStats?: UserGameStats;
 	game?: Game;
-	playtype?: Playtypes[Game];
+	playtype?: Playtype;
 
 	chartDoc?: ChartDocument;
 	songDoc?: SongDocument;

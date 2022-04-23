@@ -9,6 +9,7 @@ import {
 	GetGameConfig,
 	GetGamePTConfig,
 	ImportTypes,
+	Playtype,
 	Playtypes,
 } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
@@ -39,7 +40,7 @@ const PR_DPRandom = (self: unknown) => {
 	return true;
 };
 
-const PR_ScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => {
+const PR_ScoreMeta = (game: Game, playtype: Playtype): PrudenceSchema => {
 	if (game === "iidx") {
 		const random =
 			playtype === "SP"
@@ -148,7 +149,7 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 	return {};
 };
 
-const PR_BatchManualScore = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => {
+const PR_BatchManualScore = (game: Game, playtype: Playtype): PrudenceSchema => {
 	const gptConfig = GetGamePTConfig(game, playtype);
 	return {
 		score: p.isPositiveInteger,
@@ -228,7 +229,7 @@ const PR_BatchManualClasses = (game: Game): PrudenceSchema => {
 	}
 };
 
-const PR_BatchManual = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => ({
+const PR_BatchManual = (game: Game, playtype: Playtype): PrudenceSchema => ({
 	meta: {
 		service: p.isBoundedString(3, 15),
 		game: p.isIn(TachiConfig.GAMES),
@@ -302,7 +303,7 @@ export function ParseBatchManualFromObject(
 		);
 	}
 
-	const playtype: Playtypes[Game] = possiblyPlaytype;
+	const playtype: Playtype = possiblyPlaytype;
 
 	// now that we have the game, we can validate this against
 	// the prudence schema for batch-manual.

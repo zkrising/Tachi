@@ -2,7 +2,7 @@ import { exec } from "child_process";
 import crypto from "crypto";
 import { ONE_HOUR } from "lib/constants/time";
 import { TachiConfig } from "lib/setup/config";
-import { Game, GamePTConfig, GetGameConfig, integer, Playtypes } from "tachi-common";
+import { Game, GamePTConfig, GetGameConfig, integer, Playtype, Playtypes } from "tachi-common";
 import { URL } from "url";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
@@ -68,8 +68,8 @@ export function IsValidGame(str: string): str is Game {
 	return !!TachiConfig.GAMES.includes(str as Game);
 }
 
-export function IsValidPlaytype(game: Game, str: string): str is Playtypes[Game] {
-	return GetGameConfig(game).validPlaytypes.includes(str as Playtypes[Game]);
+export function IsValidPlaytype(game: Game, str: string): str is Playtype {
+	return GetGameConfig(game).validPlaytypes.includes(str as Playtype);
 }
 
 export function IsValidScoreAlg(

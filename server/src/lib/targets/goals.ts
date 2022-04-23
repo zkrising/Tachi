@@ -9,7 +9,7 @@ import {
 	GoalDocument,
 	integer,
 	PBScoreDocument,
-	Playtypes,
+	Playtype,
 	GoalSubscriptionDocument,
 	MilestoneSubscriptionDocument,
 	MilestoneDocument,
@@ -42,7 +42,7 @@ export function CreateGoalID(
 	charts: GoalDocument["charts"],
 	criteria: GoalDocument["criteria"],
 	game: Game,
-	playtype: Playtypes[Game]
+	playtype: Playtype
 ) {
 	return `G${fjsh.hash({ charts, criteria, game, playtype }, "sha256")}`;
 }
@@ -218,7 +218,7 @@ type PBWithBadPoor = PBScoreDocument<
 
 export function HumaniseGoalProgress(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	key: GoalKeys,
 	value: number,
 	userPB: PBScoreDocument | null
@@ -268,7 +268,7 @@ export async function ConstructGoal(
 	charts: GoalDocument["charts"],
 	criteria: GoalDocument["criteria"],
 	game: Game,
-	playtype: Playtypes[Game]
+	playtype: Playtype
 ): Promise<GoalDocument> {
 	// Throws if the charts or criteria are invalid somehow.
 	await ValidateGoalChartsAndCriteria(charts, criteria, game, playtype);

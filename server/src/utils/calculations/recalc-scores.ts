@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
-import { Game, integer, Playtypes, PublicUserDocument } from "tachi-common";
+import { Game, integer, Playtype, Playtypes, PublicUserDocument } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
 import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
 import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
@@ -67,13 +67,13 @@ export async function RecalcAllScores(filter = {}) {
 	logger.info(`Updating Profiles for ${modifiedUsers.size} users...`);
 
 	for (const userInfo of modifiedUsers.values()) {
-		const [game, playtype, strUserID] = userInfo.split("-") as [Game, Playtypes[Game], string];
+		const [game, playtype, strUserID] = userInfo.split("-") as [Game, Playtype, string];
 
 		const userID = Number(strUserID);
 
 		await UpdateUsersGamePlaytypeStats(
 			game as Game,
-			playtype as Playtypes[Game],
+			playtype as Playtype,
 			userID,
 			null,
 			logger

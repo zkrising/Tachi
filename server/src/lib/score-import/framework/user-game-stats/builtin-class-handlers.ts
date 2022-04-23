@@ -7,12 +7,12 @@ import {
 	WACCA_COLOURS,
 } from "lib/constants/classes";
 import { KtLogger } from "lib/logger/logger";
-import { Game, integer, Playtypes, ScoreCalculatedDataLookup } from "tachi-common";
+import { Game, integer, Playtype, Playtypes, ScoreCalculatedDataLookup } from "tachi-common";
 import { GameClasses } from "tachi-common/js/game-classes";
 
 export function CalculateSDVXClass(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	userID: integer,
 	ratings: Partial<Record<ScoreCalculatedDataLookup["sdvx:Single"], number>>,
 	logger: KtLogger
@@ -51,7 +51,7 @@ export function SDVXVF6ToClass(vf: number, logger: KtLogger) {
 
 export function CalculateGitadoraColour(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	userID: integer,
 	ratings: Record<string, number>,
 	logger: KtLogger
@@ -103,7 +103,7 @@ export function GitadoraSkillToColour(sk: number) {
 
 export function CalculateWACCAColour(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	userID: integer,
 	ratings: Record<string, number>
 ) {
@@ -136,7 +136,7 @@ function WACCARateToColour(rate: number) {
 
 export function CalculatePopnClass(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	userID: integer,
 	ratings: Record<string, number>
 ) {
@@ -167,7 +167,7 @@ function PopnClassPointsToClass(points: number) {
 
 export function CalculateChunithmColour(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	userID: integer,
 	ratings: Record<string, number>
 ) {
@@ -202,7 +202,7 @@ function ChuniRatingToColour(rating: number) {
 
 export function CalculateJubeatColour(
 	game: Game,
-	playtype: Playtypes[Game],
+	playtype: Playtype,
 	userID: integer,
 	ratings: Record<string, number>
 ) {

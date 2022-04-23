@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { integer, Game, Playtypes } from "tachi-common";
+import { integer, Game, Playtypes, Playtype } from "tachi-common";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 
 /**
@@ -10,7 +10,7 @@ import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 export default async function DestroyUserGamePlaytypeData(
 	userID: integer,
 	game: Game,
-	playtype: Playtypes[Game]
+	playtype: Playtype
 ) {
 	await db["game-stats-snapshots"].remove({
 		userID,

@@ -1,4 +1,4 @@
-import { Game, GamePTConfig, GetGamePTConfig, Playtypes } from "tachi-common";
+import { Game, GamePTConfig, GetGamePTConfig, Playtype, Playtypes } from "tachi-common";
 import { IsString } from "./misc";
 
 const isIntegerRegex = /^-?\d+$/u;
@@ -47,7 +47,7 @@ export type ProfileRatingAlgs = GamePTConfig["defaultProfileRatingAlg"];
 export type ScoreRatingAlgs = GamePTConfig["defaultScoreRatingAlg"];
 export type SessionRatingAlgs = GamePTConfig["defaultSessionRatingAlg"];
 
-export function CheckStrProfileAlg(game: Game, playtype: Playtypes[Game], strVal: string) {
+export function CheckStrProfileAlg(game: Game, playtype: Playtype, strVal: string) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	// @hack
@@ -58,7 +58,7 @@ export function CheckStrProfileAlg(game: Game, playtype: Playtypes[Game], strVal
 	return strVal as ProfileRatingAlgs;
 }
 
-export function CheckStrScoreAlg(game: Game, playtype: Playtypes[Game], strVal: string) {
+export function CheckStrScoreAlg(game: Game, playtype: Playtype, strVal: string) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	// @hack
@@ -69,7 +69,7 @@ export function CheckStrScoreAlg(game: Game, playtype: Playtypes[Game], strVal: 
 	return strVal as ScoreRatingAlgs;
 }
 
-export function CheckStrSessionAlg(game: Game, playtype: Playtypes[Game], strVal: string) {
+export function CheckStrSessionAlg(game: Game, playtype: Playtype, strVal: string) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	// @hack

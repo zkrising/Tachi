@@ -92,6 +92,7 @@ router.get("/all", async (req, res) => {
  *
  * @param alg - Specifies an override for the default algorithm
  * to sort on.
+ *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/best
  */
 router.get("/best", async (req, res) => {

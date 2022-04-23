@@ -1,6 +1,7 @@
 import db from "external/mongo/db";
 import { ScoreDocument } from "tachi-common";
 import t from "tap";
+import { mkFakeScoreIIDXSP, mkFakeScoreSDVX } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
@@ -144,6 +145,34 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores", (t) => {
 				],
 			},
 		});
+
+		t.end();
+	});
+
+	t.end();
+});
+
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/all", async (t) => {
+	t.beforeEach(ResetDBState);
+
+	t.test("Should return every score from a user.", async (t) => {
+		await db.scores.remove({});
+		await db.scores.insert([
+			mkFakeScoreIIDXSP({ scoreID: "score_1" }),
+			mkFakeScoreIIDXSP({ scoreID: "score_2" }),
+			mkFakeScoreIIDXSP({ scoreID: "score_3" }),
+			mkFakeScoreIIDXSP({ scoreID: "other_score", userID: 2 }),
+			mkFakeScoreSDVX({ scoreID: "other_game_same_user" }),
+		]);
+
+		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/scores/all");
+
+		t.equal(res.statusCode, 200, "Should return 200");
+
+		t.strictSame(
+			res.body.body.scores.map((e: ScoreDocument) => e.scoreID),
+			["score_1", "score_2", "score_3"]
+		);
 
 		t.end();
 	});

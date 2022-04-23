@@ -128,6 +128,35 @@ export const TestingIIDXSPScore: ScoreDocument<"iidx:SP"> = {
 	importType: "ir/direct-manual",
 };
 
+export const TestingSDVXScore: ScoreDocument<"sdvx:Single"> = {
+	service: "foo (DIRECT-MANUAL)",
+	game: "sdvx",
+	playtype: "Single",
+	userID: 1,
+	scoreData: {
+		score: 786,
+		lamp: "CLEAR",
+		percent: 50,
+		grade: "C",
+		esd: 30,
+		gradeIndex: 3,
+		lampIndex: 4,
+		judgements: {},
+		hitMeta: {},
+	},
+	scoreMeta: {},
+	calculatedData: {},
+	timeAchieved: 1619454485988,
+	songID: 1,
+	chartID: "5088a4d0e1ee9d0cc2f625934306e45b1a60699b", // albida adv
+	highlight: false,
+	isPrimary: true,
+	comment: null,
+	timeAdded: 1,
+	scoreID: "TESTING_SCORE_SDVX_ID",
+	importType: "ir/direct-manual",
+};
+
 export const TestingKsHookSV6CScore: KsHookSV6CScore = {
 	clear: "CLEAR_EXCESSIVE",
 	critical: 1184,

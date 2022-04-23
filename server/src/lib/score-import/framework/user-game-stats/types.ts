@@ -1,5 +1,5 @@
 import { KtLogger } from "lib/logger/logger";
-import { Game, IDStrings, integer, Playtype, Playtypes } from "tachi-common";
+import { Game, IDStrings, integer, Playtype } from "tachi-common";
 import { GameClasses } from "tachi-common/js/game-classes";
 
 export type ScoreClasses = Partial<GameClasses<IDStrings>>;

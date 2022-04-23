@@ -1,15 +1,15 @@
-import {
-	Game,
-	Playtypes,
-	integer,
-	ScoreCalculatedDataLookup,
-	IDStrings,
-	UserGameStats,
-	PBScoreDocument,
-	Playtype,
-} from "tachi-common";
 import db from "external/mongo/db";
 import { KtLogger } from "lib/logger/logger";
+import {
+	Game,
+	IDStrings,
+	integer,
+	PBScoreDocument,
+	Playtype,
+	Playtypes,
+	ScoreCalculatedDataLookup,
+	UserGameStats,
+} from "tachi-common";
 
 type CustomCalcNames = ScoreCalculatedDataLookup[IDStrings];
 

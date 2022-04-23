@@ -1,8 +1,8 @@
 import { KtLogger } from "lib/logger/logger";
 import {
-	ParserFunctionReturns,
-	ImportTypeDataMap,
 	ImportTypeContextMap,
+	ImportTypeDataMap,
+	ParserFunctionReturns,
 } from "lib/score-import/import-types/common/types";
 import { Parsers } from "lib/score-import/import-types/parsers";
 import { ScoreImportJobData } from "lib/score-import/worker/types";

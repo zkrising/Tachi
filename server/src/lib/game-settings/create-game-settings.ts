@@ -1,6 +1,6 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { Game, integer, Playtype, Playtypes } from "tachi-common";
+import { Game, integer, Playtype } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

@@ -9,7 +9,6 @@ import {
 	Game,
 	integer,
 	Playtype,
-	Playtypes,
 	PublicUserDocument,
 	SessionDocument,
 	SongDocument,

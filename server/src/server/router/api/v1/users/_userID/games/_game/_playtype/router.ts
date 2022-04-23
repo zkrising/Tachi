@@ -14,13 +14,13 @@ import {
 import foldersRouter from "./folders/router";
 import { CheckUserPlayedGamePlaytype } from "./middleware";
 import pbsRouter from "./pbs/router";
+import rivalsRouter from "./rivals/router";
 import scoresRouter from "./scores/router";
 import sessionsRouter from "./sessions/router";
 import settingsRouter from "./settings/router";
 import showcaseRouter from "./showcase/router";
 import tablesRouter from "./tables/router";
 import targetsRouter from "./targets/router";
-import rivalsRouter from "./rivals/router";
 
 const router: Router = Router({ mergeParams: true });
 

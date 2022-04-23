@@ -7,7 +7,7 @@ import {
 	WACCA_COLOURS,
 } from "lib/constants/classes";
 import { KtLogger } from "lib/logger/logger";
-import { Game, integer, Playtype, Playtypes, ScoreCalculatedDataLookup } from "tachi-common";
+import { Game, integer, Playtype, ScoreCalculatedDataLookup } from "tachi-common";
 import { GameClasses } from "tachi-common/js/game-classes";
 
 export function CalculateSDVXClass(

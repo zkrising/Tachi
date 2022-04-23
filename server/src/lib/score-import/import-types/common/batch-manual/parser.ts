@@ -10,7 +10,6 @@ import {
 	GetGamePTConfig,
 	ImportTypes,
 	Playtype,
-	Playtypes,
 } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";

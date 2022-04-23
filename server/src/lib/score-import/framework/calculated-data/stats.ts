@@ -1,13 +1,5 @@
 import { KtLogger } from "lib/logger/logger";
-import {
-	ChartDocument,
-	Game,
-	GetGamePTConfig,
-	IIDX_LAMPS,
-	integer,
-	Playtype,
-	Playtypes,
-} from "tachi-common";
+import { ChartDocument, Game, GetGamePTConfig, IIDX_LAMPS, integer, Playtype } from "tachi-common";
 import { DryScore } from "../common/types";
 
 /**

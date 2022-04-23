@@ -1,10 +1,10 @@
-import path from "path";
-import os from "os";
+import fs from "fs/promises";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
-import { asyncExec } from "utils/misc";
+import os from "os";
+import path from "path";
 import { Game } from "tachi-common";
-import fs from "fs/promises";
+import { asyncExec } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 

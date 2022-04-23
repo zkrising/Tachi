@@ -1,20 +1,20 @@
-import db from "external/mongo/db";
-import t from "tap";
-import mockApi from "test-utils/mock-api";
-import ResetDBState from "test-utils/resets";
 import dm from "deepmerge";
-import {
-	HC511Goal,
-	HC511UserGoal,
-	TestingIIDXSPMilestone,
-	TestingIIDXSPMilestoneSub,
-} from "test-utils/test-data";
+import db from "external/mongo/db";
 import {
 	GoalDocument,
 	GoalSubscriptionDocument,
 	MilestoneDocument,
 	MilestoneSubscriptionDocument,
 } from "tachi-common";
+import t from "tap";
+import mockApi from "test-utils/mock-api";
+import ResetDBState from "test-utils/resets";
+import {
+	HC511Goal,
+	HC511UserGoal,
+	TestingIIDXSPMilestone,
+	TestingIIDXSPMilestoneSub,
+} from "test-utils/test-data";
 
 function mkGoalSub(merge: Partial<GoalSubscriptionDocument>) {
 	return dm(HC511UserGoal, merge);

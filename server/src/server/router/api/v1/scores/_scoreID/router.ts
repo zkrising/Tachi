@@ -7,7 +7,7 @@ import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { GetUserWithID } from "utils/user";
-import { GetScoreFromParam, RequireOwnershipOfScore } from "./middleware";
+import { GetScoreFromParam, RequireOwnershipOfScoreOrAdmin } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -80,7 +80,7 @@ interface ModifiableScoreProps {
  */
 router.patch(
 	"/",
-	RequireOwnershipOfScore,
+	RequireOwnershipOfScoreOrAdmin,
 	RequirePermissions("customise_score"),
 	prValidate({
 		comment: p.optional(p.nullable(p.isBoundedString(1, 120))),
@@ -143,7 +143,7 @@ router.patch(
  */
 router.delete(
 	"/",
-	RequireOwnershipOfScore,
+	RequireOwnershipOfScoreOrAdmin,
 	RequirePermissions("delete_score"),
 	async (req, res) => {
 		const score = req[SYMBOL_TachiData]!.scoreDoc!;

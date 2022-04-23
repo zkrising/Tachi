@@ -2,6 +2,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { FindOneResult } from "monk";
 import {
+	APITokenDocument,
 	Game,
 	GetGamePTConfig,
 	IDStrings,
@@ -9,6 +10,7 @@ import {
 	Playtype,
 	PublicUserDocument,
 	UGSRatingsLookup,
+	UserAuthLevels,
 	UserGameStats,
 } from "tachi-common";
 
@@ -235,4 +237,22 @@ const FIVE_MINUTES = 1000 * 60 * 5;
  */
 export function GetOnlineCutoff() {
 	return Date.now() - FIVE_MINUTES;
+}
+
+/**
+ * Returns whether a given userID is an administrator or not.
+ */
+export async function IsRequesterAdmin(request: APITokenDocument) {
+	// API Tokens created on the behalf of an admin do NOT inherit admin permissions.
+	if (request.token !== null) {
+		return false;
+	}
+
+	if (!request.userID) {
+		return false;
+	}
+
+	const user = await GetUserWithIDGuaranteed(request.userID);
+
+	return user.authLevel === UserAuthLevels.ADMIN;
 }

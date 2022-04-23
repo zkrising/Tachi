@@ -3,11 +3,20 @@ import {
 	Game,
 	ImportDocument,
 	integer,
+	PBScoreDocument,
 	Playtype,
 	PublicUserDocument,
+	ScoreDocument,
 	UGPTSettings,
 } from "tachi-common";
-import { FakeGameSettings, FakeImport, FakeOtherUser } from "./test-data";
+import {
+	FakeGameSettings,
+	FakeImport,
+	FakeOtherUser,
+	TestingIIDXSPScore,
+	TestingIIDXSPScorePB,
+	TestingSDVXScore,
+} from "./test-data";
 
 /**
  * Async Generator To Array
@@ -72,4 +81,16 @@ export function mkFakeGameSettings(
 
 export function mkFakeImport(modifant: Partial<ImportDocument> = {}) {
 	return dmf(FakeImport, modifant);
+}
+
+export function mkFakeScoreIIDXSP(modifant: Partial<ScoreDocument<"iidx:SP">> = {}) {
+	return dmf(TestingIIDXSPScore, modifant);
+}
+
+export function mkFakeScoreSDVX(modifant: Partial<ScoreDocument<"sdvx:Single">> = {}) {
+	return dmf(TestingSDVXScore, modifant);
+}
+
+export function mkFakePBIIDXSP(modifant: Partial<PBScoreDocument<"iidx:SP">> = {}) {
+	return dmf(TestingIIDXSPScorePB, modifant);
 }

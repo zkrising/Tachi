@@ -152,7 +152,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores", (t) => {
 	t.end();
 });
 
-t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/all", async (t) => {
+t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/all", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should return every score from a user.", async (t) => {

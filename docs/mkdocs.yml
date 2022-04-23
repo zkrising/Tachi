@@ -64,6 +64,7 @@ nav:
                 - "api/routes/oauth2.md"
                 - "api/routes/clients.md"
                 - "api/routes/config.md"
+                - "api/routes/imports.md"
                 - "api/routes/gpt-targets.md"
                 - "api/routes/ugpt-targets.md"
 

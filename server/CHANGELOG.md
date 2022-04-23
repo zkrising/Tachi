@@ -15,6 +15,23 @@ not generally be shown to end users.
 
 # Changelog
 
+# Current
+
+- [FEAT] Add an endpoint for reverting imports.
+- [FEAT] Rivals have been added.
+- [FEAT] Goals have been added.
+- [FEAT] Milestones have been added.
+- [FEAT] Milestone Sets have been added.
+- [FEAT] Batch Manual imports can now pass `classes`, to hard-declare certain classes, such as IIDX Dans, WACCA Stage Ups, or similar.
+- [FEAT] Added support for an IIDX DP tierlist.
+- [INTERNAL_FEAT] Schemas have been moved into tachi-common and properly refactored.
+- [INTERNAL_FEAT] Tachi-Server now has a migration engine, for applying database updates automagically.
+
+*****
+
+- [ENH] Force Static Import now disables itself after doing one static import. This is a safety feature to prevent you from spamming your profile with pb imports.
+- [ENH] Milestones will automatically update and resync off of database-seed changes.
+
 # 2.1.16
 
 - [BUG] EXCEED GEAR scores can now be imported for real for real.

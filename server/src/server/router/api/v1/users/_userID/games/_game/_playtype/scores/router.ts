@@ -1,6 +1,7 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SearchGameSongsAndCharts } from "lib/search/search";
+import { HyperAggressiveRateLimitMiddleware } from "server/middleware/rate-limiter";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { GetUGPT } from "utils/req-tachi-data";
 import { FilterChartsAndSongs } from "utils/scores";
@@ -51,6 +52,32 @@ router.get("/", async (req, res) => {
 			songs,
 			charts,
 		},
+	});
+});
+
+/**
+ * Retrieve all scores from this user.
+ *
+ * @warn This endpoint is expensive, and is rate-limited as such.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/scores/all
+ */
+router.get("/all", HyperAggressiveRateLimitMiddleware, async (req, res) => {
+	const { user, game, playtype } = GetUGPT(req);
+
+	const scores = await db.scores.find({
+		userID: user.id,
+		game,
+		playtype,
+		isPrimary: true,
+	});
+
+	const { songs, charts } = await GetRelevantSongsAndCharts(scores, game);
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned ${scores.length} PBs.`,
+		body: { scores, songs, charts },
 	});
 });
 

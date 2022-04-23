@@ -1,5 +1,5 @@
 import CreateLogCtx from "lib/logger/logger";
-import { Game, Playtypes } from "tachi-common";
+import { Playtype } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { CreateFerStaticClassHandler } from "./class-handler";

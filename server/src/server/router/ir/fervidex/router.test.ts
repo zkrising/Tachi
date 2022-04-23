@@ -454,6 +454,14 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 
 		t.equal(ugs!.classes.dan, 15, "Should successfully update dan to 9th.");
 
+		const dbRes = await db["fer-settings"].findOne({ userID: 1 });
+
+		t.equal(
+			dbRes?.forceStaticImport,
+			false,
+			"forceStaticImport should be set to false after the request."
+		);
+
 		t.end();
 	});
 

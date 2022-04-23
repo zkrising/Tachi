@@ -76,6 +76,23 @@ const RequireInf2ModelHeaderOrForceStatic: RequestHandler = async (req, res, nex
 
 	if (settings && settings.forceStaticImport) {
 		logger.debug(`User ${settings.userID} had forceStaticImport set, allowing request.`);
+
+		// Force static import should ideally only ever be used once. If left on, a users profile
+		// will get innundated with a bunch of pb imports on every game-load. This is not what
+		// people want.
+		// FSI should ideally just be used once to get unreachable scores onto Kamaitachi. Otherwise
+		// they're doing something wrong.
+		await db["fer-settings"].update(
+			{
+				userID: settings.userID,
+			},
+			{
+				$set: {
+					forceStaticImport: false,
+				},
+			}
+		);
+
 		return next();
 	}
 

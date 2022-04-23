@@ -66,17 +66,15 @@ export async function UnregisterAllCommands(client: Client): Promise<void> {
 
 		const promises = [];
 		for (const [, guild] of guilds) {
-			const commands = guild.commands.cache;
-
-			for (const [, command] of commands) {
-				promises.push(command.delete());
-			}
+			promises.push(guild.commands.set([]));
 		}
+
+		await client.application!.commands.set([]);
 
 		// parallelise waiting for these to be deleted.
 		await Promise.all(promises);
 
-		logger.info("Successfully tidied old guild slash commands.");
+		logger.info(`Successfully tidied ${promises.length} old guild slash commands.`);
 	} catch (err) {
 		logger.error("Failed to tidy old guild slash commands.", err);
 

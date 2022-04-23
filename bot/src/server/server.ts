@@ -97,12 +97,12 @@ app.get("/oauth/callback", async (req, res) => {
 
 	const user = whoamiRes.body;
 
-	logger.info(`Saving user-discord-link for ${user.username} (#${user.id}).`);
+	logger.info(`Saving user-discord-link for ${user.username} (id: ${user.id}).`);
 
 	const existingLink = await db.discordUserMap.findOne({ userID: user.id });
 
 	if (existingLink) {
-		logger.info(`Updating user-discord-link for ${user.username} (#${user.id})`);
+		logger.info(`Updating user-discord-link for ${user.username} (id: ${user.id})`);
 
 		await db.discordUserMap.update(
 			{

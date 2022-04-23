@@ -63,7 +63,7 @@ export function CreateImportEmbed(importDoc: ImportDocument) {
 
 export function CreateUserEmbed(userDoc: PublicUserDocument) {
 	return CreateEmbed()
-		.setTitle(`${userDoc.username} (#${userDoc.id})`)
+		.setTitle(`${userDoc.username} (ID: ${userDoc.id})`)
 		.setThumbnail(PrependTachiUrl(`/users/${userDoc.id}/pfp`))
 		.setDescription(userDoc.status ?? "No status...")
 		.addField("Join Date", FormatDate(userDoc.joinDate))

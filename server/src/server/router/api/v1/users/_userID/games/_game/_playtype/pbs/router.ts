@@ -1,6 +1,7 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SearchGameSongsAndCharts } from "lib/search/search";
+import { AggressiveRateLimitMiddleware } from "server/middleware/rate-limiter";
 import { GetGamePTConfig } from "tachi-common";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { IsValidScoreAlg } from "utils/misc";
@@ -68,7 +69,7 @@ router.get("/", async (req, res) => {
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/all
  */
-router.get("/all", async (req, res) => {
+router.get("/all", AggressiveRateLimitMiddleware, async (req, res) => {
 	const { user, game, playtype } = GetUGPT(req);
 
 	const pbs = await db["personal-bests"].find({

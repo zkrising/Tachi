@@ -1,25 +1,25 @@
 import { RequestHandler } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TachiData, SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 
-export const GetScoreFromParam: RequestHandler = async (req, res, next) => {
-	const score = await db.scores.findOne({ scoreID: req.params.scoreID });
+export const GetImportFromParam: RequestHandler = async (req, res, next) => {
+	const importDoc = await db.imports.findOne({ importID: req.params.importID });
 
-	if (!score) {
+	if (!importDoc) {
 		return res.status(404).json({
 			success: false,
-			description: `This score does not exist.`,
+			description: `This import does not exist.`,
 		});
 	}
 
-	AssignToReqTachiData(req, { scoreDoc: score });
+	AssignToReqTachiData(req, { importDoc });
 
 	return next();
 };
 
-export const RequireOwnershipOfScore: RequestHandler = (req, res, next) => {
-	const score = req[SYMBOL_TachiData]!.scoreDoc!;
+export const RequireOwnershipOfImport: RequestHandler = (req, res, next) => {
+	const importDoc = req[SYMBOL_TachiData]!.importDoc!;
 	const userID = req[SYMBOL_TachiAPIAuth].userID;
 
 	if (userID === null) {
@@ -29,7 +29,7 @@ export const RequireOwnershipOfScore: RequestHandler = (req, res, next) => {
 		});
 	}
 
-	if (score.userID !== userID) {
+	if (importDoc.userID !== userID) {
 		return res.status(403).json({
 			success: false,
 			description: `You are not authorised to perform this action.`,

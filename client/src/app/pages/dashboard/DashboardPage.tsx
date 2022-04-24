@@ -143,7 +143,7 @@ function RecentInfo({ user }: { user: PublicUserDocument }) {
 										to={`/dashboard/games/${e.game}/${e.playtype}/targets/goals/${e.goalID}`}
 										key={e.goalID}
 									>
-										<li>{goalMap.get(e.goalID)?.title}</li>
+										<li>{goalMap.get(e.goalID)?.name}</li>
 									</GentleLink>
 								))}
 							</ul>

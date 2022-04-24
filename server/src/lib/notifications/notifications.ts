@@ -35,6 +35,19 @@ export function ReadNotification(notifID: string) {
 	);
 }
 
+/**
+ * Mark all of a user's notifications as read.
+ */
+export function ReadUsersNotifications(userID: integer) {
+	return db.notifications.update(
+		{ sentTo: userID },
+		{
+			$set: { read: true },
+		},
+		{ multi: true }
+	);
+}
+
 export function DeleteNotification(notifID: string) {
 	return db.notifications.remove({ notifID });
 }

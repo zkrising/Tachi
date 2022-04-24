@@ -37,6 +37,7 @@ not generally be shown to end users.
 - [ENH] The beatoraja IR now says how many people have played a chart on its way to de-orphaning.
 - [ENH] Server administrators can now delete other's scores.
 - [ENH] Server administrators can now revert other's imports.
+- [ENH] You can now set Jubility targets.
 
 # 2.1.16
 

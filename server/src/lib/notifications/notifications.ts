@@ -39,33 +39,3 @@ export function BulkSendNotification(title: string, toUserIDs: integer[], body: 
 
 	return db.notifications.insert(notifications);
 }
-
-/**
- * Mark a notification as read. This is notably different to deleting a notification,
- * and is typically done when the user acknowledges the existence of the notification.
- */
-export function ReadNotification(notifID: string) {
-	return db.notifications.update(
-		{ notifID },
-		{
-			$set: { read: true },
-		}
-	);
-}
-
-/**
- * Mark all of a user's notifications as read.
- */
-export function ReadUsersNotifications(userID: integer) {
-	return db.notifications.update(
-		{ sentTo: userID },
-		{
-			$set: { read: true },
-		},
-		{ multi: true }
-	);
-}
-
-export function DeleteNotification(notifID: string) {
-	return db.notifications.remove({ notifID });
-}

@@ -15,6 +15,7 @@ import {
 	FolderDocument,
 	Game,
 	GoalDocument,
+	GoalSubscriptionDocument,
 	ImportDocument,
 	ImportTimingsDocument,
 	integer,
@@ -22,6 +23,8 @@ import {
 	KaiAuthDocument,
 	MilestoneDocument,
 	MilestoneSetDocument,
+	MilestoneSubscriptionDocument,
+	NotificationDocument,
 	OrphanChart,
 	PBScoreDocument,
 	PublicUserDocument,
@@ -35,8 +38,6 @@ import {
 	UGPTSettings,
 	UserGameStats,
 	UserGameStatsSnapshot,
-	GoalSubscriptionDocument,
-	MilestoneSubscriptionDocument,
 	UserSettings,
 } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
@@ -193,6 +194,7 @@ const db = {
 	"recent-folder-views": monkDB.get<RecentlyViewedFolderDocument>("recent-folder-views"),
 	"milestone-sets": monkDB.get<MilestoneSetDocument>("milestone-sets"),
 	migrations: monkDB.get<MigrationDocument>("migrations"),
+	notifications: monkDB.get<NotificationDocument>("notifications"),
 };
 
 export type StaticDatabases = Exclude<keyof typeof db, "songs" | "charts">;

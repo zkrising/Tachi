@@ -1,6 +1,7 @@
 import db from "external/mongo/db";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
+import { BulkSendNotification } from "lib/notifications/notifications";
 import {
 	GoalDocument,
 	GoalSubscriptionDocument,
@@ -8,7 +9,6 @@ import {
 	MilestoneDocument,
 	MilestoneSubscriptionDocument,
 } from "tachi-common";
-import { GetMilestoneForIDGuaranteed } from "utils/db";
 import { EvaluatedGoalReturn, EvaluateGoalForUser, SubscribeToGoal } from "./goals";
 
 const logger = CreateLogCtx(__filename);
@@ -299,6 +299,17 @@ export async function UpdateMilestoneSubscriptions(milestoneID: string) {
 	if (newStuff !== 0) {
 		logger.info(
 			`Updating subscriptions for '${maybeMilestone.name}' resulted in ${newStuff} updates.`
+		);
+
+		await BulkSendNotification(
+			`The milestone '${maybeMilestone.name}' has changed, You have been automatically subscribed to some new goals.`,
+			subscriptions.map((e) => e.userID),
+			{
+				type: "MILESTONE_CHANGED",
+				content: {
+					milestoneID,
+				},
+			}
 		);
 	}
 

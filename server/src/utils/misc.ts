@@ -2,7 +2,7 @@ import { exec } from "child_process";
 import crypto from "crypto";
 import { ONE_HOUR } from "lib/constants/time";
 import { TachiConfig } from "lib/setup/config";
-import { Game, GamePTConfig, GetGameConfig, integer, Playtype, Playtypes } from "tachi-common";
+import { Game, GamePTConfig, GetGameConfig, integer, Playtype } from "tachi-common";
 import { URL } from "url";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
@@ -205,4 +205,14 @@ export function FormatMaxDP(num: number, points = 2) {
  */
 export function IsSupported(game: Game) {
 	return TachiConfig.GAMES.includes(game);
+}
+
+/**
+ * Given two arrays, return all elements in arr2 that are not in arr1.
+ * @param left - The array of original elements.
+ * @param right - The right side of elements; everything in here not in left will be
+ * returned.
+ */
+export function ArrayDiff<T>(left: T[], right: T[]) {
+	return right.filter((e) => !left.includes(e));
 }

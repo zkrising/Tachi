@@ -22,6 +22,7 @@ import {
 	ImportDocument,
 	MilestoneDocument,
 	MilestoneSubscriptionDocument,
+	NotificationDocument,
 	PBScoreDocument,
 	PublicUserDocument,
 	ScoreDocument,
@@ -684,4 +685,18 @@ export const FakeImport: ImportDocument = {
 	timeStarted: 100,
 	userID: 1,
 	userIntent: false,
+};
+
+export const FakeNotification: NotificationDocument = {
+	title: "fake notif",
+	notifID: "fake_notif",
+	read: false,
+	sentAt: 1000,
+	sentTo: 1,
+	body: {
+		type: "MILESTONE_CHANGED",
+		content: {
+			milestoneID: "a",
+		},
+	},
 };

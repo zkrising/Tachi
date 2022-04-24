@@ -8,7 +8,6 @@ import {
 	MilestoneDocument,
 	MilestoneSubscriptionDocument,
 } from "tachi-common";
-import { GetMilestoneForIDGuaranteed } from "utils/db";
 import { EvaluatedGoalReturn, EvaluateGoalForUser, SubscribeToGoal } from "./goals";
 
 const logger = CreateLogCtx(__filename);

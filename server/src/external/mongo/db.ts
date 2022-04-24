@@ -15,6 +15,7 @@ import {
 	FolderDocument,
 	Game,
 	GoalDocument,
+	GoalSubscriptionDocument,
 	ImportDocument,
 	ImportTimingsDocument,
 	integer,
@@ -22,6 +23,8 @@ import {
 	KaiAuthDocument,
 	MilestoneDocument,
 	MilestoneSetDocument,
+	MilestoneSubscriptionDocument,
+	NotificationDocument,
 	OrphanChart,
 	PBScoreDocument,
 	PublicUserDocument,
@@ -35,10 +38,7 @@ import {
 	UGPTSettings,
 	UserGameStats,
 	UserGameStatsSnapshot,
-	GoalSubscriptionDocument,
-	MilestoneSubscriptionDocument,
 	UserSettings,
-	NotificationDocument,
 } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
 import { MigrationDocument, PrivateUserInfoDocument } from "utils/types";

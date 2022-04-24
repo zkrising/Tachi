@@ -1363,7 +1363,7 @@ export interface UGPTSpecificPreferences {
 	"ddr:SP": Record<string, never>;
 	"ddr:DP": Record<string, never>;
 	"maimai:Single": Record<string, never>;
-	"jubeat:Single": Record<string, never>;
+	"jubeat:Single": { jubilityTarget: number };
 	"museca:Single": Record<string, never>;
 	"bms:7K": Record<string, never>;
 	"bms:14K": Record<string, never>;

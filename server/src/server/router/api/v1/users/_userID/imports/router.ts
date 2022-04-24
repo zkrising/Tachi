@@ -12,7 +12,7 @@ const router: Router = Router({ mergeParams: true });
  * This endpoint is intended to be used by developers to triage certain bugs.
  *
  * @param timeFinished - Where to start counting this users 500 imports from, this
- * should be a string that is parsable into a date via. Date.Parse.
+ * should be a unix timestamp in milliseconds.
  *
  * @name GET /api/v1/users/:userID/imports
  */
@@ -22,12 +22,12 @@ router.get("/", prValidate({ timeFinished: "*string" }), async (req, res) => {
 	let timeFinished = Infinity;
 
 	if (req.query.timeFinished) {
-		timeFinished = Date.parse(req.query.timeFinished as string);
+		timeFinished = Number(req.query.timeFinished as string);
 
 		if (Number.isNaN(timeFinished)) {
 			return res.status(400).json({
 				success: false,
-				description: `Couldn't parse timeFinished into a date.`,
+				description: `Couldn't read timeFinished as unix milliseconds.`,
 			});
 		}
 	}

@@ -47,7 +47,7 @@ None.
 ### Permissions
 
 - delete_score
-- Must be the owner of this import.
+- Must be the owner of this import (Or a server administrator).
 
 ### Parameters
 

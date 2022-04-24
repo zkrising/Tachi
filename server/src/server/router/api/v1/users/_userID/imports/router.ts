@@ -9,12 +9,6 @@ const router: Router = Router({ mergeParams: true });
  * Return minimal information about up to 500 of this user's most recent imports.
  * To control where that 500 starts from, pass the timeFinished param.
  *
- * This endpoint only returns importID, game, timeStarted/finished, userIntent
- * and import method.
- *
- * The reason this endpoint omits fields is to keep the size of the return fairly
- * low, and reduce bandwidth on the server.
- *
  * This endpoint is intended to be used by developers to triage certain bugs.
  *
  * @param timeFinished - Where to start counting this users 500 imports from, this
@@ -44,14 +38,6 @@ router.get("/", prValidate({ timeFinished: "*string" }), async (req, res) => {
 			timeFinished: { $lt: timeFinished },
 		},
 		{
-			projection: {
-				importID: 1,
-				importType: 1,
-				game: 1,
-				userIntent: 1,
-				timeStarted: 1,
-				timeFinished: 1,
-			},
 			limit: 500,
 			sort: { timeFinished: -1 },
 		}

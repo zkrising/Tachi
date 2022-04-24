@@ -1500,7 +1500,7 @@ interface BaseNotification {
 	read: boolean;
 }
 
-export type NotificationTypes =
+export type NotificationBody =
 	| {
 			// Emitted when the user is rivalled by someone.
 			type: "RIVALED_BY";
@@ -1518,4 +1518,4 @@ export type NotificationTypes =
 			};
 	  };
 
-export type NotificationDocument = BaseNotification & NotificationTypes;
+export type NotificationDocument = BaseNotification & { body: NotificationBody };

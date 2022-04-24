@@ -29,13 +29,31 @@ router.patch(
 
 		const gptConfig = GetGamePTConfig(game, playtype);
 
+		let gameSpecificSchema = {};
+
+		if (game === "iidx") {
+			gameSpecificSchema = {
+				display2DXTra: p.optional("boolean"),
+				bpiTarget: p.optional(p.isBoundedInteger(0, 100)),
+			};
+		} else if (game === "sdvx" || game === "usc") {
+			gameSpecificSchema = {
+				vf6Target: p.optional(p.isBetween(0, 0.5)),
+			};
+		} else if (game === "jubeat") {
+			gameSpecificSchema = {
+				// 165.1 is the max jubility.
+				jubilityTarget: p.optional(p.isBetween(0, 165.1)),
+			};
+		}
+
 		const err = p(req.body, {
 			preferredScoreAlg: p.optional(p.nullable(p.isIn(gptConfig.scoreRatingAlgs))),
 			preferredSessionAlg: p.optional(p.nullable(p.isIn(gptConfig.sessionRatingAlgs))),
 			preferredProfileAlg: p.optional(p.nullable(p.isIn(gptConfig.profileRatingAlgs))),
 			defaultTable: "*?string",
-			// This is a pretty stupid IIFE level hack, ah well.
-			gameSpecific: p.any,
+			// This is handled with game-specific schema validation below.
+			gameSpecific: optNull(gameSpecificSchema),
 			scoreBucket: optNull(p.isIn("grade", "lamp")),
 		});
 
@@ -44,30 +62,6 @@ router.patch(
 				success: false,
 				description: FormatPrError(err, "Invalid game-settings."),
 			});
-		}
-
-		if (req.body.gameSpecific) {
-			let schema = {};
-
-			if (game === "iidx") {
-				schema = {
-					display2DXTra: p.optional("boolean"),
-					bpiTarget: p.optional(p.isBoundedInteger(0, 100)),
-				};
-			} else if (game === "sdvx" || game === "usc") {
-				schema = {
-					vf6Target: p.optional(p.isBetween(0, 0.5)),
-				};
-			}
-
-			const err = p(req.body.gameSpecific, schema);
-
-			if (err) {
-				return res.status(400).json({
-					success: false,
-					description: FormatPrError(err, "Invalid game-settings."),
-				});
-			}
 		}
 
 		if (typeof req.body.defaultTable === "string") {

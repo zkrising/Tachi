@@ -2,7 +2,6 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import prValidate from "server/middleware/prudence-validate";
-import { HyperAggressiveRateLimitMiddleware } from "server/middleware/rate-limiter";
 
 const router: Router = Router({ mergeParams: true });
 

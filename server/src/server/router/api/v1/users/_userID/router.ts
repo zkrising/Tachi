@@ -24,6 +24,7 @@ import invitesRouter from "./invites/router";
 import { GetUserFromParam, RequireSelfRequestFromUser } from "./middleware";
 import pfpRouter from "./pfp/router";
 import settingsRouter from "./settings/router";
+import importsRouter from "./imports/router";
 
 const logger = CreateLogCtx(__filename);
 
@@ -392,5 +393,6 @@ router.use("/integrations", integrationsRouter);
 router.use("/settings", settingsRouter);
 router.use("/api-tokens", apiTokensRouter);
 router.use("/invites", invitesRouter);
+router.use("/imports", importsRouter);
 
 export default router;

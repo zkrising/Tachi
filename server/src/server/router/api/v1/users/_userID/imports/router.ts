@@ -35,7 +35,7 @@ router.get("/", prValidate({ timeFinished: "*string" }), async (req, res) => {
 	const imports = await db.imports.find(
 		{
 			userID,
-			timeFinished: { $lt: timeFinished },
+			timeFinished: { $lte: timeFinished },
 		},
 		{
 			limit: 500,

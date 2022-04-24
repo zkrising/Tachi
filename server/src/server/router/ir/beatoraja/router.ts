@@ -3,8 +3,10 @@ import db from "external/mongo/db";
 import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
+import { BeatorajaChart } from "lib/score-import/import-types/ir/beatoraja/types";
 import { ServerConfig } from "lib/setup/config";
 import { RequireNotGuest } from "server/middleware/auth";
+import { integer } from "tachi-common";
 import { UpdateClassIfGreater } from "utils/class";
 import { ValidateIRClientVersion } from "./auth";
 import chartsRouter from "./charts/_chartSHA256/router";
@@ -35,9 +37,30 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 		const errMsg = importRes.body.body.errors[0].message;
 
 		if (type === "KTDataNotFound") {
+			const orphanInfo: { userIDs: integer[] } | null = await db[
+				"orphan-chart-queue"
+			].findOne(
+				{
+					"chartDoc.data.hashSHA256": (req.body.chart as BeatorajaChart).sha256,
+				},
+				{ projection: { userIDs: 1 } }
+			);
+
+			if (!orphanInfo) {
+				logger.warn(
+					`Chart '${req.body.chart.sha256}' got KTDataNotFound, but was not orphaned?`,
+					{ body: req.body }
+				);
+				return res.status(400).json({
+					success: false,
+					description: "This chart is not supported.",
+				});
+			}
+
 			return res.status(202).json({
 				success: true,
-				description: `Chart and score have been orphaned. This score will reify when atleast ${ServerConfig.BEATORAJA_QUEUE_SIZE} players have played the chart.`,
+				description: `Chart and score have been orphaned. This chart will be un-orphaned when ${ServerConfig.BEATORAJA_QUEUE_SIZE} players have played the chart (Currently: ${orphanInfo.userIDs.length}).`,
+				body: {},
 			});
 		} else if (type === "InternalError") {
 			return res.status(500).json({

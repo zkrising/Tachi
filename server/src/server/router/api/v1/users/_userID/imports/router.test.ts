@@ -61,3 +61,30 @@ t.test("GET /api/v1/users/:userID/imports", (t) => {
 
 	t.end();
 });
+
+t.test("GET /api/v1/users/:userID/imports/with-user-intent", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(() => {
+		db.imports.insert([
+			mkFakeImport({ userID: 2, importID: "other_user_import" }),
+			mkFakeImport({ userID: 1, importID: "with_intent", userIntent: true }),
+			mkFakeImport({ userID: 1, importID: "without_intent", userIntent: false }),
+		]);
+	});
+
+	t.test("Should return all of the imports this user has with user intent.", async (t) => {
+		const res = await mockApi.get("/api/v1/users/1/imports/with-user-intent");
+
+		t.equal(res.statusCode, 200, "Should return 200");
+
+		t.strictSame(
+			res.body.body.map((e: ImportDocument) => e.importID),
+			["with_intent"],
+			"Should return the exact imports we expected and no more."
+		);
+
+		t.end();
+	});
+
+	t.end();
+});

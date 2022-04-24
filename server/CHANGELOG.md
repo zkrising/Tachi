@@ -22,8 +22,11 @@ not generally be shown to end users.
 - [FEAT] Goals have been added.
 - [FEAT] Milestones have been added.
 - [FEAT] Milestone Sets have been added.
-- [FEAT] Batch Manual imports can now pass `classes`, to hard-declare certain classes, such as IIDX Dans, WACCA Stage Ups, or similar.
+- [FEAT] Batch Manual imports can now pass `classes`, to hand-declare certain classes, such as IIDX Dans, WACCA Stage Ups, or similar.
 - [FEAT] Added support for an IIDX DP tierlist.
+- [FEAT] Added support for exporting all of a users scores.
+- [FEAT] Added support for reverting an import.
+- [FEAT] Added support for retrieving a users imports, including by user-intent.
 - [INTERNAL_FEAT] Schemas have been moved into tachi-common and properly refactored.
 - [INTERNAL_FEAT] Tachi-Server now has a migration engine, for applying database updates automagically.
 
@@ -31,6 +34,9 @@ not generally be shown to end users.
 
 - [ENH] Force Static Import now disables itself after doing one static import. This is a safety feature to prevent you from spamming your profile with pb imports.
 - [ENH] Milestones will automatically update and resync off of database-seed changes.
+- [ENH] The beatoraja IR now says how many people have played a chart on its way to de-orphaning.
+- [ENH] Server administrators can now delete other's scores.
+- [ENH] Server administrators can now revert other's imports.
 
 # 2.1.16
 

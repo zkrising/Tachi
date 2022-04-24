@@ -1490,3 +1490,32 @@ export interface RecentlyViewedFolderDocument {
 	folderID: string;
 	lastViewed: number;
 }
+
+interface BaseNotification {
+	title: string;
+	notifID: string;
+	// The user this notification was sent to.
+	sentTo: integer;
+	sentAt: integer;
+	read: boolean;
+}
+
+export type NotificationTypes =
+	| {
+			// Emitted when the user is rivalled by someone.
+			type: "RIVALED_BY";
+			content: {
+				userID: integer;
+				game: Game;
+				playtype: Playtype;
+			};
+	  }
+	| {
+			// Emitted when a milestone the user is subscribed to changed.
+			type: "MILESTONE_CHANGED";
+			content: {
+				milestoneID: string;
+			};
+	  };
+
+export type NotificationDocument = BaseNotification & NotificationTypes;

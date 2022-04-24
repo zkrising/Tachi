@@ -29,7 +29,9 @@ const ScaleNameAchievedFns: ScaleAchievedFns = {
 	"ddr:SP": {},
 	"gitadora:Dora": {},
 	"gitadora:Gita": {},
-	"iidx:DP": {},
+	"iidx:DP": {
+		"dp-tier": k => k.scoreData.lampIndex >= IIDX_LAMPS.CLEAR,
+	},
 	"iidx:SP": {
 		"kt-NC": k => k.scoreData.lampIndex >= IIDX_LAMPS.CLEAR,
 		"kt-HC": k => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,

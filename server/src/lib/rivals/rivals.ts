@@ -1,7 +1,7 @@
 import db from "external/mongo/db";
 import { SetRivalsFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
-import { SendNotification } from "lib/notifications/notifications";
+import { SendSetRivalNotification } from "lib/notifications/notification-wrappers";
 import { FormatGame, Game, integer, Playtype } from "tachi-common";
 import { ArrayDiff } from "utils/misc";
 import { GetUsersWithIDs, GetUserWithIDGuaranteed } from "utils/user";
@@ -104,34 +104,7 @@ export async function SetRivals(
 	const user = await GetUserWithIDGuaranteed(userID);
 
 	await Promise.all(
-		newSubs.map(async (e) => {
-			const alreadyBeenPinged = await db.notifications.findOne({
-				sentTo: e,
-				"body.type": "RIVALED_BY",
-				"body.content": {
-					userID,
-					game,
-					playtype,
-				},
-			});
-
-			if (alreadyBeenPinged) {
-				return;
-			}
-
-			return SendNotification(
-				`${user.username} just added you as a rival for ${FormatGame(game, playtype)}`,
-				e,
-				{
-					type: "RIVALED_BY",
-					content: {
-						userID,
-						game,
-						playtype,
-					},
-				}
-			);
-		})
+		newSubs.map((toUserID) => SendSetRivalNotification(toUserID, user, game, playtype))
 	);
 
 	return db["game-settings"].update(

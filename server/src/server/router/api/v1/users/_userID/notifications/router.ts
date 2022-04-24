@@ -63,29 +63,21 @@ router.post("/mark-all-read", async (req, res) => {
 });
 
 /**
- * Delete a notification from your inbox.
+ * Clear all notifications from your inbox.
  *
- * @name DELETE /api/v1/users/:userID/notifications/:notifID
+ * @name POST /api/v1/users/:userID/notifications/delete-all
  */
-router.delete("/:notifID", async (req, res) => {
+router.post("/delete-all", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-	const isTheirNotif = await db.notifications.findOne({
+	const deleted = await db.notifications.remove({
 		sentTo: user.id,
-		notifID: req.params.notifID,
 	});
-
-	if (!isTheirNotif) {
-		return res.status(404).json({
-			success: false,
-			description: `This notification does not exist, is not yours, or was already deleted.`,
-		});
-	}
 
 	return res.status(200).json({
 		success: true,
-		description: `Deleted notification.`,
-		body: isTheirNotif,
+		description: `Deleted ${deleted.deletedCount ?? 0} notification(s).`,
+		body: {},
 	});
 });
 

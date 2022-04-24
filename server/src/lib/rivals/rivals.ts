@@ -1,7 +1,12 @@
 import db from "external/mongo/db";
 import { SetRivalsFailReasons } from "lib/constants/err-codes";
+import CreateLogCtx from "lib/logger/logger";
+import { SendNotification } from "lib/notifications/notifications";
 import { FormatGame, Game, integer, Playtype } from "tachi-common";
-import { GetUsersWithIDs } from "utils/user";
+import { ArrayDiff } from "utils/misc";
+import { GetUsersWithIDs, GetUserWithIDGuaranteed } from "utils/user";
+
+const logger = CreateLogCtx(__filename);
 
 /**
  * Retrieve all of a user's set rival IDs.
@@ -71,6 +76,63 @@ export async function SetRivals(
 	if (playedGPTCount !== newRivals.length) {
 		return SetRivalsFailReasons.RIVALS_HAVENT_PLAYED_GPT;
 	}
+
+	const currentGameSettings = await db["game-settings"].findOne({
+		userID,
+		game,
+		playtype,
+	});
+
+	if (!currentGameSettings) {
+		logger.severe(
+			`User ${userID} attempted to set rivals for ${FormatGame(
+				game,
+				playtype
+			)}, but doesn't have game settings. Was their account deleted in midair?`
+		);
+
+		throw new Error(
+			`User ${userID} attempted to set rivals for ${FormatGame(
+				game,
+				playtype
+			)}, but doesn't have game settings. Was their account deleted in midair?`
+		);
+	}
+
+	const newSubs = ArrayDiff(currentGameSettings.rivals, newRivals);
+
+	const user = await GetUserWithIDGuaranteed(userID);
+
+	await Promise.all(
+		newSubs.map(async (e) => {
+			const alreadyBeenPinged = await db.notifications.findOne({
+				sentTo: e,
+				"body.type": "RIVALED_BY",
+				"body.content": {
+					userID,
+					game,
+					playtype,
+				},
+			});
+
+			if (alreadyBeenPinged) {
+				return;
+			}
+
+			return SendNotification(
+				`${user.username} just added you as a rival for ${FormatGame(game, playtype)}`,
+				e,
+				{
+					type: "RIVALED_BY",
+					content: {
+						userID,
+						game,
+						playtype,
+					},
+				}
+			);
+		})
+	);
 
 	return db["game-settings"].update(
 		{

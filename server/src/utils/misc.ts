@@ -206,3 +206,13 @@ export function FormatMaxDP(num: number, points = 2) {
 export function IsSupported(game: Game) {
 	return TachiConfig.GAMES.includes(game);
 }
+
+/**
+ * Given two arrays, return all elements in arr2 that are not in arr1.
+ * @param left - The array of original elements.
+ * @param right - The right side of elements; everything in here not in left will be
+ * returned.
+ */
+export function ArrayDiff<T>(left: T[], right: T[]) {
+	return right.filter((e) => !left.includes(e));
+}

@@ -57,9 +57,9 @@ export default function DifficultyCell({
 			<span className={!alwaysShort ? "d-lg-none" : ""}>
 				{FormatDifficultyShort(chart, game)}
 			</span>
-			{chart.levelNum.toString() !== chart.level && !chart.level.endsWith(".0") && (
-				<Muted>{chart.levelNum.toString()}</Muted>
-			)}
+			{chart.levelNum.toString() !== chart.level &&
+				!chart.level.endsWith(".0") &&
+				chart.levelNum && <Muted>{chart.levelNum.toString()}</Muted>}
 			{"isHot" in chart.data && chart.data.isHot && (
 				<QuickTooltip tooltipContent="This chart is from the latest version of the game!">
 					<div>

@@ -10,7 +10,7 @@ import p, {
 import { allIDStrings, allImportTypes, allSupportedGames } from "../config/static-config";
 import { ALL_PERMISSIONS } from "../constants/permissions";
 import { GamePTConfig, GetGameConfig, GetGamePTConfig } from "../index";
-import { Game, IDStrings, Playtypes, UserAuthLevels } from "../types";
+import { Game, IDStrings, NotificationBody, Playtypes, UserAuthLevels } from "../types";
 
 export const optNull = (v: ValidSchemaValue): ValidationFunctionParentOptionsKeychain =>
 	p.optional(p.nullable(v));
@@ -1057,6 +1057,41 @@ const PRE_SCHEMAS = {
 			}
 
 			return p.isPositive(self);
+		},
+	}),
+	notifications: prSchemaFnWrap({
+		title: "string",
+		notifID: "string",
+		sentTo: p.isPositiveNonZeroInteger,
+		sentAt: p.isPositive,
+		read: "boolean",
+		body: {
+			type: p.isIn("RIVALED_BY", "MILESTONE_CHANGED"),
+			content: (self, parent) => {
+				const type = parent.type as NotificationBody["type"];
+
+				let subSchema = {};
+
+				if (type === "RIVALED_BY") {
+					subSchema = {
+						userID: p.isPositiveNonZeroInteger,
+						game: p.isIn(games),
+						playtype: isValidPlaytype,
+					};
+				} else if (type === "MILESTONE_CHANGED") {
+					subSchema = {
+						milestoneID: "string",
+					};
+				}
+
+				const err = p(self, subSchema);
+
+				if (err) {
+					return "Invalid notification.body";
+				}
+
+				return true;
+			},
 		},
 	}),
 } as const;

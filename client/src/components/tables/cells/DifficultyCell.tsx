@@ -57,9 +57,7 @@ export default function DifficultyCell({
 			<span className={!alwaysShort ? "d-lg-none" : ""}>
 				{FormatDifficultyShort(chart, game)}
 			</span>
-			{chart.levelNum.toString() !== chart.level &&
-				!chart.level.endsWith(".0") &&
-				chart.levelNum && <Muted>{chart.levelNum.toString()}</Muted>}
+			<DisplayLevelNum level={chart.level} levelNum={chart.levelNum} />
 			{"isHot" in chart.data && chart.data.isHot && (
 				<QuickTooltip tooltipContent="This chart is from the latest version of the game!">
 					<div>
@@ -79,4 +77,14 @@ export default function DifficultyCell({
 			)}
 		</td>
 	);
+}
+
+function DisplayLevelNum({ level, levelNum }: { levelNum: number; level: string }) {
+	// Don't display levelnum if its identical to the level, the decimal places in the
+	// level end with .0, or the levelNum itself is 0.
+	if (levelNum.toString() !== level && !level.endsWith(".0") && levelNum !== 0) {
+		return null;
+	}
+
+	return <Muted>{levelNum.toString()}</Muted>;
 }

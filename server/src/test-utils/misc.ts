@@ -3,6 +3,7 @@ import {
 	Game,
 	ImportDocument,
 	integer,
+	NotificationDocument,
 	PBScoreDocument,
 	Playtype,
 	PublicUserDocument,
@@ -12,6 +13,7 @@ import {
 import {
 	FakeGameSettings,
 	FakeImport,
+	FakeNotification,
 	FakeOtherUser,
 	TestingIIDXSPScore,
 	TestingIIDXSPScorePB,
@@ -93,4 +95,8 @@ export function mkFakeScoreSDVX(modifant: Partial<ScoreDocument<"sdvx:Single">> 
 
 export function mkFakePBIIDXSP(modifant: Partial<PBScoreDocument<"iidx:SP">> = {}) {
 	return dmf(TestingIIDXSPScorePB, modifant);
+}
+
+export function mkFakeNotification(modifant: Partial<NotificationDocument> = {}) {
+	return dmf(FakeNotification, modifant);
 }

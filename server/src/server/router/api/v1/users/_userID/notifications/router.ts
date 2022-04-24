@@ -10,14 +10,23 @@ const router: Router = Router({ mergeParams: true });
 router.use(RequireSelfRequestFromUser);
 
 /**
- * Return all of this user's notifications, read.
+ * Return all of this user's notifications, this is sorted on most recently sent first.
+ *
+ * @name GET /api/v1/users/:userID/notifications
  */
 router.get("/", async (req, res) => {
 	const user = req[SYMBOL_TachiData]!.requestedUser!;
 
-	const notifs = await db.notifications.find({
-		sentTo: user.id,
-	});
+	const notifs = await db.notifications.find(
+		{
+			sentTo: user.id,
+		},
+		{
+			sort: {
+				sentAt: -1,
+			},
+		}
+	);
 
 	return res.status(200).json({
 		success: true,

@@ -21,7 +21,7 @@ import {
 	UGSRatingsLookup,
 	UserGameStats,
 	UserGameStatsSnapshot,
-	UserGoalDocument,
+	GoalSubscriptionDocument,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -166,8 +166,8 @@ export interface UserRecentSummary {
 	recentFolders: FolderDocument[];
 	recentFolderStats: FolderStatsInfo[];
 	recentGoals: GoalDocument[];
-	recentImprovedGoals: UserGoalDocument[];
-	recentAchievedGoals: UserGoalDocument[];
+	recentImprovedGoals: GoalSubscriptionDocument[];
+	recentAchievedGoals: GoalSubscriptionDocument[];
 }
 
 export interface ServerStatus {

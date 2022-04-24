@@ -8,7 +8,7 @@ import { BarChartTooltip } from "components/charts/ChartTooltip";
 import ClassBadge from "components/game/ClassBadge";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
-import UserGoalTable from "components/tables/goals/UserGoalTable";
+import GoalSubTable from "components/tables/goals/GoalSubTable";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import ApiError from "components/util/ApiError";
 import AsyncLoader from "components/util/AsyncLoader";
@@ -33,7 +33,7 @@ import {
 	PublicUserDocument,
 	ScoreDocument,
 	SongDocument,
-	UserGoalDocument,
+	GoalSubscriptionDocument,
 } from "tachi-common";
 import { RecentClassesReturn } from "types/api-returns";
 import { GamePT } from "types/react";
@@ -77,7 +77,7 @@ function RecentAchievedGoalsComponent({ game, playtype }: GamePT) {
 	const { data, isLoading, error } = useApiQuery<{
 		users: PublicUserDocument[];
 		goals: GoalDocument[];
-		userGoals: UserGoalDocument[];
+		goalSubs: GoalSubscriptionDocument[];
 	}>(`/games/${game}/${playtype}/goals/recently-achieved`);
 
 	if (error) {
@@ -93,7 +93,7 @@ function RecentAchievedGoalsComponent({ game, playtype }: GamePT) {
 	const userMap = CreateUserMap(data.users);
 	const goalMap = CreateGoalMap(data.goals);
 
-	for (const userGoal of data.userGoals) {
+	for (const userGoal of data.goalSubs) {
 		const user = userMap.get(userGoal.userID);
 		const goal = goalMap.get(userGoal.goalID);
 
@@ -122,7 +122,7 @@ function RecentAchievedGoalsComponent({ game, playtype }: GamePT) {
 				<Divider />
 			</Col>
 			<Col xs={12}>
-				<UserGoalTable dataset={dataset} game={game} playtype={playtype} />
+				<GoalSubTable dataset={dataset} game={game} playtype={playtype} />
 			</Col>
 		</Row>
 	);

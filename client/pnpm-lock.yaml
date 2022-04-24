@@ -88,7 +88,7 @@ specifiers:
   socicon: 3.0.5
   style-loader: 1.0.0
   sync-fetch: ^0.3.1
-  tachi-common: 0.7.12
+  tachi-common: 0.11.3
   terser-webpack-plugin: 1.4.1
   ts-pnp: 1.1.4
   typescript: 4.3.5
@@ -164,7 +164,7 @@ dependencies:
   rg-stats: 0.2.0
   socicon: 3.0.5
   sync-fetch: 0.3.1
-  tachi-common: 0.7.12
+  tachi-common: 0.11.3
 
 devDependencies:
   '@types/humanize-duration': 3.25.1
@@ -3010,6 +3010,14 @@ packages:
       '@types/ms': 0.7.31
     dev: false
 
+  /@types/express-serve-static-core/4.17.28:
+    resolution: {integrity: sha512-P1BJAEAW3E2DJUlkgq4tOL3RyMunoWXqbSCygWo5ZIWTjUgN1YnaXWW4VWl/oc8vs/XoYibEGBKP0uZyF4AHig==}
+    dependencies:
+      '@types/node': 16.0.0
+      '@types/qs': 6.9.7
+      '@types/range-parser': 1.2.4
+    dev: false
+
   /@types/hast/2.3.4:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
     dependencies:
@@ -3073,6 +3081,14 @@ packages:
 
   /@types/q/1.5.5:
     resolution: {integrity: sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ==}
+
+  /@types/qs/6.9.7:
+    resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
+    dev: false
+
+  /@types/range-parser/1.2.4:
+    resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
+    dev: false
 
   /@types/react-dom/17.0.8:
     resolution: {integrity: sha512-0ohAiJAx1DAUEcY9UopnfwCE9sSMDGnY/oXjWMax6g3RpzmTt2GMyMVAXcbn0mo8XAff0SbQJl2/SBU+hjSZ1A==}
@@ -9716,6 +9732,10 @@ packages:
     resolution: {integrity: sha1-0/wRS6BplaRexok/SEzrHXj19HY=}
     dev: true
 
+  /prudence/0.9.8:
+    resolution: {integrity: sha512-my6HEhcTW3aKKjAx8j6jgUj3x5Kc71NEv3DySRXun2Zspw6Fdo5zDnbpXv/j4tyk9f9XXrpu1grWVBX4WU+1Tg==}
+    dev: false
+
   /pseudomap/1.0.2:
     resolution: {integrity: sha1-8FKijacOYYkX7wqKw0wa5aaChrM=}
     dev: true
@@ -11301,10 +11321,12 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tachi-common/0.7.12:
-    resolution: {integrity: sha512-kGn+aGhFAgq9lpX0f6KjXjSBYJDAxv2jvV/Xd/+YBuNlcko3Q7GPRcS9E1rrBRDPJQFRIg7NjET0/AuBVrHlbA==}
+  /tachi-common/0.11.3:
+    resolution: {integrity: sha512-McFWWxbrzLvbo4M7p69xhvlC7FZL2c4b+/nID+PZtJpf1YfqtxvzYkX3ZWEfC+SOL9rHriffdk5G6MvcDP87cQ==}
     dependencies:
+      '@types/express-serve-static-core': 4.17.28
       '@types/mongodb': 3.6.18
+      prudence: 0.9.8
     dev: false
 
   /tapable/1.1.3:

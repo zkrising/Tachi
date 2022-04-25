@@ -1,8 +1,8 @@
 import chalk from "chalk";
 import { Game } from "tachi-common";
 import { allSupportedGames } from "tachi-common/js/config/static-config";
+import { SCHEMAS } from "tachi-common/js/lib/schemas";
 import { ReadCollection } from "../util";
-import { SCHEMAS } from "./schemas";
 import { FormatFunctions } from "./test-utils";
 
 // @ts-expect-error filled out dynamically.
@@ -18,7 +18,7 @@ for (const game of allSupportedGames) {
 	SongChartKeys[`charts-${game}`] = "chartID";
 }
 
-const UniqueKeys: Record<keyof typeof SCHEMAS, string> = {
+const UniqueKeys: Partial<Record<keyof typeof SCHEMAS, string>> = {
 	"bms-course-lookup": "md5sums",
 	folders: "folderID",
 	tables: "tableID",
@@ -75,11 +75,7 @@ for (const [collection, uniqueID] of Object.entries(UniqueKeys)) {
 
 console.log(`=== Suite Overview ===`);
 for (const suite of suites) {
-	console.log(
-		chalk[suite.good ? "green" : "red"](
-			`${suite.name}: ${suite.report} (Objects here share unique IDs, which is illegal.)`
-		)
-	);
+	console.log(chalk[suite.good ? "green" : "red"](`[DUPES] ${suite.name}: ${suite.report}`));
 }
 
 process.exit(exitCode);

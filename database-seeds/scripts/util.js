@@ -3,7 +3,6 @@ const path = require("path");
 const DeterministicCollectionSort = require("./deterministic-collection-sort");
 const crypto = require("crypto");
 const fjsh = require("fast-json-stable-hash");
-const glob = require("glob");
 
 function IterateCollections(cb) {
 	for (const collection of fs.readdirSync(COLLECTIONS_DIR)) {

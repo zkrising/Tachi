@@ -23,7 +23,7 @@ specifiers:
   node-fetch: 2.6.7
   prettier: ^2.5.1
   prudence: ^0.9.7
-  tachi-common: 0.7.11
+  tachi-common: 0.11.3
   ts-node: ^10.4.0
   typescript: ^4.5.5
   xml2js: ^0.4.23
@@ -44,7 +44,7 @@ dependencies:
   monk: 7.3.4
   node-fetch: 2.6.7
   prudence: 0.9.7
-  tachi-common: 0.7.11
+  tachi-common: 0.11.3
   ts-node: 10.4.0_40146b36d18138e3202fbb722e5f65e4
   xml2js: 0.4.23
 
@@ -385,6 +385,14 @@ packages:
       bson: 4.5.2
     dev: false
 
+  /@types/express-serve-static-core/4.17.28:
+    resolution: {integrity: sha512-P1BJAEAW3E2DJUlkgq4tOL3RyMunoWXqbSCygWo5ZIWTjUgN1YnaXWW4VWl/oc8vs/XoYibEGBKP0uZyF4AHig==}
+    dependencies:
+      '@types/node': 17.0.13
+      '@types/qs': 6.9.7
+      '@types/range-parser': 1.2.4
+    dev: false
+
   /@types/json-schema/7.0.9:
     resolution: {integrity: sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==}
     dev: true
@@ -409,6 +417,14 @@ packages:
 
   /@types/node/17.0.13:
     resolution: {integrity: sha512-Y86MAxASe25hNzlDbsviXl8jQHb0RDvKt4c40ZJQ1Don0AAL0STLZSs4N+6gLEO55pedy7r2cLwS+ZDxPm/2Bw==}
+    dev: false
+
+  /@types/qs/6.9.7:
+    resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
+    dev: false
+
+  /@types/range-parser/1.2.4:
+    resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
     dev: false
 
   /@typescript-eslint/eslint-plugin/5.10.2_2595c2126aec4d4b6e944b931dabb4c2:
@@ -2674,6 +2690,10 @@ packages:
     resolution: {integrity: sha512-7214GHTBThBI/PGlKWXUSJ++ca0ld54VpF4k98U1EDAFXai5mnvWbb4speVOnWkilqfN25x8biWUAj4gHNu5Og==}
     dev: false
 
+  /prudence/0.9.8:
+    resolution: {integrity: sha512-my6HEhcTW3aKKjAx8j6jgUj3x5Kc71NEv3DySRXun2Zspw6Fdo5zDnbpXv/j4tyk9f9XXrpu1grWVBX4WU+1Tg==}
+    dev: false
+
   /psl/1.8.0:
     resolution: {integrity: sha512-RIdOzyoavK+hA18OGGWDqUTsCLhtA7IcZ/6NCs4fFJaHBDab+pDDmDIByWFRQJq2Cd7r1OoQxBGKOaztq+hjIQ==}
     dev: false
@@ -3075,10 +3095,12 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /tachi-common/0.7.11:
-    resolution: {integrity: sha512-rUApEoAFae2lKFIDhxtCRqXIDixMeQwKjID9/BW07DqPj5PhB9SdvqPZFs8X6RxJ07G72khzAbYcAktlMBHLcQ==}
+  /tachi-common/0.11.3:
+    resolution: {integrity: sha512-McFWWxbrzLvbo4M7p69xhvlC7FZL2c4b+/nID+PZtJpf1YfqtxvzYkX3ZWEfC+SOL9rHriffdk5G6MvcDP87cQ==}
     dependencies:
+      '@types/express-serve-static-core': 4.17.28
       '@types/mongodb': 3.6.18
+      prudence: 0.9.8
     dev: false
 
   /tap-mocha-reporter/5.0.1:

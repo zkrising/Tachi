@@ -1,7 +1,9 @@
 import chalk from "chalk";
+import { SCHEMAS } from "tachi-common/js/lib/schemas";
 import { ReadCollection } from "../util";
-import { SCHEMAS } from "./schemas";
 import { FormatFunctions } from "./test-utils";
+import fs from "fs";
+import path from "path";
 
 function FormatPrError(err, foreword = "Error") {
 	const receivedText =
@@ -15,7 +17,11 @@ function FormatPrError(err, foreword = "Error") {
 let exitCode = 0;
 const suites = [];
 
-for (const [collection, validator] of Object.entries(SCHEMAS)) {
+const collections = fs
+	.readdirSync(path.join(__dirname, "../../collections"))
+	.map((e) => path.basename(e).replace(/\.json$/u, ""));
+
+for (const collection of collections) {
 	console.log(`[VALIDATING] ${collection}`);
 
 	let success = 0;
@@ -26,7 +32,10 @@ for (const [collection, validator] of Object.entries(SCHEMAS)) {
 
 	const data = ReadCollection(collectionName, true);
 
+	const validator = SCHEMAS[collection];
+
 	for (const d of data) {
+		// Will throw if formatFn is undefined -- that's a test failure in my book.
 		const pretty = formatFn(d);
 
 		try {
@@ -57,11 +66,7 @@ for (const [collection, validator] of Object.entries(SCHEMAS)) {
 
 console.log(`=== Suite Overview ===`);
 for (const suite of suites) {
-	console.log(
-		chalk[suite.good ? "green" : "red"](
-			`${suite.name}: ${suite.report} (Objects here don't match the schema.)`
-		)
-	);
+	console.log(chalk[suite.good ? "green" : "red"](`[SCHEMAS] ${suite.name}: ${suite.report}`));
 }
 
 process.exit(exitCode);

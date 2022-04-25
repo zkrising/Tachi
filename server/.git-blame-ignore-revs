@@ -1,3 +1,8 @@
+# You can enable this as an ignored revision file with
+# git config blame.ignoreRevsFile .git-blame-ignore-revs.
+# We have this to ignore some slightly annoying changelogs from screwing
+# with git blame.
+
 #188 - Spaces to tabs
 47c981f4b3189e9cf995ed03256609f3bf56b930
 

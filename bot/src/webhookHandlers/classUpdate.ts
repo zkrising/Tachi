@@ -3,6 +3,7 @@ import { AllClassSets } from "tachi-common/js/game-classes";
 import { BotConfig } from "../config";
 import { client } from "../main";
 import { GetUGPTStats, GetUserInfo } from "../utils/apiRequests";
+import { SDVXVFClasses } from "../utils/constants";
 import { CreateEmbed } from "../utils/embeds";
 import { PrependTachiUrl } from "../utils/fetchTachi";
 import logger from "../utils/logger";
@@ -20,6 +21,10 @@ export async function HandleClassUpdateV1(
 		const err = e as Error;
 		logger.error(`ClassUpdate handler failed: ${err.message}`);
 		return 500;
+	}
+
+	if (!ShouldRenderUpdate(game, playtype, event.set, event.new)) {
+		return 204;
 	}
 
 	const userDoc = await GetUserInfo(event.userID);
@@ -58,6 +63,39 @@ export async function HandleClassUpdateV1(
 	await channel.send({ embeds: [embed] });
 
 	return 200;
+}
+
+/**
+ * Returns Whether this class update is notable enough to be rendered or not.
+ */
+function ShouldRenderUpdate(
+	game: Game,
+	playtype: Playtype,
+	classSet: AllClassSets,
+	classValue: integer
+) {
+	if (game === "sdvx" && classSet === "vfClass") {
+		return [
+			SDVXVFClasses.ARGENTO_I,
+			SDVXVFClasses.COBALT_I,
+			SDVXVFClasses.CORAL_I,
+			SDVXVFClasses.CRIMSON_I,
+			SDVXVFClasses.CYAN_I,
+			SDVXVFClasses.DANDELION_I,
+			SDVXVFClasses.SCARLET_I,
+			SDVXVFClasses.SIENNA_I,
+			SDVXVFClasses.ELDORA_I,
+			SDVXVFClasses.ELDORA_II,
+			SDVXVFClasses.ELDORA_III,
+			SDVXVFClasses.ELDORA_IV,
+			SDVXVFClasses.IMPERIAL_I,
+			SDVXVFClasses.IMPERIAL_II,
+			SDVXVFClasses.IMPERIAL_III,
+			SDVXVFClasses.IMPERIAL_IV,
+		].includes(classValue);
+	}
+
+	return true;
 }
 
 function GetMinimumScores(game: Game, playtype: Playtype, classSet: AllClassSets): integer | null {

@@ -1,16 +1,17 @@
-// NOT A REAL TSCONFIG FILE
-// THIS IS USED FOR VSCODE SO IT INTEGRATES NICELY
-// IF YOU USE THIS TO BUILD, IT WILL ALSO BUILD THE TEST FILES!!
-// SO, DONT DO THAT, USE TSCONFIG.BUILD.JSON FOR THE BUILD.
+// This is a base TSConfig for nice integration with IDEs such as VSCode.
+// By default, VSCode reads `tsconfig.json` to know what it should typecheck
+// in the editor. Since we want it to typecheck things like our tests, but
+// we want to save disk space by not compiling them at runtime, we need two
+// tsconfigs!
 {
 	"compilerOptions": {
 		"target": "ES2020",
 		"module": "CommonJS",
 		"lib": [
 			"ES2019",
-			// this is absolutely stupid, and only needed because the AWS SDK
-			// DEPENDS ON A DOM TYPE???
-			// do people even run the aws sdk on the dom?
+			// This is necessary because -- for some unknown reason -- the AWS SDK
+			// depends on the DOM. Do people even run the AWS SDK in the browser?
+			// I hope not.
 			"DOM"
 		],
 		"declaration": true,

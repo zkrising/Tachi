@@ -1,3 +1,7 @@
+# This dockerfile spins up an instance of tachi-server and *tachi-server* alone.
+# It does not spin up mongodb instances or redis instances, which the server
+# does need to boot. You should consider using docker-compose for this.
+
 FROM node:16 as build
 WORKDIR /app
 COPY --chown=node:node . /app

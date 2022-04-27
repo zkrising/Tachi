@@ -404,10 +404,70 @@ N/A
 ### Parameters
 
 None.
-### Response
+
+## Retrieve your notifications
+
+`GET /api/v1/users/:userID/games/:game/notifications`
+
+### Permissions
+
+- Must be a session-request from the user who owns these notifications.
+
+!!! note
+	All of the notification endpoints must be accessed by session-level authentication
+	from the right requesting user; viz. no api keys can access these endpoints, and
+	nobody can read another players notifications.
+
+	This isn't really for any security reasons, but more for privacy reasons. It feels
+	wrong to be able to let others read others notifications.
+
+### Parameters
 
 None.
 
-### Example
+### Response
 
-Self-explanatory.
+| Property | Type | Description |
+| :: | :: | :: |
+| `<body>` | Array&lt;NotificationDocument&gt; | An array of all of this users notifications, sorted by most recently recieved first. |
+
+*****
+
+## Mark all of your notifications as read.
+
+`POST /api/v1/users/:userID/notifications/mark-all-read`
+
+!!! info
+	This endpoints marks all of a users notifications as read, and is intended for a UI
+	to invoke this request when they open their inbox.
+
+### Permissions
+
+- Must be a session-level request from the user who owns these notifications.
+
+### Parameters
+
+None.
+
+### Response
+
+None. (Empty Object)
+
+*****
+
+## Clear all notifications from your inbox.
+
+
+`POST /api/v1/users/:userID/notifications/delete-all`
+
+### Permissions
+
+- Must be a session-level request from the user who owns these notifications.d
+
+### Parameters
+
+None.
+
+### Response
+
+None. (Empty Object)

@@ -20,7 +20,12 @@ for (const game of allSupportedGames) {
 	}
 
 	SongChartKeys[`songs-${game}`] = ["id"];
-	SongChartKeys[`charts-${game}`] = ["chartID"];
+	SongChartKeys[`charts-${game}`] = [
+		"chartID",
+		// @todo THIS IS WRONG. CHARTS ARE ALLOWED TO HAVE MULTIPLE
+		// SONGID+PLAYTYPE+DIFFICULTY COMBOS IF ISPRIMARY IS FALSE.
+		["songID", "playtype", "difficulty", "isPrimary"],
+	];
 }
 
 const UniqueKeys: Partial<Record<keyof typeof SCHEMAS, DuplicateKeyDecl[]>> = {
@@ -39,8 +44,8 @@ UniqueKeys["charts-popn"].push("data.hashSHA256");
 UniqueKeys["charts-bms"].push("data.hashMD5");
 UniqueKeys["charts-bms"].push("data.hashSHA256");
 
-UniqueKeys["charts-pms"].push("data.hashMD5");
-UniqueKeys["charts-pms"].push("data.hashSHA256");
+UniqueKeys["charts-pms"].push(["data.hashMD5", "playtype"]);
+UniqueKeys["charts-pms"].push(["data.hashSHA256", "playtype"]);
 
 let exitCode = 0;
 const suites = [];

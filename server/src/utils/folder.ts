@@ -154,20 +154,25 @@ export async function GetFolderChartIDs(folderID: string) {
 	return chartIDs.map((e) => e.chartID);
 }
 export async function CreateFolderChartLookup(folder: FolderDocument, flush = false) {
-	const { charts } = await ResolveFolderToCharts(folder, {}, false);
+	try {
+		const { charts } = await ResolveFolderToCharts(folder, {}, false);
 
-	if (flush) {
-		await db["folder-chart-lookup"].remove({
-			folderID: folder.folderID,
-		});
+		if (flush) {
+			await db["folder-chart-lookup"].remove({
+				folderID: folder.folderID,
+			});
+		}
+
+		await db["folder-chart-lookup"].insert(
+			charts.map((c) => ({
+				folderID: folder.folderID,
+				chartID: c.chartID,
+			}))
+		);
+	} catch (err) {
+		logger.error(`Failed to create folder chart lookup for ${folder.title}.`, { folder, err });
+		throw err;
 	}
-
-	await db["folder-chart-lookup"].insert(
-		charts.map((c) => ({
-			folderID: folder.folderID,
-			chartID: c.chartID,
-		}))
-	);
 }
 
 /**

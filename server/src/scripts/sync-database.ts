@@ -331,7 +331,7 @@ async function SynchroniseDBWithSeeds() {
 		let matchedSomething = false;
 		for (const syncInst of syncInstructions) {
 			if (collectionName.match(syncInst.pattern)) {
-				spawnLogger.verbose(`Starting handler...`);
+				spawnLogger.info(`Starting handler...`);
 				await syncInst.handler(
 					data,
 					monkDB.get(collectionName),

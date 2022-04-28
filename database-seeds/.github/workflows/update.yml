@@ -38,14 +38,14 @@ jobs:
         needs: [test]
         if: github.event_name == 'push'
         steps:
-            # - name: Sync Staging Database
-            #   if: github.ref == 'refs/heads/develop'
-            #   uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
-            #   with:
-            #       host: ${{ secrets.TACHI_HOST }}
-            #       username: tachi
-            #       key: ${{ secrets.TACHI_KEY }}
-            #       script: tachi-database-sync
+            - name: Sync Staging Database
+              if: github.ref == 'refs/heads/develop'
+              uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
+              with:
+                  host: ${{ secrets.TACHI_HOST }}
+                  username: tachi
+                  key: ${{ secrets.TACHI_KEY }}
+                  script: tachi-database-sync
             - name: Sync Live Database
               if: github.ref == 'refs/heads/production'
               uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8

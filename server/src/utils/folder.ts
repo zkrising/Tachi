@@ -1,23 +1,22 @@
-import {
-	Grades,
-	Lamps,
-	IDStrings,
-	TableDocument,
-	ChartDocument,
-	SongDocument,
-	integer,
-	PBScoreDocument,
-	FolderDocument,
-	Playtypes,
-	Game,
-	Playtype,
-} from "tachi-common";
-import db from "external/mongo/db";
-import CreateLogCtx from "lib/logger/logger";
-import { FilterQuery } from "mongodb";
 import deepmerge from "deepmerge";
+import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
+import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
+import { FilterQuery } from "mongodb";
+import {
+	ChartDocument,
+	FolderDocument,
+	Game,
+	Grades,
+	IDStrings,
+	integer,
+	Lamps,
+	PBScoreDocument,
+	Playtype,
+	SongDocument,
+	TableDocument,
+} from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -59,6 +58,11 @@ export async function ResolveFolderToCharts(
 		);
 	} else if (folder.type === "charts") {
 		const folderDataTransposed = TransposeFolderData(folder.data);
+
+		logger.debug(`Transposed folder data in resolve-folder-to-charts.`, {
+			folder,
+			folderDataTransposed,
+		});
 
 		const fx = deepmerge.all([filter, { playtype: folder.playtype }, folderDataTransposed]);
 

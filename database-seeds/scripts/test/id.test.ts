@@ -62,15 +62,17 @@ for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 		for (const d of data) {
 			const pretty = formatFn(d);
 
+			let pureValue: string;
 			let value: string;
 
 			if (Array.isArray(uniqueID)) {
-				value = fjsh.hash(
-					uniqueID.map((e) => get(d, e)),
-					"sha256"
-				);
+				const mappedProps = uniqueID.map((e) => get(d, e));
+
+				pureValue = mappedProps.join(", ");
+				value = fjsh.hash(mappedProps, "sha256");
 			} else {
 				value = get(d, uniqueID);
+				pureValue = value;
 			}
 
 			// Null is special -- we're allowed duplicates of null for some
@@ -78,7 +80,7 @@ for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 			if (set.has(value) && !(uniqueID === "data.arcChartID" && value === null)) {
 				console.error(
 					chalk.red(
-						`[ERR] ${collectionName} | ${pretty} | Is duplicate on ${uniqueID}:${value}.}.`
+						`[ERR] ${collectionName} | ${pretty} | Is duplicate on ${uniqueID}:${pureValue}.}.`
 					)
 				);
 				fails++;

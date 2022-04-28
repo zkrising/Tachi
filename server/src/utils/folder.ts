@@ -101,7 +101,7 @@ export function TransposeFolderData(obj: Record<string, unknown>) {
 	for (const key in obj) {
 		const transposedKey = key.replace(/~/gu, "$").replace(/¬/gu, ".");
 
-		if (typeof obj[key] === "object" && obj[key]) {
+		if (typeof obj[key] === "object" && !Array.isArray(obj[key]) && obj[key]) {
 			transposedObj[transposedKey] = TransposeFolderData(obj[key] as Record<string, unknown>);
 		} else {
 			transposedObj[transposedKey] = obj[key];

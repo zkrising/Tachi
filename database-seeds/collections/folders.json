@@ -21054,7 +21054,12 @@
 	},
 	{
 		"data": {
-			"level": "14",
+			"level": {
+ 				"~in": [
+					"14",
+					"15"
+				]
+			},
 			"versions": "reverse"
 		},
 		"folderID": "F69b2c032fc5ee0ab865352dd5825e2a56dda591e03553fa21519399c65cec667",
@@ -21062,7 +21067,7 @@
 		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
-		"title": "Level 14 (Reverse)",
+		"title": "Level 14-15 (Reverse)",
 		"type": "charts"
 	},
 	{

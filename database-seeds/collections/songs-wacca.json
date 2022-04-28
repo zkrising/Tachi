@@ -4984,5 +4984,46 @@
 		"id": 356,
 		"searchTerms": [],
 		"title": "Onigami"
+	},
+	{
+		"altTitles": [],
+		"artist": "USAO & Camellia",
+		"data": {
+			"artistJP": "ウサオアンドカメリア",
+			"displayVersion": "reverse",
+			"genre": "TANO*C（オリジナル）",
+			"titleJP": "メビウス"
+		},
+		"id": 357,
+		"searchTerms": [
+			"Moebius"
+		],
+		"title": "Möbius"
+	},
+	{
+		"altTitles": [],
+		"artist": "Kobaryo",
+		"data": {
+			"artistJP": "コバリョー",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ジェノサイダー　コバリョーズ　エフティーエヌリミックス"
+		},
+		"id": 358,
+		"searchTerms": [],
+		"title": "GENOCIDER (Kobaryo's FTN-Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Camellia",
+		"data": {
+			"artistJP": "カメリア",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "インビンシブルフレンジーカメリアズファイブハンドレッドナインティスリーインセインリーフラクチュエイテッドリミックス"
+		},
+		"id": 359,
+		"searchTerms": [],
+		"title": "Invisible Frenzy (Camellia's \"593: Insanely Fluctuated\" Remix)"
 	}
 ]

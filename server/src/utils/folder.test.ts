@@ -240,5 +240,15 @@ t.test("#TransposeFolderData", (t) => {
 		"Should transpose multiple items in one key."
 	);
 
+	t.strictSame(
+		TransposeFolderData({
+			"foo¬bar~baz": ["a", "b"],
+		}),
+		{
+			"foo.bar$baz": ["a", "b"],
+		},
+		"Should transpose arrays."
+	);
+
 	t.end();
 });

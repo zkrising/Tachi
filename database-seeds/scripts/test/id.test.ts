@@ -4,9 +4,14 @@ import { allSupportedGames } from "tachi-common/js/config/static-config";
 import { SCHEMAS } from "tachi-common/js/lib/schemas";
 import { ReadCollection } from "../util";
 import { FormatFunctions } from "./test-utils";
+import get from "lodash.get";
+import fjsh from "fast-json-stable-hash";
+
+// Either it's a bare string or an array of strings for co-uniqueness.
+type DuplicateKeyDecl = string | string[];
 
 // @ts-expect-error filled out dynamically.
-const SongChartKeys: Record<`${"song" | "chart"}s-${Game}`, string> = {};
+const SongChartKeys: Record<`${"song" | "chart"}s-${Game}`, DuplicateKeyDecl[]> = {};
 
 for (const game of allSupportedGames) {
 	// temporary hack
@@ -14,21 +19,33 @@ for (const game of allSupportedGames) {
 		continue;
 	}
 
-	SongChartKeys[`songs-${game}`] = "id";
-	SongChartKeys[`charts-${game}`] = "chartID";
+	SongChartKeys[`songs-${game}`] = ["id"];
+	SongChartKeys[`charts-${game}`] = ["chartID"];
 }
 
-const UniqueKeys: Partial<Record<keyof typeof SCHEMAS, string>> = {
-	"bms-course-lookup": "md5sums",
-	folders: "folderID",
-	tables: "tableID",
+const UniqueKeys: Partial<Record<keyof typeof SCHEMAS, DuplicateKeyDecl[]>> = {
+	"bms-course-lookup": ["md5sums"],
+	folders: ["folderID"],
+	tables: ["tableID"],
 	...SongChartKeys,
 };
+
+UniqueKeys["charts-iidx"].push("data.arcChartID");
+
+UniqueKeys["charts-usc"].push(["data.hashSHA1", "playtype"]);
+
+UniqueKeys["charts-popn"].push("data.hashSHA256");
+
+UniqueKeys["charts-bms"].push("data.hashMD5");
+UniqueKeys["charts-bms"].push("data.hashSHA256");
+
+UniqueKeys["charts-pms"].push("data.hashMD5");
+UniqueKeys["charts-pms"].push("data.hashSHA256");
 
 let exitCode = 0;
 const suites = [];
 
-for (const [collection, uniqueID] of Object.entries(UniqueKeys)) {
+for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 	console.log(`[VALIDATING DUPES] ${collection}`);
 
 	const collectionName = `${collection}.json`;
@@ -39,23 +56,36 @@ for (const [collection, uniqueID] of Object.entries(UniqueKeys)) {
 
 	const data = ReadCollection(collectionName);
 
-	const set = new Set<string>();
+	for (const uniqueID of uniqueIDs) {
+		const set = new Set<string>();
 
-	for (const d of data) {
-		const pretty = formatFn(d);
+		for (const d of data) {
+			const pretty = formatFn(d);
 
-		const value = d[uniqueID];
+			let value: string;
 
-		if (set.has(value)) {
-			console.error(
-				chalk.red(
-					`[ERR] ${collectionName} | ${pretty} | Is duplicate on ${uniqueID}:${value}.}.`
-				)
-			);
-			fails++;
-		} else {
-			success++;
-			set.add(value);
+			if (Array.isArray(uniqueID)) {
+				value = fjsh.hash(
+					uniqueID.map((e) => get(d, e)),
+					"sha256"
+				);
+			} else {
+				value = get(d, uniqueID);
+			}
+
+			// Null is special -- we're allowed duplicates of null for some
+			// keys.
+			if (set.has(value) && !(uniqueID === "data.arcChartID" && value === null)) {
+				console.error(
+					chalk.red(
+						`[ERR] ${collectionName} | ${pretty} | Is duplicate on ${uniqueID}:${value}.}.`
+					)
+				);
+				fails++;
+			} else {
+				success++;
+				set.add(value);
+			}
 		}
 	}
 

@@ -18,7 +18,7 @@ export function AbsoluteGradeDelta<I extends IDStrings = IDStrings>(
 	const gradeIndex =
 		typeof gradeOrIndex === "number" ? gradeOrIndex : gptConfig.grades.indexOf(gradeOrIndex);
 
-	const gradeScore = Math.ceil((gptConfig.gradeBoundaries[gradeIndex] / 100) * maxScore);
+	const gradeScore = Math.ceil((gptConfig.gradeBoundaries[gradeIndex] * maxScore) / 100);
 
 	return score - gradeScore;
 }

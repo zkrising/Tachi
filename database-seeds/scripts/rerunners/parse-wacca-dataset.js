@@ -14,7 +14,9 @@ program.requiredOption("-f, --file <dataset.csv>");
 program.parse(process.argv);
 const options = program.opts();
 
-const dirtyRecords = parse(fs.readFileSync(options.file), {});
+// replace \" (not valid CSV) with "" (valid CSV)
+const csvContents = fs.readFileSync(options.file, "utf8").replace(/\\"/g, "\"\"")
+const dirtyRecords = parse(csvContents, {});
 
 const headers = dirtyRecords[0];
 const songTitleCol = headers.indexOf("@song-title");

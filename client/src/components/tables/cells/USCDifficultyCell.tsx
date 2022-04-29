@@ -27,9 +27,7 @@ export default function USCDifficultyCell({
 				backgroundColor: bgColour,
 			}}
 		>
-			<span>
-				{chart.difficulty} {levelText}
-			</span>
+			<span>{levelText}</span>
 			<TierlistInfoPart chart={chart} game="usc" />
 			{!chart.isPrimary && (
 				<QuickTooltip tooltipContent="This chart is an alternate, old chart.">

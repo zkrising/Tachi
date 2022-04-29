@@ -11,7 +11,7 @@ export default function USCDifficultyCell({
 }: {
 	chart: ChartDocument<"usc:Controller" | "usc:Keyboard">;
 }) {
-	const levelText = chart.data.isOfficial ? FormatTables(chart.data.tableFolders) : chart.level;
+	const levelText = chart.data.isOfficial ? chart.level : FormatTables(chart.data.tableFolders);
 
 	const gptConfig = GetGamePTConfig("usc", chart.playtype);
 

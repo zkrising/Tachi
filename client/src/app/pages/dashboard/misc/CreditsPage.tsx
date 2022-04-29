@@ -119,7 +119,7 @@ export default function CreditsPage() {
 						{a(
 							"Tachi Discord Bot Work",
 							"oooOoooo you want to use redux oooo",
-							"Java Skirt Whore",
+							"Java Skirt Boy",
 							"Urbit Enjoyer"
 						)}
 						: <strong>pfych</strong>

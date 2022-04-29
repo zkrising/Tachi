@@ -2453,7 +2453,7 @@
 		"inactive": false,
 		"playtype": "Controller",
 		"tableID": "usc-Controller-us",
-		"title": "us (Insane KSM) (Controller)"
+		"title": "us (Normal KSM) (Controller)"
 	},
 	{
 		"default": false,
@@ -2542,7 +2542,7 @@
 		"inactive": false,
 		"playtype": "Keyboard",
 		"tableID": "usc-Keyboard-us",
-		"title": "us (Insane KSM) (Keyboard)"
+		"title": "us (Normal KSM) (Keyboard)"
 	},
 	{
 		"default": true,

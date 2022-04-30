@@ -2,37 +2,39 @@ const fetch = require("node-fetch");
 const { MutateCollection, ReadCollection, CreateChartID } = require("../util");
 const logger = require("../logger");
 
-const tableInfo = {
-	name: "発狂PMSデータベース(lv46～)",
-	symbol: "P●",
-	data_url: "https://pmsdifficulty.xxxxxxxx.jp/insane_pmsdatabase/insane_pmsdatabase_score.json",
-	level_order: [
-		1,
-		2,
-		3,
-		4,
-		5,
-		6,
-		7,
-		8,
-		9,
-		10,
-		11,
-		12,
-		13,
-		14,
-		15,
-		16,
-		17,
-		18,
-		19,
-		20,
-		"!i",
-		"？",
-		"◆",
-		"～",
-	].map((e) => e.toString()),
-};
+const tableInfos = [
+	{
+		name: "発狂PMSデータベース(lv46～)",
+		symbol: "P●",
+		data_url: "https://pmsdifficulty.xxxxxxxx.jp/insane_pmsdatabase/insane_pmsdatabase_score.json",
+		level_order: [
+			1,
+			2,
+			3,
+			4,
+			5,
+			6,
+			7,
+			8,
+			9,
+			10,
+			11,
+			12,
+			13,
+			14,
+			15,
+			16,
+			17,
+			18,
+			19,
+			20,
+			"!i",
+			"？",
+			"◆",
+			"～",
+		].map((e) => e.toString()),
+	},
+];
 
 const hasRandom = [
 	"769aac4e9bad64547438251f860a0aea",
@@ -224,97 +226,96 @@ function FormatBMSTables(bmsTables) {
 
 if (require.main === module) {
 	(async () => {
-		// THE JSON SENT OVER THE WIRE IS INVALID!
-		// We have to strip a Byte Order Mark ourselves. Why? No idea.
-		// This is illegal JSON. How do people keep messing up such a simple format?
-		const text = await fetch(tableInfo.data_url).then((r) => r.text());
-
-		const data = JSON.parse(text.split(/^\uFEFF/u)[1]);
-
 		const charts = [];
 		const songs = [];
-
 		const existingMD5s = new Set(ReadCollection("charts-pms.json").map((e) => e.data.hashMD5));
+		let i = Math.max(...ReadCollection("songs-pms.json").map(s => s.id)) + 1;
 
-		let i = 1;
-		for (const d of data) {
-			if (existingMD5s.has(d.md5)) {
-				continue;
+		for (const tableInfo of tableInfos) {
+			// THE JSON SENT OVER THE WIRE IS INVALID!
+			// We have to strip a Byte Order Mark ourselves. Why? No idea.
+			// This is illegal JSON. How do people keep messing up such a simple format?
+			const text = await fetch(tableInfo.data_url).then((r) => r.text());
+
+			const data = JSON.parse(text.split(/^\uFEFF/u)[1]);
+
+			for (const d of data) {
+				if (existingMD5s.has(d.md5)) {
+					continue;
+				}
+
+				if (hasRandom.includes(d.md5)) {
+					continue;
+				}
+
+				if (!tableInfo.level_order.includes(d.level)) {
+					logger.info(`Skipping unknown level ${d.level}`);
+					continue;
+				}
+
+				const song = {
+					id: i,
+					title: d.title,
+					artist: d.artist,
+					searchTerms: [],
+					altTitles: [],
+					data: {
+						genre: null,
+						subtitle: null,
+						subartist: null,
+						tableString: FormatBMSTables([
+							{
+								table: tableInfo.symbol,
+								level: d.level,
+							},
+						]),
+					},
+				};
+
+				const l = Number(d.level);
+
+				const tierlistInfo = Number.isNaN(l)
+								   ? {}
+								   : {
+									   "sgl-EC": MakeTierlistStuff(l),
+									   "sgl-HC": MakeTierlistStuff(l),
+								   };
+
+				const chart = {
+					songID: i,
+					chartID: CreateChartID(),
+					rgcID: null,
+					level: "?",
+					levelNum: 0,
+					playtype: "Controller",
+					difficulty: "CHART",
+					isPrimary: true,
+					tierlistInfo,
+					data: {
+						notecount: Number(d.notes),
+						hashMD5: d.md5,
+						hashSHA256: d.sha256,
+						tableFolders: [
+							{
+								table: tableInfo.symbol,
+								level: d.level,
+							},
+						],
+					},
+					versions: [],
+				};
+
+				i++;
+
+				songs.push(song);
+				charts.push(chart);
+				charts.push(
+					Object.assign({}, chart, { chartID: CreateChartID(), playtype: "Keyboard" })
+				);
 			}
-
-			if (hasRandom.includes(d.md5)) {
-				continue;
-			}
-
-			if (!tableInfo.level_order.includes(d.level)) {
-				logger.info(`Skipping unknown level ${d.level}`);
-				continue;
-			}
-
-			const song = {
-				id: i,
-				title: d.title,
-				artist: d.artist,
-				searchTerms: [],
-				altTitles: [],
-				data: {
-					genre: null,
-					subtitle: null,
-					subartist: null,
-					tableString: FormatBMSTables([
-						{
-							table: tableInfo.symbol,
-							level: d.level,
-						},
-					]),
-				},
-			};
-
-			const l = Number(d.level);
-
-			const tierlistInfo = Number.isNaN(l)
-				? {}
-				: {
-						"sgl-EC": MakeTierlistStuff(l),
-						"sgl-HC": MakeTierlistStuff(l),
-				  };
-
-			const chart = {
-				songID: i,
-				chartID: CreateChartID(),
-				rgcID: null,
-				level: "?",
-				levelNum: 0,
-				playtype: "Controller",
-				difficulty: "CHART",
-				isPrimary: true,
-				tierlistInfo,
-				data: {
-					notecount: Number(d.notes),
-					hashMD5: d.md5,
-					hashSHA256: d.sha256,
-					tableFolders: [
-						{
-							table: tableInfo.symbol,
-							level: d.level,
-						},
-					],
-				},
-				versions: [],
-			};
-
-			i++;
-
-			songs.push(song);
-			charts.push(chart);
-			charts.push(
-				Object.assign({}, chart, { chartID: CreateChartID(), playtype: "Keyboard" })
-			);
 		}
-
-		MutateCollection("songs-pms.json", () => songs);
-
-		MutateCollection("charts-pms.json", () => charts);
+		MutateCollection("songs-pms.json", currentSongs => currentSongs.concat(songs));
+		MutateCollection("charts-pms.json", currentCharts => currentCharts.concat(charts));
 	})();
 }
 

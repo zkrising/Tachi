@@ -16359,6 +16359,805 @@
 		"data": {
 			"data¬tableFolders": {
 				"~elemMatch": {
+					"level": "?",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F796aa4c6b21281a0561435fb2cd84d677d5a90c71feee06b9061dfb117ebaf57",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv?",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "1",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fe7c76d571712ff7ad0acb8d9357d86a81d4fd8e6d58184fd555107432ea41d27",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv1",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "10",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F62bc91687212be67abb20ec06ac396332dad8c3ed876be0482e98a468934d76b",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv10",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "11",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F2352d24bd8d527b611ecb8c26f0ffae7e3dc9414f1347ce186e6dc8f9981e1f5",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv11",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "12",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F3ec80ef97792057dddd33ba9863c3b8827b2f90f09023a24af5f2d81903e1ad9",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv12",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "13",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fa83ff8a786abe29f01d95ef1853a55f2225b704cffcab1c411f6b9b5bb8731ca",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv13",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "14",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fed82f31fa258c1f9f8fd46b366ea602413f57a21ec2f962f4f18146ac81b615e",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv14",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "15",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fb7a349864989e373f2c778f1db3a5636fcac6cf4b58a9a56cde09fae217ed88a",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv15",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "16",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fdce0515f8add13b171718a00e6d310666faa67f070af2c93e2a0e77f91ad1ca6",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv16",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "17",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Ffc5334f71dbe649ec901b2c7f003976277e8f56482b6edfed2963282f27f9b21",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv17",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "18",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F07770c3f207ff1f80b3b378992b791c4d0ac22b1e9b55bda772bce39c782b50c",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv18",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "19",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F28a080fd18a0ce733e2441d1f3f7150c1f0e1f3affd06ae0fb58de266b553603",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv19",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "2",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F4f527f0eee7a093d973411ed845ccc8dddbce8fc2060af8cdc7b923fa304ba4d",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "20",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F667e83e6042d9eb806cc5cf23c72e3bad4b28d8a6e1214458237a564e611e336",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv20",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "21",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F6f35330c750f8fb6e0e32029a8b3db97f6063597197c1f48b9f9b500f89789a7",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv21",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "22",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F47e355e1e56962199182190c39d12c7a8c64388683954cabc95a6266f4f29eaf",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv22",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "23",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F28652f8913b9ed69108eab1615024adbb3ed3747bbdede227b20b751de40d55b",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv23",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "24",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F6a4c22c06c2168f14694a9fddf0b10627f21b3d0ca7444df44d5d2a2629a530a",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv24",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "25",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F0d64d1612873f559c5a06c9e89c669006a8d0496b79078db7784715cfaebfea2",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv25",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "26",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F3fb20988f503842feb4d54703f11f56a6aed385ca40df76557ad0143ecca3d3f",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv26",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "27",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F490abfa35c5275ebb55ddee701ef8a07bb7e836b26d4e29c8f5c5f71ae194ef9",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv27",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "28",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F8f0c4b3f364f4a88698ef49d420e8dc5af1f98f4d4a3d9a2085f2c7b35b03dc5",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv28",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "29",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F9c9329d36a648a0e608dc841fc942425715cb76dfc3bf9d0bed48445bfe65284",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv29",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "3",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F877a669e42c8e3d3f80b209bbe90a97b3b3d21df6613257257ce3480803452eb",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv3",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "30",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fc2fb91955d802c8c6686cd5b8a5111223a2d757beabaffca621a4b9f5305e919",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv30",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "31",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fa86deb6482fc7f72310a270ee17f2edcddd342fe2a6c9b253affddb74f3315cb",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv31",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "32",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F2ee924054d125cf1a0b0ea9bf5a545f4db96fd2d199b7ed419a93b64e2be04a7",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv32",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "33",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F97b2173032b0be741b172160e918bb0454b6836a67502d57a44ebd442093ebee",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv33",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "34",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F3b4663b9115a6e6fbe8515762e8b203094126310f3677cc939c201a5f5a5624d",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv34",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "35",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fd571b4f46b15a6e31d9af2bb371d0da40bb563be711edf9cf9b5e73cf19bb34e",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv35",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "36",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F7689567337fe5bca5d9011fad5a8605da8a7a6d272a640cd415c7768dd1bb0f4",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv36",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "37",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Ff200c79e8877980187df9c3908c2ea18d0b2a00eb79fa834933f07fe14baf716",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv37",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "38",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F876f76b35a88e11b912f6186ccd0bace84127ce1b14e381d1d280a33daa5ea9c",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv38",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "39",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F665907e061377cd7e7f701a854709f1f86dc3a2f0627cecbd438bb11f0a97b35",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv39",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "4",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F481dd93a08b9bc6e3456723164201aed10d1580684f49b80cb65ffc681581a5e",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv4",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "40",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F7a3ed3beab11e570a8d2866124afd6af4ab9dcfa01b277a6a88ad8b525a112b4",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv40",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "41",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fcd08f25171b2c0ba8c4c855aa60471aa40c040005ca75fd1f69257d8e71f9eb7",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv41",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "42",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fec86edfd70b13fc2fc9ac59020050d1dc0c5885210e15ed97397f00562e47130",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv42",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "43",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F379e08eed3754385003d0e67b58548cee0d36dc729afd9a4b4e375b01a50d466",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv43",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "44",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Ffc955044aa87efd4d8a0ec510ff43e2858816ecf8252cf617fdb9de7dc85ca2d",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv44",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "45",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F4d46cfe4fa4f52667292b46c0c1d9e150baaf217cbac13176b296b33e9e31598",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv45",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "45+",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F6427eb154dde3bad925b0159ecb69ba02ce38256304ca9439c268d0e158f579d",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv45+",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "5",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F9fe37d043cf7af5552a53ac9d4c846a83e7a05c29892639ba72d971c3bf371af",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv5",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "6",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fe3641b84604ea0674de54891bb0375add7ec4af261903624d12d299bd74922e5",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv6",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "7",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fc4e0e745364eb9d6a502f65cf7d2ef90dbe36692182d25d8cafa324a82ae9069",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv7",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "8",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F4c7a3c6bdfae70be7c6b5e840d2aaf56efad15642089b296799f3d438681fc0a",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv8",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "9",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fb56866ea160457858643e0138c1bdcf793651af52b840db08dc36b1489f29c50",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Controller",
+		"searchTerms": [],
+		"title": "PLv9",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
 					"level": "!i",
 					"table": "●"
 				}
@@ -17101,6 +17900,805 @@
 		"playtype": "Keyboard",
 		"searchTerms": [],
 		"title": "P●9",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "?",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Ffae1491c6beb0ae1ac2a5124258c347857b5524ff643d16820c5df608d00af1f",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv?",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "1",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Febc5cb2215b47403055caf049a88747ccdde1bf1d087c873f4321d4676e93c78",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv1",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "10",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F401c5da954df574bb3276b0d22fcd54f120a784ab829ab07b37c3b90076a8ef7",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv10",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "11",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Faf883bfec26982f6cd92d8a6974f11e371166ec94e4d15fc04d4f9f4176ae921",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv11",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "12",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fd30693161b16d7657121c428262b6918b903b031a7758a0d6f0e8e993b2175d2",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv12",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "13",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fea6f3f38a4fa24bdcaac0f26f6703c74e554fe707b4f777ccb4c0f73d5eb8853",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv13",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "14",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fac068bfa0f65c32511642bffb00ada6d5af3b02f84d556918e1e2e994080d2b6",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv14",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "15",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fca19fc0891bfde439ce2b1ea329ed72f36fc78046808eb424c4e0bd9337523c5",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv15",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "16",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fee4f8897438416123692bd0d3d4d3f8091b16375180cf3f8e81f765209bf5004",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv16",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "17",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Ff3a24e87c844546c9ccab9667d3651afeaa08abb74bdac78322f7ecbd9a64b60",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv17",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "18",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F7d4c49e759005456070c7891a3592aa302c664da663f30a85dd25b66d71349c9",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv18",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "19",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F61f7f7eb909707fcfa45173e6aa30601978031a4111767ace73d0663528943e0",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv19",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "2",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Ffc0d32fcceddaa2483ae13ff604502bdb2985cd3d6275f1ccfda43344ebdef6a",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "20",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F4ef51a0848557c9a31676a281080e313cbba1587f747575a755750fdc85ee3f6",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv20",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "21",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F20043425630f8a9d4eae934e8bf6eb785d152cca7ddcb59a3e1bfe0fac62db0d",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv21",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "22",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Ffa5391f9252d30733b558f749eb1e506d5ecd17943f3a40aef1a800132fcb1f1",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv22",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "23",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F5c347cbb8393db787c2aa91a336b0713e9d3e24b9743f03a9633cb2ce850011b",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv23",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "24",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fad276a9df76a6d304a27e64e04c49d3b562f7b3581fb356d0ed47ecc1b0fbc20",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv24",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "25",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F6b2c013eabd2178ea6ad83b56499b725ea1c507f5ac32b30ab7074c4f1ce7221",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv25",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "26",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fe3a9aa786e9c7929748a9b1421d7ae836a240c6d095107b1c9d45f87e2d9b0bf",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv26",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "27",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F1b024da5194e2cdefe2ce12cbc154b8c5ea3bde86d2906cffd40cf7c666f693b",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv27",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "28",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F8c3dee4ce15e521ec6c6f3816db7c18becfa1d24061a9a0c33406c21ac983f10",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv28",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "29",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F268af4f5510371c12c36d543c1fc322fd7721455291f0b3c3c7ec92f66a2f3e0",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv29",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "3",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fc80e3691280dfb9405734d1288bfef27c8935bdc58e62c80e0c54ee2b7c83828",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv3",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "30",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F14b18d970366ebd01925f89b425e44644d32f8b53c53d1fc874771d2b6ea5c41",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv30",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "31",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F05909a6753332f8187e3ff3f3907af95703370f325a821c46848a8aa253c9393",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv31",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "32",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fdefb3b31de0ff725c8ea2142271ebfd293b32f9f576d31324b9c8296f0ce4dec",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv32",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "33",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Ff7002d77380fa23e576788387a84d47395e070ce8b99d66b75a0b5bf20c8b53d",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv33",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "34",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F5626b4e8e76e0dfa6cd61a52b3abca01120c8ac508e65638cc3202a7f14e1e99",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv34",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "35",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F19f7a23565d1913f2e2423822f3e5c1b5e39ca91a56f56ff47bcc829176e7793",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv35",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "36",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F51c3711ae4a760d9df8f81660d4e48b268a2323443fa3e8242198a12b23d2804",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv36",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "37",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fb8f8758b7f6dad4fdb55edeb3dfb92b066f6a42fcaf1b7ef155b1f3afa6d3916",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv37",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "38",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F78e813c86aecd3fd209c8e30b143384b3464879de99ac8c15825e19efa42268b",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv38",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "39",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Ffb420bc499e7b23ab98e68f0da818e531f3f6d2e0926b7b9c6bd1e8cc053f791",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv39",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "4",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F818bbc061d5286cd79b493041f89023ec280ce520bdb1a8dfc7b5e7efcfd0192",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv4",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "40",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fb86585f9f8731faeaf8c1b75ba3e6b90207af0af5b9c67361c914988f8dfa35b",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv40",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "41",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fcde4aa2025dcde89f2ead383eddfa4490e66b04ac3be6e5d4a23ff6df97c2a20",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv41",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "42",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F9e85bd2f8a7b6d4a272a149b9cf5f9c8690039d3d36c9e49dfcb69bb705708db",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv42",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "43",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "Fda6293fb86aac77756def7469d42aef2cb898bb0cbd96daf0c8f12b736226097",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv43",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "44",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F5b372e1dfd26ad1ed5c0076efa21e2a2e70b13563b6faa4be05e5fccf5e427d8",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv44",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "45",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F69a3910cdf6e29803dd5d8e5cec4f192047746cd07bcd081af3f71ecc5f5bdb5",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv45",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "45+",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F8649fbee88a322c512bc1b500dec6f4ea88115254b8e78b2820c4a5e406e2bde",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv45+",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "5",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F36c0b69e07adf2a434b82ee326d90aa3cba7a8a4e881beb98f238f43a2c9dea2",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv5",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "6",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F55e7f22e22b19efbaf6a44ba8f94bcea8feed86e52d81cb8625e2feec5269316",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv6",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "7",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F1a10f742f58149c97907119787dab28d9887eaff17030991c3c3e6bc25df0383",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv7",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "8",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F7b5582cae50f36762a06676166f8e99ff5028517af16fe5434ead42c96b7c9a1",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv8",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "9",
+					"table": "PLv"
+				}
+			}
+		},
+		"folderID": "F01e639929ef834e68c983624c68398e8efed0801ebdfd367eba2124625203e9e",
+		"game": "pms",
+		"inactive": false,
+		"playtype": "Keyboard",
+		"searchTerms": [],
+		"title": "PLv9",
 		"type": "charts"
 	},
 	{

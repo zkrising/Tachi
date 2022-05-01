@@ -28,10 +28,10 @@ for (const folder of folders) {
 
 console.log(chalk[fails === 0 ? "green" : "red"](`[FOLDER_ID]: ${success} good, ${fails} bad.`));
 
-if (fails === 0) {
+if (fails !== 0) {
 	console.log(
 		chalk.yellow("Run scripts/rerunners/fix-folder-ids.js to automatically fix these issues.")
 	);
 }
 
-process.exit(fails === 0 ? 1 : 0);
+process.exit(fails !== 0 ? 1 : 0);

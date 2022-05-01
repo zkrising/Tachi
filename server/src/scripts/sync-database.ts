@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 // This script syncs this tachi instances database up with the tachi-database-seeds.
 
-import { monkDB } from "external/mongo/db";
+import db, { monkDB } from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
@@ -25,7 +25,7 @@ import {
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { UpdateGameSongIDCounter } from "utils/db";
 import { InitaliseFolderChartLookup } from "utils/folder";
-import { IsSupported } from "utils/misc";
+import { ArrayDiff, IsSupported } from "utils/misc";
 
 interface SyncInstructions {
 	pattern: RegExp;
@@ -222,7 +222,24 @@ const syncInstructions: SyncInstructions[] = [
 
 			if (r) {
 				await InitaliseFolderChartLookup();
-				await RemoveStaleFolderShowcaseStats(r.changedFields as string[]);
+
+				const allModifiedFolderIDs = r.changedFields as string[];
+
+				const keptFolderIDs = await db.folders.find(
+					{
+						folderID: { $in: allModifiedFolderIDs },
+					},
+					{ projection: { folderID: 1 } }
+				);
+
+				// Find out what folders have been removed by diffing the set of all
+				// modified folders against all that are still present.
+				const removedFolderIDs = ArrayDiff(
+					allModifiedFolderIDs,
+					keptFolderIDs.map((e) => e.folderID)
+				);
+
+				await RemoveStaleFolderShowcaseStats(removedFolderIDs);
 			}
 		},
 	},

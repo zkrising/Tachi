@@ -39,6 +39,7 @@ not generally be shown to end users.
 - [ENH] Server administrators can now delete other's scores.
 - [ENH] Server administrators can now revert other's imports.
 - [ENH] You can now set Jubility targets.
+- [ENH] Folder Showcase Stats are now removed from a player in the case of the folder being removed.
 
 # 2.1.16
 

@@ -7,6 +7,7 @@ import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx, { KtLogger } from "lib/logger/logger";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
 import { TachiConfig } from "lib/setup/config";
+import { RemoveStaleFolderShowcaseStats } from "lib/showcase/showcase";
 import { UpdateMilestoneSubscriptions } from "lib/targets/milestones";
 import { BulkWriteOperation } from "mongodb";
 import { ICollection } from "monk";
@@ -221,6 +222,7 @@ const syncInstructions: SyncInstructions[] = [
 
 			if (r) {
 				await InitaliseFolderChartLookup();
+				await RemoveStaleFolderShowcaseStats(r.changedFields as string[]);
 			}
 		},
 	},

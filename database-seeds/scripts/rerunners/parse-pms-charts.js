@@ -6,7 +6,7 @@ const tableInfos = [
 	{
 		name: "発狂PMSデータベース(lv46～)",
 		symbol: "P●",
-		data_url: "https://pmsdifficulty.xxxxxxxx.jp/insane_pmsdatabase/insane_pmsdatabase_score.json",
+		data_url: "https://pmsdatabase.github.io/insane_pmsdatabase/insane_pmsdatabase_score.json",
 		level_order: [
 			1,
 			2,
@@ -37,7 +37,7 @@ const tableInfos = [
 	{
 		name: "PMSデータベース(Lv1~45)",
 		symbol: "PLv",
-		data_url: "https://pmsdifficulty.xxxxxxxx.jp/pmsdatabase/pmsdatabase_score.json",
+		data_url: "https://pmsdatabase.github.io/pmsdatabase/pmsdatabase_score.json",
 		level_order: [
 			1,
 			2,

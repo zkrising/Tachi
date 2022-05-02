@@ -82,7 +82,7 @@ export default function DifficultyCell({
 function DisplayLevelNum({ level, levelNum }: { levelNum: number; level: string }) {
 	// Don't display levelnum if its identical to the level, the decimal places in the
 	// level end with .0, or the levelNum itself is 0.
-	if (levelNum.toString() !== level && !level.endsWith(".0") && levelNum !== 0) {
+	if (levelNum.toString() === level || level.endsWith(".0") || levelNum === 0) {
 		return null;
 	}
 

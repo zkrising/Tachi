@@ -15,6 +15,15 @@ not generally be shown to end users.
 
 # Changelog
 
+# Current
+
+- [ENH] IIDX and BMS Dan gauge now displays in gray.
+
+*****
+
+- [BUG] Numeric level indicators no longer appear when the numeric level is 0 (For kichiku, kiraku, etc.)
+- [BUG] 2dxtra charts now have more obvious shorthand.
+
 # 2.1.7
 
 I haven't been keeping this dilligently up to date.

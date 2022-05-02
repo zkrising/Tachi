@@ -36,7 +36,7 @@ export default function IIDXLampChart({
 } & ResponsiveLine["props"]) {
 	let realData = [];
 
-	if (type === "HARD" || type === "EX_HARD") {
+	if (type === "HARD" || type === "EX_HARD" || type === "DAN_GAUGE") {
 		realData = data;
 	} else {
 		const failSet = [];

@@ -73,6 +73,16 @@ export function IIDXGraphsComponent({
 		<>
 			<div className="col-12 d-flex justify-content-center">
 				<Nav variant="pills">
+					{score.scoreData.lamp === "NO PLAY" && (
+						<SelectNav
+							id="DAN_GAUGE"
+							value={lamp}
+							setValue={setLamp}
+							disabled={shouldDisable("DAN_GAUGE")}
+						>
+							Dan Gauge
+						</SelectNav>
+					)}
 					<SelectNav
 						id="EASY"
 						value={lamp}
@@ -156,6 +166,10 @@ function LampToKey(
 ): LampTypes {
 	const lamp = score.scoreData.lamp;
 
+	if (lamp === "NO PLAY") {
+		return "DAN_GAUGE";
+	}
+
 	if (IsScore(score) && score.scoreMeta.gauge) {
 		switch (score.scoreMeta.gauge) {
 			case "EASY":
@@ -183,9 +197,6 @@ function LampToKey(
 			return "EX_HARD";
 		}
 		return "NORMAL";
-	} else if (lamp === "NO PLAY") {
-		// dan gauge looks like this
-		return "DAN_GAUGE";
 	}
 
 	return "NORMAL";

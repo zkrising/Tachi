@@ -2017,7 +2017,7 @@
 	},
 	{
 		"default": true,
-		"description": "The Insane PMS Table.",
+		"description": "The Insane PMS Table. This table starts around pop'n level 46.",
 		"folders": [
 			"Fac2554d1c71c6e398704e3f0883490603002ba7edeea1fe158aa4c897ca7236c",
 			"Ff4b669eb5b53f702a2c35575ab6430244daedbf7c8d3b196dc691b7fa29b598b",
@@ -2048,7 +2048,7 @@
 	},
 	{
 		"default": false,
-		"description": "The Insane PMS Database. This contains almost every PMS file ever created, lv46+.",
+		"description": "The Insane PMS Database. This contains almost every PMS file ever created. This table starts around pop'n level 46.",
 		"folders": [
 			"F3793ad0e9ee0d9fab75437bf5fbc3ca03d467e17ac9f853300025a5b1fcc6eb0",
 			"F9388c42b9a97efbc949c40cfad32a41a8cd0152b3bbbbe78f54bd376c5820009",
@@ -2083,7 +2083,7 @@
 	},
 	{
 		"default": false,
-		"description": "The Normal PMS Database. This contains almost every PMS file ever created, lv1-45.",
+		"description": "The Normal PMS Database. This contains almost every PMS file ever created, and is equivalent to pop'n levels 1-45.",
 		"folders": [
 			"Fe7c76d571712ff7ad0acb8d9357d86a81d4fd8e6d58184fd555107432ea41d27",
 			"F4f527f0eee7a093d973411ed845ccc8dddbce8fc2060af8cdc7b923fa304ba4d",
@@ -2141,7 +2141,7 @@
 	},
 	{
 		"default": true,
-		"description": "The Insane PMS Table.",
+		"description": "The Insane PMS Table. This table starts around pop'n level 46.",
 		"folders": [
 			"F715c7dae0b4984039d955ff6e911d765cc2b56a5b7bd6c952e64ced9e438ca1d",
 			"F1e390b51df8ea72152b50cdd1e0cb94acfaf9a273765a194f3f0b614f6230d71",
@@ -2172,7 +2172,7 @@
 	},
 	{
 		"default": false,
-		"description": "The Insane PMS Database. This contains almost every PMS file ever created, lv46+.",
+		"description": "The Insane PMS Database. This contains almost every PMS file ever created. This table starts around pop'n level 46.",
 		"folders": [
 			"F8bb54209882348655caef49efbba2ff5e98266ad1dcde2676561073c1dd3fda6",
 			"Fc4c551ae7da5daefd0ed18d15c37ef2a6e1ef108668d8525eba660ba9ff0c9e1",
@@ -2207,7 +2207,7 @@
 	},
 	{
 		"default": false,
-		"description": "The Normal PMS Database. This contains almost every PMS file ever created, lv1-45.",
+		"description": "The Normal PMS Database. This contains almost every PMS file ever created, and is equivalent to pop'n levels 1-45.",
 		"folders": [
 			"Febc5cb2215b47403055caf049a88747ccdde1bf1d087c873f4321d4676e93c78",
 			"Ffc0d32fcceddaa2483ae13ff604502bdb2985cd3d6275f1ccfda43344ebdef6a",

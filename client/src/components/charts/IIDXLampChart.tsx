@@ -11,6 +11,7 @@ const yAxes = {
 };
 
 const colours = {
+	DAN_GAUGE: COLOUR_SET.gray,
 	EASY: [COLOUR_SET.green, COLOUR_SET.vibrantRed],
 	NORMAL: [COLOUR_SET.blue, COLOUR_SET.vibrantRed],
 	HARD: COLOUR_SET.vibrantRed,
@@ -30,7 +31,7 @@ export default function IIDXLampChart({
 	width?: number | string;
 	height?: number | string;
 	data: Serie[];
-	type: "EASY" | "NORMAL" | "HARD" | "EX_HARD";
+	type: "DAN_GAUGE" | "EASY" | "NORMAL" | "HARD" | "EX_HARD";
 } & ResponsiveLine["props"]) {
 	let realData = [];
 

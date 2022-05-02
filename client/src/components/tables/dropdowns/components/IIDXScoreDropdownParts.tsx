@@ -34,7 +34,7 @@ import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
 // 	);
 // }
 
-type LampTypes = "NORMAL" | "EASY" | "HARD" | "EX_HARD";
+type LampTypes = "DAN_GAUGE" | "NORMAL" | "EASY" | "HARD" | "EX_HARD";
 
 export function IIDXGraphsComponent({
 	score,
@@ -118,7 +118,7 @@ export function IIDXGraphsComponent({
 			<div className="col-12">
 				{lamp === "BPI" ? (
 					<IIDXBPIChart chart={chart} score={score} />
-				) : gaugeStatus === "gsm" ? (
+				) : gaugeStatus === "gsm" && lamp !== "DAN_GAUGE" ? (
 					<GraphComponent type={lamp} values={score.scoreData.hitMeta.gsm![lamp]} />
 				) : gaugeStatus === "single" ? (
 					<GraphComponent type={lamp} values={score.scoreData.hitMeta.gaugeHistory!} />
@@ -185,7 +185,7 @@ function LampToKey(
 		return "NORMAL";
 	} else if (lamp === "NO PLAY") {
 		// dan gauge looks like this
-		return "HARD";
+		return "DAN_GAUGE";
 	}
 
 	return "NORMAL";

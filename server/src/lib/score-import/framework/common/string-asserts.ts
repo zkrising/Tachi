@@ -11,7 +11,7 @@ export function AssertStrAsDifficulty(
 		throw new InvalidScoreFailure(
 			`Invalid Difficulty for ${game} ${playtype} - Expected any of ${validDifficulties.join(
 				", "
-			)}`
+			)} (Got ${strVal})`
 		);
 	}
 
@@ -24,15 +24,15 @@ export function AssertStrAsPositiveInt(strVal: string, errorMessage: string) {
 	const isInt = isIntegerRegex.test(strVal);
 
 	if (!isInt) {
-		throw new InvalidScoreFailure(`${errorMessage} (Not an integer.)`);
+		throw new InvalidScoreFailure(`${errorMessage} (Not an integer -- ${strVal}.)`);
 	}
 
 	const val = Number(strVal);
 
 	if (!Number.isSafeInteger(val)) {
-		throw new InvalidScoreFailure(`${errorMessage} (Not an integer.)`);
+		throw new InvalidScoreFailure(`${errorMessage} (Not an integer -- ${strVal}.)`);
 	} else if (val < 0) {
-		throw new InvalidScoreFailure(`${errorMessage} (Was negative.)`);
+		throw new InvalidScoreFailure(`${errorMessage} (Was negative -- ${strVal}.)`);
 	}
 
 	return val;
@@ -42,15 +42,15 @@ export function AssertStrAsPositiveNonZeroInt(strVal: string, errorMessage: stri
 	const isInt = isIntegerRegex.test(strVal);
 
 	if (!isInt) {
-		throw new InvalidScoreFailure(`${errorMessage} (Not an integer.)`);
+		throw new InvalidScoreFailure(`${errorMessage} (Not an integer -- ${strVal}.)`);
 	}
 
 	const val = Number(strVal);
 
 	if (!Number.isSafeInteger(val)) {
-		throw new InvalidScoreFailure(`${errorMessage} (Not an integer.)`);
+		throw new InvalidScoreFailure(`${errorMessage} (Not an integer -- ${val}.)`);
 	} else if (val <= 0) {
-		throw new InvalidScoreFailure(`${errorMessage} (Was negative or zero.)`);
+		throw new InvalidScoreFailure(`${errorMessage} (Was negative or zero -- ${val}.)`);
 	}
 
 	return val;

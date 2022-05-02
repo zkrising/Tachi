@@ -10800,8 +10800,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17A",
-				"value": 17.7
+				"text": "17A+",
+				"value": 17.8
 			}
 		},
 		"versions": [
@@ -24860,8 +24860,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "18A+",
-				"value": 18.8
+				"text": "18S",
+				"value": 18.9
 			}
 		},
 		"versions": [
@@ -25825,8 +25825,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17F",
-				"value": 17.1
+				"text": "17E",
+				"value": 17.2
 			}
 		},
 		"versions": [
@@ -69564,8 +69564,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17A",
-				"value": 17.7
+				"text": "17B+",
+				"value": 17.6
 			}
 		},
 		"versions": [
@@ -93966,8 +93966,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
-				"value": 17.4
+				"text": "17B",
+				"value": 17.5
 			}
 		},
 		"versions": [
@@ -102285,8 +102285,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17A",
-				"value": 17.7
+				"text": "17B+",
+				"value": 17.6
 			}
 		},
 		"versions": [
@@ -102643,8 +102643,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B+",
-				"value": 17.6
+				"text": "17A",
+				"value": 17.7
 			}
 		},
 		"versions": [
@@ -126497,8 +126497,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17A+",
-				"value": 17.8
+				"text": "17A",
+				"value": 17.7
 			}
 		},
 		"versions": [
@@ -126919,8 +126919,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "16C/D",
-				"value": 16.3
+				"text": "16E",
+				"value": 16.1
 			}
 		},
 		"versions": [
@@ -140576,8 +140576,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17F",
-				"value": 17.1
+				"text": "17F-",
+				"value": 17
 			}
 		},
 		"versions": [
@@ -141814,8 +141814,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "18B",
-				"value": 18.6
+				"text": "18A",
+				"value": 18.7
 			}
 		},
 		"versions": [

@@ -199,7 +199,7 @@ function MinimapElement({
 					<Divider />
 					{wasRecent && (
 						<>
-							<b>You raised this recently!</b>
+							<b>You raised this in your last session!</b>
 							<br />
 						</>
 					)}

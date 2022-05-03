@@ -76,18 +76,17 @@ function ShouldRenderUpdate(
 ) {
 	if (game === "sdvx" && classSet === "vfClass") {
 		return [
-			SDVXVFClasses.ARGENTO_I,
-			SDVXVFClasses.COBALT_I,
+			// Notifying about these vfClasses is pointless, since they're
+			// very easy to just blister through.
+			// SDVXVFClasses.SIENNA_I,
+			// SDVXVFClasses.COBALT_I,
+			// SDVXVFClasses.DANDELION_I,
+			// SDVXVFClasses.CYAN_I,
+			// SDVXVFClasses.SCARLET_I,
 			SDVXVFClasses.CORAL_I,
-			SDVXVFClasses.CRIMSON_I,
-			SDVXVFClasses.CYAN_I,
-			SDVXVFClasses.DANDELION_I,
-			SDVXVFClasses.SCARLET_I,
-			SDVXVFClasses.SIENNA_I,
+			SDVXVFClasses.ARGENTO_I,
 			SDVXVFClasses.ELDORA_I,
-			SDVXVFClasses.ELDORA_II,
-			SDVXVFClasses.ELDORA_III,
-			SDVXVFClasses.ELDORA_IV,
+			SDVXVFClasses.CRIMSON_I,
 			SDVXVFClasses.IMPERIAL_I,
 			SDVXVFClasses.IMPERIAL_II,
 			SDVXVFClasses.IMPERIAL_III,

@@ -164,6 +164,7 @@ export const PrettyVersions: Versions = {
 	},
 	"jubeat:Single": {
 		festo: "festo",
+		clan: "clan",
 	},
 	"pms:Controller": {},
 	"pms:Keyboard": {},

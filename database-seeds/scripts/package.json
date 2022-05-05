@@ -40,7 +40,7 @@
 		"monk": "^7.3.4",
 		"node-fetch": "2.6.7",
 		"prudence": "^0.9.7",
-		"tachi-common": "0.11.4",
+		"tachi-common": "0.11.5",
 		"ts-node": "^10.4.0",
 		"xml2js": "^0.4.23"
 	},

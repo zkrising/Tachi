@@ -749,7 +749,7 @@ export interface GPTSupportedVersions {
 	"ddr:SP": "a20";
 	"ddr:DP": "a20";
 	"maimai:Single": "finale";
-	"jubeat:Single": "festo";
+	"jubeat:Single": "clan" | "festo";
 	"museca:Single": "1.5" | "1.5-b";
 	"bms:7K": never;
 	"bms:14K": never;

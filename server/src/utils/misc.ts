@@ -109,13 +109,17 @@ export function StripUrl(url: string, userInput: string | null) {
 // runtime validation.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function DeleteUndefinedProps(record: any) {
-	if (typeof record !== "object" || record === null) {
+	if (typeof record !== "object" || record === null || Array.isArray(record)) {
 		throw new Error(`Non-object passed to DeleteUndefinedProps.`);
 	}
 
-	for (const key in record) {
-		if (record[key] === undefined) {
-			delete record[key];
+	// asserted above
+	const rec = record as Record<string, unknown>;
+
+	for (const key of Object.keys(rec)) {
+		if (rec[key] === undefined) {
+			// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+			delete rec[key];
 		}
 	}
 }

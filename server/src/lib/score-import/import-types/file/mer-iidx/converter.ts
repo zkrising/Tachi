@@ -1,7 +1,3 @@
-import { Lamps } from "tachi-common";
-import { FindIIDXChartOnInGameID } from "utils/queries/charts";
-import { FindSongOnID } from "utils/queries/songs";
-import { EmptyObject } from "utils/types";
 import {
 	InternalFailure,
 	KTDataNotFoundFailure,
@@ -10,9 +6,13 @@ import {
 	GenericGetGradeAndPercent,
 	ParseDateFromString,
 } from "../../../framework/common/score-utils";
-import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction } from "../../common/types";
-import { MerScore } from "./types";
+import { FindIIDXChartOnInGameID } from "utils/queries/charts";
+import { FindSongOnID } from "utils/queries/songs";
+import type { DryScore } from "../../../framework/common/types";
+import type { ConverterFunction } from "../../common/types";
+import type { MerScore } from "./types";
+import type { Lamps } from "tachi-common";
+import type { EmptyObject } from "utils/types";
 
 function ConvertMERLamp(lamp: MerScore["clear_type"]): Lamps["iidx:DP" | "iidx:SP"] {
 	if (lamp === "FULLCOMBO CLEAR") {
@@ -54,7 +54,7 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
 
 	const timeAchieved = ParseDateFromString(ConvertDateToJST(data.update_time));
 
-	const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
+	const dryScore: DryScore<"iidx:DP" | "iidx:SP"> = {
 		game: "iidx",
 		comment: null,
 		importType: "file/mer-iidx",

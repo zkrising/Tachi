@@ -1,6 +1,6 @@
 import db from "external/mongo/db";
-import { FilterQuery } from "mongodb";
-import {
+import type { FilterQuery } from "mongodb";
+import type {
 	ChartDocument,
 	Difficulties,
 	Game,
@@ -26,9 +26,9 @@ export function FindChartWithPTDF<
 	I extends IDStrings = IDStrings
 >(game: G, songID: integer, playtype: P, difficulty: Difficulties[I]) {
 	return db.charts[game].findOne({
-		songID: songID,
-		playtype: playtype,
-		difficulty: difficulty,
+		songID,
+		playtype,
+		difficulty,
 		isPrimary: true,
 	});
 }
@@ -49,9 +49,9 @@ export function FindChartWithPTDFVersion<
 	version: GPTSupportedVersions[I]
 ) {
 	return db.charts[game].findOne({
-		songID: songID,
-		playtype: playtype,
-		difficulty: difficulty,
+		songID,
+		playtype,
+		difficulty,
 		versions: version,
 	});
 }
@@ -69,6 +69,7 @@ export function FindChartWithPTDFVersion<
  */
 export function FindDDRChartOnSongHash(
 	songHash: string,
+
 	// Technically both of these should be "ddr" instead of Game, but it proves hard to work with.
 	playtype: Playtype,
 	difficulty: Difficulties[IDStrings]
@@ -190,7 +191,7 @@ export function FindSDVXChartOnInGameID(
 ) {
 	const diffQuery =
 		difficulty === "ANY_INF"
-			? { $in: ["INF", "GRV", "HVN", "VVD"] as Difficulties["sdvx:Single"][] }
+			? { $in: ["INF", "GRV", "HVN", "VVD"] as Array<Difficulties["sdvx:Single"]> }
 			: difficulty;
 
 	return db.charts.sdvx.findOne({
@@ -202,12 +203,12 @@ export function FindSDVXChartOnInGameID(
 
 export function FindSDVXChartOnInGameIDVersion(
 	inGameID: number,
-	difficulty: "NOV" | "ADV" | "EXH" | "MXM" | "ANY_INF",
+	difficulty: "ADV" | "ANY_INF" | "EXH" | "MXM" | "NOV",
 	version: GPTSupportedVersions["sdvx:Single"]
 ) {
 	const diffQuery =
 		difficulty === "ANY_INF"
-			? { $in: ["INF", "GRV", "HVN", "VVD"] as Difficulties["sdvx:Single"][] }
+			? { $in: ["INF", "GRV", "HVN", "VVD"] as Array<Difficulties["sdvx:Single"]> }
 			: difficulty;
 
 	return db.charts.sdvx.findOne({
@@ -219,12 +220,12 @@ export function FindSDVXChartOnInGameIDVersion(
 
 export function FindSDVXChartOnDFVersion(
 	songID: integer,
-	difficulty: "NOV" | "ADV" | "EXH" | "MXM" | "ANY_INF",
+	difficulty: "ADV" | "ANY_INF" | "EXH" | "MXM" | "NOV",
 	version: GPTSupportedVersions["sdvx:Single"]
 ) {
 	const diffQuery =
 		difficulty === "ANY_INF"
-			? { $in: ["INF", "GRV", "HVN", "VVD"] as Difficulties["sdvx:Single"][] }
+			? { $in: ["INF", "GRV", "HVN", "VVD"] as Array<Difficulties["sdvx:Single"]> }
 			: difficulty;
 
 	return db.charts.sdvx.findOne({
@@ -255,7 +256,7 @@ export function FindChartOnSHA256Playtype(game: Game, hash: string, playtype: Pl
 	});
 }
 
-export function FindChartOnARCID(game: "iidx" | "ddr" | "jubeat" | "sdvx", arcID: string) {
+export function FindChartOnARCID(game: "ddr" | "iidx" | "jubeat" | "sdvx", arcID: string) {
 	return db.charts[game].findOne({
 		"data.arcChartID": arcID,
 	});
@@ -269,11 +270,11 @@ export function FindChartOnARCID(game: "iidx" | "ddr" | "jubeat" | "sdvx", arcID
 export async function FindChartsOnPopularity(
 	game: Game,
 	playtype: Playtype,
-	songIDs?: integer[],
+	songIDs?: Array<integer>,
 	skip = 0,
 	limit = 100,
 	scoreCollection: "personal-bests" | "scores" = "personal-bests"
-): Promise<(ChartDocument & { __playcount: integer })[]> {
+): Promise<Array<ChartDocument & { __playcount: integer }>> {
 	const matchQuery: FilterQuery<ChartDocument> = {
 		playtype,
 	};
@@ -290,11 +291,13 @@ export async function FindChartsOnPopularity(
 	// magnitude faster.
 	// Not entirely sure why, but $lookup is incredibly inefficient,
 	// and you should just avoid it.
-	const charts = (await db.charts[game].find(matchQuery)) as unknown as (ChartDocument & {
-		__playcount: integer;
-	})[];
+	const charts = (await db.charts[game].find(matchQuery)) as unknown as Array<
+		ChartDocument & {
+			__playcount: integer;
+		}
+	>;
 
-	const scoreCounts = (await db[scoreCollection].aggregate([
+	const scoreCounts = await db[scoreCollection].aggregate([
 		{
 			$match: { chartID: { $in: charts.map((e) => e.chartID) } },
 		},
@@ -315,7 +318,7 @@ export async function FindChartsOnPopularity(
 		{
 			$limit: limit,
 		},
-	])) as { _id: string; count: integer }[];
+	]);
 
 	const scoreCountMap = new Map();
 

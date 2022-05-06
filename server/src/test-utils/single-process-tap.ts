@@ -1,8 +1,8 @@
 import "external/mongo/db";
-import glob from "glob";
-import path from "path";
-import t from "tap";
 import { CleanUpAfterTests } from "./cleanup";
+import glob from "glob";
+import t from "tap";
+import path from "path";
 
 const files = glob.sync(path.join(__dirname, "../../", "**/*.test.ts"));
 

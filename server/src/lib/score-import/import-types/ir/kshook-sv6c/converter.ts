@@ -3,12 +3,12 @@ import {
 	KTDataNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
-import { DryScore } from "lib/score-import/framework/common/types";
-import { Lamps } from "tachi-common";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
-import { ConverterFunction } from "../../common/types";
-import { KsHookSV6CContext, KsHookSV6CScore } from "./types";
+import type { ConverterFunction } from "../../common/types";
+import type { KsHookSV6CContext, KsHookSV6CScore } from "./types";
+import type { DryScore } from "lib/score-import/framework/common/types";
+import type { Lamps } from "tachi-common";
 
 export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6CContext> = async (
 	data,
@@ -81,7 +81,7 @@ function ConvertLamp(clear: KsHookSV6CScore["clear"]): Lamps["sdvx:Single"] {
 
 function ConvertDifficulty(
 	diff: KsHookSV6CScore["difficulty"]
-): "NOV" | "ADV" | "EXH" | "ANY_INF" | "MXM" {
+): "ADV" | "ANY_INF" | "EXH" | "MXM" | "NOV" {
 	if (diff === "DIFFICULTY_NOVICE") {
 		return "NOV";
 	} else if (diff === "DIFFICULTY_ADVANCED") {

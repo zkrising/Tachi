@@ -1,4 +1,6 @@
-import Prudence, { PrudenceSchema } from "prudence";
+import Prudence from "prudence";
+import type { PrudenceSchema } from "prudence";
+
 export function isApproximately(
 	t: Tap.Test,
 	number: number,

@@ -1,5 +1,14 @@
-import deepmerge from "deepmerge";
 import {
+	FakeGameSettings,
+	FakeImport,
+	FakeNotification,
+	FakeOtherUser,
+	TestingIIDXSPScore,
+	TestingIIDXSPScorePB,
+	TestingSDVXScore,
+} from "./test-data";
+import deepmerge from "deepmerge";
+import type {
 	Game,
 	ImportDocument,
 	integer,
@@ -10,21 +19,13 @@ import {
 	ScoreDocument,
 	UGPTSettings,
 } from "tachi-common";
-import {
-	FakeGameSettings,
-	FakeImport,
-	FakeNotification,
-	FakeOtherUser,
-	TestingIIDXSPScore,
-	TestingIIDXSPScorePB,
-	TestingSDVXScore,
-} from "./test-data";
 
 /**
  * Async Generator To Array
  */
 export async function agta(ag: AsyncIterable<unknown> | Iterable<unknown>) {
 	const a = [];
+
 	for await (const el of ag) {
 		a.push(el);
 	}
@@ -39,7 +40,7 @@ export function dmf<T extends object>(base: T, modifant: Partial<T>): T {
 	return deepmerge(base, modifant, {
 		// The new array should replace the former one, instead of joining them together.
 		arrayMerge: (originalArray, newArray) => newArray,
-	}) as T;
+	});
 }
 
 /**
@@ -49,17 +50,12 @@ export function dmf<T extends object>(base: T, modifant: Partial<T>): T {
  * @param userID - The userID this fake user should have.
  */
 export function mkFakeUser(userID: integer, modifant: Partial<PublicUserDocument> = {}) {
-	return dmf(
-		FakeOtherUser,
-		Object.assign(
-			{
-				id: userID,
-				username: `user${userID}`,
-				usernameLowercase: `user${userID}`,
-			},
-			modifant
-		)
-	);
+	return dmf(FakeOtherUser, {
+		id: userID,
+		username: `user${userID}`,
+		usernameLowercase: `user${userID}`,
+		...modifant,
+	});
 }
 
 export function mkFakeGameSettings(
@@ -68,17 +64,12 @@ export function mkFakeGameSettings(
 	playtype: Playtype,
 	modifant: Partial<UGPTSettings> = {}
 ) {
-	return dmf(
-		FakeGameSettings,
-		Object.assign(
-			{
-				userID,
-				game,
-				playtype,
-			},
-			modifant
-		)
-	);
+	return dmf(FakeGameSettings, {
+		userID,
+		game,
+		playtype,
+		...modifant,
+	});
 }
 
 export function mkFakeImport(modifant: Partial<ImportDocument> = {}) {

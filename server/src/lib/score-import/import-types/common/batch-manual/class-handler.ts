@@ -1,7 +1,8 @@
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
-import { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
-import { GamePTConfig, GetGamePTConfig, IDStrings } from "tachi-common";
-import { GameClasses, GameClassSets } from "tachi-common/js/game-classes";
+import { GetGamePTConfig } from "tachi-common";
+import type { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
+import type { GamePTConfig, IDStrings } from "tachi-common";
+import type { GameClasses, GameClassSets } from "tachi-common/js/game-classes";
 
 // Note: This is tested by batch-manuals parser.test.ts.
 export function CreateBatchManualClassHandler(

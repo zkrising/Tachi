@@ -1,5 +1,5 @@
 import expMiddlewareMock from "express-request-mock";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
@@ -15,7 +15,7 @@ t.test("#GetClientFromID", (t) => {
 		});
 
 		t.strictSame(
-			req[SYMBOL_TachiData]?.apiClientDoc,
+			req[SYMBOL_TACHI_DATA]?.apiClientDoc,
 			{
 				clientID: "OAUTH2_CLIENT_ID",
 				// clientSecret: "OAUTH2_CLIENT_SECRET",

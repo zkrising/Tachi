@@ -1,6 +1,7 @@
-import db from "external/mongo/db";
-import { FormatGame, Game, integer, Playtype, PublicUserDocument } from "tachi-common";
 import { SendNotification } from "./notifications";
+import db from "external/mongo/db";
+import { FormatGame } from "tachi-common";
+import type { Game, integer, Playtype, PublicUserDocument } from "tachi-common";
 
 /**
  * A utility wrapper for sending the SET_RIVAL notification.

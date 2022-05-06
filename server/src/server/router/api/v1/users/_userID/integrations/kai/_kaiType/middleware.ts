@@ -1,4 +1,4 @@
-import { RequestHandler } from "express";
+import type { RequestHandler } from "express";
 
 export const ValidateKaiType: RequestHandler = (req, res, next) => {
 	if (!["min", "flo", "eag"].includes(req.params.kaiType.toLowerCase())) {
@@ -8,5 +8,5 @@ export const ValidateKaiType: RequestHandler = (req, res, next) => {
 		});
 	}
 
-	return next();
+	next();
 };

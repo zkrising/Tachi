@@ -1,9 +1,10 @@
-import { RequestHandler, Router } from "express";
+import { Router } from "express";
 import { MODEL_SDVX3_KONASTE } from "lib/constants/ea3id";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { ParseEA3SoftID } from "utils/ea3id";
+import type { RequestHandler } from "express";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -14,7 +15,7 @@ const ValidateHeaders: RequestHandler = (req, res, next) => {
 
 	if (!agent) {
 		logger.debug(
-			`Rejected KsHook client with no agent from user ${req[SYMBOL_TachiAPIAuth].userID!}.`
+			`Rejected KsHook client with no agent from user ${req[SYMBOL_TACHI_API_AUTH].userID!}.`
 		);
 		return res.status(400).json({
 			success: false,
@@ -24,8 +25,9 @@ const ValidateHeaders: RequestHandler = (req, res, next) => {
 
 	if (!agent.startsWith("kshook/")) {
 		logger.info(
-			`Rejected KsHook client with invalid agent ${agent} from user ${req[SYMBOL_TachiAPIAuth]
-				.userID!}.`
+			`Rejected KsHook client with invalid agent ${agent} from user ${req[
+				SYMBOL_TACHI_API_AUTH
+			].userID!}.`
 		);
 		return res.status(400).json({
 			success: false,
@@ -40,7 +42,7 @@ const ValidateHeaders: RequestHandler = (req, res, next) => {
 
 	if (!softID) {
 		logger.debug(
-			`received request without X-Software-Model from ${req[SYMBOL_TachiAPIAuth].userID!}.`
+			`received request without X-Software-Model from ${req[SYMBOL_TACHI_API_AUTH].userID!}.`
 		);
 		return res.status(400).json({
 			success: false,
@@ -61,14 +63,14 @@ const ValidateHeaders: RequestHandler = (req, res, next) => {
 			});
 		}
 	} catch (err) {
-		logger.info(`Invalid softID from ${req[SYMBOL_TachiAPIAuth].userID!}.`, { err });
+		logger.info(`Invalid softID from ${req[SYMBOL_TACHI_API_AUTH].userID!}.`, { err });
 		return res.status(400).json({
 			success: false,
 			error: `Invalid X-Software-Model.`,
 		});
 	}
 
-	return next();
+	next();
 };
 
 router.use(ValidateHeaders);
@@ -80,7 +82,7 @@ router.use(ValidateHeaders);
  */
 router.post("/score/save", async (req, res) => {
 	const responseData = await ExpressWrappedScoreImportMain(
-		req[SYMBOL_TachiAPIAuth].userID!,
+		req[SYMBOL_TACHI_API_AUTH].userID!,
 		true,
 		"ir/kshook-sv6c",
 		[req.body]
@@ -90,6 +92,7 @@ router.post("/score/save", async (req, res) => {
 		// in-air rewrite description to error.
 		// @ts-expect-error Hack!
 		responseData.body.error = responseData.body.description;
+
 		// @ts-expect-error Hack!
 		delete responseData.body.description;
 	}

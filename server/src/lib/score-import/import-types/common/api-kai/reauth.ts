@@ -1,11 +1,11 @@
+import { GetKaiTypeClientCredentials, KaiTypeToBaseURL } from "./utils";
 import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import p from "prudence";
-import { KaiAuthDocument } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { CreateURLWithParams } from "utils/url";
-import { GetKaiTypeClientCredentials, KaiTypeToBaseURL } from "./utils";
+import type { KtLogger } from "lib/logger/logger";
+import type { KaiAuthDocument } from "tachi-common";
 
 const REAUTH_SCHEMA = {
 	access_token: "string",
@@ -13,7 +13,7 @@ const REAUTH_SCHEMA = {
 };
 
 export function CreateKaiReauthFunction(
-	kaiType: "FLO" | "EAG" | "MIN",
+	kaiType: "EAG" | "FLO" | "MIN",
 	authDoc: KaiAuthDocument,
 	logger: KtLogger,
 	fetch = nodeFetch
@@ -35,6 +35,7 @@ export function CreateKaiReauthFunction(
 
 	return async () => {
 		let res;
+
 		try {
 			const url = CreateURLWithParams(`${KaiTypeToBaseURL(kaiType)}/oauth/token`, {
 				refresh_token: authDoc.refreshToken,
@@ -63,6 +64,7 @@ export function CreateKaiReauthFunction(
 
 		let json;
 		/* istanbul ignore next */
+
 		try {
 			json = await res.json();
 		} catch (err) {

@@ -1,12 +1,15 @@
-import p, { PrudenceError, ValidSchemaValue } from "prudence";
+import p from "prudence";
+import type { PrudenceError, ValidSchemaValue } from "prudence";
 
 export function FormatPrError(err: PrudenceError, foreword = "Error") {
 	const receivedText =
 		typeof err.userVal === "object" && err.userVal !== null
 			? ""
-			: ` | Received ${err.userVal} [${err.userVal === null ? "null" : typeof err.userVal}]`;
+			: ` | Received ${err.userVal.toString()} [${
+					err.userVal === null ? "null" : typeof err.userVal
+			  }]`;
 
-	return `${foreword}: ${err.keychain} | ${err.message}${receivedText}.`;
+	return `${foreword}: ${err.keychain ?? "null"} | ${err.message}${receivedText}.`;
 }
 
 export const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));

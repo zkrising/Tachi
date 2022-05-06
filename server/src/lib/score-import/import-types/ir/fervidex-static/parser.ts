@@ -1,12 +1,14 @@
-import { KtLogger } from "lib/logger/logger";
-import p, { PrudenceSchema } from "prudence";
-import { FormatPrError } from "utils/prudence";
+import { CreateFerStaticClassHandler } from "./class-handler";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturns } from "../../common/types";
-import { FerHeaders, SoftwareIDToVersion } from "../fervidex/parser";
-import { CreateFerStaticClassHandler } from "./class-handler";
-import { FervidexStaticContext, FervidexStaticScore } from "./types";
+import { SoftwareIDToVersion } from "../fervidex/parser";
+import p from "prudence";
+import { FormatPrError } from "utils/prudence";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { FerHeaders } from "../fervidex/parser";
+import type { FervidexStaticContext, FervidexStaticScore } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { PrudenceSchema } from "prudence";
 
 const PR_FervidexStatic: PrudenceSchema = {
 	ex_score: p.isPositiveInteger,
@@ -21,13 +23,13 @@ export function ParseFervidexStatic(
 ): ParserFunctionReturns<FervidexStaticScore, FervidexStaticContext> {
 	const version = SoftwareIDToVersion(headers.model, logger);
 
-	const staticScores = body?.scores;
+	const staticScores = body.scores;
 
 	if (!staticScores || typeof staticScores !== "object") {
 		throw new ScoreImportFatalError(400, `Invalid body.scores.`);
 	}
 
-	const scores: FervidexStaticScore[] = [];
+	const scores: Array<FervidexStaticScore> = [];
 
 	for (const songID in staticScores) {
 		// @ts-expect-error pls.
@@ -64,6 +66,7 @@ export function ParseFervidexStatic(
 
 			scores.push({
 				song_id,
+
 				// is asserted with the above check
 				chart: chart as FervidexStaticScore["chart"],
 				clear_type: score.clear_type,

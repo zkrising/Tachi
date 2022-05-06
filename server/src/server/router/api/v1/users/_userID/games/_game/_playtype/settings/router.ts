@@ -1,3 +1,4 @@
+import { RequireAuthedAsUser } from "../../../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
@@ -7,7 +8,6 @@ import { GetGamePTConfig } from "tachi-common";
 import { FormatPrError, optNull } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
-import { RequireAuthedAsUser } from "../../../../middleware";
 
 const logger = CreateLogCtx(__filename);
 
@@ -52,6 +52,7 @@ router.patch(
 			preferredSessionAlg: p.optional(p.nullable(p.isIn(gptConfig.sessionRatingAlgs))),
 			preferredProfileAlg: p.optional(p.nullable(p.isIn(gptConfig.profileRatingAlgs))),
 			defaultTable: "*?string",
+
 			// This is handled with game-specific schema validation below.
 			gameSpecific: optNull(gameSpecificSchema),
 			scoreBucket: optNull(p.isIn("grade", "lamp")),

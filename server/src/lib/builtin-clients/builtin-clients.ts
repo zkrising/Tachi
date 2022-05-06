@@ -4,14 +4,15 @@ import { DatabaseSchemas } from "external/mongo/schemas";
 import fjsh from "fast-json-stable-hash";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
-import { PrudenceError } from "prudence";
-import { TachiAPIClientDocument, UserAuthLevels } from "tachi-common";
+import { UserAuthLevels } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
+import type { PrudenceError } from "prudence";
+import type { TachiAPIClientDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
-type DefaultClients = Omit<TachiAPIClientDocument, "clientSecret" | "author">[];
+type DefaultClients = Array<Omit<TachiAPIClientDocument, "author" | "clientSecret">>;
 
 // Defines some Tachi API Clients that should come default with a Tachi
 // environment.

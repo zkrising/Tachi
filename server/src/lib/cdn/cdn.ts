@@ -1,11 +1,11 @@
-import { Response } from "express";
-import fs from "fs";
+import { DeleteFromS3, PushToS3 } from "./s3";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import mkdirp from "mkdirp";
+import fs from "fs";
 import path from "path";
 import { promisify } from "util";
-import { DeleteFromS3, PushToS3 } from "./s3";
+import type { Response } from "express";
 
 const readFilePromise = promisify(fs.readFile);
 const writeFilePromise = promisify(fs.writeFile);
@@ -50,13 +50,13 @@ export function CDNRetrieve(fileLoc: string) {
  * Redirects the response to the CDN server at the given path.
  */
 export function CDNRedirect(res: Response, fileLoc: string) {
-	if (fileLoc[0] !== "/") {
+	if (!fileLoc.startsWith("/")) {
 		throw new Error(`Invalid fileLoc - did not start with /.`);
 	}
 
 	logger.debug(`CDN Redirecting to ${ServerConfig.CDN_CONFIG.WEB_LOCATION}${fileLoc}.`);
 
-	return res.redirect(`${ServerConfig.CDN_CONFIG.WEB_LOCATION}${fileLoc}`);
+	res.redirect(`${ServerConfig.CDN_CONFIG.WEB_LOCATION}${fileLoc}`);
 }
 
 /**

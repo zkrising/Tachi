@@ -1,6 +1,6 @@
 import db from "external/mongo/db";
-import { Condition } from "mongodb";
-import { ScoreDocument, SessionDocument, SessionScoreInfo } from "tachi-common";
+import type { Condition } from "mongodb";
+import type { ScoreDocument, SessionDocument, SessionScoreInfo } from "tachi-common";
 
 /**
  * Returns all the score documents inside a session.

@@ -1,8 +1,8 @@
-import db from "external/mongo/db";
-import { integer, Game, Playtype, ShowcaseStatDetails } from "tachi-common";
-import CreateLogCtx from "lib/logger/logger";
 import { EvaluateShowcaseStat } from "./evaluator";
 import { GetRelatedStatDocuments } from "./get-related";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import type { integer, Game, Playtype, ShowcaseStatDetails } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

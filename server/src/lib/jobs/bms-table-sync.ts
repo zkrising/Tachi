@@ -1,9 +1,17 @@
+import db from "external/mongo/db";
 import { BMS_TABLES } from "lib/constants/bms-tables";
+
+/* eslint-disable no-await-in-loop */
+import CreateLogCtx from "lib/logger/logger";
+import fetch from "node-fetch";
+import { CreateFolderID } from "utils/folder";
+import { FormatBMSTables } from "utils/misc";
+import type { ChartDocument } from "tachi-common";
 
 // I have no confidence in half of these links surviving.
 // Eventually, some of these are going to disappear, and we'll have to find
 // something else. probably.
-const registeredTables: BMSTablesDataset[] = [
+const registeredTables: Array<BMSTablesDataset> = [
 	{
 		name: "Insane",
 		humanisedPrefix: "insane",
@@ -102,14 +110,6 @@ const registeredTables: BMSTablesDataset[] = [
 	},
 ];
 
-/* eslint-disable no-await-in-loop */
-import db from "external/mongo/db";
-import CreateLogCtx from "lib/logger/logger";
-import fetch from "node-fetch";
-import { ChartDocument } from "tachi-common";
-import { CreateFolderID } from "utils/folder";
-import { FormatBMSTables } from "utils/misc";
-
 // this seems to be all we care about
 interface TableJSONDoc {
 	md5: string;
@@ -119,7 +119,7 @@ interface TableJSONDoc {
 
 const logger = CreateLogCtx(__filename);
 
-async function ImportTableLevels(tableJSON: TableJSONDoc[], prefix: string) {
+async function ImportTableLevels(tableJSON: Array<TableJSONDoc>, prefix: string) {
 	let failures = 0;
 	let success = 0;
 	const total = tableJSON.length;
@@ -201,7 +201,7 @@ export async function UpdateTable(table: BMSTablesDataset) {
 	// instead of using res.json() we have to use res.text() here
 	// so we have proper logging when some of these bms urls
 	// spontaneously return HTML.
-	let tableJSON: BMSTableChart[] | undefined;
+	let tableJSON: Array<BMSTableChart> | undefined;
 
 	// We need to have a retry counter because some of the bms tables
 	// randomly return useless html for no reason.
@@ -209,6 +209,7 @@ export async function UpdateTable(table: BMSTablesDataset) {
 	// i hate bms.
 	while (!tableJSON) {
 		let text;
+
 		try {
 			text = await res.text();
 			tableJSON = JSON.parse(text);
@@ -220,6 +221,7 @@ export async function UpdateTable(table: BMSTablesDataset) {
 				logger.error(`SKIPPING TABLE!`);
 				return;
 			}
+
 			logger.info(`Retrying ${table.url}.`);
 		}
 	}
@@ -234,6 +236,7 @@ export async function UpdateTable(table: BMSTablesDataset) {
 			"data¬tableFolders": {
 				"~elemMatch": {
 					table: table.prefix,
+
 					// just incase some dude tries numbers
 					level: level.toString(),
 				},

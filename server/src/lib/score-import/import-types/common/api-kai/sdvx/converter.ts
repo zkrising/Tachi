@@ -1,8 +1,3 @@
-import p from "prudence";
-import { Lamps } from "tachi-common";
-import { FormatPrError } from "utils/prudence";
-import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
-import { FindSongOnID } from "utils/queries/songs";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
@@ -12,9 +7,14 @@ import {
 	GenericGetGradeAndPercent,
 	ParseDateFromString,
 } from "../../../../framework/common/score-utils";
-import { DryScore } from "../../../../framework/common/types";
-import { ConverterFunction } from "../../types";
-import { KaiContext, KaiSDVXScore } from "../types";
+import p from "prudence";
+import { FormatPrError } from "utils/prudence";
+import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
+import { FindSongOnID } from "utils/queries/songs";
+import type { DryScore } from "../../../../framework/common/types";
+import type { ConverterFunction } from "../../types";
+import type { KaiContext, KaiSDVXScore } from "../types";
+import type { Lamps } from "tachi-common";
 
 const PR_KaiSDVXScore = {
 	music_id: p.isPositiveInteger,

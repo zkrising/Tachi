@@ -1,13 +1,14 @@
 import connectRedis from "connect-redis";
-import express, { Express } from "express";
+import express from "express";
+import type { Express } from "express";
 import "express-async-errors";
 import expressSession from "express-session";
 import { RedisClient } from "external/redis/redis";
 import helmet from "helmet";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
-import { integer } from "tachi-common";
+import type { integer } from "tachi-common";
 import { RequestLoggerMiddleware } from "./middleware/request-logger";
 import mainRouter from "./router/router";
 
@@ -18,6 +19,7 @@ let store;
 if (Environment.nodeEnv !== "test") {
 	logger.info("Connecting ExpressSession to Redis.", { bootInfo: true });
 	const RedisStore = connectRedis(expressSession);
+
 	store = new RedisStore({
 		host: "localhost",
 		port: 6379,
@@ -70,6 +72,7 @@ if (Environment.nodeEnv !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
 			bootInfo: true,
 		});
 	}
+
 	app.use(helmet());
 }
 
@@ -102,7 +105,7 @@ app.use((req, res, next) => {
 		req.body = {};
 	}
 
-	return next();
+	next();
 });
 
 app.use(RequestLoggerMiddleware);
@@ -141,10 +144,11 @@ interface ExpressJSONErr extends SyntaxError {
 const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, next) => {
 	if (err instanceof SyntaxError) {
 		const expErr: ExpressJSONErr = err as ExpressJSONErr;
+
 		if (expErr.status === 400 && "body" in expErr) {
 			logger.info(`JSON Parsing Error?`, {
 				url: req.originalUrl,
-				userID: req[SYMBOL_TachiAPIAuth]?.userID,
+				userID: req[SYMBOL_TACHI_API_AUTH].userID,
 			});
 			return res.status(400).send({ success: false, description: err.message });
 		}

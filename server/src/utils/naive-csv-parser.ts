@@ -1,4 +1,4 @@
-import { KtLogger } from "lib/logger/logger";
+import type { KtLogger } from "lib/logger/logger";
 
 export class CSVParseError extends Error {
 	constructor(description: string) {
@@ -42,7 +42,7 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 			rawHeaders.push(curStr);
 			curStr = "";
 		} else {
-			curStr += char;
+			curStr = curStr + char;
 		}
 	}
 

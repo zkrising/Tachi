@@ -1,5 +1,3 @@
-import { Router } from "express";
-import { NormalRateLimitMiddleware } from "server/middleware/rate-limiter";
 import adminRouter from "./admin/router";
 import authRouter from "./auth/router";
 import clientsRouter from "./clients/router";
@@ -13,6 +11,8 @@ import searchRouter from "./search/router";
 import sessionsRouter from "./sessions/router";
 import statusRouter from "./status/router";
 import usersRouter from "./users/router";
+import { Router } from "express";
+import { NormalRateLimitMiddleware } from "server/middleware/rate-limiter";
 
 const router: Router = Router({ mergeParams: true });
 

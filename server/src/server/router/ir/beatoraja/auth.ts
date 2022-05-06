@@ -1,4 +1,4 @@
-import { RequestHandler } from "express";
+import type { RequestHandler } from "express";
 
 export const ValidateIRClientVersion: RequestHandler = (req, res, next) => {
 	const header = req.header("X-TachiIR-Version");
@@ -10,5 +10,5 @@ export const ValidateIRClientVersion: RequestHandler = (req, res, next) => {
 		});
 	}
 
-	return next();
+	next();
 };

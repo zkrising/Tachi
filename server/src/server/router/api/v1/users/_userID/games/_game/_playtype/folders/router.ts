@@ -1,10 +1,10 @@
+import folderIDRouter from "./_folderID/router";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SearchCollection } from "lib/search/search";
 import { GetGradeLampDistributionForFolders, GetRecentlyViewedFolders } from "utils/folder";
 import { IsString } from "utils/misc";
 import { GetUGPT } from "utils/req-tachi-data";
-import folderIDRouter from "./_folderID/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
 	const folders = await SearchCollection(
 		db.folders,
 		req.query.search,
-		{ game, playtype, inactive: !!req.query.inactive },
+		{ game, playtype, inactive: Boolean(req.query.inactive) },
 		20
 	);
 

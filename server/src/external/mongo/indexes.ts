@@ -1,11 +1,13 @@
 /* eslint-disable no-await-in-loop */
+import db, { monkDB } from "./db";
 import { ONE_DAY } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
-import { IndexOptions } from "mongodb";
-import monk, { IMonkManager } from "monk";
+import monk from "monk";
 import { Random20Hex } from "utils/misc";
-import db, { Databases, monkDB } from "./db";
+import type { Databases } from "./db";
+import type { IndexOptions } from "mongodb";
+import type { IMonkManager } from "monk";
 
 const logger = CreateLogCtx(__filename);
 
@@ -20,7 +22,7 @@ function index(fields: Record<string, unknown>, options?: IndexOptions) {
 
 const UNIQUE = { unique: true };
 
-const staticIndexes: Partial<Record<Databases, Index[]>> = {
+const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	scores: [
 		index({ scoreID: 1 }, UNIQUE),
 		index({ chartID: 1, userID: 1 }),
@@ -33,6 +35,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	],
 	sessions: [
 		index({ userID: 1, game: 1, playtype: 1, timeStarted: 1, timeEnded: 1 }),
+
 		// Optimises score modification, since sessions need to be repointed.
 		// also, just generally useful.
 		index({ "scoreInfo.scoreID": 1 }),
@@ -122,7 +125,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	notifications: [index({ notifID: 1 }, UNIQUE), index({ sentTo: 1, sentAt: 1 })],
 };
 
-const indexes: Partial<Record<Databases, Index[]>> = staticIndexes;
+const indexes: Partial<Record<Databases, Array<Index>>> = staticIndexes;
 
 for (const game of TachiConfig.GAMES) {
 	if (indexes[`charts-${game}` as Databases]) {
@@ -166,6 +169,7 @@ export async function SetIndexesWithDB(db: IMonkManager, reset: boolean) {
 			// this creates a collection, i cant find the createCollection
 			// call.
 			const tmp = Random20Hex();
+
 			await db.get(collection).insert({ __tmp: tmp });
 			await db.get(collection).remove({ __tmp: tmp });
 		}

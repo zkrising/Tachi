@@ -1,9 +1,9 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH, SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
 import { IsRequesterAdmin } from "utils/user";
+import type { RequestHandler } from "express";
 
 const logger = CreateLogCtx(__filename);
 
@@ -19,12 +19,12 @@ export const GetScoreFromParam: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { scoreDoc: score });
 
-	return next();
+	next();
 };
 
 export const RequireOwnershipOfScoreOrAdmin: RequestHandler = async (req, res, next) => {
-	const score = req[SYMBOL_TachiData]!.scoreDoc!;
-	const userID = req[SYMBOL_TachiAPIAuth].userID;
+	const score = req[SYMBOL_TACHI_DATA]!.scoreDoc!;
+	const userID = req[SYMBOL_TACHI_API_AUTH].userID;
 
 	if (userID === null) {
 		return res.status(401).json({
@@ -34,9 +34,10 @@ export const RequireOwnershipOfScoreOrAdmin: RequestHandler = async (req, res, n
 	}
 
 	if (score.userID !== userID) {
-		if (await IsRequesterAdmin(req[SYMBOL_TachiAPIAuth])) {
+		if (await IsRequesterAdmin(req[SYMBOL_TACHI_API_AUTH])) {
 			logger.info(`Admin ${userID} interacted with someone elses .`);
-			return next();
+			next();
+			return;
 		}
 
 		return res.status(403).json({
@@ -45,5 +46,5 @@ export const RequireOwnershipOfScoreOrAdmin: RequestHandler = async (req, res, n
 		});
 	}
 
-	return next();
+	next();
 };

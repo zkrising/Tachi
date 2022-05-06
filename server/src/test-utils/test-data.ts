@@ -1,6 +1,5 @@
 import dm from "deepmerge";
 import db from "external/mongo/db";
-import fs from "fs";
 import {
 	USC_DEFAULT_HOLD,
 	USC_DEFAULT_MISS,
@@ -8,13 +7,15 @@ import {
 	USC_DEFAULT_PERFECT,
 	USC_DEFAULT_SLAM,
 } from "lib/constants/usc-ir";
-import { DryScore } from "lib/score-import/framework/common/types";
-import { BarbatosScore } from "lib/score-import/import-types/ir/barbatos/types";
-import { KsHookSV6CScore } from "lib/score-import/import-types/ir/kshook-sv6c/types";
-import { LR2HookScore } from "lib/score-import/import-types/ir/lr2hook/types";
+import { ApplyNTimes, RFA } from "utils/misc";
+import fs from "fs";
 import path from "path";
-import { USCClientScore } from "server/router/ir/usc/_playtype/types";
-import {
+import type { DryScore } from "lib/score-import/framework/common/types";
+import type { BarbatosScore } from "lib/score-import/import-types/ir/barbatos/types";
+import type { KsHookSV6CScore } from "lib/score-import/import-types/ir/kshook-sv6c/types";
+import type { LR2HookScore } from "lib/score-import/import-types/ir/lr2hook/types";
+import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
+import type {
 	ChartDocument,
 	FolderDocument,
 	GoalDocument,
@@ -29,7 +30,6 @@ import {
 	SongDocument,
 	UGPTSettings,
 } from "tachi-common";
-import { ApplyNTimes, RFA } from "utils/misc";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
 
@@ -523,14 +523,14 @@ export const TestingIIDXSPMilestone: MilestoneDocument = {
 	],
 };
 
-export const IIDXSPMilestoneGoals: GoalDocument[] = [
+export const IIDXSPMilestoneGoals: Array<GoalDocument> = [
 	dm(HC511Goal, { goalID: "eg_goal_1" }) as GoalDocument,
 	dm(HC511Goal, { goalID: "eg_goal_2", criteria: { value: 2 } }),
 	dm(HC511Goal, { goalID: "eg_goal_3", criteria: { key: "scoreData.score", value: 300 } }),
 	dm(HC511Goal, { goalID: "eg_goal_4", criteria: { key: "scoreData.score", value: 1100 } }),
 ];
 
-export const IIDXSPMilestoneGoalSubs: GoalSubscriptionDocument[] = [
+export const IIDXSPMilestoneGoalSubs: Array<GoalSubscriptionDocument> = [
 	dm(HC511UserGoal, { goalID: "eg_goal_1" }) as GoalSubscriptionDocument,
 	dm(HC511UserGoal, { goalID: "eg_goal_2" }) as GoalSubscriptionDocument,
 	dm(HC511UserGoal, { goalID: "eg_goal_3" }) as GoalSubscriptionDocument,
@@ -550,7 +550,7 @@ export const TestingIIDXSPMilestoneSub: MilestoneSubscriptionDocument = {
 	wasInstantlyAchieved: false,
 };
 
-let KTDATA_CACHE: { songs: unknown[]; charts: unknown[] } | undefined;
+let KTDATA_CACHE: { songs: Array<unknown>; charts: Array<unknown> } | undefined;
 
 export async function LoadTachiIIDXData() {
 	let songs;

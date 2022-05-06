@@ -1,20 +1,3 @@
-import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
-import {
-	BatchManualScore,
-	ChartDocument,
-	Grades,
-	IDStrings,
-	ImportTypes,
-	SongDocument,
-} from "tachi-common";
-import {
-	FindBMSChartOnHash,
-	FindChartWithPTDF,
-	FindChartWithPTDFVersion,
-	FindDDRChartOnSongHash,
-} from "utils/queries/charts";
-import { FindSongOnID, FindSongOnTitleInsensitive } from "utils/queries/songs";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
@@ -25,9 +8,27 @@ import {
 	AssertStrAsDifficulty,
 	AssertStrAsPositiveInt,
 } from "../../../framework/common/string-asserts";
-import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction } from "../types";
-import { BatchManualContext } from "./types";
+import db from "external/mongo/db";
+import {
+	FindBMSChartOnHash,
+	FindChartWithPTDF,
+	FindChartWithPTDFVersion,
+	FindDDRChartOnSongHash,
+} from "utils/queries/charts";
+import { FindSongOnID, FindSongOnTitleInsensitive } from "utils/queries/songs";
+import type { DryScore } from "../../../framework/common/types";
+import type { ConverterFunction } from "../types";
+import type { BatchManualContext } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type {
+	BatchManualScore,
+	ChartDocument,
+	Grades,
+	IDStrings,
+	ImportTypes,
+	SongDocument,
+} from "tachi-common";
+
 /**
  * Creates a ConverterFn for the BatchManualScore format. This curries
  * the importType into the function, so the right failures can be
@@ -58,10 +59,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 			);
 		}
 
-		if (
-			data.percent > 100 &&
-			(chart as ChartDocument<"jubeat:Single">).data.isHardMode === false
-		) {
+		if (data.percent > 100 && !(chart as ChartDocument<"jubeat:Single">).data.isHardMode) {
 			throw new InvalidScoreFailure(`The percent field must be <= 100 for normal mode.`);
 		}
 
@@ -89,13 +87,13 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 	let service = context.service;
 
 	if (importType === "ir/direct-manual") {
-		service += " (DIRECT-MANUAL)";
+		service = `${service} (DIRECT-MANUAL)`;
 	} else if (importType === "file/batch-manual") {
-		service += " (BATCH-MANUAL)";
+		service = `${service} (BATCH-MANUAL)`;
 	}
 
 	const dryScore: DryScore = {
-		game: game,
+		game,
 		service,
 		comment: data.comment ?? null,
 		importType,
@@ -272,7 +270,9 @@ export async function ResolveMatchTypeToKTData(
 		}
 
 		let identifier: number | string = data.identifier;
+
 		// ddr uses weird strings as IDs instead of numbers
+
 		if (game !== "ddr") {
 			identifier = Number(data.identifier);
 		}
@@ -334,6 +334,7 @@ export async function ResolveMatchTypeToKTData(
 	logger.error(
 		`Invalid matchType ${data.matchType} ended up in conversion - should have been rejected by prudence?`
 	);
+
 	// really, this could be a larger error. - it's an internal failure because prudence should reject this.
 	throw new InvalidScoreFailure(`Invalid matchType ${data.matchType}.`);
 }

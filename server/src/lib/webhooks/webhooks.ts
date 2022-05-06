@@ -1,7 +1,7 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { WebhookEvents } from "tachi-common";
 import fetch from "utils/fetch";
+import type { WebhookEvents } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -12,7 +12,7 @@ export async function GetWebhookUrlInfo() {
 		{ projection: { webhookUri: 1, clientSecret: 1 } }
 	);
 
-	return urls as { webhookUri: string; clientSecret: string }[];
+	return urls as Array<{ webhookUri: string; clientSecret: string }>;
 }
 
 /**

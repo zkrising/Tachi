@@ -1,3 +1,5 @@
+import goalsRouter from "./goals/router";
+import milestonesRouter from "./milestones/router";
 import { Router } from "express";
 import {
 	GetRecentlyAchievedGoals,
@@ -6,8 +8,6 @@ import {
 	GetRecentlyInteractedMilestones,
 } from "utils/db";
 import { GetUGPT } from "utils/req-tachi-data";
-import goalsRouter from "./goals/router";
-import milestonesRouter from "./milestones/router";
 
 const router: Router = Router({ mergeParams: true });
 

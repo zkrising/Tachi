@@ -1,6 +1,8 @@
+import { ValidateKaiType } from "./middleware";
+import { RequireSelfRequestFromUser } from "../../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import {
 	GetKaiTypeClientCredentials,
@@ -9,12 +11,10 @@ import {
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
-import { URL } from "url";
 import fetch from "utils/fetch";
 import { GetKaiAuth } from "utils/queries/auth";
 import { FormatUserDoc } from "utils/user";
-import { RequireSelfRequestFromUser } from "../../../middleware";
-import { ValidateKaiType } from "./middleware";
+import { URL } from "url";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -31,8 +31,8 @@ router.use(RequireKamaitachi, RequireSelfRequestFromUser, ValidateKaiType);
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 router.get<any>("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
-	const kaiType = req.params.kaiType.toUpperCase() as "FLO" | "EAG" | "MIN";
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const kaiType = req.params.kaiType.toUpperCase() as "EAG" | "FLO" | "MIN";
 
 	const authDoc = await GetKaiAuth(user.id, kaiType);
 
@@ -40,7 +40,7 @@ router.get<any>("/", async (req, res) => {
 		success: true,
 		description: authDoc ? `User is authenticated.` : `User is unauthenticated.`,
 		body: {
-			authStatus: !!authDoc,
+			authStatus: Boolean(authDoc),
 		},
 	});
 });
@@ -68,8 +68,8 @@ router.post(
 	"/oauth2callback",
 	prValidate({ code: "string" }, {}, { allowExcessKeys: true }),
 	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
-		const kaiType = req.params.kaiType.toUpperCase() as "FLO" | "EAG" | "MIN";
+		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+		const kaiType = req.params.kaiType.toUpperCase() as "EAG" | "FLO" | "MIN";
 
 		const baseUrl = KaiTypeToBaseURL(kaiType);
 
@@ -121,6 +121,7 @@ router.post(
 		}
 
 		let json;
+
 		try {
 			json = await getTokenRes.json();
 		} catch (err) {

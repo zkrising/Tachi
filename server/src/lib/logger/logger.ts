@@ -1,9 +1,10 @@
 import { Transport as SeqTransport } from "@valuabletouch/winston-seq";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
-import { SeqLogLevel } from "seq-logging";
 import { EscapeStringRegexp } from "utils/misc";
-import winston, { format, LeveledLogMethod, Logger, transports } from "winston";
+import winston, { format, transports } from "winston";
+import type { SeqLogLevel } from "seq-logging";
+import type { LeveledLogMethod, Logger } from "winston";
 import "winston-daily-rotate-file";
 import DiscordWinstonTransport from "./discord-transport";
 
@@ -13,12 +14,14 @@ const level = process.env.LOG_LEVEL ?? ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
 
 const formatExcessProperties = (meta: Record<string, unknown>, limit = false) => {
 	let i = 0;
+
 	for (const key in meta) {
 		const val = meta[key];
 
 		if (val instanceof Error) {
 			meta[key] = { message: val.message, stack: val.stack };
 		}
+
 		i++;
 	}
 
@@ -41,7 +44,7 @@ function StrCap(string: string) {
 
 const formatExcessPropertiesNoStack = (
 	meta: Record<string, unknown>,
-	omitKeys: string[] = [],
+	omitKeys: Array<string> = [],
 	limit = false
 ) => {
 	const realMeta: Record<string, unknown> = {};
@@ -116,7 +119,7 @@ const consoleFormatRoute = format.combine(
 	})
 );
 
-const tports: winston.transport[] = [];
+const tports: Array<winston.transport> = [];
 
 if (ServerConfig.LOGGER_CONFIG.FILE) {
 	tports.push(
@@ -159,6 +162,7 @@ if (ServerConfig.LOGGER_CONFIG.SEQ_API_KEY && Environment.seqUrl) {
 		error: "Error",
 		warn: "Warning",
 		info: "Information",
+
 		// Note that Seq interprets these in reverse,
 		// however, it's easier to read this code if I just
 		// use the same levels, instead of the right ones.
@@ -196,12 +200,12 @@ export const rootLogger = winston.createLogger({
 	transports: tports,
 	defaultMeta: {
 		__ServerName: TachiConfig.NAME,
-		__Worker: !!process.env.IS_WORKER,
+		__Worker: Boolean(process.env.IS_WORKER),
 		__ReplicaID: Environment.replicaIdentity,
 	},
 }) as KtLogger;
 
-if (!!ServerConfig.LOGGER_CONFIG.SEQ_API_KEY !== !!Environment.seqUrl) {
+if (Boolean(ServerConfig.LOGGER_CONFIG.SEQ_API_KEY) !== Boolean(Environment.seqUrl)) {
 	rootLogger.warn(
 		`Only one of SEQ_API_KEY (conf.json5) and SEQ_URL (Environment) were set. Not sending logs to Seq, as both must be provided.`
 	);
@@ -224,9 +228,7 @@ function CreateLogCtx(filename: string, lg = rootLogger): KtLogger {
 		context: [replacedFilename],
 	}) as KtLogger;
 
-	logger.defaultMeta = Object.assign({}, logger.defaultMeta ?? {}, {
-		context: [replacedFilename],
-	});
+	logger.defaultMeta = { ...(logger.defaultMeta ?? {}), context: [replacedFilename] };
 	return logger;
 }
 
@@ -237,7 +239,7 @@ export function AppendLogCtx(context: string, lg: KtLogger): KtLogger {
 }
 
 export function ChangeRootLogLevel(
-	level: "crit" | "severe" | "error" | "warn" | "info" | "verbose" | "debug"
+	level: "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn"
 ) {
 	rootLogger.info(`Changing log level to ${level}.`);
 

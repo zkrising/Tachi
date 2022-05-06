@@ -1,9 +1,9 @@
-import { integer } from "tachi-common";
+import type { integer } from "tachi-common";
 
 export interface KaiIIDXScore {
 	music_id: integer;
-	play_style: "SINGLE" | "DOUBLE";
-	difficulty: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
+	play_style: "DOUBLE" | "SINGLE";
+	difficulty: "ANOTHER" | "BEGINNER" | "HYPER" | "LEGGENDARIA" | "NORMAL";
 	version_played: integer;
 	lamp: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 	ex_score: integer;
@@ -31,5 +31,5 @@ export interface KaiSDVXScore {
 }
 
 export interface KaiContext {
-	service: "FLO" | "EAG" | "MIN";
+	service: "EAG" | "FLO" | "MIN";
 }

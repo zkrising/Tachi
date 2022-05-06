@@ -1,14 +1,15 @@
+import { ValidateAndGetChart } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { SearchUsersRegExp } from "lib/search/search";
-import { FilterQuery } from "mongodb";
-import { FolderDocument, FormatChart } from "tachi-common";
+import { FormatChart } from "tachi-common";
 import { IsString } from "utils/misc";
 import { ParseStrPositiveNonZeroInt } from "utils/string-checks";
 import { GetUsersWithIDs } from "utils/user";
-import { ValidateAndGetChart } from "./middleware";
+import type { FilterQuery } from "mongodb";
+import type { FolderDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -22,8 +23,8 @@ router.use(ValidateAndGetChart);
  * @name GET /api/v1/games/:game/:playtype/charts/:chartID
  */
 router.get("/", async (req, res) => {
-	const chart = req[SYMBOL_TachiData]!.chartDoc!;
-	const game = req[SYMBOL_TachiData]!.game!;
+	const chart = req[SYMBOL_TACHI_DATA]!.chartDoc!;
+	const game = req[SYMBOL_TACHI_DATA]!.game!;
 
 	const song = await db.songs[game].findOne({
 		id: chart.songID,
@@ -58,7 +59,7 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/games/:game/:playtype/charts/:chartID/folders
  */
 router.get("/folders", async (req, res) => {
-	const chart = req[SYMBOL_TachiData]!.chartDoc!;
+	const chart = req[SYMBOL_TACHI_DATA]!.chartDoc!;
 
 	const folderIDs = await db["folder-chart-lookup"].find(
 		{
@@ -94,7 +95,7 @@ router.get("/folders", async (req, res) => {
  * @name GET /api/v1/games/:game/:playtype/charts/:chartID/playcount
  */
 router.get("/playcount", async (req, res) => {
-	const chart = req[SYMBOL_TachiData]!.chartDoc!;
+	const chart = req[SYMBOL_TACHI_DATA]!.chartDoc!;
 
 	const count = await db["personal-bests"].count({ chartID: chart.chartID });
 
@@ -116,7 +117,7 @@ router.get("/playcount", async (req, res) => {
  * @name GET /api/v1/games/:game/:playtype/charts/:chartID/pbs
  */
 router.get("/pbs", async (req, res) => {
-	const chart = req[SYMBOL_TachiData]!.chartDoc!;
+	const chart = req[SYMBOL_TACHI_DATA]!.chartDoc!;
 
 	const startRanking = ParseStrPositiveNonZeroInt(req.query.startRanking) ?? 1;
 
@@ -153,7 +154,7 @@ router.get("/pbs", async (req, res) => {
  * @name GET /api/v1/games/:game/:playtype/charts/:chartID/pbs/search
  */
 router.get("/pbs/search", async (req, res) => {
-	const chart = req[SYMBOL_TachiData]!.chartDoc!;
+	const chart = req[SYMBOL_TACHI_DATA]!.chartDoc!;
 
 	if (!IsString(req.query.search)) {
 		return res.status(400).json({

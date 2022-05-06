@@ -1,13 +1,13 @@
+import { GetScoreFromParam, RequireOwnershipOfScoreOrAdmin } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { DeleteScore } from "lib/score-mutation/delete-scores";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
+import { DeleteScore } from "lib/score-mutation/delete-scores";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { GetUserWithID } from "utils/user";
-import { GetScoreFromParam, RequireOwnershipOfScoreOrAdmin } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -23,7 +23,7 @@ router.use(GetScoreFromParam);
  * @name GET /api/v1/scores/:scoreID
  */
 router.get("/", async (req, res) => {
-	const score = req[SYMBOL_TachiData]!.scoreDoc!;
+	const score = req[SYMBOL_TACHI_DATA]!.scoreDoc!;
 
 	if (req.query.getRelated) {
 		const [user, chart, song] = await Promise.all([
@@ -34,9 +34,9 @@ router.get("/", async (req, res) => {
 
 		if (!user || !chart || !song) {
 			logger.error(
-				`Score ${
-					score.scoreID
-				} refers to non-existent data: [user,chart,song] [${!!user} ${!!chart} ${!!song}]`
+				`Score ${score.scoreID} refers to non-existent data: [user,chart,song] [${Boolean(
+					user
+				)} ${Boolean(chart)} ${Boolean(song)}]`
 			);
 
 			return res.status(500).json({
@@ -87,7 +87,7 @@ router.patch(
 		highlight: "*boolean",
 	}),
 	async (req, res) => {
-		const score = req[SYMBOL_TachiData]!.scoreDoc!;
+		const score = req[SYMBOL_TACHI_DATA]!.scoreDoc!;
 
 		const modifyOption: ModifiableScoreProps = {};
 
@@ -146,9 +146,9 @@ router.delete(
 	RequireOwnershipOfScoreOrAdmin,
 	RequirePermissions("delete_score"),
 	async (req, res) => {
-		const score = req[SYMBOL_TachiData]!.scoreDoc!;
+		const score = req[SYMBOL_TACHI_DATA]!.scoreDoc!;
 
-		await DeleteScore(score, !!req.body.blacklist);
+		await DeleteScore(score, Boolean(req.body.blacklist));
 
 		return res.status(200).json({
 			success: true,

@@ -1,12 +1,13 @@
+import { RequireAuthedAsUser } from "../../../../middleware";
 import { Router } from "express";
 import { SetRivalsFailReasons } from "lib/constants/err-codes";
 import { GetChallengerUsers, GetRivalUsers, SetRivals } from "lib/rivals/rivals";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
-import { FormatGame, integer } from "tachi-common";
+import { FormatGame } from "tachi-common";
 import { GetUGPT } from "utils/req-tachi-data";
-import { RequireAuthedAsUser } from "../../../../middleware";
+import type { integer } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -42,7 +43,7 @@ router.put(
 		rivalIDs: [p.isPositiveNonZeroInteger],
 	}),
 	async (req, res) => {
-		const rivalIDs: integer[] = req.body.rivalIDs;
+		const rivalIDs: Array<integer> = req.body.rivalIDs;
 		const { user, game, playtype } = GetUGPT(req);
 
 		const result = await SetRivals(user.id, game, playtype, rivalIDs);

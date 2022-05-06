@@ -1,8 +1,8 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { FilterQuery } from "mongodb";
-import {
-	FormatChart,
+import { FormatChart } from "tachi-common";
+import type { FilterQuery } from "mongodb";
+import type {
 	Game,
 	GoalDocument,
 	GoalSubscriptionDocument,
@@ -13,6 +13,7 @@ import {
 	PBScoreDocument,
 	ScoreDocument,
 } from "tachi-common";
+
 const logger = CreateLogCtx(__filename);
 
 export async function GetNextCounterValue(counterName: string): Promise<integer> {
@@ -66,7 +67,7 @@ export async function DecrementCounterValue(counterName: string): Promise<intege
 }
 
 export async function GetRelevantSongsAndCharts(
-	scores: (ScoreDocument | PBScoreDocument)[],
+	scores: Array<PBScoreDocument | ScoreDocument>,
 	game: Game
 ) {
 	const [songs, charts] = await Promise.all([
@@ -177,13 +178,11 @@ export async function GetRecentlyAchievedGoals(
 	baseQuery: FilterQuery<GoalSubscriptionDocument>,
 	limit = 100
 ) {
-	const query = Object.assign(
-		{
-			wasInstantlyAchieved: false,
-			achieved: true,
-		},
-		baseQuery
-	);
+	const query = {
+		wasInstantlyAchieved: false,
+		achieved: true,
+		...baseQuery,
+	};
 
 	const goalSubs = await db["goal-subs"].find(query, {
 		sort: {
@@ -218,14 +217,12 @@ export async function GetRecentlyInteractedGoals(
 	baseQuery: FilterQuery<GoalSubscriptionDocument>,
 	limit = 100
 ) {
-	const query = Object.assign(
-		{
-			wasInstantlyAchieved: false,
-			achieved: false,
-			lastInteraction: { $ne: null },
-		},
-		baseQuery
-	);
+	const query = {
+		wasInstantlyAchieved: false,
+		achieved: false,
+		lastInteraction: { $ne: null },
+		...baseQuery,
+	};
 
 	const goalSubs = await db["goal-subs"].find(query, {
 		sort: {
@@ -260,13 +257,11 @@ export async function GetRecentlyAchievedMilestones(
 	baseQuery: FilterQuery<MilestoneSubscriptionDocument>,
 	limit = 100
 ) {
-	const query = Object.assign(
-		{
-			wasInstantlyAchieved: false,
-			achieved: true,
-		},
-		baseQuery
-	);
+	const query = {
+		wasInstantlyAchieved: false,
+		achieved: true,
+		...baseQuery,
+	};
 
 	const milestoneSubs = await db["milestone-subs"].find(query, {
 		sort: {
@@ -301,14 +296,12 @@ export async function GetRecentlyInteractedMilestones(
 	baseQuery: FilterQuery<MilestoneSubscriptionDocument>,
 	limit = 100
 ) {
-	const query = Object.assign(
-		{
-			lastInteraction: { $ne: null },
-			achieved: false,
-			wasInstantlyAchieved: false,
-		},
-		baseQuery
-	);
+	const query = {
+		lastInteraction: { $ne: null },
+		achieved: false,
+		wasInstantlyAchieved: false,
+		...baseQuery,
+	};
 
 	const milestoneSubs = await db["milestone-subs"].find(query, {
 		sort: {
@@ -335,8 +328,8 @@ export async function GetRecentlyInteractedMilestones(
 export async function GetMostSubscribedGoals(
 	query: FilterQuery<GoalSubscriptionDocument>,
 	limit = 100
-): Promise<(GoalDocument & { __subscriptions: integer })[]> {
-	const mostSubscribedGoals = (await db["goal-subs"].aggregate([
+): Promise<Array<GoalDocument & { __subscriptions: integer }>> {
+	const mostSubscribedGoals = await db["goal-subs"].aggregate([
 		{
 			$match: query,
 		},
@@ -370,7 +363,7 @@ export async function GetMostSubscribedGoals(
 		{
 			$unset: "goal._id",
 		},
-	])) as { goal: GoalDocument; subscriptions: integer }[];
+	]);
 
 	return mostSubscribedGoals.map((e) => ({
 		__subscriptions: e.subscriptions,
@@ -381,8 +374,8 @@ export async function GetMostSubscribedGoals(
 export async function GetMostSubscribedMilestones(
 	query: FilterQuery<MilestoneSubscriptionDocument>,
 	limit = 100
-): Promise<(MilestoneDocument & { __subscriptions: integer })[]> {
-	const mostSubscribedMilesones = (await db["milestone-subs"].aggregate([
+): Promise<Array<MilestoneDocument & { __subscriptions: integer }>> {
+	const mostSubscribedMilesones = await db["milestone-subs"].aggregate([
 		{
 			$match: query,
 		},
@@ -416,7 +409,7 @@ export async function GetMostSubscribedMilestones(
 		{
 			$unset: "milestone._id",
 		},
-	])) as { milestone: MilestoneDocument; subscriptions: integer }[];
+	]);
 
 	return mostSubscribedMilesones.map((e) => ({
 		__subscriptions: e.subscriptions,

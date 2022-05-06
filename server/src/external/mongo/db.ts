@@ -1,9 +1,11 @@
 import { ONE_MINUTE } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
-import { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
 import { Environment, ServerConfig } from "lib/setup/config";
-import monk, { TMiddleware } from "monk";
-import {
+import monk from "monk";
+import { GetMillisecondsSince } from "utils/misc";
+import type { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
+import type { TMiddleware } from "monk";
+import type {
 	APITokenDocument,
 	ARCSavedProfileDocument,
 	BMSCourseDocument,
@@ -40,8 +42,8 @@ import {
 	UserGameStatsSnapshot,
 	UserSettings,
 } from "tachi-common";
-import { GetMillisecondsSince } from "utils/misc";
-import { MigrationDocument, PrivateUserInfoDocument } from "utils/types";
+import type { MigrationDocument, PrivateUserInfoDocument } from "utils/types";
+
 const logger = CreateLogCtx(__filename);
 
 let dbName = ServerConfig.MONGO_DATABASE_NAME;
@@ -197,8 +199,8 @@ const db = {
 	notifications: monkDB.get<NotificationDocument>("notifications"),
 };
 
-export type StaticDatabases = Exclude<keyof typeof db, "songs" | "charts">;
+export type StaticDatabases = Exclude<keyof typeof db, "charts" | "songs">;
 
-export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;
+export type Databases = StaticDatabases | `charts-${Game}` | `songs-${Game}`;
 
 export default db;

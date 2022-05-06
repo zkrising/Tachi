@@ -1,6 +1,6 @@
 import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
-import {
+import type { KtLogger } from "lib/logger/logger";
+import type {
 	Game,
 	IDStrings,
 	integer,
@@ -16,9 +16,9 @@ type CustomCalcNames = ScoreCalculatedDataLookup[IDStrings];
 function LazySumAll(key: CustomCalcNames) {
 	return async (game: Game, playtype: Playtype, userID: integer) => {
 		const sc = await db["personal-bests"].find({
-			game: game,
-			playtype: playtype,
-			userID: userID,
+			game,
+			playtype,
+			userID,
 			isPrimary: true,
 			[`calculatedData.${key}`]: { $type: "number" },
 		});
@@ -53,9 +53,9 @@ function LazyCalcN(
 	return async (game: Game, playtype: Playtype, userID: integer) => {
 		const sc = await db["personal-bests"].find(
 			{
-				game: game,
-				playtype: playtype,
-				userID: userID,
+				game,
+				playtype,
+				userID,
 				isPrimary: true,
 				[`calculatedData.${key}`]: { $type: "number" },
 			},
@@ -291,20 +291,21 @@ async function CalculateGitadoraSkill(
 	}
 
 	let skill = 0;
-	skill += bestHotScores.reduce((a, e) => a + e.calculatedData.skill!, 0);
-	skill += bestScores.reduce((a, e) => a + e.calculatedData.skill!, 0);
+
+	skill = skill + bestHotScores.reduce((a, e) => a + e.calculatedData.skill!, 0);
+	skill = skill + bestScores.reduce((a, e) => a + e.calculatedData.skill!, 0);
 
 	return skill;
 }
 
 export async function GetBestRatingOnSongs(
-	songIDs: integer[],
+	songIDs: Array<integer>,
 	userID: integer,
 	game: Game,
 	playtype: Playtype,
 	ratingProp: "skill",
 	limit = 25
-): Promise<PBScoreDocument[]> {
+): Promise<Array<PBScoreDocument>> {
 	const r = await db["personal-bests"].aggregate([
 		{
 			$match: {
@@ -373,8 +374,9 @@ async function CalculateJubility(
 	]);
 
 	let skill = 0;
-	skill += bestHotScores.reduce((a, e) => a + e.calculatedData.jubility!, 0);
-	skill += bestScores.reduce((a, e) => a + e.calculatedData.jubility!, 0);
+
+	skill = skill + bestHotScores.reduce((a, e) => a + e.calculatedData.jubility!, 0);
+	skill = skill + bestScores.reduce((a, e) => a + e.calculatedData.jubility!, 0);
 
 	return skill;
 }

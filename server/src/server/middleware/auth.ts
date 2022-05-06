@@ -1,10 +1,11 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
-import { APIPermissions, APITokenDocument, UserAuthLevels, ALL_PERMISSIONS } from "tachi-common";
+import { UserAuthLevels, ALL_PERMISSIONS } from "tachi-common";
 import { SplitAuthorizationHeader } from "utils/misc";
+import type { RequestHandler } from "express";
+import type { APIPermissions, APITokenDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -34,23 +35,25 @@ export const SetRequestPermissions: RequestHandler = CreateSetRequestPermissions
  */
 function CreateSetRequestPermissions(errorKeyName: string): RequestHandler {
 	return async (req, res, next) => {
-		if (req.session?.tachi?.user.id) {
-			req[SYMBOL_TachiAPIAuth] = {
+		if (req.session.tachi?.user.id) {
+			req[SYMBOL_TACHI_API_AUTH] = {
 				userID: req.session.tachi.user.id,
 				identifier: `Session-Key ${req.session.tachi.user.id}`,
 				token: null,
 				permissions: ALL_PERMISSIONS,
 				fromAPIClient: null,
 			};
-			return next();
+			next();
+			return;
 		}
 
 		const header = req.header("Authorization");
 
 		// if no auth was attempted, default to the guest token.
 		if (!header) {
-			req[SYMBOL_TachiAPIAuth] = GuestToken;
-			return next();
+			req[SYMBOL_TACHI_API_AUTH] = GuestToken;
+			next();
+			return;
 		}
 
 		const { token, type } = SplitAuthorizationHeader(header);
@@ -81,7 +84,7 @@ function CreateSetRequestPermissions(errorKeyName: string): RequestHandler {
 			});
 		}
 
-		req[SYMBOL_TachiAPIAuth] = {
+		req[SYMBOL_TACHI_API_AUTH] = {
 			userID: apiTokenData.userID,
 			token,
 			permissions: apiTokenData.permissions,
@@ -89,7 +92,7 @@ function CreateSetRequestPermissions(errorKeyName: string): RequestHandler {
 			fromAPIClient: apiTokenData.fromAPIClient,
 		};
 
-		return next();
+		next();
 	};
 }
 
@@ -108,9 +111,9 @@ export const SetFervidexStyleRequestPermissions: RequestHandler =
  * @returns A middleware function.
  */
 export const RequirePermissions =
-	(...perms: APIPermissions[]): RequestHandler =>
+	(...perms: Array<APIPermissions>): RequestHandler =>
 	(req, res, next) => {
-		if (!req[SYMBOL_TachiAPIAuth]) {
+		if (!req[SYMBOL_TACHI_API_AUTH]) {
 			logger.error(
 				`RequirePermissions middleware was hit without any TachiAPIAuthentication?`
 			);
@@ -121,7 +124,7 @@ export const RequirePermissions =
 			});
 		}
 
-		if (!req[SYMBOL_TachiAPIAuth].userID) {
+		if (!req[SYMBOL_TACHI_API_AUTH].userID) {
 			return res.status(401).json({
 				success: false,
 				description: `You are not authorised to perform this action.`,
@@ -129,8 +132,9 @@ export const RequirePermissions =
 		}
 
 		const missingPerms = [];
+
 		for (const perm of perms) {
-			if (!req[SYMBOL_TachiAPIAuth]!.permissions[perm]) {
+			if (!req[SYMBOL_TACHI_API_AUTH]!.permissions[perm]) {
 				missingPerms.push(perm);
 			}
 		}
@@ -138,7 +142,7 @@ export const RequirePermissions =
 		if (missingPerms.length > 0) {
 			logger.info(
 				`IP ${req.ip} - userID ${
-					req[SYMBOL_TachiAPIAuth].userID
+					req[SYMBOL_TACHI_API_AUTH].userID
 				} had insufficient permissions for request ${req.method} ${
 					req.url
 				}. ${missingPerms.join(", ")}`
@@ -151,13 +155,13 @@ export const RequirePermissions =
 			});
 		}
 
-		return next();
+		next();
 	};
 
 const CreateRequireNotGuest =
 	(errorKeyName: string): RequestHandler =>
 	(req, res, next) => {
-		if (!req[SYMBOL_TachiAPIAuth]) {
+		if (!req[SYMBOL_TACHI_API_AUTH]) {
 			logger.error(`RequirePermissions middleware was hit without any TachiAPIData?`);
 			return res.status(500).json({
 				success: false,
@@ -165,7 +169,7 @@ const CreateRequireNotGuest =
 			});
 		}
 
-		if (req[SYMBOL_TachiAPIAuth].userID === null) {
+		if (req[SYMBOL_TACHI_API_AUTH].userID === null) {
 			logger.info(`Request to ${req.method} ${req.url} was attempted by guest.`);
 			return res.status(401).json({
 				success: false,
@@ -173,7 +177,7 @@ const CreateRequireNotGuest =
 			});
 		}
 
-		return next();
+		next();
 	};
 
 export const RequireNotGuest: RequestHandler = CreateRequireNotGuest("description");
@@ -181,9 +185,9 @@ export const RequireNotGuest: RequestHandler = CreateRequireNotGuest("descriptio
 export const FervidexStyleRequireNotGuest: RequestHandler = CreateRequireNotGuest("error");
 
 export const RejectIfBanned: RequestHandler = async (req, res, next) => {
-	if (req[SYMBOL_TachiAPIAuth].userID) {
+	if (req[SYMBOL_TACHI_API_AUTH].userID) {
 		const isBanned = await db.users.findOne({
-			id: req[SYMBOL_TachiAPIAuth].userID!,
+			id: req[SYMBOL_TACHI_API_AUTH].userID!,
 			authLevel: UserAuthLevels.BANNED,
 		});
 

@@ -4,6 +4,7 @@ import { MainHTMLWrapper } from "lib/email/formats";
 import CreateLogCtx from "lib/logger/logger";
 
 const program = new Command();
+
 program.option("-e, --email <Email to send to>");
 
 const logger = CreateLogCtx(__filename);

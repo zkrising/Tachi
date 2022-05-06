@@ -1,11 +1,11 @@
 import deepmerge from "deepmerge";
-import { ICollection } from "monk";
-import { ChartDocument, IDStrings } from "tachi-common";
 import { Random20Hex } from "utils/misc";
+import type { ICollection } from "monk";
+import type { ChartDocument, IDStrings } from "tachi-common";
 
 export async function QuickInsert<I extends IDStrings>(
 	base: Omit<ChartDocument<I>, "chartID">,
-	content: Partial<ChartDocument<I>>[],
+	content: Array<Partial<ChartDocument<I>>>,
 	coll: ICollection
 ) {
 	const docs = [];

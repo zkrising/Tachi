@@ -1,16 +1,3 @@
-import { Router } from "express";
-import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { GetGamePTConfig, integer, PBScoreDocument, UserGameStatsSnapshot } from "tachi-common";
-import { IsString } from "utils/misc";
-import { GetUGPT } from "utils/req-tachi-data";
-import { CheckStrProfileAlg } from "utils/string-checks";
-import {
-	GetAllRankings,
-	GetUGPTPlaycount,
-	GetUsersRankingAndOutOf,
-	GetUsersWithIDs,
-} from "utils/user";
 import foldersRouter from "./folders/router";
 import { CheckUserPlayedGamePlaytype } from "./middleware";
 import pbsRouter from "./pbs/router";
@@ -21,6 +8,20 @@ import settingsRouter from "./settings/router";
 import showcaseRouter from "./showcase/router";
 import tablesRouter from "./tables/router";
 import targetsRouter from "./targets/router";
+import { Router } from "express";
+import db from "external/mongo/db";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
+import { GetGamePTConfig } from "tachi-common";
+import { IsString } from "utils/misc";
+import { GetUGPT } from "utils/req-tachi-data";
+import { CheckStrProfileAlg } from "utils/string-checks";
+import {
+	GetAllRankings,
+	GetUGPTPlaycount,
+	GetUsersRankingAndOutOf,
+	GetUsersWithIDs,
+} from "utils/user";
+import type { integer, PBScoreDocument, UserGameStatsSnapshot } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -33,7 +34,7 @@ router.use(CheckUserPlayedGamePlaytype);
 router.get("/", async (req, res) => {
 	const { game, playtype, user } = GetUGPT(req);
 
-	const stats = req[SYMBOL_TachiData]!.requestedUserGameStats!;
+	const stats = req[SYMBOL_TACHI_DATA]!.requestedUserGameStats!;
 
 	const [totalScores, firstScore, mostRecentScore, rankingData] = await Promise.all([
 		db.scores.count({
@@ -90,7 +91,7 @@ router.get("/", async (req, res) => {
 router.get("/history", async (req, res) => {
 	const { game, playtype, user } = GetUGPT(req);
 
-	const stats = req[SYMBOL_TachiData]!.requestedUserGameStats!;
+	const stats = req[SYMBOL_TACHI_DATA]!.requestedUserGameStats!;
 
 	const snapshots = (await db["game-stats-snapshots"].find(
 		{
@@ -102,6 +103,7 @@ router.get("/history", async (req, res) => {
 			sort: {
 				timestamp: -1,
 			},
+
 			// avoid sending so much garbage.
 			projection: {
 				userID: 0,
@@ -110,9 +112,9 @@ router.get("/history", async (req, res) => {
 			},
 			limit: 30,
 		}
-	)) as Omit<UserGameStatsSnapshot, "userID" | "game" | "playtype">[];
+	)) as Array<Omit<UserGameStatsSnapshot, "game" | "playtype" | "userID">>;
 
-	const currentSnapshot: Omit<UserGameStatsSnapshot, "userID" | "game" | "playtype"> = {
+	const currentSnapshot: Omit<UserGameStatsSnapshot, "game" | "playtype" | "userID"> = {
 		classes: stats.classes,
 		ratings: stats.ratings,
 		timestamp: Date.now(), // lazy, should probably be this midnight
@@ -135,7 +137,7 @@ router.get("/history", async (req, res) => {
 router.get("/most-played", async (req, res) => {
 	const { game, playtype, user } = GetUGPT(req);
 
-	const mostPlayed: { playcount: integer; songID: integer; _id: string }[] =
+	const mostPlayed: Array<{ playcount: integer; songID: integer; _id: string }> =
 		await db.scores.aggregate([
 			{
 				$match: {
@@ -147,6 +149,7 @@ router.get("/most-played", async (req, res) => {
 			{
 				$group: {
 					_id: "$chartID",
+
 					// micro opt
 					songID: { $first: "$songID" },
 					playcount: { $sum: 1 },
@@ -178,7 +181,7 @@ router.get("/most-played", async (req, res) => {
 	}
 
 	// @ts-expect-error monkeypatching
-	const playcountPBs = pbs as (PBScoreDocument & { __playcount: integer })[];
+	const playcountPBs = pbs as Array<PBScoreDocument & { __playcount: integer }>;
 
 	// monkey patch __playcount on
 	for (const pb of playcountPBs) {
@@ -211,6 +214,7 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	let alg = gptConfig.defaultProfileRatingAlg;
+
 	if (IsString(req.query.alg)) {
 		const temp = CheckStrProfileAlg(game, playtype, req.query.alg);
 

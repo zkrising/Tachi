@@ -1,36 +1,38 @@
 /* eslint-disable no-await-in-loop */
-import { RequestHandler, Router } from "express";
-import p from "prudence";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
-import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger";
-import prValidate from "server/middleware/prudence-validate";
-import { GetUserWithID } from "utils/user";
-import { ONE_MINUTE } from "lib/constants/time";
-import { ServerConfig, TachiConfig } from "lib/setup/config";
-import { Game, UserAuthLevels } from "tachi-common";
+import { Router } from "express";
 import db from "external/mongo/db";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
+import { ONE_MINUTE } from "lib/constants/time";
+import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger";
 import { DeleteMultipleScores, DeleteScore } from "lib/score-mutation/delete-scores";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
+import p from "prudence";
+import prValidate from "server/middleware/prudence-validate";
+import { UserAuthLevels } from "tachi-common";
 import { RecalcAllScores, UpdateAllPBs } from "utils/calculations/recalc-scores";
-import DestroyUserGamePlaytypeData from "utils/reset-state/destroy-ugpt";
 import { RecalcSessions } from "utils/calculations/recalc-sessions";
+import DestroyUserGamePlaytypeData from "utils/reset-state/destroy-ugpt";
+import { GetUserWithID } from "utils/user";
+import type { RequestHandler } from "express";
+import type { Game } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 
 const RequireAdminLevel: RequestHandler = async (req, res, next) => {
-	if (!req[SYMBOL_TachiAPIAuth].userID) {
+	if (!req[SYMBOL_TACHI_API_AUTH].userID) {
 		return res.status(401).json({
 			success: false,
 			description: `You are not authenticated.`,
 		});
 	}
 
-	const userDoc = await GetUserWithID(req[SYMBOL_TachiAPIAuth].userID!);
+	const userDoc = await GetUserWithID(req[SYMBOL_TACHI_API_AUTH].userID!);
 
 	if (!userDoc) {
 		logger.severe(
-			`Api Token ${req[SYMBOL_TachiAPIAuth].token} is assigned to ${req[SYMBOL_TachiAPIAuth].userID}, who does not exist?`
+			`Api Token ${req[SYMBOL_TACHI_API_AUTH].token} is assigned to ${req[SYMBOL_TACHI_API_AUTH].userID}, who does not exist?`
 		);
 
 		return res.status(500).json({
@@ -46,7 +48,7 @@ const RequireAdminLevel: RequestHandler = async (req, res, next) => {
 		});
 	}
 
-	return next();
+	next();
 };
 
 const LOG_LEVEL = ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
@@ -74,6 +76,7 @@ router.post(
 	}),
 	(req, res) => {
 		const logLevel = GetLogLevel();
+
 		ChangeRootLogLevel(req.body.logLevel);
 
 		const duration = req.body.duration ?? 60;
@@ -240,6 +243,7 @@ router.post(
  */
 router.post("/recalc", async (req, res) => {
 	const filter = req.body ?? {};
+
 	await RecalcAllScores(filter);
 
 	const scoreIDs = (

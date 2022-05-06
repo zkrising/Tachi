@@ -1,11 +1,11 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { IsValidGame, IsValidPlaytype } from "utils/misc";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
+import type { RequestHandler } from "express";
 
 export const CheckUserPlayedGamePlaytype: RequestHandler = async (req, res, next) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	if (!IsValidGame(req.params.game)) {
 		return res.status(400).json({
@@ -40,5 +40,5 @@ export const CheckUserPlayedGamePlaytype: RequestHandler = async (req, res, next
 		playtype: req.params.playtype,
 	});
 
-	return next();
+	next();
 };

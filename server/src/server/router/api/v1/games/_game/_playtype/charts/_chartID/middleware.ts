@@ -1,6 +1,6 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
 import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
+import type { RequestHandler } from "express";
 
 export const ValidateAndGetChart: RequestHandler = async (req, res, next) => {
 	const { game, playtype } = GetGPT(req);
@@ -21,5 +21,5 @@ export const ValidateAndGetChart: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { chartDoc: chart });
 
-	return next();
+	next();
 };

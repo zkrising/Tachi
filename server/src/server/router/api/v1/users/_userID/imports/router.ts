@@ -1,6 +1,6 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import prValidate from "server/middleware/prudence-validate";
 
 const router: Router = Router({ mergeParams: true });
@@ -17,7 +17,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users/:userID/imports
  */
 router.get("/", prValidate({ timeFinished: "*string" }), async (req, res) => {
-	const userID = req[SYMBOL_TachiData]!.requestedUser!.id;
+	const userID = req[SYMBOL_TACHI_DATA]!.requestedUser!.id;
 
 	let timeFinished = Infinity;
 
@@ -60,7 +60,7 @@ router.get("/", prValidate({ timeFinished: "*string" }), async (req, res) => {
  * @name GET /api/v1/users/:userID/imports/with-user-intent
  */
 router.get("/with-user-intent", async (req, res) => {
-	const userID = req[SYMBOL_TachiData]!.requestedUser!.id;
+	const userID = req[SYMBOL_TACHI_DATA]!.requestedUser!.id;
 
 	const importsWithIntent = await db.imports.find({
 		userID,

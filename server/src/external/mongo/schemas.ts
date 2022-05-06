@@ -1,7 +1,9 @@
 import { TachiConfig } from "lib/setup/config";
-import p, { PrudenceSchema } from "prudence";
-import { SCHEMAS, SchemaValidatorFunction } from "tachi-common/js/lib/schemas";
-import { Databases } from "./db";
+import p from "prudence";
+import { SCHEMAS } from "tachi-common/js/lib/schemas";
+import type { Databases } from "./db";
+import type { PrudenceSchema } from "prudence";
+import type { SchemaValidatorFunction } from "tachi-common/js/lib/schemas";
 
 // The idea of this file is to export a function for every database
 // that will validate that collection.
@@ -67,6 +69,7 @@ export const DatabaseSchemas: Record<Databases, SchemaValidatorFunction> = {
 		orphanID: "string",
 		timeInserted: p.isPositive,
 		errMsg: "?string",
+
 		// @todo Type these properly? This will take a lot of effort, as it will require
 		// formal types for all parser data:context duos.
 		data: p.any,

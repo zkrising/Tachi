@@ -1,13 +1,15 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
+import type { RequestHandler } from "express";
 
 export const UpdateLastSeen: RequestHandler = (req, res, next) => {
 	if (!req.session.tachi?.user.id) {
-		return next();
+		next();
+		return;
 	}
 
 	if (req.session.tachi.settings.preferences.invisible) {
-		return next();
+		next();
+		return;
 	}
 
 	// fire, but we have no reason to await it.
@@ -20,5 +22,5 @@ export const UpdateLastSeen: RequestHandler = (req, res, next) => {
 		}
 	);
 
-	return next();
+	next();
 };

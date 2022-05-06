@@ -1,12 +1,12 @@
-import { KtLogger } from "lib/logger/logger";
+import { CreateArcIIDXClassHandler } from "./class-handler";
+import { TraverseKaiAPI } from "../../common/api-kai/traverse-api";
 import { ServerConfig } from "lib/setup/config";
-import { integer } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { GetArcAuthGuaranteed } from "utils/queries/auth";
-import { EmptyObject } from "utils/types";
-import { TraverseKaiAPI } from "../../common/api-kai/traverse-api";
-import { ParserFunctionReturns } from "../../common/types";
-import { CreateArcIIDXClassHandler } from "./class-handler";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { KtLogger } from "lib/logger/logger";
+import type { integer } from "tachi-common";
+import type { EmptyObject } from "utils/types";
 
 export async function ParseArcIIDX(
 	userID: integer,
@@ -24,6 +24,7 @@ export async function ParseArcIIDX(
 	return {
 		iterable: TraverseKaiAPI(
 			ServerConfig.ARC_API_URL,
+
 			// BISTROVER
 			// The trailing slash is critical! ARC only allows /? queries.
 			`/api/v1/iidx/28/player_bests/?profile_id=${authDoc.accountID}`,

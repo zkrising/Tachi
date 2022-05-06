@@ -1,15 +1,15 @@
-import { Router } from "express";
-import db from "external/mongo/db";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
-import CreateLogCtx from "lib/logger/logger";
-import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
-import { BeatorajaChart } from "lib/score-import/import-types/ir/beatoraja/types";
-import { ServerConfig } from "lib/setup/config";
-import { RequireNotGuest } from "server/middleware/auth";
-import { integer } from "tachi-common";
-import { UpdateClassIfGreater } from "utils/class";
 import { ValidateIRClientVersion } from "./auth";
 import chartsRouter from "./charts/_chartSHA256/router";
+import { Router } from "express";
+import db from "external/mongo/db";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
+import CreateLogCtx from "lib/logger/logger";
+import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
+import { ServerConfig } from "lib/setup/config";
+import { RequireNotGuest } from "server/middleware/auth";
+import { UpdateClassIfGreater } from "utils/class";
+import type { BeatorajaChart } from "lib/score-import/import-types/ir/beatoraja/types";
+import type { integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -23,7 +23,7 @@ router.use(ValidateIRClientVersion);
  * @name POST /ir/beatoraja/submit-score
  */
 router.post("/submit-score", RequireNotGuest, async (req, res) => {
-	const userID = req[SYMBOL_TachiAPIAuth]!.userID!;
+	const userID = req[SYMBOL_TACHI_API_AUTH]!.userID!;
 
 	const importRes = await ExpressWrappedScoreImportMain(userID, false, "ir/beatoraja", [
 		req.body,
@@ -37,7 +37,7 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 		const errMsg = importRes.body.body.errors[0].message;
 
 		if (type === "KTDataNotFound") {
-			const orphanInfo: { userIDs: integer[] } | null = await db[
+			const orphanInfo: { userIDs: Array<integer> } | null = await db[
 				"orphan-chart-queue"
 			].findOne(
 				{
@@ -218,7 +218,7 @@ router.post("/submit-course", RequireNotGuest, async (req, res) => {
 		});
 	}
 
-	const userID = req[SYMBOL_TachiAPIAuth]!.userID!;
+	const userID = req[SYMBOL_TACHI_API_AUTH]!.userID!;
 
 	const result = await UpdateClassIfGreater(
 		userID,

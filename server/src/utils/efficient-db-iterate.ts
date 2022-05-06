@@ -1,13 +1,13 @@
 /* eslint-disable no-await-in-loop */
 import CreateLogCtx from "lib/logger/logger";
-import { ICollection } from "monk";
+import type { ICollection } from "monk";
 
 const logger = CreateLogCtx(__filename);
 
 export async function EfficientDBIterate<T, R>(
 	collection: ICollection<T>,
 	callbackFn: (c: T) => Promise<R>,
-	saveOp: (c: R[]) => Promise<void>,
+	saveOp: (c: Array<R>) => Promise<void>,
 	// eslint-disable-next-line @typescript-eslint/ban-types
 	filter: object = {},
 	bucketSize = 10_000
@@ -26,7 +26,7 @@ export async function EfficientDBIterate<T, R>(
 
 		const rDocs = await Promise.all(docs.map(callbackFn));
 
-		i += bucketSize;
+		i = i + bucketSize;
 
 		await saveOp(rDocs);
 	}

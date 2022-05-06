@@ -5,7 +5,7 @@ export function ParseEA3SoftID(ver: string) {
 		throw new Error(`Invalid Version Code. Had ${a.length} components.`);
 	}
 
-	if (!ver.match(/^[A-Z0-9]{3}:[A-Z]:[A-Z]:[A-Z]:[0-9]{10}$/u)) {
+	if (!/^[A-Z0-9]{3}:[A-Z]:[A-Z]:[A-Z]:[0-9]{10}$/u.exec(ver)) {
 		throw new Error(`Invalid Version Code.`);
 	}
 

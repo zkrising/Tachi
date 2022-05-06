@@ -1,13 +1,13 @@
-import db from "external/mongo/db";
-import { APIPermissions } from "tachi-common";
-import t from "tap";
 import mockApi from "./mock-api";
 import ResetDBState from "./resets";
+import db from "external/mongo/db";
+import t from "tap";
+import type { APIPermissions } from "tachi-common";
 
 export function RequireAuthPerms(
 	url: string,
-	perms: APIPermissions | APIPermissions[],
-	method: "GET" | "POST" | "PATCH" | "PUT" | "DELETE" = "GET"
+	perms: APIPermissions | Array<APIPermissions>,
+	method: "DELETE" | "GET" | "PATCH" | "POST" | "PUT" = "GET"
 ) {
 	t.test(`Testing permissions for ${method} ${url} [${perms}]`, async (t) => {
 		const m = method.toLowerCase() as Lowercase<typeof method>;

@@ -4,7 +4,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
 import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
-import { Game, Playtype, ScoreDocument } from "tachi-common";
+import type { Game, Playtype, ScoreDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -113,7 +113,7 @@ export async function DeleteScore(
 	}
 }
 
-export async function DeleteMultipleScores(scores: ScoreDocument[], blacklist = false) {
+export async function DeleteMultipleScores(scores: Array<ScoreDocument>, blacklist = false) {
 	logger.info(`received request to delete ${scores.length} (Blacklist: ${blacklist}).`);
 
 	const scoreIDs = scores.map((e) => e.scoreID);

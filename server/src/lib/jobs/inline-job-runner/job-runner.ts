@@ -1,12 +1,12 @@
-import { Queue, Worker } from "bullmq";
-import CreateLogCtx from "lib/logger/logger";
-import { TachiConfig } from "lib/setup/config";
-import { DedupeArr } from "utils/misc";
 import { BacksyncBMSPMSSongsAndCharts } from "../backsync-bms-pms-data";
 import { DeoprhanScores } from "../deorphan-scores";
 import { UGSSnapshot } from "../ugs-snapshot";
 import { UpdatePoyashiData } from "../update-bpi-data";
 import { UpdateDPTiers } from "../update-dp-tiers";
+import { Queue, Worker } from "bullmq";
+import CreateLogCtx from "lib/logger/logger";
+import { TachiConfig } from "lib/setup/config";
+import { DedupeArr } from "utils/misc";
 
 interface Job {
 	name: string;
@@ -14,7 +14,7 @@ interface Job {
 	run: () => Promise<void>;
 }
 
-const jobs: Job[] = [
+const jobs: Array<Job> = [
 	{
 		name: "Snapshot User Game Stats",
 		cronFormat: "0 0 * * *",
@@ -22,6 +22,7 @@ const jobs: Job[] = [
 	},
 	{
 		name: "De-Orphan Scores",
+
 		// We run an hour after snapshotting UGS
 		// just to spread load out a bit.
 		cronFormat: "1 0 * * *",
@@ -79,6 +80,7 @@ export function InitialiseJobRunner() {
 
 	new Worker("Job Runner", async (j) => {
 		const name = j.data.jobName;
+
 		logger.info(`Running job ${name}.`);
 
 		const jobInfo = jobNameMap.get(name);

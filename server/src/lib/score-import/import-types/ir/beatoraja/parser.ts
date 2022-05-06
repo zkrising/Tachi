@@ -1,10 +1,10 @@
-import { KtLogger } from "lib/logger/logger";
-import p from "prudence";
-import { integer } from "tachi-common";
-import { FormatPrError } from "utils/prudence";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturns } from "../../common/types";
-import { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
+import p from "prudence";
+import { FormatPrError } from "utils/prudence";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { integer } from "tachi-common";
 
 const PR_BeatorajaScore = {
 	sha256: "string",
@@ -117,6 +117,7 @@ export function ParseBeatorajaSingle(
 	return {
 		context: {
 			client: isPMS ? "beatoraja" : "lr2oraja",
+
 			// asserted using prudence.
 			chart,
 			userID,

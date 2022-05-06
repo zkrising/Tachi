@@ -1,7 +1,3 @@
-import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
-import { BulkWriteUpdateOneOperation } from "mongodb";
-import { integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 import {
 	BMSMergeFn,
 	IIDXMergeFn,
@@ -9,6 +5,10 @@ import {
 	SDVXMergeFn,
 	USCMergeFn,
 } from "./game-specific-merge";
+import db from "external/mongo/db";
+import type { KtLogger } from "lib/logger/logger";
+import type { BulkWriteUpdateOneOperation } from "mongodb";
+import type { integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 
 export type PBScoreDocumentNoRank = Omit<PBScoreDocument, "rankingData">;
 
@@ -75,12 +75,13 @@ export async function UpdateChartRanking(chartID: string) {
 		}
 	);
 
-	const bwrite: BulkWriteUpdateOneOperation<PBScoreDocument>[] = [];
+	const bwrite: Array<BulkWriteUpdateOneOperation<PBScoreDocument>> = [];
 
 	let rank = 0;
 
 	for (let i = 0; i < scores.length; i++) {
 		const score = scores[i];
+
 		rank++;
 
 		bwrite.push({
@@ -165,6 +166,7 @@ async function MergeScoreLampIntoPB(
 	};
 
 	const GameSpecificMergeFn = GAME_SPECIFIC_MERGE_FNS[scorePB.game];
+
 	if (GameSpecificMergeFn) {
 		const success = await GameSpecificMergeFn(pbDoc, scorePB, lampPB, logger);
 

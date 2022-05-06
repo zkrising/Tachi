@@ -1,16 +1,15 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { FindOneResult } from "monk";
-import {
+import { GetGamePTConfig, UserAuthLevels } from "tachi-common";
+import type { FindOneResult } from "monk";
+import type {
 	APITokenDocument,
 	Game,
-	GetGamePTConfig,
 	IDStrings,
 	integer,
 	Playtype,
 	PublicUserDocument,
 	UGSRatingsLookup,
-	UserAuthLevels,
 	UserGameStats,
 } from "tachi-common";
 
@@ -46,13 +45,13 @@ export function GetUserCaseInsensitive(
 ): Promise<FindOneResult<PublicUserDocument>> {
 	return db.users.findOne({
 		usernameLowercase: username.toLowerCase(),
-	}) as Promise<FindOneResult<PublicUserDocument>>;
+	});
 }
 
 export async function CheckIfEmailInUse(email: string) {
 	const doc = await db["user-private-information"].findOne({ email });
 
-	return !!doc;
+	return Boolean(doc);
 }
 
 export function GetUserPrivateInfo(userID: integer) {
@@ -65,19 +64,19 @@ export function GetUserPrivateInfo(userID: integer) {
 export function GetUserWithID(userID: integer): Promise<FindOneResult<PublicUserDocument>> {
 	return db.users.findOne({
 		id: userID,
-	}) as Promise<FindOneResult<PublicUserDocument>>;
+	});
 }
 
 export function GetSettingsForUser(userID: integer) {
 	return db["user-settings"].findOne({
-		userID: userID,
+		userID,
 	});
 }
 
 /**
  * Gets the users for these user IDs.
  */
-export async function GetUsersWithIDs(userIDs: integer[]) {
+export async function GetUsersWithIDs(userIDs: Array<integer>) {
 	const users = await db.users.find({
 		id: { $in: userIDs },
 	});
@@ -123,7 +122,7 @@ export async function GetUserWithIDGuaranteed(userID: integer): Promise<PublicUs
  */
 export function ResolveUser(usernameOrID: string) {
 	// user ID passed
-	if (usernameOrID.match(/^[0-9]+$/u)) {
+	if (/^[0-9]+$/u.exec(usernameOrID)) {
 		const intID = Number(usernameOrID);
 
 		return GetUserWithID(intID);

@@ -1,26 +1,26 @@
-import fs from "fs/promises";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
+import { asyncExec } from "utils/misc";
+import fs from "fs/promises";
 import os from "os";
 import path from "path";
-import { Game } from "tachi-common";
-import { asyncExec } from "utils/misc";
+import type { Game } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
 export type SeedsCollections =
-	| `charts-${Game}`
-	| `songs-${Game}`
 	| "bms-course-lookup"
 	| "folders"
-	| "tables";
+	| "tables"
+	| `charts-${Game}`
+	| `songs-${Game}`;
 
 /**
  * Class that encapsulates the behaviour of a seeds repo.
  */
 export class DatabaseSeedsRepo {
-	private baseDir: string;
-	private logger;
+	private readonly baseDir: string;
+	private readonly logger;
 
 	constructor(baseDir: string) {
 		this.baseDir = baseDir;
@@ -36,12 +36,12 @@ export class DatabaseSeedsRepo {
 	 *
 	 * @returns The data in the requested collection.
 	 */
-	async ReadCollection<D>(collectionName: SeedsCollections): Promise<D[]> {
+	async ReadCollection<D>(collectionName: SeedsCollections): Promise<Array<D>> {
 		const data = await fs.readFile(this.CollectionNameToPath(collectionName), {
 			encoding: "utf-8",
 		});
 
-		const parsedData = JSON.parse(data) as D[];
+		const parsedData = JSON.parse(data) as Array<D>;
 
 		return parsedData;
 	}
@@ -52,7 +52,7 @@ export class DatabaseSeedsRepo {
 	 * @param collectionName - The collection to write to.
 	 * @param content - A new array of objects to write.
 	 */
-	async WriteCollection(collectionName: SeedsCollections, content: unknown[]) {
+	async WriteCollection(collectionName: SeedsCollections, content: Array<unknown>) {
 		await fs.writeFile(this.CollectionNameToPath(collectionName), JSON.stringify(content));
 
 		// Deterministically sort whatever content we just wrote.
@@ -64,7 +64,7 @@ export class DatabaseSeedsRepo {
 	async *IterateCollections() {
 		const collectionNames = (await fs.readdir(path.join(this.baseDir, "collections"))).map(
 			(e) => path.parse(e).name
-		) as SeedsCollections[];
+		) as Array<SeedsCollections>;
 
 		for (const collectionName of collectionNames) {
 			// eslint-disable-next-line no-await-in-loop
@@ -78,7 +78,10 @@ export class DatabaseSeedsRepo {
 	 * @param collectionName - The collection to mutate.
 	 * @param mutator - A function that takes the entire collection as an array, then returns a new array.
 	 */
-	async MutateCollection<D>(collectionName: SeedsCollections, mutator: (dataset: D[]) => D[]) {
+	async MutateCollection<D>(
+		collectionName: SeedsCollections,
+		mutator: (dataset: Array<D>) => Array<D>
+	) {
 		const dataset = await this.ReadCollection<D>(collectionName);
 
 		const newData = mutator(dataset);

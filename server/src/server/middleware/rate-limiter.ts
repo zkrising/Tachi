@@ -1,12 +1,13 @@
-import { Request } from "express";
-import rateLimit, { Options } from "express-rate-limit";
+import rateLimit from "express-rate-limit";
 import { RedisClient } from "external/redis/redis";
 import { ONE_MINUTE } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import RateLimitRedis from "rate-limit-redis";
-import { integer } from "tachi-common";
 import { OmitUndefinedKeys } from "utils/misc";
+import type { Request } from "express";
+import type { Options } from "express-rate-limit";
+import type { integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

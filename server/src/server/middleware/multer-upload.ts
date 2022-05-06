@@ -1,10 +1,10 @@
 // @todo #118
 
-import { RequestHandler } from "express";
 import { SIXTEEN_MEGABTYES } from "lib/constants/filesize";
 import CreateLogCtx from "lib/logger/logger";
 import multer, { MulterError } from "multer";
-import { integer } from "tachi-common";
+import type { RequestHandler } from "express";
+import type { integer } from "tachi-common";
 
 const defaultLogger = CreateLogCtx(__filename);
 
@@ -44,7 +44,7 @@ export const CreateMulterSingleUploadMiddleware = (
 				});
 			}
 
-			return next();
+			next();
 		});
 	};
 };

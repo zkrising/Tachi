@@ -1,7 +1,8 @@
-import { RequestHandler, Router } from "express";
+import { RequireAuthedAsUser } from "../../../../../middleware";
+import { Router } from "express";
 import db from "external/mongo/db";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import {
@@ -13,10 +14,10 @@ import {
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
-import { GoalDocument, MilestoneDocument } from "tachi-common";
 import { GetGoalForIDGuaranteed } from "utils/db";
 import { AssignToReqTachiData, GetUGPT } from "utils/req-tachi-data";
-import { RequireAuthedAsUser } from "../../../../../middleware";
+import type { RequestHandler } from "express";
+import type { GoalDocument, MilestoneDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -82,6 +83,7 @@ router.post(
 				"scoreData.gradeIndex",
 				"scoreData.score"
 			),
+
 			// we do proper validation on this later.
 			value: p.gte(0),
 			mode: p.isIn("single", "absolute", "proportion"),
@@ -151,6 +153,7 @@ router.post(
 		const data = req.body as GoalCreationBody;
 
 		let goal;
+
 		try {
 			goal = await ConstructGoal(data.charts, data.criteria, game, playtype);
 		} catch (e) {
@@ -210,7 +213,7 @@ const GetGoalSubscription: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { goalSubDoc: goalSub });
 
-	return next();
+	next();
 };
 
 /**
@@ -221,9 +224,9 @@ const GetGoalSubscription: RequestHandler = async (req, res, next) => {
 router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 	const { user } = GetUGPT(req);
 
-	const goalSub = req[SYMBOL_TachiData]!.goalSubDoc!;
+	const goalSub = req[SYMBOL_TACHI_DATA]!.goalSubDoc!;
 
-	const milestones: MilestoneDocument[] = await GetMilestonesThatContainGoal(goalSub.goalID);
+	const milestones: Array<MilestoneDocument> = await GetMilestonesThatContainGoal(goalSub.goalID);
 
 	const goal = await GetGoalForIDGuaranteed(goalSub.goalID);
 
@@ -253,7 +256,7 @@ router.delete(
 		const goalID = req.params.goalID;
 		const { user, game, playtype } = GetUGPT(req);
 
-		const goalSub = req[SYMBOL_TachiData]!.goalSubDoc!;
+		const goalSub = req[SYMBOL_TACHI_DATA]!.goalSubDoc!;
 
 		const parentMilestones = await GetBlockingParentMilestoneSubs(goalSub);
 

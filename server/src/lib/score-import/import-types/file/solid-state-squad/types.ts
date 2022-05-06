@@ -1,8 +1,8 @@
-import { integer } from "tachi-common";
+import type { integer } from "tachi-common";
 
 export interface S3Score {
 	id: integer;
-	diff: 5 | "L7" | 7 | "A" | "B" | "L14" | 14 | "A14" | "B14";
+	diff: "A" | "A14" | "B" | "B14" | "L7" | "L14" | 5 | 7 | 14;
 	songname: string;
 	exscore: integer;
 	styles: string;
@@ -14,9 +14,9 @@ export interface S3Score {
 		poor: integer;
 	};
 	mods: {
-		hardeasy?: "H" | "E";
+		hardeasy?: "E" | "H";
 	};
-	cleartype: "cleared" | "played" | "combo" | "comboed" | "perfect" | "perfected";
+	cleartype: "cleared" | "combo" | "comboed" | "perfect" | "perfected" | "played";
 	date: string;
 	comment?: string;
 }

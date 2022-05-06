@@ -1,9 +1,9 @@
-import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
-import { InternalFailure } from "lib/score-import/framework/common/converter-failures";
-import { FindOneResult } from "monk";
-import { Game, integer, SongDocument } from "tachi-common";
 import { EscapeStringRegexp } from "../misc";
+import db from "external/mongo/db";
+import { InternalFailure } from "lib/score-import/framework/common/converter-failures";
+import type { KtLogger } from "lib/logger/logger";
+import type { FindOneResult } from "monk";
+import type { Game, integer, SongDocument } from "tachi-common";
 
 /**
  * Finds a song document for the given game with the given title (or alt-title).
@@ -18,7 +18,7 @@ export function FindSongOnTitle(game: Game, title: string): Promise<FindOneResul
 	return db.songs[game].findOne({
 		$or: [
 			{
-				title: title,
+				title,
 			},
 			{
 				altTitles: title,
@@ -38,6 +38,7 @@ export function FindSongOnTitleInsensitive(
 	// @optimisable: Performance should be tested here by having a utility field for all-titles.
 
 	const regex = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
+
 	return db.songs[game].findOne({
 		$or: [
 			{

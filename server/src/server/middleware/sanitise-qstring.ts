@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 
 /**
  * Disallow complex query strings by enforcing single key:value pairs.

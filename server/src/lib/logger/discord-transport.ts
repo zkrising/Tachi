@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { DiscordColours } from "./colours";
 import { ONE_MINUTE } from "lib/constants/time";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
 import fetch from "utils/fetch";
-import Transport, { TransportStreamOptions } from "winston-transport";
-import { DiscordColours } from "./colours";
+import Transport from "winston-transport";
+import type { TransportStreamOptions } from "winston-transport";
 
 interface DiscordTransportOptions extends TransportStreamOptions {
 	/** Webhook obtained from Discord */
@@ -12,8 +13,8 @@ interface DiscordTransportOptions extends TransportStreamOptions {
 }
 
 interface LogLevelCountState {
-	warn: string[];
-	error: string[];
+	warn: Array<string>;
+	error: Array<string>;
 }
 
 /**
@@ -27,7 +28,7 @@ export default class DiscordTransport extends Transport {
 	private webhookUrl = "";
 
 	/** Initialization promise resolved after retrieving discord id and token */
-	private initalised: Promise<void>;
+	private readonly initalised: Promise<void>;
 
 	private bucketData: LogLevelCountState = {
 		warn: [],
@@ -90,7 +91,7 @@ export default class DiscordTransport extends Transport {
 			return;
 		}
 
-		this.bucketData[info.level as "warn" | "error"].push(info.message);
+		this.bucketData[info.level as "error" | "warn"].push(info.message);
 
 		if (!this.isBucketing) {
 			this.isBucketing = true;
@@ -158,6 +159,7 @@ export default class DiscordTransport extends Transport {
 			embeds: [
 				{
 					description: `[${info.level}] ${info.message}`,
+
 					// it's Colour!!
 					color: DiscordColours[info.level as keyof typeof DiscordColours],
 					timestamp: new Date().toISOString(),

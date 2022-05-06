@@ -1,9 +1,10 @@
-import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
-import p, { PrudenceSchema } from "prudence";
+import p from "prudence";
 import { FormatPrError } from "utils/prudence";
-import { ParserFunctionReturns } from "../../common/types";
-import { KsHookSV6CContext, KsHookSV6CScore } from "./types";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { KsHookSV6CContext, KsHookSV6CScore } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { PrudenceSchema } from "prudence";
 
 const PR_KsHookSV6C: PrudenceSchema = {
 	clear: p.isIn(

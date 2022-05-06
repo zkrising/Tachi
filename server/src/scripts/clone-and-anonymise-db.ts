@@ -1,9 +1,10 @@
-import { execSync } from "child_process";
 import { Command } from "commander";
 import CreateLogCtx from "lib/logger/logger";
 import monk from "monk";
+import { execSync } from "child_process";
 
 const program = new Command();
+
 program
 	.option("--nsFrom <Database to clone from.>")
 	.option("--nsTo <Database to clone and anonymise to.>");
@@ -37,6 +38,7 @@ async function AnonymiseDB(nsTo: string) {
 				$set: {
 					// This is "password" encrypted in bcrypt12.
 					password: "$2b$12$QRFCAxvFoNI2spszFPgt/e.qLy55GvYWlSHioa0AujRbFpChLwHmu",
+
 					// emails are uniquely indexed. We need to anonymise these in
 					// a way that they dont duplicate.
 					email: { $concat: [{ $toString: "$userID" }, "@example.com"] },

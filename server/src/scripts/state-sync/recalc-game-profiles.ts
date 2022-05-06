@@ -30,6 +30,7 @@ export async function CreateGameProfiles() {
 
 		for (const gpt of gpts) {
 			const { game, playtype } = gpt._id;
+
 			logger.info(`Updating ${FormatUserDoc(user)}'s ${game} ${playtype} stats.`);
 			await UpdateUsersGamePlaytypeStats(game, playtype, user.id, null, logger);
 		}

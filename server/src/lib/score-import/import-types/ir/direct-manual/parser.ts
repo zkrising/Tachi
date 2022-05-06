@@ -1,8 +1,8 @@
-import { KtLogger } from "lib/logger/logger";
-import { BatchManualScore } from "tachi-common";
 import { ParseBatchManualFromObject } from "../../common/batch-manual/parser";
-import { BatchManualContext } from "../../common/batch-manual/types";
-import { ParserFunctionReturns } from "../../common/types";
+import type { BatchManualContext } from "../../common/batch-manual/types";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { KtLogger } from "lib/logger/logger";
+import type { BatchManualScore } from "tachi-common";
 
 /**
  * Parses an object of BATCH-MANUAL data.

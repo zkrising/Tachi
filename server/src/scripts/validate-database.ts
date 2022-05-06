@@ -1,13 +1,15 @@
 // note: a hell of a lot of this code is copy pasted
 // this is just a script, so, feel free to refactor it.
 import { Command } from "commander";
-import { Databases, monkDB } from "external/mongo/db";
+import { monkDB } from "external/mongo/db";
 import { DatabaseSchemas } from "external/mongo/schemas";
 import CreateLogCtx from "lib/logger/logger";
-import { PrudenceError } from "prudence";
 import { FormatPrError } from "utils/prudence";
+import type { Databases } from "external/mongo/db";
+import type { PrudenceError } from "prudence";
 
 const program = new Command();
+
 program.option("-c, --collection <collectionName>");
 
 program.parse(process.argv);
@@ -22,7 +24,7 @@ export async function ValidateCollection(collectionName: Databases): Promise<voi
 	}
 
 	// collectionName is in database schemas.
-	const schemaRunner = DatabaseSchemas[collectionName as keyof typeof DatabaseSchemas];
+	const schemaRunner = DatabaseSchemas[collectionName];
 
 	const documents = await monkDB.get(collectionName).count({});
 
@@ -34,6 +36,7 @@ export async function ValidateCollection(collectionName: Databases): Promise<voi
 	await monkDB
 		.get(collectionName)
 		.find({})
+
 		// @ts-expect-error faulty monk types
 		.each((c) => {
 			try {

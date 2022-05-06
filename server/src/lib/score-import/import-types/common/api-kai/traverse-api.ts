@@ -1,9 +1,9 @@
-import { VERSION_STR } from "lib/constants/version";
-import { KtLogger } from "lib/logger/logger";
-import { TachiConfig } from "lib/setup/config";
-import { URL } from "url";
-import nodeFetch from "utils/fetch";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
+import { VERSION_STR } from "lib/constants/version";
+import { TachiConfig } from "lib/setup/config";
+import nodeFetch from "utils/fetch";
+import { URL } from "url";
+import type { KtLogger } from "lib/logger/logger";
 
 /**
  * A Kai Reauth function is an async function that returns a string
@@ -64,8 +64,10 @@ export async function* TraverseKaiAPI(
 
 		let json;
 		let res;
+
 		// wrap all this in a try catch just incase the fetch or the res
 		// json call fails.
+
 		try {
 			// eslint-disable-next-line no-await-in-loop
 			res = await fetch(url, {

@@ -15,14 +15,14 @@ const logger = CreateLogCtx(__filename);
 
 // Stub types. In the future, we may actually use this.
 export type RedisIPCChannels = "";
-export type RedisIPCData = {
+export interface RedisIPCData {
 	"": unknown;
-};
+}
 
 type RedisSubCallback<T extends RedisIPCChannels> = (data: RedisIPCData[T]) => void;
 
 type SubCallbacks = {
-	[K in RedisIPCChannels]: RedisSubCallback<K>[];
+	[K in RedisIPCChannels]: Array<RedisSubCallback<K>>;
 };
 
 const SubCallbacks: Partial<SubCallbacks> = {};

@@ -3,12 +3,12 @@ import {
 	KTDataNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
-import { DryScore } from "lib/score-import/framework/common/types";
-import { Lamps, ScoreDocument } from "tachi-common";
 import { FindBMSChartOnHash } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
-import { ConverterFunction } from "../../common/types";
-import { LR2HookContext, LR2HookScore } from "./types";
+import type { ConverterFunction } from "../../common/types";
+import type { LR2HookContext, LR2HookScore } from "./types";
+import type { DryScore } from "lib/score-import/framework/common/types";
+import type { Lamps, ScoreDocument } from "tachi-common";
 
 export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> = async (
 	data,

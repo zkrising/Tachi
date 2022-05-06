@@ -1,18 +1,3 @@
-import deepmerge from "deepmerge";
-import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
-import { EmitWebhookEvent } from "lib/webhooks/webhooks";
-import {
-	ClassDelta,
-	Game,
-	IDStrings,
-	integer,
-	Playtype,
-	Playtypes,
-	UserGameStats,
-} from "tachi-common";
-import { GameClasses } from "tachi-common/js/game-classes";
-import { ReturnClassIfGreater } from "utils/class";
 import {
 	CalculateChunithmColour,
 	CalculateGitadoraColour,
@@ -21,7 +6,22 @@ import {
 	CalculateSDVXClass,
 	CalculateWACCAColour,
 } from "./builtin-class-handlers";
-import { ClassHandler, ScoreClasses } from "./types";
+import deepmerge from "deepmerge";
+import db from "external/mongo/db";
+import { EmitWebhookEvent } from "lib/webhooks/webhooks";
+import { ReturnClassIfGreater } from "utils/class";
+import type { ClassHandler, ScoreClasses } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type {
+	ClassDelta,
+	Game,
+	IDStrings,
+	integer,
+	Playtype,
+	Playtypes,
+	UserGameStats,
+} from "tachi-common";
+import type { GameClasses } from "tachi-common/js/game-classes";
 
 type ClassHandlerMap = {
 	[G in Game]:
@@ -136,8 +136,8 @@ export async function ProcessClassDeltas(
 	userGameStats: UserGameStats | null,
 	userID: integer,
 	logger: KtLogger
-): Promise<ClassDelta[]> {
-	const deltas: ClassDelta[] = [];
+): Promise<Array<ClassDelta>> {
+	const deltas: Array<ClassDelta> = [];
 
 	const achievementOps = [];
 
@@ -157,6 +157,7 @@ export async function ProcessClassDeltas(
 				continue;
 			} else {
 				let delta: ClassDelta;
+
 				if (isGreater === null) {
 					delta = {
 						game,

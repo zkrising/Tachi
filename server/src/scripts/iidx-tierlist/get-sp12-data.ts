@@ -4,9 +4,9 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
-import { Difficulties, integer } from "tachi-common";
 import { FindChartWithPTDF } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
+import type { Difficulties, integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -23,7 +23,7 @@ interface SP12Data {
 }
 
 async function FetchSP12Data() {
-	const rj: { sheets: SP12Data[] } = await fetch("https://sp12.iidx.app/api/v1/sheets").then(
+	const rj: { sheets: Array<SP12Data> } = await fetch("https://sp12.iidx.app/api/v1/sheets").then(
 		(r) => r.json()
 	); // will throw if somethings wrong, anyway
 
@@ -33,6 +33,7 @@ async function FetchSP12Data() {
 
 	for (const sh of rj.sheets) {
 		let chart;
+
 		try {
 			chart = await HumanisedTitleLookup(sh.title);
 		} catch (err) {
@@ -48,7 +49,7 @@ async function FetchSP12Data() {
 			let val;
 
 			switch (key) {
-				case "n_clear":
+				case "n_clear": {
 					const v = Math.floor(sh[key] / 2);
 
 					if (v === 9) {
@@ -68,7 +69,9 @@ async function FetchSP12Data() {
 					}
 
 					break;
-				case "hard":
+				}
+
+				case "hard": {
 					const v2 = Math.floor(sh[key] / 2);
 
 					if (v2 === 9) {
@@ -88,8 +91,11 @@ async function FetchSP12Data() {
 					}
 
 					break;
-				case "exh":
+				}
+
+				case "exh": {
 					const v3 = sh[key];
+
 					if (v3 >= 12 || v3 <= 0) {
 						continue;
 					}
@@ -97,6 +103,8 @@ async function FetchSP12Data() {
 					val = 12.4 + (12 - v3) * 0.1;
 
 					break;
+				}
+
 				default:
 					throw new Error("??");
 			}
@@ -147,13 +155,13 @@ async function HumanisedTitleLookup(originalTitle: string) {
 
 	let title = originalTitle;
 
-	if (title.match(/(†|†LEGGENDARIA)$/u)) {
+	if (/(†|†LEGGENDARIA)$/u.exec(title)) {
 		difficulty = "LEGGENDARIA";
 		title = title.split(/(†|†LEGGENDARIA)$/u)[0];
-	} else if (title.match(/\[H\]$/u)) {
+	} else if (/\[H\]$/u.exec(title)) {
 		difficulty = "HYPER";
 		title = title.split("[")[0];
-	} else if (title.match(/\[A\]$/u)) {
+	} else if (/\[A\]$/u.exec(title)) {
 		difficulty = "ANOTHER"; // lmao
 		title = title.split("[")[0];
 	}

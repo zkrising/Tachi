@@ -1,6 +1,7 @@
-import { KtLogger } from "lib/logger/logger";
-import { ChartDocument, Game, GetGamePTConfig, IIDX_LAMPS, integer, Playtype } from "tachi-common";
-import { DryScore } from "../common/types";
+import { GetGamePTConfig, IIDX_LAMPS } from "tachi-common";
+import type { DryScore } from "../common/types";
+import type { KtLogger } from "lib/logger/logger";
+import type { ChartDocument, Game, integer, Playtype } from "tachi-common";
 
 /**
  * Calculate Marvelous Full Combo Points. This algorithm

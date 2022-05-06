@@ -1,11 +1,14 @@
+import { CreateGoalTitle as CreateGoalName, ValidateGoalChartsAndCriteria } from "./goal-utils";
 import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
-import CreateLogCtx, { KtLogger } from "lib/logger/logger";
-import { FilterQuery } from "mongodb";
-import {
+import CreateLogCtx from "lib/logger/logger";
+import { GetGamePTConfig } from "tachi-common";
+import { GetFolderChartIDs } from "utils/folder";
+import type { KtLogger } from "lib/logger/logger";
+import type { FilterQuery } from "mongodb";
+import type {
 	Game,
-	GetGamePTConfig,
 	GoalDocument,
 	integer,
 	PBScoreDocument,
@@ -14,8 +17,6 @@ import {
 	MilestoneSubscriptionDocument,
 	MilestoneDocument,
 } from "tachi-common";
-import { GetFolderChartIDs } from "utils/folder";
-import { CreateGoalTitle as CreateGoalName, ValidateGoalChartsAndCriteria } from "./goal-utils";
 
 const logger = CreateLogCtx(__filename);
 
@@ -68,6 +69,7 @@ export async function EvaluateGoalForUser(
 		userID,
 		game: goal.game,
 		playtype: goal.playtype,
+
 		// normally, this would be a VERY WORRYING line of code, but goal.criteria.key is guaranteed to be
 		// within a specific set of fields.
 		[goal.criteria.key]: { $gte: goal.criteria.value },
@@ -80,12 +82,13 @@ export async function EvaluateGoalForUser(
 	// Next, we need to figure out our criteria.
 	if (goal.criteria.mode === "single") {
 		const res = await db["personal-bests"].findOne(scoreQuery);
+
 		// hack, but guaranteed to work.
 		const scoreDataKey = goal.criteria.key.split(".")[1] as
-			| "lampIndex"
 			| "gradeIndex"
-			| "score"
-			| "percent";
+			| "lampIndex"
+			| "percent"
+			| "score";
 
 		const outOfHuman = HumaniseGoalProgress(
 			goal.game,
@@ -198,7 +201,9 @@ export async function EvaluateGoalForUser(
  *
  * @returns An array of chartIDs, except if the goal chart type is "any", in which case, it returns null.
  */
-function ResolveGoalCharts(goal: GoalDocument): Promise<string[]> | string[] | null | undefined {
+function ResolveGoalCharts(
+	goal: GoalDocument
+): Array<string> | Promise<Array<string>> | null | undefined {
 	if (goal.charts.type === "single") {
 		return [goal.charts.data];
 	} else if (goal.charts.type === "multi") {
@@ -213,7 +218,7 @@ function ResolveGoalCharts(goal: GoalDocument): Promise<string[]> | string[] | n
 type GoalKeys = GoalDocument["criteria"]["key"];
 
 type PBWithBadPoor = PBScoreDocument<
-	"iidx:SP" | "iidx:DP" | "bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard"
+	"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard"
 >;
 
 export function HumaniseGoalProgress(
@@ -226,7 +231,7 @@ export function HumaniseGoalProgress(
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	switch (key) {
-		case "scoreData.gradeIndex":
+		case "scoreData.gradeIndex": {
 			if (!gptConfig.grades[value]) {
 				throw new Error(
 					`Corrupt goal -- requested a grade of ${value}, which doesn't exist for this game.`
@@ -234,7 +239,9 @@ export function HumaniseGoalProgress(
 			}
 
 			return `${gptConfig.grades[value]} (${userPB?.scoreData.percent.toFixed(2) ?? "0"}%)`;
-		case "scoreData.lampIndex":
+		}
+
+		case "scoreData.lampIndex": {
 			if (!gptConfig.lamps[value]) {
 				throw new Error(
 					`Corrupt goal -- requested a lamp of ${value}, which doesn't exist for this game.`
@@ -248,6 +255,8 @@ export function HumaniseGoalProgress(
 			}
 
 			return gptConfig.lamps[value];
+		}
+
 		case "scoreData.percent":
 			return `${value.toFixed(2)}%`;
 		case "scoreData.score":
@@ -363,7 +372,7 @@ export function GetMilestonesThatContainGoal(goalID: string) {
  */
 export async function GetBlockingParentMilestoneSubs(
 	goalSub: GoalSubscriptionDocument
-): Promise<(MilestoneSubscriptionDocument & { milestone: MilestoneDocument })[]> {
+): Promise<Array<MilestoneSubscriptionDocument & { milestone: MilestoneDocument }>> {
 	const blockers = await db["milestone-subs"].aggregate([
 		{
 			// find all milestones that this user is subscribed to

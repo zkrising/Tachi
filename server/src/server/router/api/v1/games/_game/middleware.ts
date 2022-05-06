@@ -1,7 +1,7 @@
-import { RequestHandler } from "express";
 import { TachiConfig } from "lib/setup/config";
 import { IsValidGame } from "utils/misc";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
+import type { RequestHandler } from "express";
 
 export const ValidateGameFromParam: RequestHandler = (req, res, next) => {
 	if (!IsValidGame(req.params.game)) {
@@ -15,5 +15,5 @@ export const ValidateGameFromParam: RequestHandler = (req, res, next) => {
 
 	AssignToReqTachiData(req, { game: req.params.game });
 
-	return next();
+	next();
 };

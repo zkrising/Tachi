@@ -1,9 +1,10 @@
-import { RequestHandler, Router } from "express";
-import db from "external/mongo/db";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
-import { ChartDocument, PBScoreDocument } from "tachi-common";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
 import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
+import { Router } from "express";
+import db from "external/mongo/db";
+import { SYMBOL_TACHI_API_AUTH, SYMBOL_TACHI_DATA } from "lib/constants/tachi";
+import { AssignToReqTachiData } from "utils/req-tachi-data";
+import type { RequestHandler } from "express";
+import type { ChartDocument, PBScoreDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -31,7 +32,7 @@ const GetChartDocument: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { beatorajaChartDoc: chart });
 
-	return next();
+	next();
 };
 
 router.use(GetChartDocument);
@@ -42,12 +43,12 @@ router.use(GetChartDocument);
  * @name GET /ir/beatoraja/charts/:chartSHA256/scores
  */
 router.get("/scores", async (req, res) => {
-	const chart = req[SYMBOL_TachiData]!.beatorajaChartDoc!;
-	const requestingUserID = req[SYMBOL_TachiAPIAuth].userID;
+	const chart = req[SYMBOL_TACHI_DATA]!.beatorajaChartDoc!;
+	const requestingUserID = req[SYMBOL_TACHI_API_AUTH].userID;
 
 	const scores = (await db["personal-bests"].find({
 		chartID: chart.chartID,
-	})) as PBScoreDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">[];
+	})) as Array<PBScoreDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">>;
 
 	const userDocs = await db.users.find(
 		{
@@ -61,6 +62,7 @@ router.get("/scores", async (req, res) => {
 		}
 	);
 	const userMap = new Map();
+
 	for (const user of userDocs) {
 		userMap.set(user.id, user);
 	}

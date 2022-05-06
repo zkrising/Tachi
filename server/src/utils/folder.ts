@@ -3,8 +3,8 @@ import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
-import { FilterQuery } from "mongodb";
-import {
+import type { FilterQuery } from "mongodb";
+import type {
 	ChartDocument,
 	FolderDocument,
 	Game,
@@ -26,19 +26,19 @@ export async function ResolveFolderToCharts(
 	folder: FolderDocument,
 	filter: FilterQuery<ChartDocument>,
 	getSongs: true
-): Promise<{ songs: SongDocument[]; charts: ChartDocument[] }>;
+): Promise<{ songs: Array<SongDocument>; charts: Array<ChartDocument> }>;
 export async function ResolveFolderToCharts(
 	folder: FolderDocument,
 	filter?: FilterQuery<ChartDocument>,
 	getSongs?: false
-): Promise<{ charts: ChartDocument[] }>;
+): Promise<{ charts: Array<ChartDocument> }>;
 export async function ResolveFolderToCharts(
 	folder: FolderDocument,
 	filter: FilterQuery<ChartDocument> = {},
 	getSongs = false
-): Promise<{ songs?: SongDocument[]; charts: ChartDocument[] }> {
-	let songs: SongDocument[] | null = null;
-	let charts: ChartDocument[];
+): Promise<{ songs?: Array<SongDocument>; charts: Array<ChartDocument> }> {
+	let songs: Array<SongDocument> | null = null;
+	let charts: Array<ChartDocument>;
 
 	if (folder.type === "static") {
 		charts = await db.charts[folder.game].find(
@@ -115,17 +115,17 @@ export async function GetFolderCharts(
 	folder: FolderDocument,
 	filter: FilterQuery<ChartDocument>,
 	getSongs: true
-): Promise<{ songs: SongDocument[]; charts: ChartDocument[] }>;
+): Promise<{ songs: Array<SongDocument>; charts: Array<ChartDocument> }>;
 export async function GetFolderCharts(
 	folder: FolderDocument,
 	filter: FilterQuery<ChartDocument>,
 	getSongs: false
-): Promise<{ charts: ChartDocument[] }>;
+): Promise<{ charts: Array<ChartDocument> }>;
 export async function GetFolderCharts(
 	folder: FolderDocument,
 	filter: FilterQuery<ChartDocument> = {},
 	getSongs = false
-): Promise<{ songs?: SongDocument[]; charts: ChartDocument[] }> {
+): Promise<{ songs?: Array<SongDocument>; charts: Array<ChartDocument> }> {
 	const chartIDs = await GetFolderChartIDs(folder.folderID);
 
 	const charts = await db.charts[folder.game].find(
@@ -157,6 +157,7 @@ export async function GetFolderChartIDs(folderID: string) {
 
 	return chartIDs.map((e) => e.chartID);
 }
+
 export async function CreateFolderChartLookup(folder: FolderDocument, flush = false) {
 	try {
 		const { charts } = await ResolveFolderToCharts(folder, {}, false);
@@ -194,6 +195,7 @@ export async function InitaliseFolderChartLookup() {
 	const folders = await db.folders.find({
 		game: { $in: TachiConfig.GAMES },
 	});
+
 	logger.info(`Reloading ${folders.length} folders.`);
 
 	await Promise.all(folders.map((folder) => CreateFolderChartLookup(folder)));
@@ -230,7 +232,7 @@ export async function GetPBsOnFolder(userID: integer, folder: FolderDocument) {
 	return { pbs, charts, songs };
 }
 
-export function CalculateLampDistribution(pbs: PBScoreDocument[]) {
+export function CalculateLampDistribution(pbs: Array<PBScoreDocument>) {
 	const lampDist: Partial<Record<Lamps[IDStrings], integer>> = {};
 
 	for (const pb of pbs) {
@@ -245,7 +247,7 @@ export function CalculateLampDistribution(pbs: PBScoreDocument[]) {
 	return lampDist;
 }
 
-export function CalculateGradeDistribution(pbs: PBScoreDocument[]) {
+export function CalculateGradeDistribution(pbs: Array<PBScoreDocument>) {
 	const gradeDist: Partial<Record<Grades[IDStrings], integer>> = {};
 
 	for (const pb of pbs) {
@@ -259,6 +261,7 @@ export function CalculateGradeDistribution(pbs: PBScoreDocument[]) {
 
 	return gradeDist;
 }
+
 export async function GetGradeLampDistributionForFolder(userID: integer, folder: FolderDocument) {
 	const pbData = await GetPBsOnFolder(userID, folder);
 
@@ -270,12 +273,15 @@ export async function GetGradeLampDistributionForFolder(userID: integer, folder:
 	};
 }
 
-export function GetGradeLampDistributionForFolders(userID: integer, folders: FolderDocument[]) {
+export function GetGradeLampDistributionForFolders(
+	userID: integer,
+	folders: Array<FolderDocument>
+) {
 	return Promise.all(folders.map((f) => GetGradeLampDistributionForFolder(userID, f)));
 }
 
 export function CreateFolderID(query: Record<string, unknown>, game: Game, playtype: Playtype) {
-	return `F${fjsh.hash(Object.assign({ game, playtype }, query), "SHA256")}`;
+	return `F${fjsh.hash({ game, playtype, ...query }, "SHA256")}`;
 }
 
 export async function GetRecentlyViewedFolders(userID: integer, game: Game, playtype: Playtype) {

@@ -1,10 +1,10 @@
-import { KtLogger } from "lib/logger/logger";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import p from "prudence";
 import { FormatPrError } from "utils/prudence";
-import { EmptyObject } from "utils/types";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturns } from "../../common/types";
-import { MerScore } from "./types";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { MerScore } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { EmptyObject } from "utils/types";
 
 const PR_MerIIDX = {
 	music_id: p.isPositiveInteger,
@@ -55,7 +55,7 @@ export function ParseMerIIDX(
 	return {
 		classHandler: null,
 		context: {},
-		iterable: jsonData as MerScore[],
+		iterable: jsonData as Array<MerScore>,
 		game: "iidx",
 	};
 }

@@ -1,13 +1,14 @@
+import { RequireSelfRequestFromUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import { ALL_PERMISSIONS, APIPermissions, APITokenDocument } from "tachi-common";
+import { ALL_PERMISSIONS } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { FormatUserDoc } from "utils/user";
-import { RequireSelfRequestFromUser } from "../middleware";
+import type { APIPermissions, APITokenDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -22,7 +23,7 @@ router.use(RequireSelfRequestFromUser);
  * @name GET /api/v1/users/:userID/api-tokens
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	const keys = await db["api-tokens"].find({
 		userID: user.id,
@@ -60,9 +61,9 @@ router.post(
 			});
 		}
 
-		let permissions: APIPermissions[];
+		let permissions: Array<APIPermissions>;
 
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
+		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 		let identifier: string;
 		let fromAPIClient = null;
@@ -148,7 +149,7 @@ router.post(
  * @name DELETE /api/v1/users/:userID/api-token/:token
  */
 router.delete("/:token", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	logger.info(
 		`received request from ${FormatUserDoc(user)} to delete token ${req.params.token}.`

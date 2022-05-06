@@ -1,6 +1,12 @@
-import db from "external/mongo/db";
-import { ChartDocument, integer, PBScoreDocument, ScoreDocument, SongDocument } from "tachi-common";
 import { DedupeArr } from "./misc";
+import db from "external/mongo/db";
+import type {
+	ChartDocument,
+	integer,
+	PBScoreDocument,
+	ScoreDocument,
+	SongDocument,
+} from "tachi-common";
 
 export function GetPBOnChart(userID: integer, chartID: string) {
 	return db["personal-bests"].findOne({
@@ -17,9 +23,9 @@ export function GetServerRecordOnChart(chartID: string) {
 }
 
 export function FilterChartsAndSongs(
-	scores: (PBScoreDocument | ScoreDocument)[],
-	charts: ChartDocument[],
-	songs: SongDocument[]
+	scores: Array<PBScoreDocument | ScoreDocument>,
+	charts: Array<ChartDocument>,
+	songs: Array<SongDocument>
 ) {
 	const chartIDs = new Set();
 	const songIDs = new Set();

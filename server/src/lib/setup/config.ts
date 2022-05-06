@@ -1,13 +1,14 @@
 /* eslint-disable no-console */
 // barrel file for re-exporting env variables.
 import dotenv from "dotenv";
-import fs from "fs";
 import JSON5 from "json5";
-import { SendMailOptions } from "nodemailer";
 import p from "prudence";
-import { Game, ImportTypes, integer, StaticConfig } from "tachi-common";
-import { URL } from "url";
+import { StaticConfig } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
+import fs from "fs";
+import { URL } from "url";
+import type { SendMailOptions } from "nodemailer";
+import type { Game, ImportTypes, integer } from "tachi-common";
 
 dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
 
@@ -70,6 +71,7 @@ export interface TachiServerConfig {
 	EMAIL_CONFIG?: {
 		FROM: string;
 		DKIM?: SendMailOptions["dkim"];
+
 		// @warning This is explicitly allowed to be any
 		// As nodemailer doesnt properly export the types we care about
 		// This should be set to SMTPTransport.Options, but it is
@@ -89,24 +91,23 @@ export interface TachiServerConfig {
 	};
 	TACHI_CONFIG: {
 		NAME: string;
-		TYPE: "ktchi" | "btchi" | "omni";
-		GAMES: Game[];
-		IMPORT_TYPES: ImportTypes[];
+		TYPE: "btchi" | "ktchi" | "omni";
+		GAMES: Array<Game>;
+		IMPORT_TYPES: Array<ImportTypes>;
 	};
 	LOGGER_CONFIG: {
-		LOG_LEVEL: "debug" | "verbose" | "info" | "warn" | "error" | "severe" | "crit";
+		LOG_LEVEL: "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn";
 		CONSOLE: boolean;
 		FILE: boolean;
 		SEQ_API_KEY: string | undefined;
 		DISCORD?: {
 			WEBHOOK_URL: string;
-			WHO_TO_TAG: string[];
+			WHO_TO_TAG: Array<string>;
 		};
 	};
 	CDN_CONFIG: {
 		WEB_LOCATION: string;
 		SAVE_LOCATION:
-			| { TYPE: "LOCAL_FILESYSTEM"; LOCATION: string; SERVE_OWN_CDN?: boolean }
 			| {
 					TYPE: "S3_BUCKET";
 					ENDPOINT: string;
@@ -115,7 +116,8 @@ export interface TachiServerConfig {
 					BUCKET: string;
 					KEY_PREFIX?: string;
 					REGION?: string;
-			  };
+			  }
+			| { TYPE: "LOCAL_FILESYSTEM"; LOCATION: string; SERVE_OWN_CDN?: boolean };
 	};
 }
 
@@ -147,6 +149,7 @@ const err = p(config, {
 	EMAIL_CONFIG: p.optional({
 		FROM: "string",
 		DKIM: "*object",
+
 		// WARN: This validation is improper and lazy.
 		// The actual content is just some wacky options object.
 		// I'm not going to assert this properly.
@@ -217,14 +220,12 @@ tachiServerConfig.MAX_GOAL_SUBSCRIPTIONS ??= 1_000;
 tachiServerConfig.MAX_MILESTONE_SUBSCRIPTIONS ??= 100;
 
 // Assign sane defaults to the logger config.
-tachiServerConfig.LOGGER_CONFIG = Object.assign(
-	{
-		LOG_LEVEL: "info",
-		CONSOLE: true,
-		FILE: true,
-	},
-	tachiServerConfig.LOGGER_CONFIG ?? {}
-);
+tachiServerConfig.LOGGER_CONFIG = {
+	LOG_LEVEL: "info",
+	CONSOLE: true,
+	FILE: true,
+	...(tachiServerConfig.LOGGER_CONFIG ?? {}),
+};
 
 export const TachiConfig = tachiServerConfig.TACHI_CONFIG;
 export const ServerConfig = tachiServerConfig;
@@ -232,12 +233,14 @@ export const ServerConfig = tachiServerConfig;
 // Environment Variable Validation
 
 let port = Number(process.env.PORT);
+
 if (Number.isNaN(port) && process.env.IS_SERVER) {
 	logger.warn(`No/invalid PORT specified in environment, defaulting to 8080.`);
 	port = 8080;
 }
 
 const redisUrl = process.env.REDIS_URL;
+
 if (!redisUrl) {
 	// n.b. These logs should be critical level, but the logger cant actually instantiate
 	// itself in this file, because this file also controlls the logger. Ouch!
@@ -246,12 +249,14 @@ if (!redisUrl) {
 }
 
 const mongoUrl = process.env.MONGO_URL;
+
 if (!mongoUrl) {
 	logger.error(`No MONGO_URL specified in environment. Terminating.`);
 	process.exit(1);
 }
 
 const seqUrl = process.env.SEQ_URL;
+
 if (!seqUrl && tachiServerConfig.LOGGER_CONFIG.SEQ_API_KEY) {
 	logger.warn(
 		`No SEQ_URL specified in environment, yet LOGGER_CONFIG.SEQ_API_KEY was defined. No logs will be sent to Seq!`
@@ -259,6 +264,7 @@ if (!seqUrl && tachiServerConfig.LOGGER_CONFIG.SEQ_API_KEY) {
 }
 
 const nodeEnv = process.env.NODE_ENV;
+
 if (!nodeEnv) {
 	logger.error(`No NODE_ENV specified in environment. Terminating.`);
 	process.exit(1);

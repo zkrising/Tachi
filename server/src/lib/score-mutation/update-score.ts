@@ -1,12 +1,13 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
-import { KtLogger, rootLogger } from "lib/logger/logger";
+import { rootLogger } from "lib/logger/logger";
 import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
 import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
-import { ScoreDocument } from "tachi-common";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import { FormatUserDoc, GetUserWithID } from "utils/user";
+import type { KtLogger } from "lib/logger/logger";
+import type { ScoreDocument } from "tachi-common";
 
 /**
  * Updates a score from oldScore to newScore, applying all necessary state
@@ -77,6 +78,7 @@ export default async function UpdateScore(
 			logger.warn(
 				`Passed a score with _id to UpdateScore. This property should not be set. Deleting this property and continuing anyway.`
 			);
+
 			// This property shouldn't be defined.
 			delete newScore._id;
 		}
@@ -118,10 +120,10 @@ export default async function UpdateScore(
 					const percentDiff = oldScore.scoreData.percent - newScore.scoreData.percent;
 					const scoreDiff = oldScore.scoreData.score - newScore.scoreData.score;
 
-					scoreInfo.gradeDelta -= gradeDiff;
-					scoreInfo.lampDelta -= lampDiff;
-					scoreInfo.scoreDelta -= scoreDiff;
-					scoreInfo.percentDelta -= percentDiff;
+					scoreInfo.gradeDelta = scoreInfo.gradeDelta - gradeDiff;
+					scoreInfo.lampDelta = scoreInfo.lampDelta - lampDiff;
+					scoreInfo.scoreDelta = scoreInfo.scoreDelta - scoreDiff;
+					scoreInfo.percentDelta = scoreInfo.percentDelta - percentDiff;
 				}
 			}
 		}

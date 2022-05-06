@@ -1,14 +1,14 @@
-import { Router } from "express";
-import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { RequirePermissions } from "server/middleware/auth";
-import prValidate from "server/middleware/prudence-validate";
-import p from "prudence";
 import {
 	GetSessionFromParam,
 	RequireOwnershipOfSession,
 	UpdateSessionViewcount,
 } from "./middleware";
+import { Router } from "express";
+import db from "external/mongo/db";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
+import p from "prudence";
+import { RequirePermissions } from "server/middleware/auth";
+import prValidate from "server/middleware/prudence-validate";
 import { GetUserWithID } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
@@ -21,7 +21,7 @@ router.use(GetSessionFromParam);
  * @name GET /api/v1/sessions/:sessionID
  */
 router.get("/", UpdateSessionViewcount, async (req, res) => {
-	const session = req[SYMBOL_TachiData]!.sessionDoc!;
+	const session = req[SYMBOL_TACHI_DATA]!.sessionDoc!;
 
 	const scores = await db.scores.find({
 		scoreID: { $in: session.scoreInfo.map((e) => e.scoreID) },
@@ -82,7 +82,7 @@ router.patch(
 		{ allowExcessKeys: true }
 	),
 	async (req, res) => {
-		const session = req[SYMBOL_TachiData]!.sessionDoc!;
+		const session = req[SYMBOL_TACHI_DATA]!.sessionDoc!;
 
 		const updateExp: ModifiableSessionProps = {};
 

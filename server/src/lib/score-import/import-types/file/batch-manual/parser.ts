@@ -1,9 +1,9 @@
-import { KtLogger } from "lib/logger/logger";
-import { BatchManualScore } from "tachi-common";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { ParseBatchManualFromObject } from "../../common/batch-manual/parser";
-import { BatchManualContext } from "../../common/batch-manual/types";
-import { ParserFunctionReturns } from "../../common/types";
+import type { BatchManualContext } from "../../common/batch-manual/types";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { KtLogger } from "lib/logger/logger";
+import type { BatchManualScore } from "tachi-common";
 
 /**
  * Parses a buffer of BATCH-MANUAL data.
@@ -22,7 +22,7 @@ function ParseBatchManual(
 	} catch (err) {
 		throw new ScoreImportFatalError(
 			400,
-			`Invalid JSON. (${(err as Error)?.message ?? "No Error Message Available."})`
+			`Invalid JSON. (${(err as Error).message ?? "No Error Message Available."})`
 		);
 	}
 

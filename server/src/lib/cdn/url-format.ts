@@ -1,4 +1,4 @@
-import { integer } from "tachi-common";
+import type { integer } from "tachi-common";
 
 export function GetUSCIRReplayURL(scoreID: string) {
 	return `/uscir/replays/${scoreID}`;

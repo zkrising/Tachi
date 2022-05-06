@@ -1,3 +1,13 @@
+import {
+	AddNewUser,
+	HashPassword,
+	InsertDefaultUserSettings,
+	MountAuthCookie,
+	PasswordCompare,
+	ReinstateInvite,
+	ValidateCaptcha,
+	ValidatePassword,
+} from "./auth";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SendEmail } from "lib/email/client";
@@ -10,7 +20,6 @@ import {
 	AggressiveRateLimitMiddleware,
 	HyperAggressiveRateLimitMiddleware,
 } from "server/middleware/rate-limiter";
-import { integer } from "tachi-common";
 import { DecrementCounterValue, GetNextCounterValue } from "utils/db";
 import { Random20Hex } from "utils/misc";
 import {
@@ -21,16 +30,7 @@ import {
 	GetUserPrivateInfo,
 	GetUserWithID,
 } from "utils/user";
-import {
-	AddNewUser,
-	HashPassword,
-	InsertDefaultUserSettings,
-	MountAuthCookie,
-	PasswordCompare,
-	ReinstateInvite,
-	ValidateCaptcha,
-	ValidatePassword,
-} from "./auth";
+import type { integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -272,7 +272,7 @@ router.post(
 
 			await db["verify-email-codes"].insert({
 				code: resetEmailCode,
-				userID: userID,
+				userID,
 				email: req.body.email,
 			});
 
@@ -366,13 +366,14 @@ router.post("/resend-verify-email", HyperAggressiveRateLimitMiddleware, async (r
 	});
 
 	const user = req.session.tachi?.user;
+
 	if (!user) {
 		return;
 	}
 
 	const userID = user.id;
 
-	const verifyInfo = await db["verify-email-codes"].findOne({ userID: userID });
+	const verifyInfo = await db["verify-email-codes"].findOne({ userID });
 
 	if (!verifyInfo) {
 		logger.warn(
@@ -393,7 +394,7 @@ router.post("/resend-verify-email", HyperAggressiveRateLimitMiddleware, async (r
  * @name POST /api/v1/auth/logout
  */
 router.post("/logout", (req, res) => {
-	if (!req.session?.tachi?.user.id) {
+	if (!req.session.tachi?.user.id) {
 		return res.status(409).json({
 			success: false,
 			description: `You are not logged in.`,
@@ -430,6 +431,7 @@ router.post(
 		}
 
 		logger.debug(`received password reset request for ${req.body.email}.`);
+
 		// For timing attack and infosec reasons, we can't do anything but **immediately** return here.
 		res.status(202).json({
 			success: true,

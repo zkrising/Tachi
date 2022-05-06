@@ -1,8 +1,3 @@
-import { KtLogger } from "lib/logger/logger";
-import { Difficulties, Grades, Lamps, Playtypes } from "tachi-common";
-import { FindChartWithPTDFVersion } from "utils/queries/charts";
-import { FindSongOnTitleInsensitive } from "utils/queries/songs";
-import { EmptyObject } from "utils/types";
 import {
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
@@ -12,13 +7,18 @@ import {
 	GenericGetGradeAndPercent,
 	ParseDateFromString,
 } from "../../../framework/common/score-utils";
-import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction } from "../../common/types";
-import { S3Score } from "./types";
+import { FindChartWithPTDFVersion } from "utils/queries/charts";
+import { FindSongOnTitleInsensitive } from "utils/queries/songs";
+import type { DryScore } from "../../../framework/common/types";
+import type { ConverterFunction } from "../../common/types";
+import type { S3Score } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { Difficulties, Grades, Lamps, Playtypes } from "tachi-common";
+import type { EmptyObject } from "utils/types";
 
 export function ParseDifficulty(diff: S3Score["diff"]): {
 	playtype: Playtypes["iidx"];
-	difficulty: Difficulties["iidx:SP" | "iidx:DP"];
+	difficulty: Difficulties["iidx:DP" | "iidx:SP"];
 } {
 	switch (diff) {
 		case "L7":
@@ -44,7 +44,7 @@ export function ParseDifficulty(diff: S3Score["diff"]): {
 	}
 }
 
-export function ResolveS3Lamp(data: S3Score, logger: KtLogger): Lamps["iidx:SP" | "iidx:DP"] {
+export function ResolveS3Lamp(data: S3Score, logger: KtLogger): Lamps["iidx:DP" | "iidx:SP"] {
 	if (data.cleartype === "played") {
 		return "FAILED";
 	} else if (data.cleartype === "cleared") {
@@ -54,12 +54,12 @@ export function ResolveS3Lamp(data: S3Score, logger: KtLogger): Lamps["iidx:SP" 
 			return "HARD CLEAR";
 		} else if (data.mods.hardeasy === "E") {
 			return "EASY CLEAR";
-		} else {
-			logger.warn(`Invalid cleartype of 'cleared' with hardeasy of ${data.mods.hardeasy}?`);
-			throw new InvalidScoreFailure(
-				`Invalid cleartype of 'cleared' with hardeasy of ${data.mods.hardeasy}?`
-			);
 		}
+
+		logger.warn(`Invalid cleartype of 'cleared' with hardeasy of ${data.mods.hardeasy}?`);
+		throw new InvalidScoreFailure(
+			`Invalid cleartype of 'cleared' with hardeasy of ${data.mods.hardeasy}?`
+		);
 	} else if (
 		data.cleartype === "combo" ||
 		data.cleartype === "comboed" ||
@@ -143,6 +143,7 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
 	const timeAchieved = ParseDateFromString(data.date);
 
 	let judgements = {};
+
 	if (data.scorebreakdown) {
 		judgements = {
 			pgreat: data.scorebreakdown.justgreats,
@@ -153,14 +154,14 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
 		};
 	}
 
-	const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
+	const dryScore: DryScore<"iidx:DP" | "iidx:SP"> = {
 		game: "iidx",
 		comment: data.comment ?? null,
 		importType: "file/solid-state-squad",
 		service: "Solid State Squad",
 		scoreData: {
 			percent,
-			grade: grade as Grades["iidx:SP" | "iidx:DP"],
+			grade: grade as Grades["iidx:DP" | "iidx:SP"],
 			score: data.exscore,
 			lamp,
 			judgements,

@@ -3,7 +3,7 @@ import { ServerConfig } from "lib/setup/config";
 import nodeFetch from "utils/fetch";
 import { HasOwnProperty } from "utils/misc";
 import { CreateURLWithParams } from "utils/url";
-import { ClassHandler } from "../../../framework/user-game-stats/types";
+import type { ClassHandler } from "../../../framework/user-game-stats/types";
 
 export async function CreateArcIIDXClassHandler(
 	profileID: string,
@@ -44,7 +44,7 @@ export async function CreateArcIIDXClassHandler(
 		// we're just going to lazily path directly towards the rank.
 		// if ARC sends us an unexpected JSON structure or whatever
 		// we wont crash.
-		let arcClass: string | undefined | null;
+		let arcClass: string | null | undefined;
 
 		if (playtype === "SP") {
 			arcClass = json?._items?.[0]?.sp?.rank;

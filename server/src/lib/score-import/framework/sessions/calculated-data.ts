@@ -1,11 +1,11 @@
-import { Game, Playtype, Playtypes, ScoreDocument, SessionDocument } from "tachi-common";
+import type { Game, Playtype, Playtypes, ScoreDocument, SessionDocument } from "tachi-common";
 
 type ScoreCalculatedDataOnly = Pick<ScoreDocument, "calculatedData">;
 
 const RELEVANT_SCORES = 10;
 
-function AverageBest10(vals: (number | null | undefined)[]) {
-	const numbers = vals.filter((e) => typeof e === "number") as number[];
+function AverageBest10(vals: Array<number | null | undefined>) {
+	const numbers = vals.filter((e) => typeof e === "number") as Array<number>;
 
 	if (numbers.length < RELEVANT_SCORES) {
 		return null;
@@ -19,24 +19,27 @@ function AverageBest10(vals: (number | null | undefined)[]) {
 	);
 }
 
-function SumAll(arr: ScoreCalculatedDataOnly[], prop: keyof ScoreDocument["calculatedData"]) {
+function SumAll(arr: Array<ScoreCalculatedDataOnly>, prop: keyof ScoreDocument["calculatedData"]) {
 	return arr.reduce((a, e) => {
 		if (typeof e.calculatedData[prop] === "number") {
-			return a + (e.calculatedData[prop] as number);
+			return a + e.calculatedData[prop]!;
 		}
 
 		return a;
 	}, 0);
 }
 
-function AvgBest10Map(arr: ScoreCalculatedDataOnly[], prop: keyof ScoreDocument["calculatedData"]) {
+function AvgBest10Map(
+	arr: Array<ScoreCalculatedDataOnly>,
+	prop: keyof ScoreDocument["calculatedData"]
+) {
 	return AverageBest10(arr.map((e) => e.calculatedData[prop]));
 }
 
 type CalculatedDataFunctions = {
 	[G in Game]: {
 		[P in Playtypes[G]]: (
-			scoreCalcData: ScoreCalculatedDataOnly[]
+			scoreCalcData: Array<ScoreCalculatedDataOnly>
 		) => SessionDocument["calculatedData"];
 	};
 };
@@ -147,7 +150,7 @@ const CalculatedDataFunctions: CalculatedDataFunctions = {
 export function CreateSessionCalcData(
 	game: Game,
 	playtype: Playtype,
-	scoreCalcData: ScoreCalculatedDataOnly[]
+	scoreCalcData: Array<ScoreCalculatedDataOnly>
 ): SessionDocument["calculatedData"] {
 	// @ts-expect-error standard game->pt stuff.
 	return CalculatedDataFunctions[game][playtype](scoreCalcData);

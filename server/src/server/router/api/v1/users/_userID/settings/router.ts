@@ -1,11 +1,11 @@
+import { RequireSelfRequestFromUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import prValidate from "server/middleware/prudence-validate";
 import { DeleteUndefinedProps } from "utils/misc";
 import { FormatUserDoc, GetSettingsForUser } from "utils/user";
-import { RequireSelfRequestFromUser } from "../middleware";
 
 const logger = CreateLogCtx(__filename);
 const router: Router = Router({ mergeParams: true });
@@ -16,7 +16,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users/:userID/settings
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	const settings = await db["user-settings"].findOne({
 		userID: user.id,
@@ -58,7 +58,7 @@ router.patch(
 		deletableScores: "*boolean",
 	}),
 	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
+		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 		const preferences = {
 			invisible: req.body.invisible,

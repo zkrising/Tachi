@@ -8,6 +8,7 @@ const logger = CreateLogCtx(__filename);
 
 export async function RecalcSessions(filter = {}) {
 	const allSessions = await db.sessions.find(filter);
+
 	logger.info(`Recalcing ${allSessions.length} sessions.`);
 
 	for (const session of allSessions) {
@@ -19,6 +20,7 @@ export async function RecalcSessions(filter = {}) {
 		);
 
 		let c;
+
 		try {
 			c = CreateSessionCalcData(session.game, session.playtype, scores);
 		} catch (err) {

@@ -1,21 +1,15 @@
-import deepmerge from "deepmerge";
-import { KtLogger } from "lib/logger/logger";
-import { TachiConfig } from "lib/setup/config";
-import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
-import {
-	BatchManual,
-	BatchManualScore,
-	Game,
-	GetGameConfig,
-	GetGamePTConfig,
-	ImportTypes,
-	Playtype,
-} from "tachi-common";
-import { FormatPrError } from "utils/prudence";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturns } from "../types";
 import { CreateBatchManualClassHandler } from "./class-handler";
-import { BatchManualContext } from "./types";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
+import deepmerge from "deepmerge";
+import { TachiConfig } from "lib/setup/config";
+import p from "prudence";
+import { GetGameConfig, GetGamePTConfig } from "tachi-common";
+import { FormatPrError } from "utils/prudence";
+import type { ParserFunctionReturns } from "../types";
+import type { BatchManualContext } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { PrudenceSchema, ValidSchemaValue } from "prudence";
+import type { BatchManual, BatchManualScore, Game, ImportTypes, Playtype } from "tachi-common";
 
 const optNull = (v: ValidSchemaValue) => p.optional(p.nullable(v));
 
@@ -150,6 +144,7 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 
 const PR_BatchManualScore = (game: Game, playtype: Playtype): PrudenceSchema => {
 	const gptConfig = GetGamePTConfig(game, playtype);
+
 	return {
 		score: p.isPositiveInteger,
 		lamp: p.isIn(gptConfig.lamps),
@@ -187,6 +182,7 @@ const PR_BatchManualScore = (game: Game, playtype: Playtype): PrudenceSchema => 
 
 				// @ts-expect-error shush
 				const v = self[key];
+
 				if ((!Number.isSafeInteger(v) || v < 0) && v !== null) {
 					return `Key ${key} had an invalid value of ${v} [${typeof v}]`;
 				}
@@ -264,9 +260,10 @@ export function ParseBatchManualFromObject(
 
 	// attempt to retrieve game
 	// @ts-expect-error man.
-	const possiblyGame = object?.meta?.game;
+	const possiblyGame = object.meta?.game;
+
 	// @ts-expect-error man.
-	const possiblyPlaytype = object?.meta?.playtype;
+	const possiblyPlaytype = object.meta?.playtype;
 
 	if (!possiblyGame) {
 		throw new ScoreImportFatalError(
@@ -326,10 +323,11 @@ export function ParseBatchManualFromObject(
 			version: batchManual.meta.version ?? null,
 		},
 		iterable: batchManual.scores,
+
 		// if classes are provided, use those as a class handler. Otherwise, we
 		// don't care.
 		classHandler: batchManual.classes
-			? CreateBatchManualClassHandler(batchManual.classes!)
+			? CreateBatchManualClassHandler(batchManual.classes)
 			: null,
 	};
 }

@@ -1,6 +1,6 @@
+import server from "../server/server";
 import CreateLogCtx from "lib/logger/logger";
 import supertest from "supertest";
-import server from "../server/server";
 
 const logger = CreateLogCtx(__filename);
 

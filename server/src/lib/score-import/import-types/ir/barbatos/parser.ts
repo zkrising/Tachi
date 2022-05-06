@@ -1,9 +1,9 @@
-import { KtLogger } from "lib/logger/logger";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import p from "prudence";
 import { FormatPrError } from "utils/prudence";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturns } from "../../common/types";
-import { BarbatosContext, BarbatosScore } from "./types";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { BarbatosContext, BarbatosScore } from "./types";
+import type { KtLogger } from "lib/logger/logger";
 
 const PR_Barbatos = {
 	difficulty: p.isIn(1, 2, 3, 4),
@@ -37,7 +37,7 @@ export function ParseBarbatosSingle(
 	return {
 		context: { timeReceived: Date.now() },
 		game: "sdvx",
-		iterable: [body] as unknown as BarbatosScore[],
+		iterable: [body] as unknown as Array<BarbatosScore>,
 		classHandler: null,
 	};
 }

@@ -1,9 +1,9 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { Environment } from "lib/setup/config";
-import { TachiAPIClientDocument } from "tachi-common";
 import { AssignToReqTachiData } from "utils/req-tachi-data";
+import type { RequestHandler } from "express";
+import type { TachiAPIClientDocument } from "tachi-common";
 
 export const GetClientFromID: RequestHandler = async (req, res, next) => {
 	const client = await db["api-clients"].findOne(
@@ -26,7 +26,7 @@ export const GetClientFromID: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { apiClientDoc: client });
 
-	return next();
+	next();
 };
 
 export const RequireOwnershipOfClient: RequestHandler = (req, res, next) => {
@@ -42,7 +42,7 @@ export const RequireOwnershipOfClient: RequestHandler = (req, res, next) => {
 		// in testing.
 		client = req.body.__terribleHackOauth2ClientDoc;
 	} else {
-		client = req[SYMBOL_TachiData]!.apiClientDoc!;
+		client = req[SYMBOL_TACHI_DATA]!.apiClientDoc!;
 	}
 
 	const user = req.session.tachi?.user;
@@ -60,5 +60,6 @@ export const RequireOwnershipOfClient: RequestHandler = (req, res, next) => {
 			description: `You are not authorized to perform this action.`,
 		});
 	}
-	return next();
+
+	next();
 };

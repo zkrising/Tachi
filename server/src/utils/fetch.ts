@@ -1,5 +1,6 @@
 import { Environment } from "lib/setup/config";
-import nodeFetch, { RequestInfo, RequestInit, Response } from "node-fetch";
+import nodeFetch from "node-fetch";
+import type { RequestInfo, RequestInit, Response } from "node-fetch";
 
 const fetch =
 	Environment.nodeEnv === "test"

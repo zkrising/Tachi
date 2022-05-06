@@ -1,12 +1,12 @@
-import { ScoreDocument, integer } from "tachi-common";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import type { ScoreDocument, integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 const MAX_PIPELINE_LENGTH = 500;
 
 interface ScoreQueue {
-	queue: ScoreDocument[];
+	queue: Array<ScoreDocument>;
 	scoreIDSet: Set<string>;
 }
 

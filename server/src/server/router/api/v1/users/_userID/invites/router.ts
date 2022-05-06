@@ -1,12 +1,12 @@
+import { RequireSelfRequestFromUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { GetTotalAllowedInvites } from "lib/invites/invites";
 import { RequireKamaitachi } from "server/middleware/type-require";
-import { InviteCodeDocument } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { GetUsersWithIDs } from "utils/user";
-import { RequireSelfRequestFromUser } from "../middleware";
+import type { InviteCodeDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -19,14 +19,14 @@ router.use(RequireSelfRequestFromUser);
  * @name GET /api/v1/users/:userID/invites
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	const invites = await db.invites.find({
 		createdBy: user.id,
 	});
 
 	const consumers = await GetUsersWithIDs(
-		invites.map((e) => e.consumedBy).filter((e) => e !== null) as number[]
+		invites.map((e) => e.consumedBy).filter((e) => e !== null) as Array<number>
 	);
 
 	return res.status(200).json({
@@ -43,7 +43,7 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/users/:userID/invites/limit
  */
 router.get("/limit", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	const invites = await db.invites.count({ createdBy: user.id });
 	const limit = GetTotalAllowedInvites(user);
@@ -66,7 +66,7 @@ const InviteLocks = new Set();
  * @name POST /api/v1/users/:userID/invites/create
  */
 router.post("/create", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	try {
 		// race condition protection

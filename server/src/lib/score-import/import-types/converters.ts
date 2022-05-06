@@ -1,11 +1,9 @@
-import { ImportTypes } from "tachi-common";
 import { ConvertAPIArcIIDX } from "./api/arc-iidx/converter";
 import { ConvertAPIArcSDVX } from "./api/arc-sdvx/converter";
 import { ConvertAPIKaiIIDX } from "./common/api-kai/iidx/converter";
 import { ConvertAPIKaiSDVX } from "./common/api-kai/sdvx/converter";
 import { ConverterBatchManual } from "./common/batch-manual/converter";
 import ConvertEamIIDXCSV from "./common/eamusement-iidx-csv/converter";
-import { ConverterFunction, ImportTypeContextMap, ImportTypeDataMap } from "./common/types";
 import ConvertEamSDVXCSV from "./file/eamusement-sdvx-csv/converter";
 import { ConvertFileMerIIDX } from "./file/mer-iidx/converter";
 import { ConvertFileS3 } from "./file/solid-state-squad/converter";
@@ -16,6 +14,8 @@ import { ConverterIRFervidex } from "./ir/fervidex/converter";
 import { ConverterIRKsHookSV6C } from "./ir/kshook-sv6c/converter";
 import { ConverterLR2Hook } from "./ir/lr2hook/converter";
 import { ConverterIRUSC } from "./ir/usc/converter";
+import type { ConverterFunction, ImportTypeContextMap, ImportTypeDataMap } from "./common/types";
+import type { ImportTypes } from "tachi-common";
 
 export type ConverterMap = {
 	[I in ImportTypes]: ConverterFunction<ImportTypeDataMap[I], ImportTypeContextMap[I]>;

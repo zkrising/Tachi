@@ -1,15 +1,15 @@
+import { RequireAuthedAsUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { CDNDelete, CDNRedirect, CDNStoreOrOverwrite } from "lib/cdn/cdn";
 import { GetProfilePictureURL } from "lib/cdn/url-format";
 import { ONE_MEGABYTE } from "lib/constants/filesize";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import { HashSHA256 } from "utils/crypto";
 import { FormatUserDoc } from "utils/user";
-import { RequireAuthedAsUser } from "../middleware";
 
 const logger = CreateLogCtx(__filename);
 
@@ -28,7 +28,7 @@ router.put(
 	RequirePermissions("customise_profile"),
 	CreateMulterSingleUploadMiddleware("pfp", ONE_MEGABYTE, logger),
 	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
+		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 		if (!user.customPfpLocation) {
 			logger.verbose(`User ${FormatUserDoc(user)} set a custom profile picture.`);
@@ -66,6 +66,7 @@ router.put(
 		if (req.session.tachi?.user) {
 			req.session.tachi.user.customPfpLocation = contentHash;
 		}
+
 		await db.users.update({ id: user.id }, { $set: { customPfpLocation: contentHash } });
 
 		return res.status(200).json({
@@ -85,16 +86,17 @@ router.put(
  * @name GET /api/v1/users/:userID/pfp
  */
 router.get("/", (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	logger.debug("User Info for /:userID/pfp request is ", user);
 
 	if (!user.customPfpLocation) {
 		res.setHeader("Content-Type", "image/png");
-		return CDNRedirect(res, "/users/default/pfp");
+		CDNRedirect(res, "/users/default/pfp");
+		return;
 	}
 
-	return CDNRedirect(res, GetProfilePictureURL(user.id, user.customPfpLocation));
+	CDNRedirect(res, GetProfilePictureURL(user.id, user.customPfpLocation));
 });
 
 /**
@@ -107,7 +109,7 @@ router.delete(
 	RequireAuthedAsUser,
 	RequirePermissions("customise_profile"),
 	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
+		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 		if (!user.customPfpLocation) {
 			return res.status(404).json({

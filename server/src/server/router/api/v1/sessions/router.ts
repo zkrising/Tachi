@@ -1,5 +1,5 @@
-import { Router } from "express";
 import sessionIDRouter from "./_sessionID/router";
+import { Router } from "express";
 
 const router: Router = Router({ mergeParams: true });
 

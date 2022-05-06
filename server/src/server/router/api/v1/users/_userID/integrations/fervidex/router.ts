@@ -1,11 +1,11 @@
+import { RequireSelfRequestFromUser } from "../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import { DeleteUndefinedProps } from "utils/misc";
 import { optNull } from "utils/prudence";
-import { RequireSelfRequestFromUser } from "../../middleware";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -18,7 +18,7 @@ router.use(RequireSelfRequestFromUser);
  * @name GET /api/v1/users/:userID/integrations/fervidex/settings
  */
 router.get("/settings", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	const settingsDoc = await db["fer-settings"].findOne({
 		userID: user.id,
@@ -50,7 +50,7 @@ router.patch(
 			});
 		}
 
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
+		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 		const modifyDocument = req.body;
 

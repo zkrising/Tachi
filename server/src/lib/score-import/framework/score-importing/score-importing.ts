@@ -1,21 +1,6 @@
-import db from "external/mongo/db";
-import { AppendLogCtx, KtLogger } from "lib/logger/logger";
-import { ScoreImportJob } from "lib/score-import/worker/types";
-import {
-	ChartDocument,
-	Game,
-	IDStrings,
-	ImportProcessingInfo,
-	ImportTypes,
-	integer,
-	ScoreDocument,
-	SongDocument,
-} from "tachi-common";
-import {
-	ConverterFnReturnOrFailure,
-	ConverterFnSuccessReturn,
-	ConverterFunction,
-} from "../../import-types/common/types";
+import { HydrateScore } from "./hydrate-score";
+import { GetScoreQueueMaybe, InsertQueue, QueueScoreInsert } from "./insert-score";
+import { CreateScoreID } from "./score-id";
 import {
 	ConverterFailure,
 	InternalFailure,
@@ -23,11 +8,27 @@ import {
 	KTDataNotFoundFailure,
 	SkipScoreFailure,
 } from "../common/converter-failures";
-import { DryScore } from "../common/types";
 import { OrphanScore } from "../orphans/orphans";
-import { HydrateScore } from "./hydrate-score";
-import { GetScoreQueueMaybe, InsertQueue, QueueScoreInsert } from "./insert-score";
-import { CreateScoreID } from "./score-id";
+import db from "external/mongo/db";
+import { AppendLogCtx } from "lib/logger/logger";
+import { IDStrings } from "tachi-common";
+import type {
+	ConverterFnReturnOrFailure,
+	ConverterFnSuccessReturn,
+	ConverterFunction,
+} from "../../import-types/common/types";
+import type { DryScore } from "../common/types";
+import type { KtLogger } from "lib/logger/logger";
+import type { ScoreImportJob } from "lib/score-import/worker/types";
+import type {
+	ChartDocument,
+	Game,
+	ImportProcessingInfo,
+	ImportTypes,
+	integer,
+	ScoreDocument,
+	SongDocument,
+} from "tachi-common";
 
 /**
  * Processes the iterable data into the Tachi database.
@@ -40,13 +41,13 @@ import { CreateScoreID } from "./score-id";
 export async function ImportAllIterableData<D, C>(
 	userID: integer,
 	importType: ImportTypes,
-	iterableData: Iterable<D> | AsyncIterable<D>,
+	iterableData: AsyncIterable<D> | Iterable<D>,
 	ConverterFunction: ConverterFunction<D, C>,
 	context: C,
 	game: Game,
 	logger: KtLogger,
 	job: ScoreImportJob | undefined
-): Promise<ImportProcessingInfo[]> {
+): Promise<Array<ImportProcessingInfo>> {
 	logger.verbose("Getting Blacklist...");
 
 	// @optimisable: could filter harder with score.game and score.playtype
@@ -92,9 +93,7 @@ export async function ImportAllIterableData<D, C>(
 	logger.verbose(`Finished Importing Data (${processedResults.length} datapoints).`);
 	logger.debug(`Removing null returns...`);
 
-	const datapoints = processedResults.filter(
-		(e) => e !== null
-	) as ImportProcessingInfo<IDStrings>[];
+	const datapoints = processedResults.filter((e) => e !== null) as Array<ImportProcessingInfo>;
 
 	logger.debug(`Removed null from results.`);
 
@@ -126,7 +125,7 @@ export async function ImportIterableDatapoint<D, C>(
 	ConverterFunction: ConverterFunction<D, C>,
 	context: C,
 	game: Game,
-	blacklist: string[],
+	blacklist: Array<string>,
 	logger: KtLogger
 ): Promise<ImportProcessingInfo | null> {
 	// Converter Function Return
@@ -198,23 +197,24 @@ export async function ImportIterableDatapoint<D, C>(
 			return {
 				success: false,
 				type: "InternalError",
+
 				// could return cfnReturn.message here, but we might want to hide the details of the crash.
 				message: "An internal error has occured.",
 				content: {},
 			};
 		} else if (cfnReturn instanceof SkipScoreFailure) {
 			return null;
-		} else {
-			logger.warn(`Unknown error returned as ConverterFailure, Ignoring.`, {
-				err: cfnReturn,
-			});
-			return {
-				success: false,
-				type: "InternalError",
-				message: "An internal service error has occured.",
-				content: {},
-			};
 		}
+
+		logger.warn(`Unknown error returned as ConverterFailure, Ignoring.`, {
+			err: cfnReturn,
+		});
+		return {
+			success: false,
+			type: "InternalError",
+			message: "An internal service error has occured.",
+			content: {},
+		};
 	}
 
 	if (cfnReturn instanceof Error) {
@@ -229,18 +229,13 @@ export async function ImportIterableDatapoint<D, C>(
 		};
 	}
 
-	return ProcessSuccessfulConverterReturn(
-		userID,
-		cfnReturn as ConverterFnSuccessReturn,
-		blacklist,
-		logger
-	);
+	return ProcessSuccessfulConverterReturn(userID, cfnReturn, blacklist, logger);
 }
 
 export async function ProcessSuccessfulConverterReturn(
 	userID: integer,
 	cfnReturn: ConverterFnSuccessReturn,
-	blacklist: string[],
+	blacklist: Array<string>,
 	logger: KtLogger,
 	forceImmediateImport = false
 ): Promise<ImportProcessingInfo | null> {
@@ -289,7 +284,7 @@ async function HydrateAndInsertScore(
 	dryScore: DryScore,
 	chart: ChartDocument,
 	song: SongDocument,
-	blacklist: string[],
+	blacklist: Array<string>,
 	importLogger: KtLogger,
 	force = false
 ): Promise<ScoreDocument | null> {
@@ -333,6 +328,7 @@ async function HydrateAndInsertScore(
 	const score = await HydrateScore(userID, dryScore, chart, song, scoreID, logger);
 
 	let res;
+
 	if (force) {
 		res = await db.scores.insert(score);
 	} else {

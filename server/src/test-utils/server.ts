@@ -1,5 +1,5 @@
-import supertest from "supertest";
 import server from "../server/server";
+import supertest from "supertest";
 
 const mockServer = supertest(server);
 

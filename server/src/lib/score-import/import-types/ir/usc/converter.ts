@@ -1,3 +1,9 @@
+import {
+	InternalFailure,
+	InvalidScoreFailure,
+	KTDataNotFoundFailure,
+} from "../../../framework/common/converter-failures";
+import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import db from "external/mongo/db";
 import {
 	USC_DEFAULT_HOLD,
@@ -6,24 +12,18 @@ import {
 	USC_DEFAULT_PERFECT,
 	USC_DEFAULT_SLAM,
 } from "lib/constants/usc-ir";
-import { KtLogger } from "lib/logger/logger";
-import { USCClientScore } from "server/router/ir/usc/_playtype/types";
-import { Lamps } from "tachi-common";
 import { FindSongOnID } from "utils/queries/songs";
-import {
-	InternalFailure,
-	InvalidScoreFailure,
-	KTDataNotFoundFailure,
-} from "../../../framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
-import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction } from "../../common/types";
-import { IRUSCContext } from "./types";
+import type { DryScore } from "../../../framework/common/types";
+import type { ConverterFunction } from "../../common/types";
+import type { IRUSCContext } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
+import type { Lamps } from "tachi-common";
 
 /**
  * Interprets the "note mod" used based on the USC score.
  */
-export function DeriveNoteMod(data: USCClientScore): "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" {
+export function DeriveNoteMod(data: USCClientScore): "MIR-RAN" | "MIRROR" | "NORMAL" | "RANDOM" {
 	if (data.options.mirror && data.options.random) {
 		return "MIR-RAN";
 	} else if (data.options.mirror) {
@@ -41,7 +41,7 @@ export function DeriveNoteMod(data: USCClientScore): "NORMAL" | "MIRROR" | "RAND
 export function DeriveLamp(
 	scoreDoc: USCClientScore,
 	logger: KtLogger
-): Lamps["usc:Keyboard" | "usc:Controller"] {
+): Lamps["usc:Controller" | "usc:Keyboard"] {
 	if (scoreDoc.score === 10_000_000) {
 		return "PERFECT ULTIMATE CHAIN";
 	} else if (scoreDoc.error === 0) {

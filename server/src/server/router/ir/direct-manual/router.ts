@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { MakeScoreImport } from "lib/score-import/framework/score-import";
-import { ScoreImportJobData } from "lib/score-import/worker/types";
 import { ServerConfig } from "lib/setup/config";
 import { RequirePermissions } from "server/middleware/auth";
 import { ScoreImportRateLimiter } from "server/middleware/rate-limiter";
 import { Random20Hex } from "utils/misc";
+import type { ScoreImportJobData } from "lib/score-import/worker/types";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -19,14 +19,14 @@ router.post(
 	RequirePermissions("submit_score"),
 	ScoreImportRateLimiter,
 	async (req, res) => {
-		const userIntent = !!req.header("X-User-Intent");
+		const userIntent = Boolean(req.header("X-User-Intent"));
 
 		if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER) {
 			const importID = Random20Hex();
 
 			const job: ScoreImportJobData<"ir/direct-manual"> = {
 				importID,
-				userID: req[SYMBOL_TachiAPIAuth].userID!,
+				userID: req[SYMBOL_TACHI_API_AUTH].userID!,
 				userIntent,
 				importType: "ir/direct-manual",
 				parserArguments: [req.body],
@@ -44,17 +44,17 @@ router.post(
 					importID,
 				},
 			});
-		} else {
-			// Fire the score import and wait for it to finish!
-			const importResponse = await ExpressWrappedScoreImportMain<"ir/direct-manual">(
-				req[SYMBOL_TachiAPIAuth].userID!,
-				userIntent,
-				"ir/direct-manual",
-				[req.body]
-			);
-
-			return res.status(importResponse.statusCode).json(importResponse.body);
 		}
+
+		// Fire the score import and wait for it to finish!
+		const importResponse = await ExpressWrappedScoreImportMain<"ir/direct-manual">(
+			req[SYMBOL_TACHI_API_AUTH].userID!,
+			userIntent,
+			"ir/direct-manual",
+			[req.body]
+		);
+
+		return res.status(importResponse.statusCode).json(importResponse.body);
 	}
 );
 

@@ -1,19 +1,17 @@
+import chartsRouter from "./charts/router";
+import foldersRouter from "./folders/router";
+import { ValidatePlaytypeFromParam } from "./middleware";
+import scoresRouter from "./scores/router";
+import songIDRouter from "./songs/_songID/router";
+import tablesRouter from "./tables/router";
+import targetsRouter from "./targets/router";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { ONE_HOUR } from "lib/constants/time";
-import { FindOptions } from "monk";
 import NodeCache from "node-cache";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import {
-	FormatGame,
-	Game,
-	GetGamePTConfig,
-	integer,
-	Playtype,
-	Playtypes,
-	UserGameStats,
-} from "tachi-common";
+import { FormatGame, GetGamePTConfig, Playtypes } from "tachi-common";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { IsString } from "utils/misc";
 import { GetClassDistribution } from "utils/queries/stats";
@@ -24,13 +22,8 @@ import {
 	ParseStrPositiveNonZeroInt,
 } from "utils/string-checks";
 import { GetUsersWithIDs } from "utils/user";
-import chartsRouter from "./charts/router";
-import foldersRouter from "./folders/router";
-import { ValidatePlaytypeFromParam } from "./middleware";
-import scoresRouter from "./scores/router";
-import songIDRouter from "./songs/_songID/router";
-import tablesRouter from "./tables/router";
-import targetsRouter from "./targets/router";
+import type { FindOptions } from "monk";
+import type { Game, integer, Playtype, UserGameStats } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -110,6 +103,7 @@ router.get("/leaderboard", async (req, res) => {
 	}
 
 	let alg = gptConfig.defaultProfileRatingAlg;
+
 	if (IsString(req.query.alg)) {
 		const temp = CheckStrProfileAlg(game, playtype, req.query.alg);
 
@@ -174,6 +168,7 @@ router.get("/score-leaderboard", async (req, res) => {
 	}
 
 	let alg = gptConfig.defaultScoreRatingAlg;
+
 	if (IsString(req.query.alg)) {
 		const temp = CheckStrScoreAlg(game, playtype, req.query.alg);
 
@@ -237,6 +232,7 @@ router.get(
 		const stat = req.query.class as string;
 
 		const supportedClasses = Object.keys(gptConfig.classHumanisedFormat);
+
 		if (!supportedClasses.includes(stat)) {
 			return res.status(400).json({
 				success: false,

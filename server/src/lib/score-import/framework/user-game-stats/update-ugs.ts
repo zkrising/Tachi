@@ -2,13 +2,13 @@
 // Some games have dedicated methods to calculate statistics like these, other games do not.
 // That's about all there is to it!
 
-import db from "external/mongo/db";
-import { CreateGameSettings } from "lib/game-settings/create-game-settings";
-import { KtLogger } from "lib/logger/logger";
-import { ClassDelta, Game, integer, Playtype, UserGameStats } from "tachi-common";
 import { ProcessClassDeltas, UpdateUGSClasses } from "./classes";
 import { CalculateRatings } from "./rating";
-import { ClassHandler } from "./types";
+import db from "external/mongo/db";
+import { CreateGameSettings } from "lib/game-settings/create-game-settings";
+import type { ClassHandler } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { ClassDelta, Game, integer, Playtype, UserGameStats } from "tachi-common";
 
 export async function UpdateUsersGamePlaytypeStats(
 	game: Game,
@@ -16,7 +16,7 @@ export async function UpdateUsersGamePlaytypeStats(
 	userID: integer,
 	classHandler: ClassHandler | null,
 	logger: KtLogger
-): Promise<ClassDelta[]> {
+): Promise<Array<ClassDelta>> {
 	const ratings = await CalculateRatings(game, playtype, userID, logger);
 
 	// Attempt to find a users game stats if one already exists. If one doesn't exist,

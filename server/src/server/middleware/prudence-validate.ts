@@ -1,6 +1,7 @@
-import { RequestHandler } from "express-serve-static-core";
 import CreateLogCtx from "lib/logger/logger";
-import Prudence, {
+import Prudence from "prudence";
+import type { RequestHandler } from "express-serve-static-core";
+import type {
 	ErrorMessages,
 	MiddlewareErrorHandler,
 	PrudenceOptions,
@@ -16,6 +17,7 @@ const API_ERR_HANDLER =
 	(logLevel: TachiLogLevels): MiddlewareErrorHandler =>
 	(req, res, next, error) => {
 		let stringVal = error.userVal;
+
 		if (error.keychain && error.keychain.includes("password") && error.userVal) {
 			stringVal = "****";
 		}
@@ -51,7 +53,7 @@ const API_ERROR_HANDLERS = Object.fromEntries(
 	])
 ) as Record<TachiLogLevels, MiddlewareErrorHandler>;
 
-type TachiLogLevels = "crit" | "severe" | "error" | "warn" | "info" | "verbose" | "debug";
+type TachiLogLevels = "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn";
 
 const prValidate = (
 	s: PrudenceSchema,

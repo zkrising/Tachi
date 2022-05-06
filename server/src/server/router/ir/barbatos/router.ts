@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { RequirePermissions } from "server/middleware/auth";
 
@@ -13,7 +13,7 @@ router.use(RequirePermissions("submit_score"));
  */
 router.post("/score/submit", async (req, res) => {
 	const responseData = await ExpressWrappedScoreImportMain(
-		req[SYMBOL_TachiAPIAuth]!.userID!,
+		req[SYMBOL_TACHI_API_AUTH]!.userID!,
 		false,
 		"ir/barbatos",
 		[req.body]

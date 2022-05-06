@@ -1,6 +1,6 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { Game, ShowcaseStatDetails } from "tachi-common";
+import type { Game, ShowcaseStatDetails } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -13,7 +13,7 @@ export async function GetRelatedStatDocuments(stat: ShowcaseStatDetails, game: G
 			throw new Error(`Stat refers to a chart that does not exist? ${stat.chartID}.`);
 		}
 
-		const song = await db.songs[game].findOne({ id: chart?.songID });
+		const song = await db.songs[game].findOne({ id: chart.songID });
 
 		if (!song) {
 			logger.severe(`Song-Chart Mismatch - ${chart.songID}.`, { chart });

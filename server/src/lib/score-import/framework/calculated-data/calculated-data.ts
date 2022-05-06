@@ -1,4 +1,10 @@
-import { KtLogger } from "lib/logger/logger";
+import {
+	CalculateKTLampRatingIIDXDP,
+	CalculateKTLampRatingIIDXSP,
+	CalculateKTRating,
+	CalculateMFCP,
+	CalculateSieglinde,
+} from "./stats";
 import {
 	CHUNITHMRating,
 	GITADORASkill,
@@ -8,23 +14,10 @@ import {
 	Volforce,
 	WACCARate,
 } from "rg-stats";
-import {
-	ChartDocument,
-	Game,
-	GetGamePTConfig,
-	IDStrings,
-	Lamps,
-	Playtypes,
-	ScoreDocument,
-} from "tachi-common";
-import { DryScore } from "../common/types";
-import {
-	CalculateKTLampRatingIIDXDP,
-	CalculateKTLampRatingIIDXSP,
-	CalculateKTRating,
-	CalculateMFCP,
-	CalculateSieglinde,
-} from "./stats";
+import { GetGamePTConfig } from "tachi-common";
+import type { DryScore } from "../common/types";
+import type { KtLogger } from "lib/logger/logger";
+import type { ChartDocument, Game, IDStrings, Lamps, Playtypes, ScoreDocument } from "tachi-common";
 
 export async function CreateCalculatedData(
 	dryScore: DryScore,
@@ -84,6 +77,7 @@ export async function CalculateDataForGamePT<G extends Game>(
 	playtype: Playtypes[G],
 	chart: ChartDocument,
 	dryScore: DryScore,
+
 	// ESD gets specially passed through because it's not part of the DryScore, but
 	// can be used for statistics anyway.
 	esd: number | null,
@@ -97,7 +91,7 @@ type CalculatedData<I extends IDStrings> = Required<ScoreDocument<I>["calculated
 
 function CalculateDataIIDX(
 	dryScore: DryScore,
-	chart: ChartDocument<"iidx:SP" | "iidx:DP">,
+	chart: ChartDocument<"iidx:DP" | "iidx:SP">,
 	logger: KtLogger
 ): CalculatedData<"iidx:SP"> {
 	let bpi;
@@ -131,7 +125,7 @@ function CalculateDataSDVXorUSC(
 	dryScore: DryScore,
 	chart: ChartDocument,
 	logger: KtLogger
-): CalculatedData<"sdvx:Single" | "usc:Keyboard" | "usc:Controller"> {
+): CalculatedData<"sdvx:Single" | "usc:Controller" | "usc:Keyboard"> {
 	// for usc, unofficial charts currently have no VF6 value.
 	if (
 		dryScore.game === "usc" &&
@@ -185,7 +179,7 @@ function CalculateDataCHUNITHM(
 function CalculateDataGitadora(
 	dryScore: DryScore,
 	chart: ChartDocument
-): CalculatedData<"gitadora:Gita" | "gitadora:Dora"> {
+): CalculatedData<"gitadora:Dora" | "gitadora:Gita"> {
 	return {
 		skill: GITADORASkill.calculate(dryScore.scoreData.percent, chart.levelNum),
 	};
@@ -195,7 +189,7 @@ function CalculateDataDDR(
 	dryScore: DryScore,
 	chart: ChartDocument,
 	logger: KtLogger
-): CalculatedData<"ddr:SP" | "ddr:DP"> {
+): CalculatedData<"ddr:DP" | "ddr:SP"> {
 	return {
 		MFCP: CalculateMFCP(dryScore, chart, logger),
 		ktRating: CalculateKTRating(dryScore, "ddr", chart.playtype, chart, logger),

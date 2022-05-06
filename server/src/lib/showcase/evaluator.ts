@@ -1,6 +1,11 @@
-import { integer, ShowcaseStatDetails, ShowcaseStatChart, ShowcaseStatFolder } from "tachi-common";
 import db from "external/mongo/db";
 import { GetFolderChartIDs } from "utils/folder";
+import type {
+	integer,
+	ShowcaseStatDetails,
+	ShowcaseStatChart,
+	ShowcaseStatFolder,
+} from "tachi-common";
 
 export function EvaluateShowcaseStat(
 	details: ShowcaseStatDetails,
@@ -43,6 +48,7 @@ async function EvaluateShowcaseChartStat(details: ShowcaseStatChart, userID: int
 
 async function EvaluateShowcaseFolderStat(details: ShowcaseStatFolder, userID: integer) {
 	let chartIDs;
+
 	if (Array.isArray(details.folderID)) {
 		chartIDs = (await Promise.all(details.folderID.map(GetFolderChartIDs))).flat(1);
 	} else {
@@ -53,6 +59,7 @@ async function EvaluateShowcaseFolderStat(details: ShowcaseStatFolder, userID: i
 
 	const value = await db["personal-bests"].count({
 		userID,
+
 		// @optimisable - This is slightly inefficent, maybe we can use relational-style querying?
 		chartID: { $in: chartIDs },
 		[mongoProp]: { $gte: details.gte },
@@ -61,7 +68,7 @@ async function EvaluateShowcaseFolderStat(details: ShowcaseStatFolder, userID: i
 	return { value, outOf: chartIDs.length };
 }
 
-function PropToMongoProp(prop: "score" | "lamp" | "grade" | "percent") {
+function PropToMongoProp(prop: "grade" | "lamp" | "percent" | "score") {
 	switch (prop) {
 		case "score":
 			return "scoreData.score";
@@ -74,7 +81,7 @@ function PropToMongoProp(prop: "score" | "lamp" | "grade" | "percent") {
 	}
 }
 
-function PropToScoreDataProp(prop: "score" | "lamp" | "grade" | "percent") {
+function PropToScoreDataProp(prop: "grade" | "lamp" | "percent" | "score") {
 	switch (prop) {
 		case "score":
 			return "score";

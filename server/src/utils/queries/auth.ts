@@ -1,9 +1,9 @@
 import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
-import { integer } from "tachi-common";
+import type { KtLogger } from "lib/logger/logger";
+import type { integer } from "tachi-common";
 
-export function GetKaiAuth(userID: integer, service: "FLO" | "EAG" | "MIN") {
+export function GetKaiAuth(userID: integer, service: "EAG" | "FLO" | "MIN") {
 	return db["kai-auth-tokens"].findOne({
 		userID,
 		service,
@@ -12,7 +12,7 @@ export function GetKaiAuth(userID: integer, service: "FLO" | "EAG" | "MIN") {
 
 export async function GetKaiAuthGuaranteed(
 	userID: integer,
-	service: "FLO" | "EAG" | "MIN",
+	service: "EAG" | "FLO" | "MIN",
 	logger: KtLogger
 ) {
 	const authDoc = await GetKaiAuth(userID, service);

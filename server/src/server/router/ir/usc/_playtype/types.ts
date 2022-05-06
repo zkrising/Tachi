@@ -1,4 +1,4 @@
-import { integer } from "tachi-common";
+import type { integer } from "tachi-common";
 
 export interface USCServerScore {
 	score: integer;
@@ -8,8 +8,8 @@ export interface USCServerScore {
 	near: integer;
 	error: integer;
 	ranking: integer;
-	gaugeMod: "NORMAL" | "HARD" | "PERMISSIVE";
-	noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN";
+	gaugeMod: "HARD" | "NORMAL" | "PERMISSIVE";
+	noteMod: "MIR-RAN" | "MIRROR" | "NORMAL" | "RANDOM";
 	username: string;
 }
 
@@ -28,7 +28,7 @@ export interface USCClientScore {
 		gaugeOpt: integer;
 		mirror: boolean;
 		random: boolean;
-		autoFlags: integer; //???
+		autoFlags: integer; // ???
 	};
 	windows: {
 		perfect: number;

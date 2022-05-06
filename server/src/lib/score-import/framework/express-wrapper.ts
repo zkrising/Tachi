@@ -1,15 +1,15 @@
+import { MakeScoreImport } from "./score-import";
+import ScoreImportFatalError from "./score-importing/score-import-error";
 import CreateLogCtx from "lib/logger/logger";
-import {
+import { Random20Hex } from "utils/misc";
+import type { ParserArguments } from "../worker/types";
+import type {
 	ImportDocument,
 	ImportTypes,
 	integer,
 	SuccessfulAPIResponse,
 	UnsuccessfulAPIResponse,
 } from "tachi-common";
-import { Random20Hex } from "utils/misc";
-import { ParserArguments } from "../worker/types";
-import { MakeScoreImport } from "./score-import";
-import ScoreImportFatalError from "./score-importing/score-import-error";
 
 export interface WrappedAPIResponse {
 	statusCode: number;

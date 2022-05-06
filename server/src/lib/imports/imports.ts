@@ -1,7 +1,7 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { DeleteMultipleScores } from "lib/score-mutation/delete-scores";
-import { ImportDocument } from "tachi-common";
+import type { ImportDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

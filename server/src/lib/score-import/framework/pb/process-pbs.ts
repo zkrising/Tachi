@@ -1,7 +1,8 @@
+import { CreatePBDoc, UpdateChartRanking } from "./create-pb-doc";
 import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
-import { integer } from "tachi-common";
-import { CreatePBDoc, PBScoreDocumentNoRank, UpdateChartRanking } from "./create-pb-doc";
+import type { PBScoreDocumentNoRank } from "./create-pb-doc";
+import type { KtLogger } from "lib/logger/logger";
+import type { integer } from "tachi-common";
 
 /**
  * Process, recalculate and update a users PBs for this set of chartIDs.
@@ -23,7 +24,7 @@ export async function ProcessPBs(
 
 	const pbDocsReturn = await Promise.all(promises);
 
-	const pbDocs: PBScoreDocumentNoRank[] = [];
+	const pbDocs: Array<PBScoreDocumentNoRank> = [];
 
 	for (const doc of pbDocsReturn) {
 		if (!doc) {

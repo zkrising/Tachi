@@ -1,10 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import p, { PrudenceSchema } from "prudence";
-import { Lamps } from "tachi-common";
-import { FormatPrError } from "utils/prudence";
-import { FindChartOnARCID } from "utils/queries/charts";
-import { FindSongOnIDGuaranteed } from "utils/queries/songs";
-import { EmptyObject } from "utils/types";
 import {
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
@@ -13,9 +7,16 @@ import {
 	GenericGetGradeAndPercent,
 	ParseDateFromString,
 } from "../../../framework/common/score-utils";
-import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction } from "../../common/types";
-import { ARCIIDXScore } from "./types";
+import p from "prudence";
+import { FormatPrError } from "utils/prudence";
+import { FindChartOnARCID } from "utils/queries/charts";
+import { FindSongOnIDGuaranteed } from "utils/queries/songs";
+import type { DryScore } from "../../../framework/common/types";
+import type { ConverterFunction } from "../../common/types";
+import type { ARCIIDXScore } from "./types";
+import type { PrudenceSchema } from "prudence";
+import type { Lamps } from "tachi-common";
+import type { EmptyObject } from "utils/types";
 
 // There's a bunch of other useless fields but we don't care
 const PR_ArcIIDXScore: PrudenceSchema = {
@@ -50,6 +51,7 @@ export const ConvertAPIArcIIDX: ConverterFunction<unknown, EmptyObject> = async 
 	// Remove internal properties.
 	delete (data as any)._links;
 	delete (data as any)._etag;
+
 	// Most importantly, this one will cause crashes.
 	delete (data as any)._id;
 
@@ -75,7 +77,7 @@ export const ConvertAPIArcIIDX: ConverterFunction<unknown, EmptyObject> = async 
 
 	const lamp = ResolveARCIIDXLamp(score.lamp);
 
-	const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
+	const dryScore: DryScore<"iidx:DP" | "iidx:SP"> = {
 		comment: null,
 		game: "iidx",
 		importType,
@@ -97,7 +99,7 @@ export const ConvertAPIArcIIDX: ConverterFunction<unknown, EmptyObject> = async 
 	return { song, chart, dryScore };
 };
 
-export function ResolveARCIIDXLamp(lamp: ARCIIDXScore["lamp"]): Lamps["iidx:SP" | "iidx:DP"] {
+export function ResolveARCIIDXLamp(lamp: ARCIIDXScore["lamp"]): Lamps["iidx:DP" | "iidx:SP"] {
 	switch (lamp) {
 		case "NO_PLAY":
 			return "NO PLAY";

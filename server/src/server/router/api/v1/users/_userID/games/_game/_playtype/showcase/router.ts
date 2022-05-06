@@ -6,10 +6,12 @@ import { EvaluateUsersStatsShowcase } from "lib/showcase/get-stats";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { RequireAuthedAsUser } from "server/router/api/v1/users/_userID/middleware";
-import { GetGamePTConfig, ShowcaseStatDetails } from "tachi-common";
+import { GetGamePTConfig } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
 import { ResolveUser } from "utils/user";
+import type { ShowcaseStatDetails } from "tachi-common";
+
 const router: Router = Router({ mergeParams: true });
 
 /**
@@ -69,6 +71,7 @@ router.get("/custom", async (req, res) => {
 				mode: p.is("folder"),
 				property: p.isIn("grade", "lamp", "score", "percent"),
 				folderID: "string",
+
 				// lazy regex for matching strings that look like numbers
 				gte: p.regex(/^[0-9]*(.[0-9])?$/u),
 			},
@@ -99,7 +102,7 @@ router.get("/custom", async (req, res) => {
 
 		stat = {
 			mode: "folder",
-			property: req.query.property as "grade" | "lamp" | "score" | "percent",
+			property: req.query.property as "grade" | "lamp" | "percent" | "score",
 			folderID: folderIDs.length === 1 ? (req.query.folderID as string) : folderIDs,
 			gte: Number(req.query.gte),
 		};
@@ -133,7 +136,7 @@ router.get("/custom", async (req, res) => {
 
 		stat = {
 			mode: "chart",
-			property: req.query.property as "grade" | "lamp" | "score" | "percent" | "playcount",
+			property: req.query.property as "grade" | "lamp" | "percent" | "playcount" | "score",
 			chartID: req.query.chartID as string,
 		};
 	} else {
@@ -180,6 +183,7 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 
 	for (const stat of req.body) {
 		let err;
+
 		if (stat?.mode === "chart") {
 			err = p(stat, {
 				chartID: "string",
@@ -199,6 +203,7 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 				},
 				mode: p.is("folder"),
 				property: p.isIn("grade", "lamp", "score", "percent"),
+
 				// @ts-expect-error todo: investigate this weird prudence typeerror
 				gte: (self, parent) => {
 					if (typeof self !== "number") {
@@ -206,9 +211,9 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 					}
 
 					if (parent.property === "grade") {
-						return !!gptConfig.grades[self];
+						return Boolean(gptConfig.grades[self]);
 					} else if (parent.property === "lamp") {
-						return !!gptConfig.lamps[self];
+						return Boolean(gptConfig.lamps[self]);
 					} else if (parent.property === "score") {
 						return p.isPositive(self);
 					} else if (parent.property === "percent") {
@@ -254,6 +259,7 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 			) {
 				return res.status(400).json({
 					success: false,
+
 					// this error message is kinda lazy.
 					description: `Invalid folderID - must be a folder for this game and playtype.`,
 				});

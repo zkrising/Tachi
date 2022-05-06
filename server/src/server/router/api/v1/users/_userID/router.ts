@@ -1,11 +1,22 @@
+import apiTokensRouter from "./api-tokens/router";
+import bannerRouter from "./banner/router";
+import gamePTRouter from "./games/_game/_playtype/router";
+import importsRouter from "./imports/router";
+import integrationsRouter from "./integrations/router";
+import invitesRouter from "./invites/router";
+import { GetUserFromParam, RequireSelfRequestFromUser } from "./middleware";
+import notifsRouter from "./notifications/router";
+import pfpRouter from "./pfp/router";
+import settingsRouter from "./settings/router";
+import { HashPassword, PasswordCompare, ValidatePassword } from "../../auth/auth";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { ONE_MONTH } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import { ImportTypes, integer, UserGameStats } from "tachi-common";
+import { ImportTypes, integer } from "tachi-common";
 import { DeleteUndefinedProps, StripUrl } from "utils/misc";
 import { optNullFluffStrField } from "utils/prudence";
 import {
@@ -15,17 +26,7 @@ import {
 	GetRecentSessions,
 } from "utils/queries/summary";
 import { FormatUserDoc, GetAllRankings, GetUserWithID } from "utils/user";
-import { HashPassword, PasswordCompare, ValidatePassword } from "../../auth/auth";
-import apiTokensRouter from "./api-tokens/router";
-import bannerRouter from "./banner/router";
-import gamePTRouter from "./games/_game/_playtype/router";
-import integrationsRouter from "./integrations/router";
-import invitesRouter from "./invites/router";
-import { GetUserFromParam, RequireSelfRequestFromUser } from "./middleware";
-import pfpRouter from "./pfp/router";
-import settingsRouter from "./settings/router";
-import importsRouter from "./imports/router";
-import notifsRouter from "./notifications/router";
+import type { UserGameStats } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -38,7 +39,7 @@ router.use(GetUserFromParam);
  * @name GET /api/v1/users/:userID
  */
 router.get("/", (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	return res.status(200).json({
 		success: true,
@@ -86,7 +87,7 @@ router.patch(
 		twitch: optNullFluffStrField,
 	}),
 	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
+		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 		if (Object.keys(req.body).length === 0) {
 			return res.status(400).json({
@@ -102,17 +103,21 @@ router.patch(
 		if (body.twitter) {
 			body.twitter = StripUrl("twitter.com/", body.twitter);
 		}
+
 		if (body.github) {
 			body.github = StripUrl("github.com/", body.github);
 		}
+
 		if (body.youtube) {
 			// youtube has two user urls lol
 			body.youtube = StripUrl("youtube.com/user/", body.youtube);
 			body.youtube = StripUrl("youtube.com/channel/", body.youtube);
 		}
+
 		if (body.twitch) {
 			body.twitch = StripUrl("twitch.tv/", body.twitch);
 		}
+
 		if (body.steam) {
 			body.steam = StripUrl("steamcommunity.com/id/", body.steam);
 		}
@@ -127,8 +132,14 @@ router.patch(
 		// :(
 		const modifyObject: Partial<
 			Record<
-				| `socialMedia.${"twitch" | "github" | "youtube" | "steam" | "twitter" | "discord"}`
-				| "status",
+				| "status"
+				| `socialMedia.${
+						| "discord"
+						| "github"
+						| "steam"
+						| "twitch"
+						| "twitter"
+						| "youtube"}`,
 				string | null
 			> & { about: string }
 		> = {
@@ -193,15 +204,16 @@ router.patch(
  * @name GET /api/v1/users/:userID/game-stats
  */
 router.get("/game-stats", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	// a user has played a game if and only if they have stats for it.
-	const stats: (UserGameStats & { __rankingData?: { outOf: number; ranking: number } })[] =
+	const stats: Array<UserGameStats & { __rankingData?: { outOf: number; ranking: number } }> =
 		await db["game-stats"].find({ userID: user.id });
 
 	await Promise.all(
 		stats.map(async (s) => {
 			const data = await GetAllRankings(s);
+
 			s.__rankingData = data;
 		})
 	);
@@ -221,7 +233,7 @@ router.get("/game-stats", async (req, res) => {
  * @name GET /api/v1/users/:userID/recent-summary
  */
 router.get("/recent-summary", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	const [
 		recentPlaycount,
@@ -257,7 +269,7 @@ router.get("/recent-summary", async (req, res) => {
  * @name GET /api/v1/users/:userID/is-email-verified
  */
 router.get("/is-email-verified", RequireSelfRequestFromUser, async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	const verifyInfo = await db["verify-email-codes"].findOne({
 		userID: user.id,
@@ -302,6 +314,7 @@ router.post(
 			logger.severe(
 				`IP ${req.ip} got to /change-password without a user, but passed RequireSelfRequest?`
 			);
+
 			// this should be a 500, but lie to them.
 			return res.status(403).json({
 				success: false,
@@ -359,9 +372,9 @@ router.post(
  * Get the recent import types this user has used.
  */
 router.get("/recent-imports", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
-	const recentImports = (await db.imports.aggregate([
+	const recentImports = await db.imports.aggregate([
 		{
 			$match: {
 				userID: user.id,
@@ -375,7 +388,7 @@ router.get("/recent-imports", async (req, res) => {
 				count: { $sum: 1 },
 			},
 		},
-	])) as { _id: ImportTypes; count: integer }[];
+	]);
 
 	// rename _id to importType.
 	const imports = recentImports.map((e) => ({ importType: e._id, count: e.count }));

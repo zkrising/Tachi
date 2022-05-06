@@ -74,6 +74,7 @@ router.post(
 			userID: codeDoc.userID,
 			token: Random20Hex(),
 			identifier: `${client.name} Token`,
+
 			// converts ["a","b"] to {a: true, b: true}.
 			permissions: Object.fromEntries(client.requestedPermissions.map((e) => [e, true])),
 			fromAPIClient: client.clientID,

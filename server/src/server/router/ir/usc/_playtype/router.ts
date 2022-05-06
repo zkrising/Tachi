@@ -1,9 +1,10 @@
-import { RequestHandler, Router } from "express";
+import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
+import { Router } from "express";
 import db from "external/mongo/db";
 import { CDNStoreOrOverwrite } from "lib/cdn/cdn";
 import { GetUSCIRReplayURL } from "lib/cdn/url-format";
 import { ONE_MEGABYTE } from "lib/constants/filesize";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH, SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { USCIR_MAX_LEADERBOARD_N } from "lib/constants/usc-ir";
 import CreateLogCtx from "lib/logger/logger";
 import { AssertStrAsPositiveNonZeroInt } from "lib/score-import/framework/common/string-asserts";
@@ -12,17 +13,18 @@ import { ServerConfig, TachiConfig } from "lib/setup/config";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
-import {
+import { FormatPrError } from "utils/prudence";
+import { AssignToReqTachiData } from "utils/req-tachi-data";
+import type { USCClientChart } from "./types";
+import type { RequestHandler } from "express";
+import type {
 	ChartDocument,
 	ImportDocument,
 	PBScoreDocument,
 	Playtypes,
 	SuccessfulAPIResponse,
 } from "tachi-common";
-import { FormatPrError } from "utils/prudence";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
-import { USCClientChart } from "./types";
-import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
+
 const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
@@ -68,9 +70,9 @@ const ValidateUSCRequest: RequestHandler = async (req, res, next) => {
 		});
 	}
 
-	req[SYMBOL_TachiAPIAuth] = uscAuthDoc;
+	req[SYMBOL_TACHI_API_AUTH] = uscAuthDoc;
 
-	return next();
+	next();
 };
 
 router.use((req, res, next) => {
@@ -81,10 +83,11 @@ router.use((req, res, next) => {
 		});
 	}
 
-	return next();
+	next();
 });
 
 router.use(ValidateUSCRequest);
+
 // This is an implementation of the USCIR spec as per https://uscir.readthedocs.io.
 // This specification always returns 200 OK, regardless of whether the result was okay
 // as the HTTP code is used to determine whether the server received the request properly,
@@ -119,7 +122,7 @@ const RetrieveChart: RequestHandler = async (req, res, next) => {
 			| undefined,
 	});
 
-	return next();
+	next();
 };
 
 /**
@@ -128,7 +131,7 @@ const RetrieveChart: RequestHandler = async (req, res, next) => {
  * @name GET /ir/usc/:playtype/charts/:chartHash
  */
 router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
-	const chart = req[SYMBOL_TachiData]!.uscChartDoc;
+	const chart = req[SYMBOL_TACHI_DATA]!.uscChartDoc;
 
 	if (!chart) {
 		return res.status(200).json({
@@ -150,7 +153,7 @@ router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
  * @name GET /ir/usc/:playtype/charts/:chartHash/record
  */
 router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
-	const chart = req[SYMBOL_TachiData]!.uscChartDoc;
+	const chart = req[SYMBOL_TACHI_DATA]!.uscChartDoc;
 
 	if (!chart) {
 		return res.status(200).json({
@@ -190,7 +193,7 @@ router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
  * @name GET /ir/usc/:playtype/charts/:chartHash/leaderboard
  */
 router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => {
-	const chart = req[SYMBOL_TachiData]!.uscChartDoc;
+	const chart = req[SYMBOL_TACHI_DATA]!.uscChartDoc;
 
 	if (!chart) {
 		return res.status(200).json({
@@ -251,7 +254,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
 			},
 			limit: n,
 		}
-	)) as PBScoreDocument<"usc:Controller" | "usc:Keyboard">[];
+	)) as Array<PBScoreDocument<"usc:Controller" | "usc:Keyboard">>;
 
 	const serverScores = await Promise.all(bestScores.map(TachiScoreToServerScore));
 
@@ -305,7 +308,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 		playtype,
 	})) as ChartDocument<"usc:Controller" | "usc:Keyboard"> | null;
 
-	const userID = req[SYMBOL_TachiAPIAuth]!.userID!;
+	const userID = req[SYMBOL_TACHI_API_AUTH]!.userID!;
 
 	const importRes = await ExpressWrappedScoreImportMain(userID, false, "ir/usc", [
 		req.body,
@@ -417,7 +420,7 @@ router.post(
 		// Otherwise, anyone could overwrite anyone elses
 		// score replays!
 		const correspondingScore = await db.scores.findOne({
-			userID: req[SYMBOL_TachiAPIAuth]!.userID!,
+			userID: req[SYMBOL_TACHI_API_AUTH]!.userID!,
 			scoreID: req.body.identifier,
 			game: "usc",
 		});

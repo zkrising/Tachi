@@ -1,6 +1,7 @@
+import { GetImportFromParam, RequireOwnershipOfImportOrAdmin } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { JOB_RETRY_COUNT, SYMBOL_TachiData } from "lib/constants/tachi";
+import { JOB_RETRY_COUNT, SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { RevertImport } from "lib/imports/imports";
 import CreateLogCtx from "lib/logger/logger";
 import ScoreImportQueue, { ScoreImportQueueEvents } from "lib/score-import/worker/queue";
@@ -8,7 +9,6 @@ import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { RequirePermissions } from "server/middleware/auth";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { GetUserWithID } from "utils/user";
-import { GetImportFromParam, RequireOwnershipOfImportOrAdmin } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -20,7 +20,7 @@ const logger = CreateLogCtx(__filename);
  * @name GET /api/v1/imports/:importID
  */
 router.get("/:importID", GetImportFromParam, async (req, res) => {
-	const importDoc = req[SYMBOL_TachiData]!.importDoc!;
+	const importDoc = req[SYMBOL_TACHI_DATA]!.importDoc!;
 
 	const scores = await db.scores.find({
 		scoreID: { $in: importDoc.scoreIDs },
@@ -73,7 +73,7 @@ router.post(
 	RequireOwnershipOfImportOrAdmin,
 	RequirePermissions("delete_score"),
 	async (req, res) => {
-		const importDoc = req[SYMBOL_TachiData]!.importDoc!;
+		const importDoc = req[SYMBOL_TACHI_DATA]!.importDoc!;
 
 		await RevertImport(importDoc);
 
@@ -174,12 +174,12 @@ router.get("/:importID/poll-status", async (req, res) => {
 					import: content.importDocument,
 				},
 			});
-		} else {
-			return res.status(content.statusCode).json({
-				success: false,
-				description: content.description,
-			});
 		}
+
+		return res.status(content.statusCode).json({
+			success: false,
+			description: content.description,
+		});
 	}
 
 	const progress = job.progress;

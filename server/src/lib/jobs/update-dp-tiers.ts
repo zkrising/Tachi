@@ -117,7 +117,7 @@ function ParseTierStr(tierStr: string) {
 		return null;
 	}
 
-	const result = tierStr.match(/\((.*)\)$/u);
+	const result = /\((.*)\)$/u.exec(tierStr);
 
 	if (result && result[1]) {
 		return Number(result[1]);

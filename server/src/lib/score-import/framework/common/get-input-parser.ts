@@ -1,12 +1,12 @@
-import { KtLogger } from "lib/logger/logger";
-import {
+import { Parsers } from "lib/score-import/import-types/parsers";
+import type { KtLogger } from "lib/logger/logger";
+import type {
 	ImportTypeContextMap,
 	ImportTypeDataMap,
 	ParserFunctionReturns,
 } from "lib/score-import/import-types/common/types";
-import { Parsers } from "lib/score-import/import-types/parsers";
-import { ScoreImportJobData } from "lib/score-import/worker/types";
-import { ImportTypes } from "tachi-common";
+import type { ScoreImportJobData } from "lib/score-import/worker/types";
+import type { ImportTypes } from "tachi-common";
 
 export function GetInputParser<I extends ImportTypes>(jobData: ScoreImportJobData<I>) {
 	// Retrieve the set parser function for this import type.

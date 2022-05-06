@@ -1,15 +1,16 @@
 /* eslint-disable no-await-in-loop */
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { Game, integer, Playtype, Playtypes, PublicUserDocument } from "tachi-common";
 import CreateLogCtx from "lib/logger/logger";
 import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
-import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
 import { GetAndUpdateUsersGoals } from "lib/score-import/framework/goals/goals";
 import { UpdateUsersMilestones } from "lib/score-import/framework/milestones/milestones";
-import { EfficientDBIterate } from "utils/efficient-db-iterate";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
+import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
+import { Playtypes } from "tachi-common";
+import { EfficientDBIterate } from "utils/efficient-db-iterate";
 import { FormatUserDoc } from "utils/user";
-import deepmerge from "deepmerge";
+import type { Game, integer, Playtype, PublicUserDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -71,13 +72,7 @@ export async function RecalcAllScores(filter = {}) {
 
 		const userID = Number(strUserID);
 
-		await UpdateUsersGamePlaytypeStats(
-			game as Game,
-			playtype as Playtype,
-			userID,
-			null,
-			logger
-		);
+		await UpdateUsersGamePlaytypeStats(game, playtype, userID, null, logger);
 
 		const goalInfo = await GetAndUpdateUsersGoals(game, userID, chartIDs, logger);
 
@@ -87,8 +82,8 @@ export async function RecalcAllScores(filter = {}) {
 	logger.info(`Done!`);
 }
 
-export async function UpdateAllPBs(userIDs?: integer[], filter = {}) {
-	let allUsers: PublicUserDocument[];
+export async function UpdateAllPBs(userIDs?: Array<integer>, filter = {}) {
+	let allUsers: Array<PublicUserDocument>;
 
 	if (!userIDs) {
 		allUsers = await db.users.find({});

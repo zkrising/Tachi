@@ -1,9 +1,10 @@
-import { exec } from "child_process";
-import crypto from "crypto";
 import { ONE_HOUR } from "lib/constants/time";
 import { TachiConfig } from "lib/setup/config";
-import { Game, GamePTConfig, GetGameConfig, integer, Playtype } from "tachi-common";
+import { GetGameConfig } from "tachi-common";
+import { exec } from "child_process";
+import crypto from "crypto";
 import { URL } from "url";
+import type { Game, GamePTConfig, integer, Playtype } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
 // the developer of this has migrated everything to Force ES6 style modules,
@@ -39,7 +40,7 @@ export function MStoS(ms: number) {
 /**
  * Random From Array - Selects a random value from an array.
  */
-export function RFA<T>(arr: T[]): T {
+export function RFA<T>(arr: Array<T>): T {
 	return arr[Math.floor(Math.random() * arr.length)];
 }
 
@@ -60,12 +61,12 @@ export function SplitAuthorizationHeader(authHeader: string) {
  * key to keyof T.
  * False if the object doesn't.
  */
-export function HasOwnProperty<T>(obj: T, key: string | number | symbol): key is keyof T {
+export function HasOwnProperty<T>(obj: T, key: number | string | symbol): key is keyof T {
 	return Object.prototype.hasOwnProperty.call(obj, key);
 }
 
 export function IsValidGame(str: string): str is Game {
-	return !!TachiConfig.GAMES.includes(str as Game);
+	return Boolean(TachiConfig.GAMES.includes(str as Game));
 }
 
 export function IsValidPlaytype(game: Game, str: string): str is Playtype {
@@ -83,12 +84,12 @@ export function IsString(val: unknown): val is string {
 	return typeof val === "string";
 }
 
-export function DedupeArr<T>(arr: T[]): T[] {
+export function DedupeArr<T>(arr: Array<T>): Array<T> {
 	return [...new Set(arr)];
 }
 
 export function StripUrl(url: string, userInput: string | null) {
-	if (!userInput) {
+	if (userInput === null || userInput === "") {
 		return userInput;
 	}
 
@@ -122,22 +123,28 @@ export function DeleteUndefinedProps(record: any) {
 export function IsValidURL(string: string) {
 	try {
 		const url = new URL(string);
+
 		return url.protocol === "http:" || url.protocol === "https:";
-	} catch (err) {
+	} catch (_err) {
 		return false;
 	}
 }
 
 export function Sleep(ms: number) {
-	return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
+	return new Promise<void>((resolve) =>
+		setTimeout(() => {
+			resolve();
+		}, ms)
+	);
 }
 
 export function GetTimeXHoursAgo(hours: integer) {
 	return Date.now() - ONE_HOUR * hours;
 }
 
-export function ApplyNTimes<T>(n: integer, fn: (i: integer) => T): T[] {
+export function ApplyNTimes<T>(n: integer, fn: (i: integer) => T): Array<T> {
 	const arr = [];
+
 	for (let i = 0; i < n; i++) {
 		arr.push(fn(i));
 	}
@@ -176,15 +183,16 @@ export function asyncExec(command: string) {
 		exec(command, (err, stdout, stderr) => {
 			if (err) {
 				// eslint-disable-next-line prefer-promise-reject-errors
-				return reject({ err, stdout, stderr });
+				reject({ err, stdout, stderr });
+				return;
 			}
 
-			return resolve({ stdout, stderr });
+			resolve({ stdout, stderr });
 		});
 	});
 }
 
-export function FormatBMSTables(bmsTables: { table: string; level: string }[]) {
+export function FormatBMSTables(bmsTables: Array<{ table: string; level: string }>) {
 	if (bmsTables.length === 0) {
 		return null;
 	}
@@ -192,7 +200,7 @@ export function FormatBMSTables(bmsTables: { table: string; level: string }[]) {
 	return bmsTables.map((e) => `${e.table}${e.level}`).join(", ");
 }
 
-export function HumanisedJoinArray(arr: string[], lastJoiner = "or") {
+export function HumanisedJoinArray(arr: Array<string>, lastJoiner = "or") {
 	return `${arr.slice(0, arr.length - 1).join(", ")} ${lastJoiner} ${arr[arr.length - 1]}`;
 }
 
@@ -213,6 +221,6 @@ export function IsSupported(game: Game) {
  * @param right - The right side of elements; everything in here not in left will be
  * returned.
  */
-export function ArrayDiff<T>(left: T[], right: T[]) {
+export function ArrayDiff<T>(left: Array<T>, right: Array<T>) {
 	return right.filter((e) => !left.includes(e));
 }

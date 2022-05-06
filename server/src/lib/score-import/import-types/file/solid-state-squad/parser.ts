@@ -1,11 +1,12 @@
-import { XMLParser } from "fast-xml-parser";
-import { KtLogger } from "lib/logger/logger";
-import p, { PrudenceSchema } from "prudence";
-import { FormatPrError } from "utils/prudence";
-import { EmptyObject } from "utils/types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturns } from "../../common/types";
-import { S3Score } from "./types";
+import { XMLParser } from "fast-xml-parser";
+import p from "prudence";
+import { FormatPrError } from "utils/prudence";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { S3Score } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { PrudenceSchema } from "prudence";
+import type { EmptyObject } from "utils/types";
 
 const PR_SolidState: PrudenceSchema = {
 	s3data: {
@@ -86,7 +87,7 @@ export function ParseSolidStateXML(
 	return {
 		classHandler: null,
 		context: {},
-		iterable: parsedXML.s3data.scoredata.song as S3Score[],
+		iterable: parsedXML.s3data.scoredata.song as Array<S3Score>,
 		game: "iidx",
 	};
 }

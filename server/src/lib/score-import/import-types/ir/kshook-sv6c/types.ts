@@ -1,24 +1,24 @@
-import { integer } from "tachi-common";
+import type { integer } from "tachi-common";
 
 export interface KsHookSV6CScore {
 	clear:
-		| "CLEAR_PLAYED"
 		| "CLEAR_EFFECTIVE"
 		| "CLEAR_EXCESSIVE"
-		| "CLEAR_ULTIMATE_CHAIN"
-		| "CLEAR_PERFECT";
-	difficulty: `DIFFICULTY_${"NOVICE" | "ADVANCED" | "EXHAUST" | "INFINITE" | "MAXIMUM"}`;
+		| "CLEAR_PERFECT"
+		| "CLEAR_PLAYED"
+		| "CLEAR_ULTIMATE_CHAIN";
+	difficulty: `DIFFICULTY_${"ADVANCED" | "EXHAUST" | "INFINITE" | "MAXIMUM" | "NOVICE"}`;
 	gauge: integer;
 	grade: `GRADE_${
-		| "D"
-		| "C"
-		| "B"
-		| "A"
 		| "A_PLUS"
-		| "AA"
+		| "A"
 		| "AA_PLUS"
-		| "AAA"
+		| "AA"
 		| "AAA_PLUS"
+		| "AAA"
+		| "B"
+		| "C"
+		| "D"
 		| "S"}`;
 	max_chain: integer;
 	music_id: integer;
@@ -27,7 +27,7 @@ export interface KsHookSV6CScore {
 	near: integer;
 	error: integer;
 
-	rate: `RATE_${"EFFECTIVE" | "PERMISSIVE" | "EXCESSIVE" | "BLASTIVE"}`;
+	rate: `RATE_${"BLASTIVE" | "EFFECTIVE" | "EXCESSIVE" | "PERMISSIVE"}`;
 	score: integer;
 	ex_score: integer;
 

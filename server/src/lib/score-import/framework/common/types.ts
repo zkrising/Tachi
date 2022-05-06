@@ -1,4 +1,5 @@
-import { IDStrings, ScoreDocument, Playtype, Game } from "tachi-common";
+import { Game } from "tachi-common";
+import type { IDStrings, ScoreDocument, Playtype } from "tachi-common";
 
 /**
  * An intermediate score format that will be filled out by
@@ -6,9 +7,9 @@ import { IDStrings, ScoreDocument, Playtype, Game } from "tachi-common";
  */
 export type DryScore<I extends IDStrings = IDStrings> = Pick<
 	ScoreDocument<I>,
-	"service" | "game" | "scoreMeta" | "timeAchieved" | "comment" | "importType"
+	"comment" | "game" | "importType" | "scoreMeta" | "service" | "timeAchieved"
 > & {
-	scoreData: Omit<ScoreDocument<I>["scoreData"], "gradeIndex" | "lampIndex" | "esd">;
+	scoreData: Omit<ScoreDocument<I>["scoreData"], "esd" | "gradeIndex" | "lampIndex">;
 };
 
-export type ScorePlaytypeMap = Partial<Record<Playtype, ScoreDocument[]>>;
+export type ScorePlaytypeMap = Partial<Record<Playtype, Array<ScoreDocument>>>;

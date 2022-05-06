@@ -106,6 +106,7 @@ export const adjectives = [
 	"Biodegradable",
 	"Bite-sized",
 	"Bitter",
+
 	// "Black", - Could result in racism.
 	"Black-and-white",
 	"Bland",
@@ -135,6 +136,7 @@ export const adjectives = [
 	"Brisk",
 	"Broken",
 	"Bronze",
+
 	// "Brown", - Could result in racism
 	"Bruised",
 	"Bubbly",
@@ -702,6 +704,7 @@ export const adjectives = [
 	"Magnificent",
 	"Majestic",
 	"Major",
+
 	// "Male", - try and avoid sexism
 	"Mammoth",
 	"Married",
@@ -1308,6 +1311,7 @@ export const adjectives = [
 	"Whimsical",
 	"Whirlwind",
 	"Whispered",
+
 	// "White", - Could result in racism
 	"Whole",
 	"Whopping",
@@ -2027,6 +2031,7 @@ export const nouns = [
 	"Share",
 	"Balance",
 	"Bit",
+
 	// "Black", I have visions of this one resulting in racism
 	"Bottom", // This one gets to stay because it's hilarious
 	"Choice",
@@ -2136,6 +2141,7 @@ export const nouns = [
 	"Park",
 	"Plenty",
 	"Quarter",
+
 	// "Skin", - Could possibly be racist.
 	"Sort",
 	"Weight",
@@ -2236,6 +2242,7 @@ export const nouns = [
 	"Pleasure",
 	"Score",
 	"Screw",
+
 	// "Sex", - Absolutely not, Thanks for this being in a SFW wordlist...
 	"Shop",
 	"Shower",
@@ -2333,6 +2340,7 @@ export const nouns = [
 	"Aside",
 	"Associate",
 	"Bet",
+
 	// "Blow", - maybe not.
 	"Border",
 	"Branch",
@@ -2609,6 +2617,7 @@ export const nouns = [
 	"Report",
 	"Rise",
 	"Walk",
+
 	// "White", - Could result in racism.
 	"Beyond",
 	"Junior",
@@ -2830,6 +2839,7 @@ export const nouns = [
 	"Dear",
 	"Delay",
 	"Drunk",
+
 	// "Female", try and avoid potential sexism
 	"Hurry",
 	"Inevitable",

@@ -1,9 +1,9 @@
+import ResetDBState from "./resets";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { ClearTestingRateLimitCache } from "server/middleware/rate-limiter";
-import supertest from "supertest";
 import { ALL_PERMISSIONS } from "tachi-common";
-import ResetDBState from "./resets";
+import type supertest from "supertest";
 
 const logger = CreateLogCtx(__filename);
 
@@ -23,7 +23,7 @@ export async function CreateFakeAuthCookie(mockApi: supertest.SuperTest<supertes
 		throw res.body;
 	}
 
-	return res.headers["set-cookie"] as string[];
+	return res.headers["set-cookie"] as Array<string>;
 }
 
 // my local dev env hates this part because of pnpm

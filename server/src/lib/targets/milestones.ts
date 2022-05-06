@@ -1,15 +1,16 @@
+import { EvaluateGoalForUser, SubscribeToGoal } from "./goals";
 import db from "external/mongo/db";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
 import { BulkSendNotification } from "lib/notifications/notifications";
-import {
+import type { EvaluatedGoalReturn } from "./goals";
+import type {
 	GoalDocument,
 	GoalSubscriptionDocument,
 	integer,
 	MilestoneDocument,
 	MilestoneSubscriptionDocument,
 } from "tachi-common";
-import { EvaluatedGoalReturn, EvaluateGoalForUser, SubscribeToGoal } from "./goals";
 
 const logger = CreateLogCtx(__filename);
 
@@ -68,7 +69,7 @@ export function CalculateMilestoneOutOf(milestone: MilestoneDocument) {
 			);
 		}
 
-		return milestone.criteria.value!;
+		return milestone.criteria.value;
 	}
 
 	throw new Error(
@@ -97,6 +98,7 @@ export async function EvaluateMilestoneProgress(userID: integer, milestone: Mile
 	// If the user is subscribed the milestone, we don't need to calculate
 	// their progress on each goal.
 	const goalSubMap = new Map<string, GoalSubscriptionDocument>();
+
 	if (isSubscribedToMilestone) {
 		const goalSubs = await db["goal-subs"].find({
 			goalID: { $in: goals.map((e) => e.goalID) },
@@ -108,7 +110,7 @@ export async function EvaluateMilestoneProgress(userID: integer, milestone: Mile
 		}
 	}
 
-	const goalResults: EvaluatedGoalResult[] = await Promise.all(
+	const goalResults: Array<EvaluatedGoalResult> = await Promise.all(
 		goals.map(async (goal) => {
 			if (isSubscribedToMilestone) {
 				const goalSub = goalSubMap.get(goal.goalID);
@@ -171,8 +173,8 @@ export async function EvaluateMilestoneProgress(userID: integer, milestone: Mile
 
 interface MilestoneSubscriptionReturns {
 	milestoneSub: MilestoneSubscriptionDocument;
-	goals: GoalDocument[];
-	goalResults: EvaluatedGoalResult[];
+	goals: Array<GoalDocument>;
+	goalResults: Array<EvaluatedGoalResult>;
 }
 
 /**
@@ -193,8 +195,8 @@ export async function SubscribeToMilestone(
 	cancelIfAchieved = true
 ): Promise<
 	| MilestoneSubscriptionReturns
-	| SubscribeFailReasons.ALREADY_SUBSCRIBED
 	| SubscribeFailReasons.ALREADY_ACHIEVED
+	| SubscribeFailReasons.ALREADY_SUBSCRIBED
 > {
 	const isSubscribedToMilestone = await db["milestone-subs"].findOne({
 		userID,

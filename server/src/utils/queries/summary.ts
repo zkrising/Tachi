@@ -1,7 +1,7 @@
 import db from "external/mongo/db";
-import { integer } from "tachi-common";
 import { GetGradeLampDistributionForFolders } from "utils/folder";
 import { GetTimeXHoursAgo } from "utils/misc";
+import type { integer } from "tachi-common";
 
 // Various utils related to the player summary endpoint.
 const REASONABLE_HOURS_AGO = 16;

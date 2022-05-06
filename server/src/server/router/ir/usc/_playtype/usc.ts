@@ -1,10 +1,11 @@
 import db from "external/mongo/db";
 import { USCIR_ADJACENT_SCORE_N } from "lib/constants/usc-ir";
 import CreateLogCtx from "lib/logger/logger";
-import { ChartDocument, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { MStoS } from "utils/misc";
 import { GetPBOnChart, GetServerRecordOnChart } from "utils/scores";
-import { USCServerScore } from "./types";
+import type { USCServerScore } from "./types";
+import type { ChartDocument, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
+
 const logger = CreateLogCtx(__filename);
 
 export const TACHI_LAMP_TO_USC: Record<
@@ -131,7 +132,7 @@ export async function CreatePOSTScoresResponseBody(
 			limit: USCIR_ADJACENT_SCORE_N,
 			sort: { "rankingData.rank": -1 },
 		}
-	)) as PBScoreDocument<"usc:Controller" | "usc:Keyboard">[];
+	)) as Array<PBScoreDocument<"usc:Controller" | "usc:Keyboard">>;
 
 	// The specification enforces that we return them in
 	// ascending order, though, so we reverse this after
@@ -157,7 +158,7 @@ export async function CreatePOSTScoresResponseBody(
 			limit: USCIR_ADJACENT_SCORE_N,
 			sort: { "rankingData.rank": 1 },
 		}
-	)) as PBScoreDocument<"usc:Controller" | "usc:Keyboard">[];
+	)) as Array<PBScoreDocument<"usc:Controller" | "usc:Keyboard">>;
 
 	const [score, serverRecord, adjacentAbove, adjacentBelow] = await Promise.all([
 		TachiScoreToServerScore(scorePB),
@@ -182,7 +183,7 @@ export async function CreatePOSTScoresResponseBody(
 	return {
 		score,
 		serverRecord,
-		isServerRecord: scorePB.userID === ktServerRecord?.userID,
+		isServerRecord: scorePB.userID === ktServerRecord.userID,
 		isPB: scorePB.composedFrom.scorePB === scoreID,
 		sendReplay: originalScore.scoreID,
 		adjacentAbove,
@@ -193,8 +194,8 @@ export async function CreatePOSTScoresResponseBody(
 export interface POSTScoresResponseBody {
 	score: USCServerScore;
 	serverRecord: USCServerScore;
-	adjacentAbove: USCServerScore[];
-	adjacentBelow: USCServerScore[];
+	adjacentAbove: Array<USCServerScore>;
+	adjacentBelow: Array<USCServerScore>;
 	isPB: boolean;
 	isServerRecord: boolean;
 	sendReplay: string;

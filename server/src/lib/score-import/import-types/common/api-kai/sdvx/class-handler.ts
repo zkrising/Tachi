@@ -1,10 +1,10 @@
-import { SDVXDans } from "lib/constants/classes";
-import { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
-import nodeFetch from "utils/fetch";
 import { KaiTypeToBaseURL } from "../utils";
+import { SDVXDans } from "lib/constants/classes";
+import nodeFetch from "utils/fetch";
+import type { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
 
 export async function CreateKaiSDVXClassHandler(
-	kaiType: "FLO" | "EAG" | "MIN",
+	kaiType: "EAG" | "FLO" | "MIN",
 	token: string,
 	fetch = nodeFetch
 ): Promise<ClassHandler> {

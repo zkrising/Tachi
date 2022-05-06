@@ -1,11 +1,3 @@
-import { Router } from "express";
-import {
-	FervidexStyleRequireNotGuest,
-	RequireNotGuest,
-	SetFervidexStyleRequestPermissions,
-	SetRequestPermissions,
-} from "../../middleware/auth";
-import { RequireBokutachi, RequireKamaitachi } from "../../middleware/type-require";
 import barbatosIR from "./barbatos/router";
 import beatorajaIR from "./beatoraja/router";
 import directManualIR from "./direct-manual/router";
@@ -13,6 +5,14 @@ import fervidexIR from "./fervidex/router";
 import ksHookIR from "./kshook/router";
 import lr2hookIR from "./lr2hook/router";
 import uscIR from "./usc/router";
+import {
+	FervidexStyleRequireNotGuest,
+	RequireNotGuest,
+	SetFervidexStyleRequestPermissions,
+	SetRequestPermissions,
+} from "../../middleware/auth";
+import { RequireBokutachi, RequireKamaitachi } from "../../middleware/type-require";
+import { Router } from "express";
 
 const router: Router = Router({ mergeParams: true });
 

@@ -1,13 +1,13 @@
 /* eslint-disable no-await-in-loop */
+import { RequireSelfRequestFromUser } from "../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import { GetArcAuth } from "utils/queries/auth";
 import { FormatUserDoc } from "utils/user";
-import { RequireSelfRequestFromUser } from "../../middleware";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -21,7 +21,7 @@ router.use(RequireSelfRequestFromUser);
  * @name GET /api/v1/users/:userID/integrations/arc
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	const [iidx, sdvx] = await Promise.all([
 		GetArcAuth(user.id, "api/arc-iidx"),
@@ -43,7 +43,7 @@ router.get("/", async (req, res) => {
  * @name PATCH /api/v1/users/:userID/integrations/arc
  */
 router.patch("/", prValidate({ iidx: "*?string", sdvx: "*?string" }), async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
 
 	if (Object.keys(req.body).length === 0) {
 		return res.status(400).json({

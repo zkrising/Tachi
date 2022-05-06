@@ -1,20 +1,16 @@
+import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
+import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import {
-	ALL_PERMISSIONS,
-	APIPermissions,
-	TachiAPIClientDocument,
-	UserAuthLevels,
-} from "tachi-common";
+import { ALL_PERMISSIONS, UserAuthLevels } from "tachi-common";
 import { DedupeArr, DeleteUndefinedProps, IsValidURL, Random20Hex } from "utils/misc";
 import { optNull } from "utils/prudence";
 import { FormatUserDoc } from "utils/user";
-import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
+import type { APIPermissions, TachiAPIClientDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -168,7 +164,7 @@ router.post(
  * @name GET /api/v1/clients/:clientID
  */
 router.get("/:clientID", GetClientFromID, (req, res) => {
-	const client = req[SYMBOL_TachiData]!.apiClientDoc!;
+	const client = req[SYMBOL_TACHI_DATA]!.apiClientDoc!;
 
 	return res.status(200).json({
 		success: true,
@@ -211,6 +207,7 @@ router.patch(
 			if (typeof self !== "string") {
 				return "Expected a string.";
 			}
+
 			const res = IsValidURL(self);
 
 			if (!res) {
@@ -223,6 +220,7 @@ router.patch(
 			if (typeof self !== "string") {
 				return "Expected a string.";
 			}
+
 			const res = IsValidURL(self);
 
 			if (!res) {
@@ -233,7 +231,7 @@ router.patch(
 		}),
 	}),
 	async (req, res) => {
-		const client = req[SYMBOL_TachiData]!.apiClientDoc!;
+		const client = req[SYMBOL_TACHI_DATA]!.apiClientDoc!;
 
 		DeleteUndefinedProps(req.body);
 
@@ -276,7 +274,7 @@ router.post(
 	GetClientFromID,
 	RequireOwnershipOfClient,
 	async (req, res) => {
-		const client = req[SYMBOL_TachiData]!.apiClientDoc!;
+		const client = req[SYMBOL_TACHI_DATA]!.apiClientDoc!;
 		const clientName = `${client.name} (${client.clientID})`;
 
 		logger.info(`received request to reset client secret for ${clientName}`);
@@ -308,7 +306,7 @@ router.post(
  * @name DELETE /api/v1/clients/:clientID
  */
 router.delete("/:clientID", GetClientFromID, RequireOwnershipOfClient, async (req, res) => {
-	const client = req[SYMBOL_TachiData]!.apiClientDoc!;
+	const client = req[SYMBOL_TACHI_DATA]!.apiClientDoc!;
 
 	const clientName = `${client.name} (${client.clientID})`;
 
@@ -324,6 +322,7 @@ router.delete("/:clientID", GetClientFromID, RequireOwnershipOfClient, async (re
 	const result = await db["api-tokens"].remove({
 		fromOAuth2Client: client.clientID,
 	});
+
 	logger.info(`Removed ${result.deletedCount} api tokens from ${clientName}.`);
 
 	return res.status(200).json({

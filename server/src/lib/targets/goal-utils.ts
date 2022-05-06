@@ -1,17 +1,10 @@
 import db from "external/mongo/db";
 import { GenericCalculatePercent } from "lib/score-import/framework/common/score-utils";
-import {
-	ChartDocument,
-	FormatGame,
-	Game,
-	GetGamePTConfig,
-	GoalDocument,
-	Playtype,
-	Playtypes,
-} from "tachi-common";
+import { FormatGame, GetGamePTConfig, Playtypes } from "tachi-common";
 import { GetFolderForIDGuaranteed, HumaniseChartID } from "utils/db";
 import { GetFolderChartIDs } from "utils/folder";
 import { FormatMaxDP, HumanisedJoinArray } from "utils/misc";
+import type { ChartDocument, Game, GoalDocument, Playtype } from "tachi-common";
 
 export async function CreateGoalTitle(
 	charts: GoalDocument["charts"],
@@ -35,8 +28,9 @@ export async function CreateGoalTitle(
 				case "folder":
 					return `${formattedCriteria} any chart in ${datasetName}`;
 			}
+
 		// eslint-disable-next-line no-fallthrough
-		case "absolute":
+		case "absolute": {
 			switch (charts.type) {
 				case "any":
 					return `${formattedCriteria} ${criteria.countNum} charts`;
@@ -45,10 +39,12 @@ export async function CreateGoalTitle(
 				case "folder":
 					return `${formattedCriteria} ${criteria.countNum} charts in ${datasetName}`;
 			}
+
 			break;
-		case "proportion":
-			// I know declaring inside cases is a footgun, but I know better.
-			// eslint-disable-next-line no-case-declarations
+		}
+
+		case "proportion": {
+			// eslint-disable-next-line no-case-declarations // I know declaring inside cases is a footgun, but I know better.
 			const propFormat = FormatMaxDP(criteria.countNum * 100);
 
 			switch (charts.type) {
@@ -59,6 +55,7 @@ export async function CreateGoalTitle(
 				case "folder":
 					return `${formattedCriteria} ${propFormat}% of the charts in ${datasetName}`;
 			}
+		}
 	}
 
 	throw new Error(`Couldn't create title from provided info. Is the provided data supported?`);
@@ -113,7 +110,9 @@ export async function ValidateGoalChartsAndCriteria(
 	playtype: Playtype
 ) {
 	let chartCount = 0;
+
 	// Validating the charts supplied
+
 	if (charts.type === "single") {
 		const chart = await db.charts[game].findOne({
 			playtype,
@@ -191,6 +190,7 @@ export async function ValidateGoalChartsAndCriteria(
 
 	// checking whether the key and value make sense
 	const gptConfig = GetGamePTConfig(game, playtype);
+
 	if (criteria.key === "scoreData.gradeIndex" && !gptConfig.grades[criteria.value]) {
 		throw new Error(
 			`Invalid value of ${criteria.value} for grade goal. No such grade exists at that index.`
@@ -223,7 +223,7 @@ export async function ValidateGoalChartsAndCriteria(
 				playtype,
 				chartID: charts.data,
 			}))! as ChartDocument<
-				"bms:14K" | "bms:7K" | "iidx:SP" | "iidx:DP" | "pms:Controller" | "pms:Keyboard"
+				"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard"
 			>;
 
 			const notecount = relatedChart.data.notecount;

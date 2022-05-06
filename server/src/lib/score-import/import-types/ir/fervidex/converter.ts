@@ -1,15 +1,15 @@
-import { Difficulties, Lamps, Playtypes } from "tachi-common";
-import { FindIIDXChartOnInGameIDVersion, FindIIDXChartWith2DXtraHash } from "utils/queries/charts";
-import { FindSongOnID } from "utils/queries/songs";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
-import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction } from "../../common/types";
-import { FervidexContext, FervidexScore } from "./types";
+import { FindIIDXChartOnInGameIDVersion, FindIIDXChartWith2DXtraHash } from "utils/queries/charts";
+import { FindSongOnID } from "utils/queries/songs";
+import type { DryScore } from "../../../framework/common/types";
+import type { ConverterFunction } from "../../common/types";
+import type { FervidexContext, FervidexScore } from "./types";
+import type { Difficulties, Lamps, Playtypes } from "tachi-common";
 
 export const FERVIDEX_LAMP_LOOKUP = {
 	0: "NO PLAY",
@@ -24,7 +24,7 @@ export const FERVIDEX_LAMP_LOOKUP = {
 
 export function TachifyAssist(
 	assist: Required<FervidexScore>["option"]["assist"]
-): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["assist"] {
+): DryScore<"iidx:DP" | "iidx:SP">["scoreMeta"]["assist"] {
 	switch (assist) {
 		case "FULL_ASSIST":
 		case "ASCR_LEGACY":
@@ -41,7 +41,7 @@ export function TachifyAssist(
 
 export function TachifyGauge(
 	gauge: Required<FervidexScore>["option"]["gauge"]
-): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["gauge"] {
+): DryScore<"iidx:DP" | "iidx:SP">["scoreMeta"]["gauge"] {
 	switch (gauge) {
 		case "ASSISTED_EASY":
 			return "ASSISTED EASY";
@@ -59,7 +59,7 @@ export function TachifyGauge(
 
 export function TachifyRange(
 	gauge: Required<FervidexScore>["option"]["range"]
-): DryScore<"iidx:SP" | "iidx:DP">["scoreMeta"]["range"] {
+): DryScore<"iidx:DP" | "iidx:SP">["scoreMeta"]["range"] {
 	switch (gauge) {
 		case "HIDDEN_PLUS":
 			return "HIDDEN+";
@@ -95,30 +95,41 @@ export function TachifyRandom(gauge: Required<FervidexScore>["option"]["style"])
 
 export function SplitFervidexChartRef(ferDif: FervidexScore["chart"]) {
 	let playtype: Playtypes["iidx"];
+
 	if (ferDif.startsWith("sp")) {
 		playtype = "SP";
 	} else {
 		playtype = "DP";
 	}
 
-	let difficulty: Difficulties["iidx:SP" | "iidx:DP"];
+	let difficulty: Difficulties["iidx:DP" | "iidx:SP"];
 
 	switch (ferDif[ferDif.length - 1]) {
-		case "b":
+		case "b": {
 			difficulty = "BEGINNER";
 			break;
-		case "n":
+		}
+
+		case "n": {
 			difficulty = "NORMAL";
 			break;
-		case "h":
+		}
+
+		case "h": {
 			difficulty = "HYPER";
 			break;
-		case "a":
+		}
+
+		case "a": {
 			difficulty = "ANOTHER";
 			break;
-		case "l":
+		}
+
+		case "l": {
 			difficulty = "LEGGENDARIA";
 			break;
+		}
+
 		default:
 			throw new InternalFailure(`Invalid fervidex difficulty of ${ferDif}`);
 	}
@@ -135,10 +146,12 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 	const { difficulty, playtype } = SplitFervidexChartRef(data.chart);
 
 	let chart;
+
 	if (data.custom) {
 		if (!data.chart_sha256) {
 			throw new InvalidScoreFailure("Score has no chart_sha256 but is a custom?");
 		}
+
 		chart = await FindIIDXChartWith2DXtraHash(data.chart_sha256);
 	} else {
 		chart = await FindIIDXChartOnInGameIDVersion(
@@ -181,7 +194,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 		bp = null;
 	}
 
-	const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
+	const dryScore: DryScore<"iidx:DP" | "iidx:SP"> = {
 		game: "iidx",
 		service: "Fervidex",
 		comment: null,
@@ -191,7 +204,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 			score: data.ex_score,
 			percent,
 			grade,
-			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:SP" | "iidx:DP"],
+			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:DP" | "iidx:SP"],
 			judgements: {
 				pgreat: data.pgreat,
 				great: data.great,
@@ -214,6 +227,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 		scoreMeta: {
 			assist: TachifyAssist(data.option?.assist),
 			gauge: TachifyGauge(data.option?.gauge),
+
 			// @ts-expect-error Awkward expansion of iidx:SP|DP strings here causes this
 			// to complain that [x,x] is not assignable to SP randoms. This is a lazy ignore!
 			random:

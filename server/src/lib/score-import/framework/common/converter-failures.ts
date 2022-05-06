@@ -1,7 +1,7 @@
 // Various Errors that can occur during processing.
 
-import { ImportTypes } from "tachi-common";
-import { ImportTypeContextMap, ImportTypeDataMap } from "../../import-types/common/types";
+import type { ImportTypeContextMap, ImportTypeDataMap } from "../../import-types/common/types";
+import type { ImportTypes } from "tachi-common";
 
 export class ConverterFailure {
 	message: string | null;

@@ -1,4 +1,4 @@
-import {
+import type {
 	FolderDocument,
 	TableDocument,
 	SessionDocument,
@@ -20,8 +20,8 @@ import {
 	ImportDocument,
 } from "tachi-common";
 
+// Inject additional properties on express-session
 declare module "express-session" {
-	// Inject additional properties on express-session
 	interface SessionData {
 		tachi: TachiSessionData;
 	}

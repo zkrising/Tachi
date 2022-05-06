@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
-import { Command } from "commander";
 import { SetIndexes } from "../external/mongo/indexes";
+import { Command } from "commander";
 
 const program = new Command();
 

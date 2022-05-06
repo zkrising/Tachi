@@ -1,8 +1,8 @@
-import { KtLogger } from "lib/logger/logger";
-import { CSVParseError, NaiveCSVParse } from "utils/naive-csv-parser";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturns } from "../types";
-import { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
+import { CSVParseError, NaiveCSVParse } from "utils/naive-csv-parser";
+import type { ParserFunctionReturns } from "../types";
+import type { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
+import type { KtLogger } from "lib/logger/logger";
 
 enum EAM_VERSION_NAMES {
 	"1st&substream" = 1,
@@ -72,7 +72,7 @@ const HV_HEADER_COUNT = 41;
 //     "timestamp",
 // ];
 
-export function ResolveHeaders(headers: string[], logger: KtLogger) {
+export function ResolveHeaders(headers: Array<string>, logger: KtLogger) {
 	if (headers.length === PRE_HV_HEADER_COUNT) {
 		logger.verbose("PRE_HV csv received.");
 		return {
@@ -93,14 +93,16 @@ export function ResolveHeaders(headers: string[], logger: KtLogger) {
 }
 
 export function IIDXCSVParse(csvBuffer: Buffer, logger: KtLogger) {
-	let rawHeaders: string[];
-	let rawRows: string[][];
+	let rawHeaders: Array<string>;
+	let rawRows: Array<Array<string>>;
+
 	try {
 		({ rawHeaders, rawRows } = NaiveCSVParse(csvBuffer, logger));
 	} catch (e) {
 		if (e instanceof CSVParseError) {
 			throw new ScoreImportFatalError(400, e.message);
 		}
+
 		throw e;
 	}
 
@@ -134,7 +136,7 @@ export function IIDXCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 			gameVersion = versionNum;
 		}
 
-		const scores: EamusementScoreData[] = [];
+		const scores: Array<EamusementScoreData> = [];
 
 		for (let d = 0; d < diffs.length; d++) {
 			const diff = diffs[d];
@@ -182,7 +184,7 @@ function GenericParseEamIIDXCSV(
 	service: string,
 	logger: KtLogger
 ): ParserFunctionReturns<IIDXEamusementCSVData, IIDXEamusementCSVContext> {
-	let playtype: "SP" | "DP";
+	let playtype: "DP" | "SP";
 
 	if (body.playtype === "SP") {
 		playtype = "SP";

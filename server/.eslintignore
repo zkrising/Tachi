@@ -5,3 +5,5 @@
 
 node_modules
 js
+
+**/*.test.ts

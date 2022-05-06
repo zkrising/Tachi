@@ -169,7 +169,7 @@ export async function CreatePOSTScoresResponseBody(
 
 	const originalScore = (await db.scores.findOne({
 		scoreID,
-	})) as ScoreDocument<"usc:Controller" | "usc:Keyboard">;
+	})) as ScoreDocument<"usc:Controller" | "usc:Keyboard"> | null;
 
 	if (!originalScore) {
 		logger.severe(

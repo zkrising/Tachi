@@ -11,7 +11,10 @@ export function ParseEA3SoftID(ver: string) {
 
 	return {
 		model: a[0],
-		dest: a[1], // region
+
+		// region
+		dest: a[1],
+
 		spec: a[2],
 		rev: a[3],
 		ext: a[4],

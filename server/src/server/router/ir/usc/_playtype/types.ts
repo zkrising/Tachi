@@ -28,7 +28,9 @@ export interface USCClientScore {
 		gaugeOpt: integer;
 		mirror: boolean;
 		random: boolean;
-		autoFlags: integer; // ???
+
+		// ??? - Not sure what these are.
+		autoFlags: integer;
 	};
 	windows: {
 		perfect: number;

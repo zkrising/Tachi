@@ -43,7 +43,7 @@ enum STATUS_CODES {
 const ValidateUSCRequest: RequestHandler = async (req, res, next) => {
 	const token = req.header("Authorization");
 
-	if (!token) {
+	if (token === undefined) {
 		return res.status(200).json({
 			statusCode: STATUS_CODES.BAD_REQ,
 			description: "No auth token provided.",
@@ -224,7 +224,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
 
 	try {
 		n = AssertStrAsPositiveNonZeroInt(req.query.n, "Invalid 'N' param.");
-	} catch (err) {
+	} catch (_err) {
 		return res.status(200).json({
 			statusCode: STATUS_CODES.BAD_REQ,
 			description: `Invalid 'n' param - expected a positive non-zero integer less than or equal to ${USCIR_MAX_LEADERBOARD_N}.`,
@@ -265,7 +265,7 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
 	});
 });
 
-const PR_USCIRChartDoc = {
+const PR_USCIR_CHART_DOC = {
 	chartHash: "string",
 	artist: "string",
 	title: "string",
@@ -286,7 +286,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 
 	const chartErr = p(
 		req.body.chart,
-		PR_USCIRChartDoc,
+		PR_USCIR_CHART_DOC,
 		{},
 		{
 			throwOnNonObject: false,
@@ -333,14 +333,19 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	// If the import failed, AND the import failure WAS NOT that the chart didnt exist
 	// report that error instead.
 	if (importDoc.errors[0]?.type && importDoc.errors[0].type !== "KTDataNotFound") {
-		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {
-			importDoc,
-			userID,
-		});
+		logger.info(
+			`USC Import Failed ${importDoc.errors[0].message ?? "with null error message?"}`,
+			{
+				importDoc,
+				userID,
+			}
+		);
 
 		return res.status(200).json({
 			statusCode: STATUS_CODES.BAD_REQ,
-			description: `${importDoc.errors[0].type} ${importDoc.errors[0].message}`,
+			description: `${importDoc.errors[0].type} ${
+				importDoc.errors[0].message ?? "No Error Message"
+			}`,
 		});
 	}
 
@@ -355,7 +360,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	}
 
 	// If the chartDoc exists, any error is a failure here.
-	if (importDoc.errors[0]) {
+	if (importDoc.errors.length !== 0) {
 		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {
 			importDoc,
 			userID,
@@ -382,7 +387,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 			description: "Successfully imported score.",
 			body,
 		});
-	} catch (err) {
+	} catch (_err) {
 		return res.status(200).json({
 			statusCode: STATUS_CODES.SERVER_ERROR,
 			description: "An internal server error has occured.",

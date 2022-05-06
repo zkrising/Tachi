@@ -80,7 +80,7 @@ export async function UpdateClassIfGreater(
 	});
 
 	if (isGreater === null) {
-		EmitWebhookEvent({
+		void EmitWebhookEvent({
 			type: "class-update/v1",
 			content: { userID, new: classVal, old: null, set: classSet, game, playtype },
 		});
@@ -88,7 +88,7 @@ export async function UpdateClassIfGreater(
 		return null;
 	}
 
-	EmitWebhookEvent({
+	void EmitWebhookEvent({
 		type: "class-update/v1",
 		content: {
 			userID,

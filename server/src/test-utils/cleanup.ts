@@ -6,7 +6,7 @@ import { CloseRedisPubSub } from "external/redis/redis-IPC";
 import { CloseScoreImportQueue } from "lib/score-import/worker/queue";
 
 export async function CleanUpAfterTests() {
-	if (process.env.TAP_SNAPSHOT) {
+	if (process.env.TAP_SNAPSHOT !== "" && process.env.TAP_SNAPSHOT !== undefined) {
 		WriteSnapshotData();
 	}
 

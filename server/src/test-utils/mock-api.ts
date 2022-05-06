@@ -11,7 +11,16 @@ logger.verbose("Connecting to Supertest...");
 const mockApi = supertest(connection);
 
 export function CloseServerConnection() {
-	return connection.close();
+	return new Promise<void>((resolve, reject) => {
+		connection.close((err) => {
+			if (err) {
+				reject(err);
+				return;
+			}
+
+			resolve();
+		});
+	});
 }
 
 export default mockApi;

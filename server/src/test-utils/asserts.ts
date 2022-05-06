@@ -23,7 +23,7 @@ export function isApproximately(
 
 export function prAssert(
 	t: Tap.Test,
-	obj: Record<string, unknown> | unknown,
+	obj: unknown,
 	schema: PrudenceSchema,
 	message = "Unnamed Prudence Assertion"
 ) {

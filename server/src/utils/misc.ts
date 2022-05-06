@@ -135,11 +135,11 @@ export function IsValidURL(string: string) {
 }
 
 export function Sleep(ms: number) {
-	return new Promise<void>((resolve) =>
+	return new Promise<void>((resolve) => {
 		setTimeout(() => {
 			resolve();
-		}, ms)
-	);
+		}, ms);
+	});
 }
 
 export function GetTimeXHoursAgo(hours: integer) {
@@ -227,4 +227,8 @@ export function IsSupported(game: Game) {
  */
 export function ArrayDiff<T>(left: Array<T>, right: Array<T>) {
 	return right.filter((e) => !left.includes(e));
+}
+
+export function IsNonEmptyString(maybeStr: string | null | undefined): maybeStr is string {
+	return Boolean(maybeStr);
 }

@@ -1,16 +1,17 @@
+import { RequestLoggerMiddleware } from "./middleware/request-logger";
+import mainRouter from "./router/router";
 import connectRedis from "connect-redis";
 import express from "express";
-import type { Express } from "express";
-import "express-async-errors";
 import expressSession from "express-session";
 import { RedisClient } from "external/redis/redis";
 import helmet from "helmet";
 import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
+import type { Express } from "express";
+import "express-async-errors";
 import type { integer } from "tachi-common";
-import { RequestLoggerMiddleware } from "./middleware/request-logger";
-import mainRouter from "./router/router";
+import { IsNonEmptyString } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -39,13 +40,15 @@ const userSessionMiddleware = expressSession({
 	saveUninitialized: false,
 	cookie: {
 		secure: Environment.nodeEnv === "production" || ServerConfig.ENABLE_SERVER_HTTPS,
-		sameSite: "strict", // Very important. Without this, we're vulnerable to CSRF!
+
+		// Very important. Without this, we're vulnerable to CSRF!
+		sameSite: "strict",
 	},
 });
 
 const app: Express = express();
 
-if (Environment.nodeEnv !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
+if (Environment.nodeEnv !== "production" && IsNonEmptyString(ServerConfig.CLIENT_DEV_SERVER)) {
 	logger.warn(`Enabling CORS requests from ${ServerConfig.CLIENT_DEV_SERVER}.`, {
 		bootInfo: true,
 	});
@@ -63,7 +66,7 @@ if (Environment.nodeEnv !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
 	});
 
 	// hack to allow all OPTIONS requests. Remember that this setting should not be on in production!
-	if (ServerConfig.OPTIONS_ALWAYS_SUCCEEDS) {
+	if (ServerConfig.OPTIONS_ALWAYS_SUCCEEDS === true) {
 		app.options("*", (req, res) => res.send());
 	}
 } else {
@@ -117,7 +120,7 @@ app.use("/", mainRouter);
 // In dev, this is a pain to setup, so we can just run it locally.
 if (
 	ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE === "LOCAL_FILESYSTEM" &&
-	ServerConfig.CDN_CONFIG.SAVE_LOCATION.SERVE_OWN_CDN
+	ServerConfig.CDN_CONFIG.SAVE_LOCATION.SERVE_OWN_CDN === true
 ) {
 	if (Environment.nodeEnv === "production") {
 		logger.warn(

@@ -195,7 +195,7 @@ export async function GetRecentlyAchievedGoals(
 		goalID: { $in: goalSubs.map((e) => e.goalID) },
 	});
 
-	if (goals.length !== goals.length) {
+	if (goals.length !== goalSubs.length) {
 		logger.error(
 			`Found ${goals.length} goals when looking for parents of ${goalSubs.length} subscriptions. This mismatch implies a state desync.`
 		);

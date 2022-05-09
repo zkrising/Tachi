@@ -495,7 +495,7 @@ export interface SessionViewDocument extends MongoDBDocument {
 
 interface ImportErrContent {
 	type: string;
-	message: string | null;
+	message: string;
 }
 
 export interface ClassDelta {

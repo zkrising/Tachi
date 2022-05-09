@@ -1235,7 +1235,7 @@ export type ImportTypes = FileUploadImportTypes | IRImportTypes | APIImportTypes
 export interface ImportProcessInfoKTDataNotFound {
 	success: false;
 	type: "KTDataNotFound";
-	message: string | null;
+	message: string;
 	content: {
 		data: unknown;
 		context: unknown; // @TODO Type these properly.
@@ -1246,7 +1246,7 @@ export interface ImportProcessInfoKTDataNotFound {
 export interface ImportProcessInfoOrphanExists {
 	success: false;
 	type: "OrphanExists";
-	message: string | null;
+	message: string;
 	content: {
 		orphanID: string;
 	};
@@ -1255,14 +1255,14 @@ export interface ImportProcessInfoOrphanExists {
 export interface ImportProcessInfoInvalidDatapoint {
 	success: false;
 	type: "InvalidDatapoint";
-	message: string | null;
+	message: string;
 	content: Record<string, never>;
 }
 
 export interface ImportProcessInfoScoreImported<I extends IDStrings = IDStrings> {
 	success: true;
 	type: "ScoreImported";
-	message: string | null;
+	message: string;
 	content: {
 		score: ScoreDocument<I>;
 	};
@@ -1271,7 +1271,7 @@ export interface ImportProcessInfoScoreImported<I extends IDStrings = IDStrings>
 export interface ImportProcessInfoInternalError {
 	success: false;
 	type: "InternalError";
-	message: string | null;
+	message: string;
 	content: Record<string, never>;
 }
 

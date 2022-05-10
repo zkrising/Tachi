@@ -1,13 +1,12 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { SearchCollection } from "lib/search/search";
 import { EvaluateMilestoneProgress, GetGoalsInMilestone } from "lib/targets/milestones";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame } from "tachi-common";
 import { GetMostSubscribedMilestones } from "utils/db";
 import { IsString } from "utils/misc";
-import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetGPT, GetTachiData } from "utils/req-tachi-data";
 import { GetUsersWithIDs, ResolveUser } from "utils/user";
 import type { RequestHandler } from "express";
 
@@ -89,7 +88,7 @@ router.get("/popular", async (req, res) => {
  * @name GET /api/v1/games/:game/:playtype/targets/milestones/:milestoneID
  */
 router.get("/:milestoneID", ResolveMilestoneID, async (req, res) => {
-	const milestone = req[SYMBOL_TACHI_DATA]!.milestoneDoc!;
+	const milestone = GetTachiData(req, "milestoneDoc");
 
 	const milestoneSubs = await db["milestone-subs"].find({
 		milestoneID: milestone.milestoneID,
@@ -157,7 +156,7 @@ router.get(
 			});
 		}
 
-		const milestone = req[SYMBOL_TACHI_DATA]!.milestoneDoc!;
+		const milestone = GetTachiData(req, "milestoneDoc");
 
 		const milestoneProgress = await EvaluateMilestoneProgress(user.id, milestone);
 

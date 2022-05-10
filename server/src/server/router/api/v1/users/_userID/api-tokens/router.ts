@@ -7,6 +7,7 @@ import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { ALL_PERMISSIONS } from "tachi-common";
 import { Random20Hex } from "utils/misc";
+import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
 import type { APIPermissions, APITokenDocument } from "tachi-common";
 
@@ -23,7 +24,7 @@ router.use(RequireSelfRequestFromUser);
  * @name GET /api/v1/users/:userID/api-tokens
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	const keys = await db["api-tokens"].find({
 		userID: user.id,
@@ -63,7 +64,7 @@ router.post(
 
 		let permissions: Array<APIPermissions>;
 
-		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+		const user = GetTachiData(req, "requestedUser");
 
 		let identifier: string;
 		let fromAPIClient = null;
@@ -149,7 +150,7 @@ router.post(
  * @name DELETE /api/v1/users/:userID/api-token/:token
  */
 router.delete("/:token", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	logger.info(
 		`received request from ${FormatUserDoc(user)} to delete token ${req.params.token}.`

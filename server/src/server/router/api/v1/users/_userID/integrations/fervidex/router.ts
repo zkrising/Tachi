@@ -6,6 +6,7 @@ import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import { DeleteUndefinedProps } from "utils/misc";
 import { optNull } from "utils/prudence";
+import { GetTachiData } from "utils/req-tachi-data";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -18,7 +19,7 @@ router.use(RequireSelfRequestFromUser);
  * @name GET /api/v1/users/:userID/integrations/fervidex/settings
  */
 router.get("/settings", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	const settingsDoc = await db["fer-settings"].findOne({
 		userID: user.id,
@@ -50,7 +51,7 @@ router.patch(
 			});
 		}
 
-		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+		const user = GetTachiData(req, "requestedUser");
 
 		const modifyDocument = req.body;
 

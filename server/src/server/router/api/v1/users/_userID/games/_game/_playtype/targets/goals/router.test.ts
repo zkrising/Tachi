@@ -2,11 +2,11 @@
 import dm from "deepmerge";
 import db from "external/mongo/db";
 import {
-	ChartDocument,
-	GoalSubscriptionDocument,
-	IIDX_GRADES,
-	IIDX_LAMPS,
-	PBScoreDocument,
+    ChartDocument,
+    GoalSubscriptionDocument,
+    IIDX_GRADES,
+    IIDX_LAMPS,
+    PBScoreDocument
 } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
@@ -14,16 +14,16 @@ import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { TestSnapshot } from "test-utils/single-process-snapshot";
 import {
-	HC511Goal,
-	HC511UserGoal,
-	IIDXSPMilestoneGoals,
-	IIDXSPMilestoneGoalSubs,
-	Testing511SPA,
-	TestingIIDXFolderSP10,
-	TestingIIDXSPMilestone,
-	TestingIIDXSPMilestoneSub,
-	TestingIIDXSPScore,
-	TestingIIDXSPScorePB,
+    HC511Goal,
+    HC511UserGoal,
+    IIDXSPMilestoneGoals,
+    IIDXSPMilestoneGoalSubs,
+    Testing511SPA,
+    TestingIIDXFolderSP10,
+    TestingIIDXSPMilestone,
+    TestingIIDXSPMilestoneSub,
+    TestingIIDXSPScore,
+    TestingIIDXSPScorePB
 } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
 

@@ -1,3 +1,4 @@
+import { IsNonEmptyString } from "./misc";
 import type { KtLogger } from "lib/logger/logger";
 
 export class CSVParseError extends Error {
@@ -22,6 +23,10 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 	const rawHeaders = [];
 	let headerLen = 0;
 	let curStr = "";
+
+	if (!IsNonEmptyString(csvData[0])) {
+		throw new CSVParseError(`Expected headers, but received nothing in the first row.`);
+	}
 
 	// looks like we're doing it like this.
 	for (const char of csvData[0]) {
@@ -50,27 +55,25 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 
 	const rawRows = [];
 
-	for (let i = 1; i < csvData.length; i++) {
-		const data = csvData[i];
-
+	for (const [rowNumber, data] of Object.entries(csvData)) {
 		// @security: This should probably be safetied from DOSing
 		const cells = data.split(",");
 
 		// an empty string split on "," is an array with one empty value.
 		if (cells.length === 1) {
-			logger.verbose(`Skipped empty row ${i}.`);
+			logger.verbose(`Skipped empty row ${rowNumber}.`);
 			continue;
 		}
 
 		if (cells.length !== rawHeaders.length) {
 			logger.info(
-				`csv has row (${i}) with invalid cell count of ${cells.length}, rejecting.`,
+				`csv has row (${rowNumber}) with invalid cell count of ${cells.length}, rejecting.`,
 				{
 					data,
 				}
 			);
 			throw new CSVParseError(
-				`Row ${i} has an invalid amount of cells (${cells.length}, expected ${rawHeaders.length}).`
+				`Row ${rowNumber} has an invalid amount of cells (${cells.length}, expected ${rawHeaders.length}).`
 			);
 		}
 

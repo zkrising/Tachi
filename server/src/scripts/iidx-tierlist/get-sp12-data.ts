@@ -4,9 +4,10 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
+import p from "prudence";
 import { FindChartWithPTDF } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
-import type { Difficulties, integer } from "tachi-common";
+import type { ChartDocument, Difficulties, integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -23,16 +24,39 @@ interface SP12Data {
 }
 
 async function FetchSP12Data() {
-	const rj: { sheets: Array<SP12Data> } = await fetch("https://sp12.iidx.app/api/v1/sheets").then(
-		(r) => r.json()
-	); // will throw if somethings wrong, anyway
+	// will throw if somethings wrong
+	const unvalidatedRJ: unknown = await fetch("https://sp12.iidx.app/api/v1/sheets").then((r) =>
+		r.json()
+	);
 
-	if (!rj.sheets) {
-		throw new Error(`No sheets in return from sp12?`);
+	const err = p(unvalidatedRJ, {
+		sheets: [
+			{
+				id: p.isPositiveNonZeroInteger,
+				title: "string",
+				n_clear: p.isPositiveInteger,
+				hard: p.isPositiveInteger,
+				exh: p.isPositiveInteger,
+				n_clear_string: "string",
+				hard_string: "string",
+				exh_string: "string",
+				version: p.isPositiveInteger,
+			},
+		],
+	});
+
+	if (err) {
+		logger.error(`Got invalid/unexpected content from sp12.`, { unvalidatedRJ });
+
+		throw new Error(`Got invalid/unexpected content from sp12.`);
 	}
 
+	const rj = unvalidatedRJ as {
+		sheets: Array<SP12Data>;
+	};
+
 	for (const sh of rj.sheets) {
-		let chart;
+		let chart: ChartDocument | null;
 
 		try {
 			chart = await HumanisedTitleLookup(sh.title);
@@ -117,7 +141,15 @@ async function FetchSP12Data() {
 
 			val = parseFloat(val.toFixed(2));
 
-			const ktKey = key === "exh" ? "kt-EXHC" : key === "hard" ? "kt-HC" : "kt-NC";
+			let ktKey;
+
+			if (key === "exh") {
+				ktKey = "kt-EXHC";
+			} else if (key === "hard") {
+				ktKey = "kt-HC";
+			} else {
+				ktKey = "kt-NC";
+			}
 
 			// If EXH, just save the string version as 12.xx
 			// Else, use the A/S+ thing that people are used to.
@@ -153,7 +185,7 @@ async function FetchSP12Data() {
 async function HumanisedTitleLookup(originalTitle: string) {
 	let difficulty: Difficulties["iidx:SP"] = "ANOTHER";
 
-	let title = originalTitle;
+	let title: string | undefined = originalTitle;
 
 	if (/(†|†LEGGENDARIA)$/u.exec(title)) {
 		difficulty = "LEGGENDARIA";
@@ -162,8 +194,15 @@ async function HumanisedTitleLookup(originalTitle: string) {
 		difficulty = "HYPER";
 		title = title.split("[")[0];
 	} else if (/\[A\]$/u.exec(title)) {
-		difficulty = "ANOTHER"; // lmao
+		// lmao
+		difficulty = "ANOTHER";
 		title = title.split("[")[0];
+	}
+
+	if (title === undefined) {
+		throw new Error(
+			`Unexpected title of undefined converted from song title: ${originalTitle}. Was there a faulty split? Was the chart literally called †LEGGENDARIA?`
+		);
 	}
 
 	const song = await FindSongOnTitle("iidx", title);
@@ -185,4 +224,11 @@ async function HumanisedTitleLookup(originalTitle: string) {
 	return chart;
 }
 
-FetchSP12Data();
+if (require.main === module) {
+	FetchSP12Data()
+		.then(process.exit(0))
+		.catch((err) => {
+			logger.error(err);
+			process.exit(1);
+		});
+}

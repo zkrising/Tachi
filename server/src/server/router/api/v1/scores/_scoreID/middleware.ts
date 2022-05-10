@@ -1,7 +1,7 @@
 import db from "external/mongo/db";
 import { SYMBOL_TACHI_API_AUTH, SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import { IsRequesterAdmin } from "utils/user";
 import type { RequestHandler } from "express";
 
@@ -23,7 +23,7 @@ export const GetScoreFromParam: RequestHandler = async (req, res, next) => {
 };
 
 export const RequireOwnershipOfScoreOrAdmin: RequestHandler = async (req, res, next) => {
-	const score = req[SYMBOL_TACHI_DATA]!.scoreDoc!;
+	const score = GetTachiData(req, "scoreDoc");
 	const userID = req[SYMBOL_TACHI_API_AUTH].userID;
 
 	if (userID === null) {

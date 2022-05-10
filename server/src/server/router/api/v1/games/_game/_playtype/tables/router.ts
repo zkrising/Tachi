@@ -1,9 +1,8 @@
 import { GetTableFromParam } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { GetFoldersFromTable } from "utils/folder";
-import { GetGPT } from "utils/req-tachi-data";
+import { GetGPT, GetTachiData } from "utils/req-tachi-data";
 import type { FilterQuery } from "mongodb";
 import type { TableDocument } from "tachi-common";
 
@@ -40,7 +39,7 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/games/:game/:playtype/tables/:tableID
  */
 router.get("/:tableID", GetTableFromParam, async (req, res) => {
-	const table = req[SYMBOL_TACHI_DATA]!.tableDoc!;
+	const table = GetTachiData(req, "tableDoc");
 
 	const folders = await GetFoldersFromTable(table);
 

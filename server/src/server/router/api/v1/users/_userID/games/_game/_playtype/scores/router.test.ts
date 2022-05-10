@@ -5,10 +5,10 @@ import { mkFakeScoreIIDXSP, mkFakeScoreSDVX } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
-	GetKTDataJSON,
-	LoadTachiIIDXData,
-	Testing511Song,
-	Testing511SPA,
+    GetKTDataJSON,
+    LoadTachiIIDXData,
+    Testing511Song,
+    Testing511SPA
 } from "test-utils/test-data";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/recent", (t) => {

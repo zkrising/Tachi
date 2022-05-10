@@ -2,7 +2,7 @@ import db from "external/mongo/db";
 import { EvaluateGoalForUser } from "lib/targets/goals";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
 import type { KtLogger } from "lib/logger/logger";
-import type { integer, Game, GoalDocument, GoalSubscriptionDocument } from "tachi-common";
+import type { Game, GoalDocument, GoalSubscriptionDocument, integer } from "tachi-common";
 
 /**
  * Update a user's progress on all of their set goals.
@@ -39,7 +39,8 @@ export async function UpdateGoalsForUser(
 				logger.error(
 					`UserGoal:GoalID mismatch ${goal.goalID} - this user has no goalSub for this, yet it is set.`
 				);
-				return;
+
+				return null;
 			}
 
 			return ProcessGoal(goal, goalSub, userID, logger);
@@ -69,7 +70,7 @@ export async function UpdateGoalsForUser(
 		return [];
 	}
 
-	if (webhookEventContent.length !== 0) {
+	if (webhookEventContent.length !== 0 && goals[0]) {
 		await EmitWebhookEvent({
 			type: "goals-achieved/v1",
 			content: { goals: webhookEventContent, userID, game: goals[0].game },
@@ -157,9 +158,20 @@ export async function ProcessGoal(
 		setData.wasInstantlyAchieved = false;
 	}
 
+	if (!goalSub._id) {
+		logger.error(
+			`GoalSub has no _id, yet we need one to bulkUpdate it? Has a query been used without projectID?`,
+			{ goalSub }
+		);
+
+		throw new Error(
+			`GoalSub has no _id, yet we need one to bulkUpdate it? Has a query been used without projectID?`
+		);
+	}
+
 	const bulkWrite = {
 		updateOne: {
-			filter: { _id: goalSub._id! },
+			filter: { _id: goalSub._id },
 			update: {
 				$set: setData,
 			},

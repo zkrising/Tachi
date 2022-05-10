@@ -161,7 +161,7 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
 		service: "Solid State Squad",
 		scoreData: {
 			percent,
-			grade: grade as Grades["iidx:DP" | "iidx:SP"],
+			grade,
 			score: data.exscore,
 			lamp,
 			judgements,

@@ -2,7 +2,6 @@ import { RequireAuthedAsUser } from "../../../../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import {
@@ -15,7 +14,7 @@ import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { GetGoalForIDGuaranteed } from "utils/db";
-import { AssignToReqTachiData, GetUGPT } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetTachiData, GetUGPT } from "utils/req-tachi-data";
 import type { RequestHandler } from "express";
 import type { GoalDocument, MilestoneDocument } from "tachi-common";
 
@@ -224,7 +223,7 @@ const GetGoalSubscription: RequestHandler = async (req, res, next) => {
 router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 	const { user } = GetUGPT(req);
 
-	const goalSub = req[SYMBOL_TACHI_DATA]!.goalSubDoc!;
+	const goalSub = GetTachiData(req, "goalSubDoc");
 
 	const milestones: Array<MilestoneDocument> = await GetMilestonesThatContainGoal(goalSub.goalID);
 
@@ -256,7 +255,7 @@ router.delete(
 		const goalID = req.params.goalID;
 		const { user, game, playtype } = GetUGPT(req);
 
-		const goalSub = req[SYMBOL_TACHI_DATA]!.goalSubDoc!;
+		const goalSub = GetTachiData(req, "goalSubDoc");
 
 		const parentMilestones = await GetBlockingParentMilestoneSubs(goalSub);
 

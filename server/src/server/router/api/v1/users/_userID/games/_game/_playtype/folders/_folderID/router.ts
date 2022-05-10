@@ -2,10 +2,9 @@ import { GetFolderFromParam } from "../../../../../../../games/_game/_playtype/f
 import { RequireSelfRequestFromUser } from "../../../../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { GetGamePTConfig } from "tachi-common";
 import { GetFolderCharts, GetGradeLampDistributionForFolder, GetPBsOnFolder } from "utils/folder";
-import { GetUGPT } from "utils/req-tachi-data";
+import { GetTachiData, GetUGPT } from "utils/req-tachi-data";
 import { ParseStrPositiveInt } from "utils/string-checks";
 import type { FilterQuery } from "mongodb";
 import type { ScoreDocument } from "tachi-common";
@@ -22,7 +21,7 @@ router.use(GetFolderFromParam);
 router.get("/", async (req, res) => {
 	const { user } = GetUGPT(req);
 
-	const folder = req[SYMBOL_TACHI_DATA]!.folderDoc!;
+	const folder = GetTachiData(req, "folderDoc");
 
 	const { songs, charts, pbs } = await GetPBsOnFolder(user.id, folder);
 
@@ -46,7 +45,7 @@ router.get("/", async (req, res) => {
 router.get("/stats", async (req, res) => {
 	const { user } = GetUGPT(req);
 
-	const folder = req[SYMBOL_TACHI_DATA]!.folderDoc!;
+	const folder = GetTachiData(req, "folderDoc");
 
 	const stats = await GetGradeLampDistributionForFolder(user.id, folder);
 
@@ -70,7 +69,7 @@ router.get("/stats", async (req, res) => {
 router.post("/viewed", RequireSelfRequestFromUser, async (req, res) => {
 	const { user } = GetUGPT(req);
 
-	const folder = req[SYMBOL_TACHI_DATA]!.folderDoc!;
+	const folder = GetTachiData(req, "folderDoc");
 
 	await db["recent-folder-views"].update(
 		{
@@ -108,7 +107,7 @@ router.post("/viewed", RequireSelfRequestFromUser, async (req, res) => {
 router.get("/timeline", async (req, res) => {
 	const { user, game, playtype } = GetUGPT(req);
 
-	const folder = req[SYMBOL_TACHI_DATA]!.folderDoc!;
+	const folder = GetTachiData(req, "folderDoc");
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const intIndex = ParseStrPositiveInt(req.query.criteriaValue);

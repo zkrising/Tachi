@@ -31,10 +31,11 @@ export async function UpdateDPTiers() {
 		}
 
 		parsedData.push({
-			HYPER: ParseTierStr(row.childNodes[0].innerText),
-			ANOTHER: ParseTierStr(row.childNodes[1].innerText),
-			LEGGENDARIA: ParseTierStr(row.childNodes[2].innerText),
-			songTitle: decode(row.childNodes[3].innerText),
+			// length is asserted above -- all of these are guaranteeably non-null
+			HYPER: ParseTierStr(row.childNodes[0]!.innerText),
+			ANOTHER: ParseTierStr(row.childNodes[1]!.innerText),
+			LEGGENDARIA: ParseTierStr(row.childNodes[2]!.innerText),
+			songTitle: decode(row.childNodes[3]!.innerText),
 		});
 	}
 

@@ -1,7 +1,6 @@
 import db from "external/mongo/db";
-import { Playtypes } from "tachi-common";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
-import type { integer, Game, Playtype } from "tachi-common";
+import type { Game, integer, Playtype } from "tachi-common";
 
 /**
  * Completely resets a UGPT profile.

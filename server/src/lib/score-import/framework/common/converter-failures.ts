@@ -4,9 +4,9 @@ import type { ImportTypeContextMap, ImportTypeDataMap } from "../../import-types
 import type { ImportTypes } from "tachi-common";
 
 export class ConverterFailure {
-	message: string | null;
+	message: string;
 
-	constructor(message: string | null) {
+	constructor(message: string) {
 		this.message = message;
 	}
 }
@@ -29,7 +29,7 @@ export class KTDataNotFoundFailure<T extends ImportTypes> extends ConverterFailu
 	importType: T;
 
 	constructor(
-		message: string | null,
+		message: string,
 		importType: T,
 		data: ImportTypeDataMap[T],
 		context: ImportTypeContextMap[T]

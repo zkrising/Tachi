@@ -1,7 +1,8 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import prValidate from "server/middleware/prudence-validate";
+import { IsNonEmptyString } from "utils/misc";
+import { GetTachiData } from "utils/req-tachi-data";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -17,12 +18,14 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users/:userID/imports
  */
 router.get("/", prValidate({ timeFinished: "*string" }), async (req, res) => {
-	const userID = req[SYMBOL_TACHI_DATA]!.requestedUser!.id;
+	const userID = GetTachiData(req, "requestedUser").id;
+
+	const query = req.query as { timeFinished: string | undefined };
 
 	let timeFinished = Infinity;
 
-	if (req.query.timeFinished) {
-		timeFinished = Number(req.query.timeFinished as string);
+	if (IsNonEmptyString(query.timeFinished)) {
+		timeFinished = Number(query.timeFinished);
 
 		if (Number.isNaN(timeFinished)) {
 			return res.status(400).json({
@@ -60,7 +63,7 @@ router.get("/", prValidate({ timeFinished: "*string" }), async (req, res) => {
  * @name GET /api/v1/users/:userID/imports/with-user-intent
  */
 router.get("/with-user-intent", async (req, res) => {
-	const userID = req[SYMBOL_TACHI_DATA]!.requestedUser!.id;
+	const userID = GetTachiData(req, "requestedUser").id;
 
 	const importsWithIntent = await db.imports.find({
 		userID,

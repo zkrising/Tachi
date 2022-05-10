@@ -7,6 +7,7 @@ import CreateLogCtx from "lib/logger/logger";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import { GetArcAuth } from "utils/queries/auth";
+import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
@@ -21,7 +22,7 @@ router.use(RequireSelfRequestFromUser);
  * @name GET /api/v1/users/:userID/integrations/arc
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	const [iidx, sdvx] = await Promise.all([
 		GetArcAuth(user.id, "api/arc-iidx"),
@@ -43,7 +44,7 @@ router.get("/", async (req, res) => {
  * @name PATCH /api/v1/users/:userID/integrations/arc
  */
 router.patch("/", prValidate({ iidx: "*?string", sdvx: "*?string" }), async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	if (Object.keys(req.body).length === 0) {
 		return res.status(400).json({

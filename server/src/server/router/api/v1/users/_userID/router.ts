@@ -16,8 +16,7 @@ import { ONE_MONTH } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import { ImportTypes, integer } from "tachi-common";
-import { DeleteUndefinedProps, StripUrl } from "utils/misc";
+import { DeleteUndefinedProps, IsNonEmptyString, NotNullish, StripUrl } from "utils/misc";
 import { optNullFluffStrField } from "utils/prudence";
 import {
 	GetGoalSummary,
@@ -26,7 +25,8 @@ import {
 	GetRecentSessions,
 } from "utils/queries/summary";
 import { FormatUserDoc, GetAllRankings, GetUserWithID } from "utils/user";
-import type { UserGameStats } from "tachi-common";
+import type { ImportTypes, integer, UserGameStats } from "tachi-common";
+import type { ProfileRatingAlgs } from "utils/string-checks";
 
 const logger = CreateLogCtx(__filename);
 
@@ -39,7 +39,7 @@ router.use(GetUserFromParam);
  * @name GET /api/v1/users/:userID
  */
 router.get("/", (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
 
 	return res.status(200).json({
 		success: true,
@@ -87,38 +87,38 @@ router.patch(
 		twitch: optNullFluffStrField,
 	}),
 	async (req, res) => {
-		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+		const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
 
-		if (Object.keys(req.body).length === 0) {
+		const body = req.body as UserPatchBody;
+
+		if (Object.keys(body).length === 0) {
 			return res.status(400).json({
 				success: false,
 				description: `Nothing was provided to modify.`,
 			});
 		}
 
-		const body: UserPatchBody = req.body;
-
 		// Hack stuff for user experience.
 		// In kt1, users would repeatedly mess up these fields.
-		if (body.twitter) {
+		if (IsNonEmptyString(body.twitter)) {
 			body.twitter = StripUrl("twitter.com/", body.twitter);
 		}
 
-		if (body.github) {
+		if (IsNonEmptyString(body.github)) {
 			body.github = StripUrl("github.com/", body.github);
 		}
 
-		if (body.youtube) {
+		if (IsNonEmptyString(body.youtube)) {
 			// youtube has two user urls lol
 			body.youtube = StripUrl("youtube.com/user/", body.youtube);
 			body.youtube = StripUrl("youtube.com/channel/", body.youtube);
 		}
 
-		if (body.twitch) {
+		if (IsNonEmptyString(body.twitch)) {
 			body.twitch = StripUrl("twitch.tv/", body.twitch);
 		}
 
-		if (body.steam) {
+		if (IsNonEmptyString(body.steam)) {
 			body.steam = StripUrl("steamcommunity.com/id/", body.steam);
 		}
 
@@ -204,16 +204,20 @@ router.patch(
  * @name GET /api/v1/users/:userID/game-stats
  */
 router.get("/game-stats", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
 
 	// a user has played a game if and only if they have stats for it.
-	const stats: Array<UserGameStats & { __rankingData?: { outOf: number; ranking: number } }> =
-		await db["game-stats"].find({ userID: user.id });
+	const stats: Array<
+		UserGameStats & {
+			__rankingData?: Record<ProfileRatingAlgs, { outOf: number; ranking: number }>;
+		}
+	> = await db["game-stats"].find({ userID: user.id });
 
 	await Promise.all(
 		stats.map(async (s) => {
 			const data = await GetAllRankings(s);
 
+			// eslint-disable-next-line require-atomic-updates
 			s.__rankingData = data;
 		})
 	);
@@ -233,7 +237,7 @@ router.get("/game-stats", async (req, res) => {
  * @name GET /api/v1/users/:userID/recent-summary
  */
 router.get("/recent-summary", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
 
 	const [
 		recentPlaycount,
@@ -269,7 +273,7 @@ router.get("/recent-summary", async (req, res) => {
  * @name GET /api/v1/users/:userID/is-email-verified
  */
 router.get("/is-email-verified", RequireSelfRequestFromUser, async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
 
 	const verifyInfo = await db["verify-email-codes"].findOne({
 		userID: user.id,
@@ -307,6 +311,11 @@ router.post(
 		"!oldPassword": ValidatePassword,
 	}),
 	async (req, res) => {
+		const body = req.body as {
+			"!password": string;
+			"!oldPassword": string;
+		};
+
 		const user = req.session.tachi?.user;
 
 		/* istanbul ignore next */
@@ -336,7 +345,7 @@ router.post(
 		}
 
 		const isLastPasswordValid = await PasswordCompare(
-			req.body["!oldPassword"],
+			body["!oldPassword"],
 			privateInfo.password
 		);
 
@@ -347,7 +356,7 @@ router.post(
 			});
 		}
 
-		const newPasswordHash = await HashPassword(req.body["!password"]);
+		const newPasswordHash = await HashPassword(body["!password"]);
 
 		await db["user-private-information"].update(
 			{
@@ -372,9 +381,9 @@ router.post(
  * Get the recent import types this user has used.
  */
 router.get("/recent-imports", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
 
-	const recentImports = await db.imports.aggregate([
+	const recentImports: Array<{ _id: ImportTypes; count: integer }> = await db.imports.aggregate([
 		{
 			$match: {
 				userID: user.id,

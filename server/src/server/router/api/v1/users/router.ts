@@ -17,7 +17,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users
  */
 router.get("/", async (req, res) => {
-	const onlyOnline = Boolean(req.query.online);
+	const onlyOnline = !!req.query.online;
 
 	let users;
 

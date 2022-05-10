@@ -12,7 +12,9 @@ import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import fetch from "utils/fetch";
+import { NotNullish } from "utils/misc";
 import { GetKaiAuth } from "utils/queries/auth";
+import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
 import { URL } from "url";
 
@@ -31,8 +33,8 @@ router.use(RequireKamaitachi, RequireSelfRequestFromUser, ValidateKaiType);
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 router.get<any>("/", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
-	const kaiType = req.params.kaiType.toUpperCase() as "EAG" | "FLO" | "MIN";
+	const user = GetTachiData(req, "requestedUser");
+	const kaiType = NotNullish(req.params.kaiType).toUpperCase() as "EAG" | "FLO" | "MIN";
 
 	const authDoc = await GetKaiAuth(user.id, kaiType);
 
@@ -40,7 +42,7 @@ router.get<any>("/", async (req, res) => {
 		success: true,
 		description: authDoc ? `User is authenticated.` : `User is unauthenticated.`,
 		body: {
-			authStatus: Boolean(authDoc),
+			authStatus: !!authDoc,
 		},
 	});
 });
@@ -68,8 +70,12 @@ router.post(
 	"/oauth2callback",
 	prValidate({ code: "string" }, {}, { allowExcessKeys: true }),
 	async (req, res) => {
-		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
-		const kaiType = req.params.kaiType.toUpperCase() as "EAG" | "FLO" | "MIN";
+		const user = GetTachiData(req, "requestedUser");
+		const kaiType = NotNullish(req.params.kaiType).toUpperCase() as "EAG" | "FLO" | "MIN";
+
+		const body = req.body as {
+			code: string;
+		};
 
 		const baseUrl = KaiTypeToBaseURL(kaiType);
 
@@ -89,7 +95,7 @@ router.post(
 
 		const url = new URL(`${baseUrl}/oauth/token`);
 
-		url.searchParams.append("code", req.body.code);
+		url.searchParams.append("code", body.code);
 		url.searchParams.append("grant_type", "authorization_code");
 		url.searchParams.append("client_secret", CLIENT_SECRET);
 		url.searchParams.append("client_id", CLIENT_ID);
@@ -120,7 +126,7 @@ router.post(
 			});
 		}
 
-		let json;
+		let json: unknown;
 
 		try {
 			json = await getTokenRes.json();
@@ -146,6 +152,8 @@ router.post(
 			});
 		}
 
+		const j = json as { access_token: string; refresh_token: string };
+
 		await db["kai-auth-tokens"].update(
 			{
 				userID: user.id,
@@ -155,8 +163,8 @@ router.post(
 				$set: {
 					userID: user.id,
 					service: kaiType,
-					refreshToken: json.refresh_token,
-					token: json.access_token,
+					refreshToken: j.refresh_token,
+					token: j.access_token,
 				},
 			},
 			{

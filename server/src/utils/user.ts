@@ -1,6 +1,7 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { GetGamePTConfig, UserAuthLevels } from "tachi-common";
+import type { ProfileRatingAlgs } from "./string-checks";
 import type { FindOneResult } from "monk";
 import type {
 	APITokenDocument,
@@ -51,7 +52,7 @@ export function GetUserCaseInsensitive(
 export async function CheckIfEmailInUse(email: string) {
 	const doc = await db["user-private-information"].findOne({ email });
 
-	return Boolean(doc);
+	return !!doc;
 }
 
 export function GetUserPrivateInfo(userID: integer) {
@@ -185,7 +186,10 @@ export async function GetAllRankings(stats: UserGameStats) {
 		)
 	);
 
-	return Object.fromEntries(entries);
+	return Object.fromEntries(entries) as Record<
+		ProfileRatingAlgs,
+		{ ranking: integer; outOf: integer }
+	>;
 }
 
 export async function GetUsersRankingAndOutOf(
@@ -196,7 +200,13 @@ export async function GetUsersRankingAndOutOf(
 
 	const ratingAlg = alg ?? gptConfig.defaultProfileRatingAlg;
 
-	const aggRes = await db["game-stats"].aggregate([
+	const aggRes: [
+		{
+			_id: null;
+			outOf: integer;
+			ranking: integer;
+		}
+	] = await db["game-stats"].aggregate([
 		{
 			$match: {
 				game: stats.game,
@@ -223,8 +233,8 @@ export async function GetUsersRankingAndOutOf(
 	]);
 
 	return {
-		ranking: (aggRes[0].ranking + 1) as integer,
-		outOf: aggRes[0].outOf as integer,
+		ranking: aggRes[0].ranking + 1,
+		outOf: aggRes[0].outOf,
 	};
 }
 

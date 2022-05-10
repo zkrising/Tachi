@@ -5,10 +5,10 @@ import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
-	IIDXSPMilestoneGoals,
-	IIDXSPMilestoneGoalSubs,
-	TestingIIDXSPMilestone,
-	TestingIIDXSPMilestoneSub,
+    IIDXSPMilestoneGoals,
+    IIDXSPMilestoneGoalSubs,
+    TestingIIDXSPMilestone,
+    TestingIIDXSPMilestoneSub
 } from "test-utils/test-data";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/milestones", (t) => {

@@ -13,14 +13,15 @@ import type {
 
 const logger = CreateLogCtx(__filename);
 
-const difficultyResolve = {
-	3: ["SP", "HYPER"],
-	4: ["SP", "ANOTHER"],
-	8: ["DP", "HYPER"],
-	9: ["DP", "ANOTHER"],
-	10: ["SP", "LEGGENDARIA"],
-	11: ["DP", "LEGGENDARIA"],
-} as Record<string, [Playtypes["iidx"], Difficulties["iidx:DP" | "iidx:SP"]]>;
+const difficultyResolve: Record<string, [Playtypes["iidx"], Difficulties["iidx:DP" | "iidx:SP"]]> =
+	{
+		3: ["SP", "HYPER"],
+		4: ["SP", "ANOTHER"],
+		8: ["DP", "HYPER"],
+		9: ["DP", "ANOTHER"],
+		10: ["SP", "LEGGENDARIA"],
+		11: ["DP", "LEGGENDARIA"],
+	};
 
 interface PoyashiProxyBPIInfo {
 	title: string;
@@ -32,7 +33,7 @@ interface PoyashiProxyBPIInfo {
 	textage: string;
 	difficultyLevel: string;
 	dpLevel: string;
-	coef: number | null;
+	coef?: number | null;
 	removed?: boolean;
 }
 
@@ -59,8 +60,10 @@ export async function UpdatePoyashiData() {
 
 	logger.info("Fetched data.");
 
-	const iidxSongs = await repo.ReadCollection("songs-iidx");
-	const iidxCharts = await repo.ReadCollection("charts-iidx");
+	const iidxSongs: Array<SongDocument<"iidx">> = await repo.ReadCollection("songs-iidx");
+	const iidxCharts: Array<ChartDocument<"iidx:DP" | "iidx:SP">> = await repo.ReadCollection(
+		"charts-iidx"
+	);
 
 	// Utility functions for finding matching charts.
 	function FindSongOnTitle(title: string) {
@@ -97,7 +100,8 @@ export async function UpdatePoyashiData() {
 
 	// The actual mutation.
 	for (const d of data.body) {
-		const res = difficultyResolve[d.difficulty];
+		const res: ["DP" | "SP", Difficulties["iidx:DP" | "iidx:SP"]] | undefined =
+			difficultyResolve[d.difficulty];
 
 		if (!res) {
 			throw new Error(`Unknown difficulty ${d.difficulty}`);
@@ -131,7 +135,7 @@ export async function UpdatePoyashiData() {
 			continue;
 		}
 
-		if (d.removed) {
+		if (d.removed === true) {
 			logger.info(`Skipping removed chart ${tachiSong.title}.`);
 			continue;
 		}
@@ -171,7 +175,12 @@ export async function UpdatePoyashiData() {
 }
 
 if (require.main === module) {
-	UpdatePoyashiData().then(() => {
-		process.exit(0);
-	});
+	UpdatePoyashiData()
+		.then(() => {
+			process.exit(0);
+		})
+		.catch((err: unknown) => {
+			logger.error("Failed to update poyashi data.", { err });
+			process.exit(1);
+		});
 }

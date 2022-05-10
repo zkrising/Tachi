@@ -2,7 +2,7 @@ import db from "external/mongo/db";
 import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
-import { UserAuthLevels, ALL_PERMISSIONS } from "tachi-common";
+import { ALL_PERMISSIONS, UserAuthLevels } from "tachi-common";
 import { SplitAuthorizationHeader } from "utils/misc";
 import type { RequestHandler } from "express";
 import type { APIPermissions, APITokenDocument } from "tachi-common";

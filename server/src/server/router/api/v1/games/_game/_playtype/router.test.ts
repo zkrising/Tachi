@@ -1,9 +1,9 @@
+import dm from "deepmerge";
+import db from "external/mongo/db";
+import { GetGamePTConfig, PublicUserDocument, UserGameStats } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
-import { GetGamePTConfig, PublicUserDocument, UserGameStats } from "tachi-common";
-import dm from "deepmerge";
 import ResetDBState from "test-utils/resets";
-import db from "external/mongo/db";
 import { FakeOtherUser } from "test-utils/test-data";
 
 t.test("GET /api/v1/games/:game/:playtype", (t) => {

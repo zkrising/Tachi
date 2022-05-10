@@ -11,7 +11,7 @@ import { ONE_HOUR } from "lib/constants/time";
 import NodeCache from "node-cache";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import { FormatGame, GetGamePTConfig, Playtypes } from "tachi-common";
+import { FormatGame, GetGamePTConfig } from "tachi-common";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { IsString } from "utils/misc";
 import { GetClassDistribution } from "utils/queries/stats";

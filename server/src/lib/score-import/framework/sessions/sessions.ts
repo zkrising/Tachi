@@ -30,10 +30,7 @@ export async function CreateSessions(
 	const allSessionInfo = [];
 
 	/* eslint-disable no-await-in-loop */
-	for (const playtype in scorePtMap) {
-		// @ts-expect-error This is my least favourite thing about ts.
-		const scores = scorePtMap[playtype] as Array<ScoreDocument>;
-
+	for (const [playtype, scores] of Object.entries(scorePtMap)) {
 		const sessionInfo = await LoadScoresIntoSessions(
 			userID,
 			importType,
@@ -96,12 +93,12 @@ function UpdateExistingSession(
 	existingSession.calculatedData = calculatedData;
 	existingSession.scoreInfo = [...existingSession.scoreInfo, ...newInfo];
 
-	if (newScores[0].timeAchieved! < existingSession.timeStarted) {
-		existingSession.timeStarted = newScores[0].timeAchieved!;
+	if (newScores[0]!.timeAchieved! < existingSession.timeStarted) {
+		existingSession.timeStarted = newScores[0]!.timeAchieved!;
 	}
 
-	if (newScores[newScores.length - 1].timeAchieved! > existingSession.timeEnded) {
-		existingSession.timeEnded = newScores[newScores.length - 1].timeAchieved!;
+	if (newScores[newScores.length - 1]!.timeAchieved! > existingSession.timeEnded) {
+		existingSession.timeEnded = newScores[newScores.length - 1]!.timeAchieved!;
 	}
 
 	return existingSession;
@@ -130,8 +127,8 @@ function CreateSession(
 		highlight: false,
 		scoreInfo: groupInfo,
 		timeInserted: Date.now(),
-		timeStarted: groupScores[0].timeAchieved!,
-		timeEnded: groupScores[groupScores.length - 1].timeAchieved!,
+		timeStarted: groupScores[0]!.timeAchieved!,
+		timeEnded: groupScores[groupScores.length - 1]!.timeAchieved!,
 		calculatedData,
 		views: 0,
 	};
@@ -150,7 +147,7 @@ export async function LoadScoresIntoSessions(
 	const timestampedScores = [];
 
 	for (const score of importScores) {
-		if (!score.timeAchieved) {
+		if (score.timeAchieved === null) {
 			logger.verbose(`Ignored score ${score.scoreID}, as it had no timeAchieved.`);
 
 			// ignore scores without timestamps. We can't use these for sessions.
@@ -203,8 +200,8 @@ export async function LoadScoresIntoSessions(
 			continue;
 		}
 
-		const startOfGroup = groupScores[0].timeAchieved!;
-		const endOfGroup = groupScores[groupScores.length - 1].timeAchieved!;
+		const startOfGroup = groupScores[0]!.timeAchieved!;
+		const endOfGroup = groupScores[groupScores.length - 1]!.timeAchieved!;
 
 		// A bug exists here where if a session is created
 		// backwards in time, this will grab your PBs

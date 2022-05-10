@@ -81,7 +81,7 @@ export default async function ScoreImportMain<D, C>(
 	try {
 		const timeStarted = Date.now();
 
-		SetJobProgress(job, "Parsing score data.");
+		void SetJobProgress(job, "Parsing score data.");
 
 		// --- 1. Parsing ---
 		// We get an iterable from the provided parser function, alongside some context and a converter function.
@@ -93,7 +93,7 @@ export default async function ScoreImportMain<D, C>(
 
 		logger.debug(`Parsing took ${parseTime} milliseconds.`);
 
-		SetJobProgress(
+		void SetJobProgress(
 			job,
 			`Parsed Score Data. Took ${parseTime}ms. Importing ${
 				Array.isArray(iterable) ? iterable.length : "an unknown amount of"
@@ -152,7 +152,7 @@ export default async function ScoreImportMain<D, C>(
 
 		logger.debug(`Importing took ${importTime} milliseconds. (${importTimeRel}ms/doc)`);
 
-		SetJobProgress(job, `Imported scores, took ${importTime} milliseconds. `);
+		void SetJobProgress(job, `Imported scores, took ${importTime} milliseconds. `);
 
 		// Steps 3-8 are handled inside here.
 		// This was moved inside here so the score de-orphaning process
@@ -181,7 +181,7 @@ export default async function ScoreImportMain<D, C>(
 		const { importParseTime, sessionTime, pbTime, ugsTime, goalTime, milestoneTime } =
 			absoluteTimes;
 
-		SetJobProgress(job, "Finalising Import.");
+		void SetJobProgress(job, "Finalising Import.");
 
 		// --- 9. Finalise Import Document ---
 		// Create and Save an import document to the database, and finish everything up!
@@ -222,7 +222,7 @@ export default async function ScoreImportMain<D, C>(
 
 		// we don't await this because we don't
 		// particularly care about waiting for it.
-		db["import-timings"].insert({
+		void db["import-timings"].insert({
 			importID,
 			timestamp: Date.now(),
 			total: ImportDocument.timeFinished - timeStarted,
@@ -277,7 +277,7 @@ export async function HandlePostImportSteps(
 		`Import Parsing took ${importParseTime} milliseconds. (${importParseTimeRel}ms/doc)`
 	);
 
-	SetJobProgress(job, "Inserting Sessions.");
+	void SetJobProgress(job, "Inserting Sessions.");
 
 	// --- 4. Sessions ---
 	// We create (or update existing) sessions here. This uses the aforementioned parsed import info
@@ -290,7 +290,7 @@ export async function HandlePostImportSteps(
 
 	logger.debug(`Session Processing took ${sessionTime} milliseconds (${sessionTimeRel}ms/doc).`);
 
-	SetJobProgress(job, "Processing scores and updating PBs.");
+	void SetJobProgress(job, "Processing scores and updating PBs.");
 
 	// --- 5. PersonalBests ---
 	// We want to keep an updated reference of a users best score on a given chart.
@@ -307,7 +307,7 @@ export async function HandlePostImportSteps(
 
 	const playtypes = Object.keys(scorePlaytypeMap) as Array<Playtype>;
 
-	SetJobProgress(job, "Updating profile statistics.");
+	void SetJobProgress(job, "Updating profile statistics.");
 
 	// --- 6. Game Stats ---
 	// This function updates the users "stats" for this game - such as their profile rating or their classes.
@@ -318,7 +318,7 @@ export async function HandlePostImportSteps(
 
 	logger.debug(`UGS Processing took ${ugsTime} milliseconds.`);
 
-	SetJobProgress(job, "Updating Goals.");
+	void SetJobProgress(job, "Updating Goals.");
 
 	// --- 7. Goals ---
 	// Evaluate and update the users goals. This returns information about goals that have changed.
@@ -329,7 +329,7 @@ export async function HandlePostImportSteps(
 
 	logger.debug(`Goal Processing took ${goalTime} milliseconds.`);
 
-	SetJobProgress(job, "Updating Milestones.");
+	void SetJobProgress(job, "Updating Milestones.");
 
 	// --- 8. Milestones ---
 	// Evaluate and update the users milestones. This returns...
@@ -427,6 +427,6 @@ function ParseImportInfo(importInfo: Array<ImportProcessingInfo>) {
 
 function SetJobProgress(job: ScoreImportJob | undefined, description: string) {
 	if (job) {
-		job.updateProgress({ description });
+		return job.updateProgress({ description });
 	}
 }

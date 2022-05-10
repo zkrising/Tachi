@@ -1,10 +1,9 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { SearchCollection } from "lib/search/search";
 import { GetChildMilestones } from "utils/db";
 import { IsString } from "utils/misc";
-import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetGPT, GetTachiData } from "utils/req-tachi-data";
 import type { RequestHandler } from "express";
 
 const router: Router = Router({ mergeParams: true });
@@ -68,7 +67,7 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/games/:game/:playtype/targets/milestone-sets/:setID
  */
 router.get("/:setID", ResolveMilestoneSetID, async (req, res) => {
-	const milestoneSet = req[SYMBOL_TACHI_DATA]!.milestoneSetDoc!;
+	const milestoneSet = GetTachiData(req, "milestoneSetDoc");
 
 	const milestones = await GetChildMilestones(milestoneSet);
 

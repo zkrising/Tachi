@@ -9,6 +9,7 @@ import prValidate from "server/middleware/prudence-validate";
 import { ALL_PERMISSIONS, UserAuthLevels } from "tachi-common";
 import { DedupeArr, DeleteUndefinedProps, IsValidURL, Random20Hex } from "utils/misc";
 import { optNull } from "utils/prudence";
+import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
 import type { APIPermissions, TachiAPIClientDocument } from "tachi-common";
 
@@ -164,7 +165,7 @@ router.post(
  * @name GET /api/v1/clients/:clientID
  */
 router.get("/:clientID", GetClientFromID, (req, res) => {
-	const client = req[SYMBOL_TACHI_DATA]!.apiClientDoc!;
+	const client = GetTachiData(req, "apiClientDoc");
 
 	return res.status(200).json({
 		success: true,
@@ -231,7 +232,7 @@ router.patch(
 		}),
 	}),
 	async (req, res) => {
-		const client = req[SYMBOL_TACHI_DATA]!.apiClientDoc!;
+		const client = GetTachiData(req, "apiClientDoc");
 
 		DeleteUndefinedProps(req.body);
 
@@ -274,7 +275,7 @@ router.post(
 	GetClientFromID,
 	RequireOwnershipOfClient,
 	async (req, res) => {
-		const client = req[SYMBOL_TACHI_DATA]!.apiClientDoc!;
+		const client = GetTachiData(req, "apiClientDoc");
 		const clientName = `${client.name} (${client.clientID})`;
 
 		logger.info(`received request to reset client secret for ${clientName}`);
@@ -306,7 +307,7 @@ router.post(
  * @name DELETE /api/v1/clients/:clientID
  */
 router.delete("/:clientID", GetClientFromID, RequireOwnershipOfClient, async (req, res) => {
-	const client = req[SYMBOL_TACHI_DATA]!.apiClientDoc!;
+	const client = GetTachiData(req, "apiClientDoc");
 
 	const clientName = `${client.name} (${client.clientID})`;
 

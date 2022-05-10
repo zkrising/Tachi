@@ -13,7 +13,7 @@ import db from "external/mongo/db";
 import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { GetGamePTConfig } from "tachi-common";
 import { IsString } from "utils/misc";
-import { GetUGPT } from "utils/req-tachi-data";
+import { GetTachiData, GetUGPT } from "utils/req-tachi-data";
 import { CheckStrProfileAlg } from "utils/string-checks";
 import {
 	GetAllRankings,
@@ -34,7 +34,7 @@ router.use(CheckUserPlayedGamePlaytype);
 router.get("/", async (req, res) => {
 	const { game, playtype, user } = GetUGPT(req);
 
-	const stats = req[SYMBOL_TACHI_DATA]!.requestedUserGameStats!;
+	const stats = GetTachiData(req, "requestedUserGameStats");
 
 	const [totalScores, firstScore, mostRecentScore, rankingData] = await Promise.all([
 		db.scores.count({
@@ -91,7 +91,7 @@ router.get("/", async (req, res) => {
 router.get("/history", async (req, res) => {
 	const { game, playtype, user } = GetUGPT(req);
 
-	const stats = req[SYMBOL_TACHI_DATA]!.requestedUserGameStats!;
+	const stats = GetTachiData(req, "requestedUserGameStats");
 
 	const snapshots = (await db["game-stats-snapshots"].find(
 		{

@@ -6,8 +6,11 @@ import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { ServerConfig } from "lib/setup/config";
+import p from "prudence";
 import { RequireNotGuest } from "server/middleware/auth";
+import prValidate from "server/middleware/prudence-validate";
 import { UpdateClassIfGreater } from "utils/class";
+import { NotNullish } from "utils/misc";
 import type { BeatorajaChart } from "lib/score-import/import-types/ir/beatoraja/types";
 import type { integer } from "tachi-common";
 
@@ -23,7 +26,7 @@ router.use(ValidateIRClientVersion);
  * @name POST /ir/beatoraja/submit-score
  */
 router.post("/submit-score", RequireNotGuest, async (req, res) => {
-	const userID = req[SYMBOL_TACHI_API_AUTH]!.userID!;
+	const userID = NotNullish(req[SYMBOL_TACHI_API_AUTH].userID);
 
 	const importRes = await ExpressWrappedScoreImportMain(userID, false, "ir/beatoraja", [
 		req.body,
@@ -32,25 +35,30 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 
 	if (!importRes.body.success) {
 		return res.status(400).json(importRes.body);
-	} else if (importRes.body.body.errors.length !== 0) {
+	} else if (importRes.body.body.errors[0]) {
 		const type = importRes.body.body.errors[0].type;
 		const errMsg = importRes.body.body.errors[0].message;
 
+		// If the error type is KTDataNotFound, then we **know** that
+		// the chart and score values were atleast typed correctly
+		// and can afford to make this assertion.
 		if (type === "KTDataNotFound") {
+			const { chart } = req.body as { chart: BeatorajaChart };
+
 			const orphanInfo: { userIDs: Array<integer> } | null = await db[
 				"orphan-chart-queue"
 			].findOne(
 				{
-					"chartDoc.data.hashSHA256": (req.body.chart as BeatorajaChart).sha256,
+					"chartDoc.data.hashSHA256": chart.sha256,
 				},
 				{ projection: { userIDs: 1 } }
 			);
 
 			if (!orphanInfo) {
-				logger.warn(
-					`Chart '${req.body.chart.sha256}' got KTDataNotFound, but was not orphaned?`,
-					{ body: req.body }
-				);
+				logger.warn(`Chart '${chart.sha256}' got KTDataNotFound, but was not orphaned?`, {
+					body: req.body as unknown,
+				});
+
 				return res.status(400).json({
 					success: false,
 					description: "This chart is not supported.",
@@ -105,16 +113,38 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 			chartID: scoreDoc.chartID,
 		});
 
+		if (!chart) {
+			logger.error(
+				`Expected to a find a bms chart with chartID ${scoreDoc.chartID}, but found none?`
+			);
+
+			return res.status(500).json({
+				success: false,
+				description: `Internal Service Error.`,
+			});
+		}
+
 		song = await db.songs.bms.findOne({
-			id: chart!.songID,
+			id: chart.songID,
 		});
 	} else {
 		chart = await db.charts.pms.findOne({
 			chartID: scoreDoc.chartID,
 		});
 
+		if (!chart) {
+			logger.error(
+				`Expected to a find a pms chart with chartID ${scoreDoc.chartID}, but found none?`
+			);
+
+			return res.status(500).json({
+				success: false,
+				description: `Internal Service Error.`,
+			});
+		}
+
 		song = await db.songs.pms.findOne({
-			id: chart!.songID,
+			id: chart.songID,
 		});
 	}
 
@@ -136,118 +166,138 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
  *
  * @name POST /ir/beatoraja/submit-course
  */
-router.post("/submit-course", RequireNotGuest, async (req, res) => {
-	const charts = req.body.course?.charts;
+router.post(
+	"/submit-course",
+	prValidate({
+		course: {
+			charts: (self) => {
+				return (
+					!Array.isArray(self) ||
+					self.length !== 4 ||
+					!self.every(
+						(maybeChart: unknown) =>
+							maybeChart !== null &&
+							typeof maybeChart === "object" &&
+							typeof (maybeChart as { md5: string }).md5 === "string"
+					) ||
+					"Expected an array of 4 objects with MD5 properties."
+				);
+			},
+			constraint: [p.isIn("LN", "MIRROR", "GAUGE_LR2")],
+		},
+		score: {
+			clear: "boolean",
+			lntype: p.isIn(0, 1, 2),
+		},
+	}),
+	RequireNotGuest,
+	async (req, res) => {
+		const body = req.body as {
+			course: {
+				charts: Array<{ md5: string }>;
+				constraint: Array<"GAUGE_LR2" | "LN" | "MIRROR">;
+			};
+			score: {
+				clear: boolean;
+				lntype: 0 | 1 | 2;
+			};
+		};
 
-	if (
-		!charts ||
-		!Array.isArray(charts) ||
-		charts.length !== 4 ||
-		!charts.every((e) => e && typeof e === "object" && typeof e.md5 === "string")
-	) {
-		return res.status(400).json({
-			success: false,
-			description: `Invalid Course Submission.`,
-		});
-	}
+		const charts = body.course.charts;
+		const clear = body.score.clear;
 
-	const clear = req.body.score?.clear;
+		if (!clear) {
+			return res.status(200).json({
+				success: true,
+				description: "Class not updated.",
+			});
+		}
 
-	if (!clear || clear === "Failed") {
-		return res.status(200).json({
-			success: true,
-			description: "Class not updated.",
-		});
-	}
+		if (body.score.lntype !== 0) {
+			return res.status(400).json({
+				success: false,
+				description: "LN mode is the only supported mode for dans.",
+			});
+		}
 
-	if (req.body.score?.lntype !== 0) {
-		return res.status(400).json({
-			success: false,
-			description: "LN mode is the only supported mode for dans.",
-		});
-	}
+		// Constraints are a bit complicated.
+		// We only want to accept dans with the following
+		// beatoraja constraints - ["MIRROR","GAUGE_LR2"] or
+		// ["MIRROR", "GAUGE_LR2", "LN"].
+		const constraint = body.course.constraint;
 
-	// Constraints are a bit complicated.
-	// We only want to accept dans with the following
-	// beatoraja constraints - ["MIRROR","GAUGE_LR2"] or
-	// ["MIRROR", "GAUGE_LR2", "LN"].
-	const constraint = req.body.course.constraint;
-
-	if (
-		!constraint ||
-		!Array.isArray(constraint) ||
-		(constraint.length !== 2 && constraint.length !== 3)
-	) {
-		return res.status(400).json({
-			success: false,
-			description: `Invalid Constraints.`,
-		});
-	}
-
-	// If there are two constraints, check that they are
-	// MIRROR and GAUGE_LR2.
-	if (!constraint.includes("MIRROR") || !constraint.includes("GAUGE_LR2")) {
-		return res.status(400).json({
-			success: false,
-			description: `Invalid Constraints.`,
-		});
-	}
-
-	// If there are three constraints, check that the third
-	// is LN
-	if (constraint.length === 3) {
-		if (!constraint.includes("LN")) {
+		if (constraint.length !== 2 && constraint.length !== 3) {
 			return res.status(400).json({
 				success: false,
 				description: `Invalid Constraints.`,
 			});
 		}
-	}
 
-	// Combine the md5s into one string in their order.
-	const combinedMD5s = charts.map((e) => e.md5).join("");
+		// If there are two constraints, check that they are
+		// MIRROR and GAUGE_LR2.
+		if (!constraint.includes("MIRROR") || !constraint.includes("GAUGE_LR2")) {
+			return res.status(400).json({
+				success: false,
+				description: `Invalid Constraints.`,
+			});
+		}
 
-	const course = await db["bms-course-lookup"].findOne({
-		md5sums: combinedMD5s,
-	});
+		// If there are three constraints, check that the third
+		// is LN
+		if (constraint.length === 3) {
+			if (!constraint.includes("LN")) {
+				return res.status(400).json({
+					success: false,
+					description: `Invalid Constraints.`,
+				});
+			}
+		}
 
-	if (!course) {
-		return res.status(404).json({
-			success: false,
-			description: `Unsupported course.`,
+		// Combine the md5s into one string in their order.
+		const combinedMD5s = charts.map((e) => e.md5).join("");
+
+		const course = await db["bms-course-lookup"].findOne({
+			md5sums: combinedMD5s,
 		});
-	}
 
-	const userID = req[SYMBOL_TACHI_API_AUTH]!.userID!;
+		if (!course) {
+			return res.status(404).json({
+				success: false,
+				description: `Unsupported course.`,
+			});
+		}
 
-	const result = await UpdateClassIfGreater(
-		userID,
-		"bms",
-		course.playtype,
-		course.set,
-		course.value
-	);
+		const userID = NotNullish(req[SYMBOL_TACHI_API_AUTH].userID);
 
-	if (result === false) {
+		const result = await UpdateClassIfGreater(
+			userID,
+			"bms",
+			course.playtype,
+			course.set,
+			course.value
+		);
+
+		if (result === false) {
+			return res.status(200).json({
+				success: true,
+				description: "Class not updated.",
+				body: {
+					set: course.set,
+					value: course.value,
+				},
+			});
+		}
+
 		return res.status(200).json({
 			success: true,
-			description: "Class not updated.",
+			description: "Successfully updated class.",
 			body: {
 				set: course.set,
 				value: course.value,
 			},
 		});
 	}
-
-	return res.status(200).json({
-		success: true,
-		description: "Successfully updated class.",
-		body: {
-			set: course.set,
-			value: course.value,
-		},
-	});
-});
+);
 
 router.use("/charts/:chartSHA256", chartsRouter);
 

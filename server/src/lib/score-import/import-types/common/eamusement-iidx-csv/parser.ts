@@ -118,8 +118,8 @@ export function IIDXCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 
 	for (const cells of rawRows) {
 		const version = cells[0];
-		const title = cells[1].trim(); // konmai quality
-		const timestamp = cells[rawHeaders.length - 1].trim();
+		const title = cells[1]!.trim();
+		const timestamp = cells[rawHeaders.length - 1]!.trim();
 
 		// wtf typescript?? what's the point of enums?
 		const versionNum = EAM_VERSION_NAMES[version as keyof typeof EAM_VERSION_NAMES];
@@ -139,17 +139,20 @@ export function IIDXCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 		const scores: Array<EamusementScoreData> = [];
 
 		for (let d = 0; d < diffs.length; d++) {
-			const diff = diffs[d];
+			const diff = diffs[d]!;
 			const di = 5 + d * 7;
 
+			// lazy non-null assertions here.
+			// @todo refactor this?
+			// We know for a fact that all of this stuff is non-null because of the CSV parser.
 			scores.push({
 				difficulty: diff.toUpperCase() as Uppercase<typeof diff>,
-				bp: cells[di + 4],
-				exscore: cells[di + 1],
-				pgreat: cells[di + 2],
-				great: cells[di + 3],
-				lamp: cells[di + 5],
-				level: cells[di],
+				bp: cells[di + 4]!,
+				exscore: cells[di + 1]!,
+				pgreat: cells[di + 2]!,
+				great: cells[di + 3]!,
+				lamp: cells[di + 5]!,
+				level: cells[di]!,
 			});
 		}
 
@@ -192,10 +195,7 @@ function GenericParseEamIIDXCSV(
 		playtype = "DP";
 	} else {
 		logger.info(`Invalid playtype of ${body.playtype} passed to ParseEamusementCSV.`);
-		throw new ScoreImportFatalError(
-			400,
-			`Invalid playtype of ${body.playtype ?? "Nothing"} given.`
-		);
+		throw new ScoreImportFatalError(400, `Invalid playtype of ${body.playtype} given.`);
 	}
 
 	const lowercaseFilename = fileData.originalname.toLowerCase();

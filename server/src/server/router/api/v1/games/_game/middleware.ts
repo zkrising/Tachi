@@ -4,7 +4,15 @@ import { AssignToReqTachiData } from "utils/req-tachi-data";
 import type { RequestHandler } from "express";
 
 export const ValidateGameFromParam: RequestHandler = (req, res, next) => {
-	if (!IsValidGame(req.params.game)) {
+	const game = req.params.game;
+
+	if (game === undefined) {
+		throw new Error(
+			`Expected parameter of game when ValidateGameFromParam was called on ${req.originalUrl}.`
+		);
+	}
+
+	if (!IsValidGame(game)) {
 		return res.status(400).json({
 			success: false,
 			description: `Invalid/unsupported game ${
@@ -13,7 +21,7 @@ export const ValidateGameFromParam: RequestHandler = (req, res, next) => {
 		});
 	}
 
-	AssignToReqTachiData(req, { game: req.params.game });
+	AssignToReqTachiData(req, { game });
 
 	next();
 };

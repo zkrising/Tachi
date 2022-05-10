@@ -46,7 +46,9 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
 				"scoreData.lampIndex": -1,
 			},
 		}
-	)) as ScoreDocument; // guaranteed to not be null, as this always resolves
+	)) as ScoreDocument;
+
+	// ^ guaranteed to not be null, as this always resolves
 	// to atleast one score (and we got ScorePB above, so we know there's
 	// atleast one).
 
@@ -79,9 +81,7 @@ export async function UpdateChartRanking(chartID: string) {
 
 	let rank = 0;
 
-	for (let i = 0; i < scores.length; i++) {
-		const score = scores[i];
-
+	for (const score of scores) {
 		rank++;
 
 		bwrite.push({
@@ -125,7 +125,7 @@ async function MergeScoreLampIntoPB(
 	scorePB: ScoreDocument,
 	lampPB: ScoreDocument,
 	logger: KtLogger
-): Promise<PBScoreDocumentNoRank | void> {
+): Promise<PBScoreDocumentNoRank | undefined> {
 	// @hack
 	// since time cannot be negative, this is a rough hack
 	// to resolve nullable timeAchieveds without hitting NaN.
@@ -160,7 +160,9 @@ async function MergeScoreLampIntoPB(
 			lamp: lampPB.scoreData.lamp,
 			lampIndex: lampPB.scoreData.lampIndex,
 			judgements: scorePB.scoreData.judgements,
-			hitMeta: scorePB.scoreData.hitMeta, // this will probably be overrode by game-specific fns
+
+			// this will probably be overrode by game-specific fns
+			hitMeta: scorePB.scoreData.hitMeta,
 		},
 		calculatedData: scorePB.calculatedData,
 	};

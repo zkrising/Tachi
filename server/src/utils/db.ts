@@ -175,13 +175,13 @@ export async function HumaniseChartID(game: Game, chartID: string) {
  * @returns - The goals and their subs.
  */
 export async function GetRecentlyAchievedGoals(
-	baseQuery: FilterQuery<GoalSubscriptionDocument>,
+	baseQuery: Omit<FilterQuery<GoalSubscriptionDocument>, "achieved">,
 	limit = 100
 ) {
-	const query = {
+	const query: FilterQuery<GoalSubscriptionDocument> = {
+		...baseQuery,
 		wasInstantlyAchieved: false,
 		achieved: true,
-		...baseQuery,
 	};
 
 	const goalSubs = await db["goal-subs"].find(query, {
@@ -214,14 +214,14 @@ export async function GetRecentlyAchievedGoals(
  * @returns - The goals and their subs.
  */
 export async function GetRecentlyInteractedGoals(
-	baseQuery: FilterQuery<GoalSubscriptionDocument>,
+	baseQuery: Omit<FilterQuery<GoalSubscriptionDocument>, "achieved">,
 	limit = 100
 ) {
 	const query = {
+		...baseQuery,
 		wasInstantlyAchieved: false,
 		achieved: false,
 		lastInteraction: { $ne: null },
-		...baseQuery,
 	};
 
 	const goalSubs = await db["goal-subs"].find(query, {
@@ -235,7 +235,7 @@ export async function GetRecentlyInteractedGoals(
 		goalID: { $in: goalSubs.map((e) => e.goalID) },
 	});
 
-	if (goals.length !== goals.length) {
+	if (goals.length !== goalSubs.length) {
 		logger.error(
 			`Found ${goals.length} goals when looking for parents of ${goalSubs.length} subscriptions. This mismatch implies a state desync.`
 		);
@@ -254,13 +254,13 @@ export async function GetRecentlyInteractedGoals(
  * @returns - The goals and their subs.
  */
 export async function GetRecentlyAchievedMilestones(
-	baseQuery: FilterQuery<MilestoneSubscriptionDocument>,
+	baseQuery: Omit<FilterQuery<MilestoneSubscriptionDocument>, "achieved">,
 	limit = 100
 ) {
 	const query = {
+		...baseQuery,
 		wasInstantlyAchieved: false,
 		achieved: true,
-		...baseQuery,
 	};
 
 	const milestoneSubs = await db["milestone-subs"].find(query, {
@@ -293,14 +293,14 @@ export async function GetRecentlyAchievedMilestones(
  * @returns - The milestones and their subs.
  */
 export async function GetRecentlyInteractedMilestones(
-	baseQuery: FilterQuery<MilestoneSubscriptionDocument>,
+	baseQuery: Omit<FilterQuery<MilestoneSubscriptionDocument>, "achieved">,
 	limit = 100
 ) {
 	const query = {
+		...baseQuery,
 		lastInteraction: { $ne: null },
 		achieved: false,
 		wasInstantlyAchieved: false,
-		...baseQuery,
 	};
 
 	const milestoneSubs = await db["milestone-subs"].find(query, {
@@ -329,7 +329,9 @@ export async function GetMostSubscribedGoals(
 	query: FilterQuery<GoalSubscriptionDocument>,
 	limit = 100
 ): Promise<Array<GoalDocument & { __subscriptions: integer }>> {
-	const mostSubscribedGoals = await db["goal-subs"].aggregate([
+	const mostSubscribedGoals: Array<{ goal: GoalDocument; subscriptions: integer }> = await db[
+		"goal-subs"
+	].aggregate([
 		{
 			$match: query,
 		},
@@ -375,41 +377,42 @@ export async function GetMostSubscribedMilestones(
 	query: FilterQuery<MilestoneSubscriptionDocument>,
 	limit = 100
 ): Promise<Array<MilestoneDocument & { __subscriptions: integer }>> {
-	const mostSubscribedMilesones = await db["milestone-subs"].aggregate([
-		{
-			$match: query,
-		},
-		{
-			$group: {
-				_id: "$milestoneID",
-				subscriptions: { $sum: 1 },
+	const mostSubscribedMilesones: Array<{ milestone: MilestoneDocument; subscriptions: integer }> =
+		await db["milestone-subs"].aggregate([
+			{
+				$match: query,
 			},
-		},
-		{
-			$sort: {
-				subscriptions: -1,
+			{
+				$group: {
+					_id: "$milestoneID",
+					subscriptions: { $sum: 1 },
+				},
 			},
-		},
-		{
-			$limit: limit,
-		},
-		{
-			$lookup: {
-				from: "milestones",
-				localField: "_id",
-				foreignField: "milestoneID",
-				as: "milestone",
+			{
+				$sort: {
+					subscriptions: -1,
+				},
 			},
-		},
-		{
-			$set: {
-				milestone: { $arrayElemAt: ["$milestone", 0] },
+			{
+				$limit: limit,
 			},
-		},
-		{
-			$unset: "milestone._id",
-		},
-	]);
+			{
+				$lookup: {
+					from: "milestones",
+					localField: "_id",
+					foreignField: "milestoneID",
+					as: "milestone",
+				},
+			},
+			{
+				$set: {
+					milestone: { $arrayElemAt: ["$milestone", 0] },
+				},
+			},
+			{
+				$unset: "milestone._id",
+			},
+		]);
 
 	return mostSubscribedMilesones.map((e) => ({
 		__subscriptions: e.subscriptions,

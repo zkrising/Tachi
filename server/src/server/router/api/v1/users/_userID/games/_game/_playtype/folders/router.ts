@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
 	const folders = await SearchCollection(
 		db.folders,
 		req.query.search,
-		{ game, playtype, inactive: Boolean(req.query.inactive) },
+		{ game, playtype, inactive: !!req.query.inactive },
 		20
 	);
 

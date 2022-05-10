@@ -14,7 +14,7 @@ import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import { FormatPrError } from "utils/prudence";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import type { USCClientChart } from "./types";
 import type { RequestHandler } from "express";
 import type {
@@ -131,7 +131,7 @@ const RetrieveChart: RequestHandler = async (req, res, next) => {
  * @name GET /ir/usc/:playtype/charts/:chartHash
  */
 router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
-	const chart = req[SYMBOL_TACHI_DATA]!.uscChartDoc;
+	const chart = GetTachiData(req, "uscChartDoc");
 
 	if (!chart) {
 		return res.status(200).json({
@@ -153,7 +153,7 @@ router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
  * @name GET /ir/usc/:playtype/charts/:chartHash/record
  */
 router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
-	const chart = req[SYMBOL_TACHI_DATA]!.uscChartDoc;
+	const chart = GetTachiData(req, "uscChartDoc");
 
 	if (!chart) {
 		return res.status(200).json({
@@ -193,7 +193,7 @@ router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
  * @name GET /ir/usc/:playtype/charts/:chartHash/leaderboard
  */
 router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => {
-	const chart = req[SYMBOL_TACHI_DATA]!.uscChartDoc;
+	const chart = GetTachiData(req, "uscChartDoc");
 
 	if (!chart) {
 		return res.status(200).json({
@@ -360,7 +360,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	}
 
 	// If the chartDoc exists, any error is a failure here.
-	if (importDoc.errors.length !== 0) {
+	if (importDoc.errors[0]) {
 		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {
 			importDoc,
 			userID,
@@ -372,7 +372,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 		});
 	}
 
-	if (!importDoc.scoreIDs[0]) {
+	if (importDoc.scoreIDs[0] === undefined) {
 		return res.status(200).json({
 			statusCode: STATUS_CODES.SUCCESS,
 			description: "Score was identical to another score you already have.",

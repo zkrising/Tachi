@@ -1,5 +1,5 @@
 import { SYMBOL_TACHI_API_AUTH, SYMBOL_TACHI_DATA } from "lib/constants/tachi";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import { ResolveUser } from "utils/user";
 import type { RequestHandler } from "express";
 
@@ -49,7 +49,7 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
  * Require the user making this request to also be the user in the :userID param.
  */
 export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	if (!req[SYMBOL_TACHI_API_AUTH].userID) {
 		return res.status(401).json({
@@ -74,7 +74,7 @@ export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
  * alter/access, like integration information.
  */
 export const RequireSelfRequestFromUser: RequestHandler = (req, res, next) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	if (!req[SYMBOL_TACHI_API_AUTH].userID) {
 		return res.status(401).json({

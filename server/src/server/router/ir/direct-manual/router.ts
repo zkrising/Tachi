@@ -19,7 +19,7 @@ router.post(
 	RequirePermissions("submit_score"),
 	ScoreImportRateLimiter,
 	async (req, res) => {
-		const userIntent = Boolean(req.header("X-User-Intent"));
+		const userIntent = !!req.header("X-User-Intent");
 
 		if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER) {
 			const importID = Random20Hex();

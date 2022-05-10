@@ -10,7 +10,8 @@ import { URL } from "url";
 import type { SendMailOptions } from "nodemailer";
 import type { Game, ImportTypes, integer } from "tachi-common";
 
-dotenv.config(); // imports things like NODE_ENV from a local .env file if one is present.
+// imports things like NODE_ENV from a local .env file if one is present.
+dotenv.config();
 
 // stub - having a real logger here creates a circular dependency.
 const logger = console;
@@ -27,7 +28,7 @@ try {
 	process.exit(1);
 }
 
-const config = JSON5.parse(confFile);
+const config: unknown = JSON5.parse(confFile);
 
 function isValidURL(self: unknown) {
 	if (typeof self !== "string") {
@@ -218,14 +219,6 @@ tachiServerConfig.USC_QUEUE_SIZE ??= 3;
 tachiServerConfig.BEATORAJA_QUEUE_SIZE ??= 3;
 tachiServerConfig.MAX_GOAL_SUBSCRIPTIONS ??= 1_000;
 tachiServerConfig.MAX_MILESTONE_SUBSCRIPTIONS ??= 100;
-
-// Assign sane defaults to the logger config.
-tachiServerConfig.LOGGER_CONFIG = {
-	LOG_LEVEL: "info",
-	CONSOLE: true,
-	FILE: true,
-	...(tachiServerConfig.LOGGER_CONFIG ?? {}),
-};
 
 export const TachiConfig = tachiServerConfig.TACHI_CONFIG;
 export const ServerConfig = tachiServerConfig;

@@ -1,15 +1,15 @@
+import dm from "deepmerge";
 import db from "external/mongo/db";
+import { GoalDocument, GoalSubscriptionDocument } from "tachi-common";
 import t from "tap";
+import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
-	FakeOtherUser,
-	IIDXSPMilestoneGoals,
-	IIDXSPMilestoneGoalSubs,
-	TestingIIDXSPMilestone,
+    FakeOtherUser,
+    IIDXSPMilestoneGoals,
+    IIDXSPMilestoneGoalSubs,
+    TestingIIDXSPMilestone
 } from "test-utils/test-data";
-import dm from "deepmerge";
-import { GoalDocument, GoalSubscriptionDocument } from "tachi-common";
-import mockApi from "test-utils/mock-api";
 
 // this is my lazy sample data for these tests.
 const LoadLazySampleData = async () => {

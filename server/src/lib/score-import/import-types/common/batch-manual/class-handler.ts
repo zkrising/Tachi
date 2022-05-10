@@ -1,5 +1,6 @@
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import { GetGamePTConfig } from "tachi-common";
+import { NotNullish } from "utils/misc";
 import type { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
 import type { GamePTConfig, IDStrings } from "tachi-common";
 import type { GameClasses, GameClassSets } from "tachi-common/js/game-classes";
@@ -58,7 +59,7 @@ function ClassIDToIndex(
 	const classes = gptConfig.classHumanisedFormat[classSet];
 
 	for (let i = 0; i < classes.length; i++) {
-		const classInfo = classes[i];
+		const classInfo = NotNullish(classes[i]);
 
 		// Object.entries on an array returns [string, T], counterintuitively.
 		// Ah well. We'll just iterate over it like this.

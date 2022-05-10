@@ -5,6 +5,7 @@ import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import prValidate from "server/middleware/prudence-validate";
 import { DeleteUndefinedProps } from "utils/misc";
+import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc, GetSettingsForUser } from "utils/user";
 
 const logger = CreateLogCtx(__filename);
@@ -16,7 +17,7 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users/:userID/settings
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	const settings = await db["user-settings"].findOne({
 		userID: user.id,
@@ -58,7 +59,7 @@ router.patch(
 		deletableScores: "*boolean",
 	}),
 	async (req, res) => {
-		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+		const user = GetTachiData(req, "requestedUser");
 
 		const preferences = {
 			invisible: req.body.invisible,

@@ -1,10 +1,10 @@
+import dm from "deepmerge";
 import db from "external/mongo/db";
+import { MilestoneDocument, MilestoneSetDocument } from "tachi-common";
 import t from "tap";
+import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPMilestone } from "test-utils/test-data";
-import dm from "deepmerge";
-import { MilestoneDocument, MilestoneSetDocument } from "tachi-common";
-import mockApi from "test-utils/mock-api";
 
 const TestingIIDXSPMilestoneSet: MilestoneSetDocument = {
 	name: "Testing Milestone Set",

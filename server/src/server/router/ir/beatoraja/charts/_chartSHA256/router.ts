@@ -2,7 +2,7 @@ import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TACHI_API_AUTH, SYMBOL_TACHI_DATA } from "lib/constants/tachi";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import type { RequestHandler } from "express";
 import type { ChartDocument, PBScoreDocument } from "tachi-common";
 
@@ -43,7 +43,7 @@ router.use(GetChartDocument);
  * @name GET /ir/beatoraja/charts/:chartSHA256/scores
  */
 router.get("/scores", async (req, res) => {
-	const chart = req[SYMBOL_TACHI_DATA]!.beatorajaChartDoc!;
+	const chart = GetTachiData(req, "beatorajaChartDoc");
 	const requestingUserID = req[SYMBOL_TACHI_API_AUTH].userID;
 
 	const scores = (await db["personal-bests"].find({

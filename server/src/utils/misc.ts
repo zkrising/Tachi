@@ -41,7 +41,7 @@ export function MStoS(ms: number) {
  * Random From Array - Selects a random value from an array.
  */
 export function RFA<T>(arr: Array<T>): T {
-	return arr[Math.floor(Math.random() * arr.length)];
+	return arr[Math.floor(Math.random() * arr.length)] as T;
 }
 
 /**
@@ -66,7 +66,7 @@ export function HasOwnProperty<T>(obj: T, key: number | string | symbol): key is
 }
 
 export function IsValidGame(str: string): str is Game {
-	return Boolean(TachiConfig.GAMES.includes(str as Game));
+	return !!TachiConfig.GAMES.includes(str as Game);
 }
 
 export function IsValidPlaytype(game: Game, str: string): str is Playtype {
@@ -88,13 +88,9 @@ export function DedupeArr<T>(arr: Array<T>): Array<T> {
 	return [...new Set(arr)];
 }
 
-export function StripUrl(url: string, userInput: string | null) {
-	if (userInput === null || userInput === "") {
-		return userInput;
-	}
-
+export function StripUrl(url: string, userInput: string) {
 	if (userInput.toLowerCase().includes(url)) {
-		return userInput.split(url)[1];
+		return userInput.split(url)[1]!;
 	}
 
 	return userInput;
@@ -166,6 +162,8 @@ export function OmitUndefinedKeys<T>(obj: Partial<T>): Partial<T> {
 	for (const k of Object.keys(obj)) {
 		const key = k as keyof T;
 
+		// This looks to be a bug in the no-unnecessary-condition rule.
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 		if (obj[key] !== undefined) {
 			omittedObj[key] = obj[key];
 		}
@@ -205,7 +203,7 @@ export function FormatBMSTables(bmsTables: Array<{ table: string; level: string 
 }
 
 export function HumanisedJoinArray(arr: Array<string>, lastJoiner = "or") {
-	return `${arr.slice(0, arr.length - 1).join(", ")} ${lastJoiner} ${arr[arr.length - 1]}`;
+	return `${arr.slice(0, arr.length - 1).join(", ")} ${lastJoiner} ${arr[arr.length - 1]!}`;
 }
 
 export function FormatMaxDP(num: number, points = 2) {
@@ -230,5 +228,30 @@ export function ArrayDiff<T>(left: Array<T>, right: Array<T>) {
 }
 
 export function IsNonEmptyString(maybeStr: string | null | undefined): maybeStr is string {
-	return Boolean(maybeStr);
+	return maybeStr !== null && maybeStr !== "";
+}
+
+export function IsNullishOrEmptyStr(
+	maybeStr: string | null | undefined
+): maybeStr is "" | null | undefined {
+	return maybeStr === null || maybeStr === undefined || maybeStr === "";
+}
+
+/**
+ * Runtime non-null assertion.
+ */
+export function NotNullish<T>(maybeValue: T | null | undefined): T {
+	if (maybeValue === null || maybeValue === undefined) {
+		throw new Error(
+			`NON-NULL ASSERTION FAILED: Expected Non-null/undefined value, got ${
+				maybeValue as null | undefined
+			}.`
+		);
+	}
+
+	return maybeValue;
+}
+
+export function IsNullish<T>(maybeValue: T | null | undefined): maybeValue is null | undefined {
+	return maybeValue === null || maybeValue === undefined;
 }

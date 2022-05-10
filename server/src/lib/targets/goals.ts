@@ -5,6 +5,7 @@ import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
 import { GetGamePTConfig } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
+import { NotNullish } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
 import type { FilterQuery } from "mongodb";
 import type {
@@ -211,7 +212,8 @@ function ResolveGoalCharts(
 	} else if (goal.charts.type === "folder") {
 		return GetFolderChartIDs(goal.charts.data);
 	} else if (goal.charts.type === "any") {
-		return null; // special case.
+		// special case.
+		return null;
 	}
 }
 
@@ -254,7 +256,7 @@ export function HumaniseGoalProgress(
 				})`;
 			}
 
-			return gptConfig.lamps[value];
+			return NotNullish(gptConfig.lamps[value]);
 		}
 
 		case "scoreData.percent":

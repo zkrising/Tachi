@@ -9,6 +9,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import { HashSHA256 } from "utils/crypto";
+import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
 
 // note: this is just the ../pfp/router.ts code copied and altered.
@@ -30,7 +31,7 @@ router.put(
 	RequirePermissions("customise_profile"),
 	CreateMulterSingleUploadMiddleware("banner", ONE_MEGABYTE, logger),
 	async (req, res) => {
-		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+		const user = GetTachiData(req, "requestedUser");
 
 		if (!user.customBannerLocation) {
 			logger.verbose(`User ${FormatUserDoc(user)} set a custom profile banner.`);
@@ -88,7 +89,7 @@ router.put(
  * @name GET /api/v1/users/:userID/banner
  */
 router.get("/", (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	if (!user.customBannerLocation) {
 		res.setHeader("Content-Type", "image/png");
@@ -110,7 +111,7 @@ router.delete(
 	RequireAuthedAsUser,
 	RequirePermissions("customise_profile"),
 	async (req, res) => {
-		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+		const user = GetTachiData(req, "requestedUser");
 
 		if (!user.customBannerLocation) {
 			return res.status(404).json({

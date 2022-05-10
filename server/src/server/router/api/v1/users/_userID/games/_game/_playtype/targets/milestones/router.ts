@@ -2,7 +2,6 @@ import { RequireAuthedAsUser } from "../../../../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import {
@@ -11,7 +10,7 @@ import {
 	UnsubscribeFromMilestone,
 } from "lib/targets/milestones";
 import { RequirePermissions } from "server/middleware/auth";
-import { AssignToReqTachiData, GetGPT, GetUGPT } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetGPT, GetTachiData, GetUGPT } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
 import type { RequestHandler } from "express";
 
@@ -106,8 +105,8 @@ const GetMilestone: RequestHandler = async (req, res, next) => {
 router.get("/:milestoneID", GetMilestone, GetMilestoneSubscription, async (req, res) => {
 	const { user } = GetUGPT(req);
 
-	const milestoneSub = req[SYMBOL_TACHI_DATA]!.milestoneSubDoc!;
-	const milestone = req[SYMBOL_TACHI_DATA]!.milestoneDoc!;
+	const milestoneSub = GetTachiData(req, "milestoneSubDoc");
+	const milestone = GetTachiData(req, "milestoneDoc");
 
 	// Evaluate each goal for the user. This operation is much faster if the user is
 	// subscribed to the milestone (they are), as we can just read their goalSub
@@ -154,7 +153,7 @@ router.put(
 			});
 		}
 
-		const milestone = req[SYMBOL_TACHI_DATA]!.milestoneDoc!;
+		const milestone = GetTachiData(req, "milestoneDoc");
 
 		const alreadySubscibed = await db["milestone-subs"].findOne({
 			userID: user.id,
@@ -207,7 +206,7 @@ router.delete(
 	RequirePermissions("manage_targets"),
 	async (req, res) => {
 		const { user } = GetUGPT(req);
-		const milestone = req[SYMBOL_TACHI_DATA]!.milestoneDoc!;
+		const milestone = GetTachiData(req, "milestoneDoc");
 
 		logger.info(
 			`User ${FormatUserDoc(user)} is unsubscribing from milestone '${milestone.name}'.`,

@@ -118,7 +118,7 @@ export default class DiscordTransport extends Transport {
 				color = DiscordColours[key];
 				fields.push({
 					// uppercase first char
-					name: `${key[0].toUpperCase()}${key.slice(1)}s`,
+					name: `${key[0]!.toUpperCase()}${key.slice(1)}s`,
 					value: this.bucketData[key].length,
 				});
 			}

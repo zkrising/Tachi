@@ -1,7 +1,7 @@
 import db from "external/mongo/db";
 import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { Environment } from "lib/setup/config";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import type { RequestHandler } from "express";
 import type { TachiAPIClientDocument } from "tachi-common";
 
@@ -42,7 +42,7 @@ export const RequireOwnershipOfClient: RequestHandler = (req, res, next) => {
 		// in testing.
 		client = req.body.__terribleHackOauth2ClientDoc;
 	} else {
-		client = req[SYMBOL_TACHI_DATA]!.apiClientDoc!;
+		client = GetTachiData(req, "apiClientDoc");
 	}
 
 	const user = req.session.tachi?.user;

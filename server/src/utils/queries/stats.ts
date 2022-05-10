@@ -1,7 +1,7 @@
 import db from "external/mongo/db";
 import { ONE_HOUR } from "lib/constants/time";
 import NodeCache from "node-cache";
-import type { Game, gameClasses, IDStrings, Playtype } from "tachi-common";
+import type { Game, gameClasses, IDStrings, integer, Playtype } from "tachi-common";
 
 const classDistCache = new NodeCache();
 
@@ -11,10 +11,13 @@ export async function GetClassDistribution(
 	className: gameClasses.GameClassSets[IDStrings]
 ) {
 	const cacheKey = `${game}:${playtype}:${className}`;
-	const cache = classDistCache.get(cacheKey);
+	const cache = classDistCache.get<Record<string, integer>>(cacheKey);
 
 	if (!cache) {
-		const distribution = await db["game-stats"].aggregate([
+		const distribution: Array<{
+			_id: string;
+			count: integer;
+		}> = await db["game-stats"].aggregate([
 			{
 				$match: {
 					game,

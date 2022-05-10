@@ -5,6 +5,7 @@ import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { GetTotalAllowedInvites } from "lib/invites/invites";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import { Random20Hex } from "utils/misc";
+import { GetTachiData } from "utils/req-tachi-data";
 import { GetUsersWithIDs } from "utils/user";
 import type { InviteCodeDocument } from "tachi-common";
 
@@ -19,7 +20,7 @@ router.use(RequireSelfRequestFromUser);
  * @name GET /api/v1/users/:userID/invites
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	const invites = await db.invites.find({
 		createdBy: user.id,
@@ -43,7 +44,7 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/users/:userID/invites/limit
  */
 router.get("/limit", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	const invites = await db.invites.count({ createdBy: user.id });
 	const limit = GetTotalAllowedInvites(user);
@@ -66,7 +67,7 @@ const InviteLocks = new Set();
  * @name POST /api/v1/users/:userID/invites/create
  */
 router.post("/create", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	try {
 		// race condition protection

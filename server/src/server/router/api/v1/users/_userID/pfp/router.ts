@@ -9,6 +9,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import { HashSHA256 } from "utils/crypto";
+import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
 
 const logger = CreateLogCtx(__filename);
@@ -28,7 +29,7 @@ router.put(
 	RequirePermissions("customise_profile"),
 	CreateMulterSingleUploadMiddleware("pfp", ONE_MEGABYTE, logger),
 	async (req, res) => {
-		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+		const user = GetTachiData(req, "requestedUser");
 
 		if (!user.customPfpLocation) {
 			logger.verbose(`User ${FormatUserDoc(user)} set a custom profile picture.`);
@@ -86,7 +87,7 @@ router.put(
  * @name GET /api/v1/users/:userID/pfp
  */
 router.get("/", (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	logger.debug("User Info for /:userID/pfp request is ", user);
 
@@ -109,7 +110,7 @@ router.delete(
 	RequireAuthedAsUser,
 	RequirePermissions("customise_profile"),
 	async (req, res) => {
-		const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+		const user = GetTachiData(req, "requestedUser");
 
 		if (!user.customPfpLocation) {
 			return res.status(404).json({

@@ -7,6 +7,21 @@ import type { EmptyObject } from "utils/types";
 
 const HEADER_COUNT = 11;
 
+// A SDVX CSV Row has exactly 11 elements. This is used for type safety.
+type SDVXCSVRow = [
+	string,
+	string,
+	string,
+	string,
+	string,
+	string,
+	string,
+	string,
+	string,
+	string,
+	string
+];
+
 export default function ParseEamusementSDVXCSV(
 	fileData: Express.Multer.File,
 	_body: Record<string, unknown>,
@@ -33,7 +48,9 @@ export default function ParseEamusementSDVXCSV(
 		);
 	}
 
-	const iterable = rawRows.map((cells) => ({
+	// All of these are guaranteed to not be null by the CSV parser.
+	// cells is guaranteed to have a length of exactly 11.
+	const iterable = (rawRows as Array<SDVXCSVRow>).map((cells) => ({
 		title: cells[0],
 		difficulty: cells[1],
 		level: cells[2],

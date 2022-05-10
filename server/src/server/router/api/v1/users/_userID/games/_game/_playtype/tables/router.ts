@@ -1,8 +1,7 @@
 import { GetTableFromParam } from "../../../../../../games/_game/_playtype/tables/middleware";
 import { Router } from "express";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { GetFoldersFromTable, GetGradeLampDistributionForFolders } from "utils/folder";
-import { GetUGPT } from "utils/req-tachi-data";
+import { GetTachiData, GetUGPT } from "utils/req-tachi-data";
 
 // @todo maybe refactor where middleware is stored to avoid paths this ugly.
 
@@ -16,7 +15,7 @@ const router: Router = Router({ mergeParams: true });
 router.get("/:tableID", GetTableFromParam, async (req, res) => {
 	const { user } = GetUGPT(req);
 
-	const table = req[SYMBOL_TACHI_DATA]!.tableDoc!;
+	const table = GetTachiData(req, "tableDoc");
 
 	const folders = await GetFoldersFromTable(table);
 

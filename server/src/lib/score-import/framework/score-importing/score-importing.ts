@@ -11,7 +11,6 @@ import {
 import { OrphanScore } from "../orphans/orphans";
 import db from "external/mongo/db";
 import { AppendLogCtx } from "lib/logger/logger";
-import { IDStrings } from "tachi-common";
 import type {
 	ConverterFnReturnOrFailure,
 	ConverterFnSuccessReturn,
@@ -84,7 +83,7 @@ export async function ImportAllIterableData<D, C>(
 		i++;
 
 		if (job) {
-			job.updateProgress({ description: `Imported ${i} scores.` });
+			void job.updateProgress({ description: `Imported ${i} scores.` });
 		}
 	}
 
@@ -103,7 +102,7 @@ export async function ImportAllIterableData<D, C>(
 	// queue.
 	const emptied = await InsertQueue(userID);
 
-	if (emptied) {
+	if (emptied !== 0 && emptied !== null) {
 		logger.verbose(`Emptied ${emptied} documents from score queue.`);
 	}
 
@@ -140,7 +139,7 @@ export async function ImportIterableDatapoint<D, C>(
 	// if this conversion failed, return it in the proper format
 	if (cfnReturn instanceof ConverterFailure) {
 		if (cfnReturn instanceof KTDataNotFoundFailure) {
-			logger.info(`KTDataNotFoundFailure: ${cfnReturn.message ?? "No message?"}`, {
+			logger.info(`KTDataNotFoundFailure: ${cfnReturn.message}`, {
 				cfnReturn,
 				hideFromConsole: ["cfnReturn"],
 			});
@@ -182,7 +181,7 @@ export async function ImportIterableDatapoint<D, C>(
 				},
 			};
 		} else if (cfnReturn instanceof InvalidScoreFailure) {
-			logger.info(`InvalidScoreFailure: ${cfnReturn.message ?? "No message?"}`, {
+			logger.info(`InvalidScoreFailure: ${cfnReturn.message}`, {
 				cfnReturn,
 				hideFromConsole: ["cfnReturn"],
 			});
@@ -261,7 +260,7 @@ export async function ProcessSuccessfulConverterReturn(
 	return {
 		success: true,
 		type: "ScoreImported",
-		message: null,
+		message: `Imported score ${result.scoreID}.`,
 		content: {
 			score: result,
 		},

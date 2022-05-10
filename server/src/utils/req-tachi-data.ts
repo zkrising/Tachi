@@ -1,6 +1,5 @@
 import deepmerge from "deepmerge";
 import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
-import CreateLogCtx from "lib/logger/logger";
 import type { TachiRequestData } from "./types";
 import type { Request } from "express";
 
@@ -12,39 +11,39 @@ export function AssignToReqTachiData(req: Request, data: Partial<TachiRequestDat
 	}
 }
 
-const logger = CreateLogCtx(__filename);
+export function GetTachiData<T extends keyof TachiRequestData>(
+	req: Request,
+	key: T
+): Exclude<TachiRequestData[T], undefined> {
+	if (!req[SYMBOL_TACHI_DATA]) {
+		throw new Error(
+			`SYMBOL_TACHI_DATA was not set on a request, yet ${key} was attempted to be retrieved from it?`
+		);
+	}
+
+	const value = req[SYMBOL_TACHI_DATA]?.[key];
+
+	if (value === undefined) {
+		throw new Error(
+			`${key} was attempted to be retrieved from SYMBOL_TACHI_DATA, but was not defined.`
+		);
+	}
+
+	// Safe assertion due to value === undefined check above.
+	return value as unknown as Exclude<TachiRequestData[T], undefined>;
+}
 
 export function GetUGPT(req: Request) {
-	if (!req[SYMBOL_TACHI_DATA]) {
-		logger.error(`Tried to get UGPT from a req that doesn't have SYMBOL_TachiData.`);
-		throw new Error("Failed to get UGPT.");
-	}
-
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser;
-	const game = req[SYMBOL_TACHI_DATA]!.game;
-	const playtype = req[SYMBOL_TACHI_DATA]!.playtype;
-
-	if (!user || !game || !playtype) {
-		logger.error(`Tried to get UGPT from a req that doesnt have U, G and PT.`);
-		throw new Error(`Failed to get UGPT.`);
-	}
+	const user = GetTachiData(req, "requestedUser");
+	const game = GetTachiData(req, "game");
+	const playtype = GetTachiData(req, "playtype");
 
 	return { user, game, playtype };
 }
 
 export function GetGPT(req: Request) {
-	if (!req[SYMBOL_TACHI_DATA]) {
-		logger.error(`Tried to get GPT from a req that doesn't have SYMBOL_TachiData.`);
-		throw new Error("Failed to get GPT.");
-	}
-
-	const game = req[SYMBOL_TACHI_DATA]!.game;
-	const playtype = req[SYMBOL_TACHI_DATA]!.playtype;
-
-	if (!game || !playtype) {
-		logger.error(`Tried to get GPT from a req that doesnt have a Game and Playtype.`);
-		throw new Error(`Failed to get GPT.`);
-	}
+	const game = GetTachiData(req, "game");
+	const playtype = GetTachiData(req, "playtype");
 
 	return { game, playtype };
 }

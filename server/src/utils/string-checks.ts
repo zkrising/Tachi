@@ -1,5 +1,5 @@
 import { IsString } from "./misc";
-import { GetGamePTConfig, Playtypes } from "tachi-common";
+import { GetGamePTConfig } from "tachi-common";
 import type { Game, GamePTConfig, Playtype } from "tachi-common";
 
 const isIntegerRegex = /^-?\d+$/u;

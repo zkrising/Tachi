@@ -1,12 +1,11 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { EvaluateGoalForUser, GetMilestonesThatContainGoal } from "lib/targets/goals";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame } from "tachi-common";
 import { GetMostSubscribedGoals } from "utils/db";
-import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetGPT, GetTachiData } from "utils/req-tachi-data";
 import { GetUsersWithIDs, ResolveUser } from "utils/user";
 import type { RequestHandler } from "express";
 import type { EvaluatedGoalReturn } from "lib/targets/goals";
@@ -60,7 +59,7 @@ const ResolveGoalID: RequestHandler = async (req, res, next) => {
  * @name GET /api/v1/games/:game/:playtype/targets/goals/:goalID
  */
 router.get("/:goalID", ResolveGoalID, async (req, res) => {
-	const goal = req[SYMBOL_TACHI_DATA]!.goalDoc!;
+	const goal = GetTachiData(req, "goalDoc");
 
 	const goalSubs = await db["goal-subs"].find({
 		goalID: goal.goalID,
@@ -125,7 +124,7 @@ router.get(
 			});
 		}
 
-		const goal = req[SYMBOL_TACHI_DATA]!.goalDoc!;
+		const goal = GetTachiData(req, "goalDoc");
 		const goalID = goal.goalID;
 
 		const goalSub = await db["goal-subs"].findOne({

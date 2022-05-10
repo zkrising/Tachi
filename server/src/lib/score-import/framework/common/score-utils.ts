@@ -1,7 +1,15 @@
 import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 import CreateLogCtx from "lib/logger/logger";
-import { ESDCore, GameToIDStrings, GetGamePTConfig } from "tachi-common";
-import type { ChartDocument, Game, Grades, IDStrings, Playtype } from "tachi-common";
+import { ESDCore, GetGamePTConfig } from "tachi-common";
+import { NotNullish } from "utils/misc";
+import type {
+	ChartDocument,
+	Game,
+	GameToIDStrings,
+	Grades,
+	IDStrings,
+	Playtype,
+} from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -25,13 +33,13 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 
 	// (hey, this for loop is backwards!)
 	for (let i = boundaries.length; i >= 0; i--) {
-		if (percent + Number.EPSILON >= boundaries[i]) {
+		if (percent + Number.EPSILON >= NotNullish(boundaries[i])) {
 			return grades[i] as Grades[I];
 		}
 	}
 
 	logger.error(`Could not resolve grade for percent ${percent} on game ${game}`);
-	throw new InternalFailure(`Could not resolve grade for percent ${percent} on game ${game}`);
+	throw new InternalFailure(`Could not resolve grade for percent ${percent} on game ${game}.`);
 }
 
 /**
@@ -135,12 +143,12 @@ export function GenericGetGradeAndPercent<G extends Game>(
 	game: G,
 	score: number,
 	chart: ChartDocument
-) {
+): { percent: number; grade: Grades[GameToIDStrings[G]] } {
 	const percent = GenericCalculatePercent(game, score, chart);
 
 	ValidatePercent(game, chart.playtype, percent, chart);
 
-	const grade = GetGradeFromPercent(game, chart.playtype, percent);
+	const grade: Grades[GameToIDStrings[G]] = GetGradeFromPercent(game, chart.playtype, percent);
 
 	return { percent, grade };
 }

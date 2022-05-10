@@ -9,6 +9,7 @@ import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
+import { GetTachiData } from "utils/req-tachi-data";
 import { GetUserWithID } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
@@ -21,7 +22,7 @@ router.use(GetSessionFromParam);
  * @name GET /api/v1/sessions/:sessionID
  */
 router.get("/", UpdateSessionViewcount, async (req, res) => {
-	const session = req[SYMBOL_TACHI_DATA]!.sessionDoc!;
+	const session = GetTachiData(req, "sessionDoc");
 
 	const scores = await db.scores.find({
 		scoreID: { $in: session.scoreInfo.map((e) => e.scoreID) },
@@ -82,7 +83,7 @@ router.patch(
 		{ allowExcessKeys: true }
 	),
 	async (req, res) => {
-		const session = req[SYMBOL_TACHI_DATA]!.sessionDoc!;
+		const session = GetTachiData(req, "sessionDoc");
 
 		const updateExp: ModifiableSessionProps = {};
 

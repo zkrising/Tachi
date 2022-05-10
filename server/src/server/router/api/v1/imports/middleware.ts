@@ -1,7 +1,7 @@
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA, SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import { IsRequesterAdmin } from "utils/user";
 import type { RequestHandler } from "express";
 
@@ -23,7 +23,7 @@ export const GetImportFromParam: RequestHandler = async (req, res, next) => {
 };
 
 export const RequireOwnershipOfImportOrAdmin: RequestHandler = async (req, res, next) => {
-	const importDoc = req[SYMBOL_TACHI_DATA]!.importDoc!;
+	const importDoc = GetTachiData(req, "importDoc");
 	const userID = req[SYMBOL_TACHI_API_AUTH].userID;
 
 	if (userID === null) {

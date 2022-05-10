@@ -3,6 +3,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { ONE_SECOND } from "lib/constants/time";
+import { GetTachiData } from "utils/req-tachi-data";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -16,7 +17,7 @@ router.use(RequireSelfRequestFromUser);
  * @name GET /api/v1/users/:userID/notifications
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	const notifs = await db.notifications.find(
 		{
@@ -42,7 +43,7 @@ router.get("/", async (req, res) => {
  * @name POST /api/v1/users/:userID/notifications/mark-all-read
  */
 router.post("/mark-all-read", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	const updateRes = await db.notifications.update(
 		{
@@ -77,7 +78,7 @@ router.post("/mark-all-read", async (req, res) => {
  * @name POST /api/v1/users/:userID/notifications/delete-all
  */
 router.post("/delete-all", async (req, res) => {
-	const user = req[SYMBOL_TACHI_DATA]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	const deleted = await db.notifications.remove({
 		sentTo: user.id,

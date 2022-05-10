@@ -211,9 +211,9 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 					}
 
 					if (parent.property === "grade") {
-						return Boolean(gptConfig.grades[self]);
+						return !!gptConfig.grades[self];
 					} else if (parent.property === "lamp") {
-						return Boolean(gptConfig.lamps[self]);
+						return !!gptConfig.lamps[self];
 					} else if (parent.property === "score") {
 						return p.isPositive(self);
 					} else if (parent.property === "percent") {

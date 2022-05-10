@@ -61,6 +61,7 @@ router.post(
 	),
 	async (req, res) => {
 		if (req.session.tachi?.user.id) {
+			// Dual logins should destroy the users session and recreate it.
 			req.session.tachi = undefined;
 		}
 

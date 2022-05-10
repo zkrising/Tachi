@@ -8,6 +8,7 @@ import ScoreImportQueue, { ScoreImportQueueEvents } from "lib/score-import/worke
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { RequirePermissions } from "server/middleware/auth";
 import { GetRelevantSongsAndCharts } from "utils/db";
+import { GetTachiData } from "utils/req-tachi-data";
 import { GetUserWithID } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
@@ -20,7 +21,7 @@ const logger = CreateLogCtx(__filename);
  * @name GET /api/v1/imports/:importID
  */
 router.get("/:importID", GetImportFromParam, async (req, res) => {
-	const importDoc = req[SYMBOL_TACHI_DATA]!.importDoc!;
+	const importDoc = GetTachiData(req, "importDoc");
 
 	const scores = await db.scores.find({
 		scoreID: { $in: importDoc.scoreIDs },
@@ -73,7 +74,7 @@ router.post(
 	RequireOwnershipOfImportOrAdmin,
 	RequirePermissions("delete_score"),
 	async (req, res) => {
-		const importDoc = req[SYMBOL_TACHI_DATA]!.importDoc!;
+		const importDoc = GetTachiData(req, "importDoc");
 
 		await RevertImport(importDoc);
 

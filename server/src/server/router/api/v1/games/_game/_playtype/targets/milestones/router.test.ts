@@ -1,20 +1,20 @@
 import dm from "deepmerge";
 import db from "external/mongo/db";
 import {
-	MilestoneDocument,
-	MilestoneSetDocument,
-	MilestoneSubscriptionDocument,
+    MilestoneDocument,
+    MilestoneSetDocument,
+    MilestoneSubscriptionDocument
 } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
-	FakeOtherUser,
-	IIDXSPMilestoneGoals,
-	IIDXSPMilestoneGoalSubs,
-	TestingIIDXSPMilestone,
-	TestingIIDXSPMilestoneSub,
-	TestingIIDXSPScorePB,
+    FakeOtherUser,
+    IIDXSPMilestoneGoals,
+    IIDXSPMilestoneGoalSubs,
+    TestingIIDXSPMilestone,
+    TestingIIDXSPMilestoneSub,
+    TestingIIDXSPScorePB
 } from "test-utils/test-data";
 
 t.test("GET /api/v1/games/:game/:playtype/targets/milestones", (t) => {

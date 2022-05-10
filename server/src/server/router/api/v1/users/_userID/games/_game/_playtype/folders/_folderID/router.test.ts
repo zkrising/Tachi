@@ -5,11 +5,11 @@ import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
-	GetKTDataJSON,
-	Testing511SPA,
-	TestingIIDXFolderSP10,
-	TestingIIDXSPScore,
-	TestingIIDXSPScorePB,
+    GetKTDataJSON,
+    Testing511SPA,
+    TestingIIDXFolderSP10,
+    TestingIIDXSPScore,
+    TestingIIDXSPScorePB
 } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
 

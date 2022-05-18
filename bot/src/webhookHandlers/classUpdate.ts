@@ -112,6 +112,8 @@ function GetMinimumScores(game: Game, playtype: Playtype, classSet: AllClassSets
 		return 20;
 	} else if (game === "iidx") {
 		return 20;
+	} else if (game === "popn") {
+		return 20;
 	}
 
 	return null;

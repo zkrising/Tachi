@@ -123,6 +123,9 @@ const BTCHI_FAQ_ENTRIES: Record<string, string> = {
 	usc_hard_mode: `Hard Mode windows are not supported on ${ServerConfig.name}. Your scores **will be ignored** if they are played on non-standard windows.`,
 	ir_login: `You **must** put your API Key in the password field for the Bokutachi IR, **NOT your real password!**. See instructions here: ${BotConfig.TACHI_SERVER_LOCATION}/dashboard/import/beatoraja-ir.
 (This is because putting your real password in there is a security nightmare.)`,
+	lr2: `Support for LR2 (the LR2Hook) are **not officially maintained** and therefore **not managed by bokutachi developers**.
+We urge you to use a more modern BMS client like lr2oraja, unless you have very good reason to stay on LR2.
+Beatoraja is actively developed and integrates properly with the Bokutachi IR, it is also significantly more stable and works on modern hardware without encoding hacks.`
 };
 
 let faqEntries = NEUTRAL_FAQ_ENTRIES;

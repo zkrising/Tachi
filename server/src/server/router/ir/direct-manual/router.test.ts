@@ -5,7 +5,7 @@ import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { GetKTDataJSON } from "test-utils/test-data";
+import { FakeChunitachiBatchManual, FakeSmallBatchManual, GetKTDataJSON } from "test-utils/test-data";
 
 t.test("POST /ir/direct-manual/import", async (t) => {
 	const cookie = await CreateFakeAuthCookie(mockApi);
@@ -38,7 +38,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 		const res = await mockApi
 			.post("/ir/direct-manual/import")
 			.set("Cookie", cookie)
-			.send(GetKTDataJSON("./batch-manual/small-file.json"));
+			.send(FakeSmallBatchManual);
 
 		t.equal(res.body.success, true, "Should be successful");
 
@@ -62,7 +62,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 	t.test("Should require authentication.", async (t) => {
 		const res = await mockApi
 			.post("/ir/direct-manual/import")
-			.send(GetKTDataJSON("./batch-manual/small-file.json"));
+			.send(FakeSmallBatchManual);
 
 		t.equal(res.statusCode, 401);
 
@@ -73,7 +73,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 		const res = await mockApi
 			.post("/ir/direct-manual/import")
 			.set("Authorization", "Bearer invalid_token")
-			.send(GetKTDataJSON("./batch-manual/small-file.json"));
+			.send(FakeSmallBatchManual);
 
 		t.equal(res.statusCode, 401);
 
@@ -90,13 +90,11 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 		})
 	);
 
-	const chunitachiBody = GetKTDataJSON("./batch-manual/chunitachi.json");
-
 	t.test("Should work for CHUNITACHI requests", async (t) => {
 		const res = await mockApi
 			.post("/ir/direct-manual/import")
 			.set("Authorization", `Bearer mock_token`)
-			.send(chunitachiBody);
+			.send(FakeChunitachiBatchManual);
 
 		t.equal(res.body.success, true, "Should be successful");
 
@@ -121,7 +119,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 	});
 
 	t.test("Should require authentication.", async (t) => {
-		const res = await mockApi.post("/ir/direct-manual/import").send(chunitachiBody);
+		const res = await mockApi.post("/ir/direct-manual/import").send(FakeChunitachiBatchManual);
 
 		t.equal(res.statusCode, 401);
 
@@ -132,7 +130,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 		const res = await mockApi
 			.post("/ir/direct-manual/import")
 			.set("Authorization", "Bearer invalid_token")
-			.send(chunitachiBody);
+			.send(FakeChunitachiBatchManual);
 
 		t.equal(res.statusCode, 401);
 

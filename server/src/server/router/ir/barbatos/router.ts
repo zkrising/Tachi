@@ -13,10 +13,10 @@ router.use(RequirePermissions("submit_score"));
  */
 router.post("/score/submit", async (req, res) => {
 	const responseData = await ExpressWrappedScoreImportMain(
-		req[SYMBOL_TACHI_API_AUTH]!.userID!,
+		req[SYMBOL_TACHI_API_AUTH].userID!,
 		false,
 		"ir/barbatos",
-		[req.body]
+		[req.safeBody]
 	);
 
 	return res.status(responseData.statusCode).json(responseData.body);

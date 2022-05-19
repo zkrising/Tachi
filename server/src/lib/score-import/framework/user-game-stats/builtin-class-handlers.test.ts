@@ -12,7 +12,7 @@ const logger = CreateLogCtx(__filename);
 
 t.test("#CalculateGitadoraColour", (t) => {
 	t.strictSame(
-		CalculateGitadoraColour("gitadora", "Gita", 1, { skill: 1500 }, logger),
+		CalculateGitadoraColour("gitadora", "Gita", 1, { skill: 1500 }),
 		{
 			colour: GitadoraColours.ORANGE_GRADIENT,
 		},

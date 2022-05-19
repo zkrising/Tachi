@@ -16,12 +16,21 @@ const logger = CreateLogCtx(__filename);
 
 t.test("#ConvertFileMerIIDX", (t) => {
 	t.beforeEach(ResetDBState);
+	
+	const MerScore = {
+		"music_id": 1000,
+		"play_type": "SINGLE",
+		"diff_type": "ANOTHER",
+		"score": 1000,
+		"miss_count": 21,
+		"clear_type": "CLEAR",
+		"update_time": "2021-03-24 07:15:22"
+	} as const;
 
 	function merc(g: Partial<MerScore> = {}) {
 		return ConvertFileMerIIDX(deepmerge(MerScore, g), {}, "file/mer-iidx", logger);
 	}
 
-	const MerScore = GetKTDataJSON("./mer/merscore.json");
 
 	t.test("Valid Conversion", async (t) => {
 		const res = await ConvertFileMerIIDX(MerScore, {}, "file/mer-iidx", logger);

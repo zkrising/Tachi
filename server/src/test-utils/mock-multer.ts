@@ -1,8 +1,8 @@
 export function MockMulterFile(buffer: Buffer, originalname: string) {
-	const mockFile: Express.Multer.File = {
+	const mockFile = {
 		originalname,
 		buffer,
-	};
+	} as unknown as Express.Multer.File;
 
 	return mockFile;
 }

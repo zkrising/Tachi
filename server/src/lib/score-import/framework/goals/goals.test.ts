@@ -2,7 +2,7 @@ import t from "tap";
 import db from "external/mongo/db";
 import ResetDBState from "test-utils/resets";
 import { GetRelevantFolderGoals, GetRelevantGoals, UpdateGoalsForUser, ProcessGoal } from "./goals";
-import { GoalDocument, GoalSubscriptionDocument } from "tachi-common";
+import { ChartDocument, GoalDocument, GoalSubscriptionDocument, SongDocument } from "tachi-common";
 import { CreateFolderChartLookup } from "utils/folder";
 import {
 	GetKTDataJSON,
@@ -93,8 +93,8 @@ t.test("#GetRelevantGoals", (t) => {
 		// use the real data so we have enough charts loaded for this to test properly.
 		await db.songs.iidx.remove({});
 		await db.charts.iidx.remove({});
-		await db.charts.iidx.insert(GetKTDataJSON("./tachi/tachi-charts-iidx.json"));
-		await db.songs.iidx.insert(GetKTDataJSON("./tachi/tachi-songs-iidx.json"));
+		await db.charts.iidx.insert(GetKTDataJSON("./tachi/tachi-charts-iidx.json") as ChartDocument<"iidx:SP"|"iidx:DP">[]);
+		await db.songs.iidx.insert(GetKTDataJSON("./tachi/tachi-songs-iidx.json") as SongDocument<"iidx">[]);
 
 		const lotsOfCharts = await db.charts.iidx.find({}, { limit: 20 });
 		const goals: GoalDocument[] = lotsOfCharts.map((e) => ({

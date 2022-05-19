@@ -4,6 +4,7 @@ import {
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
+import { IsNullishOrEmptyStr } from "utils/misc";
 import { FindIIDXChartOnInGameIDVersion, FindIIDXChartWith2DXtraHash } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { DryScore } from "../../../framework/common/types";
@@ -147,8 +148,8 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 
 	let chart;
 
-	if (data.custom) {
-		if (!data.chart_sha256) {
+	if (data.custom === true) {
+		if (IsNullishOrEmptyStr(data.chart_sha256)) {
 			throw new InvalidScoreFailure("Score has no chart_sha256 but is a custom?");
 		}
 
@@ -182,7 +183,9 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 
 	const gauge = gaugeHistory[gaugeHistory.length - 1];
 
-	if (gauge && gauge > 100) {
+	// If gauge exists and is greater than 100
+	// must be invalid
+	if ((gauge ?? 0) > 100) {
 		throw new InvalidScoreFailure(`Invalid value of gauge ${gauge}.`);
 	}
 

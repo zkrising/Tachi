@@ -1,9 +1,9 @@
 import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
-import { BatchManualScore, Game } from "tachi-common";
+import { BatchManualScore, ChartDocument, Game, SongDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
+import { BMSGazerChart, BMSGazerSong, GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
 import { EscapeStringRegexp } from "utils/misc";
 import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import { ConverterBatchManual, ResolveChartFromSong, ResolveMatchTypeToKTData } from "./converter";
@@ -104,9 +104,6 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		const GAZER17MD5 = "38616b85332037cc12924f2ae2840262";
 		const GAZER17SHA256 = "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d";
 
-		const gazerSong = GetKTDataJSON("./tachi/bms-gazer-song.json");
-		const gazerChart = GetKTDataJSON("./tachi/bms-gazer-chart.json");
-
 		const bmsContext: BatchManualContext = deepmerge(context, { game: "bms", playtype: "7K" });
 
 		const resMD5 = await ResolveMatchTypeToKTData(
@@ -121,7 +118,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
 		t.hasStrict(
 			resMD5,
-			{ song: gazerSong, chart: gazerChart },
+			{ song: BMSGazerSong, chart: BMSGazerChart },
 			"Should return the right song and chart."
 		);
 
@@ -137,7 +134,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
 		t.hasStrict(
 			resSHA256,
-			{ song: gazerSong, chart: gazerChart },
+			{ song: BMSGazerSong, chart: BMSGazerChart },
 			"Should return the right song and chart."
 		);
 

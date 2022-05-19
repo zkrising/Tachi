@@ -1,7 +1,6 @@
 import { RequireSelfRequestFromUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
@@ -55,7 +54,13 @@ router.post(
 		clientID: "*string",
 	}),
 	async (req, res) => {
-		if (req.body.clientID && req.body.permissions) {
+		const body = req.safeBody as {
+			permissions?: Array<APIPermissions>;
+			identifier?: string;
+			clientID?: string;
+		};
+
+		if (body.clientID !== undefined && body.permissions) {
 			return res.status(400).json({
 				success: false,
 				description: `Cannot use ClientID creation and permissions creation at the same time!`,
@@ -69,10 +74,10 @@ router.post(
 		let identifier: string;
 		let fromAPIClient = null;
 
-		if (req.body.clientID) {
+		if (body.clientID !== undefined) {
 			const client = await db["api-clients"].findOne(
 				{
-					clientID: req.body.clientID,
+					clientID: body.clientID,
 				},
 				{
 					projection: {
@@ -108,9 +113,9 @@ router.post(
 			logger.info(
 				`Creating API Key for ${FormatUserDoc(user)} from ${client.name} specification.`
 			);
-		} else if (req.body.permissions) {
-			permissions = req.body.permissions;
-			identifier = req.body.identifier ?? "Custom Token";
+		} else if (body.permissions) {
+			permissions = body.permissions;
+			identifier = body.identifier ?? "Custom Token";
 
 			logger.info(
 				`Creating API Key for ${FormatUserDoc(user)} with ${permissions.join(", ")}.`
@@ -143,40 +148,5 @@ router.post(
 		});
 	}
 );
-
-/**
- * Delete this token.
- *
- * @name DELETE /api/v1/users/:userID/api-token/:token
- */
-router.delete("/:token", async (req, res) => {
-	const user = GetTachiData(req, "requestedUser");
-
-	logger.info(
-		`received request from ${FormatUserDoc(user)} to delete token ${req.params.token}.`
-	);
-
-	const token = await db["api-tokens"].findOne({
-		token: req.params.token,
-		userID: user.id,
-	});
-
-	if (!token) {
-		return res.status(404).json({
-			success: false,
-			description: `This key does not exist.`,
-		});
-	}
-
-	await db["api-tokens"].remove({ token: req.params.token });
-
-	logger.info(`Deleted ${req.params.token}, which belonged to ${FormatUserDoc(user)}.`);
-
-	return res.status(200).json({
-		success: true,
-		description: `Removed Token.`,
-		body: {},
-	});
-});
 
 export default router;

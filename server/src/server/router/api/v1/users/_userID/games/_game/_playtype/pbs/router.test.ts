@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { PBScoreDocument } from "tachi-common";
+import { ChartDocument, PBScoreDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
@@ -89,16 +89,22 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs", (t) => {
 	t.test("Should search a user's personal bests.", async (t) => {
 		const mockPBs: PBScoreDocument[] = [];
 
-		const charts = GetKTDataJSON("./tachi/tachi-charts-iidx.json");
+		const charts = GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<ChartDocument>;
 
 		for (let i = 0; i < 200; i++) {
+			let chart = charts[i];
+
+			if (!chart) {
+				return t.fail(`Not enough charts in tachi-charts-iidx.json to mock pb data? Failed at index ${i}.`);
+			}
+
 			mockPBs.push({
 				userID: 1,
 				game: "iidx",
 				playtype: "SP",
 				isPrimary: true,
-				chartID: charts[i].chartID,
-				songID: charts[i].songID,
+				chartID: chart.chartID,
+				songID: chart.songID,
 				calculatedData: {
 					ktLampRating: i,
 				},

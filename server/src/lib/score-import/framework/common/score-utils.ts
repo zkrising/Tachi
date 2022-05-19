@@ -32,7 +32,7 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 	}
 
 	// (hey, this for loop is backwards!)
-	for (let i = boundaries.length; i >= 0; i--) {
+	for (let i = boundaries.length - 1; i >= 0; i--) {
 		if (percent + Number.EPSILON >= NotNullish(boundaries[i])) {
 			return grades[i] as Grades[I];
 		}

@@ -255,3 +255,7 @@ export function NotNullish<T>(maybeValue: T | null | undefined): T {
 export function IsNullish<T>(maybeValue: T | null | undefined): maybeValue is null | undefined {
 	return maybeValue === null || maybeValue === undefined;
 }
+
+export function IsRecord(maybeRecord: unknown): maybeRecord is Record<string, unknown> {
+	return typeof maybeRecord === "object" && maybeRecord !== null;
+}

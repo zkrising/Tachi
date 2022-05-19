@@ -24,8 +24,8 @@ export async function RecalcSessions(filter = {}) {
 		try {
 			c = CreateSessionCalcData(session.game, session.playtype, scores);
 		} catch (err) {
-			logger.error(`${session.game} (${session.playtype}) failed.`);
-			logger.warn(`Destroying session.`);
+			logger.error(`Recalcing ${session.game} (${session.playtype}) failed.`, { err });
+			logger.warn(`Destroying session!`);
 			await db.sessions.remove({ sessionID: session.sessionID });
 			continue;
 		}

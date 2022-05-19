@@ -133,7 +133,7 @@ t.test("#ReprocessOrphan", (t) => {
 			{
 				success: true,
 				type: "ScoreImported",
-				message: null,
+				message: "Imported score R7a3a2b04bd4882ec06c198d78297fe3d56561502c7b134c067214bbfdf4f1602.",
 				content: {
 					score: {
 						game: "iidx",

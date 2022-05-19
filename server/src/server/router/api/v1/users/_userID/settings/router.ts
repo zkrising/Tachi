@@ -1,10 +1,8 @@
 import { RequireSelfRequestFromUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import prValidate from "server/middleware/prudence-validate";
-import { DeleteUndefinedProps } from "utils/misc";
 import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc, GetSettingsForUser } from "utils/user";
 
@@ -61,15 +59,13 @@ router.patch(
 	async (req, res) => {
 		const user = GetTachiData(req, "requestedUser");
 
-		const preferences = {
-			invisible: req.body.invisible,
-			developerMode: req.body.developerMode,
-			contentiousContent: req.body.contentiousContent,
-			advancedMode: req.body.advancedMode,
-			deletableScores: req.body.deletableScores,
+		const preferences = req.safeBody as {
+			invisible?: boolean;
+			developerMode?: boolean;
+			contentiousContent?: boolean;
+			advancedMode?: boolean;
+			deletableScores?: boolean;
 		};
-
-		DeleteUndefinedProps(preferences);
 
 		if (Object.keys(preferences).length === 0) {
 			return res.status(400).json({

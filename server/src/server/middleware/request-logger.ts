@@ -17,16 +17,9 @@ const ResJsonInteceptor = (res: Response, json: Response["json"]) => (content: u
 };
 
 export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
-	// I'm not really a fan of this style of omission - but it works.
-
-	// we **KNOW** for certain that there are only two endpoints where a password is
-	// sent to us - /register and /auth.
-	// and both of those use `password` as a key.
-	// still, i don't like it.
-
 	const safeBody: Record<string, unknown> = {};
 
-	for (const [k, v] of Object.entries(req.body)) {
+	for (const [k, v] of Object.entries(req.safeBody)) {
 		// Keys that start with ! are private information,
 		// and should not ever be logged.
 		if (k.startsWith("!")) {

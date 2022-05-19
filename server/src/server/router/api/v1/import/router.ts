@@ -58,7 +58,7 @@ router.post(
 			});
 		}
 
-		const importType = req.body.importType as FileUploadImportTypes;
+		const importType = req.safeBody.importType as FileUploadImportTypes;
 
 		const userIntent = !!req.header("X-User-Intent");
 
@@ -70,11 +70,11 @@ router.post(
 				userID: req[SYMBOL_TACHI_API_AUTH].userID!,
 				userIntent,
 				importType,
-				parserArguments: [req.file, req.body],
+				parserArguments: [req.file, req.safeBody],
 			};
 
 			// Fire the score import, but make no guarantees about its state.
-			MakeScoreImport<FileUploadImportTypes>(job);
+			void MakeScoreImport<FileUploadImportTypes>(job);
 
 			return res.status(202).json({
 				success: true,
@@ -92,7 +92,7 @@ router.post(
 			req[SYMBOL_TACHI_API_AUTH].userID!,
 			userIntent,
 			importType,
-			[req.file, req.body]
+			[req.file, req.safeBody]
 		);
 
 		return res.status(importResponse.statusCode).json(importResponse.body);
@@ -114,7 +114,7 @@ router.post(
 		{ allowExcessKeys: true }
 	),
 	async (req, res) => {
-		const importType = req.body.importType as APIImportTypes;
+		const importType = req.safeBody.importType as APIImportTypes;
 
 		const importID = Random20Hex();
 

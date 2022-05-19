@@ -29,7 +29,7 @@ router.post(
 				userID: req[SYMBOL_TACHI_API_AUTH].userID!,
 				userIntent,
 				importType: "ir/direct-manual",
-				parserArguments: [req.body],
+				parserArguments: [req.safeBody],
 			};
 
 			// Fire the score import, but make no guarantees about its state.
@@ -51,7 +51,7 @@ router.post(
 			req[SYMBOL_TACHI_API_AUTH].userID!,
 			userIntent,
 			"ir/direct-manual",
-			[req.body]
+			[req.safeBody]
 		);
 
 		return res.status(importResponse.statusCode).json(importResponse.body);

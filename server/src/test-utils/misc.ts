@@ -3,6 +3,8 @@ import {
 	FakeImport,
 	FakeNotification,
 	FakeOtherUser,
+	HC511Goal,
+	HC511UserGoal,
 	TestingIIDXSPScore,
 	TestingIIDXSPScorePB,
 	TestingSDVXScore,
@@ -10,6 +12,8 @@ import {
 import deepmerge from "deepmerge";
 import type {
 	Game,
+	GoalDocument,
+	GoalSubscriptionDocument,
 	ImportDocument,
 	integer,
 	NotificationDocument,
@@ -39,7 +43,7 @@ export async function agta(ag: AsyncIterable<unknown> | Iterable<unknown>) {
 export function dmf<T extends object>(base: T, modifant: Partial<T>): T {
 	return deepmerge(base, modifant, {
 		// The new array should replace the former one, instead of joining them together.
-		arrayMerge: (originalArray, newArray) => newArray,
+		arrayMerge: (originalArray, newArray) => newArray as Array<unknown>,
 	});
 }
 
@@ -90,4 +94,12 @@ export function mkFakePBIIDXSP(modifant: Partial<PBScoreDocument<"iidx:SP">> = {
 
 export function mkFakeNotification(modifant: Partial<NotificationDocument> = {}) {
 	return dmf(FakeNotification, modifant);
+}
+
+export function mkFakeGoal(modifant: Partial<GoalDocument> = {}) {
+	return dmf(HC511Goal, modifant);
+}
+
+export function mkFakeGoalSub(modifant: Partial<GoalSubscriptionDocument> = {}) {
+	return dmf(HC511UserGoal, modifant);
 }

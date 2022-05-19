@@ -23,7 +23,15 @@ export async function CreateFakeAuthCookie(mockApi: supertest.SuperTest<supertes
 		throw res.body;
 	}
 
-	return res.headers["set-cookie"] as Array<string>;
+	const headers = res.headers as Record<string, Array<string>>;
+
+	const setCookieHeader: Array<string> | undefined = headers["set-cookie"];
+
+	if (setCookieHeader === undefined) {
+		throw new Error(`Failed to login, no Set-Cookie returned in response?`);
+	}
+
+	return setCookieHeader;
 }
 
 // my local dev env hates this part because of pnpm

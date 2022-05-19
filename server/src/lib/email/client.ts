@@ -50,19 +50,28 @@ export function SendEmail(
 		return;
 	}
 
-	if (!transporter) {
+	if (!transporter || !ServerConfig.EMAIL_CONFIG) {
 		logger.debug(`Stubbed out SendEmail as no EMAIL_CONFIG was set.`);
 		return;
 	}
 
 	logger.verbose(`Sending email to ${to}.`);
 
-	return transporter.sendMail({
-		from: ServerConfig.EMAIL_CONFIG!.FROM,
-		to,
-		subject,
-		html: htmlContent,
-		text: textContent,
-		dkim: ServerConfig.EMAIL_CONFIG?.DKIM,
-	});
+	return transporter
+		.sendMail({
+			from: ServerConfig.EMAIL_CONFIG.FROM,
+			to,
+			subject,
+			html: htmlContent,
+			text: textContent,
+			dkim: ServerConfig.EMAIL_CONFIG.DKIM,
+		})
+		.catch((err: unknown) => {
+			logger.info(`Failed to send email to ${to}.`, {
+				err,
+				subject,
+				textContent,
+				htmlContent,
+			});
+		});
 }

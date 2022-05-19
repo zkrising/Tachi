@@ -1,7 +1,6 @@
 import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import p from "prudence";
@@ -90,6 +89,15 @@ router.post(
 			});
 		}
 
+		const body = req.safeBody as {
+			name: string;
+			redirectUri: string | null;
+			webhookUri: string | null;
+			apiKeyTemplate: string | null;
+			apiKeyFilename: string | null;
+			permissions: Array<APIPermissions>;
+		};
+
 		const existingClients = await db["api-clients"].find({
 			author: req.session.tachi.user.id,
 		});
@@ -105,7 +113,7 @@ router.post(
 			});
 		}
 
-		const permissions = DedupeArr<APIPermissions>(req.body.permissions);
+		const permissions = DedupeArr<APIPermissions>(body.permissions);
 
 		if (permissions.length === 0) {
 			return res.status(400).json({
@@ -114,14 +122,14 @@ router.post(
 			});
 		}
 
-		if (req.body.redirectUri !== null && !IsValidURL(req.body.redirectUri)) {
+		if (body.redirectUri !== null && !IsValidURL(body.redirectUri)) {
 			return res.status(400).json({
 				success: false,
 				description: `Invalid Redirect URL.`,
 			});
 		}
 
-		if (req.body.webhookUri !== null && !IsValidURL(req.body.webhookUri)) {
+		if (body.webhookUri !== null && !IsValidURL(body.webhookUri)) {
 			return res.status(400).json({
 				success: false,
 				description: `Invalid Webhook URL.`,
@@ -135,19 +143,19 @@ router.post(
 			clientID,
 			clientSecret,
 			requestedPermissions: permissions,
-			name: req.body.name,
+			name: body.name,
 			author: req.session.tachi.user.id,
-			redirectUri: req.body.redirectUri,
-			webhookUri: req.body.webhookUri ?? null,
-			apiKeyFilename: req.body.apiKeyFilename ?? null,
-			apiKeyTemplate: req.body.apiKeyTemplate ?? null,
+			redirectUri: body.redirectUri,
+			webhookUri: body.webhookUri ?? null,
+			apiKeyFilename: body.apiKeyFilename ?? null,
+			apiKeyTemplate: body.apiKeyTemplate ?? null,
 		};
 
 		await db["api-clients"].insert(clientDoc);
 
 		logger.info(
 			`User ${FormatUserDoc(req.session.tachi.user)} created a new API Client ${
-				req.body.name
+				body.name
 			} (${clientID}).`
 		);
 
@@ -232,11 +240,20 @@ router.patch(
 		}),
 	}),
 	async (req, res) => {
+		const body = req.safeBody as {
+			name?: string;
+			redirectUri?: string | null;
+			webhookUri?: string | null;
+			apiKeyTemplate?: string | null;
+			apiKeyFilename?: string | null;
+			permissions?: Array<APIPermissions>;
+		};
+
 		const client = GetTachiData(req, "apiClientDoc");
 
-		DeleteUndefinedProps(req.body);
+		DeleteUndefinedProps(req.safeBody);
 
-		if (Object.keys(req.body).length === 0) {
+		if (Object.keys(req.safeBody).length === 0) {
 			return res.status(400).json({
 				success: false,
 				description: `No changes to make.`,
@@ -248,12 +265,12 @@ router.patch(
 				clientID: client.clientID,
 			},
 			{
-				$set: req.body,
+				$set: req.safeBody,
 			}
 		);
 
 		logger.info(
-			`API Client ${client.name} (${client.clientID}) has been renamed to ${req.body.name}.`
+			`API Client ${client.name} (${client.clientID}) has been renamed to ${body.name}.`
 		);
 
 		return res.status(200).json({

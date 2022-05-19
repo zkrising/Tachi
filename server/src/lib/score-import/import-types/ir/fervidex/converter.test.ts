@@ -4,7 +4,7 @@ import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
-import { InternalFailure } from "../../../framework/common/converter-failures";
+import { InternalFailure, InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import {
 	ConverterIRFervidex,
 	SplitFervidexChartRef,
@@ -81,7 +81,41 @@ t.test("#TachifyRandom", (t) => {
 	t.end();
 });
 
-const baseFervidexScore: FervidexScore = GetKTDataJSON("./fervidex/base.json");
+const baseFervidexScore: FervidexScore = {
+	"bad": 0,
+	"chart": "spa",
+	"clear_type": 1,
+	"combo_break": 6,
+	"custom": false,
+	"chart_sha256": "asdfasdf",
+	"entry_id": 1000,
+	"ex_score": 68,
+	"fast": 0,
+	"gauge": [
+		100,
+		50
+	],
+	"ghost": [
+		0,
+		2
+	],
+	"good": 0,
+	"great": 0,
+	"max_combo": 34,
+	"option": {
+		"gauge": "HARD",
+		"range": "SUDDEN_PLUS",
+		"style": "RANDOM"
+	},
+	"pacemaker": {
+		"name": "",
+		"score": 363,
+		"type": "PACEMAKER_A"
+	},
+	"pgreat": 34,
+	"poor": 6,
+	"slow": 0
+}
 
 const baseDryScore = {
 	game: "iidx",
@@ -208,7 +242,7 @@ t.test("#ConverterIRFervidex", (t) => {
 				"ir/fervidex",
 				logger
 			),
-			{ message: /could not find chart/giu }
+			/could not find chart/giu
 		);
 
 		t.end();
@@ -224,7 +258,7 @@ t.test("#ConverterIRFervidex", (t) => {
 				"ir/fervidex",
 				logger
 			),
-			{ message: /Song 1 \(iidx\) has no parent song/giu }
+			/Song 1 \(iidx\) has no parent song/giu
 		);
 
 		t.end();
@@ -239,7 +273,7 @@ t.test("#ConverterIRFervidex", (t) => {
 				"ir/fervidex",
 				logger
 			),
-			{ message: /Invalid percent/giu }
+			/Invalid percent/giu
 		);
 
 		t.end();
@@ -254,7 +288,7 @@ t.test("#ConverterIRFervidex", (t) => {
 				"ir/fervidex",
 				logger
 			),
-			{ message: /Invalid value of gauge 150/giu }
+			/Invalid value of gauge 150./giu
 		);
 
 		t.end();

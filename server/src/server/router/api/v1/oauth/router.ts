@@ -31,8 +31,16 @@ router.post(
 		code: "string",
 	}),
 	async (req, res) => {
+		const body = req.safeBody as {
+			client_id: string;
+			client_secret: string;
+			grant_type: "authorization_code";
+			redirect_uri: string;
+			code: string;
+		};
+
 		const client = await db["api-clients"].findOne({
-			clientID: req.body.client_id,
+			clientID: body.client_id,
 		});
 
 		if (!client) {
@@ -42,7 +50,7 @@ router.post(
 			});
 		}
 
-		if (client.clientSecret !== req.body.client_secret) {
+		if (client.clientSecret !== body.client_secret) {
 			return res.status(403).json({
 				success: false,
 				description: `Invalid secret.`,
@@ -51,14 +59,14 @@ router.post(
 
 		// I honest to god have no idea what the point of this check is
 		// but it's part of the oauth spec.
-		if (client.redirectUri !== req.body.redirect_uri) {
+		if (client.redirectUri !== body.redirect_uri) {
 			return res.status(400).json({
 				success: false,
 				description: `This redirect_uri does not match with your registered client redirect_uri ${client.redirectUri}.`,
 			});
 		}
 
-		const codeDoc = await db["oauth2-auth-codes"].findOne({ code: req.body.code });
+		const codeDoc = await db["oauth2-auth-codes"].findOne({ code: body.code });
 
 		if (!codeDoc) {
 			return res.status(404).json({
@@ -68,7 +76,7 @@ router.post(
 		}
 
 		// don't let people auth with the same code multiple times.
-		await db["oauth2-auth-codes"].remove({ code: req.body.code });
+		await db["oauth2-auth-codes"].remove({ code: body.code });
 
 		const apiDoc = {
 			userID: codeDoc.userID,

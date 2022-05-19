@@ -4,7 +4,7 @@ import db from "external/mongo/db";
 import { CDNStoreOrOverwrite } from "lib/cdn/cdn";
 import { GetUSCIRReplayURL } from "lib/cdn/url-format";
 import { ONE_MEGABYTE } from "lib/constants/filesize";
-import { SYMBOL_TACHI_API_AUTH, SYMBOL_TACHI_DATA } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import { USCIR_MAX_LEADERBOARD_N } from "lib/constants/usc-ir";
 import CreateLogCtx from "lib/logger/logger";
 import { AssertStrAsPositiveNonZeroInt } from "lib/score-import/framework/common/string-asserts";
@@ -116,10 +116,19 @@ const RetrieveChart: RequestHandler = async (req, res, next) => {
 		playtype: req.params.playtype as Playtypes["usc"],
 	});
 
+	if (!chart) {
+		return res.status(200).json({
+			statusCode: STATUS_CODES.NOT_FOUND,
+			description: `This IR doesn't have any record data yet, or ${
+				ServerConfig.USC_QUEUE_SIZE
+			} ${
+				ServerConfig.USC_QUEUE_SIZE === 1 ? "person has" : "people have"
+			} not played the chart yet.`,
+		});
+	}
+
 	AssignToReqTachiData(req, {
-		uscChartDoc: (chart ?? undefined) as
-			| ChartDocument<"usc:Controller" | "usc:Keyboard">
-			| undefined,
+		uscChartDoc: chart as ChartDocument<"usc:Controller" | "usc:Keyboard">,
 	});
 
 	next();
@@ -131,15 +140,6 @@ const RetrieveChart: RequestHandler = async (req, res, next) => {
  * @name GET /ir/usc/:playtype/charts/:chartHash
  */
 router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
-	const chart = GetTachiData(req, "uscChartDoc");
-
-	if (!chart) {
-		return res.status(200).json({
-			statusCode: STATUS_CODES.NOT_FOUND,
-			description: "This chart is not available on the IR yet, more people need to play it!",
-		});
-	}
-
 	return res.status(200).json({
 		statusCode: STATUS_CODES.SUCCESS,
 		description: "This chart is tracked by the IR.",
@@ -154,17 +154,6 @@ router.get("/charts/:chartHash", RetrieveChart, (req, res) => {
  */
 router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
 	const chart = GetTachiData(req, "uscChartDoc");
-
-	if (!chart) {
-		return res.status(200).json({
-			statusCode: STATUS_CODES.NOT_FOUND,
-			description: `This IR doesn't have any record data yet, or ${
-				ServerConfig.USC_QUEUE_SIZE
-			} ${
-				ServerConfig.USC_QUEUE_SIZE === 1 ? "person has" : "people have"
-			} not played the chart yet.`,
-		});
-	}
 
 	const serverRecord = (await db["personal-bests"].findOne({
 		chartID: chart.chartID,
@@ -194,17 +183,6 @@ router.get("/charts/:chartHash/record", RetrieveChart, async (req, res) => {
  */
 router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => {
 	const chart = GetTachiData(req, "uscChartDoc");
-
-	if (!chart) {
-		return res.status(200).json({
-			statusCode: STATUS_CODES.NOT_FOUND,
-			description: `This IR doesn't have any record data yet, or ${
-				ServerConfig.USC_QUEUE_SIZE
-			} ${
-				ServerConfig.USC_QUEUE_SIZE === 1 ? "person has" : "people have"
-			} not played the chart yet.`,
-		});
-	}
 
 	if (!(typeof req.query.mode === "string" && ["best", "rivals"].includes(req.query.mode))) {
 		return res.status(200).json({
@@ -285,7 +263,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 	const playtype = req.params.playtype as Playtypes["usc"];
 
 	const chartErr = p(
-		req.body.chart,
+		req.safeBody.chart,
 		PR_USCIR_CHART_DOC,
 		{},
 		{
@@ -301,17 +279,17 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 		});
 	}
 
-	const uscChart = req.body.chart as USCClientChart;
+	const uscChart = req.safeBody.chart as USCClientChart;
 
 	const chartDoc = (await db.charts.usc.findOne({
 		"data.hashSHA1": uscChart.chartHash,
 		playtype,
 	})) as ChartDocument<"usc:Controller" | "usc:Keyboard"> | null;
 
-	const userID = req[SYMBOL_TACHI_API_AUTH]!.userID!;
+	const userID = req[SYMBOL_TACHI_API_AUTH].userID!;
 
 	const importRes = await ExpressWrappedScoreImportMain(userID, false, "ir/usc", [
-		req.body,
+		req.safeBody,
 		uscChart.chartHash,
 		playtype,
 	]);
@@ -332,20 +310,15 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 
 	// If the import failed, AND the import failure WAS NOT that the chart didnt exist
 	// report that error instead.
-	if (importDoc.errors[0]?.type && importDoc.errors[0].type !== "KTDataNotFound") {
-		logger.info(
-			`USC Import Failed ${importDoc.errors[0].message ?? "with null error message?"}`,
-			{
-				importDoc,
-				userID,
-			}
-		);
+	if (importDoc.errors[0] && importDoc.errors[0].type !== "KTDataNotFound") {
+		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {
+			importDoc,
+			userID,
+		});
 
 		return res.status(200).json({
 			statusCode: STATUS_CODES.BAD_REQ,
-			description: `${importDoc.errors[0].type} ${
-				importDoc.errors[0].message ?? "No Error Message"
-			}`,
+			description: `${importDoc.errors[0].type} ${importDoc.errors[0].message}`,
 		});
 	}
 
@@ -405,7 +378,7 @@ router.post(
 	RequirePermissions("submit_score"),
 	CreateMulterSingleUploadMiddleware("replay", ONE_MEGABYTE, logger, false),
 	async (req, res) => {
-		if (typeof req.body.identifier !== "string") {
+		if (typeof req.safeBody.identifier !== "string") {
 			return res.status(200).json({
 				statusCode: STATUS_CODES.BAD_REQ,
 				description: "No Identifier Provided.",
@@ -425,8 +398,8 @@ router.post(
 		// Otherwise, anyone could overwrite anyone elses
 		// score replays!
 		const correspondingScore = await db.scores.findOne({
-			userID: req[SYMBOL_TACHI_API_AUTH]!.userID!,
-			scoreID: req.body.identifier,
+			userID: req[SYMBOL_TACHI_API_AUTH].userID!,
+			scoreID: req.safeBody.identifier,
 			game: "usc",
 		});
 

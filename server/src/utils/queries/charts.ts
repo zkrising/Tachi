@@ -297,30 +297,32 @@ export async function FindChartsOnPopularity(
 		}
 	>;
 
-	const scoreCounts = await db[scoreCollection].aggregate([
-		{
-			$match: { chartID: { $in: charts.map((e) => e.chartID) } },
-		},
-		{
-			$group: {
-				_id: "$chartID",
-				count: { $sum: 1 },
+	const scoreCounts: Array<{ _id: string; count: integer }> = await db[scoreCollection].aggregate(
+		[
+			{
+				$match: { chartID: { $in: charts.map((e) => e.chartID) } },
 			},
-		},
-		{
-			$sort: {
-				count: -1,
+			{
+				$group: {
+					_id: "$chartID",
+					count: { $sum: 1 },
+				},
 			},
-		},
-		{
-			$skip: skip,
-		},
-		{
-			$limit: limit,
-		},
-	]);
+			{
+				$sort: {
+					count: -1,
+				},
+			},
+			{
+				$skip: skip,
+			},
+			{
+				$limit: limit,
+			},
+		]
+	);
 
-	const scoreCountMap = new Map();
+	const scoreCountMap = new Map<string, integer>();
 
 	for (const sc of scoreCounts) {
 		scoreCountMap.set(sc._id, sc.count);

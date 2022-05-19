@@ -1,7 +1,6 @@
 import { GetScoreFromParam, RequireOwnershipOfScoreOrAdmin } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { DeleteScore } from "lib/score-mutation/delete-scores";
 import p from "prudence";
@@ -26,7 +25,7 @@ router.use(GetScoreFromParam);
 router.get("/", async (req, res) => {
 	const score = GetTachiData(req, "scoreDoc");
 
-	if (req.query.getRelated) {
+	if (req.query.getRelated !== undefined) {
 		const [user, chart, song] = await Promise.all([
 			GetUserWithID(score.userID),
 			db.charts[score.game].findOne({ chartID: score.chartID }),
@@ -88,16 +87,21 @@ router.patch(
 		highlight: "*boolean",
 	}),
 	async (req, res) => {
+		const body = req.safeBody as {
+			comment?: string | null;
+			highlight?: boolean;
+		};
+
 		const score = GetTachiData(req, "scoreDoc");
 
 		const modifyOption: ModifiableScoreProps = {};
 
-		if (req.body.comment !== undefined) {
-			modifyOption.comment = req.body.comment;
+		if (body.comment !== undefined) {
+			modifyOption.comment = body.comment;
 		}
 
-		if (req.body.highlight !== undefined) {
-			modifyOption.highlight = req.body.highlight;
+		if (body.highlight !== undefined) {
+			modifyOption.highlight = body.highlight;
 		}
 
 		if (Object.keys(modifyOption).length === 0) {
@@ -145,11 +149,16 @@ router.patch(
 router.delete(
 	"/",
 	RequireOwnershipOfScoreOrAdmin,
+	prValidate({ blacklist: "*boolean" }),
 	RequirePermissions("delete_score"),
 	async (req, res) => {
+		const body = req.safeBody as {
+			blacklist?: boolean;
+		};
+
 		const score = GetTachiData(req, "scoreDoc");
 
-		await DeleteScore(score, !!req.body.blacklist);
+		await DeleteScore(score, body.blacklist);
 
 		return res.status(200).json({
 			success: true,

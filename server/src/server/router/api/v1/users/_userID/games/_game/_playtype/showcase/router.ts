@@ -167,21 +167,21 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	if (!Array.isArray(req.body)) {
+	if (!Array.isArray(req.safeBody)) {
 		return res.status(400).json({
 			success: false,
 			description: `No stats provided, or was not an array.`,
 		});
 	}
 
-	if (req.body.length > 6) {
+	if (req.safeBody.length > 6) {
 		return res.status(400).json({
 			success: false,
 			description: `You are only allowed 6 stats at once.`,
 		});
 	}
 
-	for (const stat of req.body) {
+	for (const stat of req.safeBody) {
 		let err;
 
 		if (stat?.mode === "chart") {
@@ -275,7 +275,7 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 		},
 		{
 			$set: {
-				"preferences.stats": req.body,
+				"preferences.stats": req.safeBody,
 			},
 		}
 	);

@@ -3,8 +3,9 @@ import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
 import { ALL_PERMISSIONS, UserAuthLevels } from "tachi-common";
-import { SplitAuthorizationHeader } from "utils/misc";
+import { IsNullishOrEmptyStr, SplitAuthorizationHeader } from "utils/misc";
 import type { RequestHandler } from "express";
+import type { Session, SessionData } from "express-session";
 import type { APIPermissions, APITokenDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -35,10 +36,15 @@ export const SetRequestPermissions: RequestHandler = CreateSetRequestPermissions
  */
 function CreateSetRequestPermissions(errorKeyName: string): RequestHandler {
 	return async (req, res, next) => {
-		if (req.session.tachi?.user.id) {
+		// Types here are wrong. Sometimes req.session is not set.
+		// As such, we force an assertion.
+
+		const maybeSession = req.session as (Partial<SessionData> & Session) | undefined;
+
+		if (maybeSession?.tachi?.user.id !== undefined) {
 			req[SYMBOL_TACHI_API_AUTH] = {
-				userID: req.session.tachi.user.id,
-				identifier: `Session-Key ${req.session.tachi.user.id}`,
+				userID: maybeSession.tachi.user.id,
+				identifier: `Session-Key ${maybeSession.tachi.user.id}`,
 				token: null,
 				permissions: ALL_PERMISSIONS,
 				fromAPIClient: null,
@@ -50,7 +56,7 @@ function CreateSetRequestPermissions(errorKeyName: string): RequestHandler {
 		const header = req.header("Authorization");
 
 		// if no auth was attempted, default to the guest token.
-		if (!header) {
+		if (IsNullishOrEmptyStr(header)) {
 			req[SYMBOL_TACHI_API_AUTH] = GuestToken;
 			next();
 			return;
@@ -124,7 +130,7 @@ export const RequirePermissions =
 			});
 		}
 
-		if (!req[SYMBOL_TACHI_API_AUTH].userID) {
+		if (req[SYMBOL_TACHI_API_AUTH].userID === null) {
 			return res.status(401).json({
 				success: false,
 				description: `You are not authorised to perform this action.`,
@@ -134,7 +140,7 @@ export const RequirePermissions =
 		const missingPerms = [];
 
 		for (const perm of perms) {
-			if (!req[SYMBOL_TACHI_API_AUTH]!.permissions[perm]) {
+			if (req[SYMBOL_TACHI_API_AUTH].permissions[perm] !== true) {
 				missingPerms.push(perm);
 			}
 		}
@@ -185,7 +191,7 @@ export const RequireNotGuest: RequestHandler = CreateRequireNotGuest("descriptio
 export const FervidexStyleRequireNotGuest: RequestHandler = CreateRequireNotGuest("error");
 
 export const RejectIfBanned: RequestHandler = async (req, res, next) => {
-	if (req[SYMBOL_TACHI_API_AUTH].userID) {
+	if (req[SYMBOL_TACHI_API_AUTH].userID !== null) {
 		const isBanned = await db.users.findOne({
 			id: req[SYMBOL_TACHI_API_AUTH].userID!,
 			authLevel: UserAuthLevels.BANNED,

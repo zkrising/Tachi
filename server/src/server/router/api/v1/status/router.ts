@@ -45,8 +45,8 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
 	let echo;
 
-	if (req.body.echo && typeof req.body.echo === "string") {
-		echo = req.body.echo;
+	if (req.safeBody.echo && typeof req.safeBody.echo === "string") {
+		echo = req.safeBody.echo;
 	}
 
 	return res.status(200).json({

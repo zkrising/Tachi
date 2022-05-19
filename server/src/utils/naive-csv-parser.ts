@@ -55,7 +55,7 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 
 	const rawRows = [];
 
-	for (const [rowNumber, data] of Object.entries(csvData)) {
+	for (const [rowNumber, data] of Object.entries(csvData).slice(1)) {
 		// @security: This should probably be safetied from DOSing
 		const cells = data.split(",");
 

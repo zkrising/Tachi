@@ -1,6 +1,5 @@
 import db from "external/mongo/db";
-import type { Condition } from "mongodb";
-import type { ScoreDocument, SessionDocument, SessionScoreInfo } from "tachi-common";
+import type { ScoreDocument, SessionDocument } from "tachi-common";
 
 /**
  * Returns all the score documents inside a session.
@@ -18,7 +17,6 @@ export function GetScoresFromSession(session: SessionDocument) {
  */
 export function GetSessionFromScore(score: ScoreDocument) {
 	return db.sessions.findOne({
-		// ??? another bug in monks types i think
-		scoreInfo: { scoreID: score.scoreID } as Condition<SessionScoreInfo>,
+		"scoreInfo.scoreID": score.scoreID,
 	});
 }

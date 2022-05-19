@@ -73,7 +73,7 @@ router.post(
 		const user = GetTachiData(req, "requestedUser");
 		const kaiType = NotNullish(req.params.kaiType).toUpperCase() as "EAG" | "FLO" | "MIN";
 
-		const body = req.body as {
+		const body = req.safeBody as {
 			code: string;
 		};
 

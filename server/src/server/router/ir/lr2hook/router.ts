@@ -2,7 +2,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
-import { PR_LR2Hook } from "lib/score-import/import-types/ir/lr2hook/parser";
+import { PR_LR2Hook as PR_LR2_HOOK } from "lib/score-import/import-types/ir/lr2hook/parser";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { UpdateClassIfGreater } from "utils/class";
@@ -22,7 +22,7 @@ router.post("/import", async (req, res) => {
 		req[SYMBOL_TACHI_API_AUTH].userID!,
 		false,
 		"ir/lr2hook",
-		[req.body]
+		[req.safeBody]
 	);
 
 	return res.status(importRes.statusCode).json(importRes.body);
@@ -33,11 +33,13 @@ router.post("/import", async (req, res) => {
  *
  * @name POST /ir/lr2hook/import/course
  */
-router.post("/import/course", prValidate(PR_LR2Hook), async (req, res) => {
+router.post("/import/course", prValidate(PR_LR2_HOOK), async (req, res) => {
 	// notably, courses in LR2 are actually identical to scores. They have all
 	// the same fields in all the same ways. The only significant difference is that
 	// the md5 field is 4 fields conjoined, rather than just one.
-	const score: LR2HookScore = req.body;
+
+	// This type assertion is safe due to the prValidate call above.
+	const score = req.safeBody as unknown as LR2HookScore;
 
 	if (score.scoreData.notesPlayed !== score.scoreData.notesTotal) {
 		return res.status(200).json({
@@ -61,7 +63,7 @@ router.post("/import/course", prValidate(PR_LR2Hook), async (req, res) => {
 		});
 	}
 
-	const userID = req[SYMBOL_TACHI_API_AUTH]!.userID!;
+	const userID = req[SYMBOL_TACHI_API_AUTH].userID!;
 
 	const result = await UpdateClassIfGreater(
 		userID,

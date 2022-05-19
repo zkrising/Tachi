@@ -1,6 +1,6 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { FolderDocument, ScoreDocument } from "tachi-common";
+import { ChartDocument, FolderDocument, ScoreDocument, SongDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
@@ -65,8 +65,8 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeli
 		await db.songs.iidx.remove({});
 		await db.charts.iidx.remove({});
 		await db["folder-chart-lookup"].remove({});
-		await db.songs.iidx.insert(GetKTDataJSON("./tachi/tachi-songs-iidx.json"));
-		await db.charts.iidx.insert(GetKTDataJSON("./tachi/tachi-charts-iidx.json"));
+		await db.songs.iidx.insert(GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument<"iidx">>);
+		await db.charts.iidx.insert(GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<ChartDocument<"iidx:DP"|"iidx:SP">>);
 
 		await CreateFolderChartLookup(folder, true);
 

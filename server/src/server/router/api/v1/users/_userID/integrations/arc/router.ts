@@ -2,10 +2,10 @@
 import { RequireSelfRequestFromUser } from "../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
+import { IsNonEmptyString } from "utils/misc";
 import { GetArcAuth } from "utils/queries/auth";
 import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
@@ -46,7 +46,12 @@ router.get("/", async (req, res) => {
 router.patch("/", prValidate({ iidx: "*?string", sdvx: "*?string" }), async (req, res) => {
 	const user = GetTachiData(req, "requestedUser");
 
-	if (Object.keys(req.body).length === 0) {
+	const body = req.safeBody as {
+		iidx?: string | null;
+		sdvx?: string | null;
+	};
+
+	if (Object.keys(body).length === 0) {
 		return res.status(400).json({
 			success: false,
 			description: `Invalid request to modify nothing.`,
@@ -63,7 +68,9 @@ router.patch("/", prValidate({ iidx: "*?string", sdvx: "*?string" }), async (req
 	for (const key of ["iidx", "sdvx"] as const) {
 		const importType = `api/arc-${key}` as const;
 
-		if (req.body[key] === null) {
+		const value = body[key];
+
+		if (value === null) {
 			logger.info(`User ${FormatUserDoc(user)} removed ARC integration for ${importType}.`);
 
 			await db["arc-saved-profiles"].remove(
@@ -75,7 +82,7 @@ router.patch("/", prValidate({ iidx: "*?string", sdvx: "*?string" }), async (req
 					single: true,
 				}
 			);
-		} else if (req.body[key]) {
+		} else if (IsNonEmptyString(value)) {
 			if (existingData[key]) {
 				logger.info(`User updated ARC integration for ${importType}.`);
 				await db["arc-saved-profiles"].update(
@@ -85,7 +92,7 @@ router.patch("/", prValidate({ iidx: "*?string", sdvx: "*?string" }), async (req
 					},
 					{
 						$set: {
-							accountID: req.body[key],
+							accountID: value,
 						},
 					}
 				);
@@ -94,7 +101,7 @@ router.patch("/", prValidate({ iidx: "*?string", sdvx: "*?string" }), async (req
 				await db["arc-saved-profiles"].insert({
 					userID: user.id,
 					forImportType: importType,
-					accountID: req.body[key],
+					accountID: value,
 				});
 			}
 		}

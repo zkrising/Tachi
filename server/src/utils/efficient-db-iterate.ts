@@ -14,7 +14,6 @@ export async function EfficientDBIterate<T, R>(
 ) {
 	let i = 0;
 
-	// eslint-disable-next-line no-constant-condition
 	while (true) {
 		logger.info(`Running on ${i} - ${i + bucketSize} documents.`);
 		// eslint-disable-next-line no-await-in-loop

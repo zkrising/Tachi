@@ -6,7 +6,8 @@
 		"data": {
 			"subtitle": null,
 			"subartist": null,
-			"genre": "ELECTRANCE"
+			"genre": "ELECTRANCE",
+			"tableString": null
 		},
 		"searchTerms": [],
 		"altTitles": []

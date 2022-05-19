@@ -45,7 +45,7 @@ t.test("#CreateSessions", (t) => {
 			userID: 1,
 			importType: "ir/direct-manual",
 			// name: "adjective1 adjective2 noun1",
-			sessionID: res[0].sessionID,
+			sessionID: res[0]?.sessionID,
 			desc: null,
 			game: "iidx",
 			playtype: "SP",
@@ -137,7 +137,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		t.equal(sessions.length, 1);
 
-		t.strictSame(sessions[0].scoreInfo, [
+		t.strictSame(sessions[0]?.scoreInfo, [
 			{
 				scoreID: "SCORE_ID_1",
 				isNewScore: true,
@@ -183,7 +183,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		t.equal(sessions.length, 1);
 
-		t.strictSame(sessions[0].scoreInfo, [
+		t.strictSame(sessions[0]?.scoreInfo, [
 			{
 				scoreID: "SCORE_ID_2",
 				isNewScore: true,
@@ -246,7 +246,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		t.equal(sessions.length, 2);
 
-		t.strictSame(sessions[0].scoreInfo, [
+		t.strictSame(sessions[0]?.scoreInfo, [
 			{
 				scoreID: "SCORE_ID_1",
 				isNewScore: true,
@@ -260,7 +260,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 				isNewScore: true,
 			},
 		]);
-		t.strictSame(sessions[1].scoreInfo, [
+		t.strictSame(sessions[1]?.scoreInfo, [
 			{
 				scoreID: "SCORE_ID_4",
 				isNewScore: true,
@@ -317,7 +317,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		t.equal(sessions.length, 1);
 
-		t.strictSame(sessions[0].scoreInfo, [
+		t.strictSame(sessions[0]?.scoreInfo, [
 			{
 				scoreID: "EXAMPLE_SCORE_ID",
 				isNewScore: true,
@@ -336,7 +336,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 			},
 		]);
 
-		t.equal(sessions[0].timeEnded, start + 2000);
+		t.equal(sessions[0]?.timeEnded, start + 2000);
 
 		t.end();
 	});
@@ -380,7 +380,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		t.equal(sessions.length, 1);
 
-		t.strictSame(sessions[0].scoreInfo, [
+		t.strictSame(sessions[0]?.scoreInfo, [
 			{
 				scoreID: "EXAMPLE_SCORE_ID",
 				isNewScore: true,
@@ -399,7 +399,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 			},
 		]);
 
-		t.equal(sessions[0].timeStarted, start - 2000);
+		t.equal(sessions[0]?.timeStarted, start - 2000);
 
 		t.end();
 	});
@@ -427,7 +427,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		t.equal(sessions.length, 1);
 
-		t.strictSame(sessions[0].scoreInfo, [
+		t.strictSame(sessions[0]?.scoreInfo, [
 			{
 				scoreID: "TESTING_SCORE_ID",
 				isNewScore: false,

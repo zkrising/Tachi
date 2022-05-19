@@ -38,7 +38,9 @@ async function RunOnInit() {
 	await db["folder-chart-lookup"].findOne().then((r) => {
 		// If there are no folder chart lookups, initialise them.
 		if (!r) {
-			InitaliseFolderChartLookup();
+			InitaliseFolderChartLookup().catch((err: unknown) => {
+				logger.error(`Failed to init folder-chart-lookup on first boot?`, { err });
+			});
 		}
 	});
 
@@ -55,7 +57,7 @@ async function RunOnInit() {
 	}
 }
 
-RunOnInit();
+void RunOnInit();
 
 let instance: http.Server | https.Server;
 

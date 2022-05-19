@@ -89,7 +89,7 @@ router.patch(
 	async (req, res) => {
 		const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
 
-		const body = req.body as UserPatchBody;
+		const body = req.safeBody as UserPatchBody;
 
 		if (Object.keys(body).length === 0) {
 			return res.status(400).json({
@@ -311,7 +311,7 @@ router.post(
 		"!oldPassword": ValidatePassword,
 	}),
 	async (req, res) => {
-		const body = req.body as {
+		const body = req.safeBody as {
 			"!password": string;
 			"!oldPassword": string;
 		};

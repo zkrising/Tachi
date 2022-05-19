@@ -7,7 +7,7 @@ import type { NodeFetch } from "utils/fetch";
  * Creates a basic Fetch function used for statusCode checks.
  */
 export function MockBasicFetch(data: Partial<Response>) {
-	return (async () => data) as unknown as NodeFetch;
+	return (() => data) as unknown as NodeFetch;
 }
 
 /**
@@ -15,18 +15,24 @@ export function MockBasicFetch(data: Partial<Response>) {
  * a fake JSON -> data function at that key.
  */
 export function MockJSONFetch(urlDataMap: Record<string, unknown>) {
-	return (async (url: string) => {
-		if (urlDataMap[url]) {
-			return {
-				status: 200,
-				json: async () => urlDataMap[url],
-			};
-		}
+	return ((url: string) =>
+		new Promise((resolve, reject) => {
+			if (url in urlDataMap) {
+				const fakeResponse = {
+					status: 200,
+					json: () => Promise.resolve(urlDataMap[url]),
+				} as unknown as Response;
 
-		throw new Error(
-			`Unexpected url ${url} - No Data Present? Valid urls are ${Object.keys(urlDataMap).join(
-				", "
-			)}`
-		);
-	}) as NodeFetch;
+				resolve(fakeResponse);
+				return;
+			}
+
+			reject(
+				new Error(
+					`Unexpected url ${url} - No Data Present? Valid urls are ${Object.keys(
+						urlDataMap
+					).join(", ")}`
+				)
+			);
+		})) as NodeFetch;
 }

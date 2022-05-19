@@ -666,6 +666,10 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID", 
 		await db["goal-subs"].insert(IIDXSPMilestoneGoalSubs);
 		await db.milestones.insert(TestingIIDXSPMilestone);
 
+		if (!IIDXSPMilestoneGoalSubs[0] || !IIDXSPMilestoneGoals[0]) {
+			throw new Error(`Expected atleast one milestone goal or sub to work with?`);
+		}
+
 		const res = await mockApi.get(
 			`/api/v1/users/1/games/iidx/SP/targets/goals/${IIDXSPMilestoneGoalSubs[0].goalID}`
 		);

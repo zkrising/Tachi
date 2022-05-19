@@ -8,6 +8,10 @@ const LOG_LEVEL = ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
 t.test("Logger Tests", (t) => {
 	const logger = CreateLogCtx(__filename);
 
+	if (!Transports[0]) {
+		throw new Error(`No transports were defined? Can't perform logger tests.`)
+	}
+
 	Transports[0].level = "debug"; // lol
 
 	logger.debug("Debug Message Test");

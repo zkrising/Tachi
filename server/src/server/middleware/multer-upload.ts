@@ -8,7 +8,8 @@ import type { integer } from "tachi-common";
 
 const defaultLogger = CreateLogCtx(__filename);
 
-export const DefaultMulterUpload = multer({ limits: { fileSize: 1024 * 1024 * 16 } }); // 16MB
+// 16MB
+export const DefaultMulterUpload = multer({ limits: { fileSize: 1024 * 1024 * 16 } });
 
 export const CreateMulterSingleUploadMiddleware = (
 	fieldName: string,
@@ -43,6 +44,10 @@ export const CreateMulterSingleUploadMiddleware = (
 					description: `Expected a file for field ${fieldName}.`,
 				});
 			}
+
+			// CRITICALLY IMPORTANT LINE OF CODE
+			// THINGS DEALING WITH FILE UPLOADS **DO NOT** MOUNT SAFE-BODY OTHERWISE.
+			req.safeBody = req.body as Record<string, unknown>;
 
 			next();
 		});

@@ -142,7 +142,7 @@ export function FormatUserDoc(userdoc: PublicUserDocument) {
 export async function GetUsersRanking(stats: UserGameStats) {
 	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
 
-	const aggRes = await db["game-stats"].aggregate([
+	const aggRes: [{ _id: null; ranking: integer }] = await db["game-stats"].aggregate([
 		{
 			$match: {
 				game: stats.game,
@@ -170,7 +170,7 @@ export async function GetUsersRanking(stats: UserGameStats) {
 		},
 	]);
 
-	return (aggRes[0].ranking + 1) as integer;
+	return aggRes[0].ranking + 1;
 }
 
 export function GetUGPTPlaycount(userID: integer, game: Game, playtype: Playtype) {
@@ -257,7 +257,7 @@ export async function IsRequesterAdmin(request: APITokenDocument) {
 		return false;
 	}
 
-	if (!request.userID) {
+	if (request.userID === null) {
 		return false;
 	}
 

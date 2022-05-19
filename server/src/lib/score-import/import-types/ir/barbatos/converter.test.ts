@@ -3,7 +3,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { barbScore } from "test-utils/test-data";
+import { MockBarbatosScore } from "test-utils/test-data";
 import { ConverterIRBarbatos } from "./converter";
 import { BarbatosScore } from "./types";
 
@@ -41,7 +41,7 @@ t.test("#ConverterIRBarbatos", (t) => {
 
 	t.test("Should convert a BarbatosScore into a Dry Score", async (t) => {
 		const res = await ConverterIRBarbatos(
-			barbScore,
+			MockBarbatosScore,
 			{ timeReceived: 10 },
 			"ir/barbatos",
 			logger
@@ -86,7 +86,7 @@ t.test("#ConverterIRBarbatos", (t) => {
 		t.rejects(
 			() =>
 				ConverterIRBarbatos(
-					deepmerge(barbScore, { song_id: 1000 }) as BarbatosScore,
+					deepmerge(MockBarbatosScore, { song_id: 1000 }) as BarbatosScore,
 					{ timeReceived: 10 },
 					"ir/barbatos",
 					logger
@@ -103,7 +103,7 @@ t.test("#ConverterIRBarbatos", (t) => {
 		await db.songs.sdvx.remove({ id: 1 }); // force a song-chart desync
 
 		t.rejects(
-			() => ConverterIRBarbatos(barbScore, { timeReceived: 10 }, "ir/barbatos", logger),
+			() => ConverterIRBarbatos(MockBarbatosScore, { timeReceived: 10 }, "ir/barbatos", logger),
 			{
 				message: /Song 1 \(sdvx\) has no parent song/u,
 			}

@@ -5,6 +5,7 @@ import ResetDBState from "test-utils/resets";
 import {
 	GetKTDataJSON,
 	LoadTachiIIDXData,
+	MockParsedS3Score,
 	Testing511Song,
 	Testing511SPA,
 } from "test-utils/test-data";
@@ -20,11 +21,12 @@ function cfile(data: S3Score) {
 t.test("#ConvertFileS3", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(() => {
-		delete BaseS3Score._id; // just incase
+		// @ts-expect-error hacky just-incase.
+		delete MockParsedS3Score._id;
 	});
 
 	function mfile(merge: Partial<S3Score>) {
-		return cfile(deepmerge(BaseS3Score, merge));
+		return cfile(deepmerge(MockParsedS3Score, merge));
 	}
 
 	const dryScore = {
@@ -51,10 +53,9 @@ t.test("#ConvertFileS3", (t) => {
 		// timeAchieved: 1287460462000,
 	};
 
-	const BaseS3Score = GetKTDataJSON("./s3/s3score.json");
 
 	t.test("Should import a valid S3 score", async (t) => {
-		const res = await cfile(BaseS3Score);
+		const res = await cfile(MockParsedS3Score);
 
 		t.hasStrict(
 			res,

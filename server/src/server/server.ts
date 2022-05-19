@@ -1,17 +1,21 @@
+// THIS IMPORT **MUST** GO HERE. DO NOT MOVE IT. IT MUST OCCUR BEFORE ANYTHING HAPPENS WITH EXPRESS
+// BUT AFTER EXPRESS IS IMPORTED.
+// eslint-disable-next-line import/order
+import express from "express";
+import "express-async-errors";
+
 import { RequestLoggerMiddleware } from "./middleware/request-logger";
 import mainRouter from "./router/router";
 import connectRedis from "connect-redis";
-import express from "express";
 import expressSession from "express-session";
 import { RedisClient } from "external/redis/redis";
 import helmet from "helmet";
 import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
+import { IsNonEmptyString, IsRecord } from "utils/misc";
 import type { Express } from "express";
-import "express-async-errors";
 import type { integer } from "tachi-common";
-import { IsNonEmptyString } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -53,9 +57,17 @@ if (Environment.nodeEnv !== "production" && IsNonEmptyString(ServerConfig.CLIENT
 		bootInfo: true,
 	});
 
+	// Note: we have to assign it here to make sure it doesn't get modified!
+	// If we try and use ServerConfig.CLIENT_DEV_SERVER inside the callback, TS rightly
+	// complains that this value might end up being mutated to null/undefined.
+	//
+	// Even though we don't do that,
+	// we may aswell be correct about the whole thing.
+	const clientDevServerLocation = ServerConfig.CLIENT_DEV_SERVER;
+
 	// Allow CORS requests from another server (since we have our dev server hosted separately).
 	app.use((req, res, next) => {
-		res.header("Access-Control-Allow-Origin", ServerConfig.CLIENT_DEV_SERVER!);
+		res.header("Access-Control-Allow-Origin", clientDevServerLocation);
 		res.header(
 			"Access-Control-Allow-Headers",
 			"Origin, X-Requested-With, Content-Type, Accept, X-User-Intent"
@@ -103,10 +115,13 @@ app.use(express.json({ limit: "4mb" }));
 
 app.use((req, res, next) => {
 	// Always mount an empty req body. We operate under the assumption that req.body is
-	// always defined.
-	if (req.method !== "GET" && !req.body) {
+	// always defined as atleast an object.
+	if (req.method !== "GET" && (typeof req.body !== "object" || req.body === null)) {
 		req.body = {};
 	}
+
+	// req.safeBody *is* just a type-safe req.body!
+	req.safeBody = req.body as Record<string, unknown>;
 
 	next();
 });
@@ -143,8 +158,9 @@ interface ExpressJSONErr extends SyntaxError {
 	message: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, next) => {
+const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, _next) => {
+	logger.info(`MAIN_ERR_HANDLER hit by request.`, { url: req.originalUrl });
+
 	if (err instanceof SyntaxError) {
 		const expErr: ExpressJSONErr = err as ExpressJSONErr;
 
@@ -159,14 +175,21 @@ const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, next) => {
 		// else, this isn't a JSON parsing error
 	}
 
-	if (err.type === "entity.too.large") {
+	const unknownErr = err as unknown;
+
+	if (IsRecord(unknownErr) && unknownErr.type === "entity.too.large") {
 		return res.status(413).json({
 			success: false,
 			description: "Your request body was too large. The limit is 4MB.",
 		});
 	}
 
-	logger.error("Fatal error propagated to server root? ", { err, route: req.route });
+	logger.error("Fatal error propagated to server root? ", {
+		err: unknownErr,
+		url: req.originalUrl,
+		authInfo: req[SYMBOL_TACHI_API_AUTH],
+	});
+
 	return res.status(500).json({
 		success: false,
 		description: "A fatal internal server error has occured.",

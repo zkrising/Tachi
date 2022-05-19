@@ -149,7 +149,7 @@ router.post(
 			});
 		}
 
-		const data = req.body as GoalCreationBody;
+		const data = req.safeBody as GoalCreationBody;
 
 		let goal;
 

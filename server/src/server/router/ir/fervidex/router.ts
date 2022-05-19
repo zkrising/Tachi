@@ -184,7 +184,7 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 };
 
 const ValidateCards: RequestHandler = async (req, res, next) => {
-	const userID = req[SYMBOL_TACHI_API_AUTH]!.userID!;
+	const userID = req[SYMBOL_TACHI_API_AUTH].userID!;
 
 	const cardFilters = await db["fer-settings"].findOne({ userID });
 
@@ -244,7 +244,7 @@ router.post("/profile/submit", RequireInf2ModelHeaderOrForceStatic, (req, res) =
 		req[SYMBOL_TACHI_API_AUTH].userID!,
 		false,
 		"ir/fervidex-static",
-		[req.body, headers]
+		[req.safeBody, headers]
 	);
 });
 
@@ -273,7 +273,7 @@ router.post("/score/submit", ValidateModelHeader, async (req, res) => {
 		req[SYMBOL_TACHI_API_AUTH].userID!,
 		true,
 		"ir/fervidex",
-		[req.body, headers]
+		[req.safeBody, headers]
 	);
 
 	if (!responseData.body.success) {
@@ -307,7 +307,7 @@ router.post(
 	),
 	ValidateModelHeader,
 	async (req, res) => {
-		const body = req.body as {
+		const body = req.safeBody as {
 			cleared: boolean;
 			course_id: integer;
 			play_style: 0 | 1;

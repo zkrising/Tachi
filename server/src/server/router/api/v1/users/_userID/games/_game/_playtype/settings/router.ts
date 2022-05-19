@@ -8,6 +8,7 @@ import { GetGamePTConfig } from "tachi-common";
 import { FormatPrError, optNull } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
+import type { UGPTSettings } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -47,7 +48,7 @@ router.patch(
 			};
 		}
 
-		const err = p(req.body, {
+		const err = p(req.safeBody, {
 			preferredScoreAlg: p.optional(p.nullable(p.isIn(gptConfig.scoreRatingAlgs))),
 			preferredSessionAlg: p.optional(p.nullable(p.isIn(gptConfig.sessionRatingAlgs))),
 			preferredProfileAlg: p.optional(p.nullable(p.isIn(gptConfig.profileRatingAlgs))),
@@ -65,43 +66,49 @@ router.patch(
 			});
 		}
 
-		if (typeof req.body.defaultTable === "string") {
+		const body = req.safeBody as Partial<UGPTSettings["preferences"]>;
+
+		if (typeof body.defaultTable === "string") {
 			const table = await db.tables.findOne({
 				game,
 				playtype,
-				tableID: req.body.defaultTable,
+				tableID: body.defaultTable,
 			});
 
 			if (!table) {
 				return res.status(400).json({
 					success: false,
-					description: `The table (${req.body.defaultTable}) does not exist (and therefore cannot be set as a default).`,
+					description: `The table (${body.defaultTable}) does not exist (and therefore cannot be set as a default).`,
 				});
 			}
 		}
 
-		const updateQuery: Record<string, string> = {};
+		const updateQuery: Record<string, string | null> = {};
 
 		// @warning Slightly icky dynamic prop assignment instead of copypasta.
-		for (const key of ["Score", "Session", "Profile"]) {
-			const k = `preferred${key}Alg`;
+		for (const key of ["Score", "Session", "Profile"] as const) {
+			const k = `preferred${key}Alg` as const;
 
-			if (req.body[k] !== undefined) {
-				updateQuery[`preferences.${k}`] = req.body[k];
+			const value = body[k];
+
+			if (value !== undefined) {
+				updateQuery[`preferences.${k}`] = value;
 			}
 		}
 
-		if (req.body.scoreBucket !== undefined) {
-			updateQuery[`preferences.scoreBucket`] = req.body.scoreBucket;
+		if (body.scoreBucket !== undefined) {
+			updateQuery[`preferences.scoreBucket`] = body.scoreBucket;
 		}
 
-		if (req.body.defaultTable !== undefined) {
-			updateQuery[`preferences.defaultTable`] = req.body.defaultTable;
+		if (body.defaultTable !== undefined) {
+			updateQuery[`preferences.defaultTable`] = body.defaultTable;
 		}
 
-		if (req.body.gameSpecific) {
-			for (const key in req.body.gameSpecific) {
-				updateQuery[`preferences.gameSpecific.${key}`] = req.body.gameSpecific[key];
+		if (body.gameSpecific) {
+			for (const [key, value] of Object.entries(body.gameSpecific)) {
+				// @ts-expect-error This is a very hacky way of applying changes.
+				// However, we know this to be correct, so we're just going to ignore it.
+				updateQuery[`preferences.gameSpecific.${key}`] = value;
 			}
 		}
 

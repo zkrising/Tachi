@@ -44,12 +44,12 @@ t.test("#SearchUsersRegExp", (t) => {
 		const res = await SearchUsersRegExp("zkldi");
 
 		t.equal(res.length, 1);
-		t.equal(res[0].usernameLowercase, "test_zkldi");
+		t.equal(res[0]?.usernameLowercase, "test_zkldi");
 
 		const res2 = await SearchUsersRegExp("zk");
 
 		t.equal(res2.length, 1);
-		t.equal(res2[0].usernameLowercase, "test_zkldi");
+		t.equal(res2[0]?.usernameLowercase, "test_zkldi");
 
 		const res3 = await SearchUsersRegExp("zkzdi");
 

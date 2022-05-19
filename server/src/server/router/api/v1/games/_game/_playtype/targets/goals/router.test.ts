@@ -17,7 +17,7 @@ const LoadLazySampleData = async () => {
 	await db.goals.insert(IIDXSPMilestoneGoals);
 	await db["goal-subs"].insert([
 		...IIDXSPMilestoneGoalSubs,
-		dm(IIDXSPMilestoneGoalSubs[0], {
+		dm(IIDXSPMilestoneGoalSubs[0]!, {
 			userID: 2,
 		}),
 	] as GoalSubscriptionDocument[]);

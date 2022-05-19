@@ -12,6 +12,7 @@ t.test("#GetClientFromID", (t) => {
 			params: {
 				clientID: "OAUTH2_CLIENT_ID",
 			},
+			[SYMBOL_TACHI_DATA]: {}
 		});
 
 		t.strictSame(
@@ -27,7 +28,7 @@ t.test("#GetClientFromID", (t) => {
 				apiKeyTemplate: null,
 				apiKeyFilename: null,
 			},
-			"Should assign clientDoc with secret ommitted."
+			"Should assign clientDoc with secret omitted."
 		);
 
 		t.end();
@@ -38,6 +39,7 @@ t.test("#GetClientFromID", (t) => {
 			params: {
 				clientID: "NONSENSE",
 			},
+			[SYMBOL_TACHI_DATA]: {}
 		});
 
 		t.equal(res.statusCode, 404);
@@ -58,11 +60,12 @@ t.test("#RequireOwnershipOfClient", (t) => {
 
 	t.test("Should return 401 if the user has no authentication.", async (t) => {
 		const { res } = await expMiddlewareMock(RequireOwnershipOfClient, {
-			body: {
+			safeBody: {
 				__terribleHackOauth2ClientDoc: {
 					author: 1,
 				},
 			},
+			[SYMBOL_TACHI_DATA]: {},
 			session: {},
 		});
 
@@ -73,7 +76,7 @@ t.test("#RequireOwnershipOfClient", (t) => {
 
 	t.test("Should return 403 if the user does not own this client.", async (t) => {
 		const { res } = await expMiddlewareMock(RequireOwnershipOfClient, {
-			body: {
+			safeBody: {
 				__terribleHackOauth2ClientDoc: {
 					author: 1,
 				},
@@ -85,6 +88,7 @@ t.test("#RequireOwnershipOfClient", (t) => {
 					},
 				},
 			},
+			[SYMBOL_TACHI_DATA]: {},
 		});
 
 		t.equal(res.statusCode, 403);
@@ -94,7 +98,7 @@ t.test("#RequireOwnershipOfClient", (t) => {
 
 	t.test("Should continue if this is their session.", async (t) => {
 		const { res } = await expMiddlewareMock(RequireOwnershipOfClient, {
-			body: {
+			safeBody: {
 				__terribleHackOauth2ClientDoc: {
 					author: 1,
 				},
@@ -106,6 +110,7 @@ t.test("#RequireOwnershipOfClient", (t) => {
 					},
 				},
 			},
+			[SYMBOL_TACHI_DATA]: {},
 		});
 
 		t.equal(res.statusCode, 200);

@@ -219,7 +219,7 @@ t.test("#ParseEamusementCSV", (t) => {
 
 		t.throws(
 			() => GenericParseEamIIDXCSV(validSPFile, {}, "e-amusement", logger),
-			new ScoreImportFatalError(400, "Invalid playtype of Nothing given.")
+			new ScoreImportFatalError(400, "Invalid playtype of undefined given.")
 		);
 
 		let { context } = GenericParseEamIIDXCSV(

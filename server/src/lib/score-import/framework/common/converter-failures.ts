@@ -3,10 +3,11 @@
 import type { ImportTypeContextMap, ImportTypeDataMap } from "../../import-types/common/types";
 import type { ImportTypes } from "tachi-common";
 
-export class ConverterFailure {
+export class ConverterFailure extends Error {
 	message: string;
 
 	constructor(message: string) {
+		super();
 		this.message = message;
 	}
 }

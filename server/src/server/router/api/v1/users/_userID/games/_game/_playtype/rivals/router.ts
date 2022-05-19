@@ -43,7 +43,11 @@ router.put(
 		rivalIDs: [p.isPositiveNonZeroInteger],
 	}),
 	async (req, res) => {
-		const rivalIDs: Array<integer> = req.body.rivalIDs;
+		const body = req.safeBody as {
+			rivalIDs: Array<integer>;
+		};
+
+		const rivalIDs = body.rivalIDs;
 		const { user, game, playtype } = GetUGPT(req);
 
 		const result = await SetRivals(user.id, game, playtype, rivalIDs);

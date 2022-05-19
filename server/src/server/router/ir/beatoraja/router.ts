@@ -29,7 +29,7 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 	const userID = NotNullish(req[SYMBOL_TACHI_API_AUTH].userID);
 
 	const importRes = await ExpressWrappedScoreImportMain(userID, false, "ir/beatoraja", [
-		req.body,
+		req.safeBody,
 		userID,
 	]);
 
@@ -43,7 +43,7 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 		// the chart and score values were atleast typed correctly
 		// and can afford to make this assertion.
 		if (type === "KTDataNotFound") {
-			const { chart } = req.body as { chart: BeatorajaChart };
+			const { chart } = req.safeBody as { chart: BeatorajaChart };
 
 			const orphanInfo: { userIDs: Array<integer> } | null = await db[
 				"orphan-chart-queue"
@@ -56,7 +56,7 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 
 			if (!orphanInfo) {
 				logger.warn(`Chart '${chart.sha256}' got KTDataNotFound, but was not orphaned?`, {
-					body: req.body as unknown,
+					body: req.safeBody as unknown,
 				});
 
 				return res.status(400).json({
@@ -192,7 +192,7 @@ router.post(
 	}),
 	RequireNotGuest,
 	async (req, res) => {
-		const body = req.body as {
+		const body = req.safeBody as {
 			course: {
 				charts: Array<{ md5: string }>;
 				constraint: Array<"GAUGE_LR2" | "LN" | "MIRROR">;

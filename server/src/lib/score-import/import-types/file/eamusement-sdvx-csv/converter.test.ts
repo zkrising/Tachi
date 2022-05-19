@@ -8,7 +8,14 @@ import { SDVXEamusementCSVData } from "./types";
 
 const logger = CreateLogCtx(__filename);
 
-const parsedScore = GetKTDataJSON("./eamusement-sdvx-csv/parsed-data.json");
+const parsedScore = {
+	"title": "ALBIDA Powerless Mix",
+	"difficulty": "ADVANCED",
+	"level": "10",
+	"lamp": "EXCESSIVE COMPLETE",
+	"score": "9310699",
+	"exscore": "0"
+};
 
 t.test("#ConvertEamSDVXCSV", (t) => {
 	t.beforeEach(ResetDBState);

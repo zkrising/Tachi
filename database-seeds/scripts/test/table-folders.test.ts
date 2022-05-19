@@ -33,7 +33,9 @@ for (const table of tables) {
 	}
 }
 
-console.log(chalk[fails === 0 ? "green" : "red"](`[FOLDER_ID]: ${success} good, ${fails} bad.`));
+console.log(
+	chalk[fails === 0 ? "green" : "red"](`[TABLE_FOLDERS]: ${success} good, ${fails} bad.`)
+);
 
 if (fails !== 0) {
 	console.log(

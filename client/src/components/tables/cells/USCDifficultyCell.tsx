@@ -18,7 +18,7 @@ export default function USCDifficultyCell({
 	const gptConfig = GetGamePTConfig("usc", chart.playtype);
 
 	const bgColour = ChangeOpacity(
-		chart.data.isOfficial ? gptConfig.difficultyColours[chart.difficulty]! : COLOUR_SET.red,
+		chart.data.isOfficial ? gptConfig.difficultyColours[chart.difficulty]! : COLOUR_SET.teal,
 		0.2
 	);
 

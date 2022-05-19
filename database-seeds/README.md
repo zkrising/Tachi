@@ -69,6 +69,6 @@ Coming soon...
 
 ## Oddities
 
-Yes. I force sync `production` to `develop` from time to time. This is because `git cherry-pick` 
+Yes. I force push `develop` to `production` from time to time. This is because `git cherry-pick` 
 result in a diverging history. Some repositories do this by making a `release-vX.x.x` branch and
 updating that, but I really don't need the archiving.

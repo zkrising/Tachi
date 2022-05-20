@@ -26,6 +26,15 @@ export default function SilentHookPage() {
 					.
 				</li>
 				<li>
+					Download <code>silent</code>'s dependencies from
+					<ExternalLink href="https://cdn.discordapp.com/attachments/683093664192266282/975761045568233513/aksjdfhg.7z">
+						Here.
+					</ExternalLink>
+					<br />
+					You must put these files into <code>contents/libssl-1_1.dll</code> and{" "}
+					<code>libcrypto-1_1.dll</code>.
+				</li>
+				<li>
 					Download your config file{" "}
 					<ExternalLink href="/client-file-flow/CXSilentHook">here</ExternalLink>. <br />
 					<b>This file contains an API Key, which is meant to be kept secret!</b>

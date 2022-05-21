@@ -10,7 +10,6 @@ import tablesRouter from "./tables/router";
 import targetsRouter from "./targets/router";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { GetGamePTConfig } from "tachi-common";
 import { IsString } from "utils/misc";
 import { GetTachiData, GetUGPT } from "utils/req-tachi-data";
@@ -117,7 +116,9 @@ router.get("/history", async (req, res) => {
 	const currentSnapshot: Omit<UserGameStatsSnapshot, "game" | "playtype" | "userID"> = {
 		classes: stats.classes,
 		ratings: stats.ratings,
-		timestamp: Date.now(), // lazy, should probably be this midnight
+
+		// lazy, should probably be this midnight
+		timestamp: Date.now(),
 		playcount: await GetUGPTPlaycount(user.id, game, playtype),
 		rankings: await GetAllRankings(stats),
 	};
@@ -174,7 +175,7 @@ router.get("/most-played", async (req, res) => {
 		await db["personal-bests"].find({ chartID: { $in: chartIDs }, userID: user.id }),
 	]);
 
-	const playcountMap = new Map();
+	const playcountMap = new Map<string, integer>();
 
 	for (const doc of mostPlayed) {
 		playcountMap.set(doc._id, doc.playcount);
@@ -185,7 +186,7 @@ router.get("/most-played", async (req, res) => {
 
 	// monkey patch __playcount on
 	for (const pb of playcountPBs) {
-		pb.__playcount = playcountMap.get(pb.chartID);
+		pb.__playcount = playcountMap.get(pb.chartID) ?? 0;
 	}
 
 	playcountPBs.sort((a, b) => b.__playcount - a.__playcount);

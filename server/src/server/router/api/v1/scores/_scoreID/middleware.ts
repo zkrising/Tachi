@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_API_AUTH, SYMBOL_TACHI_DATA } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import { IsRequesterAdmin } from "utils/user";

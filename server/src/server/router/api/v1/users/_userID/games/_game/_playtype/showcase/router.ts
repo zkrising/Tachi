@@ -7,6 +7,7 @@ import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { RequireAuthedAsUser } from "server/router/api/v1/users/_userID/middleware";
 import { GetGamePTConfig } from "tachi-common";
+import { IsRecord } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
 import { ResolveUser } from "utils/user";
@@ -181,17 +182,26 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 		});
 	}
 
-	for (const stat of req.safeBody) {
+	const stats = req.safeBody as Array<unknown>;
+
+	for (const unvalidatedStat of stats) {
 		let err;
 
-		if (stat?.mode === "chart") {
-			err = p(stat, {
+		if (!IsRecord(unvalidatedStat)) {
+			return res.status(400).json({
+				success: false,
+				description: `Invalid stat -- got null or a non-object.`,
+			});
+		}
+
+		if (unvalidatedStat.mode === "chart") {
+			err = p(unvalidatedStat, {
 				chartID: "string",
 				mode: p.is("chart"),
 				property: p.isIn("grade", "lamp", "score", "percent", "playcount"),
 			});
-		} else if (stat?.mode === "folder") {
-			err = p(stat, {
+		} else if (unvalidatedStat.mode === "folder") {
+			err = p(unvalidatedStat, {
 				folderID: (self) => {
 					if (typeof self === "string") {
 						return true;
@@ -204,7 +214,6 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 				mode: p.is("folder"),
 				property: p.isIn("grade", "lamp", "score", "percent"),
 
-				// @ts-expect-error todo: investigate this weird prudence typeerror
 				gte: (self, parent) => {
 					if (typeof self !== "number") {
 						return "Expected a number.";
@@ -217,7 +226,7 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 					} else if (parent.property === "score") {
 						return p.isPositive(self);
 					} else if (parent.property === "percent") {
-						return p.isBetween(0, gptConfig.percentMax);
+						return p.isBetween(0, gptConfig.percentMax)(self);
 					}
 
 					return `Invalid property of ${parent.property}`;
@@ -226,7 +235,7 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 		} else {
 			return res.status(400).json({
 				success: false,
-				description: `Invalid stat - Expected ${stat?.mode} to be 'chart' or 'folder'.`,
+				description: `Invalid stat - Expected mode to be 'chart' or 'folder').`,
 			});
 		}
 
@@ -236,6 +245,8 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 				description: FormatPrError(err, "Invalid stat."),
 			});
 		}
+
+		const stat = unvalidatedStat as unknown as ShowcaseStatDetails;
 
 		if (stat.mode === "chart") {
 			// eslint-disable-next-line no-await-in-loop
@@ -247,8 +258,10 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 					description: `Invalid chartID - must be a chart for this game and playtype.`,
 				});
 			}
-		} else if (stat.mode === "folder") {
-			const folderIDs = Array.isArray(stat.folderID) ? stat.folderID : [stat.folderID];
+		} else if (unvalidatedStat.mode === "folder") {
+			const folderIDs = Array.isArray(unvalidatedStat.folderID)
+				? unvalidatedStat.folderID
+				: [unvalidatedStat.folderID];
 
 			// eslint-disable-next-line no-await-in-loop
 			const folders = await db.folders.find({ folderID: { $in: folderIDs } });

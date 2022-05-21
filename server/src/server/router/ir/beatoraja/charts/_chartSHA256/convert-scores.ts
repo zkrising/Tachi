@@ -61,8 +61,11 @@ export function TachiScoreDataToBeatorajaFormat(
 		date: pbScore.timeAchieved ?? 0,
 		maxcombo: scoreData.hitMeta.maxCombo ?? 0,
 		gauge: scoreData.hitMeta.gauge ?? 0,
-		deviceType: null, // These two are now unsupported due to performance concerns.
+
+		// These two are now unsupported due to performance concerns.
+		deviceType: null,
 		random: null,
+
 		minbp: scoreData.hitMeta.bp ?? 0,
 		passnotes: 0,
 		notes: notecount,

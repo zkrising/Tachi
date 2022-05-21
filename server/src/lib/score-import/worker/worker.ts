@@ -84,7 +84,7 @@ export const worker = new Worker(
 
 		logger.debug(`Starting import.`);
 
-		job.updateProgress({
+		void job.updateProgress({
 			description: "Importing Scores.",
 		});
 

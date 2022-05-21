@@ -14,7 +14,7 @@ const startTime = Date.now();
 router.get("/", (req, res) => {
 	let echo;
 
-	if (req.query.echo && typeof req.query.echo === "string") {
+	if (typeof req.query.echo === "string") {
 		echo = req.query.echo;
 	}
 
@@ -45,7 +45,7 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
 	let echo;
 
-	if (req.safeBody.echo && typeof req.safeBody.echo === "string") {
+	if (typeof req.safeBody.echo === "string") {
 		echo = req.safeBody.echo;
 	}
 

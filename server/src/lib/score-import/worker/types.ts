@@ -41,3 +41,7 @@ export type ScoreImportJob<I extends ImportTypes = ImportTypes> = Job<ScoreImpor
 export interface ScoreImportProgress {
 	description: string;
 }
+
+export type ScoreImportWorkerReturns {
+
+}

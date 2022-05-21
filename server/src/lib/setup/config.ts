@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import JSON5 from "json5";
 import p from "prudence";
 import { StaticConfig } from "tachi-common";
+import { IsNullishOrEmptyStr } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import fs from "fs";
 import { URL } from "url";
@@ -36,10 +37,11 @@ function isValidURL(self: unknown) {
 	}
 
 	try {
+		// eslint-disable-next-line no-new
 		new URL(self);
 		return true;
 	} catch (err) {
-		return `Invalid URL ${self}.`;
+		return `Invalid URL ${self} (${(err as Error).message}).`;
 	}
 }
 
@@ -66,7 +68,7 @@ export interface TachiServerConfig {
 	RATE_LIMIT: integer;
 	OAUTH_CLIENT_CAP: integer;
 	OPTIONS_ALWAYS_SUCCEEDS?: boolean;
-	USE_EXTERNAL_SCORE_IMPORT_WORKER?: boolean;
+	USE_EXTERNAL_SCORE_IMPORT_WORKER: boolean;
 	EXTERNAL_SCORE_IMPORT_WORKER_CONCURRENCY?: integer;
 	SEEDS_URL: string | null;
 	EMAIL_CONFIG?: {
@@ -207,7 +209,7 @@ const err = p(config, {
 });
 
 if (err) {
-	throw FormatPrError(err, "Invalid conf.json5 file.");
+	throw new Error(FormatPrError(err, "Invalid conf.json5 file."));
 }
 
 const tachiServerConfig = config as TachiServerConfig;
@@ -219,6 +221,7 @@ tachiServerConfig.USC_QUEUE_SIZE ??= 3;
 tachiServerConfig.BEATORAJA_QUEUE_SIZE ??= 3;
 tachiServerConfig.MAX_GOAL_SUBSCRIPTIONS ??= 1_000;
 tachiServerConfig.MAX_MILESTONE_SUBSCRIPTIONS ??= 100;
+tachiServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER ??= false;
 
 export const TachiConfig = tachiServerConfig.TACHI_CONFIG;
 export const ServerConfig = tachiServerConfig;
@@ -232,7 +235,7 @@ if (Number.isNaN(port) && process.env.IS_SERVER) {
 	port = 8080;
 }
 
-const redisUrl = process.env.REDIS_URL;
+const redisUrl = process.env.REDIS_URL ?? "";
 
 if (!redisUrl) {
 	// n.b. These logs should be critical level, but the logger cant actually instantiate
@@ -241,22 +244,22 @@ if (!redisUrl) {
 	process.exit(1);
 }
 
-const mongoUrl = process.env.MONGO_URL;
+const mongoUrl = process.env.MONGO_URL ?? "";
 
 if (!mongoUrl) {
 	logger.error(`No MONGO_URL specified in environment. Terminating.`);
 	process.exit(1);
 }
 
-const seqUrl = process.env.SEQ_URL;
+const seqUrl = process.env.SEQ_URL ?? "";
 
-if (!seqUrl && tachiServerConfig.LOGGER_CONFIG.SEQ_API_KEY) {
+if (!seqUrl && !IsNullishOrEmptyStr(tachiServerConfig.LOGGER_CONFIG.SEQ_API_KEY)) {
 	logger.warn(
 		`No SEQ_URL specified in environment, yet LOGGER_CONFIG.SEQ_API_KEY was defined. No logs will be sent to Seq!`
 	);
 }
 
-const nodeEnv = process.env.NODE_ENV;
+const nodeEnv = process.env.NODE_ENV ?? "";
 
 if (!nodeEnv) {
 	logger.error(`No NODE_ENV specified in environment. Terminating.`);
@@ -275,6 +278,7 @@ if (TachiConfig.GAMES.includes("bms") !== TachiConfig.GAMES.includes("pms")) {
 	logger.error(
 		`BMS and PMS MUST be enabled at the same time, due to how the beatoraja IR works.`
 	);
+
 	process.exit(1);
 }
 

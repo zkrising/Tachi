@@ -14,7 +14,7 @@ import { UpdateGameSongIDCounter } from "utils/db";
 import { InitaliseFolderChartLookup } from "utils/folder";
 import { ArrayDiff, IsSupported } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
-import type { BulkWriteOperation } from "mongodb";
+import type { BulkWriteOperation, DeleteWriteOpResultObject } from "mongodb";
 import type { ICollection } from "monk";
 import type {
 	BMSCourseDocument,
@@ -31,10 +31,7 @@ import type {
 interface SyncInstructions {
 	pattern: RegExp;
 	handler: (
-		// These 'any's are necessary because generifying here kinda sucks.
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		c: Array<any>,
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		collection: ICollection,
 		logger: KtLogger,
 		collectionName: string
@@ -52,13 +49,11 @@ async function RemoveNotPresent<T>(
 	// Remove anything no longer present.
 	// Note that $nin is incredibly slow.
 	// @ts-expect-error generic system failing
-	const r = await collection.remove({
+	const r = (await collection.remove({
 		[field]: { $nin: documents.map((e) => e[field]) },
-	});
+	})) as DeleteWriteOpResultObject;
 
-	// @ts-expect-error These types are broken!
-	if (r.deletedCount) {
-		// @ts-expect-error These types are broken!
+	if (r.deletedCount !== undefined && r.deletedCount > 0) {
 		logger.info(`Removed ${r.deletedCount} documents.`);
 	}
 }

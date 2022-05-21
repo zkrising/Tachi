@@ -87,16 +87,22 @@ router.patch(
 
 		const updateExp: ModifiableSessionProps = {};
 
-		if (req.safeBody.name) {
-			updateExp.name = req.safeBody.name as string;
+		const body = req.safeBody as {
+			name?: string;
+			desc?: string;
+			highlight?: boolean;
+		};
+
+		if (body.name) {
+			updateExp.name = body.name;
 		}
 
-		if (req.safeBody.desc) {
-			updateExp.desc = req.safeBody.desc as string;
+		if (body.desc) {
+			updateExp.desc = body.desc;
 		}
 
-		if (typeof req.safeBody.highlight === "boolean") {
-			updateExp.highlight = req.safeBody.highlight;
+		if (typeof body.highlight === "boolean") {
+			updateExp.highlight = body.highlight;
 		}
 
 		if (Object.keys(updateExp).length === 0) {

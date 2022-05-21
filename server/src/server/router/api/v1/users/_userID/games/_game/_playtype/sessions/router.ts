@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 	if (typeof req.query.search !== "string") {
 		return res.status(400).json({
 			success: false,
-			description: `Invalid value of ${req.query.search} for search parameter.`,
+			description: `Invalid value for search parameter.`,
 		});
 	}
 

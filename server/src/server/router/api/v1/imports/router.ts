@@ -1,7 +1,7 @@
 import { GetImportFromParam, RequireOwnershipOfImportOrAdmin } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { JOB_RETRY_COUNT, SYMBOL_TACHI_DATA } from "lib/constants/tachi";
+import { JOB_RETRY_COUNT } from "lib/constants/tachi";
 import { RevertImport } from "lib/imports/imports";
 import CreateLogCtx from "lib/logger/logger";
 import ScoreImportQueue, { ScoreImportQueueEvents } from "lib/score-import/worker/queue";

@@ -1,7 +1,9 @@
 import { SYMBOL_TACHI_API_AUTH, SYMBOL_TACHI_DATA } from "lib/constants/tachi";
+import { IsNullish } from "utils/misc";
 import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import { ResolveUser } from "utils/user";
 import type { RequestHandler } from "express";
+import type { integer } from "tachi-common";
 
 export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 	if (!req.params.userID) {
@@ -14,7 +16,9 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 	let userID = req.params.userID;
 
 	if (req.params.userID === "me") {
-		if (!req[SYMBOL_TACHI_API_AUTH].userID) {
+		const authUserID = req[SYMBOL_TACHI_API_AUTH].userID;
+
+		if (authUserID === null) {
 			return res.status(401).json({
 				success: false,
 				description: "Cannot use 'me' userID with no authentication.",
@@ -28,7 +32,7 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 			return;
 		}
 
-		userID = req[SYMBOL_TACHI_API_AUTH].userID!.toString();
+		userID = authUserID.toString();
 	}
 
 	const user = await ResolveUser(userID);
@@ -51,7 +55,7 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
 	const user = GetTachiData(req, "requestedUser");
 
-	if (!req[SYMBOL_TACHI_API_AUTH].userID) {
+	if (req[SYMBOL_TACHI_API_AUTH].userID === null) {
 		return res.status(401).json({
 			success: false,
 			description: `Authentication is required for this endpoint.`,
@@ -76,14 +80,14 @@ export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
 export const RequireSelfRequestFromUser: RequestHandler = (req, res, next) => {
 	const user = GetTachiData(req, "requestedUser");
 
-	if (!req[SYMBOL_TACHI_API_AUTH].userID) {
+	if (req[SYMBOL_TACHI_API_AUTH].userID === null) {
 		return res.status(401).json({
 			success: false,
 			description: `This endpoint requires session-level authentication.`,
 		});
 	}
 
-	if (!req.session.tachi?.user.id || req[SYMBOL_TACHI_API_AUTH].userID !== user.id) {
+	if (IsNullish(req.session.tachi?.user.id) || req[SYMBOL_TACHI_API_AUTH].userID !== user.id) {
 		return res.status(403).json({
 			success: false,
 			description: `This request cannot be performed by an API key, and requires authentication.`,

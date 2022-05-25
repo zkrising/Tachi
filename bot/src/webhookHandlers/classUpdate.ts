@@ -3,7 +3,7 @@ import { AllClassSets } from "tachi-common/js/game-classes";
 import { BotConfig } from "../config";
 import { client } from "../main";
 import { GetUGPTStats, GetUserInfo } from "../utils/apiRequests";
-import { SDVX_VF_CLASSES } from "../utils/constants";
+import { POPN_CLASSES, SDVX_VF_CLASSES } from "../utils/constants";
 import { CreateEmbed } from "../utils/embeds";
 import { PrependTachiUrl } from "../utils/fetchTachi";
 import logger from "../utils/logger";
@@ -92,6 +92,11 @@ function ShouldRenderUpdate(
 			SDVX_VF_CLASSES.IMPERIAL_III,
 			SDVX_VF_CLASSES.IMPERIAL_IV,
 		].includes(classValue);
+	} else if (game === "popn" && classSet === "class") {
+		return [
+			// All of the other classes in pop'n can be trivially blitzed through.
+			POPN_CLASSES.GOD,
+		];
 	}
 
 	return true;
@@ -111,8 +116,6 @@ function GetMinimumScores(game: Game, playtype: Playtype, classSet: AllClassSets
 	} else if (game === "bms") {
 		return 20;
 	} else if (game === "iidx") {
-		return 20;
-	} else if (game === "popn") {
 		return 20;
 	}
 

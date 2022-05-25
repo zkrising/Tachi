@@ -232,11 +232,7 @@ export async function SubscribeToMilestone(
 	// on each goal. We could probably shorten this by directly inserting the records
 	// from result.goalResults ourselves.
 	// evaluating goals is fairly cheap though.
-	await Promise.all(
-		result.goals.map((goal) => {
-			SubscribeToGoal(userID, goal, false);
-		})
-	);
+	await Promise.all(result.goals.map((goal) => SubscribeToGoal(userID, goal, false)));
 
 	await db["milestone-subs"].insert(milestoneSub);
 

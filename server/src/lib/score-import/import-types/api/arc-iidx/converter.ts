@@ -19,7 +19,7 @@ import type { Lamps } from "tachi-common";
 import type { EmptyObject } from "utils/types";
 
 // There's a bunch of other useless fields but we don't care
-const PR_ArcIIDXScore: PrudenceSchema = {
+const PR_ARC_IIDX_SCORE: PrudenceSchema = {
 	chart_id: "string",
 	lamp: p.isIn(
 		"FULL_COMBO",
@@ -42,18 +42,11 @@ export const ConvertAPIArcIIDX: ConverterFunction<unknown, EmptyObject> = async 
 	importType,
 	logger
 ) => {
-	const err = p(data, PR_ArcIIDXScore, {}, { throwOnNonObject: false, allowExcessKeys: true });
+	const err = p(data, PR_ARC_IIDX_SCORE, {}, { throwOnNonObject: false, allowExcessKeys: true });
 
 	if (err) {
 		throw new InvalidScoreFailure(FormatPrError(err, "Invalid ARC Score: "));
 	}
-
-	// Remove internal properties.
-	delete (data as any)._links;
-	delete (data as any)._etag;
-
-	// Most importantly, this one will cause crashes.
-	delete (data as any)._id;
 
 	// confirmed by Prudence above.
 	const score = data as ARCIIDXScore;

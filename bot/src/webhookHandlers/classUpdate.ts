@@ -3,7 +3,7 @@ import { AllClassSets } from "tachi-common/js/game-classes";
 import { BotConfig } from "../config";
 import { client } from "../main";
 import { GetUGPTStats, GetUserInfo } from "../utils/apiRequests";
-import { SDVXVFClasses } from "../utils/constants";
+import { SDVX_VF_CLASSES } from "../utils/constants";
 import { CreateEmbed } from "../utils/embeds";
 import { PrependTachiUrl } from "../utils/fetchTachi";
 import logger from "../utils/logger";
@@ -83,14 +83,14 @@ function ShouldRenderUpdate(
 			// SDVXVFClasses.DANDELION_I,
 			// SDVXVFClasses.CYAN_I,
 			// SDVXVFClasses.SCARLET_I,
-			SDVXVFClasses.CORAL_I,
-			SDVXVFClasses.ARGENTO_I,
-			SDVXVFClasses.ELDORA_I,
-			SDVXVFClasses.CRIMSON_I,
-			SDVXVFClasses.IMPERIAL_I,
-			SDVXVFClasses.IMPERIAL_II,
-			SDVXVFClasses.IMPERIAL_III,
-			SDVXVFClasses.IMPERIAL_IV,
+			SDVX_VF_CLASSES.CORAL_I,
+			SDVX_VF_CLASSES.ARGENTO_I,
+			SDVX_VF_CLASSES.ELDORA_I,
+			SDVX_VF_CLASSES.CRIMSON_I,
+			SDVX_VF_CLASSES.IMPERIAL_I,
+			SDVX_VF_CLASSES.IMPERIAL_II,
+			SDVX_VF_CLASSES.IMPERIAL_III,
+			SDVX_VF_CLASSES.IMPERIAL_IV,
 		].includes(classValue);
 	}
 

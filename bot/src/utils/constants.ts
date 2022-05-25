@@ -1,4 +1,4 @@
-export enum SDVXVFClasses {
+export enum SDVX_VF_CLASSES {
 	SIENNA_I,
 	SIENNA_II,
 	SIENNA_III,

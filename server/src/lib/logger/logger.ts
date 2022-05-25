@@ -213,15 +213,12 @@ export const rootLogger = winston.createLogger({
 	transports: tports,
 	defaultMeta: {
 		__ServerName: TachiConfig.NAME,
-		__Worker: IsNonEmptyString(process.env.IS_WORKER),
+		__Worker: !!process.env.IS_WORKER,
 		__ReplicaID: Environment.replicaIdentity,
 	},
 }) as KtLogger;
 
-if (
-	IsNonEmptyString(ServerConfig.LOGGER_CONFIG.SEQ_API_KEY) !==
-	IsNonEmptyString(Environment.seqUrl)
-) {
+if (!!ServerConfig.LOGGER_CONFIG.SEQ_API_KEY !== !!Environment.seqUrl) {
 	rootLogger.warn(
 		`Only one of SEQ_API_KEY (conf.json5) and SEQ_URL (Environment) were set. Not sending logs to Seq, as both must be provided.`
 	);

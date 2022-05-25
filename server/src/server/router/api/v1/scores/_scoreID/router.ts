@@ -158,7 +158,7 @@ router.delete(
 
 		const score = GetTachiData(req, "scoreDoc");
 
-		await DeleteScore(score, body.blacklist);
+		await DeleteScore(score, !!req.body.blacklist);
 
 		return res.status(200).json({
 			success: true,

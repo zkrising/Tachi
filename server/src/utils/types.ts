@@ -34,7 +34,7 @@ declare module "express-serve-static-core" {
 		/**
 		 * This is a type-safe variant of "req.safeBody".
 		 * "req.safeBody" is 'any' by default, which makes it exceptionally difficult
-		 * to use in our codebase (due to the strict hollis rules.)
+		 * to use in our codebase (due to the strict cadence rules.)
 		 */
 		safeBody: Record<string, unknown>;
 	}

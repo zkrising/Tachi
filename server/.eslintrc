@@ -2,9 +2,9 @@
 	"plugins": [
 		"@typescript-eslint",
 		"import",
-		"hollis"
+		"cadence"
 	],
 	"extends": [
-		"plugin:hollis/recommended"
+		"plugin:cadence/recommended"
 	]
 }

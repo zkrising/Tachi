@@ -401,7 +401,7 @@ async function UpdateUsersGameStats(
  * on their playtype.
  */
 function ParseImportInfo(importInfo: Array<ImportProcessingInfo>) {
-	const scorePlaytypeMap: ScorePlaytypeMap = Object.create(null);
+	const scorePlaytypeMap: ScorePlaytypeMap = {};
 
 	const scoreIDs = [];
 	const errors = [];

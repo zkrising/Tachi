@@ -1,12 +1,12 @@
-import t from "tap";
-import { GitadoraColours, SDVXVFClasses } from "lib/constants/classes";
-import CreateLogCtx from "lib/logger/logger";
 import {
 	CalculateGitadoraColour,
 	GitadoraSkillToColour,
 	CalculateSDVXClass,
 	SDVXVF6ToClass,
 } from "./builtin-class-handlers";
+import { GitadoraColours, SDVXVFClasses } from "lib/constants/classes";
+import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
 
 const logger = CreateLogCtx(__filename);
 

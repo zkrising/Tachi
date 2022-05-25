@@ -1,32 +1,32 @@
+import { SearchGameSongs, SearchUsersRegExp } from "./search";
 import db from "external/mongo/db";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { LoadTachiIIDXData } from "test-utils/test-data";
-import { SearchGameSongs, SearchUsersRegExp } from "./search";
 
 t.test("#SearchGameSongs", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(LoadTachiIIDXData);
 	t.beforeEach(async () => {
 		await db.songs.iidx.dropIndexes();
-		await db.songs.iidx.createIndex(
-			{
-				title: "text",
-				artist: "text",
-				altTitles: "text",
-				searchTerms: "text",
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			} as any /* known bug with monk */
-		);
+
+		// Casting here is due to a known bug with monk.
+		await db.songs.iidx.createIndex({
+			title: "text",
+			artist: "text",
+			altTitles: "text",
+			searchTerms: "text",
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		} as any);
 	});
 
 	t.test("Should return songs like the query.", async (t) => {
 		const res = await SearchGameSongs("iidx", "amuro");
 
+		// for simplicity of testing (and because the
+		// return order is ambiguous) we sort on
+		// songID here and expect this.
 		t.strictSame(
-			// for simplicity of testing (and because the
-			// return order is ambiguous) we sort on
-			// songID here and expect this.
 			res.sort((a, b) => a.id - b.id).map((e) => e.title),
 			["A", "AA", "冥", "F", "HAERETICUS", "ZZ", "X", "AA -rebuild-", "∀", "-65℃"]
 		);

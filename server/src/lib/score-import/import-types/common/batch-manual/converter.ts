@@ -53,7 +53,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 	let grade: Grades[IDStrings];
 
 	if (game === "jubeat") {
-		if (!data.percent && data.percent !== 0) {
+		if (data.percent === undefined) {
 			throw new InvalidScoreFailure(
 				`The percent field must be filled out for jubeat scores.`
 			);
@@ -97,7 +97,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 		service,
 		comment: data.comment ?? null,
 		importType,
-		timeAchieved: data.timeAchieved || null,
+		timeAchieved: data.timeAchieved ?? null,
 		scoreData: {
 			lamp: data.lamp,
 			score: data.score,
@@ -124,219 +124,246 @@ export async function ResolveMatchTypeToKTData(
 ): Promise<{ song: SongDocument; chart: ChartDocument }> {
 	const game = context.game;
 
-	if (data.matchType === "bmsChartHash") {
-		if (game !== "bms") {
-			throw new InvalidScoreFailure(`Cannot use bmsChartHash lookup on ${game}.`);
+	switch (data.matchType) {
+		case "bmsChartHash": {
+			if (game !== "bms") {
+				throw new InvalidScoreFailure(`Cannot use bmsChartHash lookup on ${game}.`);
+			}
+
+			const chart = await FindBMSChartOnHash(data.identifier);
+
+			if (!chart) {
+				throw new KTDataNotFoundFailure(
+					`Cannot find chart for hash ${data.identifier}.`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			if (chart.playtype !== context.playtype) {
+				throw new InvalidScoreFailure(
+					`Chart ${chart.chartID}'s playtype was ${chart.playtype}, but this was not equal to the import playtype of ${context.playtype}.`
+				);
+			}
+
+			const song = await FindSongOnID(game, chart.songID);
+
+			if (!song) {
+				logger.severe(`BMS songID ${chart.songID} has charts but no parent song.`);
+				throw new InternalFailure(
+					`BMS songID ${chart.songID} has charts but no parent song.`
+				);
+			}
+
+			return { chart, song };
 		}
 
-		const chart = await FindBMSChartOnHash(data.identifier);
+		case "ddrSongHash": {
+			if (game !== "ddr") {
+				throw new InvalidScoreFailure(`Cannot use ddrSongHash lookup on ${game}.`);
+			}
 
-		if (!chart) {
-			throw new KTDataNotFoundFailure(
-				`Cannot find chart for hash ${data.identifier}.`,
-				importType,
-				data,
-				context
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+			if (!data.difficulty) {
+				throw new InvalidScoreFailure(
+					`Missing 'difficulty' field, but is needed for ddrSongHash lookup.`
+				);
+			}
+
+			const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
+
+			const chart = await FindDDRChartOnSongHash(
+				data.identifier,
+				context.playtype,
+				difficulty
 			);
+
+			if (!chart) {
+				throw new KTDataNotFoundFailure(
+					`Cannot find chart for songHash ${data.identifier} (${context.playtype} ${difficulty}).`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			const song = await FindSongOnID(game, chart.songID);
+
+			if (!song) {
+				logger.severe(`DDR songID ${chart.songID} has charts but no parent song.`);
+				throw new InternalFailure(
+					`DDR songID ${chart.songID} has charts but no parent song.`
+				);
+			}
+
+			return { song, chart };
 		}
 
-		if (chart.playtype !== context.playtype) {
-			throw new InvalidScoreFailure(
-				`Chart ${chart.chartID}'s playtype was ${chart.playtype}, but this was not equal to the import playtype of ${context.playtype}.`
+		case "popnChartHash": {
+			if (game !== "popn") {
+				throw new InvalidScoreFailure(`Cannot use popnChartHash lookup on ${game}.`);
+			}
+
+			const chart = await db.charts.popn.findOne({
+				playtype: context.playtype,
+				"data.hashSHA256": data.identifier,
+			});
+
+			if (!chart) {
+				throw new KTDataNotFoundFailure(
+					`Cannot find chart for popnChartHash ${data.identifier} (${context.playtype}).`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			const song = await FindSongOnID(game, chart.songID);
+
+			if (!song) {
+				logger.severe(`Pop'n songID ${chart.songID} has charts but no parent song.`);
+				throw new InternalFailure(
+					`Pop'n songID ${chart.songID} has charts but no parent song.`
+				);
+			}
+
+			return { song, chart };
+		}
+
+		case "tachiSongID": {
+			const songID = AssertStrAsPositiveInt(
+				data.identifier,
+				"Invalid songID - must be a stringified positive integer."
 			);
+
+			const song = await FindSongOnID(game, songID);
+
+			if (!song) {
+				throw new KTDataNotFoundFailure(
+					`Cannot find song with songID ${data.identifier}.`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			const chart = await ResolveChartFromSong(song, data, context, importType);
+
+			return { song, chart };
 		}
 
-		const song = await FindSongOnID(game, chart.songID);
+		case "songTitle": {
+			const song = await FindSongOnTitleInsensitive(game, data.identifier);
 
-		if (!song) {
-			logger.severe(`BMS songID ${chart.songID} has charts but no parent song.`);
-			throw new InternalFailure(`BMS songID ${chart.songID} has charts but no parent song.`);
+			if (!song) {
+				throw new KTDataNotFoundFailure(
+					`Cannot find song with title ${data.identifier}.`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			const chart = await ResolveChartFromSong(song, data, context, importType);
+
+			return { song, chart };
 		}
 
-		return { chart, song };
-	} else if (data.matchType === "ddrSongHash") {
-		if (game !== "ddr") {
-			throw new InvalidScoreFailure(`Cannot use ddrSongHash lookup on ${game}.`);
+		case "inGameID": {
+			const gamesWithInGameIDSupport = [
+				"iidx",
+				"popn",
+				"ddr",
+				"sdvx",
+				"jubeat",
+				"chunithm",
+				"gitadora",
+				"maimai",
+				"museca",
+			];
+
+			if (!gamesWithInGameIDSupport.includes(game)) {
+				throw new InvalidScoreFailure(
+					`Cannot use inGameID on game ${game}. The game may not have a concept of an in game ID, or support just might not exist yet.`
+				);
+			}
+
+			let identifier: number | string = data.identifier;
+
+			// ddr uses weird strings as IDs instead of numbers
+
+			if (game !== "ddr") {
+				identifier = Number(data.identifier);
+			}
+
+			const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
+
+			const chart = await db.charts[game].findOne({
+				"data.inGameID": identifier,
+				playtype: context.playtype,
+				difficulty,
+			});
+
+			if (!chart) {
+				throw new KTDataNotFoundFailure(
+					`Cannot find chart for inGameID ${data.identifier} (${context.playtype}).`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			const song = await db.songs[game].findOne({ id: chart.songID });
+
+			if (!song) {
+				logger.severe(`Song-Chart desync on ${chart.songID}.`);
+				throw new InternalFailure(`Failed to get song for a chart that exists.`);
+			}
+
+			return { song, chart };
 		}
 
-		if (!data.difficulty) {
-			throw new InvalidScoreFailure(
-				`Missing 'difficulty' field, but is needed for ddrSongHash lookup.`
+		case "uscChartHash": {
+			if (game !== "usc") {
+				throw new InvalidScoreFailure(`uscChartMash matchType can only be used on USC.`);
+			}
+
+			const chart = await db.charts.usc.findOne({
+				"data.hashSHA1": data.identifier,
+				playtype: context.playtype,
+			});
+
+			if (!chart) {
+				throw new KTDataNotFoundFailure(
+					`Cannot find chart with hash ${data.identifier}.`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			const song = await db.songs[game].findOne({ id: chart.songID });
+
+			if (!song) {
+				logger.severe(`Song-Chart desync on ${chart.songID}.`);
+				throw new InternalFailure(`Failed to get song for a chart that exists.`);
+			}
+
+			return { song, chart };
+		}
+
+		default: {
+			const { matchType } = data;
+
+			logger.error(
+				`Invalid matchType ${matchType} ended up in conversion - should have been rejected by prudence?`
 			);
+
+			// really, this could be a larger error. - it's an internal failure because prudence should reject this.
+			throw new InvalidScoreFailure(`Invalid matchType ${matchType}.`);
 		}
-
-		const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
-
-		const chart = await FindDDRChartOnSongHash(data.identifier, context.playtype, difficulty);
-
-		if (!chart) {
-			throw new KTDataNotFoundFailure(
-				`Cannot find chart for songHash ${data.identifier} (${context.playtype} ${difficulty}).`,
-				importType,
-				data,
-				context
-			);
-		}
-
-		const song = await FindSongOnID(game, chart.songID);
-
-		if (!song) {
-			logger.severe(`DDR songID ${chart.songID} has charts but no parent song.`);
-			throw new InternalFailure(`DDR songID ${chart.songID} has charts but no parent song.`);
-		}
-
-		return { song, chart };
-	} else if (data.matchType === "popnChartHash") {
-		if (game !== "popn") {
-			throw new InvalidScoreFailure(`Cannot use popnChartHash lookup on ${game}.`);
-		}
-
-		const chart = await db.charts.popn.findOne({
-			playtype: context.playtype,
-			"data.hashSHA256": data.identifier,
-		});
-
-		if (!chart) {
-			throw new KTDataNotFoundFailure(
-				`Cannot find chart for popnChartHash ${data.identifier} (${context.playtype}).`,
-				importType,
-				data,
-				context
-			);
-		}
-
-		const song = await FindSongOnID(game, chart.songID);
-
-		if (!song) {
-			logger.severe(`Pop'n songID ${chart.songID} has charts but no parent song.`);
-			throw new InternalFailure(
-				`Pop'n songID ${chart.songID} has charts but no parent song.`
-			);
-		}
-
-		return { song, chart };
-	} else if (data.matchType === "tachiSongID") {
-		const songID = AssertStrAsPositiveInt(
-			data.identifier,
-			"Invalid songID - must be a stringified positive integer."
-		);
-
-		const song = await FindSongOnID(game, songID);
-
-		if (!song) {
-			throw new KTDataNotFoundFailure(
-				`Cannot find song with songID ${data.identifier}.`,
-				importType,
-				data,
-				context
-			);
-		}
-
-		const chart = await ResolveChartFromSong(song, data, context, importType);
-
-		return { song, chart };
-	} else if (data.matchType === "songTitle") {
-		const song = await FindSongOnTitleInsensitive(game, data.identifier);
-
-		if (!song) {
-			throw new KTDataNotFoundFailure(
-				`Cannot find song with title ${data.identifier}.`,
-				importType,
-				data,
-				context
-			);
-		}
-
-		const chart = await ResolveChartFromSong(song, data, context, importType);
-
-		return { song, chart };
-	} else if (data.matchType === "inGameID") {
-		const gamesWithInGameIDSupport = [
-			"iidx",
-			"popn",
-			"ddr",
-			"sdvx",
-			"jubeat",
-			"chunithm",
-			"gitadora",
-			"maimai",
-			"museca",
-		];
-
-		if (!gamesWithInGameIDSupport.includes(game)) {
-			throw new InvalidScoreFailure(
-				`Cannot use inGameID on game ${game}. The game may not have a concept of an in game ID, or support just might not exist yet.`
-			);
-		}
-
-		let identifier: number | string = data.identifier;
-
-		// ddr uses weird strings as IDs instead of numbers
-
-		if (game !== "ddr") {
-			identifier = Number(data.identifier);
-		}
-
-		const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
-
-		const chart = await db.charts[game].findOne({
-			"data.inGameID": identifier,
-			playtype: context.playtype,
-			difficulty,
-		});
-
-		if (!chart) {
-			throw new KTDataNotFoundFailure(
-				`Cannot find chart for inGameID ${data.identifier} (${context.playtype}).`,
-				importType,
-				data,
-				context
-			);
-		}
-
-		const song = await db.songs[game].findOne({ id: chart.songID });
-
-		if (!song) {
-			logger.severe(`Song-Chart desync on ${chart.songID}.`);
-			throw new InternalFailure(`Failed to get song for a chart that exists.`);
-		}
-
-		return { song, chart };
-	} else if (data.matchType === "uscChartHash") {
-		if (game !== "usc") {
-			throw new InvalidScoreFailure(`uscChartMash matchType can only be used on USC.`);
-		}
-
-		const chart = await db.charts.usc.findOne({
-			"data.hashSHA1": data.identifier,
-			playtype: context.playtype,
-		});
-
-		if (!chart) {
-			throw new KTDataNotFoundFailure(
-				`Cannot find chart with hash ${data.identifier}.`,
-				importType,
-				data,
-				context
-			);
-		}
-
-		const song = await db.songs[game].findOne({ id: chart.songID });
-
-		if (!song) {
-			logger.severe(`Song-Chart desync on ${chart.songID}.`);
-			throw new InternalFailure(`Failed to get song for a chart that exists.`);
-		}
-
-		return { song, chart };
 	}
-
-	logger.error(
-		`Invalid matchType ${data.matchType} ended up in conversion - should have been rejected by prudence?`
-	);
-
-	// really, this could be a larger error. - it's an internal failure because prudence should reject this.
-	throw new InvalidScoreFailure(`Invalid matchType ${data.matchType}.`);
 }
 
 export async function ResolveChartFromSong(

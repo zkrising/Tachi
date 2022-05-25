@@ -1,10 +1,10 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { PBScoreDocument, PublicUserDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXSPScorePB } from "test-utils/test-data";
+import type { PBScoreDocument, PublicUserDocument } from "tachi-common";
 
 t.test("GET /api/v1/games/:game/:playtype/charts/:chartID", (t) => {
 	t.beforeEach(ResetDBState);
@@ -76,7 +76,7 @@ t.test("GET /api/v1/games/:game/:playtype/charts/:chartID/playcount", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should return the total playcount on this chart.", async (t) => {
-		const pbs: PBScoreDocument[] = [];
+		const pbs: Array<PBScoreDocument> = [];
 
 		delete TestingIIDXSPScorePB._id;
 

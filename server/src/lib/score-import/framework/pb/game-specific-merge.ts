@@ -23,10 +23,11 @@ export async function IIDXMergeFn(
 		},
 		{
 			sort: {
-				"scoreData.hitMeta.bp": 1, // bp 0 is the best BP, bp 1 is worse, so on
+				// bp 0 is the best BP, bp 1 is worse, so on
+				"scoreData.hitMeta.bp": 1,
 			},
 		}
-	)) as ScoreDocument<"iidx:DP" | "iidx:SP">;
+	)) as ScoreDocument<"iidx:DP" | "iidx:SP"> | null;
 
 	if (!bpPB) {
 		logger.verbose(
@@ -64,7 +65,7 @@ export function PopnMergeFn(
 	pbDoc: PBScoreDocument<"popn:9B">,
 	scorePB: ScoreDocument<"popn:9B">,
 	lampPB: ScoreDocument<"popn:9B">,
-	logger: KtLogger
+	_logger: KtLogger
 ) {
 	pbDoc.scoreData.hitMeta.specificClearType = lampPB.scoreData.hitMeta.specificClearType;
 
@@ -75,7 +76,7 @@ export function BMSMergeFn(
 	pbDoc: PBScoreDocument<"bms:7K" | "bms:14K">,
 	scorePB: ScoreDocument<"bms:7K" | "bms:14K">,
 	lampPB: ScoreDocument<"bms:7K" | "bms:14K">,
-	logger: KtLogger
+	_logger: KtLogger
 ) {
 	pbDoc.calculatedData.sieglinde = lampPB.calculatedData.sieglinde;
 

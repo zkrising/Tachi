@@ -1,9 +1,8 @@
-import { ScoreDocument } from "tachi-common";
-import t from "tap";
-import db from "external/mongo/db";
-
-import ResetDBState from "test-utils/resets";
 import { InsertQueue, QueueScoreInsert } from "./insert-score";
+import db from "external/mongo/db";
+import t from "tap";
+import ResetDBState from "test-utils/resets";
+import type { ScoreDocument } from "tachi-common";
 
 // these two get the same tests, because they're too closely linked
 t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
@@ -45,7 +44,8 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 		t.end();
 	});
 
-	let r = await InsertQueue(1); // flush queue just incase former test fails.
+	// flush queue just incase former test fails.
+	let r = await InsertQueue(1);
 
 	t.test("Queue Overflow Test", async (t) => {
 		for (let i = 0; i < 499; i++) {
@@ -87,7 +87,8 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 		t.end();
 	});
 
-	r = await InsertQueue(1); // flush queue just incase former test fails.
+	// flush queue just incase former test fails.
+	r = await InsertQueue(1);
 
 	t.equal(r, 0, "Queue should be empty after test.");
 
@@ -129,9 +130,11 @@ t.test("#QueueScoreInsert, #InsertQueue", async (t) => {
 		} as unknown as ScoreDocument);
 
 		const r1 = await InsertQueue(1);
+
 		t.equal(r1, 1, "Queue for userID 1 should have length 1.");
 
 		const r2 = await InsertQueue(2);
+
 		t.equal(r2, 1, "Queue for userID 2 should also have length 1.");
 
 		t.end();

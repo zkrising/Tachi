@@ -1,6 +1,6 @@
+import { ValidateKaiType } from "./middleware";
 import expMiddlewareMock from "express-request-mock";
 import t from "tap";
-import { ValidateKaiType } from "./middleware";
 
 t.test("#ValidateKaiType", (t) => {
 	const k = async (k: string) => {

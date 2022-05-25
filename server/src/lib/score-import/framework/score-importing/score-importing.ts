@@ -305,8 +305,6 @@ async function HydrateAndInsertScore(
 			// micro-optimisation - mongoDB is significantly faster when returning less fields
 			// since we only care about whether we have a score or not here, we can minimise returned
 			// fields.
-			//
-			// feel free to test this yourself! - zkldi (09/04/2021)
 			projection: {
 				_id: 1,
 			},
@@ -319,7 +317,7 @@ async function HydrateAndInsertScore(
 	}
 
 	// If this users score queue
-	if (GetScoreQueueMaybe(userID)?.scoreIDSet.has(scoreID)) {
+	if (GetScoreQueueMaybe(userID)?.scoreIDSet.has(scoreID) === true) {
 		logger.verbose(`Skipped score.`);
 		return null;
 	}

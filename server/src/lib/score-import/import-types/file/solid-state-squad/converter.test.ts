@@ -1,3 +1,4 @@
+import { ConvertFileS3, ParseDifficulty, ResolveS3Lamp } from "./converter";
 import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
@@ -9,8 +10,7 @@ import {
 	Testing511Song,
 	Testing511SPA,
 } from "test-utils/test-data";
-import { ConvertFileS3, ParseDifficulty, ResolveS3Lamp } from "./converter";
-import { S3Score } from "./types";
+import type { S3Score } from "./types";
 
 const logger = CreateLogCtx(__filename);
 
@@ -49,10 +49,10 @@ t.test("#ConvertFileS3", (t) => {
 			hitMeta: {},
 		},
 		scoreMeta: {},
+
 		// can't be tested because the timestamp format doesnt specify a timezone.
 		// timeAchieved: 1287460462000,
 	};
-
 
 	t.test("Should import a valid S3 score", async (t) => {
 		const res = await cfile(MockParsedS3Score);
@@ -96,6 +96,7 @@ t.test("#ConvertFileS3", (t) => {
 			{
 				chart: { songID: 97, difficulty: "HYPER", playtype: "SP" },
 				song: { title: "ABSOLUTE" },
+
 				// dryScore, dont care
 			},
 			"Should correctly return the song, chart and DryScore."

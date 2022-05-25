@@ -13,6 +13,7 @@ export function GetInputParser<I extends ImportTypes>(jobData: ScoreImportJobDat
 	const ParserFunction = Parsers[jobData.importType];
 
 	const InputParser = (logger: KtLogger) =>
+		// eslint-disable-next-line lines-around-comment
 		// @ts-expect-error TypeScript doesn't like the fact that we
 		// pass this as a rest parameter, since none of the parsers
 		// actually take rest args. However, this is the only way to

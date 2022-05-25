@@ -7,7 +7,10 @@ export interface KaiIIDXScore {
 	version_played: integer;
 	lamp: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 	ex_score: integer;
-	miss_count: integer | null; // -1 => null
+
+	// -1 => null
+	miss_count: integer | null;
+
 	fast_count: integer | null;
 	slow_count: integer | null;
 	timestamp: string;
@@ -17,7 +20,9 @@ export interface KaiSDVXScore {
 	music_id: integer;
 	music_difficulty: 0 | 1 | 2 | 3 | 4;
 	played_version: integer;
-	clear_type: 0 | 1 | 2 | 3 | 4; // hm
+
+	// 0 here is 'PLAYED'
+	clear_type: 0 | 1 | 2 | 3 | 4;
 	score: integer;
 	max_chain: integer;
 	critical: integer;

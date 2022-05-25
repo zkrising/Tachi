@@ -14,14 +14,16 @@ export function EvaluateShowcaseStat(
 	value: number | null;
 	outOf?: number;
 }> {
-	if (details.mode === "chart") {
-		return EvaluateShowcaseChartStat(details, userID);
-	} else if (details.mode === "folder") {
-		return EvaluateShowcaseFolderStat(details, userID);
-	}
+	switch (details.mode) {
+		case "chart":
+			return EvaluateShowcaseChartStat(details, userID);
+		case "folder":
+			return EvaluateShowcaseFolderStat(details, userID);
 
-	// @ts-expect-error This should never happen anyway.
-	throw new Error(`Invalid mode of ${details.mode} as details mode?`);
+		default:
+			// @ts-expect-error This should never happen anyway -- this ignore ignores a 'never' result.
+			throw new Error(`Invalid mode of ${details.mode} as details mode?`);
+	}
 }
 
 async function EvaluateShowcaseChartStat(details: ShowcaseStatChart, userID: integer) {

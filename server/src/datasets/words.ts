@@ -2033,7 +2033,7 @@ export const nouns = [
 	"Bit",
 
 	// "Black", I have visions of this one resulting in racism
-	"Bottom", // This one gets to stay because it's hilarious
+	"Bottom",
 	"Choice",
 	"Gift",
 	"Impact",

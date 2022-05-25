@@ -1,6 +1,6 @@
 import db from "external/mongo/db";
 import { GenericCalculatePercent } from "lib/score-import/framework/common/score-utils";
-import { FormatGame, GetGamePTConfig, Playtypes } from "tachi-common";
+import { FormatGame, GetGamePTConfig } from "tachi-common";
 import { GetFolderForIDGuaranteed, HumaniseChartID } from "utils/db";
 import { GetFolderChartIDs } from "utils/folder";
 import { FormatMaxDP, HumanisedJoinArray } from "utils/misc";
@@ -29,8 +29,9 @@ export async function CreateGoalTitle(
 					return `${formattedCriteria} any chart in ${datasetName}`;
 			}
 
+		// Eslint can't figure out that the above switches are safely exhastive. Ah well.
 		// eslint-disable-next-line no-fallthrough
-		case "absolute": {
+		case "absolute":
 			switch (charts.type) {
 				case "any":
 					return `${formattedCriteria} ${criteria.countNum} charts`;
@@ -38,13 +39,15 @@ export async function CreateGoalTitle(
 					return `${formattedCriteria} ${criteria.countNum} of ${datasetName}`;
 				case "folder":
 					return `${formattedCriteria} ${criteria.countNum} charts in ${datasetName}`;
+				case "single":
+					throw new Error(
+						`Invalid goal -- absolute mode cannot be paired with a charts.type of 'single'.`
+					);
 			}
 
-			break;
-		}
-
+		// See above about switch exhaustivity
+		// eslint-disable-next-line no-fallthrough
 		case "proportion": {
-			// eslint-disable-next-line no-case-declarations // I know declaring inside cases is a footgun, but I know better.
 			const propFormat = FormatMaxDP(criteria.countNum * 100);
 
 			switch (charts.type) {
@@ -54,30 +57,43 @@ export async function CreateGoalTitle(
 					return `${formattedCriteria} ${propFormat}% of ${datasetName}`;
 				case "folder":
 					return `${formattedCriteria} ${propFormat}% of the charts in ${datasetName}`;
+				case "single":
+					throw new Error(
+						`Invalid goal -- absolute mode cannot be paired with a charts.type of 'single'.`
+					);
 			}
 		}
 	}
-
-	throw new Error(`Couldn't create title from provided info. Is the provided data supported?`);
 }
 
 async function FormatCharts(charts: GoalDocument["charts"], game: Game) {
-	if (charts.type === "single") {
-		return HumaniseChartID(game, charts.data);
-	} else if (charts.type === "multi") {
-		// @inefficient
-		// This could be done with significantly less db queries.
-		const formattedTitles = await Promise.all(
-			charts.data.map((chartID) => HumaniseChartID(game, chartID))
-		);
+	switch (charts.type) {
+		case "single":
+			return HumaniseChartID(game, charts.data);
+		case "multi": {
+			// @inefficient
+			// This could be done with significantly less db queries.
+			const formattedTitles = await Promise.all(
+				charts.data.map((chartID) => HumaniseChartID(game, chartID))
+			);
 
-		return HumanisedJoinArray(formattedTitles);
-	} else if (charts.type === "folder") {
-		const folder = await GetFolderForIDGuaranteed(charts.data);
+			return HumanisedJoinArray(formattedTitles);
+		}
 
-		return `the ${folder.title} folder`;
-	} else if (charts.type === "any") {
-		return null;
+		case "folder": {
+			const folder = await GetFolderForIDGuaranteed(charts.data);
+
+			return `the ${folder.title} folder`;
+		}
+
+		case "any":
+			return null;
+		default:
+			throw new Error(
+				`Invalid goal charts.type -- got ${
+					(charts as GoalDocument["charts"]).type
+				}, which we don't support?`
+			);
 	}
 }
 
@@ -101,7 +117,7 @@ function FormatCriteria(criteria: GoalDocument["criteria"], game: Game, playtype
  * any sense at all. There are certain combinations that are illegal, or values that
  * in general just should be constrained out.
  *
- * @warn This function is disgusting.
+ * @warn This function is disgusting. This should have never happened.
  */
 export async function ValidateGoalChartsAndCriteria(
 	charts: GoalDocument["charts"],

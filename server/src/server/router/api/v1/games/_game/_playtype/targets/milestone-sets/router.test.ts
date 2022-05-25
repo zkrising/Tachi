@@ -1,10 +1,10 @@
 import dm from "deepmerge";
 import db from "external/mongo/db";
-import { MilestoneDocument, MilestoneSetDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPMilestone } from "test-utils/test-data";
+import type { MilestoneDocument, MilestoneSetDocument } from "tachi-common";
 
 const TestingIIDXSPMilestoneSet: MilestoneSetDocument = {
 	name: "Testing Milestone Set",
@@ -40,7 +40,9 @@ t.test("GET /api/v1/games/:game/:playtype/targets/milestone-sets", (t) => {
 		);
 
 		t.hasStrict(
-			(res.body.body as MilestoneSetDocument[]).sort((a, b) => a.name.localeCompare(b.name)),
+			(res.body.body as Array<MilestoneSetDocument>).sort((a, b) =>
+				a.name.localeCompare(b.name)
+			),
 			[{ setID: "similar_name" }, { setID: "name" }]
 		);
 
@@ -78,7 +80,7 @@ t.test("GET /api/v1/games/:game/:playtype/targets/milestone-sets/:setID", (t) =>
 		});
 
 		t.hasStrict(
-			(res.body.body.milestones as MilestoneDocument[]).sort((a, b) =>
+			(res.body.body.milestones as Array<MilestoneDocument>).sort((a, b) =>
 				a.milestoneID.localeCompare(b.milestoneID)
 			),
 			[

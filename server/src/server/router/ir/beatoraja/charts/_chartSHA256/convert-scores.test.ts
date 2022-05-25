@@ -1,9 +1,9 @@
+import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
 import deepmerge from "deepmerge";
-import { PBScoreDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { BMSGazerChart, GetKTDataJSON } from "test-utils/test-data";
-import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
+import type { PBScoreDocument } from "tachi-common";
 
 const pbScore = {
 	composedFrom: {

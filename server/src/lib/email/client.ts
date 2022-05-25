@@ -13,8 +13,10 @@ if (ServerConfig.EMAIL_CONFIG) {
 	const conf = ServerConfig.EMAIL_CONFIG;
 
 	try {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 		transporter = nodemailer.createTransport({
 			newline: "unix",
+			// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unsafe-member-access
 			logger: conf.TRANSPORT_OPS?.debug
 				? bunyan.createLogger({ name: "Email Logger" })
 				: undefined,

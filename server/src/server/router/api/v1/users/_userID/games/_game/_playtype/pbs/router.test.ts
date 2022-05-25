@@ -1,5 +1,4 @@
 import db from "external/mongo/db";
-import { ChartDocument, PBScoreDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
@@ -10,12 +9,13 @@ import {
 	Testing511SPA,
 	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
+import type { ChartDocument, PBScoreDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/best", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should return a user's best 100 personal bests.", async (t) => {
-		const mockPBs: PBScoreDocument[] = [];
+		const mockPBs: Array<PBScoreDocument> = [];
 
 		for (let i = 0; i < 200; i++) {
 			mockPBs.push({
@@ -23,7 +23,10 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/best", (t) => {
 				game: "iidx",
 				playtype: "SP",
 				isPrimary: true,
-				chartID: i.toString(), // hack to generate some random chartIDs
+
+				// hack to generate some random chartIDs
+				chartID: i.toString(),
+
 				songID: Testing511Song.id,
 				calculatedData: {
 					ktLampRating: i,
@@ -34,7 +37,8 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/best", (t) => {
 		await db["personal-bests"].insert(mockPBs);
 
 		for (const sc of mockPBs) {
-			delete sc._id; // lol
+			// lol
+			delete sc._id;
 		}
 
 		const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/pbs/best");
@@ -87,15 +91,17 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs", (t) => {
 	});
 
 	t.test("Should search a user's personal bests.", async (t) => {
-		const mockPBs: PBScoreDocument[] = [];
+		const mockPBs: Array<PBScoreDocument> = [];
 
 		const charts = GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<ChartDocument>;
 
 		for (let i = 0; i < 200; i++) {
-			let chart = charts[i];
+			const chart = charts[i];
 
 			if (!chart) {
-				return t.fail(`Not enough charts in tachi-charts-iidx.json to mock pb data? Failed at index ${i}.`);
+				return t.fail(
+					`Not enough charts in tachi-charts-iidx.json to mock pb data? Failed at index ${i}.`
+				);
 			}
 
 			mockPBs.push({

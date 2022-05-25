@@ -4,17 +4,24 @@ import { ONE_MINUTE } from "lib/constants/time";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
 import fetch from "utils/fetch";
+import { IsRecord } from "utils/misc";
 import Transport from "winston-transport";
 import type { TransportStreamOptions } from "winston-transport";
 
 interface DiscordTransportOptions extends TransportStreamOptions {
-	/** Webhook obtained from Discord */
 	webhook: string;
 }
 
 interface LogLevelCountState {
 	warn: Array<string>;
 	error: Array<string>;
+}
+
+interface LoggerInfo {
+	level: "crit" | "debug" | "info" | "severe" | "verbose" | "warn";
+	message: string;
+	noDiscord?: boolean;
+	meta?: Record<string, any>;
 }
 
 /**
@@ -49,9 +56,15 @@ export default class DiscordTransport extends Transport {
 					throw new Error(`Couldn't connect to discord transport. ${r.status}.`);
 				}
 
-				return r.json();
+				return r.json() as unknown;
 			})
 			.then((content) => {
+				if (!IsRecord(content)) {
+					throw new Error(
+						`Discord returned non-object data as JSON? Can't get id or token ${content}.`
+					);
+				}
+
 				this.webhookUrl = `https://discordapp.com/api/v6/webhooks/${content.id}/${content.token}`;
 			});
 	}
@@ -63,12 +76,12 @@ export default class DiscordTransport extends Transport {
 		};
 	}
 
-	log(info: any, cb: () => void) {
+	log(info: LoggerInfo, cb: () => void) {
 		if (info.noDiscord !== false) {
 			try {
 				setImmediate(() => {
-					this.initalised.then(() => {
-						this.handleSendToDiscord(info);
+					void this.initalised.then(() => {
+						void this.handleSendToDiscord(info);
 					});
 				});
 			} catch (err) {
@@ -81,7 +94,7 @@ export default class DiscordTransport extends Transport {
 		cb();
 	}
 
-	private handleSendToDiscord(info: any) {
+	private handleSendToDiscord(info: LoggerInfo) {
 		if (info.level === "crit" || info.level === "severe") {
 			return this.sendLogDirectlyToDiscord(info);
 		}
@@ -103,8 +116,8 @@ export default class DiscordTransport extends Transport {
 	}
 
 	private getWhoToTag() {
-		return ServerConfig.LOGGER_CONFIG.DISCORD!.WHO_TO_TAG
-			? ServerConfig.LOGGER_CONFIG.DISCORD!.WHO_TO_TAG.map((e) => `<@${e}>`).join(" ")
+		return ServerConfig.LOGGER_CONFIG.DISCORD?.WHO_TO_TAG
+			? ServerConfig.LOGGER_CONFIG.DISCORD.WHO_TO_TAG.map((e) => `<@${e}>`).join(" ")
 			: "Nobody configured to tag, but this is bad, get someone!";
 	}
 
@@ -147,13 +160,13 @@ export default class DiscordTransport extends Transport {
 			],
 		};
 
-		this.POSTData(postBody);
+		void this.POSTData(postBody);
 		this.resetBucketData();
 		this.isBucketing = false;
 		this.bucketStart = null;
 	}
 
-	private async sendLogDirectlyToDiscord(info: any) {
+	private async sendLogDirectlyToDiscord(info: LoggerInfo) {
 		const postBody = {
 			content: "",
 			embeds: [
@@ -195,7 +208,7 @@ export default class DiscordTransport extends Transport {
 
 		if (res.status === 429) {
 			// being rate limited.
-			const content = await res.json();
+			const content = (await res.json()) as unknown;
 
 			// Try and retry when they say so. The issue is that our logging
 			// is very async, and this is a billion race conditions.
@@ -207,9 +220,9 @@ export default class DiscordTransport extends Transport {
 			// It's possible this might blow up in our face.
 			// We'll have to see. - zkldi 2021/09/17
 
-			if (content.retry_after) {
+			if (IsRecord(content) && typeof content.retry_after === "number") {
 				setTimeout(() => {
-					this.POSTData(postBody, scaleRetryDebounce ** 2);
+					void this.POSTData(postBody, scaleRetryDebounce ** 2);
 				}, content.retry_after * scaleRetryDebounce);
 			}
 		} else if (!res.ok) {

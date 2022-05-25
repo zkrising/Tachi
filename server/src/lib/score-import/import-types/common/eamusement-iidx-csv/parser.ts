@@ -3,38 +3,39 @@ import { CSVParseError, NaiveCSVParse } from "utils/naive-csv-parser";
 import type { ParserFunctionReturns } from "../types";
 import type { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 import type { KtLogger } from "lib/logger/logger";
+import type { integer } from "tachi-common";
 
-enum EAM_VERSION_NAMES {
-	"1st&substream" = 1,
-	"2nd style",
-	"3rd style",
-	"4th style",
-	"5th style",
-	"6th style",
-	"7th style",
-	"8th style",
-	"9th style",
-	"10th style",
-	"IIDX RED",
-	"HAPPY SKY",
-	"DistorteD",
-	"GOLD",
-	"DJ TROOPERS",
-	"EMPRESS",
-	"SIRIUS",
-	"Resort Anthem",
-	"Lincle",
-	"tricoro",
-	"SPADA",
-	"PENDUAL",
-	"copula",
-	"SINOBUZ",
-	"CANNON BALLERS",
-	"Rootage",
-	"HEROIC VERSE",
-	"BISTROVER",
-	"CastHour",
-}
+const EAM_VERSION_NAMES: Record<string, integer> = {
+	"1st&substream": 1,
+	"2nd style": 2,
+	"3rd style": 3,
+	"4th style": 4,
+	"5th style": 5,
+	"6th style": 6,
+	"7th style": 7,
+	"8th style": 8,
+	"9th style": 9,
+	"10th style": 10,
+	"IIDX RED": 11,
+	"HAPPY SKY": 12,
+	DistorteD: 13,
+	GOLD: 14,
+	"DJ TROOPERS": 15,
+	EMPRESS: 16,
+	SIRIUS: 17,
+	"Resort Anthem": 18,
+	Lincle: 19,
+	tricoro: 20,
+	SPADA: 21,
+	PENDUAL: 22,
+	copula: 23,
+	SINOBUZ: 24,
+	"CANNON BALLERS": 25,
+	Rootage: 26,
+	"HEROIC VERSE": 27,
+	BISTROVER: 28,
+	CastHour: 29,
+};
 
 const PRE_HV_HEADER_COUNT = 27;
 const HV_HEADER_COUNT = 41;
@@ -122,9 +123,9 @@ export function IIDXCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 		const timestamp = cells[rawHeaders.length - 1]!.trim();
 
 		// wtf typescript?? what's the point of enums?
-		const versionNum = EAM_VERSION_NAMES[version as keyof typeof EAM_VERSION_NAMES];
+		const versionNum = EAM_VERSION_NAMES[version!];
 
-		if (!versionNum) {
+		if (versionNum === undefined) {
 			logger.info(`Invalid/Unsupported EAM_VERSION_NAME ${version}.`);
 			throw new ScoreImportFatalError(
 				400,
@@ -200,9 +201,8 @@ function GenericParseEamIIDXCSV(
 
 	const lowercaseFilename = fileData.originalname.toLowerCase();
 
-	// prettier pls
 	if (
-		!body.assertPlaytypeCorrect &&
+		body.assertPlaytypeCorrect === undefined &&
 		((lowercaseFilename.includes("sp") && playtype === "DP") ||
 			(lowercaseFilename.includes("dp") && playtype === "SP"))
 	) {

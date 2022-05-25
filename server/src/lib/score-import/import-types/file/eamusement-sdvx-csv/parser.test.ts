@@ -1,10 +1,10 @@
+import ParseEamusementSDVXCSV from "./parser";
 import CreateLogCtx from "lib/logger/logger";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import t from "tap";
 import { MockMulterFile } from "test-utils/mock-multer";
 import { TestingSDVXEamusementCSV } from "test-utils/test-data";
-import ParseEamusementSDVXCSV from "./parser";
-import { SDVXEamusementCSVData } from "./types";
+import type { SDVXEamusementCSVData } from "./types";
 
 const logger = CreateLogCtx(__filename);
 
@@ -16,7 +16,8 @@ t.test("#ParseEamusementSDVXCSV", (t) => {
 
 		t.equal(game, "sdvx");
 
-		const iterableData = iterable as SDVXEamusementCSVData[];
+		const iterableData = iterable as Array<SDVXEamusementCSVData>;
+
 		t.equal(iterableData.length, 204);
 
 		t.end();

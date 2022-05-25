@@ -1,11 +1,11 @@
 import db from "external/mongo/db";
-import { PublicUserDocument } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import { mkFakeGameSettings, mkFakeUser } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { FakeOtherUser } from "test-utils/test-data";
+import type { PublicUserDocument } from "tachi-common";
 
 const SetupRivals = async () => {
 	await db.users.insert([FakeOtherUser, mkFakeUser(3), mkFakeUser(4)]);

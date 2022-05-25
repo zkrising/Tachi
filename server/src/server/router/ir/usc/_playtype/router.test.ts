@@ -1,11 +1,11 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import { CDNRetrieve } from "lib/cdn/cdn";
-import { PBScoreDocument, PublicUserDocument, ScoreDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState, { ResetCDN } from "test-utils/resets";
 import { GetKTDataBuffer } from "test-utils/test-data";
+import type { PBScoreDocument, PublicUserDocument, ScoreDocument } from "tachi-common";
 
 async function InsertFakeUSCAuth() {
 	await db["api-tokens"].insert({
@@ -154,7 +154,10 @@ const USC_SCORE_PB: PBScoreDocument = {
 		esd: null,
 		lamp: "EXCESSIVE CLEAR",
 		lampIndex: 2,
-		gradeIndex: 4, // idk, lazy
+
+		// idk, lazy
+		gradeIndex: 4,
+
 		judgements: {
 			critical: 50,
 			near: 30,
@@ -322,7 +325,7 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
 				scoreID: "other_usc_score_pb",
 				scoreMeta: { noteMod: "NORMAL", gaugeMod: "HARD" },
 			},
-		] as ScoreDocument[]);
+		] as Array<ScoreDocument>);
 
 		const res = await mockApi
 			.get("/ir/usc/Controller/charts/USC_CHART_HASH/leaderboard?mode=best&n=2")
@@ -461,6 +464,7 @@ t.test("POST /replays", (t) => {
 		const res = await mockApi
 			.post("/ir/usc/Controller/replays")
 			.field("identifier", "MOCK_IDENTIFIER")
+
 			// .attach("replay", replayFile, "replay.urf")
 			.set("Authorization", "Bearer foo");
 
@@ -662,7 +666,7 @@ t.test("POST /scores", (t) => {
 				username: "bar",
 				usernameLowercase: "bar",
 			},
-		] as PublicUserDocument[]);
+		] as Array<PublicUserDocument>);
 
 		const res = await mockApi
 			.post("/ir/usc/Controller/scores")
@@ -776,7 +780,7 @@ t.test("POST /scores", (t) => {
 				username: "baz",
 				usernameLowercase: "baz",
 			},
-		] as PublicUserDocument[]);
+		] as Array<PublicUserDocument>);
 
 		const res = await mockApi
 			.post("/ir/usc/Controller/scores")

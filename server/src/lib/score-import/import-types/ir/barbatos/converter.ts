@@ -22,7 +22,9 @@ const DIFFICULTY_LOOKUP = {
 	0: "NOV",
 	1: "ADV",
 	2: "EXH",
-	3: "ANY_INF", // special case for inf/grv/hvn/vvd - which are all the same diff internally. (kinda).
+
+	// special case for inf/grv/hvn/vvd - which are all the same diff internally. (kinda).
+	3: "ANY_INF",
 	4: "MXM",
 };
 

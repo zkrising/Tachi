@@ -40,7 +40,7 @@ export async function CreateCalculatedData(
 	return calculatedData;
 }
 
-type CalculatedDataFunctions = {
+type CalculatedDataFunctionsType = {
 	[I in IDStrings]: (
 		dryScore: DryScore<I>,
 		chart: ChartDocument<I>,
@@ -48,7 +48,7 @@ type CalculatedDataFunctions = {
 	) => Promise<ScoreDocument<I>["calculatedData"]> | ScoreDocument<I>["calculatedData"];
 };
 
-const CalculatedDataFunctions: CalculatedDataFunctions = {
+const CalculatedDataFunctions: CalculatedDataFunctionsType = {
 	"iidx:SP": CalculateDataIIDX,
 	"iidx:DP": CalculateDataIIDX,
 	"sdvx:Single": CalculateDataSDVXorUSC,
@@ -92,11 +92,11 @@ type CalculatedData<I extends IDStrings> = Required<ScoreDocument<I>["calculated
 function CalculateDataIIDX(
 	dryScore: DryScore,
 	chart: ChartDocument<"iidx:DP" | "iidx:SP">,
-	logger: KtLogger
+	_logger: KtLogger
 ): CalculatedData<"iidx:SP"> {
 	let bpi;
 
-	if (chart.data.kaidenAverage && chart.data.worldRecord) {
+	if (chart.data.kaidenAverage !== null && chart.data.worldRecord !== null) {
 		bpi = PoyashiBPI.calculate(
 			dryScore.scoreData.score,
 			chart.data.kaidenAverage,
@@ -124,7 +124,7 @@ function CalculateDataIIDX(
 function CalculateDataSDVXorUSC(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	logger: KtLogger
+	_logger: KtLogger
 ): CalculatedData<"sdvx:Single" | "usc:Controller" | "usc:Keyboard"> {
 	// for usc, unofficial charts currently have no VF6 value.
 	if (
@@ -156,7 +156,7 @@ function CalculateDataMuseca(
 function CalculateDataJubeat(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	logger: KtLogger
+	_logger: KtLogger
 ): CalculatedData<"jubeat:Single"> {
 	return {
 		jubility: Jubility.calculate(
@@ -199,7 +199,7 @@ function CalculateDataDDR(
 export function CalculateDataPMSorBMS(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	logger: KtLogger
+	_logger: KtLogger
 ): CalculatedData<"pms:Controller" | "pms:Keyboard"> {
 	const gptConfig = GetGamePTConfig(dryScore.game, chart.playtype);
 
@@ -213,7 +213,7 @@ export function CalculateDataPMSorBMS(
 function CalculateDataWACCA(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	logger: KtLogger
+	_logger: KtLogger
 ): CalculatedData<"wacca:Single"> {
 	const rate = WACCARate.calculate(dryScore.scoreData.score, chart.levelNum);
 
@@ -223,7 +223,7 @@ function CalculateDataWACCA(
 function CalculateDataPopn(
 	dryScore: DryScore<"popn:9B">,
 	chart: ChartDocument<"popn:9B">,
-	logger: KtLogger
+	_logger: KtLogger
 ): CalculatedData<"popn:9B"> {
 	return {
 		classPoints: PopnClassPoints.calculate(

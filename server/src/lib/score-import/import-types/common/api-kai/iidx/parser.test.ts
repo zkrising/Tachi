@@ -1,8 +1,8 @@
+import { ParseKaiIIDX } from "./parser";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
-import { ParseKaiIIDX } from "./parser";
 
 const fakeAuth = {
 	userID: 1,

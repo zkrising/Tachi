@@ -1,4 +1,11 @@
-import type { Game, Playtype, Playtypes, ScoreDocument, SessionDocument } from "tachi-common";
+import type {
+	Game,
+	IDStrings,
+	Playtype,
+	ScoreDocument,
+	SessionCalculatedDataLookup,
+	SessionDocument,
+} from "tachi-common";
 
 type ScoreCalculatedDataOnly = Pick<ScoreDocument, "calculatedData">;
 
@@ -36,122 +43,79 @@ function AvgBest10Map(
 	return AverageBest10(arr.map((e) => e.calculatedData[prop]));
 }
 
-type CalculatedDataFunctions = {
-	[G in Game]: {
-		[P in Playtypes[G]]: (
-			scoreCalcData: Array<ScoreCalculatedDataOnly>
-		) => SessionDocument["calculatedData"];
-	};
-};
+type SessionCalcDataFn = (
+	scd: Array<ScoreCalculatedDataOnly>
+) => Partial<Record<SessionCalculatedDataLookup[IDStrings], number | null>>;
 
-const CalculatedDataFunctions: CalculatedDataFunctions = {
-	iidx: {
-		SP: (scd) => ({
-			BPI: AvgBest10Map(scd, "BPI"),
-			ktLampRating: AvgBest10Map(scd, "ktLampRating"),
-		}),
-		DP: (scd) => ({
-			BPI: AvgBest10Map(scd, "BPI"),
-			ktLampRating: AvgBest10Map(scd, "ktLampRating"),
-		}),
-	},
-	sdvx: {
-		Single: (scd) => {
-			const VF6 = AvgBest10Map(scd, "VF6");
+function GetGPTSessionCalcDataFn(game: Game, playtype: Playtype): SessionCalcDataFn {
+	switch (`${game}:${playtype}` as IDStrings) {
+		case "iidx:SP":
+		case "iidx:DP":
+			return (scd) => ({
+				BPI: AvgBest10Map(scd, "BPI"),
+				ktLampRating: AvgBest10Map(scd, "ktLampRating"),
+			});
+		case "sdvx:Single":
+		case "usc:Controller":
+		case "usc:Keyboard":
+			return (scd) => {
+				const VF6 = AvgBest10Map(scd, "VF6");
 
-			return {
-				VF6,
-				ProfileVF6: VF6 === null ? null : VF6 * 50,
+				return {
+					VF6,
+					ProfileVF6: VF6 === null ? null : VF6 * 50,
+				};
 			};
-		},
-	},
-	popn: {
-		"9B": (scd) => ({
-			classPoints: AvgBest10Map(scd, "classPoints"),
-		}),
-	},
-	museca: {
-		Single: (scd) => ({
-			ktRating: AvgBest10Map(scd, "ktRating"),
-		}),
-	},
-	chunithm: {
-		Single: (scd) => ({
-			naiveRating: AvgBest10Map(scd, "rating"),
-		}),
-	},
-	maimai: {
-		Single: () => ({}),
-	},
-	gitadora: {
-		Gita: (scd) => ({
-			skill: AvgBest10Map(scd, "skill"),
-		}),
-		Dora: (scd) => ({
-			skill: AvgBest10Map(scd, "skill"),
-		}),
-	},
-	bms: {
-		"7K": (scd) => ({
-			sieglinde: AvgBest10Map(scd, "sieglinde"),
-		}),
-		"14K": (scd) => ({
-			sieglinde: AvgBest10Map(scd, "sieglinde"),
-		}),
-	},
-	pms: {
-		Controller: (scd) => ({
-			sieglinde: AvgBest10Map(scd, "sieglinde"),
-		}),
-		Keyboard: (scd) => ({
-			sieglinde: AvgBest10Map(scd, "sieglinde"),
-		}),
-	},
-	ddr: {
-		SP: (scd) => ({
-			MFCP: SumAll(scd, "MFCP"),
-			ktRating: AvgBest10Map(scd, "ktRating"),
-		}),
-		DP: (scd) => ({
-			MFCP: SumAll(scd, "MFCP"),
-			ktRating: AvgBest10Map(scd, "ktRating"),
-		}),
-	},
-	jubeat: {
-		Single: (scd) => ({
-			jubility: AvgBest10Map(scd, "jubility"),
-		}),
-	},
-	usc: {
-		Controller: (scd) => {
-			const VF6 = AvgBest10Map(scd, "VF6");
 
-			return {
-				VF6,
-				ProfileVF6: VF6 === null ? null : VF6 * 50,
-			};
-		},
-		Keyboard: (scd) => {
-			const VF6 = AvgBest10Map(scd, "VF6");
-
-			return {
-				VF6,
-				ProfileVF6: VF6 === null ? null : VF6 * 50,
-			};
-		},
-	},
-	wacca: {
-		Single: (scd) => ({
-			rate: AvgBest10Map(scd, "rate"),
-		}),
-	},
-};
+		case "popn:9B":
+			return (scd) => ({
+				classPoints: AvgBest10Map(scd, "classPoints"),
+			});
+		case "museca:Single":
+			return (scd) => ({
+				naiveRating: AvgBest10Map(scd, "rating"),
+			});
+		case "gitadora:Dora":
+		case "gitadora:Gita":
+			return (scd) => ({
+				skill: AvgBest10Map(scd, "skill"),
+			});
+		case "bms:7K":
+		case "bms:14K":
+		case "pms:Controller":
+		case "pms:Keyboard":
+			return (scd) => ({
+				sieglinde: AvgBest10Map(scd, "sieglinde"),
+			});
+		case "ddr:SP":
+		case "ddr:DP":
+			return (scd) => ({
+				MFCP: SumAll(scd, "MFCP"),
+				ktRating: AvgBest10Map(scd, "ktRating"),
+			});
+		case "jubeat:Single":
+			return (scd) => ({
+				jubility: AvgBest10Map(scd, "jubility"),
+			});
+		case "wacca:Single":
+			return (scd) => ({
+				rate: AvgBest10Map(scd, "rate"),
+			});
+		case "chunithm:Single":
+			return (scd) => ({
+				naiveRating: AvgBest10Map(scd, "rating"),
+			});
+		case "maimai:Single":
+			return () => ({});
+	}
+}
 
 export function CreateSessionCalcData(
 	game: Game,
 	playtype: Playtype,
 	scoreCalcData: Array<ScoreCalculatedDataOnly>
 ): SessionDocument["calculatedData"] {
-	// @ts-expect-error standard game->pt stuff.
-	return CalculatedDataFunctions[game][playtype](scoreCalcData);
+	const SessionCalculatedDataFunction = GetGPTSessionCalcDataFn(game, playtype);
+
+	return SessionCalculatedDataFunction(scoreCalcData);
 }

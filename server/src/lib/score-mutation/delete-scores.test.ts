@@ -1,10 +1,10 @@
+import { DeleteScore } from "./delete-scores";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { ImportDocument, ScoreDocument, SessionDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScore } from "test-utils/test-data";
-import { DeleteScore } from "./delete-scores";
+import type { ImportDocument, ScoreDocument, SessionDocument } from "tachi-common";
 
 const mockImportDocument: ImportDocument = {
 	userID: 1,

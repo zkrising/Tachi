@@ -172,7 +172,7 @@ export async function PullDatabaseSeeds() {
 		}
 
 		return new DatabaseSeedsRepo(seedsDir);
-	} catch ({ err, stdout, stderr }) {
+	} catch ({ err, stderr }) {
 		logger.error(`Error cloning database-seeds. ${stderr}.`);
 		throw err;
 	}

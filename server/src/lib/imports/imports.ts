@@ -31,7 +31,7 @@ export async function RevertImport(importDoc: ImportDocument) {
 	} catch (err) {
 		logger.severe(
 			`Deleted scores that were part of import, but failed to remove the actual import? There is a stale import with ID '${importDoc.importID}', which must be removed manually.`,
-			{ importDoc }
+			{ importDoc, err }
 		);
 	}
 }

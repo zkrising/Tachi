@@ -1,10 +1,10 @@
+import { CreateKaiIIDXClassHandler } from "./class-handler";
+import { KaiTypeToBaseURL } from "../utils";
 import { IIDXDans } from "lib/constants/classes";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { MockBasicFetch, MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
-import { KaiTypeToBaseURL } from "../utils";
-import { CreateKaiIIDXClassHandler } from "./class-handler";
 
 const logger = CreateLogCtx(__filename);
 

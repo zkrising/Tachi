@@ -1,10 +1,10 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { PublicUserDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON, MockBeatorajaBMSScore, MockBeatorajaPMSScore } from "test-utils/test-data";
+import type { PublicUserDocument } from "tachi-common";
 
 t.test("POST /ir/beatoraja/submit-score", (t) => {
 	t.beforeEach(ResetDBState);
@@ -272,7 +272,7 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 				username: "bar",
 				usernameLowercase: "bar",
 			},
-		] as PublicUserDocument[]);
+		] as Array<PublicUserDocument>);
 
 		const res = await mockApi
 			.post("/ir/beatoraja/submit-score")

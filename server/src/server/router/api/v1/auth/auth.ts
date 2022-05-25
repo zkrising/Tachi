@@ -57,19 +57,6 @@ export async function AddNewInvite(user: PublicUserDocument) {
 
 	logger.info(`User ${FormatUserDoc(user)} created an invite.`);
 
-	if (!result) {
-		logger.error(
-			`Fatal error in creating ${FormatUserDoc(
-				user
-			)}'s invite code. Database refused key ${code}.`
-		);
-		throw new Error(
-			`Fatal error in creating ${FormatUserDoc(
-				user
-			)}'s invite code. Database refused key ${code}.`
-		);
-	}
-
 	return result;
 }
 

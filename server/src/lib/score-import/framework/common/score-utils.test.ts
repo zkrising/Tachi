@@ -1,8 +1,8 @@
-import { ChartDocument, Game } from "tachi-common";
+import { GenericCalculatePercent, GetGradeFromPercent, ValidatePercent } from "./score-utils";
 import t from "tap";
 import { isApproximately } from "test-utils/asserts";
 import { Testing511SPA } from "test-utils/test-data";
-import { GenericCalculatePercent, GetGradeFromPercent, ValidatePercent } from "./score-utils";
+import type { ChartDocument, Game } from "tachi-common";
 
 t.test("#GetGradeForPercent", (t) => {
 	t.equal(
@@ -93,24 +93,49 @@ t.test("#GenericCalculatePercent", (t) => {
 
 t.test("#ValidatePercent", (t) => {
 	for (const playtype of ["SP", "DP"] as const) {
-		t.doesNotThrow(() => ValidatePercent("iidx", playtype, 90, Testing511SPA));
-		t.doesNotThrow(() => ValidatePercent("iidx", playtype, 0, Testing511SPA));
-		t.doesNotThrow(() => ValidatePercent("iidx", playtype, 100, Testing511SPA));
+		t.doesNotThrow(() => {
+			ValidatePercent("iidx", playtype, 90, Testing511SPA);
+		});
+		t.doesNotThrow(() => {
+			ValidatePercent("iidx", playtype, 0, Testing511SPA);
+		});
+		t.doesNotThrow(() => {
+			ValidatePercent("iidx", playtype, 100, Testing511SPA);
+		});
 
-		t.throws(() => ValidatePercent("iidx", playtype, -50, Testing511SPA));
-		t.throws(() => ValidatePercent("iidx", playtype, 101, Testing511SPA));
+		t.throws(() => {
+			ValidatePercent("iidx", playtype, -50, Testing511SPA);
+		});
+		t.throws(() => {
+			ValidatePercent("iidx", playtype, 101, Testing511SPA);
+		});
 	}
 
 	const m = (maxPercent: number) => ({ data: { maxPercent } } as ChartDocument);
 
-	t.doesNotThrow(() => ValidatePercent("maimai", "Single", 90, m(100)));
-	t.doesNotThrow(() => ValidatePercent("maimai", "Single", 100, m(100)));
-	t.doesNotThrow(() => ValidatePercent("maimai", "Single", 0, m(100)));
-	t.doesNotThrow(() => ValidatePercent("maimai", "Single", 110, m(120)));
-	t.doesNotThrow(() => ValidatePercent("maimai", "Single", 120, m(120)));
-	t.throws(() => ValidatePercent("maimai", "Single", 130, m(120)), {
-		message: /expected a number less than 120/u,
+	t.doesNotThrow(() => {
+		ValidatePercent("maimai", "Single", 90, m(100));
 	});
+	t.doesNotThrow(() => {
+		ValidatePercent("maimai", "Single", 100, m(100));
+	});
+	t.doesNotThrow(() => {
+		ValidatePercent("maimai", "Single", 0, m(100));
+	});
+	t.doesNotThrow(() => {
+		ValidatePercent("maimai", "Single", 110, m(120));
+	});
+	t.doesNotThrow(() => {
+		ValidatePercent("maimai", "Single", 120, m(120));
+	});
+	t.throws(
+		() => {
+			ValidatePercent("maimai", "Single", 130, m(120));
+		},
+		{
+			message: /expected a number less than 120/u,
+		}
+	);
 
 	t.end();
 });

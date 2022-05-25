@@ -1,19 +1,20 @@
-import deepmerge from "deepmerge";
-import t from "tap";
 import { EvaluateShowcaseStat } from "./evaluator";
-
+import deepmerge from "deepmerge";
+import db from "external/mongo/db";
+import { IIDX_LAMPS } from "tachi-common";
+import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
-import db from "external/mongo/db";
-import { IIDX_LAMPS } from "tachi-common";
 
 /* eslint-disable no-return-await */
 // causes a race condition otherwise due to weird tap interaction
 
 t.test("#EvaluateShowcaseStat", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(async () => await CreateFolderChartLookup(TestingIIDXFolderSP10, true));
+	t.beforeEach(async () => {
+		await CreateFolderChartLookup(TestingIIDXFolderSP10, true);
+	});
 	t.beforeEach(
 		async () => await db["personal-bests"].insert(deepmerge(TestingIIDXSPScorePB, {}))
 	);

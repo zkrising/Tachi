@@ -1,8 +1,8 @@
+import { CreateFerStaticClassHandler } from "./class-handler";
 import CreateLogCtx from "lib/logger/logger";
-import { Playtype } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { CreateFerStaticClassHandler } from "./class-handler";
+import type { Playtype } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

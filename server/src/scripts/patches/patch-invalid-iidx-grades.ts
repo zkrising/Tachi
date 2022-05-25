@@ -57,5 +57,9 @@ if (require.main === module) {
 		logger.info(`Done!`);
 
 		process.exit(0);
-	})();
+	})().catch((err: unknown) => {
+		logger.error(`Failed to patch invalid IIDX grades.`, { err });
+
+		process.exit(1);
+	});
 }

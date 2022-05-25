@@ -4,6 +4,7 @@ import deepmerge from "deepmerge";
 import { TachiConfig } from "lib/setup/config";
 import p from "prudence";
 import { GetGameConfig, GetGamePTConfig } from "tachi-common";
+import { IsRecord, IsValidGame, IsValidPlaytype } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import type { ParserFunctionReturns } from "../types";
 import type { BatchManualContext } from "./types";
@@ -19,7 +20,7 @@ const BaseValidHitMeta = {
 	maxCombo: optNull(p.isPositiveInteger),
 };
 
-const PR_DPRandom = (self: unknown) => {
+const PR_DP_RANDOM = (self: unknown) => {
 	if (!Array.isArray(self) || self.length !== 2) {
 		return "Expected an array with length 2";
 	}
@@ -33,12 +34,12 @@ const PR_DPRandom = (self: unknown) => {
 	return true;
 };
 
-const PR_ScoreMeta = (game: Game, playtype: Playtype): PrudenceSchema => {
+const PR_SCORE_META = (game: Game, playtype: Playtype): PrudenceSchema => {
 	if (game === "iidx") {
 		const random =
 			playtype === "SP"
 				? optNull(p.isIn("NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"))
-				: PR_DPRandom;
+				: PR_DP_RANDOM;
 
 		return {
 			random,
@@ -50,7 +51,7 @@ const PR_ScoreMeta = (game: Game, playtype: Playtype): PrudenceSchema => {
 		const random =
 			playtype === "7K"
 				? optNull(p.isIn("NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR"))
-				: optNull(PR_DPRandom);
+				: optNull(PR_DP_RANDOM);
 
 		return {
 			random,
@@ -81,7 +82,7 @@ const PR_ScoreMeta = (game: Game, playtype: Playtype): PrudenceSchema => {
 	return {};
 };
 
-const PR_HitMeta = (game: Game): PrudenceSchema => {
+const PR_HIT_META = (game: Game): PrudenceSchema => {
 	if (game === "iidx") {
 		return {
 			bp: optNull(p.isPositiveInteger),
@@ -142,7 +143,7 @@ const PR_HitMeta = (game: Game): PrudenceSchema => {
 	return {};
 };
 
-const PR_BatchManualScore = (game: Game, playtype: Playtype): PrudenceSchema => {
+const PR_BATCH_MANUAL_SCORE = (game: Game, playtype: Playtype): PrudenceSchema => {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	return {
@@ -160,9 +161,11 @@ const PR_BatchManualScore = (game: Game, playtype: Playtype): PrudenceSchema => 
 		identifier: "string",
 		percent: game === "jubeat" ? p.isBetween(0, 120) : p.is(undefined),
 		comment: optNull(p.isBoundedString(3, 240)),
-		difficulty: "*?string", // this is checked in converting instead
-		// september 9th 2001 - this saves people who dont
-		// read any documentation.
+		difficulty: "*?string",
+
+		// this is checked in converting instead
+		// the lowest acceptable time is september 9th 2001 - this check saves people who dont
+		// read any documentation and would otherwise submit garbage.
 		timeAchieved: optNull(
 			(self) =>
 				(typeof self === "number" && self > 1_000_000_000_000) ||
@@ -174,26 +177,24 @@ const PR_BatchManualScore = (game: Game, playtype: Playtype): PrudenceSchema => 
 				return "Not a valid object.";
 			}
 
-			for (const key in self) {
-				// @ts-expect-error check
+			for (const [key, v] of Object.entries(self)) {
+				// @ts-expect-error Frustrating check as it's a string but not a judgement so it's not really
+				// happy with it.
 				if (!gptConfig.judgements.includes(key)) {
 					return `Invalid Key ${key}. Expected any of ${gptConfig.judgements.join(", ")}`;
 				}
 
-				// @ts-expect-error shush
-				const v = self[key];
-
 				if ((!Number.isSafeInteger(v) || v < 0) && v !== null) {
-					return `Key ${key} had an invalid value of ${v} [${typeof v}]`;
+					return `Key ${key} had an invalid value of ${v} [type: ${typeof v}]`;
 				}
 			}
 
 			return true;
 		}),
 		hitMeta: optNull(
-			deepmerge(BaseValidHitMeta, PR_HitMeta(game)) as unknown as ValidSchemaValue
+			deepmerge(BaseValidHitMeta, PR_HIT_META(game)) as unknown as ValidSchemaValue
 		),
-		scoreMeta: optNull(PR_ScoreMeta(game, playtype)),
+		scoreMeta: optNull(PR_SCORE_META(game, playtype)),
 	};
 };
 
@@ -204,9 +205,9 @@ const WaccaStringStageUps = GetGamePTConfig("wacca", "Single").classHumanisedFor
 	(e) => e.id
 );
 
-const PR_BatchManualClasses = (game: Game): PrudenceSchema => {
+const PR_BATCH_MANUAL_CLASSES = (game: Game): PrudenceSchema => {
+	// This can be implemented for any non-static class (i.e. dans).
 	switch (game) {
-		// This can be implemented for any non-static class (i.e. dans).
 		case "iidx":
 			return {
 				dan: optNull(p.isIn(IIDXStringDans)),
@@ -224,15 +225,15 @@ const PR_BatchManualClasses = (game: Game): PrudenceSchema => {
 	}
 };
 
-const PR_BatchManual = (game: Game, playtype: Playtype): PrudenceSchema => ({
+const PR_BATCH_MANUAL = (game: Game, playtype: Playtype): PrudenceSchema => ({
 	meta: {
 		service: p.isBoundedString(3, 15),
 		game: p.isIn(TachiConfig.GAMES),
 		playtype: p.is(playtype),
 		version: "*?string",
 	},
-	scores: [PR_BatchManualScore(game, playtype)],
-	classes: optNull(PR_BatchManualClasses(game)),
+	scores: [PR_BATCH_MANUAL_SCORE(game, playtype)],
+	classes: optNull(PR_BATCH_MANUAL_CLASSES(game)),
 });
 
 /**
@@ -244,12 +245,12 @@ export function ParseBatchManualFromObject(
 	object: unknown,
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	importType: ImportTypes,
-	logger: KtLogger
+	_logger: KtLogger
 ): ParserFunctionReturns<BatchManualScore, BatchManualContext> {
 	// now to perform some basic validation so we can return
 	// the iterable
 
-	if (typeof object !== "object" || object === null) {
+	if (!IsRecord(object)) {
 		throw new ScoreImportFatalError(
 			400,
 			`Invalid BATCH-MANUAL (Not an object, received ${
@@ -260,59 +261,61 @@ export function ParseBatchManualFromObject(
 
 	// attempt to retrieve game
 	// @ts-expect-error man.
-	const possiblyGame = object.meta?.game;
+	const maybeGame = object.meta?.game as unknown;
 
 	// @ts-expect-error man.
-	const possiblyPlaytype = object.meta?.playtype;
+	const maybePlaytype = object.meta?.playtype as unknown;
 
-	if (!possiblyGame) {
+	if (maybeGame === undefined) {
 		throw new ScoreImportFatalError(
 			400,
 			`Could not retrieve meta.game - is this valid BATCH-MANUAL?`
 		);
 	}
 
-	if (!possiblyPlaytype) {
+	if (maybePlaytype === undefined) {
 		throw new ScoreImportFatalError(
 			400,
 			`Could not retrieve meta.playtype - is this valid BATCH-MANUAL?`
 		);
 	}
 
-	if (!TachiConfig.GAMES.includes(possiblyGame)) {
+	// maybeGame could be a number or really anything.
+	// So we have to check that it's both a string and a valid game.
+	if (!(typeof maybeGame === "string" && IsValidGame(maybeGame))) {
 		throw new ScoreImportFatalError(
 			400,
-			`Invalid game ${possiblyGame} - expected any of ${TachiConfig.GAMES.join(", ")}.`
+			`Invalid game '${maybeGame}' - expected any of ${TachiConfig.GAMES.join(", ")}.`
 		);
 	}
 
-	const game: Game = possiblyGame;
+	const game: Game = maybeGame;
 
 	const gameConfig = GetGameConfig(game);
 
-	if (!gameConfig.validPlaytypes.includes(possiblyPlaytype)) {
+	if (!(typeof maybePlaytype === "string" && IsValidPlaytype(game, maybePlaytype))) {
 		throw new ScoreImportFatalError(
 			400,
-			`Invalid playtype ${possiblyPlaytype} - expected any of ${gameConfig.validPlaytypes.join(
+			`Invalid playtype ${maybePlaytype} - expected any of ${gameConfig.validPlaytypes.join(
 				", "
 			)}.`
 		);
 	}
 
-	const playtype: Playtype = possiblyPlaytype;
+	const playtype: Playtype = maybePlaytype;
 
 	// now that we have the game, we can validate this against
 	// the prudence schema for batch-manual.
 	// This mostly works as a sanity check, and doesn't
 	// check things like whether a score is > 100%
 	// or something.
-	const err = p(object, PR_BatchManual(game, playtype));
+	const err = p(object, PR_BATCH_MANUAL(game, playtype));
 
 	if (err) {
 		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid BATCH-MANUAL"));
 	}
 
-	const batchManual = object as BatchManual;
+	const batchManual = object as unknown as BatchManual;
 
 	return {
 		game,

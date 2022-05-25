@@ -1,5 +1,5 @@
-import t from "tap";
 import ScoreImportFatalError from "./score-import-error";
+import t from "tap";
 
 t.test("#new ScoreImportFatalError()", (t) => {
 	const err = new ScoreImportFatalError(500, "error message");

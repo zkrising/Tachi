@@ -2,7 +2,7 @@ import db from "external/mongo/db";
 import type { RequestHandler } from "express";
 
 export const UpdateLastSeen: RequestHandler = (req, res, next) => {
-	if (!req.session.tachi?.user.id) {
+	if (req.session.tachi?.user.id === undefined) {
 		next();
 		return;
 	}
@@ -13,7 +13,7 @@ export const UpdateLastSeen: RequestHandler = (req, res, next) => {
 	}
 
 	// fire, but we have no reason to await it.
-	db.users.update(
+	void db.users.update(
 		{ id: req.session.tachi.user.id },
 		{
 			$set: {

@@ -1,13 +1,13 @@
+import { ParseBatchManualFromObject as ParserFn } from "./parser";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import deepmerge from "deepmerge";
 import { IIDXDans } from "lib/constants/classes";
 import CreateLogCtx from "lib/logger/logger";
-import { BatchManual } from "tachi-common";
 import t from "tap";
 import { EscapeStringRegexp } from "utils/misc";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParseBatchManualFromObject as ParserFn } from "./parser";
+import type { BatchManual } from "tachi-common";
 
-const mockErr = (...msg: string[]) =>
+const mockErr = (...msg: Array<string>) =>
 	({
 		statusCode: 400,
 		message: new RegExp(msg.map((e) => `${EscapeStringRegexp(e)}.*`).join(""), "u"),
@@ -370,7 +370,9 @@ t.test("#ParserFn", (t) => {
 						scores: [
 							{
 								score: 1000,
-								lamp: "ALL JUSTICE", // not an iidx lamp
+
+								// not an iidx lamp
+								lamp: "ALL JUSTICE",
 								matchType: "tachiSongID",
 								identifier: "123",
 								difficulty: "ANOTHER",

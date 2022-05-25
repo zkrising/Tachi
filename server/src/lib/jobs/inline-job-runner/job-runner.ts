@@ -74,19 +74,19 @@ export function InitialiseJobRunner() {
 	const jobNameMap = new Map<string, Job>();
 
 	for (const job of jobs) {
-		JobQueue.add(job.name, { jobName: job.name }, { repeat: { cron: job.cronFormat } });
+		void JobQueue.add(job.name, { jobName: job.name }, { repeat: { cron: job.cronFormat } });
 		jobNameMap.set(job.name, job);
 	}
 
-	new Worker("Job Runner", async (j) => {
-		const name = j.data.jobName;
+	const worker = new Worker("Job Runner", async (j) => {
+		const { jobName } = j.data as { jobName: string };
 
-		logger.info(`Running job ${name}.`);
+		logger.info(`Running job ${jobName}.`);
 
-		const jobInfo = jobNameMap.get(name);
+		const jobInfo = jobNameMap.get(jobName);
 
 		if (!jobInfo) {
-			logger.severe(`Unknown job name ${name}, couldn't find a run function?`);
+			logger.severe(`Unknown job name ${jobName}, couldn't find a run function?`);
 			return false;
 		}
 
@@ -96,6 +96,8 @@ export function InitialiseJobRunner() {
 	});
 
 	logger.info(`Initialised ${jobs.length} jobs (${jobs.map((e) => e.name).join(", ")}).`);
+
+	return worker;
 }
 
 if (require.main === module) {

@@ -82,7 +82,7 @@ const ConvertEamIIDXCSV: ConverterFunction<
 		context.playtype,
 		eamScore.difficulty,
 		context.importVersion
-	)) as ChartDocument<"iidx:DP" | "iidx:SP">;
+	)) as ChartDocument<"iidx:DP" | "iidx:SP"> | null;
 
 	if (!tachiChart) {
 		throw new KTDataNotFoundFailure(
@@ -154,7 +154,7 @@ const ConvertEamIIDXCSV: ConverterFunction<
 		scoreMeta: {},
 
 		// japan is gmt+9
-		timeAchieved: timestamp ? timestamp - NINE_HOURS : null,
+		timeAchieved: timestamp !== null ? timestamp - NINE_HOURS : null,
 	};
 
 	const numBP = Number(eamScore.bp);

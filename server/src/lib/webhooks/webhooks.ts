@@ -33,7 +33,7 @@ export async function EmitWebhookEvent(content: WebhookEvents) {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${client.clientSecret}`,
 			},
-		}).catch((err) => {
+		}).catch((err: Error) => {
 			// We don't care about errors. It's probably on their end.
 			logger.info(err.message);
 		});

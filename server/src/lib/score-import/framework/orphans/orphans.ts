@@ -103,7 +103,9 @@ export async function ReprocessOrphan(
 			logger.error(`Converter function ${orphan.importType} returned unexpected error.`, {
 				err,
 			});
-			throw err; // throw this higher up, i guess.
+
+			// throw this higher up, i guess.
+			throw err;
 		}
 
 		res = err;

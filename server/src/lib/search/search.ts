@@ -32,37 +32,37 @@ export function SearchCollection<T>(
 	existingMatch: FilterQuery<T> = {},
 	limit = 100
 ): Promise<Array<T & { __textScore: number }>> {
-	return collection
-		.aggregate([
-			{
-				$match: deepmerge({ $text: { $search: search } }, existingMatch),
+	const agg: Promise<Array<T & { __textScore: number }>> = collection.aggregate([
+		{
+			$match: deepmerge({ $text: { $search: search } }, existingMatch),
+		},
+
+		// Project the __textScore field on so we can sort
+		// based on search proximity to query
+		{
+			$addFields: {
+				__textScore: { $meta: "textScore" },
 			},
+		},
 
-			// Project the __textScore field on so we can sort
-			// based on search proximity to query
-			{
-				$addFields: {
-					__textScore: { $meta: "textScore" },
-				},
-			},
+		// sort by quality of match
+		{ $sort: { __textScore: -1 } },
 
-			// sort by quality of match
-			{ $sort: { __textScore: -1 } },
+		// hide nonsense
+		{ $match: { __textScore: { $gt: 0.25 } } },
+		{ $limit: limit },
+		{ $unset: "_id" },
+	]);
 
-			// hide nonsense
-			{ $match: { __textScore: { $gt: 0.25 } } },
-			{ $limit: limit },
-			{ $unset: "_id" },
-		])
-		.catch((err) => {
-			logger.error(
-				`An error occured while trying to $text search collection ${collection.name}. Does this have a $text index?`,
-				{ err }
-			);
+	return agg.catch((err: unknown) => {
+		logger.error(
+			`An error occured while trying to $text search collection ${collection.name}. Does this have a $text index?`,
+			{ err }
+		);
 
-			// throw it up further
-			throw err;
-		});
+		// throw it up further
+		throw err;
+	});
 }
 
 export type SongSearchReturn = SongDocument & {
@@ -115,7 +115,7 @@ export function SearchSessions(
 		baseMatch.playtype = playtype;
 	}
 
-	if (userID) {
+	if (userID !== undefined) {
 		baseMatch.userID = userID;
 	}
 
@@ -184,12 +184,12 @@ export async function SearchForChartHash(search: string) {
 		db.charts.bms.findOne({ $or: [{ "data.hashMD5": search }, { "data.hashSHA256": search }] }),
 		db.charts.pms.findOne({ $or: [{ "data.hashMD5": search }, { "data.hashSHA256": search }] }),
 		db.charts.usc.findOne({ "data.hashSHA1": search }),
-	])) as [ChartDocument, ChartDocument, ChartDocument];
+	])) as [ChartDocument | null, ChartDocument | null, ChartDocument | null];
 
 	const [bmsChart, pmsChart, uscChart] = results;
 
 	const songs = [];
-	const charts = results.filter((e) => e !== null);
+	const charts = results.filter((e) => e !== null) as Array<ChartDocument>;
 
 	if (bmsChart) {
 		songs.push(

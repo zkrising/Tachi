@@ -1,8 +1,8 @@
+import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
 import expMiddlewareMock from "express-request-mock";
 import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
 
 t.test("#GetClientFromID", (t) => {
 	t.beforeEach(ResetDBState);
@@ -12,13 +12,14 @@ t.test("#GetClientFromID", (t) => {
 			params: {
 				clientID: "OAUTH2_CLIENT_ID",
 			},
-			[SYMBOL_TACHI_DATA]: {}
+			[SYMBOL_TACHI_DATA]: {},
 		});
 
 		t.strictSame(
 			req[SYMBOL_TACHI_DATA]?.apiClientDoc,
 			{
 				clientID: "OAUTH2_CLIENT_ID",
+
 				// clientSecret: "OAUTH2_CLIENT_SECRET",
 				name: "Test_Service",
 				author: 1,
@@ -39,7 +40,7 @@ t.test("#GetClientFromID", (t) => {
 			params: {
 				clientID: "NONSENSE",
 			},
-			[SYMBOL_TACHI_DATA]: {}
+			[SYMBOL_TACHI_DATA]: {},
 		});
 
 		t.equal(res.statusCode, 404);

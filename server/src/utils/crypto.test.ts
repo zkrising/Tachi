@@ -1,5 +1,5 @@
-import t from "tap";
 import { HashSHA256 } from "./crypto";
+import t from "tap";
 
 t.test("#HashSHA256", (t) => {
 	t.equal(

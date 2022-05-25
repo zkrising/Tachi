@@ -26,10 +26,15 @@ router.get("/", async (req, res) => {
 		});
 	}
 
+	// if inactive is passed, we need this to be undefined so that
+	// mongodb returns both inactive and active folders.
+	// Otherwise, only return active folders.
+	const inactive = req.query.inactive === undefined ? false : undefined;
+
 	const folders = await SearchCollection(
 		db.folders,
 		req.query.search,
-		{ game, playtype, inactive: !!req.query.inactive },
+		{ game, playtype, inactive },
 		100
 	);
 

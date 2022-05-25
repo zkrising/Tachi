@@ -1,7 +1,7 @@
+import { CalculateRatings } from "./rating";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { CalculateRatings } from "./rating";
 
 const logger = CreateLogCtx(__filename);
 

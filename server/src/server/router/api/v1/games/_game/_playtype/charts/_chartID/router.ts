@@ -76,7 +76,7 @@ router.get("/folders", async (req, res) => {
 		folderID: { $in: folderIDs.map((e) => e.folderID) },
 	};
 
-	if (!req.query.inactive) {
+	if (req.query.inactive === undefined) {
 		query.inactive = false;
 	}
 

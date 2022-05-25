@@ -60,22 +60,30 @@ export async function GetGoalsInMilestone(milestone: MilestoneDocument) {
 export function CalculateMilestoneOutOf(milestone: MilestoneDocument) {
 	const goalIDs = GetGoalIDsFromMilestone(milestone);
 
-	if (milestone.criteria.type === "all") {
-		return goalIDs.length;
-	} else if (milestone.criteria.type === "total") {
-		if (milestone.criteria.value === null) {
-			throw new Error(
-				`Invalid milestone ${milestone.milestoneID} - abs and null are not compatible.`
-			);
+	switch (milestone.criteria.type) {
+		case "all":
+			return goalIDs.length;
+		case "total": {
+			// It's not possible according to the types, but I want to check it anyway.
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+			if (milestone.criteria.value === null) {
+				throw new Error(
+					`Invalid milestone ${milestone.milestoneID} - total and null are not compatible.`
+				);
+			}
+
+			return milestone.criteria.value;
 		}
 
-		return milestone.criteria.value;
+		default:
+			// Typescript annoyingly complains that milestone.criteria is of type never now.
+			// it's right! but if we get here, I want to log the error somehow.
+			throw new Error(
+				`Invalid milestone.criteria.type of ${
+					(milestone.criteria as MilestoneDocument["criteria"]).type
+				} -- milestoneID ${milestone.milestoneID}`
+			);
 	}
-
-	throw new Error(
-		// @ts-expect-error Yeah obviously this shouldn't happen. Mayaswell throw though.
-		`Invalid milestone.criteria.type of ${milestone.criteria.type} -- milestoneID ${milestone.milestoneID}`
-	);
 }
 
 type EvaluatedGoalResult = EvaluatedGoalReturn & { goalID: string };

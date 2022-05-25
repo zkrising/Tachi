@@ -1,7 +1,7 @@
+/* eslint-disable no-await-in-loop */
+
 import db from "external/mongo/db";
 import { BMS_TABLES } from "lib/constants/bms-tables";
-
-/* eslint-disable no-await-in-loop */
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
 import { CreateFolderID } from "utils/folder";
@@ -127,7 +127,7 @@ async function ImportTableLevels(tableJSON: Array<TableJSONDoc>, prefix: string)
 	for (const td of tableJSON) {
 		const chart = (await db.charts.bms.findOne({ "data.hashMD5": td.md5 })) as ChartDocument<
 			"bms:7K" | "bms:14K"
-		>;
+		> | null;
 
 		if (!chart) {
 			logger.warn(
@@ -212,7 +212,9 @@ export async function UpdateTable(table: BMSTablesDataset) {
 
 		try {
 			text = await res.text();
-			tableJSON = JSON.parse(text);
+
+			// @hack -- this is a force cast.
+			tableJSON = JSON.parse(text) as unknown as Array<BMSTableChart>;
 		} catch (err) {
 			logger.error(`Failed to fetch ${table.url}`, { err, res, statusCode, text });
 			retries++;
@@ -302,5 +304,9 @@ if (require.main === module) {
 		}
 
 		process.exit(0);
-	})();
+	})().catch((err: unknown) => {
+		logger.error(`Failed to sync BMS Tables.`, { err });
+
+		process.exit(1);
+	});
 }

@@ -1,7 +1,6 @@
 import { RequireSelfRequestFromUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { GetTotalAllowedInvites } from "lib/invites/invites";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import { Random20Hex } from "utils/misc";

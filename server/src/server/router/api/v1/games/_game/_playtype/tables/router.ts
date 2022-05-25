@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
 
 	const query: FilterQuery<TableDocument> = { game, playtype };
 
-	if (!req.query.showInactive) {
+	if (req.query.showInactive === undefined) {
 		query.inactive = false;
 	}
 

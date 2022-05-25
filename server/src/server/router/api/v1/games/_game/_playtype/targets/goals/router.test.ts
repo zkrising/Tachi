@@ -1,15 +1,15 @@
 import dm from "deepmerge";
 import db from "external/mongo/db";
-import { GoalDocument, GoalSubscriptionDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
-    FakeOtherUser,
-    IIDXSPMilestoneGoals,
-    IIDXSPMilestoneGoalSubs,
-    TestingIIDXSPMilestone
+	FakeOtherUser,
+	IIDXSPMilestoneGoals,
+	IIDXSPMilestoneGoalSubs,
+	TestingIIDXSPMilestone,
 } from "test-utils/test-data";
+import type { GoalDocument, GoalSubscriptionDocument } from "tachi-common";
 
 // this is my lazy sample data for these tests.
 const LoadLazySampleData = async () => {
@@ -20,7 +20,7 @@ const LoadLazySampleData = async () => {
 		dm(IIDXSPMilestoneGoalSubs[0]!, {
 			userID: 2,
 		}),
-	] as GoalSubscriptionDocument[]);
+	] as Array<GoalSubscriptionDocument>);
 };
 
 t.test("GET /api/v1/games/:game/:playtype/targets/goals/popular", (t) => {
@@ -39,7 +39,7 @@ t.test("GET /api/v1/games/:game/:playtype/targets/goals/popular", (t) => {
 
 		// note: we have to sort the output here such that it's deterministic.
 		t.strictSame(
-			(res.body.body as GoalDocument[]).sort((a, b) => a.goalID.localeCompare(b.goalID)),
+			(res.body.body as Array<GoalDocument>).sort((a, b) => a.goalID.localeCompare(b.goalID)),
 			(
 				[
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -50,7 +50,7 @@ t.test("GET /api/v1/games/:game/:playtype/targets/goals/popular", (t) => {
 					dm(IIDXSPMilestoneGoals[2] as any, { __subscriptions: 1 }),
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 					dm(IIDXSPMilestoneGoals[3] as any, { __subscriptions: 1 }),
-				] as unknown as GoalDocument[]
+				] as unknown as Array<GoalDocument>
 			).sort((a, b) => a.goalID.localeCompare(b.goalID)),
 			"Should return the most subscribed goals."
 		);

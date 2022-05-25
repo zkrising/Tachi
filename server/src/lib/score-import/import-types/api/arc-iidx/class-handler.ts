@@ -1,7 +1,7 @@
 import { IIDXDans } from "lib/constants/classes";
 import { ServerConfig } from "lib/setup/config";
 import nodeFetch from "utils/fetch";
-import { HasOwnProperty } from "utils/misc";
+import { HasOwnProperty, IsRecord } from "utils/misc";
 import { CreateURLWithParams } from "utils/url";
 import type { ClassHandler } from "../../../framework/user-game-stats/types";
 
@@ -10,8 +10,7 @@ export async function CreateArcIIDXClassHandler(
 	token: string,
 	fetch = nodeFetch
 ): Promise<ClassHandler> {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let json: any;
+	let json: unknown;
 	let err: unknown;
 
 	// SP and DP dans are located in the same place,
@@ -27,17 +26,24 @@ export async function CreateArcIIDXClassHandler(
 			},
 		});
 
-		json = await res.json();
+		json = (await res.json()) as unknown;
 	} catch (e) {
 		err = e;
 	}
 
 	return (game, playtype, userID, ratings, logger) => {
-		if (err) {
+		if (err !== undefined) {
 			logger.error(
 				`An error occured while updating classes for ${ServerConfig.ARC_API_URL}.`,
 				{ err }
 			);
+			return {};
+		}
+
+		if (!IsRecord(json)) {
+			logger.warn(`ARC returned a non-record as their JSON? Can't handle class updates.`, {
+				json,
+			});
 			return {};
 		}
 
@@ -47,9 +53,11 @@ export async function CreateArcIIDXClassHandler(
 		let arcClass: string | null | undefined;
 
 		if (playtype === "SP") {
-			arcClass = json?._items?.[0]?.sp?.rank;
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+			arcClass = (json as any)._items?.[0]?.sp?.rank;
 		} else if (playtype === "DP") {
-			arcClass = json?._items?.[0]?.dp?.rank;
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+			arcClass = (json as any)._items?.[0]?.dp?.rank;
 		} else {
 			logger.error(`ARCIIDXClassUpdater called with invalid playtype of ${playtype}.`);
 			return {};
@@ -84,8 +92,13 @@ const ARCClasses = {
 	五段: IIDXDans.DAN_5,
 	四段: IIDXDans.DAN_4,
 	三段: IIDXDans.DAN_3,
-	二段: IIDXDans.DAN_2, // These two look very similar but they aren't
-	ニ段: IIDXDans.DAN_2, // and ARC uses both, from what I can tell.
+
+	// These two look very similar but they aren't
+	// and ARC uses both, from what I can tell.
+	// How nice of them.
+	二段: IIDXDans.DAN_2,
+	ニ段: IIDXDans.DAN_2,
+
 	初段: IIDXDans.DAN_1,
 	一級: IIDXDans.KYU_1,
 	二級: IIDXDans.KYU_2,

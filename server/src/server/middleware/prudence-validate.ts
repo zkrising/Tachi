@@ -18,15 +18,15 @@ const API_ERR_HANDLER =
 	(req, res, next, error) => {
 		let stringVal = error.userVal;
 
-		if (error.keychain && error.keychain.includes("password") && error.userVal) {
+		if (error.keychain?.startsWith("!") === true) {
 			stringVal = "****";
 		}
 
-		if (typeof stringVal === "object" && stringVal !== null && !stringVal.toString) {
+		if (typeof stringVal === "object" && stringVal !== null) {
 			// this is probably null-prototype
 			stringVal = null;
 		} else if (stringVal === undefined) {
-			stringVal = "nothing";
+			stringVal = "nothing (undefined)";
 		} else {
 			stringVal = String(stringVal);
 		}

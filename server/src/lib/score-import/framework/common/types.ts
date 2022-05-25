@@ -1,5 +1,4 @@
-import { Game } from "tachi-common";
-import type { IDStrings, ScoreDocument, Playtype } from "tachi-common";
+import type { IDStrings, Playtype, ScoreDocument } from "tachi-common";
 
 /**
  * An intermediate score format that will be filled out by

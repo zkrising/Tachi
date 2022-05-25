@@ -1,12 +1,12 @@
+import { CreateKaiReauthFunction } from "./reauth";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
-import { KaiAuthDocument } from "tachi-common";
 import t from "tap";
 import { MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
-import { CreateKaiReauthFunction } from "./reauth";
+import type { KaiAuthDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

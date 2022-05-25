@@ -1,7 +1,6 @@
 import { RequireSelfRequestFromUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { ONE_SECOND } from "lib/constants/time";
 import { GetTachiData } from "utils/req-tachi-data";
 

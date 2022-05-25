@@ -1,7 +1,7 @@
+import { BulkSendNotification, SendNotification } from "./notifications";
 import db from "external/mongo/db";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { BulkSendNotification, SendNotification } from "./notifications";
 
 t.test("#SendNotification", (t) => {
 	t.beforeEach(ResetDBState);

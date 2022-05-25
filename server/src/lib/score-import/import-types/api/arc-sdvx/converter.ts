@@ -18,7 +18,7 @@ import type { Lamps } from "tachi-common";
 import type { EmptyObject } from "utils/types";
 
 // There's a bunch of other useless fields but we don't care
-const PR_ArcSDVXScore: PrudenceSchema = {
+const PR_ARC_SDVX_SCORE: PrudenceSchema = {
 	chart_id: "string",
 	score: p.isBoundedInteger(0, 10_000_000),
 	lamp: p.isIn("UC", "PUC", "HC", "PLAY", "CLEAR"),
@@ -37,7 +37,7 @@ export const ConvertAPIArcSDVX: ConverterFunction<unknown, EmptyObject> = async 
 	importType,
 	logger
 ) => {
-	const err = p(data, PR_ArcSDVXScore, {}, { throwOnNonObject: false, allowExcessKeys: true });
+	const err = p(data, PR_ARC_SDVX_SCORE, {}, { throwOnNonObject: false, allowExcessKeys: true });
 
 	if (err) {
 		throw new InvalidScoreFailure(FormatPrError(err, "Invalid ARC Score: "));

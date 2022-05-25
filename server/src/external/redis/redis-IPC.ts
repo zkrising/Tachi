@@ -21,11 +21,11 @@ export interface RedisIPCData {
 
 type RedisSubCallback<T extends RedisIPCChannels> = (data: RedisIPCData[T]) => void;
 
-type SubCallbacks = {
+type SubCallbacksType = {
 	[K in RedisIPCChannels]: Array<RedisSubCallback<K>>;
 };
 
-const SubCallbacks: Partial<SubCallbacks> = {};
+const SubCallbacks: Partial<SubCallbacksType> = {};
 
 // Redis doesn't allow one client to subscribe and publish
 // There's little to no overhead to having these three clients,
@@ -55,16 +55,18 @@ export function RedisSub<T extends RedisIPCChannels>(channel: T, callback: Redis
 
 SubClient.on("message", (channel, strData) => {
 	if (!channel.startsWith(`${PREFIX}-`)) {
-		return; // not our business
+		// not our business
+		return;
 	}
 
 	const ktChannel = channel.slice(`${PREFIX}-`.length) as RedisIPCChannels;
 
 	if (!Object.prototype.hasOwnProperty.call(SubCallbacks, ktChannel)) {
-		return; // no callbacks to call
+		// no callbacks to call
+		return;
 	}
 
-	const jsData = JSON.parse(strData);
+	const jsData = JSON.parse(strData) as unknown;
 
 	for (const cb of SubCallbacks[ktChannel]!) {
 		try {
@@ -80,14 +82,14 @@ SubClient.on("message", (channel, strData) => {
 /* istanbul ignore next */
 export function CloseRedisPubSub() {
 	return new Promise<void>((resolve, reject) => {
-		PubClient.quit((err) => {
-			if (err) {
+		PubClient.quit((err: unknown) => {
+			if (err !== null && err !== undefined) {
 				logger.crit(`PubClient QUIT error: ${err}`, { err });
 				reject(err);
 			}
 
-			SubClient.quit((err) => {
-				if (err) {
+			SubClient.quit((err: unknown) => {
+				if (err !== null && err !== undefined) {
 					logger.crit(`SubClient QUIT error: ${err}`, { err });
 					reject(err);
 				}

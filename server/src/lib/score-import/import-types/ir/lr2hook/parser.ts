@@ -8,7 +8,7 @@ import type { PrudenceSchema } from "prudence";
 
 const SUPPORTED_RANDOMS = ["NORAN", "MIRROR", "RAN", "S-RAN"];
 
-export const PR_LR2Hook: PrudenceSchema = {
+export const PR_LR2HOOK: PrudenceSchema = {
 	md5: "string",
 	playerData: {
 		autoScr: p.is(0),
@@ -53,12 +53,12 @@ export const PR_LR2Hook: PrudenceSchema = {
 
 export function ParseLR2Hook(
 	body: Record<string, unknown>,
-	logger: KtLogger
+	_logger: KtLogger
 ): ParserFunctionReturns<LR2HookScore, LR2HookContext> {
 	// Ignore excess keys, as lr2hook is likely to add more features in the future.
 	const err = p(
 		body,
-		PR_LR2Hook,
+		PR_LR2HOOK,
 		{
 			playerData: {
 				autoScr:

@@ -1,7 +1,7 @@
+import prValidate from "./prudence-validate";
 import expMiddlewareMock from "express-request-mock";
 import Prudence from "prudence";
 import t from "tap";
-import prValidate from "./prudence-validate";
 
 t.test("#PrudenceMiddleware", (t) => {
 	const mw = prValidate({ foo: Prudence.regex(/^baz$/u) }, { foo: "example error message" });
@@ -16,6 +16,7 @@ t.test("#PrudenceMiddleware", (t) => {
 		t.equal(res.statusCode, 400, "Status code should be 400");
 
 		const json = res._getJSONData();
+
 		t.equal(
 			json.description,
 			"[foo] example error message (Received bar)",
@@ -33,6 +34,7 @@ t.test("#PrudenceMiddleware", (t) => {
 		t.equal(res.statusCode, 400, "Status code should be 400");
 
 		const json = res._getJSONData();
+
 		t.equal(
 			json.description,
 			"[foo] example error message (Received nothing)",
@@ -84,6 +86,7 @@ t.test("#PrudenceMiddleware", (t) => {
 		t.equal(res.statusCode, 400, "Status code should be 400");
 
 		const json = res._getJSONData();
+
 		t.equal(
 			json.description,
 			"[foo] example error message (Received bar)",
@@ -110,6 +113,7 @@ t.test("#PrudenceMiddleware", (t) => {
 			t.equal(res.statusCode, 400, "Status code should be 400");
 
 			const json = res._getJSONData();
+
 			t.equal(
 				json.description,
 				"[!password] invalid password (Received ****)",
@@ -132,6 +136,7 @@ t.test("#PrudenceMiddleware", (t) => {
 			t.equal(res.statusCode, 400, "Status code should be 400");
 
 			const json = res._getJSONData();
+
 			t.equal(
 				json.description,
 				"[!password] invalid password (Received nothing)",

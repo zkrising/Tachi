@@ -18,9 +18,9 @@ export const FAKE_MIGRATION: Migration = {
 // Migrations are stored in an array because they have some concept of order
 // That is, migrations should ideally be applied in a fixed order just to avoid
 // any potential unsavoury interactions.
+// If we're testing, we should pull fake migrations instead to ensure the tests
+// stay consistent
 const REGISTERED_MIGRATIONS: Array<Migration> =
-	// If we're testing, we should pull fake migrations instead to ensure the tests
-	// stay consistent
 	Environment.nodeEnv === "test" ? [FAKE_MIGRATION] : [UGPTRivalsMigration];
 
 function CreateMigrationLookupMap(migrations: Array<Migration>) {

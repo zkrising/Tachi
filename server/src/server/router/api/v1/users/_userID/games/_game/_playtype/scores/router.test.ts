@@ -1,21 +1,21 @@
 import db from "external/mongo/db";
-import { ChartDocument, ScoreDocument } from "tachi-common";
 import t from "tap";
 import { mkFakeScoreIIDXSP, mkFakeScoreSDVX } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
-    GetKTDataJSON,
-    LoadTachiIIDXData,
-    Testing511Song,
-    Testing511SPA
+	GetKTDataJSON,
+	LoadTachiIIDXData,
+	Testing511Song,
+	Testing511SPA,
 } from "test-utils/test-data";
+import type { ChartDocument, ScoreDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/recent", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should return a users 100 most recent scores.", async (t) => {
-		const mockScores: ScoreDocument[] = [];
+		const mockScores: Array<ScoreDocument> = [];
 
 		for (let i = 0; i < 200; i++) {
 			mockScores.push({
@@ -32,7 +32,8 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/recent", (t) => {
 		await db.scores.insert(mockScores);
 
 		for (const sc of mockScores) {
-			delete sc._id; // lol
+			// lol
+			delete sc._id;
 		}
 
 		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/scores/recent");
@@ -86,15 +87,19 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores", (t) => {
 	});
 
 	t.test("Should search a user's scores.", async (t) => {
-		const mockScores: ScoreDocument[] = [];
+		const mockScores: Array<ScoreDocument> = [];
 
-		const charts = GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<ChartDocument<"iidx:DP"|"iidx:SP">>;
+		const charts = GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<
+			ChartDocument<"iidx:DP" | "iidx:SP">
+		>;
 
 		for (let i = 0; i < 200; i++) {
 			const chart = charts[i];
 
 			if (!chart) {
-				return t.fail(`tachi-charts-iidx.json doesn't have enough mock data for testing. Needed atleast 200 entries, but failed to retrieve one at index ${i}.`);
+				return t.fail(
+					`tachi-charts-iidx.json doesn't have enough mock data for testing. Needed atleast 200 entries, but failed to retrieve one at index ${i}.`
+				);
 			}
 
 			mockScores.push({
@@ -208,7 +213,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/:chartID", (t) =>
 				userID: 2,
 				scoreID: "baz",
 			},
-		] as ScoreDocument[]);
+		] as Array<ScoreDocument>);
 
 		const res = await mockApi.get(
 			`/api/v1/users/1/games/iidx/SP/scores/${Testing511SPA.chartID}`

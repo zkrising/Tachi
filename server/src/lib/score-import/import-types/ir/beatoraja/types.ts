@@ -3,7 +3,9 @@ import type { integer } from "tachi-common";
 export interface BeatorajaContext {
 	client: "beatoraja" | "lr2oraja";
 	chart: BeatorajaChart;
-	userID: integer; // unexpectedly necessary for orphan code!
+
+	// unexpectedly necessary for orphan code!
+	userID: integer;
 	timeReceived: number;
 }
 

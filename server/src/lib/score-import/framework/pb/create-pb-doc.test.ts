@@ -1,11 +1,12 @@
+import { CreatePBDoc } from "./create-pb-doc";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import CreateLogCtx, { KtLogger } from "lib/logger/logger";
+import CreateLogCtx from "lib/logger/logger";
 import { GetGamePTConfig } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingBMS7KScore, TestingIIDXSPScore } from "test-utils/test-data";
-import { CreatePBDoc } from "./create-pb-doc";
+import type { KtLogger } from "lib/logger/logger";
 
 const IIDXScore = TestingIIDXSPScore;
 
@@ -22,6 +23,7 @@ t.test("#CreatePBDoc", (t) => {
 		chartID,
 		userID: 1,
 		songID: 1,
+
 		// rankingData -- is not present because it is not added until post-processing.
 		highlight: false,
 		isPrimary: true,

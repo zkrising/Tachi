@@ -1,10 +1,9 @@
-import { UserGameStats } from "tachi-common";
-import t from "tap";
-import CreateLogCtx from "lib/logger/logger";
-import ResetDBState from "test-utils/resets";
 import { ProcessClassDeltas, UpdateUGSClasses } from "./classes";
-
 import { GitadoraColours } from "lib/constants/classes";
+import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
+import ResetDBState from "test-utils/resets";
+import type { UserGameStats } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

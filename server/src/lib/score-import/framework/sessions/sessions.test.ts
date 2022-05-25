@@ -1,11 +1,11 @@
+import { CreateSessions, LoadScoresIntoSessions } from "./sessions";
+import { CreateScoreLogger } from "../common/import-logger";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { PublicUserDocument, ScoreDocument, SessionDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScore, TestingIIDXSPScorePB } from "test-utils/test-data";
-import { CreateScoreLogger } from "../common/import-logger";
-import { CreateSessions, LoadScoresIntoSessions } from "./sessions";
+import type { PublicUserDocument, ScoreDocument, SessionDocument } from "tachi-common";
 
 const logger = CreateScoreLogger(
 	{ username: "test_zkldi", id: 1 } as PublicUserDocument,
@@ -44,6 +44,7 @@ t.test("#CreateSessions", (t) => {
 		t.hasStrict(session, {
 			userID: 1,
 			importType: "ir/direct-manual",
+
 			// name: "adjective1 adjective2 noun1",
 			sessionID: res[0]?.sessionID,
 			desc: null,
@@ -56,6 +57,7 @@ t.test("#CreateSessions", (t) => {
 					isNewScore: true,
 				},
 			],
+
 			// timeInserted: 1622289329729,
 			timeStarted: 1619454485988,
 			timeEnded: 1619454485988,
@@ -120,7 +122,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 			"ir/direct-manual",
 			[null, start, start + 1000, start + 2000, start + 3000].map((e, i) =>
 				deepmerge(TestingIIDXSPScore, { timeAchieved: e, scoreID: `SCORE_ID_${i}` })
-			) as ScoreDocument[],
+			) as Array<ScoreDocument>,
 			"iidx",
 			"SP",
 			logger
@@ -166,7 +168,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 			[null, start, start - 4000, start + 2000, start - 3000, null, start + 1000].map(
 				(e, i) =>
 					deepmerge(TestingIIDXSPScore, { timeAchieved: e, scoreID: `SCORE_ID_${i}` })
-			) as ScoreDocument[],
+			) as Array<ScoreDocument>,
 			"iidx",
 			"SP",
 			logger
@@ -225,7 +227,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 				start + TWO_HOURS + 6000,
 			].map((e, i) =>
 				deepmerge(TestingIIDXSPScore, { timeAchieved: e, scoreID: `SCORE_ID_${i}` })
-			) as ScoreDocument[],
+			) as Array<ScoreDocument>,
 			"iidx",
 			"SP",
 			logger
@@ -300,7 +302,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 			"ir/direct-manual",
 			[null, start, start + 1000, start + 2000].map((e, i) =>
 				deepmerge(TestingIIDXSPScore, { timeAchieved: e, scoreID: `SCORE_ID_${i}` })
-			) as ScoreDocument[],
+			) as Array<ScoreDocument>,
 			"iidx",
 			"SP",
 			logger
@@ -363,7 +365,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 			"ir/direct-manual",
 			[null, start, start - 1000, start - 2000].map((e, i) =>
 				deepmerge(TestingIIDXSPScore, { timeAchieved: e, scoreID: `SCORE_ID_${i}` })
-			) as ScoreDocument[],
+			) as Array<ScoreDocument>,
 			"iidx",
 			"SP",
 			logger

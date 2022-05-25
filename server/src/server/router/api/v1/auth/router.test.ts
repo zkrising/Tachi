@@ -1,11 +1,10 @@
-import t from "tap";
+import { PasswordCompare } from "./auth";
 import db from "external/mongo/db";
-
+import { ClearTestingRateLimitCache } from "server/middleware/rate-limiter";
+import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { Sleep } from "utils/misc";
-import { PasswordCompare } from "./auth";
-import { ClearTestingRateLimitCache } from "server/middleware/rate-limiter";
 
 t.test("POST /api/v1/auth/login", (t) => {
 	t.beforeEach(ResetDBState);
@@ -186,7 +185,9 @@ t.test("POST /api/v1/auth/register", (t) => {
 		const res = await mockApi.post("/api/v1/auth/register").send({
 			username: "foo",
 			"!password": "password",
-			email: "thepasswordis@password.com", // this is our test docs email, apparently.
+
+			// this is our test docs email, apparently.
+			email: "thepasswordis@password.com",
 			captcha: "1",
 			inviteCode: "code",
 		});
@@ -254,7 +255,8 @@ t.test("POST /api/v1/auth/register", (t) => {
 	});
 
 	t.test("Should recover from a fatal error without breaking state.", async (t) => {
-		await db.counters.update({ counterName: "users" }, { $set: { value: 1 } }); // this will cause a userID collision
+		// this will cause a userID collision
+		await db.counters.update({ counterName: "users" }, { $set: { value: 1 } });
 
 		const res = await mockApi.post("/api/v1/auth/register").send({
 			username: "foo",

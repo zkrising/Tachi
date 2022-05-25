@@ -143,7 +143,7 @@ export async function ProcessGoal(
 		// that haven't changed return nothing instead of
 		// getting to this point.
 		lastInteraction: Date.now(),
-	} as Partial<GoalSubscriptionDocument>;
+	} as unknown as Partial<GoalSubscriptionDocument>;
 
 	// If this goal was achieved, and is now *not* achieved, we need to unset
 	// some things.
@@ -262,7 +262,7 @@ export function GetRelevantFolderGoals(goalIDs: Array<string>, chartIDsArr: Arra
 	// it's weird to do this in mongodb, but this seems like the right
 	// way to actually handle this.
 
-	return db.goals.aggregate([
+	const result: Promise<Array<GoalDocument>> = db.goals.aggregate([
 		{
 			$match: {
 				"charts.type": "folder",
@@ -288,4 +288,6 @@ export function GetRelevantFolderGoals(goalIDs: Array<string>, chartIDsArr: Arra
 			},
 		},
 	]);
+
+	return result;
 }

@@ -6,6 +6,7 @@ import { DatabaseSchemas } from "external/mongo/schemas";
 import CreateLogCtx from "lib/logger/logger";
 import { FormatPrError } from "utils/prudence";
 import type { Databases } from "external/mongo/db";
+import type { FindResult } from "monk";
 import type { PrudenceError } from "prudence";
 
 const program = new Command();
@@ -33,36 +34,48 @@ export async function ValidateCollection(collectionName: Databases): Promise<voi
 	let success = 0;
 	let fails = 0;
 
-	await monkDB
-		.get(collectionName)
-		.find({})
-
-		// @ts-expect-error faulty monk types
-		.each((c) => {
-			try {
-				schemaRunner(c);
-				success++;
-			} catch (err) {
-				logger.error(`[${collectionName}]: ${FormatPrError(err as PrudenceError)}`, c);
-				fails++;
-			}
-		});
+	// Faulty monk types. Returns actually also have a streaming .each operator
+	// which we leverage here for performance.
+	await (
+		monkDB.get(collectionName).find({}) as Promise<FindResult<unknown>> & {
+			each: (cb: (c: unknown) => void) => Promise<void>;
+		}
+	).each((c) => {
+		try {
+			schemaRunner(c);
+			success++;
+		} catch (err) {
+			logger.error(`[${collectionName}]: ${FormatPrError(err as PrudenceError)}`, c);
+			fails++;
+		}
+	});
 
 	logger.info(`Success: ${success} (${(100 * success) / documents}%)`);
 	logger.info(`Failures: ${fails} (${(100 * fails) / documents}%)`);
 }
 
 export async function ValidateAllCollections() {
-	for (const collectionName in DatabaseSchemas) {
+	for (const collectionName of Object.keys(DatabaseSchemas)) {
 		// eslint-disable-next-line no-await-in-loop
 		await ValidateCollection(collectionName as keyof typeof DatabaseSchemas);
 	}
 }
 
 if (require.main === module) {
-	if (options.collection) {
-		ValidateCollection(options.collection).then(() => process.exit(0));
+	if (typeof options.collection === "string") {
+		// @hack This should be typechecked and warned about outside of ValidateCollection.
+		ValidateCollection(options.collection as Databases)
+			.then(() => process.exit(0))
+			.catch((err: unknown) => {
+				logger.error(`Failed to validate collection ${options.collection}?`, { err });
+				process.exit(1);
+			});
 	} else {
-		ValidateAllCollections().then(() => process.exit(0));
+		ValidateAllCollections()
+			.then(() => process.exit(0))
+			.catch((err: unknown) => {
+				logger.error(`Failed to validate all collections?`, { err });
+				process.exit(1);
+			});
 	}
 }

@@ -1,11 +1,11 @@
-import crypto from "crypto";
+import { UpdateUsersGamePlaytypeStats } from "./update-ugs";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScorePB } from "test-utils/test-data";
-import { UpdateUsersGamePlaytypeStats } from "./update-ugs";
+import crypto from "crypto";
 
 const logger = CreateLogCtx(__filename);
 
@@ -116,7 +116,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 			"iidx",
 			"SP",
 			1,
-			() => ({ dan: 18 }), // lmao
+			() => ({ dan: 18 }),
 			logger
 		);
 
@@ -170,7 +170,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 			"iidx",
 			"SP",
 			1,
-			() => ({ dan: 18 }), // lmao
+			() => ({ dan: 18 }),
 			logger
 		);
 

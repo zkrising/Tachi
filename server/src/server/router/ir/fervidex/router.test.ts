@@ -20,6 +20,7 @@ function TestHeaders(url: string, data: any) {
 		const res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// rootage
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
 			.set("X-Account-Id", "bar")
@@ -31,6 +32,7 @@ function TestHeaders(url: string, data: any) {
 		const res2 = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// rootage
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
 			.set("User-Agent", "fervidex/1.3.0")
@@ -45,6 +47,7 @@ function TestHeaders(url: string, data: any) {
 		let res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// rootage
 			.set("X-Software-Model", "LDJ:J:B:A:2019090200")
 			.set("User-Agent", "fervidex/1.3.0")
@@ -55,6 +58,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// rootage old
 			.set("X-Software-Model", "LDJ:J:B:A:2019100700")
 			.set("User-Agent", "fervidex/1.3.0")
@@ -65,6 +69,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// cannonballers
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("X-Software-Model", "LDJ:J:B:A:2018091900")
@@ -84,6 +89,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// BMS-iidx
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("X-Software-Model", "LDJ:J:B:Z:2020092900")
@@ -94,6 +100,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// BMS-iidx
 			.set("User-Agent", "fervidex/1.2.0")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
@@ -104,6 +111,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// BMS-iidx
 			.set("User-Agent", "fervidex/.0")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
@@ -114,6 +122,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// BMS-iidx
 			.set("User-Agent", "")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
@@ -124,6 +133,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// BMS-iidx
 			.set("User-Agent", "invalid")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")

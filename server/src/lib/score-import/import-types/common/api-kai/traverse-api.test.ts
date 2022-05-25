@@ -1,11 +1,11 @@
+import { TraverseKaiAPI } from "./traverse-api";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { agta } from "test-utils/misc";
 import { MockBasicFetch, MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
-import { NodeFetch } from "utils/fetch";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { TraverseKaiAPI } from "./traverse-api";
+import type { NodeFetch } from "utils/fetch";
 
 const logger = CreateLogCtx(__filename);
 
@@ -77,6 +77,7 @@ t.test("#TraverseKaiAPI", (t) => {
 		const mockKaiAPI = () => {
 			throw new Error("Fake Request timeout...");
 		};
+
 		const res = TraverseKaiAPI("http://url.com", "/sub", fakeAuth, logger, null, mockKaiAPI);
 
 		t.rejects(() => agta(res));
@@ -178,7 +179,7 @@ t.test("#TraverseKaiAPI", (t) => {
 			"/sub",
 			fakeAuth,
 			logger,
-			// eslint-disable-next-line require-await
+			// eslint-disable-next-line @typescript-eslint/require-await
 			async () => {
 				hasAttemptedReauth = true;
 				return "bar";
@@ -187,6 +188,7 @@ t.test("#TraverseKaiAPI", (t) => {
 		);
 
 		await t.rejects(
+			// eslint-disable-next-line lines-around-comment
 			// not redundant here
 			// eslint-disable-next-line no-return-await
 			async () => await agta(res),

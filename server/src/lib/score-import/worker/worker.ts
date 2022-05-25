@@ -8,7 +8,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
 import { FormatUserDoc, GetUserWithID } from "utils/user";
 import { EventEmitter } from "events";
-import type { ScoreImportJob } from "./types";
+import type { ScoreImportJob, ScoreImportJobData } from "./types";
 import type { ImportTypes } from "tachi-common";
 
 EventEmitter.defaultMaxListeners = 20;
@@ -64,19 +64,21 @@ export const worker = new Worker(
 		// turned into nonsense objects. We need to "deJSONify" these buffers
 		// so lets do that now.
 
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const processedArgs: any = [];
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const processedArgs: Array<any> = [];
+
+		// eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 
 		for (const arg of job.data.parserArguments as Array<any>) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			if (arg?.buffer?.type === "Buffer") {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
 				processedArgs.push({ ...arg, buffer: Buffer.from(arg.buffer.data) });
 			} else {
 				processedArgs.push(arg);
 			}
 		}
 
-		job.data.parserArguments = processedArgs;
+		job.data.parserArguments = processedArgs as ScoreImportJobData<I>["parserArguments"];
 
 		logger.debug(`received score import job ${job.id}`, { job });
 
@@ -141,5 +143,5 @@ worker.on("completed", (job, result) => {
 });
 
 process.on("SIGTERM", () => {
-	HandleSIGTERMGracefully();
+	void HandleSIGTERMGracefully();
 });

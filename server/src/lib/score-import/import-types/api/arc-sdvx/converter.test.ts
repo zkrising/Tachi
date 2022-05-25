@@ -1,10 +1,10 @@
+import { ConvertAPIArcSDVX, ResolveARCSDVXLamp } from "./converter";
 import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON, TestingAlbidaADV, TestingSDVXAlbidaSong } from "test-utils/test-data";
-import { ConvertAPIArcSDVX, ResolveARCSDVXLamp } from "./converter";
-import { ARCSDVXScore } from "./types";
+import type { ARCSDVXScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
 

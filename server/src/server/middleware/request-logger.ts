@@ -40,6 +40,7 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 	res.on("finish", () => {
 		const contents = {
 			// @ts-expect-error we're doing some monkey patching - contentBody is what we're returning.
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			body: res.contentBody,
 			statusCode: res.statusCode,
 			requestQuery: req.query,
@@ -54,6 +55,8 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 			return;
 		}
 
+		// 403 bannings like this are also spam.
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		if (contents.body?.description === `You are banned from ${TachiConfig.NAME}.`) {
 			return;
 		}

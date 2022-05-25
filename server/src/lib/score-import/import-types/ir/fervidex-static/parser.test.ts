@@ -1,8 +1,8 @@
+import { ParseFervidexStatic } from "./parser";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { FervidexStaticBase, GetKTDataJSON } from "test-utils/test-data";
-import { ParseFervidexStatic } from "./parser";
 
 const logger = CreateLogCtx(__filename);
 
@@ -10,7 +10,11 @@ t.test("#ParseFervidexStatic", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should parse static data from body", (t) => {
-		const res = ParseFervidexStatic(FervidexStaticBase, { model: "LDJ:J:B:A:2020092900" }, logger);
+		const res = ParseFervidexStatic(
+			FervidexStaticBase,
+			{ model: "LDJ:J:B:A:2020092900" },
+			logger
+		);
 
 		t.strictSame(res.iterable, [
 			{

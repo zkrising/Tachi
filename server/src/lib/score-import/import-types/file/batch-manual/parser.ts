@@ -20,10 +20,7 @@ function ParseBatchManual(
 	try {
 		jsonData = JSON.parse(fileData.buffer.toString("utf-8"));
 	} catch (err) {
-		throw new ScoreImportFatalError(
-			400,
-			`Invalid JSON. (${(err as Error).message ?? "No Error Message Available."})`
-		);
+		throw new ScoreImportFatalError(400, `Invalid JSON. (${(err as Error).message})`);
 	}
 
 	return ParseBatchManualFromObject(jsonData, "file/batch-manual", logger);

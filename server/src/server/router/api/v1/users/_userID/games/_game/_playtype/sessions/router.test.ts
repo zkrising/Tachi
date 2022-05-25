@@ -1,9 +1,9 @@
 import db from "external/mongo/db";
-import { SessionDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { LoadTachiIIDXData } from "test-utils/test-data";
+import type { SessionDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions", (t) => {
 	t.beforeEach(ResetDBState);
@@ -46,9 +46,11 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions", (t) => {
 					playtype: "SP",
 					name: e,
 					desc: "something",
-					sessionID: e, // hack to avoid db nonsense
+
+					// hack to avoid db nonsense
+					sessionID: e,
 				})
-			) as SessionDocument[]
+			) as Array<SessionDocument>
 		);
 
 		const res = await mockApi.get(
@@ -72,7 +74,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/best", (t) => {
 	t.beforeEach(LoadTachiIIDXData);
 
 	t.test("Should return a user's best 100 sessions.", async (t) => {
-		const sessions: SessionDocument[] = [];
+		const sessions: Array<SessionDocument> = [];
 
 		for (let i = 0; i < 200; i++) {
 			sessions.push({
@@ -110,7 +112,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/best", (t) => {
 	t.test(
 		"Should return a user's best 100 sessions according to the provided rating alg.",
 		async (t) => {
-			const sessions: SessionDocument[] = [];
+			const sessions: Array<SessionDocument> = [];
 
 			for (let i = 0; i < 200; i++) {
 				sessions.push({
@@ -205,12 +207,13 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent", (t) =>
 				sessionID: "recent_id3",
 				timeEnded: 2,
 			},
-		] as SessionDocument[]);
+		] as Array<SessionDocument>);
 
 		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/sessions/recent");
 
 		t.equal(res.body.body.length, 3);
 		t.strictSame(
+			// eslint-disable-next-line lines-around-comment
 			// @ts-expect-error temporary type hack
 			res.body.body.map((e) => e.sessionID),
 			["recent_id2", "recent_id3", "recent_id1"]

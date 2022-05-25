@@ -72,7 +72,7 @@ async function GenericUpsert<T>(
 
 	const allExistingDocs = await collection.find({});
 
-	const map = new Map();
+	const map = new Map<unknown, T>();
 
 	for (const doc of allExistingDocs) {
 		map.set(doc[field], doc);
@@ -90,7 +90,7 @@ async function GenericUpsert<T>(
 
 		const exists = map.get(document[field]);
 
-		if (!exists) {
+		if (exists === undefined) {
 			bwriteOps.push({
 				// @ts-expect-error Actually, T is assignable to OptionalId<T>.
 				insertOne: { document },
@@ -227,7 +227,7 @@ const syncInstructions: Array<SyncInstructions> = [
 				true
 			);
 
-			if (r) {
+			if (r.thingsChanged) {
 				await InitaliseFolderChartLookup();
 
 				const allModifiedFolderIDs = r.changedFields as Array<string>;

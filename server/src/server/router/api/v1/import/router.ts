@@ -132,7 +132,7 @@ router.post(
 			};
 
 			// Fire the score import, but make no guarantees about its state.
-			MakeScoreImport<APIImportTypes>(job);
+			void MakeScoreImport<APIImportTypes>(job);
 
 			return res.status(202).json({
 				success: true,

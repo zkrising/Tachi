@@ -1,6 +1,6 @@
+import { CalculateDataForGamePT, CreateCalculatedData } from "./calculated-data";
 import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
-import { ChartDocument, ScoreDocument } from "tachi-common";
 import t from "tap";
 import { prAssert } from "test-utils/asserts";
 import {
@@ -10,7 +10,7 @@ import {
 	TestingIIDXSPDryScore,
 	TestingSDVXSingleDryScore,
 } from "test-utils/test-data";
-import { CalculateDataForGamePT, CreateCalculatedData } from "./calculated-data";
+import type { ChartDocument, ScoreDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -101,7 +101,8 @@ t.test("#CalculateDataForGamePT", (t) => {
 			"iidx",
 			"DP",
 			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an SP score. but we're testing
+
+			TestingIIDXSPDryScore,
 			30,
 
 			logger
@@ -147,7 +148,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			"ddr",
 			"SP",
 			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+			TestingIIDXSPDryScore,
 			null,
 			logger
 		);
@@ -170,7 +171,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			"ddr",
 			"DP",
 			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+			TestingIIDXSPDryScore,
 			null,
 			logger
 		);
@@ -193,7 +194,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			"chunithm",
 			"Single",
 			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+			TestingIIDXSPDryScore,
 			null,
 			logger
 		);
@@ -215,7 +216,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			"maimai",
 			"Single",
 			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+			TestingIIDXSPDryScore,
 			null,
 			logger
 		);
@@ -237,7 +238,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			"museca",
 			"Single",
 			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+			TestingIIDXSPDryScore,
 			null,
 			logger
 		);
@@ -259,7 +260,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			"bms",
 			"7K",
 			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+			TestingIIDXSPDryScore,
 			null,
 			logger
 		);
@@ -281,7 +282,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			"bms",
 			"14K",
 			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+			TestingIIDXSPDryScore,
 			null,
 			logger
 		);
@@ -303,7 +304,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			"gitadora",
 			"Gita",
 			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+			TestingIIDXSPDryScore,
 			null,
 			logger
 		);
@@ -325,7 +326,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			"gitadora",
 			"Dora",
 			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+			TestingIIDXSPDryScore,
 			null,
 			logger
 		);
@@ -347,7 +348,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			"usc",
 			"Controller",
 			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+			TestingIIDXSPDryScore,
 			null,
 			logger
 		);
@@ -369,7 +370,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			"usc",
 			"Keyboard",
 			Testing511SPA,
-			TestingIIDXSPDryScore, // fake! this is an iidx score. but we're testing
+			TestingIIDXSPDryScore,
 			null,
 			logger
 		);

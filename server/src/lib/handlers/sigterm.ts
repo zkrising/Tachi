@@ -11,11 +11,9 @@ export function HandleSIGTERMGracefully(instance?: http.Server | https.Server) {
 	logger.info("SIGTERM Received, closing program.", { shutdownInfo: true });
 
 	if (instance) {
-		instance.close(() => {
-			CloseEverythingElse();
-		});
+		instance.close(() => CloseEverythingElse());
 	} else {
-		CloseEverythingElse();
+		return CloseEverythingElse();
 	}
 }
 
@@ -24,10 +22,10 @@ async function CloseEverythingElse() {
 	await monkDB.close();
 
 	logger.info("Closing Redis Connection.", { shutdownInfo: true });
-	CloseRedisConnection();
+	await CloseRedisConnection();
 
 	logger.info("Closing Score Import Queue.", { shutdownInfo: true });
-	CloseScoreImportQueue();
+	await CloseScoreImportQueue();
 
 	logger.info("Everything closed. Waiting for process to exit naturally.", {
 		shutdownInfo: true,

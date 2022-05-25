@@ -29,7 +29,7 @@ export const CreateMulterSingleUploadMiddleware = (
 					description:
 						"File provided was too large, corrupt, or provided in the wrong field.",
 				});
-			} else if (err) {
+			} else if (err !== undefined && err !== null) {
 				logger.error(`Unknown file import error: ${err}`, { err });
 
 				return res.status(500).json({

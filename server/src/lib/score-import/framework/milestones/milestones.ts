@@ -11,6 +11,7 @@ import type {
 	MilestoneImportInfo,
 	Playtype,
 	MilestoneSubscriptionDocument,
+	GoalImportStat,
 } from "tachi-common";
 
 /**
@@ -75,13 +76,13 @@ export async function UpdateUsersMilestones(
 
 	// create a map here to avoid linear searching when
 	// co-iterating
-	const milestoneSubMap = new Map();
+	const milestoneSubMap = new Map<string, MilestoneSubscriptionDocument>();
 
 	for (const um of milestoneSubs) {
 		milestoneSubMap.set(um.milestoneID, um);
 	}
 
-	const importGoalMap = new Map();
+	const importGoalMap = new Map<string, GoalImportStat>();
 
 	for (const ig of importGoalInfo) {
 		importGoalMap.set(ig.goalID, ig.new);
@@ -138,7 +139,7 @@ export async function UpdateUsersMilestones(
 		bwrite.push(bwriteOp);
 
 		if (achieved && !milestoneSub.achieved) {
-			EmitWebhookEvent({
+			void EmitWebhookEvent({
 				type: "milestone-achieved/v1",
 				content: {
 					userID,

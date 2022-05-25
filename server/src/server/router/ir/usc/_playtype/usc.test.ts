@@ -1,9 +1,14 @@
+import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { ChartDocument, PBScoreDocument, PublicUserDocument, ScoreDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { CreatePOSTScoresResponseBody, TachiScoreToServerScore } from "./usc";
+import type {
+	ChartDocument,
+	PBScoreDocument,
+	PublicUserDocument,
+	ScoreDocument,
+} from "tachi-common";
 
 const mockScorePB: PBScoreDocument<"usc:Controller" | "usc:Keyboard"> = {
 	chartID: "USC_CHART_ID",
@@ -53,7 +58,7 @@ t.test("#TachiScoreToServerScore", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should correctly convert a tachiScore to a serverScore", async (t) => {
-		await db.scores.insert(mockScoreDocument as ScoreDocument);
+		await db.scores.insert(mockScoreDocument);
 
 		const res = await TachiScoreToServerScore(mockScorePB);
 
@@ -235,7 +240,7 @@ const mockUserDocs = [2, 3, 4, 5, 6, 7, 8, 9, 10].map((e) => ({
 	id: e,
 	username: e.toString(),
 	usernameLowercase: e.toString(),
-})) as PublicUserDocument[];
+})) as Array<PublicUserDocument>;
 
 t.test("#CreatePOSTScoresResponseBody", async (t) => {
 	t.beforeEach(ResetDBState);
@@ -257,11 +262,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 			},
 		} as unknown as ScoreDocument);
 
-		const res = await CreatePOSTScoresResponseBody(
-			1,
-			chartDoc as ChartDocument<"usc:Controller" | "usc:Keyboard">,
-			"USER_1_SCORE_PB"
-		);
+		const res = await CreatePOSTScoresResponseBody(1, chartDoc, "USER_1_SCORE_PB");
 
 		t.hasStrict(res, {
 			score: {

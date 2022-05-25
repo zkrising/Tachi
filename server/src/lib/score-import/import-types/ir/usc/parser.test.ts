@@ -1,7 +1,7 @@
+import { ParseIRUSC } from "./parser";
+import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { uscChart, uscScore } from "test-utils/test-data";
-import CreateLogCtx from "lib/logger/logger";
-import { ParseIRUSC } from "./parser";
 
 const logger = CreateLogCtx(__filename);
 

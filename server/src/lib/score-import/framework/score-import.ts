@@ -7,7 +7,7 @@ import { JOB_RETRY_COUNT } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import { Sleep } from "utils/misc";
-import type { ScoreImportJobData } from "../worker/types";
+import type { ScoreImportJobData, ScoreImportWorkerReturns } from "../worker/types";
 import type { ImportDocument, ImportTypes, integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -40,7 +40,9 @@ export async function MakeScoreImport<I extends ImportTypes>(
 				}
 			);
 
-			const data = await job.waitUntilFinished(ScoreImportQueueEvents);
+			const data = (await job.waitUntilFinished(
+				ScoreImportQueueEvents
+			)) as ScoreImportWorkerReturns;
 
 			if (data.success) {
 				return data.importDocument;

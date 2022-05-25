@@ -1,6 +1,6 @@
 import type { Parsers } from "../import-types/parsers";
 import type { Job } from "bullmq";
-import type { ImportTypes, integer } from "tachi-common";
+import type { ImportDocument, ImportTypes, integer } from "tachi-common";
 
 // Ok so, please hear me out on this one.
 // We need a type that removes the last element from an array.
@@ -42,6 +42,13 @@ export interface ScoreImportProgress {
 	description: string;
 }
 
-export type ScoreImportWorkerReturns {
-
-}
+export type ScoreImportWorkerReturns =
+	| {
+			success: false;
+			statusCode: integer;
+			description: string;
+	  }
+	| {
+			success: true;
+			importDocument: ImportDocument;
+	  };

@@ -17,7 +17,7 @@ import type { FervidexContext, FervidexScore } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { PrudenceSchema, ValidSchemaValue } from "prudence";
 
-const PR_Fervidex: PrudenceSchema = {
+const PR_FERVIDEX: PrudenceSchema = {
 	chart: p.isIn("spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"),
 	entry_id: p.isPositiveInteger,
 	chart_sha256: "*string",
@@ -120,7 +120,7 @@ export function ParseFervidexSingle(
 	const version = SoftwareIDToVersion(headers.model, logger);
 
 	// more mods may be added in the future, so lets ignore excess keys.
-	const err = p(body, PR_Fervidex, undefined, { allowExcessKeys: true });
+	const err = p(body, PR_FERVIDEX, undefined, { allowExcessKeys: true });
 
 	if (err) {
 		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid Fervidex Request?"));

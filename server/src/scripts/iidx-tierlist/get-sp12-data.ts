@@ -65,10 +65,6 @@ async function FetchSP12Data() {
 			continue;
 		}
 
-		if (!chart) {
-			logger.warn(`Couldn't find chart with title ${sh.title}`);
-		}
-
 		for (const key of ["n_clear", "hard", "exh"] as const) {
 			let val;
 

@@ -1,10 +1,10 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { ScoreDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXSPScore, TestingIIDXSPScorePB } from "test-utils/test-data";
+import type { ScoreDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype", (t) => {
 	t.beforeEach(ResetDBState);
@@ -65,7 +65,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype", (t) => {
 				game: "iidx",
 				playtype: "SP",
 			},
-		] as ScoreDocument[]);
+		] as Array<ScoreDocument>);
 
 		const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP");
 
@@ -117,6 +117,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/history", (t) => {
 				userID: 1,
 				game: "iidx",
 				playtype: "SP",
+
 				// @ts-expect-error Too lazy to sort this one out...
 				rankings: {
 					BPI: {
@@ -133,8 +134,9 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/history", (t) => {
 
 		const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/history");
 
-		res.body.body[0].timestamp = Math.floor(res.body.body[0].timestamp / 100_000); // by default, it's set to the current time. we can't
+		// by default, it's set to the current time. we can't
 		// test that nicely, so lets round it to the nearest 100 seconds.
+		res.body.body[0].timestamp = Math.floor(res.body.body[0].timestamp / 100_000);
 
 		t.strictSame(res.body.body, [
 			{
@@ -151,6 +153,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/history", (t) => {
 				playcount: 1,
 				classes: {},
 				ratings: {},
+
 				// close enough, right?
 				timestamp: Math.floor(Date.now() / 100_000),
 			},
@@ -181,6 +184,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/most-played", (t) => {
 		await db.scores.insert([
 			// @ts-expect-error nonsense
 			deepmerge(TestingIIDXSPScore, { scoreID: "something_else" }),
+
 			// @ts-expect-error nonsense
 			deepmerge(TestingIIDXSPScore, { scoreID: "something_else2" }),
 		]);

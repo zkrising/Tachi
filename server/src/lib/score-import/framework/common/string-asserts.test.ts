@@ -1,6 +1,6 @@
-import t from "tap";
 import { InvalidScoreFailure } from "./converter-failures";
 import { AssertStrAsPositiveInt, AssertStrAsPositiveNonZeroInt } from "./string-asserts";
+import t from "tap";
 
 function astr(v: string) {
 	try {
@@ -78,8 +78,11 @@ t.test("#AssertStrAsPositiveInt", (t) => {
 
 	t.strictSame(
 		astr(`${Number.MAX_SAFE_INTEGER.toString()}000`),
+
 		// @warn Counterintuitive errmsg here. It is an int!
-		new InvalidScoreFailure(`err (Not an integer -- ${Number.MAX_SAFE_INTEGER.toString()}000.)`),
+		new InvalidScoreFailure(
+			`err (Not an integer -- ${Number.MAX_SAFE_INTEGER.toString()}000.)`
+		),
 		"Should reject numbers > max_safe_integer."
 	);
 
@@ -152,8 +155,11 @@ t.test("#AssertStrAsPositiveNonZeroInt", (t) => {
 
 	t.strictSame(
 		astrp(`${Number.MAX_SAFE_INTEGER.toString()}000`),
+
 		// @warn Counterintuitive errmsg here. It is an int!
-		new InvalidScoreFailure(`err (Not an integer -- ${Number.MAX_SAFE_INTEGER.toString()}000.)`),
+		new InvalidScoreFailure(
+			`err (Not an integer -- ${Number.MAX_SAFE_INTEGER.toString()}000.)`
+		),
 		"Should reject numbers > max_safe_integer."
 	);
 
@@ -162,7 +168,6 @@ t.test("#AssertStrAsPositiveNonZeroInt", (t) => {
 		new InvalidScoreFailure(`err (Was negative or zero -- -1.)`),
 		"Should reject negative integer input"
 	);
-1
 	t.strictSame(
 		astrp("-0"),
 		new InvalidScoreFailure(`err (Was negative or zero -- 0.)`),

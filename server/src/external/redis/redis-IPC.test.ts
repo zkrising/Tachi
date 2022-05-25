@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import t from "tap";
 import { RedisPub, RedisSub } from "./redis-IPC";
+import t from "tap";
 
 /**
  * Note: The functions these things use have been stubbed out. However, the tests still run and

@@ -3,28 +3,30 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
 import { FormatUserDoc } from "utils/user";
+import type { Game, Playtype, ScoreDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
-export async function CreateGameProfiles() {
+export async function RecalcGameProfiles() {
 	const users = await db.users.find({});
 
 	for (const user of users) {
-		const gpts = await db.scores.aggregate([
-			{
-				$match: {
-					userID: user.id,
-				},
-			},
-			{
-				$group: {
-					_id: {
-						game: "$game",
-						playtype: "$playtype",
+		const gpts: Array<ScoreDocument & { _id: { game: Game; playtype: Playtype } }> =
+			await db.scores.aggregate([
+				{
+					$match: {
+						userID: user.id,
 					},
 				},
-			},
-		]);
+				{
+					$group: {
+						_id: {
+							game: "$game",
+							playtype: "$playtype",
+						},
+					},
+				},
+			]);
 
 		logger.info(`Found ${gpts.length} GPTs for ${FormatUserDoc(user)}`);
 
@@ -40,5 +42,10 @@ export async function CreateGameProfiles() {
 }
 
 if (require.main === module) {
-	CreateGameProfiles().then(() => process.exit(0));
+	RecalcGameProfiles()
+		.then(() => process.exit(0))
+		.catch((err: unknown) => {
+			logger.error(`Failed to recalc game profiles.`, { err });
+			process.exit(1);
+		});
 }

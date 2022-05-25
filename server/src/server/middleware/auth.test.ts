@@ -1,3 +1,4 @@
+import { SetRequestPermissions } from "./auth";
 import expMiddlewareMock from "express-request-mock";
 import db from "external/mongo/db";
 import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
@@ -5,7 +6,6 @@ import { ALL_PERMISSIONS } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { SetRequestPermissions } from "./auth";
 
 t.test("#SetRequestPermissions", (t) => {
 	t.beforeEach(ResetDBState);
@@ -64,6 +64,7 @@ t.test("#SetRequestPermissions", (t) => {
 		t.equal(res.statusCode, 400);
 
 		const json = res._getJSONData();
+
 		t.match(json.description, /Invalid Authorization Type - Expected Bearer/u);
 		t.end();
 	});
@@ -78,6 +79,7 @@ t.test("#SetRequestPermissions", (t) => {
 		t.equal(res.statusCode, 401);
 
 		const json = res._getJSONData();
+
 		t.match(json.description, /Invalid token/u);
 		t.end();
 	});
@@ -92,6 +94,7 @@ t.test("#SetRequestPermissions", (t) => {
 		t.equal(res.statusCode, 401);
 
 		const json = res._getJSONData();
+
 		t.match(
 			json.description,
 			/The provided API token does not correspond with any key in the database/u

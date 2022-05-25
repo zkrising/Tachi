@@ -11,10 +11,19 @@ const Colours = {
 // Discord ONLY accepts decimal colours, so.
 // lets run with that.
 export const DiscordColours = {
-	crit: 16711680, // #ff0000
-	severe: 16719904, // #ff3333
-	error: 11730944, // #cc0000
-	warn: 16703232, // #ffcc00
-	// other ones dont matter
+	// #ff0000
+	crit: 16711680,
+
+	// #ff3333
+	severe: 16719904,
+
+	// #cc0000
+	error: 11730944,
+
+	// #ffcc00
+	warn: 16703232,
+
+	// other log colours don't matter -- they can all default to gray
 };
+
 export default Colours;

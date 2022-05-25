@@ -70,7 +70,7 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
 			},
 		},
 		scoreMeta: {},
-		timeAchieved: timeAchieved ? timeAchieved : null,
+		timeAchieved: timeAchieved !== null ? timeAchieved : null,
 	};
 
 	return {

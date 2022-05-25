@@ -1,11 +1,11 @@
-import t from "tap";
-import db from "external/mongo/db";
 import { ConverterIRUSC, DeriveLamp, DeriveNoteMod } from "./converter";
 import d from "deepmerge";
-import { uscChart, uscScore } from "test-utils/test-data";
+import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { USCClientScore } from "server/router/ir/usc/_playtype/types";
+import { uscChart, uscScore } from "test-utils/test-data";
+import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
 
 const logger = CreateLogCtx(__filename);
 

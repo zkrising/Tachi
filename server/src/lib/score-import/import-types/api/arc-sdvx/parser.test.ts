@@ -1,10 +1,10 @@
+import { ParseArcSDVX } from "./parser";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { agta } from "test-utils/misc";
 import { MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
-import { ParseArcSDVX } from "./parser";
 
 const logger = CreateLogCtx(__filename);
 

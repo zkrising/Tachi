@@ -16,7 +16,7 @@ import type { ConverterFunction } from "../../types";
 import type { KaiContext, KaiIIDXScore } from "../types";
 import type { integer, Lamps } from "tachi-common";
 
-const PR_KaiIIDXScore = {
+const PR_KAI_IIDX_SCORE = {
 	music_id: p.isPositiveInteger,
 	play_style: p.isIn("SINGLE", "DOUBLE"),
 	difficulty: p.isIn("BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"),
@@ -199,7 +199,7 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 	importType,
 	logger
 ) => {
-	const err = p(data, PR_KaiIIDXScore, {}, { allowExcessKeys: true });
+	const err = p(data, PR_KAI_IIDX_SCORE, {}, { allowExcessKeys: true });
 
 	if (err) {
 		throw new InvalidScoreFailure(FormatPrError(err));
@@ -218,7 +218,7 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 
 	let musicID = score.music_id;
 
-	if (OldLeggendariaConversionTable[score.music_id]) {
+	if (OldLeggendariaConversionTable[score.music_id] !== undefined) {
 		musicID = OldLeggendariaConversionTable[score.music_id]!;
 
 		// This is now definitely a leggendaria.

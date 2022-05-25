@@ -61,7 +61,7 @@ void RunOnInit();
 
 let instance: http.Server | https.Server;
 
-if (ServerConfig.ENABLE_SERVER_HTTPS) {
+if (ServerConfig.ENABLE_SERVER_HTTPS === true) {
 	logger.warn(
 		"HTTPS Mode is enabled. This should not be used in production, and you should instead run behind a reverse proxy.",
 		{ bootInfo: true }
@@ -79,7 +79,7 @@ if (ServerConfig.ENABLE_SERVER_HTTPS) {
 }
 
 process.on("SIGTERM", () => {
-	HandleSIGTERMGracefully(instance);
+	void HandleSIGTERMGracefully(instance);
 });
 
 if (process.env.INVOKE_JOB_RUNNER) {

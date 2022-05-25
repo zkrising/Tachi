@@ -57,8 +57,8 @@ router.get("/", async (req, res) => {
 	//
 	// Since most players will have this off, this is not a significant
 	// performance hit.
-	if (game === "iidx" && !req.query.noIntelligentOmit) {
-		if (!req[SYMBOL_TACHI_API_AUTH].userID) {
+	if (game === "iidx" && req.query.noIntelligentOmit === undefined) {
+		if (req[SYMBOL_TACHI_API_AUTH].userID === null) {
 			charts = charts.filter(
 				(e) => (e as ChartDocument<"iidx:DP" | "iidx:SP">).data["2dxtraSet"] === null
 			);

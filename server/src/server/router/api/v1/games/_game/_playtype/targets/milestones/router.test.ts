@@ -1,21 +1,21 @@
 import dm from "deepmerge";
 import db from "external/mongo/db";
-import {
-    MilestoneDocument,
-    MilestoneSetDocument,
-    MilestoneSubscriptionDocument
-} from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
-    FakeOtherUser,
-    IIDXSPMilestoneGoals,
-    IIDXSPMilestoneGoalSubs,
-    TestingIIDXSPMilestone,
-    TestingIIDXSPMilestoneSub,
-    TestingIIDXSPScorePB
+	FakeOtherUser,
+	IIDXSPMilestoneGoals,
+	IIDXSPMilestoneGoalSubs,
+	TestingIIDXSPMilestone,
+	TestingIIDXSPMilestoneSub,
+	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
+import type {
+	MilestoneDocument,
+	MilestoneSetDocument,
+	MilestoneSubscriptionDocument,
+} from "tachi-common";
 
 t.test("GET /api/v1/games/:game/:playtype/targets/milestones", (t) => {
 	t.beforeEach(ResetDBState);
@@ -42,7 +42,9 @@ t.test("GET /api/v1/games/:game/:playtype/targets/milestones", (t) => {
 		t.equal(res.statusCode, 200);
 
 		t.hasStrict(
-			(res.body.body as MilestoneDocument[]).sort((a, b) => a.name.localeCompare(b.name)),
+			(res.body.body as Array<MilestoneDocument>).sort((a, b) =>
+				a.name.localeCompare(b.name)
+			),
 			[{ milestoneID: "similar_name" }, { milestoneID: "name" }]
 		);
 
@@ -66,7 +68,7 @@ const LoadLazySampleData = async () => {
 		dm(TestingIIDXSPMilestoneSub, {
 			userID: 2,
 		}),
-	] as MilestoneSubscriptionDocument[]);
+	] as Array<MilestoneSubscriptionDocument>);
 };
 
 t.test("GET /api/v1/games/:game/:playtype/targets/milestones/popular", (t) => {
@@ -79,7 +81,9 @@ t.test("GET /api/v1/games/:game/:playtype/targets/milestones/popular", (t) => {
 		t.equal(res.statusCode, 200);
 
 		t.hasStrict(
-			(res.body.body as MilestoneDocument[]).sort((a, b) => a.name.localeCompare(b.name)),
+			(res.body.body as Array<MilestoneDocument>).sort((a, b) =>
+				a.name.localeCompare(b.name)
+			),
 			[
 				{ milestoneID: TestingIIDXSPMilestone.milestoneID, __subscriptions: 2 },
 				{ milestoneID: "other_milestone", __subscriptions: 1 },

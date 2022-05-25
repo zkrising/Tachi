@@ -6,7 +6,7 @@ import type { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { integer } from "tachi-common";
 
-const PR_BeatorajaScore = {
+const PR_BEATORAJA_SCORE = {
 	sha256: "string",
 	exscore: p.isPositiveInteger,
 	passnotes: p.isPositiveInteger,
@@ -45,7 +45,7 @@ const PR_BeatorajaScore = {
 	lms: p.isPositiveInteger,
 };
 
-const PR_BeatorajaChart = {
+const PR_BEATORAJA_CHART = {
 	md5: "string",
 	sha256: "string",
 	title: "string",
@@ -67,11 +67,11 @@ const PR_BeatorajaChart = {
 export function ParseBeatorajaSingle(
 	body: Record<string, unknown>,
 	userID: integer,
-	logger: KtLogger
+	_logger: KtLogger
 ): ParserFunctionReturns<BeatorajaScore, BeatorajaContext> {
 	const err = p(
 		body.score,
-		PR_BeatorajaScore,
+		PR_BEATORAJA_SCORE,
 		{},
 		{ allowExcessKeys: true, throwOnNonObject: false }
 	);
@@ -85,7 +85,7 @@ export function ParseBeatorajaSingle(
 
 	const chartErr = p(
 		body.chart,
-		PR_BeatorajaChart,
+		PR_BEATORAJA_CHART,
 		{},
 		{ allowExcessKeys: true, throwOnNonObject: false }
 	);

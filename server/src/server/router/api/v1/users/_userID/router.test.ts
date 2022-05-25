@@ -1,12 +1,12 @@
+import { PasswordCompare } from "../../auth/auth";
 import db from "external/mongo/db";
 import { ONE_DAY, ONE_YEAR } from "lib/constants/time";
-import { Game, ImportDocument, ImportTypes, UserGameStats } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { Random20Hex } from "utils/misc";
-import { PasswordCompare } from "../../auth/auth";
+import type { Game, ImportDocument, ImportTypes, UserGameStats } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID", (t) => {
 	t.beforeEach(ResetDBState);
@@ -314,7 +314,7 @@ t.test("GET /api/v1/users/:userID/game-stats", (t) => {
 	t.test("Should return all of a user's game stats.", async (t) => {
 		await db["game-stats"].remove({});
 
-		const stats: UserGameStats[] = [
+		const stats: Array<UserGameStats> = [
 			{
 				userID: 1,
 				game: "iidx",

@@ -16,7 +16,6 @@ import { FindSongOnID } from "utils/queries/songs";
 import type { DryScore } from "../../../framework/common/types";
 import type { ConverterFunction } from "../../common/types";
 import type { IRUSCContext } from "./types";
-import type { KtLogger } from "lib/logger/logger";
 import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
 import type { Lamps } from "tachi-common";
 
@@ -38,10 +37,7 @@ export function DeriveNoteMod(data: USCClientScore): "MIR-RAN" | "MIRROR" | "NOR
 /**
  * Determines the lamp of a USC score.
  */
-export function DeriveLamp(
-	scoreDoc: USCClientScore,
-	logger: KtLogger
-): Lamps["usc:Controller" | "usc:Keyboard"] {
+export function DeriveLamp(scoreDoc: USCClientScore): Lamps["usc:Controller" | "usc:Keyboard"] {
 	if (scoreDoc.score === 10_000_000) {
 		return "PERFECT ULTIMATE CHAIN";
 	} else if (scoreDoc.error === 0) {
@@ -50,12 +46,20 @@ export function DeriveLamp(
 		return scoreDoc.gauge >= 0.7 ? "CLEAR" : "FAILED";
 	} else if (scoreDoc.options.gaugeType === 1) {
 		return scoreDoc.gauge > 0 ? "EXCESSIVE CLEAR" : "FAILED";
-	} else if (scoreDoc.options.gaugeType === 2) {
-		return "FAILED";
 	}
 
-	logger.error(`Could not derive Lamp from Score Document`, { scoreDoc });
-	throw new InternalFailure(`Could not derive Lamp from Score Document`);
+	// else if (scoreDoc.options.gaugeType === 2)
+	return "FAILED";
+}
+
+function ConvertGaugeType(gaugeType: 0 | 1 | 2) {
+	if (gaugeType === 0) {
+		return "NORMAL";
+	} else if (gaugeType === 1) {
+		return "HARD";
+	}
+
+	return "PERMISSIVE";
 }
 
 export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = async (
@@ -114,7 +118,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 			grade,
 			percent,
 			score: data.score,
-			lamp: DeriveLamp(data, logger),
+			lamp: DeriveLamp(data),
 			judgements: {
 				critical: data.crit,
 				near: data.near,
@@ -128,12 +132,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 			},
 		},
 		scoreMeta: {
-			gaugeMod:
-				data.options.gaugeType === 0
-					? "NORMAL"
-					: data.options.gaugeType === 1
-					? "HARD"
-					: "PERMISSIVE",
+			gaugeMod: ConvertGaugeType(data.options.gaugeType),
 			noteMod: DeriveNoteMod(data),
 		},
 	};

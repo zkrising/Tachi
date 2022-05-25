@@ -48,7 +48,9 @@ export interface FervidexScore {
 	pacemaker: {
 		name?: string | null;
 		score?: integer | null;
-		type?: string | null; // too lazy to type this and we dont use it.
+
+		// too lazy to type this properly (it's a string enum) but we dont use it.
+		type?: string | null;
 	};
 
 	"2dx-gsm"?: {

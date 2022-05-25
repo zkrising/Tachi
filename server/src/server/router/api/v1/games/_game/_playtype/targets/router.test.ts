@@ -1,11 +1,10 @@
-import dm from "deepmerge";
 import db from "external/mongo/db";
-import { GoalSubscriptionDocument } from "tachi-common";
 import t from "tap";
 import { mkFakeGoal, mkFakeGoalSub } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { HC511UserGoal } from "test-utils/test-data";
+import type { GoalSubscriptionDocument } from "tachi-common";
 
 t.test("GET /api/v1/games/:game/:playtype/targets/recently-achieved", (t) => {
 	t.beforeEach(ResetDBState);
@@ -15,7 +14,7 @@ t.test("GET /api/v1/games/:game/:playtype/targets/recently-achieved", (t) => {
 			mkFakeGoal({ goalID: "achieved" }),
 			mkFakeGoal({ goalID: "achieved_more_recently" }),
 			mkFakeGoal({ goalID: "achieved_instantly" }),
-		])
+		]);
 
 		await db["goal-subs"].insert([
 			// not achieved
@@ -57,13 +56,19 @@ t.test("GET /api/v1/games/:game/:playtype/targets/recently-raised", (t) => {
 			mkFakeGoal({ goalID: "achieved" }),
 			mkFakeGoal({ goalID: "achieved_instantly" }),
 		]);
-		
+
 		await db["goal-subs"].insert([
 			// not achieved
 			HC511UserGoal,
 			mkFakeGoalSub({ goalID: "interacted", achieved: false, lastInteraction: 1000 }),
+
 			// happened more recently
-			mkFakeGoalSub({ goalID: "interacted_more_recently", achieved: false, lastInteraction: 2000 }),
+			mkFakeGoalSub({
+				goalID: "interacted_more_recently",
+				achieved: false,
+				lastInteraction: 2000,
+			}),
+
 			// shouldnt be included -- just recently-raised.
 			mkFakeGoalSub({
 				goalID: "achieved",

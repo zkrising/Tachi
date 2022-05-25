@@ -8,7 +8,7 @@ import {
 import db from "external/mongo/db";
 import type { KtLogger } from "lib/logger/logger";
 import type { BulkWriteUpdateOneOperation } from "mongodb";
-import type { integer, PBScoreDocument, ScoreDocument } from "tachi-common";
+import type { Game, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 
 export type PBScoreDocumentNoRank = Omit<PBScoreDocument, "rankingData">;
 
@@ -108,18 +108,6 @@ export async function UpdateChartRanking(chartID: string) {
 	await db["personal-bests"].bulkWrite(bwrite, { ordered: false });
 }
 
-// Explicit acknowledgement that typing this properly simply takes too much time
-// This is a function that is aptly described below when you see how its called.
-// They return true on success, false on failure, and mutate their arguments.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const GAME_SPECIFIC_MERGE_FNS: Record<string, any> = {
-	iidx: IIDXMergeFn,
-	sdvx: SDVXMergeFn,
-	usc: USCMergeFn,
-	popn: PopnMergeFn,
-	bms: BMSMergeFn,
-};
-
 async function MergeScoreLampIntoPB(
 	userID: integer,
 	scorePB: ScoreDocument,
@@ -167,18 +155,38 @@ async function MergeScoreLampIntoPB(
 		calculatedData: scorePB.calculatedData,
 	};
 
-	const GameSpecificMergeFn = GAME_SPECIFIC_MERGE_FNS[scorePB.game];
+	const GameSpecificMergeFn = GetGameSpecificMergeFn(scorePB.game);
 
 	if (GameSpecificMergeFn) {
+		// @ts-expect-error Yeah, this call sucks. It correctly warns us that scorePB and lampPB
+		// might've diverged, but we know they haven't.
 		const success = await GameSpecificMergeFn(pbDoc, scorePB, lampPB, logger);
 
 		// If the mergeFn returns false, this means something has gone
 		// rather wrong. We just return undefined here, which in turn
 		// tells our calling code to skip this PB entirely.
-		if (success === false) {
+		if (!success) {
 			return;
 		}
 	}
 
 	return pbDoc;
+}
+
+function GetGameSpecificMergeFn(game: Game) {
+	switch (game) {
+		case "iidx":
+			return IIDXMergeFn;
+		case "usc":
+			return USCMergeFn;
+		case "sdvx":
+			return SDVXMergeFn;
+		case "popn":
+			return PopnMergeFn;
+		case "bms":
+		case "pms":
+			return BMSMergeFn;
+		default:
+			return null;
+	}
 }

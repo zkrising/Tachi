@@ -1,6 +1,7 @@
 import { KaiTypeToBaseURL } from "../utils";
 import { SDVXDans } from "lib/constants/classes";
 import nodeFetch from "utils/fetch";
+import { IsRecord } from "utils/misc";
 import type { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
 
 export async function CreateKaiSDVXClassHandler(
@@ -8,8 +9,7 @@ export async function CreateKaiSDVXClassHandler(
 	token: string,
 	fetch = nodeFetch
 ): Promise<ClassHandler> {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let json: any;
+	let json: unknown;
 	let err: unknown;
 	const baseUrl = KaiTypeToBaseURL(kaiType);
 
@@ -23,18 +23,29 @@ export async function CreateKaiSDVXClassHandler(
 			},
 		});
 
-		json = await res.json();
-	} catch (e) {
+		json = (await res.json()) as unknown;
+	} catch (e: unknown) {
 		err = e;
 	}
 
 	return (game, playtype, userID, ratings, logger) => {
-		if (err) {
+		if (err !== undefined) {
 			logger.error(`An error occured while updating classes for ${baseUrl}.`, { err });
 			return {};
 		}
 
-		if (json.skill_level === null || json.skill_level === undefined) {
+		if (!IsRecord(json)) {
+			logger.error(`JSON Returned from server was not an object? Not updating anything.`, {
+				json,
+			});
+			return {};
+		}
+
+		if (
+			json.skill_level === null ||
+			json.skill_level === undefined ||
+			typeof json.skill_level !== "number"
+		) {
 			logger.info(`User has no skill_level. Not updating anything.`);
 			return {};
 		}

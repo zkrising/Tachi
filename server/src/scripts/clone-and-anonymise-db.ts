@@ -7,10 +7,10 @@ const program = new Command();
 
 program
 	.option("--nsFrom <Database to clone from.>")
-	.option("--nsTo <Database to clone and anonymise to.>");
+	.option("--nsTo <Database to clone and anonymise to. Must begin with anon->");
 
 program.parse(process.argv);
-const options = program.opts();
+const options: { nsTo?: string; nsFrom?: string } = program.opts();
 
 if (!options.nsTo || !options.nsFrom) {
 	throw new Error(`Expected --nsFrom and --nsTo options.`);
@@ -103,5 +103,18 @@ function CloneDB(nsFrom: string, nsTo: string) {
 
 if (require.main === module) {
 	CloneDB(options.nsFrom, options.nsTo);
-	AnonymiseDB(options.nsTo);
+
+	// Don't run any risks -- there's no way we're ever accidentally anonymising the production database.
+	// any nsTo argument MUST start with anon-
+	if (!options.nsTo.startsWith("anon-")) {
+		AnonymiseDB(options.nsTo)
+			.then(() => {
+				logger.info(`Anonymised database successfully. Saved to ${options.nsTo}.`);
+				process.exit(0);
+			})
+			.catch((err: unknown) => {
+				logger.error(`Failed to anonymise database.`, { err });
+				process.exit(1);
+			});
+	}
 }

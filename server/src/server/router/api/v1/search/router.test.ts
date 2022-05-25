@@ -1,8 +1,8 @@
-import { SongDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { LoadTachiIIDXData } from "test-utils/test-data";
+import type { SongDocument } from "tachi-common";
 
 t.test("GET /api/v1/search", (t) => {
 	t.beforeEach(ResetDBState);
@@ -46,7 +46,9 @@ t.test("GET /api/v1/search/chart-hash", (t) => {
 	const BMS_SHA2 = "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d";
 	const PMS_MD5 = "d1253dd56bb2087d0b0d474f0d562aae";
 	const PMS_SHA2 = "a10193f7ae05ce839292dc716f182fda0b1cc6ac5382c2056f37e22ffba87b7d";
-	const USC_SHA1 = "USC_CHART_HASH"; // this is apparantly what our mock data uses.
+
+	// this is apparantly what our mock data uses.
+	const USC_SHA1 = "USC_CHART_HASH";
 
 	t.test("Should return a BMS chart if the MD5 matches.", async (t) => {
 		const res = await mockApi.get(`/api/v1/search/chart-hash?search=${BMS_MD5}`);

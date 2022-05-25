@@ -1,12 +1,12 @@
+import DiscordWinstonTransport from "./discord-transport";
 import { Transport as SeqTransport } from "@valuabletouch/winston-seq";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
-import { EscapeStringRegexp, IsNonEmptyString } from "utils/misc";
+import { EscapeStringRegexp } from "utils/misc";
 import winston, { format, transports } from "winston";
 import type { SeqLogLevel } from "seq-logging";
 import type { LeveledLogMethod, Logger } from "winston";
 import "winston-daily-rotate-file";
-import DiscordWinstonTransport from "./discord-transport";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };
 
@@ -15,9 +15,7 @@ const level = process.env.LOG_LEVEL ?? ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
 const formatExcessProperties = (meta: Record<string, unknown>, limit = false) => {
 	let i = 0;
 
-	for (const key in meta) {
-		const val = meta[key];
-
+	for (const [key, val] of Object.entries(meta)) {
 		if (val instanceof Error) {
 			meta[key] = { message: val.message, stack: val.stack };
 		}
@@ -49,12 +47,10 @@ const formatExcessPropertiesNoStack = (
 ) => {
 	const realMeta: Record<string, unknown> = {};
 
-	for (const key in meta) {
+	for (const [key, val] of Object.entries(meta)) {
 		if (omitKeys.includes(key)) {
 			continue;
 		}
-
-		const val = meta[key];
 
 		if (val instanceof Error) {
 			realMeta[key] = { message: val.message };
@@ -85,7 +81,11 @@ const tachiConsolePrintf = format.printf(
 	({ level, message, context = "tachi-root", timestamp, hideFromConsole, ...meta }) =>
 		`${timestamp}${replicaInfo} [${
 			Array.isArray(context) ? context.join(" | ") : context
-		}] ${level}: ${message}${formatExcessPropertiesNoStack(meta, hideFromConsole, true)}`
+		}] ${level}: ${message}${formatExcessPropertiesNoStack(
+			meta,
+			hideFromConsole as Array<string>,
+			true
+		)}`
 );
 
 winston.addColors({
@@ -241,11 +241,15 @@ function CreateLogCtx(filename: string, lg = rootLogger): KtLogger {
 		context: [replacedFilename],
 	}) as KtLogger;
 
+	// @hack, defaultMeta isn't reactive -- won't be updated unless we do this.
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	logger.defaultMeta = { ...(logger.defaultMeta ?? {}), context: [replacedFilename] };
+
 	return logger;
 }
 
 export function AppendLogCtx(context: string, lg: KtLogger): KtLogger {
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 	const newContext = [...lg.defaultMeta.context, context];
 
 	return lg.child({ context: newContext }) as KtLogger;

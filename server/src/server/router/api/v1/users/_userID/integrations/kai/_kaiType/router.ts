@@ -2,7 +2,6 @@ import { ValidateKaiType } from "./middleware";
 import { RequireSelfRequestFromUser } from "../../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import {
 	GetKaiTypeClientCredentials,

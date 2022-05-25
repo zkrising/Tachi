@@ -66,7 +66,7 @@ export function CreateKaiReauthFunction(
 		/* istanbul ignore next */
 
 		try {
-			json = await res.json();
+			json = (await res.json()) as unknown;
 		} catch (err) {
 			logger.error(`Invalid JSON body in successful reauth response.`, { res, err });
 			throw new ScoreImportFatalError(
@@ -85,6 +85,12 @@ export function CreateKaiReauthFunction(
 			);
 		}
 
+		// asserted by prudence
+		const validatedContent = json as {
+			refresh_token: string;
+			access_token: string;
+		};
+
 		await db["kai-auth-tokens"].update(
 			{
 				userID: authDoc.userID,
@@ -92,12 +98,12 @@ export function CreateKaiReauthFunction(
 			},
 			{
 				$set: {
-					refreshToken: json.refresh_token,
-					token: json.access_token,
+					refreshToken: validatedContent.refresh_token,
+					token: validatedContent.access_token,
 				},
 			}
 		);
 
-		return json.access_token;
+		return validatedContent.access_token;
 	};
 }

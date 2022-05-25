@@ -32,11 +32,13 @@ export async function UGSSnapshot() {
 	logger.info(`Snapshotting UserGameStats.`);
 
 	try {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 		await db["game-stats"]
 			.find({})
 
 			// @ts-expect-error faulty TS types
 			.each(async (ugs: UserGameStats, { pause, resume }) => {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 				pause();
 
 				logger.debug(`Snapshotting ${ugs.userID} ${ugs.playtype} ${ugs.game}.`);
@@ -58,9 +60,11 @@ export async function UGSSnapshot() {
 				if (batchWrite.length >= 500) {
 					logger.verbose(`Flushed batch.`);
 					await db["game-stats-snapshots"].insert(batchWrite);
+					// eslint-disable-next-line require-atomic-updates
 					batchWrite = [];
 				}
 
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 				resume();
 			});
 
@@ -90,7 +94,14 @@ export async function UGSSnapshot() {
 }
 
 if (require.main === module) {
-	UGSSnapshot().then(() => {
-		process.exit(0);
-	});
+	UGSSnapshot()
+		.then(() => {
+			process.exit(0);
+		})
+		.catch((err: unknown) => {
+			// This is a severe error, not an error. Running the UGS snapshot every day is necessary.
+			logger.severe(`Failed to snapshot user game stats.`, { err });
+
+			process.exit(1);
+		});
 }

@@ -101,8 +101,9 @@ export async function UpdateUGSClasses(
 	let classes: ScoreClasses = {};
 
 	// @ts-expect-error This one sucks - I need to look into a better way of representing these types
-	if (STATIC_CLASS_HANDLERS[game] && STATIC_CLASS_HANDLERS[game][playtype]) {
+	if (STATIC_CLASS_HANDLERS[game]?.[playtype] !== undefined) {
 		// @ts-expect-error see above
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
 		classes = await STATIC_CLASS_HANDLERS[game][playtype](
 			game,
 			playtype,
@@ -141,7 +142,7 @@ export async function ProcessClassDeltas(
 
 	const achievementOps = [];
 
-	for (const s in classes) {
+	for (const s of Object.keys(classes)) {
 		const classSet = s as keyof GameClasses<IDStrings>;
 		const classVal = classes[classSet];
 
@@ -176,7 +177,7 @@ export async function ProcessClassDeltas(
 					};
 				}
 
-				EmitWebhookEvent({ type: "class-update/v1", content: { userID, ...delta } });
+				void EmitWebhookEvent({ type: "class-update/v1", content: { userID, ...delta } });
 
 				achievementOps.push({
 					userID,

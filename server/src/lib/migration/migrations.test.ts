@@ -1,7 +1,7 @@
+import { ApplyMigration, FAKE_MIGRATION, FindUnappliedMigrations } from "./migrations";
 import db from "external/mongo/db";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { ApplyMigration, FAKE_MIGRATION, FindUnappliedMigrations } from "./migrations";
 
 t.test("#FindUnappliedMigrations", (t) => {
 	t.beforeEach(ResetDBState);
@@ -59,6 +59,7 @@ t.test("#ApplyMigration", (t) => {
 		});
 
 		t.equal(
+			// eslint-disable-next-line lines-around-comment
 			// @ts-expect-error Our migration is a fake one that adds __wasMigrated
 			// to all user documents. There's nothing special about this property name.
 			dbRes?.__wasMigrated,
@@ -81,7 +82,8 @@ t.test("#ApplyMigration", (t) => {
 			});
 		} catch (e) {
 			const err = e as Error;
-			t.equal(err?.message, "Was going to exit with statusCode 1, but we're in testing.");
+
+			t.equal(err.message, "Was going to exit with statusCode 1, but we're in testing.");
 		}
 
 		const dbRes = await db.users.findOne({
@@ -89,6 +91,7 @@ t.test("#ApplyMigration", (t) => {
 		});
 
 		t.equal(
+			// eslint-disable-next-line lines-around-comment
 			// @ts-expect-error Our un-migration adds this property to check if it worked.
 			dbRes?.__wasUnmigrated,
 			true,
@@ -113,7 +116,8 @@ t.test("#ApplyMigration", (t) => {
 				});
 			} catch (e) {
 				const err = e as Error;
-				t.equal(err?.message, "Was going to exit with statusCode 1, but we're in testing.");
+
+				t.equal(err.message, "Was going to exit with statusCode 1, but we're in testing.");
 			}
 
 			t.end();

@@ -164,7 +164,7 @@ for (const game of TachiConfig.GAMES) {
 export async function SetIndexesWithDB(db: IMonkManager, reset: boolean) {
 	const collections = (await db.listCollections()).map((e) => e.name);
 
-	for (const collection in indexes) {
+	for (const [collection, values] of Object.entries(indexes)) {
 		if (!collections.includes(collection)) {
 			// this creates a collection, i cant find the createCollection
 			// call.
@@ -179,8 +179,9 @@ export async function SetIndexesWithDB(db: IMonkManager, reset: boolean) {
 			logger.debug(`Reset ${collection}.`);
 		}
 
-		// @ts-expect-error dru(n)kts
-		for (const index of indexes[collection]) {
+		for (const index of values) {
+			// @ts-expect-error Type-mismatch here. our index.fileds are just boring records. I know
+			// that this sucks...
 			const r = await db.get(collection).createIndex(index.fields, index.options);
 
 			logger.debug(r);
@@ -211,14 +212,17 @@ export function SetIndexesIfNoneSet() {
 				logger.info(
 					`No indexes on users, First-time Tachi-Server startup assumed. Running SetIndexes.`
 				);
-				SetIndexesWithDB(monkDB, true);
+				return SetIndexesWithDB(monkDB, true);
 			}
 		})
-		.catch((err) => {
+		.catch((err: unknown) => {
 			logger.info(
 				`Error in finding users collection. First time startup likely. Running SetIndexes.`,
-				err
+				{ err }
 			);
-			SetIndexesWithDB(monkDB, true);
+			return SetIndexesWithDB(monkDB, true);
+		})
+		.catch((err: unknown) => {
+			logger.error(`Failed to set indexes on assumed first-time-setup?`, { err });
 		});
 }

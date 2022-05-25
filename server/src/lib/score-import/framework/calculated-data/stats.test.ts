@@ -1,9 +1,9 @@
+import { CalculateKTLampRatingIIDXDP, CalculateKTLampRatingIIDXSP, CalculateMFCP } from "./stats";
 import CreateLogCtx from "lib/logger/logger";
-import { ChartDocument, Difficulties, Lamps, ScoreDocument } from "tachi-common";
 import t from "tap";
 import { Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
-import { DryScore } from "../common/types";
-import { CalculateKTLampRatingIIDXDP, CalculateKTLampRatingIIDXSP, CalculateMFCP } from "./stats";
+import type { DryScore } from "../common/types";
+import type { ChartDocument, Difficulties, Lamps, ScoreDocument } from "tachi-common";
 
 t.test("#CalculateKTLampRatingIIDXSP", (t) => {
 	function c(
@@ -11,7 +11,8 @@ t.test("#CalculateKTLampRatingIIDXSP", (t) => {
 		hc: number | null,
 		exhc: number | null
 	): ChartDocument<"iidx:SP"> {
-		return Object.assign({}, Testing511SPA, {
+		return {
+			...Testing511SPA,
 			tierlistInfo: {
 				"kt-EXHC": {
 					value: exhc,
@@ -23,15 +24,16 @@ t.test("#CalculateKTLampRatingIIDXSP", (t) => {
 					value: nc,
 				},
 			},
-		});
+		};
 	}
 
-	function s(lamp: Lamps["iidx:SP" | "iidx:DP"]): DryScore<"iidx:SP" | "iidx:DP"> {
-		return Object.assign({}, TestingIIDXSPDryScore, {
+	function s(lamp: Lamps["iidx:DP" | "iidx:SP"]): DryScore<"iidx:DP" | "iidx:SP"> {
+		return {
+			...TestingIIDXSPDryScore,
 			scoreData: {
 				lamp,
 			},
-		});
+		};
 	}
 
 	t.equal(
@@ -99,24 +101,27 @@ t.test("#CalculateKTLampRatingIIDXSP", (t) => {
 
 t.test("#CalculateKTLampRatingIIDXDP", (t) => {
 	function c(dpTier: number | null): ChartDocument<"iidx:DP"> {
-		return Object.assign({}, Testing511SPA, {
+		return {
+			...Testing511SPA,
 			playtype: "DP",
 			tierlistInfo: {
 				"dp-tier": {
 					value: dpTier,
 				},
 			},
+
 			// hack over-assert this type, since we're merging the SPA into being
 			// a DPA.
-		}) as unknown as ChartDocument<"iidx:DP">;
+		} as unknown as ChartDocument<"iidx:DP">;
 	}
 
-	function s(lamp: Lamps["iidx:SP" | "iidx:DP"]): DryScore<"iidx:SP" | "iidx:DP"> {
-		return Object.assign({}, TestingIIDXSPDryScore, {
+	function s(lamp: Lamps["iidx:DP" | "iidx:SP"]): DryScore<"iidx:DP" | "iidx:SP"> {
+		return {
+			...TestingIIDXSPDryScore,
 			scoreData: {
 				lamp,
 			},
-		});
+		};
 	}
 
 	t.equal(
@@ -150,7 +155,7 @@ const logger = CreateLogCtx(__filename);
 
 t.test("#CalculateMFCP", (t) => {
 	function TestMFCP(
-		lamp: Lamps["ddr:SP" | "ddr:DP"],
+		lamp: Lamps["ddr:DP" | "ddr:SP"],
 		levelNum: number,
 		difficulty: Difficulties["ddr:DP" | "ddr:SP"]
 	) {
@@ -247,6 +252,7 @@ t.test("#CalculateMFCP", (t) => {
 				`Should return 25 for charts with level ${i}`
 			);
 		}
+
 		t.end();
 	});
 

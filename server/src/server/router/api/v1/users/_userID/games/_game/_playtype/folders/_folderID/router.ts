@@ -155,37 +155,34 @@ router.get("/timeline", async (req, res) => {
 
 	// Returns a unique score per-chart that was the first score to achieve
 	// this criteria on that chart.
-	const scores = await db.scores
-		.aggregate([
-			{
-				$match: matchCriteria,
+	const scoresAgg: Array<{ doc: ScoreDocument }> = await db.scores.aggregate([
+		{
+			$match: matchCriteria,
+		},
+		{
+			$addFields: {
+				__sortTime: { $ifNull: ["$timeAchieved", Infinity, "$timeAchieved"] },
 			},
-			{
-				$addFields: {
-					__sortTime: { $ifNull: ["$timeAchieved", Infinity, "$timeAchieved"] },
-				},
+		},
+		{
+			$sort: {
+				__sortTime: 1,
 			},
-			{
-				$sort: {
-					__sortTime: 1,
-				},
+		},
+		{
+			$group: {
+				_id: "$chartID",
+				doc: { $first: "$$ROOT" },
 			},
-			{
-				$group: {
-					_id: "$chartID",
-					doc: { $first: "$$ROOT" },
-				},
-			},
-			{
-				$unset: ["doc.__sortTime"],
-			},
-		])
-		.then((r) =>
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			(r.map((e: any) => e.doc) as Array<ScoreDocument>).sort(
-				(a, b) => (a.timeAchieved ?? 0) - (b.timeAchieved ?? 0)
-			)
-		);
+		},
+		{
+			$unset: ["doc.__sortTime"],
+		},
+	]);
+
+	const scores = scoresAgg
+		.map((e) => e.doc)
+		.sort((a, b) => (a.timeAchieved ?? 0) - (b.timeAchieved ?? 0));
 
 	return res.status(200).json({
 		success: true,

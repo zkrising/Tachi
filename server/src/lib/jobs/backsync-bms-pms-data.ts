@@ -42,5 +42,11 @@ export async function BacksyncBMSPMSSongsAndCharts() {
 }
 
 if (require.main === module) {
-	BacksyncBMSPMSSongsAndCharts().then(() => process.exit(0));
+	BacksyncBMSPMSSongsAndCharts()
+		.then(() => process.exit(0))
+		.catch((err: unknown) => {
+			logger.error(`Failed to backsync bms/pms songs and charts.`, { err });
+
+			process.exit(1);
+		});
 }

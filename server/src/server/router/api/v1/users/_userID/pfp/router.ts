@@ -4,7 +4,6 @@ import db from "external/mongo/db";
 import { CDNDelete, CDNRedirect, CDNStoreOrOverwrite } from "lib/cdn/cdn";
 import { GetProfilePictureURL } from "lib/cdn/url-format";
 import { ONE_MEGABYTE } from "lib/constants/filesize";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";

@@ -75,6 +75,7 @@ t.test("POST /api/v1/imports/:importID/revert", async (t) => {
 
 		t.resolveMatch(
 			db.scores.findOne({ scoreID: FakeImport.scoreIDs[0] }),
+
 			// @ts-expect-error https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60020
 			null,
 			"The scores that were part of this import should be deleted."
@@ -85,6 +86,7 @@ t.test("POST /api/v1/imports/:importID/revert", async (t) => {
 
 	t.test("Should return 404 if the import doesn't exist.", async (t) => {
 		const res = await mockApi.post(`/api/v1/imports/doesnt-exist/revert`).set("Cookie", cookie);
+
 		t.equal(res.statusCode, 404, "Should return 404.");
 
 		t.end();
@@ -109,6 +111,7 @@ t.test("POST /api/v1/imports/:importID/revert", async (t) => {
 		);
 
 		const someoneElsesImport = mkFakeImport({ userID: 2, importID: "someone_elses" });
+
 		await db.imports.insert(someoneElsesImport);
 
 		const res = await mockApi
@@ -133,6 +136,7 @@ t.test("POST /api/v1/imports/:importID/revert", async (t) => {
 			);
 
 			const someoneElsesImport = mkFakeImport({ userID: 2, importID: "someone_elses" });
+
 			await db.imports.insert(someoneElsesImport);
 
 			const res = await mockApi
@@ -145,6 +149,7 @@ t.test("POST /api/v1/imports/:importID/revert", async (t) => {
 
 			t.resolveMatch(
 				db.scores.findOne({ scoreID: FakeImport.scoreIDs[0] }),
+
 				// @ts-expect-error https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60020
 				null,
 				"The scores that were part of this import should be deleted."

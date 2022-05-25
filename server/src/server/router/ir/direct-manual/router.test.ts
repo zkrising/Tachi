@@ -1,11 +1,15 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { BatchManual, BatchManualScore } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { FakeChunitachiBatchManual, FakeSmallBatchManual, GetKTDataJSON } from "test-utils/test-data";
+import {
+	FakeChunitachiBatchManual,
+	FakeSmallBatchManual,
+	GetKTDataJSON,
+} from "test-utils/test-data";
+import type { BatchManual, BatchManualScore } from "tachi-common";
 
 t.test("POST /ir/direct-manual/import", async (t) => {
 	const cookie = await CreateFakeAuthCookie(mockApi);
@@ -60,9 +64,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 	});
 
 	t.test("Should require authentication.", async (t) => {
-		const res = await mockApi
-			.post("/ir/direct-manual/import")
-			.send(FakeSmallBatchManual);
+		const res = await mockApi.post("/ir/direct-manual/import").send(FakeSmallBatchManual);
 
 		t.equal(res.statusCode, 401);
 

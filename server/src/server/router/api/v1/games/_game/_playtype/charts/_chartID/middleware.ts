@@ -7,9 +7,11 @@ export const ValidateAndGetChart: RequestHandler = async (req, res, next) => {
 
 	const chart = await db.charts[game].findOne({
 		chartID: req.params.chartID,
-		playtype, // technically redundant, but we're under playtypes here URL wise.
+
+		// technically redundant, but we're under playtypes here URL wise.
 		// this means we cant match an SP chart when we're under IIDX SP, for
 		// example.
+		playtype,
 	});
 
 	if (!chart) {

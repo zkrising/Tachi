@@ -119,7 +119,9 @@ export const SetFervidexStyleRequestPermissions: RequestHandler =
 export const RequirePermissions =
 	(...perms: Array<APIPermissions>): RequestHandler =>
 	(req, res, next) => {
-		if (!req[SYMBOL_TACHI_API_AUTH]) {
+		// This isn't possible on paper, but maybe some insane stuff has happened to lead this to happen.
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+		if (req[SYMBOL_TACHI_API_AUTH] === undefined) {
 			logger.error(
 				`RequirePermissions middleware was hit without any TachiAPIAuthentication?`
 			);
@@ -167,7 +169,9 @@ export const RequirePermissions =
 const CreateRequireNotGuest =
 	(errorKeyName: string): RequestHandler =>
 	(req, res, next) => {
-		if (!req[SYMBOL_TACHI_API_AUTH]) {
+		// See above -- this isn't possible on paper, but I want to check it anyway.
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+		if (req[SYMBOL_TACHI_API_AUTH] === undefined) {
 			logger.error(`RequirePermissions middleware was hit without any TachiAPIData?`);
 			return res.status(500).json({
 				success: false,

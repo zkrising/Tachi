@@ -196,8 +196,8 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		hitMeta[k] = data[k];
 	}
 
-	hitMeta.epr! += data.ems;
-	hitMeta.lpr! += data.lms;
+	hitMeta.epr = hitMeta.epr! + data.ems;
+	hitMeta.lpr = hitMeta.lpr! + data.lms;
 
 	const judgements = {
 		[game === "pms" ? "cool" : "pgreat"]: data.epg + data.lpg,

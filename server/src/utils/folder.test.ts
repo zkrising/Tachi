@@ -1,10 +1,10 @@
+import { GetFolderChartIDs, ResolveFolderToCharts, TransposeFolderData } from "./folder";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { ChartDocument, FolderDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA } from "test-utils/test-data";
-import { GetFolderChartIDs, ResolveFolderToCharts, TransposeFolderData } from "./folder";
+import type { ChartDocument, FolderDocument } from "tachi-common";
 
 t.todo("#CreateFolderChartLookup");
 t.todo("#GetFolderCharts");
@@ -91,7 +91,8 @@ t.test("#ResolveFolderToCharts", (t) => {
 				playtype: "SP",
 				type: "charts",
 				data: {
-					songID: Testing511SPA.songID, // lol
+					// lol
+					songID: Testing511SPA.songID,
 				},
 			};
 
@@ -122,7 +123,8 @@ t.test("#ResolveFolderToCharts", (t) => {
 			playtype: "SP",
 			type: "charts",
 			data: {
-				songID: Testing511SPA.songID, // lol
+				// lol
+				songID: Testing511SPA.songID,
 			},
 		};
 
@@ -151,7 +153,8 @@ t.test("#ResolveFolderToCharts", (t) => {
 			playtype: "SP",
 			type: "charts",
 			data: {
-				songID: Testing511SPA.songID, // lol
+				// lol
+				songID: Testing511SPA.songID,
 			},
 		};
 

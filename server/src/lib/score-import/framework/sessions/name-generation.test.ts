@@ -1,5 +1,5 @@
-import t from "tap";
 import { GenerateRandomSessionName } from "./name-generation";
+import t from "tap";
 
 t.test("#GenerateRandomSessionName", (t) => {
 	const res = GenerateRandomSessionName();

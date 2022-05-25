@@ -1,9 +1,9 @@
 import db from "external/mongo/db";
-import { PBScoreDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { LoadTachiIIDXData, Testing511SPA } from "test-utils/test-data";
+import type { PBScoreDocument } from "tachi-common";
 
 t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 	t.beforeEach(ResetDBState);
@@ -24,10 +24,11 @@ t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 				userID: 3,
 			},
 			{
-				chartID: "fc7edc6bcfa701a261c89c999ddbba3e2195597b", //gambol hyper
+				// gambol hyper
+				chartID: "fc7edc6bcfa701a261c89c999ddbba3e2195597b",
 				userID: 1,
 			},
-		] as PBScoreDocument[]);
+		] as Array<PBScoreDocument>);
 
 		const res = await mockApi.get("/api/v1/games/iidx/SP/charts");
 
@@ -49,10 +50,11 @@ t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 	t.test("Should search charts if a search param is set.", async (t) => {
 		await db["personal-bests"].insert([
 			{
-				chartID: "fc7edc6bcfa701a261c89c999ddbba3e2195597b", //gambol hyper
+				// gambol hyper
+				chartID: "fc7edc6bcfa701a261c89c999ddbba3e2195597b",
 				userID: 1,
 			},
-		] as PBScoreDocument[]);
+		] as Array<PBScoreDocument>);
 
 		const res = await mockApi.get("/api/v1/games/iidx/SP/charts?search=gambol");
 

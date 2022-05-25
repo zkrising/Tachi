@@ -7,7 +7,6 @@ import { GetAndUpdateUsersGoals } from "lib/score-import/framework/goals/goals";
 import { UpdateUsersMilestones } from "lib/score-import/framework/milestones/milestones";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
 import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
-import { Playtypes } from "tachi-common";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";
 import { FormatUserDoc } from "utils/user";
 import type { Game, integer, Playtype, PublicUserDocument } from "tachi-common";

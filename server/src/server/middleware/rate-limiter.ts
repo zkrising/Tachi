@@ -12,9 +12,11 @@ import type { integer } from "tachi-common";
 const logger = CreateLogCtx(__filename);
 
 function CreateStore(name: string) {
+	// undefined forces a default to an in-memory store
+	// So we use that when in testing or localdev.
 	return Environment.nodeEnv === "production" || Environment.nodeEnv === "staging"
 		? new RateLimitRedis({ prefix: `${TachiConfig.NAME}-RL:${name}`, client: RedisClient })
-		: undefined; // undefined forces a default to an in-memory store
+		: undefined;
 }
 
 export function ClearTestingRateLimitCache() {
@@ -63,8 +65,8 @@ export const HyperAggressiveRateLimitMiddleware = rateLimit(
 
 // 5 requests every minute. This one has a tighter window, so it is less
 // vulnerable to bursting down the server.
+// if we're in testing, disable this rate limit!
 export const ScoreImportRateLimiter =
-	// if we're in testing, disable this rate limit!
 	Environment.nodeEnv === "test"
 		? rateLimit(CreateRateLimitOptions(Infinity, "ScImport", ONE_MINUTE))
 		: rateLimit(CreateRateLimitOptions(5, "ScImport", ONE_MINUTE));

@@ -1,13 +1,13 @@
+import { ConverterBatchManual, ResolveChartFromSong, ResolveMatchTypeToKTData } from "./converter";
+import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
-import { BatchManualScore, ChartDocument, Game, SongDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { BMSGazerChart, BMSGazerSong, GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
+import { BMSGazerChart, BMSGazerSong, Testing511Song, Testing511SPA } from "test-utils/test-data";
 import { EscapeStringRegexp } from "utils/misc";
-import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
-import { ConverterBatchManual, ResolveChartFromSong, ResolveMatchTypeToKTData } from "./converter";
-import { BatchManualContext } from "./types";
+import type { BatchManualContext } from "./types";
+import type { BatchManualScore, Game } from "tachi-common";
 
 const baseBatchManualScore = {
 	score: 500,
@@ -30,7 +30,9 @@ const ktdWrap = (msg: string, game: Game = "iidx", version = null): any => ({
 	importType: "file/batch-manual",
 	message: new RegExp(EscapeStringRegexp(msg), "u"),
 	converterContext: { game, service: "foo", version },
-	data: {}, // any under t.match rules.
+
+	// any under t.match rules.
+	data: {},
 });
 
 const logger = CreateLogCtx(__filename);
@@ -57,6 +59,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		t.rejects(
 			() =>
 				ResolveMatchTypeToKTData(
+					// eslint-disable-next-line lines-around-comment
 					// @ts-expect-error bad
 					deepmerge(baseBatchManualScore, { identifier: "90000" }),
 					context,
@@ -349,7 +352,10 @@ t.test("#ResolveChartFromSong", (t) => {
 	t.test("Should return the chart for the song + ptdf", async (t) => {
 		const res = await ResolveChartFromSong(
 			Testing511Song,
-			baseBatchManualScore, // has playtype + diff
+
+			// has playtype + diff
+			baseBatchManualScore,
+
 			{ game: "iidx", service: "foo", playtype: "SP", version: null },
 			importType
 		);
@@ -398,7 +404,9 @@ t.test("#ResolveChartFromSong", (t) => {
 			() =>
 				ResolveChartFromSong(
 					Testing511Song,
-					deepmerge(baseBatchManualScore, { difficulty: "LEGGENDARIA" }), // 511 has no legg (yet, lol)
+
+					// 511 has no legg (yet, lol)
+					deepmerge(baseBatchManualScore, { difficulty: "LEGGENDARIA" }),
 					{ game: "iidx", service: "foo", version: null, playtype: "SP" },
 					importType
 				),
@@ -451,6 +459,7 @@ t.test("#ConverterFn", (t) => {
 					lamp: "HARD CLEAR",
 					score: 500,
 					grade: "E",
+
 					// percent: 31.5, -- ish, FPA is hard.
 					judgements: {},
 					hitMeta: {},
@@ -646,6 +655,7 @@ t.test("#ConverterFn", (t) => {
 					lamp: "HARD CLEAR",
 					score: 500,
 					grade: "E",
+
 					// percent: 31.5, -- ish, FPA is hard.
 					judgements: {},
 					hitMeta: {},
@@ -661,6 +671,7 @@ t.test("#ConverterFn", (t) => {
 		t.rejects(
 			() =>
 				ConverterBatchManual(
+					// eslint-disable-next-line lines-around-comment
 					// @ts-expect-error broken deepmerge
 					deepmerge(baseBatchManualScore, { score: 2000 }),
 					{ game: "iidx", service: "foo", playtype: "SP", version: null },

@@ -5,7 +5,6 @@ import {
 } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";

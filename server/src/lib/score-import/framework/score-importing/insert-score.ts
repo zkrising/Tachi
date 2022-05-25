@@ -59,13 +59,16 @@ export async function InsertQueue(userID: integer) {
 	const queuedScores = scoreQueue.queue.splice(0);
 
 	if (queuedScores.length !== 0) {
+		// Yeah, this is sketchy. Ah well.
+		// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
 		delete ScoreQueues[userID];
 
 		try {
 			await db.scores.insert(queuedScores);
 		} catch (err) {
 			logger.warn(
-				`Triggered duplicate key protection. Race condition protected against, but this is not good.`
+				`Triggered duplicate key protection. Race condition protected against, but this is not good.`,
+				{ err }
 			);
 			return null;
 		}

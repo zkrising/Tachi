@@ -1,34 +1,30 @@
 /* eslint-disable no-await-in-loop */
 import dm from "deepmerge";
 import db from "external/mongo/db";
-import {
-    ChartDocument,
-    GoalSubscriptionDocument,
-    IIDX_GRADES,
-    IIDX_LAMPS,
-    PBScoreDocument
-} from "tachi-common";
+import { IIDX_GRADES, IIDX_LAMPS } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { TestSnapshot } from "test-utils/single-process-snapshot";
 import {
-    HC511Goal,
-    HC511UserGoal,
-    IIDXSPMilestoneGoals,
-    IIDXSPMilestoneGoalSubs,
-    Testing511SPA,
-    TestingIIDXFolderSP10,
-    TestingIIDXSPMilestone,
-    TestingIIDXSPMilestoneSub,
-    TestingIIDXSPScore,
-    TestingIIDXSPScorePB
+	HC511Goal,
+	HC511UserGoal,
+	IIDXSPMilestoneGoals,
+	IIDXSPMilestoneGoalSubs,
+	Testing511SPA,
+	TestingIIDXFolderSP10,
+	TestingIIDXSPMilestone,
+	TestingIIDXSPMilestoneSub,
+	TestingIIDXSPScore,
+	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
+import type { ChartDocument, GoalSubscriptionDocument, PBScoreDocument } from "tachi-common";
 
 // @ts-expect-error Not sure why the types break here, but they do.
 const dupedGoal = dm({}, HC511Goal);
+
 // @ts-expect-error Not sure why the types break here, but they do.
 const dupedGoalSub = dm({}, HC511UserGoal);
 
@@ -108,6 +104,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 	}
 
 	t.beforeEach(() => db.charts.iidx.insert(anotherFakeChart));
+
 	// @ts-expect-error weird type issues
 	t.beforeEach(() => db.folders.insert(dm(TestingIIDXFolderSP10, {})));
 
@@ -170,6 +167,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 				criteria: proportionModeCriteria,
 				charts: multiCharts,
 			}),
+
 			// NOT LEGAL FOR IIDX, due to being nonsense! NEEDS SPECIFIC TESTING.
 			// mkInput("Score:Multi Case", {
 			// 	criteria: {
@@ -235,6 +233,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 				criteria: proportionModeCriteria,
 				charts: anyCharts,
 			}),
+
 			// also illegal in iidx, bms and pms.
 			// mkInput("Score:Any Case", {
 			// 	criteria: {
@@ -300,6 +299,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 				criteria: proportionModeCriteria,
 				charts: folderCharts,
 			}),
+
 			// also illegal in iidx, bms and pms.
 			// mkInput("Score:Folder Case", {
 			// 	criteria: {
@@ -364,6 +364,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 					.send(input.content);
 
 				t.equal(
+					// eslint-disable-next-line lines-around-comment
 					// this looks stupid, but results in better errmsgs.
 					res.statusCode === 200 ? 200 : res.body.description,
 					200,

@@ -104,36 +104,20 @@ function RatingCalcV0Fail(percentDiv100: number, levelNum: number, parameters: R
 }
 
 const ratingParameters = {
-	iidx: {
-		failHarshnessMultiplier: 0.3,
-		pivotPercent: 0.7777, // Grade: AA
-		clearExpMultiplier: 1,
-	},
-	bms: {
-		failHarshnessMultiplier: 0.5,
-		pivotPercent: 0.7777, // Grade: AA
-		clearExpMultiplier: 0.75,
-	},
 	museca: {
 		failHarshnessMultiplier: 1,
-		pivotPercent: 0.8, // grade: not fail
-		clearExpMultiplier: 1, // no real reason
-	},
-	maimai: {
-		failHarshnessMultiplier: 1,
+
+		// grade: not fail
 		pivotPercent: 0.8,
-		clearExpMultiplier: 1,
-	},
-	ddr: {
-		failHarshnessMultiplier: 0.9,
-		pivotPercent: 0.9,
+
+		// no real reason
 		clearExpMultiplier: 1,
 	},
 };
 
 export function CalculateKTRating(
 	dryScore: DryScore,
-	game: "ddr" | "museca",
+	game: "museca",
 	playtype: Playtype,
 	chart: ChartDocument,
 	logger: KtLogger

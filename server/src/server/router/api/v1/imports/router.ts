@@ -10,6 +10,7 @@ import { RequirePermissions } from "server/middleware/auth";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { GetTachiData } from "utils/req-tachi-data";
 import { GetUserWithID } from "utils/user";
+import type { ScoreImportWorkerReturns } from "lib/score-import/worker/types";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -157,7 +158,9 @@ router.get("/:importID/poll-status", async (req, res) => {
 			description: `An internal service error has occured with this import. This has been reported!`,
 		});
 	} else if (await job.isCompleted()) {
-		const content = await job.waitUntilFinished(ScoreImportQueueEvents);
+		const content = (await job.waitUntilFinished(
+			ScoreImportQueueEvents
+		)) as ScoreImportWorkerReturns;
 
 		// Since job.isFailed() is for whether a job had a fatal exception
 		// or not. We still want to check whether a job failed from say,

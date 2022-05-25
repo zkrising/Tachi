@@ -1,10 +1,3 @@
-import deepmerge from "deepmerge";
-import db from "external/mongo/db";
-import CreateLogCtx from "lib/logger/logger";
-import t from "tap";
-import ResetDBState from "test-utils/resets";
-import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
-import { InternalFailure, InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import {
 	ConverterIRFervidex,
 	SplitFervidexChartRef,
@@ -13,7 +6,14 @@ import {
 	TachifyRandom,
 	TachifyRange,
 } from "./converter";
-import { FervidexScore } from "./types";
+import { InternalFailure } from "../../../framework/common/converter-failures";
+import deepmerge from "deepmerge";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
+import ResetDBState from "test-utils/resets";
+import { Testing511Song, Testing511SPA } from "test-utils/test-data";
+import type { FervidexScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
 
@@ -82,40 +82,34 @@ t.test("#TachifyRandom", (t) => {
 });
 
 const baseFervidexScore: FervidexScore = {
-	"bad": 0,
-	"chart": "spa",
-	"clear_type": 1,
-	"combo_break": 6,
-	"custom": false,
-	"chart_sha256": "asdfasdf",
-	"entry_id": 1000,
-	"ex_score": 68,
-	"fast": 0,
-	"gauge": [
-		100,
-		50
-	],
-	"ghost": [
-		0,
-		2
-	],
-	"good": 0,
-	"great": 0,
-	"max_combo": 34,
-	"option": {
-		"gauge": "HARD",
-		"range": "SUDDEN_PLUS",
-		"style": "RANDOM"
+	bad: 0,
+	chart: "spa",
+	clear_type: 1,
+	combo_break: 6,
+	custom: false,
+	chart_sha256: "asdfasdf",
+	entry_id: 1000,
+	ex_score: 68,
+	fast: 0,
+	gauge: [100, 50],
+	ghost: [0, 2],
+	good: 0,
+	great: 0,
+	max_combo: 34,
+	option: {
+		gauge: "HARD",
+		range: "SUDDEN_PLUS",
+		style: "RANDOM",
 	},
-	"pacemaker": {
-		"name": "",
-		"score": 363,
-		"type": "PACEMAKER_A"
+	pacemaker: {
+		name: "",
+		score: 363,
+		type: "PACEMAKER_A",
 	},
-	"pgreat": 34,
-	"poor": 6,
-	"slow": 0
-}
+	pgreat: 34,
+	poor: 6,
+	slow: 0,
+};
 
 const baseDryScore = {
 	game: "iidx",
@@ -249,7 +243,8 @@ t.test("#ConverterIRFervidex", (t) => {
 	});
 
 	t.test("Should throw internal failure on chart-song desync", async (t) => {
-		await db.songs.iidx.remove({}); // this forces desync
+		// this forces desync
+		await db.songs.iidx.remove({});
 
 		t.rejects(
 			ConverterIRFervidex(
@@ -267,6 +262,7 @@ t.test("#ConverterIRFervidex", (t) => {
 	t.test("Should throw invalid score on percent > 100.", (t) => {
 		t.rejects(
 			ConverterIRFervidex(
+				// eslint-disable-next-line lines-around-comment
 				// @ts-expect-error eternally broken deepmerge
 				deepmerge(baseFervidexScore, { ex_score: 9999 }),
 				{ version: "27" },
@@ -282,6 +278,7 @@ t.test("#ConverterIRFervidex", (t) => {
 	t.test("Should throw invalid score on gauge > 100.", (t) => {
 		t.rejects(
 			ConverterIRFervidex(
+				// eslint-disable-next-line lines-around-comment
 				// @ts-expect-error eternally broken deepmerge
 				deepmerge(baseFervidexScore, { gauge: [150] }),
 				{ version: "27" },

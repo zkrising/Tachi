@@ -66,7 +66,7 @@ const PR_SOLID_STATE: PrudenceSchema = {
 const xmlParser = new XMLParser();
 
 // .59 is a song that is interpreted as a float by our XML parser.
-type PreStringifiedS3Score = Omit<S3Score, "songname"> & { songname: 0.59 | string };
+type PreStringifiedS3Score = Omit<S3Score, "songname"> & { songname: string | 0.59 };
 
 export function ParseSolidStateXML(
 	fileData: Express.Multer.File,
@@ -117,10 +117,11 @@ export function ParseSolidStateXML(
 		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid S3 XML."));
 	}
 
-	let scoreData = parsedXML.s3data.scoredata.song as PreStringifiedS3Score[];
+	let scoreData = maybeSongs as Array<PreStringifiedS3Score>;
 
 	scoreData = scoreData.map((e) => ({
 		...e,
+
 		// Songnames here are either numbers or strings due to a disgusting hack
 		// @see #718
 		// We forcibly convert all these back to strings.
@@ -133,7 +134,7 @@ export function ParseSolidStateXML(
 	return {
 		classHandler: null,
 		context: {},
-		iterable: maybeSongs as Array<S3Score>,
+		iterable: scoreData as Array<S3Score>,
 		game: "iidx",
 	};
 }

@@ -127,7 +127,7 @@ export async function* TraverseKaiAPI(
 		}
 
 		if (!IsRecord(json)) {
-			logger.error(`Recieved invalid (non-object, but json) response from ${url}.`, { json });
+			logger.error(`Received invalid (non-object, but json) response from ${url}.`, { json });
 			throw new ScoreImportFatalError(
 				500,
 				`Received invalid response from their API. Are they down?`

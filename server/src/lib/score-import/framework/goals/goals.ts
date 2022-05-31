@@ -158,20 +158,9 @@ export async function ProcessGoal(
 		setData.wasInstantlyAchieved = false;
 	}
 
-	if (!goalSub._id) {
-		logger.error(
-			`GoalSub has no _id, yet we need one to bulkUpdate it? Has a query been used without projectID?`,
-			{ goalSub }
-		);
-
-		throw new Error(
-			`GoalSub has no _id, yet we need one to bulkUpdate it? Has a query been used without projectID?`
-		);
-	}
-
 	const bulkWrite = {
 		updateOne: {
-			filter: { _id: goalSub._id },
+			filter: { goalID: goalSub.goalID, userID: goalSub.userID },
 			update: {
 				$set: setData,
 			},
@@ -203,7 +192,7 @@ export async function GetRelevantGoals(
 	chartIDs: Set<string>,
 	logger: KtLogger
 ): Promise<{ goals: Array<GoalDocument>; goalSubsMap: Map<string, GoalSubscriptionDocument> }> {
-	const goalSubs = await db["goal-subs"].find({ game, userID }, { projectID: true });
+	const goalSubs = await db["goal-subs"].find({ game, userID });
 
 	logger.verbose(`Found user has ${goalSubs.length} goals.`);
 

@@ -149,4 +149,39 @@ router.post(
 	}
 );
 
+/**
+ * Delete this token.
+ *
+ * @name DELETE /api/v1/users/:userID/api-token/:token
+ */
+router.delete("/:token", async (req, res) => {
+	const user = GetTachiData(req, "requestedUser");
+
+	logger.info(
+		`received request from ${FormatUserDoc(user)} to delete token ${req.params.token}.`
+	);
+
+	const token = await db["api-tokens"].findOne({
+		token: req.params.token,
+		userID: user.id,
+	});
+
+	if (!token) {
+		return res.status(404).json({
+			success: false,
+			description: `This key does not exist.`,
+		});
+	}
+
+	await db["api-tokens"].remove({ token: req.params.token });
+
+	logger.info(`Deleted ${req.params.token}, which belonged to ${FormatUserDoc(user)}.`);
+
+	return res.status(200).json({
+		success: true,
+		description: `Removed Token.`,
+		body: {},
+	});
+});
+
 export default router;

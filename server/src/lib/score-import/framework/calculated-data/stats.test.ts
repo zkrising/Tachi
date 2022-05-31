@@ -1,4 +1,5 @@
 import { CalculateKTLampRatingIIDXDP, CalculateKTLampRatingIIDXSP, CalculateMFCP } from "./stats";
+import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
@@ -11,29 +12,41 @@ t.test("#CalculateKTLampRatingIIDXSP", (t) => {
 		hc: number | null,
 		exhc: number | null
 	): ChartDocument<"iidx:SP"> {
+		const tierlistInfo: ChartDocument<"iidx:SP">["tierlistInfo"] = {};
+
+		if (exhc !== null) {
+			tierlistInfo["kt-EXHC"] = {
+				value: exhc,
+				text: `EXHC ${exhc}`,
+			};
+		}
+
+		if (hc !== null) {
+			tierlistInfo["kt-HC"] = {
+				value: hc,
+				text: `HC ${hc}`,
+			};
+		}
+
+		if (nc !== null) {
+			tierlistInfo["kt-NC"] = {
+				value: nc,
+				text: `HC ${nc}`,
+			};
+		}
+
 		return {
 			...Testing511SPA,
-			tierlistInfo: {
-				"kt-EXHC": {
-					value: exhc,
-				},
-				"kt-HC": {
-					value: hc,
-				},
-				"kt-NC": {
-					value: nc,
-				},
-			},
+			tierlistInfo,
 		};
 	}
 
 	function s(lamp: Lamps["iidx:DP" | "iidx:SP"]): DryScore<"iidx:DP" | "iidx:SP"> {
-		return {
-			...TestingIIDXSPDryScore,
+		return deepmerge(TestingIIDXSPDryScore, {
 			scoreData: {
 				lamp,
 			},
-		};
+		});
 	}
 
 	t.equal(
@@ -116,12 +129,11 @@ t.test("#CalculateKTLampRatingIIDXDP", (t) => {
 	}
 
 	function s(lamp: Lamps["iidx:DP" | "iidx:SP"]): DryScore<"iidx:DP" | "iidx:SP"> {
-		return {
-			...TestingIIDXSPDryScore,
+		return deepmerge(TestingIIDXSPDryScore, {
 			scoreData: {
 				lamp,
 			},
-		};
+		});
 	}
 
 	t.equal(

@@ -54,7 +54,7 @@ export function CalculateGitadoraColour(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>
+	ratings: Record<string, number | null>
 ): Partial<GameClasses<"gitadora:Dora" | "gitadora:Gita">> {
 	if (IsNullish(ratings.skill)) {
 		return {};
@@ -109,7 +109,7 @@ export function CalculateWACCAColour(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>
+	ratings: Record<string, number | null>
 ) {
 	if (IsNullish(ratings.rate)) {
 		return {};
@@ -146,7 +146,7 @@ export function CalculatePopnClass(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>
+	ratings: Record<string, number | null>
 ) {
 	if (IsNullish(ratings.naiveClassPoints)) {
 		return {};
@@ -181,7 +181,7 @@ export function CalculateChunithmColour(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>
+	ratings: Record<string, number | null>
 ) {
 	if (IsNullish(ratings.naiveRating)) {
 		return {};
@@ -220,7 +220,7 @@ export function CalculateJubeatColour(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>
+	ratings: Record<string, number | null>
 ) {
 	if (IsNullish(ratings.jubility)) {
 		return {};

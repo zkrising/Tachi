@@ -97,7 +97,8 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 					logger
 				),
 			{
-				message: /Error: music_id.*Expected a positive integer.* received foo \[string\]/iu,
+				message:
+					/Error: music_id.*Expected a positive integer.* received foo \[type: string\]/iu,
 			}
 		);
 

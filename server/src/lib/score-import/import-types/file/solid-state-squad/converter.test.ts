@@ -4,7 +4,6 @@ import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import {
-	GetKTDataJSON,
 	LoadTachiIIDXData,
 	MockParsedS3Score,
 	Testing511Song,
@@ -149,7 +148,7 @@ t.test("#ConvertFileS3", (t) => {
 		t.rejects(
 			mfile({ mods: { hardeasy: "INVALID" }, cleartype: "cleared" } as unknown as S3Score),
 			{
-				message: /Invalid cleartype of 'cleared' with hardeasy of INVALID/u,
+				message: /Invalid hardeasy of INVALID while evaluating a 'cleared' score/u,
 			}
 		);
 
@@ -202,27 +201,24 @@ t.test("#ParseDifficulty", (t) => {
 t.test("#ResolveS3Lamp", (t) => {
 	t.beforeEach(ResetDBState);
 
-	t.equal(ResolveS3Lamp({ cleartype: "played" } as S3Score, logger), "FAILED");
-	t.equal(ResolveS3Lamp({ cleartype: "cleared", mods: {} } as S3Score, logger), "CLEAR");
+	t.equal(ResolveS3Lamp({ cleartype: "played" } as S3Score), "FAILED");
+	t.equal(ResolveS3Lamp({ cleartype: "cleared", mods: {} } as S3Score), "CLEAR");
 	t.equal(
-		ResolveS3Lamp({ cleartype: "cleared", mods: { hardeasy: "E" } } as S3Score, logger),
+		ResolveS3Lamp({ cleartype: "cleared", mods: { hardeasy: "E" } } as S3Score),
 		"EASY CLEAR"
 	);
 	t.equal(
-		ResolveS3Lamp({ cleartype: "cleared", mods: { hardeasy: "H" } } as S3Score, logger),
+		ResolveS3Lamp({ cleartype: "cleared", mods: { hardeasy: "H" } } as S3Score),
 		"HARD CLEAR"
 	);
-	t.equal(ResolveS3Lamp({ cleartype: "combo" } as S3Score, logger), "FULL COMBO");
-	t.equal(ResolveS3Lamp({ cleartype: "comboed" } as S3Score, logger), "FULL COMBO");
-	t.equal(ResolveS3Lamp({ cleartype: "perfect" } as S3Score, logger), "FULL COMBO");
-	t.equal(ResolveS3Lamp({ cleartype: "perfected" } as S3Score, logger), "FULL COMBO");
+	t.equal(ResolveS3Lamp({ cleartype: "combo" } as S3Score), "FULL COMBO");
+	t.equal(ResolveS3Lamp({ cleartype: "comboed" } as S3Score), "FULL COMBO");
+	t.equal(ResolveS3Lamp({ cleartype: "perfect" } as S3Score), "FULL COMBO");
+	t.equal(ResolveS3Lamp({ cleartype: "perfected" } as S3Score), "FULL COMBO");
 
-	t.throws(() => ResolveS3Lamp({ cleartype: "invalid" } as unknown as S3Score, logger));
+	t.throws(() => ResolveS3Lamp({ cleartype: "invalid" } as unknown as S3Score));
 	t.throws(() =>
-		ResolveS3Lamp(
-			{ cleartype: "cleared", mods: { hardeasy: "invalid" } } as unknown as S3Score,
-			logger
-		)
+		ResolveS3Lamp({ cleartype: "cleared", mods: { hardeasy: "invalid" } } as unknown as S3Score)
 	);
 
 	t.end();

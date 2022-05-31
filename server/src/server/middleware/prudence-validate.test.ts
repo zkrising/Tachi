@@ -37,7 +37,7 @@ t.test("#PrudenceMiddleware", (t) => {
 
 		t.equal(
 			json.description,
-			"[foo] example error message (Received nothing)",
+			"[foo] example error message (Received nothing (undefined))",
 			"Should return error message with received nothing"
 		);
 
@@ -139,7 +139,7 @@ t.test("#PrudenceMiddleware", (t) => {
 
 			t.equal(
 				json.description,
-				"[!password] invalid password (Received nothing)",
+				"[!password] invalid password (Received nothing (undefined))",
 				"Should indicate if no data was sent in obscured error message"
 			);
 

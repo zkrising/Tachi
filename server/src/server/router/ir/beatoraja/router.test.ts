@@ -3,7 +3,7 @@ import db from "external/mongo/db";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { GetKTDataJSON, MockBeatorajaBMSScore, MockBeatorajaPMSScore } from "test-utils/test-data";
+import { MockBeatorajaBMSScore, MockBeatorajaPMSScore } from "test-utils/test-data";
 import type { PublicUserDocument } from "tachi-common";
 
 t.test("POST /ir/beatoraja/submit-score", (t) => {
@@ -475,7 +475,10 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 
 		t.equal(res.status, 400);
 		t.equal(res.body.success, false);
-		t.equal(res.body.description, "Invalid Course Submission.");
+		t.equal(
+			res.body.description,
+			"[course.charts] Expected an array of 4 objects with MD5 properties."
+		);
 
 		t.end();
 	});
@@ -489,7 +492,10 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 
 		t.equal(res.status, 400);
 		t.equal(res.body.success, false);
-		t.equal(res.body.description, "Invalid Course Submission.");
+		t.equal(
+			res.body.description,
+			"[course.charts] Expected an array of 4 objects with MD5 properties."
+		);
 
 		t.end();
 	});
@@ -501,13 +507,24 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 			.set("Authorization", "Bearer mock_token")
 			.send(
 				deepmerge(courseScore, {
-					course: { charts: [{ md5: "a" }, { md5: "a" }, { md5: "a" }, { md5: "a" }] },
+					course: {
+						charts: [
+							{ md5: "a" },
+							{ md5: "a" },
+							{ md5: "a" },
+							{ md5: "a" },
+							{ md5: "a" },
+						],
+					},
 				})
 			);
 
 		t.equal(res.status, 400);
 		t.equal(res.body.success, false);
-		t.equal(res.body.description, "Invalid Course Submission.");
+		t.equal(
+			res.body.description,
+			"[course.charts] Expected an array of 4 objects with MD5 properties."
+		);
 
 		t.end();
 	});
@@ -575,7 +592,7 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 
 		t.equal(res.status, 400);
 		t.equal(res.body.success, false);
-		t.equal(res.body.description, "Invalid Constraints.");
+		t.equal(res.body.description, "[course.constraint] Value was not an array. (Received foo)");
 
 		t.end();
 	});
@@ -590,7 +607,7 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 					courseScore,
 					{
 						course: {
-							constraint: ["a", "b", "c", "d"],
+							constraint: ["LN", "MIRROR", "GAUGE_LR2", "LN"],
 						},
 					},
 					{ arrayMerge: (d, s) => s }
@@ -623,7 +640,10 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 
 		t.equal(res.status, 400);
 		t.equal(res.body.success, false);
-		t.equal(res.body.description, "Invalid Constraints.");
+		t.equal(
+			res.body.description,
+			"[course.constraint[0]] Expected any of LN, MIRROR, GAUGE_LR2. (Received foo)"
+		);
 
 		t.end();
 	});
@@ -647,7 +667,10 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 
 		t.equal(res.status, 400);
 		t.equal(res.body.success, false);
-		t.equal(res.body.description, "Invalid Constraints.");
+		t.equal(
+			res.body.description,
+			"[course.constraint[2]] Expected any of LN, MIRROR, GAUGE_LR2. (Received CHEAT_MODE)"
+		);
 
 		t.end();
 	});

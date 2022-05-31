@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 
 	let users;
 
-	let search: unknown;
+	const search = req.query.search;
 
 	if (search !== undefined) {
 		if (!IsString(search)) {

@@ -228,7 +228,7 @@ export function ArrayDiff<T>(left: Array<T>, right: Array<T>) {
 }
 
 export function IsNonEmptyString(maybeStr: string | null | undefined): maybeStr is string {
-	return maybeStr !== null && maybeStr !== "";
+	return maybeStr !== null && maybeStr !== undefined && maybeStr !== "";
 }
 
 export function IsNullishOrEmptyStr(

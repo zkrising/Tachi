@@ -10,7 +10,7 @@ import p from "prudence";
 import { RequireNotGuest } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { UpdateClassIfGreater } from "utils/class";
-import { NotNullish } from "utils/misc";
+import { IsRecord, NotNullish } from "utils/misc";
 import type { BeatorajaChart } from "lib/score-import/import-types/ir/beatoraja/types";
 import type { integer } from "tachi-common";
 
@@ -168,28 +168,30 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
  */
 router.post(
 	"/submit-course",
-	prValidate({
-		course: {
-			charts: (self) => {
-				return (
-					!Array.isArray(self) ||
-					self.length !== 4 ||
-					!self.every(
-						(maybeChart: unknown) =>
-							maybeChart !== null &&
-							typeof maybeChart === "object" &&
-							typeof (maybeChart as { md5: string }).md5 === "string"
-					) ||
-					"Expected an array of 4 objects with MD5 properties."
-				);
+	prValidate(
+		{
+			course: {
+				charts: (self) => {
+					return (
+						(Array.isArray(self) &&
+							self.length === 4 &&
+							self.every(
+								(maybeChart: unknown) =>
+									IsRecord(maybeChart) && typeof maybeChart.md5 === "string"
+							)) ||
+						"Expected an array of 4 objects with MD5 properties."
+					);
+				},
+				constraint: [p.isIn("LN", "MIRROR", "GAUGE_LR2")],
 			},
-			constraint: [p.isIn("LN", "MIRROR", "GAUGE_LR2")],
+			score: {
+				clear: p.isIn("Clear", "Failed"),
+				lntype: p.isIn(0, 1, 2),
+			},
 		},
-		score: {
-			clear: "boolean",
-			lntype: p.isIn(0, 1, 2),
-		},
-	}),
+		{},
+		{ allowExcessKeys: true }
+	),
 	RequireNotGuest,
 	async (req, res) => {
 		const body = req.safeBody as {
@@ -198,7 +200,7 @@ router.post(
 				constraint: Array<"GAUGE_LR2" | "LN" | "MIRROR">;
 			};
 			score: {
-				clear: boolean;
+				clear: "Clear" | "Failed";
 				lntype: 0 | 1 | 2;
 			};
 		};
@@ -206,7 +208,7 @@ router.post(
 		const charts = body.course.charts;
 		const clear = body.score.clear;
 
-		if (!clear) {
+		if (clear !== "Clear") {
 			return res.status(200).json({
 				success: true,
 				description: "Class not updated.",

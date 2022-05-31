@@ -179,7 +179,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 				.send(deepmerge(baseBatchManual, { meta: { game: "nonsense" } }));
 
 			t.equal(res.body.success, false, "Should not be successful");
-			t.match(res.body.description, /Invalid game nonsense/iu);
+			t.match(res.body.description, /Invalid game 'nonsense'/iu);
 
 			t.end();
 		});
@@ -191,7 +191,7 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 				.send(deepmerge(baseBatchManual, { meta: { playtype: "nonsense" } }));
 
 			t.equal(res.body.success, false, "Should not be successful");
-			t.match(res.body.description, /Invalid playtype nonsense/iu);
+			t.match(res.body.description, /Invalid playtype 'nonsense'/iu);
 
 			t.end();
 		});

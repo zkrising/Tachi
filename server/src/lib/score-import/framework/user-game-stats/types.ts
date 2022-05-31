@@ -8,6 +8,6 @@ export type ClassHandler = (
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>,
+	ratings: Record<string, number | null>,
 	logger: KtLogger
 ) => Promise<ScoreClasses> | ScoreClasses | undefined;

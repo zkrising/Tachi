@@ -11,7 +11,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
-import prValidate from "server/middleware/prudence-validate";
+import { PrudenceErrorFormatter } from "server/middleware/prudence-validate";
 import { UpdateClassIfGreater } from "utils/class";
 import { ParseEA3SoftID } from "utils/ea3id";
 import { IsNullishOrEmptyStr } from "utils/misc";
@@ -294,9 +294,11 @@ router.post("/score/submit", ValidateModelHeader, async (req, res) => {
  *
  * @name POST /ir/fervidex/class/submit
  */
-router.post(
-	"/class/submit",
-	prValidate(
+router.post("/class/submit", ValidateModelHeader, async (req, res) => {
+	// This is done here, instead of in prValidate, as we need to return using
+	// a different key.
+	const err = p(
+		req.body,
 		{
 			cleared: "boolean",
 			course_id: p.isBoundedInteger(0, 18),
@@ -304,38 +306,41 @@ router.post(
 		},
 		{},
 		{ allowExcessKeys: true }
-	),
-	ValidateModelHeader,
-	async (req, res) => {
-		const body = req.safeBody as {
-			cleared: boolean;
-			course_id: integer;
-			play_style: 0 | 1;
-		};
+	);
 
-		if (!body.cleared) {
-			return res
-				.status(200)
-				.json({ success: true, description: "No Update Made.", body: {} });
-		}
-
-		// is 0 or 1.
-		const playtype: Playtypes["iidx"] = body.play_style === 0 ? "SP" : "DP";
-
-		const r = await UpdateClassIfGreater(
-			req[SYMBOL_TACHI_API_AUTH].userID!,
-			"iidx",
-			playtype,
-			"dan",
-			body.course_id
-		);
-
-		return res.status(200).json({
-			success: true,
-			description:
-				r === false ? "Dan unchanged, was worse than your current dan." : "Dan changed!",
+	if (err) {
+		return res.status(400).json({
+			success: false,
+			error: PrudenceErrorFormatter(err.message, String(err.userVal), err.keychain),
 		});
 	}
-);
+
+	const body = req.safeBody as {
+		cleared: boolean;
+		course_id: integer;
+		play_style: 0 | 1;
+	};
+
+	if (!body.cleared) {
+		return res.status(200).json({ success: true, description: "No Update Made.", body: {} });
+	}
+
+	// is 0 or 1.
+	const playtype: Playtypes["iidx"] = body.play_style === 0 ? "SP" : "DP";
+
+	const r = await UpdateClassIfGreater(
+		req[SYMBOL_TACHI_API_AUTH].userID!,
+		"iidx",
+		playtype,
+		"dan",
+		body.course_id
+	);
+
+	return res.status(200).json({
+		success: true,
+		description:
+			r === false ? "Dan unchanged, was worse than your current dan." : "Dan changed!",
+	});
+});
 
 export default router;

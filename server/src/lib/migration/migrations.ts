@@ -120,7 +120,7 @@ export function ApplyMigrationByID(migrationID: string) {
 export async function ApplyMigration(migration: Migration) {
 	const migrationID = migration.id;
 
-	logger.info(`Recieved request to apply migration '${migrationID}'.`);
+	logger.info(`Received request to apply migration '${migrationID}'.`);
 
 	// Lock the migration here:
 	// If the migration is already applied (i.e. migrationID is set and pending/applied)

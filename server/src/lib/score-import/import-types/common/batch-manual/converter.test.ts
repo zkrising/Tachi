@@ -590,7 +590,7 @@ t.test("#ConverterFn", (t) => {
 		t.rejects(
 			() =>
 				ConverterBatchManual(
-					deepmerge(baseJubeatScore, { percent: null }),
+					deepmerge(baseJubeatScore, { percent: undefined }),
 					{ game: "jubeat", service: "foo", playtype: "Single", version: null },
 					importType,
 					logger

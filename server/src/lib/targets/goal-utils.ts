@@ -129,55 +129,71 @@ export async function ValidateGoalChartsAndCriteria(
 
 	// Validating the charts supplied
 
-	if (charts.type === "single") {
-		const chart = await db.charts[game].findOne({
-			playtype,
-			chartID: charts.data,
-		});
+	switch (charts.type) {
+		case "single": {
+			const chart = await db.charts[game].findOne({
+				playtype,
+				chartID: charts.data,
+			});
 
-		if (!chart) {
-			throw new Error(
-				`A chart with id ${charts.data} does not exist for ${game}:${playtype}.`
-			);
+			if (!chart) {
+				throw new Error(
+					`A chart with id ${charts.data} does not exist for ${game}:${playtype}.`
+				);
+			}
+
+			chartCount = 1;
+			break;
 		}
 
-		chartCount = 1;
-	} else if (charts.type === "folder") {
-		const folder = await db.folders.findOne({
-			game,
-			playtype,
-			folderID: charts.data,
-		});
+		case "folder": {
+			const folder = await db.folders.findOne({
+				game,
+				playtype,
+				folderID: charts.data,
+			});
 
-		if (!folder) {
-			throw new Error(
-				`A folder with id ${charts.data} does not exist for ${game}:${playtype}.`
-			);
+			if (!folder) {
+				throw new Error(
+					`A folder with id ${charts.data} does not exist for ${game}:${playtype}.`
+				);
+			}
+
+			chartCount = (await GetFolderChartIDs(charts.data)).length;
+			break;
 		}
 
-		chartCount = (await GetFolderChartIDs(charts.data)).length;
-	} else if (charts.type === "multi") {
-		if (charts.data.length < 2) {
-			throw new Error(
-				`Invalid charts.data for 'multi' charts. Must specify atleast two charts.`
-			);
+		case "multi": {
+			if (charts.data.length < 2) {
+				throw new Error(
+					`Invalid charts.data for 'multi' charts. Must specify atleast two charts.`
+				);
+			}
+
+			const multiCharts = await db.charts[game].find({
+				playtype,
+				chartID: { $in: charts.data },
+			});
+
+			if (multiCharts.length !== charts.data.length) {
+				throw new Error(
+					`Expected charts.data to match ${charts.data.length} charts. Instead, it only matched ${multiCharts.length}. Are all of these chartIDs valid?`
+				);
+			}
+
+			chartCount = multiCharts.length;
+			break;
 		}
 
-		const multiCharts = await db.charts[game].find({
-			playtype,
-			chartID: { $in: charts.data },
-		});
-
-		if (multiCharts.length !== charts.data.length) {
-			throw new Error(
-				`Expected charts.data to match ${charts.data.length} charts. Instead, it only matched ${multiCharts.length}. Are all of these chartIDs valid?`
-			);
+		case "any": {
+			chartCount = await db.charts[game].count({ playtype });
+			break;
 		}
 
-		chartCount = multiCharts.length;
-	} else {
-		// (charts.type === "any")
-		chartCount = await db.charts[game].count({ playtype });
+		default:
+			// @ts-expect-error Charts is stated to be never here, but if we get to this point it's
+			// effectively unknown
+			throw new Error(`Invalid goal.charts.type of ${charts.type}.`);
 	}
 
 	// Validating criteria.mode against countNum.

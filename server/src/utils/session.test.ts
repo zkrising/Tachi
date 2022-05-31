@@ -20,8 +20,8 @@ t.test("#GetScoresFromSession", async (t) => {
 
 	for (let i = 0; i < exampleSession!.scoreInfo.length; i++) {
 		t.equal(
-			scores[i].scoreID,
-			exampleSession!.scoreInfo[i].scoreID,
+			scores[i]!.scoreID,
+			exampleSession!.scoreInfo[i]!.scoreID,
 			"Should return the scores requested."
 		);
 	}

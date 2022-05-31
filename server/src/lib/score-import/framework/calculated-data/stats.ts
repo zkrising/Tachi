@@ -113,11 +113,16 @@ const ratingParameters = {
 		// no real reason
 		clearExpMultiplier: 1,
 	},
+	ddr: {
+		failHarshnessMultiplier: 0.9,
+		pivotPercent: 0.9,
+		clearExpMultiplier: 1,
+	},
 };
 
 export function CalculateKTRating(
 	dryScore: DryScore,
-	game: "museca",
+	game: "ddr" | "museca",
 	playtype: Playtype,
 	chart: ChartDocument,
 	logger: KtLogger

@@ -10,15 +10,18 @@ import type {
 
 const logger = CreateLogCtx(__filename);
 
-const printf = (message: string, stringVal: string | null, keychain: string | null) =>
-	`[${keychain}] ${message}${stringVal ? ` (Received ${stringVal})` : ""}`;
+export const PrudenceErrorFormatter = (
+	message: string,
+	stringVal: string | null,
+	keychain: string | null
+) => `[${keychain}] ${message}${stringVal ? ` (Received ${stringVal})` : ""}`;
 
 const API_ERR_HANDLER =
 	(logLevel: TachiLogLevels): MiddlewareErrorHandler =>
 	(req, res, next, error) => {
 		let stringVal = error.userVal;
 
-		if (error.keychain?.startsWith("!") === true) {
+		if (error.keychain?.startsWith("!") === true && error.userVal !== undefined) {
 			stringVal = "****";
 		}
 
@@ -40,7 +43,11 @@ const API_ERR_HANDLER =
 
 		return res.status(400).json({
 			success: false,
-			description: printf(error.message, stringVal as string | null, error.keychain),
+			description: PrudenceErrorFormatter(
+				error.message,
+				stringVal as string | null,
+				error.keychain
+			),
 		});
 	};
 

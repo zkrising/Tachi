@@ -266,7 +266,7 @@ export async function UnsubscribeFromMilestone(userID: integer, milestoneID: str
  * A milestone that removes goals will not result in those users having goal subs removed.
  */
 export async function UpdateMilestoneSubscriptions(milestoneID: string) {
-	logger.info(`Recieved update-subscribe call to milestone ${milestoneID}.`);
+	logger.info(`Received update-subscribe call to milestone ${milestoneID}.`);
 
 	const subscriptions = await db["milestone-subs"].find({ milestoneID });
 

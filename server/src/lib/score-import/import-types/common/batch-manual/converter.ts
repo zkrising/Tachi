@@ -97,7 +97,9 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 		service,
 		comment: data.comment ?? null,
 		importType,
-		timeAchieved: data.timeAchieved ?? null,
+
+		// For backwards compatibility reasons, an explicitly passed timeAchieved of 0 should be interpreted as null.
+		timeAchieved: data.timeAchieved === 0 ? null : data.timeAchieved ?? null,
 		scoreData: {
 			lamp: data.lamp,
 			score: data.score,

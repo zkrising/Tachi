@@ -94,7 +94,7 @@ export async function UpdateUGSClasses(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>,
+	ratings: Record<string, number | null>,
 	ClassHandler: ClassHandler | null,
 	logger: KtLogger
 ): Promise<ScoreClasses> {

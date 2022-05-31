@@ -135,7 +135,7 @@ t.test("#ParserFn", (t) => {
 				),
 			new ScoreImportFatalError(
 				400,
-				"Invalid BATCH-MANUAL: meta.service | Expected a string with length between 3 and 15. | Received 1 [string]."
+				"Invalid BATCH-MANUAL: meta.service | Expected a string with length between 3 and 15. | Received 1 [type: string]."
 			),
 			"Should throw an error."
 		);
@@ -149,7 +149,7 @@ t.test("#ParserFn", (t) => {
 				),
 			new ScoreImportFatalError(
 				400,
-				"Invalid BATCH-MANUAL: meta.service | Expected a string with length between 3 and 15. | Received 1 [number]."
+				"Invalid BATCH-MANUAL: meta.service | Expected a string with length between 3 and 15. | Received 1 [type: number]."
 			),
 			"Should throw an error."
 		);
@@ -388,7 +388,7 @@ t.test("#ParserFn", (t) => {
 				fn,
 				new ScoreImportFatalError(
 					400,
-					"Invalid BATCH-MANUAL: scores[0].lamp | Expected any of NO PLAY, FAILED, ASSIST CLEAR, EASY CLEAR, CLEAR, HARD CLEAR, EX HARD CLEAR, FULL COMBO. | Received ALL JUSTICE [string]."
+					"Invalid BATCH-MANUAL: scores[0].lamp | Expected any of NO PLAY, FAILED, ASSIST CLEAR, EASY CLEAR, CLEAR, HARD CLEAR, EX HARD CLEAR, FULL COMBO. | Received ALL JUSTICE [type: string]."
 				)
 			);
 
@@ -402,7 +402,7 @@ t.test("#ParserFn", (t) => {
 				fn,
 				new ScoreImportFatalError(
 					400,
-					"Invalid BATCH-MANUAL: scores[0].score | Expected a positive integer. | Received 123 [string]."
+					"Invalid BATCH-MANUAL: scores[0].score | Expected a positive integer. | Received 123 [type: string]."
 				)
 			);
 
@@ -416,7 +416,7 @@ t.test("#ParserFn", (t) => {
 				fn,
 				new ScoreImportFatalError(
 					400,
-					"Invalid BATCH-MANUAL: scores[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of milliseconds? | Received string [string]."
+					"Invalid BATCH-MANUAL: scores[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of milliseconds? | Received string [type: string]."
 				)
 			);
 
@@ -431,7 +431,7 @@ t.test("#ParserFn", (t) => {
 				fn2,
 				new ScoreImportFatalError(
 					400,
-					"Invalid BATCH-MANUAL: scores[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of milliseconds? | Received 1620768609.637 [number]."
+					"Invalid BATCH-MANUAL: scores[0].timeAchieved | Expected a number greater than 1 Trillion - did you pass unix seconds instead of milliseconds? | Received 1620768609.637 [type: number]."
 				),
 				"Should throw if timeAchieved is less than 10_000_000_000."
 			);
@@ -469,7 +469,10 @@ t.test("#ParserFn", (t) => {
 			// this is not a valid playtype for IIDX
 			const fn = () => ParserFn(dm({ identifier: null }), "file/batch-manual", logger);
 
-			t.throws(fn, mockErr("scores[0].identifier | Expected string", "Received null [null]"));
+			t.throws(
+				fn,
+				mockErr("scores[0].identifier | Expected string", "Received null [type: null]")
+			);
 
 			t.end();
 		});
@@ -482,7 +485,7 @@ t.test("#ParserFn", (t) => {
 				fn,
 				mockErr(
 					"scores[0].matchType | Expected any of",
-					"Received Invalid_MatchType [string]"
+					"Received Invalid_MatchType [type: string]"
 				)
 			);
 
@@ -500,7 +503,9 @@ t.test("#ParserFn", (t) => {
 
 			t.throws(
 				fn2,
-				mockErr("scores[0].judgements | Key pgreat had an invalid value of 123 [string]")
+				mockErr(
+					"scores[0].judgements | Key pgreat had an invalid value of 123 [type: string]"
+				)
 			);
 
 			t.end();
@@ -535,7 +540,7 @@ t.test("#ParserFn", (t) => {
 							logger
 						),
 					mockErr(
-						"Invalid BATCH-MANUAL: classes.dan | Expected any of KYU_7, KYU_6, KYU_5, KYU_4, KYU_3, KYU_2, KYU_1, DAN_1, DAN_2, DAN_3, DAN_4, DAN_5, DAN_6, DAN_7, DAN_8, DAN_9, DAN_10, CHUUDEN, KAIDEN. | Received UNKNOWN [string]"
+						"Invalid BATCH-MANUAL: classes.dan | Expected any of KYU_7, KYU_6, KYU_5, KYU_4, KYU_3, KYU_2, KYU_1, DAN_1, DAN_2, DAN_3, DAN_4, DAN_5, DAN_6, DAN_7, DAN_8, DAN_9, DAN_10, CHUUDEN, KAIDEN. | Received UNKNOWN [type: string]"
 					)
 				);
 
@@ -573,7 +578,7 @@ t.test("#ParserFn", (t) => {
 							logger
 						),
 					mockErr(
-						"Invalid BATCH-MANUAL: classes.dan | Expected any of KYU_7, KYU_6, KYU_5, KYU_4, KYU_3, KYU_2, KYU_1, DAN_1, DAN_2, DAN_3, DAN_4, DAN_5, DAN_6, DAN_7, DAN_8, DAN_9, DAN_10, CHUUDEN, KAIDEN. | Received 9 [number]."
+						"Invalid BATCH-MANUAL: classes.dan | Expected any of KYU_7, KYU_6, KYU_5, KYU_4, KYU_3, KYU_2, KYU_1, DAN_1, DAN_2, DAN_3, DAN_4, DAN_5, DAN_6, DAN_7, DAN_8, DAN_9, DAN_10, CHUUDEN, KAIDEN. | Received 9 [type: number]."
 					)
 				);
 

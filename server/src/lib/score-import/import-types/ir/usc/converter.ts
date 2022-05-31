@@ -42,24 +42,31 @@ export function DeriveLamp(scoreDoc: USCClientScore): Lamps["usc:Controller" | "
 		return "PERFECT ULTIMATE CHAIN";
 	} else if (scoreDoc.error === 0) {
 		return "ULTIMATE CHAIN";
-	} else if (scoreDoc.options.gaugeType === 0) {
-		return scoreDoc.gauge >= 0.7 ? "CLEAR" : "FAILED";
-	} else if (scoreDoc.options.gaugeType === 1) {
-		return scoreDoc.gauge > 0 ? "EXCESSIVE CLEAR" : "FAILED";
 	}
 
-	// else if (scoreDoc.options.gaugeType === 2)
-	return "FAILED";
+	switch (scoreDoc.options.gaugeType) {
+		case 0:
+			return scoreDoc.gauge >= 0.7 ? "CLEAR" : "FAILED";
+		case 1:
+			return scoreDoc.gauge > 0 ? "EXCESSIVE CLEAR" : "FAILED";
+		case 2:
+			return "FAILED";
+		default:
+			throw new Error(`Invalid gaugeType of ${scoreDoc.options.gaugeType}.`);
+	}
 }
 
 function ConvertGaugeType(gaugeType: 0 | 1 | 2) {
-	if (gaugeType === 0) {
-		return "NORMAL";
-	} else if (gaugeType === 1) {
-		return "HARD";
+	switch (gaugeType) {
+		case 0:
+			return "NORMAL";
+		case 1:
+			return "HARD";
+		case 2:
+			return "PERMISSIVE";
+		default:
+			throw new Error(`Invalid gaugeType of ${gaugeType}.`);
 	}
-
-	return "PERMISSIVE";
 }
 
 export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = async (

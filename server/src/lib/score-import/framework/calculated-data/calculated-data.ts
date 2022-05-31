@@ -92,11 +92,19 @@ type CalculatedData<I extends IDStrings> = Required<ScoreDocument<I>["calculated
 function CalculateDataIIDX(
 	dryScore: DryScore,
 	chart: ChartDocument<"iidx:DP" | "iidx:SP">,
-	_logger: KtLogger
+	logger: KtLogger
 ): CalculatedData<"iidx:SP"> {
-	let bpi;
+	let bpi = null;
 
-	if (chart.data.kaidenAverage !== null && chart.data.worldRecord !== null) {
+	// Legacy check! This can't be undefined now, but it used to be before BPI was
+	// migrated to chart.data.
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	if (chart.data.kaidenAverage === undefined || chart.data.worldRecord === undefined) {
+		logger.warn(
+			`Chart ${chart.chartID}'s kaidenAverage/worldRecord was undefined. This is not legal, and it should be set to null.`,
+			{ chart }
+		);
+	} else if (chart.data.kaidenAverage !== null && chart.data.worldRecord !== null) {
 		bpi = PoyashiBPI.calculate(
 			dryScore.scoreData.score,
 			chart.data.kaidenAverage,
@@ -106,8 +114,6 @@ function CalculateDataIIDX(
 		);
 
 		// kesdc = esd === null ? null : CalculateKESDC(BPIData.kesd, esd); disabled
-	} else {
-		bpi = null;
 	}
 
 	const ktLampRating =

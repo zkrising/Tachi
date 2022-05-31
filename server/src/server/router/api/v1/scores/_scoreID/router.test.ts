@@ -244,9 +244,7 @@ t.test("DELETE /api/v1/scores/:scoreID", (t) => {
 		const res = await mockApi
 			.delete("/api/v1/scores/TESTING_SCORE_ID")
 			.set("Authorization", "Bearer some_token")
-			.send({
-				comment: "foo",
-			});
+			.send();
 
 		t.equal(res.statusCode, 403);
 

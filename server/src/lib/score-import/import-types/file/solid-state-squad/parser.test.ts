@@ -103,6 +103,43 @@ t.test("#ParseSolidStateXML", (t) => {
 		t.end();
 	});
 
+	t.test("Should parse S3 XML on the chart .59", (t) => {
+		const res = ParseSolidStateXML(
+			MockMulterFile(GetKTDataBuffer("./s3/point-five-nine.xml"), "point-five-nine.xml"),
+			{},
+			logger
+		);
+
+		t.hasStrict(
+			res.iterable,
+			[
+				{
+					id: 187,
+					diff: 7,
+					songname: ".59",
+					styles: "3rd",
+					exscore: 100,
+					scorebreakdown: {
+						justgreats: 50,
+						greats: 50,
+						good: 0,
+						bad: 0,
+						poor: 4,
+					},
+					mods: {},
+					cleartype: "perfect",
+					date: "2010-10-19 04:54:22",
+				},
+			],
+			"Should return the right score in the iterable."
+		);
+		t.equal(res.game, "iidx", "Should return IIDX as the game.");
+		t.equal(res.classHandler, null, "Should return no class handler.");
+		t.strictSame(res.context, {}, "Should return no context.");
+
+		t.end();
+	});
+
 	t.test("Should reject S3 XML with no scores", (t) => {
 		t.throws(
 			() =>

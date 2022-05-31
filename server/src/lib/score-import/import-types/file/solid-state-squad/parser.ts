@@ -20,7 +20,19 @@ const PR_SOLID_STATE: PrudenceSchema = {
 				{
 					id: p.isPositiveInteger,
 					diff: p.isIn("L7", 7, "A", "B", 5, "L14", 14, "A14", "B14"),
-					songname: "string",
+
+					// https://github.com/TNG-dev/tachi-server/issues/718
+					// The song title '.59' is automatically coerced into a float
+					// by our XML parser. Despite the fact that it's in a CData field.
+					// Regardless of the mess that is XML, we need to accept numbers in
+					// this field, and then convert them back to strings later.
+					//
+					// Making a proper solution for this isn't possible, as the bowels
+					// of the XML parser are inaccessible to us.
+					// I *hate* XML.
+					//
+					// What a disaster.
+					songname: p.or("string", p.is(0.59)),
 					styles: "string",
 
 					exscore: p.isPositiveInteger,
@@ -52,6 +64,9 @@ const PR_SOLID_STATE: PrudenceSchema = {
 };
 
 const xmlParser = new XMLParser();
+
+// .59 is a song that is interpreted as a float by our XML parser.
+type PreStringifiedS3Score = Omit<S3Score, "songname"> & { songname: 0.59 | string };
 
 export function ParseSolidStateXML(
 	fileData: Express.Multer.File,
@@ -101,6 +116,19 @@ export function ParseSolidStateXML(
 	if (err) {
 		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid S3 XML."));
 	}
+
+	let scoreData = parsedXML.s3data.scoredata.song as PreStringifiedS3Score[];
+
+	scoreData = scoreData.map((e) => ({
+		...e,
+		// Songnames here are either numbers or strings due to a disgusting hack
+		// @see #718
+		// We forcibly convert all these back to strings.
+		// Note that we can't even use the generic solution .toString, because the
+		// song title is .59, not 0.59.
+		// This is genuinely horrific.
+		songname: e.songname === 0.59 ? ".59" : e.songname,
+	}));
 
 	return {
 		classHandler: null,

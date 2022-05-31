@@ -174,7 +174,7 @@ const err = p(config, {
 		GAMES: [p.isIn(StaticConfig.allSupportedGames)],
 		IMPORT_TYPES: [p.isIn(StaticConfig.allImportTypes)],
 	},
-	LOGGER_CONFIG: p.optional({
+	LOGGER_CONFIG: {
 		LOG_LEVEL: p.optional(
 			p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit")
 		),
@@ -185,7 +185,7 @@ const err = p(config, {
 			WEBHOOK_URL: "string",
 			WHO_TO_TAG: ["string"],
 		}),
-	}),
+	},
 	CDN_CONFIG: {
 		WEB_LOCATION: "string",
 		SAVE_LOCATION: p.or(

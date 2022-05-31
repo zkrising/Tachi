@@ -35,7 +35,7 @@ specifiers:
   dotenv: 16.0.0
   eslint: 8.8.0
   eslint-config-prettier: 8.3.0
-  eslint-plugin-cadence: file:../../Cadence/eslint-plugin-cadence
+  eslint-plugin-cadence: 0.0.1
   eslint-plugin-import: 2.26.0
   eslint-plugin-prettier: 4.0.0
   express: 4.17.2
@@ -144,7 +144,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.22.0_eslint@8.8.0+typescript@4.5.5
   eslint: 8.8.0
   eslint-config-prettier: 8.3.0_eslint@8.8.0
-  eslint-plugin-cadence: link:../../Cadence/eslint-plugin-cadence
+  eslint-plugin-cadence: 0.0.1_eslint@8.8.0
   eslint-plugin-import: 2.26.0_eslint@8.8.0
   eslint-plugin-prettier: 4.0.0_43197c8d12d1d439034cfcf65e1c48c2
   express-request-mock: 3.1.0
@@ -2749,6 +2749,15 @@ packages:
       find-up: 2.1.0
     dev: true
 
+  /eslint-plugin-cadence/0.0.1_eslint@8.8.0:
+    resolution: {integrity: sha512-a8VwnNIPH5Hkrb9fCoyEvBND9pCTg8AB7S0V5o7wDPRYux493eYrSUZEnn6uX+fs/YquZVHD9P2zESBufg9K7g==}
+    engines: {node: 12.x || 14.x || >= 16}
+    peerDependencies:
+      eslint: '>=8'
+    dependencies:
+      eslint: 8.8.0
+    dev: true
+
   /eslint-plugin-import/2.26.0_eslint@8.8.0:
     resolution: {integrity: sha512-hYfi3FXaM8WPLf4S1cikh/r4IxnO6zrhZbEGz2b660EJRbuxgpDS5gkCuYgGWg2xxh2rBuIr4Pvhve/7c31koA==}
     engines: {node: '>=4'}
@@ -4366,7 +4375,7 @@ packages:
     dev: false
 
   /mv/2.1.1:
-    resolution: {integrity: sha1-rmzg1vbV4KT32JN5jQPB6pVZtqI=}
+    resolution: {integrity: sha512-at/ZndSy3xEGJ8i0ygALh8ru9qy7gWW1cmkaqBN29JmMlIvM//MEO9y1sk/avxuwnPcfhkejkLsuPxH81BrkSg==}
     engines: {node: '>=0.8.0'}
     requiresBuild: true
     dependencies:

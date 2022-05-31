@@ -17,6 +17,10 @@ not generally be shown to end users.
 
 # Current
 
+- [INTERNAL_REWORK] The entire codebase has been moved to a new eslint config, called Cadence. This is in preparation for an even larger refactor, but that likely won't happen for a while.
+
+*****
+
 - [FEAT] Add an endpoint for reverting imports.
 - [FEAT] Rivals have been added.
 - [FEAT] Goals have been added.
@@ -40,6 +44,8 @@ not generally be shown to end users.
 - [ENH] Server administrators can now revert other's imports.
 - [ENH] You can now set Jubility targets.
 - [ENH] Folder Showcase Stats are now removed from a player in the case of the folder being removed.
+- [INTERNAL_ENH] Server version info is now read from package.json, removing redundancy.
+- [INTERNAL_ENH] The commit the server is running under is now exposed publically in version info.
 
 # 2.1.16
 

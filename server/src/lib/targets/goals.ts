@@ -215,18 +215,20 @@ export async function EvaluateGoalForUser(
 function ResolveGoalCharts(
 	goal: GoalDocument
 ): Array<string> | Promise<Array<string>> | null | undefined {
-	if (goal.charts.type === "single") {
-		return [goal.charts.data];
-	} else if (goal.charts.type === "multi") {
-		return goal.charts.data;
-	} else if (goal.charts.type === "folder") {
-		return GetFolderChartIDs(goal.charts.data);
+	switch (goal.charts.type) {
+		case "single":
+			return [goal.charts.data];
+		case "multi":
+			return goal.charts.data;
+		case "folder":
+			return GetFolderChartIDs(goal.charts.data);
+		case "any":
+			return null;
+		default:
+			// @ts-expect-error This can't happen normally, but if it does, I want to
+			// handle it properly.
+			throw new Error(`Unknown goal.charts.type of ${goal.charts.type}`);
 	}
-
-	// else if (goal.charts.type === "any")
-	// this is a special case, null means the set of all charts.
-	// special case.
-	return null;
 }
 
 type GoalKeys = GoalDocument["criteria"]["key"];

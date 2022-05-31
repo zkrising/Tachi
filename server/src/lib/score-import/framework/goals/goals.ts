@@ -32,7 +32,7 @@ export async function UpdateGoalsForUser(
 	logger: KtLogger
 ) {
 	const returns = await Promise.all(
-		goals.map((goal: GoalDocument) => {
+		goals.map(async (goal: GoalDocument) => {
 			const goalSub = goalSubsMap.get(goal.goalID);
 
 			if (!goalSub) {
@@ -43,7 +43,18 @@ export async function UpdateGoalsForUser(
 				return null;
 			}
 
-			return ProcessGoal(goal, goalSub, userID, logger);
+			try {
+				return ProcessGoal(goal, goalSub, userID, logger);
+			} catch (e: unknown) {
+				const err = e as Error;
+
+				logger.warn(
+					`Failed to process goal '${goal.name}' for ${userID}, ${err.message}. Skipping.`,
+					{ goal, err, userID, goalSub }
+				);
+
+				return undefined;
+			}
 		})
 	);
 

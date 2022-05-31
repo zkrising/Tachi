@@ -1,15 +1,21 @@
-import connectRedis from "connect-redis";
-import express, { Express } from "express";
+// THIS IMPORT **MUST** GO HERE. DO NOT MOVE IT. IT MUST OCCUR BEFORE ANYTHING HAPPENS WITH EXPRESS
+// BUT AFTER EXPRESS IS IMPORTED.
+// eslint-disable-next-line import/order
+import express from "express";
 import "express-async-errors";
+
+import { RequestLoggerMiddleware } from "./middleware/request-logger";
+import mainRouter from "./router/router";
+import connectRedis from "connect-redis";
 import expressSession from "express-session";
 import { RedisClient } from "external/redis/redis";
 import helmet from "helmet";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
-import { integer } from "tachi-common";
-import { RequestLoggerMiddleware } from "./middleware/request-logger";
-import mainRouter from "./router/router";
+import { IsNonEmptyString, IsRecord } from "utils/misc";
+import type { Express } from "express";
+import type { integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -18,6 +24,7 @@ let store;
 if (Environment.nodeEnv !== "test") {
 	logger.info("Connecting ExpressSession to Redis.", { bootInfo: true });
 	const RedisStore = connectRedis(expressSession);
+
 	store = new RedisStore({
 		host: "localhost",
 		port: 6379,
@@ -37,20 +44,30 @@ const userSessionMiddleware = expressSession({
 	saveUninitialized: false,
 	cookie: {
 		secure: Environment.nodeEnv === "production" || ServerConfig.ENABLE_SERVER_HTTPS,
-		sameSite: "strict", // Very important. Without this, we're vulnerable to CSRF!
+
+		// Very important. Without this, we're vulnerable to CSRF!
+		sameSite: "strict",
 	},
 });
 
 const app: Express = express();
 
-if (Environment.nodeEnv !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
+if (Environment.nodeEnv !== "production" && IsNonEmptyString(ServerConfig.CLIENT_DEV_SERVER)) {
 	logger.warn(`Enabling CORS requests from ${ServerConfig.CLIENT_DEV_SERVER}.`, {
 		bootInfo: true,
 	});
 
+	// Note: we have to assign it here to make sure it doesn't get modified!
+	// If we try and use ServerConfig.CLIENT_DEV_SERVER inside the callback, TS rightly
+	// complains that this value might end up being mutated to null/undefined.
+	//
+	// Even though we don't do that,
+	// we may aswell be correct about the whole thing.
+	const clientDevServerLocation = ServerConfig.CLIENT_DEV_SERVER;
+
 	// Allow CORS requests from another server (since we have our dev server hosted separately).
 	app.use((req, res, next) => {
-		res.header("Access-Control-Allow-Origin", ServerConfig.CLIENT_DEV_SERVER!);
+		res.header("Access-Control-Allow-Origin", clientDevServerLocation);
 		res.header(
 			"Access-Control-Allow-Headers",
 			"Origin, X-Requested-With, Content-Type, Accept, X-User-Intent"
@@ -61,7 +78,7 @@ if (Environment.nodeEnv !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
 	});
 
 	// hack to allow all OPTIONS requests. Remember that this setting should not be on in production!
-	if (ServerConfig.OPTIONS_ALWAYS_SUCCEEDS) {
+	if (ServerConfig.OPTIONS_ALWAYS_SUCCEEDS === true) {
 		app.options("*", (req, res) => res.send());
 	}
 } else {
@@ -70,6 +87,7 @@ if (Environment.nodeEnv !== "production" && ServerConfig.CLIENT_DEV_SERVER) {
 			bootInfo: true,
 		});
 	}
+
 	app.use(helmet());
 }
 
@@ -97,12 +115,15 @@ app.use(express.json({ limit: "4mb" }));
 
 app.use((req, res, next) => {
 	// Always mount an empty req body. We operate under the assumption that req.body is
-	// always defined.
-	if (req.method !== "GET" && !req.body) {
+	// always defined as atleast an object.
+	if (req.method !== "GET" && (typeof req.body !== "object" || req.body === null)) {
 		req.body = {};
 	}
 
-	return next();
+	// req.safeBody *is* just a type-safe req.body!
+	req.safeBody = req.body as Record<string, unknown>;
+
+	next();
 });
 
 app.use(RequestLoggerMiddleware);
@@ -114,7 +135,7 @@ app.use("/", mainRouter);
 // In dev, this is a pain to setup, so we can just run it locally.
 if (
 	ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE === "LOCAL_FILESYSTEM" &&
-	ServerConfig.CDN_CONFIG.SAVE_LOCATION.SERVE_OWN_CDN
+	ServerConfig.CDN_CONFIG.SAVE_LOCATION.SERVE_OWN_CDN === true
 ) {
 	if (Environment.nodeEnv === "production") {
 		logger.warn(
@@ -137,14 +158,16 @@ interface ExpressJSONErr extends SyntaxError {
 	message: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, next) => {
+const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, _next) => {
+	logger.info(`MAIN_ERR_HANDLER hit by request.`, { url: req.originalUrl });
+
 	if (err instanceof SyntaxError) {
 		const expErr: ExpressJSONErr = err as ExpressJSONErr;
+
 		if (expErr.status === 400 && "body" in expErr) {
 			logger.info(`JSON Parsing Error?`, {
 				url: req.originalUrl,
-				userID: req[SYMBOL_TachiAPIAuth]?.userID,
+				userID: req[SYMBOL_TACHI_API_AUTH].userID,
 			});
 			return res.status(400).send({ success: false, description: err.message });
 		}
@@ -152,14 +175,21 @@ const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, next) => {
 		// else, this isn't a JSON parsing error
 	}
 
-	if (err.type === "entity.too.large") {
+	const unknownErr = err as unknown;
+
+	if (IsRecord(unknownErr) && unknownErr.type === "entity.too.large") {
 		return res.status(413).json({
 			success: false,
 			description: "Your request body was too large. The limit is 4MB.",
 		});
 	}
 
-	logger.error("Fatal error propagated to server root? ", { err, route: req.route });
+	logger.error("Fatal error propagated to server root? ", {
+		err: unknownErr,
+		url: req.originalUrl,
+		authInfo: req[SYMBOL_TACHI_API_AUTH],
+	});
+
 	return res.status(500).json({
 		success: false,
 		description: "A fatal internal server error has occured.",

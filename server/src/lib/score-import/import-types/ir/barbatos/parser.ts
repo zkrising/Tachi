@@ -1,11 +1,11 @@
-import { KtLogger } from "lib/logger/logger";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import p from "prudence";
 import { FormatPrError } from "utils/prudence";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturns } from "../../common/types";
-import { BarbatosContext, BarbatosScore } from "./types";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { BarbatosContext, BarbatosScore } from "./types";
+import type { KtLogger } from "lib/logger/logger";
 
-const PR_Barbatos = {
+const PR_BARBATOS = {
 	difficulty: p.isIn(1, 2, 3, 4),
 	level: p.isBoundedInteger(1, 20),
 	song_id: p.isPositiveInteger,
@@ -25,9 +25,9 @@ const PR_Barbatos = {
 
 export function ParseBarbatosSingle(
 	body: Record<string, unknown>,
-	logger: KtLogger
+	_logger: KtLogger
 ): ParserFunctionReturns<BarbatosScore, BarbatosContext> {
-	const err = p(body, PR_Barbatos);
+	const err = p(body, PR_BARBATOS);
 
 	if (err) {
 		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid Barbatos Request"));
@@ -37,7 +37,7 @@ export function ParseBarbatosSingle(
 	return {
 		context: { timeReceived: Date.now() },
 		game: "sdvx",
-		iterable: [body] as unknown as BarbatosScore[],
+		iterable: [body] as unknown as Array<BarbatosScore>,
 		classHandler: null,
 	};
 }

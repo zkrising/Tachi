@@ -31,10 +31,11 @@ export async function UpdateDPTiers() {
 		}
 
 		parsedData.push({
-			HYPER: ParseTierStr(row.childNodes[0].innerText),
-			ANOTHER: ParseTierStr(row.childNodes[1].innerText),
-			LEGGENDARIA: ParseTierStr(row.childNodes[2].innerText),
-			songTitle: decode(row.childNodes[3].innerText),
+			// length is asserted above -- all of these are guaranteeably non-null
+			HYPER: ParseTierStr(row.childNodes[0]!.innerText),
+			ANOTHER: ParseTierStr(row.childNodes[1]!.innerText),
+			LEGGENDARIA: ParseTierStr(row.childNodes[2]!.innerText),
+			songTitle: decode(row.childNodes[3]!.innerText),
 		});
 	}
 
@@ -117,9 +118,9 @@ function ParseTierStr(tierStr: string) {
 		return null;
 	}
 
-	const result = tierStr.match(/\((.*)\)$/u);
+	const result = /\((.*)\)$/u.exec(tierStr);
 
-	if (result && result[1]) {
+	if (result?.[1]) {
 		return Number(result[1]);
 	}
 
@@ -127,7 +128,13 @@ function ParseTierStr(tierStr: string) {
 }
 
 if (require.main === module) {
-	UpdateDPTiers().then(() => {
-		process.exit(0);
-	});
+	UpdateDPTiers()
+		.then(() => {
+			process.exit(0);
+		})
+		.catch((err: unknown) => {
+			logger.error(`Failed to update DP Tiers.`, { err });
+
+			process.exit(1);
+		});
 }

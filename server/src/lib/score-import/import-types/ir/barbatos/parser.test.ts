@@ -1,8 +1,8 @@
+import { ParseBarbatosSingle } from "./parser";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { barbScore } from "test-utils/test-data";
-import { ParseBarbatosSingle } from "./parser";
+import { MockBarbatosScore } from "test-utils/test-data";
 
 const logger = CreateLogCtx(__filename);
 
@@ -10,12 +10,15 @@ t.test("#ParseBarbatosSingle", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should return the score as a payload", (t) => {
-		const res = ParseBarbatosSingle(barbScore as unknown as Record<string, unknown>, logger);
+		const res = ParseBarbatosSingle(
+			MockBarbatosScore as unknown as Record<string, unknown>,
+			logger
+		);
 
 		t.hasStrict(res, {
 			game: "sdvx",
 			context: {},
-			iterable: [barbScore],
+			iterable: [MockBarbatosScore],
 		});
 
 		t.end();

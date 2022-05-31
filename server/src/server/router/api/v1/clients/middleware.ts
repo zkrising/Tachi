@@ -1,9 +1,8 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { Environment } from "lib/setup/config";
-import { TachiAPIClientDocument } from "tachi-common";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
+import type { RequestHandler } from "express";
+import type { TachiAPIClientDocument } from "tachi-common";
 
 export const GetClientFromID: RequestHandler = async (req, res, next) => {
 	const client = await db["api-clients"].findOne(
@@ -26,7 +25,7 @@ export const GetClientFromID: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { apiClientDoc: client });
 
-	return next();
+	next();
 };
 
 export const RequireOwnershipOfClient: RequestHandler = (req, res, next) => {
@@ -37,12 +36,15 @@ export const RequireOwnershipOfClient: RequestHandler = (req, res, next) => {
 	// request. To hack around this for testing, we perform this hack.
 	// There's an open issue for this here: https://github.com/i-like-robots/express-request-mock/issues/19
 	/* istanbul ignore next */
-	if (Environment.nodeEnv === "test" && req.body.__terribleHackOauth2ClientDoc) {
+	if (
+		Environment.nodeEnv === "test" &&
+		(req.safeBody.__terribleHackOauth2ClientDoc as TachiAPIClientDocument | undefined)
+	) {
 		// obviously a glaring hack and security flaw - this only applies
 		// in testing.
-		client = req.body.__terribleHackOauth2ClientDoc;
+		client = req.safeBody.__terribleHackOauth2ClientDoc as TachiAPIClientDocument;
 	} else {
-		client = req[SYMBOL_TachiData]!.apiClientDoc!;
+		client = GetTachiData(req, "apiClientDoc");
 	}
 
 	const user = req.session.tachi?.user;
@@ -60,5 +62,6 @@ export const RequireOwnershipOfClient: RequestHandler = (req, res, next) => {
 			description: `You are not authorized to perform this action.`,
 		});
 	}
-	return next();
+
+	next();
 };

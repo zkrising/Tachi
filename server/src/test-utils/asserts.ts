@@ -1,4 +1,6 @@
-import Prudence, { PrudenceSchema } from "prudence";
+import Prudence from "prudence";
+import type { PrudenceSchema } from "prudence";
+
 export function isApproximately(
 	t: Tap.Test,
 	number: number,
@@ -21,7 +23,7 @@ export function isApproximately(
 
 export function prAssert(
 	t: Tap.Test,
-	obj: Record<string, unknown> | unknown,
+	obj: unknown,
 	schema: PrudenceSchema,
 	message = "Unnamed Prudence Assertion"
 ) {

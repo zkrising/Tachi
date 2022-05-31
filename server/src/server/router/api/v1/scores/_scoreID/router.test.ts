@@ -244,9 +244,7 @@ t.test("DELETE /api/v1/scores/:scoreID", (t) => {
 		const res = await mockApi
 			.delete("/api/v1/scores/TESTING_SCORE_ID")
 			.set("Authorization", "Bearer some_token")
-			.send({
-				comment: "foo",
-			});
+			.send();
 
 		t.equal(res.statusCode, 403);
 
@@ -268,6 +266,7 @@ t.test("DELETE /api/v1/scores/:scoreID", (t) => {
 		);
 
 		const someoneElsesScore = mkFakeScoreIIDXSP({ userID: 2, scoreID: "someone_elses" });
+
 		await db.scores.insert(someoneElsesScore);
 
 		const res = await mockApi
@@ -280,6 +279,7 @@ t.test("DELETE /api/v1/scores/:scoreID", (t) => {
 
 		t.resolveMatch(
 			db.scores.findOne({ scoreID: someoneElsesScore.scoreID }),
+
 			// @ts-expect-error https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60020
 			null,
 			"The score should be deleted."

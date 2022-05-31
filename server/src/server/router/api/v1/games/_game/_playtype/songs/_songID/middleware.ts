@@ -1,8 +1,7 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import { ParseStrPositiveInt } from "utils/string-checks";
+import type { RequestHandler } from "express";
 
 export const ValidateAndGetSong: RequestHandler = async (req, res, next) => {
 	const songID = ParseStrPositiveInt(req.params.songID);
@@ -14,7 +13,7 @@ export const ValidateAndGetSong: RequestHandler = async (req, res, next) => {
 		});
 	}
 
-	const game = req[SYMBOL_TachiData]!.game!;
+	const game = GetTachiData(req, "game");
 
 	const song = await db.songs[game].findOne({ id: songID });
 
@@ -27,5 +26,5 @@ export const ValidateAndGetSong: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { songDoc: song });
 
-	return next();
+	next();
 };

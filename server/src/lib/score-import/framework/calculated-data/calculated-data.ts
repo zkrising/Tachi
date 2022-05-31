@@ -1,4 +1,10 @@
-import { KtLogger } from "lib/logger/logger";
+import {
+	CalculateKTLampRatingIIDXDP,
+	CalculateKTLampRatingIIDXSP,
+	CalculateKTRating,
+	CalculateMFCP,
+	CalculateSieglinde,
+} from "./stats";
 import {
 	CHUNITHMRating,
 	GITADORASkill,
@@ -8,23 +14,10 @@ import {
 	Volforce,
 	WACCARate,
 } from "rg-stats";
-import {
-	ChartDocument,
-	Game,
-	GetGamePTConfig,
-	IDStrings,
-	Lamps,
-	Playtypes,
-	ScoreDocument,
-} from "tachi-common";
-import { DryScore } from "../common/types";
-import {
-	CalculateKTLampRatingIIDXDP,
-	CalculateKTLampRatingIIDXSP,
-	CalculateKTRating,
-	CalculateMFCP,
-	CalculateSieglinde,
-} from "./stats";
+import { GetGamePTConfig } from "tachi-common";
+import type { DryScore } from "../common/types";
+import type { KtLogger } from "lib/logger/logger";
+import type { ChartDocument, Game, IDStrings, Lamps, Playtypes, ScoreDocument } from "tachi-common";
 
 export async function CreateCalculatedData(
 	dryScore: DryScore,
@@ -47,7 +40,7 @@ export async function CreateCalculatedData(
 	return calculatedData;
 }
 
-type CalculatedDataFunctions = {
+type CalculatedDataFunctionsType = {
 	[I in IDStrings]: (
 		dryScore: DryScore<I>,
 		chart: ChartDocument<I>,
@@ -55,7 +48,7 @@ type CalculatedDataFunctions = {
 	) => Promise<ScoreDocument<I>["calculatedData"]> | ScoreDocument<I>["calculatedData"];
 };
 
-const CalculatedDataFunctions: CalculatedDataFunctions = {
+const CalculatedDataFunctions: CalculatedDataFunctionsType = {
 	"iidx:SP": CalculateDataIIDX,
 	"iidx:DP": CalculateDataIIDX,
 	"sdvx:Single": CalculateDataSDVXorUSC,
@@ -84,6 +77,7 @@ export async function CalculateDataForGamePT<G extends Game>(
 	playtype: Playtypes[G],
 	chart: ChartDocument,
 	dryScore: DryScore,
+
 	// ESD gets specially passed through because it's not part of the DryScore, but
 	// can be used for statistics anyway.
 	esd: number | null,
@@ -97,12 +91,20 @@ type CalculatedData<I extends IDStrings> = Required<ScoreDocument<I>["calculated
 
 function CalculateDataIIDX(
 	dryScore: DryScore,
-	chart: ChartDocument<"iidx:SP" | "iidx:DP">,
+	chart: ChartDocument<"iidx:DP" | "iidx:SP">,
 	logger: KtLogger
 ): CalculatedData<"iidx:SP"> {
-	let bpi;
+	let bpi = null;
 
-	if (chart.data.kaidenAverage && chart.data.worldRecord) {
+	// Legacy check! This can't be undefined now, but it used to be before BPI was
+	// migrated to chart.data.
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	if (chart.data.kaidenAverage === undefined || chart.data.worldRecord === undefined) {
+		logger.warn(
+			`Chart ${chart.chartID}'s kaidenAverage/worldRecord was undefined. This is not legal, and it should be set to null.`,
+			{ chart }
+		);
+	} else if (chart.data.kaidenAverage !== null && chart.data.worldRecord !== null) {
 		bpi = PoyashiBPI.calculate(
 			dryScore.scoreData.score,
 			chart.data.kaidenAverage,
@@ -112,8 +114,6 @@ function CalculateDataIIDX(
 		);
 
 		// kesdc = esd === null ? null : CalculateKESDC(BPIData.kesd, esd); disabled
-	} else {
-		bpi = null;
 	}
 
 	const ktLampRating =
@@ -130,8 +130,8 @@ function CalculateDataIIDX(
 function CalculateDataSDVXorUSC(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	logger: KtLogger
-): CalculatedData<"sdvx:Single" | "usc:Keyboard" | "usc:Controller"> {
+	_logger: KtLogger
+): CalculatedData<"sdvx:Single" | "usc:Controller" | "usc:Keyboard"> {
 	// for usc, unofficial charts currently have no VF6 value.
 	if (
 		dryScore.game === "usc" &&
@@ -162,7 +162,7 @@ function CalculateDataMuseca(
 function CalculateDataJubeat(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	logger: KtLogger
+	_logger: KtLogger
 ): CalculatedData<"jubeat:Single"> {
 	return {
 		jubility: Jubility.calculate(
@@ -185,7 +185,7 @@ function CalculateDataCHUNITHM(
 function CalculateDataGitadora(
 	dryScore: DryScore,
 	chart: ChartDocument
-): CalculatedData<"gitadora:Gita" | "gitadora:Dora"> {
+): CalculatedData<"gitadora:Dora" | "gitadora:Gita"> {
 	return {
 		skill: GITADORASkill.calculate(dryScore.scoreData.percent, chart.levelNum),
 	};
@@ -195,7 +195,7 @@ function CalculateDataDDR(
 	dryScore: DryScore,
 	chart: ChartDocument,
 	logger: KtLogger
-): CalculatedData<"ddr:SP" | "ddr:DP"> {
+): CalculatedData<"ddr:DP" | "ddr:SP"> {
 	return {
 		MFCP: CalculateMFCP(dryScore, chart, logger),
 		ktRating: CalculateKTRating(dryScore, "ddr", chart.playtype, chart, logger),
@@ -205,7 +205,7 @@ function CalculateDataDDR(
 export function CalculateDataPMSorBMS(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	logger: KtLogger
+	_logger: KtLogger
 ): CalculatedData<"pms:Controller" | "pms:Keyboard"> {
 	const gptConfig = GetGamePTConfig(dryScore.game, chart.playtype);
 
@@ -219,7 +219,7 @@ export function CalculateDataPMSorBMS(
 function CalculateDataWACCA(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	logger: KtLogger
+	_logger: KtLogger
 ): CalculatedData<"wacca:Single"> {
 	const rate = WACCARate.calculate(dryScore.scoreData.score, chart.levelNum);
 
@@ -229,7 +229,7 @@ function CalculateDataWACCA(
 function CalculateDataPopn(
 	dryScore: DryScore<"popn:9B">,
 	chart: ChartDocument<"popn:9B">,
-	logger: KtLogger
+	_logger: KtLogger
 ): CalculatedData<"popn:9B"> {
 	return {
 		classPoints: PopnClassPoints.calculate(

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { ParseKsHookSV6C } from "./parser";
 import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { TestingKsHookSV6CScore } from "test-utils/test-data";
-import { ParseKsHookSV6C } from "./parser";
 
 const logger = CreateLogCtx(__filename);
 

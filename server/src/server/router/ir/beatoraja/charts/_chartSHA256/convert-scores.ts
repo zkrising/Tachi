@@ -1,4 +1,4 @@
-import { integer, PBScoreDocument } from "tachi-common";
+import type { integer, PBScoreDocument } from "tachi-common";
 
 const LAMP_TO_BEATORAJA = [0, 1, 3, 4, 5, 6, 7, 8] as const;
 
@@ -10,13 +10,13 @@ const LAMP_TO_BEATORAJA = [0, 1, 3, 4, 5, 6, 7, 8] as const;
 // 	"S-RANDOM": 4,
 // } as const;
 
-type BeatorajaJudgements = `${"e" | "l"}${"pg" | "gr" | "gd" | "bd" | "pr"}`;
+type BeatorajaJudgements = `${"e" | "l"}${"bd" | "gd" | "gr" | "pg" | "pr"}`;
 
 type BeatorajaScoreJudgements = {
 	[K in BeatorajaJudgements]: integer;
 };
 
-type BeatorajaPartialScoreFormat = {
+interface BeatorajaPartialScoreFormat {
 	sha256: string;
 	player: string;
 	playcount: integer;
@@ -29,7 +29,7 @@ type BeatorajaPartialScoreFormat = {
 	minbp: integer;
 	notes: integer;
 	maxcombo: integer | null;
-};
+}
 
 export type BeatorajaIRScoreFormat = BeatorajaPartialScoreFormat & BeatorajaScoreJudgements;
 
@@ -61,8 +61,11 @@ export function TachiScoreDataToBeatorajaFormat(
 		date: pbScore.timeAchieved ?? 0,
 		maxcombo: scoreData.hitMeta.maxCombo ?? 0,
 		gauge: scoreData.hitMeta.gauge ?? 0,
-		deviceType: null, // These two are now unsupported due to performance concerns.
+
+		// These two are now unsupported due to performance concerns.
+		deviceType: null,
 		random: null,
+
 		minbp: scoreData.hitMeta.bp ?? 0,
 		passnotes: 0,
 		notes: notecount,
@@ -81,7 +84,7 @@ export function TachiScoreDataToBeatorajaFormat(
 		"lpr",
 		"ems",
 		"lms",
-	] as BeatorajaJudgements[]) {
+	] as Array<BeatorajaJudgements>) {
 		judgements[key] = scoreData.hitMeta[key] ?? 0;
 	}
 
@@ -97,6 +100,7 @@ export function TachiScoreDataToBeatorajaFormat(
 	judgements.egr = pbScore.scoreData.score % 2;
 	judgements.lpg = 0;
 	judgements.lgr = 0;
+
 	// }
 
 	return { ...beatorajaScore, ...judgements };

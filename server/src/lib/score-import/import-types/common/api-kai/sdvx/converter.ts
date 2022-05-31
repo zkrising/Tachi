@@ -1,8 +1,3 @@
-import p from "prudence";
-import { Lamps } from "tachi-common";
-import { FormatPrError } from "utils/prudence";
-import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
-import { FindSongOnID } from "utils/queries/songs";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
@@ -12,11 +7,16 @@ import {
 	GenericGetGradeAndPercent,
 	ParseDateFromString,
 } from "../../../../framework/common/score-utils";
-import { DryScore } from "../../../../framework/common/types";
-import { ConverterFunction } from "../../types";
-import { KaiContext, KaiSDVXScore } from "../types";
+import p from "prudence";
+import { FormatPrError } from "utils/prudence";
+import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
+import { FindSongOnID } from "utils/queries/songs";
+import type { DryScore } from "../../../../framework/common/types";
+import type { ConverterFunction } from "../../types";
+import type { KaiContext, KaiSDVXScore } from "../types";
+import type { Lamps } from "tachi-common";
 
-const PR_KaiSDVXScore = {
+const PR_KAI_SDVX_SCORE = {
 	music_id: p.isPositiveInteger,
 	music_difficulty: p.isBoundedInteger(0, 4),
 	played_version: p.isBoundedInteger(1, 6),
@@ -38,7 +38,7 @@ export const ConvertAPIKaiSDVX: ConverterFunction<unknown, KaiContext> = async (
 	importType,
 	logger
 ) => {
-	const err = p(data, PR_KaiSDVXScore, {}, { allowExcessKeys: true });
+	const err = p(data, PR_KAI_SDVX_SCORE, {}, { allowExcessKeys: true });
 
 	if (err) {
 		throw new InvalidScoreFailure(FormatPrError(err));

@@ -1,9 +1,25 @@
+import ScoreImportFatalError from "./score-import-error";
+import { ImportAllIterableData } from "./score-importing";
+import { Converters } from "../../import-types/converters";
+import { InternalFailure } from "../common/converter-failures";
+import { CreateScoreLogger } from "../common/import-logger";
+import { GetAndUpdateUsersGoals } from "../goals/goals";
+import { CheckAndSetOngoingImportLock, UnsetOngoingImportLock } from "../import-locks/lock";
+import { UpdateUsersMilestones } from "../milestones/milestones";
+import { ProcessPBs } from "../pb/process-pbs";
+import { CreateSessions } from "../sessions/sessions";
+import { UpdateUsersGamePlaytypeStats } from "../user-game-stats/update-ugs";
 import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
-import { ScoreImportJob } from "lib/score-import/worker/types";
-import {
+import { GetGameConfig } from "tachi-common";
+import { GetMillisecondsSince } from "utils/misc";
+import { GetUserWithID } from "utils/user";
+import type { ConverterFunction, ImportInputParser } from "../../import-types/common/types";
+import type { ScorePlaytypeMap } from "../common/types";
+import type { ClassHandler } from "../user-game-stats/types";
+import type { KtLogger } from "lib/logger/logger";
+import type { ScoreImportJob } from "lib/score-import/worker/types";
+import type {
 	Game,
-	GetGameConfig,
 	IDStrings,
 	ImportDocument,
 	ImportProcessingInfo,
@@ -12,22 +28,6 @@ import {
 	Playtype,
 	PublicUserDocument,
 } from "tachi-common";
-import { GetMillisecondsSince } from "utils/misc";
-import { GetUserWithID } from "utils/user";
-import { ConverterFunction, ImportInputParser } from "../../import-types/common/types";
-import { Converters } from "../../import-types/converters";
-import { InternalFailure } from "../common/converter-failures";
-import { CreateScoreLogger } from "../common/import-logger";
-import { ScorePlaytypeMap } from "../common/types";
-import { GetAndUpdateUsersGoals } from "../goals/goals";
-import { CheckAndSetOngoingImportLock, UnsetOngoingImportLock } from "../import-locks/lock";
-import { UpdateUsersMilestones } from "../milestones/milestones";
-import { ProcessPBs } from "../pb/process-pbs";
-import { CreateSessions } from "../sessions/sessions";
-import { ClassHandler } from "../user-game-stats/types";
-import { UpdateUsersGamePlaytypeStats } from "../user-game-stats/update-ugs";
-import ScoreImportFatalError from "./score-import-error";
-import { ImportAllIterableData } from "./score-importing";
 
 /**
  * Performs a Score Import.
@@ -68,6 +68,7 @@ export default async function ScoreImportMain<D, C>(
 
 	if (hasNoOngoingImport) {
 		logger.info(`User ${userID} made an import while they had one ongoing.`);
+
 		// @danger
 		// Throwing away an import if the user already has one outgoing is *bad*, as in the case
 		// of degraded performance we might just start throwing scores away.
@@ -80,7 +81,7 @@ export default async function ScoreImportMain<D, C>(
 	try {
 		const timeStarted = Date.now();
 
-		SetJobProgress(job, "Parsing score data.");
+		void SetJobProgress(job, "Parsing score data.");
 
 		// --- 1. Parsing ---
 		// We get an iterable from the provided parser function, alongside some context and a converter function.
@@ -92,7 +93,7 @@ export default async function ScoreImportMain<D, C>(
 
 		logger.debug(`Parsing took ${parseTime} milliseconds.`);
 
-		SetJobProgress(
+		void SetJobProgress(
 			job,
 			`Parsed Score Data. Took ${parseTime}ms. Importing ${
 				Array.isArray(iterable) ? iterable.length : "an unknown amount of"
@@ -151,7 +152,7 @@ export default async function ScoreImportMain<D, C>(
 
 		logger.debug(`Importing took ${importTime} milliseconds. (${importTimeRel}ms/doc)`);
 
-		SetJobProgress(job, `Imported scores, took ${importTime} milliseconds. `);
+		void SetJobProgress(job, `Imported scores, took ${importTime} milliseconds. `);
 
 		// Steps 3-8 are handled inside here.
 		// This was moved inside here so the score de-orphaning process
@@ -180,13 +181,13 @@ export default async function ScoreImportMain<D, C>(
 		const { importParseTime, sessionTime, pbTime, ugsTime, goalTime, milestoneTime } =
 			absoluteTimes;
 
-		SetJobProgress(job, "Finalising Import.");
+		void SetJobProgress(job, "Finalising Import.");
 
 		// --- 9. Finalise Import Document ---
 		// Create and Save an import document to the database, and finish everything up!
 		const ImportDocument: ImportDocument = {
 			importType,
-			idStrings: playtypes.map((e) => `${game}:${e}`) as IDStrings[],
+			idStrings: playtypes.map((e) => `${game}:${e}`) as Array<IDStrings>,
 			scoreIDs,
 			playtypes,
 			game,
@@ -221,7 +222,7 @@ export default async function ScoreImportMain<D, C>(
 
 		// we don't await this because we don't
 		// particularly care about waiting for it.
-		db["import-timings"].insert({
+		void db["import-timings"].insert({
 			importID,
 			timestamp: Date.now(),
 			total: ImportDocument.timeFinished - timeStarted,
@@ -255,7 +256,7 @@ export default async function ScoreImportMain<D, C>(
  * and updating a users game stats.
  */
 export async function HandlePostImportSteps(
-	importInfo: ImportProcessingInfo[],
+	importInfo: Array<ImportProcessingInfo>,
 	user: PublicUserDocument,
 	importType: ImportTypes,
 	game: Game,
@@ -276,7 +277,7 @@ export async function HandlePostImportSteps(
 		`Import Parsing took ${importParseTime} milliseconds. (${importParseTimeRel}ms/doc)`
 	);
 
-	SetJobProgress(job, "Inserting Sessions.");
+	void SetJobProgress(job, "Inserting Sessions.");
 
 	// --- 4. Sessions ---
 	// We create (or update existing) sessions here. This uses the aforementioned parsed import info
@@ -289,13 +290,14 @@ export async function HandlePostImportSteps(
 
 	logger.debug(`Session Processing took ${sessionTime} milliseconds (${sessionTimeRel}ms/doc).`);
 
-	SetJobProgress(job, "Processing scores and updating PBs.");
+	void SetJobProgress(job, "Processing scores and updating PBs.");
 
 	// --- 5. PersonalBests ---
 	// We want to keep an updated reference of a users best score on a given chart.
 	// This function also handles conjoining different scores together (such as unioning best lamp and
 	// best score).
 	const pbTimeStart = process.hrtime.bigint();
+
 	await ProcessPBs(user.id, chartIDs, logger);
 
 	const pbTime = GetMillisecondsSince(pbTimeStart);
@@ -303,9 +305,9 @@ export async function HandlePostImportSteps(
 
 	logger.debug(`PB Processing took ${pbTime} milliseconds (${pbTimeRel}ms/doc)`);
 
-	const playtypes = Object.keys(scorePlaytypeMap) as Playtype[];
+	const playtypes = Object.keys(scorePlaytypeMap) as Array<Playtype>;
 
-	SetJobProgress(job, "Updating profile statistics.");
+	void SetJobProgress(job, "Updating profile statistics.");
 
 	// --- 6. Game Stats ---
 	// This function updates the users "stats" for this game - such as their profile rating or their classes.
@@ -316,7 +318,7 @@ export async function HandlePostImportSteps(
 
 	logger.debug(`UGS Processing took ${ugsTime} milliseconds.`);
 
-	SetJobProgress(job, "Updating Goals.");
+	void SetJobProgress(job, "Updating Goals.");
 
 	// --- 7. Goals ---
 	// Evaluate and update the users goals. This returns information about goals that have changed.
@@ -327,7 +329,7 @@ export async function HandlePostImportSteps(
 
 	logger.debug(`Goal Processing took ${goalTime} milliseconds.`);
 
-	SetJobProgress(job, "Updating Milestones.");
+	void SetJobProgress(job, "Updating Milestones.");
 
 	// --- 8. Milestones ---
 	// Evaluate and update the users milestones. This returns...
@@ -368,7 +370,7 @@ export async function HandlePostImportSteps(
  */
 async function UpdateUsersGameStats(
 	game: Game,
-	modifiedPlaytypes: Playtype[],
+	modifiedPlaytypes: Array<Playtype>,
 	userID: integer,
 	classHandler: ClassHandler | null,
 	logger: KtLogger
@@ -387,6 +389,7 @@ async function UpdateUsersGameStats(
 	}
 
 	const r = await Promise.all(promises);
+
 	return r.flat(1);
 }
 
@@ -397,8 +400,8 @@ async function UpdateUsersGameStats(
  * A set of unique chartIDs involved in the import and the scores mapped
  * on their playtype.
  */
-function ParseImportInfo(importInfo: ImportProcessingInfo[]) {
-	const scorePlaytypeMap: ScorePlaytypeMap = Object.create(null);
+function ParseImportInfo(importInfo: Array<ImportProcessingInfo>) {
+	const scorePlaytypeMap: ScorePlaytypeMap = {};
 
 	const scoreIDs = [];
 	const errors = [];
@@ -424,6 +427,6 @@ function ParseImportInfo(importInfo: ImportProcessingInfo[]) {
 
 function SetJobProgress(job: ScoreImportJob | undefined, description: string) {
 	if (job) {
-		job.updateProgress({ description });
+		return job.updateProgress({ description });
 	}
 }

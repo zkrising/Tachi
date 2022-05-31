@@ -1,3 +1,4 @@
+import { IsNonEmptyString } from "utils/misc";
 import fs from "fs";
 import path from "path";
 
@@ -9,7 +10,7 @@ function ReadSnapshotData() {
 	let snapshots: Snapshots = {};
 
 	if (fs.existsSync(SNAP_PATH)) {
-		snapshots = JSON.parse(fs.readFileSync(SNAP_PATH, "utf-8"));
+		snapshots = JSON.parse(fs.readFileSync(SNAP_PATH, "utf-8")) as Snapshots;
 	}
 
 	return snapshots;
@@ -22,11 +23,11 @@ export function WriteSnapshotData() {
 const snapshotData = ReadSnapshotData();
 
 export function TestSnapshot(t: Tap.Test, value: string, testName: string) {
-	if (process.env.TAP_SNAPSHOT) {
+	if (IsNonEmptyString(process.env.TAP_SNAPSHOT)) {
 		snapshotData[testName] = value;
 		WriteSnapshotData();
 	} else {
-		if (!snapshotData[testName]) {
+		if (snapshotData[testName] === undefined) {
 			return t.fail(`No snapshot exists for ${testName}. Have you ran pnpm snap?`);
 		}
 

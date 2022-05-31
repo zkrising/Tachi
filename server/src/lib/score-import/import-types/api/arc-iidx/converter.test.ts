@@ -1,10 +1,10 @@
+import { ConvertAPIArcIIDX, ResolveARCIIDXLamp } from "./converter";
 import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON, Testing511Song, Testing511SPA } from "test-utils/test-data";
-import { ConvertAPIArcIIDX, ResolveARCIIDXLamp } from "./converter";
-import { ARCIIDXScore } from "./types";
+import type { ARCIIDXScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
 

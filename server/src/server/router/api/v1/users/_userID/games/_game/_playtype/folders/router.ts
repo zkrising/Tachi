@@ -1,10 +1,10 @@
+import folderIDRouter from "./_folderID/router";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SearchCollection } from "lib/search/search";
 import { GetGradeLampDistributionForFolders, GetRecentlyViewedFolders } from "utils/folder";
 import { IsString } from "utils/misc";
 import { GetUGPT } from "utils/req-tachi-data";
-import folderIDRouter from "./_folderID/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -30,10 +30,15 @@ router.get("/", async (req, res) => {
 		});
 	}
 
+	// if inactive is passed, we need this to be undefined so that
+	// mongodb returns both inactive and active folders.
+	// Otherwise, only return active folders.
+	const inactive = req.query.inactive === undefined ? false : undefined;
+
 	const folders = await SearchCollection(
 		db.folders,
 		req.query.search,
-		{ game, playtype, inactive: !!req.query.inactive },
+		{ game, playtype, inactive },
 		20
 	);
 

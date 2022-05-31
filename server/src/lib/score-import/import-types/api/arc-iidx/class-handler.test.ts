@@ -1,9 +1,9 @@
+import { CreateArcIIDXClassHandler } from "./class-handler";
 import { IIDXDans } from "lib/constants/classes";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
-import { CreateArcIIDXClassHandler } from "./class-handler";
 
 const logger = CreateLogCtx(__filename);
 
@@ -36,6 +36,7 @@ t.test("#CreateArcIIDXClassHandler", (t) => {
 		t.equal(res!.dan, IIDXDans.CHUUDEN);
 
 		const res2 = await fn("iidx", "DP", 1, {}, logger);
+
 		t.equal(res2!.dan, IIDXDans.DAN_2);
 
 		t.end();
@@ -66,6 +67,7 @@ t.test("#CreateArcIIDXClassHandler", (t) => {
 		t.strictSame(res, {});
 
 		const res2 = await fn("iidx", "DP", 1, {}, logger);
+
 		t.strictSame(res2, {});
 
 		t.end();
@@ -87,6 +89,7 @@ t.test("#CreateArcIIDXClassHandler", (t) => {
 		t.strictSame(res, {});
 
 		const res2 = await fn("iidx", "DP", 1, {}, logger);
+
 		t.strictSame(res2, {});
 
 		t.end();

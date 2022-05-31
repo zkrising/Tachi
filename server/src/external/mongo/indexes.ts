@@ -1,11 +1,13 @@
 /* eslint-disable no-await-in-loop */
+import db, { monkDB } from "./db";
 import { ONE_DAY } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
-import { IndexOptions } from "mongodb";
-import monk, { IMonkManager } from "monk";
+import monk from "monk";
 import { Random20Hex } from "utils/misc";
-import db, { Databases, monkDB } from "./db";
+import type { Databases } from "./db";
+import type { IndexOptions } from "mongodb";
+import type { IMonkManager } from "monk";
 
 const logger = CreateLogCtx(__filename);
 
@@ -20,7 +22,7 @@ function index(fields: Record<string, unknown>, options?: IndexOptions) {
 
 const UNIQUE = { unique: true };
 
-const staticIndexes: Partial<Record<Databases, Index[]>> = {
+const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	scores: [
 		index({ scoreID: 1 }, UNIQUE),
 		index({ chartID: 1, userID: 1 }),
@@ -33,6 +35,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	],
 	sessions: [
 		index({ userID: 1, game: 1, playtype: 1, timeStarted: 1, timeEnded: 1 }),
+
 		// Optimises score modification, since sessions need to be repointed.
 		// also, just generally useful.
 		index({ "scoreInfo.scoreID": 1 }),
@@ -122,7 +125,7 @@ const staticIndexes: Partial<Record<Databases, Index[]>> = {
 	notifications: [index({ notifID: 1 }, UNIQUE), index({ sentTo: 1, sentAt: 1 })],
 };
 
-const indexes: Partial<Record<Databases, Index[]>> = staticIndexes;
+const indexes: Partial<Record<Databases, Array<Index>>> = staticIndexes;
 
 for (const game of TachiConfig.GAMES) {
 	if (indexes[`charts-${game}` as Databases]) {
@@ -161,11 +164,12 @@ for (const game of TachiConfig.GAMES) {
 export async function SetIndexesWithDB(db: IMonkManager, reset: boolean) {
 	const collections = (await db.listCollections()).map((e) => e.name);
 
-	for (const collection in indexes) {
+	for (const [collection, values] of Object.entries(indexes)) {
 		if (!collections.includes(collection)) {
 			// this creates a collection, i cant find the createCollection
 			// call.
 			const tmp = Random20Hex();
+
 			await db.get(collection).insert({ __tmp: tmp });
 			await db.get(collection).remove({ __tmp: tmp });
 		}
@@ -175,8 +179,9 @@ export async function SetIndexesWithDB(db: IMonkManager, reset: boolean) {
 			logger.debug(`Reset ${collection}.`);
 		}
 
-		// @ts-expect-error dru(n)kts
-		for (const index of indexes[collection]) {
+		for (const index of values) {
+			// @ts-expect-error Type-mismatch here. our index.fileds are just boring records. I know
+			// that this sucks...
 			const r = await db.get(collection).createIndex(index.fields, index.options);
 
 			logger.debug(r);
@@ -207,14 +212,17 @@ export function SetIndexesIfNoneSet() {
 				logger.info(
 					`No indexes on users, First-time Tachi-Server startup assumed. Running SetIndexes.`
 				);
-				SetIndexesWithDB(monkDB, true);
+				return SetIndexesWithDB(monkDB, true);
 			}
 		})
-		.catch((err) => {
+		.catch((err: unknown) => {
 			logger.info(
 				`Error in finding users collection. First time startup likely. Running SetIndexes.`,
-				err
+				{ err }
 			);
-			SetIndexesWithDB(monkDB, true);
+			return SetIndexesWithDB(monkDB, true);
+		})
+		.catch((err: unknown) => {
+			logger.error(`Failed to set indexes on assumed first-time-setup?`, { err });
 		});
 }

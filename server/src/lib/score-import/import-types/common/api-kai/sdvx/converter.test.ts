@@ -1,10 +1,10 @@
+import { ConvertAPIKaiSDVX, ConvertDifficulty, ConvertVersion, ResolveKaiLamp } from "./converter";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { TestingAlbidaADV, TestingSDVXAlbidaSong } from "test-utils/test-data";
-import { ConvertAPIKaiSDVX, ConvertDifficulty, ConvertVersion, ResolveKaiLamp } from "./converter";
 
 const logger = CreateLogCtx(__filename);
 
@@ -12,7 +12,10 @@ const sdvxScore = {
 	sdvx_id: 32157055,
 	music_id: 1,
 	music_difficulty: 1,
-	played_version: 6, // exg
+
+	// exg
+	played_version: 6,
+
 	clear_type: 2,
 	max_chain: 179,
 	score: 9310699,
@@ -44,6 +47,7 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 				service: "FLO",
 				scoreData: {
 					grade: "AA",
+
 					// percent: 93.10699, floating point
 					score: 9310699,
 					lamp: "CLEAR",
@@ -93,7 +97,8 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 					logger
 				),
 			{
-				message: /Error: music_id.*Expected a positive integer.* received foo \[string\]/iu,
+				message:
+					/Error: music_id.*Expected a positive integer.* received foo \[type: string\]/iu,
 			}
 		);
 

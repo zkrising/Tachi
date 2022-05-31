@@ -1,11 +1,11 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { LR2HookScore } from "lib/score-import/import-types/ir/lr2hook/types";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { TestingLR2HookScore } from "test-utils/test-data";
 import { ApplyNTimes, RFA } from "utils/misc";
+import type { LR2HookScore } from "lib/score-import/import-types/ir/lr2hook/types";
 
 t.test("POST /ir/lr2hook/import", (t) => {
 	t.beforeEach(ResetDBState);

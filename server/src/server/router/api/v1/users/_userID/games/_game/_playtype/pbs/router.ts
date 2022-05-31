@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
 	if (typeof req.query.search !== "string") {
 		return res.status(400).json({
 			success: false,
-			description: `Invalid value of ${req.query.search} for search parameter.`,
+			description: `Invalid value of for search parameter.`,
 		});
 	}
 
@@ -101,7 +101,7 @@ router.get("/best", async (req, res) => {
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	if (req.query.alg && !IsValidScoreAlg(gptConfig, req.query.alg)) {
+	if (req.query.alg !== undefined && !IsValidScoreAlg(gptConfig, req.query.alg)) {
 		return res.status(400).json({
 			success: false,
 			description: `Invalid score algorithm. Expected any of ${gptConfig.scoreRatingAlgs.join(
@@ -175,7 +175,7 @@ router.get("/:chartID", async (req, res) => {
 		});
 	}
 
-	if (req.query.getComposition) {
+	if (req.query.getComposition !== undefined) {
 		const scoreIDs = GetScoreIDsFromComposed(pb);
 
 		const scores = await db.scores.find({

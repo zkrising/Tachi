@@ -8,6 +8,7 @@ const logger = CreateLogCtx(__filename);
 
 export async function RecalcSessions(filter = {}) {
 	const allSessions = await db.sessions.find(filter);
+
 	logger.info(`Recalcing ${allSessions.length} sessions.`);
 
 	for (const session of allSessions) {
@@ -19,11 +20,12 @@ export async function RecalcSessions(filter = {}) {
 		);
 
 		let c;
+
 		try {
 			c = CreateSessionCalcData(session.game, session.playtype, scores);
 		} catch (err) {
-			logger.error(`${session.game} (${session.playtype}) failed.`);
-			logger.warn(`Destroying session.`);
+			logger.error(`Recalcing ${session.game} (${session.playtype}) failed.`, { err });
+			logger.warn(`Destroying session!`);
 			await db.sessions.remove({ sessionID: session.sessionID });
 			continue;
 		}

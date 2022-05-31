@@ -1,6 +1,3 @@
-import { ChartDocument, Lamps } from "tachi-common";
-import { FindChartWithPTDFVersion } from "utils/queries/charts";
-import { FindSongOnTitle } from "utils/queries/songs";
 import {
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
@@ -11,11 +8,14 @@ import {
 	ParseDateFromString,
 } from "../../../framework/common/score-utils";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
-import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction } from "../types";
-import { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
+import { FindChartWithPTDFVersion } from "utils/queries/charts";
+import { FindSongOnTitle } from "utils/queries/songs";
+import type { DryScore } from "../../../framework/common/types";
+import type { ConverterFunction } from "../types";
+import type { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
+import type { ChartDocument, Lamps } from "tachi-common";
 
-const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:SP" | "iidx:DP"]> = new Map([
+const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:DP" | "iidx:SP"]> = new Map([
 	["NO PLAY", "NO PLAY"],
 	["FAILED", "FAILED"],
 	["FULLCOMBO CLEAR", "FULL COMBO"],
@@ -50,7 +50,7 @@ const ConvertEamIIDXCSV: ConverterFunction<
 	// if pre-HV, leggendarias were stored in a wacky form.
 	if (!context.hasBeginnerAndLegg) {
 		// hack fix for legacy LEGGENDARIA titles
-		if (data.title.match(/(†|†LEGGENDARIA)$/u)) {
+		if (/(†|†LEGGENDARIA)$/u.exec(data.title)) {
 			data.title = data.title.replace(/(†|†LEGGENDARIA)$/u, "").trimEnd();
 			isLegacyLeggendaria = true;
 		}
@@ -82,7 +82,7 @@ const ConvertEamIIDXCSV: ConverterFunction<
 		context.playtype,
 		eamScore.difficulty,
 		context.importVersion
-	)) as ChartDocument<"iidx:SP" | "iidx:DP">;
+	)) as ChartDocument<"iidx:DP" | "iidx:SP"> | null;
 
 	if (!tachiChart) {
 		throw new KTDataNotFoundFailure(
@@ -135,7 +135,7 @@ const ConvertEamIIDXCSV: ConverterFunction<
 
 	const timestamp = ParseDateFromString(data.timestamp);
 
-	const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
+	const dryScore: DryScore<"iidx:DP" | "iidx:SP"> = {
 		service: context.service,
 		comment: null,
 		game: "iidx",
@@ -152,8 +152,9 @@ const ConvertEamIIDXCSV: ConverterFunction<
 			grade,
 		},
 		scoreMeta: {},
+
 		// japan is gmt+9
-		timeAchieved: timestamp ? timestamp - NINE_HOURS : null,
+		timeAchieved: timestamp !== null ? timestamp - NINE_HOURS : null,
 	};
 
 	const numBP = Number(eamScore.bp);
@@ -164,6 +165,7 @@ const ConvertEamIIDXCSV: ConverterFunction<
 				`${HUMANISED_CHART_TITLE} - Invalid BP of ${eamScore.bp}.`
 			);
 		}
+
 		dryScore.scoreData.hitMeta.bp = numBP;
 	} else if (eamScore.bp === "---") {
 		logger.debug(

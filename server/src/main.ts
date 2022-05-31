@@ -1,24 +1,24 @@
 // Before we run anything, set a global to indicate to the code that
 // we're running as a server, and not as a job runner or score worker.
-process.env.IS_SERVER = "true";
-
-import { spawn } from "child_process";
 import db from "external/mongo/db";
 import { SetIndexesIfNoneSet } from "external/mongo/indexes";
 import { InitSequenceDocs } from "external/mongo/sequence-docs";
-import fs from "fs";
-import http from "http";
-import https from "https";
 import { LoadDefaultClients } from "lib/builtin-clients/builtin-clients";
 import { VERSION_PRETTY } from "lib/constants/version";
 import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
 import CreateLogCtx from "lib/logger/logger";
 import { ApplyUnappliedMigrations } from "lib/migration/migrations";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
-import path from "path";
 import server from "server/server";
 import fetch from "utils/fetch";
 import { InitaliseFolderChartLookup } from "utils/folder";
+import { spawn } from "child_process";
+import fs from "fs";
+import https from "https";
+import path from "path";
+import type http from "http";
+
+process.env.IS_SERVER = "true";
 
 const logger = CreateLogCtx(__filename);
 
@@ -38,7 +38,9 @@ async function RunOnInit() {
 	await db["folder-chart-lookup"].findOne().then((r) => {
 		// If there are no folder chart lookups, initialise them.
 		if (!r) {
-			InitaliseFolderChartLookup();
+			InitaliseFolderChartLookup().catch((err: unknown) => {
+				logger.error(`Failed to init folder-chart-lookup on first boot?`, { err });
+			});
 		}
 	});
 
@@ -55,11 +57,11 @@ async function RunOnInit() {
 	}
 }
 
-RunOnInit();
+void RunOnInit();
 
 let instance: http.Server | https.Server;
 
-if (ServerConfig.ENABLE_SERVER_HTTPS) {
+if (ServerConfig.ENABLE_SERVER_HTTPS === true) {
 	logger.warn(
 		"HTTPS Mode is enabled. This should not be used in production, and you should instead run behind a reverse proxy.",
 		{ bootInfo: true }
@@ -76,7 +78,9 @@ if (ServerConfig.ENABLE_SERVER_HTTPS) {
 	logger.info(`HTTP Listening on port ${Environment.port}`, { bootInfo: true });
 }
 
-process.on("SIGTERM", () => HandleSIGTERMGracefully(instance));
+process.on("SIGTERM", () => {
+	void HandleSIGTERMGracefully(instance);
+});
 
 if (process.env.INVOKE_JOB_RUNNER) {
 	logger.info(`Spawning a tachi-server job runner inline.`, { bootInfo: true });

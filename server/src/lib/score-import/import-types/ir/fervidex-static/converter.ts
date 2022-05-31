@@ -1,15 +1,15 @@
-import { Lamps } from "tachi-common";
-import { FindChartOnInGameIDVersion } from "utils/queries/charts";
-import { FindSongOnID } from "utils/queries/songs";
 import {
 	InternalFailure,
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
-import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction } from "../../common/types";
 import { FERVIDEX_LAMP_LOOKUP, SplitFervidexChartRef } from "../fervidex/converter";
-import { FervidexStaticContext, FervidexStaticScore } from "./types";
+import { FindChartOnInGameIDVersion } from "utils/queries/charts";
+import { FindSongOnID } from "utils/queries/songs";
+import type { DryScore } from "../../../framework/common/types";
+import type { ConverterFunction } from "../../common/types";
+import type { FervidexStaticContext, FervidexStaticScore } from "./types";
+import type { Lamps } from "tachi-common";
 
 export const ConverterIRFervidexStatic: ConverterFunction<
 	FervidexStaticScore,
@@ -49,7 +49,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 		hitMeta.bp = data.miss_count === -1 ? null : data.miss_count;
 	}
 
-	const dryScore: DryScore<"iidx:SP" | "iidx:DP"> = {
+	const dryScore: DryScore<"iidx:DP" | "iidx:SP"> = {
 		game: "iidx",
 		service: "Fervidex Static",
 		comment: null,
@@ -59,7 +59,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 			score: data.ex_score,
 			percent,
 			grade,
-			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:SP" | "iidx:DP"],
+			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:DP" | "iidx:SP"],
 			judgements: {},
 			hitMeta,
 		},

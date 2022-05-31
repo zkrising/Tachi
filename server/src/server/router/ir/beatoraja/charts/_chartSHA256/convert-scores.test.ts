@@ -1,11 +1,9 @@
+import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
 import deepmerge from "deepmerge";
-import { PBScoreDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { GetKTDataJSON } from "test-utils/test-data";
-import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
-
-const gazerChart = GetKTDataJSON("./tachi/bms-gazer-chart.json");
+import { BMSGazerChart, GetKTDataJSON } from "test-utils/test-data";
+import type { PBScoreDocument } from "tachi-common";
 
 const pbScore = {
 	composedFrom: {
@@ -18,7 +16,7 @@ const pbScore = {
 	},
 	playtype: "7K",
 	scoreMeta: {},
-	chartID: gazerChart.chartID,
+	chartID: BMSGazerChart.chartID,
 	userID: 1,
 } as unknown as PBScoreDocument<"bms:7K" | "bms:14K">;
 
@@ -28,9 +26,9 @@ t.test("#TachiScoreDataToBeatorajaFormat", (t) => {
 	t.test("Should convert score.", (t) => {
 		const res = TachiScoreDataToBeatorajaFormat(
 			pbScore,
-			gazerChart.data.hashSHA256,
+			BMSGazerChart.data.hashSHA256,
 			"",
-			gazerChart.data.notecount,
+			BMSGazerChart.data.notecount,
 			0
 		);
 
@@ -71,9 +69,9 @@ t.test("#TachiScoreDataToBeatorajaFormat", (t) => {
 	t.test("Should fake epg/egr data if the score doesn't have it..", (t) => {
 		const res = TachiScoreDataToBeatorajaFormat(
 			deepmerge(pbScore, { scoreData: { score: 999 } }),
-			gazerChart.data.hashSHA256,
+			BMSGazerChart.data.hashSHA256,
 			"",
-			gazerChart.data.notecount,
+			BMSGazerChart.data.notecount,
 			0
 		);
 
@@ -114,9 +112,9 @@ t.test("#TachiScoreDataToBeatorajaFormat", (t) => {
 	t.test("Should emplace username if requestingUserID is not the pbscore owner", (t) => {
 		const res = TachiScoreDataToBeatorajaFormat(
 			pbScore,
-			gazerChart.data.hashSHA256,
+			BMSGazerChart.data.hashSHA256,
 			"test_zkldi",
-			gazerChart.data.notecount,
+			BMSGazerChart.data.notecount,
 			0
 		);
 

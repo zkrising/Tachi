@@ -1,10 +1,10 @@
+import { ConvertAPIKaiIIDX } from "./converter";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { LoadTachiIIDXData, Testing511Song, Testing511SPA } from "test-utils/test-data";
-import { ConvertAPIKaiIIDX } from "./converter";
 
 const logger = CreateLogCtx(__filename);
 
@@ -43,6 +43,7 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 				service: "FLO",
 				scoreData: {
 					grade: "MAX-",
+
 					// percent: 99.87277353689568 floating point,
 					score: 1570,
 					lamp: "HARD CLEAR",
@@ -131,7 +132,8 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 					logger
 				),
 			{
-				message: /Error: music_id.*Expected a positive integer.* received foo \[string\]/iu,
+				message:
+					/Error: music_id.*Expected a positive integer.* received foo \[type: string\]/iu,
 			}
 		);
 

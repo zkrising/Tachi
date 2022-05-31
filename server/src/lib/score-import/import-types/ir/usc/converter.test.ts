@@ -1,44 +1,38 @@
-import t from "tap";
-import db from "external/mongo/db";
 import { ConverterIRUSC, DeriveLamp, DeriveNoteMod } from "./converter";
 import d from "deepmerge";
-import { uscChart, uscScore } from "test-utils/test-data";
+import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { USCClientScore } from "server/router/ir/usc/_playtype/types";
+import { uscChart, uscScore } from "test-utils/test-data";
+import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
 
 const logger = CreateLogCtx(__filename);
 
 t.test("#DeriveLamp", (t) => {
-	t.equal(DeriveLamp(uscScore, logger), "EXCESSIVE CLEAR");
+	t.equal(DeriveLamp(uscScore), "EXCESSIVE CLEAR");
 
-	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 0 }, gauge: 0.5 }), logger), "FAILED");
+	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 0 }, gauge: 0.5 })), "FAILED");
 
-	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 0 }, gauge: 0.7 }), logger), "CLEAR");
+	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 0 }, gauge: 0.7 })), "CLEAR");
 
-	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 1 }), logger), "FAILED");
-	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 0 }), logger), "FAILED");
+	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 1 })), "FAILED");
+	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 0 })), "FAILED");
 	t.equal(
-		DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 1, score: 10_000_000 }), logger),
+		DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 1, score: 10_000_000 })),
 		"PERFECT ULTIMATE CHAIN"
 	);
 	t.equal(
-		DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 1, error: 0 }), logger),
+		DeriveLamp(d(uscScore, { options: { gaugeType: 2 }, gauge: 1, error: 0 })),
 		"ULTIMATE CHAIN"
 	);
 
-	t.equal(
-		DeriveLamp(d(uscScore, { options: { gaugeType: 1 }, gauge: 0.1 }), logger),
-		"EXCESSIVE CLEAR"
-	);
+	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 1 }, gauge: 0.1 })), "EXCESSIVE CLEAR");
 
-	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 1 }, gauge: 0 }), logger), "FAILED");
+	t.equal(DeriveLamp(d(uscScore, { options: { gaugeType: 1 }, gauge: 0 })), "FAILED");
 
 	t.equal(
-		DeriveLamp(
-			d(uscScore, { score: 10_000_000, options: { gaugeType: 1 }, gauge: 0.1 }),
-			logger
-		),
+		DeriveLamp(d(uscScore, { score: 10_000_000, options: { gaugeType: 1 }, gauge: 0.1 })),
 		"PERFECT ULTIMATE CHAIN"
 	);
 
@@ -50,8 +44,7 @@ t.test("#DeriveLamp", (t) => {
 				options: { gaugeType: 1 },
 				gauge: 0.1,
 				error: 0,
-			}),
-			logger
+			})
 		),
 		"PERFECT ULTIMATE CHAIN"
 	);
@@ -63,13 +56,12 @@ t.test("#DeriveLamp", (t) => {
 				options: { gaugeType: 0 },
 				gauge: 0.15,
 				error: 0,
-			}),
-			logger
+			})
 		),
 		"ULTIMATE CHAIN"
 	);
 
-	t.throws(() => DeriveLamp(d(uscScore, { options: { gaugeType: 3 } }), logger));
+	t.throws(() => DeriveLamp(d(uscScore, { options: { gaugeType: 3 } })));
 
 	t.end();
 });

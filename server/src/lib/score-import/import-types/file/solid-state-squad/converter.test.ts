@@ -1,15 +1,15 @@
+import { ConvertFileS3, ParseDifficulty, ResolveS3Lamp } from "./converter";
 import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import {
-	GetKTDataJSON,
 	LoadTachiIIDXData,
+	MockParsedS3Score,
 	Testing511Song,
 	Testing511SPA,
 } from "test-utils/test-data";
-import { ConvertFileS3, ParseDifficulty, ResolveS3Lamp } from "./converter";
-import { S3Score } from "./types";
+import type { S3Score } from "./types";
 
 const logger = CreateLogCtx(__filename);
 
@@ -20,11 +20,12 @@ function cfile(data: S3Score) {
 t.test("#ConvertFileS3", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(() => {
-		delete BaseS3Score._id; // just incase
+		// @ts-expect-error hacky just-incase.
+		delete MockParsedS3Score._id;
 	});
 
 	function mfile(merge: Partial<S3Score>) {
-		return cfile(deepmerge(BaseS3Score, merge));
+		return cfile(deepmerge(MockParsedS3Score, merge));
 	}
 
 	const dryScore = {
@@ -47,14 +48,13 @@ t.test("#ConvertFileS3", (t) => {
 			hitMeta: {},
 		},
 		scoreMeta: {},
+
 		// can't be tested because the timestamp format doesnt specify a timezone.
 		// timeAchieved: 1287460462000,
 	};
 
-	const BaseS3Score = GetKTDataJSON("./s3/s3score.json");
-
 	t.test("Should import a valid S3 score", async (t) => {
-		const res = await cfile(BaseS3Score);
+		const res = await cfile(MockParsedS3Score);
 
 		t.hasStrict(
 			res,
@@ -95,6 +95,7 @@ t.test("#ConvertFileS3", (t) => {
 			{
 				chart: { songID: 97, difficulty: "HYPER", playtype: "SP" },
 				song: { title: "ABSOLUTE" },
+
 				// dryScore, dont care
 			},
 			"Should correctly return the song, chart and DryScore."
@@ -147,7 +148,7 @@ t.test("#ConvertFileS3", (t) => {
 		t.rejects(
 			mfile({ mods: { hardeasy: "INVALID" }, cleartype: "cleared" } as unknown as S3Score),
 			{
-				message: /Invalid cleartype of 'cleared' with hardeasy of INVALID/u,
+				message: /Invalid hardeasy of INVALID while evaluating a 'cleared' score/u,
 			}
 		);
 
@@ -200,27 +201,24 @@ t.test("#ParseDifficulty", (t) => {
 t.test("#ResolveS3Lamp", (t) => {
 	t.beforeEach(ResetDBState);
 
-	t.equal(ResolveS3Lamp({ cleartype: "played" } as S3Score, logger), "FAILED");
-	t.equal(ResolveS3Lamp({ cleartype: "cleared", mods: {} } as S3Score, logger), "CLEAR");
+	t.equal(ResolveS3Lamp({ cleartype: "played" } as S3Score), "FAILED");
+	t.equal(ResolveS3Lamp({ cleartype: "cleared", mods: {} } as S3Score), "CLEAR");
 	t.equal(
-		ResolveS3Lamp({ cleartype: "cleared", mods: { hardeasy: "E" } } as S3Score, logger),
+		ResolveS3Lamp({ cleartype: "cleared", mods: { hardeasy: "E" } } as S3Score),
 		"EASY CLEAR"
 	);
 	t.equal(
-		ResolveS3Lamp({ cleartype: "cleared", mods: { hardeasy: "H" } } as S3Score, logger),
+		ResolveS3Lamp({ cleartype: "cleared", mods: { hardeasy: "H" } } as S3Score),
 		"HARD CLEAR"
 	);
-	t.equal(ResolveS3Lamp({ cleartype: "combo" } as S3Score, logger), "FULL COMBO");
-	t.equal(ResolveS3Lamp({ cleartype: "comboed" } as S3Score, logger), "FULL COMBO");
-	t.equal(ResolveS3Lamp({ cleartype: "perfect" } as S3Score, logger), "FULL COMBO");
-	t.equal(ResolveS3Lamp({ cleartype: "perfected" } as S3Score, logger), "FULL COMBO");
+	t.equal(ResolveS3Lamp({ cleartype: "combo" } as S3Score), "FULL COMBO");
+	t.equal(ResolveS3Lamp({ cleartype: "comboed" } as S3Score), "FULL COMBO");
+	t.equal(ResolveS3Lamp({ cleartype: "perfect" } as S3Score), "FULL COMBO");
+	t.equal(ResolveS3Lamp({ cleartype: "perfected" } as S3Score), "FULL COMBO");
 
-	t.throws(() => ResolveS3Lamp({ cleartype: "invalid" } as unknown as S3Score, logger));
+	t.throws(() => ResolveS3Lamp({ cleartype: "invalid" } as unknown as S3Score));
 	t.throws(() =>
-		ResolveS3Lamp(
-			{ cleartype: "cleared", mods: { hardeasy: "invalid" } } as unknown as S3Score,
-			logger
-		)
+		ResolveS3Lamp({ cleartype: "cleared", mods: { hardeasy: "invalid" } } as unknown as S3Score)
 	);
 
 	t.end();

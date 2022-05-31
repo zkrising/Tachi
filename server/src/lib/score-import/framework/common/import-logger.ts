@@ -1,6 +1,7 @@
-import { KtLogger, rootLogger } from "lib/logger/logger";
-import { ImportTypes, PublicUserDocument } from "tachi-common";
+import { rootLogger } from "lib/logger/logger";
 import { FormatUserDoc } from "utils/user";
+import type { KtLogger } from "lib/logger/logger";
+import type { ImportTypes, PublicUserDocument } from "tachi-common";
 
 export function CreateScoreLogger(
 	user: PublicUserDocument,

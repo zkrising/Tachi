@@ -3,8 +3,8 @@ import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
-import { FilterQuery } from "mongodb";
-import {
+import type { FilterQuery } from "mongodb";
+import type {
 	ChartDocument,
 	FolderDocument,
 	Game,
@@ -26,53 +26,68 @@ export async function ResolveFolderToCharts(
 	folder: FolderDocument,
 	filter: FilterQuery<ChartDocument>,
 	getSongs: true
-): Promise<{ songs: SongDocument[]; charts: ChartDocument[] }>;
+): Promise<{ songs: Array<SongDocument>; charts: Array<ChartDocument> }>;
 export async function ResolveFolderToCharts(
 	folder: FolderDocument,
 	filter?: FilterQuery<ChartDocument>,
 	getSongs?: false
-): Promise<{ charts: ChartDocument[] }>;
+): Promise<{ charts: Array<ChartDocument> }>;
 export async function ResolveFolderToCharts(
 	folder: FolderDocument,
 	filter: FilterQuery<ChartDocument> = {},
 	getSongs = false
-): Promise<{ songs?: SongDocument[]; charts: ChartDocument[] }> {
-	let songs: SongDocument[] | null = null;
-	let charts: ChartDocument[];
+): Promise<{ songs?: Array<SongDocument>; charts: Array<ChartDocument> }> {
+	let songs: Array<SongDocument> | null = null;
+	let charts: Array<ChartDocument>;
 
-	if (folder.type === "static") {
-		charts = await db.charts[folder.game].find(
-			deepmerge(filter, {
-				playtype: folder.playtype, // mandatory
-				chartID: { $in: folder.data },
-			})
-		);
-	} else if (folder.type === "songs") {
-		songs = await db.songs[folder.game].find(folder.data);
+	switch (folder.type) {
+		case "static": {
+			charts = await db.charts[folder.game].find(
+				deepmerge(filter, {
+					// Specifying playtype is mandatory, don't want to catch other charts.
+					playtype: folder.playtype,
+					chartID: { $in: folder.data },
+				})
+			);
+			break;
+		}
 
-		charts = await db.charts[folder.game].find(
-			deepmerge(filter, {
-				playtype: folder.playtype,
-				songID: { $in: songs.map((e) => e.id) },
-			})
-		);
-	} else if (folder.type === "charts") {
-		const folderDataTransposed = TransposeFolderData(folder.data);
+		case "songs": {
+			songs = await db.songs[folder.game].find(folder.data);
 
-		logger.debug(`Transposed folder data in resolve-folder-to-charts.`, {
-			folder,
-			folderDataTransposed,
-		});
+			charts = await db.charts[folder.game].find(
+				deepmerge(filter, {
+					playtype: folder.playtype,
+					songID: { $in: songs.map((e) => e.id) },
+				})
+			);
+			break;
+		}
 
-		const fx = deepmerge.all([filter, { playtype: folder.playtype }, folderDataTransposed]);
+		case "charts": {
+			const folderDataTransposed = TransposeFolderData(folder.data);
 
-		charts = await db.charts[folder.game].find(fx);
-	} else {
-		// @ts-expect-error This is already a weird scenario. Shouldn't fail, though.
-		logger.error(`Invalid folder at ${folder.folderID}. Cannot resolve.`, { folder });
+			logger.debug(`Transposed folder data in resolve-folder-to-charts.`, {
+				folder,
+				folderDataTransposed,
+			});
 
-		// @ts-expect-error See above
-		throw new Error(`Invalid folder ${folder.folderID}. Cannot resolve.`);
+			const fx = deepmerge.all([filter, { playtype: folder.playtype }, folderDataTransposed]);
+
+			charts = await db.charts[folder.game].find(fx);
+			break;
+		}
+
+		default: {
+			logger.error(
+				`Invalid folder at ${(folder as FolderDocument).folderID}. Cannot resolve.`,
+				{ folder }
+			);
+
+			throw new Error(
+				`Invalid folder ${(folder as FolderDocument).folderID}. Cannot resolve.`
+			);
+		}
 	}
 
 	if (getSongs) {
@@ -98,10 +113,14 @@ export async function ResolveFolderToCharts(
 export function TransposeFolderData(obj: Record<string, unknown>) {
 	const transposedObj: Record<string, unknown> = {};
 
-	for (const key in obj) {
+	for (const key of Object.keys(obj)) {
 		const transposedKey = key.replace(/~/gu, "$").replace(/¬/gu, ".");
 
-		if (typeof obj[key] === "object" && !Array.isArray(obj[key]) && obj[key]) {
+		if (
+			typeof obj[key] === "object" &&
+			!Array.isArray(obj[key]) &&
+			(obj[key] as object | null)
+		) {
 			transposedObj[transposedKey] = TransposeFolderData(obj[key] as Record<string, unknown>);
 		} else {
 			transposedObj[transposedKey] = obj[key];
@@ -115,17 +134,17 @@ export async function GetFolderCharts(
 	folder: FolderDocument,
 	filter: FilterQuery<ChartDocument>,
 	getSongs: true
-): Promise<{ songs: SongDocument[]; charts: ChartDocument[] }>;
+): Promise<{ songs: Array<SongDocument>; charts: Array<ChartDocument> }>;
 export async function GetFolderCharts(
 	folder: FolderDocument,
 	filter: FilterQuery<ChartDocument>,
 	getSongs: false
-): Promise<{ charts: ChartDocument[] }>;
+): Promise<{ charts: Array<ChartDocument> }>;
 export async function GetFolderCharts(
 	folder: FolderDocument,
 	filter: FilterQuery<ChartDocument> = {},
 	getSongs = false
-): Promise<{ songs?: SongDocument[]; charts: ChartDocument[] }> {
+): Promise<{ songs?: Array<SongDocument>; charts: Array<ChartDocument> }> {
 	const chartIDs = await GetFolderChartIDs(folder.folderID);
 
 	const charts = await db.charts[folder.game].find(
@@ -157,6 +176,7 @@ export async function GetFolderChartIDs(folderID: string) {
 
 	return chartIDs.map((e) => e.chartID);
 }
+
 export async function CreateFolderChartLookup(folder: FolderDocument, flush = false) {
 	try {
 		const { charts } = await ResolveFolderToCharts(folder, {}, false);
@@ -194,6 +214,7 @@ export async function InitaliseFolderChartLookup() {
 	const folders = await db.folders.find({
 		game: { $in: TachiConfig.GAMES },
 	});
+
 	logger.info(`Reloading ${folders.length} folders.`);
 
 	await Promise.all(folders.map((folder) => CreateFolderChartLookup(folder)));
@@ -230,13 +251,12 @@ export async function GetPBsOnFolder(userID: integer, folder: FolderDocument) {
 	return { pbs, charts, songs };
 }
 
-export function CalculateLampDistribution(pbs: PBScoreDocument[]) {
+export function CalculateLampDistribution(pbs: Array<PBScoreDocument>) {
 	const lampDist: Partial<Record<Lamps[IDStrings], integer>> = {};
 
 	for (const pb of pbs) {
-		if (lampDist[pb.scoreData.lamp]) {
-			// @ts-expect-error ???
-			lampDist[pb.scoreData.lamp]++;
+		if (lampDist[pb.scoreData.lamp] !== undefined) {
+			lampDist[pb.scoreData.lamp]!++;
 		} else {
 			lampDist[pb.scoreData.lamp] = 1;
 		}
@@ -245,13 +265,12 @@ export function CalculateLampDistribution(pbs: PBScoreDocument[]) {
 	return lampDist;
 }
 
-export function CalculateGradeDistribution(pbs: PBScoreDocument[]) {
+export function CalculateGradeDistribution(pbs: Array<PBScoreDocument>) {
 	const gradeDist: Partial<Record<Grades[IDStrings], integer>> = {};
 
 	for (const pb of pbs) {
-		if (gradeDist[pb.scoreData.grade]) {
-			// @ts-expect-error ???
-			gradeDist[pb.scoreData.grade]++;
+		if (gradeDist[pb.scoreData.grade] !== undefined) {
+			gradeDist[pb.scoreData.grade]!++;
 		} else {
 			gradeDist[pb.scoreData.grade] = 1;
 		}
@@ -259,6 +278,7 @@ export function CalculateGradeDistribution(pbs: PBScoreDocument[]) {
 
 	return gradeDist;
 }
+
 export async function GetGradeLampDistributionForFolder(userID: integer, folder: FolderDocument) {
 	const pbData = await GetPBsOnFolder(userID, folder);
 
@@ -270,12 +290,15 @@ export async function GetGradeLampDistributionForFolder(userID: integer, folder:
 	};
 }
 
-export function GetGradeLampDistributionForFolders(userID: integer, folders: FolderDocument[]) {
+export function GetGradeLampDistributionForFolders(
+	userID: integer,
+	folders: Array<FolderDocument>
+) {
 	return Promise.all(folders.map((f) => GetGradeLampDistributionForFolder(userID, f)));
 }
 
 export function CreateFolderID(query: Record<string, unknown>, game: Game, playtype: Playtype) {
-	return `F${fjsh.hash(Object.assign({ game, playtype }, query), "SHA256")}`;
+	return `F${fjsh.hash({ game, playtype, ...query }, "SHA256")}`;
 }
 
 export async function GetRecentlyViewedFolders(userID: integer, game: Game, playtype: Playtype) {

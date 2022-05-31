@@ -1,9 +1,9 @@
 import db from "external/mongo/db";
-import { PublicUserDocument } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
+import type { PublicUserDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/api-tokens", async (t) => {
 	t.beforeEach(ResetDBState);

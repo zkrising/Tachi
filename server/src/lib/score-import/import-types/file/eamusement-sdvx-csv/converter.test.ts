@@ -1,14 +1,21 @@
+import ConvertEamSDVXCSV from "./converter";
 import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataJSON, TestingAlbidaADV, TestingSDVXAlbidaSong } from "test-utils/test-data";
-import ConvertEamSDVXCSV from "./converter";
-import { SDVXEamusementCSVData } from "./types";
+import type { SDVXEamusementCSVData } from "./types";
 
 const logger = CreateLogCtx(__filename);
 
-const parsedScore = GetKTDataJSON("./eamusement-sdvx-csv/parsed-data.json");
+const parsedScore = {
+	title: "ALBIDA Powerless Mix",
+	difficulty: "ADVANCED",
+	level: "10",
+	lamp: "EXCESSIVE COMPLETE",
+	score: "9310699",
+	exscore: "0",
+};
 
 t.test("#ConvertEamSDVXCSV", (t) => {
 	t.beforeEach(ResetDBState);
@@ -33,6 +40,7 @@ t.test("#ConvertEamSDVXCSV", (t) => {
 				scoreData: {
 					score: 9310699,
 					lamp: "EXCESSIVE CLEAR",
+
 					// percent: 93.10699, floating point
 					grade: "AA",
 					judgements: {},

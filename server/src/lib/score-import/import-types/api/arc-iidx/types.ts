@@ -1,16 +1,16 @@
-import { integer } from "tachi-common";
+import type { integer } from "tachi-common";
 
 export interface ARCIIDXScore {
 	chart_id: string;
 	lamp:
-		| "NO_PLAY"
-		| "FAILED"
 		| "ASSIST_CLEAR"
-		| "EASY_CLEAR"
 		| "CLEAR"
-		| "HARD_CLEAR"
+		| "EASY_CLEAR"
 		| "EX_HARD_CLEAR"
-		| "FULL_COMBO";
+		| "FAILED"
+		| "FULL_COMBO"
+		| "HARD_CLEAR"
+		| "NO_PLAY";
 	ex_score: integer;
 	miss_count: integer | null;
 	timestamp: string;

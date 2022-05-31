@@ -1,3 +1,4 @@
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import {
 	EXT_BISTROVER,
 	EXT_HEROIC_VERSE,
@@ -8,15 +9,15 @@ import {
 	REV_NORMAL,
 	REV_OMNIMIX,
 } from "lib/constants/ea3id";
-import { KtLogger } from "lib/logger/logger";
-import p, { PrudenceSchema, ValidSchemaValue } from "prudence";
+import p from "prudence";
 import { ParseEA3SoftID } from "utils/ea3id";
 import { FormatPrError, optNull } from "utils/prudence";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturns } from "../../common/types";
-import { FervidexContext, FervidexScore } from "./types";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { FervidexContext, FervidexScore } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { PrudenceSchema, ValidSchemaValue } from "prudence";
 
-const PR_Fervidex: PrudenceSchema = {
+const PR_FERVIDEX: PrudenceSchema = {
 	chart: p.isIn("spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"),
 	entry_id: p.isPositiveInteger,
 	chart_sha256: "*string",
@@ -37,6 +38,7 @@ const PR_Fervidex: PrudenceSchema = {
 	clear_type: p.isBoundedInteger(0, 7),
 
 	gauge: [p.isBoundedInteger(0, 255)],
+
 	// no idea what this actually represents. array of ints.
 	ghost: p.any,
 
@@ -118,7 +120,7 @@ export function ParseFervidexSingle(
 	const version = SoftwareIDToVersion(headers.model, logger);
 
 	// more mods may be added in the future, so lets ignore excess keys.
-	const err = p(body, PR_Fervidex, undefined, { allowExcessKeys: true });
+	const err = p(body, PR_FERVIDEX, undefined, { allowExcessKeys: true });
 
 	if (err) {
 		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid Fervidex Request?"));
@@ -128,7 +130,7 @@ export function ParseFervidexSingle(
 	return {
 		context: { version, timeReceived: Date.now() },
 		game: "iidx",
-		iterable: [body] as unknown as FervidexScore[],
+		iterable: [body] as unknown as Array<FervidexScore>,
 		classHandler: null,
 	};
 }

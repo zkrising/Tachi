@@ -1,7 +1,7 @@
+import { GetScoresFromSession } from "./session";
 import db from "external/mongo/db";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { GetScoresFromSession } from "./session";
 
 t.test("#GetScoresFromSession", async (t) => {
 	t.beforeEach(ResetDBState);
@@ -20,8 +20,8 @@ t.test("#GetScoresFromSession", async (t) => {
 
 	for (let i = 0; i < exampleSession!.scoreInfo.length; i++) {
 		t.equal(
-			scores[i].scoreID,
-			exampleSession!.scoreInfo[i].scoreID,
+			scores[i]!.scoreID,
+			exampleSession!.scoreInfo[i]!.scoreID,
 			"Should return the scores requested."
 		);
 	}

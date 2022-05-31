@@ -1,6 +1,6 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
 import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
+import type { RequestHandler } from "express";
 
 export const GetFolderFromParam: RequestHandler = async (req, res, next) => {
 	const { game, playtype } = GetGPT(req);
@@ -16,5 +16,5 @@ export const GetFolderFromParam: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { folderDoc: folder });
 
-	return next();
+	next();
 };

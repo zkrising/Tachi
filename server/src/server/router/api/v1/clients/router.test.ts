@@ -1,12 +1,12 @@
 import db from "external/mongo/db";
 import { ServerConfig } from "lib/setup/config";
-import { APITokenDocument, TachiAPIClientDocument } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
+import type { APITokenDocument, TachiAPIClientDocument } from "tachi-common";
 
-const clientDataset: TachiAPIClientDocument[] = [
+const clientDataset: Array<TachiAPIClientDocument> = [
 	{
 		author: 1,
 		clientID: "CLIENT_1",
@@ -253,6 +253,7 @@ t.test("GET /api/v1/clients/:clientID", (t) => {
 
 		t.strictSame(res.body.body, {
 			clientID: "OAUTH2_CLIENT_ID",
+
 			// clientSecret: "OAUTH2_CLIENT_SECRET", MUST NOT have secret!
 			name: "Test_Service",
 			author: 1,
@@ -433,7 +434,7 @@ t.test("DELETE /api/v1/clients/:clientID", async (t) => {
 				token: "bar",
 				userID: 1,
 			},
-		] as APITokenDocument[]);
+		] as Array<APITokenDocument>);
 
 		const res = await mockApi.delete("/api/v1/clients/CLIENT_1").set("Cookie", cookie);
 

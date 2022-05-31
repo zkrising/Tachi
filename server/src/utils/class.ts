@@ -2,8 +2,8 @@ import db from "external/mongo/db";
 import { CreateGameSettings } from "lib/game-settings/create-game-settings";
 import CreateLogCtx from "lib/logger/logger";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
-import { Game, IDStrings, integer, Playtype, UserGameStats } from "tachi-common";
-import { GameClassSets } from "tachi-common/js/game-classes";
+import type { Game, IDStrings, integer, Playtype, UserGameStats } from "tachi-common";
+import type { GameClassSets } from "tachi-common/js/game-classes";
 
 const logger = CreateLogCtx(__filename);
 
@@ -80,25 +80,25 @@ export async function UpdateClassIfGreater(
 	});
 
 	if (isGreater === null) {
-		EmitWebhookEvent({
+		void EmitWebhookEvent({
 			type: "class-update/v1",
 			content: { userID, new: classVal, old: null, set: classSet, game, playtype },
 		});
 
 		return null;
-	} else {
-		EmitWebhookEvent({
-			type: "class-update/v1",
-			content: {
-				userID,
-				new: classVal,
-				old: userGameStats!.classes[classSet]!,
-				set: classSet,
-				game,
-				playtype,
-			},
-		});
-
-		return true;
 	}
+
+	void EmitWebhookEvent({
+		type: "class-update/v1",
+		content: {
+			userID,
+			new: classVal,
+			old: userGameStats!.classes[classSet]!,
+			set: classSet,
+			game,
+			playtype,
+		},
+	});
+
+	return true;
 }

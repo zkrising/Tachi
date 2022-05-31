@@ -1,23 +1,23 @@
-import db from "external/mongo/db";
-import {
-	ConverterFunction,
-	ConverterFnReturnOrFailure,
-	ImportTypeContextMap,
-	ImportTypeDataMap,
-	OrphanScoreDocument,
-} from "../../import-types/common/types";
-import { Game, ImportTypes, integer } from "tachi-common";
-import fjsh from "fast-json-stable-hash";
-import { KtLogger } from "lib/logger/logger";
 import { Converters } from "../../import-types/converters";
 import {
 	ConverterFailure,
 	InternalFailure,
 	KTDataNotFoundFailure,
 } from "../common/converter-failures";
-import { ProcessSuccessfulConverterReturn } from "../score-importing/score-importing";
 import { HandlePostImportSteps } from "../score-importing/score-import-main";
+import { ProcessSuccessfulConverterReturn } from "../score-importing/score-importing";
+import db from "external/mongo/db";
+import fjsh from "fast-json-stable-hash";
 import { GetUserWithID } from "utils/user";
+import type {
+	ConverterFunction,
+	ConverterFnReturnOrFailure,
+	ImportTypeContextMap,
+	ImportTypeDataMap,
+	OrphanScoreDocument,
+} from "../../import-types/common/types";
+import type { KtLogger } from "lib/logger/logger";
+import type { Game, ImportTypes, integer } from "tachi-common";
 
 /**
  * Creates an OrphanedScore document from the data and context,
@@ -34,7 +34,7 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
 	game: Game,
 	logger: KtLogger
 ) {
-	const orphan: Pick<OrphanScoreDocument, "importType" | "data" | "context" | "userID"> = {
+	const orphan: Pick<OrphanScoreDocument, "context" | "data" | "importType" | "userID"> = {
 		importType,
 		data,
 		context,
@@ -44,6 +44,7 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
 	logger.debug("Orphaning document", orphan);
 
 	let orphanID;
+
 	try {
 		orphanID = `O${fjsh.hash(orphan, "sha256")}`;
 	} catch (err) {
@@ -83,7 +84,7 @@ export async function OrphanScore<T extends ImportTypes = ImportTypes>(
  */
 export async function ReprocessOrphan(
 	orphan: OrphanScoreDocument,
-	blacklist: string[],
+	blacklist: Array<string>,
 	logger: KtLogger
 ) {
 	const ConverterFunction = Converters[orphan.importType] as ConverterFunction<
@@ -102,7 +103,9 @@ export async function ReprocessOrphan(
 			logger.error(`Converter function ${orphan.importType} returned unexpected error.`, {
 				err,
 			});
-			throw err; // throw this higher up, i guess.
+
+			// throw this higher up, i guess.
+			throw err;
 		}
 
 		res = err;

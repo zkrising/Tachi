@@ -1,10 +1,10 @@
 import db from "external/mongo/db";
 import { ONE_MONTH } from "lib/constants/time";
-import { InviteCodeDocument, PublicUserDocument } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
+import type { InviteCodeDocument, PublicUserDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/invites", async (t) => {
 	t.beforeEach(ResetDBState);
@@ -21,7 +21,7 @@ t.test("GET /api/v1/users/:userID/invites", async (t) => {
 		const res = await mockApi.get("/api/v1/users/1/invites").set("Cookie", cookie);
 
 		t.strictSame(
-			(res.body.body.invites as InviteCodeDocument[]).sort(
+			(res.body.body.invites as Array<InviteCodeDocument>).sort(
 				(a, b) => a.createdAt - b.createdAt
 			),
 			[
@@ -130,6 +130,7 @@ t.test("POST /api/v1/users/:userID/invites/create", async (t) => {
 
 	t.test("Should honor invite limit.", async (t) => {
 		await db.invites.remove({});
+
 		// users with less than a month of life in them dont get invites,
 		// so this will force an invite limit honor.
 		await db.users.update({ id: 1 }, { $set: { joinDate: Date.now() } });

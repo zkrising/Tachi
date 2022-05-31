@@ -1,12 +1,12 @@
+import chartIDRouter from "./_chartID/router";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import { SearchGameSongs } from "lib/search/search";
-import { ChartDocument, UGPTSettings } from "tachi-common";
 import { IsString } from "utils/misc";
 import { FindChartsOnPopularity } from "utils/queries/charts";
 import { GetGPT } from "utils/req-tachi-data";
-import chartIDRouter from "./_chartID/router";
+import type { ChartDocument, UGPTSettings } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -23,10 +23,11 @@ const router: Router = Router({ mergeParams: true });
 router.get("/", async (req, res) => {
 	const { game, playtype } = GetGPT(req);
 
-	let songIDs = undefined;
+	let songIDs;
 
 	if (IsString(req.query.search)) {
 		const songs = await SearchGameSongs(game, req.query.search, 100);
+
 		songIDs = songs.map((e) => e.id);
 	}
 
@@ -56,21 +57,21 @@ router.get("/", async (req, res) => {
 	//
 	// Since most players will have this off, this is not a significant
 	// performance hit.
-	if (game === "iidx" && !req.query.noIntelligentOmit) {
-		if (!req[SYMBOL_TachiAPIAuth].userID) {
+	if (game === "iidx" && req.query.noIntelligentOmit === undefined) {
+		if (req[SYMBOL_TACHI_API_AUTH].userID === null) {
 			charts = charts.filter(
-				(e) => (e as ChartDocument<"iidx:SP" | "iidx:DP">).data["2dxtraSet"] === null
+				(e) => (e as ChartDocument<"iidx:DP" | "iidx:SP">).data["2dxtraSet"] === null
 			);
 		} else {
 			const iidxSettings = (await db["game-settings"].findOne({
-				userID: req[SYMBOL_TachiAPIAuth].userID!,
+				userID: req[SYMBOL_TACHI_API_AUTH].userID!,
 				game,
 				playtype,
-			})) as UGPTSettings<"iidx:SP" | "iidx:DP"> | null;
+			})) as UGPTSettings<"iidx:DP" | "iidx:SP"> | null;
 
 			if (!iidxSettings || !iidxSettings.preferences.gameSpecific.display2DXTra) {
 				charts = charts.filter(
-					(e) => (e as ChartDocument<"iidx:SP" | "iidx:DP">).data["2dxtraSet"] === null
+					(e) => (e as ChartDocument<"iidx:DP" | "iidx:SP">).data["2dxtraSet"] === null
 				);
 			}
 		}

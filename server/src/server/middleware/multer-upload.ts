@@ -1,14 +1,15 @@
 // @todo #118
 
-import { RequestHandler } from "express";
 import { SIXTEEN_MEGABTYES } from "lib/constants/filesize";
 import CreateLogCtx from "lib/logger/logger";
 import multer, { MulterError } from "multer";
-import { integer } from "tachi-common";
+import type { RequestHandler } from "express";
+import type { integer } from "tachi-common";
 
 const defaultLogger = CreateLogCtx(__filename);
 
-export const DefaultMulterUpload = multer({ limits: { fileSize: 1024 * 1024 * 16 } }); // 16MB
+// 16MB
+export const DefaultMulterUpload = multer({ limits: { fileSize: 1024 * 1024 * 16 } });
 
 export const CreateMulterSingleUploadMiddleware = (
 	fieldName: string,
@@ -28,7 +29,7 @@ export const CreateMulterSingleUploadMiddleware = (
 					description:
 						"File provided was too large, corrupt, or provided in the wrong field.",
 				});
-			} else if (err) {
+			} else if (err !== undefined && err !== null) {
 				logger.error(`Unknown file import error: ${err}`, { err });
 
 				return res.status(500).json({
@@ -44,7 +45,11 @@ export const CreateMulterSingleUploadMiddleware = (
 				});
 			}
 
-			return next();
+			// CRITICALLY IMPORTANT LINE OF CODE
+			// THINGS DEALING WITH FILE UPLOADS **DO NOT** MOUNT SAFE-BODY OTHERWISE.
+			req.safeBody = req.body as Record<string, unknown>;
+
+			next();
 		});
 	};
 };

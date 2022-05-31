@@ -3,12 +3,13 @@ import db from "external/mongo/db";
 import { ONE_MINUTE } from "lib/constants/time";
 import { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
-import { ScoreDocument } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScore } from "test-utils/test-data";
+import { Sleep } from "utils/misc";
+import type { ScoreDocument } from "tachi-common";
 
 const LOG_LEVEL = ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
 
@@ -53,7 +54,7 @@ t.test("POST /api/v1/admin/change-log-level", async (t) => {
 		t.equal(GetLogLevel(), "warn");
 
 		// wait a bit
-		await new Promise<void>((resolve) => setTimeout(() => resolve(), ONE_MINUTE * 0.06));
+		await Sleep(ONE_MINUTE * 0.06);
 
 		t.equal(GetLogLevel(), LOG_LEVEL);
 

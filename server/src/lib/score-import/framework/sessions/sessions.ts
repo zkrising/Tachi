@@ -1,7 +1,12 @@
-import crypto from "crypto";
+import { CreateSessionCalcData } from "./calculated-data";
+import { GenerateRandomSessionName } from "./name-generation";
 import db from "external/mongo/db";
-import { AppendLogCtx, KtLogger } from "lib/logger/logger";
-import {
+import { AppendLogCtx } from "lib/logger/logger";
+import { GetScoresFromSession } from "utils/session";
+import crypto from "crypto";
+import type { ScorePlaytypeMap } from "../common/types";
+import type { KtLogger } from "lib/logger/logger";
+import type {
 	Game,
 	ImportTypes,
 	integer,
@@ -12,10 +17,6 @@ import {
 	SessionInfoReturn,
 	SessionScoreInfo,
 } from "tachi-common";
-import { GetScoresFromSession } from "utils/session";
-import { ScorePlaytypeMap } from "../common/types";
-import { CreateSessionCalcData } from "./calculated-data";
-import { GenerateRandomSessionName } from "./name-generation";
 
 const TWO_HOURS = 1000 * 60 * 60 * 2;
 
@@ -29,10 +30,7 @@ export async function CreateSessions(
 	const allSessionInfo = [];
 
 	/* eslint-disable no-await-in-loop */
-	for (const playtype in scorePtMap) {
-		// @ts-expect-error This is my least favourite thing about ts.
-		const scores = scorePtMap[playtype] as ScoreDocument[];
-
+	for (const [playtype, scores] of Object.entries(scorePtMap)) {
 		const sessionInfo = await LoadScoresIntoSessions(
 			userID,
 			importType,
@@ -80,9 +78,9 @@ export function CreateSessionID() {
 
 function UpdateExistingSession(
 	existingSession: SessionDocument,
-	newInfo: SessionScoreInfo[],
-	oldScores: ScoreDocument[],
-	newScores: ScoreDocument[]
+	newInfo: Array<SessionScoreInfo>,
+	oldScores: Array<ScoreDocument>,
+	newScores: Array<ScoreDocument>
 ) {
 	const allScores = [...oldScores, ...newScores];
 
@@ -95,12 +93,12 @@ function UpdateExistingSession(
 	existingSession.calculatedData = calculatedData;
 	existingSession.scoreInfo = [...existingSession.scoreInfo, ...newInfo];
 
-	if (newScores[0].timeAchieved! < existingSession.timeStarted) {
-		existingSession.timeStarted = newScores[0].timeAchieved!;
+	if (newScores[0]!.timeAchieved! < existingSession.timeStarted) {
+		existingSession.timeStarted = newScores[0]!.timeAchieved!;
 	}
 
-	if (newScores[newScores.length - 1].timeAchieved! > existingSession.timeEnded) {
-		existingSession.timeEnded = newScores[newScores.length - 1].timeAchieved!;
+	if (newScores[newScores.length - 1]!.timeAchieved! > existingSession.timeEnded) {
+		existingSession.timeEnded = newScores[newScores.length - 1]!.timeAchieved!;
 	}
 
 	return existingSession;
@@ -109,8 +107,8 @@ function UpdateExistingSession(
 function CreateSession(
 	userID: integer,
 	importType: ImportTypes,
-	groupInfo: SessionScoreInfo[],
-	groupScores: ScoreDocument[],
+	groupInfo: Array<SessionScoreInfo>,
+	groupScores: Array<ScoreDocument>,
 	game: Game,
 	playtype: Playtype
 ): SessionDocument {
@@ -129,8 +127,8 @@ function CreateSession(
 		highlight: false,
 		scoreInfo: groupInfo,
 		timeInserted: Date.now(),
-		timeStarted: groupScores[0].timeAchieved!,
-		timeEnded: groupScores[groupScores.length - 1].timeAchieved!,
+		timeStarted: groupScores[0]!.timeAchieved!,
+		timeEnded: groupScores[groupScores.length - 1]!.timeAchieved!,
 		calculatedData,
 		views: 0,
 	};
@@ -139,18 +137,19 @@ function CreateSession(
 export async function LoadScoresIntoSessions(
 	userID: integer,
 	importType: ImportTypes,
-	importScores: ScoreDocument[],
+	importScores: Array<ScoreDocument>,
 	game: Game,
 	playtype: Playtype,
 	baseLogger: KtLogger
-): Promise<SessionInfoReturn[]> {
+): Promise<Array<SessionInfoReturn>> {
 	const logger = AppendLogCtx("Session Generation", baseLogger);
 
 	const timestampedScores = [];
 
 	for (const score of importScores) {
-		if (!score.timeAchieved) {
+		if (score.timeAchieved === null) {
 			logger.verbose(`Ignored score ${score.scoreID}, as it had no timeAchieved.`);
+
 			// ignore scores without timestamps. We can't use these for sessions.
 			continue;
 		}
@@ -170,8 +169,8 @@ export async function LoadScoresIntoSessions(
 	// The "Score Groups" for the array of scores provided.
 	// This contains scores split on 2hr margins, which allows for more optimised
 	// session db requests.
-	const sessionScoreGroups: ScoreDocument[][] = [];
-	let curGroup: ScoreDocument[] = [];
+	const sessionScoreGroups: Array<Array<ScoreDocument>> = [];
+	let curGroup: Array<ScoreDocument> = [];
 	let lastTimestamp = 0;
 
 	for (const score of timestampedScores) {
@@ -181,6 +180,7 @@ export async function LoadScoresIntoSessions(
 			sessionScoreGroups.push(curGroup);
 			curGroup = [score];
 		}
+
 		lastTimestamp = score.timeAchieved!;
 	}
 
@@ -190,7 +190,7 @@ export async function LoadScoresIntoSessions(
 
 	logger.verbose(`Created ${sessionScoreGroups.length} groups from timestamped scores.`);
 
-	const sessionInfoReturns: SessionInfoReturn[] = [];
+	const sessionInfoReturns: Array<SessionInfoReturn> = [];
 
 	// All async operations inside here *need* to be done in lockstep to avoid colliding sessions.
 	// realistically, that shouldn't be possible, but hey.
@@ -200,8 +200,8 @@ export async function LoadScoresIntoSessions(
 			continue;
 		}
 
-		const startOfGroup = groupScores[0].timeAchieved!;
-		const endOfGroup = groupScores[groupScores.length - 1].timeAchieved!;
+		const startOfGroup = groupScores[0]!.timeAchieved!;
+		const endOfGroup = groupScores[groupScores.length - 1]!.timeAchieved!;
 
 		// A bug exists here where if a session is created
 		// backwards in time, this will grab your PBs
@@ -213,6 +213,7 @@ export async function LoadScoresIntoSessions(
 		});
 
 		const pbMap: Map<string, PBScoreDocument> = new Map();
+
 		for (const pb of pbs) {
 			pbMap.set(pb.chartID, pb);
 		}

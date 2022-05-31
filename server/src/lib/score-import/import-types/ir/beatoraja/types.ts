@@ -1,9 +1,11 @@
-import { integer } from "tachi-common";
+import type { integer } from "tachi-common";
 
 export interface BeatorajaContext {
-	client: "lr2oraja" | "beatoraja";
+	client: "beatoraja" | "lr2oraja";
 	chart: BeatorajaChart;
-	userID: integer; // unexpectedly necessary for orphan code!
+
+	// unexpectedly necessary for orphan code!
+	userID: integer;
 	timeReceived: number;
 }
 
@@ -36,16 +38,16 @@ export interface BeatorajaScore {
 
 	lntype: 0 | 1;
 	clear:
-		| "NoPlay"
-		| "Failed"
-		| "LightAssistEasy"
 		| "Easy"
-		| "Normal"
-		| "Hard"
 		| "ExHard"
+		| "Failed"
 		| "FullCombo"
-		| "Perfect"
-		| "Max";
+		| "Hard"
+		| "LightAssistEasy"
+		| "Max"
+		| "NoPlay"
+		| "Normal"
+		| "Perfect";
 	assist: 0;
 	maxcombo: integer;
 

@@ -1,5 +1,5 @@
-import { Router } from "express";
 import uscirRouter from "./_playtype/router";
+import { Router } from "express";
 
 const router: Router = Router({ mergeParams: true });
 

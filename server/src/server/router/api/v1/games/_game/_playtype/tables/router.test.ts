@@ -1,11 +1,10 @@
-import t from "tap";
+import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-
+import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXFolderSP10 } from "test-utils/test-data";
-import deepmerge from "deepmerge";
-import { FolderDocument } from "tachi-common";
+import type { FolderDocument } from "tachi-common";
 
 t.test("GET /api/v1/games/:game/:playtype/tables", (t) => {
 	t.beforeEach(ResetDBState);

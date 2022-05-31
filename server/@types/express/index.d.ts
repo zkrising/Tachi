@@ -1,12 +1,11 @@
-import { Session, SessionData } from "express-session";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "../../src/lib/constants/tachi";
-import { TachiRequestData, TachiSessionData } from "../../src/utils/types";
-import { APITokenDocument } from "tachi-common";
-
-export {};
+import type { SYMBOL_TACHI_API_AUTH, SYMBOL_TACHI_DATA } from "../../src/lib/constants/tachi";
+import type { TachiRequestData, TachiSessionData } from "../../src/utils/types";
+import type { Session, SessionData } from "express-session";
+import type { APITokenDocument } from "tachi-common";
 
 // this only exists for testing context - it doesn't seem to work properly otherwise.
 declare module "express-session" {
+
 	// Inject additional properties on express-session
 	interface SessionData {
 		tachi: TachiSessionData;
@@ -16,12 +15,13 @@ declare module "express-session" {
 declare global {
 	namespace Express {
 		interface Request {
-			session: Session & Partial<SessionData>;
+			session: Partial<SessionData> & Session;
 
-			[SYMBOL_TachiData]?: Partial<TachiRequestData>;
+			[SYMBOL_TACHI_DATA]?: Partial<TachiRequestData>;
+
 			// even though this is technically *not* present on every request
 			// it's always assigned in the main router, so its functionally equivalent.
-			[SYMBOL_TachiAPIAuth]: APITokenDocument;
+			[SYMBOL_TACHI_API_AUTH]: APITokenDocument;
 		}
 	}
 }

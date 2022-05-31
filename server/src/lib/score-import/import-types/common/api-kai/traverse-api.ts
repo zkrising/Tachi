@@ -1,9 +1,10 @@
-import { VERSION_STR } from "lib/constants/version";
-import { KtLogger } from "lib/logger/logger";
-import { TachiConfig } from "lib/setup/config";
-import { URL } from "url";
-import nodeFetch from "utils/fetch";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
+import { VERSION_STR } from "lib/constants/version";
+import { TachiConfig } from "lib/setup/config";
+import nodeFetch from "utils/fetch";
+import { IsRecord } from "utils/misc";
+import { URL } from "url";
+import type { KtLogger } from "lib/logger/logger";
 
 /**
  * A Kai Reauth function is an async function that returns a string
@@ -64,8 +65,10 @@ export async function* TraverseKaiAPI(
 
 		let json;
 		let res;
+
 		// wrap all this in a try catch just incase the fetch or the res
 		// json call fails.
+
 		try {
 			// eslint-disable-next-line no-await-in-loop
 			res = await fetch(url, {
@@ -111,19 +114,27 @@ export async function* TraverseKaiAPI(
 
 		try {
 			// eslint-disable-next-line no-await-in-loop
-			json = await res.json();
+			json = (await res.json()) as unknown;
 		} catch (err) {
 			logger.error(
-				`received invalid (non-json) response from ${url}. Status code was ${res.status}.`,
+				`Received invalid (non-json) response from ${url}. Status code was ${res.status}.`,
 				{ err }
 			);
 			throw new ScoreImportFatalError(
 				500,
-				`received invalid response from their API. Are they down?`
+				`Received invalid response from their API. Are they down?`
 			);
 		}
 
-		if (json._links === null || typeof json._links !== "object") {
+		if (!IsRecord(json)) {
+			logger.error(`Received invalid (non-object, but json) response from ${url}.`, { json });
+			throw new ScoreImportFatalError(
+				500,
+				`Received invalid response from their API. Are they down?`
+			);
+		}
+
+		if (!IsRecord(json._links)) {
 			logger.error(`Received invalid JSON from ${url}. Invalid _links.`, { body: json });
 
 			throw new ScoreImportFatalError(
@@ -150,22 +161,22 @@ export async function* TraverseKaiAPI(
 			// exit the loop after this, we're on the last page.
 			fetchMoreData = false;
 		} else {
-			logger.error(`received invalid response from ${url}. Invalid _links._next.`, {
+			logger.error(`Received invalid response from ${url}. Invalid _links._next.`, {
 				body: json,
 			});
 
 			throw new ScoreImportFatalError(
 				500,
-				`received invalid _links._next prop from their API.`
+				`Received invalid _links._next prop from their API.`
 			);
 		}
 
 		if (!Array.isArray(json._items)) {
-			logger.error(`received invalid response from ${url}. Invalid _items.`, {
+			logger.error(`Received invalid response from ${url}. Invalid _items.`, {
 				body: json,
 			});
 
-			throw new ScoreImportFatalError(500, `received invalid _items from their API.`);
+			throw new ScoreImportFatalError(500, `Received invalid _items from their API.`);
 		}
 
 		// yield everything out of the score array

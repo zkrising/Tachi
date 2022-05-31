@@ -1,9 +1,9 @@
-import { Router } from "express";
-import { UpdateLastSeen } from "server/middleware/update-last-seen";
-import { RejectIfBanned, SetRequestPermissions } from "../middleware/auth";
-import { NormalRateLimitMiddleware } from "../middleware/rate-limiter";
 import apiRouterV1 from "./api/v1/router";
 import irRouter from "./ir/router";
+import { RejectIfBanned, SetRequestPermissions } from "../middleware/auth";
+import { NormalRateLimitMiddleware } from "../middleware/rate-limiter";
+import { Router } from "express";
+import { UpdateLastSeen } from "server/middleware/update-last-seen";
 
 const router: Router = Router({ mergeParams: true });
 

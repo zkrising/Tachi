@@ -1,9 +1,8 @@
-import { ScoreDocument } from "tachi-common";
+import { CreateScoreID, GetWithScoreID } from "./score-id";
 import t from "tap";
-
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
-import { CreateScoreID, GetWithScoreID } from "./score-id";
+import type { ScoreDocument } from "tachi-common";
 
 t.test("#GetWithScoreID", async (t) => {
 	await ResetDBState();

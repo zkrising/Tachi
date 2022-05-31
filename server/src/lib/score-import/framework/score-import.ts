@@ -1,14 +1,14 @@
 /* eslint-disable no-await-in-loop */
-import { JOB_RETRY_COUNT } from "lib/constants/tachi";
-import CreateLogCtx from "lib/logger/logger";
-import { ServerConfig } from "lib/setup/config";
-import { ImportDocument, ImportTypes, integer } from "tachi-common";
-import { Sleep } from "utils/misc";
-import ScoreImportQueue, { ScoreImportQueueEvents } from "../worker/queue";
-import { ScoreImportJobData } from "../worker/types";
 import { GetInputParser } from "./common/get-input-parser";
 import ScoreImportFatalError from "./score-importing/score-import-error";
 import ScoreImportMain from "./score-importing/score-import-main";
+import ScoreImportQueue, { ScoreImportQueueEvents } from "../worker/queue";
+import { JOB_RETRY_COUNT } from "lib/constants/tachi";
+import CreateLogCtx from "lib/logger/logger";
+import { ServerConfig } from "lib/setup/config";
+import { Sleep } from "utils/misc";
+import type { ScoreImportJobData, ScoreImportWorkerReturns } from "../worker/types";
+import type { ImportDocument, ImportTypes, integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -40,7 +40,9 @@ export async function MakeScoreImport<I extends ImportTypes>(
 				}
 			);
 
-			const data = await job.waitUntilFinished(ScoreImportQueueEvents);
+			const data = (await job.waitUntilFinished(
+				ScoreImportQueueEvents
+			)) as ScoreImportWorkerReturns;
 
 			if (data.success) {
 				return data.importDocument;

@@ -1,8 +1,8 @@
+import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment } from "lib/setup/config";
-import { Migration } from "utils/types";
-import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
+import type { Migration } from "utils/types";
 
 const logger = CreateLogCtx(__filename);
 
@@ -18,12 +18,12 @@ export const FAKE_MIGRATION: Migration = {
 // Migrations are stored in an array because they have some concept of order
 // That is, migrations should ideally be applied in a fixed order just to avoid
 // any potential unsavoury interactions.
-const REGISTERED_MIGRATIONS: Migration[] =
-	// If we're testing, we should pull fake migrations instead to ensure the tests
-	// stay consistent
+// If we're testing, we should pull fake migrations instead to ensure the tests
+// stay consistent
+const REGISTERED_MIGRATIONS: Array<Migration> =
 	Environment.nodeEnv === "test" ? [FAKE_MIGRATION] : [UGPTRivalsMigration];
 
-function CreateMigrationLookupMap(migrations: Migration[]) {
+function CreateMigrationLookupMap(migrations: Array<Migration>) {
 	const map = new Map<string, Migration>();
 
 	for (const mig of migrations) {
@@ -120,7 +120,7 @@ export function ApplyMigrationByID(migrationID: string) {
 export async function ApplyMigration(migration: Migration) {
 	const migrationID = migration.id;
 
-	logger.info(`Recieved request to apply migration '${migrationID}'.`);
+	logger.info(`Received request to apply migration '${migrationID}'.`);
 
 	// Lock the migration here:
 	// If the migration is already applied (i.e. migrationID is set and pending/applied)

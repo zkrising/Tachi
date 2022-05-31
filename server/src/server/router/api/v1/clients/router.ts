@@ -1,20 +1,16 @@
+import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import {
-	ALL_PERMISSIONS,
-	APIPermissions,
-	TachiAPIClientDocument,
-	UserAuthLevels,
-} from "tachi-common";
+import { ALL_PERMISSIONS, UserAuthLevels } from "tachi-common";
 import { DedupeArr, DeleteUndefinedProps, IsValidURL, Random20Hex } from "utils/misc";
 import { optNull } from "utils/prudence";
+import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
-import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
+import type { APIPermissions, TachiAPIClientDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -93,6 +89,15 @@ router.post(
 			});
 		}
 
+		const body = req.safeBody as {
+			name: string;
+			redirectUri: string | null;
+			webhookUri: string | null;
+			apiKeyTemplate: string | null;
+			apiKeyFilename: string | null;
+			permissions: Array<APIPermissions>;
+		};
+
 		const existingClients = await db["api-clients"].find({
 			author: req.session.tachi.user.id,
 		});
@@ -108,7 +113,7 @@ router.post(
 			});
 		}
 
-		const permissions = DedupeArr<APIPermissions>(req.body.permissions);
+		const permissions = DedupeArr<APIPermissions>(body.permissions);
 
 		if (permissions.length === 0) {
 			return res.status(400).json({
@@ -117,14 +122,14 @@ router.post(
 			});
 		}
 
-		if (req.body.redirectUri !== null && !IsValidURL(req.body.redirectUri)) {
+		if (body.redirectUri !== null && !IsValidURL(body.redirectUri)) {
 			return res.status(400).json({
 				success: false,
 				description: `Invalid Redirect URL.`,
 			});
 		}
 
-		if (req.body.webhookUri !== null && !IsValidURL(req.body.webhookUri)) {
+		if (body.webhookUri !== null && !IsValidURL(body.webhookUri)) {
 			return res.status(400).json({
 				success: false,
 				description: `Invalid Webhook URL.`,
@@ -138,19 +143,19 @@ router.post(
 			clientID,
 			clientSecret,
 			requestedPermissions: permissions,
-			name: req.body.name,
+			name: body.name,
 			author: req.session.tachi.user.id,
-			redirectUri: req.body.redirectUri,
-			webhookUri: req.body.webhookUri ?? null,
-			apiKeyFilename: req.body.apiKeyFilename ?? null,
-			apiKeyTemplate: req.body.apiKeyTemplate ?? null,
+			redirectUri: body.redirectUri,
+			webhookUri: body.webhookUri ?? null,
+			apiKeyFilename: body.apiKeyFilename ?? null,
+			apiKeyTemplate: body.apiKeyTemplate ?? null,
 		};
 
 		await db["api-clients"].insert(clientDoc);
 
 		logger.info(
 			`User ${FormatUserDoc(req.session.tachi.user)} created a new API Client ${
-				req.body.name
+				body.name
 			} (${clientID}).`
 		);
 
@@ -168,7 +173,7 @@ router.post(
  * @name GET /api/v1/clients/:clientID
  */
 router.get("/:clientID", GetClientFromID, (req, res) => {
-	const client = req[SYMBOL_TachiData]!.apiClientDoc!;
+	const client = GetTachiData(req, "apiClientDoc");
 
 	return res.status(200).json({
 		success: true,
@@ -211,6 +216,7 @@ router.patch(
 			if (typeof self !== "string") {
 				return "Expected a string.";
 			}
+
 			const res = IsValidURL(self);
 
 			if (!res) {
@@ -223,6 +229,7 @@ router.patch(
 			if (typeof self !== "string") {
 				return "Expected a string.";
 			}
+
 			const res = IsValidURL(self);
 
 			if (!res) {
@@ -233,11 +240,20 @@ router.patch(
 		}),
 	}),
 	async (req, res) => {
-		const client = req[SYMBOL_TachiData]!.apiClientDoc!;
+		const body = req.safeBody as {
+			name?: string;
+			redirectUri?: string | null;
+			webhookUri?: string | null;
+			apiKeyTemplate?: string | null;
+			apiKeyFilename?: string | null;
+			permissions?: Array<APIPermissions>;
+		};
 
-		DeleteUndefinedProps(req.body);
+		const client = GetTachiData(req, "apiClientDoc");
 
-		if (Object.keys(req.body).length === 0) {
+		DeleteUndefinedProps(req.safeBody);
+
+		if (Object.keys(req.safeBody).length === 0) {
 			return res.status(400).json({
 				success: false,
 				description: `No changes to make.`,
@@ -249,12 +265,12 @@ router.patch(
 				clientID: client.clientID,
 			},
 			{
-				$set: req.body,
+				$set: req.safeBody,
 			}
 		);
 
 		logger.info(
-			`API Client ${client.name} (${client.clientID}) has been renamed to ${req.body.name}.`
+			`API Client ${client.name} (${client.clientID}) has been renamed to ${body.name}.`
 		);
 
 		return res.status(200).json({
@@ -276,7 +292,7 @@ router.post(
 	GetClientFromID,
 	RequireOwnershipOfClient,
 	async (req, res) => {
-		const client = req[SYMBOL_TachiData]!.apiClientDoc!;
+		const client = GetTachiData(req, "apiClientDoc");
 		const clientName = `${client.name} (${client.clientID})`;
 
 		logger.info(`received request to reset client secret for ${clientName}`);
@@ -308,7 +324,7 @@ router.post(
  * @name DELETE /api/v1/clients/:clientID
  */
 router.delete("/:clientID", GetClientFromID, RequireOwnershipOfClient, async (req, res) => {
-	const client = req[SYMBOL_TachiData]!.apiClientDoc!;
+	const client = GetTachiData(req, "apiClientDoc");
 
 	const clientName = `${client.name} (${client.clientID})`;
 
@@ -324,6 +340,7 @@ router.delete("/:clientID", GetClientFromID, RequireOwnershipOfClient, async (re
 	const result = await db["api-tokens"].remove({
 		fromOAuth2Client: client.clientID,
 	});
+
 	logger.info(`Removed ${result.deletedCount} api tokens from ${clientName}.`);
 
 	return res.status(200).json({

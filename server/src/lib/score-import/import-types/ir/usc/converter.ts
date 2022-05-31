@@ -1,3 +1,9 @@
+import {
+	InternalFailure,
+	InvalidScoreFailure,
+	KTDataNotFoundFailure,
+} from "../../../framework/common/converter-failures";
+import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import db from "external/mongo/db";
 import {
 	USC_DEFAULT_HOLD,
@@ -6,24 +12,17 @@ import {
 	USC_DEFAULT_PERFECT,
 	USC_DEFAULT_SLAM,
 } from "lib/constants/usc-ir";
-import { KtLogger } from "lib/logger/logger";
-import { USCClientScore } from "server/router/ir/usc/_playtype/types";
-import { Lamps } from "tachi-common";
 import { FindSongOnID } from "utils/queries/songs";
-import {
-	InternalFailure,
-	InvalidScoreFailure,
-	KTDataNotFoundFailure,
-} from "../../../framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
-import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction } from "../../common/types";
-import { IRUSCContext } from "./types";
+import type { DryScore } from "../../../framework/common/types";
+import type { ConverterFunction } from "../../common/types";
+import type { IRUSCContext } from "./types";
+import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
+import type { Lamps } from "tachi-common";
 
 /**
  * Interprets the "note mod" used based on the USC score.
  */
-export function DeriveNoteMod(data: USCClientScore): "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" {
+export function DeriveNoteMod(data: USCClientScore): "MIR-RAN" | "MIRROR" | "NORMAL" | "RANDOM" {
 	if (data.options.mirror && data.options.random) {
 		return "MIR-RAN";
 	} else if (data.options.mirror) {
@@ -38,24 +37,36 @@ export function DeriveNoteMod(data: USCClientScore): "NORMAL" | "MIRROR" | "RAND
 /**
  * Determines the lamp of a USC score.
  */
-export function DeriveLamp(
-	scoreDoc: USCClientScore,
-	logger: KtLogger
-): Lamps["usc:Keyboard" | "usc:Controller"] {
+export function DeriveLamp(scoreDoc: USCClientScore): Lamps["usc:Controller" | "usc:Keyboard"] {
 	if (scoreDoc.score === 10_000_000) {
 		return "PERFECT ULTIMATE CHAIN";
 	} else if (scoreDoc.error === 0) {
 		return "ULTIMATE CHAIN";
-	} else if (scoreDoc.options.gaugeType === 0) {
-		return scoreDoc.gauge >= 0.7 ? "CLEAR" : "FAILED";
-	} else if (scoreDoc.options.gaugeType === 1) {
-		return scoreDoc.gauge > 0 ? "EXCESSIVE CLEAR" : "FAILED";
-	} else if (scoreDoc.options.gaugeType === 2) {
-		return "FAILED";
 	}
 
-	logger.error(`Could not derive Lamp from Score Document`, { scoreDoc });
-	throw new InternalFailure(`Could not derive Lamp from Score Document`);
+	switch (scoreDoc.options.gaugeType) {
+		case 0:
+			return scoreDoc.gauge >= 0.7 ? "CLEAR" : "FAILED";
+		case 1:
+			return scoreDoc.gauge > 0 ? "EXCESSIVE CLEAR" : "FAILED";
+		case 2:
+			return "FAILED";
+		default:
+			throw new Error(`Invalid gaugeType of ${scoreDoc.options.gaugeType}.`);
+	}
+}
+
+function ConvertGaugeType(gaugeType: 0 | 1 | 2) {
+	switch (gaugeType) {
+		case 0:
+			return "NORMAL";
+		case 1:
+			return "HARD";
+		case 2:
+			return "PERMISSIVE";
+		default:
+			throw new Error(`Invalid gaugeType of ${gaugeType}.`);
+	}
 }
 
 export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = async (
@@ -114,7 +125,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 			grade,
 			percent,
 			score: data.score,
-			lamp: DeriveLamp(data, logger),
+			lamp: DeriveLamp(data),
 			judgements: {
 				critical: data.crit,
 				near: data.near,
@@ -128,12 +139,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 			},
 		},
 		scoreMeta: {
-			gaugeMod:
-				data.options.gaugeType === 0
-					? "NORMAL"
-					: data.options.gaugeType === 1
-					? "HARD"
-					: "PERMISSIVE",
+			gaugeMod: ConvertGaugeType(data.options.gaugeType),
 			noteMod: DeriveNoteMod(data),
 		},
 	};

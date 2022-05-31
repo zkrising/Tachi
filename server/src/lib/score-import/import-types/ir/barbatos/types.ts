@@ -1,4 +1,4 @@
-import { integer } from "tachi-common";
+import type { integer } from "tachi-common";
 
 export interface BarbatosScore {
 	difficulty: 0 | 1 | 2 | 3 | 4;

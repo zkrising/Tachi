@@ -1,15 +1,17 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
 import { AssignToReqTachiData, GetGPT } from "utils/req-tachi-data";
+import type { RequestHandler } from "express";
 
 export const ValidateAndGetChart: RequestHandler = async (req, res, next) => {
 	const { game, playtype } = GetGPT(req);
 
 	const chart = await db.charts[game].findOne({
 		chartID: req.params.chartID,
-		playtype, // technically redundant, but we're under playtypes here URL wise.
+
+		// technically redundant, but we're under playtypes here URL wise.
 		// this means we cant match an SP chart when we're under IIDX SP, for
 		// example.
+		playtype,
 	});
 
 	if (!chart) {
@@ -21,5 +23,5 @@ export const ValidateAndGetChart: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { chartDoc: chart });
 
-	return next();
+	next();
 };

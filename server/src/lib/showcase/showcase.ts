@@ -4,7 +4,7 @@ import db from "external/mongo/db";
  * When a folder is removed, any showcase stats referring to that folder
  * need to be changed aswell.
  */
-export function RemoveStaleFolderShowcaseStats(removedFolderIDs: string[]) {
+export function RemoveStaleFolderShowcaseStats(removedFolderIDs: Array<string>) {
 	return db["game-settings"].update(
 		{},
 		{

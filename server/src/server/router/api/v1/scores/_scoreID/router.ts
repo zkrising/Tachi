@@ -1,13 +1,13 @@
+import { GetScoreFromParam, RequireOwnershipOfScoreOrAdmin } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { DeleteScore } from "lib/score-mutation/delete-scores";
 import CreateLogCtx from "lib/logger/logger";
+import { DeleteScore } from "lib/score-mutation/delete-scores";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
+import { GetTachiData } from "utils/req-tachi-data";
 import { GetUserWithID } from "utils/user";
-import { GetScoreFromParam, RequireOwnershipOfScoreOrAdmin } from "./middleware";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -23,9 +23,9 @@ router.use(GetScoreFromParam);
  * @name GET /api/v1/scores/:scoreID
  */
 router.get("/", async (req, res) => {
-	const score = req[SYMBOL_TachiData]!.scoreDoc!;
+	const score = GetTachiData(req, "scoreDoc");
 
-	if (req.query.getRelated) {
+	if (req.query.getRelated !== undefined) {
 		const [user, chart, song] = await Promise.all([
 			GetUserWithID(score.userID),
 			db.charts[score.game].findOne({ chartID: score.chartID }),
@@ -87,16 +87,21 @@ router.patch(
 		highlight: "*boolean",
 	}),
 	async (req, res) => {
-		const score = req[SYMBOL_TachiData]!.scoreDoc!;
+		const body = req.safeBody as {
+			comment?: string | null;
+			highlight?: boolean;
+		};
+
+		const score = GetTachiData(req, "scoreDoc");
 
 		const modifyOption: ModifiableScoreProps = {};
 
-		if (req.body.comment !== undefined) {
-			modifyOption.comment = req.body.comment;
+		if (body.comment !== undefined) {
+			modifyOption.comment = body.comment;
 		}
 
-		if (req.body.highlight !== undefined) {
-			modifyOption.highlight = req.body.highlight;
+		if (body.highlight !== undefined) {
+			modifyOption.highlight = body.highlight;
 		}
 
 		if (Object.keys(modifyOption).length === 0) {
@@ -144,11 +149,16 @@ router.patch(
 router.delete(
 	"/",
 	RequireOwnershipOfScoreOrAdmin,
+	prValidate({ blacklist: "*boolean" }),
 	RequirePermissions("delete_score"),
 	async (req, res) => {
-		const score = req[SYMBOL_TachiData]!.scoreDoc!;
+		const body = req.safeBody as {
+			blacklist?: boolean;
+		};
 
-		await DeleteScore(score, !!req.body.blacklist);
+		const score = GetTachiData(req, "scoreDoc");
+
+		await DeleteScore(score, body.blacklist);
 
 		return res.status(200).json({
 			success: true,

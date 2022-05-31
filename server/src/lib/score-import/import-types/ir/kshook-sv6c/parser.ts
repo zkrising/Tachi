@@ -1,11 +1,12 @@
-import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
-import p, { PrudenceSchema } from "prudence";
+import p from "prudence";
 import { FormatPrError } from "utils/prudence";
-import { ParserFunctionReturns } from "../../common/types";
-import { KsHookSV6CContext, KsHookSV6CScore } from "./types";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { KsHookSV6CContext, KsHookSV6CScore } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { PrudenceSchema } from "prudence";
 
-const PR_KsHookSV6C: PrudenceSchema = {
+const PR_KSHOOK_SV6C: PrudenceSchema = {
 	clear: p.isIn(
 		"CLEAR_PLAYED",
 		"CLEAR_EFFECTIVE",
@@ -51,10 +52,10 @@ const PR_KsHookSV6C: PrudenceSchema = {
 
 export function ParseKsHookSV6C(
 	body: Record<string, unknown>,
-	logger: KtLogger
+	_logger: KtLogger
 ): ParserFunctionReturns<KsHookSV6CScore, KsHookSV6CContext> {
 	// Ignore excess keys, as SV6C might add more features in the future.
-	const err = p(body, PR_KsHookSV6C, undefined, { allowExcessKeys: true });
+	const err = p(body, PR_KSHOOK_SV6C, undefined, { allowExcessKeys: true });
 
 	if (err) {
 		throw new ScoreImportFatalError(400, FormatPrError(err));

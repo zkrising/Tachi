@@ -1,8 +1,8 @@
+import { RemoveStaleFolderShowcaseStats } from "./showcase";
 import db from "external/mongo/db";
 import t from "tap";
 import { mkFakeGameSettings } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import { RemoveStaleFolderShowcaseStats } from "./showcase";
 
 t.test("#RemoveStaleFolderShowcaseStats", (t) => {
 	t.beforeEach(ResetDBState);

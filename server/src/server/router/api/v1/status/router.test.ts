@@ -1,7 +1,7 @@
 import { VERSION_PRETTY } from "lib/constants/version";
+import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
-import t from "tap";
 
 t.test("GET /api/v1/status", async (t) => {
 	const cookie = await CreateFakeAuthCookie(mockApi);

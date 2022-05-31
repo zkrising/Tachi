@@ -1,8 +1,8 @@
 import db from "external/mongo/db";
-import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
+import type { PBScoreDocument, ScoreDocument } from "tachi-common";
 
 t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 	t.beforeEach(ResetDBState);
@@ -22,6 +22,7 @@ t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 	const GAZER_CHARTID = "88eb6cc5683e2740cbd07f588a5f3db1db8d467b";
 
 	t.test("Should return PB scores on a chart", async (t) => {
+		// very lazy fake scores
 		await db["personal-bests"].insert({
 			composedFrom: {
 				lampPB: "mock_lampPB",
@@ -34,7 +35,7 @@ t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 			scoreMeta: {},
 			chartID: GAZER_CHARTID,
 			userID: 1,
-		} as unknown as PBScoreDocument); // very lazy fake scores
+		} as unknown as PBScoreDocument);
 
 		await db.scores.insert({
 			scoreID: "mock_lampPB",

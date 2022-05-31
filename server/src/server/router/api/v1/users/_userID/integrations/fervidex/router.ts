@@ -1,11 +1,11 @@
+import { RequireSelfRequestFromUser } from "../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import { DeleteUndefinedProps } from "utils/misc";
 import { optNull } from "utils/prudence";
-import { RequireSelfRequestFromUser } from "../../middleware";
+import { GetTachiData } from "utils/req-tachi-data";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -18,7 +18,7 @@ router.use(RequireSelfRequestFromUser);
  * @name GET /api/v1/users/:userID/integrations/fervidex/settings
  */
 router.get("/settings", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	const settingsDoc = await db["fer-settings"].findOne({
 		userID: user.id,
@@ -43,16 +43,21 @@ router.patch(
 	"/settings",
 	prValidate({ cards: optNull(["string"]), forceStaticImport: "*?boolean" }),
 	async (req, res) => {
-		if (req.body.cards && req.body.cards.length > 6) {
+		const body = req.safeBody as {
+			cards?: Array<string> | null;
+			forceStaticImport?: boolean | null;
+		};
+
+		if (body.cards && body.cards.length > 6) {
 			return res.status(400).json({
 				success: false,
 				description: `You cannot have more than 6 card filters at once.`,
 			});
 		}
 
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
+		const user = GetTachiData(req, "requestedUser");
 
-		const modifyDocument = req.body;
+		const modifyDocument = req.safeBody;
 
 		DeleteUndefinedProps(modifyDocument);
 

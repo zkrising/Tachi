@@ -1,8 +1,8 @@
+import { ConverterLR2Hook } from "./converter";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { TestingLR2HookScore } from "test-utils/test-data";
-import { ConverterLR2Hook } from "./converter";
 
 const logger = CreateLogCtx(__filename);
 
@@ -46,7 +46,7 @@ t.test("#ConverterLR2Hook", (t) => {
 		t.rejects(
 			() =>
 				ConverterLR2Hook(
-					Object.assign({}, TestingLR2HookScore, { md5: "nonsense_md5" }),
+					{ ...TestingLR2HookScore, md5: "nonsense_md5" },
 					{ timeReceived: 10 },
 					"ir/lr2hook",
 					logger

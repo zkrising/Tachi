@@ -1,10 +1,10 @@
 import db from "external/mongo/db";
-import { NotificationDocument } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import { mkFakeNotification, mkFakeUser } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
+import type { NotificationDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/notifications", async (t) => {
 	t.beforeEach(ResetDBState);

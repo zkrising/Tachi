@@ -1,7 +1,8 @@
 import bunyan from "bunyan";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
-import nodemailer, { SentMessageInfo, Transporter } from "nodemailer";
+import nodemailer from "nodemailer";
+import type { SentMessageInfo, Transporter } from "nodemailer";
 
 const logger = CreateLogCtx(__filename);
 
@@ -12,17 +13,15 @@ if (ServerConfig.EMAIL_CONFIG) {
 	const conf = ServerConfig.EMAIL_CONFIG;
 
 	try {
-		transporter = nodemailer.createTransport(
-			Object.assign(
-				{
-					newline: "unix",
-					logger: conf.TRANSPORT_OPS?.debug
-						? bunyan.createLogger({ name: "Email Logger" })
-						: undefined,
-				},
-				conf.TRANSPORT_OPS ?? {}
-			)
-		);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+		transporter = nodemailer.createTransport({
+			newline: "unix",
+			// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unsafe-member-access
+			logger: conf.TRANSPORT_OPS?.debug
+				? bunyan.createLogger({ name: "Email Logger" })
+				: undefined,
+			...(conf.TRANSPORT_OPS ?? {}),
+		});
 
 		transporter.verify((err) => {
 			if (err) {
@@ -53,19 +52,28 @@ export function SendEmail(
 		return;
 	}
 
-	if (!transporter) {
+	if (!transporter || !ServerConfig.EMAIL_CONFIG) {
 		logger.debug(`Stubbed out SendEmail as no EMAIL_CONFIG was set.`);
 		return;
 	}
 
 	logger.verbose(`Sending email to ${to}.`);
 
-	return transporter.sendMail({
-		from: ServerConfig.EMAIL_CONFIG!.FROM,
-		to,
-		subject,
-		html: htmlContent,
-		text: textContent,
-		dkim: ServerConfig.EMAIL_CONFIG?.DKIM,
-	});
+	return transporter
+		.sendMail({
+			from: ServerConfig.EMAIL_CONFIG.FROM,
+			to,
+			subject,
+			html: htmlContent,
+			text: textContent,
+			dkim: ServerConfig.EMAIL_CONFIG.DKIM,
+		})
+		.catch((err: unknown) => {
+			logger.info(`Failed to send email to ${to}.`, {
+				err,
+				subject,
+				textContent,
+				htmlContent,
+			});
+		});
 }

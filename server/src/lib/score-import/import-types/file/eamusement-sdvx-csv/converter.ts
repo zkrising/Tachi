@@ -4,13 +4,13 @@ import {
 } from "lib/score-import/framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { AssertStrAsPositiveInt } from "lib/score-import/framework/common/string-asserts";
-import { DryScore } from "lib/score-import/framework/common/types";
-import { Difficulties, Lamps } from "tachi-common";
 import { FindChartWithPTDF } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
-import { EmptyObject } from "utils/types";
-import { ConverterFunction } from "../../common/types";
-import { SDVXEamusementCSVData } from "./types";
+import type { ConverterFunction } from "../../common/types";
+import type { SDVXEamusementCSVData } from "./types";
+import type { DryScore } from "lib/score-import/framework/common/types";
+import type { Difficulties, Lamps } from "tachi-common";
+import type { EmptyObject } from "utils/types";
 
 const DIFFICULTY_MAP: Map<string, Difficulties["sdvx:Single"]> = new Map([
 	["NOVICE", "NOV"],
@@ -98,6 +98,7 @@ const ConvertEamSDVXCSV: ConverterFunction<SDVXEamusementCSVData, EmptyObject> =
 		service: "e-amusement",
 		game: "sdvx",
 		scoreMeta: {},
+
 		// No timestamp data :(
 		timeAchieved: null,
 		comment: null,

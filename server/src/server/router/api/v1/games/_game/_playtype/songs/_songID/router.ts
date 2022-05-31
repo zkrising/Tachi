@@ -1,8 +1,7 @@
+import { ValidateAndGetSong } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { GetGPT } from "utils/req-tachi-data";
-import { ValidateAndGetSong } from "./middleware";
+import { GetGPT, GetTachiData } from "utils/req-tachi-data";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -14,7 +13,7 @@ router.use(ValidateAndGetSong);
  * @name GET /api/v1/games/:game/:playtype/songs/:songID
  */
 router.get("/", async (req, res) => {
-	const song = req[SYMBOL_TachiData]!.songDoc!;
+	const song = GetTachiData(req, "songDoc");
 	const { game, playtype } = GetGPT(req);
 
 	const charts = await db.charts[game].find({

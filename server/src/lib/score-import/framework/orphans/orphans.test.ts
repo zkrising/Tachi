@@ -1,14 +1,13 @@
-import t from "tap";
-import db from "external/mongo/db";
-
-import ResetDBState from "test-utils/resets";
-import CreateLogCtx from "lib/logger/logger";
-import { BatchManualContext } from "../../import-types/common/batch-manual/types";
 import { OrphanScore, ReprocessOrphan } from "./orphans";
-import fjsh from "fast-json-stable-hash";
-import { OrphanScoreDocument } from "../../import-types/common/types";
 import deepmerge from "deepmerge";
-import { BatchManualScore } from "tachi-common";
+import db from "external/mongo/db";
+import fjsh from "fast-json-stable-hash";
+import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
+import ResetDBState from "test-utils/resets";
+import type { BatchManualContext } from "../../import-types/common/batch-manual/types";
+import type { OrphanScoreDocument } from "../../import-types/common/types";
+import type { BatchManualScore } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -133,7 +132,8 @@ t.test("#ReprocessOrphan", (t) => {
 			{
 				success: true,
 				type: "ScoreImported",
-				message: null,
+				message:
+					"Imported score R7a3a2b04bd4882ec06c198d78297fe3d56561502c7b134c067214bbfdf4f1602.",
 				content: {
 					score: {
 						game: "iidx",

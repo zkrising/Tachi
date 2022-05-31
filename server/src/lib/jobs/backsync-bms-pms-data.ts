@@ -14,6 +14,7 @@ export async function BacksyncBMSPMSSongsAndCharts() {
 
 	for (const game of ["bms", "pms"] as const) {
 		logger.info(`Fetching BMS songs from DB.`);
+
 		// did you know, this code is liable to blow up in my face and OOM one day?
 		let songs = await db.songs[game].find({});
 
@@ -41,5 +42,11 @@ export async function BacksyncBMSPMSSongsAndCharts() {
 }
 
 if (require.main === module) {
-	BacksyncBMSPMSSongsAndCharts().then(() => process.exit(0));
+	BacksyncBMSPMSSongsAndCharts()
+		.then(() => process.exit(0))
+		.catch((err: unknown) => {
+			logger.error(`Failed to backsync bms/pms songs and charts.`, { err });
+
+			process.exit(1);
+		});
 }

@@ -1,11 +1,10 @@
+import { GetFolderFromParam } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { SearchCollection } from "lib/search/search";
 import { GetFolderCharts } from "utils/folder";
 import { IsString } from "utils/misc";
-import { GetGPT } from "utils/req-tachi-data";
-import { GetFolderFromParam } from "./middleware";
+import { GetGPT, GetTachiData } from "utils/req-tachi-data";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -27,10 +26,15 @@ router.get("/", async (req, res) => {
 		});
 	}
 
+	// if inactive is passed, we need this to be undefined so that
+	// mongodb returns both inactive and active folders.
+	// Otherwise, only return active folders.
+	const inactive = req.query.inactive === undefined ? false : undefined;
+
 	const folders = await SearchCollection(
 		db.folders,
 		req.query.search,
-		{ game, playtype, inactive: !!req.query.inactive },
+		{ game, playtype, inactive },
 		100
 	);
 
@@ -47,7 +51,7 @@ router.get("/", async (req, res) => {
  * @name GET /api/v1/games/:game/:playtype/folders/:folderID
  */
 router.get("/:folderID", GetFolderFromParam, async (req, res) => {
-	const folder = req[SYMBOL_TachiData]!.folderDoc!;
+	const folder = GetTachiData(req, "folderDoc");
 
 	const { songs, charts } = await GetFolderCharts(folder, {}, true);
 

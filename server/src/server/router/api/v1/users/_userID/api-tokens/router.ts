@@ -1,13 +1,14 @@
+import { RequireSelfRequestFromUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import { ALL_PERMISSIONS, APIPermissions, APITokenDocument } from "tachi-common";
+import { ALL_PERMISSIONS } from "tachi-common";
 import { Random20Hex } from "utils/misc";
+import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
-import { RequireSelfRequestFromUser } from "../middleware";
+import type { APIPermissions, APITokenDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -22,7 +23,7 @@ router.use(RequireSelfRequestFromUser);
  * @name GET /api/v1/users/:userID/api-tokens
  */
 router.get("/", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	const keys = await db["api-tokens"].find({
 		userID: user.id,
@@ -53,24 +54,30 @@ router.post(
 		clientID: "*string",
 	}),
 	async (req, res) => {
-		if (req.body.clientID && req.body.permissions) {
+		const body = req.safeBody as {
+			permissions?: Array<APIPermissions>;
+			identifier?: string;
+			clientID?: string;
+		};
+
+		if (body.clientID !== undefined && body.permissions) {
 			return res.status(400).json({
 				success: false,
 				description: `Cannot use ClientID creation and permissions creation at the same time!`,
 			});
 		}
 
-		let permissions: APIPermissions[];
+		let permissions: Array<APIPermissions>;
 
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
+		const user = GetTachiData(req, "requestedUser");
 
 		let identifier: string;
 		let fromAPIClient = null;
 
-		if (req.body.clientID) {
+		if (body.clientID !== undefined) {
 			const client = await db["api-clients"].findOne(
 				{
-					clientID: req.body.clientID,
+					clientID: body.clientID,
 				},
 				{
 					projection: {
@@ -106,9 +113,9 @@ router.post(
 			logger.info(
 				`Creating API Key for ${FormatUserDoc(user)} from ${client.name} specification.`
 			);
-		} else if (req.body.permissions) {
-			permissions = req.body.permissions;
-			identifier = req.body.identifier ?? "Custom Token";
+		} else if (body.permissions) {
+			permissions = body.permissions;
+			identifier = body.identifier ?? "Custom Token";
 
 			logger.info(
 				`Creating API Key for ${FormatUserDoc(user)} with ${permissions.join(", ")}.`
@@ -148,7 +155,7 @@ router.post(
  * @name DELETE /api/v1/users/:userID/api-token/:token
  */
 router.delete("/:token", async (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	logger.info(
 		`received request from ${FormatUserDoc(user)} to delete token ${req.params.token}.`

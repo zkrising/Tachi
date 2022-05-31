@@ -1,5 +1,5 @@
-import CreateLogCtx from "lib/logger/logger";
 import db from "./db";
+import CreateLogCtx from "lib/logger/logger";
 
 const logger = CreateLogCtx(__filename);
 

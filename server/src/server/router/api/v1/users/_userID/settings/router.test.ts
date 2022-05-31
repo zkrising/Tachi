@@ -1,10 +1,10 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { PublicUserDocument } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
+import type { PublicUserDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/settings", (t) => {
 	t.beforeEach(ResetDBState);
@@ -119,6 +119,7 @@ t.test("PATCH /api/v1/users/:userID/settings", async (t) => {
 
 	t.test("Must be authenticated as that user.", async (t) => {
 		const user = await db.users.findOne({});
+
 		await db.users.insert(
 			deepmerge(user!, {
 				id: 2,
@@ -129,7 +130,9 @@ t.test("PATCH /api/v1/users/:userID/settings", async (t) => {
 
 		const res = await mockApi
 			.patch("/api/v1/users/2/settings")
-			.set("Cookie", cookie) // this token is for user 1, not 2
+
+			// this token is for user 1, not 2
+			.set("Cookie", cookie)
 			.send({
 				developerMode: false,
 			});

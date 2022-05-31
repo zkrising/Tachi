@@ -1,12 +1,12 @@
-import { Queue, Worker } from "bullmq";
-import CreateLogCtx from "lib/logger/logger";
-import { TachiConfig } from "lib/setup/config";
-import { DedupeArr } from "utils/misc";
 import { BacksyncBMSPMSSongsAndCharts } from "../backsync-bms-pms-data";
 import { DeoprhanScores } from "../deorphan-scores";
 import { UGSSnapshot } from "../ugs-snapshot";
 import { UpdatePoyashiData } from "../update-bpi-data";
 import { UpdateDPTiers } from "../update-dp-tiers";
+import { Queue, Worker } from "bullmq";
+import CreateLogCtx from "lib/logger/logger";
+import { TachiConfig } from "lib/setup/config";
+import { DedupeArr } from "utils/misc";
 
 interface Job {
 	name: string;
@@ -14,7 +14,7 @@ interface Job {
 	run: () => Promise<void>;
 }
 
-const jobs: Job[] = [
+const jobs: Array<Job> = [
 	{
 		name: "Snapshot User Game Stats",
 		cronFormat: "0 0 * * *",
@@ -22,6 +22,7 @@ const jobs: Job[] = [
 	},
 	{
 		name: "De-Orphan Scores",
+
 		// We run an hour after snapshotting UGS
 		// just to spread load out a bit.
 		cronFormat: "1 0 * * *",
@@ -73,18 +74,19 @@ export function InitialiseJobRunner() {
 	const jobNameMap = new Map<string, Job>();
 
 	for (const job of jobs) {
-		JobQueue.add(job.name, { jobName: job.name }, { repeat: { cron: job.cronFormat } });
+		void JobQueue.add(job.name, { jobName: job.name }, { repeat: { cron: job.cronFormat } });
 		jobNameMap.set(job.name, job);
 	}
 
-	new Worker("Job Runner", async (j) => {
-		const name = j.data.jobName;
-		logger.info(`Running job ${name}.`);
+	const worker = new Worker("Job Runner", async (j) => {
+		const { jobName } = j.data as { jobName: string };
 
-		const jobInfo = jobNameMap.get(name);
+		logger.info(`Running job ${jobName}.`);
+
+		const jobInfo = jobNameMap.get(jobName);
 
 		if (!jobInfo) {
-			logger.severe(`Unknown job name ${name}, couldn't find a run function?`);
+			logger.severe(`Unknown job name ${jobName}, couldn't find a run function?`);
 			return false;
 		}
 
@@ -94,6 +96,8 @@ export function InitialiseJobRunner() {
 	});
 
 	logger.info(`Initialised ${jobs.length} jobs (${jobs.map((e) => e.name).join(", ")}).`);
+
+	return worker;
 }
 
 if (require.main === module) {

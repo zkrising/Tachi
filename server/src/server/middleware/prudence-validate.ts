@@ -1,6 +1,7 @@
-import { RequestHandler } from "express-serve-static-core";
 import CreateLogCtx from "lib/logger/logger";
-import Prudence, {
+import Prudence from "prudence";
+import type { RequestHandler } from "express-serve-static-core";
+import type {
 	ErrorMessages,
 	MiddlewareErrorHandler,
 	PrudenceOptions,
@@ -9,22 +10,26 @@ import Prudence, {
 
 const logger = CreateLogCtx(__filename);
 
-const printf = (message: string, stringVal: string | null, keychain: string | null) =>
-	`[${keychain}] ${message}${stringVal ? ` (Received ${stringVal})` : ""}`;
+export const PrudenceErrorFormatter = (
+	message: string,
+	stringVal: string | null,
+	keychain: string | null
+) => `[${keychain}] ${message}${stringVal ? ` (Received ${stringVal})` : ""}`;
 
 const API_ERR_HANDLER =
 	(logLevel: TachiLogLevels): MiddlewareErrorHandler =>
 	(req, res, next, error) => {
 		let stringVal = error.userVal;
-		if (error.keychain && error.keychain.includes("password") && error.userVal) {
+
+		if (error.keychain?.startsWith("!") === true && error.userVal !== undefined) {
 			stringVal = "****";
 		}
 
-		if (typeof stringVal === "object" && stringVal !== null && !stringVal.toString) {
+		if (typeof stringVal === "object" && stringVal !== null) {
 			// this is probably null-prototype
 			stringVal = null;
 		} else if (stringVal === undefined) {
-			stringVal = "nothing";
+			stringVal = "nothing (undefined)";
 		} else {
 			stringVal = String(stringVal);
 		}
@@ -38,7 +43,11 @@ const API_ERR_HANDLER =
 
 		return res.status(400).json({
 			success: false,
-			description: printf(error.message, stringVal as string | null, error.keychain),
+			description: PrudenceErrorFormatter(
+				error.message,
+				stringVal as string | null,
+				error.keychain
+			),
 		});
 	};
 
@@ -51,7 +60,7 @@ const API_ERROR_HANDLERS = Object.fromEntries(
 	])
 ) as Record<TachiLogLevels, MiddlewareErrorHandler>;
 
-type TachiLogLevels = "crit" | "severe" | "error" | "warn" | "info" | "verbose" | "debug";
+type TachiLogLevels = "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn";
 
 const prValidate = (
 	s: PrudenceSchema,

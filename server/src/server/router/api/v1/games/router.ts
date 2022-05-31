@@ -1,7 +1,7 @@
+import gameRouter from "./_game/router";
 import { Router } from "express";
 import { TachiConfig } from "lib/setup/config";
 import { GetGameConfig } from "tachi-common";
-import gameRouter from "./_game/router";
 
 const router: Router = Router({ mergeParams: true });
 

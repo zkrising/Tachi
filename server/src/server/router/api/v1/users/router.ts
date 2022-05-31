@@ -1,9 +1,9 @@
+import userIDRouter from "./_userID/router";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SearchUsersRegExp } from "lib/search/search";
 import { IsString } from "utils/misc";
 import { GetOnlineCutoff } from "utils/user";
-import userIDRouter from "./_userID/router";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -17,18 +17,21 @@ const router: Router = Router({ mergeParams: true });
  * @name GET /api/v1/users
  */
 router.get("/", async (req, res) => {
-	const onlyOnline = !!req.query.online;
+	const onlyOnline = req.query.online !== undefined;
 
 	let users;
 
-	if (req.query.search) {
-		if (!IsString(req.query.search)) {
+	const search = req.query.search;
+
+	if (search !== undefined) {
+		if (!IsString(search)) {
 			return res.status(400).json({
 				success: false,
 				description: `Search parameter was invalid.`,
 			});
 		}
-		users = await SearchUsersRegExp(req.query.search!, onlyOnline);
+
+		users = await SearchUsersRegExp(search, onlyOnline);
 	} else {
 		const query = onlyOnline ? { lastSeen: { $gt: GetOnlineCutoff() } } : {};
 

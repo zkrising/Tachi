@@ -1,22 +1,23 @@
-import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
-import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
-import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
-import { ServerConfig, TachiConfig } from "lib/setup/config";
-import { ChartDocument, SongDocument, Playtypes } from "tachi-common";
-import { Random20Hex } from "utils/misc";
-import { GetBlacklist } from "utils/queries/blacklist";
-import { FindChartOnSHA256, FindChartOnSHA256Playtype } from "utils/queries/charts";
-import { FindSongOnID } from "utils/queries/songs";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
-import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction } from "../../common/types";
-import { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
+import db from "external/mongo/db";
+import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
+import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
+import { Random20Hex } from "utils/misc";
+import { GetBlacklist } from "utils/queries/blacklist";
+import { FindChartOnSHA256, FindChartOnSHA256Playtype } from "utils/queries/charts";
+import { FindSongOnID } from "utils/queries/songs";
+import type { DryScore } from "../../../framework/common/types";
+import type { ConverterFunction } from "../../common/types";
+import type { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { ChartDocument, SongDocument, Playtypes } from "tachi-common";
+
 const LAMP_LOOKUP = {
 	NoPlay: "NO PLAY",
 	Failed: "FAILED",
@@ -145,7 +146,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 
 	const game = context.chart.mode === "POPN_9K" ? "pms" : "bms";
 
-	let chart: ChartDocument<"bms:14K" | "bms:7K" | "pms:Controller" | "pms:Keyboard"> | null;
+	let chart: ChartDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard"> | null;
 
 	if (game === "bms") {
 		chart = (await FindChartOnSHA256(game, data.sha256)) as ChartDocument<
@@ -195,8 +196,8 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		hitMeta[k] = data[k];
 	}
 
-	hitMeta.epr! += data.ems;
-	hitMeta.lpr! += data.lms;
+	hitMeta.epr = hitMeta.epr! + data.ems;
+	hitMeta.lpr = hitMeta.lpr! + data.lms;
 
 	const judgements = {
 		[game === "pms" ? "cool" : "pgreat"]: data.epg + data.lpg,
@@ -219,7 +220,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 
 	const lamp = LAMP_LOOKUP[data.clear];
 
-	const dryScore: DryScore<"bms:7K" | "bms:14K" | "pms:Keyboard" | "pms:Controller"> = {
+	const dryScore: DryScore<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard"> = {
 		comment: null,
 		game,
 		importType,
@@ -244,7 +245,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 };
 
 function ConvertBeatorajaChartToTachi(chart: BeatorajaChart, playtype: Playtypes["bms" | "pms"]) {
-	const chartDoc: ChartDocument<"bms:14K" | "bms:7K" | "pms:Controller" | "pms:Keyboard"> = {
+	const chartDoc: ChartDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard"> = {
 		chartID: Random20Hex(),
 		difficulty: "CHART",
 		isPrimary: true,

@@ -1,15 +1,15 @@
+import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 import CreateLogCtx from "lib/logger/logger";
-import {
+import { ESDCore, GetGamePTConfig } from "tachi-common";
+import { NotNullish } from "utils/misc";
+import type {
 	ChartDocument,
-	ESDCore,
 	Game,
 	GameToIDStrings,
-	GetGamePTConfig,
 	Grades,
 	IDStrings,
 	Playtype,
 } from "tachi-common";
-import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 
 const logger = CreateLogCtx(__filename);
 
@@ -32,14 +32,14 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 	}
 
 	// (hey, this for loop is backwards!)
-	for (let i = boundaries.length; i >= 0; i--) {
-		if (percent + Number.EPSILON >= boundaries[i]) {
+	for (let i = boundaries.length - 1; i >= 0; i--) {
+		if (percent + Number.EPSILON >= NotNullish(boundaries[i])) {
 			return grades[i] as Grades[I];
 		}
 	}
 
 	logger.error(`Could not resolve grade for percent ${percent} on game ${game}`);
-	throw new InternalFailure(`Could not resolve grade for percent ${percent} on game ${game}`);
+	throw new InternalFailure(`Could not resolve grade for percent ${percent} on game ${game}.`);
 }
 
 /**
@@ -64,7 +64,7 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 			return score;
 		case "bms":
 		case "pms":
-		case "iidx":
+		case "iidx": {
 			if (!chart) {
 				logger.severe("No Chart passed to GenericCalcPercent but game was iidx/bms/pms.");
 				throw new InternalFailure(
@@ -77,19 +77,22 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 			const MAX =
 				(
 					chart as ChartDocument<
-						| "iidx:SP"
-						| "iidx:DP"
 						| "bms:7K"
 						| "bms:14K"
+						| "iidx:DP"
+						| "iidx:SP"
 						| "pms:Controller"
 						| "pms:Keyboard"
 					>
 				).data.notecount * 2;
 
 			return (100 * score) / MAX;
-		default:
+		}
+
+		default: {
 			logger.severe(`Invalid game passed of ${game} to GenericCalcPercent.`);
 			throw new InternalFailure(`Invalid game passed of ${game} to GenericCalcPercent.`);
+		}
 	}
 }
 
@@ -108,6 +111,7 @@ export function ValidatePercent(
 	// i love needing a helper function for *ONE* game.
 	if (game === "maimai") {
 		const mmChart = chart as ChartDocument<"maimai:Single">;
+
 		if (percent > mmChart.data.maxPercent) {
 			throw new InvalidScoreFailure(
 				`Invalid percent - expected a number less than ${mmChart.data.maxPercent}.`
@@ -139,12 +143,12 @@ export function GenericGetGradeAndPercent<G extends Game>(
 	game: G,
 	score: number,
 	chart: ChartDocument
-) {
+): { percent: number; grade: Grades[GameToIDStrings[G]] } {
 	const percent = GenericCalculatePercent(game, score, chart);
 
 	ValidatePercent(game, chart.playtype, percent, chart);
 
-	const grade = GetGradeFromPercent(game, chart.playtype, percent) as Grades[GameToIDStrings[G]];
+	const grade: Grades[GameToIDStrings[G]] = GetGradeFromPercent(game, chart.playtype, percent);
 
 	return { percent, grade };
 }
@@ -193,7 +197,7 @@ export function CalculateESDForGame(
  * Parses and validates a date from a string.
  * @returns Milliseconds from the unix epoch, or null if the initial argument was null or undefined.
  */
-export function ParseDateFromString(str: string | undefined | null): number | null {
+export function ParseDateFromString(str: string | null | undefined): number | null {
 	if (!str) {
 		return null;
 	}

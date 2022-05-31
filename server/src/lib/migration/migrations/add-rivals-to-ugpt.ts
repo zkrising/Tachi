@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { Migration } from "utils/types";
+import type { Migration } from "utils/types";
 
 const migration: Migration = {
 	id: "add-rivals-to-ugpt",

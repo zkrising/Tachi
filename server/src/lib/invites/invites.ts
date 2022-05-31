@@ -1,7 +1,7 @@
 import { ONE_MONTH } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
-import { PublicUserDocument } from "tachi-common";
+import type { PublicUserDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -27,7 +27,7 @@ export function GetTotalAllowedInvites(user: PublicUserDocument) {
 	let invites = monthsSinceJoin * ServerConfig.INVITE_CODE_CONFIG.BATCH_SIZE;
 
 	if (user.badges.includes("alpha") || user.badges.includes("beta")) {
-		invites += ServerConfig.INVITE_CODE_CONFIG.BETA_USER_BONUS;
+		invites = invites + ServerConfig.INVITE_CODE_CONFIG.BETA_USER_BONUS;
 	}
 
 	if (invites > ServerConfig.INVITE_CODE_CONFIG.INVITE_CAP) {

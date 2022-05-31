@@ -1,6 +1,22 @@
-import { KtLogger } from "lib/logger/logger";
-import { USCClientScore } from "server/router/ir/usc/_playtype/types";
-import {
+import type { ConverterFailure } from "../../framework/common/converter-failures";
+import type { DryScore } from "../../framework/common/types";
+import type { ClassHandler } from "../../framework/user-game-stats/types";
+import type { SDVXEamusementCSVData } from "../file/eamusement-sdvx-csv/types";
+import type { MerScore } from "../file/mer-iidx/types";
+import type { S3Score } from "../file/solid-state-squad/types";
+import type { BarbatosContext, BarbatosScore } from "../ir/barbatos/types";
+import type { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
+import type { FervidexStaticContext, FervidexStaticScore } from "../ir/fervidex-static/types";
+import type { FervidexContext, FervidexScore } from "../ir/fervidex/types";
+import type { KsHookSV6CContext, KsHookSV6CScore } from "../ir/kshook-sv6c/types";
+import type { LR2HookContext, LR2HookScore } from "../ir/lr2hook/types";
+import type { IRUSCContext } from "../ir/usc/types";
+import type { KaiContext } from "./api-kai/types";
+import type { BatchManualContext } from "./batch-manual/types";
+import type { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./eamusement-iidx-csv/types";
+import type { KtLogger } from "lib/logger/logger";
+import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
+import type {
 	BatchManualScore,
 	ChartDocument,
 	Game,
@@ -9,23 +25,7 @@ import {
 	MongoDBDocument,
 	SongDocument,
 } from "tachi-common";
-import { EmptyObject } from "utils/types";
-import { ConverterFailure } from "../../framework/common/converter-failures";
-import { DryScore } from "../../framework/common/types";
-import { ClassHandler } from "../../framework/user-game-stats/types";
-import { SDVXEamusementCSVData } from "../file/eamusement-sdvx-csv/types";
-import { MerScore } from "../file/mer-iidx/types";
-import { S3Score } from "../file/solid-state-squad/types";
-import { BarbatosContext, BarbatosScore } from "../ir/barbatos/types";
-import { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
-import { FervidexStaticContext, FervidexStaticScore } from "../ir/fervidex-static/types";
-import { FervidexContext, FervidexScore } from "../ir/fervidex/types";
-import { KsHookSV6CContext, KsHookSV6CScore } from "../ir/kshook-sv6c/types";
-import { LR2HookContext, LR2HookScore } from "../ir/lr2hook/types";
-import { IRUSCContext } from "../ir/usc/types";
-import { KaiContext } from "./api-kai/types";
-import { BatchManualContext } from "./batch-manual/types";
-import { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./eamusement-iidx-csv/types";
+import type { EmptyObject } from "utils/types";
 
 export interface ImportTypeDataMap {
 	"file/eamusement-iidx-csv": IIDXEamusementCSVData;
@@ -100,24 +100,24 @@ export interface ConverterFnSuccessReturn {
 
 export type ConverterFnReturnOrFailure = ConverterFailure | ConverterFnSuccessReturn;
 
-export interface ConverterFunction<D, C> {
-	(
-		data: D,
-		processContext: C,
-		importType: ImportTypes,
-		logger: KtLogger
-	): Promise<ConverterFnSuccessReturn>;
-}
+export type ConverterFunction<D, C> = (
+	data: D,
+	processContext: C,
+	importType: ImportTypes,
+	logger: KtLogger
+) => Promise<ConverterFnSuccessReturn>;
 
-export interface ImportInputParser<D, C> {
-	(logger: KtLogger): ParserFunctionReturns<D, C> | Promise<ParserFunctionReturns<D, C>>;
-}
+export type ImportInputParser<D, C> = (
+	logger: KtLogger
+) => ParserFunctionReturns<D, C> | Promise<ParserFunctionReturns<D, C>>;
 
 export interface ParserFunctionReturns<D, C> {
-	iterable: Iterable<D> | AsyncIterable<D>;
+	iterable: AsyncIterable<D> | Iterable<D>;
 	context: C;
 	game: Game;
 	classHandler: ClassHandler | null;
 }
 
-export type ParserFunction<D, C, A extends unknown[]> = (...args: A) => ParserFunctionReturns<D, C>;
+export type ParserFunction<D, C, A extends Array<unknown>> = (
+	...args: A
+) => ParserFunctionReturns<D, C>;

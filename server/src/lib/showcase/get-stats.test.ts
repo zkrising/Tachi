@@ -1,12 +1,10 @@
-import t from "tap";
-import db from "external/mongo/db";
-
-import ResetDBState from "test-utils/resets";
-import { TestingIIDXFolderSP10, Testing511SPA, TestingIIDXSPScorePB } from "test-utils/test-data";
-import { IIDX_LAMPS } from "tachi-common";
-
 import { EvaluateUsersStatsShowcase } from "./get-stats";
 import deepmerge from "deepmerge";
+import db from "external/mongo/db";
+import { IIDX_LAMPS } from "tachi-common";
+import t from "tap";
+import ResetDBState from "test-utils/resets";
+import { TestingIIDXFolderSP10, Testing511SPA, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
 
 t.test("#EvalulateUsersStatsShowcase", (t) => {

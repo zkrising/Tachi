@@ -1,10 +1,10 @@
-import { Game, GetGameConfig, Playtype, Playtypes } from "tachi-common";
-import { RequestHandler } from "express";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { GetGameConfig } from "tachi-common";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
+import type { RequestHandler } from "express";
+import type { Playtype } from "tachi-common";
 
 export const ValidatePlaytypeFromParam: RequestHandler = (req, res, next) => {
-	const game = req[SYMBOL_TachiData]!.game!;
+	const game = GetTachiData(req, "game");
 
 	const gameConfig = GetGameConfig(game);
 
@@ -17,5 +17,5 @@ export const ValidatePlaytypeFromParam: RequestHandler = (req, res, next) => {
 
 	AssignToReqTachiData(req, { playtype: req.params.playtype as Playtype });
 
-	return next();
+	next();
 };

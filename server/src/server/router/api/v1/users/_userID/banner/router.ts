@@ -1,15 +1,15 @@
+import { RequireAuthedAsUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { CDNDelete, CDNRedirect, CDNStoreOrOverwrite } from "lib/cdn/cdn";
 import { GetProfileBannerURL } from "lib/cdn/url-format";
 import { ONE_MEGABYTE } from "lib/constants/filesize";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import { HashSHA256 } from "utils/crypto";
+import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
-import { RequireAuthedAsUser } from "../middleware";
 
 // note: this is just the ../pfp/router.ts code copied and altered.
 
@@ -30,7 +30,7 @@ router.put(
 	RequirePermissions("customise_profile"),
 	CreateMulterSingleUploadMiddleware("banner", ONE_MEGABYTE, logger),
 	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
+		const user = GetTachiData(req, "requestedUser");
 
 		if (!user.customBannerLocation) {
 			logger.verbose(`User ${FormatUserDoc(user)} set a custom profile banner.`);
@@ -88,15 +88,16 @@ router.put(
  * @name GET /api/v1/users/:userID/banner
  */
 router.get("/", (req, res) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
 	if (!user.customBannerLocation) {
 		res.setHeader("Content-Type", "image/png");
-		return CDNRedirect(res, "/users/default/banner");
+		CDNRedirect(res, "/users/default/banner");
+		return;
 	}
 
 	// express sniffs whether this is a png or jpg **and** browsers dont care either.
-	return CDNRedirect(res, GetProfileBannerURL(user.id, user.customBannerLocation));
+	CDNRedirect(res, GetProfileBannerURL(user.id, user.customBannerLocation));
 });
 
 /**
@@ -109,7 +110,7 @@ router.delete(
 	RequireAuthedAsUser,
 	RequirePermissions("customise_profile"),
 	async (req, res) => {
-		const user = req[SYMBOL_TachiData]!.requestedUser!;
+		const user = GetTachiData(req, "requestedUser");
 
 		if (!user.customBannerLocation) {
 			return res.status(404).json({

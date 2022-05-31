@@ -1,11 +1,15 @@
+import { CreateGoalTitle as CreateGoalName, ValidateGoalChartsAndCriteria } from "./goal-utils";
 import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
-import CreateLogCtx, { KtLogger } from "lib/logger/logger";
-import { FilterQuery } from "mongodb";
-import {
+import CreateLogCtx from "lib/logger/logger";
+import { GetGamePTConfig } from "tachi-common";
+import { GetFolderChartIDs } from "utils/folder";
+import { NotNullish } from "utils/misc";
+import type { KtLogger } from "lib/logger/logger";
+import type { FilterQuery } from "mongodb";
+import type {
 	Game,
-	GetGamePTConfig,
 	GoalDocument,
 	integer,
 	PBScoreDocument,
@@ -14,8 +18,6 @@ import {
 	MilestoneSubscriptionDocument,
 	MilestoneDocument,
 } from "tachi-common";
-import { GetFolderChartIDs } from "utils/folder";
-import { CreateGoalTitle as CreateGoalName, ValidateGoalChartsAndCriteria } from "./goal-utils";
 
 const logger = CreateLogCtx(__filename);
 
@@ -68,6 +70,7 @@ export async function EvaluateGoalForUser(
 		userID,
 		game: goal.game,
 		playtype: goal.playtype,
+
 		// normally, this would be a VERY WORRYING line of code, but goal.criteria.key is guaranteed to be
 		// within a specific set of fields.
 		[goal.criteria.key]: { $gte: goal.criteria.value },
@@ -77,120 +80,131 @@ export async function EvaluateGoalForUser(
 		scoreQuery.chartID = { $in: chartIDs };
 	}
 
-	// Next, we need to figure out our criteria.
-	if (goal.criteria.mode === "single") {
-		const res = await db["personal-bests"].findOne(scoreQuery);
-		// hack, but guaranteed to work.
-		const scoreDataKey = goal.criteria.key.split(".")[1] as
-			| "lampIndex"
-			| "gradeIndex"
-			| "score"
-			| "percent";
+	switch (goal.criteria.mode) {
+		case "single": {
+			const res = await db["personal-bests"].findOne(scoreQuery);
 
-		const outOfHuman = HumaniseGoalProgress(
-			goal.game,
-			goal.playtype,
-			goal.criteria.key,
-			goal.criteria.value,
-			null
-		);
+			// hack, but guaranteed to work.
+			const scoreDataKey = goal.criteria.key.split(".")[1] as
+				| "gradeIndex"
+				| "lampIndex"
+				| "percent"
+				| "score";
 
-		if (res) {
+			const outOfHuman = HumaniseGoalProgress(
+				goal.game,
+				goal.playtype,
+				goal.criteria.key,
+				goal.criteria.value,
+				null
+			);
+
+			if (res) {
+				return {
+					achieved: true,
+					outOf: goal.criteria.value,
+					progress: res.scoreData[scoreDataKey],
+					outOfHuman,
+					progressHuman: HumaniseGoalProgress(
+						goal.game,
+						goal.playtype,
+						goal.criteria.key,
+						res.scoreData[scoreDataKey],
+						res
+					),
+				};
+			}
+
+			// if we weren't successful, we have to get the users next best score and put it up here
+			// this is made infinitely easier by the existence of personal-bests.
+			const nextBestQuery: FilterQuery<PBScoreDocument> = {
+				userID,
+				game: goal.game,
+				playtype: goal.playtype,
+			};
+
+			if (chartIDs) {
+				nextBestQuery.chartID = { $in: chartIDs };
+			}
+
+			const nextBestScore = await db["personal-bests"].findOne(nextBestQuery, {
+				sort: { [goal.criteria.key]: -1 },
+			});
+
+			if (!nextBestScore) {
+				return {
+					achieved: false,
+					outOf: goal.criteria.value,
+					progress: null,
+					outOfHuman,
+					progressHuman: "NO DATA",
+				};
+			}
+
 			return {
-				achieved: true,
+				achieved: false,
 				outOf: goal.criteria.value,
-				progress: res.scoreData[scoreDataKey],
 				outOfHuman,
+				progress: nextBestScore.scoreData[scoreDataKey],
 				progressHuman: HumaniseGoalProgress(
 					goal.game,
 					goal.playtype,
 					goal.criteria.key,
-					res.scoreData[scoreDataKey],
-					res
+					nextBestScore.scoreData[scoreDataKey],
+					nextBestScore
 				),
 			};
 		}
 
-		// if we weren't successful, we have to get the users next best score and put it up here
-		// this is made infinitely easier by the existence of personal-bests.
-		const nextBestQuery: FilterQuery<PBScoreDocument> = {
-			userID,
-			game: goal.game,
-			playtype: goal.playtype,
-		};
+		case "absolute":
+		case "proportion": {
+			let count;
 
-		if (chartIDs) {
-			nextBestQuery.chartID = { $in: chartIDs };
-		}
+			// abs -> Absolute mode, such as clear 10 charts.
+			if (goal.criteria.mode === "absolute") {
+				count = goal.criteria.countNum;
+			} else {
+				// proportion -> Proportional mode, the value
+				// is a multiplier for the amount of charts
+				// available -- i.e. 0.1 * charts.
 
-		const nextBestScore = await db["personal-bests"].findOne(nextBestQuery, {
-			sort: { [goal.criteria.key]: -1 },
-		});
+				let totalChartCount;
 
-		if (!nextBestScore) {
+				if (chartIDs === null) {
+					// edge case: proportion goals on "any"
+					// charts (i.e. clear 20% of charts) need to
+					// know how many charts the game has!
+					totalChartCount = await db.charts[goal.game].count({ playtype: goal.playtype });
+				} else {
+					totalChartCount = chartIDs.length;
+				}
+
+				count = Math.floor(goal.criteria.countNum * totalChartCount);
+			}
+
+			const userCount = await db["personal-bests"].count(scoreQuery);
+
 			return {
-				achieved: false,
-				outOf: goal.criteria.value,
-				progress: null,
-				outOfHuman,
-				progressHuman: "NO DATA",
+				achieved: userCount >= count,
+				progress: userCount,
+				outOf: count,
+				progressHuman: userCount.toString(),
+				outOfHuman: count.toString(),
 			};
 		}
 
-		return {
-			achieved: false,
-			outOf: goal.criteria.value,
-			outOfHuman,
-			progress: nextBestScore.scoreData[scoreDataKey],
-			progressHuman: HumaniseGoalProgress(
-				goal.game,
-				goal.playtype,
-				goal.criteria.key,
-				nextBestScore.scoreData[scoreDataKey],
-				nextBestScore
-			),
-		};
-	} else if (goal.criteria.mode === "absolute" || goal.criteria.mode === "proportion") {
-		let count;
+		default: {
+			// note that this seemingly nonsensical type assertion is because typescript has whittled down
+			// goal.criteria (correctly) to 'never', but we want to log if something somehow ends up here (it shouldn't).
+			logger.warn(
+				`Invalid goal: ${goal.goalID}, unknown criteria.mode ${
+					(goal.criteria as GoalDocument["criteria"]).mode
+				}, ignoring.`
+			);
 
-		// abs -> Absolute mode, such as clear 10 charts.
-		if (goal.criteria.mode === "absolute") {
-			count = goal.criteria.countNum;
-		} else {
-			// proportion -> Proportional mode, the value
-			// is a multiplier for the amount of charts
-			// available -- i.e. 0.1 * charts.
-
-			let totalChartCount;
-
-			if (chartIDs === null) {
-				// edge case: proportion goals on "any"
-				// charts (i.e. clear 20% of charts) need to
-				// know how many charts the game has!
-				totalChartCount = await db.charts[goal.game].count({ playtype: goal.playtype });
-			} else {
-				totalChartCount = chartIDs.length;
-			}
-
-			count = Math.floor(goal.criteria.countNum * totalChartCount);
+			return null;
 		}
-
-		const userCount = await db["personal-bests"].count(scoreQuery);
-
-		return {
-			achieved: userCount >= count,
-			progress: userCount,
-			outOf: count,
-			progressHuman: userCount.toString(),
-			outOfHuman: count.toString(),
-		};
 	}
-
-	logger.error(
-		`Invalid goal: ${goal.goalID}, unknown criteria.mode ${goal.criteria.mode}, ignoring.`
-	);
-
-	return null;
 }
 
 /**
@@ -198,22 +212,29 @@ export async function EvaluateGoalForUser(
  *
  * @returns An array of chartIDs, except if the goal chart type is "any", in which case, it returns null.
  */
-function ResolveGoalCharts(goal: GoalDocument): Promise<string[]> | string[] | null | undefined {
-	if (goal.charts.type === "single") {
-		return [goal.charts.data];
-	} else if (goal.charts.type === "multi") {
-		return goal.charts.data;
-	} else if (goal.charts.type === "folder") {
-		return GetFolderChartIDs(goal.charts.data);
-	} else if (goal.charts.type === "any") {
-		return null; // special case.
+function ResolveGoalCharts(
+	goal: GoalDocument
+): Array<string> | Promise<Array<string>> | null | undefined {
+	switch (goal.charts.type) {
+		case "single":
+			return [goal.charts.data];
+		case "multi":
+			return goal.charts.data;
+		case "folder":
+			return GetFolderChartIDs(goal.charts.data);
+		case "any":
+			return null;
+		default:
+			// @ts-expect-error This can't happen normally, but if it does, I want to
+			// handle it properly.
+			throw new Error(`Unknown goal.charts.type of ${goal.charts.type}`);
 	}
 }
 
 type GoalKeys = GoalDocument["criteria"]["key"];
 
 type PBWithBadPoor = PBScoreDocument<
-	"iidx:SP" | "iidx:DP" | "bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard"
+	"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard"
 >;
 
 export function HumaniseGoalProgress(
@@ -226,7 +247,7 @@ export function HumaniseGoalProgress(
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	switch (key) {
-		case "scoreData.gradeIndex":
+		case "scoreData.gradeIndex": {
 			if (!gptConfig.grades[value]) {
 				throw new Error(
 					`Corrupt goal -- requested a grade of ${value}, which doesn't exist for this game.`
@@ -234,7 +255,9 @@ export function HumaniseGoalProgress(
 			}
 
 			return `${gptConfig.grades[value]} (${userPB?.scoreData.percent.toFixed(2) ?? "0"}%)`;
-		case "scoreData.lampIndex":
+		}
+
+		case "scoreData.lampIndex": {
 			if (!gptConfig.lamps[value]) {
 				throw new Error(
 					`Corrupt goal -- requested a lamp of ${value}, which doesn't exist for this game.`
@@ -247,7 +270,9 @@ export function HumaniseGoalProgress(
 				})`;
 			}
 
-			return gptConfig.lamps[value];
+			return NotNullish(gptConfig.lamps[value]);
+		}
+
 		case "scoreData.percent":
 			return `${value.toFixed(2)}%`;
 		case "scoreData.score":
@@ -273,7 +298,9 @@ export async function ConstructGoal(
 	// Throws if the charts or criteria are invalid somehow.
 	await ValidateGoalChartsAndCriteria(charts, criteria, game, playtype);
 
-	return {
+	// @ts-expect-error It's complaining because the potential criteria types might mismatch.
+	// they're right, but this is enforced by ValidateGoalChartsAndCriteria.
+	const goalDocument: GoalDocument = {
 		game,
 		playtype,
 		timeAdded: Date.now(),
@@ -281,7 +308,9 @@ export async function ConstructGoal(
 		charts,
 		goalID: CreateGoalID(charts, criteria, game, playtype),
 		name: await CreateGoalName(charts, criteria, game, playtype),
-	} as GoalDocument;
+	};
+
+	return goalDocument;
 }
 
 /**
@@ -363,40 +392,41 @@ export function GetMilestonesThatContainGoal(goalID: string) {
  */
 export async function GetBlockingParentMilestoneSubs(
 	goalSub: GoalSubscriptionDocument
-): Promise<(MilestoneSubscriptionDocument & { milestone: MilestoneDocument })[]> {
-	const blockers = await db["milestone-subs"].aggregate([
-		{
-			// find all milestones that this user is subscribed to
-			$match: {
-				userID: goalSub.userID,
-				game: goalSub.game,
-				playtype: goalSub.playtype,
+): Promise<Array<MilestoneSubscriptionDocument & { milestone: MilestoneDocument }>> {
+	const blockers: Array<MilestoneSubscriptionDocument & { milestone: MilestoneDocument }> =
+		await db["milestone-subs"].aggregate([
+			{
+				// find all milestones that this user is subscribed to
+				$match: {
+					userID: goalSub.userID,
+					game: goalSub.game,
+					playtype: goalSub.playtype,
+				},
 			},
-		},
-		{
-			// look up the parent milestones
-			$lookup: {
-				from: "milestones",
-				localField: "milestoneID",
-				foreignField: "milestoneID",
-				as: "parentMilestoneSubs",
+			{
+				// look up the parent milestones
+				$lookup: {
+					from: "milestones",
+					localField: "milestoneID",
+					foreignField: "milestoneID",
+					as: "parentMilestoneSubs",
+				},
 			},
-		},
-		{
-			// then project it onto the $milestone field. This will be null
-			// if the milestone has no parent, which we hopefully won't have
-			// to consider (illegal)
-			$set: {
-				milestone: { $arrayElemAt: ["$parentMilestoneSubs", 0] },
+			{
+				// then project it onto the $milestone field. This will be null
+				// if the milestone has no parent, which we hopefully won't have
+				// to consider (illegal)
+				$set: {
+					milestone: { $arrayElemAt: ["$parentMilestoneSubs", 0] },
+				},
 			},
-		},
-		{
-			// then finally, filter to only milestones that pertain to this goal.
-			$match: {
-				"milestone.milestoneData.goals.goalID": goalSub.goalID,
+			{
+				// then finally, filter to only milestones that pertain to this goal.
+				$match: {
+					"milestone.milestoneData.goals.goalID": goalSub.goalID,
+				},
 			},
-		},
-	]);
+		]);
 
 	return blockers;
 }

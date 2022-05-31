@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import CreateLogCtx from "lib/logger/logger";
-import t from "tap";
 import { ParseLR2Hook } from "./parser";
 import deepmerge from "deepmerge";
+import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
 import { TestingLR2HookScore } from "test-utils/test-data";
 import { ApplyNTimes } from "utils/misc";
 

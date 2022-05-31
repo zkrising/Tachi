@@ -1,7 +1,8 @@
-import { RequestHandler } from "express";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
+import { IsNullish } from "utils/misc";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import { ResolveUser } from "utils/user";
+import type { RequestHandler } from "express";
 
 export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 	if (!req.params.userID) {
@@ -14,7 +15,9 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 	let userID = req.params.userID;
 
 	if (req.params.userID === "me") {
-		if (!req[SYMBOL_TachiAPIAuth].userID) {
+		const authUserID = req[SYMBOL_TACHI_API_AUTH].userID;
+
+		if (authUserID === null) {
 			return res.status(401).json({
 				success: false,
 				description: "Cannot use 'me' userID with no authentication.",
@@ -24,10 +27,11 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 		// fast assign using JWT
 		if (req.session.tachi?.user) {
 			AssignToReqTachiData(req, { requestedUser: req.session.tachi.user });
-			return next();
+			next();
+			return;
 		}
 
-		userID = req[SYMBOL_TachiAPIAuth].userID!.toString();
+		userID = authUserID.toString();
 	}
 
 	const user = await ResolveUser(userID);
@@ -41,30 +45,30 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { requestedUser: user });
 
-	return next();
+	next();
 };
 
 /**
  * Require the user making this request to also be the user in the :userID param.
  */
 export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
-	if (!req[SYMBOL_TachiAPIAuth].userID) {
+	if (req[SYMBOL_TACHI_API_AUTH].userID === null) {
 		return res.status(401).json({
 			success: false,
 			description: `Authentication is required for this endpoint.`,
 		});
 	}
 
-	if (req[SYMBOL_TachiAPIAuth].userID !== user.id) {
+	if (req[SYMBOL_TACHI_API_AUTH].userID !== user.id) {
 		return res.status(403).json({
 			success: false,
 			description: "You are not authorised as this user.",
 		});
 	}
 
-	return next();
+	next();
 };
 
 /**
@@ -73,21 +77,21 @@ export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
  * alter/access, like integration information.
  */
 export const RequireSelfRequestFromUser: RequestHandler = (req, res, next) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
-	if (!req[SYMBOL_TachiAPIAuth].userID) {
+	if (req[SYMBOL_TACHI_API_AUTH].userID === null) {
 		return res.status(401).json({
 			success: false,
 			description: `This endpoint requires session-level authentication.`,
 		});
 	}
 
-	if (!req.session.tachi?.user.id || req[SYMBOL_TachiAPIAuth].userID !== user.id) {
+	if (IsNullish(req.session.tachi?.user.id) || req[SYMBOL_TACHI_API_AUTH].userID !== user.id) {
 		return res.status(403).json({
 			success: false,
 			description: `This request cannot be performed by an API key, and requires authentication.`,
 		});
 	}
 
-	return next();
+	next();
 };

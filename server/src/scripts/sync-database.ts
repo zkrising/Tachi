@@ -4,14 +4,19 @@
 import db, { monkDB } from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { PullDatabaseSeeds } from "lib/database-seeds/repo";
-import CreateLogCtx, { KtLogger } from "lib/logger/logger";
+import CreateLogCtx from "lib/logger/logger";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
 import { TachiConfig } from "lib/setup/config";
 import { RemoveStaleFolderShowcaseStats } from "lib/showcase/showcase";
 import { UpdateMilestoneSubscriptions } from "lib/targets/milestones";
-import { BulkWriteOperation } from "mongodb";
-import { ICollection } from "monk";
-import {
+import { RecalcAllScores } from "utils/calculations/recalc-scores";
+import { UpdateGameSongIDCounter } from "utils/db";
+import { InitaliseFolderChartLookup } from "utils/folder";
+import { ArrayDiff, IsSupported } from "utils/misc";
+import type { KtLogger } from "lib/logger/logger";
+import type { BulkWriteOperation, DeleteWriteOpResultObject } from "mongodb";
+import type { ICollection } from "monk";
+import type {
 	BMSCourseDocument,
 	ChartDocument,
 	FolderDocument,
@@ -22,47 +27,39 @@ import {
 	SongDocument,
 	TableDocument,
 } from "tachi-common";
-import { RecalcAllScores } from "utils/calculations/recalc-scores";
-import { UpdateGameSongIDCounter } from "utils/db";
-import { InitaliseFolderChartLookup } from "utils/folder";
-import { ArrayDiff, IsSupported } from "utils/misc";
 
 interface SyncInstructions {
 	pattern: RegExp;
 	handler: (
-		// These 'any's are necessary because generifying here kinda sucks.
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		c: any[],
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		collection: ICollection<any>,
+		c: Array<any>,
+		collection: ICollection,
 		logger: KtLogger,
 		collectionName: string
 	) => Promise<unknown>;
 }
 
 async function RemoveNotPresent<T>(
-	documents: T[],
+	documents: Array<T>,
 	collection: ICollection<T>,
 	field: keyof T,
 	logger: KtLogger
 ) {
 	logger.verbose(`Removing all documents that are no longer present.`);
+
 	// Remove anything no longer present.
 	// Note that $nin is incredibly slow.
 	// @ts-expect-error generic system failing
-	const r = await collection.remove({
+	const r = (await collection.remove({
 		[field]: { $nin: documents.map((e) => e[field]) },
-	});
+	})) as DeleteWriteOpResultObject;
 
-	// @ts-expect-error These types are broken!
-	if (r.deletedCount) {
-		// @ts-expect-error These types are broken!
+	if (r.deletedCount !== undefined && r.deletedCount > 0) {
 		logger.info(`Removed ${r.deletedCount} documents.`);
 	}
 }
 
 async function GenericUpsert<T>(
-	documents: T[],
+	documents: Array<T>,
 	collection: ICollection<T>,
 	field: keyof T,
 	logger: KtLogger,
@@ -71,11 +68,12 @@ async function GenericUpsert<T>(
 ) {
 	logger.verbose(`Running bulkwrite.`);
 
-	const bwriteOps: BulkWriteOperation<T>[] = [];
+	const bwriteOps: Array<BulkWriteOperation<T>> = [];
 
 	const allExistingDocs = await collection.find({});
 
-	const map = new Map();
+	const map = new Map<unknown, T>();
+
 	for (const doc of allExistingDocs) {
 		map.set(doc[field], doc);
 	}
@@ -83,6 +81,7 @@ async function GenericUpsert<T>(
 	const changedFields = [];
 
 	let i = 0;
+
 	for (const document of documents) {
 		i++;
 		if (i % 10_000 === 0) {
@@ -91,7 +90,7 @@ async function GenericUpsert<T>(
 
 		const exists = map.get(document[field]);
 
-		if (!exists) {
+		if (exists === undefined) {
 			bwriteOps.push({
 				// @ts-expect-error Actually, T is assignable to OptionalId<T>.
 				insertOne: { document },
@@ -139,11 +138,11 @@ async function GenericUpsert<T>(
 	};
 }
 
-const syncInstructions: SyncInstructions[] = [
+const syncInstructions: Array<SyncInstructions> = [
 	{
 		pattern: /^charts-(b|p)ms/u,
 		handler: async (
-			charts: ChartDocument[],
+			charts: Array<ChartDocument>,
 			collection: ICollection<ChartDocument>,
 			logger,
 			collectionName
@@ -165,7 +164,7 @@ const syncInstructions: SyncInstructions[] = [
 	{
 		pattern: /^charts-/u,
 		handler: async (
-			charts: ChartDocument[],
+			charts: Array<ChartDocument>,
 			collection: ICollection<ChartDocument>,
 			logger
 		) => {
@@ -183,7 +182,11 @@ const syncInstructions: SyncInstructions[] = [
 	},
 	{
 		pattern: /^songs-(b|p)ms/u,
-		handler: async (songs: SongDocument[], collection: ICollection<SongDocument>, logger) => {
+		handler: async (
+			songs: Array<SongDocument>,
+			collection: ICollection<SongDocument>,
+			logger
+		) => {
 			const r = await GenericUpsert(songs, collection, "id", logger, false);
 
 			if (r.thingsChanged) {
@@ -195,7 +198,11 @@ const syncInstructions: SyncInstructions[] = [
 	},
 	{
 		pattern: /^songs-/u,
-		handler: async (songs: SongDocument[], collection: ICollection<SongDocument>, logger) => {
+		handler: async (
+			songs: Array<SongDocument>,
+			collection: ICollection<SongDocument>,
+			logger
+		) => {
 			const r = await GenericUpsert(songs, collection, "id", logger, true);
 
 			if (r.thingsChanged) {
@@ -208,7 +215,7 @@ const syncInstructions: SyncInstructions[] = [
 	{
 		pattern: /^folders/u,
 		handler: async (
-			folders: FolderDocument[],
+			folders: Array<FolderDocument>,
 			collection: ICollection<FolderDocument>,
 			logger
 		) => {
@@ -220,10 +227,10 @@ const syncInstructions: SyncInstructions[] = [
 				true
 			);
 
-			if (r) {
+			if (r.thingsChanged) {
 				await InitaliseFolderChartLookup();
 
-				const allModifiedFolderIDs = r.changedFields as string[];
+				const allModifiedFolderIDs = r.changedFields as Array<string>;
 
 				const keptFolderIDs = await db.folders.find(
 					{
@@ -245,7 +252,7 @@ const syncInstructions: SyncInstructions[] = [
 	},
 	{
 		pattern: /^tables/u,
-		handler: (tables: TableDocument[], collection: ICollection<TableDocument>, logger) =>
+		handler: (tables: Array<TableDocument>, collection: ICollection<TableDocument>, logger) =>
 			GenericUpsert(
 				tables.filter((e) => TachiConfig.GAMES.includes(e.game)),
 				collection,
@@ -257,7 +264,7 @@ const syncInstructions: SyncInstructions[] = [
 	{
 		pattern: /^bms-course-lookup/u,
 		handler: async (
-			bmsCourseDocuments: BMSCourseDocument[],
+			bmsCourseDocuments: Array<BMSCourseDocument>,
 			collection: ICollection<BMSCourseDocument>,
 			logger
 		) => {
@@ -270,7 +277,11 @@ const syncInstructions: SyncInstructions[] = [
 	},
 	{
 		pattern: /^goals/u,
-		handler: async (goals: GoalDocument[], collection: ICollection<GoalDocument>, logger) => {
+		handler: async (
+			goals: Array<GoalDocument>,
+			collection: ICollection<GoalDocument>,
+			logger
+		) => {
 			// never remove goals. Never update goals either. Only insert new ones as
 			// they come in.
 			await GenericUpsert(
@@ -286,7 +297,7 @@ const syncInstructions: SyncInstructions[] = [
 	{
 		pattern: /^milestone-sets/u,
 		handler: async (
-			milestoneSets: MilestoneSetDocument[],
+			milestoneSets: Array<MilestoneSetDocument>,
 			collection: ICollection<MilestoneSetDocument>,
 			logger
 		) => {
@@ -302,7 +313,7 @@ const syncInstructions: SyncInstructions[] = [
 	{
 		pattern: /^milestones/u,
 		handler: async (
-			milestones: MilestoneDocument[],
+			milestones: Array<MilestoneDocument>,
 			collection: ICollection<MilestoneDocument>,
 			logger
 		) => {
@@ -315,7 +326,7 @@ const syncInstructions: SyncInstructions[] = [
 			);
 
 			if (r.thingsChanged) {
-				const affectedMilestoneIDs = r.changedFields as string[];
+				const affectedMilestoneIDs = r.changedFields as Array<string>;
 
 				await Promise.all(affectedMilestoneIDs.map((e) => UpdateMilestoneSubscriptions(e)));
 			}
@@ -348,8 +359,9 @@ async function SynchroniseDBWithSeeds() {
 		spawnLogger.verbose(`Found ${data.length} documents.`);
 
 		let matchedSomething = false;
+
 		for (const syncInst of syncInstructions) {
-			if (collectionName.match(syncInst.pattern)) {
+			if (syncInst.pattern.exec(collectionName)) {
 				spawnLogger.info(`Starting handler...`);
 				await syncInst.handler(
 					data,
@@ -373,5 +385,7 @@ async function SynchroniseDBWithSeeds() {
 }
 
 if (require.main === module) {
-	SynchroniseDBWithSeeds().then(() => process.exit(0));
+	SynchroniseDBWithSeeds()
+		.then(() => process.exit(0))
+		.catch(() => process.exit(1));
 }

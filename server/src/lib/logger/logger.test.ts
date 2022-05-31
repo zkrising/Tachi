@@ -1,14 +1,18 @@
+import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel, rootLogger, Transports } from "./logger";
 import { ServerConfig } from "lib/setup/config";
 import t from "tap";
-
-import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel, rootLogger, Transports } from "./logger";
 
 const LOG_LEVEL = ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
 
 t.test("Logger Tests", (t) => {
 	const logger = CreateLogCtx(__filename);
 
-	Transports[0].level = "debug"; // lol
+	if (!Transports[0]) {
+		throw new Error(`No transports were defined? Can't perform logger tests.`);
+	}
+
+	// lol
+	Transports[0].level = "debug";
 
 	logger.debug("Debug Message Test");
 	logger.verbose("Verbose Message Test");

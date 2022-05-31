@@ -1,13 +1,14 @@
-import { XMLParser } from "fast-xml-parser";
-import { KtLogger } from "lib/logger/logger";
-import p, { PrudenceSchema } from "prudence";
-import { FormatPrError } from "utils/prudence";
-import { EmptyObject } from "utils/types";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturns } from "../../common/types";
-import { S3Score } from "./types";
+import { XMLParser } from "fast-xml-parser";
+import p from "prudence";
+import { FormatPrError } from "utils/prudence";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { S3Score } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { PrudenceSchema } from "prudence";
+import type { EmptyObject } from "utils/types";
 
-const PR_SolidState: PrudenceSchema = {
+const PR_SOLID_STATE: PrudenceSchema = {
 	s3data: {
 		userdata: {
 			id: p.isPositiveInteger,
@@ -65,7 +66,7 @@ const PR_SolidState: PrudenceSchema = {
 const xmlParser = new XMLParser();
 
 // .59 is a song that is interpreted as a float by our XML parser.
-type PreStringifiedS3Score = Omit<S3Score, "songname"> & { songname: 0.59 | string };
+type PreStringifiedS3Score = Omit<S3Score, "songname"> & { songname: string | 0.59 };
 
 export function ParseSolidStateXML(
 	fileData: Express.Multer.File,
@@ -75,6 +76,9 @@ export function ParseSolidStateXML(
 	let parsedXML;
 
 	try {
+		// insanely hacky. This XML parser might return anything, but we still need
+		// to traverse it as if it's normal!
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		parsedXML = xmlParser.parse(fileData.buffer.toString("utf-8"));
 	} catch (err) {
 		logger.info("S3 XML Parse Error", err);
@@ -82,26 +86,42 @@ export function ParseSolidStateXML(
 		throw new ScoreImportFatalError(400, "Could not parse XML.");
 	}
 
-	if (!parsedXML?.s3data?.scoredata?.song) {
+	// the XML parser can't understand this is meant to be an array
+	// if someone only has one score, so we need to override it in that case.
+	// However, this results in us having to do some painful by-hand validation.
+	// :(
+
+	// @hack Poor typechecking here, but it's kind of painful any way you slice it.
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+	let maybeSongs: unknown = parsedXML?.s3data?.scoredata?.song;
+
+	if (maybeSongs === undefined) {
 		throw new ScoreImportFatalError(400, `Invalid S3 XML, no s3data -> scoredata -> song?`);
 	}
 
-	// the XML parser can't understand this is meant to be an array
-	// if someone only has one score.
-	if (!Array.isArray(parsedXML.s3data.scoredata.song)) {
-		parsedXML.s3data.scoredata.song = [parsedXML.s3data.scoredata.song];
+	// If maybeSongs isn't an array, convert it to an array with one element.
+	// Note that this is **before** we actually validate it's contents! So even if
+	// this results in something stupid like [null], we still reject it in validation.
+	if (!Array.isArray(maybeSongs)) {
+		maybeSongs = [maybeSongs];
 	}
 
-	const err = p(parsedXML, PR_SolidState, {}, { allowExcessKeys: true });
+	// Our validator checks the entire XML, lets mutate the original object
+	// (which we know to exist now)
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+	parsedXML.s3data.scoredata.song = maybeSongs;
+
+	const err = p(parsedXML, PR_SOLID_STATE, {}, { allowExcessKeys: true });
 
 	if (err) {
 		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid S3 XML."));
 	}
 
-	let scoreData = parsedXML.s3data.scoredata.song as PreStringifiedS3Score[];
+	let scoreData = maybeSongs as Array<PreStringifiedS3Score>;
 
 	scoreData = scoreData.map((e) => ({
 		...e,
+
 		// Songnames here are either numbers or strings due to a disgusting hack
 		// @see #718
 		// We forcibly convert all these back to strings.
@@ -114,7 +134,7 @@ export function ParseSolidStateXML(
 	return {
 		classHandler: null,
 		context: {},
-		iterable: scoreData as S3Score[],
+		iterable: scoreData as Array<S3Score>,
 		game: "iidx",
 	};
 }

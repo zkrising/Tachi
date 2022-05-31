@@ -1,3 +1,6 @@
+import goalsRouter from "./goals/router";
+import milestoneSetsRouter from "./milestone-sets/router";
+import milestonesRouter from "./milestones/router";
 import { Router } from "express";
 import { FormatGame } from "tachi-common";
 import {
@@ -7,9 +10,6 @@ import {
 	GetRecentlyInteractedMilestones,
 } from "utils/db";
 import { GetGPT } from "utils/req-tachi-data";
-import goalsRouter from "./goals/router";
-import milestonesRouter from "./milestones/router";
-import milestoneSetsRouter from "./milestone-sets/router";
 
 const router: Router = Router({ mergeParams: true });
 

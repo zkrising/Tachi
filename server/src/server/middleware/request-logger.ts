@@ -1,7 +1,8 @@
-import { RequestHandler, Response } from "express-serve-static-core";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
+import type { RequestHandler, Response } from "express-serve-static-core";
+import type { APITokenDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -17,16 +18,9 @@ const ResJsonInteceptor = (res: Response, json: Response["json"]) => (content: u
 };
 
 export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
-	// I'm not really a fan of this style of omission - but it works.
-
-	// we **KNOW** for certain that there are only two endpoints where a password is
-	// sent to us - /register and /auth.
-	// and both of those use `password` as a key.
-	// still, i don't like it.
-
 	const safeBody: Record<string, unknown> = {};
 
-	for (const [k, v] of Object.entries(req.body)) {
+	for (const [k, v] of Object.entries(req.safeBody)) {
 		// Keys that start with ! are private information,
 		// and should not ever be logged.
 		if (k.startsWith("!")) {
@@ -47,11 +41,14 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 	res.on("finish", () => {
 		const contents = {
 			// @ts-expect-error we're doing some monkey patching - contentBody is what we're returning.
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			body: res.contentBody,
 			statusCode: res.statusCode,
 			requestQuery: req.query,
 			requestBody: safeBody,
-			from: req[SYMBOL_TachiAPIAuth]?.userID ?? null,
+
+			// This might actually be undefined, as it could be called in some weird scenarios?
+			from: (req[SYMBOL_TACHI_API_AUTH] as APITokenDocument | undefined)?.userID ?? null,
 			fromIp: req.ip,
 		};
 
@@ -61,6 +58,8 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 			return;
 		}
 
+		// 403 bannings like this are also spam.
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		if (contents.body?.description === `You are banned from ${TachiConfig.NAME}.`) {
 			return;
 		}
@@ -80,5 +79,5 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 		}
 	});
 
-	return next();
+	next();
 };

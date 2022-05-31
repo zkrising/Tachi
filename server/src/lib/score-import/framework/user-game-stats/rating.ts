@@ -1,12 +1,11 @@
 import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
-import {
+import type { KtLogger } from "lib/logger/logger";
+import type {
 	Game,
 	IDStrings,
 	integer,
 	PBScoreDocument,
 	Playtype,
-	Playtypes,
 	ScoreCalculatedDataLookup,
 	UserGameStats,
 } from "tachi-common";
@@ -16,9 +15,9 @@ type CustomCalcNames = ScoreCalculatedDataLookup[IDStrings];
 function LazySumAll(key: CustomCalcNames) {
 	return async (game: Game, playtype: Playtype, userID: integer) => {
 		const sc = await db["personal-bests"].find({
-			game: game,
-			playtype: playtype,
-			userID: userID,
+			game,
+			playtype,
+			userID,
 			isPrimary: true,
 			[`calculatedData.${key}`]: { $type: "number" },
 		});
@@ -53,9 +52,9 @@ function LazyCalcN(
 	return async (game: Game, playtype: Playtype, userID: integer) => {
 		const sc = await db["personal-bests"].find(
 			{
-				game: game,
-				playtype: playtype,
-				userID: userID,
+				game,
+				playtype,
+				userID,
 				isPrimary: true,
 				[`calculatedData.${key}`]: { $type: "number" },
 			},
@@ -88,119 +87,84 @@ const LazySumN = (key: CustomCalcNames, n: integer, nullIfNotEnoughScores = fals
 const LazyMeanN = (key: CustomCalcNames, n: integer, nullIfNotEnoughScores = false) =>
 	LazyCalcN(key, n, true, nullIfNotEnoughScores);
 
-type RatingFunctions = {
-	[G in Game]: {
-		[P in Playtypes[G]]: (
-			game: Game,
-			playtype: Playtype,
-			userID: integer,
-			logger: KtLogger
-		) => Promise<UserGameStats["ratings"]>;
-	};
-};
+type RatingFunction = (
+	game: Game,
+	playtype: Playtype,
+	userID: integer,
+	logger: KtLogger
+) => Promise<UserGameStats["ratings"]>;
 
-const RatingFunctions: RatingFunctions = {
-	iidx: {
-		SP: async (g, p, u) => ({
-			BPI: await LazyMeanN("BPI", 20, true)(g, p, u),
-			ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
-		}),
-		DP: async (g, p, u) => ({
-			BPI: await LazyMeanN("BPI", 20, true)(g, p, u),
-			ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
-		}),
-	},
-	sdvx: {
-		Single: async (g, p, u) => ({
-			VF6: await LazySumN("VF6", 50)(g, p, u),
-		}),
-	},
-	usc: {
-		Keyboard: async (g, p, u) => ({
-			VF6: await LazySumN("VF6", 50)(g, p, u),
-		}),
-		Controller: async (g, p, u) => ({
-			VF6: await LazySumN("VF6", 50)(g, p, u),
-		}),
-	},
-	ddr: {
-		SP: async (g, p, u) => ({
-			MFCP: await LazySumAll("MFCP")(g, p, u),
-			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
-		}),
-		DP: async (g, p, u) => ({
-			MFCP: await LazySumAll("MFCP")(g, p, u),
-			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
-		}),
-	},
-	gitadora: {
-		Gita: async (g, p, u, l) => ({
-			skill: await CalculateGitadoraSkill(g, p, u, l),
-			naiveSkill: await LazySumN("skill", 50)(g, p, u),
-		}),
-		Dora: async (g, p, u, l) => ({
-			skill: await CalculateGitadoraSkill(g, p, u, l),
-			naiveSkill: await LazySumN("skill", 50)(g, p, u),
-		}),
-	},
-	bms: {
-		"7K": async (g, p, u) => ({
-			sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
-		}),
-		"14K": async (g, p, u) => ({
-			sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
-		}),
-	},
-	pms: {
-		Controller: async (g, p, u) => ({
-			sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
-		}),
-		Keyboard: async (g, p, u) => ({
-			sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
-		}),
-	},
-	chunithm: {
-		Single: async (g, p, u) => ({
-			naiveRating: await LazyMeanN("rating", 20)(g, p, u),
-		}),
-	},
-	popn: {
-		"9B": async (g, p, u) => ({
-			naiveClassPoints: await LazyMeanN("classPoints", 20)(g, p, u),
-		}),
-	},
-	museca: {
-		Single: async (g, p, u) => ({
-			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
-		}),
-	},
-	maimai: {
-		Single: async (g, p, u) => ({
-			ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
-		}),
-	},
-	wacca: {
-		Single: async (g, p, u, l) => ({
-			naiveRate: await LazySumN("rate", 50)(g, p, u),
-			rate: await CalculateWACCARate(g, p, u, l),
-		}),
-	},
-	jubeat: {
-		Single: async (g, p, u, l) => ({
-			jubility: await CalculateJubility(g, p, u, l),
-			naiveJubility: await LazySumN("jubility", 60)(g, p, u),
-		}),
-	},
-};
+function GetGPTRatingFunction(game: Game, playtype: Playtype): RatingFunction {
+	switch (`${game}:${playtype}` as IDStrings) {
+		case "iidx:SP":
+		case "iidx:DP":
+			return async (g, p, u) => ({
+				BPI: await LazyMeanN("BPI", 20, true)(g, p, u),
+				ktLampRating: await LazyMeanN("ktLampRating", 20)(g, p, u),
+			});
+		case "sdvx:Single":
+		case "usc:Keyboard":
+		case "usc:Controller":
+			return async (g, p, u) => ({
+				VF6: await LazySumN("VF6", 50)(g, p, u),
+			});
+		case "ddr:SP":
+		case "ddr:DP":
+			return async (g, p, u) => ({
+				MFCP: await LazySumAll("MFCP")(g, p, u),
+				ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
+			});
+		case "gitadora:Dora":
+		case "gitadora:Gita":
+			return async (g, p, u, l) => ({
+				skill: await CalculateGitadoraSkill(g, p, u, l),
+				naiveSkill: await LazySumN("skill", 50)(g, p, u),
+			});
+		case "bms:7K":
+		case "bms:14K":
+		case "pms:Keyboard":
+		case "pms:Controller":
+			return async (g, p, u) => ({
+				sieglinde: await LazyMeanN("sieglinde", 20)(g, p, u),
+			});
+		case "chunithm:Single":
+			return async (g, p, u) => ({
+				naiveRating: await LazyMeanN("rating", 20)(g, p, u),
+			});
+		case "popn:9B":
+			return async (g, p, u) => ({
+				naiveClassPoints: await LazyMeanN("classPoints", 20)(g, p, u),
+			});
+		case "museca:Single":
+			return async (g, p, u) => ({
+				ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
+			});
+		case "maimai:Single":
+			return async (g, p, u) => ({
+				ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
+			});
+		case "wacca:Single":
+			return async (g, p, u, l) => ({
+				naiveRate: await LazySumN("rate", 50)(g, p, u),
+				rate: await CalculateWACCARate(g, p, u, l),
+			});
+		case "jubeat:Single":
+			return async (g, p, u, l) => ({
+				jubility: await CalculateJubility(g, p, u, l),
+				naiveJubility: await LazySumN("jubility", 60)(g, p, u),
+			});
+	}
+}
 
 export function CalculateRatings(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
 	logger: KtLogger
-): Promise<Partial<Record<CustomCalcNames, number>>> {
-	// @ts-expect-error too lazy to type this properly
-	return RatingFunctions[game][playtype](game, playtype, userID, logger);
+): Promise<Partial<Record<CustomCalcNames, number | null>>> {
+	const RatingFunction = GetGPTRatingFunction(game, playtype);
+
+	return RatingFunction(game, playtype, userID, logger);
 }
 
 // Wacca has a funny algorithm for rate involving gitadora-style latest chart bonuses,
@@ -208,7 +172,7 @@ async function CalculateWACCARate(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	logger: KtLogger
+	_logger: KtLogger
 ) {
 	const hotChartIDs = (
 		await db.charts.wacca.find({ "data.isHot": true }, { projection: { chartID: 1 } })
@@ -270,7 +234,7 @@ async function CalculateGitadoraSkill(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	logger: KtLogger
+	_logger: KtLogger
 ) {
 	const hotSongIDs = (
 		await db.songs.gitadora.find({ "data.isHot": true }, { projection: { id: 1 } })
@@ -291,21 +255,22 @@ async function CalculateGitadoraSkill(
 	}
 
 	let skill = 0;
-	skill += bestHotScores.reduce((a, e) => a + e.calculatedData.skill!, 0);
-	skill += bestScores.reduce((a, e) => a + e.calculatedData.skill!, 0);
+
+	skill = skill + bestHotScores.reduce((a, e) => a + e.calculatedData.skill!, 0);
+	skill = skill + bestScores.reduce((a, e) => a + e.calculatedData.skill!, 0);
 
 	return skill;
 }
 
 export async function GetBestRatingOnSongs(
-	songIDs: integer[],
+	songIDs: Array<integer>,
 	userID: integer,
 	game: Game,
 	playtype: Playtype,
 	ratingProp: "skill",
 	limit = 25
-): Promise<PBScoreDocument[]> {
-	const r = await db["personal-bests"].aggregate([
+): Promise<Array<PBScoreDocument>> {
+	const r: Array<{ doc: PBScoreDocument }> = await db["personal-bests"].aggregate([
 		{
 			$match: {
 				game,
@@ -330,14 +295,14 @@ export async function GetBestRatingOnSongs(
 		},
 	]);
 
-	return r.map((e: { _id: integer; doc: PBScoreDocument }) => e.doc);
+	return r.map((e) => e.doc);
 }
 
 async function CalculateJubility(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	logger: KtLogger
+	_logger: KtLogger
 ): Promise<number> {
 	const hotSongs = await db.songs.jubeat.find(
 		{ "data.displayVersion": "festo" },
@@ -373,8 +338,9 @@ async function CalculateJubility(
 	]);
 
 	let skill = 0;
-	skill += bestHotScores.reduce((a, e) => a + e.calculatedData.jubility!, 0);
-	skill += bestScores.reduce((a, e) => a + e.calculatedData.jubility!, 0);
+
+	skill = skill + bestHotScores.reduce((a, e) => a + e.calculatedData.jubility!, 0);
+	skill = skill + bestScores.reduce((a, e) => a + e.calculatedData.jubility!, 0);
 
 	return skill;
 }

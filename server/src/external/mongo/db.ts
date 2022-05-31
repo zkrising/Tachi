@@ -1,9 +1,15 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+// ^ These rules are disabled for good reason. We have to deal with some very nonsensical types here
+// so we just disable these rules. I know, it sucks, but we'll live.
 import { ONE_MINUTE } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
-import { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
 import { Environment, ServerConfig } from "lib/setup/config";
-import monk, { TMiddleware } from "monk";
-import {
+import monk from "monk";
+import { GetMillisecondsSince } from "utils/misc";
+import type { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
+import type { TMiddleware } from "monk";
+import type {
 	APITokenDocument,
 	ARCSavedProfileDocument,
 	BMSCourseDocument,
@@ -40,8 +46,8 @@ import {
 	UserGameStatsSnapshot,
 	UserSettings,
 } from "tachi-common";
-import { GetMillisecondsSince } from "utils/misc";
-import { MigrationDocument, PrivateUserInfoDocument } from "utils/types";
+import type { MigrationDocument, PrivateUserInfoDocument } from "utils/types";
+
 const logger = CreateLogCtx(__filename);
 
 let dbName = ServerConfig.MONGO_DATABASE_NAME;
@@ -72,25 +78,25 @@ monkDB
 		process.exit(1);
 	});
 
-const RemoveIDMiddleware: TMiddleware =
-	() =>
-	(next) =>
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	(args: any, method) => {
-		if ((method === "find" || method === "findOne") && !args.options.projectID) {
-			if (args.options.projection) {
-				args.options.projection._id = 0;
-			} else {
-				args.options.projection = { _id: 0 };
-			}
+/**
+ * Removes _id from the returns of find/findOne. Note that this function is littered with eslint-disables
+ * due to it working with some pretty wobbly types.
+ */
+const RemoveIDFromFindReturnsMiddleware: TMiddleware = () => (next) => (args: any, method) => {
+	if ((method === "find" || method === "findOne") && !args.options.projectID) {
+		if (args.options.projection) {
+			args.options.projection._id = 0;
+		} else {
+			args.options.projection = { _id: 0 };
 		}
+	}
 
-		return next(args, method);
-	};
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+	return next(args, method);
+};
 
 // a bug in monks types means that :any has to be used here. Maybe we'll make a PR for this?
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const StripIDMiddleware: TMiddleware = () => (next) => (args: any, method) => {
+const StripIDFromDBInsertsMiddleware: TMiddleware = () => (next) => (args: any, method) => {
 	if (method === "insert") {
 		if (Array.isArray(args.data)) {
 			for (const d of args.data) {
@@ -101,11 +107,12 @@ const StripIDMiddleware: TMiddleware = () => (next) => (args: any, method) => {
 		}
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 	return next(args, method);
 };
 
-monkDB.addMiddleware(StripIDMiddleware);
-monkDB.addMiddleware(RemoveIDMiddleware);
+monkDB.addMiddleware(StripIDFromDBInsertsMiddleware);
+monkDB.addMiddleware(RemoveIDFromFindReturnsMiddleware);
 
 export async function CloseMongoConnection() {
 	await monkDB.close();
@@ -176,9 +183,11 @@ const db = {
 	"user-settings": monkDB.get<UserSettings>("user-settings"),
 	"user-private-information": monkDB.get<PrivateUserInfoDocument>("user-private-information"),
 	"api-clients": monkDB.get<TachiAPIClientDocument>("api-clients"),
+
+	// i've inlined this one because i don't see it appearing anywhere else.
 	"oauth2-auth-codes":
-		// i've inlined this one because i don't see it appearing anywhere else.
 		monkDB.get<{ code: string; userID: integer; createdOn: number }>("oauth2-auth-codes"),
+
 	"fer-settings": monkDB.get<FervidexSettingsDocument>("fer-settings"),
 	"orphan-chart-queue": monkDB.get<OrphanChart>("orphan-chart-queue"),
 	"password-reset-codes": monkDB.get<{
@@ -197,8 +206,8 @@ const db = {
 	notifications: monkDB.get<NotificationDocument>("notifications"),
 };
 
-export type StaticDatabases = Exclude<keyof typeof db, "songs" | "charts">;
+export type StaticDatabases = Exclude<keyof typeof db, "charts" | "songs">;
 
-export type Databases = StaticDatabases | `songs-${Game}` | `charts-${Game}`;
+export type Databases = StaticDatabases | `charts-${Game}` | `songs-${Game}`;
 
 export default db;

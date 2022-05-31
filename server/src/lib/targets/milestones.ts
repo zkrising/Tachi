@@ -1,15 +1,16 @@
+import { EvaluateGoalForUser, SubscribeToGoal } from "./goals";
 import db from "external/mongo/db";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
 import { BulkSendNotification } from "lib/notifications/notifications";
-import {
+import type { EvaluatedGoalReturn } from "./goals";
+import type {
 	GoalDocument,
 	GoalSubscriptionDocument,
 	integer,
 	MilestoneDocument,
 	MilestoneSubscriptionDocument,
 } from "tachi-common";
-import { EvaluatedGoalReturn, EvaluateGoalForUser, SubscribeToGoal } from "./goals";
 
 const logger = CreateLogCtx(__filename);
 
@@ -59,22 +60,30 @@ export async function GetGoalsInMilestone(milestone: MilestoneDocument) {
 export function CalculateMilestoneOutOf(milestone: MilestoneDocument) {
 	const goalIDs = GetGoalIDsFromMilestone(milestone);
 
-	if (milestone.criteria.type === "all") {
-		return goalIDs.length;
-	} else if (milestone.criteria.type === "total") {
-		if (milestone.criteria.value === null) {
-			throw new Error(
-				`Invalid milestone ${milestone.milestoneID} - abs and null are not compatible.`
-			);
+	switch (milestone.criteria.type) {
+		case "all":
+			return goalIDs.length;
+		case "total": {
+			// It's not possible according to the types, but I want to check it anyway.
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+			if (milestone.criteria.value === null) {
+				throw new Error(
+					`Invalid milestone ${milestone.milestoneID} - total and null are not compatible.`
+				);
+			}
+
+			return milestone.criteria.value;
 		}
 
-		return milestone.criteria.value!;
+		default:
+			// Typescript annoyingly complains that milestone.criteria is of type never now.
+			// it's right! but if we get here, I want to log the error somehow.
+			throw new Error(
+				`Invalid milestone.criteria.type of ${
+					(milestone.criteria as MilestoneDocument["criteria"]).type
+				} -- milestoneID ${milestone.milestoneID}`
+			);
 	}
-
-	throw new Error(
-		// @ts-expect-error Yeah obviously this shouldn't happen. Mayaswell throw though.
-		`Invalid milestone.criteria.type of ${milestone.criteria.type} -- milestoneID ${milestone.milestoneID}`
-	);
 }
 
 type EvaluatedGoalResult = EvaluatedGoalReturn & { goalID: string };
@@ -97,6 +106,7 @@ export async function EvaluateMilestoneProgress(userID: integer, milestone: Mile
 	// If the user is subscribed the milestone, we don't need to calculate
 	// their progress on each goal.
 	const goalSubMap = new Map<string, GoalSubscriptionDocument>();
+
 	if (isSubscribedToMilestone) {
 		const goalSubs = await db["goal-subs"].find({
 			goalID: { $in: goals.map((e) => e.goalID) },
@@ -108,7 +118,7 @@ export async function EvaluateMilestoneProgress(userID: integer, milestone: Mile
 		}
 	}
 
-	const goalResults: EvaluatedGoalResult[] = await Promise.all(
+	const goalResults: Array<EvaluatedGoalResult> = await Promise.all(
 		goals.map(async (goal) => {
 			if (isSubscribedToMilestone) {
 				const goalSub = goalSubMap.get(goal.goalID);
@@ -171,8 +181,8 @@ export async function EvaluateMilestoneProgress(userID: integer, milestone: Mile
 
 interface MilestoneSubscriptionReturns {
 	milestoneSub: MilestoneSubscriptionDocument;
-	goals: GoalDocument[];
-	goalResults: EvaluatedGoalResult[];
+	goals: Array<GoalDocument>;
+	goalResults: Array<EvaluatedGoalResult>;
 }
 
 /**
@@ -193,8 +203,8 @@ export async function SubscribeToMilestone(
 	cancelIfAchieved = true
 ): Promise<
 	| MilestoneSubscriptionReturns
-	| SubscribeFailReasons.ALREADY_SUBSCRIBED
 	| SubscribeFailReasons.ALREADY_ACHIEVED
+	| SubscribeFailReasons.ALREADY_SUBSCRIBED
 > {
 	const isSubscribedToMilestone = await db["milestone-subs"].findOne({
 		userID,
@@ -230,11 +240,7 @@ export async function SubscribeToMilestone(
 	// on each goal. We could probably shorten this by directly inserting the records
 	// from result.goalResults ourselves.
 	// evaluating goals is fairly cheap though.
-	await Promise.all(
-		result.goals.map((goal) => {
-			SubscribeToGoal(userID, goal, false);
-		})
-	);
+	await Promise.all(result.goals.map((goal) => SubscribeToGoal(userID, goal, false)));
 
 	await db["milestone-subs"].insert(milestoneSub);
 
@@ -260,7 +266,7 @@ export async function UnsubscribeFromMilestone(userID: integer, milestoneID: str
  * A milestone that removes goals will not result in those users having goal subs removed.
  */
 export async function UpdateMilestoneSubscriptions(milestoneID: string) {
-	logger.info(`Recieved update-subscribe call to milestone ${milestoneID}.`);
+	logger.info(`Received update-subscribe call to milestone ${milestoneID}.`);
 
 	const subscriptions = await db["milestone-subs"].find({ milestoneID });
 

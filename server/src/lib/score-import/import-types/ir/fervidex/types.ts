@@ -1,10 +1,11 @@
-import { GPTSupportedVersions, integer } from "tachi-common";
+import type { GPTSupportedVersions, integer } from "tachi-common";
 
 export interface FervidexScore {
-	chart: `${"sp" | "dp"}${"b" | "n" | "h" | "a" | "l"}`;
+	chart: `${"dp" | "sp"}${"a" | "b" | "h" | "l" | "n"}`;
 
 	entry_id: integer;
 	chart_sha256?: string;
+
 	// whether or whether not this chart is from 2dxtra
 	custom?: boolean;
 
@@ -22,8 +23,8 @@ export interface FervidexScore {
 	ex_score: integer;
 	clear_type: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
-	gauge: integer[];
-	ghost: integer[];
+	gauge: Array<integer>;
+	ghost: Array<integer>;
 
 	dead?: {
 		measure?: integer | null;
@@ -31,34 +32,36 @@ export interface FervidexScore {
 	};
 
 	option?: {
-		gauge?: "ASSISTED_EASY" | "EASY" | "HARD" | "EX_HARD" | null;
+		gauge?: "ASSISTED_EASY" | "EASY" | "EX_HARD" | "HARD" | null;
 		range?:
-			| "SUDDEN_PLUS"
 			| "HIDDEN_PLUS"
-			| "SUD_PLUS_HID_PLUS"
-			| "LIFT"
 			| "LIFT_SUD_PLUS"
+			| "LIFT"
+			| "SUD_PLUS_HID_PLUS"
+			| "SUDDEN_PLUS"
 			| null;
-		style?: "RANDOM" | "R_RANDOM" | "S_RANDOM" | "MIRROR" | null;
-		style_2p?: "RANDOM" | "R_RANDOM" | "S_RANDOM" | "MIRROR" | null;
-		assist?: "AUTO_SCRATCH" | "LEGACY_NOTE" | "ASCR_LEGACY" | "FULL_ASSIST" | null;
+		style?: "MIRROR" | "R_RANDOM" | "RANDOM" | "S_RANDOM" | null;
+		style_2p?: "MIRROR" | "R_RANDOM" | "RANDOM" | "S_RANDOM" | null;
+		assist?: "ASCR_LEGACY" | "AUTO_SCRATCH" | "FULL_ASSIST" | "LEGACY_NOTE" | null;
 	};
 
 	pacemaker: {
 		name?: string | null;
 		score?: integer | null;
-		type?: string | null; // too lazy to type this and we dont use it.
+
+		// too lazy to type this properly (it's a string enum) but we dont use it.
+		type?: string | null;
 	};
 
 	"2dx-gsm"?: {
-		EASY: (number | null)[];
-		NORMAL: (number | null)[];
-		HARD: (number | null)[];
-		EX_HARD: (number | null)[];
+		EASY: Array<number | null>;
+		NORMAL: Array<number | null>;
+		HARD: Array<number | null>;
+		EX_HARD: Array<number | null>;
 	} | null;
 }
 
 export interface FervidexContext {
-	version: GPTSupportedVersions["iidx:SP" | "iidx:DP"];
+	version: GPTSupportedVersions["iidx:DP" | "iidx:SP"];
 	timeReceived: number;
 }

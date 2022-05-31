@@ -1,10 +1,10 @@
+import { FormatUserDoc, GetUserCaseInsensitive, GetUsersWithIDs } from "./user";
 import db from "external/mongo/db";
 import { DatabaseSchemas } from "external/mongo/schemas";
-import { PublicUserDocument } from "tachi-common";
 import t from "tap";
 import { mkFakeUser } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import { FormatUserDoc, GetUserCaseInsensitive, GetUsersWithIDs } from "./user";
+import type { PublicUserDocument } from "tachi-common";
 
 t.test("#GetUserCaseInsensitive", (t) => {
 	t.beforeEach(ResetDBState);
@@ -20,6 +20,7 @@ t.test("#GetUserCaseInsensitive", (t) => {
 
 		// @ts-expect-error yeah
 		t.equal(result.password, undefined, "Should not return password");
+
 		// @ts-expect-error yeah
 		t.equal(result.email, undefined, "Should not return email");
 	});
@@ -35,6 +36,7 @@ t.test("#GetUserCaseInsensitive", (t) => {
 
 		// @ts-expect-error yeah
 		t.equal(result.password, undefined, "Should not return password");
+
 		// @ts-expect-error yeah
 		t.equal(result.email, undefined, "Should not return email");
 	});

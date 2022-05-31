@@ -2,13 +2,17 @@
  * Resets the state of the database.
  */
 import db from "external/mongo/db";
+import { SetIndexes } from "external/mongo/indexes";
+import CreateLogCtx from "lib/logger/logger";
+import { Environment, ServerConfig } from "lib/setup/config";
+import rimraf from "rimraf";
 import fs from "fs";
 import path from "path";
-import CreateLogCtx from "lib/logger/logger";
+import type { StaticDatabases } from "external/mongo/db";
+import type { ICollection } from "monk";
+import type { Game } from "tachi-common";
+
 // im installing an entire library for rm rf...
-import rimraf from "rimraf";
-import { SetIndexes } from "external/mongo/indexes";
-import { Environment, ServerConfig } from "lib/setup/config";
 
 if (ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE !== "LOCAL_FILESYSTEM") {
 	throw new Error(
@@ -21,39 +25,40 @@ const logger = CreateLogCtx(__filename);
 const DATA_DIR = path.join(__dirname, "./mock-db");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const CACHE: Record<string, any[]> = {};
+const CACHE: Record<string, Array<any>> = {};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-async function ResetState(data: any[], collection: any) {
+async function ResetState(data: Array<any>, collection: ICollection) {
 	await collection.remove({});
 
 	await collection.insert(data);
 }
 
-function GetAndCache(filename: string, fileLoc: string) {
-	let collection;
-	if (filename.startsWith("songs-")) {
-		// @ts-expect-error it's right, but we know what we're doing!
-		collection = db.songs[filename.split("-")[1]];
-	} else if (filename.startsWith("charts-")) {
-		// @ts-expect-error see above
-		collection = db.charts[filename.split("-")[1]];
-	} else {
-		// @ts-expect-error see above
-		collection = db[filename];
-	}
+function GetAndCache(
+	filename: string,
+	fileLoc: string
+): { data: Array<unknown>; collection: ICollection } {
+	let collection: ICollection;
 
-	if (!collection) {
+	if (filename.startsWith("songs-")) {
+		collection = db.songs[filename.split("-")[1] as Game];
+	} else if (filename.startsWith("charts-")) {
+		collection = db.charts[filename.split("-")[1] as Game];
+	} else if (filename in db) {
+		collection = db[filename as StaticDatabases];
+	} else {
 		throw new Error(
 			`Panicked when trying to get collection for ${filename}. Does this collection exist?`
 		);
 	}
 
-	if (CACHE[filename]) {
-		return { data: CACHE[filename], collection };
+	const cacheExists = CACHE[filename];
+
+	if (cacheExists) {
+		return { data: cacheExists, collection };
 	}
 
-	const data = JSON.parse(fs.readFileSync(fileLoc, "utf-8"));
+	const data: unknown = JSON.parse(fs.readFileSync(fileLoc, "utf-8"));
 
 	if (!Array.isArray(data)) {
 		throw new Error(`Panic, ${filename} not JSONArray?`);
@@ -64,10 +69,11 @@ function GetAndCache(filename: string, fileLoc: string) {
 	return { data, collection };
 }
 
-let CACHE_FILENAMES: string[];
+let CACHE_FILENAMES: Array<string> | undefined;
 
 export default async function ResetDBState() {
 	let files;
+
 	if (CACHE_FILENAMES) {
 		files = CACHE_FILENAMES;
 	} else {
@@ -101,6 +107,7 @@ export function ResetCDN() {
 			if (err) {
 				reject(err);
 			}
+
 			resolve();
 		});
 	});

@@ -1,9 +1,9 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
-import { UGPTSettings } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
+import type { UGPTSettings } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 	t.beforeEach(ResetDBState);
@@ -200,7 +200,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					userID: 1,
 					game: "iidx",
 					playtype: "SP",
-				})) as UGPTSettings<"iidx:SP" | "iidx:DP"> | null;
+				})) as UGPTSettings<"iidx:DP" | "iidx:SP"> | null;
 
 				t.equal(data?.preferences.gameSpecific.bpiTarget, target);
 

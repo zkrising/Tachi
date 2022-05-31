@@ -1,11 +1,11 @@
+import UpdateScore from "./update-score";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
-import { ImportDocument, ScoreDocument, SessionDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScore } from "test-utils/test-data";
-import UpdateScore from "./update-score";
+import type { ImportDocument, ScoreDocument, SessionDocument } from "tachi-common";
 
 const mockImportDocument: ImportDocument = {
 	userID: 1,

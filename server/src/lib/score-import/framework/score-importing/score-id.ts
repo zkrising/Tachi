@@ -1,7 +1,7 @@
-import crypto from "crypto";
 import db from "external/mongo/db";
-import { integer } from "tachi-common";
-import { DryScore } from "../common/types";
+import crypto from "crypto";
+import type { DryScore } from "../common/types";
+import type { integer } from "tachi-common";
 
 /**
  * Performs sha256 hashing on the input data.

@@ -1,8 +1,8 @@
-import { integer, Game, GoalDocument, GoalSubscriptionDocument } from "tachi-common";
-import { EvaluateGoalForUser } from "lib/targets/goals";
 import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
+import { EvaluateGoalForUser } from "lib/targets/goals";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
+import type { KtLogger } from "lib/logger/logger";
+import type { Game, GoalDocument, GoalSubscriptionDocument, integer } from "tachi-common";
 
 /**
  * Update a user's progress on all of their set goals.
@@ -26,7 +26,7 @@ export async function GetAndUpdateUsersGoals(
 }
 
 export async function UpdateGoalsForUser(
-	goals: GoalDocument[],
+	goals: Array<GoalDocument>,
 	goalSubsMap: Map<string, GoalSubscriptionDocument>,
 	userID: integer,
 	logger: KtLogger
@@ -39,10 +39,18 @@ export async function UpdateGoalsForUser(
 				logger.error(
 					`UserGoal:GoalID mismatch ${goal.goalID} - this user has no goalSub for this, yet it is set.`
 				);
-				return;
+
+				return null;
 			}
 
-			return ProcessGoal(goal, goalSub, userID, logger);
+			return ProcessGoal(goal, goalSub, userID, logger).catch((err: Error) => {
+				logger.warn(
+					`Failed to process goal '${goal.name}' for ${userID}, ${err.message}. Skipping.`,
+					{ goal, err, userID, goalSub }
+				);
+
+				return undefined;
+			});
 		})
 	);
 
@@ -69,7 +77,7 @@ export async function UpdateGoalsForUser(
 		return [];
 	}
 
-	if (webhookEventContent.length !== 0) {
+	if (webhookEventContent.length !== 0 && goals[0]) {
 		await EmitWebhookEvent({
 			type: "goals-achieved/v1",
 			content: { goals: webhookEventContent, userID, game: goals[0].game },
@@ -122,7 +130,9 @@ export async function ProcessGoal(
 	};
 
 	let webhookEvent = null;
+
 	// if this is a newly-achieved goal
+
 	if (res.achieved && !goalSub.achieved) {
 		webhookEvent = {
 			goalID: goal.goalID,
@@ -135,11 +145,12 @@ export async function ProcessGoal(
 	const setData = {
 		...newData,
 		timeAchieved: newData.achieved ? Date.now() : null,
+
 		// we're guaranteed that this works, because things
 		// that haven't changed return nothing instead of
 		// getting to this point.
 		lastInteraction: Date.now(),
-	} as Partial<GoalSubscriptionDocument>;
+	} as unknown as Partial<GoalSubscriptionDocument>;
 
 	// If this goal was achieved, and is now *not* achieved, we need to unset
 	// some things.
@@ -156,7 +167,7 @@ export async function ProcessGoal(
 
 	const bulkWrite = {
 		updateOne: {
-			filter: { _id: goalSub._id! },
+			filter: { goalID: goalSub.goalID, userID: goalSub.userID },
 			update: {
 				$set: setData,
 			},
@@ -187,8 +198,8 @@ export async function GetRelevantGoals(
 	userID: integer,
 	chartIDs: Set<string>,
 	logger: KtLogger
-): Promise<{ goals: GoalDocument[]; goalSubsMap: Map<string, GoalSubscriptionDocument> }> {
-	const goalSubs = await db["goal-subs"].find({ game, userID }, { projectID: true });
+): Promise<{ goals: Array<GoalDocument>; goalSubsMap: Map<string, GoalSubscriptionDocument> }> {
+	const goalSubs = await db["goal-subs"].find({ game, userID });
 
 	logger.verbose(`Found user has ${goalSubs.length} goals.`);
 
@@ -198,7 +209,8 @@ export async function GetRelevantGoals(
 
 	const goalIDs = goalSubs.map((e) => e.goalID);
 
-	const chartIDsArr: string[] = [];
+	const chartIDsArr: Array<string> = [];
+
 	for (const c of chartIDs) {
 		chartIDsArr.push(c);
 	}
@@ -225,6 +237,7 @@ export async function GetRelevantGoals(
 		if (!goalSet.has(goalSub.goalID)) {
 			continue;
 		}
+
 		// since these are guaranteed to be unique, lets make a hot map of goalID -> goalSubDocument, so we can
 		// pull them in for post-processing and filter out the goalSubDocuments that aren't relevant.
 		goalSubsMap.set(goalSub.goalID, goalSub);
@@ -240,12 +253,12 @@ export async function GetRelevantGoals(
  * Returns the set of goals where its folder contains any member
  * of chartIDsArr.
  */
-export function GetRelevantFolderGoals(goalIDs: string[], chartIDsArr: string[]) {
+export function GetRelevantFolderGoals(goalIDs: Array<string>, chartIDsArr: Array<string>) {
 	// Slightly black magic - this is kind of like doing an SQL join.
 	// it's weird to do this in mongodb, but this seems like the right
 	// way to actually handle this.
 
-	return db.goals.aggregate([
+	const result: Promise<Array<GoalDocument>> = db.goals.aggregate([
 		{
 			$match: {
 				"charts.type": "folder",
@@ -271,4 +284,6 @@ export function GetRelevantFolderGoals(goalIDs: string[], chartIDsArr: string[])
 			},
 		},
 	]);
+
+	return result;
 }

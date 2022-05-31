@@ -1,12 +1,12 @@
-import { KtLogger } from "lib/logger/logger";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import p from "prudence";
 import { FormatPrError } from "utils/prudence";
-import { EmptyObject } from "utils/types";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturns } from "../../common/types";
-import { MerScore } from "./types";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { MerScore } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { EmptyObject } from "utils/types";
 
-const PR_MerIIDX = {
+const PR_MER_IIDX = {
 	music_id: p.isPositiveInteger,
 	play_type: p.isIn("SINGLE", "DOUBLE"),
 	diff_type: p.isIn("NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA", "BEGINNER"),
@@ -33,7 +33,7 @@ export function ParseMerIIDX(
 	let jsonData;
 
 	try {
-		jsonData = JSON.parse(fileData.buffer.toString("utf-8"));
+		jsonData = JSON.parse(fileData.buffer.toString("utf-8")) as unknown;
 	} catch (err) {
 		logger.info((err as Error).message);
 		throw new ScoreImportFatalError(400, "Invalid JSON.");
@@ -45,7 +45,7 @@ export function ParseMerIIDX(
 
 	// this is because prudence doesn't support top level arrays at the moment.
 	for (let i = 0; i < jsonData.length; i++) {
-		const err = p(jsonData[i], PR_MerIIDX, {}, { allowExcessKeys: true });
+		const err = p(jsonData[i], PR_MER_IIDX, {}, { allowExcessKeys: true });
 
 		if (err) {
 			throw new ScoreImportFatalError(400, `${FormatPrError(err)} [Index ${i}]`);
@@ -55,7 +55,7 @@ export function ParseMerIIDX(
 	return {
 		classHandler: null,
 		context: {},
-		iterable: jsonData as MerScore[],
+		iterable: jsonData as Array<MerScore>,
 		game: "iidx",
 	};
 }

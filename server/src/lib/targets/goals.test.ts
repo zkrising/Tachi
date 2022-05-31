@@ -1,7 +1,7 @@
+import { EvaluateGoalForUser, HumaniseGoalProgress } from "./goals";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { GoalDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import {
@@ -12,7 +12,7 @@ import {
 } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
 import { Random20Hex } from "utils/misc";
-import { EvaluateGoalForUser, HumaniseGoalProgress } from "./goals";
+import type { GoalDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

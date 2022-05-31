@@ -1,15 +1,15 @@
-import { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 
 /**
  * Disallow complex query strings by enforcing single key:value pairs.
  */
 function SanitiseQString(req: Request, res: Response, next: NextFunction) {
 	if (req.method === "GET") {
-		for (const data in req.query) {
-			if (typeof req.query[data] !== "string") {
+		for (const [key, value] of Object.entries(req.query)) {
+			if (typeof value !== "string") {
 				return res.status(400).json({
 					success: false,
-					description: `Invalid request with key ${data}`,
+					description: `Invalid request with key ${key}`,
 				});
 			}
 		}

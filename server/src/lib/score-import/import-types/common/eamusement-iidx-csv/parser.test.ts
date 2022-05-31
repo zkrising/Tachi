@@ -1,9 +1,9 @@
+import GenericParseEamIIDXCSV, { IIDXCSVParse, ResolveHeaders } from "./parser";
+import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { MockMulterFile } from "test-utils/mock-multer";
 import { TestingIIDXEamusementCSV26, TestingIIDXEamusementCSV27 } from "test-utils/test-data";
-import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import GenericParseEamIIDXCSV, { IIDXCSVParse, ResolveHeaders } from "./parser";
 
 const logger = CreateLogCtx(__filename);
 
@@ -219,7 +219,7 @@ t.test("#ParseEamusementCSV", (t) => {
 
 		t.throws(
 			() => GenericParseEamIIDXCSV(validSPFile, {}, "e-amusement", logger),
-			new ScoreImportFatalError(400, "Invalid playtype of Nothing given.")
+			new ScoreImportFatalError(400, "Invalid playtype of undefined given.")
 		);
 
 		let { context } = GenericParseEamIIDXCSV(

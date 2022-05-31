@@ -1,6 +1,8 @@
 import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
-import {
+import { RecalcAllScores } from "utils/calculations/recalc-scores";
+import fetch from "utils/fetch";
+import type {
 	ChartDocument,
 	Difficulties,
 	GPTSupportedVersions,
@@ -8,19 +10,18 @@ import {
 	Playtypes,
 	SongDocument,
 } from "tachi-common";
-import { RecalcAllScores } from "utils/calculations/recalc-scores";
-import fetch from "utils/fetch";
 
 const logger = CreateLogCtx(__filename);
 
-const difficultyResolve = {
-	3: ["SP", "HYPER"],
-	4: ["SP", "ANOTHER"],
-	8: ["DP", "HYPER"],
-	9: ["DP", "ANOTHER"],
-	10: ["SP", "LEGGENDARIA"],
-	11: ["DP", "LEGGENDARIA"],
-} as Record<string, [Playtypes["iidx"], Difficulties["iidx:SP" | "iidx:DP"]]>;
+const difficultyResolve: Record<string, [Playtypes["iidx"], Difficulties["iidx:DP" | "iidx:SP"]]> =
+	{
+		3: ["SP", "HYPER"],
+		4: ["SP", "ANOTHER"],
+		8: ["DP", "HYPER"],
+		9: ["DP", "ANOTHER"],
+		10: ["SP", "LEGGENDARIA"],
+		11: ["DP", "LEGGENDARIA"],
+	};
 
 interface PoyashiProxyBPIInfo {
 	title: string;
@@ -32,14 +33,14 @@ interface PoyashiProxyBPIInfo {
 	textage: string;
 	difficultyLevel: string;
 	dpLevel: string;
-	coef: number | null;
+	coef?: number | null;
 	removed?: boolean;
 }
 
 interface PoyashiProxyData {
 	version: integer;
 	requireVersion: string;
-	body: PoyashiProxyBPIInfo[];
+	body: Array<PoyashiProxyBPIInfo>;
 }
 
 /**
@@ -59,10 +60,10 @@ export async function UpdatePoyashiData() {
 
 	logger.info("Fetched data.");
 
-	const iidxSongs = (await repo.ReadCollection("songs-iidx")) as SongDocument<"iidx">[];
-	const iidxCharts = (await repo.ReadCollection("charts-iidx")) as ChartDocument<
-		"iidx:SP" | "iidx:DP"
-	>[];
+	const iidxSongs: Array<SongDocument<"iidx">> = await repo.ReadCollection("songs-iidx");
+	const iidxCharts: Array<ChartDocument<"iidx:DP" | "iidx:SP">> = await repo.ReadCollection(
+		"charts-iidx"
+	);
 
 	// Utility functions for finding matching charts.
 	function FindSongOnTitle(title: string) {
@@ -78,8 +79,8 @@ export async function UpdatePoyashiData() {
 	function FindChartWithPTDFVersion(
 		songID: integer,
 		playtype: Playtypes["iidx"],
-		diff: Difficulties["iidx:SP" | "iidx:DP"],
-		version: GPTSupportedVersions["iidx:SP" | "iidx:DP"]
+		diff: Difficulties["iidx:DP" | "iidx:SP"],
+		version: GPTSupportedVersions["iidx:DP" | "iidx:SP"]
 	) {
 		for (const chart of iidxCharts) {
 			if (
@@ -99,7 +100,8 @@ export async function UpdatePoyashiData() {
 
 	// The actual mutation.
 	for (const d of data.body) {
-		const res = difficultyResolve[d.difficulty];
+		const res: ["DP" | "SP", Difficulties["iidx:DP" | "iidx:SP"]] | undefined =
+			difficultyResolve[d.difficulty];
 
 		if (!res) {
 			throw new Error(`Unknown difficulty ${d.difficulty}`);
@@ -133,7 +135,7 @@ export async function UpdatePoyashiData() {
 			continue;
 		}
 
-		if (d.removed) {
+		if (d.removed === true) {
 			logger.info(`Skipping removed chart ${tachiSong.title}.`);
 			continue;
 		}
@@ -173,7 +175,12 @@ export async function UpdatePoyashiData() {
 }
 
 if (require.main === module) {
-	UpdatePoyashiData().then(() => {
-		process.exit(0);
-	});
+	UpdatePoyashiData()
+		.then(() => {
+			process.exit(0);
+		})
+		.catch((err: unknown) => {
+			logger.error("Failed to update poyashi data.", { err });
+			process.exit(1);
+		});
 }

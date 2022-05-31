@@ -1,8 +1,8 @@
+import { ConverterIRKsHookSV6C } from "./converter";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { TestingKsHookSV6CScore } from "test-utils/test-data";
-import { ConverterIRKsHookSV6C } from "./converter";
 
 const logger = CreateLogCtx(__filename);
 
@@ -54,7 +54,7 @@ t.test("#ConverterIRKsHookSV6C", (t) => {
 		t.rejects(
 			() =>
 				ConverterIRKsHookSV6C(
-					Object.assign({}, TestingKsHookSV6CScore, { music_id: 10000 }),
+					{ ...TestingKsHookSV6CScore, music_id: 10000 },
 					{ timeReceived: 10 },
 					"ir/kshook-sv6c",
 					logger

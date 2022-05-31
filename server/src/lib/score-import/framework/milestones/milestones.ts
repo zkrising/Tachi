@@ -1,8 +1,9 @@
 import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
+import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "lib/targets/milestones";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
-import { BulkWriteUpdateOneOperation } from "mongodb";
-import {
+import type { KtLogger } from "lib/logger/logger";
+import type { BulkWriteUpdateOneOperation } from "mongodb";
+import type {
 	Game,
 	GoalImportInfo,
 	integer,
@@ -10,8 +11,8 @@ import {
 	MilestoneImportInfo,
 	Playtype,
 	MilestoneSubscriptionDocument,
+	GoalImportStat,
 } from "tachi-common";
-import { CalculateMilestoneOutOf, GetGoalIDsFromMilestone } from "lib/targets/milestones";
 
 /**
  * Processes and updates a user's milestones from their Goal Import Info (i.e. what is returned
@@ -50,15 +51,16 @@ export function ProcessMilestoneFromGII(
 }
 
 export async function UpdateUsersMilestones(
-	importGoalInfo: GoalImportInfo[],
+	importGoalInfo: Array<GoalImportInfo>,
 	game: Game,
-	playtypes: Playtype[],
+	playtypes: Array<Playtype>,
 	userID: integer,
 	logger: KtLogger
 ) {
 	const goalSubInfoMap: Map<string, GoalImportInfo["new"]> = new Map();
 
 	const goalIDs = [];
+
 	for (const e of importGoalInfo) {
 		goalSubInfoMap.set(e.goalID, e.new);
 		goalIDs.push(e.goalID);
@@ -74,20 +76,21 @@ export async function UpdateUsersMilestones(
 
 	// create a map here to avoid linear searching when
 	// co-iterating
-	const milestoneSubMap = new Map();
+	const milestoneSubMap = new Map<string, MilestoneSubscriptionDocument>();
+
 	for (const um of milestoneSubs) {
 		milestoneSubMap.set(um.milestoneID, um);
 	}
 
-	const importGoalMap = new Map();
+	const importGoalMap = new Map<string, GoalImportStat>();
 
 	for (const ig of importGoalInfo) {
 		importGoalMap.set(ig.goalID, ig.new);
 	}
 
-	const bwrite: BulkWriteUpdateOneOperation<MilestoneSubscriptionDocument>[] = [];
+	const bwrite: Array<BulkWriteUpdateOneOperation<MilestoneSubscriptionDocument>> = [];
 
-	const importMilestoneInfo: MilestoneImportInfo[] = [];
+	const importMilestoneInfo: Array<MilestoneImportInfo> = [];
 
 	for (const milestone of milestones) {
 		const { achieved, progress } = ProcessMilestoneFromGII(milestone, importGoalMap);
@@ -128,6 +131,7 @@ export async function UpdateUsersMilestones(
 
 		if (progress !== milestoneSub.progress) {
 			importMilestoneInfo.push(milestoneInfo);
+
 			// @ts-expect-error This property isn't read only, because I said so.
 			bwriteOp.updateOne.update.$set!.lastInteraction = Date.now();
 		}
@@ -135,7 +139,7 @@ export async function UpdateUsersMilestones(
 		bwrite.push(bwriteOp);
 
 		if (achieved && !milestoneSub.achieved) {
-			EmitWebhookEvent({
+			void EmitWebhookEvent({
 				type: "milestone-achieved/v1",
 				content: {
 					userID,
@@ -155,9 +159,9 @@ export async function UpdateUsersMilestones(
 }
 
 async function GetRelevantMilestones(
-	goalIDs: string[],
+	goalIDs: Array<string>,
 	game: Game,
-	playtypes: Playtype[],
+	playtypes: Array<Playtype>,
 	userID: integer,
 	logger: KtLogger
 ) {

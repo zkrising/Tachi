@@ -1,14 +1,14 @@
-import { Lamps } from "tachi-common";
-import { FindSDVXChartOnInGameID } from "utils/queries/charts";
-import { FindSongOnID } from "utils/queries/songs";
 import {
 	InternalFailure,
 	KTDataNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
-import { DryScore } from "../../../framework/common/types";
-import { ConverterFunction } from "../../common/types";
-import { BarbatosContext, BarbatosScore } from "./types";
+import { FindSDVXChartOnInGameID } from "utils/queries/charts";
+import { FindSongOnID } from "utils/queries/songs";
+import type { DryScore } from "../../../framework/common/types";
+import type { ConverterFunction } from "../../common/types";
+import type { BarbatosContext, BarbatosScore } from "./types";
+import type { Lamps } from "tachi-common";
 
 const LAMP_LOOKUP = {
 	1: "FAILED",
@@ -22,7 +22,9 @@ const DIFFICULTY_LOOKUP = {
 	0: "NOV",
 	1: "ADV",
 	2: "EXH",
-	3: "ANY_INF", // special case for inf/grv/hvn/vvd - which are all the same diff internally. (kinda).
+
+	// special case for inf/grv/hvn/vvd - which are all the same diff internally. (kinda).
+	3: "ANY_INF",
 	4: "MXM",
 };
 
@@ -33,11 +35,11 @@ export const ConverterIRBarbatos: ConverterFunction<BarbatosScore, BarbatosConte
 	logger
 ) => {
 	const difficulty = DIFFICULTY_LOOKUP[data.difficulty] as
-		| "NOV"
 		| "ADV"
-		| "EXH"
 		| "ANY_INF"
-		| "MXM";
+		| "EXH"
+		| "MXM"
+		| "NOV";
 
 	const chart = await FindSDVXChartOnInGameID(data.song_id, difficulty);
 

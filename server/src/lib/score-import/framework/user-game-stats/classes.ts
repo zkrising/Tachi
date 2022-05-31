@@ -1,18 +1,3 @@
-import deepmerge from "deepmerge";
-import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
-import { EmitWebhookEvent } from "lib/webhooks/webhooks";
-import {
-	ClassDelta,
-	Game,
-	IDStrings,
-	integer,
-	Playtype,
-	Playtypes,
-	UserGameStats,
-} from "tachi-common";
-import { GameClasses } from "tachi-common/js/game-classes";
-import { ReturnClassIfGreater } from "utils/class";
 import {
 	CalculateChunithmColour,
 	CalculateGitadoraColour,
@@ -21,7 +6,22 @@ import {
 	CalculateSDVXClass,
 	CalculateWACCAColour,
 } from "./builtin-class-handlers";
-import { ClassHandler, ScoreClasses } from "./types";
+import deepmerge from "deepmerge";
+import db from "external/mongo/db";
+import { EmitWebhookEvent } from "lib/webhooks/webhooks";
+import { ReturnClassIfGreater } from "utils/class";
+import type { ClassHandler, ScoreClasses } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type {
+	ClassDelta,
+	Game,
+	IDStrings,
+	integer,
+	Playtype,
+	Playtypes,
+	UserGameStats,
+} from "tachi-common";
+import type { GameClasses } from "tachi-common/js/game-classes";
 
 type ClassHandlerMap = {
 	[G in Game]:
@@ -94,15 +94,16 @@ export async function UpdateUGSClasses(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>,
+	ratings: Record<string, number | null>,
 	ClassHandler: ClassHandler | null,
 	logger: KtLogger
 ): Promise<ScoreClasses> {
 	let classes: ScoreClasses = {};
 
 	// @ts-expect-error This one sucks - I need to look into a better way of representing these types
-	if (STATIC_CLASS_HANDLERS[game] && STATIC_CLASS_HANDLERS[game][playtype]) {
+	if (STATIC_CLASS_HANDLERS[game]?.[playtype] !== undefined) {
 		// @ts-expect-error see above
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
 		classes = await STATIC_CLASS_HANDLERS[game][playtype](
 			game,
 			playtype,
@@ -136,12 +137,12 @@ export async function ProcessClassDeltas(
 	userGameStats: UserGameStats | null,
 	userID: integer,
 	logger: KtLogger
-): Promise<ClassDelta[]> {
-	const deltas: ClassDelta[] = [];
+): Promise<Array<ClassDelta>> {
+	const deltas: Array<ClassDelta> = [];
 
 	const achievementOps = [];
 
-	for (const s in classes) {
+	for (const s of Object.keys(classes)) {
 		const classSet = s as keyof GameClasses<IDStrings>;
 		const classVal = classes[classSet];
 
@@ -157,6 +158,7 @@ export async function ProcessClassDeltas(
 				continue;
 			} else {
 				let delta: ClassDelta;
+
 				if (isGreater === null) {
 					delta = {
 						game,
@@ -175,7 +177,7 @@ export async function ProcessClassDeltas(
 					};
 				}
 
-				EmitWebhookEvent({ type: "class-update/v1", content: { userID, ...delta } });
+				void EmitWebhookEvent({ type: "class-update/v1", content: { userID, ...delta } });
 
 				achievementOps.push({
 					userID,

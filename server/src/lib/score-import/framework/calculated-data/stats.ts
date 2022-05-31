@@ -1,6 +1,7 @@
-import { KtLogger } from "lib/logger/logger";
-import { ChartDocument, Game, GetGamePTConfig, IIDX_LAMPS, integer, Playtype } from "tachi-common";
-import { DryScore } from "../common/types";
+import { GetGamePTConfig, IIDX_LAMPS } from "tachi-common";
+import type { DryScore } from "../common/types";
+import type { KtLogger } from "lib/logger/logger";
+import type { ChartDocument, Game, integer, Playtype } from "tachi-common";
 
 /**
  * Calculate Marvelous Full Combo Points. This algorithm
@@ -103,24 +104,13 @@ function RatingCalcV0Fail(percentDiv100: number, levelNum: number, parameters: R
 }
 
 const ratingParameters = {
-	iidx: {
-		failHarshnessMultiplier: 0.3,
-		pivotPercent: 0.7777, // Grade: AA
-		clearExpMultiplier: 1,
-	},
-	bms: {
-		failHarshnessMultiplier: 0.5,
-		pivotPercent: 0.7777, // Grade: AA
-		clearExpMultiplier: 0.75,
-	},
 	museca: {
 		failHarshnessMultiplier: 1,
-		pivotPercent: 0.8, // grade: not fail
-		clearExpMultiplier: 1, // no real reason
-	},
-	maimai: {
-		failHarshnessMultiplier: 1,
+
+		// grade: not fail
 		pivotPercent: 0.8,
+
+		// no real reason
 		clearExpMultiplier: 1,
 	},
 	ddr: {

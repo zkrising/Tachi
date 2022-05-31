@@ -1,7 +1,9 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { FilterQuery } from "mongodb";
-import {
+import { GetNextCounterValue } from "utils/db";
+import { DedupeArr } from "utils/misc";
+import type { FilterQuery } from "mongodb";
+import type {
 	ChartDocument,
 	IDStrings,
 	IDStringToGame,
@@ -9,8 +11,6 @@ import {
 	OrphanChart,
 	SongDocument,
 } from "tachi-common";
-import { GetNextCounterValue } from "utils/db";
-import { DedupeArr } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -39,7 +39,7 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 	logger.debug(`Received orphanqueue request for ${chartName}.`);
 
 	const orphanChart = await db["orphan-chart-queue"].findOne(
-		Object.assign({ idString }, orphanMatchCriteria),
+		{ idString, ...orphanMatchCriteria },
 		{
 			projectID: true,
 		}
@@ -63,8 +63,10 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 	const uniqueUsersArr = DedupeArr(orphanChart.userIDs);
 
 	const playcount = uniqueUsersArr.length;
+
 	// If N or more people have played this chart while orphaned, unorphan
 	// it.
+
 	if (playcount >= queueSize) {
 		logger.info(`Song ${chartName} was unorphaned by userIDs ${uniqueUsersArr.join(", ")}.`);
 		const songID = await GetNextCounterValue(`${game}-song-id`);

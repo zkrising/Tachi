@@ -1,8 +1,8 @@
+import { AddNewInvite, ReinstateInvite, ValidateCaptcha } from "./auth";
 import db from "external/mongo/db";
 import t from "tap";
 import { MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
-import { AddNewInvite, ReinstateInvite, ValidateCaptcha } from "./auth";
 
 t.test("#ReinstateInvite", (t) => {
 	t.beforeEach(ResetDBState);
@@ -23,7 +23,8 @@ t.test("#ReinstateInvite", (t) => {
 		t.equal(response.nModified, 1, "Should modify one document");
 
 		const invite2 = await db.invites.findOne({
-			code: inviteDoc.code, // lol
+			// lol
+			code: inviteDoc.code,
 		});
 
 		t.equal(invite2!.consumed, false, "Should no longer be consumed");

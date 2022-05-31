@@ -1,9 +1,9 @@
-import t from "tap";
-import db from "external/mongo/db";
-import ResetDBState from "test-utils/resets";
 import { GetRelevantFolderGoals, GetRelevantGoals, UpdateGoalsForUser, ProcessGoal } from "./goals";
-import { GoalDocument, GoalSubscriptionDocument } from "tachi-common";
-import { CreateFolderChartLookup } from "utils/folder";
+import deepmerge from "deepmerge";
+import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import t from "tap";
+import ResetDBState from "test-utils/resets";
 import {
 	GetKTDataJSON,
 	Testing511SPA,
@@ -12,9 +12,14 @@ import {
 	HC511UserGoal,
 	TestingIIDXFolderSP10,
 } from "test-utils/test-data";
-import deepmerge from "deepmerge";
-import CreateLogCtx from "lib/logger/logger";
+import { CreateFolderChartLookup } from "utils/folder";
 import crypto from "crypto";
+import type {
+	ChartDocument,
+	GoalDocument,
+	GoalSubscriptionDocument,
+	SongDocument,
+} from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -61,6 +66,7 @@ t.test("#GetRelevantFolderGoals", (t) => {
 			data: { level: "11" },
 			folderID: "foo",
 		});
+
 		await db.folders.insert(TestingIIDXFolderSP10);
 		await db.folders.insert(sp11folder);
 		await db.goals.insert(fakeFolderGoalDocument);
@@ -93,11 +99,17 @@ t.test("#GetRelevantGoals", (t) => {
 		// use the real data so we have enough charts loaded for this to test properly.
 		await db.songs.iidx.remove({});
 		await db.charts.iidx.remove({});
-		await db.charts.iidx.insert(GetKTDataJSON("./tachi/tachi-charts-iidx.json"));
-		await db.songs.iidx.insert(GetKTDataJSON("./tachi/tachi-songs-iidx.json"));
+		await db.charts.iidx.insert(
+			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<
+				ChartDocument<"iidx:DP" | "iidx:SP">
+			>
+		);
+		await db.songs.iidx.insert(
+			GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument<"iidx">>
+		);
 
 		const lotsOfCharts = await db.charts.iidx.find({}, { limit: 20 });
-		const goals: GoalDocument[] = lotsOfCharts.map((e) => ({
+		const goals: Array<GoalDocument> = lotsOfCharts.map((e) => ({
 			charts: {
 				type: "single",
 				data: e.chartID,
@@ -200,6 +212,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 		delete baseGoalDocument._id;
 
 		await db["goal-subs"].insert(baseGoalSubscriptionDocument);
+
 		// we dont delete _id here because updategoalsforuser
 		// depends on usergoal _id
 
@@ -251,6 +264,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 
 	t.test("Should correctly update goals when user does not achieve goal.", async (t) => {
 		const goal = deepmerge(baseGoalDocument, { criteria: { value: 2 } });
+
 		await db.goals.insert(goal);
 
 		const goalSub = deepmerge(baseGoalSubscriptionDocument, {
@@ -259,6 +273,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 		}) as unknown as GoalSubscriptionDocument;
 
 		await db["goal-subs"].insert(goalSub);
+
 		// we dont delete _id here because updategoalsforuser
 		// depends on usergoal _id
 
@@ -355,7 +370,9 @@ t.test("#ProcessGoal", (t) => {
 
 	t.test("Should process the users goal if a score has changed.", async (t) => {
 		await db["goal-subs"].insert(HC511UserGoal);
-		await db["personal-bests"].insert(TestingIIDXSPScorePB); // score is EX HARD CLEAR by default.
+
+		// score is EX HARD CLEAR by default.
+		await db["personal-bests"].insert(TestingIIDXSPScorePB);
 
 		const res = await ProcessGoal(HC511Goal, HC511UserGoal, 1, logger);
 

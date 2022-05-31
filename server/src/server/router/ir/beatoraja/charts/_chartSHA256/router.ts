@@ -1,11 +1,15 @@
-import { RequestHandler, Router } from "express";
-import db from "external/mongo/db";
-import { SYMBOL_TachiAPIAuth, SYMBOL_TachiData } from "lib/constants/tachi";
-import { ChartDocument, PBScoreDocument } from "tachi-common";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
 import { TachiScoreDataToBeatorajaFormat } from "./convert-scores";
+import { Router } from "express";
+import db from "external/mongo/db";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
+import CreateLogCtx from "lib/logger/logger";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
+import type { RequestHandler } from "express";
+import type { ChartDocument, integer, PBScoreDocument, PublicUserDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
+
+const logger = CreateLogCtx(__filename);
 
 const GetChartDocument: RequestHandler = async (req, res, next) => {
 	let chart: ChartDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard"> | null =
@@ -31,7 +35,7 @@ const GetChartDocument: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { beatorajaChartDoc: chart });
 
-	return next();
+	next();
 };
 
 router.use(GetChartDocument);
@@ -42,12 +46,12 @@ router.use(GetChartDocument);
  * @name GET /ir/beatoraja/charts/:chartSHA256/scores
  */
 router.get("/scores", async (req, res) => {
-	const chart = req[SYMBOL_TachiData]!.beatorajaChartDoc!;
-	const requestingUserID = req[SYMBOL_TachiAPIAuth].userID;
+	const chart = GetTachiData(req, "beatorajaChartDoc");
+	const requestingUserID = req[SYMBOL_TACHI_API_AUTH].userID;
 
 	const scores = (await db["personal-bests"].find({
 		chartID: chart.chartID,
-	})) as PBScoreDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">[];
+	})) as Array<PBScoreDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">>;
 
 	const userDocs = await db.users.find(
 		{
@@ -60,7 +64,8 @@ router.get("/scores", async (req, res) => {
 			},
 		}
 	);
-	const userMap = new Map();
+	const userMap = new Map<integer, PublicUserDocument>();
+
 	for (const user of userDocs) {
 		userMap.set(user.id, user);
 	}
@@ -68,13 +73,24 @@ router.get("/scores", async (req, res) => {
 	const beatorajaScores = [];
 
 	for (const score of scores) {
+		const username = userMap.get(score.userID)?.username;
+
+		if (!username) {
+			logger.warn(
+				`A PB on ${score.chartID} refers to user ${score.userID}, who apparantly doesn't exist? Skipping for beatoraja score returns, but this might be severe!`
+			);
+			continue;
+		}
+
 		beatorajaScores.push(
 			TachiScoreDataToBeatorajaFormat(
 				score,
 				chart.data.hashSHA256,
-				score.userID === requestingUserID ? "" : userMap.get(score.userID).username,
+				score.userID === requestingUserID ? "" : username,
 				chart.data.notecount,
-				0 // Playcount is always 0 at the moment due to performance concerns.
+
+				// Playcount is always 0 at the moment due to performance concerns.
+				0
 			)
 		);
 	}

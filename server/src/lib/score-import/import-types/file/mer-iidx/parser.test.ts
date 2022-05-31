@@ -1,10 +1,10 @@
+import { ParseMerIIDX } from "./parser";
 import deepmerge from "deepmerge";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { MockMulterFile } from "test-utils/mock-multer";
 import ResetDBState from "test-utils/resets";
 import { GetKTDataBuffer, GetKTDataJSON } from "test-utils/test-data";
-import { ParseMerIIDX } from "./parser";
 
 const logger = CreateLogCtx(__filename);
 
@@ -17,7 +17,7 @@ t.test("#ParseMerIIDX", (t) => {
 
 	function mrfj(obj: unknown) {
 		return ParseMerIIDX(
-			MockMulterFile(Buffer.from(JSON.stringify(obj)), "buffer.json"),
+			MockMulterFile(Buffer.from(JSON.stringify([obj])), "buffer.json"),
 			{},
 			logger
 		);
@@ -75,7 +75,25 @@ t.test("#ParseMerIIDX", (t) => {
 		t.end();
 	});
 
-	const baseScore = GetKTDataJSON("./mer/base.json");
+	const baseScore = {
+		music_id: 3007,
+		version_id: 3,
+		version_name: "3rd style",
+		music_name: "Presto",
+		play_type: "SINGLE",
+		diff_type: "HYPER",
+		score: 566,
+		score_percent: 56.8273,
+		miss_count: 46,
+		grade: "B",
+		clear_type: "NO PLAY",
+		clear_type_id: 0,
+		level: 8,
+		note: 498,
+		play_count: 6,
+		update_time: "2019-06-01 19:56:59",
+		score_diff_str: "B+12",
+	};
 
 	t.test("Should throw on invalid play_type", (t) => {
 		t.throws(() => mrfj(deepmerge(baseScore, { play_type: "INVALID" })));

@@ -1,9 +1,10 @@
-import { exec } from "child_process";
-import crypto from "crypto";
 import { ONE_HOUR } from "lib/constants/time";
 import { TachiConfig } from "lib/setup/config";
-import { Game, GamePTConfig, GetGameConfig, integer, Playtype } from "tachi-common";
+import { GetGameConfig } from "tachi-common";
+import { exec } from "child_process";
+import crypto from "crypto";
 import { URL } from "url";
+import type { Game, GamePTConfig, integer, Playtype } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
 // the developer of this has migrated everything to Force ES6 style modules,
@@ -39,8 +40,8 @@ export function MStoS(ms: number) {
 /**
  * Random From Array - Selects a random value from an array.
  */
-export function RFA<T>(arr: T[]): T {
-	return arr[Math.floor(Math.random() * arr.length)];
+export function RFA<T>(arr: Array<T>): T {
+	return arr[Math.floor(Math.random() * arr.length)] as T;
 }
 
 /**
@@ -60,7 +61,7 @@ export function SplitAuthorizationHeader(authHeader: string) {
  * key to keyof T.
  * False if the object doesn't.
  */
-export function HasOwnProperty<T>(obj: T, key: string | number | symbol): key is keyof T {
+export function HasOwnProperty<T>(obj: T, key: number | string | symbol): key is keyof T {
 	return Object.prototype.hasOwnProperty.call(obj, key);
 }
 
@@ -83,17 +84,13 @@ export function IsString(val: unknown): val is string {
 	return typeof val === "string";
 }
 
-export function DedupeArr<T>(arr: T[]): T[] {
+export function DedupeArr<T>(arr: Array<T>): Array<T> {
 	return [...new Set(arr)];
 }
 
-export function StripUrl(url: string, userInput: string | null) {
-	if (!userInput) {
-		return userInput;
-	}
-
+export function StripUrl(url: string, userInput: string) {
 	if (userInput.toLowerCase().includes(url)) {
-		return userInput.split(url)[1];
+		return userInput.split(url)[1]!;
 	}
 
 	return userInput;
@@ -108,13 +105,17 @@ export function StripUrl(url: string, userInput: string | null) {
 // runtime validation.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function DeleteUndefinedProps(record: any) {
-	if (typeof record !== "object" || record === null) {
+	if (typeof record !== "object" || record === null || Array.isArray(record)) {
 		throw new Error(`Non-object passed to DeleteUndefinedProps.`);
 	}
 
-	for (const key in record) {
-		if (record[key] === undefined) {
-			delete record[key];
+	// asserted above
+	const rec = record as Record<string, unknown>;
+
+	for (const key of Object.keys(rec)) {
+		if (rec[key] === undefined) {
+			// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+			delete rec[key];
 		}
 	}
 }
@@ -122,22 +123,28 @@ export function DeleteUndefinedProps(record: any) {
 export function IsValidURL(string: string) {
 	try {
 		const url = new URL(string);
+
 		return url.protocol === "http:" || url.protocol === "https:";
-	} catch (err) {
+	} catch (_err) {
 		return false;
 	}
 }
 
 export function Sleep(ms: number) {
-	return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
+	return new Promise<void>((resolve) => {
+		setTimeout(() => {
+			resolve();
+		}, ms);
+	});
 }
 
 export function GetTimeXHoursAgo(hours: integer) {
 	return Date.now() - ONE_HOUR * hours;
 }
 
-export function ApplyNTimes<T>(n: integer, fn: (i: integer) => T): T[] {
+export function ApplyNTimes<T>(n: integer, fn: (i: integer) => T): Array<T> {
 	const arr = [];
+
 	for (let i = 0; i < n; i++) {
 		arr.push(fn(i));
 	}
@@ -155,6 +162,8 @@ export function OmitUndefinedKeys<T>(obj: Partial<T>): Partial<T> {
 	for (const k of Object.keys(obj)) {
 		const key = k as keyof T;
 
+		// This looks to be a bug in the no-unnecessary-condition rule.
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 		if (obj[key] !== undefined) {
 			omittedObj[key] = obj[key];
 		}
@@ -176,15 +185,16 @@ export function asyncExec(command: string) {
 		exec(command, (err, stdout, stderr) => {
 			if (err) {
 				// eslint-disable-next-line prefer-promise-reject-errors
-				return reject({ err, stdout, stderr });
+				reject({ err, stdout, stderr });
+				return;
 			}
 
-			return resolve({ stdout, stderr });
+			resolve({ stdout, stderr });
 		});
 	});
 }
 
-export function FormatBMSTables(bmsTables: { table: string; level: string }[]) {
+export function FormatBMSTables(bmsTables: Array<{ table: string; level: string }>) {
 	if (bmsTables.length === 0) {
 		return null;
 	}
@@ -192,8 +202,8 @@ export function FormatBMSTables(bmsTables: { table: string; level: string }[]) {
 	return bmsTables.map((e) => `${e.table}${e.level}`).join(", ");
 }
 
-export function HumanisedJoinArray(arr: string[], lastJoiner = "or") {
-	return `${arr.slice(0, arr.length - 1).join(", ")} ${lastJoiner} ${arr[arr.length - 1]}`;
+export function HumanisedJoinArray(arr: Array<string>, lastJoiner = "or") {
+	return `${arr.slice(0, arr.length - 1).join(", ")} ${lastJoiner} ${arr[arr.length - 1]!}`;
 }
 
 export function FormatMaxDP(num: number, points = 2) {
@@ -213,6 +223,39 @@ export function IsSupported(game: Game) {
  * @param right - The right side of elements; everything in here not in left will be
  * returned.
  */
-export function ArrayDiff<T>(left: T[], right: T[]) {
+export function ArrayDiff<T>(left: Array<T>, right: Array<T>) {
 	return right.filter((e) => !left.includes(e));
+}
+
+export function IsNonEmptyString(maybeStr: string | null | undefined): maybeStr is string {
+	return maybeStr !== null && maybeStr !== undefined && maybeStr !== "";
+}
+
+export function IsNullishOrEmptyStr(
+	maybeStr: string | null | undefined
+): maybeStr is "" | null | undefined {
+	return maybeStr === null || maybeStr === undefined || maybeStr === "";
+}
+
+/**
+ * Runtime non-null assertion.
+ */
+export function NotNullish<T>(maybeValue: T | null | undefined): T {
+	if (maybeValue === null || maybeValue === undefined) {
+		throw new Error(
+			`NON-NULL ASSERTION FAILED: Expected Non-null/undefined value, got ${
+				maybeValue as null | undefined
+			}.`
+		);
+	}
+
+	return maybeValue;
+}
+
+export function IsNullish<T>(maybeValue: T | null | undefined): maybeValue is null | undefined {
+	return maybeValue === null || maybeValue === undefined;
+}
+
+export function IsRecord(maybeRecord: unknown): maybeRecord is Record<string, unknown> {
+	return typeof maybeRecord === "object" && maybeRecord !== null;
 }

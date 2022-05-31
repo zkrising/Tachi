@@ -1,7 +1,3 @@
-import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
-import { BulkWriteUpdateOneOperation } from "mongodb";
-import { integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 import {
 	BMSMergeFn,
 	IIDXMergeFn,
@@ -9,6 +5,10 @@ import {
 	SDVXMergeFn,
 	USCMergeFn,
 } from "./game-specific-merge";
+import db from "external/mongo/db";
+import type { KtLogger } from "lib/logger/logger";
+import type { BulkWriteUpdateOneOperation } from "mongodb";
+import type { Game, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
 
 export type PBScoreDocumentNoRank = Omit<PBScoreDocument, "rankingData">;
 
@@ -46,7 +46,9 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
 				"scoreData.lampIndex": -1,
 			},
 		}
-	)) as ScoreDocument; // guaranteed to not be null, as this always resolves
+	)) as ScoreDocument;
+
+	// ^ guaranteed to not be null, as this always resolves
 	// to atleast one score (and we got ScorePB above, so we know there's
 	// atleast one).
 
@@ -75,12 +77,11 @@ export async function UpdateChartRanking(chartID: string) {
 		}
 	);
 
-	const bwrite: BulkWriteUpdateOneOperation<PBScoreDocument>[] = [];
+	const bwrite: Array<BulkWriteUpdateOneOperation<PBScoreDocument>> = [];
 
 	let rank = 0;
 
-	for (let i = 0; i < scores.length; i++) {
-		const score = scores[i];
+	for (const score of scores) {
 		rank++;
 
 		bwrite.push({
@@ -107,24 +108,12 @@ export async function UpdateChartRanking(chartID: string) {
 	await db["personal-bests"].bulkWrite(bwrite, { ordered: false });
 }
 
-// Explicit acknowledgement that typing this properly simply takes too much time
-// This is a function that is aptly described below when you see how its called.
-// They return true on success, false on failure, and mutate their arguments.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const GAME_SPECIFIC_MERGE_FNS: Record<string, any> = {
-	iidx: IIDXMergeFn,
-	sdvx: SDVXMergeFn,
-	usc: USCMergeFn,
-	popn: PopnMergeFn,
-	bms: BMSMergeFn,
-};
-
 async function MergeScoreLampIntoPB(
 	userID: integer,
 	scorePB: ScoreDocument,
 	lampPB: ScoreDocument,
 	logger: KtLogger
-): Promise<PBScoreDocumentNoRank | void> {
+): Promise<PBScoreDocumentNoRank | undefined> {
 	// @hack
 	// since time cannot be negative, this is a rough hack
 	// to resolve nullable timeAchieveds without hitting NaN.
@@ -159,22 +148,45 @@ async function MergeScoreLampIntoPB(
 			lamp: lampPB.scoreData.lamp,
 			lampIndex: lampPB.scoreData.lampIndex,
 			judgements: scorePB.scoreData.judgements,
-			hitMeta: scorePB.scoreData.hitMeta, // this will probably be overrode by game-specific fns
+
+			// this will probably be overrode by game-specific fns
+			hitMeta: scorePB.scoreData.hitMeta,
 		},
 		calculatedData: scorePB.calculatedData,
 	};
 
-	const GameSpecificMergeFn = GAME_SPECIFIC_MERGE_FNS[scorePB.game];
+	const GameSpecificMergeFn = GetGameSpecificMergeFn(scorePB.game);
+
 	if (GameSpecificMergeFn) {
+		// @ts-expect-error Yeah, this call sucks. It correctly warns us that scorePB and lampPB
+		// might've diverged, but we know they haven't.
 		const success = await GameSpecificMergeFn(pbDoc, scorePB, lampPB, logger);
 
 		// If the mergeFn returns false, this means something has gone
 		// rather wrong. We just return undefined here, which in turn
 		// tells our calling code to skip this PB entirely.
-		if (success === false) {
+		if (!success) {
 			return;
 		}
 	}
 
 	return pbDoc;
+}
+
+function GetGameSpecificMergeFn(game: Game) {
+	switch (game) {
+		case "iidx":
+			return IIDXMergeFn;
+		case "usc":
+			return USCMergeFn;
+		case "sdvx":
+			return SDVXMergeFn;
+		case "popn":
+			return PopnMergeFn;
+		case "bms":
+		case "pms":
+			return BMSMergeFn;
+		default:
+			return null;
+	}
 }

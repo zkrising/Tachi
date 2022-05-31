@@ -1,10 +1,10 @@
 import db from "external/mongo/db";
-import { ImportDocument } from "tachi-common";
 import t from "tap";
 import { mkFakeImport } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { ApplyNTimes } from "utils/misc";
+import type { ImportDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/imports", (t) => {
 	t.beforeEach(ResetDBState);

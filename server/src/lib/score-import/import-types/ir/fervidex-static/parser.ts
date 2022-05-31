@@ -1,14 +1,17 @@
-import { KtLogger } from "lib/logger/logger";
-import p, { PrudenceSchema } from "prudence";
-import { FormatPrError } from "utils/prudence";
+import { CreateFerStaticClassHandler } from "./class-handler";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { ParserFunctionReturns } from "../../common/types";
-import { FerHeaders, SoftwareIDToVersion } from "../fervidex/parser";
-import { CreateFerStaticClassHandler } from "./class-handler";
-import { FervidexStaticContext, FervidexStaticScore } from "./types";
+import { SoftwareIDToVersion } from "../fervidex/parser";
+import p from "prudence";
+import { IsRecord } from "utils/misc";
+import { FormatPrError } from "utils/prudence";
+import type { ParserFunctionReturns } from "../../common/types";
+import type { FerHeaders } from "../fervidex/parser";
+import type { FervidexStaticContext, FervidexStaticScore } from "./types";
+import type { KtLogger } from "lib/logger/logger";
+import type { PrudenceSchema } from "prudence";
 
-const PR_FervidexStatic: PrudenceSchema = {
+const PR_FERVIDEX_STATIC: PrudenceSchema = {
 	ex_score: p.isPositiveInteger,
 	miss_count: p.optional(p.nullable(p.or(p.isPositiveInteger, p.is(-1)))),
 	clear_type: p.isBoundedInteger(0, 7),
@@ -21,28 +24,23 @@ export function ParseFervidexStatic(
 ): ParserFunctionReturns<FervidexStaticScore, FervidexStaticContext> {
 	const version = SoftwareIDToVersion(headers.model, logger);
 
-	const staticScores = body?.scores;
+	const staticScores = body.scores;
 
-	if (!staticScores || typeof staticScores !== "object") {
+	if (!IsRecord(staticScores)) {
 		throw new ScoreImportFatalError(400, `Invalid body.scores.`);
 	}
 
-	const scores: FervidexStaticScore[] = [];
+	const scores: Array<FervidexStaticScore> = [];
 
-	for (const songID in staticScores) {
-		// @ts-expect-error pls.
-		const subScores = staticScores[songID];
+	for (const [songID, subScores] of Object.entries(staticScores)) {
+		const intSongID = AssertStrAsPositiveInt(songID, `Invalid songID ${songID}.`);
 
-		const song_id = AssertStrAsPositiveInt(songID, `Invalid songID ${songID}.`);
-
-		if (!subScores || typeof subScores !== "object") {
+		if (!IsRecord(subScores)) {
 			throw new ScoreImportFatalError(400, `Invalid score with songID ${songID}.`);
 		}
 
-		for (const chart in subScores) {
-			const score = subScores[chart];
-
-			if (!score || typeof subScores !== "object") {
+		for (const [chart, score] of Object.entries(subScores)) {
+			if (!IsRecord(score)) {
 				throw new ScoreImportFatalError(
 					400,
 					`Invalid score with songID ${songID} at chart ${chart}.`
@@ -53,7 +51,7 @@ export function ParseFervidexStatic(
 				throw new ScoreImportFatalError(400, `Invalid chart ${chart}.`);
 			}
 
-			const err = p(score, PR_FervidexStatic);
+			const err = p(score, PR_FERVIDEX_STATIC);
 
 			if (err) {
 				throw new ScoreImportFatalError(
@@ -62,13 +60,17 @@ export function ParseFervidexStatic(
 				);
 			}
 
+			// is asserted by prudence.
+			const sc = score as unknown as FervidexStaticScore;
+
 			scores.push({
-				song_id,
-				// is asserted with the above check
+				song_id: intSongID,
+
+				// is asserted with the above "spb"... check
 				chart: chart as FervidexStaticScore["chart"],
-				clear_type: score.clear_type,
-				ex_score: score.ex_score,
-				miss_count: score.miss_count === undefined ? null : score.miss_count,
+				clear_type: sc.clear_type,
+				ex_score: sc.ex_score,
+				miss_count: sc.miss_count === undefined ? null : sc.miss_count,
 			});
 		}
 	}

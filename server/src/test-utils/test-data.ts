@@ -1,6 +1,5 @@
 import dm from "deepmerge";
 import db from "external/mongo/db";
-import fs from "fs";
 import {
 	USC_DEFAULT_HOLD,
 	USC_DEFAULT_MISS,
@@ -8,13 +7,17 @@ import {
 	USC_DEFAULT_PERFECT,
 	USC_DEFAULT_SLAM,
 } from "lib/constants/usc-ir";
-import { DryScore } from "lib/score-import/framework/common/types";
-import { BarbatosScore } from "lib/score-import/import-types/ir/barbatos/types";
-import { KsHookSV6CScore } from "lib/score-import/import-types/ir/kshook-sv6c/types";
-import { LR2HookScore } from "lib/score-import/import-types/ir/lr2hook/types";
+import { ApplyNTimes, RFA } from "utils/misc";
+import fs from "fs";
 import path from "path";
-import { USCClientScore } from "server/router/ir/usc/_playtype/types";
-import {
+import type { DryScore } from "lib/score-import/framework/common/types";
+import type { S3Score } from "lib/score-import/import-types/file/solid-state-squad/types";
+import type { BarbatosScore } from "lib/score-import/import-types/ir/barbatos/types";
+import type { FervidexScore } from "lib/score-import/import-types/ir/fervidex/types";
+import type { KsHookSV6CScore } from "lib/score-import/import-types/ir/kshook-sv6c/types";
+import type { LR2HookScore } from "lib/score-import/import-types/ir/lr2hook/types";
+import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
+import type {
 	ChartDocument,
 	FolderDocument,
 	GoalDocument,
@@ -29,11 +32,12 @@ import {
 	SongDocument,
 	UGPTSettings,
 } from "tachi-common";
-import { ApplyNTimes, RFA } from "utils/misc";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
 
-export const GetKTDataJSON = (name: string) => JSON.parse(fs.readFileSync(file(name), "utf-8"));
+export const GetKTDataJSON = (name: string) =>
+	JSON.parse(fs.readFileSync(file(name), "utf-8")) as unknown;
+
 export const GetKTDataBuffer = (name: string) => fs.readFileSync(file(name));
 
 export const TestingIIDXSPDryScore: DryScore<"iidx:SP"> = {
@@ -149,7 +153,9 @@ export const TestingSDVXScore: ScoreDocument<"sdvx:Single"> = {
 	calculatedData: {},
 	timeAchieved: 1619454485988,
 	songID: 1,
-	chartID: "5088a4d0e1ee9d0cc2f625934306e45b1a60699b", // albida adv
+
+	// albida adv
+	chartID: "5088a4d0e1ee9d0cc2f625934306e45b1a60699b",
 	highlight: false,
 	isPrimary: true,
 	comment: null,
@@ -332,6 +338,20 @@ export const BMSGazerChart: ChartDocument<"bms:7K"> = {
 	isPrimary: true,
 	versions: [],
 	tierlistInfo: {},
+};
+
+export const BMSGazerSong: SongDocument<"bms"> = {
+	id: 27339,
+	title: "gazer [MANIAQ]",
+	artist: "scytheleg / obj.siokaze",
+	data: {
+		subtitle: null,
+		subartist: null,
+		genre: "ELECTRANCE",
+		tableString: null,
+	},
+	searchTerms: [],
+	altTitles: [],
 };
 
 export const CHUNITHMBBKKChart: ChartDocument<"chunithm:Single"> = {
@@ -523,14 +543,14 @@ export const TestingIIDXSPMilestone: MilestoneDocument = {
 	],
 };
 
-export const IIDXSPMilestoneGoals: GoalDocument[] = [
+export const IIDXSPMilestoneGoals: Array<GoalDocument> = [
 	dm(HC511Goal, { goalID: "eg_goal_1" }) as GoalDocument,
 	dm(HC511Goal, { goalID: "eg_goal_2", criteria: { value: 2 } }),
 	dm(HC511Goal, { goalID: "eg_goal_3", criteria: { key: "scoreData.score", value: 300 } }),
 	dm(HC511Goal, { goalID: "eg_goal_4", criteria: { key: "scoreData.score", value: 1100 } }),
 ];
 
-export const IIDXSPMilestoneGoalSubs: GoalSubscriptionDocument[] = [
+export const IIDXSPMilestoneGoalSubs: Array<GoalSubscriptionDocument> = [
 	dm(HC511UserGoal, { goalID: "eg_goal_1" }) as GoalSubscriptionDocument,
 	dm(HC511UserGoal, { goalID: "eg_goal_2" }) as GoalSubscriptionDocument,
 	dm(HC511UserGoal, { goalID: "eg_goal_3" }) as GoalSubscriptionDocument,
@@ -550,7 +570,9 @@ export const TestingIIDXSPMilestoneSub: MilestoneSubscriptionDocument = {
 	wasInstantlyAchieved: false,
 };
 
-let KTDATA_CACHE: { songs: unknown[]; charts: unknown[] } | undefined;
+let KTDATA_CACHE:
+	| { songs: Array<SongDocument<"iidx">>; charts: Array<ChartDocument<"iidx:DP" | "iidx:SP">> }
+	| undefined;
 
 export async function LoadTachiIIDXData() {
 	let songs;
@@ -560,8 +582,11 @@ export async function LoadTachiIIDXData() {
 		songs = KTDATA_CACHE.songs;
 		charts = KTDATA_CACHE.charts;
 	} else {
-		songs = GetKTDataJSON("./tachi/tachi-songs-iidx.json");
-		charts = GetKTDataJSON("./tachi/tachi-charts-iidx.json");
+		songs = GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument<"iidx">>;
+		charts = GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<
+			ChartDocument<"iidx:DP" | "iidx:SP">
+		>;
+
 		KTDATA_CACHE = { songs, charts };
 	}
 
@@ -571,7 +596,7 @@ export async function LoadTachiIIDXData() {
 	await db.charts.iidx.insert(charts);
 }
 
-export const barbScore: BarbatosScore = {
+export const MockBarbatosScore: BarbatosScore = {
 	clear_type: 2,
 	did_fail: false,
 	difficulty: 1,
@@ -699,4 +724,281 @@ export const FakeNotification: NotificationDocument = {
 			milestoneID: "a",
 		},
 	},
+};
+
+export const FervidexStaticBase = {
+	name: "AIXXE",
+	qpro: {
+		body: 189,
+		face: 138,
+		hair: 76,
+		hand: 145,
+		head: 0,
+	},
+	scores: {
+		"1000": {
+			spa: {
+				clear_type: 4,
+				ex_score: 1180,
+				miss_count: 40,
+			},
+			spn: {
+				clear_type: 7,
+				ex_score: 158,
+				miss_count: 0,
+			},
+		},
+		"1001": {
+			dph: {
+				clear_type: 3,
+				ex_score: 15,
+				miss_count: 1,
+			},
+		},
+	},
+	sp_dan: 15,
+};
+
+export const FervidexBaseScore: FervidexScore = {
+	bad: 0,
+	chart: "spa",
+	clear_type: 1,
+	combo_break: 6,
+	custom: false,
+	chart_sha256: "asdfasdf",
+	entry_id: 1000,
+	ex_score: 68,
+	fast: 0,
+	gauge: [100, 50],
+	ghost: [0, 2],
+	good: 0,
+	great: 0,
+	max_combo: 34,
+	option: {
+		gauge: "HARD",
+		range: "SUDDEN_PLUS",
+		style: "RANDOM",
+	},
+	pacemaker: {
+		name: "",
+		score: 363,
+		type: "PACEMAKER_A",
+	},
+	pgreat: 34,
+	poor: 6,
+	slow: 0,
+};
+
+export const FervidexBaseGSMScore: FervidexScore = {
+	bad: 0,
+	chart: "spa",
+	clear_type: 1,
+	combo_break: 6,
+	dead: {
+		measure: 18,
+		note: 40,
+	},
+	entry_id: 1000,
+	custom: false,
+	chart_sha256: "asdfasdf",
+	ex_score: 68,
+	fast: 0,
+	gauge: [100, 50],
+	ghost: [0, 2],
+	good: 0,
+	great: 0,
+	max_combo: 34,
+	option: {
+		gauge: "HARD",
+		range: "SUDDEN_PLUS",
+		style: "RANDOM",
+	},
+	pacemaker: {
+		name: "",
+		score: 363,
+		type: "PACEMAKER_A",
+	},
+	pgreat: 34,
+	poor: 6,
+	slow: 0,
+	"2dx-gsm": {
+		EASY: [0, 10],
+		NORMAL: [0, 20],
+		HARD: [20, 0],
+		EX_HARD: [10, 0],
+	},
+};
+
+export const MockBeatorajaBMSScore = {
+	chart: {
+		md5: "38616b85332037cc12924f2ae2840262",
+		sha256: "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d",
+		title: "GAZER [MANIAQ]",
+		subtitle: "",
+		genre: "TRANCE",
+		artist: "the dude who made gazer",
+		subartist: "",
+		url: "",
+		appendurl: "",
+		level: 8,
+		total: 220,
+		mode: "BEAT_7K",
+		lntype: 0,
+		judge: 100,
+		minbpm: 135,
+		maxbpm: 135,
+		notes: 568,
+		hasUndefinedLN: false,
+		hasLN: false,
+		hasCN: false,
+		hasHCN: false,
+		hasMine: false,
+		hasRandom: false,
+		hasStop: false,
+		values: {},
+	},
+	score: {
+		sha256: "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d",
+		lntype: 0,
+		player: "unknown",
+		clear: "Easy",
+		date: 0,
+		epg: 332,
+		lpg: 127,
+		egr: 65,
+		lgr: 21,
+		egd: 2,
+		lgd: 2,
+		ebd: 1,
+		lbd: 0,
+		epr: 7,
+		lpr: 11,
+		ems: 1,
+		lms: 0,
+		maxcombo: 223,
+		notes: 568,
+		passnotes: 568,
+		minbp: 20,
+		option: 2,
+		assist: 0,
+		gauge: -1,
+		deviceType: "BM_CONTROLLER",
+		judgeAlgorithm: "Combo",
+		rule: "LR2",
+		exscore: 1004,
+	},
+	client: "LR2oraja 0.8.0",
+};
+
+export const MockBeatorajaPMSScore = {
+	chart: {
+		md5: "d1253dd56bb2087d0b0d474f0d562aae",
+		sha256: "a10193f7ae05ce839292dc716f182fda0b1cc6ac5382c2056f37e22ffba87b7d",
+		title: "GPMSAZER [MANIAQ]",
+		subtitle: "",
+		genre: "Annihilate the living",
+		artist: "Rocky",
+		subartist: "",
+		url: "",
+		appendurl: "",
+		level: 8,
+		total: 220,
+		mode: "POPN_9K",
+		lntype: 0,
+		judge: 100,
+		minbpm: 135,
+		maxbpm: 135,
+		notes: 568,
+		hasUndefinedLN: false,
+		hasLN: false,
+		hasCN: false,
+		hasHCN: false,
+		hasMine: false,
+		hasRandom: false,
+		hasStop: false,
+		values: {},
+	},
+	score: {
+		sha256: "a10193f7ae05ce839292dc716f182fda0b1cc6ac5382c2056f37e22ffba87b7d",
+		lntype: 0,
+		player: "unknown",
+		clear: "Easy",
+		date: 0,
+		epg: 332,
+		lpg: 127,
+		egr: 65,
+		lgr: 21,
+		egd: 2,
+		lgd: 2,
+		ebd: 1,
+		lbd: 0,
+		epr: 7,
+		lpr: 11,
+		ems: 1,
+		lms: 0,
+		maxcombo: 223,
+		notes: 568,
+		passnotes: 568,
+		minbp: 20,
+		option: 2,
+		assist: 0,
+		gauge: -1,
+		deviceType: "BM_CONTROLLER",
+		judgeAlgorithm: "Combo",
+		rule: "LR2",
+		exscore: 1004,
+	},
+	client: "beatoraja 0.8.0",
+};
+
+export const MockParsedS3Score: S3Score = {
+	id: 187,
+	diff: "A",
+	songname: "5.1.1.",
+	styles: "7th",
+	exscore: 100,
+	scorebreakdown: {
+		justgreats: 25,
+		greats: 50,
+		good: 0,
+		bad: 0,
+		poor: 4,
+	},
+	mods: {},
+	cleartype: "perfect",
+	date: "2010-10-19 04:54:22",
+};
+
+export const FakeSmallBatchManual = {
+	meta: {
+		game: "iidx",
+		playtype: "SP",
+		service: "foobar",
+	},
+	scores: [
+		{
+			score: 500,
+			lamp: "HARD CLEAR",
+			matchType: "songTitle",
+			identifier: "5.1.1.",
+			difficulty: "ANOTHER",
+		},
+	],
+};
+
+export const FakeChunitachiBatchManual = {
+	meta: {
+		game: "chunithm",
+		playtype: "Single",
+		service: "ChunItachi",
+	},
+	scores: [
+		{
+			score: 900000,
+			lamp: "CLEAR",
+			matchType: "songTitle",
+			identifier: "B.B.K.K.B.K.K.",
+			difficulty: "BASIC",
+		},
+	],
 };

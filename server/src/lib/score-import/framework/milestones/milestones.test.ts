@@ -1,20 +1,20 @@
+import { UpdateUsersMilestones } from "./milestones";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { GoalImportInfo } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPMilestone } from "test-utils/test-data";
-import { UpdateUsersMilestones } from "./milestones";
+import type { GoalImportInfo } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
-function CreateMockGII(...garr: [string, boolean][]) {
+function CreateMockGII(...garr: Array<[string, boolean]>) {
 	return garr.map((e) => ({
 		goalID: e[0],
 		old: {},
 		new: { achieved: e[1] },
-	})) as unknown as GoalImportInfo[];
+	})) as unknown as Array<GoalImportInfo>;
 }
 
 t.test("#UpdateUsersMilestones", (t) => {
@@ -149,6 +149,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 	t.test("Test with new goals on multiple milestones.", async (t) => {
 		delete TestingIIDXSPMilestone._id;
 		await db.milestones.insert(
+			// eslint-disable-next-line lines-around-comment
 			// @ts-expect-error lol
 			deepmerge(TestingIIDXSPMilestone, {
 				milestoneID: "some_other_milestone_with_mutual_goals",

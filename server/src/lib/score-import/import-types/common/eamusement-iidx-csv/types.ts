@@ -1,7 +1,7 @@
-import { GPTSupportedVersions } from "tachi-common";
+import type { GPTSupportedVersions } from "tachi-common";
 
 export interface EamusementScoreData {
-	difficulty: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
+	difficulty: "ANOTHER" | "BEGINNER" | "HYPER" | "LEGGENDARIA" | "NORMAL";
 	lamp: string;
 	exscore: string;
 	pgreat: string;
@@ -10,26 +10,27 @@ export interface EamusementScoreData {
 	level: string;
 }
 
-type BaseProps = {
+interface BaseProps {
 	title: string;
 	timestamp: string;
+}
+
+export type IIDXEamusementCSVData = BaseProps & {
+	score: EamusementScoreData;
 };
 
-export type IIDXEamusementCSVData = {
-	score: EamusementScoreData;
-} & BaseProps;
+type Props = "bp" | "exscore" | "great" | "lamp" | "level" | "pgreat";
 
-type Props = "exscore" | "lamp" | "pgreat" | "great" | "bp" | "level";
+type RawPropKeys = `${"another" | "beginner" | "hyper" | "leggendaria" | "normal"}-${Props}`;
 
-type RawPropKeys = `${"beginner" | "normal" | "hyper" | "another" | "leggendaria"}-${Props}`;
-
-export type RawIIDXEamusementCSVData = {
-	[K in RawPropKeys]: unknown;
-} & BaseProps & { [index: string]: unknown };
+export type RawIIDXEamusementCSVData = BaseProps &
+	Record<string, unknown> & {
+		[K in RawPropKeys]: unknown;
+	};
 
 export interface IIDXEamusementCSVContext {
-	playtype: "SP" | "DP";
-	importVersion: GPTSupportedVersions["iidx:SP" | "iidx:DP"];
+	playtype: "DP" | "SP";
+	importVersion: GPTSupportedVersions["iidx:DP" | "iidx:SP"];
 	hasBeginnerAndLegg: boolean;
 	service: string;
 }

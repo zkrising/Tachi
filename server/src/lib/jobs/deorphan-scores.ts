@@ -42,5 +42,11 @@ export async function DeoprhanScores() {
 }
 
 if (require.main === module) {
-	DeoprhanScores().then(() => process.exit(0));
+	DeoprhanScores()
+		.then(() => process.exit(0))
+		.catch((err: unknown) => {
+			logger.error(`Failed to de-orphan scores.`, { err });
+
+			process.exit(1);
+		});
 }

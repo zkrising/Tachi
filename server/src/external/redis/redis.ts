@@ -35,13 +35,13 @@ RedisClient.on("connect", () => {
 });
 
 export function CloseRedisConnection() {
-	return new Promise((resolve, reject) =>
+	return new Promise((resolve, reject) => {
 		RedisClient.quit((err, reply) => {
 			if (err) {
 				reject(err);
 			} else {
 				resolve(reply);
 			}
-		})
-	);
+		});
+	});
 }

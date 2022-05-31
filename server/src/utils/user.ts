@@ -1,16 +1,16 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { FindOneResult } from "monk";
-import {
+import { GetGamePTConfig, UserAuthLevels } from "tachi-common";
+import type { ProfileRatingAlgs } from "./string-checks";
+import type { FindOneResult } from "monk";
+import type {
 	APITokenDocument,
 	Game,
-	GetGamePTConfig,
 	IDStrings,
 	integer,
 	Playtype,
 	PublicUserDocument,
 	UGSRatingsLookup,
-	UserAuthLevels,
 	UserGameStats,
 } from "tachi-common";
 
@@ -46,7 +46,7 @@ export function GetUserCaseInsensitive(
 ): Promise<FindOneResult<PublicUserDocument>> {
 	return db.users.findOne({
 		usernameLowercase: username.toLowerCase(),
-	}) as Promise<FindOneResult<PublicUserDocument>>;
+	});
 }
 
 export async function CheckIfEmailInUse(email: string) {
@@ -65,19 +65,19 @@ export function GetUserPrivateInfo(userID: integer) {
 export function GetUserWithID(userID: integer): Promise<FindOneResult<PublicUserDocument>> {
 	return db.users.findOne({
 		id: userID,
-	}) as Promise<FindOneResult<PublicUserDocument>>;
+	});
 }
 
 export function GetSettingsForUser(userID: integer) {
 	return db["user-settings"].findOne({
-		userID: userID,
+		userID,
 	});
 }
 
 /**
  * Gets the users for these user IDs.
  */
-export async function GetUsersWithIDs(userIDs: integer[]) {
+export async function GetUsersWithIDs(userIDs: Array<integer>) {
 	const users = await db.users.find({
 		id: { $in: userIDs },
 	});
@@ -123,7 +123,7 @@ export async function GetUserWithIDGuaranteed(userID: integer): Promise<PublicUs
  */
 export function ResolveUser(usernameOrID: string) {
 	// user ID passed
-	if (usernameOrID.match(/^[0-9]+$/u)) {
+	if (/^[0-9]+$/u.exec(usernameOrID)) {
 		const intID = Number(usernameOrID);
 
 		return GetUserWithID(intID);
@@ -142,7 +142,7 @@ export function FormatUserDoc(userdoc: PublicUserDocument) {
 export async function GetUsersRanking(stats: UserGameStats) {
 	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
 
-	const aggRes = await db["game-stats"].aggregate([
+	const aggRes: [{ _id: null; ranking: integer }] = await db["game-stats"].aggregate([
 		{
 			$match: {
 				game: stats.game,
@@ -170,7 +170,7 @@ export async function GetUsersRanking(stats: UserGameStats) {
 		},
 	]);
 
-	return (aggRes[0].ranking + 1) as integer;
+	return aggRes[0].ranking + 1;
 }
 
 export function GetUGPTPlaycount(userID: integer, game: Game, playtype: Playtype) {
@@ -186,7 +186,10 @@ export async function GetAllRankings(stats: UserGameStats) {
 		)
 	);
 
-	return Object.fromEntries(entries);
+	return Object.fromEntries(entries) as Record<
+		ProfileRatingAlgs,
+		{ ranking: integer; outOf: integer }
+	>;
 }
 
 export async function GetUsersRankingAndOutOf(
@@ -197,7 +200,13 @@ export async function GetUsersRankingAndOutOf(
 
 	const ratingAlg = alg ?? gptConfig.defaultProfileRatingAlg;
 
-	const aggRes = await db["game-stats"].aggregate([
+	const aggRes: [
+		{
+			_id: null;
+			outOf: integer;
+			ranking: integer;
+		}
+	] = await db["game-stats"].aggregate([
 		{
 			$match: {
 				game: stats.game,
@@ -224,8 +233,8 @@ export async function GetUsersRankingAndOutOf(
 	]);
 
 	return {
-		ranking: (aggRes[0].ranking + 1) as integer,
-		outOf: aggRes[0].outOf as integer,
+		ranking: aggRes[0].ranking + 1,
+		outOf: aggRes[0].outOf,
 	};
 }
 
@@ -248,7 +257,7 @@ export async function IsRequesterAdmin(request: APITokenDocument) {
 		return false;
 	}
 
-	if (!request.userID) {
+	if (request.userID === null) {
 		return false;
 	}
 

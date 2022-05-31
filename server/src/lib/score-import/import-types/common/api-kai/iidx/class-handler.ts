@@ -1,15 +1,15 @@
-import { IIDXDans } from "lib/constants/classes";
-import { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
-import nodeFetch from "utils/fetch";
 import { KaiTypeToBaseURL } from "../utils";
+import { IIDXDans } from "lib/constants/classes";
+import nodeFetch from "utils/fetch";
+import { IsRecord } from "utils/misc";
+import type { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
 
 export async function CreateKaiIIDXClassHandler(
-	kaiType: "FLO" | "EAG",
+	kaiType: "EAG" | "FLO",
 	token: string,
 	fetch = nodeFetch
 ): Promise<ClassHandler> {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let json: any;
+	let json: unknown;
 	let err: unknown;
 	const baseUrl = KaiTypeToBaseURL(kaiType);
 
@@ -23,31 +23,45 @@ export async function CreateKaiIIDXClassHandler(
 			},
 		});
 
-		json = await res.json();
-	} catch (e) {
+		json = (await res.json()) as unknown;
+	} catch (e: unknown) {
 		err = e;
 	}
 
 	return (game, playtype, userID, ratings, logger) => {
-		if (err) {
+		if (err !== undefined) {
 			logger.error(`An error occured while updating classes for ${baseUrl}.`, { err });
 			return {};
 		}
 
-		let iidxDan: number | null;
+		if (!IsRecord(json)) {
+			logger.error(`JSON Returned from server was not an object? Not updating anything.`, {
+				json,
+			});
+			return {};
+		}
+
+		let maybeIIDXDan: unknown;
 
 		if (playtype === "SP") {
-			iidxDan = json.sp;
+			maybeIIDXDan = json.sp;
 		} else if (playtype === "DP") {
-			iidxDan = json.dp;
+			maybeIIDXDan = json.dp;
 		} else {
 			logger.warn(`KAIIIDXClassUpdater called with invalid playtype of ${playtype}.`);
 			return {};
 		}
 
-		if (iidxDan === null || iidxDan === undefined) {
+		if (
+			maybeIIDXDan === null ||
+			maybeIIDXDan === undefined ||
+			typeof maybeIIDXDan !== "number"
+		) {
+			logger.info(`User has no ${playtype} dan. Not updating anything.`);
 			return {};
 		}
+
+		const iidxDan: number = maybeIIDXDan;
 
 		if (!Number.isInteger(iidxDan)) {
 			logger.warn(`${baseUrl} returned a dan of ${iidxDan}, which was not a number.`);

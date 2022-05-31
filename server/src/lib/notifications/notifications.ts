@@ -1,6 +1,6 @@
 import db from "external/mongo/db";
-import { integer, NotificationBody, NotificationDocument } from "tachi-common";
 import { Random20Hex } from "utils/misc";
+import type { integer, NotificationBody, NotificationDocument } from "tachi-common";
 
 function ConstructNotificationDoc(
 	title: string,
@@ -34,7 +34,11 @@ export function SendNotification(title: string, toUserID: integer, body: Notific
  * Send notifications to multiple users at once. This is more efficient than calling
  * send notification in parallel.
  */
-export function BulkSendNotification(title: string, toUserIDs: integer[], body: NotificationBody) {
+export function BulkSendNotification(
+	title: string,
+	toUserIDs: Array<integer>,
+	body: NotificationBody
+) {
 	const notifications = toUserIDs.map((e) => ConstructNotificationDoc(title, e, body));
 
 	return db.notifications.insert(notifications);

@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { integer } from "tachi-common";
+import type { integer } from "tachi-common";
 
 /**
  * If a user has no ongoing import, enable the import lock and return true.

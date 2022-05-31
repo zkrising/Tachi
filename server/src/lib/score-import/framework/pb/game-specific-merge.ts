@@ -1,14 +1,14 @@
-import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
-import { Volforce } from "rg-stats";
-import { PBScoreDocument, ScoreDocument } from "tachi-common";
-import { FindChartWithChartID } from "utils/queries/charts";
 import { InternalFailure } from "../common/converter-failures";
+import db from "external/mongo/db";
+import { Volforce } from "rg-stats";
+import { FindChartWithChartID } from "utils/queries/charts";
+import type { KtLogger } from "lib/logger/logger";
+import type { PBScoreDocument, ScoreDocument } from "tachi-common";
 
 export async function IIDXMergeFn(
-	pbDoc: PBScoreDocument<"iidx:SP" | "iidx:DP">,
-	scorePB: ScoreDocument<"iidx:SP" | "iidx:DP">,
-	lampPB: ScoreDocument<"iidx:SP" | "iidx:DP">,
+	pbDoc: PBScoreDocument<"iidx:DP" | "iidx:SP">,
+	scorePB: ScoreDocument<"iidx:DP" | "iidx:SP">,
+	lampPB: ScoreDocument<"iidx:DP" | "iidx:SP">,
 	logger: KtLogger
 ): Promise<boolean> {
 	// lampRating needs to be updated.
@@ -23,16 +23,18 @@ export async function IIDXMergeFn(
 		},
 		{
 			sort: {
-				"scoreData.hitMeta.bp": 1, // bp 0 is the best BP, bp 1 is worse, so on
+				// bp 0 is the best BP, bp 1 is worse, so on
+				"scoreData.hitMeta.bp": 1,
 			},
 		}
-	)) as ScoreDocument<"iidx:SP" | "iidx:DP">;
+	)) as ScoreDocument<"iidx:DP" | "iidx:SP"> | null;
 
 	if (!bpPB) {
 		logger.verbose(
 			`Could not find BP PB for ${scorePB.userID} ${scorePB.chartID} in PB joining. User likely has no scores with BP defined.`,
 			{ pbDoc }
 		);
+
 		// this isn't actually an error! we just don't have to do anything.
 		return true;
 	}
@@ -63,7 +65,7 @@ export function PopnMergeFn(
 	pbDoc: PBScoreDocument<"popn:9B">,
 	scorePB: ScoreDocument<"popn:9B">,
 	lampPB: ScoreDocument<"popn:9B">,
-	logger: KtLogger
+	_logger: KtLogger
 ) {
 	pbDoc.scoreData.hitMeta.specificClearType = lampPB.scoreData.hitMeta.specificClearType;
 
@@ -74,7 +76,7 @@ export function BMSMergeFn(
 	pbDoc: PBScoreDocument<"bms:7K" | "bms:14K">,
 	scorePB: ScoreDocument<"bms:7K" | "bms:14K">,
 	lampPB: ScoreDocument<"bms:7K" | "bms:14K">,
-	logger: KtLogger
+	_logger: KtLogger
 ) {
 	pbDoc.calculatedData.sieglinde = lampPB.calculatedData.sieglinde;
 
@@ -87,9 +89,9 @@ export function BMSMergeFn(
  * This is near-identical to the SDVXMergeFn. See that.
  */
 export async function USCMergeFn(
-	pbDoc: PBScoreDocument<"usc:Keyboard" | "usc:Controller">,
-	scorePB: ScoreDocument<"usc:Keyboard" | "usc:Controller">,
-	lampPB: ScoreDocument<"usc:Keyboard" | "usc:Controller">,
+	pbDoc: PBScoreDocument<"usc:Controller" | "usc:Keyboard">,
+	scorePB: ScoreDocument<"usc:Controller" | "usc:Keyboard">,
+	lampPB: ScoreDocument<"usc:Controller" | "usc:Keyboard">,
 	logger: KtLogger
 ) {
 	// @optimisable - see SDVXMergeFn

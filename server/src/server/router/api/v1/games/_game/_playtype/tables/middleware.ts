@@ -1,11 +1,10 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
+import type { RequestHandler } from "express";
 
 export const GetTableFromParam: RequestHandler = async (req, res, next) => {
-	const game = req[SYMBOL_TachiData]!.game;
-	const playtype = req[SYMBOL_TachiData]!.playtype;
+	const game = GetTachiData(req, "game");
+	const playtype = GetTachiData(req, "playtype");
 
 	const table = await db.tables.findOne({ tableID: req.params.tableID, game, playtype });
 
@@ -18,5 +17,5 @@ export const GetTableFromParam: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { tableDoc: table });
 
-	return next();
+	next();
 };

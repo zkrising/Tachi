@@ -1,10 +1,10 @@
+import { GetFolderChartIDs, ResolveFolderToCharts, TransposeFolderData } from "./folder";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { ChartDocument, FolderDocument } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA } from "test-utils/test-data";
-import { GetFolderChartIDs, ResolveFolderToCharts, TransposeFolderData } from "./folder";
+import type { ChartDocument, FolderDocument } from "tachi-common";
 
 t.todo("#CreateFolderChartLookup");
 t.todo("#GetFolderCharts");
@@ -24,7 +24,7 @@ t.test("#ResolveFolderToCharts", (t) => {
 			const { charts } = await ResolveFolderToCharts(mockFolder as FolderDocument);
 
 			t.equal(charts.length, 1, "Should return exactly 1 chart.");
-			t.equal(charts[0].chartID, Testing511SPA.chartID, "Should return 511 [SPA]");
+			t.equal(charts[0]?.chartID, Testing511SPA.chartID, "Should return 511 [SPA]");
 
 			t.end();
 		});
@@ -61,7 +61,7 @@ t.test("#ResolveFolderToCharts", (t) => {
 			const { charts } = await ResolveFolderToCharts(mockFolder as FolderDocument);
 
 			t.equal(charts.length, 1, "Should return exactly 1 chart.");
-			t.equal(charts[0].chartID, Testing511SPA.chartID, "Should return 511 [SPA]");
+			t.equal(charts[0]?.chartID, Testing511SPA.chartID, "Should return 511 [SPA]");
 			t.end();
 		});
 
@@ -91,14 +91,15 @@ t.test("#ResolveFolderToCharts", (t) => {
 				playtype: "SP",
 				type: "charts",
 				data: {
-					songID: Testing511SPA.songID, // lol
+					// lol
+					songID: Testing511SPA.songID,
 				},
 			};
 
 			const { charts } = await ResolveFolderToCharts(mockFolder as FolderDocument);
 
 			t.equal(charts.length, 1, "Should return exactly 1 chart.");
-			t.equal(charts[0].chartID, Testing511SPA.chartID, "Should return 511 [SPA]");
+			t.equal(charts[0]?.chartID, Testing511SPA.chartID, "Should return 511 [SPA]");
 			t.end();
 		});
 
@@ -122,7 +123,8 @@ t.test("#ResolveFolderToCharts", (t) => {
 			playtype: "SP",
 			type: "charts",
 			data: {
-				songID: Testing511SPA.songID, // lol
+				// lol
+				songID: Testing511SPA.songID,
 			},
 		};
 
@@ -140,7 +142,7 @@ t.test("#ResolveFolderToCharts", (t) => {
 		});
 
 		t.equal(charts2.length, 1, "Should return exactly 1 chart.");
-		t.equal(charts2[0].chartID, "FAKE_511_SPN", "Should only return 511 SPN");
+		t.equal(charts2[0]?.chartID, "FAKE_511_SPN", "Should only return 511 SPN");
 
 		t.end();
 	});
@@ -151,7 +153,8 @@ t.test("#ResolveFolderToCharts", (t) => {
 			playtype: "SP",
 			type: "charts",
 			data: {
-				songID: Testing511SPA.songID, // lol
+				// lol
+				songID: Testing511SPA.songID,
 			},
 		};
 
@@ -162,10 +165,10 @@ t.test("#ResolveFolderToCharts", (t) => {
 		);
 
 		t.equal(charts.length, 1, "Should return exactly 1 chart.");
-		t.equal(charts[0].chartID, Testing511SPA.chartID, "Should return 511 [SPA]");
+		t.equal(charts[0]?.chartID, Testing511SPA.chartID, "Should return 511 [SPA]");
 
 		t.equal(songs.length, 1, "Should return exactly 1 song.");
-		t.equal(songs[0].id, Testing511SPA.songID, "Should return 511's song.");
+		t.equal(songs[0]?.id, Testing511SPA.songID, "Should return 511's song.");
 
 		t.end();
 	});

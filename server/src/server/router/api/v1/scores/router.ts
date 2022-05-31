@@ -1,5 +1,5 @@
-import { Router } from "express";
 import scoreIDRouter from "./_scoreID/router";
+import { Router } from "express";
 
 const router: Router = Router({ mergeParams: true });
 

@@ -1,7 +1,7 @@
+import { CSVParseError, NaiveCSVParse } from "./naive-csv-parser";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { TestingIIDXEamusementCSV27 } from "test-utils/test-data";
-import { CSVParseError, NaiveCSVParse } from "./naive-csv-parser";
 
 const logger = CreateLogCtx(__filename);
 
@@ -19,6 +19,7 @@ t.test("#ParseCSV", (t) => {
 		const csvBuffer = Buffer.from(`${headersStr}\n${rowsStr}`);
 
 		const { rawHeaders, rawRows } = NaiveCSVParse(csvBuffer, logger);
+
 		t.strictSame(rawHeaders, headers);
 		t.strictSame(rawRows, rows);
 
@@ -38,6 +39,7 @@ t.test("#ParseCSV", (t) => {
 		const csvBuffer = Buffer.from(`${headersStr}\n${rowsStr}\n`);
 
 		const { rawHeaders, rawRows } = NaiveCSVParse(csvBuffer, logger);
+
 		t.strictSame(rawHeaders, headers);
 		t.strictSame(rawRows, rows);
 

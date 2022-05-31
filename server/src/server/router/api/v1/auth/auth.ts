@@ -2,12 +2,14 @@ import bcrypt from "bcryptjs";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
-import { integer, PublicUserDocument, UserAuthLevels, UserSettings } from "tachi-common";
+import p from "prudence";
+import { UserAuthLevels } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { Random20Hex } from "utils/misc";
-import { PrivateUserInfoDocument } from "utils/types";
 import { CreateURLWithParams } from "utils/url";
 import { FormatUserDoc } from "utils/user";
+import type { integer, PublicUserDocument, UserSettings } from "tachi-common";
+import type { PrivateUserInfoDocument } from "utils/types";
 
 const logger = CreateLogCtx(__filename);
 
@@ -54,19 +56,6 @@ export async function AddNewInvite(user: PublicUserDocument) {
 	});
 
 	logger.info(`User ${FormatUserDoc(user)} created an invite.`);
-
-	if (!result) {
-		logger.error(
-			`Fatal error in creating ${FormatUserDoc(
-				user
-			)}'s invite code. Database refused key ${code}.`
-		);
-		throw new Error(
-			`Fatal error in creating ${FormatUserDoc(
-				user
-			)}'s invite code. Database refused key ${code}.`
-		);
-	}
 
 	return result;
 }
@@ -149,13 +138,33 @@ export async function ValidateCaptcha(
 		remoteip: remoteAddr ?? "",
 	});
 
-	const googleCaptchaRes = await fetch(url.href).then((r) => r.json());
+	const googleCaptchaRes: unknown = await fetch(url.href).then((r) => r.json());
 
-	if (!googleCaptchaRes.success) {
-		logger.verbose(`Failed GCaptcha response`, googleCaptchaRes);
+	const err = p(
+		googleCaptchaRes,
+		{
+			success: "boolean",
+		},
+		{},
+		{ allowExcessKeys: true }
+	);
+
+	if (err) {
+		logger.warn(
+			`Google ReCaptcha returned something without a success property? Assuming this captcha check failed.`,
+			{ googleCaptchaRes, err }
+		);
+		return false;
 	}
 
-	return googleCaptchaRes.success;
+	// asserted above
+	const gcr = googleCaptchaRes as { success: boolean };
+
+	if (!gcr.success) {
+		logger.verbose(`Failed GCaptcha response`, { gcr });
+	}
+
+	return gcr.success;
 }
 
 export function MountAuthCookie(

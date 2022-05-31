@@ -1,11 +1,11 @@
+import { SetRequestPermissions } from "./auth";
 import expMiddlewareMock from "express-request-mock";
 import db from "external/mongo/db";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import { ALL_PERMISSIONS } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { SetRequestPermissions } from "./auth";
 
 t.test("#SetRequestPermissions", (t) => {
 	t.beforeEach(ResetDBState);
@@ -27,7 +27,7 @@ t.test("#SetRequestPermissions", (t) => {
 			},
 		});
 
-		t.strictSame(req[SYMBOL_TachiAPIAuth], {
+		t.strictSame(req[SYMBOL_TACHI_API_AUTH], {
 			userID: 1,
 			identifier: "Mock API Token",
 			permissions: {
@@ -43,7 +43,7 @@ t.test("#SetRequestPermissions", (t) => {
 	t.test("Should assign guest APIKey information if no auth present", async (t) => {
 		const { req } = await expMiddlewareMock(SetRequestPermissions);
 
-		t.strictSame(req[SYMBOL_TachiAPIAuth], {
+		t.strictSame(req[SYMBOL_TACHI_API_AUTH], {
 			userID: null,
 			identifier: "Guest Token",
 			permissions: {},
@@ -64,6 +64,7 @@ t.test("#SetRequestPermissions", (t) => {
 		t.equal(res.statusCode, 400);
 
 		const json = res._getJSONData();
+
 		t.match(json.description, /Invalid Authorization Type - Expected Bearer/u);
 		t.end();
 	});
@@ -78,6 +79,7 @@ t.test("#SetRequestPermissions", (t) => {
 		t.equal(res.statusCode, 401);
 
 		const json = res._getJSONData();
+
 		t.match(json.description, /Invalid token/u);
 		t.end();
 	});
@@ -92,6 +94,7 @@ t.test("#SetRequestPermissions", (t) => {
 		t.equal(res.statusCode, 401);
 
 		const json = res._getJSONData();
+
 		t.match(
 			json.description,
 			/The provided API token does not correspond with any key in the database/u
@@ -109,7 +112,7 @@ t.test("#SetRequestPermissions", (t) => {
 			},
 		});
 
-		t.strictSame(req[SYMBOL_TachiAPIAuth], {
+		t.strictSame(req[SYMBOL_TACHI_API_AUTH], {
 			userID: 1,
 			identifier: `Session-Key 1`,
 			token: null,

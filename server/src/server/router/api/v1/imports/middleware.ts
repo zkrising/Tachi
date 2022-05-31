@@ -1,9 +1,9 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData, SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import { IsRequesterAdmin } from "utils/user";
+import type { RequestHandler } from "express";
 
 const logger = CreateLogCtx(__filename);
 
@@ -19,12 +19,12 @@ export const GetImportFromParam: RequestHandler = async (req, res, next) => {
 
 	AssignToReqTachiData(req, { importDoc });
 
-	return next();
+	next();
 };
 
 export const RequireOwnershipOfImportOrAdmin: RequestHandler = async (req, res, next) => {
-	const importDoc = req[SYMBOL_TachiData]!.importDoc!;
-	const userID = req[SYMBOL_TachiAPIAuth].userID;
+	const importDoc = GetTachiData(req, "importDoc");
+	const userID = req[SYMBOL_TACHI_API_AUTH].userID;
 
 	if (userID === null) {
 		return res.status(401).json({
@@ -34,9 +34,10 @@ export const RequireOwnershipOfImportOrAdmin: RequestHandler = async (req, res, 
 	}
 
 	if (importDoc.userID !== userID) {
-		if (await IsRequesterAdmin(req[SYMBOL_TachiAPIAuth])) {
+		if (await IsRequesterAdmin(req[SYMBOL_TACHI_API_AUTH])) {
 			logger.info(`Admin ${userID} interacted with someone elses import.`);
-			return next();
+			next();
+			return;
 		}
 
 		return res.status(403).json({
@@ -45,5 +46,5 @@ export const RequireOwnershipOfImportOrAdmin: RequestHandler = async (req, res, 
 		});
 	}
 
-	return next();
+	next();
 };

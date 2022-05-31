@@ -1,11 +1,11 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { FolderDocument } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
+import type { FolderDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/tables/:tableID", (t) => {
 	t.beforeEach(ResetDBState);
@@ -14,6 +14,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/tables/:tableID", (t) =>
 		const folder = deepmerge(TestingIIDXFolderSP10, {
 			folderID: "testing_folder",
 		}) as FolderDocument;
+
 		await db.folders.insert(folder);
 
 		await CreateFolderChartLookup(folder, true);

@@ -1,4 +1,4 @@
-import {
+import type {
 	FolderDocument,
 	TableDocument,
 	SessionDocument,
@@ -20,10 +20,23 @@ import {
 	ImportDocument,
 } from "tachi-common";
 
+// Inject additional properties on express-session
 declare module "express-session" {
-	// Inject additional properties on express-session
 	interface SessionData {
 		tachi: TachiSessionData;
+	}
+}
+
+declare module "express-serve-static-core" {
+	export interface Request {
+		// eslint-disable-next-line lines-around-comment
+		// KNOWN BUG IN TS-ESLINT.
+		/**
+		 * This is a type-safe variant of "req.safeBody".
+		 * "req.safeBody" is 'any' by default, which makes it exceptionally difficult
+		 * to use in our codebase (due to the strict cadence rules.)
+		 */
+		safeBody: Record<string, unknown>;
 	}
 }
 

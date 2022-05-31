@@ -1,21 +1,21 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SIXTEEN_MEGABTYES } from "lib/constants/filesize";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
 import { MakeScoreImport } from "lib/score-import/framework/score-import";
-import { ScoreImportJobData } from "lib/score-import/worker/types";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import Prudence from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import prValidate from "server/middleware/prudence-validate";
 import { ScoreImportRateLimiter } from "server/middleware/rate-limiter";
-import { APIImportTypes, FileUploadImportTypes } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { FormatUserDoc, GetUserWithIDGuaranteed } from "utils/user";
+import type { ScoreImportJobData } from "lib/score-import/worker/types";
+import type { APIImportTypes, FileUploadImportTypes } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -58,7 +58,7 @@ router.post(
 			});
 		}
 
-		const importType = req.body.importType as FileUploadImportTypes;
+		const importType = req.safeBody.importType as FileUploadImportTypes;
 
 		const userIntent = !!req.header("X-User-Intent");
 
@@ -67,14 +67,14 @@ router.post(
 
 			const job: ScoreImportJobData<FileUploadImportTypes> = {
 				importID,
-				userID: req[SYMBOL_TachiAPIAuth].userID!,
+				userID: req[SYMBOL_TACHI_API_AUTH].userID!,
 				userIntent,
 				importType,
-				parserArguments: [req.file, req.body],
+				parserArguments: [req.file, req.safeBody],
 			};
 
 			// Fire the score import, but make no guarantees about its state.
-			MakeScoreImport<FileUploadImportTypes>(job);
+			void MakeScoreImport<FileUploadImportTypes>(job);
 
 			return res.status(202).json({
 				success: true,
@@ -85,17 +85,17 @@ router.post(
 					importID,
 				},
 			});
-		} else {
-			// Fire the score import and wait for it to finish!
-			const importResponse = await ExpressWrappedScoreImportMain<FileUploadImportTypes>(
-				req[SYMBOL_TachiAPIAuth].userID!,
-				userIntent,
-				importType,
-				[req.file, req.body]
-			);
-
-			return res.status(importResponse.statusCode).json(importResponse.body);
 		}
+
+		// Fire the score import and wait for it to finish!
+		const importResponse = await ExpressWrappedScoreImportMain<FileUploadImportTypes>(
+			req[SYMBOL_TACHI_API_AUTH].userID!,
+			userIntent,
+			importType,
+			[req.file, req.safeBody]
+		);
+
+		return res.status(importResponse.statusCode).json(importResponse.body);
 	}
 );
 
@@ -114,11 +114,11 @@ router.post(
 		{ allowExcessKeys: true }
 	),
 	async (req, res) => {
-		const importType = req.body.importType as APIImportTypes;
+		const importType = req.safeBody.importType as APIImportTypes;
 
 		const importID = Random20Hex();
 
-		const userID = req[SYMBOL_TachiAPIAuth].userID!;
+		const userID = req[SYMBOL_TACHI_API_AUTH].userID!;
 
 		const userIntent = !!req.header("X-User-Intent");
 
@@ -132,7 +132,7 @@ router.post(
 			};
 
 			// Fire the score import, but make no guarantees about its state.
-			MakeScoreImport<APIImportTypes>(job);
+			void MakeScoreImport<APIImportTypes>(job);
 
 			return res.status(202).json({
 				success: true,
@@ -143,17 +143,17 @@ router.post(
 					importID,
 				},
 			});
-		} else {
-			// Fire the score import and wait for it to finish!
-			const importResponse = await ExpressWrappedScoreImportMain<APIImportTypes>(
-				userID,
-				userIntent,
-				importType,
-				[userID]
-			);
-
-			return res.status(importResponse.statusCode).json(importResponse.body);
 		}
+
+		// Fire the score import and wait for it to finish!
+		const importResponse = await ExpressWrappedScoreImportMain<APIImportTypes>(
+			userID,
+			userIntent,
+			importType,
+			[userID]
+		);
+
+		return res.status(importResponse.statusCode).json(importResponse.body);
 	}
 );
 
@@ -164,7 +164,7 @@ router.post(
  * @name POST /api/v1/import/orphans
  */
 router.post("/orphans", RequirePermissions("submit_score"), async (req, res) => {
-	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TachiAPIAuth].userID!);
+	const userDoc = await GetUserWithIDGuaranteed(req[SYMBOL_TACHI_API_AUTH].userID!);
 
 	logger.info(`User ${FormatUserDoc(userDoc)} forced an orphan sync.`);
 

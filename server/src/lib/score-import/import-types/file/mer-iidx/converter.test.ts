@@ -1,3 +1,4 @@
+import { ConvertFileMerIIDX } from "./converter";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
@@ -9,19 +10,26 @@ import {
 	Testing511Song,
 	Testing511SPA,
 } from "test-utils/test-data";
-import { ConvertFileMerIIDX } from "./converter";
-import { MerScore } from "./types";
+import type { MerScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
 
 t.test("#ConvertFileMerIIDX", (t) => {
 	t.beforeEach(ResetDBState);
 
+	const MerScore = {
+		music_id: 1000,
+		play_type: "SINGLE",
+		diff_type: "ANOTHER",
+		score: 1000,
+		miss_count: 21,
+		clear_type: "CLEAR",
+		update_time: "2021-03-24 07:15:22",
+	} as const;
+
 	function merc(g: Partial<MerScore> = {}) {
 		return ConvertFileMerIIDX(deepmerge(MerScore, g), {}, "file/mer-iidx", logger);
 	}
-
-	const MerScore = GetKTDataJSON("./mer/merscore.json");
 
 	t.test("Valid Conversion", async (t) => {
 		const res = await ConvertFileMerIIDX(MerScore, {}, "file/mer-iidx", logger);
@@ -38,6 +46,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 					service: "MER",
 					scoreData: {
 						score: 1000,
+
 						// percent: 63.61, approximately, fpa impossible.
 						grade: "B",
 						lamp: "CLEAR",
@@ -72,6 +81,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 					service: "MER",
 					scoreData: {
 						score: 1000,
+
 						// percent: 63.61, approximately, fpa impossible.
 						grade: "B",
 						lamp: "CLEAR",

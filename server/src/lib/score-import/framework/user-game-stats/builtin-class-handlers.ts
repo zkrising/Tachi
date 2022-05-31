@@ -6,9 +6,10 @@ import {
 	SDVXVFClasses,
 	WACCA_COLOURS,
 } from "lib/constants/classes";
-import { KtLogger } from "lib/logger/logger";
-import { Game, integer, Playtype, ScoreCalculatedDataLookup } from "tachi-common";
-import { GameClasses } from "tachi-common/js/game-classes";
+import { IsNullish } from "utils/misc";
+import type { KtLogger } from "lib/logger/logger";
+import type { Game, integer, Playtype, ScoreCalculatedDataLookup } from "tachi-common";
+import type { GameClasses } from "tachi-common/js/game-classes";
 
 export function CalculateSDVXClass(
 	game: Game,
@@ -17,7 +18,7 @@ export function CalculateSDVXClass(
 	ratings: Partial<Record<ScoreCalculatedDataLookup["sdvx:Single"], number>>,
 	logger: KtLogger
 ): Partial<GameClasses<"sdvx:Single">> {
-	if (!ratings.VF6) {
+	if (ratings.VF6 === undefined) {
 		return {};
 	}
 
@@ -53,9 +54,12 @@ export function CalculateGitadoraColour(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>,
-	logger: KtLogger
+	ratings: Record<string, number | null>
 ): Partial<GameClasses<"gitadora:Dora" | "gitadora:Gita">> {
+	if (IsNullish(ratings.skill)) {
+		return {};
+	}
+
 	const colour = GitadoraSkillToColour(ratings.skill);
 
 	return {
@@ -105,8 +109,12 @@ export function CalculateWACCAColour(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>
+	ratings: Record<string, number | null>
 ) {
+	if (IsNullish(ratings.rate)) {
+		return {};
+	}
+
 	const colour = WACCARateToColour(ratings.rate);
 
 	return { colour };
@@ -138,8 +146,12 @@ export function CalculatePopnClass(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>
+	ratings: Record<string, number | null>
 ) {
+	if (IsNullish(ratings.naiveClassPoints)) {
+		return {};
+	}
+
 	const cls = PopnClassPointsToClass(ratings.naiveClassPoints);
 
 	return { class: cls };
@@ -169,8 +181,12 @@ export function CalculateChunithmColour(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>
+	ratings: Record<string, number | null>
 ) {
+	if (IsNullish(ratings.naiveRating)) {
+		return {};
+	}
+
 	const colour = ChuniRatingToColour(ratings.naiveRating);
 
 	return { colour };
@@ -204,8 +220,12 @@ export function CalculateJubeatColour(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	ratings: Record<string, number>
+	ratings: Record<string, number | null>
 ) {
+	if (IsNullish(ratings.jubility)) {
+		return {};
+	}
+
 	const colour = JubilityToColour(ratings.jubility);
 
 	return { colour };

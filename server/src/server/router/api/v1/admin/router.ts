@@ -1,36 +1,39 @@
 /* eslint-disable no-await-in-loop */
-import { RequestHandler, Router } from "express";
-import p from "prudence";
-import { SYMBOL_TachiAPIAuth } from "lib/constants/tachi";
-import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger";
-import prValidate from "server/middleware/prudence-validate";
-import { GetUserWithID } from "utils/user";
-import { ONE_MINUTE } from "lib/constants/time";
-import { ServerConfig, TachiConfig } from "lib/setup/config";
-import { Game, UserAuthLevels } from "tachi-common";
+import { Router } from "express";
 import db from "external/mongo/db";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
+import { ONE_MINUTE } from "lib/constants/time";
+import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger";
 import { DeleteMultipleScores, DeleteScore } from "lib/score-mutation/delete-scores";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
+import p from "prudence";
+import prValidate from "server/middleware/prudence-validate";
+import { UserAuthLevels } from "tachi-common";
 import { RecalcAllScores, UpdateAllPBs } from "utils/calculations/recalc-scores";
-import DestroyUserGamePlaytypeData from "utils/reset-state/destroy-ugpt";
 import { RecalcSessions } from "utils/calculations/recalc-sessions";
+import { IsValidPlaytype } from "utils/misc";
+import DestroyUserGamePlaytypeData from "utils/reset-state/destroy-ugpt";
+import { GetUserWithID } from "utils/user";
+import type { RequestHandler } from "express";
+import type { Game, integer, Playtype } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 
 const RequireAdminLevel: RequestHandler = async (req, res, next) => {
-	if (!req[SYMBOL_TachiAPIAuth].userID) {
+	if (req[SYMBOL_TACHI_API_AUTH].userID === null) {
 		return res.status(401).json({
 			success: false,
 			description: `You are not authenticated.`,
 		});
 	}
 
-	const userDoc = await GetUserWithID(req[SYMBOL_TachiAPIAuth].userID!);
+	const userDoc = await GetUserWithID(req[SYMBOL_TACHI_API_AUTH].userID!);
 
 	if (!userDoc) {
 		logger.severe(
-			`Api Token ${req[SYMBOL_TachiAPIAuth].token} is assigned to ${req[SYMBOL_TachiAPIAuth].userID}, who does not exist?`
+			`Api Token ${req[SYMBOL_TACHI_API_AUTH].token} is assigned to ${req[SYMBOL_TACHI_API_AUTH].userID}, who does not exist?`
 		);
 
 		return res.status(500).json({
@@ -46,7 +49,7 @@ const RequireAdminLevel: RequestHandler = async (req, res, next) => {
 		});
 	}
 
-	return next();
+	next();
 };
 
 const LOG_LEVEL = ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
@@ -73,19 +76,26 @@ router.post(
 		noReset: p.optional("boolean"),
 	}),
 	(req, res) => {
-		const logLevel = GetLogLevel();
-		ChangeRootLogLevel(req.body.logLevel);
+		const body = req.safeBody as {
+			logLevel: "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn";
+			duration?: integer;
+			noReset?: boolean;
+		};
 
-		const duration = req.body.duration ?? 60;
+		const logLevel = GetLogLevel();
+
+		ChangeRootLogLevel(body.logLevel);
+
+		const duration = body.duration ?? 60;
 
 		if (currentLogLevelTimer) {
 			logger.verbose(`Removing last timer to reset log level to ${LOG_LEVEL}.`);
 			clearTimeout(currentLogLevelTimer);
 		}
 
-		logger.info(`Log level has been changed to ${req.body.level}.`);
+		logger.info(`Log level has been changed to ${body.logLevel}.`);
 
-		if (!req.body.noReset) {
+		if (body.noReset !== true) {
 			logger.info(`This will reset to "${LOG_LEVEL}" level in ${duration} minutes.`);
 
 			currentLogLevelTimer = setTimeout(() => {
@@ -97,7 +107,7 @@ router.post(
 
 		return res.status(200).json({
 			success: true,
-			description: `Changed log level from ${logLevel} to ${req.body.logLevel}.`,
+			description: `Changed log level from ${logLevel} to ${body.logLevel}.`,
 			body: {},
 		});
 	}
@@ -118,7 +128,12 @@ router.post(
 		filter: "*object",
 	}),
 	async (req, res) => {
-		await UpdateAllPBs(req.body.userIDs, req.body.filter);
+		const body = req.safeBody as {
+			userIDs?: Array<integer>;
+			filter?: object;
+		};
+
+		await UpdateAllPBs(body.userIDs, body.filter);
 
 		return res.status(200).json({
 			success: true,
@@ -136,7 +151,9 @@ router.post(
  * @name POST /api/v1/admin/delete-score
  */
 router.post("/delete-score", prValidate({ scoreID: "string" }), async (req, res) => {
-	const score = await db.scores.findOne({ scoreID: req.body.scoreID });
+	const body = req.safeBody as { scoreID: string };
+
+	const score = await db.scores.findOne({ scoreID: body.scoreID });
 
 	if (!score) {
 		return res.status(404).json({
@@ -168,14 +185,29 @@ router.post(
 	prValidate({
 		userID: p.isInteger,
 		game: p.isIn(TachiConfig.GAMES),
-		playtype: "string", // lazy
+		playtype: (self, parent) => {
+			if (typeof self !== "string") {
+				return "Expected a string for a playtype.";
+			}
+
+			if (!IsValidPlaytype(parent.game as Game, self)) {
+				return `Invalid playtype of ${self} for game ${parent.game as Game}.`;
+			}
+
+			return true;
+		},
 	}),
 	async (req, res) => {
-		const { userID, game, playtype } = req.body;
+		const { userID, game, playtype } = req.safeBody as {
+			userID: integer;
+			game: Game;
+			playtype: Playtype;
+		};
 
 		const ugpt = await db["game-stats"].findOne({
 			userID,
 			game,
+
 			playtype,
 		});
 
@@ -208,8 +240,12 @@ router.post(
 	"/destroy-chart",
 	prValidate({ chartID: "string", game: p.isIn(TachiConfig.GAMES) }),
 	async (req, res) => {
-		const game: Game = req.body.game;
-		const chartID: string = req.body.chartID;
+		const body = req.safeBody as {
+			game: Game;
+			chartID: string;
+		};
+
+		const { game, chartID } = body;
 
 		const scores = await db.scores.find({
 			chartID,
@@ -239,7 +275,8 @@ router.post(
  * @name POST /api/v1/admin/recalc
  */
 router.post("/recalc", async (req, res) => {
-	const filter = req.body ?? {};
+	const filter = req.safeBody;
+
 	await RecalcAllScores(filter);
 
 	const scoreIDs = (

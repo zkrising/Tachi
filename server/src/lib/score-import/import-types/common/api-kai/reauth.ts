@@ -1,11 +1,11 @@
+import { GetKaiTypeClientCredentials, KaiTypeToBaseURL } from "./utils";
 import db from "external/mongo/db";
-import { KtLogger } from "lib/logger/logger";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import p from "prudence";
-import { KaiAuthDocument } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { CreateURLWithParams } from "utils/url";
-import { GetKaiTypeClientCredentials, KaiTypeToBaseURL } from "./utils";
+import type { KtLogger } from "lib/logger/logger";
+import type { KaiAuthDocument } from "tachi-common";
 
 const REAUTH_SCHEMA = {
 	access_token: "string",
@@ -13,7 +13,7 @@ const REAUTH_SCHEMA = {
 };
 
 export function CreateKaiReauthFunction(
-	kaiType: "FLO" | "EAG" | "MIN",
+	kaiType: "EAG" | "FLO" | "MIN",
 	authDoc: KaiAuthDocument,
 	logger: KtLogger,
 	fetch = nodeFetch
@@ -35,6 +35,7 @@ export function CreateKaiReauthFunction(
 
 	return async () => {
 		let res;
+
 		try {
 			const url = CreateURLWithParams(`${KaiTypeToBaseURL(kaiType)}/oauth/token`, {
 				refresh_token: authDoc.refreshToken,
@@ -63,8 +64,9 @@ export function CreateKaiReauthFunction(
 
 		let json;
 		/* istanbul ignore next */
+
 		try {
-			json = await res.json();
+			json = (await res.json()) as unknown;
 		} catch (err) {
 			logger.error(`Invalid JSON body in successful reauth response.`, { res, err });
 			throw new ScoreImportFatalError(
@@ -83,6 +85,12 @@ export function CreateKaiReauthFunction(
 			);
 		}
 
+		// asserted by prudence
+		const validatedContent = json as {
+			refresh_token: string;
+			access_token: string;
+		};
+
 		await db["kai-auth-tokens"].update(
 			{
 				userID: authDoc.userID,
@@ -90,12 +98,12 @@ export function CreateKaiReauthFunction(
 			},
 			{
 				$set: {
-					refreshToken: json.refresh_token,
-					token: json.access_token,
+					refreshToken: validatedContent.refresh_token,
+					token: validatedContent.access_token,
 				},
 			}
 		);
 
-		return json.access_token;
+		return validatedContent.access_token;
 	};
 }

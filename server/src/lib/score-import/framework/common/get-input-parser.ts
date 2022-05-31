@@ -1,18 +1,19 @@
-import { KtLogger } from "lib/logger/logger";
-import {
+import { Parsers } from "lib/score-import/import-types/parsers";
+import type { KtLogger } from "lib/logger/logger";
+import type {
 	ImportTypeContextMap,
 	ImportTypeDataMap,
 	ParserFunctionReturns,
 } from "lib/score-import/import-types/common/types";
-import { Parsers } from "lib/score-import/import-types/parsers";
-import { ScoreImportJobData } from "lib/score-import/worker/types";
-import { ImportTypes } from "tachi-common";
+import type { ScoreImportJobData } from "lib/score-import/worker/types";
+import type { ImportTypes } from "tachi-common";
 
 export function GetInputParser<I extends ImportTypes>(jobData: ScoreImportJobData<I>) {
 	// Retrieve the set parser function for this import type.
 	const ParserFunction = Parsers[jobData.importType];
 
 	const InputParser = (logger: KtLogger) =>
+		// eslint-disable-next-line lines-around-comment
 		// @ts-expect-error TypeScript doesn't like the fact that we
 		// pass this as a rest parameter, since none of the parsers
 		// actually take rest args. However, this is the only way to

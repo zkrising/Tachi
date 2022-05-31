@@ -4,10 +4,11 @@ import { ServerConfig } from "lib/setup/config";
 
 const logger = CreateLogCtx("S3 Client");
 
-let s3: null | S3Client = null;
+let s3: S3Client | null = null;
 
 if (ServerConfig.CDN_CONFIG.SAVE_LOCATION.TYPE === "S3_BUCKET") {
 	const data = ServerConfig.CDN_CONFIG.SAVE_LOCATION;
+
 	logger.info(`Using S3_BUCKET as CDN location.`, { bootInfo: true });
 	s3 = new S3Client({
 		endpoint: data.ENDPOINT,

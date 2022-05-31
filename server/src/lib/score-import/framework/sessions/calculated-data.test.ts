@@ -1,7 +1,7 @@
-import t from "tap";
 import { CreateSessionCalcData } from "./calculated-data";
+import t from "tap";
 
-function ratingwrap(ratings: [number, number][]) {
+function ratingwrap(ratings: Array<[number, number]>) {
 	return ratings.map((e) => ({
 		calculatedData: {
 			BPI: e[0],
@@ -10,7 +10,7 @@ function ratingwrap(ratings: [number, number][]) {
 	}));
 }
 
-function avgbest10(arr: number[]) {
+function avgbest10(arr: Array<number>) {
 	return (
 		arr
 			.sort((a, b) => b - a)

@@ -4,8 +4,14 @@ import t from "tap";
 import { InsertFakeTokenWithAllPerms } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import { GetKTDataJSON } from "test-utils/test-data";
+import {
+	FervidexBaseGSMScore,
+	FervidexBaseScore,
+	FervidexStaticBase,
+	GetKTDataJSON,
+} from "test-utils/test-data";
 import { Sleep } from "utils/misc";
+import type { ChartDocument, SongDocument } from "tachi-common";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function TestHeaders(url: string, data: any) {
@@ -20,6 +26,7 @@ function TestHeaders(url: string, data: any) {
 		const res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// rootage
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
 			.set("X-Account-Id", "bar")
@@ -31,6 +38,7 @@ function TestHeaders(url: string, data: any) {
 		const res2 = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// rootage
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
 			.set("User-Agent", "fervidex/1.3.0")
@@ -45,6 +53,7 @@ function TestHeaders(url: string, data: any) {
 		let res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// rootage
 			.set("X-Software-Model", "LDJ:J:B:A:2019090200")
 			.set("User-Agent", "fervidex/1.3.0")
@@ -55,6 +64,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// rootage old
 			.set("X-Software-Model", "LDJ:J:B:A:2019100700")
 			.set("User-Agent", "fervidex/1.3.0")
@@ -65,6 +75,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// cannonballers
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("X-Software-Model", "LDJ:J:B:A:2018091900")
@@ -84,6 +95,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// BMS-iidx
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("X-Software-Model", "LDJ:J:B:Z:2020092900")
@@ -94,6 +106,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// BMS-iidx
 			.set("User-Agent", "fervidex/1.2.0")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
@@ -104,6 +117,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// BMS-iidx
 			.set("User-Agent", "fervidex/.0")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
@@ -114,6 +128,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// BMS-iidx
 			.set("User-Agent", "")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
@@ -124,6 +139,7 @@ function TestHeaders(url: string, data: any) {
 		res = await mockApi
 			.post(url)
 			.set("Authorization", "Bearer mock_token")
+
 			// BMS-iidx
 			.set("User-Agent", "invalid")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
@@ -240,7 +256,10 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 			.send({ cleared: true, course_id: null, play_style: 1 });
 
 		t.equal(res.status, 400);
-		t.match(res.body.error, /Invalid course_id/u);
+		t.match(
+			res.body.error,
+			"[course_id] Expected an integer between 0 and 18. (Received null)"
+		);
 
 		t.end();
 	});
@@ -254,7 +273,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 			.send({ cleared: true, course_id: 20, play_style: 1 });
 
 		t.equal(res.status, 400);
-		t.match(res.body.error, /Invalid course_id 20/u);
+		t.match(res.body.error, "[course_id] Expected an integer between 0 and 18. (Received 20)");
 
 		t.end();
 	});
@@ -268,7 +287,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 			.send({ cleared: true, course_id: -1, play_style: 1 });
 
 		t.equal(res.status, 400);
-		t.match(res.body.error, /Invalid course_id -1/u);
+		t.match(res.body.error, "[course_id] Expected an integer between 0 and 18. (Received -1)");
 
 		t.end();
 	});
@@ -282,7 +301,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 			.send({ cleared: true, course_id: 16, play_style: null });
 
 		t.equal(res.status, 400);
-		t.match(res.body.error, /Invalid play_style/u);
+		t.match(res.body.error, "[play_style] Expected any of 0, 1. (Received null)");
 
 		t.end();
 	});
@@ -294,7 +313,7 @@ t.test("POST /ir/fervidex/score/submit", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
 
-	TestHeaders("/ir/fervidex/score/submit", GetKTDataJSON("./fervidex/base.json"));
+	TestHeaders("/ir/fervidex/score/submit", FervidexBaseScore);
 
 	t.test("Should import a valid score", async (t) => {
 		const res = await mockApi
@@ -302,7 +321,7 @@ t.test("POST /ir/fervidex/score/submit", (t) => {
 			.set("Authorization", "Bearer mock_token")
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
-			.send(GetKTDataJSON("./fervidex/base.json"));
+			.send(FervidexBaseScore);
 
 		t.equal(res.body.success, true, "Should be successful");
 
@@ -323,7 +342,7 @@ t.test("POST /ir/fervidex/score/submit", (t) => {
 			.set("Authorization", "Bearer mock_token")
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
-			.send(deepmerge(GetKTDataJSON("./fervidex/base.json"), { option: undefined }));
+			.send(deepmerge(FervidexBaseScore, { option: undefined }));
 
 		t.equal(res.body.success, true, "Should be successful");
 
@@ -344,7 +363,7 @@ t.test("POST /ir/fervidex/score/submit", (t) => {
 			.set("Authorization", "Bearer mock_token")
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
-			.send(GetKTDataJSON("./fervidex/2dxgsm.json"));
+			.send(FervidexBaseGSMScore);
 
 		t.equal(res.body.success, true, "Should be successful");
 
@@ -380,22 +399,24 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
 
-	TestHeaders("/ir/fervidex/class/submit", GetKTDataJSON("./fervidex-static/base.json"));
-
-	const ferStaticBody = GetKTDataJSON("./fervidex-static/base.json");
+	TestHeaders("/ir/fervidex/class/submit", FervidexStaticBase);
 
 	t.test("Should accept a fervidex-static body", async (t) => {
 		await db.songs.iidx.remove({});
-		await db.songs.iidx.insert(GetKTDataJSON("./tachi/tachi-songs-iidx.json"));
+		await db.songs.iidx.insert(
+			GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument>
+		);
 		await db.charts.iidx.remove({});
-		await db.charts.iidx.insert(GetKTDataJSON("./tachi/tachi-charts-iidx.json"));
+		await db.charts.iidx.insert(
+			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<ChartDocument>
+		);
 
 		const res = await mockApi
 			.post("/ir/fervidex/profile/submit")
 			.set("Authorization", "Bearer mock_token")
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("X-Software-Model", "P2D:J:B:A:2020092900")
-			.send(ferStaticBody);
+			.send(FervidexStaticBase);
 
 		t.equal(res.statusCode, 202, "Should be deferred for later processing.");
 
@@ -424,16 +445,20 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 	t.test("Should allow requests from non INF2 if forceStaticImport is true.", async (t) => {
 		await db["fer-settings"].update({ userID: 1 }, { $set: { forceStaticImport: true } });
 		await db.songs.iidx.remove({});
-		await db.songs.iidx.insert(GetKTDataJSON("./tachi/tachi-songs-iidx.json"));
+		await db.songs.iidx.insert(
+			GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument>
+		);
 		await db.charts.iidx.remove({});
-		await db.charts.iidx.insert(GetKTDataJSON("./tachi/tachi-charts-iidx.json"));
+		await db.charts.iidx.insert(
+			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<ChartDocument>
+		);
 
 		const res = await mockApi
 			.post("/ir/fervidex/profile/submit")
 			.set("Authorization", "Bearer mock_token")
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
-			.send(ferStaticBody);
+			.send(FervidexStaticBase);
 
 		t.equal(res.statusCode, 202, "Should be deferred for later processing.");
 
@@ -473,7 +498,7 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 			.set("Authorization", "Bearer mock_token")
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
-			.send(ferStaticBody);
+			.send(FervidexStaticBase);
 
 		t.equal(res.statusCode, 400, "Should be rejected, as FSI is not set.");
 

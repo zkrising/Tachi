@@ -1,30 +1,44 @@
-import { RequestHandler } from "express";
 import db from "external/mongo/db";
-import { SYMBOL_TachiData } from "lib/constants/tachi";
 import { IsValidGame, IsValidPlaytype } from "utils/misc";
-import { AssignToReqTachiData } from "utils/req-tachi-data";
+import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
+import type { RequestHandler } from "express";
 
 export const CheckUserPlayedGamePlaytype: RequestHandler = async (req, res, next) => {
-	const user = req[SYMBOL_TachiData]!.requestedUser!;
+	const user = GetTachiData(req, "requestedUser");
 
-	if (!IsValidGame(req.params.game)) {
+	const game = req.params.game;
+	const playtype = req.params.playtype;
+
+	if (game === undefined) {
+		throw new Error(
+			`Unexpected lack of game parameter when CheckUserPlayedGamePlaytype called on ${req.originalUrl}.`
+		);
+	}
+
+	if (playtype === undefined) {
+		throw new Error(
+			`Unexpected lack of playtype parameter when CheckUserPlayedGamePlaytype called on ${req.originalUrl}.`
+		);
+	}
+
+	if (!IsValidGame(game)) {
 		return res.status(400).json({
 			success: false,
 			description: `The game ${req.params.game} is not supported.`,
 		});
 	}
 
-	if (!IsValidPlaytype(req.params.game, req.params.playtype)) {
+	if (!IsValidPlaytype(game, playtype)) {
 		return res.status(400).json({
 			success: false,
-			description: `The game ${req.params.game} does not have a playtype called ${req.params.playtype}.`,
+			description: `The game ${game} does not have a playtype called ${playtype}.`,
 		});
 	}
 
 	const stats = await db["game-stats"].findOne({
 		userID: user.id,
-		game: req.params.game,
-		playtype: req.params.playtype,
+		game,
+		playtype,
 	});
 
 	if (!stats) {
@@ -36,9 +50,9 @@ export const CheckUserPlayedGamePlaytype: RequestHandler = async (req, res, next
 
 	AssignToReqTachiData(req, {
 		requestedUserGameStats: stats,
-		game: req.params.game,
-		playtype: req.params.playtype,
+		game,
+		playtype,
 	});
 
-	return next();
+	next();
 };

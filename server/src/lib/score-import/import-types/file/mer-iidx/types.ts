@@ -1,19 +1,19 @@
-import { integer } from "tachi-common";
+import type { integer } from "tachi-common";
 
 export interface MerScore {
 	music_id: integer;
-	play_type: "SINGLE" | "DOUBLE";
-	diff_type: "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
+	play_type: "DOUBLE" | "SINGLE";
+	diff_type: "ANOTHER" | "BEGINNER" | "HYPER" | "LEGGENDARIA" | "NORMAL";
 	score: integer;
 	miss_count: integer;
 	clear_type:
-		| "NO PLAY"
-		| "FAILED"
 		| "ASSIST CLEAR"
-		| "EASY CLEAR"
 		| "CLEAR"
-		| "HARD CLEAR"
+		| "EASY CLEAR"
 		| "EX HARD CLEAR"
-		| "FULLCOMBO CLEAR";
+		| "FAILED"
+		| "FULLCOMBO CLEAR"
+		| "HARD CLEAR"
+		| "NO PLAY";
 	update_time: string;
 }

@@ -1,11 +1,12 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { ChartDocument, IIDX_GRADES, IIDX_LAMPS, PublicUserDocument } from "tachi-common";
+import { IIDX_GRADES, IIDX_LAMPS } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
+import type { ChartDocument, PublicUserDocument } from "tachi-common";
 
 const SetFolders = async () => {
 	await db.folders.insert(TestingIIDXFolderSP10);
@@ -233,7 +234,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 		t.equal(res.statusCode, 400);
 
 		const res2 = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&property=grade&gte=4&folderID=${TestingIIDXFolderSP10},invalid`
+			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=folder&property=grade&gte=4&folderID=${TestingIIDXFolderSP10.folderID},invalid`
 		);
 
 		t.equal(res2.statusCode, 400);

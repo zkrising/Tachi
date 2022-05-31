@@ -1,11 +1,11 @@
-import crypto from "crypto";
+import { ProcessPBs } from "./process-pbs";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXSPScore } from "test-utils/test-data";
-import { ProcessPBs } from "./process-pbs";
+import crypto from "crypto";
 
 const logger = CreateLogCtx(__filename);
 
@@ -34,11 +34,13 @@ t.test("#ProcessPBs", (t) => {
 				chartID: "test1",
 				scoreID: crypto.randomBytes(20).toString("hex"),
 			}),
+
 			// @ts-expect-error lol
 			deepmerge(TestingIIDXSPScore, {
 				chartID: "test2",
 				scoreID: crypto.randomBytes(20).toString("hex"),
 			}),
+
 			// @ts-expect-error lol
 			deepmerge(TestingIIDXSPScore, {
 				chartID: "test3",

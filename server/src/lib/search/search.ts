@@ -2,9 +2,11 @@ import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
-import { FilterQuery } from "mongodb";
-import { ICollection } from "monk";
-import {
+import { EscapeStringRegexp } from "utils/misc";
+import { GetOnlineCutoff } from "utils/user";
+import type { FilterQuery } from "mongodb";
+import type { ICollection } from "monk";
+import type {
 	ChartDocument,
 	Game,
 	integer,
@@ -13,8 +15,6 @@ import {
 	SessionDocument,
 	SongDocument,
 } from "tachi-common";
-import { EscapeStringRegexp } from "utils/misc";
-import { GetOnlineCutoff } from "utils/user";
 
 const logger = CreateLogCtx(__filename);
 
@@ -31,46 +31,49 @@ export function SearchCollection<T>(
 	search: string,
 	existingMatch: FilterQuery<T> = {},
 	limit = 100
-): Promise<(T & { __textScore: number })[]> {
-	return collection
-		.aggregate([
-			{
-				$match: deepmerge({ $text: { $search: search } }, existingMatch),
-			},
-			// Project the __textScore field on so we can sort
-			// based on search proximity to query
-			{
-				$addFields: {
-					__textScore: { $meta: "textScore" },
-				},
-			},
-			// sort by quality of match
-			{ $sort: { __textScore: -1 } },
-			// hide nonsense
-			{ $match: { __textScore: { $gt: 0.25 } } },
-			{ $limit: limit },
-			{ $unset: "_id" },
-		])
-		.catch((err) => {
-			logger.error(
-				`An error occured while trying to $text search collection ${collection.name}. Does this have a $text index?`,
-				{ err }
-			);
+): Promise<Array<T & { __textScore: number }>> {
+	const agg: Promise<Array<T & { __textScore: number }>> = collection.aggregate([
+		{
+			$match: deepmerge({ $text: { $search: search } }, existingMatch),
+		},
 
-			// throw it up further
-			throw err;
-		});
+		// Project the __textScore field on so we can sort
+		// based on search proximity to query
+		{
+			$addFields: {
+				__textScore: { $meta: "textScore" },
+			},
+		},
+
+		// sort by quality of match
+		{ $sort: { __textScore: -1 } },
+
+		// hide nonsense
+		{ $match: { __textScore: { $gt: 0.25 } } },
+		{ $limit: limit },
+		{ $unset: "_id" },
+	]);
+
+	return agg.catch((err: unknown) => {
+		logger.error(
+			`An error occured while trying to $text search collection ${collection.name}. Does this have a $text index?`,
+			{ err }
+		);
+
+		// throw it up further
+		throw err;
+	});
 }
 
-export type SongSearchReturn = {
+export type SongSearchReturn = SongDocument & {
 	__textScore: number;
-} & SongDocument<Game>;
+};
 
 export function SearchGameSongs(
 	game: Game,
 	search: string,
 	limit = 100
-): Promise<SongSearchReturn[]> {
+): Promise<Array<SongSearchReturn>> {
 	return SearchCollection(db.songs[game], search, {}, limit);
 }
 
@@ -90,7 +93,7 @@ export async function SearchGameSongsAndCharts(
 		chartQuery.playtype = playtype;
 	}
 
-	const charts = (await db.charts[game].find(chartQuery)) as ChartDocument[];
+	const charts = (await db.charts[game].find(chartQuery)) as Array<ChartDocument>;
 
 	return { songs, charts };
 }
@@ -112,7 +115,7 @@ export function SearchSessions(
 		baseMatch.playtype = playtype;
 	}
 
-	if (userID) {
+	if (userID !== undefined) {
 		baseMatch.userID = userID;
 	}
 
@@ -148,9 +151,11 @@ export function SearchUsersRegExp(search: string, matchOnline = false) {
  * Searches a single game, but optimised for the searchAllGames return.
  */
 async function SearchAllGamesSingleGame(game: Game, search: string) {
-	const songs = (await SearchGameSongs(game, search, 10)) as (SongSearchReturn & {
-		game: Game;
-	})[];
+	const songs = (await SearchGameSongs(game, search, 10)) as Array<
+		SongSearchReturn & {
+			game: Game;
+		}
+	>;
 
 	for (const song of songs) {
 		song.game = game;
@@ -179,12 +184,12 @@ export async function SearchForChartHash(search: string) {
 		db.charts.bms.findOne({ $or: [{ "data.hashMD5": search }, { "data.hashSHA256": search }] }),
 		db.charts.pms.findOne({ $or: [{ "data.hashMD5": search }, { "data.hashSHA256": search }] }),
 		db.charts.usc.findOne({ "data.hashSHA1": search }),
-	])) as [ChartDocument, ChartDocument, ChartDocument];
+	])) as [ChartDocument | null, ChartDocument | null, ChartDocument | null];
 
 	const [bmsChart, pmsChart, uscChart] = results;
 
 	const songs = [];
-	const charts = results.filter((e) => e !== null);
+	const charts = results.filter((e) => e !== null) as Array<ChartDocument>;
 
 	if (bmsChart) {
 		songs.push(

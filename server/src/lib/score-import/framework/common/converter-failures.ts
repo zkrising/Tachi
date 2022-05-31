@@ -1,12 +1,13 @@
 // Various Errors that can occur during processing.
 
-import { ImportTypes } from "tachi-common";
-import { ImportTypeContextMap, ImportTypeDataMap } from "../../import-types/common/types";
+import type { ImportTypeContextMap, ImportTypeDataMap } from "../../import-types/common/types";
+import type { ImportTypes } from "tachi-common";
 
-export class ConverterFailure {
-	message: string | null;
+export class ConverterFailure extends Error {
+	message: string;
 
-	constructor(message: string | null) {
+	constructor(message: string) {
+		super();
 		this.message = message;
 	}
 }
@@ -29,7 +30,7 @@ export class KTDataNotFoundFailure<T extends ImportTypes> extends ConverterFailu
 	importType: T;
 
 	constructor(
-		message: string | null,
+		message: string,
 		importType: T,
 		data: ImportTypeDataMap[T],
 		context: ImportTypeContextMap[T]

@@ -1,15 +1,16 @@
-import { Worker } from "bullmq";
-import { EventEmitter } from "events";
-import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
-import CreateLogCtx from "lib/logger/logger";
-import { Environment, ServerConfig } from "lib/setup/config";
-import { ImportTypes } from "tachi-common";
-import { FormatUserDoc, GetUserWithID } from "utils/user";
+import ScoreImportQueue from "./queue";
 import { GetInputParser } from "../framework/common/get-input-parser";
 import ScoreImportFatalError from "../framework/score-importing/score-import-error";
 import ScoreImportMain from "../framework/score-importing/score-import-main";
-import ScoreImportQueue from "./queue";
-import { ScoreImportJob } from "./types";
+import { Worker } from "bullmq";
+import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
+import CreateLogCtx from "lib/logger/logger";
+import { Environment, ServerConfig } from "lib/setup/config";
+import { FormatUserDoc, GetUserWithID } from "utils/user";
+import { EventEmitter } from "events";
+import type { ScoreImportJob, ScoreImportJobData } from "./types";
+import type { ImportTypes } from "tachi-common";
+
 EventEmitter.defaultMaxListeners = 20;
 
 // For scaling performance, running score-importing in a separate worker is preferable
@@ -63,18 +64,21 @@ export const worker = new Worker(
 		// turned into nonsense objects. We need to "deJSONify" these buffers
 		// so lets do that now.
 
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const processedArgs: any = [];
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		for (const arg of job.data.parserArguments as any[]) {
+		const processedArgs: Array<any> = [];
+
+		// eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+
+		for (const arg of job.data.parserArguments as Array<any>) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			if (arg?.buffer?.type === "Buffer") {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
 				processedArgs.push({ ...arg, buffer: Buffer.from(arg.buffer.data) });
 			} else {
 				processedArgs.push(arg);
 			}
 		}
 
-		job.data.parserArguments = processedArgs;
+		job.data.parserArguments = processedArgs as ScoreImportJobData<I>["parserArguments"];
 
 		logger.debug(`received score import job ${job.id}`, { job });
 
@@ -82,7 +86,7 @@ export const worker = new Worker(
 
 		logger.debug(`Starting import.`);
 
-		job.updateProgress({
+		void job.updateProgress({
 			description: "Importing Scores.",
 		});
 
@@ -138,4 +142,6 @@ worker.on("completed", (job, result) => {
 	logger.debug(`Job ${job.id} finished successfully.`, result);
 });
 
-process.on("SIGTERM", () => HandleSIGTERMGracefully());
+process.on("SIGTERM", () => {
+	void HandleSIGTERMGracefully();
+});

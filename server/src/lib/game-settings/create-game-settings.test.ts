@@ -1,7 +1,7 @@
+import { CreateGameSettings } from "./create-game-settings";
 import db from "external/mongo/db";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { CreateGameSettings } from "./create-game-settings";
 
 t.test("#CreateGameSettings", (t) => {
 	t.beforeEach(ResetDBState);

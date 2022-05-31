@@ -21,6 +21,7 @@
 		"sourceMap": true,
 		"outDir": "./js",
 		"baseUrl": "src",
+		"noUncheckedIndexedAccess": true,
 		"typeRoots": [
 			"@types",
 			"node_modules/@types",

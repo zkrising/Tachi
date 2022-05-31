@@ -2,9 +2,10 @@ import db from "external/mongo/db";
 import { SetRivalsFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
 import { SendSetRivalNotification } from "lib/notifications/notification-wrappers";
-import { FormatGame, Game, integer, Playtype } from "tachi-common";
+import { FormatGame } from "tachi-common";
 import { ArrayDiff } from "utils/misc";
 import { GetUsersWithIDs, GetUserWithIDGuaranteed } from "utils/user";
+import type { Game, integer, Playtype } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -56,7 +57,7 @@ export async function SetRivals(
 	userID: integer,
 	game: Game,
 	playtype: Playtype,
-	newRivals: integer[]
+	newRivals: Array<integer>
 ) {
 	if (newRivals.length > 5) {
 		return SetRivalsFailReasons.TOO_MANY;

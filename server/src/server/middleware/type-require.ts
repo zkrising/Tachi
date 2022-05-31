@@ -1,5 +1,5 @@
-import { RequestHandler } from "express";
 import { TachiConfig } from "lib/setup/config";
+import type { RequestHandler } from "express";
 
 /**
  * Middleware that makes the route only available under Bokutachi.
@@ -8,7 +8,8 @@ import { TachiConfig } from "lib/setup/config";
  */
 export const RequireBokutachi: RequestHandler = (req, res, next) => {
 	if (TachiConfig.TYPE === "btchi" || TachiConfig.TYPE === "omni") {
-		return next();
+		next();
+		return;
 	}
 
 	return res.status(404).send({
@@ -24,7 +25,8 @@ export const RequireBokutachi: RequestHandler = (req, res, next) => {
  */
 export const RequireKamaitachi: RequestHandler = (req, res, next) => {
 	if (TachiConfig.TYPE === "ktchi" || TachiConfig.TYPE === "omni") {
-		return next();
+		next();
+		return;
 	}
 
 	return res.status(404).send({

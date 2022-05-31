@@ -1,7 +1,7 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { DeleteMultipleScores } from "lib/score-mutation/delete-scores";
-import { ImportDocument } from "tachi-common";
+import type { ImportDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -31,7 +31,7 @@ export async function RevertImport(importDoc: ImportDocument) {
 	} catch (err) {
 		logger.severe(
 			`Deleted scores that were part of import, but failed to remove the actual import? There is a stale import with ID '${importDoc.importID}', which must be removed manually.`,
-			{ importDoc }
+			{ importDoc, err }
 		);
 	}
 }

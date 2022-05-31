@@ -1,8 +1,8 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { UserGameStats, UserGameStatsSnapshot } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
 import { GetAllRankings } from "utils/user";
+import type { UserGameStats, UserGameStatsSnapshot } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -10,7 +10,7 @@ const logger = CreateLogCtx(__filename);
 // nonsense happens. we'll have to see.
 const currentTime = new Date().setUTCHours(0, 0, 0, 0);
 
-let batchWrite: UserGameStatsSnapshot[] = [];
+let batchWrite: Array<UserGameStatsSnapshot> = [];
 
 // This code is intentionally *very* robust, and handles a lot of unanticipated failures
 // because if it breaks, we brick the database.
@@ -32,10 +32,13 @@ export async function UGSSnapshot() {
 	logger.info(`Snapshotting UserGameStats.`);
 
 	try {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 		await db["game-stats"]
 			.find({})
+
 			// @ts-expect-error faulty TS types
 			.each(async (ugs: UserGameStats, { pause, resume }) => {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 				pause();
 
 				logger.debug(`Snapshotting ${ugs.userID} ${ugs.playtype} ${ugs.game}.`);
@@ -57,9 +60,11 @@ export async function UGSSnapshot() {
 				if (batchWrite.length >= 500) {
 					logger.verbose(`Flushed batch.`);
 					await db["game-stats-snapshots"].insert(batchWrite);
+					// eslint-disable-next-line require-atomic-updates
 					batchWrite = [];
 				}
 
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 				resume();
 			});
 
@@ -89,7 +94,14 @@ export async function UGSSnapshot() {
 }
 
 if (require.main === module) {
-	UGSSnapshot().then(() => {
-		process.exit(0);
-	});
+	UGSSnapshot()
+		.then(() => {
+			process.exit(0);
+		})
+		.catch((err: unknown) => {
+			// This is a severe error, not an error. Running the UGS snapshot every day is necessary.
+			logger.severe(`Failed to snapshot user game stats.`, { err });
+
+			process.exit(1);
+		});
 }

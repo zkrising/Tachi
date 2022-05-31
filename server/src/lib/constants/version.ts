@@ -8,7 +8,7 @@ import fs from "fs";
 import path from "path";
 
 // As is with all front-facing zkldi projects, the version names for tachi-server
-// are from an album I like. In this case, the album is Portishead - Dummy.
+// are from an album I like. In this case, the al(bum is Portishead - Dummy.
 // The fact that this album is very similar to Mezzanine
 // - the album used for Kamaitachi v1 - is deliberate. :) - zkldi
 const PORTISHEAD_DUMMY = [
@@ -58,7 +58,7 @@ const semverInfo = semver.parse(packageJSON.version);
 
 if (!semverInfo) {
 	logger.warn(
-		`Couldn't parse semverInfo out of package.json? Got a string of '${packageJSON.version}', but couldn't parse. Defaulting to 0.`
+		`Couldn't parse semverInfo out of package.json? Got a string of '${packageJSON.version}', but couldn't parse. Defaulting to v0.0.0-unknown.`
 	);
 }
 

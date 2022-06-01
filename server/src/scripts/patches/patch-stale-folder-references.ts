@@ -15,7 +15,7 @@ if (require.main === module) {
 			.map((e) => e.preferences.stats)
 			.flat()
 			.filter((e) => e.mode === "folder")
-			.map((e) => (e as ShowcaseStatFolder).folderID) as Array<string>;
+			.map((e) => (e as ShowcaseStatFolder).folderID) as unknown as Array<string>;
 
 		const pertinentFolders = await db.folders.find(
 			{

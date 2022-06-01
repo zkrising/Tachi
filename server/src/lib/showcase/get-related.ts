@@ -25,11 +25,24 @@ export async function GetRelatedStatDocuments(stat: ShowcaseStatDetails, game: G
 		}
 
 		case "folder": {
-			const folders = await db.folders.find({
-				folderID: { $in: Array.isArray(stat.folderID) ? stat.folderID : [stat.folderID] },
+			if (Array.isArray(stat.folderID)) {
+				logger.warn(
+					`This stat is corrupt and attempted to use multiple folderIDs. This is no longer supported. Check that migrations have ran.`,
+					{ stat }
+				);
+				throw new Error(`Legacy FolderIDs used in showcase stat.`);
+			}
+
+			const folder = await db.folders.findOne({
+				folderID: stat.folderID,
 			});
 
-			return { folders };
+			if (!folder) {
+				logger.error(`This stat refers to a folder that does not exist?`, { stat });
+				throw new Error(`Stat refers to folder that no longer exists.`);
+			}
+
+			return { folder };
 		}
 
 		default: {

@@ -312,7 +312,9 @@
 		"title": "Rebellious stage"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"ごりらがいるんだ ～かぼちゃが歌ってみたver～"
+		],
 		"artist": "ピノキオP",
 		"data": {
 			"displayVersion": "booth"
@@ -1677,7 +1679,9 @@
 		"title": "ナイト・オブ・ナイツ"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"Help me， ERINNNNNN!!"
+		],
 		"artist": "ビートまりお（COOL&CREATE）",
 		"data": {
 			"displayVersion": "booth"
@@ -9750,7 +9754,9 @@
 		"title": "墨染 ft. ネコメアリ"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"Alice Maestera feat. nomico"
+		],
 		"artist": "Alstroemeria Records feat. nomico",
 		"data": {
 			"displayVersion": "heaven"
@@ -9763,7 +9769,9 @@
 		"title": "Alice Maestera"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"Dreaming feat. nomico"
+		],
 		"artist": "Alstroemeria Records",
 		"data": {
 			"displayVersion": "heaven"
@@ -10283,7 +10291,10 @@
 		"title": "しゅわスパ大作戦☆ (カシオれ！くーにゃんリミックス)"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"Help me， ERINNNNNN!! - SH Style -",
+			"Help me， CODYYYYYY!!"
+		],
 		"artist": "SOUND HOLIC feat. Nana Takahashi",
 		"data": {
 			"displayVersion": "gw"
@@ -10621,7 +10632,9 @@
 		"title": "黒髪乱れし修羅となりて～凛 edition～"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"Help me， ERINNNNNN!! -Cranky remix-"
+		],
 		"artist": "ビートまりお × Cranky",
 		"data": {
 			"displayVersion": "gw"
@@ -10634,7 +10647,9 @@
 		"title": "Help me, ERINNNNNN!! -Cranky remix-"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"Help me， ERINNNNNN!! -VENUS mix-"
+		],
 		"artist": "VENUS",
 		"data": {
 			"displayVersion": "gw"
@@ -13533,7 +13548,9 @@
 		"title": "Finale"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"SACRIFICE feat. ayame"
+		],
 		"artist": "Alstroemeria Records",
 		"data": {
 			"displayVersion": "heaven"
@@ -13598,7 +13615,9 @@
 		"title": "私とあなたのMYOURENJI☆"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"トーホータノシ (feat. 抹)"
+		],
 		"artist": "魂音泉",
 		"data": {
 			"displayVersion": "heaven"
@@ -18895,7 +18914,9 @@
 		"title": "BLACK JACKAL"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"* Erm， could it be a Spatiotemporal ShockWAVE Syndrome...?"
+		],
 		"artist": "かめりあ",
 		"data": {
 			"displayVersion": "vivid"

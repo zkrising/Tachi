@@ -134,7 +134,7 @@ t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 			// gambol has SPB, SPN and SPH, but only SPH has been played by the requester
 			// although 5.1.1 has been played by the requester, it should not match the
 			// search.
-			t.equal(res.body.body.charts.length, 1);
+			t.equal(res.body.body.charts.length, 3);
 
 			t.end();
 		}

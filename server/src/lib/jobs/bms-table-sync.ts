@@ -1,10 +1,9 @@
 /* eslint-disable no-await-in-loop */
-
 import db from "external/mongo/db";
 import { BMS_TABLES } from "lib/constants/bms-tables";
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
-import { CreateFolderID } from "utils/folder";
+import { CreateFolderID, InitaliseFolderChartLookup } from "utils/folder";
 import { FormatBMSTables } from "utils/misc";
 import type { ChartDocument } from "tachi-common";
 
@@ -302,6 +301,10 @@ if (require.main === module) {
 			// eslint-disable-next-line no-await-in-loop
 			await UpdateTable(table);
 		}
+
+		logger.info(`Re-initialising folder-chart-lookup, since changes may have been made.`);
+		await InitaliseFolderChartLookup();
+		logger.info(`Done.`);
 
 		process.exit(0);
 	})().catch((err: unknown) => {

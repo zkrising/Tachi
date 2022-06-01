@@ -46,9 +46,13 @@ not generally be shown to end users.
 - [ENH] Folder Showcase Stats are now removed from a player in the case of the folder being removed.
 - [INTERNAL_ENH] Server version info is now read from package.json, removing redundancy.
 - [INTERNAL_ENH] The commit the server is running under is now exposed publically in version info.
+# 2.1.18
+
+- [BUG] BMS charts are moved into the correct folders after an automatic table synchronisation.
+
 # 2.1.17
 
-- [BUG] Fixed bug where `.59` was interpreted as a decimal instead of a song title in SOLID STATE SQUAD imports.
+- [BUG] `.59` is no longer interpreted as a decimal instead of a song title in SOLID STATE SQUAD imports.
 
 # 2.1.16
 

@@ -40,14 +40,19 @@ router.get("/", async (req, res) => {
 		if (userID === null) {
 			return res.status(401).json({
 				success: false,
-				description: `You must be authorised as a user to use the requesterHasPlayed option.`
+				description: `You must be authorised as a user to use the requesterHasPlayed option.`,
 			});
 		}
 
-		const playedSongs = (await db["personal-bests"].find({userID, game, playtype}, {projection: {songID: 1}})).map(e => e.songID)
+		const playedSongs = (
+			await db["personal-bests"].find(
+				{ userID, game, playtype },
+				{ projection: { songID: 1 } }
+			)
+		).map((e) => e.songID);
 
 		if (songIDs) {
-			songIDs = songIDs.filter(e => playedSongs.includes(e))
+			songIDs = songIDs.filter((e) => playedSongs.includes(e));
 		} else {
 			songIDs = playedSongs;
 		}
@@ -59,6 +64,7 @@ router.get("/", async (req, res) => {
 	let charts = await FindChartsOnPopularity(
 		game,
 		playtype,
+
 		// if empty, we want the set of all songs. Otherwise, constrict input.
 		songIDs,
 		skip,

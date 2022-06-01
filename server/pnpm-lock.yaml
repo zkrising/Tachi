@@ -68,7 +68,7 @@ specifiers:
   semver: ^7.3.7
   seq-logging: 1.1.1
   supertest: 6.2.2
-  tachi-common: 0.12.1
+  tachi-common: 0.13.0
   tap: 15.1.6
   ts-node: 10.4.0
   tsconfig-paths: 3.12.0
@@ -117,7 +117,7 @@ dependencies:
   safe-json-stringify: 1.2.0
   semver: 7.3.7
   seq-logging: 1.1.1
-  tachi-common: 0.12.1
+  tachi-common: 0.13.0
   ts-node: 10.4.0_2615db9039ce432b4abf2fc39ef336ec
   tsconfig-paths: 3.12.0
   typescript: 4.5.5
@@ -5452,8 +5452,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /tachi-common/0.12.1:
-    resolution: {integrity: sha512-GuyPOagdHo5kp0RUna8mx4MqPlDkeMYVpqRhJQiz6E0xWXo6bfs5MCMVFJMAUIe9ZctjzcqRmdVqerPk5lY+Bg==}
+  /tachi-common/0.13.0:
+    resolution: {integrity: sha512-DJgf8RL77yXBsXfJ4uhHfIUEQEDfD+tXLyfFT2xbazOR2ViwmQVRIypTmbJNOrwR8dlKPcbrr7S5laaY2oakug==}
     dependencies:
       '@types/express-serve-static-core': 4.17.28
       '@types/mongodb': 3.6.18

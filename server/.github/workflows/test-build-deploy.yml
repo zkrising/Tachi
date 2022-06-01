@@ -28,7 +28,7 @@ jobs:
           version: 6.0.2
 
       - name: Install Dependencies
-        run: pnpm ci
+        run: pnpm i
 
         # configure external dbs
       - uses: supercharge/mongodb-github-action@1.4.1

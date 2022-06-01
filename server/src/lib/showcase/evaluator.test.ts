@@ -38,25 +38,6 @@ t.test("#EvaluateShowcaseStat", (t) => {
 		t.end();
 	});
 
-	t.test("Should evaluate a multi-folder stat.", async (t) => {
-		const data = await EvaluateShowcaseStat(
-			{
-				folderID: [TestingIIDXFolderSP10.folderID],
-				mode: "folder",
-				property: "lamp",
-				gte: IIDX_LAMPS.HARD_CLEAR,
-			},
-			1
-		);
-
-		t.strictSame(data, {
-			value: 1,
-			outOf: 1,
-		});
-
-		t.end();
-	});
-
 	t.test("Should evaluate a chart stat.", async (t) => {
 		const data = await EvaluateShowcaseStat(
 			{

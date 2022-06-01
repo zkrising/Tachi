@@ -6,7 +6,7 @@ import { EvaluateUsersStatsShowcase } from "lib/showcase/get-stats";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { RequireAuthedAsUser } from "server/router/api/v1/users/_userID/middleware";
-import { GetGamePTConfig } from "tachi-common";
+import { FormatGame, GetGamePTConfig } from "tachi-common";
 import { IsRecord } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
@@ -87,24 +87,24 @@ router.get("/custom", async (req, res) => {
 			});
 		}
 
-		const folderIDs = (req.query.folderID as string).split(",");
+		const folderID = req.query.folderID as string;
 
-		const folders = await db.folders.find({ folderID: { $in: folderIDs } });
+		const folder = await db.folders.findOne({ folderID });
 
-		if (
-			folders.length !== folderIDs.length ||
-			!folders.every((r) => r.game === game && r.playtype === playtype)
-		) {
+		if (!folder || folder.game !== game || folder.playtype !== playtype) {
 			return res.status(400).json({
 				success: false,
-				description: `Invalid folderID - all folders must be for this game, and exist.`,
+				description: `Invalid folderID - all folders must be for ${FormatGame(
+					game,
+					playtype
+				)}, and exist.`,
 			});
 		}
 
 		stat = {
 			mode: "folder",
 			property: req.query.property as "grade" | "lamp" | "percent" | "score",
-			folderID: folderIDs.length === 1 ? (req.query.folderID as string) : folderIDs,
+			folderID,
 			gte: Number(req.query.gte),
 		};
 	} else if (req.query.mode === "chart") {

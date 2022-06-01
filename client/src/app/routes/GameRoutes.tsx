@@ -176,7 +176,7 @@ function SongChartRoutes({ game, playtype }: GamePT) {
 		return <Loading />;
 	}
 
-	if (data.charts.every(c => c.playtype !== playtype)) {
+	if (data.charts.length && data.charts.every(c => c.playtype !== playtype)) {
 		return (
 			<Redirect
 				to={`/dashboard/games/${game}/${data.charts[0].playtype}/songs/${data.song.id}`}

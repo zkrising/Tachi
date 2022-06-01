@@ -15,6 +15,7 @@ import { GamePT, SetState } from "types/react";
 import { Playtype } from "types/tachi";
 import { SongChartsSearch } from "types/api-returns";
 import DebounceSearch from "components/util/DebounceSearch";
+import Muted from "components/util/Muted";
 
 interface Props {
 	reqUser: PublicUserDocument;
@@ -73,6 +74,7 @@ export default function UGPTStatCreator({
 
 	const [chartData, setChartData] = useState<{ chartID: string; name: string }[]>([]);
 	const [chartSearch, setChartSearch] = useState("");
+	const [requesterHasPlayed, setRequesterHasPlayed] = useState(true);
 
 	const [folderData, setFolderData] = useState<{ folderID: string; name: string }[]>([]);
 	const [folderSearch, setFolderSearch] = useState("");
@@ -108,6 +110,10 @@ export default function UGPTStatCreator({
 				search,
 			});
 
+			if (requesterHasPlayed) {
+				params.set("requesterHasPlayed", "true");
+			}
+
 			const res = await APIFetchV1<SongChartsSearch>(
 				`/games/${game}/${playtype}/charts?${params.toString()}`,
 				{},
@@ -133,7 +139,7 @@ export default function UGPTStatCreator({
 
 			setChartData(data);
 		})();
-	}, [chartSearch]);
+	}, [chartSearch, requesterHasPlayed]);
 
 	return (
 		<Modal show={show} onHide={() => setShow(false)}>
@@ -177,13 +183,19 @@ export default function UGPTStatCreator({
 						<Form.Group>
 							<Form.Label>Chart</Form.Label>
 							<DebounceSearch setSearch={setChartSearch} placeholder="Chart Name" />
+							<Form.Check
+								id="requesterHasPlayed"
+								checked={requesterHasPlayed}
+								onChange={e => setRequesterHasPlayed(e.target.checked)}
+								className="mt-4 mb-4"
+								label="Only show charts you've played?"
+							/>
 							{chartData.length ? (
 								<Form.Control
 									id="chartID"
 									value={formik.values.chartID}
 									onChange={formik.handleChange}
 									as="select"
-									className="mt-4"
 								>
 									<option value="">Select a chart...</option>
 									{chartData.map((e, i) => (
@@ -193,7 +205,7 @@ export default function UGPTStatCreator({
 									))}
 								</Form.Control>
 							) : (
-								<></>
+								<Muted>Your search returned nothing... :(</Muted>
 							)}
 						</Form.Group>
 					) : (

@@ -1,4 +1,5 @@
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
+import RemoveMultifolderStats from "./migrations/remove-multifolder-stats";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment } from "lib/setup/config";
@@ -21,7 +22,9 @@ export const FAKE_MIGRATION: Migration = {
 // If we're testing, we should pull fake migrations instead to ensure the tests
 // stay consistent
 const REGISTERED_MIGRATIONS: Array<Migration> =
-	Environment.nodeEnv === "test" ? [FAKE_MIGRATION] : [UGPTRivalsMigration];
+	Environment.nodeEnv === "test"
+		? [FAKE_MIGRATION]
+		: [UGPTRivalsMigration, RemoveMultifolderStats];
 
 function CreateMigrationLookupMap(migrations: Array<Migration>) {
 	const map = new Map<string, Migration>();

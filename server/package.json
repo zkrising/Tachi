@@ -9,6 +9,7 @@
 		"snap": "TAP_SNAPSHOT=1 tap",
 		"watchtest": "tap --watch",
 		"build": "tsc --project tsconfig.build.json",
+		"typecheck": "tsc --project tsconfig.build.json --noEmit",
 		"lint": "eslint ./src --ext .ts --fix",
 		"start": "tsc --project tsconfig.build.json && export NODE_PATH=js/ && node js/main.js",
 		"run": "export NODE_PATH=js/ && node js/main.js",

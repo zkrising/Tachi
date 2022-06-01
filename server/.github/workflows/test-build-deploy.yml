@@ -48,6 +48,9 @@ jobs:
       - name: Lint Code
         run: pnpm lint
 
+      - name: Typecheck Code
+        run: pnpm typecheck
+
       - name: Upload Coverage
         if: always()
         run: |

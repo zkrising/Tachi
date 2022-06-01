@@ -25,6 +25,7 @@ t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 			}),
 			mkFakePBIIDXSP({
 				// gambol hyper
+				songID: 7,
 				chartID: "fc7edc6bcfa701a261c89c999ddbba3e2195597b",
 				userID: 1,
 			}),
@@ -51,6 +52,7 @@ t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 		await db["personal-bests"].insert([
 			mkFakePBIIDXSP({
 				// gambol hyper
+				songID: 7,
 				chartID: "fc7edc6bcfa701a261c89c999ddbba3e2195597b",
 				userID: 1,
 			}),
@@ -75,12 +77,14 @@ t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 			await db["personal-bests"].insert([
 				mkFakePBIIDXSP({
 					// gambol hyper
+					songID: 7,
 					chartID: "fc7edc6bcfa701a261c89c999ddbba3e2195597b",
-					userID: 1,
+					userID: 2,
 				}),
 				mkFakePBIIDXSP({
+					songID: 1,
 					chartID: Testing511SPA.chartID,
-					userID: 2,
+					userID: 1,
 				}),
 			]);
 
@@ -90,11 +94,12 @@ t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 
 			t.hasStrict(res.body.body.charts[0], {
 				__playcount: 1,
-				chartID: "fc7edc6bcfa701a261c89c999ddbba3e2195597b",
+				chartID: Testing511SPA.chartID,
 			});
 
-			// gambol has SPB, SPN and SPH, but only SPH has been played by the requester
-			t.equal(res.body.body.charts.length, 1);
+			// The user has played 5.1.1., but not anything else loaded in the db.
+			// note that this endpoint works on played songs, rather than played charts.
+			t.equal(res.body.body.charts.length, 4);
 
 			t.end();
 		}
@@ -106,10 +111,12 @@ t.test("GET /api/v1/games/:game/:playtype/charts", (t) => {
 			await db["personal-bests"].insert([
 				mkFakePBIIDXSP({
 					// gambol hyper
+					songID: 7,
 					chartID: "fc7edc6bcfa701a261c89c999ddbba3e2195597b",
 					userID: 1,
 				}),
 				mkFakePBIIDXSP({
+					songID: 1,
 					chartID: Testing511SPA.chartID,
 					userID: 1,
 				}),

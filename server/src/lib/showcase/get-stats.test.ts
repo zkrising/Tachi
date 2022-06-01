@@ -61,11 +61,9 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 					outOf: 1,
 				},
 				related: {
-					folders: [
-						{
-							folderID: TestingIIDXFolderSP10.folderID,
-						},
-					],
+					folder: {
+						folderID: TestingIIDXFolderSP10.folderID,
+					},
 				},
 			},
 			{

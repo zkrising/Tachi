@@ -1342,7 +1342,7 @@ export type ShowcaseStatDetails = ShowcaseStatFolder | ShowcaseStatChart;
 
 export interface ShowcaseStatFolder {
 	mode: "folder";
-	folderID: string | string[];
+	folderID: string;
 	property: "score" | "percent" | "grade" | "lamp";
 	gte: number;
 }

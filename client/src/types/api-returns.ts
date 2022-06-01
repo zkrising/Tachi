@@ -66,7 +66,7 @@ export type UGPTPreferenceStatsReturn =
 	| {
 			stat: ShowcaseStatFolder;
 			result: { value: integer; outOf: integer };
-			related: { folders: FolderDocument[] };
+			related: { folder: FolderDocument };
 	  };
 
 export type UGPTHistory = Omit<UserGameStatsSnapshot, "userID" | "game" | "playtype">[];

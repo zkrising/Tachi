@@ -358,7 +358,7 @@ export function GetStatName(
 	related: UGPTPreferenceStatsReturn["related"]
 ) {
 	if (stat.mode === "folder") {
-		return (related as { folders: FolderDocument[] }).folders.map(e => e.title).join(",");
+		return (related as { folder: FolderDocument }).folder.title;
 	} else if (stat.mode === "chart") {
 		const r = related as { song: SongDocument; chart: ChartDocument };
 		return FormatChart(game, r.song, r.chart);
@@ -412,14 +412,9 @@ export function StatDisplay({
 			</Card>
 		);
 	} else if (stat.mode === "folder") {
-		const { folders } = related as { folders: FolderDocument[] };
+		const { folder } = related as { folder: FolderDocument };
 
-		let headerStr;
-		if (folders.length === 1) {
-			headerStr = folders[0].title;
-		} else {
-			headerStr = folders.map(e => e.title).join(", ");
-		}
+		const headerStr = folder.title;
 
 		return (
 			<Card
@@ -429,7 +424,7 @@ export function StatDisplay({
 				<>
 					<Link
 						className="gentle-link"
-						to={`/dashboard/users/${reqUser.id}/games/${game}/${playtype}/folders/${folders[0].folderID}`}
+						to={`/dashboard/users/${reqUser.id}/games/${game}/${playtype}/folders/${folder.folderID}`}
 					>
 						<h4>{headerStr}</h4>
 					</Link>

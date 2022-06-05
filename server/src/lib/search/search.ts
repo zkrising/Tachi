@@ -78,7 +78,7 @@ export function SearchSpecificGameSongs(
 	return SearchCollection(db.songs[game], search, {}, limit);
 }
 
-export async function SearchGameSongsAndCharts(
+export async function SearchSpecificGameSongsAndCharts(
 	game: Game,
 	search: string,
 	playtype?: Playtype,

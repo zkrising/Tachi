@@ -184,6 +184,22 @@ export async function SearchGamesSongs(search: string, games: Array<Game>) {
 	return res.flat(1).sort((a, b) => b.__textScore - a.__textScore);
 }
 
+export async function SearchGamesSongsCharts(search: string, games: Array<Game>) {
+	const promises = [];
+
+	for (const game of games) {
+		promises.push(
+			SearchSpecificGameSongsAndCharts(game, search).then((e) => ({
+				game,
+				songs: e.songs,
+				charts: e.charts,
+			}))
+		);
+	}
+
+	return Promise.all(promises);
+}
+
 export async function SearchForChartHash(search: string) {
 	const results = (await Promise.all([
 		db.charts.bms.findOne({ $or: [{ "data.hashMD5": search }, { "data.hashSHA256": search }] }),

@@ -265,3 +265,23 @@ export async function IsRequesterAdmin(request: APITokenDocument) {
 
 	return user.authLevel === UserAuthLevels.ADMIN;
 }
+
+/**
+ * Return all the GPTs this userID has played.
+ */
+export async function GetUserPlayedGPTs(userID: integer) {
+	const gpts = (await db["game-stats"].find(
+		{ userID },
+		{ projection: { game: 1, playtype: 1 } }
+	)) as Array<Pick<UserGameStats, "game" | "playtype">>;
+
+	return gpts;
+}
+
+export async function GetAllUserRivals(userID: integer) {
+	const rivals = (await db["game-settings"].find({ userID }, { projection: { rivals: 1 } }))
+		.map((e) => e.rivals)
+		.flat();
+
+	return rivals;
+}

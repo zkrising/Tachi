@@ -2,7 +2,7 @@ import chartIDRouter from "./_chartID/router";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
-import { SearchGameSongs } from "lib/search/search";
+import { SearchSpecificGameSongs } from "lib/search/search";
 import { IsString } from "utils/misc";
 import { FindChartsOnPopularity } from "utils/queries/charts";
 import { GetGPT } from "utils/req-tachi-data";
@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
 	let songIDs: Array<integer> | undefined;
 
 	if (IsString(req.query.search)) {
-		const songs = await SearchGameSongs(game, req.query.search, 100);
+		const songs = await SearchSpecificGameSongs(game, req.query.search, 100);
 
 		songIDs = songs.map((e) => e.id);
 	}

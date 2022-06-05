@@ -8,6 +8,7 @@ import type { FilterQuery } from "mongodb";
 import type { ICollection } from "monk";
 import type {
 	ChartDocument,
+	FolderDocument,
 	Game,
 	integer,
 	Playtype,
@@ -69,7 +70,7 @@ export type SongSearchReturn = SongDocument & {
 	__textScore: number;
 };
 
-export function SearchGameSongs(
+export function SearchSpecificGameSongs(
 	game: Game,
 	search: string,
 	limit = 100
@@ -83,7 +84,7 @@ export async function SearchGameSongsAndCharts(
 	playtype?: Playtype,
 	limit = 100
 ) {
-	const songs = await SearchGameSongs(game, search, limit);
+	const songs = await SearchSpecificGameSongs(game, search, limit);
 
 	const chartQuery: FilterQuery<ChartDocument> = {
 		songID: { $in: songs.map((e) => e.id) },
@@ -151,7 +152,7 @@ export function SearchUsersRegExp(search: string, matchOnline = false) {
  * Searches a single game, but optimised for the searchAllGames return.
  */
 async function SearchAllGamesSingleGame(game: Game, search: string) {
-	const songs = (await SearchGameSongs(game, search, 10)) as Array<
+	const songs = (await SearchSpecificGameSongs(game, search, 10)) as Array<
 		SongSearchReturn & {
 			game: Game;
 		}
@@ -168,9 +169,13 @@ async function SearchAllGamesSingleGame(game: Game, search: string) {
  * Searches all games' songs.
  */
 export async function SearchAllGamesSongs(search: string) {
+	return SearchGamesSongs(search, TachiConfig.GAMES);
+}
+
+export async function SearchGamesSongs(search: string, games: Array<Game>) {
 	const promises = [];
 
-	for (const game of TachiConfig.GAMES) {
+	for (const game of games) {
 		promises.push(SearchAllGamesSingleGame(game, search));
 	}
 
@@ -225,6 +230,14 @@ export async function SearchForChartHash(search: string) {
 	}
 
 	return { songs, charts };
+}
+
+export function SearchFolders(
+	search: string,
+	existingMatch?: FilterQuery<FolderDocument>,
+	limit?: integer
+) {
+	return SearchCollection(db.folders, search, existingMatch, limit);
 }
 
 function AddGamePropToSong(songDocument: SongDocument, game: Game): SongDocument & { game: Game } {

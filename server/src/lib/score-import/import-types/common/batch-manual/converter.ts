@@ -59,7 +59,12 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 			);
 		}
 
-		if (data.percent <= 1 && data.score >= 100_000) {
+		const accidentallyDividedTooMuchPercent = (chart as ChartDocument<"jubeat:Single">).data
+			.isHardMode
+			? 1.2
+			: 1;
+
+		if (data.percent <= accidentallyDividedTooMuchPercent && data.score >= 100_000) {
 			throw new InvalidScoreFailure(
 				`The percent you passed for this jubeat score was less than 1, but the score was above 100k. This is not possible. Have you sent percent as a number between 0 and 1?`
 			);

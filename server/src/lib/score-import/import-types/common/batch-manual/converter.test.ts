@@ -602,6 +602,29 @@ t.test("#ConverterFn", (t) => {
 	});
 
 	t.test(
+		"Should throw if the percent parameter is too small for jubeat when the score is reasonably high",
+		(t) => {
+			t.rejects(
+				() =>
+					ConverterBatchManual(
+						deepmerge(baseJubeatScore, { percent: 0.1, score: 100_000 } as Partial<
+							BatchManualScore<"jubeat:Single">
+						>),
+						{ game: "jubeat", service: "foo", playtype: "Single", version: null },
+						importType,
+						logger
+					),
+				{
+					message:
+						"The percent you passed for this jubeat score was less than 1, but the score was above 100k. This is not possible. Have you sent percent as a number between 0 and 1?",
+				}
+			);
+
+			t.end();
+		}
+	);
+
+	t.test(
 		"Should throw if the percent parameter is over 100 but the chart is not hard mode (for jubeat)",
 		(t) => {
 			t.rejects(

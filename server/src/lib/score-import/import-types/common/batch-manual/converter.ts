@@ -59,6 +59,12 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 			);
 		}
 
+		if (data.percent <= 1 && data.score >= 100_000) {
+			throw new InvalidScoreFailure(
+				`The percent you passed for this jubeat score was less than 1, but the score was above 100k. This is not possible. Have you sent percent as a number between 0 and 1?`
+			);
+		}
+
 		if (data.percent > 100 && !(chart as ChartDocument<"jubeat:Single">).data.isHardMode) {
 			throw new InvalidScoreFailure(`The percent field must be <= 100 for normal mode.`);
 		}

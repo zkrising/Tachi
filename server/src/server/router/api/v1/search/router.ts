@@ -11,7 +11,7 @@ import { RequireBokutachi } from "server/middleware/type-require";
 import { IsString } from "utils/misc";
 import { GetAllUserRivals, GetUserPlayedGPTs } from "utils/user";
 import type { FilterQuery } from "mongodb";
-import type { FolderDocument, Game, PublicUserDocument, SongDocument } from "tachi-common";
+import type { FolderDocument, Game, integer, PublicUserDocument, SongDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -66,12 +66,14 @@ router.get("/", async (req, res) => {
 	// @ts-expect-error Handled below -- the field is added by the below for loop.
 	const usersWithRivalTag: Array<PublicUserDocument & { __isRival: boolean }> = users;
 
-	if (userID !== null) {
-		const rivals = await GetAllUserRivals(userID);
+	let rivals: Array<integer> = [];
 
-		for (const user of usersWithRivalTag) {
-			user.__isRival = rivals.includes(user.id);
-		}
+	if (userID !== null) {
+		rivals = await GetAllUserRivals(userID);
+	}
+
+	for (const user of usersWithRivalTag) {
+		user.__isRival = rivals.includes(user.id);
 	}
 
 	return res.status(200).json({

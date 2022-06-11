@@ -27,7 +27,7 @@ t.test("GET /api/v1/search", (t) => {
 		);
 
 		await db["game-settings"].remove({});
-		await db["game-settings"].insert(mkFakeGameSettings(1, "iidx", "SP", { rivals: [] }));
+		await db["game-settings"].insert(mkFakeGameSettings(1, "iidx", "SP", { rivals: [2] }));
 
 		const res = await mockApi
 			.get("/api/v1/search?search=scoobydoo")

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SearchGameSongsAndCharts } from "lib/search/search";
+import { SearchSpecificGameSongsAndCharts } from "lib/search/search";
 import { HyperAggressiveRateLimitMiddleware } from "server/middleware/rate-limiter";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { GetUGPT } from "utils/req-tachi-data";
@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 		});
 	}
 
-	const { songs: allSongs, charts: allCharts } = await SearchGameSongsAndCharts(
+	const { songs: allSongs, charts: allCharts } = await SearchSpecificGameSongsAndCharts(
 		game,
 		req.query.search,
 		playtype

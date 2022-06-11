@@ -1,10 +1,10 @@
-import { SearchGameSongs, SearchUsersRegExp } from "./search";
+import { SearchSpecificGameSongs, SearchUsersRegExp } from "./search";
 import db from "external/mongo/db";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { LoadTachiIIDXData } from "test-utils/test-data";
 
-t.test("#SearchGameSongs", (t) => {
+t.test("#SearchSpecificGameSongs", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(LoadTachiIIDXData);
 	t.beforeEach(async () => {
@@ -21,7 +21,7 @@ t.test("#SearchGameSongs", (t) => {
 	});
 
 	t.test("Should return songs like the query.", async (t) => {
-		const res = await SearchGameSongs("iidx", "amuro");
+		const res = await SearchSpecificGameSongs("iidx", "amuro");
 
 		// for simplicity of testing (and because the
 		// return order is ambiguous) we sort on

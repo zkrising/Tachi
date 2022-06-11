@@ -1,8 +1,10 @@
+import db from "external/mongo/db";
 import t from "tap";
+import { mkFakeGameSettings, mkFakeUser } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { LoadTachiIIDXData } from "test-utils/test-data";
-import type { SongDocument } from "tachi-common";
+import type { ChartDocument, SongDocument } from "tachi-common";
 
 t.test("GET /api/v1/search", (t) => {
 	t.beforeEach(ResetDBState);
@@ -14,6 +16,26 @@ t.test("GET /api/v1/search", (t) => {
 		t.equal(res.body.body.users.length, 1);
 
 		t.equal(res.body.body.users[0].username, "test_zkldi");
+		t.equal(res.body.body.users[0].__isRival, false);
+
+		t.end();
+	});
+
+	t.test("Should highlight users as rivals if they're rivals of the requester", async (t) => {
+		await db.users.insert(
+			mkFakeUser(2, { username: "scoobydoo", usernameLowercase: "scoobydoo" })
+		);
+
+		await db["game-settings"].remove({});
+		await db["game-settings"].insert(mkFakeGameSettings(1, "iidx", "SP", { rivals: [2] }));
+
+		const res = await mockApi
+			.get("/api/v1/search?search=scoobydoo")
+			.set("Authorization", "Bearer fake_api_token");
+
+		t.equal(res.body.body.users.length, 1);
+
+		t.equal(res.body.body.users[0].__isRival, true);
 
 		t.end();
 	});
@@ -21,10 +43,33 @@ t.test("GET /api/v1/search", (t) => {
 	t.test("Should search songs.", async (t) => {
 		const res = await mockApi.get("/api/v1/search?search=AA");
 
-		t.equal(res.body.body.songs.length, 2);
 		t.strictSame(
 			res.body.body.songs.map((e: SongDocument) => e.title),
 			["AA", "AA -rebuild-"]
+		);
+
+		t.end();
+	});
+
+	t.test("Should search charts.", async (t) => {
+		const res = await mockApi.get("/api/v1/search?search=AA");
+
+		t.strictSame(
+			res.body.body.charts.map((e: ChartDocument) => e.chartID),
+			[
+				"f50fada294fd94afb48215c172bafcd686abf80d",
+				"dc63134bd7da647e67e6074f37179da30739ef62",
+				"0f059e53963850860c98298b9b9c25e07c3a35df",
+				"0e1fbd5bfe34351cb8c4869eddebc34241ec4546",
+				"c873be77d89ae1bc3c1bac75ddf9b2de5a3fe6af",
+				"95bd4cfdc20bf8a510abe7fa07fe6bb7393e95ab",
+				"45c4c6c8fc966c1456206f713110b463f9bedde2",
+				"15c2dc36d57a469ce6e0655ef968528149f08854",
+				"557a1536509108ab9a0e146110a3227fc0c5b0aa",
+				"294f86a9f4dc7116d82f3d495c5aae59f093030a",
+				"fb057b61b91df7fb01027182d3be01aadebcec94",
+				"29b8fb636805f70b8918ff4654838b474619154f",
+			]
 		);
 
 		t.end();

@@ -311,6 +311,7 @@ export interface GameClassSets {
 	"wacca:Single": "stageUp" | "colour";
 	"pms:Controller": "dan";
 	"pms:Keyboard": "dan";
+	"itg:Stamina": never;
 }
 
 export type AllClassSets = GameClassSets[IDStrings];

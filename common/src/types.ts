@@ -39,7 +39,8 @@ export type IDStrings =
 	| "gitadora:Dora"
 	| "wacca:Single"
 	| "pms:Keyboard"
-	| "pms:Controller";
+	| "pms:Controller"
+	| "itg:Stamina";
 
 export interface IDStringToPlaytype {
 	"iidx:SP": "SP";
@@ -61,6 +62,7 @@ export interface IDStringToPlaytype {
 	"wacca:Single": "Single";
 	"pms:Keyboard": "Keyboard";
 	"pms:Controller": "Controller";
+	"itg:Stamina": "Stamina";
 }
 
 export interface IDStringToGame {
@@ -83,6 +85,7 @@ export interface IDStringToGame {
 	"wacca:Single": "wacca";
 	"pms:Keyboard": "pms";
 	"pms:Controller": "pms";
+	"itg:Stamina": "itg";
 }
 
 export interface GameToIDStrings {
@@ -99,6 +102,7 @@ export interface GameToIDStrings {
 	popn: "popn:9B";
 	wacca: "wacca:Single";
 	pms: "pms:Keyboard" | "pms:Controller";
+	itg: "itg:Stamina";
 }
 
 /**
@@ -132,7 +136,8 @@ export type Game =
 	| "gitadora"
 	| "usc"
 	| "wacca"
-	| "pms";
+	| "pms"
+	| "itg";
 
 /**
  * This is the generic response from the Kamaitachi API in event of a failure.
@@ -175,6 +180,7 @@ export interface Playtypes {
 	gitadora: "Gita" | "Dora";
 	wacca: "Single";
 	pms: "Keyboard" | "Controller";
+	itg: "Stamina";
 }
 
 type IIDXGrades = "F" | "E" | "D" | "C" | "B" | "A" | "AA" | "AAA" | "MAX-" | "MAX";
@@ -245,6 +251,7 @@ export interface Grades {
 		| "MASTER";
 	"pms:Controller": IIDXGrades;
 	"pms:Keyboard": IIDXGrades;
+	"itg:Stamina": "D" | "C" | "B" | "A" | "S-" | "S" | "S+" | "★" | "★★" | "★★★" | "★★★★";
 }
 
 type IIDXLamps =
@@ -295,6 +302,7 @@ export interface Lamps {
 	"wacca:Single": "FAILED" | "CLEAR" | "MISSLESS" | "FULL COMBO" | "ALL MARVELOUS";
 	"pms:Controller": IIDXLamps;
 	"pms:Keyboard": IIDXLamps;
+	"itg:Stamina": "FAILED" | "CLEAR" | "FULL COMBO" | "EXCELLENT COMBO" | "QUAD";
 }
 
 export type IIDX2DXTraSets = "Kichiku" | "Kiraku" | "All Scratch";
@@ -329,6 +337,7 @@ export interface Difficulties {
 	"wacca:Single": "NORMAL" | "HARD" | "EXPERT" | "INFERNO";
 	"pms:Controller": "CHART";
 	"pms:Keyboard": "CHART";
+	"itg:Stamina": "Beginner" | "Easy" | "Normal" | "Hard" | "Expert";
 }
 
 /**
@@ -467,6 +476,7 @@ export interface SessionCalculatedDataLookup {
 	"wacca:Single": "rate";
 	"pms:Controller": "sieglinde";
 	"pms:Keyboard": "sieglinde";
+	"itg:Stamina": "blockRating";
 }
 
 export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
@@ -695,6 +705,7 @@ export interface UGSRatingsLookup {
 	"wacca:Single": "naiveRate" | "rate";
 	"pms:Controller": "sieglinde";
 	"pms:Keyboard": "sieglinde";
+	"itg:Stamina": "highestBlock" | "highest32";
 }
 
 export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBDocument {
@@ -759,6 +770,7 @@ export interface GPTSupportedVersions {
 	"wacca:Single": "reverse";
 	"pms:Controller": never;
 	"pms:Keyboard": never;
+	"itg:Stamina": never;
 }
 
 interface CDDataIIDXSP {
@@ -800,7 +812,11 @@ interface ChartDocumentData {
 	"usc:Controller": CDDataUSC;
 	"ddr:SP": CDDataDDRSP;
 	"ddr:DP": CDDataDDRSP;
-	"maimai:Single": { maxPercent: number; inGameID: number; inGameStrID: string };
+	"maimai:Single": {
+		maxPercent: number;
+		inGameID: number;
+		inGameStrID: string;
+	};
 	"jubeat:Single": { inGameID: integer; isHardMode: boolean };
 	"museca:Single": { inGameID: integer };
 	"bms:7K": CDDataBMS;
@@ -811,6 +827,19 @@ interface ChartDocumentData {
 	"wacca:Single": { isHot: boolean };
 	"pms:Controller": CDDataBMS;
 	"pms:Keyboard": CDDataBMS;
+	"itg:Stamina": {
+		chartHash: string;
+		breakdown: {
+			detailed: string;
+			partiallySimplified: string;
+			simplified: string;
+		};
+		totalStream: string;
+		totalBreak: string;
+		length: number;
+		charter: string;
+		displayBPM: number;
+	};
 }
 
 export interface GPTTierlists {
@@ -833,6 +862,7 @@ export interface GPTTierlists {
 	"wacca:Single": never;
 	"pms:Controller": "sgl-HC" | "sgl-EC";
 	"pms:Keyboard": "sgl-HC" | "sgl-EC";
+	"itg:Stamina": never;
 }
 
 export interface ChartTierlistInfo {
@@ -860,7 +890,11 @@ interface SongDocumentData {
 	museca: { titleJP: string; artistJP: string; displayVersion: string };
 	maimai: { titleJP: string; artistJP: string; displayVersion: string };
 	jubeat: { displayVersion: string };
-	popn: { displayVersion: string | null; genre: string; genreEN: string | null };
+	popn: {
+		displayVersion: string | null;
+		genre: string;
+		genreEN: string | null;
+	};
 	sdvx: { displayVersion: string };
 	usc: Record<string, never>;
 	ddr: { displayVersion: string };
@@ -872,12 +906,20 @@ interface SongDocumentData {
 	};
 	chunithm: { genre: string; displayVersion: string };
 	gitadora: { isHot: boolean; displayVersion: string };
-	wacca: { titleJP: string; artistJP: string; genre: string; displayVersion: string | null };
+	wacca: {
+		titleJP: string;
+		artistJP: string;
+		genre: string;
+		displayVersion: string | null;
+	};
 	pms: {
 		genre: string | null;
 		subtitle: string | null;
 		subartist: string | null;
 		tableString: string | null;
+	};
+	itg: {
+		subtitle: string;
 	};
 }
 
@@ -985,7 +1027,9 @@ interface USCScoreMeta {
 
 interface ScoreMetaLookup {
 	"iidx:SP": IIDXSPScoreMeta;
-	"iidx:DP": IIDXSPScoreMeta & { random: { left: RanOptions; right: RanOptions } | null };
+	"iidx:DP": IIDXSPScoreMeta & {
+		random: { left: RanOptions; right: RanOptions } | null;
+	};
 	"popn:9B": {
 		hiSpeed: number | null;
 		hidden: integer | null;
@@ -1002,13 +1046,16 @@ interface ScoreMetaLookup {
 	"jubeat:Single": Record<string, never>;
 	"museca:Single": Record<string, never>;
 	"bms:7K": BMS7KScoreMeta;
-	"bms:14K": BMS7KScoreMeta & { random: { left: RanOptions; right: RanOptions } | null };
+	"bms:14K": BMS7KScoreMeta & {
+		random: { left: RanOptions; right: RanOptions } | null;
+	};
 	"chunithm:Single": Record<string, never>;
 	"gitadora:Gita": Record<string, never>;
 	"gitadora:Dora": Record<string, never>;
 	"wacca:Single": { mirror: boolean | null };
 	"pms:Controller": PMSScoreMeta;
 	"pms:Keyboard": PMSScoreMeta;
+	"itg:Stamina": Record<string, never>;
 }
 
 interface BASE_VALID_HIT_META {
@@ -1083,6 +1130,9 @@ export interface HitMetaLookup {
 	"wacca:Single": BASE_VALID_HIT_META;
 	"pms:Controller": BMSHitMeta;
 	"pms:Keyboard": BMSHitMeta;
+	"itg:Stamina": BASE_VALID_HIT_META & {
+		gaugeHistory: Array<integer> | null;
+	};
 }
 
 type IIDXJudges = "pgreat" | "great" | "good" | "bad" | "poor";
@@ -1113,6 +1163,7 @@ export interface JudgementLookup {
 	"wacca:Single": "marvelous" | "great" | "good" | "miss";
 	"pms:Controller": "cool" | "great" | "good" | "bad" | "poor";
 	"pms:Keyboard": "cool" | "great" | "good" | "bad" | "poor";
+	"itg:Stamina": "fantastic" | "excellent" | "great" | "decent" | "wayoff" | "miss";
 }
 
 export interface ScoreCalculatedDataLookup {
@@ -1135,6 +1186,7 @@ export interface ScoreCalculatedDataLookup {
 	"wacca:Single": "rate";
 	"pms:Controller": "sieglinde";
 	"pms:Keyboard": "sieglinde";
+	"itg:Stamina": "blockRating";
 }
 
 export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
@@ -1373,6 +1425,7 @@ export interface UGPTSpecificPreferences {
 	"wacca:Single": Record<string, never>;
 	"pms:Controller": Record<string, never>;
 	"pms:Keyboard": Record<string, never>;
+	"itg:Stamina": Record<string, never>;
 }
 
 export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDocument {
@@ -1518,4 +1571,6 @@ export type NotificationBody =
 			};
 	  };
 
-export type NotificationDocument = BaseNotification & { body: NotificationBody };
+export type NotificationDocument = BaseNotification & {
+	body: NotificationBody;
+};

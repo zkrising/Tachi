@@ -58,8 +58,10 @@ router.get("/", async (req, res) => {
 		SearchFolders(req.query.search, filter),
 	]);
 
-	const songs = songChartData.map((e) => e.songs.map((song) => ({ game: e.game, ...song })));
-	const charts = songChartData.map((e) => e.charts.map((chart) => ({ game: e.game, ...chart })));
+	const songs = songChartData.flatMap((e) => e.songs.map((song) => ({ game: e.game, ...song })));
+	const charts = songChartData.flatMap((e) =>
+		e.charts.map((chart) => ({ game: e.game, ...chart }))
+	);
 
 	// @ts-expect-error Handled below -- the field is added by the below for loop.
 	const usersWithRivalTag: Array<PublicUserDocument & { __isRival: boolean }> = users;

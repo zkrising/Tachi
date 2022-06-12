@@ -146,14 +146,18 @@ const PR_HIT_META = (game: Game): PrudenceSchema => {
 const PR_BATCH_MANUAL_SCORE = (game: Game, playtype: Playtype): PrudenceSchema => {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
+	const scoreChecker =
+		game === "itg" || game === "gitadora" ? p.isBetween(0, 100) : p.isPositiveInteger;
+
 	return {
-		score: p.isPositiveInteger,
+		score: scoreChecker,
 		lamp: p.isIn(gptConfig.lamps),
 		matchType: p.isIn(
 			"songTitle",
 			"ddrSongHash",
 			"tachiSongID",
 			"bmsChartHash",
+			"itgChartHash",
 			"inGameID",
 			"uscChartHash",
 			"popnChartHash"

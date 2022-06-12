@@ -476,7 +476,7 @@ export interface SessionCalculatedDataLookup {
 	"wacca:Single": "rate";
 	"pms:Controller": "sieglinde";
 	"pms:Keyboard": "sieglinde";
-	"itg:Stamina": "blockRating";
+	"itg:Stamina": "blockRating" | "average32speed";
 }
 
 export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {

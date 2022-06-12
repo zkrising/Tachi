@@ -2282,9 +2282,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultSessionRatingAlg: "blockRating",
 		defaultProfileRatingAlg: "highestBlock",
 
-		scoreRatingAlgs: ["blockRating", "highest32"],
-		sessionRatingAlgs: ["blockRating"],
-		profileRatingAlgs: ["highest32", "highestBlock"],
+		scoreRatingAlgs: ["blockRating", "highest32", "highest256"],
+		sessionRatingAlgs: ["blockRating", "average32speed"],
+		profileRatingAlgs: ["highest32", "highestBlock", "highest256"],
 
 		scoreRatingAlgDescriptions: {
 			blockRating: "How much this clear is worth.",
@@ -2298,6 +2298,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		sessionRatingAlgDescriptions: {
 			blockRating: "An average of your best 5 block levels cleared this session.",
+			average32speed: "An average of your fastest 5 32 measure runs this session.",
 		},
 
 		scoreRatingAlgFormatters: {},

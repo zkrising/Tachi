@@ -1193,7 +1193,7 @@ export interface ScoreCalculatedDataLookup {
 	"wacca:Single": "rate";
 	"pms:Controller": "sieglinde";
 	"pms:Keyboard": "sieglinde";
-	"itg:Stamina": "blockRating";
+	"itg:Stamina": "blockRating" | "highest32";
 }
 
 export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {

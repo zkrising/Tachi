@@ -2282,12 +2282,13 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		defaultSessionRatingAlg: "blockRating",
 		defaultProfileRatingAlg: "highestBlock",
 
-		scoreRatingAlgs: ["blockRating"],
+		scoreRatingAlgs: ["blockRating", "highest32"],
 		sessionRatingAlgs: ["blockRating"],
 		profileRatingAlgs: ["highest32", "highestBlock"],
 
 		scoreRatingAlgDescriptions: {
 			blockRating: "How much this clear is worth.",
+			highest32: "The highest BPM this score streamed 32 measures straight for.",
 		},
 		profileRatingAlgDescriptions: {
 			highest32: "The highest BPM this user has streamed 32 unbroken measures at.",

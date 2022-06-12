@@ -173,6 +173,12 @@ function FormatSongTitle(game: Game, song: SongDocument) {
 		)}`;
 	}
 
+	if (game === "itg") {
+		const s = song as SongDocument<"itg">;
+
+		return `${song.title}${ConditionalLeadingSpace(s.data.subtitle)}`;
+	}
+
 	return song.title;
 }
 

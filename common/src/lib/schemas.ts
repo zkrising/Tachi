@@ -393,6 +393,7 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 					simplified: "string",
 					total: "string",
 					npsPerMeasure: [p.isPositive],
+					notesPerMeasure: [p.isPositive],
 				},
 				tech: {
 					crossovers: p.isPositiveInteger,

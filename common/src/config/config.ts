@@ -2289,9 +2289,11 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		scoreRatingAlgDescriptions: {
 			blockRating: "How much this clear is worth.",
 			highest32: "The highest BPM this score streamed 32 measures straight for.",
+			highest256: "The highest BPM this score streamed 256 measures straight for.",
 		},
 		profileRatingAlgDescriptions: {
 			highest32: "The highest BPM this user has streamed 32 unbroken measures at.",
+			highest256: "The highest BPM this user has streamed 256 unbroken measures at.",
 			highestBlock: "The highest block level this player has cleared.",
 		},
 		sessionRatingAlgDescriptions: {

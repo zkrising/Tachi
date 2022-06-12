@@ -705,7 +705,7 @@ export interface UGSRatingsLookup {
 	"wacca:Single": "naiveRate" | "rate";
 	"pms:Controller": "sieglinde";
 	"pms:Keyboard": "sieglinde";
-	"itg:Stamina": "highestBlock" | "highest32";
+	"itg:Stamina": "highestBlock" | "highest32" | "highest256";
 }
 
 export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBDocument {
@@ -836,6 +836,7 @@ interface ChartDocumentData {
 			simplified: string;
 			total: string;
 			npsPerMeasure: Array<number>;
+			notesPerMeasure: Array<number>;
 		};
 		tech: {
 			crossovers: integer;
@@ -1194,7 +1195,7 @@ export interface ScoreCalculatedDataLookup {
 	"wacca:Single": "rate";
 	"pms:Controller": "sieglinde";
 	"pms:Keyboard": "sieglinde";
-	"itg:Stamina": "blockRating" | "highest32";
+	"itg:Stamina": "blockRating" | "highest32" | "highest256";
 }
 
 export interface ScoreDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {

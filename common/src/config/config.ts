@@ -2301,9 +2301,21 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			average32Speed: "An average of your fastest 5 32 measure runs this session.",
 		},
 
-		scoreRatingAlgFormatters: {},
-		profileRatingAlgFormatters: {},
-		sessionRatingAlgFormatters: {},
+		// always round these
+		scoreRatingAlgFormatters: {
+			highest256: (k) => k.toFixed(0),
+			highest32: (k) => k.toFixed(0),
+			blockRating: (k) => k.toFixed(0),
+		},
+		profileRatingAlgFormatters: {
+			highest256: (k) => k.toFixed(0),
+			highest32: (k) => k.toFixed(0),
+			highestBlock: (k) => k.toFixed(0),
+		},
+		sessionRatingAlgFormatters: {
+			average32Speed: (k) => k.toFixed(0),
+			blockRating: (k) => k.toFixed(0),
+		},
 
 		// This is quirky (lol)
 		// ITG difficulties can be any string they want to be. We just support some

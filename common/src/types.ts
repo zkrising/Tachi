@@ -337,7 +337,7 @@ export interface Difficulties {
 	"wacca:Single": "NORMAL" | "HARD" | "EXPERT" | "INFERNO";
 	"pms:Controller": "CHART";
 	"pms:Keyboard": "CHART";
-	"itg:Stamina": "Beginner" | "Easy" | "Medium" | "Hard" | "Challenge";
+	"itg:Stamina": string;
 }
 
 /**
@@ -829,6 +829,7 @@ interface ChartDocumentData {
 	"pms:Keyboard": CDDataBMS;
 	"itg:Stamina": {
 		chartHash: string;
+		difficultyTag: "Beginner" | "Easy" | "Medium" | "Hard" | "Challenge";
 		breakdown: {
 			detailed: string;
 			partiallySimplified: string;

@@ -2302,6 +2302,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgFormatters: {},
 		sessionRatingAlgFormatters: {},
 
+		// This is quirky (lol)
+		// ITG difficulties can be any string they want to be. We just support some
+		// hardcoded defaults.
 		difficulties: ["Beginner", "Easy", "Medium", "Hard", "Challenge"],
 		shortDifficulties: {
 			Beginner: "B",

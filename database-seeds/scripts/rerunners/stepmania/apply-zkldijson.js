@@ -11,7 +11,7 @@ const options = program.opts();
 
 const data = JSON.parse(fs.readFileSync(options.file, "utf-8"));
 
-let freshID = ReadCollection("songs-itg.json").length;
+let freshID = options.append ? ReadCollection("songs-itg.json").length : 1;
 
 const songs = [];
 const charts = [];
@@ -28,7 +28,9 @@ for (const [key, d] of Object.entries(data)) {
 
 	let eastCoast = false;
 	// only parse these for now
-	if (pack.startsWith("ECS") || pack.startsWith("Stamina RPG")) {
+	if (pack.startsWith("ECS") && !pack.startsWith("ECS7")) {
+		eastCoast = true;
+	} else if (pack.startsWith("Stamina RPG")) {
 		eastCoast = true;
 	} else if (pack.startsWith("The Starter Pack of Stamina")) {
 		eastCoast = false;
@@ -103,11 +105,12 @@ for (const [key, d] of Object.entries(data)) {
 		level: d.level.toString(),
 		levelNum: d.level,
 		isPrimary: true,
-		difficulty,
-		playtype: "Single",
+		difficulty: `${d.charter}: ${difficulty}`,
+		playtype: "Stamina",
 		tierlistInfo: {},
 		versions: [],
 		data: {
+			difficultyTag: difficulty,
 			chartHash: d.chartHash,
 			tech: d.tech,
 			breakdown: d.breakdown,

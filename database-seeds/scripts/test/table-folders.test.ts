@@ -16,7 +16,7 @@ for (const folder of folders) {
 const tables = ReadCollection("tables.json", true) as TableDocument[];
 
 for (const table of tables) {
-	const pretty = FormatFunctions.tables!(table);
+	const pretty = FormatFunctions.tables!(table, null);
 
 	for (const folderID of table.folders) {
 		if (!folderMap.get(folderID)) {

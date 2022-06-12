@@ -34,9 +34,15 @@ for (const collection of collections) {
 
 	const validator = SCHEMAS[collection];
 
+	let game = "";
+
+	if (collection.startsWith("songs-") || collection.startsWith("charts-")) {
+		game = collection.split("-")[1];
+	}
+
 	for (const d of data) {
 		// Will throw if formatFn is undefined -- that's a test failure in my book.
-		const pretty = formatFn(d);
+		const pretty = formatFn(d, game);
 
 		try {
 			validator(d);

@@ -47,6 +47,8 @@ UniqueKeys["charts-bms"].push("data.hashSHA256");
 UniqueKeys["charts-pms"].push(["data.hashMD5", "playtype"]);
 UniqueKeys["charts-pms"].push(["data.hashSHA256", "playtype"]);
 
+UniqueKeys["charts-itg"].push("data.chartHash");
+
 let exitCode = 0;
 const suites = [];
 
@@ -61,11 +63,17 @@ for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 
 	const data = ReadCollection(collectionName);
 
+	let game = "";
+
+	if (collection.startsWith("songs-") || collection.startsWith("charts-")) {
+		game = collection.split("-")[1];
+	}
+
 	for (const uniqueID of uniqueIDs) {
 		const set = new Set<string>();
 
 		for (const d of data) {
-			const pretty = formatFn(d);
+			const pretty = formatFn(d, game);
 
 			let pureValue: string;
 			let value: string;

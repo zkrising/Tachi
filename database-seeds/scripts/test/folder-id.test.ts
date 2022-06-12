@@ -9,7 +9,7 @@ let fails = 0;
 const folders = ReadCollection("folders.json", true) as FolderDocument[];
 
 for (const folder of folders) {
-	const pretty = FormatFunctions.folders!(folder);
+	const pretty = FormatFunctions.folders!(folder, null);
 
 	const expectedFolderID = CreateFolderID(folder.data, folder.game, folder.playtype);
 

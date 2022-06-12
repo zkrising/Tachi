@@ -1045,7 +1045,7 @@ index 2c87831..6b62c0c 100644
 +            simplified = GenerateBreakdownText("P1", 2),
 +            total = GenerateBreakdownText("P1", 3),
 +            npsPerMeasure = SL.P1.Streams.NPSperMeasure,
-+            notesPerMeasure = SL.P1.Streams.NPSperMeasure,
++            notesPerMeasure = SL.P1.Streams.NotesPerMeasure,
 +        },
 +        tech = {
 +            footswitches = SL.P1.Streams.Footswitches,

@@ -929,6 +929,7 @@ interface SongDocumentData {
 	};
 	itg: {
 		subtitle: string;
+		banner: string | null;
 	};
 }
 

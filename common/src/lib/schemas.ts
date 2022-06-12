@@ -290,6 +290,7 @@ function GetSongDataForGame(game: Game): PrudenceSchema {
 		case "itg":
 			return {
 				subtitle: "string",
+				banner: "?string",
 			};
 		case "usc":
 		case "gitadora":

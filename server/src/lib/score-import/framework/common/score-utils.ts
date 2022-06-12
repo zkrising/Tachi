@@ -93,6 +93,11 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 		case "gitadora":
 		case "itg":
 			return score;
+
+		default: {
+			logger.severe(`Invalid game passed of ${game} to GenericCalcPercent.`);
+			throw new InternalFailure(`Invalid game passed of ${game} to GenericCalcPercent.`);
+		}
 	}
 }
 

@@ -1,0 +1,67 @@
+diff --git a/Scripts/WF-Profiles.lua b/Scripts/WF-Profiles.lua
+index 2c87831..3e6b61f 100644
+--- a/Scripts/WF-Profiles.lua
++++ b/Scripts/WF-Profiles.lua
+@@ -16,6 +16,13 @@
+ -- HERE IT IS BOYS. IT'S THE HASH CACHE #HASHCASH
+ WF.HashCache = {}
+ 
++-- HERE IT IS BOYS. IT'S THE ZKLDI CACHE #ZCACHE
++-- we hijack this process to create useful chart info ourselves
++-- i'm too lazy to write my own proper sm parser
++-- and sm sucks
++-- sorry not sorry
++WF.ZkldiDump = {};
++
+ WF.InitPlayerProfiles = function()
+    -- these will always be indexed by player number
+     WF.PlayerProfileStats = {}
+@@ -2334,6 +2341,8 @@ WF.SaveHashCache = function()
+         end
+     end
+ 
++    File.Write("/Save/Waterfall/zkldi.json", json.encode(WF.ZkldiDump))
++
+     local fstr = table.concat(ft, "\n")
+     if File.Write(path, fstr) then
+         Trace("Hash Cache successfully written. #HashCash")
+@@ -2381,6 +2390,39 @@ WF.ProcessHashCacheItem = function()
+         hash = GetHashFromSimfileString(item[2], WF.LastMSD.MSD, WF.LastMSD.Type) or ""
+     end
+ 
++    
++    local song = item[1]
++    local steps = item[2]
++
++    ParseChartInfo(steps, "P1")
++
++    WF.ZkldiDump[id] = {
++        title = song:GetMainTitle(),
++        artist = song:GetDisplayArtist(),
++        subtitle = song:GetDisplaySubTitle(),
++
++        chartHash = hash,
++        level = steps:GetMeter(),
++        difficulty = steps:GetDifficulty(),
++        breakdown = {
++            detailed = GenerateBreakdownText("P1", 0),
++            partiallySimplified = GenerateBreakdownText("P1", 1),
++            simplified = GenerateBreakdownText("P1", 2),
++            total = GenerateBreakdownText("P1", 3),
++            npsPerMeasure = SL.P1.Streams.NPSperMeasure
++        },
++        tech = {
++            footswitches = SL.P1.Streams.Footswitches,
++            jacks = SL.P1.Streams.Jacks,
++            sideswitches = SL.P1.Streams.Sideswitches,
++            brackets = SL.P1.Streams.Brackets,
++            crossovers = SL.P1.Streams.Crossovers,
++        },
++        length = song:GetLastSecond(),
++        charter = steps:GetAuthorCredit(),
++        displayBPM = steps:GetDisplayBpms()
++    }
++
+     WF.HashCache[id] = hash
+     table.remove(WF.NewChartsToCache, 1)
+ end

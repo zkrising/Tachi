@@ -2312,10 +2312,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			highest32: (k) => k.toFixed(0),
 			highestBlock: (k) => k.toFixed(0),
 		},
-		sessionRatingAlgFormatters: {
-			average32Speed: (k) => k.toFixed(0),
-			blockRating: (k) => k.toFixed(0),
-		},
+		sessionRatingAlgFormatters: {},
 
 		// This is quirky (lol)
 		// ITG difficulties can be any string they want to be. We just support some

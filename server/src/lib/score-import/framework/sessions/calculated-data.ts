@@ -1,6 +1,7 @@
 import type {
 	Game,
 	IDStrings,
+	integer,
 	Playtype,
 	ScoreDocument,
 	SessionCalculatedDataLookup,
@@ -9,20 +10,18 @@ import type {
 
 type ScoreCalculatedDataOnly = Pick<ScoreDocument, "calculatedData">;
 
-const RELEVANT_SCORES = 10;
-
-function AverageBest10(vals: Array<number | null | undefined>) {
+function AverageBestN(vals: Array<number | null | undefined>, n = 10) {
 	const numbers = vals.filter((e) => typeof e === "number") as Array<number>;
 
-	if (numbers.length < RELEVANT_SCORES) {
+	if (numbers.length < n) {
 		return null;
 	}
 
 	return (
 		numbers
 			.sort((a, b) => b - a)
-			.slice(0, RELEVANT_SCORES)
-			.reduce((a, e) => a + e, 0) / RELEVANT_SCORES
+			.slice(0, n)
+			.reduce((a, e) => a + e, 0) / n
 	);
 }
 
@@ -40,7 +39,21 @@ function AvgBest10Map(
 	arr: Array<ScoreCalculatedDataOnly>,
 	prop: keyof ScoreDocument["calculatedData"]
 ) {
-	return AverageBest10(arr.map((e) => e.calculatedData[prop]));
+	return AverageBestN(
+		arr.map((e) => e.calculatedData[prop]),
+		10
+	);
+}
+
+function AvgBestNMap(
+	arr: Array<ScoreCalculatedDataOnly>,
+	prop: keyof ScoreDocument["calculatedData"],
+	n: integer
+) {
+	return AverageBestN(
+		arr.map((e) => e.calculatedData[prop]),
+		n
+	);
 }
 
 type SessionCalcDataFn = (
@@ -107,6 +120,11 @@ function GetGPTSessionCalcDataFn(game: Game, playtype: Playtype): SessionCalcDat
 			});
 		case "maimai:Single":
 			return () => ({});
+		case "itg:Stamina":
+			return (scd) => ({
+				blockRating: AvgBestNMap(scd, "blockRating", 5),
+				average32Speed: AvgBestNMap(scd, "highest32", 5),
+			});
 	}
 }
 

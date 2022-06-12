@@ -13,8 +13,10 @@ import {
 	PoyashiBPI,
 	Volforce,
 	WACCARate,
+	ITGHighestUnbroken,
 } from "rg-stats";
 import { GetGamePTConfig } from "tachi-common";
+import { IsNullish } from "utils/misc";
 import type { DryScore } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ChartDocument, Game, IDStrings, Lamps, Playtypes, ScoreDocument } from "tachi-common";
@@ -68,6 +70,7 @@ const CalculatedDataFunctions: CalculatedDataFunctionsType = {
 	"jubeat:Single": CalculateDataJubeat,
 	"pms:Keyboard": CalculateDataPMSorBMS,
 	"pms:Controller": CalculateDataPMSorBMS,
+	"itg:Stamina": CalculateDataITGStamina,
 };
 
 // Creates Game-Specific calculatedData for the provided game & playtype.
@@ -236,6 +239,36 @@ function CalculateDataPopn(
 			dryScore.scoreData.score,
 			dryScore.scoreData.lamp,
 			chart.levelNum
+		),
+	};
+}
+
+function CalculateDataITGStamina(
+	dryScore: DryScore<"itg:Stamina">,
+	chart: ChartDocument<"itg:Stamina">
+): CalculatedData<"itg:Stamina"> {
+	// If the user failed -- and we don't know when, return null for everything.
+	if (dryScore.scoreData.lamp === "FAILED" && IsNullish(dryScore.scoreData.hitMeta.diedAt)) {
+		return {
+			blockRating: null,
+			highest32: null,
+			highest256: null,
+		};
+	}
+
+	return {
+		blockRating: chart.levelNum,
+		highest32: ITGHighestUnbroken.calculateFromNPSPerMeasure(
+			chart.data.breakdown.npsPerMeasure,
+			chart.data.breakdown.notesPerMeasure,
+			dryScore.scoreData.hitMeta.diedAt,
+			32
+		),
+		highest256: ITGHighestUnbroken.calculateFromNPSPerMeasure(
+			chart.data.breakdown.npsPerMeasure,
+			chart.data.breakdown.notesPerMeasure,
+			dryScore.scoreData.hitMeta.diedAt,
+			256
 		),
 	};
 }

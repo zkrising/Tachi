@@ -14,6 +14,7 @@ import {
 	FindChartWithPTDF,
 	FindChartWithPTDFVersion,
 	FindDDRChartOnSongHash,
+	FindITGChartOnHash,
 } from "utils/queries/charts";
 import { FindSongOnID, FindSongOnTitleInsensitive } from "utils/queries/songs";
 import type { DryScore } from "../../../framework/common/types";
@@ -170,6 +171,34 @@ export async function ResolveMatchTypeToKTData(
 			}
 
 			return { chart, song };
+		}
+
+		case "itgChartHash": {
+			if (game !== "itg") {
+				throw new InvalidScoreFailure(`Cannot use itgChartHash lookup on ${game}.`);
+			}
+
+			const chart = await FindITGChartOnHash(data.identifier);
+
+			if (!chart) {
+				throw new KTDataNotFoundFailure(
+					`Cannot find chart for itgChartHash ${data.identifier}.`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			const song = await FindSongOnID(game, chart.songID);
+
+			if (!song) {
+				logger.severe(`ITG songID ${chart.songID} has charts but no parent song.`);
+				throw new InternalFailure(
+					`ITG songID ${chart.songID} has charts but no parent song.`
+				);
+			}
+
+			return { song, chart };
 		}
 
 		case "ddrSongHash": {

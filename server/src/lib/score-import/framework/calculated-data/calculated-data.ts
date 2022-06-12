@@ -256,19 +256,36 @@ function CalculateDataITGStamina(
 		};
 	}
 
+	let h32 = ITGHighestUnbroken.calculateFromNPSPerMeasure(
+		chart.data.breakdown.npsPerMeasure,
+		chart.data.breakdown.notesPerMeasure,
+		dryScore.scoreData.hitMeta.diedAt,
+		32
+	);
+
+	let h256 = ITGHighestUnbroken.calculateFromNPSPerMeasure(
+		chart.data.breakdown.npsPerMeasure,
+		chart.data.breakdown.notesPerMeasure,
+		dryScore.scoreData.hitMeta.diedAt,
+		256
+	);
+
+	// To avoid confusing players, we reject highest 32s less than
+	// 100bpm. Due to how highest32 is calculated, it correctly comes
+	// to the conclusion that sometimes you technically just hit 32 unbroken
+	// measures at like 14 BPM. This is confusing to end users, so we should
+	// hide it.
+	if (h32 !== null && h32 < 100) {
+		h32 = null;
+	}
+
+	if (h256 !== null && h256 < 100) {
+		h256 = null;
+	}
+
 	return {
 		blockRating: chart.levelNum,
-		highest32: ITGHighestUnbroken.calculateFromNPSPerMeasure(
-			chart.data.breakdown.npsPerMeasure,
-			chart.data.breakdown.notesPerMeasure,
-			dryScore.scoreData.hitMeta.diedAt,
-			32
-		),
-		highest256: ITGHighestUnbroken.calculateFromNPSPerMeasure(
-			chart.data.breakdown.npsPerMeasure,
-			chart.data.breakdown.notesPerMeasure,
-			dryScore.scoreData.hitMeta.diedAt,
-			256
-		),
+		highest32: h32,
+		highest256: h256,
 	};
 }

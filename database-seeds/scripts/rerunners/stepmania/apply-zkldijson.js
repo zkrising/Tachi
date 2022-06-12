@@ -105,7 +105,7 @@ for (const [key, d] of Object.entries(data)) {
 		level: d.level.toString(),
 		levelNum: d.level,
 		isPrimary: true,
-		difficulty: `${d.charter}: ${difficulty}`,
+		difficulty: d.chartHash,
 		playtype: "Stamina",
 		tierlistInfo: {},
 		versions: [],

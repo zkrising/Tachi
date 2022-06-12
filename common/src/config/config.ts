@@ -213,6 +213,12 @@ const GAME_CONFIGS: GameConfigs = {
 		name: "PMS",
 		validPlaytypes: ["Controller", "Keyboard"],
 	},
+	itg: {
+		defaultPlaytype: "Stamina",
+		internalName: "itg",
+		name: "ITG",
+		validPlaytypes: ["Stamina"],
+	},
 };
 
 type GamePTConfigs = {
@@ -2266,6 +2272,90 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"sgl-EC": "Sieglinde Easy Clear ratings.",
 			"sgl-HC": "Sieglinde Hard Clear ratings.",
 		},
+	},
+	"itg:Stamina": {
+		idString: "itg:Stamina",
+
+		percentMax: 100,
+
+		defaultScoreRatingAlg: "blockRating",
+		defaultSessionRatingAlg: "blockRating",
+		defaultProfileRatingAlg: "highestBlock",
+
+		scoreRatingAlgs: ["blockRating"],
+		sessionRatingAlgs: ["blockRating"],
+		profileRatingAlgs: ["highest32", "highestBlock"],
+
+		scoreRatingAlgDescriptions: {
+			blockRating: "How much this clear is worth.",
+		},
+		profileRatingAlgDescriptions: {
+			highest32: "The highest BPM this user has streamed 32 unbroken measures at.",
+			highestBlock: "The highest block level this player has cleared.",
+		},
+		sessionRatingAlgDescriptions: {
+			blockRating: "An average of your best 5 block levels cleared this session.",
+		},
+
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
+		difficulties: ["Beginner", "Easy", "Medium", "Hard", "Challenge"],
+		shortDifficulties: {
+			Beginner: "B",
+			Easy: "E",
+			Medium: "M",
+			Hard: "H",
+			Challenge: "C",
+		},
+		defaultDifficulty: "Challenge",
+		difficultyColours: {
+			Beginner: COLOUR_SET.paleBlue,
+			Easy: COLOUR_SET.green,
+			Medium: COLOUR_SET.vibrantYellow,
+			Hard: COLOUR_SET.red,
+			Challenge: COLOUR_SET.pink,
+		},
+
+		grades: ["D", "C", "B", "A", "S-", "S", "S+", "★", "★★", "★★★", "★★★★"],
+		gradeColours: {
+			D: COLOUR_SET.red,
+			C: COLOUR_SET.maroon,
+			B: COLOUR_SET.purple,
+			A: COLOUR_SET.green,
+			"S-": COLOUR_SET.paleOrange,
+			S: COLOUR_SET.orange,
+			"S+": COLOUR_SET.vibrantOrange,
+			"★": COLOUR_SET.pink,
+			"★★": COLOUR_SET.vibrantPink,
+			"★★★": COLOUR_SET.teal,
+			"★★★★": COLOUR_SET.white,
+		},
+		clearGrade: "C",
+		gradeBoundaries: [0, 55, 68, 80, 89, 92, 94, 96, 98, 99, 100],
+
+		lamps: ["FAILED", "CLEAR", "FULL COMBO", "FULL EXCELLENT COMBO", "QUAD"],
+		lampColours: {
+			FAILED: COLOUR_SET.red,
+			CLEAR: COLOUR_SET.blue,
+			"FULL COMBO": COLOUR_SET.pink,
+			"FULL EXCELLENT COMBO": COLOUR_SET.gold,
+			QUAD: COLOUR_SET.white,
+		},
+		clearLamp: "CLEAR",
+
+		classHumanisedFormat: {},
+
+		supportsESD: false,
+		judgements: ["fantastic", "excellent", "great", "decent", "wayoff", "miss"],
+
+		scoreBucket: "lamp",
+
+		supportedVersions: [],
+
+		tierlists: [],
+		tierlistDescriptions: {},
 	},
 };
 

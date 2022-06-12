@@ -62,6 +62,7 @@ export const allIDStrings: IDStrings[] = [
 	"pms:Controller",
 	"pms:Keyboard",
 	"jubeat:Single",
+	"itg:Stamina",
 ];
 
 export const allSupportedGames: Game[] = [
@@ -78,6 +79,7 @@ export const allSupportedGames: Game[] = [
 	"usc",
 	"wacca",
 	"pms",
+	"itg",
 ];
 
 export type Versions = {
@@ -168,4 +170,5 @@ export const PrettyVersions: Versions = {
 	},
 	"pms:Controller": {},
 	"pms:Keyboard": {},
+	"itg:Stamina": {},
 };

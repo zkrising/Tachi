@@ -6,9 +6,10 @@ import { ONE_MINUTE } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
 import monk from "monk";
+import { allSupportedGames } from "tachi-common/js/config/static-config";
 import { GetMillisecondsSince } from "utils/misc";
 import type { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
-import type { TMiddleware } from "monk";
+import type { TMiddleware, ICollection } from "monk";
 import type {
 	APITokenDocument,
 	ARCSavedProfileDocument,
@@ -118,37 +119,15 @@ export async function CloseMongoConnection() {
 	await monkDB.close();
 }
 
-const songs = {
-	bms: monkDB.get<SongDocument>("songs-bms"),
-	chunithm: monkDB.get<SongDocument>("songs-chunithm"),
-	ddr: monkDB.get<SongDocument>("songs-ddr"),
-	gitadora: monkDB.get<SongDocument>("songs-gitadora"),
-	iidx: monkDB.get<SongDocument>("songs-iidx"),
-	jubeat: monkDB.get<SongDocument>("songs-jubeat"),
-	maimai: monkDB.get<SongDocument>("songs-maimai"),
-	museca: monkDB.get<SongDocument>("songs-museca"),
-	popn: monkDB.get<SongDocument>("songs-popn"),
-	sdvx: monkDB.get<SongDocument>("songs-sdvx"),
-	usc: monkDB.get<SongDocument>("songs-usc"),
-	wacca: monkDB.get<SongDocument>("songs-wacca"),
-	pms: monkDB.get<SongDocument>("songs-pms"),
-};
+// Typescript incorrectly casts this into songs[string] => songdocument,
+// Force cast it out.
+const songs = Object.fromEntries(
+	allSupportedGames.map((e) => [e, monkDB.get<SongDocument>(`songs-${e}`)])
+) as unknown as Record<Game, ICollection<SongDocument>>;
 
-const charts = {
-	bms: monkDB.get<ChartDocument>("charts-bms"),
-	chunithm: monkDB.get<ChartDocument>("charts-chunithm"),
-	ddr: monkDB.get<ChartDocument>("charts-ddr"),
-	gitadora: monkDB.get<ChartDocument>("charts-gitadora"),
-	iidx: monkDB.get<ChartDocument>("charts-iidx"),
-	jubeat: monkDB.get<ChartDocument>("charts-jubeat"),
-	maimai: monkDB.get<ChartDocument>("charts-maimai"),
-	museca: monkDB.get<ChartDocument>("charts-museca"),
-	popn: monkDB.get<ChartDocument>("charts-popn"),
-	sdvx: monkDB.get<ChartDocument>("charts-sdvx"),
-	usc: monkDB.get<ChartDocument>("charts-usc"),
-	wacca: monkDB.get<ChartDocument>("charts-wacca"),
-	pms: monkDB.get<ChartDocument>("charts-pms"),
-};
+const charts = Object.fromEntries(
+	allSupportedGames.map((e) => [e, monkDB.get<ChartDocument>(`charts-${e}`)])
+) as unknown as Record<Game, ICollection<ChartDocument>>;
 
 const db = {
 	// i have to handwrite this out for TS... :(

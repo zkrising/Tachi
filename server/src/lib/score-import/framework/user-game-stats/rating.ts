@@ -153,6 +153,13 @@ function GetGPTRatingFunction(game: Game, playtype: Playtype): RatingFunction {
 				jubility: await CalculateJubility(g, p, u, l),
 				naiveJubility: await LazySumN("jubility", 60)(g, p, u),
 			});
+		case "itg:Stamina":
+			// HighestX is equivalent to summing 1.
+			return async (g, p, u) => ({
+				highestBlock: await LazySumN("blockRating", 1, true)(g, p, u),
+				highest32: await LazySumN("highest32", 1, true)(g, p, u),
+				highest256: await LazySumN("highest256", 1, true)(g, p, u),
+			});
 	}
 }
 

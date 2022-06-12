@@ -13,8 +13,10 @@ import {
 	PoyashiBPI,
 	Volforce,
 	WACCARate,
+	ITGHighestUnbroken,
 } from "rg-stats";
 import { GetGamePTConfig } from "tachi-common";
+import { IsNullish } from "utils/misc";
 import type { DryScore } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ChartDocument, Game, IDStrings, Lamps, Playtypes, ScoreDocument } from "tachi-common";
@@ -68,6 +70,7 @@ const CalculatedDataFunctions: CalculatedDataFunctionsType = {
 	"jubeat:Single": CalculateDataJubeat,
 	"pms:Keyboard": CalculateDataPMSorBMS,
 	"pms:Controller": CalculateDataPMSorBMS,
+	"itg:Stamina": CalculateDataITGStamina,
 };
 
 // Creates Game-Specific calculatedData for the provided game & playtype.
@@ -237,5 +240,52 @@ function CalculateDataPopn(
 			dryScore.scoreData.lamp,
 			chart.levelNum
 		),
+	};
+}
+
+function CalculateDataITGStamina(
+	dryScore: DryScore<"itg:Stamina">,
+	chart: ChartDocument<"itg:Stamina">
+): CalculatedData<"itg:Stamina"> {
+	// If the user failed -- and we don't know when, return null for everything.
+	if (dryScore.scoreData.lamp === "FAILED" && IsNullish(dryScore.scoreData.hitMeta.diedAt)) {
+		return {
+			blockRating: null,
+			highest32: null,
+			highest256: null,
+		};
+	}
+
+	let h32 = ITGHighestUnbroken.calculateFromNPSPerMeasure(
+		chart.data.breakdown.npsPerMeasure,
+		chart.data.breakdown.notesPerMeasure,
+		dryScore.scoreData.hitMeta.diedAt,
+		32
+	);
+
+	let h256 = ITGHighestUnbroken.calculateFromNPSPerMeasure(
+		chart.data.breakdown.npsPerMeasure,
+		chart.data.breakdown.notesPerMeasure,
+		dryScore.scoreData.hitMeta.diedAt,
+		256
+	);
+
+	// To avoid confusing players, we reject highest 32s less than
+	// 100bpm. Due to how highest32 is calculated, it correctly comes
+	// to the conclusion that sometimes you technically just hit 32 unbroken
+	// measures at like 14 BPM. This is confusing to end users, so we should
+	// hide it.
+	if (h32 !== null && h32 < 100) {
+		h32 = null;
+	}
+
+	if (h256 !== null && h256 < 100) {
+		h256 = null;
+	}
+
+	return {
+		blockRating: chart.levelNum,
+		highest32: h32,
+		highest256: h256,
 	};
 }

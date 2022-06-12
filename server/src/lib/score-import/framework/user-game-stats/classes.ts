@@ -67,6 +67,7 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 		Single: CalculateJubeatColour,
 	},
 	pms: null,
+	itg: null,
 };
 
 /**

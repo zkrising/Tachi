@@ -85,6 +85,12 @@ export function FindDDRChartOnSongHash(
 	});
 }
 
+export function FindITGChartOnHash(hash: string) {
+	return db.charts.itg.findOne({
+		"data.chartHash": hash,
+	});
+}
+
 /**
  * Find a BMS chart on either its md5sum or its sha256sum.
  * @param hash The md5 or sha256 hash to look for.

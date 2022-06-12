@@ -6,7 +6,8 @@ const PLAYTYPES = ["Controller", "Keyboard"];
 const PREFIX = "PLv";
 const TITLE = "Normal PMS Database";
 const SHORTTITLE = "normalpmsdb"; // this is used in the tableID
-const DESCRIPTION = "The Normal PMS Database. This contains almost every PMS file ever created, lv1-45.";
+const DESCRIPTION =
+	"The Normal PMS Database. This contains almost every PMS file ever created, lv1-45.";
 const LEVELS = [
 	"1",
 	"2",

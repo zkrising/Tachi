@@ -337,7 +337,7 @@ export interface Difficulties {
 	"wacca:Single": "NORMAL" | "HARD" | "EXPERT" | "INFERNO";
 	"pms:Controller": "CHART";
 	"pms:Keyboard": "CHART";
-	"itg:Stamina": "Beginner" | "Easy" | "Normal" | "Hard" | "Expert";
+	"itg:Stamina": "Beginner" | "Easy" | "Normal" | "Hard" | "Challenge";
 }
 
 /**
@@ -833,9 +833,16 @@ interface ChartDocumentData {
 			detailed: string;
 			partiallySimplified: string;
 			simplified: string;
+			total: string;
+			npsPerMeasure: Array<number>;
 		};
-		totalStream: string;
-		totalBreak: string;
+		tech: {
+			crossovers: integer;
+			jacks: integer;
+			brackets: integer;
+			footswitches: 0;
+			sideswitches: 0;
+		};
 		length: number;
 		charter: string;
 		displayBPM: number;

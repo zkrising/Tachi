@@ -2301,21 +2301,21 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgFormatters: {},
 		sessionRatingAlgFormatters: {},
 
-		difficulties: ["Beginner", "Easy", "Normal", "Hard", "Expert"],
+		difficulties: ["Beginner", "Easy", "Normal", "Hard", "Challenge"],
 		shortDifficulties: {
 			Beginner: "B",
 			Easy: "E",
 			Normal: "N",
 			Hard: "H",
-			Expert: "X",
+			Challenge: "C",
 		},
-		defaultDifficulty: "Expert",
+		defaultDifficulty: "Challenge",
 		difficultyColours: {
 			Beginner: COLOUR_SET.paleBlue,
 			Easy: COLOUR_SET.green,
 			Normal: COLOUR_SET.vibrantYellow,
 			Hard: COLOUR_SET.red,
-			Expert: COLOUR_SET.pink,
+			Challenge: COLOUR_SET.pink,
 		},
 
 		grades: ["D", "C", "B", "A", "S-", "S", "S+", "★", "★★", "★★★", "★★★★"],

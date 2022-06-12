@@ -14,6 +14,12 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 		);
 	}
 
+	if (game === "itg") {
+		const itgChart = chart as ChartDocument<"itg:Stamina">;
+
+		return `${itgChart.data.difficultyTag} ${itgChart.level}`;
+	}
+
 	const gameConfig = GetGameConfig(game);
 
 	if (gameConfig.validPlaytypes.length > 1) {
@@ -30,6 +36,13 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 export function FormatDifficultyShort(chart: ChartDocument, game: Game): string {
 	const gameConfig = GetGameConfig(game);
 	const gptConfig = GetGamePTConfig(game, chart.playtype);
+
+	if (game === "itg") {
+		const itgChart = chart as ChartDocument<"itg:Stamina">;
+
+		return `S${itgChart.data.difficultyTag} ${chart.level}`;
+	}
+
 	const shortDiff = gptConfig.shortDifficulties[chart.difficulty] ?? chart.difficulty;
 
 	if (game === "ddr") {
@@ -104,6 +117,13 @@ export function FormatChart(
 		}
 
 		// otherwise, it's just an official and should be rendered like any other game.
+	} else if (game === "itg") {
+		const itgChart = chart as ChartDocument<"itg:Stamina">;
+		const itgSong = song as SongDocument<"itg">;
+
+		return `${itgSong.title}${itgSong.data.subtitle ? ` ${itgSong.data.subtitle}` : ""} ${
+			itgChart.data.difficultyTag
+		} ${chart.level}`;
 	}
 
 	const gameConfig = GetGameConfig(game);

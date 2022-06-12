@@ -2297,7 +2297,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			highestBlock: "The highest block level this player has cleared.",
 		},
 		sessionRatingAlgDescriptions: {
-			blockRating: "An average of your best 5 block levels cleared this session.",
+			blockRating: "An average of your best 5 blsock levels cleared this session.",
 			average32Speed: "An average of your fastest 5 32 measure runs this session.",
 		},
 

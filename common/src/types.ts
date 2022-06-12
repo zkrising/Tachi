@@ -337,7 +337,7 @@ export interface Difficulties {
 	"wacca:Single": "NORMAL" | "HARD" | "EXPERT" | "INFERNO";
 	"pms:Controller": "CHART";
 	"pms:Keyboard": "CHART";
-	"itg:Stamina": "Beginner" | "Easy" | "Normal" | "Hard" | "Challenge";
+	"itg:Stamina": "Beginner" | "Easy" | "Medium" | "Hard" | "Challenge";
 }
 
 /**

@@ -2301,11 +2301,11 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgFormatters: {},
 		sessionRatingAlgFormatters: {},
 
-		difficulties: ["Beginner", "Easy", "Normal", "Hard", "Challenge"],
+		difficulties: ["Beginner", "Easy", "Medium", "Hard", "Challenge"],
 		shortDifficulties: {
 			Beginner: "B",
 			Easy: "E",
-			Normal: "N",
+			Medium: "M",
 			Hard: "H",
 			Challenge: "C",
 		},
@@ -2313,7 +2313,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		difficultyColours: {
 			Beginner: COLOUR_SET.paleBlue,
 			Easy: COLOUR_SET.green,
-			Normal: COLOUR_SET.vibrantYellow,
+			Medium: COLOUR_SET.vibrantYellow,
 			Hard: COLOUR_SET.red,
 			Challenge: COLOUR_SET.pink,
 		},

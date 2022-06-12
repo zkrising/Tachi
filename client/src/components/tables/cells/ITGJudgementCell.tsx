@@ -1,4 +1,4 @@
-import { IsNullish } from "util/misc";
+import { IsNotNullish, IsNullish } from "util/misc";
 import React from "react";
 import { COLOUR_SET, PBScoreDocument, ScoreDocument } from "tachi-common";
 
@@ -18,15 +18,28 @@ export default function ITGJudgementCell({
 		return <td>No Data.</td>;
 	}
 
+	let cbs = judgements.miss!;
+	let cbString = cbs.toString();
+
+	if (IsNotNullish(judgements.decent)) {
+		cbs += judgements.decent!;
+	}
+
+	if (IsNotNullish(judgements.wayoff)) {
+		cbs += judgements.wayoff!;
+	}
+
+	if (IsNullish(judgements.decent) || IsNullish(judgements.wayoff)) {
+		cbString += "*";
+	}
+
 	return (
 		<td>
 			<strong>
 				<span style={{ color: COLOUR_SET.teal }}>{judgements.fantastic}</span>-
 				<span style={{ color: COLOUR_SET.gold }}>{judgements.excellent}</span>-
 				<span style={{ color: COLOUR_SET.green }}>{judgements.great}</span>-
-				<span style={{ color: COLOUR_SET.purple }}>{judgements.decent ?? "N"}</span>-
-				<span style={{ color: COLOUR_SET.orange }}>{judgements.wayoff ?? "N"}</span>-
-				<span style={{ color: COLOUR_SET.red }}>{judgements.miss}</span>
+				<span style={{ color: COLOUR_SET.red }}>{cbString}cb</span>
 			</strong>
 		</td>
 	);

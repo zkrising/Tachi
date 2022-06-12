@@ -387,7 +387,9 @@ t.test("#ResolveChartFromSong", (t) => {
 			() =>
 				ResolveChartFromSong(
 					Testing511Song,
-					deepmerge(baseBatchManualScore, { difficulty: "NOT_VALID_DIFFICULTY" }),
+					deepmerge(baseBatchManualScore, {
+						difficulty: "NOT_VALID_DIFFICULTY" as const,
+					}),
 					{ game: "iidx", service: "foo", playtype: "SP", version: null },
 					importType
 				),
@@ -406,7 +408,7 @@ t.test("#ResolveChartFromSong", (t) => {
 					Testing511Song,
 
 					// 511 has no legg (yet, lol)
-					deepmerge(baseBatchManualScore, { difficulty: "LEGGENDARIA" }),
+					deepmerge(baseBatchManualScore, { difficulty: "LEGGENDARIA" as const }),
 					{ game: "iidx", service: "foo", version: null, playtype: "SP" },
 					importType
 				),

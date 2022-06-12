@@ -302,7 +302,7 @@ export interface Lamps {
 	"wacca:Single": "FAILED" | "CLEAR" | "MISSLESS" | "FULL COMBO" | "ALL MARVELOUS";
 	"pms:Controller": IIDXLamps;
 	"pms:Keyboard": IIDXLamps;
-	"itg:Stamina": "FAILED" | "CLEAR" | "FULL COMBO" | "EXCELLENT COMBO" | "QUAD";
+	"itg:Stamina": "FAILED" | "CLEAR" | "FULL COMBO" | "FULL EXCELLENT COMBO" | "QUAD";
 }
 
 export type IIDX2DXTraSets = "Kichiku" | "Kiraku" | "All Scratch";

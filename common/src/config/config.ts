@@ -2335,12 +2335,12 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearGrade: "A",
 		gradeBoundaries: [0, 55, 68, 80, 89, 92, 94, 96, 98, 99, 100],
 
-		lamps: ["FAILED", "CLEAR", "FULL COMBO", "EXCELLENT COMBO", "QUAD"],
+		lamps: ["FAILED", "CLEAR", "FULL COMBO", "FULL EXCELLENT COMBO", "QUAD"],
 		lampColours: {
 			FAILED: COLOUR_SET.red,
 			CLEAR: COLOUR_SET.blue,
 			"FULL COMBO": COLOUR_SET.pink,
-			"EXCELLENT COMBO": COLOUR_SET.gold,
+			"FULL EXCELLENT COMBO": COLOUR_SET.gold,
 			QUAD: COLOUR_SET.white,
 		},
 		clearLamp: "CLEAR",

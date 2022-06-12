@@ -96,7 +96,7 @@ function ShouldRenderUpdate(
 		return [
 			// All of the other classes in pop'n can be trivially blitzed through.
 			POPN_CLASSES.GOD,
-		];
+		].includes(classValue);
 	}
 
 	return true;
@@ -116,6 +116,8 @@ function GetMinimumScores(game: Game, playtype: Playtype, classSet: AllClassSets
 	} else if (game === "bms") {
 		return 20;
 	} else if (game === "iidx") {
+		return 20;
+	} else if (game === "pms") {
 		return 20;
 	}
 

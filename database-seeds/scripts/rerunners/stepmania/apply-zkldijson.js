@@ -85,6 +85,7 @@ for (const [key, d] of Object.entries(data)) {
 			altTitles: [],
 			data: {
 				subtitle,
+				banner: pack,
 			},
 		});
 

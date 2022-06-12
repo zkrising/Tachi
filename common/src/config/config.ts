@@ -2332,7 +2332,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"★★★": COLOUR_SET.teal,
 			"★★★★": COLOUR_SET.white,
 		},
-		clearGrade: "A",
+		clearGrade: "C",
 		gradeBoundaries: [0, 55, 68, 80, 89, 92, 94, 96, 98, 99, 100],
 
 		lamps: ["FAILED", "CLEAR", "FULL COMBO", "FULL EXCELLENT COMBO", "QUAD"],

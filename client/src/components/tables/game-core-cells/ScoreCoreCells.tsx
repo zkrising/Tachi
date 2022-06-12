@@ -11,6 +11,7 @@ import BMSCoreCells from "./BMSCoreCells";
 import CHUNITHMCoreCells from "./CHUNITHMCoreCells";
 import GenericCoreCells from "./GenericCoreCells";
 import IIDXCoreCells from "./IIDXCoreCells";
+import ITGCoreCells from "./ITGCoreCells";
 import JubeatCoreCells from "./JubeatCoreCells";
 import MusecaCoreCells from "./MusecaCoreCells";
 import PMSCoreCells from "./PMSCoreCells";
@@ -66,6 +67,8 @@ export default function ScoreCoreCells({
 		return <GenericCoreCells sc={sc} rating={rating} />;
 	} else if (game === "pms") {
 		return <PMSCoreCells sc={sc} rating={rating} />;
+	} else if (game === "itg") {
+		return <ITGCoreCells sc={sc} rating={rating} />;
 	}
 
 	return <GenericCoreCells sc={sc} rating={rating} />;

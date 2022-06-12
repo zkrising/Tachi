@@ -49,6 +49,7 @@ const ScaleNameAchievedFns: ScaleAchievedFns = {
 	"wacca:Single": {},
 	"popn:9B": {},
 	"jubeat:Single": {},
+	"itg:Stamina": {},
 };
 
 export function GetScaleAchievedFn(

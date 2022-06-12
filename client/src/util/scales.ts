@@ -14,6 +14,7 @@ const scales: Record<Game, number> = {
 	wacca: 5,
 	popn: 4,
 	jubeat: 5,
+	itg: 5,
 };
 
 export function GetGradeChartExpScale(game: Game) {

@@ -47,6 +47,21 @@ export default function SongChartInfoFormat({
 				{chart && <h5>({FormatDifficulty(chart, game)})</h5>}
 			</>
 		);
+	} else if (game === "itg") {
+		const itgSong = song as SongDocument<"itg">;
+		const itgChart = chart as ChartDocument<"itg:Stamina">;
+
+		return (
+			<>
+				{chart && <h6 className="text-muted">{itgChart.data.charter}</h6>}
+				<h4 style={{ fontSize: "2.5rem", fontWeight: "bold" }}>
+					{song.title}
+					{itgSong.data.subtitle ? ` ${itgSong.data.subtitle}` : ""}
+				</h4>
+				<h4>{song.artist}</h4>
+				{chart && <h5>{FormatDifficulty(chart, game)}</h5>}
+			</>
+		);
 	}
 
 	return <DefaultSongChartInfoFormat {...props} />;

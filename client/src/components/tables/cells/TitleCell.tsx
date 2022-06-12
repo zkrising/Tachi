@@ -18,12 +18,23 @@ export default function TitleCell({
 	noArtist?: boolean;
 	comment?: string | null;
 }) {
-	const backgroundImage =
-		game !== "popn"
-			? undefined
-			: `linear-gradient(to left, rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 1)), url(${ToCDNURL(
-					`/misc/popn/banners/${(chart as any).data.inGameID}.png`
-			  )})`;
+	let backgroundImage = undefined;
+	let center = false;
+
+	if (game === "popn") {
+		backgroundImage = `linear-gradient(to left, rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 1)), url(${ToCDNURL(
+			`/misc/popn/banners/${(chart as any).data.inGameID}.png`
+		)})`;
+	} else if (game === "itg") {
+		const banner = (song as SongDocument<"itg">).data.banner;
+
+		if (banner) {
+			backgroundImage = `linear-gradient(to left, rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 1)), url(${ToCDNURL(
+				`/misc/itg/banners/${encodeURIComponent(banner)}.png`
+			)})`;
+			center = true;
+		}
+	}
 
 	return (
 		<td
@@ -34,6 +45,7 @@ export default function TitleCell({
 				backgroundRepeat: "no-repeat",
 				backgroundSize: "cover",
 				backgroundImage,
+				backgroundPosition: center ? "center" : undefined,
 			}}
 		>
 			{game === "popn" && (
@@ -49,10 +61,17 @@ export default function TitleCell({
 			)}
 			<GentleLink to={CreateChartLink(chart, game)}>
 				{song.title}
+
 				{!noArtist && (
 					<>
 						<br />
 						<small>{song.artist}</small>
+					</>
+				)}
+				{"subtitle" in song.data && song.data.subtitle && (
+					<>
+						<br />
+						<Muted>{song.data.subtitle}</Muted>
 					</>
 				)}
 				{!chart.isPrimary && (

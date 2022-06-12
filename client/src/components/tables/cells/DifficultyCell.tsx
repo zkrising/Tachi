@@ -13,6 +13,7 @@ import {
 import BMSPMSDifficultyCell from "./BMSDifficultyCell";
 import TierlistInfoPart from "./TierlistInfoPart";
 import USCDifficultyCell from "./USCDifficultyCell";
+import ITGDifficultyCell from "./ITGDifficultyCell";
 
 export default function DifficultyCell({
 	game,
@@ -42,6 +43,8 @@ export default function DifficultyCell({
 		return (
 			<USCDifficultyCell chart={chart as ChartDocument<"usc:Controller" | "usc:Keyboard">} />
 		);
+	} else if (game === "itg") {
+		return <ITGDifficultyCell chart={chart as ChartDocument<"itg:Stamina">} />;
 	}
 
 	return (

@@ -255,7 +255,15 @@ function SongInfoHeader({
 	// accidentally O(n^2) but this is a short list so who cares
 	const sortedCharts = charts
 		.slice(0)
-		.sort(NumericSOV(x => gptConfig.difficulties.indexOf(x.difficulty)));
+		.sort(
+			NumericSOV(x =>
+				gptConfig.difficulties.indexOf(
+					game === "itg"
+						? (x as ChartDocument<"itg:Stamina">).data.difficultyTag
+						: x.difficulty
+				)
+			)
+		);
 
 	let ImageCell = null;
 
@@ -270,6 +278,17 @@ function SongInfoHeader({
 				className="w-100"
 			/>
 		);
+	} else if (game === "itg") {
+		const banner = (song as SongDocument<"itg">).data.banner;
+
+		if (banner) {
+			ImageCell = (
+				<img
+					src={ToCDNURL(`/misc/itg/banners/${encodeURIComponent(banner)}.png`)}
+					className="w-100"
+				/>
+			);
+		}
 	} else if ("displayVersion" in song.data) {
 		ImageCell = (
 			<img
@@ -351,6 +370,11 @@ function DifficultyButton({
 }: Props & { chart: ChartDocument }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
+	const diffTag =
+		game === "itg"
+			? (chart as ChartDocument<"itg:Stamina">).data.difficultyTag
+			: chart.difficulty;
+
 	return (
 		<LinkButton
 			onClick={() => setActiveChart(chart)}
@@ -358,9 +382,9 @@ function DifficultyButton({
 			key={chart.chartID}
 			to={CreateChartLink(chart, game)}
 			style={{
-				backgroundColor: gptConfig.difficultyColours[chart.difficulty]
+				backgroundColor: gptConfig.difficultyColours[diffTag]
 					? ChangeOpacity(
-							gptConfig.difficultyColours[chart.difficulty]!,
+							gptConfig.difficultyColours[diffTag]!,
 							activeChart?.chartID === chart.chartID ? 0.4 : 0.2
 					  )
 					: undefined,

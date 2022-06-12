@@ -50,13 +50,14 @@ export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 								tooltipContent={
 									<div>
 										{gptConfig.profileRatingAlgDescriptions[k]}
-										{k in gptConfig.scoreRatingAlgDescriptions && (
-											<>
-												<Divider />({UppercaseFirst(k)}:{" "}
-												{/* @ts-expect-error I know better. */}
-												{gptConfig.scoreRatingAlgDescriptions[k]})
-											</>
-										)}
+										{k in gptConfig.scoreRatingAlgDescriptions &&
+											gptConfig.idString !== "itg:Stamina" && (
+												<>
+													<Divider />({UppercaseFirst(k)}:{" "}
+													{/* @ts-expect-error I know better. */}
+													{gptConfig.scoreRatingAlgDescriptions[k]})
+												</>
+											)}
 									</div>
 								}
 								wide

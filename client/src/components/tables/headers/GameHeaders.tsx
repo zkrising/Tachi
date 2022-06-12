@@ -97,6 +97,7 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 		case "wacca":
 		case "chunithm":
 		case "maimai":
+		case "itg":
 			return [
 				ScoreHeader,
 				[

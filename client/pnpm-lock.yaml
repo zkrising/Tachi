@@ -88,7 +88,7 @@ specifiers:
   socicon: 3.0.5
   style-loader: 1.0.0
   sync-fetch: ^0.3.1
-  tachi-common: 0.13.0
+  tachi-common: 0.14.10
   terser-webpack-plugin: 1.4.1
   ts-pnp: 1.1.4
   typescript: 4.3.5
@@ -164,7 +164,7 @@ dependencies:
   rg-stats: 0.2.0
   socicon: 3.0.5
   sync-fetch: 0.3.1
-  tachi-common: 0.13.0
+  tachi-common: 0.14.10
 
 devDependencies:
   '@types/humanize-duration': 3.25.1
@@ -11325,8 +11325,8 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tachi-common/0.13.0:
-    resolution: {integrity: sha512-DJgf8RL77yXBsXfJ4uhHfIUEQEDfD+tXLyfFT2xbazOR2ViwmQVRIypTmbJNOrwR8dlKPcbrr7S5laaY2oakug==}
+  /tachi-common/0.14.10:
+    resolution: {integrity: sha512-JKwnA/iW7LCj3rjI8IYLVNASwEUVvfNYehi/xwKzIMd4XcNCUUU2ZKRrfDRM7+420WsyQKZkYxMk80dMPSFCkQ==}
     dependencies:
       '@types/express-serve-static-core': 4.17.28
       '@types/mongodb': 3.6.18

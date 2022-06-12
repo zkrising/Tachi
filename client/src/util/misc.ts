@@ -157,6 +157,15 @@ export function SelectRightChart(
 				return chart;
 			}
 		}
+	} else if (gptConfig.idString === "itg:Stamina") {
+		for (const chart of charts) {
+			if (
+				(chart as ChartDocument<"itg:Stamina">).data.chartHash === chartID &&
+				chart.isPrimary
+			) {
+				return chart;
+			}
+		}
 	} else {
 		// else, its a chart ID.
 		for (const chart of charts) {

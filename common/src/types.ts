@@ -1141,6 +1141,7 @@ export interface HitMetaLookup {
 	"pms:Keyboard": BMSHitMeta;
 	"itg:Stamina": BASE_VALID_HIT_META & {
 		gaugeHistory: Array<integer> | null;
+		diedAt: integer | null;
 	};
 }
 

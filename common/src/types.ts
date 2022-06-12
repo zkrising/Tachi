@@ -840,8 +840,8 @@ interface ChartDocumentData {
 			crossovers: integer;
 			jacks: integer;
 			brackets: integer;
-			footswitches: 0;
-			sideswitches: 0;
+			footswitches: integer;
+			sideswitches: integer;
 		};
 		length: number;
 		charter: string;

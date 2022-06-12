@@ -287,6 +287,10 @@ function GetSongDataForGame(game: Game): PrudenceSchema {
 			return {
 				displayVersion: "string",
 			};
+		case "itg":
+			return {
+				subtitle: "string",
+			};
 		case "usc":
 		case "gitadora":
 		case "ddr":
@@ -379,6 +383,27 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 			return {
 				hashSHA256: "?string",
 				inGameID: p.isPositiveInteger,
+			};
+		case "itg:Stamina":
+			return {
+				chartHash: "string",
+				breakdown: {
+					detailed: "string",
+					partiallySimplified: "string",
+					simplified: "string",
+					total: "string",
+					npsPerMeasure: [p.isPositive],
+				},
+				tech: {
+					crossovers: p.isPositiveInteger,
+					jacks: p.isPositiveInteger,
+					brackets: p.isPositiveInteger,
+					footswitches: p.isPositiveInteger,
+					sideswitches: p.isPositiveInteger,
+				},
+				length: p.isPositive,
+				charter: "string",
+				displayBPM: p.isPositive,
 			};
 		case "gitadora:Dora":
 		case "gitadora:Gita":

@@ -29,6 +29,21 @@ export default function ChartHeader<D extends ScoreDataset | FolderDataset | PBD
 		sortFn = k => CascadingTierlistValue(chartGetter(k), "kt-HC", "kt-NC");
 	} else if (game === "bms" || game === "pms") {
 		sortFn = k => CascadingTierlistValue(chartGetter(k), "sgl-HC", "sgl-EC");
+	} else if (game === "itg") {
+		return [
+			"Chart",
+			"Chart",
+			(a, b) => {
+				const ac = chartGetter(a) as ChartDocument<"itg:Stamina">;
+				const bc = chartGetter(b) as ChartDocument<"itg:Stamina">;
+
+				if (ac.levelNum === bc.levelNum) {
+					return ac.data.displayBPM - bc.data.displayBPM;
+				}
+
+				return ac.levelNum - bc.levelNum;
+			},
+		];
 	}
 
 	return ["Chart", "Chart", NumericSOV(sortFn)];

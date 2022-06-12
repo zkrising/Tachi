@@ -40,7 +40,8 @@ export default function ITGDifficultyCell({ chart }: { chart: ChartDocument<"itg
 			>
 				<div>
 					<span>
-						{chart.data.difficultyTag}: {chart.level}
+						{chart.data.difficultyTag}: {chart.level} [{chart.data.displayBPM.toFixed()}
+						]
 					</span>
 					<br />
 					<Muted>{chart.data.charter}</Muted>

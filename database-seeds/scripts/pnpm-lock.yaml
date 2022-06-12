@@ -25,7 +25,7 @@ specifiers:
   node-fetch: 2.6.7
   prettier: ^2.5.1
   prudence: ^0.9.7
-  tachi-common: 0.14.1
+  tachi-common: 0.14.6
   ts-node: ^10.4.0
   typescript: ^4.5.5
   xml2js: ^0.4.23
@@ -48,7 +48,7 @@ dependencies:
   monk: 7.3.4
   node-fetch: 2.6.7
   prudence: 0.9.7
-  tachi-common: 0.14.1
+  tachi-common: 0.14.6
   ts-node: 10.4.0_40146b36d18138e3202fbb722e5f65e4
   xml2js: 0.4.23
 
@@ -3113,8 +3113,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /tachi-common/0.14.1:
-    resolution: {integrity: sha512-CExMkbp883M/0E/ogGBlF8APhdfs4Sm0x6ZOi98zHYhNIunCMXbQMnokF98y+1wMJfAhuStQ7CcUq1xkjMBi1w==}
+  /tachi-common/0.14.6:
+    resolution: {integrity: sha512-NlaCLxqQzt4gYE4gqOfsqzA/OTtP3lyfyfvBOmYSxFgF+tpx8CbwwX899x6cIJOC9+sNCFiYktcALGLh5W5xjQ==}
     dependencies:
       '@types/express-serve-static-core': 4.17.28
       '@types/mongodb': 3.6.18

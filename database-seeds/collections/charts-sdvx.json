@@ -2424,8 +2424,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "超個人差",
-				"value": 16
+				"text": "16C/D",
+				"value": 16.3
 			}
 		},
 		"versions": [
@@ -10437,7 +10437,7 @@
 		"songID": 126,
 		"tierlistInfo": {
 			"clear": {
-				"individualDifference": false,
+				"individualDifference": true,
 				"text": "17B",
 				"value": 17.5
 			}
@@ -17593,8 +17593,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "18A - 17C",
-				"value": 17
+				"text": "17A+",
+				"value": 17.8
 			}
 		},
 		"versions": [
@@ -18666,8 +18666,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "18C - 17F",
-				"value": 17
+				"text": "17D",
+				"value": 17.3
 			}
 		},
 		"versions": [
@@ -25919,8 +25919,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "16E",
-				"value": 16.1
+				"text": "16C/D",
+				"value": 16.3
 			}
 		},
 		"versions": [
@@ -33165,8 +33165,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "19B",
-				"value": 19.5
+				"text": "19C",
+				"value": 19.4
 			}
 		},
 		"versions": [
@@ -44129,8 +44129,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "18B - 17C",
-				"value": 17
+				"text": "17C",
+				"value": 17.4
 			}
 		},
 		"versions": [
@@ -55841,8 +55841,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "16E",
-				"value": 16.1
+				"text": "16C/D",
+				"value": 16.3
 			}
 		},
 		"versions": [
@@ -71967,8 +71967,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "18C - 17C",
-				"value": 17
+				"text": "17B+",
+				"value": 17.6
 			}
 		},
 		"versions": [
@@ -76787,8 +76787,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D",
-				"value": 17.3
+				"text": "17C",
+				"value": 17.4
 			}
 		},
 		"versions": [
@@ -84131,8 +84131,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "19D",
-				"value": 19.3
+				"text": "19E",
+				"value": 19.1
 			}
 		},
 		"versions": [
@@ -91535,8 +91535,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "20A+",
-				"value": 20.5
+				"text": "20A",
+				"value": 20.3
 			}
 		},
 		"versions": [
@@ -109530,8 +109530,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17A - 17D",
-				"value": 17
+				"text": "17B+",
+				"value": 17.6
 			}
 		},
 		"versions": [
@@ -111962,8 +111962,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17C",
-				"value": 17.4
+				"text": "17D",
+				"value": 17.3
 			}
 		},
 		"versions": [
@@ -113594,8 +113594,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "16E",
-				"value": 16.1
+				"text": "16C/D",
+				"value": 16.3
 			}
 		},
 		"versions": [
@@ -122990,8 +122990,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": true,
-				"text": "17A+",
-				"value": 17.8
+				"text": "17A",
+				"value": 17.7
 			}
 		},
 		"versions": [
@@ -124124,8 +124124,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "16C/D",
-				"value": 16.3
+				"text": "16A/B",
+				"value": 16.5
 			}
 		},
 		"versions": [
@@ -127905,8 +127905,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17B+",
-				"value": 17.6
+				"text": "17B",
+				"value": 17.5
 			}
 		},
 		"versions": [
@@ -134800,8 +134800,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "17D",
-				"value": 17.3
+				"text": "17E",
+				"value": 17.2
 			}
 		},
 		"versions": [
@@ -135132,8 +135132,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "18E",
-				"value": 18.1
+				"text": "18F",
+				"value": 18
 			}
 		},
 		"versions": [
@@ -139084,7 +139084,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1766,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139102,7 +139108,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1766,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "20B",
+				"value": 20.1
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139156,7 +139168,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1767,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139174,7 +139192,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1767,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "20S",
+				"value": 20.5
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139228,7 +139252,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1768,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139246,7 +139276,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1768,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": true,
+				"text": "19A",
+				"value": 19.7
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139300,7 +139336,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1769,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "17B+",
+				"value": 17.6
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139318,7 +139360,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1769,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "19B",
+				"value": 19.5
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139372,7 +139420,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1770,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139390,7 +139444,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1770,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "19A",
+				"value": 19.7
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139444,7 +139504,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1771,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139462,7 +139528,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1771,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "19A+",
+				"value": 19.9
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139516,7 +139588,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1772,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139534,7 +139612,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1772,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "19A",
+				"value": 19.7
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139588,7 +139672,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1773,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139606,7 +139696,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1773,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "19A",
+				"value": 19.7
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139660,7 +139756,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1774,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139678,7 +139780,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1774,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139732,7 +139840,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1775,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139750,7 +139864,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1775,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139804,7 +139924,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1776,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139822,7 +139948,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1776,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139876,7 +140008,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1777,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139894,7 +140032,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1777,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139948,7 +140092,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1778,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -139966,7 +140116,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1778,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -140020,7 +140176,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1779,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -140038,7 +140200,13 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1779,
-		"tierlistInfo": {},
+		"tierlistInfo": {
+			"clear": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			}
+		},
 		"versions": [
 			"konaste"
 		]
@@ -140847,8 +141015,8 @@
 		"tierlistInfo": {
 			"clear": {
 				"individualDifference": false,
-				"text": "20A",
-				"value": 20.3
+				"text": "20A+",
+				"value": 20.5
 			}
 		},
 		"versions": [

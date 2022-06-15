@@ -5025,5 +5025,31 @@
 		"id": 359,
 		"searchTerms": [],
 		"title": "Invisible Frenzy (Camellia's \"593: Insanely Fluctuated\" Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "TANO*C ALL STARS",
+		"data": {
+			"artistJP": "タノシーオールスターズ",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "リーチマイボイス"
+		},
+		"id": 360,
+		"searchTerms": [],
+		"title": "Reach My Voice"
+	},
+	{
+		"altTitles": [],
+		"artist": "USAO",
+		"data": {
+			"artistJP": "ウサオ",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ユーアンドダイ"
+		},
+		"id": 361,
+		"searchTerms": [],
+		"title": "You & DIE"
 	}
 ]

@@ -165,7 +165,7 @@ const TIERS = {
 		},
 		S: {
 			text: "20S",
-			value: 20.5, //666 is the only S and it's literally no harder than anything in A+ clear wise
+			value: 20.5, // These are literally no harder than anything in A+ clear wise
 		},
 	},
 };
@@ -247,6 +247,7 @@ const MANUAL_TITLE_MAP = {
 	"イゴモヨスのブヨブヨ・スケッチ": "イゴモヨス＝オムルのテーマによるブヨブヨ・スケッチの試み",
 	"ABSOLUTE(ismk passionate mix)": "ABSOLUTE(ismK passionate remix)",
 	"泥の分際で私だけの大切を奪おうなんて" : "泥の分際で私だけの大切を奪おうだなんて",
+	"Rhapsody ⚙︎f Triumph": "Rhapsody ⚙f Triumph", // There is some weird non-printing character here fml
 
 	// 18s
 	"*Erm,～ ShockWAVE Syndrome...?": "* Erm, could it be a Spatiotemporal ShockWAVE Syndrome...?",
@@ -534,7 +535,7 @@ switch (levelIndicator[1]) {
 	case "Lv18":
 		addTiers(18, csvData, 1, 0, false);
 		break;
-	case "Lv19〜":
+	case "Lv19,20":
 		addTiers(20, csvData, 1, 1, true);
 
 		// Locate start of 19s

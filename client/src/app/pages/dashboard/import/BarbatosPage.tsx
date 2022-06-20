@@ -3,6 +3,7 @@ import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import { TachiConfig } from "lib/config";
 import React from "react";
+import { Alert } from "react-bootstrap";
 
 export default function BarbatosPage() {
 	useSetSubheader(["Import Scores", "Barbatos"]);
@@ -15,6 +16,7 @@ export default function BarbatosPage() {
 				the scores to a server. {TachiConfig.name} is compatible with what Barbatos sends,
 				so you can use it to submit scores!
 			</div>
+			<Alert variant="warning">Barbatos does not support EXCEED GEAR yet.</Alert>
 			<Divider />
 			<h1 className="text-center my-4">Setup Instructions</h1>
 			<ol className="instructions-list">

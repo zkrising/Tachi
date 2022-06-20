@@ -134,7 +134,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				name="Barbatos"
 				href="barbatos"
 				desc="Automatically import scores, whenever you get them!"
-				moreInfo="This is the recommended way to import SDVX scores, as it provides high quality data in real-time."
+				moreInfo="This is the recommended way to import SDVX scores, as it provides high quality data in real-time. ONLY SUPPORTS UP TO VIVID WAVE CURRENTLY!"
 				key="Barbatos"
 			/>,
 			<ImportInfoCard

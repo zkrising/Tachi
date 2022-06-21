@@ -112,13 +112,19 @@ export async function* TraverseKaiAPI(
 			continue;
 		}
 
+		let text;
+
 		try {
+			// Split this into text -> JSON parse so we can read the text for better error messages
+			// in the case of disaster.
 			// eslint-disable-next-line no-await-in-loop
-			json = (await res.json()) as unknown;
+			text = await res.text();
+
+			json = JSON.parse(text) as unknown;
 		} catch (err) {
 			logger.error(
 				`Received invalid (non-json) response from ${url}. Status code was ${res.status}.`,
-				{ err }
+				{ err, text }
 			);
 			throw new ScoreImportFatalError(
 				500,

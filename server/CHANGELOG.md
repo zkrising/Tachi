@@ -33,6 +33,7 @@ not generally be shown to end users.
 - [FEAT] Added support for retrieving a users imports, including by user-intent.
 - [FEAT] Notifications can now be sent to users.
 - [FEAT] Search implementation is massively improved (#713)
+- [FEAT] BMS and PMS database changes are automatically backsynced to their parent seeds repository (#732)
 - [INTERNAL_FEAT] Schemas have been moved into tachi-common and properly refactored.
 - [INTERNAL_FEAT] Tachi-Server now has a migration engine, for applying database updates automagically.
 

@@ -20,6 +20,7 @@ export function MockJSONFetch(urlDataMap: Record<string, unknown>) {
 			if (url in urlDataMap) {
 				const fakeResponse = {
 					status: 200,
+					text: () => Promise.resolve(JSON.stringify(urlDataMap[url])),
 					json: () => Promise.resolve(urlDataMap[url]),
 				} as unknown as Response;
 

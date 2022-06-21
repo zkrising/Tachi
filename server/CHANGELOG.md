@@ -45,6 +45,7 @@ not generally be shown to end users.
 - [ENH] Server administrators can now revert other's imports.
 - [ENH] You can now set Jubility targets.
 - [ENH] Folder Showcase Stats are now removed from a player in the case of the folder being removed.
+- [ENH] ARC SDVX Support has been bumped to EXCEED GEAR.
 - [INTERNAL_ENH] Server version info is now read from package.json, removing redundancy.
 - [INTERNAL_ENH] The commit the server is running under is now exposed publically in version info.
 # 2.1.18

@@ -16,7 +16,7 @@ export default function ProfileBadges({ badges }: { badges: UserBadges[] }) {
 
 export function ProfileBadge({ variant }: { variant: UserBadges }) {
 	if (variant === "alpha") {
-		return <Badge variant="warning">Alpha Tester</Badge>;
+		return <Badge style={{ backgroundColor: "#e61c6e" }}>Alpha Tester</Badge>;
 	} else if (variant === "beta") {
 		return <Badge variant="info">Beta Tester</Badge>;
 	} else if (variant === "dev-team") {

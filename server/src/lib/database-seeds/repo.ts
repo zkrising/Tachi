@@ -90,6 +90,29 @@ export class DatabaseSeedsRepo {
 	}
 
 	/**
+	 * Provide authentication so that CommitChangesBack can do its job.
+	 */
+	#AuthenticateWithGitServer() {
+		if (!ServerConfig.SEEDS_CONFIG) {
+			// Shouldn't be possible. Ever, since SEEDS_CONFIG must be deffed in order
+			// to run PullDBSeeds
+			throw new Error(`Cannot commit changes back. SEEDS_CONFIG is not set.`);
+		}
+
+		if (!ServerConfig.SEEDS_CONFIG.USER_NAME || !ServerConfig.SEEDS_CONFIG.USER_EMAIL) {
+			throw new Error(
+				`Cannot commit changes back if SEEDS_CONFIG.USER_NAME/SEEDS_CONFIG.USER_EMAIL aren't defined.`
+			);
+		}
+
+		return asyncExec(
+			`git config user.name "${ServerConfig.SEEDS_CONFIG.USER_NAME}" || exit 3;
+			git config user.email "${ServerConfig.SEEDS_CONFIG.USER_EMAIL}" || exit 4;
+			git config credential.helper '!f() { sleep 1; echo "username=\${GIT_USER}"; echo "password=\${GIT_PASSWORD}"; }; f' || exit 5;`
+		);
+	}
+
+	/**
 	 * Checks for any diffs in the seeds repository we cloned. If there are any, commit them back
 	 * to the repository.
 	 *
@@ -123,7 +146,9 @@ export class DatabaseSeedsRepo {
 			// 	throw err;
 			// }
 
-			this.logger.info(`Changes. Committing changes back.`);
+			this.logger.info(`Changes detected. Authenticating with Github.`);
+
+			await this.#AuthenticateWithGitServer();
 
 			const { stdout: commitOut } = await asyncExec(
 				`cd "${this.baseDir}" || exit 2;
@@ -146,8 +171,8 @@ export class DatabaseSeedsRepo {
  * Pulls the database seeds from github, returns an object that can be used to manipulate them.
  */
 export async function PullDatabaseSeeds() {
-	if (!ServerConfig.SEEDS_URL) {
-		throw new Error(`SEEDS_URL was null. You cannot pull a seeds repo.`);
+	if (!ServerConfig.SEEDS_CONFIG) {
+		throw new Error(`SEEDS_CONFIG was not defined. You cannot pull a seeds repo.`);
 	}
 
 	const seedsDir = await fs.mkdtemp(path.join(os.tmpdir(), "tachi-database-seeds-"));
@@ -161,7 +186,7 @@ export async function PullDatabaseSeeds() {
 		// stdout is for errors.
 		// there were expletives below this comment, but I have removed them.
 		const { stdout } = await asyncExec(
-			`git clone "${ServerConfig.SEEDS_URL}" -b "${
+			`git clone "${ServerConfig.SEEDS_CONFIG.REPO_URL}" -b "${
 				Environment.nodeEnv === "production" ? "production" : "develop"
 			}" --depth=1 '${seedsDir}'`
 		);

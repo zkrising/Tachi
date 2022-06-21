@@ -70,7 +70,11 @@ export interface TachiServerConfig {
 	OPTIONS_ALWAYS_SUCCEEDS?: boolean;
 	USE_EXTERNAL_SCORE_IMPORT_WORKER: boolean;
 	EXTERNAL_SCORE_IMPORT_WORKER_CONCURRENCY?: integer;
-	SEEDS_URL: string | null;
+	SEEDS_CONFIG?: {
+		REPO_URL: string;
+		USER_NAME: string | null;
+		USER_EMAIL: string | null;
+	};
 	EMAIL_CONFIG?: {
 		FROM: string;
 		DKIM?: SendMailOptions["dkim"];
@@ -205,7 +209,11 @@ const err = p(config, {
 			}
 		),
 	},
-	SEEDS_URL: "?string",
+	SEEDS_CONFIG: p.optional({
+		REPO_URL: "string",
+		USER_NAME: "?string",
+		USER_EMAIL: "?string",
+	}),
 });
 
 if (err) {

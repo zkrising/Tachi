@@ -105,6 +105,7 @@ export class DatabaseSeedsRepo {
 			);
 		}
 
+		// @ereti is insistent that this sleep 1 is fine, so, whatever.
 		return asyncExec(
 			`git config user.name "${ServerConfig.SEEDS_CONFIG.USER_NAME}" || exit 3;
 			git config user.email "${ServerConfig.SEEDS_CONFIG.USER_EMAIL}" || exit 4;

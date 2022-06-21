@@ -1,7 +1,7 @@
 import { APIFetchV1 } from "util/api";
 import { CreateSongMap } from "util/data";
 import { useFormik } from "formik";
-import React, { ChangeEventHandler, useEffect, useState } from "react";
+import React, { ChangeEventHandler, useContext, useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import {
 	FolderDocument,
@@ -16,6 +16,7 @@ import { Playtype } from "types/tachi";
 import { SongChartsSearch } from "types/api-returns";
 import DebounceSearch from "components/util/DebounceSearch";
 import Muted from "components/util/Muted";
+import { UserContext } from "context/UserContext";
 
 interface Props {
 	reqUser: PublicUserDocument;
@@ -72,9 +73,10 @@ export default function UGPTStatCreator({
 		}
 	}, [formik.values.mode]);
 
+	const { user } = useContext(UserContext);
 	const [chartData, setChartData] = useState<{ chartID: string; name: string }[]>([]);
 	const [chartSearch, setChartSearch] = useState("");
-	const [requesterHasPlayed, setRequesterHasPlayed] = useState(true);
+	const [requesterHasPlayed, setRequesterHasPlayed] = useState(user !== null);
 
 	const [folderData, setFolderData] = useState<{ folderID: string; name: string }[]>([]);
 	const [folderSearch, setFolderSearch] = useState("");
@@ -183,13 +185,15 @@ export default function UGPTStatCreator({
 						<Form.Group>
 							<Form.Label>Chart</Form.Label>
 							<DebounceSearch setSearch={setChartSearch} placeholder="Chart Name" />
-							<Form.Check
-								id="requesterHasPlayed"
-								checked={requesterHasPlayed}
-								onChange={e => setRequesterHasPlayed(e.target.checked)}
-								className="mt-4 mb-4"
-								label="Only show charts you've played?"
-							/>
+							{user && (
+								<Form.Check
+									id="requesterHasPlayed"
+									checked={requesterHasPlayed}
+									onChange={e => setRequesterHasPlayed(e.target.checked)}
+									className="mt-4 mb-4"
+									label="Only show charts you've played?"
+								/>
+							)}
 							{chartData.length ? (
 								<Form.Control
 									id="chartID"

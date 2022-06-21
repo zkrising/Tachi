@@ -6,7 +6,7 @@ import CreateLogCtx from "lib/logger/logger";
 const logger = CreateLogCtx(__filename);
 
 /**
- * The tachi-server may have its BMS database update. It needs to sync this
+ * The tachi-server may have its BMS or PMS database update. It needs to sync this
  * information back with the seeds.
  */
 export async function BacksyncBMSPMSSongsAndCharts() {

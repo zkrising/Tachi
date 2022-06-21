@@ -137,7 +137,7 @@ function FolderMinimapMain({
 				</div>
 				<Divider />
 				<Form.Group>
-					<Form.Label>Sorting charts on:</Form.Label>
+					<Form.Label>Sorting switchboard on:</Form.Label>
 					<Form.Control
 						as="select"
 						value={sortAlg}

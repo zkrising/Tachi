@@ -43,6 +43,10 @@ export default function DashboardRoutes() {
 		} else {
 			setBackground(null);
 		}
+
+		return () => {
+			setBackground(null);
+		};
 	}, [user]);
 
 	if (hasVerifiedEmail === false) {

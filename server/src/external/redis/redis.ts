@@ -18,9 +18,9 @@ logger.verbose("Instantiated Redis Client", { bootInfo: true });
 function EmitCritical() {
 	/* istanbul ignore next */
 	if (!RedisClient.connected) {
-		logger.crit(`Could not connect to redis in time. No more information is available.`);
-
-		process.exit(1);
+		logger.crit(`Could not connect to redis in time. No more information is available.`, () => {
+			process.exit(1);
+		});
 	}
 }
 

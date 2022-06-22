@@ -67,15 +67,21 @@ if (require.main === module) {
 		ValidateCollection(options.collection as Databases)
 			.then(() => process.exit(0))
 			.catch((err: unknown) => {
-				logger.error(`Failed to validate collection ${options.collection}?`, { err });
-				process.exit(1);
+				logger.error(
+					`Failed to validate collection ${options.collection}?`,
+					{ err },
+					() => {
+						process.exit(1);
+					}
+				);
 			});
 	} else {
 		ValidateAllCollections()
 			.then(() => process.exit(0))
 			.catch((err: unknown) => {
-				logger.error(`Failed to validate all collections?`, { err });
-				process.exit(1);
+				logger.error(`Failed to validate all collections?`, { err }, () => {
+					process.exit(1);
+				});
 			});
 	}
 }

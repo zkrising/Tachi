@@ -19,6 +19,7 @@ const options: { db: string; reset?: boolean } = program.opts();
 SetIndexes(options.db, options.reset === true)
 	.then(() => process.exit(0))
 	.catch((err: unknown) => {
-		logger.error(`Failed to set indexes.`, { err });
-		process.exit(1);
+		logger.error(`Failed to set indexes.`, { err }, () => {
+			process.exit(1);
+		});
 	});

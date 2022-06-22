@@ -224,7 +224,8 @@ if (require.main === module) {
 	FetchSP12Data()
 		.then(process.exit(0))
 		.catch((err) => {
-			logger.error(err);
-			process.exit(1);
+			logger.error(`Failed to fetch sp12 data. ${err}`, err, () => {
+				process.exit(1);
+			});
 		});
 }

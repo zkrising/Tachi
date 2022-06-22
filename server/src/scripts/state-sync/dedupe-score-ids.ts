@@ -36,10 +36,12 @@ async function DedupeScoreIDs() {
 
 DedupeScoreIDs()
 	.then(() => {
-		logger.info(`Finished deduping score IDs.`);
-		process.exit(0);
+		logger.info(`Finished deduping score IDs.`, () => {
+			process.exit(0);
+		});
 	})
 	.catch((err: unknown) => {
-		logger.error(`Failed to dedupe score IDs.`, { err });
-		process.exit(1);
+		logger.error(`Failed to dedupe score IDs.`, { err }, () => {
+			process.exit(1);
+		});
 	});

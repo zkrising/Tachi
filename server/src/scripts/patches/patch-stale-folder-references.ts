@@ -48,8 +48,8 @@ if (require.main === module) {
 			removedFolders,
 		});
 	})().catch((err: unknown) => {
-		logger.error(`Failed to patch stale showcase-stat folder references.`, { err });
-
-		process.exit(1);
+		logger.error(`Failed to patch stale showcase-stat folder references.`, { err }, () => {
+			process.exit(1);
+		});
 	});
 }

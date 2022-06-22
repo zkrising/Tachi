@@ -32,9 +32,11 @@ const workerLogger = CreateLogCtx(`Import Worker`);
 // Exit if we're not called with node. Think of this like if __name__ != "__main__" in python.
 if (require.main !== module) {
 	workerLogger.crit(
-		"The Score Import Worker was imported, instead of ran directly with node. This is a fatal error. Exiting."
+		"The Score Import Worker was imported, instead of ran directly with node. This is a fatal error. Exiting.",
+		() => {
+			process.exit(1);
+		}
 	);
-	process.exit(1);
 }
 
 /**

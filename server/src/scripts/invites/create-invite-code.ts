@@ -28,10 +28,12 @@ db.invites
 		consumedAt: null,
 	})
 	.then(() => {
-		logger.info(`Created invite ${code}.`);
-		process.exit(0);
+		logger.info(`Created invite ${code}.`, () => {
+			process.exit(0);
+		});
 	})
 	.catch((err: unknown) => {
-		logger.error(`Failed to create invite ${code}`, { err });
-		process.exit(1);
+		logger.error(`Failed to create invite ${code}`, { err }, () => {
+			process.exit(1);
+		});
 	});

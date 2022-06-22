@@ -11,9 +11,11 @@ const logger = CreateLogCtx(__filename);
 	await RecalcGameProfiles();
 	await RecalcSessions();
 
-	logger.info(`Completely done!`);
-	process.exit(0);
+	logger.info(`Completely done!`, () => {
+		process.exit(0);
+	});
 })().catch((err: unknown) => {
-	logger.error(`Failed to sync state.`, { err });
-	process.exit(1);
+	logger.error(`Failed to sync state.`, { err }, () => {
+		process.exit(1);
+	});
 });

@@ -26,6 +26,7 @@ try {
 	confFile = fs.readFileSync(confLocation, "utf-8");
 } catch (err) {
 	logger.error("Error while trying to open conf.json5. Is one present?", { err });
+
 	process.exit(1);
 }
 

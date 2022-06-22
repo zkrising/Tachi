@@ -32,11 +32,12 @@ function CreateMigrationLookupMap(migrations: Array<Migration>) {
 	for (const mig of migrations) {
 		if (map.get(mig.id)) {
 			logger.crit(
-				`Multiple migrations are registered for ${mig.id}. Cannot safely apply migrations.`
+				`Multiple migrations are registered for ${mig.id}. Cannot safely apply migrations.`,
+				() => {
+					// note, we want to exit in testing here, this is fine.
+					process.exit(1);
+				}
 			);
-
-			// note, we want to exit in testing here, this is fine.
-			process.exit(1);
 		}
 
 		map.set(mig.id, mig);
@@ -199,6 +200,8 @@ export async function ApplyMigration(migration: Migration) {
 			throw new Error("Was going to exit with statusCode 1, but we're in testing.");
 		}
 
-		process.exit(1);
+		logger.crit(`Exiting.`, () => {
+			process.exit(1);
+		});
 	}
 }

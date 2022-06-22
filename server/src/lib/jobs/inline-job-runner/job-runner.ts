@@ -65,8 +65,9 @@ export function InitialiseJobRunner() {
 	const names = jobs.map((e) => e.name);
 
 	if (DedupeArr(names).length !== names.length) {
-		logger.crit(`Jobs has duplicate name fields, refusing to run.`);
-		process.exit(1);
+		logger.crit(`Jobs has duplicate name fields, refusing to run.`, () => {
+			process.exit(1);
+		});
 	}
 
 	const JobQueue = new Queue("Job Runner");

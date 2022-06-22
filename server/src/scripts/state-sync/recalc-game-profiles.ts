@@ -45,7 +45,8 @@ if (require.main === module) {
 	RecalcGameProfiles()
 		.then(() => process.exit(0))
 		.catch((err: unknown) => {
-			logger.error(`Failed to recalc game profiles.`, { err });
-			process.exit(1);
+			logger.error(`Failed to recalc game profiles.`, { err }, () => {
+				process.exit(1);
+			});
 		});
 }

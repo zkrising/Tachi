@@ -51,9 +51,11 @@ async function RunOnInit() {
 	} catch (err) {
 		logger.crit(
 			`Cannot send HTTPS request to https://example.com. This instance of tachi-server cannot access the internet?`,
-			err
+			err,
+			() => {
+				process.exit(1);
+			}
 		);
-		process.exit(1);
 	}
 }
 
@@ -109,8 +111,9 @@ if (process.env.INVOKE_JOB_RUNNER) {
 	);
 
 	jobProcess.on("error", (err) => {
-		logger.crit(`Failed to spawn job runner. Terminating process.`, { err });
-		process.exit(1);
+		logger.crit(`Failed to spawn job runner. Terminating process.`, { err }, () => {
+			process.exit(1);
+		});
 	});
 
 	process.on("beforeExit", () => {

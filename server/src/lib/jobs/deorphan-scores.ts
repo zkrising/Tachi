@@ -45,8 +45,8 @@ if (require.main === module) {
 	DeoprhanScores()
 		.then(() => process.exit(0))
 		.catch((err: unknown) => {
-			logger.error(`Failed to de-orphan scores.`, { err });
-
-			process.exit(1);
+			logger.error(`Failed to de-orphan scores.`, { err }, () => {
+				process.exit(1);
+			});
 		});
 }

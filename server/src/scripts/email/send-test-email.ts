@@ -29,8 +29,8 @@ if (require.main === module) {
 
 		process.exit(0);
 	})().catch((err: unknown) => {
-		logger.error(`Failed to send test email.`, { err });
-
-		process.exit(1);
+		logger.error(`Failed to send test email.`, { err }, () => {
+			process.exit(1);
+		});
 	});
 }

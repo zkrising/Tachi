@@ -75,8 +75,9 @@ monkDB
 		});
 	})
 	.catch((err) => {
-		logger.crit(err);
-		process.exit(1);
+		logger.crit(`Failed to connect to database: ${err}`, () => {
+			process.exit(1);
+		});
 	});
 
 /**

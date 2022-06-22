@@ -308,8 +308,8 @@ if (require.main === module) {
 
 		process.exit(0);
 	})().catch((err: unknown) => {
-		logger.error(`Failed to sync BMS Tables.`, { err });
-
-		process.exit(1);
+		logger.error(`Failed to sync BMS Tables.`, { err }, () => {
+			process.exit(1);
+		});
 	});
 }

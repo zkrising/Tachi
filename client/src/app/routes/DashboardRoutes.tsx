@@ -1,4 +1,4 @@
-import { APIFetchV1 } from "util/api";
+import { APIFetchV1, ToAPIURL } from "util/api";
 import SupportMePage from "app/pages/dashboard/misc/SupportMePage";
 import { ErrorPage } from "app/pages/ErrorPage";
 import PrivacyPolicyPage from "app/pages/PrivacyPolicyPage";
@@ -9,6 +9,7 @@ import { BannedContext } from "context/BannedContext";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { BackgroundContext } from "context/BackgroundContext";
 import { DashboardPage } from "../pages/dashboard/DashboardPage";
 import CreditsPage from "../pages/dashboard/misc/CreditsPage";
 import GameRoutes from "./GameRoutes";
@@ -18,6 +19,7 @@ import UserRoutes from "./UserRoutes";
 export default function DashboardRoutes() {
 	const { user } = useContext(UserContext);
 	const { banned } = useContext(BannedContext);
+	const { setBackground } = useContext(BackgroundContext);
 
 	const [hasVerifiedEmail, setHasVerifiedEmail] = useState<boolean | null>(null);
 
@@ -33,6 +35,14 @@ export default function DashboardRoutes() {
 				setHasVerifiedEmail(hasVerified.body);
 			}
 		})();
+	}, [user]);
+
+	useEffect(() => {
+		if (user) {
+			setBackground(ToAPIURL(`/users/${user.id}/banner`));
+		} else {
+			setBackground(null);
+		}
 	}, [user]);
 
 	if (hasVerifiedEmail === false) {

@@ -15869,6 +15869,32 @@
 	},
 	{
 		"data": {
+			"level": "16",
+			"versions": "1.5-b"
+		},
+		"folderID": "F4b269bccaa0fd9a1bed1346aa2d168307c1baae5a4d076e994750ca0862098bd",
+		"game": "museca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 16 (1 + 1/2 Rev. B)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "16",
+			"versions": "1.5"
+		},
+		"folderID": "F9ae7894021d3a3ee23d7a5079e75e2a2234bd54c4735b7caf6327a7c9f4642ed",
+		"game": "museca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 16 (1 + 1/2)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "2",
 			"versions": "1.5-b"
 		},

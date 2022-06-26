@@ -2,6 +2,7 @@
 	"name": "tachi-client",
 	"version": "2.1.7",
 	"private": true,
+	"license": "AGPL3",
 	"scripts": {
 		"start": "node scripts/start.js -o",
 		"build": "node scripts/build.js",

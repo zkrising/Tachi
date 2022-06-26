@@ -173,7 +173,7 @@ function MinimapElement({
 	let icon = "level-up-alt";
 
 	// if this user recently cleared mare nectaris
-	// tell them to fuck off
+	// give them a pleasant treat
 	if (
 		data.chartID === "924bf011fdd8334b609b02e382123f9f5440d16d" &&
 		data.__related.pb &&

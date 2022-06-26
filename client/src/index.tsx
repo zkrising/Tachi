@@ -3,7 +3,6 @@
  * changed or moved.
  */
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import ErrorBoundary from "components/util/ErrorBoundary";
 import React from "react";
 import ReactDOM from "react-dom";
 import "socicon/css/socicon.css";

@@ -2,8 +2,15 @@ import { ToAPIURL } from "util/api";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { SetState } from "types/react";
 
-export function HeaderMobile() {
+export function HeaderMobile({
+	mobileShow,
+	setMobileShow,
+}: {
+	mobileShow: boolean;
+	setMobileShow: SetState<boolean>;
+}) {
 	const { user } = useContext(UserContext);
 
 	return (
@@ -13,6 +20,7 @@ export function HeaderMobile() {
 					<button
 						className="btn p-0 burger-icon burger-icon-right ml-2 mr-auto"
 						id="kt_header_mobile_toggle"
+						onClick={() => setMobileShow(!mobileShow)}
 					>
 						<span />
 					</button>

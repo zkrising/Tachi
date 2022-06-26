@@ -1,22 +1,28 @@
 import { APIFetchV1, ToCDNURL } from "util/api";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
+import useComponentVisible from "components/util/useComponentVisible";
 import { UserContext } from "context/UserContext";
 import { UserGameStatsContext } from "context/UserGameStatsContext";
 import { TachiConfig } from "lib/config";
-import React, { useContext, useLayoutEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { FormatGame, GetGameConfig, UserGameStats } from "tachi-common";
-import KTLayoutHeader from "_metronic/_assets/js/layout/base/header";
-import KTLayoutHeaderMenu from "_metronic/_assets/js/layout/base/header-menu";
+import { SetState } from "types/react";
 import AllGames from "./AllGames";
 import ImportScoresLink from "./ImportScoresLink";
 import MenuDropdown from "./MenuDropdown";
 import MenuLink from "./MenuLink";
 import SearchBar from "./SearchBar";
 
-export function HeaderMenu() {
+export function HeaderMenu({
+	mobileShow,
+	setMobileShow,
+}: {
+	mobileShow: boolean;
+	setMobileShow: SetState<boolean>;
+}) {
 	const { user } = useContext(UserContext);
 	const { ugs, setUGS } = useContext(UserGameStatsContext);
 
@@ -38,12 +44,16 @@ export function HeaderMenu() {
 		console.error(error);
 	}
 
-	useLayoutEffect(() => {
-		if (!isLoading) {
-			KTLayoutHeader.init("kt_header", "kt_header_mobile");
-			KTLayoutHeaderMenu.init("kt_header_menu", "kt_header_menu_wrapper");
-		}
-	}, [isLoading]);
+	const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(mobileShow);
+
+	// how does this not cause a problem. What?
+	useEffect(() => {
+		setIsComponentVisible(mobileShow);
+	}, [mobileShow]);
+
+	useEffect(() => {
+		setMobileShow(isComponentVisible);
+	}, [isComponentVisible]);
 
 	if (isLoading) {
 		return <Loading />;
@@ -77,7 +87,13 @@ export function HeaderMenu() {
 	}
 
 	return (
-		<div className="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+		<div
+			className={`header-menu-wrapper header-menu-wrapper-left ${
+				isComponentVisible ? "header-menu-wrapper-on" : ""
+			}`}
+			ref={ref}
+			id="kt_header_menu_wrapper"
+		>
 			<div
 				id="kt_header_menu"
 				className="header-menu header-menu-left header-menu-mobile header-menu-layout-default header-menu-root-arrow"

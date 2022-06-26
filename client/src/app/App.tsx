@@ -1,6 +1,6 @@
+import { MaterialThemeProvider } from "components/layout/misc/MaterialThemeProvider";
 import { LoadingScreen } from "components/layout/screens/LoadingScreen";
 import { BannedContextProvider } from "context/BannedContext";
-import ErrorBoundary from "components/util/ErrorBoundary";
 import { SubheaderContextProvider } from "context/SubheaderContext";
 import { UserContextProvider } from "context/UserContext";
 import { UserGameStatsContextProvider } from "context/UserGameStatsContext";
@@ -9,7 +9,6 @@ import React from "react";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
-import { MaterialThemeProvider } from "../_metronic/layout";
 import { Routes } from "./routes/AppRoutes";
 
 const queryClient = new QueryClient({

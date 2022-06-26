@@ -1,10 +1,17 @@
 import { ToCDNURL } from "util/api";
 import React from "react";
 import { Link } from "react-router-dom";
+import { SetState } from "types/react";
 import { HeaderMenu } from "./HeaderMenu";
 import { Topbar } from "./Topbar";
 
-export function Header() {
+export function Header({
+	mobileShow,
+	setMobileShow,
+}: {
+	mobileShow: boolean;
+	setMobileShow: SetState<boolean>;
+}) {
 	return (
 		<div className="header header-fixed" id="kt_header">
 			<div className="container d-flex align-items-stretch justify-content-between">
@@ -19,7 +26,7 @@ export function Header() {
 						</Link>
 					</div>
 
-					<HeaderMenu />
+					<HeaderMenu mobileShow={mobileShow} setMobileShow={setMobileShow} />
 				</div>
 
 				<Topbar />

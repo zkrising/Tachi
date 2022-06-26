@@ -165,6 +165,10 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		chart = await HandleOrphanChartProcess(game, data, context, logger);
 	}
 
+	if (chart.playtype === "14K" && data.deviceType === "KEYBOARD") {
+		throw new InvalidScoreFailure(`Keyboard is not supported for 14K scores.`);
+	}
+
 	const song = await FindSongOnID(game, chart.songID);
 
 	if (!song) {

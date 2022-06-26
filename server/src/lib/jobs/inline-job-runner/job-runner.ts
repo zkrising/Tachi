@@ -1,4 +1,6 @@
 import { BacksyncBMSPMSSongsAndCharts } from "../backsync-bms-pms-data";
+import { UpdateAILevels } from "../bms-ai-table-sync";
+import { SyncBMSTables } from "../bms-table-sync";
 import { DeoprhanScores } from "../deorphan-scores";
 import { UGSSnapshot } from "../ugs-snapshot";
 import { UpdatePoyashiData } from "../update-bpi-data";
@@ -37,6 +39,7 @@ if (TachiConfig.TYPE !== "btchi") {
 		cronFormat: "2 0 * * *",
 		run: UpdatePoyashiData,
 	});
+
 	jobs.push({
 		name: "Update DP Tiers",
 		cronFormat: "3 0 * * *",
@@ -44,11 +47,23 @@ if (TachiConfig.TYPE !== "btchi") {
 	});
 }
 
-// if bokutachi or omnimitachi
+// if bokutachi or omnitachi
 if (TachiConfig.TYPE !== "ktchi") {
 	jobs.push({
-		name: "Backsync BMS + PMS",
+		name: "Update AI Table",
 		cronFormat: "2 0 * * *",
+		run: UpdateAILevels,
+	});
+
+	jobs.push({
+		name: "Update Tables",
+		cronFormat: "3 0 * * *",
+		run: SyncBMSTables,
+	});
+
+	jobs.push({
+		name: "Backsync BMS + PMS",
+		cronFormat: "4 0 * * *",
 		run: BacksyncBMSPMSSongsAndCharts,
 	});
 }

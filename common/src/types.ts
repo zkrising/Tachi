@@ -789,12 +789,16 @@ interface CDDataDDRSP {
 	inGameID: string;
 }
 
-interface CDDataBMS {
+interface CDDataPMS {
 	notecount: integer;
 	hashMD5: string;
 	hashSHA256: string;
 	tableFolders: { table: string; level: string }[];
 }
+
+type CDDataBMS = CDDataPMS & {
+	aiRating: number | null;
+};
 
 interface CDDataUSC {
 	hashSHA1: string | string[];
@@ -825,8 +829,8 @@ interface ChartDocumentData {
 	"gitadora:Gita": { inGameID: integer };
 	"gitadora:Dora": { inGameID: integer };
 	"wacca:Single": { isHot: boolean };
-	"pms:Controller": CDDataBMS;
-	"pms:Keyboard": CDDataBMS;
+	"pms:Controller": CDDataPMS;
+	"pms:Keyboard": CDDataPMS;
 	"itg:Stamina": {
 		chartHash: string;
 		difficultyTag: "Beginner" | "Easy" | "Medium" | "Hard" | "Challenge";

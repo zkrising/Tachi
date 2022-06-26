@@ -136,19 +136,19 @@ export const BMSStSlDans: ClassInfo[] = [
 ];
 
 export const BMSLNDans: ClassInfo[] = [
-	mouseoverCSS("DAN_1", "初段", "LN 1st Dan", "lightblue"),
-	mouseoverCSS("DAN_2", "二段", "LN 2nd Dan", "lightblue"),
-	mouseoverCSS("DAN_3", "三段", "LN 3rd Dan", "lightblue"),
-	mouseoverCSS("DAN_4", "四段", "LN 4th Dan", "lightblue"),
-	mouseoverCSS("DAN_5", "五段", "LN 5th Dan", "lightblue"),
-	mouseoverCSS("DAN_6", "六段", "LN 6th Dan", "lightblue"),
-	mouseoverCSS("DAN_7", "七段", "LN 7th Dan", "lightblue"),
-	mouseoverCSS("DAN_8", "八段", "LN 8th Dan", "lightblue"),
-	mouseoverCSS("DAN_9", "九段", "LN 9th Dan", "lightred"),
-	mouseoverCSS("DAN_10", "十段", "LN 10th Dan", "lightred"),
-	mouseoverCSS("KAIDEN", "皆伝", "LN Kaiden", "teal"),
-	mouseoverCSS("OVERJOY", "(^^)", "LN Overjoy", "purple"),
-	mouseoverCSS("UDON", "うどん", "LN Udon", "gold"),
+	mouseoverCSS("DAN_1", "◆1", "LN 1st Dan", "lightblue"),
+	mouseoverCSS("DAN_2", "◆2", "LN 2nd Dan", "lightblue"),
+	mouseoverCSS("DAN_3", "◆3", "LN 3rd Dan", "lightblue"),
+	mouseoverCSS("DAN_4", "◆4", "LN 4th Dan", "lightblue"),
+	mouseoverCSS("DAN_5", "◆5", "LN 5th Dan", "lightblue"),
+	mouseoverCSS("DAN_6", "◆6", "LN 6th Dan", "lightblue"),
+	mouseoverCSS("DAN_7", "◆7", "LN 7th Dan", "lightblue"),
+	mouseoverCSS("DAN_8", "◆8", "LN 8th Dan", "lightblue"),
+	mouseoverCSS("DAN_9", "◆9", "LN 9th Dan", "lightred"),
+	mouseoverCSS("DAN_10", "◆10", "LN 10th Dan", "lightred"),
+	mouseoverCSS("KAIDEN", "◆◆", "LN Kaiden", "teal"),
+	mouseoverCSS("OVERJOY", "◆(^^)", "LN Overjoy", "purple"),
+	mouseoverCSS("UDON", "◆うどん", "LN Udon", "gold"),
 ];
 
 export const SDVXDans: ClassInfo[] = [

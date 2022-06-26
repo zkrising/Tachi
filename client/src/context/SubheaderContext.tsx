@@ -9,8 +9,6 @@ export const SubheaderContext = createContext({
 	setBreadcrumbs: NO_OP as SetState<string[]>,
 });
 
-export const SubheaderConsumer = SubheaderContext.Consumer;
-
 export function SubheaderContextProvider({ children }: JustChildren) {
 	const [title, setTitle] = useState("");
 	const [breadcrumbs, setBreadcrumbs] = useState<string[]>([]);

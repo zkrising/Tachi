@@ -1,6 +1,7 @@
 import { FormatInt, GPTTierlists } from "..";
 import {
 	BMSGenocideDans,
+	BMSLNDans,
 	BMSStSlDans,
 	CHUNITHMColours,
 	ClassInfo,
@@ -1136,6 +1137,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		classHumanisedFormat: {
 			genocideDan: BMSGenocideDans,
 			stslDan: BMSStSlDans,
+			lnDan: BMSLNDans,
 		},
 
 		supportsESD: false,

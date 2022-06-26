@@ -1367,7 +1367,7 @@ export interface KaiAuthDocument {
 export interface BMSCourseDocument {
 	title: string;
 	md5sums: string;
-	set: "genocideDan" | "stslDan";
+	set: "genocideDan" | "stslDan" | "lnDan";
 	playtype: "7K" | "14K";
 	value: integer;
 }

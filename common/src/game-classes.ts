@@ -135,6 +135,22 @@ export const BMSStSlDans: ClassInfo[] = [
 	mouseoverCSS("ST11", "st11", "Stella 11"),
 ];
 
+export const BMSLNDans: ClassInfo[] = [
+	mouseoverCSS("DAN_1", "初段", "LN 1st Dan", "lightblue"),
+	mouseoverCSS("DAN_2", "二段", "LN 2nd Dan", "lightblue"),
+	mouseoverCSS("DAN_3", "三段", "LN 3rd Dan", "lightblue"),
+	mouseoverCSS("DAN_4", "四段", "LN 4th Dan", "lightblue"),
+	mouseoverCSS("DAN_5", "五段", "LN 5th Dan", "lightblue"),
+	mouseoverCSS("DAN_6", "六段", "LN 6th Dan", "lightblue"),
+	mouseoverCSS("DAN_7", "七段", "LN 7th Dan", "lightblue"),
+	mouseoverCSS("DAN_8", "八段", "LN 8th Dan", "lightblue"),
+	mouseoverCSS("DAN_9", "九段", "LN 9th Dan", "lightred"),
+	mouseoverCSS("DAN_10", "十段", "LN 10th Dan", "lightred"),
+	mouseoverCSS("KAIDEN", "皆伝", "LN Kaiden", "teal"),
+	mouseoverCSS("OVERJOY", "(^^)", "LN Overjoy", "purple"),
+	mouseoverCSS("UDON", "うどん", "LN Udon", "gold"),
+];
+
 export const SDVXDans: ClassInfo[] = [
 	mouseoverCSS("DAN_1", "LV.01", "1st Dan"),
 	mouseoverCSS("DAN_2", "LV.02", "2nd Dan"),
@@ -303,7 +319,7 @@ export interface GameClassSets {
 	"maimai:Single": never;
 	"jubeat:Single": "colour";
 	"museca:Single": never;
-	"bms:7K": "genocideDan" | "stslDan";
+	"bms:7K": "genocideDan" | "stslDan" | "lnDan";
 	"bms:14K": "genocideDan";
 	"chunithm:Single": "colour";
 	"gitadora:Gita": "colour";

@@ -1,11 +1,11 @@
 // Monk type-stub to avoid pulling the whole dep in
+import type { AllClassSets, GameClasses, GameClassSets } from "./game-classes";
+import type { FilterQuery } from "mongodb";
+
 export interface IObjectID {
 	readonly toHexString: () => string;
 	readonly toString: () => string;
 }
-
-import { FilterQuery } from "mongodb";
-import { AllClassSets, GameClasses, GameClassSets } from "./game-classes";
 
 export interface CounterDocument {
 	counterName: string;
@@ -21,26 +21,26 @@ export type Playtype = Playtypes[Game];
  * like the ScoreDocument (Especially the ScoreDocument) *very* hard!
  */
 export type IDStrings =
-	| "iidx:SP"
-	| "iidx:DP"
-	| "popn:9B"
-	| "sdvx:Single"
-	| "usc:Keyboard"
-	| "usc:Controller"
-	| "ddr:SP"
-	| "ddr:DP"
-	| "maimai:Single"
-	| "museca:Single"
-	| "jubeat:Single"
 	| "bms:7K"
 	| "bms:14K"
 	| "chunithm:Single"
-	| "gitadora:Gita"
+	| "ddr:DP"
+	| "ddr:SP"
 	| "gitadora:Dora"
-	| "wacca:Single"
-	| "pms:Keyboard"
+	| "gitadora:Gita"
+	| "iidx:DP"
+	| "iidx:SP"
+	| "itg:Stamina"
+	| "jubeat:Single"
+	| "maimai:Single"
+	| "museca:Single"
 	| "pms:Controller"
-	| "itg:Stamina";
+	| "pms:Keyboard"
+	| "popn:9B"
+	| "sdvx:Single"
+	| "usc:Controller"
+	| "usc:Keyboard"
+	| "wacca:Single";
 
 export interface IDStringToPlaytype {
 	"iidx:SP": "SP";
@@ -89,19 +89,19 @@ export interface IDStringToGame {
 }
 
 export interface GameToIDStrings {
-	iidx: "iidx:SP" | "iidx:DP";
+	iidx: "iidx:DP" | "iidx:SP";
 	sdvx: "sdvx:Single";
-	usc: "usc:Keyboard" | "usc:Controller";
-	ddr: "ddr:SP" | "ddr:DP";
+	usc: "usc:Controller" | "usc:Keyboard";
+	ddr: "ddr:DP" | "ddr:SP";
 	maimai: "maimai:Single";
 	jubeat: "jubeat:Single";
 	museca: "museca:Single";
 	bms: "bms:7K" | "bms:14K";
 	chunithm: "chunithm:Single";
-	gitadora: "gitadora:Gita" | "gitadora:Dora";
+	gitadora: "gitadora:Dora" | "gitadora:Gita";
 	popn: "popn:9B";
 	wacca: "wacca:Single";
-	pms: "pms:Keyboard" | "pms:Controller";
+	pms: "pms:Controller" | "pms:Keyboard";
 	itg: "itg:Stamina";
 }
 
@@ -124,20 +124,20 @@ export interface MongoDBDocument {
  * All supported games by Tachi.
  */
 export type Game =
-	| "iidx"
-	| "museca"
-	| "maimai"
-	| "jubeat"
-	| "popn"
-	| "sdvx"
-	| "ddr"
 	| "bms"
 	| "chunithm"
+	| "ddr"
 	| "gitadora"
-	| "usc"
-	| "wacca"
+	| "iidx"
+	| "itg"
+	| "jubeat"
+	| "maimai"
+	| "museca"
 	| "pms"
-	| "itg";
+	| "popn"
+	| "sdvx"
+	| "usc"
+	| "wacca";
 
 /**
  * This is the generic response from the Kamaitachi API in event of a failure.
@@ -154,6 +154,7 @@ export interface UnsuccessfulAPIResponse {
 export interface SuccessfulAPIResponse<T = unknown> {
 	success: true;
 	description: string;
+
 	// This isn't ideal, but we need to restrict
 	// this to only objects - Record<string, unknown>
 	// mandates indexability of the type, which makes
@@ -167,174 +168,174 @@ export interface ChartFolderLookupDocument extends MongoDBDocument {
 }
 
 export interface Playtypes {
-	iidx: "SP" | "DP";
+	iidx: "DP" | "SP";
 	popn: "9B";
 	sdvx: "Single";
-	usc: "Keyboard" | "Controller";
-	ddr: "SP" | "DP";
+	usc: "Controller" | "Keyboard";
+	ddr: "DP" | "SP";
 	maimai: "Single";
 	jubeat: "Single";
 	museca: "Single";
 	chunithm: "Single";
 	bms: "7K" | "14K";
-	gitadora: "Gita" | "Dora";
+	gitadora: "Dora" | "Gita";
 	wacca: "Single";
-	pms: "Keyboard" | "Controller";
+	pms: "Controller" | "Keyboard";
 	itg: "Stamina";
 }
 
-type IIDXGrades = "F" | "E" | "D" | "C" | "B" | "A" | "AA" | "AAA" | "MAX-" | "MAX";
-type SDVXGrades = "D" | "C" | "B" | "A" | "A+" | "AA" | "AA+" | "AAA" | "AAA+" | "S" | "PUC";
+type IIDXGrades = "A" | "AA" | "AAA" | "B" | "C" | "D" | "E" | "F" | "MAX-" | "MAX";
+type SDVXGrades = "A" | "A+" | "AA" | "AA+" | "AAA" | "AAA+" | "B" | "C" | "D" | "PUC" | "S";
 type DDRGrades =
-	| "D"
-	| "D+"
-	| "C-"
-	| "C"
-	| "C+"
-	| "B-"
-	| "B"
-	| "B+"
 	| "A-"
 	| "A"
 	| "A+"
 	| "AA-"
 	| "AA"
 	| "AA+"
-	| "AAA";
+	| "AAA"
+	| "B-"
+	| "B"
+	| "B+"
+	| "C-"
+	| "C"
+	| "C+"
+	| "D"
+	| "D+";
 
-type GitadoraGrades = "C" | "B" | "A" | "S" | "SS" | "MAX";
+type GitadoraGrades = "A" | "B" | "C" | "MAX" | "S" | "SS";
 
 export interface Grades {
 	"iidx:SP": IIDXGrades;
 	"iidx:DP": IIDXGrades;
-	"popn:9B": "E" | "D" | "C" | "B" | "A" | "AA" | "AAA" | "S";
+	"popn:9B": "A" | "AA" | "AAA" | "B" | "C" | "D" | "E" | "S";
 	"sdvx:Single": SDVXGrades;
 	"usc:Keyboard": SDVXGrades;
 	"usc:Controller": SDVXGrades;
 	"ddr:SP": DDRGrades;
 	"ddr:DP": DDRGrades;
 	"maimai:Single":
-		| "F"
-		| "E"
-		| "D"
-		| "C"
-		| "B"
 		| "A"
 		| "AA"
 		| "AAA"
+		| "B"
+		| "C"
+		| "D"
+		| "E"
+		| "F"
 		| "S"
 		| "S+"
 		| "SS"
 		| "SS+"
 		| "SSS"
 		| "SSS+";
-	"jubeat:Single": "E" | "D" | "C" | "B" | "A" | "S" | "SS" | "SSS" | "EXC";
-	"museca:Single": "没" | "拙" | "凡" | "佳" | "良" | "優" | "秀" | "傑" | "傑G";
+	"jubeat:Single": "A" | "B" | "C" | "D" | "E" | "EXC" | "S" | "SS" | "SSS";
+	"museca:Single": "佳" | "傑" | "傑G" | "優" | "凡" | "拙" | "没" | "秀" | "良";
 	"bms:7K": IIDXGrades;
 	"bms:14K": IIDXGrades;
-	"chunithm:Single": "D" | "C" | "B" | "BB" | "BBB" | "A" | "AA" | "AAA" | "S" | "SS" | "SSS";
+	"chunithm:Single": "A" | "AA" | "AAA" | "B" | "BB" | "BBB" | "C" | "D" | "S" | "SS" | "SSS";
 	"gitadora:Gita": GitadoraGrades;
 	"gitadora:Dora": GitadoraGrades;
 	"wacca:Single":
-		| "D"
-		| "C"
-		| "B"
 		| "A"
 		| "AA"
 		| "AAA"
+		| "B"
+		| "C"
+		| "D"
+		| "MASTER"
 		| "S"
 		| "S+"
 		| "SS"
 		| "SS+"
 		| "SSS"
-		| "SSS+"
-		| "MASTER";
+		| "SSS+";
 	"pms:Controller": IIDXGrades;
 	"pms:Keyboard": IIDXGrades;
-	"itg:Stamina": "D" | "C" | "B" | "A" | "S-" | "S" | "S+" | "★" | "★★" | "★★★" | "★★★★";
+	"itg:Stamina": "★" | "★★" | "★★★" | "★★★★" | "A" | "B" | "C" | "D" | "S-" | "S" | "S+";
 }
 
 type IIDXLamps =
-	| "NO PLAY"
-	| "FAILED"
 	| "ASSIST CLEAR"
-	| "EASY CLEAR"
 	| "CLEAR"
-	| "HARD CLEAR"
+	| "EASY CLEAR"
 	| "EX HARD CLEAR"
-	| "FULL COMBO";
+	| "FAILED"
+	| "FULL COMBO"
+	| "HARD CLEAR"
+	| "NO PLAY";
 
-type GitadoraLamps = "FAILED" | "CLEAR" | "FULL COMBO" | "EXCELLENT";
+type GitadoraLamps = "CLEAR" | "EXCELLENT" | "FAILED" | "FULL COMBO";
 
 type SDVXLamps =
-	| "FAILED"
 	| "CLEAR"
 	| "EXCESSIVE CLEAR"
-	| "ULTIMATE CHAIN"
-	| "PERFECT ULTIMATE CHAIN";
+	| "FAILED"
+	| "PERFECT ULTIMATE CHAIN"
+	| "ULTIMATE CHAIN";
 
 type DDRLamps =
-	| "FAILED"
 	| "CLEAR"
-	| "LIFE4"
+	| "FAILED"
 	| "FULL COMBO"
 	| "GREAT FULL COMBO"
-	| "PERFECT FULL COMBO"
-	| "MARVELOUS FULL COMBO";
+	| "LIFE4"
+	| "MARVELOUS FULL COMBO"
+	| "PERFECT FULL COMBO";
 
 export interface Lamps {
 	"iidx:SP": IIDXLamps;
 	"iidx:DP": IIDXLamps;
-	"popn:9B": "FAILED" | "EASY CLEAR" | "CLEAR" | "FULL COMBO" | "PERFECT";
+	"popn:9B": "CLEAR" | "EASY CLEAR" | "FAILED" | "FULL COMBO" | "PERFECT";
 	"sdvx:Single": SDVXLamps;
 	"usc:Keyboard": SDVXLamps;
 	"usc:Controller": SDVXLamps;
 	"ddr:SP": DDRLamps;
 	"ddr:DP": DDRLamps;
-	"maimai:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "ALL PERFECT" | "ALL PERFECT+";
-	"jubeat:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "EXCELLENT";
-	"museca:Single": "FAILED" | "CLEAR" | "CONNECT ALL" | "PERFECT CONNECT ALL";
+	"maimai:Single": "ALL PERFECT" | "ALL PERFECT+" | "CLEAR" | "FAILED" | "FULL COMBO";
+	"jubeat:Single": "CLEAR" | "EXCELLENT" | "FAILED" | "FULL COMBO";
+	"museca:Single": "CLEAR" | "CONNECT ALL" | "FAILED" | "PERFECT CONNECT ALL";
 	"bms:7K": IIDXLamps;
 	"bms:14K": IIDXLamps;
-	"chunithm:Single": "FAILED" | "CLEAR" | "FULL COMBO" | "ALL JUSTICE" | "ALL JUSTICE CRITICAL";
+	"chunithm:Single": "ALL JUSTICE CRITICAL" | "ALL JUSTICE" | "CLEAR" | "FAILED" | "FULL COMBO";
 	"gitadora:Gita": GitadoraLamps;
 	"gitadora:Dora": GitadoraLamps;
-	"wacca:Single": "FAILED" | "CLEAR" | "MISSLESS" | "FULL COMBO" | "ALL MARVELOUS";
+	"wacca:Single": "ALL MARVELOUS" | "CLEAR" | "FAILED" | "FULL COMBO" | "MISSLESS";
 	"pms:Controller": IIDXLamps;
 	"pms:Keyboard": IIDXLamps;
-	"itg:Stamina": "FAILED" | "CLEAR" | "FULL COMBO" | "FULL EXCELLENT COMBO" | "QUAD";
+	"itg:Stamina": "CLEAR" | "FAILED" | "FULL COMBO" | "FULL EXCELLENT COMBO" | "QUAD";
 }
 
-export type IIDX2DXTraSets = "Kichiku" | "Kiraku" | "All Scratch";
-export type IIDXSPDifficulties = "BEGINNER" | "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
-export type IIDXDPDifficulties = "NORMAL" | "HYPER" | "ANOTHER" | "LEGGENDARIA";
+export type IIDX2DXTraSets = "All Scratch" | "Kichiku" | "Kiraku";
+export type IIDXSPDifficulties = "ANOTHER" | "BEGINNER" | "HYPER" | "LEGGENDARIA" | "NORMAL";
+export type IIDXDPDifficulties = "ANOTHER" | "HYPER" | "LEGGENDARIA" | "NORMAL";
 
 export interface Difficulties {
-	"iidx:SP": `${`${IIDX2DXTraSets} ` | ""}${IIDXSPDifficulties}`;
-	"iidx:DP": `${`${IIDX2DXTraSets} ` | ""}${IIDXDPDifficulties}`;
-	"popn:9B": "Easy" | "Normal" | "Hyper" | "EX";
-	"sdvx:Single": "NOV" | "ADV" | "EXH" | "MXM" | "INF" | "GRV" | "HVN" | "VVD";
-	"usc:Controller": "NOV" | "ADV" | "EXH" | "INF";
-	"usc:Keyboard": "NOV" | "ADV" | "EXH" | "INF";
-	"ddr:SP": "BEGINNER" | "BASIC" | "DIFFICULT" | "EXPERT" | "CHALLENGE";
-	"ddr:DP": "BASIC" | "DIFFICULT" | "EXPERT" | "CHALLENGE";
-	"maimai:Single": "Easy" | "Basic" | "Advanced" | "Expert" | "Master" | "Re:Master";
-	"jubeat:Single": "BSC" | "ADV" | "EXT" | "HARD BSC" | "HARD ADV" | "HARD EXT";
-	"museca:Single": "Green" | "Yellow" | "Red";
+	"iidx:SP": `${"" | `${IIDX2DXTraSets} `}${IIDXSPDifficulties}`;
+	"iidx:DP": `${"" | `${IIDX2DXTraSets} `}${IIDXDPDifficulties}`;
+	"popn:9B": "Easy" | "EX" | "Hyper" | "Normal";
+	"sdvx:Single": "ADV" | "EXH" | "GRV" | "HVN" | "INF" | "MXM" | "NOV" | "VVD";
+	"usc:Controller": "ADV" | "EXH" | "INF" | "NOV";
+	"usc:Keyboard": "ADV" | "EXH" | "INF" | "NOV";
+	"ddr:SP": "BASIC" | "BEGINNER" | "CHALLENGE" | "DIFFICULT" | "EXPERT";
+	"ddr:DP": "BASIC" | "CHALLENGE" | "DIFFICULT" | "EXPERT";
+	"maimai:Single": "Advanced" | "Basic" | "Easy" | "Expert" | "Master" | "Re:Master";
+	"jubeat:Single": "ADV" | "BSC" | "EXT" | "HARD ADV" | "HARD BSC" | "HARD EXT";
+	"museca:Single": "Green" | "Red" | "Yellow";
 	"bms:7K": "CHART";
 	"bms:14K": "CHART";
-	"chunithm:Single": "BASIC" | "ADVANCED" | "EXPERT" | "MASTER";
+	"chunithm:Single": "ADVANCED" | "BASIC" | "EXPERT" | "MASTER";
 	"gitadora:Gita":
-		| "BASIC"
 		| "ADVANCED"
-		| "EXTREME"
-		| "MASTER"
-		| "BASS BASIC"
+		| "BASIC"
 		| "BASS ADVANCED"
+		| "BASS BASIC"
 		| "BASS EXTREME"
-		| "BASS MASTER";
-	"gitadora:Dora": "BASIC" | "ADVANCED" | "EXTREME" | "MASTER";
-	"wacca:Single": "NORMAL" | "HARD" | "EXPERT" | "INFERNO";
+		| "BASS MASTER"
+		| "EXTREME"
+		| "MASTER";
+	"gitadora:Dora": "ADVANCED" | "BASIC" | "EXTREME" | "MASTER";
+	"wacca:Single": "EXPERT" | "HARD" | "INFERNO" | "NORMAL";
 	"pms:Controller": "CHART";
 	"pms:Keyboard": "CHART";
 	"itg:Stamina": string;
@@ -355,11 +356,11 @@ export interface BaseGoalDocument extends MongoDBDocument {
 	timeAdded: integer;
 	name: string;
 	goalID: string;
-	criteria: GoalSingleCriteria | GoalCountCriteria;
+	criteria: GoalCountCriteria | GoalSingleCriteria;
 }
 
 interface GoalCriteria {
-	key: "scoreData.percent" | "scoreData.lampIndex" | "scoreData.gradeIndex" | "scoreData.score";
+	key: "scoreData.gradeIndex" | "scoreData.lampIndex" | "scoreData.percent" | "scoreData.score";
 	value: number;
 }
 
@@ -393,7 +394,7 @@ export interface GoalDocumentSingle extends BaseGoalDocument {
 export interface GoalDocumentMulti extends BaseGoalDocument {
 	charts: {
 		type: "multi";
-		data: string[];
+		data: Array<string>;
 	};
 }
 
@@ -418,10 +419,10 @@ export interface GoalDocumentAny extends BaseGoalDocument {
 }
 
 export type GoalDocument =
+	| GoalDocumentAny
 	| GoalDocumentFolder
 	| GoalDocumentMulti
-	| GoalDocumentSingle
-	| GoalDocumentAny;
+	| GoalDocumentSingle;
 
 interface BaseInviteCodeDocument extends MongoDBDocument {
 	createdBy: integer;
@@ -437,7 +438,7 @@ export type InviteCodeDocument = BaseInviteCodeDocument &
 
 export interface SessionInfoReturn {
 	sessionID: string;
-	type: "Created" | "Appended";
+	type: "Appended" | "Created";
 }
 
 interface SessionScorePBInfo {
@@ -454,17 +455,17 @@ interface SessionScoreNewInfo {
 	isNewScore: true;
 }
 
-export type SessionScoreInfo = SessionScorePBInfo | SessionScoreNewInfo;
+export type SessionScoreInfo = SessionScoreNewInfo | SessionScorePBInfo;
 
 export interface SessionCalculatedDataLookup {
 	"iidx:SP": "BPI" | "ktLampRating";
 	"iidx:DP": "BPI" | "ktLampRating";
 	"popn:9B": "classPoints";
-	"sdvx:Single": "VF6" | "ProfileVF6";
-	"usc:Keyboard": "VF6" | "ProfileVF6";
-	"usc:Controller": "VF6" | "ProfileVF6";
-	"ddr:SP": "MFCP" | "ktRating";
-	"ddr:DP": "MFCP" | "ktRating";
+	"sdvx:Single": "ProfileVF6" | "VF6";
+	"usc:Keyboard": "ProfileVF6" | "VF6";
+	"usc:Controller": "ProfileVF6" | "VF6";
+	"ddr:SP": "ktRating" | "MFCP";
+	"ddr:DP": "ktRating" | "MFCP";
 	"maimai:Single": "ktRating";
 	"jubeat:Single": "jubility";
 	"museca:Single": "ktRating";
@@ -476,17 +477,18 @@ export interface SessionCalculatedDataLookup {
 	"wacca:Single": "rate";
 	"pms:Controller": "sieglinde";
 	"pms:Keyboard": "sieglinde";
-	"itg:Stamina": "blockRating" | "average32Speed";
+	"itg:Stamina": "average32Speed" | "blockRating";
 }
 
 export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
 	userID: integer;
 	sessionID: string;
-	scoreInfo: SessionScoreInfo[];
+	scoreInfo: Array<SessionScoreInfo>;
 	name: string;
 	desc: string | null;
 	game: Game;
 	playtype: Playtype;
+
 	// This field is allowed to be null for compatibility with kamaitachi1 sessions, where import types didn't exist.
 	importType: ImportTypes | null;
 	timeInserted: integer;
@@ -520,20 +522,23 @@ export interface ImportDocument extends MongoDBDocument {
 	userID: integer;
 	timeStarted: number;
 	timeFinished: number;
+
 	// Contains an array of IDStrings, which dictates what (game:playtype)s were involved in this import.
-	idStrings: IDStrings[];
+	idStrings: Array<IDStrings>;
 	importID: string;
-	scoreIDs: string[];
+	scoreIDs: Array<string>;
 	game: Game;
-	playtypes: Playtypes[Game][];
-	errors: ImportErrContent[];
+	playtypes: Array<Playtypes[Game]>;
+	errors: Array<ImportErrContent>;
+
 	// For performance reasons, imports only show what sessions they created, rather than what sessions they didn't.
 	// This is just an array of sessionIDs, to keep things normalised. May be empty.
-	createdSessions: SessionInfoReturn[];
+	createdSessions: Array<SessionInfoReturn>;
 	importType: ImportTypes;
-	classDeltas: ClassDelta[];
-	goalInfo: GoalImportInfo[];
-	milestoneInfo: MilestoneImportInfo[];
+	classDeltas: Array<ClassDelta>;
+	goalInfo: Array<GoalImportInfo>;
+	milestoneInfo: Array<MilestoneImportInfo>;
+
 	/**
 	 * Whether the user deliberately imported this through an action (i.e. uploaded a file personally) [true]
 	 * or was imported on their behalf through a service (i.e. fervidex)
@@ -545,11 +550,13 @@ export interface ImportTimingsDocument {
 	importID: string;
 	timestamp: number;
 	total: number;
+
 	/**
 	 * Relative times - these are the times for each section
 	 * divided by how much data they had to process.
 	 */
-	rel: Omit<ImportTimingSections, "parse" | "ugs" | "goal" | "milestone">;
+	rel: Omit<ImportTimingSections, "goal" | "milestone" | "parse" | "ugs">;
+
 	/**
 	 * Absolute times - these are the times for each section.
 	 */
@@ -569,7 +576,7 @@ interface ImportTimingSections {
 
 export type GoalImportStat = Pick<
 	GoalSubscriptionDocument,
-	"progress" | "progressHuman" | "outOf" | "outOfHuman" | "achieved"
+	"achieved" | "outOf" | "outOfHuman" | "progress" | "progressHuman"
 >;
 
 export interface GoalImportInfo {
@@ -578,7 +585,7 @@ export interface GoalImportInfo {
 	new: GoalImportStat;
 }
 
-export type MilestoneImportStat = Pick<MilestoneSubscriptionDocument, "progress" | "achieved">;
+export type MilestoneImportStat = Pick<MilestoneSubscriptionDocument, "achieved" | "progress">;
 
 export interface MilestoneImportInfo {
 	milestoneID: string;
@@ -600,12 +607,12 @@ export type GoalSubscriptionDocument = MongoDBDocument & {
 	wasInstantlyAchieved: boolean;
 } & (
 		| {
-				achieved: true;
-				timeAchieved: integer;
-		  }
-		| {
 				achieved: false;
 				timeAchieved: null;
+		  }
+		| {
+				achieved: true;
+				timeAchieved: integer;
 		  }
 	);
 
@@ -617,21 +624,22 @@ interface MilestoneGoalReference {
 interface MilestoneSection {
 	title: string;
 	desc: string;
-	goals: MilestoneGoalReference[];
+	goals: Array<MilestoneGoalReference>;
 }
 
 export interface MilestoneDocument extends MongoDBDocument {
 	game: Game;
 	playtype: Playtype;
+
 	/**
 	 * all: All goals must be achieved in order for the milestone to be complete
 	 * abs: Goals achieved must be greater than or equal to criteria.value.
 	 * proportion: Goals achieved must be greater than or equal to criteria.value * total_goals.
 	 */
-	criteria: MilestoneAllCriteria | MilestoneAbsPropCriteria;
+	criteria: MilestoneAbsPropCriteria | MilestoneAllCriteria;
 	name: string;
 	desc: string;
-	milestoneData: MilestoneSection[];
+	milestoneData: Array<MilestoneSection>;
 	milestoneID: string;
 }
 
@@ -650,16 +658,16 @@ export interface MilestoneSetDocument extends MongoDBDocument {
 	desc: string;
 	game: Game;
 	playtype: Playtype;
-	milestones: string[];
+	milestones: Array<string>;
 }
 
-export type UserBadges = "alpha" | "beta" | "dev-team" | "contributor" | "significant-contributor";
+export type UserBadges = "alpha" | "beta" | "contributor" | "dev-team" | "significant-contributor";
 
 export enum UserAuthLevels {
-	BANNED,
-	USER,
-	MOD,
-	ADMIN,
+	BANNED = 0,
+	USER = 1,
+	MOD = 2,
+	ADMIN = 3,
 }
 
 export interface PublicUserDocument extends MongoDBDocument {
@@ -681,7 +689,7 @@ export interface PublicUserDocument extends MongoDBDocument {
 	customPfpLocation: string | null;
 	customBannerLocation: string | null;
 	clan: string | null; // todo
-	badges: UserBadges[];
+	badges: Array<UserBadges>;
 	authLevel: UserAuthLevels;
 }
 
@@ -692,20 +700,20 @@ export interface UGSRatingsLookup {
 	"sdvx:Single": "VF6";
 	"usc:Keyboard": "VF6";
 	"usc:Controller": "VF6";
-	"ddr:SP": "MFCP" | "ktRating";
-	"ddr:DP": "MFCP" | "ktRating";
+	"ddr:SP": "ktRating" | "MFCP";
+	"ddr:DP": "ktRating" | "MFCP";
 	"maimai:Single": "ktRating";
 	"jubeat:Single": "jubility" | "naiveJubility";
 	"museca:Single": "ktRating";
 	"bms:7K": "sieglinde";
 	"bms:14K": "sieglinde";
 	"chunithm:Single": "naiveRating";
-	"gitadora:Gita": "skill" | "naiveSkill";
-	"gitadora:Dora": "skill" | "naiveSkill";
+	"gitadora:Gita": "naiveSkill" | "skill";
+	"gitadora:Dora": "naiveSkill" | "skill";
 	"wacca:Single": "naiveRate" | "rate";
 	"pms:Controller": "sieglinde";
 	"pms:Keyboard": "sieglinde";
-	"itg:Stamina": "highestBlock" | "highest32" | "highest256";
+	"itg:Stamina": "highest32" | "highest256" | "highestBlock";
 }
 
 export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBDocument {
@@ -717,51 +725,51 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
 }
 
 type SupportedIIDXVersions =
+	| "3-cs"
+	| "4-cs"
+	| "5-cs"
+	| "6-cs"
+	| "7-cs"
+	| "8-cs"
+	| "9-cs"
+	| "10-cs"
+	| "11-cs"
+	| "12-cs"
+	| "13-cs"
+	| "14-cs"
+	| "15-cs"
+	| "16-cs"
+	| "20"
+	| "21"
+	| "22"
+	| "23"
+	| "24"
+	| "25"
+	| "26-omni"
 	| "26"
+	| "27-2dxtra"
+	| "27-omni"
 	| "27"
+	| "28-2dxtra"
+	| "28-omni"
+	| "28-omni"
 	| "28"
 	| "29"
-	| "28-omni"
-	| "27-omni"
-	| "28-omni"
-	| "25"
-	| "24"
-	| "23"
-	| "22"
-	| "21"
-	| "20"
-	| "inf"
-	| "27-2dxtra"
-	| "28-2dxtra"
 	| "bmus"
-	| "26-omni"
-	| "16-cs"
-	| "15-cs"
-	| "14-cs"
-	| "13-cs"
-	| "12-cs"
-	| "11-cs"
-	| "10-cs"
-	| "9-cs"
-	| "8-cs"
-	| "7-cs"
-	| "6-cs"
-	| "5-cs"
-	| "4-cs"
-	| "3-cs";
+	| "inf";
 
 export interface GPTSupportedVersions {
 	"iidx:SP": SupportedIIDXVersions;
 	"iidx:DP": SupportedIIDXVersions;
 	"popn:9B": "peace";
-	"sdvx:Single": "booth" | "inf" | "gw" | "heaven" | "vivid" | "exceed" | "konaste";
+	"sdvx:Single": "booth" | "exceed" | "gw" | "heaven" | "inf" | "konaste" | "vivid";
 	"usc:Controller": never;
 	"usc:Keyboard": never;
 	"ddr:SP": "a20";
 	"ddr:DP": "a20";
 	"maimai:Single": "finale";
 	"jubeat:Single": "clan" | "festo";
-	"museca:Single": "1.5" | "1.5-b";
+	"museca:Single": "1.5-b" | "1.5";
 	"bms:7K": never;
 	"bms:14K": never;
 	"chunithm:Single": "paradiselost";
@@ -775,7 +783,7 @@ export interface GPTSupportedVersions {
 
 interface CDDataIIDXSP {
 	notecount: integer;
-	inGameID: integer | integer[];
+	inGameID: Array<integer> | integer;
 	arcChartID: string | null;
 	hashSHA256: string | null;
 	"2dxtraSet": string | null;
@@ -793,7 +801,7 @@ interface CDDataPMS {
 	notecount: integer;
 	hashMD5: string;
 	hashSHA256: string;
-	tableFolders: { table: string; level: string }[];
+	tableFolders: Array<{ table: string; level: string }>;
 }
 
 type CDDataBMS = CDDataPMS & {
@@ -801,10 +809,10 @@ type CDDataBMS = CDDataPMS & {
 };
 
 interface CDDataUSC {
-	hashSHA1: string | string[];
+	hashSHA1: Array<string> | string;
 	isOfficial: boolean;
 	effector: string;
-	tableFolders: { table: string; level: string }[];
+	tableFolders: Array<{ table: string; level: string }>;
 }
 
 interface ChartDocumentData {
@@ -833,7 +841,7 @@ interface ChartDocumentData {
 	"pms:Keyboard": CDDataPMS;
 	"itg:Stamina": {
 		chartHash: string;
-		difficultyTag: "Beginner" | "Easy" | "Medium" | "Hard" | "Challenge";
+		difficultyTag: "Beginner" | "Challenge" | "Easy" | "Hard" | "Medium";
 		breakdown: {
 			detailed: string;
 			partiallySimplified: string;
@@ -856,10 +864,10 @@ interface ChartDocumentData {
 }
 
 export interface GPTTierlists {
-	"iidx:SP": "kt-HC" | "kt-NC" | "kt-EXHC";
+	"iidx:SP": "kt-EXHC" | "kt-HC" | "kt-NC";
 	"iidx:DP": "dp-tier";
-	"bms:7K": "sgl-HC" | "sgl-EC";
-	"bms:14K": "sgl-HC" | "sgl-EC";
+	"bms:7K": "sgl-EC" | "sgl-HC";
+	"bms:14K": "sgl-EC" | "sgl-HC";
 	"popn:9B": never;
 	"sdvx:Single": "clear";
 	"usc:Keyboard": never;
@@ -873,8 +881,8 @@ export interface GPTTierlists {
 	"gitadora:Gita": never;
 	"gitadora:Dora": never;
 	"wacca:Single": never;
-	"pms:Controller": "sgl-HC" | "sgl-EC";
-	"pms:Keyboard": "sgl-HC" | "sgl-EC";
+	"pms:Controller": "sgl-EC" | "sgl-HC";
+	"pms:Keyboard": "sgl-EC" | "sgl-HC";
 	"itg:Stamina": never;
 }
 
@@ -895,7 +903,7 @@ export interface ChartDocument<I extends IDStrings = IDStrings> extends MongoDBD
 	playtype: IDStringToPlaytype[I];
 	data: ChartDocumentData[I];
 	tierlistInfo: Partial<Record<GPTTierlists[I], ChartTierlistInfo>>;
-	versions: GPTSupportedVersions[I][];
+	versions: Array<GPTSupportedVersions[I]>;
 }
 
 interface SongDocumentData {
@@ -941,8 +949,8 @@ export interface SongDocument<G extends Game = Game> extends MongoDBDocument {
 	id: integer;
 	title: string;
 	artist: string;
-	searchTerms: string[];
-	altTitles: string[];
+	searchTerms: Array<string>;
+	altTitles: Array<string>;
 	data: SongDocumentData[G];
 }
 
@@ -952,7 +960,7 @@ export interface TableDocument extends MongoDBDocument {
 	playtype: Playtype;
 	title: string;
 	description: string;
-	folders: string[];
+	folders: Array<string>;
 	inactive: boolean;
 	default: boolean;
 }
@@ -962,12 +970,13 @@ export interface BaseFolderDocument extends MongoDBDocument {
 	game: Game;
 	playtype: Playtype;
 	folderID: string;
+
 	/**
 	 * This folder has been superceded by another folder,
 	 * such as one on a more modern version of the game.
 	 */
 	inactive: boolean;
-	searchTerms: string[];
+	searchTerms: Array<string>;
 }
 
 export interface FolderSongsDocument extends BaseFolderDocument {
@@ -982,10 +991,10 @@ export interface FolderChartsDocument extends BaseFolderDocument {
 
 export interface FolderStaticDocument extends BaseFolderDocument {
 	type: "static";
-	data: string[];
+	data: Array<string>;
 }
 
-export type FolderDocument = FolderStaticDocument | FolderChartsDocument | FolderSongsDocument;
+export type FolderDocument = FolderChartsDocument | FolderSongsDocument | FolderStaticDocument;
 
 export interface FolderChartLookup extends MongoDBDocument {
 	chartID: string;
@@ -1003,40 +1012,40 @@ export type MilestoneSubscriptionDocument = MongoDBDocument & {
 	wasInstantlyAchieved: boolean;
 } & (
 		| {
-				achieved: true;
-				timeAchieved: integer;
-		  }
-		| {
 				achieved: false;
 				timeAchieved: null;
 		  }
+		| {
+				achieved: true;
+				timeAchieved: integer;
+		  }
 	);
 
-type RanOptions = "NONRAN" | "RANDOM" | "R-RANDOM" | "S-RANDOM" | "MIRROR";
+type RanOptions = "MIRROR" | "NONRAN" | "R-RANDOM" | "RANDOM" | "S-RANDOM";
 
 interface IIDXSPScoreMeta {
 	random: RanOptions | null;
-	assist: "NO ASSIST" | "AUTO SCRATCH" | "LEGACY NOTE" | "FULL ASSIST" | null;
-	range: "NONE" | "SUDDEN+" | "HIDDEN+" | "SUD+ HID+" | "LIFT" | "LIFT SUD+" | null;
-	gauge: "ASSISTED EASY" | "EASY" | "NORMAL" | "HARD" | "EX-HARD" | null;
+	assist: "AUTO SCRATCH" | "FULL ASSIST" | "LEGACY NOTE" | "NO ASSIST" | null;
+	range: "HIDDEN+" | "LIFT SUD+" | "LIFT" | "NONE" | "SUD+ HID+" | "SUDDEN+" | null;
+	gauge: "ASSISTED EASY" | "EASY" | "EX-HARD" | "HARD" | "NORMAL" | null;
 }
 
 interface BMS7KScoreMeta {
 	random: RanOptions | null;
-	inputDevice: "KEYBOARD" | "BM_CONTROLLER" | null;
+	inputDevice: "BM_CONTROLLER" | "KEYBOARD" | null;
 	client: "LR2" | "lr2oraja" | null;
-	gauge: "NORMAL" | "EASY" | "HARD" | "EX-HARD" | null;
+	gauge: "EASY" | "EX-HARD" | "HARD" | "NORMAL" | null;
 }
 
 interface PMSScoreMeta {
 	random: RanOptions | null;
 	client: "beatoraja" | null;
-	gauge: "NORMAL" | "EASY" | "HARD" | "EX-HARD" | null;
+	gauge: "EASY" | "EX-HARD" | "HARD" | "NORMAL" | null;
 }
 
 interface USCScoreMeta {
-	noteMod: "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RAN" | null;
-	gaugeMod: "NORMAL" | "HARD" | "PERMISSIVE" | null;
+	noteMod: "MIR-RAN" | "MIRROR" | "NORMAL" | "RANDOM" | null;
+	gaugeMod: "HARD" | "NORMAL" | "PERMISSIVE" | null;
 }
 
 interface ScoreMetaLookup {
@@ -1048,8 +1057,8 @@ interface ScoreMetaLookup {
 		hiSpeed: number | null;
 		hidden: integer | null;
 		sudden: integer | null;
-		random: "NONRAN" | "MIRROR" | "RANDOM" | "S-RANDOM" | null;
-		gauge: "NORMAL" | "EASY" | "HARD" | "DANGER" | null;
+		random: "MIRROR" | "NONRAN" | "RANDOM" | "S-RANDOM" | null;
+		gauge: "DANGER" | "EASY" | "HARD" | "NORMAL" | null;
 	};
 	"sdvx:Single": { inSkillAnalyser: boolean | null };
 	"usc:Controller": USCScoreMeta;
@@ -1081,27 +1090,26 @@ interface BASE_VALID_HIT_META {
 type IIDXHitMeta = BASE_VALID_HIT_META & {
 	bp: integer | null;
 	gauge: number | null;
-	gaugeHistory: (number | null)[] | null;
-	scoreHistory: number[] | null;
+	gaugeHistory: Array<number | null> | null;
+	scoreHistory: Array<number> | null;
 	comboBreak: integer | null;
 	gsm: {
-		EASY: (number | null)[];
-		NORMAL: (number | null)[];
-		HARD: (number | null)[];
-		EX_HARD: (number | null)[];
+		EASY: Array<number | null>;
+		NORMAL: Array<number | null>;
+		HARD: Array<number | null>;
+		EX_HARD: Array<number | null>;
 	} | null;
 };
 
-type BMSJudgePermutations = `${"e" | "l"}${"bd" | "pr" | "gd" | "gr" | "pg"}`;
+type BMSJudgePermutations = `${"e" | "l"}${"bd" | "gd" | "gr" | "pg" | "pr"}`;
 
-type BMSHitMeta = BASE_VALID_HIT_META &
-	{
-		[K in BMSJudgePermutations]: integer;
-	} & {
-		bp: integer | null;
-		gauge: number | null;
-		gaugeHistory: number[] | null;
-	};
+type BMSHitMeta = BASE_VALID_HIT_META & {
+	[K in BMSJudgePermutations]: integer;
+} & {
+	bp: integer | null;
+	gauge: number | null;
+	gaugeHistory: Array<number> | null;
+};
 
 export type USCHitMeta = BASE_VALID_HIT_META & {
 	gauge: number | null;
@@ -1113,13 +1121,13 @@ export interface HitMetaLookup {
 	"popn:9B": BASE_VALID_HIT_META & {
 		gauge: number | null;
 		specificClearType:
-			| "failedCircle"
-			| "failedDiamond"
-			| "failedStar"
-			| "easyClear"
 			| "clearCircle"
 			| "clearDiamond"
 			| "clearStar"
+			| "easyClear"
+			| "failedCircle"
+			| "failedDiamond"
+			| "failedStar"
 			| "fullComboCircle"
 			| "fullComboDiamond"
 			| "fullComboStar"
@@ -1150,35 +1158,35 @@ export interface HitMetaLookup {
 	};
 }
 
-type IIDXJudges = "pgreat" | "great" | "good" | "bad" | "poor";
-type DDRJudges = "marvelous" | "perfect" | "great" | "good" | "boo" | "miss" | "ok" | "ng";
-type GitadoraJudges = "perfect" | "great" | "good" | "ok" | "miss";
+type IIDXJudges = "bad" | "good" | "great" | "pgreat" | "poor";
+type DDRJudges = "boo" | "good" | "great" | "marvelous" | "miss" | "ng" | "ok" | "perfect";
+type GitadoraJudges = "good" | "great" | "miss" | "ok" | "perfect";
 
 // judges might need to be changed here...
 // @bug Known that sdvx calls misses errors. I, however, don't care.
-type SDVXJudges = "critical" | "near" | "miss";
+type SDVXJudges = "critical" | "miss" | "near";
 
 export interface JudgementLookup {
 	"iidx:SP": IIDXJudges;
 	"iidx:DP": IIDXJudges;
-	"popn:9B": "cool" | "great" | "good" | "bad";
+	"popn:9B": "bad" | "cool" | "good" | "great";
 	"sdvx:Single": SDVXJudges;
 	"usc:Controller": SDVXJudges;
 	"usc:Keyboard": SDVXJudges;
 	"ddr:SP": DDRJudges;
 	"ddr:DP": DDRJudges;
-	"maimai:Single": "perfect" | "great" | "good" | "miss";
-	"jubeat:Single": "perfect" | "great" | "good" | "poor" | "miss";
-	"museca:Single": "critical" | "near" | "miss";
+	"maimai:Single": "good" | "great" | "miss" | "perfect";
+	"jubeat:Single": "good" | "great" | "miss" | "perfect" | "poor";
+	"museca:Single": "critical" | "miss" | "near";
 	"bms:7K": IIDXJudges;
 	"bms:14K": IIDXJudges;
-	"chunithm:Single": "jcrit" | "justice" | "attack" | "miss";
+	"chunithm:Single": "attack" | "jcrit" | "justice" | "miss";
 	"gitadora:Gita": GitadoraJudges;
 	"gitadora:Dora": GitadoraJudges;
-	"wacca:Single": "marvelous" | "great" | "good" | "miss";
-	"pms:Controller": "cool" | "great" | "good" | "bad" | "poor";
-	"pms:Keyboard": "cool" | "great" | "good" | "bad" | "poor";
-	"itg:Stamina": "fantastic" | "excellent" | "great" | "decent" | "wayoff" | "miss";
+	"wacca:Single": "good" | "great" | "marvelous" | "miss";
+	"pms:Controller": "bad" | "cool" | "good" | "great" | "poor";
+	"pms:Keyboard": "bad" | "cool" | "good" | "great" | "poor";
+	"itg:Stamina": "decent" | "excellent" | "fantastic" | "great" | "miss" | "wayoff";
 }
 
 export interface ScoreCalculatedDataLookup {
@@ -1188,8 +1196,8 @@ export interface ScoreCalculatedDataLookup {
 	"sdvx:Single": "VF6";
 	"usc:Keyboard": "VF6";
 	"usc:Controller": "VF6";
-	"ddr:SP": "MFCP" | "ktRating";
-	"ddr:DP": "MFCP" | "ktRating";
+	"ddr:SP": "ktRating" | "MFCP";
+	"ddr:DP": "ktRating" | "MFCP";
 	"maimai:Single": "ktRating";
 	"jubeat:Single": "jubility";
 	"museca:Single": "ktRating";
@@ -1242,7 +1250,7 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
 	composedFrom: {
 		scorePB: string;
 		lampPB: string;
-		other?: PBScoreComposedReference[];
+		other?: Array<PBScoreComposedReference>;
 	};
 	rankingData: {
 		rank: integer;
@@ -1271,33 +1279,33 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
 }
 
 export type FileUploadImportTypes =
+	| "file/batch-manual"
 	| "file/eamusement-iidx-csv"
 	| "file/eamusement-sdvx-csv"
-	| "file/batch-manual"
-	| "file/solid-state-squad"
 	| "file/mer-iidx"
-	| "file/pli-iidx-csv";
+	| "file/pli-iidx-csv"
+	| "file/solid-state-squad";
 
 export type APIImportTypes =
-	| "api/flo-iidx"
-	| "api/flo-sdvx"
+	| "api/arc-iidx"
+	| "api/arc-sdvx"
 	| "api/eag-iidx"
 	| "api/eag-sdvx"
-	| "api/min-sdvx"
-	| "api/arc-iidx"
-	| "api/arc-sdvx";
+	| "api/flo-iidx"
+	| "api/flo-sdvx"
+	| "api/min-sdvx";
 
 export type IRImportTypes =
-	| "ir/direct-manual"
 	| "ir/barbatos"
-	| "ir/fervidex"
-	| "ir/usc"
 	| "ir/beatoraja"
+	| "ir/direct-manual"
 	| "ir/fervidex-static"
+	| "ir/fervidex"
 	| "ir/kshook-sv6c"
-	| "ir/lr2hook";
+	| "ir/lr2hook"
+	| "ir/usc";
 
-export type ImportTypes = FileUploadImportTypes | IRImportTypes | APIImportTypes;
+export type ImportTypes = APIImportTypes | FileUploadImportTypes | IRImportTypes;
 
 export interface ImportProcessInfoKTDataNotFound {
 	success: false;
@@ -1343,11 +1351,11 @@ export interface ImportProcessInfoInternalError {
 }
 
 export type ImportProcessingInfo<I extends IDStrings = IDStrings> =
+	| ImportProcessInfoInternalError
+	| ImportProcessInfoInvalidDatapoint
 	| ImportProcessInfoKTDataNotFound
 	| ImportProcessInfoOrphanExists
-	| ImportProcessInfoScoreImported<I>
-	| ImportProcessInfoInvalidDatapoint
-	| ImportProcessInfoInternalError;
+	| ImportProcessInfoScoreImported<I>;
 
 export interface ImportStatistics {
 	scoreCount: integer;
@@ -1362,7 +1370,7 @@ export interface KaiAuthDocument {
 	userID: integer;
 	token: string;
 	refreshToken: string;
-	service: "FLO" | "EAG" | "MIN";
+	service: "EAG" | "FLO" | "MIN";
 }
 
 /**
@@ -1371,7 +1379,7 @@ export interface KaiAuthDocument {
 export interface BMSCourseDocument {
 	title: string;
 	md5sums: string;
-	set: "genocideDan" | "stslDan" | "lnDan" | "scratchDan";
+	set: "genocideDan" | "lnDan" | "scratchDan" | "stslDan";
 	playtype: "7K" | "14K";
 	value: integer;
 }
@@ -1380,13 +1388,13 @@ export interface BMSCourseDocument {
  * All the permissions a token may have.
  */
 export type APIPermissions =
-	| "submit_score"
 	| "customise_profile"
-	| "customise_session"
 	| "customise_score"
+	| "customise_session"
 	| "delete_score"
+	| "manage_rivals"
 	| "manage_targets"
-	| "manage_rivals";
+	| "submit_score";
 
 /**
  * Information about the API Token used to make this request.
@@ -1396,6 +1404,7 @@ export interface APITokenDocument extends MongoDBDocument {
 	token: string | null;
 	identifier: string;
 	permissions: Partial<Record<APIPermissions, boolean>>;
+
 	// API Tokens may be created as a result of a Tachi Client flow. This prop optionally
 	// stores that.
 	fromAPIClient: string | null;
@@ -1405,19 +1414,19 @@ export interface ImportLockDocument extends MongoDBDocument {
 	userID: integer;
 }
 
-export type ShowcaseStatDetails = ShowcaseStatFolder | ShowcaseStatChart;
+export type ShowcaseStatDetails = ShowcaseStatChart | ShowcaseStatFolder;
 
 export interface ShowcaseStatFolder {
 	mode: "folder";
 	folderID: string;
-	property: "score" | "percent" | "grade" | "lamp";
+	property: "grade" | "lamp" | "percent" | "score";
 	gte: number;
 }
 
 export interface ShowcaseStatChart {
 	mode: "chart";
 	chartID: string;
-	property: "score" | "percent" | "grade" | "lamp" | "playcount";
+	property: "grade" | "lamp" | "percent" | "playcount" | "score";
 }
 
 export interface UGPTSpecificPreferences {
@@ -1451,12 +1460,12 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 		preferredScoreAlg: ScoreCalculatedDataLookup[I] | null;
 		preferredSessionAlg: SessionCalculatedDataLookup[I] | null;
 		preferredProfileAlg: UGSRatingsLookup[I] | null;
-		stats: ShowcaseStatDetails[];
+		stats: Array<ShowcaseStatDetails>;
 		scoreBucket: "grade" | "lamp" | null;
 		defaultTable: string | null;
 		gameSpecific: UGPTSpecificPreferences[I];
 	};
-	rivals: integer[];
+	rivals: Array<integer>;
 }
 
 export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>
@@ -1485,12 +1494,12 @@ export type BatchManualScore<I extends IDStrings = IDStrings> = {
 	scoreMeta?: Partial<ScoreMetaLookup[I]>;
 } & (
 	| {
-			matchType: "tachiSongID" | "inGameID" | "songTitle" | "ddrSongHash";
-			difficulty: Difficulties[I];
+			matchType: "bmsChartHash" | "itgChartHash" | "popnChartHash" | "uscChartHash";
+			difficulty?: undefined; // hack to stop ts from screaming when this is accessed sometimes
 	  }
 	| {
-			matchType: "bmsChartHash" | "uscChartHash" | "popnChartHash" | "itgChartHash";
-			difficulty?: undefined; // hack to stop ts from screaming when this is accessed sometimes
+			matchType: "ddrSongHash" | "inGameID" | "songTitle" | "tachiSongID";
+			difficulty: Difficulties[I];
 	  }
 );
 
@@ -1501,7 +1510,7 @@ export interface BatchManual<I extends IDStrings = IDStrings> {
 		service: string;
 		version?: GPTSupportedVersions[I];
 	};
-	scores: BatchManualScore<I>[];
+	scores: Array<BatchManualScore<I>>;
 	classes?: Record<GameClassSets[I], string> | null;
 }
 
@@ -1521,16 +1530,16 @@ export interface TachiAPIClientDocument {
 	clientSecret: string;
 	name: string;
 	author: integer;
-	requestedPermissions: APIPermissions[];
-	redirectUri: null | string;
-	webhookUri: null | string;
-	apiKeyTemplate: null | string;
-	apiKeyFilename: null | string;
+	requestedPermissions: Array<APIPermissions>;
+	redirectUri: string | null;
+	webhookUri: string | null;
+	apiKeyTemplate: string | null;
+	apiKeyFilename: string | null;
 }
 
 export interface FervidexSettingsDocument {
 	userID: integer;
-	cards: string[] | null;
+	cards: Array<string> | null;
 	forceStaticImport: boolean;
 }
 
@@ -1538,14 +1547,14 @@ export interface OrphanChart<I extends IDStrings = IDStrings> {
 	idString: I;
 	chartDoc: ChartDocument<I>;
 	songDoc: SongDocument<IDStringToGame[I]>;
-	userIDs: integer[];
+	userIDs: Array<integer>;
 }
 
 export interface ClassAchievementDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
 	game: IDStringToGame[I];
 	playtype: IDStringToPlaytype[I];
 	classSet: AllClassSets;
-	classOldValue: null | integer;
+	classOldValue: integer | null;
 	classValue: integer;
 	timeAchieved: number;
 	userID: integer;
@@ -1562,6 +1571,7 @@ export interface RecentlyViewedFolderDocument {
 interface BaseNotification {
 	title: string;
 	notifID: string;
+
 	// The user this notification was sent to.
 	sentTo: integer;
 	sentAt: integer;
@@ -1570,19 +1580,17 @@ interface BaseNotification {
 
 export type NotificationBody =
 	| {
-			// Emitted when the user is rivalled by someone.
-			type: "RIVALED_BY";
+			type: "MILESTONE_CHANGED"; // Emitted when a milestone the user is subscribed to changed.
+			content: {
+				milestoneID: string;
+			};
+	  }
+	| {
+			type: "RIVALED_BY"; // Emitted when the user is rivalled by someone.
 			content: {
 				userID: integer;
 				game: Game;
 				playtype: Playtype;
-			};
-	  }
-	| {
-			// Emitted when a milestone the user is subscribed to changed.
-			type: "MILESTONE_CHANGED";
-			content: {
-				milestoneID: string;
 			};
 	  };
 

@@ -1,6 +1,6 @@
-import { Game, Playtypes } from ".";
-import { GameClassSets } from "./game-classes";
-import { GoalImportStat, IDStrings, integer, MilestoneImportStat } from "./types";
+import type { Game, Playtypes } from ".";
+import type { GameClassSets } from "./game-classes";
+import type { GoalImportStat, IDStrings, integer, MilestoneImportStat } from "./types";
 
 /**
  * An event fired when a users class improves.
@@ -25,12 +25,12 @@ export interface WebhookEventGoalAchievedV1 {
 	content: {
 		userID: integer;
 		game: Game;
-		goals: {
+		goals: Array<{
 			goalID: string;
 			old: GoalImportStat;
 			new: GoalImportStat;
 			playtype: Playtypes[Game];
-		}[];
+		}>;
 	};
 }
 

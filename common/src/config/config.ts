@@ -1,17 +1,16 @@
-import { FormatInt, GPTTierlists } from "..";
+import { FormatInt } from "..";
 import {
 	BMSGenocideDans,
 	BMSLNDans,
 	BMSScratchDans,
 	BMSStSlDans,
 	CHUNITHMColours,
-	ClassInfo,
 	DDRDans,
-	GameClassSets,
 	GitadoraColours,
 	IIDXDans,
 	JubeatColours,
 	PMSDans,
+
 	// PMSDans,
 	PopnClasses,
 	SDVXDans,
@@ -19,8 +18,11 @@ import {
 	WaccaColours,
 	WaccaStageUps,
 } from "../game-classes";
-import { ESDJudgementFormat } from "../lib/esd";
-import {
+import { FormatSieglindeBMS, FormatSieglindePMS } from "../utils/util";
+import type { GPTTierlists } from "..";
+import type { ClassInfo, GameClassSets } from "../game-classes";
+import type { ESDJudgementFormat } from "../lib/esd";
+import type {
 	Playtypes,
 	Game,
 	Difficulties,
@@ -33,13 +35,12 @@ import {
 	JudgementLookup,
 	GPTSupportedVersions,
 } from "../types";
-import { FormatSieglindeBMS, FormatSieglindePMS } from "../utils/util";
 
 export interface GameConfig<G extends Game = Game> {
 	internalName: string;
 	name: string;
 	defaultPlaytype: Playtypes[G];
-	validPlaytypes: Playtypes[G][];
+	validPlaytypes: Array<Playtypes[G]>;
 }
 
 interface BaseGamePTConfig<I extends IDStrings> {
@@ -51,9 +52,9 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	defaultSessionRatingAlg: SessionCalculatedDataLookup[I];
 	defaultProfileRatingAlg: UGSRatingsLookup[I];
 
-	scoreRatingAlgs: ScoreCalculatedDataLookup[I][];
-	sessionRatingAlgs: SessionCalculatedDataLookup[I][];
-	profileRatingAlgs: UGSRatingsLookup[I][];
+	scoreRatingAlgs: Array<ScoreCalculatedDataLookup[I]>;
+	sessionRatingAlgs: Array<SessionCalculatedDataLookup[I]>;
+	profileRatingAlgs: Array<UGSRatingsLookup[I]>;
 
 	scoreRatingAlgDescriptions: Record<ScoreCalculatedDataLookup[I], string>;
 	sessionRatingAlgDescriptions: Record<SessionCalculatedDataLookup[I], string>;
@@ -65,35 +66,35 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	>;
 	profileRatingAlgFormatters: Partial<Record<UGSRatingsLookup[I], (v: number) => string>>;
 
-	difficulties: Difficulties[I][];
+	difficulties: Array<Difficulties[I]>;
 	shortDifficulties: Partial<Record<Difficulties[I], string>>;
 	defaultDifficulty: Difficulties[I];
 	difficultyColours: Record<Difficulties[I], string | null>;
 
-	grades: Grades[I][];
+	grades: Array<Grades[I]>;
 	gradeColours: Record<Grades[I], string>;
 	clearGrade: Grades[I];
-	gradeBoundaries: number[] | null;
+	gradeBoundaries: Array<number> | null;
 
-	lamps: Lamps[I][];
+	lamps: Array<Lamps[I]>;
 	lampColours: Record<Lamps[I], string>;
 	clearLamp: Lamps[I];
 
-	classHumanisedFormat: Record<GameClassSets[I], ClassInfo[]>;
+	classHumanisedFormat: Record<GameClassSets[I], Array<ClassInfo>>;
 
-	judgements: JudgementLookup[I][];
+	judgements: Array<JudgementLookup[I]>;
 
 	scoreBucket: "grade" | "lamp";
 
-	supportedVersions: GPTSupportedVersions[I][];
+	supportedVersions: Array<GPTSupportedVersions[I]>;
 
-	tierlists: GPTTierlists[I][];
+	tierlists: Array<GPTTierlists[I]>;
 	tierlistDescriptions: Record<GPTTierlists[I], string>;
 }
 
 interface GamePTConfigWithESD<I extends IDStrings> extends BaseGamePTConfig<I> {
 	supportsESD: true;
-	judgementWindows: ESDJudgementFormat[];
+	judgementWindows: Array<ESDJudgementFormat>;
 }
 
 interface GamePTConfigWithoutESD<I extends IDStrings> extends BaseGamePTConfig<I> {
@@ -340,6 +341,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
+
 		// IIDX has some unhinged grade boundaries...
 		// You might think these two lines are identical, but they are not. The order of operations affects
 		// floating point math at this point.
@@ -537,6 +539,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
+
 		// see iidx:SP for an explaination of why this is wrote like this.
 		gradeBoundaries: [
 			0,
@@ -1099,6 +1102,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
+
 		// see iidx:SP for an explaination of why this is wrote like this.
 		gradeBoundaries: [
 			0,
@@ -1210,6 +1214,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
+
 		// see iidx:SP for an explaination of why this is wrote like this.
 		gradeBoundaries: [
 			0,
@@ -1277,8 +1282,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["MFCP", "ktRating"],
 
 		scoreRatingAlgDescriptions: {
-			MFCP:
-				"Marvelous Full Combo Points. An algorithm used in LIFE4 that rewards players for getting MFCs.",
+			MFCP: "Marvelous Full Combo Points. An algorithm used in LIFE4 that rewards players for getting MFCs.",
 			ktRating: "TODO REMOVE ME",
 		},
 		profileRatingAlgDescriptions: {
@@ -1409,8 +1413,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		profileRatingAlgs: ["MFCP", "ktRating"],
 
 		scoreRatingAlgDescriptions: {
-			MFCP:
-				"Marvelous Full Combo Points. An algorithm used in LIFE4 that rewards players for getting MFCs.",
+			MFCP: "Marvelous Full Combo Points. An algorithm used in LIFE4 that rewards players for getting MFCs.",
 			ktRating: "TODO REMOVE ME",
 		},
 		profileRatingAlgDescriptions: {
@@ -1589,6 +1592,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"SSS+": COLOUR_SET.white,
 		},
 		clearGrade: "A",
+
 		// @hack Maimai's top grade depends on the chart's maximum percent
 		// we just set it at percentMax, but it's not technically correct
 		gradeBoundaries: [0, 10, 20, 40, 60, 80, 90, 94, 97, 98, 99, 99.5, 100, Infinity],
@@ -1822,8 +1826,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		},
 		profileRatingAlgDescriptions: {
 			naiveRate: "A naive rating algorithm that just averages your 50 best scores.",
-			rate:
-				"Rating as it's implemented in game, taking 15 scores from the latest version and 35 from all old versions.",
+			rate: "Rating as it's implemented in game, taking 15 scores from the latest version and 35 from all old versions.",
 		},
 		sessionRatingAlgDescriptions: {
 			rate: "The average of your best 10 ratings this session.",
@@ -1865,6 +1868,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MASTER: COLOUR_SET.white,
 		},
 		clearGrade: "S",
+
 		// i'm pretty sure the first grade is below the limit of reliable FPA accuracy
 		gradeBoundaries: [0, 0.0001, 3.0001, 70, 80, 85, 90, 93, 95, 97, 98, 99, 100],
 
@@ -1948,6 +1952,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			S: COLOUR_SET.teal,
 		},
 		clearGrade: "A",
+
 		// TECHNICALLY THIS IS NOT CORRECT
 		// A Fail is capped at A rank (82%), no matter what!
 		gradeBoundaries: [0, 50, 62, 72, 82, 90, 95, 98],
@@ -2117,6 +2122,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
+
 		// see iidx:SP for an explaination of why this is wrote like this.
 		gradeBoundaries: [
 			0,
@@ -2224,6 +2230,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MAX: COLOUR_SET.white,
 		},
 		clearGrade: "A",
+
 		// see iidx:SP for an explaination of why this is wrote like this.
 		gradeBoundaries: [
 			0,
@@ -2396,5 +2403,6 @@ export function GetGamePTConfig<I extends IDStrings = IDStrings>(
 	playtype: Playtypes[Game]
 ): GamePTConfig<I> {
 	const idString = `${game}:${playtype}` as IDStrings;
-	return (GAME_PT_CONFIGS[idString] as unknown) as GamePTConfig<I>;
+
+	return GAME_PT_CONFIGS[idString] as unknown as GamePTConfig<I>;
 }

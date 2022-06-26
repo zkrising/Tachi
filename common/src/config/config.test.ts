@@ -1,6 +1,6 @@
-import t from "tap";
 import { GetGameConfig, GetGamePTConfig } from "./config";
 import { allSupportedGames } from "./static-config";
+import t from "tap";
 
 t.test("#GetGameConfig", (t) => {
 	t.plan(allSupportedGames.length);
@@ -18,6 +18,7 @@ t.test("#GetGamePTConfig", (t) => {
 
 		for (const playtype of gameConfig.validPlaytypes) {
 			const conf = GetGamePTConfig(game, playtype);
+
 			t.equal(
 				conf.idString,
 				`${game}:${playtype}`,

@@ -13,7 +13,8 @@ function cdf(x: number, mean: number, variance: number) {
 function erf(x: number) {
 	// save the sign of x
 	const sign = x >= 0 ? 1 : -1;
-	x = Math.abs(x);
+
+	const absX = Math.abs(x);
 
 	// constants
 	const a1 = 0.254829592;
@@ -24,8 +25,9 @@ function erf(x: number) {
 	const p = 0.3275911;
 
 	// A&S formula 7.1.26
-	const t = 1.0 / (1.0 + p * x);
-	const y = 1.0 - ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+	const t = 1.0 / (1.0 + p * absX);
+	const y = 1.0 - ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t * Math.exp(-absX * absX);
+
 	return sign * y; // erf(-x) = -erf(x);
 }
 
@@ -46,21 +48,21 @@ const MEAN = 0;
  * @returns The percent this std. deviation would produce.
  */
 function StdDeviationToPercent(
-	judgements: ESDJudgementFormat[],
+	judgements: Array<ESDJudgementFormat>,
 	stddev: number,
 	largestValue: number
 ) {
 	let lastJudgeMSBorder = 0;
 	let prbSum = 0;
 
-	for (let i = 0; i < judgements.length; i++) {
-		const judge = judgements[i];
+	for (const judge of judgements) {
 		const nVal = CDFBetween(lastJudgeMSBorder, judge.msBorder, MEAN, stddev ** 2) * judge.value;
+
 		lastJudgeMSBorder = judge.msBorder;
-		prbSum += nVal;
+		prbSum = prbSum + nVal;
 	}
 
-	prbSum /= largestValue;
+	prbSum = prbSum / largestValue;
 
 	return prbSum;
 }
@@ -83,7 +85,7 @@ export interface ESDJudgementFormat {
  * @returns
  */
 export function CalculateESD(
-	judgements: ESDJudgementFormat[],
+	judgements: Array<ESDJudgementFormat>,
 	percent: number,
 	errOnInaccuracy = false
 ): number {
@@ -92,6 +94,7 @@ export function CalculateESD(
 			"(ESD) Invalid percent. Percent must be between 0 and 1, and also a number."
 		);
 	}
+
 	const largestValue = judgements.slice(0).sort((a, b) => b.value - a.value)[0].value;
 
 	// massive optimisation possible here by using better initial estimates with precalc'd table of values.
@@ -128,7 +131,7 @@ export function CalculateESD(
 	}
 
 	if (errOnInaccuracy) {
-		throw `(ESD-JS) Did not reach value within MAX_ITERATIONS (${MAX_ITERATIONS})`;
+		throw new Error(`(ESD-JS) Did not reach value within MAX_ITERATIONS (${MAX_ITERATIONS})`);
 	}
 
 	return estSD;
@@ -148,6 +151,7 @@ export function ESDCompare(baseESD: number, compareESD: number, cdeg = 1): numbe
 	let inv = false;
 	let variance;
 	let bound;
+
 	if (compareESD > baseESD) {
 		inv = true;
 		variance = compareESD ** 2;
@@ -162,7 +166,7 @@ export function ESDCompare(baseESD: number, compareESD: number, cdeg = 1): numbe
 	let besdc = BASE_CASE - esdc;
 
 	if (inv) {
-		besdc *= -1;
+		besdc = besdc * -1;
 	}
 
 	return besdc * 100;
@@ -172,12 +176,13 @@ export function ESDCompare(baseESD: number, compareESD: number, cdeg = 1): numbe
  * Converts two percents to ESD, then runs ESDCompare.
  */
 export function PercentCompare(
-	judgements: ESDJudgementFormat[],
+	judgements: Array<ESDJudgementFormat>,
 	baseP: number,
 	compareP: number,
 	cdeg = 1
 ): number {
 	const e1 = CalculateESD(judgements, baseP);
 	const e2 = CalculateESD(judgements, compareP);
+
 	return ESDCompare(e1, e2, cdeg);
 }

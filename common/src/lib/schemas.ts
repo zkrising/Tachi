@@ -2,15 +2,18 @@
 // their name in the database to the object they schemaify.
 // The schemas themselves are wrapped in functions that throw on error.
 
-import p, {
+import { allIDStrings, allImportTypes, allSupportedGames } from "../config/static-config";
+import { ALL_PERMISSIONS } from "../constants/permissions";
+import { GetGameConfig, GetGamePTConfig } from "../index";
+import { UserAuthLevels } from "../types";
+import p from "prudence";
+import type { GamePTConfig } from "../index";
+import type { Game, IDStrings, NotificationBody, Playtypes } from "../types";
+import type {
 	PrudenceSchema,
 	ValidationFunctionParentOptionsKeychain,
 	ValidSchemaValue,
 } from "prudence";
-import { allIDStrings, allImportTypes, allSupportedGames } from "../config/static-config";
-import { ALL_PERMISSIONS } from "../constants/permissions";
-import { GamePTConfig, GetGameConfig, GetGamePTConfig } from "../index";
-import { Game, IDStrings, NotificationBody, Playtypes, UserAuthLevels } from "../types";
 
 export const optNull = (v: ValidSchemaValue): ValidationFunctionParentOptionsKeychain =>
 	p.optional(p.nullable(v));
@@ -33,7 +36,7 @@ function prSchemaFnWrap(schema: PrudenceSchema) {
 	};
 }
 
-const PR_GameStats = (game: Game, playtype: Playtypes[Game], gptConfig: GamePTConfig) => ({
+const PR_GAME_STATS = (game: Game, playtype: Playtypes[Game], gptConfig: GamePTConfig) => ({
 	userID: p.isPositiveNonZeroInteger,
 	game: p.is(game),
 	playtype: p.is(playtype),
@@ -43,7 +46,7 @@ const PR_GameStats = (game: Game, playtype: Playtypes[Game], gptConfig: GamePTCo
 	),
 });
 
-const PR_GoalInfo = {
+const PR_GOAL_INFO = {
 	progress: "?number",
 	progressHuman: "string",
 	outOf: "number",
@@ -98,7 +101,8 @@ const extractGPTIDString = (self: unknown) => {
 		throw new Error(`Expected a string where self.idString is. Got ${s.idString}`);
 	}
 
-	const [game, playtype] = s.idString.split(":");
+	// if there's no ":" in the string, this returns only one element.
+	const [game, playtype] = s.idString.split(":") as [string, string | undefined];
 
 	if (!IsValidGame(game)) {
 		throw new Error(`Expected valid game -- got ${game} from idString ${s.idString}.`);
@@ -138,12 +142,12 @@ const extractGPT = (self: unknown) => {
 	return { game: s.game, playtype: s.playtype };
 };
 
-const PR_Random = p.isIn("NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR");
+const PR_RANDOM = p.isIn("NONRAN", "RANDOM", "R-RANDOM", "S-RANDOM", "MIRROR");
 
 const GetScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => {
 	if (game === "iidx" && playtype === "SP") {
 		return {
-			random: optNull(PR_Random),
+			random: optNull(PR_RANDOM),
 			assist: optNull(p.isIn("NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "FULL ASSIST")),
 			range: optNull(p.isIn("NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+")),
 			gauge: optNull(p.isIn("ASSISTED EASY", "EASY", "NORMAL", "HARD", "EX-HARD")),
@@ -151,8 +155,8 @@ const GetScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => 
 	} else if (game === "iidx" && playtype === "DP") {
 		return {
 			random: optNull({
-				left: PR_Random,
-				right: PR_Random,
+				left: PR_RANDOM,
+				right: PR_RANDOM,
 			}),
 			assist: optNull(p.isIn("NO ASSIST", "AUTO SCRATCH", "LEGACY NOTE", "FULL ASSIST")),
 			range: optNull(p.isIn("NONE", "SUDDEN+", "HIDDEN+", "SUD+ HID+", "LIFT", "LIFT SUD+")),
@@ -167,15 +171,15 @@ const GetScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => 
 		};
 	} else if (game === "bms" && playtype === "7K") {
 		return {
-			random: optNull(PR_Random),
+			random: optNull(PR_RANDOM),
 			inputDevice: optNull(p.isIn("KEYBOARD", "BM_CONTROLLER")),
 			client: optNull(p.isIn("LR2", "lr2oraja")),
 		};
 	} else if (game === "bms" && playtype === "14K") {
 		return {
 			random: optNull({
-				left: PR_Random,
-				right: PR_Random,
+				left: PR_RANDOM,
+				right: PR_RANDOM,
 			}),
 			inputDevice: optNull(p.isIn("KEYBOARD", "BM_CONTROLLER")),
 			client: optNull(p.isIn("LR2", "lr2oraja")),
@@ -194,7 +198,7 @@ function IsValidGame(str: string): str is Game {
 }
 
 const getPlaytype = (game: Game, self: unknown): Playtypes[Game] => {
-	if (!self || typeof self !== "object") {
+	if (self === null || typeof self !== "object") {
 		throw new Error("Expected an object.");
 	}
 
@@ -203,6 +207,7 @@ const getPlaytype = (game: Game, self: unknown): Playtypes[Game] => {
 	const s = self as Record<string, unknown>;
 
 	const playtype = s.playtype as string;
+
 	if (!IsValidPlaytype(game, playtype)) {
 		throw new Error(`Expected any of ${gameConfig.validPlaytypes.join(", ")}`);
 	}
@@ -213,7 +218,7 @@ const getPlaytype = (game: Game, self: unknown): Playtypes[Game] => {
 const games = allSupportedGames;
 
 const isValidPlaytype = (self: unknown, parent: Record<string, unknown>) => {
-	if (!parent.game || typeof parent.game !== "string" || !IsValidGame(parent.game)) {
+	if (typeof parent.game !== "string" || !IsValidGame(parent.game)) {
 		throw new Error(`Invalid Schema, need game to base IsValidPlaytype off of.`);
 	}
 
@@ -416,7 +421,7 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 	}
 }
 
-const PR_SongDocument = (game: Game): PrudenceSchema => {
+const PR_SONG_DOCUMENT = (game: Game): PrudenceSchema => {
 	const data = GetSongDataForGame(game);
 
 	return {
@@ -429,7 +434,7 @@ const PR_SongDocument = (game: Game): PrudenceSchema => {
 	};
 };
 
-const PR_ChartDocument = (game: Game) => (self: unknown) => {
+const PR_CHART_DOCUMENT = (game: Game) => (self: unknown) => {
 	const playtype = getPlaytype(game, self);
 
 	const gptConfig = GetGamePTConfig(game, playtype);
@@ -459,14 +464,14 @@ const PR_ChartDocument = (game: Game) => (self: unknown) => {
 // Returns true on success, throws on failure.
 export type SchemaValidatorFunction = (self: unknown) => true;
 
-type GameSchemas = Record<`${"songs" | "charts"}-${Game}`, SchemaValidatorFunction>;
+type GameSchemas = Record<`${"charts" | "songs"}-${Game}`, SchemaValidatorFunction>;
 
 function CreateGameSchemas() {
 	const obj: Partial<GameSchemas> = {};
 
 	for (const game of games) {
-		obj[`songs-${game}`] = prSchemaFnWrap(PR_SongDocument(game));
-		obj[`charts-${game}`] = PR_ChartDocument(game);
+		obj[`songs-${game}`] = prSchemaFnWrap(PR_SONG_DOCUMENT(game));
+		obj[`charts-${game}`] = PR_CHART_DOCUMENT(game);
 	}
 
 	// guaranteed to no longer be partial
@@ -486,6 +491,7 @@ const GAME_SCHEMAS = CreateGameSchemas();
 const PRE_SCHEMAS = {
 	"bms-course-lookup": prSchemaFnWrap({
 		title: "string",
+
 		// Must be comprised of 4 md5 hashes, which are 32 chars long.
 		md5sums: (self) => {
 			if (typeof self !== "string") {
@@ -496,7 +502,7 @@ const PRE_SCHEMAS = {
 				return "Expected 32 * 4 characters (4 md5 hashes long).";
 			}
 
-			if (!self.match(/^[a-z0-9]*$/u)) {
+			if (!/^[a-z0-9]*$/u.exec(self)) {
 				return "Expected all chars to be in the range of a-z0-9.";
 			}
 
@@ -516,9 +522,9 @@ const PRE_SCHEMAS = {
 		type: p.isIn("songs", "charts", "static"),
 		data: (self, parent) => {
 			if (parent.type === "songs") {
-				return true; //temp. should be a song.
+				return true; // temp. should be a song.
 			} else if (parent.type === "charts") {
-				return true; //temp. should be a chart.
+				return true; // temp. should be a chart.
 			}
 
 			return (
@@ -652,14 +658,12 @@ const PRE_SCHEMAS = {
 
 		const gptConfig = GetGamePTConfig(game, playtype);
 
-		const hitMeta = Object.assign(
-			{
-				fast: optNull(p.isPositiveInteger),
-				slow: optNull(p.isPositiveInteger),
-				maxCombo: optNull(p.isPositiveInteger),
-			},
-			GetHitMeta(game)
-		);
+		const hitMeta = {
+			fast: optNull(p.isPositiveInteger),
+			slow: optNull(p.isPositiveInteger),
+			maxCombo: optNull(p.isPositiveInteger),
+			...GetHitMeta(game),
+		};
 
 		const scoreMeta = GetScoreMeta(game, playtype);
 
@@ -701,14 +705,12 @@ const PRE_SCHEMAS = {
 
 		const gptConfig = GetGamePTConfig(game, playtype);
 
-		const hitMeta = Object.assign(
-			{
-				fast: optNull(p.isPositiveInteger),
-				slow: optNull(p.isPositiveInteger),
-				maxCombo: optNull(p.isPositiveInteger),
-			},
-			GetHitMeta(game)
-		);
+		const hitMeta = {
+			fast: optNull(p.isPositiveInteger),
+			slow: optNull(p.isPositiveInteger),
+			maxCombo: optNull(p.isPositiveInteger),
+			...GetHitMeta(game),
+		};
 
 		return prSchemaFnWrap({
 			composedFrom: {
@@ -803,6 +805,7 @@ const PRE_SCHEMAS = {
 		importID: "string",
 		scoreIDs: ["string"],
 		game: p.isIn(games),
+
 		// @ts-expect-error We've asserted this is definitely a game.
 		playtypes: [(self) => p.isIn(GetGameConfig(self.game).validPlaytypes)(self)],
 		errors: [
@@ -830,8 +833,8 @@ const PRE_SCHEMAS = {
 		goalInfo: [
 			{
 				goalID: "string",
-				old: PR_GoalInfo,
-				new: PR_GoalInfo,
+				old: PR_GOAL_INFO,
+				new: PR_GOAL_INFO,
 			},
 		],
 		milestoneInfo: [
@@ -857,7 +860,7 @@ const PRE_SCHEMAS = {
 
 		const gptConfig = GetGamePTConfig(game, playtype);
 
-		return prSchemaFnWrap(PR_GameStats(game, playtype, gptConfig))(self);
+		return prSchemaFnWrap(PR_GAME_STATS(game, playtype, gptConfig))(self);
 	},
 	"game-stats-snapshots": (self: unknown) => {
 		const { game, playtype } = extractGPT(self);
@@ -865,7 +868,7 @@ const PRE_SCHEMAS = {
 		const gptConfig = GetGamePTConfig(game, playtype);
 
 		return prSchemaFnWrap(
-			Object.assign(PR_GameStats(game, playtype, gptConfig), {
+			Object.assign(PR_GAME_STATS(game, playtype, gptConfig), {
 				rankings: Object.fromEntries(
 					gptConfig.profileRatingAlgs.map((e) => [
 						e,
@@ -890,6 +893,7 @@ const PRE_SCHEMAS = {
 				preferredScoreAlg: p.nullable(p.isIn(gptConfig.scoreRatingAlgs)),
 				preferredSessionAlg: p.nullable(p.isIn(gptConfig.sessionRatingAlgs)),
 				preferredProfileAlg: p.nullable(p.isIn(gptConfig.profileRatingAlgs)),
+
 				// ouch
 				stats: p.and(
 					[
@@ -991,7 +995,7 @@ const PRE_SCHEMAS = {
 			// Typescript moment...
 			const s = self as Record<string, unknown>;
 
-			for (const key in ALL_PERMISSIONS) {
+			for (const key of Object.keys(ALL_PERMISSIONS)) {
 				if (s[key] !== undefined && typeof s[key] !== "boolean") {
 					return `Invalid permission value of ${s[key]} at ${key}.`;
 				}
@@ -1016,8 +1020,8 @@ const PRE_SCHEMAS = {
 
 		return prSchemaFnWrap({
 			idString: p.isIn(allIDStrings),
-			chartDoc: PR_ChartDocument(game),
-			songDoc: PR_SongDocument(game),
+			chartDoc: PR_CHART_DOCUMENT(game),
+			songDoc: PR_SONG_DOCUMENT(game),
 			userIDs: [p.isPositiveNonZeroInteger],
 		})(self);
 	},
@@ -1050,16 +1054,9 @@ const PRE_SCHEMAS = {
 			["import", "importParse", "session", "pb"].map((k) => [k, p.isPositive])
 		),
 		abs: Object.fromEntries(
-			[
-				"parse",
-				"import",
-				"importParse",
-				"session",
-				"pb",
-				"ugs",
-				"goal",
-				"milestone",
-			].map((k) => [k, p.isPositive])
+			["parse", "import", "importParse", "session", "pb", "ugs", "goal", "milestone"].map(
+				(k) => [k, p.isPositive]
+			)
 		),
 	}),
 	"arc-saved-profiles": prSchemaFnWrap({
@@ -1073,14 +1070,14 @@ const PRE_SCHEMAS = {
 		createdAt: p.isPositive,
 		consumed: "boolean",
 		consumedBy: (self, parent) => {
-			if (parent.consumed) {
+			if (parent.consumed === true) {
 				return self === null;
 			}
 
 			return p.isPositiveInteger(self);
 		},
 		consumedAt: (self, parent) => {
-			if (parent.consumed) {
+			if (parent.consumed === true) {
 				return self === null;
 			}
 
@@ -1100,16 +1097,20 @@ const PRE_SCHEMAS = {
 
 				let subSchema = {};
 
-				if (type === "RIVALED_BY") {
-					subSchema = {
-						userID: p.isPositiveNonZeroInteger,
-						game: p.isIn(games),
-						playtype: isValidPlaytype,
-					};
-				} else if (type === "MILESTONE_CHANGED") {
-					subSchema = {
-						milestoneID: "string",
-					};
+				switch (type) {
+					case "RIVALED_BY": {
+						subSchema = {
+							userID: p.isPositiveNonZeroInteger,
+							game: p.isIn(games),
+							playtype: isValidPlaytype,
+						};
+						break;
+					}
+
+					case "MILESTONE_CHANGED":
+						subSchema = {
+							milestoneID: "string",
+						};
 				}
 
 				const err = p(self, subSchema);

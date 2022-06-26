@@ -1,4 +1,4 @@
-import { APIPermissions } from "../types";
+import type { APIPermissions } from "../types";
 
 // Some parts of tachi-server and some parts of the schemas refer to this
 // in order to assert that permissions are correctly assigned.

@@ -1,6 +1,6 @@
-import { ChartDocument, SongDocument, Game, IDStrings, Playtypes } from "..";
 import { GetGameConfig, GetGamePTConfig } from "../config/config";
-import { Grades, integer } from "../types";
+import type { ChartDocument, SongDocument, Game, IDStrings, Playtypes } from "..";
+import type { Grades, integer } from "../types";
 
 export function FormatInt(v: number): string {
 	return v.toString();
@@ -9,6 +9,7 @@ export function FormatInt(v: number): string {
 export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 	if (game === "bms" || game === "pms") {
 		const bmsChart = chart as ChartDocument<"bms:7K" | "bms:14K">;
+
 		return (
 			bmsChart.data.tableFolders.map((e) => `${e.table}${e.level}`).join(", ") || "Unrated"
 		);
@@ -70,11 +71,7 @@ export function FormatGame(game: Game, playtype: Playtypes[Game]): string {
 	return `${gameConfig.name} (${playtype})`;
 }
 
-export function FormatChart(
-	game: Game,
-	song: SongDocument,
-	chart: ChartDocument<IDStrings>
-): string {
+export function FormatChart(game: Game, song: SongDocument, chart: ChartDocument): string {
 	if (game === "bms") {
 		const tables = (chart as ChartDocument<"bms:7K" | "bms:14K">).data.tableFolders;
 
@@ -83,11 +80,11 @@ export function FormatChart(
 		let realTitle = bmsSong.title;
 
 		if (bmsSong.data.subtitle) {
-			realTitle += ` - ${bmsSong.data.subtitle}`;
+			realTitle = `${realTitle} - ${bmsSong.data.subtitle}`;
 		}
 
 		if (bmsSong.data.genre) {
-			realTitle += ` [${bmsSong.data.genre}]`;
+			realTitle = `${realTitle} [${bmsSong.data.genre}]`;
 		}
 
 		if (tables.length === 0) {
@@ -96,24 +93,22 @@ export function FormatChart(
 
 		return `${realTitle} (${tables.map((e) => `${e.table}${e.level}`).join(", ")})`;
 	} else if (game === "usc") {
-		const uscChart = chart as ChartDocument<"usc:Keyboard" | "usc:Controller">;
-
-		const tables = Object.entries(uscChart.data.tableFolders);
+		const uscChart = chart as ChartDocument<"usc:Controller" | "usc:Keyboard">;
 
 		// If this chart isn't an official, render it differently
 		if (!uscChart.data.isOfficial) {
 			// Same as BMS. turn this into SongTitle (Keyboard MXM normal1, insane2)
-			return `${song.title} (${chart.playtype} ${chart.difficulty} ${tables
-				.map((e) => `${e[0]}${e[1]}`)
-				.join(", ")})`;
-		} else if (uscChart.data.isOfficial && tables.length !== 0) {
+			return `${song.title} (${chart.playtype} ${
+				chart.difficulty
+			} ${uscChart.data.tableFolders.map((e) => `${e.table}${e.level}`).join(", ")})`;
+		} else if (uscChart.data.tableFolders.length !== 0) {
 			// if this chart is an official **AND** is on tables (unlikely), render
 			// it as so:
 
 			// SongTitle (Keyboard MXM 17, normal1, insane2)
 			return `${song.title} (${chart.playtype} ${chart.difficulty} ${
 				chart.level
-			}, ${tables.map((e) => `${e[0]}${e[1]}`).join(", ")})`;
+			}, ${uscChart.data.tableFolders.map((e) => `${e.table}${e.level}`).join(", ")})`;
 		}
 
 		// otherwise, it's just an official and should be rendered like any other game.
@@ -231,6 +226,7 @@ export function GenericFormatGradeDelta<I extends IDStrings = IDStrings>(
 
 export function FormatSieglindeBMS(sgl: number): string {
 	const fixedSgl = sgl.toFixed(2);
+
 	if (sgl < 13) {
 		return `${fixedSgl} (☆${fixedSgl})`;
 	}
@@ -240,6 +236,7 @@ export function FormatSieglindeBMS(sgl: number): string {
 
 export function FormatSieglindePMS(sgl: number): string {
 	const fixedSgl = sgl.toFixed(2);
+
 	if (sgl < 13) {
 		return `${fixedSgl} (○${fixedSgl})`;
 	}

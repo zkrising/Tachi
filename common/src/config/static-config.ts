@@ -1,4 +1,4 @@
-import {
+import type {
 	FileUploadImportTypes,
 	IRImportTypes,
 	APIImportTypes,
@@ -8,7 +8,7 @@ import {
 	GPTSupportedVersions,
 } from "..";
 
-export const fileImportTypes: FileUploadImportTypes[] = [
+export const fileImportTypes: Array<FileUploadImportTypes> = [
 	"file/eamusement-iidx-csv",
 	"file/eamusement-sdvx-csv",
 	"file/batch-manual",
@@ -17,7 +17,7 @@ export const fileImportTypes: FileUploadImportTypes[] = [
 	"file/pli-iidx-csv",
 ];
 
-export const irImportTypes: IRImportTypes[] = [
+export const irImportTypes: Array<IRImportTypes> = [
 	"ir/direct-manual",
 	"ir/barbatos",
 	"ir/fervidex",
@@ -27,7 +27,7 @@ export const irImportTypes: IRImportTypes[] = [
 	"ir/kshook-sv6c",
 ];
 
-export const apiImportTypes: APIImportTypes[] = [
+export const apiImportTypes: Array<APIImportTypes> = [
 	"api/arc-iidx",
 	"api/arc-sdvx",
 	"api/eag-iidx",
@@ -37,13 +37,13 @@ export const apiImportTypes: APIImportTypes[] = [
 	"api/min-sdvx",
 ];
 
-export const allImportTypes: ImportTypes[] = [
+export const allImportTypes: Array<ImportTypes> = [
 	...fileImportTypes,
 	...irImportTypes,
 	...apiImportTypes,
 ];
 
-export const allIDStrings: IDStrings[] = [
+export const allIDStrings: Array<IDStrings> = [
 	"iidx:SP",
 	"bms:14K",
 	"bms:7K",
@@ -65,7 +65,7 @@ export const allIDStrings: IDStrings[] = [
 	"itg:Stamina",
 ];
 
-export const allSupportedGames: Game[] = [
+export const allSupportedGames: Array<Game> = [
 	"iidx",
 	"museca",
 	"maimai",

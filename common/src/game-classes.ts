@@ -1,7 +1,7 @@
 // Classes refer to things like dans.
 // Not the JS construct.
 
-import { IDStrings, integer } from "./types";
+import type { IDStrings, integer } from "./types";
 
 export interface ClassInfo {
 	display: string;
@@ -11,7 +11,7 @@ export interface ClassInfo {
 		backgroundColor: string;
 		color: string;
 	};
-	variant?: "primary" | "secondary" | "success" | "warning" | "danger" | "info";
+	variant?: "danger" | "info" | "primary" | "secondary" | "success" | "warning";
 }
 
 function mouseoverCSS(id: string, d: string, m: string, bg = "black", color = "white") {
@@ -22,7 +22,7 @@ function mouseoverVariant(
 	id: string,
 	d: string,
 	m: string,
-	variant: "primary" | "secondary" | "success" | "warning" | "danger" | "info"
+	variant: "danger" | "info" | "primary" | "secondary" | "success" | "warning"
 ) {
 	return { id, display: d, mouseover: m, variant };
 }
@@ -30,7 +30,7 @@ function mouseoverVariant(
 function noMouseoverVariant(
 	id: string,
 	d: string,
-	variant: "primary" | "secondary" | "success" | "warning" | "danger" | "info"
+	variant: "danger" | "info" | "primary" | "secondary" | "success" | "warning"
 ) {
 	return { id, display: d, variant };
 }
@@ -39,7 +39,7 @@ function noMouseoverCSS(id: string, d: string, bg = "#131313", color = "white") 
 	return { id, display: d, css: { backgroundColor: bg, color } };
 }
 
-export const IIDXDans: ClassInfo[] = [
+export const IIDXDans: Array<ClassInfo> = [
 	mouseoverCSS("KYU_7", "七級", "7th Kyu", "green"),
 	mouseoverCSS("KYU_6", "六級", "6th Kyu", "green"),
 	mouseoverCSS("KYU_5", "五級", "5th Kyu", "green"),
@@ -61,7 +61,7 @@ export const IIDXDans: ClassInfo[] = [
 	mouseoverVariant("KAIDEN", "皆伝", "Kaiden", "warning"),
 ];
 
-export const GitadoraColours: ClassInfo[] = [
+export const GitadoraColours: Array<ClassInfo> = [
 	mouseoverCSS("WHITE", "白", "White", "white", "black"),
 	mouseoverCSS("ORANGE", "橙", "Orange", "orange"),
 	mouseoverCSS("ORANGE_GRD", "橙グラ", "Orange Gradient", "orange"),
@@ -78,11 +78,12 @@ export const GitadoraColours: ClassInfo[] = [
 	mouseoverCSS("BRONZE", "銅", "Bronze", "bronze"),
 	mouseoverCSS("SILVER", "銀", "Silver", "silver", "black"),
 	mouseoverCSS("GOLD", "金", "Gold", "gold"),
+
 	// @todo #11 Come up with CSS for Gitadora's rainbow icon.
 	mouseoverCSS("RAINBOW", "虹", "Rainbow", "todo"),
 ];
 
-export const BMSGenocideDans: ClassInfo[] = [
+export const BMSGenocideDans: Array<ClassInfo> = [
 	mouseoverCSS("NORMAL_1", "☆1", "Normal 1st Dan", "lightblue"),
 	mouseoverCSS("NORMAL_2", "☆2", "Normal 2nd Dan", "lightblue"),
 	mouseoverCSS("NORMAL_3", "☆3", "Normal 3rd Dan", "lightblue"),
@@ -107,7 +108,7 @@ export const BMSGenocideDans: ClassInfo[] = [
 	mouseoverCSS("OVERJOY", "(^^)", "Overjoy", "purple"),
 ];
 
-export const BMSStSlDans: ClassInfo[] = [
+export const BMSStSlDans: Array<ClassInfo> = [
 	mouseoverCSS("SL0", "sl0", "Satellite 0"),
 	mouseoverCSS("SL1", "sl1", "Satellite 1"),
 	mouseoverCSS("SL2", "sl2", "Satellite 2"),
@@ -135,7 +136,7 @@ export const BMSStSlDans: ClassInfo[] = [
 	mouseoverCSS("ST11", "st11", "Stella 11"),
 ];
 
-export const BMSLNDans: ClassInfo[] = [
+export const BMSLNDans: Array<ClassInfo> = [
 	mouseoverCSS("DAN_1", "◆1", "LN 1st Dan", "lightblue"),
 	mouseoverCSS("DAN_2", "◆2", "LN 2nd Dan", "lightblue"),
 	mouseoverCSS("DAN_3", "◆3", "LN 3rd Dan", "lightblue"),
@@ -151,7 +152,7 @@ export const BMSLNDans: ClassInfo[] = [
 	mouseoverCSS("UDON", "◆うどん", "LN Udon", "gold"),
 ];
 
-export const BMSScratchDans: ClassInfo[] = [
+export const BMSScratchDans: Array<ClassInfo> = [
 	mouseoverCSS("KYU_7", "七級", "Scratch 7th Kyu", "green"),
 	mouseoverCSS("KYU_6", "六級", "Scratch 6th Kyu", "green"),
 	mouseoverCSS("KYU_5", "五級", "Scratch 5th Kyu", "green"),
@@ -172,7 +173,7 @@ export const BMSScratchDans: ClassInfo[] = [
 	mouseoverVariant("KAIDEN", "皆伝", "Scratch Kaiden", "warning"),
 ];
 
-export const SDVXDans: ClassInfo[] = [
+export const SDVXDans: Array<ClassInfo> = [
 	mouseoverCSS("DAN_1", "LV.01", "1st Dan"),
 	mouseoverCSS("DAN_2", "LV.02", "2nd Dan"),
 	mouseoverCSS("DAN_3", "LV.03", "3rd Dan"),
@@ -187,7 +188,7 @@ export const SDVXDans: ClassInfo[] = [
 	mouseoverCSS("INF", "LV.INF", "Inf. Dan", "purple", "gold"),
 ];
 
-export const SDVXVFClasses: ClassInfo[] = [
+export const SDVXVFClasses: Array<ClassInfo> = [
 	noMouseoverCSS("SIENNA_I", "Sienna I"),
 	noMouseoverCSS("SIENNA_II", "Sienna II"),
 	noMouseoverCSS("SIENNA_III", "Sienna III"),
@@ -340,12 +341,12 @@ export interface GameClassSets {
 	"maimai:Single": never;
 	"jubeat:Single": "colour";
 	"museca:Single": never;
-	"bms:7K": "genocideDan" | "stslDan" | "lnDan" | "scratchDan";
+	"bms:7K": "genocideDan" | "lnDan" | "scratchDan" | "stslDan";
 	"bms:14K": "genocideDan";
 	"chunithm:Single": "colour";
 	"gitadora:Gita": "colour";
 	"gitadora:Dora": "colour";
-	"wacca:Single": "stageUp" | "colour";
+	"wacca:Single": "colour" | "stageUp";
 	"pms:Controller": "dan";
 	"pms:Keyboard": "dan";
 	"itg:Stamina": never;

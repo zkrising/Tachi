@@ -71,6 +71,17 @@ if (process.env.REACT_APP_TCHIC_MODE === "ktchi" || process.env.REACT_APP_TCHIC_
 	$tachi-info-hover: #455B87;`;
 }
 
+// This is dynamically inserted into the head of _style/base.scss, on the first line.
+let scssEntryPoint;
+// If you have access to the private metronic scss submodule
+// and have cloned it, use that.
+if (fs.existsSync(path.join(__dirname, "./_assets/metronic-css/style.react.scss"))) {
+	scssEntryPoint = "../_assets/metronic-scss/style.react.scss";
+} else {
+	// Else, use some default compiled css.
+	scssEntryPoint = "../_assets/compiled-css/main.css";
+}
+
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function (webpackEnv) {
@@ -476,7 +487,7 @@ module.exports = function (webpackEnv) {
 								},
 								"sass-loader",
 								{
-									data: COLOUR_SET,
+									data: `${COLOUR_SET}\n@import "${scssEntryPoint}";`,
 								}
 							),
 							// Don't consider CSS imports dead code even if the

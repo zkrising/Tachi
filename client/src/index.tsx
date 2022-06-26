@@ -1,16 +1,11 @@
-/**
- * Create React App entry point. This and `public/index.html` files can not be
- * changed or moved.
- */
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import "socicon/css/socicon.css";
 import App from "./app/App";
-import "./index.scss";
-import "./_metronic/_assets/plugins/flaticon/flaticon.css";
-import "./_metronic/_assets/plugins/flaticon2/flaticon.css";
-import "./_metronic/_assets/plugins/keenthemes-icons/font/ki.css";
+import "./_assets/flaticon/flaticon.css";
+import "./_assets/flaticon2/flaticon.css";
+import "./_assets/keenthemes-icons/font/ki.css";
+import "./_style/base.scss";
 
 const { PUBLIC_URL } = process.env;
 

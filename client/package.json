@@ -84,7 +84,6 @@
 		"resolve": "1.12.0",
 		"resolve-url-loader": "3.1.0",
 		"rg-stats": "^0.2.0",
-		"socicon": "3.0.5",
 		"sync-fetch": "^0.3.1",
 		"tachi-common": "0.14.10"
 	},

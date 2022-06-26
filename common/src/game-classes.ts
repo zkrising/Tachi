@@ -151,6 +151,27 @@ export const BMSLNDans: ClassInfo[] = [
 	mouseoverCSS("UDON", "◆うどん", "LN Udon", "gold"),
 ];
 
+export const BMSScratchDans: ClassInfo[] = [
+	mouseoverCSS("KYU_7", "七級", "Scratch 7th Kyu", "green"),
+	mouseoverCSS("KYU_6", "六級", "Scratch 6th Kyu", "green"),
+	mouseoverCSS("KYU_5", "五級", "Scratch 5th Kyu", "green"),
+	mouseoverCSS("KYU_4", "四級", "Scratch 4th Kyu", "green"),
+	mouseoverCSS("KYU_3", "三級", "Scratch 3rd Kyu", "green"),
+	mouseoverCSS("KYU_2", "二級", "Scratch 2nd Kyu", "green"),
+	mouseoverCSS("KYU_1", "一級", "Scratch 1st Kyu", "green"),
+	mouseoverVariant("DAN_1", "初段", "Scratch 1st Dan", "info"),
+	mouseoverVariant("DAN_2", "二段", "Scratch 2nd Dan", "info"),
+	mouseoverVariant("DAN_3", "三段", "Scratch 3rd Dan", "info"),
+	mouseoverVariant("DAN_4", "四段", "Scratch 4th Dan", "info"),
+	mouseoverVariant("DAN_5", "五段", "Scratch 5th Dan", "info"),
+	mouseoverVariant("DAN_6", "六段", "Scratch 6th Dan", "info"),
+	mouseoverVariant("DAN_7", "七段", "Scratch 7th Dan", "info"),
+	mouseoverVariant("DAN_8", "八段", "Scratch 8th Dan", "info"),
+	mouseoverVariant("DAN_9", "九段", "Scratch 9th Dan", "danger"),
+	mouseoverVariant("DAN_10", "十段", "Scratch 10th Dan", "danger"),
+	mouseoverVariant("KAIDEN", "皆伝", "Scratch Kaiden", "warning"),
+];
+
 export const SDVXDans: ClassInfo[] = [
 	mouseoverCSS("DAN_1", "LV.01", "1st Dan"),
 	mouseoverCSS("DAN_2", "LV.02", "2nd Dan"),
@@ -319,7 +340,7 @@ export interface GameClassSets {
 	"maimai:Single": never;
 	"jubeat:Single": "colour";
 	"museca:Single": never;
-	"bms:7K": "genocideDan" | "stslDan" | "lnDan";
+	"bms:7K": "genocideDan" | "stslDan" | "lnDan" | "scratchDan";
 	"bms:14K": "genocideDan";
 	"chunithm:Single": "colour";
 	"gitadora:Gita": "colour";

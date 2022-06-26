@@ -2,6 +2,7 @@ import { FormatInt, GPTTierlists } from "..";
 import {
 	BMSGenocideDans,
 	BMSLNDans,
+	BMSScratchDans,
 	BMSStSlDans,
 	CHUNITHMColours,
 	ClassInfo,
@@ -1138,6 +1139,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			genocideDan: BMSGenocideDans,
 			stslDan: BMSStSlDans,
 			lnDan: BMSLNDans,
+			scratchDan: BMSScratchDans,
 		},
 
 		supportsESD: false,

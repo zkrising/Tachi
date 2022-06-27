@@ -75,7 +75,7 @@ if (process.env.REACT_APP_TCHIC_MODE === "ktchi" || process.env.REACT_APP_TCHIC_
 let scssEntryPoint;
 // If you have access to the private metronic scss submodule
 // and have cloned it, use that.
-if (fs.existsSync(path.join(__dirname, "../_assets/metronic-css/style.react.scss"))) {
+if (fs.existsSync(path.join(__dirname, "../_assets/metronic-scss/style.react.scss"))) {
 	scssEntryPoint = "../_assets/metronic-scss/style.react.scss";
 } else {
 	// Else, use some default compiled css.

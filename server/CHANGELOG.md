@@ -34,6 +34,7 @@ not generally be shown to end users.
 - [FEAT] Notifications can now be sent to users.
 - [FEAT] Search implementation is massively improved (#713)
 - [FEAT] BMS and PMS database changes are automatically backsynced to their parent seeds repository (#732)
+- [FEAT] Support for the BMS AI Table.
 - [INTERNAL_FEAT] Schemas have been moved into tachi-common and properly refactored.
 - [INTERNAL_FEAT] Tachi-Server now has a migration engine, for applying database updates automagically.
 
@@ -47,6 +48,7 @@ not generally be shown to end users.
 - [ENH] You can now set Jubility targets.
 - [ENH] Folder Showcase Stats are now removed from a player in the case of the folder being removed.
 - [ENH] ARC SDVX Support has been bumped to EXCEED GEAR.
+- [ENH] The AI table now automatically updates itself.
 - [INTERNAL_ENH] Server version info is now read from package.json, removing redundancy.
 - [INTERNAL_ENH] The commit the server is running under is now exposed publically in version info.
 # 2.1.18

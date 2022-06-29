@@ -9,7 +9,7 @@ export function AssertStrAsDifficulty(
 ): Difficulties[IDStrings] {
 	const validDifficulties = GetGamePTConfig(game, playtype).difficulties;
 
-	if (!validDifficulties.includes(strVal as Difficulties[IDStrings])) {
+	if (!validDifficulties.includes(strVal)) {
 		throw new InvalidScoreFailure(
 			`Invalid Difficulty for ${game} ${playtype} - Expected any of ${validDifficulties.join(
 				", "
@@ -17,7 +17,7 @@ export function AssertStrAsDifficulty(
 		);
 	}
 
-	return strVal as Difficulties[IDStrings];
+	return strVal;
 }
 
 const isIntegerRegex = /^-?\d+$/u;

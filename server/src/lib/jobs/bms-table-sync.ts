@@ -295,21 +295,23 @@ export async function UpdateTable(table: BMSTablesDataset) {
 	logger.info(`Levels bumped.`);
 }
 
+export async function SyncBMSTables() {
+	for (const table of registeredTables) {
+		// eslint-disable-next-line no-await-in-loop
+		await UpdateTable(table);
+	}
+
+	logger.info(`Re-initialising folder-chart-lookup, since changes may have been made.`);
+	await InitaliseFolderChartLookup();
+	logger.info(`Done.`);
+}
+
 if (require.main === module) {
-	(async () => {
-		for (const table of registeredTables) {
-			// eslint-disable-next-line no-await-in-loop
-			await UpdateTable(table);
-		}
-
-		logger.info(`Re-initialising folder-chart-lookup, since changes may have been made.`);
-		await InitaliseFolderChartLookup();
-		logger.info(`Done.`);
-
-		process.exit(0);
-	})().catch((err: unknown) => {
-		logger.error(`Failed to sync BMS Tables.`, { err }, () => {
-			process.exit(1);
+	SyncBMSTables()
+		.then(() => process.exit(0))
+		.catch((err: unknown) => {
+			logger.error(`Failed to sync BMS Tables.`, { err }, () => {
+				process.exit(1);
+			});
 		});
-	});
 }

@@ -321,6 +321,7 @@ export const BMSGazerChart: ChartDocument<"bms:7K"> = {
 	chartID: "88eb6cc5683e2740cbd07f588a5f3db1db8d467b",
 	rgcID: null,
 	data: {
+		aiRating: "0",
 		notecount: 2256,
 		hashMD5: "38616b85332037cc12924f2ae2840262",
 		hashSHA256: "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d",

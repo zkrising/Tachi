@@ -147,6 +147,9 @@ function InternalGPTChartPage({
 			userMap.set(user.id, user);
 		}
 	}
+	
+	// Add current user, since there's no guarantee they are returned from either API.
+	userMap.set(user.id, user);
 
 	return (
 		<Row>

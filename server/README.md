@@ -17,6 +17,8 @@ Tachi itself is a supercharged Rhythm Game Score Tracker, powering multiple game
 
 `tachi-server` is one part of the larger Tachi framework. Other repositories include:
 
+[tachi-client](https://github.com/tng-dev/tachi-client): A React frontend for an instance of `tachi-server`.
+
 [tachi-common](https://github.com/tng-dev/tachi-common): Common Types and Utilities for Tachi. (Stuff that's shared between the client and the server, basically.)
 
 [tachi-docs](https://github.com/tng-dev/tachi-docs): Documentation for Tachi.
@@ -28,10 +30,6 @@ Tachi itself is a supercharged Rhythm Game Score Tracker, powering multiple game
 [tachi-database-seeds](https://github.com/tng-dev/tachi-database-seeds): Backbone data for Tachi, such as song and chart information. Free to use.
 
 [tachi-bot](https://github.com/tng-dev/tachi-bot): A discord bot that integrates with the Tachi API.
-
-## Where's the client?
-
-The client code is private. However, making a client is *definitely* not the hard part here, and you're completely free to make your own.
 
 ## Documentation
 

@@ -13,7 +13,7 @@ export default function UserIcon({
 	return (
 		<div className="text-center p-8">
 			<ProfilePicture user={user} />
-			<h1 className="mt-2">
+			<h4 className="mt-2">
 				<Link
 					className="gentle-link"
 					to={
@@ -24,7 +24,7 @@ export default function UserIcon({
 				>
 					{user.username}
 				</Link>
-			</h1>
+			</h4>
 			<div className="d-flex justify-content-center">{children}</div>
 		</div>
 	);

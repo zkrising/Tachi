@@ -64,7 +64,7 @@ export default function UserSelectModal({
 								users.map(user => (
 									<div className="text-center p-8" key={user.id}>
 										<ProfilePicture user={user} />
-										<h1 className="mt-2">{user.username}</h1>
+										<h4 className="mt-2">{user.username}</h4>
 										{excludeSet.includes(user.id) ? (
 											<Button variant="outline-secondary" disabled>
 												Already Selected

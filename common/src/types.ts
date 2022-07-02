@@ -1584,7 +1584,7 @@ export type NotificationBody =
 			type: "CHALLENGE_BEAT";
 			content: {
 				userID: integer;
-				challengeSub: ChallengeSubscriptionDocument;
+				challenge: ChallengeWallDocument;
 			};
 	  }
 	| {

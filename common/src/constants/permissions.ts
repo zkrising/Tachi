@@ -10,4 +10,5 @@ export const ALL_PERMISSIONS: Record<APIPermissions, true> = {
 	manage_rivals: true,
 	manage_targets: true,
 	submit_score: true,
+	manage_challenges: true,
 };

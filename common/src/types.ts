@@ -1392,6 +1392,7 @@ export type APIPermissions =
 	| "customise_score"
 	| "customise_session"
 	| "delete_score"
+	| "manage_challenges"
 	| "manage_rivals"
 	| "manage_targets"
 	| "submit_score";
@@ -1580,6 +1581,19 @@ interface BaseNotification {
 
 export type NotificationBody =
 	| {
+			type: "CHALLENGE_BEAT";
+			content: {
+				userID: integer;
+				challengeSub: ChallengeSubscriptionDocument;
+			};
+	  }
+	| {
+			type: "CHALLENGE_RECEIVED";
+			content: {
+				challenge: ChallengeWallDocument;
+			};
+	  }
+	| {
 			type: "MILESTONE_CHANGED"; // Emitted when a milestone the user is subscribed to changed.
 			content: {
 				milestoneID: string;
@@ -1597,3 +1611,25 @@ export type NotificationBody =
 export type NotificationDocument = BaseNotification & {
 	body: NotificationBody;
 };
+
+export interface ChallengeSubscriptionDocument {
+	chartID: string;
+	authorID: integer;
+	type: "lamp" | "score";
+
+	game: Game;
+	playtype: Playtype;
+
+	userID: integer;
+	achieved: boolean;
+	achievedAt: number | null;
+}
+
+export interface ChallengeWallDocument {
+	chartID: string;
+	authorID: integer;
+	type: "lamp" | "score";
+
+	game: Game;
+	playtype: Playtype;
+}

@@ -22,27 +22,23 @@ export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 	return (
 		<MiniTable className="table-sm text-center" headers={["Player Stats"]} colSpan={2}>
 			<>
-				{(Object.keys(gptConfig.classHumanisedFormat) as GameClassSets[IDStrings][]).map(
-					k => (
+				{(Object.keys(gptConfig.classHumanisedFormat) as GameClassSets[IDStrings][])
+					.filter(k => ugs.classes[k] !== undefined)
+					.map(k => (
 						<tr key={k}>
 							<td>{UppercaseFirst(k)}</td>
 							<td>
-								{ugs.classes[k] !== undefined ? (
-									<ClassBadge
-										showSetOnHover={false}
-										key={`${k}:${ugs.classes[k]}`}
-										game={ugs.game}
-										playtype={ugs.playtype}
-										classSet={k}
-										classValue={ugs.classes[k]!}
-									/>
-								) : (
-									"No Data"
-								)}
+								<ClassBadge
+									showSetOnHover={false}
+									key={`${k}:${ugs.classes[k]}`}
+									game={ugs.game}
+									playtype={ugs.playtype}
+									classSet={k}
+									classValue={ugs.classes[k]!}
+								/>
 							</td>
 						</tr>
-					)
-				)}
+					))}
 				{ratings.map(([k, v]) => (
 					<tr key={k}>
 						<td>

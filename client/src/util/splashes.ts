@@ -1,4 +1,5 @@
 import { mode } from "lib/config";
+import { Days, Months } from "./misc";
 import { FormatDate } from "./time";
 
 export const neutralSplashes = [
@@ -121,6 +122,11 @@ export const loggedInSplashes = [
 	"Touch Grass.",
 	"arch btw",
 	"Upon Such Great Heights",
+	"Stay a while, and listen!",
+	"Unexpected Roads...",
+	"Take care of yourself.",
+	"Love in all things.",
+	"You're trolling?",
 ];
 
 // Stuff that's bad for the kids, you know?
@@ -140,22 +146,87 @@ export const contentiousSplashes = [
 	"I wouldn't trade one stupid decision for another 5 years of life",
 	"TRACKED.com",
 	"and you'll never believe what JK Rowling just said!",
+	"They'll only miss you when you leave.",
+	"Count your blessings, be thankful you're still around.",
 ];
 
-export const heySplashes = [
-	"Welcome back",
-	"What's up",
-	"Hey",
-	"What's poppin",
-	"Good morning",
-	"Good afternoon",
-	"Good evening",
-	"Hello",
-	"Hewwo",
-	"How's it going",
-	"heyyy",
-	"Sup",
-	"Ahoy",
-	"What's crackin'",
-	"Howdy",
-];
+const curTime = new Date();
+const localHours = curTime.getHours();
+const day = curTime.getDay() as Days;
+
+let timeSplashes = [];
+
+if (localHours < 6) {
+	timeSplashes = ["It's late", "It's bedtime", "zzz", "*yawn*"];
+} else if (localHours < 12) {
+	timeSplashes = ["Good morning", "Good morbing"];
+} else if (localHours < 18) {
+	timeSplashes = ["Good afternoon"];
+} else {
+	timeSplashes = ["Good evening"];
+}
+
+let daySplashes: Array<string> = [];
+
+switch (day) {
+	case Days.Monday:
+		daySplashes = ["Happy Monday"];
+		break;
+
+	case Days.Tuesday:
+		// Does *anything* interesting happen on these days?
+		break;
+
+	case Days.Wednesday:
+		daySplashes = ["It is Wednesday"];
+		break;
+
+	case Days.Thursday:
+		daySplashes = ["Feliz Jueves"];
+		break;
+	case Days.Friday:
+		daySplashes = ["It's Femboy Friday", "It's finally Friday"];
+		break;
+
+	case Days.Saturday:
+		daySplashes = ["It's the weekend"];
+		break;
+
+	case Days.Sunday:
+		// Does *anything* interesting happen on these days?
+		break;
+}
+
+let holidaySplashes: Array<string> = [];
+
+const curDate = curTime.getDate();
+const curMonth = curTime.getMonth();
+
+if (curDate === 25 && curMonth === Months.December) {
+	holidaySplashes = ["Merry Christmas", "Happy Holidays", "Happy Christmas"];
+} else if (curDate === 1 && curMonth === Months.January) {
+	holidaySplashes = ["Happy New Year", `Welcome to ${curTime.getFullYear()}`];
+} else if (curDate === 31 && curMonth === Months.October) {
+	holidaySplashes = ["Happy Halloween", "Boo", "Get spooked", "ooOooOOooo"];
+}
+
+// If there are any holidary splashes ongoing, don't display anything else.
+export const heySplashes = holidaySplashes.length
+	? holidaySplashes
+	: [
+			"Welcome back",
+			"What's up",
+			"Hey",
+			"What's poppin",
+			"Hello",
+			"Hewwo",
+			"How's it going",
+			"heyyy",
+			"Sup",
+			"Ahoy",
+			"What's crackin'",
+			"Howdy",
+			"Heya",
+			...timeSplashes,
+			...daySplashes,
+	  ];

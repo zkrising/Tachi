@@ -195,9 +195,9 @@ function RivalsOverviewPage({
 			<Card
 				header={
 					<div className="text-center">
-						<h1>
+						<h3>
 							{isRequestingUser ? "Your" : `${reqUser.username}'s`} Reverse Rivals
-						</h1>
+						</h3>
 						{challengers.length !== 0 && (
 							<>
 								<Muted>
